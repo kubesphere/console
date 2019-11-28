@@ -36,8 +36,7 @@ export default class CridentialStore extends BaseStore {
   }
   @observable
   detail = {}
-  @observable
-  originDetail = {}
+
   @observable
   params = {}
 
@@ -87,7 +86,6 @@ export default class CridentialStore extends BaseStore {
     )
     result.display_name = result.id
     this.detail = result
-    this.originDetail = result
   }
 
   @action

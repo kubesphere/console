@@ -95,11 +95,10 @@ export default class Activity extends React.Component {
   }
 
   handleRun = debounce(async () => {
-    const { originDetail } = this.store
+    const { detail } = this.store
     const { params } = this.props.match
-    const isMutibranch = originDetail.branchNames
-    const hasParameters =
-      originDetail.parameters && originDetail.parameters.length
+    const isMutibranch = detail.branchNames
+    const hasParameters = detail.parameters && detail.parameters.length
     if (isMutibranch || hasParameters) {
       this.setState({ showBranchModal: true })
     } else {
@@ -127,7 +126,7 @@ export default class Activity extends React.Component {
   }
 
   get isMutibranch() {
-    return this.store.originDetail && this.store.originDetail.scmSource
+    return this.store.detail && this.store.detail.scmSource
   }
 
   rowKeys = record => `${record.startTime}${record.queueId}`
@@ -144,11 +143,11 @@ export default class Activity extends React.Component {
 
   handleScanRepository = async () => {
     const { params } = this.props.match
-    const { originDetail } = this.props.detailStore
+    const { detail } = this.props.detailStore
 
     await this.props.detailStore.scanRepository({
       project_id: params.project_id,
-      name: originDetail.name,
+      name: detail.name,
     })
     this.store.fetchDetail(params)
     Notify.success({
@@ -166,7 +165,7 @@ export default class Activity extends React.Component {
     })
 
     if (result.parameters) {
-      this.store.originDetail.parameters = result.parameters
+      this.store.detail.parameters = result.parameters
     }
   }
 
@@ -318,7 +317,7 @@ export default class Activity extends React.Component {
   ]
 
   renderModals = () => {
-    const { originDetail } = this.store
+    const { detail } = this.store
     const { params } = this.props.match
 
     return (
@@ -327,18 +326,18 @@ export default class Activity extends React.Component {
         onBranchSelect={this.handleBranchSelect}
         onCancel={this.hideBranchModal}
         visible={this.state.showBranchModal}
-        branches={toJS(originDetail.branchNames)}
-        parameters={originDetail.parameters}
+        branches={toJS(detail.branchNames)}
+        parameters={detail.parameters}
         params={params || {}}
       />
     )
   }
 
   renderFooter = () => {
-    const { originDetail, activityList } = this.store
+    const { detail, activityList } = this.store
     const { total, limit } = activityList
 
-    const isMutibranch = originDetail.branchNames
+    const isMutibranch = detail.branchNames
     if (!isMutibranch || this.isAtBranchDetailPage) {
       return null
     }
@@ -362,9 +361,9 @@ export default class Activity extends React.Component {
   }
 
   render() {
-    const { activityList, originDetail } = this.store
+    const { activityList, detail } = this.store
     const { data, isLoading, total, page, limit, filters } = activityList
-    const isMutibranch = originDetail.branchNames
+    const isMutibranch = detail.branchNames
     const isEmptyList = isLoading === false && data.length === 0
 
     const omitFilters = omit(filters, 'page')
@@ -372,7 +371,7 @@ export default class Activity extends React.Component {
     const runnable = this.enabledActions.includes('trigger')
 
     if (isEmptyList && !filters.page) {
-      if (isMutibranch && !originDetail.branchNames.length) {
+      if (isMutibranch && !detail.branchNames.length) {
         return (
           <React.Fragment>
             <EmptyCard desc={t('Pipeline config file not found')}>

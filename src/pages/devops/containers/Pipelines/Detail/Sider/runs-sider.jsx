@@ -45,6 +45,11 @@ class RunSider extends Base {
     this.refreshTimer = setInterval(this.refreshHandler, 4000)
   }
 
+  get listUrl() {
+    const { project_id } = this.props.match.params
+    return `/devops/${project_id}/pipelines`
+  }
+
   refreshHandler = () => {
     const { params } = this.props.match
     const { runDetail } = this.store

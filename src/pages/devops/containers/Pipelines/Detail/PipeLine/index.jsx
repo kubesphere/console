@@ -56,16 +56,16 @@ export default class Pipeline extends React.Component {
   }
 
   get isMutiBranch() {
-    return Boolean(this.props.detailStore.originDetail.scmSource)
+    return Boolean(get(this.props.detailStore.detail, 'scmSource'))
   }
 
   get sourceBranch() {
-    const { originDetail } = this.props.detailStore
-    if (get(originDetail, 'branchNames', []).length) {
-      if (originDetail.branchNames.indexOf('master')) {
+    const { detail } = this.props.detailStore
+    if (get(detail, 'branchNames', []).length) {
+      if (detail.branchNames.indexOf('master')) {
         return 'master'
       }
-      return originDetail.branchNames[0]
+      return detail.branchNames[0]
     }
     return ''
   }
@@ -137,10 +137,9 @@ export default class Pipeline extends React.Component {
   }
 
   handleRun = debounce(() => {
-    const { originDetail } = this.props.detailStore
-    const isMutibranch = originDetail.branchNames
-    const hasParameters =
-      originDetail.parameters && originDetail.parameters.length
+    const { detail } = this.props.detailStore
+    const isMutibranch = detail.branchNames
+    const hasParameters = detail.parameters && detail.parameters.length
     if (isMutibranch || hasParameters) {
       this.setState({ showParamsModal: true })
     } else {
@@ -149,11 +148,11 @@ export default class Pipeline extends React.Component {
   }, 500)
 
   handleRunOk = async (parameters, branch) => {
-    const { originDetail } = this.props.detailStore
+    const { detail } = this.props.detailStore
     const { project_id } = this.props.match.params
     await this.props.detailStore.runBranch({
       project_id,
-      name: originDetail.name,
+      name: detail.name,
       branch,
       parameters,
     })
@@ -263,11 +262,7 @@ export default class Pipeline extends React.Component {
   render() {
     const { showEditPipeline, isSubmitting } = this.state
     const { params } = this.props.match
-    const {
-      pipelineJsonData,
-      originDetail,
-      jenkinsfile,
-    } = this.props.detailStore
+    const { pipelineJsonData, detail, jenkinsfile } = this.props.detailStore
 
     return (
       <React.Fragment>
@@ -278,7 +273,7 @@ export default class Pipeline extends React.Component {
           onOk={this.handleOk}
           onCancel={this.hideEditPipeline}
           params={params}
-          projectName={originDetail.name}
+          projectName={detail.name}
           isSubmitting={isSubmitting}
         />
         <JenkinsEdit
@@ -290,9 +285,9 @@ export default class Pipeline extends React.Component {
           isSubmitting={this.state.isSaveJenkinsLoading}
         />
         <ParamsModal
-          branches={toJS(originDetail.branchNames)}
+          branches={toJS(detail.branchNames)}
           visible={this.state.showParamsModal}
-          parameters={toJS(originDetail.parameters)}
+          parameters={toJS(detail.parameters)}
           onCancel={this.handleParamsCancel}
           onOk={this.handleRunOk}
           params={params}

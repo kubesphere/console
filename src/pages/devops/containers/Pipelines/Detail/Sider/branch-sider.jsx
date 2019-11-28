@@ -49,17 +49,9 @@ class BranchSider extends Base {
     }
   }
 
-  fetchData = () => {
-    const { params } = this.props.match
-    this.store.getBranchDetail(params)
-    this.store.fetchDetail(params)
-    this.getSonarqube()
-  }
-
-  getSonarqube = () => {
-    const { params } = this.props.match
-
-    this.sonarqubeStore.fetchDetail(params)
+  get listUrl() {
+    const { project_id } = this.props.match.params
+    return `/devops/${project_id}/pipelines`
   }
 
   get name() {
@@ -88,6 +80,19 @@ class BranchSider extends Base {
     })
   }
 
+  fetchData = () => {
+    const { params } = this.props.match
+    this.store.getBranchDetail(params)
+    this.store.fetchDetail(params)
+    this.getSonarqube()
+  }
+
+  getSonarqube = () => {
+    const { params } = this.props.match
+
+    this.sonarqubeStore.fetchDetail(params)
+  }
+
   getOperations = () => [
     {
       key: 'run',
@@ -106,13 +111,13 @@ class BranchSider extends Base {
   }
 
   getAttrs = () => {
-    const { originDetail } = this.store
+    const { detail } = this.store
     const { activityList } = this.store
 
     return [
       {
         name: t('DevOps Project'),
-        value: originDetail.displayName,
+        value: detail.displayName,
       },
       {
         name: t('Status'),
@@ -153,7 +158,7 @@ class BranchSider extends Base {
     })
 
     if (result.parameters) {
-      this.store.originDetail.parameters = result.parameters
+      this.store.detail.parameters = result.parameters
     }
   }
 
@@ -178,12 +183,12 @@ class BranchSider extends Base {
   handleRunBranch = async parameters => {
     const { params } = this.props.match
     const { branch, project_id } = this.props.match.params
-    const { originDetail } = this.store
+    const { detail } = this.store
 
     await this.store.runBranch({
       project_id,
       branch,
-      name: originDetail.name,
+      name: detail.name,
       parameters,
     })
     this.store.getActivities(params)

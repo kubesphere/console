@@ -46,7 +46,7 @@ class Events extends React.Component {
   ]
 
   render() {
-    const { originDetail } = this.props.detailStore
+    const { detail } = this.props.detailStore
 
     return (
       <Card title={t('Account')}>
@@ -55,9 +55,9 @@ class Events extends React.Component {
             <Icon name="key" size={40} />
           </div>
           <div className={styles.info}>
-            <div className={styles.name}>{originDetail.id || '-'}</div>
+            <div className={styles.name}>{detail.id || '-'}</div>
             <div className={styles.desc}>{`${t('type')}: ${t(
-              originDetail.type
+              detail.type
             )}`}</div>
           </div>
         </div>

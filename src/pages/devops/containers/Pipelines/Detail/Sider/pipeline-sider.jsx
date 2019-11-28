@@ -147,7 +147,7 @@ class PipelineDetail extends Base {
   }
 
   getOperations = () => {
-    const { originDetail } = this.store
+    const { detail } = this.store
 
     return [
       {
@@ -164,7 +164,7 @@ class PipelineDetail extends Base {
         action: 'edit',
         onClick: this.showEditConfigModal,
       },
-      ...(originDetail.scmSource
+      ...(detail.scmSource
         ? [
             {
               key: 'scan',
@@ -213,10 +213,10 @@ class PipelineDetail extends Base {
 
   showEditModal = async () => {
     const { params } = this.props.match
-    const { originDetail } = this.store
+    const { detail } = this.store
 
     const pipeLineConfig = await this.store.getPipeLineConfig(
-      originDetail.name,
+      detail.name,
       params
     )
     pipeLineConfig.project_id = params.project_id
@@ -225,10 +225,10 @@ class PipelineDetail extends Base {
 
   showEditConfigModal = async () => {
     const { params } = this.props.match
-    const { originDetail } = this.store
+    const { detail } = this.store
 
     const pipeLineConfig = await this.store.getPipeLineConfig(
-      originDetail.name,
+      detail.name,
       params
     )
     this.setState({ showEditConfig: true, formTemplate: pipeLineConfig })
@@ -248,11 +248,11 @@ class PipelineDetail extends Base {
 
   handleScanRepository = async () => {
     const { params } = this.props.match
-    const { originDetail } = this.store
+    const { detail } = this.store
 
     await this.store.scanRepository({
       project_id: params.project_id,
-      name: originDetail.name,
+      name: detail.name,
     })
     Notify.success({
       content: t('Scan repo success'),
@@ -282,9 +282,9 @@ class PipelineDetail extends Base {
 
   handleDelete = () => {
     const { project_id } = this.props.match.params
-    const { originDetail } = this.store
+    const { detail } = this.store
     this.setState({ deleteLoading: true })
-    this.store.deletePipeline(originDetail.name, project_id).then(() => {
+    this.store.deletePipeline(detail.name, project_id).then(() => {
       this.hideDeleteModal()
       this.routing.push(`/devops/${project_id}/pipelines`)
     })
@@ -302,7 +302,7 @@ class PipelineDetail extends Base {
   }
 
   renderSider() {
-    const { originDetail } = this.store
+    const { detail } = this.store
 
     const operations = this.getOperations().filter(item =>
       this.enabledActions.includes(item.action)
@@ -311,10 +311,10 @@ class PipelineDetail extends Base {
     return (
       <BaseInfo
         icon={ICON_TYPES[this.module]}
-        name={originDetail.name}
-        desc={get(originDetail.annotations, 'desc')}
+        name={detail.name}
+        desc={get(detail.annotations, 'desc')}
         operations={operations}
-        labels={originDetail.labels}
+        labels={detail.labels}
         attrs={this.getAttrs()}
       />
     )

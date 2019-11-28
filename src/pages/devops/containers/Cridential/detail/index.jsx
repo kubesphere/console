@@ -44,8 +44,8 @@ class CredentialDetail extends Base {
   }
 
   get updateTime() {
-    const { originDetail } = this.store
-    const updateTime = get(originDetail, 'latestRun.startTime', '')
+    const { detail } = this.store
+    const updateTime = get(detail, 'latestRun.startTime', '')
     if (!updateTime) {
       return '-'
     }
@@ -87,29 +87,29 @@ class CredentialDetail extends Base {
   ]
 
   getAttrs = () => {
-    const { originDetail } = this.store
+    const { detail } = this.store
     return [
       {
         name: t('Type'),
-        value: t(originDetail.type),
+        value: t(detail.type),
       },
       {
         name: t('description'),
-        value: originDetail.description,
+        value: detail.description,
       },
       {
         name: t('domain'),
-        value: originDetail.domain,
+        value: detail.domain,
       },
     ]
   }
 
   showEditModal = async () => {
-    const { originDetail } = this.store
+    const { detail } = this.store
 
     this.setState({
       showEdit: true,
-      formTemplate: originDetail,
+      formTemplate: detail,
     })
   }
 
@@ -124,22 +124,22 @@ class CredentialDetail extends Base {
 
   handleDelete = () => {
     const { project_id } = this.props.match.params
-    const { originDetail } = this.store
-    this.store.delete(originDetail.id).then(() => {
+    const { detail } = this.store
+    this.store.delete(detail.id).then(() => {
       this.routing.push(`/devops/${project_id}/${this.module}`)
     })
   }
 
   renderSider() {
-    const { originDetail } = this.store
+    const { detail } = this.store
 
     return (
       <BaseInfo
         icon={ICON_TYPES[this.module]}
-        name={originDetail.id || ''}
-        desc={get(originDetail, 'description')}
+        name={detail.id || ''}
+        desc={get(detail, 'description')}
         operations={this.getEnabledOperations()}
-        labels={originDetail.labels}
+        labels={detail.labels}
         attrs={this.getAttrs()}
       />
     )
