@@ -19,16 +19,16 @@
 import { get, isNaN } from 'lodash'
 import React from 'react'
 import { toJS } from 'mobx'
-import { Select } from '@pitrix/lego-ui'
 
 import { PropTypes } from 'prop-types'
 import { safeParseJSON } from 'utils'
-import { Form, Slider } from 'components/Base'
+import { Form, Slider, SearchSelect } from 'components/Base'
 import { AccessModes } from 'components/Inputs'
 
 import StorageClassStore from 'stores/storageClass'
 
 const STORAGE_CLASSES_KEY = 'spec.storageClassName'
+const ACCESSMODE_KEY = 'spec.accessModes[0]'
 
 export default class VolumeSettings extends React.Component {
   static contextTypes = {
@@ -48,12 +48,16 @@ export default class VolumeSettings extends React.Component {
   }
 
   componentDidMount() {
+    this.updateStorageClass()
+  }
+
+  updateStorageClass = (params = {}) => {
     this.setState({ isLoading: true })
 
     const { formData } = this.context
     const storageClasses = get(formData, STORAGE_CLASSES_KEY)
 
-    this.store.fetchList({ limit: Infinity }).then(() => {
+    return this.store.fetchList(params).then(() => {
       const data = toJS(this.store.list.data)
 
       this.setState({
@@ -137,8 +141,13 @@ export default class VolumeSettings extends React.Component {
   handleStorageClassChange = value => {
     const { storageClasses } = this.state
 
+    const newStorageClass =
+      storageClasses.find(item => item.name === value) || {}
+
+    this.context.formData[ACCESSMODE_KEY] = undefined
+
     this.setState({
-      storageClass: storageClasses.find(item => item.name === value) || {},
+      storageClass: newStorageClass,
     })
   }
 
@@ -146,25 +155,34 @@ export default class VolumeSettings extends React.Component {
     const { storageClass, isLoading } = this.state
 
     const storageClasses = this.getStorageClasses()
+    const supportedAccessModes = this.getSupportedAccessModes()
+    const storageClassesList = this.store.list || {}
 
     return (
       <>
         <Form.Item
           label={t('Storage Class')}
           desc={t('VOLUME_STORAGE_CLASS_DESC')}
+          rules={[{ required: true, message: t('This param is required') }]}
         >
-          <Select
+          <SearchSelect
             name={STORAGE_CLASSES_KEY}
             defaultValue={storageClass.name}
-            options={storageClasses}
+            page={storageClassesList.page}
+            total={storageClassesList.total}
+            isLoading={storageClassesList.isLoading}
             onChange={this.handleStorageClassChange}
+            options={storageClasses}
+            currentLength={storageClassesList.data.length}
+            onFetch={this.updateStorageClass}
           />
         </Form.Item>
+
         <Form.Item label={t('Access Mode')}>
           <AccessModes
-            name="spec.accessModes[0]"
-            defaultValue="ReadWriteOnce"
-            supportedAccessModes={this.getSupportedAccessModes()}
+            name={ACCESSMODE_KEY}
+            defaultValue={get(supportedAccessModes, '[0]', '')}
+            supportedAccessModes={supportedAccessModes}
             loading={isLoading}
           />
         </Form.Item>
