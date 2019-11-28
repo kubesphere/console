@@ -14,7 +14,7 @@ on:
   pull_request:
 
 env:
-  IMAGE_NAME: kubesphere-console
+  IMAGE_NAME: ks-console
   DOCKERHUB_REPO: kubespheredev
 
 jobs:
