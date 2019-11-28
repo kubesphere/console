@@ -1,0 +1,30 @@
+@import '~scss/variables';
+
+.wrapper {
+  padding-left: 12px;
+
+  p {
+    color: #79879c;
+  }
+}
+
+.cards {
+  margin-top: 12px;
+  list-style: none;
+
+  :global .h6 {
+    line-height: 1.43;
+    margin-bottom: 20px;
+  }
+}
+
+.total {
+  display: inline-block;
+  height: 20px;
+  padding: 0 8px;
+  margin-left: 8px;
+  border-radius: 10px;
+  background-color: #abb4be;
+  font-weight: 500;
+  color: #ffffff;
+}

@@ -1,0 +1,17 @@
+@import '~scss/variables';
+
+.toggle {
+  & > a {
+    color: $blue;
+  }
+
+  svg {
+    color: $blue;
+  }
+}
+
+.children {
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+}

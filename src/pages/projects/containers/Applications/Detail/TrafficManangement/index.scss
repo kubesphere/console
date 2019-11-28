@@ -1,0 +1,13 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.main {
+  height: calc(100vh - 208px);
+  min-height: 430px;
+}
+
+.loading {
+  display: block;
+  margin: 100px 0;
+  text-align: center;
+}

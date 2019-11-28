@@ -1,0 +1,319 @@
+/*
+ * This file is part of KubeSphere Console.
+ * Copyright (C) 2019 The KubeSphere Console Authors.
+ *
+ * KubeSphere Console is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * KubeSphere Console is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+import { get, isUndefined, isEmpty, sortBy, includes } from 'lodash'
+
+export const getDeployStatus = ({
+  hasS2i,
+  spec = {},
+  status = {},
+  annotations = {},
+}) => {
+  if (hasS2i) {
+    return `${get(
+      annotations,
+      "['devops.kubesphere.io/inithasbeencomplted']",
+      'Running'
+    )}`
+  }
+
+  if (
+    spec.replicas === 0 &&
+    (!isUndefined(status.readyReplicas) && status.readyReplicas !== 0)
+  ) {
+    return 'Updating'
+  }
+
+  if (spec.replicas) {
+    if (status.readyReplicas === spec.replicas) {
+      return 'Running'
+    }
+    return 'Updating'
+  }
+
+  return 'Stopped'
+}
+
+export const getStatefulSetStatus = ({ spec = {}, status = {} }) => {
+  if (
+    spec.replicas === 0 &&
+    (!isUndefined(status.readyReplicas) && status.readyReplicas !== 0)
+  ) {
+    return 'Updating'
+  }
+
+  if (spec.replicas) {
+    if (status.readyReplicas === spec.replicas) {
+      return 'Running'
+    }
+    return 'Updating'
+  }
+
+  return 'Stopped'
+}
+
+export const getDaemonSetStatus = ({ status }) => {
+  if (status.numberAvailable === 0) {
+    return 'Stopped'
+  } else if (status.numberAvailable === status.desiredNumberScheduled) {
+    return 'Running'
+  }
+  return 'Updating'
+}
+
+export const getJobStatus = ({ spec, status }) => {
+  if (isEmpty(status)) return 'Failed'
+
+  let _status = 'Running'
+
+  if (!isEmpty(status.conditions)) {
+    status.conditions.some(item => {
+      if (item.type === 'Failed' && item.status === 'True') {
+        _status = 'Failed'
+        return true
+      }
+
+      if (item.type === 'Complete' && item.status === 'True') {
+        _status = 'Completed'
+        return true
+      }
+
+      return false
+    })
+  }
+
+  if (spec.Completions <= status.Succeed) _status = 'Failed'
+
+  return _status
+}
+
+export const getCronJobStatus = ({ spec }) => {
+  if (spec.suspend) {
+    return 'Paused'
+  }
+  return 'Running'
+}
+
+export const getVolumeStatus = ({ status = {} }) => {
+  const conditions = status.conditions || []
+  if (!isEmpty(conditions)) {
+    const detailedStatus =
+      conditions.find(({ type }) =>
+        includes(['FileSystemResizePending', 'Resizing'], type)
+      ) || {}
+
+    return detailedStatus.type
+  }
+}
+
+export const getWorkloadStatus = (record, module) => {
+  const funcMap = {
+    deployments: getDeployStatus,
+    statefulsets: getStatefulSetStatus,
+    daemonsets: getDaemonSetStatus,
+    jobs: getJobStatus,
+    cronjobs: getCronJobStatus,
+  }
+
+  let status = ''
+  let reason = ''
+
+  if (funcMap[module]) {
+    status = funcMap[module](record)
+  }
+
+  if (status === 'Updating') {
+    const conditions = get(record, 'status.conditions', [])
+      .filter(cd =>
+        cd.type === 'ReplicaFailure'
+          ? cd.status === 'True'
+          : cd.status === 'False'
+      )
+      .reverse()
+    reason = get(conditions, '[0].reason')
+  }
+
+  return { status, reason }
+}
+
+export const getPodStatusAndRestartCount = pod => {
+  const conditions = pod.status.conditions || []
+  let status = pod.status.phase || ''
+  let restarts = 0
+  let initializing = false
+
+  const readyCondition = conditions
+    ? conditions.find(cd => cd.type === 'Ready')
+    : ''
+
+  if (!isEmpty(pod.status.reason)) {
+    status = pod.status.reason
+  }
+
+  if (!isEmpty(pod.status.initContainerStatuses)) {
+    pod.status.initContainerStatuses.forEach((container, index) => {
+      restarts += Number(container.restartCount)
+      const waiting = get(container, 'state.waiting')
+      const terminated = get(container, 'state.terminated')
+      if (terminated && terminated.exitCode === 0) {
+        return
+      }
+
+      if (terminated) {
+        if (isEmpty(terminated.reason)) {
+          status = `Init:${terminated.reason}`
+        } else if (terminated.signal !== 0) {
+          status = `Init:Signal:${terminated.signal}`
+        } else {
+          status = `Init:ExitCode:${terminated.exitCode}`
+        }
+        initializing = true
+      } else if (
+        waiting &&
+        terminated &&
+        !isEmpty(terminated.reason) &&
+        waiting.reason !== 'PodInitializing'
+      ) {
+        status = `Init:${terminated.reason}`
+        initializing = true
+      } else {
+        const len = get(pod, 'spec.initContainers.length')
+        status = `Init:${index}/${len}`
+        initializing = true
+      }
+    })
+  }
+
+  if (!initializing && !isEmpty(pod.status.containerStatuses)) {
+    let hasRunning = false
+    restarts = 0
+    pod.status.containerStatuses.forEach(container => {
+      restarts += Number(container.restartCount)
+
+      const waiting = get(container, 'state.waiting')
+      const terminated = get(container, 'state.terminated')
+
+      if (waiting && waiting.reason) {
+        status = waiting.reason
+      } else if (terminated && terminated.reason) {
+        status = terminated.reason
+      } else if (terminated && !terminated.reason) {
+        status =
+          terminated.singal !== 0
+            ? `Signal:${terminated.singal}`
+            : `ExitCode:${terminated.exitCode}`
+      } else if (
+        container.ready &&
+        container.state &&
+        container.state.running
+      ) {
+        hasRunning = true
+      }
+    })
+
+    if (status === 'Completed' && hasRunning) {
+      status = 'Running'
+    }
+  }
+
+  if (get(pod, 'metadata.deletionTimestamp')) {
+    status = pod.status.reason === 'NodeLost' ? 'UnKnown' : 'Terminating'
+  }
+
+  let type = 'waiting'
+  switch (status) {
+    case 'Running':
+      type = 'running'
+      break
+    case 'Failed':
+    case 'Error':
+      type = 'error'
+      break
+    case 'Completed':
+      type = 'completed'
+      break
+    case 'Succeeded':
+      if (readyCondition.reason === 'PodCompleted') {
+        type === 'completed'
+      } else {
+        status = readyCondition.reason
+      }
+      break
+    case 'Pending':
+      {
+        const cds = sortBy(
+          conditions.filter(cd => cd.status === 'False'),
+          'lastTransitionTime'
+        )
+        status = get(cds, '[0].reason', status)
+      }
+      break
+    default:
+      if (status.startsWith('OutOf')) {
+        type = 'error'
+      }
+      // Init:*, Terminating, Signal:*, ExitCode:*, ContainerCreating, Others
+      break
+  }
+
+  return { status, type, restarts }
+}
+
+export const getUserStatus = status => {
+  if (status === 0) {
+    return 'active'
+  }
+
+  return 'disabled'
+}
+
+export const getPipelineStatus = statusDetail => {
+  const { state = '', result = '' } = statusDetail || {}
+
+  if (state === 'QUEUED') {
+    return { type: 'queued', label: t('Queued') }
+  }
+  if (state === 'RUNNING') {
+    return { type: 'running', label: t('Running') }
+  }
+  if (state === 'FINISHED' && result === 'SUCCESS') {
+    return { type: 'success', label: t('Success') }
+  }
+  if (state === 'FINISHED' && result === 'FAILURE') {
+    return { type: 'failure', label: t('Failure') }
+  }
+  if (state === 'FINISHED' && result === 'ABORTED') {
+    return { type: 'aborted', label: t('Aborted') }
+  }
+  if (state === 'PAUSED') {
+    return { type: 'paused', label: t('Paused') }
+  }
+  return { type: 'nostatus', label: t('not run') }
+}
+
+export const getComponentStatus = ({ totalBackends, healthyBackends }) => {
+  if (healthyBackends !== totalBackends) {
+    return 'Warning'
+  }
+
+  if (totalBackends === 0) {
+    return 'Stopped'
+  }
+
+  return 'Healthy'
+}

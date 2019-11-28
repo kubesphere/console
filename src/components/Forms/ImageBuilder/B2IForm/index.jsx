@@ -1,0 +1,215 @@
+/*
+ * This file is part of KubeSphere Console.
+ * Copyright (C) 2019 The KubeSphere Console Authors.
+ *
+ * KubeSphere Console is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * KubeSphere Console is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+import React from 'react'
+import { get } from 'lodash'
+import classnames from 'classnames'
+import { Input, Select, Alert } from '@pitrix/lego-ui'
+import { Form } from 'components/Base'
+import { getDisplayName, getDocsUrl } from 'utils'
+import SecretStore from 'stores/secret'
+import BuilderStore from 'stores/s2i/builder'
+import S2IEnviroment from 'components/Inputs/S2iEnviroment'
+import TemplateSelect from 'components/Forms/ImageBuilder/S2IForm/TemplateSelect'
+import ToggleView from 'components/ToggleView'
+
+import Uploader from './BinaryFileUploader'
+import styles from './index.scss'
+
+export default class S2IForm extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.secretStore = new SecretStore()
+    this.builderStore = new BuilderStore()
+
+    this.state = {
+      isGetTemplateListLoading: true,
+      environment: [],
+      basicSecretOptions: [],
+      imageSecretOptions: [],
+      docUrl: '',
+    }
+  }
+
+  static defaultProps = {
+    mode: 'create',
+    prefix: '',
+  }
+
+  get prefix() {
+    const { prefix } = this.props
+    return prefix ? `${prefix}.` : ''
+  }
+
+  componentDidMount() {
+    this.fetchData()
+    this.fetchImageSecrets()
+    this.getTemplateList()
+  }
+
+  get namespace() {
+    const { formTemplate } = this.props
+
+    return get(formTemplate, `${this.prefix}metadata.namespace`)
+  }
+
+  fetchData = async () => {
+    const results = await this.secretStore.fetchByK8s({
+      namespace: this.namespace,
+      fieldSelector: `type=kubernetes.io/basic-auth`,
+    })
+
+    const basicSecretOptions = results.map(item => ({
+      label: getDisplayName(item),
+      value: item.name,
+      type: 'basic-auth',
+    }))
+
+    this.setState({ basicSecretOptions })
+  }
+
+  fetchImageSecrets = async () => {
+    const results = await this.secretStore.fetchByK8s({
+      namespace: this.namespace,
+      fieldSelector: `type=kubernetes.io/dockerconfigjson`,
+    })
+
+    const imageSecretOptions = results.map(item => ({
+      label: getDisplayName(item),
+      value: item.name,
+      type: 'dockerconfigjson',
+    }))
+
+    this.setState({ imageSecretOptions })
+  }
+
+  getTemplateList = async () => {
+    this.setState({ isGetTemplateListLoading: true })
+    const lists = await this.builderStore.getBuilderTemplate()
+    this.setState({
+      builderTemplateLists: get(lists, 'items', []),
+      isGetTemplateListLoading: false,
+    })
+  }
+
+  handleImageTemplateChange = ({ environment, docUrl }) => {
+    const lang = get(globals, 'user.lang', 'zh')
+
+    const EnvOptions = (environment || []).map(env => {
+      env.label = env.key
+      const descArr = (env.description || '').split('. ')
+      const desc =
+        lang === 'zh'
+          ? get(descArr, '1', env.description)
+          : get(descArr, '0', env.description)
+      env.label = `${env.key}  (${desc})`
+      env.value = env.key
+      return env
+    })
+    this.setState({ environment: EnvOptions, docUrl })
+  }
+
+  renderAdvancedSetting() {
+    return (
+      <React.Fragment>
+        <Alert
+          className={styles.environment_info}
+          message={t.html('S2I_ENVIROMENT_DESC', {
+            link: this.state.docUrl || getDocsUrl('s2i_template'),
+          })}
+          type="info"
+        />
+        <Form.Item>
+          <S2IEnviroment
+            name={`${this.prefix}spec.config.environment`}
+            options={this.state.environment}
+          />
+        </Form.Item>
+      </React.Fragment>
+    )
+  }
+
+  render() {
+    const { formTemplate, formRef, mode, prefix } = this.props
+
+    return (
+      <Form ref={formRef} data={formTemplate}>
+        <Form.Item
+          label={t('Upload Artifacts')}
+          rules={[{ required: true, message: t('file has not uploaded') }]}
+        >
+          <Uploader
+            name={`${this.prefix}spec.config.sourceUrl`}
+            namespace={this.namespace}
+            formTemplate={prefix ? formTemplate[prefix] : formTemplate}
+          />
+        </Form.Item>
+        <TemplateSelect
+          loading={this.state.isGetTemplateListLoading}
+          formTemplate={prefix ? formTemplate[prefix] : formTemplate}
+          builderTemplate={this.state.builderTemplateLists}
+          onEnvironmentChange={this.handleImageTemplateChange}
+        />
+        <div
+          className={classnames(styles.columns, {
+            [styles.columsEdit]: mode === 'edit',
+          })}
+        >
+          <div className={styles.column}>
+            <Form.Item
+              label={t('imageName')}
+              desc={t('S2I_IMAGENAME_DESC')}
+              rules={[{ required: true, message: t('This param is required') }]}
+            >
+              <Input name={`${this.prefix}spec.config.imageName`} />
+            </Form.Item>
+          </div>
+          <div className="is-2">
+            <Form.Item
+              label={t('tag')}
+              rules={[{ required: true, message: t('This param is required') }]}
+            >
+              <Input
+                name={`${this.prefix}spec.config.tag`}
+                defaultValue={'latest'}
+              />
+            </Form.Item>
+          </div>
+          <div className="is-half">
+            <Form.Item
+              label={t('Target image repository')}
+              desc={t.html('S2I_TARGET_IMAGE_REPONSTRY_DESC', {
+                link: getDocsUrl('secrets'),
+              })}
+              rules={[{ required: true, message: t('This param is required') }]}
+            >
+              <Select
+                name={`${
+                  this.prefix
+                }spec.config.pushAuthentication.secretRef.name`}
+                options={this.state.imageSecretOptions}
+              />
+            </Form.Item>
+          </div>
+        </div>
+        <ToggleView>{this.renderAdvancedSetting()}</ToggleView>
+      </Form>
+    )
+  }
+}

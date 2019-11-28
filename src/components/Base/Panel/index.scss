@@ -1,0 +1,19 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.wrapper {
+  position: relative;
+  margin-bottom: 12px;
+}
+
+.title {
+  margin-bottom: 8px;
+  @include TypographySymbolText();
+}
+
+.panel {
+  padding: 12px;
+  border-radius: $border-radius;
+  background-color: $white;
+  box-shadow: $card-shadow;
+}

@@ -1,0 +1,66 @@
+@import '~scss/variables';
+
+.wrapper {
+  display: flex;
+
+  .text {
+    height: 32px;
+    padding: 6px 10px;
+    font-size: $body-size;
+    font-family: $font-family-id;
+    line-height: 1.67;
+    color: $text-color;
+    border: 1px solid $input-border-color;
+    background-color: $light-color02 !important;
+    border-radius: 4px 0 0 4px;
+    margin-right: -1px;
+  }
+
+  input {
+    width: auto !important;
+    max-width: 455px;
+    flex-grow: 1;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    z-index: 11;
+  }
+
+  input.prefix {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  .select {
+    width: auto;
+    margin-left: -2px;
+    
+    :global {
+      .select-control {
+        height: 32px;
+        background-color: $light-color02;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        z-index: 10;
+        border: 1px solid $input-border-color !important;
+        box-shadow: none !important;
+      }
+
+      .select-placeholder,
+      .select-control .select-value {
+        position: static;
+        padding-left: 0;
+        padding-right: 0;
+        vertical-align: middle;
+      }
+
+      .select-menu-outer {
+        width: auto !important;
+        min-width: 100px;
+      }
+
+      .option-selected-area {
+        display: none;
+      }
+    }
+  }
+}

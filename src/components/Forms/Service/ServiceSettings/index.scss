@@ -1,0 +1,43 @@
+@import '~scss/variables';
+
+.wrapper {
+  :global .h4 {
+    line-height: 1.4;
+    margin-bottom: 32px;
+
+    svg {
+      width: 24px;
+      height: 24px;
+      margin-right: 12px;
+      vertical-align: sub;
+    }
+  }
+}
+
+.contentWrapper {
+  min-height: 336px;
+  height: 100%;
+  padding: 12px;
+  border-radius: 4px;
+  background-color: $lightest;
+}
+
+.card {
+  position: relative;
+  min-height: 408px;
+  padding: 15px 20px;
+  border-radius: 4px;
+  background-color: $white;
+  border: solid 1px #d8dee5;
+}
+
+.tabs {
+  margin-bottom: 12px;
+
+  .label {
+    display: block;
+    margin-bottom: 4px;
+    line-height: 20px;
+    color: #242e42;
+  }
+}

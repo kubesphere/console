@@ -1,0 +1,107 @@
+/*
+ * This file is part of KubeSphere Console.
+ * Copyright (C) 2019 The KubeSphere Console Authors.
+ *
+ * KubeSphere Console is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * KubeSphere Console is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+import React from 'react'
+import PropTypes from 'prop-types'
+
+import { Controller as Base } from 'components/Cards/Monitoring'
+import { Icon, Loading } from '@pitrix/lego-ui'
+import { Modal, Button } from 'components/Base'
+
+import styles from './index.scss'
+
+export default class MonitoringModalController extends Base {
+  static propTypes = {
+    ...Base.propTypes,
+    onCancel: PropTypes.func,
+  }
+
+  static defaultProps = {
+    ...Base.defaultProps,
+    times: 100,
+    step: '5m',
+    onCancel() {},
+  }
+
+  shouldComponentUpdate(nextProps) {
+    if (nextProps.visible && nextProps.visible !== this.props.visible) {
+      this.initParams(nextProps)
+      this.props.onFetch(this.params)
+    }
+    return true
+  }
+
+  componentDidMount() {
+    if (this.props.visible) {
+      this.props.onFetch(this.params)
+    }
+  }
+
+  init() {
+    this.initParams(this.props)
+  }
+
+  renderCustomActions() {
+    const { onCancel } = this.props
+
+    return (
+      <Button className={styles.button} onClick={onCancel}>
+        <Icon type="light" name="close" size={20} />
+      </Button>
+    )
+  }
+
+  renderHeader() {
+    const { icon, title } = this.props
+
+    return (
+      <div className={styles.header}>
+        <div className={styles.title}>
+          <Icon name={icon || 'monitor'} size={16} />
+          {title || t('Monitoring')}
+        </div>
+        {this.renderOperations()}
+      </div>
+    )
+  }
+
+  renderContent() {
+    const content = Base.prototype.renderContent.call(this)
+    return <div className={styles.content}>{content}</div>
+  }
+
+  render() {
+    const { loading, onFetch, ...rest } = this.props
+
+    return (
+      <Modal
+        width={1162}
+        bodyClassName={styles.body}
+        icon="monitor"
+        onOk={this.handleSubmit}
+        hideHeader
+        hideFooter
+        fullScreen
+        {...rest}
+      >
+        {this.renderHeader()}
+        <Loading spinning={loading}>{this.renderContent()}</Loading>
+      </Modal>
+    )
+  }
+}

@@ -1,0 +1,12 @@
+.baseInfo {
+  display: flex;
+  justify-items: flex-start;
+}
+
+.info {
+  width: 400px;
+
+  & + .info {
+    margin-left: 12px;
+  }
+}

@@ -1,0 +1,27 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.wrapper {
+  display: inline-block;
+  height: 20px;
+  padding: 0 4px;
+  font-size: $size-small;
+  line-height: 20px;
+  font-weight: 600;
+  border-radius: 2px;
+
+  &.default {
+    color: $white;
+    background-color: $dark-color07;
+  }
+
+  &.warning {
+    color: $yellow-color05;
+    background-color: $yellow-color01;
+  }
+
+  &.primary {
+    color: $green-color05;
+    background-color: $green-color01;
+  }
+}

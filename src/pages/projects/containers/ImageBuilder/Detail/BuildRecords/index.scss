@@ -1,0 +1,43 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.main {
+  padding: 0;
+
+  > div:first-child {
+    padding: 20px 20px 0 20px;
+  }
+}
+
+.table {
+  :global {
+    .table {
+      border-radius: 0 0 $border-radius $border-radius;
+    }
+  }
+}
+
+.clickable {
+  &:hover {
+    cursor: pointer;
+    color: $btn-primary-hover-bg;
+  }
+}
+
+.content {
+  padding-top: 20px;
+}
+
+.title {
+  height: 20px;
+  margin-bottom: 5px;
+  @include TypographySymbolText;
+}
+
+.card {
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px 0 rgba(36, 46, 66, 0.06);
+  background-color: #ffffff;
+}

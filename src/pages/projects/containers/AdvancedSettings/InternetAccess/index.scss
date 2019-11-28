@@ -1,0 +1,82 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.header {
+  display: flex;
+  padding: 0 12px;
+  align-items: center;
+
+  .item {
+    flex: 1;
+    margin-left: 12px;
+
+    & > div {
+      @include TypographyTitleH6($dark-color07);
+    }
+  
+    & > p {
+      @include TypographyParagraph($dark-color01);
+    }
+  }
+}
+
+.annotations {
+  & > p {
+    margin-top: 20px;
+    font-size: $size-normal;
+    font-weight: $font-bold;
+    line-height: 1.43;
+  }
+
+  & > ul {
+    margin-top: 20px;
+
+    & > li {
+      padding: 11px 36px;
+      border-radius: 60px;
+      background-color: $bg-color;
+      border: solid 1px $border-color;
+      font-family: $font-family-id;
+
+      & + li {
+        margin-top: 8px;
+      }
+
+      & > span {
+        display: inline-block;
+        min-width: 360px;
+
+        & + span {
+          margin-left: 86px;
+        }
+      }
+    }
+  }
+}
+
+.empty {
+  padding: 32px 0;
+  text-align: center;
+
+  .icon {
+    display: inline-block;
+    padding: 10px;
+    border-radius: 100px 0 100px 100px;
+    background-color: $bg-color;
+  }
+
+  .text {
+    margin-top: 12px;
+    & > div {
+      font-size: $size-normal;
+      font-weight: $font-bold;
+      line-height: 20px;
+    }
+
+    & > p {
+      margin: 0 auto;
+      width: 520px;
+      color: #79879c;
+    }
+  }
+}

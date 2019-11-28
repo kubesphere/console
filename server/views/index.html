@@ -1,0 +1,38 @@
+<% var bundlePrefix = isDev ? '//localhost:8001' : '/dist' %>
+<% var mainJS = bundlePrefix + '/main.js' %>
+<% var vendorJS = bundlePrefix + '/vendor.js' %>
+<% var legoJS =  bundlePrefix + '/lego.js' %>
+<% var mainCSS = '/dist/main.css' %>
+<% var legoCSS = '/dist/lego.css' %>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title><%- title %></title>
+  <link rel="icon" href="/assets/favicon.ico" type="image/x-icon" />
+  <link href="<%- legoCSS + '?v=' + version(legoCSS) %>" rel="stylesheet" media="all" />
+  <% if (!isDev) { %>
+  <link href="<%- mainCSS + '?v=' + version(mainCSS) %>" rel="stylesheet" media="all" />
+  <% } %>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="text/javascript">
+    window.globals = {
+      config: <%- config %>,
+      ksConfig: <%- ksConfig %>,
+      user: <%- user || "null" %>
+    }
+  </script>
+
+  <script type="text/javascript" src="<%- vendorJS + '?v=' + version(vendorJS) %>"></script>
+  <script type="text/javascript" src="<%- legoJS + '?v=' + version(legoJS) %>"></script>
+  <script type="text/javascript" src="<%- mainJS + '?v=' + version(mainJS) %>"></script>
+</body>
+
+</html>

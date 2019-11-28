@@ -1,0 +1,16 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.provisioner {
+  h3 {
+    @include TypographyTitleH6();
+  }
+
+  p {
+    @include TypographyParagraph($dark-color01);
+  }
+}
+
+.description {
+  color: $dark-color01
+}

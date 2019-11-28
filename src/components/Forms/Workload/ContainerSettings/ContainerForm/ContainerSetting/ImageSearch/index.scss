@@ -1,0 +1,264 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.dropContent {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  overflow: auto;
+  padding: 12px;
+  width: 100%;
+  border: solid 1px $dark-color01;
+  border-radius: $border-radius;
+  box-shadow: 0 4px 8px 0 rgba(36, 46, 66, 0.2);
+  background-color: white;
+  z-index: 2;
+
+  .header {
+    margin-bottom: 12px;
+    height: 32px;
+  }
+}
+
+.listContent {
+  overflow: auto;
+  height: 370px;
+  li {
+    display: flex;
+    & > img {
+      flex-basis: 40px;
+      margin-right: 12px;
+      width: 40px;
+      height: 40px;
+    }
+
+    position: relative;
+    padding: 8px;
+    margin-bottom: 4px;
+    width: 100%;
+    height: 56px;
+    border-radius: 2px;
+    background-color: $light-color01;
+
+    .starContainer {
+      flex-basis: 80px;
+      width: 50px;
+      height: 100%;
+      line-height: 40px;
+    }
+
+    .actions {
+      display: none;
+      position: absolute;
+      padding-top: 18px;
+      top: 0;
+      right: 0;
+      height: 100%;
+      background-color: rgba(239, 244, 249, 0.9);
+
+      span {
+        margin-right: 20px;
+      }
+    }
+
+    .info {
+      padding-right: 80px;
+      flex-grow: 1;
+      & > :first-child {
+        font-family: $font-family-id;
+        font-size: 12px;
+        font-weight: bold;
+        line-height: 1.67;
+        color: $dark-color07;
+      }
+      & > :last-child {
+        font-family: $font-family-id;
+        font-size: 12px;
+        line-height: 1.67;
+        color: $dark-color01;
+      }
+    }
+
+    &:hover {
+      background-color: $light-color02;
+      .info {
+        & > :first-child {
+          color: $blue-color03;
+        }
+      }
+      .actions {
+        display: block;
+      }
+    }
+  }
+}
+
+.tabs {
+  cursor: pointer;
+  height: 32px;
+  padding: 1px;
+  border-radius: 18px;
+  display: inline-block;
+  background-color: $bg-color;
+  border: 1px solid #d8dee5;
+  margin-right: 20px;
+  .tab {
+    display: inline-block;
+    width: 156px;
+    text-align: center;
+    min-width: 120px;
+    line-height: 28px;
+    color: #79879c;
+  }
+
+  .selected {
+    border-radius: 16px;
+    background-color: #36435c;
+    color: white !important;
+  }
+}
+
+.header {
+  .search {
+    float: left;
+    width: 320px;
+    margin-bottom: 12px;
+    margin-right: 12px;
+  }
+  @include clearfix;
+}
+
+.defaultPortButtons {
+  float: right;
+  height: 32px;
+}
+
+.selectedInfo {
+  height: 40px;
+  display: flex;
+  & > img {
+    margin-right: 12px;
+    width: 40px;
+  }
+  .icon {
+    flex-basis: 40px;
+    min-width: 40px;
+    margin-right: 12px;
+    width: 40px;
+    height: 40px;
+  }
+  .imageInfo {
+    flex-grow: 1;
+    p:first-child {
+      height: 20px;
+      @include TypographyTitleH6;
+    }
+    p:last-child {
+      height: 20px;
+      @include TypographyParagraph($dark-color01);
+    }
+  }
+}
+
+.message {
+  margin-top: 12px;
+  height: 20px;
+  font-family: $font-family-id;
+  color: $dark-color01;
+}
+
+.selectedContent {
+  margin-top: 12px;
+  padding: 12px;
+  min-height: 140px;
+  border-radius: $border-radius;
+  background-color: $light-color01;
+
+  .config {
+    display: flex;
+    margin-top: 12px;
+    padding: 12px;
+    height: 64px;
+    border-radius: $border-radius;
+    border: solid 1px $light-color06;
+    background-color: white;
+    & > div {
+      flex-grow: 1;
+      flex-shrink: 1;
+    }
+    .secretInfo {
+      max-width: 50%;
+    }
+  }
+}
+
+.emptyContent {
+  padding-top: 38px;
+  text-align: center;
+  .icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 12px;
+  }
+  .desc {
+    height: 20px;
+    @include TypographyParagraph($dark-color01);
+  }
+}
+
+.registryFooter {
+  margin-bottom: 12px;
+  padding-left: 12px;
+
+  button {
+    margin-left: 380px;
+  }
+}
+
+.selectOption {
+  display: flex;
+  .icon {
+    flex-basis: 40px;
+    height: 40px;
+    margin-right: 12px;
+  }
+  .secretInfo {
+    flex-grow: 1;
+    p:first-child {
+      height: 20px;
+      @include TypographyTitleH6;
+    }
+    p:last-child {
+      height: 20px;
+      @include TypographyParagraph($dark-color01);
+    }
+  }
+}
+
+.dropContent_hide {
+  display: none;
+}
+
+.dropDownIcon {
+  position: absolute;
+  right: 20px;
+  top: 8px;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.star {
+  margin-right: 4px;
+  vertical-align: middle;
+}
+
+.imageInput {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  max-width: none !important;
+}

@@ -1,0 +1,17 @@
+@import '~scss/variables';
+
+// .wrapper {
+//   min-height: calc(100vh - 108px);
+// }
+
+.pipelineSuccessNumber {
+  font-size: 20px;
+  font-weight: bold;
+  color: $green;
+  margin-right: 8px;
+  vertical-align: unset !important;
+}
+
+.sourcePipelineStatus {
+  font-size: 10px;
+}

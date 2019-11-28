@@ -1,0 +1,5 @@
+**
+!dist
+!docker
+!server/(locales|public|sample|views|config.yaml)
+!package.json

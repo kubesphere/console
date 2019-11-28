@@ -1,0 +1,20 @@
+.wrapper {
+  width: 487px;
+  padding: 0 20px 0 12px;
+
+  @media (max-width: 1366px) {
+    width: 360px;
+  }
+
+  :global {
+    .h5 {
+      text-shadow: none;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+  }
+}
+
+.upload {
+  margin-top: 20px;
+}

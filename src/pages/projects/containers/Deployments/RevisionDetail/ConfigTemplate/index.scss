@@ -1,0 +1,15 @@
+@import '~scss/variables';
+
+.main {
+}
+
+.replica {
+  display: flex;
+
+  &Count {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 322px;
+  }
+}

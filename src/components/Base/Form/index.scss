@@ -1,0 +1,114 @@
+@import '~scss/variables';
+
+.item {
+  &.errorItem {
+    :global {
+      .input,
+      .textarea,
+      .select-control {
+        border: solid 1px $input-error-color !important;
+        &:focus,
+        &:hover {
+          border: solid 1px $input-error-color !important;
+          box-shadow: 0 4px 8px 0 rgba(202, 38, 33, 0.2) !important;
+        }
+      }
+    }
+  }
+
+  + .item,
+  + .group {
+    margin-top: 12px;
+  }
+
+  :global {
+    .field {
+      margin-bottom: 0 !important;
+    }
+
+    .input,
+    .textarea,
+    .select {
+      width: 100%;
+      max-width: 455px;
+    }
+  }
+}
+
+.label {
+  display: block;
+  margin-bottom: 4px;
+  line-height: 20px;
+  color: $text-color;
+}
+
+.control {
+  position: relative;
+}
+
+.desc {
+  margin-top: 4px;
+  color: $second-text-color;
+}
+
+.desc a {
+  color: $blue;
+}
+
+.error {
+  margin-top: 4px;
+  color: $red;
+}
+
+.tip {
+  margin-left: 2px;
+  vertical-align: text-bottom;
+}
+
+.requiredIcon {
+  color: $red;
+  margin: 0 6px;
+}
+
+.group {
+  margin-bottom: 12px;
+  padding: 11px 20px;
+  border-radius: 4px;
+  border: solid 1px $border-color;
+  background-color: $white;
+
+  &Title {
+    font-weight: $font-bold;
+
+    :global {
+      .label-value {
+        font-weight: $font-bold;
+      }
+    }
+  }
+
+  &Desc {
+    color: $second-text-color;
+  }
+
+  &Content {
+    border-radius: 4px;
+    background-color: $card-bg-color;
+    padding: 12px;
+    margin: 0 -8px;
+    margin-top: 12px;
+  }
+
+  &.checkable {
+    .groupDesc {
+      padding-left: 28px;
+    }
+  }
+}
+
+.hideGroup {
+  height: 0;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}

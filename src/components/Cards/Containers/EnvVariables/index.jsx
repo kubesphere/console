@@ -1,0 +1,116 @@
+/*
+ * This file is part of KubeSphere Console.
+ * Copyright (C) 2019 The KubeSphere Console Authors.
+ *
+ * KubeSphere Console is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * KubeSphere Console is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+import React from 'react'
+import PropTypes from 'prop-types'
+import classnames from 'classnames'
+import { isEmpty } from 'lodash'
+
+import { Icon } from '@pitrix/lego-ui'
+import { Card } from 'components/Base'
+
+import styles from './index.scss'
+
+export default class ContainerItem extends React.Component {
+  static propTypes = {
+    className: PropTypes.string,
+    detail: PropTypes.object,
+    expand: PropTypes.bool,
+    loading: PropTypes.bool,
+  }
+
+  static defaultProps = {
+    detail: {},
+    expand: false,
+    loading: true,
+  }
+
+  state = {
+    isExpand: this.props.expand,
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.expand !== this.props.nextProps) {
+      this.setState({ isExpand: nextProps.expand })
+    }
+  }
+
+  handleExpand = () => {
+    this.setState({
+      isExpand: !this.state.isExpand,
+    })
+  }
+
+  renderTitle() {
+    return (
+      <div className={styles.title}>
+        <Icon name="docker" size={20} />
+        {t('Container')}: {this.props.detail.name}
+      </div>
+    )
+  }
+
+  renderOperations() {
+    return (
+      <div className={styles.arrow}>
+        <Icon name="caret-down" size={12} type="light" />
+      </div>
+    )
+  }
+
+  renderContent() {
+    const { variables } = this.props.detail
+
+    if (isEmpty(variables)) return null
+
+    return (
+      <div
+        className={styles.content}
+        onClick={e => {
+          e.stopPropagation()
+        }}
+      >
+        <ul className={styles.variables}>
+          {variables.map(({ name, value }) => (
+            <li key={name}>
+              <div className={styles.name}>{name}</div>
+              <div>{value}</div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )
+  }
+
+  render() {
+    return (
+      <Card
+        className={classnames(styles.main, {
+          [styles.expanded]: this.state.isExpand,
+        })}
+        title={this.renderTitle()}
+        operations={this.renderOperations()}
+        empty={t('NOT_AVAILABLE', { resource: t('environment variables') })}
+        loading={this.props.loading}
+        onClick={this.handleExpand}
+      >
+        {this.renderContent()}
+      </Card>
+    )
+  }
+}

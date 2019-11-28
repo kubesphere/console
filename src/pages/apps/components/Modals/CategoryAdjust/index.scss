@@ -1,0 +1,9 @@
+@import '~scss/variables';
+.footer {
+  border-color: $bg-color;
+  border-top: 1px solid $border-color;
+}
+
+.form {
+  padding-bottom: 60px;
+}

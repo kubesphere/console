@@ -1,0 +1,69 @@
+@import '~scss/variables';
+
+.header {
+  position: fixed;
+  top: 0;
+  z-index: 7;
+  max-width: 1070px;
+  min-width: 800px;
+  width: 80%;
+}
+
+.appContent {
+  margin-top: 144px;
+  width: 100%;
+
+  :global {
+    .tabs-new {
+      > .tabs {
+        position: fixed;
+        z-index: 11;
+        height: 44px;
+        width: 100%;
+        padding: 6px 20px;
+        background-color: $card-bg-color;
+        box-shadow: 1px -1px 0 0 $border-color, 0 1px 0 0 $border-color;
+      }
+      > .tab-content {
+        position: relative;
+        margin: 44px 8px 0 0;
+        padding: 20px;
+      }
+    }
+  }
+
+  .deployButton {
+    position: fixed;
+    z-index: 11;
+    top: 150px;
+    right: 20px;
+  }
+}
+
+.deployForm {
+  margin-top: 144px;
+  margin-bottom: 86px;
+
+  > div:first-child {
+    max-height: calc(100vh - 100px);
+    padding: 0;
+    > div:first-child {
+      margin: 0 20px;
+    }
+  }
+}
+
+.footer {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  z-index: 6;
+  max-width: 1070px;
+  min-width: 800px;
+  width: 80%;
+}
+
+.loading {
+  display: block;
+  padding: 150px;
+}

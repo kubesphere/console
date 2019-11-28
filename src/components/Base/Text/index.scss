@@ -1,0 +1,21 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.wrapper {
+  position: relative;
+  display: flex;
+}
+
+.text {
+  & > div {
+    @include TypographyTitleH6($dark-color07);
+  }
+
+  & > p {
+    @include TypographyParagraph($dark-color01);
+  }
+}
+
+.icon {
+  margin-right: 12px;
+}

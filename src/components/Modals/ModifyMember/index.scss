@@ -1,0 +1,14 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.option {
+  overflow: hidden;
+
+  & > div {
+    @include TypographyTitleH6($white);
+  }
+
+  & > p {
+    @include TypographyParagraph($dark-color01);
+  }
+}

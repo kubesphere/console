@@ -1,0 +1,15 @@
+@import '~scss/variables';
+
+.wrapper {
+  position: relative;
+}
+
+.alert {
+  margin-bottom: 8px;
+}
+
+.workload {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}

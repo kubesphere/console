@@ -1,0 +1,67 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.select {
+  padding: 12px;
+  margin-bottom: 12px;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px 0 rgba(36, 46, 66, 0.06);
+}
+
+.control {
+  position: relative;
+  cursor: pointer;
+}
+
+.rightIcon {
+  position: absolute;
+  @include vertical-center;
+  right: 32px;
+}
+
+.selected {
+  background-color: $lightest;
+}
+
+.options {
+  width: calc(100vw - 436px);
+  overflow: hidden;
+  border-radius: $border-radius;
+}
+
+.item {
+  display: flex;
+  padding: 14px 19px;
+
+  .icon {
+    margin-right: 12px;
+  }
+
+  .name {
+    :global .h6 {
+      font-family: $font-family-id;
+      font-size: $size-normal;
+      font-weight: $font-bold;
+      line-height: 1.43;
+    }
+
+    p {
+      color: #79879c;
+    }
+  }
+
+  &:hover {
+    background-color: $lightest;
+  }
+}
+
+.empty {
+  padding: 12px 20px;
+  color: #abb4be;
+  font-size: $size-medium;
+  font-weight: $font-bold;
+  line-height: 1.5;
+  background-color: $th-bg-color;
+  border-radius: 4px;
+}

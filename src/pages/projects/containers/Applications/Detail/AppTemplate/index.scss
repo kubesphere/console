@@ -1,0 +1,12 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.wrapper {
+  :global {
+    .tabs-container .tabs {
+      margin: 0 -20px !important;
+      padding: 11px 24px;
+      background-color: $lightest;
+    }
+  }
+}

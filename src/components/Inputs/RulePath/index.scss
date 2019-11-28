@@ -1,0 +1,11 @@
+@import '~scss/variables';
+
+.wrapper {
+  display: flex;
+
+  .item {
+    & + .item {
+      margin-left: 20px;
+    }
+  }
+}

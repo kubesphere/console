@@ -1,0 +1,14 @@
+@import '~scss/variables';
+
+.operations {
+  :global {
+    .select, .input {
+      width: 188px;
+      margin-right: 12px;
+    }
+
+    .select-value-label {
+      font-size: 12px;
+    }
+  }
+}

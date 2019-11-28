@@ -1,0 +1,129 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.container {
+  display: flex;
+}
+
+.dialogTitle {
+  padding-bottom: 20px;
+  margin-bottom: 12px;
+  line-height: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #242e42;
+  box-shadow: 0 1px 0 0 $light-color07;
+}
+
+.left {
+  flex-basis: 215px;
+  height: 500px;
+  overflow: auto;
+}
+
+.right {
+  flex-grow: 1;
+}
+
+.cutTitle {
+  font-size: 12px;
+  color: #79879c;
+}
+
+.leftTab {
+  width: 196px;
+  height: 36px;
+  line-height: 36px;
+  font-weight: 500;
+  color: #4a5974;
+  border-radius: 18px;
+  text-indent: 2em;
+  cursor: pointer;
+  @include ellipsis;
+  :global {
+    .cicd_status_icon {
+      width: 12px;
+      height: 12px;
+      background-size: 12px;
+    }
+  }
+}
+
+.leftTab__active {
+  width: 196px;
+  height: 36px;
+  color: #363e4a;
+  border-radius: 18px;
+  box-shadow: 0 4px 12px 0 rgba(36, 46, 66, 0.1);
+  background-color: $bg-color;
+  border: solid 1px $border-color;
+}
+
+.header {
+  height: 32px;
+  margin-bottom: 12px;
+  button {
+    float: right;
+    margin-left: 15px;
+  }
+}
+
+.stageContainer {
+  margin-bottom: 18px;
+}
+
+.logContainer {
+  width: 900px;
+  height: 450px;
+  padding: 12px;
+  border-radius: 4px;
+  background-color: #242e42;
+  color: white;
+  overflow-y: auto;
+}
+
+.LogItem {
+  margin-bottom: 12px;
+}
+
+.LogItem__title {
+  text-indent: 1em;
+  position: relative;
+  width: 100%;
+  height: 36px;
+  line-height: 36px;
+  border-radius: 4px;
+  background-color: #36435c;
+  cursor: pointer;
+  :global {
+    .icon {
+      display: inline-block;
+      vertical-align: top;
+      margin: 10px 15px 0 0;
+    }
+    .qicon {
+      color: white;
+    }
+  }
+}
+
+.logitem_status {
+  float: right;
+  margin-right: 20px;
+  color: #79879c;
+  :global {
+    .cicd_status_icon {
+      margin-left: 15px;
+      width: 12px;
+      height: 12px;
+      background-size: 12px;
+    }
+  }
+}
+
+.LogItem_content {
+  padding-left: 60px;
+  line-height: 22px;
+  background-color: #242e42;
+  color: white;
+}

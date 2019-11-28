@@ -1,0 +1,125 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.pipelineCard {
+  width: 256px;
+  text-align: center;
+  white-space: normal;
+}
+
+.pipelineCard--error {
+  .pipelineCard__title {
+    background-color: #ca2621;
+  }
+  .pipelineCard__content {
+    border: 1px solid #ca2621;
+  }
+}
+
+.pipelineCard--queue {
+  .pipelineCard__title {
+    background-color: #6b7b95;
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      background-size: 16px;
+      background-image: url('/assets/Loading.svg');
+      background-repeat: no-repeat;
+      background-position: center;
+      vertical-align: middle;
+      margin-right: 5px;
+    }
+  }
+}
+
+.pipelineCard--paused {
+  .pipelineCard__title {
+    background-color: #f5a623;
+  }
+  .content__title__paused {
+    color: #f5a623;
+  }
+  button {
+    margin: 10px;
+  }
+}
+
+.pipelineCard__title {
+  display: inline-block;
+  position: relative;
+  top: 18px;
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 32px;
+  max-width: 100%;
+
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 32px;
+  color: #ffffff;
+
+  border-radius: 16px;
+  background-color: #242e42;
+
+  @include ellipsis;
+}
+
+.pipelineCard__content {
+  padding: 22px 12px 20px;
+  text-align: left;
+  border-radius: $border-radius;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px 0 rgba(36, 46, 66, 0.06);
+}
+
+.pipelineCard__item {
+  padding: 8px 12px;
+  margin-bottom: 8px;
+  line-height: 20px;
+  border-radius: 4px;
+  background-color: $lightest;
+
+  .content__title {
+    font-weight: 500;
+  }
+  .content__detail {
+    color: #242e42;
+  }
+}
+
+.content__status {
+  color: $green;
+  span {
+    vertical-align: middle;
+  }
+  :global {
+    .cicd_status_icon {
+      width: 12px;
+      height: 12px;
+      background-size: 12px;
+      margin-top: -2px;
+    }
+  }
+}
+
+.content__status__error {
+  color: #ca2621;
+}
+
+.content__status__quene {
+  color: black;
+}
+
+.errorMessage {
+  color: #ca2621;
+}
+
+.pipeline_column {
+  display: inline-block;
+  // width: 300px;
+  margin: 0 10px;
+
+  vertical-align: top;
+}

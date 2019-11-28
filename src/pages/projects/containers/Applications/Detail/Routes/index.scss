@@ -1,0 +1,58 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.card {
+  padding: 20px;
+  border-radius: 4px;
+  background-color: $lightest;
+
+  & + .card {
+    margin-top: 8px;
+  }
+}
+
+.content {
+  position: relative;
+  display: flex;
+  margin-bottom: 12px;
+
+  .text {
+    margin-left: 20px;
+    & > a {
+      font-family: $font-family-id;
+      font-size: $size-normal;
+      font-weight: $font-bold;
+      line-height: 20px;
+    }
+
+    & > p {
+      color: #79879c;
+    }
+  }
+}
+
+.rules {
+  & > li {
+    position: relative;
+    padding: 12px 20px;
+    border-radius: 22px;
+    background-color: $bg-color;
+    border: solid 1px $border-color;
+
+    strong {
+      font-family: $font-family-id;
+      font-size: $size-normal;
+      font-weight: $font-bold;
+      line-height: 20px;
+    }
+
+    & + li {
+      margin-top: 8px;
+    }
+
+    .access {
+      right: 6px;
+      @include vertical-center;
+    }
+  }
+}

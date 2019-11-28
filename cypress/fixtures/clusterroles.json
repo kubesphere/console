@@ -1,0 +1,502 @@
+{
+  "items": [
+    {
+      "metadata": {
+        "name": "cluster-admin",
+        "selfLink": "/apis/rbac.authorization.k8s.io/v1/clusterroles/cluster-admin",
+        "uid": "b6da231b-3587-11e9-ad24-52543c701f75",
+        "resourceVersion": "21416846",
+        "creationTimestamp": "2019-02-21T03:21:01Z",
+        "labels": {
+          "creator": "system",
+          "kubernetes.io/bootstrapping": "rbac-defaults"
+        },
+        "annotations": {
+          "creator": "system",
+          "desc": "",
+          "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"rbac.authorization.k8s.io/v1\",\"kind\":\"ClusterRole\",\"metadata\":{\"annotations\":{\"creator\":\"system\"},\"name\":\"cluster-admin\"},\"rules\":[{\"apiGroups\":[\"*\"],\"resources\":[\"*\"],\"verbs\":[\"*\"]},{\"nonResourceURLs\":[\"*\"],\"verbs\":[\"*\"]}]}\n",
+          "lastUpdateTime": "2019-05-05T05:54:38Z",
+          "rbac.authorization.kubernetes.io/autoupdate": "true"
+        }
+      },
+      "rules": [
+        { "verbs": ["*"], "apiGroups": ["*"], "resources": ["*"] },
+        { "verbs": ["*"], "nonResourceURLs": ["*"] }
+      ]
+    },
+    {
+      "metadata": {
+        "name": "cluster-regular",
+        "selfLink": "/apis/rbac.authorization.k8s.io/v1/clusterroles/cluster-regular",
+        "uid": "262f9d59-358e-11e9-ad24-52543c701f75",
+        "resourceVersion": "28555141",
+        "creationTimestamp": "2019-02-21T04:07:05Z",
+        "labels": { "creator": "system" },
+        "annotations": {
+          "creator": "admin",
+          "desc": "",
+          "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"rbac.authorization.k8s.io/v1\",\"kind\":\"ClusterRole\",\"metadata\":{\"annotations\":{\"creator\":\"admin\",\"desc\":\"\"},\"name\":\"cluster-regular\"},\"rules\":[{\"apiGroups\":[\"openpitrix.io\"],\"resources\":[\"repos\",\"app_versions\"],\"verbs\":[\"list\"]},{\"apiGroups\":[\"openpitrix.io\"],\"resources\":[\"app_version/*\"],\"verbs\":[\"get\"]},{\"apiGroups\":[\"openpitrix.io\"],\"resources\":[\"apps\",\"clusters\"],\"verbs\":[\"*\"]}]}\n"
+        }
+      },
+      "rules": [
+        {
+          "verbs": ["get", "list"],
+          "apiGroups": ["openpitrix.io"],
+          "resources": [
+            "repos",
+            "app_versions",
+            "app_version/*",
+            "apps",
+            "clusters"
+          ]
+        },
+        {
+          "verbs": ["*"],
+          "apiGroups": ["devops.kubesphere.io", "jenkins.kubesphere.io"],
+          "resources": ["*"]
+        },
+        { "verbs": ["*"], "apiGroups": [""], "resources": ["limitranges"] },
+        {
+          "verbs": ["list"],
+          "apiGroups": ["*"],
+          "resources": ["storageclasses"]
+        },
+        { "verbs": ["create"], "apiGroups": [""], "resources": ["limitranges"] }
+      ]
+    },
+    {
+      "metadata": {
+        "name": "custom-cluster-role",
+        "selfLink": "/apis/rbac.authorization.k8s.io/v1/clusterroles/custom-cluster-role",
+        "uid": "1d46f758-72cc-11e9-98ca-52543c701f75",
+        "resourceVersion": "25794849",
+        "creationTimestamp": "2019-05-10T02:34:20Z",
+        "annotations": {
+          "creator": "admin",
+          "lastUpdateTime": "2019-05-10T03:47:38Z"
+        }
+      },
+      "rules": [
+        {
+          "verbs": ["create"],
+          "apiGroups": ["openpitrix.io"],
+          "resources": ["repos"]
+        },
+        {
+          "verbs": ["get", "watch", "list"],
+          "apiGroups": ["openpitrix.io"],
+          "resources": ["repos"]
+        },
+        {
+          "verbs": ["update", "patch"],
+          "apiGroups": ["openpitrix.io"],
+          "resources": ["repos"]
+        },
+        {
+          "verbs": ["delete", "deletecollection"],
+          "apiGroups": ["openpitrix.io"],
+          "resources": ["repos"]
+        },
+        {
+          "verbs": ["list"],
+          "apiGroups": ["openpitrix.io"],
+          "resources": ["repos", "app_versions"]
+        },
+        {
+          "verbs": ["get"],
+          "apiGroups": ["openpitrix.io"],
+          "resources": ["app_version/*"]
+        },
+        {
+          "verbs": ["*"],
+          "apiGroups": ["openpitrix.io"],
+          "resources": ["apps", "clusters"]
+        }
+      ]
+    },
+    {
+      "metadata": {
+        "name": "ellayu",
+        "selfLink": "/apis/rbac.authorization.k8s.io/v1/clusterroles/ellayu",
+        "uid": "be3c07e5-6662-11e9-98ca-52543c701f75",
+        "resourceVersion": "15646136",
+        "creationTimestamp": "2019-04-24T07:29:49Z",
+        "annotations": {
+          "creator": "admin",
+          "desc": "yujingmei",
+          "lastUpdateTime": "2019-04-24T09:22:27Z"
+        }
+      },
+      "rules": [
+        {
+          "verbs": ["get", "watch", "list"],
+          "apiGroups": ["iam.kubesphere.io"],
+          "resources": ["users", "users/*"]
+        },
+        {
+          "verbs": ["get"],
+          "apiGroups": ["iam.kubesphere.io"],
+          "resources": ["rulesmapping"],
+          "resourceNames": ["clusterroles"]
+        },
+        {
+          "verbs": ["get", "watch", "list"],
+          "apiGroups": ["rbac.authorization.k8s.io"],
+          "resources": ["clusterrolebindings"]
+        },
+        {
+          "verbs": ["create", "get", "list"],
+          "apiGroups": ["iam.kubesphere.io"],
+          "resources": ["users"]
+        },
+        {
+          "verbs": ["get"],
+          "apiGroups": ["iam.kubesphere.io"],
+          "resources": ["clusterrules"],
+          "resourceNames": ["mapping"]
+        },
+        {
+          "verbs": ["create", "delete", "deletecollection"],
+          "apiGroups": ["rbac.authorization.k8s.io"],
+          "resources": ["clusterrolebindings"]
+        },
+        {
+          "verbs": ["get", "list", "update", "patch"],
+          "apiGroups": ["iam.kubesphere.io"],
+          "resources": ["users"]
+        },
+        {
+          "verbs": ["create", "delete", "deletecollection"],
+          "apiGroups": ["rbac.authorization.k8s.io"],
+          "resources": ["clusterrolebindings"]
+        },
+        {
+          "verbs": ["delete", "deletecollection"],
+          "apiGroups": ["iam.kubesphere.io"],
+          "resources": ["users"]
+        },
+        {
+          "verbs": ["get", "watch", "list"],
+          "apiGroups": ["rbac.authorization.k8s.io"],
+          "resources": ["clusterroles"]
+        },
+        {
+          "verbs": ["get", "list"],
+          "apiGroups": ["kubesphere.io"],
+          "resources": ["resources"],
+          "resourceNames": ["cluster-roles"]
+        },
+        {
+          "verbs": ["get", "list"],
+          "apiGroups": ["iam.kubesphere.io"],
+          "resources": ["clusterroles", "clusterroles/*"]
+        },
+        {
+          "verbs": ["create"],
+          "apiGroups": ["rbac.authorization.k8s.io"],
+          "resources": ["clusterroles"]
+        },
+        {
+          "verbs": ["update", "patch"],
+          "apiGroups": ["rbac.authorization.k8s.io"],
+          "resources": ["clusterroles"]
+        },
+        {
+          "verbs": ["delete", "deletecollection"],
+          "apiGroups": ["rbac.authorization.k8s.io"],
+          "resources": ["clusterroles"]
+        }
+      ]
+    },
+    {
+      "metadata": {
+        "name": "null-role",
+        "selfLink": "/apis/rbac.authorization.k8s.io/v1/clusterroles/null-role",
+        "uid": "0008fb4c-6997-11e9-98ca-52543c701f75",
+        "resourceVersion": "17567641",
+        "creationTimestamp": "2019-04-28T09:21:27Z",
+        "annotations": { "creator": "admin" }
+      },
+      "rules": null
+    },
+    {
+      "metadata": {
+        "name": "only-qiyekongjian",
+        "selfLink": "/apis/rbac.authorization.k8s.io/v1/clusterroles/only-qiyekongjian",
+        "uid": "694e10f9-66fd-11e9-98ca-52543c701f75",
+        "resourceVersion": "15920368",
+        "creationTimestamp": "2019-04-25T01:56:59Z",
+        "annotations": { "creator": "admin" }
+      },
+      "rules": [
+        {
+          "verbs": ["create"],
+          "apiGroups": ["tenant.kubesphere.io"],
+          "resources": ["workspaces"]
+        },
+        {
+          "verbs": ["get", "list"],
+          "apiGroups": ["tenant.kubesphere.io"],
+          "resources": ["workspaces"]
+        },
+        {
+          "verbs": ["*"],
+          "apiGroups": ["tenant.kubesphere.io", "monitoring.kubesphere.io"],
+          "resources": ["workspaces", "workspaces/*"]
+        },
+        { "verbs": ["*"], "apiGroups": [""], "resources": ["namespaces"] },
+        {
+          "verbs": ["*"],
+          "apiGroups": [
+            "",
+            "apps",
+            "extensions",
+            "batch",
+            "resources.kubesphere.io"
+          ],
+          "resources": [
+            "serviceaccounts",
+            "limitranges",
+            "deployments",
+            "configmaps",
+            "secrets",
+            "jobs",
+            "cronjobs",
+            "persistentvolumeclaims",
+            "statefulsets",
+            "daemonsets",
+            "ingresses",
+            "services",
+            "pods/*",
+            "pods",
+            "events",
+            "deployments/scale"
+          ]
+        },
+        {
+          "verbs": ["*"],
+          "apiGroups": ["rbac.authorization.k8s.io"],
+          "resources": ["rolebindings", "roles"]
+        }
+      ]
+    },
+    {
+      "metadata": {
+        "name": "rg",
+        "selfLink": "/apis/rbac.authorization.k8s.io/v1/clusterroles/rg",
+        "uid": "bcf94333-77a3-11e9-98ca-52543c701f75",
+        "resourceVersion": "29191994",
+        "creationTimestamp": "2019-05-16T06:27:54Z",
+        "annotations": { "creator": "kubectl" }
+      },
+      "rules": [
+        {
+          "verbs": ["get", "list"],
+          "apiGroups": ["openpitrix.io"],
+          "resources": [
+            "apps",
+            "clusters",
+            "repos",
+            "app_versions",
+            "app_version/*"
+          ]
+        },
+        {
+          "verbs": ["get", "watch", "list"],
+          "apiGroups": [""],
+          "resources": ["nodes", "events"]
+        },
+        {
+          "verbs": ["get", "list"],
+          "apiGroups": ["resources.kubesphere.io"],
+          "resources": ["nodes", "nodes/*"]
+        },
+        {
+          "verbs": ["get", "list"],
+          "apiGroups": ["monitoring.kubesphere.io"],
+          "resources": ["nodes"]
+        }
+      ]
+    },
+    {
+      "metadata": {
+        "name": "scsca",
+        "selfLink": "/apis/rbac.authorization.k8s.io/v1/clusterroles/scsca",
+        "uid": "d1a1e9cd-6032-11e9-98ca-52543c701f75",
+        "resourceVersion": "12560218",
+        "creationTimestamp": "2019-04-16T10:31:39Z",
+        "annotations": { "creator": "leoliu-admin" }
+      },
+      "rules": [
+        {
+          "verbs": ["create"],
+          "apiGroups": ["tenant.kubesphere.io"],
+          "resources": ["workspaces"]
+        },
+        {
+          "verbs": ["get", "list"],
+          "apiGroups": ["tenant.kubesphere.io"],
+          "resources": ["workspaces"]
+        }
+      ]
+    },
+    {
+      "metadata": {
+        "name": "system:ks-controller-manager",
+        "selfLink": "/apis/rbac.authorization.k8s.io/v1/clusterroles/system%3Aks-controller-manager",
+        "uid": "463e2047-4e5f-11e9-a3fb-52543c701f75",
+        "resourceVersion": "5717267",
+        "creationTimestamp": "2019-03-24T18:04:31Z",
+        "labels": { "kubernetes.io/bootstrapping": "rbac-defaults" },
+        "annotations": {
+          "creator": "system",
+          "rbac.authorization.kubernetes.io/autoupdate": "true"
+        }
+      },
+      "rules": [
+        { "verbs": ["*"], "apiGroups": ["*"], "resources": ["*"] },
+        { "verbs": ["*"], "nonResourceURLs": ["*"] }
+      ]
+    },
+    {
+      "metadata": {
+        "name": "test",
+        "selfLink": "/apis/rbac.authorization.k8s.io/v1/clusterroles/test",
+        "uid": "30d629b6-49f7-11e9-99bc-52543c701f75",
+        "resourceVersion": "4502935",
+        "creationTimestamp": "2019-03-19T03:29:23Z",
+        "annotations": { "creator": "admin", "desc": "" }
+      },
+      "rules": [
+        {
+          "verbs": ["get", "list"],
+          "apiGroups": ["account.kubesphere.io"],
+          "resources": ["users"]
+        },
+        {
+          "verbs": ["get"],
+          "apiGroups": ["kubesphere.io"],
+          "resources": ["monitoring/*"],
+          "resourceNames": ["workspaces"]
+        },
+        {
+          "verbs": ["list"],
+          "apiGroups": ["kubesphere.io"],
+          "resources": [
+            "quota",
+            "status",
+            "monitoring",
+            "persistentvolumeclaims"
+          ]
+        },
+        {
+          "verbs": ["get", "list"],
+          "apiGroups": ["kubesphere.io"],
+          "resources": ["resources"]
+        },
+        {
+          "verbs": ["get", "list"],
+          "apiGroups": ["kubesphere.io"],
+          "resources": ["workspaces", "workspaces/*"]
+        },
+        { "verbs": ["get"], "apiGroups": [""], "resources": ["namespaces"] },
+        {
+          "verbs": ["get", "list"],
+          "apiGroups": ["", "apps", "extensions", "batch"],
+          "resources": [
+            "serviceaccounts",
+            "limitranges",
+            "deployments",
+            "configmaps",
+            "secrets",
+            "jobs",
+            "cronjobs",
+            "persistentvolumeclaims",
+            "statefulsets",
+            "daemonsets",
+            "ingresses",
+            "services",
+            "pods/*",
+            "pods",
+            "events",
+            "deployments/scale"
+          ]
+        },
+        {
+          "verbs": ["get", "list"],
+          "apiGroups": ["rbac.authorization.k8s.io"],
+          "resources": ["rolebindings", "roles"]
+        },
+        {
+          "verbs": ["get", "list"],
+          "apiGroups": ["account.kubesphere.io"],
+          "resources": ["members"]
+        },
+        {
+          "verbs": ["get", "list"],
+          "apiGroups": ["kubesphere.io"],
+          "resources": ["router"]
+        },
+        {
+          "verbs": ["*"],
+          "apiGroups": ["jenkins.kubesphere.io", "devops.kubesphere.io"],
+          "resources": ["*"]
+        },
+        {
+          "verbs": ["create"],
+          "apiGroups": ["kubesphere.io"],
+          "resources": ["workspaces"]
+        },
+        {
+          "verbs": ["*"],
+          "apiGroups": ["kubesphere.io"],
+          "resources": ["workspaces", "workspaces/*"]
+        },
+        { "verbs": ["*"], "apiGroups": [""], "resources": ["namespaces"] },
+        {
+          "verbs": ["*"],
+          "apiGroups": ["", "apps", "extensions", "batch"],
+          "resources": [
+            "serviceaccounts",
+            "limitranges",
+            "deployments",
+            "configmaps",
+            "secrets",
+            "jobs",
+            "cronjobs",
+            "persistentvolumeclaims",
+            "statefulsets",
+            "daemonsets",
+            "ingresses",
+            "services",
+            "pods/*",
+            "pods",
+            "events",
+            "deployments/scale"
+          ]
+        },
+        {
+          "verbs": ["*"],
+          "apiGroups": ["rbac.authorization.k8s.io"],
+          "resources": ["rolebindings", "roles"]
+        },
+        {
+          "verbs": ["get", "list"],
+          "apiGroups": ["account.kubesphere.io"],
+          "resources": ["members"]
+        },
+        {
+          "verbs": ["*"],
+          "apiGroups": ["kubesphere.io"],
+          "resources": ["router"]
+        },
+        {
+          "verbs": ["*"],
+          "apiGroups": ["jenkins.kubesphere.io", "devops.kubesphere.io"],
+          "resources": ["*"]
+        }
+      ]
+    }
+  ],
+  "total_count": 24
+}

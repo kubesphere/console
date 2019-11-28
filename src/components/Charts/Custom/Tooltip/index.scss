@@ -1,0 +1,57 @@
+@import '~scss/variables';
+
+.tooltip {
+  width: auto;
+  min-width: 120px;
+  padding: 8px 12px;
+  color: $white;
+  font-size: $size-small;
+  line-height: 1.67;
+  border-radius: 4px;
+  background-color: rgba(36, 46, 66, 0.8);
+  box-shadow: 0 6px 12px 0 rgba(2, 5, 8, 0.08), 0 1px 2px 0 rgba(2, 5, 8, 0.08);
+  z-index: 100;
+}
+
+.label {
+  margin-bottom: 2px;
+  font-weight: bold;
+  white-space: nowrap;
+
+  p {
+    display: flex;
+    align-items: center;
+  }
+
+  img {
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+  }
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  height: 20px;
+
+  i {
+    width: 6px;
+    height: 6px;
+    margin-right: 7px;
+    border-radius: 50%;
+    background: $lightest;
+    overflow: hidden;
+  }
+
+  label {
+    margin-right: 3px;
+    white-space: nowrap;
+  }
+
+  p {
+    white-space: nowrap;
+    color: $white !important;
+  }
+}

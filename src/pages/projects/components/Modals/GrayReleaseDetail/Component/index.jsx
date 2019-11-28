@@ -1,0 +1,230 @@
+/*
+ * This file is part of KubeSphere Console.
+ * Copyright (C) 2019 The KubeSphere Console Authors.
+ *
+ * KubeSphere Console is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * KubeSphere Console is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+import React from 'react'
+import PropTypes from 'prop-types'
+import classNames from 'classnames'
+import { Link } from 'react-router-dom'
+import isEqual from 'react-fast-compare'
+import { get, isEmpty, isFunction } from 'lodash'
+import { toJS } from 'mobx'
+import { Menu, Icon, Dropdown, Tooltip } from '@pitrix/lego-ui'
+import { Button } from 'components/Base'
+
+import PodMonitoringStore from 'stores/monitoring/pod'
+
+import Item from './Item'
+
+import styles from './index.scss'
+
+const MetricTypes = {
+  cpu: 'pod_cpu_usage',
+  memory: 'pod_memory_usage_wo_cache',
+}
+
+export default class Component extends React.Component {
+  static propTypes = {
+    namespace: PropTypes.string,
+    data: PropTypes.object,
+    isGovernor: PropTypes.bool,
+    showEditModal: PropTypes.func,
+    onTakeover: PropTypes.func,
+  }
+
+  static defaultProps = {
+    namespace: '',
+    data: {},
+    isGovernor: true,
+    maxLength: 0,
+    jobDetail: {},
+    showEditModal() {},
+  }
+
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      pods: props.pods || [],
+    }
+
+    this.monitorStore = new PodMonitoringStore()
+
+    this.getData(props.pods)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (!isEqual(nextProps.pods, this.props.pods)) {
+      this.getData(nextProps.pods)
+    }
+  }
+
+  getData(_pods) {
+    if (!isEmpty(_pods)) {
+      this.monitorStore
+        .fetchMetrics({
+          namespace: this.props.namespace,
+          resources: _pods.map(pod => pod.name),
+          metrics: Object.values(MetricTypes),
+          last: true,
+        })
+        .then(() => {
+          const monitorData = toJS(this.monitorStore.data)
+
+          this.setState({
+            pods: _pods.map(pod => {
+              const metrics = {}
+              Object.entries(MetricTypes).forEach(([key, value]) => {
+                const records = get(monitorData, `${value}.data.result`) || []
+                metrics[key] = records.find(
+                  item =>
+                    get(
+                      item,
+                      'metric.resource_name',
+                      get(item, 'metric.pod')
+                    ) === pod.name
+                )
+              })
+              return { ...pod, metrics }
+            }),
+          })
+        })
+    }
+  }
+
+  handleMoreMenuClick = (e, key) => {
+    switch (key) {
+      case 'edit':
+        this.props.showEditModal()
+        break
+      case 'offline':
+        this.props.onOffline(this.props.type)
+        break
+      case 'takeover':
+        this.props.onTakeover(this.props.type)
+        break
+      default:
+        break
+    }
+  }
+
+  renderMoreMenu() {
+    const { type, isGovernor, onTakeover } = this.props
+
+    return (
+      <Menu onClick={this.handleMoreMenuClick}>
+        {type === 'new' && (
+          <Menu.MenuItem key="edit">
+            <Icon name="update" type="light" /> {t('Edit Component')}
+          </Menu.MenuItem>
+        )}
+        {!isGovernor && isFunction(onTakeover) && (
+          <Menu.MenuItem key="takeover">
+            <Icon name="linechart" type="light" /> {t('Take Over')}
+          </Menu.MenuItem>
+        )}
+      </Menu>
+    )
+  }
+
+  render() {
+    const {
+      data,
+      type,
+      isGovernor,
+      onTakeover,
+      jobDetail,
+      maxLength,
+      workloadType,
+    } = this.props
+    const { pods } = this.state
+
+    const hideDropDown =
+      type !== 'new' && (isGovernor || !isFunction(onTakeover))
+
+    const listStyle = { minHeight: maxLength * 40 + (maxLength - 1) * 4 }
+
+    const isOffline =
+      ['Bluegreen', 'Mirror'].includes(jobDetail.type) && !isGovernor
+
+    return (
+      <div className={styles.wrapper}>
+        <div className={styles.header}>
+          <Icon name="appcenter" size={40} />
+          <div className={styles.title}>
+            <div className="h6">
+              <Link
+                to={`/projects/${jobDetail.namespace}/${workloadType}/${
+                  data.name
+                }-${data.version}`}
+              >
+                {data.name}
+              </Link>
+              &nbsp;&nbsp;
+              <span
+                className={classNames('ks-tag', {
+                  'ks-tag-disable': isOffline,
+                })}
+              >
+                {data.version}
+              </span>
+              {isOffline && (
+                <Tooltip
+                  content={
+                    jobDetail.type === 'Mirror'
+                      ? t(
+                          'Mirrored traffic is only receiving traffic, no service'
+                        )
+                      : t(
+                          'The current version is not online, you can let this version take over all traffic and bring it online.'
+                        )
+                  }
+                >
+                  <span className="ks-tag ks-tag-disable">
+                    {jobDetail.type === 'Mirror'
+                      ? t('Mirrored traffic')
+                      : t('Not online')}
+                  </span>
+                </Tooltip>
+              )}
+            </div>
+            <p>
+              {t('Replicas')}: <strong>{data.available}</strong>/{data.desire}
+            </p>
+          </div>
+          {!hideDropDown && (
+            <div className={styles.right}>
+              <Dropdown
+                className="dropdown-default"
+                content={this.renderMoreMenu()}
+                trigger="click"
+                placement="bottomRight"
+              >
+                <Button icon="more" type="flat" />
+              </Dropdown>
+            </div>
+          )}
+        </div>
+        <ul className={styles.pods} style={listStyle}>
+          {pods.map(item => (
+            <Item data={item} key={item.uid} />
+          ))}
+        </ul>
+      </div>
+    )
+  }
+}

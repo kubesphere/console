@@ -1,0 +1,108 @@
+{
+  "items": [
+    {
+      "username": "admin",
+      "email": "admin@kubesphere.io",
+      "lang": "zh",
+      "description": "",
+      "create_time": "2019-04-18T14:03:07Z",
+      "avatar_url": "",
+      "last_login_time": "2019-04-23T09:38:28Z",
+      "status": 0,
+      "cluster_role": "cluster-admin"
+    },
+    {
+      "username": "ahao",
+      "email": "ahao@example.com",
+      "description": "",
+      "create_time": "2019-04-14T15:00:23Z",
+      "avatar_url": "",
+      "last_login_time": "2019-04-16T12:03:34Z",
+      "status": 0,
+      "cluster_role": "cluster-regular"
+    },
+    {
+      "username": "ben",
+      "email": "benjamin@yunify.com",
+      "description": "",
+      "create_time": "2019-04-15T03:41:18Z",
+      "avatar_url": "",
+      "last_login_time": "2019-04-19T01:35:06Z",
+      "status": 0,
+      "cluster_role": "cluster-regular"
+    },
+    {
+      "username": "carlos",
+      "email": "carlosfeng@yunify.com",
+      "description": "",
+      "create_time": "2019-04-19T00:14:14Z",
+      "avatar_url": "",
+      "last_login_time": "2019-04-19T00:14:28Z",
+      "status": 0,
+      "cluster_role": "cluster-regular"
+    },
+    {
+      "username": "hongming",
+      "email": "hongming@kubesphere.io",
+      "lang": "zh",
+      "description": "",
+      "create_time": "2019-03-25T06:43:39Z",
+      "avatar_url": "",
+      "last_login_time": "2019-04-23T01:48:58Z",
+      "status": 0,
+      "cluster_role": "cluster-regular"
+    },
+    {
+      "username": "jeff",
+      "email": "jeff@kubesphere.io",
+      "description": "",
+      "create_time": "2019-04-23T05:32:56Z",
+      "avatar_url": "",
+      "last_login_time": "2019-04-23T05:43:23Z",
+      "status": 0,
+      "cluster_role": "workspaces-manager"
+    },
+    {
+      "username": "leoliu-admin",
+      "email": "leoliu@yunify.com",
+      "lang": "en",
+      "description": "",
+      "create_time": "2019-04-15T09:11:55Z",
+      "avatar_url": "",
+      "last_login_time": "2019-04-22T08:51:54Z",
+      "status": 0,
+      "cluster_role": "cluster-admin"
+    },
+    {
+      "username": "leoliu-regular",
+      "email": "leoliu-regular@yunify.com",
+      "description": "",
+      "create_time": "2019-04-17T06:35:45Z",
+      "avatar_url": "",
+      "last_login_time": "2019-04-23T07:19:25Z",
+      "status": 0,
+      "cluster_role": "cluster-regular"
+    },
+    {
+      "username": "libr",
+      "email": "bernieli@yunify.com",
+      "description": "",
+      "create_time": "2019-04-18T07:39:40Z",
+      "avatar_url": "",
+      "last_login_time": "2019-04-18T09:18:05Z",
+      "status": 0,
+      "cluster_role": "workspaces-manager"
+    },
+    {
+      "username": "magicsong",
+      "email": "magicsong@yunify.com",
+      "description": "",
+      "create_time": "2019-04-23T02:32:09Z",
+      "avatar_url": "",
+      "last_login_time": "2019-04-23T02:32:23Z",
+      "status": 0,
+      "cluster_role": "workspaces-manager"
+    }
+  ],
+  "total_count": 24
+}

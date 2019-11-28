@@ -1,0 +1,49 @@
+@import '~scss/variables';
+
+.CodeEditor {
+  height: calc(100vh - 300px);
+}
+
+.clickable {
+  color: $green;
+  cursor: pointer;
+  margin-left: 15px;
+}
+
+.dockerCredentialsContent {
+  margin-left: 20px;
+}
+
+.dockerCredentialsContent__title {
+  font-size: 14px;
+  font-weight: 500;
+  margin: 10px 0 10px -20px;
+}
+
+.dockerCredentialsContent__content {
+  padding: 20px;
+  width: 500px;
+  border: 2px dashed $light;
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.dockerCredentialsContent__trashicon {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+}
+
+.desc {
+  margin-bottom: 15px;
+  font-size: 12px;
+  line-height: 1.67;
+  color: #79879c;
+  li {
+    margin-left: 20px;
+  }
+}
+
+.info {
+  margin-bottom: 15px;
+}

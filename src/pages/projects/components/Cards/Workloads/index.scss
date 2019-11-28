@@ -1,0 +1,22 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.list {
+  padding: 12px;
+  border-radius: $border-radius;
+  background-color: $card-bg-color;
+}
+
+.item {
+  box-shadow: none !important;
+}
+
+.empty {
+  padding: 20px;
+  color: $light-color08;
+  font-size: $size-medium;
+  font-weight: 600;
+  line-height: 1.5;
+  background-color: $th-bg-color;
+  border-radius: 4px;
+}

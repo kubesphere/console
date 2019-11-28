@@ -1,0 +1,38 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.wrapper {
+  position: relative;
+  display: flex;
+  opacity: 0.6;
+}
+
+.image {
+  width: 32px;
+  height: 32px;
+  margin-right: 12px;
+  border-radius: 50%;
+  border: solid 2px $white;
+}
+
+.icon {
+  margin-right: 12px;
+}
+
+.text {
+  flex: 1;
+
+  .title {
+    @include TypographyTitleH6($dark-color07);
+  }
+
+  .description {
+    @include ellipsis;
+    @include TypographyParagraph($dark-color01);
+    max-width: 300px;
+  }
+}
+
+.link {
+  opacity: 1;
+}

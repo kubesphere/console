@@ -1,0 +1,160 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.button {
+  position: relative;
+  border: none;
+  border-radius: 100px;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: all $trans-speed ease-in-out;
+  @include TypographySymbolText();
+
+  .content {
+    height: 20px;
+    white-space: nowrap;
+  }
+
+  &:hover,
+  &:focus {
+    box-shadow: none;
+    outline: none;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    pointer-events: none;
+    cursor: not-allowed;
+  }
+}
+
+.loading {
+  pointer-events: none;
+  user-select: none;
+  cursor: not-allowed;
+
+  .content {
+    display: inline-block;
+    margin-right: 12px;
+  }
+
+  :global(.spin-spinning) {
+    vertical-align: middle;
+  }
+}
+
+.normal {
+  padding: 5px 23px;
+
+  &.hasIcon {
+    padding: 5px 20px;
+  }
+}
+
+.hasIcon {
+  :global(.icon) {
+    height: 16px;
+    width: 16px;
+  }
+
+  .content {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 12px;
+  }
+}
+
+.default {
+  border: 1px solid $btn-default-border;
+  background-color: $btn-default-bg;
+  box-shadow: $btn-default-shadow;
+  text-shadow: $btn-text-shadow;
+
+  &:hover {
+    background-color: $btn-default-hover-bg;
+    border-color: $btn-default-hover-border;
+  }
+
+  &:active {
+    background-color: $btn-default-active-bg;
+    border-color: $btn-default-active-border;
+    box-shadow: $btn-default-active-shadow;
+  }
+}
+
+.primary {
+  color: $white;
+  border: 1px solid $btn-primary-bg;
+  background-color: $btn-primary-bg;
+  box-shadow: $btn-primary-shadow;
+
+  &:hover {
+    background-color: $btn-primary-hover-bg;
+  }
+
+  &:active {
+    background-color: $btn-primary-hover-bg;
+    box-shadow: $btn-primary-active-shadow;
+  }
+}
+
+.control {
+  color: $white;
+  border: 1px solid $btn-control-bg;
+  background-color: $btn-control-bg;
+  box-shadow: $btn-control-shadow;
+
+  &:hover {
+    background-color: $btn-control-hover-bg;
+  }
+
+  &:active {
+    border-color: $dark-color06;
+  }
+}
+
+.danger {
+  color: $white;
+  border: 1px solid $btn-danger-bg;
+  background-color: $btn-danger-bg;
+  text-shadow: $btn-text-shadow;
+  box-shadow: $btn-danger-shadow;
+
+  &:active {
+    background-color: $btn-danger-active-bg;
+  }
+}
+
+.flat {
+  border: 1px solid transparent;
+  background-color: transparent;
+
+  &:hover {
+    background-color: $btn-flat-hover-bg;
+  }
+
+  &:active {
+    background-color: $btn-flat-active-bg;
+  }
+}
+
+.button + .button {
+  margin-left: 12px;
+}
+
+.noShadow {
+  box-shadow: none !important;
+}
+
+.ghost {
+  background-color: transparent;
+  box-shadow: none !important;
+
+  &:hover {
+    background-color: transparent;
+  }
+
+  &:active {
+    background-color: transparent;
+  }
+}

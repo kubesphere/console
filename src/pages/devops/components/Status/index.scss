@@ -1,0 +1,55 @@
+@import '~scss/variables';
+:global {
+  .cicd_status_icon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-top: -2px;
+    margin-right: 8px;
+    border-radius: 10px;
+    background-repeat: no-repeat;
+    background-size: 20px;
+    vertical-align: middle;
+  }
+}
+
+.queued {
+  background-image: url('/assets/cicd-queued.svg')
+}
+
+.running {
+  animation: rotate  2s  linear infinite;
+  background-image: url('/assets/cicd-running.svg')
+}
+
+.warning {
+  background-image: url('/assets/cicd-warning.svg')
+}
+
+.failure,
+.error {
+  background-image: url('/assets/cicd-error.svg')
+}
+
+.aborted,
+.nostatus {
+  background-image: url('/assets/cicd-nostatus.svg')
+}
+
+.success {
+  background-image: url('/assets/cicd-success.svg');
+  background-color: $green;
+}
+
+.paused {
+  background-image: url('/assets/paused.svg');
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg)
+  }
+  100% {
+    transform: rotate(359deg)
+  }
+}

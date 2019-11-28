@@ -1,0 +1,69 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.list {
+  margin-bottom: 12px;
+}
+
+.card {
+  position: relative;
+  padding: 15px 20px;
+  padding-bottom: 55px;
+  border-radius: 4px;
+  background-color: #ffffff;
+  border: solid 1px #d8dee5;
+  transition: all $trans-speed ease-in-out;
+
+  &:hover {
+    box-shadow: 0 8px 16px 0 rgba(36, 46, 66, 0.08);
+
+    :global .buttons {
+      display: block;
+    }
+  }
+
+  & + .card {
+    margin-top: 12px;
+  }
+
+  :global .buttons {
+    display: none;
+    position: absolute;
+    top: 15px;
+    right: 12px;
+
+    & > button {
+      margin: 0;
+    }
+  }
+
+  & > svg {
+    vertical-align: middle;
+  }
+}
+
+.text {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 20px;
+
+  :global .h6 {
+    font-size: $size-normal;
+    line-height: 1.43;
+  }
+}
+
+.inputs {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 4px 12px;
+  background-color: $lightest;
+  border-radius: 0 0 4px 4px;
+
+  input {
+    width: 100%;
+    max-width: none !important;
+  }
+}

@@ -1,0 +1,53 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.item {
+  padding: 20px 24px;
+  margin-bottom: 8px;
+  line-height: 20px;
+  background-color: $th-bg-color;
+  border-radius: 4px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.icon {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.name {
+  display: inline-block;
+  vertical-align: middle;
+  width: 278px;
+  margin-left: 20px;
+  border-right: 1px dashed #d8dee5; 
+
+  & > p {
+    color: $second-text-color;
+  }
+
+  & > a {
+    font-family: $font-family-id;
+    font-size: $size-normal;
+    font-weight: $font-bold;
+    line-height: 1.43;
+    color: $title-color;
+
+    &:hover {
+      color: $primary;
+    }
+  }
+}
+
+.status {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 20px;
+
+  span {
+    color: #5f708a;
+  }
+}

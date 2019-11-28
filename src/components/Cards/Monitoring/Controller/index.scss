@@ -1,0 +1,50 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.card {
+  & > div + div {
+    margin-top: 8px;
+  }
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  label {
+    margin-right: 20px;
+  }
+}
+
+.operations {
+  position: relative;
+  z-index: 100;
+  display: flex;
+
+  &.active {
+    z-index: 102;
+  }
+
+  .button {
+    padding: 6px;
+    margin-left: 12px;
+    line-height: 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: $dark;
+
+    &:hover {
+      background-color: $dark !important;
+    }
+  }
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+}
+
+.showDropDown {
+  z-index: 102; 
+}
