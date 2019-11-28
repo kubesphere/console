@@ -2,10 +2,7 @@
 
 KubeSphere Console is a general purpose, web-based UI for [KubeSphere](https://github.com/kubesphere/kubesphere) clusters.
 
-<div style="display:flex;">
-  <img width="50%" src="docs/images/dashboard-ui.png">
-  <img width="48%" src="docs/images/module-map.jpg">
-</div>
+![KubeSphere Console](docs/images/dashboard-ui.png)
 
 ## Getting Started
 
@@ -14,6 +11,10 @@ A KubeSphere cluster is required before getting started.
 Read [Installation](https://github.com/kubesphere/kubesphere#installation) guide to install a cluster.
 
 Read [To start using KubeSphere](https://github.com/kubesphere/kubesphere#to-start-using-kubesphere) to get start using.
+
+Features Map:
+
+![Features Map](docs/images/module-map.jpg)
 
 ## Developer Guide
 
