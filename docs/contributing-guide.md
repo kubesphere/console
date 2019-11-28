@@ -37,7 +37,6 @@ The process described here has several goals:
 
 - Maintain KubeSphere Console's quality
 - Fix problems that are important to users
-- 
 
 Please follow these steps to have your contribution considered by the maintainers:
 
