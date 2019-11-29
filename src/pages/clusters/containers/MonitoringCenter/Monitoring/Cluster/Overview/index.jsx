@@ -102,8 +102,8 @@ class Overview extends React.Component {
     const { health = 0, total = 0 } = counts.node || {}
 
     return (
-      <Loading spinning={isLoading}>
-        <Card className={styles.node} title={t('Cluster Node Status')}>
+      <Card className={styles.node} title={t('Cluster Node Status')}>
+        <Loading spinning={isLoading}>
           <StatusCircle
             theme="light"
             className={styles.nodeStatus}
@@ -113,8 +113,8 @@ class Overview extends React.Component {
             total={total}
             onClick={this.handleNodeClick}
           />
-        </Card>
-      </Loading>
+        </Loading>
+      </Card>
     )
   }
 

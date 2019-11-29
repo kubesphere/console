@@ -4,6 +4,7 @@
 .node {
   margin-bottom: 0;
   overflow: hidden;
+  height: 100%;
 
   &Status {
     padding: 25px 18px;
@@ -41,9 +42,8 @@
 
       &.service {
         .item {
-          flex: 0 0 auto;
+          flex: 1 0 250px;
           justify-content: space-between;
-          width: calc(33.3333% - 6px);
           cursor: pointer;
 
           img {
