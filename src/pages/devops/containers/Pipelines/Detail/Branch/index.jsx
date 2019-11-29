@@ -75,11 +75,11 @@ export default class Branch extends React.Component {
 
   handleScanRepository = async () => {
     const { params } = this.props.match
-    const { originDetail } = this.props.detailStore
+    const { detail } = this.props.detailStore
 
     await this.props.detailStore.scanRepository({
       project_id: params.project_id,
-      name: originDetail.name,
+      name: detail.name,
     })
     this.store.fetchDetail(params)
     Notify.success({

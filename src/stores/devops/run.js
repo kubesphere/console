@@ -65,19 +65,14 @@ export default class PipelineRunStore extends BaseStore {
   }
 
   @observable
-  originDetail = {}
-  @observable
   isLoading = true
-  @observable
-  getCommitsLoading = true
-  @observable
-  getArtifactsLoading = true
   @observable
   getNodesStatusLoading = false
   @observable
   nodesStatus = []
   @observable
   runDetail = {}
+  // entire run log
   @observable
   runDetailLogs = ''
 
@@ -87,7 +82,7 @@ export default class PipelineRunStore extends BaseStore {
 
     const { page } = filters
 
-    this.getCommitsLoading = true
+    this.commitsList.isLoading = true
     const result = await this.request.get(
       `${URL_PREFIX}${project_id}/pipelines/${name}${
         branch ? `/branches/${encodeURIComponent(branch)}` : ''
@@ -105,7 +100,6 @@ export default class PipelineRunStore extends BaseStore {
       isLoading: false,
       selectedRowKeys: [],
     }
-    this.getCommitsLoading = false
   }
 
   @action
@@ -121,7 +115,7 @@ export default class PipelineRunStore extends BaseStore {
 
     const { page } = filters
 
-    this.getArtifactsLoading = true
+    this.artifactsList.isLoading = true
     const result = await this.request.get(
       `${URL_PREFIX}${project_id}/pipelines/${name}${
         branch ? `/branches/${encodeURIComponent(branch)}` : ''
@@ -140,7 +134,6 @@ export default class PipelineRunStore extends BaseStore {
       isLoading: false,
       selectedRowKeys: [],
     }
-    this.getArtifactsLoading = false
   }
 
   @action

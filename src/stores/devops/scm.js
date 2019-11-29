@@ -17,14 +17,14 @@
  */
 
 import { action, observable, toJS } from 'mobx'
-import { isArray, get, isEmpty } from 'lodash'
+import { isArray, get, isEmpty, set } from 'lodash'
 import { parseUrl, safeParseJSON, getQueryString } from 'utils'
 import md5 from 'utils/md5'
 import BaseStore from 'stores/devops/base'
 
 export default class SCMStore extends BaseStore {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.credentials = window.pipelineCredentials || []
     this.verifyAccessErrorHandle = {
       github: (resp, error) => {
@@ -39,6 +39,7 @@ export default class SCMStore extends BaseStore {
       },
       'bitbucket-server': (resp, error) => {
         if (!isEmpty(get(error, 'message'))) {
+          // set each field error message
           this.creatBitBucketServersError = safeParseJSON(error.message, {
             errors: [],
           }).errors.reduce((prev, errorItem) => {
@@ -79,8 +80,6 @@ export default class SCMStore extends BaseStore {
 
   @observable
   activeRepoIndex = ''
-  @observable
-  credentialId = ''
   @observable
   formData = {}
   @observable
@@ -126,16 +125,23 @@ export default class SCMStore extends BaseStore {
       )}`
     )
     if (result.repositories) {
-      if (this.orgList.data[activeRepoIndex].repositories) {
-        this.orgList.data[
-          activeRepoIndex
-        ].repositories.items = this.orgList.data[
-          activeRepoIndex
-        ].repositories.items.concat(result.repositories.items)
-        this.orgList.data[activeRepoIndex].repositories.nextPage =
-          result.repositories.nextPage
+      const currentRepository = get(
+        this.orgList,
+        `data[${activeRepoIndex}].repositories`,
+        {}
+      )
+      // insert new repolist in current orglist
+      if (isArray(currentRepository.items)) {
+        currentRepository.items = currentRepository.items.concat(
+          result.repositories.items
+        )
+        currentRepository.nextPage = result.repositories.nextPage
       } else {
-        this.orgList.data[activeRepoIndex].repositories = result.repositories
+        set(
+          this.orgList,
+          `data[${activeRepoIndex}].repositories`,
+          result.repositories
+        )
       }
       this.getRepoListLoading = false
     }

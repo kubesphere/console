@@ -68,13 +68,13 @@ class Events extends React.Component {
   ]
 
   render() {
-    const { originDetail, isLoading } = this.props.detailStore
+    const { detail, isLoading } = this.props.detailStore
 
     return (
       <Card title={t('Events')}>
         <Table
           className={styles.table}
-          dataSource={toJS(get(originDetail, 'fingerprint.usage', [])) || []}
+          dataSource={toJS(get(detail, 'fingerprint.usage', [])) || []}
           rowKey="name"
           columns={this.getColumns()}
           loading={isLoading}

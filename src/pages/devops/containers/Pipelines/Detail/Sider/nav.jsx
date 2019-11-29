@@ -44,24 +44,24 @@ class Nav extends Component {
   get isMutiBranch() {
     const { detailStore } = this.props
 
-    return Boolean(detailStore.originDetail.scmSource)
+    return Boolean(detailStore.detail.scmSource)
   }
 
   renderBaseInfo() {
-    const { originDetail } = this.props.detailStore
+    const { detail } = this.props.detailStore
 
     return (
       <Columns className={styles.baseInfo}>
         <Column className={styles.baseInfo__item}>
           <div className={styles.dashboardValue}>
-            <Health score={originDetail.weatherScore} />
+            <Health score={detail.weatherScore} />
           </div>
           <div className={styles.dashboardLable}>{t('Health Status')}</div>
         </Column>
         <Column className={styles.baseInfo__item}>
           <div className={styles.dashboardValue}>
             <ForkIcon style={{ width: '20px', height: '20px' }} />{' '}
-            {originDetail.totalNumberOfBranches || '-'}
+            {detail.totalNumberOfBranches || '-'}
           </div>
           <div className={styles.dashboardLable}>{t('Branch Count')}</div>
         </Column>
@@ -88,7 +88,7 @@ class Nav extends Component {
         return null
       }
       if (
-        !detailStore.originDetail.totalNumberOfPullRequests &&
+        !detailStore.detail.totalNumberOfPullRequests &&
         name === 'pull-request'
       ) {
         return null

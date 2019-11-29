@@ -97,8 +97,6 @@ export default class PipelineStore extends BaseStore {
   @observable
   detail = {}
   @observable
-  originDetail = {}
-  @observable
   isLoading = true
   @observable
   notFound = false
@@ -155,7 +153,6 @@ export default class PipelineStore extends BaseStore {
     )
 
     this.detail = result
-    this.originDetail = result
     this.isLoading = false
     return result
   }
@@ -175,12 +172,12 @@ export default class PipelineStore extends BaseStore {
   async getJenkinsFile({ name, project_id }) {
     this.pipelineJsonData.isLoading = true
     name = decodeURIComponent(name)
-    if (!Object.keys(this.originDetail).length) {
+    if (isEmpty(this.detail)) {
       await this.fetchDetail({ name, project_id })
     }
     const result = await this.request.get(
       `kapis/devops.kubesphere.io/v1alpha2/devops/${project_id}/pipelines/${
-        this.originDetail.name
+        this.detail.name
       }/config`
     )
     this.jenkinsfile = get(result, 'pipeline.jenkinsfile', '')
@@ -210,7 +207,7 @@ export default class PipelineStore extends BaseStore {
 
     const { page } = filters
 
-    if (!Object.keys(this.originDetail).length) {
+    if (isEmpty(this.detail)) {
       await this.fetchDetail({ name, project_id })
     }
     const result = await this.request.get(
@@ -238,7 +235,7 @@ export default class PipelineStore extends BaseStore {
 
     const { page } = filters
 
-    if (!Object.keys(this.originDetail).length) {
+    if (isEmpty(this.detail)) {
       await this.fetchDetail({ name, project_id })
     }
 
@@ -253,7 +250,6 @@ export default class PipelineStore extends BaseStore {
     )
     this.branchList = {
       data: result || [],
-      total: result.length,
       limit: TABLE_LIMIT,
       page: parseInt(page, 10) || 1,
       filters: omit(filters, 'project_id'),
@@ -269,7 +265,7 @@ export default class PipelineStore extends BaseStore {
     const { page } = filters
     const { limit = 10 } = this.activityList
 
-    if (!Object.keys(this.originDetail).length) {
+    if (isEmpty(this.detail)) {
       await this.fetchDetail({ name, project_id })
     }
     let result = await this.request.get(
@@ -414,7 +410,7 @@ export default class PipelineStore extends BaseStore {
     return await this.request.defaults({
       method: 'POST',
       url: `kapis/devops.kubesphere.io/v1alpha2/devops/${project_id ||
-        this.project_id}/pipelines/${name || this.originDetail.name}/scan`,
+        this.project_id}/pipelines/${name || this.detail.name}/scan`,
       options,
       handler: resp =>
         resp.text().then(() => {
