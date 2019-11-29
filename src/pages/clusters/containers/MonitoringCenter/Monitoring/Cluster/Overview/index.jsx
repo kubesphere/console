@@ -80,6 +80,11 @@ class Overview extends React.Component {
 
     status['node'] =
       node.healthyNodes === node.totalNodes ? 'healthy' : 'unhealthy'
+
+    status['controller-manager'] = 'healthy'
+    status['scheduler'] = 'healthy'
+    status['etcd-0'] = this.supportETCD ? 'healthy' : 'unhealthy'
+
     return status
   }
 
