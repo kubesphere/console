@@ -2,7 +2,7 @@
 
 ### 1 Fork in the cloud
 
-1. Visit https://github.com/kubesphere/kubesphere-console
+1. Visit https://github.com/kubesphere/console
 2. Click `Fork` button to establish a cloud-based fork.
 
 ### 2 Clone fork to local storage
@@ -12,9 +12,9 @@
 ```bash
 $ mkdir -p $working_dir
 $ cd $working_dir
-$ git clone https://github.com/$user/kubesphere-console.git
-$ cd $working_dir/kubesphere-console
-$ git remote add upstream https://github.com/kubesphere/kubesphere-console.git
+$ git clone https://github.com/$user/console.git
+$ cd $working_dir/console
+$ git remote add upstream https://github.com/kubesphere/console.git
 
 # Never push to upstream master
 $ git remote set-url --push upstream no_push
@@ -75,6 +75,6 @@ $ git push -f ${your_remote_name} myfeature
 
 ### 7 Create a PR
 
-- Visit your fork at https://github.com/$user/kubesphere-console
+- Visit your fork at https://github.com/$user/console
 - Click the` Compare & Pull Request` button next to your myfeature branch.
 - Check out the [pull request guide](./contributing-guide.md#pull-requests) for more details and advice.
