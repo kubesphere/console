@@ -1,6 +1,6 @@
 # KubeSphere Console
 
-![](https://github.com/leoendless/console/workflows/Main/badge.svg)
+![](https://github.com/kubesphere/console/workflows/Main/badge.svg)
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 
 KubeSphere Console is a general purpose, web-based UI for [KubeSphere](https://github.com/kubesphere/kubesphere) clusters.
@@ -41,32 +41,9 @@ Clone the repository and install the dependencies:
 yarn
 ```
 
-### Expose the KubeSphere gateway service to the host
+### Access the backend services of KubeSphere
 
-```sh
-kubectl -n kubesphere-system patch svc ks-apigateway --patch '{"spec": {"type": "NodePort"}}'
-```
-
-Get the service port
-
-```sh
-kubectl -n kubesphere-system get svc | grep ks-apigateway
-```
-
-### Config gateway server in KubeSphere Console
-
-Add `local_config.yaml` into `server`
-
-local_config.yaml
-
-```yaml
-server:
-  gatewayServer:
-    url: http://gateway_server_ip:port
-    wsUrl: ws://gateway_server_ip:port
-```
-
-`gateway_server_ip` is the host ip, `port` is the gateway service port
+Follow [Access Backend Services](/docs/access-backend.md) to access the backend services.
 
 ### Start KubeSphere Console for development
 
