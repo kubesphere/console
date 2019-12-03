@@ -1,0 +1,17 @@
+@import '~scss/variables';
+
+.options {
+  & > div {
+    line-height: 32px;
+    padding: 0 20px;
+    &:first-child {
+      margin-top: 5px;
+    }
+
+    &.active,
+    &:hover {
+      background-color: $light-color02;
+      cursor: pointer;
+    }
+  }
+}

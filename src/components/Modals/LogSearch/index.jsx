@@ -17,100 +17,111 @@
  */
 
 import React from 'react'
-import PropTypes from 'prop-types'
-
 import { observer } from 'mobx-react'
-import { observable, action } from 'mobx'
-import { assign } from 'lodash'
-import FullScreen from 'components/Modals/FullscreenModal'
+import { computed } from 'mobx'
+import { windowClose } from 'utils/dom'
+import { Icon } from '@pitrix/lego-ui'
+import fullScreen from 'components/Modals/fullscreenModal'
 
-import { Home, Search, Detail } from './Logging'
+import AddableTabs from './components/AddableTabs'
+import Statistics from './Pages/Statistic'
+import Console from './Pages/Console'
 
-@FullScreen
+import Store from './store'
+
+import styles from './index.scss'
+
+/*
+ * A Log Search Container, you can export it when you use for a normal page.
+ */
 @observer
-export default class LogSearchModal extends React.Component {
-  static propTypes = {
-    onCancel: PropTypes.func,
+class LogSearchContainer extends React.Component {
+  tabsStore = new Store()
+
+  /**
+   * add render logic, which is depend store object format
+   */
+  @computed
+  get tabs() {
+    return this.tabsStore.tabs.map(tab => ({
+      label: (
+        <span>
+          <Icon name={tab.icon} />
+          {tab.title}
+        </span>
+      ),
+      name: String(tab.id),
+      content: <div className={styles.tabContent}>{this.renderPage(tab)}</div>,
+    }))
   }
 
-  formStepState = this.initStepState()
-
-  initStepState() {
-    const state = observable({
-      step: 0,
-    })
-    state.next = action(() => {
-      state.step += 1
-    })
-    state.pre = action(() => {
-      state.step -= 1
-    })
-    return state
+  handleTabRemove = tabName => {
+    this.tabsStore.removeTab(Number(tabName))
   }
 
-  searchInputState = (() => {
-    const state = observable({
-      query: [],
-      start: '',
-      end: '',
-      step: '',
-      durationAlias: '',
-      nextParamsKey: '',
-      queryMode: 1,
-    })
-    return state
-  })()
+  handleTabSelect = tabName => {
+    this.tabsStore.select(Number(tabName))
+  }
 
-  detailState = (() => {
-    const state = observable({
-      container: '',
-      host: '',
-      log: '',
-      namespace: '',
-      pod: '',
-    })
+  handleTabAdd = () => {
+    this.tabsStore.pushStatisticTab()
+  }
 
-    state.setState = action(newState => {
-      assign(state, newState)
-    })
-
-    return state
-  })()
-
-  formStepConfig = [
-    {
-      Component: Home,
-      props: {
-        searchInputState: this.searchInputState,
-      },
-    },
-    {
-      Component: Search,
-      props: {
-        searchInputState: this.searchInputState,
-        detailState: this.detailState,
-      },
-    },
-    {
-      Component: Detail,
-      props: {
-        searchInputState: this.searchInputState,
-        detailState: this.detailState,
-        close: this.props.onCancel,
-      },
-    },
-  ]
-
-  get Content() {
-    return this.formStepConfig[this.formStepState.step] || {}
+  handleNewTagOpen = filter => {
+    this.tabsStore.pushConsoleTab({ fields: [filter] })
   }
 
   render() {
-    const { Component, props } = this.Content
-    if (!Component) {
-      return
-    }
+    const tabsStore = this.tabsStore
+    const { activeTab } = tabsStore
 
-    return <Component formStepState={this.formStepState} {...props} />
+    return (
+      <AddableTabs
+        disableEmpty
+        tabs={this.tabs}
+        activeName={String(activeTab)}
+        className={styles.tabs}
+        onAdd={this.handleTabAdd}
+        onClose={this.handleTabRemove}
+        onTabSelect={this.handleTabSelect}
+      />
+    )
   }
+
+  /**
+   * render page and connect page event to tabs store
+   * @param {object} tab
+   */
+  renderPage(tab) {
+    const { pageType } = tab
+
+    switch (pageType) {
+      case 'statistic':
+        return <Statistics tab={tab} />
+      case 'search':
+        return <Console onNewTagOpen={this.handleNewTagOpen} tab={tab} />
+      default:
+        return null
+    }
+  }
+}
+
+/*
+ * wrap page in fullscreen model
+ */
+const Modal = fullScreen(LogSearchContainer)
+
+/*
+ * set default props for Modal
+ */
+export default function FullScreenLogSearchModal(props) {
+  return (
+    <Modal
+      icon={'log'}
+      title={t('LOG_SEARCH_TOOL')}
+      onCancel={windowClose}
+      bodyClassName={styles.modalBody}
+      {...props}
+    />
+  )
 }

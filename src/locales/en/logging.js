@@ -51,8 +51,6 @@ export default {
     'You can view related log information according to the container name.',
   'Pod Log Query Tip':
     'You can view related log information according to the pod name',
-  TOTAL_LOGS:
-    'A total of <span class={className}>{containers}</span> containers<br/> <span class={className}> {logs} </span> log information.',
   TIME_S: '{num} s',
   CONTAINER_REAL_TIME_LOGS_UNSUPPORTED_TIPS:
     'The container does not support real-time logs in the current state, please try again later.',

@@ -1,0 +1,68 @@
+@import '~scss/variables';
+
+.wrapper {
+  height: 100px;
+}
+
+/** theme **/
+.dark {
+  background-color: $dark-color07;
+  :global {
+    .recharts-area-area {
+      fill: $dark-color04;
+      fill-opacity: .9;
+    }
+    .recharts-area-curve {
+      stroke: none;
+    }
+    .recharts-cartesian-axis-tick {
+      text {
+        fill: $dark-color01;
+      }
+      line {
+        stroke: $dark-color01;
+      }
+    }
+  }
+
+  :global {
+    .recharts-default-tooltip {
+      display: flex;
+      flex-direction: column-reverse;
+
+      /*
+      * must use !important in
+      * borderColor color padding border white-space
+      */
+      color: #fff !important;
+      background-color: rgba(36, 46, 66, 0.95) !important;
+  
+      opacity: 0.9;
+      border-radius: 4px;
+
+      li {
+        color: inherit !important;
+      }
+    }
+  }
+}
+
+/** LogCharts **/
+.wrapper {
+  border-radius: 8px 8px 0 0;
+  :global {
+    .recharts-surface {
+      border-radius: 8px 8px 0 0;
+    }
+  }
+
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    height: 32px;
+    // background: linear-gradient(0deg, transparent 10px, #242e42);
+  }
+}

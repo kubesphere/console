@@ -1,0 +1,44 @@
+@import '~scss/variables';
+
+.tabs {
+  :global {
+    .tabs.is-boxed {
+      ul {
+        padding: 8px 13px 0;
+        background-color: $light-color02;
+        li {
+          padding: 0;
+          background-color: $light-color03;
+          line-height: 32px;
+          padding-left: 13px;
+          padding-right: 13px;
+          border: none;
+          font-size: 12px;
+          color: inherit;
+          border-color: transparent;
+          border-width: 1px;
+          border-style: solid;
+          &.is-active {
+            border-color: $light-color04;
+            border-bottom: none;
+            :global {
+              .qicon {
+                color: #324558;
+                fill: #b6c2cd;
+              }
+            }
+          }
+        }
+
+        li:last-child {
+          :global {
+            .icon {
+              margin: 0;
+            }
+          }
+          padding: 2px;
+        }
+      }
+    }
+  }
+}

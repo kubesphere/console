@@ -20,10 +20,13 @@ import { lazy } from 'react'
 
 import BaseLayout from 'core/layouts/Base'
 
-import KubeCtl from 'clusters/containers/KubeCtl'
-import KubeConfig from 'clusters/containers/KubeConfig'
-import LogQuery from 'clusters/containers/LogQuery'
-import ContainerTerminal from 'clusters/containers/ContainerTerminal'
+/**
+ * fullscreen modal pages
+ */
+import KubeCtl from 'components/Modals/KubeCtl'
+import KubeConfig from 'components/Modals/KubeConfig'
+import LogQuery from 'components/Modals/LogSearch'
+import ContainerTerminal from 'components/Modals/ContainerTerminal'
 
 const Clusters = lazy(() =>
   import(/* webpackChunkName: "clusters" */ 'clusters/App.jsx')

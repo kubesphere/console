@@ -19,8 +19,6 @@
 export default {
   'Log Management': '日志管理',
   'Search Rule': '查询规则',
-  TOTAL_LOGS:
-    '总共收录了 <span class={className}>{containers}</span> 个容器<br/> <span class={className}> {logs} </span> 条日志信息',
   LOG_DATE: 'YYYY年MM月DD日HH时',
   topic: '主题',
   'Key Word': '关键字',
@@ -85,9 +83,50 @@ export default {
   'Passwords must be at least 6 characters long': '密码至少 6 个字节',
   CONTAINER_REAL_TIME_LOGS_UNSUPPORTED_TIPS:
     '容器在当前状态下不支持实时日志，请稍后再试',
-  TOTAL_LOGS_TODAY:
-    '今日总共收录了 <span class={className}>{containers}</span> 个容器<br/> <span class={className}> {logs} </span> 条日志信息',
   START_REAL_TIME_LOG: '开始实时日志',
   STOP_REAL_TIME_LOG: '关闭实时日志',
   LOG_EXPORT: '日志导出',
+
+  LOG_SEARCH_TOOL: '日志查询工具',
+  LOG_SEARCH_TOOL_DESC:
+    'KubeSphere提供了针对企业空间、项目、资源等多维度的日志查询工具。',
+  LOG_SEARCH_BAR_LABEL: '根据条件进行查找',
+  LOG_COLLECTION_STATUS: '日志收集情况',
+  COLLECTED_LOG_COUNT: '已收集日志数量',
+  COLLECTED_CONTAINERS_COUNT: '已收集容器数量',
+  LOG_COLLECTION_START_TIME: '本次统计起始时间',
+  LOG_QUERY_HINT: '查询提示',
+  ADVANCE_SEARCH_CUSTOMIZE: '查询定制',
+
+  LOG_SEARCH_USAGE_DESC:
+    '请输入关键字查找日志, 还可以通过 “Error” “Fail” “Fatal” “Exception ” “Warning” 等关键字查找错误日志。您也可以输入资源的类别及名称查找对应的资源日志信息',
+  LOG_SEARCH_BAR_PLACEHOLDER: '您可以输入关键字查找日志',
+  ADVANCED_SEARCH: '高级查询',
+  CONTAINS: '包含',
+  EQUALS: '相等',
+  NOT_CONTAINS: '不包含',
+  LOG_FILTER_BUTTON_LABEL: '过滤',
+
+  LOG_ADVANCED_SEARCH_FORM_DESC: '可以通过定制查询条件，查找您所需要的日志信息',
+  ADD_LOG_SEARCH_FIELD_BUTTON_LABEL: '添加查询条件',
+  LOG_KEY_WORDS: '日志关键字',
+  'Workload Name': '工作负载名',
+  'Pod Name': '容器组名称',
+  SETTING_PREFERENCE: '偏好设置',
+
+  RELATED_INFORMATION: '相关信息',
+  LOG_CONTEXT: '日志上下文',
+  REPLACE_CURRENT_CONDITION: '替换为当前搜索',
+  ADD_CURRENT_CONDITION: '添加至当前搜索',
+  OPEN_IN_NEW_TAB: '在新标签中打开',
+
+  LOCATE_RESOURCES: '定位资源',
+  LOADING_LOG: '正在查找日志',
+  LOG_MONITORING: '正在监听',
+  SCROLL_TO_RECENT: '滚动到最近一条',
+
+  NO_FOUND_ANY_LOG: '未找到相关日志信息',
+  SINCE_TO: '自 {since} 至 {to} 止',
+  CHANGE_FILTERS: '修改过滤条件',
+  YOU_CAN_TRY: '你可以尝试',
 }

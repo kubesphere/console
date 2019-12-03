@@ -1,0 +1,57 @@
+@import '~scss/variables';
+
+.wrapper {
+  display: flex;
+  padding: 0 12px;
+  line-height: 32px;
+
+  h3 {
+    width: 110px;
+    color: $dark-color01;
+    &:after {
+      content: ':';
+    }
+  }
+
+  & > div {
+    flex: 1;
+    word-break: break-all;
+    span {
+      color: $dark-color07;
+    }
+  }
+
+  .icon {
+    visibility: hidden;
+    cursor: pointer;
+  }
+
+  &:hover {
+    .icon {
+      visibility: visible;
+    }
+  }
+
+  .dropdown {
+    border-radius: 4px;
+    background: $dark-color07;
+    padding: 2px 0;
+    line-height: 32px;
+    & > div {
+      min-width: 200px;
+      cursor: pointer;
+      &:hover {
+        background-color: $dark-color06;
+      }
+      span {
+        color: $white;
+      }
+    }
+
+    :global {
+      .icon {
+        margin: 0 12px;
+      }
+    }
+  }
+}

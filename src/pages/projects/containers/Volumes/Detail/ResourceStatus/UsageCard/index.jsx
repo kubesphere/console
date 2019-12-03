@@ -165,6 +165,8 @@ export default class UsageCard extends Component {
       },
     })
 
+    console.log(config)
+
     return <SimpleArea width="100%" theme={'dark'} {...config} />
   }
 }

@@ -65,9 +65,9 @@ class ResourceStatus extends React.Component {
 
     return (
       <div className={styles.main}>
-        {this.shouldMonitoringShow && (
-          <UsageCard title={t('Volume')} store={this.monitor} />
-        )}
+        {/* {this.shouldMonitoringShow && ( */}
+        <UsageCard title={t('Volume')} store={this.monitor} />
+        {/* )} */}
         <PodsCard title={t('Mounted Pods')} detail={detail} prefix={prefix} />
       </div>
     )

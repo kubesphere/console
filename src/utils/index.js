@@ -457,3 +457,7 @@ export const withDryRun = async requests => {
  */
 export const isAppsPage = (path = location.pathname) =>
   path === '/apps' || path.startsWith('/apps/')
+
+export const getComponentDisplayName = function(WrappedComponent) {
+  return WrappedComponent.displayName || WrappedComponent.name || 'Component'
+}

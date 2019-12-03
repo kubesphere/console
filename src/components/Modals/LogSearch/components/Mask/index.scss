@@ -1,0 +1,22 @@
+@import '~scss/variables';
+
+$maskZIndex: 10000;
+
+.wrapper {
+  position: relative;
+}
+
+.mask {
+  position: fixed;
+  left:0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(36, 46 ,66, 0.4);
+  z-index: $maskZIndex;
+}
+
+.content {
+  z-index: $maskZIndex + 1;
+  position: relative;
+}

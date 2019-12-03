@@ -1,0 +1,38 @@
+@import '~scss/variables';
+
+.wrapper {
+  display: flex;
+  line-height: 30px;
+  border-radius: 16px;
+  border: solid 1px $dark-color01;
+  input {
+    outline: none;
+    border: none;
+    background: transparent;
+    box-shadow: none !important;
+  }
+  @at-root {
+    .icon {
+      width: 28px;
+      text-align: right;
+    }
+    .content {
+      flex: 1;
+    }
+    .clear {
+      width: 45px;
+      text-align: center;
+      cursor: pointer;
+    }
+  }
+
+}
+
+.field {
+  background-color: $dark-color07;
+  border-radius: 12px;
+  color: $white;
+  padding: 3px 12px;
+  font-weight: bold;
+  margin-left: 1em;
+}

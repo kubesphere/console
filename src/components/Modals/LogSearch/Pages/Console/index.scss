@@ -1,0 +1,187 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.wrapper {
+  padding: 10px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.filterBar {
+  background: $light-color01;
+  padding: 0 12px;
+  display: flex;
+  @at-root {
+    .searchBar {
+      flex: 1;
+    }
+    .timeRangeSelector {
+      padding: 12px 0;
+      width: 280px;
+    }
+  }
+}
+
+.histogramChartLoading {
+  :global {
+    .spin-blur {
+      opacity: 1;
+      &:after {
+        background: transparent;
+      }
+    }
+  }
+}
+
+.chart {
+  height: 65px;
+  margin-top: 10px;
+}
+
+.content {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+
+  @at-root {
+    .logsContainer {
+      height: 100%;
+      padding-top: 0.3em;
+      overflow: hidden;
+      background: linear-gradient($light-color04, $light-color01 32px);
+
+      .logLoading {
+        width: 100%;
+        height: 100%;
+      }
+
+      :global {
+        .spin-nested-loading {
+          height: 100%;
+        }
+        .spin-text {
+          font-weight: bold;
+          margin-top: 10px;
+        }
+      }
+    }
+
+    .logDetail {
+      display: flex;
+      top: 0;
+      right: 0;
+      position: absolute;
+      height: 100%;
+      border: solid 1px $light-color06;
+      background: $white;
+      width: 492px;
+      z-index: 2;
+
+      .sideBar {
+        width: 32px;
+        height: 100%;
+        background: $light-color01;
+        position: relative;
+        border-right: solid 1px $light-color06;
+
+        .active {
+          span {
+            border-top: solid 2px $light-color05;
+            border-bottom: solid 2px $light-color05;
+            border-right: none;
+            margin-right: -1px;
+            background: $white;
+          }
+        }
+
+        .menu {
+          margin-top: 8px;
+        }
+
+        .subMenu {
+          position: absolute;
+          bottom: 0;
+        }
+
+        :global {
+          .icon {
+            width: 32px;
+            height: 32px;
+            padding: 8px;
+            cursor: pointer;
+          }
+        }
+      }
+
+      .logDetailContent {
+        flex: 1;
+        height: 100%;
+      }
+    }
+  }
+}
+
+.logEmpty {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+
+  h3 {
+    font-weight: bold;
+    font-size: 14px;
+  }
+  p {
+    color: $dark-color01;
+  }
+  .btn {
+    color: $blue-color03;
+    cursor: pointer;
+  }
+}
+
+.footer {
+  position: relative;
+  height: 32px;
+  text-align: center;
+  line-height: 32px;
+  border-top: solid 1px $light-color04;
+  background-color: $light-color01;
+  border-radius: 0 0 4px 4px;
+
+  h3 {
+    font-weight: bold;
+  }
+
+  @at-root {
+    .preference {
+      position: absolute;
+      right: 0;
+      top: 0;
+      cursor: pointer;
+
+      span {
+        vertical-align: middle;
+        margin-left: 0.3em;
+        margin-right: 0.3em;
+      }
+    }
+
+    .settingPanel {
+      position: absolute;
+      padding: 22px 12px 56px;
+      bottom: 100%;
+      border-top: solid 1px $light-color04;
+      background: $white;
+      width: 100%;
+      text-align: left;
+    }
+
+    .scrollBottomBtn {
+      cursor: pointer;
+    }
+  }
+}

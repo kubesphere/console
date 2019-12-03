@@ -1,0 +1,52 @@
+@import '~scss/variables';
+
+.logDetail {
+  display: flex;
+  top: 0;
+  right: 0;
+  position: absolute;
+  height: 100%;
+  border: solid 1px $light-color06;
+  background: $white;
+  z-index: 2;
+
+  .sideBar {
+    width: 32px;
+    height: 100%;
+    background: $light-color01;
+    position: relative;
+    border-right: solid 1px $light-color06;
+
+    span.active {
+      border-top: solid 1px $light-color05;
+      border-bottom: solid 1px $light-color05;
+      border-right: none;
+      margin-right: -1px;
+      background: $white;
+    }
+
+    .menu {
+      margin-top: 8px;
+    }
+
+    .subMenu {
+      position: absolute;
+      bottom: 0;  
+    }
+
+    :global {
+      .icon {
+        width: 32px;
+        height: 32px;
+        padding: 8px;
+        cursor: pointer;
+      }
+    }
+
+  }
+
+  .logDetailContent {
+    width: 460px;
+    height: 100%;
+  }
+}

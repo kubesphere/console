@@ -21,18 +21,18 @@ import { observer } from 'mobx-react'
 import classnames from 'classnames'
 
 import { saveAs } from 'file-saver'
-import fullScreen from 'components/Modals/FullscreenModal'
+import fullScreen from 'components/Modals/fullscreenModal'
 import UserTip from 'components/Cards/Tips'
 import { Icon } from '@pitrix/lego-ui'
 import { CodeEditor } from 'components/Base'
+import { windowClose } from 'utils/dom'
 
 import TerminalStore from 'stores/terminal'
 
 import styles from './index.scss'
 
-@fullScreen
 @observer
-export default class KubeConfigModal extends React.Component {
+class KubeConfigContainer extends React.Component {
   store = new TerminalStore()
 
   componentDidMount() {
@@ -79,3 +79,14 @@ export default class KubeConfigModal extends React.Component {
     )
   }
 }
+
+const KubeConfigModal = fullScreen(KubeConfigContainer)
+
+export default props => (
+  <KubeConfigModal
+    onCancel={windowClose}
+    title="kubeconfig"
+    icon="documentation"
+    {...props}
+  />
+)

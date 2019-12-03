@@ -1,0 +1,44 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.wrapper {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+
+    h2 {
+      font-weight: bold;
+    }
+
+    .target {
+      cursor: pointer;
+    }
+  }
+
+  .logs {
+    flex: 1;
+    background-color: $light-color01;
+    border-radius: 2px;
+    overflow: auto;
+
+    p {
+      @include TypographyParagraph();
+      line-height: 20px;
+      word-break: break-all;
+
+      &.active {
+        background: $blue-color01;
+      }
+    }
+
+    small {
+      color: $blue-color05;
+    }
+  }
+}

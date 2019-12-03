@@ -128,3 +128,9 @@ export const enterFullScreen = container => {
     container.mozRequestFullScreen
   rFS.call(container)
 }
+
+export const windowClose = function() {
+  window.opener = null
+  window.open('', '_self', '')
+  window.close()
+}

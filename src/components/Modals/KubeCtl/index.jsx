@@ -23,13 +23,12 @@ import classnames from 'classnames'
 import ContainerTerminal from 'components/Terminal'
 import UserTip from 'components/Cards/Tips'
 import TerminalStore from 'stores/terminal'
-import fullScreen from 'components/Modals/FullscreenModal'
+import fullScreen from 'components/Modals/fullscreenModal'
 
 import styles from './index.scss'
 
-@fullScreen
 @observer
-export default class KubeCtlModal extends React.Component {
+class KubeCtlContainer extends React.Component {
   store = new TerminalStore()
 
   terminalRef = React.createRef()
@@ -76,3 +75,12 @@ export default class KubeCtlModal extends React.Component {
     )
   }
 }
+
+const KsCtlModal = fullScreen(KubeCtlContainer)
+
+/*
+ * set default props for Modal
+ */
+export default props => (
+  <KsCtlModal icon={'terminal'} title="kubectl" {...props} />
+)

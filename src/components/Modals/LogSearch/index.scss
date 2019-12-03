@@ -1,0 +1,23 @@
+.tabContent {
+  width: 100%;
+  overflow: auto;
+}
+
+.modalBody {
+  padding: 0 !important;
+}
+
+.tabs {
+  height: 100%;
+
+  :global {
+    .tab-content {
+      flex: 1;
+      padding: 0;
+      overflow: auto;
+    }
+    .tab-panel {
+      height: 100%;
+    }
+  }
+}

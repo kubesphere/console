@@ -1,0 +1,22 @@
+@import '~scss/variables';
+
+.wrapper {
+  & > div {
+    display: inline-block;
+    width: 50%;
+  }
+
+  .settingFormGroup {
+    & > div {
+      display: inline-block;
+      width: 33%;
+      padding-right: 20px;
+    }
+    h4 {
+      &:after {
+        content: ':';
+      }
+    }
+  }
+
+}

@@ -19,19 +19,24 @@
 import React from 'react'
 import { Modal } from 'components/Base'
 import classnames from 'classnames'
+import { getComponentDisplayName } from 'utils'
 
 import styles from './index.scss'
 
-export default function FullscreenModal(WrappedComponent, options = {}) {
-  class observerModal extends React.Component {
-    pageClose() {
-      window.opener = null
-      window.open('', '_self', '')
-      window.close()
-    }
-
+/*
+ * a hoc only use for reusing fullscreen model style
+ */
+export default function fullscreenModal(WrappedComponent) {
+  class ObserverModal extends React.Component {
     render() {
-      const { title, onCancel, icon, description, ...otherProps } = this.props
+      const {
+        title,
+        onCancel,
+        icon,
+        description,
+        bodyClassName,
+        ...otherProps
+      } = this.props
       return (
         <Modal
           visible
@@ -41,18 +46,22 @@ export default function FullscreenModal(WrappedComponent, options = {}) {
           icon={icon}
           description={description}
           onCancel={onCancel}
-          className={styles.container}
           headerClassName={styles.header}
-          bodyClassName={classnames(styles.body, styles.fullScreen)}
+          bodyClassName={classnames(
+            styles.body,
+            styles.fullScreen,
+            bodyClassName
+          )}
         >
-          <WrappedComponent
-            onCancel={options.isSinglePage ? this.pageClose : onCancel}
-            {...otherProps}
-          />
+          <WrappedComponent {...otherProps} />
         </Modal>
       )
     }
   }
 
-  return observerModal
+  ObserverModal.displayName = `WithSubscription(${getComponentDisplayName(
+    WrappedComponent
+  )})`
+
+  return ObserverModal
 }

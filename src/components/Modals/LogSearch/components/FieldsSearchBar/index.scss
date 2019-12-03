@@ -1,0 +1,61 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+$horizontal-gap: 12px;
+
+.wrapper {
+  padding: $horizontal-gap;
+  background: $light-color01;
+  border-radius: $border-radius;
+  &.active {
+    background: $white;
+  }
+}
+
+.searchBar {
+  border-color: transparent;
+  background: $light-color02;
+  border-radius: 16px;
+  &.active {
+    background: transparent;
+    border-color: $dark-color01;
+  }
+}
+
+.optionsClassName {
+  margin-left: -12px;
+  margin-right: -12px;
+}
+
+.panel {
+  h3 {
+    font-size: 12px;
+    line-height: 20px;
+    font-weight: bold;
+  }
+  & > div {
+    background: $light-color01;
+    border-radius: 4px;
+    padding: 8px;
+  }
+  @at-root {
+    .tips {
+      color: $dark-color07;
+      padding: 2px;
+      margin-right: 60px;
+    }
+  }
+  & + .panel {
+    margin-top: 10px;
+  }
+}
+
+.advanceBtn {
+  border: dashed 1px $light-color06;
+  padding: 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  p {
+    @include TypographyParagraph($dark-color01);
+  }
+}

@@ -1,0 +1,53 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.wrapper {
+  position: relative;
+  height: 100%;
+  overflow: auto;
+  will-change: scroll;
+  
+  p {
+    @include TypographyParagraph();
+    cursor: pointer;
+    overflow: hidden;
+    line-height: 24px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding: 0 12px;
+    position: relative;
+    &:hover {
+      background: $light-color03;
+    }
+
+    .logDetailIcon {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 28px;
+      height: 20px;
+      background: $dark-color07;
+      border-radius: 2px;
+      z-index: 1;
+    }
+
+    &:hover {
+      .logDetailIcon {
+        display: block;
+      }
+    }
+  }
+
+  .time {
+    color: $blue-color05;
+    margin-right: 8px;
+  }
+
+  .loadingPre {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%)
+  }
+}
