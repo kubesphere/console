@@ -111,7 +111,7 @@ export default class DeleteModal extends React.Component {
           </div>
         </div>
         <div className={styles.footer}>
-          <Button onClick={onCancel} data-test="modal-delete-cancel">
+          <Button onClick={onCancel} data-test="modal-cancel">
             {t('Cancel')}
           </Button>
           <Button
@@ -122,7 +122,7 @@ export default class DeleteModal extends React.Component {
               (resource ? this.state.confirm !== resource : false)
             }
             onClick={this.handleOk}
-            data-test="modal-delete-ok"
+            data-test="modal-ok"
           >
             {t('OK')}
           </Button>

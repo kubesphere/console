@@ -16,7 +16,26 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+const testUser = 'e2e-regular'
+const workspace = 'e2e-test'
+
 describe('The Workspace Overview Page', function() {
+  before(function() {
+    cy.login('admin')
+    cy.request({
+      method: 'GET',
+      url: `/kapis/iam.kubesphere.io/v1alpha2/workspaces/${workspace}/members/${testUser}`,
+      headers: { 'x-check-exist': true },
+    }).then(resp => {
+      if (resp.body.exist) {
+        cy.request({
+          method: 'DELETE',
+          url: `/kapis/iam.kubesphere.io/v1alpha2/workspaces/${workspace}/members/${testUser}`,
+        })
+      }
+    })
+  })
+
   beforeEach('login', function() {
     cy.login('admin')
   })
@@ -32,7 +51,7 @@ describe('The Workspace Overview Page', function() {
     cy.wait('@getWorkspace')
     cy.wait('@getWorkspaceMembers')
 
-    cy.contains(Cypress.env('username'))
+    cy.contains('admin')
   })
 
   it('detail page', function() {
@@ -41,14 +60,13 @@ describe('The Workspace Overview Page', function() {
     cy.route('GET', /\/workspaces/).as('getWorkspace')
     cy.route('GET', /\/namespaces/).as('getWorkspaceProjects')
 
-    cy.visit(`/workspaces/e2e-test/members/${Cypress.env('username')}`)
+    cy.visit(`/workspaces/e2e-test/members/admin`)
 
     cy.wait('@getWorkspace')
     cy.wait('@getWorkspaceProjects')
   })
 
   it('list page base operations', function() {
-    const currentUser = Cypress.env('username')
 
     cy.server()
 
@@ -67,31 +85,30 @@ describe('The Workspace Overview Page', function() {
       cy.wait('@getUsers')
 
       cy.get(`[data-user="admin"]`)
-      cy.get(`[data-user="${currentUser}"]`)
 
-      cy.get('[data-test="search"] input').type(`${currentUser}{enter}`)
+      cy.get('[data-test="search"] input').type(`${testUser}{enter}`)
       cy.wait('@getUsers')
-      cy.get(`[data-user="admin"]`).should('not.exist')
 
       cy.get('[data-test="search"] .qicon-close').click()
       cy.wait('@getUsers')
-      cy.get(`[data-user="admin"]`)
 
-      cy.get(`[data-user="admin"] button`).click()
-      cy.get('.menu-item')
+      cy.get(`[data-user="${testUser}"] button`).click()
+      cy.get(`[data-user="${testUser}"] .menu-item`)
         .contains('workspace-regular')
         .click()
       cy.wait('@getWorkspaceMembers')
-      cy.get(`[data-user="admin"] button[disabled]`)
+      cy.get(`[data-user="${testUser}"] button[disabled]`)
       cy.get('[data-test="modal-close"]').click()
 
-      cy.get('[data-row-key="admin"]').contains('workspace-regular')
+      cy.get(`[data-row-key="${testUser}"]`).contains('workspace-regular')
     }
 
     // modify role
     {
-      cy.get('[data-row-key="admin"] button .qicon-more').click()
-      cy.get(`[data-row-key="admin"] [data-test="table-item-modify"]`).click()
+      cy.get(`[data-row-key="${testUser}"] button .qicon-more`).click()
+      cy.get(
+        `[data-row-key="${testUser}"] [data-test="table-item-modify"]`
+      ).click()
 
       cy.get('.select-control').click()
       cy.get('.select-menu-outer')
@@ -101,18 +118,20 @@ describe('The Workspace Overview Page', function() {
       cy.get('[data-test="modal-ok"]').click()
 
       cy.wait('@getWorkspaceMembers')
-      cy.get('[data-row-key="admin"]').contains('workspace-viewer')
+      cy.get(`[data-row-key="${testUser}"]`).contains('workspace-viewer')
     }
 
     // delete member
     {
-      cy.get('[data-row-key="admin"] button .qicon-more').click()
-      cy.get(`[data-row-key="admin"] [data-test="table-item-delete"]`).click()
+      cy.get(`[data-row-key="${testUser}"] button .qicon-more`).click()
+      cy.get(
+        `[data-row-key="${testUser}"] [data-test="table-item-delete"]`
+      ).click()
 
-      cy.get('input[name="confirm"]').type('admin')
+      cy.get('input[name="confirm"]').type(testUser)
       cy.get('[data-test="modal-ok"]').click()
       cy.wait('@getWorkspaceMembers')
-      cy.get('[data-row-key="admin"]').should('not.exist')
+      cy.get(`[data-row-key="${testUser}"]`).should('not.exist')
     }
   })
 })

@@ -115,7 +115,7 @@ describe('The Workspace DevOps Page', function() {
       ).click()
 
       cy.get('input[name="confirm"]').type(formData.name)
-      cy.get('[data-test="modal-delete-ok"]').click()
+      cy.get('[data-test="modal-ok"]').click()
 
       cy.wait('@deleteDevOps')
       cy.get('.qicon-loading').should('not.exist')

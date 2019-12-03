@@ -16,7 +16,33 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+const formData = {
+  name: 'tester-random-aaxx',
+  desc: 'tester-random-aaxx desc',
+}
+
 describe('The Workspace Projects Page', function() {
+  before(function() {
+    cy.login('admin')
+
+    cy.request({
+      method: 'GET',
+      url: `/api/v1/namespaces/${formData.name}`,
+      headers: { 'x-check-exist': true },
+    }).then(resp => {
+      if (resp.body.exist) {
+        cy.request({
+          method: 'DELETE',
+          url: `/api/v1/namespaces/${formData.name}`,
+        })
+        cy.request({
+          method: 'DELETE',
+          url: `/api/v1/namespaces/${formData.name}/limitranges`,
+        })
+      }
+    })
+  })
+
   beforeEach('login', function() {
     cy.login('admin')
   })
@@ -35,11 +61,6 @@ describe('The Workspace Projects Page', function() {
 
   it('list page base operation', function() {
     cy.visit('/workspaces/e2e-test/projects')
-
-    const formData = {
-      name: 'tester-random-aaxx',
-      desc: 'tester-random-aaxx desc',
-    }
 
     cy.server()
 
@@ -112,8 +133,9 @@ describe('The Workspace Projects Page', function() {
         `[data-row-key="${formData.name}"] [data-test="table-item-delete"]`
       ).click()
 
+      cy.wait(1000)
       cy.get('input[name="confirm"]').type(formData.name)
-      cy.get('[data-test="modal-delete-ok"]').click()
+      cy.get('[data-test="modal-ok"]').click()
 
       cy.wait('@deleteNamespace')
 

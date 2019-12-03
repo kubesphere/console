@@ -101,9 +101,6 @@ describe('The Workspaces Page', function() {
       cy.get('[data-test="workspace-item"]')
         .first()
         .contains(formData.name)
-      cy.get('[data-test="workspace-item"]')
-        .first()
-        .contains(Cypress.env('username'))
     }
 
     // clear search

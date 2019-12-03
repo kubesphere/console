@@ -109,6 +109,7 @@ describe('The Cluster Roles Page', function() {
       cy.get('[data-test="modal-create"]').click()
 
       cy.wait('@createRole')
+      cy.wait('@getRoles')
     }
 
     // search

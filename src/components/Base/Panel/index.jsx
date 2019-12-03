@@ -25,7 +25,17 @@ export default class Panel extends React.Component {
   render() {
     const { className, title, children, extras } = this.props
     return (
-      <div className={styles.wrapper}>
+      <div
+        className={styles.wrapper}
+        data-test={`panel-${
+          title
+            ? title
+                .toLowerCase()
+                .split(' ')
+                .join('-')
+            : 'default'
+        }`}
+      >
         {title && <div className={styles.title}>{title}</div>}
         <div className={classNames(styles.panel, className)}>{children}</div>
         {extras}
