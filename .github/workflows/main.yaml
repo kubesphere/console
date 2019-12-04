@@ -44,7 +44,7 @@ jobs:
           ${{ runner.OS }}-
 
     - name: Install Dependencies
-      run: npm install
+      run: yarn
 
     - name: Build
       run: yarn build
