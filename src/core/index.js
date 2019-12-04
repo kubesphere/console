@@ -71,7 +71,7 @@ const render = component => {
   ReactDOM.render(
     <AppContainer>
       <Suspense fallback={<Loading className="ks-page-loading" size="large" />}>
-        <LocaleProvider locales={locales} localeKey="lang">
+        <LocaleProvider locales={locales} localeKey="lang" ignoreWarnings>
           {component}
         </LocaleProvider>
       </Suspense>

@@ -45,7 +45,7 @@ describe('The App Repositories Page', function() {
 
     const formData = {
       name: 'tester-random-aaxx',
-      url: 'helm-chart-repo.pek3a.qingstor.com/kubernetes-charts/',
+      url: 'https://kubernetes-charts.storage.googleapis.com/',
       description: 'tester random',
     }
 

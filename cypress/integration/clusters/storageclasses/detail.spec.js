@@ -22,7 +22,7 @@ describe('The StorageClass Detail Page', function() {
   })
 
   it('successfully loads', function() {
-    const name = 'csi-qingcloud'
+    const name = 'local'
     cy.visit(`/infrastructure/storageclasses/${name}`)
     cy.get('[data-test="detail-title"]').contains(name)
   })
