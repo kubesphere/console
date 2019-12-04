@@ -1,0 +1,11 @@
+version: '3'
+services:
+  dev:
+    image: node:8-alpine
+    volumes:
+      - .:/root/KubeSphereUI
+    working_dir: /root/KubeSphereUI
+    command: yarn start
+    ports:
+      - 8000:8000
+      - 8001:8001

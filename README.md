@@ -41,6 +41,8 @@ Clone the repository and install the dependencies:
 yarn
 ```
 
+Or you can start development in dokcer. See [Development with Docker](/docs/development-with-docker.md).
+
 ### Access the backend services of KubeSphere
 
 Follow [Access Backend Services](/docs/access-backend.md) to access the backend services.
@@ -51,6 +53,8 @@ Follow [Access Backend Services](/docs/access-backend.md) to access the backend 
 yarn lego
 yarn start
 ```
+
+Now, you can access http://localhost:8000 in the browser.
 
 ### Run tests
 

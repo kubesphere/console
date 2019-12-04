@@ -137,6 +137,7 @@ const config = {
     headers: {
       'Access-Control-Allow-Origin': '*',
     },
+    host: '0.0.0.0',
     port: 8001,
   },
 }
