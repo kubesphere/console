@@ -7,7 +7,17 @@ Required:
 - [Docker](https://docs.docker.com/)
 - [Docker Compose](https://docs.docker.com/compose/)
 
+## Set up
+
+create a volume to store node_modules.
+
+```bash
+make setup
+```
+
 ## Install dependencies
+
+install node_modules, and compile lego-ui components.
 
 ```bash
 make install

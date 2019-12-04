@@ -1,3 +1,6 @@
+setup:
+	docker volume create nodemodules
+
 install:
 	docker-compose -f docker-compose.builder.yaml run --rm install
 
