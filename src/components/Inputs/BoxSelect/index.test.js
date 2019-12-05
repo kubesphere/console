@@ -19,39 +19,30 @@
 import React from 'react'
 import { mount } from 'enzyme'
 
-import { Input } from '@pitrix/lego-ui'
-import ObjectInput from './index'
+import BoxSelect from './index'
 
 it('renders correctly', () => {
-  const defaultData = {
-    a: 'a',
-  }
+  const options = [
+    { value: 'a', icon: 'cdn', label: 'label-a' },
+    { value: 'b', icon: 'cdn', label: 'label-b' },
+  ]
   const onchangeCb = jest.fn()
-  const wrapper = mount(
-    <ObjectInput onChange={onchangeCb} value={defaultData}>
-      <Input name="key" placeholder={t('key')} />
-      <Input name="value" rows="1" placeholder={t('value')} />
-    </ObjectInput>
-  )
+  const wrapper = mount(<BoxSelect onChange={onchangeCb} options={options} />)
 
-  const items = wrapper.find('Input')
-  expect(items).toHaveLength(2)
+  const lists = wrapper.find('li')
+  expect(lists).toHaveLength(2)
 })
 
 it('change correctly', () => {
-  const defaultData = {
-    a: 'a',
-  }
+  const options = [
+    { value: 'a', icon: 'cdn', label: 'label-a' },
+    { value: 'b', icon: 'cdn', label: 'label-b' },
+  ]
   const onchangeCb = jest.fn()
-  const wrapper = mount(
-    <ObjectInput onChange={onchangeCb} value={defaultData}>
-      <Input name="key" placeholder={t('key')} />
-      <Input name="value" rows="1" placeholder={t('value')} />
-    </ObjectInput>
-  )
+  const wrapper = mount(<BoxSelect onChange={onchangeCb} options={options} />)
 
-  const keyInput = wrapper.find('Input').first()
-  expect(keyInput).toExist()
-  keyInput.prop('onChange')({ currentTarget: { value: 'key' } })
-  expect(onchangeCb).toHaveBeenCalledWith({ a: 'a', key: 'key', value: '' })
+  const lists = wrapper.find('li')
+  expect(lists).toHaveLength(2)
+  lists.first().simulate('click')
+  expect(onchangeCb).toHaveBeenCalledWith(['a'])
 })

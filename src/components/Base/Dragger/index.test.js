@@ -68,6 +68,34 @@ it('scale correctly', () => {
     })
 })
 
+it('mouseWheel change correctly', () => {
+  const wrapper = mount(
+    <Dragger initialScale={0.5} class="container" contentClassName="content">
+      <div style={{ height: '200px', width: '200px' }} />
+    </Dragger>
+  )
+
+  return Promise.resolve(wrapper)
+    .then(() => wrapper.update())
+    .then(() => {
+      const content = wrapper.find('.main_content').first()
+      const container = wrapper.find('.container').first()
+      expect(content).toExist()
+      expect(container).toExist()
+
+      wrapper.instance().handleWheel({
+        clientX: 0,
+        clientY: 0,
+        deltaY: 4,
+        preventDefault: () => {},
+        stopPropagation: () => {},
+      })
+      expect(
+        getComputedStyle(content.getDOMNode()).getPropertyValue(`transform`)
+      ).toEqual(expect.stringContaining('scale(0.46)'))
+    })
+})
+
 it('move correctly', () => {
   const wrapper = mount(
     <Dragger initialScale={0.5} class="container" contentClassName="content">

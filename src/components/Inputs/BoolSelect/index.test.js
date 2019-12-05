@@ -17,34 +17,16 @@
  */
 
 import React from 'react'
-import PropTypes from 'prop-types'
+import { mount } from 'enzyme'
 
-import ArrayInput from '../ArrayInput'
-import InputItem from './item'
+import BoolSelect from './index'
 
-export default class S2IEnviroment extends React.Component {
-  static propTypes = {
-    value: PropTypes.array,
-    onChange: PropTypes.func,
-  }
+it('renders correctly', () => {
+  const onchangeCb = jest.fn()
+  const wrapper = mount(<BoolSelect onChange={onchangeCb} />)
 
-  static defaultProps = {
-    name: '',
-    value: [],
-    onChange() {},
-  }
-
-  render() {
-    const { value = [], onChange, options, ...rest } = this.props
-    return (
-      <ArrayInput
-        value={value}
-        onChange={onChange}
-        addText={t('Add Enviroment Params')}
-        {...rest}
-      >
-        <InputItem options={options} />
-      </ArrayInput>
-    )
-  }
-}
+  const select = wrapper.find('Select').first()
+  expect(select).toExist()
+  select.prop('onChange')({ target: { value: 'false' } })
+  expect(onchangeCb).toHaveBeenCalledWith(false, undefined)
+})
