@@ -16,7 +16,29 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+const formData = {
+  name: 'tester-random-list-aaxx',
+  desc: 'tester-random-list-aaxx desc',
+}
+
 describe('The Deployments Page', function() {
+  before(function() {
+    cy.login('admin')
+
+    cy.request({
+      method: 'GET',
+      url: `/apis/apps/v1/namespaces/e2e-test/deployments/${formData.name}`,
+      headers: { 'x-check-exist': true },
+    }).then(resp => {
+      if (resp.body.exist) {
+        cy.request({
+          method: 'DELETE',
+          url: `/apis/apps/v1/namespaces/e2e-test/deployments/${formData.name}`,
+        })
+      }
+    })
+  })
+
   beforeEach('login', function() {
     cy.login('admin')
   })
@@ -34,27 +56,31 @@ describe('The Deployments Page', function() {
   })
 
   it('list page base operation', function() {
-    cy.visit('/projects/e2e-test/deployments')
+    test_init()
+    test_create()
+    test_searchByName()
+    // test_searchByApplication()
+    test_editBaseInfo()
+    test_editYaml()
+    test_redeploy()
+    test_deleteItem()
 
-    const formData = {
-      name: 'tester-random-aaxx',
-      desc: 'tester-random-aaxx desc',
+    function test_init() {
+      cy.server()
+
+      cy.route('GET', /\/deployments/).as('getDeployments')
+      cy.route('POST', /\/deployments/).as('createDeployment')
+      cy.route('PATCH', /\/deployments/).as('patchDeployment')
+      cy.route('PUT', /\/deployments/).as('putDeployment')
+      cy.route('DELETE', /\/deployments/).as('deleteDeployment')
+      cy.route('GET', /\/registry\/blob/).as('imageSearch')
+
+      cy.visit('/projects/e2e-test/deployments')
+      cy.wait('@getDeployments')
+      cy.get('.qicon-loading').should('not.exist')
     }
 
-    cy.server()
-
-    cy.route('GET', /\/deployments/).as('getDeployments')
-    cy.route('POST', /\/deployments/).as('createDeployment')
-    cy.route('PATCH', /\/deployments/).as('patchDeployment')
-    cy.route('PUT', /\/deployments/).as('putDeployment')
-    cy.route('DELETE', /\/deployments/).as('deleteDeployment')
-    cy.route('GET', /\/registry\/blob/).as('imageSearch')
-
-    cy.wait('@getDeployments')
-    cy.get('.qicon-loading').should('not.exist')
-
-    // create
-    {
+    function test_create() {
       cy.get('[data-test="table-create"]').click()
 
       // fill create form
@@ -71,7 +97,11 @@ describe('The Deployments Page', function() {
         6379
       )
 
-      cy.get('[data-test="confirm-ok"]').click()
+      cy.wait('@imageSearch')
+
+      cy.get(
+        '.src-components-Modals-Create-Form-index__confirm [data-test="confirm-ok"]'
+      ).click()
       cy.get('[data-test="modal-next"]').click()
       cy.get('[data-test="modal-next"]').click()
 
@@ -95,8 +125,7 @@ describe('The Deployments Page', function() {
       cy.get(`[data-row-key="${formData.name}"]`).contains('redis')
     }
 
-    // search
-    {
+    function test_searchByName() {
       cy.get('.autosuggest-input').click()
       cy.get('.autosuggest-item')
         .contains('Name')
@@ -108,14 +137,31 @@ describe('The Deployments Page', function() {
       cy.get(`[data-row-key="${formData.name}"]`)
       cy.url().should('include', `name=${formData.name}`)
 
+      clearSearch()
+    }
+
+    function test_searchByApplication() {
+      cy.get('.autosuggest-input').click()
+      cy.get('.autosuggest-item')
+        .contains('Application')
+        .click()
+      cy.get('.autosuggest-input > input').type(`redis{enter}`)
+      cy.wait('@getDeployments')
+      cy.get('.qicon-loading').should('not.exist')
+      cy.get(`[data-row-key="${formData.name}"]`)
+      cy.url().should('include', `app=${formData.name}`)
+
+      clearSearch()
+    }
+
+    function clearSearch() {
       cy.get('.table-filter-bar > .icon > .qicon-close').click()
       cy.wait('@getDeployments')
       cy.get('.qicon-loading').should('not.exist')
-      cy.url().should('not.include', 'name=nginx')
+      cy.url().should('not.include', `name=${formData.name}`)
     }
 
-    // edit
-    {
+    function test_editBaseInfo() {
       cy.get(`[data-row-key="${formData.name}"] button .qicon-more`).click()
       cy.get(
         `[data-row-key="${formData.name}"] [data-test="table-item-edit"]`
@@ -132,8 +178,7 @@ describe('The Deployments Page', function() {
       cy.get(`[data-row-key="${formData.name}"]`).contains('redis_test')
     }
 
-    // edit yaml
-    {
+    function test_editYaml() {
       cy.get(`[data-row-key="${formData.name}"] button .qicon-more`).click()
       cy.get(
         `[data-row-key="${formData.name}"] [data-test="table-item-editYaml"]`
@@ -148,8 +193,7 @@ describe('The Deployments Page', function() {
       cy.wait('@getDeployments')
     }
 
-    // redeploy
-    {
+    function test_redeploy() {
       cy.get(`[data-row-key="${formData.name}"] button .qicon-more`).click()
       cy.get(
         `[data-row-key="${formData.name}"] [data-test="table-item-redeploy"]`
@@ -161,8 +205,7 @@ describe('The Deployments Page', function() {
       cy.wait('@getDeployments')
     }
 
-    // delete
-    {
+    function test_deleteItem() {
       cy.get(`[data-row-key="${formData.name}"] button .qicon-more`).click()
       cy.get(
         `[data-row-key="${formData.name}"] [data-test="table-item-delete"]`

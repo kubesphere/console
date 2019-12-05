@@ -42,6 +42,12 @@ describe('The Projects Page', function() {
           url: `/api/v1/namespaces`,
           body: formData,
         })
+      } else {
+        cy.request({
+          method: 'PUT',
+          url: `/api/v1/namespaces/${formData.metadata.name}`,
+          body: formData,
+        })
       }
     })
   })
@@ -138,7 +144,7 @@ describe('The Projects Page', function() {
         .click()
       cy.get('.form-item')
         .first()
-        .contains('dev')
+        .contains('e2e-test')
         .click()
 
       cy.wait('@getMembers')
@@ -157,7 +163,7 @@ describe('The Projects Page', function() {
 
       cy.visit(`/projects?keyword=${formData.metadata.name}`)
 
-      cy.get(`[data-row-key="${formData.metadata.name}"]`).contains('dev')
+      cy.get(`[data-row-key="${formData.metadata.name}"]`).contains('e2e-test')
       cy.get(
         `[data-row-key="${formData.metadata.name}"] a[href="/projects/${
           formData.metadata.name
@@ -171,10 +177,12 @@ describe('The Projects Page', function() {
       cy.get(
         `[data-row-key="${formData.metadata.name}"] button .qicon-more`
       ).click()
-      cy.get(`[data-row-key="${formData.name}"] [data-test="table-item-delete"]`).click()
+      cy.get(
+        `[data-row-key="${formData.metadata.name}"] [data-test="table-item-delete"]`
+      ).click()
 
       cy.get('input[name="confirm"]').type(formData.metadata.name)
-      cy.get('[data-test="modal-delete-ok"]').click()
+      cy.get('[data-test="modal-ok"]').click()
 
       cy.wait('@deleteNamespace')
 

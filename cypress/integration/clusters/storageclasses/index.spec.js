@@ -92,10 +92,8 @@ describe('The StorageClasses Page', function() {
       // next
       cy.get('[data-test="modal-next"]').click()
 
-      cy.get(`[name="provisioner"] ~ .select-control`).click()
-      cy.get('[name="provisioner"] ~ .select-menu-outer')
-        .contains(formData.provisioner)
-        .click()
+      cy.get('[data-value="disk.csi.qingcloud.com"]').click()
+      cy.get('[data-test="modal-next"]').click()
 
       Object.keys(formData.parameters).forEach(key => {
         cy.get(`[name="parameters.${key}"]`).type(formData.parameters[key])

@@ -1,0 +1,22 @@
+version: '2'
+services:
+  base:
+    image: node:8-alpine
+    volumes:
+      - nodemodules:/root/KubeSphereUI/node_modules
+      - .:/root/KubeSphereUI
+    working_dir: /root/KubeSphereUI
+
+  install:
+    extends:
+      service: base
+    command: yarn
+
+  build:
+    extends:
+      service: base
+    command: yarn build
+
+volumes:
+  nodemodules:
+    external: true

@@ -17,29 +17,31 @@
  */
 
 import React from 'react'
-import classNames from 'classnames'
+import { mount } from 'enzyme'
 
-import styles from './index.scss'
+import CPUInput from './index'
 
-export default class Panel extends React.Component {
-  render() {
-    const { className, title, children, extras } = this.props
-    return (
-      <div
-        className={styles.wrapper}
-        data-test={`panel-${
-          title
-            ? title
-                .toLowerCase()
-                .split(' ')
-                .join('-')
-            : 'default'
-        }`}
-      >
-        {title && <div className={styles.title}>{title}</div>}
-        <div className={classNames(styles.panel, className)}>{children}</div>
-        {extras}
-      </div>
-    )
-  }
-}
+jest.mock('lodash/debounce', () => jest.fn(fn => fn))
+
+it('renders correctly', () => {
+  const onchangeCb = jest.fn()
+  const wrapper = mount(<CPUInput onChange={onchangeCb} />)
+
+  const select = wrapper.find('Select')
+  const input = wrapper.find('NumberInput input')
+  expect(select).toExist()
+  expect(input).toExist()
+})
+
+it('submit correctly', () => {
+  const onchangeCb = jest.fn()
+  const wrapper = mount(<CPUInput onChange={onchangeCb} />)
+  const select = wrapper.find('Select')
+  const input = wrapper.find('NumberInput input').first()
+  expect(select).toExist()
+  expect(input).toExist()
+
+  input.simulate('change', { target: { value: 80 } })
+
+  expect(onchangeCb).toHaveBeenCalledWith('80m')
+})

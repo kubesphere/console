@@ -59,7 +59,7 @@ describe('The Accounts Page', function() {
 
     cy.get('.input').type('ahao, ben')
 
-    cy.get('[data-test="modal-delete-ok"]').click()
+    cy.get('[data-test="modal-ok"]').click()
 
     cy.wait('@deleteAccount')
   })
@@ -127,7 +127,7 @@ describe('The Accounts Page', function() {
     // edit
     {
       cy.get(`[data-row-key="${account.name}"] button .qicon-more`).click()
-      cy.get(`[data-row-key="${formData.name}"] [data-test="table-item-edit"]`).click()
+      cy.get(`[data-row-key="${account.name}"] [data-test="table-item-edit"]`).click()
 
       cy.get('#email')
         .clear()
@@ -144,10 +144,10 @@ describe('The Accounts Page', function() {
     // delete
     {
       cy.get(`[data-row-key="${account.name}"] button .qicon-more`).click()
-      cy.get(`[data-row-key="${formData.name}"] [data-test="table-item-delete"]`).click()
+      cy.get(`[data-row-key="${account.name}"] [data-test="table-item-delete"]`).click()
 
       cy.get('input[name="confirm"]').type(account.name)
-      cy.get('[data-test="modal-delete-ok"]').click()
+      cy.get('[data-test="modal-ok"]').click()
 
       cy.wait('@deleteAccount')
 

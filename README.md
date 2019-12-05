@@ -1,6 +1,6 @@
 # KubeSphere Console
 
-![](https://github.com/leoendless/kubesphere-console/workflows/Main/badge.svg)
+![](https://github.com/kubesphere/console/workflows/Main/badge.svg)
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 
 KubeSphere Console is a general purpose, web-based UI for [KubeSphere](https://github.com/kubesphere/kubesphere) clusters.
@@ -41,32 +41,11 @@ Clone the repository and install the dependencies:
 yarn
 ```
 
-### Expose the KubeSphere gateway service to the host
+Or you can start development in dokcer. See [Development with Docker](/docs/development-with-docker.md).
 
-```sh
-kubectl -n kubesphere-system patch svc ks-apigateway --patch '{"spec": {"type": "NodePort"}}'
-```
+### Access the backend services of KubeSphere
 
-Get the service port
-
-```sh
-kubectl -n kubesphere-system get svc | grep ks-apigateway
-```
-
-### Config gateway server in KubeSphere Console
-
-Add `local_config.yaml` into `server`
-
-local_config.yaml
-
-```yaml
-server:
-  gatewayServer:
-    url: http://gateway_server_ip:port
-    wsUrl: ws://gateway_server_ip:port
-```
-
-`gateway_server_ip` is the host ip, `port` is the gateway service port
+Follow [Access Backend Services](/docs/access-backend.md) to access the backend services.
 
 ### Start KubeSphere Console for development
 
@@ -74,6 +53,8 @@ server:
 yarn lego
 yarn start
 ```
+
+Now, you can access http://localhost:8000 in the browser.
 
 ### Run tests
 
@@ -115,8 +96,8 @@ Follow [Development Workflow](/docs/development-workflow.md) to commit your code
 
 If you need any help with KubeSphere, please join us at [Slack Channel](https://join.slack.com/t/kubesphere/shared_invite/enQtNTE3MDIxNzUxNzQ0LTZkNTdkYWNiYTVkMTM5ZThhODY1MjAyZmVlYWEwZmQ3ODQ1NmM1MGVkNWEzZTRhNzk0MzM5MmY4NDc3ZWVhMjE).
 
-Please submit any KubeSphere Console bugs, issues, and feature requests to [KubeSphere Console GitHub Issue](https://github.com/kubesphere/kubesphere-console/issues).
+Please submit any KubeSphere Console bugs, issues, and feature requests to [KubeSphere Console GitHub Issue](https://github.com/kubesphere/console/issues).
 
 ## Contributing to the project
 
-How to contributing to KubeSphere Console ? See [Contributing Guide](docs/contributing-guide.md).
+Welcome to contribute to KubeSphere Console, see [Contributing Guide](docs/contributing-guide.md).
