@@ -145,8 +145,10 @@ export default class PipelineStore extends BaseStore {
   }
 
   @action
-  async fetchDetail({ name, project_id }) {
-    this.isLoading = true
+  async fetchDetail({ name, project_id, isSilent }) {
+    if (!isSilent) {
+      this.isLoading = true
+    }
 
     const result = await this.request.get(
       `${URL_PREFIX}${project_id}/pipelines/${decodeURIComponent(name)}/`
@@ -342,10 +344,15 @@ export default class PipelineStore extends BaseStore {
     const href_temp = `${URL_PREFIX}${project_id}/pipelines/${name}${
       branch ? `/branches/${encodeURIComponent(branch)}` : ''
     }/runs`
-    return await this.request.post(
-      href_temp,
-      !isEmpty(parameters) ? { parameters } : {}
-    )
+    return await this.request
+      .post(href_temp, !isEmpty(parameters) ? { parameters } : {})
+      // TODO: backend return updated parameters info in run api will be better way
+      .then(() => {
+        // pipeline parameters not updated immediately
+        setTimeout(() => {
+          this.fetchDetail({ project_id, name, isSilent: true })
+        }, 1000)
+      })
   }
 
   saveAsFile = (text = '', fileName = 'default.txt') => {
@@ -355,19 +362,13 @@ export default class PipelineStore extends BaseStore {
 
   @action
   async getPipeLineConfig(pipeline_id, { project_id }) {
-    return await this.request
-      .get(
-        `kapis/devops.kubesphere.io/v1alpha2/devops/${project_id}/pipelines/${pipeline_id}/config`
-      )
-      .then(data => {
-        this.pipelineConfig = data
-        return data
-      })
+    return await this.request.get(
+      `kapis/devops.kubesphere.io/v1alpha2/devops/${project_id}/pipelines/${pipeline_id}/config`
+    )
   }
 
   @action
   async createPipeline(data) {
-    this.pipelineConfig = data
     return await this.request.post(
       `kapis/devops.kubesphere.io/v1alpha2/devops/${data.project_id}/pipelines`,
       data
