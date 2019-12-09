@@ -38,16 +38,19 @@ it('submit correctly', () => {
   const wrapper = mount(<ServicePort onChange={onchangeCb} />)
   const select = wrapper.find('Select')
   const inputs = wrapper.find('NumberInput input')
+  const protocolSelect = wrapper.find('Select')
+
   expect(select).toExist()
   expect(inputs.length).toBe(2)
 
+  protocolSelect.first().prop('onChange')('UDP')
   inputs.first().simulate('change', { target: { value: 80 } })
   inputs.last().simulate('change', { target: { value: 81 } })
 
   expect(onchangeCb).toHaveBeenCalledWith({
     containerPort: 80,
-    name: 'http-',
-    protocol: 'TCP',
+    name: 'udp-',
+    protocol: 'UDP',
     servicePort: 81,
   })
 })

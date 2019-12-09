@@ -19,39 +19,42 @@
 import React from 'react'
 import { mount } from 'enzyme'
 
-import { Input } from '@pitrix/lego-ui'
-import ObjectInput from './index'
+import CustomSelect from './index'
 
 it('renders correctly', () => {
-  const defaultData = {
-    a: 'a',
-  }
   const onchangeCb = jest.fn()
   const wrapper = mount(
-    <ObjectInput onChange={onchangeCb} value={defaultData}>
-      <Input name="key" placeholder={t('key')} />
-      <Input name="value" rows="1" placeholder={t('value')} />
-    </ObjectInput>
+    <CustomSelect
+      value={'1'}
+      options={[{ label: '1', value: '1' }]}
+      onChange={onchangeCb}
+    />
   )
 
-  const items = wrapper.find('Input')
-  expect(items).toHaveLength(2)
+  wrapper.find('Select').prop('onChange')('1')
+  expect(onchangeCb).toHaveBeenCalledWith('1')
 })
 
 it('change correctly', () => {
-  const defaultData = {
-    a: 'a',
-  }
   const onchangeCb = jest.fn()
   const wrapper = mount(
-    <ObjectInput onChange={onchangeCb} value={defaultData}>
-      <Input name="key" placeholder={t('key')} />
-      <Input name="value" rows="1" placeholder={t('value')} />
-    </ObjectInput>
+    <CustomSelect
+      value={'1'}
+      options={[{ label: '1', value: '1' }]}
+      onChange={onchangeCb}
+    />
   )
 
-  const keyInput = wrapper.find('Input').first()
-  expect(keyInput).toExist()
-  keyInput.prop('onChange')({ currentTarget: { value: 'key' } })
-  expect(onchangeCb).toHaveBeenCalledWith({ a: 'a', key: 'key', value: '' })
+  wrapper.find('Select').prop('onChange')('')
+
+  return Promise.resolve(wrapper)
+    .then(() => wrapper.update())
+    .then(() => {
+      expect(wrapper.find('Input')).toExist()
+      wrapper.find('Icon[name="changing-over"]').simulate('click')
+      return wrapper.update()
+    })
+    .then(() => {
+      expect(wrapper.find('Select')).toExist()
+    })
 })

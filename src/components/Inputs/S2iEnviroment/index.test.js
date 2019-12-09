@@ -19,21 +19,20 @@
 import React from 'react'
 import { mount } from 'enzyme'
 
-import { Input } from '@pitrix/lego-ui'
-import ArrayInput from './index'
+import S2IEnviroment from './index'
 
 it('renders correctly', () => {
-  const defaultData = ['a', 'b']
+  const defaultData = [
+    { key: 'a', defaultValue: 'a', type: 'string' },
+    { key: 'b', defaultValue: 'b', type: 'boolean' },
+  ]
   const onchangeCb = jest.fn()
   const wrapper = mount(
-    <ArrayInput
-      itemType="string"
-      value={defaultData}
+    <S2IEnviroment
+      value={[{ name: 'a', value: 'a' }, { name: 'b', value: 'b' }]}
+      options={defaultData}
       onChange={onchangeCb}
-      addText={t('Add Selector')}
-    >
-      <Input />
-    </ArrayInput>
+    />
   )
 
   const items = wrapper.find('Item')
@@ -41,61 +40,45 @@ it('renders correctly', () => {
 })
 
 it('add correctly', () => {
-  const defaultData = ['a', 'b']
+  const defaultData = [
+    { key: 'a', defaultValue: 'a', type: 'string' },
+    { key: 'b', defaultValue: 'b', type: 'boolean' },
+  ]
   const onchangeCb = jest.fn()
   const wrapper = mount(
-    <ArrayInput
-      itemType="string"
-      value={defaultData}
+    <S2IEnviroment
+      value={[{ name: 'a', value: 'a' }, { name: 'b', value: 'b' }]}
+      options={defaultData}
       onChange={onchangeCb}
-      addText={t('Add Selector')}
-    >
-      <Input />
-    </ArrayInput>
+    />
   )
 
   const addButton = wrapper.find('.text-right button').first()
   expect(addButton).toExist()
   addButton.simulate('click')
-  expect(onchangeCb).toHaveBeenCalledWith(['a', 'b', ''])
+  expect(onchangeCb).toHaveBeenCalledWith([
+    { name: 'a', value: 'a' },
+    { name: 'b', value: 'b' },
+    '',
+  ])
 })
 
 it('change correctly', () => {
-  const defaultData = ['a']
+  const defaultData = [
+    { key: 'a', defaultValue: 'a', type: 'string' },
+    { key: 'b', defaultValue: 'b', type: 'boolean' },
+  ]
   const onchangeCb = jest.fn()
   const wrapper = mount(
-    <ArrayInput
-      itemType="string"
-      value={defaultData}
+    <S2IEnviroment
+      value={[{ name: 'a', value: 'a' }]}
+      options={defaultData}
       onChange={onchangeCb}
-      addText={t('Add Selector')}
-    >
-      <Input />
-    </ArrayInput>
+    />
   )
 
-  const input = wrapper.find('Input').first()
+  const input = wrapper.find('Select').first()
   expect(input).toExist()
   input.prop('onChange')('b')
-  expect(onchangeCb).toHaveBeenCalledWith(['b'])
-})
-
-it('delete correctly', () => {
-  const defaultData = ['a']
-  const onchangeCb = jest.fn()
-  const wrapper = mount(
-    <ArrayInput
-      itemType="string"
-      value={defaultData}
-      onChange={onchangeCb}
-      addText={t('Add Selector')}
-    >
-      <Input />
-    </ArrayInput>
-  )
-
-  const deleteButton = wrapper.find('.delete').first()
-  expect(deleteButton).toExist()
-  deleteButton.simulate('click')
-  expect(onchangeCb).toHaveBeenCalledWith([])
+  expect(onchangeCb).toHaveBeenCalledWith([{ name: 'b', value: 'b' }])
 })
