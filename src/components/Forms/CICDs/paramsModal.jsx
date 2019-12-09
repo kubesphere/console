@@ -173,7 +173,7 @@ export default class ParamsModal extends React.Component {
           >
             <RadioGroup
               name={param.name}
-              defaultValue={JSON.parse(param.defaultParameterValue.value)}
+              defaultValue={String(param.defaultParameterValue.value)}
             >
               <Radio name={param.name} value={'true'}>
                 True
