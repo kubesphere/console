@@ -85,7 +85,7 @@ export default class S2IBuilderStore extends Base {
   updateCreateData(data) {
     if (!data.metadata.name) {
       data.metadata.name = `${get(data, 'spec.config.imageName', '').replace(
-        /[/:]/g,
+        /[_/:]/g,
         '-'
       )}-${get(data, 'spec.config.tag')}-${generateId(3)}`
     }
