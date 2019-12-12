@@ -16,20 +16,24 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { observable, action } from 'mobx'
-import { get } from 'lodash'
+import { observable, action, computed } from 'mobx'
+import { get, assign } from 'lodash'
 
 export default class TerminalStore {
   username = get(globals, 'user.username', '')
 
-  @observable
-  kubeWebsocketUrl = ''
+  @computed
+  get kubeWebsocketUrl() {
+    const { namespace, pod, container, shell = 'sh' } = this.kubectl
+    return `kapis/terminal.kubesphere.io/v1alpha2/namespaces/${namespace}/pods/${pod}?container=${container}&shell=${shell}`
+  }
 
   @observable
   kubectl = {
     namespace: '',
     pod: '',
     container: '',
+    shell: 'bash',
     isLoading: false,
   }
 
@@ -39,17 +43,8 @@ export default class TerminalStore {
   @observable
   connected = false
 
-  getWebSocketUrl({ namespace, pod, container, shell = 'sh' }) {
-    return `kapis/terminal.kubesphere.io/v1alpha2/namespaces/${namespace}/pods/${pod}?container=${container}&shell=${shell}`
-  }
-
-  @action
-  async getKSWebSocketUrl() {
-    await this.fetchKubeCtl()
-    this.kubeWebsocketUrl = this.getWebSocketUrl({
-      ...this.kubectl,
-      shell: 'bash',
-    })
+  constructor(props) {
+    assign(this.kubectl, props)
   }
 
   @action
