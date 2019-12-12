@@ -25,6 +25,7 @@ export default {
   'DevOps BaseInfo': '基本信息',
   DEVOPS_PROJECT_MANAGEMENT: '工程管理',
   DEVOPS_PROJECT_MEMBERS: '工程成员',
+  DEVOPS_PROJECT_ROLES: '工程角色',
 
   Manager: '管理员',
   'DevOps Project Manager': 'DevOps 工程管理员',
