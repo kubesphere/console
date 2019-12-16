@@ -266,7 +266,7 @@ client:
           children:
             - { name: base-info, title: Basic Info, skipAuth: true }
             - { name: credentials, title: Credentials }
-            - { name: roles, title: Project Roles }
+            - { name: roles, title: DEVOPS_PROJECT_ROLES }
             - { name: members, title: DEVOPS_PROJECT_MEMBERS }
 
   # system workspace rules control

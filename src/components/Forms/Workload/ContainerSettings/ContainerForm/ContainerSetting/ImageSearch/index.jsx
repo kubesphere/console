@@ -149,18 +149,12 @@ export default class ImageSearch extends React.Component {
 
     if (isObject(this.selectedImage)) {
       if (this.selectedImage.status === 'failed') {
-        const image = get(
-          this.props.formTemplate,
-          'metadata.annotations["kubesphere.io/imageName"]'
-        )
         return (
           <div
             className={classnames(styles.selectedContent, styles.emptyContent)}
           >
             <Icon name="docker" className={styles.icon} />
-            <p className={styles.desc}>
-              {t('Not found this image')} > {image}
-            </p>
+            <p className={styles.desc}>{t('Not found this image')}</p>
           </div>
         )
       }
