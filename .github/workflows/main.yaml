@@ -15,6 +15,7 @@ on:
 
 env:
   IMAGE_NAME: ks-console
+  PREVIEW_IMAGE_NAME: ks-console-preview-$GITHUB_ACTION
   DOCKERHUB_REPO: kubespheredev
 
 jobs:
@@ -52,6 +53,10 @@ jobs:
     - name: Test
       run: yarn test
     
+    - name: Build preview image
+      if: github.event_name == 'pull_request'
+      run: docker build . --file Dockerfile --tag $PREVIEW_IMAGE_NAME
+
     - name: Build image
       if: github.event_name == 'push'
       run: docker build . --file Dockerfile --tag $IMAGE_NAME
@@ -77,3 +82,12 @@ jobs:
           echo VERSION=$VERSION
           docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
           docker push $IMAGE_ID:$VERSION
+ 
+  deploy-preview:
+    runs-on: self-hosted
+
+    steps:
+    - name: Deploy preview image
+      if: github.event_name == 'pull_request'
+      run: |
+        echo 'Deploy to ks cluster'
