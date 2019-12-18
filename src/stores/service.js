@@ -56,7 +56,15 @@ const updateS2iServiceParams = data => {
     'spec.template.spec.containers[0].name',
     ''
   )
-  const imageName = `${get(data.S2i, 'spec.config.imageName')}:${get(
+  let repoUrl = get(
+    data,
+    `S2i.metadata.annotations["kubesphere.io/repoUrl"]`,
+    ''
+  )
+  if (repoUrl && !repoUrl.endsWith('/')) {
+    repoUrl += '/'
+  }
+  const imageName = `${repoUrl}${get(data.S2i, 'spec.config.imageName')}:${get(
     data.S2i,
     'spec.config.tag'
   )}`
