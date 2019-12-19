@@ -52,3 +52,15 @@ global.document.body.createTextRange = function() {
     },
   }
 }
+
+global.window.console = {
+  warn: () => {},
+  log: () => {},
+  info: () => {},
+  error: () => {},
+}
+
+jest.mock('@pitrix/lego-locale', () => ({
+  get: key => key,
+  getHTML: key => key,
+}))

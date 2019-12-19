@@ -26,7 +26,7 @@ import {
   addFullScreenChangeEvents,
   removeFullScreenChangeEvents,
   enterFullScreen,
-} from 'utils'
+} from 'utils/dom'
 
 import { Modal, Button } from 'components/Base'
 import Status from 'devops/components/Status'
