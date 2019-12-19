@@ -23,8 +23,7 @@ import classnames from 'classnames'
 import { DatePicker, Select } from '@pitrix/lego-ui'
 import { Button, Form, Notify } from 'components/Base'
 
-import { getMinutes } from 'utils'
-import { getTimeOptions } from '../utils'
+import { getMinutes, getTimeOptions } from '../utils'
 
 import styles from './index.scss'
 

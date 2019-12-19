@@ -19,10 +19,12 @@
 import React from 'react'
 import classnames from 'classnames'
 import { observer, inject } from 'mobx-react'
+import qs from 'qs'
+
 import { Level, LevelLeft, LevelRight, Icon } from '@pitrix/lego-ui'
 
 import { Search } from 'components/Base'
-import { getQueryParam, getScrollTop } from 'utils'
+import { getScrollTop } from 'utils/dom'
 import PublishedAppStore from 'stores/openpitrix/store'
 import CategoryStore from 'stores/openpitrix/category'
 import { STORE_APP_LIMIT } from 'configs/openpitrix/app'
@@ -46,6 +48,10 @@ export default class Home extends React.Component {
     this.categoryStore = new CategoryStore()
 
     this.cateRef = React.createRef()
+  }
+
+  get queryParams() {
+    return qs.parse(location.search.slice(1))
   }
 
   async componentDidMount() {
@@ -74,8 +80,7 @@ export default class Home extends React.Component {
   }
 
   fetchApps = async (filters = {}, replaceAll = true) => {
-    const queryParams = getQueryParam()
-    const { category, keyword } = queryParams
+    const { category, keyword } = this.queryParams
     const params = {}
     if (keyword) {
       params.keyword = keyword
@@ -130,13 +135,13 @@ export default class Home extends React.Component {
     this.props.rootStore.query({ category })
   }
 
-  handleSearch = word => {
-    this.props.rootStore.query({ keyword: word })
+  handleSearch = keyword => {
+    this.props.rootStore.query({ keyword })
   }
 
   renderToolbar() {
     const { total } = this.appStore.list
-    const searchWord = getQueryParam('keyword')
+    const { keyword } = this.queryParams
 
     return (
       <div className={styles.toolbar}>
@@ -147,7 +152,7 @@ export default class Home extends React.Component {
           <LevelRight>
             <Search
               onSearch={this.handleSearch}
-              value={searchWord}
+              value={keyword}
               className={styles.search}
               placeholder={t('Find app')}
             />
@@ -159,7 +164,7 @@ export default class Home extends React.Component {
 
   renderCategories() {
     const { data } = this.categoryStore.list
-    const queryCate = getQueryParam('category')
+    const { category } = this.queryParams
 
     return (
       <div className={styles.cates} ref={this.cateRef}>
@@ -169,7 +174,7 @@ export default class Home extends React.Component {
             <li
               key={cateLatest}
               className={classnames(styles.item, {
-                [styles.active]: queryCate === cateLatest,
+                [styles.active]: category === cateLatest,
               })}
               onClick={() => this.handleClickCate(cateLatest)}
             >
@@ -185,14 +190,14 @@ export default class Home extends React.Component {
               <li
                 key={category_id || idx}
                 className={classnames(styles.item, {
-                  [styles.active]: queryCate === category_id,
+                  [styles.active]: category === category_id,
                 })}
                 onClick={() => this.handleClickCate(category_id)}
               >
                 <Icon
                   name={category_id === uncateKey ? 'tag' : description}
                   size={16}
-                  type={queryCate === category_id ? 'coloured' : 'dark'}
+                  type={category === category_id ? 'coloured' : 'dark'}
                   className={styles.icon}
                 />
                 <span className={styles.name}>
@@ -211,8 +216,7 @@ export default class Home extends React.Component {
   render() {
     const { list, allApps } = this.appStore
     const { isLoading, total } = list
-    const queryParams = getQueryParam()
-    const { workspace, namespace } = queryParams
+    const { workspace, namespace } = this.queryParams
 
     return (
       <div className={styles.wrapper}>

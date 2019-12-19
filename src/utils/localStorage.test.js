@@ -16,37 +16,12 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { action, observable } from 'mobx'
-import { getWebSocketProtocol } from 'utils'
-import SocketClient from 'utils/socket.client'
+import { getLocalStorageItem, setLocalStorageItem } from './localStorage'
 
-export default class WebSocketStore {
-  @observable
-  message = {}
-
-  watch(url) {
-    if (this.wsClient) {
-      this.wsClient.close(true)
-    }
-
-    this.wsClient = new SocketClient(
-      `${getWebSocketProtocol(window.location.protocol)}://${
-        window.location.host
-      }/${url}`,
-      {
-        onmessage: this.receive,
-      }
-    )
-  }
-
-  @action
-  receive = data => {
-    this.message = data
-  }
-
-  close() {
-    if (this.wsClient) {
-      this.wsClient.close(true)
-    }
-  }
-}
+it('localStorage', () => {
+  expect(getLocalStorageItem('key')).toBe(null)
+  setLocalStorageItem('key', 'value')
+  expect(getLocalStorageItem('key')).toBe('value')
+  setLocalStorageItem('key', 'value', -1)
+  expect(getLocalStorageItem('key')).toBe(null)
+})

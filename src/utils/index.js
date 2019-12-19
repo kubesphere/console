@@ -23,25 +23,28 @@ import {
   isObject,
   isString,
   trimEnd,
-  isFunction,
   isUndefined,
+  isEmpty,
   trimStart,
   isNumber,
 } from 'lodash'
 import generate from 'nanoid/generate'
 import moment from 'moment-mini'
-import qs from 'qs'
 
 import cookie from 'utils/cookie'
 
 import { PATTERN_LABEL, LANG_MAP, MODULE_KIND_MAP } from './constants'
 
+/**
+ * format size, output the value with unit
+ * @param {Number} size - the number need to be format
+ */
 export const formatSize = size => {
   const divisor = 1024
   const units = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB', 'BB']
   let index = 0
   if (!isNumber(size)) {
-    return units[index]
+    return size
   }
   while (size >= divisor && index < units.length) {
     size = parseFloat(size / divisor).toFixed(2)
@@ -53,6 +56,10 @@ export const formatSize = size => {
   return `${size} ${units[index]}`
 }
 
+/**
+ * format used time(ms).
+ * @param {Number} ms
+ */
 export const formatUsedTime = ms => {
   if (ms < 1000) {
     return `${ms} ms`
@@ -66,21 +73,14 @@ export const formatUsedTime = ms => {
   return `${parseFloat(ms / 3600000).toFixed(2)} h`
 }
 
-export function getScrollTop() {
-  return window.pageYOffset !== undefined
-    ? window.pageYOffset
-    : (document.documentElement || document.body.parentNode || document.body)
-        .scrollTop
-}
-
+/**
+ * Flatten object. transfer {a:{b:{c:1}}} to {'a.b.c':1}
+ * @param {Object} obj
+ */
 export function flattenObject(obj) {
   const result = {}
 
   function recurse(cur, prop) {
-    if (Object(cur) !== cur) {
-      result[prop] = cur
-      return
-    }
     if (Array.isArray(cur)) {
       if (cur.length > 0) {
         cur.forEach((item, index) => recurse(item, `${prop}[${index}]`))
@@ -96,6 +96,8 @@ export function flattenObject(obj) {
       } else {
         result[prop] = {}
       }
+    } else {
+      result[prop] = cur
     }
   }
 
@@ -103,24 +105,23 @@ export function flattenObject(obj) {
   return result
 }
 
-export function unflattenObject(data) {
-  if (Object(data) !== data || Array.isArray(data)) {
-    return data
-  }
-
-  const result = {}
-  Object.entries(data).forEach(([key, value]) => set(result, key, value))
-  return result
-}
-
 export const generateId = length =>
   generate('0123456789abcdefghijklmnopqrstuvwxyz', length || 6)
 
+/**
+ * join selector
+ * @param {Object} selector
+ */
 export const joinSelector = (selector = {}) =>
   Object.entries(selector)
     .map(([key, value]) => `${key}=${value}`)
     .join(',')
 
+/**
+ * parse string without error throw.
+ * @param {string} json - json string need to be parsed
+ * @param {object} defaultValue - if parse failed, return defaultValue
+ */
 export const safeParseJSON = (json, defaultValue) => {
   let result
   try {
@@ -135,6 +136,10 @@ export const safeParseJSON = (json, defaultValue) => {
 
 export const isSystemRole = role => /^system:/.test(role)
 
+/**
+ * wrap promise error
+ * @param {Promise} promise
+ */
 export const to = promise =>
   promise
     .then(data => data)
@@ -152,65 +157,6 @@ export const getLocalTime = time => {
 
   return moment.utc(formatTime).local()
 }
-
-export const getDateDiff = (dateTime, onlyReturnTime = false) => {
-  const minute = 1000 * 60
-  const hour = minute * 60
-  const day = hour * 24
-  const month = day * 30
-  const now = Date.now()
-  const diffValue = now - (isString(dateTime) ? Date.parse(dateTime) : dateTime)
-
-  if (diffValue < 0) return ''
-
-  const monthC = diffValue / month
-  const weekC = diffValue / (7 * day)
-  const dayC = diffValue / day
-  const hourC = diffValue / hour
-  const minC = diffValue / minute
-
-  let result = ''
-  if (monthC >= 1) {
-    result = t(onlyReturnTime ? 'MONTH_TIME' : 'MONTH_AGO', {
-      count: parseInt(monthC, 10),
-    })
-  } else if (weekC >= 1) {
-    result = t(onlyReturnTime ? 'WEEK_TIME' : 'WEEK_AGO', {
-      count: parseInt(weekC, 10),
-    })
-  } else if (dayC >= 1) {
-    result = t(onlyReturnTime ? 'DAY_TIME' : 'DAY_AGO', {
-      count: parseInt(dayC, 10),
-    })
-  } else if (hourC >= 1) {
-    result = t(onlyReturnTime ? 'HOUR_TIME' : 'HOUR_AGO', {
-      count: parseInt(hourC, 10),
-    })
-  } else if (minC >= 1) {
-    result = t(onlyReturnTime ? 'MINUTE_TIME' : 'MINUTE_AGO', {
-      count: parseInt(minC, 10),
-    })
-  }
-  return result
-}
-
-export const getMinutes = timeStr => {
-  const unit = timeStr.slice(-1)
-  const value = parseFloat(timeStr)
-
-  switch (unit) {
-    default:
-    case 'm':
-      return value
-    case 'h':
-      return value * 60
-    case 'd':
-      return value * 24 * 60
-  }
-}
-
-export const getDateStr = time =>
-  `${moment(time).format(t('MMMM Do YYYY'))},${moment(time).format('HH:mm:ss')}`
 
 export const capitalize = string =>
   string.charAt(0).toUpperCase() + string.slice(1).toLowerCase()
@@ -252,7 +198,7 @@ export const updateLabels = (template, module, value) => {
     set(formTemplate, 'spec.selector.matchLabels', value)
   }
 
-  if (module === 'cronjob') {
+  if (module === 'cronjobs') {
     set(formTemplate, 'spec.jobTemplate.metadata.labels', value)
   }
 
@@ -262,20 +208,32 @@ export const updateLabels = (template, module, value) => {
 }
 
 const merge = (origin, path, newObj) => {
-  const data = get(origin, path, {})
-  Object.assign(data, newObj)
+  const data = get(origin, path)
+  if (!data) {
+    set(origin, path, newObj)
+  } else {
+    Object.assign(data, newObj)
+  }
 }
 
 export const mergeLabels = (formData, labels) => {
-  const type = formData.kind
+  if (!formData || !formData.kind) {
+    return
+  }
 
-  if (['Deployment', 'DaemonSet', 'StatefulSet'].includes(type)) {
-    merge(formData, 'metadata.labels', labels)
-    merge(formData, 'spec.selector.matchLabels', labels)
-    merge(formData, 'spec.template.metadata.labels', labels)
-  } else if (type === 'Service') {
-    merge(formData, 'metadata.labels', labels)
-    merge(formData, 'spec.selector', labels)
+  switch (formData.kind) {
+    case 'Deployment':
+    case 'DaemonSet':
+    case 'StatefulSet':
+      merge(formData, 'metadata.labels', labels)
+      merge(formData, 'spec.selector.matchLabels', labels)
+      merge(formData, 'spec.template.metadata.labels', labels)
+      break
+    case 'Service':
+      merge(formData, 'metadata.labels', labels)
+      merge(formData, 'spec.selector', labels)
+      break
+    default:
   }
 }
 
@@ -340,43 +298,6 @@ export const memoryFormat = (memory, unit = 'Mi') => {
   return value
 }
 
-export const addFullScreenChangeEvents = callBack => {
-  if (!isFunction(callBack)) {
-    return
-  }
-  document.addEventListener('fullscreenchange', callBack)
-  document.addEventListener('mozfullscreenchange', callBack)
-  document.addEventListener('webkitfullscreenchange', callBack)
-  document.addEventListener('msfullscreenchange', callBack)
-}
-
-export const removeFullScreenChangeEvents = callBack => {
-  if (!isFunction(callBack)) {
-    return
-  }
-  document.removeEventListener('fullscreenchange', callBack)
-  document.removeEventListener('mozfullscreenchange', callBack)
-  document.removeEventListener('webkitfullscreenchange', callBack)
-  document.removeEventListener('msfullscreenchange', callBack)
-}
-
-export const exitFullScreen = () => {
-  const eFS =
-    document.exitFullscreen ||
-    document.msExitFullscreen ||
-    document.mozCancelFullScreen ||
-    document.webkitExitFullscreen
-  eFS.call(document)
-}
-
-export const enterFullScreen = container => {
-  const rFS =
-    container.requestFullscreen ||
-    container.webkitRequestFullscreen ||
-    container.mozRequestFullScreen
-  rFS.call(container)
-}
-
 export const cacheFunc = (key, func, context) => {
   context._funcCaches = context._funcCaches || {}
 
@@ -403,7 +324,7 @@ export const getAliasName = item =>
   ''
 
 export const getDisplayName = item => {
-  if (!item) {
+  if (isEmpty(item)) {
     return ''
   }
 
@@ -423,8 +344,8 @@ export const formatRules = rules =>
     {}
   )
 
-export const getWebSocketProtocol = () => {
-  if (location.protocol.startsWith('https')) {
+export const getWebSocketProtocol = protocol => {
+  if (protocol.startsWith('https')) {
     return 'wss'
   }
   return 'ws'
@@ -434,17 +355,13 @@ export const getDocsUrl = module => {
   const lang = LANG_MAP[cookie('lang') || getBrowserLang()]
 
   const { url: prefix, version } = globals.config.documents
-  let docUrl = get(globals.config, `resourceDocs[${module}]`, '')
+  const docUrl = get(globals.config, `resourceDocs[${module}]`, '')
 
   if (!docUrl) {
     return ''
   }
 
-  if (!docUrl.startsWith('http')) {
-    docUrl = `${prefix}/${version}/${lang}${docUrl}`
-  }
-
-  return docUrl
+  return `${prefix}/${version}/${lang}${docUrl}`
 }
 
 export const hasChinese = str => /.*[\u4E00-\u9FA5]+.*/.test(str)
@@ -486,26 +403,6 @@ export const getLanguageName = name => {
   return languageList.find(language => name.indexOf(language) !== -1)
 }
 
-export const formatRelativeDate = (value, fullMonthName) => {
-  const m = moment.isMoment(value) ? value : moment(value)
-  const monthFormat = fullMonthName ? 'MMMM' : 'MMM'
-  const dt = new Date()
-  if (dt.getFullYear() !== m.year()) {
-    return m.format(`${monthFormat} D, YYYY`)
-  }
-  const mMonth = m.month()
-  const mDate = m.date()
-  const date = dt.getDate()
-  if (mMonth === dt.getMonth() && mDate === date) {
-    return 'Today'
-  }
-  dt.setDate(date - 1)
-  if (mMonth === dt.getMonth() && mDate === dt.getDate()) {
-    return 'Yesterday'
-  }
-  return m.format(`${monthFormat} D`)
-}
-
 export const parseUrl = url => {
   const result = {}
   const keys = [
@@ -536,6 +433,12 @@ export const replaceToLocalOrigin = url => {
   return `${window.location.protocol}//${window.location.host}${path}`
 }
 
+/**
+ * send the k8s requests with dry run
+ * @param {Object[]} requests - the requests need dry run.
+ * @param {string} requests[].url - the url of a request
+ * @param {Object} requests[].data - the data of a request
+ */
 export const withDryRun = async requests => {
   const dryRunPromises = requests.map(item =>
     request.post(`${item.url}?dryRun=All`, item.data)
@@ -548,10 +451,9 @@ export const withDryRun = async requests => {
   return Promise.all(promises)
 }
 
-export const getQueryParam = key => {
-  const params = qs.parse(location.search.slice(1))
-  return key ? params[key] : params
-}
-
+/**
+ * Check if the page is apps page.
+ * @param {String} path
+ */
 export const isAppsPage = (path = location.pathname) =>
   path === '/apps' || path.startsWith('/apps/')

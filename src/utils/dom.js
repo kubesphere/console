@@ -16,6 +16,8 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { isFunction } from 'lodash'
+
 export const hasClass = (el, className) => {
   if (el.classList) {
     return el.classList.contains(className)
@@ -81,4 +83,48 @@ export function createCenterWindowOpt({ width = 800, height = 500, ...reset }) {
     (windowOpts, [key, value]) => `${windowOpts},${key}=${value}`,
     ''
   )
+}
+
+export function getScrollTop() {
+  return window.pageYOffset !== undefined
+    ? window.pageYOffset
+    : (document.documentElement || document.body.parentNode || document.body)
+        .scrollTop
+}
+
+export const addFullScreenChangeEvents = callBack => {
+  if (!isFunction(callBack)) {
+    return
+  }
+  document.addEventListener('fullscreenchange', callBack)
+  document.addEventListener('mozfullscreenchange', callBack)
+  document.addEventListener('webkitfullscreenchange', callBack)
+  document.addEventListener('msfullscreenchange', callBack)
+}
+
+export const removeFullScreenChangeEvents = callBack => {
+  if (!isFunction(callBack)) {
+    return
+  }
+  document.removeEventListener('fullscreenchange', callBack)
+  document.removeEventListener('mozfullscreenchange', callBack)
+  document.removeEventListener('webkitfullscreenchange', callBack)
+  document.removeEventListener('msfullscreenchange', callBack)
+}
+
+export const exitFullScreen = () => {
+  const eFS =
+    document.exitFullscreen ||
+    document.msExitFullscreen ||
+    document.mozCancelFullScreen ||
+    document.webkitExitFullscreen
+  eFS.call(document)
+}
+
+export const enterFullScreen = container => {
+  const rFS =
+    container.requestFullscreen ||
+    container.webkitRequestFullscreen ||
+    container.mozRequestFullScreen
+  rFS.call(container)
 }

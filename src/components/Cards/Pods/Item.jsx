@@ -22,7 +22,7 @@ import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { isEmpty, get } from 'lodash'
 
-import { getDateDiff } from 'utils'
+import { getLocalTime } from 'utils'
 import { getAreaChartOps } from 'utils/monitoring'
 
 import { Icon, Tooltip } from '@pitrix/lego-ui'
@@ -49,10 +49,6 @@ export default class PodItem extends React.PureComponent {
     detail: {},
     isExpand: false,
     onExpand() {},
-  }
-
-  get diffDate() {
-    return getDateDiff(this.props.detail.createTime)
   }
 
   get status() {
@@ -106,9 +102,9 @@ export default class PodItem extends React.PureComponent {
 
     return (
       <p>
-        {this.diffDate
-          ? t('CREATE_TIME', { diff: this.diffDate })
-          : t('Updated just now')}
+        {t('CREATE_TIME', {
+          diff: getLocalTime(this.props.detail.createTime).fromNow(),
+        })}
       </p>
     )
   }

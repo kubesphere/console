@@ -24,7 +24,7 @@ import classnames from 'classnames'
 import moment from 'moment-mini'
 import { get, sortBy, isUndefined } from 'lodash'
 
-import { getDateDiff, cacheFunc } from 'utils'
+import { getLocalTime, cacheFunc } from 'utils'
 import { getCurrentRevision } from 'utils/workload'
 import RevisionStore from 'stores/workload/revision'
 
@@ -75,7 +75,7 @@ class RevisionControl extends React.Component {
       data.find(item => item.revision === this.curRevision),
       'createTime'
     )
-    return getDateDiff(createTime)
+    return getLocalTime(createTime).fromNow()
   }
 
   getDetailLink = revisionId => {

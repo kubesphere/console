@@ -16,19 +16,13 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { isEmpty } from 'lodash'
-
 export const getLocalStorageItem = key => {
   const item = localStorage.getItem(key)
   try {
     const { expires, value } = JSON.parse(item)
 
-    if (isEmpty(expires)) {
-      return value
-    }
-
     if (Date.now() > expires) {
-      localStorage.remove(key)
+      localStorage.removeItem(key)
       return null
     }
 
@@ -38,7 +32,7 @@ export const getLocalStorageItem = key => {
   }
 }
 
-export const setLocalStorageItem = (key, value, maxAge = 0) => {
+export const setLocalStorageItem = (key, value, maxAge = 86400) => {
   try {
     localStorage.setItem(
       key,

@@ -37,6 +37,7 @@ module.exports = {
     '^layouts(.*)$': '<rootDir>/src/layouts$1',
     '^stores(.*)$': '<rootDir>/src/stores$1',
     '^utils(.*)$': '<rootDir>/src/utils$1',
+    '^configs(.*)$': '<rootDir>/src/configs$1',
   },
   globals: {
     globals: {

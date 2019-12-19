@@ -28,7 +28,7 @@ import Avatar from 'apps/components/Avatar'
 import CreateModal from 'apps/components/Modals/AppCreate'
 import UploadModal from 'apps/components/Modals/HelmUpload'
 
-import { getDateDiff, getDisplayName } from 'utils'
+import { getLocalTime, getDisplayName } from 'utils'
 import { transferAppStatus } from 'utils/app'
 import AppStore from 'stores/openpitrix/app'
 
@@ -137,7 +137,7 @@ export default class Apps extends Base {
       dataIndex: 'update_time',
       isHideable: true,
       width: '20%',
-      render: (time, item) => getDateDiff(time || item.status_time) || '-',
+      render: (time, item) => getLocalTime(time || item.status_time).fromNow(),
     },
   ]
 

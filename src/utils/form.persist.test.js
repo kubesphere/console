@@ -16,37 +16,13 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { action, observable } from 'mobx'
-import { getWebSocketProtocol } from 'utils'
-import SocketClient from 'utils/socket.client'
+import formPersist from './form.persist'
 
-export default class WebSocketStore {
-  @observable
-  message = {}
+it('getLanguageIcon', () => {
+  const testData = { a: 'b' }
 
-  watch(url) {
-    if (this.wsClient) {
-      this.wsClient.close(true)
-    }
-
-    this.wsClient = new SocketClient(
-      `${getWebSocketProtocol(window.location.protocol)}://${
-        window.location.host
-      }/${url}`,
-      {
-        onmessage: this.receive,
-      }
-    )
-  }
-
-  @action
-  receive = data => {
-    this.message = data
-  }
-
-  close() {
-    if (this.wsClient) {
-      this.wsClient.close(true)
-    }
-  }
-}
+  formPersist.set('create', testData)
+  expect(formPersist.get('create')).toStrictEqual(testData)
+  formPersist.delete('create')
+  expect(formPersist.get('create')).toStrictEqual(undefined)
+})
