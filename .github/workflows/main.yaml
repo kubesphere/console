@@ -54,7 +54,13 @@ jobs:
     
     - name: Build preview image
       if: github.event_name == 'pull_request'
-      run: docker build . --file Dockerfile --tag ks-console-preview-$GITHUB_ACTION
+      run: docker build . --file Dockerfile --tag ks-console-preview-$GITHUB_SHA
+
+    - name: Deploy preview image
+      if: github.event_name == 'pull_request'
+      run: |
+        echo 'Deploy to ks cluster'
+        echo ks-console-preview-$GITHUB_SHA
 
     - name: Build image
       if: github.event_name == 'push'
@@ -81,13 +87,3 @@ jobs:
           echo VERSION=$VERSION
           docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
           docker push $IMAGE_ID:$VERSION
- 
-  deploy-preview:
-    runs-on: self-hosted
-
-    steps:
-    - name: Deploy preview image
-      if: github.event_name == 'pull_request'
-      run: |
-        echo 'Deploy to ks cluster'
-        echo ks-console-preview-$GITHUB_ACTION
