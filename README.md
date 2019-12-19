@@ -3,7 +3,7 @@
 ![](https://github.com/kubesphere/console/workflows/Main/badge.svg)
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 
-KubeSphere Console is a general purpose, web-based UI for [KubeSphere](https://github.com/kubesphere/kubesphere) clusters.
+KubeSphere Console is the web-based UI for [KubeSphere](https://github.com/kubesphere/kubesphere) clusters.
 
 ![KubeSphere Console](docs/images/dashboard-ui.png)
 
@@ -13,7 +13,7 @@ A KubeSphere cluster is required before getting started.
 
 Read [Installation](https://github.com/kubesphere/kubesphere#installation) guide to install a cluster.
 
-Read [To start using KubeSphere](https://github.com/kubesphere/kubesphere#to-start-using-kubesphere) to get start using.
+Read [the guide](https://github.com/kubesphere/kubesphere#to-start-using-kubesphere) to start using KubeSphere.
 
 Features Map:
 
@@ -35,17 +35,23 @@ Install yarn with npm:
 npm install -g yarn
 ```
 
-Clone the repository and install the dependencies:
+Fork the repository, then clone your repository and install the dependencies:
 
 ```sh
 yarn
 ```
 
-Or you can start development in dokcer. See [Development with Docker](/docs/development-with-docker.md).
+Note: If you are in China Mainland, execute the following command before running the command above for faster installation.
+
+```sh
+yarn config set registry https://registry.npm.taobao.org
+```
+
+Alternatively you can start development using docker. See [Development with Docker](/docs/development-with-docker.md).
 
 ### Access the backend services of KubeSphere
 
-Follow [Access Backend Services](/docs/access-backend.md) to access the backend services.
+Follow [the guide](/docs/access-backend.md) to access the backend services.
 
 ### Start KubeSphere Console for development
 
@@ -54,7 +60,7 @@ yarn lego
 yarn start
 ```
 
-Now, you can access http://localhost:8000 in the browser.
+Now, you can access http://localhost:8000 to view the console.
 
 ### Run tests
 
