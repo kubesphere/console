@@ -54,13 +54,15 @@ jobs:
     
     - name: Build preview image
       if: github.event_name == 'pull_request'
-      run: docker build . --file Dockerfile --tag ks-console-preview-$GITHUB_SHA
+      run: docker build . --file Dockerfile --tag ks-console-pr-$GITHUB_SHA
 
     - name: Deploy preview image
       if: github.event_name == 'pull_request'
       run: |
         echo 'Deploy to ks cluster'
-        echo ks-console-preview-$GITHUB_SHA
+        /bin/bash ~/scripts/deploy.sh
+        echo 'Access to the preview console:'
+        echo 'http://192.168.0.2:30880/projects/kubesphere-system/services'
 
     - name: Build image
       if: github.event_name == 'push'
