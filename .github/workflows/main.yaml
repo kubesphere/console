@@ -60,7 +60,7 @@ jobs:
       if: github.event_name == 'pull_request'
       run: |
         echo 'Deploy to ks cluster'
-        /bin/bash ~/scripts/deploy.sh
+        /bin/bash ~/scripts/deploy.sh ks-console-pr-$GITHUB_SHA
         echo 'Access to the preview console:'
         echo 'http://192.168.0.2:30880/projects/kubesphere-system/services'
 
