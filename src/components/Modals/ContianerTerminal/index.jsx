@@ -33,26 +33,25 @@ import styles from './index.scss'
 @fullscreen
 @observer
 export default class ContainerTerminalModal extends React.Component {
-  store = new TerminalStore()
-
   podStore = new PodStore()
-
-  get websocketUrl() {
-    const { namespace, podName: pod } = this.props.match.params
-    const { name: container } = this.state.container
-    return this.store.getWebSocketUrl({ container, namespace, pod })
-  }
 
   constructor(props) {
     super(props)
 
-    const { containerName } = this.props.match.params
+    const { containerName, podName, namespace } = this.props.match.params
 
     this.state = {
       container: {
         name: containerName,
       },
     }
+
+    this.store = new TerminalStore({
+      namespace,
+      pod: podName,
+      container: containerName,
+      shell: 'sh',
+    })
   }
 
   componentDidMount() {
@@ -76,6 +75,7 @@ export default class ContainerTerminalModal extends React.Component {
 
   handleContainerChange = container => {
     this.setState({ container })
+    this.store.kubectl.container = container.name
   }
 
   getResourceInfo = type => {
@@ -95,7 +95,7 @@ export default class ContainerTerminalModal extends React.Component {
       <div className={styles.kubeCtl}>
         <div className={styles.terminalWrapper}>
           <div className={classnames(styles.pane, styles.terminal)}>
-            <ContainerTerminal url={this.websocketUrl} />
+            <ContainerTerminal url={this.store.kubeWebsocketUrl} />
           </div>
         </div>
         <div className={styles.tipWrapper}>{this.renderContainerMsg()}</div>
@@ -121,6 +121,7 @@ export default class ContainerTerminalModal extends React.Component {
     const containerOpts = containers.map(container => ({
       label: container.name,
       value: container,
+      uid: container.name,
       icon: 'docker',
       description: `${t('Image')}: ${container.image}`,
     }))

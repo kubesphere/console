@@ -35,7 +35,7 @@ export default class KubeCtlModal extends React.Component {
   terminalRef = React.createRef()
 
   componentDidMount() {
-    this.store.getKSWebSocketUrl()
+    this.store.fetchKubeCtl()
   }
 
   onTipsToggle = () => {

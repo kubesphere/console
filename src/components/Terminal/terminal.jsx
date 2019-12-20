@@ -42,6 +42,7 @@ export default class ContainerTerminal extends React.Component {
   static propsTypes = {
     terminalOpts: PropTypes.object,
     websocketUrl: PropTypes.string,
+    initText: PropTypes.string,
   }
 
   static defaultProps = {
@@ -67,6 +68,8 @@ export default class ContainerTerminal extends React.Component {
     this.addWSListeners()
     this.onTerminalResize()
     this.onTerminalKeyPress()
+
+    this.disableTermStdin()
   }
 
   componentWillUnmount() {
@@ -83,10 +86,12 @@ export default class ContainerTerminal extends React.Component {
     term.write(initText)
     term.fit()
 
-    // hidden cursor until ws connect
-    term.cursorHidden = true
-
     return term
+  }
+
+  disableTermStdin(disabled = true) {
+    const { textarea = {} } = this.term
+    textarea.disabled = disabled
   }
 
   getTerminalOpts() {
@@ -123,11 +128,6 @@ export default class ContainerTerminal extends React.Component {
   fitTerm = () => this.term.fit()
 
   onResize = debounce(this.fitTerm, 800)
-
-  generateUrl = () => {
-    const { baseUrl, session, selfLink } = this.props
-    return `${baseUrl}${selfLink}websocket?${session}`
-  }
 
   packStdin = data =>
     JSON.stringify({
@@ -168,9 +168,8 @@ export default class ContainerTerminal extends React.Component {
 
     if (this.first) {
       this.first = false
-      term.cursorHidden = false
+      this.disableTermStdin(false)
       term.reset()
-      term.showCursor()
       term.element && term.focus()
       this.resizeRemoteTerminal()
     }
@@ -181,8 +180,7 @@ export default class ContainerTerminal extends React.Component {
 
   disconnect = () => {
     if (this.term) {
-      this.term.cursorHidden = true
-      this.term.refresh(this.term.buffer.y, this.term.buffer.y)
+      this.disableTermStdin(true)
     }
 
     if (this.ws) {
