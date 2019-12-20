@@ -1,0 +1,15 @@
+name: Clear
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  build-and-push:
+    runs-on: self-hosted
+
+    steps:
+    - name: Deploy preview image
+      run: |
+        echo 'Clear deploy on ks cluster'
+        /bin/bash ~/scripts/clear.sh ks-console-pr-$GITHUB_SHA
