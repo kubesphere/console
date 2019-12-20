@@ -36,6 +36,10 @@ const getPipelineName = configData =>
   get(configData, 'multi_branch_pipeline.name', '')
 
 export default class PipelineStore extends BaseStore {
+  constructor(props) {
+    super(props)
+    this.pipelineConfig = {}
+  }
   @observable
   project_id = ''
   @observable

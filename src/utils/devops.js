@@ -52,7 +52,7 @@ export const updatePipelineParams = data => {
 }
 
 export const groovyToJS = str => {
-  const groovyReg = /([\w-]*) ?: '([\w-:/_.]*)'/g
+  const groovyReg = /([\w-]*) ?: '?([\w-:/_.]*)'?/g
   const result = {}
   let arr
   // eslint-disable-next-line no-cond-assign
