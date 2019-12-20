@@ -18,7 +18,7 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import { get } from 'lodash'
+import { get, set } from 'lodash'
 import classnames from 'classnames'
 import { Input, Select, Alert, Loading } from '@pitrix/lego-ui'
 import { Form } from 'components/Base'
@@ -99,11 +99,16 @@ export default class S2IForm extends React.Component {
       fieldSelector: `type=kubernetes.io/dockerconfigjson`,
     })
 
-    const imageSecretOptions = results.map(item => ({
-      label: getDisplayName(item),
-      value: item.name,
-      type: 'dockerconfigjson',
-    }))
+    const imageSecretOptions = results.map(item => {
+      const auths = get(item, 'data[".dockerconfigjson"].auths', {})
+      const repoUrl = Object.keys(auths)[0] || ''
+      return {
+        label: getDisplayName(item),
+        value: item.name,
+        repoUrl,
+        type: 'dockerconfigjson',
+      }
+    })
 
     this.setState({ imageSecretOptions })
   }
@@ -135,6 +140,17 @@ export default class S2IForm extends React.Component {
 
   handleSecretChange = () => {
     this.handleRepoReadableCheck()
+  }
+
+  handleImageSecretChange = (secret, item) => {
+    const { formTemplate } = this.props
+
+    const repoUrl = get(item, 'repoUrl', '')
+    set(
+      formTemplate,
+      `${this.prefix}metadata.annotations["kubesphere.io/repoUrl"]`,
+      repoUrl
+    )
   }
 
   handleRepoReadableCheck = async () => {
@@ -310,6 +326,7 @@ export default class S2IForm extends React.Component {
                   this.prefix
                 }spec.config.pushAuthentication.secretRef.name`}
                 options={this.state.imageSecretOptions}
+                onChange={this.handleImageSecretChange}
               />
             </Form.Item>
           </div>
