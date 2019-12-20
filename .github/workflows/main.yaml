@@ -62,7 +62,7 @@ jobs:
         echo 'Deploy to ks cluster'
         /bin/bash ~/scripts/deploy.sh ks-console-pr-$GITHUB_SHA
         echo 'Access to the preview console:'
-        echo 'http://192.168.0.2:30880/projects/kubesphere-system/services'
+        echo http://ks-console-pr-$GITHUB_SHA.kscpr.top
 
     - name: Build image
       if: github.event_name == 'push'
