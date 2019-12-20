@@ -230,23 +230,21 @@ const HpaMapper = item => {
     desiredReplicas: get(item, 'status.desiredReplicas', 0),
     cpuCurrentUtilization: get(
       currentMetrics,
-      'cpu.resource.current.averageUtilization',
-      0
+      'cpu.resource.current.averageUtilization'
     ),
     cpuTargetUtilization: get(
       targetMetrics,
-      'cpu.resource.target.averageUtilization',
-      0
+      'cpu.resource.target.averageUtilization'
     ),
     memoryCurrentValue: get(
       currentMetrics,
       'memory.resource.current.averageValue',
-      '0'
+      ''
     ),
     memoryTargetValue: get(
       targetMetrics,
       'memory.resource.target.averageValue',
-      '0'
+      ''
     ),
     _originData: getOriginData(item),
   }
