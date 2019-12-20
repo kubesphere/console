@@ -1,6 +1,6 @@
 # Development with Docker
 
-KubeSphere Console can be developed in a docker enviroment with following steps.
+KubeSphere Console can be developed in a docker enviroment by following the steps as below.
 
 Required:
 
@@ -26,11 +26,13 @@ make yarn-lego
 
 ## Start KubeSphere Console for development
 
+Before start development, please follow [the guide](/docs/access-backend.md) to configure the backend services of KubeSphere.
+
 ```bash
 make dev
 ```
 
-Now, you can access http://localhost:8000 in the browser.
+Now you can access http://localhost:8000 to view the console using the default account admin / P@88w0rd.
 
 ## Run tests
 

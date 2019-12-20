@@ -12,7 +12,7 @@ The above command exposes the ks-apigateway service through the node port 30881.
 
 ### Config gateway server in KubeSphere Console
 
-Add `local_config.yaml` into `server`
+Add the file `local_config.yaml` under the folder `server`
 
 local_config.yaml
 
