@@ -35,7 +35,9 @@ export default class SocketClient {
   static composeEndpoint = (socketUrl, suffix = '') => {
     const re = /(\w+?:\/\/)?([^\\?]+)/
     const matchParts = String(socketUrl).match(re)
-    return `${getWebSocketProtocol()}://${matchParts[2]}${suffix}`
+    return `${getWebSocketProtocol(window.location.protocol)}://${
+      matchParts[2]
+    }${suffix}`
   }
 
   constructor(endpoint, options = {}) {

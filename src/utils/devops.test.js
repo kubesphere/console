@@ -16,37 +16,9 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { action, observable } from 'mobx'
-import { getWebSocketProtocol } from 'utils'
-import SocketClient from 'utils/socket.client'
+import { getLanguageIcon } from './devops'
 
-export default class WebSocketStore {
-  @observable
-  message = {}
-
-  watch(url) {
-    if (this.wsClient) {
-      this.wsClient.close(true)
-    }
-
-    this.wsClient = new SocketClient(
-      `${getWebSocketProtocol(window.location.protocol)}://${
-        window.location.host
-      }/${url}`,
-      {
-        onmessage: this.receive,
-      }
-    )
-  }
-
-  @action
-  receive = data => {
-    this.message = data
-  }
-
-  close() {
-    if (this.wsClient) {
-      this.wsClient.close(true)
-    }
-  }
-}
+it('getLanguageIcon', () => {
+  expect(getLanguageIcon('rust', 'none')).toBe('none')
+  expect(getLanguageIcon('nodejs', 'none')).toBe('nodejs')
+})

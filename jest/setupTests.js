@@ -25,6 +25,14 @@ configure({ adapter: new React16Adapter() })
 global.t = key => key
 global.t.html = key => key
 
+global.request = {
+  get: jest.fn(),
+  post: jest.fn(),
+  put: jest.fn(),
+  patch: jest.fn(),
+  delete: jest.fn(),
+}
+
 const doc = new JSDOM('<!doctype html><html><body></body></html>')
 global.document = doc
 global.window = doc.defaultView
@@ -44,3 +52,15 @@ global.document.body.createTextRange = function() {
     },
   }
 }
+
+global.window.console = {
+  warn: () => {},
+  log: () => {},
+  info: () => {},
+  error: () => {},
+}
+
+jest.mock('@pitrix/lego-locale', () => ({
+  get: key => key,
+  getHTML: key => key,
+}))

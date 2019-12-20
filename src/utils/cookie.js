@@ -17,41 +17,11 @@
  */
 
 /* eslint-disable consistent-return */
-const cookie = (win, n, v, op) => {
-  if (typeof win === 'string') {
-    op = v
-    v = n
-    n = win
-    win = window
-  }
-
+const cookie = (n, v) => {
   if (typeof v !== 'undefined') {
-    let date
-    let expires = ''
-    op = op || {}
-    if (op.expires) {
-      if (op.expires.constructor === Date) {
-        date = op.expires
-      } else {
-        date = new Date()
-        date.setTime(date.getTime() + op.expires * 24 * 60 * 60 * 1000)
-      }
-      expires = `; expires=${date.toGMTString()}`
-    }
-    const path = op.path ? `; path=${op.path}` : ''
-    const domain = op.domain ? `; domain=${op.domain}` : ''
-    const secure = op.secure ? '; secure' : ''
-    win.document.cookie = [
-      n,
-      '=',
-      encodeURIComponent(v),
-      expires,
-      path,
-      domain,
-      secure,
-    ].join('')
+    window.document.cookie = [n, '=', encodeURIComponent(v)].join('')
   } else {
-    v = win.document.cookie.match(new RegExp(`(?:\\s|^)${n}\\=([^;]*)`))
+    v = window.document.cookie.match(new RegExp(`(?:\\s|^)${n}\\=([^;]*)`))
     return v ? decodeURIComponent(v[1]) : null
   }
 }

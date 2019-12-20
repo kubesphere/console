@@ -29,9 +29,9 @@ const BG_COLOR = '#181d28'
 @observer
 export default class SessionTerminal extends Component {
   get url() {
-    return `${getWebSocketProtocol()}://${window.location.host}/${
-      this.props.url
-    }`
+    return `${getWebSocketProtocol(window.location.protocol)}://${
+      window.location.host
+    }/${this.props.url}`
   }
 
   resizeTerminal = () => {

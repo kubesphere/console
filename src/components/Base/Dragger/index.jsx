@@ -29,7 +29,7 @@ import {
   exitFullScreen,
   addFullScreenChangeEvents,
   removeFullScreenChangeEvents,
-} from 'utils'
+} from 'utils/dom'
 
 import style from './index.scss'
 

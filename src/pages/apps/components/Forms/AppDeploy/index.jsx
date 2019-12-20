@@ -24,13 +24,7 @@ import classnames from 'classnames'
 import yaml from 'js-yaml/dist/js-yaml'
 import { get, isEmpty } from 'lodash'
 
-import {
-  generateId,
-  safeParseJSON,
-  flattenObject,
-  unflattenObject,
-  getDisplayName,
-} from 'utils'
+import { generateId, safeParseJSON, getDisplayName } from 'utils'
 import { PATTERN_NAME } from 'utils/constants'
 import WorkspaceStore from 'stores/workspace'
 import AppVersionStore from 'stores/openpitrix/version'
@@ -82,7 +76,6 @@ export default class AppTemplateForm extends React.Component {
 
     extendObservable(this, {
       baseFormData: this.initBaseFormData(),
-      valuesFormData: {},
       mode: 'yaml',
     })
   }
@@ -186,7 +179,6 @@ export default class AppTemplateForm extends React.Component {
     const valuesYaml = packageFiles['values.yaml']
 
     this.valuesYaml = valuesYaml
-    this.valuesFormData = flattenObject(formatYaml(valuesYaml))
   }
 
   @action
@@ -238,16 +230,8 @@ export default class AppTemplateForm extends React.Component {
   }
 
   getConf() {
-    let values = {}
-
-    if (this.mode === 'form') {
-      values = toJS(this.valuesFormData)
-      values = unflattenObject(values)
-    } else if (this.mode === 'yaml') {
-      values = formatYaml(this.valuesYaml)
-    }
-
     const { desc, name } = this.baseFormData
+    const values = formatYaml(this.valuesYaml)
 
     return yaml.safeDump(
       Object.assign({}, values, {
@@ -457,10 +441,6 @@ export default class AppTemplateForm extends React.Component {
           <Loading />
         </div>
       )
-    }
-
-    if (Object.keys(this.valuesFormData).length === 0) {
-      return null
     }
 
     return (

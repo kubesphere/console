@@ -114,30 +114,3 @@ export const checkRepoInvalidReason = errCode => {
   }
   return t(errReason[errCode] || 'Invalid URL')
 }
-
-export const compareVersion = (v1, v2) => {
-  if (typeof v1 + typeof v2 !== 'stringstring') {
-    return false
-  }
-
-  const a = v1.split('.')
-  const b = v2.split('.')
-  const len = Math.max(a.length, b.length)
-
-  for (let i = 0; i < len; i++) {
-    if (
-      (a[i] && !b[i] && parseInt(a[i], 10) > 0) ||
-      parseInt(a[i], 10) > parseInt(b[i], 10)
-    ) {
-      return 1
-    }
-    if (
-      (b[i] && !a[i] && parseInt(b[i], 10) > 0) ||
-      parseInt(a[i], 10) < parseInt(b[i], 10)
-    ) {
-      return -1
-    }
-  }
-
-  return 0
-}

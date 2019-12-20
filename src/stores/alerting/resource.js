@@ -19,7 +19,7 @@
 import { observable, action, toJS } from 'mobx'
 import { isEmpty, get, min } from 'lodash'
 
-import { getDateDiff, getFilterString } from 'utils'
+import { getLocalTime, getFilterString } from 'utils'
 import ObjectMapper from 'utils/object.mapper'
 
 import NodeStore from 'stores/node'
@@ -178,7 +178,7 @@ export default class ResourceStore extends Base {
       )
 
       // set running time
-      item.running_time = getDateDiff(item.start_time, true)
+      item.running_time = getLocalTime(item.start_time).fromNow()
 
       // set status
       if (item.healthy_pod_count === item.total_pod_count) {

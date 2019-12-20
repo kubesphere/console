@@ -21,7 +21,7 @@ import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 
-import { getDateDiff } from 'utils'
+import { getLocalTime } from 'utils'
 import { ICON_TYPES } from 'utils/constants'
 import { getWorkloadStatus } from 'utils/status'
 import { getWorkloadReplicaCount } from 'utils/workload'
@@ -77,7 +77,7 @@ export default class WorkloadItem extends React.Component {
         </div>
         <div className={styles.desc}>
           <div>
-            <strong>{getDateDiff(createTime, true)}</strong>
+            <strong>{getLocalTime(createTime).fromNow()}</strong>
             <p>{t('Running Time')}</p>
           </div>
           <div>

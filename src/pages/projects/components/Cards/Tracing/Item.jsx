@@ -20,7 +20,8 @@ import { sortBy } from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
-import { getLocalTime, formatRelativeDate } from 'utils'
+import { getLocalTime } from 'utils'
+import { formatRelativeDate } from 'utils/tracing'
 
 import { Icon } from '@pitrix/lego-ui'
 

@@ -23,7 +23,7 @@ import { capitalize } from 'lodash'
 import { Status, Banner } from 'components/Base'
 import Base from 'core/containers/Base/List'
 import Avatar from 'apps/components/Avatar'
-import { getDateDiff } from 'utils'
+import { getLocalTime } from 'utils'
 
 import { getAppCategoryNames, transferAppStatus } from 'utils/app'
 import AppStore from 'stores/openpitrix/store'
@@ -105,7 +105,7 @@ export default class Store extends Base {
       dataIndex: 'status_time',
       isHideable: true,
       width: '17%',
-      render: time => getDateDiff(time) || '-',
+      render: time => getLocalTime(time).fromNow(),
     },
   ]
 

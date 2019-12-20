@@ -28,7 +28,7 @@ import RejectModal from 'apps/components/Modals/ReviewReject'
 
 import ReviewStore from 'stores/openpitrix/review'
 import { REVIEW_QUERY_STATUS } from 'configs/openpitrix/app'
-import { getDateDiff } from 'utils'
+import { getLocalTime } from 'utils'
 import { transferReviewStatus } from 'utils/app'
 
 import styles from './index.scss'
@@ -180,7 +180,7 @@ export default class Reviews extends Base {
       dataIndex: 'status_time',
       isHideable: true,
       width: '15%',
-      render: time => getDateDiff(time) || '-',
+      render: time => getLocalTime(time).fromNow(),
     },
     {
       key: 'more',

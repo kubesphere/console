@@ -23,11 +23,10 @@ import { Tooltip, Icon, Columns, Column, Input, Select } from '@pitrix/lego-ui'
 import { Form, Checkbox } from 'components/Base'
 import Title from 'components/Forms/Base/Title'
 import { NumberInput } from 'components/Inputs'
+import { getLocalTime } from 'utils'
 import { TIMETRIGGERINTERVALS, REPO_KEY_MAP } from 'utils/constants'
 import ScmStore from 'stores/devops/scm'
 import PipelineStore from 'stores/devops/pipelines'
-
-import { getDateStr } from 'utils'
 
 import ParamsInput from '../ParamsInput'
 import ActionsInput from '../ActionsInput'
@@ -135,8 +134,12 @@ export default class AdvanceSettings extends React.Component {
 
     if (result.result === 'ok') {
       const message = t('CRON_DESC', {
-        lastTime: getDateStr(result.lastTime),
-        nextTime: getDateStr(result.nextTime),
+        lastTime: getLocalTime(result.lastTime).format(
+          `${t('MMMM Do YYYY')} HH:mm:ss`
+        ),
+        nextTime: getLocalTime(result.nextTime).format(
+          `${t('MMMM Do YYYY')} HH:mm:ss`
+        ),
       })
 
       this.setState({ cronMessage: { message } })

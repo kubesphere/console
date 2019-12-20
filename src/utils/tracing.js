@@ -17,6 +17,7 @@
  */
 
 import { sortBy } from 'lodash'
+import moment from 'moment-mini'
 import { TRACING_COLORS_HEX } from 'utils/constants'
 
 class TreeNode {
@@ -267,6 +268,26 @@ const isErrorBool = spanHasTag.bind(null, 'error', true)
 const isErrorStr = spanHasTag.bind(null, 'error', 'true')
 
 export const isErrorSpan = span => isErrorBool(span) || isErrorStr(span)
+
+export const formatRelativeDate = (value, fullMonthName) => {
+  const m = moment.isMoment(value) ? value : moment(value)
+  const monthFormat = fullMonthName ? 'MMMM' : 'MMM'
+  const dt = new Date()
+  if (dt.getFullYear() !== m.year()) {
+    return m.format(`${monthFormat} D, YYYY`)
+  }
+  const mMonth = m.month()
+  const mDate = m.date()
+  const date = dt.getDate()
+  if (mMonth === dt.getMonth() && mDate === date) {
+    return 'Today'
+  }
+  dt.setDate(date - 1)
+  if (mMonth === dt.getMonth() && mDate === dt.getDate()) {
+    return 'Yesterday'
+  }
+  return m.format(`${monthFormat} D`)
+}
 
 export const formatDuration = (duration, inputUnit = 'microseconds') => {
   let d = duration

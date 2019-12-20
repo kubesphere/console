@@ -16,7 +16,22 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { getMinutes, getLocalTime } from 'utils'
+import { getLocalTime } from 'utils'
+
+export const getMinutes = timeStr => {
+  const unit = timeStr.slice(-1)
+  const value = parseFloat(timeStr)
+
+  switch (unit) {
+    default:
+    case 'm':
+      return value
+    case 'h':
+      return value * 60
+    case 'd':
+      return value * 24 * 60
+  }
+}
 
 export const getStep = (timeStr, times) =>
   `${parseInt(getMinutes(timeStr) / times, 10)}m`
