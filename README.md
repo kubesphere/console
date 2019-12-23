@@ -51,7 +51,7 @@ Alternatively you can start development using docker. See [Development with Dock
 
 ### Access the backend services of KubeSphere
 
-Follow [the guide](/docs/access-backend.md) to access the backend services.
+Follow [the guide](/docs/access-backend.md) to configure the backend services.
 
 ### Start KubeSphere Console for development
 
@@ -60,7 +60,7 @@ yarn lego
 yarn start
 ```
 
-Now, you can access http://localhost:8000 to view the console.
+Now, you can access http://localhost:8000 to view the console using the default account admin / P@88w0rd.
 
 ### Run tests
 
