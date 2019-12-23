@@ -17,7 +17,7 @@
  */
 
 import React from 'react'
-import { isString, get } from 'lodash'
+import { isString, get, pick } from 'lodash'
 import { groovyToJS } from 'utils/devops'
 
 import style from './index.scss'
@@ -45,7 +45,7 @@ const gitRender = arg => {
   return defaultRender(arg)
 }
 
-const grooovyRender = obj =>
+const groovyRender = obj =>
   Object.entries(obj).map(_arg => (
     <div key={_arg[0]} className={style.content__detail}>
       {t(_arg[0])} &nbsp;&nbsp;
@@ -57,7 +57,7 @@ const withCredentialsRender = arg => {
   const value = getValue(arg)
   if (isString(value) && value.startsWith('${')) {
     const obj = groovyToJS(value)
-    return grooovyRender(obj)
+    return groovyRender(obj)
   }
   return defaultRender(arg)
 }
@@ -67,11 +67,9 @@ const checkoutRender = arg => {
     const value = getValue(arg)
 
     if (isString(value) && value.startsWith('[')) {
-      const obj = groovyToJS(value)
-      delete obj.depthOption
-      delete obj.class
-      delete obj.local
-      return grooovyRender(obj)
+      let obj = groovyToJS(value)
+      obj = pick(obj, ['remote', 'credentialsId'])
+      return groovyRender(obj)
     }
     return defaultRender(arg)
   }
