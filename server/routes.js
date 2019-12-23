@@ -31,7 +31,11 @@ const {
 
 const { handleSampleData, handleDockerhubProxy } = require('./controllers/api')
 
-const { handleLogin, handleLogout } = require('./controllers/session')
+const {
+  handleLogin,
+  handleLogout,
+  handleOAuthLogin,
+} = require('./controllers/session')
 
 const {
   renderView,
@@ -66,6 +70,8 @@ router
   .post('/login', parseBody, handleLogin)
   .post('/logout', handleLogout)
   .get('/login', renderLogin)
+
+  .get('/oauth/redirect', handleOAuthLogin)
 
   // markdown template
   .get('/blank_md', renderMarkdown)
