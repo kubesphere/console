@@ -60,6 +60,9 @@ jobs:
       if: github.event_name == 'pull_request'
       run: |
         echo 'Deploy to ks cluster'
+        echo "${{ github.ref }}"
+        VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+        echo $VERSION
         /bin/bash ~/scripts/deploy.sh ks-console-pr-$GITHUB_SHA
         echo 'Access to the preview console:'
         echo http://ks-console-pr-$GITHUB_SHA.kscpr.top
