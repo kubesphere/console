@@ -104,7 +104,6 @@ export default class RolesDetail extends Base {
       {
         key: 'delete',
         type: 'danger',
-        value: 'delete',
         text: t('Delete'),
         action: 'delete',
         show: enableEdit,

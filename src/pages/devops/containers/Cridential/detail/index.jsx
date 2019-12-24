@@ -79,7 +79,6 @@ class CredentialDetail extends Base {
     {
       key: 'delete',
       type: 'danger',
-      value: 'delete',
       text: t('Delete'),
       action: 'delete',
       onClick: this.showModal('deleteModule'),

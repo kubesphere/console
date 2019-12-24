@@ -68,8 +68,8 @@ class StatefulSetsDetail extends DeploymentDetail {
       onClick: this.showModal('rollBack'),
     },
     {
-      show: this.resourceStore.isExistService,
       key: 'editService',
+      show: this.resourceStore.isExistService,
       icon: 'network-router',
       text: t('Edit Service'),
       action: 'edit',

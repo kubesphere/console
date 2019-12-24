@@ -75,9 +75,9 @@ class RouteDetail extends Base {
       onClick: this.showModal('editAnnotations'),
     },
     {
+      key: 'delete',
       icon: 'trash',
       text: t('Delete'),
-      value: 'delete',
       action: 'delete',
       onClick: this.showModal('deleteModule'),
     },

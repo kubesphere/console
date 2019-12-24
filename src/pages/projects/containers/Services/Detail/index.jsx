@@ -82,9 +82,9 @@ class ServiceDetail extends Base {
     const detail = toJS(this.store.detail)
     if (detail.type === SERVICE_TYPES.VirtualIP) {
       actions.push({
+        key: 'editGateway',
         icon: 'ip',
         text: t('Edit Internet Access'),
-        value: 'editGateway',
         action: 'edit',
         onClick: this.showModal('editGateway'),
       })
@@ -93,17 +93,17 @@ class ServiceDetail extends Base {
     return [
       ...actions,
       {
+        key: 'editYaml',
         icon: 'pen',
         text: t('Edit YAML'),
-        value: 'editYaml',
         action: 'edit',
         onClick: this.showModal('editYaml'),
       },
       {
+        key: 'delete',
         icon: 'trash',
         type: 'danger',
         text: t('Delete'),
-        value: 'delete',
         action: 'delete',
         onClick: this.showModal('deleteModule'),
       },
