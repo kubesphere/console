@@ -107,7 +107,7 @@ module.exports = smp.wrap({
       maxInitialRequests: 5,
       cacheGroups: {
         vendors: {
-          test: /[\\/]node_modules[\\/](?!(brace|react-ace|xterm)).*.jsx?$/,
+          test: /[\\/]node_modules[\\/](?!(ace-builds|react-ace|xterm)).*.jsx?$/,
           name: 'vendor',
           priority: 10,
         },
