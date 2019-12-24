@@ -20,6 +20,8 @@ import { observable, action, computed } from 'mobx'
 import { get, includes, isString } from 'lodash'
 import cookie from 'utils/cookie'
 
+import logSVG from 'assets/logo.svg'
+
 import Base from './index'
 
 export default class AddressStore extends Base {
@@ -37,7 +39,7 @@ export default class AddressStore extends Base {
 
     this.config = params
     this.notificationEmailConfig = {
-      validation_icon: get(globals, 'config.logoUrl'),
+      validation_icon: logSVG,
       validation_title: '[KubeSphere] 测试邮件',
     }
   }
