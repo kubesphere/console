@@ -85,6 +85,7 @@ export default class LoggingQuery extends LoggingStore {
       end_time: this.endTime,
       log_query: this.log_query,
       pods: this.pods,
+      sort: this.sort,
       containers: this.containers,
       from: this.from,
       size: this.size,

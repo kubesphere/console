@@ -94,7 +94,7 @@ $titleHeight: 30px;
       @at-root {
         .toolbar {
           &.pollingMode {
-            grid-template-columns: 1fr 32px 130px;
+            grid-template-columns: 1fr 32px 130px 32px;
           }
           padding: 8px 20px;
           line-height: 32px;
