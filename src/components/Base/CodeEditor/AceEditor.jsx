@@ -17,11 +17,11 @@
  */
 
 import React from 'react'
-import AceEditor from 'react-ace/lib/ace'
+import AceEditor from 'react-ace'
 
-import 'brace/mode/yaml'
-import 'brace/mode/groovy'
-import 'brace/theme/chaos'
+import 'ace-builds/src-noconflict/mode-yaml'
+import 'ace-builds/src-noconflict/mode-groovy'
+import 'ace-builds/src-noconflict/theme-chaos'
 
 import './custom.css'
 
