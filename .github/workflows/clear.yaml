@@ -12,4 +12,5 @@ jobs:
     - name: Deploy preview image
       run: |
         echo 'Clear deploy on ks cluster'
-        /bin/bash ~/scripts/clear.sh ks-console-pr-$GITHUB_SHA
+        PR_ID=$(echo "${{ github.ref }}" | sed -e 's,.*/\([0-9]*\)/.*,\1,')
+        /bin/bash ~/scripts/clear.sh ks-console-pr-$PR_ID
