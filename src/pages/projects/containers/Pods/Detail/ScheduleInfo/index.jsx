@@ -23,8 +23,7 @@ import { get } from 'lodash'
 import { Icon, Tooltip } from '@pitrix/lego-ui'
 
 import { getLocalTime, memoryFormat, cpuFormat } from 'utils'
-import { Panel } from 'components/Base'
-import Info from 'components/Cards/Info'
+import { Panel, Text } from 'components/Base'
 
 import NodeStore from 'stores/node'
 
@@ -171,7 +170,7 @@ class ScheduleInfo extends React.Component {
       <Panel title={t('Node Schedule Info')}>
         <div className={styles.wrapper}>
           <div>
-            <Info
+            <Text
               className={styles.info}
               icon="nodes"
               title={
@@ -182,7 +181,7 @@ class ScheduleInfo extends React.Component {
                   </Tooltip>
                 </div>
               }
-              desc={getLocalTime(schedule.lastTransitionTime).format(
+              description={getLocalTime(schedule.lastTransitionTime).format(
                 'YYYY-MM-DD HH:mm:ss'
               )}
               extra={
@@ -246,11 +245,11 @@ class ScheduleInfo extends React.Component {
     return (
       <Panel title={t('Pod Status Analyse')}>
         <div className={styles.header}>
-          <Info
+          <Text
             className={styles.info}
             icon="pod"
             title={t(phase)}
-            desc={t('Current Stage(phase)')}
+            description={t('Current Stage(phase)')}
             extra={
               <Status status={phase === 'Running' ? 'success' : 'warning'} />
             }
@@ -265,12 +264,14 @@ class ScheduleInfo extends React.Component {
             }
 
             return (
-              <Info
+              <Text
                 key={condition.type}
                 className={styles.condition}
                 icon={CONDITION_ICONS[condition.type]}
                 title={t(`POD_CONDITION_${condition.type.toUpperCase()}`)}
-                desc={t(`POD_CONDITION_${condition.type.toUpperCase()}_DESC`)}
+                description={t(
+                  `POD_CONDITION_${condition.type.toUpperCase()}_DESC`
+                )}
                 extra={
                   <Status
                     status={condition.status === 'True' ? 'success' : 'warning'}

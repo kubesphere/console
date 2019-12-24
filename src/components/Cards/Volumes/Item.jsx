@@ -121,6 +121,7 @@ const Card = ({ volume, prefix }) => {
     <List.Item
       icon={icon}
       title={volume.name}
+      titleClass={styles.title}
       description={description}
       extras={mount}
       details={details}

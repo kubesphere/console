@@ -18,14 +18,11 @@
     border-radius: 4px;
 
     & > div {
+      display: flex;
       color: $text-color;
       font-weight: $font-bold;
       min-width: 200px;
-
-      & > span {
-        display: inline-block;
-        vertical-align: middle;
-      }
+      word-break: break-all;
     }
 
     & + li {
@@ -33,7 +30,12 @@
     }
 
     :global .icon {
+      flex: none;
       margin-right: 8px;
     }
   }
+}
+
+.title {
+  width: 30%;
 }
