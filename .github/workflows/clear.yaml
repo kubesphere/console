@@ -5,12 +5,15 @@ on:
     types: [closed]
 
 jobs:
-  build-and-push:
+  clear-preview:
     runs-on: self-hosted
 
     steps:
-    - name: Deploy preview image
+    - name: Clear preview
       run: |
         echo 'Clear deploy on ks cluster'
+        echo "${{ github.ref }}"
+        echo "${{ github.head_ref }}"
+        echo "${{ github.base_ref }}"
         PR_ID=$(echo "${{ github.ref }}" | sed -e 's,.*/\([0-9]*\)/.*,\1,')
         /bin/bash ~/scripts/clear.sh ks-console-pr-$PR_ID
