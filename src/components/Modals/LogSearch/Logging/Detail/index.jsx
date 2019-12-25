@@ -46,7 +46,7 @@ export default class DetailModal extends React.Component {
       pathParams: {
         namespaces: namespace,
       },
-      sort: 'asc',
+      sort: 'desc',
       pods: pod,
       containers: container,
       size: 100,
@@ -180,13 +180,13 @@ export default class DetailModal extends React.Component {
       from: 0,
     })
 
-    this.logs.push(...logs)
-    this.scrollToBottom()
+    this.logs.unshift(...logs)
+    this.scrollToTop()
   }
 
-  scrollToBottom() {
+  scrollToTop() {
     const logWindow = this.logWindow.current
-    logWindow.scrollTop = logWindow.scrollHeight
+    logWindow.scrollTop = 0
   }
 
   stopPolling = () => {
@@ -321,6 +321,7 @@ export default class DetailModal extends React.Component {
   }
 
   renderLog() {
+    const { polling } = this.state
     return (
       <div className={styles.log}>
         <div
@@ -337,7 +338,7 @@ export default class DetailModal extends React.Component {
         </div>
         <div
           className={styles.terminal}
-          onScroll={this.onLogScroll}
+          onScroll={polling ? null : this.onLogScroll}
           ref={this.logWindow}
         >
           {this.renderTerminal()}
