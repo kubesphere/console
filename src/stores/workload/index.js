@@ -235,4 +235,12 @@ export default class WorkloadStore extends Base {
       request.patch(this.getDetailUrl({ name, namespace }), data)
     )
   }
+
+  fetchList(params = {}) {
+    const { limit } = params
+    return super.fetchList({
+      ...params,
+      limit: limit === Infinity ? -1 : limit,
+    })
+  }
 }

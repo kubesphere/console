@@ -132,4 +132,12 @@ export default class NodeStore extends Base {
     )
     this.list.selectedRowKeys = []
   }
+
+  fetchList(params = {}) {
+    const { limit } = params
+    return super.fetchList({
+      ...params,
+      limit: limit === Infinity ? -1 : limit,
+    })
+  }
 }
