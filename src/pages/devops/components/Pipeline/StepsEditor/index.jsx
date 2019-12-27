@@ -232,7 +232,7 @@ export default class StepsEditor extends React.Component {
           (preSteps, index) => JSON.stringify(preSteps) + index === step
         )
       )
-      this.steps = sortedData
+      set(this.stage, 'branches[0].steps', sortedData)
     }
     this.handleSetValue()
   }
