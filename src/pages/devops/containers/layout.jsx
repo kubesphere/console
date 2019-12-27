@@ -110,7 +110,7 @@ class DevOpsLayout extends Component {
     const { detail } = this.props.rootStore.workspace
 
     if (initializing) {
-      return <Loading className={styles.loading} size="large" />
+      return <Loading className={styles.loading} />
     }
 
     return (

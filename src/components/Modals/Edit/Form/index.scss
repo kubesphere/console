@@ -82,6 +82,7 @@
   position: relative;
   width: calc(100% - 184px);
   padding: 12px;
+  padding-bottom: 38px;
   border-radius: 4px;
   background-color: $white;
   border: 1px solid $light-color03;
@@ -111,4 +112,10 @@
   padding: 12px 20px;
   background-color: $light;
   border-radius: 0 0 $border-radius $border-radius;
+}
+
+.confirm {
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
 }

@@ -317,7 +317,7 @@ export default class DetailBase extends React.Component {
     if (this.isLoading)
       return (
         <div className={styles.loading}>
-          <Loading size="large" />
+          <Loading />
         </div>
       )
 

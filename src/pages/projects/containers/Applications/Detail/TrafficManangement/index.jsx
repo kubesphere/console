@@ -92,7 +92,7 @@ class TrafficManangement extends React.Component {
     }
 
     if (isGraphLoading) {
-      return <Loading className={styles.loading} size="large" />
+      return <Loading className={styles.loading} />
     }
 
     return (

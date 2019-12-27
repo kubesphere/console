@@ -127,7 +127,7 @@ class WorkspaceLayout extends Component {
     const { detail, initializing } = this.props.rootStore.workspace
 
     if (initializing) {
-      return <Loading className={styles.loading} size="large" />
+      return <Loading className={styles.loading} />
     }
 
     return (

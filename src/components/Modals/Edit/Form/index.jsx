@@ -23,6 +23,7 @@ import { isEmpty, get } from 'lodash'
 
 import { Icon } from '@pitrix/lego-ui'
 import { Button } from 'components/Base'
+import Confirm from 'components/Forms/Base/Confirm'
 
 import EnhanceWrapper from './wrapper'
 
@@ -75,6 +76,14 @@ export default class FormsBox extends React.Component {
       subRoute.onSave(() => {
         this.setState({ subRoute: {} })
       })
+    }
+  }
+
+  handleSubFormCancel = () => {
+    const { subRoute } = this.state
+    if (subRoute && subRoute.onCancel) {
+      subRoute.onCancel()
+      this.setState({ subRoute: {} })
     }
   }
 
@@ -191,7 +200,24 @@ export default class FormsBox extends React.Component {
           formData={formData}
           onSaveChange={this.handleSaveForm}
         />
+        {this.renderSubRouteConfirm()}
       </div>
+    )
+  }
+
+  renderSubRouteConfirm() {
+    const { subRoute } = this.state
+
+    if (isEmpty(subRoute)) {
+      return null
+    }
+
+    return (
+      <Confirm
+        className={styles.confirm}
+        onOk={this.handleSubFormSave}
+        onCancel={this.handleSubFormCancel}
+      />
     )
   }
 
@@ -207,30 +233,21 @@ export default class FormsBox extends React.Component {
   }
 
   renderFooter() {
-    const { updatedTabs, subRoute = {} } = this.state
-    const { onCancel, onSave } = subRoute
+    const { updatedTabs } = this.state
 
     return (
       <div className={styles.footer}>
-        {onCancel && <Button onClick={this.handlePrev}>{t('Previous')}</Button>}
-        {onSave && (
-          <Button type="control" onClick={this.handleSubFormSave}>
-            {t('Save')}
+        <div>
+          <Button onClick={this.props.onCancel}>{t('Cancel')}</Button>
+          <Button
+            type="control"
+            disabled={isEmpty(updatedTabs)}
+            loading={this.props.isSubmitting}
+            onClick={this.handleSubmit}
+          >
+            {t('Confirm')}
           </Button>
-        )}
-        {isEmpty(subRoute) && (
-          <div>
-            <Button onClick={this.props.onCancel}>{t('Cancel')}</Button>
-            <Button
-              type="control"
-              disabled={isEmpty(updatedTabs)}
-              loading={this.props.isSubmitting}
-              onClick={this.handleSubmit}
-            >
-              {t('Confirm')}
-            </Button>
-          </div>
-        )}
+        </div>
       </div>
     )
   }

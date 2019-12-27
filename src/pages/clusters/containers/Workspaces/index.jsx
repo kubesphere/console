@@ -118,7 +118,7 @@ class Workspaces extends React.Component {
     }
 
     if (isLoading) {
-      return <Loading className={styles.loading} size="large" />
+      return <Loading className={styles.loading} />
     }
 
     return (

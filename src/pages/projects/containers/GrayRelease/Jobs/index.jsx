@@ -123,7 +123,7 @@ class Jobs extends React.Component {
     const { data, isLoading } = this.store.list
 
     if (isLoading) {
-      return <Loading className={styles.loading} size="large" />
+      return <Loading className={styles.loading} />
     }
 
     if (isEmpty(data)) {

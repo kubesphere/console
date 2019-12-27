@@ -207,7 +207,7 @@ export default class Pipeline extends React.Component {
 
     if (isLoading) {
       return (
-        <Loading spinning size="large">
+        <Loading spinning>
           <div className={style.pipelineCard} />
         </Loading>
       )

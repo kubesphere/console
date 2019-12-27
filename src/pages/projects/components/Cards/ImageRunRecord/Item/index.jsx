@@ -147,7 +147,7 @@ export default class ImageBuilderLastRun extends React.Component {
           <Icon name="templet" />
           <p>{imageName}</p>
         </div>
-        <Button onClick={this.handleDownload} type="primary" size="large">
+        <Button onClick={this.handleDownload} type="primary">
           {t('Download Artifact')}
         </Button>
       </div>

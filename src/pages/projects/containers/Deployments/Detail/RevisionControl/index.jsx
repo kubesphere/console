@@ -129,7 +129,7 @@ class RevisionControl extends React.Component {
             [styles.checked]: isCur,
           })}
         >
-          {isCur && <Icon name="check" type="light" size="large" />}
+          {isCur && <Icon name="check" type="light" />}
         </div>
         <div>
           <div className={styles.title}>#{revision}</div>

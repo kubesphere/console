@@ -138,7 +138,7 @@ export default class Graph extends React.Component {
         })}
       >
         <div className={styles.loading}>
-          <Loading spinning={loading} size="small" />
+          <Loading spinning={loading} />
         </div>
         <Dragger
           className={styles.dragger}

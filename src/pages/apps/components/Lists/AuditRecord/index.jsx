@@ -95,7 +95,7 @@ export default class AuditRecord extends React.Component {
     return (
       <div className={classnames(styles.main, className)}>
         {isLoading ? (
-          <Loading className={styles.loading} size="medium" />
+          <Loading className={styles.loading} />
         ) : (
           this.renderContent()
         )}
