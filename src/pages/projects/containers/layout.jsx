@@ -113,7 +113,7 @@ class ProjectLayout extends Component {
     const { detail } = this.props.rootStore.workspace
 
     if (initializing) {
-      return <Loading className="ks-page-loading" size="large" />
+      return <Loading className="ks-page-loading" />
     }
 
     return (

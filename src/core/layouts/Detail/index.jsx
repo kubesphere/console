@@ -25,7 +25,8 @@ import ProjectStore from 'stores/project'
 import DevOpsStore from 'stores/devops'
 import WorkspaceStore from 'stores/workspace'
 
-import { Layout } from '@pitrix/lego-ui'
+import { Layout, Loading } from '@pitrix/lego-ui'
+
 import { Breadcrumb } from 'components/Base'
 
 import styles from './index.scss'
@@ -48,29 +49,35 @@ class DetailLayout extends Component {
   constructor(props) {
     super(props)
 
+    this.state = { initializing: true }
     this.checkGlobalStore(props.match.params)
-    this.init(props.match.params)
-
     this.detailRef = React.createRef()
   }
 
-  init(params = {}) {
+  componentDidMount() {
+    this.init(this.props.match.params)
+  }
+
+  async init(params = {}) {
     const rootStore = this.props.rootStore
 
     if (params.namespace && rootStore.project) {
       const projectRule = get(globals.user, `rules[${params.namespace}]`)
 
+      await rootStore.project.fetchDetail(params)
       if (projectRule === undefined) {
-        rootStore.project.fetchRules(params)
+        await rootStore.project.fetchRules({
+          namespace: params.namespace,
+          workspace: rootStore.project.data.workspace,
+        })
       }
-      rootStore.project.fetchDetail(params)
     }
 
     if (params.project_id && rootStore.devops) {
       const devopsRule = get(globals.user, `rules[${params.project_id}]`)
 
       if (devopsRule === undefined) {
-        rootStore.devops.fetchRules(params)
+        await rootStore.devops.fetchRules(params)
       }
     }
 
@@ -81,9 +88,11 @@ class DetailLayout extends Component {
       )
 
       if (workspaceRule === undefined) {
-        rootStore.workspace.fetchRules(params)
+        await rootStore.workspace.fetchRules(params)
       }
     }
+
+    this.setState({ initializing: false })
   }
 
   checkGlobalStore(params = {}) {
@@ -124,6 +133,10 @@ class DetailLayout extends Component {
       rootStore,
       projectStore: rootStore.project,
       ...rest,
+    }
+
+    if (this.state.initializing) {
+      return <Loading className="ks-page-loading" />
     }
 
     return (

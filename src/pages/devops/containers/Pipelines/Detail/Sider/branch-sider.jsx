@@ -138,7 +138,7 @@ class BranchSider extends Base {
     if (this.store.isLoading || this.sonarqubeStore.isLoading)
       return (
         <div className={styles.loading}>
-          <Loading size="large" />
+          <Loading />
         </div>
       )
 

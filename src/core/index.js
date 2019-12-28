@@ -70,7 +70,7 @@ const history = syncHistoryWithStore(browserHistory, store.routing)
 const render = component => {
   ReactDOM.render(
     <AppContainer>
-      <Suspense fallback={<Loading className="ks-page-loading" size="large" />}>
+      <Suspense fallback={<Loading className="ks-page-loading" />}>
         <LocaleProvider locales={locales} localeKey="lang" ignoreWarnings>
           {component}
         </LocaleProvider>

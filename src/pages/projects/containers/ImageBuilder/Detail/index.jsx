@@ -219,7 +219,7 @@ class ImageBuilderDetail extends Base {
     if (this.store.isLoading || this.s2iRunStore.isLoading)
       return (
         <div className={styles.loading}>
-          <Loading size="large" />
+          <Loading />
         </div>
       )
 

@@ -135,6 +135,7 @@ export default {
   Previous: '上一步',
   Next: '下一步',
   Update: '更新',
+  Undo: '撤销',
   Save: '保存',
   Create: '创建',
 

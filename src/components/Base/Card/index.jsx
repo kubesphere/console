@@ -108,7 +108,7 @@ export default class Card extends PureComponent {
       >
         {this.renderTitle()}
         {loading ? (
-          <Loading className={styles.loading} size="medium" />
+          <Loading className={styles.loading} />
         ) : (
           this.renderContent()
         )}

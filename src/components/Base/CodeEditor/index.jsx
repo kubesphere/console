@@ -89,7 +89,7 @@ class CodeEditor extends PureComponent {
     const { value } = this.state
 
     return (
-      <Suspense fallback={<Loading className="ks-page-loading" size="large" />}>
+      <Suspense fallback={<Loading className="ks-page-loading" />}>
         <AceEditor
           {...options}
           className={classnames(styles.editor, className)}
