@@ -4,26 +4,28 @@
 .wrapper {
   display: flex;
   justify-content: space-between;
-  padding: 12px;
   border-radius: $border-radius;
   background-color: $card-bg-color;
 }
 
 .info,
 .condition {
-  border: none;
-  box-shadow: none !important;
+  position: relative;
+  padding: 12px;
   background-color: $card-bg-color;
 }
 
 .info {
-  margin: -12px;
   background-color: transparent;
+}
+
+.header .info {
+  margin: -12px;
 }
 
 .content {
   .condition {
-    display: inline-block;
+    display: inline-flex;
     width: calc(50% - 6px);
     margin-top: 12px;
 

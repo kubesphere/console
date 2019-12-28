@@ -25,7 +25,7 @@ import styles from './index.scss'
 
 export default class Text extends React.PureComponent {
   render() {
-    const { icon, title, description, className } = this.props
+    const { icon, title, description, className, extra } = this.props
 
     return (
       <div className={classNames(styles.wrapper, className)}>
@@ -34,6 +34,7 @@ export default class Text extends React.PureComponent {
           <div>{isUndefined(title) || title === '' ? '-' : title}</div>
           <p>{description}</p>
         </div>
+        {extra}
       </div>
     )
   }
