@@ -85,7 +85,7 @@ export default class HomeModal extends React.Component {
     },
   ]
 
-  componentWillMount() {
+  componentDidMount() {
     this.logStatisticsStore.fetch({})
     this.histogramStore.fetch()
   }

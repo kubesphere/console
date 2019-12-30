@@ -44,20 +44,6 @@ class NumberInput extends React.Component {
     onChange() {},
   }
 
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      value: isUndefined(props.value) ? props.defaultValue : props.value,
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.value !== this.state.value) {
-      this.setState({ value: nextProps.value })
-    }
-  }
-
   handleChange = e => {
     const { onChange, unit, min, max, integer } = this.props
     const { value } = e.target
@@ -124,7 +110,7 @@ class NumberInput extends React.Component {
       ...rest
     } = this.props
 
-    let formatValue = this.state.value
+    let formatValue = isUndefined(value) ? defaultValue : value
 
     if (unit) {
       formatValue = trimEnd(formatValue, unit)

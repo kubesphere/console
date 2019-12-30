@@ -41,20 +41,6 @@ export default class PolicyStatusModal extends React.Component {
     onCancel() {},
   }
 
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      status: this.getStatus(props.detail),
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.detail !== this.props.detail) {
-      this.setState({ status: this.getStatus(nextProps.detail) })
-    }
-  }
-
   get name() {
     const { name, displayName } = this.props.detail
     return displayName || name
@@ -64,34 +50,22 @@ export default class PolicyStatusModal extends React.Component {
     return [
       {
         label: t('Enable'),
-        value: 1,
+        value: 'false',
       },
       {
         label: t('Disable'),
-        value: 0,
+        value: 'true',
       },
     ]
   }
 
-  getStatus = data => (data.disabled ? 0 : 1)
-
-  handleSelect = status => {
-    this.setState({ status })
-  }
-
-  handleOk = () => {
-    const { name } = this.props.detail
-    const { status } = this.state
-
-    this.props.onOk({
-      name,
-      disabled: status === 0,
-    })
-  }
-
   render() {
-    const { title, detail, onOk, ...rest } = this.props
-    const { status } = this.state
+    const { title, detail, ...rest } = this.props
+
+    const formData = {
+      alert_name: this.name,
+      disabled: String(detail.disabled),
+    }
 
     return (
       <Modal.Form
@@ -99,19 +73,14 @@ export default class PolicyStatusModal extends React.Component {
         bodyClassName={styles.body}
         title={t(title)}
         icon="pen"
-        data={detail}
-        onOk={this.handleOk}
+        data={formData}
         {...rest}
       >
         <Form.Item label={t('Alerting Policy')}>
-          <Input value={this.name} disabled />
+          <Input name="alert_name" disabled />
         </Form.Item>
         <Form.Item label={t('Status')}>
-          <Select
-            options={this.options}
-            value={status}
-            onChange={this.handleSelect}
-          />
+          <Select name="disabled" options={this.options} />
         </Form.Item>
       </Modal.Form>
     )

@@ -77,7 +77,6 @@ export default class PodsCard extends React.Component {
     this.monitorStore = new PodMonitorStore()
 
     this.params = this.getParams(props)
-    this.fetchData()
 
     this.websocket = props.rootStore.websocket
     this.initWebsocket()
@@ -113,13 +112,15 @@ export default class PodsCard extends React.Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.detail !== this.props.detail) {
-      this.params = this.getParams(nextProps)
+  componentDidUpdate(prevProps) {
+    if (this.props.detail !== prevProps.detail) {
+      this.params = this.getParams(this.props)
+      this.fetchData()
     }
   }
 
   componentDidMount() {
+    this.fetchData()
     startAutoRefresh(this, {
       method: 'fetchMetrics',
       leading: false,

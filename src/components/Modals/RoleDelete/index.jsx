@@ -52,13 +52,11 @@ export default class RoleDeleteModal extends React.Component {
     this.store = new RoleStore(props.module)
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (
-      nextProps.visible &&
-      nextProps.visible !== this.props.visible &&
-      nextProps.detail.name
-    ) {
-      this.store.fetchUsers(nextProps.detail)
+  componentDidUpdate(prevProps) {
+    const { visible, detail } = this.props
+
+    if (visible && visible !== prevProps.visible && detail.name) {
+      this.store.fetchUsers(detail)
     }
   }
 

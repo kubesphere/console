@@ -94,8 +94,9 @@ export default class ServiceCreateModal extends React.Component {
     globals.app.hasKSModule('devops') && this.fetchData()
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (!nextProps.visible) {
+  componentDidUpdate(prevProps) {
+    const { visible } = this.props
+    if (!this.props.visible && visible !== prevProps.visible) {
       this.setState({ type: '', workloadModule: 'deployments' })
     }
   }

@@ -53,9 +53,10 @@ export default class Resources extends React.Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.workspace !== this.props.workspace) {
-      const params = { workspace: nextProps.workspace }
+  componentDidUpdate(prevProps) {
+    const { workspace } = this.props
+    if (workspace !== prevProps.workspace) {
+      const params = { workspace }
       this.canViewProject && this.store.fetchNamespaces(params)
       this.canViewDevOps && this.store.fetchDevOps(params)
     }
@@ -323,7 +324,7 @@ export default class Resources extends React.Component {
             <Search
               placeholder={t('Please enter a name to find')}
               onSearch={this.handleSearch}
-              value={this.state.keyword}
+              defaultValue={this.state.keyword}
             />
           </Column>
           <Column className="is-narrow">

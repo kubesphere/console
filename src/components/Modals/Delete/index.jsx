@@ -47,8 +47,8 @@ export default class DeleteModal extends React.Component {
     confirm: '',
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.visible) {
+  componentDidUpdate(prevProps) {
+    if (this.props.visible && this.props.visible !== prevProps.visible) {
       this.setState({ confirm: '' })
     }
   }

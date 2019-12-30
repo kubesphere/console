@@ -84,7 +84,7 @@ export default class EditPipelineConfig extends React.Component {
   }
 
   handleOk = () => {
-    this.props.onOk(this.formRef.current._formData)
+    this.props.onOk(this.formRef.current.getData())
   }
 
   render() {

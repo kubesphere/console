@@ -51,7 +51,7 @@ export default class VisibleTable extends React.Component {
     minHeight: this.props.defaultRowHeight,
   })
 
-  componentWillReceiveProps() {
+  componentDidUpdate() {
     this.clearMeasurerCache()
   }
 

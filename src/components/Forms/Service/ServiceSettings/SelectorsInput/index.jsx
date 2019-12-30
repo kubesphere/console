@@ -47,9 +47,9 @@ export default class SelectorsInput extends React.Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (!isEqual(nextProps.value, this.props.value)) {
-      this.fetchRelatedWorkloads(nextProps)
+  componentDidUpdate(prevProps) {
+    if (!isEqual(prevProps.value, this.props.value)) {
+      this.fetchRelatedWorkloads(this.props)
     }
   }
 

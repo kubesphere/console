@@ -43,10 +43,11 @@ export default class Apps extends Base {
     this.store = new AppStore()
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.categoryId !== this.props.categoryId) {
-      this.getData({ category_id: nextProps.categoryId })
-      this.setState(() => ({ categoryId: nextProps.categoryId }))
+  componentDidUpdate(prevProps) {
+    const { categoryId } = this.props
+    if (categoryId !== prevProps.categoryId) {
+      this.getData({ category_id: categoryId })
+      this.setState(() => ({ categoryId }))
       this.store.list.selectedRowKeys = []
     }
   }

@@ -73,9 +73,9 @@ class ResourceUsage extends React.Component {
     this.fetchData(this.namespace)
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.match.params.namespace !== this.namespace) {
-      this.fetchData(nextProps.match.params.namespace)
+  componentDidUpdate(prevProps) {
+    if (prevProps.match.params.namespace !== this.namespace) {
+      this.fetchData(this.namespace)
     }
   }
 

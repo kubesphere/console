@@ -38,12 +38,11 @@ export default class MonitoringModalController extends Base {
     onCancel() {},
   }
 
-  shouldComponentUpdate(nextProps) {
-    if (nextProps.visible && nextProps.visible !== this.props.visible) {
-      this.initParams(nextProps)
+  componentDidUpdate(prevProps) {
+    if (this.props.visible && this.props.visible !== prevProps.visible) {
+      this.initParams(this.props)
       this.props.onFetch(this.params)
     }
-    return true
   }
 
   componentDidMount() {

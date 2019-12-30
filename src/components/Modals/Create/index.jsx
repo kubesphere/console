@@ -63,19 +63,19 @@ export default class CreateModal extends React.Component {
     this.formRef = React.createRef()
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.visible !== this.props.visible) {
-      if (nextProps.visible) {
+  componentDidUpdate(prevProps) {
+    if (this.props.visible !== prevProps.visible) {
+      if (this.props.visible) {
         this.setState({
           currentStep: 0,
-          isCodeMode: nextProps.onlyCode || false,
+          isCodeMode: this.props.onlyCode || false,
           formTemplate:
-            formPersist.get(`${nextProps.module}_create_form`) ||
-            nextProps.formTemplate,
+            formPersist.get(`${this.props.module}_create_form`) ||
+            this.props.formTemplate,
         })
       } else {
         formPersist.set(
-          `${nextProps.module}_create_form`,
+          `${this.props.module}_create_form`,
           this.state.formTemplate
         )
       }

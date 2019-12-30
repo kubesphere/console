@@ -19,7 +19,6 @@
 import { get, set, unset, isUndefined } from 'lodash'
 import React from 'react'
 import { inject, observer } from 'mobx-react'
-import isEqual from 'react-fast-compare'
 import { Toggle, Tooltip, Icon } from '@pitrix/lego-ui'
 
 import { generateId, safeParseJSON } from 'utils'
@@ -53,16 +52,6 @@ class VolumeSettings extends React.Component {
     this.handleVolume = this.handleVolume.bind(this)
     this.handleVolumeTemplate = this.handleVolumeTemplate.bind(this)
     this.handleLogToggle = this.handleLogToggle.bind(this)
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (!isEqual(nextProps.formTemplate, this.props.formTemplate)) {
-      const { formTemplate, module } = nextProps
-      const data = get(formTemplate, MODULE_KIND_MAP[module], formTemplate)
-      this.setState({
-        collectSavedLog: get(data, this.collectSavedLogPath),
-      })
-    }
   }
 
   get prefix() {

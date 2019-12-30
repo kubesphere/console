@@ -58,8 +58,8 @@ export default class Image extends React.Component {
     )
   }
 
-  componentWillUpdate(nextProps) {
-    if (nextProps.src !== this.props.src) {
+  componentDidUpdate(prevProps) {
+    if (prevProps.src !== this.props.src) {
       this.setState({ failed: false })
     }
   }

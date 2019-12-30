@@ -18,24 +18,51 @@
 
 import React from 'react'
 import { mount } from 'enzyme'
+import styles from 'identity-obj-proxy'
 
 import NumberInput from './index'
 
 it('renders correctly', () => {
-  const onchangeCb = jest.fn()
-  const wrapper = mount(<NumberInput onChange={onchangeCb} />)
-  const input = wrapper.find('NumberInput input')
+  const props = {
+    value: '10%',
+    onChange: jest.fn(),
+    unit: '%',
+  }
+  const wrapper = mount(<NumberInput {...props} />)
 
-  expect(input).toExist()
+  expect(wrapper.find('input')).toHaveProp({ value: '10' })
+
+  wrapper.setProps({ showUnit: true })
+
+  expect(wrapper.find(`.${styles.withUnit}`)).toExist()
+
+  wrapper.find('input').simulate('change', { target: { value: '50' } })
+  expect(props.onChange).toHaveBeenCalledWith('50%')
+
+  wrapper.find('input').simulate('change', { target: { value: '00.aa' } })
+  expect(props.onChange).toHaveBeenCalledWith('50%')
+
+  wrapper.find('input').simulate('change', { target: { value: 'aa' } })
+  expect(props.onChange).toHaveBeenCalledWith('50%')
 })
 
-it('submit correctly', () => {
-  const onchangeCb = jest.fn()
-  const wrapper = mount(<NumberInput onChange={onchangeCb} />)
-  const input = wrapper.find('NumberInput input').first()
+it('renders with minmax', () => {
+  const props = {
+    value: 10,
+    onChange: jest.fn(),
+    min: 1,
+    max: 30,
+  }
+  const wrapper = mount(<NumberInput {...props} />)
 
-  expect(input).toExist()
+  expect(wrapper.find('input')).toHaveProp({ value: 10 })
 
-  input.simulate('change', { target: { value: 80 } })
-  expect(onchangeCb).toHaveBeenCalledWith(80)
+  wrapper.find('input').simulate('change', { target: { value: '50' } })
+  expect(props.onChange).toHaveBeenCalledWith(30)
+
+  wrapper.find('input').simulate('change', { target: { value: '0' } })
+  expect(props.onChange).toHaveBeenCalledWith(1)
+
+  wrapper.find('input').simulate('change', { target: { value: '2.' } })
+  expect(props.onChange).toHaveBeenCalledWith('2.')
 })

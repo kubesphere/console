@@ -47,9 +47,9 @@ export default class Item extends React.Component {
     this.unmount = true
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (!isEqual(nextProps.data, this.props.data)) {
-      this.getData(nextProps)
+  componentDidUpdate(prevProps) {
+    if (!isEqual(this.props.data, prevProps.data)) {
+      this.getData(this.props)
     }
   }
 

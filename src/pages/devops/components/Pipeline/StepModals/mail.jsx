@@ -56,7 +56,7 @@ export default class Mail extends React.Component {
   formData = {}
 
   handleOk = () => {
-    const formData = this.formRef.current._formData
+    const formData = this.formRef.current.getData()
     this.formRef.current.validate(() => {
       const _arguments = Object.keys(formData).map(key => ({
         key,

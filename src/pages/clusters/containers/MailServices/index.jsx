@@ -59,7 +59,7 @@ class MailServerConfig extends React.Component {
     return this.tipMap[this.state.formStatus] || {}
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.fetchConfig()
   }
 

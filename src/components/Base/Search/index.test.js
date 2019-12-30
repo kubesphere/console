@@ -53,3 +53,34 @@ it('renders correctly', () => {
   wrapper.find('.qicon-close').simulate('click', nativeEvent)
   expect(props.onSearch).toHaveBeenCalledWith('')
 })
+
+it('update props', () => {
+  const props = {
+    value: 'admin',
+    placeholder: 'Please input',
+    onSearch: jest.fn(),
+  }
+
+  const wrapper = mount(<Search {...props} />)
+  expect(wrapper.find(`input[type="text"]`)).toHaveValue(props.value)
+  wrapper.setProps({ value: 'admin2' })
+  expect(wrapper.find(`input[type="text"]`)).toHaveValue('admin2')
+
+  wrapper.find(`input[type="text"]`).prop('onKeyUp')({
+    keyCode: 14,
+  })
+  expect(props.onSearch).not.toHaveBeenCalled()
+
+  wrapper.find(`input[type="text"]`).prop('onChange')(
+    {
+      target: { value: '' },
+    },
+    ''
+  )
+  wrapper.update()
+
+  wrapper.find(`input[type="text"]`).prop('onKeyUp')({
+    keyCode: 13,
+  })
+  expect(props.onSearch).toHaveBeenCalledWith()
+})

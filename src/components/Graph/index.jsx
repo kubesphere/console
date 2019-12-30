@@ -19,6 +19,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
+import isEqual from 'react-fast-compare'
 import { Loading } from '@pitrix/lego-ui'
 
 import { findParent } from 'utils/dom'
@@ -73,15 +74,20 @@ export default class Graph extends React.Component {
     this.draggerRef = React.createRef()
   }
 
-  componentWillReceiveProps(nextProps) {
-    const graph = processData(nextProps.data, nextProps.health)
-    this.setState({ graph })
+  componentDidUpdate(prevProps) {
+    if (
+      !isEqual(this.props.data, prevProps.data) ||
+      !isEqual(this.props.health, prevProps.health)
+    ) {
+      const graph = processData(this.props.data, this.props.health)
+      this.setState({ graph })
 
-    if (this.state.selectedData && this.state.selectedData.name) {
-      const newData = graph.nodes.find(
-        node => node.name === this.state.selectedData.name
-      )
-      this.setState({ selectedData: newData })
+      if (this.state.selectedData && this.state.selectedData.name) {
+        const newData = graph.nodes.find(
+          node => node.name === this.state.selectedData.name
+        )
+        this.setState({ selectedData: newData })
+      }
     }
   }
 

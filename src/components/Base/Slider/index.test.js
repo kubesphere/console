@@ -19,29 +19,35 @@
 import React from 'react'
 import { mount } from 'enzyme'
 
-import CPUInput from './index'
-
-jest.mock('lodash/debounce', () => jest.fn(fn => fn))
+import { Slider as BaseSlider } from '@pitrix/lego-ui'
+import Slider from './index'
 
 it('renders correctly', () => {
-  const onchangeCb = jest.fn()
-  const wrapper = mount(<CPUInput onChange={onchangeCb} />)
+  const props = {
+    name: 'storage',
+    min: 0,
+    max: 2048,
+    defaultValue: '10Gi',
+    step: 1,
+    unit: 'Gi',
+    marks: {
+      '0': '0',
+      '512': '512Gi',
+      '1024': '1024Gi',
+      '1536': '1536Gi',
+      '2048': '2048Gi',
+    },
+    onChange: jest.fn(),
+  }
 
-  const select = wrapper.find('Select')
-  const input = wrapper.find('NumberInput input')
-  expect(select).toExist()
-  expect(input).toExist()
-})
+  const wrapper = mount(<Slider {...props} />)
+  expect(wrapper.find(BaseSlider)).toExist()
+  wrapper.find(BaseSlider).prop('onChange')(20)
+  expect(props.onChange).toHaveBeenCalledWith(`20${props.unit}`)
 
-it('submit correctly', () => {
-  const onchangeCb = jest.fn()
-  const wrapper = mount(<CPUInput onChange={onchangeCb} />)
-  const select = wrapper.find('Select')
-  const input = wrapper.find('NumberInput input').first()
-  expect(select).toExist()
-  expect(input).toExist()
+  wrapper.setProps({ value: '30Gi' })
+  expect(wrapper.find(BaseSlider)).toHaveProp('value', 30)
 
-  input.simulate('change', { target: { value: 80 } })
-
-  expect(onchangeCb).toHaveBeenCalledWith('80m')
+  wrapper.setProps({ defaultValue: undefined })
+  expect(wrapper.find(BaseSlider)).toHaveProp('defaultValue', 0)
 })

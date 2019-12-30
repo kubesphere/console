@@ -22,7 +22,6 @@ import PropTypes from 'prop-types'
 import { toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import copy from 'fast-copy'
-import isEqual from 'react-fast-compare'
 import { RadioGroup, RadioButton, Select, Alert, Toggle } from '@pitrix/lego-ui'
 
 import { Button, Notify, Form } from 'components/Base'
@@ -92,17 +91,10 @@ export default class PolicyForm extends React.Component {
       })
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.detail.name !== this.props.detail.name) {
-      this.getData(nextProps)
+  componentDidUpdate(prevProps) {
+    if (prevProps.detail.name !== this.props.detail.name) {
+      this.getData(this.props)
     }
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return (
-      nextProps.detail.name !== this.props.detail.name ||
-      !isEqual(nextState, this.state)
-    )
   }
 
   get formTemplate() {

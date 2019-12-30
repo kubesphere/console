@@ -49,9 +49,9 @@ class RouteAnnotationsEdit extends React.Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.detail !== this.state.formTemplate) {
-      this.setState({ formTemplate: nextProps.detail })
+  componentDidUpdate(prevProps) {
+    if (this.props.detail !== prevProps.detail) {
+      this.setState({ formTemplate: this.props.detail })
     }
   }
 

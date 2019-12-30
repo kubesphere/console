@@ -51,7 +51,7 @@ export default class Form extends React.Component {
 
   getChildContext() {
     return {
-      formData: this._formData,
+      formData: this.state.formData,
       onFormChange: this.triggerFormChange,
       registerValidate: this.registerValidate,
       resetValidate: this.resetValidate,
@@ -62,15 +62,21 @@ export default class Form extends React.Component {
 
   constructor(props) {
     super(props)
-    this._formData = props.data || {}
     this.descriptor = {}
 
-    this.state = { errors: [] }
+    this.state = { errors: [], formData: props.data || {} }
     this.triggerFormChange = props.onChange
       ? debounce(props.onChange, 500)
       : null
 
     this.customValidator = null
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    if (props.data !== state.formData) {
+      return { formData: props.data || {} }
+    }
+    return null
   }
 
   handleSubmit = e => {
@@ -79,7 +85,7 @@ export default class Form extends React.Component {
     e.preventDefault()
 
     this.validate(() => {
-      onSubmit && onSubmit(this._formData)
+      onSubmit && onSubmit(this.state.formData)
     })
   }
 
@@ -98,7 +104,7 @@ export default class Form extends React.Component {
     const data = Object.keys(this.descriptor).reduce(
       (prev, cur) => ({
         ...prev,
-        [cur]: get(this._formData, cur),
+        [cur]: get(this.state.formData, cur),
       }),
       {}
     )
@@ -126,26 +132,19 @@ export default class Form extends React.Component {
   }
 
   getData() {
-    return this._formData
+    return this.state.formData
   }
 
   setData(name, value) {
-    set(this._formData, name, value)
+    set(this.state.formData, name, value)
   }
 
   resetData() {
-    this._formData = this.props.defaultData
-    this.forceUpdate()
+    this.setState({ formData: this.props.defaultData })
   }
 
   setCustomValidator(validator) {
     this.customValidator = validator
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.data !== this.props.data) {
-      this._formData = nextProps.data
-    }
   }
 
   render() {

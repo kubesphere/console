@@ -56,7 +56,7 @@ export default class Branch extends React.Component {
   formData = {}
 
   handleOk = () => {
-    const formData = this.formRef.current._formData
+    const formData = this.formRef.current.getData()
     const _arguments = Object.keys(formData).map(key => ({
       isLiteral: true,
       value: formData[key],

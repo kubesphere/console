@@ -77,8 +77,8 @@ export default class SpanDetail extends React.Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.span !== this.props.span) {
+  componentDidUpdate(prevProps) {
+    if (this.props.span !== prevProps.span) {
       this.setState({ type: 'tags' })
     }
   }

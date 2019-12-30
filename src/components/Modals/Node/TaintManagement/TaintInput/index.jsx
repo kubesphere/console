@@ -46,7 +46,6 @@ export default class TaintInput extends React.Component {
     super(props)
 
     this.state = {
-      value: props.value,
       errorKeys: [],
       errorMsg: '',
     }
@@ -58,12 +57,6 @@ export default class TaintInput extends React.Component {
 
   get commonKeys() {
     return this.props.common.map(value => value.key).filter(value => value)
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.value !== this.state.value) {
-      this.setState({ value: nextProps.value })
-    }
   }
 
   showKeyError = ({ index, message }) => {
@@ -79,8 +72,8 @@ export default class TaintInput extends React.Component {
   }
 
   isAddEnable() {
-    const { checkItemValid } = this.props
-    const { value, errorKeys } = this.state
+    const { value, checkItemValid } = this.props
+    const { errorKeys } = this.state
 
     if (checkItemValid) {
       return value.every(checkItemValid)
@@ -95,15 +88,12 @@ export default class TaintInput extends React.Component {
   }
 
   handleAdd = () => {
-    const { onChange } = this.props
-    const { value } = this.state
-
+    const { value, onChange } = this.props
     onChange([...value, this.defaultValue], this.defaultValue)
   }
 
   handleChange = (index, childValue) => {
-    const { onChange } = this.props
-    const { value } = this.state
+    const { value, onChange } = this.props
     const itemValue = get(childValue, 'currentTarget.value', childValue)
 
     // some key is empty, throw error
@@ -141,23 +131,19 @@ export default class TaintInput extends React.Component {
   }
 
   handleSelect = index => {
-    const { onSelect } = this.props
-    const { value } = this.state
-
+    const { value, onSelect } = this.props
     onSelect(value[index], index)
   }
 
   handleDelete = index => {
-    const { onChange } = this.props
-    const { value } = this.state
+    const { value, onChange } = this.props
     const newValues = value.filter((_, _index) => _index !== index)
-
     onChange(newValues, value[index])
   }
 
   renderItems() {
-    const { onSelect } = this.props
-    const { value, errorKeys, errorMsg } = this.state
+    const { value, onSelect } = this.props
+    const { errorKeys, errorMsg } = this.state
 
     return value.map((item, index) => (
       <div

@@ -101,7 +101,7 @@ export default class WithCredentials extends React.Component {
   }
 
   handleOk = () => {
-    const formData = this.formRef.current._formData
+    const formData = this.formRef.current.getData()
     this.formRef.current.validate(() => {
       this.props.onAddStep({
         name: 'withCredentials',

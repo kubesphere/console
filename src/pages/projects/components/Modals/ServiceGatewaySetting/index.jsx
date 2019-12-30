@@ -52,11 +52,13 @@ export default class GatewaySettingModal extends React.Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.detail !== this.state.formTemplate) {
+  componentDidUpdate(prevProps) {
+    const { detail } = this.props
+
+    if (detail !== prevProps.detail) {
       this.setState({
-        type: get(nextProps.detail, 'spec.type'),
-        formTemplate: nextProps.detail,
+        type: get(detail, 'spec.type'),
+        formTemplate: detail,
       })
     }
   }

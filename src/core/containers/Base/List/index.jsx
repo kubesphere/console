@@ -128,7 +128,7 @@ export default class BaseList extends React.Component {
   }
 
   get list() {
-    return this.store.list
+    return this.store.list || {}
   }
 
   get tips() {

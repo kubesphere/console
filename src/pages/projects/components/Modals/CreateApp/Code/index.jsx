@@ -32,8 +32,8 @@ const formatData = formTemplate => {
   }
 
   Object.keys(components).forEach(key => {
-    const workloadYAML = getValue('yaml', components[key].workload || {})
-    const serviceYAML = getValue('yaml', components[key].service || {})
+    const workloadYAML = getValue(components[key].workload || {})
+    const serviceYAML = getValue(components[key].service || {})
 
     formattedData[key] = `${workloadYAML}---\n${serviceYAML}`
   })
@@ -56,15 +56,22 @@ export default class CodeMode extends React.Component {
   constructor(props) {
     super(props)
 
-    this.data = formatData(props.formTemplate)
+    this.state = {
+      data: formatData(props.formTemplate),
+      formTemplate: props.formTemplate,
+    }
 
     this.editor = React.createRef()
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.formTemplate !== this.data) {
-      this.data = formatData(nextProps.formTemplate)
+  static getDerivedStateFromProps(props, state) {
+    if (props.formTemplate !== state.formTemplate) {
+      return {
+        data: formatData(props.formTemplate),
+        formTemplate: props.formTemplate,
+      }
     }
+    return null
   }
 
   getData() {
@@ -74,7 +81,11 @@ export default class CodeMode extends React.Component {
   render() {
     return (
       <div className={styles.wrapper}>
-        <EditMode ref={this.editor} className="height-full" value={this.data} />
+        <EditMode
+          ref={this.editor}
+          className="height-full"
+          value={this.state.data}
+        />
       </div>
     )
   }

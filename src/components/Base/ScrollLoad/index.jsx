@@ -19,12 +19,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
-import { isEmpty, isFunction, get, throttle } from 'lodash'
+import { isEmpty, get, throttle } from 'lodash'
 
 import { Loading } from '@pitrix/lego-ui'
 import { Empty } from 'components/Base'
 
 import styles from './index.scss'
+
+const isRemainingData = ({ data, total }) =>
+  !isEmpty(data) && data.length < total
 
 export default class ScrollLoad extends React.Component {
   static propTypes = {
@@ -37,7 +40,6 @@ export default class ScrollLoad extends React.Component {
       PropTypes.element,
       PropTypes.node,
     ]),
-    isEmpty: PropTypes.bool,
     loading: PropTypes.bool.isRequired,
     data: PropTypes.array.isRequired,
     total: PropTypes.number.isRequired,
@@ -68,32 +70,32 @@ export default class ScrollLoad extends React.Component {
     this.containerRef = React.createRef()
   }
 
+  static getDerivedStateFromProps(props, state) {
+    if (state.loadMore) {
+      return {
+        loading: false,
+        loadMore: isRemainingData(props),
+      }
+    } else if (props.loading !== state.loading) {
+      return {
+        loading: props.loading,
+      }
+    }
+
+    return null
+  }
+
   componentDidMount() {
     this.props.onFetch()
   }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.loading !== this.props.loading) {
-      if (this.state.loadMore) {
-        this.setState({
-          loading: false,
-          loadMore: this.isRemainingData(nextProps),
-        })
-      } else {
-        this.setState({ loading: nextProps.loading })
-      }
-    }
-  }
-
-  isRemainingData = ({ data, total }) => !isEmpty(data) && data.length < total
 
   isElementAtBottom = ele =>
     Math.abs(ele.scrollTop + ele.clientHeight - ele.scrollHeight) < 1
 
   handleScroll = throttle(() => {
-    const ele = get(this.containerRef, 'current') || {}
+    const ele = get(this.containerRef, 'current', {})
 
-    if (this.isRemainingData(this.props) && this.isElementAtBottom(ele)) {
+    if (isRemainingData(this.props) && this.isElementAtBottom(ele)) {
       this.setState({ loadMore: true }, () => {
         const { page, onFetch } = this.props
         onFetch({ more: true, page: page + 1 })
@@ -109,11 +111,11 @@ export default class ScrollLoad extends React.Component {
       return null
     }
 
-    if (this.props.isEmpty || isEmpty(data) || !children) {
+    if (isEmpty(data) || !children) {
       return empty || <Empty className={styles.empty} desc={t('No Data')} />
     }
 
-    return isFunction(children) ? children(data) : children
+    return children
   }
 
   render() {

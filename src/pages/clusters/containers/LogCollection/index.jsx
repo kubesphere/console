@@ -47,7 +47,7 @@ export default class LogCollection extends React.Component {
     return this.store.collections
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.refresh()
   }
 

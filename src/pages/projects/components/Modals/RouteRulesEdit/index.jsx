@@ -67,11 +67,11 @@ class RouteRulesEdit extends React.Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.detail !== this.state.formTemplate.Ingress) {
+  componentDidUpdate(prevProps) {
+    if (this.props.detail !== prevProps.detail) {
       this.setState({
         formTemplate: {
-          Ingress: nextProps.detail,
+          Ingress: this.props.detail,
         },
       })
     }

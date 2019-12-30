@@ -62,9 +62,10 @@ export default class RollBackModal extends React.Component {
     return getCurrentRevision(detail, this.revisions, module)
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.visible && nextProps.visible !== this.props.visible) {
-      this.fetchData(nextProps)
+  componentDidUpdate(prevProps) {
+    const { visible } = this.props
+    if (visible && visible !== prevProps.visible) {
+      this.fetchData(this.props)
     }
   }
 

@@ -81,17 +81,18 @@ export default class ServiceDeployAppModal extends React.Component {
     this.fetchData()
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.sampleApp !== this.props.sampleApp) {
-      nextProps.sampleApp
-        ? this.fecthSampleData(nextProps.sampleApp)
+  componentDidUpdate(prevProps) {
+    const { namespace, sampleApp } = this.props
+    if (sampleApp !== prevProps.sampleApp) {
+      sampleApp
+        ? this.fecthSampleData(sampleApp)
         : this.setState({
             formData: {
               application: FORM_TEMPLATES['applications']({
-                namespace: nextProps.namespace,
+                namespace,
               }),
               ingress: FORM_TEMPLATES['ingresses']({
-                namespace: nextProps.namespace,
+                namespace,
               }),
             },
             isGovernance: this.serviceMeshEnable ? 'true' : 'false',

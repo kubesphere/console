@@ -16,10 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import Base from '../Base'
-
-export default class AllReview extends Base {
-  get name() {
-    return 'AllReview'
-  }
+export const getActiveSeries = (props = {}) => {
+  const { xKey, data } = props
+  return Object.keys(data[0] || {}).filter(key => key !== xKey)
 }

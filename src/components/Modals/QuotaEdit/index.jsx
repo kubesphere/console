@@ -63,9 +63,10 @@ export default class QuotaEditModal extends React.Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.visible && nextProps.detail && nextProps.detail.name) {
-      this.fetchData(nextProps.detail)
+  componentDidUpdate(prevProps) {
+    const { visible, detail } = this.props
+    if (visible && visible !== prevProps.visible && detail && detail.name) {
+      this.fetchData(detail)
     }
   }
 

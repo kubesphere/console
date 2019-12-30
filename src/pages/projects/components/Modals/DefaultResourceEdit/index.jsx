@@ -50,13 +50,10 @@ export default class DefaultResourceEditModal extends React.Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (
-      nextProps.detail &&
-      nextProps.detail.limit &&
-      nextProps.detail.limit !== this.state.data
-    ) {
-      this.setState({ data: nextProps.detail.limit })
+  componentDidUpdate(prevProps) {
+    const { detail } = this.props
+    if (detail.limit && detail.limit !== prevProps.detail.limit) {
+      this.setState({ data: detail.limit })
     }
   }
 

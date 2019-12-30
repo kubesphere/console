@@ -50,10 +50,10 @@ export default class ReBuild extends React.Component {
     this.store = new BuilderStore()
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { builderNames } = nextProps
+  componentDidUpdate(prevProps) {
+    const { builderNames } = this.props
 
-    if (builderNames.length && !this.props.builderNames.length) {
+    if (builderNames.length && !prevProps.builderNames.length) {
       this.fetchBuilders(builderNames)
     }
   }

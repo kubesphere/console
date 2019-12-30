@@ -56,7 +56,7 @@ export default class Container extends React.Component {
   formData = {}
 
   handleOk = () => {
-    const formData = this.formRef.current._formData
+    const formData = this.formRef.current.getData()
     this.formRef.current.validate(() => {
       this.props.onAddStep({
         name: 'container',

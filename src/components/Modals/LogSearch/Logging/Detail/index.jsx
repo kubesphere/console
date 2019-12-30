@@ -239,7 +239,7 @@ export default class DetailModal extends React.Component {
     this.props.formStepState.pre()
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.fetchPods()
     this.refreshLogs()
   }

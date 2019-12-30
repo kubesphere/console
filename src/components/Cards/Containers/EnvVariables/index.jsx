@@ -42,12 +42,18 @@ export default class ContainerItem extends React.Component {
 
   state = {
     isExpand: this.props.expand,
+    defaultExpand: this.props.expand,
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.expand !== this.props.nextProps) {
-      this.setState({ isExpand: nextProps.expand })
+  static getDerivedStateFromProps(props, state) {
+    if (props.expand !== state.defaultExpand) {
+      return {
+        isExpand: props.expand,
+        defaultExpand: props.expand,
+      }
     }
+
+    return null
   }
 
   handleExpand = () => {

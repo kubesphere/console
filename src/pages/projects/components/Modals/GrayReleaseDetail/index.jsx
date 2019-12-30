@@ -116,10 +116,11 @@ export default class GatewaySettingModal extends React.Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.visible && nextProps.visible !== this.props.visible) {
-      this.getData(nextProps.detail)
-      this.getWorkLoadDetail(nextProps.detail)
+  componentDidUpdate(prevProps) {
+    const { visible, detail } = this.props
+    if (visible && visible !== prevProps.visible) {
+      this.getData(detail)
+      this.getWorkLoadDetail(detail)
     }
   }
 

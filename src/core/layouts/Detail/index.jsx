@@ -38,7 +38,7 @@ const { LayoutHeader } = Layout
 class DetailLayout extends Component {
   static propTypes = {
     module: PropTypes.string,
-    component: PropTypes.func.isRequired,
+    component: PropTypes.any.isRequired,
   }
 
   static defaultProps = {

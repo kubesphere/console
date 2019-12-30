@@ -36,13 +36,15 @@ export default class TimeRange extends React.Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.viewRange.viewStart !== this.state.viewStart) {
-      this.setState({ viewStart: nextProps.viewRange.viewStart })
+  componentDidUpdate(prevProps) {
+    const { viewRange } = this.props
+
+    if (viewRange.viewStart !== prevProps.viewRange.viewStart) {
+      this.setState({ viewStart: viewRange.viewStart })
     }
 
-    if (nextProps.viewRange.viewEnd !== this.state.viewEnd) {
-      this.setState({ viewEnd: nextProps.viewRange.viewEnd })
+    if (viewRange.viewEnd !== prevProps.viewRange.viewEnd) {
+      this.setState({ viewEnd: viewRange.viewEnd })
     }
   }
 

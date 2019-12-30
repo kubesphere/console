@@ -51,9 +51,9 @@ export default class BindPolicyModal extends React.Component {
     this.store = new AlertingPolicyStore('deployments')
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.visible && nextProps.visible !== this.props.visible) {
-      this.fetchData(nextProps)
+  componentDidUpdate(prevProps) {
+    if (this.props.visible && this.props.visible !== prevProps.visible) {
+      this.fetchData(this.props)
     }
   }
 

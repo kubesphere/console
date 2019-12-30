@@ -19,38 +19,106 @@
 import React from 'react'
 import { mount } from 'enzyme'
 
-import ServicePort from './index'
+import ContainerPort from './index'
 
 jest.mock('lodash/debounce', () => jest.fn(fn => fn))
 
 it('renders correctly', () => {
   const onchangeCb = jest.fn()
-  const wrapper = mount(<ServicePort onChange={onchangeCb} />)
+  const value = {
+    name: 'http2-test',
+    containerPort: 8080,
+    servicePort: 18080,
+    protocol: 'tcp',
+  }
+  const wrapper = mount(<ContainerPort onChange={onchangeCb} value={value} />)
 
   const select = wrapper.find('Select')
-  const input = wrapper.find('NumberInput input')
-  expect(select).toExist()
-  expect(input).toExist()
+  const servicePort = wrapper.find('NumberInput[name="servicePort"]')
+  expect(select).toHaveProp({ value: 'HTTP2' })
+  expect(servicePort).toHaveProp({ value: 18080 })
+
+  const value2 = {
+    name: 'redis-test',
+    containerPort: 6379,
+    servicePort: 18080,
+    protocol: 'tcp',
+  }
+  wrapper.setProps({ value: value2 })
+  expect(wrapper.state().protocol).toEqual('REDIS')
+
+  const value3 = {
+    name: '-',
+    containerPort: 6379,
+    servicePort: 18080,
+    protocol: 'tcp',
+  }
+  wrapper.setProps({ value: value3 })
+  expect(wrapper.state().protocol).toEqual('HTTP')
+
+  const value4 = {
+    name: 'Test-',
+    containerPort: 6379,
+    servicePort: 18080,
+    protocol: 'tcp',
+  }
+  wrapper.setProps({ value: value4 })
+  expect(wrapper.state().protocol).toEqual('tcp')
 })
 
-it('submit correctly', () => {
+it('change correctly', () => {
   const onchangeCb = jest.fn()
-  const wrapper = mount(<ServicePort onChange={onchangeCb} />)
-  const select = wrapper.find('Select')
-  const inputs = wrapper.find('NumberInput input')
-  const protocolSelect = wrapper.find('Select')
+  const wrapper = mount(<ContainerPort onChange={onchangeCb} />)
+  const protocol = wrapper.find('Select[name="protocol"]')
+  const name = wrapper.find('Input[name="name"]')
+  const containerPort = wrapper.find('NumberInput[name="containerPort"]')
+  const servicePort = wrapper.find('NumberInput[name="servicePort"]')
 
-  expect(select).toExist()
-  expect(inputs.length).toBe(2)
-
-  protocolSelect.first().prop('onChange')('UDP')
-  inputs.first().simulate('change', { target: { value: 80 } })
-  inputs.last().simulate('change', { target: { value: 81 } })
-
+  containerPort.prop('onChange')(8080)
   expect(onchangeCb).toHaveBeenCalledWith({
-    containerPort: 80,
+    containerPort: 8080,
+    servicePort: undefined,
+    name: 'http-',
+    protocol: 'TCP',
+  })
+
+  servicePort.prop('onChange')(18080)
+  expect(onchangeCb).toHaveBeenCalledWith({
+    containerPort: 8080,
+    servicePort: 18080,
+    name: 'http-',
+    protocol: 'TCP',
+  })
+
+  protocol.prop('onChange')('REDIS')
+  expect(onchangeCb).toHaveBeenCalledWith({
+    containerPort: 8080,
+    servicePort: 18080,
+    name: 'redis-',
+    protocol: 'TCP',
+  })
+
+  name.prop('onChange')({}, 'http2-test')
+  expect(onchangeCb).toHaveBeenCalledWith({
+    containerPort: 8080,
+    servicePort: 18080,
+    name: 'http2-test',
+    protocol: 'TCP',
+  })
+
+  protocol.prop('onChange')('REDIS')
+  expect(onchangeCb).toHaveBeenCalledWith({
+    containerPort: 8080,
+    servicePort: 18080,
+    name: 'redis-',
+    protocol: 'TCP',
+  })
+
+  protocol.prop('onChange')('UDP')
+  expect(onchangeCb).toHaveBeenCalledWith({
+    containerPort: 8080,
+    servicePort: 18080,
     name: 'udp-',
     protocol: 'UDP',
-    servicePort: 81,
   })
 })

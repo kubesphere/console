@@ -37,16 +37,16 @@ export default class AppDetail extends React.Component {
   }
 
   state = {
+    name: get(this.props, 'data.name'),
     activeKey: ['monitor'],
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (
-      nextProps.data &&
-      nextProps.data.name !== get(this.props, 'data.name')
-    ) {
-      this.setState({ activeKey: ['monitor'] })
+  static getDerivedStateFromProps(props, state) {
+    const name = get(props, 'data.name')
+    if (state.name !== name) {
+      return { activeKey: ['monitor'], name }
     }
+    return null
   }
 
   handleCollapseChange = value => {
