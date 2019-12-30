@@ -51,7 +51,7 @@ export default class Echo extends React.Component {
   }
 
   handleOk = () => {
-    const formData = this.formRef.current._formData
+    const formData = this.formRef.current.getData()
     this.formRef.current.validate(() => {
       const _arguments = Object.keys(formData).map(key => ({
         key,

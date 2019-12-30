@@ -67,16 +67,15 @@ export default class MonitoringController extends React.Component {
     this.init()
   }
 
-  shouldComponentUpdate(nextProps) {
+  componentDidUpdate(prevProps) {
     if (
-      nextProps.step !== this.props.step ||
-      nextProps.times !== this.props.times ||
-      nextProps.createTime !== this.props.createTime
+      prevProps.step !== this.props.step ||
+      prevProps.times !== this.props.times ||
+      prevProps.createTime !== this.props.createTime
     ) {
-      this.initParams(nextProps)
+      this.initParams(this.props)
       this.fetchData()
     }
-    return true
   }
 
   componentWillUnmount() {

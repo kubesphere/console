@@ -53,9 +53,9 @@ class ProjectLayout extends Component {
     this.init(props.match.params)
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.match.params.namespace !== this.project) {
-      this.init(nextProps.match.params)
+  componentDidUpdate(prevProps) {
+    if (this.project !== prevProps.match.params.namespace) {
+      this.init(this.props.match.params)
     }
   }
 

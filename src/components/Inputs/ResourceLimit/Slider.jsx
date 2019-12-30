@@ -103,9 +103,9 @@ export default class Slider extends React.Component {
     return { left, right }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (!isEqual(nextProps.value, this.props.value)) {
-      const { left, right } = this.getStateFromProps(nextProps)
+  componentDidUpdate(prevProps) {
+    if (!isEqual(prevProps.value, this.props.value)) {
+      const { left, right } = this.getStateFromProps(this.props)
       if (left <= right) {
         this.setState({ left, right })
       }

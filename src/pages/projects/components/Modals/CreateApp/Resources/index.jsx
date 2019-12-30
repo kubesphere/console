@@ -64,23 +64,24 @@ export default class Resources extends React.Component {
 
   hasSubRoute = () => !isEmpty(this.state.subRoute)
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.formData !== this.props.formData) {
+  componentDidUpdate(prevProps) {
+    const { formData, appLabels, isGovernance } = this.props
+    if (formData !== prevProps.formData) {
       this.setState({
-        components: omit(nextProps.formData, ['application', 'ingress']) || {},
-        ingress: get(nextProps.formData, 'ingress', {}),
+        components: omit(formData, ['application', 'ingress']) || {},
+        ingress: get(formData, 'ingress', {}),
       })
     }
 
-    if (!isEqual(nextProps.appLabels, this.props.appLabels)) {
+    if (!isEqual(appLabels, prevProps.appLabels)) {
       Object.values(this.state.components).forEach(component => {
-        this.updateAppLabels(component, nextProps.appLabels)
+        this.updateAppLabels(component, appLabels)
       })
     }
 
-    if (nextProps.isGovernance !== this.props.isGovernance) {
+    if (isGovernance !== prevProps.isGovernance) {
       Object.values(this.state.components).forEach(component => {
-        this.updateGovernance(component, nextProps.isGovernance)
+        this.updateGovernance(component, isGovernance)
       })
     }
   }

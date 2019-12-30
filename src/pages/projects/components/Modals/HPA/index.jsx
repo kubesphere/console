@@ -58,9 +58,11 @@ export default class HPAModal extends React.Component {
     this.store = props.store
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.visible && nextProps.visible !== this.props.visible) {
-      this.fetchData(nextProps)
+  componentDidUpdate(prevProps) {
+    const { visible } = this.props
+
+    if (visible && visible !== prevProps.visible) {
+      this.fetchData(this.props)
     }
   }
 

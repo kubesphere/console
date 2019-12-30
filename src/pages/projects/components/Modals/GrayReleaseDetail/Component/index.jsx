@@ -67,9 +67,10 @@ export default class Component extends React.Component {
     this.getData(props.pods)
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (!isEqual(nextProps.pods, this.props.pods)) {
-      this.getData(nextProps.pods)
+  componentDidUpdate(prevProps) {
+    const { pods } = this.props
+    if (!isEqual(pods, prevProps.pods)) {
+      this.getData(pods)
     }
   }
 

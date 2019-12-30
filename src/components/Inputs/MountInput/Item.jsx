@@ -47,12 +47,17 @@ export default class Item extends React.Component {
   state = {
     visible: false,
     subPath: this.props.value.subPath,
+    defaultSubPath: this.props.value.subPath,
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.value.subPath !== this.state.subPath) {
-      this.setState({ subPath: nextProps.value.subPath })
+  static getDerivedStateFromProps(props, state) {
+    if (props.value.subPath !== state.defaultSubPath) {
+      return {
+        subPath: props.value.subPath,
+        defaultSubPath: props.value.subPath,
+      }
     }
+    return null
   }
 
   getMountOptions() {

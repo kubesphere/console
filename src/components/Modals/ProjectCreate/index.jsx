@@ -40,7 +40,7 @@ const PROJECT_TYPES = [
   },
 ]
 
-export default class CreateModal extends React.Component {
+export default class ProjectCreateModal extends React.Component {
   static propTypes = {
     formTemplate: PropTypes.object,
     visible: PropTypes.bool,
@@ -71,12 +71,13 @@ export default class CreateModal extends React.Component {
     this.formRef = React.createRef()
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.visible && nextProps.visible !== this.props.visible) {
+  componentDidUpdate(prevProps) {
+    const { visible, type, formTemplate } = this.props
+    if (visible && visible !== prevProps.visible) {
       this.setState({
         currentStep: 0,
-        selectType: nextProps.type,
-        formTemplate: nextProps.formTemplate,
+        selectType: type,
+        formTemplate,
       })
     }
   }

@@ -21,7 +21,6 @@ import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { saveAs } from 'file-saver'
 import { isEmpty } from 'lodash'
-import isEqual from 'react-fast-compare'
 
 import ReactFileReader from 'react-file-reader'
 import { Icon } from '@pitrix/lego-ui'
@@ -33,11 +32,11 @@ import styles from './index.scss'
 
 const objectToYaml = formTemplate => {
   if (formTemplate.metadata) {
-    return getValue('yaml', formTemplate)
+    return getValue(formTemplate)
   }
 
   return Object.values(formTemplate)
-    .map(value => getValue('yaml', value || {}))
+    .map(value => getValue(value || {}))
     .join('---\n')
 }
 
@@ -83,13 +82,6 @@ export default class EditMode extends React.Component {
     super(props)
 
     this.value = objectToYaml(props.value)
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (!isEqual(nextProps.value, this.props.value)) {
-      this.value = objectToYaml(nextProps.value)
-      this.forceUpdate()
-    }
   }
 
   handleUpload = file => {

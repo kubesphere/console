@@ -119,7 +119,7 @@ export default class ParamsModal extends React.Component {
   }
 
   handleOk = () => {
-    const { branch, ...parameters } = this.formRef.current._formData
+    const { branch, ...parameters } = this.formRef.current.getData()
     this.formRef.current.validate(() => {
       const params = Object.keys(parameters).map(key => ({
         name: key,
@@ -130,7 +130,7 @@ export default class ParamsModal extends React.Component {
   }
 
   getBranchParameters = () => {
-    const { branch } = this.formRef.current._formData
+    const { branch } = this.formRef.current.getData()
 
     this.props.onBranchSelect(branch)
   }

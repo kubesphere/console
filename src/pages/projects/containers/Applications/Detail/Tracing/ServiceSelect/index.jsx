@@ -44,9 +44,10 @@ export default class ServiceSelect extends React.Component {
     value: this.props.defaultValue || this.props.options[0] || {},
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (!isEqual(nextProps.options, this.props.options)) {
-      this.setState({ value: this.props.defaultValue || nextProps.options[0] })
+  componentDidUpdate(prevProps) {
+    const { options, defaultValue } = this.props
+    if (!isEqual(options, prevProps.options)) {
+      this.setState({ value: defaultValue || options[0] })
     }
   }
 

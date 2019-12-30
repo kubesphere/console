@@ -35,7 +35,7 @@ const ROLESMAP = {
 
 @inject('rootStore')
 class Dashboard extends React.Component {
-  componentWillMount() {
+  componentDidMount() {
     if (
       !globals.app.isClusterAdmin &&
       globals.app.hasPermission({ module: 'workspaces', action: 'manage' })

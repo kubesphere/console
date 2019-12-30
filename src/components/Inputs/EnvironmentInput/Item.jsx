@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, isEmpty } from 'lodash'
+import { get, has, isEmpty } from 'lodash'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
@@ -33,16 +33,9 @@ const TYPE_MODULE_MAP = {
   Secret: 'secrets',
 }
 
-const getResource = (obj, key = 'name') =>
-  get(
-    obj,
-    `value.valueFrom.configMapKeyRef.${key}`,
-    get(obj, `value.valueFrom.secretKeyRef.${key}`, '')
-  )
-
 const pathRe = pathToRegexp('/projects/:namespace/:module')
 
-export default class Item extends React.Component {
+export default class EnvironmentInputItem extends React.Component {
   static propTypes = {
     value: PropTypes.object,
     onChange: PropTypes.func,
@@ -58,15 +51,13 @@ export default class Item extends React.Component {
     secrets: [],
   }
 
-  state = {
-    resource: getResource(this.props),
-  }
-
-  componentWillReceiveProps(nextProps) {
-    const newResource = getResource(nextProps)
-    if (newResource && newResource !== getResource(this.props)) {
-      this.setState({ resource: newResource })
-    }
+  parseValue(data) {
+    const resourceType = has(data, 'configMapKeyRef')
+      ? 'configMapKeyRef'
+      : 'secretKeyRef'
+    const resourceName = get(data, `${resourceType}.name`, '')
+    const resourceKey = get(data, `${resourceType}.key`, '')
+    return { resourceType, resourceName, resourceKey }
   }
 
   getDetailPrefix(type) {
@@ -80,23 +71,25 @@ export default class Item extends React.Component {
   }
 
   handleChange = value => {
-    const { configMaps, secrets } = this.props
+    const { configMaps, secrets, onChange } = this.props
     const newValue = { name: value.name, valueFrom: {} }
-
     if (value.resource) {
-      let type = ''
-      const configMap = configMaps.find(item => item.name === value.resource)
-      const secret = secrets.find(item => item.name === value.resource)
-      const data = configMap || secret
-      if (configMap) {
-        type = 'configMapKeyRef'
-      } else if (secret) {
-        type = 'secretKeyRef'
+      const resourceType = value.resource.startsWith('configmap-')
+        ? 'configMapKeyRef'
+        : 'secretKeyRef'
+
+      let data
+      if (resourceType === 'configMapKeyRef') {
+        const name = value.resource.replace('configmap-', '')
+        data = configMaps.find(item => item.name === name)
+      } else if (resourceType === 'secretKeyRef') {
+        const name = value.resource.replace('secret-', '')
+        data = secrets.find(item => item.name === name)
       }
 
-      if (type) {
+      if (data) {
         newValue.valueFrom = {
-          [type]: {
+          [resourceType]: {
             name: data.name,
             key: value.resourceKey,
           },
@@ -104,11 +97,7 @@ export default class Item extends React.Component {
       }
     }
 
-    this.props.onChange(newValue)
-  }
-
-  handleSelectChange = value => {
-    this.setState({ resource: value })
+    onChange(newValue)
   }
 
   getResourceOptions() {
@@ -120,7 +109,7 @@ export default class Item extends React.Component {
         label: t('ConfigMap'),
         options: configMaps.map(item => ({
           label: getDisplayName(item),
-          value: item.name,
+          value: `configmap-${item.name}`,
           type: 'ConfigMap',
         })),
       })
@@ -131,7 +120,7 @@ export default class Item extends React.Component {
         label: t('Secret'),
         options: secrets.map(item => ({
           label: getDisplayName(item),
-          value: item.name,
+          value: `secret-${item.name}`,
           type: 'Secret',
         })),
       })
@@ -155,14 +144,19 @@ export default class Item extends React.Component {
     )
   }
 
-  getKeysOptions() {
-    const { resource } = this.state
+  getKeysOptions({ resourceType, resourceName }) {
     const { configMaps, secrets } = this.props
 
-    const configMap = configMaps.find(({ name }) => name === resource)
-    const secret = secrets.find(({ name }) => name === resource)
+    let data
+    if (resourceType === 'configMapKeyRef') {
+      data = configMaps.find(item => item.name === resourceName)
+    } else if (resourceType === 'secretKeyRef') {
+      data = secrets.find(item => item.name === resourceName)
+    }
 
-    const data = configMap || secret || {}
+    if (!data) {
+      return []
+    }
 
     return Object.keys(data.data || {}).map(key => ({
       label: key,
@@ -174,10 +168,15 @@ export default class Item extends React.Component {
     const { value = {}, onChange } = this.props
 
     if (value.valueFrom) {
+      const { resourceType, resourceName, resourceKey } = this.parseValue(
+        value.valueFrom
+      )
       const formatValue = {
         name: value.name,
-        resource: getResource(this.props),
-        resourceKey: getResource(this.props, 'key'),
+        resource: `${
+          resourceType === 'configMapKeyRef' ? 'configmap' : 'secret'
+        }-${resourceName}`,
+        resourceKey,
       }
 
       return (
@@ -187,13 +186,12 @@ export default class Item extends React.Component {
             name="resource"
             placeholder={t('Select resource')}
             options={this.getResourceOptions()}
-            onChange={this.handleSelectChange}
             valueRenderer={this.valueRenderer}
           />
           <Select
             name="resourceKey"
             placeholder={t('Select Key')}
-            options={this.getKeysOptions()}
+            options={this.getKeysOptions({ resourceType, resourceName })}
           />
         </ObjectInput>
       )

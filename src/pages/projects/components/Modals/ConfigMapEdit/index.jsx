@@ -62,12 +62,13 @@ export default class ConfigMapEditModal extends React.Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.detail && nextProps.detail !== this.props.detail) {
-      this.setState({ formTemplate: nextProps.detail })
+  componentDidUpdate(prevProps) {
+    const { detail, visible } = this.props
+    if (detail && detail !== prevProps.detail) {
+      this.setState({ formTemplate: detail })
     }
 
-    if (nextProps.visible && nextProps.visible !== this.props.visible) {
+    if (visible && visible !== prevProps.visible) {
       this.setState({ subRoute: {} })
     }
   }

@@ -62,6 +62,22 @@ export default class SimpleCircle extends React.Component {
     active: false,
   }
 
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      ...this.getFills(props),
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.active !== this.props.active) {
+      this.setState({
+        ...this.getFills(this.props),
+      })
+    }
+  }
+
   get value() {
     const value = parseFloat(this.props.value || 0)
     return value > 0 ? value : 0
@@ -98,48 +114,31 @@ export default class SimpleCircle extends React.Component {
     return colorName
   }
 
-  getActiveFill = props => ({
-    fill: getColorByName(this.getPrimaryColor(props)),
-  })
-
-  getTotalFill = props => {
+  getFills = props => {
     const { areaColors, active } = props || {}
-    const colorName = areaColors[1] || this.activeFill.fill
-
-    if (active) {
-      return {
-        fill: '#fff',
-        fillOpacity: 0.4,
-      }
+    const activeFill = {
+      fill: getColorByName(this.getPrimaryColor(props)),
     }
 
-    return {
-      fill: getColorByName(colorName),
-      fillOpacity: areaColors[1] ? 1 : 0.2,
-    }
+    const colorName = areaColors[1] || activeFill.fill
+
+    const totalFill = active
+      ? {
+          fill: '#fff',
+          fillOpacity: 0.4,
+        }
+      : {
+          fill: getColorByName(colorName),
+          fillOpacity: areaColors[1] ? 1 : 0.2,
+        }
+
+    return { activeFill, totalFill }
   }
 
   getData = () => [
     { name: this.props.legend[0], value: this.value },
     { name: 'Remaining', value: this.remain },
   ]
-
-  constructor(props) {
-    super(props)
-
-    this.init(props)
-  }
-
-  init(props) {
-    this.activeFill = this.getActiveFill(props)
-    this.totalFill = this.getTotalFill(props)
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.active !== this.props.active) {
-      this.init(nextProps)
-    }
-  }
 
   renderCenter() {
     const { theme, value, total, showRate, showRatio } = this.props
@@ -188,7 +187,7 @@ export default class SimpleCircle extends React.Component {
           outerRadius={outerRadius}
           startAngle={startAngle}
           endAngle={endAngle}
-          {...this.activeFill}
+          {...this.state.activeFill}
         />
       </g>
     )
@@ -208,7 +207,7 @@ export default class SimpleCircle extends React.Component {
           <div className={styles.item}>
             <i
               style={{
-                background: this.activeFill.fill,
+                background: this.state.activeFill.fill,
               }}
             />
             <label>{t(legend[0])}:</label>
@@ -248,7 +247,7 @@ export default class SimpleCircle extends React.Component {
               innerRadius="70%"
               outerRadius="100%"
               stroke="transparent"
-              {...this.totalFill}
+              {...this.state.totalFill}
             />
             <Tooltip
               wrapperStyle={{ zIndex: 100 }}

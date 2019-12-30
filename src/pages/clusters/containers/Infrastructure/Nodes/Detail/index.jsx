@@ -181,10 +181,8 @@ class NodeDetail extends Base {
     })
   }
 
-  handleTaintManagement = newTaints => {
-    const node = this.store.detail
-
-    this.store.patch(node, { spec: { taints: newTaints } }).then(() => {
+  handleTaintManagement = data => {
+    this.store.patch(this.store.detail, data).then(() => {
       this.hideModal('taintManagement')()
       this.fetchData()
     })

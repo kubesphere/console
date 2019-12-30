@@ -45,19 +45,21 @@ export default class Authorization extends PureComponent {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.value !== this.state.checkedList) {
-      this.setState({
-        checkedList: nextProps.value || [],
+  static getDerivedStateFromProps(props, state) {
+    if (props.value !== state.checkedList) {
+      return {
+        checkedList: props.value || [],
         indeterminate:
-          nextProps.value &&
-          nextProps.value.length > 0 &&
-          nextProps.value.length < nextProps.authorization.actions.length,
+          props.value &&
+          props.value.length > 0 &&
+          props.value.length < props.authorization.actions.length,
         checkAll:
-          nextProps.value &&
-          nextProps.value.length === nextProps.authorization.actions.length,
-      })
+          props.value &&
+          props.value.length === props.authorization.actions.length,
+      }
     }
+
+    return null
   }
 
   handleChange = (value, name) => {

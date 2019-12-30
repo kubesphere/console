@@ -57,16 +57,15 @@ class BaseLayout extends Component {
     document.addEventListener('scroll', this.handleScroll)
   }
 
-  componentWillUpdate(nextProps) {
-    if (!globals.user && !isAppsPage(nextProps.location.path)) {
-      location.href = '/login'
-    }
-  }
-
-  componentDidUpdate(nextProps) {
-    if (nextProps.rootStore.showGlobalNav) {
+  componentDidUpdate(prevProps) {
+    const showGlobalNav = this.props.rootStore
+    if (showGlobalNav && showGlobalNav !== prevProps.rootStore.showGlobalNav) {
       document.removeEventListener('click', this.handleClick)
       document.addEventListener('click', this.handleClick)
+    }
+
+    if (!globals.user && !isAppsPage(this.props.location.path)) {
+      location.href = '/login'
     }
   }
 

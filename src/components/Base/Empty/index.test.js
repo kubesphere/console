@@ -16,10 +16,17 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import Base from '../Base'
+import React from 'react'
+import { mount } from 'enzyme'
 
-export default class ProcessedReview extends Base {
-  get name() {
-    return 'ProcessedReview'
+import Empty from './index'
+
+it('renders correctly', () => {
+  const props = {
+    className: 'test',
   }
-}
+
+  const wrapper = mount(<Empty {...props} />)
+
+  expect(wrapper.find('.test')).toExist()
+})

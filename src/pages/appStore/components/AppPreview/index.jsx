@@ -59,13 +59,14 @@ export default class AppPreview extends React.Component {
     return this.fileStore.files
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.versionId !== this.props.versionId) {
-      this.fetchFile(nextProps.versionId)
+  componentDidUpdate(prevProps) {
+    const { versionId } = this.props
+    if (versionId !== prevProps.versionId) {
+      this.fetchFile(versionId)
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const { versionId } = this.props
     this.fetchFile(versionId)
   }

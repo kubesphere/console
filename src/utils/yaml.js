@@ -19,10 +19,10 @@
 import { isObject } from 'lodash'
 import yaml from 'js-yaml/dist/js-yaml'
 
-export const getValue = (mode, value) => {
+export const getValue = value => {
   if (isObject(value)) {
     try {
-      return mode === 'yaml' ? yaml.safeDump(value, { noRefs: true }) : ''
+      return yaml.safeDump(value, { noRefs: true })
     } catch (err) {
       console.error(err)
       return JSON.stringify(value, null, 2)
@@ -34,7 +34,7 @@ export const getValue = (mode, value) => {
 export const getValueObj = (mode, value) => {
   if (!isObject(value)) {
     try {
-      return mode === 'yaml' ? yaml.safeLoad(value) : {}
+      return yaml.safeLoad(value)
     } catch (err) {}
   }
   return value

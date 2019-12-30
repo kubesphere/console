@@ -24,6 +24,28 @@ import { PROTOCOLS } from 'utils/constants'
 
 import styles from './index.scss'
 
+const DEFAULT_PROTOCOL = 'HTTP'
+
+const getStateFromProps = props => {
+  let protocol = DEFAULT_PROTOCOL
+  const { name, targetPort, port } = props.value
+  if (name) {
+    const matchs = name.match(/^(\w+)-(.*)/)
+    if (matchs) {
+      protocol = (matchs[1] || DEFAULT_PROTOCOL).toUpperCase()
+    }
+  }
+
+  return {
+    name: name || `${protocol.toLowerCase()}-`,
+    protocol: PROTOCOLS.some(item => item.value === protocol)
+      ? protocol
+      : props.value.protocol,
+    targetPort,
+    port,
+  }
+}
+
 export default class ServicePort extends React.Component {
   static defaultProps = {
     value: {},
@@ -33,34 +55,20 @@ export default class ServicePort extends React.Component {
   constructor(props) {
     super(props)
 
-    this.defaultProtocol = 'HTTP'
-    this.state = this.getStateFromProps(props)
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.value !== this.props.value) {
-      this.setState(this.getStateFromProps(nextProps))
+    this.state = {
+      ...getStateFromProps(props),
+      value: props.value,
     }
   }
 
-  getStateFromProps(props) {
-    let protocol = this.defaultProtocol
-    const { name, targetPort, port } = props.value
-    if (name) {
-      const matchs = name.match(/^(\w+)-(.*)/)
-      if (matchs) {
-        protocol = (matchs[1] || this.defaultProtocol).toUpperCase()
+  static getDerivedStateFromProps(props, state) {
+    if (props.value !== state.value) {
+      return {
+        ...getStateFromProps(props),
+        value: props.value,
       }
     }
-
-    return {
-      name: name || `${protocol.toLowerCase()}-`,
-      protocol: PROTOCOLS.some(item => item.value === protocol)
-        ? protocol
-        : props.value.protocol,
-      targetPort,
-      port,
-    }
+    return null
   }
 
   triggerChange = debounce(() => {
@@ -123,7 +131,7 @@ export default class ServicePort extends React.Component {
             name="protocol"
             value={protocol}
             options={PROTOCOLS}
-            defaultValue={this.defaultProtocol}
+            defaultValue={DEFAULT_PROTOCOL}
             onChange={this.handleProtocolChange}
           />
         </AddonsInput>

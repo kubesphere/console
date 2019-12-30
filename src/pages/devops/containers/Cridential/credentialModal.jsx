@@ -127,7 +127,7 @@ export default class CredentialModal extends React.Component {
   @action
   handleOk = () => {
     const { isEditMode, project_id } = this.props
-    const formData = this.formRef.current._formData
+    const formData = this.formRef.current.getData()
     this.isConflict = false
     this.formRef.current.validate(async () => {
       this.isSubmitting = true

@@ -50,9 +50,7 @@ export default class ReBuild extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { visible: lastVisible } = prevProps
-
-    if (!lastVisible && this.props.visible) {
+    if (!prevProps.visible && this.props.visible) {
       this.fetchBuilders(this.props.builderNames)
     }
   }

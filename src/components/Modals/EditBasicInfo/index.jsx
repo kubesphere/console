@@ -47,9 +47,9 @@ export default class EditBasicInfoModal extends React.Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.visible && nextProps.visible !== this.props.visible) {
-      this.setState({ formData: copy(nextProps.detail) })
+  componentDidUpdate(prevProps) {
+    if (this.props.visible && this.props.visible !== prevProps.visible) {
+      this.setState({ formData: copy(this.props.detail) })
     }
   }
 

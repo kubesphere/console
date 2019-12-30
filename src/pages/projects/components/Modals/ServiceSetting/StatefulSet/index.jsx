@@ -57,9 +57,10 @@ export default class StatefulSetServiceEditModal extends React.Component {
     this.fetchData(props.detail)
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.visible && nextProps.visible !== this.props.visible) {
-      this.fetchData(nextProps.detail)
+  componentDidUpdate(prevProps) {
+    const { visible, detail } = this.props
+    if (visible && visible !== prevProps.visible) {
+      this.fetchData(detail)
     }
   }
 

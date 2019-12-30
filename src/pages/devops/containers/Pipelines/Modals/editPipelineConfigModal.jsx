@@ -88,7 +88,7 @@ export default class EditPipelineConfig extends React.Component {
 
     form &&
       form.validate(() => {
-        this.props.onOk(this.formRef.current._formData)
+        this.props.onOk(this.formRef.current.getData())
       })
   }
 

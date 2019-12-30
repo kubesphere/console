@@ -56,7 +56,7 @@ export default class Dir extends React.Component {
   formData = {}
 
   handleOk = () => {
-    const formData = this.formRef.current._formData
+    const formData = this.formRef.current.getData()
     this.props.onAddStep({
       name: 'dir',
       arguments: {

@@ -178,7 +178,7 @@ export default class LogSearchModal extends React.Component {
     return this.defaultDuration
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.refreshQuery()
     this.fetchHistogram()
   }

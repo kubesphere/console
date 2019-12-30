@@ -20,7 +20,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { computed } from 'mobx'
 import classnames from 'classnames'
-import { get, pickBy } from 'lodash'
+import { get, isString, pickBy } from 'lodash'
 
 import { getLocalTime, cacheFunc, getDisplayName } from 'utils'
 import { ICON_TYPES } from 'utils/constants'
@@ -48,12 +48,10 @@ export default class DetailBase extends React.Component {
   }
 
   get baseProps() {
-    const stores = pickBy(this, (value, key) => {
-      const regExp = /(s|S)tore/g
-      if (regExp.test(key)) {
-        return true
-      }
-    })
+    const stores = pickBy(
+      this,
+      (value, key) => isString(key) && /(s|S)tore/.test(key)
+    )
     const { store, ...otherStores } = stores
 
     return {

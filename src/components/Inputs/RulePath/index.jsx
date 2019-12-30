@@ -29,13 +29,15 @@ export default class RulePath extends React.Component {
 
   state = {
     service: '',
+    defaultService: get(this.props, 'value.backend.serviceName'),
   }
 
-  componentWillReceiveProps(nextProps) {
-    const service = get(nextProps, 'value.backend.serviceName')
-    if (service && service !== this.state.service) {
-      this.setState({ service })
+  static getDerivedStateFromProps(props, state) {
+    const service = get(props, 'value.backend.serviceName')
+    if (service && service !== state.defaultService) {
+      return { service, defaultService: service }
     }
+    return null
   }
 
   get services() {

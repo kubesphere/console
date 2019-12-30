@@ -68,12 +68,13 @@ export default class CreateModal extends React.Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.visible && nextProps.visible !== this.props.visible) {
-      this.setState({ currentStep: 0, formTemplate: nextProps.formTemplate })
+  componentDidUpdate(prevProps) {
+    const { visible, edit, formTemplate } = this.props
+    if (visible && visible !== prevProps.visible) {
+      this.setState({ currentStep: 0, formTemplate })
 
-      if (nextProps.edit) {
-        const { name, namespace } = get(nextProps.formTemplate, 'metadata', {})
+      if (edit) {
+        const { name, namespace } = get(formTemplate, 'metadata', {})
         this.fetchRules({ name, namespace })
       }
     }

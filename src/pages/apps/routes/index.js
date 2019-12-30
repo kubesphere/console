@@ -21,9 +21,9 @@ import { getIndexRoute } from 'utils/router.config'
 import Layout from '../containers/layout'
 import Store from '../containers/Store'
 import Categories from '../containers/Categories'
+import Reviews from '../containers/Reviews'
 
 import appRoutes from './app'
-import reviewRoutes from './review'
 
 const PATH = '/apps-manage'
 
@@ -33,7 +33,6 @@ export default [
     path: PATH,
     component: Layout,
     routes: [
-      ...reviewRoutes,
       {
         path: `${PATH}/store`,
         component: Store,
@@ -44,7 +43,17 @@ export default [
         component: Categories,
         exact: true,
       },
+      {
+        path: `${PATH}/reviews/:type`,
+        component: Reviews,
+        exact: true,
+      },
       getIndexRoute({ path: PATH, to: `${PATH}/store`, exact: true }),
+      getIndexRoute({
+        path: `${PATH}/reviews/`,
+        to: `${PATH}/reviews/unprocessed`,
+        exact: true,
+      }),
       getIndexRoute({ path: '*', to: '/404', exact: true }),
     ],
   },

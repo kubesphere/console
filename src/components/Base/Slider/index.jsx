@@ -16,11 +16,15 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { debounce } from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import { Slider, Field, Control, InputNumber } from '@pitrix/lego-ui'
+import {
+  Slider as BaseSlider,
+  Field,
+  Control,
+  InputNumber,
+} from '@pitrix/lego-ui'
 
 import styles from './index.scss'
 
@@ -39,7 +43,7 @@ const trackStyle = {
   boxShadow: '0 8px 16px 0 rgba(85, 188, 138, 0.36)',
 }
 
-export default class SliderInput extends React.Component {
+export default class Slider extends React.Component {
   static propTypes = {
     className: PropTypes.string,
     name: PropTypes.string,
@@ -55,47 +59,37 @@ export default class SliderInput extends React.Component {
 
   static defaultProps = {
     onChange() {},
-    defaultValue: 0,
+    defaultValue: '',
   }
-
-  constructor(props) {
-    super(props)
-
-    this.state = { value: props.value }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.value !== this.state.value) {
-      this.setState({ value: nextProps.value })
-    }
-  }
-
-  triggerChange = debounce(() => {
-    this.props.onChange(this.state.value)
-  }, 300)
 
   handleChange = value => {
-    this.setState({ value: `${value}${this.props.unit}` }, this.triggerChange)
-  }
-
-  handleInputChange = value => {
-    this.setState({ value: `${value}${this.props.unit}` }, () => {
-      this.props.onChange(this.state.value)
-    })
+    const { unit, onChange } = this.props
+    onChange(`${value}${unit}`)
   }
 
   render() {
-    const { className, min, max, marks, defaultValue, step, unit } = this.props
-    const { value } = this.state
+    const {
+      className,
+      min,
+      max,
+      marks,
+      value,
+      defaultValue,
+      step,
+      unit,
+    } = this.props
 
-    const formatValue = Number(value.slice(0, value.length - unit.length)) || 0
+    const formatValue = value
+      ? Number(value.slice(0, value.length - unit.length))
+      : 0
+
     const formatDefaultValue =
-      Number(value.slice(0, defaultValue.length - unit.length)) || 0
+      Number(defaultValue.slice(0, defaultValue.length - unit.length)) || 0
 
     return (
       <Field className={classNames(styles.field, className)}>
         <Control className={styles.slider}>
-          <Slider
+          <BaseSlider
             value={formatValue}
             defaultValue={formatDefaultValue}
             max={max}
@@ -115,7 +109,7 @@ export default class SliderInput extends React.Component {
             showButton={false}
             value={formatValue}
             defaultValue={formatDefaultValue}
-            onChange={this.handleInputChange}
+            onChange={this.handleChange}
             className={styles.numberInput}
           />
           <span className={styles.unit}>{unit}</span>

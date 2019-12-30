@@ -24,6 +24,28 @@ import { PROTOCOLS } from 'utils/constants'
 
 import styles from './index.scss'
 
+const DEFAULT_PROTOCOL = 'HTTP'
+
+const getStateFromProps = props => {
+  let protocol = DEFAULT_PROTOCOL
+  const { name, containerPort } = props.value
+  if (name) {
+    const matchs = name.match(/^(\w+)-(.*)/)
+    if (matchs) {
+      protocol = (matchs[1] || DEFAULT_PROTOCOL).toUpperCase()
+    }
+  }
+
+  return {
+    name: name || `${protocol.toLowerCase()}-`,
+    protocol: PROTOCOLS.some(item => item.value === protocol)
+      ? protocol
+      : props.value.protocol,
+    containerPort,
+    propsValue: props.value,
+  }
+}
+
 export default class ContainerPort extends React.Component {
   static defaultProps = {
     value: {},
@@ -33,33 +55,14 @@ export default class ContainerPort extends React.Component {
   constructor(props) {
     super(props)
 
-    this.defaultProtocol = 'HTTP'
-    this.state = this.getStateFromProps(props)
+    this.state = getStateFromProps(props)
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.value !== this.props.value) {
-      this.setState(this.getStateFromProps(nextProps))
+  static getDerivedStateFromProps(props, state) {
+    if (props.value !== state.propsValue) {
+      return getStateFromProps(props)
     }
-  }
-
-  getStateFromProps(props) {
-    let protocol = this.defaultProtocol
-    const { name, containerPort } = props.value
-    if (name) {
-      const matchs = name.match(/^(\w+)-(.*)/)
-      if (matchs) {
-        protocol = (matchs[1] || this.defaultProtocol).toUpperCase()
-      }
-    }
-
-    return {
-      name: name || `${protocol.toLowerCase()}-`,
-      protocol: PROTOCOLS.some(item => item.value === protocol)
-        ? protocol
-        : props.value.protocol,
-      containerPort,
-    }
+    return null
   }
 
   triggerChange = debounce(() => {
@@ -100,7 +103,6 @@ export default class ContainerPort extends React.Component {
 
   render() {
     const { name, protocol, containerPort } = this.state
-
     return (
       <div className={styles.wrapper}>
         <AddonsInput
@@ -117,7 +119,7 @@ export default class ContainerPort extends React.Component {
             name="protocol"
             value={protocol}
             options={PROTOCOLS}
-            defaultValue={this.defaultProtocol}
+            defaultValue={DEFAULT_PROTOCOL}
             onChange={this.handleProtocolChange}
           />
         </AddonsInput>

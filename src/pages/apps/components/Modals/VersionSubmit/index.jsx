@@ -54,11 +54,12 @@ export default class CreateModal extends React.Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.visible && nextProps.visible !== this.props.visible) {
+  componentDidUpdate(prevProps) {
+    const { visible, formTemplate } = this.props
+    if (visible && visible !== prevProps.visible) {
       this.setState({
         currentStep: 0,
-        formTemplate: nextProps.formTemplate,
+        formTemplate,
       })
     }
   }

@@ -17,6 +17,7 @@
  */
 
 const { resolve } = require('path')
+const merge = require('lodash/merge')
 const webpack = require('webpack')
 const WebpackNotifier = require('webpack-notifier')
 const baseConfig = require('./webpack.base')
@@ -109,7 +110,9 @@ const config = {
       },
     },
   },
-  resolve: baseConfig.resolve,
+  resolve: merge({}, baseConfig.resolve, {
+    alias: { 'react-dom': '@hot-loader/react-dom' }
+  }),
   plugins: [
     ...baseConfig.plugins,
     new webpack.NamedModulesPlugin(),

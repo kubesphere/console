@@ -106,12 +106,11 @@ export default class ComponentForm extends React.Component {
     return formData
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (
-      !isEmpty(nextProps.detail) &&
-      nextProps.detail !== this.state.formData
-    ) {
-      this.setState({ formData: nextProps.detail }, () => {
+  componentDidUpdate(prevProps) {
+    const { detail } = this.props
+
+    if (!isEmpty(detail) && detail !== prevProps.formData) {
+      this.setState({ formData: detail }, () => {
         this.checkPullSecret()
       })
     }

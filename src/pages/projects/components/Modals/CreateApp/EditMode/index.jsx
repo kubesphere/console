@@ -97,7 +97,7 @@ export default class EditMode extends React.Component {
     const fileName = `app.yaml`
 
     const text = Object.keys(this.value)
-      .map(key => getValue('yaml', this.value[key]))
+      .map(key => getValue(this.value[key]))
       .join('---\n')
     this.saveAsFile(text, fileName)
   }

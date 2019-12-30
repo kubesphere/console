@@ -51,9 +51,10 @@ export default class ObjectEditModal extends React.Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.value !== this.state.value) {
-      this.setState({ value: nextProps.value })
+  componentDidUpdate(prevProps) {
+    const { visible, value } = this.props
+    if (visible && visible !== prevProps.visible && value !== prevProps.value) {
+      this.setState({ value })
     }
   }
 

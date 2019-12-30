@@ -19,6 +19,7 @@
 import React from 'react'
 import { mount } from 'enzyme'
 import styles from 'identity-obj-proxy'
+import { Icon, Loading } from '@pitrix/lego-ui'
 
 import Button from './index'
 
@@ -36,7 +37,10 @@ it('renders correctly', () => {
   expect(wrapper.find('button')).toHaveClassName(styles.hasIcon)
   expect(wrapper.find('button')).toHaveProp('type', props.htmlType)
   expect(wrapper.find('button')).toHaveProp('type', props.htmlType)
-  expect(wrapper.find('.qicon-refresh')).toHaveLength(1)
+  expect(wrapper.find(Icon)).toHaveLength(1)
+
+  wrapper.setProps({ loading: true })
+  expect(wrapper.find(Loading)).toExist()
 })
 
 it('call onClick', () => {

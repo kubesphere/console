@@ -199,8 +199,6 @@ class BaseInfo extends React.Component {
   }
 
   handleEditDefaultResource = data => {
-    this.hideEditDefaultResource()
-
     const limitRanges = toJS(this.store.limitRanges.data)
 
     if (isEmpty(limitRanges[0])) {
@@ -221,6 +219,7 @@ class BaseInfo extends React.Component {
         )
         .then(() => {
           this.store.fetchLimitRanges(this.props.match.params)
+          this.hideEditDefaultResource()
         })
     } else {
       this.store
@@ -237,6 +236,7 @@ class BaseInfo extends React.Component {
         })
         .then(() => {
           this.store.fetchLimitRanges(this.props.match.params)
+          this.hideEditDefaultResource()
         })
     }
   }

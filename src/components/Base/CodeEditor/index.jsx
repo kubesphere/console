@@ -19,10 +19,9 @@
 import React, { lazy, Suspense, PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
-import { isObject } from 'lodash'
 import { Loading } from '@pitrix/lego-ui'
 
-import { getValue, getValueObj } from 'utils/yaml'
+import { getValue } from 'utils/yaml'
 
 import styles from './index.scss'
 
@@ -39,7 +38,7 @@ class CodeEditor extends PureComponent {
   }
 
   static defaultProps = {
-    value: '',
+    value: {},
     mode: 'yaml',
     options: {},
     onChange() {},
@@ -48,35 +47,23 @@ class CodeEditor extends PureComponent {
   constructor(props) {
     super(props)
 
-    const { mode, value } = props
-
     this.state = {
-      value: getValue(mode, value),
+      value: getValue(props.value),
+      originValue: props.value,
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { mode, value } = nextProps
+  static getDerivedStateFromProps(props, state) {
+    const { value } = props
 
-    if (
-      nextProps.mode !== this.props.mode &&
-      nextProps.value !== this.props.value
-    ) {
-      if (isObject(value)) {
-        this.setState({ value: getValue(mode, value) })
-      } else {
-        const newValue = getValue(mode, getValueObj(this.props.mode, value))
-        this.setState({ value: newValue })
+    if (value !== state.originValue) {
+      return {
+        value: getValue(value),
+        originValue: value,
       }
-    } else if (nextProps.mode !== this.props.mode) {
-      const newValue = getValue(
-        mode,
-        getValueObj(this.props.mode, this.state.value)
-      )
-      this.setState({ value: newValue })
-    } else if (nextProps.value !== this.props.value) {
-      this.setState({ value: getValue(mode, value) })
     }
+
+    return null
   }
 
   handleChange = value => {
@@ -86,14 +73,13 @@ class CodeEditor extends PureComponent {
 
   render() {
     const { className, mode, options } = this.props
-    const { value } = this.state
 
     return (
       <Suspense fallback={<Loading className="ks-page-loading" />}>
         <AceEditor
           {...options}
           className={classnames(styles.editor, className)}
-          value={value}
+          value={this.state.value}
           mode={mode}
           onChange={this.handleChange}
         />

@@ -52,7 +52,7 @@ export default class Session extends React.Component {
 
     const options = this.getOptions()
 
-    const type = Object.keys(this.props.value)[0] || options[0].value
+    const type = Object.keys(props.value)[0] || options[0].value
     let value = props.value[type]
 
     if (type === 'httpCookie' && value) {
@@ -61,26 +61,24 @@ export default class Session extends React.Component {
         .join('; ')
     }
 
-    this.state = { type, value }
+    this.state = { type, value, propsValue: props.value }
   }
 
-  componentWillReceiveProps(nextProps) {
-    const newType = Object.keys(nextProps.value)[0]
-    let newValue = nextProps.value[newType]
+  static getDerivedStateFromProps(props, state) {
+    if (props.value !== state.propsValue) {
+      const newType = Object.keys(props.value)[0]
+      let newValue = props.value[newType]
 
-    if (newType === 'httpCookie' && newValue) {
-      newValue = Object.entries(newValue)
-        .map(([key, _value]) => `${key}=${_value}`)
-        .join('; ')
+      if (newType === 'httpCookie' && newValue) {
+        newValue = Object.entries(newValue)
+          .map(([key, _value]) => `${key}=${_value}`)
+          .join('; ')
+      }
+
+      return { type: newType, value: newValue, propsValue: props.value }
     }
 
-    if (newType !== this.state.type) {
-      this.setState({ type: newType })
-    }
-
-    if (newValue !== this.state.value) {
-      this.setState({ value: newValue })
-    }
+    return null
   }
 
   triggerChange = debounce(value => {
