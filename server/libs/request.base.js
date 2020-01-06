@@ -100,7 +100,7 @@ function handleResponse(response) {
 
   if (contentType && contentType.includes('json')) {
     return response.json().then(res => {
-      if (response.status === 403) {
+      if (response.status === 401) {
         console.warn('Unauthorized', response, response.ok)
       }
 

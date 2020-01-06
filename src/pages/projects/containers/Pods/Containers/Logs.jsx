@@ -58,17 +58,19 @@ class Logs extends React.Component {
   }
 
   render() {
+    if (!get(this.store, 'detail.containerID')) {
+      return (
+        <Card>
+          <Empty desc={'CONTAINER_REAL_TIME_LOGS_UNSUPPORTED_TIPS'} />
+        </Card>
+      )
+    }
+
     if (!this.isLogEnabled) {
       return <ContainerLog {...this.props.match.params} />
     }
 
-    return get(this.store, 'detail.containerID') ? (
-      <LogCard store={this.logStore} realTime />
-    ) : (
-      <Card>
-        <Empty desc={'CONTAINER_REAL_TIME_LOGS_UNSUPPORTED_TIPS'} />
-      </Card>
-    )
+    return <LogCard store={this.logStore} realTime />
   }
 }
 
