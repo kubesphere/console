@@ -19,9 +19,10 @@
 import { isEmpty, debounce } from 'lodash'
 import React from 'react'
 import isEqual from 'react-fast-compare'
-import { Alert, Tooltip } from '@pitrix/lego-ui'
-import { PropertiesInput } from 'components/Inputs'
+import { Alert, Tooltip, Popper } from '@pitrix/lego-ui'
 
+import { Button } from 'components/Base'
+import { PropertiesInput } from 'components/Inputs'
 import WorkloadStore from 'stores/workload'
 import { joinSelector, isValidLabel } from 'utils'
 
@@ -158,7 +159,17 @@ export default class SelectorsInput extends React.Component {
     return <Alert className={styles.alert} message={message} type="warning" />
   }
 
+  renderWorkloadSelectForm() {
+    return (
+      <WorkloadSelect
+        namespace={this.props.namespace}
+        onSelect={this.handleWorkloadSelect}
+      />
+    )
+  }
+
   render() {
+    const { visible } = this.state
     return (
       <div className={styles.wrapper}>
         {this.renderRelatedTips()}
@@ -166,11 +177,16 @@ export default class SelectorsInput extends React.Component {
           {...this.props}
           controlledValue={this.state.selectLabels}
         />
-        <WorkloadSelect
-          className={styles.workload}
-          namespace={this.props.namespace}
-          onSelect={this.handleWorkloadSelect}
-        />
+        <Popper
+          className={styles.popper}
+          trigger="click"
+          visible={visible}
+          placement="right"
+          content={this.renderWorkloadSelectForm()}
+          closeAfterClick={false}
+        >
+          <Button className={styles.workload}>{t('Specify Workload')}</Button>
+        </Popper>
       </div>
     )
   }

@@ -48,7 +48,7 @@ class VolumeSettings extends React.Component {
 
     this.store = new VolumeStore()
 
-    this.store.fetchList({ namespace: this.namespace, limit: Infinity })
+    this.store.fetchList({ namespace: this.namespace, limit: -1 })
 
     this.handleVolume = this.handleVolume.bind(this)
     this.handleVolumeTemplate = this.handleVolumeTemplate.bind(this)

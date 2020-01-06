@@ -13,3 +13,15 @@
   bottom: 0;
   left: 0;
 }
+
+.popper {
+  border: 1px solid $light-color04;
+  margin-left: 12px !important;
+
+  :global {
+    .popper-arrow {
+      border-bottom-color: $light-color04 !important;
+      border-left-color: $light-color04 !important;
+    }
+  }
+}

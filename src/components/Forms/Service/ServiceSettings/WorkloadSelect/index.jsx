@@ -19,7 +19,7 @@
 import React from 'react'
 import { observer } from 'mobx-react'
 import { get } from 'lodash'
-import { Popper, RadioButton, RadioGroup } from '@pitrix/lego-ui'
+import { RadioButton, RadioGroup } from '@pitrix/lego-ui'
 import { Button, Alert, ScrollLoad } from 'components/Base'
 
 import WorkloadStore from 'stores/workload'
@@ -69,7 +69,7 @@ export default class WorkloadSelect extends React.Component {
     this.setState({ visible: false })
   }
 
-  renderWorkloadSelectForm() {
+  render() {
     const { type, selectItem } = this.state
     const { data, total, page, isLoading } = this.store.list
 
@@ -119,24 +119,6 @@ export default class WorkloadSelect extends React.Component {
           </Button>
         </div>
       </div>
-    )
-  }
-
-  render() {
-    const { className } = this.props
-    const { visible } = this.state
-
-    return (
-      <Popper
-        className={styles.popper}
-        trigger="click"
-        visible={visible}
-        placement="right"
-        content={this.renderWorkloadSelectForm()}
-        closeAfterClick={false}
-      >
-        <Button className={className}>{t('Specify Workload')}</Button>
-      </Popper>
     )
   }
 }
