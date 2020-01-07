@@ -291,6 +291,9 @@ export const getPipelineStatus = statusDetail => {
   if (state === 'RUNNING') {
     return { type: 'running', label: t('Running') }
   }
+  if (result === 'UNSTABLE') {
+    return { type: 'unstable', label: 'Unstable' }
+  }
   if (state === 'FINISHED' && result === 'SUCCESS') {
     return { type: 'success', label: t('Success') }
   }

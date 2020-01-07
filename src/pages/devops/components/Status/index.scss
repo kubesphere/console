@@ -26,6 +26,10 @@
   background-image: url('/assets/cicd-warning.svg')
 }
 
+.unstable {
+  background-image: url('/assets/cicd-warning.svg')
+}
+
 .failure,
 .error {
   background-image: url('/assets/cicd-error.svg')

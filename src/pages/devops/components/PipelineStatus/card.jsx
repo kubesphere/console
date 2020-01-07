@@ -230,6 +230,9 @@ export default class PipelineCard extends React.Component {
     if (!node.state || node.state === 'QUEUED') {
       return t('Queue')
     }
+    if (node.state === 'NOT_BUILT') {
+      return t('Not Build')
+    }
     if (node.state === 'SKIPPED') {
       return t('Skipped')
     }
