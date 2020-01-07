@@ -138,6 +138,7 @@ export default {
   'Download Logs': '下载日志',
   'Use time': '用时',
   'not run': '未运行',
+  'Not Build': '未执行',
   Failure: '失败',
   commit: '提交',
   'Please input images name': '请输入镜像名称',
