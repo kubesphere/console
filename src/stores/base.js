@@ -137,7 +137,7 @@ export default class BaseStore {
       reverse,
       filters,
       isLoading: false,
-      selectedRowKeys: [],
+      ...(this.list.silent ? {} : { selectedRowKeys: [] }),
     })
 
     return data
