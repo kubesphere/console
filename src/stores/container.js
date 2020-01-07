@@ -50,6 +50,7 @@ export default class ContainerStore {
       pod.containers.find(item => item.name === containerName) ||
       pod.initContainers.find(item => item.name === containerName)
     detail.createTime = get(pod, 'createTime', '')
+    detail.app = detail.app || pod.app
 
     this.volumes = await getWorkloadVolumes(pod)
 
