@@ -55,6 +55,14 @@ export default class ContainerLogModal extends React.Component {
     const { namespace, name } = this.props.container
     const { podName } = this.props
 
+    if (!get(this.props, 'container.containerID')) {
+      return (
+        <Card>
+          <Empty desc={'CONTAINER_REAL_TIME_LOGS_UNSUPPORTED_TIPS'} />
+        </Card>
+      )
+    }
+
     if (!this.isLogEnabled) {
       return (
         <ContainerLog
@@ -67,13 +75,7 @@ export default class ContainerLogModal extends React.Component {
       )
     }
 
-    return get(this.props, 'container.containerID') ? (
-      <LogCard className={styles.logCard} store={this.logStore} realTime />
-    ) : (
-      <Card>
-        <Empty desc={'CONTAINER_REAL_TIME_LOGS_UNSUPPORTED_TIPS'} />
-      </Card>
-    )
+    return <LogCard className={styles.logCard} store={this.logStore} realTime />
   }
 
   render() {
