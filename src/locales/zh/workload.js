@@ -334,6 +334,9 @@ export default {
   'Initial Delay': '初始延迟',
   'Initial Delay(s)': '初始延迟(秒)',
   'Timeout(s)': '超时时间(秒)',
+  'Period Seconds': '执行探测频率(秒)',
+  'Success Threshold': '健康阈值',
+  'Failure Threshold': '不健康阈值',
   'HTTP Request Check': 'HTTP 请求检查',
   'Exec Commnad Check': '执行命令检查',
   'TCP Port Check': 'TCP 端口检查',
@@ -351,6 +354,7 @@ export default {
 
   'Container liveness check': '容器存活检查',
   'Container ready check': '容器就绪检查',
+  'Container start check': '容器启动检查',
 
   Redeploy: '重新部署',
   'Redeploy Successfully': '重新部署成功',
@@ -372,7 +376,11 @@ export default {
   'Liveness Probe': '存活探针',
 
   INITIAL_DELAY_DESC: '在检查其运行状况之前，容器启动后需要等待多长时间。',
-  TIMEOUT_DESC: '等待探针完成多长时间。如果超过时间，则认为探测失败。',
+  TIMEOUT_DESC:
+    '等待探针完成多长时间。如果超过时间，则认为探测失败。默认为1秒。最小值为1',
+  PERIOD_SECONDS_DESC: '执行探测的频率（以秒为单位）。默认为10秒。最小值为1',
+  SUCCESS_THRESHOLD_DESC: '探测失败后，连续最小成功探测为成功。默认值为1。',
+  FAILURE_THRESHOLD_DESC: '探针进入失败状态时需要连续探测失败的最小次数。',
 
   HPA_MSG:
     '根据 CPU 和内存使用情况自动伸缩副本。如果同时指定 CPU 和内存，则满足任一条件后即添加或删除副本',
@@ -488,6 +496,7 @@ export default {
 
   LIVENESS_PROBE_DESC: '该检查方式用于检测容器是否活着。',
   READINESS_PROBE_DESC: '该检查方式用于检测容器是否准备好开始处理用户请求。',
+  STARTUP_PROBE_DESC: '该检查方式用于检测容器是否启动成功。',
 
   COLLECT_SAVED_LOG_DESC:
     '您已开启落盘日志收集，请至少添加一个存储卷并指定日志所在目录',

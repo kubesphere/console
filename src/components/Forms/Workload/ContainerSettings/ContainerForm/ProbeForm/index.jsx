@@ -231,12 +231,56 @@ export default class ProbeForm extends React.Component {
               <Form.Item label={t('Timeout(s)')} desc={t('TIMEOUT_DESC')}>
                 <NumberInput
                   name="timeoutSeconds"
-                  defaultValue={0}
-                  min={0}
+                  defaultValue={1}
+                  min={1}
                   integer
                 />
               </Form.Item>
             </Column>
+          </Columns>
+          <Columns>
+            <Column>
+              <Form.Item
+                label={t('Period Seconds')}
+                desc={t('PERIOD_SECONDS_DESC')}
+              >
+                <NumberInput
+                  name="periodSeconds"
+                  defaultValue={10}
+                  min={1}
+                  integer
+                />
+              </Form.Item>
+            </Column>
+            <Column>
+              <Form.Item
+                label={t('Success Threshold')}
+                desc={t('SUCCESS_THRESHOLD_DESC')}
+              >
+                <NumberInput
+                  name="successThreshold"
+                  defaultValue={1}
+                  min={1}
+                  integer
+                />
+              </Form.Item>
+            </Column>
+          </Columns>
+          <Columns>
+            <Column>
+              <Form.Item
+                label={t('Failure Threshold')}
+                desc={t('FAILURE_THRESHOLD_DESC')}
+              >
+                <NumberInput
+                  name="failureThreshold"
+                  defaultValue={3}
+                  min={1}
+                  integer
+                />
+              </Form.Item>
+            </Column>
+            <Column />
           </Columns>
         </Form>
         <Confirm
