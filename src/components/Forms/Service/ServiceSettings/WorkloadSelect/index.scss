@@ -14,18 +14,6 @@
   text-align: right;
 }
 
-.popper {
-  border: 1px solid $light-color04;
-  margin-left: 12px !important;
-
-  :global {
-    .popper-arrow {
-      border-bottom-color: $light-color04 !important;
-      border-left-color: $light-color04 !important;
-    }
-  }
-}
-
 .workloads {
   margin-top: 8px;
   height: 188px;

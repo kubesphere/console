@@ -98,7 +98,7 @@ class Overview extends React.Component {
   }
 
   handleComponentsClick = () => {
-    globals.app.hasPermission({ module: 'components', action: 'view' }) &&
+    globals.app.hasPermission({ module: 'monitoring', action: 'view' }) &&
       this.routing.push('/components')
   }
 
