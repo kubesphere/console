@@ -206,6 +206,7 @@ export default {
   'Add Node Selector': '添加节点选择器',
   'Please add at least one container': '请至少添加一个容器',
   'Container Name': '容器名称',
+  'Container Type': '容器类型',
   'Advanced Options': '高级选项',
   'CPU(m)': 'CPU(m)',
   'Memory(MiB)': '内存(MiB)',
@@ -338,6 +339,7 @@ export default {
   'Exec Commnad Check': '执行命令检查',
   'TCP Port Check': 'TCP 端口检查',
   'Init Container': '初始容器',
+  'Worker Container': '工作容器',
   'Request Type': '请求类型',
 
   startingDeadlineSeconds: '启动 Job 的期限（秒）',

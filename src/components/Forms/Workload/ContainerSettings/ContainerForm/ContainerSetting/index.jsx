@@ -23,8 +23,8 @@ import { generateId, cpuFormat, memoryFormat } from 'utils'
 
 import { PATTERN_NAME, PATTERN_LENGTH_63 } from 'utils/constants'
 
-import { Input } from '@pitrix/lego-ui'
-import { Form } from 'components/Base'
+import { Input, Select, Columns, Column } from '@pitrix/lego-ui'
+import { Form, Tag } from 'components/Base'
 import { ResourceLimit } from 'components/Inputs'
 import ToggleView from 'components/ToggleView'
 
@@ -62,6 +62,13 @@ export default class ContainerSetting extends React.Component {
       requests: limitRange.defaultRequest || {},
       limits: limitRange.default || {},
     }
+  }
+
+  get containerTypes() {
+    return [
+      { label: t('Worker Container'), value: 'worker' },
+      { label: t('Init Container'), value: 'init' },
+    ]
   }
 
   componentDidMount() {
@@ -102,6 +109,12 @@ export default class ContainerSetting extends React.Component {
     })
   }
 
+  valueRenderer = option => (
+    <Tag type={option.value === 'init' ? 'warning' : 'default'}>
+      {option.label}
+    </Tag>
+  )
+
   renderImageForm = () => (
     <ImageSearch
       name="image"
@@ -113,6 +126,7 @@ export default class ContainerSetting extends React.Component {
   )
 
   renderAdvancedSettings() {
+    const { defaultContainerType, onContainerTypeChange } = this.props
     const { quota } = this.state
 
     const cpuRequestLeft = get(quota, 'left["requests.cpu"]')
@@ -141,24 +155,38 @@ export default class ContainerSetting extends React.Component {
     return (
       <ToggleView>
         <>
-          <Form.Item
-            className="margin-t12"
-            label={t('Container Name')}
-            desc={t('NAME_DESC')}
-            rules={[
-              { required: true, message: t('Please input name') },
-              {
-                pattern: PATTERN_NAME,
-                message: `${t('Invalid name')}, ${t('NAME_DESC')}`,
-              },
-              {
-                pattern: PATTERN_LENGTH_63,
-                message: t('NAME_TOO_LONG'),
-              },
-            ]}
-          >
-            <Input name="name" defaultValue={`container-${generateId()}`} />
-          </Form.Item>
+          <Columns>
+            <Column>
+              <Form.Item
+                label={t('Container Name')}
+                desc={t('NAME_DESC')}
+                rules={[
+                  { required: true, message: t('Please input name') },
+                  {
+                    pattern: PATTERN_NAME,
+                    message: `${t('Invalid name')}, ${t('NAME_DESC')}`,
+                  },
+                  {
+                    pattern: PATTERN_LENGTH_63,
+                    message: t('NAME_TOO_LONG'),
+                  },
+                ]}
+              >
+                <Input name="name" defaultValue={`container-${generateId()}`} />
+              </Form.Item>
+            </Column>
+            <Column>
+              <Form.Item label={t('Container Type')}>
+                <Select
+                  name="type"
+                  defaultValue={defaultContainerType}
+                  options={this.containerTypes}
+                  onChange={onContainerTypeChange}
+                  valueRenderer={this.valueRenderer}
+                />
+              </Form.Item>
+            </Column>
+          </Columns>
           <Form.Item>
             <ResourceLimit
               name="resources"

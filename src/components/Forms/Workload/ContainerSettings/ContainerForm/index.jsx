@@ -81,6 +81,10 @@ export default class ContaineForm extends React.Component {
     super(props)
 
     this.formRef = React.createRef()
+
+    this.state = {
+      containerType: props.data.type || 'worker',
+    }
   }
 
   componentDidMount() {
@@ -141,6 +145,10 @@ export default class ContaineForm extends React.Component {
       })
   }
 
+  handleContainerTypeChange = containerType => {
+    this.setState({ containerType })
+  }
+
   render() {
     const {
       className,
@@ -149,8 +157,8 @@ export default class ContaineForm extends React.Component {
       secrets,
       namespace,
       withService,
-      type,
     } = this.props
+    const { containerType } = this.state
 
     return (
       <div className={classNames(styles.wrapper, className)}>
@@ -161,10 +169,15 @@ export default class ContaineForm extends React.Component {
           {this.title}
         </div>
         <Form ref={this.formRef} data={data}>
-          <ContainerSetting namespace={namespace} data={data} type={type} />
-          <Ports withService={withService} />
+          <ContainerSetting
+            data={data}
+            namespace={namespace}
+            defaultContainerType={containerType}
+            onContainerTypeChange={this.handleContainerTypeChange}
+          />
+          <Ports withService={containerType !== 'init' ? withService : false} />
           <ImagePullPolicy />
-          <HealthChecker />
+          {containerType !== 'init' && <HealthChecker />}
           <Commands />
           <Environments configMaps={configMaps} secrets={secrets} />
         </Form>

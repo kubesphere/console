@@ -21,14 +21,14 @@ import PropTypes from 'prop-types'
 import { get } from 'lodash'
 
 import { Icon } from '@pitrix/lego-ui'
-import { List } from 'components/Base'
+import { List, Tag } from 'components/Base'
 import { cpuFormat, memoryFormat } from 'utils'
 
 import styles from './index.scss'
 
-const Card = ({ container, onDelete, onEdit, readOnly }) => {
+const Card = ({ type = 'worker', container, onDelete, onEdit, readOnly }) => {
   const handleDelete = () => onDelete(container.name)
-  const handleEdit = () => onEdit(container)
+  const handleEdit = () => onEdit({ type, ...container })
   const limits = get(container, 'resources.limits', {})
   const requests = get(container, 'resources.requests', {})
 
@@ -65,10 +65,22 @@ const Card = ({ container, onDelete, onEdit, readOnly }) => {
     </div>
   )
 
+  const title =
+    type === 'init' ? (
+      <span>
+        {container.name}
+        <Tag className="margin-l8" type="warning">
+          {t('Init Container')}
+        </Tag>
+      </span>
+    ) : (
+      container.name
+    )
+
   return (
     <List.Item
       icon="docker"
-      title={container.name}
+      title={title}
       description={`${t('Image')}: ${container.image}`}
       extras={extras}
       onDelete={!readOnly && handleDelete}
