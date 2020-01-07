@@ -290,4 +290,28 @@ export default {
 
   REDEPLOY_CONFIRM_DESC:
     'You are about to redeploy the workload {resource} ({type}), the pod will be redeployed according to the update strategy, and your business may be temporarily interrupted.',
+
+  CONTAINER_SECURITY_CTX_DESC:
+    'A security context defines privilege and access control settings for a Pod or Container.',
+
+  POD_SECURITY_CONTEXT_DESC:
+    'Pod Security Context can provide default user and user group settings and seLinuxOptions parameter settings for containers in the pod. If these parameters have been defined in the container, the settings in the container take precedence.',
+
+  ACCESS_CONTROL_PRIVILEGED: 'Privileged',
+  ACCESS_CONTROL_PRIVILEGED_DESC:
+    'At this point, the process in the container is essentially equivalent to the root user on the host node.',
+  ACCESS_CONTROL_ALLOWPRIVILEGEESCALATION: 'AllowPrivilegeEscalation',
+  ACCESS_CONTROL_ALLOWPRIVILEGEESCALATION_DESC:
+    'Whether the process can acquire more privileges than the parent process. When running in privileged mode, it is enabled.',
+  ACCESS_CONTROL_READONLYROOTFILESYSTEM: 'ReadOnlyRootFilesystem',
+  ACCESS_CONTROL_READONLYROOTFILESYSTEM_DESC:
+    "Whether the container's file system root path is read-only.",
+
+  RUN_AS_NON_ROOT: 'Run as non root',
+  RUN_AS_NON_ROOT_DESC:
+    'kubernetes will perform a check before running the container to ensure that the container process is not running as the root user (UID 0), otherwise the container will not start.',
+  RUN_AS_USER_DESC:
+    'The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified.',
+  RUN_AS_USER_GROUP_DESC:
+    'The GID to run the entrypoint of the container process. Uses runtime default if unset.',
 }

@@ -118,4 +118,5 @@ export default {
 
   NAV_PROJECTS: 'Projects',
   NAV_ACCOUNTS: 'Accounts',
+  ALERT_WARNING: 'Warning',
 }
