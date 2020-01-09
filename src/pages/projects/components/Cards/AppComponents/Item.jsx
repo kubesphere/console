@@ -72,7 +72,10 @@ export default class ServiceItem extends React.Component {
             <span>{t('IP')}: </span>
             <span>
               {detail.ports.map((port, index) => {
-                const protocol = (port.name.split('-')[0] || '').toUpperCase()
+                let protocol = ''
+                if (port.name && port.name.indexOf('-') !== -1) {
+                  protocol = (port.name.split('-')[0] || '').toUpperCase()
+                }
                 return (
                   <span key={index}>
                     {protocol === 'HTTP'
