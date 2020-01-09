@@ -195,9 +195,15 @@ export default {
   REVISION_TITLE: '{name} revision',
   PROBE_TIME: '{delay}s delay, {timeout}s timeout',
   INITIAL_DELAY_DESC:
-    'Before checking the operation status, how much waiting time is needed after starting the pod',
+    'Number of seconds after the container has started before liveness probes are initiated.',
   TIMEOUT_DESC:
-    'How much time is needed to complete the probe. If it is overdue, the probe fails.',
+    'Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1.',
+  PERIOD_SECONDS_DESC:
+    'How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.',
+  SUCCESS_THRESHOLD_DESC:
+    'Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.',
+  FAILURE_THRESHOLD_DESC:
+    'Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.',
 
   HPA_MSG:
     'Automatically autoscale the replicas according to CPU and memory usage. If both CPU and memory are specified, the replicas is added or deleted after any of the conditions are met.',
@@ -239,6 +245,9 @@ export default {
     'This check method is used to detect if the container is alive.',
   READINESS_PROBE_DESC:
     'This check is used to detect if the container is ready to process requests.',
+  STARTUP_PROBE_DESC:
+    'StartupProbe indicates that the Pod has successfully initialized.',
+
   SEARCH_IMAGE_PLACEHOLDER: 'Enter keyword to search image',
 
   POD_CONDITION_INITIALIZED: 'Initialized',

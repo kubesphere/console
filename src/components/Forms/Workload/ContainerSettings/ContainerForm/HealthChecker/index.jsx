@@ -60,6 +60,13 @@ export default class HealthChecker extends React.Component {
             description={t('READINESS_PROBE_DESC')}
           />
         </Form.Item>
+        <Form.Item className={styles.item} label={t('Container start check')}>
+          <ProbeInput
+            name={`${this.prefix}startupProbe`}
+            type={t('Container start check')}
+            description={t('STARTUP_PROBE_DESC')}
+          />
+        </Form.Item>
       </Form.Group>
     )
   }
