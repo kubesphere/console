@@ -105,6 +105,11 @@ export default class BaseStore {
 
     const params = {}
 
+    if (limit === Infinity || limit === -1) {
+      limit = -1
+      page = 1
+    }
+
     if (!isEmpty(resources)) {
       filters.name = resources.join('|')
     }
@@ -113,9 +118,7 @@ export default class BaseStore {
       params.conditions = conditions || getFilterString(filters)
     }
 
-    if (limit !== Infinity) {
-      params.paging = `limit=${limit || 10},page=${page || 1}`
-    }
+    params.paging = `limit=${limit || 10},page=${page || 1}`
 
     if (order) {
       params.orderBy = order
