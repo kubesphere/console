@@ -168,7 +168,7 @@ class VirtualResource extends React.Component {
     return (
       <MonitoringController
         title={t('Application Resources Usage')}
-        step="60m"
+        step="1h"
         times={24}
         onFetch={this.fetchData}
         loading={isLoading}
