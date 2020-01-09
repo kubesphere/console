@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, set, unset, isEmpty, omitBy, has } from 'lodash'
+import { concat, get, set, unset, isEmpty, omitBy, has, groupBy } from 'lodash'
 import React from 'react'
 import { safeParseJSON, generateId } from 'utils'
 import { MODULE_KIND_MAP } from 'utils/constants'
@@ -83,12 +83,17 @@ export default class ContainerSetting extends React.Component {
       `${this.prefix}spec.containers`,
       []
     )
+    const initContainers = get(
+      this.formTemplate,
+      `${this.prefix}spec.initContainers`,
+      []
+    )
     const containerSecretMap = safeParseJSON(
       get(this.formTemplate, this.containerSecretPath, '')
     )
 
     if (!isEmpty(containerSecretMap)) {
-      containers.forEach(container => {
+      concat(containers, initContainers).forEach(container => {
         if (containerSecretMap[container.name]) {
           container.pullSecret = containerSecretMap[container.name]
         }
@@ -156,7 +161,12 @@ export default class ContainerSetting extends React.Component {
     const imagePullSecretsPath = `${this.prefix}spec.imagePullSecrets`
 
     const containers = get(formData, `${this.prefix}spec.containers`, [])
-    containers.forEach(container => {
+    const initContainers = get(
+      formData,
+      `${this.prefix}spec.initContainers`,
+      []
+    )
+    concat(containers, initContainers).forEach(container => {
       if (container.pullSecret) {
         pullSecrets[container.pullSecret] = ''
         containerSecretMap[container.name] = container.pullSecret
@@ -217,21 +227,44 @@ export default class ContainerSetting extends React.Component {
       data.resources.limits = omitBy(data.resources.limits, isEmpty)
     }
 
+    data.type = data.type || 'worker'
+
+    // merge init containers and worker containers, in order to fix container type change.
     const containers = get(
       this.formTemplate,
       `${this.prefix}spec.containers`,
       []
-    )
-    const container = containers.find(item => item.name === data.name)
+    ).map(c => ({ ...c, type: 'worker' }))
+    const initContainers = get(
+      this.formTemplate,
+      `${this.prefix}spec.initContainers`,
+      []
+    ).map(c => ({ ...c, type: 'init' }))
 
+    const mergedContainers = concat(containers, initContainers)
+
+    // find if data exist in all containers
+    const container = mergedContainers.find(item => item.name === data.name)
+
+    // update containers
     if (!isEmpty(container)) {
       Object.assign(container, data)
     } else {
-      set(this.formTemplate, `${this.prefix}spec.containers`, [
-        ...containers,
-        data,
-      ])
+      mergedContainers.push(data)
     }
+
+    // split mergedContainers and update formTemplate
+    const groupedContainers = groupBy(mergedContainers, 'type')
+    set(
+      this.formTemplate,
+      `${this.prefix}spec.containers`,
+      groupedContainers['worker']
+    )
+    set(
+      this.formTemplate,
+      `${this.prefix}spec.initContainers`,
+      groupedContainers['init']
+    )
 
     // update image pull secrets
     this.updatePullSecrets(this.formTemplate)
@@ -297,6 +330,12 @@ export default class ContainerSetting extends React.Component {
   }
 
   renderContainerList() {
+    const initContainers = get(
+      this.formTemplate,
+      `${this.prefix}spec.initContainers`,
+      []
+    )
+
     return (
       <Form.Item
         label={t('Container Image')}
@@ -306,6 +345,7 @@ export default class ContainerSetting extends React.Component {
           name={`${this.prefix}spec.containers`}
           onShow={this.showContainer}
           onDelete={this.handleDelete}
+          initContainers={initContainers}
         />
       </Form.Item>
     )

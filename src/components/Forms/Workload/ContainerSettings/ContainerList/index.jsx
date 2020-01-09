@@ -35,6 +35,7 @@ export default class ContainerList extends React.Component {
     onDelete: PropTypes.func,
     onShow: PropTypes.func,
     readOnlyList: PropTypes.array,
+    initContainers: PropTypes.array,
   }
 
   static defaultProps = {
@@ -42,6 +43,7 @@ export default class ContainerList extends React.Component {
     name: '',
     value: [],
     readOnlyList: [],
+    initContainers: [],
     onChange() {},
     onShow() {},
     onDelete() {},
@@ -62,7 +64,7 @@ export default class ContainerList extends React.Component {
     onDelete && onDelete(name)
   }
 
-  renderContent() {
+  renderContainers() {
     const { value, readOnlyList } = this.props
 
     return value.map(item => (
@@ -76,14 +78,28 @@ export default class ContainerList extends React.Component {
     ))
   }
 
+  renderInitContainers() {
+    const { initContainers } = this.props
+    return initContainers.map(item => (
+      <Card
+        container={item}
+        key={item.name}
+        type="init"
+        onEdit={this.handleEdit}
+        onDelete={this.handleDelete}
+      />
+    ))
+  }
+
   render() {
-    const { value, className } = this.props
+    const { value, initContainers, className } = this.props
 
     return (
       <div className={classNames(styles.wrapper, className)}>
-        {this.renderContent()}
+        {this.renderInitContainers()}
+        {this.renderContainers()}
         <List.Add
-          type={value.length <= 0 && 'empty'}
+          type={value.length <= 0 && initContainers.length <= 0 && 'empty'}
           onClick={this.handleAdd}
           icon="docker"
           title={`${t('Add ')}${t('Container Image')}`}
