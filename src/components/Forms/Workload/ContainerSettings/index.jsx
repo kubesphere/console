@@ -29,6 +29,7 @@ import ReplicasControl from './ReplicasControl'
 import UpdateStrategy from './UpdateStrategy'
 import ContainerList from './ContainerList'
 import ContainerForm from './ContainerForm'
+import PodSecurityContext from './PodSecurityContext'
 
 export default class ContainerSetting extends React.Component {
   constructor(props) {
@@ -366,6 +367,14 @@ export default class ContainerSetting extends React.Component {
     )
   }
 
+  renderPodSecurityContext() {
+    return (
+      <div className="margin-t12">
+        <PodSecurityContext prefix={`${this.prefix}spec.securityContext`} />
+      </div>
+    )
+  }
+
   render() {
     const { formRef } = this.props
     const { showContainer, selectContainer } = this.state
@@ -379,6 +388,7 @@ export default class ContainerSetting extends React.Component {
         {this.renderReplicasControl()}
         {this.renderContainerList()}
         {this.renderUpdateStrategy()}
+        {this.renderPodSecurityContext()}
       </Form>
     )
   }

@@ -30,6 +30,7 @@ import Environments from './Environments'
 import ImagePullPolicy from './ImagePullPolicy'
 import HealthChecker from './HealthChecker'
 import ContainerSetting from './ContainerSetting'
+import SecurityContext from './SecurityContext'
 
 import styles from './index.scss'
 
@@ -180,6 +181,7 @@ export default class ContaineForm extends React.Component {
           {containerType !== 'init' && <HealthChecker />}
           <Commands />
           <Environments configMaps={configMaps} secrets={secrets} />
+          <SecurityContext />
         </Form>
       </div>
     )

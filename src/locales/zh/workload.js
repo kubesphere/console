@@ -627,4 +627,31 @@ export default {
     '当前工作负载下没有关联的资源',
   DELETE_WORKLOAD_DESC:
     '您即将删除工作负载 {resource}，请您进行确认是否删除关联资源?',
+
+  'Container Security Context': '容器 Security Context',
+  'Pod Security Context': '容器组 Security Context',
+  'Access Control': '访问控制权',
+  'User and User Group': '用户和用户组',
+  'User Group': '用户组',
+  CONTAINER_SECURITY_CTX_DESC:
+    'Security Context的目的是限制不可信容器的行为，保护系统和其他容器不受其影响。',
+  POD_SECURITY_CONTEXT_DESC:
+    '容器组 Security Context 可以为容器组内的容器提供默认的用户和用户组设置以及 seLinuxOptions 的参数设置，如果容器中已经对这些参数进行了定义，则优先以容器中的设置为准。',
+  ACCESS_CONTROL_PRIVILEGED: '以特权模式运行(Privileged)',
+  ACCESS_CONTROL_PRIVILEGED_DESC:
+    '此时容器中的进程本质上等价于宿主节点上的 root 用户。',
+  ACCESS_CONTROL_ALLOWPRIVILEGEESCALATION:
+    '允许扩大特权(AllowPrivilegeEscalation)',
+  ACCESS_CONTROL_ALLOWPRIVILEGEESCALATION_DESC:
+    '进程是否可以获取比父进程更多的特权。当以特权模式运行时，则为允许状态。',
+  ACCESS_CONTROL_READONLYROOTFILESYSTEM:
+    '文件系统root只读(ReadOnlyRootFilesystem)',
+  ACCESS_CONTROL_READONLYROOTFILESYSTEM_DESC:
+    '该容器的文件系统根路径是否为只读。',
+  RUN_AS_NON_ROOT: '仅允许非 Root 用户',
+  RUN_AS_NON_ROOT_DESC:
+    'kubernetes 在运行容器之前将执行检查，以确保容器进程不是以 root 用户（UID为0）运行，否则将不能启动容器.',
+  RUN_AS_USER_DESC: '执行容器 entrypoint 进程的 UID。默认为 docker 引擎的 GID',
+  RUN_AS_USER_GROUP_DESC:
+    '执行容器 entrypoint 进程的 GID。默认为 docker 引擎的 GID',
 }

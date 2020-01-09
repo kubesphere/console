@@ -440,4 +440,6 @@ export default {
 
   'Session timeout or this account is logged in elsewhere, please login again':
     '会话超时或此账户在其它地方登录，请重新登录',
+
+  ALERT_WARNING: '请注意',
 }

@@ -34,15 +34,15 @@ const ICON_COLORS = {
     secondary: '#fff',
   },
   warning: {
-    primary: '#fff',
-    secondary: '#f5a623',
+    primary: '#8d663e',
+    secondary: '#ffc781',
   },
 }
 
 const ICONS = {
   info: 'question',
   error: 'close',
-  warning: 'substract',
+  warning: 'exclamation',
   default: 'question',
 }
 
