@@ -749,7 +749,7 @@ export const PROVISIONERS = [
       {
         key: 'imageFeatures',
         type: 'input',
-        defaultValue: '2',
+        defaultValue: 'layering',
         desc: 'CEPHRBD_IMAGE_FEATURES_DESC',
       },
     ],
