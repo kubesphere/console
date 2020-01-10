@@ -104,9 +104,7 @@ export default class RoleStore {
 
     const params = {}
 
-    if (this.type === 'clusterroles') {
-      filters.userfacing = true
-    }
+    filters.userfacing = true
 
     if (!isEmpty(filters)) {
       params.conditions = getFilterString(filters)
