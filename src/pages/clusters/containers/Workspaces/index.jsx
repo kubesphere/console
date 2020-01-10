@@ -107,7 +107,11 @@ class Workspaces extends React.Component {
   }
 
   handleSearch = name => {
-    this.store.fetchList({ name, limit: 10 })
+    const params = { name, limit: 10 }
+    if (name) {
+      params.order = 'name'
+    }
+    this.store.fetchList(params)
   }
 
   renderList() {
