@@ -145,7 +145,7 @@ export default class S2IForm extends React.Component {
   handleImageSecretChange = (secret, item) => {
     const { formTemplate } = this.props
 
-    const repoUrl = get(item, 'repoUrl', '')
+    const repoUrl = get(item, '[0]repoUrl', '')
     set(
       formTemplate,
       `${this.prefix}metadata.annotations["kubesphere.io/repoUrl"]`,

@@ -33,6 +33,7 @@ export default class DropdownContent extends React.Component {
       dockerList: [],
       visible: false,
       isLoading: false,
+      imageRegistries: [],
     }
     this.store = props.store
     this.dropContentRef = React.createRef()
@@ -51,6 +52,15 @@ export default class DropdownContent extends React.Component {
 
   get registryUrl() {
     const { formTemplate } = this.props
+    if (!isEmpty(this.props.imageRegistries) && this.secretValue) {
+      const selectedSecret = this.props.imageRegistries.find(
+        item => item.value === this.secretValue
+      )
+      const url = get(selectedSecret, 'url', '')
+      if (url) {
+        return url
+      }
+    }
     return get(
       formTemplate,
       'metadata.annotations["kubesphere.io/registryUrl"]',
@@ -60,6 +70,7 @@ export default class DropdownContent extends React.Component {
 
   get imageName() {
     const { value } = this.props
+
     if (value.startsWith(this.registryUrl)) {
       const reg = new RegExp(`${this.registryUrl}(/)?`)
       return value.replace(reg, '')
@@ -68,9 +79,7 @@ export default class DropdownContent extends React.Component {
   }
 
   get secretsOptions() {
-    const { imageRegistries = [] } = this.props
-
-    const options = imageRegistries.map(item => ({
+    const options = this.props.imageRegistries.map(item => ({
       label: `${item.url} (${item.value})`,
       value: item.value,
       url: item.url,

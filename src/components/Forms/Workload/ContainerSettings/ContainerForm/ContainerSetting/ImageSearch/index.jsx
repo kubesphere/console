@@ -64,6 +64,19 @@ export default class ImageSearch extends React.Component {
     return get(result, `[${result.length - 1}]`, ':latest').slice(1)
   }
 
+  componentDidMount() {
+    const { formTemplate } = this.props
+    const selectedImage = get(
+      formTemplate,
+      'metadata.annotations["kubesphere.io/imageName"]'
+    )
+    const image = get(formTemplate, 'image', '')
+    if (!selectedImage && image) {
+      const secret = get(formTemplate, 'pullSecret')
+      this.getImageDetail({ image, secret })
+    }
+  }
+
   handleEnter = params => {
     if (!globals.config.enableImageSearch) {
       return

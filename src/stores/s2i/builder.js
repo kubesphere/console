@@ -89,6 +89,19 @@ export default class S2IBuilderStore extends Base {
         '-'
       )}-${get(data, 'spec.config.tag')}-${generateId(3)}`.slice(-63)
     }
+    const repoUrl = get(
+      data,
+      'metadata.annotations["kubesphere.io/repoUrl"]',
+      ''
+    )
+    const imageName = get(data, 'spec.config.imageName', '')
+
+    if (repoUrl && !imageName.startsWith(repoUrl)) {
+      const totalImageName = repoUrl.endsWith('/')
+        ? `${repoUrl}${imageName}`
+        : `${repoUrl}/${imageName}`
+      set(data, 'spec.config.imageName', totalImageName)
+    }
     if (data.isUpdateWorkload === false) {
       set(
         data,
