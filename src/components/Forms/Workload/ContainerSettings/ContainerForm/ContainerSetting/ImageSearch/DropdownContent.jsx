@@ -127,7 +127,10 @@ export default class DropdownContent extends React.Component {
 
   handleInputChange = (e, value) => {
     if (this.registryUrl) {
-      this.props.onChange(`${this.registryUrl}${value}`)
+      const compileValue = this.registryUrl.endsWith('/')
+        ? `${this.registryUrl}${value}`
+        : `${this.registryUrl}/${value}`
+      this.props.onChange(compileValue)
       return
     }
     this.props.onChange(value)
