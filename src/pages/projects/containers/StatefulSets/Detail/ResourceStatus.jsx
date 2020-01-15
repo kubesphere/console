@@ -35,18 +35,18 @@ class ResourceStatus extends Base {
     return true
   }
 
-  fetchData = () => {
+  fetchData = async () => {
     const { namespace } = this.store.detail
     const params = {
       name: this.serviceName,
       namespace,
     }
 
-    this.resourceStore.checkService(params).then(result => {
-      if (result.exist) {
-        this.resourceStore.fetchService(params)
-      }
-    })
+    await this.resourceStore.checkService(params)
+
+    if (this.resourceStore.isExistService) {
+      await this.resourceStore.fetchService(params)
+    }
   }
 
   renderServices() {
