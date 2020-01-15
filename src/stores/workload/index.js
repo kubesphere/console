@@ -16,8 +16,8 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, set, has, isEmpty } from 'lodash'
-import { action } from 'mobx'
+import { get, set, has, isString, isEmpty } from 'lodash'
+import { action, observable, extendObservable } from 'mobx'
 
 import { withDryRun } from 'utils'
 import { getWorkloadVolumes } from 'utils/workload'
@@ -31,6 +31,13 @@ import HpaStore from './hpa'
 import ServiceStore from '../service'
 
 export default class WorkloadStore extends Base {
+  @observable
+  counts = {
+    deployments: 0,
+    statefulsets: 0,
+    daemonsets: 0,
+  }
+
   constructor(module) {
     super()
     this.module = module
@@ -119,6 +126,30 @@ export default class WorkloadStore extends Base {
     }
 
     return detail
+  }
+
+  @action
+  async fetchCounts({ namespace }, modules = []) {
+    if (isString(modules)) {
+      modules = [modules]
+    }
+
+    if (!isEmpty(modules)) {
+      const results = await Promise.all(
+        modules.map(module =>
+          request.get(
+            `kapis/resources.kubesphere.io/v1alpha2/namespaces/${namespace}/${module}`
+          )
+        )
+      )
+
+      const counts = {}
+      modules.forEach((module, index) => {
+        counts[module] = results[index].total_count
+      })
+
+      extendObservable(this.counts, counts)
+    }
   }
 
   @action

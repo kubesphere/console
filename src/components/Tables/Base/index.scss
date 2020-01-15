@@ -5,31 +5,6 @@
   border-radius: $border-radius;
   box-shadow: $base-shadow;
   overflow: hidden;
-
-  :global {
-    .table-filter-bar {
-      .autosuggest {
-        .autosuggest-menu {
-          background-color: $dark-color06;
-          color: $white;
-          line-height: 32px;
-          padding: 4px 0;
-          border-radius: 4px;
-          left: 0;
-          .autosuggest-item {
-            border-radius: 0;
-            background-color: $dark-color07;
-            &:hover {
-              background-color: $dark-color06;
-            }
-          }
-          .is-active {
-            background-color: $dark-color06;
-          }
-        }
-      }
-    }
-  }
 }
 
 .button {
