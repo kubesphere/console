@@ -26,6 +26,7 @@ import { get, isEmpty, find } from 'lodash'
 
 import { generateId, getDisplayName } from 'utils'
 import { PATTERN_NAME } from 'utils/constants'
+import { compareVersion } from 'utils/app'
 import WorkspaceStore from 'stores/workspace'
 import AppVersionStore from 'stores/openpitrix/version'
 import AppFileStore from 'stores/openpitrix/file'
@@ -72,6 +73,7 @@ export default class AppTemplateForm extends React.Component {
     extendObservable(this, {
       baseFormData: this.initBaseFormData(),
       mode: 'yaml',
+      fetchValuesYaml: true,
     })
   }
 
@@ -84,8 +86,12 @@ export default class AppTemplateForm extends React.Component {
     }))
   }
 
+  get sortedVersions() {
+    return this.versions.sort((v1, v2) => compareVersion(v2.name, v1.name))
+  }
+
   get latestVersion() {
-    return get(this.versions, '[0].value', '')
+    return get(this.sortedVersions, '[0].value', '')
   }
 
   get workspaces() {
@@ -225,8 +231,8 @@ export default class AppTemplateForm extends React.Component {
 
     const packageFiles = this.fileStore.files
     const valuesYaml = packageFiles['values.yaml']
-
     this.valuesYaml = valuesYaml
+    this.fetchValuesYaml = false
   }
 
   @action
@@ -505,7 +511,7 @@ export default class AppTemplateForm extends React.Component {
   }
 
   renderParamsForm() {
-    if (this.fileStore.isLoading) {
+    if (this.fetchValuesYaml) {
       return (
         <div className="text-center padding-20">
           <Loading />
