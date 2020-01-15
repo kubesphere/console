@@ -189,13 +189,13 @@ class Volumes extends Base {
     },
     {
       title: t('Status'),
-      dataIndex: 'phase',
+      dataIndex: 'status',
       filters: this.getStatus(),
       filteredValue: this.getFilteredValue('status'),
       isHideable: true,
       search: true,
       width: '14%',
-      render: phase => (
+      render: ({ phase }) => (
         <Status
           type={phase}
           className={styles.status}
