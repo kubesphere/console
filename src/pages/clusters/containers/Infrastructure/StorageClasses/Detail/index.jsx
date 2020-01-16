@@ -22,6 +22,7 @@ import { observer, inject } from 'mobx-react'
 
 import StorageClassStore from 'stores/storageClass'
 
+import { Notify } from 'components/Base'
 import Base from 'core/containers/Base/Detail'
 import SetDefaultStorageClassModal from 'components/Modals/SetDefaultStorageClass'
 import EditYamlModal from 'components/Modals/EditYaml'
@@ -102,6 +103,23 @@ class StorageClassDetail extends Base {
       })
   }
 
+  validateSelect({ callback }) {
+    return (...args) => {
+      const { data = [] } = toJS(this.store.list)
+
+      const { associationPVCCount = 0 } =
+        data.find(
+          storageClass => storageClass.name === this.store.detail.name
+        ) || {}
+
+      return associationPVCCount ? this.notifyDeleteTips() : callback(...args)
+    }
+  }
+
+  notifyDeleteTips() {
+    Notify.error({ content: `${t('DEPENDENT_STORAGE_CLASS_DELETE_TIPS')}!` })
+  }
+
   getOperations = () => [
     {
       key: 'viewYaml',
@@ -122,7 +140,9 @@ class StorageClassDetail extends Base {
       icon: 'trash',
       text: t('Delete'),
       action: 'delete',
-      onClick: this.showModal('deleteModule'),
+      onClick: this.validateSelect({
+        callback: this.showModal('deleteModule'),
+      }),
     },
   ]
 

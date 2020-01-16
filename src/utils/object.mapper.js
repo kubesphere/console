@@ -385,6 +385,9 @@ const StorageClassMapper = item => ({
   reclaimPolicy: get(item, 'reclaimPolicy'),
   volumeBindingMode: get(item, 'volumeBindingMode'),
   allowVolumeExpansion: get(item, 'allowVolumeExpansion'),
+  associationPVCCount: Number(
+    get(item, 'metadata.annotations["kubesphere.io/pvc-count"]')
+  ),
   _originData: getOriginData(item),
 })
 
