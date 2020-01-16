@@ -18,14 +18,14 @@
 
 import React from 'react'
 import { observer, inject } from 'mobx-react'
-import { get } from 'lodash'
+import { get, includes } from 'lodash'
 
 import FORM_STEPS from 'configs/steps/storageclasses'
 import FORM_TEMPLATES from 'utils/form.templates'
 import { ICON_TYPES, MODULE_KIND_MAP } from 'utils/constants'
 import StorageClassStore from 'stores/storageClass'
 
-import { Avatar } from 'components/Base'
+import { Notify, Avatar } from 'components/Base'
 import CreateModal from 'components/Modals/Create'
 import Banner from 'components/Cards/Banner'
 import Base from 'core/containers/Base/List'
@@ -149,6 +149,42 @@ class StorageClasses extends Base {
         module={this.module}
       />
     )
+  }
+
+  getTableProps() {
+    const props = super.getTableProps()
+
+    return {
+      ...props,
+      selectActions: [
+        {
+          key: 'delete',
+          type: 'danger',
+          text: t('Delete'),
+          action: 'delete',
+          onClick: this.validateSelect({
+            callback: this.showModal('batchDeleteModal'),
+          }),
+        },
+      ],
+    }
+  }
+
+  validateSelect({ callback }) {
+    return (...args) => {
+      const { selectedRowKeys, data } = this.list
+      const dependent = data.some(
+        storageClass =>
+          includes(selectedRowKeys, storageClass.name) &&
+          storageClass.associationPVCCount
+      )
+
+      return dependent ? this.notifyDeleteTips() : callback(...args)
+    }
+  }
+
+  notifyDeleteTips() {
+    Notify.error({ content: `${t('DEPENDENT_STORAGE_CLASS_DELETE_TIPS')}!` })
   }
 }
 
