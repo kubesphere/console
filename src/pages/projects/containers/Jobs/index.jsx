@@ -41,6 +41,7 @@ import EditBasicInfoModal from 'components/Modals/EditBasicInfo'
 class Jobs extends Base {
   init() {
     this.store = new WorkloadStore(this.module)
+    this.store.fetchCounts(['jobs', 'cronjobs'])
     this.initWebsocket()
   }
 
@@ -150,10 +151,6 @@ class Jobs extends Base {
     },
   ]
 
-  updateCallback() {
-    this.props.rootStore.quota.fetch(this.props.match.params)
-  }
-
   handleRerun = item => {
     this.store.rerun(item).then(() => {
       this.getData()
@@ -169,7 +166,8 @@ class Jobs extends Base {
       <JobBanner
         module={this.module}
         {...this.props.match.params}
-        count={this.store.list.total}
+        jobsCount={this.store.counts.jobs}
+        cronjobsCount={this.store.counts.cronjobs}
       />
     )
   }

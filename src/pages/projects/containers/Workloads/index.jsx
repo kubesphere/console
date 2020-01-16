@@ -31,20 +31,15 @@ import WorkloadBaseList from './Base'
 export default class Workloads extends React.Component {
   constructor(props) {
     super(props)
-
-    this.deploymentsStore = new WorkloadStore('deployments')
-    this.statefulsetsStore = new WorkloadStore('statefulsets')
-    this.daemonsetsStore = new WorkloadStore('daemonsets')
+    this.store = new WorkloadStore(this.module)
   }
 
   componentDidMount() {
-    this.initialFetch()
-  }
-
-  initialFetch() {
-    this.deploymentsStore.fetchList(this.params)
-    this.statefulsetsStore.fetchList(this.params)
-    this.daemonsetsStore.fetchList(this.params)
+    this.store.fetchCounts(this.params, [
+      'deployments',
+      'statefulsets',
+      'daemonsets',
+    ])
   }
 
   get params() {
@@ -89,9 +84,9 @@ export default class Workloads extends React.Component {
       <WorkloadBanner
         module={this.module}
         {...this.params}
-        deploymentsCount={this.deploymentsStore.list.total}
-        statefulsetsCount={this.statefulsetsStore.list.total}
-        daemonsetsCount={this.daemonsetsStore.list.total}
+        deploymentsCount={this.store.counts.deployments}
+        statefulsetsCount={this.store.counts.statefulsets}
+        daemonsetsCount={this.store.counts.daemonsets}
       />
     )
   }
@@ -101,7 +96,7 @@ export default class Workloads extends React.Component {
       <WorkloadBaseList
         module={this.module}
         name={MODULE_KIND_MAP[this.module]}
-        store={this[`${this.module}Store`]}
+        store={this.store}
         formSteps={FORM_STEPS[this.module]}
         formTemplate={this.formTemplate}
         {...this.props}

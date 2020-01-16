@@ -532,8 +532,12 @@ label.checkbox {
   transition: all $trans-speed ease-in-out;
 
   &.has-value {
-    background-color: $light-color03;
-    border: solid 1px #d8dee5;
+    background-color: #fff;
+    border: solid 1px $dark-color01;
+
+    & > .icon.is-right {
+      display: block;
+    }
   }
 
   & > .icon.is-left {
@@ -541,6 +545,7 @@ label.checkbox {
   }
 
   & > .icon.is-right {
+    display: none;
     width: 56px;
     height: 28px;
     margin-top: 3px;
@@ -552,25 +557,37 @@ label.checkbox {
 
   .autosuggest {
     margin-top: 5px;
+
     .autosuggest-input > input {
       font-size: $body-size;
       background-color: transparent;
     }
 
     .autosuggest-menu {
-      border: none;
-      padding: 8px;
+      left: 0;
+      padding: 4px 0;
       min-width: 208px;
+      border: none;
       border-radius: $border-radius;
-      background-color: #ffffff;
+      background-color: $dark-color06;
       box-shadow: 0 4px 8px 0 rgba(48, 62, 90, 0.2);
+      color: $white;
+      line-height: 32px;
 
       & > li {
         font-size: $body-size;
-        border-radius: 20px;
         line-height: 20px;
         padding: 6px 12px;
         cursor: pointer;
+        border-radius: 0;
+        background-color: $dark-color07;
+        &:hover {
+          background-color: $dark-color06;
+        }
+
+        &.is-active {
+          background-color: $dark-color06;
+        }
       }
     }
   }

@@ -42,7 +42,7 @@ export default class WorkloadsBaseList extends Base {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.module !== this.props.module) {
-      this.store = nextProps.store
+      this.store.setModule(nextProps.module)
       this.store.list.reset()
       this.initWebsocket()
       this.getData()
@@ -181,10 +181,6 @@ export default class WorkloadsBaseList extends Base {
     )
 
     return desc
-  }
-
-  updateCallback() {
-    this.props.rootStore.quota.fetch(this.props.match.params)
   }
 
   handleYamlEdit = newObject => {
