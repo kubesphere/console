@@ -153,4 +153,7 @@ export default {
   CEPHRBD_FS_TYPE_DESC: '存储卷的文件系统',
   CEPHRBD_IMAGE_FORMAT_DESC: 'ceph 卷的选项，1 或 2，2需要填写 imageFeatures',
   CEPHRBD_IMAGE_FEATURES_DESC: 'ceph 集群的额外功能',
+
+  DEPENDENT_STORAGE_CLASS_DELETE_TIPS:
+    '请确认是否有资源依赖该存储类型。若存在依赖，请先将依赖的资源关闭，以免影响资源功能',
 }

@@ -127,4 +127,7 @@ export default {
   CEPHRBD_IMAGE_FORMAT_DESC: 'Ceph RBD image format, “1” or “2”',
   CEPHRBD_IMAGE_FEATURES_DESC:
     'This parameter is optional and should only be used if you set imageFormat to “2”.',
+
+  DEPENDENT_STORAGE_CLASS_DELETE_TIPS:
+    'Please check if the storage class are required by other resource. If there are resources dependent on the it, close them first',
 }

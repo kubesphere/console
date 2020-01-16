@@ -50,17 +50,17 @@ class VolumeDetail extends Base {
   fetchData = async params => {
     try {
       await this.store.fetchDetail(this.params, params)
-      const { namespace, storageClassName } = this.store.detail
 
       this.store.fetchVolumeMountStatus()
-
-      await this.storageclass.fetchDetail({
-        namespace,
-        name: storageClassName,
-      })
     } catch (e) {
       this.catch(e)
     }
+
+    const { namespace, storageClassName } = this.store.detail
+    await this.storageclass.fetchDetail({
+      namespace,
+      name: storageClassName,
+    })
   }
 
   getOperations = () => [
