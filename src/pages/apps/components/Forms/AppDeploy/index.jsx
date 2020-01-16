@@ -77,6 +77,7 @@ export default class AppTemplateForm extends React.Component {
     extendObservable(this, {
       baseFormData: this.initBaseFormData(),
       mode: 'yaml',
+      fetchValuesYaml: true,
     })
   }
 
@@ -179,6 +180,7 @@ export default class AppTemplateForm extends React.Component {
     const valuesYaml = packageFiles['values.yaml']
 
     this.valuesYaml = valuesYaml
+    this.fetchValuesYaml = false
   }
 
   @action
@@ -435,7 +437,7 @@ export default class AppTemplateForm extends React.Component {
   }
 
   renderParamsForm() {
-    if (this.fileStore.isLoading) {
+    if (this.fetchValuesYaml) {
       return (
         <div className="text-center padding-20">
           <Loading />
