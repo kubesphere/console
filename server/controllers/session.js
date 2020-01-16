@@ -118,7 +118,7 @@ const handleLogin = async ctx => {
 
   ctx.session = {}
   ctx.cookies.set('token', user.token)
-  ctx.cookies.set('currentUser', user.username)
+  ctx.cookies.set('currentUser', user.username, { httpOnly: false })
   ctx.cookies.set('referer', null)
 
   if (lastUser && lastUser !== user.username) {
