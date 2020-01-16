@@ -36,6 +36,10 @@ export default class ResourceStore {
 
   @action
   async checkService({ name, namespace }) {
+    if (!name || !namespace) {
+      return
+    }
+
     const result = await request.get(
       this.getServiceUrl({ name, namespace }),
       {},
@@ -45,8 +49,6 @@ export default class ResourceStore {
     )
 
     this.isExistService = result.exist
-
-    return Promise.resolve(result)
   }
 
   @action
