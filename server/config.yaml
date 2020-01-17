@@ -55,6 +55,7 @@ client:
       value: 'zh'
     - label: 'English'
       value: 'en'
+  defaultLang: 'en'
 
   # platform management navigations
   globalNavs:

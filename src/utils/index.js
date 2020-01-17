@@ -375,7 +375,7 @@ export const getBrowserLang = () => {
     return 'en'
   }
 
-  return 'zh'
+  return globals.config.defaultLang || 'en'
 }
 
 export const toPromise = func =>
