@@ -33,7 +33,7 @@ const init = () => {
   let lang = cookie('lang') || getBrowserLang()
 
   if (!locales[lang]) {
-    lang = 'zh'
+    lang = 'en'
     cookie('lang', lang)
   }
 

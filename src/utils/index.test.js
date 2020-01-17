@@ -371,7 +371,7 @@ it('getBrowserLang', () => {
   languageGetter.mockReturnValue('zh-CN')
   expect(getBrowserLang()).toBe('zh')
   languageGetter.mockReturnValue('de')
-  expect(getBrowserLang()).toBe('zh')
+  expect(getBrowserLang()).toBe('en')
 
   languageGetter.mockReturnValue(undefined)
   window.navigator.browserLanguage = 'zh-CN'

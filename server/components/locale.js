@@ -18,12 +18,14 @@
 
 const locales = require('koa-locales')
 
-const { root } = require('../libs/utils')
+const { root, getServerConfig } = require('../libs/utils')
+
+const clientConfig = getServerConfig().client
 
 module.exports = function(app) {
   locales(app, {
     functionName: 't',
-    defaultLocale: 'zh',
+    defaultLocale: clientConfig.defaultLang || 'en',
     queryField: 'lang',
     cookieField: 'lang',
     localeAlias: { 'zh-CN': 'zh', 'en-UK': 'en', 'en-US': 'en' },
