@@ -219,6 +219,7 @@ export default class ServiceBaseInfo extends React.Component {
                     name="metadata.labels['app.kubernetes.io/name']"
                     onChange={this.handleAppChange}
                     options={this.applications}
+                    loading={this.appStore.list.isLoading}
                     defaultValue=""
                   />
                 </Form.Item>
