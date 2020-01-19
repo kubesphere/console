@@ -94,8 +94,8 @@ export default {
   'Target image repository': '目标镜像仓库',
   'Rebuild successful, the image status will be refreshed soon':
     '重建成功，镜像状态稍后将会更新',
-  'Building image failed': '构建镜像失败',
-  'Building image successful': '构建镜像成功',
+  'Build image failed': '构建镜像失败',
+  'Build image successfully': '构建镜像成功',
   RevisionId: '修订版本号',
   'Image Builder': '构建镜像',
   'Last build environment': '最后一次构建环境',
