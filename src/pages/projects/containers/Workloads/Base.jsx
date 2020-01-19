@@ -68,7 +68,9 @@ export default class WorkloadsBaseList extends Base {
 
   async getData({ silent, ...params } = {}) {
     silent && (this.list.silent = true)
-    await this.store.fetchList({ ...this.params, ...params })
+    await this.store.fetchList({ ...this.params, ...params }).then(data => {
+      this.store.updateS2iStatus(data, this.params.namespace)
+    })
     this.list.silent = false
   }
 

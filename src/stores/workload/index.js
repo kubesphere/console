@@ -29,6 +29,7 @@ import Base from 'stores/base'
 
 import HpaStore from './hpa'
 import ServiceStore from '../service'
+import S2IBuilderStore from '../s2i/builder'
 
 export default class WorkloadStore extends Base {
   constructor(module) {
@@ -37,6 +38,7 @@ export default class WorkloadStore extends Base {
 
     this.hpaStore = new HpaStore()
     this.serviceStore = new ServiceStore()
+    this.s2iBuilderStore = new S2IBuilderStore()
   }
 
   get apiVersion() {
@@ -55,6 +57,21 @@ export default class WorkloadStore extends Base {
     `kapis/resources.kubesphere.io/v1alpha2/namespaces/${namespace}/${
       this.module
     }`
+
+  @action
+  async updateS2iStatus(data, namespace) {
+    if (!data.length) {
+      return
+    }
+    this.s2iBuilderStore
+      .updateWorkloadS2iStatus(data, namespace)
+      .then(shouldUpdate => {
+        if (shouldUpdate) {
+          this.list.update({ isLoading: true })
+          this.list.update({ isLoading: false })
+        }
+      })
+  }
 
   @action
   async fetchListByK8s(

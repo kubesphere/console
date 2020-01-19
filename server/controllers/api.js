@@ -18,7 +18,11 @@
 
 const fs = require('fs')
 const yaml = require('js-yaml/dist/js-yaml')
-const { send_dockerhub_request } = require('../libs/request')
+const {
+  send_dockerhub_request,
+  send_gateway_request,
+} = require('../libs/request')
+const { get, isArray, fromPairs } = require('lodash')
 const { getCache, root } = require('../libs/utils')
 const omit = require('lodash/omit')
 
@@ -54,7 +58,36 @@ const handleDockerhubProxy = async ctx => {
   })
 }
 
+const getS2iStatus = async (name, namespace, ctx) => {
+  const result = await send_gateway_request({
+    method: 'GET',
+    url: `/apis/devops.kubesphere.io/v1alpha1/namespaces/${namespace}/s2ibuilders/${name}`,
+    token: ctx.cookies.get('token'),
+    headers: ctx.headers,
+  })
+
+  return [name, get(result, 'status.lastRunState', '')]
+}
+
+const handleGetS2iStatus = async ctx => {
+  const data = ctx.request.query || {}
+  const names = isArray(data.names) ? data.names : [data.names]
+  const { namespace } = ctx.params
+  const promises = []
+  names.forEach(name => {
+    promises.push(getS2iStatus(name, namespace, ctx))
+  })
+  await Promise.all(promises)
+    .then(result => {
+      ctx.body = fromPairs(result)
+    })
+    .catch(error => {
+      ctx.body = { error: JSON.stringify(error) }
+    })
+}
+
 module.exports = {
   handleSampleData,
   handleDockerhubProxy,
+  handleGetS2iStatus,
 }

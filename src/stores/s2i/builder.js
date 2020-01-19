@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, set, unset, uniq } from 'lodash'
+import { get, set, unset, uniq, isEmpty } from 'lodash'
 import { action, observable } from 'mobx'
 import Base from 'stores/base'
 import { generateId } from 'utils'
@@ -36,6 +36,42 @@ export default class S2IBuilderStore extends Base {
 
   @observable detail = {}
   @observable isDetailLoading = true
+
+  updateWorkloadS2iStatus = async (items, namespace) => {
+    const s2iBuilderNames = {}
+    items.forEach((item, index) => {
+      Object.entries(get(item, 'labels', {})).some(arr => {
+        if (arr[0].startsWith('s2ibuilder')) {
+          s2iBuilderNames[arr[1]] = index
+        }
+        return false
+      })
+    })
+
+    if (isEmpty(s2iBuilderNames)) {
+      return
+    }
+
+    const statuses = await this.getMultiS2iBuilderStatus(
+      Object.keys(s2iBuilderNames),
+      namespace
+    )
+    Object.entries(statuses).forEach(arr => {
+      const [sortIndex, status] = arr
+      const index = s2iBuilderNames[sortIndex]
+      set(
+        items,
+        `[${index}].annotations.['devops.kubesphere.io/inithasbeencomplted']`,
+        status
+      )
+    })
+    return true
+  }
+
+  getMultiS2iBuilderStatus = async (names, namespace) =>
+    await request.get(`get_s2i_status/${namespace}`, {
+      names,
+    })
 
   getS2iSupportLanguage = async () => {
     const result = await this.getBuilderTemplate()

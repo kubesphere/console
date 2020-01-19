@@ -29,7 +29,11 @@ const {
   b2iFileProxy,
 } = require('./proxy')
 
-const { handleSampleData, handleDockerhubProxy } = require('./controllers/api')
+const {
+  handleSampleData,
+  handleDockerhubProxy,
+  handleGetS2iStatus,
+} = require('./controllers/api')
 
 const { handleLogin, handleLogout } = require('./controllers/session')
 
@@ -59,7 +63,7 @@ router
   .use(proxy('/(k)?api(s)?/(.*)', k8sResourceProxy))
   .use(proxy('/b2i_download/(.*)', b2iFileProxy))
   .get('/dockerhub/(.*)', parseBody, handleDockerhubProxy)
-
+  .get('/get_s2i_status/:namespace', parseBody, handleGetS2iStatus)
   .get('/sample/:app', parseBody, handleSampleData)
 
   // session
