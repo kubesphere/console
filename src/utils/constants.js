@@ -445,6 +445,8 @@ export const PATTERN_IMAGE_TAG = /^(.*?)([0-9a-zA-Z/]*)(:[-.\w]*[0-9a-zA-Z])*$/
 export const PATTERN_ES_USER_NAME = /^\b.{1,1024}\b$/
 export const PATTERN_ES_PASSWORD = /.{6,}/
 
+export const PATTERN_UTC_TIME = /^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]+Z/
+
 export const PIPELINE_TASKS = {
   All: [
     'git',

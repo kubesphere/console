@@ -38,6 +38,8 @@ export default class ContainerStore {
     isLoading: true,
   }
 
+  watchHandler = null
+
   @action
   async fetchDetail({ namespace, podName, containerName }) {
     this.isLoading = true
@@ -59,20 +61,41 @@ export default class ContainerStore {
   }
 
   @action
-  async fetchLogs({ namespace, podName, silent, ...params }) {
+  async watchLogs({ namespace, podName, silent, ...params }, callback) {
     if (!silent) {
       this.logs.isLoading = true
     }
 
-    const result = await request.get(
-      `api/v1/namespaces/${namespace}/pods/${podName}/log`,
-      params
-    )
+    if (params.follow) {
+      this.watchHandler = request.watch(
+        `/api/v1/namespaces/${namespace}/pods/${podName}/log`,
+        params,
+        data => {
+          this.logs = {
+            data,
+            isLoading: false,
+          }
+          callback()
+        }
+      )
+    } else {
+      const result = await request.get(
+        `api/v1/namespaces/${namespace}/pods/${podName}/log`,
+        params
+      )
 
-    this.logs = {
-      data: result,
-      isLoading: false,
+      this.logs = {
+        data: result,
+        isLoading: false,
+      }
+
+      callback()
     }
+  }
+
+  @action
+  stopWatchLogs() {
+    this.watchHandler && this.watchHandler.abort()
   }
 
   @action
