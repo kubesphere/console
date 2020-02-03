@@ -33,13 +33,13 @@ export default class DropdownContent extends React.Component {
       dockerList: [],
       visible: false,
       isLoading: false,
-      imageRegistries: [],
     }
     this.store = props.store
     this.dropContentRef = React.createRef()
   }
 
   static defaultProps = {
+    imageRegistries: [],
     className: '',
     value: '',
     onChange: () => {},
@@ -51,9 +51,9 @@ export default class DropdownContent extends React.Component {
   }
 
   get registryUrl() {
-    const { formTemplate } = this.props
-    if (!isEmpty(this.props.imageRegistries) && this.secretValue) {
-      const selectedSecret = this.props.imageRegistries.find(
+    const { formTemplate, imageRegistries } = this.props
+    if (!isEmpty(imageRegistries) && this.secretValue) {
+      const selectedSecret = imageRegistries.find(
         item => item.value === this.secretValue
       )
       const url = get(selectedSecret, 'url', '')
@@ -79,7 +79,9 @@ export default class DropdownContent extends React.Component {
   }
 
   get secretsOptions() {
-    const options = this.props.imageRegistries.map(item => ({
+    const { imageRegistries } = this.props
+
+    const options = imageRegistries.map(item => ({
       label: `${item.url} (${item.value})`,
       value: item.value,
       url: item.url,

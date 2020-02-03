@@ -153,11 +153,13 @@ export default class S2IBuilderStore extends Base {
       return
     }
 
+    const name = `${builderName}-${generateId(3)}`.slice(-40)
+
     return this.runStore.create({
       apiVersion: 'devops.kubesphere.io/v1alpha1',
       kind: 'S2iRun',
       metadata: {
-        name: `${builderName}-${generateId(3)}`,
+        name,
         namespace,
       },
       spec: {
