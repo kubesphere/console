@@ -21,40 +21,12 @@ import { observer } from 'mobx-react'
 import { get } from 'lodash'
 
 import { Card, Empty } from 'components/Base'
-import LogStore from 'stores/logging/query'
-import LogCard from 'components/Cards/LogQuery'
 import ContainerLog from 'components/Cards/ContainerLog'
 
 @observer
 class Logs extends React.Component {
   get store() {
     return this.props.detailStore
-  }
-
-  get isLogEnabled() {
-    return globals.app.hasKSModule('logging')
-  }
-
-  constructor(props) {
-    super(props)
-
-    if (this.isLogEnabled) {
-      const { namespace: namespaces } = this.store.detail
-      const {
-        containerName: containers,
-        podName: pods,
-      } = this.props.match.params
-
-      this.logStore = new LogStore({
-        pods,
-        pathParams: {
-          namespaces,
-        },
-        containers,
-        size: 50,
-        end_time: Date.now(),
-      })
-    }
   }
 
   render() {
@@ -66,11 +38,7 @@ class Logs extends React.Component {
       )
     }
 
-    if (!this.isLogEnabled) {
-      return <ContainerLog {...this.props.match.params} />
-    }
-
-    return <LogCard store={this.logStore} realTime />
+    return <ContainerLog {...this.props.match.params} />
   }
 }
 
