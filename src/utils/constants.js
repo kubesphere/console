@@ -52,8 +52,8 @@ export const CRONJOB_STATUS = [
 ]
 
 export const VOLUME_STATUS = [
-  { text: 'VOLUME_STATUS_BOUND', value: 'Bound' },
-  { text: 'VOLUME_STATUS_LOST', value: 'Lost' },
+  { text: 'VOLUME_STATUS_BOUND', value: 'bound' },
+  { text: 'VOLUME_STATUS_LOST', value: 'lost' },
   { text: 'VOLUME_STATUS_PENDING', value: 'pending' },
 ]
 
