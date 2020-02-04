@@ -87,7 +87,20 @@ export default class S2IBuilderStore extends Base {
       data.metadata.name = `${get(data, 'spec.config.imageName', '').replace(
         /[_/:]/g,
         '-'
-      )}-${get(data, 'spec.config.tag')}-${generateId(3)}`
+      )}-${get(data, 'spec.config.tag')}-${generateId(3)}`.slice(-63)
+    }
+    const repoUrl = get(
+      data,
+      'metadata.annotations["kubesphere.io/repoUrl"]',
+      ''
+    )
+    const imageName = get(data, 'spec.config.imageName', '')
+
+    if (repoUrl && !imageName.startsWith(repoUrl)) {
+      const totalImageName = repoUrl.endsWith('/')
+        ? `${repoUrl}${imageName}`
+        : `${repoUrl}/${imageName}`
+      set(data, 'spec.config.imageName', totalImageName)
     }
     if (data.isUpdateWorkload === false) {
       set(
@@ -140,11 +153,13 @@ export default class S2IBuilderStore extends Base {
       return
     }
 
+    const name = `${builderName}-${generateId(3)}`.slice(-40)
+
     return this.runStore.create({
       apiVersion: 'devops.kubesphere.io/v1alpha1',
       kind: 'S2iRun',
       metadata: {
-        name: `${builderName}-${generateId(3)}`,
+        name,
         namespace,
       },
       spec: {

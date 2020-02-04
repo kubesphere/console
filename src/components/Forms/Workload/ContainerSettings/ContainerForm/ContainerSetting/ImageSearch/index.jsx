@@ -22,7 +22,7 @@ import classnames from 'classnames'
 import moment from 'moment-mini'
 import { Icon, Loading } from '@pitrix/lego-ui'
 
-import { getDocsUrl, generateId, formatSize } from 'utils'
+import { getDocsUrl, formatSize } from 'utils'
 
 import { PATTERN_IMAGE, PATTERN_IMAGE_TAG } from 'utils/constants'
 import { Form, Button } from 'components/Base'
@@ -64,27 +64,29 @@ export default class ImageSearch extends React.Component {
     return get(result, `[${result.length - 1}]`, ':latest').slice(1)
   }
 
+  componentDidMount() {
+    const { formTemplate } = this.props
+    const selectedImage = get(
+      formTemplate,
+      'metadata.annotations["kubesphere.io/imageName"]'
+    )
+    const image = get(formTemplate, 'image', '')
+    if (!selectedImage && image) {
+      const secret = get(formTemplate, 'pullSecret')
+      this.getImageDetail({ image, secret })
+    }
+  }
+
   handleEnter = params => {
     if (!globals.config.enableImageSearch) {
       return
     }
     const { logo = '', short_description = '' } = params || {}
-    const { formTemplate, type } = this.props
+    const { formTemplate } = this.props
 
     const secret = get(formTemplate, 'pullSecret')
     const image = get(formTemplate, 'image', '')
 
-    if (type === 'add') {
-      set(
-        formTemplate,
-        'name',
-        `${image
-          .toLowerCase()
-          .split(':')[0]
-          .replace(/[/.]*/g, '')}-${generateId()}`
-      )
-      this.context.forceUpdate()
-    }
     if (this.image && image === this.image) {
       return
     }
