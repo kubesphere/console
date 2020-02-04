@@ -1,27 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title><% title %></title>
+    <link rel="icon" href="/assets/favicon.ico" type="image/x-icon" />
+    <style>
+      <%- include('../public/error.css') %>
+    </style>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title><% title %></title>
-  <link rel="icon" href="/assets/favicon.ico" type="image/x-icon" />
-  <style>
-    <%- include('../public/error.css') %>
-  </style>
-</head>
-
-<body>
-  <div class="wrapper">
-    <img src="/assets/500.svg" alt="">
-    <h1>Internal Server Error</h1>
-    <p>
-      <span> 🙇 </span>
-      <span><%- t('INTERNAL_SERVER_ERROR_TIP') %></span>
-      <a href="" onclick="window.reload()"><%- t('Reload') %></a>
-    </p>
-  </div>
-</body>
-
+  <body>
+    <div class="wrapper">
+      <img src="/assets/500.svg" alt="" />
+      <h1>Internal Server Error</h1>
+      <p>
+        <span> 🙇 </span>
+        <span><%- t('INTERNAL_SERVER_ERROR_TIP') %></span>
+        <% if (message) { %>
+        <span>: <%- t(message) %></span>
+        <% } %>
+        <a href="" onclick="window.reload()"><%- t('Reload') %></a>
+      </p>
+    </div>
+  </body>
 </html>
