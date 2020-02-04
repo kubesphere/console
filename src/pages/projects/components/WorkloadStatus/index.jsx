@@ -34,7 +34,7 @@ export default function WorkloadStatus({ data, module }) {
       <div className={styles.status}>
         <Status
           type={statusResult}
-          name={t(S2I_STATUS_DESC[statusResult])}
+          name={t(S2I_STATUS_DESC[statusResult] || statusResult)}
           flicker
         />
       </div>
