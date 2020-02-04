@@ -71,10 +71,8 @@ export default class TaintManagementModal extends React.Component {
   getCommonTaints = props => {
     const { nodes } = props
 
-    if (isEmpty(nodes)) {
+    if (isEmpty(nodes) || nodes.length === 1) {
       return [{}]
-    } else if (nodes.length === 1) {
-      return this.getTaints(nodes[0])
     }
 
     const result = nodes.reduce((prev, cur) => ({
@@ -87,7 +85,9 @@ export default class TaintManagementModal extends React.Component {
   getDifferentTaints = node => {
     const taints = this.getTaints(node)
     const result = taints.filter(
-      taint => !this.commonTaintsKeys.includes(taint.key)
+      taint =>
+        (isEmpty(taint.key) && isEmpty(taint.value)) ||
+        !this.commonTaintsKeys.includes(taint.key)
     )
 
     return isEmpty(result) ? [{}] : result
@@ -171,7 +171,11 @@ export default class TaintManagementModal extends React.Component {
     )
 
   renderCommonTaints() {
-    const { commonTaints } = this.state
+    const { nodes, commonTaints } = this.state
+
+    if (isEmpty(nodes) || nodes.length === 1) {
+      return null
+    }
 
     return (
       <div className={styles.node}>
@@ -184,6 +188,8 @@ export default class TaintManagementModal extends React.Component {
   renderNodeTaints() {
     const { nodes, commonTaints } = this.state
 
+    const noCommonTaints = isEmpty(nodes) || nodes.length === 1
+
     return nodes.map((node, index) => {
       const taints = this.getDifferentTaints(node)
 
@@ -193,7 +199,7 @@ export default class TaintManagementModal extends React.Component {
           <TaintInput
             common={commonTaints}
             value={taints}
-            onSelect={this.handleSelect(index)}
+            onSelect={noCommonTaints ? null : this.handleSelect(index)}
             onChange={this.handleChange(node, index)}
           />
         </div>
