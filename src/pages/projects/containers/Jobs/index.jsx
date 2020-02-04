@@ -32,7 +32,7 @@ import { Avatar } from 'components/Base'
 import Base from 'core/containers/Base/List'
 import JobBanner from 'projects/components/JobBanner'
 import StatusReason from 'projects/components/StatusReason'
-import WorkloadStatus from 'projects/components/WorkloadStatus'
+import JobStatus from 'projects/components/JobStatus'
 import CreateModal from 'components/Modals/Create'
 import EditBasicInfoModal from 'components/Modals/EditBasicInfo'
 
@@ -158,7 +158,7 @@ class Jobs extends Base {
   }
 
   renderStatus = (status, record) => (
-    <WorkloadStatus data={record} module={this.module} />
+    <JobStatus data={record} module={this.module} />
   )
 
   renderHeader() {

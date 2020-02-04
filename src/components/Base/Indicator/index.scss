@@ -34,6 +34,7 @@
   &.successful,
   &.ready,
   &.running,
+  &.jobrunning,
   &.active,
   &.normal,
   &.bound,
@@ -45,6 +46,12 @@
 
     &::before {
       background-color: $green;
+    }
+  }
+
+  &.jobrunning {
+    &.flicker {
+      animation: flicker 1.5s linear infinite;
     }
   }
 
