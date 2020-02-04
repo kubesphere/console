@@ -129,12 +129,14 @@ class UsageRanking extends React.Component {
                   size={40}
                 />
                 <div className={styles.text}>
-                  <div>
-                    {link ? (
-                      <Link to={link}>{workloadName}</Link>
-                    ) : (
-                      workloadName
-                    )}
+                  <div className="relative" data-tooltip={workloadName}>
+                    <div>
+                      {link ? (
+                        <Link to={link}>{workloadName}</Link>
+                      ) : (
+                        workloadName
+                      )}
+                    </div>
                   </div>
                   <p>{t(app.owner_kind)}</p>
                 </div>
