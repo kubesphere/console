@@ -193,7 +193,7 @@ export default class RepoSelectForm extends React.Component {
   }
 
   renderForm() {
-    const { project_id } = this.props
+    const { project_id, enableTypeChange } = this.props
     if (this.source_type === 'github') {
       return (
         <GithubForm
@@ -212,6 +212,7 @@ export default class RepoSelectForm extends React.Component {
           handleSubmit={this.handleSubmit}
           project_id={project_id}
           showCredential={this.showCreateCredential}
+          enableTypeChange={enableTypeChange}
         />
       )
     }
