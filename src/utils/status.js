@@ -25,11 +25,14 @@ export const getDeployStatus = ({
   annotations = {},
 }) => {
   if (hasS2i) {
-    return `${get(
+    const s2iStatus = get(
       annotations,
       "['devops.kubesphere.io/inithasbeencomplted']",
       'Running'
-    )}`
+    )
+    if (s2iStatus !== 'Successful') {
+      return s2iStatus
+    }
   }
 
   if (

@@ -127,6 +127,10 @@ export default class ContainerStore {
       null,
       () => true
     )
+
+    if (get(result, 'Code', 200) !== 200) {
+      result.status = 'failed'
+    }
     return ObjectMapper.imageBlob(result)
   }
 }
