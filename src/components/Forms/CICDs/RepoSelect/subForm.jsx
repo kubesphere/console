@@ -87,6 +87,15 @@ export default class RepoSelectForm extends React.Component {
           (value, key) => key && key.startsWith('discover') && isEmpty(value)
         ),
       }
+      // initial single_svn type in edit
+      if (this.source_type === 'single_svn') {
+        this.store.formData = {
+          svn_source: {
+            type: 'single_svn',
+            ...this.store.formData.single_svn_source,
+          },
+        }
+      }
     }
   }
 
@@ -157,15 +166,15 @@ export default class RepoSelectForm extends React.Component {
 
   renderTypes() {
     const { enableTypeChange } = this.props
-
+    const sourceType =
+      this.source_type === 'single_svn' ? 'svn' : this.source_type
     return (
       <ul className={styles.repoTypes}>
         {REPO_TYPES.map(type => (
           <li
             className={classNames({
-              [styles.selectType]: type.value === this.source_type,
-              [styles.disabled]:
-                !enableTypeChange && this.source_type !== type.value,
+              [styles.selectType]: type.value === sourceType,
+              [styles.disabled]: !enableTypeChange && sourceType !== type.value,
             })}
             key={type.value}
             data-type={type.value}
@@ -173,7 +182,7 @@ export default class RepoSelectForm extends React.Component {
           >
             <Icon
               name={type.icon}
-              type={type.value === this.source_type ? 'light' : 'dark'}
+              type={type.value === sourceType ? 'light' : 'dark'}
               size={32}
             />
             <span>{type.name}</span>
