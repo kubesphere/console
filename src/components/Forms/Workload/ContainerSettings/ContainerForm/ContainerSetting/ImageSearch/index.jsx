@@ -55,7 +55,9 @@ export default class ImageSearch extends React.Component {
 
   get selectedImage() {
     const { formTemplate } = this.props
-    return get(formTemplate, 'metadata.annotations["kubesphere.io/image"]')
+    const image = get(formTemplate, 'image', '')
+
+    return get(globals.cache, `[${image}]`)
   }
 
   get tag() {
@@ -66,15 +68,16 @@ export default class ImageSearch extends React.Component {
 
   componentDidMount() {
     const { formTemplate } = this.props
-    const selectedImage = get(
-      formTemplate,
-      'metadata.annotations["kubesphere.io/imageName"]'
-    )
+
     const image = get(formTemplate, 'image', '')
-    if (!selectedImage && image) {
+    if (!this.selectedImage && image) {
       const secret = get(formTemplate, 'pullSecret')
       this.getImageDetail({ image, secret })
     }
+  }
+
+  componentWillUnMount() {
+    this.isUnMounted = true
   }
 
   handleEnter = params => {
@@ -94,24 +97,23 @@ export default class ImageSearch extends React.Component {
   }
 
   getImageDetail = async ({ image, secret, ...rest }) => {
-    const { namespace, formTemplate } = this.props
+    const { namespace } = this.props
     if (!image) {
       return
     }
     this.image = image
 
     this.setState({ isLoading: true })
-    let selectedImage = await this.store.getImageDetail({
+    const result = await this.store.getImageDetail({
       namespace,
       image,
       secret,
     })
-    selectedImage = { ...selectedImage, ...rest, image }
-    set(
-      formTemplate,
-      'metadata.annotations["kubesphere.io/image"]',
-      selectedImage
-    )
+    const selectedImage = { ...result, ...rest, image }
+    set(globals, `cache[${image}]`, selectedImage)
+    if (this.isUnMounted) {
+      return
+    }
     if (!isEmpty(selectedImage.exposedPorts)) {
       this.setState({ showPortsTips: true })
     }
@@ -119,12 +121,7 @@ export default class ImageSearch extends React.Component {
   }
 
   handleFillPorts = () => {
-    const selectedImage = get(
-      this.props.formTemplate,
-      'metadata.annotations["kubesphere.io/image"]',
-      selectedImage
-    )
-    const ports = selectedImage.exposedPorts.map(port => {
+    const ports = this.selectedImage.exposedPorts.map(port => {
       const protocol = port.split('/')[1]
       const containerPort = Number(port.split('/')[0])
       return {
