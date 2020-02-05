@@ -264,12 +264,14 @@ export const getPodStatusAndRestartCount = pod => {
     }
 
     conditions.forEach(item => {
-      if (
-        item.type === 'Unschedulable'
-          ? item.status === 'True'
-          : item.status === 'False'
-      ) {
-        status = 'Pending'
+      if (status === 'Running') {
+        if (
+          item.type === 'Unschedulable'
+            ? item.status === 'True'
+            : item.status === 'False'
+        ) {
+          status = 'Pending'
+        }
       }
 
       if (item.type === 'Ready') {
