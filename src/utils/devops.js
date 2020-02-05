@@ -33,7 +33,7 @@ export const updatePipelineParams = data => {
   const { multi_branch_pipeline, pipeline, type, ...rest } = data
   if (multi_branch_pipeline) {
     rest && Object.assign(data.multi_branch_pipeline, rest)
-    data.type = 'multi-branch-pipeline'
+    data.type = 'multi_branch_pipeline'
     deleteUnenableAttrs(data.multi_branch_pipeline)
   } else {
     if (data.pipeline) {
