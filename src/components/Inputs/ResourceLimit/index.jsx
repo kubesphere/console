@@ -184,11 +184,11 @@ export default class ResourceLimit extends React.Component {
   }
 
   getLimit(value) {
-    return value === Infinity ? t('No Limit') : value
+    return value === Infinity ? t('No Limit') : value || ''
   }
 
   getRequest(value) {
-    return value === 0 ? t('No Request') : value
+    return value === 0 ? t('No Request') : value || ''
   }
 
   checkError = state => {

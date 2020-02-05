@@ -154,22 +154,52 @@ export const getWorkloadStatus = (record, module) => {
   return { status, reason }
 }
 
-export const getPodStatusAndRestartCount = pod => {
-  const conditions = pod.status.conditions || []
-  let status = pod.status.phase || ''
-  let restarts = 0
-  let initializing = false
+export const getContainerStatus = ({ state = {}, ready } = {}) => {
+  let status = 'waiting'
+  const keys = Object.keys(state)
 
-  const readyCondition = conditions
-    ? conditions.find(cd => cd.type === 'Ready')
-    : ''
-
-  if (!isEmpty(pod.status.reason)) {
-    status = pod.status.reason
+  if (keys.length === 0) {
+    status = 'waiting'
+  } else if (keys.length === 1) {
+    status = keys[0]
+  } else {
+    status = keys[0]
+    keys.forEach(key => {
+      if (state[status].startedAt < state[key].startedAt) {
+        status = key
+      }
+    })
   }
 
-  if (!isEmpty(pod.status.initContainerStatuses)) {
-    pod.status.initContainerStatuses.forEach((container, index) => {
+  let reason = get(state, `${status}.reason`, '')
+
+  if (!ready && status === 'running') {
+    status = 'waiting'
+    reason = 'ContainerNotReady'
+  }
+
+  return { reason, status }
+}
+
+export const getPodStatusAndRestartCount = pod => {
+  const {
+    phase = '',
+    reason = '',
+    containerStatuses,
+    initContainerStatuses = [],
+    conditions = [],
+  } = pod.status || {}
+  let status = phase
+  let restarts = 0
+  let initializing = false
+  let readyCondition
+
+  if (!isEmpty(reason)) {
+    status = reason
+  }
+
+  if (!isEmpty(initContainerStatuses)) {
+    initContainerStatuses.forEach((container, index) => {
       restarts += Number(container.restartCount)
       const waiting = get(container, 'state.waiting')
       const terminated = get(container, 'state.terminated')
@@ -202,10 +232,10 @@ export const getPodStatusAndRestartCount = pod => {
     })
   }
 
-  if (!initializing && !isEmpty(pod.status.containerStatuses)) {
+  if (!initializing && !isEmpty(containerStatuses)) {
     let hasRunning = false
     restarts = 0
-    pod.status.containerStatuses.forEach(container => {
+    containerStatuses.forEach(container => {
       restarts += Number(container.restartCount)
 
       const waiting = get(container, 'state.waiting')
@@ -232,10 +262,24 @@ export const getPodStatusAndRestartCount = pod => {
     if (status === 'Completed' && hasRunning) {
       status = 'Running'
     }
+
+    conditions.forEach(item => {
+      if (
+        item.type === 'Unschedulable'
+          ? item.status === 'True'
+          : item.status === 'False'
+      ) {
+        status = 'Pending'
+      }
+
+      if (item.type === 'Ready') {
+        readyCondition = item
+      }
+    })
   }
 
   if (get(pod, 'metadata.deletionTimestamp')) {
-    status = pod.status.reason === 'NodeLost' ? 'UnKnown' : 'Terminating'
+    status = reason === 'NodeLost' ? 'UnKnown' : 'Terminating'
   }
 
   let type = 'waiting'
@@ -260,7 +304,11 @@ export const getPodStatusAndRestartCount = pod => {
     case 'Pending':
       {
         const cds = sortBy(
-          conditions.filter(cd => cd.status === 'False'),
+          conditions.filter(item =>
+            item.type === 'Unschedulable'
+              ? item.status === 'True'
+              : item.status === 'False'
+          ),
           'lastTransitionTime'
         )
         status = get(cds, '[0].reason', status)

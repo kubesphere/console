@@ -35,7 +35,7 @@ const defaultParser = value =>
 
 export default class StringInput extends React.Component {
   static propTypes = {
-    value: PropTypes.string,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
     stringify: PropTypes.func,
     parser: PropTypes.func,
     onChange: PropTypes.func,

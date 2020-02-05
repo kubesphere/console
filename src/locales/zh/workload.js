@@ -573,6 +573,7 @@ export default {
   PostStartHookError: '执行 hook 报错',
   ContainersNotInitialized: '容器未初始化',
   ContainersNotReady: '容器没有准备就绪',
+  ContainerNotReady: '容器没有准备就绪',
   ContainerCreating: '容器创建中',
   PodInitializing: '容器组初始化中',
   DockerDaemonNotReady: 'Docker 还没有完全启动',
