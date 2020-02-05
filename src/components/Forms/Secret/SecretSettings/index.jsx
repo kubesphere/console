@@ -186,7 +186,7 @@ export default class SecretSettings extends React.Component {
           <Column>
             <Form.Item
               label={t('Registry Address')}
-              desc={t("Needn't Protocol. ex: docker.io")}
+              desc={t('Example: docker.io')}
               rules={[
                 { required: true, message: t('Please input registry address') },
                 { validator: this.dataValidator },

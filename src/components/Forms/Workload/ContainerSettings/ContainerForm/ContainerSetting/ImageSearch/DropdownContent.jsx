@@ -56,8 +56,11 @@ export default class DropdownContent extends React.Component {
       const selectedSecret = imageRegistries.find(
         item => item.value === this.secretValue
       )
-      const url = get(selectedSecret, 'url', '')
+
+      let url = get(selectedSecret, 'url', '')
       if (url) {
+        // remove url scheme
+        url = url.replace(/^(http(s)?:\/\/)?(.*)$/, '$3')
         return url
       }
     }

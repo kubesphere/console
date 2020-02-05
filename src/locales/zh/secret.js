@@ -37,6 +37,7 @@ export default {
 
   SECRET_NO_CHINESE_CODE_DESC: '密钥中不能包含中文字符',
 
+  'Registry Address': '仓库地址',
   'Registry verify failed': '镜像仓库校验失败',
   'Account Password Secret': '账号密码密钥',
 
@@ -47,5 +48,5 @@ export default {
 
   'DATA-KEY': '键(Key)',
   'DATA-VALUE': '值(Value)',
-  "Needn't Protocol. ex: docker.io": '不用添加协议名称, 例：docker.io',
+  'Example: docker.io': '例：docker.io',
 }
