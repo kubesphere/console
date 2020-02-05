@@ -264,7 +264,7 @@ export default class ContainerSetting extends React.Component {
     set(
       this.formTemplate,
       `${this.prefix}spec.initContainers`,
-      groupedContainers['init']
+      groupedContainers['init'] || []
     )
 
     // update image pull secrets

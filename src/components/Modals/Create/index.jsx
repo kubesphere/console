@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, isFunction } from 'lodash'
+import { get, isFunction, cloneDeep } from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Modal, Switch, Notify } from 'components/Base'
@@ -54,7 +54,7 @@ export default class CreateModal extends React.Component {
     super(props)
 
     this.state = {
-      formTemplate: props.formTemplate,
+      formTemplate: cloneDeep(props.formTemplate),
       isCodeMode: props.onlyCode || false,
       currentStep: 0,
     }
@@ -69,9 +69,10 @@ export default class CreateModal extends React.Component {
         this.setState({
           currentStep: 0,
           isCodeMode: nextProps.onlyCode || false,
-          formTemplate:
+          formTemplate: cloneDeep(
             formPersist.get(`${nextProps.module}_create_form`) ||
-            nextProps.formTemplate,
+              nextProps.formTemplate
+          ),
         })
       } else {
         formPersist.set(
