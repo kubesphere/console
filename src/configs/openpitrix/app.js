@@ -29,7 +29,7 @@ export const REVIEW_QUERY_STATUS = {
   unprocessed: 'submitted',
 }
 
-export const CLUSTER_QUERY_STATUS = 'active|stopped|ceased|pending|suspended'
+export const CLUSTER_QUERY_STATUS = 'active|stopped|pending|suspended'
 
 export const UPLOAD_STATUS_WORD = {
   init: 'UPLOAD_SUPPORT_FORMAT',
