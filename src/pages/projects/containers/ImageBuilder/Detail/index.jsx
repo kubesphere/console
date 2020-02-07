@@ -243,6 +243,7 @@ class ImageBuilderDetail extends Base {
           isSubmitting={isSubmitting}
         />
         <EditYamlModal
+          readOnly
           visible={viewYaml}
           detail={toJS(detail._originData)}
           onCancel={this.hideModal('viewYaml')}
