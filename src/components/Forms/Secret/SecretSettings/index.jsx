@@ -26,7 +26,7 @@ import {
   TextArea,
 } from '@pitrix/lego-ui'
 import { Form } from 'components/Base'
-import { CustomSelect } from 'components/Inputs'
+import { CustomSelect, SchemeInput } from 'components/Inputs'
 
 import { hasChinese } from 'utils'
 import { MODULE_KIND_MAP } from 'utils/constants'
@@ -192,7 +192,7 @@ export default class SecretSettings extends React.Component {
                 { validator: this.dataValidator },
               ]}
             >
-              <Input name="data['.dockerconfigjson'].url" />
+              <SchemeInput name="data['.dockerconfigjson'].url" />
             </Form.Item>
           </Column>
           <Column>

@@ -762,3 +762,16 @@ export const S2i_SUPPORTED_TYPES = ['java', 'nodejs', 'python']
 export const B2I_SUPPORTED_TYPES = ['jar', 'war', 'binary']
 
 export const MAX_SIZE_UPLOAD = 2 * 1024 * 1024
+
+export const SCHEME_OPTIONS = [
+  {
+    label: 'HTTP://',
+    value: 'http://',
+  },
+  {
+    label: 'HTTPS://',
+    value: 'https://',
+  },
+]
+
+export const SCHEME_REG = /^(http(s)?:\/\/)?(.*)/
