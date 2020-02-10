@@ -31,7 +31,7 @@ export const getDeployStatus = ({
       'Running'
     )
     if (s2iStatus !== 'Successful') {
-      return s2iStatus
+      return `S2I_${s2iStatus}`
     }
   }
 
