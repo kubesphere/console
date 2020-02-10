@@ -161,13 +161,7 @@ export default class ImageBuilderLastRun extends React.Component {
   }
 
   render() {
-    const {
-      generation,
-      status,
-      imageName,
-      startTime,
-      name,
-    } = this.props.runDetail
+    const { count, status, imageName, startTime, name } = this.props.runDetail
     const { loading } = this.props
 
     if (loading) {
@@ -183,7 +177,7 @@ export default class ImageBuilderLastRun extends React.Component {
       >
         <li>
           <div className={styles.value}>
-            #{generation} {this.renderDetailInfo()}
+            #{count} {this.renderDetailInfo()}
           </div>
           <div className={styles.label}>{t('Build Times')}</div>
         </li>

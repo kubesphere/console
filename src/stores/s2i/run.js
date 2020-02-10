@@ -96,9 +96,9 @@ export default class S2irunStore extends Base {
 
   @action
   async fetchS2IRunRecords({
-    limit,
+    limit = 10,
     name,
-    page,
+    page = 1,
     order,
     reverse,
     workspace,
@@ -117,7 +117,7 @@ export default class S2irunStore extends Base {
     })
 
     if (limit !== Infinity) {
-      params.paging = `limit=${limit || 10},page=${page || 1}`
+      params.paging = `limit=${limit},page=${page}`
     }
 
     if (order) {
@@ -133,6 +133,9 @@ export default class S2irunStore extends Base {
       params
     )
     const data = result.items.map(this.mapper)
+    data.forEach((item, index) => {
+      item.count = result.total_count - index - 10 * (page - 1)
+    })
 
     this.list = {
       data: more ? [...this.list.data, ...data] : data,
@@ -199,6 +202,13 @@ export default class S2irunStore extends Base {
 
     if (!this.containerName) {
       const podsDetail = await request.get(`api/v1//namespaces/${logPath}`)
+      const containerID = get(
+        podsDetail,
+        'status.containerStatuses[0]containerID'
+      )
+      if (!containerID) {
+        return Promise.reject('container not ready')
+      }
       this.containerName = get(podsDetail, 'spec.containers[0].name', '')
     }
     const result = await request.get(`api/v1/namespaces/${logPath}/log`, {

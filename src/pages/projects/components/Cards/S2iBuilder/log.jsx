@@ -21,7 +21,7 @@ import { observer } from 'mobx-react'
 import { isFunction } from 'lodash'
 import classnames from 'classnames'
 import { Icon, Loading, Tooltip } from '@pitrix/lego-ui'
-
+import { Empty } from 'components/Base'
 import RunStore from 'stores/s2i/run'
 
 import styles from './index.scss'
@@ -37,6 +37,7 @@ export default class Log extends React.Component {
     super()
     this.state = {
       showLog: true,
+      isContainerPending: false,
     }
     this.store = new RunStore()
     this.refreshTimer = null
@@ -72,7 +73,11 @@ export default class Log extends React.Component {
     if (globals.app.hasKSModule('logging')) {
       await this.store.getLog(logURL)
     } else {
-      await this.store.fetchPodsLogs(logURL)
+      await this.store.fetchPodsLogs(logURL).catch(error => {
+        if (error === 'container not ready') {
+          this.setState({ isContainerPending: true })
+        }
+      })
     }
     this.handleScrollToBottom()
     if (logData.hasMore) {
@@ -170,6 +175,14 @@ export default class Log extends React.Component {
   }
 
   render() {
+    if (this.state.isContainerPending) {
+      return (
+        <div className={styles.logContainer}>
+          <Empty desc={'CONTAINER_REAL_TIME_LOGS_UNSUPPORTED_TIPS'} />
+        </div>
+      )
+    }
+
     return (
       <div className={styles.logContainer}>
         <div className={styles.title} onClick={this.toggleLog}>
