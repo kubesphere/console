@@ -84,10 +84,11 @@ export default class S2IBuilderStore extends Base {
 
   updateCreateData(data) {
     if (!data.metadata.name) {
-      data.metadata.name = `${get(data, 'spec.config.imageName', '').replace(
+      const _name = `${get(data, 'spec.config.imageName', '').replace(
         /[_/:]/g,
         '-'
-      )}-${get(data, 'spec.config.tag')}-${generateId(3)}`.slice(-63)
+      )}-${get(data, 'spec.config.tag')}`
+      data.metadata.name = `${_name.slice(-60)}-${generateId(3)}`
     }
     const repoUrl = get(
       data,
@@ -153,7 +154,7 @@ export default class S2IBuilderStore extends Base {
       return
     }
 
-    const name = `${builderName}-${generateId(3)}`.slice(-40)
+    const name = `${builderName.slice(-37)}-${generateId(3)}`
 
     return this.runStore.create({
       apiVersion: 'devops.kubesphere.io/v1alpha1',
