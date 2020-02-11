@@ -95,7 +95,7 @@ export default class Base {
     }
 
     if (repo || this.defaultRepo) {
-      conditions.repo = repo || this.defaultRepo
+      conditions.repo_id = repo || this.defaultRepo
     }
 
     return conditions
