@@ -125,10 +125,10 @@ export default class ContainerStore {
       `kapis/resources.kubesphere.io/v1alpha2/registry/blob`,
       params,
       null,
-      () => true
+      e => e
     )
 
-    if (get(result, 'Code', 200) !== 200) {
+    if (get(result, 'status', 'succeeded') !== 'succeeded') {
       result.status = 'failed'
     }
     return ObjectMapper.imageBlob(result)
