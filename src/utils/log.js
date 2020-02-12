@@ -74,7 +74,7 @@ export function esMark(
     return `${pre}[^\\w\\u4e00-\\u9fa5]{${
       isChineseWord || foreStringIsChinese ? 0 : 1
     },}${cur}`
-  })
+  }, '')
 
   if (!regexpString) {
     return [originText]
