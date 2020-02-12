@@ -120,7 +120,7 @@ export default class ProjectSelectModal extends React.Component {
     }
 
     if (
-      globals.app.hasPermission({ module: 'workspaces', action: 'edit' }) ||
+      globals.app.hasPermission({ module: 'workspaces', action: 'manage' }) ||
       globals.app.hasPermission({
         module: 'workspaces',
         action: 'view',

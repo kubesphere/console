@@ -67,6 +67,7 @@ class WorkspaceLayout extends Component {
     }
 
     if (
+      !globals.app.hasPermission({ module: 'workspaces', action: 'manage' }) &&
       !globals.app.hasPermission({
         module: 'workspaces',
         action: 'view',
