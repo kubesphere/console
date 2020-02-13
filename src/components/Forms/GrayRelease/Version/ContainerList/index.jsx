@@ -29,7 +29,7 @@ export default class ContainerList extends Base {
     return null
   }
 
-  renderContent() {
+  renderContainers() {
     const { value, disabled } = this.props
     return (
       <ul className={styles.list}>
