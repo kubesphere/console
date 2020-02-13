@@ -152,7 +152,6 @@ export default {
   FILE_MAX_PACKAGE: '配置包大小不能超过 2M',
   FILE_MAX_ICON: '图标大小不能超过 20KB',
   FILE_MAX_SCREENSHOTS: '截图大小不能超过 2M',
-  FILE_SCREENSHOTS_NOTE: '图片请上传 1280px * 720px 以内 jpg 或者 png 图片',
   UPLOAD_PACKAGE_OK_NOTE: '请上传配置包或上传的配置包不正确',
   'Delete picture': '删除图片',
   'Re-upload': '重新上传',

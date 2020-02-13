@@ -87,8 +87,6 @@ export const UPLOAD_CHECK_RULES = {
   screenshots: {
     format: /\.(png|jpg|jpeg)$/,
     size: 2 * 1024 * 1024,
-    maxHeight: 1280,
-    maxWidth: 720,
   },
 }
 

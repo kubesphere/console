@@ -24,7 +24,7 @@ import { Icon } from '@pitrix/lego-ui'
 import { get } from 'lodash'
 
 import { Image, Upload } from 'components/Base'
-import { UPLOAD_FILE_TYPES, UPLOAD_CHECK_RULES } from 'configs/openpitrix/app'
+import { UPLOAD_FILE_TYPES } from 'configs/openpitrix/app'
 
 import styles from './index.scss'
 
@@ -61,33 +61,11 @@ export default class Screenshots extends React.Component {
     } else {
       handleFileByBase64Str(file, async base64Str => {
         this.setState({ error: '' })
-        const img = await this.createImageElement(base64Str)
-        const { screenshots } = UPLOAD_CHECK_RULES
-        if (
-          img.height > screenshots.maxHeight ||
-          img.width > screenshots.maxWidth
-        ) {
-          this.setState({ error: t('FILE_SCREENSHOTS_NOTE') })
-        } else {
-          uploadScreenshot(base64Str, detail)
-        }
+        uploadScreenshot(base64Str, detail)
       })
     }
 
     return Promise.reject()
-  }
-
-  createImageElement(base64Str) {
-    return new Promise((resolve, reject) => {
-      const img = document.createElement('img')
-      img.src = `data:image/png;base64,${base64Str}`
-      img.onload = () => {
-        resolve(img)
-      }
-      img.onerror = err => {
-        reject(err)
-      }
-    })
   }
 
   render() {
@@ -134,7 +112,7 @@ export default class Screenshots extends React.Component {
             <div className={styles.error}>{t(this.state.error)}</div>
           ) : (
             <div className={styles.words}>
-              {len}/{MAX_LEN} {t('screenshots')} ({t('FILE_SCREENSHOTS_NOTE')})
+              {len}/{MAX_LEN} {t('screenshots')} ({t('FILE_MAX_SCREENSHOTS')})
               {len > 0 ? (
                 <label
                   className={styles.deleteAll}
