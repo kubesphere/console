@@ -138,12 +138,6 @@ class AlertingPolicy extends Base {
       ),
     },
     {
-      title: t('Monitoring Target Count'),
-      dataIndex: 'targetCount',
-      isHideable: true,
-      width: '24%',
-    },
-    {
       title: t('Monitoring Rules'),
       dataIndex: 'metrics',
       isHideable: true,
