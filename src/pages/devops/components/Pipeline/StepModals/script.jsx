@@ -20,7 +20,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { get } from 'lodash'
 
-import { observable } from 'mobx'
 import { observer } from 'mobx-react'
 import { Modal } from 'components/Base'
 import CodeEditor from 'components/Base/CodeEditor'
@@ -39,14 +38,18 @@ export default class Shell extends React.Component {
     onCancel() {},
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.edittingData.type === 'script') {
-      this.value = get(nextProps.edittingData.data, '[0].value.value', '')
-    }
+  constructor(props) {
+    super(props)
+    this.state = { value: '' }
   }
 
-  @observable
-  value = ''
+  static getDerivedStateFromProps(nextProps) {
+    if (nextProps.edittingData.type === 'script') {
+      const value = get(nextProps.edittingData.data, '[0].value.value', '')
+      return { value }
+    }
+    return null
+  }
 
   handleChange = value => {
     this.newValue = value

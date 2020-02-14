@@ -19,7 +19,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { observable } from 'mobx'
 import { observer } from 'mobx-react'
 import { Form, Modal } from 'components/Base'
 import { Input, Select } from '@pitrix/lego-ui'
@@ -42,11 +41,12 @@ export default class Checkout extends React.Component {
   constructor(props) {
     super(props)
     this.formRef = React.createRef()
+    this.state = { formData: {} }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.edittingData.type === 'checkout') {
-      this.formData = nextProps.edittingData.data.reduce((prev, arg) => {
+  static getDerivedStateFromProps(props) {
+    if (props.edittingData.type === 'checkout') {
+      const formData = props.edittingData.data.reduce((prev, arg) => {
         if (arg.key === 'scm') {
           const str = arg.value.value
           if (str) {
@@ -56,11 +56,10 @@ export default class Checkout extends React.Component {
         prev[arg.key] = arg.value.value
         return prev
       }, {})
+      return { formData }
     }
+    return null
   }
-
-  @observable
-  formData = {}
 
   handleOk = () => {
     this.formRef.current.validate(() => {
@@ -72,11 +71,11 @@ export default class Checkout extends React.Component {
             value: {
               isLiteral: false,
               value: `[$class: 'SubversionSCM', locations: [[cancelProcessOnExternalsFail: true,  ${
-                this.formData.credentialsId
-                  ? `credentialsId: '${this.formData.credentialsId}',`
+                this.state.formData.credentialsId
+                  ? `credentialsId: '${this.state.formData.credentialsId}',`
                   : ''
               } depthOption: 'infinity', ignoreExternalsOption: true, local: '.', remote: '${
-                this.formData.remote
+                this.state.formData.remote
               }']], quietOperation: true, workspaceUpdater: [$class: 'UpdateUpdater']]`,
             },
           },
@@ -106,7 +105,7 @@ export default class Checkout extends React.Component {
         closable={false}
         title={t('checkout (svn)')}
       >
-        <Form data={this.formData} ref={this.formRef}>
+        <Form data={this.state.formData} ref={this.formRef}>
           <Form.Item
             label={t('Credential ID')}
             desc={

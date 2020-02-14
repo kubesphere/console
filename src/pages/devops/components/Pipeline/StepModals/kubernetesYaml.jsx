@@ -19,7 +19,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { observable } from 'mobx'
 import { observer } from 'mobx-react'
 import { Modal } from 'components/Base'
 import CodeEditor from 'components/Base/CodeEditor'
@@ -38,17 +37,19 @@ export default class YamlEditor extends React.Component {
     onCancel() {},
   }
 
-  @observable
-  value = ''
+  constructor(props) {
+    super(props)
+    this.state = { value: '' }
+  }
 
   componentDidMount() {
     const { value } = this.props
-    this.value = value
+    this.state.value = value
   }
 
-  componentWillReceiveProps(nextProps) {
+  static getDerivedStateFromProps(nextProps) {
     const { value } = nextProps
-    this.value = value
+    return { value }
   }
 
   handleChange = value => {
@@ -76,7 +77,7 @@ export default class YamlEditor extends React.Component {
           className={styles.CodeEditor}
           name="script"
           mode="yaml"
-          value={this.value}
+          value={this.state.value}
           onChange={this.handleChange}
         />
       </Modal>

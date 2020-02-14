@@ -44,9 +44,10 @@ export default class JenkinsEdit extends React.Component {
     this.state = { value: props.defaultValue, isLoading: false }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.visible && !this.props.visible && nextProps.defaultValue) {
-      this.setState({ value: nextProps.defaultValue })
+  componentDidUpdate(prevProps) {
+    const { visible, defaultValue } = this.props
+    if (visible && !prevProps.visible && defaultValue) {
+      this.setState({ value: defaultValue })
     }
   }
 

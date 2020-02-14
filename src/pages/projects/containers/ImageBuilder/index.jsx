@@ -50,7 +50,7 @@ class ImageBuilder extends Base {
           this.freshTimer = setTimeout(this.handleFresh, 4000)
         }
       },
-      true
+      { fireImmediately: true }
     )
   }
 

@@ -42,7 +42,7 @@ export default class Pipeline extends React.Component {
   @observable
   showParamsModal = false
 
-  componentWillReceiveProps() {
+  componentDidUpdate() {
     if (this.draggerCref.current && !this.draggerCref.current.isMoved) {
       this.draggerCref.current.initialComponent &&
         this.draggerCref.current.initialComponent()
