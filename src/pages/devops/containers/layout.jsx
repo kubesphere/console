@@ -49,9 +49,9 @@ class DevOpsLayout extends Component {
     this.init(props.match.params)
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.match.params.project_id !== this.project) {
-      this.init(nextProps.match.params)
+  componentDidUpdate(prevProps) {
+    if (prevProps.match.params.project_id !== this.project) {
+      this.init(this.props.match.params)
     }
   }
 

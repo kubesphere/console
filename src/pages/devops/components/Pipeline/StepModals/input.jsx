@@ -19,7 +19,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { debounce, uniq } from 'lodash'
-import { observable, action, toJS } from 'mobx'
+import { action, toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import { Form, Modal } from 'components/Base'
 import { Mention, Alert } from '@pitrix/lego-ui'
@@ -44,32 +44,32 @@ export default class InputStep extends React.Component {
   constructor(props) {
     super(props)
     this.devopsStore = new DevopsStore()
-    this.state = { loading: false }
+    this.state = { loading: false, value: '', submitter: [] }
   }
 
-  componentWillReceiveProps(nextProps) {
+  static getDerivedStateFromProps(nextProps) {
     if (nextProps.edittingData.type === 'input') {
+      const nextState = {}
       nextProps.edittingData.data.forEach(param => {
         if (param.key === 'message') {
-          this.value = param.value.value
+          nextState.value = param.value.value
         }
         if (param.key === 'submitter') {
-          this.submitter = param.value.value.split(', ')
+          nextState.submitter = param.value.value.split(', ')
         }
       })
+      return nextState
     }
+    return null
   }
 
-  @observable
-  value = ''
-  @observable
-  submitter = []
-
   handleMessageChange = e => {
-    this.value = e.target.value
-    this.submitter = uniq(
-      (this.value.match(/@([\w-.]*)?/g) || []).map(str => str.slice(1))
-    )
+    this.setState({
+      value: e.target.value,
+      submitter: uniq(
+        (this.state.value.match(/@([\w-.]*)?/g) || []).map(str => str.slice(1))
+      ),
+    })
   }
 
   @action
@@ -118,14 +118,14 @@ export default class InputStep extends React.Component {
           key: 'message',
           value: {
             isLiteral: true,
-            value: this.value,
+            value: this.state.value,
           },
         },
         {
           key: 'submitter',
           value: {
             isLiteral: true,
-            value: this.submitter.join(', '),
+            value: this.state.submitter.join(', '),
           },
         },
       ],
@@ -153,7 +153,7 @@ export default class InputStep extends React.Component {
             rules={[{ required: true, message: t('This param is required') }]}
           >
             <MentionsInput
-              value={this.value}
+              value={this.state.value}
               onChange={this.handleMessageChange}
               placeholder={t('Can @somebody to help review')}
               markup="@__id__ "

@@ -43,10 +43,10 @@ export default class LogItem extends React.Component {
     this.timer = setInterval(this.handleRefresh, 4000)
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentDidUpdate(prevProps) {
     if (
       this.state.isExpand &&
-      nextProps.refreshFlag !== this.props.refreshFlag
+      prevProps.refreshFlag !== this.props.refreshFlag
     ) {
       this.store.handleResetStepLog()
       this.getLog()

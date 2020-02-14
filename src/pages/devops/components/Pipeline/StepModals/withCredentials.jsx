@@ -20,7 +20,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { get } from 'lodash'
 
-import { observable, action } from 'mobx'
+import { action } from 'mobx'
 import { observer } from 'mobx-react'
 import { Form, Modal } from 'components/Base'
 import { Input, Select } from '@pitrix/lego-ui'
@@ -58,36 +58,38 @@ export default class WithCredentials extends React.Component {
   constructor(props) {
     super(props)
     this.formRef = React.createRef()
+    this.state = {
+      formData: {},
+      credentialType: 'username_password',
+    }
   }
 
   componentDidMount() {
     this.props.store.getCredentials()
   }
 
-  componentWillReceiveProps(nextProps) {
+  static getDerivedStateFromProps(nextProps) {
     if (nextProps.edittingData.type === 'withCredentials') {
       const str = get(nextProps, 'edittingData.data.value', '')
       if (str) {
-        this.formData = groovyToJS(str)
-        this.setCredentialType(str)
+        const formData = groovyToJS(str)
+        const credentialType = this.setCredentialType(str)
+        return { formData, credentialType }
       }
     }
+    return null
   }
 
-  @observable
-  formData = {}
-  @observable
-  credentialType = 'username_password'
-
-  @action
   setCredentialType = str => {
     const typeReg = /\$\{\[([\w-]*)\(/
     const type = str.match(typeReg) && str.match(typeReg)[1]
     if (type) {
-      this.credentialType = Object.entries(typesDict).find(
+      const credentialType = Object.entries(typesDict).find(
         typeArr => typeArr[1] === type
       )[0]
+      return credentialType
     }
+    return null
   }
 
   @action
@@ -97,7 +99,7 @@ export default class WithCredentials extends React.Component {
     const selectedCredential = credentials.find(
       credential => credential.value === id
     )
-    this.credentialType = selectedCredential.type
+    this.state.credentialType = selectedCredential.type
   }
 
   handleOk = () => {
@@ -107,7 +109,7 @@ export default class WithCredentials extends React.Component {
         name: 'withCredentials',
         arguments: {
           isLiteral: false,
-          value: formatParams(formData, typesDict[this.credentialType]),
+          value: formatParams(formData, typesDict[this.state.credentialType]),
         },
         children: [],
       })
@@ -115,7 +117,7 @@ export default class WithCredentials extends React.Component {
   }
 
   renderParams = () => {
-    switch (this.credentialType) {
+    switch (this.state.credentialType) {
       case 'username_password':
         return (
           <React.Fragment>
@@ -173,7 +175,7 @@ export default class WithCredentials extends React.Component {
         closable={false}
         title={t('withCredentials')}
       >
-        <Form data={this.formData} ref={this.formRef}>
+        <Form data={this.state.formData} ref={this.formRef}>
           <Form.Item
             label={t('Credential ID')}
             rules={[{ required: true, message: t('This param is required') }]}

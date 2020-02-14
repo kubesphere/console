@@ -67,17 +67,17 @@ export default class CredentialModal extends React.Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.visible && !this.props.visible) {
+  componentDidUpdate(prevProps) {
+    if (this.props.visible && !prevProps.visible) {
       this.clearData()
-      if (nextProps.formTemplate) {
-        this.formData = nextProps.formTemplate
-        this.type = nextProps.formTemplate.type
+      if (this.props.formTemplate) {
+        this.formData = this.props.formTemplate
+        this.type = this.props.formTemplate.type
       }
-      if (nextProps.credentialType) {
-        this.type = nextProps.credentialType
-        this.formData.type = nextProps.credentialType
-        if (!this.kubeconfig && nextProps.credentialType === 'kubeconfig') {
+      if (this.props.credentialType) {
+        this.type = this.props.credentialType
+        this.formData.type = this.props.credentialType
+        if (!this.kubeconfig && this.props.credentialType === 'kubeconfig') {
           this.fetchKubeConfig()
         }
       }

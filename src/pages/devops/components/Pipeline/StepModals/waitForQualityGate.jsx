@@ -19,7 +19,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { observable } from 'mobx'
 import { observer } from 'mobx-react'
 import { Select } from '@pitrix/lego-ui'
 import { Form, Modal, Alert } from 'components/Base'
@@ -54,19 +53,19 @@ export default class WaitForQualityGate extends React.Component {
   constructor(props) {
     super(props)
     this.formRef = React.createRef()
+    this.state = { formData: {} }
   }
 
-  componentWillReceiveProps(nextProps) {
+  static getDerivedStateFromProps(nextProps) {
     if (nextProps.edittingData.type === 'waitForQualityGate') {
-      this.formData = nextProps.edittingData.data.reduce((prev, arg) => {
+      const formData = nextProps.edittingData.data.reduce((prev, arg) => {
         prev[arg.key] = arg.value.value
         return prev
       }, {})
+      return { formData }
     }
+    return null
   }
-
-  @observable
-  formData = {}
 
   handleOk = () => {
     const current = this.formRef.current || {}
@@ -99,7 +98,7 @@ export default class WaitForQualityGate extends React.Component {
         closable={false}
         title={t('waitForQualityGate')}
       >
-        <Form data={this.formData} ref={this.formRef}>
+        <Form data={this.state.formData} ref={this.formRef}>
           <Alert
             type="info"
             className={styles.info}

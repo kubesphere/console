@@ -20,7 +20,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { get } from 'lodash'
 
-import { observable } from 'mobx'
 import { observer } from 'mobx-react'
 import { Form, Modal } from 'components/Base'
 import { Input } from '@pitrix/lego-ui'
@@ -42,18 +41,18 @@ export default class Container extends React.Component {
   constructor(props) {
     super(props)
     this.formRef = React.createRef()
+    this.state = { formData: {} }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.edittingData.type === 'container') {
-      this.formData = {
-        name: get(nextProps.edittingData, 'data.value', ''),
+  static getDerivedStateFromProps(props) {
+    if (props.edittingData.type === 'container') {
+      const formData = {
+        name: get(props.edittingData, 'data.value', ''),
       }
+      return { formData }
     }
+    return null
   }
-
-  @observable
-  formData = {}
 
   handleOk = () => {
     const formData = this.formRef.current.getData()
@@ -82,7 +81,7 @@ export default class Container extends React.Component {
         closable={false}
         title={t('container')}
       >
-        <Form data={this.formData} ref={this.formRef}>
+        <Form data={this.state.formData} ref={this.formRef}>
           <Form.Item
             label={t('name')}
             rules={[{ required: true, message: t('This param is required') }]}

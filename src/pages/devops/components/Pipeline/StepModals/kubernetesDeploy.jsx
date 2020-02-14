@@ -57,19 +57,20 @@ export default class KubernetesDeploy extends React.Component {
   constructor(props) {
     super(props)
     this.formRef = React.createRef()
+    this.state = { formData: {} }
   }
 
-  componentWillReceiveProps(nextProps) {
+  static getDerivedStateFromProps(nextProps) {
     if (nextProps.edittingData.type === 'kubernetesDeploy') {
-      this.formData = nextProps.edittingData.data.reduce((prev, arg) => {
+      const formData = nextProps.edittingData.data.reduce((prev, arg) => {
         prev[arg.key] = arg.value.value
         return prev
       }, {})
+      return { formData }
     }
+    return null
   }
 
-  @observable
-  formData = {}
   @observable
   dockerCredentials = [{ key: 'default' }]
   @observable
@@ -78,7 +79,10 @@ export default class KubernetesDeploy extends React.Component {
   isShowDetail = false
 
   handleChange = type => e => {
-    this.formData[type] = e.target ? e.target.value.trim() : e
+    this.setState(state => {
+      state.formData[type] = e.target ? e.target.value.trim() : e
+      return state
+    })
   }
 
   @action
@@ -111,11 +115,11 @@ export default class KubernetesDeploy extends React.Component {
 
   handleOk = () => {
     this.formRef.current.validate(() => {
-      const _arguments = Object.keys(this.formData).map(key => ({
+      const _arguments = Object.keys(this.state.formData).map(key => ({
         key,
         value: {
           isLiteral: true,
-          value: this.formData[key],
+          value: this.state.formData[key],
         },
       }))
       if (this.isShowAdvenced) {
@@ -156,14 +160,14 @@ export default class KubernetesDeploy extends React.Component {
         <Form.Item label={t('Kubernetes Namespace for Secret')}>
           <Input
             name="secretNamespace"
-            value={this.formData.secretNamespace}
+            value={this.state.formData.secretNamespace}
             onChange={this.handleChange('secretNamespace')}
           />
         </Form.Item>
         <Form.Item label={t('Secret Name')}>
           <Input
             name="secretName"
-            value={this.formData.secretName}
+            value={this.state.formData.secretName}
             onChange={this.handleChange('secretName')}
           />
         </Form.Item>
@@ -234,7 +238,7 @@ export default class KubernetesDeploy extends React.Component {
         </div>
         <Form
           className={styles.KubernetesForm}
-          data={this.formData}
+          data={this.state.formData}
           ref={this.formRef}
         >
           <Form.Item

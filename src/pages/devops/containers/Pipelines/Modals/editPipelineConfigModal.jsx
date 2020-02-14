@@ -54,11 +54,11 @@ export default class EditPipelineConfig extends React.Component {
     onCancel() {},
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { formTemplate } = nextProps
-    if (nextProps.visible) {
+  componentDidUpdate(prevProps) {
+    const { formTemplate } = this.props
+    if (this.props.visible && !prevProps.visible) {
       this.setEnableFlag(formTemplate)
-      set(formTemplate, 'project_id', this.props.project_id)
+      set(formTemplate, 'project_id', prevProps.project_id)
     }
   }
 

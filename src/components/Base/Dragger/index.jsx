@@ -81,7 +81,7 @@ export default class Dragger extends React.Component {
         () => {
           set(this.content, 'style.transform', toJS(this.styles).transform)
         },
-        true
+        { fireImmediately: true }
       )
     }
   }
