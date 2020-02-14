@@ -29,6 +29,8 @@ export default class ComponentMonitoring extends Base {
   health = {
     data: {},
     counts: {},
+    supportKsScheduler: false,
+    supportControllerManager: false,
     isLoading: false,
   }
 
@@ -89,10 +91,30 @@ export default class ComponentMonitoring extends Base {
   async fetchHealthMetrics() {
     this.health.isLoading = true
 
+    await this.requestHealthMetrics()
+
+    this.health.isLoading = false
+  }
+
+  /**
+   * send request and update store without loading status
+   */
+  @action
+  async requestHealthMetrics() {
     const result = await to(
       request.get('kapis/resources.kubesphere.io/v1alpha2/componenthealth')
     )
-    const ksComponents = groupBy(result.kubesphereStatus || [], 'namespace')
+
+    const kubesphereStatus = result.kubesphereStatus || []
+    const ksComponents = groupBy(kubesphereStatus, 'namespace')
+
+    const isSupportScheduler = kubesphereStatus.some(
+      status => status.label.component === 'kube-scheduler'
+    )
+
+    const isSupportControllerManager = kubesphereStatus.some(
+      status => status.label.component === 'kube-controller-manager'
+    )
 
     const data = {
       kubernetes: get(result, 'kubernetesStatus', []),
@@ -148,7 +170,8 @@ export default class ComponentMonitoring extends Base {
       data,
       counts,
       componentCounts,
-      isLoading: false,
+      supportKsScheduler: isSupportScheduler,
+      supportControllerManager: isSupportControllerManager,
     }
   }
 }
