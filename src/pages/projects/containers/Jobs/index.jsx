@@ -72,18 +72,21 @@ class Jobs extends Base {
         key: 'edit',
         icon: 'pen',
         text: t('EDIT'),
+        action: 'edit',
         onClick: this.showModal('editModal'),
       },
       {
         key: 'rerun',
         icon: 'refresh',
         text: t('Rerun'),
+        action: 'edit',
         onClick: this.handleRerun,
       },
       {
         key: 'delete',
         icon: 'trash',
         text: t('Delete'),
+        action: 'delete',
         onClick: this.showModal('deleteModal'),
       },
     ]
