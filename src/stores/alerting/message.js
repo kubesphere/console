@@ -17,7 +17,7 @@
  */
 
 import { observable, action } from 'mobx'
-import { isEmpty, get } from 'lodash'
+import { isEmpty } from 'lodash'
 
 import ObjectMapper from 'utils/object.mapper'
 import UserStore from 'stores/notification/user'
@@ -82,7 +82,7 @@ export default class MessageStore extends Base {
   }
 
   @action
-  async fetchComments({ workspace, id }) {
+  async fetchComments({ id }) {
     this.comments.isLoading = true
 
     const params = {
@@ -91,29 +91,8 @@ export default class MessageStore extends Base {
     const result = await request.get(this.getCommentUrl(), params)
     const results = result.comment_set || []
 
-    // fetch ks user info
-    let users = []
-    if (!isEmpty(results)) {
-      const emails = results.map(item => item.addresser)
-      users = await this.userStore.fetchList({ workspace, emails })
-    }
-
-    const data = results.map(item => {
-      const userInfo = users.find(user => user.email === item.addresser)
-
-      if (userInfo) {
-        return {
-          ...item,
-          ...userInfo,
-          createTime: get(item, 'create_time.seconds', 0) * 1000,
-        }
-      }
-
-      return item
-    })
-
     this.comments.update({
-      data,
+      data: results,
       isLoading: false,
     })
   }
