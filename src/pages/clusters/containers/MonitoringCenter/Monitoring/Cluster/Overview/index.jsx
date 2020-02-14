@@ -59,6 +59,21 @@ class Overview extends React.Component {
     return this.props.rootStore.monitoring.supportETCD
   }
 
+  componentDidMount() {
+    this.updateData()
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.timer)
+  }
+
+  updateData = () => {
+    this.timer = setTimeout(async () => {
+      await this.componentMonitoringStore.requestHealthMetrics()
+      this.updateData()
+    }, 2000)
+  }
+
   getComponentStatus = component => {
     const conditions = component.conditions || []
 
@@ -81,8 +96,12 @@ class Overview extends React.Component {
     status['node'] =
       node.healthyNodes === node.totalNodes ? 'healthy' : 'unhealthy'
 
-    status['controller-manager'] = 'healthy'
-    status['scheduler'] = 'healthy'
+    status['controller-manager'] = this.componentHealth.supportControllerManager
+      ? 'healthy'
+      : 'unhealthy'
+    status['scheduler'] = this.componentHealth.supportKsScheduler
+      ? 'healthy'
+      : 'unhealthy'
     status['etcd-0'] = this.supportETCD ? 'healthy' : 'unhealthy'
 
     return status
@@ -103,7 +122,7 @@ class Overview extends React.Component {
   }
 
   renderNodeStatus() {
-    const { counts, isLoading } = this.componentHealth
+    const { counts, isLoading = false } = this.componentHealth
     const { health = 0, total = 0 } = counts.node || {}
 
     return (
@@ -231,7 +250,7 @@ class Overview extends React.Component {
   }
 
   renderComponentStatus() {
-    const { isLoading } = this.componentMonitoringStore.health
+    const { isLoading = false } = this.componentMonitoringStore.health
 
     return (
       <Loading spinning={isLoading}>
