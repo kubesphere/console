@@ -116,6 +116,11 @@ export default class S2irunStore extends Base {
       'labels.devops.kubesphere.io/builder-name': name,
     })
 
+    if (!order && reverse === undefined) {
+      order = 'createTime'
+      reverse = true
+    }
+
     if (limit !== Infinity) {
       params.paging = `limit=${limit},page=${page}`
     }
