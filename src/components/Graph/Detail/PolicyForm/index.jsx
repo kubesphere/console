@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, unset, isEmpty } from 'lodash'
+import { get, set, unset, isEmpty } from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
 import { toJS } from 'mobx'
@@ -171,6 +171,7 @@ export default class PolicyForm extends React.Component {
     }
 
     if (!isEmpty(this.detail)) {
+      set(data, 'metadata.resourceVersion', this.detail.resourceVersion)
       this.store.update(this.detail, data).then(callback)
     } else {
       this.store.create(data).then(callback)
