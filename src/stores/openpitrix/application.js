@@ -71,6 +71,11 @@ export default class Application extends Base {
       conditions: getFilterString({ status: status || this.defaultStatus }),
     }
 
+    if (!order && reverse === undefined) {
+      order = 'create_time'
+      reverse = true
+    }
+
     if (!isEmpty(filters)) {
       params.conditions += `,${getFilterString(filters)}`
     }

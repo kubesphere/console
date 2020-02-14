@@ -118,6 +118,11 @@ export default class ProjectStore {
 
     const params = {}
 
+    if (!order && reverse === undefined) {
+      order = 'createTime'
+      reverse = true
+    }
+
     if (limit !== Infinity) {
       params.paging = `limit=${limit || 10},page=${page || 1}`
     }

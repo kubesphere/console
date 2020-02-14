@@ -78,6 +78,8 @@ export default class MemberStore {
       paging: `limit=-1,page=1`,
     }
 
+    params.reverse = true
+
     if (keyword) {
       params.conditions = getFilterString({ keyword })
     }
