@@ -139,6 +139,7 @@ const JobMapper = item => ({
   namespace: get(item, 'metadata.namespace'),
   annotations: get(item, 'metadata.annotations'),
   status: get(item, 'status'),
+  updateTime: get(item, 'status.startTime'),
   spec: get(item, 'spec', {}),
   selector: get(item, 'spec.selector.matchLabels'),
   containers: get(item, 'spec.template.spec.containers'),

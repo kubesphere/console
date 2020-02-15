@@ -139,9 +139,9 @@ class Jobs extends Base {
     },
     {
       title: t('Last schedule time'),
-      dataIndex: 'status.startTime',
+      dataIndex: 'updateTime',
       sorter: true,
-      sortOrder: this.getSortOrder('status.startTime'),
+      sortOrder: this.getSortOrder('updateTime'),
       isHideable: true,
       search: true,
       width: '20%',

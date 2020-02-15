@@ -775,3 +775,8 @@ export const SCHEME_OPTIONS = [
 ]
 
 export const SCHEME_REG = /^(http(s)?:\/\/)?(.*)/
+
+export const LIST_DEFAULT_ORDER = {
+  deployments: 'updateTime',
+  jobs: 'updateTime',
+}
