@@ -67,7 +67,7 @@ export default class PodStore extends Base {
     const params = {}
 
     if (!order && reverse === undefined) {
-      order = 'createTime'
+      order = 'startTime'
       reverse = true
     }
 

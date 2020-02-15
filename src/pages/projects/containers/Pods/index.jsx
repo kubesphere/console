@@ -137,9 +137,9 @@ export default class Pods extends Base {
     },
     {
       title: t('Updated Time'),
-      dataIndex: 'updateTime',
+      dataIndex: 'startTime',
       sorter: true,
-      sortOrder: this.getSortOrder('updateTime'),
+      sortOrder: this.getSortOrder('startTime'),
       isHideable: true,
       width: 150,
       render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),

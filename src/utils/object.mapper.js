@@ -313,6 +313,7 @@ const PodsMapper = item => ({
     get(item, 'status.initContainerStatuses', []),
     get(item, 'metadata.namespace')
   ),
+  startTime: get(item, 'status.startTime'),
   updateTime: get(item, 'status.startTime'),
   volumes: get(item, 'spec.volumes'),
   ownerKind: get(item, 'metadata.ownerReferences[0].kind', ''),
