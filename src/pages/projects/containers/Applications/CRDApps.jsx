@@ -16,17 +16,15 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { get } from 'lodash'
 import React from 'react'
 import { observer, inject } from 'mobx-react'
-import { getLocalTime } from 'utils'
 
-import { get } from 'lodash'
+import { getLocalTime, getDisplayName } from 'utils'
+
 import { Status, Avatar } from 'components/Base'
-
 import EditModal from 'components/Modals/EditBasicInfo'
-
 import EmptyTable from 'components/Cards/EmptyTable'
-
 import Base from 'core/containers/Base/List'
 
 @inject('rootStore')
@@ -64,7 +62,7 @@ export default class CRDApps extends Base {
       search: true,
       render: (name, record) => (
         <Avatar
-          title={name}
+          title={getDisplayName(record)}
           avatar={record.icon || '/assets/default-app.svg'}
           to={`${this.prefix}/${name}`}
           desc={get(record, 'annotations["kubesphere.io/description"]', '-')}
@@ -85,10 +83,10 @@ export default class CRDApps extends Base {
       width: '20%',
     },
     {
-      title: t('Last Updated Time'),
-      dataIndex: 'updateTime',
+      title: t('Created Time'),
+      dataIndex: 'createTime',
       sorter: true,
-      sortOrder: this.getSortOrder('updateTime'),
+      sortOrder: this.getSortOrder('createTime'),
       isHideable: true,
       width: 180,
       render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),

@@ -72,7 +72,7 @@ export default class Application extends Base {
     }
 
     if (!order && reverse === undefined) {
-      order = 'create_time'
+      order = 'status_time'
       reverse = true
     }
 
