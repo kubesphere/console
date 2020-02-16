@@ -124,13 +124,6 @@ class Members extends Base {
       ],
       selectActions: [
         {
-          key: 'modify',
-          type: 'default',
-          text: t('Modify Members Role'),
-          action: 'edit',
-          onClick: this.showModal('modifyModal'),
-        },
-        {
           key: 'delete',
           type: 'danger',
           text: t('Remove Members'),
