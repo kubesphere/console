@@ -167,11 +167,14 @@ export default class ComponentMonitoring extends Base {
     })
 
     this.health = {
-      data,
-      counts,
-      componentCounts,
-      supportKsScheduler: isSupportScheduler,
-      supportControllerManager: isSupportControllerManager,
+      ...(this.health || {}),
+      ...{
+        data,
+        counts,
+        componentCounts,
+        supportKsScheduler: isSupportScheduler,
+        supportControllerManager: isSupportControllerManager,
+      },
     }
   }
 }
