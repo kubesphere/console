@@ -29,10 +29,8 @@ export default class Metadata extends React.Component {
   }, 200)
 
   labelsValidator = (rule, value, callback) => {
-    if (isUndefined(value)) {
+    if (isUndefined(value) || isEmpty(value)) {
       return callback()
-    } else if (isEmpty(value)) {
-      return callback({ message: t('Labels cannot be empty') })
     }
 
     if (!isValidLabel(value)) {
@@ -54,10 +52,7 @@ export default class Metadata extends React.Component {
       <>
         <Form.Item
           label={t('Labels')}
-          rules={[
-            { required: true, message: t('Labels cannot be empty') },
-            { validator: this.labelsValidator },
-          ]}
+          rules={[{ validator: this.labelsValidator }]}
         >
           <PropertiesInput
             name="metadata.labels"
