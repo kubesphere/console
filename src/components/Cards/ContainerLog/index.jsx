@@ -30,8 +30,6 @@ import ContainerStore from 'stores/container'
 
 import styles from './index.scss'
 
-const STRONG_WORDS_REG = /(from|and)/g
-
 @observer
 export default class ContainerLog extends React.Component {
   static propTypes = {
@@ -204,7 +202,6 @@ export default class ContainerLog extends React.Component {
     }
 
     const items = String(data)
-      .replace(STRONG_WORDS_REG, '<strong>$1</strong>')
       .replace(/\\r\\n/g, '\n')
       .split('\n')
 
