@@ -109,11 +109,15 @@ export default class ComponentMonitoring extends Base {
     const ksComponents = groupBy(kubesphereStatus, 'namespace')
 
     const isSupportScheduler = kubesphereStatus.some(
-      status => status.label.component === 'kube-scheduler'
+      status =>
+        get(status, 'label.component') === 'kube-scheduler' &&
+        get(status, 'healthyBackends', 0)
     )
 
     const isSupportControllerManager = kubesphereStatus.some(
-      status => status.label.component === 'kube-controller-manager'
+      status =>
+        get(status, 'label.component') === 'kube-controller-manager' &&
+        get(status, 'healthyBackends', 0)
     )
 
     const data = {
