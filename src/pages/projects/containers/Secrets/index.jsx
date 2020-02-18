@@ -139,8 +139,16 @@ class Secrets extends Base {
     },
   ]
 
+  handleYamlEdit = newObject => {
+    const { selectItem } = this.state
+
+    this.store.update(selectItem, newObject).then(() => {
+      this.hideModal('editYamlModal')()
+    })
+  }
+
   handleEditSecret = data => {
-    this.store.update(this.state.selectItem, data).then(() => {
+    this.store.updateWithEncode(this.state.selectItem, data).then(() => {
       this.hideModal('editSecretModal')()
       Notify.success({ content: `${t('Updated Successfully')}!` })
       this.routing.query()

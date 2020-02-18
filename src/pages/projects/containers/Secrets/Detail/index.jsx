@@ -116,7 +116,7 @@ class SecretDetail extends Base {
         <SecretEditModal
           visible={editSecret}
           detail={detail}
-          onOk={this.handleEdit('editSecret', 'update')}
+          onOk={this.handleEdit('editSecret', 'updateWithEncode')}
           onCancel={this.hideModal('editSecret')}
           isSubmitting={isSubmitting}
         />
