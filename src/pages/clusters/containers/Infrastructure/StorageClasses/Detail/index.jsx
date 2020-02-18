@@ -72,35 +72,12 @@ class StorageClassDetail extends Base {
     })
   }
 
-  handleSetDefaultStorageClass = () => {
+  handleSetDefaultStorageClass = async () => {
     const detail = toJS(this.store.detail)
-    const defaultStorageClass = this.defaultStorageClass.name
 
-    if (defaultStorageClass) {
-      this.store.patch(
-        { name: defaultStorageClass },
-        {
-          metadata: {
-            annotations: {
-              'storageclass.kubernetes.io/is-default-class': 'false',
-            },
-          },
-        }
-      )
-    }
-
-    this.store
-      .patch(detail, {
-        metadata: {
-          annotations: {
-            'storageclass.kubernetes.io/is-default-class': 'true',
-          },
-        },
-      })
-      .then(() => {
-        this.hideModal('setDefaultStorageClass')()
-        this.fetchData()
-      })
+    await this.store.setDefaultStorageClass(detail.name)
+    this.hideModal('setDefaultStorageClass')()
+    this.fetchData()
   }
 
   validateSelect({ callback }) {

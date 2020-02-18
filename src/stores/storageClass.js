@@ -47,6 +47,20 @@ export default class StorageClassStore extends Base {
 
   getResourceUrl = () => `kapis/resources.kubesphere.io/v1alpha2/${this.module}`
 
+  setDefaultStorageClass(name) {
+    const params = {
+      metadata: {
+        annotations: {
+          'storageclass.kubernetes.io/is-default-class': 'true',
+        },
+      },
+    }
+
+    return this.submitting(
+      request.patch(`${this.getResourceUrl()}/${name}`, params)
+    )
+  }
+
   @action
   create(data) {
     if (data.provisioner === 'custom') {
