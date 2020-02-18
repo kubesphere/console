@@ -24,6 +24,7 @@ import { SECRET_TYPES } from 'utils/constants'
 import SecretStore from 'stores/secret'
 
 import Base from 'core/containers/Base/Detail'
+import EditYamlModal from 'components/Modals/EditYaml'
 import EditBasicInfoModal from 'components/Modals/EditBasicInfo'
 import SecretEditModal from 'projects/components/Modals/SecretEdit'
 
@@ -43,6 +44,13 @@ class SecretDetail extends Base {
       text: t('EDIT'),
       action: 'edit',
       onClick: this.showModal('editBaseInfo'),
+    },
+    {
+      key: 'editYaml',
+      icon: 'pen',
+      text: t('Edit YAML'),
+      action: 'edit',
+      onClick: this.showModal('editYaml'),
     },
     {
       key: 'editSecret',
@@ -85,7 +93,7 @@ class SecretDetail extends Base {
 
   renderExtraModals() {
     const { detail, isSubmitting } = this.store
-    const { editBaseInfo, editSecret } = this.state
+    const { editBaseInfo, editYaml, editSecret } = this.state
 
     const originData = toJS(detail._originData)
 
@@ -96,6 +104,13 @@ class SecretDetail extends Base {
           detail={originData}
           onOk={this.handleEdit('editBaseInfo')}
           onCancel={this.hideModal('editBaseInfo')}
+          isSubmitting={isSubmitting}
+        />
+        <EditYamlModal
+          visible={editYaml}
+          detail={originData}
+          onOk={this.handleEdit('editYaml', 'update')}
+          onCancel={this.hideModal('editYaml')}
           isSubmitting={isSubmitting}
         />
         <SecretEditModal
