@@ -84,7 +84,7 @@ export default class Base {
     return promise
   }
 
-  getConditions = ({ status, app_id, version_id, repo } = {}) => {
+  getConditions = ({ status, app_id, version_id, repo_id } = {}) => {
     const conditions = {
       status: status || this.defaultStatus,
     }
@@ -94,8 +94,8 @@ export default class Base {
       conditions.version_id = version_id
     }
 
-    if (repo || this.defaultRepo) {
-      conditions.repo_id = repo || this.defaultRepo
+    if (repo_id || this.defaultRepo) {
+      conditions.repo_id = repo_id || this.defaultRepo
     }
 
     return conditions
@@ -109,7 +109,7 @@ export default class Base {
     status,
     app_id,
     version_id,
-    repo,
+    repo_id,
     statistics,
     order,
     reverse,
@@ -122,7 +122,7 @@ export default class Base {
       status,
       app_id,
       version_id,
-      repo,
+      repo_id,
     })
 
     const params = {

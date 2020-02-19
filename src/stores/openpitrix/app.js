@@ -19,10 +19,9 @@
 import { action, observable } from 'mobx'
 import { get } from 'lodash'
 
-import { DEFAULT_QUERY_STATUS } from 'configs/openpitrix/app'
+import { DEFAULT_QUERY_STATUS, SCREENSHOTS_LIMIT } from 'configs/openpitrix/app'
 import Base from 'stores/openpitrix/base'
 
-let sequence = 0 // app screenshot for sort
 export default class App extends Base {
   defaultStatus = DEFAULT_QUERY_STATUS
 
@@ -34,22 +33,35 @@ export default class App extends Base {
   @observable
   allApps = []
 
+  uploadScreenshots = []
+
   @action
   upload = async ({ app_id, ...data } = {}) => {
     await request.patch(this.getUrl({ app_id }), data)
   }
 
-  uploadBySequence = (index, base64Str) => {
-    setTimeout(
-      () =>
-        this.upload({
-          app_id: this.detail.app_id,
-          type: 'screenshot',
-          attachment_content: base64Str,
-          sequence: index,
-        }),
-      index * 300
-    )
+  uploadBySequence = async (start, index, base64Str, detail) => {
+    await this.upload({
+      app_id: this.detail.app_id,
+      type: 'screenshot',
+      attachment_content: base64Str,
+      sequence: start + index,
+    })
+
+    const screenshotStr = get(this.detail, 'screenshots', '')
+    const newScreenshots = screenshotStr
+      ? `${screenshotStr},${base64Str}`
+      : base64Str
+    this.detail = {
+      ...detail,
+      screenshots: newScreenshots,
+    }
+
+    const nextIndex = index + 1
+    const nextBase64Str = this.uploadScreenshots[nextIndex]
+    if (nextBase64Str) {
+      await this.uploadBySequence(start, nextIndex, nextBase64Str, detail)
+    }
   }
 
   @action
@@ -87,23 +99,21 @@ export default class App extends Base {
     })
 
   @action
-  uploadScreenshot = async (base64Str, detail) => {
+  uploadScreenshot = async (base64Str, detail, index) => {
     const screenshotStr = get(this.detail, 'screenshots', '')
     const screenshots = screenshotStr ? screenshotStr.split(',') : []
-    sequence = screenshots.length - 1
-    sequence++
+    const total = index + screenshots.length
 
-    if (sequence >= 6) {
+    if (total >= SCREENSHOTS_LIMIT) {
       return false
     }
 
-    const newScreenshots =
-      sequence === 0 ? base64Str : `${screenshotStr},${base64Str}`
-    this.detail = {
-      ...detail,
-      screenshots: newScreenshots,
+    if (index === 0) {
+      this.uploadScreenshots = [base64Str]
+      await this.uploadBySequence(screenshots.length, index, base64Str, detail)
+    } else {
+      this.uploadScreenshots.push(base64Str)
     }
-    this.uploadBySequence(sequence, base64Str)
   }
 
   @action
@@ -129,7 +139,6 @@ export default class App extends Base {
     }
 
     this.detail.screenshots = ''
-    sequence = 0
     for (let i = screenshots.length - 1; i >= 0; i--) {
       await this.upload({
         app_id: this.detail.app_id,

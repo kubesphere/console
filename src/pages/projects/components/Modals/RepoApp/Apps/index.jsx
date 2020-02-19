@@ -104,7 +104,7 @@ class Apps extends Component {
           limit: STORE_APP_LIMIT,
           status: this.isFormWorkspace ? '' : 'active',
           isv: this.isFormWorkspace ? this.props.workspace : '',
-          repo: this.selectedRepo,
+          repo_id: this.selectedRepo,
         },
         params
       )

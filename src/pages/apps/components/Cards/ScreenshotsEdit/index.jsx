@@ -24,11 +24,9 @@ import { Icon } from '@pitrix/lego-ui'
 import { get } from 'lodash'
 
 import { Image, Upload } from 'components/Base'
-import { UPLOAD_FILE_TYPES } from 'configs/openpitrix/app'
+import { UPLOAD_FILE_TYPES, SCREENSHOTS_LIMIT } from 'configs/openpitrix/app'
 
 import styles from './index.scss'
-
-const MAX_LEN = 6
 
 @observer
 export default class Screenshots extends React.Component {
@@ -50,7 +48,7 @@ export default class Screenshots extends React.Component {
     this.uploadRef.onClick()
   }
 
-  uploadScreenshot = async file => {
+  uploadScreenshot = async (file, fileList) => {
     const { checkFile, handleFileByBase64Str } = this.props.fileStore
     const { uploadScreenshot } = this.props.store
     const { detail } = this.props
@@ -59,9 +57,10 @@ export default class Screenshots extends React.Component {
     if (result) {
       this.setState({ error: result })
     } else {
+      const index = fileList.indexOf(file)
       handleFileByBase64Str(file, async base64Str => {
         this.setState({ error: '' })
-        uploadScreenshot(base64Str, detail)
+        uploadScreenshot(base64Str, detail, index)
       })
     }
 
@@ -92,7 +91,7 @@ export default class Screenshots extends React.Component {
                 </div>
               </li>
             ))}
-            {len < MAX_LEN && (
+            {len < SCREENSHOTS_LIMIT && (
               <li className={styles.upload}>
                 <Upload
                   multiple
@@ -112,7 +111,8 @@ export default class Screenshots extends React.Component {
             <div className={styles.error}>{t(this.state.error)}</div>
           ) : (
             <div className={styles.words}>
-              {len}/{MAX_LEN} {t('screenshots')} ({t('FILE_MAX_SCREENSHOTS')})
+              {len}/{SCREENSHOTS_LIMIT} {t('screenshots')} (
+              {t('FILE_MAX_SCREENSHOTS')})
               {len > 0 ? (
                 <label
                   className={styles.deleteAll}
