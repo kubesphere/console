@@ -51,6 +51,7 @@ export default class UserItem extends React.Component {
           {roles.map(role => (
             <Menu.MenuItem key={role.name}>
               <Avatar
+                className={styles.avatar}
                 icon="role"
                 iconSize={40}
                 title={role.name}

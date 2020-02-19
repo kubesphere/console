@@ -80,3 +80,12 @@
     font-weight: 600;
   }
 }
+
+
+.avatar {
+  &:hover {
+    :global(.ks-avatar-desc) {
+      white-space: normal;
+    }
+  }
+}
