@@ -28,7 +28,7 @@ import collectionConfig from '../../config'
 import styles from './index.scss'
 
 @observer
-export default class AuthorityList extends React.Component {
+export default class AuthorizationList extends React.Component {
   render() {
     const detail = this.props.detailStore || {}
     const { isLoading, HTTP_User, HTTP_Password, Name } = detail

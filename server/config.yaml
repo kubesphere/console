@@ -308,8 +308,8 @@ client:
   enableImageSearch: true
 
   # development
-  # disable authority check when developing
-  disableAuthority: false
+  # disable authorization check when developing
+  disableAuthorization: false
 
   # show kubeconfig
   enableKubeConfig: true

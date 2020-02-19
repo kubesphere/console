@@ -23,10 +23,10 @@ import { CheckboxGroup, Checkbox } from '@pitrix/lego-ui'
 
 import styles from './index.scss'
 
-export default class Authority extends PureComponent {
+export default class Authorization extends PureComponent {
   static propTypes = {
     className: PropTypes.string,
-    authority: PropTypes.object,
+    authorization: PropTypes.object,
     value: PropTypes.array,
     onChange: PropTypes.func,
   }
@@ -37,10 +37,10 @@ export default class Authority extends PureComponent {
       checkedList: props.value || [],
       indeterminate: props.value
         ? props.value.length > 0 &&
-          props.value.length < props.authority.actions.length
+          props.value.length < props.authorization.actions.length
         : false,
       checkAll: props.value
-        ? props.value.length === props.authority.actions.length
+        ? props.value.length === props.authorization.actions.length
         : false,
     }
   }
@@ -52,64 +52,64 @@ export default class Authority extends PureComponent {
         indeterminate:
           nextProps.value &&
           nextProps.value.length > 0 &&
-          nextProps.value.length < nextProps.authority.actions.length,
+          nextProps.value.length < nextProps.authorization.actions.length,
         checkAll:
           nextProps.value &&
-          nextProps.value.length === nextProps.authority.actions.length,
+          nextProps.value.length === nextProps.authorization.actions.length,
       })
     }
   }
 
   handleChange = (value, name) => {
-    const { authority } = this.props
+    const { authorization } = this.props
 
     this.setState({
       checkedList: value,
       indeterminate:
-        value.length > 0 && value.length < authority.actions.length,
-      checkAll: value.length === authority.actions.length,
+        value.length > 0 && value.length < authorization.actions.length,
+      checkAll: value.length === authorization.actions.length,
     })
 
     this.props.onChange(value, name)
   }
 
   handleCheckAllChange = e => {
-    const { authority } = this.props
+    const { authorization } = this.props
     const { checked } = e.target
 
-    const checkedList = checked ? authority.actions.map(n => n.name) : []
+    const checkedList = checked ? authorization.actions.map(n => n.name) : []
     this.setState({
       checkedList,
       indeterminate: false,
       checkAll: checked,
     })
 
-    this.props.onChange(checkedList, authority.name)
+    this.props.onChange(checkedList, authorization.name)
   }
 
   render() {
-    const { authority, className } = this.props
+    const { authorization, className } = this.props
     const { checkedList, checkAll, indeterminate } = this.state
 
-    const options = authority.actions.map(action => ({
+    const options = authorization.actions.map(action => ({
       label: t(`RULE_${action.name}`.toUpperCase()),
       value: action.name,
     }))
 
     return (
-      <div className={classnames(styles.authority, className)}>
+      <div className={classnames(styles.authorization, className)}>
         <div className={styles.name}>
           <Checkbox
             indeterminate={indeterminate}
             onChange={this.handleCheckAllChange}
             checked={checkAll}
           >
-            {t(`RULE_${authority.name}`.toUpperCase())}
+            {t(`RULE_${authorization.name}`.toUpperCase())}
           </Checkbox>
         </div>
         <div className={styles.rules}>
           <CheckboxGroup
-            name={authority.name}
+            name={authorization.name}
             options={options}
             value={checkedList}
             onChange={this.handleChange}

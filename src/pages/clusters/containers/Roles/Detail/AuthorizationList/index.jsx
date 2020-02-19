@@ -17,28 +17,26 @@
  */
 
 import React from 'react'
+import { toJS } from 'mobx'
+import { observer } from 'mobx-react'
 
-import { Form } from 'components/Base'
-import Authorities from './Authorities'
+import { Card } from 'components/Base'
+import RuleList from 'components/Cards/RuleList'
 
-import styles from './index.scss'
-
-export default class AuthoritySetting extends React.Component {
+@observer
+export default class AuthorizationList extends React.Component {
   render() {
-    const { formRef, formTemplate, rulesInfo } = this.props
+    const { data = [], isLoading } = toJS(this.props.detailStore.rules)
 
     return (
-      <div className={styles.wrapper}>
-        <Form data={formTemplate} ref={formRef}>
-          <Form.Item
-            rules={[
-              { required: true, message: t('Please specify role authority') },
-            ]}
-          >
-            <Authorities name="rules" rulesInfo={rulesInfo} />
-          </Form.Item>
-        </Form>
-      </div>
+      <Card
+        title={t('Authorization List')}
+        empty={t('No Authorization')}
+        loading={isLoading}
+        isEmpty={data.length <= 0}
+      >
+        <RuleList rules={data} />
+      </Card>
     )
   }
 }

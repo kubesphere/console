@@ -95,7 +95,7 @@ export default {
   'Enter Project': '进入项目',
   'Enter DevOps Project': '进入工程',
   Project_Admin: '工程管理员',
-  'No Platform Manage Authority': '无平台管理权限',
+  'No Platform Manage Authorization': '无平台管理权限',
 
   'Default limit resource': '默认最大使用资源',
   'Default request resource': '默认最小使用资源',

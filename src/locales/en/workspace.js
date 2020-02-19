@@ -26,7 +26,7 @@ export default {
   WORKSPACE_SEARCH_PLACEHOLDER: 'Please enter your workspace name to find it',
 
   WORKSPACE_CREATE_DESC:
-    'Workspace is logical unit to organize your projects and DevOps project as well as to manage resource accessing authority and shared information. The workspace can be the independent workspace for your teams.',
+    'Workspace is logical unit to organize your projects and DevOps project as well as to manage resource accessing authorization and shared information. The workspace can be the independent workspace for your teams.',
 
   WORKSPACE_NAME_DESC:
     'Please keep your workspace name short, such as the abbreviation of your company name.',
@@ -49,5 +49,5 @@ export default {
   MEMBER_CREATE_DESC: '',
 
   WORKSPACE_ROLE_DESC:
-    "Workspace role determines the role's authorities in the current workspace.",
+    "Workspace role determines the role's authorizations in the current workspace.",
 }

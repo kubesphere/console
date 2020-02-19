@@ -24,18 +24,15 @@ import { Card } from 'components/Base'
 import RuleList from 'components/Cards/RuleList'
 
 @observer
-export default class AuthorityList extends React.Component {
-  componentDidMount() {
-    this.props.detailStore.fetchRules(this.props.match.params)
-  }
-
+export default class AuthorizationList extends React.Component {
   render() {
-    const { data } = toJS(this.props.detailStore.rules)
+    const { data = [], isLoading } = toJS(this.props.detailStore.rules)
 
     return (
       <Card
-        title={t('Authority List')}
-        empty={t('No Authority')}
+        title={t('Authorization List')}
+        empty={t('No Authorization')}
+        loading={isLoading}
         isEmpty={data.length <= 0}
       >
         <RuleList rules={data} />

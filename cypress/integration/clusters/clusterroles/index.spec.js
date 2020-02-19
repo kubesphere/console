@@ -38,7 +38,7 @@ describe('The Cluster Roles Page', function() {
       .first()
       .find('a')
       .click()
-    cy.url().should('include', 'authorities')
+    cy.url().should('include', 'authorizations')
   })
 
   it('list page base operation', function() {

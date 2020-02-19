@@ -20,7 +20,7 @@ export default {
   SERVICE_COMPONENTS_DESC:
     'This module provides health status monitoring of various service components in KubeSphere, Kubernetes, OpenPitrix and so on. It shows the health status and running time of the current cluster, and helps users monitor the status of the cluster and locates problems in time.',
 
-  'KS-ACCOUNT_DESC': 'Provides users and authorities management API',
+  'KS-ACCOUNT_DESC': 'Provides users and authorizations management API',
   'KS-APIGATEWAY_DESC':
     'Responsible for processing service requests and handling all tasks in the API call process',
   'KS-APISERVER_DESC':
