@@ -33,7 +33,7 @@ const NAV_KS_MODULE_MAP = {
   grayrelease: 'servicemesh',
 }
 
-/** A global class for authority check. */
+/** A global class for authorization check. */
 export default class GlobalValue {
   constructor() {
     // local cache
@@ -55,7 +55,7 @@ export default class GlobalValue {
       return []
     }
 
-    if (globals.config.disableAuthority) {
+    if (globals.config.disableAuthorization) {
       return ['view', 'edit', 'create', 'delete', 'manage']
     }
 
@@ -87,7 +87,7 @@ export default class GlobalValue {
       return false
     }
 
-    if (globals.config.disableAuthority) {
+    if (globals.config.disableAuthorization) {
       return true
     }
 

@@ -32,9 +32,9 @@ export default {
   PLATFORM_ROLES_DESC:
     'The platform role defines the access control mechanism within the cluster scope for authorized users.',
   ROLE_BASEINFO_DESC: '',
-  ROLE_AUTHORITY_DESC: '',
+  ROLE_AUTHORIZATION_DESC: '',
   USER_AVATAR_TIP:
     'The avatar size must be less than 120px X 120px and support png, jpg format.',
   MEMBER_ROLE_CREATE_DESC:
-    "User rights management roles depend on the definition, role identifies the user's identity, defines the relationship between the user and can access resources / operations. When KubeSphere does not meet the requirements of preset roles, according to the actual situation, create a custom role to a user, self-defined roles that is the biggest advantage of fine-grained management of platform resources, specify what the role has certain specified resource authority.",
+    "User rights management roles depend on the definition, role identifies the user's identity, defines the relationship between the user and can access resources / operations. When KubeSphere does not meet the requirements of preset roles, according to the actual situation, create a custom role to a user, self-defined roles that is the biggest advantage of fine-grained management of platform resources, specify what the role has certain specified resource authorization.",
 }

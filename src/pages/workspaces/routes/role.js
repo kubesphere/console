@@ -22,7 +22,7 @@ import { getIndexRoute } from 'utils/router.config'
 import DetailLayout from 'core/layouts/Detail'
 
 import Detail from '../containers/Roles/Detail'
-import AuthorityList from '../containers/Roles/Detail/AuthorityList'
+import AuthorizationList from '../containers/Roles/Detail/AuthorizationList'
 import AuthorizedUsers from '../containers/Roles/Detail/AuthorizedUsers'
 
 const PATH = '/workspaces/:workspace/roles/:role'
@@ -40,10 +40,10 @@ export default [
     }),
     routes: [
       {
-        name: 'authorities',
-        path: `${PATH}/authorities`,
-        title: 'Authority List',
-        component: AuthorityList,
+        name: 'authorizations',
+        path: `${PATH}/authorizations`,
+        title: 'Authorization List',
+        component: AuthorizationList,
       },
       {
         name: 'users',
@@ -51,7 +51,7 @@ export default [
         title: 'Authorized Users',
         component: AuthorizedUsers,
       },
-      getIndexRoute({ path: PATH, to: `${PATH}/authorities`, exact: true }),
+      getIndexRoute({ path: PATH, to: `${PATH}/authorizations`, exact: true }),
       getIndexRoute({ path: '*', to: '/404', exact: true }),
     ],
   },
