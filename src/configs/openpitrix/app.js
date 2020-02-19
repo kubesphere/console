@@ -99,3 +99,5 @@ export const UPLOAD_FILE_TYPES = {
 }
 
 export const WORKSPACE_REPO_ID = 'repo-helm'
+
+export const SCREENSHOTS_LIMIT = 6
