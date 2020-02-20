@@ -256,8 +256,9 @@ export default class Applications extends React.Component {
   }
 
   handleDeployRepoApp = () => {
+    const { namespace } = this.props.match.params
     this.hideRepoAppModal()
-    this.routing.query()
+    this.routing.push(`/projects/${namespace}/applications/template`)
   }
 
   renderHeader() {
