@@ -131,6 +131,10 @@ export default class Base {
       conditions: getFilterString(conditions),
     }
 
+    if (reverse === undefined) {
+      reverse = true
+    }
+
     if (!isEmpty(filters)) {
       const filterStr = getFilterString(filters)
       params.conditions += filterStr ? `,${filterStr}` : ''
