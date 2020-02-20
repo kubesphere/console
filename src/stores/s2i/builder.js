@@ -35,7 +35,6 @@ export default class S2IBuilderStore extends Base {
   runStore = new S2IRunStore()
 
   @observable detail = {}
-  @observable isDetailLoading = true
 
   getS2iSupportLanguage = async () => {
     const result = await this.getBuilderTemplate()
@@ -72,14 +71,22 @@ export default class S2IBuilderStore extends Base {
     await request.get('apis/devops.kubesphere.io/v1alpha1/s2ibuildertemplates')
 
   @action
-  fetchBuilderDetail = async ({ namespace, name }) => {
-    this.isDetailLoading = true
+  fetchDetail = async ({ namespace, name }) => {
+    this.isLoading = true
     const result = await request.get(
-      `apis/devops.kubesphere.io/v1alpha1/namespaces/${namespace}/s2ibuilders/${name}`
+      `apis/devops.kubesphere.io/v1alpha1/namespaces/${namespace}/s2ibuilders/${name}`,
+      undefined,
+      undefined,
+      error => {
+        if (error.reason === 'NotFound') {
+          return error
+        }
+        Promise.reject(error)
+      }
     )
     this.detail = this.mapper(result)
-    this.isDetailLoading = false
-    return result
+    this.isLoading = false
+    return this.detail
   }
 
   updateCreateData(data) {
@@ -88,7 +95,7 @@ export default class S2IBuilderStore extends Base {
         /[_/:]/g,
         '-'
       )}-${get(data, 'spec.config.tag')}`
-      data.metadata.name = `${_name.slice(-60)}-${generateId(3)}`
+      data.metadata.name = `${_name.slice(0, 60)}-${generateId(3)}`
     }
     let repoUrl = get(data, 'metadata.annotations["kubesphere.io/repoUrl"]', '')
     repoUrl = repoUrl.replace(/^(http(s)?:\/\/)?(.*)$/, '$3')
@@ -152,7 +159,7 @@ export default class S2IBuilderStore extends Base {
       return
     }
 
-    const name = `${builderName.slice(-37)}-${generateId(3)}`
+    const name = `${builderName.slice(0, 37)}-${generateId(3)}`
 
     return this.runStore.create({
       apiVersion: 'devops.kubesphere.io/v1alpha1',
