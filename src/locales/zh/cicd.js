@@ -460,4 +460,6 @@ export default {
   WHEN_CHRETE_PIEPLINE_DESC:
     '当有创建新的流水线时，将自动触发指定流水线中的任务。',
   'select a pipeline': '选择一个流水线',
+  timer: '定时器',
+  'Started By {name}': '由{name}触发扫描',
 }
