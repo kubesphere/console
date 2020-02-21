@@ -127,8 +127,8 @@ const isValidReferer = path =>
  * @param path  koa ctx.path
  */
 const isAppsRoute = path => {
-  const regex = pathToRegex('/apps(/?.*)')
-  return regex.exec(path)
+  const regex = pathToRegex('/apps/app-(.*)')
+  return path === '/apps' || regex.exec(path)
 }
 
 /**

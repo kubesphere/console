@@ -456,4 +456,4 @@ export const withDryRun = async requests => {
  * @param {String} path
  */
 export const isAppsPage = (path = location.pathname) =>
-  path === '/apps' || path.startsWith('/apps/')
+  path === '/apps' || path.startsWith('/apps/app-')
