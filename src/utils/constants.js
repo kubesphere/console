@@ -489,7 +489,7 @@ export const PIPELINE_CONDITIONS = [
 ]
 
 export const KIND_GROUP_MAP = {
-  Deployment: 'extensions',
+  Deployment: 'apps',
   StatefulSet: 'apps',
   Service: '',
 }

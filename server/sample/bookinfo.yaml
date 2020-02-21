@@ -20,7 +20,7 @@ spec:
   componentKinds:
     - group: ''
       kind: Service
-    - group: extensions
+    - group: apps
       kind: Deployment
     - group: apps
       kind: StatefulSet
