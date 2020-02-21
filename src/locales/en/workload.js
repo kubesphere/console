@@ -177,9 +177,9 @@ export default {
     'For persistent storage volumes, select a volume that supports multi-node read-write mode (ROX or RWX). Otherwise, the pods update may fail because the pods are not on the same node. If you choose a single-node read-write (RWO) mode volume, you can also schedule the pods on the same node by node selection to avoid update errors.',
 
   CPU_REQUEST_TARGET_DESC:
-    'Replicas will be increased when CPU usage exceeds below this target value, on the contrary it will be decreased when fails.',
+    'Replicas will be increased when CPU usage exceeds this target value, on the contrary it will be decreased.',
   MEMORY_REQUEST_TARGET_DESC:
-    'Replicas will be increased when memory usage exceeds below this target value, on the contrary it will be decreased when fails.',
+    'Replicas will be increased when memory usage exceeds this target value, on the contrary it will be decreased.',
   MIN_REPLICAS_DESC: 'Minimum value of the number of replicas',
   MAX_REPLICAS_DESC: 'Maximum value of the number of replicas',
   REPLICAS_PLACEHOLDER: 'Default: 1',
