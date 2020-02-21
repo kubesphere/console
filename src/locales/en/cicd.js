@@ -220,4 +220,5 @@ export default {
     'When a pipeline is deleted, the tasks in the specified pipeline are automatically triggered.',
   WHEN_CHRETE_PIEPLINE_DESC:
     'When a new pipeline is created, the tasks in the specified pipeline are automatically triggered.',
+  'Started By {name}': 'Started By {name}',
 }
