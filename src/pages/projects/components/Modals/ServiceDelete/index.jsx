@@ -139,7 +139,7 @@ export default class ServiceDeleteModal extends React.Component {
         if (selector.s2ibuilder) {
           requests.push(
             this.builderStore
-              .fetchBuilderDetail({
+              .fetchDetail({
                 namespace,
                 name: selector.s2ibuilder,
               })
