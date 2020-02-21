@@ -23,6 +23,7 @@ import Notify from 'components/Base/Notify'
 import { isNumber, get, set } from 'lodash'
 import classnames from 'classnames'
 import { formatSize } from 'utils'
+import { B2I_SUPPORTED_TYPES } from 'utils/constants'
 
 import BuilderStore from 'src/stores/s2i/builder'
 import styles from './index.scss'
@@ -37,13 +38,17 @@ class Uploader extends React.Component {
   constructor(props) {
     super(props)
     this.store = new BuilderStore()
+    let acceptOptions = {}
+    if (this.filesType && this.filesType !== 'binary') {
+      acceptOptions = { accept: `.${this.filesType}` }
+    }
     this.uploaderProps = {
       name: 's2ibinary',
       method: 'put',
       action: this.getUploadUrl,
       multiple: false,
       headers,
-      ...(this.filesType === 'binary' ? {} : { accept: `.${this.filesType}` }),
+      ...acceptOptions,
       beforeUpload: this.beforeUploadHandler,
       onStart: this.startHandler,
       onSuccess: this.successHandler,
@@ -59,7 +64,14 @@ class Uploader extends React.Component {
   }
 
   get filesType() {
-    return get(this.props.formTemplate, 'metadata.annotations.languageType')
+    const type = get(
+      this.props.formTemplate,
+      'metadata.annotations.languageType'
+    )
+    if (type && B2I_SUPPORTED_TYPES.includes(type)) {
+      return type
+    }
+    return ''
   }
 
   get uploadedfile() {
@@ -244,7 +256,7 @@ class Uploader extends React.Component {
               {t('Click to select the artifact file to upload')}
             </p>
             <p className={styles.desc}>
-              {t(`${this.filesType.toUpperCase()}_DESC`)}
+              {t(`${this.filesType.toUpperCase() || 'B2I_DEFAULT'}_DESC`)}
             </p>
           </div>
         </Upload>
