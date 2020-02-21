@@ -24,7 +24,7 @@ import { NumberInput, SelectInput } from 'components/Inputs'
 import ToggleView from 'components/ToggleView'
 import {
   MODULE_KIND_MAP,
-  PATTERN_LENGTH_63,
+  PATTERN_LENGTH_52,
   PATTERN_NAME,
 } from 'utils/constants'
 
@@ -84,16 +84,16 @@ export default class BaseInfo extends React.Component {
           <Column>
             <Form.Item
               label={t('Name')}
-              desc={t('NAME_DESC')}
+              desc={t('CRONJOB_NAME_DESC')}
               rules={[
                 { required: true, message: t('Please input name') },
                 {
                   pattern: PATTERN_NAME,
-                  message: `${t('Invalid name')}, ${t('NAME_DESC')}`,
+                  message: `${t('Invalid name')}, ${t('CRONJOB_NAME_DESC')}`,
                 },
                 {
-                  pattern: PATTERN_LENGTH_63,
-                  message: t('NAME_TOO_LONG'),
+                  pattern: PATTERN_LENGTH_52,
+                  message: t('CRONJOB_NAME_TOO_LONG'),
                 },
                 { validator: this.nameValidator },
               ]}

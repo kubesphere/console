@@ -135,6 +135,10 @@ export default {
   CRONJOB_CREATE_DESC:
     '定时任务 (CronJob) 管理基于时间的任务，例如在给定时间点只运行一次，或周期性地在给定时间点运行。',
 
+  CRONJOB_NAME_DESC:
+    '最长 52 个字符，只能包含小写字母、数字及分隔符("-")，且必须以小写字母或数字开头及结尾',
+  CRONJOB_NAME_TOO_LONG: '最长 52 个字符',
+
   IMAGE_PLACEHOLDER: '点击右侧图标可选择镜像，或直接输入名称 例：nginx:latest',
   IMAGE_REGISTRY_PLACEHOLDER: '请选择镜像仓库密钥',
   IMAGE_DESC:
