@@ -135,7 +135,10 @@ export default class LoginInfo extends Component {
                 secondary: '#8d663e',
               }}
             />
-            <a className={styles.loginLabel} href="/login?referer=/apps">
+            <a
+              className={styles.loginLabel}
+              href={`/login?referer=${location.pathname}`}
+            >
               {t('Login KubeSphere')}
             </a>
           </div>
