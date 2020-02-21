@@ -40,6 +40,10 @@ export default {
   CRONJOB_CREATE_DESC:
     'A CronJob creates Jobs on a time-based schedule. For example, it runs a job periodically on a given schedule or only runs a job once on a given time.',
 
+  CRONJOB_NAME_DESC:
+    'It can only contain lowercase letters, numbers and hyphens("-"), and must begin with a lowercase letter, ending with a number or lowercase letter. The maximum length of characters is set to 52.',
+  CRONJOB_NAME_TOO_LONG: 'The maximum length of characters is set to 52.',
+
   REPLICAS_SCALE_NOTIFY_TITLE: 'Does it take effect immediately?',
   REPLICAS_SCALE_NOTIFY_CONTENT:
     'You are going to change the replicas of your workload to {num}. You can continue to change the number of replicas, or you can make the change take effect immediately.',
