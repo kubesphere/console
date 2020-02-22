@@ -469,7 +469,7 @@ export default class AdvanceSettings extends React.Component {
             </Column>
             <Column>
               <Form.Item
-                label={t('Max # of old items to keep')}
+                label={t('Maximum number of builds to keep')}
                 desc={`${t(
                   'if not empty, only up to this number of old items are kept'
                 )}. (${t('defaultValue -1 means not discard')})`}
