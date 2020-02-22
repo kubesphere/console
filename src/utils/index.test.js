@@ -150,8 +150,8 @@ it('getQueryString', () => {
 })
 
 it('getFilterString', () => {
-  expect(getFilterString({ app: 'xxx', name: '', tag: 'yyy' })).toBe(
-    'app~xxx,tag=yyy'
+  expect(getFilterString({ label: 'xxx', name: '', tag: 'yyy' })).toBe(
+    'label~xxx,tag=yyy'
   )
 })
 
