@@ -176,10 +176,11 @@ export default class Services extends Base {
     },
     {
       title: t('Application'),
-      dataIndex: 'app',
+      dataIndex: 'app.kubernetes.io/name',
       isHideable: true,
       search: true,
       width: '16%',
+      render: (_, record) => record.app,
     },
     {
       title: t('Created Time'),

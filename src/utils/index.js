@@ -169,7 +169,7 @@ export const getQueryString = params =>
 
 export const getFilterString = (
   params,
-  fuzzyMatchKeys = ['name', 'app', 'label', 'annotation']
+  fuzzyMatchKeys = ['name', 'app.kubernetes.io/name', 'label', 'annotation']
 ) =>
   Object.keys(params)
     .filter(key => !isUndefined(params[key]) && params[key] !== '')
