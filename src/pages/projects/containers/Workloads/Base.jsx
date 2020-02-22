@@ -141,10 +141,11 @@ export default class WorkloadsBaseList extends Base {
     },
     {
       title: t('Application'),
-      dataIndex: 'app',
+      dataIndex: 'app.kubernetes.io/name',
       isHideable: true,
       search: true,
       width: '25%',
+      render: (_, record) => record.app,
     },
     this.module === 'deployments'
       ? {
