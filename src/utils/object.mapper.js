@@ -327,7 +327,7 @@ const EventsMapper = item => ({
   type: get(item, 'type'),
   reason: get(item, 'reason'),
   message: get(item, 'message'),
-  startTime: get(item, 'firstTimestamp'),
+  startTime: get(item, 'firstTimestamp') || get(item, 'creationTimestamp'),
   endTime: get(item, 'lastTimestamp'),
   source: get(item, 'source.component'),
   _originData: getOriginData(item),
