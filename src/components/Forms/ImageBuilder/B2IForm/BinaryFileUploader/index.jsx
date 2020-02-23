@@ -105,7 +105,7 @@ class Uploader extends React.Component {
 
   beforeUploadHandler = async file => {
     const extensionName = file.name.slice(file.name.lastIndexOf('.') + 1)
-    if (this.filesType !== 'binary' && extensionName !== this.filesType) {
+    if (![extensionName, 'binary', ''].includes(this.filesType)) {
       Notify.error(t('WRONG_FILE_EXTENSION_NAME', { type: this.filesType }))
       return Promise.reject(
         t('WRONG_FILE_EXTENSION_NAME', { type: this.filesType })
