@@ -1,6 +1,6 @@
 {
   "name": "kubesphere-console",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "private": true,
   "license": "AGPL-3.0",
   "dependencies": {
@@ -86,7 +86,7 @@
     "lint": "eslint ./src",
     "postinstall": "rimraf .cache-loader",
     "prebuild": "rimraf dist",
-    "dbg": "cross-env DEBUG=app NODE_ENV=development node --inspect-brk server/server.js"
+    "release": "standard-version"
   },
   "husky": {
     "hooks": {
@@ -164,6 +164,7 @@
     "rimraf": "^2.6.2",
     "sass-loader": "^7.1.0",
     "speed-measure-webpack-plugin": "^1.2.3",
+    "standard-version": "^7.1.0",
     "style-loader": "^0.23.1",
     "url-loader": "0.5.9",
     "webpack": "^4.41.4",
