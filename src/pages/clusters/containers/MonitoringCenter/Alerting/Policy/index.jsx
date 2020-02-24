@@ -127,7 +127,6 @@ class AlertingPolicy extends Base {
       title: t('Name'),
       dataIndex: 'name',
       search: true,
-      width: '24%',
       render: (name, record) => (
         <Avatar
           icon="wrench"
@@ -136,12 +135,6 @@ class AlertingPolicy extends Base {
           to={`${this.props.match.url}/${name}`}
         />
       ),
-    },
-    {
-      title: t('Monitoring Target Count'),
-      dataIndex: 'targetCount',
-      isHideable: true,
-      width: '24%',
     },
     {
       title: t('Monitoring Rules'),

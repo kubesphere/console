@@ -40,6 +40,7 @@ export default class S2IBuilder extends React.Component {
       getRunDetailLoading: true,
       currentBuilderName: builderNames[0],
       showRerun: false,
+      notFound: false,
     }
     this.refreshTimer = null
     this.builderStore = new BuilderStore()
@@ -91,7 +92,10 @@ export default class S2IBuilder extends React.Component {
       name: builderName,
       namespace,
     })
-
+    if (get(result, '_originData.reason', '') === 'NotFound') {
+      this.setState({ notFound: true })
+      return
+    }
     this.setState({ builderDetail: result })
     return result
   }
@@ -191,6 +195,10 @@ export default class S2IBuilder extends React.Component {
   render() {
     const { className } = this.props
     const config = get(this.state.builderDetail, 'spec.config')
+
+    if (this.state.notFound) {
+      return null
+    }
 
     return (
       <Card title={t('Building Image')} operations={this.renderBuilderSelect()}>

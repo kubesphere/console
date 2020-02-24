@@ -20,9 +20,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { get } from 'lodash'
 import { Input, RadioGroup, Columns, Column } from '@pitrix/lego-ui'
-import { Modal, Form, Checkbox } from 'components/Base'
+import { Modal, Form, Checkbox, Empty } from 'components/Base'
 import BuilderStore from 'stores/s2i/builder'
-
 import RadioItem from './item'
 import styles from './index.scss'
 
@@ -46,26 +45,33 @@ export default class ReBuild extends React.Component {
     super(props)
 
     this.form = React.createRef()
-    this.state = { urls: {}, data: {} }
+    this.state = { urls: {}, data: {}, notFound: false }
     this.store = new BuilderStore()
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { builderNames } = nextProps
+  componentDidUpdate(prevProps) {
+    const { visible: lastVisible } = prevProps
 
-    if (builderNames.length && !this.props.builderNames.length) {
-      this.fetchBuilders(builderNames)
+    if (!lastVisible && this.props.visible) {
+      this.fetchBuilders(this.props.builderNames)
     }
   }
 
-  fetchBuilders = builderNames => {
+  fetchBuilders = async builderNames => {
     const { namespace } = this.props
     const promiseArr = builderNames.map(async name => {
-      const result = await this.store.fetchBuilderDetail({ name, namespace })
-      const url = get(result, 'spec.config.sourceUrl', '')
+      const result = await this.store.fetchDetail({ name, namespace })
+      const url = get(result, '_originData.spec.config.sourceUrl', '')
       this.setState({ urls: { ...this.state.urls, [name]: url } })
+      return result
     })
-    Promise.all(promiseArr)
+    const result = (await Promise.all(promiseArr)) || []
+    const notfound = result.every(
+      data => get(data, '_originData.reason', '') === 'NotFound'
+    )
+    if (notfound) {
+      this.setState({ notFound: true })
+    }
   }
 
   handleOk = () => {
@@ -114,22 +120,13 @@ export default class ReBuild extends React.Component {
     </div>
   )
 
-  render() {
-    const { visible, isSubmitting, onCancel } = this.props
+  renderContent = () => {
+    if (this.state.notFound) {
+      return <Empty />
+    }
 
     return (
-      <Modal.Form
-        formRef={this.form}
-        data={this.state.data}
-        width={691}
-        title={t('Rerun')}
-        icon="cdn"
-        onOk={this.handleOk}
-        okText={t('Rerun')}
-        onCancel={onCancel}
-        visible={visible}
-        isSubmitting={isSubmitting}
-      >
+      <>
         <Columns>
           <Column>
             <Form.Item label={t('New Image Tag')}>
@@ -144,6 +141,28 @@ export default class ReBuild extends React.Component {
         </Columns>
         {this.renderBuilderSelector()}
         {this.renderEnableUpdate()}
+      </>
+    )
+  }
+
+  render() {
+    const { visible, isSubmitting, onCancel } = this.props
+
+    return (
+      <Modal.Form
+        formRef={this.form}
+        data={this.state.data}
+        width={691}
+        title={t('Rerun')}
+        icon="cdn"
+        onOk={this.handleOk}
+        okText={t('Rerun')}
+        onCancel={onCancel}
+        visible={visible}
+        disableOk={this.state.notFound}
+        isSubmitting={isSubmitting}
+      >
+        {this.renderContent()}
       </Modal.Form>
     )
   }

@@ -63,7 +63,9 @@ export default class AddressStore extends Base {
 
     const result = await request.get(this.mailServicePath, params)
 
-    this.config = get(result, 'email_service_config', {})
+    const { password, ...config } = get(result, 'email_service_config', {})
+
+    this.config = config
 
     this.isLoading = false
   }

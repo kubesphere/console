@@ -61,6 +61,7 @@ export default {
   IMAGE_FROM_S2I: 'Build a new image from code',
   IMAGE_FROM_B2I: 'Build a new image from the artifact',
   B2I_DESC: 'Please choose your artifact to build a container image',
+  B2I_DEFAULT_DESC: 'Please choose your artifact to build a container image',
   JAR_DESC:
     'A JAR file is a package file format that is commonly used to aggregate a large number of Java class files, related metadata and resources (text, images, etc.) files into a file.',
   WAR_DESC:

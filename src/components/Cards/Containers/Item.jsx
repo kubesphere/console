@@ -20,11 +20,12 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
-import { get, isUndefined, isEmpty } from 'lodash'
+import { isUndefined, isEmpty } from 'lodash'
 
 import { Icon, Tooltip } from '@pitrix/lego-ui'
 import { Indicator, Tag } from 'components/Base'
 import { createCenterWindowOpt } from 'utils/dom'
+import { getContainerStatus } from 'utils/status'
 import ContainerLogModal from 'components/Modals/ContainerLog'
 
 import styles from './index.scss'
@@ -138,7 +139,7 @@ export default class ContainerItem extends React.Component {
     } = this.props
     const { showContainerLog } = this.state
     const link = this.getLink(detail.name)
-    const status = detail.state ? Object.keys(detail.state)[0] : ''
+    const { status, reason } = getContainerStatus(detail)
     const hasProbe = detail.livenessProbe || detail.readinessProbe
 
     return (
@@ -189,8 +190,8 @@ export default class ContainerItem extends React.Component {
               </Tooltip>
             )}
           </div>
-          {status === 'waiting' ? (
-            <p>{t(get(detail, `state[${status}].reason`))}</p>
+          {reason ? (
+            <p>{t(reason)}</p>
           ) : (
             <p>
               {t('Image')}:{detail.image}

@@ -164,7 +164,7 @@ export default class Resources extends React.Component {
         kind: 'Service',
       },
       {
-        group: 'extensions',
+        group: 'apps',
         kind: 'Deployment',
       },
       {

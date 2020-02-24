@@ -113,6 +113,11 @@ export default class ApplicationStore {
 
     const params = {}
 
+    if (!order && reverse === undefined) {
+      order = 'createTime'
+      reverse = true
+    }
+
     if (!isEmpty(filters)) {
       params.conditions = getFilterString(filters)
     }

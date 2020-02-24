@@ -35,7 +35,6 @@ export default class S2IBuilderStore extends Base {
   runStore = new S2IRunStore()
 
   @observable detail = {}
-  @observable isDetailLoading = true
 
   getS2iSupportLanguage = async () => {
     const result = await this.getBuilderTemplate()
@@ -72,22 +71,42 @@ export default class S2IBuilderStore extends Base {
     await request.get('apis/devops.kubesphere.io/v1alpha1/s2ibuildertemplates')
 
   @action
-  fetchBuilderDetail = async ({ namespace, name }) => {
-    this.isDetailLoading = true
+  fetchDetail = async ({ namespace, name }) => {
+    this.isLoading = true
     const result = await request.get(
-      `apis/devops.kubesphere.io/v1alpha1/namespaces/${namespace}/s2ibuilders/${name}`
+      `apis/devops.kubesphere.io/v1alpha1/namespaces/${namespace}/s2ibuilders/${name}`,
+      undefined,
+      undefined,
+      error => {
+        if (error.reason === 'NotFound') {
+          return error
+        }
+        Promise.reject(error)
+      }
     )
     this.detail = this.mapper(result)
-    this.isDetailLoading = false
-    return result
+    this.isLoading = false
+    return this.detail
   }
 
   updateCreateData(data) {
     if (!data.metadata.name) {
-      data.metadata.name = `${get(data, 'spec.config.imageName', '').replace(
+      const _name = `${get(data, 'spec.config.imageName', '').replace(
         /[_/:]/g,
         '-'
-      )}-${get(data, 'spec.config.tag')}-${generateId(3)}`
+      )}-${get(data, 'spec.config.tag')}`
+      data.metadata.name = `${_name.slice(0, 60)}-${generateId(3)}`
+    }
+    let repoUrl = get(data, 'metadata.annotations["kubesphere.io/repoUrl"]', '')
+    repoUrl = repoUrl.replace(/^(http(s)?:\/\/)?(.*)$/, '$3')
+
+    const imageName = get(data, 'spec.config.imageName', '')
+
+    if (repoUrl && !imageName.startsWith(repoUrl)) {
+      const totalImageName = repoUrl.endsWith('/')
+        ? `${repoUrl}${imageName}`
+        : `${repoUrl}/${imageName}`
+      set(data, 'spec.config.imageName', totalImageName)
     }
     if (data.isUpdateWorkload === false) {
       set(
@@ -140,11 +159,13 @@ export default class S2IBuilderStore extends Base {
       return
     }
 
+    const name = `${builderName.slice(0, 37)}-${generateId(3)}`
+
     return this.runStore.create({
       apiVersion: 'devops.kubesphere.io/v1alpha1',
       kind: 'S2iRun',
       metadata: {
-        name: `${builderName}-${generateId(3)}`,
+        name,
         namespace,
       },
       spec: {

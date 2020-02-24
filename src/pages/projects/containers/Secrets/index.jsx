@@ -27,6 +27,7 @@ import { getFormTemplate } from 'utils/form.templates'
 import Base from 'core/containers/Base/List'
 import { Avatar, Notify } from 'components/Base'
 import CreateModal from 'components/Modals/Create'
+import EditYamlModal from 'components/Modals/EditYaml'
 import EditBasicInfoModal from 'components/Modals/EditBasicInfo'
 import SecretEditModal from 'projects/components/Modals/SecretEdit'
 
@@ -66,6 +67,13 @@ class Secrets extends Base {
         text: t('Edit'),
         action: 'edit',
         onClick: this.showModal('editModal'),
+      },
+      {
+        key: 'editYaml',
+        icon: 'pen',
+        text: t('Edit YAML'),
+        action: 'edit',
+        onClick: this.showModal('editYamlModal'),
       },
       {
         key: 'editSecret',
@@ -131,8 +139,16 @@ class Secrets extends Base {
     },
   ]
 
+  handleYamlEdit = newObject => {
+    const { selectItem } = this.state
+
+    this.store.update(selectItem, newObject).then(() => {
+      this.hideModal('editYamlModal')()
+    })
+  }
+
   handleEditSecret = data => {
-    this.store.update(this.state.selectItem, data).then(() => {
+    this.store.updateWithEncode(this.state.selectItem, data).then(() => {
       this.hideModal('editSecretModal')()
       Notify.success({ content: `${t('Updated Successfully')}!` })
       this.routing.query()
@@ -143,6 +159,7 @@ class Secrets extends Base {
     const {
       createModal,
       editModal,
+      editYamlModal,
       editSecretModal,
       selectItem = {},
     } = this.state
@@ -168,6 +185,14 @@ class Secrets extends Base {
           isSubmitting={isSubmitting}
           onOk={this.handleEdit}
           onCancel={this.hideModal('editModal')}
+        />
+        <EditYamlModal
+          store={this.store}
+          visible={editYamlModal}
+          detail={selectItem._originData}
+          isSubmitting={isSubmitting}
+          onOk={this.handleYamlEdit}
+          onCancel={this.hideModal('editYamlModal')}
         />
         <SecretEditModal
           visible={editSecretModal}

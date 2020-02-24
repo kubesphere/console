@@ -21,6 +21,7 @@ import { action, observable } from 'mobx'
 import ObjectMapper from 'utils/object.mapper'
 
 import { getFilterString } from 'utils'
+import { LIST_DEFAULT_ORDER } from 'utils/constants'
 
 import List from './base.list'
 
@@ -104,6 +105,11 @@ export default class BaseStore {
     this.list.isLoading = true
 
     const params = {}
+
+    if (!order && reverse === undefined) {
+      order = LIST_DEFAULT_ORDER[this.module] || 'createTime'
+      reverse = true
+    }
 
     if (limit === Infinity || limit === -1) {
       limit = -1

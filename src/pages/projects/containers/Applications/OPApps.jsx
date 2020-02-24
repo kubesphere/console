@@ -78,7 +78,7 @@ export default class OPApps extends Base {
       title: t('Status'),
       dataIndex: 'status',
       isHideable: true,
-      width: '15%',
+      width: '20%',
       render: (status, record) => (
         <Status
           name={t(record.transition_status || status)}
@@ -90,7 +90,7 @@ export default class OPApps extends Base {
       title: t('Version'),
       dataIndex: 'version.name',
       isHideable: true,
-      width: '15%',
+      width: '20%',
     },
     {
       title: t('Last Updated Time'),

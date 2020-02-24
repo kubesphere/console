@@ -78,7 +78,7 @@ class Header extends React.Component {
         <Link to="/">
           <img
             className={styles.logo}
-            src={isAppsPage() ? `/assets/logo-white.svg` : logo}
+            src={isAppsPage() ? `/assets/login-logo.svg` : logo}
             alt=""
           />
         </Link>

@@ -24,7 +24,7 @@ import { Icon } from '@pitrix/lego-ui'
 import { getLocalTime, getDisplayName, getDocsUrl } from 'utils'
 import { ICON_TYPES } from 'utils/constants'
 import { getFormTemplate } from 'utils/form.templates'
-import { Panel, Button, Avatar, Notify } from 'components/Base'
+import { Text, Panel, Button, Avatar, Notify } from 'components/Base'
 import Base from 'core/containers/Base/List'
 import CreateModal from 'components/Modals/Create'
 import EditYamlModal from 'components/Modals/EditYaml'
@@ -158,10 +158,11 @@ export default class Routes extends Base {
     },
     {
       title: t('Application'),
-      dataIndex: 'app',
+      dataIndex: 'app.kubernetes.io/name',
       isHideable: true,
       search: true,
       width: '22%',
+      render: (_, record) => record.app,
     },
     {
       title: t('Created Time'),
@@ -178,6 +179,16 @@ export default class Routes extends Base {
       render: this.renderMore,
     },
   ]
+
+  getEmptyProps() {
+    const { data, isLoading } = this.store.gateway
+
+    if (isEmpty(data) && !isLoading) {
+      return { onCreate: null }
+    }
+
+    return {}
+  }
 
   handleEditAnnotations = newObject => {
     const { selectItem } = this.state
@@ -282,20 +293,30 @@ export default class Routes extends Base {
     )
   }
 
-  renderCreateRouter() {
+  renderHeader() {
+    const { data, isLoading } = this.store.gateway
+
+    return (
+      <>
+        {Base.prototype.renderHeader.call(this)}
+        {isEmpty(data) && !isLoading && this.renderCreateGateway()}
+      </>
+    )
+  }
+
+  renderCreateGateway() {
     return (
       <Panel className="margin-t12 margin-b12">
-        <div className={styles.empty}>
-          <div className={styles.icon}>
-            <Icon name="loadbalancer" size={40} />
-          </div>
-          <div className={styles.text}>
-            <div>{t('Gateway not set')}</div>
-            <p>{t('PROJECT_INTERNET_ACCESS_DESC')}</p>
-          </div>
+        <div className="flexbox">
+          <Icon className="margin-r12" name="loadbalancer" size={40} />
+          <Text
+            className={styles.text}
+            title={t('Gateway not set')}
+            description={t('PROJECT_INTERNET_ACCESS_DESC')}
+          />
           {this.canSetGateway && (
             <Button
-              className="margin-t12"
+              className={styles.button}
               type="control"
               onClick={this.showModal('addGateway')}
             >
@@ -305,15 +326,5 @@ export default class Routes extends Base {
         </div>
       </Panel>
     )
-  }
-
-  renderTable() {
-    const { data, isLoading } = this.store.gateway
-
-    if (isEmpty(data) && !isLoading) {
-      return this.renderCreateRouter()
-    }
-
-    return Base.prototype.renderTable.call(this)
   }
 }

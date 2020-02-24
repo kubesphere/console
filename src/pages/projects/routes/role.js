@@ -22,12 +22,16 @@ import { getChildRoutes } from 'utils/router.config'
 import DetailLayout from 'core/layouts/Detail'
 
 import Detail from '../containers/Roles/Detail'
-import AuthorityList from '../containers/Roles/Detail/AuthorityList'
+import AuthorizationList from '../containers/Roles/Detail/AuthorizationList'
 import AuthorizedUsers from '../containers/Roles/Detail/AuthorizedUsers'
 
 const PATH = '/projects/:namespace/roles/:name'
 const ROUTES = [
-  { name: 'authorities', title: 'Authority List', component: AuthorityList },
+  {
+    name: 'authorizations',
+    title: 'Authorization List',
+    component: AuthorizationList,
+  },
   { name: 'users', title: 'Authorized Users', component: AuthorizedUsers },
 ]
 

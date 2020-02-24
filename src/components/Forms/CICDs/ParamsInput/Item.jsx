@@ -77,7 +77,10 @@ export default class ParamsInput extends React.Component {
       <div>
         <Columns>
           <Column>
-            <Form.Item label={t('Name')}>
+            <Form.Item
+              label={t('Name')}
+              rules={[{ required: true, message: t('This param is required') }]}
+            >
               <Input
                 name={`${this.props.prefix}.name`}
                 defaultValue={value.name}
@@ -114,7 +117,10 @@ export default class ParamsInput extends React.Component {
 
     return (
       <div>
-        <Form.Item label={t('Name')}>
+        <Form.Item
+          label={t('Name')}
+          rules={[{ required: true, message: t('This param is required') }]}
+        >
           <Input name={`${this.props.prefix}.name`} defaultValue={value.name} />
         </Form.Item>
         <Form.Item label={t('Default Value')}>
@@ -142,7 +148,10 @@ export default class ParamsInput extends React.Component {
       <div>
         <Columns>
           <Column>
-            <Form.Item label={t('Name')}>
+            <Form.Item
+              label={t('Name')}
+              rules={[{ required: true, message: t('This param is required') }]}
+            >
               <Input
                 name={`${this.props.prefix}.name`}
                 defaultValue={value.name}
@@ -179,7 +188,10 @@ export default class ParamsInput extends React.Component {
       <div>
         <Columns>
           <Column>
-            <Form.Item label={t('Name')}>
+            <Form.Item
+              label={t('Name')}
+              rules={[{ required: true, message: t('This param is required') }]}
+            >
               <Input
                 name={`${this.props.prefix}.name`}
                 defaultValue={value.name}
@@ -219,7 +231,10 @@ export default class ParamsInput extends React.Component {
       <div>
         <Columns>
           <Column>
-            <Form.Item label={t('Name')}>
+            <Form.Item
+              label={t('Name')}
+              rules={[{ required: true, message: t('This param is required') }]}
+            >
               <Input
                 name={`${this.props.prefix}.name`}
                 defaultValue={value.name}

@@ -268,7 +268,6 @@ export default class BaseList extends React.Component {
       this.hideModal('createModal')()
       Notify.success({ content: `${t('Created Successfully')}!` })
       this.getData({ silent: true })
-      this.updateCallback && this.updateCallback()
       formPersist.delete(`${this.module}_create_form`)
     })
   }
@@ -290,7 +289,6 @@ export default class BaseList extends React.Component {
       this.hideModal('deleteModal')()
       Notify.success({ content: `${t('Deleted Successfully')}!` })
       this.routing.query()
-      this.updateCallback && this.updateCallback()
     })
   }
 
@@ -322,7 +320,6 @@ export default class BaseList extends React.Component {
           Notify.success({ content: `${t('Deleted Successfully')}!` })
           this.store.setSelectRowKeys([])
           this.routing.query()
-          this.updateCallback && this.updateCallback()
         })
     }
   }

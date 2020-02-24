@@ -20,6 +20,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Icon } from '@pitrix/lego-ui'
 import { observer } from 'mobx-react'
+import { get } from 'lodash'
 import { Modal, Button, Notify } from 'components/Base'
 
 import styles from './scanModal.scss'
@@ -53,9 +54,17 @@ export default class ScanReponsitoryLogs extends React.Component {
   get startBy() {
     const { reponsitorylog } = this.props.store
     const arr = reponsitorylog.split('\n')
-    if (arr[0] && arr[0].startsWith('Started by user ')) {
-      return arr[0].slice(15)
+    const firstLine = get(arr, '[0]', '')
+    const parser = firstLine.match(/^Started by (user )?(.*)?/) || []
+    const isUser = parser[1]
+    const name = parser[2]
+    if (firstLine && isUser) {
+      return `${t('Started By')}: ${name}`
     }
+    if (firstLine && !isUser) {
+      return t('Started By {name}', { name: t(name) })
+    }
+    return `${t('Started By')}: -`
   }
 
   handleFetch = async () => {
@@ -88,7 +97,7 @@ export default class ScanReponsitoryLogs extends React.Component {
         <div className={styles.content}>
           <div className={styles.btn_group}>
             <Icon name="human" size={20} />
-            {`${t('Started By')}: ${this.startBy}`}
+            {this.startBy}
             <Button onClick={this.handleDownloadLogs}>
               {t('Download Logs')}
             </Button>

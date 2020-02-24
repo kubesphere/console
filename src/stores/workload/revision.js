@@ -49,7 +49,7 @@ export default class RevisionStore extends Base {
     const labelSelector = joinSelector(selector)
     const prefix =
       this.module === 'deployments'
-        ? `apis/extensions/v1beta1/namespaces/${namespace}/replicasets`
+        ? `apis/apps/v1/namespaces/${namespace}/replicasets`
         : `apis/apps/v1/namespaces/${namespace}/controllerrevisions`
     const result = await request.get(`${prefix}?labelSelector=${labelSelector}`)
 
@@ -114,14 +114,14 @@ export default class RevisionStore extends Base {
       case 'deployments': {
         const params = {
           kind: 'DeploymentRollback',
-          apiVersion: 'extensions/v1beta1',
+          apiVersion: 'apps/v1',
           name,
           namespace,
           rollbackTo: { revision },
         }
 
         await request.post(
-          `apis/extensions/v1beta1/namespaces/${namespace}/${
+          `apis/apps/v1/namespaces/${namespace}/${
             this.module
           }/${name}/rollback`,
           params

@@ -77,7 +77,7 @@ export default {
   'Discard old items': '丢弃旧的构建',
   'Discard old branch': '丢弃旧的分支',
   'Days to keep old items': '保留构建的天数',
-  'Max # of old items to keep': '保留构建的最大个数',
+  'Maximum number of builds to keep': '保留构建的最大个数',
   'Days to keep old branches': '保留分支的天数',
   'Max # of old branches to keep': '保留分支的最大个数',
   'if not empty, old items are only kept up to this number of days':
@@ -128,7 +128,7 @@ export default {
   bcc: '密送',
   remote: '仓库地址',
   'Print message': '打印消息',
-  CREDENTIALS_DESC: `凭证是包含了一些敏感数据的对象，如用户名密码，SSH 密钥和 Token 等, 
+  CREDENTIALS_DESC: `凭证是包含了一些敏感数据的对象，如用户名密码，SSH 密钥和 Token 等,
     用于在 Pipeline 运行时, 为拉取代码、push/pull 镜像、SSH 执行脚本等过程提供认证`,
   'Credential Id': '凭证 ID',
   'No artifacts records': '没有制品记录',
@@ -173,8 +173,8 @@ export default {
     '2. 保留构建的个数：如果已经存在一定数量的构建，则丢弃最旧的构建。\n' +
     '这两个选项可以同时对构建进行作用，如果超出任一限制，则将丢弃超出该限制的任何构建。',
   tips_disable_concurrent_withscm: `这将确定何时应丢弃分支以及分支下的所有构建记录。构建记录包括控制台输出，
-    存档工件以及与特定构建相关的其他元数据。保留较少的构建可以节省Jenkins所使用的磁盘空间。 
-    我们提供了两个选项来确定应何时丢弃旧的分支： 1. 保留分支的天数：如果分支达到一定的天数，则丢弃分支。 
+    存档工件以及与特定构建相关的其他元数据。保留较少的构建可以节省Jenkins所使用的磁盘空间。
+    我们提供了两个选项来确定应何时丢弃旧的分支： 1. 保留分支的天数：如果分支达到一定的天数，则丢弃分支。
     2. 保留分支的个数：如果已经存在一定数量的分支，则丢弃最旧的分支。这两个选项可以同时对分支进行作用，
     如果超出任一限制，则将丢弃超出该限制的任何分支。`,
   tips_Timing_build: '提供类似 cron 的功能来定期执行此项目',
@@ -236,7 +236,7 @@ export default {
   AGENT_TYPE_DESC: `Agent 部分指定整个 Pipeline 或特定阶段将在 Jenkins 环境中执行的位置，
     具体取决于该 agent 部分的放置位置。该部分必须在 Pipeline 块内的顶层定义，但 stage 级使用是可选的。`,
   AUTHENTICATION_TOKEN_DESC: `使用以下 URL 远程触发构建：
-    JENKINS_URL / job / JOB_NAME / build？token =TOKEN_NAME 
+    JENKINS_URL / job / JOB_NAME / build？token =TOKEN_NAME
     或者/ buildWithParameters？token = TOKEN_NAME 可选择附加＆cause =原因提供将包含在记录的构建原因中的文本。`,
   'Please select a code repository as the code source for the pipeline':
     '请选择一个代码仓库作为 Pipeline 的代码源',
@@ -245,7 +245,7 @@ export default {
   PIPELINE_NO_CONFIG: '当前 Pipeline 中并没有找到相关配置文件',
   NOT_VALID_JENKINS_FILE:
     '当前 Jenkinsfile 不是标准的声明式 Jenkinsfile，无法进行图形化显示',
-  PIPELINE_CRONJOB_CRON_DESC: `Every hour, on the hour 语法参照 
+  PIPELINE_CRONJOB_CRON_DESC: `Every hour, on the hour 语法参照
     <a href="//jenkins.io/doc/book/pipeline/syntax/#cron-syntax" target="_blank">CRON</a>`,
   'passphrase Variable': '密码变量',
   'show yaml editor': '用 YAML 编辑器编辑',
@@ -440,7 +440,7 @@ export default {
     href="https://github.com/settings/tokens/new?scopes=repo,read:user,user:email,write:repo_hook"
     target="_blank"
   >
-    获取 Token 
+    获取 Token
   </a>`,
   bitbucket_server_ACCESSTOKEN_PLACEHOLDER: '请输入 BitBucket 账号信息',
   github_ACCESSTOKEN_PLACEHOLDER: '请输入 GitHub access token',
@@ -460,4 +460,6 @@ export default {
   WHEN_CHRETE_PIEPLINE_DESC:
     '当有创建新的流水线时，将自动触发指定流水线中的任务。',
   'select a pipeline': '选择一个流水线',
+  timer: '定时器',
+  'Started By {name}': '由{name}触发扫描',
 }

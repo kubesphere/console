@@ -67,19 +67,6 @@ export default class Screenshots extends React.Component {
     return Promise.reject()
   }
 
-  createImageElement(base64Str) {
-    return new Promise((resolve, reject) => {
-      const img = document.createElement('img')
-      img.src = `data:image/png;base64,${base64Str}`
-      img.onload = () => {
-        resolve(img)
-      }
-      img.onerror = err => {
-        reject(err)
-      }
-    })
-  }
-
   render() {
     const { error } = this.state
     const { detail, store } = this.props
@@ -125,7 +112,7 @@ export default class Screenshots extends React.Component {
           ) : (
             <div className={styles.words}>
               {len}/{SCREENSHOTS_LIMIT} {t('screenshots')} (
-              {t('FILE_SCREENSHOTS_NOTE')})
+              {t('FILE_MAX_SCREENSHOTS')})
               {len > 0 ? (
                 <label
                   className={styles.deleteAll}

@@ -82,9 +82,8 @@ class NotificationRules extends React.Component {
                   alt="avatar"
                 />
                 <div className={styles.desc}>
-                  <strong>{item.username}</strong>
+                  <strong>{`${t('Email')}: ${item.addresser || '-'}`}</strong>
                   <p>
-                    <span>{`${t('Email')}: ${item.addresser || '-'}`}</span>
                     <span>
                       {`${t('Time')}: ${getLocalTime(item.createTime).format(
                         `YYYY-MM-DD HH:mm:ss`

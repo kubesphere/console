@@ -21,36 +21,11 @@ import React from 'react'
 import { get } from 'lodash'
 import { Modal, Card, Empty } from 'components/Base'
 
-import LogStore from 'stores/logging/query'
-import LogCard from 'components/Cards/LogQuery'
 import ContainerLog from 'components/Cards/ContainerLog'
 
 import styles from './index.scss'
 
 export default class ContainerLogModal extends React.Component {
-  constructor(props) {
-    super(props)
-
-    if (this.isLogEnabled) {
-      const { namespace: namespaces, name: containers } = props.container
-      const { podName: pods } = props
-
-      this.logStore = new LogStore({
-        pods,
-        pathParams: {
-          namespaces,
-        },
-        containers,
-        size: 50,
-        end_time: Date.now(),
-      })
-    }
-  }
-
-  get isLogEnabled() {
-    return globals.app.hasKSModule('logging')
-  }
-
   renderContent() {
     const { namespace, name } = this.props.container
     const { podName } = this.props
@@ -63,19 +38,15 @@ export default class ContainerLogModal extends React.Component {
       )
     }
 
-    if (!this.isLogEnabled) {
-      return (
-        <ContainerLog
-          className={styles.containerLog}
-          contentClassName={styles.containerLogContent}
-          namespace={namespace}
-          podName={podName}
-          containerName={name}
-        />
-      )
-    }
-
-    return <LogCard className={styles.logCard} store={this.logStore} realTime />
+    return (
+      <ContainerLog
+        className={styles.containerLog}
+        contentClassName={styles.containerLogContent}
+        namespace={namespace}
+        podName={podName}
+        containerName={name}
+      />
+    )
   }
 
   render() {

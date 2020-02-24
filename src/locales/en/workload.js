@@ -40,6 +40,10 @@ export default {
   CRONJOB_CREATE_DESC:
     'A CronJob creates Jobs on a time-based schedule. For example, it runs a job periodically on a given schedule or only runs a job once on a given time.',
 
+  CRONJOB_NAME_DESC:
+    'It can only contain lowercase letters, numbers and hyphens("-"), and must begin with a lowercase letter, ending with a number or lowercase letter. The maximum length of characters is set to 52.',
+  CRONJOB_NAME_TOO_LONG: 'The maximum length of characters is set to 52.',
+
   REPLICAS_SCALE_NOTIFY_TITLE: 'Does it take effect immediately?',
   REPLICAS_SCALE_NOTIFY_CONTENT:
     'You are going to change the replicas of your workload to {num}. You can continue to change the number of replicas, or you can make the change take effect immediately.',
@@ -177,9 +181,9 @@ export default {
     'For persistent storage volumes, select a volume that supports multi-node read-write mode (ROX or RWX). Otherwise, the pods update may fail because the pods are not on the same node. If you choose a single-node read-write (RWO) mode volume, you can also schedule the pods on the same node by node selection to avoid update errors.',
 
   CPU_REQUEST_TARGET_DESC:
-    'Replicas will be increased when CPU usage exceeds below this target value, on the contrary it will be decreased when fails.',
+    'Replicas will be increased when CPU usage exceeds this target value, on the contrary it will be decreased.',
   MEMORY_REQUEST_TARGET_DESC:
-    'Replicas will be increased when memory usage exceeds below this target value, on the contrary it will be decreased when fails.',
+    'Replicas will be increased when memory usage exceeds this target value, on the contrary it will be decreased.',
   MIN_REPLICAS_DESC: 'Minimum value of the number of replicas',
   MAX_REPLICAS_DESC: 'Maximum value of the number of replicas',
   REPLICAS_PLACEHOLDER: 'Default: 1',

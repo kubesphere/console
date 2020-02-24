@@ -32,7 +32,7 @@ import { Avatar } from 'components/Base'
 import Base from 'core/containers/Base/List'
 import JobBanner from 'projects/components/JobBanner'
 import StatusReason from 'projects/components/StatusReason'
-import WorkloadStatus from 'projects/components/WorkloadStatus'
+import JobStatus from 'projects/components/JobStatus'
 import CreateModal from 'components/Modals/Create'
 import EditBasicInfoModal from 'components/Modals/EditBasicInfo'
 
@@ -41,6 +41,7 @@ import EditBasicInfoModal from 'components/Modals/EditBasicInfo'
 class Jobs extends Base {
   init() {
     this.store = new WorkloadStore(this.module)
+    this.store.fetchCounts(['jobs', 'cronjobs'])
     this.initWebsocket()
   }
 
@@ -71,18 +72,21 @@ class Jobs extends Base {
         key: 'edit',
         icon: 'pen',
         text: t('EDIT'),
+        action: 'edit',
         onClick: this.showModal('editModal'),
       },
       {
         key: 'rerun',
         icon: 'refresh',
         text: t('Rerun'),
+        action: 'edit',
         onClick: this.handleRerun,
       },
       {
         key: 'delete',
         icon: 'trash',
         text: t('Delete'),
+        action: 'delete',
         onClick: this.showModal('deleteModal'),
       },
     ]
@@ -135,9 +139,9 @@ class Jobs extends Base {
     },
     {
       title: t('Last schedule time'),
-      dataIndex: 'status.startTime',
+      dataIndex: 'updateTime',
       sorter: true,
-      sortOrder: this.getSortOrder('status.startTime'),
+      sortOrder: this.getSortOrder('updateTime'),
       isHideable: true,
       search: true,
       width: '20%',
@@ -150,10 +154,6 @@ class Jobs extends Base {
     },
   ]
 
-  updateCallback() {
-    this.props.rootStore.quota.fetch(this.props.match.params)
-  }
-
   handleRerun = item => {
     this.store.rerun(item).then(() => {
       this.getData()
@@ -161,7 +161,7 @@ class Jobs extends Base {
   }
 
   renderStatus = (status, record) => (
-    <WorkloadStatus data={record} module={this.module} />
+    <JobStatus data={record} module={this.module} />
   )
 
   renderHeader() {
@@ -169,7 +169,8 @@ class Jobs extends Base {
       <JobBanner
         module={this.module}
         {...this.props.match.params}
-        count={this.store.list.total}
+        jobsCount={this.store.counts.jobs}
+        cronjobsCount={this.store.counts.cronjobs}
       />
     )
   }

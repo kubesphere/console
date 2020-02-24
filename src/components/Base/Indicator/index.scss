@@ -34,6 +34,7 @@
   &.successful,
   &.ready,
   &.running,
+  &.jobrunning,
   &.active,
   &.normal,
   &.bound,
@@ -45,6 +46,12 @@
 
     &::before {
       background-color: $green;
+    }
+  }
+
+  &.jobrunning {
+    &.flicker {
+      animation: flicker 1.5s linear infinite;
     }
   }
 
@@ -77,6 +84,7 @@
   &.failed,
   &.critical,
   &.rejected,
+  &.ceasing,
   &.deleting {
     background-color: rgba(202, 38, 33, 0.1);
     box-shadow: 0 8px 16px 0 rgba(202, 38, 33, 0.2);

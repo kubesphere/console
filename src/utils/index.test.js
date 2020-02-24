@@ -150,8 +150,8 @@ it('getQueryString', () => {
 })
 
 it('getFilterString', () => {
-  expect(getFilterString({ app: 'xxx', name: '', tag: 'yyy' })).toBe(
-    'app~xxx,tag=yyy'
+  expect(getFilterString({ label: 'xxx', name: '', tag: 'yyy' })).toBe(
+    'label~xxx,tag=yyy'
   )
 })
 
@@ -371,7 +371,7 @@ it('getBrowserLang', () => {
   languageGetter.mockReturnValue('zh-CN')
   expect(getBrowserLang()).toBe('zh')
   languageGetter.mockReturnValue('de')
-  expect(getBrowserLang()).toBe('zh')
+  expect(getBrowserLang()).toBe('en')
 
   languageGetter.mockReturnValue(undefined)
   window.navigator.browserLanguage = 'zh-CN'

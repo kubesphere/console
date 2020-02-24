@@ -183,7 +183,7 @@ export default {
   PIPELINE_QUEUED_DESC:
     'You need to wait for the agent to start and execute the pipeline (note that if the agent has not started for a long time, please check the agent configuration and cluster resources)',
   pipeline_owner:
-    'The owner of the DevOps project, with the highest authority of the project, can perform all operations',
+    'The owner of the DevOps project, with the highest authorization of the project, can perform all operations',
   pipeline_maintainer:
     'The maintainer of the DevOps project can perform credentials and pipeline configuration in the DevOps project',
   pipeline_developer:
@@ -220,4 +220,5 @@ export default {
     'When a pipeline is deleted, the tasks in the specified pipeline are automatically triggered.',
   WHEN_CHRETE_PIEPLINE_DESC:
     'When a new pipeline is created, the tasks in the specified pipeline are automatically triggered.',
+  'Started By {name}': 'Started By {name}',
 }

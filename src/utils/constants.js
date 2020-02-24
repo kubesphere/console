@@ -430,6 +430,7 @@ export const PATTERN_SERVICE_NAME = /^[a-z]([-a-z0-9]*[a-z0-9])?$/
 export const PATTERN_LABEL = /(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])?/
 export const PATTERN_PASSWORD = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[^]{6,}$/
 export const PATTERN_IMAGE = /^\S+$/
+export const PATTERN_LENGTH_52 = /^.{0,52}$/
 export const PATTERN_LENGTH_63 = /^.{0,63}$/
 export const PATTERN_LENGTH_253 = /^.{0,253}$/
 export const PATTERN_PORT_NAME = /^[a-z]([-a-z0-9]*[a-z0-9])?$/
@@ -444,6 +445,8 @@ export const PATTERN_IMAGE_TAG = /^(.*?)([0-9a-zA-Z/]*)(:[-.\w]*[0-9a-zA-Z])*$/
 // https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-put-user.html#_path_parameters_76
 export const PATTERN_ES_USER_NAME = /^\b.{1,1024}\b$/
 export const PATTERN_ES_PASSWORD = /.{6,}/
+
+export const PATTERN_UTC_TIME = /^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]+Z/
 
 export const PIPELINE_TASKS = {
   All: [
@@ -487,7 +490,7 @@ export const PIPELINE_CONDITIONS = [
 ]
 
 export const KIND_GROUP_MAP = {
-  Deployment: 'extensions',
+  Deployment: 'apps',
   StatefulSet: 'apps',
   Service: '',
 }
@@ -760,3 +763,21 @@ export const S2i_SUPPORTED_TYPES = ['java', 'nodejs', 'python']
 export const B2I_SUPPORTED_TYPES = ['jar', 'war', 'binary']
 
 export const MAX_SIZE_UPLOAD = 2 * 1024 * 1024
+
+export const SCHEME_OPTIONS = [
+  {
+    label: 'HTTP://',
+    value: 'http://',
+  },
+  {
+    label: 'HTTPS://',
+    value: 'https://',
+  },
+]
+
+export const SCHEME_REG = /^(http(s)?:\/\/)?(.*)/
+
+export const LIST_DEFAULT_ORDER = {
+  deployments: 'updateTime',
+  jobs: 'updateTime',
+}

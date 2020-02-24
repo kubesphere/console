@@ -37,13 +37,24 @@ export default class Avatar extends React.Component {
   }
 
   render() {
-    const { avatar, icon, iconSize, title, desc, to, noLink } = this.props
+    const {
+      className,
+      avatar,
+      icon,
+      iconSize,
+      title,
+      desc,
+      to,
+      noLink,
+    } = this.props
 
     const titleComponent = to ? <Link to={to}>{title}</Link> : title
 
     return (
       <div
-        className={classNames(styles.wrapper, { [styles.link]: noLink || to })}
+        className={classNames(styles.wrapper, className, {
+          [styles.link]: noLink || to,
+        })}
       >
         {avatar ? (
           <img
@@ -56,7 +67,9 @@ export default class Avatar extends React.Component {
         )}
         <div className={styles.text}>
           <div className={styles.title}>{titleComponent}</div>
-          <div className={styles.description}>{desc}</div>
+          <div className={classNames(styles.description, 'ks-avatar-desc')}>
+            {desc}
+          </div>
         </div>
       </div>
     )

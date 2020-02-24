@@ -66,6 +66,11 @@ export default class PodStore extends Base {
 
     const params = {}
 
+    if (!order && reverse === undefined) {
+      order = 'startTime'
+      reverse = true
+    }
+
     if (!isEmpty(filters)) {
       params.conditions = getFilterString(filters)
     }

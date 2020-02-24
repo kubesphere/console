@@ -169,7 +169,7 @@ export const getQueryString = params =>
 
 export const getFilterString = (
   params,
-  fuzzyMatchKeys = ['name', 'app', 'label', 'annotation']
+  fuzzyMatchKeys = ['name', 'app.kubernetes.io/name', 'label', 'annotation']
 ) =>
   Object.keys(params)
     .filter(key => !isUndefined(params[key]) && params[key] !== '')
@@ -375,7 +375,7 @@ export const getBrowserLang = () => {
     return 'en'
   }
 
-  return 'zh'
+  return globals.config.defaultLang || 'en'
 }
 
 export const toPromise = func =>
@@ -456,4 +456,4 @@ export const withDryRun = async requests => {
  * @param {String} path
  */
 export const isAppsPage = (path = location.pathname) =>
-  path === '/apps' || path.startsWith('/apps/')
+  path === '/apps' || path.startsWith('/apps/app-')

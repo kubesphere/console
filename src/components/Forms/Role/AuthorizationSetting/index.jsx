@@ -17,44 +17,30 @@
  */
 
 import React from 'react'
-import PropTypes from 'prop-types'
 
-import Item from './item'
+import { Form } from 'components/Base'
+import Authorizations from './Authorizations'
 
 import styles from './index.scss'
 
-export default class Authorities extends React.Component {
-  static propTypes = {
-    rulesInfo: PropTypes.array,
-    value: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-    onChange: PropTypes.func,
-  }
-
-  static defaultProps = {
-    rulesInfo: [],
-    value: {},
-    onChange() {},
-  }
-
-  handleAuthorityChange = (itemValue, name) => {
-    const { value, onChange } = this.props
-    onChange({ ...value, [name]: itemValue })
-  }
-
+export default class AuthorizationSetting extends React.Component {
   render() {
-    const { rulesInfo, value } = this.props
+    const { formRef, formTemplate, rulesInfo } = this.props
 
     return (
       <div className={styles.wrapper}>
-        {rulesInfo.map(rule => (
-          <Item
-            key={rule.name}
-            className={styles.authority}
-            authority={rule}
-            value={value[rule.name]}
-            onChange={this.handleAuthorityChange}
-          />
-        ))}
+        <Form data={formTemplate} ref={formRef}>
+          <Form.Item
+            rules={[
+              {
+                required: true,
+                message: t('Please specify role authorization'),
+              },
+            ]}
+          >
+            <Authorizations name="rules" rulesInfo={rulesInfo} />
+          </Form.Item>
+        </Form>
       </div>
     )
   }

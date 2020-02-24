@@ -130,10 +130,7 @@ export default {
 
   FILE_MAX_ICON: 'Icon size should not exceed 20KB',
 
-  FILE_MAX_SCREENSHOTS: 'Screen size should not exceed 2M',
-
-  FILE_SCREENSHOTS_NOTE:
-    'Please upload jpg or png pictures within 1280px * 720px',
+  FILE_MAX_SCREENSHOTS: 'Image size should not exceed 2M',
 
   UPLOAD_PACKAGE_OK_NOTE:
     'Please upload the configuration package or upload the configuration package incorrectly',

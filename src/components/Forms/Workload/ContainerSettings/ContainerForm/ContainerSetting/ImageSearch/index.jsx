@@ -22,7 +22,7 @@ import classnames from 'classnames'
 import moment from 'moment-mini'
 import { Icon, Loading } from '@pitrix/lego-ui'
 
-import { getDocsUrl, generateId, formatSize } from 'utils'
+import { getDocsUrl, formatSize } from 'utils'
 
 import { PATTERN_IMAGE, PATTERN_IMAGE_TAG } from 'utils/constants'
 import { Form, Button } from 'components/Base'
@@ -55,7 +55,9 @@ export default class ImageSearch extends React.Component {
 
   get selectedImage() {
     const { formTemplate } = this.props
-    return get(formTemplate, 'metadata.annotations["kubesphere.io/image"]')
+    const image = get(formTemplate, 'image', '')
+
+    return get(globals.cache, `[${image}]`)
   }
 
   get tag() {
@@ -64,27 +66,30 @@ export default class ImageSearch extends React.Component {
     return get(result, `[${result.length - 1}]`, ':latest').slice(1)
   }
 
+  componentDidMount() {
+    const { formTemplate } = this.props
+
+    const image = get(formTemplate, 'image', '')
+    if (!this.selectedImage && image) {
+      const secret = get(formTemplate, 'pullSecret')
+      this.getImageDetail({ image, secret })
+    }
+  }
+
+  componentWillUnMount() {
+    this.isUnMounted = true
+  }
+
   handleEnter = params => {
     if (!globals.config.enableImageSearch) {
       return
     }
     const { logo = '', short_description = '' } = params || {}
-    const { formTemplate, type } = this.props
+    const { formTemplate } = this.props
 
     const secret = get(formTemplate, 'pullSecret')
     const image = get(formTemplate, 'image', '')
 
-    if (type === 'add') {
-      set(
-        formTemplate,
-        'name',
-        `${image
-          .toLowerCase()
-          .split(':')[0]
-          .replace(/[/.]*/g, '')}-${generateId()}`
-      )
-      this.context.forceUpdate()
-    }
     if (this.image && image === this.image) {
       return
     }
@@ -92,24 +97,23 @@ export default class ImageSearch extends React.Component {
   }
 
   getImageDetail = async ({ image, secret, ...rest }) => {
-    const { namespace, formTemplate } = this.props
+    const { namespace } = this.props
     if (!image) {
       return
     }
     this.image = image
 
     this.setState({ isLoading: true })
-    let selectedImage = await this.store.getImageDetail({
+    const result = await this.store.getImageDetail({
       namespace,
       image,
       secret,
     })
-    selectedImage = { ...selectedImage, ...rest, image }
-    set(
-      formTemplate,
-      'metadata.annotations["kubesphere.io/image"]',
-      selectedImage
-    )
+    const selectedImage = { ...result, ...rest, image }
+    set(globals, `cache[${image}]`, selectedImage)
+    if (this.isUnMounted) {
+      return
+    }
     if (!isEmpty(selectedImage.exposedPorts)) {
       this.setState({ showPortsTips: true })
     }
@@ -117,12 +121,7 @@ export default class ImageSearch extends React.Component {
   }
 
   handleFillPorts = () => {
-    const selectedImage = get(
-      this.props.formTemplate,
-      'metadata.annotations["kubesphere.io/image"]',
-      selectedImage
-    )
-    const ports = selectedImage.exposedPorts.map(port => {
+    const ports = this.selectedImage.exposedPorts.map(port => {
       const protocol = port.split('/')[1]
       const containerPort = Number(port.split('/')[0])
       return {

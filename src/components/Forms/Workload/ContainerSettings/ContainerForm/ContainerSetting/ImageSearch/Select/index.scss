@@ -28,12 +28,12 @@
 .options {
   padding: 4px 0px;
   width: 240px;
-  height: 72px;
+  height: 88px;
   border-radius: 4px;
   box-shadow: 0 4px 8px 0 rgba(36, 46, 66, 0.2);
   background-color: $dark-color07;
   z-index: 2;
-  overflow: auto;
+  overflow-y: scroll;
 }
 
 .control {

@@ -58,7 +58,6 @@ export default class PodMonitor extends Base {
       'workloadKind',
       'workloadName',
       'pod',
-      'times',
     ])
 
   @action

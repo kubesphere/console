@@ -29,7 +29,7 @@ export const REVIEW_QUERY_STATUS = {
   unprocessed: 'submitted',
 }
 
-export const CLUSTER_QUERY_STATUS = 'active|stopped|ceased|pending|suspended'
+export const CLUSTER_QUERY_STATUS = 'active|stopped|pending|suspended'
 
 export const UPLOAD_STATUS_WORD = {
   init: 'UPLOAD_SUPPORT_FORMAT',
@@ -87,8 +87,6 @@ export const UPLOAD_CHECK_RULES = {
   screenshots: {
     format: /\.(png|jpg|jpeg)$/,
     size: 2 * 1024 * 1024,
-    maxHeight: 1280,
-    maxWidth: 720,
   },
 }
 

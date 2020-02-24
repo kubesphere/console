@@ -87,6 +87,11 @@ export default class WorkspaceStore {
       params.conditions = conditions
     }
 
+    if (!order && reverse === undefined) {
+      order = 'createTime'
+      reverse = true
+    }
+
     if (limit !== Infinity) {
       params.paging = `limit=${limit || 10},page=${page || 1}`
     }
@@ -129,6 +134,11 @@ export default class WorkspaceStore {
     const conditions = getFilterString(filters)
     if (conditions) {
       params.conditions = conditions
+    }
+
+    if (!order && reverse === undefined) {
+      order = 'createTime'
+      reverse = true
     }
 
     if (limit !== Infinity) {

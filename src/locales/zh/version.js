@@ -98,6 +98,7 @@ export default {
   'Pending-review': '审核中',
   creating: '创建中',
   deleting: '删除中',
+  ceasing: '释放中',
 
   'Test Steps': '测试步骤',
   VERSION_SUBMIT_TEST_STEPS:

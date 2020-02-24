@@ -27,16 +27,12 @@ import { getWorkloadStatus } from 'utils/status'
 import styles from './index.scss'
 
 export default function WorkloadStatus({ data, module }) {
-  const { status: statusResult } = getWorkloadStatus(data, module)
-
-  if (data.hasS2i) {
+  const { status: statusResult } = getWorkloadStatus(data, module) || ''
+  if (statusResult.startsWith('S2I')) {
+    const S2iStatus = statusResult.slice(4)
     return (
       <div className={styles.status}>
-        <Status
-          type={statusResult}
-          name={t(S2I_STATUS_DESC[statusResult])}
-          flicker
-        />
+        <Status type={S2iStatus} name={t(S2I_STATUS_DESC[S2iStatus])} flicker />
       </div>
     )
   }

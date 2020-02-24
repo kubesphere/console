@@ -23,14 +23,12 @@ import { observer } from 'mobx-react'
 import { saveAs } from 'file-saver'
 import { get, isEmpty } from 'lodash'
 
+import { PATTERN_UTC_TIME } from 'utils/constants'
 import { Loading, Icon, Tooltip } from '@pitrix/lego-ui'
 import { Card, Notify, Empty } from 'components/Base'
 import ContainerStore from 'stores/container'
-import { startAutoRefresh, stopAutoRefresh } from 'utils/monitoring'
 
 import styles from './index.scss'
-
-const STRONG_WORDS_REG = /(from|and)/g
 
 @observer
 export default class ContainerLog extends React.Component {
@@ -61,24 +59,30 @@ export default class ContainerLog extends React.Component {
   }
 
   componentDidMount() {
-    this.getData().then(this.scrollToBottom)
+    this.getData({}, this.scrollToBottom)
   }
 
   componentWillUnmount() {
-    stopAutoRefresh(this)
+    this.store.stopWatchLogs()
   }
 
-  getData(params) {
+  getData(params, callback) {
     const { namespace, podName, containerName } = this.props
 
-    return this.store.fetchLogs({
-      namespace,
-      podName,
-      container: containerName,
-      timestamps: true,
-      tailLines: this.tailLines,
-      ...params,
-    })
+    this.store.stopWatchLogs()
+
+    return this.store.watchLogs(
+      {
+        namespace,
+        podName,
+        container: containerName,
+        tailLines: this.tailLines,
+        timestamps: true,
+        follow: this.state.isRealtime,
+        ...params,
+      },
+      callback
+    )
   }
 
   scrollToBottom = () => {
@@ -100,31 +104,20 @@ export default class ContainerLog extends React.Component {
   handleNext = () => {
     this.tailLines = 1000
     this.setState({ loadingNext: true })
-    this.getData({ silent: true }).then(this.scrollToBottom)
+    this.getData({ silent: true }, this.scrollToBottom)
   }
 
   handlePrev = () => {
     this.tailLines += 1000
     this.setState({ loadingPrev: true })
     this.currentHeight = get(this.ref, 'current.scrollHeight', 0)
-    this.getData({ silent: true }).then(this.scrollToCurrent)
+    this.getData({ silent: true }, this.scrollToCurrent)
   }
 
   handleRealtime = () => {
     this.setState(
-      ({ isRealtime }) => ({
-        isRealtime: !isRealtime,
-      }),
-      () => {
-        if (this.state.isRealtime) {
-          startAutoRefresh(this, {
-            method: 'handleNext',
-            leading: false,
-          })
-        } else {
-          stopAutoRefresh(this)
-        }
-      }
+      ({ isRealtime }) => ({ isRealtime: !isRealtime }),
+      () => this.getData({ silent: true }, this.scrollToBottom)
     )
   }
 
@@ -177,6 +170,7 @@ export default class ContainerLog extends React.Component {
             onClick={this.handleNext}
             clickable
             changeable
+            disabled={isRealtime}
           />
         </Tooltip>
         <span className={styles.split}>|</span>
@@ -208,7 +202,6 @@ export default class ContainerLog extends React.Component {
     }
 
     const items = String(data)
-      .replace(STRONG_WORDS_REG, '<strong>$1</strong>')
       .replace(/\\r\\n/g, '\n')
       .split('\n')
 
@@ -229,7 +222,7 @@ export default class ContainerLog extends React.Component {
           </div>
         )}
         {items.map((text, index) => {
-          const match = text.match(/.*\s{3}/)
+          const match = text.match(PATTERN_UTC_TIME)
           const key = match ? match[0] : index
           const content = match ? text.replace(match[0], '') : text
           return <p key={key} dangerouslySetInnerHTML={{ __html: content }} />

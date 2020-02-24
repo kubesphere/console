@@ -75,31 +75,49 @@ const handleLogin = async ctx => {
       if (!user) {
         Object.assign(error, {
           status: 400,
-          reason: 'User Null',
-          message: 'internal server error',
+          reason: 'Internal Server Error',
+          message: 'username or password wrong, please try again',
         })
       }
     } catch (err) {
       ctx.app.emit('error', err)
-      if (err && err.code === 401) {
-        ctx.session.errorCount += 1
-        Object.assign(error, {
-          status: err.code,
-          reason: 'User Not Match',
-          message: 'username or password wrong, please try again',
-        })
-      } else if (err && err.code === 429) {
-        Object.assign(error, {
-          status: err.code,
-          reason: 'Too Many Requests',
-          message: 'Too many failed login attempts, please wait!',
-        })
-      } else {
-        Object.assign(error, {
-          status: 400,
-          reason: 'Internal Server Error',
-          message: 'Internal Server Error',
-        })
+
+      switch (err.code) {
+        case 401:
+          ctx.session.errorCount += 1
+          Object.assign(error, {
+            status: err.code,
+            reason: 'User Not Match',
+            message: 'username or password wrong, please try again',
+          })
+          break
+        case 429:
+          Object.assign(error, {
+            status: err.code,
+            reason: 'Too Many Requests',
+            message: 'too many failed login attempts, please wait!',
+          })
+          break
+        case 502:
+          Object.assign(error, {
+            status: err.code,
+            reason: 'Internal Server Error',
+            message: 'unable to access backend services',
+          })
+          break
+        case 'ETIMEDOUT':
+          Object.assign(error, {
+            status: 400,
+            reason: 'Internal Server Error',
+            message: 'unable to access gateway',
+          })
+          break
+        default:
+          Object.assign(error, {
+            status: err.code,
+            reason: err.statusText,
+            message: err.message,
+          })
       }
     }
   }
@@ -118,7 +136,7 @@ const handleLogin = async ctx => {
 
   ctx.session = {}
   ctx.cookies.set('token', user.token)
-  ctx.cookies.set('currentUser', user.username)
+  ctx.cookies.set('currentUser', user.username, { httpOnly: false })
   ctx.cookies.set('referer', null)
 
   if (lastUser && lastUser !== user.username) {

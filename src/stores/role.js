@@ -102,6 +102,11 @@ export default class RoleStore {
   } = {}) {
     this.list.isLoading = true
 
+    if (!order && reverse === undefined) {
+      order = 'createTime'
+      reverse = true
+    }
+
     const params = {}
 
     filters.userfacing = true

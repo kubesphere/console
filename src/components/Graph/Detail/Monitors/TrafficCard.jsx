@@ -35,7 +35,7 @@ export default class TrafficCard extends React.Component {
     return (
       <div className={styles.trafficCard}>
         {metrics.map(metric => (
-          <div key={metric.type}>
+          <div key={metric.title}>
             <div className="h5">
               {isNaN(metric.data)
                 ? t('No Data')

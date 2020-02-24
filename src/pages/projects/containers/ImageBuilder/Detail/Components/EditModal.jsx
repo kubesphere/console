@@ -88,7 +88,7 @@ export default class EditModal extends React.Component {
         visible={visible}
         isSubmitting={isSubmitting}
       >
-        <Form.Item label={t('Name')} desc={t('LONG_NAME_DESC')}>
+        <Form.Item label={t('Name')} desc={t('NAME_DESC')}>
           <Input name="name" disabled />
         </Form.Item>
         <Form.Item label={t('Alias')} desc={t('ALIAS_DESC')}>

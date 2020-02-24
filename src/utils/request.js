@@ -22,6 +22,7 @@ const get = require('lodash/get')
 const set = require('lodash/set')
 const merge = require('lodash/merge')
 const qs = require('qs')
+const cookie = require('./cookie').default
 
 const methods = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
 
@@ -42,6 +43,7 @@ module.exports = methods.reduce(
   }),
   {
     defaults: buildRequest,
+    watch: watchResource,
     toQueryString,
   }
 )
@@ -103,8 +105,34 @@ function buildRequest({
     responseHandler = handler
   }
 
+  if (
+    cookie('currentUser') &&
+    globals.user &&
+    globals.user.username !== cookie('currentUser')
+  ) {
+    location.href = '/'
+    return
+  }
+
   return fetch(requestURL, request).then(resp => responseHandler(resp, reject))
 }
+
+function watchResource(url, params = {}, callback) {
+  const xhr = new XMLHttpRequest()
+
+  xhr.open('GET', `${url}${toQueryString(params)}`, true)
+
+  xhr.onreadystatechange = () => {
+    if (xhr.readyState >= 3 && xhr.status === 200) {
+      callback(xhr.responseText)
+    }
+  }
+
+  xhr.send()
+
+  return xhr
+}
+
 /**
  * Prepend host of API server
  * @param path

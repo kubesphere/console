@@ -18,27 +18,12 @@
 
 import React from 'react'
 
-import { Form } from 'components/Base'
-import Authorities from './Authorities'
+import { Status } from 'components/Base'
+import { getWorkloadStatus } from 'utils/status'
 
-import styles from './index.scss'
+export default function JobStatus({ data, module }) {
+  const { status } = getWorkloadStatus(data, module)
 
-export default class AuthoritySetting extends React.Component {
-  render() {
-    const { formRef, formTemplate, rulesInfo } = this.props
-
-    return (
-      <div className={styles.wrapper}>
-        <Form data={formTemplate} ref={formRef}>
-          <Form.Item
-            rules={[
-              { required: true, message: t('Please specify role authority') },
-            ]}
-          >
-            <Authorities name="rules" rulesInfo={rulesInfo} />
-          </Form.Item>
-        </Form>
-      </div>
-    )
-  }
+  const type = status === 'Running' ? 'JobRunning' : status
+  return <Status type={type} name={t(status)} flicker />
 }

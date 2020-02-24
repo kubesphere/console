@@ -72,12 +72,14 @@ class ImageBuilder extends Base {
         key: 'edit',
         icon: 'pen',
         text: t('EDIT'),
+        action: 'edit',
         onClick: this.showModal('editModal'),
       },
       {
         key: 'delete',
         icon: 'trash',
         text: t('Delete'),
+        action: 'delete',
         onClick: this.showModal('deleteModal'),
       },
     ]

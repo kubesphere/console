@@ -52,6 +52,10 @@ export default class UsersStore extends Base {
       params.paging = `limit=${limit || 10},page=${page || 1}`
     }
 
+    if (params.reverse === undefined) {
+      params.reverse = true
+    }
+
     const result = await request.get(this.getResourceUrl(), params)
 
     this.list.update({

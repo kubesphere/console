@@ -122,12 +122,6 @@ export default class Branch extends React.Component {
       render: weatherScore => <Health score={weatherScore} />,
     },
     {
-      title: t('Commit'),
-      dataIndex: 'commitId',
-      width: '15%',
-      render: commitId => (commitId && commitId.slice(0, 6)) || '-',
-    },
-    {
       title: t('Last message'),
       dataIndex: 'latestRun',
       width: '15%',

@@ -26,7 +26,7 @@ import {
   TextArea,
 } from '@pitrix/lego-ui'
 import { Form } from 'components/Base'
-import { CustomSelect } from 'components/Inputs'
+import { CustomSelect, SchemeInput } from 'components/Inputs'
 
 import { hasChinese } from 'utils'
 import { MODULE_KIND_MAP } from 'utils/constants'
@@ -186,13 +186,13 @@ export default class SecretSettings extends React.Component {
           <Column>
             <Form.Item
               label={t('Registry Address')}
-              desc={t("Needn't Protocol. ex: docker.io")}
+              desc={t('Example: docker.io')}
               rules={[
                 { required: true, message: t('Please input registry address') },
                 { validator: this.dataValidator },
               ]}
             >
-              <Input name="data['.dockerconfigjson'].url" />
+              <SchemeInput name="data['.dockerconfigjson'].url" />
             </Form.Item>
           </Column>
           <Column>

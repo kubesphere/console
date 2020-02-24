@@ -226,7 +226,7 @@ export default class PipelineStore extends BaseStore {
     )
     this.pullRequestList = {
       data: result || [],
-      total: result.length,
+      total: this.detail.totalNumberOfPullRequests,
       limit: TABLE_LIMIT,
       page: parseInt(page, 10) || 1,
       filters: omit(filters, 'project_id'),
@@ -254,9 +254,11 @@ export default class PipelineStore extends BaseStore {
         branch,
       }
     )
+
     this.branchList = {
       data: result || [],
       limit: TABLE_LIMIT,
+      total: this.detail.totalNumberOfBranches,
       page: parseInt(page, 10) || 1,
       filters: omit(filters, 'project_id'),
       isLoading: false,
@@ -373,6 +375,7 @@ export default class PipelineStore extends BaseStore {
 
   @action
   async createPipeline(data) {
+    this.pipelineConfig = data
     return await this.request.post(
       `kapis/devops.kubesphere.io/v1alpha2/devops/${data.project_id}/pipelines`,
       data
@@ -391,7 +394,7 @@ export default class PipelineStore extends BaseStore {
 
   @action
   updateJenkinsFile(jenkinsFile, params) {
-    this.pipelineConfig.pipeline.jenkinsfile = jenkinsFile
+    set(this.pipelineConfig, 'pipeline.jenkinsfile', jenkinsFile)
     return this.updatePipeline(this.pipelineConfig, params)
   }
 

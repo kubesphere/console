@@ -37,7 +37,7 @@ export default class SvnForm extends React.Component {
 
   render() {
     const { formData, credentials } = this.props.store
-    const { formRef } = this.props
+    const { formRef, enableTypeChange } = this.props
 
     return (
       <div className={styles.card}>
@@ -45,6 +45,7 @@ export default class SvnForm extends React.Component {
           <Form.Item label={t('type')}>
             <Select
               name="svn_source.type"
+              disabled={enableTypeChange === false}
               onChange={this.handleTypeChange}
               options={[
                 { label: t('single Svn'), value: 'single_svn' },

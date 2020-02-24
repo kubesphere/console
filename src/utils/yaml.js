@@ -22,7 +22,7 @@ import yaml from 'js-yaml/dist/js-yaml'
 export const getValue = (mode, value) => {
   if (isObject(value)) {
     try {
-      return mode === 'yaml' ? yaml.safeDump(value) : ''
+      return mode === 'yaml' ? yaml.safeDump(value, { noRefs: true }) : ''
     } catch (err) {
       console.error(err)
       return JSON.stringify(value, null, 2)
@@ -44,9 +44,13 @@ export const getAllYAMLValue = value => {
   const objs = []
 
   try {
-    yaml.safeLoadAll(value, obj => {
-      objs.push(obj)
-    })
+    yaml.safeLoadAll(
+      value,
+      obj => {
+        objs.push(obj)
+      },
+      { noRefs: true }
+    )
   } catch (err) {}
 
   return objs

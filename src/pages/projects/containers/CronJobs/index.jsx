@@ -179,10 +179,6 @@ class CronJobs extends Base {
     },
   ]
 
-  updateCallback() {
-    this.props.rootStore.quota.fetch(this.props.match.params)
-  }
-
   handleYamlEdit = newObject => {
     const { selectItem } = this.state
 

@@ -90,8 +90,12 @@ export default class SecretStore extends Base {
 
   @action
   update(detail, data) {
-    data && dataFomatter(data)
+    return this.submitting(request.put(this.getDetailUrl(detail), data))
+  }
 
+  @action
+  updateWithEncode(detail, data) {
+    data && dataFomatter(data)
     return this.submitting(request.put(this.getDetailUrl(detail), data))
   }
 

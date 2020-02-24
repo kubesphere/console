@@ -86,7 +86,7 @@ export default class Graph extends React.Component {
   }
 
   handleWrapperClick = e => {
-    if (findParent(e.target, 'ks-app-component') === null) {
+    if (e && findParent(e.target, 'ks-app-component') === null) {
       if (this.state.selectedType === 'app') {
         const $selected = this.draggerRef.current.content.querySelector(
           `[data-component='${this.state.selectedData.name}']`
