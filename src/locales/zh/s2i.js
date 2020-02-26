@@ -69,7 +69,7 @@ export default {
   'Start command': '启动命令',
   START_COMMAND_DESC:
     '在默认情况下，镜像会运行默认命令，如果想运行特定命令或重写镜像默认值。',
-  'Run cammand': '运行命令',
+  'Run Command': '运行命令',
   RUN_COMMAND_DESC:
     '容器的启动命令参数，默认使用打包时使用的启动命令, 如需多个请以 "," 分隔',
   CONTAINER_PARAMS_DESC: '容器的启动命令参数, 如需多个请以 "," 分隔',

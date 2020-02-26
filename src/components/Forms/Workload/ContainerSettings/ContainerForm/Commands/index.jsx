@@ -40,7 +40,7 @@ export default class Commands extends React.Component {
         desc={t('START_COMMAND_DESC')}
         checkable
       >
-        <Form.Item label={t('Run cammand')} desc={t('RUN_COMMAND_DESC')}>
+        <Form.Item label={t('Run Command')} desc={t('RUN_COMMAND_DESC')}>
           <StringInput
             className={styles.input}
             name={`${this.prefix}command`}
