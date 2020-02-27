@@ -71,18 +71,14 @@ class RunSider extends Base {
     this.store.getRunDetail(params)
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { params } = nextProps.match
-    const { params: thisParmas } = this.props.match
-    if (params.runId !== thisParmas.runid) {
+  componentDidUpdate(prevProps) {
+    const { runDetail } = this.store
+    const { params } = this.props.match
+    const { params: lastParams } = prevProps.match
+    if (params.runId !== lastParams.runid) {
       clearInterval(this.refreshTimer)
       this.refreshTimer = setInterval(this.refreshHandler, 4000)
     }
-  }
-
-  componentDidUpdate() {
-    const { runDetail } = this.store
-    const { params } = this.props.match
     if (runDetail.id && runDetail.id !== params.runid) {
       this.routing.push(
         `/devops/${params.project_id}/pipelines/${params.name}${

@@ -19,7 +19,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
-import { get, isEmpty, remove } from 'lodash'
+import { get, isEmpty, isEqual, remove } from 'lodash'
 
 import { COLORS_MAP } from 'utils/constants'
 
@@ -35,6 +35,7 @@ import {
 } from 'recharts'
 import CustomLegend from 'components/Charts/Custom/Legend'
 import CustomTooltip from 'components/Charts/Custom/Tooltip'
+import { getActiveSeries } from 'components/Charts/utils'
 
 import styles from './index.scss'
 
@@ -68,22 +69,22 @@ export default class StackedBar extends React.Component {
   constructor(props) {
     super(props)
 
-    this.series = this.getActiveSeries(props)
+    const series = getActiveSeries(props)
     this.state = {
-      activeSeries: this.series,
+      series,
+      activeSeries: series,
     }
   }
 
-  componentWillReceivePorps(nextProps) {
-    if (nextProps.data !== this.props.data) {
-      this.series = this.getActiveSeries(nextProps)
-      this.setState({ activeSeries: this.series })
+  static getDerivedStateFromProps(props, state) {
+    const series = getActiveSeries(props)
+    if (!isEqual(series, state.series)) {
+      return {
+        series,
+        activeSeries: series,
+      }
     }
-  }
-
-  getActiveSeries = (props = {}) => {
-    const { xKey, data } = props
-    return Object.keys(data[0] || {}).filter(key => key !== xKey)
+    return null
   }
 
   getBarSize = (data = []) => (data.length <= 20 ? 20 : 8)
@@ -133,12 +134,12 @@ export default class StackedBar extends React.Component {
 
   renderBar() {
     const { unit, areaColors, renderBar } = this.props
-
+    const { series, activeSeries } = this.state
     if (renderBar) {
       return renderBar()
     }
 
-    return this.series.map((key, index) => {
+    return series.map((key, index) => {
       const colorName = areaColors[index]
       const color = COLORS_MAP[colorName] || colorName
       const barSize = this.getBarSize(this.series)
@@ -160,7 +161,7 @@ export default class StackedBar extends React.Component {
           fill={color}
           radius={radius}
           unit={unit}
-          hide={!this.state.activeSeries.includes(key)}
+          hide={!activeSeries.includes(key)}
         />
       )
     })

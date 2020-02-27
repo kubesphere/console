@@ -155,12 +155,9 @@ class PolicyDetail extends Base {
   }
 
   handleChangeStatus = newObject => {
-    const data = {
-      alert_name: get(newObject, 'name'),
-      disabled: get(newObject, 'disabled'),
-    }
+    newObject.disabled = newObject.disabled === 'true'
 
-    this.store.patch(this.params, data).then(() => {
+    this.store.patch(this.params, newObject).then(() => {
       this.hideModal('changeStatus')()
       Notify.success({ content: `${t('Updated Successfully')}!` })
       this.fetchData()

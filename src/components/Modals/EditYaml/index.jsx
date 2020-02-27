@@ -54,9 +54,9 @@ export default class YamlEditModal extends React.Component {
     this.editor = React.createRef()
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.visible && !this.props.visible) {
-      this.init(nextProps)
+  componentDidUpdate(prevProps) {
+    if (this.props.visible && !prevProps.visible) {
+      this.init(this.props)
     }
   }
 

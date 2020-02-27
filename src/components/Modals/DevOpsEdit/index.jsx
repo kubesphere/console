@@ -60,15 +60,13 @@ export default class DevOpsEditModal extends React.Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (
-      nextProps.detail &&
-      nextProps.detail.project_id &&
-      nextProps.detail.project_id !== get(this.props, 'detail.project_id')
-    ) {
+  componentDidUpdate(prevProps) {
+    const project_id = get(this.props, 'detail.project_id')
+
+    if (project_id && project_id !== get(prevProps, 'detail.project_id')) {
       this.store.fetchMembers({
         limit: Infinity,
-        project_id: nextProps.detail.project_id,
+        project_id,
       })
     }
   }

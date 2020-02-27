@@ -19,14 +19,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { observable } from 'mobx'
-import { observer } from 'mobx-react'
 import { Form, Modal } from 'components/Base'
 import { Input, Select } from '@pitrix/lego-ui'
 
 import styles from './index.scss'
 
-@observer
 export default class Git extends React.Component {
   static propTypes = {
     name: PropTypes.string,
@@ -41,22 +38,22 @@ export default class Git extends React.Component {
   constructor(props) {
     super(props)
     this.formRef = React.createRef()
+    this.state = { formData: {} }
   }
 
-  componentWillReceiveProps(nextProps) {
+  static getDerivedStateFromProps(nextProps) {
     if (nextProps.edittingData && nextProps.edittingData.type === 'git') {
-      this.formData = nextProps.edittingData.data.reduce((prev, arg) => {
+      const formData = nextProps.edittingData.data.reduce((prev, arg) => {
         prev[arg.key] = arg.value.value
         return prev
       }, {})
+      return { formData }
     }
+    return null
   }
 
-  @observable
-  formData = {}
-
   handleOk = () => {
-    const formData = this.formRef.current._formData
+    const formData = this.formRef.current.getData()
     this.formRef.current.validate(() => {
       const _arguments = Object.keys(formData).map(key => ({
         key,
@@ -102,7 +99,7 @@ export default class Git extends React.Component {
         closable={false}
         title={'Git'}
       >
-        <Form data={this.formData} ref={this.formRef}>
+        <Form data={this.state.formData} ref={this.formRef}>
           <Form.Item
             label={t('Url')}
             rules={[{ required: true, message: t('This param is required') }]}

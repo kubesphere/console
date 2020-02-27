@@ -51,10 +51,10 @@ export default class AddRepoModal extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.detail !== this.props.detail) {
+  componentDidUpdate(prevProps) {
+    if (this.props.detail !== prevProps.detail) {
       this.setState({
-        formData: this.getFormData(nextProps.detail),
+        formData: this.getFormData(this.props.detail),
       })
     }
   }

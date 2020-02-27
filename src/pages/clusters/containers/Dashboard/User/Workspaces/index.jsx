@@ -99,9 +99,9 @@ export default class Workspaces extends React.Component {
     this.fetchMetrics({ workspace })
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.workspace !== this.props.workspace) {
-      const { workspace } = nextProps
+  componentDidUpdate(prevProps) {
+    const { workspace } = this.props
+    if (workspace !== prevProps.workspace) {
       this.fetchDetail(workspace)
       this.fetchMetrics({ workspace })
     }

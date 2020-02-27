@@ -39,28 +39,13 @@ export default class Switch extends PureComponent {
     onChange: () => {},
   }
 
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      on: props.checked,
-    }
-  }
-
   toggleSwitch = () => {
-    const on = !this.state.on
-    this.props.onChange(on)
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.checked !== this.state.on) {
-      this.setState({ on: nextProps.checked })
-    }
+    const { checked, onChange } = this.props
+    onChange(!checked)
   }
 
   render() {
-    const { className, disabled, type, text } = this.props
-    const { on } = this.state
+    const { className, disabled, type, text, checked } = this.props
     const hasText = !isEmpty(text)
 
     return (
@@ -68,7 +53,7 @@ export default class Switch extends PureComponent {
         className={classNames(
           styles.wrapper,
           {
-            [styles[type]]: on,
+            [styles[type]]: checked,
           },
           className
         )}
@@ -78,7 +63,7 @@ export default class Switch extends PureComponent {
         <label
           className={classNames(styles.switch, {
             [styles.disabled]: disabled,
-            [styles.on]: on,
+            [styles.on]: checked,
           })}
         >
           {hasText && <span className={styles.inner}>{text}</span>}

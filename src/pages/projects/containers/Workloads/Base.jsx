@@ -40,9 +40,10 @@ export default class WorkloadsBaseList extends Base {
     this.initWebsocket()
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.module !== this.props.module) {
-      this.store.setModule(nextProps.module)
+  componentDidUpdate(prevProps) {
+    if (this.props.module !== prevProps.module) {
+      this.store = this.props.store
+      this.store.setModule(this.props.module)
       this.store.list.reset()
       this.initWebsocket()
       this.getData()

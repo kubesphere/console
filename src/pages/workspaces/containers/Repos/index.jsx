@@ -17,7 +17,7 @@
  */
 
 import React from 'react'
-import { observer, inject } from 'mobx-react/index'
+import { observer, inject } from 'mobx-react'
 import { find } from 'lodash'
 import { Icon, Menu } from '@pitrix/lego-ui'
 

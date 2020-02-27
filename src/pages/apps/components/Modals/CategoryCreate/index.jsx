@@ -50,11 +50,12 @@ export default class CategoryCreate extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (!isEqual(nextProps.detail, this.props.detail)) {
+  componentDidUpdate(prevProps) {
+    const { detail } = this.props
+    if (!isEqual(detail, prevProps.detail)) {
       this.setState({
-        name: nextProps.detail.name,
-        description: nextProps.detail.description,
+        name: detail.name,
+        description: detail.description,
       })
     }
   }

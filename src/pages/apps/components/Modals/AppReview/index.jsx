@@ -70,9 +70,9 @@ export default class AppReview extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.visible && nextProps.visible !== this.props.visible) {
-      this.fetchData(nextProps)
+  componentDidUpdate(prevProps) {
+    if (this.props.visible && this.props.visible !== prevProps.visible) {
+      this.fetchData(this.props)
     }
   }
 

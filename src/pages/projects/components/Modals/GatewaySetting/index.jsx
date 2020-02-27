@@ -55,12 +55,13 @@ export default class GatewaySettingModal extends React.Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.visible && nextProps.visible !== this.props.visible) {
+  componentDidUpdate(prevProps) {
+    const { visible, detail } = this.props
+    if (visible && visible !== prevProps.visible) {
       this.setState({
-        type: nextProps.detail.type || 'NodePort',
-        isChecked: nextProps.detail.serviceMeshEnable || false,
-        annotations: nextProps.detail.annotations || {},
+        type: detail.type || 'NodePort',
+        isChecked: detail.serviceMeshEnable || false,
+        annotations: detail.annotations || {},
       })
     }
   }

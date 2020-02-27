@@ -46,6 +46,8 @@ export default class AssignWorkspaceModal extends Component {
       workspace: '',
     }
 
+    this.formTemplate = {}
+
     this.workspaceStore = new WorkspaceStore()
     this.memberStore = new WorkspaceMemberStore()
   }
@@ -93,6 +95,7 @@ export default class AssignWorkspaceModal extends Component {
         title={t('Assign Workspace')}
         icon="firewall"
         width={691}
+        data={this.formTemplate}
         {...this.props}
       >
         <Alert

@@ -47,12 +47,6 @@ class Markdown extends React.Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.options !== this.props.options) {
-      this.md = new MarkdownIt(nextProps.options)
-    }
-  }
-
   componentDidMount() {
     this.iframe.addEventListener('load', this.handleIFrameLoad)
   }
@@ -62,7 +56,10 @@ class Markdown extends React.Component {
     this.removeMediaListeners()
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
+    if (prevProps.options !== this.props.options) {
+      this.md = new MarkdownIt(this.props.options)
+    }
     this.updateMarkdown()
   }
 

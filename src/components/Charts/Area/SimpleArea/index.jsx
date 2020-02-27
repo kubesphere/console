@@ -37,6 +37,7 @@ import {
 } from 'recharts'
 import CustomLegend from 'components/Charts/Custom/Legend'
 import CustomTooltip from 'components/Charts/Custom/Tooltip'
+import { getActiveSeries } from 'components/Charts/utils'
 
 import styles from './index.scss'
 
@@ -92,25 +93,22 @@ export default class SimpleArea extends React.Component {
   constructor(props) {
     super(props)
 
-    this.series = this.getActiveSeries(props)
+    const series = getActiveSeries(props)
     this.state = {
-      activeSeries: this.series,
+      series,
+      activeSeries: series,
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.data !== this.props.data) {
-      const series = this.series
-      this.series = this.getActiveSeries(nextProps)
-      if (!isEqual(series, this.series)) {
-        this.setState({ activeSeries: this.series })
+  static getDerivedStateFromProps(props, state) {
+    const series = getActiveSeries(props)
+    if (!isEqual(series, state.series)) {
+      return {
+        series,
+        activeSeries: series,
       }
     }
-  }
-
-  getActiveSeries = (props = {}) => {
-    const { xKey, data } = props
-    return Object.keys(data[0] || {}).filter(key => key !== xKey)
+    return null
   }
 
   handleLegendClick = (e, key) => {
@@ -168,12 +166,13 @@ export default class SimpleArea extends React.Component {
 
   renderArea() {
     const { unit, areaColors, renderArea } = this.props
+    const { series, activeSeries } = this.state
 
     if (renderArea) {
       return renderArea()
     }
 
-    return this.series.map((key, index) => {
+    return series.map((key, index) => {
       const colorName = areaColors[index]
       const color = COLORS_MAP[colorName] || colorName
 
@@ -204,7 +203,7 @@ export default class SimpleArea extends React.Component {
             />
           }
           unit={unit}
-          hide={!this.state.activeSeries.includes(key)}
+          hide={!activeSeries.includes(key)}
           {...fillProps}
         />
       )

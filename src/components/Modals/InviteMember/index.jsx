@@ -59,17 +59,11 @@ export default class InviteMemberModal extends React.Component {
 
     this.workspaceMemberStore = new WorkspaceMemberStore()
 
-    this.state = {
-      users: props.users.map(user => user.username),
-    }
+    this.state = {}
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.users && nextProps.users.length !== this.state.users.length) {
-      this.setState({
-        users: nextProps.users.map(user => user.username),
-      })
-    }
+  get users() {
+    return this.props.users.map(user => user.username)
   }
 
   fetchData = (params = {}) => {
@@ -145,7 +139,7 @@ export default class InviteMemberModal extends React.Component {
                     key={item.username}
                     user={item}
                     roles={roles}
-                    selected={this.state.users.includes(item.username)}
+                    selected={this.users.includes(item.username)}
                     onSelect={this.handleSelect}
                   />
                 ))}

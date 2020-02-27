@@ -33,8 +33,8 @@ export default class NotFound extends React.Component {
     }, 1100)
   }
 
-  componentWillUpdate(nextProps, nextState) {
-    if (nextState.time === 0) {
+  componentDidUpdate() {
+    if (this.state.time === 0) {
       if (this.interval) {
         clearInterval(this.interval)
       }

@@ -116,21 +116,18 @@ export default class ResourceMonitorModal extends React.Component {
     return toJS(this.monitorStore.resourceMetrics.data)
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (
-      nextProps.visible !== this.props.visible &&
-      nextProps.visible &&
-      !nextProps.detail.workspace
-    ) {
+  componentDidUpdate(prevProps) {
+    const { visible, detail } = this.props
+    if (visible && visible !== prevProps.visible && !detail.workspace) {
       this.fetchWorkspaces()
     }
 
-    if (nextProps.detail !== this.props.detail) {
+    if (detail !== prevProps.detail) {
       this.setState(
         {
           filter: {
-            workspace: get(nextProps.detail, 'workspace', 'all'),
-            namespace: get(nextProps.detail, 'namespace', 'all'),
+            workspace: get(detail, 'workspace', 'all'),
+            namespace: get(detail, 'namespace', 'all'),
           },
         },
         () => {
@@ -141,6 +138,7 @@ export default class ResourceMonitorModal extends React.Component {
               workspace,
             })
             this.workspaceStore.list.isLoading = false
+            this.fetchData()
           } else {
             this.workspaceStore.namespaces.isLoading = false
           }

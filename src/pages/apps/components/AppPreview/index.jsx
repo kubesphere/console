@@ -58,8 +58,8 @@ export default class AppPreview extends React.Component {
     return this.fileStore.files
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.appVersion !== this.props.appVersion) {
+  componentDidUpdate(prevProps) {
+    if (this.props.appVersion !== prevProps.appVersion) {
       this.fetchFile()
     }
   }
@@ -72,7 +72,7 @@ export default class AppPreview extends React.Component {
     this.setState({ selectTab: tab })
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.fetchFile()
   }
 

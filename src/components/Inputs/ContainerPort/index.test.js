@@ -25,27 +25,70 @@ jest.mock('lodash/debounce', () => jest.fn(fn => fn))
 
 it('renders correctly', () => {
   const onchangeCb = jest.fn()
-  const wrapper = mount(<ContainerPort onChange={onchangeCb} />)
+  const value = {
+    name: 'http2-test',
+    containerPort: 8080,
+    protocol: 'tcp',
+  }
+  const wrapper = mount(<ContainerPort onChange={onchangeCb} value={value} />)
 
   const select = wrapper.find('Select')
   const input = wrapper.find('NumberInput input')
-  expect(select).toExist()
-  expect(input).toExist()
+  expect(select).toHaveProp({ value: 'HTTP2' })
+  expect(input).toHaveProp({ value: 8080 })
+
+  const value2 = { name: 'redis-test', containerPort: 6379, protocol: 'tcp' }
+  wrapper.setProps({ value: value2 })
+  expect(wrapper.state().protocol).toEqual('REDIS')
+
+  const value3 = { name: '-', containerPort: 6379, protocol: 'tcp' }
+  wrapper.setProps({ value: value3 })
+  expect(wrapper.state().protocol).toEqual('HTTP')
+
+  const value4 = { name: 'Test-', containerPort: 6379, protocol: 'tcp' }
+  wrapper.setProps({ value: value4 })
+  expect(wrapper.state().protocol).toEqual('tcp')
 })
 
-it('submit correctly', () => {
+it('change correctly', () => {
   const onchangeCb = jest.fn()
   const wrapper = mount(<ContainerPort onChange={onchangeCb} />)
-  const select = wrapper.find('Select')
-  const input = wrapper.find('NumberInput input').first()
-  expect(select).toExist()
-  expect(input).toExist()
+  const protocol = wrapper.find('Select[name="protocol"]')
+  const name = wrapper.find('Input[name="name"]')
+  const port = wrapper.find('NumberInput[name="containerPort"]')
 
-  input.simulate('change', { target: { value: 80 } })
-
+  port.prop('onChange')(8080)
   expect(onchangeCb).toHaveBeenCalledWith({
-    containerPort: 80,
+    containerPort: 8080,
     name: 'http-',
     protocol: 'TCP',
+  })
+
+  protocol.prop('onChange')('REDIS')
+  expect(onchangeCb).toHaveBeenCalledWith({
+    containerPort: 8080,
+    name: 'redis-',
+    protocol: 'TCP',
+  })
+
+  name.prop('onChange')({}, 'http2-test')
+  expect(onchangeCb).toHaveBeenCalledWith({
+    containerPort: 8080,
+    name: 'http2-test',
+    protocol: 'TCP',
+  })
+
+  protocol.prop('onChange')('REDIS')
+  expect(onchangeCb).toHaveBeenCalledWith({
+    containerPort: 8080,
+    name: 'redis-',
+    protocol: 'TCP',
+  })
+
+  protocol.prop('onChange')('UDP')
+  expect(onchangeCb).toHaveBeenCalledWith({
+    containerPort: 8080,
+    name: 'udp-',
+    protocol: 'UDP',
   })
 })

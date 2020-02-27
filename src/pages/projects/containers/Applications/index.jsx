@@ -56,9 +56,9 @@ export default class Applications extends React.Component {
     )
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { type } = nextProps.match.params
-    if (type && type !== this.state.appType) {
+  componentDidUpdate(prevProps) {
+    const { type } = this.props.match.params
+    if (type && type !== prevProps.match.params.type) {
       this.setState({ appType: type || this.defaultAppType })
     }
   }

@@ -17,6 +17,7 @@
  */
 
 const { resolve } = require('path')
+const merge = require('lodash/merge')
 const webpack = require('webpack')
 const CopyPlugin = require('copy-webpack-plugin')
 const SpeedMeasurePlugin = require('speed-measure-webpack-plugin')
@@ -123,7 +124,9 @@ module.exports = smp.wrap({
       },
     },
   },
-  resolve: baseConfig.resolve,
+  resolve: merge({}, baseConfig.resolve, {
+    alias: { 'lodash': root('node_modules/lodash') }
+  }),
   plugins: [
     ...baseConfig.plugins,
     new ChunkRenamePlugin({

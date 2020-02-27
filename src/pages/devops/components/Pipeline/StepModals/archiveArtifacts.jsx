@@ -18,8 +18,6 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-
-import { observable } from 'mobx'
 import { observer } from 'mobx-react'
 import { Form, Modal } from 'components/Base'
 import { Input } from '@pitrix/lego-ui'
@@ -41,22 +39,22 @@ export default class ArchiveArtifacts extends React.Component {
   constructor(props) {
     super(props)
     this.formRef = React.createRef()
+    this.state = { formData: {} }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.edittingData.type === 'archiveArtifacts') {
-      this.formData = nextProps.edittingData.data.reduce((prev, arg) => {
+  static getDerivedStateFromProps(props) {
+    if (props.edittingData.type === 'archiveArtifacts') {
+      const formData = props.edittingData.data.reduce((prev, arg) => {
         prev[arg.key] = arg.value.value
         return prev
       }, {})
+      return { formData }
     }
+    return null
   }
 
-  @observable
-  formData = {}
-
   handleOk = () => {
-    const formData = this.formRef.current._formData
+    const formData = this.formRef.current.getData()
     const _arguments = Object.keys(formData).map(key => ({
       key,
       value: { isLiteral: true, value: formData[key] },
@@ -80,7 +78,7 @@ export default class ArchiveArtifacts extends React.Component {
         closable={false}
         title={t('archiveArtifacts')}
       >
-        <Form data={this.formData} ref={this.formRef}>
+        <Form data={this.state.formData} ref={this.formRef}>
           <Form.Item label={t('artifacts')}>
             <Input name="artifacts" />
           </Form.Item>

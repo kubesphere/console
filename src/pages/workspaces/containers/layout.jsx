@@ -44,9 +44,9 @@ class WorkspaceLayout extends Component {
     this.init(props.match.params)
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.match.params.workspace !== this.workspace) {
-      this.init(nextProps.match.params)
+  componentDidUpdate(prevProps) {
+    if (prevProps.match.params.workspace !== this.workspace) {
+      this.init(this.props.match.params)
     }
   }
 

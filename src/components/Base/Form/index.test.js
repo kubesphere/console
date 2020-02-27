@@ -90,3 +90,38 @@ it('submit correctly', () => {
   wrapper.find('button[type="submit"]').simulate('submit')
   expect(handleSubmit).toHaveBeenCalledWith(data)
 })
+
+it('update props', () => {
+  const data1 = {
+    name: 'redis-001',
+    alias: 'Redis',
+    desc: 'redis for lab',
+  }
+  const data2 = {
+    name: 'redis-002',
+    alias: 'Redis',
+    desc: 'redis for lab',
+  }
+
+  const handleSubmit = jest.fn()
+
+  const wrapper = mount(
+    <Form data={data1} onSubmit={handleSubmit}>
+      <Form.Item label={'Name'} desc={'SERVICE_NAME_DESC'}>
+        <Input name="name" />
+      </Form.Item>
+      <Form.Item label={'Alias'} desc={'ALIAS_DESC'}>
+        <Input name="alias" />
+      </Form.Item>
+      <Form.Item label={'Description'}>
+        <TextArea name="desc" />
+      </Form.Item>
+      <Button htmlType="submit">Submit</Button>
+    </Form>
+  )
+
+  wrapper.setProps({ data: data2 })
+  expect(wrapper.find('input[name="name"]')).toHaveProp('value', data2.name)
+  wrapper.find('button[type="submit"]').simulate('submit')
+  expect(handleSubmit).toHaveBeenCalledWith(data2)
+})

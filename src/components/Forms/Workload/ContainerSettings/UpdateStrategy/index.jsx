@@ -29,6 +29,9 @@ import { NumberInput } from 'components/Inputs'
 
 import styles from './index.scss'
 
+const getStrategy = (props = {}) =>
+  get(props.data, `${STRATEGIES_PREFIX[props.module]}.type`)
+
 @observer
 export default class UpdateStrategyForm extends React.Component {
   static propTypes = {
@@ -52,12 +55,28 @@ export default class UpdateStrategyForm extends React.Component {
     super(props)
 
     this.state = {
-      strategy: this.getStrategy(props) || 'RollingUpdate',
+      strategy: getStrategy(props) || 'RollingUpdate',
     }
 
     this.strategyFormRef = props.ownRef || React.createRef()
 
     this.init(props)
+  }
+
+  componentDidUpdate(prevProps) {
+    if (
+      prevProps.data !== this.props.data ||
+      prevProps.replicas !== this.props.replicas
+    ) {
+      this.init(this.props)
+      this.setState({
+        strategy: getStrategy(this.props),
+      })
+    }
+  }
+
+  componentDidMount() {
+    this.setStrategyValidator()
   }
 
   get isRollingUpdate() {
@@ -86,9 +105,6 @@ export default class UpdateStrategyForm extends React.Component {
       value,
     }))
   }
-
-  getStrategy = (props = {}) =>
-    get(props.data, `${STRATEGIES_PREFIX[props.module]}.type`)
 
   getPodValue = (name, replicas, value = '25%') => {
     const total = replicas || 1
@@ -125,7 +141,7 @@ export default class UpdateStrategyForm extends React.Component {
 
   init(props = this.props) {
     const { data, replicas, module } = props
-    const strategy = this.getStrategy(props)
+    const strategy = getStrategy(props)
 
     if (module !== 'deployments') {
       return
@@ -159,22 +175,6 @@ export default class UpdateStrategyForm extends React.Component {
       minAvailablePod
     )
     set(data, 'metadata.annotations["kubesphere.io/maxSurgePod"]', maxSurgePod)
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (
-      nextProps.data !== this.props.data ||
-      nextProps.replicas !== this.props.replicas
-    ) {
-      this.init(nextProps)
-      this.setState({
-        strategy: this.getStrategy(nextProps),
-      })
-    }
-  }
-
-  componentDidMount() {
-    this.setStrategyValidator()
   }
 
   setStrategyValidator = () => {

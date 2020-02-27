@@ -43,20 +43,21 @@ export default class Search extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = { visible: !isEmpty(props.value), value: props.value }
+    this.state = { value: props.value, defaultValue: props.value }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.value !== this.props.value) {
-      this.setState({
-        value: nextProps.value,
-        visible: !isEmpty(nextProps.value),
-      })
+  static getDerivedStateFromProps(props, state) {
+    if (props.value !== state.defaultValue) {
+      return {
+        value: props.value,
+        defaultValue: props.value,
+      }
     }
+    return null
   }
 
   handleChange = (e, value) => {
-    this.setState({ visible: !isEmpty(value), value }, () => {
+    this.setState({ value }, () => {
       if (isEmpty(value)) {
         this.props.onSearch()
       }
@@ -65,7 +66,7 @@ export default class Search extends React.Component {
 
   handleClear = e => {
     e.nativeEvent.stopImmediatePropagation()
-    this.setState({ visible: false, value: '' }, () => {
+    this.setState({ value: '' }, () => {
       this.props.onSearch(this.state.value)
     })
   }
@@ -80,7 +81,7 @@ export default class Search extends React.Component {
   }
 
   render() {
-    const { visible, value } = this.state
+    const { value } = this.state
     const { name, placeholder, disabled, className } = this.props
 
     return (
@@ -103,7 +104,7 @@ export default class Search extends React.Component {
           value={value || ''}
           disabled={disabled}
         />
-        {visible && (
+        {!isEmpty(value) && (
           <Icon
             className="is-right"
             name="close"

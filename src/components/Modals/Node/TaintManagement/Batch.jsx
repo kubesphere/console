@@ -57,11 +57,11 @@ export default class TaintManagementModal extends React.Component {
     return commonTaints.map(taint => taint.key)
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.visible !== this.props.visible) {
+  componentDidUpdate(prevProps) {
+    if (this.props.visible !== prevProps.visible) {
       this.setState({
-        nodes: nextProps.nodes,
-        commonTaints: this.getCommonTaints(nextProps),
+        nodes: this.props.nodes,
+        commonTaints: this.getCommonTaints(this.props),
       })
     }
   }

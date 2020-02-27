@@ -20,7 +20,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { Alert } from '@pitrix/lego-ui'
-import { Modal } from 'components/Base'
+import { Form, Modal } from 'components/Base'
 import TaintInput from './TaintInput'
 
 import styles from './index.scss'
@@ -44,27 +44,23 @@ export default class TaintManagementModal extends React.Component {
     super(props)
 
     this.state = {
-      value: props.value,
+      formData: { spec: { taints: props.value } },
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.value !== this.state.value) {
-      this.setState({ value: nextProps.value })
+  componentDidUpdate(prevProps) {
+    const { visible, value } = this.props
+    if (visible && visible !== prevProps.visible && prevProps.value !== value) {
+      this.setState({ formData: { spec: { taints: value } } })
     }
   }
 
-  handleSubmit = () => {
-    this.props.onOk(this.state.value)
-  }
-
-  handleChange = value => {
-    this.setState({ value })
+  handleSubmit = data => {
+    this.props.onOk(data)
   }
 
   render() {
-    const { detail, onOk, ...rest } = this.props
-    const { value } = this.state
+    const { value, ...rest } = this.props
 
     return (
       <Modal.Form
@@ -73,14 +69,16 @@ export default class TaintManagementModal extends React.Component {
         title={t('Taint Management')}
         icon="wrench"
         okText={t('Save')}
-        onOk={this.handleSubmit}
+        data={this.state.formData}
         {...rest}
       >
         <div className={styles.wrapper}>
           <div className={styles.title}>{t('Taint')}</div>
           <Alert type="info" message={t('TAINTS_MSG')} />
           <div className={styles.content}>
-            <TaintInput value={value} onChange={this.handleChange} />
+            <Form.Item>
+              <TaintInput name="spec.taints" />
+            </Form.Item>
           </div>
         </div>
       </Modal.Form>

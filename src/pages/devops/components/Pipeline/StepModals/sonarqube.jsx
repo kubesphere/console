@@ -20,7 +20,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { get } from 'lodash'
 
-import { observable } from 'mobx'
 import { observer } from 'mobx-react'
 import { Form, Modal } from 'components/Base'
 import { Input, Alert } from '@pitrix/lego-ui'
@@ -44,18 +43,18 @@ export default class withSonarQubeEnv extends React.Component {
   constructor(props) {
     super(props)
     this.formRef = React.createRef()
+    this.state = { formData: {} }
   }
 
-  componentWillReceiveProps(nextProps) {
+  static getDerivedStateFromProps(nextProps) {
     if (nextProps.edittingData.type === 'withSonarQubeEnv') {
-      this.formData = {
+      const formData = {
         name: get(nextProps.edittingData, 'data.value', ''),
       }
+      return { formData }
     }
+    return null
   }
-
-  @observable
-  formData = {}
 
   handleOk = () => {
     const current = this.formRef.current || {}
@@ -85,7 +84,7 @@ export default class withSonarQubeEnv extends React.Component {
         closable={false}
         title={t('withSonarQubeEnv')}
       >
-        <Form data={this.formData} ref={this.formRef}>
+        <Form data={this.state.formData} ref={this.formRef}>
           <Alert
             type="info"
             className={styles.info}

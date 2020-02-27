@@ -66,13 +66,17 @@ export default class ServiceDeleteModal extends React.Component {
     this.builderStore = new Builder()
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.visible && nextProps.visible !== this.props.visible) {
-      this.setState({ enableConfirm: false, relatedResources: [], timer: 3 })
-      this.fetchRelatedResources(nextProps.resource)
-      this.startTimer()
-    } else if (this.timer) {
-      clearInterval(this.timer)
+  componentDidUpdate(prevProps) {
+    const { visible, resource } = this.props
+
+    if (visible !== prevProps.visible) {
+      if (visible) {
+        this.setState({ enableConfirm: false, relatedResources: [], timer: 3 })
+        this.fetchRelatedResources(resource)
+        this.startTimer()
+      } else {
+        this.timer && clearInterval(this.timer)
+      }
     }
   }
 

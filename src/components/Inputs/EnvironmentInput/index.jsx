@@ -35,59 +35,24 @@ export default class EnvironmentInput extends React.Component {
 
   static defaultProps = {
     name: '',
-    value: [],
     onChange() {},
     configMaps: [],
     secrets: [],
   }
 
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      value: isEmpty(props.value) ? [{ name: '', value: '' }] : props.value,
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (
-      nextProps.value &&
-      JSON.stringify(nextProps.value) !== JSON.stringify(this.state.value)
-    ) {
-      this.setState({
-        value: isEmpty(nextProps.value) ? [] : nextProps.value,
-      })
-    }
-  }
-
   handleAddRef = () => {
-    if (
-      this.state.value.length === 1 &&
-      isEmpty(this.state.value[0].name) &&
-      isEmpty(this.state.value[0].value)
-    ) {
-      this.setState({
-        value: [{ name: '', valueFrom: {} }],
-      })
-
-      return
+    const { value, onChange } = this.props
+    if (isEmpty(value)) {
+      return onChange([{ name: '', valueFrom: {} }])
     }
 
-    this.setState({
-      value: [...this.state.value, { name: '', valueFrom: {} }],
-    })
-  }
-
-  isAddEnable() {
-    if (
-      this.state.value.length === 1 &&
-      isEmpty(this.state.value[0].name) &&
-      isEmpty(this.state.value[0].value)
-    ) {
-      return true
+    if (value.length === 1 && value[0].name === '' && value[0].value === '') {
+      return onChange([{ name: '', valueFrom: {} }])
     }
 
-    return this.state.value.every(this.checkItemValid)
+    if (value.every(this.checkItemValid)) {
+      return onChange([...value, { name: '', valueFrom: {} }])
+    }
   }
 
   checkItemValid = item =>
@@ -96,17 +61,15 @@ export default class EnvironmentInput extends React.Component {
     (!isEmpty(item.value) || !isEmpty(item.valueFrom))
 
   render() {
-    const { value: _value, configMaps, secrets, ...rest } = this.props
-    const { value } = this.state
+    const { configMaps, secrets, ...rest } = this.props
 
     return (
       <ArrayInput
-        value={value}
         itemType="object"
         checkItemValid={this.checkItemValid}
         addText={t('Add Environment Variable')}
         extraAdd={
-          <Button onClick={this.handleAddRef} disabled={!this.isAddEnable()}>
+          <Button onClick={this.handleAddRef} data-test="add-env-configmap">
             {t('Use ConfigMap or Secret')}
           </Button>
         }

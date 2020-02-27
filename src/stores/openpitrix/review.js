@@ -29,8 +29,16 @@ export default class Review extends Base {
 
   @observable
   list = {
-    ...this.list,
+    data: [],
     apps: [],
+    page: 0,
+    limit: 10,
+    total: 0,
+    reverse: false,
+    filters: {},
+    isLoading: false,
+    keyword: '',
+    selectedRowKeys: [],
   }
 
   @action

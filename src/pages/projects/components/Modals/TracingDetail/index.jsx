@@ -68,20 +68,19 @@ export default class TracingDetailModal extends React.Component {
     this.originPos = 0
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (!isEqual(nextProps.detail, this.props.detail)) {
+  componentDidUpdate(prevProps, prevState) {
+    const { detail } = this.props
+    if (!isEqual(detail, prevProps.detail)) {
       this.getViewedBounds = createViewedBoundsFunc({
-        min: nextProps.detail.startTime,
-        max: nextProps.detail.endTime,
+        min: detail.startTime,
+        max: detail.endTime,
         viewStart: 0,
         viewEnd: 1,
       })
 
       this.setState({ selectSpan: {}, viewStart: 0, viewEnd: 1 })
     }
-  }
 
-  componentDidUpdate(prevProps, prevState) {
     if (this.detailPane && this.detailPane.current) {
       if (!isEmpty(this.state.selectSpan) && isEmpty(prevState.selectSpan)) {
         this.detailPane.current.addEventListener(

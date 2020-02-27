@@ -61,15 +61,17 @@ export default class WorkloadDeleteModal extends React.Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.visible) {
-      if (nextProps.visible !== this.props.visible) {
+  componentDidUpdate(prevProps) {
+    const { visible, resource } = this.props
+
+    if (visible !== prevProps.visible) {
+      if (visible) {
         this.setState({ enableConfirm: false, relatedResources: [], timer: 3 })
-        this.fetchRelatedResources(nextProps.resource)
+        this.fetchRelatedResources(resource)
         this.startTimer()
+      } else {
+        this.timer && clearInterval(this.timer)
       }
-    } else if (this.timer) {
-      clearInterval(this.timer)
     }
   }
 

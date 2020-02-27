@@ -52,24 +52,23 @@ export default class PropertiesInput extends React.Component {
 
     this.state = {
       existedKey: false,
-      ...this.getValues(props),
+      propsValue: props.value,
+      ...PropertiesInput.getValues(props),
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { arrayValues, hiddenValues, readOnlyValues } = this.getValues(
-      nextProps
-    )
-
-    if (
-      nextProps.controlledValue &&
-      !isEqual(arrayValues, this.state.arrayValues)
-    ) {
-      this.setState({ arrayValues, hiddenValues, readOnlyValues })
+  static getDerivedStateFromProps(props, state) {
+    if (props.controlledValue && !isEqual(props.value, state.propsValue)) {
+      return {
+        propsValue: props.value,
+        ...PropertiesInput.getValues(props),
+      }
     }
+
+    return null
   }
 
-  getValues(props) {
+  static getValues(props) {
     const propsValue = props.controlledValue || props.value || {}
     const hiddenValues = []
     const readOnlyValues = []

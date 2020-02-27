@@ -46,9 +46,9 @@ export default class Monitor extends React.Component {
     this.getData()
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (!isEqual(nextProps.detail, this.props.detail)) {
-      this.getData(nextProps)
+  componentDidUpdate(prevProps) {
+    if (!isEqual(this.props.detail, prevProps.detail)) {
+      this.getData(this.props)
     }
   }
 

@@ -61,10 +61,12 @@ export default class NotifyConfirm extends React.PureComponent {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.visible !== this.props.visible) {
-      this.setState({ show: nextProps.visible })
+  static getDerivedStateFromProps(props, state) {
+    if (props.visible !== state.show) {
+      return { show: props.visible }
     }
+
+    return null
   }
 
   getIconColr = () => {
