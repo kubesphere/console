@@ -17,6 +17,7 @@
  */
 
 export { default as AddonsInput } from './AddonsInput'
+export { default as AnnotationsInput } from './AnnotationsInput'
 export { default as ArrayInput } from './ArrayInput'
 export { default as ObjectInput } from './ObjectInput'
 export { default as PropertiesInput } from './PropertiesInput'

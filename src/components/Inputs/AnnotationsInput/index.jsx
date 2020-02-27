@@ -17,8 +17,8 @@
  */
 
 import React from 'react'
-import { Input, AutoComplete } from '@pitrix/lego-ui'
-import { ArrayInput, ObjectInput, PropertiesInput } from 'components/Inputs'
+import { AutoComplete } from '@pitrix/lego-ui'
+import { PropertiesInput } from 'components/Inputs'
 import { INGRESS_ANNOTATIONS } from 'utils/constants'
 
 import styles from './index.scss'
@@ -35,29 +35,16 @@ class AutoCompleteWrapper extends React.Component {
   }
 }
 
-export default class AnnotationsInput extends PropertiesInput {
-  render() {
-    const { value, onChange, valueType, ...rest } = this.props
-    const { arrayValue } = this.state
+export default class AnnotationsInput extends React.Component {
+  itemProps = {
+    keyProps: {
+      component: AutoCompleteWrapper,
+      className: styles.dropdown,
+      options: INGRESS_ANNOTATIONS,
+    },
+  }
 
-    return (
-      <ArrayInput
-        value={arrayValue}
-        itemType="object"
-        onChange={this.handleChange}
-        checkItemValid={this.checkItemValid}
-        {...rest}
-      >
-        <ObjectInput>
-          <AutoCompleteWrapper
-            className={styles.dropdown}
-            name="key"
-            placeholder={t('key')}
-            options={INGRESS_ANNOTATIONS}
-          />
-          <Input name="value" rows="1" placeholder={t('value')} />
-        </ObjectInput>
-      </ArrayInput>
-    )
+  render() {
+    return <PropertiesInput {...this.props} itemProps={this.itemProps} />
   }
 }

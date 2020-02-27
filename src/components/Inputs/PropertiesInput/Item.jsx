@@ -17,7 +17,7 @@
  */
 
 import React from 'react'
-import { Input, TextArea } from '@pitrix/lego-ui'
+import { Input } from '@pitrix/lego-ui'
 import { Button } from 'components/Base'
 import ObjectInput from '../ObjectInput'
 import styles from './index.scss'
@@ -27,23 +27,38 @@ export default class PropertyItem extends React.Component {
     const { index, onChange } = this.props
     onChange(index, value)
   }
+
   handleDelete = () => {
     const { index, onDelete } = this.props
     onDelete(index)
   }
   render() {
-    const { readOnly, valueType, onDelete, onChange, ...rest } = this.props
+    const {
+      readOnly,
+      onDelete,
+      onChange,
+      keyProps = {},
+      valueProps = {},
+      ...rest
+    } = this.props
 
-    const ValueInput = valueType === 'textarea' ? TextArea : Input
+    const { component: KeyInput = Input, ...keyInputProps } = keyProps
+    const { component: ValueInput = Input, ...valueInputProps } = valueProps
+
     return (
       <div className={styles.item}>
         <ObjectInput {...rest} onChange={this.handleChange}>
-          <Input name="key" placeholder={t('key')} readOnly={readOnly} />
+          <KeyInput
+            name="key"
+            placeholder={t('key')}
+            readOnly={readOnly}
+            {...keyInputProps}
+          />
           <ValueInput
             name="value"
-            rows="1"
             placeholder={t('value')}
             readOnly={readOnly}
+            {...valueInputProps}
           />
         </ObjectInput>
         {!readOnly && (
