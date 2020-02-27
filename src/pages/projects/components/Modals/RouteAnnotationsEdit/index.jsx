@@ -21,7 +21,7 @@ import PropTypes from 'prop-types'
 import { observer } from 'mobx-react'
 
 import { Modal, Form } from 'components/Base'
-import AnnotationsInput from 'components/Forms/Route/AnnotationsInput'
+import { AnnotationsInput } from 'components/Inputs'
 
 import styles from './index.scss'
 

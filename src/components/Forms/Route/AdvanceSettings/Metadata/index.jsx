@@ -19,10 +19,8 @@
 import { isEmpty, isUndefined } from 'lodash'
 import React from 'react'
 import { Form } from 'components/Base'
-import { PropertiesInput } from 'components/Inputs'
+import { AnnotationsInput, PropertiesInput } from 'components/Inputs'
 import { isValidLabel } from 'utils'
-
-import AnnotationsInput from '../../AnnotationsInput'
 
 export default class Metadata extends React.Component {
   labelsValidator = (rule, value, callback) => {
