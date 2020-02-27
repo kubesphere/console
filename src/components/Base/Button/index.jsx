@@ -19,7 +19,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import { isFunction } from 'lodash'
 
 import { Icon, Loading } from '@pitrix/lego-ui'
 
@@ -36,7 +35,6 @@ export default class Button extends PureComponent {
     iconType: PropTypes.string,
     loading: PropTypes.bool,
     disabled: PropTypes.bool,
-    onClick: PropTypes.func,
     noShadow: PropTypes.bool,
   }
 
@@ -47,13 +45,6 @@ export default class Button extends PureComponent {
     icon: '',
     iconType: 'dark',
     noShadow: false,
-  }
-
-  handleClick = e => {
-    const { onClick } = this.props
-    if (isFunction(onClick)) {
-      onClick(e)
-    }
   }
 
   render() {
@@ -67,7 +58,6 @@ export default class Button extends PureComponent {
       iconType,
       loading,
       noShadow,
-      onClick,
       ghost,
       ...rest
     } = this.props
@@ -87,7 +77,6 @@ export default class Button extends PureComponent {
           className
         )}
         type={htmlType}
-        onClick={this.handleClick}
         data-test="button"
         {...rest}
       >

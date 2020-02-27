@@ -31,7 +31,6 @@ export default class PropertiesInput extends React.Component {
   static propTypes = {
     name: PropTypes.string,
     value: PropTypes.object,
-    valueType: PropTypes.string,
     hiddenKeys: PropTypes.arrayOf(PropTypes.string),
     readOnlyKeys: PropTypes.arrayOf(PropTypes.string),
     onChange: PropTypes.func,
@@ -40,7 +39,6 @@ export default class PropertiesInput extends React.Component {
 
   static defaultProps = {
     name: '',
-    valueType: 'text',
     value: {},
     hiddenKeys: [],
     readOnlyKeys: [],
@@ -182,13 +180,18 @@ export default class PropertiesInput extends React.Component {
   }
 
   render() {
-    const { className, addText } = this.props
+    const { className, addText, itemProps } = this.props
     const { readOnlyValues, arrayValues } = this.state
 
     return (
       <div className={classnames(styles.wrapper, className)}>
         {readOnlyValues.map(item => (
-          <Item key={`readonly-${item.key}`} value={item} readOnly />
+          <Item
+            key={`readonly-${item.key}`}
+            value={item}
+            readOnly
+            {...itemProps}
+          />
         ))}
         {arrayValues.map((item, index) => (
           <Item
@@ -197,6 +200,7 @@ export default class PropertiesInput extends React.Component {
             value={item || {}}
             onChange={this.handleItemChange}
             onDelete={this.handleItemDelete}
+            {...itemProps}
           />
         ))}
         <div className="text-right">
