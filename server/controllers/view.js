@@ -18,7 +18,7 @@
 
 const uid = require('uid-safe')
 const SvgCaptchaFactory = require('svg-captcha')
-const { getCurrentUser } = require('../services/session')
+const { getCurrentUser, getOAuthInfo } = require('../services/session')
 
 const {
   getServerConfig,
@@ -82,8 +82,11 @@ const renderLogin = async ctx => {
 
   ctx.session.salt = uid.sync(12)
 
+  const oauthServers = await getOAuthInfo(ctx)
+
   await ctx.render('login', {
     loginPath,
+    oauthServers: oauthServers || [],
     title: clientConfig.title,
     error: ctx.request.error,
     errorCount: ctx.session.errorCount || 0,

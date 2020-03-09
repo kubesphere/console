@@ -16,6 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+const isEmpty = require('lodash/isEmpty')
 const intersection = require('lodash/intersection')
 const jwtDecode = require('jwt-decode')
 
@@ -31,6 +32,22 @@ const login = async (data, headers) => {
     url: '/kapis/iam.kubesphere.io/v1alpha2/login',
     headers,
     params: data,
+  })
+
+  if (!resp.access_token) {
+    throw new Error(resp.message)
+  }
+
+  const { username } = jwtDecode(resp.access_token)
+
+  return { username, token: resp.access_token }
+}
+
+const oAuthLogin = async params => {
+  const resp = await send_gateway_request({
+    method: 'POST',
+    url: `/kapis/iam.kubesphere.io/v1alpha2/login/oauth/${params.state}`,
+    params,
   })
 
   if (!resp.access_token) {
@@ -159,7 +176,53 @@ const getCurrentUser = async ctx => {
   }
 }
 
+const getOAuthInfo = async () => {
+  let resp = []
+  try {
+    resp = await send_gateway_request({
+      method: 'GET',
+      url: `/kapis/iam.kubesphere.io/v1alpha2/oauth/configs`,
+    })
+  } catch (error) {
+    console.error(error)
+  }
+
+  const servers = []
+  if (!isEmpty(resp)) {
+    resp.forEach(item => {
+      if (item && item.Endpoint) {
+        const title = item.Description
+        const params = {
+          state: item.Name,
+          client_id: item.ClientID,
+          response_type: 'code',
+        }
+
+        if (item.Redirect_URL) {
+          params.redirect_uri = item.Redirect_URL
+        }
+        if (item.Scopes && item.Scopes.length > 0) {
+          params.scope = item.Scopes.join(' ')
+        }
+
+        const url = `${item.Endpoint.AuthURL}?${Object.keys(params)
+          .map(
+            key =>
+              `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`
+          )
+          .join('&')}`
+
+        servers.push({ title, url })
+      }
+    })
+  }
+
+  return servers
+}
+
 module.exports = {
   login,
+  oAuthLogin,
   getCurrentUser,
+  getOAuthInfo,
 }

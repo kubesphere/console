@@ -1,213 +1,287 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title><%- title %></title>
+    <link rel="icon" href="/assets/favicon.ico" type="image/x-icon" />
+    <link
+      href="/assets/fonts/Roboto/stylesheet.css"
+      rel="stylesheet"
+      media="all"
+    />
+    <style>
+      <%- include('../public/login.css') %>
+    </style>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title><%- title %></title>
-  <link rel="icon" href="/assets/favicon.ico" type="image/x-icon" />
-  <link href="/assets/fonts/Roboto/stylesheet.css" rel="stylesheet" media="all" />
-  <style>
-    <%- include('../public/login.css') %>
-  </style>
-</head>
-
-<body>
-  <%- include('../public/icon.svg') %>
-  <a href="/" class="logo">
-    <img src="/assets/login-logo.svg" alt="">
-  </a>
-  <div class="background"><img src="/assets/login.svg" alt=""></div>
-  <div class="login">
-    <div class="login-form <%- error ? 'login-form-error' : '' %>">
-      <div class="login-header">
-        <h1><%- t('Login') %></h1>
-        <p>Welcome to KubeSphere</p>
-        <div class="mask">Login</div>
-      </div>
-      <% if (error) { %>
-      <div class="login-error">
-        <svg>
-          <use xlink:href="#exclamation" />
-        </svg>
-        <span><%- t(error.message) %></span>
-      </div>
-      <% } %>
-      <form action="<%- loginPath %>" method="post">
-        <div class="login-form-item">
-          <label for="username"><%- t('Email') %>:</label>
-          <input type="text" id="username" name="username" placeholder="User@example.com" required />
+  <body>
+    <%- include('../public/icon.svg') %>
+    <a href="/" class="logo">
+      <img src="/assets/logo.svg" alt="" />
+    </a>
+    <div class="login">
+      <div class="login-form <%- error ? 'login-form-error' : '' %>">
+        <div class="login-header"><%- t('Log In please') %></div>
+        <div class="login-divider"></div>
+        <% if (oauthServers) { %> <% oauthServers.forEach(function(server) { %>
+        <div class="login-oauth" data-url="<%- server.url %>">
+          <span><%- t(server.title) %></span>
         </div>
-        <div class="login-form-item">
-          <label for="password"><%- t('Password') %>:</label>
-          <div style="position: relative">
-            <input type="password" id="password" name="password" placeholder="Password" required />
-            <svg>
-              <use xlink:href="#eye" />
-            </svg>
-          </div>
-          <input type="text" id="encrypt" name="encrypt" hidden />
-        </div>
-        <% if (errorCount > 2) { %>
-        <div class="login-form-item">
-          <label for="captcha"><%- t('Captcha')%>:</label>
-          <div class="captcha-wrapper">
-            <img id="captcha_img" src="/captcha?<%- new Date().getTime() %>" alt="">
-            <a id="refresh_captcha"><%- t('Reload Captcha') %></a>
-            <input type="text" id="captcha" name="captcha" placeholder="<%- t('Captcha') %>" required>
-          </div>
+        <% }) %> <% } %> <% if (error) { %>
+        <div class="login-error">
+          <span><%- t(error.message) %></span>
         </div>
         <% } %>
-        <div class="submit">
-          <button type="submit" disabled>
-            <span><%- t('Login') %></span>
-            <svg>
-              <use xlink:href="#loading" />
-            </svg>
-          </button>
-        </div>
-      </form>
+        <form action="<%- loginPath %>" method="post">
+          <div class="login-form-item">
+            <label for="username"><%- t('UserName or Email') %>:</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              placeholder="User@example.com"
+              required
+            />
+          </div>
+          <div class="login-form-item">
+            <label for="password"><%- t('Password') %>:</label>
+            <div style="position: relative">
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Password"
+                required
+              />
+              <svg>
+                <use xlink:href="#eye" />
+              </svg>
+            </div>
+            <input type="text" id="encrypt" name="encrypt" hidden />
+          </div>
+          <% if (errorCount > 2) { %>
+          <div class="login-form-item">
+            <label for="captcha"><%- t('Captcha')%>:</label>
+            <div class="captcha-wrapper">
+              <img
+                id="captcha_img"
+                src="/captcha?<%- new Date().getTime() %>"
+                alt=""
+              />
+              <a id="refresh_captcha"><%- t('Reload Captcha') %></a>
+              <input
+                type="text"
+                id="captcha"
+                name="captcha"
+                placeholder="<%- t('Captcha') %>"
+                required
+              />
+            </div>
+          </div>
+          <% } %>
+          <div class="submit">
+            <button type="submit" disabled>
+              <span><%- t('Log In') %></span>
+              <svg>
+                <use xlink:href="#loading" />
+              </svg>
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
-  </div>
-  <script>
-    (function () {
-      var salt = '<%- salt %>'
-      var $form = document.querySelector('.login-form');
-      var $errorForm = document.querySelector('.login-form-error');
-      var $password = document.querySelector('#password');
-      var $encryptPassword = document.querySelector('#encrypt');
-      var $passwordShowTrigger = document.querySelector('#password + svg');
-      var $passwordIcon = $passwordShowTrigger.querySelector('use');
-      var $submitBtn = document.querySelector('.submit > button');
-      var $username = document.querySelector('#username');
-      var $captcha = document.querySelector('#captcha');
-      var $refresh_captcha = document.querySelector('#refresh_captcha');
-      var $captcha_img = document.querySelector('#captcha_img');
+    <script>
+      ;(function() {
+        var salt = '<%- salt %>'
 
-      var isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
+        var $form = document.querySelector('.login-form')
+        var $errorForm = document.querySelector('.login-form-error')
+        var $password = document.querySelector('#password')
+        var $encryptPassword = document.querySelector('#encrypt')
+        var $passwordShowTrigger = document.querySelector('#password + svg')
+        var $passwordIcon = $passwordShowTrigger.querySelector('use')
+        var $submitBtn = document.querySelector('.submit > button')
+        var $username = document.querySelector('#username')
+        var $captcha = document.querySelector('#captcha')
+        var $refresh_captcha = document.querySelector('#refresh_captcha')
+        var $captcha_img = document.querySelector('#captcha_img')
+        var $oauthBtns = document.querySelectorAll('.login-oauth')
 
-      ready(init);
+        var isFirefox =
+          navigator.userAgent.toLowerCase().indexOf('firefox') > -1
 
-      function init() {
-        $form && $form.addEventListener('input', formHandler);
-        $errorForm && $errorForm.addEventListener('keydown', errorFormHandler);
-        $passwordShowTrigger.addEventListener('click', passwordHandler);
-        $submitBtn.addEventListener('click', submitHandler);
-        $refresh_captcha && $refresh_captcha.addEventListener('click', refreshCaptha);
+        ready(init)
 
-        if (isFirefox) {
+        function init() {
+          $form && $form.addEventListener('input', formHandler)
+          $errorForm && $errorForm.addEventListener('keydown', errorFormHandler)
+          $passwordShowTrigger.addEventListener('click', passwordHandler)
+          $submitBtn.addEventListener('click', submitHandler)
+          $refresh_captcha &&
+            $refresh_captcha.addEventListener('click', refreshCaptha)
+
+          if (isFirefox) {
+            if ($submitBtn && $submitBtn.disabled) {
+              $submitBtn.disabled = false
+            }
+          } else {
+            detectAutoFill()
+          }
+
+          $username.focus()
+
+          Array.prototype.forEach.call($oauthBtns, function(el) {
+            el.addEventListener('click', handleOAuthLogin)
+          })
+        }
+
+        function ready(fn) {
+          if (
+            document.attachEvent
+              ? document.readyState === 'complete'
+              : document.readyState !== 'loading'
+          ) {
+            fn()
+          } else {
+            document.addEventListener('DOMContentLoaded', fn)
+          }
+        }
+
+        function detectAutoFill() {
+          const AUTOFILLED = 'is-autofilled'
+          const onAutoFillStart = el => el.classList.add(AUTOFILLED)
+          const onAutoFillCancel = el => el.classList.remove(AUTOFILLED)
+          const onAnimationStart = ({ target, animationName }) => {
+            switch (animationName) {
+              case 'onAutoFillStart':
+                return onAutoFillStart(target)
+              case 'onAutoFillCancel':
+                return onAutoFillCancel(target)
+            }
+          }
+
+          document
+            .querySelector('input')
+            .addEventListener('animationstart', animationStartHandle)
+        }
+
+        function animationStartHandle() {
           if ($submitBtn && $submitBtn.disabled) {
-            $submitBtn.disabled = false;
+            $submitBtn.disabled = false
           }
-        } else {
-          detectAutoFill()
+
+          document
+            .querySelector('input')
+            .removeEventListener('animationstart', animationStartHandle)
         }
 
-        $username.focus()
-      }
-
-      function ready(fn) {
-        if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
-          fn();
-        } else {
-          document.addEventListener('DOMContentLoaded', fn);
-        }
-      }
-
-      function detectAutoFill() {
-        const AUTOFILLED = 'is-autofilled'
-        const onAutoFillStart = (el) => el.classList.add(AUTOFILLED)
-        const onAutoFillCancel = (el) => el.classList.remove(AUTOFILLED)
-        const onAnimationStart = ({ target, animationName }) => {
-          switch (animationName) {
-            case 'onAutoFillStart':
-              return onAutoFillStart(target)
-            case 'onAutoFillCancel':
-              return onAutoFillCancel(target)
+        function errorFormHandler() {
+          if ($username.value && $password.value) {
+            $errorForm.removeEventListener('keydown', errorFormHandler)
+            $errorForm.classList.remove('login-form-error')
           }
         }
 
-        document.querySelector('input').addEventListener('animationstart', animationStartHandle)
-      }
-
-      function animationStartHandle() {
-        if ($submitBtn && $submitBtn.disabled) {
-          $submitBtn.disabled = false;
+        function formHandler() {
+          checkSubmitValid()
         }
 
-        document.querySelector('input').removeEventListener('animationstart', animationStartHandle)
-      }
-
-      function errorFormHandler() {
-        if ($username.value && $password.value) {
-          $errorForm.removeEventListener('keydown', errorFormHandler);
-          $errorForm.classList.remove('login-form-error');
-        }
-      };
-
-      function formHandler() {
-        checkSubmitValid()
-      };
-
-      function passwordHandler() {
-        if ($password.type === 'password') {
-          $password.type = 'text';
-          $passwordIcon.setAttribute('xlink:href', '#eye-closed');
-        } else {
-          $password.type = 'password';
-          $passwordIcon.setAttribute('xlink:href', '#eye');
-        }
-      }
-
-      function checkSubmitValid() {
-        if ($submitBtn && $submitBtn.disabled && $username.value &&
-          $password.value && (!$captcha || $captcha.value)) {
-          $submitBtn.disabled = false;
-        } else if ($submitBtn && !$submitBtn.disabled &&
-          (!$username.value || !$password.value || ($captcha && !$captcha.value))) {
-          $submitBtn.disabled = true;
-        }
-      }
-
-      function encrypt(str) {
-        return mix(salt, window.btoa(str));
-      }
-
-      function mix(salt, str) {
-        if (str.length > salt.length) {
-          salt += str.slice(0, str.length - salt.length);
+        function passwordHandler() {
+          if ($password.type === 'password') {
+            $password.type = 'text'
+            $passwordIcon.setAttribute('xlink:href', '#eye-closed')
+          } else {
+            $password.type = 'password'
+            $passwordIcon.setAttribute('xlink:href', '#eye')
+          }
         }
 
-        var ret = [];
-        var prefix = [];
-        for (var i = 0, len = salt.length; i < len; i++) {
-          var tomix = str.length > i ? str.charCodeAt(i) : 64;
-          var sum = salt.charCodeAt(i) + tomix;
-          prefix.push(sum % 2 === 0 ? '0' : '1');
-          ret.push(String.fromCharCode(Math.floor(sum / 2)));
+        function checkSubmitValid() {
+          if (
+            $submitBtn &&
+            $submitBtn.disabled &&
+            $username.value &&
+            $password.value &&
+            (!$captcha || $captcha.value)
+          ) {
+            $submitBtn.disabled = false
+          } else if (
+            $submitBtn &&
+            !$submitBtn.disabled &&
+            (!$username.value ||
+              !$password.value ||
+              ($captcha && !$captcha.value))
+          ) {
+            $submitBtn.disabled = true
+          }
         }
 
-        return window.btoa(prefix.join('')) + `@` + ret.join('');
-      }
-
-      function submitHandler() {
-        if ($submitBtn && $username.value && $password.value && (!$captcha || $captcha.value) &&
-          !$submitBtn.classList.contains('loading')) {
-          $submitBtn.classList.add('loading');
-          $encryptPassword.value = encrypt($password.value);
-          $password.setAttribute('form', 'deniedform');
-          setTimeout(function () {
-            $submitBtn.disabled = true;
-          }, 0);
+        function encrypt(str) {
+          return mix(salt, window.btoa(str))
         }
-      }
 
-      function refreshCaptha() {
-        $captcha_img && $captcha_img.setAttribute('src', "/captcha?refresh=true")
-      }
-    })();
-  </script>
-</body>
+        function mix(salt, str) {
+          if (str.length > salt.length) {
+            salt += str.slice(0, str.length - salt.length)
+          }
 
+          var ret = []
+          var prefix = []
+          for (var i = 0, len = salt.length; i < len; i++) {
+            var tomix = str.length > i ? str.charCodeAt(i) : 64
+            var sum = salt.charCodeAt(i) + tomix
+            prefix.push(sum % 2 === 0 ? '0' : '1')
+            ret.push(String.fromCharCode(Math.floor(sum / 2)))
+          }
+
+          return window.btoa(prefix.join('')) + `@` + ret.join('')
+        }
+
+        function submitHandler() {
+          if (
+            $submitBtn &&
+            $username.value &&
+            $password.value &&
+            (!$captcha || $captcha.value) &&
+            !$submitBtn.classList.contains('loading')
+          ) {
+            $submitBtn.classList.add('loading')
+            $encryptPassword.value = encrypt($password.value)
+            $password.setAttribute('form', 'deniedform')
+            setTimeout(function() {
+              $submitBtn.disabled = true
+            }, 0)
+          }
+        }
+
+        function refreshCaptha() {
+          $captcha_img &&
+            $captcha_img.setAttribute('src', '/captcha?refresh=true')
+        }
+
+        function handleOAuthLogin(e) {
+          var url = e.currentTarget.dataset.url
+          var left = screen.width / 2 - 200
+          var windowObj = window.open(
+            url,
+            'Authorize application',
+            'width=400, height=600, scrollbars=1, resizable=1, top=100, left=' +
+              left
+          )
+
+          var loop = setInterval(function() {
+            if (windowObj != null && windowObj.closed) {
+              clearInterval(loop)
+              window.location.href = '/'
+            }
+          }, 800)
+        }
+      })()
+    </script>
+  </body>
 </html>
