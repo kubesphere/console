@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get } from 'lodash'
+import { get, isEmpty } from 'lodash'
 import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
@@ -27,8 +27,15 @@ import WorkspaceStore from 'stores/workspace'
 import ProjectStore from 'stores/project'
 import DevOpsStore from 'stores/devops'
 
-import { Columns, Column, RadioGroup, RadioButton } from '@pitrix/lego-ui'
-import { Button, Search, ScrollLoad } from 'components/Base'
+import {
+  Columns,
+  Column,
+  RadioGroup,
+  RadioButton,
+  Loading,
+  Pagination,
+} from '@pitrix/lego-ui'
+import { Button, Search } from 'components/Base'
 import EmptyList from 'components/Cards/EmptyList'
 import CreateModal from 'components/Modals/ProjectCreate'
 import Card from './Card'
@@ -59,6 +66,10 @@ export default class Resources extends React.Component {
       this.canViewProject && this.store.fetchNamespaces(params)
       this.canViewDevOps && this.store.fetchDevOps(params)
     }
+  }
+
+  componentDidMount() {
+    this.fetchData()
   }
 
   get workspace() {
@@ -181,6 +192,10 @@ export default class Resources extends React.Component {
     }
   }
 
+  handlePagination = page => {
+    this.fetchData({ page, limit: 10 })
+  }
+
   handleSearch = keyword => {
     const params = { workspace: this.workspace }
     if (this.state.projectType === 'devops') {
@@ -208,24 +223,24 @@ export default class Resources extends React.Component {
   }
 
   renderDevOps() {
-    const { data, page, total, isLoading } = toJS(this.store.devops)
+    const { data, page, total, limit, isLoading } = toJS(this.store.devops)
+
+    if (isLoading) {
+      return <Loading className={styles.loading} />
+    }
+
+    if (isEmpty(data)) {
+      return (
+        <EmptyList
+          icon="topology"
+          title={t('NO_RELATE_DEVOPS_TITLE')}
+          desc={t('NO_RELATE_DEVOPS_DESC')}
+        />
+      )
+    }
 
     return (
-      <ScrollLoad
-        wrapperClassName={styles.list}
-        data={data}
-        total={total}
-        page={page}
-        loading={isLoading}
-        onFetch={this.fetchData}
-        empty={
-          <EmptyList
-            icon="topology"
-            title={t('NO_RELATE_DEVOPS_TITLE')}
-            desc={t('NO_RELATE_DEVOPS_DESC')}
-          />
-        }
-      >
+      <div>
         {data.map(project => (
           <Card
             key={project.project_id}
@@ -238,29 +253,37 @@ export default class Resources extends React.Component {
             url={`/devops/${project.project_id}`}
           />
         ))}
-      </ScrollLoad>
+        <div className="text-right margin-t12">
+          <Pagination
+            current={page}
+            total={total}
+            pageSize={limit}
+            onChange={this.handlePagination}
+          />
+        </div>
+      </div>
     )
   }
 
   renderProjects() {
-    const { data, page, total, isLoading } = toJS(this.store.namespaces)
+    const { data, page, total, limit, isLoading } = toJS(this.store.namespaces)
+
+    if (isLoading) {
+      return <Loading className={styles.loading} />
+    }
+
+    if (isEmpty(data)) {
+      return (
+        <EmptyList
+          icon="project"
+          title={t('NO_RELATE_PROJECTS_TITLE')}
+          desc={t('NO_RELATE_PROJECTS_DESC')}
+        />
+      )
+    }
 
     return (
-      <ScrollLoad
-        wrapperClassName={styles.list}
-        data={data}
-        total={total}
-        page={page}
-        loading={isLoading}
-        onFetch={this.fetchData}
-        empty={
-          <EmptyList
-            icon="project"
-            title={t('NO_RELATE_PROJECTS_TITLE')}
-            desc={t('NO_RELATE_PROJECTS_DESC')}
-          />
-        }
-      >
+      <div>
         {data.map(namespace => (
           <Card
             key={namespace.uid}
@@ -274,7 +297,15 @@ export default class Resources extends React.Component {
             url={`/projects/${namespace.name}`}
           />
         ))}
-      </ScrollLoad>
+        <div className="text-right margin-t12">
+          <Pagination
+            current={page}
+            total={total}
+            pageSize={limit}
+            onChange={this.handlePagination}
+          />
+        </div>
+      </div>
     )
   }
 

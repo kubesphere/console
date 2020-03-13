@@ -106,12 +106,24 @@ export default class UsersStore extends Base {
 
   @action
   checkUserName(name) {
-    return request.get(this.getListUrl(), { check: name })
+    return request.get(
+      this.getDetailUrl({ name }),
+      {},
+      {
+        headers: { 'x-check-exist': true },
+      }
+    )
   }
 
   @action
   checkEmail(email) {
-    return request.get(this.getListUrl(), { check: email })
+    return request.get(
+      `${this.getListUrl()}?conditions=email=${email}`,
+      {},
+      {
+        headers: { 'x-check-exist': true },
+      }
+    )
   }
 
   @action
