@@ -152,6 +152,22 @@ export default class GlobalValue {
       const navs = []
 
       globals.config.globalNavs.forEach(nav => {
+        if (this.checkNavItem(nav, params => this.hasPermission(params))) {
+          navs.push(nav)
+        }
+      })
+
+      this._cache_['globalNavs'] = navs
+    }
+
+    return this._cache_['globalNavs']
+  }
+
+  getClusterNavs() {
+    if (!this._cache_['clusterNavs']) {
+      const navs = []
+
+      globals.config.clusterNavs.forEach(nav => {
         const filteredItems = nav.items.filter(item =>
           this.checkNavItem(item, params => this.hasPermission(params))
         )
@@ -160,10 +176,29 @@ export default class GlobalValue {
         }
       })
 
-      this._cache_['globalNavs'] = navs
+      this._cache_['clusterNavs'] = navs
     }
 
-    return this._cache_['globalNavs']
+    return this._cache_['clusterNavs']
+  }
+
+  getAccessNavs() {
+    if (!this._cache_['accessNavs']) {
+      const navs = []
+
+      globals.config.accessNavs.forEach(nav => {
+        const filteredItems = nav.items.filter(item =>
+          this.checkNavItem(item, params => this.hasPermission(params))
+        )
+        if (!isEmpty(filteredItems)) {
+          navs.push({ ...nav, items: filteredItems })
+        }
+      })
+
+      this._cache_['accessNavs'] = navs
+    }
+
+    return this._cache_['accessNavs']
   }
 
   getInfraNavs() {
@@ -263,6 +298,7 @@ export default class GlobalValue {
   getMonitoringNavs() {
     if (!this._cache_['monitorNavs']) {
       const navs = []
+
       globals.config.monitoringNavs.forEach(nav => {
         const filteredItems = nav.items.filter(item =>
           this.checkNavItem(item, params => this.hasPermission(params))

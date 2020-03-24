@@ -113,7 +113,7 @@ export default class Banner extends React.Component {
       <div className={classnames(styles.wrapper, className)}>
         <div className={styles.titleWrapper}>
           <div className={styles.icon}>
-            <Icon name={icon || ICON_TYPES[module] || 'catalog'} size={40} />
+            <Icon name={icon || ICON_TYPES[module] || 'catalog'} size={48} />
           </div>
           <div className={styles.title}>
             <div className="h3">{title}</div>
@@ -129,10 +129,10 @@ export default class Banner extends React.Component {
               )}
             </p>
           </div>
-          {extra}
         </div>
         {!isEmpty(routes) && <Navs routes={routes} />}
         {!isEmpty(tabs) && <Tabs tabs={tabs} />}
+        {extra}
         {!isEmpty(tips) && this.renderTips(tips)}
       </div>
     )

@@ -18,8 +18,8 @@
 
 import { getChildRoutes } from 'utils/router.config'
 
-import Unresolved from 'clusters/containers/MonitoringCenter/Alerting/Message/Unresolved'
-import All from 'clusters/containers/MonitoringCenter/Alerting/Message/All'
+import Unresolved from 'console/containers/MonitoringCenter/Alerting/Message/Unresolved'
+import All from 'console/containers/MonitoringCenter/Alerting/Message/All'
 import AlertingMessageLayout from '../../containers/Alerting/Message'
 import AlertingPolicy from '../../containers/Alerting/Policy'
 

@@ -21,7 +21,7 @@ import { get } from 'lodash'
 
 import WorkspaceMonitorStore from 'stores/monitoring/workspace'
 
-import { Component as Base } from 'clusters/containers/MonitoringCenter/Monitoring/Resource/Usage/Virtual'
+import { Component as Base } from 'console/containers/MonitoringCenter/Monitoring/Resource/Usage/Virtual'
 
 const MetricTypes = {
   deployment_count: 'workspace_deployment_count',

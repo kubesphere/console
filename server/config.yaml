@@ -59,50 +59,117 @@ client:
 
   # platform management navigations
   globalNavs:
-    - cate: platform
-      title: Platform
+    - name: clusters
+      title: Clusters Management
+      icon: cluster
+      skipAuth: true
+    - name: access
+      title: Access Control
+      icon: key
+      authKey: accounts|roles
+    - name: apps-manage
+      title: Apps Management
+      icon: openpitrix
+      authKey: apps
+      authAction: manage
+    - name: settings
+      title: Platform Settings
+      icon: cogwheel
+      skipAuth: true
+  
+  clusterNavs:
+    - cate: cluster
       items:
+        - { name: overview, title: Overview, icon: dashboard, skipAuth: true }
+        - name: nodes
+          title: Nodes Management
+          icon: nodes
+          children:
+            - { name: nodes, title: Cluster Nodes }
+            - { name: node-types, title: Node Types }
+        - { name: components, title: Service Components, icon: components }
+        - { name: projects, title: NAV_PROJECTS, icon: project }
+        - name: app-workloads
+          title: Application Workloads
+          icon: appcenter
+          children:
+            - name: workloads
+              title: Workloads
+              tabs:
+                - { name: deployments, title: Deployments }
+                - { name: statefulsets, title: StatefulSets }
+                - { name: daemonsets, title: DaemonSets }
+            - name: jobs
+              title: Jobs
+              tabs:
+                - { name: jobs, title: Jobs }
+                - { name: cronjobs, title: CronJobs }
+            - { name: pods, title: Pods }
+            - { name: services, title: Services }
+            - { name: routes, title: Routes }
+        - name: network
+          title: Network Management
+          icon: earth
+          children:
+            - { name: ip-ranges, title: IP Ranges }
+            - { name: network-policies, title: Network Policies }
+            - { name: network-topo, title: Network Topology }
+        - { name: crds, title: Custom Resources, icon: select }
+        - name: storage
+          title: Storage Management
+          icon: database
+          children:
+            - { name: volumes, title: Volumes }
+            - { name: snapshots, title: Snapshots Management }
+            - { name: storageclasses, title: Storage Classes }
+        - name: monitoring-alerting
+          title: Monitoring & Alerting
+          icon: monitor
+          children:
+            - {
+                name: monitor-cluster,
+                title: Cluster Status,
+                icon: linechart,
+                authKey: monitoring,
+              }
+            - {
+                name: monitor-resource,
+                title: Application Resources,
+                icon: linechart,
+                authKey: monitoring,
+              }
+            - {
+                name: alert-messages,
+                title: Alerting Messages,
+                icon: loudspeaker,
+                authKey: alerting,
+              }
+            - {
+                name: alert-policies,
+                title: Alerting Policies,
+                icon: hammer,
+                authKey: alerting,
+              }
+        - name: cluster-settings
+          title: Cluster Settings
+          icon: cogwheel
+          children:
+            - { name: visibilities, title: Cluster Visibilities }
+            - { name: members, title: Cluster Members }
+            - { name: roles, title: Cluster Roles }
+            - { name: k8s-settings, title: Kubernetes Settings }
+
+  # access control page navigations
+  accessNavs:
+    - cate: 'access'
+      items:
+        - { name: accounts, title: NAV_ACCOUNTS, icon: human }
+        - { name: roles, title: Platform Roles, icon: role }
         - {
             name: workspaces,
             title: Workspaces,
             icon: enterprise,
             authAction: 'manage',
-          }
-        - {
-            name: projects,
-            title: NAV_PROJECTS,
-            icon: project,
-            authAction: 'manage',
-          }
-        - {
-            name: apps-manage,
-            title: Apps Management,
-            icon: appcenter,
-            authKey: apps,
-            authAction: manage,
-          }
-        - { name: accounts, title: NAV_ACCOUNTS, icon: human }
-        - { name: roles, title: Platform Roles, icon: role }
-    - cate: infrastructure
-      title: Infrastructure
-      items:
-        - {
-            name: infrastructure,
-            title: Infrastructure,
-            icon: cluster,
-            authKey: 'nodes|storageclasses',
-          }
-        - { name: monitoring, title: Monitoring Center, icon: monitor }
-        - { name: components, title: Service Components, icon: components, authKey: 'monitoring', }
-    - cate: settings
-      title: Settings
-      items:
-        - {
-            name: platform-settings,
-            title: Platform Settings,
-            icon: cogwheel,
-            authKey: 'logging|alerting',
-            admin: true,
           }
 
   # infrastructure navigations
@@ -149,7 +216,6 @@ client:
   # platform settings navigations
   platformSettingsNavs:
     - cate: 'platformsettings'
-      title: Platform Settings
       items:
         - {
             name: mail-server,

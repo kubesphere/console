@@ -1,0 +1,14 @@
+@import '~scss/variables';
+
+.wrapper {
+  width: 860px;
+  margin: 40px auto;
+}
+
+.title {
+  margin-bottom: 40px;
+  & > p {
+    margin-top: 4px;
+    color: $dark-color01;
+  }
+}

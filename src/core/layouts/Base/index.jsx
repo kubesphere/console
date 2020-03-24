@@ -18,7 +18,6 @@
 
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import classnames from 'classnames'
 import { inject, observer } from 'mobx-react'
 import { isAppsPage } from 'utils'
 import { getScrollTop } from 'utils/dom'
@@ -58,7 +57,7 @@ class BaseLayout extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const showGlobalNav = this.props.rootStore
+    const { showGlobalNav } = this.props.rootStore
     if (showGlobalNav && showGlobalNav !== prevProps.rootStore.showGlobalNav) {
       document.removeEventListener('click', this.handleClick)
       document.addEventListener('click', this.handleClick)
@@ -105,16 +104,12 @@ class BaseLayout extends Component {
     }
   }
 
-  handleNavItemClick = () => {
-    this.props.rootStore.hideGlobalNav()
-  }
-
   handleJumpTo = link => {
     this.props.rootStore.routing.push(link)
   }
 
   render() {
-    const { location, match, rootStore } = this.props
+    const { location, rootStore } = this.props
     return (
       <div>
         <GlobalSVG />
@@ -127,14 +122,9 @@ class BaseLayout extends Component {
         />
         {globals.user && globals.app.enableGlobalNav && (
           <GlobalNav
-            innerRef={this.navRef}
-            className={classnames({
-              [styles.nav]: !rootStore.showGlobalNav,
-            })}
-            match={match}
-            location={location}
+            visible={rootStore.showGlobalNav}
             navs={globals.app.getGlobalNavs()}
-            onItemClick={this.handleNavItemClick}
+            onCancel={rootStore.hideGlobalNav}
           />
         )}
         <div className={styles.main}>{renderRoutes(this.routes)}</div>

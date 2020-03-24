@@ -21,7 +21,7 @@ import { get } from 'lodash'
 
 import WorkspaceMonitorStore from 'stores/monitoring/workspace'
 
-import { Component as Base } from 'clusters/containers/MonitoringCenter/Monitoring/Resource/Usage/Physical'
+import { Component as Base } from 'console/containers/MonitoringCenter/Monitoring/Resource/Usage/Physical'
 
 const MetricTypes = {
   cpu_usage: 'workspace_cpu_usage',
