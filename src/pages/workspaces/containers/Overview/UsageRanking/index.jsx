@@ -32,8 +32,8 @@ import {
   Loading,
 } from '@pitrix/lego-ui'
 import { Button } from 'components/Base'
-import SortMetricSelect from 'clusters/components/Cards/Monitoring/UsageRank/select'
-import Table from 'clusters/containers/MonitoringCenter/Monitoring/Resource/Ranking/Project/Table'
+import SortMetricSelect from 'console/components/Cards/Monitoring/UsageRank/select'
+import Table from 'console/containers/MonitoringCenter/Monitoring/Resource/Ranking/Project/Table'
 
 import styles from './index.scss'
 

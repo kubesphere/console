@@ -21,10 +21,10 @@ import { getChildRoutes } from 'utils/router.config'
 
 import DetailLayout from 'core/layouts/Detail'
 
-import AlertingDetail from 'clusters/containers/MonitoringCenter/Alerting/Message/Detail/AlertDetail'
-import AlertingPolicy from 'clusters/containers/MonitoringCenter/Alerting/Message/Detail/AlertPolicy'
-import NotificationHistory from 'clusters/containers/MonitoringCenter/Alerting/Message/Detail/NotificationHistory'
-import Comment from 'clusters/containers/MonitoringCenter/Alerting/Message/Detail/Comment'
+import AlertingDetail from 'console/containers/MonitoringCenter/Alerting/Message/Detail/AlertDetail'
+import AlertingPolicy from 'console/containers/MonitoringCenter/Alerting/Message/Detail/AlertPolicy'
+import NotificationHistory from 'console/containers/MonitoringCenter/Alerting/Message/Detail/NotificationHistory'
+import Comment from 'console/containers/MonitoringCenter/Alerting/Message/Detail/Comment'
 import Detail from '../../containers/Alerting/Message/Detail'
 
 const PATH = '/projects/:namespace/alert-message'

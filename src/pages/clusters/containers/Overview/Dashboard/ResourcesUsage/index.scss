@@ -1,0 +1,49 @@
+@import '~scss/variables';
+
+.wrapper {
+  display: flex;
+}
+
+.chart {
+  width: 372px;
+
+  :global {
+    .recharts-polar-grid-concentric {
+      .recharts-polar-grid-concentric-circle{
+        stroke: $light-color04;
+
+        &:last-child {
+          fill: $light-color02;
+          opacity: .5;
+        }
+      }
+    }
+  }
+}
+
+.list {
+  flex: 1;
+}
+
+.item {
+  display: flex;
+  padding: 12px;
+
+  background-color: $light-color01;
+
+  &+.item {
+    margin-top: 8px;
+  }
+
+  &> div {
+    margin-right: 12px;
+    min-width: 100px;
+  }
+
+  & > div.pie {
+    min-width: unset;
+    margin: -4px;
+    margin-right: 12px;
+  }
+}
+

@@ -18,7 +18,7 @@
 
 import { observer, inject } from 'mobx-react'
 
-import { Component as Base } from 'clusters/containers/MonitoringCenter/Alerting/Policy'
+import { Component as Base } from 'console/containers/MonitoringCenter/Alerting/Policy'
 
 @inject('rootStore')
 @observer

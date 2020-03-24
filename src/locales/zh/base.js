@@ -54,6 +54,8 @@ export default {
   Platform: '平台管理',
   Workbench: '工作台',
   'Apps Management': '应用管理',
+  'Clusters Management': '集群管理',
+  'Access Control': '访问控制',
   'App Templates': '应用模板',
   'Service Components': '服务组件',
   Infrastructure: '基础设施',
@@ -65,6 +67,15 @@ export default {
 
   "User's Manual": '使用手册',
   'API Documents': 'API 文档',
+
+  CLUSTERS_MANAGEMENT_DESC:
+    '可以对KubeSphere中的集群进行统一管理，包括集群中的节点、服务组件、应用资源等',
+  ACCESS_CONTROL_DESC:
+    '可以对KubeSphere平台中的企业空间、账号、以及角色权限进行统一管理',
+  APPS_MANAGEMENT_DESC:
+    '应用商店管理平台内公开应用商店中的应用上架、下架以及应用审核等功能',
+  PLATFORM_SETTINGS_DESC:
+    '平台设置可以对KubeSphere进行OEM定制、邮件服务器设置、密码安全、第三方登录等设置',
 
   Loading: '加载中',
   Active: '已启用',
