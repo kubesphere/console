@@ -239,5 +239,5 @@ class Monitorings extends React.Component {
   }
 }
 
-export default inject('rootStore')(observer(Monitorings))
+export default inject('rootStore', 'detailStore')(observer(Monitorings))
 export const Component = Monitorings

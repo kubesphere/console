@@ -62,7 +62,7 @@ export default class WorkloadBanner extends React.Component {
       <Banner
         className="margin-b12"
         title={t('Workloads')}
-        description={t('WORKLOADS_DESC')}
+        description={t('WORKLOAD_DESC')}
         module={this.props.module}
         tabs={this.tabs}
       />

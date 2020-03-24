@@ -20,7 +20,7 @@ import { get, isEmpty } from 'lodash'
 import { action, observable } from 'mobx'
 import ObjectMapper from 'utils/object.mapper'
 
-import { getFilterString } from 'utils'
+import { getFilterString, getNamespacePath } from 'utils'
 import { LIST_DEFAULT_ORDER } from 'utils/constants'
 
 import List from './base.list'
@@ -50,24 +50,21 @@ export default class BaseStore {
   }
 
   getListUrl = ({ namespace }) =>
-    `${this.apiVersion}/namespaces/${namespace}/${this.module}`
+    `${this.apiVersion}${getNamespacePath(namespace)}/${this.module}`
 
   getDetailUrl = ({ name, namespace }) =>
     `${this.getListUrl({ namespace })}/${name}`
 
   getWatchListUrl = ({ namespace }) =>
-    `${this.apiVersion}/watch/namespaces/${namespace}/${this.module}`
+    `${this.apiVersion}/watch${getNamespacePath(namespace)}/${this.module}`
 
   getWatchUrl = ({ name, namespace }) =>
     `${this.getWatchListUrl({ namespace })}/${name}`
 
-  getResourceUrl = ({ namespace }) => {
-    const namespacePath = namespace ? `/namespaces/${namespace}` : ''
-
-    return `kapis/resources.kubesphere.io/v1alpha2${namespacePath}/${
+  getResourceUrl = ({ namespace }) =>
+    `kapis/resources.kubesphere.io/v1alpha2${getNamespacePath(namespace)}/${
       this.module
     }`
-  }
 
   @action
   setModule(module) {
@@ -97,6 +94,7 @@ export default class BaseStore {
     reverse,
     workspace,
     namespace,
+    cluster,
     more,
     resources = [],
     conditions,

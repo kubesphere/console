@@ -67,7 +67,7 @@ class ProjectLayout extends Component {
     project.initializing = true
 
     await this.fetchProject(params.namespace)
-    await this.fetchWorkspace(project.data.workspace)
+    await this.fetchWorkspace(project.detail.workspace)
 
     project.initializing = false
   }
@@ -87,7 +87,10 @@ class ProjectLayout extends Component {
 
     const projectRule = get(globals.user, `rules[${namespace}]`)
     if (projectRule === undefined) {
-      await project.fetchRules({ namespace, workspace: project.data.workspace })
+      await project.fetchRules({
+        namespace,
+        workspace: project.detail.workspace,
+      })
     }
   }
 

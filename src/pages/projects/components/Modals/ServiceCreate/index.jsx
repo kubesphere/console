@@ -27,57 +27,9 @@ import S2iBuilderStore from 'stores/s2i/builder'
 import FORM_STEPS from 'configs/steps/services'
 import FORM_TEMPLATES from 'utils/form.templates'
 import { getLanguageIcon } from 'utils/devops'
-import { S2i_SUPPORTED_TYPES, B2I_SUPPORTED_TYPES } from 'utils/constants'
+import { S2I_SUPPORTED_TYPES, B2I_SUPPORTED_TYPES } from 'utils/constants'
 
 import styles from './index.scss'
-
-const GROUPS = [
-  {
-    name: 'Service Type',
-    description: 'SERVICE_TYPE',
-    options: [
-      {
-        icon: 'backup',
-        name: 'Stateless Service',
-        value: 'statelessservice',
-      },
-      {
-        icon: 'stateful-set',
-        name: 'Stateful Service',
-        value: 'statefulservice',
-      },
-      {
-        icon: 'ip',
-        name: 'External Service',
-        value: 'externalservice',
-      },
-    ],
-  },
-  ...(globals.app.hasKSModule('devops')
-    ? [
-        {
-          name: 'SERVICE_FROM_CODE',
-          type: 's2i',
-          description: 'SERVICE_FROM_CODE_DESC',
-          options: S2i_SUPPORTED_TYPES,
-        },
-        {
-          name: 'SERVICE_FROM_ARTIFACTS',
-          type: 'b2i',
-          description: 'SERVICE_FROM_ARTIFACTS_DESC',
-          options: B2I_SUPPORTED_TYPES,
-        },
-      ]
-    : []),
-  {
-    name: 'Custom Creation',
-    description: 'SERVICE_CUSTOM_CREATE',
-    options: [
-      { icon: 'clock', name: 'Specify Workloads', value: 'simpleservice' },
-      { icon: 'coding', name: 'Edit by YAML', value: 'yaml' },
-    ],
-  },
-]
 
 export default class ServiceCreateModal extends React.Component {
   constructor(props) {
@@ -86,7 +38,57 @@ export default class ServiceCreateModal extends React.Component {
     this.state = {
       type: '',
       workloadModule: 'deployments',
-      groups: GROUPS,
+      groups: [
+        {
+          name: 'Service Type',
+          description: 'SERVICE_TYPE',
+          options: [
+            {
+              icon: 'backup',
+              name: 'Stateless Service',
+              value: 'statelessservice',
+            },
+            {
+              icon: 'stateful-set',
+              name: 'Stateful Service',
+              value: 'statefulservice',
+            },
+            {
+              icon: 'ip',
+              name: 'External Service',
+              value: 'externalservice',
+            },
+          ],
+        },
+        ...(globals.app.hasKSModule('devops')
+          ? [
+              {
+                name: 'SERVICE_FROM_CODE',
+                type: 's2i',
+                description: 'SERVICE_FROM_CODE_DESC',
+                options: S2I_SUPPORTED_TYPES,
+              },
+              {
+                name: 'SERVICE_FROM_ARTIFACTS',
+                type: 'b2i',
+                description: 'SERVICE_FROM_ARTIFACTS_DESC',
+                options: B2I_SUPPORTED_TYPES,
+              },
+            ]
+          : []),
+        {
+          name: 'Custom Creation',
+          description: 'SERVICE_CUSTOM_CREATE',
+          options: [
+            {
+              icon: 'clock',
+              name: 'Specify Workloads',
+              value: 'simpleservice',
+            },
+            { icon: 'coding', name: 'Edit by YAML', value: 'yaml' },
+          ],
+        },
+      ],
     }
   }
 
@@ -206,6 +208,7 @@ export default class ServiceCreateModal extends React.Component {
           name={t('Stateless Service')}
           visible={visible}
           steps={steps}
+          namespace={namespace}
           formTemplate={formTemplate}
           isSubmitting={isSubmitting}
           updateModule={this.handleWorkloadModuleChange}
@@ -242,6 +245,7 @@ export default class ServiceCreateModal extends React.Component {
             name={t('Stateless Service')}
             description={t('STATELESS_SERVICE_DESC')}
             visible={visible}
+            namespace={namespace}
             steps={FORM_STEPS[type]}
             formTemplate={formTemplate}
             isSubmitting={isSubmitting}
@@ -274,6 +278,7 @@ export default class ServiceCreateModal extends React.Component {
             name={t('Stateful Service')}
             description={t('STATEFUL_SERVICE_DESC')}
             visible={visible}
+            namespace={namespace}
             steps={FORM_STEPS[type]}
             formTemplate={formTemplate}
             isSubmitting={isSubmitting}
@@ -314,6 +319,7 @@ export default class ServiceCreateModal extends React.Component {
             title={title}
             description={description}
             visible={visible}
+            namespace={namespace}
             steps={FORM_STEPS[type]}
             formTemplate={formTemplate}
             isSubmitting={isSubmitting}
@@ -336,6 +342,7 @@ export default class ServiceCreateModal extends React.Component {
             store={store}
             title={title}
             visible={visible}
+            namespace={namespace}
             formTemplate={formTemplate}
             isSubmitting={isSubmitting}
             onOk={onOk}

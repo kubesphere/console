@@ -19,6 +19,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { isEmpty, isString } from 'lodash'
+import { Link } from 'react-router-dom'
 
 import { Icon } from '@pitrix/lego-ui'
 import BtnGroup from './BtnGroup'
@@ -41,6 +42,24 @@ class BaseInfo extends React.Component {
     icon: 'appcenter',
     name: '',
     desc: '',
+  }
+
+  renderNav() {
+    const { breadcrumbs } = this.props
+
+    if (isEmpty(breadcrumbs)) {
+      return null
+    }
+
+    const br = breadcrumbs[0]
+    return (
+      <div className={styles.breadcrumbs}>
+        <Link to={br.url}>
+          <Icon name="chevron-left" size={20} />
+          {br.label}
+        </Link>
+      </div>
+    )
   }
 
   renderName() {
@@ -118,6 +137,7 @@ class BaseInfo extends React.Component {
     return (
       <div className={styles.card}>
         <div className={styles.base}>
+          {this.renderNav()}
           {this.renderName()}
           {this.renderDesc()}
           {this.renderBtnGroup()}

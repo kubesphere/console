@@ -35,7 +35,7 @@ import { Card, Status, Search } from 'components/Base'
 
 import styles from './index.scss'
 
-@inject('rootStore')
+@inject('rootStore', 'detailStore', 'recordStore')
 @observer
 class ExcuteRecords extends React.Component {
   get store() {

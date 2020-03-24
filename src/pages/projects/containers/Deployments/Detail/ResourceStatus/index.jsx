@@ -18,7 +18,7 @@
 
 import React from 'react'
 import { toJS } from 'mobx'
-import { observer } from 'mobx-react'
+import { observer, inject } from 'mobx-react'
 import { isEmpty, get, flatten, uniqBy } from 'lodash'
 
 import HpaStore from 'stores/workload/hpa'
@@ -44,7 +44,7 @@ class ResourceStatus extends React.Component {
   }
 
   get module() {
-    return this.props.module
+    return this.props.detailStore.module
   }
 
   get store() {
@@ -225,5 +225,5 @@ class ResourceStatus extends React.Component {
   }
 }
 
-export default observer(ResourceStatus)
+export default inject('detailStore')(observer(ResourceStatus))
 export const Component = ResourceStatus

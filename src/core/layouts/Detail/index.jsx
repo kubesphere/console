@@ -68,7 +68,7 @@ class DetailLayout extends Component {
       if (projectRule === undefined) {
         await rootStore.project.fetchRules({
           namespace: params.namespace,
-          workspace: rootStore.project.data.workspace,
+          workspace: rootStore.project.detail.workspace,
         })
       }
     }

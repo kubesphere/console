@@ -16,10 +16,11 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { observer } from 'mobx-react'
+import { inject, observer } from 'mobx-react'
 
 import { Component as Base } from 'projects/containers/Deployments/Detail/Monitoring'
 
+@inject('detailStore')
 @observer
 class DaemonSetsMonitorings extends Base {
   get monitoringModule() {

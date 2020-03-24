@@ -18,7 +18,7 @@
 
 import React from 'react'
 import { when } from 'mobx'
-import { observer } from 'mobx-react'
+import { observer, inject } from 'mobx-react'
 import { get } from 'lodash'
 import { Icon, Tooltip } from '@pitrix/lego-ui'
 
@@ -57,6 +57,7 @@ const Status = ({ status, tip }) => {
   return icon
 }
 
+@inject('detailStore')
 @observer
 class ScheduleInfo extends React.Component {
   nodeStore = new NodeStore()
@@ -68,7 +69,7 @@ class ScheduleInfo extends React.Component {
   }
 
   get module() {
-    return this.props.module
+    return this.props.detailStore.module
   }
 
   get store() {

@@ -17,7 +17,7 @@
  */
 
 export default {
-  WORKLOADS_DESC:
+  WORKLOAD_DESC:
     'The workload is usually the actual carrier for accessing the service, and is also the actual running carrier for system applications such as node log collection and monitoring. Workload is an abstract model for a group of Pods.',
   DEPLOYMENT_DESC:
     'Deployment provides fine-grained management of common applications in KubeSphere. Deployment configuration describes the desired state of specific components of an application as Pod templates.',

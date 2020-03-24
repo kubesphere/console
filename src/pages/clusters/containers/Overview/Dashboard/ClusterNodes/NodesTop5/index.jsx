@@ -63,7 +63,7 @@ export default class NodesTop5 extends Component {
         </div>
         <div className={styles.list}>
           {data.map(node => (
-            <div key={node.name}>
+            <div key={node.node}>
               <Icon name="nodes" size={40} className="margin-r12" />
               <Text
                 title={node.resource_name}

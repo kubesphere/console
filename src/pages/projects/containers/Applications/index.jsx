@@ -79,7 +79,7 @@ export default class Applications extends React.Component {
   }
 
   get workspace() {
-    return get(this, 'props.rootStore.project.data.workspace')
+    return get(this, 'props.rootStore.project.detail.workspace')
   }
 
   get routing() {

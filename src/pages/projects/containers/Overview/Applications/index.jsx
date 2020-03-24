@@ -36,7 +36,7 @@ export default class Applications extends React.Component {
     this.store = new ApplicationStore()
 
     this.disposer = when(
-      () => this.project.data.name === this.namespace,
+      () => this.project.detail.name === this.namespace,
       this.fetchData.bind(this)
     )
   }

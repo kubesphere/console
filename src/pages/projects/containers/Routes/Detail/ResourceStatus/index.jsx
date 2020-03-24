@@ -19,7 +19,7 @@
 import { omit, isEmpty } from 'lodash'
 import React from 'react'
 import { toJS } from 'mobx'
-import { observer } from 'mobx-react'
+import { observer, inject } from 'mobx-react'
 import { Card } from 'components/Base'
 import Annotations from 'projects/components/Cards/Annotations'
 
@@ -27,13 +27,14 @@ import Rule from './Rule'
 
 import styles from './index.scss'
 
+@inject('detailStore')
 @observer
 class ResourceStatus extends React.Component {
   constructor(props) {
     super(props)
 
     this.store = props.detailStore
-    this.module = props.module
+    this.module = this.store.module
   }
 
   componentDidMount() {

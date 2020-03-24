@@ -8,7 +8,7 @@
 
   .base,
   .extra {
-    padding: 20px;
+    padding: 12px;
   }
 
   .base {
@@ -16,15 +16,12 @@
     background-image: url('/assets/detail-info.svg');
     background-repeat: no-repeat;
     background-size: 100% auto;
-    border-radius: 8px 8px 0 0;
+    border-radius: 4px 4px 0 0;
   }
 }
 
 .name {
   margin-bottom: 4px;
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 32px;
   @include ellipsis;
   @include TypographyTitleH4();
 
@@ -72,5 +69,28 @@
 .attrs {
   :global(.h6) {
     margin-bottom: 12px;
+  }
+}
+
+.breadcrumbs {
+  position: relative;
+  display: inline-block;
+  padding: 2px 20px 2px 36px;
+  margin-bottom: 12px;
+  border-radius: 12px;
+  background-color: #ffffff;
+  
+  & > a {
+    @include TypographySymbolText;
+  }
+
+  :global .icon {
+    position: absolute;
+    @include vertical-center;
+    left: 8px;
+    
+    & > svg {
+      color: $blue-color03;
+    }
   }
 }

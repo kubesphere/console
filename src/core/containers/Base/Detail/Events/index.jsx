@@ -18,7 +18,7 @@
 
 import React from 'react'
 import { toJS } from 'mobx'
-import { observer } from 'mobx-react'
+import { observer, inject } from 'mobx-react'
 import { has } from 'lodash'
 
 import { joinSelector } from 'utils'
@@ -76,5 +76,5 @@ class Events extends React.Component {
   }
 }
 
-export default observer(Events)
+export default inject('detailStore')(observer(Events))
 export const Component = Events

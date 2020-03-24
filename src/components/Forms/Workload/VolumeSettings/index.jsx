@@ -77,7 +77,7 @@ class VolumeSettings extends React.Component {
   get projectEnableCollectingFileLog() {
     return (
       get(
-        this.props.rootStore.project.data,
+        this.props.rootStore.project.detail,
         'labels["logging.kubesphere.io/logsidecar-injection"]'
       ) === 'enabled'
     )
