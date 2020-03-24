@@ -5,6 +5,7 @@ on:
     # Publish `master` as Docker `latest` image.
     branches:
       - master
+      - dev
       - release-*
 
     # Publish `v1.2.3` tags as releases.
@@ -24,7 +25,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [8.x]
+        node-version: [10.x]
 
     steps:
     - uses: actions/checkout@v1
@@ -79,6 +80,7 @@ jobs:
           [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
           # Use Docker `latest` tag convention
           [ "$VERSION" == "master" ] && VERSION=latest
+          [ "$VERSION" == "dev" ] && VERSION=dev
           echo IMAGE_ID=$IMAGE_ID
           echo VERSION=$VERSION
           docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
