@@ -19,7 +19,7 @@
 import { action } from 'mobx'
 import { isEmpty, get } from 'lodash'
 
-import { getFilterString } from 'utils'
+import { getFilterString, getNamespacePath } from 'utils'
 import { getWorkloadVolumes } from 'utils/workload'
 
 import Base from './base'
@@ -33,16 +33,14 @@ export default class PodStore extends Base {
     return 'kapis/resources.kubesphere.io/v1alpha2'
   }
 
-  getListUrl = ({ namespace }) => {
-    const namespacePath = namespace ? `/namespaces/${namespace}` : ''
-    return `${this.apiVersion}${namespacePath}/pods`
-  }
+  getListUrl = ({ namespace }) =>
+    `${this.apiVersion}${getNamespacePath(namespace)}/pods`
 
   getDetailUrl = ({ namespace, name }) =>
-    `api/v1/namespaces/${namespace}/pods/${name}`
+    `api/v1${getNamespacePath(namespace)}/pods/${name}`
 
   getWatchListUrl = ({ namespace }) =>
-    `api/v1/watch/namespaces/${namespace}/${this.module}`
+    `api/v1/watch${getNamespacePath(namespace)}/${this.module}`
 
   getData = async result => {
     const items = get(result, 'items', result.pods) || []
@@ -53,6 +51,7 @@ export default class PodStore extends Base {
 
   @action
   async fetchList({
+    cluster,
     workspace,
     namespace,
     order,
@@ -160,7 +159,7 @@ export default class PodStore extends Base {
     }
 
     const result = await request.get(
-      `api/v1/namespaces/${namespace}/pods`,
+      `api/v1${getNamespacePath(namespace)}/pods`,
       params
     )
 

@@ -25,11 +25,16 @@ import { Provider } from 'mobx-react'
 import 'scss/main.scss'
 
 import routes from './routes'
+import actions from './actions'
 
 class App extends Component {
   static propTypes = {
     rootStore: PropTypes.object,
     history: PropTypes.object,
+  }
+
+  componentDidMount() {
+    this.props.rootStore.registerActions(actions)
   }
 
   render() {

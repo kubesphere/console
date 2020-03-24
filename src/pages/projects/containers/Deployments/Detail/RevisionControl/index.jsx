@@ -195,5 +195,5 @@ class RevisionControl extends React.Component {
   }
 }
 
-export default inject('rootStore')(observer(RevisionControl))
+export default inject('rootStore', 'detailStore')(observer(RevisionControl))
 export const Component = RevisionControl

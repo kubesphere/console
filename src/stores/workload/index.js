@@ -19,7 +19,7 @@
 import { get, set, has, isString, isEmpty } from 'lodash'
 import { action, observable, extendObservable } from 'mobx'
 
-import { withDryRun } from 'utils'
+import { withDryRun, getNamespacePath } from 'utils'
 import { getWorkloadVolumes } from 'utils/workload'
 import { MODULE_KIND_MAP } from 'utils/constants'
 
@@ -59,7 +59,7 @@ export default class WorkloadStore extends Base {
   }
 
   getResourceUrl = ({ namespace }) =>
-    `kapis/resources.kubesphere.io/v1alpha2/namespaces/${namespace}/${
+    `kapis/resources.kubesphere.io/v1alpha2${getNamespacePath(namespace)}/${
       this.module
     }`
 
@@ -153,7 +153,7 @@ export default class WorkloadStore extends Base {
   }
 
   @action
-  create(data, { namespace }) {
+  create(data) {
     const requests = []
 
     if (has(data, 'metadata')) {
@@ -166,6 +166,7 @@ export default class WorkloadStore extends Base {
       }
 
       if (has(data, 'Service')) {
+        const namespace = get(data[kind], 'metadata.namespace')
         requests.push({
           url: this.serviceStore.getListUrl({ namespace }),
           data: data['Service'],

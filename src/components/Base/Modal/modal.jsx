@@ -16,9 +16,11 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { omit, isUndefined } from 'lodash'
+import { get, omit, isUndefined, isFunction } from 'lodash'
 import React from 'react'
+import ReactDOM from 'react-dom'
 import ReactModal from 'react-modal'
+import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 
@@ -97,6 +99,39 @@ export default class Modal extends React.Component {
     okButtonType: 'control',
     cancelButtonType: 'default',
     disableSubmit: false,
+  }
+
+  static open = options => {
+    const modalWrapper = document.createElement('div')
+    document.body.appendChild(modalWrapper)
+    document.activeElement.blur()
+
+    const wrapCancel = () => {
+      if (isFunction(options.onCancel)) {
+        options.onCancel()
+      }
+      Modal.close(modalWrapper)
+    }
+
+    const Component = options.modal
+    const WrappedComponent = observer(() => (
+      <Component
+        {...omit(options, 'modal', 'onCancel')}
+        isSubmitting={get(options, 'store.isSubmitting')}
+        onCancel={wrapCancel}
+        visible
+      />
+    ))
+    ReactDOM.render(<WrappedComponent />, modalWrapper)
+
+    return modalWrapper
+  }
+
+  static close = modal => {
+    const unmounted = ReactDOM.unmountComponentAtNode(modal)
+    if (unmounted && modal.parentNode) {
+      modal.parentNode.removeChild(modal)
+    }
   }
 
   renderTitle() {

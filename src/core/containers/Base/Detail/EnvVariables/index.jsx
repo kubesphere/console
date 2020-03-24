@@ -82,5 +82,5 @@ class EnvVariables extends React.Component {
   }
 }
 
-export default inject('rootStore')(observer(EnvVariables))
+export default inject('rootStore', 'detailStore')(observer(EnvVariables))
 export const Component = EnvVariables

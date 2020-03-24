@@ -19,6 +19,7 @@
 import { action, observable } from 'mobx'
 
 export default class List {
+  @observable
   data = []
 
   page = 1
@@ -59,5 +60,10 @@ export default class List {
     this.filters = {}
     this.isLoading = true
     this.selectedRowKeys = []
+  }
+
+  @action
+  setSelectRowKeys = rowKeys => {
+    this.selectedRowKeys = rowKeys
   }
 }

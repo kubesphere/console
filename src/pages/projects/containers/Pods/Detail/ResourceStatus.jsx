@@ -18,16 +18,17 @@
 
 import React from 'react'
 import { toJS } from 'mobx'
-import { observer } from 'mobx-react'
+import { observer, inject } from 'mobx-react'
 import { isEmpty } from 'lodash'
 
 import ContainersCard from 'components/Cards/Containers'
 import VolumesCard from 'components/Cards/Volumes'
 
+@inject('detailStore')
 @observer
 class PodsResourceStatus extends React.Component {
   get module() {
-    return this.props.module
+    return this.props.detailStore.module
   }
 
   get store() {

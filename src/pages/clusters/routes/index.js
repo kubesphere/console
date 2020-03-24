@@ -23,10 +23,21 @@ import Layout from '../containers/layout'
 import Clusters from '../containers/Clusters'
 import AddCluster from '../containers/Clusters/AddCluster'
 import Overview from '../containers/Overview'
+import Deployments from '../containers/Workload/Deployments'
+import StatefulSets from '../containers/Workload/StatefulSets'
+import DaemonSets from '../containers/Workload/DaemonSets'
+import Jobs from '../containers/Workload/Jobs'
+import CronJobs from '../containers/Workload/CronJobs'
+import Pods from '../containers/Workload/Pods'
+import Services from '../containers/Workload/Services'
+import Routes from '../containers/Workload/Routes'
+
+import detail from './detail'
 
 const PATH = '/clusters/:cluster'
 
 export default [
+  ...detail,
   { path: '/clusters', component: Clusters, exact: true },
   { path: '/clusters/add', component: AddCluster, exact: true },
   {
@@ -38,7 +49,52 @@ export default [
         component: Overview,
         exact: true,
       },
+      {
+        path: `${PATH}/deployments`,
+        component: Deployments,
+        exact: true,
+      },
+      {
+        path: `${PATH}/statefulsets`,
+        component: StatefulSets,
+        exact: true,
+      },
+      {
+        path: `${PATH}/daemonsets`,
+        component: DaemonSets,
+        exact: true,
+      },
+      {
+        path: `${PATH}/jobs`,
+        component: Jobs,
+        exact: true,
+      },
+      {
+        path: `${PATH}/cronjobs`,
+        component: CronJobs,
+        exact: true,
+      },
+      {
+        path: `${PATH}/pods`,
+        component: Pods,
+        exact: true,
+      },
+      {
+        path: `${PATH}/services`,
+        component: Services,
+        exact: true,
+      },
+      {
+        path: `${PATH}/routes`,
+        component: Routes,
+        exact: true,
+      },
       getIndexRoute({ path: PATH, to: `${PATH}/overview`, exact: true }),
+      getIndexRoute({
+        path: `${PATH}/workloads`,
+        to: `${PATH}/deployments`,
+        exact: true,
+      }),
     ],
   },
 ]

@@ -31,7 +31,7 @@ import { Card, Status } from 'components/Base'
 
 import styles from './index.scss'
 
-@inject('rootStore')
+@inject('rootStore', 'detailStore')
 @observer
 class JobRecords extends React.Component {
   constructor(props) {

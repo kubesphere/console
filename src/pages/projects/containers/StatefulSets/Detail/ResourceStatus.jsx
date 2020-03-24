@@ -18,13 +18,14 @@
 
 import React from 'react'
 import { toJS } from 'mobx'
-import { observer } from 'mobx-react'
+import { observer, inject } from 'mobx-react'
 import { get, isEmpty } from 'lodash'
 
 import VolumesCard from 'components/Cards/Volumes'
 import { Component as Base } from 'projects/containers/Deployments/Detail/ResourceStatus'
 import ServiceCard from './ServiceCard'
 
+@inject('detailStore')
 @observer
 class ResourceStatus extends Base {
   get serviceName() {

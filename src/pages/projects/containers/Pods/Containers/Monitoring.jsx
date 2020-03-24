@@ -68,5 +68,5 @@ class Monitorings extends Base {
   ]
 }
 
-export default inject('rootStore')(observer(Monitorings))
+export default inject('rootStore', 'detailStore')(observer(Monitorings))
 export const Component = Monitorings

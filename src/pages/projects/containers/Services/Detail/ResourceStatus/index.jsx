@@ -18,7 +18,7 @@
 
 import React from 'react'
 import { toJS } from 'mobx'
-import { observer } from 'mobx-react'
+import { observer, inject } from 'mobx-react'
 import { isEmpty } from 'lodash'
 import { Tooltip, Icon } from '@pitrix/lego-ui'
 import { Button, Panel, Text } from 'components/Base'
@@ -29,6 +29,7 @@ import RouterStore from 'stores/router'
 
 import styles from './index.scss'
 
+@inject('detailStore')
 @observer
 class ResourceStatus extends React.Component {
   constructor(props) {

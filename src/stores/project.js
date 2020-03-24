@@ -23,6 +23,8 @@ import ObjectMapper from 'utils/object.mapper'
 
 import MemberList from 'stores/member.list'
 
+import List from 'stores/base.list'
+
 const formatLimitRange = (limitRange = {}) => {
   const cpuLimit = get(limitRange, 'spec.limits[0].default.cpu')
   const cpuRequest = get(limitRange, 'spec.limits[0].defaultRequest.cpu')
@@ -45,19 +47,7 @@ export default class ProjectStore {
   @observable
   initializing = true
 
-  @observable
-  list = {
-    data: [],
-    page: 1,
-    limit: 10,
-    total: 0,
-    order: '',
-    reverse: false,
-    keyword: '',
-    filters: {},
-    isLoading: true,
-    selectedRowKeys: [],
-  }
+  list = new List()
 
   @observable
   isLoading = false
@@ -66,7 +56,7 @@ export default class ProjectStore {
   isSubmitting = false
 
   @observable
-  data = {}
+  detail = {}
 
   @observable
   limitRanges = {
@@ -104,6 +94,7 @@ export default class ProjectStore {
 
   @action
   async fetchList({
+    cluster,
     workspace,
     limit,
     page,
@@ -111,7 +102,7 @@ export default class ProjectStore {
     reverse,
     keyword,
     more,
-    metrics,
+    metrics = true,
     ...filters
   } = {}) {
     this.list.isLoading = true
@@ -154,7 +145,7 @@ export default class ProjectStore {
     const result = await request.get(this.getResourceUrl({ workspace }), params)
     const items = result.items.map(ObjectMapper.namespaces)
 
-    this.list = {
+    this.list.update({
       data: more ? [...this.list.data, ...items] : items,
       total: result.total_count || 0,
       limit: Number(limit) || 10,
@@ -165,7 +156,7 @@ export default class ProjectStore {
       filters,
       isLoading: false,
       selectedRowKeys: [],
-    }
+    })
   }
 
   @action
@@ -270,7 +261,7 @@ export default class ProjectStore {
       }
     )
 
-    this.data = ObjectMapper.namespaces(detail)
+    this.detail = ObjectMapper.namespaces(detail)
   }
 
   @action
@@ -387,11 +378,6 @@ export default class ProjectStore {
   }
 
   @action
-  setSelectRowKeys(key, selectedRowKeys) {
-    this[key] && this[key].selectedRowKeys.replace(selectedRowKeys)
-  }
-
-  @action
   async fetchLimitRanges({ namespace }) {
     this.limitRanges.isLoading = false
     const result = await request.get(
@@ -428,5 +414,10 @@ export default class ProjectStore {
         formatLimitRange(data)
       )
     )
+  }
+
+  @action
+  setSelectRowKeys(selectedRowKeys) {
+    this.list.selectedRowKeys.replace(selectedRowKeys)
   }
 }

@@ -30,6 +30,9 @@ export default class RootStore {
   @observable
   showGlobalNav = false
 
+  @observable
+  actions = {}
+
   constructor() {
     this.websocket = new WebSocketStore()
 
@@ -60,6 +63,16 @@ export default class RootStore {
   @action
   hideGlobalNav = () => {
     this.showGlobalNav = false
+  }
+
+  @action
+  registerActions = actions => {
+    extendObservable(this.actions, actions)
+  }
+
+  @action
+  triggerAction(id, ...rest) {
+    this.actions[id] && this.actions[id].on(...rest)
   }
 
   @action

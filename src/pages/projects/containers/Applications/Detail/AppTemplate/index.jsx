@@ -54,7 +54,7 @@ export default class AppTemplate extends React.Component {
   }
 
   get workspace() {
-    return get(this, 'props.rootStore.project.data.workspace')
+    return get(this, 'props.rootStore.project.detail.workspace')
   }
 
   getData() {
