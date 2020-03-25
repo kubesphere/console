@@ -16,27 +16,14 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { getIndexRoute } from 'utils/router.config'
+// Use require.context to require reducers automatically
+// Ref: https://webpack.github.io/docs/context.html
+const context = require.context('./', false, /\.js$/)
+const keys = context.keys().filter(item => item !== './index.js')
 
-import Layout from '../containers/layout'
-import Accounts from '../containers/Accounts'
-import Roles from '../containers/Roles'
-import Workspaces from '../containers/Workspaces'
+const models = {}
+for (let i = 0; i < keys.length; i += 1) {
+  Object.assign(models, context(keys[i]).default)
+}
 
-import detail from './detail'
-
-const PATH = '/access'
-
-export default [
-  ...detail,
-  {
-    path: PATH,
-    component: Layout,
-    routes: [
-      { path: `${PATH}/accounts`, component: Accounts, exact: true },
-      { path: `${PATH}/roles`, component: Roles, exact: true },
-      { path: `${PATH}/workspaces`, component: Workspaces, exact: true },
-      getIndexRoute({ path: PATH, to: `${PATH}/accounts`, exact: true }),
-    ],
-  },
-]
+export default models

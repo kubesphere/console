@@ -16,32 +16,30 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import PropTypes from 'prop-types'
-import classnames from 'classnames'
-import { Icon } from '@pitrix/lego-ui'
+import { Modal, Notify } from 'components/Base'
 
-import styles from './index.scss'
+import CreateModal from 'components/Modals/WorkspaceCreate'
 
-export default class Title extends React.Component {
-  static propTypes = {
-    className: PropTypes.string,
-    icon: PropTypes.string,
-    title: PropTypes.string,
-    desc: PropTypes.string,
-  }
+export default {
+  'workspace.create': {
+    on({ store, success, ...props }) {
+      const modal = Modal.open({
+        onOk: data => {
+          if (!data) {
+            Modal.close(modal)
+            return
+          }
 
-  render() {
-    const { className, icon, title, desc } = this.props
-
-    return (
-      <div className={classnames(styles.wrapper, className)}>
-        <Icon name={icon} size={60} />
-        <div className={styles.text}>
-          <div className="h2">{title}</div>
-          <p>{desc}</p>
-        </div>
-      </div>
-    )
-  }
+          store.create(data).then(() => {
+            Modal.close(modal)
+            Notify.success({ content: `${t('Created Successfully')}!` })
+            success && success()
+          })
+        },
+        modal: CreateModal,
+        store,
+        ...props,
+      })
+    },
+  },
 }

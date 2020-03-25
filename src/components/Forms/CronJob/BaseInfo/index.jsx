@@ -20,7 +20,7 @@ import { get, set, debounce } from 'lodash'
 import React from 'react'
 import { Columns, Column, Input, TextArea, Select } from '@pitrix/lego-ui'
 import { Form } from 'components/Base'
-import { NumberInput, SelectInput } from 'components/Inputs'
+import { NumberInput, SelectInput, ProjectSelect } from 'components/Inputs'
 import ToggleView from 'components/ToggleView'
 import {
   MODULE_KIND_MAP,
@@ -111,13 +111,19 @@ export default class BaseInfo extends React.Component {
             </Form.Item>
           </Column>
         </Columns>
-        <Columns>
-          <Column>
-            <Form.Item label={t('Description')}>
-              <TextArea name="metadata.annotations['kubesphere.io/description']" />
-            </Form.Item>
-          </Column>
-          <Column>
+        <Columns className="is-multiline">
+          {!this.props.namespace && (
+            <Column className="is-6">
+              <Form.Item label={t('Project')} desc={t('PROJECT_DESC')}>
+                <ProjectSelect
+                  name="metadata.namespace"
+                  cluster={this.props.cluster}
+                  defaultValue={this.namespace || 'default'}
+                />
+              </Form.Item>
+            </Column>
+          )}
+          <Column className="is-6">
             <Form.Item
               label={t('Schedule')}
               desc={t.html('CRONJOB_CRON_DESC')}
@@ -129,7 +135,13 @@ export default class BaseInfo extends React.Component {
               />
             </Form.Item>
           </Column>
+          <Column className="is-6">
+            <Form.Item label={t('Description')}>
+              <TextArea name="metadata.annotations['kubesphere.io/description']" />
+            </Form.Item>
+          </Column>
         </Columns>
+
         <ToggleView>
           <Columns className="margin-t8">
             <Column>

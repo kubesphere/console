@@ -23,6 +23,7 @@ import { Columns, Column, Input, Select, TextArea } from '@pitrix/lego-ui'
 import { Form } from 'components/Base'
 import ToggleView from 'components/ToggleView'
 import { updateLabels, generateId } from 'utils'
+import { ProjectSelect } from 'components/Inputs'
 
 import {
   PATTERN_SERVICE_NAME,
@@ -94,6 +95,7 @@ export default class ServiceBaseInfo extends React.Component {
       'metadata.annotations["kubesphere.io/alias-name"]'
     )
     const labels = get(this.formTemplate, 'metadata.labels', {})
+    const namespace = get(this.formTemplate, 'metadata.namespace')
     labels.app = value
 
     if (!noWorkload) {
@@ -102,6 +104,7 @@ export default class ServiceBaseInfo extends React.Component {
         'metadata.name',
         `${value}-${generateId()}`
       )
+      set(formTemplate[this.workloadKind], 'metadata.namespace', namespace)
       set(
         formTemplate[this.workloadKind],
         'metadata.annotations["kubesphere.io/alias-name"]',
@@ -201,11 +204,21 @@ export default class ServiceBaseInfo extends React.Component {
         </Columns>
         <Columns>
           <Column>
+            {!this.props.namespace && (
+              <Form.Item label={t('Project')} desc={t('PROJECT_DESC')}>
+                <ProjectSelect
+                  name="metadata.namespace"
+                  cluster={this.props.cluster}
+                  defaultValue={this.namespace || 'default'}
+                />
+              </Form.Item>
+            )}
+          </Column>
+          <Column>
             <Form.Item label={t('Description')}>
               <TextArea name="metadata.annotations['kubesphere.io/description']" />
             </Form.Item>
           </Column>
-          <Column />
         </Columns>
         <ToggleView>
           <div className="margin-t8">

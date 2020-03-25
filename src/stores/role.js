@@ -23,19 +23,10 @@ import { getFilterString } from 'utils'
 import ObjectMapper from 'utils/object.mapper'
 import { Notify } from 'components/Base'
 
+import List from './base.list'
+
 export default class RoleStore {
-  @observable
-  list = {
-    data: [],
-    page: 1,
-    limit: 10,
-    total: 0,
-    order: '',
-    reverse: false,
-    filters: {},
-    isLoading: true,
-    selectedRowKeys: [],
-  }
+  list = new List()
 
   @observable
   rules = {
@@ -63,6 +54,8 @@ export default class RoleStore {
 
   @observable
   isSubmitting = false
+
+  noWatch = true
 
   constructor(type) {
     this.type = type || 'roles'
@@ -136,7 +129,7 @@ export default class RoleStore {
 
     const result = await request.get(url, params)
 
-    this.list = {
+    this.list.update({
       data: result.items.map(ObjectMapper.roles) || [],
       total: result.total_count || 0,
       limit: Number(limit) || 10,
@@ -146,11 +139,11 @@ export default class RoleStore {
       filters: omit(filters, ['namespace', 'userfacing']),
       isLoading: false,
       selectedRowKeys: [],
-    }
+    })
   }
 
   @action
-  create(data, { namespace }) {
+  create(data, { namespace } = {}) {
     return this.submitting(request.post(this.getListUrl(namespace), data))
   }
 

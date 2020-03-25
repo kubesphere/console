@@ -17,56 +17,27 @@
  */
 
 import React from 'react'
-import { toJS } from 'mobx'
-import { observer, inject } from 'mobx-react'
 
 import UserStore from 'stores/user'
-import RoleStore from 'stores/role'
 
-import { Avatar, Notify } from 'components/Base'
+import { Avatar } from 'components/Base'
+import Banner from 'components/Cards/Banner'
 import UserStatus from 'components/UserStatus'
-import CreateModal from 'components/Modals/UserCreate'
+import Table from 'components/Tables/Base'
+import withList from 'components/HOCs/withList'
 
 import { getLocalTime } from 'utils'
 
-import Base from 'core/containers/Base/List'
-
-import styles from './index.scss'
-
-const EditModal = CreateModal
-
-@inject('rootStore')
-@observer
-export default class Accounts extends Base {
-  init() {
-    this.store = new UserStore()
-
-    this.clusterRoleStore = new RoleStore('clusterroles')
-
-    this.clusterRoleStore.fetchList({ limit: -1, order: 'createTime' })
-  }
-
-  get name() {
-    return 'User'
-  }
-
-  get authKey() {
-    return 'accounts'
-  }
-
-  get rowKey() {
-    return 'username'
-  }
-
-  get className() {
-    return styles.wrapper
-  }
-
-  getTableProps() {
-    return {
-      ...Base.prototype.getTableProps.call(this),
-      searchType: 'keyword',
-    }
+@withList({
+  store: new UserStore(),
+  module: 'accounts',
+  name: 'User',
+  rowKey: 'username',
+})
+export default class Accounts extends React.Component {
+  constructor(props) {
+    super(props)
+    props.bindActions(this.itemActions)
   }
 
   checkActionEnable(record) {
@@ -77,6 +48,7 @@ export default class Accounts extends Base {
   }
 
   get itemActions() {
+    const { trigger, getData } = this.props
     return [
       {
         key: 'edit',
@@ -84,7 +56,11 @@ export default class Accounts extends Base {
         text: t('Edit'),
         action: 'edit',
         show: this.checkActionEnable,
-        onClick: this.showModal('editModal'),
+        onClick: item =>
+          trigger('user.edit', {
+            detail: item,
+            success: getData,
+          }),
       },
       {
         key: 'delete',
@@ -92,103 +68,85 @@ export default class Accounts extends Base {
         text: t('Delete'),
         action: 'delete',
         show: this.checkActionEnable,
-        onClick: this.showModal('deleteModal'),
+        onClick: item =>
+          trigger('resource.delete', {
+            type: t('User'),
+            resource: item.username,
+            detail: item,
+            success: getData,
+          }),
       },
     ]
   }
 
-  getColumns = () => [
-    {
-      title: t('Name'),
-      dataIndex: 'username',
-      search: true,
-      render: (name, record) => (
-        <Avatar
-          avatar={record.avatar_url || '/assets/default-user.svg'}
-          title={name}
-          desc={record.email}
-          to={`${this.prefix}/${name}`}
-        />
-      ),
-    },
-    {
-      title: t('Status'),
-      dataIndex: 'status',
-      isHideable: true,
-      width: '20%',
-      render: status => <UserStatus status={status} />,
-    },
-    {
-      title: t('Platform Role'),
-      dataIndex: 'cluster_role',
-      isHideable: true,
-      width: '20%',
-      render: role => role || '-',
-    },
-    {
-      title: t('Last login time'),
-      dataIndex: 'last_login_time',
-      isHideable: true,
-      width: '20%',
-      render: time =>
-        time
-          ? getLocalTime(time).format('YYYY-MM-DD HH:mm:ss')
-          : t('Not logged in yet'),
-    },
-    {
-      key: 'more',
-      width: 20,
-      render: this.renderMore,
-    },
-  ]
+  getColumns = () => {
+    const { renderMore } = this.props
+    return [
+      {
+        title: t('Name'),
+        dataIndex: 'username',
+        search: true,
+        render: (name, record) => (
+          <Avatar
+            avatar={record.avatar_url || '/assets/default-user.svg'}
+            title={name}
+            desc={record.email}
+            to={`/access/accounts/${name}`}
+          />
+        ),
+      },
+      {
+        title: t('Status'),
+        dataIndex: 'status',
+        isHideable: true,
+        width: '20%',
+        render: status => <UserStatus status={status} />,
+      },
+      {
+        title: t('Platform Role'),
+        dataIndex: 'cluster_role',
+        isHideable: true,
+        width: '20%',
+        render: role => role || '-',
+      },
+      {
+        title: t('Last login time'),
+        dataIndex: 'last_login_time',
+        isHideable: true,
+        width: '20%',
+        render: time =>
+          time
+            ? getLocalTime(time).format('YYYY-MM-DD HH:mm:ss')
+            : t('Not logged in yet'),
+      },
+      {
+        key: 'more',
+        width: 20,
+        render: renderMore,
+      },
+    ]
+  }
 
-  handleEdit = data => {
-    this.store.update(data, this.state.selectItem).then(() => {
-      this.hideModal('editModal')()
-      Notify.success({ content: `${t('Updated Successfully')}!` })
-      this.routing.query()
+  showCreate = () =>
+    this.props.trigger('user.create', {
+      success: this.props.getData,
     })
-  }
 
-  renderHeader() {
-    return (
-      <div className={styles.header}>
-        <img className={styles.leftIcon} src="/assets/noicon.svg" alt="" />
-        <img
-          className={styles.rightIcon}
-          src="/assets/banner-icon-2.svg"
-          alt=""
-        />
-        <div className={styles.title}>
-          <div className="h4">{t('NAV_ACCOUNTS')}</div>
-          <p>{t('ACCOUNTS_MANAGEMENT_DESC')}</p>
-        </div>
-      </div>
-    )
-  }
-
-  renderExtraModals() {
-    const { createModal, editModal, selectItem } = this.state
-    const clusterRoles = toJS(this.clusterRoleStore.list.data)
-
+  render() {
+    const { bannerProps, tableProps } = this.props
     return (
       <div>
-        <CreateModal
-          store={this.store}
-          clusterRoles={clusterRoles}
-          visible={createModal}
-          onOk={this.handleCreate}
-          onCancel={this.hideModal('createModal')}
-          isSubmitting={this.store.isSubmitting}
+        <Banner
+          {...bannerProps}
+          tabs={this.tabs}
+          title={t('NAV_ACCOUNTS')}
+          description={t('ACCOUNTS_MANAGEMENT_DESC')}
         />
-        <EditModal
-          store={this.store}
-          clusterRoles={clusterRoles}
-          detail={selectItem}
-          visible={editModal}
-          onOk={this.handleEdit}
-          onCancel={this.hideModal('editModal')}
-          isSubmitting={this.store.isSubmitting}
+        <Table
+          {...tableProps}
+          columns={this.getColumns()}
+          onCreate={this.showCreate}
+          searchType={'keyword'}
         />
       </div>
     )

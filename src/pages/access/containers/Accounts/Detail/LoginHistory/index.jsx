@@ -26,7 +26,9 @@ import { getLocalTime } from 'utils'
 
 import styles from './index.scss'
 
-class LoginHistory extends React.Component {
+@inject('rootStore', 'detailStore')
+@observer
+export default class LoginHistory extends React.Component {
   get store() {
     return this.props.detailStore
   }
@@ -66,6 +68,3 @@ class LoginHistory extends React.Component {
     )
   }
 }
-
-export default inject('rootStore')(observer(LoginHistory))
-export const Component = LoginHistory

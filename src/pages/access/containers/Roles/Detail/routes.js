@@ -16,34 +16,25 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { withProps } from 'utils'
 import { getIndexRoute } from 'utils/router.config'
 
-import DetailLayout from 'core/layouts/Detail'
+import AuthorizationList from './AuthorizationList'
+import AuthorizedUsers from './AuthorizedUsers'
 
-import AccountDetail from '../containers/Accounts/Detail'
-import LoginHistory from '../containers/Accounts/Detail/LoginHistory'
-
-const PATH = '/access/accounts/:name'
-
-const routes = [
-  {
-    name: 'login_history',
-    path: `${PATH}/login_history`,
-    title: 'Login History',
-    component: LoginHistory,
-  },
-  getIndexRoute({ path: PATH, to: `${PATH}/login_history`, exact: true }),
-]
+const PATH = '/access/roles/:name'
 
 export default [
   {
-    path: PATH,
-    component: withProps(DetailLayout, {
-      module: 'accounts',
-      component: AccountDetail,
-      breadcrumbs: [{ label: 'Accounts', url: '/access/accounts' }],
-    }),
-    routes,
+    path: `${PATH}/authorizations`,
+    title: 'Authorization List',
+    component: AuthorizationList,
+    exact: true,
   },
+  {
+    path: `${PATH}/users`,
+    title: 'Authorized Users',
+    component: AuthorizedUsers,
+    exact: true,
+  },
+  getIndexRoute({ path: PATH, to: `${PATH}/authorizations`, exact: true }),
 ]

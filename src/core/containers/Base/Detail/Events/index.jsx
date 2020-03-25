@@ -38,19 +38,23 @@ class Events extends React.Component {
     this.fetchData()
   }
 
+  get store() {
+    return this.props.detailStore
+  }
+
+  get module() {
+    return this.store.module
+  }
+
   get kind() {
     if (has(this.props.match.params, 'revision')) {
-      if (this.props.module === 'deployments') {
+      if (this.module === 'deployments') {
         return 'ReplicaSet'
       }
       return 'ControllerRevision'
     }
 
-    return MODULE_KIND_MAP[this.props.module]
-  }
-
-  get store() {
-    return this.props.detailStore
+    return MODULE_KIND_MAP[this.module]
   }
 
   fetchData() {

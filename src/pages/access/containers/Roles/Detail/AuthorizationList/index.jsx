@@ -18,11 +18,12 @@
 
 import React from 'react'
 import { toJS } from 'mobx'
-import { observer } from 'mobx-react'
+import { observer, inject } from 'mobx-react'
 
 import { Card } from 'components/Base'
 import RuleList from 'components/Cards/RuleList'
 
+@inject('detailStore')
 @observer
 export default class AuthorizationList extends React.Component {
   render() {

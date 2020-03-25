@@ -36,10 +36,7 @@ class WorkspaceLayout extends Component {
   constructor(props) {
     super(props)
 
-    if (!this.props.rootStore.workspace) {
-      const workspaceStore = new WorkspaceStore()
-      props.rootStore.register('workspace', workspaceStore)
-    }
+    this.workspaceStore = new WorkspaceStore()
 
     this.init(props.match.params)
   }
@@ -51,11 +48,9 @@ class WorkspaceLayout extends Component {
   }
 
   async init(params) {
-    const { workspace } = this.props.rootStore
+    this.workspaceStore.initializing = true
 
-    workspace.initializing = true
-
-    await workspace.fetchDetail(params)
+    await this.workspaceStore.fetchDetail(params)
 
     const workspaceRule = get(
       globals.user,
@@ -63,7 +58,7 @@ class WorkspaceLayout extends Component {
     )
 
     if (workspaceRule === undefined) {
-      await workspace.fetchRules(params)
+      await this.workspaceStore.fetchRules(params)
     }
 
     if (
@@ -78,7 +73,7 @@ class WorkspaceLayout extends Component {
       return
     }
 
-    workspace.initializing = false
+    this.workspaceStore.initializing = false
   }
 
   get workspace() {
@@ -89,24 +84,14 @@ class WorkspaceLayout extends Component {
     return this.props.rootStore.routing
   }
 
-  getWorkspaces() {
-    const { data } = this.props.rootStore.workspace.list
-    return data.map(item => ({
-      label: item.name,
-      value: item.name,
-    }))
-  }
-
   enterWorkspace = async workspace => {
-    const workspaceStore = this.props.rootStore.workspace
-
     if (globals.app.isClusterAdmin) {
       return this.routing.push(`/workspaces/${workspace}/overview`)
     }
 
     const workspace_rule = get(globals.user, `workspace_rules[${workspace}]`)
     if (!workspace_rule) {
-      await workspaceStore.fetchRules({ workspace })
+      await this.workspaceStore.fetchRules({ workspace })
     }
 
     if (
@@ -125,7 +110,7 @@ class WorkspaceLayout extends Component {
 
   render() {
     const { match, route, location } = this.props
-    const { detail, initializing } = this.props.rootStore.workspace
+    const { detail, initializing } = this.workspaceStore
 
     if (initializing) {
       return <Loading className={styles.loading} />

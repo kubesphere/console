@@ -16,10 +16,15 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { inject } from 'mobx-react'
 import { renderRoutes } from 'utils/router.config'
 
 import routes from './routes'
+import actions from './actions'
 
-const App = () => renderRoutes(routes)
+const App = ({ rootStore }) => {
+  rootStore.registerActions(actions)
+  return renderRoutes(routes)
+}
 
-export default App
+export default inject('rootStore')(App)

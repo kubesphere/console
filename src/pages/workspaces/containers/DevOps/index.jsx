@@ -17,39 +17,52 @@
  */
 
 import React from 'react'
-import { observer, inject } from 'mobx-react'
-import { Avatar, Notify } from 'components/Base'
-import Base from 'core/containers/Base/List'
-import CreateModal from 'components/Modals/ProjectCreate'
-import DeleteModal from 'components/Modals/Delete'
-import EditModal from 'components/Modals/DevOpsEdit'
-import { getLocalTime } from 'utils'
+
+import { Avatar } from 'components/Base'
 import Banner from 'components/Cards/Banner'
+import Table from 'components/Tables/Base'
+import withList from 'components/HOCs/withList'
+
+import { getLocalTime } from 'utils'
 
 import DevOpsStore from 'stores/devops'
 
-import styles from './index.scss'
-
-@inject('rootStore')
-@observer
-export default class DevOps extends Base {
-  init() {
-    this.store = new DevOpsStore()
+@withList({
+  store: new DevOpsStore(),
+  name: 'DevOps Project',
+  module: 'devops',
+  rowKey: 'project_id',
+})
+export default class DevOps extends React.Component {
+  constructor(props) {
+    super(props)
+    props.bindActions(this.itemActions)
   }
 
-  get name() {
-    return 'DevOps Project'
-  }
-  get module() {
-    return 'devops'
-  }
-
-  get authKey() {
-    return 'devops'
-  }
-
-  get formTemplate() {
-    return {}
+  get itemActions() {
+    const { trigger, getData } = this.props
+    return [
+      {
+        key: 'edit',
+        icon: 'pen',
+        text: t('Edit'),
+        action: 'edit',
+        onClick: item =>
+          trigger('workspace.devops.edit', { detail: item, success: getData }),
+      },
+      {
+        key: 'delete',
+        icon: 'trash',
+        text: t('Delete'),
+        action: 'delete',
+        onClick: item =>
+          trigger('resource.delete', {
+            type: t('DevOps Project'),
+            resource: item.project_id,
+            detail: item,
+          }),
+      },
+    ]
   }
 
   get tips() {
@@ -65,140 +78,69 @@ export default class DevOps extends Base {
     ]
   }
 
-  get rowKey() {
-    return 'project_id'
+  getColumns = () => {
+    const { renderMore } = this.props
+    return [
+      {
+        title: t('Name'),
+        dataIndex: 'name',
+        width: '30%',
+        render: (name, record) => (
+          <Avatar
+            icon="strategy-group"
+            iconSize={40}
+            to={`/devops/${record.project_id}`}
+            desc={record.description || '-'}
+            title={name}
+          />
+        ),
+      },
+      {
+        title: t('ID'),
+        dataIndex: 'project_id',
+        isHideable: true,
+        width: '20%',
+      },
+      {
+        title: t('Creator'),
+        dataIndex: 'creator',
+        isHideable: true,
+        width: '20%',
+        render: creator => creator || '-',
+      },
+      {
+        title: t('Created Time'),
+        dataIndex: 'create_time',
+        isHideable: true,
+        width: '20%',
+        render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
+      },
+      {
+        key: 'more',
+        render: renderMore,
+      },
+    ]
   }
 
-  getEmptyProps() {
-    return {
-      createText: t('Create DevOps Project'),
-    }
-  }
-
-  getTableProps() {
-    return {
-      ...Base.prototype.getTableProps.call(this),
-      searchType: 'keyword',
-    }
-  }
-
-  getColumns = () => [
-    {
-      title: t('Name'),
-      dataIndex: 'name',
-      width: '40%',
-      render: (name, record) => (
-        <Avatar
-          icon="strategy-group"
-          iconSize={40}
-          to={`/devops/${record.project_id}`}
-          desc={record.description || '-'}
-          title={name}
-        />
-      ),
-    },
-    {
-      title: t('Creator'),
-      dataIndex: 'creator',
-      isHideable: true,
-      width: '28%',
-      render: creator => creator || '-',
-    },
-    {
-      title: t('Created Time'),
-      dataIndex: 'create_time',
-      isHideable: true,
-      width: '28%',
-      render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
-    },
-    {
-      key: 'more',
-      render: this.renderMore,
-    },
-  ]
-
-  handleSelectRowKeys = params => {
-    this.store.setSelectRowKeys('list', params)
-  }
-
-  handleEdit = newObject => {
-    const { selectItem } = this.state
-
-    this.store.update(selectItem.project_id, newObject).then(() => {
-      this.hideModal('editModal')()
-      Notify.success({ content: `${t('Updated Successfully')}!` })
-      this.routing.query()
+  showCreate = () =>
+    this.props.trigger('workspace.devops.create', {
+      ...this.props.match.params,
     })
-  }
 
-  renderHeader() {
-    return (
-      <Banner
-        title={t('DevOps Projects')}
-        icon="strategy-group"
-        description={t('DEVOPS_DESCRIPTION')}
-        className={styles.header}
-        module={this.module}
-        tips={this.tips}
-      />
-    )
-  }
-
-  renderModals() {
-    const formTemplate = { devops: this.formTemplate }
-    const {
-      createModal,
-      editModal,
-      deleteModal,
-      batchDeleteModal,
-      selectItem = {},
-    } = this.state
-
-    const selectedNames = this.list.data
-      .filter(item => this.list.selectedRowKeys.includes(item[this.rowKey]))
-      .map(item => item.name)
-      .join(', ')
-
+  render() {
+    const { bannerProps, tableProps } = this.props
     return (
       <div>
-        <DeleteModal
-          type={t(this.name)}
-          resource={selectItem.name}
-          desc={t.html('DELETE_DEVOPS_TIP', {
-            resource: selectItem.name,
-          })}
-          visible={deleteModal}
-          onOk={this.handleDelete}
-          onCancel={this.hideModal('deleteModal')}
-          isSubmitting={this.store.isSubmitting}
+        <Banner
+          {...bannerProps}
+          description={t('DEVOPS_DESCRIPTION')}
+          tips={this.tips}
         />
-        {this.list.selectedRowKeys && (
-          <DeleteModal
-            type={t(this.name)}
-            resource={selectedNames}
-            visible={batchDeleteModal}
-            desc={t.html('DELETE_DEVOPS_TIP', {
-              resource: selectedNames,
-            })}
-            onOk={this.handleBatchDelete}
-            onCancel={this.hideModal('batchDeleteModal')}
-            isSubmitting={this.store.isSubmitting}
-          />
-        )}
-        <CreateModal
-          type="devops"
-          formTemplate={formTemplate}
-          visible={createModal}
-          isSubmitting={this.store.isSubmitting}
-          onOk={this.handleCreate}
-          onCancel={this.hideModal('createModal')}
-        />
-        <EditModal
-          detail={selectItem}
-          visible={editModal}
-          isSubmitting={this.store.isSubmitting}
-          onOk={this.handleEdit}
-          onCancel={this.hideModal('editModal')}
+        <Table
+          {...tableProps}
+          columns={this.getColumns()}
+          onCreate={this.showCreate}
+          searchType={'keyword'}
         />
       </div>
     )
