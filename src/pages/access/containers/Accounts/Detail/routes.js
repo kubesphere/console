@@ -18,25 +18,16 @@
 
 import { getIndexRoute } from 'utils/router.config'
 
-import Layout from '../containers/layout'
-import Accounts from '../containers/Accounts'
-import Roles from '../containers/Roles'
-import Workspaces from '../containers/Workspaces'
+import LoginHistory from './LoginHistory'
 
-import detail from './detail'
-
-const PATH = '/access'
+const PATH = '/access/accounts/:name'
 
 export default [
-  ...detail,
   {
-    path: PATH,
-    component: Layout,
-    routes: [
-      { path: `${PATH}/accounts`, component: Accounts, exact: true },
-      { path: `${PATH}/roles`, component: Roles, exact: true },
-      { path: `${PATH}/workspaces`, component: Workspaces, exact: true },
-      getIndexRoute({ path: PATH, to: `${PATH}/accounts`, exact: true }),
-    ],
+    path: `${PATH}/login-history`,
+    title: 'Login History',
+    component: LoginHistory,
+    exact: true,
   },
+  getIndexRoute({ path: PATH, to: `${PATH}/login-history`, exact: true }),
 ]

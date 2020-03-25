@@ -19,25 +19,28 @@
 import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
-import { get } from 'lodash'
+import { get, isEmpty } from 'lodash'
+import { Loading } from '@pitrix/lego-ui'
 
 import { getLocalTime } from 'utils'
+import { trigger } from 'utils/action'
 import UserStore from 'stores/user'
-import RoleStore from 'stores/role'
 
-import Base from 'core/containers/Base/Detail'
-import EditModal from 'components/Modals/UserCreate'
-import ModifyPasswordModal from 'components/Modals/ModifyPassword'
-import DeleteModal from 'components/Modals/Delete'
+import DetailPage from 'clusters/containers/Base/Detail'
 
-class AccountDetail extends Base {
-  state = {
-    editBaseInfo: false,
-    modifyPassword: false,
-    deleteUser: false,
+import routes from './routes'
+
+@inject('rootStore')
+@observer
+@trigger
+export default class AccountDetail extends React.Component {
+  store = new UserStore()
+
+  componentDidMount() {
+    this.fetchData()
   }
 
-  get authKey() {
+  get module() {
     return 'accounts'
   }
 
@@ -45,8 +48,12 @@ class AccountDetail extends Base {
     return 'Account'
   }
 
-  get detailName() {
-    return get(this.store.detail, 'username')
+  get listUrl() {
+    return '/access/accounts'
+  }
+
+  get routing() {
+    return this.props.rootStore.routing
   }
 
   get detailDesc() {
@@ -56,68 +63,60 @@ class AccountDetail extends Base {
     return get(this.store.detail, 'description')
   }
 
-  get listUrl() {
-    return '/access/accounts'
-  }
-
   get showEdit() {
     const userName = this.store.detail.username
     return !globals.config.presetUsers.includes(userName)
   }
 
-  init() {
-    this.store = new UserStore(this.module)
-    this.clusterRoleStore = new RoleStore('clusterroles')
-  }
-
   fetchData = () => {
-    this.clusterRoleStore.fetchList({ limit: -1, order: 'createTime' })
-    this.store.fetchDetail(this.props.match.params).catch(this.catch)
-  }
-
-  handleEdit = data => {
-    this.store.update(data).then(() => {
-      this.hideModal('editBaseInfo')()
-      this.store.fetchDetail(this.props.match.params)
-    })
-  }
-
-  handleModifyPassword = data => {
-    this.store.update(data).then(() => {
-      this.hideModal('modifyPassword')()
-      this.store.fetchDetail(this.props.match.params)
-    })
+    this.store.fetchDetail(this.props.match.params)
   }
 
   getOperations = () => [
     {
-      show: this.showEdit,
       key: 'edit',
-      type: 'control',
-      text: t('Edit'),
+      icon: 'pen',
+      text: t('Edit Info'),
       action: 'edit',
-      onClick: this.showModal('editBaseInfo'),
+      show: this.showEdit,
+      onClick: () =>
+        this.trigger('user.edit', {
+          detail: toJS(this.store.detail),
+          success: this.fetchData,
+        }),
     },
     {
-      show: this.showEdit,
       key: 'modifyPassword',
       icon: 'pen',
       text: t('Modify Password'),
       action: 'edit',
-      onClick: this.showModal('modifyPassword'),
+      show: this.showEdit,
+      onClick: () =>
+        this.trigger('user.modifypassword', {
+          detail: toJS(this.store.detail),
+        }),
     },
     {
-      show: this.showEdit,
       key: 'delete',
       icon: 'trash',
       text: t('Delete'),
       action: 'delete',
-      onClick: this.showModal('deleteUser'),
+      onClick: () =>
+        this.trigger('resource.delete', {
+          type: t(this.name),
+          resource: this.store.detail.username,
+          detail: toJS(this.store.detail),
+          success: () => this.routing.push(this.listUrl),
+        }),
     },
   ]
 
   getAttrs = () => {
     const detail = toJS(this.store.detail)
+
+    if (isEmpty(detail)) {
+      return
+    }
 
     return [
       {
@@ -137,40 +136,27 @@ class AccountDetail extends Base {
     ]
   }
 
-  renderExtraModals() {
-    const detail = toJS(this.store.detail)
-    const { editBaseInfo, modifyPassword, deleteUser } = this.state
+  render() {
+    const stores = { detailStore: this.store }
 
-    return (
-      <div>
-        <EditModal
-          store={this.store}
-          clusterRoles={toJS(this.clusterRoleStore.list.data)}
-          detail={detail}
-          visible={editBaseInfo}
-          onOk={this.handleEdit}
-          onCancel={this.hideModal('editBaseInfo')}
-          isSubmitting={this.store.isSubmitting}
-        />
-        <ModifyPasswordModal
-          detail={detail}
-          visible={modifyPassword}
-          onOk={this.handleModifyPassword}
-          onCancel={this.hideModal('modifyPassword')}
-          isSubmitting={this.store.isSubmitting}
-        />
-        <DeleteModal
-          type={t('User')}
-          resource={detail.username}
-          visible={deleteUser}
-          onOk={this.handleDelete}
-          onCancel={this.hideModal('deleteUser')}
-          isSubmitting={this.store.isSubmitting}
-        />
-      </div>
-    )
+    if (this.store.isLoading) {
+      return <Loading className="ks-page-loading" />
+    }
+
+    const sideProps = {
+      module: this.module,
+      name: get(this.store.detail, 'username'),
+      desc: this.detailDesc,
+      operations: this.getOperations(),
+      attrs: this.getAttrs(),
+      breadcrumbs: [
+        {
+          label: t('NAV_ACCOUNTS'),
+          url: this.listUrl,
+        },
+      ],
+    }
+
+    return <DetailPage stores={stores} routes={routes} sideProps={sideProps} />
   }
 }
-
-export default inject('rootStore')(observer(AccountDetail))
-export const Component = AccountDetail

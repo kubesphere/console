@@ -16,200 +16,86 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, isEmpty } from 'lodash'
 import React from 'react'
-import { observer, inject } from 'mobx-react'
-import { Columns, Column, Loading, Pagination } from '@pitrix/lego-ui'
-import { Button, Search } from 'components/Base'
-import EmptyTable from 'components/Cards/EmptyTable'
-import CreateModal from 'components/Modals/WorkspaceCreate'
-import WorkspaceCard from 'console/components/Cards/Workspace'
+
+import { Avatar } from 'components/Base'
+import Banner from 'components/Cards/Banner'
+import withList from 'components/HOCs/withList'
+import Table from 'components/Tables/Base'
+
+import { getLocalTime, getDisplayName } from 'utils'
+
 import WorkspaceStore from 'stores/workspace'
 
-import FORM_TEMPLATES from 'utils/form.templates'
+@withList({
+  store: new WorkspaceStore(),
+  module: 'workspaces',
+  name: 'Workspace',
+})
+export default class Workspaces extends React.Component {
+  getColumns = () => {
+    const { getSortOrder, renderMore } = this.props
 
-import Title from './Title'
-
-import styles from './index.scss'
-
-@inject('rootStore')
-@observer
-class Workspaces extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.store = new WorkspaceStore()
-
-    this.state = {
-      showCreate: false,
-    }
-  }
-
-  componentDidMount() {
-    this.store.fetchList({ limit: 10 })
-  }
-
-  get authKey() {
-    return 'workspaces'
-  }
-
-  get routing() {
-    return this.props.rootStore.routing
-  }
-
-  get formTemplate() {
-    return FORM_TEMPLATES['workspaces']()
-  }
-
-  get enabledActions() {
-    return globals.app.getActions({
-      module: this.authKey,
-    })
-  }
-
-  handlePagination = page => {
-    this.store.fetchList({ page, limit: 10 })
-  }
-
-  enterWorkspace = async workspace => {
-    const workspace_rule = get(globals.user, `workspace_rules[${workspace}]`)
-    if (!workspace_rule) {
-      await this.store.fetchRules({ workspace })
-    }
-
-    if (
-      globals.app.hasPermission({ module: 'workspaces', action: 'manage' }) ||
-      globals.app.hasPermission({
-        module: 'workspaces',
-        action: 'view',
-        workspace,
-      })
-    ) {
-      this.routing.push(`/workspaces/${workspace}/overview`)
-    } else {
-      this.routing.push('/')
-    }
+    return [
+      {
+        title: t('Name'),
+        dataIndex: 'name',
+        sorter: true,
+        sortOrder: getSortOrder('name'),
+        search: true,
+        render: (name, record) => (
+          <Avatar
+            icon="enterprise"
+            iconSize={40}
+            title={getDisplayName(record)}
+            desc={record.description || '-'}
+            to={`/workspaces/${name}`}
+          />
+        ),
+      },
+      {
+        title: t('Projects Number'),
+        dataIndex: 'annotations["kubesphere.io/namespace-count"]',
+      },
+      {
+        title: t('DevOps Projects Number'),
+        dataIndex: 'annotations["kubesphere.io/devops-count"]',
+      },
+      {
+        title: t('Created Time'),
+        dataIndex: 'createTime',
+        sorter: true,
+        sortOrder: getSortOrder('createTime'),
+        isHideable: true,
+        width: 150,
+        render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
+      },
+      {
+        key: 'more',
+        width: 20,
+        render: renderMore,
+      },
+    ]
   }
 
   showCreate = () => {
-    this.setState({ showCreate: true })
-  }
-
-  hideCreate = () => {
-    this.setState({ showCreate: false })
-  }
-
-  handleCreate = data => {
-    this.store.create(data).then(() => {
-      this.hideCreate()
-      location.href = `/workspaces/${data.metadata.name}`
+    const { module } = this.props
+    return this.props.trigger('workspace.create', {
+      module,
     })
   }
 
-  handleSearch = name => {
-    const params = { name, limit: 10 }
-    if (name) {
-      params.order = 'name'
-    }
-    this.store.fetchList(params)
-  }
-
-  renderList() {
-    const { data, page, total, limit, isLoading } = this.store.list
-
-    if (isEmpty(globals.user.workspaces)) {
-      return <EmptyTable name="workspace" />
-    }
-
-    if (isLoading) {
-      return <Loading className={styles.loading} />
-    }
-
-    return (
-      <ul className={styles.cards}>
-        <div className="h6">
-          {t('List')} <span className={styles.total}>{total}</span>
-        </div>
-        {!isLoading && isEmpty(data) ? (
-          <div className={styles.noData}>
-            <img src="/assets/empty-card.svg" alt="" />
-            <p>{t('RESOURCE_NOT_FOUND')}</p>
-          </div>
-        ) : (
-          <>
-            {data.map(item => (
-              <WorkspaceCard
-                key={item.name}
-                data={item}
-                onEnter={this.enterWorkspace}
-              />
-            ))}
-            <div className="text-right margin-t12">
-              <Pagination
-                current={page}
-                total={total}
-                pageSize={limit}
-                onChange={this.handlePagination}
-              />
-            </div>
-          </>
-        )}
-      </ul>
-    )
-  }
-
-  renderModals() {
-    const { showCreate } = this.state
+  render() {
+    const { bannerProps, tableProps } = this.props
     return (
       <div>
-        {this.enabledActions.includes('manage') && (
-          <CreateModal
-            store={this.store}
-            formTemplate={this.formTemplate}
-            visible={showCreate}
-            onOk={this.handleCreate}
-            onCancel={this.hideCreate}
-            isSubmitting={this.store.isSubmitting}
-          />
-        )}
-      </div>
-    )
-  }
-
-  render() {
-    return (
-      <div className={styles.wrapper}>
-        <Title
-          className={styles.title}
-          icon="enterprise"
-          title={t('Workspaces')}
-          desc={t('WORKSPACE_DESC')}
+        <Banner {...bannerProps} />
+        <Table
+          {...tableProps}
+          columns={this.getColumns()}
+          onCreate={this.showCreate}
         />
-        <Columns>
-          <Column>
-            <Search
-              placeholder={t('WORKSPACE_SEARCH_PLACEHOLDER')}
-              onSearch={this.handleSearch}
-            />
-          </Column>
-          <Column className="is-narrow">
-            {this.enabledActions.includes('manage') && (
-              <Button
-                type="primary"
-                className={styles.create}
-                onClick={this.showCreate}
-                data-test="workspace-create"
-              >
-                {t('Create')}
-              </Button>
-            )}
-          </Column>
-        </Columns>
-        {this.renderList()}
-        {this.renderModals()}
       </div>
     )
   }
 }
-
-export default Workspaces

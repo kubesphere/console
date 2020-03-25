@@ -30,6 +30,7 @@ import {
 
 import { Columns, Column, Input, TextArea } from '@pitrix/lego-ui'
 import { Form } from 'components/Base'
+import { ProjectSelect } from 'components/Inputs'
 
 @observer
 export default class BaseInfo extends React.Component {
@@ -116,11 +117,21 @@ export default class BaseInfo extends React.Component {
         </Columns>
         <Columns>
           <Column>
+            {!this.props.namespace && (
+              <Form.Item label={t('Project')} desc={t('PROJECT_DESC')}>
+                <ProjectSelect
+                  name="metadata.namespace"
+                  cluster={this.props.cluster}
+                  defaultValue={this.namespace || 'default'}
+                />
+              </Form.Item>
+            )}
+          </Column>
+          <Column>
             <Form.Item label={t('Description')}>
               <TextArea name="metadata.annotations['kubesphere.io/description']" />
             </Form.Item>
           </Column>
-          <Column />
         </Columns>
       </Form>
     )

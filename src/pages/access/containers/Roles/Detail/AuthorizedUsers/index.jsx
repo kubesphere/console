@@ -19,13 +19,14 @@
 import { isEmpty } from 'lodash'
 import React from 'react'
 import { toJS } from 'mobx'
-import { observer } from 'mobx-react'
+import { inject, observer } from 'mobx-react'
 import { Table } from '@pitrix/lego-ui'
 
 import { getLocalTime } from 'utils'
 import { Card } from 'components/Base'
 import UserStatus from 'components/UserStatus'
 
+@inject('detailStore')
 @observer
 export default class AuthorizedUsers extends React.Component {
   getColumns = () => [

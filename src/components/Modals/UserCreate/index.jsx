@@ -19,19 +19,22 @@
 import { get } from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { computed } from 'mobx'
+import { observer } from 'mobx-react'
 
 import { Input, TextArea, Select } from '@pitrix/lego-ui'
 import { Modal, Form } from 'components/Base'
 import { InputPassword } from 'components/Inputs'
 import { isSystemRole } from 'utils'
 import { PATTERN_NAME, PATTERN_PASSWORD } from 'utils/constants'
+import RoleStore from 'stores/role'
 
 import styles from './index.scss'
 
+@observer
 export default class UserCreateModal extends Component {
   static propTypes = {
     store: PropTypes.object,
-    clusterRoles: PropTypes.array,
     detail: PropTypes.object,
     visible: PropTypes.bool,
     onOk: PropTypes.func,
@@ -42,19 +45,26 @@ export default class UserCreateModal extends Component {
   static defaultProps = {
     visible: false,
     isSubmitting: false,
-    clusterRoles: [],
     onOk() {},
     onCancel() {},
   }
 
-  getClusterRoles = () =>
-    this.props.clusterRoles
+  clusterRoleStore = new RoleStore('clusterroles')
+
+  componentDidMount() {
+    this.clusterRoleStore.fetchList({ limit: -1, order: 'createTime' })
+  }
+
+  @computed
+  get clusterRoles() {
+    return this.clusterRoleStore.list.data
       .filter(role => !isSystemRole(role.name))
       .map(role => ({
         label: role.name,
         value: role.name,
         item: role,
       }))
+  }
 
   userNameValidator = (rule, value, callback) => {
     if (!value) {
@@ -97,7 +107,7 @@ export default class UserCreateModal extends Component {
   }
 
   render() {
-    const { store, detail, clusterRoles, ...rest } = this.props
+    const { store, detail, ...rest } = this.props
 
     const title = detail ? 'Edit User' : 'Add User'
 
@@ -155,7 +165,7 @@ export default class UserCreateModal extends Component {
           <Select
             name="cluster_role"
             optionRenderer={this.optionRenderer}
-            options={this.getClusterRoles()}
+            options={this.clusterRoles}
             required
           />
         </Form.Item>

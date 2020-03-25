@@ -18,7 +18,7 @@
 
 import { get, set, unset, isUndefined } from 'lodash'
 import React from 'react'
-import { inject, observer } from 'mobx-react'
+import { observer } from 'mobx-react'
 import { Toggle, Tooltip, Icon } from '@pitrix/lego-ui'
 
 import { generateId, safeParseJSON } from 'utils'
@@ -26,6 +26,7 @@ import { MODULE_KIND_MAP } from 'utils/constants'
 import { findVolume, isNotPersistentVolume } from 'utils/volume'
 import { Alert, Form } from 'components/Base'
 import VolumeStore from 'stores/volume'
+import ProjectStore from 'stores/project'
 
 import VolumeList from './VolumeList'
 import AddVolume from './AddVolume'
@@ -48,6 +49,10 @@ class VolumeSettings extends React.Component {
     this.store = new VolumeStore()
 
     this.store.fetchList({ namespace: this.namespace, limit: -1 })
+
+    this.projectStore = new ProjectStore()
+
+    this.projectStore.fetchDetail({ namespace: this.namespace })
 
     this.handleVolume = this.handleVolume.bind(this)
     this.handleVolumeTemplate = this.handleVolumeTemplate.bind(this)
@@ -77,7 +82,7 @@ class VolumeSettings extends React.Component {
   get projectEnableCollectingFileLog() {
     return (
       get(
-        this.props.rootStore.project.detail,
+        this.projectStore.detail,
         'labels["logging.kubesphere.io/logsidecar-injection"]'
       ) === 'enabled'
     )
@@ -565,4 +570,4 @@ class VolumeSettings extends React.Component {
 }
 
 export const Component = VolumeSettings
-export default inject('rootStore')(observer(VolumeSettings))
+export default observer(VolumeSettings)
