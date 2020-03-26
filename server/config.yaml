@@ -179,6 +179,7 @@ client:
       items:
         - { name: nodes, title: Nodes, icon: laptop }
         - { name: storageclasses, title: Storage Classes, icon: database }
+        - { name: volume-snapshots, title: Volume Snapshot, icon: snapshot, authKey: 'storageclasses' }
 
   # monitoring center navigations
   monitoringNavs:

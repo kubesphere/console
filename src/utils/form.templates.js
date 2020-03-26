@@ -418,6 +418,19 @@ const getWorkspaceTemplate = () => ({
   },
 })
 
+const getVolumeSnapshotTemplate = () => ({
+  apiVersion: 'snapshot.storage.k8s.io/v1alpha1',
+  kind: 'VolumeSnapshot',
+  metadata: {
+    name: '',
+  },
+  spec: {
+    source: {
+      kind: 'PersistentVolumeClaim',
+    },
+  },
+})
+
 const FORM_TEMPLATES = {
   deployments: getDeploymentTemplate,
   daemonsets: getDaemonSetTemplate,
@@ -442,6 +455,7 @@ const FORM_TEMPLATES = {
   workspaces: getWorkspaceTemplate,
   s2ibuilders: getS2IBuilderTemplate,
   b2iBuilders: getBinaryTemplate,
+  'volume-snapshots': getVolumeSnapshotTemplate,
 }
 
 export default FORM_TEMPLATES

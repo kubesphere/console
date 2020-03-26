@@ -23,8 +23,12 @@ import Layout from '../containers/layout'
 import Clusters from '../containers/Clusters'
 import AddCluster from '../containers/Clusters/AddCluster'
 import Overview from '../containers/Overview'
+import StorageClasses from '../containers/Storage/StorageClasses'
+import VolumeSnapshots from '../containers/Storage/VolumeSnapshots'
+import Volumes from '../containers/Storage/Volumes'
 import Nodes from '../containers/Nodes'
 import Projects from '../containers/Projects'
+
 import Deployments from '../containers/Workload/Deployments'
 import StatefulSets from '../containers/Workload/StatefulSets'
 import DaemonSets from '../containers/Workload/DaemonSets'
@@ -104,6 +108,21 @@ export default [
         exact: true,
       },
       {
+        path: `${PATH}/storageclasses`,
+        component: StorageClasses,
+        exact: true,
+      },
+      {
+        path: `${PATH}/volumes`,
+        component: Volumes,
+        exact: true,
+      },
+      {
+        path: `${PATH}/volume-snapshots`,
+        component: VolumeSnapshots,
+        exact: true,
+      },
+      {
         path: `${PATH}/monitor-cluster`,
         component: ClusterMonitor,
       },
@@ -115,6 +134,15 @@ export default [
         path: `${PATH}/visibility`,
         component: Visibility,
         exact: true,
+      },
+      {
+        path: `${PATH}/storageclasses`,
+        component: StorageClasses,
+        exact: true,
+      },
+      {
+        path: `${PATH}/snapshots/:namespace?`,
+        component: VolumeSnapshots,
       },
       getIndexRoute({ path: PATH, to: `${PATH}/overview`, exact: true }),
       getIndexRoute({

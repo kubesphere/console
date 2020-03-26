@@ -119,4 +119,8 @@ export default {
   NAV_PROJECTS: 'Projects',
   NAV_ACCOUNTS: 'Accounts',
   ALERT_WARNING: 'Warning',
+
+  CREATE_STATUS_SUCCESS: 'Create successfully',
+  CREATE_STATUS_UPDATING: 'Creating',
+  CREATE_STATUS_FAILED: 'Create failed',
 }

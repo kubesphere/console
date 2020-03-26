@@ -357,6 +357,7 @@ const VolumeMapper = item => {
     labels: get(item, 'metadata.labels'),
     annotations: get(item, 'metadata.annotations'),
     accessMode: get(item, 'spec.accessModes[0]'),
+    accessModes: get(item, 'spec.accessModes'),
     storageClassName: get(item, 'spec.storageClassName'),
     resources: get(item, 'spec.resources'),
     capacity: get(
@@ -366,6 +367,9 @@ const VolumeMapper = item => {
     ),
     inUse: get(item, 'metadata.annotations["kubesphere.io/in-use"]') === 'true',
     type: 'pvc',
+    allowSnapshot:
+      get(item, 'metadata.annotations["kubesphere.io/allowSnapshot"]') ===
+      'true',
     _originData: getOriginData(item),
   }
 }
@@ -820,6 +824,27 @@ export const ImageDetailMapper = detail => {
   }
 }
 
+export const VolumeSnapshotMapper = detail => {
+  const { spec = {}, status = {}, metadata = {} } = detail
+  const { error = {}, readyToUse } = status
+  const { message } = error
+  const { namespace = '' } = metadata
+  const snapshotSourceName = get(spec, 'source.name')
+
+  return {
+    ...getBaseInfo(detail),
+    snapshotClassName: get(spec, 'snapshotClassName', '-'),
+    restoreSize: get(status, 'restoreSize', 0),
+    error,
+    errorMessage: message,
+    generating: !readyToUse && isEmpty(error),
+    readyToUse,
+    backupStatus: readyToUse ? 'success' : message ? 'failed' : 'updating',
+    namespace,
+    snapshotSourceName,
+  }
+}
+
 export default {
   deployments: WorkLoadMapper,
   daemonsets: WorkLoadMapper,
@@ -857,4 +882,5 @@ export default {
   workspaces: WorkspaceMapper,
   codequality: CodeQualityMapper,
   imageBlob: ImageDetailMapper,
+  volumesnapshots: VolumeSnapshotMapper,
 }

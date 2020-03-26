@@ -342,11 +342,14 @@ export default class WorkloadTable extends React.Component {
   }
 
   renderNormalTitle() {
-    const { hideCustom } = this.props
+    const { hideCustom, customFilter } = this.props
 
     return (
       <Level>
-        <LevelItem>{this.renderSearch()}</LevelItem>
+        <LevelItem>
+          {customFilter}
+          {this.renderSearch()}
+        </LevelItem>
         <LevelRight>
           <Buttons>
             <Button

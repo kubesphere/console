@@ -43,7 +43,7 @@ export default class BaseInfo extends React.Component {
   }
 
   render() {
-    const { className, detail } = this.props
+    const { className, detail = {} } = this.props
 
     return (
       <div className={classNames(styles.wrapper, className)}>

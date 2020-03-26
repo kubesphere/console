@@ -27,6 +27,9 @@ import ServiceDetail from '../containers/Workload/Services/Detail'
 import RouteDetail from '../containers/Workload/Routes/Detail'
 import PodDetail from '../containers/Workload/Pods/Detail'
 import ContainerDetail from '../containers/Workload/Containers/Detail'
+import StorageClassDetail from '../containers/Storage/StorageClasses/Detail'
+import VolumeSnapshotsDetail from '../containers/Storage/VolumeSnapshots/Detail'
+import Volume from '../containers/Storage/Volumes/Detail'
 
 const PATH = '/clusters/:cluster'
 
@@ -74,5 +77,17 @@ export default [
   {
     path: `${PATH}/namespaces/:namespace/pods/:podName`,
     component: PodDetail,
+  },
+  {
+    path: `${PATH}/storageclasses/:name`,
+    component: StorageClassDetail,
+  },
+  {
+    path: `${PATH}/snapshots/:namespace/:name`,
+    component: VolumeSnapshotsDetail,
+  },
+  {
+    path: `${PATH}/namespaces/:namespace/volumes/:name`,
+    component: Volume,
   },
 ]

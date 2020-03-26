@@ -25,7 +25,6 @@ import logCollectionRoutes from './logCollection'
 import componentRoutes from './component'
 import volumeRoutes from './volume'
 import platformRoutes from './platformSettings'
-import infrastructureRoutes from './infrastructure'
 import monitoringRoutes from './monitoring'
 
 export default [
@@ -35,7 +34,6 @@ export default [
   { path: '/components', component: ServiceComponents, exact: true },
   ...platformRoutes,
   ...logCollectionRoutes,
-  ...infrastructureRoutes,
   ...monitoringRoutes,
   ...componentRoutes,
   ...volumeRoutes,
