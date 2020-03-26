@@ -29,7 +29,7 @@ module.exports = function(app) {
   })
 
   app.server.on('upgrade', (req, socket, head) => {
-    const target = serverConfig.gatewayServer.wsUrl
+    const target = serverConfig.apiServer.wsUrl
     wsProxy.ws(req, socket, head, { target })
   })
 }

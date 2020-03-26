@@ -17,8 +17,8 @@
  */
 
 import { observable, action } from 'mobx'
+import { stringify } from 'qs'
 import { setLocalStorageItem, getLocalStorageItem } from 'utils/localStorage'
-import { toQueryString } from 'utils/request'
 
 export default class LoggingStore {
   @observable
@@ -67,7 +67,7 @@ export default class LoggingStore {
   async request(params = {}, method = 'get', cacheMaxAge) {
     this.isLoading = true
 
-    const localStorageKey = `${method}:${this.apiPath}?${toQueryString(params)}`
+    const localStorageKey = `${method}:${this.apiPath}?${stringify(params)}`
 
     const cache = cacheMaxAge && getLocalStorageItem(localStorageKey)
 

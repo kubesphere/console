@@ -16,8 +16,8 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+const { parse } = require('qs')
 const isEmpty = require('lodash/isEmpty')
-const intersection = require('lodash/intersection')
 const jwtDecode = require('jwt-decode')
 
 const { send_gateway_request } = require('../libs/request')
@@ -27,20 +27,31 @@ const { getServerConfig, formatRules, isAppsRoute } = require('../libs/utils')
 const { client: clientConfig } = getServerConfig()
 
 const login = async (data, headers) => {
+  const base64Str = Buffer.from(`${data.username}:${data.password}`).toString(
+    'base64'
+  )
   const resp = await send_gateway_request({
-    method: 'POST',
-    url: '/kapis/iam.kubesphere.io/v1alpha2/login',
-    headers,
-    params: data,
+    method: 'GET',
+    url:
+      '/oauth/authorize?client_id=kubesphere-console-client&response_type=token',
+    headers: {
+      ...headers,
+      Authorization: `Basic ${base64Str}`,
+    },
+    redirect: 'manual',
   })
 
-  if (!resp.access_token) {
+  const { access_token } = parse(
+    resp.headers.get('location').replace(/http.*\?/, '')
+  )
+
+  if (!access_token) {
     throw new Error(resp.message)
   }
 
-  const { username } = jwtDecode(resp.access_token)
+  const { username } = jwtDecode(access_token)
 
-  return { username, token: resp.access_token }
+  return { username, token: access_token }
 }
 
 const oAuthLogin = async params => {
@@ -85,31 +96,6 @@ const formatUserDetail = user => {
   return user
 }
 
-const getWorkspaces = async token => {
-  let workspaces = []
-
-  const resp = await send_gateway_request({
-    method: 'GET',
-    url: '/kapis/tenant.kubesphere.io/v1alpha2/workspaces',
-    token,
-  })
-
-  if (resp && resp.items) {
-    workspaces = resp.items.map(item => item.metadata.name)
-  }
-
-  return workspaces
-}
-
-const getWorkspaceRules = async (token, workspace) => {
-  const resp = await send_gateway_request({
-    method: 'GET',
-    url: `/kapis/tenant.kubesphere.io/v1alpha2/workspaces/${workspace}/rules`,
-    token,
-  })
-  return resp
-}
-
 const getKSConfig = async token => {
   let resp = []
   try {
@@ -141,37 +127,14 @@ const getCurrentUser = async ctx => {
     ctx.throw(401, 'Not Login')
   }
 
-  const [userDetail, workspaces, ksConfig] = await Promise.all([
+  const [userDetail, ksConfig] = await Promise.all([
     getUserDetail(username, token),
-    getWorkspaces(token),
     getKSConfig(token),
   ])
 
-  const workspace_rules = {}
-
-  if (workspaces.length === 1) {
-    const rules = await getWorkspaceRules(token, workspaces[0])
-
-    const formatedRules = formatRules(rules)
-    if (workspaces[0] === clientConfig.systemWorkspace) {
-      Object.keys(formatedRules).forEach(key => {
-        formatedRules[key] = intersection(
-          formatedRules[key],
-          clientConfig.systemWorkspaceRules[key]
-        )
-      })
-    }
-
-    workspace_rules[workspaces[0]] = formatedRules
-  }
-
   return {
-    config: { ...clientConfig },
-    user: {
-      ...formatUserDetail(userDetail),
-      workspaces,
-      workspace_rules,
-    },
+    config: clientConfig,
+    user: formatUserDetail(userDetail),
     ksConfig,
   }
 }
@@ -201,6 +164,7 @@ const getOAuthInfo = async () => {
         if (item.Redirect_URL) {
           params.redirect_uri = item.Redirect_URL
         }
+
         if (item.Scopes && item.Scopes.length > 0) {
           params.scope = item.Scopes.join(' ')
         }

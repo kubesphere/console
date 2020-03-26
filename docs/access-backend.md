@@ -18,7 +18,7 @@ local_config.yaml
 
 ```yaml
 server:
-  gatewayServer:
+  apiServer:
     url: http://node_ip:30881
     wsUrl: ws://node_ip:30881
 ```
@@ -31,7 +31,7 @@ If you are in the same network as the cluster. You can access the ks-apigateway 
 
 ```yaml
 server:
-  gatewayServer:
+  apiServer:
     url: http://ks-apigateway.kubesphere-system.svc
     wsUrl: ws://ks-apigateway.kubesphere-system.svc
 ```
