@@ -71,17 +71,6 @@ export default class ProjectCreateModal extends React.Component {
     this.formRef = React.createRef()
   }
 
-  componentDidUpdate(prevProps) {
-    const { visible, type, formTemplate } = this.props
-    if (visible && visible !== prevProps.visible) {
-      this.setState({
-        currentStep: 0,
-        selectType: type,
-        formTemplate,
-      })
-    }
-  }
-
   handleTypeChange = e => {
     const { type } = e.currentTarget.dataset
     this.setState({ selectType: type })
@@ -233,7 +222,6 @@ export default class ProjectCreateModal extends React.Component {
 
   render() {
     const { visible, onCancel } = this.props
-
     const showSelect = this.state.selectType === ''
 
     return (

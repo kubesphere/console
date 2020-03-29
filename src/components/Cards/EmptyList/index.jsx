@@ -42,10 +42,10 @@ export default class EmptyList extends React.PureComponent {
     return (
       <div className={classnames(styles.wrapper, className)}>
         <div className={styles.image}>
-          {image ? <img src={image} alt="" /> : <Icon name={icon} size={40} />}
+          {image ? <img src={image} alt="" /> : <Icon name={icon} size={48} />}
         </div>
-        <div className="font-bold margin-t12">{title}</div>
-        <p className="text-second">{desc}</p>
+        <div className={styles.title}>{title}</div>
+        <p className={styles.desc}>{desc}</p>
         {actions && <div className={styles.actions}>{actions}</div>}
       </div>
     )

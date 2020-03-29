@@ -17,6 +17,7 @@
  */
 
 import NodeDetail from '../containers/Nodes/Detail'
+import ProjectDetail from '../containers/Projects/Detail'
 import DeploymentDetail from '../containers/Workload/Deployments/Detail'
 import StatefulSetDetail from '../containers/Workload/StatefulSets/Detail'
 import DaemonSetDetail from '../containers/Workload/DaemonSets/Detail'
@@ -33,6 +34,10 @@ export default [
   {
     path: `${PATH}/nodes/:node`,
     component: NodeDetail,
+  },
+  {
+    path: `${PATH}/projects/:namespace`,
+    component: ProjectDetail,
   },
   {
     path: `${PATH}/namespaces/:namespace/deployments/:name`,

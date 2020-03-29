@@ -32,6 +32,7 @@ export default {
   'Project Role': '项目角色',
   projects: '项目',
   Projects: '项目',
+  'Project Overview': '项目预览',
   'Members Management': '成员管理',
   'Project Manager': '项目管理员',
   'Manage Project': '项目管理',
@@ -45,6 +46,7 @@ export default {
   'Remove Members': '移除成员',
   'Remove Member': '移除成员',
   'Invite Member': '邀请成员',
+  'Gateway Info': '网关信息',
   'Set Gateway': '设置网关',
   'Edit Gateway': '编辑网关',
 
@@ -52,6 +54,7 @@ export default {
 
   'Delete Project': '删除项目',
   'Project Info': '项目信息',
+  'Project Quota': '项目配额',
 
   Opened: '已开启',
   Closed: '已关闭',
