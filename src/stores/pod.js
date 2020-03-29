@@ -134,6 +134,8 @@ export default class PodStore extends Base {
     if (!silent) {
       this.isLoading = false
     }
+
+    return detail
   }
 
   @action

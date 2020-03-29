@@ -18,6 +18,7 @@
 
 import React from 'react'
 import { get } from 'lodash'
+import { toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import { Columns, Column } from '@pitrix/lego-ui'
 import { Button, Modal, Search, ScrollLoad } from 'components/Base'
@@ -85,7 +86,7 @@ export default class ClusterSelectModal extends React.Component {
         <div className={styles.list}>
           <ScrollLoad
             wrapperClassName={styles.listWrapper}
-            data={data}
+            data={toJS(data)}
             total={total}
             page={page}
             loading={isLoading}

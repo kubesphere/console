@@ -22,7 +22,7 @@ import { Icon } from '@pitrix/lego-ui'
 
 import { Indicator } from 'components/Base'
 import Banner from 'components/Cards/Banner'
-import withList from 'components/HOCs/withList'
+import withList, { ListPage } from 'components/HOCs/withList'
 import StatusReason from 'projects/components/StatusReason'
 import ResourceTable from 'clusters/components/ResourceTable'
 
@@ -39,11 +39,6 @@ import styles from './index.scss'
   name: 'Pod',
 })
 export default class Pods extends React.Component {
-  constructor(props) {
-    super(props)
-    props.bindActions(this.itemActions)
-  }
-
   get itemActions() {
     const { getData, trigger } = this.props
     return [
@@ -66,7 +61,6 @@ export default class Pods extends React.Component {
         onClick: item =>
           trigger('resource.delete', {
             type: t(this.name),
-            resource: item.name,
             detail: item,
             success: getData,
           }),
@@ -99,7 +93,7 @@ export default class Pods extends React.Component {
   }
 
   getColumns = () => {
-    const { getSortOrder, renderMore } = this.props
+    const { getSortOrder } = this.props
     return [
       {
         title: t('Name'),
@@ -138,11 +132,6 @@ export default class Pods extends React.Component {
         isHideable: true,
         width: 150,
         render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
-      },
-      {
-        key: 'more',
-        width: 20,
-        render: renderMore,
       },
     ]
   }
@@ -194,15 +183,16 @@ export default class Pods extends React.Component {
   render() {
     const { query, bannerProps, tableProps } = this.props
     return (
-      <div>
+      <ListPage {...this.props}>
         <Banner {...bannerProps} />
         <ResourceTable
           {...tableProps}
+          itemActions={this.itemActions}
           namespace={query.namespace}
           columns={this.getColumns()}
           onCreate={null}
         />
-      </div>
+      </ListPage>
     )
   }
 }

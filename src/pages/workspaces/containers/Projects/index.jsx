@@ -21,8 +21,8 @@ import { isUndefined } from 'lodash'
 
 import { Avatar, Status } from 'components/Base'
 import Banner from 'components/Cards/Banner'
-import Table from 'components/Tables/Base'
-import withList from 'components/HOCs/withList'
+import Table from 'components/Tables/List'
+import withList, { ListPage } from 'components/HOCs/withList'
 
 import { getDisplayName } from 'utils'
 import { getSuitableValue } from 'utils/monitoring'
@@ -35,11 +35,6 @@ import ProjectStore from 'stores/project'
   module: 'projects',
 })
 export default class Projects extends React.Component {
-  constructor(props) {
-    super(props)
-    props.bindActions(this.itemActions)
-  }
-
   get itemActions() {
     const { trigger } = this.props
     return [
@@ -69,7 +64,6 @@ export default class Projects extends React.Component {
         onClick: item =>
           trigger('resource.delete', {
             type: t('Project'),
-            resource: item.name,
             detail: item,
           }),
       },
@@ -154,16 +148,17 @@ export default class Projects extends React.Component {
   render() {
     const { bannerProps, tableProps } = this.props
     return (
-      <div>
+      <ListPage {...this.props}>
         <Banner {...bannerProps} tips={this.tips} />
         <Table
           {...tableProps}
+          itemActions={this.itemActions}
           columns={this.getColumns()}
           onCreate={this.showCreate}
           searchType={'keyword'}
           getCheckboxProps={this.getCheckboxProps}
         />
-      </div>
+      </ListPage>
     )
   }
 }

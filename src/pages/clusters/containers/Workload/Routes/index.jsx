@@ -21,7 +21,7 @@ import { Link } from 'react-router-dom'
 
 import { Avatar } from 'components/Base'
 import Banner from 'components/Cards/Banner'
-import withList from 'components/HOCs/withList'
+import withList, { ListPage } from 'components/HOCs/withList'
 import StatusReason from 'projects/components/StatusReason'
 import ResourceTable from 'clusters/components/ResourceTable'
 
@@ -37,11 +37,6 @@ import RouterStore from 'stores/router'
   name: 'Route',
 })
 export default class Routers extends React.Component {
-  constructor(props) {
-    super(props)
-    props.bindActions(this.itemActions)
-  }
-
   get itemActions() {
     const { trigger } = this.props
     return [
@@ -93,7 +88,6 @@ export default class Routers extends React.Component {
         onClick: item =>
           trigger('resource.delete', {
             type: t(this.name),
-            resource: item.name,
             detail: item,
           }),
       },
@@ -119,7 +113,7 @@ export default class Routers extends React.Component {
   }
 
   getColumns = () => {
-    const { getSortOrder, module, renderMore } = this.props
+    const { getSortOrder, module } = this.props
     const { cluster } = this.props.match.params
     return [
       {
@@ -166,11 +160,6 @@ export default class Routers extends React.Component {
         width: 150,
         render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
       },
-      {
-        key: 'more',
-        width: 20,
-        render: renderMore,
-      },
     ]
   }
 
@@ -186,15 +175,16 @@ export default class Routers extends React.Component {
   render() {
     const { query, bannerProps, tableProps } = this.props
     return (
-      <div>
+      <ListPage {...this.props}>
         <Banner {...bannerProps} />
         <ResourceTable
           {...tableProps}
+          itemActions={this.itemActions}
           namespace={query.namespace}
           columns={this.getColumns()}
           onCreate={this.showCreate}
         />
-      </div>
+      </ListPage>
     )
   }
 }

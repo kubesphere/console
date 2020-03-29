@@ -23,8 +23,8 @@ import UserStore from 'stores/user'
 import { Avatar } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import UserStatus from 'components/UserStatus'
-import Table from 'components/Tables/Base'
-import withList from 'components/HOCs/withList'
+import Table from 'components/Tables/List'
+import withList, { ListPage } from 'components/HOCs/withList'
 
 import { getLocalTime } from 'utils'
 
@@ -35,11 +35,6 @@ import { getLocalTime } from 'utils'
   rowKey: 'username',
 })
 export default class Accounts extends React.Component {
-  constructor(props) {
-    super(props)
-    props.bindActions(this.itemActions)
-  }
-
   checkActionEnable(record) {
     return (
       !globals.config.presetUsers.includes(record.username) &&
@@ -79,53 +74,45 @@ export default class Accounts extends React.Component {
     ]
   }
 
-  getColumns = () => {
-    const { renderMore } = this.props
-    return [
-      {
-        title: t('Name'),
-        dataIndex: 'username',
-        search: true,
-        render: (name, record) => (
-          <Avatar
-            avatar={record.avatar_url || '/assets/default-user.svg'}
-            title={name}
-            desc={record.email}
-            to={`/access/accounts/${name}`}
-          />
-        ),
-      },
-      {
-        title: t('Status'),
-        dataIndex: 'status',
-        isHideable: true,
-        width: '20%',
-        render: status => <UserStatus status={status} />,
-      },
-      {
-        title: t('Platform Role'),
-        dataIndex: 'cluster_role',
-        isHideable: true,
-        width: '20%',
-        render: role => role || '-',
-      },
-      {
-        title: t('Last login time'),
-        dataIndex: 'last_login_time',
-        isHideable: true,
-        width: '20%',
-        render: time =>
-          time
-            ? getLocalTime(time).format('YYYY-MM-DD HH:mm:ss')
-            : t('Not logged in yet'),
-      },
-      {
-        key: 'more',
-        width: 20,
-        render: renderMore,
-      },
-    ]
-  }
+  getColumns = () => [
+    {
+      title: t('Name'),
+      dataIndex: 'username',
+      search: true,
+      render: (name, record) => (
+        <Avatar
+          avatar={record.avatar_url || '/assets/default-user.svg'}
+          title={name}
+          desc={record.email}
+          to={`/access/accounts/${name}`}
+        />
+      ),
+    },
+    {
+      title: t('Status'),
+      dataIndex: 'status',
+      isHideable: true,
+      width: '20%',
+      render: status => <UserStatus status={status} />,
+    },
+    {
+      title: t('Platform Role'),
+      dataIndex: 'cluster_role',
+      isHideable: true,
+      width: '20%',
+      render: role => role || '-',
+    },
+    {
+      title: t('Last login time'),
+      dataIndex: 'last_login_time',
+      isHideable: true,
+      width: '20%',
+      render: time =>
+        time
+          ? getLocalTime(time).format('YYYY-MM-DD HH:mm:ss')
+          : t('Not logged in yet'),
+    },
+  ]
 
   showCreate = () =>
     this.props.trigger('user.create', {
@@ -135,7 +122,7 @@ export default class Accounts extends React.Component {
   render() {
     const { bannerProps, tableProps } = this.props
     return (
-      <div>
+      <ListPage {...this.props}>
         <Banner
           {...bannerProps}
           tabs={this.tabs}
@@ -144,11 +131,12 @@ export default class Accounts extends React.Component {
         />
         <Table
           {...tableProps}
+          itemActions={this.itemActions}
           columns={this.getColumns()}
           onCreate={this.showCreate}
           searchType={'keyword'}
         />
-      </div>
+      </ListPage>
     )
   }
 }

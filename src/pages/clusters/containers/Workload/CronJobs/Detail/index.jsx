@@ -48,6 +48,10 @@ export default class JobDetail extends React.Component {
     return 'CronJob'
   }
 
+  get routing() {
+    return this.props.rootStore.routing
+  }
+
   get listUrl() {
     const { cluster } = this.props.match.params
     return `/clusters/${cluster}/${this.module}`
@@ -115,7 +119,8 @@ export default class JobDetail extends React.Component {
       onClick: () =>
         this.trigger('resource.delete', {
           type: t(this.name),
-          resource: this.store.detail.name,
+          detail: this.store.detail,
+          success: () => this.routing.push(this.listUrl),
         }),
     },
   ]

@@ -32,11 +32,12 @@ export default {
         },
         store,
         modal: DeleteModal,
+        resource: detail.name,
         ...props,
       })
     },
   },
-  'resource.delete.batch': {
+  'resource.batch.delete': {
     on({ store, success, ...props }) {
       const modal = Modal.open({
         onOk: () => {

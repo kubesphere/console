@@ -18,6 +18,7 @@
 
 import { get, set, unset, isUndefined } from 'lodash'
 import React from 'react'
+import { toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import { Toggle, Tooltip, Icon } from '@pitrix/lego-ui'
 
@@ -478,7 +479,7 @@ class VolumeSettings extends React.Component {
     const { formRef, formProps = {}, module } = this.props
     const { collectSavedLog } = this.state
 
-    const volumes = this.store.list.data
+    const volumes = toJS(this.store.list.data)
     const isLoading = this.store.list.isLoading
 
     const containers = get(

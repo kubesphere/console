@@ -28,9 +28,10 @@ import {
 } from '@pitrix/lego-ui'
 import { Button } from 'components/Base'
 import BaseTable from 'components/Tables/Base'
+import withTableActions from 'components/HOCs/withTableActions'
 import ProjectSelect from './ProjectSelect'
 
-export default class ResourceTable extends BaseTable {
+class ResourceTable extends BaseTable {
   renderNormalTitle() {
     const { hideCustom, module, namespace } = this.props
 
@@ -65,3 +66,5 @@ export default class ResourceTable extends BaseTable {
     )
   }
 }
+
+export default withTableActions(ResourceTable)
