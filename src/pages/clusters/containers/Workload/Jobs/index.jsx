@@ -21,7 +21,7 @@ import { Link } from 'react-router-dom'
 
 import { Avatar } from 'components/Base'
 import Banner from 'components/Cards/Banner'
-import withList from 'components/HOCs/withList'
+import withList, { ListPage } from 'components/HOCs/withList'
 import JobStatus from 'projects/components/JobStatus'
 import StatusReason from 'projects/components/StatusReason'
 import ResourceTable from 'clusters/components/ResourceTable'
@@ -38,11 +38,6 @@ import WorkloadStore from 'stores/workload'
   name: 'Job',
 })
 export default class Jobs extends React.Component {
-  constructor(props) {
-    super(props)
-    props.bindActions(this.itemActions)
-  }
-
   handleTabChange = value => {
     const { cluster } = this.props.match.params
     const { namespace } = this.props.query
@@ -98,7 +93,6 @@ export default class Jobs extends React.Component {
         onClick: item =>
           trigger('resource.delete', {
             type: t(this.name),
-            resource: item.name,
             detail: item,
           }),
       },
@@ -124,7 +118,7 @@ export default class Jobs extends React.Component {
   }
 
   getColumns = () => {
-    const { getSortOrder, getFilteredValue, module, renderMore } = this.props
+    const { getSortOrder, getFilteredValue, module } = this.props
     const { cluster } = this.props.match.params
     return [
       {
@@ -176,11 +170,6 @@ export default class Jobs extends React.Component {
         width: '20%',
         render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
       },
-      {
-        key: 'more',
-        width: 20,
-        render: renderMore,
-      },
     ]
   }
 
@@ -196,15 +185,16 @@ export default class Jobs extends React.Component {
   render() {
     const { query, bannerProps, tableProps } = this.props
     return (
-      <div>
+      <ListPage {...this.props}>
         <Banner {...bannerProps} tabs={this.tabs} />
         <ResourceTable
           {...tableProps}
+          itemActions={this.itemActions}
           namespace={query.namespace}
           columns={this.getColumns()}
           onCreate={this.showCreate}
         />
-      </div>
+      </ListPage>
     )
   }
 }

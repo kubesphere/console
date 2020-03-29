@@ -20,8 +20,8 @@ import React from 'react'
 
 import { Avatar } from 'components/Base'
 import Banner from 'components/Cards/Banner'
-import withList from 'components/HOCs/withList'
-import Table from 'components/Tables/Base'
+import withList, { ListPage } from 'components/HOCs/withList'
+import Table from 'components/Tables/List'
 
 import { getLocalTime, getDisplayName } from 'utils'
 
@@ -34,7 +34,7 @@ import WorkspaceStore from 'stores/workspace'
 })
 export default class Workspaces extends React.Component {
   getColumns = () => {
-    const { getSortOrder, renderMore } = this.props
+    const { getSortOrder } = this.props
 
     return [
       {
@@ -70,11 +70,6 @@ export default class Workspaces extends React.Component {
         width: 150,
         render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
       },
-      {
-        key: 'more',
-        width: 20,
-        render: renderMore,
-      },
     ]
   }
 
@@ -88,14 +83,14 @@ export default class Workspaces extends React.Component {
   render() {
     const { bannerProps, tableProps } = this.props
     return (
-      <div>
+      <ListPage {...this.props}>
         <Banner {...bannerProps} />
         <Table
           {...tableProps}
           columns={this.getColumns()}
           onCreate={this.showCreate}
         />
-      </div>
+      </ListPage>
     )
   }
 }

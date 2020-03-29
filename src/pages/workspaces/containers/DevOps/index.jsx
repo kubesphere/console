@@ -20,8 +20,8 @@ import React from 'react'
 
 import { Avatar } from 'components/Base'
 import Banner from 'components/Cards/Banner'
-import Table from 'components/Tables/Base'
-import withList from 'components/HOCs/withList'
+import Table from 'components/Tables/List'
+import withList, { ListPage } from 'components/HOCs/withList'
 
 import { getLocalTime } from 'utils'
 
@@ -34,11 +34,6 @@ import DevOpsStore from 'stores/devops'
   rowKey: 'project_id',
 })
 export default class DevOps extends React.Component {
-  constructor(props) {
-    super(props)
-    props.bindActions(this.itemActions)
-  }
-
   get itemActions() {
     const { trigger, getData } = this.props
     return [
@@ -130,7 +125,7 @@ export default class DevOps extends React.Component {
   render() {
     const { bannerProps, tableProps } = this.props
     return (
-      <div>
+      <ListPage {...this.props}>
         <Banner
           {...bannerProps}
           description={t('DEVOPS_DESCRIPTION')}
@@ -138,11 +133,12 @@ export default class DevOps extends React.Component {
         />
         <Table
           {...tableProps}
+          itemActions={this.itemActions}
           columns={this.getColumns()}
           onCreate={this.showCreate}
           searchType={'keyword'}
         />
-      </div>
+      </ListPage>
     )
   }
 }

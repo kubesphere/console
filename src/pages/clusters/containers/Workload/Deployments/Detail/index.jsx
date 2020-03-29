@@ -53,6 +53,10 @@ export default class DeploymentDetail extends React.Component {
     return `/clusters/${cluster}/${this.module}`
   }
 
+  get routing() {
+    return this.props.rootStore.rooting
+  }
+
   fetchData = () => {
     this.store.fetchDetail(this.props.match.params)
   }
@@ -120,7 +124,8 @@ export default class DeploymentDetail extends React.Component {
       onClick: () =>
         this.trigger('resource.delete', {
           type: t(this.name),
-          resource: this.store.detail.name,
+          detail: this.store.detail,
+          success: () => this.routing.push(this.listUrl),
         }),
     },
   ]

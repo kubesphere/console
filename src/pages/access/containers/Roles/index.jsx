@@ -23,8 +23,8 @@ import { toJS } from 'mobx'
 import RoleStore from 'stores/role'
 import { Avatar } from 'components/Base'
 import Banner from 'components/Cards/Banner'
-import Table from 'components/Tables/Base'
-import withList from 'components/HOCs/withList'
+import Table from 'components/Tables/List'
+import withList, { ListPage } from 'components/HOCs/withList'
 
 import { getLocalTime } from 'utils'
 import { ICON_TYPES } from 'utils/constants'
@@ -36,10 +36,8 @@ import { ICON_TYPES } from 'utils/constants'
   name: 'Cluster Role',
 })
 export default class Roles extends React.Component {
-  constructor(props) {
-    super(props)
-    props.bindActions(this.itemActions)
-    props.store.fetchRulesInfo()
+  componentDidMount() {
+    this.props.store.fetchRulesInfo()
   }
 
   get module() {
@@ -90,7 +88,7 @@ export default class Roles extends React.Component {
   }
 
   getColumns = () => {
-    const { getSortOrder, renderMore } = this.props
+    const { getSortOrder } = this.props
     return [
       {
         title: t('Name'),
@@ -128,11 +126,6 @@ export default class Roles extends React.Component {
         width: '19%',
         render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
       },
-      {
-        key: 'more',
-        width: 20,
-        render: renderMore,
-      },
     ]
   }
 
@@ -149,7 +142,7 @@ export default class Roles extends React.Component {
   render() {
     const { bannerProps, tableProps } = this.props
     return (
-      <div>
+      <ListPage {...this.props}>
         <Banner
           {...bannerProps}
           tabs={this.tabs}
@@ -158,10 +151,11 @@ export default class Roles extends React.Component {
         />
         <Table
           {...tableProps}
+          itemActions={this.itemActions}
           columns={this.getColumns()}
           onCreate={this.showCreate}
         />
-      </div>
+      </ListPage>
     )
   }
 }
