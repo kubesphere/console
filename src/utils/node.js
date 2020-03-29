@@ -30,6 +30,17 @@ export const getNodeRoles = labels => {
   return roles
 }
 
+export const NODE_CONDITION_ICONS = {
+  Ready: 'templet',
+  OutOfDisk: 'storage',
+  PIDPressure: 'pie-chart',
+  MemoryPressure: 'memory',
+  DiskPressure: 'storage',
+  NetworkUnavailable: 'earth',
+  ConfigOK: 'record',
+  KubeletReady: 'cluster',
+}
+
 export const getConditionsStatus = record => {
   if (record.status === 'Unknown') {
     return 'Warning'

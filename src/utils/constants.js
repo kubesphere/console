@@ -189,7 +189,7 @@ export const ICON_TYPES = {
   registries: 'cdn',
   volumes: 'storage',
   storageclasses: 'database',
-  nodes: 'laptop',
+  nodes: 'nodes',
   devops: 'strategy-group',
   projects: 'project',
   users: 'human',

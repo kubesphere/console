@@ -16,15 +16,27 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { inject } from 'mobx-react'
-import { renderRoutes } from 'utils/router.config'
+import React from 'react'
+import { toJS } from 'mobx'
+import { observer, inject } from 'mobx-react'
 
-import routes from './routes'
-import actions from './actions'
+import LabelsCard from 'components/Cards/Labels'
+import AnnotationsCard from 'components/Cards/Annotations'
 
-const App = ({ rootStore }) => {
-  rootStore.registerActions(actions)
-  return renderRoutes(routes)
+@inject('detailStore')
+@observer
+export default class Metadata extends React.Component {
+  get store() {
+    return this.props.detailStore
+  }
+
+  render() {
+    const { labels, annotations } = toJS(this.store.detail)
+    return (
+      <>
+        <LabelsCard labels={labels} />
+        <AnnotationsCard annotations={annotations} />
+      </>
+    )
+  }
 }
-
-export default inject('rootStore')(App)

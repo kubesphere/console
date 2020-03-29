@@ -41,9 +41,9 @@ export default class NodeStore extends Base {
     this.module = 'nodes'
   }
 
-  getListUrl = () => `api/v1/${this.module}`
-
-  getDetailUrl = ({ name }) => `${this.getListUrl()}/${name}`
+  get apiVersion() {
+    return 'api/v1'
+  }
 
   getResourceUrl = () => `kapis/resources.kubesphere.io/v1alpha2/${this.module}`
 

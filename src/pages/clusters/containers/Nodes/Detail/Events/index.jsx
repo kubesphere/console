@@ -16,15 +16,23 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { inject } from 'mobx-react'
-import { renderRoutes } from 'utils/router.config'
+import { inject, observer } from 'mobx-react'
+import { joinSelector } from 'utils'
+import { Component as Base } from 'core/containers/Base/Detail/Events'
 
-import routes from './routes'
-import actions from './actions'
+@inject('detailStore')
+@observer
+export default class Events extends Base {
+  fetchData() {
+    const { name } = this.store.detail
 
-const App = ({ rootStore }) => {
-  rootStore.registerActions(actions)
-  return renderRoutes(routes)
+    const fields = {
+      'involvedObject.name': name,
+      'involvedObject.kind': this.kind,
+    }
+
+    this.eventStore.fetchList({
+      fieldSelector: joinSelector(fields),
+    })
+  }
 }
-
-export default inject('rootStore')(App)

@@ -170,9 +170,9 @@ export const getValueByUnit = (num, unit) => {
   return Number(value) === 0 ? 0 : Number(value.toFixed(2))
 }
 
-export const getFormatTime = ms =>
+export const getFormatTime = (ms, showDay) =>
   getLocalTime(Number(ms))
-    .format('YYYY-MM-DD HH:mm:ss')
+    .format(showDay ? 'MM-DD HH:mm' : 'HH:mm')
     .replace(/:00$/g, '')
 
 export const getChartData = ({
@@ -181,12 +181,13 @@ export const getChartData = ({
   xKey = 'time',
   legend = [],
   valuesData = [],
-  xFormatter,
 }) => {
   /*
     build a value map => { 1566289260: {...} }
     e.g. { 1566289260: { 'utilisation': 30.2 } }
   */
+  let minX = 0
+  let maxX = 0
   const valueMap = {}
   valuesData.forEach((values, index) => {
     values.forEach(item => {
@@ -207,14 +208,19 @@ export const getChartData = ({
             ? null
             : getValueByUnit(value, isUndefined(unit) ? type : unit)
       }
+
+      if (!minX || minX > time) minX = time
+      if (!maxX || maxX < time) maxX = time
     })
   })
 
-  const formatter = key => (xKey === 'time' ? getFormatTime(key * 1000) : key)
+  const showDay = maxX - minX > 3600 * 24
+  const formatter = key =>
+    xKey === 'time' ? getFormatTime(key * 1000, showDay) : key
 
   // generate the chart data
   const chartData = Object.entries(valueMap).map(([key, value]) => ({
-    [xKey]: (xFormatter || formatter)(key),
+    [xKey]: formatter(key),
     ...value,
   }))
 
@@ -228,7 +234,6 @@ export const getAreaChartOps = ({
   xKey = 'time',
   legend = [],
   data = [],
-  xFormatter,
   ...rest
 }) => {
   const seriesData = isArray(data) ? data : []
@@ -243,17 +248,12 @@ export const getAreaChartOps = ({
     xKey,
     legend,
     valuesData,
-    xFormatter,
   })
-
-  const xAxisTickFormatter =
-    xKey === 'time' ? getXAxisTickFormatter(chartData) : value => value
 
   return {
     ...rest,
     title,
     unit,
-    xAxisTickFormatter,
     data: chartData,
   }
 }

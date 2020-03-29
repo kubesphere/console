@@ -16,15 +16,32 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { inject } from 'mobx-react'
-import { renderRoutes } from 'utils/router.config'
+import React from 'react'
 
-import routes from './routes'
-import actions from './actions'
+import { Columns, Column } from '@pitrix/lego-ui'
 
-const App = ({ rootStore }) => {
-  rootStore.registerActions(actions)
-  return renderRoutes(routes)
-}
+import styles from './index.scss'
 
-export default inject('rootStore')(App)
+const Chart = ({ data }) => (
+  <div className={styles.card}>
+    <Columns>
+      <Column>
+        <p>
+          <span>key: </span> {data.key}
+        </p>
+      </Column>
+      <Column>
+        <p>
+          <span>value: </span> {data.value}
+        </p>
+      </Column>
+      <Column>
+        <p>
+          <span>effect: </span> {data.effect}
+        </p>
+      </Column>
+    </Columns>
+  </div>
+)
+
+export default Chart
