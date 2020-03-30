@@ -47,14 +47,14 @@ jobs:
     - name: Build preview image
       if: github.event_name == 'pull_request'
       run: |
-        PR_ID=$(echo "${{ github.ref }}" | sed -e 's,.*/\([0-9]*\)/.*,\1,')
+        PR_ID=$(echo "${{ github.ref }}" | sed -e 's,.*/\([0-9]*\)/.*,\1,' | sed -e 's/refs\/heads\///' | sed -e 's/\//\-/')
         docker build . --file Dockerfile --tag ks-console-pr-$PR_ID
 
     - name: Deploy preview image
       if: github.event_name == 'pull_request'
       run: |
         echo 'Deploy to ks cluster'
-        PR_ID=$(echo "${{ github.ref }}" | sed -e 's,.*/\([0-9]*\)/.*,\1,')
+        PR_ID=$(echo "${{ github.ref }}" | sed -e 's,.*/\([0-9]*\)/.*,\1,' | sed -e 's/refs\/heads\///' | sed -e 's/\//\-/')
         /bin/bash ~/scripts/deploy.sh ks-console-pr-$PR_ID
         echo 'Access to the preview console:'
         echo http://ks-console-pr-$PR_ID.kscpr.top
