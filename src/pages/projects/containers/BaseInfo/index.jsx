@@ -307,7 +307,7 @@ class BaseInfo extends React.Component {
   }
 
   render() {
-    const data = toJS(this.store.data)
+    const data = toJS(this.store.detail)
 
     const roleCount = this.roleStore.list.total
     const memberCount = this.store.members.total

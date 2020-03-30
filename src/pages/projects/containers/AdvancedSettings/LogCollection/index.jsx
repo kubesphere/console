@@ -50,14 +50,14 @@ class LogCollection extends React.Component {
   }
 
   handleToggle = () => {
-    const { data } = this.props.store
+    const { detail } = this.props.store
     const isOpen =
-      get(data, 'labels["logging.kubesphere.io/logsidecar-injection"]') ===
+      get(detail, 'labels["logging.kubesphere.io/logsidecar-injection"]') ===
       'enabled'
 
     this.props.store
       .patch(
-        { name: data.name },
+        { name: detail.name },
         {
           metadata: {
             labels: {
@@ -70,7 +70,7 @@ class LogCollection extends React.Component {
       )
       .then(() => {
         this.hideCloseConfirm()
-        this.props.store.fetchDetail({ namespace: data.name })
+        this.props.store.fetchDetail({ namespace: detail.name })
       })
   }
 
