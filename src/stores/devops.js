@@ -20,24 +20,14 @@ import { set, isArray } from 'lodash'
 import { action, observable } from 'mobx'
 import { getFilterString, formatRules } from 'utils'
 
-import MemberList from 'stores/member.list'
+import List from './base.list'
+import MemberList from './member.list'
 
 export default class DevOpsStore {
   @observable
   initializing = true
 
-  @observable
-  list = {
-    data: [],
-    page: 1,
-    limit: 10,
-    total: 0,
-    order: '',
-    reverse: false,
-    keyword: '',
-    isLoading: true,
-    selectedRowKeys: [],
-  }
+  list = new List()
 
   @observable
   isLoading = false
@@ -106,7 +96,7 @@ export default class DevOpsStore {
 
     const result = await request.get(this.getResourceUrl({ workspace }), params)
 
-    this.list = {
+    this.list.update({
       data: result.items,
       total: result.total_count || 0,
       limit: Number(limit) || 10,
@@ -116,7 +106,7 @@ export default class DevOpsStore {
       keyword,
       isLoading: false,
       selectedRowKeys: [],
-    }
+    })
   }
 
   @action

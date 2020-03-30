@@ -154,7 +154,7 @@ client:
           title: Cluster Settings
           icon: cogwheel
           children:
-            - { name: visibilities, title: Cluster Visibilities }
+            - { name: visibility, title: Cluster Visibility }
             - { name: members, title: Cluster Members }
             - { name: roles, title: Cluster Roles }
             - { name: k8s-settings, title: Kubernetes Settings }

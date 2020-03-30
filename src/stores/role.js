@@ -55,8 +55,6 @@ export default class RoleStore {
   @observable
   isSubmitting = false
 
-  noWatch = true
-
   constructor(type) {
     this.type = type || 'roles'
   }

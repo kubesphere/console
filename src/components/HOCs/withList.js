@@ -149,7 +149,7 @@ export default function withList(options) {
           rowKey: this.rowKey,
           module: this.module,
           enabledActions: this.enabledActions,
-          itemActions: this.defaultTableActions,
+          itemActions: this.defaultItemActions,
           tableActions: this.defaultTableActions,
         }
       }

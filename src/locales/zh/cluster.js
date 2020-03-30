@@ -31,7 +31,7 @@ export default {
   'IP Ranges': 'IP 地址范围',
   'Network Policies': '网络策略',
   'Network Topology': '网络拓扑',
-  'Cluster Visibilities': '集群可见性',
+  'Cluster Visibility': '集群可见性',
   'Cluster Members': '集群成员',
   'Cluster Roles': '集群角色',
   'Kubernetes Settings': 'Kubernetes 设置',
@@ -40,6 +40,8 @@ export default {
   'Cluster Info': '集群信息',
   'Kubernetes Status': 'Kubernetes 组件状态',
   Tools: '工具',
+
+  'Edit Visibility': '编辑可见范围',
 
   'Go back': '返回上一步',
 
@@ -51,4 +53,7 @@ export default {
   ADD_NEW_CLUSTER_DESC: '添加新的Kubernetes集群',
   CHOOSE_PROVIDER_DESC:
     'KubeSphere提供了在主流服务商中快速部署Kubernetes集群的方案',
+
+  VISIBILITY_PART: '部分可见',
+  VISIBILITY_PUBLIC: '公开',
 }

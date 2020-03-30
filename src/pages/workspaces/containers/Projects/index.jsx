@@ -85,7 +85,7 @@ export default class Projects extends React.Component {
   })
 
   getColumns = () => {
-    const { getSortOrder, renderMore } = this.props
+    const { getSortOrder } = this.props
     return [
       {
         title: t('Name'),
@@ -126,16 +126,6 @@ export default class Projects extends React.Component {
         dataIndex: 'annotations.namespace_pod_count',
         isHideable: true,
         render: count => (!isUndefined(count) ? count : 0),
-      },
-      {
-        key: 'more',
-        render: (field, record) => {
-          if (record.status === 'Terminating') {
-            return <Status type="terminating" name={t('Terminating')} flicker />
-          }
-
-          return renderMore(field, record)
-        },
       },
     ]
   }

@@ -200,7 +200,7 @@ export default class SimpleArea extends React.Component {
     const classNames = classnames(styles.chart, 'chart', `chart-${theme}`)
 
     return (
-      <div className={classNames}>
+      <div className={classNames} style={{ width, height }}>
         {this.renderTitle()}
         <ResponsiveContainer width={width} height={height} debounce={1}>
           <AreaChart
