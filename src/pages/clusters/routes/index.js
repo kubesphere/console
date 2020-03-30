@@ -23,6 +23,7 @@ import Layout from '../containers/layout'
 import Clusters from '../containers/Clusters'
 import AddCluster from '../containers/Clusters/AddCluster'
 import Overview from '../containers/Overview'
+import Nodes from '../containers/Nodes'
 import Deployments from '../containers/Workload/Deployments'
 import StatefulSets from '../containers/Workload/StatefulSets'
 import DaemonSets from '../containers/Workload/DaemonSets'
@@ -47,6 +48,11 @@ export default [
       {
         path: `${PATH}/overview`,
         component: Overview,
+        exact: true,
+      },
+      {
+        path: `${PATH}/nodes`,
+        component: Nodes,
         exact: true,
       },
       {

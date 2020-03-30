@@ -16,15 +16,16 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { inject } from 'mobx-react'
-import { renderRoutes } from 'utils/router.config'
+import React from 'react'
+import { observer, inject } from 'mobx-react'
+import PodsCard from 'components/Cards/Pods'
 
-import routes from './routes'
-import actions from './actions'
+@inject('detailStore')
+@observer
+export default class Pods extends React.Component {
+  store = this.props.detailStore
 
-const App = ({ rootStore }) => {
-  rootStore.registerActions(actions)
-  return renderRoutes(routes)
+  render() {
+    return <PodsCard detail={this.store.detail} limit={6} />
+  }
 }
-
-export default inject('rootStore')(App)

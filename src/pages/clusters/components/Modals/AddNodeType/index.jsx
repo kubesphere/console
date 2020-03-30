@@ -16,15 +16,29 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { inject } from 'mobx-react'
-import { renderRoutes } from 'utils/router.config'
+import React from 'react'
+import { Modal, Form } from 'components/Base'
+import { Input, TextArea } from '@pitrix/lego-ui'
 
-import routes from './routes'
-import actions from './actions'
-
-const App = ({ rootStore }) => {
-  rootStore.registerActions(actions)
-  return renderRoutes(routes)
+export default class AddNodeTypeModal extends React.Component {
+  render() {
+    return (
+      <Modal.Form
+        width={600}
+        icon="nodes"
+        title={t('Add Node Type')}
+        {...this.props}
+      >
+        <Form.Item label={t('Type Name')} desc={t('NAME_DESC')}>
+          <Input name="name" />
+        </Form.Item>
+        <Form.Item
+          label={t('Description')}
+          desc={t('NODE_TYPE_DESCRIPTION_DEC')}
+        >
+          <TextArea name="description" />
+        </Form.Item>
+      </Modal.Form>
+    )
+  }
 }
-
-export default inject('rootStore')(App)

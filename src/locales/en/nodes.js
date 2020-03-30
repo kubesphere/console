@@ -33,8 +33,8 @@ export default {
   NODE_STATUS_RUNNING: 'Running',
   NODE_STATUS_WARNING: 'Warning',
 
-  NODE_DESC:
-    'The computing power of KubeSphere cluster is provided by the nodes where all the pods are running on those working nodes.',
+  CLUSTER_NODES_DESC:
+    '集群节点提供了当前集群下节点的运行状态，以及可以编辑删除节点',
 
   NODE_NETWORKUNAVAILABLE_TIP:
     'If the network for the node is correctly configured.',

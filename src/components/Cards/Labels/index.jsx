@@ -16,15 +16,26 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { inject } from 'mobx-react'
-import { renderRoutes } from 'utils/router.config'
+import React, { Component } from 'react'
+import { Panel, Label } from 'components/Base'
+import { isEmpty } from 'lodash'
 
-import routes from './routes'
-import actions from './actions'
+export default class Labels extends Component {
+  render() {
+    const { labels } = this.props
 
-const App = ({ rootStore }) => {
-  rootStore.registerActions(actions)
-  return renderRoutes(routes)
+    if (isEmpty(labels)) {
+      return null
+    }
+
+    return (
+      <Panel title={t('Labels')}>
+        <div>
+          {Object.entries(labels).map(([key, value]) => (
+            <Label key={key} name={key} value={value} />
+          ))}
+        </div>
+      </Panel>
+    )
+  }
 }
-
-export default inject('rootStore')(App)

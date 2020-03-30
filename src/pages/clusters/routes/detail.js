@@ -16,6 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import NodeDetail from '../containers/Nodes/Detail'
 import DeploymentDetail from '../containers/Workload/Deployments/Detail'
 import StatefulSetDetail from '../containers/Workload/StatefulSets/Detail'
 import DaemonSetDetail from '../containers/Workload/DaemonSets/Detail'
@@ -29,6 +30,10 @@ import ContainerDetail from '../containers/Workload/Containers/Detail'
 const PATH = '/clusters/:cluster'
 
 export default [
+  {
+    path: `${PATH}/nodes/:node`,
+    component: NodeDetail,
+  },
   {
     path: `${PATH}/namespaces/:namespace/deployments/:name`,
     component: DeploymentDetail,

@@ -16,15 +16,31 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { inject } from 'mobx-react'
-import { renderRoutes } from 'utils/router.config'
+import React, { Component } from 'react'
+import { Panel } from 'components/Base'
+import { isEmpty } from 'lodash'
 
-import routes from './routes'
-import actions from './actions'
+import styles from './index.scss'
 
-const App = ({ rootStore }) => {
-  rootStore.registerActions(actions)
-  return renderRoutes(routes)
+export default class Annotations extends Component {
+  render() {
+    const { annotations } = this.props
+
+    if (isEmpty(annotations)) {
+      return null
+    }
+
+    return (
+      <Panel title={t('Annotations')}>
+        <ul className={styles.values}>
+          {Object.entries(annotations).map(([key, value]) => (
+            <li key={key}>
+              <span className={styles.title}>{key}</span>
+              <span>{String(value)}</span>
+            </li>
+          ))}
+        </ul>
+      </Panel>
+    )
+  }
 }
-
-export default inject('rootStore')(App)

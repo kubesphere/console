@@ -16,15 +16,28 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { inject } from 'mobx-react'
-import { renderRoutes } from 'utils/router.config'
+import { Modal } from 'components/Base'
+import ProjectCreateModal from 'components/Modals/ProjectCreate'
+import FORM_TEMPLATES from 'utils/form.templates'
 
-import routes from './routes'
-import actions from './actions'
-
-const App = ({ rootStore }) => {
-  rootStore.registerActions(actions)
-  return renderRoutes(routes)
+export default {
+  'cluster.project.create': {
+    on({ store, ...props }) {
+      const modal = Modal.open({
+        onOk: () => {
+          Modal.close(modal)
+        },
+        type: 'projects',
+        formTemplate: {
+          projects: {
+            Project: FORM_TEMPLATES.project(),
+            LimitRange: FORM_TEMPLATES.limitRange(),
+          },
+        },
+        modal: ProjectCreateModal,
+        store,
+        ...props,
+      })
+    },
+  },
 }
-
-export default inject('rootStore')(App)

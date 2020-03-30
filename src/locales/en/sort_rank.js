@@ -17,6 +17,13 @@
  */
 
 export default {
+  node_cpu_utilisation: 'CPU Utilization',
+  node_load1: 'Load Average',
+  node_memory_utilisation: 'Memory Utilization',
+  node_disk_size_utilisation: 'Local Storage',
+  node_pod_utilisation: 'Pod Utilization',
+  node_disk_inode_utilisation: 'inode Utilization',
+
   'Sort By node_cpu_utilisation': 'Sort By CPU',
   'Sort By node_memory_utilisation': 'Sort By Memory',
   'Sort By node_disk_size_utilisation': 'Sort By Local Storage',

@@ -16,15 +16,14 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { inject } from 'mobx-react'
-import { renderRoutes } from 'utils/router.config'
+// Use require.context to require reducers automatically
+// Ref: https://webpack.github.io/docs/context.html
+const context = require.context('./', false, /\.js$/)
+const keys = context.keys().filter(item => item !== './index.js')
 
-import routes from './routes'
-import actions from './actions'
-
-const App = ({ rootStore }) => {
-  rootStore.registerActions(actions)
-  return renderRoutes(routes)
+const models = {}
+for (let i = 0; i < keys.length; i += 1) {
+  Object.assign(models, context(keys[i]).default)
 }
 
-export default inject('rootStore')(App)
+export default models
