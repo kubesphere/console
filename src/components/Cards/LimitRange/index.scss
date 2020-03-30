@@ -1,0 +1,25 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.item {
+  min-width: 160px;
+  margin-left: 12px;
+
+  & > div {
+    @include TypographyTitleH6($dark-color07);
+  }
+
+  & > p {
+    @include TypographyParagraph($dark-color01);
+  }
+}
+
+.content {
+  display: flex;
+  justify-content: flex-start;
+  padding: 8px 12px;
+}
+
+.contentItem {
+  display: flex;
+}

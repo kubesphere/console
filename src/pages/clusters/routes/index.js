@@ -24,6 +24,7 @@ import Clusters from '../containers/Clusters'
 import AddCluster from '../containers/Clusters/AddCluster'
 import Overview from '../containers/Overview'
 import Nodes from '../containers/Nodes'
+import Projects from '../containers/Projects'
 import Deployments from '../containers/Workload/Deployments'
 import StatefulSets from '../containers/Workload/StatefulSets'
 import DaemonSets from '../containers/Workload/DaemonSets'
@@ -53,6 +54,10 @@ export default [
       {
         path: `${PATH}/nodes`,
         component: Nodes,
+      },
+      {
+        path: `${PATH}/projects`,
+        component: Projects,
         exact: true,
       },
       {
