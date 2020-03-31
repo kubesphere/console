@@ -313,7 +313,7 @@ export default {
   'Every Week': '每周',
   'Every Month': '每月',
   Schedule: '定时计划',
-  'Revision Control': '版本控制',
+  'Revision Records': '版本记录',
   'Revision Rollback': '版本回退',
   'Rollback Revisions': '回退版本',
   'Current Revision': '当前版本',
@@ -659,4 +659,8 @@ export default {
   RUN_AS_USER_DESC: '执行容器 entrypoint 进程的 UID。默认为 docker 引擎的 GID',
   RUN_AS_USER_GROUP_DESC:
     '执行容器 entrypoint 进程的 GID。默认为 docker 引擎的 GID',
+
+  COMPARE_WITH: '与上一个版本 {version} 的对比',
+  REVISION_DESC:
+    '对工作负载的资源模板进行修改后会生成一个新的记录并重新调度 容器组（Pod）进行版本的迭代，默认保存10个最近的版本。您可以根据修改记录进行重新部署。',
 }

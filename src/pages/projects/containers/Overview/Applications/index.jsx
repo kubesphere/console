@@ -60,7 +60,7 @@ export default class Applications extends React.Component {
   fetchData() {
     this.store.fetchList({
       namespace: this.namespace,
-      runtime_id: get(this.project, 'data.annotations["openpitrix_runtime"]'),
+      runtime_id: get(this.project, 'detail.annotations["openpitrix_runtime"]'),
       limit: 3,
     })
   }

@@ -35,7 +35,7 @@ export default [
   },
   {
     path: `${PATH}/revision-control`,
-    title: 'Revision Control',
+    title: 'Revision Records',
     component: RevisionControl,
     exact: true,
   },

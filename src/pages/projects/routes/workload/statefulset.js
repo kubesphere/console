@@ -44,7 +44,7 @@ const ROUTES = [
   },
   {
     name: 'revision-control',
-    title: 'Revision Control',
+    title: 'Revision Records',
     component: RevisionControl,
   },
   { name: 'monitors', title: 'Monitoring', component: Monitoring },
@@ -89,7 +89,7 @@ export default [
       breadcrumbs: [
         ...BreadCrumbs,
         {
-          label: 'Revision Control',
+          label: 'Revision Records',
           url: `/projects/:namespace/${MODULE}/:name/revision-control`,
         },
       ],

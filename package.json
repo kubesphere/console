@@ -12,6 +12,8 @@
     "async-validator": "^1.8.5",
     "classnames": "^2.2.5",
     "dagre": "^0.8.4",
+    "diff": "^4.0.2",
+    "diff2html": "^3.1.6",
     "fast-copy": "^2.0.3",
     "file-saver": "^1.3.8",
     "for-editor": "^0.3.4",

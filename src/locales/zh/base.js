@@ -375,6 +375,7 @@ export default {
   'Add Task': '添加任务',
   Optional: '可选',
   Record: '记录',
+  Records: '记录',
   Detail: '详情',
   platform: '平台',
   Reselect: '重新选择',

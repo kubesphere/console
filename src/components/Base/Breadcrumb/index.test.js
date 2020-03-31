@@ -43,7 +43,7 @@ it('renders correctly', () => {
     },
     {
       name: 'revision-control',
-      title: 'Revision Control',
+      title: 'Revision Records',
       path: '/projects/:namespace/deployments/:name/revision-control',
     },
   ]
