@@ -73,49 +73,42 @@ export default class DevOps extends React.Component {
     ]
   }
 
-  getColumns = () => {
-    const { renderMore } = this.props
-    return [
-      {
-        title: t('Name'),
-        dataIndex: 'name',
-        width: '30%',
-        render: (name, record) => (
-          <Avatar
-            icon="strategy-group"
-            iconSize={40}
-            to={`/devops/${record.project_id}`}
-            desc={record.description || '-'}
-            title={name}
-          />
-        ),
-      },
-      {
-        title: t('ID'),
-        dataIndex: 'project_id',
-        isHideable: true,
-        width: '20%',
-      },
-      {
-        title: t('Creator'),
-        dataIndex: 'creator',
-        isHideable: true,
-        width: '20%',
-        render: creator => creator || '-',
-      },
-      {
-        title: t('Created Time'),
-        dataIndex: 'create_time',
-        isHideable: true,
-        width: '20%',
-        render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
-      },
-      {
-        key: 'more',
-        render: renderMore,
-      },
-    ]
-  }
+  getColumns = () => [
+    {
+      title: t('Name'),
+      dataIndex: 'name',
+      width: '30%',
+      render: (name, record) => (
+        <Avatar
+          icon="strategy-group"
+          iconSize={40}
+          to={`/devops/${record.project_id}`}
+          desc={record.description || '-'}
+          title={name}
+        />
+      ),
+    },
+    {
+      title: t('ID'),
+      dataIndex: 'project_id',
+      isHideable: true,
+      width: '20%',
+    },
+    {
+      title: t('Creator'),
+      dataIndex: 'creator',
+      isHideable: true,
+      width: '20%',
+      render: creator => creator || '-',
+    },
+    {
+      title: t('Created Time'),
+      dataIndex: 'create_time',
+      isHideable: true,
+      width: '20%',
+      render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
+    },
+  ]
 
   showCreate = () =>
     this.props.trigger('workspace.devops.create', {

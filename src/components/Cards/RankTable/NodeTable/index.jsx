@@ -57,7 +57,7 @@ export default class NodeUsageRank extends React.Component {
         <div>
           <h3>
             <Link
-              to={`/infrastructure/nodes/${node.resource_name}`}
+              to={`/clusters/${this.props.cluster}/nodes/${node.resource_name}`}
               auth={this.canViewNode}
             >
               {node.resource_name}

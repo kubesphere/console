@@ -33,6 +33,9 @@ import CronJobs from '../containers/Workload/CronJobs'
 import Pods from '../containers/Workload/Pods'
 import Services from '../containers/Workload/Services'
 import Routes from '../containers/Workload/Routes'
+import ClusterMonitor from '../containers/Monitor/Cluster'
+import ResourceMonitor from '../containers/Monitor/Resource'
+import Visibility from '../containers/Visibility'
 
 import detail from './detail'
 
@@ -98,6 +101,19 @@ export default [
       {
         path: `${PATH}/routes`,
         component: Routes,
+        exact: true,
+      },
+      {
+        path: `${PATH}/monitor-cluster`,
+        component: ClusterMonitor,
+      },
+      {
+        path: `${PATH}/monitor-resource`,
+        component: ResourceMonitor,
+      },
+      {
+        path: `${PATH}/visibility`,
+        component: Visibility,
         exact: true,
       },
       getIndexRoute({ path: PATH, to: `${PATH}/overview`, exact: true }),
