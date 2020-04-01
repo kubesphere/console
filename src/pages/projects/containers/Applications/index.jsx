@@ -51,7 +51,7 @@ export default class Applications extends React.Component {
     }
 
     this.disposer = when(
-      () => this.projectStore.data.name === this.namespace,
+      () => this.projectStore.detail.name === this.namespace,
       this.initialFetch.bind(this)
     )
   }
@@ -87,7 +87,7 @@ export default class Applications extends React.Component {
   }
 
   initialFetch() {
-    const project = this.projectStore.data
+    const project = this.projectStore.detail
 
     const runtime_id = get(project, 'annotations.openpitrix_runtime')
     globals.app.enableAppStore &&
@@ -314,7 +314,7 @@ export default class Applications extends React.Component {
         store={this.opAppStore}
         canCreate={this.canDeployTemplateApp}
         showDeployAppModal={this.showDeployAppModal}
-        project={this.projectStore.data}
+        project={this.projectStore.detail}
         match={this.props.match}
       />
     ) : (
@@ -322,7 +322,7 @@ export default class Applications extends React.Component {
         store={this.crdAppStore}
         canCreate={this.canDeployComposingApp}
         showDeployAppModal={this.showDeployAppModal}
-        project={this.projectStore.data}
+        project={this.projectStore.detail}
         match={this.props.match}
       />
     )
