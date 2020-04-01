@@ -148,22 +148,23 @@ export default class ServiceCreateModal extends React.Component {
               <p>{t(group.description)}</p>
             </div>
             <ul>
-              {group.options.map(option => (
-                <li
-                  key={option.value || option}
-                  data-value={option.value || option}
-                  data-type={group.type}
-                  onClick={this.handleTypeSelect}
-                >
-                  <div>
-                    <Icon
-                      name={option.icon || getLanguageIcon(option, 'radio')}
-                      size={48}
-                    />
-                  </div>
-                  <div>{t(option.name || option)}</div>
-                </li>
-              ))}
+              {group.options &&
+                group.options.map(option => (
+                  <li
+                    key={option.value || option}
+                    data-value={option.value || option}
+                    data-type={group.type}
+                    onClick={this.handleTypeSelect}
+                  >
+                    <div>
+                      <Icon
+                        name={option.icon || getLanguageIcon(option, 'radio')}
+                        size={48}
+                      />
+                    </div>
+                    <div>{t(option.name || option)}</div>
+                  </li>
+                ))}
             </ul>
           </div>
         ))}
