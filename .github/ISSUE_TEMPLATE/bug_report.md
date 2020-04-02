@@ -1,28 +1,26 @@
 ---
 name: Bug report
 about: Create a report to help us improve
+labels: kind/bug
 ---
 
  
 **General remarks**
 
-> Please delete this section including header before submitting
-> 也可以使用中文
->
 > This form is to report bugs. For general usage questions refer to our Slack channel
 >        [KubeSphere-users](https://join.slack.com/t/kubesphere/shared_invite/enQtNTE3MDIxNzUxNzQ0LTdkNTc3OTdmNzdiODViZjViNTU5ZDY3M2I2MzY4MTI4OGZlOTJmMDg5ZTFiMDAwYzNlZDY5NjA0NzZlNDU5NmY)
 
-**Describe the bug(描述下问题)**
+**Describe the bug**
 A clear and concise description of what the bug is.
 
 For UI issues please also add a screenshot that shows the issue.
 
-**Versions used(KubeSphere/Kubernetes的版本)**
+**Versions used(KubeSphere/Kubernetes)**
 KubeSphere:
 Kubernetes: (If KubeSphere installer used, you can skip this)
 
 
-**Environment(环境的硬件配置)**
+**Environment**
 How many nodes and their hardware configuration: 
 
 For example:
@@ -31,12 +29,12 @@ For example:
 
 (and other info are welcomed to help us debugging)
 
-**To Reproduce(复现步骤)**
+**To Reproduce**
 Steps to reproduce the behavior:
 1. Go to '...'
 2. Click on '....'
 3. Scroll down to '....'
 4. See error
 
-**Expected behavior(预期行为)**
+**Expected behavior**
 A clear and concise description of what you expected to happen.
