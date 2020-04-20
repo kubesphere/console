@@ -44,7 +44,7 @@ export default class LogCollection extends React.Component {
 
   @computed
   get collections() {
-    return this.store.collections
+    return this.store.list.data
   }
 
   componentDidMount() {
@@ -54,8 +54,6 @@ export default class LogCollection extends React.Component {
   refresh = () => {
     this.store.fetch()
   }
-
-  handleSearch = () => {}
 
   showCreateModal = () => {
     this.setState({
@@ -70,72 +68,32 @@ export default class LogCollection extends React.Component {
   }
 
   createCollection = async params => {
-    await this.store.create(this.formatParams(params))
+    await this.store.create(params)
     this.hideCreateModal()
     this.refresh()
-  }
-
-  formatParams(params) {
-    if (params.Name === 'es') {
-      params.Port = String(params.Port)
-      return params
-    }
-    if (params.Name === 'forward') {
-      params.Port = String(params.Port)
-      return params
-    }
-    return params
   }
 
   render() {
     return (
       <div className={styles.wrapper}>
-        {this.renderBanner()}
+        <div className={styles.header}>
+          <Banner
+            type="purple"
+            icon="file"
+            rightIcon="/assets/banner-icon-1.svg"
+            name={t('Log Collection')}
+            desc={t('LOG_COLLECTION_DESC')}
+            className={styles.banner}
+          />
+          <div className={styles.toolbar}>
+            <Button type="flat" onClick={this.refresh}>
+              <Icon name="refresh" />
+            </Button>
+            {this.renderCreateButton()}
+          </div>
+        </div>
         {this.renderCollection()}
         {this.renderModal()}
-      </div>
-    )
-  }
-
-  renderModal() {
-    const { createModelVisible } = this.state
-    return (
-      createModelVisible && (
-        <CreateLogCollectionModal
-          store={this.store}
-          visible={createModelVisible}
-          isSubmitting={this.store.isCreating}
-          title={t('Log Collector')}
-          onCancel={this.hideCreateModal}
-          onOk={this.createCollection}
-        />
-      )
-    )
-  }
-
-  renderBanner() {
-    return (
-      <div className={styles.header}>
-        <Banner
-          type="purple"
-          icon="file"
-          rightIcon="/assets/banner-icon-1.svg"
-          name={t('Log Collection')}
-          desc={t('LOG_COLLECTION_DESC')}
-          className={styles.banner}
-        />
-        {this.renderToolbar()}
-      </div>
-    )
-  }
-
-  renderToolbar() {
-    return (
-      <div className={styles.toolbar}>
-        <Button type="flat" onClick={this.refresh}>
-          <Icon name="refresh" />
-        </Button>
-        {this.renderCreateButton()}
       </div>
     )
   }
@@ -144,7 +102,7 @@ export default class LogCollection extends React.Component {
     return (
       <Button
         type="control"
-        disabled={this.store.isLoading || this.store.fetchError}
+        disabled={this.store.list.isLoading}
         onClick={this.showCreateModal}
       >
         {t('Add Log Collector')}
@@ -152,39 +110,47 @@ export default class LogCollection extends React.Component {
     )
   }
 
+  renderModal() {
+    const { createModelVisible } = this.state
+    return (
+      createModelVisible && (
+        <CreateLogCollectionModal
+          title={t('Log Collector')}
+          store={this.store}
+          visible={createModelVisible}
+          isSubmitting={this.store.isSubmitting}
+          onCancel={this.hideCreateModal}
+          onOk={this.createCollection}
+        />
+      )
+    )
+  }
+
   renderCollection() {
     return (
-      <Loading spinning={this.store.isLoading || this.store.fetchError}>
+      <Loading spinning={this.store.list.isLoading}>
         <div>
           {this.collections.length
             ? this.collections.map(this.renderCollectionItem, this)
             : this.renderEmptyCollection()}
-          <div className={styles.collectionCount}>
-            <span>
-              {t('TOTAL_COLLECTIONS', { num: this.collections.length })}
-            </span>
-          </div>
         </div>
       </Loading>
     )
   }
 
   renderCollectionItem(collection) {
-    const type = get(collection, 'Name', 'es')
+    const type = collection.type
     const config = get(collectionConfig, type, {})
     const ICON = get(config, 'ICON', () => {})
     const title = get(config, 'title', '')
-    const address =
-      type === 'kafka'
-        ? get(collection, 'Brokers')
-        : `${get(collection, 'Host')}:${get(collection, 'Port')}`
+    const address = collection.address
 
     return (
       <div
-        key={collection.id}
+        key={collection.uid}
         className={classnames(styles.pane, styles.collection)}
       >
-        <Link to={`/log-collection/${collection.id}`}>
+        <Link to={`/settings/log-collection/${collection.name}`}>
           <div className={styles.collectionSummery}>
             <div>
               <ICON width={40} height={40} />
@@ -196,19 +162,18 @@ export default class LogCollection extends React.Component {
               </p>
             </div>
             <div className={styles.dl}>
-              <h3>{collection.enable ? t('Collecting') : t('Close')}</h3>
+              <h3>{collection.enabled ? t('Collecting') : t('Close')}</h3>
               <p>{t('Status')}</p>
             </div>
             <div className={styles.dl}>
               <h3>
-                {Moment(collection.updatetime).format(
-                  `${t('MMMM Do YYYY')} HH:mm`
+                {Moment(collection.creationTimestamp).format(
+                  'YYYY-MM-DD HH:mm:ss'
                 )}
               </h3>
-              <p>{t('Recently Configured Updated')}</p>
+              <p>{t('Created Time')}</p>
             </div>
           </div>
-          <div className={styles.logCount} />
         </Link>
       </div>
     )

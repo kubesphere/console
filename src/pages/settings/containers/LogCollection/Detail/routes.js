@@ -16,29 +16,28 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { observable, action } from 'mobx'
-import { get } from 'lodash'
+import { getIndexRoute } from 'utils/router.config'
 
-export default class fluentBitStore {
-  @observable
-  isLoading = false
+import ResourceStatus from './Configuration'
+import Log from './Log'
 
-  get apiVersion() {
-    return 'kapis/logging.kubesphere.io/v1alpha2/fluentbit'
-  }
+const PATH = '/settings/log-collection/:name'
 
-  @action
-  async request(params, path = '', method = 'get') {
-    this.isLoading = true
-    const requestMethod = get(request, method, request.get)
-    const response = await requestMethod(`${this.apiVersion}/${path}`, params)
-    const { status } = response
-    status !== 200 &&
-      window.onunhandledrejection({
-        status,
-        reason: status,
-      })
-    this.isLoading = false
-    return response
-  }
-}
+export default [
+  {
+    path: `${PATH}/resource-status`,
+    title: 'Resource Status',
+    component: ResourceStatus,
+    exact: true,
+  },
+  {
+    path: `${PATH}/log`,
+    title: 'Log',
+    component: Log,
+    exact: true,
+    required({ type }) {
+      return type === 'es'
+    },
+  },
+  getIndexRoute({ path: PATH, to: `${PATH}/resource-status`, exact: true }),
+]

@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, set, isEmpty, omit, uniqBy, find, keyBy } from 'lodash'
+import { get, set, pick, isEmpty, omit, uniqBy, find, keyBy } from 'lodash'
 import {
   safeParseJSON,
   generateId,
@@ -786,6 +786,29 @@ const findCodeDetail = (messures, key, path, defaultValue) => {
   return get(detail, path || 'value', defaultValue || '')
 }
 
+const LogOutPutMapper = item => {
+  const { metadata, spec } = item
+  const rules = pick(spec, ['es', 'kafka', 'forward'])
+  const type = get(Object.keys(rules), '[0]', '')
+  const address =
+    type === 'kafka'
+      ? get(rules, 'kafka.brokers')
+      : `${get(rules, `${type}.host`)}:${get(rules, `${type}.port`)}`
+
+  return {
+    uid: metadata.uid,
+    creationTimestamp: metadata.creationTimestamp,
+    rules: pick(spec, ['es', 'kafka', 'forward']),
+    type,
+    name: metadata.name,
+    address,
+    enabled:
+      get(metadata, 'labels["logging.kubesphere.io/enabled"]') === 'true',
+    config: spec[type],
+    _originData: item,
+  }
+}
+
 const CodeQualityMapper = item => {
   const messures = get(item, 'measures.component.measures', [])
   const severities = find(
@@ -921,4 +944,5 @@ export default {
   users: UserMapper,
   clusters: ClusterMapper,
   federated: FederatedMapper,
+  outputs: LogOutPutMapper,
 }

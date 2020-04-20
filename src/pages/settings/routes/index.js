@@ -30,6 +30,7 @@ const navs = globals.app.getPlatformSettingsNavs()
 const indexRoute = get(navs, '[0].items[0].name', 'nodes')
 
 export default [
+  ...logCollectionRoutes,
   {
     path: PATH,
     component: Layout,
@@ -46,5 +47,4 @@ export default [
       getIndexRoute({ path: '*', to: '/404', exact: true }),
     ],
   },
-  ...logCollectionRoutes,
 ]

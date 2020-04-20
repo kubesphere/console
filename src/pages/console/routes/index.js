@@ -21,10 +21,8 @@ import Dashboard from '../containers/Dashboard'
 import NotFound from '../containers/NotFound'
 import ServiceComponents from '../containers/ServiceComponents'
 
-import logCollectionRoutes from './logCollection'
 import componentRoutes from './component'
 import volumeRoutes from './volume'
-import platformRoutes from './platformSettings'
 import monitoringRoutes from './monitoring'
 
 export default [
@@ -32,8 +30,6 @@ export default [
   { path: '/dashboard', component: Dashboard, exact: true },
   { path: '/projects', component: Projects, exact: true },
   { path: '/components', component: ServiceComponents, exact: true },
-  ...platformRoutes,
-  ...logCollectionRoutes,
   ...monitoringRoutes,
   ...componentRoutes,
   ...volumeRoutes,

@@ -17,12 +17,13 @@
  */
 
 import React, { Component } from 'react'
-import { observer } from 'mobx-react'
+import { observer, inject } from 'mobx-react'
 import { isEmpty } from 'lodash'
 
 import LogStore from 'stores/logging/query'
 import LogCard from 'components/Cards/LogQuery'
 
+@inject('detailStore')
 @observer
 class LogCollectionDetailContainers extends Component {
   store = new LogStore({
@@ -33,7 +34,7 @@ class LogCollectionDetailContainers extends Component {
 
   render() {
     const detail = this.props.detailStore || {}
-    const isCollecting = detail.enable
+    const isCollecting = detail.enabled
 
     return isEmpty(detail) ? null : (
       <LogCard store={this.store} realTime={isCollecting} />

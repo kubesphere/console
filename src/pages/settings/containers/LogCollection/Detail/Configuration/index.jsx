@@ -17,34 +17,31 @@
  */
 
 import React from 'react'
-import { observer } from 'mobx-react'
+import { observer, inject } from 'mobx-react'
 import { get } from 'lodash'
 
 import { Card } from 'components/Base'
 import Attributes from 'core/containers/Base/Detail/BaseInfo/Attributes'
 
-import collectionConfig from '../../config'
-
 import styles from './index.scss'
 
+@inject('detailStore')
 @observer
-export default class AuthorizationList extends React.Component {
+export default class Configuration extends React.Component {
   render() {
-    const detail = this.props.detailStore || {}
-    const { isLoading, HTTP_User, HTTP_Password, Name } = detail
-    const pathGetter = get(collectionConfig, `${Name}.pathGetter`, () => {})
-    const path = pathGetter(detail)
+    const detail = get(this.props.detailStore, 'detail', {})
+    const { HTTP_User, HTTP_Password, type, address } = detail
 
     return (
-      <Card loading={isLoading}>
+      <Card>
         <Attributes className={styles.attributes}>
           <Attributes.Item
             className={styles.item}
             key="address"
             name={t('Address')}
-            value={path}
+            value={address}
           />
-          {Name === 'es' && (
+          {type === 'es' && (
             <div>
               <Attributes.Item
                 className={styles.item}

@@ -16,43 +16,13 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { withProps } from 'utils'
-import { getIndexRoute } from 'utils/router.config'
-
-import DetailLayout from 'core/layouts/Detail'
-
 import Detail from '../containers/LogCollection/Detail'
-import Configuration from '../containers/LogCollection/Detail/Configuration'
-import Log from '../containers/LogCollection/Detail/Log'
 
-const PATH = '/log-collection/:name'
+const PATH = '/settings/log-collection/:name'
 
 export default [
   {
     path: PATH,
-    component: withProps(DetailLayout, {
-      module: '',
-      component: Detail,
-      breadcrumbs: [
-        { label: 'Log Collection', url: '/settings/log-collection' },
-      ],
-    }),
-    routes: [
-      {
-        name: 'configuration',
-        path: `${PATH}/configuration`,
-        title: 'Configuration',
-        component: Configuration,
-      },
-      {
-        name: 'Log',
-        path: `${PATH}/log`,
-        title: 'Log',
-        component: Log,
-        hide: store => store.Name !== 'es',
-      },
-      getIndexRoute({ path: PATH, to: `${PATH}/configuration`, exact: true }),
-      getIndexRoute({ path: '*', to: '/404', exact: true }),
-    ],
+    component: Detail,
   },
 ]

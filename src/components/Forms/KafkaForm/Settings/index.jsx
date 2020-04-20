@@ -25,8 +25,8 @@ export default class BaseInfo extends React.Component {
   addressValidator = (rule, value, callback) => {
     const brokers = value.split(',')
     const isValid = brokers.every(broker => {
-      const [, Host = '', Port = ''] = broker.match(/(.*):(.*)$/) || []
-      return Host && Port
+      const [, host = '', port = ''] = broker.match(/(.*):(.*)$/) || []
+      return host && port
     })
     return isValid ? callback() : callback({ message: t('URL_SYNTAX_ERROR') })
   }
@@ -35,7 +35,7 @@ export default class BaseInfo extends React.Component {
     return (
       <div>
         <Form.Item label={t('topic')}>
-          <Input name="Topics" autoComplete="nope" />
+          <Input name="topics" autoComplete="nope" />
         </Form.Item>
         <Form.Item
           label={t('Service Address')}
@@ -44,7 +44,7 @@ export default class BaseInfo extends React.Component {
             { validator: this.addressValidator },
           ]}
         >
-          <Brokers name="Brokers" />
+          <Brokers name="brokers" />
         </Form.Item>
       </div>
     )
