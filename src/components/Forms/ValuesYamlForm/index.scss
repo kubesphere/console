@@ -1,0 +1,38 @@
+.group {
+  // margin: 12px 0 0 0;
+  display: flex;
+  flex-flow: row wrap;
+}
+.subform {
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+}
+.colhalf {
+  flex: 50%;
+  // min-height: 95px;
+  padding: 12px;
+  margin-top: 0 !important;
+}
+.slider {
+  margin-right: 15px;
+  margin-top: 20px;
+  width: 350px;
+}
+.subtitle {
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.col {
+  flex: 100%;
+  // min-height: 95px;
+  padding: 12px;
+}
+
+.subform {
+  border: 1px solid #ccd3db;
+  margin: 8px 0;
+  padding: 8px;
+  border-radius: 4px;
+}

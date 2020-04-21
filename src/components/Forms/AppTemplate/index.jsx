@@ -34,6 +34,7 @@ import AppFileStore from 'stores/openpitrix/file'
 import { Columns, Column, Input, TextArea, Loading } from '@pitrix/lego-ui'
 import { Form, Button, Image, Notify, SearchSelect } from 'components/Base'
 import TextPreview from 'components/TextPreview'
+import ValuesYamlForm from 'components/Forms/ValuesYamlForm'
 
 import styles from './index.scss'
 
@@ -232,6 +233,7 @@ export default class AppTemplateForm extends React.Component {
     const packageFiles = this.fileStore.files
     const valuesYaml = packageFiles['values.yaml']
     this.valuesYaml = valuesYaml
+    this.valuesSchema = packageFiles['values.schema.json']
     this.fetchValuesYaml = false
   }
 
@@ -522,6 +524,12 @@ export default class AppTemplateForm extends React.Component {
     return (
       <div className={styles.params}>
         <div className="h5">{t('Params Configuration')}</div>
+        {this.valuesSchema && (
+          <ValuesYamlForm
+            schema={JSON.parse(this.valuesSchema)}
+            yaml={formatYaml(this.valuesYaml)}
+          />
+        )}
         <TextPreview
           files={{ 'values.yaml': this.valuesYaml }}
           type="values.yaml"
