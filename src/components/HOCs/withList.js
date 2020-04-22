@@ -192,8 +192,14 @@ export default function withList(options) {
       }
     }
 
-    return inject('rootStore')(observer(trigger(ListWrapper)))
+    const injectStores = options.injectStores || ['rootStore']
+
+    return inject(...injectStores)(observer(trigger(ListWrapper)))
   }
+}
+
+export function withProjectList(options) {
+  return withList({ injectStores: ['rootStore', 'projectStore'], ...options })
 }
 
 export class ListPage extends React.Component {

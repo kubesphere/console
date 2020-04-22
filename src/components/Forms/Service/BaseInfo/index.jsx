@@ -203,8 +203,8 @@ export default class ServiceBaseInfo extends React.Component {
           </Column>
         </Columns>
         <Columns>
-          <Column>
-            {!this.props.namespace && (
+          {!this.props.namespace && (
+            <Column>
               <Form.Item label={t('Project')} desc={t('PROJECT_DESC')}>
                 <ProjectSelect
                   name="metadata.namespace"
@@ -212,8 +212,8 @@ export default class ServiceBaseInfo extends React.Component {
                   defaultValue={this.namespace || 'default'}
                 />
               </Form.Item>
-            )}
-          </Column>
+            </Column>
+          )}
           <Column>
             <Form.Item label={t('Description')}>
               <TextArea name="metadata.annotations['kubesphere.io/description']" />

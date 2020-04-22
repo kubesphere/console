@@ -19,9 +19,9 @@
 import React from 'react'
 import { isUndefined } from 'lodash'
 
-import { Avatar, Status } from 'components/Base'
+import { Avatar, Status, Tag } from 'components/Base'
 import Banner from 'components/Cards/Banner'
-import Table from 'components/Tables/Base'
+import Table from 'components/Tables/List'
 import withList, { ListPage } from 'components/HOCs/withList'
 
 import { getDisplayName } from 'utils'
@@ -32,9 +32,81 @@ import ProjectStore from 'stores/project'
 @withList({
   store: new ProjectStore(),
   name: 'Project',
-  module: 'projects',
+  module: 'namespaces',
 })
 export default class Projects extends React.Component {
+  get itemActions() {
+    const { trigger } = this.props
+    return [
+      {
+        key: 'edit',
+        icon: 'pen',
+        text: t('Edit'),
+        action: 'edit',
+        onClick: item => trigger('resource.baseinfo.edit', { detail: item }),
+      },
+      {
+        key: 'modify',
+        icon: 'restart',
+        text: t('Assign Workspace'),
+        action: 'manage',
+        show: record => !record.workspace,
+        onClick: item =>
+          trigger('cluster.project.assignworkspace', {
+            detail: item,
+            success: this.getData,
+          }),
+      },
+      {
+        key: 'delete',
+        icon: 'trash',
+        text: t('Delete'),
+        action: 'delete',
+        onClick: item =>
+          trigger('resource.delete', {
+            type: t(this.name),
+            resource: item.name,
+            detail: item,
+            success: this.getData,
+          }),
+      },
+    ]
+  }
+
+  get tabs() {
+    return {
+      value: this.type || 'user',
+      onChange: this.handleTabChange,
+      options: [
+        {
+          value: 'user',
+          label: t('User Projects'),
+        },
+        {
+          value: 'system',
+          label: t('System Projects'),
+        },
+      ],
+    }
+  }
+
+  handleTabChange = type => {
+    const { cluster } = this.props.match.params
+    this.props.routing.push(`/clusters/${cluster}/projects?type=${type}`)
+  }
+
+  getData = async ({ silent, ...params } = {}) => {
+    this.query = params
+    this.type = params.type
+
+    silent && (this.props.store.list.silent = true)
+    await this.props.store.fetchList({
+      ...this.props.match.params,
+      ...params,
+    })
+    this.props.store.list.silent = false
+  }
+
   getColumns = () => {
     const { getSortOrder, prefix } = this.props
     return [
@@ -49,7 +121,14 @@ export default class Projects extends React.Component {
             icon="project"
             iconSize={40}
             desc={record.description || '-'}
-            title={getDisplayName(record)}
+            title={
+              <span>
+                <span>{getDisplayName(record)} &nbsp;&nbsp;</span>
+                {record.isFedManaged && (
+                  <Tag type="info">{t('MULTI_CLUSTER')}</Tag>
+                )}
+              </span>
+            }
           />
         ),
       },
@@ -59,6 +138,11 @@ export default class Projects extends React.Component {
         isHideable: true,
         search: true,
         render: status => <Status type={status} name={t(status)} flicker />,
+      },
+      {
+        title: t('Workspace'),
+        dataIndex: 'workspace',
+        isHideable: true,
       },
       {
         title: t('CPU Usage'),
@@ -86,10 +170,11 @@ export default class Projects extends React.Component {
   render() {
     const { bannerProps, tableProps } = this.props
     return (
-      <ListPage {...this.props}>
-        <Banner {...bannerProps} />
+      <ListPage {...this.props} getData={this.getData}>
+        <Banner {...bannerProps} tabs={this.tabs} />
         <Table
           {...tableProps}
+          itemActions={this.itemActions}
           columns={this.getColumns()}
           onCreate={this.showCreate}
         />

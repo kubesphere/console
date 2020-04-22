@@ -18,6 +18,7 @@
 
 import React from 'react'
 import { inject, observer } from 'mobx-react'
+import isEqual from 'react-fast-compare'
 import { get } from 'lodash'
 import { toJS } from 'mobx'
 
@@ -66,16 +67,15 @@ class ResourceUsage extends React.Component {
     }
 
     this.dashboardStore = new DashboardStore()
-    this.projectStore = props.rootStore.project
     this.appResourceMonitorStore = new ProjectMonitorStore()
     this.physicalResourceMonitorStore = new ProjectMonitorStore()
 
-    this.fetchData(this.namespace)
+    this.fetchData(this.props.match.params)
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.match.params.namespace !== this.namespace) {
-      this.fetchData(this.namespace)
+    if (!isEqual(prevProps.match.params, this.props.match.params)) {
+      this.fetchData(this.props.match.params)
     }
   }
 
@@ -116,9 +116,7 @@ class ResourceUsage extends React.Component {
     ]
   }
 
-  fetchData = namespace => {
-    const params = { namespace }
-
+  fetchData = params => {
     this.fetchMetrics()
     this.dashboardStore.fetchResourceStatus(params)
   }
@@ -127,7 +125,7 @@ class ResourceUsage extends React.Component {
     const { resourceType, range } = this.state
     if (resourceType === 'application') {
       this.appResourceMonitorStore.fetchMetrics({
-        namespace: this.namespace,
+        ...this.props.match.params,
         metrics: APP_RESOURCE_METRIC_TYPES,
         step: `${Math.floor(range / 10)}s`,
         times: 10,
@@ -137,7 +135,7 @@ class ResourceUsage extends React.Component {
       })
     } else {
       this.physicalResourceMonitorStore.fetchMetrics({
-        namespace: this.namespace,
+        ...this.props.match.params,
         metrics: PHYSICAL_RESOURCE_METRIC_TYPES,
         step: `${Math.floor(range / 40)}s`,
         times: 40,
@@ -271,7 +269,7 @@ class ResourceUsage extends React.Component {
             .filter(item => !item.disabled)
             .map(item => (
               <AppResourceItem
-                namespace={this.namespace}
+                {...this.props.match.params}
                 {...item}
                 metrics={get(metrics, `${item.metric}.data.result`)}
                 isMetricsLoading={isMetricsLoading || isRefreshing}

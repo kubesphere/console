@@ -47,6 +47,9 @@ export default {
 
   'Choose a provider': '选择服务商',
 
+  'User Projects': '用户项目',
+  'System Projects': '系统项目',
+
   NO_CLUSTER_TIP: '请添加至少 1 个集群',
   NO_CLUSTER_TIP_DESC:
     '集群是一组运行着 Kubernetes 的节点（物理或者虚拟机）, Kubesphere 的功能也依托于集群中的节点来运行',
@@ -56,4 +59,6 @@ export default {
 
   VISIBILITY_PART: '部分可见',
   VISIBILITY_PUBLIC: '公开',
+
+  MULTI_CLUSTER: '多集群',
 }

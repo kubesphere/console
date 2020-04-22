@@ -19,7 +19,6 @@
 import { observable, action } from 'mobx'
 import { Notify } from 'components/Base'
 import cookie from 'utils/cookie'
-import { getFilterString } from 'utils'
 
 import Base from './base'
 
@@ -34,56 +33,14 @@ export default class UsersStore extends Base {
   @observable
   roles = []
 
-  getListUrl = () => 'kapis/iam.kubesphere.io/v1alpha2/users'
+  module = 'users'
 
-  getDetailUrl = ({ name }) => `${this.getListUrl()}/${name}`
-
-  getResourceUrl = () => this.getListUrl()
-
-  @action
-  async fetchList({ page = 1, limit = 10, more, keyword, ...params } = {}) {
-    this.list.isLoading = true
-
-    if (keyword) {
-      params.conditions = getFilterString({ keyword })
-    }
-
-    if (limit !== Infinity) {
-      params.paging = `limit=${limit || 10},page=${page || 1}`
-    }
-
-    if (params.reverse === undefined) {
-      params.reverse = true
-    }
-
-    const result = await request.get(this.getResourceUrl(), params)
-
-    this.list.update({
-      data: more ? [...this.list.data, ...result.items] : result.items,
-      total: result.total_count || 0,
-      limit: Number(limit) || 10,
-      page: Number(page) || 1,
-      keyword,
-      isLoading: false,
-      selectedRowKeys: [],
-    })
-    return result
-  }
-
-  @action
-  async fetchDetail({ name }) {
-    this.isLoading = true
-
-    const result = await request.get(this.getDetailUrl({ name }))
-
-    this.detail = result
-    this.isLoading = false
-  }
+  getResourceUrl = this.getListUrl
 
   @action
   async fetchUserRoles({ username }) {
     const result = await request.get(
-      `kapis/iam.kubesphere.io/v1alpha2/users/${username}/roles`
+      `apis/iam.kubesphere.io/v1alpha2/users/${username}/roles`
     )
 
     this.roles = result
@@ -97,22 +54,6 @@ export default class UsersStore extends Base {
 
     this.logs.data = result
     this.logs.isLoading = false
-  }
-
-  @action
-  create(data) {
-    return this.submitting(request.post(this.getListUrl(), data))
-  }
-
-  @action
-  checkUserName(name) {
-    return request.get(
-      this.getDetailUrl({ name }),
-      {},
-      {
-        headers: { 'x-check-exist': true },
-      }
-    )
   }
 
   @action

@@ -16,10 +16,15 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { get } from 'lodash'
 import { Modal, Notify } from 'components/Base'
 
 import CreateModal from 'components/Modals/Create'
 import RedeployModal from 'projects/components/Modals/Redeploy'
+import RollBackModal from 'projects/components/Modals/RollBack'
+import HPAModal from 'projects/components/Modals/HPA'
+import EditConfigTemplateModal from 'projects/components/Modals/ConfigTemplate'
+import EditServiceModal from 'projects/components/Modals/ServiceSetting/StatefulSet'
 import { MODULE_KIND_MAP } from 'utils/constants'
 import FORM_TEMPLATES from 'utils/form.templates'
 import formPersist from 'utils/form.persist'
@@ -28,6 +33,10 @@ import STATEFULSETS_FORM_STEPS from 'configs/steps/statefulsets'
 import DAEMONSETS_FORM_STEPS from 'configs/steps/daemonsets'
 import JOBS_FORM_STEPS from 'configs/steps/jobs'
 import CRONJOBS_FORM_STEPS from 'configs/steps/cronjobs'
+
+import RevisionStore from 'stores/workload/revision'
+import HPAStore from 'stores/workload/hpa'
+import ServiceStore from 'stores/service'
 
 const FORM_STEPS = {
   deployments: DEPLOYMENTS_FORM_STEPS,
@@ -39,7 +48,15 @@ const FORM_STEPS = {
 
 export default {
   'workload.create': {
-    on({ store, namespace, module, success, ...props }) {
+    on({
+      store,
+      cluster,
+      namespace,
+      module,
+      success,
+      projectDetail,
+      ...props
+    }) {
       const kind = MODULE_KIND_MAP[module]
       const formTemplate = {
         [kind]: FORM_TEMPLATES[module]({
@@ -68,7 +85,7 @@ export default {
             }
           }
 
-          store.create(data).then(() => {
+          store.create(data, { cluster, namespace, projectDetail }).then(() => {
             Modal.close(modal)
             Notify.success({ content: `${t('Created Successfully')}!` })
             success && success()
@@ -76,6 +93,7 @@ export default {
           })
         },
         module,
+        cluster,
         namespace,
         name: kind,
         formTemplate,
@@ -112,6 +130,99 @@ export default {
         type: kind,
         modal: RedeployModal,
         store,
+        ...props,
+      })
+    },
+  },
+  'workload.revision.rollback': {
+    on({ store, detail, module, success, ...props }) {
+      const revisionStore = new RevisionStore(module)
+      const modal = Modal.open({
+        onOk: data => {
+          revisionStore.rollBack(data).then(() => {
+            Modal.close(modal)
+            success && success()
+          })
+        },
+        detail,
+        module,
+        store: revisionStore,
+        modal: RollBackModal,
+        ...props,
+      })
+    },
+  },
+  'workload.hpa.edit': {
+    on({ store, detail, success, ...props }) {
+      const hpaStore = new HPAStore()
+      const modal = Modal.open({
+        onOk: (newData, isEdit) => {
+          if (isEdit) {
+            hpaStore.patch(detail, newData).then(() => {
+              Modal.close(modal)
+              success && success()
+            })
+          } else {
+            hpaStore.create(newData).then(async () => {
+              Modal.close(modal)
+              await store.patch(detail, {
+                metadata: {
+                  annotations: {
+                    'kubesphere.io/relatedHPA': get(
+                      newData,
+                      'metadata.name',
+                      detail.name
+                    ),
+                  },
+                },
+              })
+              success && success()
+            })
+          }
+        },
+        detail,
+        store: hpaStore,
+        modal: HPAModal,
+        ...props,
+      })
+    },
+  },
+  'workload.template.edit': {
+    on({ store, detail, module, success, ...props }) {
+      const modal = Modal.open({
+        onOk: data => {
+          store.update(detail, data).then(() => {
+            Modal.close(modal)
+            success && success()
+          })
+        },
+        module,
+        store,
+        detail: detail._originData,
+        modal: EditConfigTemplateModal,
+        ...props,
+      })
+    },
+  },
+  'workload.service.edit': {
+    on({ store, detail, success, ...props }) {
+      const serviceStore = new ServiceStore()
+      const serviceDetail = {
+        type: 'Headless(Selector)',
+        name: get(detail, '_originData.spec.serviceName', ''),
+        namespace: detail.namespace,
+      }
+
+      const modal = Modal.open({
+        onOk: data => {
+          store.update(serviceDetail, data).then(() => {
+            Modal.close(modal)
+            success && success()
+          })
+        },
+        detail: serviceDetail,
+        store: serviceStore,
+        modal: EditServiceModal,
         ...props,
       })
     },

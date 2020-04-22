@@ -16,17 +16,18 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import DeploymentDetail from 'projects/containers/Deployments/Detail'
+import StatefulSetDetail from 'projects/containers/StatefulSets/Detail'
+import DaemonSetDetail from 'projects/containers/DaemonSets/Detail'
+import JobDetail from 'projects/containers/Jobs/Detail'
+import CronJobDetail from 'projects/containers/CronJobs/Detail'
+import ServiceDetail from 'projects/containers/Services/Detail'
+import RouteDetail from 'projects/containers/Routes/Detail'
+import PodDetail from 'projects/containers/Pods/Detail'
+import ContainerDetail from 'projects/containers/Pods/Containers/Detail'
+
 import NodeDetail from '../containers/Nodes/Detail'
 import ProjectDetail from '../containers/Projects/Detail'
-import DeploymentDetail from '../containers/Workload/Deployments/Detail'
-import StatefulSetDetail from '../containers/Workload/StatefulSets/Detail'
-import DaemonSetDetail from '../containers/Workload/DaemonSets/Detail'
-import JobDetail from '../containers/Workload/Jobs/Detail'
-import CronJobDetail from '../containers/Workload/CronJobs/Detail'
-import ServiceDetail from '../containers/Workload/Services/Detail'
-import RouteDetail from '../containers/Workload/Routes/Detail'
-import PodDetail from '../containers/Workload/Pods/Detail'
-import ContainerDetail from '../containers/Workload/Containers/Detail'
 import StorageClassDetail from '../containers/Storage/StorageClasses/Detail'
 import VolumeSnapshotsDetail from '../containers/Storage/VolumeSnapshots/Detail'
 import Volume from '../containers/Storage/Volumes/Detail'
@@ -39,43 +40,47 @@ export default [
     component: NodeDetail,
   },
   {
-    path: `${PATH}/projects/:namespace`,
-    component: ProjectDetail,
-  },
-  {
-    path: `${PATH}/namespaces/:namespace/deployments/:name`,
-    component: DeploymentDetail,
-  },
-  {
-    path: `${PATH}/namespaces/:namespace/statefulsets/:name`,
-    component: StatefulSetDetail,
-  },
-  {
-    path: `${PATH}/namespaces/:namespace/daemonsets/:name`,
-    component: DaemonSetDetail,
-  },
-  {
-    path: `${PATH}/namespaces/:namespace/jobs/:name`,
-    component: JobDetail,
-  },
-  {
-    path: `${PATH}/namespaces/:namespace/cronjobs/:name`,
-    component: CronJobDetail,
-  },
-  {
-    path: `${PATH}/namespaces/:namespace/services/:name`,
-    component: ServiceDetail,
-  },
-  {
-    path: `${PATH}/namespaces/:namespace/routes/:name`,
-    component: RouteDetail,
-  },
-  {
-    path: `${PATH}/namespaces/:namespace/pods/:podName/containers/:containerName`,
+    path: `${PATH}/projects/:namespace/:module/:name/pods/:podName/containers/:containerName`,
     component: ContainerDetail,
   },
   {
-    path: `${PATH}/namespaces/:namespace/pods/:podName`,
+    path: `${PATH}/projects/:namespace/:module/:name/pods/:podName`,
+    component: PodDetail,
+  },
+  {
+    path: `${PATH}/projects/:namespace/deployments/:name`,
+    component: DeploymentDetail,
+  },
+  {
+    path: `${PATH}/projects/:namespace/statefulsets/:name`,
+    component: StatefulSetDetail,
+  },
+  {
+    path: `${PATH}/projects/:namespace/daemonsets/:name`,
+    component: DaemonSetDetail,
+  },
+  {
+    path: `${PATH}/projects/:namespace/jobs/:name`,
+    component: JobDetail,
+  },
+  {
+    path: `${PATH}/projects/:namespace/cronjobs/:name`,
+    component: CronJobDetail,
+  },
+  {
+    path: `${PATH}/projects/:namespace/services/:name`,
+    component: ServiceDetail,
+  },
+  {
+    path: `${PATH}/projects/:namespace/routes/:name`,
+    component: RouteDetail,
+  },
+  {
+    path: `${PATH}/projects/:namespace/pods/:podName/containers/:containerName`,
+    component: ContainerDetail,
+  },
+  {
+    path: `${PATH}/projects/:namespace/pods/:podName`,
     component: PodDetail,
   },
   {
@@ -87,7 +92,11 @@ export default [
     component: VolumeSnapshotsDetail,
   },
   {
-    path: `${PATH}/namespaces/:namespace/volumes/:name`,
+    path: `${PATH}/projects/:namespace/volumes/:name`,
     component: Volume,
+  },
+  {
+    path: `${PATH}/projects/:namespace`,
+    component: ProjectDetail,
   },
 ]

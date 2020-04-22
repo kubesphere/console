@@ -18,101 +18,24 @@
 
 import { action, observable } from 'mobx'
 
-export default class QuotaStore {
-  @observable
-  isLoading = false
+import Base from 'stores/base'
 
-  @observable
-  isSubmitting = false
+export default class QuotaStore extends Base {
+  module = 'resourcequotas'
 
   @observable
   data = {}
 
-  @observable
-  detail = {}
-
-  @observable
-  status = {}
-
   @action
-  submitting = promise => {
-    this.isSubmitting = true
-
-    setTimeout(() => {
-      promise
-        .catch(() => {})
-        .finally(() => {
-          this.isSubmitting = false
-        })
-    }, 500)
-
-    return promise
-  }
-
-  @action
-  async fetch({ namespace }) {
+  async fetch(params) {
     this.isLoading = true
 
     const result = await request.get(
-      `kapis/resources.kubesphere.io/v1alpha2/namespaces/${namespace}/quotas`
+      `kapis/resources.kubesphere.io/v1alpha2${this.getPath(params)}/quotas`
     )
 
     this.data = result.data
 
     this.isLoading = false
-  }
-
-  @action
-  async fetchDetail({ name, namespace }) {
-    this.isLoading = true
-
-    const result = await request.get(
-      `api/v1/namespaces/${namespace}/resourcequotas/${name}`,
-      null,
-      null,
-      () => {}
-    )
-
-    this.detail = result || {}
-
-    this.isLoading = false
-  }
-
-  @action
-  patch({ name, namespace }, data) {
-    return this.submitting(
-      request.patch(
-        `api/v1/namespaces/${namespace}/resourcequotas/${name}`,
-        data
-      )
-    )
-  }
-
-  @action
-  update({ name, namespace }, data) {
-    return this.submitting(
-      request.put(`api/v1/namespaces/${namespace}/resourcequotas/${name}`, data)
-    )
-  }
-
-  @action
-  create(data) {
-    return this.submitting(
-      request.post(
-        `api/v1/namespaces/${data.metadata.namespace}/resourcequotas`,
-        data
-      )
-    )
-  }
-
-  @action
-  async checkName(params) {
-    return await request.get(
-      `api/v1/namespaces/${params.namespace}/resourcequotas/${params.name}`,
-      {},
-      {
-        headers: { 'x-check-exist': true },
-      }
-    )
   }
 }

@@ -82,7 +82,7 @@ export default class ResourceStore extends Base {
     }
 
     const result = await request.get(
-      'kapis/monitoring.kubesphere.io/v1alpha2/nodes',
+      'kapis/monitoring.kubesphere.io/v1alpha3/nodes',
       params
     )
     const data = (get(result, 'results') || []).reduce(

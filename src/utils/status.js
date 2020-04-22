@@ -327,14 +327,6 @@ export const getPodStatusAndRestartCount = pod => {
   return { status, type, restarts }
 }
 
-export const getUserStatus = status => {
-  if (status === 0) {
-    return 'active'
-  }
-
-  return 'disabled'
-}
-
 export const getPipelineStatus = statusDetail => {
   const { state = '', result = '' } = statusDetail || {}
 

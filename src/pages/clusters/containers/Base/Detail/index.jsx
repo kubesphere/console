@@ -25,10 +25,11 @@ import ClusterStore from 'stores/cluster'
 @withRouter
 export default class DetailPage extends Base {
   async init() {
-    const { params } = this.props.match
-    if (params.cluster) {
+    const { cluster } = this.props.match.params
+    if (cluster) {
       this.stores.clusterStore = new ClusterStore()
-      await this.stores.clusterStore.fetchDetail(params)
+
+      await this.stores.clusterStore.fetchDetail({ name: cluster })
     }
 
     this.setState({ initializing: false })

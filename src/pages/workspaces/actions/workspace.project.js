@@ -16,6 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { set } from 'lodash'
 import { Modal, Notify } from 'components/Base'
 import ProjectCreateModal from 'components/Modals/ProjectCreate'
 import FORM_TEMPLATES from 'utils/form.templates'
@@ -25,19 +26,14 @@ export default {
     on({ store, success, workspace, ...props }) {
       const modal = Modal.open({
         onOk: data => {
-          store.create(data, { workspace }).then(() => {
+          set(data, 'metadata.labels["kubesphere.io/workspace"]', workspace)
+          store.create(data).then(() => {
             Modal.close(modal)
             Notify.success({ content: `${t('Created Successfully')}!` })
             success && success()
           })
         },
-        type: 'projects',
-        formTemplate: {
-          projects: {
-            Project: FORM_TEMPLATES.project(),
-            LimitRange: FORM_TEMPLATES.limitRange(),
-          },
-        },
+        formTemplate: FORM_TEMPLATES.project(),
         modal: ProjectCreateModal,
         store,
         ...props,

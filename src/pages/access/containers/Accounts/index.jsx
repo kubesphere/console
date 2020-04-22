@@ -20,9 +20,8 @@ import React from 'react'
 
 import UserStore from 'stores/user'
 
-import { Avatar } from 'components/Base'
+import { Avatar, Status } from 'components/Base'
 import Banner from 'components/Cards/Banner'
-import UserStatus from 'components/UserStatus'
 import Table from 'components/Tables/List'
 import withList, { ListPage } from 'components/HOCs/withList'
 
@@ -30,15 +29,14 @@ import { getLocalTime } from 'utils'
 
 @withList({
   store: new UserStore(),
-  module: 'accounts',
+  module: 'users',
   name: 'User',
-  rowKey: 'username',
 })
 export default class Accounts extends React.Component {
   checkActionEnable(record) {
     return (
-      !globals.config.presetUsers.includes(record.username) &&
-      globals.user.username !== record.username
+      !globals.config.presetUsers.includes(record.name) &&
+      globals.user.username !== record.name
     )
   }
 
@@ -93,7 +91,9 @@ export default class Accounts extends React.Component {
       dataIndex: 'status',
       isHideable: true,
       width: '20%',
-      render: status => <UserStatus status={status} />,
+      render: status => (
+        <Status type={status} name={t(`USER_${status.toUpperCase()}`)} />
+      ),
     },
     {
       title: t('Platform Role'),

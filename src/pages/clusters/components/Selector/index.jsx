@@ -18,7 +18,6 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import classNames from 'classnames'
 import { Icon } from '@pitrix/lego-ui'
 
 import SelectModal from 'clusters/components/Modals/ClusterSelect'
@@ -59,15 +58,12 @@ export default class Selector extends React.Component {
   }
 
   render() {
-    const { value, multi } = this.props
+    const { value } = this.props
     const { showSelect } = this.state
 
     return (
       <div>
-        <div
-          className={classNames(styles.titleWrapper, { pointer: multi })}
-          onClick={this.showSelect}
-        >
+        <div className={styles.titleWrapper} onClick={this.showSelect}>
           <div className={styles.icon}>
             <Icon name="cluster" size={40} type="light" />
           </div>
@@ -75,11 +71,9 @@ export default class Selector extends React.Component {
             <div className="h6">{value}</div>
             <p>{t('Cluster Management')}</p>
           </div>
-          {multi && (
-            <div className={styles.arrow}>
-              <Icon name="caret-down" type="light" />
-            </div>
-          )}
+          <div className={styles.arrow}>
+            <Icon name="caret-down" type="light" />
+          </div>
         </div>
         <SelectModal
           visible={showSelect}

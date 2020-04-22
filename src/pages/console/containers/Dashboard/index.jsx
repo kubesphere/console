@@ -35,14 +35,14 @@ const ROLESMAP = {
 
 @inject('rootStore')
 class Dashboard extends React.Component {
-  componentDidMount() {
-    if (
-      !globals.app.isClusterAdmin &&
-      globals.app.hasPermission({ module: 'workspaces', action: 'manage' })
-    ) {
-      this.props.rootStore.routing.push('/workspaces')
-    }
-  }
+  // componentDidMount() {
+  //   if (
+  //     !globals.app.isClusterAdmin &&
+  //     globals.app.hasPermission({ module: 'workspaces', action: 'manage' })
+  //   ) {
+  //     this.props.rootStore.routing.push('/workspaces')
+  //   }
+  // }
 
   getRoleText = role => ROLESMAP[role] || globals.user.cluster_role
 

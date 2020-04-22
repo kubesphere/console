@@ -39,6 +39,7 @@ const renderView = async ctx => {
       ksConfig: JSON.stringify(ksConfig),
       user: JSON.stringify(user),
       version: getFileVersion,
+      hostname: ctx.hostname,
     })
   } catch (err) {
     ctx.app.emit('error', err)

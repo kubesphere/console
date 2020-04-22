@@ -34,7 +34,7 @@ import RepoAppModal from 'projects/components/Modals/RepoApp'
 import OPApps from './OPApps'
 import CRDApps from './CRDApps'
 
-@inject('rootStore')
+@inject('rootStore', 'projectStore')
 @observer
 export default class Applications extends React.Component {
   constructor(props) {
@@ -43,7 +43,7 @@ export default class Applications extends React.Component {
     this.opAppStore = new OpAppStore()
     this.crdAppStore = new CRDAppStore()
 
-    this.projectStore = this.props.rootStore.project
+    this.projectStore = this.props.projectStore
 
     this.state = {
       showDeployApp: false,
@@ -74,12 +74,16 @@ export default class Applications extends React.Component {
     this.disposer && this.disposer()
   }
 
+  get cluster() {
+    return this.props.match.params.cluster
+  }
+
   get namespace() {
     return this.props.match.params.namespace
   }
 
   get workspace() {
-    return get(this, 'props.rootStore.project.detail.workspace')
+    return get(this.projectStore, 'detail.workspace')
   }
 
   get routing() {
@@ -182,8 +186,10 @@ export default class Applications extends React.Component {
   }
 
   handleTabChange = value => {
-    const { namespace } = this.props.match.params
-    this.routing.push(`/projects/${namespace}/applications/${value}`)
+    const { cluster, namespace } = this.props.match.params
+    this.routing.push(
+      `/cl/${cluster}/projects/${namespace}/applications/${value}`
+    )
   }
 
   showDeploySampleApp = () => {
@@ -291,6 +297,7 @@ export default class Applications extends React.Component {
         <ServiceDeployAppModal
           store={this.crdAppStore}
           visible={showServiceDeployApp}
+          cluster={this.cluster}
           namespace={this.namespace}
           onOk={this.handleServiceDeployApp}
           onCancel={this.hideServiceDeployAppModal}

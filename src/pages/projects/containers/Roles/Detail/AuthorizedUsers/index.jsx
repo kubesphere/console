@@ -21,8 +21,7 @@ import { toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import { getLocalTime } from 'utils'
 import { Table } from '@pitrix/lego-ui'
-import { Card } from 'components/Base'
-import UserStatus from 'components/UserStatus'
+import { Card, Status } from 'components/Base'
 
 @observer
 export default class AuthorizedUsers extends React.Component {
@@ -36,7 +35,9 @@ export default class AuthorizedUsers extends React.Component {
       title: t('Status'),
       dataIndex: 'status',
       width: '33%',
-      render: status => <UserStatus status={status} />,
+      render: status => (
+        <Status type={status} name={t(`USER_${status.toUpperCase()}`)} />
+      ),
     },
     {
       title: t('Last Login Time'),

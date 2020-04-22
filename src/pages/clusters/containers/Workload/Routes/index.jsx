@@ -35,6 +35,7 @@ import RouterStore from 'stores/router'
   store: new RouterStore(),
   module: 'ingresses',
   name: 'Route',
+  rowKey: 'uuid',
 })
 export default class Routers extends React.Component {
   get itemActions() {
@@ -128,7 +129,7 @@ export default class Routers extends React.Component {
             iconSize={40}
             title={getDisplayName(record)}
             desc={this.getItemDesc(record)}
-            to={`/clusters/${cluster}/namespaces/${
+            to={`/clusters/${cluster}/projects/${
               record.namespace
             }/routes/${name}`}
           />

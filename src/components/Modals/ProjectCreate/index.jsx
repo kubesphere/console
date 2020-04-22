@@ -17,29 +17,19 @@
  */
 
 import React from 'react'
+import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
-import { Icon } from '@pitrix/lego-ui'
-import { Modal, Steps, Button } from 'components/Base'
+import { Columns, Column, Select, Input, TextArea } from '@pitrix/lego-ui'
+import { Modal, Form } from 'components/Base'
+import { ArrayInput, ObjectInput } from 'components/Inputs'
 
-import steps from './steps'
+import WorkspaceStore from 'stores/workspace'
+import MemberStore from 'stores/workspace/member'
+import RoleStore from 'stores/workspace/role'
 
 import styles from './index.scss'
 
-const PROJECT_TYPES = [
-  {
-    key: 'projects',
-    icon: 'project',
-    title: 'PROJECT_TYPES_PROJECT_TITLE',
-    desc: 'PROJECT_TYPES_PROJECT_DESC',
-  },
-  {
-    key: 'devops',
-    icon: 'strategy-group',
-    title: 'PROJECT_TYPES_DEVOPS_TITLE',
-    desc: 'PROJECT_TYPES_DEVOPS_DESC',
-  },
-]
-
+@observer
 export default class ProjectCreateModal extends React.Component {
   static propTypes = {
     formTemplate: PropTypes.object,
@@ -47,7 +37,6 @@ export default class ProjectCreateModal extends React.Component {
     isSubmitting: PropTypes.bool,
     onOk: PropTypes.func,
     onCancel: PropTypes.func,
-    type: PropTypes.string,
   }
 
   static defaultProps = {
@@ -56,199 +45,141 @@ export default class ProjectCreateModal extends React.Component {
     isSubmitting: false,
     onOk() {},
     onCancel() {},
-    type: '',
   }
 
   constructor(props) {
     super(props)
 
-    this.state = {
-      selectType: props.type,
-      currentStep: 0,
-      formTemplate: props.formTemplate,
-    }
-
-    this.formRef = React.createRef()
+    this.store = props.store
+    this.workspaceStore = new WorkspaceStore()
+    this.memberStore = new MemberStore()
+    this.roleStore = new RoleStore()
   }
 
-  handleTypeChange = e => {
-    const { type } = e.currentTarget.dataset
-    this.setState({ selectType: type })
+  componentDidMount() {
+    this.fetchClusters()
   }
 
-  handleCreate = () => {
-    const form = this.formRef.current
-    const { onOk } = this.props
-    const { selectType, formTemplate } = this.state
-
-    form &&
-      form.validate(() => {
-        onOk({ ...formTemplate[selectType], type: selectType })
-      })
+  get networkOptions() {
+    return [
+      { label: t('Off'), value: 'false' },
+      { label: t('On'), value: 'true' },
+    ]
   }
 
-  handleNext = () => {
-    const form = this.formRef.current
-    const selectSteps = steps[this.state.selectType] || []
-    const stepCount = selectSteps.length
-
-    form &&
-      form.validate(() => {
-        this.setState(({ currentStep }) => ({
-          currentStep: Math.min(currentStep + 1, stepCount - 1),
-        }))
-      })
-  }
-
-  handlePrev = () => {
-    this.setState(({ currentStep, subRoute }) => ({
-      currentStep: Math.max(currentStep - 1, 0),
-      subRoute,
+  get clusters() {
+    return this.workspaceStore.clusters.data.map(item => ({
+      label: item.name,
+      value: item.name,
     }))
   }
 
-  renderTabs() {
-    const { currentStep, selectType } = this.state
-    const selectSteps = steps[selectType] || []
-
-    if (selectSteps.length < 2) {
-      return null
-    }
-
-    return (
-      <div className={styles.tabs}>
-        <Steps steps={selectSteps} current={currentStep} />
-      </div>
-    )
+  fetchClusters(params) {
+    this.workspaceStore.fetchClusters(params)
   }
 
-  renderContent() {
-    const { currentStep, selectType, formTemplate } = this.state
-    const selectSteps = steps[selectType] || []
-
-    const Component = selectSteps[currentStep].component
-
-    if (!Component) {
-      return null
-    }
-
-    return (
-      <div className={styles.content}>
-        <Component
-          formRef={this.formRef}
-          formTemplate={formTemplate[selectType]}
-        />
-      </div>
-    )
+  fetchMembers(params) {
+    this.memberStore.fetchList(params)
   }
 
-  renderFooter() {
-    const { isSubmitting } = this.props
-    const { currentStep, selectType } = this.state
-    const selectSteps = steps[selectType] || []
-
-    const showCreate = selectSteps.every((step, index) =>
-      step.required ? currentStep >= index : true
-    )
-
-    const showNext = currentStep < selectSteps.length - 1
-
-    return (
-      <div className={styles.footer}>
-        {currentStep ? (
-          <Button
-            type="default"
-            onClick={this.handlePrev}
-            data-test="modal-previous"
-          >
-            {t('Previous')}
-          </Button>
-        ) : null}
-        {showNext && (
-          <Button
-            type="control"
-            onClick={this.handleNext}
-            data-test="modal-next"
-          >
-            {t('Next')}
-          </Button>
-        )}
-        {showCreate && (
-          <Button
-            type="control"
-            loading={isSubmitting}
-            disabled={isSubmitting}
-            onClick={this.handleCreate}
-            data-test="modal-create"
-          >
-            {t('Create')}
-          </Button>
-        )}
-      </div>
-    )
-  }
-
-  renderSelect() {
-    return (
-      <div className={styles.typeWrapper}>
-        <div className="h3">{t('Select Project Type')}</div>
-        <p>-</p>
-        {PROJECT_TYPES.map(type => (
-          <div
-            key={type.key}
-            className={styles.type}
-            data-type={type.key}
-            onClick={this.handleTypeChange}
-          >
-            {type.icon.startsWith('/') ? (
-              <img src={type.icon} alt="" />
-            ) : (
-              <Icon name={type.icon} size={32} />
-            )}
-            <div className={styles.text}>
-              <div className="h6">{t(type.title)}</div>
-              <p>{t(type.desc)}</p>
-            </div>
-          </div>
-        ))}
-        <img
-          className={styles.bottomImage}
-          src="/assets/undraw-target-kriv.svg"
-          alt=""
-        />
-      </div>
-    )
+  fetchRoles(params) {
+    this.roleStore.fetchList(params)
   }
 
   render() {
-    const { visible, onCancel } = this.props
-    const showSelect = this.state.selectType === ''
-
+    const { visible, formTemplate, onOk, onCancel } = this.props
     return (
-      <Modal
-        width={this.state.selectType === 'devops' ? 700 : 960}
-        title={
-          this.state.selectType === 'devops'
-            ? t('Create DevOps Project')
-            : t('Create Project')
-        }
+      <Modal.Form
+        width={960}
         bodyClassName={styles.body}
+        data={formTemplate}
         onCancel={onCancel}
+        onOk={onOk}
         visible={visible}
         closable={false}
-        hideFooter
-        hideHeader={showSelect}
+        hideHeader
       >
-        {showSelect ? (
-          this.renderSelect()
-        ) : (
-          <div>
-            {this.renderTabs()}
-            {this.renderContent()}
-            {this.renderFooter()}
+        <div className={styles.header}>
+          <img src="/assets/project-create.svg" alt="" />
+          <div className={styles.title}>
+            <div>{t('Create Project')}</div>
+            <p>{t('PROJECT_CREATE_DESC')}</p>
           </div>
-        )}
-      </Modal>
+        </div>
+        <div className={styles.content}>
+          <Columns>
+            <Column>
+              <Form.Item
+                label={t('Name')}
+                desc={t('SERVICE_NAME_DESC')}
+                rules={[{ required: true, message: t('Please input name') }]}
+              >
+                <Input name="metadata.name" autoFocus={true} />
+              </Form.Item>
+            </Column>
+            <Column>
+              <Form.Item label={t('Alias')} desc={t('ALIAS_DESC')}>
+                <Input name="metadata.annotations['kubesphere.io/alias-name']" />
+              </Form.Item>
+            </Column>
+          </Columns>
+          <Columns>
+            <Column>
+              <Form.Item
+                label={t('Network Isolated')}
+                desc={t('NETWORK_ISOLATED_DESC')}
+              >
+                <Select
+                  name="metadata.annotations['kubesphere.io/network']"
+                  options={this.networkOptions}
+                  defaultValue={'true'}
+                />
+              </Form.Item>
+            </Column>
+            <Column>
+              <Form.Item label={t('Description')}>
+                <TextArea name="metadata.annotations['kubesphere.io/description']" />
+              </Form.Item>
+            </Column>
+          </Columns>
+          <Form.Group
+            label={t('Cluster Settings')}
+            desc={t('PROJECT_CLUSTER_SETTINGS_DESC')}
+          >
+            <Form.Item>
+              <ArrayInput
+                name="spec.placement.clusters"
+                addText={t('Add Cluster')}
+              >
+                <ObjectInput>
+                  <Select
+                    name="name"
+                    options={this.clusters}
+                    style={{ width: 700 }}
+                  />
+                </ObjectInput>
+              </ArrayInput>
+            </Form.Item>
+          </Form.Group>
+          {/* <Form.Group
+            label={t('Member Settings')}
+            desc={t('MEMBER_SETTINGS_DESC')}
+          >
+            <Form.Item>
+              <ArrayInput
+                name="metadata.annotations['kubesphere.io/members']"
+                itemType="object"
+                addText={t('Add Cluster')}
+              >
+                <ObjectInput>
+                  <Select name="username" options={this.users} />
+                  <Select name="role" options={this.roles} />
+                </ObjectInput>
+              </ArrayInput>
+            </Form.Item>
+          </Form.Group> */}
+        </div>
+      </Modal.Form>
     )
   }
 }

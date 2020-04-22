@@ -19,15 +19,15 @@
 import React from 'react'
 import { isUndefined } from 'lodash'
 
-import { Avatar, Status } from 'components/Base'
+import { Avatar, Status, Tag } from 'components/Base'
 import Banner from 'components/Cards/Banner'
-import Table from 'components/Tables/List'
+import Table from 'workspaces/components/ResourceTable'
 import withList, { ListPage } from 'components/HOCs/withList'
 
 import { getDisplayName } from 'utils'
 import { getSuitableValue } from 'utils/monitoring'
 
-import ProjectStore from 'stores/project'
+import ProjectStore from 'stores/workspace/project'
 
 @withList({
   store: new ProjectStore(),
@@ -37,12 +37,18 @@ import ProjectStore from 'stores/project'
 export default class Projects extends React.Component {
   get itemActions() {
     const { trigger } = this.props
+    const showAction = record =>
+      record.isFedManaged
+        ? !record.cluster || record.cluster === 'gondor'
+        : true
+
     return [
       {
         key: 'edit',
         icon: 'pen',
         text: t('Edit'),
         action: 'edit',
+        show: showAction,
         onClick: item => trigger('resource.baseinfo.edit', { detail: item }),
       },
       {
@@ -50,6 +56,7 @@ export default class Projects extends React.Component {
         icon: 'pen',
         text: t('Edit Quota'),
         action: 'edit',
+        show: showAction,
         onClick: item =>
           trigger('project.qutoa.edit', {
             type: t('Project'),
@@ -61,6 +68,7 @@ export default class Projects extends React.Component {
         icon: 'trash',
         text: t('Delete'),
         action: 'delete',
+        show: showAction,
         onClick: item =>
           trigger('resource.delete', {
             type: t('Project'),
@@ -94,11 +102,22 @@ export default class Projects extends React.Component {
         sortOrder: getSortOrder('name'),
         render: (name, record) => (
           <Avatar
-            to={record.status === 'Terminating' ? null : `/projects/${name}`}
+            to={
+              record.status === 'Terminating'
+                ? null
+                : `/cl/${record.cluster || 'gondor'}/projects/${name}`
+            }
             icon="project"
             iconSize={40}
             desc={record.description || '-'}
-            title={getDisplayName(record)}
+            title={
+              <span>
+                <span>{getDisplayName(record)} &nbsp;&nbsp;</span>
+                {record.isFedManaged && (
+                  <Tag type="info">{t('MULTI_CLUSTER')}</Tag>
+                )}
+              </span>
+            }
           />
         ),
       },
@@ -136,7 +155,7 @@ export default class Projects extends React.Component {
     })
 
   render() {
-    const { bannerProps, tableProps } = this.props
+    const { query, bannerProps, tableProps } = this.props
     return (
       <ListPage {...this.props}>
         <Banner {...bannerProps} tips={this.tips} />
@@ -146,6 +165,7 @@ export default class Projects extends React.Component {
           columns={this.getColumns()}
           onCreate={this.showCreate}
           searchType={'keyword'}
+          cluster={query.cluster}
           getCheckboxProps={this.getCheckboxProps}
         />
       </ListPage>

@@ -57,9 +57,11 @@ export default class QuotaEditModal extends React.Component {
     this.state = {
       formTemplate: {},
     }
+  }
 
-    if (props.detail && props.detail.name) {
-      this.fetchData(props.detail)
+  componentDidMount() {
+    if (this.props.detail && this.props.detail.name) {
+      this.fetchData(this.props.detail)
     }
   }
 
@@ -74,12 +76,14 @@ export default class QuotaEditModal extends React.Component {
     const ret = await this.store.checkName({
       name: detail.name,
       namespace: detail.name,
+      cluster: detail.cluster,
     })
 
     if (ret.exist) {
       await this.store.fetchDetail({
         name: detail.name,
         namespace: detail.name,
+        cluster: detail.cluster,
       })
     }
 

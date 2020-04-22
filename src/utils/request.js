@@ -20,6 +20,7 @@ require('whatwg-fetch')
 const get = require('lodash/get')
 const set = require('lodash/set')
 const merge = require('lodash/merge')
+const isEmpty = require('lodash/isEmpty')
 const qs = require('qs')
 const cookie = require('./cookie').default
 
@@ -83,7 +84,9 @@ function buildRequest({
     ) !== -1
 
   if (method === 'GET') {
-    requestURL += qs.stringify(params)
+    if (!isEmpty(params)) {
+      requestURL += `?${qs.stringify(params)}`
+    }
   } else if (isForm) {
     request.body = qs.stringify(params)
   } else {
@@ -110,6 +113,13 @@ function buildRequest({
   ) {
     location.href = '/'
     return
+  }
+
+  const reg = new RegExp(/\/(api|apis|kapis)\/(.*)\/(clusters\/[^/]*)\/(.*)/)
+  const match = requestURL.match(reg)
+
+  if (match && match.length === 5) {
+    requestURL = `/${match[1]}/${match[3]}/${match[2]}/${match[4]}`
   }
 
   return fetch(requestURL, request).then(resp => responseHandler(resp, reject))

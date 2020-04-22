@@ -16,31 +16,8 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { action } from 'mobx'
 import Base from './base'
 
 export default class ConfigMapStore extends Base {
-  constructor() {
-    super()
-    this.module = 'configmaps'
-  }
-
-  get apiVersion() {
-    return 'api/v1'
-  }
-
-  @action
-  async fetchByK8s({ namespace }) {
-    this.list.isLoading = true
-    const result = await request.get(
-      `${this.apiVersion}/namespaces/${namespace}/${this.module}`
-    )
-
-    const data = result.items.map(this.mapper)
-    this.list.data = data
-    this.list.total = result.items.length
-    this.list.isLoading = false
-
-    return data
-  }
+  module = 'configmaps'
 }

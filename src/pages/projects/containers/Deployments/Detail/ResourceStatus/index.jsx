@@ -51,6 +51,16 @@ class ResourceStatus extends React.Component {
     return this.props.detailStore
   }
 
+  get prefix() {
+    const path = this.props.match.path
+    const { cluster, namespace } = this.props.match.params
+    if (path.startsWith('/clusters')) {
+      return `/clusters/${cluster}/projects/${namespace}`
+    }
+
+    return `/cl/${cluster}/projects/${namespace}`
+  }
+
   get enabledActions() {
     return globals.app.getActions({
       module: this.module,
@@ -73,11 +83,12 @@ class ResourceStatus extends React.Component {
   }
 
   fetchData = () => {
-    const { namespace, name } = this.store.detail
+    const { cluster, namespace, name } = this.store.detail
 
     if (this.module === 'deployments') {
       const { annotations = {} } = this.store.detail
       const params = {
+        cluster,
         namespace,
         name: annotations['kubesphere.io/relatedHPA'] || name,
       }
@@ -91,13 +102,13 @@ class ResourceStatus extends React.Component {
   }
 
   handleScale = newReplicas => {
-    const { namespace, name } = this.store.detail
-    this.store.scale({ name, namespace }, newReplicas)
+    const { cluster, namespace, name } = this.store.detail
+    this.store.scale({ cluster, namespace, name }, newReplicas)
   }
 
   handlePodUpdate = () => {
-    const { namespace, name } = this.store.detail
-    this.store.fetchDetail({ namespace, name, silent: true }, false)
+    const { cluster, namespace, name } = this.store.detail
+    this.store.fetchDetail({ cluster, namespace, name, silent: true })
   }
 
   handleDeleteHpa = () => {
@@ -178,11 +189,10 @@ class ResourceStatus extends React.Component {
 
   renderPods() {
     const { params = {} } = this.props.match
-    const { namespace, name } = params
-
+    const { name } = params
     return (
       <PodsCard
-        prefix={`/projects/${namespace}/${this.module}/${name}`}
+        prefix={`${this.prefix}/${this.module}/${name}`}
         detail={this.store.detail}
         onUpdate={this.handlePodUpdate}
       />
@@ -192,7 +202,6 @@ class ResourceStatus extends React.Component {
   renderVolumes() {
     const { isLoading } = this.store
     const { volumes, containers } = toJS(this.store.detail)
-    const { namespace } = this.props.match.params
 
     if (isEmpty(volumes)) return null
 
@@ -202,7 +211,7 @@ class ResourceStatus extends React.Component {
         volumes={volumes}
         containers={containers}
         loading={isLoading}
-        prefix={`/projects/${namespace}`}
+        prefix={this.prefix}
       />
     )
   }

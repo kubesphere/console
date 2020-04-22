@@ -63,4 +63,8 @@ export default class NodeStore extends Store {
   metrics_filter = metrics_filter.join('|')
 
   resource = 'nodes'
+
+  get fetchUrl() {
+    return `${this.apiVersion}/clusters/${this.cluster}/${this.resource}`
+  }
 }

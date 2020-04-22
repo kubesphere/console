@@ -81,9 +81,9 @@ export default class AddComponentModal extends React.Component {
     const { namespace } = this.props
 
     Promise.all([
-      this.configMapStore.fetchByK8s({ namespace }),
-      this.secretStore.fetchByK8s({ namespace }),
-      this.secretStore.fetchByK8s({
+      this.configMapStore.fetchListByK8s({ namespace }),
+      this.secretStore.fetchListByK8s({ namespace }),
+      this.secretStore.fetchListByK8s({
         namespace,
         fieldSelector: `type=kubernetes.io/dockerconfigjson`,
       }),

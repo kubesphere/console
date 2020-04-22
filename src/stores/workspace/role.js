@@ -58,7 +58,7 @@ export default class RoleStore {
     this.list.isLoading = true
 
     const result = await request.get(
-      `kapis/iam.kubesphere.io/v1alpha2/workspaces/${workspace}/roles`
+      `apis/iam.kubesphere.io/v1alpha2/workspaces/${workspace}/roles`
     )
 
     this.list = {
@@ -80,7 +80,7 @@ export default class RoleStore {
     }
 
     const result = await request.get(
-      `kapis/iam.kubesphere.io/v1alpha2/workspaces/${workspace}/roles/${role}`
+      `apis/iam.kubesphere.io/v1alpha2/workspaces/${workspace}/roles/${role}`
     )
 
     if (result) {
@@ -95,7 +95,7 @@ export default class RoleStore {
     this.rules.isLoading = true
 
     const result = await request.get(
-      `kapis/iam.kubesphere.io/v1alpha2/workspaces/${workspace}/roles/${role}/rules`
+      `apis/iam.kubesphere.io/v1alpha2/workspaces/${workspace}/roles/${role}/rules`
     )
 
     this.rules.data = result
@@ -108,7 +108,7 @@ export default class RoleStore {
     this.users.isLoading = true
 
     const resp = await request.get(
-      `kapis/iam.kubesphere.io/v1alpha2/workspaces/${workspace}/members?conditions=role=${role}`
+      `apis/iam.kubesphere.io/v1alpha2/workspaces/${workspace}/members?conditions=role=${role}`
     )
 
     this.users.data = resp.items

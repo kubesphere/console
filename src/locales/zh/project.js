@@ -76,6 +76,8 @@ export default {
   'Edit Project Quota': '编辑项目配额',
   'Add quota item': '添加配额项',
 
+  'Network Isolated': '网络隔离',
+
   deployments: '部署',
   statefulsets: '有状态副本集',
   daemonsets: '守护进程集',
@@ -201,4 +203,8 @@ export default {
   PROJECT_TYPES_Q: '项目中的服务如何通过外网访问？',
   PROJECT_TYPES_A:
     '项目网关负责创建对应的应用路由控制器，用来负责将请求转发到对应的后端服务；开启项目网关后可以将服务通过 Ingress 暴露给外网访问。',
+
+  PROJECT_CLUSTER_SETTINGS_DESC:
+    '集群分配包括分配集群和节点，并且分配集群对应的资源配额、托管集群中的Namespace',
+  NETWORK_ISOLATED_DESC: '设置网络隔离策略',
 }

@@ -37,7 +37,7 @@ const send_gateway_request = ({
   headers = {},
   ...rest
 }) => {
-  const options = { ...rest }
+  const options = { headers, ...rest }
 
   if (token) {
     options.headers = {

@@ -19,7 +19,7 @@
 import { get } from 'lodash'
 import React, { Component } from 'react'
 import { observer } from 'mobx-react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { Icon, Select } from '@pitrix/lego-ui'
 import { Button, Text } from 'components/Base'
 
@@ -34,11 +34,16 @@ const storeParams = {
 }
 
 @observer
+@withRouter
 export default class NodesTop5 extends Component {
-  store = new NodeStore(storeParams)
+  store = new NodeStore({ ...storeParams, cluster: this.cluster })
 
   componentDidMount() {
     this.store.fetchAll()
+  }
+
+  get cluster() {
+    return this.props.match.params.cluster
   }
 
   get options() {

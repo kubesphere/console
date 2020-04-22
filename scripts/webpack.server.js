@@ -39,7 +39,7 @@ module.exports = {
     __filename: false, // and __filename return blank or /
   },
   optimization: {
-    minimize: true,
+    minimize: false,
   },
   externals: { hiredis: 'hiredis' }, // Need this to avoid error when working with Express
   module: {

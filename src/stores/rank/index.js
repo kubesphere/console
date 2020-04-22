@@ -44,7 +44,7 @@ export default class BaseRankStore {
   sort_type = 'desc'
 
   get apiVersion() {
-    return `kapis/monitoring.kubesphere.io/v1alpha2`
+    return `kapis/monitoring.kubesphere.io/v1alpha3`
   }
 
   get fetchUrl() {

@@ -99,33 +99,10 @@ export default class ServiceStore extends Base {
     isLoading: true,
   }
 
-  @observable
-  workloads = {
-    data: [],
-    isLoading: false,
-  }
-
-  @observable
-  pods = {
-    data: [],
-    isLoading: false,
-  }
-
-  @observable
-  serviceQuota = {}
-
   constructor() {
     super()
     this.module = 'services'
     this.S2iBuilderStore = new S2iBuilderStore()
-  }
-
-  get apiVersion() {
-    return 'api/v1'
-  }
-
-  getWorkloadUrl({ namespace, module }) {
-    return `apis/apps/v1/namespaces/${namespace}/${module}`
   }
 
   @action
@@ -151,63 +128,20 @@ export default class ServiceStore extends Base {
   }
 
   @action
-  async fetchPods({ namespace, ...params }) {
-    this.pods.isLoading = true
-
-    const result = await request.get(
-      `api/v1/namespaces/${namespace}/pods`,
-      params
-    )
-
-    this.pods = {
-      data: result.items.map(ObjectMapper.pods),
-      isLoading: false,
-    }
-  }
-
-  @action
-  async fetchWorkloads({ namespace, ...params }) {
-    this.workloads.isLoading = true
-    this.workloads.data.clear()
-
-    const workloadTypes = ['deployments', 'daemonsets', 'statefulsets']
-
-    const [deployments, daemonsets, statefulsets] = await Promise.all(
-      workloadTypes.map(type =>
-        request.get(`apis/apps/v1/namespaces/${namespace}/${type}`, params)
-      )
-    )
-
-    const workloads = { deployments, daemonsets, statefulsets }
-
-    workloadTypes.forEach(type => {
-      if (workloads[type] && !isEmpty(workloads[type].items)) {
-        const items = workloads[type].items.map(item => ({
-          ...ObjectMapper[type](item),
-          type,
-        }))
-        this.workloads.data = [...this.workloads.data, ...items]
-      }
-    })
-
-    this.workloads.isLoading = false
-  }
-
-  @action
-  create(data, { namespace }) {
+  create(data, params) {
     const requests = []
 
     if (has(data, 'metadata')) {
-      requests.push({ url: this.getListUrl({ namespace }), data })
+      requests.push({ url: this.getListUrl(params), data })
     } else {
       if (data.S2i) {
         updateS2iServiceParams(data)
-        this.S2iBuilderStore.create(data.S2i, { namespace })
+        this.S2iBuilderStore.create(data.S2i, params)
       }
 
       if (data.Service) {
         requests.push({
-          url: this.getListUrl({ namespace }),
+          url: this.getListUrl(params),
           data: data.Service,
         })
       }
@@ -215,14 +149,14 @@ export default class ServiceStore extends Base {
       if (data.Deployment) {
         processDeployment(data.Deployment)
         requests.push({
-          url: this.getWorkloadUrl({ namespace, module: 'deployments' }),
+          url: this.getWorkloadUrl({ ...params, module: 'deployments' }),
           data: data.Deployment,
         })
       }
 
       if (data.StatefulSet) {
         requests.push({
-          url: this.getWorkloadUrl({ namespace, module: 'statefulsets' }),
+          url: this.getWorkloadUrl({ ...params, module: 'statefulsets' }),
           data: data.StatefulSet,
         })
       }
@@ -232,13 +166,13 @@ export default class ServiceStore extends Base {
   }
 
   @action
-  update({ name, namespace, resourceVersion }, newObject) {
+  update({ name, cluster, namespace, resourceVersion }, newObject) {
     if (!has(newObject, 'metadata.resourceVersion')) {
       set(newObject, 'metadata.resourceVersion', resourceVersion)
     }
 
     return this.submitting(
-      request.put(this.getDetailUrl({ name, namespace }), newObject)
+      request.put(this.getDetailUrl({ name, cluster, namespace }), newObject)
     )
   }
 }

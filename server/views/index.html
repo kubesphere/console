@@ -1,4 +1,4 @@
-<% var bundlePrefix = isDev ? '//localhost:8001' : '/dist' %>
+<% var bundlePrefix = isDev ? '//' + hostname + ':8001' : '/dist' %>
 <% var mainJS = bundlePrefix + '/main.js' %>
 <% var vendorJS = bundlePrefix + '/vendor.js' %>
 <% var legoJS =  bundlePrefix + '/lego.js' %>

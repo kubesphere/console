@@ -27,7 +27,7 @@ import ResourceUsage from './ResourceUsage'
 import UsageRanking from './UsageRanking'
 import Help from './Help'
 
-@inject('rootStore')
+@inject('rootStore', 'projectStore')
 @observer
 export default class Overview extends React.Component {
   get routing() {
@@ -39,7 +39,7 @@ export default class Overview extends React.Component {
   }
 
   get project() {
-    return this.props.rootStore.project
+    return this.props.projectStore
   }
 
   render() {

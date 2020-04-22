@@ -22,7 +22,6 @@ import PropTypes from 'prop-types'
 import { sortBy } from 'lodash'
 
 import { getCurrentRevision } from 'utils/workload'
-import RevisionStore from 'stores/workload/revision'
 
 import { Input, Select } from '@pitrix/lego-ui'
 import { Modal, Form } from 'components/Base'
@@ -48,8 +47,7 @@ export default class RollBackModal extends React.Component {
   constructor(props) {
     super(props)
 
-    this.revisionStore = new RevisionStore(props.module)
-    this.form = React.createRef()
+    this.revisionStore = props.store
   }
 
   get revisions() {

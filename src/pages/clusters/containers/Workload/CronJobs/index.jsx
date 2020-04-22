@@ -37,6 +37,7 @@ import WorkloadStore from 'stores/workload'
   store: new WorkloadStore('cronjobs'),
   module: 'cronjobs',
   name: 'CronJob',
+  rowKey: 'uuid',
 })
 export default class CronJobs extends React.Component {
   get namespace() {
@@ -161,7 +162,7 @@ export default class CronJobs extends React.Component {
             iconSize={40}
             title={getDisplayName(record)}
             desc={this.getItemDesc(record)}
-            to={`/clusters/${cluster}/namespaces/${
+            to={`/clusters/${cluster}/projects/${
               record.namespace
             }/${module}/${name}`}
           />
@@ -197,9 +198,9 @@ export default class CronJobs extends React.Component {
       },
       {
         title: t('Created Time'),
-        dataIndex: 'createTime',
+        dataIndex: 'creationTimestamp',
         sorter: true,
-        sortOrder: getSortOrder('createTime'),
+        sortOrder: getSortOrder('creationTimestamp'),
         isHideable: true,
         search: true,
         width: 150,

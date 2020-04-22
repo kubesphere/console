@@ -37,27 +37,27 @@ export default class Dashboard extends React.Component {
   }
 
   render() {
-    const { data } = this.cluster
+    const { detail } = this.cluster
 
     return (
       <div className={styles.wrapper}>
         <div className={styles.title}>
-          {data.icon && <Icon name={data.icon} size={48} />}
+          {detail.icon && <Icon name={detail.icon} size={48} />}
           <div className={styles.text}>
-            <div className="h4">{data.name}</div>
-            <p>{data.description}</p>
+            <div className="h4">{detail.name}</div>
+            <p>{detail.description}</p>
           </div>
         </div>
         <Columns>
           <Column>
-            <ClusterInfo cluster={data} />
-            <ServiceComponents cluster={data} />
-            <ResourcesUsage cluster={data} />
+            <ClusterInfo cluster={detail} />
+            <ServiceComponents cluster={detail} />
+            <ResourcesUsage cluster={detail} />
             <Tools />
           </Column>
           <Column className="is-narrow is-4">
-            <KubernetesStatus cluster={data} />
-            <ClusterNodes cluster={data} />
+            <KubernetesStatus cluster={detail} />
+            <ClusterNodes cluster={detail} />
           </Column>
         </Columns>
       </div>

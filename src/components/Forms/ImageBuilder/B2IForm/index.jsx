@@ -70,7 +70,7 @@ export default class S2IForm extends React.Component {
   }
 
   fetchData = async () => {
-    const results = await this.secretStore.fetchByK8s({
+    const results = await this.secretStore.fetchListByK8s({
       namespace: this.namespace,
       fieldSelector: `type=kubernetes.io/basic-auth`,
     })
@@ -85,7 +85,7 @@ export default class S2IForm extends React.Component {
   }
 
   fetchImageSecrets = async () => {
-    const results = await this.secretStore.fetchByK8s({
+    const results = await this.secretStore.fetchListByK8s({
       namespace: this.namespace,
       fieldSelector: `type=kubernetes.io/dockerconfigjson`,
     })

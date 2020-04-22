@@ -38,32 +38,33 @@ export default class ProjectSelectModal extends React.Component {
     }
   }
 
+  componentDidMount() {
+    this.store.fetchDetail({ name: this.props.workspace })
+  }
+
   get enabledActions() {
+    const { workspace } = this.props
     return {
       projects: globals.app.getActions({
-        workspace: this.props.workspace.name,
+        workspace,
         module: 'projects',
       }),
       devops: globals.app.getActions({
-        workspace: this.props.workspace.name,
+        workspace,
         module: 'devops',
       }),
     }
   }
 
   get types() {
-    const { workspace = {} } = this.props
+    const { detail } = this.store
     const types = []
 
     if (this.enabledActions.projects.includes('view')) {
       types.push({
         label: t('Projects'),
         value: 'projects',
-        count: get(
-          workspace,
-          'annotations["kubesphere.io/namespace-count"]',
-          '0'
-        ),
+        count: get(detail, 'annotations["kubesphere.io/namespace-count"]', '0'),
       })
     }
 
@@ -74,7 +75,7 @@ export default class ProjectSelectModal extends React.Component {
       types.push({
         label: t('DevOps Projects'),
         value: 'devops',
-        count: get(workspace, 'annotations["kubesphere.io/devops-count"]', '0'),
+        count: get(detail, 'annotations["kubesphere.io/devops-count"]', '0'),
       })
     }
 
@@ -83,12 +84,8 @@ export default class ProjectSelectModal extends React.Component {
 
   fetchData = query => {
     const { keyword } = this.store.list
-    const { workspace = {} } = this.props
-    const params = {
-      keyword,
-      workspace: workspace.name,
-      ...query,
-    }
+    const { cluster, workspace } = this.props
+    const params = { keyword, cluster, workspace, ...query }
     if (this.state.type === 'projects') {
       this.store.fetchNamespaces(params)
     } else {
@@ -113,10 +110,10 @@ export default class ProjectSelectModal extends React.Component {
   }
 
   handleEnterWorkspace = () => {
-    const { workspace = {}, onChange } = this.props
+    const { workspace, onChange } = this.props
 
     if (globals.app.isClusterAdmin) {
-      return onChange(`/workspaces/${workspace.name}/overview`)
+      return onChange(`/workspaces/${workspace}/overview`)
     }
 
     if (
@@ -124,27 +121,28 @@ export default class ProjectSelectModal extends React.Component {
       globals.app.hasPermission({
         module: 'workspaces',
         action: 'view',
-        workspace: workspace.name,
+        workspace,
       })
     ) {
-      return onChange(`/workspaces/${workspace.name}/overview`)
+      return onChange(`/workspaces/${workspace}/overview`)
     }
 
     return onChange(`/dashboard`)
   }
 
   handleOnEnter = item => {
-    const { onChange } = this.props
+    const { cluster, onChange } = this.props
     if (this.state.type === 'devops') {
       onChange(`/devops/${item.project_id}`)
     } else {
-      onChange(`/projects/${item.name}`)
+      onChange(`/cl/${cluster}/projects/${item.name}`)
     }
   }
 
   render() {
-    const { visible, workspace = {}, onCancel, onShowCreate } = this.props
+    const { visible, workspace, onCancel, onShowCreate } = this.props
     const { type } = this.state
+    const { detail } = this.store
     const list = type === 'devops' ? this.store.devops : this.store.namespaces
     const { data, total, page, isLoading } = toJS(list)
 
@@ -155,8 +153,8 @@ export default class ProjectSelectModal extends React.Component {
         onCancel={onCancel}
         width={960}
         icon="enterprise"
-        title={<a onClick={this.handleEnterWorkspace}>{workspace.name}</a>}
-        description={get(workspace, 'description') || '-'}
+        title={<a onClick={this.handleEnterWorkspace}>{workspace}</a>}
+        description={get(detail, 'description') || '-'}
         hideFooter
       >
         <div className={styles.bar}>

@@ -36,7 +36,7 @@ export default class ClusterInfo extends Component {
         </div>
         <div className={styles.level}>
           <Text
-            title={cluster.k8sVersion}
+            title={cluster.kubernetesVersion}
             description={t('Kubernetes Version')}
           />
           <Text

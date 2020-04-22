@@ -17,12 +17,13 @@
  */
 
 const { parse } = require('qs')
+const get = require('lodash/get')
 const isEmpty = require('lodash/isEmpty')
 const jwtDecode = require('jwt-decode')
 
 const { send_gateway_request } = require('../libs/request')
 
-const { getServerConfig, formatRules, isAppsRoute } = require('../libs/utils')
+const { getServerConfig, isAppsRoute } = require('../libs/utils')
 
 const { client: clientConfig } = getServerConfig()
 
@@ -32,8 +33,7 @@ const login = async (data, headers) => {
   )
   const resp = await send_gateway_request({
     method: 'GET',
-    url:
-      '/oauth/authorize?client_id=kubesphere-console-client&response_type=token',
+    url: '/oauth/authorize?client_id=default&response_type=token',
     headers: {
       ...headers,
       Authorization: `Basic ${base64Str}`,
@@ -42,7 +42,7 @@ const login = async (data, headers) => {
   })
 
   const { access_token } = parse(
-    resp.headers.get('location').replace(/http.*\?/, '')
+    resp.headers.get('location').replace(/http.*(\?|#)/, '')
   )
 
   if (!access_token) {
@@ -57,7 +57,7 @@ const login = async (data, headers) => {
 const oAuthLogin = async params => {
   const resp = await send_gateway_request({
     method: 'POST',
-    url: `/kapis/iam.kubesphere.io/v1alpha2/login/oauth/${params.state}`,
+    url: `/apis/iam.kubesphere.io/v1alpha2/login/oauth/${params.state}`,
     params,
   })
 
@@ -75,12 +75,17 @@ const getUserDetail = async (username, token) => {
 
   const resp = await send_gateway_request({
     method: 'GET',
-    url: `/kapis/iam.kubesphere.io/v1alpha2/users/${username}`,
+    url: `/apis/iam.kubesphere.io/v1alpha2/users/${username}`,
     token,
   })
 
   if (resp) {
-    user = resp
+    user = {
+      username: get(resp, 'metadata.name'),
+      email: get(resp, 'spec.email'),
+      groups: get(resp, 'groups', []),
+      cluster_rules: get(resp, 'groups', {}),
+    }
   } else {
     throw new Error(resp)
   }
@@ -91,7 +96,7 @@ const getUserDetail = async (username, token) => {
 const formatUserDetail = user => {
   user.groups = user.groups || []
 
-  user.cluster_rules = formatRules(user.cluster_rules)
+  // user.cluster_rules = formatRules(user.cluster_rules)
 
   return user
 }
@@ -101,7 +106,7 @@ const getKSConfig = async token => {
   try {
     resp = await send_gateway_request({
       method: 'GET',
-      url: `/kapis/v1alpha1/configz`,
+      url: `/kapis/config.kubesphere.io/v1alpha2/configs/configz`,
       token,
     })
   } catch (error) {
@@ -140,15 +145,15 @@ const getCurrentUser = async ctx => {
 }
 
 const getOAuthInfo = async () => {
-  let resp = []
-  try {
-    resp = await send_gateway_request({
-      method: 'GET',
-      url: `/kapis/iam.kubesphere.io/v1alpha2/oauth/configs`,
-    })
-  } catch (error) {
-    console.error(error)
-  }
+  const resp = []
+  // try {
+  //   resp = await send_gateway_request({
+  //     method: 'GET',
+  //     url: `/apis/iam.kubesphere.io/v1alpha2/oauth/configs`,
+  //   })
+  // } catch (error) {
+  //   console.error(error)
+  // }
 
   const servers = []
   if (!isEmpty(resp)) {

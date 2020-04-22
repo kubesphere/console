@@ -33,10 +33,7 @@ export default class VolumeStore extends Base {
     isLoading: true,
   }
 
-  constructor() {
-    super()
-    this.module = 'persistentvolumeclaims'
-  }
+  module = 'persistentvolumeclaims'
 
   async fetchVolumeMountStatus() {
     const { name, namespace } = this.detail
@@ -52,10 +49,6 @@ export default class VolumeStore extends Base {
     const volume = volumes.find(vol => this.mapper(vol).name === name) || {}
 
     this.detail.inUse = this.mapper(volume).inUse
-  }
-
-  get apiVersion() {
-    return 'api/v1'
   }
 
   async cloneVolume({ name }) {

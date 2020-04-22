@@ -457,10 +457,3 @@ export const withDryRun = async requests => {
  */
 export const isAppsPage = (path = location.pathname) =>
   path === '/apps' || path.startsWith('/apps/app-')
-
-/**
- * Get namespace request path
- * @param {String} namespace
- */
-export const getNamespacePath = namespace =>
-  namespace ? `/namespaces/${namespace}` : ''

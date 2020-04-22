@@ -29,9 +29,9 @@ export default class List {
   @observable
   total = 0
 
-  order = ''
+  sortBy = ''
 
-  reverse = false
+  ascending = false
 
   silent = false
 
@@ -45,8 +45,13 @@ export default class List {
 
   @action
   update(params) {
+    this.filters = {}
     Object.keys(params).forEach(key => {
-      this[key] = params[key]
+      if (Object.prototype.hasOwnProperty.call(this, key)) {
+        this[key] = params[key]
+      } else {
+        this.filters[key] = params[key]
+      }
     })
   }
 
@@ -54,8 +59,8 @@ export default class List {
     this.data = []
     this.page = 1
     this.limit = 10
-    this.order = ''
-    this.reverse = false
+    this.sortBy = ''
+    this.ascending = false
     this.silent = false
     this.filters = {}
     this.isLoading = true

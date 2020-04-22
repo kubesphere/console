@@ -53,7 +53,7 @@ export default class AssignWorkspaceModal extends Component {
   }
 
   componentDidMount() {
-    this.workspaceStore.fetchResourceList()
+    this.workspaceStore.fetchList()
   }
 
   getWorkspaces() {

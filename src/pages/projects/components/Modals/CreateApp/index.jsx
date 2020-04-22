@@ -151,17 +151,18 @@ export default class ServiceDeployAppModal extends React.Component {
   }
 
   fetchData() {
-    const { namespace } = this.props
+    const { cluster, namespace } = this.props
 
     Promise.all([
-      this.configMapStore.fetchByK8s({ namespace }),
-      this.secretStore.fetchByK8s({ namespace }),
-      this.secretStore.fetchByK8s({
+      this.configMapStore.fetchListByK8s({ cluster, namespace }),
+      this.secretStore.fetchListByK8s({ cluster, namespace }),
+      this.secretStore.fetchListByK8s({
+        cluster,
         namespace,
         fieldSelector: `type=kubernetes.io/dockerconfigjson`,
       }),
-      this.projectStore.fetchLimitRanges({ namespace }),
-      this.routerStore.getGateway({ namespace }),
+      this.projectStore.fetchLimitRanges({ cluster, namespace }),
+      this.routerStore.getGateway({ cluster, namespace }),
     ]).then(([configMaps, secrets, imageRegistries, limitRanges]) => {
       const gateway = toJS(this.routerStore.gateway.data)
       this.setState({

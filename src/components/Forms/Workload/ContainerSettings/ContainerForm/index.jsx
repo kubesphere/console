@@ -39,6 +39,7 @@ export default class ContaineForm extends React.Component {
     className: PropTypes.string,
     type: PropTypes.string,
     titlePrefix: PropTypes.string,
+    cluster: PropTypes.string,
     namespace: PropTypes.string,
     module: PropTypes.string,
     data: PropTypes.object,
@@ -52,6 +53,7 @@ export default class ContaineForm extends React.Component {
     className: '',
     type: 'Add',
     titlePrefix: '',
+    cluster: '',
     namespace: '',
     module: '',
     data: {},
@@ -156,6 +158,7 @@ export default class ContaineForm extends React.Component {
       data,
       configMaps,
       secrets,
+      cluster,
       namespace,
       withService,
     } = this.props
@@ -172,6 +175,7 @@ export default class ContaineForm extends React.Component {
         <Form ref={this.formRef} data={data}>
           <ContainerSetting
             data={data}
+            cluster={cluster}
             namespace={namespace}
             defaultContainerType={containerType}
             onContainerTypeChange={this.handleContainerTypeChange}

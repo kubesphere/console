@@ -120,6 +120,8 @@ export default class CreateModal extends React.Component {
       steps,
       isSubmitting,
       updateModule,
+      cluster,
+      namespace,
     } = this.props
     const { formTemplate, currentStep } = this.state
 
@@ -136,6 +138,8 @@ export default class CreateModal extends React.Component {
         currentStep={currentStep}
         updateModule={updateModule}
         isSubmitting={isSubmitting}
+        cluster={cluster}
+        namespace={namespace}
       />
     )
   }

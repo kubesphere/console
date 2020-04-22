@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-const fetch = require('node-fetch')
+const fetch = require('node-fetch').default
 const merge = require('lodash/merge')
 const qs = require('qs')
 

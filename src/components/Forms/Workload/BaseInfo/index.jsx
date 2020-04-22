@@ -34,6 +34,10 @@ import { ProjectSelect } from 'components/Inputs'
 
 @observer
 export default class BaseInfo extends React.Component {
+  get cluster() {
+    return this.props.cluster
+  }
+
   get namespace() {
     return get(this.formTemplate, 'metadata.namespace')
   }
@@ -62,7 +66,11 @@ export default class BaseInfo extends React.Component {
     }
 
     this.props.store
-      .checkName({ name: value, namespace: this.namespace })
+      .checkName({
+        name: value,
+        namespace: this.namespace,
+        cluster: this.cluster,
+      })
       .then(resp => {
         if (resp.exist) {
           return callback({ message: t('Name exists'), field: rule.field })
@@ -116,8 +124,8 @@ export default class BaseInfo extends React.Component {
           </Column>
         </Columns>
         <Columns>
-          <Column>
-            {!this.props.namespace && (
+          {!this.props.namespace && (
+            <Column>
               <Form.Item label={t('Project')} desc={t('PROJECT_DESC')}>
                 <ProjectSelect
                   name="metadata.namespace"
@@ -125,8 +133,8 @@ export default class BaseInfo extends React.Component {
                   defaultValue={this.namespace || 'default'}
                 />
               </Form.Item>
-            )}
-          </Column>
+            </Column>
+          )}
           <Column>
             <Form.Item label={t('Description')}>
               <TextArea name="metadata.annotations['kubesphere.io/description']" />
