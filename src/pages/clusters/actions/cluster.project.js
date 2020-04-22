@@ -16,8 +16,9 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { Modal } from 'components/Base'
+import { Modal, Notify } from 'components/Base'
 import ProjectCreateModal from 'components/Modals/ProjectCreate'
+import AssignWorkspaceModal from 'components/Modals/AssignWorkspace'
 import FORM_TEMPLATES from 'utils/form.templates'
 
 export default {
@@ -35,6 +36,22 @@ export default {
           },
         },
         modal: ProjectCreateModal,
+        store,
+        ...props,
+      })
+    },
+  },
+  'cluster.project.assignworkspace': {
+    on({ store, detail, success, ...props }) {
+      const modal = Modal.open({
+        onOk: data => {
+          store.patch(detail, data).then(() => {
+            Modal.close(modal)
+            Notify.success({ content: `${t('Updated Successfully')}!` })
+            success && success()
+          })
+        },
+        modal: AssignWorkspaceModal,
         store,
         ...props,
       })

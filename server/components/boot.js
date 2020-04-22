@@ -61,7 +61,7 @@ module.exports = function(app) {
           ctx.url
         )
       ) {
-        ctx.redirect(`http://localhost:8001${ctx.url}`)
+        ctx.redirect(`http://${ctx.hostname}:8001${ctx.url}`)
       } else {
         await next()
       }

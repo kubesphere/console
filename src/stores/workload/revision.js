@@ -20,7 +20,7 @@ import { action, observable, toJS } from 'mobx'
 import { get } from 'lodash'
 
 import { joinSelector } from 'utils'
-import { getCurrentRevision, getWorkloadVolumes } from 'utils/workload'
+import { getCurrentRevision } from 'utils/workload'
 import ObjectMapper from 'utils/object.mapper'
 
 import Base from 'stores/base'
@@ -72,7 +72,6 @@ export default class RevisionStore extends Base {
       this.getDetailUrl({ name, namespace, revision })
     )
     const detail = ObjectMapper.revisions(result)
-    detail.volumes = await getWorkloadVolumes(detail)
 
     this.detail = detail
     this.isLoading = false

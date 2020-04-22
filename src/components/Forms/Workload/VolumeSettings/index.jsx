@@ -49,11 +49,18 @@ class VolumeSettings extends React.Component {
 
     this.store = new VolumeStore()
 
-    this.store.fetchList({ namespace: this.namespace, limit: -1 })
+    this.store.fetchList({
+      namespace: this.namespace,
+      cluster: this.cluster,
+      limit: -1,
+    })
 
     this.projectStore = new ProjectStore()
 
-    this.projectStore.fetchDetail({ namespace: this.namespace })
+    this.projectStore.fetchDetail({
+      namespace: this.namespace,
+      cluster: this.cluster,
+    })
 
     this.handleVolume = this.handleVolume.bind(this)
     this.handleVolumeTemplate = this.handleVolumeTemplate.bind(this)
@@ -62,6 +69,10 @@ class VolumeSettings extends React.Component {
 
   get prefix() {
     return this.props.prefix || 'spec.template.'
+  }
+
+  get cluster() {
+    return this.props.cluster
   }
 
   get namespace() {

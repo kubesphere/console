@@ -95,8 +95,8 @@ export default class MountConfig extends React.Component {
     const { namespace } = this.props
 
     Promise.all([
-      this.configMapStore.fetchByK8s({ namespace }),
-      this.secretStore.fetchByK8s({ namespace }),
+      this.configMapStore.fetchListByK8s({ namespace }),
+      this.secretStore.fetchListByK8s({ namespace }),
     ]).then(([configMaps, secrets]) => {
       this.setState({ configMaps, secrets }, () => {
         if (this.state.formData.name) {

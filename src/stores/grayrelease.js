@@ -33,14 +33,7 @@ export default class GrayReleaseStore extends Base {
     data: {},
   }
 
-  constructor() {
-    super()
-    this.module = 'strategies'
-  }
-
-  get apiVersion() {
-    return 'apis/servicemesh.kubesphere.io/v1alpha2'
-  }
+  module = 'strategies'
 
   @action
   async fetchList({ namespace, selector, ...rest }) {

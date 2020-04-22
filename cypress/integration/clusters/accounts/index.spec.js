@@ -76,13 +76,13 @@ describe('The Accounts Page', function() {
     // delete old data
     cy.request({
       method: 'GET',
-      url: `/kapis/iam.kubesphere.io/v1alpha2/users/${account.name}`,
+      url: `/apis/iam.kubesphere.io/v1alpha2/users/${account.name}`,
       headers: { 'x-check-exist': true },
     }).then(resp => {
       if (resp.body.exist) {
         cy.request(
           'DELETE',
-          `/kapis/iam.kubesphere.io/v1alpha2/users/${account.name}`
+          `/apis/iam.kubesphere.io/v1alpha2/users/${account.name}`
         )
       }
     })

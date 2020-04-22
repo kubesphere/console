@@ -71,7 +71,7 @@ export default class UserCreateModal extends Component {
       return callback()
     }
 
-    this.props.store.checkUserName(value).then(resp => {
+    this.props.store.checkName(value).then(resp => {
       if (resp.exist) {
         return callback({ message: t('User name exists'), field: rule.field })
       }

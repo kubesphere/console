@@ -33,7 +33,6 @@ export default class ProjectSelect extends Component {
     const { cluster } = this.props
     return this.projectStore.fetchList({
       cluster,
-      metrics: false,
       ...params,
     })
   }

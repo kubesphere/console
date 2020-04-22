@@ -22,12 +22,9 @@ import moment from 'moment-mini'
 import { getFilterString } from 'utils'
 import ObjectMapper from 'utils/object.mapper'
 import { Notify } from 'components/Base'
+import Base from 'stores/base'
 
-import List from './base.list'
-
-export default class RoleStore {
-  list = new List()
-
+export default class RoleStore extends Base {
   @observable
   rules = {
     data: [],
@@ -45,40 +42,13 @@ export default class RoleStore {
   }
 
   @observable
-  detail = {}
-  @observable
-  originDetail = {}
-
-  @observable
   rulesInfo = []
 
-  @observable
-  isSubmitting = false
+  getResourceUrl = params =>
+    `apis/iam.kubesphere.io/v1alpha2${this.getPath(params)}/${this.module}`
 
-  constructor(type) {
-    this.type = type || 'roles'
-  }
-
-  getListUrl = namespace =>
-    this.type === 'roles'
-      ? `apis/rbac.authorization.k8s.io/v1/namespaces/${namespace}/${this.type}`
-      : `apis/rbac.authorization.k8s.io/v1/${this.type}`
-
-  getDetailUrl = (name, namespace) => `${this.getListUrl(namespace)}/${name}`
-
-  @action
-  submitting = promise => {
-    this.isSubmitting = true
-
-    setTimeout(() => {
-      promise
-        .catch(() => {})
-        .finally(() => {
-          this.isSubmitting = false
-        })
-    }, 500)
-
-    return promise
+  constructor(module = 'roles') {
+    super(module)
   }
 
   @action
@@ -87,6 +57,7 @@ export default class RoleStore {
     page,
     order,
     reverse,
+    cluster,
     workspace,
     namespace,
     ...filters
@@ -118,14 +89,10 @@ export default class RoleStore {
       params.reverse = true
     }
 
-    const url =
-      this.type === 'clusterroles'
-        ? `kapis/iam.kubesphere.io/v1alpha2/${this.type}`
-        : `kapis/iam.kubesphere.io/v1alpha2/namespaces/${namespace}/${
-            this.type
-          }`
-
-    const result = await request.get(url, params)
+    const result = await request.get(
+      this.getResourceUrl({ cluster, namespace }),
+      params
+    )
 
     this.list.update({
       data: result.items.map(ObjectMapper.roles) || [],
@@ -184,7 +151,7 @@ export default class RoleStore {
   @action
   async fetchRulesInfo() {
     const result = await request.get(
-      `kapis/iam.kubesphere.io/v1alpha2/rulesmapping/${this.type}`
+      `apis/iam.kubesphere.io/v1alpha2/rulesmapping/${this.type}`
     )
     this.rulesInfo = result
   }
@@ -203,13 +170,13 @@ export default class RoleStore {
     let result
     if (this.type === 'roles') {
       result = await request.get(
-        `kapis/iam.kubesphere.io/v1alpha2/namespaces/${namespace}/${
+        `apis/iam.kubesphere.io/v1alpha2/namespaces/${namespace}/${
           this.type
         }/${name}/rules`
       )
     } else {
       result = await request.get(
-        `kapis/iam.kubesphere.io/v1alpha2/${this.type}/${name}/rules`
+        `apis/iam.kubesphere.io/v1alpha2/${this.type}/${name}/rules`
       )
     }
 
@@ -227,13 +194,13 @@ export default class RoleStore {
     let resp = []
     if (this.type === 'roles') {
       resp = await request.get(
-        `kapis/iam.kubesphere.io/v1alpha2/namespaces/${namespace}/${
+        `apis/iam.kubesphere.io/v1alpha2/namespaces/${namespace}/${
           this.type
         }/${name}/users`
       )
     } else {
       resp = await request.get(
-        `kapis/iam.kubesphere.io/v1alpha2/${this.type}/${name}/users`
+        `apis/iam.kubesphere.io/v1alpha2/${this.type}/${name}/users`
       )
     }
 

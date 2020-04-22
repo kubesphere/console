@@ -44,30 +44,7 @@ const dataFomatter = data => {
 }
 
 export default class SecretStore extends Base {
-  constructor() {
-    super()
-    this.module = 'secrets'
-  }
-
-  get apiVersion() {
-    return 'api/v1'
-  }
-
-  @action
-  async fetchByK8s({ namespace, ...params }) {
-    this.list.isLoading = true
-    const result = await request.get(
-      `${this.apiVersion}/namespaces/${namespace}/${this.module}`,
-      params
-    )
-
-    const data = result.items.map(this.mapper)
-    this.list.data = data
-    this.list.total = result.items.length
-    this.list.isLoading = false
-
-    return data
-  }
+  module = 'secrets'
 
   @action
   async create(data) {

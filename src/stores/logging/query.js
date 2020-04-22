@@ -18,8 +18,8 @@
 
 import { observable, action, computed } from 'mobx'
 import { assign, get } from 'lodash'
+import { stringify } from 'qs'
 import stripAnsi from 'strip-ansi'
-import { toQueryString } from 'utils/request'
 
 import LoggingStore from './index'
 
@@ -127,7 +127,7 @@ export default class LoggingQuery extends LoggingStore {
           }/namespaces/${namespace}/pods/${pod}/containers/${container}`
         : this.clusterLogAPI
 
-    return `/${api}${toQueryString({
+    return `/${api}${stringify({
       sort: 'asc',
       ...rest,
       operation: 'export',

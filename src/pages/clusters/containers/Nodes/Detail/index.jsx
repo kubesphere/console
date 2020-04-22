@@ -56,8 +56,8 @@ export default class NodeDetail extends React.Component {
   }
 
   fetchData = () => {
-    const { node } = this.props.match.params
-    this.store.fetchDetail({ name: node })
+    const { cluster, node } = this.props.match.params
+    this.store.fetchDetail({ name: node, cluster })
   }
 
   getOperations = () => {

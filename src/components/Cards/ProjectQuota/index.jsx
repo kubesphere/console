@@ -37,13 +37,13 @@ export default class ProjectQuota extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.namespace !== this.props.namespace && this.props.namespace) {
-      this.store.fetch({ namespace: this.props.namespace })
+      this.store.fetch(this.props)
     }
   }
 
   componentDidMount() {
     if (this.props.namespace) {
-      this.store.fetch({ namespace: this.props.namespace })
+      this.store.fetch(this.props)
     }
   }
 

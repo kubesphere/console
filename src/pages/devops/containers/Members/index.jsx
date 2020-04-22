@@ -90,7 +90,6 @@ class Members extends Base {
     return {
       hideSearch: true,
       onFetch: this.handleFetch,
-      onPaging: this.handlePaging,
       onSelectRowKeys: this.handleSelectRowKeys,
       onDelete: this.showModal('batchDeleteModal'),
       actions: [

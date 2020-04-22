@@ -35,13 +35,13 @@ export default class DefaultResource extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.namespace !== this.props.namespace && this.props.namespace) {
-      this.store.fetchLimitRanges({ namespace: this.props.namespace })
+      this.store.fetchLimitRanges(this.props)
     }
   }
 
   componentDidMount() {
     if (this.props.namespace) {
-      this.store.fetchLimitRanges({ namespace: this.props.namespace })
+      this.store.fetchLimitRanges(this.props)
     }
   }
 

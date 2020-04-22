@@ -29,8 +29,15 @@ const { server: serverConfig } = getServerConfig()
  *  gateway api request, if get logined resource, token must exists,
  * @param {options} options: { token, method, url, params }
  */
-const send_gateway_request = ({ method, url, params, token, headers = {} }) => {
-  const options = {}
+const send_gateway_request = ({
+  method,
+  url,
+  params,
+  token,
+  headers = {},
+  ...rest
+}) => {
+  const options = { headers, ...rest }
 
   if (token) {
     options.headers = {
@@ -41,7 +48,7 @@ const send_gateway_request = ({ method, url, params, token, headers = {} }) => {
   }
 
   return request[method.toLowerCase()](
-    `${serverConfig.gatewayServer.url}${url}`,
+    `${serverConfig.apiServer.url}${url}`,
     params,
     options
   )

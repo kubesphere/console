@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get } from 'lodash'
+// import { get } from 'lodash'
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
 import { Loading } from '@pitrix/lego-ui'
@@ -52,26 +52,26 @@ class WorkspaceLayout extends Component {
 
     await this.workspaceStore.fetchDetail(params)
 
-    const workspaceRule = get(
-      globals.user,
-      `workspace_rules[${params.workspace}]`
-    )
+    // const workspaceRule = get(
+    //   globals.user,
+    //   `workspace_rules[${params.workspace}]`
+    // )
 
-    if (workspaceRule === undefined) {
-      await this.workspaceStore.fetchRules(params)
-    }
+    // if (workspaceRule === undefined) {
+    //   await this.workspaceStore.fetchRules(params)
+    // }
 
-    if (
-      !globals.app.hasPermission({ module: 'workspaces', action: 'manage' }) &&
-      !globals.app.hasPermission({
-        module: 'workspaces',
-        action: 'view',
-        workspace: params.workspace,
-      })
-    ) {
-      this.routing.push('/404')
-      return
-    }
+    // if (
+    //   !globals.app.hasPermission({ module: 'workspaces', action: 'manage' }) &&
+    //   !globals.app.hasPermission({
+    //     module: 'workspaces',
+    //     action: 'view',
+    //     workspace: params.workspace,
+    //   })
+    // ) {
+    //   this.routing.push('/404')
+    //   return
+    // }
 
     this.workspaceStore.initializing = false
   }
@@ -84,29 +84,29 @@ class WorkspaceLayout extends Component {
     return this.props.rootStore.routing
   }
 
-  enterWorkspace = async workspace => {
-    if (globals.app.isClusterAdmin) {
-      return this.routing.push(`/workspaces/${workspace}/overview`)
-    }
+  enterWorkspace = async workspace =>
+    this.routing.push(`/workspaces/${workspace}/overview`)
+  // if (globals.app.isClusterAdmin) {
+  //   return this.routing.push(`/workspaces/${workspace}/overview`)
+  // }
 
-    const workspace_rule = get(globals.user, `workspace_rules[${workspace}]`)
-    if (!workspace_rule) {
-      await this.workspaceStore.fetchRules({ workspace })
-    }
+  // const workspace_rule = get(globals.user, `workspace_rules[${workspace}]`)
+  // if (!workspace_rule) {
+  //   await this.workspaceStore.fetchRules({ workspace })
+  // }
 
-    if (
-      globals.app.hasPermission({ module: 'workspaces', action: 'manage' }) ||
-      globals.app.hasPermission({
-        module: 'workspaces',
-        action: 'view',
-        workspace,
-      })
-    ) {
-      return this.routing.push(`/workspaces/${workspace}/overview`)
-    }
+  // if (
+  //   globals.app.hasPermission({ module: 'workspaces', action: 'manage' }) ||
+  //   globals.app.hasPermission({
+  //     module: 'workspaces',
+  //     action: 'view',
+  //     workspace,
+  //   })
+  // ) {
+  //   return this.routing.push(`/workspaces/${workspace}/overview`)
+  // }
 
-    return this.routing.push(`/dashboard`)
-  }
+  // return this.routing.push(`/dashboard`)
 
   render() {
     const { match, route, location } = this.props
@@ -123,7 +123,7 @@ class WorkspaceLayout extends Component {
             icon={detail.logo}
             value={this.workspace}
             onChange={this.enterWorkspace}
-            multi={globals.user.workspaces.length > 1}
+            // multi={globals.user.workspaces.length > 1}
           />
           <Nav
             className="ks-page-nav"

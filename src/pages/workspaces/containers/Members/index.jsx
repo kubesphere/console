@@ -21,8 +21,7 @@ import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import { getLocalTime } from 'utils'
-import { Avatar } from 'components/Base'
-import UserStatus from 'components/UserStatus'
+import { Avatar, Status } from 'components/Base'
 import EmptyTable from 'components/Cards/EmptyTable'
 import DeleteModal from 'components/Modals/Delete'
 import ModifyMemberModal from 'components/Modals/ModifyMember'
@@ -88,7 +87,6 @@ class Members extends Base {
     return {
       hideSearch: true,
       onFetch: this.handleFetch,
-      onPaging: this.handlePaging,
       onSelectRowKeys: this.handleSelectRowKeys,
       onDelete: this.showModal('batchDeleteModal'),
       actions: [
@@ -142,7 +140,9 @@ class Members extends Base {
       dataIndex: 'status',
       isHideable: true,
       width: '19%',
-      render: status => <UserStatus status={status} />,
+      render: status => (
+        <Status type={status} name={t(`USER_${status.toUpperCase()}`)} />
+      ),
     },
     {
       title: t('Role'),

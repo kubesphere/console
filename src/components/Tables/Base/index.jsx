@@ -155,21 +155,17 @@ export default class WorkloadTable extends React.Component {
 
   handleChange = (_, filters, sorter) => {
     this.props.onFetch({
-      order: sorter.field || '',
-      reverse: ORDER_MAP[sorter.order] || false,
+      sortBy: sorter.field || '',
+      ascending: !(ORDER_MAP[sorter.order] || false),
       ...filters,
     })
   }
 
   handlePagination = page => {
-    const { keyword, onPaging, onFetch } = this.props
+    const { keyword, onFetch } = this.props
     const params = { page }
 
     if (!isEmpty(keyword)) params.keyword = keyword
-
-    if (onPaging) {
-      return onPaging(params)
-    }
 
     onFetch(params)
   }

@@ -54,7 +54,7 @@ export default class ClusterCard extends React.Component {
           </Column>
           <Column className="is-2">
             <Text
-              title={data.k8sVersion}
+              title={data.kubernetesVersion}
               description={t('Kubernetes Version')}
             />
           </Column>

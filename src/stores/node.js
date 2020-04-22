@@ -17,7 +17,6 @@
  */
 
 import { action, observable } from 'mobx'
-import { isEmpty } from 'lodash'
 
 import { getNodeRoles } from 'utils/node'
 
@@ -36,40 +35,12 @@ export default class NodeStore extends Base {
   @observable
   masterWorkerCount = 0
 
-  constructor() {
-    super()
-    this.module = 'nodes'
-  }
-
-  get apiVersion() {
-    return 'api/v1'
-  }
-
-  getResourceUrl = () => `kapis/resources.kubesphere.io/v1alpha2/${this.module}`
+  module = 'nodes'
 
   @action
-  async fetchListByK8s({ namespace, labelSelector, ...rest }) {
-    this.list.isLoading = true
-
-    const params = rest
-
-    if (!isEmpty(labelSelector)) {
-      params.labelSelector = labelSelector
-    }
-
-    const result = await request.get(this.getListUrl({ namespace }), params)
-
-    this.list = {
-      data: result.items.map(this.mapper),
-      total: result.items.length,
-      isLoading: false,
-    }
-  }
-
-  @action
-  async fetchCount() {
-    const resp = await request.get(this.getResourceUrl(), {
-      conditions: 'role=master',
+  async fetchCount(params) {
+    const resp = await request.get(this.getResourceUrl(params), {
+      role: 'master',
     })
 
     const masterWorker = resp.items.filter(

@@ -33,6 +33,7 @@ import ServiceStore from 'stores/service'
   store: new ServiceStore(),
   module: 'services',
   name: 'Service',
+  rowKey: 'uuid',
 })
 export default class Services extends React.Component {
   get itemActions() {
@@ -110,7 +111,7 @@ export default class Services extends React.Component {
             iconSize={40}
             title={getDisplayName(record)}
             desc={record.description || '-'}
-            to={`/clusters/${cluster}/namespaces/${
+            to={`/clusters/${cluster}/projects/${
               record.namespace
             }/${module}/${name}`}
           />

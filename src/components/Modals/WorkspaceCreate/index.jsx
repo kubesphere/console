@@ -73,7 +73,7 @@ export default class WorkSpaceCreateModal extends Component {
       })
     }
 
-    this.props.store.checkName(value).then(resp => {
+    this.props.store.checkName({ name: value }).then(resp => {
       if (resp.exist) {
         return callback({
           message: t('Workspace name exists'),

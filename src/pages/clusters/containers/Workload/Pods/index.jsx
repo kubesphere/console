@@ -37,6 +37,7 @@ import styles from './index.scss'
   store: new PodStore(),
   module: 'pods',
   name: 'Pod',
+  rowKey: 'uuid',
 })
 export default class Pods extends React.Component {
   get itemActions() {
@@ -153,7 +154,7 @@ export default class Pods extends React.Component {
         <div>
           <Link
             className={styles.title}
-            to={`/clusters/${cluster}/namespaces/${
+            to={`/clusters/${cluster}/projects/${
               record.namespace
             }/${module}/${name}`}
           >

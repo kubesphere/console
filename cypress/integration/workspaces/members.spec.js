@@ -24,13 +24,13 @@ describe('The Workspace Overview Page', function() {
     cy.login('admin')
     cy.request({
       method: 'GET',
-      url: `/kapis/iam.kubesphere.io/v1alpha2/workspaces/${workspace}/members/${testUser}`,
+      url: `/apis/iam.kubesphere.io/v1alpha2/workspaces/${workspace}/members/${testUser}`,
       headers: { 'x-check-exist': true },
     }).then(resp => {
       if (resp.body.exist) {
         cy.request({
           method: 'DELETE',
-          url: `/kapis/iam.kubesphere.io/v1alpha2/workspaces/${workspace}/members/${testUser}`,
+          url: `/apis/iam.kubesphere.io/v1alpha2/workspaces/${workspace}/members/${testUser}`,
         })
       }
     })

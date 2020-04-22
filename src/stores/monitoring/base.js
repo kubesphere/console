@@ -45,13 +45,10 @@ export const getMinuteValue = (timeStr = '60s', hasUnit = true) => {
 
 export const getTimeRange = ({ step = '600s', times = 20 } = {}) => {
   const interval = parseFloat(step) * times
-  const end = Date.now() / 1000
+  const end = Math.floor(Date.now() / 1000)
   const start = end - interval
 
-  return {
-    start,
-    end,
-  }
+  return { start, end }
 }
 
 export default class BaseMonitoringStore {
@@ -76,7 +73,7 @@ export default class BaseMonitoringStore {
   }
 
   get apiVersion() {
-    return 'kapis/monitoring.kubesphere.io/v1alpha2'
+    return 'kapis/monitoring.kubesphere.io/v1alpha3'
   }
 
   getApi = () => `${this.apiVersion}/cluster`

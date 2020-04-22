@@ -26,9 +26,9 @@ server:
   sessionTimeout: 7200000 # unit: millisecond
 
   # backend service gateway server
-  gatewayServer:
-    url: http://ks-apigateway.kubesphere-system.svc
-    wsUrl: ws://ks-apigateway.kubesphere-system.svc
+  apiServer:
+    url: http://ks-apiserver.kubesphere-system.svc
+    wsUrl: ws://ks-apiserver.kubesphere-system.svc
 
   # docker image search default url
   dockerHubUrl: https://hub.docker.com

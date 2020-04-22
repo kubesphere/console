@@ -36,6 +36,7 @@ import WorkloadStore from 'stores/workload'
   store: new WorkloadStore('deployments'),
   module: 'deployments',
   name: 'Workload',
+  rowKey: 'uuid',
 })
 export default class Deployments extends React.Component {
   handleTabChange = value => {
@@ -149,7 +150,7 @@ export default class Deployments extends React.Component {
             iconSize={40}
             title={getDisplayName(record)}
             desc={this.getItemDesc(record)}
-            to={`/clusters/${cluster}/namespaces/${
+            to={`/clusters/${cluster}/projects/${
               record.namespace
             }/${module}/${name}`}
           />

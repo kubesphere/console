@@ -51,12 +51,20 @@ const getBaseInfo = item => ({
   aliasName: getAliasName(item),
   createTime: get(item, 'metadata.creationTimestamp'),
   resourceVersion: get(item, 'metadata.resourceVersion'),
+  isFedManaged: get(item, 'metadata.labels["kubefed.io/managed"]') === 'true',
 })
 
 const WorkspaceMapper = item => ({
   ...getBaseInfo(item),
   annotations: get(item, 'metadata.annotations', {}),
   manager: get(item, 'spec.manager') || getResourceCreator(item),
+  _originData: getOriginData(item),
+})
+
+const UserMapper = item => ({
+  username: get(item, 'metadata.name', ''),
+  email: get(item, 'spec.email', ''),
+  status: get(item, 'status.state', ''),
   _originData: getOriginData(item),
 })
 
@@ -845,6 +853,18 @@ export const VolumeSnapshotMapper = detail => {
   }
 }
 
+export const ClusterMapper = item => ({
+  ...getBaseInfo(item),
+  provider: get(item, 'spec.provider'),
+  isHost:
+    get(
+      item,
+      'metadata.annotations["cluster.kubesphere.io/is-host-cluster"]'
+    ) === 'true',
+  nodeCount: get(item, 'status.nodeCount'),
+  kubernetesVersion: get(item, 'status.kubernetesVersion'),
+})
+
 export default {
   deployments: WorkLoadMapper,
   daemonsets: WorkLoadMapper,
@@ -883,4 +903,6 @@ export default {
   codequality: CodeQualityMapper,
   imageBlob: ImageDetailMapper,
   volumesnapshots: VolumeSnapshotMapper,
+  users: UserMapper,
+  clusters: ClusterMapper,
 }

@@ -133,9 +133,13 @@ export default class PodsCard extends React.Component {
   }
 
   getParams = (props = {}) => {
-    const { name, namespace, kind, _originData } = props.detail || {}
+    const { name, cluster, namespace, kind, _originData } = props.detail || {}
     const _kind = kind || get(_originData, 'kind', '')
     const result = {}
+
+    if (cluster) {
+      result.cluster = cluster
+    }
 
     if (namespace) {
       result.namespace = namespace

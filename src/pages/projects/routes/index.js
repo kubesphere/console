@@ -22,7 +22,9 @@ import ProjectLayout from '../containers/layout'
 
 import Overview from '../containers/Overview'
 import Applications from '../containers/Applications'
-import Workloads from '../containers/Workloads'
+import Deployments from '../containers/Deployments'
+import StatefulSets from '../containers/StatefulSets'
+import DaemonSets from '../containers/DaemonSets'
 import Pods from '../containers/Pods'
 import Jobs from '../containers/Jobs'
 import ImageBuilder from '../containers/ImageBuilder'
@@ -38,42 +40,45 @@ import Roles from '../containers/Roles'
 import Members from '../containers/Members'
 import AdvancedSettings from '../containers/AdvancedSettings'
 
-import workloadRoutes from './workload'
-import serviceRoutes from './service'
-import routerRoutes from './router'
-import roleRoutes from './role'
-import volumeRoutes from './volume'
-import applicationRoutes from './application'
-import configmapRoutes from './configmap'
-import secretRoutes from './secret'
-import podRoutes from './pod'
-import alertingMessageRoutes from './alerting/message'
-import alertingPolicyRoutes from './alerting/policy'
-import alertingRoutes from './alerting'
-import grayReleaseRoutes from './grayrelease'
-import imageBuilderRoutes from './imagebuilder'
+// import workloadRoutes from './workload'
+// import serviceRoutes from './service'
+// import routerRoutes from './router'
+// import roleRoutes from './role'
+// import volumeRoutes from './volume'
+// import applicationRoutes from './application'
+// import configmapRoutes from './configmap'
+// import secretRoutes from './secret'
+// import podRoutes from './pod'
+// import alertingMessageRoutes from './alerting/message'
+// import alertingPolicyRoutes from './alerting/policy'
+// import alertingRoutes from './alerting'
+// import grayReleaseRoutes from './grayrelease'
+// import imageBuilderRoutes from './imagebuilder'
 
-const PATH = '/projects/:namespace'
+import detail from './detail'
+
+const PATH = '/cl/:cluster/projects/:namespace'
 
 export default [
-  ...workloadRoutes,
-  ...serviceRoutes,
-  ...routerRoutes,
-  ...roleRoutes,
-  ...volumeRoutes,
-  ...applicationRoutes,
-  ...configmapRoutes,
-  ...secretRoutes,
-  ...podRoutes,
-  ...alertingMessageRoutes,
-  ...alertingPolicyRoutes,
-  ...imageBuilderRoutes,
+  ...detail,
+  // ...workloadRoutes,
+  // ...serviceRoutes,
+  // ...routerRoutes,
+  // ...roleRoutes,
+  // ...volumeRoutes,
+  // ...applicationRoutes,
+  // ...configmapRoutes,
+  // ...secretRoutes,
+  // ...podRoutes,
+  // ...alertingMessageRoutes,
+  // ...alertingPolicyRoutes,
+  // ...imageBuilderRoutes,
   {
     path: PATH,
     component: ProjectLayout,
     routes: [
-      ...alertingRoutes,
-      ...grayReleaseRoutes,
+      // ...alertingRoutes,
+      // ...grayReleaseRoutes,
       {
         path: `${PATH}/overview`,
         component: Overview,
@@ -90,8 +95,18 @@ export default [
         exact: true,
       },
       {
-        path: `${PATH}/:module(deployments|statefulsets|daemonsets)`,
-        component: Workloads,
+        path: `${PATH}/deployments`,
+        component: Deployments,
+        exact: true,
+      },
+      {
+        path: `${PATH}/statefulsets`,
+        component: StatefulSets,
+        exact: true,
+      },
+      {
+        path: `${PATH}/daemonsets`,
+        component: DaemonSets,
         exact: true,
       },
       { path: `${PATH}/pods`, component: Pods, exact: true },

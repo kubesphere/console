@@ -16,14 +16,12 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, set, has, isString, isEmpty } from 'lodash'
-import { action, observable, extendObservable } from 'mobx'
+import { get, set, has, isEmpty } from 'lodash'
+import { action } from 'mobx'
 
-import { withDryRun, getNamespacePath } from 'utils'
-import { getWorkloadVolumes } from 'utils/workload'
+import { withDryRun } from 'utils'
 import { MODULE_KIND_MAP } from 'utils/constants'
-
-import ObjectMapper from 'utils/object.mapper'
+import FED_TEMPLATES from 'utils/fed.templates'
 
 import Base from 'stores/base'
 
@@ -31,144 +29,29 @@ import HpaStore from './hpa'
 import ServiceStore from '../service'
 
 export default class WorkloadStore extends Base {
-  @observable
-  counts = {
-    deployments: 0,
-    statefulsets: 0,
-    daemonsets: 0,
-  }
-
   constructor(module) {
-    super()
-    this.module = module
+    super(module)
 
     this.hpaStore = new HpaStore()
     this.serviceStore = new ServiceStore()
   }
 
-  get apiVersion() {
-    if (this.module === 'jobs') {
-      return 'apis/batch/v1'
-    }
-
-    if (this.module === 'cronjobs') {
-      return 'apis/batch/v1beta1'
-    }
-
-    return 'apis/apps/v1'
-  }
-
-  getResourceUrl = ({ namespace }) =>
-    `kapis/resources.kubesphere.io/v1alpha2${getNamespacePath(namespace)}/${
-      this.module
-    }`
-
   @action
-  async fetchListByK8s(
-    { namespace, labelSelector, ...rest },
-    module = this.module
-  ) {
-    this.list.isLoading = true
-
-    if (!namespace) {
-      this.list.isLoading = false
-      return
-    }
-
-    const params = rest
-
-    if (!isEmpty(labelSelector)) {
-      params.labelSelector = labelSelector
-    }
-
-    const result = await request.get(
-      `${this.apiVersion}/namespaces/${namespace}/${module}`,
-      params
-    )
-    const data = result.items.map(this.mapper)
-
-    this.list.update({
-      data,
-      total: result.items.length,
-      isLoading: false,
-    })
-
-    return data
-  }
-
-  @action
-  async fetchByK8s({ namespace, ...params }, module) {
-    const result = await request.get(
-      `${this.apiVersion}/namespaces/${namespace}/${module}`,
-      params
-    )
-
-    return result.items.map(ObjectMapper[module])
-  }
-
-  @action
-  async fetchDetail({ name, namespace, silent }, isFetchVolumes = true) {
-    if (!silent) {
-      this.isLoading = true
-    }
-
-    const result = await request.get(this.getDetailUrl({ name, namespace }))
-    const detail = this.mapper(result)
-
-    if (isFetchVolumes) {
-      detail.volumes = await getWorkloadVolumes(detail)
-    }
-
-    this.detail = detail
-
-    if (!silent) {
-      this.isLoading = false
-    }
-
-    return detail
-  }
-
-  @action
-  async fetchCounts({ namespace }, modules = []) {
-    if (isString(modules)) {
-      modules = [modules]
-    }
-
-    if (!isEmpty(modules)) {
-      const results = await Promise.all(
-        modules.map(module =>
-          request.get(
-            `kapis/resources.kubesphere.io/v1alpha2/namespaces/${namespace}/${module}`
-          )
-        )
-      )
-
-      const counts = {}
-      modules.forEach((module, index) => {
-        counts[module] = results[index].total_count
-      })
-
-      extendObservable(this.counts, counts)
-    }
-  }
-
-  @action
-  create(data) {
+  async create(data, params) {
     const requests = []
 
     if (has(data, 'metadata')) {
-      requests.push(this.getWorkloadRequest(data))
+      requests.push(this.getWorkloadRequest(data, params))
     } else {
       const kind = MODULE_KIND_MAP[this.module]
 
       if (has(data, kind)) {
-        requests.push(this.getWorkloadRequest(data[kind]))
+        requests.push(this.getWorkloadRequest(data[kind], params))
       }
 
       if (has(data, 'Service')) {
-        const namespace = get(data[kind], 'metadata.namespace')
         requests.push({
-          url: this.serviceStore.getListUrl({ namespace }),
+          url: this.serviceStore.getListUrl(params),
           data: data['Service'],
         })
       }
@@ -177,8 +60,8 @@ export default class WorkloadStore extends Base {
     return this.submitting(withDryRun(requests))
   }
 
-  getWorkloadRequest = data => {
-    const namespace = get(data, 'metadata.namespace')
+  getWorkloadRequest = (data, params) => {
+    const { isFedManaged, clusters } = params.projectDetail || {}
 
     if (['deployments', 'daemonsets'].includes(this.module)) {
       const hasPVC = get(data, 'spec.template.spec.volumes', []).some(
@@ -194,14 +77,23 @@ export default class WorkloadStore extends Base {
       }
     }
 
-    return { url: this.getListUrl({ namespace }), data }
+    return {
+      url: isFedManaged ? this.getFedListUrl(params) : this.getListUrl(params),
+      data: isFedManaged
+        ? FED_TEMPLATES.workloads({
+            data,
+            clusters,
+            kind: MODULE_KIND_MAP[this.module],
+          })
+        : data,
+    }
   }
 
   @action
-  delete({ name, namespace, annotations = {} }) {
+  delete({ name, cluster, namespace, annotations = {} }) {
     const promises = []
     promises.push(
-      request.delete(this.getDetailUrl({ name, namespace }), {
+      request.delete(this.getDetailUrl({ name, cluster, namespace }), {
         kind: 'DeleteOptions',
         apiVersion: 'v1',
         propagationPolicy: 'Background',
@@ -211,7 +103,9 @@ export default class WorkloadStore extends Base {
     const relateHPA = annotations['kubesphere.io/relatedHPA']
 
     if (relateHPA) {
-      promises.push(this.hpaStore.delete({ name: relateHPA, namespace }))
+      promises.push(
+        this.hpaStore.delete({ name: relateHPA, cluster, namespace })
+      )
     }
 
     return this.submitting(Promise.all(promises))
@@ -244,27 +138,26 @@ export default class WorkloadStore extends Base {
   }
 
   @action
-  scale({ name, namespace }, newReplicas) {
+  scale(params, newReplicas) {
     const data = { spec: { replicas: newReplicas } }
-    return this.submitting(
-      request.patch(this.getDetailUrl({ name, namespace }), data)
-    )
+    return this.submitting(request.patch(this.getDetailUrl(params), data))
   }
 
   @action
-  rerun({ name, namespace, resourceVersion }) {
+  rerun({ name, cluster, namespace, resourceVersion }) {
     return this.submitting(
       request.post(
-        `kapis/resources.kubesphere.io/v1alpha2/namespaces/${namespace}/jobs/${name}?action=rerun&resourceVersion=${resourceVersion}`
+        `kapis/resources.kubesphere.io/v1alpha2${this.getPath({
+          cluster,
+          namespace,
+        })}/jobs/${name}?action=rerun&resourceVersion=${resourceVersion}`
       )
     )
   }
 
   @action
-  switch({ name, namespace }, on = false) {
+  switch(params, on = false) {
     const data = { spec: { suspend: !on } }
-    return this.submitting(
-      request.patch(this.getDetailUrl({ name, namespace }), data)
-    )
+    return this.submitting(request.patch(this.getDetailUrl(params), data))
   }
 }

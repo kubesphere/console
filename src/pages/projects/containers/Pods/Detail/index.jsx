@@ -17,102 +17,99 @@
  */
 
 import React from 'react'
-import { toJS, reaction } from 'mobx'
-import { inject, observer } from 'mobx-react'
-import pathToRegexp from 'path-to-regexp'
-import { get, isEmpty, throttle } from 'lodash'
+import { get, isEmpty } from 'lodash'
+import { observer, inject } from 'mobx-react'
+import { Loading } from '@pitrix/lego-ui'
 
+import { getDisplayName } from 'utils'
+import { trigger } from 'utils/action'
 import PodStore from 'stores/pod'
 
-import Base from 'core/containers/Base/Detail'
-import EditYamlModal from 'components/Modals/EditYaml'
+import DetailPage from 'projects/containers/Base/Detail'
+
+import getRoutes from './routes'
 
 @inject('rootStore')
 @observer
-class PodsDetail extends Base {
+@trigger
+export default class PodDetail extends React.Component {
+  store = new PodStore()
+
+  componentDidMount() {
+    this.fetchData()
+  }
+
+  get module() {
+    return 'pods'
+  }
+
   get name() {
     return 'Pod'
   }
 
-  get authKey() {
-    return 'pods'
-  }
-
-  get detailDesc() {
-    return t('Pod')
+  get routing() {
+    return this.props.rootStore.routing
   }
 
   get listUrl() {
-    const { parentUrl, match } = this.props
-    return pathToRegexp.compile(parentUrl)(match.params)
-  }
+    const {
+      params: { cluster, namespace, module, name },
+      path,
+    } = this.props.match
 
-  init() {
-    this.store = new PodStore()
-
-    this.websocket = this.props.rootStore.websocket
-
-    this.initWebsocket()
-  }
-
-  initWebsocket() {
-    const { namespace, podName } = this.props.match.params
-
-    if (namespace && podName && 'getWatchUrl' in this.store) {
-      const url = this.store.getWatchUrl({ namespace, name: podName })
-
-      this.websocket.watch(url)
-
-      this.fetchData = throttle(this.fetchData, 1000)
-
-      this.disposer = reaction(
-        () => this.websocket.message,
-        message => {
-          if (message.object.kind === 'Pod') {
-            if (message.type === 'MODIFIED') {
-              this.fetchData({ silent: true })
-            } else if (message.type === 'DELETED') {
-              this.deleteCallback()
-            }
-          }
-        }
-      )
+    let suffix = this.module
+    if (module && name) {
+      suffix = `${module}/${name}`
     }
+
+    if (path.startsWith('/clusters')) {
+      if (module && name) {
+        suffix = `projects/${namespace}/${suffix}`
+      }
+      return `/clusters/${cluster}/${suffix}`
+    }
+
+    return `/cl/${cluster}/projects/${namespace}/${suffix}`
   }
 
-  componentWillUnmount() {
-    this.disposer && this.disposer()
-  }
-
-  fetchData = params => {
-    const { namespace, podName } = this.props.match.params
-
-    this.store
-      .fetchDetail({
-        namespace,
-        name: podName,
-        ...params,
-      })
-      .catch(this.catch)
+  fetchData = () => {
+    const { cluster, namespace, podName } = this.props.match.params
+    this.store.fetchDetail({
+      cluster,
+      namespace,
+      name: podName,
+    })
   }
 
   getOperations = () => [
     {
       key: 'viewYaml',
-      type: 'default',
+      icon: 'eye',
       text: t('View YAML'),
-      onClick: this.showModal('viewYaml'),
+      action: 'view',
+      onClick: () =>
+        this.trigger('resource.yaml.edit', {
+          detail: this.store.detail,
+          readonly: true,
+        }),
     },
     {
       key: 'delete',
-      type: 'danger',
+      icon: 'trash',
       text: t('Delete'),
       action: 'delete',
-      onClick: this.showModal('deleteModule'),
+      onClick: () =>
+        this.trigger('resource.delete', {
+          type: t(this.name),
+          detail: this.store.detail,
+          success: () => this.routing.push(this.listUrl),
+        }),
     },
   ]
 
   getAttrs = () => {
+    const { cluster, namespace } = this.props.match.params
+
     const { detail = {} } = this.store
 
     if (isEmpty(detail)) return null
@@ -121,12 +118,16 @@ class PodsDetail extends Base {
 
     return [
       {
+        name: t('Cluster'),
+        value: cluster,
+      },
+      {
         name: t('Project'),
-        value: this.namespace,
+        value: namespace,
       },
       {
         name: t('Application'),
-        value: this.application,
+        value: detail.application,
       },
       {
         name: t('Status'),
@@ -154,26 +155,38 @@ class PodsDetail extends Base {
       },
       {
         name: t('Created Time'),
-        value: this.createTime,
+        value: detail.createTime,
       },
     ]
   }
 
-  renderExtraModals() {
-    const { detail } = this.store
-    const { viewYaml } = this.state
+  render() {
+    const stores = { detailStore: this.store }
+
+    if (this.store.isLoading) {
+      return <Loading className="ks-page-loading" />
+    }
+
+    const sideProps = {
+      module: this.module,
+      name: getDisplayName(this.store.detail),
+      desc: this.store.detail.description,
+      operations: this.getOperations(),
+      attrs: this.getAttrs(),
+      breadcrumbs: [
+        {
+          label: t('Pods'),
+          url: this.listUrl,
+        },
+      ],
+    }
 
     return (
-      <div>
-        <EditYamlModal
-          visible={viewYaml}
-          detail={toJS(detail._originData)}
-          onCancel={this.hideModal('viewYaml')}
-          readOnly
-        />
-      </div>
+      <DetailPage
+        stores={stores}
+        sideProps={sideProps}
+        routes={getRoutes(this.props.match.path)}
+      />
     )
   }
 }
-
-export default PodsDetail

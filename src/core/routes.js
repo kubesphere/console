@@ -65,7 +65,7 @@ export default [
         component: Workspaces,
       },
       {
-        path: '/projects/:namespace',
+        path: '/cl/:cluster/projects/:namespace',
         component: Projects,
       },
       {

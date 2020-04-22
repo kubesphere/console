@@ -16,162 +16,28 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { isEmpty, get, set, intersection } from 'lodash'
+import { isEmpty, set, intersection } from 'lodash'
 import { action, observable } from 'mobx'
 import ObjectMapper from 'utils/object.mapper'
 import { getFilterString, formatRules } from 'utils'
-import List from '../base.list'
 
-export default class WorkspaceStore {
-  list = new List()
+import Base from 'stores/base'
+import List from 'stores/base.list'
 
-  @observable
-  namespaces = {
-    data: [],
-    page: 1,
-    limit: 10,
-    total: 0,
-    keyword: '',
-    isLoading: true,
-  }
-
-  @observable
-  devops = {
-    data: [],
-    page: 1,
-    limit: 10,
-    total: 0,
-    keyword: '',
-    isLoading: true,
-  }
-
-  @observable
-  detail = {}
-
-  @observable
-  isLoading = false
-
-  @observable
-  isSubmitting = false
-
+export default class WorkspaceStore extends Base {
   @observable
   initializing = true
 
-  getListUrl = () => 'apis/tenant.kubesphere.io/v1alpha1/workspaces'
-  getDetailUrl = name => `${this.getListUrl()}/${name}`
+  module = 'workspaces'
 
-  @action
-  submitting = promise => {
-    this.isSubmitting = true
+  clusters = new List()
 
-    setTimeout(() => {
-      promise
-        .catch(() => {})
-        .finally(() => {
-          this.isSubmitting = false
-        })
-    }, 500)
+  namespaces = new List()
 
-    return promise
-  }
+  devops = new List()
 
-  @action
-  async fetchList({ limit, page, order, reverse, more, ...rest } = {}) {
-    this.list.isLoading = true
-
-    const params = {}
-
-    const filters = { ...this.list.filters, ...rest }
-    const conditions = getFilterString(filters)
-    if (conditions) {
-      params.conditions = conditions
-    }
-
-    if (!order && reverse === undefined) {
-      order = 'createTime'
-      reverse = true
-    }
-
-    if (limit !== Infinity) {
-      params.paging = `limit=${limit || 10},page=${page || 1}`
-    }
-
-    if (order) {
-      params.orderBy = order
-    }
-
-    if (reverse) {
-      params.reverse = true
-    }
-
-    const result = await request.get(
-      'kapis/tenant.kubesphere.io/v1alpha2/workspaces',
-      params
-    )
-
-    const data = result.items.map(ObjectMapper.workspaces)
-
-    this.list.update({
-      data: more ? [...this.list.data, ...data] : data,
-      total: result.total_count || 0,
-      limit: Number(limit) || 10,
-      page: Number(page) || 1,
-      order,
-      reverse,
-      filters,
-      isLoading: false,
-      selectedRowKeys: [],
-    })
-  }
-
-  @action
-  async fetchResourceList({ limit, page, order, reverse, more, ...rest } = {}) {
-    this.list.isLoading = true
-
-    const params = {}
-
-    const filters = { ...this.list.filters, ...rest }
-    const conditions = getFilterString(filters)
-    if (conditions) {
-      params.conditions = conditions
-    }
-
-    if (!order && reverse === undefined) {
-      order = 'createTime'
-      reverse = true
-    }
-
-    if (limit !== Infinity) {
-      params.paging = `limit=${limit || 10},page=${page || 1}`
-    }
-
-    if (order) {
-      params.orderBy = order
-    }
-
-    if (reverse) {
-      params.reverse = true
-    }
-
-    const result = await request.get(
-      'kapis/resources.kubesphere.io/v1alpha2/workspaces',
-      params
-    )
-
-    const data = result.items.map(ObjectMapper.workspaces)
-
-    this.list.update({
-      data: more ? [...this.list.data, ...data] : data,
-      total: result.total_count || 0,
-      limit: Number(limit) || 10,
-      page: Number(page) || 1,
-      order,
-      reverse,
-      filters,
-      isLoading: false,
-      selectedRowKeys: [],
-    })
-  }
+  getResourceUrl = params =>
+    `kapis/tenant.kubesphere.io/v1alpha2${this.getPath(params)}/${this.module}`
 
   @action
   async fetchDetail({ workspace } = {}) {
@@ -179,8 +45,9 @@ export default class WorkspaceStore {
       return
     }
 
+    this.isLoading = true
     const detail = await request.get(
-      `kapis/tenant.kubesphere.io/v1alpha2/workspaces/${workspace}`,
+      this.getDetailUrl({ name: workspace }),
       null,
       null,
       res => {
@@ -194,7 +61,8 @@ export default class WorkspaceStore {
       }
     )
 
-    this.detail = ObjectMapper.workspaces(detail)
+    this.detail = this.mapper(detail)
+    this.isLoading = false
   }
 
   @action
@@ -226,34 +94,30 @@ export default class WorkspaceStore {
   }
 
   @action
-  create(data) {
-    return this.submitting(request.post(this.getListUrl(), data))
-  }
+  async fetchClusters({ more } = {}) {
+    this.clusters.isLoading = true
 
-  @action
-  update(data) {
-    const name = get(data, 'metadata.name')
-    return this.submitting(request.patch(this.getDetailUrl(name), data))
-  }
+    const params = {}
 
-  @action
-  delete({ workspace }) {
-    return this.submitting(request.delete(this.getDetailUrl(workspace)))
-  }
-
-  @action
-  async checkName(workspace) {
-    return await request.get(
-      this.getDetailUrl(workspace),
-      {},
-      {
-        headers: { 'x-check-exist': true },
-      }
+    const result = await request.get(
+      `apis/cluster.kubesphere.io/v1alpha1/clusters`,
+      params
     )
+
+    const items = result.items.map(ObjectMapper.namespaces)
+
+    this.clusters.update({
+      data: more ? [...this.namespaces.data, ...items] : items,
+      total: result.totalItems,
+      limit: 10,
+      page: 1,
+      isLoading: false,
+    })
   }
 
   @action
   async fetchNamespaces({
+    cluster,
     workspace,
     keyword,
     page = 1,
@@ -273,20 +137,20 @@ export default class WorkspaceStore {
     }
 
     const result = await request.get(
-      `kapis/tenant.kubesphere.io/v1alpha2/workspaces/${workspace}/namespaces`,
+      `kapis/clusters/${cluster}/tenant.kubesphere.io/v1alpha2/workspaces/${workspace}/namespaces`,
       params
     )
 
     const items = result.items.map(ObjectMapper.namespaces)
 
-    this.namespaces = {
+    this.namespaces.update({
       data: more ? [...this.namespaces.data, ...items] : items,
       total: result.total_count,
       limit: Number(limit),
       page: Number(page),
       keyword,
       isLoading: false,
-    }
+    })
   }
 
   @action
@@ -308,13 +172,13 @@ export default class WorkspaceStore {
       params
     )
 
-    this.devops = {
+    this.devops.update({
       data: more ? [...this.devops.data, ...result.items] : result.items,
       total: result.total_count,
       limit: Number(limit),
       page: Number(page),
       keyword,
       isLoading: false,
-    }
+    })
   }
 }

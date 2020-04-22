@@ -36,6 +36,7 @@ import WorkloadStore from 'stores/workload'
   store: new WorkloadStore('statefulsets'),
   module: 'statefulsets',
   name: 'Workload',
+  rowKey: 'uuid',
 })
 export default class StatefulSets extends React.Component {
   handleTabChange = value => {
@@ -148,7 +149,7 @@ export default class StatefulSets extends React.Component {
             iconSize={40}
             title={getDisplayName(record)}
             desc={this.getItemDesc(record)}
-            to={`/clusters/${cluster}/namespaces/${
+            to={`/clusters/${cluster}/projects/${
               record.namespace
             }/${module}/${name}`}
           />

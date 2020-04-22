@@ -82,7 +82,7 @@ export default class ContainerSetting extends React.Component {
     Promise.all([
       this.quotaStore.fetch({ namespace }),
       this.projectStore.fetchLimitRanges({ namespace }),
-      this.secretStore.fetchByK8s({
+      this.secretStore.fetchListByK8s({
         namespace: this.props.namespace,
         fieldSelector: `type=kubernetes.io/dockerconfigjson`,
       }),

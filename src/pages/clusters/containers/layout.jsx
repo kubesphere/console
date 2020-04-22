@@ -50,7 +50,9 @@ class ClusterLayout extends Component {
   async init(params) {
     this.clusterStore.initializing = true
 
-    await this.clusterStore.fetchDetail(params)
+    await this.clusterStore.fetchDetail({
+      name: params.cluster,
+    })
 
     this.clusterStore.initializing = false
   }
@@ -63,13 +65,12 @@ class ClusterLayout extends Component {
     return this.props.rootStore.routing
   }
 
-  enterCluster = async cluster => {
-    if (globals.app.isClusterAdmin) {
-      return this.routing.push(`/clusters/${cluster}/overview`)
-    }
+  enterCluster = async cluster =>
+    // if (globals.app.isClusterAdmin) {
+    this.routing.push(`/clusters/${cluster}/overview`)
+  // }
 
-    return this.routing.push(`/dashboard`)
-  }
+  // return this.routing.push(`/dashboard`)
 
   render() {
     const { match, route, location } = this.props
@@ -87,7 +88,6 @@ class ClusterLayout extends Component {
               icon={detail.icon}
               value={this.cluster}
               onChange={this.enterCluster}
-              multi={this.clusterStore.list.total > 1}
             />
             <Nav
               className="ks-page-nav"

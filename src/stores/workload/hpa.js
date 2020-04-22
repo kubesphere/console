@@ -24,25 +24,13 @@ import { getHpaFormattedData } from 'utils/workload'
 import Base from '../base'
 
 export default class HpaStore extends Base {
-  constructor() {
-    super()
-    this.module = 'horizontalpodautoscalers'
-  }
-
-  get apiVersion() {
-    return 'apis/autoscaling/v2beta2'
-  }
-
-  getDetailUrl = ({ name, namespace }) =>
-    `${
-      this.apiVersion
-    }/namespaces/${namespace}/horizontalpodautoscalers/${name}`
+  module = 'horizontalpodautoscalers'
 
   @action
-  async fetchDetail({ name, namespace }) {
+  async fetchDetail(params) {
     this.isLoading = true
 
-    const result = await request.get(this.getDetailUrl({ name, namespace }))
+    const result = await request.get(this.getDetailUrl(params))
     const detail = this.mapper(result)
 
     this.detail = detail
@@ -75,6 +63,5 @@ export default class HpaStore extends Base {
   @action
   reset() {
     this.detail = {}
-    this.originDetail = {}
   }
 }

@@ -26,7 +26,7 @@ export default class UserStore {
   list = new List()
 
   get apiVersion() {
-    return 'kapis/iam.kubesphere.io/v1alpha2'
+    return 'apis/iam.kubesphere.io/v1alpha2'
   }
 
   getListUrl = ({ workspace, namespace }) => {

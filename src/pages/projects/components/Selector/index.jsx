@@ -21,6 +21,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Icon } from '@pitrix/lego-ui'
 
+import { Tag } from 'components/Base'
 import ProjectStore from 'stores/project'
 import DevOpsStore from 'stores/devops'
 
@@ -60,20 +61,17 @@ export default class Selector extends React.Component {
   }
 
   get enabledActions() {
+    const { workspace } = this.props
     return {
       projects: globals.app.getActions({
-        workspace: this.workspace,
+        workspace,
         module: 'projects',
       }),
       devops: globals.app.getActions({
-        workspace: this.workspace,
+        workspace,
         module: 'devops',
       }),
     }
-  }
-
-  get workspace() {
-    return this.props.workspace.name
   }
 
   get createType() {
@@ -131,11 +129,11 @@ export default class Selector extends React.Component {
   }
 
   handleCreate = ({ type, ...data }) => {
-    const { onChange } = this.props
+    const { cluster, workspace, onChange } = this.props
     this.setState({ isSubmitting: true })
     if (type === 'devops') {
       this.devopsStore
-        .create(data, { workspace: this.workspace })
+        .create(data, { workspace })
         .then(result => {
           this.hideCreate()
           if (result.project_id) {
@@ -150,10 +148,10 @@ export default class Selector extends React.Component {
         get(data, 'metadata.name') || get(data, 'Project.metadata.name')
       if (namespace) {
         this.projectStore
-          .create(data, { workspace: this.workspace })
+          .create(data, { workspace, cluster })
           .then(() => {
             this.hideCreate()
-            onChange(`/projects/${namespace}`)
+            onChange(`/cl/${cluster}/projects/${namespace}`)
           })
           .finally(() => {
             this.setState({ isSubmitting: false })
@@ -163,7 +161,16 @@ export default class Selector extends React.Component {
   }
 
   render() {
-    const { icon, defaultIcon, title, type, value, workspace } = this.props
+    const {
+      icon,
+      defaultIcon,
+      title,
+      type,
+      value,
+      cluster,
+      workspace,
+      isFedManaged,
+    } = this.props
     const { showSelect } = this.state
 
     return (
@@ -173,7 +180,10 @@ export default class Selector extends React.Component {
             <img src={icon || defaultIcon} alt="" />
           </div>
           <div className={styles.text}>
-            <p>{title}</p>
+            <p>
+              {title}{' '}
+              {isFedManaged && <Tag type="info">{t('MULTI_CLUSTER')}</Tag>}
+            </p>
             <div className="h6" data-tooltip={value}>
               {value}
             </div>
@@ -184,6 +194,7 @@ export default class Selector extends React.Component {
         </div>
         <SelectModal
           defaultType={type}
+          cluster={cluster}
           workspace={workspace}
           visible={showSelect}
           onChange={this.handleSelect}

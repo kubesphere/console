@@ -34,18 +34,7 @@ export default class StorageClassStore extends Base {
     isLoading: true,
   }
 
-  constructor() {
-    super()
-    this.module = 'storageclasses'
-  }
-
-  get apiVersion() {
-    return 'apis/storage.k8s.io/v1'
-  }
-
-  getListUrl = () => `${this.apiVersion}/storageclasses`
-
-  getResourceUrl = () => `kapis/resources.kubesphere.io/v1alpha2/${this.module}`
+  module = 'storageclasses'
 
   @action
   create(data) {
@@ -107,10 +96,6 @@ export default class StorageClassStore extends Base {
     const max = Number(get(detail, 'parameters.maxSize')) || DEFAULT_MAX_SIZE
     const step = Number(get(detail, 'parameters.stepSize')) || DEFAULT_STEP
 
-    return {
-      min,
-      max,
-      step,
-    }
+    return { min, max, step }
   }
 }

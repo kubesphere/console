@@ -55,7 +55,7 @@ export default class Nodes extends React.Component {
   monitoringStore = new NodeMonitoringStore()
 
   componentDidMount() {
-    this.store.fetchCount()
+    this.store.fetchCount(this.props.match.params)
   }
 
   get tips() {
