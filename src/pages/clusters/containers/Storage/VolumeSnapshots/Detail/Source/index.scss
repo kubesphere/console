@@ -1,0 +1,24 @@
+@import '~scss/variables';
+
+.wrapper {
+  display: flex;
+  & > div {
+    flex: 1
+  }
+
+  .icon {
+    flex-grow: 0;
+  }
+}
+
+.attr {
+  padding: 12px;
+  padding-top: 0;
+  h3 {
+    color: $dark-color07;
+    font-weight: bold;
+  }
+  p {
+    color: $dark-color01;    
+  }
+}

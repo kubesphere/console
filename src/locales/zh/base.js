@@ -454,4 +454,13 @@ export default {
     '会话超时或此账户在其它地方登录，请重新登录',
 
   ALERT_WARNING: '请注意',
+
+  VolumeSnapshot: '存储卷快照',
+  'Volume Snapshot': '存储卷快照',
+
+  CREATE_STATUS_SUCCESS: '创建成功',
+  CREATE_STATUS_UPDATING: '创建中',
+  CREATE_STATUS_FAILED: '创建失败',
+
+  DATA_SOURCE: '数据源',
 }

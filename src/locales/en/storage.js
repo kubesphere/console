@@ -130,4 +130,8 @@ export default {
 
   DEPENDENT_STORAGE_CLASS_DELETE_TIPS:
     'Please check if the storage class are required by other resource. If there are resources dependent on the it, close them first',
+
+  CREATE_VOLUME_BY_STORAGECLASS: 'Create volume by storageclass',
+  CREATE_VOLUME_BY_SNAPSHOT: 'Create volume by snapshot',
+  SELECT_SNAPSHOT_TO_CREATE_VOLUME: 'select snapshot to create volume',
 }

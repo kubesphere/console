@@ -17,43 +17,96 @@
  */
 
 import { Modal, Notify } from 'components/Base'
-
 import CreateModal from 'components/Modals/Create'
+import NameModal from 'projects/components/Modals/ResourceNamed'
+import ExpandModal from 'projects/components/Modals/ExpandVolume'
+
 import { MODULE_KIND_MAP } from 'utils/constants'
 import FORM_TEMPLATES from 'utils/form.templates'
 import formPersist from 'utils/form.persist'
-import FORM_STEPS from 'configs/steps/volumes'
+import FORM_STEPS, { APPLY_SNAPSHOT_FORM_STEPS } from 'configs/steps/volumes'
 
 export default {
   'volume.create': {
-    on({ store, namespace, module, success, ...props }) {
+    on({
+      fromSnapshot,
+      store,
+      namespace,
+      module,
+      extendformTemplate,
+      success,
+      ...props
+    }) {
       const kind = MODULE_KIND_MAP[module]
       const formTemplate = {
-        [kind]: FORM_TEMPLATES[module]({
-          namespace,
-        }),
+        [kind]: {
+          ...FORM_TEMPLATES[module]({
+            namespace,
+          }),
+          ...extendformTemplate,
+        },
       }
 
       const modal = Modal.open({
-        onOk: newObject => {
-          if (!newObject) {
+        onOk: async newObject => {
+          if (!newObject.PersistentVolumeClaim) {
             return
           }
 
-          store.create(newObject).then(() => {
-            Modal.close(modal)
-            Notify.success({ content: `${t('Created Successfully')}!` })
-            success && success()
-            formPersist.delete(`${module}_create_form`)
-          })
+          await store.create(newObject.PersistentVolumeClaim)
+          Modal.close(modal)
+          Notify.success({ content: `${t('Created Successfully')}!` })
+          success && success()
+          formPersist.delete(`${module}_create_form`)
         },
         module,
         namespace,
         name: kind,
         formTemplate,
-        steps: FORM_STEPS,
+        steps: fromSnapshot ? APPLY_SNAPSHOT_FORM_STEPS : FORM_STEPS,
         modal: CreateModal,
         store,
+        ...props,
+      })
+    },
+  },
+  'volume.clone': {
+    on({ store, ...props }) {
+      const modal = Modal.open({
+        onOk: async params => {
+          await store.cloneVolume(params)
+          Modal.close(modal)
+          Notify.success({ content: `${t('Created Successfully')}!` })
+        },
+        title: t('Volume Clone'),
+        modal: NameModal,
+        ...props,
+      })
+    },
+  },
+  'volume.create.snapshot': {
+    on({ store, ...props }) {
+      const modal = Modal.open({
+        onOk: async params => {
+          await store.createSnapshot(params)
+          Modal.close(modal)
+          Notify.success({ content: `${t('Created Successfully')}!` })
+        },
+        title: t('Create Snapshot'),
+        modal: NameModal,
+        ...props,
+      })
+    },
+  },
+  'volume.expand': {
+    on({ store, ...props }) {
+      const modal = Modal.open({
+        onOk: async params => {
+          await store.patch(store.detail, params)
+          Modal.close(modal)
+          Notify.success({ content: `${t('Updated Successfully')}!` })
+        },
+        modal: ExpandModal,
         ...props,
       })
     },

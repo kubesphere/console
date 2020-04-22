@@ -24,6 +24,7 @@ import DetailLayout from 'core/layouts/Detail'
 import Events from 'core/containers/Base/Detail/Events'
 import Detail from '../containers/Volumes/Detail'
 import ResourceStatus from '../containers/Volumes/Detail/ResourceStatus'
+import Snapshots from '../containers/Volumes/Detail/Snapshots'
 
 import { getPodRoutes } from './pod'
 
@@ -35,6 +36,7 @@ const ROUTES = [
     component: ResourceStatus,
   },
   { name: 'events', title: 'Events', component: Events },
+  { name: 'snapshot', title: 'Snapshots Message', component: Snapshots },
 ]
 
 const BREAD_CRUMBS = [

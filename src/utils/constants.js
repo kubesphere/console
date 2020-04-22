@@ -82,6 +82,12 @@ export const SERVICE_TYPES = {
   Unknown: 'Unknown',
 }
 
+export const VOLUME_SNAPSHOT_STATUS = [
+  { text: 'VOLUME_SNAPSHOT_STATUS_CREATING', value: 'creating' },
+  { text: 'VOLUME_SNAPSHOT_STATUS_READY', value: 'ready' },
+  { text: 'VOLUME_SNAPSHOT_STATUS_FAILED', value: 'failed' },
+]
+
 export const INGRESS_ANNOTATIONS = [
   'nginx.ingress.kubernetes.io/app-root',
   'nginx.ingress.kubernetes.io/affinity',
@@ -214,6 +220,7 @@ export const ICON_TYPES = {
   scheduler: 'scheduler',
   s2ibuilders: 'vnas',
   apps: 'appcenter',
+  'volume-snapshots': 'snapshot',
 }
 
 export const MODULE_KIND_MAP = {
@@ -232,6 +239,7 @@ export const MODULE_KIND_MAP = {
   secrets: 'Secret',
   s2ibuilders: 'S2iBuilder',
   nodes: 'Node',
+  'volume-snapshots': 'VolumeSnapshot',
 }
 
 export const QUOTAS_MAP = {

@@ -25,7 +25,9 @@ import VolumeStore from 'stores/volume'
 
 import StorageClass from 'stores/storageClass'
 import Base from 'core/containers/Base/Detail'
-import { Status } from 'components/Base'
+import { Status, Notify } from 'components/Base'
+
+import NameModal from 'projects/components/Modals/ResourceNamed'
 import EditBasicInfoModal from 'components/Modals/EditBasicInfo'
 import EditYamlModal from 'components/Modals/EditYaml'
 import ExpandModal from 'projects/components/Modals/ExpandVolume'
@@ -63,6 +65,18 @@ class VolumeDetail extends Base {
     })
   }
 
+  handleCreateSnapshot = async params => {
+    await this.store.createSnapshot(params)
+    Notify.success({ content: `${t('Created Successfully')}!` })
+    this.hideModal('snapshot')()
+  }
+
+  handleCloneVolume = async params => {
+    await this.store.cloneVolume(params)
+    this.hideModal('cloneVolume')()
+    Notify.success({ content: `${t('Created Successfully')}!` })
+  }
+
   getOperations = () => [
     {
       key: 'edit',
@@ -70,6 +84,23 @@ class VolumeDetail extends Base {
       text: t('EDIT'),
       action: 'edit',
       onClick: this.showModal('editBaseInfo'),
+    },
+    {
+      key: 'clone',
+      type: 'control',
+      text: t('Volume Clone'),
+      icon: 'copy',
+      action: 'create',
+      onClick: this.showModal('cloneVolume'),
+    },
+    {
+      key: 'snapshot',
+      type: 'control',
+      text: t('Create Snapshot'),
+      icon: 'copy',
+      action: 'create',
+      disabled: !get(this.store, 'detail.allowSnapshot', false),
+      onClick: this.showModal('snapshot'),
     },
     {
       key: 'expand',
@@ -151,7 +182,7 @@ class VolumeDetail extends Base {
 
   renderExtraModals() {
     const { detail, isSubmitting } = this.store
-    const { editBaseInfo, editYaml, expand } = this.state
+    const { editBaseInfo, editYaml, expand, snapshot, cloneVolume } = this.state
 
     const originData = toJS(detail._originData)
     const storageClassSizeConfig = this.storageclass.getStorageSizeConfig()
@@ -182,6 +213,20 @@ class VolumeDetail extends Base {
           max={storageClassSizeConfig.max}
           min={storageClassSizeConfig.min}
           step={storageClassSizeConfig.step}
+        />
+        <NameModal
+          title={t('Create Snapshot')}
+          visible={snapshot}
+          isSubmitting={isSubmitting}
+          onCancel={this.hideModal('snapshot')}
+          onOk={this.handleCreateSnapshot}
+        />
+        <NameModal
+          title={t('Volume Clone')}
+          visible={cloneVolume}
+          isSubmitting={isSubmitting}
+          onCancel={this.hideModal('cloneVolume')}
+          onOk={this.handleCloneVolume}
         />
       </div>
     )

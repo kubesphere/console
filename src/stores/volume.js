@@ -18,9 +18,15 @@
 
 import { observable } from 'mobx'
 import { to } from 'utils'
+import VolumeSnapshotStore from 'stores/volumeSnapshot'
+
 import Base from './base'
 
 export default class VolumeStore extends Base {
+  get resourceKind() {
+    return 'PersistentVolumeClaim'
+  }
+
   @observable
   mountedPods = {
     data: [],
@@ -50,5 +56,67 @@ export default class VolumeStore extends Base {
 
   get apiVersion() {
     return 'api/v1'
+  }
+
+  async cloneVolume({ name }) {
+    const {
+      namespace,
+      name: sourceName,
+      accessModes,
+      capacity,
+      storageClassName,
+    } = this.detail
+
+    const params = {
+      apiVersion: 'v1',
+      kind: this.resourceKind,
+      metadata: {
+        name,
+      },
+      spec: {
+        accessModes,
+        resources: {
+          requests: {
+            storage: capacity,
+          },
+        },
+        dataSource: {
+          kind: this.resourceKind,
+          name: sourceName,
+        },
+        storageClassName,
+      },
+    }
+
+    const path = `api/v1/namespaces/${namespace}/persistentvolumeclaims`
+
+    await this.submitting(request.post(path, params))
+  }
+
+  /**
+   * create snapshot from detail
+   */
+  async createSnapshot({ name }) {
+    const snapshotstore = new VolumeSnapshotStore()
+    const { namespace, name: sourceName, storageClassName } = this.detail
+
+    const path = snapshotstore.getListUrl({ namespace })
+
+    const params = {
+      apiVersion: 'snapshot.storage.k8s.io/v1alpha1',
+      kind: snapshotstore.resourceKind,
+      metadata: {
+        name,
+      },
+      spec: {
+        snapshotClassName: storageClassName,
+        source: {
+          kind: this.resourceKind,
+          name: sourceName,
+        },
+      },
+    }
+
+    await this.submitting(request.post(path, params))
   }
 }

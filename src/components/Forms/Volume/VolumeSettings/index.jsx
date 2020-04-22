@@ -17,11 +17,45 @@
  */
 
 import React from 'react'
-import { get } from 'lodash'
+import { get, set } from 'lodash'
 import { MODULE_KIND_MAP } from 'utils/constants'
-import { Form } from 'components/Base'
+import { Form, TypeSelect } from 'components/Base'
 
 import FormTemplate from './FormTemplate'
+import SnapshotForm from './SnapshotForm'
+
+const CREATE_TYPE_OPTIONS = [
+  {
+    icon: 'snapshot',
+    value: 'snapshot',
+    get label() {
+      return t('CREATE_VOLUME_BY_SNAPSHOT')
+    },
+    get description() {
+      return t('SELECT_SNAPSHOT_TO_CREATE_VOLUME')
+    },
+  },
+  {
+    icon: 'database',
+    value: 'storageclass',
+    get label() {
+      return t('CREATE_VOLUME_BY_STORAGECLASS')
+    },
+    get description() {
+      return t('STORAGE CLASS_DESC')
+    },
+  },
+]
+
+const CREATE_WAY = {
+  SNAPSHOT: 'snapshot',
+  NORMAL: 'storageclass',
+}
+const DEFAULT_CREATE_WAY = CREATE_WAY.NORMAL
+/**
+ * use for save the temporary message
+ */
+const CREATE_TYPE_NAME = 'create_way'
 
 export default class VolumeSettings extends React.Component {
   get formTemplate() {
@@ -29,12 +63,42 @@ export default class VolumeSettings extends React.Component {
     return get(formTemplate, MODULE_KIND_MAP[module], formTemplate)
   }
 
+  state = {
+    method: this.formTemplate[CREATE_TYPE_NAME] || DEFAULT_CREATE_WAY,
+  }
+
+  handeChange = method => {
+    this.setState({ method })
+
+    /**
+     * reset the form data, make it easy to dev
+     */
+    set(this.formTemplate, 'spec.accessModes', [])
+    set(this.formTemplate, 'dataSource', {})
+    set(this.formTemplate, 'spec.resources.requests.storage', '0Gi')
+  }
+
   render() {
     const { formRef } = this.props
+    const { method } = this.state
 
     return (
       <Form data={this.formTemplate} ref={formRef}>
-        <FormTemplate />
+        <Form.Item label={t('Method')}>
+          <TypeSelect
+            name={CREATE_TYPE_NAME}
+            defaultValue={DEFAULT_CREATE_WAY}
+            options={CREATE_TYPE_OPTIONS}
+            onChange={this.handeChange}
+          />
+        </Form.Item>
+        {method === CREATE_WAY.SNAPSHOT ? (
+          <SnapshotForm
+            namespace={get(this.formTemplate, 'metadata.namespace')}
+          />
+        ) : (
+          <FormTemplate />
+        )}
       </Form>
     )
   }
