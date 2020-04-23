@@ -49,15 +49,15 @@ export default class UserCreateModal extends Component {
     onCancel() {},
   }
 
-  clusterRoleStore = new RoleStore('clusterroles')
+  globalRoleStore = new RoleStore('globalroles')
 
   componentDidMount() {
-    this.clusterRoleStore.fetchList({ limit: -1, order: 'createTime' })
+    this.globalRoleStore.fetchList({ limit: -1, order: 'createTime' })
   }
 
   @computed
   get clusterRoles() {
-    return this.clusterRoleStore.list.data
+    return this.globalRoleStore.list.data
       .filter(role => !isSystemRole(role.name))
       .map(role => ({
         label: role.name,

@@ -58,25 +58,30 @@ export default class ResourceCard extends React.Component {
     return this.props.rootStore.routing
   }
 
+  get prefix() {
+    const { namespace, cluster } = this.props
+    return `/cluster/${cluster}/projects/${namespace}`
+  }
+
   handleClick = () => {
-    const { onClick, name, namespace, routeName } = this.props
+    const { onClick, name, routeName } = this.props
     if (isFunction(onClick)) {
       onClick(name)
     } else if (routeName) {
-      this.routing.push(`/projects/${namespace}/${routeName}`)
+      this.routing.push(`${this.prefix}/${routeName}`)
     }
   }
 
   handleWarnClick = e => {
     e.stopPropagation()
 
-    const { namespace, routeName, onClick, name } = this.props
+    const { routeName, onClick, name } = this.props
     const status = routeName === 'volumes' ? 'pending' : 'updating'
 
     if (isFunction(onClick)) {
       onClick(name, status)
     } else if (routeName) {
-      this.routing.push(`/projects/${namespace}/${routeName}?status=${status}`)
+      this.routing.push(`${this.prefix}/${routeName}?status=${status}`)
     }
   }
 

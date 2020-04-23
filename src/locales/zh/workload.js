@@ -74,6 +74,7 @@ export default {
   'Exist Volumes': '已有存储卷',
   'Volume Name': '存储卷名称',
   'HTTP Request': 'HTTP 请求',
+  'Diff Settings': '差异化配置',
 
   'No Request': '不预留',
   'No Limit': '不限制',
@@ -102,6 +103,8 @@ export default {
   'Running pods on the specified nodes': '可以让容器组副本在指定的节点运行',
   'Additional metadata settings for resources such as Label and Annotation':
     '对资源进行额外的元数据设置，例如 Label 和 Annotation',
+
+  'Deploy Placement': '部署位置',
 
   REFFER_CONFIGMAP_DESC: '将配置中的值添加为卷。',
   REFFER_SECRET_DESC: '将密钥中的值添加为卷。',
@@ -663,4 +666,8 @@ export default {
   COMPARE_WITH: '与上一个版本 {version} 的对比',
   REVISION_DESC:
     '对工作负载的资源模板进行修改后会生成一个新的记录并重新调度 容器组（Pod）进行版本的迭代，默认保存10个最近的版本。您可以根据修改记录进行重新部署。',
+
+  CLUSTER_CONTAINER_IMAGE_DIFF_DESC:
+    '根据不同的需要在不同的集群中设置不同的容器',
+  CLUSTER_SERVICE_DIFF_DESC: '可以在不同集群设置不同的服务端口',
 }

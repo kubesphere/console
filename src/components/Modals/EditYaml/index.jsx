@@ -65,14 +65,11 @@ export default class YamlEditModal extends React.Component {
   }
 
   init(props) {
-    if (props.store) {
-      const metadata = props.detail.metadata || {}
-      if (metadata.name && metadata.namespace)
-        props.store.fetchDetail(metadata).then(data => {
-          this.setState({ value: data._originData })
-        })
-    } else if (props.detail !== this.state.value) {
-      this.setState({ value: props.detail })
+    const { detail, store } = props
+    if (detail && detail.name && detail.namespace) {
+      store.fetchDetail(detail).then(data => {
+        this.setState({ value: data._originData })
+      })
     }
   }
 

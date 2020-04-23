@@ -20,11 +20,7 @@ import { inject } from 'mobx-react'
 import { renderRoutes } from 'utils/router.config'
 
 import routes from './routes'
-import actions from './actions'
 
-const App = ({ rootStore }) => {
-  rootStore.registerActions(actions)
-  return renderRoutes(routes)
-}
+const App = () => renderRoutes(routes)
 
 export default inject('rootStore')(App)

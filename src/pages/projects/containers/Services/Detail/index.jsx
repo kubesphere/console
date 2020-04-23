@@ -62,7 +62,7 @@ export default class ServiceDetail extends React.Component {
       return `/clusters/${cluster}/${this.module}`
     }
 
-    return `/cl/${cluster}/projects/${namespace}/${this.module}`
+    return `/cluster/${cluster}/projects/${namespace}/${this.module}`
   }
 
   fetchData = () => {

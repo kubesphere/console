@@ -29,6 +29,7 @@ import VolumesCard from 'components/Cards/Volumes'
 import ContainerPortsCard from 'components/Cards/Containers/Ports'
 import HPACard from 'projects/components/Cards/HPA'
 import ReplicaCard from 'projects/components/Cards/Replica'
+import ClusterWorkloadStatus from 'projects/components/Cards/ClusterWorkloadStatus'
 import S2iBuilderCard from 'projects/components/Cards/S2iBuilder'
 
 import styles from './index.scss'
@@ -51,6 +52,10 @@ class ResourceStatus extends React.Component {
     return this.props.detailStore
   }
 
+  get fedStore() {
+    return this.props.fedDetailStore
+  }
+
   get prefix() {
     const path = this.props.match.path
     const { cluster, namespace } = this.props.match.params
@@ -58,7 +63,7 @@ class ResourceStatus extends React.Component {
       return `/clusters/${cluster}/projects/${namespace}`
     }
 
-    return `/cl/${cluster}/projects/${namespace}`
+    return `/cluster/${cluster}/projects/${namespace}`
   }
 
   get enabledActions() {
@@ -144,6 +149,18 @@ class ResourceStatus extends React.Component {
 
   renderReplicaInfo() {
     const detail = toJS(this.store.detail)
+
+    if (detail.isFedManaged) {
+      const fedDetail = toJS(this.fedStore.detail)
+      return (
+        <ClusterWorkloadStatus
+          module={this.module}
+          detail={detail}
+          fedDetail={fedDetail}
+          store={this.fedStore}
+        />
+      )
+    }
 
     return (
       <ReplicaCard
@@ -234,5 +251,5 @@ class ResourceStatus extends React.Component {
   }
 }
 
-export default inject('detailStore')(observer(ResourceStatus))
+export default inject('detailStore', 'fedDetailStore')(observer(ResourceStatus))
 export const Component = ResourceStatus

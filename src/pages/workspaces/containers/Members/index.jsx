@@ -30,14 +30,14 @@ import Banner from 'components/Cards/Banner'
 
 import Base from 'core/containers/Base/List'
 import MemberStore from 'stores/workspace/member'
-import RoleStore from 'stores/workspace/role'
+import RoleStore from 'stores/role'
 
 @inject('rootStore')
 @observer
 class Members extends Base {
   init() {
     this.store = new MemberStore()
-    this.roleStore = new RoleStore()
+    this.roleStore = new RoleStore('workspaceroles')
 
     this.roleStore.fetchList(this.props.match.params)
   }

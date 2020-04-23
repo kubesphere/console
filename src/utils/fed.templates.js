@@ -37,28 +37,52 @@ const getNamespaceTemplate = data => {
   }
 }
 
-const getWorkloadTemplate = ({ data, clusters, kind }) => {
+const getWorkloadTemplate = ({ data, kind }) => {
   const name = get(data, 'metadata.name')
   const namespace = get(data, 'metadata.namespace')
+  const replicas = get(data, 'spec.replicas')
+  const clusters = get(data, 'spec.placement.clusters')
   const placement = {
-    clusters: get(data, 'spec.placement.clusters', clusters),
+    clusters: clusters.map(cluster => ({ name: cluster.name })),
   }
 
-  const overrides = clusters.map(cluster => ({
-    clusterName: cluster.name,
-    clusterOverrides: [
-      {
-        path: 'metadata/annotations',
-        value: get(data, 'metadata.annotations'),
-      },
-    ],
-  }))
+  const workloadOverrides = get(data, 'spec.overrides', [])
+  const overrides = clusters.map(cluster => {
+    const override = {
+      clusterName: cluster.name,
+      clusterOverrides: [
+        {
+          path: '/metadata/annotations',
+          value: get(data, 'metadata.annotations'),
+        },
+      ],
+    }
+
+    if (replicas !== cluster.replicas) {
+      override.clusterOverrides.push({
+        path: '/spec/replicas',
+        value: cluster.replicas,
+      })
+    }
+
+    const workloadOr = workloadOverrides.find(
+      item => item.clusterName === cluster.name
+    )
+
+    if (workloadOr) {
+      override.clusterOverrides.push(...workloadOr.clusterOverrides)
+    }
+
+    return override
+  })
 
   const template = cloneDeep(data)
   unset(template, 'apiVersion')
   unset(template, 'kind')
   unset(template, 'metadata.name')
   unset(template, 'metadata.annotations')
+  unset(template, 'spec.placement')
+  unset(template, 'spec.overrides')
 
   return {
     apiVersion: 'types.kubefed.io/v1beta1',

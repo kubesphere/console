@@ -27,7 +27,7 @@ import NotificationHistory from 'console/containers/MonitoringCenter/Alerting/Me
 import Comment from 'console/containers/MonitoringCenter/Alerting/Message/Detail/Comment'
 import Detail from '../../containers/Alerting/Message/Detail'
 
-const PATH = '/projects/:namespace/alert-message'
+const PATH = '/cluster/:cluster/projects/:namespace/alert-message'
 const UNRESOLVED_PATH = `${PATH}/unresolved/:id`
 const ALL_PATH = `${PATH}/all/:id`
 

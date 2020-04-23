@@ -133,7 +133,8 @@ export default class PodsCard extends React.Component {
   }
 
   getParams = (props = {}) => {
-    const { name, cluster, namespace, kind, _originData } = props.detail || {}
+    const { name, cluster, namespace, kind, uid, _originData } =
+      props.detail || {}
     const _kind = kind || get(_originData, 'kind', '')
     const result = {}
 
@@ -159,8 +160,7 @@ export default class PodsCard extends React.Component {
         result.namespace = name
         break
       default:
-        result.ownerKind = _kind
-        result.ownerName = name
+        result.ownerReference = uid
     }
     return result
   }
@@ -199,22 +199,6 @@ export default class PodsCard extends React.Component {
     const { page, limit, total } = this.store.list
     const pagination = { page, limit, total }
     return pagination
-  }
-
-  getPodPrefix = (pod = {}) => {
-    if (this.props.prefix) {
-      return this.props.prefix
-    }
-
-    let prefix = `/projects/${pod.namespace}`
-
-    const { name, kind, _originData } = this.props.detail
-    const _kind = kind || get(_originData, 'kind', '')
-    if (_kind === 'Node') {
-      prefix = `/infrastructure/nodes/${name}/projects/${pod.namespace}`
-    }
-
-    return prefix
   }
 
   getPodMetrics = pod => {
@@ -277,6 +261,7 @@ export default class PodsCard extends React.Component {
   )
 
   renderContent() {
+    const { prefix } = this.props
     const { data, isLoading, silent } = this.store.list
 
     const content = (
@@ -287,7 +272,7 @@ export default class PodsCard extends React.Component {
           data.map(pod => (
             <PodItem
               key={pod.name}
-              prefix={this.getPodPrefix(pod)}
+              prefix={prefix}
               detail={pod}
               metrics={this.getPodMetrics(pod)}
               loading={this.monitorStore.isLoading}

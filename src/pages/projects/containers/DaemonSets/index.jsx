@@ -39,7 +39,7 @@ import WorkloadStore from 'stores/workload'
 export default class DaemonSets extends React.Component {
   get prefix() {
     const { namespace, cluster } = this.props.match.params
-    return `/cl/${cluster}/projects/${namespace}`
+    return `/cluster/${cluster}/projects/${namespace}`
   }
 
   handleTabChange = value => {

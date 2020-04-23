@@ -111,35 +111,14 @@ export default class CreateModal extends React.Component {
   }
 
   renderForms() {
-    const {
-      module,
-      onOk,
-      onCancel,
-      store,
-      okBtnText,
-      steps,
-      isSubmitting,
-      updateModule,
-      cluster,
-      namespace,
-    } = this.props
     const { formTemplate, currentStep } = this.state
 
     return (
       <Form
+        {...this.props}
         ref={this.formRef}
         formTemplate={formTemplate}
-        store={store}
-        module={module}
-        steps={steps}
-        onOk={onOk}
-        onCancel={onCancel}
-        okBtnText={okBtnText}
         currentStep={currentStep}
-        updateModule={updateModule}
-        isSubmitting={isSubmitting}
-        cluster={cluster}
-        namespace={namespace}
       />
     )
   }

@@ -90,7 +90,14 @@ export default class Group extends React.Component {
   }
 
   render() {
-    const { children, checkable, label, desc, noWrapper } = this.props
+    const {
+      children,
+      checkable,
+      label,
+      desc,
+      noWrapper,
+      className,
+    } = this.props
     const { isCheck } = this.state
 
     if (!children) {
@@ -101,9 +108,13 @@ export default class Group extends React.Component {
 
     return (
       <div
-        className={classNames(styles.group, { [styles.checkable]: checkable })}
+        className={classNames(
+          styles.group,
+          { [styles.checkable]: checkable },
+          className
+        )}
       >
-        <div>
+        <div className="form-group-header">
           <div className={styles.groupTitle}>
             {checkable ? (
               <Checkbox checked={isCheck} onChange={this.handleCheck}>

@@ -24,8 +24,8 @@ import { Provider } from 'mobx-react'
 
 import 'scss/main.scss'
 
+import actions from 'src/actions'
 import routes from './routes'
-import actions from './actions'
 
 class App extends Component {
   static propTypes = {

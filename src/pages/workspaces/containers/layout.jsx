@@ -18,7 +18,7 @@
 
 // import { get } from 'lodash'
 import React, { Component } from 'react'
-import { inject, observer } from 'mobx-react'
+import { inject, observer, Provider } from 'mobx-react'
 import { Loading } from '@pitrix/lego-ui'
 
 import { renderRoutes } from 'utils/router.config'
@@ -36,7 +36,7 @@ class WorkspaceLayout extends Component {
   constructor(props) {
     super(props)
 
-    this.workspaceStore = new WorkspaceStore()
+    this.store = new WorkspaceStore()
 
     this.init(props.match.params)
   }
@@ -48,9 +48,9 @@ class WorkspaceLayout extends Component {
   }
 
   async init(params) {
-    this.workspaceStore.initializing = true
+    this.store.initializing = true
 
-    await this.workspaceStore.fetchDetail(params)
+    await this.store.fetchDetail(params)
 
     // const workspaceRule = get(
     //   globals.user,
@@ -58,7 +58,7 @@ class WorkspaceLayout extends Component {
     // )
 
     // if (workspaceRule === undefined) {
-    //   await this.workspaceStore.fetchRules(params)
+    //   await this.store.fetchRules(params)
     // }
 
     // if (
@@ -73,7 +73,7 @@ class WorkspaceLayout extends Component {
     //   return
     // }
 
-    this.workspaceStore.initializing = false
+    this.store.initializing = false
   }
 
   get workspace() {
@@ -92,7 +92,7 @@ class WorkspaceLayout extends Component {
 
   // const workspace_rule = get(globals.user, `workspace_rules[${workspace}]`)
   // if (!workspace_rule) {
-  //   await this.workspaceStore.fetchRules({ workspace })
+  //   await this.store.fetchRules({ workspace })
   // }
 
   // if (
@@ -110,30 +110,32 @@ class WorkspaceLayout extends Component {
 
   render() {
     const { match, route, location } = this.props
-    const { detail, initializing } = this.workspaceStore
+    const { detail, initializing } = this.store
 
     if (initializing) {
       return <Loading className={styles.loading} />
     }
 
     return (
-      <div>
-        <div className="ks-page-side">
-          <Selector
-            icon={detail.logo}
-            value={this.workspace}
-            onChange={this.enterWorkspace}
-            // multi={globals.user.workspaces.length > 1}
-          />
-          <Nav
-            className="ks-page-nav"
-            navs={globals.app.getWorkspaceNavs(this.workspace)}
-            location={location}
-            match={match}
-          />
-        </div>
-        <div className="ks-page-main">{renderRoutes(route.routes)}</div>
-      </div>
+      <Provider workspaceStore={this.store}>
+        <>
+          <div className="ks-page-side">
+            <Selector
+              icon={detail.logo}
+              value={this.workspace}
+              onChange={this.enterWorkspace}
+              // multi={globals.user.workspaces.length > 1}
+            />
+            <Nav
+              className="ks-page-nav"
+              navs={globals.app.getWorkspaceNavs(this.workspace)}
+              location={location}
+              match={match}
+            />
+          </div>
+          <div className="ks-page-main">{renderRoutes(route.routes)}</div>
+        </>
+      </Provider>
     )
   }
 }

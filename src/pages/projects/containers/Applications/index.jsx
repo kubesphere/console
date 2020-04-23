@@ -188,7 +188,7 @@ export default class Applications extends React.Component {
   handleTabChange = value => {
     const { cluster, namespace } = this.props.match.params
     this.routing.push(
-      `/cl/${cluster}/projects/${namespace}/applications/${value}`
+      `/cluster/${cluster}/projects/${namespace}/applications/${value}`
     )
   }
 
@@ -245,11 +245,11 @@ export default class Applications extends React.Component {
   }
 
   handleServiceDeployApp = data => {
-    const { namespace } = this.props.match.params
+    const { cluster, namespace } = this.props.match.params
     this.crdAppStore.create(data).then(() => {
       this.hideServiceDeployAppModal()
       this.routing.push(
-        `/projects/${namespace}/applications/composing/${get(
+        `/cluster/${cluster}/projects/${namespace}/applications/composing/${get(
           data,
           'application.metadata.name'
         )}`
@@ -262,9 +262,11 @@ export default class Applications extends React.Component {
   }
 
   handleDeployRepoApp = () => {
-    const { namespace } = this.props.match.params
+    const { cluster, namespace } = this.props.match.params
     this.hideRepoAppModal()
-    this.routing.push(`/projects/${namespace}/applications/template`)
+    this.routing.push(
+      `/cluster/${cluster}/projects/${namespace}/applications/template`
+    )
   }
 
   renderHeader() {

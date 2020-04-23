@@ -169,9 +169,9 @@ export default class Component extends React.Component {
           <div className={styles.title}>
             <div className="h6">
               <Link
-                to={`/projects/${jobDetail.namespace}/${workloadType}/${
-                  data.name
-                }-${data.version}`}
+                to={`/cluster/${jobDetail.cluster}/projects/${
+                  jobDetail.namespace
+                }/${workloadType}/${data.name}-${data.version}`}
               >
                 {data.name}
               </Link>

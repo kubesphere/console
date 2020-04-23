@@ -28,7 +28,7 @@ import ApplicationStore from 'stores/openpitrix/application'
 
 import styles from './index.scss'
 
-@inject('rootStore')
+@inject('rootStore', 'projectStore')
 @observer
 export default class Applications extends React.Component {
   constructor(props) {
@@ -54,7 +54,7 @@ export default class Applications extends React.Component {
   }
 
   get project() {
-    return this.props.rootStore.project
+    return this.props.projectStore
   }
 
   fetchData() {
@@ -67,8 +67,9 @@ export default class Applications extends React.Component {
 
   handleClickApp = e => {
     const { app } = e.currentTarget.dataset
+    const { cluster, namespace } = this.props.match.params
     this.routing.push(
-      `/projects/${this.namespace}/applications/template/${app}`
+      `/cluster/${cluster}/projects/${namespace}/applications/template/${app}`
     )
   }
 
@@ -79,10 +80,11 @@ export default class Applications extends React.Component {
   }
 
   renderExtras() {
+    const { cluster, namespace } = this.props.match.params
     return (
       <Link
         className={styles.more}
-        to={`/projects/${this.namespace}/applications/template`}
+        to={`/cluster/${cluster}/projects/${namespace}/applications/template`}
       >
         {t('View All')}
       </Link>

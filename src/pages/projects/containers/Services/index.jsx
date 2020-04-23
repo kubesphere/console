@@ -109,7 +109,8 @@ export default class Services extends React.Component {
             iconSize={40}
             title={getDisplayName(record)}
             desc={record.description || '-'}
-            to={`/cl/${cluster}/projects/${namespace}/${module}/${name}`}
+            isMultiCluster={record.isFedManaged}
+            to={`/cluster/${cluster}/projects/${namespace}/${module}/${name}`}
           />
         ),
       },

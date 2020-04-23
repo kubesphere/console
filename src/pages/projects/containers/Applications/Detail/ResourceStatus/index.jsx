@@ -36,8 +36,8 @@ class ResourceStatus extends React.Component {
   }
 
   get prefix() {
-    const { namespace } = this.props.match.params
-    return `/projects/${namespace}`
+    const { cluster, namespace } = this.props.match.params
+    return `/cluster/${cluster}/projects/${namespace}`
   }
 
   render() {

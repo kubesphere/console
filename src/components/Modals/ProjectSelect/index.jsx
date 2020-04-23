@@ -19,20 +19,27 @@
 import { get } from 'lodash'
 import React from 'react'
 import { toJS } from 'mobx'
-import { observer } from 'mobx-react'
+import { inject, observer } from 'mobx-react'
 import { Columns, Column } from '@pitrix/lego-ui'
 import { Button, Modal, Search, RadioGroup, ScrollLoad } from 'components/Base'
 import WorkspaceStore from 'stores/workspace'
+import ProjectStore from 'stores/project'
+import DevOpsStore from 'stores/devops'
 
 import Card from './Card'
 
 import styles from './index.scss'
 
+@inject('rootStore')
 @observer
 export default class ProjectSelectModal extends React.Component {
   constructor(props) {
     super(props)
+
     this.store = new WorkspaceStore()
+    this.projectStore = new ProjectStore()
+    this.devopsStore = new DevOpsStore()
+
     this.state = {
       type: props.defaultType || 'projects',
     }
@@ -82,14 +89,19 @@ export default class ProjectSelectModal extends React.Component {
     return types
   }
 
+  get canCreate() {
+    return this.state.type === 'projects'
+      ? this.enabledActions.projects.includes('create')
+      : this.enabledActions.devops.includes('create')
+  }
+
   fetchData = query => {
-    const { keyword } = this.store.list
     const { cluster, workspace } = this.props
-    const params = { keyword, cluster, workspace, ...query }
+    const params = { cluster, workspace, ...query }
     if (this.state.type === 'projects') {
-      this.store.fetchNamespaces(params)
+      this.projectStore.fetchList(params)
     } else {
-      this.store.fetchDevOps(params)
+      this.devopsStore.fetchList(params)
     }
   }
 
@@ -132,18 +144,34 @@ export default class ProjectSelectModal extends React.Component {
 
   handleOnEnter = item => {
     const { cluster, onChange } = this.props
-    if (this.state.type === 'devops') {
-      onChange(`/devops/${item.project_id}`)
+    if (this.state.type === 'projects') {
+      onChange(`/cluster/${cluster}/projects/${item.name}`)
     } else {
-      onChange(`/cl/${cluster}/projects/${item.name}`)
+      onChange(`/devops/${item.project_id}`)
+    }
+  }
+
+  showCreate = () => {
+    const { workspace, rootStore } = this.props
+    if (this.state.type === 'projects') {
+      rootStore.triggerAction('project.create', {
+        store: this.projectStore,
+        workspace,
+      })
+    } else {
+      rootStore.triggerAction('devops.create', {
+        store: this.devopsStore,
+        workspace,
+      })
     }
   }
 
   render() {
-    const { visible, workspace, onCancel, onShowCreate } = this.props
+    const { visible, workspace, onCancel } = this.props
     const { type } = this.state
     const { detail } = this.store
-    const list = type === 'devops' ? this.store.devops : this.store.namespaces
+    const list =
+      type === 'projects' ? this.projectStore.list : this.devopsStore.list
     const { data, total, page, isLoading } = toJS(list)
 
     return (
@@ -179,8 +207,8 @@ export default class ProjectSelectModal extends React.Component {
                   type="flat"
                   onClick={this.handleRefresh}
                 />
-                {onShowCreate && (
-                  <Button type="control" onClick={onShowCreate}>
+                {this.canCreate && (
+                  <Button type="control" onClick={this.showCreate}>
                     {t('Create Project')}
                   </Button>
                 )}

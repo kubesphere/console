@@ -43,7 +43,7 @@ export default class DevOps extends React.Component {
         text: t('Edit'),
         action: 'edit',
         onClick: item =>
-          trigger('workspace.devops.edit', { detail: item, success: getData }),
+          trigger('devops.edit', { detail: item, success: getData }),
       },
       {
         key: 'delete',
@@ -111,7 +111,7 @@ export default class DevOps extends React.Component {
   ]
 
   showCreate = () =>
-    this.props.trigger('workspace.devops.create', {
+    this.props.trigger('devops.create', {
       ...this.props.match.params,
     })
 

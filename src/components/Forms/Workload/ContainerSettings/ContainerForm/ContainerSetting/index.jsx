@@ -160,7 +160,7 @@ export default class ContainerSetting extends React.Component {
     return (
       <ToggleView>
         <>
-          <Columns>
+          <Columns className={styles.columns}>
             <Column>
               <Form.Item
                 label={t('Container Name')}
@@ -205,8 +205,10 @@ export default class ContainerSetting extends React.Component {
   }
 
   render() {
+    const { className } = this.props
     return (
       <Form.Group
+        className={className}
         label={t('Container Settings')}
         desc={t(
           'Setting for the name of the container and the computing resources of the container'

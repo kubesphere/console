@@ -432,7 +432,7 @@ const ServiceMapper = item => {
   }
 }
 
-export const EndpointMapper = item => ({
+const EndpointMapper = item => ({
   addresses: item.addresses || [],
   ports: item.ports || [],
 })
@@ -469,7 +469,7 @@ const IngressMapper = item => ({
   _originData: getOriginData(item),
 })
 
-export const GatewayMapper = item => ({
+const GatewayMapper = item => ({
   uid: get(item, 'metadata.uid'),
   namespace: get(item, 'metadata.labels.project'), // it's not metadata.namespace
   annotations: omit(
@@ -487,7 +487,7 @@ export const GatewayMapper = item => ({
   _originData: getOriginData(item),
 })
 
-export const ConfigmapMapper = item => ({
+const ConfigmapMapper = item => ({
   ...getBaseInfo(item),
   namespace: get(item, 'metadata.namespace'),
   labels: get(item, 'metadata.labels', {}),
@@ -519,7 +519,7 @@ const secretDataParser = data => {
   )
 }
 
-export const SecretMapper = item => ({
+const SecretMapper = item => ({
   ...getBaseInfo(item),
   namespace: get(item, 'metadata.namespace'),
   labels: get(item, 'metadata.labels', {}),
@@ -529,7 +529,7 @@ export const SecretMapper = item => ({
   _originData: getOriginData(item),
 })
 
-export const LimitRangeMapper = item => ({
+const LimitRangeMapper = item => ({
   ...getBaseInfo(item),
   namespace: get(item, 'metadata.namespace'),
   limit: get(item, 'spec.limits[0]', ''),
@@ -552,7 +552,7 @@ const getApplicationStatus = item => {
   return 'Updating'
 }
 
-export const ApplicationMapper = item => ({
+const ApplicationMapper = item => ({
   ...getBaseInfo(item),
   namespace: get(item, 'metadata.namespace'),
   version: get(item, 'metadata.labels["app.kubernetes.io/version"]'),
@@ -567,7 +567,7 @@ export const ApplicationMapper = item => ({
   _originData: getOriginData(item),
 })
 
-export const ServicePolicyMapper = item => ({
+const ServicePolicyMapper = item => ({
   ...getBaseInfo(item),
   namespace: get(item, 'metadata.namespace'),
   labels: get(item, 'metadata.labels', {}),
@@ -582,7 +582,7 @@ export const ServicePolicyMapper = item => ({
   _originData: getOriginData(item),
 })
 
-export const StrategyMapper = item => {
+const StrategyMapper = item => {
   const type = get(item, 'spec.type')
   const principal = get(item, 'spec.principal')
   const governor = get(item, 'spec.governor')
@@ -637,7 +637,7 @@ export const StrategyMapper = item => {
   }
 }
 
-export const AlertMapper = item => {
+const AlertMapper = item => {
   const alertStatus = safeParseJSON(get(item, 'alert_status'), {})
   const policyConfig = safeParseJSON(get(item, 'policy_config'), {})
   const resourceFilter = safeParseJSON(get(item, 'rs_filter_param'), {})
@@ -675,7 +675,7 @@ export const AlertMapper = item => {
   }
 }
 
-export const AlertRuleMapper = item => {
+const AlertRuleMapper = item => {
   const resources = get(item, 'resources') || []
 
   let alertStatus = isEmpty(resources) ? 'unknown' : 'cleared'
@@ -705,7 +705,7 @@ export const AlertRuleMapper = item => {
   }
 }
 
-export const AlertResourceMapper = item => {
+const AlertResourceMapper = item => {
   const resource_uri = safeParseJSON(get(item, 'resource_uri'), {})
   const selector = safeParseJSON(get(resource_uri, 'selector'), [])
   const node_id = (get(resource_uri, 'node_id') || '').split('|')
@@ -724,7 +724,7 @@ export const AlertResourceMapper = item => {
   }
 }
 
-export const AlertMessageMapper = item => {
+const AlertMessageMapper = item => {
   const notificationStatus = safeParseJSON(get(item, 'notification_status'), [])
   const resourceFilter = safeParseJSON(get(item, 'rs_filter_param'), {})
 
@@ -786,7 +786,7 @@ const findCodeDetail = (messures, key, path, defaultValue) => {
   return get(detail, path || 'value', defaultValue || '')
 }
 
-export const CodeQualityMapper = item => {
+const CodeQualityMapper = item => {
   const messures = get(item, 'measures.component.measures', [])
   const severities = find(
     get(item, 'issues.facets', []),
@@ -814,7 +814,7 @@ export const CodeQualityMapper = item => {
   }
 }
 
-export const ImageDetailMapper = detail => {
+const ImageDetailMapper = detail => {
   const layers = get(detail, 'imageManifest.layers', [])
   const size = layers.reduce((prev, layer) => prev + layer.size, 0)
   return {
@@ -832,7 +832,7 @@ export const ImageDetailMapper = detail => {
   }
 }
 
-export const VolumeSnapshotMapper = detail => {
+const VolumeSnapshotMapper = detail => {
   const { spec = {}, status = {}, metadata = {} } = detail
   const { error = {}, readyToUse } = status
   const { message } = error
@@ -853,7 +853,7 @@ export const VolumeSnapshotMapper = detail => {
   }
 }
 
-export const ClusterMapper = item => ({
+const ClusterMapper = item => ({
   ...getBaseInfo(item),
   provider: get(item, 'spec.provider'),
   isHost:
@@ -863,6 +863,19 @@ export const ClusterMapper = item => ({
     ) === 'true',
   nodeCount: get(item, 'status.nodeCount'),
   kubernetesVersion: get(item, 'status.kubernetesVersion'),
+  isActive: get(item, 'spec.active'),
+  labels: get(item, 'metadata.labels'),
+  group: get(item, 'metadata.labels["cluster.kubesphere.io/group"]'),
+})
+
+const FederatedMapper = item => ({
+  ...getBaseInfo(item),
+  status: get(item, 'status'),
+  overrides: get(item, 'spec.overrides'),
+  clusters: get(item, 'spec.placement.clusters'),
+  template: get(item, 'spec.template'),
+  namespace: get(item, 'metadata.namespace'),
+  _originData: getOriginData(item),
 })
 
 export default {
@@ -887,6 +900,8 @@ export default {
   endpoints: EndpointMapper,
   ingresses: IngressMapper,
   roles: RoleMapper,
+  clusterroles: RoleMapper,
+  globalroles: RoleMapper,
   rolebinds: RoleBindMapper,
   gateway: GatewayMapper,
   configmaps: ConfigmapMapper,
@@ -905,4 +920,5 @@ export default {
   volumesnapshots: VolumeSnapshotMapper,
   users: UserMapper,
   clusters: ClusterMapper,
+  federated: FederatedMapper,
 }

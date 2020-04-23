@@ -23,7 +23,10 @@ import { get, isEmpty, omitBy } from 'lodash'
 
 import FORM_TEMPLATES from 'utils/form.templates'
 import RoleStore from 'stores/role'
+import MemberStore from 'stores/project/member'
+import QuotaStore from 'stores/quota'
 import { Notify } from 'components/Base'
+import { trigger } from 'utils/action'
 import ProjectEditModal from 'components/Modals/ProjectEdit'
 import QuotaEditModal from 'components/Modals/QuotaEdit'
 import ProjectDeleteModal from 'components/Modals/Delete'
@@ -33,35 +36,30 @@ import ProjectInfo from './ProjectInfo'
 import ResourceQuota from './ResourceQuota'
 import DefaultResource from './DefaultResource'
 
-@inject('rootStore')
+@inject('rootStore', 'projectStore')
 @observer
+@trigger
 class BaseInfo extends React.Component {
-  constructor(props) {
-    super(props)
+  roleStore = new RoleStore()
+  memberStore = new MemberStore()
+  quotaStore = new QuotaStore()
 
-    this.state = {
-      showEdit: false,
-      showDelete: false,
-      showEditQuota: false,
-      showEditDefaultResource: false,
-    }
-
-    this.roleStore = new RoleStore()
+  state = {
+    showEdit: false,
+    showDelete: false,
+    showEditQuota: false,
+    showEditDefaultResource: false,
   }
 
   componentDidMount() {
-    this.store.fetchMembers(this.params)
+    this.memberStore.fetchList(this.params)
     this.roleStore.fetchList(this.params)
-    this.store.fetchLimitRanges(this.params)
     this.quotaStore.fetch(this.params)
+    this.store.fetchLimitRanges(this.params)
   }
 
   get store() {
-    return this.props.rootStore.project
-  }
-
-  get quotaStore() {
-    return this.props.rootStore.quota
+    return this.props.projectStore
   }
 
   get routing() {
@@ -73,7 +71,7 @@ class BaseInfo extends React.Component {
   }
 
   get workspace() {
-    return this.store.data.workspace
+    return this.store.detail.workspace
   }
 
   get namespace() {
@@ -310,7 +308,7 @@ class BaseInfo extends React.Component {
     const data = toJS(this.store.detail)
 
     const roleCount = this.roleStore.list.total
-    const memberCount = this.store.members.total
+    const memberCount = this.memberStore.list.total
     const serviceCount = get(this.quotaStore, 'data.used["count/services"]', 0)
     const limitRanges = toJS(this.store.limitRanges.data)
     const quota = toJS(this.quotaStore.data)

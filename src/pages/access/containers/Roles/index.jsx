@@ -16,11 +16,9 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get } from 'lodash'
 import React from 'react'
 import { toJS } from 'mobx'
 
-import RoleStore from 'stores/role'
 import { Avatar } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import Table from 'components/Tables/List'
@@ -29,29 +27,14 @@ import withList, { ListPage } from 'components/HOCs/withList'
 import { getLocalTime } from 'utils'
 import { ICON_TYPES } from 'utils/constants'
 
+import RoleStore from 'stores/role'
+
 @withList({
-  store: new RoleStore('clusterroles'),
-  module: 'clusterroles',
-  authKey: 'roles',
-  name: 'Cluster Role',
+  store: new RoleStore('globalroles'),
+  module: 'globalroles',
+  name: 'Platform Role',
 })
 export default class Roles extends React.Component {
-  componentDidMount() {
-    this.props.store.fetchRulesInfo()
-  }
-
-  get module() {
-    return 'clusterroles'
-  }
-
-  get authKey() {
-    return 'roles'
-  }
-
-  get name() {
-    return 'Cluster Role'
-  }
-
   get itemActions() {
     const { trigger, store, module, getData } = this.props
     return [
@@ -60,8 +43,6 @@ export default class Roles extends React.Component {
         icon: 'pen',
         text: t('Edit'),
         action: 'edit',
-        show: record =>
-          !globals.config.presetClusterRoles.includes(record.name),
         onClick: item =>
           trigger('role.edit', {
             module,
@@ -76,8 +57,6 @@ export default class Roles extends React.Component {
         icon: 'trash',
         text: t('Delete'),
         action: 'delete',
-        show: record =>
-          !globals.config.presetClusterRoles.includes(record.name),
         onClick: item =>
           trigger('role.delete', {
             detail: item,
@@ -109,13 +88,6 @@ export default class Roles extends React.Component {
         dataIndex: 'description',
         isHideable: true,
         width: '55%',
-        render: (description, record) => {
-          const name = get(record, 'name')
-          if (description && globals.config.presetClusterRoles.includes(name)) {
-            return t(description)
-          }
-          return description
-        },
       },
       {
         title: t('Created Time'),

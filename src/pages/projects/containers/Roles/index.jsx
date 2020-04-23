@@ -16,46 +16,32 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, set } from 'lodash'
 import React from 'react'
 import { toJS } from 'mobx'
-import { observer, inject } from 'mobx-react'
+import { Avatar } from 'components/Base'
+import Banner from 'components/Cards/Banner'
+import { withProjectList, ListPage } from 'components/HOCs/withList'
+import Table from 'components/Tables/List'
+
 import { getLocalTime } from 'utils'
 import { ICON_TYPES } from 'utils/constants'
-import { Avatar } from 'components/Base'
-import DeleteRoleModal from 'components/Modals/RoleDelete'
-import CreateModal from 'components/Modals/RoleCreate'
-import Banner from 'components/Cards/Banner'
-import FORM_TEMPLATES from 'utils/form.templates'
+
 import RoleStore from 'stores/role'
 
-import Base from 'core/containers/Base/List'
-
-const EditModal = CreateModal
-
-@inject('rootStore')
-@observer
-class Roles extends Base {
-  init() {
-    this.store = new RoleStore()
-
-    this.store.fetchRulesInfo()
-  }
-
-  get module() {
-    return 'roles'
-  }
-
-  get name() {
-    return 'Project Role'
-  }
-
-  get formTemplate() {
-    const { namespace } = this.props.match.params
-    return FORM_TEMPLATES[this.module]({ namespace })
+@withProjectList({
+  store: new RoleStore(),
+  module: 'roles',
+  name: 'Project Role',
+})
+export default class Secrets extends React.Component {
+  componentDidMount() {
+    this.props.store.fetchRulesInfo()
   }
 
   get itemActions() {
+    const { getData, trigger, module } = this.props
+    const { rulesInfo } = this.props.store
+
     return [
       {
         key: 'edit',
@@ -63,7 +49,13 @@ class Roles extends Base {
         text: t('Edit'),
         action: 'edit',
         show: record => !globals.config.presetRoles.includes(record.name),
-        onClick: this.showModal('editModal'),
+        onClick: item =>
+          trigger('role.edit', {
+            title: t('Edit Project Role'),
+            detail: item,
+            rulesInfo: toJS(rulesInfo),
+            success: getData,
+          }),
       },
       {
         key: 'delete',
@@ -71,129 +63,87 @@ class Roles extends Base {
         text: t('Delete'),
         action: 'delete',
         show: record => !globals.config.presetRoles.includes(record.name),
-        onClick: this.showModal('deleteModal'),
+        onClick: item =>
+          trigger('role.delete', {
+            module,
+            type: t(this.name),
+            detail: item,
+            success: getData,
+          }),
       },
     ]
   }
 
-  getTableProps() {
-    return {
-      ...Base.prototype.getTableProps.call(this),
-      selectActions: [],
-    }
-  }
-
-  getDetailFormTemplate(data) {
-    if (!data) {
-      return {}
-    }
-
-    const formTemplate = this.formTemplate
-
-    set(formTemplate, 'metadata.name', data.name)
-    set(
-      formTemplate,
-      "metadata.annotations['kubesphere.io/description']",
-      get(data, 'description')
-    )
-
-    return formTemplate
-  }
-
-  getColumns = () => [
-    {
-      title: t('Name'),
-      dataIndex: 'name',
-      sorter: true,
-      sortOrder: this.getSortOrder('name'),
-      search: true,
-      render: name => (
-        <Avatar
-          icon={ICON_TYPES[this.module]}
-          title={name}
-          to={`${this.prefix}/${name}`}
-        />
-      ),
-    },
-    {
-      title: t('Description'),
-      key: 'description',
-      dataIndex: 'description',
-      isHideable: true,
-      width: '40%',
-      render: (description, record) => {
-        const name = get(record, 'name')
-        if (description && globals.config.presetRoles.includes(name)) {
-          return t(description)
-        }
-        return description
+  getColumns = () => {
+    const { getSortOrder, module } = this.props
+    const { namespace, cluster } = this.props.match.params
+    return [
+      {
+        title: t('Name'),
+        dataIndex: 'name',
+        sorter: true,
+        sortOrder: getSortOrder('name'),
+        search: true,
+        render: name => (
+          <Avatar
+            icon={ICON_TYPES[module]}
+            title={name}
+            to={`/cluster/${cluster}/projects/${namespace}/${module}/${name}`}
+          />
+        ),
       },
-    },
-    {
-      title: t('Created Time'),
-      dataIndex: 'createTime',
-      sorter: true,
-      sortOrder: this.getSortOrder('createTime'),
-      isHideable: true,
-      width: 150,
-      render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
-    },
-    {
-      key: 'more',
-      render: this.renderMore,
-    },
-  ]
-
-  renderModals() {
-    const { editModal, createModal, deleteModal, selectItem = {} } = this.state
-    const { isSubmitting, rulesInfo } = this.store
-
-    return (
-      <div>
-        <DeleteRoleModal
-          detail={selectItem}
-          module={this.module}
-          visible={deleteModal}
-          isSubmitting={isSubmitting}
-          onOk={this.handleDelete}
-          onCancel={this.hideModal('deleteModal')}
-        />
-        <EditModal
-          store={this.store}
-          visible={editModal}
-          title={t('Edit Project Role')}
-          rulesInfo={toJS(rulesInfo)}
-          formTemplate={this.getDetailFormTemplate(selectItem)}
-          isSubmitting={isSubmitting}
-          onOk={this.handleEdit}
-          onCancel={this.hideModal('editModal')}
-          edit
-        />
-        <CreateModal
-          store={this.store}
-          visible={createModal}
-          rulesInfo={toJS(rulesInfo)}
-          formTemplate={this.formTemplate}
-          isSubmitting={isSubmitting}
-          onOk={this.handleCreate}
-          onCancel={this.hideModal('createModal')}
-        />
-      </div>
-    )
+      {
+        title: t('Description'),
+        key: 'description',
+        dataIndex: 'description',
+        isHideable: true,
+        width: '40%',
+        render: (description, record) => {
+          const name = record.name
+          if (description && globals.config.presetRoles.includes(name)) {
+            return t(description)
+          }
+          return description
+        },
+      },
+      {
+        title: t('Created Time'),
+        dataIndex: 'createTime',
+        sorter: true,
+        sortOrder: getSortOrder('createTime'),
+        isHideable: true,
+        width: 150,
+        render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
+      },
+    ]
   }
 
-  renderHeader() {
+  showCreate = () => {
+    const { match, module } = this.props
+    return this.props.trigger('role.create', {
+      module,
+      namespace: match.params.namespace,
+      cluster: match.params.cluster,
+    })
+  }
+
+  render() {
+    const { bannerProps, tableProps } = this.props
     return (
-      <div className="margin-b12">
+      <ListPage {...this.props}>
         <Banner
-          icon="role"
-          title={t('Project Roles')}
+          {...bannerProps}
+          tabs={this.tabs}
           description={t('PROJECT_ROLE_DESC')}
-          module="project_roles"
         />
-      </div>
+        <Table
+          {...tableProps}
+          itemActions={this.itemActions}
+          columns={this.getColumns()}
+          onCreate={this.showCreate}
+          selectActions={[]}
+        />
+      </ListPage>
     )
   }
 }
-
-export default Roles

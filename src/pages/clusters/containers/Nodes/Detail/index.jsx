@@ -77,7 +77,7 @@ export default class NodeDetail extends React.Component {
         text: t('Edit Labels'),
         action: 'edit',
         onClick: () =>
-          this.trigger('cluster.node.labels', {
+          this.trigger('node.labels', {
             title: t('Labels'),
             detail: this.store.detail,
             success: this.fetchData,
@@ -89,7 +89,7 @@ export default class NodeDetail extends React.Component {
         text: t('Taint Management'),
         action: 'edit',
         onClick: () =>
-          this.trigger('cluster.node.taint', {
+          this.trigger('node.taint', {
             detail: this.store.detail,
             success: this.fetchData,
           }),

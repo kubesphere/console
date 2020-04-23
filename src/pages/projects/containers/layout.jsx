@@ -25,6 +25,7 @@ import { Nav } from 'components/Layout'
 import Selector from 'projects/components/Selector'
 
 import ProjectStore from 'stores/project'
+import FederatedStore from 'stores/federated'
 
 @inject('rootStore')
 @observer
@@ -33,6 +34,7 @@ class ProjectLayout extends Component {
     super(props)
 
     this.store = new ProjectStore()
+    this.fedStore = new FederatedStore('namespaces')
 
     this.init(props.match.params)
   }
@@ -47,6 +49,10 @@ class ProjectLayout extends Component {
     this.store.initializing = true
 
     await this.store.fetchDetail(params)
+    if (this.store.detail.isFedManaged) {
+      await this.fedStore.fetchDetail({ ...params, name: params.namespace })
+      this.store.detail.clusters = this.fedStore.detail.clusters
+    }
 
     this.store.initializing = false
   }

@@ -61,7 +61,7 @@ export default class RouteDetail extends React.Component {
       return `/clusters/${cluster}/routes`
     }
 
-    return `/cl/${cluster}/projects/${namespace}/routes`
+    return `/cluster/${cluster}/projects/${namespace}/routes`
   }
 
   fetchData = () => {

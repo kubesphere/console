@@ -69,7 +69,7 @@ export default class PodDetail extends React.Component {
       return `/clusters/${cluster}/${suffix}`
     }
 
-    return `/cl/${cluster}/projects/${namespace}/${suffix}`
+    return `/cluster/${cluster}/projects/${namespace}/${suffix}`
   }
 
   fetchData = () => {

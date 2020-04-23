@@ -52,8 +52,8 @@ export default class OPApps extends Base {
   }
 
   get prefix() {
-    const { namespace } = this.props.match.params
-    return `/projects/${namespace}/applications/template`
+    const { cluster, namespace } = this.props.match.params
+    return `/cluster/${cluster}/projects/${namespace}/applications/template`
   }
 
   getColumns = () => [

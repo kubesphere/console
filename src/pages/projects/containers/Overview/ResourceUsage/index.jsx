@@ -99,10 +99,6 @@ class ResourceUsage extends React.Component {
     return get(this.props.match, 'params.namespace')
   }
 
-  get project() {
-    return toJS(this.props.rootStore.project)
-  }
-
   get timeOptions() {
     return [
       { label: `${t('Last')} ${t('TIME_H', { num: 1 })}`, value: 3600 },

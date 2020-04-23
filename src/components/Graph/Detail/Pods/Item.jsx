@@ -42,7 +42,11 @@ export default class Item extends React.Component {
           <span className={classnames(styles.status, styles[statusStr])} />
         </div>
         <div className={styles.text}>
-          <Link to={`/projects/${data.namespace}/pods/${data.name}`}>
+          <Link
+            to={`/cluster/${data.cluster}/projects/${data.namespace}/pods/${
+              data.name
+            }`}
+          >
             <strong>{data.name}</strong>
           </Link>
           <p>

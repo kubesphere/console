@@ -116,7 +116,7 @@ export default class Nodes extends React.Component {
           key: 'addNode',
           type: 'control',
           onClick: () =>
-            trigger('cluster.node.add', {
+            trigger('node.add', {
               success: this.getData,
             }),
           text: t('Add Node'),
@@ -129,7 +129,7 @@ export default class Nodes extends React.Component {
           text: t('Taint Management'),
           action: 'edit',
           onClick: () =>
-            trigger('cluster.node.taint.batch', {
+            trigger('node.taint.batch', {
               success: this.getData,
             }),
         },

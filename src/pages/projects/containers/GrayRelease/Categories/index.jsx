@@ -98,11 +98,13 @@ export default class Categories extends React.Component {
   }
 
   handleCreate = data => {
-    const { namespace } = this.props.match.params
+    const { cluster, namespace } = this.props.match.params
     this.store.create(data, { namespace }).then(() => {
       this.hideCreate()
       Notify.success({ content: `${t('Created Successfully')}!` })
-      this.routing.push(`/projects/${namespace}/grayrelease/jobs`)
+      this.routing.push(
+        `/cluster/${cluster}/projects/${namespace}/grayrelease/jobs`
+      )
       formPersist.delete(`${this.module}_create_form`)
     })
   }

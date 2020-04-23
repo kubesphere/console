@@ -21,8 +21,6 @@ import { getIndexRoute } from 'utils/router.config'
 
 import DetailLayout from 'core/layouts/Detail'
 
-import { getPodRoutes } from 'projects/routes/pod'
-
 import Detail from '../containers/ServiceComponents/Detail'
 import ServiceDetails from '../containers/ServiceComponents/Detail/ServiceDetails'
 
@@ -31,13 +29,6 @@ const PATH = '/components/:namespace/:name'
 const BREAD_CRUMBS = [{ label: 'Components', url: '/components' }]
 
 export default [
-  ...getPodRoutes(PATH, [
-    ...BREAD_CRUMBS,
-    {
-      label: 'Detail',
-      url: PATH,
-    },
-  ]),
   {
     path: PATH,
     component: withProps(DetailLayout, {

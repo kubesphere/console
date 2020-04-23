@@ -1,0 +1,55 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.wrapper {
+  width: 220px;
+  padding: 4px 8px 8px;
+  margin-right: 8px;
+  border-radius: 2px;
+  background-color: $light-color03;
+  cursor: pointer;
+  flex-shrink: 0;
+
+  :global {
+    .checkbox {
+      @include TypographySymbolText;
+    }
+  }
+
+  &.checked {
+    background-color: $dark-color07;
+    color: #fff;
+
+    :global {
+      .checkbox {
+        color: #fff;
+      }
+    }
+
+    .replicas {
+      background-color: $dark-color06;
+      .value {
+        color: #fff;
+      }
+    }
+  }
+}
+
+.replicas {
+  display: flex;
+  height: 32px;
+  margin-top: 8px;
+  padding: 6px;
+  background-color: $light-color07;
+  border-radius: 16px;
+
+  .value {
+    flex: 1;
+    text-align: center;
+    @include TypographySymbolText($dark-color06);
+     
+    & > span {
+      color: $dark-color01;
+    }
+  }
+}

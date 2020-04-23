@@ -26,6 +26,10 @@ import Metadata from './Metadata'
 import NodeSchedule from './NodeSchedule'
 
 export default class AdvancedSettings extends React.Component {
+  get cluster() {
+    return this.props.cluster
+  }
+
   get namespace() {
     return get(this.formTemplate, 'metadata.namespace')
   }
@@ -63,6 +67,7 @@ export default class AdvancedSettings extends React.Component {
         >
           <Metadata
             store={store}
+            cluster={this.cluster}
             namespace={this.namespace}
             formTemplate={this.formTemplate}
           />

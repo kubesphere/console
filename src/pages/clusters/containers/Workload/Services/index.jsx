@@ -111,6 +111,7 @@ export default class Services extends React.Component {
             iconSize={40}
             title={getDisplayName(record)}
             desc={record.description || '-'}
+            isMultiCluster={record.isFedManaged}
             to={`/clusters/${cluster}/projects/${
               record.namespace
             }/${module}/${name}`}
@@ -188,7 +189,7 @@ export default class Services extends React.Component {
 
   showCreate = () => {
     const { query, match, module, getData } = this.props
-    return this.props.trigger('service.create', {
+    return this.props.trigger('service.simple.create', {
       module,
       namespace: query.namespace,
       cluster: match.params.cluster,

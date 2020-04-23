@@ -24,11 +24,11 @@ import Banner from 'components/Cards/Banner'
 import InternetAccess from './InternetAccess'
 import LogCollection from './LogCollection'
 
-@inject('rootStore')
+@inject('rootStore', 'projectStore')
 @observer
 class AdvancedSettings extends React.Component {
   get store() {
-    return this.props.rootStore.project
+    return this.props.projectStore
   }
 
   get namespace() {
