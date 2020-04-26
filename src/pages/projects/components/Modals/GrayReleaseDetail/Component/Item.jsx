@@ -40,7 +40,11 @@ export default class Item extends React.Component {
             flicker
           />
         </div>
-        <Link to={`/projects/${data.namespace}/pods/${data.name}`}>
+        <Link
+          to={`/cluster/${data.cluster}/projects/${data.namespace}/pods/${
+            data.name
+          }`}
+        >
           {data.name}
         </Link>
         <div className={styles.metric}>

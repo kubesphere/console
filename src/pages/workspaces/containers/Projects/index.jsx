@@ -19,7 +19,7 @@
 import React from 'react'
 import { isUndefined } from 'lodash'
 
-import { Avatar, Status, Tag } from 'components/Base'
+import { Avatar, Status } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import Table from 'workspaces/components/ResourceTable'
 import withList, { ListPage } from 'components/HOCs/withList'
@@ -27,7 +27,7 @@ import withList, { ListPage } from 'components/HOCs/withList'
 import { getDisplayName } from 'utils'
 import { getSuitableValue } from 'utils/monitoring'
 
-import ProjectStore from 'stores/workspace/project'
+import ProjectStore from 'stores/project'
 
 @withList({
   store: new ProjectStore(),
@@ -105,19 +105,13 @@ export default class Projects extends React.Component {
             to={
               record.status === 'Terminating'
                 ? null
-                : `/cl/${record.cluster || 'gondor'}/projects/${name}`
+                : `/cluster/${record.cluster || 'gondor'}/projects/${name}`
             }
             icon="project"
             iconSize={40}
+            isMultiCluster={record.isFedManaged}
             desc={record.description || '-'}
-            title={
-              <span>
-                <span>{getDisplayName(record)} &nbsp;&nbsp;</span>
-                {record.isFedManaged && (
-                  <Tag type="info">{t('MULTI_CLUSTER')}</Tag>
-                )}
-              </span>
-            }
+            title={getDisplayName(record)}
           />
         ),
       },
@@ -150,7 +144,7 @@ export default class Projects extends React.Component {
   }
 
   showCreate = () =>
-    this.props.trigger('workspace.project.create', {
+    this.props.trigger('project.create', {
       ...this.props.match.params,
     })
 

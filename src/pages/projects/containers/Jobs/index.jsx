@@ -39,7 +39,7 @@ import WorkloadStore from 'stores/workload'
 export default class Jobs extends React.Component {
   get prefix() {
     const { namespace, cluster } = this.props.match.params
-    return `/cl/${cluster}/projects/${namespace}`
+    return `/cluster/${cluster}/projects/${namespace}`
   }
 
   handleTabChange = value => {
@@ -134,6 +134,7 @@ export default class Jobs extends React.Component {
             title={getDisplayName(record)}
             desc={this.getItemDesc(record)}
             to={`${this.prefix}/${name}`}
+            isMultiCluster={record.isFedManaged}
           />
         ),
       },

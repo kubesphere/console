@@ -60,16 +60,11 @@ export default class BaseStore {
   }
 
   getListUrl = params =>
-    `${this.apiVersion}${this.getPath(params)}/${this.module}`
-
-  getDetailUrl = params => `${this.getListUrl(params)}/${params.name}`
-
-  getFedListUrl = ({ namespace }) =>
-    `apis/types.kubefed.io/v1beta1${this.getPath({ namespace })}/federated${
-      this.module
+    `${this.apiVersion}${this.getPath(params)}/${this.module}${
+      params.dryRun ? '?dryRun=All' : ''
     }`
 
-  getFedDetailUrl = params => `${this.getFedListUrl(params)}/${params.name}`
+  getDetailUrl = params => `${this.getListUrl(params)}/${params.name}`
 
   getWatchListUrl = params =>
     `${this.apiVersion}/watch${this.getPath(params)}/${this.module}`
@@ -229,7 +224,7 @@ export default class BaseStore {
   @action
   checkLabels({ labels, ...params }) {
     return request.get(
-      this.getDetailUrl(params),
+      this.getListUrl(params),
       {
         labelSelector: Object.keys(labels)
           .map(key => `${key}=${labels[key]}`)

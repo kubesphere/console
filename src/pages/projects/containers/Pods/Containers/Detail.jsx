@@ -52,7 +52,7 @@ export default class ContainerDetail extends React.Component {
       return `/clusters/${cluster}/projects/${namespace}/pods/${podName}`
     }
 
-    return `/cl/${cluster}/projects/${namespace}/pods/${podName}`
+    return `/cluster/${cluster}/projects/${namespace}/pods/${podName}`
   }
 
   fetchData = () => {

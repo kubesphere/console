@@ -25,6 +25,7 @@ import { Loading } from '@pitrix/lego-ui'
 import { getDisplayName, getLocalTime } from 'utils'
 import { trigger } from 'utils/action'
 import WorkloadStore from 'stores/workload'
+import FederatedStore from 'stores/federated'
 
 import DetailPage from 'projects/containers/Base/Detail'
 
@@ -35,6 +36,8 @@ import getRoutes from './routes'
 @trigger
 export default class DeploymentDetail extends React.Component {
   store = new WorkloadStore('deployments')
+
+  fedStore = new FederatedStore('deployments')
 
   componentDidMount() {
     this.fetchData()
@@ -57,15 +60,19 @@ export default class DeploymentDetail extends React.Component {
       return `/clusters/${cluster}/${this.module}`
     }
 
-    return `/cl/${cluster}/projects/${namespace}/${this.module}`
+    return `/cluster/${cluster}/projects/${namespace}/${this.module}`
   }
 
   get routing() {
     return this.props.rootStore.rooting
   }
 
-  fetchData = () => {
-    this.store.fetchDetail(this.props.match.params)
+  fetchData = async () => {
+    const { params } = this.props.match
+    await this.store.fetchDetail(params)
+    if (this.store.detail.isFedManaged) {
+      this.fedStore.fetchDetail(params)
+    }
   }
 
   getOperations = () => [
@@ -183,7 +190,7 @@ export default class DeploymentDetail extends React.Component {
   }
 
   render() {
-    const stores = { detailStore: this.store }
+    const stores = { detailStore: this.store, fedDetailStore: this.fedStore }
 
     if (this.store.isLoading) {
       return <Loading className="ks-page-loading" />

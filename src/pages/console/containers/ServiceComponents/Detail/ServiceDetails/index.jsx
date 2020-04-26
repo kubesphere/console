@@ -32,14 +32,17 @@ export default class ServiceDetails extends React.Component {
   }
 
   render() {
-    const { namespace, name } = this.props.match.params
+    const { cluster, namespace, name } = this.props.match.params
     const detail = {
       kind: 'Service',
       ...this.store.detail,
     }
 
     return (
-      <PodsCard detail={detail} prefix={`/components/${namespace}/${name}`} />
+      <PodsCard
+        detail={detail}
+        prefix={`/clusters/${cluster}/components/${namespace}/${name}`}
+      />
     )
   }
 }

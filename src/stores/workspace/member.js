@@ -16,176 +16,72 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { isEmpty } from 'lodash'
-import { action, observable } from 'mobx'
-import { getFilterString } from 'utils'
-import ObjectMapper from 'utils/object.mapper'
+import { action } from 'mobx'
 
-import MemberList from 'stores/member.list'
+import Base from '../base'
 
-export default class MemberStore {
-  list = new MemberList()
-
-  @observable
-  detail = {}
-
-  @observable
-  isLoading = false
-
-  @observable
-  isSubmitting = false
-
-  @observable
-  projects = {
-    data: [],
-    total: 0,
-    isLoading: true,
-  }
-
-  @observable
-  devops = {
-    data: [],
-    total: 0,
-    isLoading: true,
-  }
-
-  getListUrl = workspace =>
-    `kapis/iam.kubesphere.io/v1alpha2/workspaces/${workspace}/members`
-
-  getDetailUrl = (workspace, member) =>
-    `${this.getListUrl(workspace)}/${member}`
+export default class WorkspaceMemberStore extends Base {
+  getResourceUrl = ({ workspace }) =>
+    `kapis/iam.kubesphere.io/v1alpha2/workspaces/${workspace}/users`
 
   @action
-  submitting = promise => {
-    this.isSubmitting = true
+  addMember(namespace, name, role) {
+    return request.post(
+      `apis/rbac.authorization.k8s.io/v1/namespaces/${namespace}/rolebindings`,
+      {
+        kind: 'RoleBinding',
+        apiVersion: 'rbac.authorization.k8s.io/v1',
+        metadata: {
+          name: `${role}-${name}`,
+        },
+        subjects: [
+          {
+            kind: 'User',
+            apiGroup: 'rbac.authorization.k8s.io',
+            name,
+          },
+        ],
+        roleRef: {
+          apiGroup: 'rbac.authorization.k8s.io',
+          kind: 'Role',
+          name: role,
+        },
+      }
+    )
+  }
 
-    setTimeout(() => {
-      promise
-        .catch(() => {})
-        .finally(() => {
-          this.isSubmitting = false
+  @action
+  deleteMember(namespace, member) {
+    return this.submitting(
+      request.delete(
+        `apis/rbac.authorization.k8s.io/v1/namespaces/${namespace}/rolebindings/${
+          member.role_binding
+        }`
+      )
+    )
+  }
+
+  @action
+  batchDeleteMembers(namespace, rowKeys) {
+    return this.submitting(
+      Promise.all(
+        rowKeys.map(rowKey => {
+          const member = this.members.data.find(
+            user => user.username === rowKey
+          )
+          return request.delete(
+            `apis/rbac.authorization.k8s.io/v1/namespaces/${namespace}/rolebindings/${
+              member.role_binding
+            }`
+          )
         })
-    }, 500)
-
-    return promise
-  }
-
-  @action
-  async fetchList({ workspace, keyword, paging } = {}) {
-    this.list.isLoading = true
-
-    const params = {
-      paging: `limit=-1,page=1`,
-    }
-
-    params.reverse = true
-
-    if (keyword) {
-      params.conditions = getFilterString({ keyword })
-    }
-
-    const result = await request.get(this.getListUrl(workspace), params)
-
-    this.list.init({
-      originData: result.items,
-      page: 1,
-      paging,
-    })
-
-    this.list.isLoading = false
-  }
-
-  @action
-  async fetchDetail({ workspace, member } = {}) {
-    this.isLoading = true
-
-    if (isEmpty(workspace) || isEmpty(member)) {
-      this.isLoading = false
-      return
-    }
-
-    const result = await request.get(this.getDetailUrl(workspace, member))
-
-    if (result) {
-      this.detail = result
-    }
-
-    this.isLoading = false
-  }
-
-  @action
-  async fetchProjects({ workspace, member } = {}) {
-    this.projects.isLoading = true
-
-    if (isEmpty(workspace) || isEmpty(member)) {
-      this.projects.isLoading = false
-      return
-    }
-
-    const result = await request.get(
-      `kapis/tenant.kubesphere.io/v1alpha2/workspaces/${workspace}/members/${member}/namespaces`
-    )
-
-    if (result) {
-      this.projects.data = result.items.map(ObjectMapper.namespaces)
-      this.projects.total = result.total_count
-    }
-
-    this.projects.isLoading = false
-  }
-
-  @action
-  async fetchDevOps({ workspace, member } = {}) {
-    this.devops.isLoading = true
-
-    if (isEmpty(workspace) || isEmpty(member)) {
-      this.devops.isLoading = false
-      return
-    }
-
-    const result = await request.get(
-      `kapis/tenant.kubesphere.io/v1alpha2/workspaces/${workspace}/members/${member}/devops`
-    )
-
-    if (result) {
-      this.devops.data = result.items
-      this.devops.total = result.total_count
-    }
-
-    this.devops.isLoading = false
-  }
-
-  @action
-  addMember({ workspace }, data) {
-    return this.submitting(
-      Promise.all(
-        data.map(item => request.post(this.getListUrl(workspace), item))
       )
     )
   }
 
   @action
-  deleteMember({ workspace }, names) {
-    return this.submitting(
-      Promise.all(
-        names.map(name =>
-          request.delete(`${this.getDetailUrl(workspace, name)}`)
-        )
-      )
-    )
-  }
-
-  @action
-  changeMemberRole({ workspace }, data) {
-    return this.submitting(
-      Promise.all(
-        data.map(item => request.post(this.getListUrl(workspace), item))
-      )
-    )
-  }
-
-  @action
-  setSelectRowKeys(selectedRowKeys) {
-    this.list.selectedRowKeys.replace(selectedRowKeys)
+  async changeMemberRole(namespace, member, newRole) {
+    await this.deleteMember(namespace, member)
+    await this.addMember(namespace, member.username, newRole)
   }
 }

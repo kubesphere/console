@@ -27,7 +27,7 @@ import NotificationRules from 'console/containers/MonitoringCenter/Alerting/Poli
 import AlertingHistory from 'console/containers/MonitoringCenter/Alerting/Policy/Detail/AlertHistory'
 import Detail from '../../containers/Alerting/Policy/Detail'
 
-const PATH = '/projects/:namespace/alert-policy/:name'
+const PATH = '/cluster/:cluster/projects/:namespace/alert-policy/:name'
 const ROUTES = [
   { name: 'alert-rules', title: 'Alerting Rules', component: AlertingRules },
   {

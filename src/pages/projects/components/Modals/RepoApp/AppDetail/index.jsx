@@ -135,9 +135,10 @@ class AppDetail extends Component {
   }
 
   renderDeployForm() {
-    const urlParts = pathToReg(`/projects/:namespace/:module/:type?`).exec(
-      location.pathname
-    )
+    const urlParts = pathToReg(
+      `/cluster/:cluster/projects/:namespace/:module/:type?`
+    ).exec(location.pathname)
+
     return (
       <AppDeployForm
         app={this.appStore.detail}

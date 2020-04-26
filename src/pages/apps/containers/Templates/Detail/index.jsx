@@ -92,10 +92,12 @@ export default class App extends React.Component {
   }
 
   handleDeploy = params => {
-    const { workspace, namespace, ...rest } = params
+    const { cluster, workspace, namespace, ...rest } = params
     this.appStore.deploy(rest, { namespace }).then(() => {
       this.hideDeploy()
-      this.routing.push(`/projects/${namespace}/applications/template`)
+      this.routing.push(
+        `/cluster/${cluster}/projects/${namespace}/applications/template`
+      )
     })
   }
 

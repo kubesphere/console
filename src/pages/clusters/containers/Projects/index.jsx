@@ -19,7 +19,7 @@
 import React from 'react'
 import { isUndefined } from 'lodash'
 
-import { Avatar, Status, Tag } from 'components/Base'
+import { Avatar, Status } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import Table from 'components/Tables/List'
 import withList, { ListPage } from 'components/HOCs/withList'
@@ -52,7 +52,7 @@ export default class Projects extends React.Component {
         action: 'manage',
         show: record => !record.workspace,
         onClick: item =>
-          trigger('cluster.project.assignworkspace', {
+          trigger('project.assignworkspace', {
             detail: item,
             success: this.getData,
           }),
@@ -120,15 +120,9 @@ export default class Projects extends React.Component {
             to={record.status === 'Terminating' ? null : `${prefix}/${name}`}
             icon="project"
             iconSize={40}
+            isMultiCluster={record.isFedManaged}
             desc={record.description || '-'}
-            title={
-              <span>
-                <span>{getDisplayName(record)} &nbsp;&nbsp;</span>
-                {record.isFedManaged && (
-                  <Tag type="info">{t('MULTI_CLUSTER')}</Tag>
-                )}
-              </span>
-            }
+            title={getDisplayName(record)}
           />
         ),
       },
@@ -165,7 +159,7 @@ export default class Projects extends React.Component {
     ]
   }
 
-  showCreate = () => this.props.trigger('cluster.project.create')
+  showCreate = () => this.props.trigger('project.create')
 
   render() {
     const { bannerProps, tableProps } = this.props

@@ -19,14 +19,14 @@
 import { get } from 'lodash'
 import { computed } from 'mobx'
 import { observer, inject } from 'mobx-react'
-import RoleStore from 'stores/workspace/role'
+import RoleStore from 'stores/role'
 import Base from 'core/containers/Base/Detail'
 
 @inject('rootStore')
 @observer
 export default class RoleDetail extends Base {
   init() {
-    this.store = new RoleStore()
+    this.store = new RoleStore('workspaceroles')
   }
 
   get workspace() {

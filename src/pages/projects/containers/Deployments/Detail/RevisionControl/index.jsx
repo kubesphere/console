@@ -46,7 +46,7 @@ class RevisionControl extends React.Component {
   }
 
   get module() {
-    return this.props.module
+    return this.store.module
   }
 
   get store() {
@@ -114,12 +114,16 @@ class RevisionControl extends React.Component {
       <DiffYaml
         datas={[oldYaml, newYaml]}
         title={`${t('Config File')} (Yaml)`}
-        description={t('COMPARE_WITH', {
-          version: `#${lastRevision} (${oldRevision.name.replace(
-            `${oldRevision.ownerName}-`,
-            ''
-          )})`,
-        })}
+        description={
+          oldRevision
+            ? t('COMPARE_WITH', {
+                version: `#${lastRevision} (${oldRevision.name.replace(
+                  `${oldRevision.ownerName}-`,
+                  ''
+                )})`,
+              })
+            : ''
+        }
       />
     )
   }

@@ -18,11 +18,12 @@
 
 import React from 'react'
 import { toJS } from 'mobx'
-import { observer } from 'mobx-react'
+import { observer, inject } from 'mobx-react'
 import { getLocalTime } from 'utils'
 import { Table } from '@pitrix/lego-ui'
 import { Card, Status } from 'components/Base'
 
+@inject('detailStore')
 @observer
 export default class AuthorizedUsers extends React.Component {
   getColumns = () => [

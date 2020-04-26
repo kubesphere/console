@@ -26,8 +26,6 @@ import Detail from '../containers/Volumes/Detail'
 import ResourceStatus from '../containers/Volumes/Detail/ResourceStatus'
 import Snapshots from '../containers/Volumes/Detail/Snapshots'
 
-import { getPodRoutes } from './pod'
-
 const PATH = '/projects/:namespace/volumes/:name'
 const ROUTES = [
   {
@@ -51,13 +49,6 @@ const BREAD_CRUMBS = [
 ]
 
 export default [
-  ...getPodRoutes(PATH, [
-    ...BREAD_CRUMBS,
-    {
-      label: 'Detail',
-      url: PATH,
-    },
-  ]),
   {
     path: PATH,
     component: withProps(DetailLayout, {

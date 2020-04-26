@@ -17,14 +17,15 @@
  */
 
 import React from 'react'
-import { observer } from 'mobx-react'
+import { observer, inject } from 'mobx-react'
 import { Icon } from '@pitrix/lego-ui'
 import { Button, Card } from 'components/Base'
 
 import styles from './index.scss'
 
+@inject('detailStore')
 @observer
-class SecretDetail extends React.Component {
+export default class SecretDetail extends React.Component {
   constructor(props) {
     super(props)
 
@@ -164,5 +165,3 @@ class SecretDetail extends React.Component {
     )
   }
 }
-
-export default SecretDetail

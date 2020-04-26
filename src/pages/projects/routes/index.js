@@ -40,45 +40,29 @@ import Roles from '../containers/Roles'
 import Members from '../containers/Members'
 import AdvancedSettings from '../containers/AdvancedSettings'
 
-// import workloadRoutes from './workload'
-// import serviceRoutes from './service'
-// import routerRoutes from './router'
-// import roleRoutes from './role'
-// import volumeRoutes from './volume'
-// import applicationRoutes from './application'
-// import configmapRoutes from './configmap'
-// import secretRoutes from './secret'
-// import podRoutes from './pod'
-// import alertingMessageRoutes from './alerting/message'
-// import alertingPolicyRoutes from './alerting/policy'
-// import alertingRoutes from './alerting'
-// import grayReleaseRoutes from './grayrelease'
-// import imageBuilderRoutes from './imagebuilder'
+import applicationRoutes from './application'
+import alertingMessageRoutes from './alerting/message'
+import alertingPolicyRoutes from './alerting/policy'
+import alertingRoutes from './alerting'
+import grayReleaseRoutes from './grayrelease'
+import imageBuilderRoutes from './imagebuilder'
 
 import detail from './detail'
 
-const PATH = '/cl/:cluster/projects/:namespace'
+const PATH = '/cluster/:cluster/projects/:namespace'
 
 export default [
   ...detail,
-  // ...workloadRoutes,
-  // ...serviceRoutes,
-  // ...routerRoutes,
-  // ...roleRoutes,
-  // ...volumeRoutes,
-  // ...applicationRoutes,
-  // ...configmapRoutes,
-  // ...secretRoutes,
-  // ...podRoutes,
-  // ...alertingMessageRoutes,
-  // ...alertingPolicyRoutes,
-  // ...imageBuilderRoutes,
+  ...applicationRoutes,
+  ...alertingMessageRoutes,
+  ...alertingPolicyRoutes,
+  ...imageBuilderRoutes,
   {
     path: PATH,
     component: ProjectLayout,
     routes: [
-      // ...alertingRoutes,
-      // ...grayReleaseRoutes,
+      ...alertingRoutes,
+      ...grayReleaseRoutes,
       {
         path: `${PATH}/overview`,
         component: Overview,
@@ -120,9 +104,10 @@ export default [
       { path: `${PATH}/cronjobs`, component: CronJobs, exact: true },
       { path: `${PATH}/services`, component: Services, exact: true },
       {
-        path: `${PATH}/grayreleases`,
+        path: `${PATH}/grayrelease`,
         component: GrayRelease,
         ksModule: 'servicemesh',
+        exact: true,
       },
       { path: `${PATH}/routes`, component: Routes, exact: true },
       { path: `${PATH}/volumes`, component: Volumes, exact: true },

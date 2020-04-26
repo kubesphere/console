@@ -31,8 +31,10 @@ import TrafficManangement from '../containers/Applications/Detail/TrafficManange
 import GrayRelease from '../containers/Applications/Detail/GrayRelease'
 import Tracing from '../containers/Applications/Detail/Tracing'
 
-const TEMPLATE_PATH = '/projects/:namespace/applications/template/:id'
-const COMPOSING_PATH = '/projects/:namespace/applications/composing/:name'
+const TEMPLATE_PATH =
+  '/cluster/:cluster/projects/:namespace/applications/template/:id'
+const COMPOSING_PATH =
+  '/cluster/:cluster/projects/:namespace/applications/composing/:name'
 
 const COMPOSING_ROUTES = [
   {

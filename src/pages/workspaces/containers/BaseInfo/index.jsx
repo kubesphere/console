@@ -18,7 +18,6 @@
 
 import React from 'react'
 import { get, isEmpty } from 'lodash'
-import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import { Icon, Dropdown, Menu } from '@pitrix/lego-ui'
 import { Card, Button } from 'components/Base'
@@ -27,11 +26,11 @@ import EditModal from 'components/Modals/WorkspaceEdit'
 import Info from 'components/Cards/Info'
 import Banner from 'components/Cards/Banner'
 
-import RoleStore from 'stores/workspace/role'
+import RoleStore from 'stores/role'
 
 import styles from './index.scss'
 
-@inject('rootStore')
+@inject('rootStore', 'workspaceStore')
 @observer
 class BaseInfo extends React.Component {
   constructor(props) {
@@ -42,12 +41,12 @@ class BaseInfo extends React.Component {
       showDelete: false,
     }
 
-    this.roleStore = new RoleStore()
+    this.roleStore = new RoleStore('workspaceroles')
     this.roleStore.fetchList(this.props.match.params)
   }
 
   get store() {
-    return this.props.rootStore.workspace
+    return this.props.workspaceStore
   }
 
   get module() {
@@ -163,8 +162,8 @@ class BaseInfo extends React.Component {
   }
 
   renderBaseInfo() {
-    const { detail } = toJS(this.props.rootStore.workspace)
-    const { total } = toJS(this.roleStore.list)
+    const { detail } = this.store
+    const { total } = this.roleStore.list
     return (
       <div className="margin-t12">
         <Card title={t('Basic Info')} operations={this.renderOperations()}>
@@ -198,7 +197,7 @@ class BaseInfo extends React.Component {
   }
 
   render() {
-    const { detail, isSubmitting } = this.props.rootStore.workspace
+    const { detail, isSubmitting } = this.store
 
     return (
       <div>

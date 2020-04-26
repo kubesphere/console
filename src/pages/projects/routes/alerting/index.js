@@ -23,7 +23,7 @@ import All from 'console/containers/MonitoringCenter/Alerting/Message/All'
 import AlertingMessageLayout from '../../containers/Alerting/Message'
 import AlertingPolicy from '../../containers/Alerting/Policy'
 
-const PATH = '/projects/:namespace'
+const PATH = '/cluster/:cluster/projects/:namespace'
 const MESSAGE_PATH = `${PATH}/alert-message`
 const POLICY_PATH = `${PATH}/alert-policy`
 

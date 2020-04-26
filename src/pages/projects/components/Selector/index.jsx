@@ -16,18 +16,11 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get } from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Icon } from '@pitrix/lego-ui'
-
 import { Tag } from 'components/Base'
-import ProjectStore from 'stores/project'
-import DevOpsStore from 'stores/devops'
-
 import SelectModal from 'components/Modals/ProjectSelect'
-import CreateModal from 'components/Modals/ProjectCreate'
-import FORM_TEMPLATES from 'utils/form.templates'
 
 import styles from './index.scss'
 
@@ -52,57 +45,6 @@ export default class Selector extends React.Component {
 
     this.state = {
       showSelect: false,
-      showCreate: false,
-      isSubmitting: false,
-    }
-
-    this.projectStore = new ProjectStore()
-    this.devopsStore = new DevOpsStore()
-  }
-
-  get enabledActions() {
-    const { workspace } = this.props
-    return {
-      projects: globals.app.getActions({
-        workspace,
-        module: 'projects',
-      }),
-      devops: globals.app.getActions({
-        workspace,
-        module: 'devops',
-      }),
-    }
-  }
-
-  get createType() {
-    if (
-      this.enabledActions.projects.includes('create') &&
-      this.enabledActions.devops.includes('create')
-    ) {
-      return ''
-    } else if (this.enabledActions.projects.includes('create')) {
-      return 'projects'
-    } else if (this.enabledActions.devops.includes('create')) {
-      return 'devops'
-    }
-
-    return null
-  }
-
-  get formTemplate() {
-    if (!FORM_TEMPLATES.project) {
-      return {}
-    }
-
-    const template = FORM_TEMPLATES.project()
-    const limitRangeTemplate = FORM_TEMPLATES.limitRange()
-
-    return {
-      projects: {
-        Project: template,
-        LimitRange: limitRangeTemplate,
-      },
-      devops: {},
     }
   }
 
@@ -118,46 +60,6 @@ export default class Selector extends React.Component {
     const { onChange } = this.props
     this.hideSelect()
     onChange(value)
-  }
-
-  showCreate = () => {
-    this.setState({ showCreate: true })
-  }
-
-  hideCreate = () => {
-    this.setState({ showCreate: false })
-  }
-
-  handleCreate = ({ type, ...data }) => {
-    const { cluster, workspace, onChange } = this.props
-    this.setState({ isSubmitting: true })
-    if (type === 'devops') {
-      this.devopsStore
-        .create(data, { workspace })
-        .then(result => {
-          this.hideCreate()
-          if (result.project_id) {
-            onChange(`/devops/${result.project_id}`)
-          }
-        })
-        .finally(() => {
-          this.setState({ isSubmitting: false })
-        })
-    } else {
-      const namespace =
-        get(data, 'metadata.name') || get(data, 'Project.metadata.name')
-      if (namespace) {
-        this.projectStore
-          .create(data, { workspace, cluster })
-          .then(() => {
-            this.hideCreate()
-            onChange(`/cl/${cluster}/projects/${namespace}`)
-          })
-          .finally(() => {
-            this.setState({ isSubmitting: false })
-          })
-      }
-    }
   }
 
   render() {
@@ -199,18 +101,7 @@ export default class Selector extends React.Component {
           visible={showSelect}
           onChange={this.handleSelect}
           onCancel={this.hideSelect}
-          onShowCreate={this.createType !== null ? this.showCreate : null}
         />
-        {this.createType !== null && (
-          <CreateModal
-            type={this.createType}
-            formTemplate={this.formTemplate}
-            visible={this.state.showCreate}
-            isSubmitting={this.state.isSubmitting}
-            onOk={this.handleCreate}
-            onCancel={this.hideCreate}
-          />
-        )}
       </div>
     )
   }

@@ -25,7 +25,9 @@ import ConfigMapStore from 'stores/configmap'
 import SecretStore from 'stores/secret'
 
 import { Form } from 'components/Base'
+import PodAffinity from './PodAffinity'
 import ReplicasControl from './ReplicasControl'
+import ClusterReplicasControl from './ClusterReplicasControl'
 import UpdateStrategy from './UpdateStrategy'
 import ContainerList from './ContainerList'
 import ContainerForm from './ContainerForm'
@@ -315,9 +317,42 @@ export default class ContainerSetting extends React.Component {
     )
   }
 
+  renderDeployPlacementTip() {
+    return (
+      <div>
+        <div className="tooltip-title">{t('What is deploy placement ?')}</div>
+        <p>{t('DEPLOY_PLACEMENT_TIP')}</p>
+      </div>
+    )
+  }
+
   renderReplicasControl() {
     if (this.module === 'daemonsets') {
       return null
+    }
+
+    const { projectDetail = {} } = this.props
+
+    if (projectDetail.isFedManaged && !isEmpty(projectDetail.clusters)) {
+      const defaultValue = projectDetail.clusters.map(cluster => ({
+        ...cluster,
+        replicas: 1,
+      }))
+
+      return (
+        <Form.Item
+          className="margin-b12"
+          label={t('Deploy Placement')}
+          tip={this.renderDeployPlacementTip()}
+        >
+          <ClusterReplicasControl
+            name="spec.placement.clusters"
+            module={this.module}
+            template={this.formTemplate}
+            defaultValue={defaultValue}
+          />
+        </Form.Item>
+      )
     }
 
     return (
@@ -377,6 +412,14 @@ export default class ContainerSetting extends React.Component {
     )
   }
 
+  renderPodAffinity() {
+    return (
+      <div className="margin-b12">
+        <PodAffinity module={this.module} template={this.formTemplate} />
+      </div>
+    )
+  }
+
   render() {
     const { formRef } = this.props
     const { showContainer, selectContainer } = this.state
@@ -391,6 +434,7 @@ export default class ContainerSetting extends React.Component {
         {this.renderContainerList()}
         {this.renderUpdateStrategy()}
         {this.renderPodSecurityContext()}
+        {this.renderPodAffinity()}
       </Form>
     )
   }

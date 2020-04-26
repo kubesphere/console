@@ -44,7 +44,8 @@ class ApplicationDetail extends Base {
   }
 
   get listUrl() {
-    return `/projects/${this.namespace}/${this.module}/composing`
+    const { cluster, namespace } = this.props.match.params
+    return `/cluster/${cluster}/projects/${namespace}/${this.module}/composing`
   }
 
   getOperations = () => [

@@ -39,6 +39,8 @@ import Services from '../containers/Workload/Services'
 import Routes from '../containers/Workload/Routes'
 import ClusterMonitor from '../containers/Monitor/Cluster'
 import ResourceMonitor from '../containers/Monitor/Resource'
+import Members from '../containers/Members'
+import Roles from '../containers/Roles'
 import Visibility from '../containers/Visibility'
 
 import detail from './detail'
@@ -133,6 +135,16 @@ export default [
       {
         path: `${PATH}/visibility`,
         component: Visibility,
+        exact: true,
+      },
+      {
+        path: `${PATH}/members`,
+        component: Members,
+        exact: true,
+      },
+      {
+        path: `${PATH}/roles`,
+        component: Roles,
         exact: true,
       },
       {

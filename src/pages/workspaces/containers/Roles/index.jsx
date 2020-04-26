@@ -26,17 +26,17 @@ import { Avatar } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import Base from 'core/containers/Base/List'
 
-import RoleStore from 'stores/workspace/role'
+import RoleStore from 'stores/role'
 
 @inject('rootStore')
 @observer
 class Roles extends Base {
   init() {
-    this.store = new RoleStore()
+    this.store = new RoleStore('workspaceroles')
   }
 
   get module() {
-    return 'roles'
+    return 'workspaceroles'
   }
 
   get name() {

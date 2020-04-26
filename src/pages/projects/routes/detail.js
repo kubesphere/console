@@ -25,8 +25,10 @@ import PodDetail from '../containers/Pods/Detail'
 import ContainerDetail from '../containers/Pods/Containers/Detail'
 import ServiceDetail from '../containers/Services/Detail'
 import RouteDetail from '../containers/Routes/Detail'
+import SecretDetail from '../containers/Secrets/Detail'
+import ConfigMapDetail from '../containers/ConfigMaps/Detail'
 
-const PATH = '/cl/:cluster/projects/:namespace'
+const PATH = '/cluster/:cluster/projects/:namespace'
 
 export default [
   {
@@ -72,5 +74,13 @@ export default [
   {
     path: `${PATH}/routes/:name`,
     component: RouteDetail,
+  },
+  {
+    path: `${PATH}/secrets/:name`,
+    component: SecretDetail,
+  },
+  {
+    path: `${PATH}/configmaps/:name`,
+    component: ConfigMapDetail,
   },
 ]

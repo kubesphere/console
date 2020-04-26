@@ -70,9 +70,10 @@ export default class Ports extends React.Component {
   checkContainerPortValid = value => value && value.name && value.containerPort
 
   render() {
-    const { withService } = this.props
+    const { withService, className } = this.props
     return (
       <Form.Group
+        className={className}
         label={withService ? t('Service Settings') : t('Port Settings')}
         desc={t('Setting for container access strategy')}
       >

@@ -16,53 +16,29 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { isEmpty, isArray } from 'lodash'
 import React from 'react'
-import { toJS } from 'mobx'
-import { observer, inject } from 'mobx-react'
-import { getLocalTime } from 'utils'
 import { Avatar, Status } from 'components/Base'
-import EmptyTable from 'components/Cards/EmptyTable'
-import DeleteModal from 'components/Modals/Delete'
-import ModifyMemberModal from 'components/Modals/ModifyMember'
-import InviteMemberModal from 'components/Modals/InviteMember'
 import Banner from 'components/Cards/Banner'
-import Base from 'core/containers/Base/List'
+import { withProjectList, ListPage } from 'components/HOCs/withList'
+import Table from 'components/Tables/List'
+
+import { getLocalTime } from 'utils'
 
 import RoleStore from 'stores/role'
+import MemberStore from 'stores/project/member'
 
-@inject('rootStore')
-@observer
-class Members extends Base {
-  init() {
-    this.store = this.props.rootStore.project
+@withProjectList({
+  store: new MemberStore(),
+  module: 'users',
+  authKey: 'members',
+  name: 'Project Member',
+  rowKey: 'username',
+})
+export default class Members extends React.Component {
+  roleStore = new RoleStore()
 
-    this.roleStore = new RoleStore()
+  componentDidMount() {
     this.roleStore.fetchList(this.props.match.params)
-  }
-
-  get module() {
-    return 'users'
-  }
-
-  get authKey() {
-    return 'members'
-  }
-
-  get name() {
-    return 'Member'
-  }
-
-  get workspace() {
-    return this.store.data.workspace
-  }
-
-  get rowKey() {
-    return 'username'
-  }
-
-  get list() {
-    return this.store.members
   }
 
   get tips() {
@@ -75,49 +51,50 @@ class Members extends Base {
   }
 
   get itemActions() {
+    const { getData, trigger, module } = this.props
+    const showAction = record => record.username === globals.user.username
     return [
       {
         key: 'modify',
         icon: 'pen',
         text: t('Modify Member Role'),
         action: 'edit',
-        onClick: this.showModal('modifyModal'),
+        show: showAction,
+        onClick: item =>
+          trigger('project.member.modify', {
+            detail: item,
+            success: getData,
+          }),
       },
       {
         key: 'delete',
         icon: 'trash',
         text: t('Remove Member'),
         action: 'delete',
-        onClick: this.showModal('deleteModal'),
+        show: showAction,
+        onClick: item =>
+          trigger('project.member.delete', {
+            module,
+            detail: item,
+            success: getData,
+          }),
       },
     ]
   }
 
-  getData(params) {
-    this.store.fetchMembers({ ...this.props.match.params, ...params })
-  }
-
-  handlePaging = params => this.list.paging(params)
-
-  getEmptyProps() {
+  get tableProps() {
+    const { trigger } = this.props
     return {
-      createText: t('Invite Member'),
-    }
-  }
-
-  getTableProps() {
-    return {
-      hideSearch: true,
-      onFetch: this.handleFetch,
-      onSelectRowKeys: this.handleSelectRowKeys,
-      onDelete: this.showModal('batchDeleteModal'),
       actions: [
         {
           key: 'invite',
           type: 'control',
           text: t('Invite Member'),
           action: 'create',
-          onClick: this.showModal('inviteModal'),
+          onClick: trigger('member.invite', {
+            module,
+            ...this.props.match.params,
+          }),
         },
       ],
       selectActions: [
@@ -126,7 +103,10 @@ class Members extends Base {
           type: 'danger',
           text: t('Remove Members'),
           action: 'delete',
-          onClick: this.showModal('batchDeleteModal'),
+          onClick: trigger('member.remove', {
+            module,
+            ...this.props.match.params,
+          }),
         },
       ],
       getCheckboxProps: record => ({
@@ -140,6 +120,7 @@ class Members extends Base {
     {
       title: t('Member Name'),
       dataIndex: 'username',
+      sorter: true,
       search: true,
       render: (name, record) => (
         <Avatar
@@ -178,165 +159,24 @@ class Members extends Base {
         </p>
       ),
     },
-    {
-      key: 'more',
-      width: 20,
-      render: (field, record) => {
-        if (record.username === globals.user.username) {
-          return null
-        }
-        return this.renderMore(field, record)
-      },
-    },
   ]
 
-  handleInvite = (userName, role) => {
-    const { namespace } = this.props.match.params
-    this.store.addMember(namespace, userName, role).then(() => {
-      this.routing.query()
-    })
-  }
-
-  handleModify = (member, role) => {
-    const { namespace } = this.props.match.params
-
-    const promises = []
-    if (isArray(member)) {
-      member.forEach(item => {
-        promises.push(this.store.changeMemberRole(namespace, item, role))
-      })
-    } else {
-      promises.push(this.store.changeMemberRole(namespace, member, role))
-    }
-
-    Promise.all(promises).then(() => {
-      if (isArray(member)) {
-        this.store.setSelectRowKeys('members', [])
-      }
-      this.hideModal('modifyModal')()
-      this.routing.query()
-    })
-  }
-
-  handleDelete = () => {
-    const { selectItem } = this.state
-    const { namespace } = this.props.match.params
-
-    this.store.deleteMember(namespace, selectItem).then(() => {
-      this.hideModal('deleteModal')()
-      this.routing.query()
-    })
-  }
-
-  handleSelectRowKeys = params => {
-    this.store.setSelectRowKeys('members', params)
-  }
-
-  handleBatchDelete = () => {
-    const { namespace } = this.props.match.params
-    const { selectedRowKeys } = this.store.members
-
-    if (selectedRowKeys.length > 0) {
-      this.store.batchDeleteMembers(namespace, selectedRowKeys).then(() => {
-        this.hideModal('batchDeleteModal')()
-        this.store.setSelectRowKeys('members', [])
-        this.routing.query()
-      })
-    }
-  }
-
-  renderEmpty() {
-    const onCreate = this.enabledActions.includes('create')
-      ? this.showModal('inviteModal')
-      : null
-
+  render() {
+    const { bannerProps, tableProps } = this.props
     return (
-      <EmptyTable
-        name={this.name}
-        onCreate={onCreate}
-        {...this.getEmptyProps()}
-      />
-    )
-  }
-
-  renderModals() {
-    const {
-      modifyModal,
-      inviteModal,
-      deleteModal,
-      batchDeleteModal,
-      selectItem = {},
-    } = this.state
-
-    const { selectedRowKeys, originData: members } = toJS(this.store.members)
-    const roles = toJS(this.roleStore.list.data)
-
-    const users = !isEmpty(selectItem)
-      ? [selectItem]
-      : selectedRowKeys.map(rowKey =>
-          members.find(member => member.username === rowKey)
-        )
-
-    const usernames = this.list.selectedRowKeys.join(', ')
-
-    return (
-      <div>
-        <DeleteModal
-          title={t('Sure to remove')}
-          desc={t.html('REMOVE_MEMBER_TIP', {
-            resource: selectItem[this.rowKey],
-          })}
-          resource={selectItem[this.rowKey]}
-          visible={deleteModal}
-          onOk={this.handleDelete}
-          onCancel={this.hideModal('deleteModal')}
-          isSubmitting={this.store.isSubmitting}
-        />
-        {this.list.selectedRowKeys && (
-          <DeleteModal
-            visible={batchDeleteModal}
-            title={t('Sure to remove')}
-            desc={t.html('REMOVE_MEMBER_TIP', { resource: usernames })}
-            resource={usernames}
-            onOk={this.handleBatchDelete}
-            onCancel={this.hideModal('batchDeleteModal')}
-            isSubmitting={this.store.isSubmitting}
-          />
-        )}
-        <ModifyMemberModal
-          roles={roles}
-          users={users}
-          visible={modifyModal}
-          onOk={this.handleModify}
-          onCancel={this.hideModal('modifyModal')}
-          isSubmitting={this.store.isSubmitting}
-        />
-        <InviteMemberModal
-          visible={inviteModal}
-          workspace={this.workspace}
-          roles={roles}
-          users={members}
-          onOk={this.handleInvite}
-          onCancel={this.hideModal('inviteModal')}
-          isSubmitting={this.store.isSubmitting}
-        />
-      </div>
-    )
-  }
-
-  renderHeader() {
-    return (
-      <div className="margin-b12">
+      <ListPage {...this.props}>
         <Banner
-          icon="group"
-          title={t('Project Members')}
-          description={t('PROJECT_MEMBERS_DESC')}
-          module="project_roles"
-          tips={this.tips}
+          {...bannerProps}
+          tabs={this.tabs}
+          description={t('PROJECT_ROLE_DESC')}
         />
-      </div>
+        <Table
+          {...tableProps}
+          {...this.tableProps}
+          itemActions={this.itemActions}
+          columns={this.getColumns()}
+        />
+      </ListPage>
     )
   }
 }
-
-export default Members

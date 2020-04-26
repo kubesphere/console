@@ -26,6 +26,13 @@ export default class Pods extends React.Component {
   store = this.props.detailStore
 
   render() {
-    return <PodsCard detail={this.store.detail} limit={6} />
+    const { cluster, node } = this.props
+    return (
+      <PodsCard
+        detail={this.store.detail}
+        limit={6}
+        prefix={`/clusters/${cluster}/nodes/${node}/pods`}
+      />
+    )
   }
 }

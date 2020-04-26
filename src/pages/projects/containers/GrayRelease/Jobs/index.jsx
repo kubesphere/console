@@ -91,10 +91,10 @@ class Jobs extends React.Component {
   }
 
   showCreateGrayReleaseJob = () => {
-    const { namespace } = this.props.match.params
+    const { cluster, namespace } = this.props.match.params
 
     this.props.rootStore.routing.push(
-      `/projects/${namespace}/grayrelease/cates`
+      `/cluster/${cluster}/projects/${namespace}/grayrelease/cates`
     )
   }
 

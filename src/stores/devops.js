@@ -20,26 +20,13 @@ import { set, isArray } from 'lodash'
 import { action, observable } from 'mobx'
 import { getFilterString, formatRules } from 'utils'
 
-import List from './base.list'
+import Base from 'stores/base'
+
 import MemberList from './member.list'
 
-export default class DevOpsStore {
+export default class DevOpsStore extends Base {
   @observable
   initializing = true
-
-  list = new List()
-
-  @observable
-  isLoading = false
-
-  @observable
-  isSubmitting = false
-
-  @observable
-  data = {}
-
-  @observable
-  limitRanges = {}
 
   members = new MemberList()
 
@@ -51,22 +38,8 @@ export default class DevOpsStore {
     isLoading: true,
   }
 
-  @action
-  submitting = promise => {
-    this.isSubmitting = true
-
-    setTimeout(() => {
-      promise
-        .catch(() => {})
-        .finally(() => {
-          this.isSubmitting = false
-        })
-    }, 500)
-
-    return promise
-  }
-
   getListUrl = () => 'kapis/devops.kubesphere.io/v1alpha2/devops'
+
   getDetailUrl = project_id => `${this.getListUrl()}/${project_id}`
 
   getResourceUrl = ({ workspace }) =>

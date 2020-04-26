@@ -35,16 +35,7 @@ export default class UsersStore extends Base {
 
   module = 'users'
 
-  getResourceUrl = this.getListUrl
-
-  @action
-  async fetchUserRoles({ username }) {
-    const result = await request.get(
-      `apis/iam.kubesphere.io/v1alpha2/users/${username}/roles`
-    )
-
-    this.roles = result
-  }
+  getResourceUrl = () => `kapis/iam.kubesphere.io/v1alpha2/users`
 
   @action
   async fetchLogs({ name }) {

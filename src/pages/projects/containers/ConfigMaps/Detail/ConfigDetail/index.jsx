@@ -17,12 +17,13 @@
  */
 
 import React from 'react'
-import { observer } from 'mobx-react'
+import { observer, inject } from 'mobx-react'
 
 import { Card } from 'components/Base'
 
 import styles from './index.scss'
 
+@inject('detailStore')
 @observer
 class ConfigMapDetail extends React.Component {
   constructor(props) {

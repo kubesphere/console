@@ -16,13 +16,13 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { isEmpty, omit, set } from 'lodash'
+import { isEmpty, get, set } from 'lodash'
 import { action, observable } from 'mobx'
 import moment from 'moment-mini'
-import { getFilterString } from 'utils'
-import ObjectMapper from 'utils/object.mapper'
 import { Notify } from 'components/Base'
 import Base from 'stores/base'
+
+import { LIST_DEFAULT_ORDER } from 'utils/constants'
 
 export default class RoleStore extends Base {
   @observable
@@ -44,76 +44,59 @@ export default class RoleStore extends Base {
   @observable
   rulesInfo = []
 
+  getPath({ workspace, namespace }) {
+    let path = ''
+    if (workspace) {
+      path += `/workspaces/${workspace}`
+    }
+    if (namespace) {
+      path += `/namespaces/${namespace}`
+    }
+    return path
+  }
+
   getResourceUrl = params =>
-    `apis/iam.kubesphere.io/v1alpha2${this.getPath(params)}/${this.module}`
+    `kapis/iam.kubesphere.io/v1alpha2${this.getPath(params)}/${this.module}`
 
   constructor(module = 'roles') {
     super(module)
   }
 
   @action
-  async fetchList({
-    limit,
-    page,
-    order,
-    reverse,
-    cluster,
-    workspace,
-    namespace,
-    ...filters
-  } = {}) {
+  async fetchList({ cluster, workspace, namespace, more, ...params } = {}) {
     this.list.isLoading = true
 
-    if (!order && reverse === undefined) {
-      order = 'createTime'
-      reverse = true
+    if (!params.sortBy && params.ascending === undefined) {
+      params.sortBy = LIST_DEFAULT_ORDER[this.module] || 'createTime'
     }
 
-    const params = {}
-
-    filters.userfacing = true
-
-    if (!isEmpty(filters)) {
-      params.conditions = getFilterString(filters)
+    if (params.limit === Infinity || params.limit === -1) {
+      params.limit = -1
+      params.page = 1
     }
 
-    if (limit !== Infinity) {
-      params.paging = `limit=${limit || 10},page=${page || 1}`
-    }
-
-    if (order) {
-      params.orderBy = order
-    }
-
-    if (reverse) {
-      params.reverse = true
-    }
+    params.limit = params.limit || 10
 
     const result = await request.get(
-      this.getResourceUrl({ cluster, namespace }),
-      params
+      this.getResourceUrl({ cluster, workspace, namespace }),
+      { ...params, label: 'kubesphere.io/creator' }
     )
 
+    const data = get(result, 'items', []).map(this.mapper)
+
     this.list.update({
-      data: result.items.map(ObjectMapper.roles) || [],
-      total: result.total_count || 0,
-      limit: Number(limit) || 10,
-      page: Number(page) || 1,
-      order,
-      reverse,
-      filters: omit(filters, ['namespace', 'userfacing']),
+      data: more ? [...this.list.data, ...data] : data,
+      total: result.totalItems || result.total_count || data.length || 0,
+      ...params,
+      limit: Number(params.limit) || 10,
+      page: Number(params.page) || 1,
       isLoading: false,
-      selectedRowKeys: [],
+      ...(this.list.silent ? {} : { selectedRowKeys: [] }),
     })
   }
 
   @action
-  create(data, { namespace } = {}) {
-    return this.submitting(request.post(this.getListUrl(namespace), data))
-  }
-
-  @action
-  patch({ name, namespace }, data) {
+  patch({ name, workspace, namespace }, data) {
     set(
       data,
       'metadata.annotations.lastUpdateTime',
@@ -123,12 +106,12 @@ export default class RoleStore extends Base {
         .replace('+00:00', 'Z')
     )
     return this.submitting(
-      request.patch(this.getDetailUrl(name, namespace), data)
+      request.patch(this.getDetailUrl(name, workspace, namespace), data)
     )
   }
 
   @action
-  batchDelete(rowKeys, { namespace }) {
+  batchDelete(rowKeys, { workspace, namespace }) {
     for (const name in rowKeys) {
       if (this.checkIfIsPresetRole(name)) {
         Notify.error(
@@ -142,7 +125,7 @@ export default class RoleStore extends Base {
     return this.submitting(
       Promise.all(
         rowKeys.map(rowKey =>
-          request.delete(this.getDetailUrl(rowKey, namespace))
+          request.delete(this.getDetailUrl(rowKey, workspace, namespace))
         )
       )
     )
@@ -151,36 +134,21 @@ export default class RoleStore extends Base {
   @action
   async fetchRulesInfo() {
     const result = await request.get(
-      `apis/iam.kubesphere.io/v1alpha2/rulesmapping/${this.type}`
+      `apis/iam.kubesphere.io/v1alpha2/rulesmapping/${this.module}`
     )
     this.rulesInfo = result
   }
 
   @action
-  async fetchDetail({ name, namespace }) {
-    const result = await request.get(this.getDetailUrl(name, namespace))
-
-    this.detail = ObjectMapper.roles(result)
-    this.originDetail = result
-  }
-
-  @action
-  async fetchRules({ name, namespace }) {
+  async fetchRules({ name, workspace, namespace }) {
     this.rules.isLoading = true
-    let result
-    if (this.type === 'roles') {
-      result = await request.get(
-        `apis/iam.kubesphere.io/v1alpha2/namespaces/${namespace}/${
-          this.type
-        }/${name}/rules`
-      )
-    } else {
-      result = await request.get(
-        `apis/iam.kubesphere.io/v1alpha2/${this.type}/${name}/rules`
-      )
-    }
 
-    result = result || []
+    const result = await request.get(
+      `kapis/iam.kubesphere.io/v1alpha2${this.getPath({
+        workspace,
+        namespace,
+      })}/${this.module}/${name}/rules`
+    )
 
     this.rules.data = result
     this.rules.total = result.length
@@ -188,21 +156,15 @@ export default class RoleStore extends Base {
   }
 
   @action
-  async fetchUsers({ name, namespace }) {
+  async fetchUsers({ name, workspace, namespace }) {
     this.users.isLoading = true
 
-    let resp = []
-    if (this.type === 'roles') {
-      resp = await request.get(
-        `apis/iam.kubesphere.io/v1alpha2/namespaces/${namespace}/${
-          this.type
-        }/${name}/users`
-      )
-    } else {
-      resp = await request.get(
-        `apis/iam.kubesphere.io/v1alpha2/${this.type}/${name}/users`
-      )
-    }
+    const resp = await request.get(
+      `kapis/iam.kubesphere.io/v1alpha2${this.getPath({
+        workspace,
+        namespace,
+      })}/${this.module}/${name}/users`
+    )
 
     if (resp) {
       if (resp.items) {
@@ -218,7 +180,7 @@ export default class RoleStore extends Base {
   }
 
   @action
-  delete({ name, namespace }) {
+  delete({ name, workspace, namespace }) {
     if (this.checkIfIsPresetRole(name)) {
       Notify.error(
         t('Error Tips'),
@@ -228,11 +190,13 @@ export default class RoleStore extends Base {
       return
     }
 
-    return this.submitting(request.delete(this.getDetailUrl(name, namespace)))
+    return this.submitting(
+      request.delete(this.getDetailUrl(name, workspace, namespace))
+    )
   }
 
   checkIfIsPresetRole(name) {
-    if (this.type === 'roles') {
+    if (this.module === 'roles') {
       return (
         isEmpty(globals.config.presetRoles) &&
         globals.config.presetRoles.includes(name)
@@ -243,21 +207,5 @@ export default class RoleStore extends Base {
       isEmpty(globals.config.presetClusterRoles) &&
       globals.config.presetClusterRoles.includes(name)
     )
-  }
-
-  @action
-  checkRoleName({ name, namespace }) {
-    return request.get(
-      this.getDetailUrl(name, namespace),
-      {},
-      {
-        headers: { 'x-check-exist': true },
-      }
-    )
-  }
-
-  @action
-  setSelectRowKeys(selectedRowKeys) {
-    this.list.selectedRowKeys.replace(selectedRowKeys)
   }
 }

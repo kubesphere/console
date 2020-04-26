@@ -39,7 +39,7 @@ import WorkloadStore from 'stores/workload'
 export default class StatefulSets extends React.Component {
   get prefix() {
     const { namespace, cluster } = this.props.match.params
-    return `/cl/${cluster}/projects/${namespace}`
+    return `/cluster/${cluster}/projects/${namespace}`
   }
 
   handleTabChange = value => {
@@ -148,6 +148,7 @@ export default class StatefulSets extends React.Component {
             iconSize={40}
             title={getDisplayName(record)}
             desc={this.getItemDesc(record)}
+            isMultiCluster={record.isFedManaged}
             to={`${this.prefix}/${module}/${name}`}
           />
         ),

@@ -39,7 +39,7 @@ require('utils/polyfills')
 // request error handler
 window.onunhandledrejection = function(e) {
   if (e && (e.status === 'Failure' || e.status >= 400)) {
-    if (e.status === 401) {
+    if (e.status === 401 || e.reason === 'Unauthorized') {
       // session timeout handler, except app store page.
       if (!isAppsPage()) {
         /* eslint-disable no-alert */

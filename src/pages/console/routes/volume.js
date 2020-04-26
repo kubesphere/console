@@ -20,7 +20,6 @@ import { withProps } from 'utils'
 import { getChildRoutes } from 'utils/router.config'
 import DetailLayout from 'core/layouts/Detail'
 
-import { getPodRoutes } from 'projects/routes/pod'
 import Events from 'core/containers/Base/Detail/Events'
 import Detail from 'projects/containers/Volumes/Detail'
 import ResourceStatus from 'projects/containers/Volumes/Detail/ResourceStatus'
@@ -35,14 +34,9 @@ const ROUTES = [
   { name: 'events', title: 'Events', component: Events },
 ]
 
-const BREAD_CRUMBS = [
-  { label: 'Volume', url: `/volumes/:namespace/:name/resource-status` },
-]
-
 const PATH_FORM_STORAGE_CLASSES = `/storageclasses/:storage${PATH}`
 
 export default [
-  ...getPodRoutes(PATH, BREAD_CRUMBS),
   {
     path: PATH_FORM_STORAGE_CLASSES,
     component: withProps(DetailLayout, {

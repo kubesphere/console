@@ -819,4 +819,5 @@ export const API_VERSIONS = {
   clusters: 'apis/cluster.kubesphere.io/v1alpha1',
   workspaces: 'apis/tenant.kubesphere.io/v1alpha1',
   users: 'apis/iam.kubesphere.io/v1alpha2',
+  globalroles: 'apis/iam.kubesphere.io/v1alpha2',
 }

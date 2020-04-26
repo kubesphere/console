@@ -25,7 +25,7 @@ import { ArrayInput, ObjectInput } from 'components/Inputs'
 
 import WorkspaceStore from 'stores/workspace'
 import MemberStore from 'stores/workspace/member'
-import RoleStore from 'stores/workspace/role'
+import RoleStore from 'stores/role'
 
 import styles from './index.scss'
 
@@ -53,7 +53,7 @@ export default class ProjectCreateModal extends React.Component {
     this.store = props.store
     this.workspaceStore = new WorkspaceStore()
     this.memberStore = new MemberStore()
-    this.roleStore = new RoleStore()
+    this.roleStore = new RoleStore('workspaceroles')
   }
 
   componentDidMount() {
@@ -87,7 +87,7 @@ export default class ProjectCreateModal extends React.Component {
   }
 
   render() {
-    const { visible, formTemplate, onOk, onCancel } = this.props
+    const { visible, formTemplate, hideCluster, onOk, onCancel } = this.props
     return (
       <Modal.Form
         width={960}
@@ -142,26 +142,28 @@ export default class ProjectCreateModal extends React.Component {
               </Form.Item>
             </Column>
           </Columns>
+          {!hideCluster && (
+            <Form.Group
+              label={t('Cluster Settings')}
+              desc={t('PROJECT_CLUSTER_SETTINGS_DESC')}
+            >
+              <Form.Item>
+                <ArrayInput
+                  name="spec.placement.clusters"
+                  addText={t('Add Cluster')}
+                >
+                  <ObjectInput>
+                    <Select
+                      name="name"
+                      options={this.clusters}
+                      style={{ width: 700 }}
+                    />
+                  </ObjectInput>
+                </ArrayInput>
+              </Form.Item>
+            </Form.Group>
+          )}
           <Form.Group
-            label={t('Cluster Settings')}
-            desc={t('PROJECT_CLUSTER_SETTINGS_DESC')}
-          >
-            <Form.Item>
-              <ArrayInput
-                name="spec.placement.clusters"
-                addText={t('Add Cluster')}
-              >
-                <ObjectInput>
-                  <Select
-                    name="name"
-                    options={this.clusters}
-                    style={{ width: 700 }}
-                  />
-                </ObjectInput>
-              </ArrayInput>
-            </Form.Item>
-          </Form.Group>
-          {/* <Form.Group
             label={t('Member Settings')}
             desc={t('MEMBER_SETTINGS_DESC')}
           >
@@ -177,7 +179,7 @@ export default class ProjectCreateModal extends React.Component {
                 </ObjectInput>
               </ArrayInput>
             </Form.Item>
-          </Form.Group> */}
+          </Form.Group>
         </div>
       </Modal.Form>
     )

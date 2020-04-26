@@ -24,6 +24,7 @@ import { MODULE_KIND_MAP } from 'utils/constants'
 import FED_TEMPLATES from 'utils/fed.templates'
 
 import Base from 'stores/base'
+import FederatedStore from 'stores/federated'
 
 import HpaStore from './hpa'
 import ServiceStore from '../service'
@@ -33,7 +34,7 @@ export default class WorkloadStore extends Base {
     super(module)
 
     this.hpaStore = new HpaStore()
-    this.serviceStore = new ServiceStore()
+    this.fedStore = new FederatedStore(module)
   }
 
   @action
@@ -50,18 +51,33 @@ export default class WorkloadStore extends Base {
       }
 
       if (has(data, 'Service')) {
-        requests.push({
-          url: this.serviceStore.getListUrl(params),
-          data: data['Service'],
-        })
+        requests.push(this.getWorkloadRequest(data['Service'], params))
       }
     }
 
     return this.submitting(withDryRun(requests))
   }
 
+  getServiceRequest = (data, params) => {
+    const isFedManaged = !!get(data, 'spec.placement')
+    const serviceStore = new ServiceStore()
+    const fedServiceStore = new FederatedStore('services')
+
+    if (isFedManaged) {
+      return {
+        url: fedServiceStore.getListUrl(params),
+        data: FED_TEMPLATES.services({
+          data,
+          kind: 'Service',
+        }),
+      }
+    }
+
+    return { url: serviceStore.getListUrl(params), data }
+  }
+
   getWorkloadRequest = (data, params) => {
-    const { isFedManaged, clusters } = params.projectDetail || {}
+    const isFedManaged = !!get(data, 'spec.placement')
 
     if (['deployments', 'daemonsets'].includes(this.module)) {
       const hasPVC = get(data, 'spec.template.spec.volumes', []).some(
@@ -77,16 +93,17 @@ export default class WorkloadStore extends Base {
       }
     }
 
-    return {
-      url: isFedManaged ? this.getFedListUrl(params) : this.getListUrl(params),
-      data: isFedManaged
-        ? FED_TEMPLATES.workloads({
-            data,
-            clusters,
-            kind: MODULE_KIND_MAP[this.module],
-          })
-        : data,
+    if (isFedManaged) {
+      return {
+        url: this.fedStore.getListUrl(params),
+        data: FED_TEMPLATES.workloads({
+          data,
+          kind: MODULE_KIND_MAP[this.module],
+        }),
+      }
     }
+
+    return { url: this.getListUrl(params), data }
   }
 
   @action

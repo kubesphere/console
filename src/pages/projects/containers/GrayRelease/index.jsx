@@ -83,11 +83,11 @@ class GrayRelease extends React.Component {
   }
 
   handleDeployApp = data => {
-    const { namespace } = this.props.match.params
+    const { cluster, namespace } = this.props.match.params
     this.store.create(data).then(() => {
       this.hideDeployAppModal()
       this.routing.push(
-        `/projects/${namespace}/applications/composing/${get(
+        `/cluster/${cluster}/projects/${namespace}/applications/composing/${get(
           data,
           'application.metadata.name'
         )}`

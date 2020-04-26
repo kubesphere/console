@@ -19,11 +19,26 @@
 import { get, set } from 'lodash'
 import { action, observable } from 'mobx'
 import { formatRules } from 'utils'
+import { LIST_DEFAULT_ORDER } from 'utils/constants'
 import ObjectMapper from 'utils/object.mapper'
-import FED_TEMPLATES from 'utils/fed.templates'
 
 import Base from '../base'
 import List from '../base.list'
+
+const getTypeSelectParams = type => {
+  let params = {}
+
+  if (type === 'system') {
+    params = {
+      label: 'kubesphere.io/workspace:system-workspace',
+    }
+  } else if (type === 'user') {
+    params = {
+      label: 'kubesphere.io/workspace:!system-workspace',
+    }
+  }
+  return params
+}
 
 export default class ProjectStore extends Base {
   @observable
@@ -35,10 +50,10 @@ export default class ProjectStore extends Base {
 
   getResourceUrl = ({ workspace, ...params }) => {
     if (workspace) {
-      return `kapis/tenant.kubesphere.io/v1alpha3/workspaces/${workspace}/namespaces`
+      return `kapis/tenant.kubesphere.io/v1alpha2/workspaces/${workspace}/namespaces`
     }
 
-    return `kapis/resources.kubesphere.io/v1alpha3${this.getPath(
+    return `kapis/resources.kubesphere.io/v1alpha2${this.getPath(
       params
     )}/namespaces`
   }
@@ -64,7 +79,7 @@ export default class ProjectStore extends Base {
     this.list.isLoading = true
 
     if (!params.sortBy && params.ascending === undefined) {
-      params.sortBy = 'createTime'
+      params.sortBy = LIST_DEFAULT_ORDER[this.module] || 'createTime'
     }
 
     if (params.limit === Infinity || params.limit === -1) {
@@ -78,10 +93,7 @@ export default class ProjectStore extends Base {
       this.getResourceUrl({ cluster, workspace, namespace }),
       {
         ...params,
-        label:
-          type === 'system'
-            ? 'kubesphere.io/workspace:system-workspace'
-            : undefined,
+        ...getTypeSelectParams(type),
       }
     )
     const data = get(result, 'items', []).map(item => ({
@@ -117,13 +129,6 @@ export default class ProjectStore extends Base {
     )
 
     this.detail = { cluster, ...this.mapper(detail) }
-
-    if (this.detail.isFedManaged) {
-      const fedNsDetail = await request.get(
-        this.getFedDetailUrl({ name: namespace, namespace })
-      )
-      this.detail.clusters = get(fedNsDetail, 'spec.placement.clusters')
-    }
 
     this.isLoading = false
   }
@@ -172,26 +177,4 @@ export default class ProjectStore extends Base {
 
     return data
   }
-
-  @action
-  create(data, params = {}) {
-    return this.submitting(
-      request.post(this.getListUrl(params), data).then(() => {
-        const fedData = FED_TEMPLATES.namespaces(data)
-        return request.post(
-          this.getFedListUrl({ namespace: get(data, 'metadata.name') }),
-          fedData
-        )
-      })
-    )
-  }
-
-  // @action
-  // delete(params) {
-  //   params.namespace = params.name
-  //   const url = params.isFedManaged
-  //     ? this.getFedDetailUrl(params)
-  //     : this.getDetailUrl(params)
-  //   return this.submitting(request.delete(url))
-  // }
 }
