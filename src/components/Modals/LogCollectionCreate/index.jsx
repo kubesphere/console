@@ -90,8 +90,8 @@ export default class CreateLogCollectionModal extends Component {
   }
 
   hasCollectionType(type) {
-    return this.props.store.collections.find(
-      collection => collection.Name === type
+    return this.props.store.list.data.find(
+      collection => collection.type === type
     )
   }
 

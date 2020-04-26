@@ -31,7 +31,7 @@ export default class BaseInfo extends React.Component {
         <div className={classnames(styles.path, fromStyles.item)}>
           <label className={fromStyles.label}>{t('Service Address')}:</label>
           <div className={styles.columns}>
-            <UrlInput defaultPort={24224} />
+            <UrlInput hostName={'host'} portName={'port'} defaultPort={24224} />
           </div>
           <div className={classnames(fromStyles.desc, styles.desc)}>
             {t('LOG_COLLECTION_FLUENTD_URL_TIPS')}

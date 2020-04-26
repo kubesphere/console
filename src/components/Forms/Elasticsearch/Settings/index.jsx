@@ -36,12 +36,13 @@ export default class BaseInfo extends React.Component {
         <div className={classnames(styles.path, fromStyles.item)}>
           <label className={fromStyles.label}>{t('Service Address')}:</label>
           <div className={styles.columns}>
-            <UrlInput />
+            <UrlInput hostName={'host'} portName={'port'} />
           </div>
           <div className={classnames(fromStyles.desc, styles.desc)}>
             {t('LOG_COLLECTION_ES_URL_TIPS')}
           </div>
         </div>
+
         <Form.Item
           desc={t('LOG_COLLECTION_ES_USER_TIPS')}
           label={`${t('User Name')} (${t('optional')})`}

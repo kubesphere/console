@@ -16,29 +16,14 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React, { Component } from 'react'
-import { observer } from 'mobx-react'
-import { isEmpty } from 'lodash'
+// Use require.context to require reducers automatically
+// Ref: https://webpack.github.io/docs/context.html
+const context = require.context('./', false, /\.js$/)
+const keys = context.keys().filter(item => item !== './index.js')
 
-import LogStore from 'stores/logging/query'
-import LogCard from 'components/Cards/LogQuery'
-
-@observer
-class LogCollectionDetailContainers extends Component {
-  store = new LogStore({
-    from: 0,
-    size: 100,
-    log_query: '',
-  })
-
-  render() {
-    const detail = this.props.detailStore || {}
-    const isCollecting = detail.enable
-
-    return isEmpty(detail) ? null : (
-      <LogCard store={this.store} realTime={isCollecting} />
-    )
-  }
+const models = {}
+for (let i = 0; i < keys.length; i += 1) {
+  Object.assign(models, context(keys[i]).default)
 }
 
-export default LogCollectionDetailContainers
+export default models

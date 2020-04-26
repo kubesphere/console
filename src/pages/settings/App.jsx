@@ -15,11 +15,15 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-
+import { inject } from 'mobx-react'
 import { renderRoutes } from 'utils/router.config'
 
+import actions from './actions'
 import routes from './routes'
 
-const App = () => renderRoutes(routes)
+const App = ({ rootStore }) => {
+  rootStore.registerActions(actions)
+  return renderRoutes(routes)
+}
 
-export default App
+export default inject('rootStore')(App)
