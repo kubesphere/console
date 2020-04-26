@@ -33,8 +33,8 @@ const storeParams = {
   sort_type: 'desc',
 }
 
-@observer
 @withRouter
+@observer
 export default class NodesTop5 extends Component {
   store = new NodeStore({ ...storeParams, cluster: this.cluster })
 
@@ -70,10 +70,7 @@ export default class NodesTop5 extends Component {
           {data.map(node => (
             <div key={node.node}>
               <Icon name="nodes" size={40} className="margin-r12" />
-              <Text
-                title={node.resource_name}
-                description={get(node, 'node_ip', '-')}
-              />
+              <Text title={node.node} description={get(node, 'node_ip', '-')} />
               <Text
                 className={styles.cpu}
                 title={`${Math.round(

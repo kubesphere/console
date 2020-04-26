@@ -168,10 +168,7 @@ export default class Nodes extends React.Component {
   getLastValue = (node, type, unit) => {
     const metricsData = this.monitoringStore.data
     const result = get(metricsData[type], 'data.result') || []
-    const metrics = result.find(
-      item => get(item, 'metric.resource_name') === node.name
-    )
-
+    const metrics = result.find(item => get(item, 'metric.node') === node.name)
     return getValueByUnit(get(metrics, 'value[1]', 0), unit)
   }
 
@@ -378,7 +375,7 @@ export default class Nodes extends React.Component {
     const isLoadingMonitor = this.monitoringStore.isLoading
 
     return (
-      <ListPage {...this.props}>
+      <ListPage {...this.props} getData={this.getData}>
         <Banner {...bannerProps} tips={this.tips} />
         {this.renderOverview()}
         <Table
