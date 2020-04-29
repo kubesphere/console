@@ -55,6 +55,17 @@ export default class Base {
     return 'kapis/openpitrix.io/v1/'
   }
 
+  getPath({ cluster, namespace }) {
+    let path = ''
+    if (cluster) {
+      path += `/clusters/${cluster}`
+    }
+    if (namespace) {
+      path += `/namespaces/${namespace}`
+    }
+    return path
+  }
+
   getUrl = ({ app_id, version_id, name } = {}) => {
     if (version_id) {
       const suffix = this.resourceName === 'versions' ? '' : this.resourceName

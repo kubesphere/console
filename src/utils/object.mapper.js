@@ -421,6 +421,11 @@ const ServiceMapper = item => {
     annotations: get(item, 'metadata.annotations', {}),
     status: get(item, 'status'),
     ports: get(item, 'spec.ports', []),
+    workloadType: get(
+      item,
+      'metadata.annotations["kubesphere.io/workloadType"]',
+      'Deployment'
+    ),
     sessionAffinity: get(item, 'spec.sessionAffinity'),
     externalIPs: get(item, 'spec.externalIPs', []),
     externalName: get(item, 'spec.externalName'),

@@ -26,7 +26,7 @@ import Ports from '../../ContainerSettings/ContainerForm/Ports'
 
 import styles from './index.scss'
 
-export default class ContainerImages extends Component {
+export default class ContainerPorts extends Component {
   formRef = React.createRef()
 
   handleSubmit = () => {
@@ -92,15 +92,13 @@ export default class ContainerImages extends Component {
         <div>
           <div>{`${t('Image')}: ${container.image}`}</div>
           {container.ports &&
-            container.ports.map(port => (
-              <div className={styles.port}>
+            container.ports.map((port, index) => (
+              <div key={index} className={styles.port}>
                 <span>{`${t('Protocol')}: ${port.protocol}`}</span>
                 <span>{`${t('Name')}: ${port.name}`}</span>
                 <span>{`${t('Container Port')}: ${port.containerPort}`}</span>
                 {showServicePort && (
-                  <span>{`${t('Service Port')}: ${
-                    container.servicePort
-                  }`}</span>
+                  <span>{`${t('Service Port')}: ${port.servicePort}`}</span>
                 )}
               </div>
             ))}

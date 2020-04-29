@@ -190,10 +190,9 @@ export default class CronJobs extends React.Component {
   }
 
   showCreate = () => {
-    const { match, module, projectStore } = this.props
+    const { match, module } = this.props
     return this.props.trigger('workload.create', {
       module,
-      projectDetail: projectStore.detail,
       namespace: match.params.namespace,
       cluster: match.params.cluster,
     })

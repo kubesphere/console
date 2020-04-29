@@ -17,23 +17,17 @@
  */
 
 import React from 'react'
-import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
-import { get, isEmpty } from 'lodash'
+import { get } from 'lodash'
 
-import VolumesCard from 'components/Cards/Volumes'
 import { Component as Base } from 'projects/containers/Deployments/Detail/ResourceStatus'
 import ServiceCard from './ServiceCard'
 
-@inject('detailStore')
+@inject('detailStore', 'fedDetailStore')
 @observer
 class ResourceStatus extends Base {
   get serviceName() {
     return get(this.store.detail, 'spec.serviceName', '')
-  }
-
-  get enableScaleReplica() {
-    return true
   }
 
   fetchData = async () => {
@@ -56,24 +50,6 @@ class ResourceStatus extends Base {
     if (!service.name) return null
 
     return <ServiceCard service={service} loading={isLoading} />
-  }
-
-  renderVolumes() {
-    const { isLoading } = this.store
-    const { volumes = [], containers } = toJS(this.store.detail)
-    const { namespace } = this.props.match.params
-
-    if (isEmpty(volumes)) return null
-
-    return (
-      <VolumesCard
-        title={this.volumesTitle}
-        volumes={volumes}
-        containers={containers}
-        loading={isLoading}
-        prefix={`/projects/${namespace}`}
-      />
-    )
   }
 
   renderContent() {

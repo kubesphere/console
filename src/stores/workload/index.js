@@ -34,7 +34,6 @@ export default class WorkloadStore extends Base {
     super(module)
 
     this.hpaStore = new HpaStore()
-    this.fedStore = new FederatedStore(module)
   }
 
   @action
@@ -61,11 +60,11 @@ export default class WorkloadStore extends Base {
   getServiceRequest = (data, params) => {
     const isFedManaged = !!get(data, 'spec.placement')
     const serviceStore = new ServiceStore()
-    const fedServiceStore = new FederatedStore('services')
+    const fedStore = new FederatedStore('services')
 
     if (isFedManaged) {
       return {
-        url: fedServiceStore.getListUrl(params),
+        url: fedStore.getListUrl(params),
         data: FED_TEMPLATES.services({
           data,
           kind: 'Service',
@@ -94,8 +93,9 @@ export default class WorkloadStore extends Base {
     }
 
     if (isFedManaged) {
+      const fedStore = new FederatedStore(this.module)
       return {
-        url: this.fedStore.getListUrl(params),
+        url: fedStore.getListUrl(params),
         data: FED_TEMPLATES.workloads({
           data,
           kind: MODULE_KIND_MAP[this.module],

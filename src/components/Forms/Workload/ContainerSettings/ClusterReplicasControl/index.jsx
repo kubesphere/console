@@ -42,18 +42,25 @@ export default class ReplicasContorl extends React.Component {
       }
     })
 
-    onChange && onChange(value)
+    onChange && onChange(value.filter(item => !!item.replicas))
+  }
+
+  getValue = name => {
+    const { value } = this.props
+    const valueItem = value.find(item => item.name === name)
+
+    return valueItem ? valueItem.replicas : 0
   }
 
   render() {
-    const { value } = this.props
+    const { clusters } = this.props
     return (
       <div className={styles.wrapper}>
-        {value.map(item => (
+        {clusters.map(cluster => (
           <Placement
-            key={item.name}
-            cluster={item.name}
-            replicas={item.replicas}
+            key={cluster.name}
+            cluster={cluster.name}
+            replicas={this.getValue(cluster.name)}
             onChange={this.handleChange}
           />
         ))}

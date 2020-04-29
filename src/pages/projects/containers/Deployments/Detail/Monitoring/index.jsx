@@ -40,7 +40,15 @@ const MetricTypes = {
   net_received: 'pod_net_bytes_received',
 }
 
-class Monitorings extends React.Component {
+const MONITOR_MODULES = {
+  deployments: 'deployment',
+  statefulsets: 'statefulset',
+  daemonsets: 'daemonset',
+}
+
+@inject('detailStore')
+@observer
+export default class Monitorings extends React.Component {
   constructor(props) {
     super(props)
 
@@ -59,7 +67,7 @@ class Monitorings extends React.Component {
   }
 
   get monitoringModule() {
-    return 'deployment'
+    return MONITOR_MODULES[this.store.module]
   }
 
   get metrics() {
@@ -238,6 +246,3 @@ class Monitorings extends React.Component {
     )
   }
 }
-
-export default inject('rootStore', 'detailStore')(observer(Monitorings))
-export const Component = Monitorings

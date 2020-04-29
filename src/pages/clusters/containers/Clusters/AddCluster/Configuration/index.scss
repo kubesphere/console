@@ -1,0 +1,38 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.tip {
+  width: 455px;
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: $border-radius;
+  border: solid 1px $light-color04;
+  background-color: $light-color01;
+}
+
+.editorWrapper {
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: $border-radius;
+  background-color: $light-color01;
+}
+
+.editor {
+  padding: 8px;
+  border-radius: $border-radius;
+  border: solid 1px $light-color06;
+  background-color: #ffffff;
+}
+
+.editorTitle {
+  margin: 4px 0 12px 0;
+  @include TypographyTitleH6($dark-color07);
+  :global .icon {
+    margin-right: 8px;
+  }
+
+  & > span {
+    display: inline-block;
+    vertical-align: middle;
+  }
+}

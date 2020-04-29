@@ -173,7 +173,7 @@ export default class StorageClassDetail extends React.Component {
     const sideProps = {
       module: this.module,
       name: getDisplayName(this.store.detail),
-      desc: t(`STORAGE CLASS_DESC`),
+      desc: t(`STORAGE_CLASS_DESC`),
       operations: this.getOperations(),
       attrs: this.getAttrs(),
       breadcrumbs: [

@@ -35,9 +35,9 @@ import getRoutes from './routes'
 @observer
 @trigger
 export default class DeploymentDetail extends React.Component {
-  store = new WorkloadStore('deployments')
+  store = new WorkloadStore(this.module)
 
-  fedStore = new FederatedStore('deployments')
+  fedStore = new FederatedStore(this.module)
 
   componentDidMount() {
     this.fetchData()

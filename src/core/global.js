@@ -343,7 +343,8 @@ export default class GlobalValue {
   }
 
   get isClusterAdmin() {
-    return globals.user.cluster_role === 'cluster-admin'
+    return true
+    // return globals.user.cluster_role === 'cluster-admin'
   }
 
   hasKSModule(module) {

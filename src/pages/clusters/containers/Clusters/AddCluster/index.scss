@@ -5,10 +5,40 @@
   margin: 40px auto;
 }
 
+.back {
+  margin-bottom: 12px;
+
+  a {
+    font-size: 12px;
+    line-height: 20px;
+
+    span {
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+    margin-right: 4px;
+    vertical-align: bottom;
+  }
+}
+
 .title {
-  margin-bottom: 40px;
+  margin-bottom: 32px;
   & > p {
     margin-top: 4px;
     color: $dark-color01;
+  }
+}
+
+
+.footer {
+  width: 220px;
+
+  button {
+    width: 100%;
   }
 }
