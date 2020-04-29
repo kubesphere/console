@@ -42,7 +42,7 @@ const CREATE_TYPE_OPTIONS = [
       return t('CREATE_VOLUME_BY_STORAGECLASS')
     },
     get description() {
-      return t('STORAGE CLASS_DESC')
+      return t('STORAGE_CLASS_DESC')
     },
   },
 ]

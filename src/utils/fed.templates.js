@@ -92,7 +92,55 @@ const getWorkloadTemplate = ({ data, kind }) => {
   }
 }
 
+const getServiceTemplate = ({ data, kind }) => {
+  const name = get(data, 'metadata.name')
+  const namespace = get(data, 'metadata.namespace')
+  const clusters = get(data, 'spec.placement.clusters')
+  const placement = {
+    clusters: clusters.map(cluster => ({ name: cluster.name })),
+  }
+
+  const serviceOverrides = get(data, 'spec.overrides', [])
+  const overrides = clusters.map(cluster => {
+    const override = {
+      clusterName: cluster.name,
+      clusterOverrides: [
+        {
+          path: '/metadata/annotations',
+          value: get(data, 'metadata.annotations'),
+        },
+      ],
+    }
+
+    const servicedOr = serviceOverrides.find(
+      item => item.clusterName === cluster.name
+    )
+
+    if (servicedOr) {
+      override.clusterOverrides.push(...servicedOr.clusterOverrides)
+    }
+
+    return override
+  })
+
+  const template = cloneDeep(data)
+  unset(template, 'apiVersion')
+  unset(template, 'kind')
+  unset(template, 'metadata.name')
+  unset(template, 'metadata.annotations')
+  unset(template, 'spec.placement')
+  unset(template, 'spec.overrides')
+
+  return {
+    apiVersion: 'types.kubefed.io/v1beta1',
+    kind: `Federated${kind}`,
+    metadata: { name, namespace },
+    spec: { placement, template, overrides },
+  }
+}
+
 export default {
   namespaces: getNamespaceTemplate,
   workloads: getWorkloadTemplate,
+  services: getServiceTemplate,
 }

@@ -36,6 +36,11 @@ export default class StorageClassStore extends Base {
 
   module = 'storageclasses'
 
+  getResourceUrl = params =>
+    `kapis/resources.kubesphere.io/v1alpha3${this.getPath(params)}/${
+      this.module
+    }`
+
   @action
   create(data) {
     if (data.provisioner === 'custom') {

@@ -20,7 +20,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { Checkbox } from '@pitrix/lego-ui'
-import { get, unset, isUndefined } from 'lodash'
+import { get, unset, isEmpty, isUndefined } from 'lodash'
 
 import styles from './index.scss'
 
@@ -35,6 +35,7 @@ export default class Group extends React.Component {
 
   static contextTypes = {
     formData: PropTypes.object,
+    validateResults: PropTypes.array,
   }
 
   static childContextTypes = {
@@ -69,12 +70,27 @@ export default class Group extends React.Component {
     }
   }
 
+  componentDidUpdate() {
+    const { validateResults } = this.context
+    if (
+      !isEmpty(validateResults) &&
+      validateResults.some(vr => this.items.has(vr.field)) &&
+      !this.state.isCheck
+    ) {
+      this.setState({ isCheck: true })
+    }
+  }
+
   registerGroup = name => {
     this.items.add(name)
   }
 
   unRegisterGroup = name => {
     this.items.delete(name)
+  }
+
+  showGroup = () => {
+    this.setState({ isCheck: true })
   }
 
   handleCheck = (e, check) => {

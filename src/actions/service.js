@@ -28,14 +28,10 @@ import formPersist from 'utils/form.persist'
 import FORM_TEMPLATES from 'utils/form.templates'
 import FORM_STEPS from 'configs/steps/services'
 
-import WorkloadStore from 'stores/workload'
-
 export default {
   'service.create': {
     on({ store, cluster, namespace, module, success, ...props }) {
       const kind = MODULE_KIND_MAP[module]
-
-      const workloadStore = new WorkloadStore()
 
       const modal = Modal.open({
         onOk: newObject => {
@@ -51,16 +47,16 @@ export default {
             }
           }
 
-          store.create(data).then(() => {
+          store.create(data, { cluster, namespace }).then(() => {
             Modal.close(modal)
             Notify.success({ content: `${t('Created Successfully')}!` })
             success && success()
             formPersist.delete(`${module}_create_form`)
           })
         },
+        cluster,
         namespace,
         modal: CreateServiceModal,
-        workloadStore,
         store,
         ...props,
       })

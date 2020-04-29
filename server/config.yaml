@@ -37,7 +37,7 @@ client:
   title: KubeSphere
 
   version:
-    kubesphere: 2.1.0
+    kubesphere: 3.0.0
 
   # kubesphere urls
   issueUrl: https://github.com/kubesphere/kubesphere/issues/new/choose

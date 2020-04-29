@@ -75,6 +75,8 @@ export default {
   'Volume Name': '存储卷名称',
   'HTTP Request': 'HTTP 请求',
   'Diff Settings': '差异化配置',
+  'Deploy Mode': '部署模式',
+  'Instance Status': '实例状态',
 
   'No Request': '不预留',
   'No Limit': '不限制',

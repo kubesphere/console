@@ -52,6 +52,11 @@ export default {
   Others: '其它',
 
   Platform: '平台管理',
+  'Platform Info': '平台信息',
+  'Platform Version': '平台版本',
+  'Clusters Number': '集群数量',
+  'Platform Running Status': '平台运行状态',
+  'Statistical time is up to': '统计时间截止至',
   Workbench: '工作台',
   'Apps Management': '应用管理',
   'Clusters Management': '集群管理',
@@ -201,6 +206,8 @@ export default {
   'Advanced Settings': '高级设置',
   Settings: '设置',
   Configuration: '配置',
+  'Multi-Cluster Deploy': '多集群部署',
+  MULTI_CLUSTER_TIP: '该资源部署在多个集群',
 
   Alias: '别名',
   'Official Document': '官网文档',

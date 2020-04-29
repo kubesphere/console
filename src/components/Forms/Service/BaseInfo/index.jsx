@@ -166,7 +166,7 @@ export default class ServiceBaseInfo extends React.Component {
   }
 
   render() {
-    const { formRef, noWorkload } = this.props
+    const { formRef, noWorkload, noApp } = this.props
     const { showServiceMesh, selectApp } = this.state
 
     return (
@@ -220,58 +220,60 @@ export default class ServiceBaseInfo extends React.Component {
             </Form.Item>
           </Column>
         </Columns>
-        <ToggleView>
-          <div className="margin-t8">
-            <Columns>
-              <Column>
-                <Form.Item
-                  label={t('Join Application')}
-                  desc={t('SERVICE_NAME_DESC')}
-                >
-                  <Select
-                    name="metadata.labels['app.kubernetes.io/name']"
-                    onChange={this.handleAppChange}
-                    options={this.applications}
-                    loading={this.appStore.list.isLoading}
-                    defaultValue=""
-                  />
-                </Form.Item>
-              </Column>
-              {!isEmpty(selectApp) && (
-                <Column>
-                  <Form.Item label={t('Version')}>
-                    <Input name="metadata.labels.version" defaultValue="v1" />
-                  </Form.Item>
-                </Column>
-              )}
-            </Columns>
-            {!noWorkload && showServiceMesh && (
+        {!noApp && (
+          <ToggleView>
+            <div className="margin-t8">
               <Columns>
                 <Column>
                   <Form.Item
-                    label={t('Service Mesh')}
-                    desc={
-                      !selectApp.serviceMeshEnable
-                        ? t('Application governance is not enabled')
-                        : ''
-                    }
+                    label={t('Join Application')}
+                    desc={t('SERVICE_NAME_DESC')}
                   >
                     <Select
-                      name="metadata.annotations['servicemesh.kubesphere.io/enabled']"
-                      options={this.serviceMeshOptions}
-                      onChange={this.handleServiceMeshChange}
-                      defaultValue={
-                        selectApp.serviceMeshEnable ? 'true' : 'false'
-                      }
-                      disabled={!selectApp.serviceMeshEnable}
+                      name="metadata.labels['app.kubernetes.io/name']"
+                      onChange={this.handleAppChange}
+                      options={this.applications}
+                      loading={this.appStore.list.isLoading}
+                      defaultValue=""
                     />
                   </Form.Item>
                 </Column>
-                <Column />
+                {!isEmpty(selectApp) && (
+                  <Column>
+                    <Form.Item label={t('Version')}>
+                      <Input name="metadata.labels.version" defaultValue="v1" />
+                    </Form.Item>
+                  </Column>
+                )}
               </Columns>
-            )}
-          </div>
-        </ToggleView>
+              {!noWorkload && showServiceMesh && (
+                <Columns>
+                  <Column>
+                    <Form.Item
+                      label={t('Service Mesh')}
+                      desc={
+                        !selectApp.serviceMeshEnable
+                          ? t('Application governance is not enabled')
+                          : ''
+                      }
+                    >
+                      <Select
+                        name="metadata.annotations['servicemesh.kubesphere.io/enabled']"
+                        options={this.serviceMeshOptions}
+                        onChange={this.handleServiceMeshChange}
+                        defaultValue={
+                          selectApp.serviceMeshEnable ? 'true' : 'false'
+                        }
+                        disabled={!selectApp.serviceMeshEnable}
+                      />
+                    </Form.Item>
+                  </Column>
+                  <Column />
+                </Columns>
+              )}
+            </div>
+          </ToggleView>
+        )}
       </Form>
     )
   }

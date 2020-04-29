@@ -40,8 +40,7 @@ export default class ContainersMapper extends Component {
   }
 
   handleEdit = ({ index, containerType, data }) => {
-    const { cluster, formTemplate } = this.props
-    const overrides = get(formTemplate, 'spec.overrides', [])
+    const { cluster, withService, formTemplate } = this.props
 
     const prefix = `spec.template.spec.${
       containerType === 'init' ? 'init_containers' : 'containers'
@@ -49,7 +48,7 @@ export default class ContainersMapper extends Component {
     const clusterOverrides = []
     Object.keys(data).forEach(key => {
       const path = `${prefix}.${key}`
-      if (get(this.props.formTemplate, path) !== data[key]) {
+      if (get(formTemplate, path) !== data[key]) {
         clusterOverrides.push({
           path: `/${path.replace(/\./g, '/')}`,
           value: data[key],
@@ -57,19 +56,49 @@ export default class ContainersMapper extends Component {
       }
     })
 
+    const overrides = get(formTemplate, 'spec.overrides', [])
     const override = overrides.find(item => item.clusterName === cluster)
     if (override) {
       override.clusterOverrides = clusterOverrides
     } else {
-      overrides.push({
-        clusterName: cluster,
-        clusterOverrides,
-      })
+      overrides.push({ clusterName: cluster, clusterOverrides })
     }
 
     set(formTemplate, 'spec.overrides', overrides)
 
+    if (withService && data.ports) {
+      this.updateService(data)
+    }
+
     this.setState({ editContainer: '' })
+  }
+
+  updateService = data => {
+    const { cluster, serviceTemplate } = this.props
+
+    const servicePorts = []
+    data.ports.forEach(port => {
+      if (port.servicePort) {
+        servicePorts.push({
+          name: port.name,
+          protocol: port.protocol,
+          port: port.servicePort,
+          targetPort: port.containerPort,
+        })
+      }
+    })
+
+    const clusterOverrides = [{ path: '/spec/ports', value: servicePorts }]
+
+    const overrides = get(serviceTemplate, 'spec.overrides', [])
+    const override = overrides.find(item => item.clusterName === cluster)
+    if (override) {
+      override.clusterOverrides = clusterOverrides
+    } else {
+      overrides.push({ clusterName: cluster, clusterOverrides })
+    }
+
+    set(serviceTemplate, 'spec.overrides', overrides)
   }
 
   getContainer({ index, container, containerType }) {
@@ -117,6 +146,7 @@ export default class ContainersMapper extends Component {
         {children({
           ...this.props,
           index,
+          key: index,
           containerType: 'worker',
           container: containerTemplate,
           isEdit: editContainer === container.name,

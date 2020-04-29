@@ -19,7 +19,10 @@
 export default {
   'Add Cluster': '添加集群',
   'Add New Cluster': '添加新集群',
+  'Import Kubernetes Cluster': '导入Kubernetes集群',
+  Import: '导入',
 
+  'Cluster Name': '集群名称',
   'Cluster Management': '集群管理',
   'Nodes Management': '节点管理',
   'Node Types': '节点类型',
@@ -35,6 +38,7 @@ export default {
   'Cluster Members': '集群成员',
   'Cluster Roles': '集群角色',
   'Kubernetes Settings': 'Kubernetes 设置',
+  'Connect Method': '连接方式',
 
   'Cluster List': '集群列表',
   'Cluster Info': '集群信息',
@@ -61,4 +65,17 @@ export default {
   VISIBILITY_PUBLIC: '公开',
 
   MULTI_CLUSTER: '多集群',
+
+  IMPORT_CLUSTER_DESC: '导入已有的Kubernetes集群',
+
+  CLUSTER_SETTINGS_DESC: '定义集群配置信息',
+  CLUSTER_NAME_DESC:
+    '只能包含小写字母、数字及分隔符("-")，且必须以小写字母或数字开头及结尾',
+  CLUSTER_TAG: '标识',
+  CLUSTER_TAG_DESC: '标识此集群的用途，例如 生产环境、测试环境、演示环境 等',
+  CLUSTER_PROVIDER_DESC: '提供集群基础设施的厂商',
+  CLUSTER_CONNECT_METHOD_DESC: '可以直接连接集群或者使用代理',
+
+  CONNTECT_DIRECT: '直接连接Kubernetes集群',
+  CONNTECT_PROXY: '集群连接代理',
 }

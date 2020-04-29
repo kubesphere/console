@@ -21,7 +21,8 @@ import { getIndexRoute } from 'utils/router.config'
 import ProjectLayout from '../containers/layout'
 
 import Overview from '../containers/Overview'
-import Applications from '../containers/Applications'
+import CRDApps from '../containers/Applications/CRDApps'
+import OPApps from '../containers/Applications/OPApps'
 import Deployments from '../containers/Deployments'
 import StatefulSets from '../containers/StatefulSets'
 import DaemonSets from '../containers/DaemonSets'
@@ -40,7 +41,6 @@ import Roles from '../containers/Roles'
 import Members from '../containers/Members'
 import AdvancedSettings from '../containers/AdvancedSettings'
 
-import applicationRoutes from './application'
 import alertingMessageRoutes from './alerting/message'
 import alertingPolicyRoutes from './alerting/policy'
 import alertingRoutes from './alerting'
@@ -53,7 +53,6 @@ const PATH = '/cluster/:cluster/projects/:namespace'
 
 export default [
   ...detail,
-  ...applicationRoutes,
   ...alertingMessageRoutes,
   ...alertingPolicyRoutes,
   ...imageBuilderRoutes,
@@ -69,13 +68,13 @@ export default [
         exact: true,
       },
       {
-        path: `${PATH}/applications`,
-        component: Applications,
+        path: `${PATH}/applications/composing`,
+        component: CRDApps,
         exact: true,
       },
       {
-        path: `${PATH}/applications/:type`,
-        component: Applications,
+        path: `${PATH}/applications/template`,
+        component: OPApps,
         exact: true,
       },
       {
@@ -122,8 +121,17 @@ export default [
         to: `${PATH}/deployments`,
         exact: true,
       }),
+      getIndexRoute({
+        path: `${PATH}/applications`,
+        to: `${PATH}/applications/${getDefaultAppType()}`,
+        exact: true,
+      }),
       getIndexRoute({ path: PATH, to: `${PATH}/overview`, exact: true }),
       getIndexRoute({ path: '*', to: '/404', exact: true }),
     ],
   },
 ]
+
+function getDefaultAppType() {
+  return globals.app.enableAppStore ? 'template' : 'composing'
+}

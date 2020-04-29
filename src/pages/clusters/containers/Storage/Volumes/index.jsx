@@ -36,7 +36,6 @@ import styles from './index.scss'
   store: new VolumeStore(),
   module: 'volumes',
   name: 'Volume',
-  authKey: 'volumes',
 })
 export default class Volumes extends React.Component {
   get itemActions() {

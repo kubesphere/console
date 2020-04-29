@@ -27,6 +27,8 @@ import ServiceDetail from '../containers/Services/Detail'
 import RouteDetail from '../containers/Routes/Detail'
 import SecretDetail from '../containers/Secrets/Detail'
 import ConfigMapDetail from '../containers/ConfigMaps/Detail'
+import CRDAppDetail from '../containers/Applications/CRDAppDetail'
+import OPAppDetail from '../containers/Applications/OPAppDetail'
 
 const PATH = '/cluster/:cluster/projects/:namespace'
 
@@ -82,5 +84,13 @@ export default [
   {
     path: `${PATH}/configmaps/:name`,
     component: ConfigMapDetail,
+  },
+  {
+    path: `${PATH}/applications/composing/:name`,
+    component: CRDAppDetail,
+  },
+  {
+    path: `${PATH}/applications/template/:id`,
+    component: OPAppDetail,
   },
 ]

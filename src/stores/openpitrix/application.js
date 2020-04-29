@@ -16,10 +16,9 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { isEmpty, get, omit } from 'lodash'
+import { get, omit } from 'lodash'
 import { observable, action } from 'mobx'
 
-import { getFilterString } from 'utils'
 import ObjectMapper from 'utils/object.mapper'
 import { CLUSTER_QUERY_STATUS } from 'configs/openpitrix/app'
 
@@ -31,15 +30,18 @@ export default class Application extends Base {
   defaultStatus = CLUSTER_QUERY_STATUS
 
   get baseUrl() {
-    return 'kapis/openpitrix.io/v1/'
+    return 'kapis/openpitrix.io/v1'
   }
 
-  getUrl = ({ namespace, cluster_id } = {}) => {
+  getUrl = ({ cluster, namespace, cluster_id } = {}) => {
     if (cluster_id) {
-      return `${this.baseUrl}namespaces/${namespace}/applications/${cluster_id}`
+      return `${this.baseUrl}${this.getPath({
+        cluster,
+        namespace,
+      })}/applications/${cluster_id}`
     }
 
-    return `${this.baseUrl}namespaces/${namespace}/applications`
+    return `${this.baseUrl}${this.getPath({ cluster, namespace })}/applications`
   }
 
   @observable
@@ -50,68 +52,51 @@ export default class Application extends Base {
 
   @action
   fetchList = async ({
-    limit,
-    page,
+    cluster,
     namespace,
     workspace,
     more,
-    status,
-    order,
-    reverse,
-    ...filters
+    ...params
   } = {}) => {
     this.list.isLoading = true
 
-    if (!filters.runtime_id) {
+    params.status = params.status || this.defaultStatus
+
+    if (!params.runtime_id) {
       this.list.isLoading = false
       return
     }
 
-    const params = {
-      conditions: getFilterString({ status: status || this.defaultStatus }),
+    if (!params.sortBy && params.ascending === undefined) {
+      params.sortBy = 'status_time'
     }
 
-    if (!order && reverse === undefined) {
-      order = 'status_time'
-      reverse = true
+    if (params.limit === Infinity || params.limit === -1) {
+      params.limit = -1
+      params.page = 1
     }
 
-    if (!isEmpty(filters)) {
-      params.conditions += `,${getFilterString(filters)}`
-    }
-
-    if (limit !== Infinity) {
-      params.paging = `limit=${limit || 10},page=${page || 1}`
-    }
-
-    if (order) {
-      params.orderBy = order
-    }
-
-    if (reverse) {
-      params.reverse = true
-    }
+    params.limit = params.limit || 10
 
     const result = await request.get(
-      `${this.baseUrl}namespaces/${namespace}/applications`,
+      this.getUrl({ cluster, namespace }),
       params
     )
 
-    const data = (result.items || []).map(({ cluster, ...item }) => ({
-      ...cluster,
+    const data = (result.items || []).map(item => ({
+      ...item.cluster,
       ...item,
+      cluster,
     }))
 
     this.list = {
       data: more ? [...this.list.data, ...data] : data,
-      total: result.total_count || 0,
-      limit: Number(limit) || 10,
-      page: Number(page) || 1,
-      order,
-      reverse,
-      filters: omit(filters, 'runtime_id'),
+      total: result.totalItems || result.total_count || data.length || 0,
+      ...omit(params, ['runtime_id', 'status']),
+      limit: Number(params.limit) || 10,
+      page: Number(params.page) || 1,
       isLoading: false,
-      selectedRowKeys: [],
+      ...(this.list.silent ? {} : { selectedRowKeys: [] }),
     }
   }
 

@@ -22,6 +22,7 @@ export default {
   'Deployed Applications': '已部署应用',
   'Deploy New Application': '部署新应用',
   'Deploy App': '部署应用',
+  'Create Application': '构建应用',
   'App Template': '应用模板',
   Deploy: '部署',
   'Application Type': '应用类型',
@@ -49,6 +50,7 @@ export default {
   'Sample apps can help you get started with app creation and app governance':
     '示例应用可以帮助您快速入手应用创建, 以及应用治理功能',
 
+  'Add Service': '添加服务',
   'Add Component': '添加组件',
   'Edit Component': '编辑组件',
   'Add New Component': '添加新组件',
@@ -60,7 +62,7 @@ export default {
   'Please input an application name': '请输入应用名称',
   'Specify an application version': '指定一个应用版本',
 
-  'Application components should not be empty': '应用组件不能为空',
+  'Service components should not be empty': '服务组件不能为空',
   'Please finish the sub form first': '请完成子表单的编辑',
 
   'Service Ports': '服务端口',

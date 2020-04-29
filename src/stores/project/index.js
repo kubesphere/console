@@ -30,11 +30,11 @@ const getTypeSelectParams = type => {
 
   if (type === 'system') {
     params = {
-      label: 'kubesphere.io/workspace:system-workspace',
+      label: 'kubesphere.io/workspace=system-workspace',
     }
   } else if (type === 'user') {
     params = {
-      label: 'kubesphere.io/workspace:!system-workspace',
+      label: 'kubesphere.io/workspace!=system-workspace',
     }
   }
   return params
@@ -50,10 +50,12 @@ export default class ProjectStore extends Base {
 
   getResourceUrl = ({ workspace, ...params }) => {
     if (workspace) {
-      return `kapis/tenant.kubesphere.io/v1alpha2/workspaces/${workspace}/namespaces`
+      return `kapis/tenant.kubesphere.io/v1alpha2/workspaces/${workspace}${this.getPath(
+        params
+      )}/namespaces`
     }
 
-    return `kapis/resources.kubesphere.io/v1alpha2${this.getPath(
+    return `kapis/resources.kubesphere.io/v1alpha3${this.getPath(
       params
     )}/namespaces`
   }

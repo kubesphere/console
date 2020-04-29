@@ -188,6 +188,12 @@ class ResourceStatus extends React.Component {
   }
 
   renderContainerPorts() {
+    const { noPorts } = this.props
+
+    if (noPorts) {
+      return null
+    }
+
     const { isLoading } = this.store
     const { containers = [] } = toJS(this.store.detail)
     const ports = uniqBy(
@@ -205,12 +211,12 @@ class ResourceStatus extends React.Component {
   }
 
   renderPods() {
-    const { params = {} } = this.props.match
-    const { name } = params
+    const { name } = this.props.match.params
     return (
       <PodsCard
         prefix={`${this.prefix}/${this.module}/${name}`}
         detail={this.store.detail}
+        clusters={get(this.fedStore, 'detail.clusters', [])}
         onUpdate={this.handlePodUpdate}
       />
     )

@@ -17,145 +17,27 @@
  */
 
 import React from 'react'
-import { observer, inject } from 'mobx-react'
 import { get, includes } from 'lodash'
 
-import FORM_STEPS from 'configs/steps/storageclasses'
-import FORM_TEMPLATES from 'utils/form.templates'
-import { ICON_TYPES, MODULE_KIND_MAP } from 'utils/constants'
+import { Avatar, Notify } from 'components/Base'
+import Banner from 'components/Cards/Banner'
+import Table from 'components/Tables/List'
+import withList, { ListPage } from 'components/HOCs/withList'
+
+import { getDisplayName } from 'utils'
+import { ICON_TYPES } from 'utils/constants'
+
 import StorageClassStore from 'stores/storageClass'
 
-import { Notify, Avatar } from 'components/Base'
-import CreateModal from 'components/Modals/Create'
-import Banner from 'components/Cards/Banner'
-import Base from 'core/containers/Base/List'
-
-@inject('rootStore')
-@observer
-class StorageClasses extends Base {
-  init() {
-    this.store = new StorageClassStore()
-
-    this.state = {
-      selectStorageClass: {},
-    }
-  }
-
-  get module() {
-    return 'storageclasses'
-  }
-
-  get name() {
-    return 'Storage Class'
-  }
-
-  get title() {
-    return 'Storage Classes'
-  }
-
-  get formTemplate() {
-    const kind = MODULE_KIND_MAP[this.module]
-
-    if (!kind) {
-      return {}
-    }
-
-    const template = FORM_TEMPLATES[this.module]()
-
-    return {
-      [kind]: template,
-    }
-  }
-
-  get steps() {
-    return FORM_STEPS
-  }
-
-  get quotas() {
-    const { data, total } = this.store.list
-
-    const defaultStorageClass = data.find(item => item.default) || {}
-
-    return [
-      { name: t('Storage Class'), value: total },
-      {
-        name: t('Default Storage Class'),
-        value: defaultStorageClass.name || '-',
-      },
-    ]
-  }
-
-  getColumns = () => [
-    {
-      title: t('Name'),
-      key: 'name',
-      dataIndex: 'name',
-      sorter: true,
-      sortOrder: this.getSortOrder('name'),
-      search: true,
-      render: name => (
-        <Avatar
-          icon={ICON_TYPES[this.module]}
-          to={`${this.prefix}/${name}`}
-          title={name}
-        />
-      ),
-    },
-    {
-      title: t('Volume Count'),
-      dataIndex: 'volumeCount',
-      isHideable: true,
-      render: (count, record) =>
-        get(record, 'annotations["kubesphere.io/pvc-count"]') || 0,
-    },
-    {
-      title: t('Default'),
-      dataIndex: 'default',
-      isHideable: true,
-      render: value => (value ? t('Yes') : '-'),
-    },
-    {
-      title: t('Provisioner'),
-      dataIndex: 'provisioner',
-      isHideable: true,
-    },
-  ]
-
-  renderExtraModals() {
-    const { createModal } = this.state
-
-    return (
-      <CreateModal
-        name={this.name}
-        module={this.module}
-        store={this.store}
-        visible={createModal}
-        steps={this.steps}
-        formTemplate={this.formTemplate}
-        isSubmitting={this.store.isSubmitting}
-        onOk={this.handleCreate}
-        onCancel={this.hideModal('createModal')}
-      />
-    )
-  }
-
-  renderHeader() {
-    return (
-      <Banner
-        className="margin-b12"
-        title={t(this.title)}
-        description={t(`${this.name.toUpperCase()}_DESC`)}
-        quotas={this.quotas}
-        module={this.module}
-      />
-    )
-  }
-
+@withList({
+  store: new StorageClassStore(),
+  name: 'Storage Class',
+  module: 'storageclasses',
+})
+export default class StorageClasses extends React.Component {
   getTableProps() {
-    const props = super.getTableProps()
-
+    const { name, trigger, routing } = this.props
     return {
-      ...props,
       selectActions: [
         {
           key: 'delete',
@@ -163,7 +45,11 @@ class StorageClasses extends Base {
           text: t('Delete'),
           action: 'delete',
           onClick: this.validateSelect({
-            callback: this.showModal('batchDeleteModal'),
+            callback: () =>
+              trigger('resource.batch.delete', {
+                type: t(name),
+                success: routing.query,
+              }),
           }),
         },
       ],
@@ -186,6 +72,65 @@ class StorageClasses extends Base {
   notifyDeleteTips() {
     Notify.error({ content: `${t('DEPENDENT_STORAGE_CLASS_DELETE_TIPS')}!` })
   }
-}
 
-export default StorageClasses
+  getColumns = () => {
+    const { getSortOrder, prefix } = this.props
+    return [
+      {
+        title: t('Name'),
+        key: 'name',
+        dataIndex: 'name',
+        sorter: true,
+        sortOrder: getSortOrder('name'),
+        search: true,
+        render: (name, record) => (
+          <Avatar
+            icon={ICON_TYPES[this.module]}
+            to={`${prefix}/${name}`}
+            title={getDisplayName(record)}
+          />
+        ),
+      },
+      {
+        title: t('Volume Count'),
+        dataIndex: 'volumeCount',
+        isHideable: true,
+        render: (count, record) =>
+          get(record, 'annotations["kubesphere.io/pvc-count"]') || 0,
+      },
+      {
+        title: t('Default'),
+        dataIndex: 'default',
+        isHideable: true,
+        render: value => (value ? t('Yes') : '-'),
+      },
+      {
+        title: t('Provisioner'),
+        dataIndex: 'provisioner',
+        isHideable: true,
+      },
+    ]
+  }
+
+  showCreate = () =>
+    this.props.trigger('storageclass.create', {
+      name: 'Storage Class',
+      module: this.props.module,
+      cluster: this.props.match.params.cluster,
+    })
+
+  render() {
+    const { bannerProps, tableProps } = this.props
+    return (
+      <ListPage {...this.props}>
+        <Banner {...bannerProps} />
+        <Table
+          {...tableProps}
+          {...this.getTableProps()}
+          columns={this.getColumns()}
+          onCreate={this.showCreate}
+        />
+      </ListPage>
+    )
+  }
+}

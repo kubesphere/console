@@ -43,18 +43,26 @@ export default class Cluster extends Component {
     this.workloadStore.fetchDetail({ name: workloadName, cluster, namespace })
   }
 
+  triggerReplicasChange = async num => {
+    const { cluster, namespace, onReplicasChange, workloadName } = this.props
+    await onReplicasChange(cluster, num)
+    await this.workloadStore.fetchDetail({
+      name: workloadName,
+      cluster,
+      namespace,
+    })
+  }
+
   handleAdd = () => {
-    const { cluster, onReplicasChange } = this.props
     const { podNums } = this.workloadStore.detail
 
-    onReplicasChange(cluster, podNums + 1)
+    this.triggerReplicasChange(podNums + 1)
   }
 
   handleSubStract = () => {
-    const { cluster, onReplicasChange } = this.props
     const { podNums } = this.workloadStore.detail
 
-    onReplicasChange(cluster, Math.max(podNums - 1, 0))
+    this.triggerReplicasChange(Math.max(podNums - 1, 0))
   }
 
   handleEdit = () => {
@@ -147,7 +155,7 @@ export default class Cluster extends Component {
               onClick={this.handleSubStract}
             />
           </div>
-          <div className={styles.edit}>
+          {/* <div className={styles.edit}>
             <Icon
               name="pen"
               type="light"
@@ -155,7 +163,7 @@ export default class Cluster extends Component {
               clickable
               onClick={this.handleEdit}
             />
-          </div>
+          </div> */}
         </div>
       </div>
     )

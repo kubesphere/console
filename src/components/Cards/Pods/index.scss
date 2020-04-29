@@ -232,6 +232,11 @@
   height: 56px;
 }
 
+.cluster {
+  width: 200px;
+  margin-right: 12px;
+}
+
 @keyframes slideInUp {
   from {
     transform: translate3d(0, 86%, 0);

@@ -16,23 +16,20 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, set, unset, isFunction } from 'lodash'
+import { get, set, unset } from 'lodash'
 import React from 'react'
 import { toJS } from 'mobx'
 import PropTypes from 'prop-types'
-import { Columns, Column } from '@pitrix/lego-ui'
-import { Notify, Modal, Switch } from 'components/Base'
-import { toPromise } from 'utils'
+import { Icon } from '@pitrix/lego-ui'
+import { Modal, Button } from 'components/Base'
 import FORM_TEMPLATES from 'utils/form.templates'
 
-import ConfigMapStore from 'stores/configmap'
-import SecretStore from 'stores/secret'
-import ProjectStore from 'stores/project'
 import RouterStore from 'stores/router'
 
-import Code from './Code'
+import Steps from './Steps'
 import BaseInfo from './BaseInfo'
-import Resources from './Resources'
+import Services from './Services'
+import Routes from './Routes'
 
 import styles from './index.scss'
 
@@ -55,6 +52,7 @@ export default class ServiceDeployAppModal extends React.Component {
     super(props)
 
     this.state = {
+      currentStep: 0,
       formData: {
         application: FORM_TEMPLATES['applications']({
           namespace: props.namespace,
@@ -67,37 +65,18 @@ export default class ServiceDeployAppModal extends React.Component {
       isGovernance: this.serviceMeshEnable ? 'true' : 'false',
     }
 
-    this.codeRef = React.createRef()
-    this.baseInfoFormRef = React.createRef()
-    this.resourcesFormRef = React.createRef()
+    this.formRef = React.createRef()
 
-    this.configMapStore = new ConfigMapStore()
-    this.secretStore = new SecretStore()
-    this.projectStore = new ProjectStore()
     this.routerStore = new RouterStore()
   }
 
   componentDidMount() {
-    this.fetchData()
-  }
-
-  componentDidUpdate(prevProps) {
-    const { namespace, sampleApp } = this.props
-    if (sampleApp !== prevProps.sampleApp) {
-      sampleApp
-        ? this.fecthSampleData(sampleApp)
-        : this.setState({
-            formData: {
-              application: FORM_TEMPLATES['applications']({
-                namespace,
-              }),
-              ingress: FORM_TEMPLATES['ingresses']({
-                namespace,
-              }),
-            },
-            isGovernance: this.serviceMeshEnable ? 'true' : 'false',
-          })
-    }
+    this.fetchData().then(() => {
+      const { sampleApp } = this.props
+      if (sampleApp) {
+        this.fecthSampleData(sampleApp)
+      }
+    })
   }
 
   get serviceMeshEnable() {
@@ -105,6 +84,27 @@ export default class ServiceDeployAppModal extends React.Component {
       globals.app.hasKSModule('servicemesh') &&
       get(this.routerStore, 'gateway.data.serviceMeshEnable')
     )
+  }
+
+  get steps() {
+    return [
+      {
+        title: 'Basic Info',
+        component: BaseInfo,
+        required: true,
+        isForm: true,
+      },
+      {
+        title: 'Service Components',
+        component: Services,
+        required: true,
+      },
+      {
+        title: 'Internet Access',
+        component: Routes,
+        required: true,
+      },
+    ]
   }
 
   fecthSampleData(app) {
@@ -150,172 +150,135 @@ export default class ServiceDeployAppModal extends React.Component {
     })
   }
 
-  fetchData() {
+  async fetchData() {
     const { cluster, namespace } = this.props
-
-    Promise.all([
-      this.configMapStore.fetchListByK8s({ cluster, namespace }),
-      this.secretStore.fetchListByK8s({ cluster, namespace }),
-      this.secretStore.fetchListByK8s({
-        cluster,
-        namespace,
-        fieldSelector: `type=kubernetes.io/dockerconfigjson`,
-      }),
-      this.projectStore.fetchLimitRanges({ cluster, namespace }),
-      this.routerStore.getGateway({ cluster, namespace }),
-    ]).then(([configMaps, secrets, imageRegistries, limitRanges]) => {
-      const gateway = toJS(this.routerStore.gateway.data)
-      this.setState({
-        configMaps,
-        secrets,
-        imageRegistries,
-        limitRange: get(limitRanges, '[0].limit'),
-        gateway,
-        isGovernance: this.serviceMeshEnable ? 'true' : 'false',
-      })
-    })
-  }
-
-  handleAppLabelsChange = value => {
-    this.setState({ appLabels: value }, () => {
-      set(this.state.formData.ingress, 'metadata.labels', value)
-    })
-  }
-
-  handleGovernanceChange = value => {
-    this.setState({ isGovernance: value })
-  }
-
-  handleOk = async () => {
-    const { isCodeMode } = this.state
-
-    if (isCodeMode && isFunction(get(this, 'codeRef.current.getData'))) {
-      const data = this.codeRef.current.getData()
-      this.props.onOk(data)
-    } else {
-      const baseForm = this.baseInfoFormRef.current
-      const resourcesForm = this.resourcesFormRef.current
-
-      if (baseForm) {
-        await toPromise(baseForm.validate.bind(baseForm))
-      }
-
-      if (resourcesForm) {
-        await toPromise(resourcesForm.validate.bind(resourcesForm))
-      }
-
-      this.props.onOk(this.state.formData)
-    }
-  }
-
-  handleModeChange = () => {
-    this.setState(({ isCodeMode, formData }) => {
-      let newFormData = formData
-
-      if (
-        !isCodeMode &&
-        isFunction(get(this, 'resourcesFormRef.current.hasSubRoute')) &&
-        this.resourcesFormRef.current.hasSubRoute()
-      ) {
-        return Notify.warning(t('Please save the current form first'))
-      }
-
-      if (isCodeMode && isFunction(get(this, 'codeRef.current.getData'))) {
-        newFormData = this.codeRef.current.getData()
-      }
-
-      return { isCodeMode: !isCodeMode, formData: newFormData }
-    })
-  }
-
-  renderResources = () => {
-    const { namespace } = this.props
-    const {
-      formData,
-      limitRange,
-      configMaps,
-      secrets,
-      imageRegistries,
+    await this.routerStore.getGateway({ cluster, namespace })
+    const gateway = toJS(this.routerStore.gateway.data)
+    this.setState({
       gateway,
-      appLabels,
-      isGovernance,
-    } = this.state
-
-    return (
-      <Resources
-        ref={this.resourcesFormRef}
-        formData={formData}
-        namespace={namespace}
-        limitRange={limitRange}
-        configMaps={configMaps}
-        secrets={secrets}
-        imageRegistries={imageRegistries}
-        gateway={gateway}
-        appLabels={appLabels}
-        isGovernance={isGovernance}
-      />
-    )
+      isGovernance: this.serviceMeshEnable ? 'true' : 'false',
+    })
   }
 
-  renderTitle() {
-    const { isCodeMode } = this.state
+  handleOk = () => {
+    this.props.onOk(this.state.formData)
+  }
+
+  handlePrev = () => {
+    this.setState(({ currentStep }) => ({
+      currentStep: Math.max(0, currentStep - 1),
+    }))
+  }
+
+  handleNext = () => {
+    const form = this.formRef.current
+    form &&
+      form.validate(() => {
+        this.setState(({ currentStep }) => ({
+          currentStep: Math.min(this.steps.length - 1, currentStep + 1),
+        }))
+      })
+  }
+
+  renderForm() {
+    const { cluster, namespace, store, projectDetail } = this.props
+    const { formData, gateway, currentStep, isGovernance } = this.state
+
+    const step = this.steps[currentStep]
+    const Component = step.component
+
+    const props = {
+      store,
+      cluster,
+      namespace,
+      formData,
+      gateway,
+      isGovernance,
+      projectDetail,
+      serviceMeshEnable: this.serviceMeshEnable,
+    }
+
+    if (step.isForm) {
+      props.formRef = this.formRef
+    } else {
+      props.ref = this.formRef
+    }
+
     return (
-      <div>
-        <div>{t('Create Application by Service')}</div>
-        <Switch
-          className={styles.switch}
-          text={t('Edit Mode')}
-          onChange={this.handleModeChange}
-          checked={isCodeMode}
-        />
+      <div className={styles.formWrapper}>
+        <div className={styles.wrapper}>
+          <div className={styles.form}>
+            <Component {...props} />
+          </div>
+        </div>
       </div>
     )
   }
 
-  renderCode() {
-    const { onOk } = this.props
-    const { formData } = this.state
-
-    return <Code ref={this.codeRef} formTemplate={formData} onOk={onOk} />
+  renderHeader() {
+    const { onCancel } = this.props
+    const { currentStep } = this.state
+    return (
+      <div className={styles.header}>
+        <div className={styles.title}>
+          <Icon name="close" size={20} clickable onClick={onCancel} />
+          <span />
+          <Icon name="appcenter" size={20} />
+          <span>{t('Create Application by Service')}</span>
+        </div>
+        <div className={styles.wrapper}>
+          <Steps steps={this.steps} current={currentStep} />
+        </div>
+        <div className={styles.headerBottom} />
+      </div>
+    )
   }
 
-  renderForm() {
+  renderFooter() {
+    const { onCancel } = this.props
+    const { currentStep } = this.state
+
+    const total = this.steps.length - 1
     return (
-      <Columns className="height-full is-gapless">
-        <Column className="is-narrow">
-          <BaseInfo
-            store={this.props.store}
-            namespace={this.props.namespace}
-            formData={this.state.formData.application}
-            formRef={this.baseInfoFormRef}
-            serviceMeshEnable={this.serviceMeshEnable}
-            onLabelsChange={this.handleAppLabelsChange}
-            onGovernanceChange={this.handleGovernanceChange}
-          />
-        </Column>
-        <Column>{this.renderResources()}</Column>
-      </Columns>
+      <div className={styles.footer}>
+        <div className={styles.wrapper}>
+          <div className="text-right">
+            <Button onClick={onCancel}>{t('Cancel')}</Button>
+            {currentStep > 0 && (
+              <Button type="control" onClick={this.handlePrev}>
+                {t('Previous')}
+              </Button>
+            )}
+            {currentStep < total ? (
+              <Button type="control" onClick={this.handleNext}>
+                {t('Next')}
+              </Button>
+            ) : (
+              <Button type="control" onClick={this.handleOk}>
+                {t('Create')}
+              </Button>
+            )}
+          </div>
+        </div>
+      </div>
     )
   }
 
   render() {
-    const { visible, isSubmitting, onCancel } = this.props
+    const { visible } = this.props
 
     return (
       <Modal
         className={styles.modal}
         bodyClassName={styles.body}
-        headerClassName={styles.header}
-        footerClassName={styles.footer}
-        title={this.renderTitle()}
-        onOk={this.handleOk}
-        okText={t('Create')}
-        onCancel={onCancel}
         visible={visible}
-        isSubmitting={isSubmitting}
+        hideHeader
+        hideFooter
         fullScreen
       >
-        {this.state.isCodeMode ? this.renderCode() : this.renderForm()}
+        {this.renderHeader()}
+        {this.renderForm()}
+        {this.renderFooter()}
       </Modal>
     )
   }

@@ -25,7 +25,7 @@ import Cluster from './Cluster'
 import styles from './index.scss'
 
 export default class ClusterWorkloadStatus extends Component {
-  handleReplicasChange = (cluster, replicas) => {
+  handleReplicasChange = async (cluster, replicas) => {
     const { fedDetail, store } = this.props
     const { overrides = [] } = fedDetail
 
@@ -54,9 +54,8 @@ export default class ClusterWorkloadStatus extends Component {
       })
     }
 
-    store.patch(fedDetail, { spec: { overrides } }).then(() => {
-      store.fetchDetail(fedDetail)
-    })
+    await store.patch(fedDetail, { spec: { overrides } })
+    await store.fetchDetail(fedDetail)
   }
 
   render() {
@@ -71,6 +70,7 @@ export default class ClusterWorkloadStatus extends Component {
         <div className={styles.wrapper}>
           {fedDetail.clusters.map(cluster => (
             <Cluster
+              key={cluster.name}
               module={module}
               cluster={cluster.name}
               namespace={fedDetail.namespace}

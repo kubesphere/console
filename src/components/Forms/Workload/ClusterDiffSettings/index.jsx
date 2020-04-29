@@ -66,6 +66,7 @@ export default class AdvancedSettings extends React.Component {
               <ContainersMapper
                 formTemplate={this.formTemplate}
                 withService={withService}
+                serviceTemplate={get(this.props.formTemplate, 'Service')}
                 {...props}
               >
                 {containerProps => <ContainerPorts {...containerProps} />}
