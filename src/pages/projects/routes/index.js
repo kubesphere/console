@@ -40,6 +40,7 @@ import Secrets from '../containers/Secrets'
 import Roles from '../containers/Roles'
 import Members from '../containers/Members'
 import AdvancedSettings from '../containers/AdvancedSettings'
+import CustomMonitoring from '../containers/CustomMonitoring'
 
 import alertingMessageRoutes from './alerting/message'
 import alertingPolicyRoutes from './alerting/policy'
@@ -116,6 +117,11 @@ export default [
       { path: `${PATH}/roles`, component: Roles, exact: true },
       { path: `${PATH}/members`, component: Members, exact: true },
       { path: `${PATH}/advanced`, component: AdvancedSettings, exact: true },
+      {
+        path: `${PATH}/custom-monitoring`,
+        component: CustomMonitoring,
+        exact: true,
+      },
       getIndexRoute({
         path: `${PATH}/workloads`,
         to: `${PATH}/deployments`,

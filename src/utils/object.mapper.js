@@ -906,6 +906,30 @@ const FederatedMapper = item => ({
   _originData: getOriginData(item),
 })
 
+const DashboardMapper = item => {
+  const { metadata = {}, spec = {} } = item
+
+  /**
+   * name - uniqueName
+   */
+  const { creationTimestamp, name, namespace } = metadata
+
+  /**
+   * title - nickname
+   */
+  const { datasource, description, title } = spec
+
+  return {
+    creationTimestamp,
+    name,
+    namespace,
+    datasource,
+    description,
+    title,
+    _originData: item,
+  }
+}
+
 export default {
   deployments: WorkLoadMapper,
   daemonsets: WorkLoadMapper,
@@ -950,4 +974,5 @@ export default {
   clusters: ClusterMapper,
   federated: FederatedMapper,
   outputs: LogOutPutMapper,
+  dashboards: DashboardMapper,
 }

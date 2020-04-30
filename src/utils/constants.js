@@ -820,4 +820,44 @@ export const API_VERSIONS = {
   workspaces: 'apis/tenant.kubesphere.io/v1alpha1',
   users: 'apis/iam.kubesphere.io/v1alpha2',
   globalroles: 'apis/iam.kubesphere.io/v1alpha2',
+  dashboards: 'apis/monitoring.kubesphere.io/v1alpha1',
 }
+
+export const MONITOR_GRAPH_COLORS = [
+  {
+    nameI18nKey: '默认配色',
+    colors: [
+      '#60acfc',
+      '#23c2db',
+      '#64d5b2',
+      '#d5ec5a',
+      '#ffb64e',
+      '#fb816d',
+      '#d15c7f',
+    ],
+  },
+  {
+    nameI18nKey: '冷色调',
+    colors: [
+      '#678ed7',
+      '#60acfc',
+      '#23c2db',
+      '#33d3eb',
+      '#9cdc82',
+      '#d5ec5a',
+      '#ffe168',
+    ],
+  },
+  {
+    nameI18nKey: '暖色调',
+    colors: [
+      '#717adf',
+      '#d15c7f',
+      '#fb6f6c',
+      '#ff9f69',
+      '#ffb64e',
+      '#ffda43',
+      '#ffe88e',
+    ],
+  },
+]

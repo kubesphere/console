@@ -1,0 +1,72 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.wrapper {
+  header {
+    font-weight: bold;
+    color: $dark-color07;
+    margin-bottom: 8px;
+  }
+
+  & > div {
+    height: 96px;
+    border: solid 8px $light-color02;
+    border-radius: 4px;
+    background-color: $dark-color07;
+    color: $white;
+    text-align: center;
+    background-position: 50% 35px;
+    padding: 10px;
+
+    h3 {
+      @include TypographySymbolText($white)
+    }
+    picture {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+  path {
+    fill: $white;
+  }
+}
+
+.singlestat {
+  // & > div {
+  //   background-image: url(/assets/single-stat-type-icon.svg);
+  // }
+  picture {
+    background-image: url(/assets/single-stat-logo.svg);
+  }
+}
+
+.line {
+  // & > div {
+  //   background-image: url(/assets/line-chart.svg);
+  // }
+}
+
+.bar {
+  picture {
+    background-image: url(/assets/bar-chart.svg);
+  }
+  picture {
+    background-image: url(/assets/bar-chart.svg);
+  }
+}
+
+.table {
+  & > div {
+    background-image: url(/assets/table-chart.svg);
+  }
+  picture {
+    background-image: url(/assets/table-chart.svg);
+  }
+}

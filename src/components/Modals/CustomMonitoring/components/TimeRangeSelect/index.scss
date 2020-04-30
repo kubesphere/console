@@ -1,0 +1,79 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.wrapper {
+  h3 {
+    font-weight: bold;
+    line-height: 2em;
+    margin-bottom: .3em;
+  }
+  label {
+    display: inline-block;
+  }
+}
+
+.content {
+  border: solid 1px $dark-color06;
+  border-radius: 4px;
+  line-height: 32px;
+  padding: 0 12px;
+  cursor: pointer;
+  color: $dark-color06;
+  display: grid;
+  grid-template-columns: 20px 1fr 20px;
+  align-items: center;
+  grid-gap: 10px;
+  h4 {
+    font-size: 14px;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  &:hover {
+    border-color: $dark-color03;
+  }
+  color: $white;
+  background: $dark-color07;
+}
+
+.dropdown {
+  width: 380px;
+  border: solid 1px $dark-color01;
+  border-radius: 4px;;
+  padding: 12px;
+  position: relative;
+}
+
+.recentWrapper {
+  span {
+    font-weight: bold;
+    display: inline-block;
+    padding: 0 .5em;
+    border-radius: 2px;
+    background: $light-color04;
+    margin-bottom: 8px;
+    margin-right: 8px;
+    cursor: pointer;
+    &:hover {
+      background: $light-color07;
+    }
+  }
+}
+
+.select {
+  :global {
+    .select-menu-outer {
+      position: absolute !important;
+      top: 100% !important;
+      left: 0 !important;
+    }
+  } 
+}
+
+.footer {
+  margin-top: 10px;
+  display: grid;
+  align-items: end;
+  grid-template-columns: 265px 73px;
+  justify-content: space-between;
+} 
