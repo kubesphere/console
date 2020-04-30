@@ -313,6 +313,11 @@ client:
                 title: Alerting Policy,
                 authKey: 'alerting',
               }
+            - { 
+                name: custom-monitoring,
+                title: Custom Monitoring,
+                authKey: 'alerting'
+              }
         - name: settings
           title: Project Settings
           icon: cogwheel

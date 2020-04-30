@@ -1,0 +1,66 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.wrapper {
+  h3 {
+    font-weight: bold;
+    color: $dark-color07;
+    margin-bottom: 8px;
+    margin-top: 8px;
+  }
+  p {
+    margin-bottom: 8px;
+  }
+
+  .typeOpts {
+    display: flex;
+    width: 33.33333%;
+    cursor: pointer;
+    display: inline-block;
+  }
+
+  .select {
+    .icon {
+      path {
+        fill: $white;
+      }
+    }
+  }
+
+  .icon {
+    width: 40px;
+    height: 40px;
+    path {
+      fill: $dark-color06;
+    }
+  }
+
+  .typeOpt {
+    flex: 1;
+    margin-right: 12px;
+    height: 80px;
+    text-align: center;
+    display: flex;
+    align-items: center;  
+    flex-direction: column;
+    justify-content: center;
+    img {
+      width: 40px;
+      height: 40px;
+    }
+    h4 {
+      @include TypographySymbolText($dark-color06);
+    }
+
+    &.select {
+      h4 {
+        color: $white;
+      }
+      background-color: $dark-color07;
+    }
+  }
+
+  .position {
+    height: 240px;
+  }
+}

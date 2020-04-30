@@ -63,6 +63,10 @@ const UnitTypes = {
     conditions: [1024 ** 2 / 8, 1024 / 8, 0],
     units: ['Mbps', 'Kbps', 'bps'],
   },
+  number: {
+    conditions: [1000 ** 4, 1000 ** 3, 1000 ** 2, 1000, 0],
+    units: ['T', 'G', 'M', 'K', ''],
+  },
 }
 
 export const getSuitableUnit = (value, unitType) => {
@@ -137,18 +141,22 @@ export const getValueByUnit = (num, unit) => {
     case 'B':
     case 'B/s':
       break
+    case 'K':
     case 'KB':
     case 'KB/s':
       value /= 1000
       break
+    case 'M':
     case 'MB':
     case 'MB/s':
       value /= 1000 ** 2
       break
+    case 'G':
     case 'GB':
     case 'GB/s':
       value /= 1000 ** 3
       break
+    case 'T':
     case 'TB':
     case 'TB/s':
       value /= 1000 ** 4
@@ -386,4 +394,74 @@ export const fillEmptyMetrics = (params, result) => {
   })
 
   return result
+}
+
+/**
+ * @param number:[] IDList
+ */
+export function CreateUidFactory(IDList = []) {
+  const IDStore = {
+    IDList,
+    maxID: IDList.length ? Math.max.apply(null, IDList) : 0,
+  }
+
+  return {
+    generateUID() {
+      const ID = ++IDStore.maxID
+      IDStore.IDList.push(ID)
+      return ID
+    },
+    clear() {
+      IDStore.IDList = []
+      IDStore.maxID = 0
+    },
+  }
+}
+
+/**
+ *
+ * @param number[] values
+ */
+export function avgs(values = []) {
+  const count = values.length
+  const sum = values.reduce((previous, current) => previous + current, 0)
+  return sum / count
+}
+
+export const unitTransformMap = {
+  none: unitTransformFactory([['', 0]]),
+  bit: unitTransformFactory([
+    ['bit', 0],
+    ['Byte', 8],
+    ['KB', 8 * 1024],
+    ['MB', 8 * 1024 ** 2],
+    ['GB', 8 * 1024 ** 3],
+    ['TB', 8 * 1024 ** 4],
+  ]),
+  percent(number, decimals) {
+    const format = unitTransformFactory([['%', 0]])
+    return format(number * 100, decimals)
+  },
+}
+
+export function unitTransformFactory(config) {
+  return function(number, decimals = 0) {
+    const isNegative = number < 0
+    const abs = Math.abs(number)
+
+    let rightConfigIndex = 0
+    for (let index = 0; index < config.length; index++) {
+      const [, minNumber] = config[index]
+      if (abs >= minNumber) {
+        rightConfigIndex = index
+      } else {
+        break
+      }
+    }
+
+    const [unit, rate] = config[rightConfigIndex]
+
+    const count = rate === 0 ? abs : abs / rate
+    return `${isNegative ? '-' : ''}${count.toFixed(decimals)} ${unit}`
+  }
 }
