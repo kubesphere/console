@@ -149,7 +149,10 @@ export default class Nodes extends React.Component {
   }
 
   getData = async params => {
-    await this.store.fetchList(params)
+    await this.store.fetchList({
+      ...this.props.match.params,
+      ...params,
+    })
     await this.monitoringStore.fetchMetrics({
       resources: this.store.list.data.map(node => node.name),
       metrics: Object.values(MetricTypes),

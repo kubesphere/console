@@ -49,7 +49,7 @@ export default class NodeStore extends Base {
           .length > 0
     ).length
 
-    this.masterCount = resp.total_count
+    this.masterCount = resp.totalItems
     this.masterWorkerCount = masterWorker
   }
 
