@@ -18,20 +18,17 @@
  */
 
 import React from 'react'
-import { isEmpty, get } from 'lodash'
-import { compile } from 'path-to-regexp'
+import { isEmpty } from 'lodash'
 import { VOLUME_SNAPSHOT_STATUS } from 'utils/constants'
-import { observer } from 'mobx-react'
 
+import withList, { ListPage } from 'components/HOCs/withList'
+import ResourceTable from 'clusters/components/ResourceTable'
 import SnapshotStore from 'stores/volumeSnapshot'
 import { getLocalTime } from 'utils'
-import { SearchSelect, Avatar, Status } from 'components/Base'
-import Project from 'stores/project'
+import { Avatar, Status } from 'components/Base'
 
-import BaseTable from 'components/Tables/Base'
 import Banner from 'components/Cards/Banner'
 import { Icon, Tooltip } from '@pitrix/lego-ui'
-import withList from 'components/HOCs/withList'
 
 import styles from './index.scss'
 
@@ -41,55 +38,7 @@ import styles from './index.scss'
   name: 'VolumeSnapshot',
   authKey: 'volumes',
 })
-@observer
 export default class VolumeSnapshot extends React.Component {
-  projectStore = new Project()
-
-  get namespace() {
-    return this.props.match.params.namespace
-  }
-
-  async componentDidMount() {
-    await this.projectStore.fetchList()
-
-    const { list } = this.projectStore
-    const { data = [] } = list
-    const firstNamespace = get(data, '[0].name')
-    const currentNamespace = this.props.match.params.namespace
-
-    if (currentNamespace) {
-      this.fetchRules(currentNamespace)
-    } else {
-      this.updateNamespace(firstNamespace)
-    }
-  }
-
-  updateNamespace(namespace) {
-    const { path: pathRegexp, params } = this.props.match
-    const generatedNewPath = compile(pathRegexp)
-    const newPath = generatedNewPath({ ...params, namespace })
-    this.props.rootStore.routing.history.push(newPath)
-    this.fetchRules(namespace)
-  }
-
-  async fetchRules(namespace) {
-    const rootStore = this.props.rootStore
-    if (namespace && !rootStore.project) {
-      const projectStore = new Project()
-      rootStore.register('project', projectStore)
-    }
-
-    if (namespace) {
-      const projectRule = get(globals.user, `rules[${namespace}]`)
-      if (!projectRule) {
-        await rootStore.project.fetchDetail({ namespace })
-        await rootStore.project.fetchRules({
-          namespace,
-        })
-      }
-    }
-  }
-
   getStatus() {
     return VOLUME_SNAPSHOT_STATUS.map(status => ({
       text: t(status.text),
@@ -164,62 +113,20 @@ export default class VolumeSnapshot extends React.Component {
     ]
   }
 
-  handleNamespaceChange = namespace => {
-    this.updateNamespace(namespace)
-  }
-
-  renderNamespaceFitler() {
-    const { list } = this.projectStore
-    const { data } = this.projectStore.list
-    const options = data.map(pro => ({
-      label: pro.name,
-      value: pro.name,
-    }))
-
-    return (
-      <div className={styles.namespaceFilter}>
-        <SearchSelect
-          page={list.page}
-          value={this.namespace}
-          total={list.total}
-          isLoading={list.isLoading}
-          options={options}
-          currentLength={data.length || 0}
-          prefixIcon={<Icon name="project" size={16} />}
-          onChange={this.handleNamespaceChange}
-          searchable={false}
-        />
-      </div>
-    )
-  }
-
   render() {
-    const { bannerProps, tableProps } = this.props
-
-    const initializing =
-      this.projectStore.list.isLoading ||
-      get(this.props.rootStore, 'project.initializing')
+    const { query, bannerProps, tableProps } = this.props
 
     return (
-      <div>
-        <Banner
-          {...bannerProps}
-          tabs={this.tabs}
-          tips={[
-            {
-              title: t('WHAT_IS_VOLUME_SNAPSHOTS'),
-              description: t('VOLUMESNAPSHOT_DESC'),
-            },
-          ]}
+      <ListPage {...this.props}>
+        <Banner {...bannerProps} tabs={this.tabs} />
+        <ResourceTable
+          {...tableProps}
+          itemActions={this.itemActions}
+          namespace={query.namespace}
+          columns={this.getColumns()}
+          onCreate={this.showCreate}
         />
-        {initializing || (
-          <BaseTable
-            {...tableProps}
-            columns={this.getColumns()}
-            customFilter={this.renderNamespaceFitler()}
-          />
-        )}
-      </div>
+      </ListPage>
     )
   }
 }
