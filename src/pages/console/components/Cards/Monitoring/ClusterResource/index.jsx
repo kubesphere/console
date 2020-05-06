@@ -47,8 +47,8 @@ const MetricTypes = {
 export default class ClusterResourceStatusTab extends React.Component {
   constructor(props) {
     super(props)
-
-    this.monitorStore = new ClusterMonitorStore()
+    const cluster = props.cluster
+    this.monitorStore = new ClusterMonitorStore('', { cluster })
   }
 
   get routing() {

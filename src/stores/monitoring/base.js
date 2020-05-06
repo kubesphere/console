@@ -68,12 +68,16 @@ export default class BaseMonitoringStore {
 
   data = {}
 
-  constructor(module) {
+  constructor(module, options = {}) {
+    this.cluster = options.cluster
     this.module = module
   }
 
   get apiVersion() {
-    return 'kapis/monitoring.kubesphere.io/v1alpha3'
+    const service = 'monitoring.kubesphere.io/v1alpha3'
+    return this.cluster
+      ? `kapis/clusters/${this.cluster}/${service}`
+      : `kapis/${service}`
   }
 
   getApi = () => `${this.apiVersion}/cluster`

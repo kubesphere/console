@@ -73,7 +73,8 @@ class Overview extends React.Component {
 
   updateData = () => {
     this.timer = setTimeout(async () => {
-      await this.componentMonitoringStore.requestHealthMetrics()
+      const match = this.props.match.params
+      await this.componentMonitoringStore.requestHealthMetrics(match)
       this.updateData()
     }, 2000)
   }
@@ -112,7 +113,8 @@ class Overview extends React.Component {
   }
 
   fetchData = () => {
-    this.componentMonitoringStore.fetchHealthMetrics()
+    const match = this.props.match.params
+    this.componentMonitoringStore.fetchHealthMetrics(match)
   }
 
   handleNodeClick = () => {
@@ -269,6 +271,7 @@ class Overview extends React.Component {
   }
 
   render() {
+    const { cluster } = this.props.match.params || {}
     return (
       <div>
         <Columns className="is-variable is-1_1">
@@ -277,9 +280,9 @@ class Overview extends React.Component {
         </Columns>
         <Columns>
           <Column className="is-12">
-            <ClusterResourceStatus />
-            {this.supportETCD && <ETCDStatus />}
-            <ServiceComponentStatus />
+            <ClusterResourceStatus cluster={cluster} />
+            {this.supportETCD && <ETCDStatus cluster={cluster} />}
+            <ServiceComponentStatus cluster={cluster} />
           </Column>
         </Columns>
       </div>

@@ -88,10 +88,10 @@ export default class ComponentMonitoring extends Base {
   }
 
   @action
-  async fetchHealthMetrics() {
+  async fetchHealthMetrics(params) {
     this.health.isLoading = true
 
-    await this.requestHealthMetrics()
+    await this.requestHealthMetrics(params)
 
     this.health.isLoading = false
   }
@@ -100,10 +100,12 @@ export default class ComponentMonitoring extends Base {
    * send request and update store without loading status
    */
   @action
-  async requestHealthMetrics() {
-    const result = await to(
-      request.get('kapis/resources.kubesphere.io/v1alpha2/componenthealth')
-    )
+  async requestHealthMetrics({ cluster } = {}) {
+    const service = 'resources.kubesphere.io/v1alpha2/componenthealth'
+    const path = cluster
+      ? `kapis/clusters/${cluster}/${service}`
+      : `kapis/${service}`
+    const result = await to(request.get(path))
 
     const kubesphereStatus = result.kubesphereStatus || []
     const ksComponents = groupBy(kubesphereStatus, 'namespace')
