@@ -37,8 +37,6 @@ export default class ClusterMonitoring extends Base {
     isLoading: false,
   }
 
-  getApi = () => `${this.apiVersion}/cluster`
-
   @action
   async fetchStatistics() {
     this.statistics.isLoading = true
@@ -46,7 +44,7 @@ export default class ClusterMonitoring extends Base {
     const params = {
       type: 'statistics',
     }
-    const result = await to(request.get(`${this.apiVersion}/cluster`, params))
+    const result = await to(request.get(this.getApi(), params))
     const data = this.getResult(result)
 
     this.statistics = {

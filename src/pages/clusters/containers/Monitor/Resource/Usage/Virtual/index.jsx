@@ -60,7 +60,9 @@ class VirtualResource extends React.Component {
   }
 
   init() {
-    this.monitorStore = new ClusterMonitorStore()
+    this.monitorStore = new ClusterMonitorStore({
+      cluster: this.props.match.params.cluster,
+    })
   }
 
   fetchData = params => {

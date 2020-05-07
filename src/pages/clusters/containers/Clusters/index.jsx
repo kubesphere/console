@@ -63,6 +63,10 @@ class Clusters extends React.Component {
     this.store.fetchList({ page, limit: 10 })
   }
 
+  handleRefresh = () => {
+    this.store.fetchList({ page: 1, limit: 10 })
+  }
+
   handleSearch = name => {
     const params = { name, limit: 10 }
     if (name) {
@@ -141,7 +145,7 @@ class Clusters extends React.Component {
         <Button
           type="flat"
           icon="refresh"
-          onClick={this.showAddCluster}
+          onClick={this.handleRefresh}
           data-test="cluster-refresh"
         />
         <Button

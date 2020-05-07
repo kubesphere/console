@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { get } from 'lodash'
+
 import React, { Component } from 'react'
 import { Panel, Text } from 'components/Base'
 
@@ -28,28 +28,9 @@ export default class ClusterInfo extends Component {
       <Panel title={t('Cluster Info')}>
         <div className={styles.level}>
           <Text title={cluster.provider} description={t('Provider')} />
-          <Text title={cluster.ip} description={t('Cluster IP Address')} />
-          <Text
-            title={get(cluster, 'label.env', '-')}
-            description={t('Cluster Label')}
-          />
-        </div>
-        <div className={styles.level}>
           <Text
             title={cluster.kubernetesVersion}
             description={t('Kubernetes Version')}
-          />
-          <Text
-            title={cluster.kubeletVersion}
-            description={t('Kubelet Version')}
-          />
-          <Text
-            title={cluster.kubeProxyVersion}
-            description={t('Kube-Proxy Version')}
-          />
-          <Text
-            title={cluster.networkPlugin}
-            description={t('Network Plugin')}
           />
         </div>
       </Panel>

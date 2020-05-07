@@ -33,7 +33,7 @@ import ServiceStore from 'stores/service'
   store: new ServiceStore(),
   module: 'services',
   name: 'Service',
-  rowKey: 'uuid',
+  rowKey: 'uid',
 })
 export default class Services extends React.Component {
   get itemActions() {
@@ -198,7 +198,7 @@ export default class Services extends React.Component {
   }
 
   render() {
-    const { query, bannerProps, tableProps } = this.props
+    const { query, match, bannerProps, tableProps } = this.props
     return (
       <ListPage {...this.props}>
         <Banner {...bannerProps} />
@@ -208,6 +208,7 @@ export default class Services extends React.Component {
           namespace={query.namespace}
           columns={this.getColumns()}
           onCreate={this.showCreate}
+          cluster={match.params.cluster}
         />
       </ListPage>
     )

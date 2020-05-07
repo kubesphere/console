@@ -127,7 +127,7 @@ export default class Routers extends React.Component {
             iconSize={40}
             title={getDisplayName(record)}
             desc={this.getItemDesc(record)}
-            to={`/cluster/${cluster}/namespaces/${namespace}/routes/${name}`}
+            to={`/cluster/${cluster}/namespaces/${namespace}/${module}/${name}`}
           />
         ),
       },

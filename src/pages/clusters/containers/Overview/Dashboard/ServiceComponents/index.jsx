@@ -17,18 +17,35 @@
  */
 
 import React, { Component } from 'react'
-import { Panel } from 'components/Base'
+import { toJS } from 'mobx'
+import { observer } from 'mobx-react'
 import { Icon } from '@pitrix/lego-ui'
+import { Panel } from 'components/Base'
+import { COMPONENT_ICON_MAP } from 'utils/constants'
+
+import ComponentStore from 'stores/component'
 
 import styles from './index.scss'
 
+@observer
 export default class ServiceComponents extends Component {
+  store = new ComponentStore()
+
+  componentDidMount() {
+    const { cluster } = this.props
+    this.store.fetchList({ cluster })
+  }
+
   render() {
+    const data = toJS(this.store.list.data)
     return (
       <Panel title={t('Service Components')}>
         <div className={styles.icons}>
-          <Icon name="openpitrix" size={44} clickable />
-          <Icon name="istio" size={44} clickable />
+          {Object.keys(data).map(item => (
+            <span key={item} data-tooltip={item}>
+              <Icon name={COMPONENT_ICON_MAP[item]} size={44} clickable />
+            </span>
+          ))}
         </div>
       </Panel>
     )

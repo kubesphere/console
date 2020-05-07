@@ -16,12 +16,8 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { observer, inject } from 'mobx-react'
-
 import { Component as Base } from 'components/Forms/Workload/VolumeSettings'
 
-@inject('rootStore')
-@observer
 export default class VolumeSettings extends Base {
   handleVolume = (...args) => {
     Base.prototype.handleVolume.apply(this, args)

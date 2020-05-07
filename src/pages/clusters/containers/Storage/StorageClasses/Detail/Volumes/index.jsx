@@ -49,7 +49,7 @@ export default class Volumes extends React.Component {
   }
 
   handleFetch = (params = {}) => {
-    const { name } = this.store.detail
+    const { cluster, name } = this.store.detail
 
     if (params.keyword) {
       params.name = params.keyword
@@ -58,6 +58,7 @@ export default class Volumes extends React.Component {
 
     this.volumeStore.fetchList({
       storageClassName: name,
+      cluster,
       ...params,
     })
   }

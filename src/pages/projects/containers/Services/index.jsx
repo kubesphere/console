@@ -32,7 +32,6 @@ import ServiceStore from 'stores/service'
   store: new ServiceStore(),
   module: 'services',
   name: 'Service',
-  rowKey: 'uuid',
 })
 export default class Services extends React.Component {
   get itemActions() {

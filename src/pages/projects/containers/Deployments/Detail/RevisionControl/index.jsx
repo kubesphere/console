@@ -102,7 +102,7 @@ class RevisionControl extends React.Component {
 
   renderDiff() {
     const { selectRevision } = this.state
-    const { data } = this.revisionStore.list
+    const data = toJS(this.revisionStore.list.data)
     const lastRevision = Math.max(Number(selectRevision) - 1, 0)
 
     const newRevision = data.find(item => item.revision === selectRevision)

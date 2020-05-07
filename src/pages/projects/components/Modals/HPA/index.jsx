@@ -73,9 +73,9 @@ export default class HPAModal extends React.Component {
   }
 
   fetchData = params => {
-    const { namespace, annotations = {} } = params.detail
+    const { namespace, cluster, annotations = {} } = params.detail
     const name = annotations['kubesphere.io/relatedHPA'] || params.detail.name
-    const _params = { name, namespace }
+    const _params = { name, cluster, namespace }
 
     this.setState({ loading: true }, () => {
       this.store.checkName(_params).then(resp => {

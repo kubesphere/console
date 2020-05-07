@@ -179,7 +179,7 @@ export default class JobDetail extends React.Component {
       recordStore: this.recordStore,
     }
 
-    if (this.store.isLoading) {
+    if (this.store.isLoading && !this.store.detail.name) {
       return <Loading className="ks-page-loading" />
     }
 

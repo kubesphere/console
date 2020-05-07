@@ -54,6 +54,20 @@ export default {
   'User Projects': '用户项目',
   'System Projects': '系统项目',
 
+  'Waiting for the cluster to join': '等待集群加入',
+
+  'Click to Copy': '点击复制',
+
+  'Cluster initialized failed': '集群初始化失败',
+
+  'Not Ready': '未就绪',
+
+  'Copy successful': '复制成功',
+
+  Unbind: '解除绑定',
+
+  'Unbind Cluster': '解绑集群',
+
   NO_CLUSTER_TIP: '请添加至少 1 个集群',
   NO_CLUSTER_TIP_DESC:
     '集群是一组运行着 Kubernetes 的节点（物理或者虚拟机）, Kubesphere 的功能也依托于集群中的节点来运行',
@@ -78,4 +92,23 @@ export default {
 
   CONNTECT_DIRECT: '直接连接Kubernetes集群',
   CONNTECT_PROXY: '集群连接代理',
+
+  CLUSTER_WAITING_JOIN_DESC:
+    '暂时没有可用的节点，集群为不可以用状态，您可以添加以下配置文件以启用该集群',
+
+  CLUSTER_AGENT_TIP_1:
+    '请在通过SSH在目标集群中创建一个名称为 agent.yaml 的文件',
+  CLUSTER_AGENT_TIP_1_DESC: '例如 <span class="code">vi agent.yaml</span>',
+  CLUSTER_AGENT_TIP_2: '复制以下配置文件至 agent.yaml 中',
+  CLUSTER_AGENT_TIP_2_DESC: '该代理文件可以将目标集群与平台进行连接',
+  CLUSTER_AGENT_TIP_3:
+    '通过命令行执行 <span class="code">kubectl create -f agent.yaml</span>',
+  CLUSTER_AGENT_TIP_3_DESC: '执行命令之后等待集群状态的更新',
+
+  CLUSTER_CONDITIONS: '集群状态',
+  CLUSTER_BASE_INFO_DESC: '对当前集群的基础信息进下汇总',
+
+  UNBIND_CLUSTER_DESC:
+    '解绑集群后，KubeSphere将无法再对该集群进行管理。 解绑后，该集群内的Kubernetes资源不会被删除。',
+  SURE_TO_UNBIND_CLUSTER: '我确定要执行解绑集群的操作',
 }

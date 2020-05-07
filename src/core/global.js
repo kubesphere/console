@@ -163,8 +163,8 @@ export default class GlobalValue {
     return this._cache_['globalNavs']
   }
 
-  getClusterNavs() {
-    if (!this._cache_['clusterNavs']) {
+  getClusterNavs(cluster) {
+    if (!this._cache_[`cluster_${cluster}_navs`]) {
       const navs = []
 
       globals.config.clusterNavs.forEach(nav => {
@@ -176,10 +176,10 @@ export default class GlobalValue {
         }
       })
 
-      this._cache_['clusterNavs'] = navs
+      this._cache_[`cluster_${cluster}_navs`] = navs
     }
 
-    return this._cache_['clusterNavs']
+    return this._cache_[`cluster_${cluster}_navs`]
   }
 
   getAccessNavs() {
@@ -199,26 +199,6 @@ export default class GlobalValue {
     }
 
     return this._cache_['accessNavs']
-  }
-
-  getInfraNavs() {
-    if (!this._cache_['infraNavs']) {
-      const navs = []
-
-      globals.config.infrastructureNavs.forEach(nav => {
-        const filteredItems = nav.items.filter(item =>
-          this.checkNavItem(item, params => this.hasPermission(params))
-        )
-
-        if (!isEmpty(filteredItems)) {
-          navs.push({ ...nav, items: filteredItems })
-        }
-      })
-
-      this._cache_['infraNavs'] = navs
-    }
-
-    return this._cache_['infraNavs']
   }
 
   get workspaces() {
@@ -293,26 +273,6 @@ export default class GlobalValue {
     }
 
     return this._cache_[`devops_${project}_navs`]
-  }
-
-  getMonitoringNavs() {
-    if (!this._cache_['monitorNavs']) {
-      const navs = []
-
-      globals.config.monitoringNavs.forEach(nav => {
-        const filteredItems = nav.items.filter(item =>
-          this.checkNavItem(item, params => this.hasPermission(params))
-        )
-
-        if (!isEmpty(filteredItems)) {
-          navs.push({ ...nav, items: filteredItems })
-        }
-      })
-
-      this._cache_['monitorNavs'] = navs
-    }
-
-    return this._cache_['monitorNavs']
   }
 
   getPlatformSettingsNavs() {

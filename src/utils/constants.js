@@ -234,6 +234,7 @@ export const MODULE_KIND_MAP = {
   services: 'Service',
   ingresses: 'Ingress',
   volumes: 'PersistentVolumeClaim',
+  persistentvolumeclaims: 'PersistentVolumeClaim',
   storageclasses: 'StorageClass',
   'alerting-policy': 'AlertingPolicy',
   configmaps: 'ConfigMap',
@@ -861,3 +862,21 @@ export const MONITOR_GRAPH_COLORS = [
     ],
   },
 ]
+
+export const COMPONENT_ICON_MAP = {
+  kubernetes: 'kubernetes',
+  kubesphere: 'kubesphere',
+  istio: 'istio',
+  openpitrix: 'openpitrix',
+  devops: 'jenkins',
+  logging: 'record',
+  monitoring: 'monitor',
+}
+
+export const CLUSTER_PROVIDER_ICON = {
+  Custom: 'kubernetes',
+  QingCloud: 'qingcloud',
+  Google: 'google-plus',
+  Amazon: 'aws',
+  Azure: 'windows',
+}

@@ -17,68 +17,37 @@
  */
 
 import React, { Component } from 'react'
-import { observer, inject } from 'mobx-react'
-import { withRouter } from 'react-router'
+import { observer } from 'mobx-react'
 import { SearchSelect } from 'components/Base'
-import ProjectStore from 'stores/project'
 
 import styles from './index.scss'
 
-@withRouter
-@inject('rootStore')
 @observer
 export default class ProjectSelect extends Component {
-  projectStore = new ProjectStore()
-
-  routing = this.props.rootStore.routing
-
-  componentDidMount() {
-    this.fetchProjects()
-  }
-
-  fetchProjects = (params = {}) => {
-    const { cluster } = this.props.match.params
-    return this.projectStore.fetchList({
-      cluster,
-      ...params,
-    })
-  }
-
   getProjects() {
     return [
       { label: t('All'), value: '' },
-      ...this.projectStore.list.data.map(item => ({
+      ...this.props.store.list.data.map(item => ({
         label: item.name,
         value: item.name,
       })),
     ]
   }
 
-  handleChange = namespace => {
-    const { module } = this.props
-    const { cluster } = this.props.match.params
-
-    if (!namespace) {
-      this.routing.push(`/clusters/${cluster}/${module}`)
-    } else {
-      this.routing.push(`/clusters/${cluster}/${module}?namespace=${namespace}`)
-    }
-  }
-
   render() {
-    const { namespace = '' } = this.props
+    const { namespace = '', store, onChange, onFetch } = this.props
 
     return (
       <SearchSelect
         className={styles.select}
         value={namespace}
-        onChange={this.handleChange}
+        onChange={onChange}
         options={this.getProjects()}
-        page={this.projectStore.list.page}
-        total={this.projectStore.list.total}
-        currentLength={this.projectStore.list.data.length}
-        isLoading={this.projectStore.list.isLoading}
-        onFetch={this.fetchProjects}
+        page={store.list.page}
+        total={store.list.total}
+        currentLength={store.list.data.length}
+        isLoading={store.list.isLoading}
+        onFetch={onFetch}
       />
     )
   }

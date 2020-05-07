@@ -21,14 +21,7 @@ import PropTypes from 'prop-types'
 
 import { COLORS_MAP } from 'utils/constants'
 
-import {
-  ResponsiveContainer,
-  CartesianGrid,
-  AreaChart,
-  XAxis,
-  Tooltip,
-  Area,
-} from 'recharts'
+import { CartesianGrid, AreaChart, XAxis, Tooltip, Area } from 'recharts'
 import CustomTooltip from 'components/Charts/Custom/Tooltip'
 
 const AreaColors = ['green', 'blue', 'yellow', 'red']
@@ -99,21 +92,16 @@ export default class TinyArea extends React.Component {
     const { width, height, xKey, data } = this.props
 
     return (
-      <ResponsiveContainer width={width} height={height} debounce={1}>
-        <AreaChart data={data}>
-          <XAxis dataKey={xKey} hide />
-          <Tooltip
-            wrapperStyle={{ zIndex: 1000 }}
-            content={<CustomTooltip />}
-          />
-          <CartesianGrid
-            strokeDasharray="3 6"
-            horizontal={false}
-            verticalPoints={this.getVeticalPoints()}
-          />
-          {this.renderArea()}
-        </AreaChart>
-      </ResponsiveContainer>
+      <AreaChart width={width} height={height} data={data}>
+        <XAxis dataKey={xKey} hide />
+        <Tooltip wrapperStyle={{ zIndex: 1000 }} content={<CustomTooltip />} />
+        <CartesianGrid
+          strokeDasharray="3 6"
+          horizontal={false}
+          verticalPoints={this.getVeticalPoints()}
+        />
+        {this.renderArea()}
+      </AreaChart>
     )
   }
 }

@@ -22,12 +22,10 @@ import { Link } from 'react-router-dom'
 import { Avatar } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import withList, { ListPage } from 'components/HOCs/withList'
-import StatusReason from 'projects/components/StatusReason'
 import ResourceTable from 'clusters/components/ResourceTable'
 
 import { getLocalTime, getDisplayName } from 'utils'
-import { getWorkloadStatus } from 'utils/status'
-import { WORKLOAD_STATUS, ICON_TYPES } from 'utils/constants'
+import { ICON_TYPES } from 'utils/constants'
 
 import RouterStore from 'stores/router'
 
@@ -35,7 +33,7 @@ import RouterStore from 'stores/router'
   store: new RouterStore(),
   module: 'ingresses',
   name: 'Route',
-  rowKey: 'uuid',
+  rowKey: 'uid',
 })
 export default class Routers extends React.Component {
   get itemActions() {
@@ -95,24 +93,6 @@ export default class Routers extends React.Component {
     ]
   }
 
-  getStatus() {
-    return WORKLOAD_STATUS.map(status => ({
-      text: t(status.text),
-      value: status.value,
-    }))
-  }
-
-  getItemDesc = record => {
-    const { status, reason } = getWorkloadStatus(record, this.module)
-    const desc = reason ? (
-      <StatusReason status={status} reason={t(reason)} data={record} />
-    ) : (
-      record.description || '-'
-    )
-
-    return desc
-  }
-
   getColumns = () => {
     const { getSortOrder, module } = this.props
     const { cluster } = this.props.match.params
@@ -128,11 +108,10 @@ export default class Routers extends React.Component {
             icon={ICON_TYPES[module]}
             iconSize={40}
             title={getDisplayName(record)}
-            desc={this.getItemDesc(record)}
             isMultiCluster={record.isFedManaged}
             to={`/clusters/${cluster}/projects/${
               record.namespace
-            }/routes/${name}`}
+            }/${module}/${name}`}
           />
         ),
       },
@@ -166,16 +145,17 @@ export default class Routers extends React.Component {
   }
 
   showCreate = () => {
-    const { query, match, module } = this.props
+    const { query, match, module, getData } = this.props
     return this.props.trigger('router.create', {
       module,
       namespace: query.namespace,
       cluster: match.params.cluster,
+      success: () => getData(),
     })
   }
 
   render() {
-    const { query, bannerProps, tableProps } = this.props
+    const { query, match, bannerProps, tableProps } = this.props
     return (
       <ListPage {...this.props}>
         <Banner {...bannerProps} />
@@ -185,6 +165,7 @@ export default class Routers extends React.Component {
           namespace={query.namespace}
           columns={this.getColumns()}
           onCreate={this.showCreate}
+          cluster={match.params.cluster}
         />
       </ListPage>
     )

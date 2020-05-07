@@ -155,9 +155,6 @@ export default class PodsCard extends React.Component {
       case 'Node':
         result.nodeName = name
         break
-      // case 'Service':
-      //   result.serviceName = name
-      //   break
       case 'Namespace':
         result.namespace = name
         break

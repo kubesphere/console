@@ -42,13 +42,14 @@ export default class Tools extends Component {
   }
 
   render() {
+    const { cluster } = this.props
     return (
       <Panel title={t('Tools')}>
         <div className={styles.level}>
           <div
             className="margin-r12"
             data-title="KubeCtl"
-            data-url="/kubeCtl"
+            data-url={`/clusters/${cluster}/kubeCtl`}
             onClick={this.handleTool}
           >
             <Text
@@ -59,7 +60,7 @@ export default class Tools extends Component {
           </div>
           <div
             data-title="KubeConfig"
-            data-url="/kubeConfig"
+            data-url={`/clusters/${cluster}/kubeConfig`}
             onClick={this.handleTool}
           >
             <Text

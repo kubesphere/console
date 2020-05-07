@@ -41,7 +41,9 @@ class Overview extends React.Component {
   constructor(props) {
     super(props)
 
-    this.componentMonitoringStore = new ComponentMonitoringStore()
+    this.componentMonitoringStore = new ComponentMonitoringStore({
+      cluster: this.cluster,
+    })
     this.fetchData()
   }
 
@@ -277,9 +279,9 @@ class Overview extends React.Component {
         </Columns>
         <Columns>
           <Column className="is-12">
-            <ClusterResourceStatus />
-            {this.supportETCD && <ETCDStatus />}
-            <ServiceComponentStatus />
+            <ClusterResourceStatus cluster={this.cluster} />
+            {this.supportETCD && <ETCDStatus cluster={this.cluster} />}
+            <ServiceComponentStatus cluster={this.cluster} />
           </Column>
         </Columns>
       </div>

@@ -62,6 +62,7 @@ export default class Projects extends React.Component {
         icon: 'trash',
         text: t('Delete'),
         action: 'delete',
+        show: record => record.workspace !== globals.config.systemWorkspace,
         onClick: item =>
           trigger('resource.delete', {
             type: t(this.name),
@@ -97,6 +98,7 @@ export default class Projects extends React.Component {
 
   getData = async ({ silent, ...params } = {}) => {
     this.query = params
+    params.type = params.type || 'user'
     this.type = params.type
 
     silent && (this.props.store.list.silent = true)
@@ -159,7 +161,8 @@ export default class Projects extends React.Component {
     ]
   }
 
-  showCreate = () => this.props.trigger('project.create')
+  showCreate = () =>
+    this.props.trigger('project.create', this.props.match.params)
 
   render() {
     const { bannerProps, tableProps } = this.props
@@ -171,6 +174,7 @@ export default class Projects extends React.Component {
           itemActions={this.itemActions}
           columns={this.getColumns()}
           onCreate={this.showCreate}
+          searchType="keyword"
         />
       </ListPage>
     )

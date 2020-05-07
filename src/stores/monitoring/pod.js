@@ -73,6 +73,10 @@ export default class PodMonitor extends Base {
     params.limit = limit || 10
     params.page = page || 1
 
+    if (filters.cluster) {
+      this.cluster = filters.cluster
+    }
+
     const api = this.getApi(filters)
     const result = await to(request.get(api, params))
 

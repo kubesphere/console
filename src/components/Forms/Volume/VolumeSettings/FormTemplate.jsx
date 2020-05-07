@@ -57,18 +57,20 @@ export default class VolumeSettings extends React.Component {
     const { formData } = this.context
     const storageClasses = get(formData, STORAGE_CLASSES_KEY)
 
-    return this.store.fetchList(params).then(() => {
-      const data = toJS(this.store.list.data)
+    return this.store
+      .fetchList({ ...params, cluster: this.props.cluster })
+      .then(() => {
+        const data = toJS(this.store.list.data)
 
-      this.setState({
-        storageClasses: toJS(this.store.list.data),
-        storageClass:
-          data.find(item => storageClasses === item.name) ||
-          data.find(item => item.default) ||
-          {},
-        isLoading: false,
+        this.setState({
+          storageClasses: toJS(this.store.list.data),
+          storageClass:
+            data.find(item => storageClasses === item.name) ||
+            data.find(item => item.default) ||
+            {},
+          isLoading: false,
+        })
       })
-    })
   }
 
   getSliderProps(storageClass) {

@@ -43,7 +43,7 @@ export default class RecordStore extends Base {
   }
 
   @action
-  async fetchListByK8s({ namespace, selector, ...params }) {
+  async fetchListByK8s({ cluster, namespace, selector, ...params }) {
     this.list.isLoading = true
 
     if (!isEmpty(selector)) {
@@ -51,7 +51,7 @@ export default class RecordStore extends Base {
     }
 
     const result = await request.get(
-      `apis/batch/v1/namespaces/${namespace}/${this.module}`,
+      `apis/batch/v1${this.getPath({ cluster, namespace })}/${this.module}`,
       params
     )
     const data = result.items || []
@@ -67,11 +67,11 @@ export default class RecordStore extends Base {
   }
 
   @action
-  async fetchExcuteRecords({ name, namespace }) {
+  async fetchExcuteRecords(params) {
     this.excute.isLoading = true
 
     const result = await request.get(
-      `apis/batch/v1/namespaces/${namespace}/${this.module}/${name}`
+      `apis/batch/v1${this.getPath(params)}/${this.module}/${params.name}`
     )
     const detail = this.mapper(result)
 

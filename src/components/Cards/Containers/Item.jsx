@@ -134,6 +134,7 @@ export default class ContainerItem extends React.Component {
       isCreating,
       prefix,
       podName,
+      cluster,
       isInit,
       ...rest
     } = this.props
@@ -222,6 +223,7 @@ export default class ContainerItem extends React.Component {
           visible={showContainerLog}
           podName={podName}
           container={detail}
+          cluster={cluster}
           onCancel={this.hideContainerLog}
         />
       </div>

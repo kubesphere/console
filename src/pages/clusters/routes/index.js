@@ -27,6 +27,7 @@ import StorageClasses from '../containers/Storage/StorageClasses'
 import VolumeSnapshots from '../containers/Storage/VolumeSnapshots'
 import Volumes from '../containers/Storage/Volumes'
 import Nodes from '../containers/Nodes'
+import ServiceComponents from '../containers/ServiceComponents'
 import Projects from '../containers/Projects'
 
 import Deployments from '../containers/Workload/Deployments'
@@ -41,7 +42,10 @@ import ClusterMonitor from '../containers/Monitor/Cluster'
 import ResourceMonitor from '../containers/Monitor/Resource'
 import Members from '../containers/Members'
 import Roles from '../containers/Roles'
+import BaseInfo from '../containers/BaseInfo'
 import Visibility from '../containers/Visibility'
+import KubeCtl from '../containers/KubeCtl'
+import KubeConfig from '../containers/KubeConfig'
 
 import detail from './detail'
 
@@ -51,6 +55,16 @@ export default [
   ...detail,
   { path: '/clusters', component: Clusters, exact: true },
   { path: '/clusters/add', component: AddCluster, exact: true },
+  {
+    path: `/clusters/:cluster/kubeCtl`,
+    exact: true,
+    component: KubeCtl,
+  },
+  {
+    path: `/clusters/:cluster/kubeConfig`,
+    component: KubeConfig,
+    exact: true,
+  },
   {
     path: PATH,
     component: Layout,
@@ -63,6 +77,10 @@ export default [
       {
         path: `${PATH}/nodes`,
         component: Nodes,
+      },
+      {
+        path: `${PATH}/components`,
+        component: ServiceComponents,
       },
       {
         path: `${PATH}/projects`,
@@ -105,7 +123,7 @@ export default [
         exact: true,
       },
       {
-        path: `${PATH}/routes`,
+        path: `${PATH}/ingresses`,
         component: Routes,
         exact: true,
       },
@@ -131,6 +149,11 @@ export default [
       {
         path: `${PATH}/monitor-resource`,
         component: ResourceMonitor,
+      },
+      {
+        path: `${PATH}/base-info`,
+        component: BaseInfo,
+        exact: true,
       },
       {
         path: `${PATH}/visibility`,

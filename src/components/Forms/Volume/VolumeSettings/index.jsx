@@ -79,7 +79,7 @@ export default class VolumeSettings extends React.Component {
   }
 
   render() {
-    const { formRef } = this.props
+    const { formRef, cluster } = this.props
     const { method } = this.state
 
     return (
@@ -97,7 +97,7 @@ export default class VolumeSettings extends React.Component {
             namespace={get(this.formTemplate, 'metadata.namespace')}
           />
         ) : (
-          <FormTemplate />
+          <FormTemplate cluster={cluster} />
         )}
       </Form>
     )

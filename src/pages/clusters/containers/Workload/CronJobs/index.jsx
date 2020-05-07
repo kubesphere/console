@@ -20,10 +20,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { parse } from 'qs'
 
-import { Avatar } from 'components/Base'
+import { Avatar, Status } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import withList, { ListPage } from 'components/HOCs/withList'
-import JobStatus from 'projects/components/JobStatus'
 import StatusReason from 'projects/components/StatusReason'
 import ResourceTable from 'clusters/components/ResourceTable'
 
@@ -37,7 +36,7 @@ import WorkloadStore from 'stores/workload'
   store: new WorkloadStore('cronjobs'),
   module: 'cronjobs',
   name: 'CronJob',
-  rowKey: 'uuid',
+  rowKey: 'uid',
 })
 export default class CronJobs extends React.Component {
   get namespace() {
@@ -176,7 +175,10 @@ export default class CronJobs extends React.Component {
         isHideable: true,
         search: true,
         width: '15%',
-        render: (status, record) => <JobStatus data={record} module={module} />,
+        render: (_, record) => {
+          const { status } = getWorkloadStatus(record, module)
+          return <Status type={status} name={t(status)} />
+        },
       },
       {
         title: t('Project'),
@@ -219,7 +221,7 @@ export default class CronJobs extends React.Component {
   }
 
   render() {
-    const { query, bannerProps, tableProps } = this.props
+    const { query, match, bannerProps, tableProps } = this.props
     return (
       <ListPage {...this.props}>
         <Banner {...bannerProps} tabs={this.tabs} />
@@ -229,6 +231,7 @@ export default class CronJobs extends React.Component {
           namespace={query.namespace}
           columns={this.getColumns()}
           onCreate={this.showCreate}
+          cluster={match.params.cluster}
         />
       </ListPage>
     )

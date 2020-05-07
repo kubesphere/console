@@ -59,9 +59,9 @@ export default class VolumeDetail extends React.Component {
   fetchData = async () => {
     await this.store.fetchDetail(this.props.match.params)
 
-    const { namespace, storageClassName } = this.store.detail
+    const { cluster, storageClassName } = this.store.detail
     await this.storageclass.fetchDetail({
-      namespace,
+      cluster,
       name: storageClassName,
     })
   }
@@ -222,7 +222,7 @@ export default class VolumeDetail extends React.Component {
   render() {
     const stores = { detailStore: this.store }
 
-    if (this.store.isLoading) {
+    if (this.store.isLoading && !this.store.detail.name) {
       return <Loading className="ks-page-loading" />
     }
 

@@ -17,13 +17,11 @@
  */
 
 import React from 'react'
-import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
-import { Panel, Text } from 'components/Base'
 
 import RouterStore from 'stores/router'
 
-import ServicePort from './ServicePort'
+import ClusterService from './ClusterService'
 
 import styles from './index.scss'
 
@@ -44,16 +42,6 @@ export default class ResourceStatus extends React.Component {
     this.routerStore.getGateway({ namespace })
   }
 
-  renderExternal() {
-    const detail = toJS(this.store.detail)
-
-    return (
-      <Panel title={t('External Service')}>
-        <Text title={detail.externalName} description={t('ExternalName')} />
-      </Panel>
-    )
-  }
-
   renderServiceAccess() {
     const { name, namespace } = this.store.detail
     const { clusters } = this.fedStore.detail
@@ -62,7 +50,7 @@ export default class ResourceStatus extends React.Component {
       <div>
         <div className={styles.title}>{t('Service Access')}</div>
         {clusters.map(cluster => (
-          <ServicePort
+          <ClusterService
             key={cluster.name}
             name={name}
             namespace={namespace}
@@ -74,21 +62,7 @@ export default class ResourceStatus extends React.Component {
     )
   }
 
-  renderContent() {
-    const detail = toJS(this.store.detail)
-
-    if (detail.specType === 'ExternalName') {
-      return this.renderExternal()
-    }
-
-    if (detail.isFedManaged) {
-      return this.renderServiceAccess()
-    }
-
-    return this.renderPorts()
-  }
-
   render() {
-    return <div className={styles.main}>{this.renderContent()}</div>
+    return <div className={styles.main}>{this.renderServiceAccess()}</div>
   }
 }

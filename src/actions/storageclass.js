@@ -20,6 +20,7 @@ import { get } from 'lodash'
 import { Modal, Notify } from 'components/Base'
 
 import CreateModal from 'components/Modals/Create'
+import SetDefaultStorageClassModal from 'components/Modals/SetDefaultStorageClass'
 import { MODULE_KIND_MAP } from 'utils/constants'
 import FORM_TEMPLATES from 'utils/form.templates'
 import formPersist from 'utils/form.persist'
@@ -57,6 +58,41 @@ export default {
         steps: FORM_STEPS,
         formTemplate,
         modal: CreateModal,
+        store,
+        ...props,
+      })
+    },
+  },
+  'storageclass.set.default': {
+    on({ store, cluster, detail, defaultStorageClass, success, ...props }) {
+      const modal = Modal.open({
+        onOk: async () => {
+          if (defaultStorageClass) {
+            await store.patch(
+              { name: defaultStorageClass },
+              {
+                metadata: {
+                  annotations: {
+                    'storageclass.kubernetes.io/is-default-class': 'false',
+                  },
+                },
+              }
+            )
+          }
+
+          await store.patch(detail, {
+            metadata: {
+              annotations: {
+                'storageclass.kubernetes.io/is-default-class': 'true',
+              },
+            },
+          })
+
+          Modal.close(modal)
+          success && success()
+        },
+        cluster,
+        modal: SetDefaultStorageClassModal,
         store,
         ...props,
       })

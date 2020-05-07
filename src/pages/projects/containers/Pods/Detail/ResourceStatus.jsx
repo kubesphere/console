@@ -43,10 +43,13 @@ class PodsResourceStatus extends React.Component {
   }
 
   renderContainers() {
-    const { name, containers, initContainers } = toJS(this.store.detail)
+    const { name, cluster, containers, initContainers } = toJS(
+      this.store.detail
+    )
     return (
       <ContainersCard
         prefix={this.prefix}
+        cluster={cluster}
         title={t('Containers')}
         containers={containers}
         initContainers={initContainers}

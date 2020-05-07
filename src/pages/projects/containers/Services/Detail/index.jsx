@@ -71,12 +71,12 @@ export default class ServiceDetail extends React.Component {
   fetchData = () => {
     const { params } = this.props.match
     this.store.fetchDetail(params).then(() => {
-      const { selector } = this.store.detail
+      const { selector, isFedManaged } = this.store.detail
       const labelSelector = joinSelector(selector)
       if (!isEmpty(labelSelector)) {
         this.store.fetchWorkload({ ...params, labelSelector })
       }
-      if (this.store.detail.isFedManaged) {
+      if (isFedManaged) {
         this.fedStore.fetchDetail(params)
       }
     })
@@ -112,9 +112,9 @@ export default class ServiceDetail extends React.Component {
       text: t('Edit Internet Access'),
       action: 'edit',
       show: record => record.type === SERVICE_TYPES.VirtualIP,
-      onClick: item =>
+      onClick: () =>
         this.trigger('service.gateway.edit', {
-          detail: item,
+          detail: this.store.detail,
         }),
     },
     {
@@ -271,7 +271,7 @@ export default class ServiceDetail extends React.Component {
   render() {
     const stores = { detailStore: this.store, fedDetailStore: this.fedStore }
 
-    if (this.store.isLoading) {
+    if (this.store.isLoading && !this.store.detail.name) {
       return <Loading className="ks-page-loading" />
     }
 
@@ -293,7 +293,7 @@ export default class ServiceDetail extends React.Component {
       <DetailPage
         stores={stores}
         sideProps={sideProps}
-        routes={getRoutes(this.props.match.path, this.store.detail.specType)}
+        routes={getRoutes(this.props.match.path, this.store.detail)}
       />
     )
   }

@@ -73,7 +73,7 @@ class Components extends React.Component {
             data={routes}
             gateway={gateway}
             loading={this.store.routerStore.list.isLoading}
-            prefix={`${this.prefix}/routes`}
+            prefix={`${this.prefix}/ingresses`}
           />
         )}
         <AppComponents
