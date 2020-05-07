@@ -19,20 +19,11 @@
 import Projects from '../containers/Projects'
 import Dashboard from '../containers/Dashboard'
 import NotFound from '../containers/NotFound'
-import ServiceComponents from '../containers/ServiceComponents'
-
-import componentRoutes from './component'
-import volumeRoutes from './volume'
-import monitoringRoutes from './monitoring'
 
 export default [
   { path: '/404', component: NotFound, exact: true },
   { path: '/dashboard', component: Dashboard, exact: true },
   { path: '/projects', component: Projects, exact: true },
-  { path: '/components', component: ServiceComponents, exact: true },
-  ...monitoringRoutes,
-  ...componentRoutes,
-  ...volumeRoutes,
   {
     path: '/',
     redirect: { from: '/', to: '/dashboard', exact: true },
