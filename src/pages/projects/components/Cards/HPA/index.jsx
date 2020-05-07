@@ -26,6 +26,8 @@ import HpaStore from 'stores/workload/hpa'
 import { Icon, Dropdown, Menu } from '@pitrix/lego-ui'
 import { Button, Card, Notify } from 'components/Base'
 
+import { getSuitableUnit, getValueByUnit } from 'utils/monitoring'
+
 import styles from './index.scss'
 
 @observer
@@ -49,6 +51,12 @@ export default class HPACard extends React.Component {
     super(props)
 
     this.store = props.store || new HpaStore()
+  }
+
+  getValue = (data, unitType) => {
+    const unit = getSuitableUnit(data, unitType)
+    const result = getValueByUnit(data, unit)
+    return unit ? `${result} ${unit}` : result
   }
 
   getHPAData = () => {
@@ -82,7 +90,7 @@ export default class HPACard extends React.Component {
         icon: 'memory',
         name: t('Target Usage'),
         value: memoryTargetValue,
-        current: memoryCurrentValue,
+        current: this.getValue(memoryCurrentValue, 'memory'),
       },
     ]
   }
