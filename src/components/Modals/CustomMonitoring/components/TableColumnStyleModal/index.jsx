@@ -108,7 +108,7 @@ export default class TableColumnStyleModal extends React.Component {
             <div>
               <Columns>
                 <Column>
-                  <Form.Item label={t('UNIT')}>
+                  <Form.Item label={t('Unit')}>
                     <Select
                       defaultValue={'null'}
                       name={'unit'}

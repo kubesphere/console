@@ -94,7 +94,7 @@ export default class SingleStatDataForm extends Component {
                         })
                       }
                     >
-                      {t('ADD')}
+                      {t('Add')}
                     </Button>
                   }
                 />
@@ -123,7 +123,7 @@ export default class SingleStatDataForm extends Component {
                   defaultValue={'none'}
                 >
                   {({ onChange, value }) => (
-                    <Field label={t('UNIT')} tips={''}>
+                    <Field label={t('Unit')} tips={''}>
                       <Select
                         options={formatOpts}
                         value={value}
