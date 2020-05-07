@@ -16,6 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { withProps } from 'utils'
 import UpdateStrategy from 'components/EditForms/Workload/UpdateStrategy'
 import PodTemplate from 'components/EditForms/Workload/PodTemplate'
 import VolumeSettings from 'components/EditForms/Workload/VolumeSettings'
@@ -52,7 +53,7 @@ export default {
       icon: 'container',
       name: 'podTemplate',
       title: 'Pod Template',
-      component: PodTemplate,
+      component: withProps(PodTemplate, { withService: true }),
     },
     {
       icon: 'storage',

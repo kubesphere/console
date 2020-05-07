@@ -22,7 +22,6 @@ import { observer, inject } from 'mobx-react'
 import { isEmpty, get, flatten, uniqBy } from 'lodash'
 
 import HpaStore from 'stores/workload/hpa'
-import ResourceStore from 'stores/workload/resource'
 
 import PodsCard from 'components/Cards/Pods'
 import VolumesCard from 'components/Cards/Volumes'
@@ -38,7 +37,6 @@ class ResourceStatus extends React.Component {
   constructor(props) {
     super(props)
 
-    this.resourceStore = props.resourceStore || new ResourceStore(this.module)
     this.hpaStore = props.hpaStore || new HpaStore()
 
     this.state = {}

@@ -55,7 +55,7 @@ export default class CRDAppDetail extends React.Component {
   }
 
   get routing() {
-    return this.props.rootStore.rooting
+    return this.props.rootStore.routing
   }
 
   fetchData = () => {
@@ -146,7 +146,7 @@ export default class CRDAppDetail extends React.Component {
   render() {
     const stores = { detailStore: this.store, fedDetailStore: this.fedStore }
 
-    if (this.store.isLoading) {
+    if (this.store.isLoading && !this.store.detail.name) {
       return <Loading className="ks-page-loading" />
     }
 

@@ -58,10 +58,10 @@ export default class RouteDetail extends React.Component {
       path,
     } = this.props.match
     if (path.startsWith('/clusters')) {
-      return `/clusters/${cluster}/routes`
+      return `/clusters/${cluster}/ingresses`
     }
 
-    return `/cluster/${cluster}/projects/${namespace}/routes`
+    return `/cluster/${cluster}/projects/${namespace}/ingresses`
   }
 
   fetchData = () => {
@@ -89,6 +89,7 @@ export default class RouteDetail extends React.Component {
       onClick: () =>
         this.trigger('resource.yaml.edit', {
           detail: this.store.detail,
+          success: this.fetchData,
         }),
     },
     {
@@ -99,6 +100,7 @@ export default class RouteDetail extends React.Component {
       onClick: () =>
         this.trigger('router.rules.edit', {
           detail: this.store.detail,
+          success: this.fetchData,
         }),
     },
     {
@@ -109,6 +111,7 @@ export default class RouteDetail extends React.Component {
       onClick: () =>
         this.trigger('router.annotations.edit', {
           detail: this.store.detail,
+          success: this.fetchData,
         }),
     },
     {
@@ -172,7 +175,7 @@ export default class RouteDetail extends React.Component {
   render() {
     const stores = { detailStore: this.store }
 
-    if (this.store.isLoading) {
+    if (this.store.isLoading && !this.store.detail.name) {
       return <Loading className="ks-page-loading" />
     }
 

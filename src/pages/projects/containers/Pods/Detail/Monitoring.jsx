@@ -49,8 +49,9 @@ class Monitorings extends React.Component {
   }
 
   fetchData = params => {
-    const { namespace, name } = this.store.detail
+    const { cluster, namespace, name } = this.store.detail
     this.monitorStore.fetchMetrics({
+      cluster,
       namespace,
       pod: name,
       metrics: Object.values(MetricTypes),

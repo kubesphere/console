@@ -16,6 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { get } from 'lodash'
 import { Modal, Notify } from 'components/Base'
 
 import CreateModal from 'components/Modals/Create'
@@ -28,7 +29,7 @@ import FORM_STEPS from 'configs/steps/ingresses'
 
 export default {
   'router.create': {
-    on({ store, namespace, module, success, ...props }) {
+    on({ store, cluster, namespace, module, success, ...props }) {
       const kind = MODULE_KIND_MAP[module]
       const formTemplate = {
         [kind]: FORM_TEMPLATES[module]({
@@ -38,11 +39,15 @@ export default {
 
       const modal = Modal.open({
         onOk: newObject => {
+          const data = get(newObject, kind)
           if (!newObject) {
             return
           }
 
-          store.create(newObject).then(() => {
+          const params = { cluster, namespace }
+          params.namespace = params.namespace || get(data, 'metadata.namespace')
+
+          store.create(data, params).then(() => {
             Modal.close(modal)
             Notify.success({ content: `${t('Created Successfully')}!` })
             success && success()
@@ -50,6 +55,7 @@ export default {
           })
         },
         module,
+        cluster,
         namespace,
         name: 'Route',
         formTemplate,
@@ -61,12 +67,13 @@ export default {
     },
   },
   'router.rules.edit': {
-    on({ store, detail, ...props }) {
+    on({ store, detail, success, ...props }) {
       const modal = Modal.open({
         onOk: newObject => {
           store.update(detail, newObject).then(() => {
             Modal.close(modal)
             Notify.success({ content: `${t('Updated Successfully')}!` })
+            success && success()
           })
         },
         modal: EditRouteRulesModal,
@@ -77,12 +84,13 @@ export default {
     },
   },
   'router.annotations.edit': {
-    on({ store, detail, ...props }) {
+    on({ store, detail, success, ...props }) {
       const modal = Modal.open({
         onOk: newObject => {
           store.update(detail, newObject).then(() => {
             Modal.close(modal)
             Notify.success({ content: `${t('Updated Successfully')}!` })
+            success && success()
           })
         },
         modal: EditRouteAnnotationsModal,

@@ -36,7 +36,7 @@ import WorkloadStore from 'stores/workload'
   store: new WorkloadStore('statefulsets'),
   module: 'statefulsets',
   name: 'Workload',
-  rowKey: 'uuid',
+  rowKey: 'uid',
 })
 export default class StatefulSets extends React.Component {
   handleTabChange = value => {
@@ -201,7 +201,7 @@ export default class StatefulSets extends React.Component {
   }
 
   render() {
-    const { query, bannerProps, tableProps } = this.props
+    const { query, match, bannerProps, tableProps } = this.props
     return (
       <ListPage {...this.props}>
         <Banner {...bannerProps} tabs={this.tabs} />
@@ -211,6 +211,7 @@ export default class StatefulSets extends React.Component {
           namespace={query.namespace}
           columns={this.getColumns()}
           onCreate={this.showCreate}
+          cluster={match.params.cluster}
         />
       </ListPage>
     )

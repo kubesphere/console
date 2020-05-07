@@ -22,39 +22,23 @@ import Events from 'core/containers/Base/Detail/Events'
 import ResourceStatus from './ResourceStatus'
 import ServiceAccess from './ServiceAccess'
 
-export default (path, type) => {
-  if (type === 'ExternalName') {
-    return [
-      {
-        path: `${path}/access`,
-        title: 'Service Access',
-        component: ServiceAccess,
-        exact: true,
-      },
-      {
-        path: `${path}/events`,
-        title: 'Events',
-        component: Events,
-        exact: true,
-      },
-      getIndexRoute({ path, to: `${path}/access`, exact: true }),
-    ]
-  }
-
-  return [
-    {
-      path: `${path}/resource-status`,
-      title: 'Resource Status',
-      component: ResourceStatus,
-      exact: true,
-    },
-    {
-      path: `${path}/access`,
-      title: 'Service Access',
-      component: ServiceAccess,
-      exact: true,
-    },
-    { path: `${path}/events`, title: 'Events', component: Events, exact: true },
-    getIndexRoute({ path, to: `${path}/resource-status`, exact: true }),
-  ]
-}
+export default (path, detail) => [
+  {
+    path: `${path}/resource-status`,
+    title: 'Resource Status',
+    component: ResourceStatus,
+    exact: true,
+  },
+  ...(detail.isFedManaged
+    ? [
+        {
+          path: `${path}/access`,
+          title: 'Service Access',
+          component: ServiceAccess,
+          exact: true,
+        },
+      ]
+    : []),
+  { path: `${path}/events`, title: 'Events', component: Events, exact: true },
+  getIndexRoute({ path, to: `${path}/resource-status`, exact: true }),
+]

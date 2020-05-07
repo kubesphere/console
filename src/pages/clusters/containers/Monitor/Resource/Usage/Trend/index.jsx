@@ -40,7 +40,9 @@ export default class ProjectTrend extends React.Component {
   constructor(props) {
     super(props)
 
-    this.monitorStore = new WorkspaceMonitorStore()
+    this.monitorStore = new WorkspaceMonitorStore({
+      cluster: props.match.params.cluster,
+    })
     this.fetchData()
   }
 

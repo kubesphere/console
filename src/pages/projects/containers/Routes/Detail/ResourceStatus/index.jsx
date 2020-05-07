@@ -39,7 +39,7 @@ class ResourceStatus extends React.Component {
 
   componentDidMount() {
     const detail = toJS(this.store.detail)
-    this.store.getGateway({ namespace: detail.namespace })
+    this.store.getGateway(detail)
   }
 
   renderRules() {

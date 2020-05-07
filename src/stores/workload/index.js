@@ -50,7 +50,7 @@ export default class WorkloadStore extends Base {
       }
 
       if (has(data, 'Service')) {
-        requests.push(this.getWorkloadRequest(data['Service'], params))
+        requests.push(this.getServiceRequest(data['Service'], params))
       }
     }
 
@@ -61,6 +61,8 @@ export default class WorkloadStore extends Base {
     const isFedManaged = !!get(data, 'spec.placement')
     const serviceStore = new ServiceStore()
     const fedStore = new FederatedStore('services')
+
+    params.namespace = params.namespace || get(data, 'metadata.namespace')
 
     if (isFedManaged) {
       return {
@@ -77,6 +79,8 @@ export default class WorkloadStore extends Base {
 
   getWorkloadRequest = (data, params) => {
     const isFedManaged = !!get(data, 'spec.placement')
+
+    params.namespace = params.namespace || get(data, 'metadata.namespace')
 
     if (['deployments', 'daemonsets'].includes(this.module)) {
       const hasPVC = get(data, 'spec.template.spec.volumes', []).some(

@@ -75,9 +75,10 @@ export default class Monitorings extends React.Component {
   }
 
   get resourceParams() {
-    const { namespace, name } = this.store.detail
+    const { cluster, namespace, name } = this.store.detail
 
     return {
+      cluster,
       namespace,
       workloadKind: this.monitoringModule,
       workloadName: name,
@@ -95,7 +96,6 @@ export default class Monitorings extends React.Component {
 
   fetchData = (params = {}) => {
     const { pods } = this.state
-
     if (isEmpty(pods)) {
       this.resourceStore
         .fetchSortedMetrics({
@@ -105,7 +105,7 @@ export default class Monitorings extends React.Component {
         })
         .then(data => {
           const result = get(data[MetricTypes.cpu_usage], 'data.result') || []
-          const _pods = result.map(item => get(item, 'metric.resource_name'))
+          const _pods = result.map(item => get(item, 'metric.pod'))
 
           this.setState({ pods: _pods }, () => {
             this.fetchMetrics({ resources: _pods, ...params })
@@ -194,7 +194,7 @@ export default class Monitorings extends React.Component {
         {configs.map(item => {
           item.data = get(this.metrics, `${item.metricType}.data.result`) || []
           item.legend = item.data.map((record, index) =>
-            get(record, 'metric.resource_name', `pod${index}`)
+            get(record, 'metric.pod', `pod${index}`)
           )
 
           const config = getAreaChartOps(item)

@@ -74,7 +74,7 @@ export default [
     component: ServiceDetail,
   },
   {
-    path: `${PATH}/routes/:name`,
+    path: `${PATH}/ingresses/:name`,
     component: RouteDetail,
   },
   {

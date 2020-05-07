@@ -49,7 +49,7 @@ export default class ConfigMapDetail extends React.Component {
   }
 
   get routing() {
-    return this.props.rootStore.rooting
+    return this.props.rootStore.routing
   }
 
   get listUrl() {

@@ -32,10 +32,12 @@ class ClusterStability extends React.Component {
   constructor(props) {
     super(props)
 
-    if (!this.props.rootStore.monitoring) {
-      const monitoringStore = new MonitoringStore()
-      this.props.rootStore.register('monitoring', monitoringStore)
-    }
+    const monitoringStore = new MonitoringStore({ cluster: this.cluster })
+    this.props.rootStore.register('monitoring', monitoringStore)
+  }
+
+  get cluster() {
+    return this.props.match.params.cluster
   }
 
   componentDidMount() {

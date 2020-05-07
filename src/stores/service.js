@@ -96,14 +96,14 @@ export default class ServiceStore extends Base {
   }
 
   @action
-  async fetchEndpoints({ name, namespace }) {
+  async fetchEndpoints({ name, cluster, namespace }) {
     this.endpoints.isLoading = true
     this.endpoints.data.clear()
 
     let endpoints = []
     try {
       const result = await request.get(
-        `api/v1/namespaces/${namespace}/endpoints/${name}`,
+        `api/v1${this.getPath({ cluster, namespace })}/endpoints/${name}`,
         null,
         null,
         () => {
@@ -177,11 +177,14 @@ export default class ServiceStore extends Base {
 
     const workloads = { deployments, statefulsets }
 
+    let workload = {}
     workloadTypes.forEach(type => {
       if (workloads[type] && !isEmpty(workloads[type].items)) {
         const item = workloads[type].items[0]
-        this.workload = { ...ObjectMapper[type](item), type }
+        workload = { ...ObjectMapper[type](item), type }
       }
     })
+
+    this.workload = workload
   }
 }

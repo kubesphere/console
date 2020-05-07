@@ -62,8 +62,8 @@ export default class ProjectCreateModal extends React.Component {
 
   get networkOptions() {
     return [
-      { label: t('Off'), value: 'false' },
-      { label: t('On'), value: 'true' },
+      { label: t('Off'), value: '' },
+      { label: t('On'), value: 'enabled' },
     ]
   }
 
@@ -130,9 +130,9 @@ export default class ProjectCreateModal extends React.Component {
                 desc={t('NETWORK_ISOLATED_DESC')}
               >
                 <Select
-                  name="metadata.annotations['kubesphere.io/network']"
+                  name="metadata.annotations['kubesphere.io/network-isolate']"
                   options={this.networkOptions}
-                  defaultValue={'true'}
+                  defaultValue={'enabled'}
                 />
               </Form.Item>
             </Column>
@@ -151,6 +151,7 @@ export default class ProjectCreateModal extends React.Component {
                 <ArrayInput
                   name="spec.placement.clusters"
                   addText={t('Add Cluster')}
+                  itemType="object"
                 >
                   <ObjectInput>
                     <Select
@@ -163,7 +164,7 @@ export default class ProjectCreateModal extends React.Component {
               </Form.Item>
             </Form.Group>
           )}
-          <Form.Group
+          {/* <Form.Group
             label={t('Member Settings')}
             desc={t('MEMBER_SETTINGS_DESC')}
           >
@@ -179,7 +180,7 @@ export default class ProjectCreateModal extends React.Component {
                 </ObjectInput>
               </ArrayInput>
             </Form.Item>
-          </Form.Group>
+          </Form.Group> */}
         </div>
       </Modal.Form>
     )

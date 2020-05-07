@@ -49,7 +49,7 @@ export default class DaemonSetDetail extends React.Component {
   }
 
   get routing() {
-    return this.props.rootStore.rooting
+    return this.props.rootStore.routing
   }
 
   get listUrl() {
@@ -87,7 +87,7 @@ export default class DaemonSetDetail extends React.Component {
       text: t('Revision Rollback'),
       action: 'edit',
       onClick: () =>
-        this.trigger('workload.rollback', {
+        this.trigger('workload.revision.rollback', {
           detail: this.store.detail,
         }),
     },
@@ -175,7 +175,7 @@ export default class DaemonSetDetail extends React.Component {
   render() {
     const stores = { detailStore: this.store }
 
-    if (this.store.isLoading) {
+    if (this.store.isLoading && !this.store.detail.name) {
       return <Loading className="ks-page-loading" />
     }
 

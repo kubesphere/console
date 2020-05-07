@@ -17,6 +17,7 @@
  */
 
 import { get } from 'lodash'
+import { toJS } from 'mobx'
 import { withProps } from 'utils'
 import { Modal, Notify } from 'components/Base'
 
@@ -141,8 +142,8 @@ export default {
     },
   },
   'workload.revision.rollback': {
-    on({ store, detail, module, success, ...props }) {
-      const revisionStore = new RevisionStore(module)
+    on({ store, detail, success, ...props }) {
+      const revisionStore = new RevisionStore(store.module)
       const modal = Modal.open({
         onOk: data => {
           revisionStore.rollBack(data).then(() => {
@@ -151,7 +152,7 @@ export default {
           })
         },
         detail,
-        module,
+        module: store.module,
         store: revisionStore,
         modal: RollBackModal,
         ...props,
@@ -169,7 +170,7 @@ export default {
               success && success()
             })
           } else {
-            hpaStore.create(newData).then(async () => {
+            hpaStore.create(newData, detail).then(async () => {
               Modal.close(modal)
               await store.patch(detail, {
                 metadata: {
@@ -194,7 +195,7 @@ export default {
     },
   },
   'workload.template.edit': {
-    on({ store, detail, module, success, ...props }) {
+    on({ store, detail, success, ...props }) {
       const modal = Modal.open({
         onOk: data => {
           store.update(detail, data).then(() => {
@@ -202,9 +203,9 @@ export default {
             success && success()
           })
         },
-        module,
         store,
-        detail: detail._originData,
+        module: store.module,
+        detail: toJS(detail._originData),
         modal: EditConfigTemplateModal,
         ...props,
       })
@@ -217,11 +218,12 @@ export default {
         type: 'Headless(Selector)',
         name: get(detail, '_originData.spec.serviceName', ''),
         namespace: detail.namespace,
+        cluster: detail.cluster,
       }
 
       const modal = Modal.open({
         onOk: data => {
-          store.update(serviceDetail, data).then(() => {
+          serviceStore.update(serviceDetail, data).then(() => {
             Modal.close(modal)
             success && success()
           })

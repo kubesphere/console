@@ -17,13 +17,19 @@
  */
 
 import React from 'react'
-import { reaction } from 'mobx'
+import { reaction, toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
+import { get } from 'lodash'
 
 import WorkloadStore from 'stores/workload'
 import FedStore from 'stores/federated'
+import RouterStore from 'stores/router'
 
-import { Component as WorkloadResourceStatus } from 'projects/containers/Deployments/Detail/ResourceStatus'
+import { Panel, Text } from 'components/Base'
+import PodsCard from 'components/Cards/Pods'
+import ClusterWorkloadStatus from 'projects/components/Cards/ClusterWorkloadStatus'
+
+import Ports from '../Ports'
 
 import styles from './index.scss'
 
@@ -38,6 +44,7 @@ export default class ResourceStatus extends React.Component {
     const workloadModule = this.store.workload.type
     this.workloadStore = new WorkloadStore(workloadModule)
     this.fedWorkloadDetailStore = new FedStore(workloadModule)
+    this.routerStore = new RouterStore()
 
     this.disposer = reaction(
       () => this.store.workload,
@@ -53,32 +60,100 @@ export default class ResourceStatus extends React.Component {
     this.disposer && this.disposer()
   }
 
-  fetchDetail = () => {
-    const { params } = this.props.match
-    const { name, type } = this.store.workload
-    this.workloadStore.setModule(type)
-    this.fedWorkloadDetailStore.setModule(type)
+  get prefix() {
+    const path = this.props.match.path
+    const { cluster, namespace } = this.props.match.params
+    if (path.startsWith('/clusters')) {
+      return `/clusters/${cluster}/projects/${namespace}`
+    }
 
-    this.workloadStore.fetchDetail({ ...params, name })
-    this.fedWorkloadDetailStore.fetchDetail({ ...params, name })
+    return `/cluster/${cluster}/projects/${namespace}`
   }
 
-  render() {
-    const { match } = this.props
+  fetchDetail = async () => {
+    const { params } = this.props.match
+    const { name, type } = this.store.workload
 
-    if (this.workloadStore.isLoading) {
-      return null
+    if (type) {
+      this.workloadStore.setModule(type)
+      await this.workloadStore.fetchDetail({ ...params, name })
+      if (this.workloadStore.detail.isFedManaged) {
+        this.fedWorkloadDetailStore.setModule(type)
+        this.fedWorkloadDetailStore.fetchDetail({ ...params, name })
+      }
+    }
+
+    this.routerStore.getGateway(params)
+  }
+
+  renderReplicaInfo() {
+    const detail = toJS(this.workloadStore.detail)
+
+    if (detail.isFedManaged) {
+      const fedDetail = toJS(this.fedWorkloadDetailStore.detail)
+      return (
+        <ClusterWorkloadStatus
+          detail={detail}
+          fedDetail={fedDetail}
+          module={this.workloadStore.module}
+          store={this.fedWorkloadDetailStore}
+        />
+      )
+    }
+
+    return null
+  }
+
+  renderPods() {
+    const { name } = this.props.match.params
+
+    return (
+      <PodsCard
+        prefix={`${this.prefix}/${this.module}/${name}`}
+        detail={this.store.detail}
+        clusters={get(this.props.fedDetailStore, 'detail.clusters', [])}
+        onUpdate={this.handlePodUpdate}
+      />
+    )
+  }
+
+  renderExternal() {
+    const detail = toJS(this.store.detail)
+
+    return (
+      <Panel title={t('External Service')}>
+        <Text title={detail.externalName} description={t('ExternalName')} />
+      </Panel>
+    )
+  }
+
+  renderPorts() {
+    const detail = toJS(this.store.detail)
+    const gateway = this.routerStore.gateway.data
+
+    return (
+      <Panel title={t('Service Ports')}>
+        <Ports detail={detail} gateway={gateway} />
+      </Panel>
+    )
+  }
+
+  renderContent() {
+    const { detail } = this.store
+
+    if (detail.specType === 'ExternalName') {
+      return this.renderExternal()
     }
 
     return (
-      <div className={styles.main}>
-        <WorkloadResourceStatus
-          detailStore={this.workloadStore}
-          fedDetailStore={this.fedWorkloadDetailStore}
-          match={match}
-          noPorts
-        />
+      <div>
+        {detail.isFedManaged ? this.renderReplicaInfo() : this.renderPorts()}
+        {this.renderPods()}
       </div>
     )
+  }
+
+  render() {
+    return <div className={styles.main}>{this.renderContent()}</div>
   }
 }

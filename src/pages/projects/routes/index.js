@@ -109,7 +109,7 @@ export default [
         ksModule: 'servicemesh',
         exact: true,
       },
-      { path: `${PATH}/routes`, component: Routes, exact: true },
+      { path: `${PATH}/ingresses`, component: Routes, exact: true },
       { path: `${PATH}/volumes`, component: Volumes, exact: true },
       { path: `${PATH}/base-info`, component: BaseInfo, exact: true },
       { path: `${PATH}/configmaps`, component: ConfigMaps, exact: true },

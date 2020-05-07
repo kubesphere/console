@@ -18,12 +18,13 @@
 
 import React, { Component } from 'react'
 import { observer } from 'mobx-react'
-import { Tooltip, Icon } from '@pitrix/lego-ui'
-import { isEmpty } from 'lodash'
-import { Button, Panel, Indicator, Tag, Text } from 'components/Base'
+import { Icon } from '@pitrix/lego-ui'
+import { Panel, Indicator, Tag, Text } from 'components/Base'
 
 import ClusterStore from 'stores/cluster'
 import ServiceStore from 'stores/service'
+
+import Ports from '../../Ports'
 
 import styles from './index.scss'
 
@@ -42,66 +43,7 @@ export default class ServicePort extends Component {
   renderPorts() {
     const { gateway } = this.props
     const detail = this.serviceStore.detail
-
-    if (isEmpty(detail.ports)) {
-      return null
-    }
-
-    return (
-      <div className={styles.portsWrapper}>
-        {detail.ports.map((port, index) => (
-          <div key={index} className={styles.ports}>
-            <Icon name="pod" size={40} />
-            <div className={styles.port}>
-              <p>
-                <strong>{port.targetPort}</strong>
-              </p>
-              <p>{t('Container Port')}</p>
-            </div>
-            <div className={styles.protocol}>→ {port.protocol} → </div>
-            <Icon name="network-router" size={40} />
-            <div className={styles.port}>
-              <p>
-                <strong>{port.port}</strong>
-              </p>
-              <p>{t('Service Port')}</p>
-            </div>
-            {port.nodePort && (
-              <>
-                <div className={styles.protocol}>→ {port.protocol} → </div>
-                <Icon name="nodes" size={40} />
-                <div className={styles.port}>
-                  <p>
-                    <strong>{port.nodePort}</strong>
-                  </p>
-                  <div>
-                    {t('Node Port')}
-                    <Tooltip
-                      content={t('SERVICE_NODE_PORT_DESC')}
-                      trigger="hover"
-                    >
-                      <Icon name="information" />
-                    </Tooltip>
-                  </div>
-                </div>
-                {gateway.loadBalancerIngress && (
-                  <a
-                    href={`http://${gateway.loadBalancerIngress}:${
-                      port.nodePort
-                    }`}
-                    target="_blank"
-                  >
-                    <Button className={styles.access} noShadow>
-                      {t('Click to visit')}
-                    </Button>
-                  </a>
-                )}
-              </>
-            )}
-          </div>
-        ))}
-      </div>
-    )
+    return <Ports gateway={gateway} detail={detail} />
   }
 
   render() {
@@ -139,10 +81,6 @@ export default class ServicePort extends Component {
             description={t('集群内部访问方式(DNS)')}
           />
           <Text title={serviceDetail.clusterIP} description={t('Virtual IP')} />
-          <Text
-            title={serviceDetail.clusterIP}
-            description={t('External IP')}
-          />
         </div>
         <div className={styles.content}>{this.renderPorts()}</div>
       </Panel>

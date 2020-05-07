@@ -16,10 +16,14 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { get } from 'lodash'
 import React from 'react'
 import { Icon, Columns, Column } from '@pitrix/lego-ui'
 import { Text, Indicator } from 'components/Base'
 import { getLocalTime } from 'utils'
+import { CLUSTER_PROVIDER_ICON } from 'utils/constants'
+
+import StatusReason from 'clusters/components/StatusReason'
 
 import styles from './index.scss'
 
@@ -31,14 +35,20 @@ export default class ClusterCard extends React.Component {
 
   render() {
     const { data } = this.props
+    const isReady = get(data.conditions, 'Ready.status') === 'True'
 
     return (
       <li className={styles.wrapper} data-test="cluster-item">
         <Columns>
           <Column className="is-narrow">
             <div className={styles.icon}>
-              <Icon name={data.icon || 'kubernetes'} size={40} />
-              <Indicator className={styles.indicator} status={data.status} />
+              <Icon
+                name={CLUSTER_PROVIDER_ICON[data.provider] || 'kubernetes'}
+                size={40}
+              />
+              {isReady && (
+                <Indicator className={styles.indicator} status="ready" />
+              )}
             </div>
           </Column>
           <Column className="is-4">
@@ -46,7 +56,11 @@ export default class ClusterCard extends React.Component {
               <div className="h5">
                 <a onClick={this.handleClick}>{data.name}</a>
               </div>
-              <p className="ellipsis">{data.description}</p>
+              {isReady ? (
+                <p className="ellipsis">{data.description}</p>
+              ) : (
+                <StatusReason data={data} />
+              )}
             </div>
           </Column>
           <Column className="is-2">

@@ -65,9 +65,8 @@ export default class StatefulSetServiceEditModal extends React.Component {
   }
 
   fetchData(detail = {}) {
-    const { name, namespace } = detail
-    if (name && namespace) {
-      this.store.fetchDetail({ name, namespace }).then(() => {
+    if (detail.name && detail.namespace) {
+      this.store.fetchDetail(detail).then(() => {
         this.setState({
           formTemplate: toJS(this.store.detail._originData),
         })

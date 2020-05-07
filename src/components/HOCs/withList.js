@@ -98,6 +98,7 @@ export default function withList(options) {
               onClick: () =>
                 this.trigger('resource.batch.delete', {
                   type: t(this.name),
+                  rowKey: this.rowKey,
                   success: this.routing.query,
                 }),
             },

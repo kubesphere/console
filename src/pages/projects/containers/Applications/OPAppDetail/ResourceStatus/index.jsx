@@ -62,7 +62,7 @@ export default class ResourceStatus extends React.Component {
           <Ingresses
             data={detail.ingresses}
             loading={isLoading}
-            prefix={`${this.prefix}/routes`}
+            prefix={`${this.prefix}/ingresses`}
           />
         )}
         {!isEmpty(detail.services) && (

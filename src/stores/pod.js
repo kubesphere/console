@@ -35,6 +35,7 @@ export default class PodStore extends Base {
     )
     const detail = this.mapper(result)
 
+    detail.cluster = cluster
     detail.volumes = await getWorkloadVolumes(detail)
 
     if (!isEmpty(detail.volumes)) {

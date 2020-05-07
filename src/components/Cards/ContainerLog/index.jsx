@@ -67,12 +67,13 @@ export default class ContainerLog extends React.Component {
   }
 
   getData(params, callback) {
-    const { namespace, podName, containerName } = this.props
+    const { cluster, namespace, podName, containerName } = this.props
 
     this.store.stopWatchLogs()
 
     return this.store.watchLogs(
       {
+        cluster,
         namespace,
         podName,
         container: containerName,

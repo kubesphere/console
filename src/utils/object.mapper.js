@@ -881,20 +881,23 @@ const VolumeSnapshotMapper = detail => {
   }
 }
 
-const ClusterMapper = item => ({
-  ...getBaseInfo(item),
-  provider: get(item, 'spec.provider'),
-  isHost:
-    get(
-      item,
-      'metadata.annotations["cluster.kubesphere.io/is-host-cluster"]'
-    ) === 'true',
-  nodeCount: get(item, 'status.nodeCount'),
-  kubernetesVersion: get(item, 'status.kubernetesVersion'),
-  isActive: get(item, 'spec.active'),
-  labels: get(item, 'metadata.labels'),
-  group: get(item, 'metadata.labels["cluster.kubesphere.io/group"]'),
-})
+const ClusterMapper = item => {
+  const conditions = keyBy(get(item, 'status.conditions', []), 'type')
+  return {
+    ...getBaseInfo(item),
+    conditions,
+    provider: get(item, 'spec.provider'),
+    isHost:
+      get(
+        item,
+        'metadata.annotations["cluster.kubesphere.io/is-host-cluster"]'
+      ) === 'true',
+    nodeCount: get(item, 'status.nodeCount'),
+    kubernetesVersion: get(item, 'status.kubernetesVersion'),
+    labels: get(item, 'metadata.labels'),
+    group: get(item, 'metadata.labels["cluster.kubesphere.io/group"]'),
+  }
+}
 
 const FederatedMapper = item => ({
   ...getBaseInfo(item),

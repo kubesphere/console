@@ -53,7 +53,7 @@ export default class PlatformStatus extends Component {
           />
         </div>
         {this.resources.map(resource => (
-          <Resource data={resource} />
+          <Resource key={resource.name} data={resource} />
         ))}
       </div>
     )

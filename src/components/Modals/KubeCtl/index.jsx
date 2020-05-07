@@ -30,7 +30,7 @@ import styles from './index.scss'
 @fullScreen
 @observer
 export default class KubeCtlModal extends React.Component {
-  store = new TerminalStore()
+  store = new TerminalStore({ cluster: this.props.cluster })
 
   terminalRef = React.createRef()
 

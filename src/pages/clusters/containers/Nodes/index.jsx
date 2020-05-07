@@ -52,10 +52,15 @@ const MetricTypes = {
 })
 export default class Nodes extends React.Component {
   store = this.props.store
-  monitoringStore = new NodeMonitoringStore()
+
+  monitoringStore = new NodeMonitoringStore({ cluster: this.cluster })
 
   componentDidMount() {
     this.store.fetchCount(this.props.match.params)
+  }
+
+  get cluster() {
+    return this.props.match.params.cluster
   }
 
   get tips() {
@@ -149,11 +154,9 @@ export default class Nodes extends React.Component {
   }
 
   getData = async params => {
-    await this.store.fetchList({
-      ...this.props.match.params,
-      ...params,
-    })
+    await this.store.fetchList({ ...params, ...this.props.match.params })
     await this.monitoringStore.fetchMetrics({
+      ...this.props.match.params,
       resources: this.store.list.data.map(node => node.name),
       metrics: Object.values(MetricTypes),
       last: true,

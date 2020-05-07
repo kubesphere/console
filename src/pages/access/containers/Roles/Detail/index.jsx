@@ -135,7 +135,7 @@ export default class RoleDetail extends React.Component {
   render() {
     const stores = { detailStore: this.store }
 
-    if (this.store.isLoading) {
+    if (this.store.isLoading && !this.store.detail.name) {
       return <Loading className="ks-page-loading" />
     }
 

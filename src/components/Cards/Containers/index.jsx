@@ -43,6 +43,7 @@ export default class ContainersCard extends React.Component {
     const {
       className,
       prefix,
+      cluster,
       containers,
       initContainers,
       podName,
@@ -56,6 +57,7 @@ export default class ContainersCard extends React.Component {
             <ContainerItem
               key={index}
               prefix={prefix}
+              cluster={cluster}
               detail={item}
               podName={podName}
             />
@@ -64,6 +66,7 @@ export default class ContainersCard extends React.Component {
             <ContainerItem
               key={index}
               prefix={prefix}
+              cluster={cluster}
               detail={item}
               podName={podName}
               isInit

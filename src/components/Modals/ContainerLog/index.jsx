@@ -28,7 +28,7 @@ import styles from './index.scss'
 export default class ContainerLogModal extends React.Component {
   renderContent() {
     const { namespace, name } = this.props.container
-    const { podName } = this.props
+    const { cluster, podName } = this.props
 
     if (!get(this.props, 'container.containerID')) {
       return (
@@ -44,6 +44,7 @@ export default class ContainerLogModal extends React.Component {
         contentClassName={styles.containerLogContent}
         namespace={namespace}
         podName={podName}
+        cluster={cluster}
         containerName={name}
       />
     )

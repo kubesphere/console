@@ -43,23 +43,36 @@ class RouteRules extends React.Component {
     this.serviceStore = new ServiceStore()
     this.routerStore = new RouterStore()
 
-    this.secretStore.fetchList({ namespace: this.namespace })
-    this.serviceStore.fetchList({ namespace: this.namespace, limit: Infinity })
-    this.routerStore.getGateway({ namespace: this.namespace }).then(() => {
-      const { data } = toJS(this.routerStore.gateway)
-      if (data.serviceMeshEnable) {
-        set(
-          this.formTemplate,
-          'metadata.annotations["nginx.ingress.kubernetes.io/service-upstream"]',
-          'true'
-        )
-      }
+    this.secretStore.fetchList({
+      namespace: this.namespace,
+      cluster: this.cluster,
     })
+    this.serviceStore.fetchList({
+      namespace: this.namespace,
+      cluster: this.cluster,
+      limit: Infinity,
+    })
+    this.routerStore
+      .getGateway({ namespace: this.namespace, cluster: this.cluster })
+      .then(() => {
+        const { data } = toJS(this.routerStore.gateway)
+        if (data.serviceMeshEnable) {
+          set(
+            this.formTemplate,
+            'metadata.annotations["nginx.ingress.kubernetes.io/service-upstream"]',
+            'true'
+          )
+        }
+      })
   }
 
   get formTemplate() {
     const { formTemplate, module } = this.props
     return get(formTemplate, MODULE_KIND_MAP[module], formTemplate)
+  }
+
+  get cluster() {
+    return this.props.cluster
   }
 
   get namespace() {

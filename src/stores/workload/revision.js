@@ -37,20 +37,24 @@ export default class RevisionStore extends Base {
     this.module = module
   }
 
-  getDetailUrl = ({ name, namespace, revision }) =>
-    `kapis/resources.kubesphere.io/v1alpha2/namespaces/${namespace}/${
-      this.module
-    }/${name}/revisions/${revision}`
+  getDetailUrl = ({ name, cluster, namespace, revision }) =>
+    `kapis/resources.kubesphere.io/v1alpha2${this.getPath({
+      cluster,
+      namespace,
+    })}/${this.module}/${name}/revisions/${revision}`
 
   @action
-  async fetchList({ namespace, name, selector }) {
+  async fetchList({ cluster, namespace, name, selector }) {
     this.list.isLoading = true
 
     const labelSelector = joinSelector(selector)
     const prefix =
       this.module === 'deployments'
-        ? `apis/apps/v1/namespaces/${namespace}/replicasets`
-        : `apis/apps/v1/namespaces/${namespace}/controllerrevisions`
+        ? `apis/apps/v1${this.getPath({ cluster, namespace })}/replicasets`
+        : `apis/apps/v1${this.getPath({
+            cluster,
+            namespace,
+          })}/controllerrevisions`
     const result = await request.get(`${prefix}?labelSelector=${labelSelector}`)
 
     let data = result.items.map(ObjectMapper.revisions)
@@ -65,11 +69,11 @@ export default class RevisionStore extends Base {
   }
 
   @action
-  async fetchDetail({ name, namespace, revision }) {
+  async fetchDetail({ name, cluster, namespace, revision }) {
     this.isLoading = true
 
     const result = await request.get(
-      this.getDetailUrl({ name, namespace, revision })
+      this.getDetailUrl({ name, cluster, namespace, revision })
     )
     const detail = ObjectMapper.revisions(result)
 
@@ -78,9 +82,11 @@ export default class RevisionStore extends Base {
   }
 
   @action
-  async fetchWorkloadDetail({ name, namespace }) {
+  async fetchWorkloadDetail({ name, cluster, namespace }) {
     const result = await request.get(
-      `apis/apps/v1/namespaces/${namespace}/${this.module}/${name}`
+      `apis/apps/v1${this.getPath({ cluster, namespace })}/${
+        this.module
+      }/${name}`
     )
     this.workloadDetail = ObjectMapper[this.module](result)
   }
@@ -96,16 +102,7 @@ export default class RevisionStore extends Base {
   }
 
   @action
-  async scale({ name, namespace }, newReplicas) {
-    const data = { spec: { replicas: newReplicas } }
-    await request.patch(
-      `apis/apps/v1/namespaces/${namespace}/${this.module}/${name}`,
-      data
-    )
-  }
-
-  @action
-  async rollBack({ name, namespace, revision }) {
+  async rollBack({ name, cluster, namespace, revision }) {
     this.isSubmitting = true
 
     switch (this.module) {
@@ -120,7 +117,7 @@ export default class RevisionStore extends Base {
         }
 
         await request.post(
-          `apis/apps/v1/namespaces/${namespace}/${
+          `apis/apps/v1/${this.getPath({ cluster, namespace })}/${
             this.module
           }/${name}/rollback`,
           params
@@ -135,7 +132,9 @@ export default class RevisionStore extends Base {
         )
 
         await request.patch(
-          `apis/apps/v1/namespaces/${namespace}/${this.module}/${name}`,
+          `apis/apps/v1/${this.getPath({ cluster, namespace })}/${
+            this.module
+          }/${name}`,
           target.data
         )
 

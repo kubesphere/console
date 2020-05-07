@@ -129,7 +129,7 @@ export default class DevOps extends React.Component {
           itemActions={this.itemActions}
           columns={this.getColumns()}
           onCreate={this.showCreate}
-          searchType={'keyword'}
+          searchType="keyword"
         />
       </ListPage>
     )

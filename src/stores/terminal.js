@@ -24,8 +24,8 @@ export default class TerminalStore {
 
   @computed
   get kubeWebsocketUrl() {
-    const { namespace, pod, container, shell = 'sh' } = this.kubectl
-    return `kapis/terminal.kubesphere.io/v1alpha2/namespaces/${namespace}/pods/${pod}?container=${container}&shell=${shell}`
+    const { cluster, namespace, pod, container, shell = 'sh' } = this.kubectl
+    return `kapis/terminal.kubesphere.io/v1alpha2/clusters/${cluster}/namespaces/${namespace}/pods/${pod}?container=${container}&shell=${shell}`
   }
 
   @observable

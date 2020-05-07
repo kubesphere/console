@@ -26,15 +26,15 @@ import ProjectTrend from './Trend'
 @inject('rootStore')
 class ResourceUsage extends React.Component {
   renderPhysicalResource() {
-    return <PhysicalResource />
+    return <PhysicalResource {...this.props} />
   }
 
   renderVirtualResource() {
-    return <VirtualResource />
+    return <VirtualResource {...this.props} />
   }
 
   renderProjectTrend() {
-    return <ProjectTrend />
+    return <ProjectTrend {...this.props} />
   }
 
   render() {

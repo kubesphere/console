@@ -44,7 +44,8 @@ class UsageRanking extends React.Component {
     super(props)
 
     this.store = new Store({
-      namespaces: get(this.props.match, 'params.namespace'),
+      cluster: get(props.match, 'params.cluster'),
+      namespaces: get(props.match, 'params.namespace'),
     })
   }
 

@@ -51,11 +51,15 @@ class Monitorings extends React.Component {
   constructor(props) {
     super(props)
 
-    this.monitorStore = new NodeMonitorStore()
+    this.monitorStore = new NodeMonitorStore({ cluster: this.cluster })
   }
 
   get store() {
     return this.props.detailStore
+  }
+
+  get cluster() {
+    return this.props.match.params.cluster
   }
 
   get metrics() {

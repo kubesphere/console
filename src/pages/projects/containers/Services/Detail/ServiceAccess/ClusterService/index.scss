@@ -41,46 +41,7 @@
 }
 
 .content {
-  padding: 12px;
   margin-top: 12px;
   border-radius: $border-radius;
   background-color: $light-color01;
-}
-
-.ports {
-  position: relative;
-  padding: 12px;
-  line-height: 20px;
-  border-radius: 4px;
-  background-color: #fff;
-  border: 1px solid $border-color;
-
-  .port,
-  .protocol {
-    display: inline-block;
-    vertical-align: middle;
-    font-family: $font-family-id;
-    color: #5f708a;
-    margin-right: 20px;
-  }
-
-  :global .icon {
-    margin-right: 20px;
-  }
-
-  & + .ports {
-    margin-top: 8px;
-  }
-
-  p {
-    color: $second-text-color;
-  }
-
-  strong {
-    font-family: $font-family-id;
-    font-size: $size-normal;
-    font-weight: bold;
-    line-height: 1.43;
-    color: $text-color;
-  }
 }

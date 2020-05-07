@@ -64,7 +64,7 @@ export default class DeploymentDetail extends React.Component {
   }
 
   get routing() {
-    return this.props.rootStore.rooting
+    return this.props.rootStore.routing
   }
 
   fetchData = async () => {
@@ -93,6 +93,7 @@ export default class DeploymentDetail extends React.Component {
       icon: 'timed-task',
       text: t('Revision Rollback'),
       action: 'edit',
+      show: !this.store.detail.isFedManaged,
       onClick: () =>
         this.trigger('workload.revision.rollback', {
           detail: this.store.detail,
@@ -103,6 +104,7 @@ export default class DeploymentDetail extends React.Component {
       icon: 'firewall',
       text: t('Horizontal Pod Autoscaling'),
       action: 'edit',
+      show: !this.store.detail.isFedManaged,
       onClick: () =>
         this.trigger('workload.hpa.edit', {
           detail: this.store.detail,
@@ -192,7 +194,7 @@ export default class DeploymentDetail extends React.Component {
   render() {
     const stores = { detailStore: this.store, fedDetailStore: this.fedStore }
 
-    if (this.store.isLoading) {
+    if (this.store.isLoading && !this.store.detail.name) {
       return <Loading className="ks-page-loading" />
     }
 
