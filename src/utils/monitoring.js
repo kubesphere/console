@@ -45,7 +45,7 @@ const UnitTypes = {
   },
   memory: {
     conditions: [1024 ** 4, 1024 ** 3, 1024 ** 2, 1024, 0],
-    units: ['TiB', 'GiB', 'MiB', 'KiB', 'Bytes'],
+    units: ['Ti', 'Gi', 'Mi', 'Ki', 'Bytes'],
   },
   disk: {
     conditions: [1000 ** 4, 1000 ** 3, 1000 ** 2, 1000, 0],
@@ -125,16 +125,16 @@ export const getValueByUnit = (num, unit) => {
       value *= 1000
       if (value < 1) return 0
       break
-    case 'KiB':
+    case 'Ki':
       value /= 1024
       break
-    case 'MiB':
+    case 'Mi':
       value /= 1024 ** 2
       break
-    case 'GiB':
+    case 'Gi':
       value /= 1024 ** 3
       break
-    case 'TiB':
+    case 'Ti':
       value /= 1024 ** 4
       break
     case 'Bytes':

@@ -218,8 +218,6 @@ export default {
   'Container Type': '容器类型',
   'Advanced Options': '高级选项',
   'CPU(m)': 'CPU(m)',
-  'Memory(MiB)': '内存(MiB)',
-  'Memory(GiB)': '内存(GiB)',
   Commands: '命令',
   'Add command': '添加命令',
   Arguments: '参数',
