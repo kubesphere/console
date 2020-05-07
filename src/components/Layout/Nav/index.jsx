@@ -21,7 +21,7 @@ import PropTypes from 'prop-types'
 
 import { trimEnd } from 'lodash'
 
-import NavItem from './Item'
+import NavItem from './NavItem'
 
 import styles from './index.scss'
 
