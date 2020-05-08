@@ -29,6 +29,7 @@ import Volumes from '../containers/Storage/Volumes'
 import Nodes from '../containers/Nodes'
 import ServiceComponents from '../containers/ServiceComponents'
 import Projects from '../containers/Projects'
+import CustomResources from '../containers/CustomResources'
 
 import Deployments from '../containers/Workload/Deployments'
 import StatefulSets from '../containers/Workload/StatefulSets'
@@ -85,6 +86,11 @@ export default [
       {
         path: `${PATH}/projects`,
         component: Projects,
+        exact: true,
+      },
+      {
+        path: `${PATH}/customresources`,
+        component: CustomResources,
         exact: true,
       },
       {

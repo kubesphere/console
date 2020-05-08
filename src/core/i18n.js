@@ -20,9 +20,7 @@ import moment from 'moment-mini'
 import { locale } from '@pitrix/lego-ui'
 import get from 'lodash/get'
 import cookie from 'utils/cookie'
-import { getBrowserLang } from 'utils'
-
-const lazy = ctor => () => ctor()
+import { lazy, getBrowserLang } from 'utils'
 
 const getLocales = {
   zh: lazy(() => import(/* webpackChunkName: "locales-zh" */ `../locales/zh`)),

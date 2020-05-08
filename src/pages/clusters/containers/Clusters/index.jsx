@@ -69,9 +69,6 @@ class Clusters extends React.Component {
 
   handleSearch = name => {
     const params = { name, limit: 10 }
-    if (name) {
-      params.order = 'name'
-    }
     this.store.fetchList(params)
   }
 
@@ -80,9 +77,9 @@ class Clusters extends React.Component {
   }
 
   renderList() {
-    const { data, page, total, limit, isLoading } = this.store.list
+    const { data, page, total, limit, filters, isLoading } = this.store.list
 
-    if (isEmpty(data) && !isLoading) {
+    if (isEmpty(data) && !isLoading && isEmpty(filters)) {
       return (
         <EmptyList
           icon="cluster"

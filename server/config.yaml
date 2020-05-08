@@ -118,7 +118,7 @@ client:
             - { name: ip-ranges, title: IP Ranges }
             - { name: network-policies, title: Network Policies }
             - { name: network-topo, title: Network Topology }
-        - { name: crds, title: Custom Resources, icon: select }
+        - { name: customresources, title: Custom Resources, icon: select }
         - name: storage
           title: Storage Management
           icon: database

@@ -909,6 +909,19 @@ const FederatedMapper = item => ({
   _originData: getOriginData(item),
 })
 
+const CRDMapper = item => {
+  const versions = get(item, 'spec.versions', [])
+  return {
+    versions,
+    ...getBaseInfo(item),
+    group: get(item, 'spec.group'),
+    scope: get(item, 'spec.scope'),
+    kind: get(item, 'spec.names.kind'),
+    latestVersion: get(versions[versions.length - 1], 'name'),
+    _originData: getOriginData(item),
+  }
+}
+
 const DashboardMapper = item => {
   const { metadata = {}, spec = {} } = item
 
@@ -978,4 +991,5 @@ export default {
   federated: FederatedMapper,
   outputs: LogOutPutMapper,
   dashboards: DashboardMapper,
+  customresourcedefinitions: CRDMapper,
 }

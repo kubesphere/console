@@ -16,38 +16,27 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { Router } from 'react-router'
-import { lazy } from 'utils'
-import { renderRoutes } from 'utils/router.config'
-import { Provider } from 'mobx-react'
+import React from 'react'
+import { observer, inject } from 'mobx-react'
+import { Panel, CodeEditor } from 'components/Base'
 
-import 'scss/main.scss'
-
-import routes from './routes'
-
-const getActions = lazy(() => import('src/actions'))
-
-class App extends Component {
-  static propTypes = {
-    rootStore: PropTypes.object,
-    history: PropTypes.object,
-  }
-
-  componentDidMount() {
-    getActions().then(actions => this.props.rootStore.registerActions(actions))
+@inject('detailStore')
+@observer
+export default class ConfigFile extends React.Component {
+  get options() {
+    return {
+      readOnly: true,
+      width: '100%',
+      height: 'calc(100vh - 250px)',
+    }
   }
 
   render() {
-    const { rootStore, history } = this.props
-
+    const { _originData } = this.props.detailStore.detail
     return (
-      <Provider rootStore={rootStore}>
-        <Router history={history}>{renderRoutes(routes)}</Router>
-      </Provider>
+      <Panel title={t('Config File')}>
+        <CodeEditor value={_originData} mode="yaml" options={this.options} />
+      </Panel>
     )
   }
 }
-
-export default App
