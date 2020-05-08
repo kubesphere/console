@@ -118,13 +118,11 @@ export default class SingleStatDataForm extends Component {
           <Columns>
             <Column>
               <Form.Item>
-                <FormItemContainer
-                  name={'yaxes[0].format'}
-                  defaultValue={'none'}
-                >
+                <FormItemContainer name={'yaxes[0].format'} debounce={100}>
                   {({ onChange, value }) => (
                     <Field label={t('Unit')} tips={''}>
                       <Select
+                        defaultValue={'none'}
                         options={formatOpts}
                         value={value}
                         onChange={onChange}
@@ -136,10 +134,11 @@ export default class SingleStatDataForm extends Component {
             </Column>
             <Column>
               <Form.Item>
-                <FormItemContainer name={'yaxes[0].decimals'} defaultValue={0}>
+                <FormItemContainer name={'yaxes[0].decimals'} debounce={100}>
                   {({ onChange, value }) => (
                     <Field label={t('DECIMALS')} tips={''}>
                       <NumberInput
+                        defaultValue={0}
                         value={value}
                         max={5}
                         min={0}

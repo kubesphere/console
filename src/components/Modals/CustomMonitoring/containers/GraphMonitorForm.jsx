@@ -25,6 +25,7 @@ import { MONITOR_GRAPH_COLORS } from 'utils/constants'
 import EditMonitorFormLayou from '../components/EditMonitorFormLayout'
 import { GraphTextInput, ThemeSelector } from '../components/FormInput'
 
+import FormItemContainer from '../components/Form/ItemContianer'
 import Graph from '../components/Graph/Compose'
 import GraphDescription from '../components/Graph/GraphDescription'
 import ErrorContainer from '../components/ErrorContainer'
@@ -53,16 +54,21 @@ export default class GraphMonitorForm extends Component {
     }))
   }
 
+  @computed
+  get timeRange() {
+    const { from, to } = this.props.monitoringStore.timeRange
+
+    return {
+      start: from.valueOf(),
+      end: to.valueOf(),
+    }
+  }
+
   render() {
     const { title, lines, bars, stack, description } = this.monitor.config
     const { errorMessage } = this.monitor
 
-    const { from, to } = this.props.monitoringStore.timeRange
     const legends = this.monitor.legends
-    const timeRange = {
-      start: from.valueOf(),
-      end: to.valueOf(),
-    }
 
     return (
       <EditMonitorFormLayou
@@ -73,8 +79,7 @@ export default class GraphMonitorForm extends Component {
                 line={lines}
                 bar={bars}
                 stacked={stack}
-                description={description}
-                timeRange={timeRange}
+                timeRange={this.timeRange}
                 valueFormatter={this.monitor.valueFormatter}
                 legends={legends}
                 data={this.monitor.graphData}
@@ -87,35 +92,49 @@ export default class GraphMonitorForm extends Component {
             <GraphTextInput type={this.monitor.config.lines ? 'line' : 'bar'} />
             <FormGroupCard label={t('GRAPH_TYPES')}>
               <Form.Item>
-                <TypeSelect
-                  name="stack"
-                  defaultValue={false}
-                  options={[
-                    {
-                      value: true,
-                      label: t('STACKED_GRAPH_TYPE'),
-                      icon: 'barchart',
-                      description: t('STACKED_GRAPH_TYPE_DESC'),
-                    },
-                    {
-                      value: false,
-                      label: t('SINGLE_GRAPH_TYPE_NAME'),
-                      icon: 'barchart',
-                      description: t('SINGLE_GRAPH_TYPE'),
-                    },
-                  ]}
-                />
+                <FormItemContainer name={'stack'} debounce={100}>
+                  {({ onChange, value }) => (
+                    <TypeSelect
+                      defaultValue={false}
+                      value={value}
+                      onChange={onChange}
+                      options={[
+                        {
+                          value: true,
+                          label: t('STACKED_GRAPH_TYPE'),
+                          icon: 'barchart',
+                          description: t('STACKED_GRAPH_TYPE_DESC'),
+                        },
+                        {
+                          value: false,
+                          label: t('SINGLE_GRAPH_TYPE_NAME'),
+                          icon: 'barchart',
+                          description: t('SINGLE_GRAPH_TYPE'),
+                        },
+                      ]}
+                    />
+                  )}
+                </FormItemContainer>
               </Form.Item>
             </FormGroupCard>
             <FormGroupCard label={t('GRAPH_COLORS')}>
               <Form.Item>
-                <ThemeSelector
+                <FormItemContainer
                   name={'colors'}
-                  options={MONITOR_GRAPH_COLORS.map(colorOpt => ({
-                    label: t(colorOpt.nameI18nKey),
-                    value: colorOpt.colors,
-                  }))}
-                />
+                  defaultValue={0}
+                  debounce={100}
+                >
+                  {({ onChange, value }) => (
+                    <ThemeSelector
+                      onChange={onChange}
+                      value={value}
+                      options={MONITOR_GRAPH_COLORS.map(colorOpt => ({
+                        label: t(colorOpt.nameI18nKey),
+                        value: colorOpt.colors,
+                      }))}
+                    />
+                  )}
+                </FormItemContainer>
               </Form.Item>
             </FormGroupCard>
           </>

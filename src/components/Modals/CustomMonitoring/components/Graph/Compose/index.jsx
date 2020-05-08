@@ -63,7 +63,7 @@ function labelTimeFormat(time = Date.now()) {
   return moment(time).format('YYYY-MM-DD HH:mm:ss')
 }
 
-export default class ComposeCustomChart extends React.Component {
+export default class ComposeCustomChart extends React.PureComponent {
   ref = React.createRef()
 
   static defaultProps = {
