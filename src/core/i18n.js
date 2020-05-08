@@ -22,9 +22,15 @@ import get from 'lodash/get'
 import cookie from 'utils/cookie'
 import { getBrowserLang } from 'utils'
 
-import locales from '../locales'
+const lazy = ctor => () => ctor()
 
-const init = () => {
+const getLocales = {
+  zh: lazy(() => import(/* webpackChunkName: "locales-zh" */ `../locales/zh`)),
+  en: lazy(() => import(/* webpackChunkName: "locales-en" */ `../locales/en`)),
+}
+
+const init = async () => {
+  const supportLangs = globals.config.supportLangs.map(item => item.value)
   const defaultLang = get(globals.user, 'lang')
   if (defaultLang && cookie('lang') !== defaultLang) {
     cookie('lang', defaultLang)
@@ -32,8 +38,8 @@ const init = () => {
 
   let lang = cookie('lang') || getBrowserLang()
 
-  if (!locales[lang]) {
-    lang = 'en'
+  if (!supportLangs.includes(lang)) {
+    lang = defaultLang
     cookie('lang', lang)
   }
 
@@ -57,6 +63,18 @@ const init = () => {
       },
     })
   }
+
+  const locales = {}
+
+  await Promise.all(
+    supportLangs.map(async item => {
+      const modules = await getLocales[item]()
+      locales[item] = Object.assign(
+        {},
+        ...modules.default.map(_item => _item.default)
+      )
+    })
+  )
 
   return { locales }
 }
