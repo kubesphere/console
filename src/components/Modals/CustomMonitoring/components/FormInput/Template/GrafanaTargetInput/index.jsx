@@ -42,7 +42,7 @@ export default function GrafanaTargetInput({
         <div className={styles.firstLine}>
           <div>
             <Form.Item className={styles.name}>
-              <FormItemContainer name={`${prefix}.legendFormat`} debounce={500}>
+              <FormItemContainer name={`${prefix}.legendFormat`} debounce={800}>
                 {({ onChange, value }) => (
                   <div>
                     <Field label={t('METRIC_NAME')} tips={''}>

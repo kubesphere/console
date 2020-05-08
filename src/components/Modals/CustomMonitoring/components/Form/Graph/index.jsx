@@ -18,6 +18,7 @@
 
 import React, { Component } from 'react'
 
+import { get } from 'lodash'
 import { Form, Button } from 'components/Base'
 import { Select, Columns, Input, Column } from '@pitrix/lego-ui'
 import { NumberInput } from 'components/Inputs'
@@ -83,7 +84,7 @@ export default class SingleStatDataForm extends Component {
                       type={'control'}
                       onClick={() =>
                         add({
-                          step: '',
+                          step: get(value, '[0].step', ''),
                           legendFormat: '',
                           expr: '',
                           refId:
