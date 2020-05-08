@@ -472,3 +472,5 @@ export const getClusterUrl = url => {
 
   return requestURL
 }
+
+export const lazy = ctor => () => ctor()

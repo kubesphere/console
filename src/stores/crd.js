@@ -16,32 +16,8 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { action, observable } from 'mobx'
+import Base from './base'
 
-import Base from 'stores/base'
-
-export default class ClusterStore extends Base {
-  @observable
-  initializing = true
-
-  @observable
-  isAgentLoading = true
-
-  @observable
-  agent = ''
-
-  module = 'clusters'
-
-  getAgentUrl = ({ cluster }) =>
-    `kapis/cluster.kubesphere.io/v1alpha1/clusters/${cluster}/agent/deployment`
-
-  @action
-  async fetchAgent(params) {
-    this.isAgentLoading = true
-
-    const result = await request.get(this.getAgentUrl(params))
-
-    this.agent = result
-    this.isAgentLoading = false
-  }
+export default class CrdStore extends Base {
+  module = 'customresourcedefinitions'
 }

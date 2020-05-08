@@ -33,7 +33,7 @@ export default class Overview extends React.Component {
   render() {
     const { conditions } = this.cluster.detail
 
-    if (get(conditions, 'Federated.status') !== 'True') {
+    if (get(conditions, 'Ready.status') !== 'True') {
       return <Initializing store={this.cluster} />
     }
 

@@ -32,6 +32,7 @@ import StorageClassDetail from '../containers/Storage/StorageClasses/Detail'
 import VolumeSnapshotsDetail from '../containers/Storage/VolumeSnapshots/Detail'
 import Volume from '../containers/Storage/Volumes/Detail'
 import ComponentDetail from '../containers/ServiceComponents/Detail'
+import CustomResourceDetail from '../containers/CustomResources/Detail'
 
 const PATH = '/clusters/:cluster'
 
@@ -39,6 +40,10 @@ export default [
   {
     path: `${PATH}/nodes/:node`,
     component: NodeDetail,
+  },
+  {
+    path: `${PATH}/customresources/:name`,
+    component: CustomResourceDetail,
   },
   {
     path: `${PATH}/components/:namespace/:name`,

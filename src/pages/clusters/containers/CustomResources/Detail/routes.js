@@ -16,32 +16,18 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { action, observable } from 'mobx'
+import { getIndexRoute } from 'utils/router.config'
 
-import Base from 'stores/base'
+import ConfigFile from './ConfigFile'
 
-export default class ClusterStore extends Base {
-  @observable
-  initializing = true
+const PATH = '/clusters/:cluster/customresources/:name'
 
-  @observable
-  isAgentLoading = true
-
-  @observable
-  agent = ''
-
-  module = 'clusters'
-
-  getAgentUrl = ({ cluster }) =>
-    `kapis/cluster.kubesphere.io/v1alpha1/clusters/${cluster}/agent/deployment`
-
-  @action
-  async fetchAgent(params) {
-    this.isAgentLoading = true
-
-    const result = await request.get(this.getAgentUrl(params))
-
-    this.agent = result
-    this.isAgentLoading = false
-  }
-}
+export default [
+  {
+    path: `${PATH}/config`,
+    title: 'Config File',
+    component: ConfigFile,
+    exact: true,
+  },
+  getIndexRoute({ path: PATH, to: `${PATH}/config`, exact: true }),
+]
