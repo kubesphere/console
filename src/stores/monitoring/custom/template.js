@@ -67,6 +67,14 @@ export default class CustomMonitoringTemplate {
     }
   }
 
+  getTimeRange() {
+    const { from, to } = this.time
+    return {
+      from: moment(this.parseGrafanaTime(from)),
+      to: moment(this.parseGrafanaTime(to)),
+    }
+  }
+
   @observable isEditing = false
 
   /**

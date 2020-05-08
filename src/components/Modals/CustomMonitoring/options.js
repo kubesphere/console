@@ -16,6 +16,6 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-export const refreshInterval = ['', '1s', '2s', '5s', '10s', '30s']
+export const refreshInterval = ['', '3s', '5s', '10s', '30s']
 
 export const recentTimeRange = ['30m', '1h', '5h', '12h', '24h', '7d']

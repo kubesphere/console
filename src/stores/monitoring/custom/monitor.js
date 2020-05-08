@@ -74,10 +74,9 @@ export default class PanelMonitor {
     }
     this.isObserving = true
 
-    const { from, to } = template.timeRange
-
     this.pollingController = polling(
       () => {
+        const { from, to } = template.getTimeRange()
         this.fetchMetrics({ start: from.valueOf(), end: to.valueOf() })
       },
       {
@@ -87,21 +86,26 @@ export default class PanelMonitor {
 
     this.disposer = reaction(
       () => ({
-        timeRange: template.timeRange,
+        time: template.timeRange,
         refresh: template.refreshMs,
         exprs: this.config.targets.map(target => target.expr),
         steps: this.config.targets.map(target => target.step),
       }),
-      ({ timeRange, refresh }) => {
-        const { from: newFrom, to: newTo } = timeRange
-
+      ({ refresh }) => {
+        this.metrics = this.metrics.map(metric => ({
+          ...metric,
+          values: [],
+        }))
         this.pollingController && this.pollingController.stopPolling()
         this.pollingController = polling(
-          () =>
+          () => {
+            const { from: newFrom, to: newTo } = template.getTimeRange()
+
             this.fetchMetrics({
               start: newFrom.valueOf(),
               end: newTo.valueOf(),
-            }),
+            })
+          },
           {
             interval: refresh,
           }

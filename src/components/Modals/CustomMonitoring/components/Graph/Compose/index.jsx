@@ -149,6 +149,7 @@ export default class ComposeCustomChart extends React.PureComponent {
             {bar &&
               legends.map(legend => (
                 <Bar
+                  isAnimationActive={false}
                   connectNulls
                   key={`${legend.ID} - bar`}
                   name={legend.name}
@@ -167,6 +168,7 @@ export default class ComposeCustomChart extends React.PureComponent {
             {line &&
               legends.map(legend => (
                 <Area
+                  isAnimationActive={false}
                   connectNulls
                   key={`${legend.ID} - area`}
                   name={legend.name}
