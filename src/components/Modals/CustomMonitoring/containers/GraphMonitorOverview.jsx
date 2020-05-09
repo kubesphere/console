@@ -24,7 +24,7 @@ import Graph from '../components/Graph/ComposeWithLegends'
 @observer
 export default class GraphMonitorOverview extends React.Component {
   render() {
-    const { from, to } = this.props.monitoringStore.timeRange
+    const { from, to } = this.props.monitoringStore.getTimeRange()
 
     const timeRange = {
       start: from.valueOf(),

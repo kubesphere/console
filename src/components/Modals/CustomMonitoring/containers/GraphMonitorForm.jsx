@@ -54,7 +54,6 @@ export default class GraphMonitorForm extends Component {
     }))
   }
 
-  @computed
   get timeRange() {
     const { from, to } = this.props.monitoringStore.getTimeRange()
 
