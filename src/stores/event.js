@@ -35,7 +35,7 @@ export default class EventsStore {
   async fetchList({ name, cluster, namespace, ...rest }) {
     this.list.isLoading = true
 
-    const clusterPath = cluster ? `/clusters/${cluster}` : ''
+    const clusterPath = cluster ? `/klusters/${cluster}` : ''
     const namespacePath = namespace ? `/namespaces/${namespace}` : ''
     const result = await request.get(
       `api/v1${clusterPath}${namespacePath}/events`,

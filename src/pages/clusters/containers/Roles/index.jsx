@@ -16,6 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { get } from 'lodash'
 import React from 'react'
 import { toJS } from 'mobx'
 
@@ -35,21 +36,29 @@ import RoleStore from 'stores/role'
   name: 'Cluster Role',
 })
 export default class ClusterRoles extends React.Component {
+  componentDidMount() {
+    this.props.store.fetchRoleTemplates(this.props.match.params)
+  }
+
+  showAction = record =>
+    !globals.config.presetClusterRoles.includes(record.name)
+
   get itemActions() {
-    const { trigger, store, module, getData } = this.props
+    const { trigger, store, name, module, routing } = this.props
     return [
       {
         key: 'edit',
         icon: 'pen',
         text: t('Edit'),
         action: 'edit',
+        show: this.showAction,
         onClick: item =>
           trigger('role.edit', {
             module,
             detail: item,
             title: t('Edit Cluster Role'),
             rulesInfo: toJS(store.rulesInfo),
-            success: getData,
+            success: routing.query,
           }),
       },
       {
@@ -57,17 +66,33 @@ export default class ClusterRoles extends React.Component {
         icon: 'trash',
         text: t('Delete'),
         action: 'delete',
+        show: this.showAction,
         onClick: item =>
           trigger('role.delete', {
             detail: item,
-            success: getData,
+            type: t(name),
+            success: routing.query,
+            cluster: this.props.match.params.cluster,
           }),
       },
     ]
   }
 
+  get tableActions() {
+    const { tableProps } = this.props
+    return {
+      ...tableProps.tableActions,
+      onCreate: this.showCreate,
+      getCheckboxProps: record => ({
+        disabled: !this.showAction(record),
+        name: record.name,
+      }),
+    }
+  }
+
   getColumns = () => {
     const { getSortOrder } = this.props
+    const { cluster } = this.props.match.params
     return [
       {
         title: t('Name'),
@@ -77,7 +102,7 @@ export default class ClusterRoles extends React.Component {
         render: name => (
           <Avatar
             icon={ICON_TYPES[this.module]}
-            to={`/access/roles/${name}`}
+            to={`/clusters/${cluster}/roles/${name}`}
             title={name}
           />
         ),
@@ -88,6 +113,13 @@ export default class ClusterRoles extends React.Component {
         dataIndex: 'description',
         isHideable: true,
         width: '55%',
+        render: (description, record) => {
+          const name = get(record, 'name')
+          if (description && globals.config.presetClusterRoles.includes(name)) {
+            return t(description)
+          }
+          return description
+        },
       },
       {
         title: t('Created Time'),
@@ -102,11 +134,11 @@ export default class ClusterRoles extends React.Component {
   }
 
   showCreate = () => {
-    const { module, store, trigger, getData } = this.props
+    const { match, store, trigger, getData } = this.props
     return trigger('role.create', {
-      module,
       title: t('Create Cluster Role'),
       rulesInfo: toJS(store.rulesInfo),
+      cluster: match.params.cluster,
       success: getData,
     })
   }
@@ -118,9 +150,9 @@ export default class ClusterRoles extends React.Component {
         <Banner {...bannerProps} tabs={this.tabs} />
         <Table
           {...tableProps}
+          tableActions={this.tableActions}
           itemActions={this.itemActions}
           columns={this.getColumns()}
-          onCreate={this.showCreate}
         />
       </ListPage>
     )

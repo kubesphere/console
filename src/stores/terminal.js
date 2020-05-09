@@ -51,7 +51,7 @@ export default class TerminalStore {
   }
 
   getClusterPath({ cluster } = {}) {
-    return cluster ? `/clusters/${cluster}` : ''
+    return cluster ? `/klusters/${cluster}` : ''
   }
 
   @action

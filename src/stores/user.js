@@ -35,13 +35,32 @@ export default class UsersStore extends Base {
 
   module = 'users'
 
-  getResourceUrl = () => `kapis/iam.kubesphere.io/v1alpha2/users`
+  getPath({ cluster, workspace, namespace } = {}) {
+    let path = ''
+    if (cluster) {
+      path = `/klusters/${cluster}`
+    }
+    if (workspace) {
+      path = `/workspaces/${workspace}`
+    }
+    if (namespace) {
+      path = cluster
+        ? `/klusters/${cluster}/namespaces/${namespace}`
+        : `/namespaces/${namespace}`
+    }
+    return path
+  }
+
+  getResourceUrl = (params = {}) =>
+    `kapis/iam.kubesphere.io/v1alpha2${this.getPath(params)}/users`
+
+  getListUrl = this.getResourceUrl
 
   @action
   async fetchLogs({ name }) {
     this.logs.isLoading = true
 
-    const result = await request.get(`${this.getDetailUrl({ name })}/logs`)
+    const result = await request.get(`k${this.getDetailUrl({ name })}/logs`)
 
     this.logs.data = result
     this.logs.isLoading = false
@@ -50,8 +69,8 @@ export default class UsersStore extends Base {
   @action
   checkEmail(email) {
     return request.get(
-      `${this.getListUrl()}?conditions=email=${email}`,
-      {},
+      `${this.getListUrl()}`,
+      { email },
       {
         headers: { 'x-check-exist': true },
       }
@@ -59,10 +78,10 @@ export default class UsersStore extends Base {
   }
 
   @action
-  async update(data, { username } = {}) {
-    const name = username || data.username || this.detail.username
-
-    await this.submitting(request.put(this.getDetailUrl({ name }), data))
+  async update({ name, ...params }, data) {
+    await this.submitting(
+      request.put(this.getDetailUrl({ name, ...params }), data)
+    )
 
     if (data.password && name === globals.user.username) {
       return await request.post('logout')
@@ -75,14 +94,16 @@ export default class UsersStore extends Base {
   }
 
   @action
-  async batchDelete(rowKeys) {
+  async batchDelete({ rowKeys, ...params }) {
     if (rowKeys.includes(globals.user.username)) {
       Notify.error(t('Error Tips'), t('Unable to delete itself'))
     } else {
       await this.submitting(
         Promise.all(
           rowKeys.map(username =>
-            request.delete(`${this.getDetailUrl({ name: username })}`)
+            request.delete(
+              `${this.getDetailUrl({ name: username, ...params })}`
+            )
           )
         )
       )
@@ -91,14 +112,12 @@ export default class UsersStore extends Base {
   }
 
   @action
-  delete({ username }) {
-    if (username === globals.user.username) {
+  delete(user) {
+    if (user.name === globals.user.username) {
       Notify.error(t('Error Tips'), t('Unable to delete itself'))
       return
     }
 
-    return this.submitting(
-      request.delete(`${this.getDetailUrl({ name: username })}`)
-    )
+    return this.submitting(request.delete(`${this.getDetailUrl(user)}`))
   }
 }

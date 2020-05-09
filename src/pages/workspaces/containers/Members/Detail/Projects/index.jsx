@@ -18,17 +18,22 @@
 
 import React from 'react'
 import { toJS } from 'mobx'
-import { observer } from 'mobx-react'
+import { observer, inject } from 'mobx-react'
 import { getLocalTime, getDisplayName } from 'utils'
 import { Table } from '@pitrix/lego-ui'
-import { Avatar, Card } from 'components/Base'
+import { Card } from 'components/Base'
+
+import ProjectStore from 'stores/project'
 
 import styles from './index.scss'
 
+@inject('detailStore')
 @observer
 export default class MemberProjects extends React.Component {
+  projectStore = new ProjectStore()
+
   componentDidMount() {
-    this.props.detailStore.fetchProjects(this.props.match.params)
+    this.projectStore.fetchList({ workspace: this.workspace })
   }
 
   get workspace() {
@@ -40,13 +45,7 @@ export default class MemberProjects extends React.Component {
       title: t('Name'),
       dataIndex: 'name',
       width: '33%',
-      render: (name, record) => (
-        <Avatar
-          to={`/projects/${name}`}
-          icon="project"
-          title={getDisplayName(record)}
-        />
-      ),
+      render: (name, record) => getDisplayName(record),
     },
     {
       title: t('Created Time'),
@@ -59,7 +58,7 @@ export default class MemberProjects extends React.Component {
   ]
 
   render() {
-    const { data, isLoading } = toJS(this.props.detailStore.projects)
+    const { data, isLoading } = toJS(this.projectStore.list)
 
     return (
       <Card title={t('Projects')}>

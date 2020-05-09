@@ -49,14 +49,21 @@ export default class UserCreateModal extends Component {
     onCancel() {},
   }
 
+  state = {
+    formTemplate: Object.assign(
+      { apiVersion: 'iam.kubesphere.io/v1alpha2', kind: 'User' },
+      get(this.props, 'detail._originData', {})
+    ),
+  }
+
   globalRoleStore = new RoleStore('globalroles')
 
   componentDidMount() {
-    this.globalRoleStore.fetchList({ limit: -1, order: 'createTime' })
+    this.globalRoleStore.fetchList({ limit: -1, sortBy: 'createTime' })
   }
 
   @computed
-  get clusterRoles() {
+  get globalRoles() {
     return this.globalRoleStore.list.data
       .filter(role => !isSystemRole(role.name))
       .map(role => ({
@@ -71,7 +78,7 @@ export default class UserCreateModal extends Component {
       return callback()
     }
 
-    this.props.store.checkName(value).then(resp => {
+    this.props.store.checkName({ name: value }).then(resp => {
       if (resp.exist) {
         return callback({ message: t('User name exists'), field: rule.field })
       }
@@ -135,7 +142,7 @@ export default class UserCreateModal extends Component {
         title={t(title)}
         icon="human"
         width={691}
-        data={detail}
+        data={this.state.formTemplate}
         {...rest}
       >
         <input name="username" className="hidden-input" type="text" disabled />
@@ -151,7 +158,7 @@ export default class UserCreateModal extends Component {
           rules={userRules}
         >
           <Input
-            name="username"
+            name="metadata.name"
             placeholder="username"
             autoComplete="nope"
             disabled={!!detail}
@@ -159,14 +166,13 @@ export default class UserCreateModal extends Component {
           />
         </Form.Item>
         <Form.Item label={t('Email')} desc={t('EMAIL_DESC')} rules={emailRules}>
-          <Input name="email" placeholder="User@example.com" />
+          <Input name="spec.email" placeholder="User@example.com" />
         </Form.Item>
         <Form.Item label={t('Role')} desc={t('ROLE_DESC')}>
           <Select
-            name="cluster_role"
+            name="metadata.annotations['iam.kubesphere.io/globalrole']"
             optionRenderer={this.optionRenderer}
-            options={this.clusterRoles}
-            required
+            options={this.globalRoles}
           />
         </Form.Item>
         {!detail && (
@@ -183,7 +189,7 @@ export default class UserCreateModal extends Component {
             ]}
           >
             <InputPassword
-              name="password"
+              name="spec.password"
               placeholder={t('Please input password')}
               autoComplete="new-password"
               withStrength
@@ -191,7 +197,10 @@ export default class UserCreateModal extends Component {
           </Form.Item>
         )}
         <Form.Item className={styles.textarea} label={t('Description')}>
-          <TextArea name="description" rows="3" />
+          <TextArea
+            name="metadata.annotations['kubesphere.io/description']"
+            rows="3"
+          />
         </Form.Item>
       </Modal.Form>
     )

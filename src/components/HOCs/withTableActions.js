@@ -33,7 +33,9 @@ function withTableActions(WrappedComponent) {
     }
 
     getEnabledTableActions() {
-      const { tableActions, enabledActions } = this.props
+      const { tableActions, enabledActions, ...rest } = this.props
+
+      Object.assign(tableActions, rest)
 
       if (!enabledActions.includes('delete')) {
         tableActions.onDelete = null
@@ -128,12 +130,10 @@ function withTableActions(WrappedComponent) {
     }
 
     render() {
-      const { enabledActions, ...rest } = this.props
       return (
         <WrappedComponent
-          {...rest}
-          columns={this.getColumns()}
           {...this.getEnabledTableActions()}
+          columns={this.getColumns()}
         />
       )
     }

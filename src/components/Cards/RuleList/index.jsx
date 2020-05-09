@@ -16,41 +16,24 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { isString } from 'lodash'
 import React from 'react'
-import PropTypes from 'prop-types'
 
 import styles from './index.scss'
 
 export default class RuleList extends React.Component {
-  static propTypes = {
-    rules: PropTypes.array,
-  }
-
-  static defaultProps = {
-    rules: [],
-  }
-
   render() {
-    const { rules } = this.props
+    const { templates } = this.props
 
     return (
-      <ul className={styles.rules} data-test="rule-list">
-        {rules.map(rule => (
-          <li key={rule.name}>
+      <ul className={styles.wrapper} data-test="rule-list">
+        {Object.keys(templates).map(key => (
+          <li key={key}>
             <span className={styles.name}>
-              {t(`RULE_${rule.name.toUpperCase()}`)}
+              {t(`RULE_${key.toUpperCase()}`)}
             </span>
             <span>
-              {rule.actions
-                .map(action =>
-                  t(
-                    `RULE_${(isString(action)
-                      ? action
-                      : action.name || ''
-                    ).toUpperCase()}`
-                  )
-                )
+              {templates[key]
+                .map(role => t(`RULE_${role.aliasName.toUpperCase()}`))
                 .join(' / ')}
             </span>
           </li>

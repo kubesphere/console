@@ -16,13 +16,11 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get } from 'lodash'
+import { set, flatten } from 'lodash'
 import React from 'react'
-import { toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 
-import { formatRules } from 'utils'
 import { Modal, Steps, Button } from 'components/Base'
 
 import STEPS from './steps'
@@ -34,7 +32,7 @@ export default class CreateModal extends React.Component {
   static propTypes = {
     store: PropTypes.object,
     module: PropTypes.string,
-    rulesInfo: PropTypes.array,
+    roleTemplates: PropTypes.array,
     formTemplate: PropTypes.object,
     title: PropTypes.string,
     visible: PropTypes.bool,
@@ -61,66 +59,34 @@ export default class CreateModal extends React.Component {
     }
 
     this.formRef = React.createRef()
-
-    if (props.edit) {
-      const { name, namespace } = get(props.formTemplate, 'metadata', {})
-      this.fetchRules({ name, namespace })
-    }
   }
 
   componentDidUpdate(prevProps) {
-    const { visible, edit, formTemplate } = this.props
+    const { visible, formTemplate } = this.props
     if (visible && visible !== prevProps.visible) {
       this.setState({ currentStep: 0, formTemplate })
-
-      if (edit) {
-        const { name, namespace } = get(formTemplate, 'metadata', {})
-        this.fetchRules({ name, namespace })
-      }
     }
   }
 
   get steps() {
-    return STEPS[this.props.module]
-  }
-
-  fetchRules(params = {}) {
-    if (params.name)
-      this.props.store.fetchRules(params).then(() => {
-        const rules = toJS(this.props.store.rules.data)
-        this.setState({
-          formTemplate: {
-            ...this.state.formTemplate,
-            rules: formatRules(rules),
-          },
-        })
-      })
+    return STEPS
   }
 
   handleCreate = () => {
     const form = this.formRef.current
-    const { onOk, rulesInfo } = this.props
+    const { onOk } = this.props
 
     form &&
       form.validate(() => {
         const data = form.getData()
 
-        let rules = []
-        Object.keys(data.rules).forEach(key => {
-          const actionNames = data.rules[key]
-          const ruleInfo = rulesInfo.find(_ruleInfo => _ruleInfo.name === key)
-
-          if (ruleInfo && ruleInfo.actions && actionNames) {
-            actionNames.forEach(name => {
-              const action = ruleInfo.actions.find(
-                _action => _action.name === name
-              )
-              rules = [...rules, ...action.rules]
-            })
-          }
-        })
-
-        data.rules = rules
+        if (data.roleTemplates) {
+          set(
+            data,
+            'metadata.annotations["iam.kubesphere.io/aggregation-roles"]',
+            JSON.stringify(flatten(Object.values(data.roleTemplates)))
+          )
+        }
 
         onOk(data)
       })
@@ -156,7 +122,15 @@ export default class CreateModal extends React.Component {
   }
 
   renderContent() {
-    const { rulesInfo, store, edit } = this.props
+    const {
+      module,
+      cluster,
+      namespace,
+      workspace,
+      roleTemplates,
+      store,
+      edit,
+    } = this.props
     const { currentStep, formTemplate } = this.state
 
     const Component = this.steps[currentStep].component
@@ -171,7 +145,11 @@ export default class CreateModal extends React.Component {
           store={store}
           formRef={this.formRef}
           formTemplate={formTemplate}
-          rulesInfo={rulesInfo}
+          roleTemplates={roleTemplates}
+          module={module}
+          cluster={cluster}
+          namespace={namespace}
+          workspace={workspace}
           edit={edit}
         />
       </div>
@@ -180,7 +158,7 @@ export default class CreateModal extends React.Component {
 
   renderFooter() {
     const { currentStep } = this.state
-    const { edit, isSubmitting } = this.props
+    const { edit, isSubmitting, onCancel } = this.props
 
     const showCreate = this.steps.every((step, index) =>
       step.required ? currentStep >= index : true
@@ -190,6 +168,7 @@ export default class CreateModal extends React.Component {
 
     return (
       <div className={styles.footer} data-test="modal-footer">
+        <Button onClick={onCancel}>{t('Cancel')}</Button>
         <Button
           type="default"
           onClick={this.handlePrev}
@@ -231,8 +210,8 @@ export default class CreateModal extends React.Component {
         bodyClassName={styles.body}
         onCancel={onCancel}
         visible={visible}
-        closable={false}
         isSubmitting={isSubmitting}
+        maskClosable={false}
         hideFooter
       >
         {this.renderTabs()}

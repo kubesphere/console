@@ -25,20 +25,16 @@ import styles from './index.scss'
 
 export default class AuthorizationSetting extends React.Component {
   render() {
-    const { formRef, formTemplate, rulesInfo } = this.props
+    const { formRef, formTemplate, roleTemplates } = this.props
 
     return (
       <div className={styles.wrapper}>
         <Form data={formTemplate} ref={formRef}>
-          <Form.Item
-            rules={[
-              {
-                required: true,
-                message: t('Please specify role authorization'),
-              },
-            ]}
-          >
-            <Authorizations name="rules" rulesInfo={rulesInfo} />
+          <Form.Item>
+            <Authorizations
+              name="roleTemplates"
+              roleTemplates={roleTemplates}
+            />
           </Form.Item>
         </Form>
       </div>

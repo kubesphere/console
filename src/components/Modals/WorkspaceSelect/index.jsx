@@ -96,7 +96,7 @@ export default class WorkspaceSelectModal extends React.Component {
         <div className={styles.list}>
           <ScrollLoad
             wrapperClassName={styles.listWrapper}
-            data={data}
+            data={toJS(data)}
             total={total}
             page={page}
             loading={isLoading}

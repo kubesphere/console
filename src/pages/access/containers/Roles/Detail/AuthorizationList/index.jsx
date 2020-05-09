@@ -16,6 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { groupBy } from 'lodash'
 import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
@@ -27,16 +28,21 @@ import RuleList from 'components/Cards/RuleList'
 @observer
 export default class AuthorizationList extends React.Component {
   render() {
-    const { data = [], isLoading } = toJS(this.props.detailStore.rules)
+    const { detail, roleTemplates, isLoading } = toJS(this.props.detailStore)
+
+    const templates = groupBy(
+      roleTemplates.data.filter(rt => detail.roleTemplates.includes(rt.name)),
+      'annotations["iam.kubesphere.io/category"]'
+    )
 
     return (
       <Card
         title={t('Authorization List')}
         empty={t('No Authorization')}
         loading={isLoading}
-        isEmpty={data.length <= 0}
+        isEmpty={detail.roleTemplates.length <= 0}
       >
-        <RuleList rules={data} />
+        <RuleList templates={templates} />
       </Card>
     )
   }

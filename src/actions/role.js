@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, set } from 'lodash'
+import { get, set, cloneDeep } from 'lodash'
 import { Modal, Notify } from 'components/Base'
 
 import CreateModal from 'components/Modals/RoleCreate'
@@ -25,14 +25,15 @@ import FORM_TEMPLATES from 'utils/form.templates'
 
 export default {
   'role.create': {
-    on({ store, namespace, module, success, ...props }) {
+    on({ store, cluster, namespace, workspace, success, ...props }) {
+      const module = store.module
       const modal = Modal.open({
         onOk: data => {
           if (!data) {
             Modal.close(modal)
             return
           }
-          store.create(data).then(() => {
+          store.create(data, { cluster, namespace, workspace }).then(() => {
             Modal.close(modal)
             Notify.success({ content: `${t('Created Successfully')}!` })
             success && success()
@@ -41,21 +42,40 @@ export default {
         modal: CreateModal,
         store,
         module,
+        cluster,
+        namespace,
+        workspace,
         formTemplate: FORM_TEMPLATES[module]({ namespace }),
         ...props,
       })
     },
   },
   'role.edit': {
-    on({ store, module, detail, success, ...props }) {
-      const formTemplate = FORM_TEMPLATES[module]()
-
-      set(formTemplate, 'metadata.name', detail.name)
-      set(
-        formTemplate,
-        "metadata.annotations['kubesphere.io/description']",
-        get(detail, 'description')
+    on({ store, detail, success, ...props }) {
+      const module = store.module
+      const formTemplate = Object.assign(
+        FORM_TEMPLATES[module]({ namespace: props.namespace }),
+        cloneDeep(detail._originData)
       )
+
+      set(formTemplate, 'metadata.resourceVersion', detail.resourceVersion)
+
+      formTemplate.roleTemplates = {}
+
+      detail.roleTemplates.forEach(name => {
+        const template = props.roleTemplates.find(rt => rt.name === name)
+
+        if (template) {
+          const group = get(
+            template,
+            'annotations["iam.kubesphere.io/category"]'
+          )
+          formTemplate.roleTemplates[group] =
+            formTemplate.roleTemplates[group] || []
+          formTemplate.roleTemplates[group].push(name)
+        }
+      })
+
       const modal = Modal.open({
         onOk: data => {
           if (!data) {
@@ -63,7 +83,7 @@ export default {
             return
           }
 
-          store.patch(detail, data).then(() => {
+          store.update(detail, data).then(() => {
             Modal.close(modal)
             Notify.success({ content: `${t('Updated Successfully')}!` })
             success && success()
@@ -89,6 +109,7 @@ export default {
           })
         },
         modal: DeleteModal,
+        module: store.module,
         detail,
         store,
         ...props,

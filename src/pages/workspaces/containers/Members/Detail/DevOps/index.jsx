@@ -18,17 +18,25 @@
 
 import React from 'react'
 import { toJS } from 'mobx'
-import { observer } from 'mobx-react'
+import { inject, observer } from 'mobx-react'
 import { getLocalTime, getDisplayName } from 'utils'
 import { Table } from '@pitrix/lego-ui'
 import { Avatar, Card } from 'components/Base'
+import DevOpsStore from 'stores/devops'
 
 import styles from './index.scss'
 
+@inject('detailStore')
 @observer
 export default class MemberDevOpsProjects extends React.Component {
+  devopsStore = new DevOpsStore()
+
   componentDidMount() {
-    this.props.detailStore.fetchDevOps(this.props.match.params)
+    this.devopsStore.fetchList({ workspace: this.workspace })
+  }
+
+  get workspace() {
+    return this.props.match.params.workspace
   }
 
   getColumns = () => [
@@ -55,7 +63,7 @@ export default class MemberDevOpsProjects extends React.Component {
   ]
 
   render() {
-    const { data, isLoading } = toJS(this.props.detailStore.devops)
+    const { data, isLoading } = toJS(this.devopsStore.list)
 
     return (
       <Card title={t('DevOps Projects')}>

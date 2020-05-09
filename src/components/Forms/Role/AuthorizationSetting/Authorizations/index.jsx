@@ -18,6 +18,7 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
+import { groupBy } from 'lodash'
 
 import Item from './item'
 
@@ -25,13 +26,13 @@ import styles from './index.scss'
 
 export default class Authorizations extends React.Component {
   static propTypes = {
-    rulesInfo: PropTypes.array,
-    value: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+    roleTemplates: PropTypes.array,
+    value: PropTypes.object,
     onChange: PropTypes.func,
   }
 
   static defaultProps = {
-    rulesInfo: [],
+    roleTemplates: [],
     value: {},
     onChange() {},
   }
@@ -42,16 +43,22 @@ export default class Authorizations extends React.Component {
   }
 
   render() {
-    const { rulesInfo, value } = this.props
+    const { roleTemplates, value } = this.props
+
+    const groupedRoleTemplates = groupBy(
+      roleTemplates,
+      'annotations["iam.kubesphere.io/category"]'
+    )
 
     return (
       <div className={styles.wrapper}>
-        {rulesInfo.map(rule => (
+        {Object.keys(groupedRoleTemplates).map(key => (
           <Item
-            key={rule.name}
+            key={key}
             className={styles.authorization}
-            authorization={rule}
-            value={value[rule.name]}
+            templates={groupedRoleTemplates[key]}
+            value={value[key]}
+            group={key}
             onChange={this.handleAuthorizationChange}
           />
         ))}

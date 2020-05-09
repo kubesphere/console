@@ -28,24 +28,27 @@ export default class BaseInfo extends React.Component {
       return callback()
     }
 
+    const { cluster, namespace } = this.props
     const name = get(this.props.formTemplate, 'metadata.name')
 
     if (this.props.edit && name === value) {
       return callback()
     }
 
-    const namespace = get(this.props.formTemplate, 'metadata.namespace')
-
-    this.props.store.checkRoleName({ name: value, namespace }).then(resp => {
-      if (resp.exist) {
-        return callback({ message: t('Role name exists'), field: rule.field })
-      }
-      callback()
-    })
+    this.props.store
+      .checkName({ name: value, cluster, namespace })
+      .then(resp => {
+        if (resp.exist) {
+          return callback({ message: t('Role name exists'), field: rule.field })
+        }
+        callback()
+      })
   }
 
   render() {
-    const { formRef, formTemplate, edit } = this.props
+    const { module, workspace, formRef, formTemplate, edit } = this.props
+
+    const isWorkspaceRole = module === 'workspaceroles'
 
     return (
       <Form data={formTemplate} ref={formRef}>
@@ -54,6 +57,7 @@ export default class BaseInfo extends React.Component {
             <Form.Item
               label={t('Name')}
               desc={t('NAME_DESC')}
+              tip={isWorkspaceRole ? t('WORKSPACE_ROLE_NAME_TIP') : null}
               rules={[
                 { required: true, message: t('Please input role name') },
                 {
@@ -63,7 +67,12 @@ export default class BaseInfo extends React.Component {
                 { validator: this.roleNameValidator },
               ]}
             >
-              <Input name="metadata.name" disabled={edit} autoFocus={true} />
+              <Input
+                name="metadata.name"
+                disabled={edit}
+                autoFocus={true}
+                placeholder={isWorkspaceRole ? `${workspace}-` : ''}
+              />
             </Form.Item>
           </Column>
           <Column>

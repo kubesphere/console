@@ -34,23 +34,23 @@ import routes from './routes'
 @observer
 @trigger
 export default class RoleDetail extends React.Component {
-  store = new RoleStore('clusterroles')
+  store = new RoleStore('globalroles')
 
   componentDidMount() {
     this.fetchData()
-    this.store.fetchRulesInfo()
+    this.store.fetchRoleTemplates(this.props.match.params)
   }
 
   get module() {
-    return 'clusterroles'
+    return this.store.module
   }
 
   get authKey() {
-    return 'roles'
+    return 'globalroles'
   }
 
   get name() {
-    return 'Platform Role'
+    return 'Account Role'
   }
 
   get listUrl() {
@@ -65,7 +65,7 @@ export default class RoleDetail extends React.Component {
     const name = this.store.detail.name
     const desc = get(this.store.detail, 'description')
 
-    if (globals.config.presetClusterRoles.includes(name)) {
+    if (globals.config.presetGlobalRoles.includes(name)) {
       return t(desc)
     }
 
@@ -74,13 +74,11 @@ export default class RoleDetail extends React.Component {
 
   get showEdit() {
     const { name } = this.props.match.params
-    return !globals.config.presetClusterRoles.includes(name)
+    return !globals.config.presetGlobalRoles.includes(name)
   }
 
   fetchData = () => {
     this.store.fetchDetail(this.props.match.params)
-    this.store.fetchRules(this.props.match.params)
-    this.store.fetchUsers(this.props.match.params)
   }
 
   getOperations = () => [
@@ -93,9 +91,9 @@ export default class RoleDetail extends React.Component {
       onClick: () =>
         this.trigger('role.edit', {
           module: this.module,
-          title: t('Edit Platform Role'),
+          title: t('Edit Account Role'),
           detail: toJS(this.store.detail),
-          rulesInfo: toJS(this.store.rulesInfo),
+          roleTemplates: toJS(this.store.roleTemplates.data),
           success: this.fetchData,
         }),
     },
@@ -104,9 +102,11 @@ export default class RoleDetail extends React.Component {
       icon: 'trash',
       text: t('Delete'),
       action: 'delete',
+      type: 'danger',
       show: this.showEdit,
       onClick: () =>
         this.trigger('role.delete', {
+          type: t(this.name),
           detail: toJS(this.store.detail),
           success: () => this.routing.push(this.listUrl),
         }),
@@ -148,7 +148,7 @@ export default class RoleDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('Cluster Roles'),
+          label: t('Account Roles'),
           url: this.listUrl,
         },
       ],

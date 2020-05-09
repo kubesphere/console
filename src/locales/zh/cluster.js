@@ -111,4 +111,7 @@ export default {
   UNBIND_CLUSTER_DESC:
     '解绑集群后，KubeSphere将无法再对该集群进行管理。 解绑后，该集群内的Kubernetes资源不会被删除。',
   SURE_TO_UNBIND_CLUSTER: '我确定要执行解绑集群的操作',
+
+  'Invite members to the cluster': '邀请成员到该集群',
+  INVITE_CLUSTER_MEMBER_DESC: '您可以邀请新的成员来此集群',
 }

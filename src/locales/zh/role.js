@@ -21,8 +21,8 @@ export default {
   Roles: '角色',
   Role: '角色',
   'Role Management': '角色管理',
-  'Platform Role': '平台角色',
-  'Platform Roles': '平台角色',
+  'Account Role': '账户角色',
+  'Account Roles': '账户角色',
   Terminating: '删除中',
   'Create Role': '创建角色',
   'Edit Role': '编辑角色',
@@ -38,8 +38,12 @@ export default {
 
   'Create Project Role': '创建项目角色',
   'Edit Project Role': '编辑项目角色',
-  'Create Platform Role': '创建平台角色',
-  'Edit Platform Role': '编辑平台角色',
+  'Create Account Role': '创建账户角色',
+  'Edit Account Role': '编辑账户角色',
+  'Create Cluster Role': '创建集群角色',
+  'Edit Cluster Role': '编辑集群角色',
+
+  'Please specify role authorization': '请选择角色权限',
 
   'Role Name': '角色名称',
   'Role Type': '角色类型',
@@ -109,6 +113,7 @@ export default {
   RULE_MANAGE: '管理',
   RULE_ADVANCED: '高级设置',
   RULE_S2IBUILDERS: '构建镜像',
+  RULE_UNDEFINED: '其它',
 
   'Default user role which allows a user to manage resources within the projects created by the user himself or invited by others. It does not allow the user to manage unauthorized resources in the cluster.':
     '默认用户角色，仅允许对自己创建或受邀加入的项目中的资源进行管理，无权操作集群范围内其他资源。',
@@ -135,4 +140,6 @@ export default {
     '项目维护者，可以管理项目下除用户和角色之外的资源。',
   'Allows viewer access to view all resources in the namespace.':
     '项目观察者，可以查看项目下所有的资源。',
+
+  ACCOUNT_ROLES_DESC: '账号角色可以定义平台内的账号拥有的权限',
 }

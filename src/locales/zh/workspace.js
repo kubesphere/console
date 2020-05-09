@@ -23,6 +23,8 @@ export default {
   'Workspace Members': '企业成员',
   'Workspace Roles': '企业角色',
   'Workspace Role': '企业角色',
+  'Create Workspace Role': '创建企业角色',
+  'Edit Workspace Role': '编辑企业角色',
   'Workspace Name': '企业空间名称',
   'Workspace Logo': '企业空间 Logo',
   'Workspace Manager': '企业空间管理员',

@@ -18,6 +18,7 @@
 
 import React from 'react'
 import { toJS } from 'mobx'
+import { get } from 'lodash'
 
 import { Avatar } from 'components/Base'
 import Banner from 'components/Cards/Banner'
@@ -32,24 +33,31 @@ import RoleStore from 'stores/role'
 @withList({
   store: new RoleStore('globalroles'),
   module: 'globalroles',
-  name: 'Platform Role',
+  name: 'Account Role',
 })
 export default class Roles extends React.Component {
+  componentDidMount() {
+    this.props.store.fetchRoleTemplates(this.props.match.params)
+  }
+
+  showAction = record => !globals.config.presetGlobalRoles.includes(record.name)
+
   get itemActions() {
-    const { trigger, store, module, getData } = this.props
+    const { trigger, store, name, module, routing } = this.props
     return [
       {
         key: 'edit',
         icon: 'pen',
         text: t('Edit'),
         action: 'edit',
+        show: this.showAction,
         onClick: item =>
           trigger('role.edit', {
             module,
             detail: item,
-            title: t('Edit Platform Role'),
-            rulesInfo: toJS(store.rulesInfo),
-            success: getData,
+            title: t('Edit Account Role'),
+            roleTemplates: toJS(store.roleTemplates.data),
+            success: routing.query,
           }),
       },
       {
@@ -57,13 +65,27 @@ export default class Roles extends React.Component {
         icon: 'trash',
         text: t('Delete'),
         action: 'delete',
+        show: this.showAction,
         onClick: item =>
           trigger('role.delete', {
             detail: item,
-            success: getData,
+            type: t(name),
+            success: routing.query,
           }),
       },
     ]
+  }
+
+  get tableActions() {
+    const { tableProps } = this.props
+    return {
+      ...tableProps.tableActions,
+      onCreate: this.showCreate,
+      getCheckboxProps: record => ({
+        disabled: !this.showAction(record),
+        name: record.name,
+      }),
+    }
   }
 
   getColumns = () => {
@@ -88,6 +110,13 @@ export default class Roles extends React.Component {
         dataIndex: 'description',
         isHideable: true,
         width: '55%',
+        render: (description, record) => {
+          const name = get(record, 'name')
+          if (description && globals.config.presetGlobalRoles.includes(name)) {
+            return t(description)
+          }
+          return description
+        },
       },
       {
         title: t('Created Time'),
@@ -102,11 +131,10 @@ export default class Roles extends React.Component {
   }
 
   showCreate = () => {
-    const { module, store, trigger, getData } = this.props
+    const { store, trigger, getData } = this.props
     return trigger('role.create', {
-      module,
-      title: t('Create Platform Role'),
-      rulesInfo: toJS(store.rulesInfo),
+      title: t('Create Account Role'),
+      roleTemplates: toJS(store.roleTemplates.data),
       success: getData,
     })
   }
@@ -118,14 +146,14 @@ export default class Roles extends React.Component {
         <Banner
           {...bannerProps}
           tabs={this.tabs}
-          title={t('Platform Roles')}
-          description={t('PLATFORM_ROLES_DESC')}
+          title={t('Account Roles')}
+          description={t('ACCOUNT_ROLES_DESC')}
         />
         <Table
           {...tableProps}
+          tableActions={this.tableActions}
           itemActions={this.itemActions}
           columns={this.getColumns()}
-          onCreate={this.showCreate}
         />
       </ListPage>
     )

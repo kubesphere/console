@@ -48,7 +48,7 @@ export default class ComponentStore {
   }
 
   getListUrl = ({ cluster }) =>
-    `${this.apiVersion}/clusters/${cluster}/components`
+    `${this.apiVersion}/klusters/${cluster}/components`
 
   getDetailUrl = ({ cluster, name }) =>
     `${this.getListUrl({ cluster })}/${name}`

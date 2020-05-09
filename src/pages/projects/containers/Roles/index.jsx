@@ -35,11 +35,13 @@ import RoleStore from 'stores/role'
 })
 export default class Secrets extends React.Component {
   componentDidMount() {
-    this.props.store.fetchRulesInfo()
+    this.props.store.fetchRoleTemplates(this.props.match.params)
   }
 
+  showAction = record => !globals.config.presetRoles.includes(record.name)
+
   get itemActions() {
-    const { getData, trigger, module } = this.props
+    const { routing, trigger } = this.props
     const { rulesInfo } = this.props.store
 
     return [
@@ -48,13 +50,13 @@ export default class Secrets extends React.Component {
         icon: 'pen',
         text: t('Edit'),
         action: 'edit',
-        show: record => !globals.config.presetRoles.includes(record.name),
+        show: this.showAction,
         onClick: item =>
           trigger('role.edit', {
             title: t('Edit Project Role'),
             detail: item,
             rulesInfo: toJS(rulesInfo),
-            success: getData,
+            success: routing.query,
           }),
       },
       {
@@ -62,16 +64,29 @@ export default class Secrets extends React.Component {
         icon: 'trash',
         text: t('Delete'),
         action: 'delete',
-        show: record => !globals.config.presetRoles.includes(record.name),
+        show: this.showAction,
         onClick: item =>
           trigger('role.delete', {
-            module,
-            type: t(this.name),
             detail: item,
-            success: getData,
+            type: t(this.name),
+            cluster: this.props.match.params.cluster,
+            namespace: this.props.match.params.namespace,
+            success: routing.query,
           }),
       },
     ]
+  }
+
+  get tableActions() {
+    const { tableProps } = this.props
+    return {
+      ...tableProps.tableActions,
+      onCreate: this.showCreate,
+      getCheckboxProps: record => ({
+        disabled: !this.showAction(record),
+        name: record.name,
+      }),
+    }
   }
 
   getColumns = () => {
@@ -119,11 +134,11 @@ export default class Secrets extends React.Component {
   }
 
   showCreate = () => {
-    const { match, module } = this.props
+    const { match, getData } = this.props
     return this.props.trigger('role.create', {
-      module,
       namespace: match.params.namespace,
       cluster: match.params.cluster,
+      success: getData,
     })
   }
 
@@ -138,10 +153,9 @@ export default class Secrets extends React.Component {
         />
         <Table
           {...tableProps}
+          tableActions={this.tableActions}
           itemActions={this.itemActions}
           columns={this.getColumns()}
-          onCreate={this.showCreate}
-          selectActions={[]}
         />
       </ListPage>
     )

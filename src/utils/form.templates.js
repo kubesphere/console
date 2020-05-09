@@ -213,13 +213,25 @@ const getRoleTemplate = ({ namespace }) => ({
   metadata: {
     namespace,
   },
-  rules: {},
+  rules: [],
 })
 
 const getClusterRoleTemplate = () => ({
   apiVersion: 'rbac.authorization.k8s.io/v1',
   kind: 'ClusterRole',
-  rules: {},
+  rules: [],
+})
+
+const getGlobalRoleTemplate = () => ({
+  apiVersion: 'iam.kubesphere.io/v1alpha2',
+  kind: 'GlobalRole',
+  rules: [],
+})
+
+const getWorkspaceRoleTemplate = () => ({
+  apiVersion: 'iam.kubesphere.io/v1alpha2',
+  kind: 'WorkspaceRole',
+  rules: [],
 })
 
 const getVolumeTemplate = ({ namespace }) => ({
@@ -444,6 +456,8 @@ const FORM_TEMPLATES = {
   hpa: getHorizontalPodAutoscalerTemplate,
   roles: getRoleTemplate,
   clusterroles: getClusterRoleTemplate,
+  globalroles: getGlobalRoleTemplate,
+  workspaceroles: getWorkspaceRoleTemplate,
   volumes: getVolumeTemplate,
   storageclasses: getStorageClassTemplate,
   project: getProjectTemplate,

@@ -18,8 +18,8 @@
 
 import { getIndexRoute } from 'utils/router.config'
 
-import AuthorizationList from './AuthorizationList'
-import AuthorizedUsers from './AuthorizedUsers'
+import AuthorizationList from 'access/containers/Roles/Detail/AuthorizationList'
+import AuthorizedUsers from 'access/containers/Roles/Detail/AuthorizedUsers'
 
 export default path => [
   {
