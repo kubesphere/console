@@ -63,6 +63,7 @@ export default class PanelMonitor {
      * grafana template panel config
      */
     this.config = config
+    this.requestID = 0
   }
 
   /**
@@ -118,6 +119,12 @@ export default class PanelMonitor {
   fetchMetrics = async ({ start, end }) => {
     const { targets = [], namespace } = this.config
 
+    const req = {
+      ID: ++this.requestID,
+      errorMessage: '',
+      metrics: [],
+    }
+
     try {
       const result = await Promise.all(
         targets.map(async target => {
@@ -132,7 +139,7 @@ export default class PanelMonitor {
           return { data, target }
         })
       )
-      this.metrics = result.reduce((metrics, metricsGroup) => {
+      req.metrics = result.reduce((metrics, metricsGroup) => {
         const { data = [], target = {} } = metricsGroup
         const { expr, refId: targetID } = target
 
@@ -152,10 +159,13 @@ export default class PanelMonitor {
 
         return metrics.concat(parsedMetrics)
       }, [])
-      this.errorMessage = ''
     } catch (err) {
-      this.errorMessage = err.message
-      this.metrics = []
+      req.errorMessage = err.message
+    } finally {
+      if (req.ID === this.requestID) {
+        this.metrics = req.metrics
+        this.errorMessage = req.errorMessage
+      }
     }
   }
 
