@@ -36,7 +36,7 @@ export default class KubeConfigModal extends React.Component {
   store = new TerminalStore()
 
   componentDidMount() {
-    this.store.fetchKubeConfig()
+    this.store.fetchKubeConfig(this.props.match.params)
   }
 
   handleDownload = () => {
@@ -49,7 +49,7 @@ export default class KubeConfigModal extends React.Component {
   render() {
     return (
       <UserTip
-        wrapperClassName={styles.kubeCtl}
+        wrapperClassName={styles.kubectl}
         localStorageKey="kubectl-config"
         article={this.renderConfig()}
         tips={this.renderTips()}

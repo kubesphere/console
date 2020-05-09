@@ -408,9 +408,13 @@ export default {
   DETAIL_NOT_FOUND_DESC:
     '🙇 对不起没有找到相关资源，返回 <a href="{link}">{title}</a>',
   Toolbox: '工具箱',
-  TOOLBOX_DESC: '工具箱提供了日志查询以及Cli的操作工具',
+  TOOLBOX_DESC: '提供KubeSphere日志、事件、计量等相关的查询工具',
+  'Analysis Tools': '分析工具',
+  'Control Tools': '控制工具',
 
   'Log Search': '日志查询',
+  LOG_SEARCH_DESC: '针对企业空间、项目、资源等多维度的日志查询工具。',
+  KUBECTL_DESC: 'kubectl 客户端命令行工具',
 
   NanoSeconds: '纳秒',
   MicroSeconds: '微秒',

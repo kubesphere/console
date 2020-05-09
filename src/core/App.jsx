@@ -36,7 +36,9 @@ class App extends Component {
   }
 
   componentDidMount() {
-    getActions().then(actions => this.props.rootStore.registerActions(actions))
+    getActions().then(actions =>
+      this.props.rootStore.registerActions(actions.default)
+    )
   }
 
   render() {
