@@ -1,0 +1,30 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.table {
+  width: 100%;
+  table-layout: fixed;
+  border-spacing: 0px;
+  margin-bottom: 20px;
+
+  td,
+  th {
+    width: auto;
+    padding: 0 4px;
+    text-align: right;
+    @include ellipsis;
+
+    a {
+      text-decoration: underline;
+    }
+
+    &:first-of-type {
+      width: 200px;
+      text-align: left;
+    }
+  }
+
+  th {
+    cursor: pointer;
+  }
+}

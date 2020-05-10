@@ -1,0 +1,32 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.info {
+  margin-bottom: 12px;
+  & > div {
+    margin-bottom: 12px;
+    @include TypographyTitleH6();
+  }
+
+  & > dl {
+    display: table-row;
+    & > dt,
+    & > dd {
+      display: table-cell;
+      word-break: break-word;
+    }
+
+    & > dt {
+      word-break: unset;
+      text-align: right;
+
+      &::after {
+        content: ':';
+      }
+    }
+  
+    & > dd {
+      padding-left: 8px;
+    }
+  }
+}

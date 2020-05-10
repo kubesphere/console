@@ -46,6 +46,7 @@ export default {
   'Port(s)': '端口',
   Port: '端口',
   port: '端口',
+  Topology: '拓扑图',
   'Edit Container': '编辑容器',
   'Host Port': '节点端口',
   'Add Port': '添加端口',
