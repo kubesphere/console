@@ -17,26 +17,24 @@
  */
 
 import React from 'react'
-import { observer } from 'mobx-react'
-import { observable, computed, action } from 'mobx'
+import classNames from 'classnames'
+import { observer, inject } from 'mobx-react'
+import { observable, action } from 'mobx'
 
 import Draggable from 'react-draggable'
-import { Icon, Loading } from '@pitrix/lego-ui'
-import { get } from 'lodash'
-import LogModal from 'components/Modals/LogSearch'
-import KubeCtlModal from 'components/Modals/KubeCtl'
-import KubeConfigModal from 'components/Modals/KubeConfig'
+import { Icon } from '@pitrix/lego-ui'
+import { Button, Text, List } from 'components/Base'
+import { trigger } from 'utils/action'
 import { createCenterWindowOpt } from 'utils/dom'
 
 import styles from './index.scss'
 
+@inject('rootStore')
 @observer
+@trigger
 export default class KubeTools extends React.Component {
   @observable
-  showTools = false
-
-  @observable
-  modalKey = ''
+  showTools = 0
 
   getWindowOpts() {
     return createCenterWindowOpt({
@@ -47,146 +45,123 @@ export default class KubeTools extends React.Component {
     })
   }
 
-  @computed
-  get navStore() {
+  get toolList() {
     return [
       {
-        title: 'kubectl',
-        key: 'KubeCtl',
-        link: '/kubeCtl',
-        icon: 'terminal',
-        hidden: globals.user.cluster_role !== 'cluster-admin',
-        props: {
-          title: 'kubectl',
-          onCancel: this.hideModal,
-        },
-        Component: KubeCtlModal,
+        group: 'Analysis Tools',
+        data: [
+          {
+            icon: 'file',
+            title: t('Log Search'),
+            description: t('LOG_SEARCH_DESC'),
+            link: '/logquery',
+            hidden: !globals.app.hasKSModule('logging'),
+            action: 'toolbox.logquery',
+          },
+        ],
       },
       {
-        icon: 'file',
-        key: 'Query',
-        title: t('Log Search'),
-        link: '/logQuery',
-        hidden: !globals.app.hasKSModule('logging'),
-        Component: LogModal,
-        props: {
-          onCancel: this.hideModal,
-          title: t('Log Search'),
-        },
-      },
-      {
-        icon: 'documentation',
-        key: 'config',
-        title: 'kubeconfig',
-        link: '/kubeConfig',
-        hidden: !globals.config.enableKubeConfig,
-        Component: KubeConfigModal,
-        props: {
-          onCancel: this.hideModal,
-          title: t('kubeconfig'),
-        },
+        group: 'Control Tools',
+        data: [
+          {
+            icon: 'terminal',
+            link: '/kubectl',
+            title: 'kubectl',
+            description: t('KUBECTL_DESC'),
+            hidden: globals.user.cluster_role !== 'cluster-admin',
+            action: 'toolbox.kubectl',
+          },
+        ],
       },
     ]
   }
 
-  @computed
-  get selectNav() {
-    return this.navStore.find(nav => nav.key === this.modalKey) || {}
-  }
-
-  stopPropagation(e) {
-    e.stopPropagation()
-  }
-
-  onLogNavMouseDown = e => {
+  onToolItemClick = e => {
     e.preventDefault()
     e.stopPropagation()
+    const data = e.currentTarget.dataset
+
     if (e.shiftKey) {
-      window.open(
-        e.currentTarget.dataset.link,
-        e.currentTarget.dataset.key,
-        this.getWindowOpts()
-      )
-      return
+      return window.open(data.link, data.title, this.getWindowOpts())
     }
-    this.selectModal(e)
-  }
 
-  @action
-  selectModal = e => {
-    this.modalKey = e.currentTarget.dataset.key
-  }
-
-  @action
-  hideModal = () => {
-    this.modalKey = ''
+    this.trigger(data.action, {})
   }
 
   @action
   onMouseEnter = () => {
-    this.showTools = true
+    this.showTools = 1
   }
 
   @action
   onMouseLeave = () => {
-    this.showTools = false
+    this.showTools = -1
   }
 
-  render() {
-    const showTools = this.showTools
-    const iconName = showTools ? 'close' : 'hammer'
-    const { Component: Modal, props } = this.selectNav
-
+  renderTools() {
     return (
-      <div>
-        <Draggable axis="y">
-          <div
-            className={styles.tools}
-            onMouseEnter={this.onMouseEnter}
-            onMouseLeave={this.onMouseLeave}
-          >
-            <Icon name={iconName} size={24} type="light" />
-            {showTools && this.showToolNav()}
+      <div
+        className={classNames(styles.tools, {
+          [styles.showTools]: this.showTools === 1,
+          [styles.hideTools]: this.showTools === -1,
+        })}
+      >
+        <div className={styles.toolsWrapper}>
+          <div className={styles.toolsHeader}>
+            <Text
+              className={styles.toolsTitle}
+              icon="hammer"
+              title={t('Toolbox')}
+              description={t('TOOLBOX_DESC')}
+            />
           </div>
-        </Draggable>
-        {Modal && <Modal {...props} />}
+          <div className={styles.toolsContent}>
+            {this.toolList.map(group => (
+              <div key={group.group} className={styles.toolsGroup}>
+                <div className={styles.groupTitle}>{t(group.group)}</div>
+                <div className={styles.groupContent}>
+                  {group.data.map(item => (
+                    <List.Item
+                      className={styles.toolItem}
+                      key={item.link}
+                      icon={item.icon}
+                      title={item.title}
+                      data-title={item.title}
+                      data-link={item.link}
+                      data-action={item.action}
+                      description={item.description}
+                      onClick={this.onToolItemClick}
+                    />
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className={styles.toolsFooter}>
+            <p>{t('TOOLBOX_SHIFT_TIPS')}</p>
+          </div>
+        </div>
       </div>
     )
   }
 
-  showToolNav() {
+  render() {
     return (
-      <div className={styles.toolsNavContainer}>
-        <div className={styles.toolsNav}>
-          <h3>
-            {t('Toolbox')}
-            <span className={styles.bulb}> 💡</span>
-          </h3>
-          <p>{t('TOOLBOX_DESC')}</p>
-          <ul>
-            {this.navStore
-              .filter(nav => !nav.hidden)
-              .map(nav => (
-                <div
-                  key={nav.title}
-                  data-key={nav.key}
-                  data-link={nav.link}
-                  className={styles.tool}
-                  onMouseDown={nav.onMouseDown || this.onLogNavMouseDown}
-                >
-                  <Icon name={nav.icon} size={20} />
-                  <span className={styles.title}>{nav.title}</span>
-                  <span className={styles.tips}>
-                    <Loading size={10} spinning={get(nav, 'isLoading', false)}>
-                      <Icon name="chevron-right" size={20} type="light" />
-                    </Loading>
-                  </span>
-                </div>
-              ))}
-          </ul>
-          <p>{t('TOOLBOX_SHIFT_TIPS')}</p>
+      <Draggable axis="y">
+        <div className={styles.trigger} onMouseLeave={this.onMouseLeave}>
+          <Button
+            className={classNames(styles.button, {
+              [styles.showTools]: this.showTools === 1,
+            })}
+            onMouseEnter={this.onMouseEnter}
+            type="control"
+          >
+            <span>{t('Toolbox')}</span>
+            <Icon name="chevron-up" size={24} type="light" />
+          </Button>
+          {this.renderTools()}
         </div>
-      </div>
+      </Draggable>
     )
   }
 }

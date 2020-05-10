@@ -50,6 +50,7 @@ export default class Item extends React.Component {
       onClick,
       className,
       titleClass,
+      ...rest
     } = this.props
 
     return (
@@ -62,6 +63,7 @@ export default class Item extends React.Component {
           className
         )}
         onClick={onClick}
+        {...rest}
       >
         <div className={styles.icon}>
           {image ? (

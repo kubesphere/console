@@ -20,10 +20,6 @@ import React from 'react'
 import KubeConfig from 'components/Modals/KubeConfig'
 
 export default class KubeConfigModal extends React.Component {
-  get cluster() {
-    return this.props.match.params.cluster
-  }
-
   pageClose() {
     window.opener = null
     window.open('', '_self', '')
@@ -34,7 +30,7 @@ export default class KubeConfigModal extends React.Component {
     return (
       <KubeConfig
         title={t('kubeconfig')}
-        cluster={this.cluster}
+        match={this.props.match}
         onCancel={this.pageClose}
       />
     )
