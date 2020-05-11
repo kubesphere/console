@@ -106,11 +106,11 @@ export default [
     component: StorageClassDetail,
   },
   {
-    path: `${PATH}/snapshots/:namespace/:name`,
+    path: `${PATH}/projects/:namespace/volume-snapshots/:name`,
     component: VolumeSnapshotsDetail,
   },
   {
-    path: `${PATH}/projects/:namespace/volumes/:name`,
+    path: `${PATH}/namespaces/:namespace/volumes/:name`,
     component: Volume,
   },
   {

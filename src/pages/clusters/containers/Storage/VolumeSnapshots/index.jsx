@@ -46,8 +46,27 @@ export default class VolumeSnapshot extends React.Component {
     }))
   }
 
+  get itemActions() {
+    const { trigger } = this.props
+
+    return [
+      {
+        key: 'delete',
+        icon: 'trash',
+        text: t('Delete'),
+        action: 'delete',
+        onClick: item =>
+          trigger('resource.delete', {
+            type: t(this.name),
+            detail: item,
+          }),
+      },
+    ]
+  }
+
   getColumns() {
-    const { getSortOrder, renderMore, prefix } = this.props
+    const { getSortOrder, module } = this.props
+    const { cluster } = this.props.match.params
 
     return [
       {
@@ -60,7 +79,9 @@ export default class VolumeSnapshot extends React.Component {
           <Avatar
             icon={'snapshot'}
             iconSize={40}
-            to={`${prefix}/${name}`}
+            to={`/clusters/${cluster}/projects/${
+              record.namespace
+            }/${module}/${name}`}
             title={name}
             desc={record.snapshotClassName}
           />
@@ -91,6 +112,11 @@ export default class VolumeSnapshot extends React.Component {
         },
       },
       {
+        title: t('Project'),
+        dataIndex: 'namespace',
+        render: namespace => <div>{namespace}</div>,
+      },
+      {
         title: t('Capacity'),
         dataIndex: 'restoreSize',
         width: '20%',
@@ -104,11 +130,6 @@ export default class VolumeSnapshot extends React.Component {
         width: '20%',
         render: time =>
           time ? getLocalTime(time).format('YYYY-MM-DD HH:mm:ss') : '-',
-      },
-      {
-        key: 'more',
-        width: 60,
-        render: renderMore,
       },
     ]
   }

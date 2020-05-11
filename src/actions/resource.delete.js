@@ -18,7 +18,6 @@
 
 import { Modal, Notify } from 'components/Base'
 import DeleteModal from 'components/Modals/Delete'
-
 import FederatedStore from 'stores/federated'
 
 export default {

@@ -35,27 +35,6 @@ import StorageClassStore from 'stores/storageClass'
   module: 'storageclasses',
 })
 export default class StorageClasses extends React.Component {
-  getTableProps() {
-    const { name, trigger, routing } = this.props
-    return {
-      selectActions: [
-        {
-          key: 'delete',
-          type: 'danger',
-          text: t('Delete'),
-          action: 'delete',
-          onClick: this.validateSelect({
-            callback: () =>
-              trigger('resource.batch.delete', {
-                type: t(name),
-                success: routing.query,
-              }),
-          }),
-        },
-      ],
-    }
-  }
-
   validateSelect({ callback }) {
     return (...args) => {
       const { selectedRowKeys, data } = this.list
@@ -126,7 +105,6 @@ export default class StorageClasses extends React.Component {
         <Banner {...bannerProps} />
         <Table
           {...tableProps}
-          {...this.getTableProps()}
           columns={this.getColumns()}
           onCreate={this.showCreate}
         />

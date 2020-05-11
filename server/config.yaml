@@ -124,7 +124,7 @@ client:
           icon: database
           children:
             - { name: volumes, title: Volumes }
-            - { name: snapshots, title: Snapshots Management }
+            - { name: volume-snapshots, title: Snapshots Management }
             - { name: storageclasses, title: Storage Classes }
         - name: monitoring-alerting
           title: Monitoring & Alerting

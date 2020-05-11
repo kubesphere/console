@@ -96,16 +96,16 @@ export default class VolumeStore extends Base {
     const path = snapshotstore.getListUrl({ namespace })
 
     const params = {
-      apiVersion: 'snapshot.storage.k8s.io/v1alpha1',
+      apiVersion: 'snapshot.storage.k8s.io/v1beta1',
       kind: snapshotstore.resourceKind,
       metadata: {
         name,
       },
       spec: {
-        snapshotClassName: storageClassName,
+        volumeSnapshotClassName: storageClassName,
         source: {
           kind: this.resourceKind,
-          name: sourceName,
+          persistentVolumeClaimName: sourceName,
         },
       },
     }

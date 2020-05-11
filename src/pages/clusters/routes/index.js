@@ -181,10 +181,6 @@ export default [
         component: StorageClasses,
         exact: true,
       },
-      {
-        path: `${PATH}/snapshots/:namespace?`,
-        component: VolumeSnapshots,
-      },
       getIndexRoute({ path: PATH, to: `${PATH}/overview`, exact: true }),
       getIndexRoute({
         path: `${PATH}/workloads`,
