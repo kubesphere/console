@@ -29,7 +29,7 @@ import EditModal from 'devops/components/Modals/DevOpsEdit'
 
 import styles from './index.scss'
 
-@inject('rootStore')
+@inject('rootStore', 'devopsStore')
 @observer
 class BaseInfo extends React.Component {
   state = {
@@ -42,12 +42,12 @@ class BaseInfo extends React.Component {
     this.store.fetchMembers(this.props.match.params)
   }
 
-  get store() {
-    return this.props.rootStore.devops
-  }
-
   get routing() {
     return this.props.rootStore.routing
+  }
+
+  get store() {
+    return this.props.devopsStore
   }
 
   get workspace() {

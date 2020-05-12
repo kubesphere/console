@@ -174,7 +174,6 @@ export default class Resources extends React.Component {
         .then(result => {
           this.hideCreateModal()
           if (result.name) {
-            // this.routing.push(`/devops/${result.project_id}`)
             this.routing.push(`/devops/${result.name}`)
           }
         })

@@ -18,12 +18,12 @@
 
 import React from 'react'
 import { get } from 'lodash'
+import { toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import { Columns, Column } from '@pitrix/lego-ui'
 import { Button, Modal, Search, ScrollLoad } from 'components/Base'
 import WorkspaceStore from 'stores/workspace'
 import WorkspaceCard from './Card'
-
 import styles from './index.scss'
 
 @observer
@@ -53,7 +53,7 @@ export default class WorkspaceSelectModal extends React.Component {
 
   render() {
     const { visible, onCancel, onShowCreate } = this.props
-    const { data, total, page, isLoading } = this.store.list
+    const { data, total, page, isLoading } = toJS(this.store.list)
 
     const keyword = get(this.store.list, 'filters.name')
 

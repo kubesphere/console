@@ -114,8 +114,10 @@ export default class DevOps extends React.Component {
   showCreate = () =>
     this.props.trigger('devops.create', {
       ...this.props.match.params,
+      success: name => {
+        location.href = `/devops/${name}`
+      },
     })
-
   render() {
     const { bannerProps, tableProps } = this.props
     return (

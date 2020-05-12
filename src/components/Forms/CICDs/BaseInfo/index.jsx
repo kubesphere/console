@@ -72,7 +72,7 @@ export default class BaseInfo extends React.Component {
     this.props.store
       .checkPipelineName({
         name: value,
-        project_id: this.props.formTemplate.project_id,
+        project_name: this.props.formTemplate.project_name,
       })
       .then(resp => {
         if (resp.exist) {
@@ -137,7 +137,7 @@ export default class BaseInfo extends React.Component {
             </Column>
             <Column>
               <Form.Item label={t('Project')} desc={t('PROJECT_DESC')}>
-                <Input name="project_id" disabled />
+                <Input name="project_name" disabled />
               </Form.Item>
             </Column>
           </Columns>
