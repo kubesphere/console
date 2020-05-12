@@ -457,3 +457,20 @@ export const withDryRun = async requests => {
  */
 export const isAppsPage = (path = location.pathname) =>
   path === '/apps' || path.startsWith('/apps/app-')
+
+export const getClusterUrl = url => {
+  let requestURL = url
+
+  const reg = new RegExp(
+    /\/(api|apis|kapis)\/(?!cluster)(.*)\/(clusters\/[^/]*)\/(.*)/
+  )
+  const match = requestURL.match(reg)
+
+  if (match && match.length === 5) {
+    requestURL = `/${match[1]}/${match[3]}/${match[2]}/${match[4]}`
+  }
+
+  return requestURL
+}
+
+export const lazy = ctor => () => ctor()

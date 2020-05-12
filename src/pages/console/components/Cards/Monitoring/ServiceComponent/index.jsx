@@ -42,8 +42,14 @@ export default class ServiceComponentStatusTab extends React.Component {
   constructor(props) {
     super(props)
 
-    this.apiStore = new ComponentMonitorStore('apiserver')
-    this.schedulerStore = new ComponentMonitorStore('scheduler')
+    this.apiStore = new ComponentMonitorStore({
+      module: 'apiserver',
+      cluster: props.cluster,
+    })
+    this.schedulerStore = new ComponentMonitorStore({
+      module: 'scheduler',
+      cluster: props.cluster,
+    })
   }
 
   get routing() {

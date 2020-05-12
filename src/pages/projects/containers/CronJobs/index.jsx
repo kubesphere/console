@@ -18,10 +18,9 @@
 
 import React from 'react'
 
-import { Avatar } from 'components/Base'
+import { Avatar, Status } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import { withProjectList, ListPage } from 'components/HOCs/withList'
-import JobStatus from 'projects/components/JobStatus'
 import StatusReason from 'projects/components/StatusReason'
 import Table from 'components/Tables/List'
 
@@ -167,7 +166,10 @@ export default class CronJobs extends React.Component {
         isHideable: true,
         search: true,
         width: '15%',
-        render: (status, record) => <JobStatus data={record} module={module} />,
+        render: (_, record) => {
+          const { status } = getWorkloadStatus(record, module)
+          return <Status type={status} name={t(status)} />
+        },
       },
       {
         title: t('Schedule'),
@@ -190,10 +192,9 @@ export default class CronJobs extends React.Component {
   }
 
   showCreate = () => {
-    const { match, module, projectStore } = this.props
+    const { match, module } = this.props
     return this.props.trigger('workload.create', {
       module,
-      projectDetail: projectStore.detail,
       namespace: match.params.namespace,
       cluster: match.params.cluster,
     })

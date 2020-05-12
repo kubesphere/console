@@ -49,8 +49,8 @@ export default {
           Modal.close(modal)
           success && success()
         },
-        store: _store,
         detail,
+        store: _store,
         modal: EditYamlModal,
         ...props,
       })

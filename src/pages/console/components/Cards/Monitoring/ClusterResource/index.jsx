@@ -48,7 +48,7 @@ export default class ClusterResourceStatusTab extends React.Component {
   constructor(props) {
     super(props)
 
-    this.monitorStore = new ClusterMonitorStore()
+    this.monitorStore = new ClusterMonitorStore({ cluster: props.cluster })
   }
 
   get routing() {

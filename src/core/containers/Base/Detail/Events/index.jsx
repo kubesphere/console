@@ -42,6 +42,10 @@ class Events extends React.Component {
     return this.props.detailStore
   }
 
+  get cluster() {
+    return this.props.match.params.cluster
+  }
+
   get module() {
     return this.store.module
   }
@@ -69,6 +73,7 @@ class Events extends React.Component {
 
     this.eventStore.fetchList({
       namespace,
+      cluster: this.cluster,
       fieldSelector: joinSelector(fields),
     })
   }

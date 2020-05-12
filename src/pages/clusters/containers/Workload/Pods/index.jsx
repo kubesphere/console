@@ -37,7 +37,7 @@ import styles from './index.scss'
   store: new PodStore(),
   module: 'pods',
   name: 'Pod',
-  rowKey: 'uuid',
+  rowKey: 'uid',
 })
 export default class Pods extends React.Component {
   get itemActions() {
@@ -182,7 +182,7 @@ export default class Pods extends React.Component {
   )
 
   render() {
-    const { query, bannerProps, tableProps } = this.props
+    const { query, match, bannerProps, tableProps } = this.props
     return (
       <ListPage {...this.props}>
         <Banner {...bannerProps} />
@@ -192,6 +192,7 @@ export default class Pods extends React.Component {
           namespace={query.namespace}
           columns={this.getColumns()}
           onCreate={null}
+          cluster={match.params.cluster}
         />
       </ListPage>
     )

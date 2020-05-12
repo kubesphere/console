@@ -32,6 +32,7 @@ export default class Events extends Base {
     }
 
     this.eventStore.fetchList({
+      cluster: this.cluster,
       fieldSelector: joinSelector(fields),
     })
   }

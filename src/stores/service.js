@@ -16,26 +16,13 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, set, has, isEmpty } from 'lodash'
+import { get, set, isEmpty, has } from 'lodash'
 import { action, observable } from 'mobx'
 import { withDryRun } from 'utils'
 import ObjectMapper from 'utils/object.mapper'
 import Base from './base'
 import S2iBuilderStore from './s2i/builder'
-
-const processDeployment = data => {
-  const hasPVC = get(data, 'spec.template.spec.volumes', []).some(
-    volume => !isEmpty(volume.persistentVolumeClaim)
-  )
-  const maxUnavailable = get(
-    data,
-    'spec.strategy.rollingUpdate.maxUnavailable',
-    null
-  )
-  if (hasPVC && !maxUnavailable) {
-    set(data, 'spec.strategy.rollingUpdate.maxUnavailable', 1)
-  }
-}
+import WorkloadStore from './workload'
 
 const updateS2iServiceParams = data => {
   const s2iType = get(
@@ -99,6 +86,9 @@ export default class ServiceStore extends Base {
     isLoading: true,
   }
 
+  @observable
+  workload = {}
+
   constructor() {
     super()
     this.module = 'services'
@@ -106,14 +96,14 @@ export default class ServiceStore extends Base {
   }
 
   @action
-  async fetchEndpoints({ name, namespace }) {
+  async fetchEndpoints({ name, cluster, namespace }) {
     this.endpoints.isLoading = true
     this.endpoints.data.clear()
 
     let endpoints = []
     try {
       const result = await request.get(
-        `api/v1/namespaces/${namespace}/endpoints/${name}`,
+        `api/v1${this.getPath({ cluster, namespace })}/endpoints/${name}`,
         null,
         null,
         () => {
@@ -139,26 +129,22 @@ export default class ServiceStore extends Base {
         this.S2iBuilderStore.create(data.S2i, params)
       }
 
+      const workloadStore = new WorkloadStore()
+
       if (data.Service) {
-        requests.push({
-          url: this.getListUrl(params),
-          data: data.Service,
-        })
+        requests.push(workloadStore.getServiceRequest(data.Service, params))
       }
 
       if (data.Deployment) {
-        processDeployment(data.Deployment)
-        requests.push({
-          url: this.getWorkloadUrl({ ...params, module: 'deployments' }),
-          data: data.Deployment,
-        })
+        workloadStore.setModule('deployments')
+        requests.push(workloadStore.getWorkloadRequest(data.Deployment, params))
       }
 
       if (data.StatefulSet) {
-        requests.push({
-          url: this.getWorkloadUrl({ ...params, module: 'statefulsets' }),
-          data: data.StatefulSet,
-        })
+        workloadStore.setModule('statefulsets')
+        requests.push(
+          workloadStore.getWorkloadRequest(data.StatefulSet, params)
+        )
       }
     }
 
@@ -174,5 +160,31 @@ export default class ServiceStore extends Base {
     return this.submitting(
       request.put(this.getDetailUrl({ name, cluster, namespace }), newObject)
     )
+  }
+
+  @action
+  async fetchWorkload({ cluster, namespace, ...params }) {
+    const workloadTypes = ['deployments', 'statefulsets']
+
+    const [deployments, statefulsets] = await Promise.all(
+      workloadTypes.map(type =>
+        request.get(
+          `apis/apps/v1${this.getPath({ cluster, namespace })}/${type}`,
+          params
+        )
+      )
+    )
+
+    const workloads = { deployments, statefulsets }
+
+    let workload = {}
+    workloadTypes.forEach(type => {
+      if (workloads[type] && !isEmpty(workloads[type].items)) {
+        const item = workloads[type].items[0]
+        workload = { ...ObjectMapper[type](item), type }
+      }
+    })
+
+    this.workload = workload
   }
 }

@@ -44,7 +44,8 @@ class UsageRanking extends React.Component {
     super(props)
 
     this.store = new Store({
-      namespaces: get(this.props.match, 'params.namespace'),
+      cluster: get(props.match, 'params.cluster'),
+      namespaces: get(props.match, 'params.namespace'),
     })
   }
 
@@ -59,8 +60,8 @@ class UsageRanking extends React.Component {
       return
     }
 
-    const { resource_name = '' } = node
-    const workloadName = resource_name.replace(/\w+:/, '')
+    const { workload = '' } = node
+    const workloadName = workload.replace(/\w+:/, '')
     const { cluster, namespace } = this.props.match.params
 
     const LINK_MAP = {
@@ -109,7 +110,7 @@ class UsageRanking extends React.Component {
           }
 
           const link = this.getWorkloadLink(app)
-          const workloadName = app.resource_name.replace(/\w+:/, '')
+          const workloadName = app.workload.replace(/\w+:/, '')
 
           const percent =
             (app[this.store.sort_metric] * 100) /

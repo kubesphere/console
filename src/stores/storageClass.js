@@ -19,6 +19,7 @@
 import { get, set, isString, isEmpty, isArray } from 'lodash'
 import { action, observable } from 'mobx'
 import ObjectMapper from 'utils/object.mapper'
+import VolumeSnapshotClasses from 'stores/volumeSnapshotClasses'
 import Base from './base'
 
 export default class StorageClassStore extends Base {
@@ -35,6 +36,23 @@ export default class StorageClassStore extends Base {
   }
 
   module = 'storageclasses'
+
+  getResourceUrl = params =>
+    `kapis/resources.kubesphere.io/v1alpha3${this.getPath(params)}/${
+      this.module
+    }`
+
+  async delete(params) {
+    await super.delete(params)
+    const volumeSnapshotClassStore = new VolumeSnapshotClasses()
+    await volumeSnapshotClassStore.deleteSilent(params)
+  }
+
+  async batchDelete(rowKeys) {
+    await super.batchDelete(rowKeys)
+    const volumeSnapshotClassStore = new VolumeSnapshotClasses()
+    volumeSnapshotClassStore.silentBatchDelete(rowKeys)
+  }
 
   @action
   create(data) {
@@ -60,7 +78,19 @@ export default class StorageClassStore extends Base {
       )
     }
 
-    return this.submitting(request.post(this.getListUrl(), data))
+    return this.submitting(request.post(this.getListUrl({}), data))
+  }
+
+  async createAlongWithSnapshotClasses(data) {
+    await this.create(data)
+    const volumeSnapshotClassStore = new VolumeSnapshotClasses()
+
+    await volumeSnapshotClassStore.create({
+      metadata: {
+        name: get(data, 'metadata.name'),
+      },
+      driver: get(data, 'provisioner'),
+    })
   }
 
   @action

@@ -16,6 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { get } from 'lodash'
 import React, { Component } from 'react'
 import { inject, observer, Provider } from 'mobx-react'
 
@@ -80,6 +81,8 @@ class ClusterLayout extends Component {
       return <Loading className={styles.loading} />
     }
 
+    const isReady = get(detail, 'conditions.Ready.status') === 'True'
+
     return (
       <Provider clusterStore={this.clusterStore}>
         <>
@@ -94,6 +97,7 @@ class ClusterLayout extends Component {
               navs={globals.app.getClusterNavs(this.cluster)}
               location={location}
               match={match}
+              disabled={!isReady}
             />
           </div>
           <div className="ks-page-main">{renderRoutes(route.routes)}</div>

@@ -44,7 +44,11 @@ export default class RunningStatus extends React.Component {
     super(props)
 
     this.store = props.detailStore
-    this.monitoringStore = new NodeMonitoringStore()
+    this.monitoringStore = new NodeMonitoringStore({ cluster: this.cluster })
+  }
+
+  get cluster() {
+    return this.props.match.params.cluster
   }
 
   componentDidMount() {

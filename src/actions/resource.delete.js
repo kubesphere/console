@@ -18,7 +18,6 @@
 
 import { Modal, Notify } from 'components/Base'
 import DeleteModal from 'components/Modals/Delete'
-
 import FederatedStore from 'stores/federated'
 
 export default {
@@ -43,37 +42,35 @@ export default {
     },
   },
   'resource.batch.delete': {
-    on({ store, success, ...props }) {
+    on({ store, success, rowKey, ...props }) {
       const fedStore = new FederatedStore(store.module)
+      const { data, selectedRowKeys } = store.list
+
+      const selectNames = data
+        .filter(item => selectedRowKeys.includes(item[rowKey]))
+        .map(item => item.name)
+
       const modal = Modal.open({
         onOk: async () => {
-          const { data, selectedRowKeys } = store.list
-
-          const fedRowkKeys = []
-          const rowKeys = []
+          const reqs = []
 
           data.forEach(item => {
-            if (selectedRowKeys.includes(item.name)) {
+            if (selectNames.includes(item.name)) {
               if (item.isFedManaged) {
-                fedRowkKeys.push(item.name)
+                reqs.push(fedStore.delete(item))
               } else {
-                rowKeys.push(item.name)
+                reqs.push(store.delete(item))
               }
             }
           })
 
-          if (rowKeys.length > 0) {
-            await store.batchDelete(rowKeys)
-          }
-          if (fedRowkKeys.length > 0) {
-            await fedStore.batchDelete(fedRowkKeys)
-          }
+          await Promise.all(reqs)
 
           Modal.close(modal)
           Notify.success({ content: `${t('Deleted Successfully')}!` })
           store.setSelectRowKeys([])
         },
-        resource: store.list.selectedRowKeys.join(', '),
+        resource: selectNames.join(', '),
         modal: DeleteModal,
         store,
         ...props,

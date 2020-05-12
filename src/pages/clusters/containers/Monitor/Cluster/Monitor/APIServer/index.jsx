@@ -40,7 +40,10 @@ class APIServerMonitorings extends React.Component {
   constructor(props) {
     super(props)
 
-    this.monitorStore = new ComponentMonitorStore('apiserver')
+    this.monitorStore = new ComponentMonitorStore({
+      module: 'apiserver',
+      cluster: props.match.params.cluster,
+    })
   }
 
   fetchData = params => {

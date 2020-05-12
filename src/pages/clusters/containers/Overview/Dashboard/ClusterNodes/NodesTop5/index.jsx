@@ -19,7 +19,7 @@
 import { get } from 'lodash'
 import React, { Component } from 'react'
 import { observer } from 'mobx-react'
-import { Link, withRouter } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Icon, Select } from '@pitrix/lego-ui'
 import { Button, Text } from 'components/Base'
 
@@ -33,7 +33,6 @@ const storeParams = {
   sort_type: 'desc',
 }
 
-@withRouter
 @observer
 export default class NodesTop5 extends Component {
   store = new NodeStore({ ...storeParams, cluster: this.cluster })
@@ -43,7 +42,7 @@ export default class NodesTop5 extends Component {
   }
 
   get cluster() {
-    return this.props.match.params.cluster
+    return this.props.cluster
   }
 
   get options() {
@@ -70,7 +69,14 @@ export default class NodesTop5 extends Component {
           {data.map(node => (
             <div key={node.node}>
               <Icon name="nodes" size={40} className="margin-r12" />
-              <Text title={node.node} description={get(node, 'node_ip', '-')} />
+              <Text
+                title={
+                  <Link to={`/clusters/${this.cluster}/nodes/${node.node}`}>
+                    {node.node}
+                  </Link>
+                }
+                description={get(node, 'node_ip', '-')}
+              />
               <Text
                 className={styles.cpu}
                 title={`${Math.round(
@@ -82,7 +88,7 @@ export default class NodesTop5 extends Component {
           ))}
         </div>
         <div className={styles.footer}>
-          <Link to="/monitoring/monitor-cluster/ranking">
+          <Link to={`/clusters/${this.cluster}/monitor-cluster/ranking`}>
             <Button>{t('View More')}</Button>
           </Link>
         </div>

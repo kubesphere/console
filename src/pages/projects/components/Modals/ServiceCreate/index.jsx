@@ -22,9 +22,13 @@ import { set } from 'lodash'
 
 import { Modal } from 'components/Base'
 import CreateModal from 'components/Modals/Create'
+import ClusterDiffSettings from 'components/Forms/Workload/ClusterDiffSettings'
+
 import S2iBuilderStore from 'stores/s2i/builder'
+import WorkloadStore from 'stores/workload'
 
 import FORM_STEPS from 'configs/steps/services'
+import { withProps } from 'utils'
 import FORM_TEMPLATES from 'utils/form.templates'
 import { getLanguageIcon } from 'utils/devops'
 import { S2I_SUPPORTED_TYPES, B2I_SUPPORTED_TYPES } from 'utils/constants'
@@ -34,7 +38,8 @@ import styles from './index.scss'
 export default class ServiceCreateModal extends React.Component {
   constructor(props) {
     super(props)
-    this.store = new S2iBuilderStore()
+    this.s2iStore = new S2iBuilderStore()
+    this.workloadStore = new WorkloadStore()
     this.state = {
       type: '',
       workloadModule: 'deployments',
@@ -104,7 +109,7 @@ export default class ServiceCreateModal extends React.Component {
   }
 
   fetchData = async () => {
-    const supportS2iLanguage = await this.store.getS2iSupportLanguage()
+    const supportS2iLanguage = await this.s2iStore.getS2iSupportLanguage()
     const groups = this.state.groups.map(group => {
       if (group.type === 'b2i') {
         group.options = supportS2iLanguage.b2i
@@ -175,11 +180,12 @@ export default class ServiceCreateModal extends React.Component {
   renderSubModal(type, s2iType) {
     const {
       store,
-      workloadStore,
       visible,
       onOk,
       onCancel,
+      cluster,
       namespace,
+      projectDetail,
       isSubmitting,
     } = this.props
 
@@ -205,10 +211,11 @@ export default class ServiceCreateModal extends React.Component {
           description={description}
           width={960}
           module={this.state.workloadModule}
-          store={workloadStore}
+          store={this.workloadStore}
           name={t('Stateless Service')}
           visible={visible}
           steps={steps}
+          cluster={cluster}
           namespace={namespace}
           formTemplate={formTemplate}
           isSubmitting={isSubmitting}
@@ -229,6 +236,7 @@ export default class ServiceCreateModal extends React.Component {
           Deployment: FORM_TEMPLATES.deployments({ namespace }),
           Service: FORM_TEMPLATES.services({ namespace }),
         }
+        const steps = [...FORM_STEPS[type]]
 
         set(
           formTemplate,
@@ -236,18 +244,28 @@ export default class ServiceCreateModal extends React.Component {
           type
         )
 
-        workloadStore.setModule(module)
+        this.workloadStore.setModule(module)
+
+        if (projectDetail && projectDetail.isFedManaged) {
+          steps.push({
+            title: 'Diff Settings',
+            icon: 'blue-green-deployment',
+            component: withProps(ClusterDiffSettings, { withService: true }),
+          })
+        }
 
         content = (
           <CreateModal
             width={960}
             module={module}
-            store={workloadStore}
+            store={this.workloadStore}
             name={t('Stateless Service')}
             description={t('STATELESS_SERVICE_DESC')}
             visible={visible}
+            cluster={cluster}
             namespace={namespace}
-            steps={FORM_STEPS[type]}
+            projectDetail={projectDetail}
+            steps={steps}
             formTemplate={formTemplate}
             isSubmitting={isSubmitting}
             onOk={onOk}
@@ -262,6 +280,7 @@ export default class ServiceCreateModal extends React.Component {
           StatefulSet: FORM_TEMPLATES.statefulsets({ namespace }),
           Service: FORM_TEMPLATES.services({ namespace }),
         }
+        const steps = [...FORM_STEPS[type]]
 
         set(
           formTemplate,
@@ -269,18 +288,28 @@ export default class ServiceCreateModal extends React.Component {
           type
         )
 
-        workloadStore.setModule(module)
+        this.workloadStore.setModule(module)
+
+        if (projectDetail && projectDetail.isFedManaged) {
+          steps.push({
+            title: 'Diff Settings',
+            icon: 'blue-green-deployment',
+            component: withProps(ClusterDiffSettings, { withService: true }),
+          })
+        }
 
         content = (
           <CreateModal
             width={960}
             module={module}
-            store={workloadStore}
+            store={this.workloadStore}
             name={t('Stateful Service')}
             description={t('STATEFUL_SERVICE_DESC')}
             visible={visible}
+            cluster={cluster}
             namespace={namespace}
-            steps={FORM_STEPS[type]}
+            projectDetail={projectDetail}
+            steps={steps}
             formTemplate={formTemplate}
             isSubmitting={isSubmitting}
             onOk={onOk}
@@ -320,6 +349,7 @@ export default class ServiceCreateModal extends React.Component {
             title={title}
             description={description}
             visible={visible}
+            cluster={cluster}
             namespace={namespace}
             steps={FORM_STEPS[type]}
             formTemplate={formTemplate}
@@ -343,6 +373,7 @@ export default class ServiceCreateModal extends React.Component {
             store={store}
             title={title}
             visible={visible}
+            cluster={cluster}
             namespace={namespace}
             formTemplate={formTemplate}
             isSubmitting={isSubmitting}

@@ -49,8 +49,15 @@ class JobRecords extends React.Component {
   }
 
   get prefix() {
-    const { namespace } = this.params
-    return `/projects/${namespace}`
+    const {
+      params: { cluster, namespace },
+      path,
+    } = this.props.match
+    if (path.startsWith('/clusters')) {
+      return `/clusters/${cluster}/projects/${namespace}`
+    }
+
+    return `/cluster/${cluster}/projects/${namespace}`
   }
 
   componentDidMount() {
@@ -59,11 +66,13 @@ class JobRecords extends React.Component {
 
   fetchData = params => {
     const detail = toJS(this.store.detail)
+    const { cluster, namespace } = detail
     const selector = get(detail, 'spec.jobTemplate.metadata.labels', {})
 
     this.recordStore.fetchListByK8s({
       ...params,
-      namespace: detail.namespace,
+      cluster,
+      namespace,
       selector,
     })
   }
@@ -126,7 +135,7 @@ class JobRecords extends React.Component {
     return (
       <Table
         className={styles.table}
-        dataSource={data}
+        dataSource={toJS(data)}
         columns={this.getColumns()}
         loading={isLoading}
       />

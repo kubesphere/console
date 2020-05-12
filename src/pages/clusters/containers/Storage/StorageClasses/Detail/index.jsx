@@ -21,13 +21,11 @@ import { isEmpty } from 'lodash'
 import { observer, inject } from 'mobx-react'
 import { Loading } from '@pitrix/lego-ui'
 
-import { Modal } from 'components/Base'
 import { getDisplayName } from 'utils'
 import { trigger } from 'utils/action'
 import { toJS } from 'mobx'
 import StorageClassStore from 'stores/storageClass'
 
-import SetDefaultStorageClassModal from 'components/Modals/SetDefaultStorageClass'
 import DetailPage from 'clusters/containers/Base/Detail'
 
 import routes from './routes'
@@ -72,7 +70,7 @@ export default class StorageClassDetail extends React.Component {
       action: 'view',
       onClick: () =>
         this.trigger('resource.yaml.edit', {
-          detail: this.store.detail,
+          detail: toJS(this.store.detail),
           readonly: true,
         }),
     },
@@ -81,12 +79,12 @@ export default class StorageClassDetail extends React.Component {
       icon: 'pen',
       text: t('Set as default storage class'),
       action: 'edit',
-      onClick: () => {
-        this.setDefaultModal = Modal.open({
-          onOk: this.handleSetDefaultStorageClass,
-          modal: SetDefaultStorageClassModal,
-        })
-      },
+      onClick: () =>
+        this.trigger('storageclass.set.default', {
+          detail: toJS(this.store.detail),
+          defaultStorageClass: this.defaultStorageClass.name,
+          success: this.fetchData,
+        }),
     },
     {
       key: 'delete',
@@ -96,7 +94,6 @@ export default class StorageClassDetail extends React.Component {
       onClick: () =>
         this.trigger('resource.delete', {
           type: t(this.name),
-          resource: this.store.detail.name,
           detail: toJS(this.store.detail),
           success: this.returnTolist,
         }),
@@ -132,48 +129,17 @@ export default class StorageClassDetail extends React.Component {
     this.props.rootStore.routing.push(this.listUrl)
   }
 
-  handleSetDefaultStorageClass = () => {
-    const detail = toJS(this.store.detail)
-    const defaultStorageClass = this.defaultStorageClass.name
-
-    if (defaultStorageClass) {
-      this.store.patch(
-        { name: defaultStorageClass },
-        {
-          metadata: {
-            annotations: {
-              'storageclass.kubernetes.io/is-default-class': 'false',
-            },
-          },
-        }
-      )
-    }
-
-    this.store
-      .patch(detail, {
-        metadata: {
-          annotations: {
-            'storageclass.kubernetes.io/is-default-class': 'true',
-          },
-        },
-      })
-      .then(() => {
-        Modal.close(this.setDefaultModal)
-        this.fetchData()
-      })
-  }
-
   render() {
     const stores = { detailStore: this.store }
 
-    if (this.store.isLoading) {
+    if (this.store.isLoading && !this.store.detail.name) {
       return <Loading className="ks-page-loading" />
     }
 
     const sideProps = {
       module: this.module,
       name: getDisplayName(this.store.detail),
-      desc: t(`STORAGE CLASS_DESC`),
+      desc: t(`STORAGE_CLASS_DESC`),
       operations: this.getOperations(),
       attrs: this.getAttrs(),
       breadcrumbs: [

@@ -31,6 +31,8 @@ import ProjectDetail from '../containers/Projects/Detail'
 import StorageClassDetail from '../containers/Storage/StorageClasses/Detail'
 import VolumeSnapshotsDetail from '../containers/Storage/VolumeSnapshots/Detail'
 import Volume from '../containers/Storage/Volumes/Detail'
+import ComponentDetail from '../containers/ServiceComponents/Detail'
+import CustomResourceDetail from '../containers/CustomResources/Detail'
 
 const PATH = '/clusters/:cluster'
 
@@ -38,6 +40,22 @@ export default [
   {
     path: `${PATH}/nodes/:node`,
     component: NodeDetail,
+  },
+  {
+    path: `${PATH}/customresources/:name`,
+    component: CustomResourceDetail,
+  },
+  {
+    path: `${PATH}/components/:namespace/:name`,
+    component: ComponentDetail,
+  },
+  {
+    path: `${PATH}/components/:namespace/:name/pods/:podName/containers/:containerName`,
+    component: ContainerDetail,
+  },
+  {
+    path: `${PATH}/components/:namespace/:name/pods/:podName`,
+    component: PodDetail,
   },
   {
     path: `${PATH}/projects/:namespace/:module/:name/pods/:podName/containers/:containerName`,
@@ -72,7 +90,7 @@ export default [
     component: ServiceDetail,
   },
   {
-    path: `${PATH}/projects/:namespace/routes/:name`,
+    path: `${PATH}/projects/:namespace/ingresses/:name`,
     component: RouteDetail,
   },
   {
@@ -88,11 +106,11 @@ export default [
     component: StorageClassDetail,
   },
   {
-    path: `${PATH}/snapshots/:namespace/:name`,
+    path: `${PATH}/projects/:namespace/volume-snapshots/:name`,
     component: VolumeSnapshotsDetail,
   },
   {
-    path: `${PATH}/projects/:namespace/volumes/:name`,
+    path: `${PATH}/namespaces/:namespace/volumes/:name`,
     component: Volume,
   },
   {

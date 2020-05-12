@@ -222,6 +222,7 @@ export const ICON_TYPES = {
   s2ibuilders: 'vnas',
   apps: 'appcenter',
   'volume-snapshots': 'snapshot',
+  customresourcedefinitions: 'select',
 }
 
 export const MODULE_KIND_MAP = {
@@ -234,13 +235,16 @@ export const MODULE_KIND_MAP = {
   services: 'Service',
   ingresses: 'Ingress',
   volumes: 'PersistentVolumeClaim',
+  persistentvolumeclaims: 'PersistentVolumeClaim',
   storageclasses: 'StorageClass',
   'alerting-policy': 'AlertingPolicy',
   configmaps: 'ConfigMap',
   secrets: 'Secret',
   s2ibuilders: 'S2iBuilder',
   nodes: 'Node',
-  'volume-snapshots': 'VolumeSnapshot',
+  volumesnapshots: 'VolumeSnapshot',
+  namespaces: 'Namespace',
+  workspaces: 'Workspace',
 }
 
 export const QUOTAS_MAP = {
@@ -816,9 +820,68 @@ export const API_VERSIONS = {
   strategies: 'apis/servicemesh.kubesphere.io/v1alpha2',
   servicepolicies: 'apis/servicemesh.kubesphere.io/v1alpha2',
   horizontalpodautoscalers: 'apis/autoscaling/v2beta2',
+  customresourcedefinitions: 'apis/apiextensions.k8s.io/v1',
   clusters: 'apis/cluster.kubesphere.io/v1alpha1',
   workspaces: 'apis/tenant.kubesphere.io/v1alpha1',
   users: 'apis/iam.kubesphere.io/v1alpha2',
   globalroles: 'apis/iam.kubesphere.io/v1alpha2',
   devops: 'apis/devops.kubesphere.io/v1alpha3',
+  dashboards: 'apis/monitoring.kubesphere.io/v1alpha1',
+}
+
+export const MONITOR_GRAPH_COLORS = [
+  {
+    nameI18nKey: '默认配色',
+    colors: [
+      '#60acfc',
+      '#23c2db',
+      '#64d5b2',
+      '#d5ec5a',
+      '#ffb64e',
+      '#fb816d',
+      '#d15c7f',
+    ],
+  },
+  {
+    nameI18nKey: '冷色调',
+    colors: [
+      '#678ed7',
+      '#60acfc',
+      '#23c2db',
+      '#33d3eb',
+      '#9cdc82',
+      '#d5ec5a',
+      '#ffe168',
+    ],
+  },
+  {
+    nameI18nKey: '暖色调',
+    colors: [
+      '#717adf',
+      '#d15c7f',
+      '#fb6f6c',
+      '#ff9f69',
+      '#ffb64e',
+      '#ffda43',
+      '#ffe88e',
+    ],
+  },
+]
+
+export const COMPONENT_ICON_MAP = {
+  kubernetes: 'kubernetes',
+  kubesphere: 'kubesphere',
+  istio: 'istio',
+  openpitrix: 'openpitrix',
+  devops: 'jenkins',
+  logging: 'record',
+  monitoring: 'monitor',
+}
+
+export const CLUSTER_PROVIDER_ICON = {
+  Custom: 'kubernetes',
+  QingCloud: 'qingcloud',
+  Google: 'google-plus',
+  Amazon: 'aws',
+  Azure: 'windows',
 }

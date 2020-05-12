@@ -21,7 +21,8 @@ import { getIndexRoute } from 'utils/router.config'
 import ProjectLayout from '../containers/layout'
 
 import Overview from '../containers/Overview'
-import Applications from '../containers/Applications'
+import CRDApps from '../containers/Applications/CRDApps'
+import OPApps from '../containers/Applications/OPApps'
 import Deployments from '../containers/Deployments'
 import StatefulSets from '../containers/StatefulSets'
 import DaemonSets from '../containers/DaemonSets'
@@ -39,8 +40,8 @@ import Secrets from '../containers/Secrets'
 import Roles from '../containers/Roles'
 import Members from '../containers/Members'
 import AdvancedSettings from '../containers/AdvancedSettings'
+import CustomMonitoring from '../containers/CustomMonitoring'
 
-import applicationRoutes from './application'
 import alertingMessageRoutes from './alerting/message'
 import alertingPolicyRoutes from './alerting/policy'
 import alertingRoutes from './alerting'
@@ -53,7 +54,6 @@ const PATH = '/cluster/:cluster/projects/:namespace'
 
 export default [
   ...detail,
-  ...applicationRoutes,
   ...alertingMessageRoutes,
   ...alertingPolicyRoutes,
   ...imageBuilderRoutes,
@@ -69,13 +69,13 @@ export default [
         exact: true,
       },
       {
-        path: `${PATH}/applications`,
-        component: Applications,
+        path: `${PATH}/applications/composing`,
+        component: CRDApps,
         exact: true,
       },
       {
-        path: `${PATH}/applications/:type`,
-        component: Applications,
+        path: `${PATH}/applications/template`,
+        component: OPApps,
         exact: true,
       },
       {
@@ -109,7 +109,7 @@ export default [
         ksModule: 'servicemesh',
         exact: true,
       },
-      { path: `${PATH}/routes`, component: Routes, exact: true },
+      { path: `${PATH}/ingresses`, component: Routes, exact: true },
       { path: `${PATH}/volumes`, component: Volumes, exact: true },
       { path: `${PATH}/base-info`, component: BaseInfo, exact: true },
       { path: `${PATH}/configmaps`, component: ConfigMaps, exact: true },
@@ -117,9 +117,19 @@ export default [
       { path: `${PATH}/roles`, component: Roles, exact: true },
       { path: `${PATH}/members`, component: Members, exact: true },
       { path: `${PATH}/advanced`, component: AdvancedSettings, exact: true },
+      {
+        path: `${PATH}/custom-monitoring`,
+        component: CustomMonitoring,
+        exact: true,
+      },
       getIndexRoute({
         path: `${PATH}/workloads`,
         to: `${PATH}/deployments`,
+        exact: true,
+      }),
+      getIndexRoute({
+        path: `${PATH}/applications`,
+        to: `${PATH}/applications/${getDefaultAppType()}`,
         exact: true,
       }),
       getIndexRoute({ path: PATH, to: `${PATH}/overview`, exact: true }),
@@ -127,3 +137,7 @@ export default [
     ],
   },
 ]
+
+function getDefaultAppType() {
+  return globals.app.enableAppStore ? 'template' : 'composing'
+}

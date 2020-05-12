@@ -20,7 +20,7 @@ import { getIndexRoute } from 'utils/router.config'
 import Events from 'core/containers/Base/Detail/Events'
 import Source from './Source'
 
-const PATH = '/clusters/:cluster/snapshots/:namespace/:name'
+const PATH = '/clusters/:cluster/projects/:namespace/volume-snapshots/:name'
 const SOURCE_PATH = `${PATH}/source`
 const EVENT_PATH = `${PATH}/event`
 

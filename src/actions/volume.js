@@ -16,7 +16,9 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { get } from 'lodash'
 import { Modal, Notify } from 'components/Base'
+
 import CreateModal from 'components/Modals/Create'
 import NameModal from 'projects/components/Modals/ResourceNamed'
 import ExpandModal from 'projects/components/Modals/ExpandVolume'
@@ -31,6 +33,7 @@ export default {
     on({
       fromSnapshot,
       store,
+      cluster,
       namespace,
       module,
       extendformTemplate,
@@ -49,17 +52,21 @@ export default {
 
       const modal = Modal.open({
         onOk: async newObject => {
-          if (!newObject.PersistentVolumeClaim) {
+          const data = get(newObject, kind)
+          if (!data) {
             return
           }
 
-          await store.create(newObject.PersistentVolumeClaim)
+          const params = { cluster, namespace }
+          params.namespace = params.namespace || get(data, 'metadata.namespace')
+          await store.create(data, params)
           Modal.close(modal)
           Notify.success({ content: `${t('Created Successfully')}!` })
           success && success()
           formPersist.delete(`${module}_create_form`)
         },
         module,
+        cluster,
         namespace,
         name: kind,
         formTemplate,

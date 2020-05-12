@@ -34,6 +34,7 @@ import {
   LevelRight,
   Pagination,
   Loading,
+  Select,
 } from '@pitrix/lego-ui'
 import { Panel, Search, Button } from 'components/Base'
 import PodItem from './Item'
@@ -76,14 +77,15 @@ export default class PodsCard extends React.Component {
     this.store = new PodStore()
     this.monitorStore = new PodMonitorStore()
 
-    this.params = this.getParams(props)
+    this.state = {
+      expandItem: '',
+      selectCluster: get(props, 'detail.cluster'),
+    }
 
     this.websocket = props.rootStore.websocket
     this.initWebsocket()
 
-    this.state = {
-      expandItem: '',
-    }
+    this.params = this.getParams(props)
   }
 
   initWebsocket() {
@@ -133,13 +135,13 @@ export default class PodsCard extends React.Component {
   }
 
   getParams = (props = {}) => {
-    const { name, cluster, namespace, kind, uid, _originData } =
-      props.detail || {}
+    const { selectCluster } = this.state
+    const { name, namespace, kind, selector, _originData } = props.detail || {}
     const _kind = kind || get(_originData, 'kind', '')
     const result = {}
 
-    if (cluster) {
-      result.cluster = cluster
+    if (selectCluster) {
+      result.cluster = selectCluster
     }
 
     if (namespace) {
@@ -153,14 +155,11 @@ export default class PodsCard extends React.Component {
       case 'Node':
         result.nodeName = name
         break
-      case 'Service':
-        result.serviceName = name
-        break
       case 'Namespace':
         result.namespace = name
         break
       default:
-        result.ownerReference = uid
+        result.labelSelector = joinSelector(selector)
     }
     return result
   }
@@ -246,19 +245,46 @@ export default class PodsCard extends React.Component {
     }))
   }
 
-  renderHeader = () => (
-    <div className={styles.header}>
-      <Search
-        className={styles.search}
-        name="search"
-        placeholder={t('Please input a keyword to filter')}
-        onSearch={this.handleSearch}
-      />
-      <div className={styles.actions}>
-        <Button type="flat" icon="refresh" onClick={this.handleRefresh} />
+  getClustersOptions = () => {
+    const { clusters } = this.props
+    return clusters.map(cluster => ({
+      label: cluster.name,
+      value: cluster.name,
+    }))
+  }
+
+  handleClusterChange = cluster => {
+    this.setState({ selectCluster: cluster }, () => {
+      this.params = this.getParams(this.props)
+      this.fetchData()
+    })
+  }
+
+  renderHeader = () => {
+    const { clusters } = this.props
+    return (
+      <div className={styles.header}>
+        {!isEmpty(clusters) && (
+          <Select
+            name="cluster"
+            className={styles.cluster}
+            value={this.params.cluster}
+            options={this.getClustersOptions()}
+            onChange={this.handleClusterChange}
+          />
+        )}
+        <Search
+          className={styles.search}
+          name="search"
+          placeholder={t('Please input a keyword to filter')}
+          onSearch={this.handleSearch}
+        />
+        <div className={styles.actions}>
+          <Button type="flat" icon="refresh" onClick={this.handleRefresh} />
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 
   renderContent() {
     const { prefix } = this.props

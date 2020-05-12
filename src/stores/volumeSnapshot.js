@@ -15,9 +15,6 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { isEmpty } from 'lodash'
-import { getFilterString } from 'utils'
-
 import Base from './base'
 
 export default class VolumeSnapshotStore extends Base {
@@ -28,59 +25,6 @@ export default class VolumeSnapshotStore extends Base {
   }
 
   get apiVersion() {
-    return 'apis/snapshot.storage.k8s.io/v1alpha1'
-  }
-
-  async fetchList({
-    limit,
-    page,
-    order,
-    reverse,
-    workspace,
-    namespace,
-    more,
-    resources,
-    conditions,
-    /**
-     * @TODO add cluster when api support
-     */
-    cluster,
-    ...filters
-  }) {
-    if (!isEmpty(filters) || conditions) {
-      const newConditions =
-        conditions ||
-        getFilterString(filters, [
-          'app.kubernetes.io/name',
-          'label',
-          'annotation',
-        ])
-
-      return await super.fetchList({
-        limit,
-        page,
-        order,
-        reverse,
-        workspace,
-        namespace,
-        more,
-        resources,
-        conditions: newConditions,
-        ...filters,
-      })
-    }
-
-    return await super.fetchList({
-      limit,
-      page,
-      order,
-      reverse,
-      workspace,
-      namespace,
-      more,
-      resources,
-      conditions,
-      ...filters,
-    })
+    return 'apis/snapshot.storage.k8s.io/v1beta1'
   }
 }

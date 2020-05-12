@@ -1,0 +1,9 @@
+@import '~scss/variables';
+
+.link {
+  color: $black;
+  cursor: pointer;
+  &:hover {
+    color: $green-color03;
+  }
+}

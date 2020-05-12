@@ -43,7 +43,7 @@ class NodeRanking extends React.Component {
   constructor(props) {
     super(props)
 
-    this.store = new Store()
+    this.store = new Store({ cluster: this.cluster })
   }
 
   get cluster() {

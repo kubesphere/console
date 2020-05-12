@@ -89,7 +89,7 @@ export default {
     '存储卷供用户创建的工作负载使用，是将工作负载数据持久化的一种资源对象。',
   VOLUME_CREATE_DESC:
     '存储卷供用户创建的工作负载使用，是将工作负载数据持久化的一种资源对象。',
-  'STORAGE CLASS_DESC':
+  STORAGE_CLASS_DESC:
     '存储类型 (StorageClass) 是由集群管理员配置存储服务端参数，并按类型提供存储给集群用户使用。',
   'STORAGE-CLASSES_BASEINFO_DESC':
     '存储类型记录管理员所提供的某类存储的配置信息，创建特定类型的存储卷之前必须已配置相应的存储类型。',

@@ -17,6 +17,7 @@
  */
 
 import React from 'react'
+import { observer, inject } from 'mobx-react'
 
 import {
   Dropdown,
@@ -29,17 +30,51 @@ import {
 import { Button } from 'components/Base'
 import BaseTable from 'components/Tables/Base'
 import withTableActions from 'components/HOCs/withTableActions'
+import ProjectStore from 'stores/project'
 import ProjectSelect from './ProjectSelect'
 
 class ResourceTable extends BaseTable {
+  projectStore = new ProjectStore()
+
+  routing = this.props.rootStore.routing
+
+  componentDidMount() {
+    this.fetchProjects()
+  }
+
+  fetchProjects = (params = {}) => {
+    const { cluster } = this.props
+    return this.projectStore.fetchList({
+      cluster,
+      ...params,
+    })
+  }
+
+  handleClusterChange = namespace => {
+    const { module, cluster } = this.props
+
+    if (!namespace) {
+      this.routing.push(`/clusters/${cluster}/${module}`)
+    } else {
+      this.routing.push(`/clusters/${cluster}/${module}?namespace=${namespace}`)
+    }
+  }
+
   renderNormalTitle() {
-    const { hideCustom, module, namespace } = this.props
+    const { hideCustom, module, cluster, namespace } = this.props
 
     return (
       <Level>
         <LevelLeft>
           <LevelItem>
-            <ProjectSelect module={module} namespace={namespace} />
+            <ProjectSelect
+              module={module}
+              cluster={cluster}
+              namespace={namespace}
+              store={this.projectStore}
+              onFetch={this.fetchProjects}
+              onChange={this.handleClusterChange}
+            />
           </LevelItem>
         </LevelLeft>
         <LevelItem>{this.renderSearch()}</LevelItem>
@@ -67,4 +102,4 @@ class ResourceTable extends BaseTable {
   }
 }
 
-export default withTableActions(ResourceTable)
+export default inject('rootStore')(observer(withTableActions(ResourceTable)))

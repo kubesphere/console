@@ -17,29 +17,27 @@
  */
 
 import React from 'react'
-import { Columns, Column } from '@pitrix/lego-ui'
+import { get } from 'lodash'
+import { Panel, Text } from 'components/Base'
 
-import ResourceStatistics from './Statistics'
-import ClusterStatus from './ClusterStatus'
-import ResourceUsage from './ResourceUsage'
+import PlatformStatus from './PlatformStatus'
+
+import styles from './index.scss'
 
 export default class AdminDashboard extends React.Component {
   render() {
     return (
       <div>
-        <Columns className="is-variable is-1_1">
-          <Column className="is-4">
-            <ResourceStatistics />
-          </Column>
-          <Column className="is-8">
-            <ClusterStatus />
-          </Column>
-        </Columns>
-        <Columns>
-          <Column className="is-12">
-            <ResourceUsage />
-          </Column>
-        </Columns>
+        <Panel className={styles.info} title={t('Platform Info')}>
+          <Text
+            title={get(globals, 'config.version.kubesphere')}
+            description={t('Platform Version')}
+          />
+          <Text title={3} description={t('Clusters Number')} />
+        </Panel>
+        <Panel className={styles.status} title={t('Platform Running Status')}>
+          <PlatformStatus />
+        </Panel>
       </div>
     )
   }

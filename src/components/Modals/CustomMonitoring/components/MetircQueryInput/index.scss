@@ -1,0 +1,91 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.wrapper {
+  display: flex;
+  border: solid 1px $light-color08;
+  border-radius: 4px;
+  line-height: 24px;
+  padding: 0 4px;
+  align-items: center;
+}
+
+.btn {
+  border-radius: 2px;
+  color: $white;
+  padding: 0 10px;
+  display: inline-block;
+  cursor: pointer;
+  height: 24px;
+}
+
+.dropdown {
+  .dropdownBtn {
+    background: $dark-color07;
+  }
+}
+
+.input {
+  flex: 1
+}
+
+.debug {
+  background: $yellow-color05;
+  vertical-align: center;
+}
+
+.dropdownContent {
+  background: $dark-color07;
+  border-radius: 4px;
+  color: $white;
+  max-height: 300px;
+  overflow: auto;
+  p {
+    @include TypographyParagraph($light-color02);
+    line-height: 30px;
+    padding:0 10px;
+    &:hover {
+      background: $dark-color05;
+    }
+  }
+}
+
+.autoComplete {
+
+  li {
+    &:hover {
+      background-color: $dark-color06 !important;
+    }
+  }
+
+  :global {    
+    .autocomplete-selector {
+      background: $dark-color07;
+    
+      .active {
+        background-color: $dark-color06 !important;
+      }
+
+      .autocomplete-option {
+        @include TypographyParagraph($light-color02);
+
+        color: $white !important;
+      }
+    
+      .highlight {
+        color: $yellow-color02 !important;
+      }
+    }
+
+    .input {
+      max-width: inherit;
+      width: 100%;
+      border: none;
+    }
+  }
+
+}
+
+.description {
+  color: $dark-color01;
+}

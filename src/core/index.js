@@ -61,13 +61,12 @@ window.request = request
 
 globals.app = new GlobalValue()
 
-const { locales } = i18n.init()
-
 const store = new RootStore()
 const browserHistory = createBrowserHistory()
 const history = syncHistoryWithStore(browserHistory, store.routing)
 
-const render = component => {
+const render = async component => {
+  const { locales } = await i18n.init()
   ReactDOM.render(
     <AppContainer>
       <Suspense fallback={<Loading className="ks-page-loading" />}>

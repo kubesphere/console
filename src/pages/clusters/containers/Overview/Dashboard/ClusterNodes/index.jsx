@@ -30,7 +30,7 @@ export default class ClusterNodes extends Component {
         <div className={styles.status}>
           <NodesStatus />
         </div>
-        <NodesTop5 />
+        <NodesTop5 {...this.props} />
       </Panel>
     )
   }

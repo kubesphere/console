@@ -56,6 +56,10 @@ export default class BaseInfo extends React.Component {
         </div>
         <div className={styles.content}>
           <div className={styles.text}>
+            <div>{detail.cluster || '-'}</div>
+            <p>{t('Cluster')}</p>
+          </div>
+          <div className={styles.text}>
             <div>
               {detail.workspace ? (
                 <Link to={this.getWorkspaceUrl()}>{detail.workspace}</Link>

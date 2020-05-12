@@ -41,7 +41,10 @@ class SchedulerMonitorings extends React.Component {
   constructor(props) {
     super(props)
 
-    this.monitorStore = new ComponentMonitorStore('scheduler')
+    this.monitorStore = new ComponentMonitorStore({
+      module: 'scheduler',
+      cluster: props.match.params.cluster,
+    })
   }
 
   fetchData = params => {

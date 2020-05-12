@@ -158,7 +158,7 @@ export default class Projects extends React.Component {
           itemActions={this.itemActions}
           columns={this.getColumns()}
           onCreate={this.showCreate}
-          searchType={'keyword'}
+          searchType="keyword"
           cluster={query.cluster}
           getCheckboxProps={this.getCheckboxProps}
         />

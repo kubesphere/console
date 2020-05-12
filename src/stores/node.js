@@ -49,7 +49,7 @@ export default class NodeStore extends Base {
           .length > 0
     ).length
 
-    this.masterCount = resp.total_count
+    this.masterCount = resp.totalItems
     this.masterWorkerCount = masterWorker
   }
 
@@ -68,22 +68,28 @@ export default class NodeStore extends Base {
   }
 
   @action
-  async cordon({ name }) {
+  async cordon({ cluster, name }) {
     const data = {
       spec: { unschedulable: true },
     }
-    const result = await request.patch(this.getDetailUrl({ name }), data)
+    const result = await request.patch(
+      this.getDetailUrl({ cluster, name }),
+      data
+    )
 
     this.detail = this.mapper(result)
     this.originDetail = result
   }
 
   @action
-  async uncordon({ name }) {
+  async uncordon({ cluster, name }) {
     const data = {
       spec: { unschedulable: null },
     }
-    const result = await request.patch(this.getDetailUrl({ name }), data)
+    const result = await request.patch(
+      this.getDetailUrl({ cluster, name }),
+      data
+    )
 
     this.detail = this.mapper(result)
     this.originDetail = result
@@ -96,7 +102,7 @@ export default class NodeStore extends Base {
         const node = this.list.data[rowKey]
         if (node.role === 'master') return null
 
-        return request.delete(this.getDetailUrl({ name: node.name }), {
+        return request.delete(this.getDetailUrl(node), {
           orphanDependents: false,
         })
       })

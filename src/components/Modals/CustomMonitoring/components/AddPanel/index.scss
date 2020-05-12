@@ -1,0 +1,13 @@
+@import '~scss/variables';
+
+.wrapper {
+  line-height: 36px;
+  border-radius: 4px;
+  border: dashed 1px $light-color06;
+  margin: 10px;
+  cursor: pointer;
+  padding: 0 10px;
+  & > span {
+    margin-right: 10px;
+  }
+}

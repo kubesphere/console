@@ -219,6 +219,13 @@ export default class ContainerSetting extends React.Component {
     set(formTemplate, 'Service.metadata.labels', labels)
     set(formTemplate, 'Service.spec.selector', podLabels)
 
+    const placement = get(formData, 'spec.placement')
+    if (placement) {
+      set(formTemplate, 'Service.spec.placement', placement)
+    } else {
+      unset(formTemplate, 'Service.spec.placement')
+    }
+
     if (module === 'statefulsets') {
       set(formTemplate, 'Service.spec.clusterIP', 'None')
     } else {
@@ -288,6 +295,13 @@ export default class ContainerSetting extends React.Component {
     }
   }
 
+  handleClusterChange = value => {
+    const { formTemplate, withService } = this.props
+    if (withService) {
+      set(formTemplate, 'Service.spec.placement.clusters', value)
+    }
+  }
+
   containersValidator = (rule, value, callback) => {
     if (isEmpty(value)) {
       return callback({ message: t('Please add at least one container') })
@@ -349,7 +363,9 @@ export default class ContainerSetting extends React.Component {
             name="spec.placement.clusters"
             module={this.module}
             template={this.formTemplate}
+            clusters={projectDetail.clusters}
             defaultValue={defaultValue}
+            onChange={this.handleClusterChange}
           />
         </Form.Item>
       )

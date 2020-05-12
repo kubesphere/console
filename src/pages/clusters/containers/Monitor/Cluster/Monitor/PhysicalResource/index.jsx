@@ -56,7 +56,9 @@ class ClusterMonitorings extends React.Component {
   constructor(props) {
     super(props)
 
-    this.monitorStore = new ClusterMonitorStore()
+    this.monitorStore = new ClusterMonitorStore({
+      cluster: props.match.params.cluster,
+    })
   }
 
   get metrics() {

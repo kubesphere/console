@@ -49,7 +49,7 @@ export default {
   SRORAGE_SETTING_DESC:
     'ReadWriteOnce: Single node read and write.<br/>ReadOnlyMany: Multi-node read-only.<br/>ReadWriteMany: Multi-node read and write.<br/>Only one mode can be used when mounting.',
 
-  'STORAGE CLASS_DESC':
+  STORAGE_CLASS_DESC:
     'A StorageClass provides a way for administrators to configure the "classes" of storage they offer.',
 
   'STORAGE-CLASSES_BASEINFO_DESC':

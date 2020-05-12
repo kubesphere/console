@@ -16,23 +16,22 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import Projects from '../containers/Projects'
 import Dashboard from '../containers/Dashboard'
 import NotFound from '../containers/NotFound'
-import ServiceComponents from '../containers/ServiceComponents'
-
-import componentRoutes from './component'
-import volumeRoutes from './volume'
-import monitoringRoutes from './monitoring'
+import KubeCtl from '../containers/KubeCtl'
+import LogQuery from '../containers/LogQuery'
+import ContainerTerminal from '../containers/ContainerTerminal'
 
 export default [
   { path: '/404', component: NotFound, exact: true },
   { path: '/dashboard', component: Dashboard, exact: true },
-  { path: '/projects', component: Projects, exact: true },
-  { path: '/components', component: ServiceComponents, exact: true },
-  ...monitoringRoutes,
-  ...componentRoutes,
-  ...volumeRoutes,
+  { path: `/kubectl`, exact: true, component: KubeCtl },
+  { path: `/logquery`, exact: true, component: LogQuery },
+  {
+    path:
+      '/terminal/clusters/:cluster/projects/:namespace/pods/:podName/containers/:containerName',
+    component: ContainerTerminal,
+  },
   {
     path: '/',
     redirect: { from: '/', to: '/dashboard', exact: true },

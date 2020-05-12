@@ -162,9 +162,14 @@ export default class ContainerDetail extends React.Component {
   }
 
   handleOpenTerminal = () => {
-    const { namespace, podName, containerName } = this.props.match.params
+    const {
+      cluster,
+      namespace,
+      podName,
+      containerName,
+    } = this.props.match.params
 
-    const terminalUrl = `/terminal/${namespace}/pods/${podName}/containers/${containerName}`
+    const terminalUrl = `/terminal/clusters/${cluster}/projects/${namespace}/pods/${podName}/containers/${containerName}`
     window.open(
       terminalUrl,
       `Connecting ${containerName}`,
@@ -180,7 +185,7 @@ export default class ContainerDetail extends React.Component {
   render() {
     const stores = { detailStore: this.store }
 
-    if (this.store.isLoading) {
+    if (this.store.isLoading && !this.store.detail.name) {
       return <Loading className="ks-page-loading" />
     }
 

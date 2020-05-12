@@ -45,7 +45,10 @@ export default class ETCDStatusTab extends React.Component {
   constructor(props) {
     super(props)
 
-    this.monitorStore = new ComponentMonitorStore('etcd')
+    this.monitorStore = new ComponentMonitorStore({
+      module: 'etcd',
+      cluster: props.cluster,
+    })
   }
 
   get routing() {

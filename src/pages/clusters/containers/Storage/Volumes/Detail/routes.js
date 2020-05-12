@@ -22,7 +22,7 @@ import Events from 'core/containers/Base/Detail/Events'
 import ResourceStatus from './ResourceStatus'
 import Snapshots from './Snapshots'
 
-const PATH = '/clusters/:cluster/namespaces/:namespace/volumes/:name'
+const PATH = '/clusters/:cluster/projects/:namespace/volumes/:name'
 
 export default [
   {

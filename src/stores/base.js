@@ -134,7 +134,7 @@ export default class BaseStore {
   }
 
   @action
-  async fetchListByK8s({ cluster, namespace, module, ...rest }) {
+  async fetchListByK8s({ cluster, namespace, module, ...rest } = {}) {
     this.list.isLoading = true
 
     if (module) {

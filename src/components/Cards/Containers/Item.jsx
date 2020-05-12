@@ -52,10 +52,10 @@ export default class ContainerItem extends React.Component {
   getLink = name => `${this.props.prefix}/containers/${name}`
 
   handleOpenTerminal = () => {
-    const { podName } = this.props
+    const { cluster, podName } = this.props
     const { namespace, name } = this.props.detail
 
-    const terminalUrl = `/terminal/${namespace}/pods/${podName}/containers/${name}`
+    const terminalUrl = `/terminal/clusters/${cluster}/projects/${namespace}/pods/${podName}/containers/${name}`
     window.open(
       terminalUrl,
       `Connecting ${name}`,
@@ -134,6 +134,7 @@ export default class ContainerItem extends React.Component {
       isCreating,
       prefix,
       podName,
+      cluster,
       isInit,
       ...rest
     } = this.props
@@ -222,6 +223,7 @@ export default class ContainerItem extends React.Component {
           visible={showContainerLog}
           podName={podName}
           container={detail}
+          cluster={cluster}
           onCancel={this.hideContainerLog}
         />
       </div>

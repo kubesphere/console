@@ -21,7 +21,7 @@ import PropTypes from 'prop-types'
 
 import { trimEnd } from 'lodash'
 
-import NavItem from './item'
+import NavItem from './NavItem'
 
 import styles from './index.scss'
 
@@ -53,7 +53,14 @@ class Nav extends React.Component {
   }
 
   render() {
-    const { className, navs, match, innerRef, onItemClick } = this.props
+    const {
+      className,
+      navs,
+      match,
+      innerRef,
+      onItemClick,
+      disabled,
+    } = this.props
 
     const prefix = trimEnd(match.url, '/')
 
@@ -70,6 +77,7 @@ class Nav extends React.Component {
                   prefix={prefix}
                   current={this.currentPath}
                   onClick={onItemClick}
+                  disabled={disabled}
                 />
               ))}
             </ul>

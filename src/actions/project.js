@@ -29,7 +29,7 @@ import FederatedStore from 'stores/federated'
 
 export default {
   'project.create': {
-    on({ store, success, workspace, ...props }) {
+    on({ store, success, cluster, workspace, ...props }) {
       const federatedStore = new FederatedStore(store.module)
 
       const modal = Modal.open({
@@ -47,6 +47,7 @@ export default {
             success && success()
           })
         },
+        hideCluster: !!cluster,
         formTemplate: FORM_TEMPLATES.project(),
         modal: ProjectCreateModal,
         store,

@@ -21,8 +21,8 @@ import { getIndexRoute } from 'utils/router.config'
 import Events from 'core/containers/Base/Detail/Events'
 import EnvVariables from 'core/containers/Base/Detail/EnvVariables'
 import RevisionControl from 'projects/containers/Deployments/Detail/RevisionControl'
+import Monitoring from 'projects/containers/Deployments/Detail/Monitoring'
 import ResourceStatus from './ResourceStatus'
-import Monitoring from './Monitoring'
 
 export default path => [
   {

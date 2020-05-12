@@ -139,7 +139,7 @@ export default class AccountDetail extends React.Component {
   render() {
     const stores = { detailStore: this.store }
 
-    if (this.store.isLoading) {
+    if (this.store.isLoading && !this.store.detail.username) {
       return <Loading className="ks-page-loading" />
     }
 

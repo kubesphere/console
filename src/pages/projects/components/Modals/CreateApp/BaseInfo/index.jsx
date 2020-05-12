@@ -16,9 +16,8 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, set, debounce } from 'lodash'
+import { set, debounce } from 'lodash'
 import React from 'react'
-import { PropTypes } from 'prop-types'
 import { Input, Select, TextArea } from '@pitrix/lego-ui'
 import { PATTERN_NAME, PATTERN_LENGTH_63 } from 'utils/constants'
 import { Form } from 'components/Base'
@@ -26,12 +25,8 @@ import { Form } from 'components/Base'
 import styles from './index.scss'
 
 export default class BaseInfo extends React.Component {
-  static propTypes = {
-    onLabelsChange: PropTypes.func,
-  }
-
-  static defaultProps = {
-    onLabelsChange() {},
+  get formTemplate() {
+    return this.props.formData.application
   }
 
   get governances() {
@@ -57,41 +52,32 @@ export default class BaseInfo extends React.Component {
   }
 
   handleNameChange = debounce(value => {
-    set(this.props.formData, 'metadata.labels["app.kubernetes.io/name"]', value)
+    set(this.formTemplate, 'metadata.labels["app.kubernetes.io/name"]', value)
     set(
-      this.props.formData,
+      this.formTemplate,
       'spec.selector.matchLabels["app.kubernetes.io/name"]',
       value
-    )
-
-    this.props.onLabelsChange(
-      get(this.props.formData, 'spec.selector.matchLabels')
     )
   }, 200)
 
   handleVersionChange = debounce(value => {
     set(
-      this.props.formData,
+      this.formTemplate,
       'spec.selector.matchLabels["app.kubernetes.io/version"]',
       value
     )
-
-    this.props.onLabelsChange(
-      get(this.props.formData, 'spec.selector.matchLabels')
-    )
   }, 200)
-
-  handleGovernanceChange = value => {
-    this.props.onGovernanceChange(value)
-  }
 
   render() {
     const { formRef, serviceMeshEnable } = this.props
 
     return (
       <div className={styles.wrapper}>
-        <div className="h5">{t('Basic Info')}</div>
-        <Form data={this.props.formData} ref={formRef}>
+        <div className={styles.step}>
+          <div>{t('Basic Info')}</div>
+          <p>{t('对应用的名称描述信息等基本的信息定义')}</p>
+        </div>
+        <Form data={this.formTemplate} ref={formRef}>
           <Form.Item
             label={t('Application Name')}
             desc={t('NAME_DESC')}
@@ -127,7 +113,6 @@ export default class BaseInfo extends React.Component {
               name="metadata.annotations['servicemesh.kubesphere.io/enabled']"
               options={this.governances}
               defaultValue={serviceMeshEnable ? 'true' : 'false'}
-              onChange={this.handleGovernanceChange}
               disabled={!serviceMeshEnable}
             />
           </Form.Item>

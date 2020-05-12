@@ -17,16 +17,102 @@
  */
 
 import React from 'react'
-import { Columns, Column } from '@pitrix/lego-ui'
+import { Input, TextArea, Select } from '@pitrix/lego-ui'
+import { PATTERN_NAME } from 'utils/constants'
+import { Form } from 'components/Base'
 
-export default class Providers extends React.Component {
+import SubTitle from '../SubTitle'
+
+export default class BaseInfo extends React.Component {
+  get groups() {
+    return [
+      {
+        label: t('production'),
+        value: 'production',
+      },
+      {
+        label: t('development'),
+        value: 'development',
+      },
+    ]
+  }
+
+  get providers() {
+    return [
+      {
+        label: 'Amazon',
+        value: 'Amazon',
+        icon: 'aws',
+      },
+      {
+        label: 'QingCloud',
+        value: 'QingCloud',
+        icon: 'qingcloud',
+      },
+      {
+        label: 'Google',
+        value: 'Google',
+        icon: 'google',
+      },
+      {
+        label: 'Azure',
+        value: 'Azure',
+        icon: 'windows',
+      },
+      {
+        label: 'Custom',
+        value: 'Custom',
+        icon: 'kubernetes',
+      },
+    ]
+  }
+
+  nameValidator = (rule, value, callback) => {
+    if (!value) {
+      return callback()
+    }
+
+    this.props.store.checkName({ name: value }).then(resp => {
+      if (resp.exist) {
+        return callback({ message: t('Name exists'), field: rule.field })
+      }
+      callback()
+    })
+  }
+
   render() {
     return (
       <div>
-        <Columns>
-          <Column>xxx</Column>
-          <Column>yyy</Column>
-        </Columns>
+        <SubTitle
+          title={t('Cluster Settings')}
+          description={t('CLUSTER_SETTINGS_DESC')}
+        />
+        <Form.Item
+          label={t('Cluster Name')}
+          desc={t('CLUSTER_NAME_DESC')}
+          rules={[
+            { required: true, message: t('Please input role name') },
+            {
+              pattern: PATTERN_NAME,
+              message: `${t('Invalid name')}, ${t('CLUSTER_NAME_DESC')}`,
+            },
+            { validator: this.nameValidator },
+          ]}
+        >
+          <Input name="metadata.name" />
+        </Form.Item>
+        <Form.Item label={t('CLUSTER_TAG')} desc={t('CLUSTER_TAG_DESC')}>
+          <Select
+            name="metadata.labels['cluster.kubesphere.io/group']"
+            options={this.groups}
+          />
+        </Form.Item>
+        <Form.Item label={t('Description')}>
+          <TextArea name="metadata.annotations['kubesphere.io/description']" />
+        </Form.Item>
+        <Form.Item label={t('Provider')} desc={t('CLUSTER_PROVIDER_DESC')}>
+          <Select name="spec.provider" options={this.providers} />
+        </Form.Item>
       </div>
     )
   }

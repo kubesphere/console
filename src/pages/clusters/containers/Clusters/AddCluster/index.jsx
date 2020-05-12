@@ -17,28 +17,45 @@
  */
 
 import React from 'react'
-import { Form } from 'components/Base'
+import { get, set, unset, cloneDeep } from 'lodash'
+import { Columns, Column } from '@pitrix/lego-ui'
+import { inject } from 'mobx-react'
+import { Button, Form } from 'components/Base'
 import { ReactComponent as BackIcon } from 'src/assets/back.svg'
 
-import Steps from './Steps'
-import Providers from './Providers'
+import ClusterStore from 'stores/cluster'
+
 import BaseInfo from './BaseInfo'
 import Configuration from './Configuration'
-import Components from './Components'
-import AdvanceSettings from './AdvanceSettings'
 import styles from './index.scss'
 
+@inject('rootStore')
 export default class AddCluster extends React.Component {
   state = {
-    currentStep: 'providers',
-    formTemplate: {},
+    currentStep: 0,
+    formTemplate: {
+      apiVersion: 'cluster.kubesphere.io/v1alpha1',
+      kind: 'Cluster',
+      metadata: {
+        labels: {
+          'cluster.kubesphere.io/group': 'production',
+        },
+      },
+      spec: {
+        provider: 'Custom',
+        connection: {
+          type: 'direct',
+          kubeconfig: '',
+        },
+      },
+    },
   }
 
+  store = new ClusterStore()
+
+  formRef = React.createRef()
+
   steps = [
-    {
-      name: 'providers',
-      component: Providers,
-    },
     {
       name: 'baseinfo',
       component: BaseInfo,
@@ -47,42 +64,92 @@ export default class AddCluster extends React.Component {
       name: 'configuration',
       component: Configuration,
     },
-    {
-      name: 'components',
-      component: Components,
-    },
-    {
-      name: 'settings',
-      component: AdvanceSettings,
-    },
   ]
 
-  handleAdd = () => {}
+  routing = this.props.rootStore.routing
 
-  handleNextStep = () => {}
+  handleImport = data => {
+    const postData = cloneDeep(data)
+    if (get(postData, 'spec.connection.type') === 'proxy') {
+      unset(postData, 'spec.connection.kubeconfig')
+    } else {
+      const config = get(postData, 'spec.connection.kubeconfig', '')
+      set(postData, 'spec.connection.kubeconfig', atob(config))
+    }
+    this.store.create(postData).then(() => {
+      const name = get(postData, 'metadata.name')
+      this.routing.push(`/clusters/${name}`)
+    })
+  }
+
+  handlePrev = () => {
+    if (this.state.currentStep === 0) {
+      this.routing.go(-1)
+    } else {
+      this.setState(({ currentStep }) => ({
+        currentStep: Math.max(0, currentStep - 1),
+      }))
+    }
+  }
+
+  handleNext = () => {
+    const form = this.formRef.current
+    form &&
+      form.validate(() => {
+        this.setState(({ currentStep }) => ({
+          currentStep: Math.min(this.steps.length - 1, currentStep + 1),
+        }))
+      })
+  }
+
+  renderForm() {
+    const { currentStep } = this.state
+    const step = this.steps[currentStep]
+    const Component = step.component
+    return <Component store={this.store} />
+  }
+
+  renderFooter() {
+    const { currentStep } = this.state
+    const total = this.steps.length - 1
+    return (
+      <div className={styles.footer}>
+        {currentStep < total ? (
+          <Button type="control" onClick={this.handleNext}>
+            {t('Next')}
+          </Button>
+        ) : (
+          <Button type="control" htmlType="submit">
+            {t('Import')}
+          </Button>
+        )}
+      </div>
+    )
+  }
 
   render() {
-    const { currentStep, formTemplate } = this.state
+    const { formTemplate } = this.state
     return (
       <div className={styles.wrapper}>
-        {currentStep !== 'providers' && (
-          <div className="h6 margin-b12">
-            <a className="custom-icon" onClick={this.handleGoBack}>
-              <BackIcon />
-            </a>
-            {t('Go back')}
-          </div>
-        )}
-        <div className={styles.title}>
-          <div className="h4">{t('Add New Cluster')}</div>
-          <p>{t('ADD_NEW_CLUSTER_DESC')}</p>
+        <div className={styles.back}>
+          <a className="custom-icon" onClick={this.handlePrev}>
+            <BackIcon />
+            <span>{t('Go back')}</span>
+          </a>
         </div>
-        <Form data={formTemplate} onSubmit={this.handleAdd}>
-          <Steps
-            current={currentStep}
-            steps={this.steps}
-            onNext={this.handleNextStep}
-          />
+        <div className={styles.title}>
+          <div className="h4">{t('Import Kubernetes Cluster')}</div>
+          <p>{t('IMPORT_CLUSTER_DESC')}</p>
+        </div>
+        <Form
+          data={formTemplate}
+          ref={this.formRef}
+          onSubmit={this.handleImport}
+        >
+          <Columns>
+            <Column>{this.renderForm()}</Column>
+            <Column className="is-narrow">{this.renderFooter()}</Column>
+          </Columns>
         </Form>
       </div>
     )

@@ -87,6 +87,7 @@ export default class ProjectDetail extends React.Component {
       icon: 'trash',
       text: t('Delete'),
       action: 'delete',
+      show: this.store.detail.workspace !== globals.config.systemWorkspace,
       onClick: () =>
         this.trigger('resource.delete', {
           type: t(this.name),
@@ -129,7 +130,7 @@ export default class ProjectDetail extends React.Component {
   render() {
     const stores = { detailStore: this.store }
 
-    if (this.store.isLoading) {
+    if (this.store.isLoading && !this.store.detail.name) {
       return <Loading className="ks-page-loading" />
     }
 

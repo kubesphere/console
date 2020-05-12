@@ -131,7 +131,7 @@ export default class PodItem extends React.PureComponent {
   ]
 
   getNodeContent = () => {
-    const { node, nodeIp } = this.props.detail
+    const { cluster, node, nodeIp } = this.props.detail
     const nodePermission = globals.app.hasPermission({
       module: 'nodes',
       action: 'view',
@@ -142,7 +142,7 @@ export default class PodItem extends React.PureComponent {
     const text = `${node}(${nodeIp})`
 
     return nodePermission ? (
-      <Link to={`/infrastructure/nodes/${node}`}>{text}</Link>
+      <Link to={`/clusters/${cluster}/nodes/${node}`}>{text}</Link>
     ) : (
       text
     )
@@ -227,7 +227,7 @@ export default class PodItem extends React.PureComponent {
           </div>
           {this.getUpdateStatus()}
         </div>
-        {!location.pathname.startsWith('/infrastructure/nodes') && (
+        {!location.pathname.indexOf('/nodes') !== -1 && (
           <div className={styles.text}>
             <div>{this.getNodeContent()}</div>
             <p>{t('Node')}</p>
@@ -247,7 +247,12 @@ export default class PodItem extends React.PureComponent {
 
   renderExtraContent() {
     const { prefix } = this.props
-    const { containers = [], initContainers = [], name } = this.props.detail
+    const {
+      cluster,
+      containers = [],
+      initContainers = [],
+      name,
+    } = this.props.detail
 
     if (isEmpty(containers)) return null
 
@@ -263,6 +268,7 @@ export default class PodItem extends React.PureComponent {
               prefix={prefix && this.getLink(name)}
               podName={name}
               detail={container}
+              cluster={cluster}
               isCreating={this.isCreating}
             />
           ))}
@@ -272,6 +278,7 @@ export default class PodItem extends React.PureComponent {
               prefix={prefix && this.getLink(name)}
               podName={name}
               detail={container}
+              cluster={cluster}
               isCreating={this.isCreating}
               isInit
             />

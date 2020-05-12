@@ -19,13 +19,15 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Router } from 'react-router'
+import { lazy } from 'utils'
 import { renderRoutes } from 'utils/router.config'
 import { Provider } from 'mobx-react'
 
 import 'scss/main.scss'
 
-import actions from 'src/actions'
 import routes from './routes'
+
+const getActions = lazy(() => import('src/actions'))
 
 class App extends Component {
   static propTypes = {
@@ -34,7 +36,9 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.props.rootStore.registerActions(actions)
+    getActions().then(actions =>
+      this.props.rootStore.registerActions(actions.default)
+    )
   }
 
   render() {

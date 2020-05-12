@@ -36,14 +36,18 @@ import ProjectStore from 'stores/project'
 })
 export default class Projects extends React.Component {
   get itemActions() {
-    const { trigger } = this.props
+    const { trigger, routing } = this.props
     return [
       {
         key: 'edit',
         icon: 'pen',
         text: t('Edit'),
         action: 'edit',
-        onClick: item => trigger('resource.baseinfo.edit', { detail: item }),
+        onClick: item =>
+          trigger('resource.baseinfo.edit', {
+            detail: item,
+            success: routing.query,
+          }),
       },
       {
         key: 'modify',
@@ -54,7 +58,7 @@ export default class Projects extends React.Component {
         onClick: item =>
           trigger('project.assignworkspace', {
             detail: item,
-            success: this.getData,
+            success: routing.query,
           }),
       },
       {
@@ -62,12 +66,13 @@ export default class Projects extends React.Component {
         icon: 'trash',
         text: t('Delete'),
         action: 'delete',
+        show: record => record.workspace !== globals.config.systemWorkspace,
         onClick: item =>
           trigger('resource.delete', {
             type: t(this.name),
             resource: item.name,
             detail: item,
-            success: this.getData,
+            success: routing.query,
           }),
       },
     ]
@@ -97,6 +102,7 @@ export default class Projects extends React.Component {
 
   getData = async ({ silent, ...params } = {}) => {
     this.query = params
+    params.type = params.type || 'user'
     this.type = params.type
 
     silent && (this.props.store.list.silent = true)
@@ -159,18 +165,23 @@ export default class Projects extends React.Component {
     ]
   }
 
-  showCreate = () => this.props.trigger('project.create')
+  showCreate = () =>
+    this.props.trigger('project.create', {
+      ...this.props.match.params,
+      success: this.getData,
+    })
 
   render() {
     const { bannerProps, tableProps } = this.props
     return (
-      <ListPage {...this.props} getData={this.getData}>
+      <ListPage {...this.props} getData={this.getData} watchTypes={['DELETED']}>
         <Banner {...bannerProps} tabs={this.tabs} />
         <Table
           {...tableProps}
           itemActions={this.itemActions}
           columns={this.getColumns()}
           onCreate={this.showCreate}
+          searchType="name"
         />
       </ListPage>
     )

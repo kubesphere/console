@@ -376,7 +376,7 @@ const VolumeMapper = item => {
     inUse: get(item, 'metadata.annotations["kubesphere.io/in-use"]') === 'true',
     type: 'pvc',
     allowSnapshot:
-      get(item, 'metadata.annotations["kubesphere.io/allowSnapshot"]') ===
+      get(item, 'metadata.annotations["kubesphere.io/allow-snapshot"]') ===
       'true',
     _originData: getOriginData(item),
   }
@@ -421,6 +421,11 @@ const ServiceMapper = item => {
     annotations: get(item, 'metadata.annotations', {}),
     status: get(item, 'status'),
     ports: get(item, 'spec.ports', []),
+    workloadType: get(
+      item,
+      'metadata.annotations["kubesphere.io/workloadType"]',
+      'Deployment'
+    ),
     sessionAffinity: get(item, 'spec.sessionAffinity'),
     externalIPs: get(item, 'spec.externalIPs', []),
     externalName: get(item, 'spec.externalName'),
@@ -860,11 +865,11 @@ const VolumeSnapshotMapper = detail => {
   const { error = {}, readyToUse } = status
   const { message } = error
   const { namespace = '' } = metadata
-  const snapshotSourceName = get(spec, 'source.name')
+  const snapshotSourceName = get(spec, 'source.persistentVolumeClaimName')
 
   return {
     ...getBaseInfo(detail),
-    snapshotClassName: get(spec, 'snapshotClassName', '-'),
+    snapshotClassName: get(spec, 'volumeSnapshotClassName', '-'),
     restoreSize: get(status, 'restoreSize', 0),
     error,
     errorMessage: message,
@@ -876,20 +881,23 @@ const VolumeSnapshotMapper = detail => {
   }
 }
 
-const ClusterMapper = item => ({
-  ...getBaseInfo(item),
-  provider: get(item, 'spec.provider'),
-  isHost:
-    get(
-      item,
-      'metadata.annotations["cluster.kubesphere.io/is-host-cluster"]'
-    ) === 'true',
-  nodeCount: get(item, 'status.nodeCount'),
-  kubernetesVersion: get(item, 'status.kubernetesVersion'),
-  isActive: get(item, 'spec.active'),
-  labels: get(item, 'metadata.labels'),
-  group: get(item, 'metadata.labels["cluster.kubesphere.io/group"]'),
-})
+const ClusterMapper = item => {
+  const conditions = keyBy(get(item, 'status.conditions', []), 'type')
+  return {
+    ...getBaseInfo(item),
+    conditions,
+    provider: get(item, 'spec.provider'),
+    isHost:
+      get(
+        item,
+        'metadata.annotations["cluster.kubesphere.io/is-host-cluster"]'
+      ) === 'true',
+    nodeCount: get(item, 'status.nodeCount'),
+    kubernetesVersion: get(item, 'status.kubernetesVersion'),
+    labels: get(item, 'metadata.labels'),
+    group: get(item, 'metadata.labels["cluster.kubesphere.io/group"]'),
+  }
+}
 
 const FederatedMapper = item => ({
   ...getBaseInfo(item),
@@ -909,6 +917,43 @@ const DevOpsMapper = item => ({
   createTime: get(item, 'metadata.creationTimestamp'),
   workspace: get(item, 'metadata.labels["kubesphere.io/workspace"]'),
 })
+
+const CRDMapper = item => {
+  const versions = get(item, 'spec.versions', [])
+  return {
+    versions,
+    ...getBaseInfo(item),
+    group: get(item, 'spec.group'),
+    scope: get(item, 'spec.scope'),
+    kind: get(item, 'spec.names.kind'),
+    latestVersion: get(versions[versions.length - 1], 'name'),
+    _originData: getOriginData(item),
+  }
+}
+
+const DashboardMapper = item => {
+  const { metadata = {}, spec = {} } = item
+
+  /**
+   * name - uniqueName
+   */
+  const { creationTimestamp, name, namespace } = metadata
+
+  /**
+   * title - nickname
+   */
+  const { datasource, description, title } = spec
+
+  return {
+    creationTimestamp,
+    name,
+    namespace,
+    datasource,
+    description,
+    title,
+    _originData: item,
+  }
+}
 
 export default {
   deployments: WorkLoadMapper,
@@ -955,4 +1000,6 @@ export default {
   federated: FederatedMapper,
   outputs: LogOutPutMapper,
   devops: DevOpsMapper,
+  dashboards: DashboardMapper,
+  customresourcedefinitions: CRDMapper,
 }

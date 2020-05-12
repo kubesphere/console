@@ -39,6 +39,7 @@ export default {
   'Virtual IP': '虚拟 IP',
 
   'Service Type': '服务类型',
+  'Service Access': '服务访问',
   'Stateless Service': '无状态服务',
   'Stateful Service': '有状态服务',
   'External Service': '外部服务',

@@ -133,7 +133,7 @@ export default class Jobs extends React.Component {
             iconSize={40}
             title={getDisplayName(record)}
             desc={this.getItemDesc(record)}
-            to={`${this.prefix}/${name}`}
+            to={`${this.prefix}/${module}/${name}`}
             isMultiCluster={record.isFedManaged}
           />
         ),
@@ -162,10 +162,9 @@ export default class Jobs extends React.Component {
   }
 
   showCreate = () => {
-    const { match, module, projectStore } = this.props
+    const { match, module } = this.props
     return this.props.trigger('workload.create', {
       module,
-      projectDetail: projectStore.detail,
       namespace: match.params.namespace,
       cluster: match.params.cluster,
     })

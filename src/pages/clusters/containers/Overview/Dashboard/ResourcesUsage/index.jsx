@@ -17,6 +17,8 @@
  */
 
 import React, { Component } from 'react'
+import { observer } from 'mobx-react'
+import { get } from 'lodash'
 import {
   Radar,
   RadarChart,
@@ -24,104 +26,160 @@ import {
   PolarAngleAxis,
   PolarRadiusAxis,
 } from 'recharts'
-
+import { Loading } from '@pitrix/lego-ui'
 import { Panel, Text } from 'components/Base'
 import { PieChart } from 'components/Charts'
 
+import {
+  getSuitableUnit,
+  getValueByUnit,
+  getLastMonitoringData,
+} from 'utils/monitoring'
+
+import ClusterMonitorStore from 'stores/monitoring/cluster'
+
 import styles from './index.scss'
 
-const Item = ({ title, used, total, unit }) => (
-  <div className={styles.item}>
-    <div className={styles.pie}>
-      <PieChart
-        width={48}
-        height={48}
-        data={[
-          {
-            name: 'Used',
-            itemStyle: {
-              fill: '#329dce',
+const Item = props => {
+  const title = t(props.name)
+  const unit = getSuitableUnit(props.total, props.unitType) || unit
+  const used = getValueByUnit(props.used, unit)
+  const total = getValueByUnit(props.total, unit) || used
+
+  return (
+    <div className={styles.item}>
+      <div className={styles.pie}>
+        <PieChart
+          width={48}
+          height={48}
+          data={[
+            {
+              name: 'Used',
+              itemStyle: {
+                fill: '#329dce',
+              },
+              value: used,
             },
-            value: used,
-          },
-          {
-            name: 'Left',
-            itemStyle: {
-              fill: '#c7deef',
+            {
+              name: 'Left',
+              itemStyle: {
+                fill: '#c7deef',
+              },
+              value: total - used,
             },
-            value: total - used,
-          },
-        ]}
+          ]}
+        />
+      </div>
+      <Text
+        title={`${Math.round((used * 100) / total)}%`}
+        description={title}
+      />
+      <Text title={unit ? `${used} ${unit}` : used} description={t('Used')} />
+      <Text
+        title={unit ? `${total} ${unit}` : total}
+        description={t('Total')}
       />
     </div>
-    <Text title={`${Math.round((used * 100) / total)}%`} description={title} />
-    <Text title={unit ? `${used} ${unit}` : used} description={t('Used')} />
-    <Text title={unit ? `${total} ${unit}` : used} description={t('Total')} />
-  </div>
-)
-
-const data = [
-  {
-    subject: 'CPU',
-    usage: 78,
-  },
-  {
-    subject: 'Memory',
-    usage: 74,
-  },
-  {
-    subject: 'Pod',
-    usage: 62,
-  },
-  {
-    subject: 'Storage',
-    usage: 80,
-  },
-]
-
-export default class ResourcesUsage extends Component {
-  shape = () => (
-    <polygon
-      stroke="#345681"
-      fill="#1c2d4267"
-      className="recharts-polygon"
-      points="180,62.52799999999999 270.576,158 180,233.888 82.07999999999998,158"
-    />
   )
+}
+
+const MetricTypes = {
+  cpu_usage: 'cluster_cpu_usage',
+  cpu_total: 'cluster_cpu_total',
+  memory_usage: 'cluster_memory_usage_wo_cache',
+  memory_total: 'cluster_memory_total',
+  disk_size_usage: 'cluster_disk_size_usage',
+  disk_size_capacity: 'cluster_disk_size_capacity',
+  pod_count: 'cluster_pod_running_count',
+  pod_capacity: 'cluster_pod_quota',
+}
+
+@observer
+export default class ResourcesUsage extends Component {
+  monitorStore = new ClusterMonitorStore({ cluster: this.props.cluster })
+
+  componentDidMount() {
+    this.fetchData()
+  }
+
+  get metrics() {
+    return this.monitorStore.data
+  }
+
+  getValue = data => get(data, 'value[1]', 0)
+
+  fetchData = () => {
+    this.monitorStore.fetchMetrics({
+      metrics: Object.values(MetricTypes),
+      last: true,
+    })
+  }
+
+  getResourceOptions = () => {
+    const data = getLastMonitoringData(this.metrics)
+    return [
+      {
+        name: 'CPU',
+        unitType: 'cpu',
+        used: this.getValue(data[MetricTypes.cpu_usage]),
+        total: this.getValue(data[MetricTypes.cpu_total]),
+      },
+      {
+        name: 'Memory',
+        unitType: 'memory',
+        used: this.getValue(data[MetricTypes.memory_usage]),
+        total: this.getValue(data[MetricTypes.memory_total]),
+      },
+      {
+        name: 'Pod',
+        unitType: '',
+        used: this.getValue(data[MetricTypes.pod_count]),
+        total: this.getValue(data[MetricTypes.pod_capacity]),
+      },
+      {
+        name: 'Local Storage',
+        unitType: 'disk',
+        used: this.getValue(data[MetricTypes.disk_size_usage]),
+        total: this.getValue(data[MetricTypes.disk_size_capacity]),
+      },
+    ]
+  }
+
+  getRadarOptions = options =>
+    options.map(option => ({
+      name: t(option.name),
+      usage: Math.round((option.used * 100) / (option.total || option.used)),
+    }))
+
   render() {
+    const options = this.getResourceOptions()
+    const radarOptions = this.getRadarOptions(options)
+
     return (
       <Panel title={t('Cluster Resources Usage')}>
-        <div className={styles.wrapper}>
-          <div className={styles.chart}>
-            <RadarChart cx={180} cy={158} width={360} height={316} data={data}>
-              <PolarGrid gridType="circle" />
-              <PolarAngleAxis dataKey="subject" />
-              <PolarRadiusAxis domain={[0, 100]} />
-              <Radar
-                dataKey="usage"
-                stroke="#345681"
-                fill="#1c2d4267"
-                shape={this.shape}
-              />
-            </RadarChart>
+        <Loading spinning={this.monitorStore.isLoading}>
+          <div className={styles.wrapper}>
+            <div className={styles.chart}>
+              <RadarChart
+                cx={180}
+                cy={158}
+                width={360}
+                height={316}
+                data={radarOptions}
+              >
+                <PolarGrid gridType="circle" />
+                <PolarAngleAxis dataKey="name" />
+                <PolarRadiusAxis domain={[0, 100]} />
+                <Radar dataKey="usage" stroke="#345681" fill="#1c2d4267" />
+              </RadarChart>
+            </div>
+            <div className={styles.list}>
+              {options.map(option => (
+                <Item key={option.name} {...option} />
+              ))}
+            </div>
           </div>
-          <div className={styles.list}>
-            <Item title={t('CPU Usage')} used={24.9} total={32} unit="%" />
-            <Item
-              title={t('Memory Usage')}
-              used={94.72}
-              total={128}
-              unit="Gi"
-            />
-            <Item title={t('Pod Usage')} used={204} total={330} />
-            <Item
-              title={t('Local Storage')}
-              used={337.33}
-              total={421.67}
-              unit="GB"
-            />
-          </div>
-        </div>
+        </Loading>
       </Panel>
     )
   }

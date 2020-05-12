@@ -26,6 +26,7 @@ import { getDisplayName, joinSelector, getLocalTime } from 'utils'
 import { trigger } from 'utils/action'
 import { SERVICE_TYPES } from 'utils/constants'
 import ServiceStore from 'stores/service'
+import FederatedStore from 'stores/federated'
 
 import DetailPage from 'clusters/containers/Base/Detail'
 
@@ -36,6 +37,8 @@ import getRoutes from './routes'
 @trigger
 export default class ServiceDetail extends React.Component {
   store = new ServiceStore()
+
+  fedStore = new FederatedStore(this.module)
 
   componentDidMount() {
     this.fetchData()
@@ -66,15 +69,18 @@ export default class ServiceDetail extends React.Component {
   }
 
   fetchData = () => {
-    this.store.fetchDetail(this.props.match.params).then(() => {
-      const { namespace, selector } = this.store.detail
+    const { params } = this.props.match
+    this.store.fetchDetail(params).then(() => {
+      const { selector, isFedManaged } = this.store.detail
       const labelSelector = joinSelector(selector)
       if (!isEmpty(labelSelector)) {
-        this.store.fetchWorkloads({ namespace, labelSelector })
-        this.store.fetchPods({ namespace, labelSelector })
+        this.store.fetchWorkload({ ...params, labelSelector })
+      }
+      if (isFedManaged) {
+        this.fedStore.fetchDetail(params)
       }
     })
-    this.store.fetchEndpoints(this.props.match.params)
+    this.store.fetchEndpoints(params)
   }
 
   getOperations = () => [
@@ -106,9 +112,9 @@ export default class ServiceDetail extends React.Component {
       text: t('Edit Internet Access'),
       action: 'edit',
       show: record => record.type === SERVICE_TYPES.VirtualIP,
-      onClick: item =>
+      onClick: () =>
         this.trigger('service.gateway.edit', {
-          detail: item,
+          detail: this.store.detail,
         }),
     },
     {
@@ -197,10 +203,6 @@ export default class ServiceDetail extends React.Component {
         value: joinSelector(detail.selector),
       },
       {
-        name: t('DNS'),
-        value: this.renderDNS(),
-      },
-      {
         name: t('Endpoints'),
         value: this.renderEndpoints(),
       },
@@ -267,9 +269,9 @@ export default class ServiceDetail extends React.Component {
   }
 
   render() {
-    const stores = { detailStore: this.store }
+    const stores = { detailStore: this.store, fedDetailStore: this.fedStore }
 
-    if (this.store.isLoading) {
+    if (this.store.isLoading && !this.store.detail.name) {
       return <Loading className="ks-page-loading" />
     }
 
@@ -291,7 +293,7 @@ export default class ServiceDetail extends React.Component {
       <DetailPage
         stores={stores}
         sideProps={sideProps}
-        routes={getRoutes(this.props.match.path)}
+        routes={getRoutes(this.props.match.path, this.store.detail)}
       />
     )
   }

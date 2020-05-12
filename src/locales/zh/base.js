@@ -52,6 +52,11 @@ export default {
   Others: '其它',
 
   Platform: '平台管理',
+  'Platform Info': '平台信息',
+  'Platform Version': '平台版本',
+  'Clusters Number': '集群数量',
+  'Platform Running Status': '平台运行状态',
+  'Statistical time is up to': '统计时间截止至',
   Workbench: '工作台',
   'Apps Management': '应用管理',
   'Clusters Management': '集群管理',
@@ -201,6 +206,8 @@ export default {
   'Advanced Settings': '高级设置',
   Settings: '设置',
   Configuration: '配置',
+  'Multi-Cluster Deploy': '多集群部署',
+  MULTI_CLUSTER_TIP: '该资源部署在多个集群',
 
   Alias: '别名',
   'Official Document': '官网文档',
@@ -401,9 +408,13 @@ export default {
   DETAIL_NOT_FOUND_DESC:
     '🙇 对不起没有找到相关资源，返回 <a href="{link}">{title}</a>',
   Toolbox: '工具箱',
-  TOOLBOX_DESC: '工具箱提供了日志查询以及Cli的操作工具',
+  TOOLBOX_DESC: '提供KubeSphere日志、事件、计量等相关的查询工具',
+  'Analysis Tools': '分析工具',
+  'Control Tools': '控制工具',
 
   'Log Search': '日志查询',
+  LOG_SEARCH_DESC: '针对企业空间、项目、资源等多维度的日志查询工具。',
+  KUBECTL_DESC: 'kubectl 客户端命令行工具',
 
   NanoSeconds: '纳秒',
   MicroSeconds: '微秒',

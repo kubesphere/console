@@ -57,10 +57,10 @@ export default class NodeUsageRank extends React.Component {
         <div>
           <h3>
             <Link
-              to={`/clusters/${this.props.cluster}/nodes/${node.resource_name}`}
+              to={`/clusters/${this.props.cluster}/nodes/${node.node}`}
               auth={this.canViewNode}
             >
-              {node.resource_name}
+              {node.node}
             </Link>
             {node.node_role === 'master' && (
               <span className={styles.label}>Master</span>

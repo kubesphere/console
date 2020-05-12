@@ -22,7 +22,6 @@ import { observer, inject } from 'mobx-react'
 import { isEmpty, get, flatten, uniqBy } from 'lodash'
 
 import HpaStore from 'stores/workload/hpa'
-import ResourceStore from 'stores/workload/resource'
 
 import PodsCard from 'components/Cards/Pods'
 import VolumesCard from 'components/Cards/Volumes'
@@ -38,7 +37,6 @@ class ResourceStatus extends React.Component {
   constructor(props) {
     super(props)
 
-    this.resourceStore = props.resourceStore || new ResourceStore(this.module)
     this.hpaStore = props.hpaStore || new HpaStore()
 
     this.state = {}
@@ -188,6 +186,12 @@ class ResourceStatus extends React.Component {
   }
 
   renderContainerPorts() {
+    const { noPorts } = this.props
+
+    if (noPorts) {
+      return null
+    }
+
     const { isLoading } = this.store
     const { containers = [] } = toJS(this.store.detail)
     const ports = uniqBy(
@@ -205,12 +209,12 @@ class ResourceStatus extends React.Component {
   }
 
   renderPods() {
-    const { params = {} } = this.props.match
-    const { name } = params
+    const { name } = this.props.match.params
     return (
       <PodsCard
         prefix={`${this.prefix}/${this.module}/${name}`}
         detail={this.store.detail}
+        clusters={get(this.fedStore, 'detail.clusters', [])}
         onUpdate={this.handlePodUpdate}
       />
     )

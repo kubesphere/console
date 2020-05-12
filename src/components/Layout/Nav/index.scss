@@ -81,6 +81,37 @@
         }
       }
 
+      &.disabled {
+        opacity: 0.7;
+
+        &.select,
+        &:hover,
+        &:active {
+          & > a {
+            color: #4a5974;
+            cursor: not-allowed;
+          }
+
+          :global .qicon {
+            color: #324558;
+            fill: #b6c2cd;
+          }
+        }
+
+        .title {
+          :global .qicon-chevron-down {
+            transform: none;
+          }
+        }
+
+        .innerNav > li {
+          height: 0;
+          opacity: 0;
+          margin: 0;
+          overflow: hidden;
+        }
+      }
+
       & + li {
         margin-top: 4px;
       }
@@ -112,6 +143,19 @@
     &:active {
       & > a {
         color: $primary;
+      }
+    }
+
+    &.disabled {
+      opacity: 0.7 !important;
+
+      &.select,
+      &:hover,
+      &:active {
+        & > a {
+          color: #4a5974;
+          cursor: not-allowed;
+        }
       }
     }
   }

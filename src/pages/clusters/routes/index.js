@@ -27,7 +27,9 @@ import StorageClasses from '../containers/Storage/StorageClasses'
 import VolumeSnapshots from '../containers/Storage/VolumeSnapshots'
 import Volumes from '../containers/Storage/Volumes'
 import Nodes from '../containers/Nodes'
+import ServiceComponents from '../containers/ServiceComponents'
 import Projects from '../containers/Projects'
+import CustomResources from '../containers/CustomResources'
 
 import Deployments from '../containers/Workload/Deployments'
 import StatefulSets from '../containers/Workload/StatefulSets'
@@ -41,7 +43,10 @@ import ClusterMonitor from '../containers/Monitor/Cluster'
 import ResourceMonitor from '../containers/Monitor/Resource'
 import Members from '../containers/Members'
 import Roles from '../containers/Roles'
+import BaseInfo from '../containers/BaseInfo'
 import Visibility from '../containers/Visibility'
+import KubeCtl from '../containers/KubeCtl'
+import KubeConfig from '../containers/KubeConfig'
 
 import detail from './detail'
 
@@ -51,6 +56,16 @@ export default [
   ...detail,
   { path: '/clusters', component: Clusters, exact: true },
   { path: '/clusters/add', component: AddCluster, exact: true },
+  {
+    path: `/clusters/:cluster/kubectl`,
+    exact: true,
+    component: KubeCtl,
+  },
+  {
+    path: `/clusters/:cluster/kubeConfig`,
+    component: KubeConfig,
+    exact: true,
+  },
   {
     path: PATH,
     component: Layout,
@@ -65,8 +80,17 @@ export default [
         component: Nodes,
       },
       {
+        path: `${PATH}/components`,
+        component: ServiceComponents,
+      },
+      {
         path: `${PATH}/projects`,
         component: Projects,
+        exact: true,
+      },
+      {
+        path: `${PATH}/customresources`,
+        component: CustomResources,
         exact: true,
       },
       {
@@ -105,7 +129,7 @@ export default [
         exact: true,
       },
       {
-        path: `${PATH}/routes`,
+        path: `${PATH}/ingresses`,
         component: Routes,
         exact: true,
       },
@@ -133,6 +157,11 @@ export default [
         component: ResourceMonitor,
       },
       {
+        path: `${PATH}/base-info`,
+        component: BaseInfo,
+        exact: true,
+      },
+      {
         path: `${PATH}/visibility`,
         component: Visibility,
         exact: true,
@@ -151,10 +180,6 @@ export default [
         path: `${PATH}/storageclasses`,
         component: StorageClasses,
         exact: true,
-      },
-      {
-        path: `${PATH}/snapshots/:namespace?`,
-        component: VolumeSnapshots,
       },
       getIndexRoute({ path: PATH, to: `${PATH}/overview`, exact: true }),
       getIndexRoute({

@@ -75,6 +75,8 @@ export default {
   'Volume Name': '存储卷名称',
   'HTTP Request': 'HTTP 请求',
   'Diff Settings': '差异化配置',
+  'Deploy Mode': '部署模式',
+  'Instance Status': '实例状态',
 
   'No Request': '不预留',
   'No Limit': '不限制',
@@ -216,8 +218,6 @@ export default {
   'Container Type': '容器类型',
   'Advanced Options': '高级选项',
   'CPU(m)': 'CPU(m)',
-  'Memory(MiB)': '内存(MiB)',
-  'Memory(GiB)': '内存(GiB)',
   Commands: '命令',
   'Add command': '添加命令',
   Arguments: '参数',

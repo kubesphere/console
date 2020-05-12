@@ -1,0 +1,34 @@
+@import '~scss/variables';
+
+.wrapper {
+  padding: 12px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .form {
+    flex: 1;
+    padding-bottom: 12px;
+    overflow: auto;
+  }
+
+  .formFooter {
+    height: 32px;
+    border-radius: 3px;
+    background: $dark-color07;
+    text-align: right;
+    line-height: 32px;
+    padding: 0 12px;
+    & > span {
+      width: 56px;
+      display: inline-block;
+      text-align: center;
+      cursor: pointer;
+    }
+  }
+
+  .button {
+    background: transparent;
+    border: none;
+  }
+}

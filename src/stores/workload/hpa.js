@@ -17,7 +17,6 @@
  */
 
 import { action } from 'mobx'
-import { get } from 'lodash'
 
 import { getHpaFormattedData } from 'utils/workload'
 
@@ -27,36 +26,16 @@ export default class HpaStore extends Base {
   module = 'horizontalpodautoscalers'
 
   @action
-  async fetchDetail(params) {
-    this.isLoading = true
-
-    const result = await request.get(this.getDetailUrl(params))
-    const detail = this.mapper(result)
-
-    this.detail = detail
-    this.originDetail = result
-    this.isLoading = false
+  create(data, params) {
+    return this.submitting(
+      request.post(this.getListUrl(params), getHpaFormattedData(data))
+    )
   }
 
   @action
-  create(data) {
-    const namespace = get(data, 'metadata.namespace')
-
-    if (!namespace) {
-      return
-    }
-
-    const params = getHpaFormattedData(data)
-
-    return this.submitting(request.post(this.getListUrl({ namespace }), params))
-  }
-
-  @action
-  async patch({ name, namespace }, newObject) {
-    const params = getHpaFormattedData(newObject)
-
+  async patch(params, newObject) {
     await this.submitting(
-      request.patch(this.getDetailUrl({ name, namespace }), params)
+      request.patch(this.getDetailUrl(params), getHpaFormattedData(newObject))
     )
   }
 

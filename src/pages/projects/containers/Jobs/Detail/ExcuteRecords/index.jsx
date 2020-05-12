@@ -57,10 +57,11 @@ class ExcuteRecords extends React.Component {
   }
 
   fetchData = params => {
-    const { name, namespace } = this.props.match.params
-
     if (this.recordStore) {
-      this.recordStore.fetchExcuteRecords({ ...params, name, namespace })
+      this.recordStore.fetchExcuteRecords({
+        ...params,
+        ...this.props.match.params,
+      })
     }
   }
 

@@ -36,7 +36,7 @@ import styles from './index.scss'
   store: new VolumeStore(),
   module: 'volumes',
   name: 'Volume',
-  authKey: 'volumes',
+  rowKey: 'uid',
 })
 export default class Volumes extends React.Component {
   get itemActions() {
@@ -103,7 +103,7 @@ export default class Volumes extends React.Component {
           <Avatar
             icon={'storage'}
             iconSize={40}
-            to={`/clusters/${cluster}/namespaces/${
+            to={`/clusters/${cluster}/projects/${
               record.namespace
             }/${module}/${name}`}
             desc={this.getItemDesc(record)}
@@ -166,7 +166,7 @@ export default class Volumes extends React.Component {
   }
 
   render() {
-    const { query, bannerProps, tableProps } = this.props
+    const { query, match, bannerProps, tableProps } = this.props
     return (
       <ListPage {...this.props}>
         <Banner {...bannerProps} tabs={this.tabs} />
@@ -176,6 +176,7 @@ export default class Volumes extends React.Component {
           namespace={query.namespace}
           columns={this.getColumns()}
           onCreate={this.showCreate}
+          cluster={match.params.cluster}
         />
       </ListPage>
     )

@@ -36,7 +36,9 @@ export default class ResourceStatistics extends React.Component {
   constructor(props) {
     super(props)
 
-    this.monitoringStore = new ClusterMonitoringStore()
+    this.monitoringStore = new ClusterMonitoringStore({
+      cluster: props.match.params.cluster,
+    })
     this.fetchData()
   }
 

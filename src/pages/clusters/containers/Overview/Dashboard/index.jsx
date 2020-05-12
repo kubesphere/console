@@ -37,6 +37,7 @@ export default class Dashboard extends React.Component {
   }
 
   render() {
+    const { match } = this.props
     const { detail } = this.cluster
 
     return (
@@ -51,13 +52,13 @@ export default class Dashboard extends React.Component {
         <Columns>
           <Column>
             <ClusterInfo cluster={detail} />
-            <ServiceComponents cluster={detail} />
-            <ResourcesUsage cluster={detail} />
-            <Tools />
+            <ServiceComponents cluster={match.params.cluster} />
+            <ResourcesUsage cluster={match.params.cluster} />
+            <Tools cluster={match.params.cluster} />
           </Column>
           <Column className="is-narrow is-4">
-            <KubernetesStatus cluster={detail} />
-            <ClusterNodes cluster={detail} />
+            <KubernetesStatus cluster={match.params.cluster} />
+            <ClusterNodes cluster={match.params.cluster} />
           </Column>
         </Columns>
       </div>
