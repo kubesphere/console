@@ -29,7 +29,7 @@ import Credential from '../containers/Cridential'
 import PipelineRoutes from './pipeline'
 import CridentialRoutes from './cridential'
 
-const PATH = '/devops/:project_id'
+const PATH = '/devops/:project_name'
 
 export default [
   ...PipelineRoutes,

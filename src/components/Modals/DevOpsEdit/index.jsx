@@ -108,7 +108,7 @@ export default class DevOpsEditModal extends React.Component {
             { pattern: PATTERN_NAME, message: t('PATTERN_NAME_INVALID_TIP') },
           ]}
         >
-          <Input name="name" />
+          <Input name="name" disabled />
         </Form.Item>
         <Form.Item label={t('Creator')} desc={t('DEVOPS_ADMIN_DESC')}>
           <Select name="creator" options={this.getMembersOptions()} disabled />

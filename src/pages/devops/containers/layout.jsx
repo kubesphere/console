@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get } from 'lodash'
+// import { get } from 'lodash'
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
 import { Loading } from '@pitrix/lego-ui'
@@ -60,7 +60,7 @@ class DevOpsLayout extends Component {
 
     devops.initializing = true
 
-    await this.fetchDevOps(params.project_id)
+    await this.fetchDevOps(params.project_name)
     await this.fetchWorkspace(devops.data.workspace)
 
     devops.initializing = false
@@ -74,16 +74,15 @@ class DevOpsLayout extends Component {
     return this.props.rootStore.routing
   }
 
-  fetchDevOps(project_id) {
+  fetchDevOps(project_name) {
     const requests = []
     const { devops } = this.props.rootStore
+    requests.push(devops.fetchDetail({ project_name }))
 
-    requests.push(devops.fetchDetail({ project_id }))
-
-    const devopsRule = get(globals.user, `rules[${project_id}]`)
-    if (devopsRule === undefined) {
-      requests.push(devops.fetchRules({ project_id }))
-    }
+    // const devopsRule = get(globals.user, `rules[${project_id}]`)
+    // if (devopsRule === undefined) {
+    //   requests.push(devops.fetchRules({ project_id }))
+    // }
 
     return Promise.all(requests)
   }
@@ -94,10 +93,10 @@ class DevOpsLayout extends Component {
 
     requests.push(workspaceStore.fetchDetail({ workspace }))
 
-    const workspaceRule = get(globals.user, `workspace_rules[${workspace}]`)
-    if (workspaceRule === undefined) {
-      requests.push(workspaceStore.fetchRules({ workspace }))
-    }
+    // const workspaceRule = get(globals.user, `workspace_rules[${workspace}]`)
+    // if (workspaceRule === undefined) {
+    //   requests.push(workspaceStore.fetchRules({ workspace }))
+    // }
 
     return Promise.all(requests)
   }

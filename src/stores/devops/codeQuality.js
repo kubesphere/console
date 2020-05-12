@@ -31,11 +31,13 @@ export default class CodeQualityStore extends BaseStore {
   fetchDetail = async ({ project_id, branch, name }) => {
     let url = ''
     if (branch) {
-      url = `kapis/devops.kubesphere.io/v1alpha2/devops/${project_id}/pipelines/${name}/branches/${encodeURIComponent(
+      url = `${
+        this.urlDevops
+      }${project_id}/pipelines/${name}/branches/${encodeURIComponent(
         branch
       )}/sonarstatus `
     } else {
-      url = `kapis/devops.kubesphere.io/v1alpha2/devops/${project_id}/pipelines/${name}/sonarstatus`
+      url = `${this.urlDevops}${project_id}/pipelines/${name}/sonarstatus`
     }
     this.isLoading = true
     const result = await this.request

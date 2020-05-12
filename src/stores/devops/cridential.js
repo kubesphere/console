@@ -51,7 +51,7 @@ export default class CridentialStore extends BaseStore {
     const { page } = filters
 
     const result = await this.request.get(
-      `kapis/devops.kubesphere.io/v1alpha2/devops/${project_id}/credentials`,
+      `${this.urlDevops}${project_id}/credentials`,
       {
         start: (page - 1) * TABLE_LIMIT || 0,
         limit: TABLE_LIMIT,
@@ -71,7 +71,7 @@ export default class CridentialStore extends BaseStore {
   @action
   async handleCreate(data, { project_id }, reject) {
     return await this.request.post(
-      `kapis/devops.kubesphere.io/v1alpha2/devops/${project_id}/credentials`,
+      `${this.urlDevops}${project_id}/credentials`,
       data,
       null,
       reject
@@ -82,7 +82,7 @@ export default class CridentialStore extends BaseStore {
   async fetchDetail() {
     const { project_id, cridential_id } = this.params
     const result = await this.request.get(
-      `kapis/devops.kubesphere.io/v1alpha2/devops/${project_id}/credentials/${cridential_id}?content=1`
+      `${this.urlDevops}${project_id}/credentials/${cridential_id}?content=1`
     )
     result.display_name = result.id
     this.detail = result
@@ -91,9 +91,7 @@ export default class CridentialStore extends BaseStore {
   @action
   async updateCridential(cridential, { project_id }) {
     return await this.request.put(
-      `kapis/devops.kubesphere.io/v1alpha2/devops/${project_id}/credentials/${
-        cridential.id
-      }`,
+      `${this.urlDevops}${project_id}/credentials/${cridential.id}`,
       cridential
     )
   }
@@ -103,7 +101,7 @@ export default class CridentialStore extends BaseStore {
     const { project_id } = this.params
 
     return await this.request.delete(
-      `kapis/devops.kubesphere.io/v1alpha2/devops/${project_id}/credentials/${cridential_id}`
+      `${this.urlDevops}${project_id}/credentials/${cridential_id}`
     )
   }
 }

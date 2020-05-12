@@ -31,7 +31,7 @@ import DevOpsStore from 'stores/devops'
   store: new DevOpsStore(),
   name: 'DevOps Project',
   module: 'devops',
-  rowKey: 'project_id',
+  rowKey: 'name',
 })
 export default class DevOps extends React.Component {
   get itemActions() {
@@ -53,8 +53,9 @@ export default class DevOps extends React.Component {
         onClick: item =>
           trigger('resource.delete', {
             type: t('DevOps Project'),
-            resource: item.project_id,
+            resource: item.name,
             detail: item,
+            success: getData,
           }),
       },
     ]
@@ -77,28 +78,28 @@ export default class DevOps extends React.Component {
     {
       title: t('Name'),
       dataIndex: 'name',
-      width: '30%',
+      width: '40%',
       render: (name, record) => (
         <Avatar
           icon="strategy-group"
           iconSize={40}
-          to={`/devops/${record.project_id}`}
+          to={`/devops/${record.name}`}
           desc={record.description || '-'}
           title={name}
         />
       ),
     },
-    {
-      title: t('ID'),
-      dataIndex: 'project_id',
-      isHideable: true,
-      width: '20%',
-    },
+    // {
+    //   title: t('ID'),
+    //   dataIndex: 'project_id',
+    //   isHideable: true,
+    //   width: '20%',
+    // },
     {
       title: t('Creator'),
       dataIndex: 'creator',
       isHideable: true,
-      width: '20%',
+      width: '40%',
       render: creator => creator || '-',
     },
     {

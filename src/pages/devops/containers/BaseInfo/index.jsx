@@ -54,8 +54,8 @@ class BaseInfo extends React.Component {
     return this.store.data.workspace
   }
 
-  get project_id() {
-    return this.props.match.params.project_id
+  get project_name() {
+    return this.props.match.params.project_name
   }
 
   get enabledActions() {
@@ -63,7 +63,7 @@ class BaseInfo extends React.Component {
       module: 'devops',
       workspace: this.workspace,
       project:
-        this.props.match.params.devops || this.props.match.params.project_id,
+        this.props.match.params.devops || this.props.match.params.project_name,
     })
   }
 
@@ -113,8 +113,8 @@ class BaseInfo extends React.Component {
     })
   }
 
-  handleEdit = ({ project_id, ...data }) => {
-    this.store.update(project_id, data).then(() => {
+  handleEdit = ({ name, ...data }) => {
+    this.store.update(name, data, true).then(() => {
       this.hideEdit()
       this.store.fetchDetail(this.props.match.params)
     })
@@ -127,12 +127,10 @@ class BaseInfo extends React.Component {
   }
 
   handleDelete = () => {
-    const { project_id } = this.props.match.params
-    this.store
-      .delete({ project_id }, { workspace: this.workspace })
-      .then(() => {
-        this.routing.push('/')
-      })
+    const { project_name } = this.props.match.params
+    this.store.delete({ name: project_name }).then(() => {
+      this.routing.push('/')
+    })
   }
 
   handleMoreMenuClick = (e, key) => {

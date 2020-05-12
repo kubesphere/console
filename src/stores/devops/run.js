@@ -24,8 +24,6 @@ import { Message } from '@pitrix/lego-ui'
 import BaseStore from './base'
 import PipelineStore from './pipelines'
 
-const URL_PREFIX = 'kapis/devops.kubesphere.io/v1alpha2/devops/'
-
 const TABLE_LIMIT = 10
 
 export default class PipelineRunStore extends BaseStore {
@@ -84,7 +82,7 @@ export default class PipelineRunStore extends BaseStore {
 
     this.commitsList.isLoading = true
     const result = await this.request.get(
-      `${URL_PREFIX}${project_id}/pipelines/${name}${
+      `${this.urlDevops}${project_id}/pipelines/${name}${
         branch ? `/branches/${encodeURIComponent(branch)}` : ''
       }/runs/${runid}/`,
       {
@@ -117,7 +115,7 @@ export default class PipelineRunStore extends BaseStore {
 
     this.artifactsList.isLoading = true
     const result = await this.request.get(
-      `${URL_PREFIX}${project_id}/pipelines/${name}${
+      `${this.urlDevops}${project_id}/pipelines/${name}${
         branch ? `/branches/${encodeURIComponent(branch)}` : ''
       }/runs/${runid}/artifacts/`,
       {
@@ -142,7 +140,7 @@ export default class PipelineRunStore extends BaseStore {
 
     this.getNodesStatusLoading = true
     const result = await this.request.get(
-      `${URL_PREFIX}${project_id}/pipelines/${name}${
+      `${this.urlDevops}${project_id}/pipelines/${name}${
         branch ? `/branches/${encodeURIComponent(branch)}` : ''
       }/runs/${runid}/nodesdetail/?limit=10000`
     )
@@ -183,7 +181,7 @@ export default class PipelineRunStore extends BaseStore {
   async getRunDetail(params) {
     const { project_id, name, branch, runid } = params
     const result = await this.request.get(
-      `${URL_PREFIX}${project_id}/pipelines/${decodeURIComponent(name)}${
+      `${this.urlDevops}${project_id}/pipelines/${decodeURIComponent(name)}${
         branch ? `/branches/${encodeURIComponent(branch)}` : ''
       }/runs/${runid}/`,
       null,
@@ -203,7 +201,7 @@ export default class PipelineRunStore extends BaseStore {
   async replay(params, _runid) {
     const { project_id, name, branch, runid } = params
     return await this.request.post(
-      `${URL_PREFIX}${project_id}/pipelines/${decodeURIComponent(name)}${
+      `${this.urlDevops}${project_id}/pipelines/${decodeURIComponent(name)}${
         branch ? `/branches/${encodeURIComponent(branch)}` : ''
       }/runs/${_runid || runid}/replay`
     )
@@ -213,7 +211,7 @@ export default class PipelineRunStore extends BaseStore {
   async getRunStatusLogs({ project_id, name, branch, runid }) {
     // TODO: use response headers offset
     const result = await this.request.get(
-      `${URL_PREFIX}${project_id}/pipelines/${name}${
+      `${this.urlDevops}${project_id}/pipelines/${name}${
         branch ? `/branches/${encodeURIComponent(branch)}` : ''
       }/runs/${runid}/log/?start=0`
     )
@@ -242,7 +240,7 @@ export default class PipelineRunStore extends BaseStore {
     inputId,
   }) {
     return await this.request.post(
-      `${URL_PREFIX}${project_id}/pipelines/${name}/${
+      `${this.urlDevops}${project_id}/pipelines/${name}/${
         branch ? `branches/${encodeURIComponent(branch)}/` : ''
       }runs/${runid}/nodes/${nodeId}/steps/${stepId}/`,
       {
@@ -271,7 +269,7 @@ export default class PipelineRunStore extends BaseStore {
     inputId,
   }) {
     return await this.request.post(
-      `${URL_PREFIX}${project_id}/pipelines/${name}/${
+      `${this.urlDevops}${project_id}/pipelines/${name}/${
         branch ? `branches/${encodeURIComponent(branch)}/` : ''
       }runs/${runid}/nodes/${nodeId}/steps/${stepId}/`,
       {

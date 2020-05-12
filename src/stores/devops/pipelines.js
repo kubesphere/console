@@ -21,11 +21,9 @@ import { saveAs } from 'file-saver'
 import { action, observable, toJS } from 'mobx'
 import BaseStore from './base'
 
-const URL_PREFIX = 'kapis/devops.kubesphere.io/v1alpha2/devops/'
-
 const TABLE_LIMIT = 10
 
-const FORM_HEADR = {
+const FORM_HEAR = {
   headers: {
     'content-type': 'application/x-www-form-urlencoded',
   },
@@ -127,16 +125,13 @@ export default class PipelineStore extends BaseStore {
 
     const searchWord = keyword ? `*${encodeURIComponent(keyword)}*` : ''
 
-    const result = await this.request.get(
-      'kapis/devops.kubesphere.io/v1alpha2/search',
-      {
-        q: `type:pipeline;organization:jenkins;pipeline:${project_id}%2F${searchWord ||
-          '*'};excludedFromFlattening:jenkins.branch.MultiBranchProject,hudson.matrix.MatrixProject&filter=${filter ||
-          'no-folders'}`,
-        start: (page - 1) * TABLE_LIMIT || 0,
-        limit: TABLE_LIMIT,
-      }
-    )
+    const result = await this.request.get(`${this.baseUrlV2}search`, {
+      q: `type:pipeline;organization:jenkins;pipeline:${project_id}%2F${searchWord ||
+        '*'};excludedFromFlattening:jenkins.branch.MultiBranchProject,hudson.matrix.MatrixProject&filter=${filter ||
+        'no-folders'}`,
+      start: (page - 1) * TABLE_LIMIT || 0,
+      limit: TABLE_LIMIT,
+    })
 
     this.list = {
       data: result.items || [],
@@ -155,7 +150,7 @@ export default class PipelineStore extends BaseStore {
     }
 
     const result = await this.request.get(
-      `${URL_PREFIX}${project_id}/pipelines/${decodeURIComponent(name)}/`
+      `${this.urlDevops}${project_id}/pipelines/${decodeURIComponent(name)}/`
     )
 
     this.detail = result
@@ -166,7 +161,7 @@ export default class PipelineStore extends BaseStore {
   @action
   async checkPipelineName({ name, project_id }) {
     return await this.request.get(
-      `${URL_PREFIX}${project_id}/pipelines/${name}/`,
+      `${this.urlDevops}${project_id}/pipelines/${name}/`,
       {},
       {
         headers: { 'x-check-exist': true },
@@ -182,9 +177,7 @@ export default class PipelineStore extends BaseStore {
       await this.fetchDetail({ name, project_id })
     }
     const result = await this.request.get(
-      `kapis/devops.kubesphere.io/v1alpha2/devops/${project_id}/pipelines/${
-        this.detail.name
-      }/config`
+      `${this.urlDevops}${project_id}/pipelines/${this.detail.name}/config`
     )
     this.jenkinsfile = get(result, 'pipeline.jenkinsfile', '')
     this.pipelineConfig = result
@@ -199,9 +192,9 @@ export default class PipelineStore extends BaseStore {
   async convertJenkinsFileToJson(jenkinsfile) {
     if (jenkinsfile) {
       const result = await this.request.post(
-        `kapis/devops.kubesphere.io/v1alpha2/tojson`,
+        `${this.baseUrlV2}tojson`,
         { jenkinsfile: toJS(this.jenkinsfile) },
-        FORM_HEADR
+        FORM_HEAR
       )
       return result.data
     }
@@ -217,7 +210,7 @@ export default class PipelineStore extends BaseStore {
       await this.fetchDetail({ name, project_id })
     }
     const result = await this.request.get(
-      `${URL_PREFIX}${project_id}/pipelines/${name}/branches/`,
+      `${this.urlDevops}${project_id}/pipelines/${name}/branches/`,
       {
         filter: 'pull-requests',
         start: (page - 1) * TABLE_LIMIT || 0,
@@ -246,7 +239,7 @@ export default class PipelineStore extends BaseStore {
     }
 
     const result = await this.request.get(
-      `${URL_PREFIX}${project_id}/pipelines/${name}/branches/`,
+      `${this.urlDevops}${project_id}/pipelines/${name}/branches/`,
       {
         filter: 'origin',
         start: (page - 1) * TABLE_LIMIT || 0,
@@ -277,7 +270,7 @@ export default class PipelineStore extends BaseStore {
       await this.fetchDetail({ name, project_id })
     }
     let result = await this.request.get(
-      `${URL_PREFIX}${project_id}/pipelines/${name}/runs/`,
+      `${this.urlDevops}${project_id}/pipelines/${name}/runs/`,
       {
         start: (page - 1) * limit || 0,
         limit,
@@ -304,7 +297,9 @@ export default class PipelineStore extends BaseStore {
 
     return await this.request
       .get(
-        `${URL_PREFIX}${project_id}/pipelines/${name}/branches/${encodeURIComponent(
+        `${
+          this.urlDevops
+        }${project_id}/pipelines/${name}/branches/${encodeURIComponent(
           branch
         )}/`
       )
@@ -319,7 +314,7 @@ export default class PipelineStore extends BaseStore {
   async replay(params, _runid) {
     const { project_id, name, branch, runid } = params
     return await this.request.post(
-      `${URL_PREFIX}${project_id}/pipelines/${decodeURIComponent(name)}${
+      `${this.urlDevops}${project_id}/pipelines/${decodeURIComponent(name)}${
         branch ? `/branches/${encodeURIComponent(branch)}` : ''
       }/runs/${_runid || runid}/replay`
     )
@@ -328,26 +323,24 @@ export default class PipelineStore extends BaseStore {
   async stop(params, _runid) {
     const { project_id, name, branch, runid } = params
     return await this.request.post(
-      `${URL_PREFIX}${project_id}/pipelines/${name}${
+      `${this.urlDevops}${project_id}/pipelines/${name}${
         branch ? `/branches/${encodeURIComponent(branch)}` : ''
       }/runs/${_runid || runid}/replay/`
     )
   }
 
   async handleActivityReplay(href) {
-    return await this.request.post(
-      `kapis/devops.kubesphere.io/v1alpha2/${href}/replay/`
-    )
+    return await this.request.post(`${this.baseUrlV2}${href}/replay/`)
   }
 
   async handleActivityStop(href) {
     return await this.request.post(
-      `kapis/devops.kubesphere.io/v1alpha2/${href}/stop/?blocking=true&timeOutInSecs=10`
+      `${this.baseUrlV2}${href}/stop/?blocking=true&timeOutInSecs=10`
     )
   }
 
   async runBranch({ project_id, name, branch, parameters }) {
-    const href_temp = `${URL_PREFIX}${project_id}/pipelines/${name}${
+    const href_temp = `${this.urlDevops}${project_id}/pipelines/${name}${
       branch ? `/branches/${encodeURIComponent(branch)}` : ''
     }/runs`
     return await this.request
@@ -369,7 +362,7 @@ export default class PipelineStore extends BaseStore {
   @action
   async getPipeLineConfig(pipeline_id, { project_id }) {
     return await this.request.get(
-      `kapis/devops.kubesphere.io/v1alpha2/devops/${project_id}/pipelines/${pipeline_id}/config`
+      `${this.urlDevops}${project_id}/pipelines/${pipeline_id}/config`
     )
   }
 
@@ -377,7 +370,7 @@ export default class PipelineStore extends BaseStore {
   async createPipeline(data) {
     this.pipelineConfig = data
     return await this.request.post(
-      `kapis/devops.kubesphere.io/v1alpha2/devops/${data.project_id}/pipelines`,
+      `${this.urlDevops}${data.project_id}/pipelines`,
       data
     )
   }
@@ -385,9 +378,7 @@ export default class PipelineStore extends BaseStore {
   @action
   async updatePipeline(data, { project_id }) {
     return await this.request.put(
-      `kapis/devops.kubesphere.io/v1alpha2/devops/${project_id}/pipelines/${getPipelineName(
-        data
-      )}`,
+      `${this.urlDevops}${project_id}/pipelines/${getPipelineName(data)}`,
       data
     )
   }
@@ -401,7 +392,7 @@ export default class PipelineStore extends BaseStore {
   @action
   async deletePipeline(pipelineId, project_id) {
     return await this.request.delete(
-      `kapis/devops.kubesphere.io/v1alpha2/devops/${project_id}/pipelines/${pipelineId}`
+      `${this.urlDevops}${project_id}/pipelines/${pipelineId}`
     )
   }
 
@@ -417,7 +408,7 @@ export default class PipelineStore extends BaseStore {
 
     return await this.request.defaults({
       method: 'POST',
-      url: `kapis/devops.kubesphere.io/v1alpha2/devops/${project_id ||
+      url: `${this.urlDevops}${project_id ||
         this.project_id}/pipelines/${name || this.detail.name}/scan`,
       options,
       handler: resp =>
@@ -431,22 +422,24 @@ export default class PipelineStore extends BaseStore {
 
   async getRepoScanLogs({ project_id, name }) {
     const logs = await this.request.get(
-      `kapis/devops.kubesphere.io/v1alpha2/devops/${project_id}/pipelines/${name}/consolelog`
+      `${this.urlDevops}${project_id}/pipelines/${name}/consolelog`
     )
     this.reponsitorylog = logs
   }
 
   async checkCron(value) {
-    return await this.request.get(`${URL_PREFIX}check/cron?value=${value}`)
+    return await this.request.get(`${this.urlDevops}check/cron?value=${value}`)
   }
 
   async checkScriptCompile({ project_id, pipeline, value }) {
     return await this.request.post(
-      `${URL_PREFIX}/${project_id}/pipelines/${pipeline}/checkScriptCompile`,
+      `${
+        this.urlDevops
+      }/${project_id}/pipelines/${pipeline}/checkScriptCompile`,
       {
         value,
       },
-      FORM_HEADR
+      FORM_HEAR
     )
   }
 
@@ -455,7 +448,7 @@ export default class PipelineStore extends BaseStore {
     const { page } = filters
 
     return await this.request.get(
-      `${URL_PREFIX}${project_id}/pipelines/${name}/branches/`,
+      `${this.urlDevops}${project_id}/pipelines/${name}/branches/`,
       {
         filter: 'origin',
         start: (page - 1) * 100 || 0,
