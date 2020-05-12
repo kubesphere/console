@@ -69,7 +69,7 @@ export default function withList(options) {
                 type: t(this.name),
                 resource: item.name,
                 detail: item,
-                success: this.getData,
+                success: this.routing.query,
               }),
           },
         ]
@@ -247,9 +247,11 @@ export class ListPage extends React.Component {
     if ('getWatchListUrl' in this.store) {
       const url = this.store.getWatchListUrl(this.props.match.params)
 
+      const watchTypes = this.props.watchTypes || ['MODIFIED', 'DELETED']
+
       this.websocket.watch(url)
 
-      const _fetchData = throttle(this.props.getData, 1000)
+      const _fetchData = throttle(this.props.getData, 3000)
 
       this.disposer = reaction(
         () => this.websocket.message,
@@ -257,7 +259,7 @@ export class ListPage extends React.Component {
           const kind = MODULE_KIND_MAP[this.props.module]
           if (
             message.object.kind === kind &&
-            ['MODIFIED', 'DELETED'].includes(message.type)
+            watchTypes.includes(message.type)
           ) {
             const params = parse(location.search.slice(1))
             _fetchData({ ...params, silent: true })

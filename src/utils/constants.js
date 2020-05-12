@@ -243,6 +243,8 @@ export const MODULE_KIND_MAP = {
   s2ibuilders: 'S2iBuilder',
   nodes: 'Node',
   volumesnapshots: 'VolumeSnapshot',
+  namespaces: 'Namespace',
+  workspaces: 'Workspace',
 }
 
 export const QUOTAS_MAP = {
