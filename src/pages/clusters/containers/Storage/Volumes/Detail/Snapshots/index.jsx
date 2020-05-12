@@ -37,7 +37,7 @@ export default class PVCSnapshots extends Component {
     this.store.fetchList({
       cluster,
       namespace,
-      source: name,
+      persistentVolumeClaimName: name,
     })
   }
 
