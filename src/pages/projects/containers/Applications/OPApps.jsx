@@ -70,7 +70,7 @@ export default class OPApps extends React.Component {
   }
 
   get itemActions() {
-    const { trigger } = this.props
+    const { routing, trigger } = this.props
     return [
       {
         key: 'edit',
@@ -80,7 +80,7 @@ export default class OPApps extends React.Component {
         onClick: item =>
           trigger('openpitrix.app.edit', {
             detail: item,
-            success: this.getData,
+            success: routing.query,
           }),
       },
       {
@@ -92,7 +92,7 @@ export default class OPApps extends React.Component {
           trigger('resource.delete', {
             type: t(this.name),
             detail: item,
-            success: this.getData,
+            success: routing.query,
           }),
       },
     ]

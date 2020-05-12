@@ -77,7 +77,7 @@ export default class Nodes extends React.Component {
   }
 
   get itemActions() {
-    const { store, trigger } = this.props
+    const { store, routing, trigger } = this.props
     return [
       {
         key: 'uncordon',
@@ -85,7 +85,7 @@ export default class Nodes extends React.Component {
         text: t('Uncordon'),
         action: 'edit',
         show: item => this.getUnschedulable(item),
-        onClick: item => store.uncordon(item).then(this.getData),
+        onClick: item => store.uncordon(item).then(routing.query),
       },
       {
         key: 'cordon',
@@ -93,7 +93,7 @@ export default class Nodes extends React.Component {
         text: t('Cordon'),
         action: 'edit',
         show: item => !this.getUnschedulable(item),
-        onClick: item => store.cordon(item).then(this.getData),
+        onClick: item => store.cordon(item).then(routing.query),
       },
       {
         key: 'delete',
@@ -106,14 +106,14 @@ export default class Nodes extends React.Component {
             type: t('Cluster Node'),
             resource: item.name,
             detail: item,
-            success: this.getData,
+            success: routing.query,
           }),
       },
     ]
   }
 
   get tableActions() {
-    const { trigger, tableProps } = this.props
+    const { trigger, routing, tableProps } = this.props
     return {
       ...tableProps.tableActions,
       actions: [
@@ -135,7 +135,7 @@ export default class Nodes extends React.Component {
           action: 'edit',
           onClick: () =>
             trigger('node.taint.batch', {
-              success: this.getData,
+              success: routing.query,
             }),
         },
         {
@@ -146,7 +146,7 @@ export default class Nodes extends React.Component {
           onClick: () =>
             trigger('resource.delete.batch', {
               type: t('Cluster Node'),
-              success: this.getData,
+              success: routing.query,
             }),
         },
       ],
@@ -381,7 +381,7 @@ export default class Nodes extends React.Component {
     const isLoadingMonitor = this.monitoringStore.isLoading
 
     return (
-      <ListPage {...this.props} getData={this.getData}>
+      <ListPage {...this.props} getData={this.getData} noWatch>
         <Banner {...bannerProps} tips={this.tips} />
         {this.renderOverview()}
         <Table

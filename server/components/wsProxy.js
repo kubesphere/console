@@ -33,7 +33,9 @@ module.exports = function(app) {
     wsProxy.ws(req, socket, head, { target })
 
     wsProxy.on('proxyReqWs', (proxyReq, _req) => {
-      const token = _req.headers.cookie.match(/token=(.*);/)[1]
+      const token = _req.headers.cookie.match(
+        new RegExp('(?:^|;)\\s?token=(.*?)(?:;|$)', 'i')
+      )[1]
       proxyReq.setHeader('Authorization', `Bearer ${token}`)
     })
   })

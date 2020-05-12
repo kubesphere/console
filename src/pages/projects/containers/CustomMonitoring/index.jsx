@@ -85,7 +85,7 @@ export default class CustomMonitoringDashboards extends React.Component {
   }
 
   get itemActions() {
-    const { trigger } = this.props
+    const { trigger, routing } = this.props
     return [
       {
         key: 'delete',
@@ -96,14 +96,14 @@ export default class CustomMonitoringDashboards extends React.Component {
           trigger('resource.delete', {
             type: t(this.name),
             detail: item,
-            success: this.getData,
+            success: routing.query,
           }),
       },
     ]
   }
 
   get tableActions() {
-    const { trigger, tableProps } = this.props
+    const { trigger, routing, tableProps } = this.props
     return {
       ...tableProps.tableActions,
       selectActions: [
@@ -115,7 +115,7 @@ export default class CustomMonitoringDashboards extends React.Component {
           onClick: () => {
             trigger('resource.batch.delete', {
               type: t(this.name),
-              success: this.getData,
+              success: routing.query,
             })
           },
         },

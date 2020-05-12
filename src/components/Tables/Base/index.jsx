@@ -206,14 +206,15 @@ export default class WorkloadTable extends React.Component {
   }
 
   handleSearch = text => {
-    this.props.onFetch({ keyword: text }, true)
+    const { searchType } = this.props
+    this.props.onFetch({ [searchType]: text }, true)
   }
 
   clearFilter = () => {
     // you must update the filter in props.onFetch
     const { searchType } = this.props
 
-    if (searchType === 'keyword') {
+    if (searchType) {
       this.handleSearch()
     }
 
@@ -280,7 +281,7 @@ export default class WorkloadTable extends React.Component {
       return null
     }
 
-    if (searchType === 'keyword') {
+    if (searchType) {
       const placeholder =
         this.props.placeholder || t('Please input a keyword to find')
 
