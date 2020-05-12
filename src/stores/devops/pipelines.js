@@ -119,18 +119,25 @@ export default class PipelineStore extends BaseStore {
   jenkinsfile = ''
 
   @action
-  async fetchList({ project_id, workspace, ...filters } = {}) {
+  async fetchList({ project_name, workspace, ...filters } = {}) {
     this.list.isLoading = true
     const { page, keyword, filter } = filters
 
     const searchWord = keyword ? `*${encodeURIComponent(keyword)}*` : ''
 
-    const result = await this.request.get(`${this.baseUrlV2}search`, {
-      q: `type:pipeline;organization:jenkins;pipeline:${project_id}%2F${searchWord ||
+    // const result = await this.request.get(`${this.baseUrlV2}search`, {
+    //   q: `type:pipeline;organization:jenkins;pipeline:${project_id}%2F${searchWord ||
+    //     '*'};excludedFromFlattening:jenkins.branch.MultiBranchProject,hudson.matrix.MatrixProject&filter=${filter ||
+    //     'no-folders'}`,
+    //   start: (page - 1) * TABLE_LIMIT || 0,
+    //   limit: TABLE_LIMIT,
+    // })
+
+    const result = await this.request.get(`${this.baseUrlV2}pipelines`, {
+      labelSelector: project_name,
+      q: `type:pipeline;organization:jenkins;pipeline:${project_name}%2F${searchWord ||
         '*'};excludedFromFlattening:jenkins.branch.MultiBranchProject,hudson.matrix.MatrixProject&filter=${filter ||
         'no-folders'}`,
-      start: (page - 1) * TABLE_LIMIT || 0,
-      limit: TABLE_LIMIT,
     })
 
     this.list = {
