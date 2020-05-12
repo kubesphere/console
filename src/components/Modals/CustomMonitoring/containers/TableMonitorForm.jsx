@@ -59,7 +59,7 @@ export default class TableMonitorForm extends Component {
                     <ColumeInput
                       right={
                         <Button type={'control'} onClick={onAdd}>
-                          {t('ADD')}
+                          {t('Add')}
                         </Button>
                       }
                     />

@@ -42,7 +42,7 @@ export default function GrafanaTargetInput({
         <div className={styles.firstLine}>
           <div>
             <Form.Item className={styles.name}>
-              <FormItemContainer name={`${prefix}.legendFormat`}>
+              <FormItemContainer name={`${prefix}.legendFormat`} debounce={800}>
                 {({ onChange, value }) => (
                   <div>
                     <Field label={t('METRIC_NAME')} tips={''}>
@@ -57,7 +57,7 @@ export default function GrafanaTargetInput({
               </FormItemContainer>
             </Form.Item>
             <Form.Item className={styles.interval}>
-              <FormItemContainer name={`${prefix}.step`}>
+              <FormItemContainer name={`${prefix}.step`} debounce={500}>
                 {({ onChange, value }) => (
                   <div>
                     <Field label={t('Interval')} tips={''}>
@@ -77,10 +77,15 @@ export default function GrafanaTargetInput({
 
         <div className={styles.exprInput}>
           <Form.Item>
-            <CustomMonitorMetircQueryInput
-              name={`${prefix}.expr`}
-              supportMetrics={supportMetrics}
-            />
+            <FormItemContainer name={`${prefix}.expr`} debounce={500}>
+              {({ onChange, value }) => (
+                <CustomMonitorMetircQueryInput
+                  value={value}
+                  onChange={onChange}
+                  supportMetrics={supportMetrics}
+                />
+              )}
+            </FormItemContainer>
           </Form.Item>
         </div>
       </div>

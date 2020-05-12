@@ -438,6 +438,22 @@ export const unitTransformMap = {
     ['GB', 8 * 1024 ** 3],
     ['TB', 8 * 1024 ** 4],
   ]),
+  'bit/s': unitTransformFactory([
+    ['bit/s', 0],
+    ['Byte/s', 8],
+    ['KB/s', 8 * 1024],
+    ['MB/s', 8 * 1024 ** 2],
+    ['GB/s', 8 * 1024 ** 3],
+    ['TB/s', 8 * 1024 ** 4],
+  ]),
+  bps: unitTransformFactory([
+    ['bps', 0],
+    ['Bps', 8],
+    ['KBps', 8 * 1024],
+    ['Mbps', 1024 ** 2],
+    ['Gbps', 1024 ** 3],
+    ['Tbps', 1024 ** 4],
+  ]),
   percent(number, decimals) {
     const format = unitTransformFactory([['%', 0]])
     return format(number * 100, decimals)

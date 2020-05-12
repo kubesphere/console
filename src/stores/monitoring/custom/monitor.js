@@ -63,6 +63,7 @@ export default class PanelMonitor {
      * grafana template panel config
      */
     this.config = config
+    this.requestID = 0
   }
 
   /**
@@ -74,10 +75,9 @@ export default class PanelMonitor {
     }
     this.isObserving = true
 
-    const { from, to } = template.timeRange
-
     this.pollingController = polling(
       () => {
+        const { from, to } = template.getTimeRange()
         this.fetchMetrics({ start: from.valueOf(), end: to.valueOf() })
       },
       {
@@ -87,21 +87,26 @@ export default class PanelMonitor {
 
     this.disposer = reaction(
       () => ({
-        timeRange: template.timeRange,
+        time: template.timeRange,
         refresh: template.refreshMs,
         exprs: this.config.targets.map(target => target.expr),
         steps: this.config.targets.map(target => target.step),
       }),
-      ({ timeRange, refresh }) => {
-        const { from: newFrom, to: newTo } = timeRange
-
+      ({ refresh }) => {
+        this.metrics = this.metrics.map(metric => ({
+          ...metric,
+          values: [],
+        }))
         this.pollingController && this.pollingController.stopPolling()
         this.pollingController = polling(
-          () =>
+          () => {
+            const { from: newFrom, to: newTo } = template.getTimeRange()
+
             this.fetchMetrics({
               start: newFrom.valueOf(),
               end: newTo.valueOf(),
-            }),
+            })
+          },
           {
             interval: refresh,
           }
@@ -113,6 +118,12 @@ export default class PanelMonitor {
   @action
   fetchMetrics = async ({ start, end }) => {
     const { targets = [], namespace } = this.config
+
+    const req = {
+      ID: ++this.requestID,
+      errorMessage: '',
+      metrics: [],
+    }
 
     try {
       const result = await Promise.all(
@@ -128,7 +139,7 @@ export default class PanelMonitor {
           return { data, target }
         })
       )
-      this.metrics = result.reduce((metrics, metricsGroup) => {
+      req.metrics = result.reduce((metrics, metricsGroup) => {
         const { data = [], target = {} } = metricsGroup
         const { expr, refId: targetID } = target
 
@@ -148,10 +159,13 @@ export default class PanelMonitor {
 
         return metrics.concat(parsedMetrics)
       }, [])
-      this.errorMessage = ''
     } catch (err) {
-      this.errorMessage = err.message
-      this.metrics = []
+      req.errorMessage = err.message
+    } finally {
+      if (req.ID === this.requestID) {
+        this.metrics = req.metrics
+        this.errorMessage = req.errorMessage
+      }
     }
   }
 

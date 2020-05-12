@@ -15,7 +15,31 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
+import React from 'react'
+import { get, debounce } from 'lodash'
 
-export default function FormItemContainer({ children, ...props }) {
-  return children(props)
+export default class FormItemContainer extends React.Component {
+  state = {
+    value: this.props.value,
+  }
+
+  handleChange = newValue => {
+    const value = get(newValue, 'currentTarget.value', newValue)
+    this.setState({ value })
+
+    this.change(value)
+  }
+
+  change = debounce(value => {
+    this.props.onChange(value)
+  }, this.props.debounce)
+
+  render() {
+    const { children, value, onChange, ...props } = this.props
+    return children({
+      ...props,
+      value: this.state.value,
+      onChange: this.handleChange,
+    })
+  }
 }
