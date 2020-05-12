@@ -376,7 +376,7 @@ const VolumeMapper = item => {
     inUse: get(item, 'metadata.annotations["kubesphere.io/in-use"]') === 'true',
     type: 'pvc',
     allowSnapshot:
-      get(item, 'metadata.annotations["kubesphere.io/allowSnapshot"]') ===
+      get(item, 'metadata.annotations["kubesphere.io/allow-snapshot"]') ===
       'true',
     _originData: getOriginData(item),
   }
@@ -865,11 +865,11 @@ const VolumeSnapshotMapper = detail => {
   const { error = {}, readyToUse } = status
   const { message } = error
   const { namespace = '' } = metadata
-  const snapshotSourceName = get(spec, 'source.name')
+  const snapshotSourceName = get(spec, 'source.persistentVolumeClaimName')
 
   return {
     ...getBaseInfo(detail),
-    snapshotClassName: get(spec, 'snapshotClassName', '-'),
+    snapshotClassName: get(spec, 'volumeSnapshotClassName', '-'),
     restoreSize: get(status, 'restoreSize', 0),
     error,
     errorMessage: message,

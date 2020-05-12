@@ -56,10 +56,19 @@ export default class VolumeDetail extends React.Component {
     return `/clusters/${cluster}/volumes`
   }
 
+  get pvcDetailInKs() {
+    const { name } = this.props.match.params
+    return this.store.list.data.find(pvc => pvc.name === name) || {}
+  }
+
   fetchData = async () => {
+    const { name } = this.props.match.params
     await this.store.fetchDetail(this.props.match.params)
 
-    const { cluster, storageClassName } = this.store.detail
+    await this.store.fetchList({ limit: Infinity, name })
+
+    const { cluster } = this.props.match.params
+    const { storageClassName } = this.store.detail
     await this.storageclass.fetchDetail({
       cluster,
       name: storageClassName,
@@ -108,7 +117,7 @@ export default class VolumeDetail extends React.Component {
       text: t('Create Snapshot'),
       icon: 'copy',
       action: 'create',
-      disabled: !get(this.store, 'detail.allowSnapshot', false),
+      disabled: !get(this.pvcDetailInKs, 'allowSnapshot', false),
       onClick: () => {
         this.trigger('volume.create.snapshot', {
           store: this.store,

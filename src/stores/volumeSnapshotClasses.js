@@ -15,28 +15,40 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
+import Base from './base'
 
-import { getIndexRoute } from 'utils/router.config'
-import Events from 'core/containers/Base/Detail/Events'
-import Source from './Source'
+export default class VolumeSnapshotClassStore extends Base {
+  module = 'volumesnapshotclasses'
 
-const PATH = '/clusters/:cluster/projects/:namespace/volume-snapshots/:name'
-const SOURCE_PATH = `${PATH}/source`
-const EVENT_PATH = `${PATH}/event`
+  get resourceKind() {
+    return 'VolumeSnapshotClass'
+  }
 
-export default [
-  {
-    name: 'source',
-    path: SOURCE_PATH,
-    title: 'DATA_SOURCE',
-    component: Source,
-  },
-  {
-    name: 'event',
-    path: EVENT_PATH,
-    title: 'Events',
-    component: Events,
-  },
-  getIndexRoute({ path: PATH, to: `${PATH}/source`, exact: true }),
-  getIndexRoute({ path: '*', to: '/404', exact: true }),
-]
+  get apiVersion() {
+    return 'apis/snapshot.storage.k8s.io/v1beta1'
+  }
+
+  create(params, options) {
+    return super.create(
+      {
+        apiVersion: 'snapshot.storage.k8s.io/v1beta1',
+        kind: this.resourceKind,
+        deletionPolicy: 'Delete',
+        ...params,
+      },
+      options
+    )
+  }
+
+  async deleteSilent(params) {
+    await request.delete(this.getDetailUrl(params), {}, {}, () => {})
+  }
+
+  async silentBatchDelete(keys) {
+    return Promise.all(
+      keys.map(name =>
+        request.delete(this.getDetailUrl({ name }), {}, {}, () => {})
+      )
+    )
+  }
+}

@@ -242,7 +242,7 @@ export const MODULE_KIND_MAP = {
   secrets: 'Secret',
   s2ibuilders: 'S2iBuilder',
   nodes: 'Node',
-  'volume-snapshots': 'VolumeSnapshot',
+  volumesnapshots: 'VolumeSnapshot',
 }
 
 export const QUOTAS_MAP = {

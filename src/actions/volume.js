@@ -16,8 +16,9 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get } from 'lodash'
+import { get, get } from 'lodash'
 import { Modal, Notify } from 'components/Base'
+
 import CreateModal from 'components/Modals/Create'
 import NameModal from 'projects/components/Modals/ResourceNamed'
 import ExpandModal from 'projects/components/Modals/ExpandVolume'

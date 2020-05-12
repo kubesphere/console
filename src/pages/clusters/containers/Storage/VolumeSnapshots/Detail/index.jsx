@@ -52,7 +52,7 @@ export default class StorageClassDetail extends React.Component {
 
   get listUrl() {
     const { cluster } = this.props.match.params
-    return `/clusters/${cluster}/snapshots`
+    return `/clusters/${cluster}/volume-snapshots`
   }
 
   fetchData = () => {
@@ -113,6 +113,7 @@ export default class StorageClassDetail extends React.Component {
       backupStatus = '',
       creator,
       errorMessage,
+      namespace,
     } = detail
     if (isEmpty(detail)) return null
 
@@ -143,7 +144,7 @@ export default class StorageClassDetail extends React.Component {
       },
       {
         name: t('Project'),
-        value: this.namespace,
+        value: namespace,
       },
       {
         name: t('Create Time'),
