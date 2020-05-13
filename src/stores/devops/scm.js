@@ -177,7 +177,7 @@ export default class SCMStore extends BaseStore {
 
   async createCredential({ id, username, password, description, login }) {
     return await this.request.post(
-      `${this.urlDevops}${this.project_id}/credentials`,
+      `${this.devopsUrlV2}${this.project_id}/credentials`,
       {
         id,
         type: 'username_password',
@@ -207,7 +207,7 @@ export default class SCMStore extends BaseStore {
 
     this.credentials.isLoading = true
     const result = await this.request
-      .get(`${this.urlDevops}${project_id || this.project_id}/credentials`)
+      .get(`${this.devopsUrlV2}${project_id || this.project_id}/credentials`)
       .finally(() => {
         this.credentials.isLoading = false
       })
@@ -290,7 +290,7 @@ export default class SCMStore extends BaseStore {
 
   @action
   checkCronScript = ({ devops, script, pipeline }) =>
-    this.request.post(`${this.urlDevops}${devops}/checkCron`, {
+    this.request.post(`${this.devopsUrlV2}${devops}/checkCron`, {
       cron: script,
       pipelineName: pipeline,
     })

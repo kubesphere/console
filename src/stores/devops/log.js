@@ -30,7 +30,7 @@ export default class PipelineRunStore extends BaseStore {
 
   async getStepLog({ project_id, name, branch, runid, nodeid, stepid }) {
     const result = await request.defaults({
-      url: `${this.urlDevops}${project_id}/pipelines/${decodeURIComponent(
+      url: `${this.devopsUrlV2}${project_id}/pipelines/${decodeURIComponent(
         name
       )}${
         branch ? `/branches/${encodeURIComponent(branch)}` : ''

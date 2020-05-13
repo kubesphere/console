@@ -19,11 +19,11 @@
 import { set } from 'lodash'
 
 export default class Base {
-  baseUrlV2 = 'apis/devops.kubesphere.io/v1alpha3/'
-  urlDevops = `${this.baseUrlV2}devopsprojects/`
+  baseUrlV3 = 'apis/devops.kubesphere.io/v1alpha3/'
+  devopsUrlV3 = `${this.baseUrlV3}devopsprojects/`
 
-  // baseUrlV2 = 'kapis/devops.kubesphere.io/v1alpha2/'
-  // urlDevops = `${this.baseUrlV2}devops/`
+  baseUrlV2 = 'kapis/devops.kubesphere.io/v1alpha2/'
+  devopsUrlV2 = `${this.baseUrlV2}devops/`
 
   catchRequestError(method = 'get', ...rest) {
     return request[method](...rest).catch(error => {

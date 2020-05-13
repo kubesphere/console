@@ -32,12 +32,12 @@ export default class CodeQualityStore extends BaseStore {
     let url = ''
     if (branch) {
       url = `${
-        this.urlDevops
+        this.devopsUrlV2
       }${project_id}/pipelines/${name}/branches/${encodeURIComponent(
         branch
       )}/sonarstatus `
     } else {
-      url = `${this.urlDevops}${project_id}/pipelines/${name}/sonarstatus`
+      url = `${this.devopsUrlV2}${project_id}/pipelines/${name}/sonarstatus`
     }
     this.isLoading = true
     const result = await this.request
