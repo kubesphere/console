@@ -173,8 +173,8 @@ export default class Resources extends React.Component {
         .create(data, { workspace: this.workspace })
         .then(result => {
           this.hideCreateModal()
-          if (result.project_id) {
-            this.routing.push(`/devops/${result.project_id}`)
+          if (result.name) {
+            this.routing.push(`/devops/${result.name}`)
           }
         })
         .finally(() => {

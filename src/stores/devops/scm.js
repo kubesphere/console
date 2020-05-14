@@ -93,7 +93,7 @@ export default class SCMStore extends BaseStore {
     this.scmType = scmType
     this.orgParams = params
     const result = await this.request.get(
-      `kapis/devops.kubesphere.io/v1alpha2/scms/${scmType ||
+      `${this.baseUrlV2}scms/${scmType ||
         'github'}/organizations/?${getQueryString(params)}`
     )
     isArray(result) ? (this.orgList.data = result) : null
@@ -115,7 +115,7 @@ export default class SCMStore extends BaseStore {
       this.orgList.data[activeRepoIndex].name
 
     const result = await this.request.get(
-      `kapis/devops.kubesphere.io/v1alpha2/scms/${this.scmType ||
+      `${this.baseUrlV2}scms/${this.scmType ||
         'github'}/organizations/${organizationName}/repositories/?${getQueryString(
         {
           ...this.orgParams,
@@ -168,7 +168,7 @@ export default class SCMStore extends BaseStore {
 
   async verifyAccessForRepo({ scmType, ...rest }) {
     return await this.request.post(
-      `kapis/devops.kubesphere.io/v1alpha2/scms/${scmType}/verify/`,
+      `${this.baseUrlV2}scms/${scmType}/verify/`,
       rest,
       null,
       this.verifyAccessErrorHandle[scmType]
@@ -177,9 +177,7 @@ export default class SCMStore extends BaseStore {
 
   async createCredential({ id, username, password, description, login }) {
     return await this.request.post(
-      `kapis/devops.kubesphere.io/v1alpha2/devops/${
-        this.project_id
-      }/credentials`,
+      `${this.devopsUrlV2}${this.project_id}/credentials`,
       {
         id,
         type: 'username_password',
@@ -209,10 +207,7 @@ export default class SCMStore extends BaseStore {
 
     this.credentials.isLoading = true
     const result = await this.request
-      .get(
-        `kapis/devops.kubesphere.io/v1alpha2/devops/${project_id ||
-          this.project_id}/credentials`
-      )
+      .get(`${this.devopsUrlV2}${project_id || this.project_id}/credentials`)
       .finally(() => {
         this.credentials.isLoading = false
       })
@@ -242,7 +237,7 @@ export default class SCMStore extends BaseStore {
       apiUrl + username + password
     ).slice(0, 6)}`
     const result = await this.request.post(
-      `kapis/devops.kubesphere.io/v1alpha2/scms/bitbucket-server/servers`,
+      `${this.baseUrlV2}scms/bitbucket-server/servers`,
       {
         apiUrl,
         name: this.bitbucketCredentialId,
@@ -295,11 +290,8 @@ export default class SCMStore extends BaseStore {
 
   @action
   checkCronScript = ({ devops, script, pipeline }) =>
-    this.request.post(
-      `kapis/devops.kubesphere.io/v1alpha2/devops/${devops}/checkCron`,
-      {
-        cron: script,
-        pipelineName: pipeline,
-      }
-    )
+    this.request.post(`${this.devopsUrlV2}${devops}/checkCron`, {
+      cron: script,
+      pipelineName: pipeline,
+    })
 }

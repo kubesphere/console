@@ -19,6 +19,12 @@
 import { set } from 'lodash'
 
 export default class Base {
+  baseUrlV3 = 'apis/devops.kubesphere.io/v1alpha3/'
+  devopsUrlV3 = `${this.baseUrlV3}devopsprojects/`
+
+  baseUrlV2 = 'kapis/devops.kubesphere.io/v1alpha2/'
+  devopsUrlV2 = `${this.baseUrlV2}devops/`
+
   catchRequestError(method = 'get', ...rest) {
     return request[method](...rest).catch(error => {
       window.onunhandledrejection(error)
@@ -29,7 +35,7 @@ export default class Base {
   getCrumb = async () =>
     await this.catchRequestError(
       'get',
-      `kapis/devops.kubesphere.io/v1alpha2/crumbissuer`,
+      `${this.baseUrlV2}crumbissuer`,
       null,
       null,
       () => true

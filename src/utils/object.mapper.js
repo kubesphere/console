@@ -909,6 +909,15 @@ const FederatedMapper = item => ({
   _originData: getOriginData(item),
 })
 
+const DevOpsMapper = item => ({
+  uid: get(item, 'metadata.uid'),
+  name: get(item, 'metadata.name'),
+  creator: getResourceCreator(item),
+  description: getDescription(item),
+  createTime: get(item, 'metadata.creationTimestamp'),
+  workspace: get(item, 'metadata.labels["kubesphere.io/workspace"]'),
+})
+
 const CRDMapper = item => {
   const versions = get(item, 'spec.versions', [])
   return {
@@ -990,6 +999,7 @@ export default {
   clusters: ClusterMapper,
   federated: FederatedMapper,
   outputs: LogOutPutMapper,
+  devops: DevOpsMapper,
   dashboards: DashboardMapper,
   customresourcedefinitions: CRDMapper,
 }

@@ -61,10 +61,7 @@ export default class DevOpsEditModal extends React.Component {
 
   componentDidUpdate(prevProps) {
     const { detail, workspace } = this.props
-    if (
-      detail.project_id &&
-      detail.project_id !== get(prevProps, 'detail.project_id')
-    ) {
+    if (detail.name && detail.name !== get(prevProps, 'detail.name')) {
       this.store.fetchList({
         limit: Infinity,
         workspace,
@@ -109,7 +106,7 @@ export default class DevOpsEditModal extends React.Component {
             { pattern: PATTERN_NAME, message: t('PATTERN_NAME_INVALID_TIP') },
           ]}
         >
-          <Input name="name" />
+          <Input name="name" disabled />
         </Form.Item>
         <Form.Item label={t('Creator')} desc={t('DEVOPS_ADMIN_DESC')}>
           <Input name="creator" disabled />
