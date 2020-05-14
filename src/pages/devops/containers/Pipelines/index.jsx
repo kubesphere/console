@@ -502,7 +502,7 @@ class CICDs extends React.Component {
   }
 
   renderModals() {
-    const { project_id } = this.props.match.params
+    const { project_name } = this.props.match.params
 
     return (
       <React.Fragment>
@@ -521,7 +521,7 @@ class CICDs extends React.Component {
         <EditPipelineConfig
           title={t('Edit Pipeline')}
           formTemplate={this.state.configFormData}
-          project_id={project_id}
+          project_id={project_name}
           visible={this.state.showEditConfig}
           onOk={this.handleEditConfig}
           onCancel={this.hideEditConfig}

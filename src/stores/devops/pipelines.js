@@ -126,7 +126,7 @@ export default class PipelineStore extends BaseStore {
     const searchWord = keyword ? `*${encodeURIComponent(keyword)}*` : ''
 
     const result = await this.request.get(`${this.baseUrlV3}pipelines`, {
-      labelSelector: project_name,
+      labelSelector: `kubesphere.io/pipelines=${project_name}`,
       q: `type:pipeline;organization:jenkins;pipeline:${project_name}%2F${searchWord ||
         '*'};excludedFromFlattening:jenkins.branch.MultiBranchProject,hudson.matrix.MatrixProject&filter=${filter ||
         'no-folders'}`,

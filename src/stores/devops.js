@@ -41,16 +41,20 @@ export default class DevOpsStore extends Base {
   }
 
   @observable
+  data = {}
+
+  @observable
   devopsListData = []
 
-  // getBaseUrlV2 = () => 'kapis/devops.kubesphere.io/v1alpha2/'
+  getBaseUrlV2 = () => 'kapis/devops.kubesphere.io/v1alpha2/'
 
-  // getDevopsUrl = () => `${this.getBaseUrlV2()}devops`
+  getDevopsUrlV2 = () => `${this.getBaseUrlV2()}devops`
 
-  // getResourceUrl = ({ workspace }) =>
-  //   `${this.getBaseUrlV2()}workspaces/${workspace}/devops`
+  getResourceUrl = ({ workspace }) =>
+    `${this.getBaseUrlV2()}workspaces/${workspace}/devops`
 
-  // getDetailUrl = project_id => `${this.getDevopsUrl()}/${project_id}`
+  getDetailUrl = project_id => `${this.getDevopsUrlV2()}/${project_id}`
+
   getBaseUrl = () => 'apis/devops.kubesphere.io/v1alpha3/'
 
   getDevOpsUrl = () => `${this.getBaseUrl()}devopsprojects`

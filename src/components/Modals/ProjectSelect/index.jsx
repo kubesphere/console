@@ -46,7 +46,7 @@ export default class ProjectSelectModal extends React.Component {
   }
 
   componentDidMount() {
-    this.store.fetchDetail({ name: this.props.workspace })
+    this.store.fetchDetail({ workspace: this.props.workspace })
   }
 
   get enabledActions() {
@@ -147,7 +147,7 @@ export default class ProjectSelectModal extends React.Component {
     if (this.state.type === 'projects') {
       onChange(`/cluster/${cluster}/projects/${item.name}`)
     } else {
-      onChange(`/devops/${item.project_id}`)
+      onChange(`/devops/${item.name}`)
     }
   }
 
