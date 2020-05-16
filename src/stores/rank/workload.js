@@ -34,7 +34,7 @@ const metrics_filter = [
   'replica',
 ]
 
-export default class NodeStore extends Store {
+export default class WorkloadStore extends Store {
   @observable
   namespaces
 

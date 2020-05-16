@@ -26,7 +26,7 @@ class UsageRanking extends React.Component {
   render() {
     return (
       <div className={styles.wrapper}>
-        <Project />
+        <Project cluster={this.props.match.params.cluster} />
       </div>
     )
   }

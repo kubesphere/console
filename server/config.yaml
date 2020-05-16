@@ -90,7 +90,6 @@ client:
           icon: nodes
           children:
             - { name: nodes, title: Cluster Nodes }
-            - { name: node-types, title: Node Types }
         - { name: components, title: Service Components, icon: components }
         - { name: projects, title: NAV_PROJECTS, icon: project }
         - name: app-workloads

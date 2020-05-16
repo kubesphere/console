@@ -111,8 +111,8 @@ export default class NodeUsageRank extends React.Component {
         <div>
           <h3>{this.toPercentage(node.node_memory_utilisation)}</h3>
           <div>
-            {getValueByUnit(node.node_memory_usage_wo_cache, 'GiB') || '-'} /{' '}
-            {getValueByUnit(node.node_memory_total, 'GiB') || '-'} GiB
+            {getValueByUnit(node.node_memory_usage_wo_cache, 'Gi') || '-'} /{' '}
+            {getValueByUnit(node.node_memory_total, 'Gi') || '-'} Gi
           </div>
         </div>
       ),

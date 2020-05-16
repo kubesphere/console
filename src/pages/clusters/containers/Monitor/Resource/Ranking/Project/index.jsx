@@ -18,14 +18,12 @@
 
 import React from 'react'
 import { observer } from 'mobx-react'
-import { get } from 'lodash'
 import classNames from 'classnames'
 
 import Store from 'stores/rank/project'
-import WorkspaceStore from 'stores/workspace'
-import SortMetricSelect from 'console/components/Cards/Monitoring/UsageRank/select'
+import SortMetricSelect from 'clusters/components/Cards/Monitoring/UsageRank/select'
 
-import { Button, SearchSelect } from 'components/Base'
+import { Button } from 'components/Base'
 
 import {
   Pagination,
@@ -45,20 +43,11 @@ class Ranking extends React.Component {
   constructor(props) {
     super(props)
 
-    const ws = get(globals, 'app.workspaces[0]')
-    this.workspaceStore = new WorkspaceStore()
     this.store = new Store({
-      workspace: ws,
       limit: 10,
       sort_type: 'desc',
+      cluster: props.cluster,
     })
-  }
-
-  get wsOpts() {
-    return get(this.workspaceStore, 'list.data', []).map(({ name }) => ({
-      label: `${t('Workspace')}: ${name}`,
-      value: name,
-    }))
   }
 
   download = () => {
@@ -67,10 +56,7 @@ class Ranking extends React.Component {
 
   componentDidMount() {
     this.store.fetchAll()
-    this.workspaceStore.fetchList()
   }
-
-  fetchWorkspaces = (params = {}) => this.workspaceStore.fetchList(params)
 
   render() {
     return (
@@ -91,16 +77,6 @@ class Ranking extends React.Component {
         )}
       >
         <div className={styles.toolbar_filter}>
-          <SearchSelect
-            value={this.store.workspace}
-            page={this.workspaceStore.list.page}
-            total={this.workspaceStore.list.total}
-            onChange={this.store.changeWorkSpace}
-            isLoading={this.workspaceStore.list.isLoading}
-            options={this.wsOpts}
-            currentLength={this.workspaceStore.list.data.length}
-            onFetch={this.fetchWorkspaces}
-          />
           <SortMetricSelect store={this.store} />
 
           <span className={styles.sort_button}>

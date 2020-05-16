@@ -86,9 +86,9 @@ export default {
 
   QINGCLOUD_CSI_TYPE_DESC:
     'In QingCloud public cloud platform, 0 represents high performance volume. 2 represents high capacity volume. 3 represents super high performance volume. 5 represents Enterprise Server SAN. 100 represents standard volume .',
-  CREATE_VOLUME_MAX_SIZE: 'Limit the range of volume size in GiB',
-  CREATE_VOLUME_STEP_SIZE: 'Set the incremental size of volume in GiB',
-  CREATE_VOLUME_MIN_SIZE: 'Limit the range of volume size in GiB',
+  CREATE_VOLUME_MAX_SIZE: 'Limit the range of volume size',
+  CREATE_VOLUME_STEP_SIZE: 'Set the incremental size of volume',
+  CREATE_VOLUME_MIN_SIZE: 'Limit the range of volume size',
   VOLUME_FS_TYPE: 'ext3, ext4, xfs',
 
   GLUSTERFS_RESTURL_DESC:

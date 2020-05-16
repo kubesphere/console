@@ -41,10 +41,7 @@ const metrics_filter = [
   'namespace_net_bytes_transmitted',
 ]
 
-export default class NodeStore extends Store {
-  @observable
-  workspace
-
+export default class ProjectStore extends Store {
   @observable
   sort_metric_options = sort_metric_options
 
@@ -55,7 +52,10 @@ export default class NodeStore extends Store {
   metrics_filter = metrics_filter.join('|')
 
   get fetchUrl() {
-    return `${this.apiVersion}/${this.resource}/${this.workspace}/namespaces`
+    if (this.workspace) {
+      return `${this.apiVersion}/workspaces/${this.workspace}/namespaces`
+    }
+    return `${this.apiVersion}/namespaces`
   }
 
   @action
@@ -63,6 +63,4 @@ export default class NodeStore extends Store {
     this.workspace = ws
     this.fetchAll()
   }
-
-  resource = 'workspaces'
 }

@@ -104,7 +104,7 @@ export default class WorkspaceStore extends Base {
       params
     )
 
-    const items = result.items.map(ObjectMapper.namespaces)
+    const items = result.items.map(ObjectMapper.clusters)
 
     this.clusters.update({
       data: more ? [...this.namespaces.data, ...items] : items,

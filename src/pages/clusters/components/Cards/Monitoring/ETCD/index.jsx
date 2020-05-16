@@ -26,7 +26,7 @@ import ComponentMonitorStore from 'stores/monitoring/component'
 
 import { SimpleArea } from 'components/Charts'
 import { StatusTabs } from 'components/Cards/Monitoring'
-import { ETCDNodes } from 'console/components/Cards/Monitoring'
+import { ETCDNodes } from 'clusters/components/Cards/Monitoring'
 import TabItem from './Tab'
 
 const MetricTypes = {
@@ -111,7 +111,9 @@ export default class ETCDStatusTab extends React.Component {
     const metrics = this.metrics
     const result = [
       {
-        props: {},
+        props: {
+          cluster: this.props.cluster,
+        },
         component: ETCDNodes,
       },
       {

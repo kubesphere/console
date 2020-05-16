@@ -25,7 +25,7 @@ import ComponentMonitorStore from 'stores/monitoring/component'
 
 import { SimpleArea, PercentArea } from 'components/Charts'
 import { Controller as MonitoringController } from 'components/Cards/Monitoring'
-import { ETCDNodes } from 'console/components/Cards/Monitoring'
+import { ETCDNodes } from 'clusters/components/Cards/Monitoring'
 
 import styles from './index.scss'
 
@@ -52,7 +52,10 @@ class EtcdMonitorings extends React.Component {
   constructor(props) {
     super(props)
 
-    this.monitorStore = new ComponentMonitorStore('etcd')
+    this.monitorStore = new ComponentMonitorStore({
+      module: 'etcd',
+      cluster: props.match.params.cluster,
+    })
   }
 
   get metrics() {
