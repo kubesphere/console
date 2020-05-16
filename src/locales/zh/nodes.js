@@ -53,6 +53,13 @@ export default {
   Conditions: '状态',
   Annotations: '注解',
 
+  'Resource Usage': '资源使用情况',
+
+  'CPU Requests': 'CPU 请求',
+  'CPU Limits': 'CPU 限制',
+  'Memory Requests': '内存请求',
+  'Memory Limits': '内存限制',
+
   NODE_STATUS_UNSCHEDULABLE: '无法调度',
   NODE_STATUS_RUNNING: '运行中',
   NODE_STATUS_WARNING: '异常中',

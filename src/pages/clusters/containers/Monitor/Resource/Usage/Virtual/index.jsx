@@ -59,9 +59,13 @@ class VirtualResource extends React.Component {
     return this.monitorStore.data
   }
 
+  get cluster() {
+    return get(this.props, 'match.params.cluster')
+  }
+
   init() {
     this.monitorStore = new ClusterMonitorStore({
-      cluster: this.props.match.params.cluster,
+      cluster: this.cluster,
     })
   }
 
@@ -222,6 +226,8 @@ class VirtualResource extends React.Component {
         <ResourceMonitoringModal
           visible={showModal}
           detail={selectItem}
+          cluster={this.cluster}
+          workspace={this.workspace}
           onCancel={this.hideModal}
         />
       </div>

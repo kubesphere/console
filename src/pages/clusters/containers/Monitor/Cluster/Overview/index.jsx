@@ -31,7 +31,7 @@ import {
   ClusterResourceStatus,
   ETCDStatus,
   ServiceComponentStatus,
-} from 'console/components/Cards/Monitoring'
+} from 'clusters/components/Cards/Monitoring'
 
 import styles from './index.scss'
 

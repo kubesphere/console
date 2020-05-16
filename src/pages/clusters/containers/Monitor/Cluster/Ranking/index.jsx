@@ -22,7 +22,7 @@ import classNames from 'classnames'
 
 import Store from 'stores/rank/node'
 import { Button } from 'components/Base'
-import Select from 'console/components/Cards/Monitoring/UsageRank/select'
+import Select from 'clusters/components/Cards/Monitoring/UsageRank/select'
 
 import {
   Pagination,

@@ -26,7 +26,7 @@ import { Panel } from 'components/Base'
 import { getValueByUnit, getSuitableUnit } from 'utils/monitoring'
 import Store from 'stores/rank/workload'
 
-import Select from 'console/components/Cards/Monitoring/UsageRank/select'
+import Select from 'clusters/components/Cards/Monitoring/UsageRank/select'
 
 import styles from './index.scss'
 

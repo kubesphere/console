@@ -21,6 +21,8 @@ import { observer } from 'mobx-react'
 import { Loading } from '@pitrix/lego-ui'
 import { Panel, Text } from 'components/Base'
 
+import { getValueByUnit } from 'utils/monitoring'
+
 import ComponentMonitorStore from 'stores/monitoring/component'
 
 import styles from './index.scss'
@@ -90,10 +92,15 @@ export default class KubernetesStatus extends Component {
   render() {
     const metrics = this.metrics
 
-    const request_rate = get(metrics, `${MetricTypes.request_rate}.data.result`)
-    const request_latencies_total = get(
-      metrics,
-      `${MetricTypes.request_latencies_total}.data.result[0]`
+    const request_rate = Number(
+      get(metrics, `${MetricTypes.request_rate}.data.result[0].value[1]`, 0)
+    ).toFixed(3)
+    const request_latencies_total = getValueByUnit(
+      get(
+        metrics,
+        `${MetricTypes.request_latencies_total}.data.result[0].value[1]`
+      ),
+      'ms'
     )
 
     const schedule_attempts_count = this.getSpecificData(

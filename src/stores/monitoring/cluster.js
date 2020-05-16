@@ -79,7 +79,7 @@ export default class ClusterMonitoring extends Base {
     )
     let path = 'cluster'
 
-    if (workspace && workspace !== 'all') {
+    if (workspace) {
       path = `workspaces/${workspace}`
       params.metrics_filter = `${metricType.replace(paramsReg, 'workspace_')}$`
     }

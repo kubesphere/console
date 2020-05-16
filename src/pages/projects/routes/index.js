@@ -42,9 +42,6 @@ import Members from '../containers/Members'
 import AdvancedSettings from '../containers/AdvancedSettings'
 import CustomMonitoring from '../containers/CustomMonitoring'
 
-import alertingMessageRoutes from './alerting/message'
-import alertingPolicyRoutes from './alerting/policy'
-import alertingRoutes from './alerting'
 import grayReleaseRoutes from './grayrelease'
 import imageBuilderRoutes from './imagebuilder'
 
@@ -54,14 +51,11 @@ const PATH = '/cluster/:cluster/projects/:namespace'
 
 export default [
   ...detail,
-  ...alertingMessageRoutes,
-  ...alertingPolicyRoutes,
   ...imageBuilderRoutes,
   {
     path: PATH,
     component: ProjectLayout,
     routes: [
-      ...alertingRoutes,
       ...grayReleaseRoutes,
       {
         path: `${PATH}/overview`,

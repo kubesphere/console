@@ -18,8 +18,9 @@
 
 import React from 'react'
 import { isEmpty, get } from 'lodash'
-import { Tooltip } from '@pitrix/lego-ui'
+import { Tooltip, Icon } from '@pitrix/lego-ui'
 
+import { cpuFormat } from 'utils'
 import { ICON_TYPES, NODE_STATUS } from 'utils/constants'
 import { getNodeRoles, getNodeStatus } from 'utils/node'
 import { getValueByUnit } from 'utils/monitoring'
@@ -116,17 +117,7 @@ export default class Nodes extends React.Component {
     const { trigger, routing, tableProps } = this.props
     return {
       ...tableProps.tableActions,
-      actions: [
-        {
-          key: 'addNode',
-          type: 'control',
-          onClick: () =>
-            trigger('node.add', {
-              success: this.getData,
-            }),
-          text: t('Add Node'),
-        },
-      ],
+      actions: [],
       selectActions: [
         {
           key: 'taint',
@@ -261,21 +252,6 @@ export default class Nodes extends React.Component {
         render: roles => roles.join(','),
       },
       {
-        title: t('System Version'),
-        dataIndex: 'system',
-        isHideable: true,
-        render: (_, record) => {
-          const osVersion = get(record, 'status.nodeInfo.osImage', '')
-          const dockerVersion = `Docker ${get(
-            record,
-            'status.nodeInfo.containerRuntimeVersion',
-            ''
-          ).replace('docker://', '')}`
-
-          return <Text title={osVersion} description={dockerVersion} />
-        },
-      },
-      {
         title: t('CPU'),
         key: 'cpu',
         isHideable: true,
@@ -296,7 +272,14 @@ export default class Nodes extends React.Component {
 
           return (
             <Text
-              title={`${Math.round(metrics.cpu_utilisation * 100)}%`}
+              title={
+                <div className={styles.resource}>
+                  <span>{`${Math.round(metrics.cpu_utilisation * 100)}%`}</span>
+                  <Tooltip content={this.renderCPUTooltip(record)}>
+                    <Icon name="information" />
+                  </Tooltip>
+                </div>
+              }
               description={`${metrics.cpu_used}/${metrics.cpu_total} Core`}
             />
           )
@@ -310,11 +293,11 @@ export default class Nodes extends React.Component {
           const metrics = this.getRecordMetrics(record, [
             {
               type: 'memory_used',
-              unit: 'GiB',
+              unit: 'Gi',
             },
             {
               type: 'memory_total',
-              unit: 'GiB',
+              unit: 'Gi',
             },
             {
               type: 'memory_utilisation',
@@ -323,8 +306,17 @@ export default class Nodes extends React.Component {
 
           return (
             <Text
-              title={`${Math.round(metrics.memory_utilisation * 100)}%`}
-              description={`${metrics.memory_used}/${metrics.memory_total} GiB`}
+              title={
+                <div className={styles.resource}>
+                  <span>{`${Math.round(
+                    metrics.memory_utilisation * 100
+                  )}%`}</span>
+                  <Tooltip content={this.renderCPUTooltip(record)}>
+                    <Icon name="information" />
+                  </Tooltip>
+                </div>
+              }
+              description={`${metrics.memory_used}/${metrics.memory_total} Gi`}
             />
           )
         },
@@ -355,6 +347,69 @@ export default class Nodes extends React.Component {
         },
       },
     ]
+  }
+
+  renderCPUTooltip(record) {
+    return (
+      <div>
+        <div className="tooltip-title">{t('Resource Usage')}</div>
+        <p>
+          {t('CPU Requests')}:{' '}
+          {cpuFormat(
+            get(record, 'annotations["node.kubesphere.io/cpu-requests"]')
+          )}{' '}
+          Core (
+          {get(
+            record,
+            'annotations["node.kubesphere.io/cpu-requests-fraction"]'
+          )}
+          )
+        </p>
+        <p>
+          {t('CPU Limits')}:{' '}
+          {cpuFormat(
+            get(record, 'annotations["node.kubesphere.io/cpu-limits"]')
+          )}{' '}
+          Core (
+          {get(record, 'annotations["node.kubesphere.io/cpu-limits-fraction"]')}
+          )
+        </p>
+      </div>
+    )
+  }
+
+  renderMemoryTooltip(record) {
+    return (
+      <div>
+        <div className="tooltip-title">{t('Resource Usage')}</div>
+        <p>
+          {t('Memory Requests')}:{' '}
+          {getValueByUnit(
+            get(record, 'annotations["node.kubesphere.io/memory-requests"]'),
+            'Gi'
+          )}{' '}
+          Gi (
+          {get(
+            record,
+            'annotations["node.kubesphere.io/memory-requests-fraction"]'
+          )}
+          )
+        </p>
+        <p>
+          {t('Memory Limits')}:{' '}
+          {getValueByUnit(
+            get(record, 'annotations["node.kubesphere.io/memory-limits"]'),
+            'Gi'
+          )}{' '}
+          Gi (
+          {get(
+            record,
+            'annotations["node.kubesphere.io/memory-limits-fraction"]'
+          )}
+          )
+        </p>
+      </div>
+    )
   }
 
   renderOverview() {
