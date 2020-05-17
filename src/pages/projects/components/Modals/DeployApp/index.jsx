@@ -59,9 +59,11 @@ export default class DeployAppModal extends React.Component {
   }
 
   handleAppRepo = () => {
-    const { onOk, trigger } = this.props
+    const { onOk, trigger, ...rest } = this.props
     onOk()
-    trigger('openpitrix.app.create', {})
+    trigger('openpitrix.app.create', {
+      ...rest,
+    })
   }
 
   render() {

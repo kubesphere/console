@@ -103,7 +103,6 @@ export default class KubeTools extends React.Component {
       <div
         className={classNames(styles.tools, {
           [styles.showTools]: this.showTools === 1,
-          [styles.hideTools]: this.showTools === -1,
         })}
       >
         <div className={styles.toolsWrapper}>

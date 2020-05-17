@@ -144,14 +144,14 @@ export default class AppTemplateForm extends React.Component {
   }
 
   async fetchAll() {
-    await Promise.all([
-      this.fetchVersions(),
+    await this.fetchVersions()
+    if (!this.props.fromProjectApp) {
       this.fetchNamespaces({
         workspace: this.baseFormData.workspace,
-      }),
-      this.fetchWorkspaces(),
-    ])
-    await this.fetchFiles()
+      })
+      this.fetchWorkspaces()
+    }
+    this.fetchFiles()
   }
 
   @action
