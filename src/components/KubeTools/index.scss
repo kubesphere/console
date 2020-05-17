@@ -19,10 +19,7 @@
     height: auto;
     overflow: unset;
     padding-bottom: 20px;
-    animation: toolFadeIn .3s ease;
-  }
-  &.hideTools {
-    animation: toolFadeOut .3s ease;
+    animation: toolFadeIn 0.3s ease;
   }
 }
 
@@ -107,19 +104,5 @@
   100% {
     opacity: 1;
     padding-bottom: 20px;
-  }
-}
-
-@keyframes toolFadeOut {
-  0% {
-    opacity: 1;
-    height: auto;
-    padding-bottom: 20px;
-  }
-
-  100% {
-    opacity: 0;
-    height: auto;
-    padding-bottom: 0;
   }
 }

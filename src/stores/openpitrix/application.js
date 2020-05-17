@@ -17,7 +17,7 @@
  */
 
 import { get, omit } from 'lodash'
-import { observable, action } from 'mobx'
+import { observable, action, extendObservable } from 'mobx'
 
 import ObjectMapper from 'utils/object.mapper'
 import { CLUSTER_QUERY_STATUS } from 'configs/openpitrix/app'
@@ -89,15 +89,16 @@ export default class Application extends Base {
       cluster,
     }))
 
-    this.list = {
+    extendObservable(this.list, {
       data: more ? [...this.list.data, ...data] : data,
       total: result.totalItems || result.total_count || data.length || 0,
       ...omit(params, ['runtime_id', 'status']),
       limit: Number(params.limit) || 10,
       page: Number(params.page) || 1,
-      isLoading: false,
       ...(this.list.silent ? {} : { selectedRowKeys: [] }),
-    }
+    })
+
+    this.list.isLoading = false
   }
 
   @action
