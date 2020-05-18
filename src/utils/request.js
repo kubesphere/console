@@ -22,7 +22,6 @@ const set = require('lodash/set')
 const merge = require('lodash/merge')
 const isEmpty = require('lodash/isEmpty')
 const qs = require('qs')
-const { getClusterUrl } = require('./index')
 const cookie = require('./cookie').default
 
 const methods = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
@@ -116,9 +115,14 @@ function buildRequest({
     return
   }
 
-  return fetch(getClusterUrl(requestURL), request).then(resp =>
-    responseHandler(resp, reject)
-  )
+  const reg = new RegExp(/\/(api|apis|kapis)\/(.*)\/(clusters\/[^/]*)\/(.*)/)
+  const match = requestURL.match(reg)
+
+  if (match && match.length === 5) {
+    requestURL = `/${match[1]}/${match[3]}/${match[2]}/${match[4]}`
+  }
+
+  return fetch(requestURL, request).then(resp => responseHandler(resp, reject))
 }
 
 function watchResource(url, params = {}, callback) {

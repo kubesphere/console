@@ -225,6 +225,7 @@ export const ICON_TYPES = {
   apps: 'appcenter',
   'volume-snapshots': 'snapshot',
   customresourcedefinitions: 'select',
+  network: 'eip-group',
 }
 
 export const MODULE_KIND_MAP = {
@@ -831,6 +832,7 @@ export const API_VERSIONS = {
   pipelines: 'apis/devops.kubesphere.io/v1alpha3',
   workspaceroles: 'apis/iam.kubesphere.io/v1alpha2',
   dashboards: 'apis/monitoring.kubesphere.io/v1alpha1',
+  namespacenetworkpolicies: 'apis/network.kubesphere.io/v1alpha1',
 }
 
 export const MONITOR_GRAPH_COLORS = [
