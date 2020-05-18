@@ -17,36 +17,61 @@
  */
 
 import React from 'react'
-import { inject } from 'mobx-react'
+import { inject, observer } from 'mobx-react'
+
+import WorksapceStore from 'stores/workspace'
 
 import ResourceStatistics from './Statistics'
 import PhysicalResource from './Physical'
 import VirtualResource from './Virtual'
 
 @inject('rootStore')
+@observer
 class ResourceUsage extends React.Component {
   get workspace() {
     return this.props.match.params.workspace
   }
 
-  renderResourceCount() {
-    return <ResourceStatistics workspace={this.workspace} />
+  get clusters() {
+    return this.workspaceStore.clusters.data
   }
 
-  renderPhysicalResource() {
-    return <PhysicalResource workspace={this.workspace} />
+  get clustersOpts() {
+    return this.clusters.map(({ name }) => ({
+      label: name,
+      value: name,
+    }))
   }
 
-  renderVirtualResource() {
-    return <VirtualResource workspace={this.workspace} />
+  get defaultCluster() {
+    const { name } = this.clusters.find(cluster => cluster.isHost) || {}
+    return name
+  }
+
+  workspaceStore = new WorksapceStore()
+
+  componentDidMount() {
+    this.workspaceStore.fetchClusters({ workspace: this.workspace })
   }
 
   render() {
     return (
       <div>
-        {this.renderResourceCount()}
-        {this.renderPhysicalResource()}
-        {this.renderVirtualResource()}
+        <ResourceStatistics workspace={this.workspace} />
+        {this.workspaceStore.clusters.data.length > 0 && (
+          <>
+            <PhysicalResource
+              workspace={this.workspace}
+              clusterOpts={this.clustersOpts}
+              defaultCluster={this.defaultCluster}
+            />
+            <VirtualResource
+              workspace={this.workspace}
+              clusterOpts={this.clustersOpts}
+              defaultCluster={this.defaultCluster}
+            />
+          </>
+        )}
       </div>
     )
   }
