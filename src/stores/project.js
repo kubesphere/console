@@ -22,8 +22,8 @@ import { formatRules } from 'utils'
 import { LIST_DEFAULT_ORDER } from 'utils/constants'
 import ObjectMapper from 'utils/object.mapper'
 
-import Base from '../base'
-import List from '../base.list'
+import Base from './base'
+import List from './base.list'
 
 const getTypeSelectParams = type => {
   let params = {}

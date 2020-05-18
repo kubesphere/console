@@ -64,8 +64,8 @@ export default class AccountDetail extends React.Component {
   }
 
   get showEdit() {
-    const userName = this.store.detail.username
-    return !globals.config.presetUsers.includes(userName)
+    const name = this.store.detail.name
+    return !globals.config.presetUsers.includes(name)
   }
 
   fetchData = () => {
@@ -101,6 +101,7 @@ export default class AccountDetail extends React.Component {
       icon: 'trash',
       text: t('Delete'),
       action: 'delete',
+      show: this.showEdit,
       onClick: () =>
         this.trigger('resource.delete', {
           type: t(this.name),
@@ -120,8 +121,8 @@ export default class AccountDetail extends React.Component {
 
     return [
       {
-        name: t('Platform Role'),
-        value: detail.cluster_role,
+        name: t('Account Role'),
+        value: detail.role,
       },
       {
         name: t('Email'),

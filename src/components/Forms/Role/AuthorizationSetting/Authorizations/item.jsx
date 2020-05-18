@@ -26,76 +26,59 @@ import styles from './index.scss'
 export default class Authorization extends PureComponent {
   static propTypes = {
     className: PropTypes.string,
-    authorization: PropTypes.object,
+    templates: PropTypes.array,
     value: PropTypes.array,
     onChange: PropTypes.func,
   }
 
   constructor(props) {
     super(props)
+
     this.state = {
       checkedList: props.value || [],
       indeterminate: props.value
-        ? props.value.length > 0 &&
-          props.value.length < props.authorization.actions.length
+        ? props.value.length > 0 && props.value.length < props.templates.length
         : false,
       checkAll: props.value
-        ? props.value.length === props.authorization.actions.length
+        ? props.value.length === props.templates.length
         : false,
     }
-  }
-
-  static getDerivedStateFromProps(props, state) {
-    if (props.value !== state.checkedList) {
-      return {
-        checkedList: props.value || [],
-        indeterminate:
-          props.value &&
-          props.value.length > 0 &&
-          props.value.length < props.authorization.actions.length,
-        checkAll:
-          props.value &&
-          props.value.length === props.authorization.actions.length,
-      }
-    }
-
-    return null
   }
 
   handleChange = (value, name) => {
-    const { authorization } = this.props
-
+    const { templates } = this.props
     this.setState({
       checkedList: value,
-      indeterminate:
-        value.length > 0 && value.length < authorization.actions.length,
-      checkAll: value.length === authorization.actions.length,
+      indeterminate: value.length > 0 && value.length < templates.length,
+      checkAll: value.length === templates.length,
     })
 
     this.props.onChange(value, name)
   }
 
   handleCheckAllChange = e => {
-    const { authorization } = this.props
+    const { group, templates } = this.props
     const { checked } = e.target
+    const checkedList = checked ? templates.map(n => n.name) : []
 
-    const checkedList = checked ? authorization.actions.map(n => n.name) : []
     this.setState({
       checkedList,
       indeterminate: false,
       checkAll: checked,
     })
 
-    this.props.onChange(checkedList, authorization.name)
+    this.props.onChange(checkedList, group.name)
   }
 
   render() {
-    const { authorization, className } = this.props
+    const { templates, group, className } = this.props
     const { checkedList, checkAll, indeterminate } = this.state
 
-    const options = authorization.actions.map(action => ({
-      label: t(`RULE_${action.name}`.toUpperCase()),
-      value: action.name,
+    const options = templates.map(item => ({
+      label: item.aliasName
+        ? t(`RULE_${item.aliasName}`.toUpperCase())
+        : item.name,
+      value: item.name,
     }))
 
     return (
@@ -106,12 +89,12 @@ export default class Authorization extends PureComponent {
             onChange={this.handleCheckAllChange}
             checked={checkAll}
           >
-            {t(`RULE_${authorization.name}`.toUpperCase())}
+            {t(`RULE_${group}`.toUpperCase())}
           </Checkbox>
         </div>
         <div className={styles.rules}>
           <CheckboxGroup
-            name={authorization.name}
+            name={group}
             options={options}
             value={checkedList}
             onChange={this.handleChange}

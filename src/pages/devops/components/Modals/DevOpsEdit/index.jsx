@@ -25,7 +25,7 @@ import { Input, TextArea } from '@pitrix/lego-ui'
 import { Modal, Form } from 'components/Base'
 import { PATTERN_NAME } from 'utils/constants'
 
-import WorkspaceMemberStore from 'stores/workspace/member'
+import WorkspaceMemberStore from 'stores/user'
 
 @observer
 export default class DevOpsEditModal extends React.Component {

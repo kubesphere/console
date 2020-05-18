@@ -17,24 +17,13 @@
  */
 
 import BaseInfo from 'components/Forms/Role/BaseInfo'
-import ClusterRoleBaseInfo from 'components/Forms/ClusterRole/BaseInfo'
 import AuthorizationSetting from 'components/Forms/Role/AuthorizationSetting'
 
-export default {
-  roles: [
-    { title: 'Basic Info', component: BaseInfo, required: true },
-    {
-      title: 'Authorization Settings',
-      component: AuthorizationSetting,
-      required: true,
-    },
-  ],
-  clusterroles: [
-    { title: 'Basic Info', component: ClusterRoleBaseInfo, required: true },
-    {
-      title: 'Authorization Settings',
-      component: AuthorizationSetting,
-      required: true,
-    },
-  ],
-}
+export default [
+  { title: 'Basic Info', component: BaseInfo, required: true },
+  {
+    title: 'Authorization Settings',
+    component: AuthorizationSetting,
+    required: true,
+  },
+]

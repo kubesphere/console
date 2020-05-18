@@ -83,20 +83,10 @@ const getUserDetail = async (username, token) => {
     user = {
       username: get(resp, 'metadata.name'),
       email: get(resp, 'spec.email'),
-      groups: get(resp, 'groups', []),
-      cluster_rules: get(resp, 'groups', {}),
     }
   } else {
     throw new Error(resp)
   }
-
-  return user
-}
-
-const formatUserDetail = user => {
-  user.groups = user.groups || []
-
-  // user.cluster_rules = formatRules(user.cluster_rules)
 
   return user
 }
@@ -139,7 +129,7 @@ const getCurrentUser = async ctx => {
 
   return {
     config: clientConfig,
-    user: formatUserDetail(userDetail),
+    user: userDetail,
     ksConfig,
   }
 }

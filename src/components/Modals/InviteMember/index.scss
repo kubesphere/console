@@ -75,6 +75,8 @@
 }
 
 .menu {
+  max-height: 360px;
+  overflow: auto;
   & > p {
     padding: 12px 20px 0 20px;
     font-weight: 600;

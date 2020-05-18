@@ -53,22 +53,18 @@ export default class RoleDetail extends React.Component {
   }
 
   get listUrl() {
-    const {
-      params: { cluster, namespace },
-      path,
-    } = this.props.match
-    if (path.startsWith('/clusters')) {
-      return `/clusters/${cluster}/${this.module}`
-    }
+    const { cluster, namespace } = this.props.match.params
 
     return `/cluster/${cluster}/projects/${namespace}/${this.module}`
   }
 
+  get showEdit() {
+    const { name } = this.props.match.params
+    return !globals.config.presetRoles.includes(name)
+  }
+
   fetchData = () => {
-    this.store.fetchRulesInfo()
     this.store.fetchDetail(this.props.match.params)
-    this.store.fetchRules(this.props.match.params)
-    this.store.fetchUsers(this.props.match.params)
   }
 
   getOperations = () => {
@@ -80,11 +76,12 @@ export default class RoleDetail extends React.Component {
         type: 'control',
         text: t('Edit'),
         action: 'edit',
+        show: this.showEdit,
         onClick: () =>
           this.trigger('role.edit', {
+            detail,
             title: t('Edit Project Role'),
             type: t(this.name),
-            detail,
             rulesInfo: toJS(rulesInfo),
             success: this.fetchData,
           }),
@@ -94,11 +91,14 @@ export default class RoleDetail extends React.Component {
         icon: 'trash',
         text: t('Delete'),
         action: 'delete',
+        type: 'danger',
+        show: this.showEdit,
         onClick: () =>
           this.trigger('role.delete', {
-            type: t(this.name),
             detail,
-            module: this.module,
+            type: t(this.name),
+            cluster: this.props.match.params.cluster,
+            namespace: this.props.match.params.namespace,
             success: () => this.routing.push(this.listUrl),
           }),
       },

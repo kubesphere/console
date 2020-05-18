@@ -24,14 +24,12 @@ import { observer } from 'mobx-react'
 import { Select } from '@pitrix/lego-ui'
 import { Modal, Form } from 'components/Base'
 
-import User from './User'
-
 import styles from './index.scss'
 
 @observer
 export default class ModifyMemberModal extends React.Component {
   static propTypes = {
-    users: PropTypes.array,
+    role: PropTypes.string,
     roles: PropTypes.array,
     visible: PropTypes.bool,
     onOk: PropTypes.func,
@@ -40,7 +38,7 @@ export default class ModifyMemberModal extends React.Component {
   }
 
   static defaultProps = {
-    users: [],
+    role: '',
     roles: [],
     visible: false,
     isSubmitting: false,
@@ -49,9 +47,9 @@ export default class ModifyMemberModal extends React.Component {
   }
 
   handleOk = (data = {}) => {
-    const { onOk, users } = this.props
+    const { onOk } = this.props
     const { role } = data
-    onOk(users, role)
+    onOk(role)
   }
 
   getRoleOptions = () => {
@@ -74,7 +72,7 @@ export default class ModifyMemberModal extends React.Component {
   )
 
   render() {
-    const { visible, onCancel, users, isSubmitting } = this.props
+    const { visible, onCancel, isSubmitting, role } = this.props
 
     return (
       <Modal.Form
@@ -86,11 +84,6 @@ export default class ModifyMemberModal extends React.Component {
         visible={visible}
         isSubmitting={isSubmitting}
       >
-        <div className="margin-b12">
-          {users.map(user => (
-            <User key={user.username} user={user} />
-          ))}
-        </div>
         <Form.Item
           label={t('Role')}
           rules={[{ required: true, message: t('Please select a role') }]}
@@ -99,6 +92,7 @@ export default class ModifyMemberModal extends React.Component {
             name="role"
             optionRenderer={this.optionRenderer}
             options={this.getRoleOptions()}
+            defaultValue={role}
           />
         </Form.Item>
       </Modal.Form>

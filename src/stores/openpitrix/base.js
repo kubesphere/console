@@ -58,7 +58,7 @@ export default class Base {
   getPath({ cluster, namespace }) {
     let path = ''
     if (cluster) {
-      path += `/clusters/${cluster}`
+      path += `/klusters/${cluster}`
     }
     if (namespace) {
       path += `/namespaces/${namespace}`

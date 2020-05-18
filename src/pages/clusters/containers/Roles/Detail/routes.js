@@ -16,30 +16,25 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import { toJS } from 'mobx'
-import { observer } from 'mobx-react'
+import { getIndexRoute } from 'utils/router.config'
 
-import { Card } from 'components/Base'
-import RuleList from 'components/Cards/RuleList'
+import AuthorizationList from 'access/containers/Roles/Detail/AuthorizationList'
+import AuthorizedUsers from 'access/containers/Roles/Detail/AuthorizedUsers'
 
-@observer
-export default class AuthorizationList extends React.Component {
-  componentDidMount() {
-    this.props.detailStore.fetchRules(this.props.match.params)
-  }
+const PATH = '/clusters/:cluster/roles/:name'
 
-  render() {
-    const { data } = toJS(this.props.detailStore.rules)
-
-    return (
-      <Card
-        title={t('Authorization List')}
-        empty={t('No Authorization')}
-        isEmpty={data.length <= 0}
-      >
-        <RuleList rules={data} />
-      </Card>
-    )
-  }
-}
+export default [
+  {
+    path: `${PATH}/authorizations`,
+    title: 'Authorization List',
+    component: AuthorizationList,
+    exact: true,
+  },
+  {
+    path: `${PATH}/users`,
+    title: 'Authorized Users',
+    component: AuthorizedUsers,
+    exact: true,
+  },
+  getIndexRoute({ path: PATH, to: `${PATH}/authorizations`, exact: true }),
+]

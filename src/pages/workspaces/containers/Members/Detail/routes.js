@@ -16,21 +16,25 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
+import { getIndexRoute } from 'utils/router.config'
 
-import Base from 'core/containers/Base/Detail/BaseInfo'
+import Projects from './Projects'
+import DevOps from './DevOps'
 
-import styles from './index.scss'
+const PATH = '/workspaces/:workspace/members/:name'
 
-export default class BaseInfo extends Base {
-  renderName() {
-    const { iconSrc, name } = this.props
-
-    return (
-      <div className={styles.name} title={name}>
-        <img src={iconSrc || '/assets/default-user.svg'} alt="" />
-        {name}
-      </div>
-    )
-  }
-}
+export default [
+  {
+    path: `${PATH}/projects`,
+    title: 'Projects',
+    component: Projects,
+    exact: true,
+  },
+  {
+    path: `${PATH}/devops`,
+    title: 'DevOps Projects',
+    component: DevOps,
+    exact: true,
+  },
+  getIndexRoute({ path: PATH, to: `${PATH}/projects`, exact: true }),
+]

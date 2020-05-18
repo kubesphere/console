@@ -34,7 +34,7 @@ import routes from './routes'
 @observer
 @trigger
 export default class RoleDetail extends React.Component {
-  store = new RoleStore('workspaceroles')
+  store = new RoleStore('clusterroles')
 
   componentDidMount() {
     this.fetchData()
@@ -46,16 +46,16 @@ export default class RoleDetail extends React.Component {
   }
 
   get authKey() {
-    return 'workspaceroles'
+    return 'clusterroles'
   }
 
   get name() {
-    return 'Workspace Role'
+    return 'Cluster Role'
   }
 
   get listUrl() {
-    const { workspace } = this.props.match.params
-    return `/workspaces/${workspace}/roles`
+    const { cluster } = this.props.match.params
+    return `/clusters/${cluster}/roles`
   }
 
   get routing() {
@@ -66,7 +66,7 @@ export default class RoleDetail extends React.Component {
     const name = this.store.detail.name
     const desc = get(this.store.detail, 'description')
 
-    if (globals.config.presetWorkspaceRoles.includes(name)) {
+    if (globals.config.presetClusterRoles.includes(name)) {
       return t(desc)
     }
 
@@ -75,7 +75,7 @@ export default class RoleDetail extends React.Component {
 
   get showEdit() {
     const { name } = this.props.match.params
-    return !globals.config.presetWorkspaceRoles.includes(name)
+    return !globals.config.presetClusterRoles.includes(name)
   }
 
   fetchData = () => {
@@ -92,7 +92,7 @@ export default class RoleDetail extends React.Component {
       onClick: () =>
         this.trigger('role.edit', {
           module: this.module,
-          title: t('Edit Workspace Role'),
+          title: t('Edit Cluster Role'),
           detail: toJS(this.store.detail),
           roleTemplates: toJS(this.store.roleTemplates.data),
           success: this.fetchData,
@@ -109,7 +109,7 @@ export default class RoleDetail extends React.Component {
         this.trigger('role.delete', {
           type: t(this.name),
           detail: toJS(this.store.detail),
-          worksapce: this.props.match.params.worksapce,
+          cluster: this.props.match.params.cluster,
           success: () => this.routing.push(this.listUrl),
         }),
     },
@@ -144,13 +144,13 @@ export default class RoleDetail extends React.Component {
     const sideProps = {
       module: this.module,
       authKey: this.authKey,
-      name: this.store.detail.name,
+      name: get(this.store.detail, 'name'),
       desc: this.detailDesc,
       operations: this.getOperations(),
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('Workspace Roles'),
+          label: t('Cluster Roles'),
           url: this.listUrl,
         },
       ],

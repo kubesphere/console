@@ -39,8 +39,6 @@ const getOriginData = item =>
     'metadata.ownerReferences',
     'metadata.resourceVersion',
     'metadata.creationTimestamp',
-    'metadata.annotations["kubesphere.io/creator"]',
-    'metadata.annotations["creator"]',
   ])
 
 const getBaseInfo = item => ({
@@ -62,9 +60,32 @@ const WorkspaceMapper = item => ({
 })
 
 const UserMapper = item => ({
+  ...getBaseInfo(item),
   username: get(item, 'metadata.name', ''),
   email: get(item, 'spec.email', ''),
+  role: get(item, 'metadata.annotations["iam.kubesphere.io/role"]', ''),
+  globalrole: get(
+    item,
+    'metadata.annotations["iam.kubesphere.io/globalrole"]',
+    ''
+  ),
+  clusterrole: get(
+    item,
+    'metadata.annotations["iam.kubesphere.io/clusterrole"]',
+    ''
+  ),
+  workspacerole: get(
+    item,
+    'metadata.annotations["iam.kubesphere.io/workspacerole"]',
+    ''
+  ),
+  roleBind: get(
+    item,
+    'metadata.annotations["iam.kubesphere.io/role-binding"]',
+    ''
+  ),
   status: get(item, 'status.state', ''),
+  conditions: get(item, 'status.conditions', []),
   _originData: getOriginData(item),
 })
 
@@ -447,6 +468,14 @@ const RoleMapper = item => ({
   labels: get(item, 'metadata.labels', {}),
   namespace: get(item, 'metadata.namespace'),
   annotations: get(item, 'metadata.annotations'),
+  roleTemplates: safeParseJSON(
+    get(
+      item,
+      'metadata.annotations["iam.kubesphere.io/aggregation-roles"]',
+      ''
+    ),
+    []
+  ),
   rules: get(item, 'rules'),
   _originData: getOriginData(item),
 })
@@ -979,6 +1008,7 @@ export default {
   roles: RoleMapper,
   clusterroles: RoleMapper,
   globalroles: RoleMapper,
+  workspaceroles: RoleMapper,
   rolebinds: RoleBindMapper,
   gateway: GatewayMapper,
   configmaps: ConfigmapMapper,

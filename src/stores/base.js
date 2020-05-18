@@ -48,10 +48,10 @@ export default class BaseStore {
     return ObjectMapper[this.module] || (data => data)
   }
 
-  getPath({ cluster, namespace }) {
+  getPath({ cluster, namespace } = {}) {
     let path = ''
     if (cluster) {
-      path += `/clusters/${cluster}`
+      path += `/klusters/${cluster}`
     }
     if (namespace) {
       path += `/namespaces/${namespace}`
@@ -59,19 +59,20 @@ export default class BaseStore {
     return path
   }
 
-  getListUrl = params =>
+  getListUrl = (params = {}) =>
     `${this.apiVersion}${this.getPath(params)}/${this.module}${
       params.dryRun ? '?dryRun=All' : ''
     }`
 
-  getDetailUrl = params => `${this.getListUrl(params)}/${params.name}`
+  getDetailUrl = (params = {}) => `${this.getListUrl(params)}/${params.name}`
 
-  getWatchListUrl = params =>
+  getWatchListUrl = (params = {}) =>
     `${this.apiVersion}/watch${this.getPath(params)}/${this.module}`
 
-  getWatchUrl = params => `${this.getWatchListUrl(params)}/${params.name}`
+  getWatchUrl = (params = {}) =>
+    `${this.getWatchListUrl(params)}/${params.name}`
 
-  getResourceUrl = params =>
+  getResourceUrl = (params = {}) =>
     `kapis/resources.kubesphere.io/v1alpha3${this.getPath(params)}/${
       this.module
     }`
@@ -166,7 +167,7 @@ export default class BaseStore {
     this.isLoading = true
 
     const result = await request.get(this.getDetailUrl(params))
-    const detail = { cluster: params.cluster, ...this.mapper(result) }
+    const detail = { ...params, ...this.mapper(result) }
 
     this.detail = detail
     this.isLoading = false

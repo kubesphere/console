@@ -28,17 +28,15 @@ import DevOps from '../containers/DevOps'
 import Apps from '../containers/Apps'
 import Repos from '../containers/Repos'
 
+import detail from './detail'
 import overviewRoutes from './overview'
-import roleRoutes from './role'
-import memberRoutes from './member'
 import appRoutes from './app'
 
 const PATH = '/workspaces/:workspace'
 
 export default [
-  ...roleRoutes,
-  ...memberRoutes,
   ...appRoutes,
+  ...detail,
   {
     path: PATH,
     component: Layout,

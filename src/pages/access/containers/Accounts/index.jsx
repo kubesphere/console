@@ -33,7 +33,7 @@ import { getLocalTime } from 'utils'
   name: 'User',
 })
 export default class Accounts extends React.Component {
-  checkActionEnable(record) {
+  showAction(record) {
     return (
       !globals.config.presetUsers.includes(record.name) &&
       globals.user.username !== record.name
@@ -48,7 +48,7 @@ export default class Accounts extends React.Component {
         icon: 'pen',
         text: t('Edit'),
         action: 'edit',
-        show: this.checkActionEnable,
+        show: this.showAction,
         onClick: item =>
           trigger('user.edit', {
             detail: item,
@@ -60,7 +60,7 @@ export default class Accounts extends React.Component {
         icon: 'trash',
         text: t('Delete'),
         action: 'delete',
-        show: this.checkActionEnable,
+        show: this.showAction,
         onClick: item =>
           trigger('resource.delete', {
             type: t('User'),
@@ -70,6 +70,18 @@ export default class Accounts extends React.Component {
           }),
       },
     ]
+  }
+
+  get tableActions() {
+    const { tableProps } = this.props
+    return {
+      ...tableProps.tableActions,
+      onCreate: this.showCreate,
+      getCheckboxProps: record => ({
+        disabled: !this.showAction(record),
+        name: record.name,
+      }),
+    }
   }
 
   getColumns = () => [
@@ -96,8 +108,8 @@ export default class Accounts extends React.Component {
       ),
     },
     {
-      title: t('Platform Role'),
-      dataIndex: 'cluster_role',
+      title: t('Account Role'),
+      dataIndex: 'globalrole',
       isHideable: true,
       width: '20%',
       render: role => role || '-',
@@ -131,10 +143,10 @@ export default class Accounts extends React.Component {
         />
         <Table
           {...tableProps}
+          tableActions={this.tableActions}
           itemActions={this.itemActions}
           columns={this.getColumns()}
-          onCreate={this.showCreate}
-          searchType="keyword"
+          searchType="name"
         />
       </ListPage>
     )

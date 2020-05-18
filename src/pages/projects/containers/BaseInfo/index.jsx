@@ -23,7 +23,7 @@ import { get, isEmpty, omitBy } from 'lodash'
 
 import FORM_TEMPLATES from 'utils/form.templates'
 import RoleStore from 'stores/role'
-import MemberStore from 'stores/project/member'
+import UserStore from 'stores/user'
 import QuotaStore from 'stores/quota'
 import { Notify } from 'components/Base'
 import { trigger } from 'utils/action'
@@ -41,7 +41,7 @@ import DefaultResource from './DefaultResource'
 @trigger
 class BaseInfo extends React.Component {
   roleStore = new RoleStore()
-  memberStore = new MemberStore()
+  memberStore = new UserStore()
   quotaStore = new QuotaStore()
 
   state = {
@@ -76,6 +76,10 @@ class BaseInfo extends React.Component {
 
   get namespace() {
     return this.params.namespace
+  }
+
+  get cluster() {
+    return this.params.cluster
   }
 
   get tips() {
@@ -168,10 +172,12 @@ class BaseInfo extends React.Component {
   }
 
   handleEdit = data => {
-    this.store.patch({ name: this.namespace }, data).then(() => {
-      this.hideEdit()
-      this.store.fetchDetail(this.params)
-    })
+    this.store
+      .patch({ name: this.namespace, cluster: this.cluster }, data)
+      .then(() => {
+        this.hideEdit()
+        this.store.fetchDetail(this.params)
+      })
   }
 
   hideDelete = () => {
@@ -202,7 +208,10 @@ class BaseInfo extends React.Component {
     if (isEmpty(limitRanges[0])) {
       this.store
         .createLimitRange(
-          { namespace: this.props.match.params.namespace },
+          {
+            namespace: this.props.match.params.namespace,
+            cluster: this.cluster,
+          },
           {
             ...FORM_TEMPLATES.limitRange(),
             spec: {
@@ -221,17 +230,20 @@ class BaseInfo extends React.Component {
         })
     } else {
       this.store
-        .updateLimitRange(limitRanges[0], {
-          ...limitRanges[0]._originData,
-          spec: {
-            limits: [
-              {
-                ...limitRanges[0].limit,
-                ...data,
-              },
-            ],
-          },
-        })
+        .updateLimitRange(
+          { ...limitRanges[0], cluster: this.cluster },
+          {
+            ...limitRanges[0]._originData,
+            spec: {
+              limits: [
+                {
+                  ...limitRanges[0].limit,
+                  ...data,
+                },
+              ],
+            },
+          }
+        )
         .then(() => {
           this.store.fetchLimitRanges(this.props.match.params)
           this.hideEditDefaultResource()
@@ -251,6 +263,7 @@ class BaseInfo extends React.Component {
     const params = {
       name: data.name,
       namespace: this.namespace,
+      cluster: this.cluster,
     }
 
     const spec = get(data, 'spec.hard', {})
@@ -268,12 +281,15 @@ class BaseInfo extends React.Component {
           .then(this.postEditQuota)
       } else {
         this.quotaStore
-          .create({
-            apiVersion: 'v1',
-            kind: 'ResourceQuota',
-            metadata: { ...params, name: this.namespace },
-            spec: data.spec,
-          })
+          .create(
+            {
+              apiVersion: 'v1',
+              kind: 'ResourceQuota',
+              metadata: { ...params, name: this.namespace },
+              spec: data.spec,
+            },
+            params
+          )
           .then(this.postEditQuota)
       }
     })

@@ -16,36 +16,23 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { isEmpty, get, set } from 'lodash'
-import { action, observable } from 'mobx'
-import moment from 'moment-mini'
+import { isEmpty, get } from 'lodash'
+import { action } from 'mobx'
 import { Notify } from 'components/Base'
+
 import Base from 'stores/base'
+import List from 'stores/base.list'
 
 import { LIST_DEFAULT_ORDER } from 'utils/constants'
 
 export default class RoleStore extends Base {
-  @observable
-  rules = {
-    data: [],
-    total: 0,
-    isLoading: true,
-  }
+  roleTemplates = new List()
 
-  @observable
-  users = {
-    data: [],
-    page: 1,
-    limit: 10,
-    total: 0,
-    isLoading: true,
-  }
-
-  @observable
-  rulesInfo = []
-
-  getPath({ workspace, namespace }) {
+  getPath({ cluster, workspace, namespace }) {
     let path = ''
+    if (cluster) {
+      path += `/klusters/${cluster}`
+    }
     if (workspace) {
       path += `/workspaces/${workspace}`
     }
@@ -57,6 +44,8 @@ export default class RoleStore extends Base {
 
   getResourceUrl = params =>
     `kapis/iam.kubesphere.io/v1alpha2${this.getPath(params)}/${this.module}`
+
+  getListUrl = this.getResourceUrl
 
   constructor(module = 'roles') {
     super(module)
@@ -79,10 +68,14 @@ export default class RoleStore extends Base {
 
     const result = await request.get(
       this.getResourceUrl({ cluster, workspace, namespace }),
-      { ...params, label: 'kubesphere.io/creator' }
+      { ...params, annotation: 'kubesphere.io/creator=' }
     )
 
-    const data = get(result, 'items', []).map(this.mapper)
+    const data = result.items.map(item => ({
+      cluster,
+      workspace,
+      ...this.mapper(item),
+    }))
 
     this.list.update({
       data: more ? [...this.list.data, ...data] : data,
@@ -96,22 +89,7 @@ export default class RoleStore extends Base {
   }
 
   @action
-  patch({ name, workspace, namespace }, data) {
-    set(
-      data,
-      'metadata.annotations.lastUpdateTime',
-      moment()
-        .utc()
-        .format()
-        .replace('+00:00', 'Z')
-    )
-    return this.submitting(
-      request.patch(this.getDetailUrl(name, workspace, namespace), data)
-    )
-  }
-
-  @action
-  batchDelete(rowKeys, { workspace, namespace }) {
+  batchDelete(rowKeys, { cluster, workspace, namespace }) {
     for (const name in rowKeys) {
       if (this.checkIfIsPresetRole(name)) {
         Notify.error(
@@ -125,62 +103,33 @@ export default class RoleStore extends Base {
     return this.submitting(
       Promise.all(
         rowKeys.map(rowKey =>
-          request.delete(this.getDetailUrl(rowKey, workspace, namespace))
+          request.delete(
+            this.getDetailUrl({ name: rowKey, cluster, workspace, namespace })
+          )
         )
       )
     )
   }
 
   @action
-  async fetchRulesInfo() {
-    const result = await request.get(
-      `apis/iam.kubesphere.io/v1alpha2/rulesmapping/${this.module}`
-    )
-    this.rulesInfo = result
-  }
-
-  @action
-  async fetchRules({ name, workspace, namespace }) {
-    this.rules.isLoading = true
+  async fetchRoleTemplates(params) {
+    this.roleTemplates.isLoading = true
 
     const result = await request.get(
-      `kapis/iam.kubesphere.io/v1alpha2${this.getPath({
-        workspace,
-        namespace,
-      })}/${this.module}/${name}/rules`
+      `kapis/iam.kubesphere.io/v1alpha2${this.getPath(params)}/${
+        this.module
+      }?label=iam.kubesphere.io/role-template=true`
     )
 
-    this.rules.data = result
-    this.rules.total = result.length
-    this.rules.isLoading = false
+    this.roleTemplates.update({
+      data: get(result, 'items', []).map(this.mapper),
+      total: result.totalItems || result.total_count || 0,
+      isLoading: false,
+    })
   }
 
   @action
-  async fetchUsers({ name, workspace, namespace }) {
-    this.users.isLoading = true
-
-    const resp = await request.get(
-      `kapis/iam.kubesphere.io/v1alpha2${this.getPath({
-        workspace,
-        namespace,
-      })}/${this.module}/${name}/users`
-    )
-
-    if (resp) {
-      if (resp.items) {
-        this.users.data = resp.items || []
-        this.users.total = resp.total_count || 0
-      } else {
-        this.users.data = resp
-        this.users.total = resp.length || 0
-      }
-    }
-
-    this.users.isLoading = false
-  }
-
-  @action
-  delete({ name, workspace, namespace }) {
+  delete({ cluster, name, workspace, namespace }) {
     if (this.checkIfIsPresetRole(name)) {
       Notify.error(
         t('Error Tips'),
@@ -191,7 +140,18 @@ export default class RoleStore extends Base {
     }
 
     return this.submitting(
-      request.delete(this.getDetailUrl(name, workspace, namespace))
+      request.delete(this.getDetailUrl({ cluster, name, workspace, namespace }))
+    )
+  }
+
+  @action
+  checkName(params) {
+    return request.get(
+      this.getDetailUrl(params),
+      {},
+      {
+        headers: { 'x-check-exist': true },
+      }
     )
   }
 

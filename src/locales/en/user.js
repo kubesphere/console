@@ -29,8 +29,6 @@ export default {
     'The role types are classified into cluster and project. The role of cluster type is used for managing the cluster.',
   ACCOUNTS_MANAGEMENT_DESC:
     'System admin manages user information such as creating/updating/reading/deleting an account using this management component. Admin can also manage the role of any account. User uses the account name or email to log in the platform.',
-  PLATFORM_ROLES_DESC:
-    'The platform role defines the access control mechanism within the cluster scope for authorized users.',
   ROLE_BASEINFO_DESC: '',
   ROLE_AUTHORIZATION_DESC: '',
   USER_AVATAR_TIP:

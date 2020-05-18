@@ -44,7 +44,7 @@ export default class ContainerStore {
     let path = `api/v1`
 
     if (cluster) {
-      path += `/clusters/${cluster}`
+      path += `/klusters/${cluster}`
     }
 
     return `${path}/namespaces/${namespace}/pods/${podName}`

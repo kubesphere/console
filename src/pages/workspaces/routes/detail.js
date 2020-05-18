@@ -16,25 +16,18 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import PropTypes from 'prop-types'
-import styles from './index.scss'
+import MemberDetail from '../containers/Members/Detail'
+import RoleDetail from '../containers/Roles/Detail'
 
-export default class UserItem extends React.Component {
-  static propTypes = {
-    user: PropTypes.object,
-  }
+const PATH = '/workspaces/:workspace'
 
-  render() {
-    const { user } = this.props
-
-    return (
-      <div className={styles.item}>
-        <p>
-          <strong>{user.username}</strong>
-        </p>
-        <p>{user.email}</p>
-      </div>
-    )
-  }
-}
+export default [
+  {
+    path: `${PATH}/members/:name`,
+    component: MemberDetail,
+  },
+  {
+    path: `${PATH}/roles/:name`,
+    component: RoleDetail,
+  },
+]

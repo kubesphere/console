@@ -17,6 +17,8 @@
  */
 
 import React from 'react'
+import { get } from 'lodash'
+import { toJS } from 'mobx'
 import { Avatar, Status } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import { withProjectList, ListPage } from 'components/HOCs/withList'
@@ -24,11 +26,11 @@ import Table from 'components/Tables/List'
 
 import { getLocalTime } from 'utils'
 
+import UserStore from 'stores/user'
 import RoleStore from 'stores/role'
-import MemberStore from 'stores/project/member'
 
 @withProjectList({
-  store: new MemberStore(),
+  store: new UserStore(),
   module: 'users',
   authKey: 'members',
   name: 'Project Member',
@@ -38,7 +40,7 @@ export default class Members extends React.Component {
   roleStore = new RoleStore()
 
   componentDidMount() {
-    this.roleStore.fetchList(this.props.match.params)
+    this.roleStore.fetchList({ ...this.props.match.params, limit: -1 })
   }
 
   get tips() {
@@ -50,19 +52,25 @@ export default class Members extends React.Component {
     ]
   }
 
+  showAction(record) {
+    return globals.user.username !== record.name
+  }
+
   get itemActions() {
-    const { getData, trigger, module } = this.props
-    const showAction = record => record.username === globals.user.username
+    const { getData, trigger } = this.props
     return [
       {
         key: 'modify',
         icon: 'pen',
         text: t('Modify Member Role'),
         action: 'edit',
-        show: showAction,
+        show: this.showAction,
         onClick: item =>
-          trigger('project.member.modify', {
+          trigger('member.edit', {
             detail: item,
+            ...this.props.match.params,
+            roles: toJS(this.roleStore.list.data),
+            role: item.role,
             success: getData,
           }),
       },
@@ -71,30 +79,38 @@ export default class Members extends React.Component {
         icon: 'trash',
         text: t('Remove Member'),
         action: 'delete',
-        show: showAction,
+        show: this.showAction,
         onClick: item =>
-          trigger('project.member.delete', {
-            module,
+          trigger('member.remove', {
             detail: item,
             success: getData,
+            ...this.props.match.params,
           }),
       },
     ]
   }
 
-  get tableProps() {
-    const { trigger } = this.props
+  get tableActions() {
+    const { routing, getData, trigger, tableProps } = this.props
     return {
+      ...tableProps.tableActions,
       actions: [
         {
           key: 'invite',
           type: 'control',
           text: t('Invite Member'),
           action: 'create',
-          onClick: trigger('member.invite', {
-            module,
-            ...this.props.match.params,
-          }),
+          onClick: () =>
+            trigger('member.invite', {
+              ...this.props.match.params,
+              roles: toJS(this.roleStore.list.data),
+              roleModule: this.roleStore.module,
+              workspace: get(this.props, 'projectStore.detail.workspace'),
+              title: t('Invite members to the project'),
+              desc: t('INVITE_MEMBER_DESC'),
+              searchPlaceholder: t('INVITE_MEMBER_SEARCH_PLACEHODLER'),
+              success: routing.query,
+            }),
         },
       ],
       selectActions: [
@@ -103,15 +119,16 @@ export default class Members extends React.Component {
           type: 'danger',
           text: t('Remove Members'),
           action: 'delete',
-          onClick: trigger('member.remove', {
-            module,
-            ...this.props.match.params,
-          }),
+          onClick: () =>
+            trigger('member.remove.batch', {
+              success: getData,
+              ...this.props.match.params,
+            }),
         },
       ],
       getCheckboxProps: record => ({
-        disabled: record.username === globals.user.username,
-        name: record.username,
+        disabled: !this.showAction(record),
+        name: record.name,
       }),
     }
   }
@@ -164,7 +181,7 @@ export default class Members extends React.Component {
   render() {
     const { bannerProps, tableProps } = this.props
     return (
-      <ListPage {...this.props}>
+      <ListPage {...this.props} noWatch>
         <Banner
           {...bannerProps}
           tabs={this.tabs}
@@ -172,7 +189,8 @@ export default class Members extends React.Component {
         />
         <Table
           {...tableProps}
-          {...this.tableProps}
+          searchType="name"
+          tableActions={this.tableActions}
           itemActions={this.itemActions}
           columns={this.getColumns()}
         />

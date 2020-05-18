@@ -20,22 +20,23 @@ import { Modal, Notify } from 'components/Base'
 
 import CreateModal from 'components/Modals/UserCreate'
 import ModifyPasswordModal from 'components/Modals/ModifyPassword'
+import set from 'lodash/set'
 
 export default {
   'user.create': {
     on({ store, success, ...props }) {
       const modal = Modal.open({
-        onOk: data => {
+        onOk: async data => {
           if (!data) {
             Modal.close(modal)
             return
           }
 
-          store.create(data).then(() => {
-            Modal.close(modal)
-            Notify.success({ content: `${t('Created Successfully')}!` })
-            success && success()
-          })
+          await store.create(data)
+
+          Modal.close(modal)
+          Notify.success({ content: `${t('Created Successfully')}!` })
+          success && success()
         },
         modal: CreateModal,
         store,
@@ -46,17 +47,18 @@ export default {
   'user.edit': {
     on({ store, detail, success, ...props }) {
       const modal = Modal.open({
-        onOk: data => {
+        onOk: async data => {
           if (!data) {
             Modal.close(modal)
             return
           }
 
-          store.update(data, detail).then(() => {
-            Modal.close(modal)
-            Notify.success({ content: `${t('Updated Successfully')}!` })
-            success && success()
-          })
+          set(data, 'metadata.resourceVersion', detail.resourceVersion)
+          await store.update(detail, data)
+
+          Modal.close(modal)
+          Notify.success({ content: `${t('Updated Successfully')}!` })
+          success && success()
         },
         modal: CreateModal,
         detail,

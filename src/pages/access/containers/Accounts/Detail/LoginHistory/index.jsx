@@ -33,10 +33,6 @@ export default class LoginHistory extends React.Component {
     return this.props.detailStore
   }
 
-  componentDidMount() {
-    this.store.fetchLogs(this.props.match.params)
-  }
-
   getColumns = () => [
     {
       title: t('Time'),
@@ -47,15 +43,14 @@ export default class LoginHistory extends React.Component {
   ]
 
   renderContent() {
-    const { data, isLoading } = this.store.logs
+    const { conditions } = toJS(this.store.detail)
 
     return (
       <Table
         className={styles.table}
-        dataSource={toJS(data)}
+        dataSource={conditions}
         rowKey="login_time"
         columns={this.getColumns()}
-        loading={isLoading}
       />
     )
   }

@@ -164,7 +164,6 @@ client:
                 skipAuth: true,
                 showInDisable: true,
               }
-            - { name: visibility, title: Cluster Visibility }
             - { name: members, title: Cluster Members }
             - { name: roles, title: Cluster Roles }
 
@@ -173,7 +172,7 @@ client:
     - cate: 'access'
       items:
         - { name: accounts, title: NAV_ACCOUNTS, icon: human }
-        - { name: roles, title: Platform Roles, icon: role }
+        - { name: roles, title: Account Roles, icon: role }
         - {
             name: workspaces,
             title: Workspaces,
@@ -320,6 +319,7 @@ client:
 
   # preset infos
   presetUsers: ['admin', 'sonarqube']
+  presetGlobalRoles: ['global-admin']
   presetClusterRoles: [cluster-admin, cluster-regular, workspaces-manager]
   presetWorkspaceRoles: [workspace-admin, workspace-regular, workspace-viewer]
   presetDevOpsRoles: [owner, maintainer, developer, reporter]

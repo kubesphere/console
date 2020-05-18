@@ -29,6 +29,7 @@ import SecretDetail from '../containers/Secrets/Detail'
 import ConfigMapDetail from '../containers/ConfigMaps/Detail'
 import CRDAppDetail from '../containers/Applications/CRDAppDetail'
 import OPAppDetail from '../containers/Applications/OPAppDetail'
+import RoleDetail from '../containers/Roles/Detail'
 
 const PATH = '/cluster/:cluster/projects/:namespace'
 
@@ -92,5 +93,9 @@ export default [
   {
     path: `${PATH}/applications/template/:id`,
     component: OPAppDetail,
+  },
+  {
+    path: `${PATH}/roles/:name`,
+    component: RoleDetail,
   },
 ]

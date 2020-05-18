@@ -33,6 +33,49 @@ import WorkspaceStore from 'stores/workspace'
   name: 'Workspace',
 })
 export default class Workspaces extends React.Component {
+  showAction(record) {
+    return globals.config.systemWorkspace !== record.name
+  }
+
+  get itemActions() {
+    const { name, routing, trigger } = this.props
+    return [
+      {
+        key: 'edit',
+        icon: 'pen',
+        text: t('Edit'),
+        action: 'edit',
+        show: this.showAction,
+        onClick: item => trigger('resource.baseinfo.edit', { detail: item }),
+      },
+      {
+        key: 'delete',
+        icon: 'trash',
+        text: t('Delete'),
+        action: 'delete',
+        show: this.showAction,
+        onClick: item =>
+          trigger('resource.delete', {
+            type: t(name),
+            resource: item.name,
+            detail: item,
+            success: routing.query,
+          }),
+      },
+    ]
+  }
+
+  get tableActions() {
+    const { tableProps } = this.props
+    return {
+      ...tableProps.tableActions,
+      getCheckboxProps: record => ({
+        disabled: !this.showAction(record),
+        name: record.name,
+      }),
+    }
+  }
+
   getColumns = () => {
     const { getSortOrder } = this.props
 
@@ -88,6 +131,8 @@ export default class Workspaces extends React.Component {
         <Table
           {...tableProps}
           columns={this.getColumns()}
+          itemActions={this.itemActions}
+          tableActions={this.tableActions}
           onCreate={this.showCreate}
         />
       </ListPage>

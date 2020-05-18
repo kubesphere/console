@@ -24,7 +24,7 @@ import { Modal, Form } from 'components/Base'
 import { ArrayInput, ObjectInput } from 'components/Inputs'
 
 import WorkspaceStore from 'stores/workspace'
-import MemberStore from 'stores/workspace/member'
+import MemberStore from 'stores/user'
 import RoleStore from 'stores/role'
 
 import styles from './index.scss'

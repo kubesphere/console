@@ -23,11 +23,27 @@ import { inject, observer } from 'mobx-react'
 import { Table } from '@pitrix/lego-ui'
 
 import { getLocalTime } from 'utils'
+import { ROLE_QUERY_KEY } from 'utils/constants'
 import { Card, Status } from 'components/Base'
+
+import UserStore from 'stores/user'
 
 @inject('detailStore')
 @observer
 export default class AuthorizedUsers extends React.Component {
+  store = new UserStore()
+
+  componentDidMount() {
+    const { name, namespace, workspace, cluster } = this.props.match.params
+    const { module } = this.props.detailStore
+    this.store.fetchList({
+      [ROLE_QUERY_KEY[module]]: name,
+      namespace,
+      workspace,
+      cluster,
+    })
+  }
+
   getColumns = () => [
     {
       title: t('User Name'),
@@ -57,7 +73,7 @@ export default class AuthorizedUsers extends React.Component {
   ]
 
   render() {
-    const { data, isLoading } = toJS(this.props.detailStore.users)
+    const { data, isLoading } = toJS(this.store.list)
 
     const isEmptyList = isEmpty(data) && !isLoading
 

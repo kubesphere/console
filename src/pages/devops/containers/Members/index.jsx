@@ -112,7 +112,7 @@ class Members extends Base {
       ],
       getCheckboxProps: record => ({
         disabled: record.username === globals.user.username,
-        name: record.username,
+        name: record.name,
       }),
     }
   }
