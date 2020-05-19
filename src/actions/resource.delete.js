@@ -69,6 +69,7 @@ export default {
           Modal.close(modal)
           Notify.success({ content: `${t('Deleted Successfully')}!` })
           store.setSelectRowKeys([])
+          success && success()
         },
         resource: selectNames.join(', '),
         modal: DeleteModal,

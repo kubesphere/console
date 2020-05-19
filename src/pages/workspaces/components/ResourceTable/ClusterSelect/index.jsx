@@ -66,6 +66,8 @@ export default class ClusterSelect extends Component {
     )
   }
 
+  valueRenderer = option => `${t('Cluster')}: ${option.label}`
+
   render() {
     const { cluster = this.hostCluster } = this.props
 
@@ -75,6 +77,7 @@ export default class ClusterSelect extends Component {
         value={cluster}
         onChange={this.handleChange}
         options={this.clusters}
+        valueRenderer={this.valueRenderer}
         page={this.workspaceStore.clusters.page}
         total={this.workspaceStore.clusters.total}
         currentLength={this.workspaceStore.clusters.data.length}
