@@ -17,6 +17,7 @@
  */
 
 import React from 'react'
+import { inject } from 'mobx-react'
 import { get } from 'lodash'
 import { Panel, Text } from 'components/Base'
 
@@ -24,7 +25,12 @@ import PlatformStatus from './PlatformStatus'
 
 import styles from './index.scss'
 
+@inject('rootStore')
 export default class AdminDashboard extends React.Component {
+  handleClusterClick = () => {
+    this.props.rootStore.routing.push('/clusters')
+  }
+
   render() {
     return (
       <div>
@@ -33,7 +39,11 @@ export default class AdminDashboard extends React.Component {
             title={get(globals, 'config.version.kubesphere')}
             description={t('Platform Version')}
           />
-          <Text title={3} description={t('Clusters Number')} />
+          <Text
+            title={3}
+            description={t('Clusters Number')}
+            onClick={this.handleClusterClick}
+          />
         </Panel>
         <Panel className={styles.status} title={t('Platform Running Status')}>
           <PlatformStatus />

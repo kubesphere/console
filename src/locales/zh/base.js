@@ -415,6 +415,7 @@ export default {
   TOOLBOX_DESC: '提供KubeSphere日志、事件、计量等相关的查询工具',
   'Analysis Tools': '分析工具',
   'Control Tools': '控制工具',
+  'Third-party Tools': '第三方工具',
 
   'Log Search': '日志查询',
   LOG_SEARCH_DESC: '针对企业空间、项目、资源等多维度的日志查询工具。',

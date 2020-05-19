@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React, { Component } from 'react'
+import React from 'react'
 import { NavLink, withRouter } from 'react-router-dom'
 import { Provider } from 'mobx-react'
 import { Loading } from '@pitrix/lego-ui'
@@ -29,8 +29,7 @@ import BaseInfo from '../BaseInfo'
 
 import styles from './index.scss'
 
-@withRouter
-export default class DetailPage extends Component {
+class DetailPage extends React.Component {
   constructor(props) {
     super(props)
     this.state = { initializing: true }
@@ -95,3 +94,6 @@ export default class DetailPage extends Component {
     )
   }
 }
+
+export default withRouter(DetailPage)
+export const Component = DetailPage

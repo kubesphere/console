@@ -75,7 +75,7 @@ const getUserDetail = async (username, token) => {
 
   const resp = await send_gateway_request({
     method: 'GET',
-    url: `/apis/iam.kubesphere.io/v1alpha2/users/${username}`,
+    url: `/kapis/iam.kubesphere.io/v1alpha2/users/${username}`,
     token,
   })
 
@@ -83,6 +83,10 @@ const getUserDetail = async (username, token) => {
     user = {
       username: get(resp, 'metadata.name'),
       email: get(resp, 'spec.email'),
+      globalrole: get(
+        resp,
+        'metadata.annotations["iam.kubesphere.io/globalrole"]'
+      ),
     }
   } else {
     throw new Error(resp)

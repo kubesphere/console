@@ -17,6 +17,7 @@
  */
 
 import React, { Component } from 'react'
+import { inject } from 'mobx-react'
 import { Text } from 'components/Base'
 import { getLocalTime } from 'utils'
 
@@ -24,22 +25,30 @@ import Resource from './Resource'
 
 import styles from './index.scss'
 
+@inject('rootStore')
 export default class PlatformStatus extends Component {
   get resources() {
     return [
       {
         icon: 'enterprise',
         name: 'Workspaces',
+        link: '/access/workspaces',
       },
       {
         icon: 'human',
         name: 'Accounts',
+        link: '/access/accounts',
       },
       {
         icon: 'appcenter',
         name: 'App Templates',
+        link: '/apps',
       },
     ]
+  }
+
+  handleClick = link => {
+    this.props.rootStore.routing.push(link)
   }
 
   render() {
@@ -53,7 +62,11 @@ export default class PlatformStatus extends Component {
           />
         </div>
         {this.resources.map(resource => (
-          <Resource key={resource.name} data={resource} />
+          <Resource
+            key={resource.name}
+            data={resource}
+            onClick={this.handleClick}
+          />
         ))}
       </div>
     )

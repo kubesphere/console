@@ -21,6 +21,7 @@ import { getIndexRoute } from 'utils/router.config'
 
 import Layout from '../containers/layout'
 import BaseInfo from '../containers/BaseInfo'
+import ThirdPartyLogin from '../containers/ThirdPartyLogin'
 import CollectionLayout from '../containers/LogCollection'
 import Mail from '../containers/MailServices'
 import logCollectionRoutes from './logCollection'
@@ -39,6 +40,10 @@ export default [
       {
         path: `${PATH}/base-info`,
         component: BaseInfo,
+      },
+      {
+        path: `${PATH}/third-login`,
+        component: ThirdPartyLogin,
       },
       {
         path: `${PATH}/mail-server`,

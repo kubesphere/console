@@ -185,6 +185,7 @@ client:
     - cate: 'platformsettings'
       items:
         - { name: base-info, title: Platform Info, icon: home, }
+        - { name: third-login, title: Third-party Login, icon: licenses, }
         - {
             name: mail-server,
             title: Mail Server,
@@ -349,6 +350,12 @@ client:
 
   # show kubeconfig
   enableKubeConfig: true
+
+  # third party tools
+  thirdPartyTools: []
+    # - title: 
+    #   description:
+    #   link:
 
   # docs url for resources
   resourceDocs:

@@ -24,11 +24,21 @@ import TinyArea from './TinyArea'
 import styles from './index.scss'
 
 export default class Resource extends Component {
+  handleClick = () => {
+    const { data, onClick } = this.props
+    onClick(data.link)
+  }
+
   render() {
     const { data } = this.props
     return (
       <div key={data.name} className={styles.resource}>
-        <Text icon={data.icon} title={3} description={t(data.name)} />
+        <Text
+          icon={data.icon}
+          title={3}
+          description={t(data.name)}
+          onClick={data.link ? this.handleClick : null}
+        />
         <TinyArea width={330} height={44} bgColor="transparent" />
       </div>
     )
