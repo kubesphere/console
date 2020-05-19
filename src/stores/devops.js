@@ -46,14 +46,20 @@ export default class DevOpsStore extends Base {
   @observable
   devopsListData = []
 
+  @observable
+  project_id = ''
+
+  @observable
+  project_name = ''
+
   getBaseUrlV2 = () => 'kapis/devops.kubesphere.io/v1alpha2/'
 
-  getDevopsUrlV2 = () => `${this.getBaseUrlV2()}devops`
+  getDetailUrl = project_id => `${this.getDevopsUrlV2()}/${project_id}`
 
   getResourceUrl = ({ workspace }) =>
     `${this.getBaseUrlV2()}workspaces/${workspace}/devops`
 
-  getDetailUrl = project_id => `${this.getDevopsUrlV2()}/${project_id}`
+  getDetailUrlV2 = project_id => `${this.getDevopsUrlV2()}/${project_id}`
 
   getBaseUrl = () => 'apis/devops.kubesphere.io/v1alpha3/'
 
@@ -179,6 +185,8 @@ export default class DevOpsStore extends Base {
 
     this.itemDetail = detail
     const data = this.mapper(detail)
+    this.project_name = data.name
+    this.project_id = data.namespace
     this.data = data
   }
 
@@ -215,7 +223,7 @@ export default class DevOpsStore extends Base {
   async fetchMembers({ project_id }) {
     this.members.isLoading = true
     const result = await request.get(
-      `${this.getDetailUrl(project_id)}/members`,
+      `${this.getDetailUrlV2(project_id)}/members`,
       { paging: `limit=9999,page=1` }
     )
 
@@ -233,7 +241,7 @@ export default class DevOpsStore extends Base {
   @action
   addMember({ project_id, ...params }) {
     return this.submitting(
-      request.post(`${this.getDetailUrl(project_id)}/members`, params)
+      request.post(`${this.getDetailUrlV2(project_id)}/members`, params)
     )
   }
 
@@ -241,7 +249,7 @@ export default class DevOpsStore extends Base {
   updateMember({ project_id, username, ...params }) {
     return this.submitting(
       request.patch(
-        `${this.getDetailUrl(project_id)}/members/${username}`,
+        `${this.getDetailUrlV2(project_id)}/members/${username}`,
         params,
         {
           headers: {
@@ -255,7 +263,7 @@ export default class DevOpsStore extends Base {
   @action
   deleteMember(project_id, { username }) {
     return this.submitting(
-      request.delete(`${this.getDetailUrl(project_id)}/members/${username}`)
+      request.delete(`${this.getDetailUrlV2(project_id)}/members/${username}`)
     )
   }
 
@@ -264,7 +272,7 @@ export default class DevOpsStore extends Base {
     return this.submitting(
       Promise.all(
         rowKeys.map(rowKey =>
-          request.delete(`${this.getDetailUrl(project_id)}/members/${rowKey}`)
+          request.delete(`${this.getDetailUrlV2(project_id)}/members/${rowKey}`)
         )
       )
     )

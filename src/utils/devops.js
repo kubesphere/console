@@ -29,14 +29,14 @@ const deleteUnenableAttrs = data => {
   }
 }
 
-export const updatePipelineParams = data => {
+export const updatePipelineParams = (data, isEditor = false) => {
   const { multi_branch_pipeline, pipeline, type, ...rest } = data
-  if (multi_branch_pipeline) {
+  if (multi_branch_pipeline && !isEditor) {
     rest && Object.assign(data.multi_branch_pipeline, rest)
     data.type = 'multi-branch-pipeline'
     deleteUnenableAttrs(data.multi_branch_pipeline)
   } else {
-    if (data.pipeline) {
+    if (data.pipeline && !isEditor) {
       Object.assign(data.pipeline, rest)
     } else {
       data.pipeline = rest
@@ -44,8 +44,9 @@ export const updatePipelineParams = data => {
     data.type = 'pipeline'
     deleteUnenableAttrs(data.pipeline)
   }
+
   for (const key in rest) {
-    if (key !== 'project_id') {
+    if (key !== 'project_name') {
       delete data[key]
     }
   }

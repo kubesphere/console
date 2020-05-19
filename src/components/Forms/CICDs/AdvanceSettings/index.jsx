@@ -94,9 +94,12 @@ export default class AdvanceSettings extends React.Component {
   }
 
   componentDidMount() {
-    const { project_id } = this.props.formTemplate
+    const { project_name } = this.props.formTemplate
 
-    this.pipelineStore.fetchList({ project_id, filter: 'no-multi-branch-job' })
+    this.pipelineStore.fetchList({
+      project_name,
+      filter: 'no-multi-branch-job',
+    })
   }
 
   handleChange = key => value => {
@@ -113,7 +116,7 @@ export default class AdvanceSettings extends React.Component {
 
   checkCronScript = async () => {
     const { formTemplate, type } = this.props
-    const { project_id, name } = formTemplate
+    const { project_name, name } = formTemplate
     const script = get(formTemplate, `${this.prefix}.timer_trigger.cron`, '')
 
     if (!script || this.script === script) {
@@ -122,7 +125,7 @@ export default class AdvanceSettings extends React.Component {
     this.script = script
 
     const result = await this.scmStore.checkCronScript({
-      devops: project_id,
+      devops: project_name,
       script,
       pipeline: type === 'create' ? undefined : name,
     })
@@ -147,7 +150,7 @@ export default class AdvanceSettings extends React.Component {
   }
 
   handleScrollToBottom = () => {
-    const { project_id } = this.props.formTemplate
+    const { project_name } = this.props.formTemplate
     const { total, page, limit } = this.pipelineStore.list
 
     if (total <= limit * page) {
@@ -155,7 +158,7 @@ export default class AdvanceSettings extends React.Component {
     }
 
     this.pipelineStore.fetchList({
-      project_id,
+      project_name,
       filter: 'no-multi-branch-job',
       page: page + 1,
     })
@@ -181,7 +184,7 @@ export default class AdvanceSettings extends React.Component {
             'If you check this option, you cannot run multiple builds concurrently.'
           )}
         >
-          <Checkbox name={`${this.prefix}.disable_concurrent`} value="true">
+          <Checkbox name={`${this.prefix}.disable_concurrent`} value={true}>
             {t('No concurrent builds')}
           </Checkbox>
         </Form.Item>
@@ -532,7 +535,7 @@ export default class AdvanceSettings extends React.Component {
           </div>
           <Form.Item>
             <Checkbox
-              value="true"
+              value={true}
               name="enable_discarder"
               onChange={this.handleChange('enable_discarder')}
             >

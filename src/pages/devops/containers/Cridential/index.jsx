@@ -54,7 +54,7 @@ class Credential extends React.Component {
 
   componentDidMount() {
     const { namespace } = this.props.match.params
-    this.store.project_id = namespace
+    this.store.project_name = namespace
     this.unsubscribe = this.routing.history.subscribe(location => {
       const params = parse(location.search.slice(1))
       this.getData(params)
@@ -68,14 +68,14 @@ class Credential extends React.Component {
   get enabledActions() {
     return globals.app.getActions({
       module: 'credentials',
-      project: this.props.match.params.project_id,
+      project: this.props.match.params.project_name,
     })
   }
 
   getData(params) {
-    const { project_id } = this.props.match.params
+    const { project_name } = this.props.match.params
     this.store.fetchList({
-      project_id,
+      project_name,
       ...params,
     })
   }
@@ -194,13 +194,13 @@ class Credential extends React.Component {
   }
 
   renderModals() {
-    const { project_id } = this.props.match.params
+    const { project_name } = this.props.match.params
     return (
       <CreateModal
         visible={this.state.showCreate}
         onOk={this.handleCreate}
         onCancel={this.hideCreate}
-        project_id={project_id}
+        project_name={project_name}
       />
     )
   }

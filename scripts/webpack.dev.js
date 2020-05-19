@@ -111,7 +111,7 @@ const config = {
     },
   },
   resolve: merge({}, baseConfig.resolve, {
-    alias: { 'react-dom': '@hot-loader/react-dom' }
+    alias: { 'react-dom': '@hot-loader/react-dom' },
   }),
   plugins: [
     ...baseConfig.plugins,
