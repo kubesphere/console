@@ -56,6 +56,7 @@ const WorkspaceMapper = item => ({
   ...getBaseInfo(item),
   annotations: get(item, 'metadata.annotations', {}),
   manager: get(item, 'spec.manager') || getResourceCreator(item),
+  clusters: get(item, 'clusters', []),
   _originData: getOriginData(item),
 })
 
@@ -925,6 +926,10 @@ const ClusterMapper = item => {
     kubernetesVersion: get(item, 'status.kubernetesVersion'),
     labels: get(item, 'metadata.labels'),
     group: get(item, 'metadata.labels["cluster.kubesphere.io/group"]'),
+    visibility: get(
+      item,
+      'metadata.labels["cluster.kubesphere.io/visibility"]'
+    ),
   }
 }
 

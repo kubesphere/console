@@ -20,9 +20,6 @@ import { Modal, Notify } from 'components/Base'
 
 import DeployAppModal from 'projects/components/Modals/DeployApp'
 import CreateAppModal from 'projects/components/Modals/CreateApp'
-import RepoAppModal from 'projects/components/Modals/RepoApp'
-import AppEditModal from 'projects/components/Modals/AppEdit'
-import DeleteModal from 'components/Modals/Delete'
 
 export default {
   'app.deploy': {
@@ -74,60 +71,6 @@ export default {
         cluster,
         namespace,
         modal: CreateAppModal,
-        ...props,
-      })
-    },
-  },
-  'openpitrix.app.create': {
-    on({ store, cluster, namespace, success, ...props }) {
-      const modal = Modal.open({
-        onOk: () => {
-          Modal.close(modal)
-          success &&
-            success(
-              `/cluster/${cluster}/projects/${namespace}/applications/template`
-            )
-        },
-        store,
-        cluster,
-        namespace,
-        modal: RepoAppModal,
-        ...props,
-      })
-    },
-  },
-  'openpitrix.app.edit': {
-    on({ store, detail, success, ...props }) {
-      const modal = Modal.open({
-        onOk: data => {
-          store.patch(detail, data).then(() => {
-            Modal.close(modal)
-            Notify.success({ content: `${t('Updated Successfully')}!` })
-            success && success()
-          })
-        },
-        store,
-        detail,
-        modal: AppEditModal,
-        ...props,
-      })
-    },
-  },
-  'openpitrix.app.destroy': {
-    on({ store, detail, success, ...props }) {
-      const modal = Modal.open({
-        onOk: () => {
-          store.destroy(detail.cluster).then(() => {
-            Modal.close(modal)
-            success && success()
-          })
-        },
-        title: t('DESTROY_TITLE'),
-        desc: t.html('DESTROY_TIP', {
-          type: t('Application'),
-          resource: detail.name,
-        }),
-        modal: DeleteModal,
         ...props,
       })
     },

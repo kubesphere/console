@@ -17,8 +17,7 @@
  */
 
 import { Modal, Notify } from 'components/Base'
-import FORM_TEMPLATES from 'utils/form.templates'
-import CreateModal from 'components/Modals/WorkspaceCreate'
+import CreateModal from 'workspaces/components/Modals/WorkspaceCreate'
 
 export default {
   'workspace.create': {
@@ -37,7 +36,6 @@ export default {
           })
         },
         modal: CreateModal,
-        formTemplate: FORM_TEMPLATES.workspaces(),
         store,
         ...props,
       })

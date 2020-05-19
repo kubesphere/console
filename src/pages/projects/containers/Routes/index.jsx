@@ -17,18 +17,21 @@
  */
 
 import React from 'react'
+import { toJS } from 'mobx'
+import { isEmpty } from 'lodash'
 
-import { Avatar } from 'components/Base'
+import { Icon } from '@pitrix/lego-ui'
+import { Avatar, Text, Panel, Button } from 'components/Base'
 import Banner from 'components/Cards/Banner'
-import { withProjectList, ListPage } from 'components/HOCs/withList'
-import StatusReason from 'projects/components/StatusReason'
 import Table from 'components/Tables/List'
+import { withProjectList, ListPage } from 'components/HOCs/withList'
 
-import { getLocalTime, getDisplayName } from 'utils'
-import { getWorkloadStatus } from 'utils/status'
-import { WORKLOAD_STATUS, ICON_TYPES } from 'utils/constants'
+import { getLocalTime, getDisplayName, getDocsUrl } from 'utils'
+import { ICON_TYPES } from 'utils/constants'
 
 import RouterStore from 'stores/router'
+
+import styles from './index.scss'
 
 @withProjectList({
   store: new RouterStore(),
@@ -36,6 +39,32 @@ import RouterStore from 'stores/router'
   name: 'Route',
 })
 export default class Routers extends React.Component {
+  componentDidMount() {
+    this.props.store.getGateway(this.props.match.params)
+  }
+
+  get canSetGateway() {
+    return globals.app.hasPermission({
+      module: 'advanced',
+      action: 'manage',
+      project: this.props.match.params.namespace,
+    })
+  }
+
+  get tips() {
+    return [
+      {
+        title: t('PREREQUESTS_FOR_USE_ROUTE_Q'),
+        description: t('PREREQUESTS_FOR_USE_ROUTE_A'),
+        more: getDocsUrl('internet'),
+      },
+      {
+        title: t('ACCESS_TYPES_OF_ROUTE_Q'),
+        description: t('ACCESS_TYPES_OF_ROUTE_A'),
+      },
+    ]
+  }
+
   get itemActions() {
     const { trigger } = this.props
     return [
@@ -93,24 +122,6 @@ export default class Routers extends React.Component {
     ]
   }
 
-  getStatus() {
-    return WORKLOAD_STATUS.map(status => ({
-      text: t(status.text),
-      value: status.value,
-    }))
-  }
-
-  getItemDesc = record => {
-    const { status, reason } = getWorkloadStatus(record, this.module)
-    const desc = reason ? (
-      <StatusReason status={status} reason={t(reason)} data={record} />
-    ) : (
-      record.description || '-'
-    )
-
-    return desc
-  }
-
   getColumns = () => {
     const { getSortOrder, module } = this.props
     const { cluster, namespace } = this.props.match.params
@@ -138,6 +149,14 @@ export default class Routers extends React.Component {
         width: '22%',
       },
       {
+        title: t('Application'),
+        dataIndex: 'app.kubernetes.io/name',
+        isHideable: true,
+        search: true,
+        width: '22%',
+        render: (_, record) => record.app,
+      },
+      {
         title: t('Created Time'),
         dataIndex: 'createTime',
         sorter: true,
@@ -159,17 +178,55 @@ export default class Routers extends React.Component {
     })
   }
 
+  showAddGateway = () => {
+    const { store, trigger, match } = this.props
+    trigger('project.gateway.edit', {
+      detail: toJS(store.gateway.data),
+      ...this.props.match.params,
+      success: () => store.getGateway(match.params),
+    })
+  }
+
+  renderCreateGateway() {
+    return (
+      <Panel className="margin-t12 margin-b12">
+        <div className="flexbox">
+          <Icon className="margin-r12" name="loadbalancer" size={40} />
+          <Text
+            className={styles.text}
+            title={t('Gateway not set')}
+            description={t('PROJECT_INTERNET_ACCESS_DESC')}
+          />
+          {this.canSetGateway && (
+            <Button
+              className={styles.button}
+              type="control"
+              onClick={this.showAddGateway}
+            >
+              {t('Set Gateway')}
+            </Button>
+          )}
+        </div>
+      </Panel>
+    )
+  }
+
   render() {
     const { bannerProps, tableProps } = this.props
+    const { data, isLoading } = this.props.store.gateway
     return (
       <ListPage {...this.props}>
-        <Banner {...bannerProps} />
-        <Table
-          {...tableProps}
-          itemActions={this.itemActions}
-          columns={this.getColumns()}
-          onCreate={this.showCreate}
-        />
+        <Banner {...bannerProps} tips={this.tips} />
+        {isEmpty(data) && !isLoading ? (
+          this.renderCreateGateway()
+        ) : (
+          <Table
+            {...tableProps}
+            itemActions={this.itemActions}
+            columns={this.getColumns()}
+            onCreate={this.showCreate}
+          />
+        )}
       </ListPage>
     )
   }

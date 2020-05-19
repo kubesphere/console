@@ -20,6 +20,7 @@ import { get } from 'lodash'
 import { getIndexRoute } from 'utils/router.config'
 
 import Layout from '../containers/layout'
+import BaseInfo from '../containers/BaseInfo'
 import CollectionLayout from '../containers/LogCollection'
 import Mail from '../containers/MailServices'
 import logCollectionRoutes from './logCollection'
@@ -35,6 +36,10 @@ export default [
     path: PATH,
     component: Layout,
     routes: [
+      {
+        path: `${PATH}/base-info`,
+        component: BaseInfo,
+      },
       {
         path: `${PATH}/mail-server`,
         component: Mail,

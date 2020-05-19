@@ -15,14 +15,10 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { observer } from 'mobx-react'
-import { withRouter } from 'react-router'
 
 import Base from 'core/containers/Base/Detail/Page'
 import ClusterStore from 'stores/cluster'
 
-@observer
-@withRouter
 export default class DetailPage extends Base {
   async init() {
     const { cluster } = this.props.match.params

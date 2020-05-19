@@ -21,8 +21,8 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { Icon } from '@pitrix/lego-ui'
 
-import CreateModal from 'components/Modals/WorkspaceCreate'
-import SelectModal from 'components/Modals/WorkspaceSelect'
+import CreateModal from 'workspaces/components/Modals/WorkspaceCreate'
+import SelectModal from 'workspaces/components/Modals/WorkspaceSelect'
 
 import WorkspaceStore from 'stores/workspace'
 

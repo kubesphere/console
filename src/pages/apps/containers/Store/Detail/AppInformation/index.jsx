@@ -17,7 +17,7 @@
  */
 
 import React from 'react'
-import { observer } from 'mobx-react'
+import { observer, inject } from 'mobx-react'
 import { toJS } from 'mobx'
 import { get } from 'lodash'
 
@@ -26,6 +26,7 @@ import AppInfo from 'appStore/components/AppInfo'
 
 import styles from './index.scss'
 
+@inject('detailStore', 'versionStore')
 @observer
 export default class AppInformation extends React.Component {
   componentDidMount() {

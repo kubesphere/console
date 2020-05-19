@@ -35,6 +35,7 @@ server:
 
 client:
   title: KubeSphere
+  description: ''
 
   version:
     kubesphere: 3.0.0
@@ -43,7 +44,6 @@ client:
   issueUrl: https://github.com/kubesphere/kubesphere/issues/new/choose
   reposUrl: https://github.com/kubesphere/kubesphere
   slackUrl: https://kubesphere.slack.com
-  logoUrl: https://console-ae.kubesphere.io/assets/logo.svg
   documents:
     url: https://kubesphere.io/docs
     api: https://kubesphere.io/docs/v2.1/zh-CN/api-reference/api-docs/
@@ -184,6 +184,7 @@ client:
   platformSettingsNavs:
     - cate: 'platformsettings'
       items:
+        - { name: base-info, title: Platform Info, icon: home, }
         - {
             name: mail-server,
             title: Mail Server,

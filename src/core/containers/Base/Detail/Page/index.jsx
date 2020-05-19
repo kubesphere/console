@@ -17,7 +17,7 @@
  */
 
 import React, { Component } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, withRouter } from 'react-router-dom'
 import { Provider } from 'mobx-react'
 import { Loading } from '@pitrix/lego-ui'
 import pathToRegexp from 'path-to-regexp'
@@ -29,6 +29,7 @@ import BaseInfo from '../BaseInfo'
 
 import styles from './index.scss'
 
+@withRouter
 export default class DetailPage extends Component {
   constructor(props) {
     super(props)

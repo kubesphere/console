@@ -68,6 +68,18 @@ export default {
 
   'Unbind Cluster': '解绑集群',
 
+  Authorized: '已授权',
+  Unauthorized: '待授权',
+
+  'Authorize the cluster to workspace': '集群授权企业空间',
+  'Set as public cluster': '设置为公开集群',
+
+  'The current cluster is public': '当前集群处于公开状态',
+
+  'Available Clusters': '可用集群',
+
+  'Select Clusters': '集群选择',
+
   NO_CLUSTER_TIP: '请添加至少 1 个集群',
   NO_CLUSTER_TIP_DESC:
     '集群是一组运行着 Kubernetes 的节点（物理或者虚拟机）, Kubesphere 的功能也依托于集群中的节点来运行',
@@ -114,4 +126,21 @@ export default {
 
   'Invite members to the cluster': '邀请成员到该集群',
   INVITE_CLUSTER_MEMBER_DESC: '您可以邀请新的成员来此集群',
+
+  AUTHORIZE_CLUSTER_TO_WORKSPACE_DESC:
+    '集群授权可以将集群通过授权的形式指定给企业空间使用该集群',
+
+  PUBLIC_CLUSTER_DESC:
+    '公开状态的集群意味着平台内的用户都可以使用该集群，并在集群中创建和调度资源',
+
+  CLUSTER_AUTHORIZATION_DESC:
+    '集群授权可以将集群通过授权的形式指定给企业空间使用该集群',
+
+  CLUSTER_VISIBILITY_Q1: '如何将集群授权给指定的企业空间使用？',
+  CLUSTER_VISIBILITY_A1: '',
+  CLUSTER_VISIBILITY_Q2: '什么是公开集群?',
+  CLUSTER_VISIBILITY_A2:
+    '公开状态的集群意味着平台内的用户都可以使用该集群，并在集群中创建和调度资源',
+
+  SELECT_CLUSTERS_DESC: '选择企业空间下可用的集群',
 }

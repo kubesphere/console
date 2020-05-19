@@ -126,7 +126,7 @@ export default class Workspaces extends React.Component {
   render() {
     const { bannerProps, tableProps } = this.props
     return (
-      <ListPage {...this.props}>
+      <ListPage {...this.props} noWatch>
         <Banner {...bannerProps} />
         <Table
           {...tableProps}
@@ -134,6 +134,7 @@ export default class Workspaces extends React.Component {
           itemActions={this.itemActions}
           tableActions={this.tableActions}
           onCreate={this.showCreate}
+          searchType="name"
         />
       </ListPage>
     )

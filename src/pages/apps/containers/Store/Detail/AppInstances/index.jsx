@@ -18,9 +18,11 @@
 
 import React from 'react'
 import { get } from 'lodash'
+import { inject } from 'mobx-react'
 
 import InstanceList from 'apps/components/Lists/InstanceList'
 
+@inject('detailStore', 'versionStore')
 export default class AppInstances extends React.Component {
   render() {
     return (
