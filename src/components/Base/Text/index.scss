@@ -19,3 +19,21 @@
 .icon {
   margin-right: 12px;
 }
+
+.clickable {
+  cursor: pointer;
+
+  &:hover {
+    .text {
+      & > div {
+        color: $primary;
+      }
+    }
+    .icon {
+      :global .qicon {
+        color: #00aa72;
+        fill: #90e0c5;
+      }
+    }
+  }
+}

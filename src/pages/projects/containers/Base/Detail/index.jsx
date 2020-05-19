@@ -16,10 +16,12 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import Base from 'core/containers/Base/Detail/Page'
+import { withRouter } from 'react-router-dom'
+import { Component as Base } from 'core/containers/Base/Detail/Page'
 import ClusterStore from 'stores/cluster'
 import ProjectStore from 'stores/project'
 
+@withRouter
 export default class DetailPage extends Base {
   async init() {
     const { cluster, namespace } = this.props.match.params

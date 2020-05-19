@@ -20,6 +20,7 @@ import React from 'react'
 import classNames from 'classnames'
 import { observer, inject } from 'mobx-react'
 import { observable, action } from 'mobx'
+import { isEmpty } from 'lodash'
 
 import Draggable from 'react-draggable'
 import { Icon } from '@pitrix/lego-ui'
@@ -76,16 +77,30 @@ export default class KubeTools extends React.Component {
     ]
   }
 
-  onToolItemClick = e => {
+  get thirdPartyToolList() {
+    return (globals.config.thirdPartyTools || []).map(item => ({
+      icon: 'cookie',
+      ...item,
+    }))
+  }
+
+  handleToolItemClick = e => {
     e.preventDefault()
     e.stopPropagation()
     const data = e.currentTarget.dataset
 
-    if (e.shiftKey) {
+    if (e.shiftKey || !data.action) {
       return window.open(data.link, data.title, this.getWindowOpts())
     }
 
     this.trigger(data.action, {})
+  }
+
+  handleThirdPartyToolItemClick = e => {
+    e.preventDefault()
+    e.stopPropagation()
+    const data = e.currentTarget.dataset
+    window.open(data.link, '_blank')
   }
 
   @action
@@ -129,12 +144,34 @@ export default class KubeTools extends React.Component {
                       data-link={item.link}
                       data-action={item.action}
                       description={item.description}
-                      onClick={this.onToolItemClick}
+                      onClick={this.handleToolItemClick}
                     />
                   ))}
                 </div>
               </div>
             ))}
+            {!isEmpty(this.thirdPartyToolList) && (
+              <div className={styles.toolsGroup}>
+                <div className={styles.groupTitle}>
+                  {t('Third-party Tools')}
+                </div>
+                <div className={styles.groupContent}>
+                  {this.thirdPartyToolList.map(item => (
+                    <List.Item
+                      className={styles.toolItem}
+                      key={item.link}
+                      icon={item.icon}
+                      title={item.title}
+                      data-title={item.title}
+                      data-link={item.link}
+                      data-action={item.action}
+                      description={item.description}
+                      onClick={this.handleThirdPartyToolItemClick}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
           <div className={styles.toolsFooter}>
             <p>{t('TOOLBOX_SHIFT_TIPS')}</p>

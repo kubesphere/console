@@ -16,33 +16,21 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import { Icon } from '@pitrix/lego-ui'
-import { isUndefined } from 'lodash'
-import classNames from 'classnames'
+export default {
+  'Third-party Login': '第三方登录',
 
-import styles from './index.scss'
+  'Protocol Type': '协议类型',
 
-export default class Text extends React.PureComponent {
-  render() {
-    const { icon, title, description, className, extra, onClick } = this.props
+  Configure: '配置',
+  'not configured': '暂未配置',
 
-    return (
-      <div
-        className={classNames(
-          styles.wrapper,
-          { [styles.clickable]: !!onClick },
-          className
-        )}
-        onClick={onClick}
-      >
-        {icon && <Icon className={styles.icon} name={icon} size={40} />}
-        <div className={styles.text}>
-          <div>{isUndefined(title) || title === '' ? '-' : title}</div>
-          <p>{description}</p>
-        </div>
-        {extra}
-      </div>
-    )
-  }
+  'Current third-party login configurations': '当前第三方登录配置',
+
+  THIRD_PARTY_LOGIN_DESC:
+    '当使用第三方服务的方式进行接入对接时，需用户输入相关属性信息，之后会自动创建一个与该用户关联的本地用户，便于环境的安全接入登陆。',
+
+  THIRD_PARTY_LOGIN_Q: '支持哪些第三方登录？',
+  THIRD_PARTY_LOGIN_A: '支持LDAP 、 AD 、以及 Github Oauth',
+
+  OAUTH_DESC: 'OAUTH协议为用户资源的授权提供了一个安全的、开放而又简易的标准。',
 }
