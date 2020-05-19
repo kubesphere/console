@@ -36,8 +36,8 @@ import { ReactComponent as ArrowDown } from 'src/assets/chart-down.svg'
 
 import { Icon, Loading } from '@pitrix/lego-ui'
 import { TinyArea } from 'components/Charts'
-import CreateModal from 'components/Modals/WorkspaceCreate'
-import SelectModal from 'components/Modals/WorkspaceSelect'
+import CreateModal from 'workspaces/components/Modals/WorkspaceCreate'
+import SelectModal from 'workspaces/components/Modals/WorkspaceSelect'
 
 import styles from './index.scss'
 

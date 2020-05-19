@@ -40,6 +40,7 @@ export default class Base {
     isLoading: false,
     keyword: '',
     selectedRowKeys: [],
+    setSelectRowKeys: this.setSelectRowKeys,
   }
 
   @observable

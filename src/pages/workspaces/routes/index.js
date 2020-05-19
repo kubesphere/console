@@ -30,12 +30,10 @@ import Repos from '../containers/Repos'
 
 import detail from './detail'
 import overviewRoutes from './overview'
-import appRoutes from './app'
 
 const PATH = '/workspaces/:workspace'
 
 export default [
-  ...appRoutes,
   ...detail,
   {
     path: PATH,

@@ -246,7 +246,7 @@ export const MODULE_KIND_MAP = {
   nodes: 'Node',
   volumesnapshots: 'VolumeSnapshot',
   namespaces: 'Namespace',
-  workspaces: 'Workspace',
+  workspaces: 'WorkspaceCompat',
 }
 
 export const QUOTAS_MAP = {
@@ -824,7 +824,7 @@ export const API_VERSIONS = {
   horizontalpodautoscalers: 'apis/autoscaling/v2beta2',
   customresourcedefinitions: 'apis/apiextensions.k8s.io/v1',
   clusters: 'apis/cluster.kubesphere.io/v1alpha1',
-  workspaces: 'apis/tenant.kubesphere.io/v1alpha1',
+  workspaces: 'apis/tenant.kubesphere.io/v1alpha2',
   users: 'apis/iam.kubesphere.io/v1alpha2',
   globalroles: 'apis/iam.kubesphere.io/v1alpha2',
   workspaceroles: 'apis/iam.kubesphere.io/v1alpha2',

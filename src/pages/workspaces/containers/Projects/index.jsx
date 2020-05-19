@@ -58,7 +58,7 @@ export default class Projects extends React.Component {
         action: 'edit',
         show: showAction,
         onClick: item =>
-          trigger('project.qutoa.edit', {
+          trigger('project.quota.edit', {
             type: t('Project'),
             detail: item,
           }),

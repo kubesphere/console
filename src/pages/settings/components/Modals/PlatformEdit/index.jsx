@@ -18,14 +18,12 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
+import copy from 'fast-copy'
 
-import { observer } from 'mobx-react'
-
-import { Input, TextArea } from '@pitrix/lego-ui'
+import { Input, TextArea, Columns, Column } from '@pitrix/lego-ui'
 import { Modal, Form } from 'components/Base'
 
-@observer
-export default class EditModal extends React.Component {
+export default class PlatformEditModal extends React.Component {
   static propTypes = {
     detail: PropTypes.object,
     visible: PropTypes.bool,
@@ -36,36 +34,50 @@ export default class EditModal extends React.Component {
 
   static defaultProps = {
     visible: false,
-    isSubmitting: false,
     onOk() {},
     onCancel() {},
+    isSubmitting: false,
   }
 
-  handleOk = data => {
-    const { onOk } = this.props
-    onOk(data)
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      formData: copy(props.detail),
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.visible && this.props.visible !== prevProps.visible) {
+      this.setState({ formData: copy(this.props.detail) })
+    }
   }
 
   render() {
-    const { detail, visible, onCancel, isSubmitting } = this.props
+    const { visible, isSubmitting, onOk, onCancel } = this.props
+    const { formData } = this.state
 
     return (
       <Modal.Form
-        width={691}
-        title={t('Edit Info')}
-        icon="pen"
-        data={detail}
-        onOk={this.handleOk}
+        data={formData}
+        width={960}
+        title={`${t('Edit ')}${t('Platform Info')}`}
+        icon="image"
+        onOk={onOk}
         onCancel={onCancel}
         visible={visible}
         isSubmitting={isSubmitting}
       >
-        <Form.Item label={t('Workspace Name')} desc={t('WORKSPACE_NAME_DESC')}>
-          <Input name="metadata.name" disabled />
-        </Form.Item>
-        <Form.Item label={t('Description')} desc={t('SHORT_DESCRIPTION_DESC')}>
-          <TextArea name="metadata.annotations['kubesphere.io/description']" />
-        </Form.Item>
+        <Columns>
+          <Column>
+            <Form.Item label={t('Platform Title')}>
+              <Input name="title" />
+            </Form.Item>
+            <Form.Item label={t('Platform Description')}>
+              <TextArea name="description" />
+            </Form.Item>
+          </Column>
+        </Columns>
       </Modal.Form>
     )
   }

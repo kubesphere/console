@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, set } from 'lodash'
+import { get, isEmpty, set, unset } from 'lodash'
 import { action, observable } from 'mobx'
 import { formatRules } from 'utils'
 import { LIST_DEFAULT_ORDER } from 'utils/constants'
@@ -24,6 +24,24 @@ import ObjectMapper from 'utils/object.mapper'
 
 import Base from './base'
 import List from './base.list'
+
+const formatLimitRange = (limitRange = {}) => {
+  const cpuLimit = get(limitRange, 'spec.limits[0].default.cpu')
+  const cpuRequest = get(limitRange, 'spec.limits[0].defaultRequest.cpu')
+  const memoryLimit = get(limitRange, 'spec.limits[0].default.memory')
+  const memoryRequest = get(limitRange, 'spec.limits[0].defaultRequest.memory')
+
+  !cpuLimit && unset(limitRange, 'spec.limits[0].default.cpu')
+  !cpuRequest && unset(limitRange, 'spec.limits[0].defaultRequest.cpu')
+  !memoryLimit && unset(limitRange, 'spec.limits[0].default.memory')
+  !memoryRequest && unset(limitRange, 'spec.limits[0].defaultRequest.memory')
+
+  if (!cpuLimit && !cpuRequest && !memoryLimit && !memoryRequest) {
+    return {}
+  }
+
+  return limitRange
+}
 
 const getTypeSelectParams = type => {
   let params = {}
@@ -178,5 +196,28 @@ export default class ProjectStore extends Base {
     })
 
     return data
+  }
+
+  @action
+  createLimitRange(params, data) {
+    const limitRange = formatLimitRange(data)
+
+    if (isEmpty(limitRange)) {
+      return
+    }
+
+    return this.submitting(
+      request.post(`api/v1${this.getPath(params)}/limitranges`, limitRange)
+    )
+  }
+
+  @action
+  updateLimitRange(params, data) {
+    return this.submitting(
+      request.put(
+        `api/v1${this.getPath(params)}/limitranges/${params.name}`,
+        formatLimitRange(data)
+      )
+    )
   }
 }

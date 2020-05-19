@@ -182,7 +182,7 @@ export default class ProjectSelectModal extends React.Component {
         width={960}
         icon="enterprise"
         title={<a onClick={this.handleEnterWorkspace}>{workspace}</a>}
-        description={get(detail, 'description') || '-'}
+        description={get(detail, 'description') || t('Workspace')}
         hideFooter
       >
         <div className={styles.bar}>

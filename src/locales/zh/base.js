@@ -54,6 +54,9 @@ export default {
   Platform: '平台管理',
   'Platform Info': '平台信息',
   'Platform Version': '平台版本',
+  'Platform URL': '平台地址',
+  'Platform Title': '平台标题',
+  'Platform Description': '平台描述',
   'Clusters Number': '集群数量',
   'Platform Running Status': '平台运行状态',
   'Statistical time is up to': '统计时间截止至',
@@ -224,6 +227,7 @@ export default {
 
   Add: '添加',
   'Add ': '添加',
+  'Edit ': '编辑',
   New: '新建',
   Yes: '是',
   true: '是',

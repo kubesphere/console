@@ -50,7 +50,7 @@ export default {
     '请输入 Access key ID 和 Secret access key',
 
   'App Repos': '应用仓库',
-  'Create Repo': '创建仓库',
+  'Add Repo': '添加仓库',
   'Index Repo': '同步仓库',
 
   HOW_TO_USE_APP_REPO_Q: '如何使用应用仓库？',

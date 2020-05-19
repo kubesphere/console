@@ -18,6 +18,7 @@
 
 import MemberDetail from '../containers/Members/Detail'
 import RoleDetail from '../containers/Roles/Detail'
+import AppDetail from '../containers/Apps/Detail'
 
 const PATH = '/workspaces/:workspace'
 
@@ -29,5 +30,9 @@ export default [
   {
     path: `${PATH}/roles/:name`,
     component: RoleDetail,
+  },
+  {
+    path: `${PATH}/apps/:appId`,
+    component: AppDetail,
   },
 ]

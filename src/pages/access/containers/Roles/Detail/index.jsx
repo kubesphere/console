@@ -26,7 +26,7 @@ import { getLocalTime } from 'utils'
 import { trigger } from 'utils/action'
 import RoleStore from 'stores/role'
 
-import DetailPage from 'clusters/containers/Base/Detail'
+import DetailPage from 'core/containers/Base/Detail/Page'
 
 import routes from './routes'
 

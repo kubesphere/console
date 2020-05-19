@@ -16,57 +16,39 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { withProps } from 'utils'
-import { getChildRoutes } from 'utils/router.config'
+import { getIndexRoute } from 'utils/router.config'
 
-import DetailLayout from 'core/layouts/Detail'
 import VersionManage from 'apps/containers/Store/Detail/VersionManage'
 import AppInformation from 'apps/containers/Store/Detail/AppInformation'
 import AuditRecord from 'apps/containers/Store/Detail/AuditRecord'
 import AppInstances from 'apps/containers/Store/Detail/AppInstances'
-import AppDetail from '../containers/Apps/Detail'
 
 const PATH = '/workspaces/:workspace/apps/:appId'
-const ROUTES = [
-  {
-    name: 'versions',
-    title: 'Versions',
-    component: VersionManage,
-  },
-  {
-    name: 'app-information',
-    title: 'App Information',
-    component: AppInformation,
-  },
-  {
-    name: 'audit-records',
-    title: 'Audit Records',
-    component: AuditRecord,
-  },
-  {
-    name: 'app-instances',
-    title: 'App Instances',
-    component: AppInstances,
-  },
-]
+
 export default [
   {
-    path: PATH,
-    component: withProps(DetailLayout, {
-      module: 'applications',
-      component: AppDetail,
-      breadcrumbs: [
-        {
-          label: 'Workspaces',
-          url: '/workspaces/:workspace',
-        },
-        {
-          label: 'Applications',
-          url: '/workspaces/:workspace/apps',
-        },
-      ],
-    }),
-    ksModule: 'openpitrix',
-    routes: getChildRoutes(ROUTES, PATH),
+    path: `${PATH}/versions`,
+    title: 'Versions',
+    component: VersionManage,
+    exact: true,
   },
+  {
+    path: `${PATH}/app-information`,
+    title: 'App Information',
+    component: AppInformation,
+    exact: true,
+  },
+  {
+    path: `${PATH}/audit-records`,
+    title: 'Audit Records',
+    component: AuditRecord,
+    exact: true,
+  },
+  {
+    path: `${PATH}/app-instances`,
+    title: 'App Instances',
+    component: AppInstances,
+    exact: true,
+  },
+  getIndexRoute({ path: PATH, to: `${PATH}/versions`, exact: true }),
 ]

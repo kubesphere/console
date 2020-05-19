@@ -77,7 +77,7 @@ export default class ProjectDetail extends React.Component {
       text: t('Edit Quota'),
       action: 'edit',
       onClick: () =>
-        this.trigger('project.qutoa.edit', {
+        this.trigger('project.quota.edit', {
           type: t(this.name),
           detail: toJS(this.store.detail),
         }),

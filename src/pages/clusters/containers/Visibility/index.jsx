@@ -17,6 +17,7 @@
  */
 
 import React from 'react'
+import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import Banner from 'components/Cards/Banner'
 import { Alert, Avatar, Button, Panel, Text } from 'components/Base'
@@ -24,27 +25,53 @@ import Table from 'components/Tables/Base'
 import { getLocalTime, getDisplayName } from 'utils'
 import { trigger } from 'utils/action'
 
+import WorkspaceStore from 'stores/workspace'
+
 import styles from './index.scss'
 
-@inject('clusterStore')
+@inject('rootStore', 'clusterStore')
 @observer
 @trigger
 export default class Overview extends React.Component {
+  workspaceStore = new WorkspaceStore()
+
+  componentDidMount() {
+    if (!this.isClusterPublicVisible) {
+      this.getData()
+    }
+  }
+
   get cluster() {
     return this.props.clusterStore
+  }
+
+  get isClusterPublicVisible() {
+    return this.cluster.detail.visibility === 'public'
   }
 
   get tips() {
     return [
       {
-        title: t('如何将集群授权给指定的企业空间使用？'),
-        description: '',
+        title: t('CLUSTER_VISIBILITY_Q1'),
+        description: t('CLUSTER_VISIBILITY_A1'),
       },
       {
-        title: t('什么是公开集群?'),
-        description: '',
+        title: t('CLUSTER_VISIBILITY_Q2'),
+        description: t('CLUSTER_VISIBILITY_A2'),
       },
     ]
+  }
+
+  getData = params => {
+    this.workspaceStore.fetchList({ ...this.props.match.params, ...params })
+  }
+
+  afterEdit = async () => {
+    const { cluster } = this.props.match.params
+    await this.cluster.fetchDetail({ name: cluster })
+    if (!this.isClusterPublicVisible) {
+      this.getData()
+    }
   }
 
   getColumns() {
@@ -58,43 +85,59 @@ export default class Overview extends React.Component {
             iconSize={40}
             title={getDisplayName(record)}
             desc={record.description || '-'}
-            to={`/workspaces/${name}`}
+            noLink
           />
         ),
       },
       {
         title: t('Created Time'),
         dataIndex: 'createTime',
-        width: 150,
+        width: '20%',
         render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
       },
     ]
   }
 
-  editVisibility = this.trigger('cluster.visibility.edit', {})
+  editVisibility = () =>
+    this.trigger('cluster.visibility.edit', {
+      store: this.cluster,
+      cluster: this.cluster.detail,
+      success: this.afterEdit,
+    })
 
   renderVisibility() {
-    if (this.cluster.visibility === 'public') {
+    if (this.isClusterPublicVisible) {
       return (
         <Alert
           className="margin-t12"
-          title={'当前集群处于公开状态'}
-          message={
-            '公开状态的集群意味着平台内的用户都可以使用该集群，并在集群中创建和调度资源'
-          }
+          title={t('The current cluster is public')}
+          message={t('PUBLIC_CLUSTER_DESC')}
         />
       )
     }
 
+    const {
+      data,
+      total,
+      page,
+      limit,
+      filters,
+      keyword,
+      isLoading,
+    } = this.workspaceStore.list
+
+    const pagination = { total, page, limit }
+
     return (
       <div className={styles.tableWrapper}>
         <Table
-          data={[]}
-          pagination={{
-            total: 0,
-            page: 1,
-            limit: 10,
-          }}
+          data={toJS(data)}
+          filters={filters}
+          keyword={keyword}
+          pagination={pagination}
+          isLoading={isLoading}
+          onFetch={this.getData}
+          searchType="name"
           columns={this.getColumns()}
         />
       </div>
@@ -107,15 +150,15 @@ export default class Overview extends React.Component {
         <Banner
           icon="cluster"
           title={t('Cluster Visibility')}
-          description="集群授权可以将集群通过授权的形式指定给企业空间使用该集群"
+          description={t('CLUSTER_AUTHORIZATION_DESC')}
           tips={this.tips}
         />
         <Panel>
           <div className={styles.header}>
             <Text
-              icon={this.cluster.visibility === 'public' ? 'eye' : 'eye-closed'}
+              icon={this.isClusterPublicVisible ? 'eye' : 'eye-closed'}
               title={
-                this.cluster.visibility === 'public'
+                this.isClusterPublicVisible
                   ? t('VISIBILITY_PUBLIC')
                   : t('VISIBILITY_PART')
               }

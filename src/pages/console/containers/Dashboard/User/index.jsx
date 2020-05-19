@@ -25,7 +25,7 @@ import WorkspaceStore from 'stores/workspace'
 import { Columns, Column } from '@pitrix/lego-ui'
 import { Button } from 'components/Base'
 import EmptyList from 'components/Cards/EmptyList'
-import CreateModal from 'components/Modals/WorkspaceCreate'
+import CreateModal from 'workspaces/components/Modals/WorkspaceCreate'
 import Workspaces from './Workspaces'
 import Resources from './Resources'
 

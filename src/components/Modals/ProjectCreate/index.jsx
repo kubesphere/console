@@ -57,7 +57,10 @@ export default class ProjectCreateModal extends React.Component {
   }
 
   componentDidMount() {
-    this.fetchClusters()
+    const { hideCluster } = this.props
+    if (!hideCluster) {
+      this.fetchClusters()
+    }
   }
 
   get networkOptions() {
@@ -75,7 +78,10 @@ export default class ProjectCreateModal extends React.Component {
   }
 
   fetchClusters(params) {
-    this.workspaceStore.fetchClusters(params)
+    this.workspaceStore.fetchClusters({
+      ...params,
+      workspace: this.props.workspace,
+    })
   }
 
   fetchMembers(params) {

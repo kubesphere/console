@@ -21,26 +21,19 @@ import { get, isEmpty } from 'lodash'
 import { observer, inject } from 'mobx-react'
 import { Icon, Dropdown, Menu } from '@pitrix/lego-ui'
 import { Card, Button } from 'components/Base'
-import DeleteModal from 'components/Modals/Delete'
-import EditModal from 'components/Modals/WorkspaceEdit'
 import Info from 'components/Cards/Info'
 import Banner from 'components/Cards/Banner'
-
+import { trigger } from 'utils/action'
 import RoleStore from 'stores/role'
 
 import styles from './index.scss'
 
 @inject('rootStore', 'workspaceStore')
 @observer
+@trigger
 class BaseInfo extends React.Component {
   constructor(props) {
     super(props)
-
-    this.state = {
-      showEdit: false,
-      showDelete: false,
-    }
-
     this.roleStore = new RoleStore('workspaceroles')
     this.roleStore.fetchList(this.props.match.params)
   }
@@ -69,18 +62,34 @@ class BaseInfo extends React.Component {
   }
 
   get itemActions() {
+    const { detail } = this.store
     return [
       {
         key: 'edit',
         icon: 'pen',
         action: 'edit',
         text: t('Edit Info'),
+        onClick: () =>
+          this.trigger('resource.baseinfo.edit', {
+            detail,
+            success: this.fetchDetail,
+          }),
       },
       {
         key: 'delete',
         icon: 'trash',
         action: 'delete',
         text: t('Delete Workspace'),
+        onClick: () =>
+          this.trigger('resource.delete', {
+            detail,
+            type: t('Workspace'),
+            resource: detail.name,
+            desc: t.html('DELETE_WORKSPACE_TIP', {
+              resource: detail.name,
+            }),
+            success: () => this.routing.push('/'),
+          }),
       },
     ]
   }
@@ -94,42 +103,14 @@ class BaseInfo extends React.Component {
   canViewModule = (module, action = 'view') =>
     globals.app.hasPermission({ module, action, workspace: this.workspace })
 
-  hideEdit = () => {
-    this.setState({
-      showEdit: false,
-    })
-  }
-
-  handleEdit = data => {
-    const name = get(data, 'metadata.name')
-    this.store.update(data).then(() => {
-      this.hideEdit()
-      this.store.fetchDetail({ workspace: name })
-    })
-  }
-
-  hideDelete = () => {
-    this.setState({
-      showDelete: false,
-    })
-  }
-
-  handleDelete = () => {
-    this.store.delete(this.props.match.params).then(() => {
-      this.routing.push('/')
-    })
+  fetchDetail = () => {
+    this.store.fetchDetail({ workspace: this.workspace })
   }
 
   handleMoreMenuClick = (e, key) => {
-    switch (key) {
-      case 'edit':
-        this.setState({ showEdit: true })
-        break
-      case 'delete':
-        this.setState({ showDelete: true })
-        break
-      default:
-        break
+    const action = this.enabledItemActions.find(_action => _action.key === key)
+    if (action && action.onClick) {
+      action.onClick()
     }
   }
 
@@ -197,8 +178,6 @@ class BaseInfo extends React.Component {
   }
 
   render() {
-    const { detail, isSubmitting } = this.store
-
     return (
       <div>
         <Banner
@@ -209,24 +188,6 @@ class BaseInfo extends React.Component {
           module={this.module}
         />
         {this.renderBaseInfo()}
-        <EditModal
-          detail={detail._originData}
-          visible={this.state.showEdit}
-          onOk={this.handleEdit}
-          onCancel={this.hideEdit}
-          isSubmitting={isSubmitting}
-        />
-        <DeleteModal
-          type={t('Workspace')}
-          resource={detail.name}
-          desc={t.html('DELETE_WORKSPACE_TIP', {
-            resource: detail.name,
-          })}
-          visible={this.state.showDelete}
-          isSubmitting={isSubmitting}
-          onOk={this.handleDelete}
-          onCancel={this.hideDelete}
-        />
       </div>
     )
   }

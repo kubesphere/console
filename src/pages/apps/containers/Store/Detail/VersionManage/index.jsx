@@ -18,9 +18,11 @@
 
 import React from 'react'
 import { get } from 'lodash'
+import { inject } from 'mobx-react'
 
 import VersionList from 'apps/components/Lists/VersionList'
 
+@inject('detailStore', 'versionStore')
 export default class VersionManage extends React.Component {
   render() {
     const { appId } = this.props.match.params

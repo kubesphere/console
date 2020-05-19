@@ -39,6 +39,8 @@ export default class WorkspaceStore extends Base {
   getResourceUrl = params =>
     `kapis/tenant.kubesphere.io/v1alpha2${this.getPath(params)}/${this.module}`
 
+  getListUrl = this.getResourceUrl
+
   @action
   async fetchDetail({ workspace } = {}) {
     if (isEmpty(workspace)) {
@@ -94,13 +96,13 @@ export default class WorkspaceStore extends Base {
   }
 
   @action
-  async fetchClusters({ more } = {}) {
+  async fetchClusters({ workspace, more } = {}) {
     this.clusters.isLoading = true
 
     const params = {}
 
     const result = await request.get(
-      `apis/cluster.kubesphere.io/v1alpha1/clusters`,
+      `kapis/tenant.kubesphere.io/v1alpha2/workspaces/${workspace}/clusters`,
       params
     )
 

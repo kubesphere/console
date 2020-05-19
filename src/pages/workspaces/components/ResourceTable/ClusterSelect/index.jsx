@@ -20,15 +20,14 @@ import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react'
 import { withRouter } from 'react-router'
 import { SearchSelect } from 'components/Base'
-import ClusterStore from 'stores/cluster'
 
 import styles from './index.scss'
 
 @withRouter
-@inject('rootStore')
+@inject('rootStore', 'workspaceStore')
 @observer
 export default class ClusterSelect extends Component {
-  clusterStore = new ClusterStore()
+  workspaceStore = this.props.workspaceStore
 
   routing = this.props.rootStore.routing
 
@@ -36,28 +35,35 @@ export default class ClusterSelect extends Component {
     this.fetchClusters()
   }
 
+  get workspace() {
+    return this.props.match.params.workspace
+  }
+
   get clusters() {
-    return this.clusterStore.list.data.map(item => ({
+    return this.workspaceStore.clusters.data.map(item => ({
       label: item.name,
       value: item.name,
     }))
   }
 
   get hostCluster() {
-    const cluster = this.clusterStore.list.data.find(item => item.isHost) || {}
+    const cluster =
+      this.workspaceStore.clusters.data.find(item => item.isHost) || {}
     return cluster.name || ''
   }
 
   fetchClusters = (params = {}) =>
-    this.clusterStore.fetchList({
+    this.workspaceStore.fetchClusters({
       ...params,
+      workspace: this.workspace,
     })
 
   handleChange = cluster => {
     const { module } = this.props
-    const { workspace } = this.props.match.params
 
-    this.routing.push(`/workspaces/${workspace}/${module}?cluster=${cluster}`)
+    this.routing.push(
+      `/workspaces/${this.workspace}/${module}?cluster=${cluster}`
+    )
   }
 
   render() {
@@ -69,10 +75,10 @@ export default class ClusterSelect extends Component {
         value={cluster}
         onChange={this.handleChange}
         options={this.clusters}
-        page={this.clusterStore.list.page}
-        total={this.clusterStore.list.total}
-        currentLength={this.clusterStore.list.data.length}
-        isLoading={this.clusterStore.list.isLoading}
+        page={this.workspaceStore.clusters.page}
+        total={this.workspaceStore.clusters.total}
+        currentLength={this.workspaceStore.clusters.data.length}
+        isLoading={this.workspaceStore.clusters.isLoading}
         onFetch={this.fetchClusters}
       />
     )

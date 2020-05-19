@@ -34,6 +34,19 @@ import ServiceStore from 'stores/service'
   name: 'Service',
 })
 export default class Services extends React.Component {
+  get tips() {
+    return [
+      {
+        title: t('SERVICE_TYPES_Q'),
+        description: t('SERVICE_TYPES_A'),
+      },
+      {
+        title: t('SCENARIOS_FOR_SERVICES_Q'),
+        description: t('SCENARIOS_FOR_SERVICES_A'),
+      },
+    ]
+  }
+
   get itemActions() {
     const { trigger } = this.props
     return [
@@ -185,7 +198,7 @@ export default class Services extends React.Component {
     const { bannerProps, tableProps } = this.props
     return (
       <ListPage {...this.props}>
-        <Banner {...bannerProps} />
+        <Banner {...bannerProps} tips={this.tips} />
         <Table
           {...tableProps}
           itemActions={this.itemActions}
