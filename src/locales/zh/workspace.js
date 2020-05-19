@@ -30,7 +30,6 @@ export default {
   'Workspace Manager': '企业空间管理员',
   'Workspaces Manager': '企业空间管理员',
   'Create Workspace': '创建企业空间',
-  'Enter Workspace': '进入企业空间',
 
   'Projects Number': '项目数量',
   'DevOps Projects Number': 'DevOps 工程数量',
