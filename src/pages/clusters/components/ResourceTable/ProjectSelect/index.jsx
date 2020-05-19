@@ -34,6 +34,8 @@ export default class ProjectSelect extends Component {
     ]
   }
 
+  valueRenderer = option => `${t('Project')}: ${option.label}`
+
   render() {
     const { namespace = '', store, onChange, onFetch } = this.props
 
@@ -47,6 +49,7 @@ export default class ProjectSelect extends Component {
         total={store.list.total}
         currentLength={store.list.data.length}
         isLoading={store.list.isLoading}
+        valueRenderer={this.valueRenderer}
         onFetch={onFetch}
       />
     )

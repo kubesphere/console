@@ -46,7 +46,11 @@ export default class Workspaces extends React.Component {
         text: t('Edit'),
         action: 'edit',
         show: this.showAction,
-        onClick: item => trigger('resource.baseinfo.edit', { detail: item }),
+        onClick: item =>
+          trigger('resource.baseinfo.edit', {
+            detail: item,
+            success: routing.query,
+          }),
       },
       {
         key: 'delete',
@@ -117,9 +121,10 @@ export default class Workspaces extends React.Component {
   }
 
   showCreate = () => {
-    const { module } = this.props
+    const { module, getData } = this.props
     return this.props.trigger('workspace.create', {
       module,
+      success: getData,
     })
   }
 
