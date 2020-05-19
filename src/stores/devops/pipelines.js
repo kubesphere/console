@@ -19,6 +19,9 @@
 import { omit, isArray, get, set, isEmpty } from 'lodash'
 import { saveAs } from 'file-saver'
 import { action, observable, toJS } from 'mobx'
+
+import { API_VERSIONS } from 'utils/constants'
+
 import BaseStore from './base'
 
 const TABLE_LIMIT = 10
@@ -29,17 +32,17 @@ const FORM_HEAR = {
   },
 }
 
-const getPipelineName = configData =>
-  get(configData, 'pipeline.name', '') ||
-  get(configData, 'multi_branch_pipeline.name', '')
-
 export default class PipelineStore extends BaseStore {
   constructor(props) {
     super(props)
     this.pipelineConfig = {}
   }
+
+  module = 'pipelines'
+
   @observable
-  project_id = ''
+  originalList = []
+
   @observable
   list = {
     data: [],
@@ -98,8 +101,10 @@ export default class PipelineStore extends BaseStore {
 
   @observable
   detail = {}
+
   @observable
   isLoading = true
+
   @observable
   notFound = false
 
@@ -118,23 +123,33 @@ export default class PipelineStore extends BaseStore {
   @observable
   jenkinsfile = ''
 
+  @observable
+  project_id = ''
+
+  @observable
+  namespace = ''
+
   @action
-  async fetchList({ project_name, workspace, ...filters } = {}) {
+  async fetchList({ project_name, workspace, namespace, ...filters } = {}) {
     this.list.isLoading = true
     const { page, keyword, filter } = filters
 
     const searchWord = keyword ? `*${encodeURIComponent(keyword)}*` : ''
 
-    const result = await this.request.get(`${this.baseUrlV3}pipelines`, {
-      labelSelector: `kubesphere.io/pipelines=${project_name}`,
+    const result = await this.request.get(this.getListUrl({ namespace }), {
       q: `type:pipeline;organization:jenkins;pipeline:${project_name}%2F${searchWord ||
         '*'};excludedFromFlattening:jenkins.branch.MultiBranchProject,hudson.matrix.MatrixProject&filter=${filter ||
         'no-folders'}`,
     })
 
+    this.setProjectId(namespace)
+    this.originalList = get(result, 'items', [])
+
+    const list = this.originalList.map(item => this.mapper(item))
+
     this.list = {
-      data: result.items || [],
-      total: result.total_count,
+      data: list,
+      total: result.items.length,
       limit: 10,
       page: parseInt(page, 10) || 1,
       filters: omit(filters, 'project_id'),
@@ -149,7 +164,7 @@ export default class PipelineStore extends BaseStore {
     }
 
     const result = await this.request.get(
-      `${this.baseUrlV3}pipelines/${decodeURIComponent(name)}/`
+      `${this.getDetailUrl({ name, namespace: this.project_id })}`
     )
 
     this.detail = result
@@ -172,12 +187,15 @@ export default class PipelineStore extends BaseStore {
   async getJenkinsFile({ name, project_id }) {
     this.pipelineJsonData.isLoading = true
     name = decodeURIComponent(name)
+
     if (isEmpty(this.detail)) {
       await this.fetchDetail({ name, project_id })
     }
+
     const result = await this.request.get(
       `${this.devopsUrlV2}${project_id}/pipelines/${this.detail.name}/config`
     )
+
     this.jenkinsfile = get(result, 'pipeline.jenkinsfile', '')
     this.pipelineConfig = result
     const json = await this.convertJenkinsFileToJson(toJS(this.jenkinsfile))
@@ -359,25 +377,46 @@ export default class PipelineStore extends BaseStore {
   }
 
   @action
-  async getPipeLineConfig(pipeline_id, { project_id }) {
-    return await this.request.get(
-      `${this.devopsUrlV2}${project_id}/pipelines/${pipeline_id}/config`
-    )
+  getPipeLineConfig(name) {
+    let detail = this.originalList.filter(
+      item => item.metadata.name === name
+    )[0]
+
+    detail = { ...toJS(detail.spec), ...toJS(detail) }
+
+    delete detail.spec
+    delete detail.kind
+    delete detail.apiVersion
+
+    return detail
   }
 
   @action
-  async createPipeline(data) {
+  setProjectId(project_id) {
+    this.project_id = project_id
+  }
+
+  @action
+  async createPipeline({ data, namespace }) {
+    data.kind = 'Pipeline'
+    data.apiVersion = 'devops.kubesphere.io/v1alpha3'
     this.pipelineConfig = data
 
-    return await this.request.post(`${this.baseUrlV3}pipelines`, data)
+    const url = `${API_VERSIONS.devops}${this.getPath({ namespace })}/pipelines`
+
+    return await this.request.post(url, data)
   }
 
   @action
-  async updatePipeline(data, { project_id }) {
-    return await this.request.put(
-      `${this.devopsUrlV2}${project_id}/pipelines/${getPipelineName(data)}`,
-      data
-    )
+  async updatePipeline({ data, project_id }) {
+    data.kind = 'Pipeline'
+    data.apiVersion = 'devops.kubesphere.io/v1alpha3'
+
+    const url = `${API_VERSIONS.devops}${this.getPath({
+      namespace: project_id,
+    })}/pipelines/${data.metadata.name}`
+
+    return await this.request.put(url, data)
   }
 
   @action
@@ -387,10 +426,12 @@ export default class PipelineStore extends BaseStore {
   }
 
   @action
-  async deletePipeline(pipelineId, project_id) {
-    return await this.request.delete(
-      `${this.devopsUrlV2}${project_id}/pipelines/${pipelineId}`
-    )
+  async deletePipeline(name, project_id) {
+    const url = `${API_VERSIONS.devops}${this.getPath({
+      namespace: project_id,
+    })}/pipelines/${name}`
+
+    return await this.request.delete(url)
   }
 
   @action

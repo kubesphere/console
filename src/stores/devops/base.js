@@ -17,12 +17,10 @@
  */
 
 import { set } from 'lodash'
+import BaseStore from '../devops'
 
-export default class Base {
-  baseUrlV3 = 'apis/devops.kubesphere.io/v1alpha3/'
-  devopsUrlV3 = `${this.baseUrlV3}devopsprojects/`
-
-  baseUrlV2 = 'kapis/devops.kubesphere.io/v1alpha2/'
+export default class Base extends BaseStore {
+  baseUrlV2 = 'kapis/devops.kubesphere.iov1alpha2/'
   devopsUrlV2 = `${this.baseUrlV2}devops/`
 
   catchRequestError(method = 'get', ...rest) {

@@ -71,12 +71,12 @@ export default class RepoSelectForm extends React.Component {
   showCredential = false
 
   componentDidMount() {
-    const { onCancel, project_id, name } = this.props
+    const { onCancel, project_name, name } = this.props
     const { registerSubRoute } = this.context
     const { sourceData } = this.props
 
     registerSubRoute && registerSubRoute(this.handleSubmit, onCancel)
-    this.store.getCredential(project_id)
+    this.store.getCredential(project_name)
     this.store.name = name
 
     if (!isEmpty(sourceData)) {
@@ -239,7 +239,7 @@ export default class RepoSelectForm extends React.Component {
   }
 
   render() {
-    const { project_id } = this.props
+    const { project_name } = this.props
 
     return (
       <div className={styles.formWrapper}>
@@ -257,7 +257,7 @@ export default class RepoSelectForm extends React.Component {
           visible={this.showCredential}
           onOk={this.hideCreateCredential}
           onCancel={this.hideCreateCredential}
-          project_id={project_id}
+          project_name={project_name}
         />
       </div>
     )

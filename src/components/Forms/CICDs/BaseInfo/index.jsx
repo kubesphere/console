@@ -91,7 +91,7 @@ export default class BaseInfo extends React.Component {
     return (
       <RepoSelectForm
         sourceData={formTemplate['multi_branch_pipeline']}
-        project_id={formTemplate.project_id}
+        project_name={formTemplate.project_name}
         name={formTemplate.name}
         onSave={this.handleRepoChange}
         onCancel={this.hideSelectRepo}

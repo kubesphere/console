@@ -21,7 +21,7 @@ import { observer, inject } from 'mobx-react'
 import { Link } from 'react-router-dom'
 import { toJS } from 'mobx'
 import { parse } from 'qs'
-import { get, omit } from 'lodash'
+import { get, omit, set } from 'lodash'
 import { Menu, Dropdown, Column, Icon } from '@pitrix/lego-ui'
 
 import { JOB_STATUS } from 'utils/constants'
@@ -35,8 +35,8 @@ import Status from 'devops/components/Status'
 import { getPipelineStatus } from 'utils/status'
 import ParamsModal from 'components/Forms/CICDs/paramsModal'
 import Banner from 'components/Cards/Banner'
-import Table from 'components/Tables/Base'
 import PipelineStore from 'stores/devops/pipelines'
+import Table from 'components/Tables/Base'
 
 import FORM_STEPS from 'configs/steps/pipelines'
 
@@ -55,7 +55,7 @@ const CREATE_TEMP = {
   },
 }
 
-@inject('rootStore')
+@inject('rootStore', 'devopsStore')
 @observer
 class CICDs extends React.Component {
   constructor(props) {
@@ -92,7 +92,7 @@ class CICDs extends React.Component {
     const { params } = this.props.match
     const { params: nextParams } = nextProps.match
 
-    if (params.project_id !== nextParams.project_id) {
+    if (params.project_name !== nextParams.project_name) {
       this.getData(nextParams)
     }
   }
@@ -104,7 +104,7 @@ class CICDs extends React.Component {
   get enabledActions() {
     return globals.app.getActions({
       module: 'pipelines',
-      project: this.props.match.params.project_id,
+      project: this.project_id,
     })
   }
 
@@ -112,8 +112,13 @@ class CICDs extends React.Component {
     return FORM_STEPS
   }
 
+  get project_id() {
+    return this.props.devopsStore.project_id
+  }
+
   getData(params) {
     this.store.fetchList({
+      namespace: this.project_id,
       ...this.props.match.params,
       ...params,
     })
@@ -248,10 +253,10 @@ class CICDs extends React.Component {
     this.setState({ showCreate: true })
   }
 
-  showEditConfig = async pipelineId => {
-    const { params } = this.props.match
-    const formData = await this.store.getPipeLineConfig(pipelineId, params)
-    formData.project_id = params.project_id
+  showEditConfig = name => {
+    const formData = this.store.getPipeLineConfig(name)
+    formData.project_id = this.project_id
+
     this.setState({
       showEditConfig: true,
       configFormData: formData,
@@ -286,35 +291,64 @@ class CICDs extends React.Component {
     this.setState({ showBranchModal: false })
   }
 
+  updatePipelineParamsInSpec = data => {
+    if (data.multi_branch_pipeline) {
+      data = set(data, 'metadata.name', data.multi_branch_pipeline.name)
+      data.spec = {
+        multi_branch_pipeline: { ...data.multi_branch_pipeline },
+        type: data.type,
+      }
+
+      delete data.multi_branch_pipeline
+    }
+
+    if (data.pipeline) {
+      data = set(data, 'metadata.name', data.pipeline.name)
+      data.spec = {
+        pipeline: { ...data.pipeline },
+        type: data.type,
+      }
+
+      delete data.pipeline
+    }
+
+    delete data.type
+
+    data = set(data, 'metadata.namespace', this.project_id)
+  }
+
   handleCreate = async data => {
-    const { params } = this.props.match
-
     updatePipelineParams(data)
-
+    this.updatePipelineParamsInSpec(data)
     this.setState({ isSubmitting: true })
-    const result = await this.store.createPipeline(data).finally(() => {
-      this.setState({ isSubmitting: false })
-    })
+
+    const result = await this.store
+      .createPipeline({ data, namespace: this.project_id })
+      .finally(() => {
+        this.setState({ isSubmitting: false })
+      })
 
     if (!result) {
       this.setState({ isSubmitting: false })
       return
     }
-    if (data.multi_branch_pipeline) {
+
+    if (data.spec.multi_branch_pipeline) {
       await this.store.scanRepository({
-        name: data.multi_branch_pipeline.name,
-        project_id: params.project_id,
+        name: data.spec.multi_branch_pipeline.name,
+        project_id: this.project_id,
       })
       this.setState({ showCreate: false })
       this.props.rootStore.routing.push(
-        `${this.prefix}/${encodeURIComponent(
+        `/devops/${this.project_id}/pipelines/${encodeURIComponent(
           data.multi_branch_pipeline.name
         )}/activity`
       )
       return
     }
-    if (result.name) {
-      this.createName = result.name
+
+    if (result.metadata && result.metadata.name) {
+      this.createName = result.metadata.name
       this.setState({
         showCreate: false,
         showEdit: true,
@@ -343,20 +377,24 @@ class CICDs extends React.Component {
   }
 
   handleEditConfig = async data => {
-    const { params } = this.props.match
-    updatePipelineParams(data)
-    await this.store.updatePipeline(data, params)
+    updatePipelineParams(data, true)
+    this.updatePipelineParamsInSpec(data)
+
+    await this.store.updatePipeline({ data, project_id: this.project_id })
+
     this.setState({ showEditConfig: false })
+    this.handleFetch()
   }
 
   handleDelete = async () => {
-    const { params } = this.props.match
     this.setState({ isSubmitting: true })
+
     await this.store
-      .deletePipeline(this.state.selectPipeline.name, params.project_id)
+      .deletePipeline(this.state.selectPipeline.name, this.project_id)
       .finally(() => {
         this.setState({ isSubmitting: false })
       })
+
     this.setState({ showDelete: false })
     this.handleFetch()
   }
@@ -378,7 +416,9 @@ class CICDs extends React.Component {
           return (
             <Link
               className="item-name"
-              to={`${this.prefix}/${encodeURIComponent(record.name)}/activity`}
+              to={`/devops/${this.project_id}/pipelines/${encodeURIComponent(
+                record.name
+              )}/activity`}
             >
               {name}
             </Link>
@@ -387,7 +427,9 @@ class CICDs extends React.Component {
         return (
           <Link
             className="item-name"
-            to={`${this.prefix}/${encodeURIComponent(record.name)}`}
+            to={`/devops/${this.project_id}/pipelines/${encodeURIComponent(
+              record.name
+            )}`}
           >
             {name}
           </Link>
@@ -521,7 +563,7 @@ class CICDs extends React.Component {
         <EditPipelineConfig
           title={t('Edit Pipeline')}
           formTemplate={this.state.configFormData}
-          project_id={project_name}
+          project_name={project_name}
           visible={this.state.showEditConfig}
           onOk={this.handleEditConfig}
           onCancel={this.hideEditConfig}

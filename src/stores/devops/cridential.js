@@ -46,12 +46,12 @@ export default class CridentialStore extends BaseStore {
   }
 
   @action
-  async fetchList({ project_id, workspace, ...filters } = {}) {
+  async fetchList({ project_name, workspace, ...filters } = {}) {
     this.list.isLoading = true
     const { page } = filters
 
     const result = await this.request.get(
-      `${this.devopsUrlV2}${project_id}/credentials`,
+      `${this.devopsUrlV2}${project_name}/credentials`,
       {
         start: (page - 1) * TABLE_LIMIT || 0,
         limit: TABLE_LIMIT,
@@ -62,16 +62,16 @@ export default class CridentialStore extends BaseStore {
       total: (result || []).length,
       limit: 100,
       page: parseInt(page, 10) || 1,
-      filters: omit(filters, 'project_id'),
+      filters: omit(filters, 'project_name'),
       isLoading: false,
     }
     return result
   }
 
   @action
-  async handleCreate(data, { project_id }, reject) {
+  async handleCreate(data, { project_name }, reject) {
     return await this.request.post(
-      `${this.devopsUrlV2}${project_id}/credentials`,
+      `${this.devopsUrlV2}${project_name}/credentials`,
       data,
       null,
       reject
@@ -80,28 +80,30 @@ export default class CridentialStore extends BaseStore {
 
   @action
   async fetchDetail() {
-    const { project_id, cridential_id } = this.params
+    const { project_name, cridential_id } = this.params
     const result = await this.request.get(
-      `${this.devopsUrlV2}${project_id}/credentials/${cridential_id}?content=1`
+      `${
+        this.devopsUrlV2
+      }${project_name}/credentials/${cridential_id}?content=1`
     )
     result.display_name = result.id
     this.detail = result
   }
 
   @action
-  async updateCridential(cridential, { project_id }) {
+  async updateCridential(cridential, { project_name }) {
     return await this.request.put(
-      `${this.devopsUrlV2}${project_id}/credentials/${cridential.id}`,
+      `${this.devopsUrlV2}${project_name}/credentials/${cridential.id}`,
       cridential
     )
   }
 
   @action
   async delete(cridential_id) {
-    const { project_id } = this.params
+    const { project_name } = this.params
 
     return await this.request.delete(
-      `${this.devopsUrlV2}${project_id}/credentials/${cridential_id}`
+      `${this.devopsUrlV2}${project_name}/credentials/${cridential_id}`
     )
   }
 }

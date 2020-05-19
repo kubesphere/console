@@ -31,8 +31,8 @@ import Notify from 'components/Base/Notify'
 import Base from 'core/containers/Base/Detail'
 import BaseInfo from 'core/containers/Base/Detail/BaseInfo'
 import Status from 'devops/components/Status'
-import DeleteModal from 'components/Modals/Delete'
 import PipelineStore from 'stores/devops/pipelines'
+import DeleteModal from 'components/Modals/Delete'
 import CodeQualityStore from 'stores/devops/codeQuality'
 
 import ScanRepositoryLogs from '../../Modals/scanRepositoryLogsModal'
@@ -41,13 +41,17 @@ import EditPipelineConfig from '../../Modals/editPipelineConfigModal'
 import Nav from './nav'
 import styles from './sider.scss'
 
-class PipelineDetail extends Base {
+@inject('rootStore')
+@observer
+export default class PipelineDetail extends Base {
   constructor(props) {
     super(props)
 
     this.store = new PipelineStore()
     this.sonarqubeStore = new CodeQualityStore()
-    this.store.project_id = get(props.match, 'params.project_id', '')
+
+    const { project_id } = this.props.match.params
+    this.store.setProjectId(project_id)
 
     this.state = {
       showEditConfig: false,
@@ -55,11 +59,6 @@ class PipelineDetail extends Base {
       showEditBaseInfo: false,
       deleteLoading: false,
     }
-  }
-
-  get listUrl() {
-    const { project_id } = this.props.match.params
-    return `/devops/${project_id}/pipelines`
   }
 
   get name() {
@@ -105,7 +104,6 @@ class PipelineDetail extends Base {
 
   fetchData = async () => {
     const { params } = this.props.match
-
     const result = await this.store.fetchDetail(params).catch(e => {
       if (e.status === 404) {
         this.store.notFound = true
@@ -346,7 +344,7 @@ class PipelineDetail extends Base {
           formTemplate={formTemplate}
           visible={showEditConfig}
           onOk={this.handleEdit}
-          project_id={params.project_id}
+          project_name={params.project_name}
           onCancel={this.hideEditConfig}
         />
         <DeleteModal
@@ -368,6 +366,3 @@ class PipelineDetail extends Base {
     )
   }
 }
-
-export default inject('rootStore')(observer(PipelineDetail))
-export const Component = PipelineDetail

@@ -950,6 +950,11 @@ const DevOpsMapper = item => ({
   description: getDescription(item),
   createTime: get(item, 'metadata.creationTimestamp'),
   workspace: get(item, 'metadata.labels["kubesphere.io/workspace"]'),
+  namespace: get(item, 'status.adminNamespace'),
+})
+
+const PipelinesMapper = item => ({
+  ...getBaseInfo(item),
 })
 
 const CRDMapper = item => {
@@ -1037,4 +1042,5 @@ export default {
   devops: DevOpsMapper,
   dashboards: DashboardMapper,
   customresourcedefinitions: CRDMapper,
+  pipelines: PipelinesMapper,
 }

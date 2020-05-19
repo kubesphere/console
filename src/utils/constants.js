@@ -827,9 +827,10 @@ export const API_VERSIONS = {
   workspaces: 'apis/tenant.kubesphere.io/v1alpha2',
   users: 'apis/iam.kubesphere.io/v1alpha2',
   globalroles: 'apis/iam.kubesphere.io/v1alpha2',
+  devops: 'apis/devops.kubesphere.io/v1alpha3',
+  pipelines: 'apis/devops.kubesphere.io/v1alpha3',
   workspaceroles: 'apis/iam.kubesphere.io/v1alpha2',
   dashboards: 'apis/monitoring.kubesphere.io/v1alpha1',
-  devops: 'apis/devops.kubesphere.io/v1alpha3',
 }
 
 export const MONITOR_GRAPH_COLORS = [
