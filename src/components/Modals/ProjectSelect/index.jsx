@@ -66,7 +66,6 @@ export default class ProjectSelectModal extends React.Component {
   get types() {
     const { detail } = this.store
     const types = []
-
     if (this.enabledActions.projects.includes('view')) {
       types.push({
         label: t('Projects'),
@@ -147,7 +146,7 @@ export default class ProjectSelectModal extends React.Component {
     if (this.state.type === 'projects') {
       onChange(`/cluster/${cluster}/projects/${item.name}`)
     } else {
-      onChange(`/devops/${item.name}`)
+      onChange(`/devops/${item.namespace}`)
     }
   }
 

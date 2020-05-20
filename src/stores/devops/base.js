@@ -20,7 +20,7 @@ import { set } from 'lodash'
 import BaseStore from '../devops'
 
 export default class Base extends BaseStore {
-  baseUrlV2 = 'kapis/devops.kubesphere.iov1alpha2/'
+  baseUrlV2 = 'kapis/devops.kubesphere.io/v1alpha2/'
   devopsUrlV2 = `${this.baseUrlV2}devops/`
 
   catchRequestError(method = 'get', ...rest) {

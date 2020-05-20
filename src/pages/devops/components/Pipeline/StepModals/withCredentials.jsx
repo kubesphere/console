@@ -95,7 +95,6 @@ export default class WithCredentials extends React.Component {
   @action
   handleCredentialChange = id => {
     const { credentials } = this.props.store
-
     const selectedCredential = credentials.find(
       credential => credential.value === id
     )

@@ -32,15 +32,18 @@ export default {
       namespace,
       roleModule,
       success,
+      project_id,
       ...props
     }) {
       const modal = Modal.open({
         onOk: data => {
-          store.create(data, { cluster, workspace, namespace }).then(() => {
-            Modal.close(modal)
-            Notify.success({ content: `${t('Invited Successfully')}!` })
-            success && success()
-          })
+          store
+            .create(data, { cluster, workspace, namespace, project_id })
+            .then(() => {
+              Modal.close(modal)
+              Notify.success({ content: `${t('Invited Successfully')}!` })
+              success && success()
+            })
         },
         modal: InviteMemberModal,
         store,
@@ -60,13 +63,14 @@ export default {
       workspace,
       namespace,
       success,
+      project_id,
       ...props
     }) {
       const modal = Modal.open({
         onOk: role => {
           store
             .update(
-              { ...detail, ...cluster, workspace, namespace },
+              { ...detail, ...cluster, workspace, namespace, project_id },
               {
                 username: detail.name,
                 roleRef: role,
@@ -86,11 +90,20 @@ export default {
     },
   },
   'member.remove': {
-    on({ store, detail, cluster, workspace, namespace, success, ...props }) {
+    on({
+      store,
+      detail,
+      cluster,
+      workspace,
+      namespace,
+      success,
+      project_id,
+      ...props
+    }) {
       const modal = Modal.open({
         onOk: () => {
           store
-            .delete({ ...detail, cluster, workspace, namespace })
+            .delete({ ...detail, cluster, workspace, namespace, project_id })
             .then(() => {
               Modal.close(modal)
               Notify.success({ content: `${t('Deleted Successfully')}!` })
@@ -108,13 +121,21 @@ export default {
     },
   },
   'member.remove.batch': {
-    on({ store, cluster, workspace, namespace, success, ...props }) {
+    on({
+      store,
+      cluster,
+      workspace,
+      namespace,
+      success,
+      project_id,
+      ...props
+    }) {
       const rowKeys = toJS(store.list.selectedRowKeys)
       const usernames = rowKeys.join(', ')
       const modal = Modal.open({
         onOk: () => {
           store
-            .batchDelete({ rowKeys, cluster, workspace, namespace })
+            .batchDelete({ rowKeys, cluster, workspace, namespace, project_id })
             .then(() => {
               Modal.close(modal)
               Notify.success({ content: `${t('Deleted Successfully')}!` })

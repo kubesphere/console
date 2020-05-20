@@ -54,8 +54,6 @@ export default class DevOpsStore extends Base {
 
   getBaseUrlV2 = () => 'kapis/devops.kubesphere.io/v1alpha2/'
 
-  getDetailUrl = project_id => `${this.getDevopsUrlV2()}/${project_id}`
-
   getResourceUrl = ({ workspace }) =>
     `${this.getBaseUrlV2()}workspaces/${workspace}/devops`
 
@@ -171,7 +169,8 @@ export default class DevOpsStore extends Base {
   }
 
   @action
-  async fetchDetail({ project_name }) {
+  async fetchDetail({ project_id }) {
+    const project_name = project_id.slice(0, -5)
     const detail = await request.get(
       this.getDevOpsDetailUrl(project_name),
       null,

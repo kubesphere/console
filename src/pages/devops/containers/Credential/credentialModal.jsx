@@ -24,7 +24,7 @@ import { observable, action } from 'mobx'
 import { observer } from 'mobx-react'
 import { Form, Modal } from 'components/Base'
 import { Input, Select, TextArea, Loading } from '@pitrix/lego-ui'
-import CredentialStore from 'stores/devops/cridential'
+import CredentialStore from 'stores/devops/credential'
 
 import styles from './index.scss'
 
@@ -54,6 +54,7 @@ export default class CredentialModal extends React.Component {
       this.formData = props.formTemplate
       this.type = props.formTemplate.type
     }
+
     if (props.credentialType) {
       this.type = props.credentialType
       this.formData.type = props.credentialType
@@ -103,8 +104,8 @@ export default class CredentialModal extends React.Component {
   isGetConfigLoading = false
 
   @action
-  async handleCreate(data, project_name, reject) {
-    return await this.store.handleCreate(data, { project_name }, reject)
+  async handleCreate(data, project_id, reject) {
+    return await this.store.handleCreate(data, { project_id }, reject)
   }
 
   @action
@@ -126,21 +127,21 @@ export default class CredentialModal extends React.Component {
 
   @action
   handleOk = () => {
-    const { isEditMode, project_name } = this.props
+    const { isEditMode, project_id } = this.props
     const formData = this.formRef.current.getData()
     this.isConflict = false
     this.formRef.current.validate(async () => {
       this.isSubmitting = true
-      this.updataFormData(formData)
+      this.updateFormData(formData)
 
       if (isEditMode) {
         await this.store
-          .updateCridential(formData, { project_name })
+          .updateCredential(formData, { project_id })
           .finally(() => {
             this.isSubmitting = false
           })
       } else {
-        await this.handleCreate(formData, project_name, resp => {
+        await this.handleCreate(formData, project_id, resp => {
           if (resp.status === 409) {
             this.isConflict = true
           }
@@ -154,7 +155,7 @@ export default class CredentialModal extends React.Component {
     })
   }
 
-  updataFormData(data) {
+  updateFormData(data) {
     if (data[this.type]) {
       data[this.type].id = data.id
     }
@@ -169,7 +170,7 @@ export default class CredentialModal extends React.Component {
     }
   }
 
-  renderCreidentForm = () => {
+  renderCredentForm = () => {
     switch (this.type) {
       case 'ssh':
         return (
@@ -274,7 +275,7 @@ export default class CredentialModal extends React.Component {
           {isEditMode ? (
             <div className={styles.desc}>{t('EDIT_CREDENTIAL_DESC')}</div>
           ) : null}
-          {this.renderCreidentForm()}
+          {this.renderCredentForm()}
           <Form.Item label={t('Description')}>
             <TextArea name="description" />
           </Form.Item>

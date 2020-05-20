@@ -23,7 +23,7 @@ import { toJS } from 'mobx'
 import { parse } from 'qs'
 import { omit } from 'lodash'
 
-import CridentialStore from 'stores/devops/cridential'
+import CredentialStore from 'stores/devops/credential'
 import EmptyTable from 'components/Cards/EmptyTable'
 import { getLocalTime } from 'utils'
 
@@ -38,7 +38,7 @@ class Credential extends React.Component {
   constructor(props) {
     super(props)
 
-    this.store = new CridentialStore()
+    this.store = new CredentialStore()
 
     this.formTemplate = {}
 
@@ -73,9 +73,9 @@ class Credential extends React.Component {
   }
 
   getData(params) {
-    const { project_name } = this.props.match.params
+    const { project_id } = this.props.match.params
     this.store.fetchList({
-      project_name,
+      namespace: project_id,
       ...params,
     })
   }
@@ -123,7 +123,7 @@ class Credential extends React.Component {
   getColumns = () => [
     {
       title: t('Name'),
-      dataIndex: 'id',
+      dataIndex: 'name',
       width: '24%',
       render: id => (
         <Link
@@ -160,7 +160,7 @@ class Credential extends React.Component {
       this.store.list
     )
 
-    const isEmptyList = isLoading === false && total === 0
+    const isEmptyList = isLoading === false && total === 0 && data.length <= 0
 
     const omitFilters = omit(filters, 'page')
 
@@ -168,7 +168,7 @@ class Credential extends React.Component {
       ? this.showCreate
       : null
 
-    if (isEmptyList && Object.keys(filters).length <= 0) {
+    if (isEmptyList) {
       return (
         <EmptyTable
           desc={t(`${this.name.toUpperCase()}_CREATE_DESC`)}
@@ -179,6 +179,7 @@ class Credential extends React.Component {
     }
 
     const pagination = { total, page, limit }
+
     return (
       <CICDTable
         data={data}
@@ -194,13 +195,13 @@ class Credential extends React.Component {
   }
 
   renderModals() {
-    const { project_name } = this.props.match.params
+    const { project_id } = this.props.match.params
     return (
       <CreateModal
         visible={this.state.showCreate}
         onOk={this.handleCreate}
         onCancel={this.hideCreate}
-        project_name={project_name}
+        project_id={project_id}
       />
     )
   }

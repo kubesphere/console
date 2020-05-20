@@ -918,3 +918,17 @@ export const DEFAULT_CLUSTER = {
     name: 'default',
   },
 }
+
+export const CREDENTIAL_KEY = {
+  username_password: 'basic-auth',
+  ssh: 'ssh-auth',
+  secret_text: 'secret-text',
+  kubeconfig: 'kubeconfig',
+}
+
+export const CREDENTIAL_DISPLAY_KEY = {
+  'basic-auth': 'username_password',
+  'ssh-auth': 'ssh',
+  'secret-text': 'secret_text',
+  kubeconfig: 'kubeconfig',
+}

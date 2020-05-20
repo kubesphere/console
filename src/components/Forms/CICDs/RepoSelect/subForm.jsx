@@ -27,7 +27,7 @@ import SCMStore from 'stores/devops/scm'
 import { REPO_TYPES, REPO_KEY_MAP } from 'utils/constants'
 import { ReactComponent as BackIcon } from 'src/assets/back.svg'
 
-import CredentialModal from 'devops/containers/Cridential/credentialModal'
+import CredentialModal from 'devops/containers/Credential/credentialModal'
 
 import GitForm from './GitForm'
 import GithubForm from './GithubForm'
@@ -239,7 +239,7 @@ export default class RepoSelectForm extends React.Component {
   }
 
   render() {
-    const { project_name } = this.props
+    const { project_id } = this.props
 
     return (
       <div className={styles.formWrapper}>
@@ -257,7 +257,7 @@ export default class RepoSelectForm extends React.Component {
           visible={this.showCredential}
           onOk={this.hideCreateCredential}
           onCancel={this.hideCreateCredential}
-          project_name={project_name}
+          project_id={project_id}
         />
       </div>
     )

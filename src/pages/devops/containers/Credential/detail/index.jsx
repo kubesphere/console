@@ -22,7 +22,7 @@ import { get } from 'lodash'
 
 import { getLocalTime } from 'utils'
 import { ICON_TYPES } from 'utils/constants'
-import CridentialStore from 'stores/devops/cridential'
+import CredentialStore from 'stores/devops/credential'
 
 import Base from 'core/containers/Base/Detail'
 import BaseInfo from 'core/containers/Base/Detail/BaseInfo'
@@ -45,7 +45,7 @@ class CredentialDetail extends Base {
 
   get updateTime() {
     const { detail } = this.store
-    const updateTime = get(detail, 'latestRun.startTime', '')
+    const updateTime = get(detail, 'createTime', '')
     if (!updateTime) {
       return '-'
     }
@@ -53,13 +53,13 @@ class CredentialDetail extends Base {
   }
 
   get listUrl() {
-    const { project_name } = this.props.match.params
+    const { project_id } = this.props.match.params
 
-    return `/devops/${project_name}/credentials`
+    return `/devops/${project_id}/credentials`
   }
 
   init() {
-    this.store = new CridentialStore(this.module)
+    this.store = new CredentialStore(this.module)
   }
 
   fetchData = () => {
@@ -86,7 +86,8 @@ class CredentialDetail extends Base {
   ]
 
   getAttrs = () => {
-    const { detail } = this.store
+    const { detail, usage } = this.store
+
     return [
       {
         name: t('Type'),
@@ -98,7 +99,7 @@ class CredentialDetail extends Base {
       },
       {
         name: t('domain'),
-        value: detail.domain,
+        value: usage.domain,
       },
     ]
   }
@@ -122,10 +123,11 @@ class CredentialDetail extends Base {
   }
 
   handleDelete = () => {
-    const { project_name } = this.props.match.params
+    const { project_id } = this.props.match.params
     const { detail } = this.store
+
     this.store.delete(detail.id).then(() => {
-      this.routing.push(`/devops/${project_name}/${this.module}`)
+      this.routing.push(`/devops/${project_id}/${this.module}`)
     })
   }
 
@@ -146,7 +148,7 @@ class CredentialDetail extends Base {
 
   renderExtraModals() {
     const { showEdit } = this.state
-    const { project_name } = this.props.match.params
+    const { project_id } = this.props.match.params
 
     return (
       <div>
@@ -156,7 +158,7 @@ class CredentialDetail extends Base {
           visible={showEdit}
           onOk={this.handleEdit}
           onCancel={this.hideEditModal}
-          project_name={project_name}
+          project_id={project_id}
           isEditMode
         />
       </div>

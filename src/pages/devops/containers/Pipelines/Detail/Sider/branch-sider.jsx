@@ -82,6 +82,7 @@ class BranchSider extends Base {
 
   fetchData = () => {
     const { params } = this.props.match
+    this.store.setProjectId(params.project_id)
     this.store.getBranchDetail(params)
     this.store.fetchDetail(params)
     this.getSonarqube()
@@ -151,7 +152,6 @@ class BranchSider extends Base {
   @action
   handleBranchSelect = async branch => {
     const { params } = this.props.match
-
     const result = await this.store.getBranchDetail({
       ...params,
       branch,

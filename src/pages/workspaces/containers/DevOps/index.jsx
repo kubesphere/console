@@ -83,7 +83,7 @@ export default class DevOps extends React.Component {
         <Avatar
           icon="strategy-group"
           iconSize={40}
-          to={`/devops/${record.name}`}
+          to={`/devops/${record.namespace}`}
           desc={record.description || '-'}
           title={name}
         />
@@ -114,9 +114,9 @@ export default class DevOps extends React.Component {
   showCreate = () =>
     this.props.trigger('devops.create', {
       ...this.props.match.params,
-      success: name => {
-        location.href = `/devops/${name}`
-      },
+      // success: namespace => {
+      //   location.href = `/devops/${namespace}`
+      // },
     })
   render() {
     const { bannerProps, tableProps } = this.props

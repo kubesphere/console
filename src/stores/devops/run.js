@@ -92,7 +92,7 @@ export default class PipelineRunStore extends BaseStore {
     this.commitsList = {
       data: result.changeSet || [],
       limit: TABLE_LIMIT,
-      total: result.changeSet.length,
+      total: result.changeSet ? result.changeSet.length : 0,
       page: parseInt(page, 10) || 1,
       filters: omit(filters, 'project_id'),
       isLoading: false,
