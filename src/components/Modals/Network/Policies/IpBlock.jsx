@@ -23,6 +23,7 @@ import { Select, Input, Icon } from '@pitrix/lego-ui'
 import { Modal, Button, Form } from 'components/Base'
 import ServiceStore from 'stores/service'
 import { generateId } from 'utils'
+import { PATTERN_IP, PATTERN_IP_MASK } from 'utils/constants'
 
 import styles from './index.scss'
 
@@ -86,14 +87,12 @@ export default class NetworkPoliciesIpBlockModal extends React.Component {
   validFormData = () => {
     const { cidr, portRules } = this.state
     const { ip, mask } = cidr
-    const ipReg = /^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/
-    const numReg = /^[1-9][0-9]*$/
-    cidr.ip.valid = ipReg.test(ip.value)
-    cidr.mask.valid = numReg.test(mask.value)
+    cidr.ip.valid = PATTERN_IP.test(ip.value)
+    cidr.mask.valid = PATTERN_IP_MASK.test(mask.value)
     let validated = cidr.ip.valid && cidr.mask.valid
 
     portRules.forEach(rule => {
-      rule.port.valid = numReg.test(rule.port.value)
+      rule.port.valid = PATTERN_IP_MASK.test(rule.port.value)
       validated = rule.port.valid
     })
     this.setState({

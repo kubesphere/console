@@ -17,8 +17,6 @@
  */
 
 export default {
-  'Network Policy': 'Network Policy',
-  'Network Policys': 'Network Policies',
   NETWORK_POLICY_DESC:
     'The network policy is configured to allow network isolation within the same cluster, that is, the ability to build a firewall between certain instances (pods).',
   NETWORK_POLICY_Q: 'how to use network strategy better?',
@@ -30,4 +28,19 @@ export default {
   NETWORK_POLICY_EMP_DESC:
     'If project network isolation is not enabled for the current project, it will allow other projects in the namespace to access directly by default. If network isolation is not enabled for the namespace, all projects in the cluster will be allowed to access',
   NETWORK_POLICY_STATUS: 'project network isolation',
+  NETWORK_POLICY_R_DESC1:
+    'You can set access to the following resources (matching any of the following policies)',
+  NETWORK_POLICY_R_DESC2:
+    'The following resources can be allowed to access the current project (matching any of the following policies)',
+  NETWORK_POLICY_R1_TITLE: 'Cluster internal whitelist',
+  NETWORK_POLICY_R1_DESC: 'Allows access to services within the cluster',
+  NETWORK_POLICY_R1_DESC1:
+    'Select the specified project or service as a whitelist member to allow these resources to access the current project.',
+  NETWORK_POLICY_R2_TITLE: 'Cluster external IP address',
+  NETWORK_POLICY_R2_DESC: 'Allow access to CIRD outside the cluster',
+  NETWORK_POLICY_R2_DESC1:
+    'Select a specific IP CIDR range to allow as an entry source or exit destination. Cluster external IP',
+  NETWORK_POLICY_D_DESC: 'Match Egress traffic and Ingress traffic',
+  NETWORK_POLICY_D_OP1: 'Egress',
+  NETWORK_POLICY_D_OP2: 'Ingress',
 }

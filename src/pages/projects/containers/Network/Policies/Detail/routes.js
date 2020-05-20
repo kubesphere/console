@@ -16,10 +16,25 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import Base from './base'
+import { getIndexRoute } from 'utils/router.config'
 
-export default class Network extends Base {
-  constructor(module = 'namespacenetworkpolicies') {
-    super(module)
-  }
-}
+import Egress from './Egress'
+import Ingress from './Ingress'
+// import Events from 'core/containers/Base/Detail/Events'
+// import EnvVariables from 'core/containers/Base/Detail/EnvVariables'
+
+export default path => [
+  {
+    path: `${path}/egress`,
+    title: t('Traffic Egress'),
+    component: Egress,
+    exact: true,
+  },
+  {
+    path: `${path}/ingress`,
+    title: t('Traffic Ingress'),
+    component: Ingress,
+    exact: true,
+  },
+  getIndexRoute({ path, to: `${path}/egress`, exact: true }),
+]

@@ -226,6 +226,8 @@ export const ICON_TYPES = {
   'volume-snapshots': 'snapshot',
   customresourcedefinitions: 'select',
   network: 'eip-group',
+  networkpolicies: 'firewall',
+  namespacenetworkpolicies: 'firewall',
 }
 
 export const MODULE_KIND_MAP = {
@@ -457,6 +459,8 @@ export const PATTERN_HOST = /^(?=^.{3,255}$)[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-z
 export const PATTERN_URL = /[a-zA-z]+:\/\/[^\s]*/
 export const PATTERN_VERSION_NO = /^\d+((\.|\d|^\s+|\s|\[)*)+((\d|\])$)/
 export const PATTERN_EMAIL = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/
+export const PATTERN_IP = /^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/
+export const PATTERN_IP_MASK = /^[1-9][0-9]*$/
 export const PATTERN_IMAGE_TAG = /^(.*?)([0-9a-zA-Z/]*)(:[-.\w]*[0-9a-zA-Z])*$/
 // https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-put-user.html#_path_parameters_76
 export const PATTERN_ES_USER_NAME = /^\b.{1,1024}\b$/
@@ -833,6 +837,7 @@ export const API_VERSIONS = {
   workspaceroles: 'apis/iam.kubesphere.io/v1alpha2',
   dashboards: 'apis/monitoring.kubesphere.io/v1alpha1',
   namespacenetworkpolicies: 'apis/network.kubesphere.io/v1alpha1',
+  networkpolicies: 'apis/networking.k8s.io/v1',
 }
 
 export const MONITOR_GRAPH_COLORS = [

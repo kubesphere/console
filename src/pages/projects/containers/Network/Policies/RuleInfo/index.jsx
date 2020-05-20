@@ -18,6 +18,7 @@
 
 import React from 'react'
 import { inject, observer } from 'mobx-react'
+import { toJS } from 'mobx'
 import { get, isEmpty } from 'lodash'
 import classNames from 'classnames'
 import { Icon } from '@pitrix/lego-ui'
@@ -197,7 +198,8 @@ export default class RuleInfo extends React.Component {
     const outerEgressData = []
     const outerIngressData = []
 
-    list.data.forEach(item => {
+    list.data.forEach(data => {
+      const item = get(toJS(data), '_originData')
       if (isEmpty(get(item, 'spec.egress[0].ports'))) {
         if (!isEmpty(get(item, 'spec.egress[0].to'))) {
           innerEgressData.push(item)
