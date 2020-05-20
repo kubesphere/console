@@ -47,7 +47,7 @@ import BaseInfo from '../containers/BaseInfo'
 import Visibility from '../containers/Visibility'
 import KubeCtl from '../containers/KubeCtl'
 import KubeConfig from '../containers/KubeConfig'
-import Policies from '../containers/Network/Policies'
+import NetworkPolicies from '../containers/Network/Policies'
 
 import detail from './detail'
 
@@ -187,8 +187,8 @@ export default [
         component: VolumeSnapshots,
       },
       {
-        path: `${PATH}/network-policies`,
-        component: Policies,
+        path: `${PATH}/networkpolicies`,
+        component: NetworkPolicies,
       },
       getIndexRoute({ path: PATH, to: `${PATH}/overview`, exact: true }),
       getIndexRoute({

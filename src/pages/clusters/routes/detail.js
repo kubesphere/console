@@ -25,6 +25,7 @@ import ServiceDetail from 'projects/containers/Services/Detail'
 import RouteDetail from 'projects/containers/Routes/Detail'
 import PodDetail from 'projects/containers/Pods/Detail'
 import ContainerDetail from 'projects/containers/Pods/Containers/Detail'
+import NetworkPoliciesDetail from 'projects/containers/Network/Policies/Detail'
 
 import NodeDetail from '../containers/Nodes/Detail'
 import ProjectDetail from '../containers/Projects/Detail'
@@ -112,6 +113,10 @@ export default [
   {
     path: `${PATH}/projects/:namespace/volumes/:name`,
     component: Volume,
+  },
+  {
+    path: `${PATH}/projects/:namespace/networkpolicies/:name`,
+    component: NetworkPoliciesDetail,
   },
   {
     path: `${PATH}/projects/:namespace`,

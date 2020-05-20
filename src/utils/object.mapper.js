@@ -946,6 +946,13 @@ const DashboardMapper = item => {
   }
 }
 
+const NetworkPoliciesMapper = item => ({
+  ...getBaseInfo(item),
+  namespace: get(item, 'metadata.namespace'),
+  _originData: getOriginData(item),
+  key: `${get(item, 'metadata.namespace')}-${get(item, 'metadata.name')}`,
+})
+
 export default {
   deployments: WorkLoadMapper,
   daemonsets: WorkLoadMapper,
@@ -992,4 +999,6 @@ export default {
   outputs: LogOutPutMapper,
   dashboards: DashboardMapper,
   customresourcedefinitions: CRDMapper,
+  networkpolicies: NetworkPoliciesMapper,
+  namespacenetworkpolicies: NetworkPoliciesMapper,
 }

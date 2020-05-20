@@ -22,6 +22,8 @@ export default {
   'Add WhiteList': '添加白名单',
   Egress: '出口',
   Ingress: '入口',
+  'Traffic Egress': '流量出口',
+  'Traffic Ingress': '流量入口',
   Direction: '方向',
   NETWORK_POLICY_DESC:
     '通过配置网络策略，允许在同个集群内实现网络的隔离，也就是可以在某些实例（Pod）之间架起防火墙。',

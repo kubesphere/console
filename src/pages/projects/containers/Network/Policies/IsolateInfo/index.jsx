@@ -19,7 +19,7 @@
 import React from 'react'
 import { Icon } from '@pitrix/lego-ui'
 import classNames from 'classnames'
-
+import { ICON_TYPES } from 'utils/constants'
 import styles from './index.scss'
 
 export default class IsolateInfo extends React.Component {
@@ -38,11 +38,12 @@ export default class IsolateInfo extends React.Component {
   }
   render() {
     const { opened } = this.state
+    const { module } = this.props
     return (
       <div className={styles.wrapper}>
         <div className={styles.left}>
           <Icon
-            name="firewall"
+            name={ICON_TYPES[module]}
             size={40}
             color={{
               primary: '#324558',

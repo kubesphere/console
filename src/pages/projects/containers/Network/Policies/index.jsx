@@ -22,9 +22,9 @@ import { get, set } from 'lodash'
 import Banner from 'components/Cards/Banner'
 import { Button, Panel } from 'components/Base'
 import EmptyList from 'components/Cards/EmptyList'
+import { ICON_TYPES } from 'utils/constants'
 import RuleInfo from './RuleInfo'
 import IsolateInfo from './IsolateInfo'
-
 import styles from './index.scss'
 
 @inject('projectStore')
@@ -90,7 +90,7 @@ export default class Policies extends React.Component {
     return (
       <div>
         <Banner
-          module="network"
+          module={module}
           className="margin-b12"
           title={t(name)}
           tips={tips}
@@ -99,7 +99,7 @@ export default class Policies extends React.Component {
         <div className={styles.subtitle}>{t(name)}</div>
         {!networkIsolate ? (
           <EmptyList
-            icon="hammer"
+            icon={ICON_TYPES[module]}
             title={t('NETWORK_POLICY_EMP_TITLE')}
             desc={t('NETWORK_POLICY_EMP_DESC')}
             actions={
@@ -114,6 +114,7 @@ export default class Policies extends React.Component {
         ) : (
           <Panel className={styles.wrapper}>
             <IsolateInfo
+              module={module}
               networkIsolate={networkIsolate}
               onEdit={this.handleEditNetworkIsolate}
             />
