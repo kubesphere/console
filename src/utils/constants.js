@@ -226,6 +226,8 @@ export const ICON_TYPES = {
   'volume-snapshots': 'snapshot',
   customresourcedefinitions: 'select',
   network: 'eip-group',
+  networkpolicies: 'firewall',
+  namespacenetworkpolicies: 'firewall',
 }
 
 export const MODULE_KIND_MAP = {
@@ -833,6 +835,7 @@ export const API_VERSIONS = {
   workspaceroles: 'apis/iam.kubesphere.io/v1alpha2',
   dashboards: 'apis/monitoring.kubesphere.io/v1alpha1',
   namespacenetworkpolicies: 'apis/network.kubesphere.io/v1alpha1',
+  networkpolicies: 'apis/networking.k8s.io/v1',
 }
 
 export const MONITOR_GRAPH_COLORS = [

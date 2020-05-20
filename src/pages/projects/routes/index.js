@@ -108,7 +108,7 @@ export default [
       { path: `${PATH}/volumes`, component: Volumes, exact: true },
       { path: `${PATH}/base-info`, component: BaseInfo, exact: true },
       {
-        path: `${PATH}/network-policies`,
+        path: `${PATH}/networkpolicies`,
         component: NetworkPolicies,
         exact: true,
       },

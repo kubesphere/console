@@ -17,13 +17,17 @@
  */
 
 import React from 'react'
+import { Link } from 'react-router-dom'
 // import { toJS } from 'mobx'
+import { Avatar } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import NetworkStore from 'stores/network'
 import withList, { ListPage } from 'components/HOCs/withList'
 // import Table from 'components/Tables/List'
 import ResourceTable from 'clusters/components/ResourceTable'
-import { getLocalTime } from 'utils'
+
+import { getLocalTime, getDisplayName } from 'utils'
+import { ICON_TYPES } from 'utils/constants'
 // import styles from './index.scss'
 
 @withList({
@@ -31,7 +35,7 @@ import { getLocalTime } from 'utils'
   name: 'Network Policy',
   module: 'networkpolicies',
 })
-export default class Policies extends React.Component {
+export default class NetworkPolicies extends React.Component {
   tips = [
     {
       title: t('NETWORK_POLICY_Q'),
@@ -48,24 +52,81 @@ export default class Policies extends React.Component {
     this.state = {}
   }
 
-  getData = async params => {
-    await this.store.fetchList({ ...params, ...this.props.match.params })
+  get itemActions() {
+    const { trigger } = this.props
+    return [
+      {
+        key: 'edit',
+        icon: 'pen',
+        text: t('Edit'),
+        action: 'edit',
+        onClick: item =>
+          trigger('resource.baseinfo.edit', {
+            detail: item,
+          }),
+      },
+      {
+        key: 'editYaml',
+        icon: 'pen',
+        text: t('Edit YAML'),
+        action: 'edit',
+        onClick: item =>
+          trigger('resource.yaml.edit', {
+            detail: item,
+          }),
+      },
+      {
+        key: 'delete',
+        icon: 'trash',
+        text: t('Delete'),
+        action: 'delete',
+        onClick: item =>
+          trigger('resource.delete', {
+            type: t(this.name),
+            detail: item,
+          }),
+      },
+    ]
   }
 
   getColumns = () => {
-    const { getSortOrder } = this.props
+    const { getSortOrder, module } = this.props
+    const { cluster } = this.props.match.params
     return [
       {
         title: t('Name'),
-        dataIndex: 'metadata.name',
+        dataIndex: 'name',
         sorter: true,
+        sortOrder: getSortOrder('name'),
         search: true,
+        render: (name, record) => (
+          <Avatar
+            icon={ICON_TYPES[module]}
+            iconSize={40}
+            title={getDisplayName(record)}
+            desc={record.description}
+            to={`/clusters/${cluster}/projects/${
+              record.namespace
+            }/${module}/${name}`}
+          />
+        ),
       },
       {
-        title: t('Updated Time'),
-        dataIndex: 'metadata.creationTimestamp',
+        title: t('Project'),
+        dataIndex: 'namespace',
+        isHideable: true,
+        width: '22%',
+        render: namespace => (
+          <Link to={`/clusters/${cluster}/projects/${namespace}`}>
+            {namespace}
+          </Link>
+        ),
+      },
+      {
+        title: t('Create Time'),
+        dataIndex: 'createTime',
         sorter: true,
-        sortOrder: getSortOrder('metadata.creationTimestamp'),
+        sortOrder: getSortOrder('createTime'),
         isHideable: true,
         width: 150,
         render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
@@ -73,19 +134,29 @@ export default class Policies extends React.Component {
     ]
   }
 
+  showCreate = () => {
+    const { query, match, module } = this.props
+    return this.props.trigger('workload.create', {
+      module,
+      namespace: query.namespace,
+      cluster: match.params.cluster,
+    })
+  }
+
   render() {
     const { tips } = this
     const { query, match, bannerProps, tableProps } = this.props
     return (
-      <ListPage {...this.props} getData={this.getData}>
+      <ListPage {...this.props}>
         <Banner {...bannerProps} tips={tips} />
         <ResourceTable
           {...tableProps}
-          columns={this.getColumns()}
-          // monitorLoading={false}
+          rowKey="key"
+          itemActions={this.itemActions}
           namespace={query.namespace}
+          columns={this.getColumns()}
+          onCreate={this.showCreate}
           cluster={match.params.cluster}
-          noWatch
         />
       </ListPage>
     )
