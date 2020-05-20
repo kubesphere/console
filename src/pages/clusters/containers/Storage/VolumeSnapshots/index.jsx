@@ -138,7 +138,7 @@ export default class VolumeSnapshot extends React.Component {
     const { query, bannerProps, tableProps } = this.props
 
     return (
-      <ListPage {...this.props}>
+      <ListPage {...this.props} noWatch>
         <Banner {...bannerProps} tabs={this.tabs} />
         <ResourceTable
           {...tableProps}

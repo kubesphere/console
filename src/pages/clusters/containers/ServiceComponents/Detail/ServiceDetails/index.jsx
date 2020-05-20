@@ -41,7 +41,7 @@ export default class ServiceDetails extends React.Component {
   }
 
   render() {
-    const { cluster, namespace, name } = this.props.match.params
+    const { cluster } = this.props.match.params
 
     if (this.serviceStore.isLoading) {
       return null
@@ -50,7 +50,7 @@ export default class ServiceDetails extends React.Component {
     return (
       <PodsCard
         detail={this.serviceStore.detail}
-        prefix={`/clusters/${cluster}/components/${namespace}/${name}`}
+        prefix={`/clusters/${cluster}`}
       />
     )
   }

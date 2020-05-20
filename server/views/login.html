@@ -30,7 +30,7 @@
         <div class="login-divider"></div>
         <% if (oauthServers) { %> <% oauthServers.forEach(function(server) { %>
         <div class="login-oauth" data-url="<%- server.url %>">
-          <span><%- t(server.title) %></span>
+          <span><%- t('Log In with %s', server.title) %></span>
         </div>
         <% }) %> <% } %> <% if (error) { %>
         <div class="login-error">
@@ -138,6 +138,11 @@
           Array.prototype.forEach.call($oauthBtns, function(el) {
             el.addEventListener('click', handleOAuthLogin)
           })
+
+          // clear error login data. prevent auto submit on page reloading.
+          if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href)
+          }
         }
 
         function ready(fn) {

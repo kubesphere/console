@@ -73,7 +73,7 @@ export default class BaseMonitoringStore {
   }
 
   get apiVersion() {
-    if (this.cluster) {
+    if (globals.app.isMultiCluster && this.cluster) {
       return `kapis/clusters/${this.cluster}/monitoring.kubesphere.io/v1alpha3`
     }
     return 'kapis/monitoring.kubesphere.io/v1alpha3'
@@ -277,7 +277,9 @@ export default class BaseMonitoringStore {
   @action
   checkEtcd = async () => {
     const api = `apis${
-      this.cluster ? `/clusters/${this.cluster}` : ''
+      this.cluster && globals.app.isMultiCluster
+        ? `/clusters/${this.cluster}`
+        : ''
     }/monitoring.coreos.com/v1/namespaces/kubesphere-monitoring-system/servicemonitors/etcd`
     this.etcdChecking = true
 

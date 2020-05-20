@@ -307,6 +307,10 @@ export default class GlobalValue {
     // return globals.user.cluster_role === 'cluster-admin'
   }
 
+  get isMultiCluster() {
+    return globals.ksConfig.multicluster
+  }
+
   hasKSModule(module) {
     return isEmpty(globals.ksConfig) || get(globals.ksConfig, module)
   }

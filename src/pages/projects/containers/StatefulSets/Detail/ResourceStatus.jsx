@@ -21,11 +21,15 @@ import { observer, inject } from 'mobx-react'
 import { get } from 'lodash'
 
 import { Component as Base } from 'projects/containers/Deployments/Detail/ResourceStatus'
+import ResourceStore from 'stores/workload/resource'
+
 import ServiceCard from './ServiceCard'
 
 @inject('detailStore', 'fedDetailStore')
 @observer
 class ResourceStatus extends Base {
+  resourceStore = new ResourceStore()
+
   get serviceName() {
     return get(this.store.detail, 'spec.serviceName', '')
   }

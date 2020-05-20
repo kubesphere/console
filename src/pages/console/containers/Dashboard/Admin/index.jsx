@@ -39,11 +39,19 @@ export default class AdminDashboard extends React.Component {
             title={get(globals, 'config.version.kubesphere')}
             description={t('Platform Version')}
           />
-          <Text
-            title={3}
-            description={t('Clusters Number')}
-            onClick={this.handleClusterClick}
-          />
+          {globals.app.isMultiCluster ? (
+            <Text
+              title={3}
+              description={t('Clusters Number')}
+              onClick={this.handleClusterClick}
+            />
+          ) : (
+            <Text
+              title={1}
+              description={t('Clusters Number')}
+              onClick={this.handleClusterClick}
+            />
+          )}
         </Panel>
         <Panel className={styles.status} title={t('Platform Running Status')}>
           <PlatformStatus />

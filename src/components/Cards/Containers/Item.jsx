@@ -136,6 +136,7 @@ export default class ContainerItem extends React.Component {
       podName,
       cluster,
       isInit,
+      onContainerClick,
       ...rest
     } = this.props
     const { showContainerLog } = this.state
@@ -154,7 +155,9 @@ export default class ContainerItem extends React.Component {
         <div className={classnames(styles.text, styles.name)}>
           <div>
             {prefix && status !== 'terminated' ? (
-              <Link to={link}>{detail.name}</Link>
+              <Link to={link}>
+                <span onClick={onContainerClick}>{detail.name}</span>
+              </Link>
             ) : (
               <span className={styles.noLink}>{detail.name}</span>
             )}

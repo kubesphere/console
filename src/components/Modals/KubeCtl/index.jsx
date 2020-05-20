@@ -59,7 +59,7 @@ export default class KubeCtlModal extends React.Component {
 
   get clusters() {
     return this.clusterStore.list.data
-      .filter(item => get(item, 'conditions.Ready.status') === 'True')
+      .filter(item => item.isReady)
       .map(item => ({
         label: item.name,
         value: item.name,
@@ -95,7 +95,7 @@ export default class KubeCtlModal extends React.Component {
   renderTips() {
     return (
       <div>
-        {!this.props.cluster && (
+        {!this.props.cluster && globals.app.isMultiCluster && (
           <TypeSelect
             options={this.clusters}
             value={this.state.cluster}

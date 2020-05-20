@@ -20,6 +20,7 @@ import { isEmpty, set, intersection } from 'lodash'
 import { action, observable } from 'mobx'
 import ObjectMapper from 'utils/object.mapper'
 import { formatRules } from 'utils'
+import { DEFAULT_CLUSTER } from 'utils/constants'
 
 import Base from 'stores/base'
 import List from 'stores/base.list'
@@ -101,10 +102,15 @@ export default class WorkspaceStore extends Base {
 
     const params = {}
 
-    const result = await request.get(
-      `kapis/tenant.kubesphere.io/v1alpha2/workspaces/${workspace}/clusters`,
-      params
-    )
+    let result
+    if (globals.app.isMultiCluster) {
+      result = await request.get(
+        `kapis/tenant.kubesphere.io/v1alpha2/workspaces/${workspace}/clusters`,
+        params
+      )
+    } else {
+      result = { items: [DEFAULT_CLUSTER] }
+    }
 
     const items = result.items.map(ObjectMapper.clusters)
 

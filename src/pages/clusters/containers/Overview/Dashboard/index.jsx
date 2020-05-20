@@ -51,7 +51,7 @@ export default class Dashboard extends React.Component {
         </div>
         <Columns>
           <Column>
-            <ClusterInfo cluster={detail} />
+            {globals.app.isMultiCluster && <ClusterInfo cluster={detail} />}
             <ServiceComponents cluster={match.params.cluster} />
             <ResourcesUsage cluster={match.params.cluster} />
             <Tools cluster={match.params.cluster} />

@@ -33,15 +33,21 @@ import ClusterSelect from './ClusterSelect'
 
 class ResourceTable extends BaseTable {
   renderNormalTitle() {
-    const { hideCustom, cluster, module } = this.props
+    const { hideCustom, cluster, clusters, module } = this.props
 
     return (
       <Level>
-        <LevelLeft>
-          <LevelItem>
-            <ClusterSelect cluster={cluster} module={module} />
-          </LevelItem>
-        </LevelLeft>
+        {globals.app.isMultiCluster && (
+          <LevelLeft>
+            <LevelItem>
+              <ClusterSelect
+                cluster={cluster}
+                module={module}
+                clusters={clusters}
+              />
+            </LevelItem>
+          </LevelLeft>
+        )}
         <LevelItem>{this.renderSearch()}</LevelItem>
         <LevelRight>
           <Buttons>

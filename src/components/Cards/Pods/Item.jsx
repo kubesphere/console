@@ -109,7 +109,12 @@ export default class PodItem extends React.PureComponent {
     )
   }
 
-  getLink = name => `${this.props.prefix}/pods/${name}`
+  getLink = () => {
+    const { detail } = this.props
+    return `${this.props.prefix}/projects/${detail.namespace}/pods/${
+      detail.name
+    }`
+  }
 
   getMonitoringCfgs = metrics => [
     {
@@ -151,6 +156,10 @@ export default class PodItem extends React.PureComponent {
   handleExpandExtra = () => {
     const { detail, onExpand } = this.props
     onExpand(detail.name)
+  }
+
+  handleLinkClick = () => {
+    localStorage.setItem('pod-detail-referrer', location.pathname)
   }
 
   renderStatusTip() {
@@ -223,7 +232,13 @@ export default class PodItem extends React.PureComponent {
       <div className={styles.content}>
         <div className={styles.text}>
           <div>
-            {prefix ? <Link to={this.getLink(name)}>{name}</Link> : name}
+            {prefix ? (
+              <Link to={this.getLink()}>
+                <span onClick={this.handleLinkClick}>{name}</span>
+              </Link>
+            ) : (
+              name
+            )}
           </div>
           {this.getUpdateStatus()}
         </div>
@@ -265,20 +280,22 @@ export default class PodItem extends React.PureComponent {
           {containers.map(container => (
             <ContainerItem
               key={container.name}
-              prefix={prefix && this.getLink(name)}
+              prefix={prefix && this.getLink()}
               podName={name}
               detail={container}
               cluster={cluster}
+              onContainerClick={this.handleLinkClick}
               isCreating={this.isCreating}
             />
           ))}
           {initContainers.map(container => (
             <ContainerItem
               key={container.name}
-              prefix={prefix && this.getLink(name)}
+              prefix={prefix && this.getLink()}
               podName={name}
               detail={container}
               cluster={cluster}
+              onContainerClick={this.handleLinkClick}
               isCreating={this.isCreating}
               isInit
             />

@@ -40,6 +40,8 @@ export default {
   'Kubernetes Settings': 'Kubernetes 设置',
   'Connect Method': '连接方式',
 
+  'Kubernetes Version': 'Kubernetes 版本',
+
   'Cluster List': '集群列表',
   'Cluster Info': '集群信息',
   'Kubernetes Status': 'Kubernetes 组件状态',

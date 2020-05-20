@@ -17,6 +17,7 @@
  */
 
 import React, { Component } from 'react'
+import classNames from 'classnames'
 import { observer } from 'mobx-react'
 import { Checkbox } from '@pitrix/lego-ui'
 import { Text, Tag } from 'components/Base'
@@ -31,10 +32,14 @@ export default class ClusterSettings extends Component {
   clusterStore = new ClusterStore()
 
   componentDidMount() {
-    this.clusterStore.fetchList({
-      limit: -1,
-      label: 'cluster.kubesphere.io/visibility=public',
-    })
+    this.clusterStore
+      .fetchList({
+        limit: -1,
+        label: 'cluster.kubesphere.io/visibility=public',
+      })
+      .then(() => {
+        this.props.onChange(this.clusterStore.list.data.map(item => item.name))
+      })
   }
 
   handleClick = e => {
@@ -58,15 +63,20 @@ export default class ClusterSettings extends Component {
         {this.clusterStore.list.data.map(cluster => (
           <div
             key={cluster.name}
-            className={styles.item}
+            className={classNames(styles.item, {
+              [styles.disabled]: !globals.app.isMultiCluster,
+            })}
             data-cluster={cluster.name}
-            onClick={this.handleClick}
+            onClick={globals.app.isMultiCluster ? this.handleClick : null}
           >
-            <Checkbox checked={value.includes(cluster.name)} />
+            <Checkbox
+              checked={value.includes(cluster.name)}
+              disabled={!globals.app.isMultiCluster}
+            />
             <Text
               icon={CLUSTER_PROVIDER_ICON[cluster.provider] || 'kubernetes'}
               title={cluster.name}
-              description={cluster.description || '-'}
+              description={cluster.description || t('Cluster Name')}
             />
             {cluster.group && (
               <Tag className={styles.tag} type="info">

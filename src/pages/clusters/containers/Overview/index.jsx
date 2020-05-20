@@ -16,7 +16,6 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get } from 'lodash'
 import React from 'react'
 import { observer, inject } from 'mobx-react'
 
@@ -31,9 +30,9 @@ export default class Overview extends React.Component {
   }
 
   render() {
-    const { conditions } = this.cluster.detail
+    const { isReady } = this.cluster.detail
 
-    if (get(conditions, 'Ready.status') !== 'True') {
+    if (!isReady) {
       return <Initializing store={this.cluster} />
     }
 

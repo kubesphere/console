@@ -465,9 +465,11 @@ export const getClusterUrl = url => {
   const match = requestURL.match(reg)
 
   if (match && match.length === 5) {
-    requestURL = `/${match[1]}/${match[3].replace('klusters', 'clusters')}/${
-      match[2]
-    }/${match[4]}`
+    requestURL = globals.app.isMultiCluster
+      ? `/${match[1]}/${match[3].replace('klusters', 'clusters')}/${match[2]}/${
+          match[4]
+        }`
+      : `/${match[1]}/${match[2]}/${match[4]}`
   }
 
   return requestURL

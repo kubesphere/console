@@ -55,10 +55,12 @@ export default class BaseInfo extends React.Component {
           </div>
         </div>
         <div className={styles.content}>
-          <div className={styles.text}>
-            <div>{detail.cluster || '-'}</div>
-            <p>{t('Cluster')}</p>
-          </div>
+          {globals.app.isMultiCluster && (
+            <div className={styles.text}>
+              <div>{detail.cluster || '-'}</div>
+              <p>{t('Cluster')}</p>
+            </div>
+          )}
           <div className={styles.text}>
             <div>
               {detail.workspace ? (

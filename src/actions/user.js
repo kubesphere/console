@@ -76,7 +76,7 @@ export default {
             return
           }
 
-          store.update(data, detail).then(() => {
+          store.update(detail, data).then(() => {
             Modal.close(modal)
             Notify.success({ content: `${t('Updated Successfully')}!` })
             success && success()

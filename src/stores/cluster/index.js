@@ -16,7 +16,10 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { get, cloneDeep } from 'lodash'
 import { action, observable } from 'mobx'
+
+import { LIST_DEFAULT_ORDER, DEFAULT_CLUSTER } from 'utils/constants'
 
 import Base from 'stores/base'
 
@@ -34,6 +37,66 @@ export default class ClusterStore extends Base {
 
   getAgentUrl = ({ cluster }) =>
     `kapis/cluster.kubesphere.io/v1alpha1/clusters/${cluster}/agent/deployment`
+
+  @action
+  async fetchList({ cluster, workspace, namespace, more, ...params } = {}) {
+    this.list.isLoading = true
+
+    if (!params.sortBy && params.ascending === undefined) {
+      params.sortBy = LIST_DEFAULT_ORDER[this.module] || 'createTime'
+    }
+
+    if (params.limit === Infinity || params.limit === -1) {
+      params.limit = -1
+      params.page = 1
+    }
+
+    params.limit = params.limit || 10
+
+    let result
+    if (!globals.app.isMultiCluster) {
+      result = { items: [DEFAULT_CLUSTER] }
+    } else {
+      result = await request.get(
+        this.getResourceUrl({ cluster, workspace, namespace }),
+        params
+      )
+    }
+
+    const data = get(result, 'items', []).map(item => ({
+      cluster,
+      ...this.mapper(item),
+    }))
+
+    this.list.update({
+      data: more ? [...this.list.data, ...data] : data,
+      total: result.totalItems || result.total_count || data.length || 0,
+      ...params,
+      limit: Number(params.limit) || 10,
+      page: Number(params.page) || 1,
+      isLoading: false,
+      ...(this.list.silent ? {} : { selectedRowKeys: [] }),
+    })
+
+    return data
+  }
+
+  @action
+  async fetchDetail(params) {
+    this.isLoading = true
+
+    let detail
+    if (params.name === 'default' && !globals.app.isMultiCluster) {
+      detail = this.mapper(cloneDeep(DEFAULT_CLUSTER))
+    } else {
+      const result = await request.get(this.getDetailUrl(params))
+      detail = { ...params, ...this.mapper(result) }
+    }
+
+    this.detail = detail
+    this.isLoading = false
+    return detail
+  }
 
   @action
   async fetchAgent(params) {

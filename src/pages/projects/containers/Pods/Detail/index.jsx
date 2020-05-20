@@ -57,6 +57,12 @@ export default class PodDetail extends React.Component {
       path,
     } = this.props.match
 
+    const referrer = localStorage.getItem('pod-detail-referrer')
+
+    if (referrer) {
+      return referrer
+    }
+
     let suffix = this.module
     if (module && name) {
       suffix = `${module}/${name}`

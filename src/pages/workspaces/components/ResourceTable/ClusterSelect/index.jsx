@@ -19,44 +19,19 @@
 import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react'
 import { withRouter } from 'react-router'
-import { SearchSelect } from 'components/Base'
+import { Select } from '@pitrix/lego-ui'
 
 import styles from './index.scss'
 
 @withRouter
-@inject('rootStore', 'workspaceStore')
+@inject('rootStore')
 @observer
 export default class ClusterSelect extends Component {
-  workspaceStore = this.props.workspaceStore
-
   routing = this.props.rootStore.routing
-
-  componentDidMount() {
-    this.fetchClusters()
-  }
 
   get workspace() {
     return this.props.match.params.workspace
   }
-
-  get clusters() {
-    return this.workspaceStore.clusters.data.map(item => ({
-      label: item.name,
-      value: item.name,
-    }))
-  }
-
-  get hostCluster() {
-    const cluster =
-      this.workspaceStore.clusters.data.find(item => item.isHost) || {}
-    return cluster.name || ''
-  }
-
-  fetchClusters = (params = {}) =>
-    this.workspaceStore.fetchClusters({
-      ...params,
-      workspace: this.workspace,
-    })
 
   handleChange = cluster => {
     const { module } = this.props
@@ -69,20 +44,15 @@ export default class ClusterSelect extends Component {
   valueRenderer = option => `${t('Cluster')}: ${option.label}`
 
   render() {
-    const { cluster = this.hostCluster } = this.props
+    const { cluster, clusters } = this.props
 
     return (
-      <SearchSelect
+      <Select
         className={styles.select}
         value={cluster}
         onChange={this.handleChange}
-        options={this.clusters}
+        options={clusters}
         valueRenderer={this.valueRenderer}
-        page={this.workspaceStore.clusters.page}
-        total={this.workspaceStore.clusters.total}
-        currentLength={this.workspaceStore.clusters.data.length}
-        isLoading={this.workspaceStore.clusters.isLoading}
-        onFetch={this.fetchClusters}
       />
     )
   }
