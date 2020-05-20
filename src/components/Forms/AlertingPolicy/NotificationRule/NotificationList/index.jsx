@@ -74,6 +74,7 @@ export default class NotificationList extends React.Component {
       name: owner.username,
       address: owner.email,
       avatar: owner.avatar_url,
+      cluster: this.props.cluster,
     }
 
     data.id = await this.store.markSureMailInList(data)
@@ -100,13 +101,15 @@ export default class NotificationList extends React.Component {
     )
 
     if (!isExist) {
-      this.store.markSureMailInList(newItem).then(id => {
-        const addressList = uniqBy(
-          [...this.state.addressList, { ...newItem, id }],
-          'address'
-        )
-        this.setAddressList(addressList)
-      })
+      this.store
+        .markSureMailInList({ ...newItem, cluster: this.props.cluster })
+        .then(id => {
+          const addressList = uniqBy(
+            [...this.state.addressList, { ...newItem, id }],
+            'address'
+          )
+          this.setAddressList(addressList)
+        })
     }
   }
 

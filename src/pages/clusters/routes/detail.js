@@ -36,6 +36,8 @@ import VolumeSnapshotsDetail from '../containers/Storage/VolumeSnapshots/Detail'
 import ComponentDetail from '../containers/ServiceComponents/Detail'
 import CustomResourceDetail from '../containers/CustomResources/Detail'
 import RoleDetail from '../containers/Roles/Detail'
+import AlertPolicyDetail from '../containers/Alerting/Policies/Detail'
+import AlertMessageDetail from '../containers/Alerting/Messages/Detail'
 
 const PATH = '/clusters/:cluster'
 
@@ -51,6 +53,14 @@ export default [
   {
     path: `${PATH}/roles/:name`,
     component: RoleDetail,
+  },
+  {
+    path: `${PATH}/alert-policies/:name`,
+    component: AlertPolicyDetail,
+  },
+  {
+    path: `${PATH}/alert-messages/:id`,
+    component: AlertMessageDetail,
   },
   {
     path: `${PATH}/components/:namespace/:name`,

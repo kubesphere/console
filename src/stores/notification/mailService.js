@@ -50,7 +50,7 @@ export default class AddressStore extends Base {
   }
 
   get mailServiceVersion2Path() {
-    return `${this.apiVersion2}/serviceconfigs`
+    return 'kapis/notification.kubesphere.io/v2/serviceconfigs'
   }
 
   @action

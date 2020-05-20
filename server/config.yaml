@@ -268,12 +268,12 @@ client:
           icon: monitor
           children:
             - {
-                name: alert-message,
+                name: alert-messages,
                 title: Alerting Message,
                 authKey: 'alerting',
               }
             - {
-                name: alert-policy,
+                name: alert-policies,
                 title: Alerting Policy,
                 authKey: 'alerting',
               }

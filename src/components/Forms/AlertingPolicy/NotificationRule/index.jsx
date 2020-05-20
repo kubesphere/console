@@ -140,6 +140,7 @@ export default class NotificationRule extends React.Component {
   renderNotificationList() {
     return (
       <NotificationList
+        cluster={this.props.cluster}
         formTemplate={this.props.formTemplate}
         notifyTypes={this.state.notifyTypes}
       />

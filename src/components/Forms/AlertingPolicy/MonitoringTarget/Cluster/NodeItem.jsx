@@ -41,7 +41,7 @@ export default class NodeItem extends React.Component {
   }
 
   get node() {
-    return get(this.props.data, 'name')
+    return get(this.props.data, 'node')
   }
 
   getMetricCfgs = (data = {}) => [
