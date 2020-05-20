@@ -72,7 +72,7 @@ export default class ProjectInfo extends React.Component {
             <p>{t('Workspace')}</p>
           </div>
           <div className={styles.item}>
-            <div>{get(detail, 'creator', '-')}</div>
+            <div>{get(detail, 'creator') || '-'}</div>
             <p>{t('Creator')}</p>
           </div>
           <div className={styles.item}>

@@ -35,7 +35,7 @@ export default class BaseInfo extends React.Component {
         </div>
         <Form data={formTemplate} ref={formRef}>
           <Form.Item label={t('Available Clusters')}>
-            <ClusterSelect name="clusters" defaultValue={[]} />
+            <ClusterSelect name="clusters" />
           </Form.Item>
         </Form>
       </div>

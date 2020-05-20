@@ -159,6 +159,7 @@ export default class PodsCard extends React.Component {
         result.namespace = name
         break
       default:
+        result.ownerKind = kind === 'Deployment' ? 'ReplicaSet' : kind
         result.labelSelector = joinSelector(selector)
     }
     return result

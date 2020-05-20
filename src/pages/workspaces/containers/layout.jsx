@@ -50,8 +50,10 @@ class WorkspaceLayout extends Component {
   async init(params) {
     this.store.initializing = true
 
-    await this.store.fetchDetail(params)
-
+    await Promise.all([
+      this.store.fetchDetail(params),
+      this.store.fetchClusters({ workspace: this.workspace, limit: -1 }),
+    ])
     // const workspaceRule = get(
     //   globals.user,
     //   `workspace_rules[${params.workspace}]`

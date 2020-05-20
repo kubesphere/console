@@ -130,6 +130,8 @@ export default class ResourceMonitorModal extends React.Component {
         }),
         this.fetchNamespaces
       )
+    } else {
+      this.fetchNamespaces()
     }
   }
 

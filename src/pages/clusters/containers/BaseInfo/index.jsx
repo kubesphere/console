@@ -53,9 +53,7 @@ export default class Overview extends React.Component {
   monitorStore = new ClusterMonitorStore()
 
   componentDidMount() {
-    const isReady =
-      get(this.cluster.detail, 'conditions.Ready.status') === 'True'
-    if (isReady) {
+    if (this.cluster.detail.isReady) {
       this.fetchData()
     }
   }
@@ -143,7 +141,7 @@ export default class Overview extends React.Component {
               title={name}
               description={t('Cluster')}
             />
-            <Text title={provider} description={t('Provider')} />
+            {provider && <Text title={provider} description={t('Provider')} />}
             <Text
               title={kubernetesVersion}
               description={t('Kubernetes Version')}
@@ -160,25 +158,27 @@ export default class Overview extends React.Component {
             ))}
           </div>
         </Panel>
-        <Panel title={t('Unbind Cluster')}>
-          <Alert
-            className={styles.tip}
-            type="error"
-            title={`${t('Unbind Cluster')} ?`}
-            message={t('UNBIND_CLUSTER_DESC')}
-          />
-          <Button
-            className={styles.unbind}
-            type="danger"
-            disabled={!this.state.confirm}
-            onClick={this.handleUnbind}
-          >
-            {t('Unbind')}
-          </Button>
-          <Checkbox onChange={this.handleChange}>
-            {t('SURE_TO_UNBIND_CLUSTER')}
-          </Checkbox>
-        </Panel>
+        {globals.app.isMultiCluster && (
+          <Panel title={t('Unbind Cluster')}>
+            <Alert
+              className={styles.tip}
+              type="error"
+              title={`${t('Unbind Cluster')} ?`}
+              message={t('UNBIND_CLUSTER_DESC')}
+            />
+            <Button
+              className={styles.unbind}
+              type="danger"
+              disabled={!this.state.confirm}
+              onClick={this.handleUnbind}
+            >
+              {t('Unbind')}
+            </Button>
+            <Checkbox onChange={this.handleChange}>
+              {t('SURE_TO_UNBIND_CLUSTER')}
+            </Checkbox>
+          </Panel>
+        )}
       </>
     )
   }

@@ -91,6 +91,10 @@ export default class Password extends React.Component {
     this.setState({ showTip: strength > -1 })
   }
 
+  handleInputBlur = () => {
+    this.setState({ showTip: false })
+  }
+
   getColor = () => {
     const { strength } = this.state
 
@@ -170,7 +174,7 @@ export default class Password extends React.Component {
             className={tipClassName}
             visible={showTip && strength > -1}
             content={this.renderStrengthContent()}
-            placement="bottomLeft"
+            placement="bottomRight"
             closeAfterClick={false}
             onClose={this.handleDropdownClose}
           >
@@ -179,6 +183,7 @@ export default class Password extends React.Component {
           <InputPassword
             {...rest}
             onChange={this.handleChange}
+            onBlur={this.handleInputBlur}
             onClick={this.handleInputClick}
           />
         </div>

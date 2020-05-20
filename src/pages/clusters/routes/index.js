@@ -54,7 +54,18 @@ const PATH = '/clusters/:cluster'
 
 export default [
   ...detail,
-  { path: '/clusters', component: Clusters, exact: true },
+  {
+    path: '/clusters',
+    component: Clusters,
+    redirect: globals.app.isMultiCluster
+      ? null
+      : {
+          from: '/clusters',
+          to: '/clusters/default/overview',
+          exact: true,
+        },
+    exact: true,
+  },
   { path: '/clusters/add', component: AddCluster, exact: true },
   {
     path: `/clusters/:cluster/kubectl`,

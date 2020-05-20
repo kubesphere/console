@@ -164,9 +164,11 @@ export default class Overview extends React.Component {
               }
               description={t('Cluster Visibility')}
             />
-            <Button onClick={this.editVisibility}>
-              {t('Edit Visibility')}
-            </Button>
+            {globals.app.isMultiCluster && (
+              <Button onClick={this.editVisibility}>
+                {t('Edit Visibility')}
+              </Button>
+            )}
           </div>
           {this.renderVisibility()}
         </Panel>

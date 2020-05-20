@@ -17,7 +17,10 @@
  */
 
 import React from 'react'
+import { computed, get } from 'mobx'
+import { inject } from 'mobx-react'
 import { isUndefined } from 'lodash'
+import { parse } from 'qs'
 
 import { Avatar, Status } from 'components/Base'
 import Banner from 'components/Cards/Banner'
@@ -29,26 +32,60 @@ import { getSuitableValue } from 'utils/monitoring'
 
 import ProjectStore from 'stores/project'
 
+@inject('workspaceStore')
 @withList({
   store: new ProjectStore(),
   name: 'Project',
   module: 'projects',
 })
 export default class Projects extends React.Component {
+  workspaceStore = this.props.workspaceStore
+
+  @computed
+  get clusters() {
+    return this.workspaceStore.clusters.data.map(item => ({
+      label: item.name,
+      value: item.name,
+    }))
+  }
+
+  @computed
+  get cluster() {
+    const params = parse(location.search.slice(1))
+    return params.cluster || this.hostCluster
+  }
+
+  @computed
+  get hostCluster() {
+    return get(
+      this.workspaceStore.clusters.data.find(cluster => cluster.isHost) ||
+        this.workspaceStore.clusters.data[0],
+      'name'
+    )
+  }
+
+  getData = async ({ silent, ...params } = {}) => {
+    this.query = params
+
+    const { store } = this.props
+
+    silent && (store.list.silent = true)
+    await store.fetchList({
+      cluster: this.cluster,
+      ...this.props.match.params,
+      ...params,
+    })
+    store.list.silent = false
+  }
+
   get itemActions() {
     const { trigger } = this.props
-    const showAction = record =>
-      record.isFedManaged
-        ? !record.cluster || record.cluster === 'gondor'
-        : true
-
     return [
       {
         key: 'edit',
         icon: 'pen',
         text: t('Edit'),
         action: 'edit',
-        show: showAction,
         onClick: item => trigger('resource.baseinfo.edit', { detail: item }),
       },
       {
@@ -56,7 +93,6 @@ export default class Projects extends React.Component {
         icon: 'pen',
         text: t('Edit Quota'),
         action: 'edit',
-        show: showAction,
         onClick: item =>
           trigger('project.quota.edit', {
             type: t('Project'),
@@ -68,7 +104,6 @@ export default class Projects extends React.Component {
         icon: 'trash',
         text: t('Delete'),
         action: 'delete',
-        show: showAction,
         onClick: item =>
           trigger('resource.delete', {
             type: t('Project'),
@@ -105,7 +140,7 @@ export default class Projects extends React.Component {
             to={
               record.status === 'Terminating'
                 ? null
-                : `/cluster/${record.cluster || 'gondor'}/projects/${name}`
+                : `/cluster/${record.cluster}/projects/${name}`
             }
             icon="project"
             iconSize={40}
@@ -149,9 +184,9 @@ export default class Projects extends React.Component {
     })
 
   render() {
-    const { query, bannerProps, tableProps } = this.props
+    const { bannerProps, tableProps } = this.props
     return (
-      <ListPage {...this.props}>
+      <ListPage {...this.props} getData={this.getData}>
         <Banner {...bannerProps} tips={this.tips} />
         <Table
           {...tableProps}
@@ -159,7 +194,8 @@ export default class Projects extends React.Component {
           columns={this.getColumns()}
           onCreate={this.showCreate}
           searchType="keyword"
-          cluster={query.cluster}
+          cluster={this.cluster}
+          clusters={this.clusters}
           getCheckboxProps={this.getCheckboxProps}
         />
       </ListPage>

@@ -139,36 +139,36 @@ const getCurrentUser = async ctx => {
 }
 
 const getOAuthInfo = async () => {
-  const resp = []
-  // try {
-  //   resp = await send_gateway_request({
-  //     method: 'GET',
-  //     url: `/apis/iam.kubesphere.io/v1alpha2/oauth/configs`,
-  //   })
-  // } catch (error) {
-  //   console.error(error)
-  // }
+  let resp = []
+  try {
+    resp = await send_gateway_request({
+      method: 'GET',
+      url: `/kapis/config.kubesphere.io/v1alpha2/configs/oauth`,
+    })
+  } catch (error) {
+    console.error(error)
+  }
 
   const servers = []
-  if (!isEmpty(resp)) {
-    resp.forEach(item => {
-      if (item && item.Endpoint) {
-        const title = item.Description
+  if (resp && !isEmpty(resp.identityProviders)) {
+    resp.identityProviders.forEach(item => {
+      if (item && item.provider) {
+        const title = item.name
         const params = {
-          state: item.Name,
-          client_id: item.ClientID,
+          state: item.name,
+          client_id: item.provider.clientID,
           response_type: 'code',
         }
 
-        if (item.Redirect_URL) {
-          params.redirect_uri = item.Redirect_URL
+        if (item.provider.redirectURL) {
+          params.redirect_uri = item.provider.redirectURL
         }
 
-        if (item.Scopes && item.Scopes.length > 0) {
-          params.scope = item.Scopes.join(' ')
+        if (item.provider.scopes && item.provider.scopes.length > 0) {
+          params.scope = item.provider.scopes.join(' ')
         }
 
-        const url = `${item.Endpoint.AuthURL}?${Object.keys(params)
+        const url = `${item.provider.endpoint.authURL}?${Object.keys(params)
           .map(
             key =>
               `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`

@@ -55,22 +55,6 @@ export default [
     component: ComponentDetail,
   },
   {
-    path: `${PATH}/components/:namespace/:name/pods/:podName/containers/:containerName`,
-    component: ContainerDetail,
-  },
-  {
-    path: `${PATH}/components/:namespace/:name/pods/:podName`,
-    component: PodDetail,
-  },
-  {
-    path: `${PATH}/projects/:namespace/:module/:name/pods/:podName/containers/:containerName`,
-    component: ContainerDetail,
-  },
-  {
-    path: `${PATH}/projects/:namespace/:module/:name/pods/:podName`,
-    component: PodDetail,
-  },
-  {
     path: `${PATH}/projects/:namespace/deployments/:name`,
     component: DeploymentDetail,
   },

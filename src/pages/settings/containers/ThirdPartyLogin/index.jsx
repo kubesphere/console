@@ -20,10 +20,18 @@ import React, { Component } from 'react'
 
 import { Button, Panel, Text } from 'components/Base'
 import Banner from 'components/Cards/Banner'
+import OAuthModal from 'settings/components/Modals/OAuth'
+import GithubOAuthModal from 'settings/components/Modals/GithubOAuth'
 
 import styles from './index.scss'
 
 export default class ThirdPartyLogin extends Component {
+  state = {
+    showOAuth: false,
+    selectOAuth: {},
+    showGithubOAuth: false,
+  }
+
   get tips() {
     return [
       {
@@ -33,11 +41,36 @@ export default class ThirdPartyLogin extends Component {
     ]
   }
 
+  showOAuth = () => {
+    this.setState({ showOAuth: true })
+  }
+
+  hideOAuth = () => {
+    this.setState({ showOAuth: false })
+  }
+
+  handleOAuth = () => {
+    this.hideOAuth()
+  }
+
+  showGithubOAuth = () => {
+    this.setState({ showGithubOAuth: true })
+  }
+
+  hideGithubOAuth = () => {
+    this.setState({ showGithubOAuth: false })
+  }
+
+  handleGithubOAuth = () => {
+    this.hideGithubOAuth()
+  }
+
   render() {
+    const { showOAuth, selectOAuth, showGithubOAuth } = this.state
     return (
       <div>
         <Banner
-          icon="licenses"
+          icon="passport"
           title={t('Third-party Login')}
           description={t('THIRD_PARTY_LOGIN_DESC')}
           tips={this.tips}
@@ -58,27 +91,37 @@ export default class ThirdPartyLogin extends Component {
                 'GitHub OAuth uses organization membership to grant access. '
               }
             />
-            <Button onClick={this.handleGithubOAuthConfigure}>
+            <Button onClick={this.showGithubOAuth}>
               {t('Configure')} Github OAuth
             </Button>
           </div>
         </Panel>
         <Panel>
           <Text
-            icon="login-servers"
+            icon="safe-notice"
             title="OAuth"
             description={t('Protocol Type')}
           />
           <div className={styles.status}>
             <Text
               title={`OAuth ${t('not configured')}`}
-              description={'OAUTH_DESC'}
+              description={t('OAUTH_DESC')}
             />
-            <Button onClick={this.handleOAuthConfigure}>
-              {t('Configure')} OAuth
-            </Button>
+            <Button onClick={this.showOAuth}>{t('Configure')} OAuth</Button>
           </div>
         </Panel>
+        <OAuthModal
+          visible={showOAuth}
+          detail={selectOAuth}
+          onOk={this.handleOAuth}
+          onCancel={this.hideOAuth}
+        />
+        <GithubOAuthModal
+          visible={showGithubOAuth}
+          detail={{}}
+          onOk={this.handleGithubOAuth}
+          onCancel={this.hideGithubOAuth}
+        />
       </div>
     )
   }

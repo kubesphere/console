@@ -31,6 +31,14 @@
     right: 12px;
   }
 
+  &.disabled {
+    opacity: 0.7;
+    &:hover {
+      box-shadow: none;
+      border-color: $border-color;
+    }
+  }
+
   :global {
     .checkbox {
       margin-right: 12px;

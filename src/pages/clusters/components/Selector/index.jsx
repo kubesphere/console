@@ -63,7 +63,10 @@ export default class Selector extends React.Component {
 
     return (
       <div>
-        <div className={styles.titleWrapper} onClick={this.showSelect}>
+        <div
+          className={styles.titleWrapper}
+          onClick={globals.app.isMultiCluster ? this.showSelect : null}
+        >
           <div className={styles.icon}>
             <Icon name="cluster" size={40} type="light" />
           </div>
@@ -71,9 +74,11 @@ export default class Selector extends React.Component {
             <div className="h6">{value}</div>
             <p>{t('Cluster Management')}</p>
           </div>
-          <div className={styles.arrow}>
-            <Icon name="caret-down" type="light" />
-          </div>
+          {globals.app.isMultiCluster && (
+            <div className={styles.arrow}>
+              <Icon name="caret-down" type="light" />
+            </div>
+          )}
         </div>
         <SelectModal
           visible={showSelect}

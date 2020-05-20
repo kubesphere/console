@@ -896,3 +896,17 @@ export const ROLE_QUERY_KEY = {
   clusterroles: 'clusterrole',
   roles: 'role',
 }
+
+export const DEFAULT_CLUSTER = {
+  apiVersion: 'cluster.kubesphere.io/v1alpha1',
+  kind: 'Cluster',
+  metadata: {
+    annotations: {
+      'cluster.kubesphere.io/is-host-cluster': 'true',
+    },
+    labels: {
+      'cluster.kubesphere.io/visibility': 'public',
+    },
+    name: 'default',
+  },
+}

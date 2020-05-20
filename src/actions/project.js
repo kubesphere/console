@@ -49,7 +49,7 @@ export default {
             success && success()
           })
         },
-        hideCluster: !!cluster,
+        hideCluster: !globals.app.isMultiCluster || !!cluster,
         workspace,
         formTemplate: FORM_TEMPLATES.project(),
         modal: ProjectCreateModal,

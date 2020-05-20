@@ -164,6 +164,7 @@ client:
                 skipAuth: true,
                 showInDisable: true,
               }
+            - { name: visibility, title: Cluster Visibility }
             - { name: members, title: Cluster Members }
             - { name: roles, title: Cluster Roles }
 
@@ -185,7 +186,7 @@ client:
     - cate: 'platformsettings'
       items:
         - { name: base-info, title: Platform Info, icon: home, }
-        - { name: third-login, title: Third-party Login, icon: licenses, }
+        # - { name: third-login, title: Third-party Login, icon: passport, }
         - {
             name: mail-server,
             title: Mail Server,
