@@ -61,4 +61,9 @@ export default {
   START_REAL_TIME_LOG: 'turn on real-time logging',
   STOP_REAL_TIME_LOG: 'turn off real-time logging',
   LOG_EXPORT: 'Log Export',
+  CREATE_CUSTOM_MONITORING_DASHBOARD: 'Create custom monitoring dashboard',
+  SELECT_SUITABLE_MONITORING_TEMPLATE: 'Select suitable monitoring template',
+  CUSTON_MONITORING_TEMPLATE_DESC:
+    'Monitoring panel arranged to generate a default application type panel',
+  SERVICE_BUILT_INTERFACE: 'service monitoring is built interface data capture',
 }

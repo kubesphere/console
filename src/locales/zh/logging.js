@@ -90,4 +90,9 @@ export default {
   START_REAL_TIME_LOG: '开始实时日志',
   STOP_REAL_TIME_LOG: '关闭实时日志',
   LOG_EXPORT: '日志导出',
+
+  CREATE_CUSTOM_MONITORING_DASHBOARD: '创建自定义监控面板',
+  SELECT_SUITABLE_MONITORING_TEMPLATE: '选择适合您应用应用模板',
+  CUSTON_MONITORING_TEMPLATE_DESC: '监控面板将根据应用类型生成默认的面板配置',
+  SERVICE_BUILT_INTERFACE: '服务已内置监控数据抓取接口',
 }

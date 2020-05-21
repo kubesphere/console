@@ -1,0 +1,622 @@
+{
+  "es": {
+    "settings": {
+      "datasource": "prometheus",
+      "panels": [
+        {
+          "bars": false,
+          "colors": [
+            "#60acfc",
+            "#23c2db",
+            "#64d5b2",
+            "#d5ec5a",
+            "#ffb64e",
+            "#fb816d",
+            "#d15c7f"
+          ],
+          "description": "",
+          "id": 9,
+          "legend": {
+            "avg": true,
+            "current": false,
+            "max": true,
+            "min": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "stack": false,
+          "targets": [
+            {
+              "expr": "irate(elasticsearch_jvm_gc_collection_seconds_count[2m])",
+              "legendFormat": "{name} - {gc}",
+              "refId": 1,
+              "step": "20s"
+            }
+          ],
+          "title": "GC count",
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "decimals": 3,
+              "format": "none",
+              "show": true
+            },
+            {
+              "show": false
+            }
+          ]
+        },
+        {
+          "bars": false,
+          "colors": [
+            "#60acfc",
+            "#23c2db",
+            "#64d5b2",
+            "#d5ec5a",
+            "#ffb64e",
+            "#fb816d",
+            "#d15c7f"
+          ],
+          "description": "",
+          "id": 10,
+          "legend": {
+            "avg": true,
+            "current": false,
+            "max": true,
+            "min": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "stack": false,
+          "targets": [
+            {
+              "expr": "elasticsearch_os_load1",
+              "legendFormat": "load1: {name}",
+              "refId": 1,
+              "step": "20s"
+            },
+            {
+              "expr": "elasticsearch_os_load5",
+              "legendFormat": "load5: {name}",
+              "refId": 2,
+              "step": "20s"
+            },
+            {
+              "expr": "elasticsearch_os_load15",
+              "legendFormat": "load15: {name}",
+              "refId": 3,
+              "step": "20s"
+            }
+          ],
+          "title": "Load average",
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "decimals": 2,
+              "format": "none",
+              "show": true
+            },
+            {
+              "show": false
+            }
+          ]
+        },
+        {
+          "decimals": 2,
+          "format": "percent",
+          "id": 2,
+          "targets": [
+            {
+              "expr": "sum (elasticsearch_process_cpu_percent) / count (elasticsearch_process_cpu_percent)"
+            }
+          ],
+          "title": "CPU usage Avg",
+          "type": "singlestat",
+          "valueName": "avg"
+        },
+        {
+          "decimals": 2,
+          "format": "percent",
+          "id": 1,
+          "targets": [
+            {
+              "expr": "sum (elasticsearch_jvm_memory_used_bytes) / sum (elasticsearch_jvm_memory_max_bytes) "
+            }
+          ],
+          "title": "JVM memory used Avg",
+          "type": "singlestat",
+          "valueName": "avg"
+        },
+        {
+          "decimals": 0,
+          "format": "none",
+          "id": 3,
+          "targets": [
+            {
+              "expr": "elasticsearch_cluster_health_number_of_nodes"
+            }
+          ],
+          "title": "Healthy Nodes",
+          "type": "singlestat",
+          "valueName": "avg"
+        },
+        {
+          "decimals": 0,
+          "format": "none",
+          "id": 4,
+          "targets": [
+            {
+              "expr": "elasticsearch_cluster_health_number_of_pending_tasks"
+            }
+          ],
+          "title": "Pending tasks",
+          "type": "singlestat",
+          "valueName": "avg"
+        },
+        {
+          "decimals": 0,
+          "format": "none",
+          "id": 5,
+          "targets": [
+            {
+              "expr": "sum (elasticsearch_process_open_files_count)"
+            }
+          ],
+          "title": "Open file descriptors per cluster",
+          "type": "singlestat",
+          "valueName": "avg"
+        },
+        {
+          "decimals": 0,
+          "format": "none",
+          "id": 6,
+          "targets": [
+            {
+              "expr": "elasticsearch_cluster_health_active_primary_shards"
+            }
+          ],
+          "title": "Active primary shards",
+          "type": "singlestat",
+          "valueName": "avg"
+        },
+        {
+          "decimals": 0,
+          "format": "none",
+          "id": 7,
+          "targets": [
+            {
+              "expr": "elasticsearch_cluster_health_active_shards"
+            }
+          ],
+          "title": "Active shards",
+          "type": "singlestat",
+          "valueName": "avg"
+        }
+      ],
+      "refresh": "",
+      "templatings": [],
+      "time": {
+        "from": "now-30m",
+        "to": "now"
+      },
+      "title": "Elasticsearch Overview"
+    },
+    "description": "elasticsearch-exporter",
+    "name": "Elasticsearch",
+    "logo": "/assets/elasticsearch@2x.png"
+  },
+  "mysql": {
+    "settings": {
+      "datasource": "prometheus",
+      "panels": [
+        {
+          "decimals": 0,
+          "format": "none",
+          "id": 2,
+          "targets": [
+            {
+              "expr": "mysql_up"
+            }
+          ],
+          "title": "Instance Up",
+          "type": "singlestat",
+          "valueName": "avg"
+        },
+        {
+          "decimals": 0,
+          "format": "none",
+          "id": 3,
+          "targets": [
+            {
+              "expr": "mysql_global_status_uptime / (3600*24)"
+            }
+          ],
+          "title": "Uptime (days)",
+          "type": "singlestat",
+          "valueName": "avg"
+        },
+        {
+          "id": 1,
+          "panels": [],
+          "title": "Overview",
+          "type": "row"
+        },
+        {
+          "bars": false,
+          "colors": [
+            "#60acfc",
+            "#23c2db",
+            "#64d5b2",
+            "#d5ec5a",
+            "#ffb64e",
+            "#fb816d",
+            "#d15c7f"
+          ],
+          "description": "",
+          "id": 5,
+          "legend": {
+            "avg": true,
+            "current": false,
+            "max": true,
+            "min": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "stack": false,
+          "targets": [
+            {
+              "expr": "irate(mysql_global_status_innodb_data_reads[3m])",
+              "legendFormat": "reads",
+              "refId": 1,
+              "step": "20s"
+            },
+            {
+              "expr": "irate(mysql_global_status_innodb_data_writes[3m])",
+              "legendFormat": "write",
+              "refId": 2,
+              "step": "20s"
+            }
+          ],
+          "title": "MySQL Disk Reads & Writes",
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "decimals": 4,
+              "format": "none",
+              "show": true
+            },
+            {
+              "show": false
+            }
+          ]
+        },
+        {
+          "bars": false,
+          "colors": [
+            "#60acfc",
+            "#23c2db",
+            "#64d5b2",
+            "#d5ec5a",
+            "#ffb64e",
+            "#fb816d",
+            "#d15c7f"
+          ],
+          "description": "",
+          "id": 6,
+          "legend": {
+            "avg": true,
+            "current": false,
+            "max": true,
+            "min": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "stack": false,
+          "targets": [
+            {
+              "expr": "irate(mysql_global_status_bytes_received[3m]) / 1024",
+              "legendFormat": "received",
+              "refId": 1,
+              "step": "20s"
+            },
+            {
+              "expr": "irate(mysql_global_status_bytes_sent[5m]) / 1024",
+              "legendFormat": "sent",
+              "refId": 2,
+              "step": "20s"
+            }
+          ],
+          "title": "MySQL Network Received & Sent (kb)",
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "decimals": 0,
+              "format": "none",
+              "show": true
+            },
+            {
+              "show": false
+            }
+          ]
+        },
+        {
+          "bars": false,
+          "colors": [
+            "#60acfc",
+            "#23c2db",
+            "#64d5b2",
+            "#d5ec5a",
+            "#ffb64e",
+            "#fb816d",
+            "#d15c7f"
+          ],
+          "description": "",
+          "id": 7,
+          "legend": {
+            "avg": true,
+            "current": false,
+            "max": true,
+            "min": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "stack": false,
+          "targets": [
+            {
+              "expr": "sum(mysql_info_schema_table_size)",
+              "legendFormat": "Tables",
+              "refId": 1,
+              "step": "20s"
+            },
+            {
+              "expr": "sum(mysql_info_schema_table_size)",
+              "legendFormat": "Indexes",
+              "refId": 2,
+              "step": "20s"
+            }
+          ],
+          "title": "Disk usage tables / indexes",
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "decimals": 0,
+              "format": "none",
+              "show": true
+            },
+            {
+              "show": false
+            }
+          ]
+        }
+      ],
+      "refresh": "",
+      "templatings": [],
+      "time": {
+        "from": "now-30m",
+        "to": "now"
+      },
+      "title": "MySQL Overview"
+    },
+    "description": "Prometheus Mysql Exporter",
+    "name": "Mysql",
+    "logo": "/assets/mysql@2x.png"
+  },
+  "redis": {
+    "settings": {
+      "datasource": "prometheus",
+      "panels": [
+        {
+          "bars": false,
+          "colors": [
+            "#60acfc",
+            "#23c2db",
+            "#64d5b2",
+            "#d5ec5a",
+            "#ffb64e",
+            "#fb816d",
+            "#d15c7f"
+          ],
+          "description": "",
+          "id": 6,
+          "legend": {
+            "avg": true,
+            "current": false,
+            "max": true,
+            "min": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "stack": false,
+          "targets": [
+            {
+              "expr": "rate(redis_net_input_bytes_total[2m]) ",
+              "legendFormat": "input",
+              "refId": 1,
+              "step": "20s"
+            },
+            {
+              "expr": "rate(redis_net_output_bytes_total[2m]) ",
+              "legendFormat": "output",
+              "refId": 2,
+              "step": "20s"
+            }
+          ],
+          "title": "Network I/O",
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "decimals": 0,
+              "format": "bit/s",
+              "show": true
+            },
+            {
+              "show": false
+            }
+          ]
+        },
+        {
+          "bars": false,
+          "colors": [
+            "#60acfc",
+            "#23c2db",
+            "#64d5b2",
+            "#d5ec5a",
+            "#ffb64e",
+            "#fb816d",
+            "#d15c7f"
+          ],
+          "description": "",
+          "id": 4,
+          "legend": {
+            "avg": true,
+            "current": false,
+            "max": true,
+            "min": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "stack": false,
+          "targets": [
+            {
+              "expr": "rate(redis_commands_processed_total[2m])",
+              "legendFormat": "commands",
+              "refId": 1,
+              "step": "20s"
+            }
+          ],
+          "title": "Commands Executed / sec",
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "decimals": 2,
+              "format": "none",
+              "show": true
+            },
+            {
+              "show": false
+            }
+          ]
+        },
+        {
+          "bars": false,
+          "colors": [
+            "#60acfc",
+            "#23c2db",
+            "#64d5b2",
+            "#d5ec5a",
+            "#ffb64e",
+            "#fb816d",
+            "#d15c7f"
+          ],
+          "description": "",
+          "id": 5,
+          "legend": {
+            "avg": true,
+            "current": false,
+            "max": true,
+            "min": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "stack": false,
+          "targets": [
+            {
+              "expr": "redis_memory_used_bytes / (1024*1024)",
+              "legendFormat": "used",
+              "refId": 1,
+              "step": "20s"
+            }
+          ],
+          "title": "Total Memory Usage (MB)",
+          "type": "graph",
+          "xaxis": {
+            "show": true
+          },
+          "yaxes": [
+            {
+              "decimals": 3,
+              "format": "none",
+              "show": true
+            },
+            {
+              "show": false
+            }
+          ]
+        },
+        {
+          "decimals": 2,
+          "format": "none",
+          "id": 1,
+          "targets": [
+            {
+              "expr": "redis_uptime_in_seconds /(3600*24)"
+            }
+          ],
+          "title": "Uptime (days)",
+          "type": "singlestat",
+          "valueName": "avg"
+        },
+        {
+          "decimals": 0,
+          "format": "none",
+          "id": 2,
+          "targets": [
+            {
+              "expr": "redis_connected_clients"
+            }
+          ],
+          "title": "Connected Clients",
+          "type": "singlestat",
+          "valueName": "avg"
+        }
+      ],
+      "refresh": "",
+      "templatings": [],
+      "time": {
+        "from": "now-30m",
+        "to": "now"
+      },
+      "title": "Redis Overview"
+    },
+    "name": "Redis",
+    "description": "Prometheus Redis Exporter",
+    "logo": "/assets/redis@2x.png"
+  }
+}
