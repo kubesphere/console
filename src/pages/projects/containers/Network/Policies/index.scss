@@ -1,0 +1,23 @@
+@import '~scss/variables';
+
+.wrapper {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.subtitle {
+  margin-bottom: 8px;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 1.67;
+  color: $dark-color06;
+}
+
+.onBtn {
+  background-color: #324558;
+  color: #fff;
+  &:hover {
+    background-color: #324558;
+    color: $green-color03;
+  }
+}

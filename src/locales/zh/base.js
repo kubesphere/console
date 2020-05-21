@@ -23,6 +23,7 @@ export default {
   Status: '状态',
   Type: '类型',
   Project: '项目',
+  Service: '服务',
   Overview: '概览',
   'Node Selector': '节点选择器',
   'Start Time': '开始时间',

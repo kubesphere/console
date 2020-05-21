@@ -443,6 +443,15 @@ const getVolumeSnapshotTemplate = () => ({
   },
 })
 
+const getNameSpaceNetworkPoliciesTemplate = ({ namespace }) => ({
+  apiVersion: 'network.kubesphere.io/v1alpha1',
+  kind: 'NamespaceNetworkPolicy',
+  metadata: {
+    namespace,
+  },
+  spec: {},
+})
+
 const FORM_TEMPLATES = {
   deployments: getDeploymentTemplate,
   daemonsets: getDaemonSetTemplate,
@@ -470,6 +479,7 @@ const FORM_TEMPLATES = {
   s2ibuilders: getS2IBuilderTemplate,
   b2iBuilders: getBinaryTemplate,
   'volume-snapshots': getVolumeSnapshotTemplate,
+  namespacenetworkpolicies: getNameSpaceNetworkPoliciesTemplate,
 }
 
 export default FORM_TEMPLATES

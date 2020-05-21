@@ -41,6 +41,7 @@ import Roles from '../containers/Roles'
 import Members from '../containers/Members'
 import AdvancedSettings from '../containers/AdvancedSettings'
 import CustomMonitoring from '../containers/CustomMonitoring'
+import NetworkPolicies from '../containers/Network/Policies'
 
 import grayReleaseRoutes from './grayrelease'
 import imageBuilderRoutes from './imagebuilder'
@@ -106,6 +107,11 @@ export default [
       { path: `${PATH}/ingresses`, component: Routes, exact: true },
       { path: `${PATH}/volumes`, component: Volumes, exact: true },
       { path: `${PATH}/base-info`, component: BaseInfo, exact: true },
+      {
+        path: `${PATH}/networkpolicies`,
+        component: NetworkPolicies,
+        exact: true,
+      },
       { path: `${PATH}/configmaps`, component: ConfigMaps, exact: true },
       { path: `${PATH}/secrets`, component: Secrets, exact: true },
       { path: `${PATH}/roles`, component: Roles, exact: true },
