@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, has, isEmpty } from 'lodash'
+import { get, has, cloneDeep, isEmpty, set } from 'lodash'
 import React from 'react'
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
@@ -24,6 +24,8 @@ import PropTypes from 'prop-types'
 import { Icon, Tooltip } from '@pitrix/lego-ui'
 import { Modal, Button } from 'components/Base'
 import Confirm from 'components/Forms/Base/Confirm'
+
+import UserStore from 'stores/user'
 
 import TABS from './tabs'
 
@@ -62,6 +64,8 @@ export default class UserSettingModal extends React.Component {
       activeTab: get(this.tabs, '[0].name'),
       updatedTabs: {},
     }
+
+    this.store = new UserStore()
   }
 
   get updateTip() {
@@ -76,6 +80,17 @@ export default class UserSettingModal extends React.Component {
   get tabs() {
     const { module } = this.props
     return TABS[module] || []
+  }
+
+  componentDidMount() {
+    this.store.fetchDetail({ name: globals.user.username }).then(() => {
+      this.setState({
+        formData: Object.assign(
+          { apiVersion: 'iam.kubesphere.io/v1alpha2', kind: 'User' },
+          cloneDeep(this.store.detail._originData)
+        ),
+      })
+    })
   }
 
   registerUpdate = (name, params) => {
@@ -102,6 +117,7 @@ export default class UserSettingModal extends React.Component {
     if (form) {
       form.validate(() => {
         const data = form.getData()
+        set(data, 'metadata.resourceVersion', this.store.detail.resourceVersion)
         onOk(data)
         this.cancelUpdate(name)
       })
@@ -195,7 +211,7 @@ export default class UserSettingModal extends React.Component {
           module={module}
           ref={this[refName]}
           formRef={this[formRefName]}
-          formData={this.formData}
+          formData={this.state.formData}
         />
       </div>
     )

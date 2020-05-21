@@ -16,6 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { get } from 'lodash'
 import { observable, action } from 'mobx'
 import { Notify } from 'components/Base'
 import cookie from 'utils/cookie'
@@ -87,7 +88,8 @@ export default class UsersStore extends Base {
       return await request.post('logout')
     }
 
-    if (data.lang && data.lang !== cookie('lang')) {
+    const lang = get(data, 'spec.lang')
+    if (lang && data.lang !== cookie('lang')) {
       cookie('lang', data.lang, { path: '/' })
       window.location.reload()
     }
