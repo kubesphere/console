@@ -903,6 +903,14 @@ label.checkbox:before {
   height: 16px;
   min-width: 32px;
 
+  &.checked {
+    box-shadow: 0 2px 4px 0 rgba(85, 188, 138, 0.2), inset 0 1px 3px 0 rgba(59, 116, 122, 0.2);
+
+    &::after {
+      box-shadow: 0 2px 4px 0 rgba(36, 46, 66, 0.2);
+    }
+  }
+
   & > span.text {
     line-height: 16px;
     font-size: 12px;
@@ -921,6 +929,7 @@ label.checkbox:before {
     height: 12px;
     right: 2px;
     left: 2px;
+    
   }
 }
 

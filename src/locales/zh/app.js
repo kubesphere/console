@@ -36,6 +36,7 @@ export default {
   'App Info': '应用信息',
   'Base Info': '基本信息',
   'App Details': '应用详情',
+  'App Config': '应用配置',
   Introduction: '使用说明',
   'Terms of service': '服务条款',
   'Config File': '配置文件',
@@ -47,6 +48,7 @@ export default {
   APP_NAME_DESC: '应用的重要标识',
   'Select file': '选择文件',
   'Application Name': '应用名称',
+  'Application Version': '应用版本',
   'App Abstraction': '应用简介',
   APP_ABSTRACTION_DESC: '对应用的概括性介绍',
   APP_DETAIL_DESC: '在用户搜索应用时会非常有帮助',
@@ -209,4 +211,9 @@ export default {
   APP_CATE_UNCATEGORIZED: '未分类',
 
   MISS_FILE_NOTE: '文件{file}没有找到',
+
+  'Please select a project to deploy': '请选择项目部署',
+  'Please select a workspace': '请选择企业空间',
+  'Please select a cluster': '请选择集群',
+  'Please select a project': '请选择项目',
 }

@@ -17,9 +17,11 @@
  */
 
 import Home from '../containers/Home'
-import AppDetail from '../containers/App'
+import AppDetail from '../containers/AppDetail'
+import AppDeploy from '../containers/AppDeploy'
 
 export default [
   { path: '/apps', component: Home, exact: true },
-  { path: '/apps/:appID', component: AppDetail },
+  { path: '/apps/:appID', component: AppDetail, exact: true },
+  { path: '/apps/:appID/deploy', component: AppDeploy, exact: true },
 ]

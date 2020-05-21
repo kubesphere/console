@@ -125,11 +125,11 @@ export default class AppPreview extends React.Component {
         activeName={tab}
         onChange={this.handleTabChange}
       >
-        <TabPanel label={t('Version Info')} name="versionInfo">
-          {this.renderReadMe()}
+        <TabPanel label={t('App Description')} name="versionInfo">
+          <div className={styles.wrapper}>{this.renderReadMe()}</div>
         </TabPanel>
         <TabPanel label={t('Chart File')} name="chartFiles">
-          {this.renderChartFiles()}
+          <div className={styles.wrapper}>{this.renderChartFiles()}</div>
         </TabPanel>
       </Tabs>
     )

@@ -31,7 +31,7 @@ export const getValue = value => {
   return String(value)
 }
 
-export const getValueObj = (mode, value) => {
+export const getValueObj = value => {
   if (!isObject(value)) {
     try {
       return yaml.safeLoad(value)

@@ -16,35 +16,29 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { getIndexRoute } from 'utils/router.config'
+import React, { Component } from 'react'
+import classNames from 'classnames'
 
-import ResourceStatus from './ResourceStatus'
-import AppTemplate from './AppTemplate'
-import EnvVariables from './EnvVariables'
+import styles from './index.scss'
 
-const PATH = '/cluster/:cluster/projects/:namespace/applications/template/:id'
-
-export default [
-  {
-    path: `${PATH}/resource-status`,
-    name: 'resource-status',
-    title: 'Resource Status',
-    component: ResourceStatus,
-    exact: true,
-  },
-  {
-    path: `${PATH}/template`,
-    title: 'App Template',
-    component: AppTemplate,
-    ksModule: 'servicemesh',
-    exact: true,
-  },
-
-  {
-    path: `${PATH}/env`,
-    title: 'Environment Variables',
-    component: EnvVariables,
-    exact: true,
-  },
-  getIndexRoute({ path: PATH, to: `${PATH}/resource-status`, exact: true }),
-]
+export default class Steps extends Component {
+  render() {
+    const { steps, current } = this.props
+    return (
+      <div className={styles.wrapper}>
+        {steps.map((step, index) => (
+          <div key={step.title}>
+            <span
+              className={classNames(styles.indicator, {
+                [styles.fullfill]: current > index,
+                [styles.current]: current === index,
+                [styles.pending]: current < index,
+              })}
+            />
+            <span>{t(step.title)}</span>
+          </div>
+        ))}
+      </div>
+    )
+  }
+}

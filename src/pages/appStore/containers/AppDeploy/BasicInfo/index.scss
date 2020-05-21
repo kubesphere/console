@@ -1,0 +1,15 @@
+@import '~scss/variables';
+
+.title {
+  margin-bottom: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.43;
+  color: $dark-color07;
+}
+
+.placement {
+  padding: 12px;
+  border-radius: $border-radius;
+  background-color: $card-bg-color;
+}

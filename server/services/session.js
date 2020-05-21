@@ -56,9 +56,8 @@ const login = async (data, headers) => {
 
 const oAuthLogin = async params => {
   const resp = await send_gateway_request({
-    method: 'POST',
-    url: `/apis/iam.kubesphere.io/v1alpha2/login/oauth/${params.state}`,
-    params,
+    method: 'GET',
+    url: `/oauth/callback/${params.state}?code=${params.code}`,
   })
 
   if (!resp.access_token) {
