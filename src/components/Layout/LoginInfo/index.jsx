@@ -20,7 +20,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { inject, observer } from 'mobx-react'
 import classnames from 'classnames'
-import { omit } from 'lodash'
 import { Dropdown, Menu, Icon } from '@pitrix/lego-ui'
 
 import AboutModal from 'components/Modals/About'
@@ -72,19 +71,7 @@ export default class LoginInfo extends Component {
   }
 
   handleUserEdit = data => {
-    this.store.update(
-      {
-        ...omit(globals.user, [
-          '_update_time_',
-          'workspace_rules',
-          'rules',
-          'workspaces',
-          'cluster_rules',
-        ]),
-        ...data,
-      },
-      globals.user
-    )
+    this.store.update({ name: globals.user.username }, data)
   }
 
   renderDropDown() {
@@ -112,7 +99,6 @@ export default class LoginInfo extends Component {
         />
         <UserEditModal
           module="users"
-          detail={globals.user}
           visible={this.state.showUserEdit}
           onOk={this.handleUserEdit}
           onCancel={this.hideUserEditModal}

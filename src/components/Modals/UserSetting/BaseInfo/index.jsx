@@ -30,25 +30,8 @@ export default class BaseInfo extends React.Component {
     registerUpdate: PropTypes.func,
   }
 
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      formData: this.getInitialData(),
-    }
-  }
-
   get name() {
     return 'basicInfo'
-  }
-
-  getInitialData() {
-    return {
-      avatar_url: globals.user.avatar_url,
-      username: globals.user.username,
-      email: globals.user.email,
-      lang: cookie('lang') || getBrowserLang(),
-    }
   }
 
   resetData = () => {
@@ -62,26 +45,26 @@ export default class BaseInfo extends React.Component {
   }
 
   render() {
-    const { formRef } = this.props
+    const { formRef, formData } = this.props
     return (
       <div className={styles.wrapper}>
         <div className="h4">{t('Basic Info')}</div>
-        <Form
-          data={this.state.formData}
-          ref={formRef}
-          onChange={this.handleFormChange}
-        >
+        <Form data={formData} ref={formRef} onChange={this.handleFormChange}>
           <Columns>
             <Column>
               <Form.Item label={t('User Name')}>
-                <Input name="username" placeholder="username" disabled />
+                <Input name="metadata.name" placeholder="username" disabled />
               </Form.Item>
               <Form.Item label={t('Email')} desc={t('USER_SETTING_EMAIL_DESC')}>
-                <Input name="email" placeholder="User@example.com" />
+                <Input name="spec.email" placeholder="User@example.com" />
               </Form.Item>
               {globals.config.supportLangs && (
                 <Form.Item label={t('Language')}>
-                  <Select name="lang" options={globals.config.supportLangs} />
+                  <Select
+                    name="spec.lang"
+                    options={globals.config.supportLangs}
+                    defaultValue={cookie('lang') || getBrowserLang()}
+                  />
                 </Form.Item>
               )}
             </Column>
