@@ -50,6 +50,7 @@ import KubeConfig from '../containers/KubeConfig'
 import NetworkPolicies from '../containers/Network/Policies'
 import AlertMessages from '../containers/Alerting/Messages'
 import AlertPolicies from '../containers/Alerting/Policies'
+import MailServer from '../containers/MailServices'
 
 import detail from './detail'
 
@@ -210,6 +211,12 @@ export default [
       {
         path: `${PATH}/networkpolicies`,
         component: NetworkPolicies,
+        exact: true,
+      },
+      {
+        path: `${PATH}/mail-server`,
+        component: MailServer,
+        exact: true,
       },
       getIndexRoute({ path: PATH, to: `${PATH}/overview`, exact: true }),
       getIndexRoute({
