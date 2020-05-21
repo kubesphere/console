@@ -23,6 +23,7 @@ import classnames from 'classnames'
 import noop from 'lodash/noop'
 import { Link } from 'react-router-dom'
 import AppCard from 'components/Cards/App'
+import { stringify } from 'qs'
 
 import styles from './index.scss'
 
@@ -36,22 +37,20 @@ export default class AppList extends React.PureComponent {
     title: PropTypes.string,
     disableLink: PropTypes.bool,
     onClickAppItem: PropTypes.func,
-    workspace: PropTypes.string,
-    namespace: PropTypes.string,
   }
+
   static defaultProps = {
     apps: [],
     isLoading: false,
     total: 0,
     onFetchMore: noop,
     disableLink: false,
-    workspace: '',
-    namespace: '',
   }
 
   renderApps() {
     const {
       workspace,
+      cluster,
       namespace,
       apps,
       isLoading,
@@ -69,15 +68,12 @@ export default class AppList extends React.PureComponent {
       )
     }
 
+    const query = stringify({ workspace, cluster, namespace })
+
     return (
       <>
         {apps.map(app => {
-          const link =
-            workspace && namespace
-              ? `/apps/${
-                  app.app_id
-                }?workspace=${workspace}&namespace=${namespace}`
-              : `/apps/${app.app_id}`
+          const link = `/apps/${app.app_id}?${query}`
           if (disableLink && onClickAppItem) {
             return (
               <div

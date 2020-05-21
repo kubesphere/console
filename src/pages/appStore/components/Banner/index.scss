@@ -101,7 +101,7 @@ $banner-height: 152px + $header-height;
       margin-bottom: 12px;
 
       :global .custom-icon {
-        display: block;
+        display: inline-block;
         height: 20px;
         color: #fff;
 

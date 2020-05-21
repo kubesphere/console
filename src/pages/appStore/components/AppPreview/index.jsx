@@ -20,7 +20,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { toJS, computed } from 'mobx'
 import { observer } from 'mobx-react'
-import { Tabs } from '@pitrix/lego-ui'
+import { Tabs, Loading } from '@pitrix/lego-ui'
 import { isEmpty } from 'lodash'
 
 import AppFileStore from 'stores/openpitrix/file'
@@ -109,6 +109,10 @@ export default class AppPreview extends React.Component {
     const { tab } = this.state
     if (!versionId) {
       return null
+    }
+
+    if (this.fileStore.isLoading) {
+      return <Loading className={styles.loading} />
     }
 
     if (currentTab === 'versionInfo') {

@@ -29,14 +29,10 @@ import TemplateDeployModal from 'apps/components/Modals/AppDeploy'
 
 export default {
   'openpitrix.app.create': {
-    on({ store, cluster, namespace, success, ...props }) {
+    on({ store, cluster, namespace, ...props }) {
       const modal = Modal.open({
         onOk: () => {
           Modal.close(modal)
-          success &&
-            success(
-              `/cluster/${cluster}/projects/${namespace}/applications/template`
-            )
         },
         store,
         cluster,

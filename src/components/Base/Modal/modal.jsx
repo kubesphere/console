@@ -135,14 +135,14 @@ export default class Modal extends React.Component {
   }
 
   renderTitle() {
-    const { icon, imageSrc, title, description, rightScreen } = this.props
+    const { icon, imageIcon, title, description, rightScreen } = this.props
     const size = rightScreen ? 48 : isUndefined(description) ? 20 : 40
 
     return (
       <div className={styles.title}>
-        {imageSrc ? (
+        {imageIcon ? (
           <label className={styles.image}>
-            <Image src={imageSrc} iconLetter={imageSrc} iconSize={size} />
+            <Image src={imageIcon} iconLetter={imageIcon} iconSize={size} />
           </label>
         ) : (
           icon && <Icon name={icon} size={size} />
@@ -179,7 +179,7 @@ export default class Modal extends React.Component {
       maskClosable,
       isSubmitting,
       icon,
-      imageSrc,
+      imageIcon,
       disableSubmit,
     } = this.props
 
@@ -187,7 +187,7 @@ export default class Modal extends React.Component {
       content: {},
     }
 
-    const showIcon = (icon || imageSrc) && rightScreen
+    const showIcon = (icon || imageIcon) && rightScreen
 
     if (!fullScreen && !rightScreen) {
       style.content.width = width
@@ -211,8 +211,12 @@ export default class Modal extends React.Component {
             {this.renderTitle()}
             {showIcon && (
               <div className={styles.iconBg}>
-                {imageSrc ? (
-                  <Image src={imageSrc} iconLetter={imageSrc} iconSize={200} />
+                {imageIcon ? (
+                  <Image
+                    src={imageIcon}
+                    iconLetter={imageIcon}
+                    iconSize={200}
+                  />
                 ) : (
                   <Icon name={icon} size={200} />
                 )}

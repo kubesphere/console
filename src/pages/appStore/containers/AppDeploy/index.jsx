@@ -19,7 +19,6 @@
 import React from 'react'
 import { get } from 'lodash'
 import { inject, observer } from 'mobx-react'
-import moment from 'moment-mini'
 import { Columns, Column, Loading } from '@pitrix/lego-ui'
 
 import VersionStore from 'stores/openpitrix/version'
@@ -27,12 +26,13 @@ import AppStore from 'stores/openpitrix/app'
 import AppFileStore from 'stores/openpitrix/file'
 
 import { Button } from 'components/Base'
+import BasicInfo from 'components/Forms/AppDeploy/BasicInfo'
+import AppConfig from 'components/Forms/AppDeploy/AppConfig'
 import Banner from 'appStore/components/Banner'
 import { generateId } from 'utils'
+import { parse } from 'qs'
 
 import Steps from './Steps'
-import BasicInfo from './BasicInfo'
-import AppConfig from './AppConfig'
 
 import styles from './index.scss'
 
@@ -47,10 +47,16 @@ export default class App extends React.Component {
     this.versionStore = new VersionStore()
     this.fileStore = new AppFileStore()
 
+    const { workspace, cluster, namespace } =
+      parse(location.search.slice(1)) || {}
+
     this.state = {
       currentStep: 0,
       formData: {
         app_id: this.appID,
+        workspace,
+        cluster,
+        namespace,
       },
     }
 
@@ -75,15 +81,6 @@ export default class App extends React.Component {
         required: true,
       },
     ]
-  }
-
-  get versionOptions() {
-    const versions = this.versionStore.list.data
-    return versions.map(({ version_id, name, create_time }) => ({
-      label: name,
-      time: moment(create_time).format(t('YYYY-MM-DD')),
-      value: version_id,
-    }))
   }
 
   componentDidMount() {
@@ -116,20 +113,13 @@ export default class App extends React.Component {
     const { name } = this.appStore.detail
     this.setState({
       formData: {
+        ...this.state.formData,
         name: `${name.slice(0, 7)}-${generateId()}`,
         version_id: selectAppVersion,
       },
     })
 
     this.fileStore.fetch({ version_id: selectAppVersion })
-  }
-
-  handleTabChange = tab => {
-    this.setState({ tab })
-  }
-
-  changeTab = tab => {
-    this.setState({ selectTab: tab })
   }
 
   handleOk = () => {

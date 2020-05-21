@@ -18,6 +18,7 @@
 
 import React, { Component } from 'react'
 import { observer } from 'mobx-react'
+import { pick } from 'lodash'
 import PropTypes from 'prop-types'
 
 import { Modal, Button } from 'components/Base'
@@ -35,7 +36,6 @@ class RepoApp extends Component {
     visible: PropTypes.bool,
     onOk: PropTypes.func,
     onCancel: PropTypes.func,
-    onDeploySuccess: PropTypes.func,
   }
 
   static defaultProps = {
@@ -65,14 +65,16 @@ class RepoApp extends Component {
     })
   }
 
+  handleDeploy = (params = {}) => {
+    this.props.trigger('openpitrix.template.deploy', {
+      ...params,
+      ...pick(this.props, ['cluster', 'workspace', 'runtime_id', 'namespace']),
+      success: () => this.props.onOk(),
+    })
+  }
+
   render() {
-    const {
-      visible,
-      onCancel,
-      onDeploySuccess,
-      workspace,
-      ...rest
-    } = this.props
+    const { visible, onCancel, workspace, onDeploy, ...rest } = this.props
     const { viewType, selectApp, selectRepo } = this.state
 
     return (
@@ -107,7 +109,7 @@ class RepoApp extends Component {
             setType={this.setViewType}
             app={selectApp}
             workspace={workspace}
-            onDeploySuccess={onDeploySuccess}
+            onDeploy={this.handleDeploy}
           />
         )}
       </Modal>

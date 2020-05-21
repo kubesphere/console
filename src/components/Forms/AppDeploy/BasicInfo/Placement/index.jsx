@@ -180,6 +180,7 @@ export default class Placment extends Component {
   }
 
   renderForm() {
+    const { workspace } = this.props
     return (
       <div className={styles.form}>
         <Form ref={this.formRef} type="inner" data={this.state.formData}>
@@ -191,6 +192,7 @@ export default class Placment extends Component {
                   placeholder={t('Please select a workspace')}
                   options={this.workspaces}
                   onChange={this.handleWorkspaceChange}
+                  disabled={!!workspace}
                 />
               </Form.Item>
             </Column>

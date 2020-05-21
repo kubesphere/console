@@ -25,12 +25,12 @@ import { compareVersion } from 'utils/app'
 import { PATTERN_NAME } from 'utils/constants'
 import { Form, SearchSelect, Tag } from 'components/Base'
 
-import Placement from '../Placement'
+import Placement from './Placement'
 
 import styles from './index.scss'
 
 @observer
-export default class Settings extends React.Component {
+export default class BasicInfo extends React.Component {
   @computed
   get sortedVersions() {
     return this.props.versionStore.list.data
@@ -69,7 +69,7 @@ export default class Settings extends React.Component {
   }
 
   render() {
-    const { formData, formRef, versionStore } = this.props
+    const { formData, formRef, namespace, versionId, versionStore } = this.props
     return (
       <div className={styles.wrapper}>
         <Form data={formData} ref={formRef}>
@@ -109,6 +109,7 @@ export default class Settings extends React.Component {
                   onChange={this.handleVersionChange}
                   optionRenderer={this.versionOptionRender}
                   valueRenderer={this.versionOptionRender}
+                  disabled={!!versionId}
                 />
               </Form.Item>
             </Column>
@@ -123,9 +124,11 @@ export default class Settings extends React.Component {
           </Columns>
           <br />
           <div className={styles.title}>{t('Deploy Placement')}</div>
-          <div className={styles.placement}>
-            <Placement {...this.props} />
-          </div>
+          {!namespace && (
+            <div className={styles.placement}>
+              <Placement {...this.props} />
+            </div>
+          )}
         </Form>
       </div>
     )

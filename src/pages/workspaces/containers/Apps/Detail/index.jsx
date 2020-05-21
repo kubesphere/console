@@ -103,9 +103,7 @@ export default class RoleDetail extends React.Component {
         action: 'manage',
         onClick: () =>
           this.trigger('openpitrix.template.deploy', {
-            title: detail.name,
-            description: detail.description,
-            params: this.props.match.params,
+            ...this.props.match.params,
             app: toJS(detail),
           }),
       },
@@ -197,7 +195,7 @@ export default class RoleDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('Apps'),
+          label: t('App Templates'),
           url: this.listUrl,
         },
       ],

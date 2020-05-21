@@ -216,7 +216,7 @@ export default class Home extends React.Component {
   render() {
     const { list, allApps } = this.appStore
     const { isLoading, total } = list
-    const { workspace, namespace } = this.queryParams
+    const { workspace, namespace, cluster } = this.queryParams
 
     return (
       <div className={styles.wrapper}>
@@ -236,6 +236,7 @@ export default class Home extends React.Component {
             onFetchMore={this.fetchMoreApps}
             workspace={workspace}
             namespace={namespace}
+            cluster={cluster}
           />
         </div>
       </div>

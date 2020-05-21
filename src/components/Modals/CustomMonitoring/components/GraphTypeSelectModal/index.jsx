@@ -96,7 +96,7 @@ export default class GraphTypeSelectModal extends Component {
     return (
       <Modal
         width={960}
-        imageSrc={'/assets/coin.svg'}
+        imageIcon={'/assets/coin.svg'}
         title={t('SELECT_CHART_TYPE')}
         description={t('SELECT_CHART_TYPE_MODAL_DESC')}
         visible={visible}
