@@ -62,6 +62,7 @@ export default class DeployAppModal extends React.Component {
     const { onOk, trigger, ...rest } = this.props
     onOk()
     trigger('openpitrix.app.create', {
+      trigger,
       ...rest,
     })
   }

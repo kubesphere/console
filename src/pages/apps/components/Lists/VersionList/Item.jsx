@@ -35,6 +35,7 @@ import AppDeployModal from 'apps/components/Modals/AppDeploy'
 import VersionSubmitModal from 'apps/components/Modals/VersionSubmit'
 
 import { getLocalTime } from 'utils'
+import { trigger } from 'utils/action'
 
 import {
   CAN_DELETE_STATUS,
@@ -51,6 +52,7 @@ import styles from './index.scss'
 const { TabPanel } = Tabs
 
 @inject('rootStore')
+@trigger
 export default class VersionItem extends React.PureComponent {
   static propTypes = {
     className: PropTypes.string,
@@ -93,9 +95,12 @@ export default class VersionItem extends React.PureComponent {
     this.props.handleExpandExtra(detail.version_id)
   }
 
-  showDeployModel = () => () => {
-    this.setState({
-      appDeploy: true,
+  showDeploy = () => {
+    this.trigger('openpitrix.template.deploy', {
+      ...this.props.params,
+      store: this.props.appStore,
+      app: this.props.appDetail,
+      versionId: this.props.detail.version_id,
     })
   }
 
@@ -175,14 +180,6 @@ export default class VersionItem extends React.PureComponent {
     })
   }
 
-  handleDeploy = params => {
-    const { namespace, ...rest } = params
-    this.props.appStore.deploy(rest, { namespace }).then(() => {
-      this.hideHandleModal()
-      Notify.success({ content: `${t('Deploy Successfully')}!` })
-    })
-  }
-
   renderContent() {
     const { detail } = this.props
     return (
@@ -235,7 +232,7 @@ export default class VersionItem extends React.PureComponent {
           </Button>
         )}
         {!isAdmin && (
-          <Button onClick={this.showDeployModel()} type={'default'}>
+          <Button onClick={this.showDeploy} type="default">
             {t('Test Deploy')}
           </Button>
         )}

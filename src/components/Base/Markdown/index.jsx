@@ -27,12 +27,10 @@ import style from './index.scss'
 class Markdown extends React.Component {
   static propTypes = {
     source: PropTypes.string,
-    hideLoading: PropTypes.bool,
     options: PropTypes.object,
   }
 
   static defaultProps = {
-    hideLoading: false,
     source: '',
     options: {},
   }
@@ -114,24 +112,11 @@ class Markdown extends React.Component {
   }
 
   render() {
-    const { hideLoading, className } = this.props
-
-    if (hideLoading) {
-      return (
-        <iframe
-          className={classNames(style.markdown, className)}
-          ref={this.handleIFrameRef}
-          src="/blank_md"
-          name="frame_markdown"
-          width="100%"
-          frameBorder="0"
-          scrolling="no"
-        />
-      )
-    }
+    const { className } = this.props
 
     return (
-      <Loading spinning={this.state.loading}>
+      <div>
+        {this.state.loading && <Loading className="loading" />}
         <iframe
           className={classNames(style.markdown, className)}
           ref={this.handleIFrameRef}
@@ -141,7 +126,7 @@ class Markdown extends React.Component {
           frameBorder="0"
           scrolling="no"
         />
-      </Loading>
+      </div>
     )
   }
 }

@@ -25,6 +25,7 @@
   min-height: 500px;
   border-radius: $border-radius;
   border: 1px solid $border-color;
+  box-sizing: content-box;
 }
 
 .schemaWrapper {

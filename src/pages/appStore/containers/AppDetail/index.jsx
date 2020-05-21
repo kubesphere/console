@@ -208,7 +208,7 @@ export default class App extends React.Component {
   renderDeployButton() {
     return (
       <div className={styles.deployButton}>
-        <Link to={`${this.props.match.url}/deploy`}>
+        <Link to={`${this.props.match.url}/deploy${location.search}`}>
           <Button type="control" noShadow>
             {t('Deploy')}
           </Button>

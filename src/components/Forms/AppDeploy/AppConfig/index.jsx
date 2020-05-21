@@ -25,7 +25,7 @@ import { CodeEditor, Switch } from 'components/Base'
 import { safeParseJSON } from 'utils'
 import { getValueObj, getValue } from 'utils/yaml'
 
-import SchemaForm from '../SchemaForm'
+import SchemaForm from './SchemaForm'
 
 import styles from './index.scss'
 
