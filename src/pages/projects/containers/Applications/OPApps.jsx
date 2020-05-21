@@ -18,8 +18,8 @@
 
 import React from 'react'
 import { get } from 'lodash'
-
-import { Avatar } from 'components/Base'
+import { Link } from 'react-router-dom'
+import { Avatar, Status } from 'components/Base'
 import { withProjectList, ListPage } from 'components/HOCs/withList'
 import Table from 'components/Tables/List'
 
@@ -122,7 +122,7 @@ export default class OPApps extends React.Component {
         title: t('Status'),
         dataIndex: 'status',
         isHideable: true,
-        width: '20%',
+        width: '16%',
         render: (status, record) => (
           <Status
             name={t(record.transition_status || status)}
@@ -131,10 +131,19 @@ export default class OPApps extends React.Component {
         ),
       },
       {
+        title: t('Application'),
+        dataIndex: 'app.name',
+        isHideable: true,
+        width: '16%',
+        render: (name, record) => (
+          <Link to={`/apps/${record.version.app_id}`}>{name}</Link>
+        ),
+      },
+      {
         title: t('Version'),
         dataIndex: 'version.name',
         isHideable: true,
-        width: '20%',
+        width: '16%',
       },
       {
         title: t('Last Updated Time'),

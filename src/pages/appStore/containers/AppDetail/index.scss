@@ -11,63 +11,6 @@ $toolbar-height: 52px;
   color: $text-color;
 }
 
-.main {
-  .banner {
-    position: relative;
-  }
-
-  .appOutline {
-    overflow: hidden;
-    padding-top: 98px;
-    color: $white;
-
-    .back {
-      margin-bottom: 12px;
-      a {
-        color: #fff;
-        transition: all $trans-speed ease;
-      }
-      svg {
-        margin-right: 5px;
-        vertical-align: text-bottom;
-      }
-    }
-
-    .intro {
-      display: flex;
-      align-items: center;
-      .icon {
-        position: relative;
-        float: left;
-        width: 48px;
-        height: 48px;
-        line-height: 48px;
-        margin-right: 20px;
-        color: $text-color;
-        background-color: $bg-color;
-        border-radius: $border-radius;
-      }
-      .text {
-        float: left;
-        width: calc(100% - 70px);
-        color: #fff;
-
-        > h3 {
-          font-size: $size-mid-large;
-          line-height: 1.33;
-          font-family: $font-family-id;
-          text-shadow: 0 2px 4px rgba(36, 46, 66, 0.1);
-        }
-        > p {
-          font-size: $size-small;
-          line-height: 20px;
-          @include ellipsis;
-        }
-      }
-    }
-  }
-}
-
 .content {
   position: relative;
   top: -$header-height;

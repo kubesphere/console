@@ -1,0 +1,44 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.group {
+  padding: 12px;
+  margin: 12px 0;
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+
+  :global {
+    .input-number.has-addons input {
+      width: 275px !important;
+    }
+  }
+}
+
+.slider {
+  margin-right: 15px;
+  margin-top: 20px;
+  width: 350px;
+}
+
+.title {
+  margin-bottom: 12px;
+  @include TypographyTitleH6;
+}
+
+.description {
+  @include TypographyParagraph;
+}
+
+.boolean {
+  display: flex;
+  align-items: flex-start;
+
+  :global .lego-toggles {
+    margin-right: 8px;
+    margin-top: 2px;
+  }
+}
+
+.parentGroup {
+  margin: 20px 0;
+}

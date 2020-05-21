@@ -17,7 +17,7 @@
  */
 
 import React from 'react'
-import { get, isObject } from 'lodash'
+import { get } from 'lodash'
 import { parse } from 'qs'
 import { toJS } from 'mobx'
 import { inject, observer } from 'mobx-react'
@@ -25,8 +25,7 @@ import { Link } from 'react-router-dom'
 import moment from 'moment-mini'
 import { Tabs, Columns, Column, Loading } from '@pitrix/lego-ui'
 
-import { ReactComponent as BackIcon } from 'src/assets/back-white.svg'
-import { Button, Modal, Image } from 'components/Base'
+import { Button, Modal } from 'components/Base'
 import AppDeployForm from 'components/Forms/AppTemplate'
 import VersionStore from 'stores/openpitrix/version'
 import AppStore from 'stores/openpitrix/app'
@@ -151,6 +150,10 @@ export default class App extends React.Component {
     })
   }
 
+  handleBack = () => {
+    this.routing.push('/apps')
+  }
+
   handleChangeAppVersion = version => {
     this.params.version = version
     this.setState({ selectAppVersion: version })
@@ -202,33 +205,14 @@ export default class App extends React.Component {
     )
   }
 
-  renderTopIntro() {
-    const { detail } = this.appStore
-    if (!(isObject(detail) && 'name' in detail)) {
-      return null
-    }
-
-    const { name, description, icon } = detail
-
-    return (
-      <div className={styles.intro}>
-        <span className={styles.icon}>
-          <Image iconSize={48} iconLetter={name} src={icon} alt="" />
-        </span>
-        <div className={styles.text}>
-          <h3>{name}</h3>
-          <p>{description}</p>
-        </div>
-      </div>
-    )
-  }
-
   renderDeployButton() {
     return (
       <div className={styles.deployButton}>
-        <Button type="control" onClick={this.showDeploy} noShadow>
-          {t('Deploy')}
-        </Button>
+        <Link to={`${this.props.match.url}/deploy`}>
+          <Button type="control" noShadow>
+            {t('Deploy')}
+          </Button>
+        </Link>
       </div>
     )
   }
@@ -259,7 +243,7 @@ export default class App extends React.Component {
             </Column>
           </Columns>
         </TabPanel>
-        <TabPanel label={t('Version')} name="versions">
+        <TabPanel label={t('App Details')} name="appDetails">
           {this.renderDeployButton()}
           <Columns>
             <Column className="is-8">{this.renderAppFilePreview()}</Column>
@@ -281,22 +265,12 @@ export default class App extends React.Component {
   render() {
     return (
       <div className={styles.main}>
-        <Banner className={styles.banner}>
-          <div className={styles.appOutline}>
-            <div className={styles.back}>
-              <Link className="custom-icon" to={'/apps'}>
-                <BackIcon width={16} height={16} />
-                <span>{t('Back')}</span>
-              </Link>
-            </div>
-            {this.renderTopIntro()}
-          </div>
-        </Banner>
-
-        <div className={styles.content}>
-          {this.renderContent()}
-          {this.renderDeployModal()}
-        </div>
+        <Banner
+          className={styles.banner}
+          detail={this.appStore.detail}
+          onBack={this.handleBack}
+        />
+        <div className={styles.content}>{this.renderContent()}</div>
       </div>
     )
   }

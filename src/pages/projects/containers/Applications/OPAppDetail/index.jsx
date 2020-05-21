@@ -26,6 +26,7 @@ import { getDisplayName, getLocalTime } from 'utils'
 import { trigger } from 'utils/action'
 import AppStore from 'stores/openpitrix/application'
 
+import { Image } from 'components/Base'
 import DetailPage from 'projects/containers/Base/Detail'
 
 import routes from './routes'
