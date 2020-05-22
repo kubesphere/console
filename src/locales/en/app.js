@@ -19,7 +19,10 @@
 export default {
   FILE_UPLOAD_MAX: 'The file size cannot exceed 2M.',
 
-  APP_TEMPLATE_DESCRIPTION:
+  APP_TEMPLATE_DESC:
+    'KubeSphere provides lifecycle management of application template. You can upload or create new application template and test it quickly. In addition, you can publish your application template to App Store so that other users can purchase and deploy it.',
+
+  APP_TEMPLATE_CREATE_DESC:
     'KubeSphere provides lifecycle management of application template. You can upload or create new application template and test it quickly. In addition, you can publish your application template to App Store so that other users can purchase and deploy it.',
 
   DEVELOP_APP_TITLE: 'How to Develop Application Template',

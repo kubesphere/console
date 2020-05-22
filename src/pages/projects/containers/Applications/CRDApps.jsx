@@ -130,6 +130,10 @@ export default class CRDApps extends React.Component {
       actions,
       onCreate: null,
       selectActions: [],
+      emptyProps: {
+        title: t('Composing App'),
+        desc: t('COMPOSING_APP_DESC'),
+      },
     }
   }
 

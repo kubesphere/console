@@ -176,13 +176,9 @@ export default class Services extends React.Component {
       <div className={styles.wrapper}>
         <div className={styles.step}>
           <div>{t('Service Components')}</div>
-          <p>
-            {t(
-              '根据应用中服务类型的不同设置不同类型的服务组件，支持无状态服务和有状态服务'
-            )}
-          </p>
+          <p>{t('APPLICATION_SERVICE_DESC')}</p>
         </div>
-        <div className={styles.title}>{t('组件列表')}</div>
+        <div className={styles.title}>{t('Application Components')}</div>
         <div className={styles.components}>
           <ServiceList
             error={componentsError}

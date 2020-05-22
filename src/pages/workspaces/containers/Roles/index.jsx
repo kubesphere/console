@@ -146,6 +146,12 @@ export default class Roles extends React.Component {
     })
   }
 
+  get emptyProps() {
+    return {
+      desc: t('WORKSPACE_ROLE_DESC'),
+    }
+  }
+
   render() {
     const { bannerProps, tableProps } = this.props
     return (
@@ -157,6 +163,7 @@ export default class Roles extends React.Component {
         />
         <Table
           {...tableProps}
+          emptyProps={this.emptyProps}
           tableActions={this.tableActions}
           itemActions={this.itemActions}
           columns={this.getColumns()}

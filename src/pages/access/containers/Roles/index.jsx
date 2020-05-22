@@ -143,12 +143,7 @@ export default class Roles extends React.Component {
     const { bannerProps, tableProps } = this.props
     return (
       <ListPage {...this.props} noWatch>
-        <Banner
-          {...bannerProps}
-          tabs={this.tabs}
-          title={t('Account Roles')}
-          description={t('ACCOUNT_ROLES_DESC')}
-        />
+        <Banner {...bannerProps} tabs={this.tabs} title={t('Account Roles')} />
         <Table
           {...tableProps}
           tableActions={this.tableActions}

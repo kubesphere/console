@@ -27,6 +27,8 @@ export default {
   Direction: '方向',
   NETWORK_POLICY_DESC:
     '通过配置网络策略，允许在同个集群内实现网络的隔离，也就是可以在某些实例（Pod）之间架起防火墙。',
+  NETWORK_POLICY_CREATE_DESC:
+    '通过配置网络策略，允许在同个集群内实现网络的隔离，也就是可以在某些实例（Pod）之间架起防火墙。',
   NETWORK_POLICY_Q: '如何更好的使用网络策略?',
   NETWORK_POLICY_A:
     '根据实际使用场景我们整理了几种较为常见的应用场景，您可以查阅文档了解更多',

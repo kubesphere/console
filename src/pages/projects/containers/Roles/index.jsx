@@ -89,6 +89,10 @@ export default class Secrets extends React.Component {
     }
   }
 
+  get emptyProps() {
+    return { desc: t('PROJECT_ROLE_DESC') }
+  }
+
   getColumns = () => {
     const { getSortOrder, module } = this.props
     const { namespace, cluster } = this.props.match.params
@@ -153,6 +157,7 @@ export default class Secrets extends React.Component {
         />
         <Table
           {...tableProps}
+          emptyProps={this.emptyProps}
           tableActions={this.tableActions}
           itemActions={this.itemActions}
           columns={this.getColumns()}

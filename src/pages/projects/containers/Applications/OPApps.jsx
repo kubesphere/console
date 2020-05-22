@@ -189,6 +189,9 @@ export default class OPApps extends React.Component {
       actions,
       onCreate: null,
       selectActions: [],
+      emptyProps: {
+        desc: t('APP_DEPLOYMENT_DESC'),
+      },
     }
   }
 

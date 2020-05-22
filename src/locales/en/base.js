@@ -123,4 +123,6 @@ export default {
   CREATE_STATUS_SUCCESS: 'Create successfully',
   CREATE_STATUS_UPDATING: 'Creating',
   CREATE_STATUS_FAILED: 'Create failed',
+
+  EMPTY_WRAPPER: 'No {resource} Found',
 }

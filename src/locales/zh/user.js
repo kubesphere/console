@@ -58,7 +58,9 @@ export default {
 
   USER_ACTIVE: '活跃',
   USER_DISABLED: '已禁用',
-  ACCOUNTS_MANAGEMENT_DESC:
+  USER_DESC:
+    '系统管理员用此功能模块管理账号，如创建、更新、读取、删除账号等，同时还能关联每个账号的角色；用户用账号名称或邮件地址登录 KubeSphere 平台。',
+  USER_CREATE_DESC:
     '系统管理员用此功能模块管理账号，如创建、更新、读取、删除账号等，同时还能关联每个账号的角色；用户用账号名称或邮件地址登录 KubeSphere 平台。',
   CLUSTER_ROLE_DESC: '集群角色定义了在集群范围内授权用户的访问权限。',
   ROLE_BASEINFO_DESC: '',

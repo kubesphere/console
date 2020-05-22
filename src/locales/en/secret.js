@@ -19,9 +19,9 @@
 export default {
   SECRET_DESC:
     'A Secret is an object that contains a small amount of sensitive data such as a password, a token, or a key.',
+  SECRET_CREATE_DESC:
+    'A Secret is an object that contains a small amount of sensitive data such as a password, a token, or a key.',
   SECRET_TYPE_DESC: 'You can choose or customize a Secret type.',
-  SECRETS_BASEINFO_DESC: '',
-  SECRET_SETTINGS_DESC: '',
 
   'DATA-KEY': 'Key',
   'DATA-VALUE': 'Value',

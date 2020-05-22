@@ -118,6 +118,8 @@ export default {
   "The project's file log collection is about to close.":
     '项目的落盘日志收集即将关闭.',
 
+  'Project Member': '项目成员',
+
   CLOSE_FILE_LOG_TIP:
     '落盘日志收集即将关闭。 关闭后，已开启落盘日志收集的服务在容器组副本重启前将继续进行落盘日志的收集，重启后，将不再收集。</br>如果需要再次收集，请开启落盘日志收集，并重起容器组副本。',
 

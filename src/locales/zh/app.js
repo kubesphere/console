@@ -17,7 +17,9 @@
  */
 
 export default {
-  APP_TEMPLATE_DESCRIPTION:
+  APP_TEMPLATE_DESC:
+    'KubeSphere 提供全生命周期的应用管理，可以上传或者创建新的应用模板，并且快速部署它们，也可以通过应用商店进行发布应用。',
+  APP_TEMPLATE_CREATE_DESC:
     'KubeSphere 提供全生命周期的应用管理，可以上传或者创建新的应用模板，并且快速部署它们，也可以通过应用商店进行发布应用。',
   DEVELOP_APP_TITLE: '开发应用模板',
   DEVELOP_APP_DESC:

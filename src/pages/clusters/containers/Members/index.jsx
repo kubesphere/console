@@ -175,6 +175,10 @@ export default class Members extends React.Component {
     },
   ]
 
+  get emptyProps() {
+    return { desc: t('INVITE_CLUSTER_MEMBER_DESC') }
+  }
+
   render() {
     const { bannerProps, tableProps } = this.props
     return (
@@ -182,10 +186,11 @@ export default class Members extends React.Component {
         <Banner
           {...bannerProps}
           tabs={this.tabs}
-          description={t('CLUSTER_ROLE_DESC')}
+          description={t('INVITE_CLUSTER_MEMBER_DESC')}
         />
         <Table
           {...tableProps}
+          emptyProps={this.emptyProps}
           tableActions={this.tableActions}
           itemActions={this.itemActions}
           columns={this.getColumns()}

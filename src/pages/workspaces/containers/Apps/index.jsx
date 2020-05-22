@@ -31,7 +31,7 @@ import AppStore from 'stores/openpitrix/app'
 @withList({
   store: new AppStore(),
   module: 'apps',
-  name: 'Apps',
+  name: 'App Template',
   rowKey: 'app_id',
 })
 export default class Roles extends React.Component {
@@ -146,12 +146,7 @@ export default class Roles extends React.Component {
     const { bannerProps, tableProps } = this.props
     return (
       <ListPage {...this.props} getData={this.getData} noWatch>
-        <Banner
-          {...bannerProps}
-          tips={this.tips}
-          title={t('App Templates')}
-          description={t('APP_TEMPLATE_DESCRIPTION')}
-        />
+        <Banner {...bannerProps} tips={this.tips} title={t('App Templates')} />
         <Table
           {...tableProps}
           tableActions={this.tableActions}

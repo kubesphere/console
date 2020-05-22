@@ -70,6 +70,8 @@ export default {
 
   'Unbind Cluster': '解绑集群',
 
+  'Cluster Member': '集群成员',
+
   Authorized: '已授权',
   Unauthorized: '待授权',
 
