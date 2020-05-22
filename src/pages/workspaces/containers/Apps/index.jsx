@@ -68,34 +68,7 @@ export default class Roles extends React.Component {
   }
 
   get itemActions() {
-    const { trigger, name, routing } = this.props
-    return [
-      {
-        key: 'edit',
-        icon: 'pen',
-        text: t('Edit'),
-        action: 'edit',
-        show: this.showAction,
-        onClick: item =>
-          trigger('openpitrix.repo.edit', {
-            detail: item,
-            success: routing.query,
-          }),
-      },
-      {
-        key: 'delete',
-        icon: 'trash',
-        text: t('Delete'),
-        action: 'delete',
-        show: this.showAction,
-        onClick: item =>
-          trigger('resource.delete', {
-            detail: item,
-            type: t(name),
-            success: routing.query,
-          }),
-      },
-    ]
+    return []
   }
 
   get tableActions() {
