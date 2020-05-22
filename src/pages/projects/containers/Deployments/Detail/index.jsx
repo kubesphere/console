@@ -147,7 +147,7 @@ export default class DeploymentDetail extends React.Component {
       text: t('Delete'),
       action: 'delete',
       onClick: () =>
-        this.trigger('resource.delete', {
+        this.trigger('workload.delete', {
           type: t(this.name),
           detail: this.store.detail,
           success: () => this.routing.push(this.listUrl),

@@ -318,7 +318,7 @@ export default class ServiceDeployAppModal extends React.Component {
   }
 
   renderFooter() {
-    const { onCancel } = this.props
+    const { onCancel, store } = this.props
     const { currentStep, isCodeMode } = this.state
 
     if (isCodeMode) {
@@ -327,7 +327,11 @@ export default class ServiceDeployAppModal extends React.Component {
           <div className={styles.wrapper}>
             <div className="text-right">
               <Button onClick={onCancel}>{t('Cancel')}</Button>
-              <Button type="control" onClick={this.handleOk}>
+              <Button
+                type="control"
+                onClick={this.handleOk}
+                loading={store.isSubmitting}
+              >
                 {t('Create')}
               </Button>
             </div>
@@ -352,7 +356,11 @@ export default class ServiceDeployAppModal extends React.Component {
                 {t('Next')}
               </Button>
             ) : (
-              <Button type="control" onClick={this.handleOk}>
+              <Button
+                type="control"
+                onClick={this.handleOk}
+                loading={store.isSubmitting}
+              >
                 {t('Create')}
               </Button>
             )}

@@ -33,6 +33,7 @@ export default class Services extends React.Component {
   state = {
     components: omit(this.props.formData, ['application', 'ingress']) || {},
     componentsError: '',
+    editData: {},
     showAdd: false,
   }
 
@@ -58,12 +59,20 @@ export default class Services extends React.Component {
   showAdd = componentKey => {
     this.setState({
       showAdd: true,
-      selectComponentKey: componentKey,
+      editData: this.getEditData(this.state.components[componentKey]),
     })
   }
 
   hideAdd = () => {
-    this.setState({ showAdd: false, selectComponentKey: '' })
+    this.setState({ showAdd: false, editData: {} })
+  }
+
+  getEditData = (component = {}) => {
+    const data = {}
+    Object.values(component).forEach(item => {
+      data[item.kind] = item
+    })
+    return data
   }
 
   updateAppLabels(formData) {
@@ -165,12 +174,7 @@ export default class Services extends React.Component {
 
   render() {
     const { cluster, namespace, projectDetail } = this.props
-    const {
-      components,
-      showAdd,
-      selectComponentKey,
-      componentsError,
-    } = this.state
+    const { components, showAdd, editData, componentsError } = this.state
 
     return (
       <div className={styles.wrapper}>
@@ -191,7 +195,7 @@ export default class Services extends React.Component {
         <CreateServiceModal
           cluster={cluster}
           namespace={namespace}
-          detail={components[selectComponentKey]}
+          detail={editData}
           store={this.serviceStore}
           module="services"
           visible={showAdd}

@@ -28,6 +28,7 @@ import HPAModal from 'projects/components/Modals/HPA'
 import EditConfigTemplateModal from 'projects/components/Modals/ConfigTemplate'
 import EditServiceModal from 'projects/components/Modals/ServiceSetting/StatefulSet'
 import ClusterDiffSettings from 'components/Forms/Workload/ClusterDiffSettings'
+import DeleteModal from 'projects/components/Modals/WorkloadDelete'
 import { MODULE_KIND_MAP } from 'utils/constants'
 import FORM_TEMPLATES from 'utils/form.templates'
 import formPersist from 'utils/form.persist'
@@ -231,6 +232,42 @@ export default {
         detail: serviceDetail,
         store: serviceStore,
         modal: EditServiceModal,
+        ...props,
+      })
+    },
+  },
+  'workload.delete': {
+    on({ store, detail, success, ...props }) {
+      const modal = Modal.open({
+        onOk: () => {
+          Modal.close(modal)
+          Notify.success({ content: `${t('Deleted Successfully')}!` })
+          success && success()
+        },
+        store,
+        modal: DeleteModal,
+        resource: detail,
+        ...props,
+      })
+    },
+  },
+  'workload.batch.delete': {
+    on({ store, success, rowKey = 'name', ...props }) {
+      const { data, selectedRowKeys } = store.list
+
+      const resource = data.filter(item =>
+        selectedRowKeys.includes(item[rowKey])
+      )
+
+      const modal = Modal.open({
+        onOk: () => {
+          Modal.close(modal)
+          Notify.success({ content: `${t('Deleted Successfully')}!` })
+          success && success()
+        },
+        modal: DeleteModal,
+        resource,
+        store,
         ...props,
       })
     },

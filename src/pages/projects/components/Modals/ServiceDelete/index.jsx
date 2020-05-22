@@ -19,12 +19,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import { get, flatten, isArray, isEmpty } from 'lodash'
+import { flatten, isArray, isEmpty } from 'lodash'
 import { Icon, Checkbox } from '@pitrix/lego-ui'
 
 import { joinSelector, getDisplayName } from 'utils'
 import { ICON_TYPES, MODULE_KIND_MAP } from 'utils/constants'
-import ObjectMapper from 'utils/object.mapper'
 import { Button, Modal } from 'components/Base'
 import EmptyList from 'components/Cards/EmptyList'
 
@@ -66,20 +65,6 @@ export default class ServiceDeleteModal extends React.Component {
     this.builderStore = new Builder()
   }
 
-  componentDidUpdate(prevProps) {
-    const { visible, resource } = this.props
-
-    if (visible !== prevProps.visible) {
-      if (visible) {
-        this.setState({ enableConfirm: false, relatedResources: [], timer: 3 })
-        this.fetchRelatedResources(resource)
-        this.startTimer()
-      } else {
-        this.timer && clearInterval(this.timer)
-      }
-    }
-  }
-
   componentDidMount() {
     if (this.props.visible) {
       this.fetchRelatedResources(this.props.resource)
@@ -117,12 +102,15 @@ export default class ServiceDeleteModal extends React.Component {
     this.setState({ isLoading: true })
     let selectors = []
     let namespace
+    let cluster
     if (isArray(resource)) {
       selectors = resource.map(item => item.selector)
       namespace = resource[0].namespace
+      cluster = resource[0].cluster
     } else {
       selectors.push(resource.selector)
       namespace = resource.namespace
+      cluster = resource.cluster
     }
 
     const requests = []
@@ -132,20 +120,28 @@ export default class ServiceDeleteModal extends React.Component {
         const labelSelector = joinSelector(selector)
 
         requests.push(
-          this.volumeStore.fetchListByK8s({ namespace, labelSelector }),
+          this.volumeStore.fetchListByK8s({
+            cluster,
+            namespace,
+            labelSelector,
+          }),
           ...modules.map(module =>
-            this.workloadStore.fetchListByK8s(
-              { namespace, labelSelector },
-              module
-            )
+            this.workloadStore.fetchListByK8s({
+              cluster,
+              namespace,
+              labelSelector,
+              module,
+            })
           )
         )
         if (selector.s2ibuilder) {
           requests.push(
             this.builderStore
               .fetchDetail({
+                cluster,
                 namespace,
                 name: selector.s2ibuilder,
+                module: 's2ibuilders',
               })
               .then(res => [res])
           )
@@ -154,58 +150,40 @@ export default class ServiceDeleteModal extends React.Component {
     })
 
     const results = await Promise.all(requests)
-    const regex = new RegExp(`\\/namespaces\\/${namespace}\\/(.*)\\/.*`)
     this.setState({
-      relatedResources: flatten(
-        results.map((resources = []) =>
-          resources.map(item => {
-            const originPath = item._originData ? '_originData.' : ''
-
-            if (get(item, `${originPath}spec.storageClassName`)) {
-              return {
-                ...item,
-                type: 'volumes',
-              }
-            }
-
-            const module = get(
-              get(item, `${originPath}metadata.selfLink`, '').match(regex),
-              '[1]',
-              'deployments'
-            )
-
-            return {
-              ...ObjectMapper[module](item),
-              type: module,
-            }
-          })
-        )
-      ),
+      relatedResources: flatten(results),
       isLoading: false,
     })
   }
 
   stopPropagation = e => e.stopPropagation()
 
-  handleOk = () => {
-    const { onOk } = this.props
+  handleOk = async () => {
+    const { onOk, store, resource } = this.props
     const { selectedRelatedResourceIds, relatedResources } = this.state
 
     const requests = []
-    relatedResources.forEach(resource => {
-      if (selectedRelatedResourceIds.includes(resource.uid)) {
-        if (resource.type === 'volumes') {
-          requests.push(this.volumeStore.delete(resource))
-        } else if (modules.includes(resource.type)) {
-          this.workloadStore.setModule(resource.type)
-          requests.push(this.workloadStore.delete(resource))
-        } else if (resource.type === 's2ibuilders') {
-          requests.push(this.builderStore.delete(resource))
+    relatedResources.forEach(item => {
+      if (selectedRelatedResourceIds.includes(item.uid)) {
+        if (item.module === 'persistentvolumeclaims') {
+          requests.push(this.volumeStore.delete(item))
+        } else if (modules.includes(item.module)) {
+          this.workloadStore.setModule(item.module)
+          requests.push(this.workloadStore.delete(item))
+        } else if (item.module === 's2ibuilders') {
+          requests.push(this.builderStore.delete(item))
         }
       }
     })
 
-    Promise.all(requests)
+    await Promise.all(requests)
+    if (isArray(resource)) {
+      await Promise.all(resource.map(item => store.delete(item)))
+      store.list.setSelectRowKeys([])
+    } else {
+      await store.delete(resource)
+    }
+
     onOk()
   }
 
@@ -254,7 +232,7 @@ export default class ServiceDeleteModal extends React.Component {
               onClick={this.stopPropagation}
             />
             <Icon
-              name={ICON_TYPES[resource.type]}
+              name={ICON_TYPES[resource.module]}
               size={20}
               type={
                 selectedRelatedResourceIds.includes(resource.uid)
@@ -266,7 +244,7 @@ export default class ServiceDeleteModal extends React.Component {
               {getDisplayName(resource)}
             </span>
             <span className={styles.resourceType}>
-              {t(MODULE_KIND_MAP[resource.type])}
+              {t(MODULE_KIND_MAP[resource.module])}
             </span>
           </div>
         ))}
@@ -281,10 +259,9 @@ export default class ServiceDeleteModal extends React.Component {
     const title = `${t('Sure to delete the service(s)?')}`
 
     const description = t('DELETE_SERVICE_DESC', {
-      resource:
-        resource.length > 1
-          ? resource.map(item => item.name).join(', ')
-          : resource.name,
+      resource: isArray(resource)
+        ? resource.map(item => item.name).join(', ')
+        : resource.name,
     })
 
     return (

@@ -107,12 +107,32 @@ export default class Deployments extends React.Component {
         text: t('Delete'),
         action: 'delete',
         onClick: item =>
-          trigger('resource.delete', {
+          trigger('workload.delete', {
             type: t(this.name),
             detail: item,
           }),
       },
     ]
+  }
+
+  get tableActions() {
+    const { trigger, name, rowKey, tableProps } = this.props
+    return {
+      ...tableProps.tableActions,
+      selectActions: [
+        {
+          key: 'delete',
+          type: 'danger',
+          text: t('Delete'),
+          action: 'delete',
+          onClick: () =>
+            trigger('workload.batch.delete', {
+              type: t(name),
+              rowKey,
+            }),
+        },
+      ],
+    }
   }
 
   getStatus() {
@@ -203,6 +223,7 @@ export default class Deployments extends React.Component {
         <Table
           {...tableProps}
           itemActions={this.itemActions}
+          tableActions={this.tableActions}
           columns={this.getColumns()}
           onCreate={this.showCreate}
         />

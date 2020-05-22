@@ -97,12 +97,32 @@ export default class Services extends React.Component {
         text: t('Delete'),
         action: 'delete',
         onClick: item =>
-          trigger('resource.delete', {
+          trigger('service.delete', {
             type: t(this.name),
             detail: item,
           }),
       },
     ]
+  }
+
+  get tableActions() {
+    const { tableProps, name, rowKey, trigger } = this.props
+    return {
+      ...tableProps.tableActions,
+      selectActions: [
+        {
+          key: 'delete',
+          type: 'danger',
+          text: t('Delete'),
+          action: 'delete',
+          onClick: () =>
+            trigger('service.batch.delete', {
+              type: t(name),
+              rowKey,
+            }),
+        },
+      ],
+    }
   }
 
   getColumns = () => {
@@ -202,6 +222,7 @@ export default class Services extends React.Component {
         <Table
           {...tableProps}
           itemActions={this.itemActions}
+          tableActions={this.tableActions}
           columns={this.getColumns()}
           onCreate={this.showCreate}
         />

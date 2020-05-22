@@ -150,6 +150,7 @@ export default class BaseStore {
     )
     const data = result.items.map(item => ({
       cluster,
+      module: module || this.module,
       ...this.mapper(item),
     }))
 

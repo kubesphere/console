@@ -108,7 +108,7 @@ export default class KubernetesStatus extends Component {
     )
 
     return (
-      <Panel title={t('Cluster Info')}>
+      <Panel title={t('Kubernetes Status')}>
         <Loading spinning={this.schedulerStore.isLoading}>
           <div className={styles.level}>
             <Text
