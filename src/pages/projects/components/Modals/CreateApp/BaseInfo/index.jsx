@@ -16,8 +16,9 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { set, debounce } from 'lodash'
+import { get, set, debounce } from 'lodash'
 import React from 'react'
+import { PropTypes } from 'prop-types'
 import { Input, Select, TextArea } from '@pitrix/lego-ui'
 import { PATTERN_NAME, PATTERN_LENGTH_63 } from 'utils/constants'
 import { Form } from 'components/Base'
@@ -25,6 +26,14 @@ import { Form } from 'components/Base'
 import styles from './index.scss'
 
 export default class BaseInfo extends React.Component {
+  static propTypes = {
+    onLabelsChange: PropTypes.func,
+  }
+
+  static defaultProps = {
+    onLabelsChange() {},
+  }
+
   get formTemplate() {
     return this.props.formData.application
   }
@@ -58,6 +67,9 @@ export default class BaseInfo extends React.Component {
       'spec.selector.matchLabels["app.kubernetes.io/name"]',
       value
     )
+    this.props.onLabelsChange(
+      get(this.formTemplate, 'spec.selector.matchLabels')
+    )
   }, 200)
 
   handleVersionChange = debounce(value => {
@@ -66,7 +78,14 @@ export default class BaseInfo extends React.Component {
       'spec.selector.matchLabels["app.kubernetes.io/version"]',
       value
     )
+    this.props.onLabelsChange(
+      get(this.formTemplate, 'spec.selector.matchLabels')
+    )
   }, 200)
+
+  handleGovernanceChange = value => {
+    this.props.onGovernanceChange(value)
+  }
 
   render() {
     const { formRef, serviceMeshEnable } = this.props
@@ -75,7 +94,7 @@ export default class BaseInfo extends React.Component {
       <div className={styles.wrapper}>
         <div className={styles.step}>
           <div>{t('Basic Info')}</div>
-          <p>{t('对应用的名称描述信息等基本的信息定义')}</p>
+          <p>{t('APPLICATION_BASEINFO_DESC')}</p>
         </div>
         <Form data={this.formTemplate} ref={formRef}>
           <Form.Item
@@ -113,6 +132,7 @@ export default class BaseInfo extends React.Component {
               name="metadata.annotations['servicemesh.kubesphere.io/enabled']"
               options={this.governances}
               defaultValue={serviceMeshEnable ? 'true' : 'false'}
+              onChange={this.handleGovernanceChange}
               disabled={!serviceMeshEnable}
             />
           </Form.Item>

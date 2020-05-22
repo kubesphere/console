@@ -149,6 +149,7 @@ export default function withList(options) {
           isEmptyList,
           rowKey: this.rowKey,
           module: this.module,
+          name: this.name,
           enabledActions: this.enabledActions,
           itemActions: this.defaultItemActions,
           tableActions: this.defaultTableActions,

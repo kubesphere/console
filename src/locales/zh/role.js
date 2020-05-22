@@ -141,5 +141,6 @@ export default {
   'Allows viewer access to view all resources in the namespace.':
     '项目观察者，可以查看项目下所有的资源。',
 
-  ACCOUNT_ROLES_DESC: '账号角色可以定义平台内的账号拥有的权限',
+  ACCOUNT_ROLE_DESC: '账号角色可以定义平台内的账号拥有的权限',
+  ACCOUNT_ROLE_CREATE_DESC: '账号角色可以定义平台内的账号拥有的权限',
 }

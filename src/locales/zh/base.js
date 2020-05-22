@@ -482,4 +482,6 @@ export default {
   CREATE_STATUS_FAILED: '创建失败',
 
   DATA_SOURCE: '数据源',
+
+  EMPTY_WRAPPER: '未发现{resource}',
 }

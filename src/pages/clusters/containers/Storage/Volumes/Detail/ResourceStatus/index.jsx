@@ -56,15 +56,13 @@ class ResourceStatus extends React.Component {
   }
 
   render() {
-    const { cluster, namespace, name } = this.props.match.params
+    const { cluster, namespace } = this.props.match.params
     const detail = {
       kind: 'PVC',
       ...get(this.props.match, 'params'),
     }
 
-    const prefix = `/clusters/${cluster}/projects/${namespace}/${
-      this.module
-    }/${name}`
+    const prefix = `/clusters/${cluster}/projects/${namespace}`
 
     return (
       <div className={styles.main}>

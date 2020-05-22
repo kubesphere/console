@@ -16,12 +16,13 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, set, unset } from 'lodash'
+import { get, set, unset, isFunction } from 'lodash'
 import React from 'react'
 import { toJS } from 'mobx'
 import PropTypes from 'prop-types'
 import { Icon } from '@pitrix/lego-ui'
-import { Modal, Button } from 'components/Base'
+import { Modal, Button, Notify, Switch } from 'components/Base'
+import { mergeLabels } from 'utils'
 import FORM_TEMPLATES from 'utils/form.templates'
 
 import RouterStore from 'stores/router'
@@ -30,6 +31,7 @@ import Steps from './Steps'
 import BaseInfo from './BaseInfo'
 import Services from './Services'
 import Routes from './Routes'
+import Code from './Code'
 
 import styles from './index.scss'
 
@@ -66,6 +68,7 @@ export default class ServiceDeployAppModal extends React.Component {
     }
 
     this.formRef = React.createRef()
+    this.codeRef = React.createRef()
 
     this.routerStore = new RouterStore()
   }
@@ -112,42 +115,45 @@ export default class ServiceDeployAppModal extends React.Component {
     const { gateway } = this.state
 
     store.fetchSampleData(app).then(resp => {
-      const formData = {}
-      resp.forEach(item => {
-        set(item, 'metadata.namespace', namespace)
-        if (!this.serviceMeshEnable) {
-          unset(
-            item,
-            'metadata.annotations["servicemesh.kubesphere.io/enabled"]'
-          )
-        }
+      const formData = this.getFormDataFromCode(resp)
 
-        if (item.kind === 'Application') {
-          formData.application = item
-        } else if (item.kind === 'Service') {
-          const componentName = get(item, 'metadata.labels.app')
-          set(formData, `${componentName}.service`, item)
-        } else if (item.kind === 'Ingress') {
-          set(
-            item,
-            'metadata.annotations["nginx.ingress.kubernetes.io/upstream-vhost"]',
-            `productpage.${namespace}.svc.cluster.local`
-          )
-          set(
-            item,
-            'spec.rules[0].host',
-            `productpage.${namespace}.${gateway.loadBalancerIngress}.nip.io`
-          )
-
-          formData.ingress = item
-        } else {
-          const componentName = get(item, 'metadata.labels.app')
-          set(formData, `${componentName}.workload`, item)
-        }
-      })
+      set(
+        formData.ingress,
+        'metadata.annotations["nginx.ingress.kubernetes.io/upstream-vhost"]',
+        `productpage.${namespace}.svc.cluster.local`
+      )
+      set(
+        formData.ingress,
+        'spec.rules[0].host',
+        `productpage.${namespace}.${gateway.loadBalancerIngress}.nip.io`
+      )
 
       this.setState({ formData })
     })
+  }
+
+  getFormDataFromCode(resources) {
+    const { namespace } = this.props
+    const formData = {}
+    resources.forEach(item => {
+      set(item, 'metadata.namespace', namespace)
+      if (!this.serviceMeshEnable) {
+        unset(item, 'metadata.annotations["servicemesh.kubesphere.io/enabled"]')
+      }
+
+      if (item.kind === 'Application') {
+        formData.application = item
+      } else if (item.kind === 'Service') {
+        const componentName = get(item, 'metadata.labels.app')
+        set(formData, `${componentName}.service`, item)
+      } else if (item.kind === 'Ingress') {
+        formData.ingress = item
+      } else {
+        const componentName = get(item, 'metadata.labels.app')
+        set(formData, `${componentName}.workload`, item)
+      }
+    })
+    return formData
   }
 
   async fetchData() {
@@ -161,7 +167,15 @@ export default class ServiceDeployAppModal extends React.Component {
   }
 
   handleOk = () => {
-    this.props.onOk(this.state.formData)
+    const { isCodeMode } = this.state
+
+    let data
+    if (isCodeMode && isFunction(get(this, 'codeRef.current.getData'))) {
+      data = this.getFormDataFromCode(this.codeRef.current.getData())
+    } else {
+      data = this.state.formData
+    }
+    this.props.onOk(data)
   }
 
   handlePrev = () => {
@@ -180,6 +194,86 @@ export default class ServiceDeployAppModal extends React.Component {
       })
   }
 
+  handleModeChange = () => {
+    this.setState(({ isCodeMode, formData }) => {
+      let newFormData = formData
+
+      if (
+        !isCodeMode &&
+        isFunction(get(this, 'resourcesFormRef.current.hasSubRoute')) &&
+        this.resourcesFormRef.current.hasSubRoute()
+      ) {
+        return Notify.warning(t('Please save the current form first'))
+      }
+
+      if (isCodeMode && isFunction(get(this, 'codeRef.current.getData'))) {
+        newFormData = this.getFormDataFromCode(this.codeRef.current.getData())
+      }
+
+      return { isCodeMode: !isCodeMode, formData: newFormData }
+    })
+  }
+
+  handleAppLabelsChange = value => {
+    const { application, ingress, ...components } = this.state.formData
+    mergeLabels(ingress, value)
+    Object.values(components).forEach(component => {
+      mergeLabels(component.service, value)
+      mergeLabels(component.workload, value)
+    })
+  }
+
+  handleGovernanceChange = value => {
+    const { application, ingress, ...components } = this.state.formData
+    this.setState({ isGovernance: value })
+    const valueStr = String(value)
+    Object.values(components).forEach(component => {
+      set(
+        component.workload,
+        'metadata.annotations["servicemesh.kubesphere.io/enabled"]',
+        valueStr
+      )
+      set(
+        component.service,
+        'metadata.annotations["servicemesh.kubesphere.io/enabled"]',
+        valueStr
+      )
+      set(
+        component.workload,
+        'spec.template.metadata.annotations["sidecar.istio.io/inject"]',
+        valueStr
+      )
+    })
+  }
+
+  renderHeader() {
+    const { onCancel } = this.props
+    const { currentStep, isCodeMode } = this.state
+    return (
+      <div className={styles.header}>
+        <div className={styles.title}>
+          <Icon name="close" size={20} clickable onClick={onCancel} />
+          <span />
+          <Icon name="appcenter" size={20} />
+          <span>{t('Create Application by Service')}</span>
+        </div>
+        {!isCodeMode && (
+          <div className={styles.steps}>
+            <div />
+            <Steps steps={this.steps} current={currentStep} />
+          </div>
+        )}
+        <Switch
+          className={styles.switch}
+          text={t('Edit Mode')}
+          onChange={this.handleModeChange}
+          checked={isCodeMode}
+        />
+        <div className={styles.headerBottom} />
+      </div>
+    )
+  }
+
   renderForm() {
     const { cluster, namespace, store, projectDetail } = this.props
     const { formData, gateway, currentStep, isGovernance } = this.state
@@ -196,6 +290,8 @@ export default class ServiceDeployAppModal extends React.Component {
       isGovernance,
       projectDetail,
       serviceMeshEnable: this.serviceMeshEnable,
+      onLabelsChange: this.handleAppLabelsChange,
+      onGovernanceChange: this.handleGovernanceChange,
     }
 
     if (step.isForm) {
@@ -215,28 +311,30 @@ export default class ServiceDeployAppModal extends React.Component {
     )
   }
 
-  renderHeader() {
-    const { onCancel } = this.props
-    const { currentStep } = this.state
-    return (
-      <div className={styles.header}>
-        <div className={styles.title}>
-          <Icon name="close" size={20} clickable onClick={onCancel} />
-          <span />
-          <Icon name="appcenter" size={20} />
-          <span>{t('Create Application by Service')}</span>
-        </div>
-        <div className={styles.wrapper}>
-          <Steps steps={this.steps} current={currentStep} />
-        </div>
-        <div className={styles.headerBottom} />
-      </div>
-    )
+  renderCode() {
+    const { formData } = this.state
+
+    return <Code ref={this.codeRef} formTemplate={formData} />
   }
 
   renderFooter() {
     const { onCancel } = this.props
-    const { currentStep } = this.state
+    const { currentStep, isCodeMode } = this.state
+
+    if (isCodeMode) {
+      return (
+        <div className={styles.footer}>
+          <div className={styles.wrapper}>
+            <div className="text-right">
+              <Button onClick={onCancel}>{t('Cancel')}</Button>
+              <Button type="control" onClick={this.handleOk}>
+                {t('Create')}
+              </Button>
+            </div>
+          </div>
+        </div>
+      )
+    }
 
     const total = this.steps.length - 1
     return (
@@ -266,6 +364,7 @@ export default class ServiceDeployAppModal extends React.Component {
 
   render() {
     const { visible } = this.props
+    const { isCodeMode } = this.state
 
     return (
       <Modal
@@ -277,7 +376,7 @@ export default class ServiceDeployAppModal extends React.Component {
         fullScreen
       >
         {this.renderHeader()}
-        {this.renderForm()}
+        {isCodeMode ? this.renderCode() : this.renderForm()}
         {this.renderFooter()}
       </Modal>
     )

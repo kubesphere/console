@@ -31,7 +31,7 @@ export default class Pods extends React.Component {
       <PodsCard
         detail={this.store.detail}
         limit={6}
-        prefix={`/clusters/${cluster}/projects/${namespace}/pods`}
+        prefix={`/clusters/${cluster}/projects/${namespace}`}
       />
     )
   }

@@ -34,6 +34,8 @@ export default {
 
   SECRET_DESC:
     '密钥 (Secret) 是一种包含少量敏感信息的资源对象，例如密码、token、秘钥等，以键/值对形式保存并且可以在容器组中使用。',
+  SECRET_CREATE_DESC:
+    '密钥 (Secret) 是一种包含少量敏感信息的资源对象，例如密码、token、秘钥等，以键/值对形式保存并且可以在容器组中使用。',
 
   SECRET_NO_CHINESE_CODE_DESC: '密钥中不能包含中文字符',
 

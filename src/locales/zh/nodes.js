@@ -93,6 +93,8 @@ export default {
 
   CLUSTER_NODE_DESC:
     '集群节点提供了当前集群下节点的运行状态，以及可以编辑删除节点',
+  CLUSTER_NODE_CREATE_DESC:
+    '集群节点提供了当前集群下节点的运行状态，以及可以编辑删除节点',
 
   NODE_NETWORKUNAVAILABLE: '网络配置(NetworkUnavailable)',
   NODE_NETWORKUNAVAILABLE_DESC: '检查节点上的网络配置是否正确',

@@ -140,14 +140,12 @@ export default class DropdownContent extends React.Component {
   }
 
   handleInputChange = (e, value) => {
+    let image = value
     if (this.registryUrl) {
-      const compileValue = this.registryUrl.endsWith('/')
-        ? `${this.registryUrl}${value}`
-        : `${this.registryUrl}/${value}`
-      this.props.onChange(compileValue)
-      return
+      image = `${this.registryUrl}/${value}`.replace(/\/+/g, '/')
     }
-    this.props.onChange(value)
+    image = image.replace(/\s+/g, '')
+    this.props.onChange(image)
   }
 
   handleKeyUp = e => {

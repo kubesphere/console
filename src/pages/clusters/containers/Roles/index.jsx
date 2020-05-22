@@ -143,6 +143,10 @@ export default class ClusterRoles extends React.Component {
     })
   }
 
+  get emptyProps() {
+    return { desc: t('CLUSTER_ROLE_DESC') }
+  }
+
   render() {
     const { bannerProps, tableProps } = this.props
     return (
@@ -150,6 +154,7 @@ export default class ClusterRoles extends React.Component {
         <Banner {...bannerProps} tabs={this.tabs} />
         <Table
           {...tableProps}
+          emptyProps={this.emptyProps}
           tableActions={this.tableActions}
           itemActions={this.itemActions}
           columns={this.getColumns()}

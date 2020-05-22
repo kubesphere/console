@@ -237,7 +237,10 @@ it('mergeLabels', () => {
 
   const formData4 = { kind: 'Ingress' }
   mergeLabels(formData4, labels)
-  expect(formData4).toStrictEqual({ kind: 'Ingress' })
+  expect(formData4).toStrictEqual({
+    kind: 'Ingress',
+    metadata: { labels: { app: 'redis' } },
+  })
 
   const formData6 = {}
   mergeLabels(formData6, labels)

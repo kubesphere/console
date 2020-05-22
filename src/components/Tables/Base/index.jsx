@@ -35,6 +35,7 @@ import {
 } from '@pitrix/lego-ui'
 import { Button, Search } from 'components/Base'
 import CustomColumns from './CustomColumns'
+import Empty from './Empty'
 
 import styles from './index.scss'
 
@@ -51,7 +52,6 @@ export default class WorkloadTable extends React.Component {
     isLoading: PropTypes.bool,
     pagination: PropTypes.object,
     filters: PropTypes.object,
-    keyword: PropTypes.string,
     rowKey: PropTypes.any,
     onFetch: PropTypes.func,
     onSelectRowKeys: PropTypes.func,
@@ -122,7 +122,6 @@ export default class WorkloadTable extends React.Component {
       nextProps.columns.length !== this.props.columns.length ||
       nextProps.selectedRowKeys.length !== this.props.selectedRowKeys.length ||
       !isEqual(nextProps.filters, this.props.filters) ||
-      nextProps.keyword !== this.props.keyword ||
       nextProps.isLoading !== this.props.isLoading ||
       !isEqual(nextProps.pagination, this.props.pagination)
     ) {
@@ -163,24 +162,16 @@ export default class WorkloadTable extends React.Component {
   }
 
   handlePagination = page => {
-    const { keyword, onFetch } = this.props
-    const params = { page }
-
-    if (!isEmpty(keyword)) params.keyword = keyword
-
-    onFetch(params)
+    const { onFetch } = this.props
+    onFetch({ page })
   }
 
   handleRefresh = () => {
-    const { keyword, pagination } = this.props
-    const params = {
+    const { pagination } = this.props
+    this.props.onFetch({
       limit: pagination.limit,
       page: pagination.page,
-    }
-
-    if (!isEmpty(keyword)) params.keyword = keyword
-
-    this.props.onFetch(params)
+    })
   }
 
   handleColumnsHide = columns => {
@@ -276,7 +267,7 @@ export default class WorkloadTable extends React.Component {
   )
 
   renderSearch() {
-    const { hideSearch, searchType, keyword } = this.props
+    const { hideSearch, searchType, filters } = this.props
 
     if (hideSearch) {
       return null
@@ -289,7 +280,7 @@ export default class WorkloadTable extends React.Component {
       return (
         <Search
           className={styles.keyword}
-          value={keyword}
+          value={filters[searchType]}
           onSearch={this.handleSearch}
           placeholder={placeholder}
         />
@@ -440,6 +431,18 @@ export default class WorkloadTable extends React.Component {
     )
   }
 
+  renderEmpty() {
+    const { module, name, emptyProps = {} } = this.props
+    return (
+      <Empty
+        action={this.renderActions()}
+        name={name}
+        module={module}
+        {...emptyProps}
+      />
+    )
+  }
+
   renderTableFooter = () => {
     if (!this.props.pagination) {
       return null
@@ -472,6 +475,7 @@ export default class WorkloadTable extends React.Component {
       isLoading,
       silentLoading,
       rowKey,
+      filters,
       selectedRowKeys,
       onSelectRowKeys,
       hideHeader,
@@ -480,6 +484,10 @@ export default class WorkloadTable extends React.Component {
       getCheckboxProps,
     } = this.props
     const { hideColumns } = this.state
+
+    if (isEmpty(data) && !isLoading && isEmpty(filters)) {
+      return this.renderEmpty()
+    }
 
     const props = {}
 

@@ -47,20 +47,17 @@ const yamlToObject = (data, hasMeta) => {
     return values[0]
   }
 
-  return values.reduce(
-    (prev, cur) => ({
-      ...prev,
-      [cur.kind || 'Unkown']: cur,
-    }),
-    {}
-  )
+  return values
 }
 
 export default class EditMode extends React.Component {
   static propTypes = {
     className: PropTypes.string,
     mode: PropTypes.string,
-    value: PropTypes.object,
+    value: PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.arrayOf(PropTypes.object),
+    ]),
     readOnly: PropTypes.bool,
   }
 
