@@ -408,6 +408,8 @@ export default {
   FILE_OVERSIZED_TIP: '文件过大，超过 2M 不能上传！',
   'Load more': '加载更多',
 
+  'Resource List': '资源列表',
+
   NOT_FOUND_DESC:
     '🙇 对不起没有找到相关资源，系统将在 {time}s 后返回 <a href="{link}">工作台</a>',
   DETAIL_NOT_FOUND_DESC:

@@ -25,6 +25,12 @@ import { Button } from 'components/Base'
 
 function withTableActions(WrappedComponent) {
   class TableWrapper extends React.Component {
+    static defaultProps = {
+      itemActions: [],
+      enabledActions: [],
+      tableActions: {},
+    }
+
     get enabledItemActions() {
       const { itemActions, enabledActions } = this.props
       return itemActions.filter(

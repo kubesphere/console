@@ -81,6 +81,7 @@ export default class CustomResources extends React.Component {
           itemActions={[]}
           columns={this.getColumns()}
           onCreate={null}
+          searchType="name"
         />
       </ListPage>
     )
