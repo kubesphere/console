@@ -78,6 +78,7 @@ export default class WorkloadTable extends React.Component {
     hideSearch: false,
     hideCustom: false,
     extraProps: {},
+    pagination: {},
   }
 
   constructor(props) {
@@ -440,6 +441,10 @@ export default class WorkloadTable extends React.Component {
   }
 
   renderTableFooter = () => {
+    if (!this.props.pagination) {
+      return null
+    }
+
     const { total, page, limit } = this.props.pagination
 
     return (

@@ -52,6 +52,12 @@ const getBaseInfo = item => ({
   isFedManaged: get(item, 'metadata.labels["kubefed.io/managed"]') === 'true',
 })
 
+const DefaultMapper = item => ({
+  ...getBaseInfo(item),
+  namespace: get(item, 'metadata.namespace'),
+  _originData: getOriginData(item),
+})
+
 const WorkspaceMapper = item => ({
   ...getBaseInfo(item),
   annotations: get(item, 'metadata.annotations', {}),
@@ -969,6 +975,7 @@ const CRDMapper = item => {
     scope: get(item, 'spec.scope'),
     kind: get(item, 'spec.names.kind'),
     latestVersion: get(versions[versions.length - 1], 'name'),
+    module: get(item, 'status.acceptedNames.plural'),
     _originData: getOriginData(item),
   }
 }
@@ -1055,4 +1062,5 @@ export default {
   pipelines: PipelinesMapper,
   networkpolicies: NetworkPoliciesMapper,
   namespacenetworkpolicies: NetworkPoliciesMapper,
+  default: DefaultMapper,
 }
