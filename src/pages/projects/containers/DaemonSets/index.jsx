@@ -115,6 +115,26 @@ export default class DaemonSets extends React.Component {
     ]
   }
 
+  get tableActions() {
+    const { trigger, name, rowKey, tableProps } = this.props
+    return {
+      ...tableProps.tableActions,
+      selectActions: [
+        {
+          key: 'delete',
+          type: 'danger',
+          text: t('Delete'),
+          action: 'delete',
+          onClick: () =>
+            trigger('workload.batch.delete', {
+              type: t(name),
+              rowKey,
+            }),
+        },
+      ],
+    }
+  }
+
   getStatus() {
     return WORKLOAD_STATUS.map(status => ({
       text: t(status.text),
@@ -201,6 +221,7 @@ export default class DaemonSets extends React.Component {
         <Table
           {...tableProps}
           itemActions={this.itemActions}
+          tableActions={this.tableActions}
           columns={this.getColumns()}
           onCreate={this.showCreate}
         />

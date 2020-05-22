@@ -310,7 +310,7 @@ export default class ApplicationStore extends Base {
       }
 
       requests.push({
-        url: `apis/extensions/v1beta1/namespaces/${params.namespace}/ingresses`,
+        url: `apis/extensions/v1beta1${this.getPath(params)}/ingresses`,
         data: ingress,
       })
     }
@@ -323,11 +323,11 @@ export default class ApplicationStore extends Base {
 
         requests.push(
           {
-            url: `apis/apps/v1/namespaces/${params.namespace}/${module}`,
+            url: `apis/apps/v1${this.getPath(params)}/${module}`,
             data: component.workload,
           },
           {
-            url: `api/v1/namespaces/${params.namespace}/services`,
+            url: `api/v1${this.getPath(params)}/services`,
             data: component.service,
           }
         )

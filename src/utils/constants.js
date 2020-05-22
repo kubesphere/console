@@ -194,6 +194,7 @@ export const ICON_TYPES = {
   images: 'cdn',
   registries: 'cdn',
   volumes: 'storage',
+  persistentvolumeclaims: 'storage',
   storageclasses: 'database',
   nodes: 'nodes',
   devops: 'strategy-group',
