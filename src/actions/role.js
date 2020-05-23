@@ -25,15 +25,7 @@ import FORM_TEMPLATES from 'utils/form.templates'
 
 export default {
   'role.create': {
-    on({
-      store,
-      cluster,
-      namespace,
-      workspace,
-      success,
-      project_id,
-      ...props
-    }) {
+    on({ store, cluster, namespace, workspace, success, devops, ...props }) {
       const module = store.module
       const modal = Modal.open({
         onOk: data => {
@@ -42,12 +34,12 @@ export default {
             return
           }
 
-          if (project_id) {
-            data.metadata.namespace = project_id
+          if (devops) {
+            data.metadata.namespace = devops
           }
 
           store
-            .create(data, { cluster, namespace, workspace, project_id })
+            .create(data, { cluster, namespace, workspace, devops })
             .then(() => {
               Modal.close(modal)
               Notify.success({ content: `${t('Created Successfully')}!` })

@@ -26,8 +26,8 @@ import Table from 'components/Tables/List'
 
 import { getLocalTime } from 'utils'
 
-import UserStore from 'stores/devops/user'
-import RoleStore from 'stores/devops/role'
+import UserStore from 'stores/user'
+import RoleStore from 'stores/role'
 
 @withList({
   store: new UserStore(),
@@ -41,8 +41,22 @@ export default class Members extends React.Component {
   roleStore = new RoleStore()
 
   componentDidMount() {
-    const { project_id } = this.props.match.params
-    this.roleStore.fetchList({ project_id, limit: -1 })
+    this.roleStore.fetchList({ devops: this.devopsName, limit: -1 })
+  }
+
+  getData = () => {
+    this.props.store.fetchList({ devops: this.devopsName })
+  }
+
+  get devopsName() {
+    return this.props.devopsStore.project_name
+  }
+
+  get workspace() {
+    return get(
+      this.props.devopsStore,
+      'itemDetail.metadata.labels["kubesphere.io/workspace"]'
+    )
   }
 
   get tips() {
@@ -59,7 +73,7 @@ export default class Members extends React.Component {
   }
 
   get itemActions() {
-    const { getData, trigger } = this.props
+    const { trigger } = this.props
     return [
       {
         key: 'modify',
@@ -71,10 +85,10 @@ export default class Members extends React.Component {
           trigger('member.edit', {
             detail: item,
             ...this.props.match.params,
-            project_id: this.props.match.params.project_id,
+            devops: this.devopsName,
             roles: toJS(this.roleStore.list.data),
             role: item.role,
-            success: getData,
+            success: this.getData,
           }),
       },
       {
@@ -86,8 +100,8 @@ export default class Members extends React.Component {
         onClick: item =>
           trigger('member.remove', {
             detail: item,
-            project_id: this.props.match.params.project_id,
-            success: getData,
+            devops: this.devopsName,
+            success: this.getData,
             ...this.props.match.params,
           }),
       },
@@ -95,11 +109,7 @@ export default class Members extends React.Component {
   }
 
   get tableActions() {
-    const { routing, getData, trigger, tableProps } = this.props
-    const workspace = get(
-      this.props.devopsStore,
-      'itemDetail.metadata.labels["kubesphere.io/workspace"]'
-    )
+    const { trigger, tableProps } = this.props
 
     return {
       ...tableProps.tableActions,
@@ -111,15 +121,15 @@ export default class Members extends React.Component {
           action: 'create',
           onClick: () =>
             trigger('member.invite', {
-              project_id: this.props.match.params.project_id,
-              namespace: workspace,
-              workspace,
+              devops: this.devopsName,
+              namespace: this.workspace,
+              workspace: this.workspace,
               roles: toJS(this.roleStore.list.data),
               roleModule: this.roleStore.module,
               title: t('Invite members to the project'),
               desc: t('INVITE_MEMBER_DESC'),
               searchPlaceholder: t('INVITE_MEMBER_SEARCH_PLACEHODLER'),
-              success: routing.query,
+              success: this.getData,
             }),
         },
       ],
@@ -131,8 +141,8 @@ export default class Members extends React.Component {
           action: 'delete',
           onClick: () =>
             trigger('member.remove.batch', {
-              success: getData,
-              project_id: this.props.match.params.project_id,
+              success: this.getData,
+              devops: this.devopsName,
               ...this.props.match.params,
             }),
         },
@@ -192,7 +202,7 @@ export default class Members extends React.Component {
   render() {
     const { bannerProps, tableProps } = this.props
     return (
-      <ListPage {...this.props} noWatch>
+      <ListPage {...this.props} getData={this.getData} noWatch>
         <Banner
           {...bannerProps}
           tabs={this.tabs}

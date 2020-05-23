@@ -24,7 +24,6 @@ import { observer } from 'mobx-react'
 import { Modal, Search, ScrollLoad } from 'components/Base'
 
 import UserStore from 'stores/user'
-import DevopsUserStore from 'stores/devops/user'
 
 import User from './User'
 
@@ -55,10 +54,8 @@ export default class InviteMemberModal extends React.Component {
   constructor(props) {
     super(props)
 
-    this.userStore = props.project_id ? new DevopsUserStore() : new UserStore()
-    this.memberStore = props.project_id
-      ? new DevopsUserStore()
-      : new UserStore()
+    this.userStore = new UserStore()
+    this.memberStore = new UserStore()
 
     this.state = {
       members: [],
@@ -67,9 +64,9 @@ export default class InviteMemberModal extends React.Component {
   }
 
   componentDidMount() {
-    const { cluster, workspace, namespace, project_id } = this.props
+    const { cluster, workspace, namespace, devops } = this.props
     this.memberStore
-      .fetchList({ limit: -1, cluster, workspace, namespace, project_id })
+      .fetchList({ limit: -1, cluster, workspace, namespace, devops })
       .then(() => {
         this.setState({
           members: this.memberStore.list.data.map(user => user.name),

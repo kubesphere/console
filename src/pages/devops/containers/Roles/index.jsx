@@ -26,7 +26,7 @@ import Table from 'components/Tables/List'
 import { getLocalTime } from 'utils'
 import { ICON_TYPES } from 'utils/constants'
 
-import RoleStore from 'stores/devops/role'
+import RoleStore from 'stores/role'
 
 @withList({
   store: new RoleStore(),
@@ -37,11 +37,15 @@ import RoleStore from 'stores/devops/role'
 export default class Secrets extends React.Component {
   componentDidMount() {
     this.props.store.fetchRoleTemplates({
-      ...this.props.match.params,
+      devops: this.devopsName,
     })
   }
 
   showAction = record => !globals.config.presetRoles.includes(record.name)
+
+  get devopsName() {
+    return this.props.devopsStore.project_name
+  }
 
   get itemActions() {
     const { routing, trigger } = this.props
@@ -72,7 +76,6 @@ export default class Secrets extends React.Component {
           trigger('role.delete', {
             detail: item,
             type: t(this.name),
-            namespace: this.props.match.params.project_id,
             success: routing.query,
           }),
       },
@@ -89,6 +92,12 @@ export default class Secrets extends React.Component {
         name: record.name,
       }),
     }
+  }
+
+  getData = () => {
+    this.props.store.fetchList({
+      devops: this.devopsName,
+    })
   }
 
   getColumns = () => {
@@ -128,18 +137,16 @@ export default class Secrets extends React.Component {
     ]
   }
 
-  showCreate = () => {
-    const { match, getData } = this.props
-    return this.props.trigger('role.create', {
-      project_id: match.params.project_id,
-      success: getData,
+  showCreate = () =>
+    this.props.trigger('role.create', {
+      devops: this.devopsName,
+      success: this.getData,
     })
-  }
 
   render() {
     const { bannerProps, tableProps } = this.props
     return (
-      <ListPage {...this.props}>
+      <ListPage {...this.props} getData={this.getData}>
         <Banner
           {...bannerProps}
           tabs={this.tabs}

@@ -35,6 +35,7 @@ export default {
         formTemplate: {},
         modal: ProjectCreateModal,
         store,
+        workspace,
         ...props,
       })
     },

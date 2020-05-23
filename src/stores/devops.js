@@ -16,19 +16,19 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { set, isArray, get } from 'lodash'
+import { set, get, isArray } from 'lodash'
 import { action, observable } from 'mobx'
 import { getFilterString, formatRules } from 'utils'
 
 import Base from 'stores/base'
 
-import MemberList from './member.list'
+import RoleStore from 'stores/role'
 
 export default class DevOpsStore extends Base {
   @observable
   initializing = true
 
-  members = new MemberList()
+  roleStore = new RoleStore()
 
   module = 'devops'
 
@@ -59,11 +59,15 @@ export default class DevOpsStore extends Base {
 
   getDetailUrlV2 = project_id => `${this.getDevopsUrlV2()}/${project_id}`
 
-  getBaseUrl = () => 'apis/devops.kubesphere.io/v1alpha3/'
+  getBaseUrl = () => `${this.apiVersion}/`
 
   getDevOpsUrl = () => `${this.getBaseUrl()}devopsprojects`
 
   getDevOpsDetailUrl = name => `${this.getBaseUrl()}devopsprojects/${name}`
+
+  getWatchListUrl = () => `${this.getBaseUrl()}/watch/devopsprojects/`
+
+  getWatchUrl = (params = {}) => `${this.getWatchListUrl()}/${params.name}`
 
   @action
   async fetchList({ workspace, limit, page, order, reverse, keyword } = {}) {
@@ -198,10 +202,21 @@ export default class DevOpsStore extends Base {
       null,
       () => []
     )
-    set(globals.user, `rules[${project_id}]`, formatRules(rules))
+    if (rules) {
+      const formatedRules = formatRules(rules)
+
+      if (project_id === globals.config.systemWorkspace) {
+        Object.keys(formatedRules).forEach(key => {
+          formatedRules[key] = globals.config.systemWorkspaceProjectRules[
+            key
+          ] || ['view', 'edit']
+        })
+      }
+      set(globals.user, `rules[${project_id}]`, formatedRules)
+    }
+
     this.initializing = false
   }
-
   @action
   async fetchRoles({ project_id }) {
     this.roles.isLoading = true
@@ -216,65 +231,6 @@ export default class DevOpsStore extends Base {
       this.roles.total = result.length
     }
     this.roles.isLoading = false
-  }
-
-  @action
-  async fetchMembers({ project_id }) {
-    this.members.isLoading = true
-    const result = await request.get(
-      `${this.getDetailUrlV2(project_id)}/members`,
-      { paging: `limit=9999,page=1` }
-    )
-
-    if (result) {
-      this.members.init({
-        originData: result.items,
-        page: 1,
-      })
-    }
-
-    this.members.isLoading = false
-    return result
-  }
-
-  @action
-  addMember({ project_id, ...params }) {
-    return this.submitting(
-      request.post(`${this.getDetailUrlV2(project_id)}/members`, params)
-    )
-  }
-
-  @action
-  updateMember({ project_id, username, ...params }) {
-    return this.submitting(
-      request.patch(
-        `${this.getDetailUrlV2(project_id)}/members/${username}`,
-        params,
-        {
-          headers: {
-            'content-type': 'application/json',
-          },
-        }
-      )
-    )
-  }
-
-  @action
-  deleteMember(project_id, { username }) {
-    return this.submitting(
-      request.delete(`${this.getDetailUrlV2(project_id)}/members/${username}`)
-    )
-  }
-
-  @action
-  batchDeleteMembers(project_id, rowKeys) {
-    return this.submitting(
-      Promise.all(
-        rowKeys.map(rowKey =>
-          request.delete(`${this.getDetailUrlV2(project_id)}/members/${rowKey}`)
-        )
-      )
-    )
   }
 
   @action
