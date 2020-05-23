@@ -20,6 +20,7 @@ import { Modal, Notify } from 'components/Base'
 
 import DeployAppModal from 'projects/components/Modals/DeployApp'
 import CreateAppModal from 'projects/components/Modals/CreateApp'
+import CreateServiceModal from 'projects/components/Modals/ServiceCreate/InApp'
 
 export default {
   'app.deploy': {
@@ -70,7 +71,7 @@ export default {
         detail,
         cluster,
         namespace,
-        modal: CreateAppModal,
+        modal: CreateServiceModal,
         ...props,
       })
     },
