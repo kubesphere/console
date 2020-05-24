@@ -105,7 +105,7 @@ class GrayRelease extends React.Component {
   render() {
     const { route } = this.props
     const { showDeployApp, sampleApp } = this.state
-    const { namespace } = this.props.match.params
+    const { cluster, namespace } = this.props.match.params
 
     return (
       <div>
@@ -122,6 +122,7 @@ class GrayRelease extends React.Component {
           store={this.store}
           visible={showDeployApp}
           namespace={namespace}
+          cluster={cluster}
           sampleApp={sampleApp}
           onOk={this.handleDeployApp}
           onCancel={this.hideDeployAppModal}

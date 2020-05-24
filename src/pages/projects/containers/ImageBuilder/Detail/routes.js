@@ -18,30 +18,37 @@
 
 import { getIndexRoute } from 'utils/router.config'
 
-import Events from 'core/containers/Base/Detail/Events'
+import ImageBuildRecords from './BuildRecords'
 import ResourceStatus from './ResourceStatus'
-import Snapshots from './Snapshots'
+import Env from './Environment'
+import Events from './Events'
+import ImageArtifacts from './ImageProduct'
 
-const PATH = '/clusters/:cluster/projects/:namespace/volumes/:name'
-
-export default [
+export default path => [
   {
-    path: `${PATH}/resource-status`,
+    path: `${path}/records`,
+    title: 'Excute Records',
+    component: ImageBuildRecords,
+    excat: true,
+  },
+  {
+    path: `${path}/resource-status`,
     title: 'Resource Status',
-    exact: true,
     component: ResourceStatus,
+    excat: true,
   },
   {
-    path: `${PATH}/events`,
-    title: 'Events',
-    exact: true,
-    component: Events,
+    path: `${path}/image-artifacts`,
+    title: 'Image Artifacts',
+    component: ImageArtifacts,
+    excat: true,
   },
   {
-    path: `${PATH}/snapshot`,
-    title: 'Snapshots Message',
-    exact: true,
-    component: Snapshots,
+    path: `${path}/env`,
+    title: 'Environment Variables',
+    component: Env,
+    excat: true,
   },
-  getIndexRoute({ path: PATH, to: `${PATH}/resource-status`, exact: true }),
+  { path: `${path}/events`, title: 'Events', component: Events, excat: true },
+  getIndexRoute({ path, to: `${path}/records`, exact: true }),
 ]

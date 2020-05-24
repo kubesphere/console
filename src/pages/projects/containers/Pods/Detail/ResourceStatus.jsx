@@ -60,7 +60,7 @@ class PodsResourceStatus extends React.Component {
 
   renderVolumes() {
     const { volumes, containers } = toJS(this.store.detail)
-    const { namespace } = this.props.match.params
+    const { cluster, namespace } = this.props.match.params
 
     if (isEmpty(volumes)) return null
 
@@ -70,7 +70,7 @@ class PodsResourceStatus extends React.Component {
         volumes={volumes}
         containers={containers}
         loading={this.store.isLoading}
-        prefix={`/projects/${namespace}`}
+        prefix={`/cluster/${cluster}/projects/${namespace}`}
       />
     )
   }

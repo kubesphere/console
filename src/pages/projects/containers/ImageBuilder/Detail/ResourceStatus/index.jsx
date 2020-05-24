@@ -17,11 +17,12 @@
  */
 
 import React from 'react'
-import { observer } from 'mobx-react'
+import { observer, inject } from 'mobx-react'
 import { Component as Base } from 'projects/containers/Deployments/Detail/ResourceStatus'
 import PodsCard from 'components/Cards/Pods'
 import { Loading } from '@pitrix/lego-ui'
 
+@inject('detailStore', 's2iRunStore')
 @observer
 class JobsResourceStatus extends Base {
   get store() {
@@ -50,7 +51,6 @@ class JobsResourceStatus extends Base {
       <div>
         {this.renderContainerPorts()}
         {this.renderPods()}
-        {this.renderVolumes()}
       </div>
     )
   }

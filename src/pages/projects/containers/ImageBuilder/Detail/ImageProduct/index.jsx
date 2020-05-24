@@ -17,13 +17,12 @@
  */
 
 import React from 'react'
-import { observer, inject } from 'mobx-react'
+import { observer } from 'mobx-react'
 
 import { Card } from 'components/Base'
 import ImageArtifactsCard from 'projects/components/Cards/ImageArtifacts'
 import styles from './index.scss'
 
-@inject('rootStore')
 @observer
 class ImageArtifacts extends React.Component {
   render() {

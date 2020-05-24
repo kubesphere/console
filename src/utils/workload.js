@@ -91,6 +91,11 @@ export const getHpaFormattedData = (formData = {}) => {
 }
 
 export const getWorkloadVolumes = async (detail, setDetail = false) => {
+  const prefix = detail.cluster
+    ? `api/v1/klusters/${detail.cluster}/namespaces/${
+        detail.namespace
+      }/persistentvolumeclaims`
+    : `api/v1/namespaces/${detail.namespace}/persistentvolumeclaims`
   let specVolumes = []
   if (!isEmpty(detail.volumes)) {
     const promises = []
@@ -98,15 +103,7 @@ export const getWorkloadVolumes = async (detail, setDetail = false) => {
       let volumeName = ''
       if (volume.persistentVolumeClaim) {
         volumeName = volume.persistentVolumeClaim.claimName
-        promises.push(
-          to(
-            request.get(
-              `api/v1/namespaces/${
-                detail.namespace
-              }/persistentvolumeclaims/${volumeName}`
-            )
-          )
-        )
+        promises.push(to(request.get(`${prefix}/${volumeName}`)))
       } else {
         volumeName = volume.hostPath ? volume.hostPath.path : volume.name
       }

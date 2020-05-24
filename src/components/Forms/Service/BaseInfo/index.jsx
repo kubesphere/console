@@ -46,7 +46,11 @@ export default class ServiceBaseInfo extends React.Component {
   }
 
   componentDidMount() {
-    this.appStore.fetchList({ namespace: this.namespace, limit: Infinity })
+    this.appStore.fetchList({
+      namespace: this.namespace,
+      cluster: this.props.cluster,
+      limit: Infinity,
+    })
   }
 
   get formTemplate() {
@@ -156,7 +160,11 @@ export default class ServiceBaseInfo extends React.Component {
     }
 
     this.store
-      .checkName({ name: value, namespace: this.namespace })
+      .checkName({
+        name: value,
+        namespace: this.namespace,
+        cluster: this.props.cluster,
+      })
       .then(resp => {
         if (resp.exist) {
           return callback({ message: t('Name exists'), field: rule.field })

@@ -57,6 +57,7 @@ class GrayRelease extends Base {
     const { selector } = toJS(this.detailStore.detail)
     const params = {
       namespace: this.namespace,
+      cluster: this.cluster,
       labelSelector: joinSelector(selector),
     }
     this.store.fetchList(params).then()

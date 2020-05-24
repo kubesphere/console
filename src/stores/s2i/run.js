@@ -60,11 +60,11 @@ export default class S2irunStore extends Base {
   }
 
   @action
-  async fetchJobDetail({ name, namespace }) {
+  async fetchJobDetail({ name, cluster, namespace }) {
     this.isLoading = true
 
     const result = await request.get(
-      `apis/batch/v1/namespaces/${namespace}/jobs/${name}`
+      `apis/batch/v1${this.getPath({ cluster, namespace })}/jobs/${name}`
     )
     const detail = ObjectMapper['jobs'](result)
     this.jobDetail = detail
@@ -72,12 +72,17 @@ export default class S2irunStore extends Base {
   }
 
   @action
-  async fetchRunDetail({ namespace, runName }) {
+  async fetchRunDetail({ cluster, namespace, runName }) {
+    if (!runName) {
+      return
+    }
+
     this.getRunDetailLoading = true
     const result = await request.get(
-      `apis/devops.kubesphere.io/v1alpha1/namespaces/${namespace}/${
-        this.module
-      }/${runName}`
+      `apis/devops.kubesphere.io/v1alpha1${this.getPath({
+        cluster,
+        namespace,
+      })}/${this.module}/${runName}`
     )
 
     this.runDetail = ObjectMapper['s2iruns'](result)
@@ -86,11 +91,16 @@ export default class S2irunStore extends Base {
   }
 
   @action
-  async deleteRun({ namespace, runName }) {
+  async deleteRun({ cluster, namespace, runName }) {
+    if (!runName) {
+      return
+    }
+
     await request.delete(
-      `apis/devops.kubesphere.io/v1alpha1/namespaces/${namespace}/${
-        this.module
-      }/${runName}`
+      `apis/devops.kubesphere.io/v1alpha1${this.getPath({
+        cluster,
+        namespace,
+      })}/${this.module}/${runName}`
     )
   }
 
@@ -102,6 +112,7 @@ export default class S2irunStore extends Base {
     order,
     reverse,
     workspace,
+    cluster,
     namespace,
     more,
     ...filters
@@ -132,14 +143,16 @@ export default class S2irunStore extends Base {
     params.reverse = true
 
     const result = await request.get(
-      `kapis/resources.kubesphere.io/v1alpha2/namespaces/${namespace}/${
-        this.module
-      }`,
+      `kapis/resources.kubesphere.io/v1alpha2${this.getPath({
+        cluster,
+        namespace,
+      })}/${this.module}`,
       params
     )
     const data = result.items.map(this.mapper)
     data.forEach((item, index) => {
       item.count = result.total_count - index - 10 * (page - 1)
+      item.cluster = cluster
     })
 
     this.list = {
@@ -155,9 +168,6 @@ export default class S2irunStore extends Base {
     }
     return this.list
   }
-
-  getS2IBuilderTemplate = async () =>
-    await request.get('apis/devops.kubesphere.io/v1alpha1/s2ibuildertemplates')
 
   @action
   getLog = async logURL => {
@@ -206,7 +216,7 @@ export default class S2irunStore extends Base {
     const logPath = get(logURL.match(/namespaces\/([\w-/]*)\?/), '1')
 
     if (!this.containerName) {
-      const podsDetail = await request.get(`api/v1//namespaces/${logPath}`)
+      const podsDetail = await request.get(`api/v1/namespaces/${logPath}`)
       const containerID = get(
         podsDetail,
         'status.containerStatuses[0]containerID'

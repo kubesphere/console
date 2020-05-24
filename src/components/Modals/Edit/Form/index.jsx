@@ -182,7 +182,7 @@ export default class FormsBox extends React.Component {
   }
 
   renderForm() {
-    const { module, store } = this.props
+    const { module, cluster, store } = this.props
     const { activeTab, formData } = this.state
     const form = this.tabs.find(item => item.name === activeTab) || {}
     const componentStore = form.store || store
@@ -198,6 +198,7 @@ export default class FormsBox extends React.Component {
           module={module}
           store={componentStore}
           formData={formData}
+          cluster={cluster}
           onSaveChange={this.handleSaveForm}
         />
         {this.renderSubRouteConfirm()}

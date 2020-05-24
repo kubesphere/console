@@ -26,12 +26,13 @@ import RouteDetail from 'projects/containers/Routes/Detail'
 import PodDetail from 'projects/containers/Pods/Detail'
 import ContainerDetail from 'projects/containers/Pods/Containers/Detail'
 import NetworkPoliciesDetail from 'projects/containers/Network/Policies/Detail'
+import Volume from 'projects/containers/Volumes/Detail'
 
 import NodeDetail from '../containers/Nodes/Detail'
 import ProjectDetail from '../containers/Projects/Detail'
 import StorageClassDetail from '../containers/Storage/StorageClasses/Detail'
 import VolumeSnapshotsDetail from '../containers/Storage/VolumeSnapshots/Detail'
-import Volume from '../containers/Storage/Volumes/Detail'
+
 import ComponentDetail from '../containers/ServiceComponents/Detail'
 import CustomResourceDetail from '../containers/CustomResources/Detail'
 import RoleDetail from '../containers/Roles/Detail'
@@ -100,7 +101,7 @@ export default [
     component: VolumeSnapshotsDetail,
   },
   {
-    path: `${PATH}/namespaces/:namespace/volumes/:name`,
+    path: `${PATH}/projects/:namespace/volumes/:name`,
     component: Volume,
   },
   {

@@ -24,7 +24,6 @@ import { isEmpty, get, flatten, uniqBy } from 'lodash'
 import HpaStore from 'stores/workload/hpa'
 
 import PodsCard from 'components/Cards/Pods'
-import VolumesCard from 'components/Cards/Volumes'
 import ContainerPortsCard from 'components/Cards/Containers/Ports'
 import HPACard from 'projects/components/Cards/HPA'
 import ReplicaCard from 'projects/components/Cards/Replica'
@@ -129,7 +128,7 @@ class ResourceStatus extends React.Component {
   }
 
   renderS2IBuilder = () => {
-    const { namespace } = this.props.match.params
+    const { cluster, namespace } = this.props.match.params
     const { detail } = this.store
 
     if (isEmpty(detail.builderNames)) {
@@ -139,6 +138,7 @@ class ResourceStatus extends React.Component {
     return (
       <S2iBuilderCard
         builderNames={detail.builderNames}
+        cluster={cluster}
         namespace={namespace}
         className={styles.deployment_codeResource}
       />
@@ -219,23 +219,6 @@ class ResourceStatus extends React.Component {
     )
   }
 
-  renderVolumes() {
-    const { isLoading } = this.store
-    const { volumes, containers } = toJS(this.store.detail)
-
-    if (isEmpty(volumes)) return null
-
-    return (
-      <VolumesCard
-        title={this.volumesTitle}
-        volumes={volumes}
-        containers={containers}
-        loading={isLoading}
-        prefix={this.prefix}
-      />
-    )
-  }
-
   renderContent() {
     return (
       <div>
@@ -244,7 +227,6 @@ class ResourceStatus extends React.Component {
         {this.renderContainerPorts()}
         {this.renderS2IBuilder()}
         {this.renderPods()}
-        {this.renderVolumes()}
       </div>
     )
   }

@@ -78,6 +78,7 @@ export default class Component extends React.Component {
     if (!isEmpty(_pods)) {
       this.monitorStore
         .fetchMetrics({
+          cluster: this.props.cluster,
           namespace: this.props.namespace,
           resources: _pods.map(pod => pod.name),
           metrics: Object.values(MetricTypes),

@@ -72,19 +72,27 @@ export default class Monitors extends React.Component {
 
     const func =
       protocol === 'tcp'
-        ? this.store.fetchAppMetrics
-        : this.store.fetchServiceMetrics
+        ? this.store.fetchAppMetrics.bind(this.store)
+        : this.store.fetchServiceMetrics.bind(this.store)
 
     if (detail && detail.name) {
       func(
-        { name: detail.name, namespace: store.detail.namespace },
+        {
+          name: detail.name,
+          namespace: store.detail.namespace,
+          cluster: store.detail.cluster,
+        },
         { duration: 1800 }
       ).then(metrics => {
         this.setState({ metrics })
       })
 
       func(
-        { name: detail.name, namespace: store.detail.namespace },
+        {
+          name: detail.name,
+          namespace: store.detail.namespace,
+          cluster: store.detail.cluster,
+        },
         {
           duration: 1800,
           direction: 'outbound',

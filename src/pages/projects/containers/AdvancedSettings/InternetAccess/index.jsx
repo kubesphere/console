@@ -77,15 +77,15 @@ class InternetAccess extends React.Component {
 
   handleGatewaySetting = data => {
     this.hideGatewaySetting()
-    const { namespace } = this.props.match.params
+    const { cluster, namespace } = this.props.match.params
     const gateway = toJS(this.store.gateway.data)
 
     const func = isEmpty(gateway)
       ? this.store.addGateway.bind(this.store)
       : this.store.updateGateway.bind(this.store)
 
-    func({ namespace }, data).then(() => {
-      this.store.getGateway({ namespace })
+    func({ cluster, namespace }, data).then(() => {
+      this.store.getGateway({ cluster, namespace })
     })
   }
 
@@ -94,10 +94,10 @@ class InternetAccess extends React.Component {
   }
 
   handleDelete = () => {
-    const { namespace } = this.props.match.params
-    this.store.deleteGateway({ namespace }).then(() => {
+    const { cluster, namespace } = this.props.match.params
+    this.store.deleteGateway({ cluster, namespace }).then(() => {
       this.hideDelete()
-      this.store.getGateway({ namespace })
+      this.store.getGateway({ cluster, namespace })
     })
   }
 
