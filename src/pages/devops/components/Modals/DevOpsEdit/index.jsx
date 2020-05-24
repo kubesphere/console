@@ -69,15 +69,6 @@ export default class DevOpsEditModal extends React.Component {
     }
   }
 
-  getMembersOptions() {
-    const { data } = toJS(this.store.list)
-
-    return data.map(member => ({
-      label: member.username,
-      value: member.username,
-    }))
-  }
-
   handleOk = data => {
     const { onOk } = this.props
 

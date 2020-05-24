@@ -28,7 +28,7 @@ import { LIST_DEFAULT_ORDER } from 'utils/constants'
 export default class RoleStore extends Base {
   roleTemplates = new List()
 
-  getPath({ cluster, workspace, namespace }) {
+  getPath({ cluster, workspace, namespace, devops }) {
     let path = ''
     if (cluster) {
       path += `/klusters/${cluster}`
@@ -38,6 +38,9 @@ export default class RoleStore extends Base {
     }
     if (namespace) {
       path += `/namespaces/${namespace}`
+    }
+    if (devops) {
+      path += `/devops/${devops}`
     }
     return path
   }
@@ -52,7 +55,14 @@ export default class RoleStore extends Base {
   }
 
   @action
-  async fetchList({ cluster, workspace, namespace, more, ...params } = {}) {
+  async fetchList({
+    cluster,
+    workspace,
+    namespace,
+    devops,
+    more,
+    ...params
+  } = {}) {
     this.list.isLoading = true
 
     if (!params.sortBy && params.ascending === undefined) {
@@ -67,7 +77,12 @@ export default class RoleStore extends Base {
     params.limit = params.limit || 10
 
     const result = await request.get(
-      this.getResourceUrl({ cluster, workspace, namespace }),
+      this.getResourceUrl({
+        cluster,
+        workspace,
+        namespace,
+        devops,
+      }),
       { ...params, annotation: 'kubesphere.io/creator=' }
     )
 

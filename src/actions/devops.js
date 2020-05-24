@@ -16,7 +16,6 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get } from 'lodash'
 import { Modal, Notify } from 'components/Base'
 import ProjectCreateModal from 'components/Modals/ProjectCreate'
 import EditModal from 'components/Modals/DevOpsEdit'
@@ -29,14 +28,14 @@ export default {
           store.create(data, { workspace }).then(() => {
             Modal.close(modal)
             Notify.success({ content: `${t('Created Successfully')}!` })
-            const name = get(data, 'metadata.name')
-            success && success(name)
+            success && success()
           })
         },
         type: 'devops',
         formTemplate: {},
         modal: ProjectCreateModal,
         store,
+        workspace,
         ...props,
       })
     },

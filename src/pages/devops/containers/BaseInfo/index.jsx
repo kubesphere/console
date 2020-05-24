@@ -27,6 +27,9 @@ import Info from 'components/Cards/Info'
 import Banner from 'components/Cards/Banner'
 import EditModal from 'devops/components/Modals/DevOpsEdit'
 
+import UserStore from 'stores/user'
+import RoleStore from 'stores/role'
+
 import styles from './index.scss'
 
 @inject('rootStore', 'devopsStore')
@@ -37,9 +40,12 @@ class BaseInfo extends React.Component {
     showDelete: false,
   }
 
+  roleStore = new RoleStore()
+  memberStore = new UserStore()
+
   componentDidMount() {
-    this.store.fetchRoles(this.props.match.params)
-    this.store.fetchMembers(this.props.match.params)
+    this.memberStore.fetchList({ devops: this.project_id })
+    this.roleStore.fetchList({ devops: this.project_id })
   }
 
   get routing() {
@@ -54,8 +60,8 @@ class BaseInfo extends React.Component {
     return this.store.data.workspace
   }
 
-  get project_name() {
-    return this.props.match.params.project_name
+  get project_id() {
+    return this.props.match.params.project_id
   }
 
   get enabledActions() {
@@ -63,7 +69,7 @@ class BaseInfo extends React.Component {
       module: 'devops',
       workspace: this.workspace,
       project:
-        this.props.match.params.devops || this.props.match.params.project_name,
+        this.props.match.params.devops || this.props.match.params.project_id,
     })
   }
 
@@ -127,8 +133,8 @@ class BaseInfo extends React.Component {
   }
 
   handleDelete = () => {
-    const { project_name } = this.props.match.params
-    this.store.delete({ name: project_name }).then(() => {
+    const { project_id } = this.props.match.params
+    this.store.delete({ name: project_id }).then(() => {
       this.routing.push('/')
     })
   }
@@ -175,6 +181,9 @@ class BaseInfo extends React.Component {
   }
 
   renderBaseInfo() {
+    const roleCount = this.roleStore.list.total
+    const memberCount = this.memberStore.list.total
+
     return (
       <div className="margin-t12">
         <Card title={t('Basic Info')} operations={this.renderOperations()}>
@@ -189,14 +198,14 @@ class BaseInfo extends React.Component {
             <Info
               className={styles.info}
               icon="group"
-              title={this.store.members.total}
+              title={memberCount}
               desc={t('Members')}
               url={`/devops/${this.project_id}/members`}
             />
             <Info
               className={styles.info}
               icon="role"
-              title={this.store.roles.total}
+              title={roleCount}
               desc={t('Project Roles')}
               url={`/devops/${this.project_id}/roles`}
             />
@@ -221,7 +230,6 @@ class BaseInfo extends React.Component {
         <EditModal
           detail={data}
           workspace={this.workspace}
-          members={toJS(this.store.members.data)}
           visible={this.state.showEdit}
           onOk={this.handleEdit}
           onCancel={this.hideEdit}

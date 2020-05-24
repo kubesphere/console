@@ -98,6 +98,7 @@ export default class PipelineEdges extends React.Component {
     if (posision === 'left') {
       return (
         <path
+          key={`left-${this.props.index}`}
           d={this.getLeftLinePath(height)}
           stroke={isShallow ? '#d8dee5' : 'black'}
           strokeWidth={STROKEWIDTH}
@@ -109,6 +110,7 @@ export default class PipelineEdges extends React.Component {
     }
     return (
       <path
+        key={`right-${this.props.index}`}
         d={this.getRightLinePath(height)}
         stroke={isShallow ? '#d8dee5' : 'black'}
         strokeWidth={STROKEWIDTH}

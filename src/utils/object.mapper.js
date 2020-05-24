@@ -960,6 +960,7 @@ const DevOpsMapper = item => ({
   createTime: get(item, 'metadata.creationTimestamp'),
   workspace: get(item, 'metadata.labels["kubesphere.io/workspace"]'),
   namespace: get(item, 'status.adminNamespace'),
+  _originData: getOriginData(item),
 })
 
 const PipelinesMapper = item => ({

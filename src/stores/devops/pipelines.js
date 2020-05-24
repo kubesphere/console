@@ -19,7 +19,6 @@
 import { omit, isArray, get, set, isEmpty } from 'lodash'
 import { saveAs } from 'file-saver'
 import { action, observable, toJS } from 'mobx'
-
 import { API_VERSIONS } from 'utils/constants'
 
 import BaseStore from './base'
@@ -127,7 +126,7 @@ export default class PipelineStore extends BaseStore {
   project_id = ''
 
   @observable
-  namespace = ''
+  devopsProjectName = ''
 
   @action
   async fetchList({ project_name, workspace, namespace, ...filters } = {}) {
@@ -136,20 +135,19 @@ export default class PipelineStore extends BaseStore {
 
     const searchWord = keyword ? `*${encodeURIComponent(keyword)}*` : ''
 
-    const result = await this.request.get(this.getListUrl({ namespace }), {
-      q: `type:pipeline;organization:jenkins;pipeline:${project_name}%2F${searchWord ||
+    const url = `${this.baseUrlV2}search`
+
+    const result = await this.request.get(url, {
+      q: `type:pipeline;organization:jenkins;pipeline:${namespace}/${searchWord ||
         '*'};excludedFromFlattening:jenkins.branch.MultiBranchProject,hudson.matrix.MatrixProject&filter=${filter ||
         'no-folders'}`,
     })
 
     this.setProjectId(namespace)
-    this.originalList = get(result, 'items', [])
-
-    const list = this.originalList.map(item => this.mapper(item))
 
     this.list = {
-      data: list,
-      total: result.items.length,
+      data: result.items || [],
+      total: result.total_count,
       limit: 10,
       page: parseInt(page, 10) || 1,
       filters: omit(filters, 'project_id'),
@@ -164,12 +162,32 @@ export default class PipelineStore extends BaseStore {
     }
 
     const result = await this.request.get(
+      `${this.devopsUrlV2}${this.project_id}/pipelines/${decodeURIComponent(
+        name
+      )}/`
+    )
+
+    const resultKub = await this.request.get(
       `${this.getDetailUrl({ name, namespace: this.project_id })}`
     )
 
+    const devopsName = get(result, 'fullDisplayName')
+
+    if (devopsName !== '') {
+      try {
+        this.devopsProjectName = devopsName.split('/')[0].slice(0, -5)
+      } catch {}
+    }
+
+    this.setPipelineConfig(resultKub)
     this.detail = result
     this.isLoading = false
     return result
+  }
+
+  @action
+  setPipelineConfig = detail => {
+    this.pipelineConfig = detail
   }
 
   @action
@@ -192,13 +210,9 @@ export default class PipelineStore extends BaseStore {
       await this.fetchDetail({ name, project_id })
     }
 
-    const result = await this.request.get(
-      `${this.devopsUrlV2}${project_id}/pipelines/${this.detail.name}/config`
-    )
-
-    this.jenkinsfile = get(result, 'pipeline.jenkinsfile', '')
-    this.pipelineConfig = result
+    this.jenkinsfile = get(this.pipelineConfig, 'spec.pipeline.jenkinsfile', '')
     const json = await this.convertJenkinsFileToJson(toJS(this.jenkinsfile))
+
     this.pipelineJsonData = {
       pipelineJson: json,
       isLoading: false,
@@ -246,7 +260,7 @@ export default class PipelineStore extends BaseStore {
   }
 
   @action
-  async getBranches({ project_id, name, branch, workspace, ...filters }) {
+  async getBranches({ project_id, name, branch, ...filters }) {
     name = decodeURIComponent(name)
 
     const { page } = filters
@@ -277,7 +291,7 @@ export default class PipelineStore extends BaseStore {
   }
 
   @action
-  async getActivities({ name, branch, project_id, workspace, ...filters }) {
+  async getActivities({ name, branch, project_id, ...filters }) {
     name = decodeURIComponent(name)
 
     const { page } = filters
@@ -377,11 +391,8 @@ export default class PipelineStore extends BaseStore {
   }
 
   @action
-  getPipeLineConfig(name) {
-    let detail = this.originalList.filter(
-      item => item.metadata.name === name
-    )[0]
-
+  getPipeLineConfig() {
+    let detail = JSON.parse(JSON.stringify(this.pipelineConfig))
     detail = { ...toJS(detail.spec), ...toJS(detail) }
 
     delete detail.spec
@@ -400,7 +411,6 @@ export default class PipelineStore extends BaseStore {
   async createPipeline({ data, namespace }) {
     data.kind = 'Pipeline'
     data.apiVersion = 'devops.kubesphere.io/v1alpha3'
-    this.pipelineConfig = data
 
     const url = `${API_VERSIONS.devops}${this.getPath({ namespace })}/pipelines`
 
@@ -416,13 +426,20 @@ export default class PipelineStore extends BaseStore {
       namespace: project_id,
     })}/pipelines/${data.metadata.name}`
 
-    return await this.request.put(url, data)
+    const result = await this.request.put(url, data)
+    this.setPipelineConfig(result)
+    return result
   }
 
   @action
   updateJenkinsFile(jenkinsFile, params) {
-    set(this.pipelineConfig, 'pipeline.jenkinsfile', jenkinsFile)
-    return this.updatePipeline(this.pipelineConfig, params)
+    const data = JSON.parse(JSON.stringify(this.pipelineConfig))
+    set(data, 'spec.pipeline.jenkinsfile', jenkinsFile)
+
+    return this.updatePipeline({
+      data,
+      project_id: params.project_id,
+    })
   }
 
   @action

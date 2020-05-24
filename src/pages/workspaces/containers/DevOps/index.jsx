@@ -78,23 +78,23 @@ export default class DevOps extends React.Component {
     {
       title: t('Name'),
       dataIndex: 'name',
-      width: '40%',
+      width: '20%',
       render: (name, record) => (
         <Avatar
           icon="strategy-group"
           iconSize={40}
-          to={`/devops/${record.name}`}
+          to={`/devops/${record.namespace}`}
           desc={record.description || '-'}
           title={name}
         />
       ),
     },
-    // {
-    //   title: t('ID'),
-    //   dataIndex: 'project_id',
-    //   isHideable: true,
-    //   width: '20%',
-    // },
+    {
+      title: t('ID'),
+      dataIndex: 'namespace',
+      isHideable: true,
+      width: '20%',
+    },
     {
       title: t('Creator'),
       dataIndex: 'creator',
@@ -114,8 +114,8 @@ export default class DevOps extends React.Component {
   showCreate = () =>
     this.props.trigger('devops.create', {
       ...this.props.match.params,
-      success: name => {
-        location.href = `/devops/${name}`
+      success: () => {
+        this.props.getData()
       },
     })
   render() {

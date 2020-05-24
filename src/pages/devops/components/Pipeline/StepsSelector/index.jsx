@@ -22,7 +22,7 @@ import { Icon } from '@pitrix/lego-ui'
 import { observable, action } from 'mobx'
 import { observer } from 'mobx-react'
 import { ReactComponent as BackIcon } from 'src/assets/back.svg'
-import CredentialModal from 'devops/containers/Cridential/credentialModal'
+import CredentialModal from 'devops/containers/Credential/credentialModal'
 import { PIPELINE_TASKS, PIPELINE_CONDITIONS } from 'src/utils/constants'
 
 import {
