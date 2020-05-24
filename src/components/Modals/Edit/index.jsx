@@ -66,6 +66,7 @@ export default class EditModal extends React.Component {
       forms,
       onOk,
       onCancel,
+      cluster,
       ...rest
     } = this.props
 
@@ -83,6 +84,7 @@ export default class EditModal extends React.Component {
           module={module}
           store={store}
           forms={forms}
+          cluster={cluster}
           data={this.formData}
           onSubmit={onOk}
           onCancel={onCancel}

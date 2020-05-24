@@ -53,6 +53,10 @@ class Jobs extends React.Component {
     return this.props.match.params.namespace
   }
 
+  get cluster() {
+    return this.props.match.params.cluster
+  }
+
   get canCreate() {
     const { namespace: project } = this.props.match.params
     return (
@@ -70,7 +74,7 @@ class Jobs extends React.Component {
   }
 
   getData() {
-    this.store.fetchList({ namespace: this.namespace })
+    this.store.fetchList({ namespace: this.namespace, cluster: this.cluster })
   }
 
   showDetail = item => {

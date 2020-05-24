@@ -16,7 +16,9 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { set } from 'lodash'
 import { Modal, Notify } from 'components/Base'
+import { mergeLabels } from 'utils'
 
 import DeployAppModal from 'projects/components/Modals/DeployApp'
 import CreateAppModal from 'projects/components/Modals/CreateApp'
@@ -59,8 +61,35 @@ export default {
     on({ store, detail, cluster, namespace, success, ...props }) {
       const modal = Modal.open({
         onOk: data => {
+          const labels = detail.selector
+          const serviceMeshEnable = String(detail.serviceMeshEnable)
+
+          const component = {
+            service: data.Service,
+            workload: data.Deployment || data.StatefulSet,
+          }
+          mergeLabels(component.service, labels)
+          mergeLabels(component.workload, labels)
+
+          set(
+            component.workload,
+            'metadata.annotations["servicemesh.kubesphere.io/enabled"]',
+            serviceMeshEnable
+          )
+          set(
+            component.service,
+            'metadata.annotations["servicemesh.kubesphere.io/enabled"]',
+            serviceMeshEnable
+          )
+
+          set(
+            component.workload,
+            'spec.template.metadata.annotations["sidecar.istio.io/inject"]',
+            serviceMeshEnable
+          )
+
           store
-            .addComponent(data, { name: detail.name, cluster, namespace })
+            .addComponent(component, { name: detail.name, cluster, namespace })
             .then(() => {
               Modal.close(modal)
               Notify.success({ content: `${t('Add Component Successfully')}!` })
@@ -68,7 +97,6 @@ export default {
             })
         },
         store,
-        detail,
         cluster,
         namespace,
         modal: CreateServiceModal,

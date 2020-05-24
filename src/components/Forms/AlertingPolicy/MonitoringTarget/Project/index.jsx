@@ -112,6 +112,7 @@ export default class ResourceTarget extends React.Component {
     this.store.fetchWorkloads({
       type: filterType,
       namespace: this.namespace,
+      cluster: this.props.cluster,
       ...params,
     })
   }

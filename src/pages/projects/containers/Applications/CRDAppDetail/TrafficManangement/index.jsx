@@ -58,11 +58,11 @@ class TrafficManangement extends React.Component {
 
   getData() {
     const { selector } = toJS(this.store.detail)
-    const { namespace } = this.props.match.params
+    const { cluster, namespace } = this.props.match.params
 
     if (selector) {
       this.setState({ isGraphLoading: true })
-      this.store.fetchGraph({ namespace, selector }).then(() => {
+      this.store.fetchGraph({ cluster, namespace, selector }).then(() => {
         if (!this.unmount) {
           this.setState({ isGraphLoading: false })
         }

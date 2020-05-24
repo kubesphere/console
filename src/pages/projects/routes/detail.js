@@ -25,11 +25,13 @@ import PodDetail from '../containers/Pods/Detail'
 import ContainerDetail from '../containers/Pods/Containers/Detail'
 import ServiceDetail from '../containers/Services/Detail'
 import RouteDetail from '../containers/Routes/Detail'
+import VolumeDetail from '../containers/Volumes/Detail'
 import SecretDetail from '../containers/Secrets/Detail'
 import ConfigMapDetail from '../containers/ConfigMaps/Detail'
 import CRDAppDetail from '../containers/Applications/CRDAppDetail'
 import OPAppDetail from '../containers/Applications/OPAppDetail'
 import RoleDetail from '../containers/Roles/Detail'
+import ImageBuilderDetail from '../containers/ImageBuilder/Detail'
 
 const PATH = '/cluster/:cluster/projects/:namespace'
 
@@ -79,6 +81,10 @@ export default [
     component: RouteDetail,
   },
   {
+    path: `${PATH}/volumes/:name`,
+    component: VolumeDetail,
+  },
+  {
     path: `${PATH}/secrets/:name`,
     component: SecretDetail,
   },
@@ -97,5 +103,9 @@ export default [
   {
     path: `${PATH}/roles/:name`,
     component: RoleDetail,
+  },
+  {
+    path: `${PATH}/s2ibuilders/:name`,
+    component: ImageBuilderDetail,
   },
 ]

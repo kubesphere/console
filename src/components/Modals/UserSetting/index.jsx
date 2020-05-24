@@ -33,8 +33,6 @@ import styles from './index.scss'
 
 export default class UserSettingModal extends React.Component {
   static propTypes = {
-    detail: PropTypes.object,
-    module: PropTypes.string,
     visible: PropTypes.bool,
     onOk: PropTypes.func,
     onCancel: PropTypes.func,
@@ -78,8 +76,7 @@ export default class UserSettingModal extends React.Component {
   }
 
   get tabs() {
-    const { module } = this.props
-    return TABS[module] || []
+    return TABS
   }
 
   componentDidMount() {
@@ -181,7 +178,7 @@ export default class UserSettingModal extends React.Component {
   }
 
   renderForm = ({ name, component }) => {
-    const { store, module } = this.props
+    const { store } = this.props
     const { activeTab } = this.state
     const Component = component
 
@@ -208,7 +205,6 @@ export default class UserSettingModal extends React.Component {
       >
         <Component
           store={store}
-          module={module}
           ref={this[refName]}
           formRef={this[formRefName]}
           formData={this.state.formData}

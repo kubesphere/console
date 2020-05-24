@@ -100,10 +100,11 @@ const EnhanceWrapper = function(Component) {
     }
 
     render() {
-      const { module, formRef } = this.props
+      const { module, formRef, ...rest } = this.props
       return (
         <div className={styles.formWrapper}>
           <Component
+            {...rest}
             formTemplate={this.formTemplate}
             formProps={this.formProps}
             formRef={formRef}

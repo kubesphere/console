@@ -114,7 +114,7 @@ class ConfigTemplate extends React.Component {
   renderVolumes() {
     const { isLoading } = this.store
     const { volumes, containers } = toJS(this.store.detail)
-    const { namespace } = this.props.match.params
+    const { cluster, namespace } = this.props.match.params
 
     if (isEmpty(volumes)) return null
 
@@ -124,7 +124,7 @@ class ConfigTemplate extends React.Component {
         volumes={volumes}
         containers={containers}
         loading={isLoading}
-        prefix={`/projects/${namespace}`}
+        prefix={`/cluster/${cluster}/projects/${namespace}`}
       />
     )
   }

@@ -47,6 +47,7 @@ export default class GrayReleaseComponent extends Base {
       .checkName({
         name,
         namespace: this.namespace,
+        cluster: this.props.cluster,
       })
       .then(resp => {
         if (resp.exist) {

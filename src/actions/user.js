@@ -20,6 +20,7 @@ import { Modal, Notify } from 'components/Base'
 
 import CreateModal from 'components/Modals/UserCreate'
 import ModifyPasswordModal from 'components/Modals/ModifyPassword'
+import UserSettingModal from 'components/Modals/UserSetting'
 import set from 'lodash/set'
 
 export default {
@@ -62,6 +63,27 @@ export default {
         },
         modal: CreateModal,
         detail,
+        store,
+        ...props,
+      })
+    },
+  },
+  'user.setting': {
+    on({ store, success, ...props }) {
+      const modal = Modal.open({
+        onOk: async data => {
+          if (!data) {
+            Modal.close(modal)
+            return
+          }
+
+          await store.update({ name: globals.user.username }, data)
+
+          Modal.close(modal)
+          Notify.success({ content: `${t('Updated Successfully')}!` })
+          success && success()
+        },
+        modal: UserSettingModal,
         store,
         ...props,
       })

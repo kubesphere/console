@@ -18,7 +18,7 @@
 
 import React, { Component } from 'react'
 import { Card } from 'components/Base'
-import { observer } from 'mobx-react'
+import { observer, inject } from 'mobx-react'
 import { Icon, Pagination, LevelRight, Level, LevelLeft } from '@pitrix/lego-ui'
 import VolumeSnapshotStore from 'stores/volumeSnapshot'
 import { Link } from 'react-router-dom'
@@ -26,16 +26,18 @@ import moment from 'moment-mini'
 
 import styles from './index.scss'
 
+@inject('detailStore')
 @observer
 export default class PVCSnapshots extends Component {
   store = new VolumeSnapshotStore()
 
   componentDidMount() {
     const { detailStore } = this.props
-    const { namespace, name } = detailStore.detail
+    const { cluster, namespace, name } = detailStore.detail
     this.store.fetchList({
+      cluster,
       namespace,
-      source: name,
+      persistentVolumeClaimName: name,
     })
   }
 

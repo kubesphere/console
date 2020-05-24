@@ -89,6 +89,12 @@ export default class ServiceStore extends Base {
   @observable
   workload = {}
 
+  @observable
+  workloads = {
+    data: [],
+    isLoading: false,
+  }
+
   constructor() {
     super()
     this.module = 'services'
@@ -186,5 +192,37 @@ export default class ServiceStore extends Base {
     })
 
     this.workload = workload
+  }
+
+  @action
+  async fetchWorkloads({ cluster, namespace, ...params }) {
+    this.workloads.isLoading = true
+    this.workloads.data.clear()
+
+    const workloadTypes = ['deployments', 'daemonsets', 'statefulsets']
+
+    const [deployments, daemonsets, statefulsets] = await Promise.all(
+      workloadTypes.map(type =>
+        request.get(
+          `apis/apps/v1${this.getPath({ cluster, namespace })}/${type}`,
+          params
+        )
+      )
+    )
+
+    const workloads = { deployments, daemonsets, statefulsets }
+
+    workloadTypes.forEach(type => {
+      if (workloads[type] && !isEmpty(workloads[type].items)) {
+        const items = workloads[type].items.map(item => ({
+          ...ObjectMapper[type](item),
+          cluster,
+          type,
+        }))
+        this.workloads.data = [...this.workloads.data, ...items]
+      }
+    })
+
+    this.workloads.isLoading = false
   }
 }

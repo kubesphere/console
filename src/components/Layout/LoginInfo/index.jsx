@@ -23,7 +23,7 @@ import classnames from 'classnames'
 import { Dropdown, Menu, Icon } from '@pitrix/lego-ui'
 
 import AboutModal from 'components/Modals/About'
-import UserEditModal from 'components/Modals/UserSetting'
+import { trigger } from 'utils/action'
 
 import UserStore from 'stores/user'
 
@@ -31,6 +31,7 @@ import styles from './index.scss'
 
 @inject('rootStore')
 @observer
+@trigger
 export default class LoginInfo extends Component {
   static propTypes = {
     isAppsPage: PropTypes.bool,
@@ -41,7 +42,6 @@ export default class LoginInfo extends Component {
 
     this.store = new UserStore()
     this.state = {
-      showUserEdit: false,
       showAbout: false,
     }
   }
@@ -49,7 +49,7 @@ export default class LoginInfo extends Component {
   handleMoreClick = (e, key) => {
     switch (key) {
       case 'setting':
-        this.setState({ showUserEdit: true })
+        this.trigger('user.setting', {})
         break
       case 'about':
         this.setState({ showAbout: true })
@@ -64,14 +64,6 @@ export default class LoginInfo extends Component {
 
   hideAboutModal = () => {
     this.setState({ showAbout: false })
-  }
-
-  hideUserEditModal = () => {
-    this.setState({ showUserEdit: false })
-  }
-
-  handleUserEdit = data => {
-    this.store.update({ name: globals.user.username }, data)
   }
 
   renderDropDown() {
@@ -96,12 +88,6 @@ export default class LoginInfo extends Component {
         <AboutModal
           visible={this.state.showAbout}
           onCancel={this.hideAboutModal}
-        />
-        <UserEditModal
-          module="users"
-          visible={this.state.showUserEdit}
-          onOk={this.handleUserEdit}
-          onCancel={this.hideUserEditModal}
         />
       </div>
     )

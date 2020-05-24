@@ -49,6 +49,7 @@ export default class Categories extends React.Component {
     this.module = 'strategies'
 
     this.namespace = this.props.match.params.namespace
+    this.cluster = this.props.match.params.cluster
   }
 
   componentDidMount() {
@@ -99,7 +100,7 @@ export default class Categories extends React.Component {
 
   handleCreate = data => {
     const { cluster, namespace } = this.props.match.params
-    this.store.create(data, { namespace }).then(() => {
+    this.store.create(data, { cluster, namespace }).then(() => {
       this.hideCreate()
       Notify.success({ content: `${t('Created Successfully')}!` })
       this.routing.push(
@@ -149,6 +150,8 @@ export default class Categories extends React.Component {
           title={t(cate.title)}
           module={`grayreleases_${cate.type}`}
           formTemplate={this.formTemplate}
+          cluster={this.cluster}
+          namespace={this.namespace}
           store={this.store}
           visible={showCreateModal}
           steps={this.steps}

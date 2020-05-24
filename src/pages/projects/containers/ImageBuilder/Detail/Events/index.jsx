@@ -63,5 +63,5 @@ class Events extends React.Component {
   }
 }
 
-export default inject('rootStore')(observer(Events))
+export default inject('s2iRunStore')(observer(Events))
 export const Component = Events

@@ -53,6 +53,7 @@ export default class Pods extends React.Component {
       this.podStore
         .fetchListByK8s({
           namespace: store.detail.namespace,
+          cluster: store.detail.cluster,
           labelSelector: joinSelector({
             ...store.detail.selector,
             app: detail.name,

@@ -36,7 +36,7 @@ export default class GrayReleaseStore extends Base {
   module = 'strategies'
 
   @action
-  async fetchList({ namespace, selector, ...rest }) {
+  async fetchList({ cluster, namespace, selector, ...rest }) {
     this.list.isLoading = true
 
     if (!namespace) {
@@ -50,9 +50,12 @@ export default class GrayReleaseStore extends Base {
       params.labelSelector = joinSelector(selector)
     }
 
-    const result = await request.get(this.getListUrl({ namespace }), params)
+    const result = await request.get(
+      this.getListUrl({ cluster, namespace }),
+      params
+    )
     this.list.update({
-      data: result.items.map(this.mapper),
+      data: result.items.map(item => ({ ...this.mapper(item), cluster })),
       total: result.items.length,
       isLoading: false,
     })
@@ -60,7 +63,7 @@ export default class GrayReleaseStore extends Base {
 
   @action
   fetchMetrics(
-    { namespace, hosts, newVersion, oldVersion, protocol },
+    { cluster, namespace, hosts, newVersion, oldVersion, protocol },
     options = {}
   ) {
     const queryTime = Math.floor(new Date().getTime() / 1000)
@@ -88,18 +91,27 @@ export default class GrayReleaseStore extends Base {
 
     return Promise.all([
       request.get(
-        `kapis/servicemesh.kubesphere.io/v1alpha2/namespaces/${namespace}/workloads/${hosts}-${newVersion}/metrics`,
+        `kapis/servicemesh.kubesphere.io/v1alpha2${this.getPath({
+          cluster,
+          namespace,
+        })}/workloads/${hosts}-${newVersion}/metrics`,
         metricsParams
       ),
       request.get(
-        `kapis/servicemesh.kubesphere.io/v1alpha2/namespaces/${namespace}/workloads/${hosts}-${oldVersion}/metrics`,
+        `kapis/servicemesh.kubesphere.io/v1alpha2${this.getPath({
+          cluster,
+          namespace,
+        })}/workloads/${hosts}-${oldVersion}/metrics`,
         metricsParams
       ),
     ])
   }
 
   @action
-  fetchHealth({ namespace, hosts, newVersion, oldVersion }, options = {}) {
+  fetchHealth(
+    { cluster, namespace, hosts, newVersion, oldVersion },
+    options = {}
+  ) {
     const healthParams = {
       rateInterval: '30s',
       ...options,
@@ -107,11 +119,17 @@ export default class GrayReleaseStore extends Base {
 
     return Promise.all([
       request.get(
-        `kapis/servicemesh.kubesphere.io/v1alpha2/namespaces/${namespace}/workloads/${hosts}-${newVersion}/health`,
+        `kapis/servicemesh.kubesphere.io/v1alpha2${this.getPath({
+          cluster,
+          namespace,
+        })}/workloads/${hosts}-${newVersion}/health`,
         healthParams
       ),
       request.get(
-        `kapis/servicemesh.kubesphere.io/v1alpha2/namespaces/${namespace}/workloads/${hosts}-${oldVersion}/health`,
+        `kapis/servicemesh.kubesphere.io/v1alpha2${this.getPath({
+          cluster,
+          namespace,
+        })}/workloads/${hosts}-${oldVersion}/health`,
         healthParams
       ),
     ])
@@ -119,6 +137,7 @@ export default class GrayReleaseStore extends Base {
 
   @action
   async fetchComponents({
+    cluster,
     namespace,
     labelSelector,
     newVersion,
@@ -141,7 +160,7 @@ export default class GrayReleaseStore extends Base {
     }
 
     const result = await request.get(
-      `api/v1/namespaces/${namespace}/pods`,
+      `api/v1${this.getPath({ cluster, namespace })}/pods`,
       params
     )
 
@@ -173,11 +192,11 @@ export default class GrayReleaseStore extends Base {
   }
 
   @action
-  create(data, { namespace }) {
+  create(data, { cluster, namespace }) {
     let req
 
     if (has(data, 'strategy')) {
-      req = request.post(this.getListUrl({ namespace }), data.strategy)
+      req = request.post(this.getListUrl({ cluster, namespace }), data.strategy)
     }
 
     if (has(data, 'workload')) {
@@ -186,7 +205,7 @@ export default class GrayReleaseStore extends Base {
 
       req.then(
         request.post(
-          `apis/apps/v1/namespaces/${namespace}/${module}`,
+          `apis/apps/v1${this.getPath({ cluster, namespace })}/${module}`,
           data.workload
         )
       )
@@ -196,7 +215,10 @@ export default class GrayReleaseStore extends Base {
   }
 
   @action
-  update({ name, namespace, hosts, newVersion, resourceVersion }, data) {
+  update(
+    { name, cluster, namespace, hosts, newVersion, resourceVersion },
+    data
+  ) {
     const promises = []
     let updateVersion = ''
 
@@ -209,17 +231,23 @@ export default class GrayReleaseStore extends Base {
         const workloadName = get(data.workload, 'metadata.name')
         promises.push(
           request.put(
-            `apis/apps/v1/namespaces/${namespace}/${module}/${workloadName}`,
+            `apis/apps/v1${this.getPath({
+              cluster,
+              namespace,
+            })}/${module}/${workloadName}`,
             data.workload
           )
         )
       } else {
         promises.push(
           request.delete(
-            `apis/apps/v1/namespaces/${namespace}/${module}/${hosts}-${newVersion}`
+            `apis/apps/v1${this.getPath({
+              cluster,
+              namespace,
+            })}/${module}/${hosts}-${newVersion}`
           ),
           request.post(
-            `apis/apps/v1/namespaces/${namespace}/${module}`,
+            `apis/apps/v1${this.getPath({ cluster, namespace })}/${module}`,
             data.workload
           )
         )

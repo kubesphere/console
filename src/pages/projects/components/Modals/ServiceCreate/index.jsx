@@ -109,7 +109,10 @@ export default class ServiceCreateModal extends React.Component {
   }
 
   fetchData = async () => {
-    const supportS2iLanguage = await this.s2iStore.getS2iSupportLanguage()
+    const { cluster } = this.props
+    const supportS2iLanguage = await this.s2iStore.getS2iSupportLanguage({
+      cluster,
+    })
     const groups = this.state.groups.map(group => {
       if (group.type === 'b2i') {
         group.options = supportS2iLanguage.b2i

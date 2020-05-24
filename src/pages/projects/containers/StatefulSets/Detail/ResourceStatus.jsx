@@ -35,9 +35,10 @@ class ResourceStatus extends Base {
   }
 
   fetchData = async () => {
-    const { namespace } = this.store.detail
+    const { cluster, namespace } = this.store.detail
     const params = {
       name: this.serviceName,
+      cluster,
       namespace,
     }
 
@@ -63,7 +64,6 @@ class ResourceStatus extends Base {
         {this.renderServices()}
         {this.renderContainerPorts()}
         {this.renderPods()}
-        {this.renderVolumes()}
       </div>
     )
   }

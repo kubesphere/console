@@ -81,6 +81,7 @@ export default class S2IForm extends React.Component {
   fetchData = async () => {
     const results = await this.secretStore.fetchListByK8s({
       namespace: this.namespace,
+      cluster: this.props.cluster,
       fieldSelector: `type=kubernetes.io/basic-auth`,
     })
 
@@ -96,6 +97,7 @@ export default class S2IForm extends React.Component {
   fetchImageSecrets = async () => {
     const results = await this.secretStore.fetchListByK8s({
       namespace: this.namespace,
+      cluster: this.props.cluster,
       fieldSelector: `type=kubernetes.io/dockerconfigjson`,
     })
 
@@ -115,7 +117,9 @@ export default class S2IForm extends React.Component {
 
   getTemplateList = async () => {
     this.setState({ isGetTemplateListLoading: true })
-    const lists = await this.builderStore.getBuilderTemplate()
+    const lists = await this.builderStore.getBuilderTemplate({
+      cluster: this.props.cluster,
+    })
     this.setState({
       builderTemplateLists: get(lists, 'items', []),
       isGetTemplateListLoading: false,

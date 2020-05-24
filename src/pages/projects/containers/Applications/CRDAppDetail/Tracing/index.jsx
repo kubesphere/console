@@ -89,9 +89,10 @@ export default class Tracing extends React.Component {
   }
 
   getData() {
-    const { selector, namespace } = toJS(this.detailStore.detail)
+    const { selector, cluster, namespace } = toJS(this.detailStore.detail)
     if (selector) {
       const params = {
+        cluster,
         namespace,
         labelSelector: joinSelector(selector),
       }
@@ -108,8 +109,9 @@ export default class Tracing extends React.Component {
   }
 
   fetchTracing = () => {
-    const { namespace } = toJS(this.detailStore.detail)
+    const { cluster, namespace } = toJS(this.detailStore.detail)
     const query = {
+      cluster,
       namespace,
       service: this.state.serviceName,
       ...this.state.query,
@@ -158,7 +160,7 @@ export default class Tracing extends React.Component {
     return (
       <ServiceSelect
         defaultService={this.state.defaultService}
-        options={data}
+        options={toJS(data)}
         isLoading={isLoading}
         onChange={this.handleServiceChange}
       />

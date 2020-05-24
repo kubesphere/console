@@ -39,6 +39,19 @@ import styles from './index.scss'
   rowKey: 'uid',
 })
 export default class Volumes extends React.Component {
+  get tips() {
+    return [
+      {
+        title: t('WHAT_IS_STORAGE_CLASS_Q'),
+        description: t('WHAT_IS_STORAGE_CLASS_A'),
+      },
+      {
+        title: t('WHAT_IS_LOCAL_VOLUME_Q'),
+        description: t('WHAT_IS_LOCAL_VOLUME_A'),
+      },
+    ]
+  }
+
   get itemActions() {
     const { trigger } = this.props
 
@@ -169,7 +182,7 @@ export default class Volumes extends React.Component {
     const { query, match, bannerProps, tableProps } = this.props
     return (
       <ListPage {...this.props}>
-        <Banner {...bannerProps} tabs={this.tabs} />
+        <Banner {...bannerProps} tips={this.tips} />
         <ResourceTable
           {...tableProps}
           itemActions={this.itemActions}

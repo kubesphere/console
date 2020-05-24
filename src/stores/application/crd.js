@@ -65,10 +65,16 @@ export default class ApplicationStore extends Base {
     isLoading: false,
   }
 
-  getGraphUrl = ({ namespace }) =>
-    `kapis/servicemesh.kubesphere.io/v1alpha2/namespaces/${namespace}/graph?duration=60s&graphType=versionedApp&injectServiceNodes=true&groupBy=app&appenders=deadNode,sidecarsCheck,serviceEntry,istio,responseTime`
-  getHealthUrl = ({ namespace, type }) =>
-    `kapis/servicemesh.kubesphere.io/v1alpha2/namespaces/${namespace}/health?rateInterval=60s&type=${type}`
+  getGraphUrl = ({ cluster, namespace }) =>
+    `kapis/servicemesh.kubesphere.io/v1alpha2${this.getPath({
+      cluster,
+      namespace,
+    })}/graph?duration=60s&graphType=versionedApp&injectServiceNodes=true&groupBy=app&appenders=deadNode,sidecarsCheck,serviceEntry,istio,responseTime`
+  getHealthUrl = ({ cluster, namespace, type }) =>
+    `kapis/servicemesh.kubesphere.io/v1alpha2${this.getPath({
+      cluster,
+      namespace,
+    })}/health?rateInterval=60s&type=${type}`
 
   @action
   async fetchComponents(params) {
@@ -116,7 +122,7 @@ export default class ApplicationStore extends Base {
   }
 
   @action
-  async fetchGraph({ namespace, selector } = {}) {
+  async fetchGraph({ cluster, namespace, selector } = {}) {
     const [
       serviceResult,
       result,
@@ -124,13 +130,13 @@ export default class ApplicationStore extends Base {
       serviceHealth,
       workloadHealth,
     ] = await Promise.all([
-      request.get(`api/v1/namespaces/${namespace}/services`, {
+      request.get(`api/v1${this.getPath({ cluster, namespace })}/services`, {
         labelSelector: joinSelector(selector),
       }),
-      request.get(this.getGraphUrl({ namespace })),
-      request.get(this.getHealthUrl({ namespace, type: 'app' })),
-      request.get(this.getHealthUrl({ namespace, type: 'service' })),
-      request.get(this.getHealthUrl({ namespace, type: 'workload' })),
+      request.get(this.getGraphUrl({ cluster, namespace })),
+      request.get(this.getHealthUrl({ cluster, namespace, type: 'app' })),
+      request.get(this.getHealthUrl({ cluster, namespace, type: 'service' })),
+      request.get(this.getHealthUrl({ cluster, namespace, type: 'workload' })),
     ])
 
     const serviceNames =
@@ -173,7 +179,7 @@ export default class ApplicationStore extends Base {
   }
 
   @action
-  fetchAppMetrics({ name, namespace }, options = {}) {
+  fetchAppMetrics({ name, cluster, namespace }, options = {}) {
     const queryTime = Math.floor(new Date().getTime() / 1000)
     const metricsParams = {
       queryTime,
@@ -193,13 +199,16 @@ export default class ApplicationStore extends Base {
       ...options,
     }
     return request.get(
-      `kapis/servicemesh.kubesphere.io/v1alpha2/namespaces/${namespace}/apps/${name}/metrics`,
+      `kapis/servicemesh.kubesphere.io/v1alpha2${this.getPath({
+        cluster,
+        namespace,
+      })}/apps/${name}/metrics`,
       metricsParams
     )
   }
 
   @action
-  fetchServiceMetrics({ name, namespace }, options = {}) {
+  fetchServiceMetrics({ name, cluster, namespace }, options = {}) {
     const queryTime = Math.floor(new Date().getTime() / 1000)
     const metricsParams = {
       queryTime,
@@ -214,13 +223,16 @@ export default class ApplicationStore extends Base {
       ...options,
     }
     return request.get(
-      `kapis/servicemesh.kubesphere.io/v1alpha2/namespaces/${namespace}/services/${name}/metrics`,
+      `kapis/servicemesh.kubesphere.io/v1alpha2${this.getPath({
+        cluster,
+        namespace,
+      })}/services/${name}/metrics`,
       metricsParams
     )
   }
 
   @action
-  fetchWorkloadMetrics({ name, namespace }, options = {}) {
+  fetchWorkloadMetrics({ name, cluster, namespace }, options = {}) {
     const metricsParams = {
       duration: 60,
       step: 20,
@@ -232,13 +244,16 @@ export default class ApplicationStore extends Base {
       ...options,
     }
     return request.get(
-      `kapis/servicemesh.kubesphere.io/v1alpha2/namespaces/${namespace}/workloads/${name}/metrics`,
+      `kapis/servicemesh.kubesphere.io/v1alpha2${this.getPath({
+        cluster,
+        namespace,
+      })}/workloads/${name}/metrics`,
       metricsParams
     )
   }
 
   @action
-  async fetchTracing({ service, namespace, ...rest }) {
+  async fetchTracing({ service, cluster, namespace, ...rest }) {
     this.isTracingLoading = true
 
     const params = {
@@ -255,7 +270,10 @@ export default class ApplicationStore extends Base {
 
     try {
       const result = await request.get(
-        `kapis/servicemesh.kubesphere.io/v1alpha2/namespaces/${namespace}/services/${service}/traces`,
+        `kapis/servicemesh.kubesphere.io/v1alpha2${this.getPath({
+          cluster,
+          namespace,
+        })}/services/${service}/traces`,
         params
       )
 
@@ -338,10 +356,10 @@ export default class ApplicationStore extends Base {
   }
 
   @action
-  addComponent(component, { namespace }) {
+  addComponent(component, params) {
     const requests = []
 
-    if (!namespace) {
+    if (!params.namespace) {
       return
     }
 
@@ -352,11 +370,11 @@ export default class ApplicationStore extends Base {
 
       requests.push(
         {
-          url: `apis/apps/v1/namespaces/${namespace}/${module}`,
+          url: `apis/apps/v1${this.getPath(params)}/${module}`,
           data: component.workload,
         },
         {
-          url: `api/v1/namespaces/${namespace}/services`,
+          url: `api/v1${this.getPath(params)}/services`,
           data: component.service,
         }
       )
@@ -366,23 +384,23 @@ export default class ApplicationStore extends Base {
   }
 
   @action
-  patch({ namespace, name }, data) {
+  patch({ namespace, cluster, name }, data) {
     return this.submitting(
-      request.patch(this.getDetailUrl({ name, namespace }), data)
+      request.patch(this.getDetailUrl({ name, cluster, namespace }), data)
     )
   }
 
   @action
-  delete({ name, namespace }) {
+  delete({ name, cluster, namespace }) {
     return this.submitting(
-      request.delete(this.getDetailUrl({ name, namespace }))
+      request.delete(this.getDetailUrl({ name, cluster, namespace }))
     )
   }
 
   @action
-  checkName({ name, namespace }) {
+  checkName({ name, cluster, namespace }) {
     return request.get(
-      this.getDetailUrl({ name, namespace }),
+      this.getDetailUrl({ name, cluster, namespace }),
       {},
       {
         headers: { 'x-check-exist': true },

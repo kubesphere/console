@@ -52,6 +52,9 @@ export default class Applications extends React.Component {
   get namespace() {
     return get(this.props.match, 'params.namespace')
   }
+  get cluster() {
+    return get(this.props.match, 'params.cluster')
+  }
 
   get project() {
     return this.props.projectStore
@@ -60,6 +63,7 @@ export default class Applications extends React.Component {
   fetchData() {
     this.store.fetchList({
       namespace: this.namespace,
+      cluster: this.cluster,
       runtime_id: get(this.project, 'detail.annotations["openpitrix_runtime"]'),
       limit: 3,
     })

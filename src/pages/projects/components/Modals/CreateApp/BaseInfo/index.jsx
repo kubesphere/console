@@ -51,7 +51,11 @@ export default class BaseInfo extends React.Component {
     }
 
     this.props.store
-      .checkName({ name: value, namespace: this.props.namespace })
+      .checkName({
+        name: value,
+        namespace: this.props.namespace,
+        cluster: this.props.cluster,
+      })
       .then(resp => {
         if (resp.exist) {
           return callback({ message: t('Name exists'), field: rule.field })
