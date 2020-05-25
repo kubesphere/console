@@ -53,7 +53,7 @@ export default class CrateDashboardModalContainer extends React.Component {
     }))
     .concat({
       value: '-',
-      image: '/assets/prometheus@2x.png',
+      image: '/assets/prometheus.svg',
       label: t('Custom'),
       description: t('SERVICE_BUILT_INTERFACE'),
     })

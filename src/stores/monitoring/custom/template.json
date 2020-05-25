@@ -213,7 +213,7 @@
     },
     "description": "elasticsearch-exporter",
     "name": "Elasticsearch",
-    "logo": "/assets/elasticsearch@2x.png"
+    "logo": "/assets/elasticsearch.svg"
   },
   "mysql": {
     "settings": {
@@ -617,6 +617,6 @@
     },
     "name": "Redis",
     "description": "Prometheus Redis Exporter",
-    "logo": "/assets/redis@2x.png"
+    "logo": "/assets/redis.svg"
   }
 }
