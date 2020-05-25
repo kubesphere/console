@@ -25,7 +25,7 @@ import Detail from '../../containers/Credential/detail'
 import CredentialDetail from '../../containers/Credential/detail/detail'
 import Activity from '../../containers/Credential/detail/activity'
 
-const PATH = '/devops/:project_id/credentials/:credential_id'
+const PATH = '/cluster/:cluster/devops/:project_id/credentials/:credential_id'
 
 const ROUTES = [
   { name: 'detail', title: 'Detail', component: CredentialDetail },
@@ -41,7 +41,7 @@ export default [
       breadcrumbs: [
         {
           label: 'Credentials',
-          url: '/devops/:project_id/credentials',
+          url: '/cluster/:cluster/devops/:project_id/credentials',
         },
       ],
     }),

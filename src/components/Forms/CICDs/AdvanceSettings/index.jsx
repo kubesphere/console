@@ -94,10 +94,11 @@ export default class AdvanceSettings extends React.Component {
   }
 
   componentDidMount() {
-    const { project_name } = this.props.formTemplate
+    const { project_name, cluster } = this.props.formTemplate
 
     this.pipelineStore.fetchList({
       project_name,
+      cluster,
       filter: 'no-multi-branch-job',
     })
   }
@@ -116,7 +117,7 @@ export default class AdvanceSettings extends React.Component {
 
   checkCronScript = async () => {
     const { formTemplate, type } = this.props
-    const { project_name, name } = formTemplate
+    const { project_name, name, cluster } = formTemplate
     const script = get(formTemplate, `${this.prefix}.timer_trigger.cron`, '')
 
     if (!script || this.script === script) {
@@ -127,6 +128,7 @@ export default class AdvanceSettings extends React.Component {
     const result = await this.scmStore.checkCronScript({
       devops: project_name,
       script,
+      cluster,
       pipeline: type === 'create' ? undefined : name,
     })
 
@@ -150,7 +152,7 @@ export default class AdvanceSettings extends React.Component {
   }
 
   handleScrollToBottom = () => {
-    const { project_name } = this.props.formTemplate
+    const { project_name, cluster } = this.props.formTemplate
     const { total, page, limit } = this.pipelineStore.list
 
     if (total <= limit * page) {
@@ -159,6 +161,7 @@ export default class AdvanceSettings extends React.Component {
 
     this.pipelineStore.fetchList({
       project_name,
+      cluster,
       filter: 'no-multi-branch-job',
       page: page + 1,
     })

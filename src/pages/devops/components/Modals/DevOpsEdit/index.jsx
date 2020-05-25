@@ -19,7 +19,6 @@
 import { get } from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
-import { toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import { Input, TextArea } from '@pitrix/lego-ui'
 import { Modal, Form } from 'components/Base'

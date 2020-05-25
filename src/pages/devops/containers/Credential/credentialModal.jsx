@@ -104,8 +104,8 @@ export default class CredentialModal extends React.Component {
   isGetConfigLoading = false
 
   @action
-  async handleCreate(data, project_id, reject) {
-    return await this.store.handleCreate(data, { project_id }, reject)
+  async handleCreate(data, { project_id, cluster }, reject) {
+    return await this.store.handleCreate(data, { project_id, cluster }, reject)
   }
 
   @action
@@ -127,7 +127,7 @@ export default class CredentialModal extends React.Component {
 
   @action
   handleOk = () => {
-    const { isEditMode, project_id } = this.props
+    const { isEditMode, project_id, cluster } = this.props
     const formData = this.formRef.current.getData()
     this.isConflict = false
     this.formRef.current.validate(async () => {
@@ -136,12 +136,12 @@ export default class CredentialModal extends React.Component {
 
       if (isEditMode) {
         await this.store
-          .updateCredential(formData, { project_id })
+          .updateCredential(formData, { project_id, cluster })
           .finally(() => {
             this.isSubmitting = false
           })
       } else {
-        await this.handleCreate(formData, project_id, resp => {
+        await this.handleCreate(formData, { project_id, cluster }, resp => {
           if (resp.status === 409) {
             this.isConflict = true
           }

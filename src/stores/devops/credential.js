@@ -58,14 +58,18 @@ export default class CredentialStore extends BaseStore {
     `kapis/resources.kubesphere.io/v1alpha2${this.getPath(params)}/secrets`
 
   @action
-  async fetchList({ namespace, ...filters } = {}) {
+  async fetchList({ namespace, cluster, ...filters } = {}) {
     this.list.isLoading = true
     const { page } = filters
 
-    const result = await this.request.get(this.getResourceUrl({ namespace }), {
-      start: (page - 1) * TABLE_LIMIT || 0,
-      limit: TABLE_LIMIT,
-    })
+    const result = await this.request.get(
+      this.getResourceUrl({ namespace, cluster }),
+      {
+        start: (page - 1) * TABLE_LIMIT || 0,
+        limit: TABLE_LIMIT,
+        type: 'credential.devops.kubesphere.io/',
+      }
+    )
 
     result.items = result.items.filter(
       v => v.type.indexOf('credential.devops.kubesphere.io') > -1
@@ -89,7 +93,7 @@ export default class CredentialStore extends BaseStore {
   }
 
   @action
-  async handleCreate(data, { project_id }, reject) {
+  async handleCreate(data, { project_id, cluster }, reject) {
     const body = FORM_TEMPLATES[this.module]({
       namespace: project_id,
     })
@@ -118,7 +122,7 @@ export default class CredentialStore extends BaseStore {
     body.type = `credential.devops.kubesphere.io/${CREDENTIAL_KEY[data.type]}`
 
     return await this.request.post(
-      this.getListUrl({ namespace: project_id }),
+      this.getListUrl({ namespace: project_id, cluster }),
       body,
       null,
       reject
@@ -127,12 +131,13 @@ export default class CredentialStore extends BaseStore {
 
   @action
   async fetchDetail() {
-    const { project_id, credential_id } = this.params
+    const { project_id, credential_id, cluster } = this.params
 
     const result = await this.request.get(
       `${this.getDetailUrl({
         namespace: project_id,
         name: credential_id,
+        cluster,
       })}?content=1`
     )
 
@@ -150,14 +155,16 @@ export default class CredentialStore extends BaseStore {
 
   @action
   async getUsageDetail() {
-    const { project_id, credential_id } = this.params
+    const { project_id, credential_id, cluster } = this.params
     return await this.request.get(
-      `${this.devopsUrlV2}${project_id}/credentials/${credential_id}/usage`
+      `${this.getDevopsUrlV2({
+        cluster,
+      })}${project_id}/credentials/${credential_id}/usage`
     )
   }
 
   @action
-  async updateCredential(credential, { project_id }) {
+  async updateCredential(credential, { project_id, cluster }) {
     const data = credential[credential.type]
     const des = credential.description
     const origin = credential._originData
@@ -175,6 +182,7 @@ export default class CredentialStore extends BaseStore {
       `${this.getDetailUrl({
         namespace: project_id,
         name: credential.name,
+        cluster,
       })}?content=1`,
       origin
     )
@@ -182,12 +190,13 @@ export default class CredentialStore extends BaseStore {
 
   @action
   async delete(credential_id) {
-    const { project_id } = this.params
+    const { project_id, cluster } = this.params
 
     return await this.request.delete(
       `${this.getDetailUrl({
         namespace: project_id,
         name: credential_id,
+        cluster,
       })}`
     )
   }

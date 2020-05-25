@@ -53,9 +53,9 @@ class CredentialDetail extends Base {
   }
 
   get listUrl() {
-    const { project_id } = this.props.match.params
+    const { project_id, cluster } = this.props.match.params
 
-    return `/devops/${project_id}/credentials`
+    return `/cluster/${cluster}/devops/${project_id}/credentials`
   }
 
   init() {
@@ -65,7 +65,7 @@ class CredentialDetail extends Base {
   fetchData = () => {
     const { params } = this.props.match
     this.store.setParams(params)
-    this.store.fetchDetail().catch(this.catch)
+    this.store.fetchDetail(params).catch(this.catch)
   }
 
   getOperations = () => [
@@ -123,11 +123,13 @@ class CredentialDetail extends Base {
   }
 
   handleDelete = () => {
-    const { project_id } = this.props.match.params
+    const { project_id, cluster } = this.props.match.params
     const { detail } = this.store
 
     this.store.delete(detail.id).then(() => {
-      this.routing.push(`/devops/${project_id}/${this.module}`)
+      this.routing.push(
+        `/cluster/${cluster}/devops/${project_id}/${this.module}`
+      )
     })
   }
 
@@ -148,7 +150,7 @@ class CredentialDetail extends Base {
 
   renderExtraModals() {
     const { showEdit } = this.state
-    const { project_id } = this.props.match.params
+    const { project_id, cluster } = this.props.match.params
 
     return (
       <div>
@@ -156,6 +158,7 @@ class CredentialDetail extends Base {
           title={t('Edit Credential')}
           formTemplate={this.state.formTemplate}
           visible={showEdit}
+          cluster={cluster}
           onOk={this.handleEdit}
           onCancel={this.hideEditModal}
           project_id={project_id}
