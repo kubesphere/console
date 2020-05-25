@@ -29,7 +29,7 @@ import SessionAffinity from './SessionAffinity'
 
 export default class AdvancedSettings extends React.Component {
   get namespace() {
-    return get(this.formTemplate, 'Service.metadata.namespace')
+    return get(this.props.formTemplate, 'Service.metadata.namespace')
   }
 
   get kind() {

@@ -209,4 +209,6 @@ export default {
   PROJECT_CLUSTER_SETTINGS_DESC:
     '集群分配包括分配集群和节点，并且分配集群对应的资源配额、托管集群中的Namespace',
   NETWORK_ISOLATED_DESC: '设置网络隔离策略',
+
+  NAME_EXIST_IN_CLUSTER: '项目名在集群 {cluster} 中已存在',
 }

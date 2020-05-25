@@ -18,11 +18,9 @@
 
 import React from 'react'
 import { observer } from 'mobx-react'
-import { get } from 'lodash'
 import PropTypes from 'prop-types'
 import { Columns, Column, Select, Input, TextArea } from '@pitrix/lego-ui'
 import { Modal, Form } from 'components/Base'
-import { ArrayInput, ObjectInput } from 'components/Inputs'
 import { PATTERN_SERVICE_NAME, PATTERN_LENGTH_63 } from 'utils/constants'
 
 import WorkspaceStore from 'stores/workspace'
@@ -82,43 +80,6 @@ export default class ProjectCreateModal extends React.Component {
     })
   }
 
-  nameValidator = (rule, value, callback) => {
-    if (!value) {
-      return callback()
-    }
-
-    this.props.store.checkName({ name: value }).then(resp => {
-      if (resp.exist) {
-        return callback({ message: t('Name exists'), field: rule.field })
-      }
-      callback()
-    })
-  }
-
-  multiClusterNameValidator = async (rule, value, callback) => {
-    if (!value) {
-      return callback()
-    }
-
-    const clusters = get(this.props.formTemplate, 'spec.placement.clusters', [])
-
-    const resps = await Promise.all(
-      clusters.map(cluster =>
-        this.store.checkName({ name: value, cluster: cluster.name })
-      )
-    )
-
-    const index = resps.findIndex(item => item.exist)
-
-    if (index > -1) {
-      return callback({
-        message: t('NAME_EXIST_IN_CLUSTER', { cluster: clusters[index].name }),
-        field: rule.field,
-      })
-    }
-    callback()
-  }
-
   render() {
     const { visible, formTemplate, hideCluster, onOk, onCancel } = this.props
     return (
@@ -135,8 +96,8 @@ export default class ProjectCreateModal extends React.Component {
         <div className={styles.header}>
           <img src="/assets/project-create.svg" alt="" />
           <div className={styles.title}>
-            <div>{t('Create Project')}</div>
-            <p>{t('PROJECT_CREATE_DESC')}</p>
+            <div>{t('Create DevOps Project')}</div>
+            <p>{t('DEVOPS_PROJECT_CREATE_DESC')}</p>
           </div>
         </div>
         <div className={styles.content}>
@@ -152,11 +113,6 @@ export default class ProjectCreateModal extends React.Component {
                     message: `${t('Invalid name')}, ${t('SERVICE_NAME_DESC')}`,
                   },
                   { pattern: PATTERN_LENGTH_63, message: t('NAME_TOO_LONG') },
-                  {
-                    validator: hideCluster
-                      ? this.nameValidator
-                      : this.multiClusterNameValidator,
-                  },
                 ]}
               >
                 <Input name="metadata.name" autoFocus={true} />
@@ -169,50 +125,27 @@ export default class ProjectCreateModal extends React.Component {
             </Column>
           </Columns>
           <Columns>
-            <Column>
-              <Form.Item
-                label={t('Network Isolated')}
-                desc={t('NETWORK_ISOLATED_DESC')}
-              >
-                <Select
-                  name="metadata.annotations['kubesphere.io/network-isolate']"
-                  options={this.networkOptions}
-                  defaultValue={'enabled'}
-                />
-              </Form.Item>
-            </Column>
+            {!hideCluster && (
+              <Column>
+                <Form.Item
+                  label={t('Cluster Settings')}
+                  rules={[
+                    { required: true, message: t('Please select a cluster') },
+                  ]}
+                >
+                  <Select
+                    name="spec.placement.cluster"
+                    options={this.clusters}
+                  />
+                </Form.Item>
+              </Column>
+            )}
             <Column>
               <Form.Item label={t('Description')}>
                 <TextArea name="metadata.annotations['kubesphere.io/description']" />
               </Form.Item>
             </Column>
           </Columns>
-          {!hideCluster && (
-            <Form.Group
-              label={t('Cluster Settings')}
-              desc={t('PROJECT_CLUSTER_SETTINGS_DESC')}
-            >
-              <Form.Item
-                rules={[
-                  { required: true, message: t('Please select a cluster') },
-                ]}
-              >
-                <ArrayInput
-                  name="spec.placement.clusters"
-                  addText={t('Add Cluster')}
-                  itemType="object"
-                >
-                  <ObjectInput>
-                    <Select
-                      name="name"
-                      options={this.clusters}
-                      style={{ width: 700 }}
-                    />
-                  </ObjectInput>
-                </ArrayInput>
-              </Form.Item>
-            </Form.Group>
-          )}
         </div>
       </Modal.Form>
     )
