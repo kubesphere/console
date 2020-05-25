@@ -59,21 +59,24 @@ export default class CardSelect extends Component {
     const { className, options, selectedClassName } = this.props
     return (
       <ul className={classnames(styles.container, className)}>
-        {options.map(({ icon = 'picture', label, value }) => (
-          <li
-            key={value}
-            data-value={value}
-            onClick={this.handleClick}
-            className={classnames({
-              [selectedClassName]: this.selectedCheck(value),
-            })}
-          >
-            <figure>
-              <Icon name={icon} />
-            </figure>
-            <h3>{label}</h3>
-          </li>
-        ))}
+        {options.map(
+          ({ icon = 'picture', image, label, value, description }) => (
+            <li
+              key={value}
+              data-value={value}
+              onClick={this.handleClick}
+              className={classnames({
+                [selectedClassName]: this.selectedCheck(value),
+              })}
+            >
+              <figure>
+                {image ? <img src={image} /> : <Icon name={icon} />}
+              </figure>
+              <h3>{label}</h3>
+              {description && <p>{description}</p>}
+            </li>
+          )
+        )}
       </ul>
     )
   }

@@ -103,6 +103,7 @@ export default class CustomMonitoringTemplate {
     time = DAFAULT_TIME,
     isEditing = false,
     refresh = '',
+    name = '',
   }) {
     this.title = title
     this.namespace = namespace
@@ -112,6 +113,7 @@ export default class CustomMonitoringTemplate {
     this.templatings = templatings
     this.time = time
     this.refresh = refresh
+    this.name = name
 
     this.isEditing = isEditing
 
@@ -358,6 +360,7 @@ export default class CustomMonitoringTemplate {
         'templatings',
         'time',
         'refresh',
+        'name',
       ]),
       time: toJS(this.time),
       panels: [...unRowPanels, ...inRowPanels],

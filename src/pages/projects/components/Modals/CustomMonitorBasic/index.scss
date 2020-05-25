@@ -1,0 +1,28 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.templateList {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 10px -10px;  
+
+  & > li {
+    height: auto;
+    margin: 10px;
+
+    flex-basis: 22%;
+
+    p {
+      color: $dark-color01;
+    }
+  }
+}
+
+.templateLabel {
+  h3 {
+    font-weight: bold;
+  }
+  p {
+    @include TypographyParagraph($dark-color01);
+  }
+}
