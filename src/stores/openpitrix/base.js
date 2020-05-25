@@ -37,7 +37,7 @@ export default class Base {
     total: 0,
     reverse: false,
     filters: {},
-    isLoading: false,
+    isLoading: true,
     keyword: '',
     selectedRowKeys: [],
     setSelectRowKeys: this.setSelectRowKeys,

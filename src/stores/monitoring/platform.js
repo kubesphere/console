@@ -16,28 +16,8 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React, { Component } from 'react'
-import { Text } from 'components/Base'
+import Base from './base'
 
-import styles from './index.scss'
-
-export default class Resource extends Component {
-  handleClick = () => {
-    const { data, onClick } = this.props
-    onClick(data.link)
-  }
-
-  render() {
-    const { data, count } = this.props
-    return (
-      <div key={data.name} className={styles.resource}>
-        <Text
-          icon={data.icon}
-          title={count || 0}
-          description={t(data.name)}
-          onClick={data.link ? this.handleClick : null}
-        />
-      </div>
-    )
-  }
+export default class PlatformMonitoring extends Base {
+  getApi = () => `${this.apiVersion}/kubesphere`
 }
