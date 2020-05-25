@@ -77,13 +77,14 @@ export default class ContainerSetting extends React.Component {
   }
 
   fetchData() {
-    const { namespace } = this.props
+    const { cluster, namespace } = this.props
 
     Promise.all([
-      this.quotaStore.fetch({ namespace }),
-      this.projectStore.fetchLimitRanges({ namespace }),
+      this.quotaStore.fetch({ cluster, namespace }),
+      this.projectStore.fetchLimitRanges({ cluster, namespace }),
       this.secretStore.fetchListByK8s({
-        namespace: this.props.namespace,
+        cluster,
+        namespace,
         fieldSelector: `type=kubernetes.io/dockerconfigjson`,
       }),
     ]).then(() => {

@@ -129,7 +129,7 @@
     "babel-plugin-transform-imports": "^1.5.1",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.5",
     "cache-loader": "^2.0.1",
-    "concurrently": "^4.1.2",
+    "concurrently": "^5.2.0",
     "copy-webpack-plugin": "^5.1.1",
     "cross-env": "^5.2.0",
     "css-loader": "^1.0.1",

@@ -57,6 +57,10 @@ export default class Projects extends React.Component {
 
   @computed
   get hostCluster() {
+    if (this.workspaceStore.clusters.data.length < 1) {
+      return ''
+    }
+
     return get(
       this.workspaceStore.clusters.data.find(cluster => cluster.isHost) ||
         this.workspaceStore.clusters.data[0],

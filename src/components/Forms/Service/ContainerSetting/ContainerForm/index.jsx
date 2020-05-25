@@ -110,6 +110,7 @@ export default class ContaineForm extends React.Component {
       data,
       configMaps,
       secrets,
+      cluster,
       namespace,
       withService,
     } = this.props
@@ -118,7 +119,12 @@ export default class ContaineForm extends React.Component {
 
     return (
       <div className={classNames(styles.wrapper, className)}>
-        <ContainerSetting prefix={prefix} namespace={namespace} data={data} />
+        <ContainerSetting
+          prefix={prefix}
+          cluster={cluster}
+          namespace={namespace}
+          data={data}
+        />
         <Ports prefix={prefix} withService={withService} />
         <ImagePullPolicy prefix={prefix} />
         {this.supportProbe && <HealthChecker prefix={prefix} />}

@@ -151,6 +151,9 @@ export default class Members extends React.Component {
         disabled: !this.showAction(record),
         name: record.name,
       }),
+      emptyProps: {
+        desc: t('INVITE_MEMBER_DESC_DEVOPS'),
+      },
     }
   }
 

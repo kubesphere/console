@@ -109,7 +109,13 @@ export default class Secrets extends React.Component {
         sorter: true,
         sortOrder: getSortOrder('name'),
         search: true,
-        render: name => <Avatar icon={ICON_TYPES[module]} title={name} />,
+        render: (name, record) => (
+          <Avatar
+            icon={ICON_TYPES[module]}
+            title={name}
+            to={`/devops/${record.namespace}/roles/${name}`}
+          />
+        ),
       },
       {
         title: t('Description'),
@@ -143,6 +149,10 @@ export default class Secrets extends React.Component {
       success: this.getData,
     })
 
+  get emptyProps() {
+    return { desc: t('DEVOPS_PROJECT_ROLES_DESC') }
+  }
+
   render() {
     const { bannerProps, tableProps } = this.props
     return (
@@ -154,6 +164,7 @@ export default class Secrets extends React.Component {
         />
         <Table
           {...tableProps}
+          emptyProps={this.emptyProps}
           tableActions={this.tableActions}
           itemActions={this.itemActions}
           columns={this.getColumns()}
