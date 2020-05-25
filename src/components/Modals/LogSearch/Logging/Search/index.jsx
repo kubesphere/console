@@ -68,7 +68,6 @@ export default class LogSearchModal extends React.Component {
     maxAge: 3000,
   })
 
-  @observable
   tableCols = [
     {
       thead: t('Time'),

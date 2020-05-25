@@ -59,6 +59,14 @@ export default class KubeTools extends React.Component {
             hidden: !globals.app.hasKSModule('logging'),
             action: 'toolbox.logquery',
           },
+          {
+            icon: 'thunder',
+            title: t('Event Search'),
+            description: t('EVENT_SEARCH_DESC'),
+            link: '/eventsearch',
+            // hidden: !globals.app.hasKSModule('logging'),
+            action: 'toolbox.eventsearch',
+          },
         ],
       },
       {
