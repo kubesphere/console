@@ -1,0 +1,107 @@
+.normalText {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 20px;
+  height: 20px;
+}
+
+:global(.ReactModal__Overlay.ReactModal__Overlay--after-open) {
+  width: 100vw;
+}
+
+.tabs {
+  :global(.tab-content) {
+    height: calc(100vh - 170px);
+    overflow-y: scroll;
+  }
+}
+
+.detail {
+  flex: 1;
+
+  .searchBar {
+    border: solid 2px #d8dee5;
+    margin-left: 12px;
+    margin-right: 12px;
+    margin-bottom: -23px;
+    background: #fff;
+    display: flex;
+    position: relative;
+    border-radius: 4px;
+    @at-root {
+      .searchInput {
+        position: relative;
+        flex: 1;
+        border: none;
+        border-right: solid 2px #d8dee5;
+        border-radius: 0;
+      }
+      .queryModeSelect {
+        width: 120px;
+        line-height: 40px;
+        .queryModeOptions * {
+          border: none;
+          :global {
+            .option-selected-area {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+:global(.table table) {
+  padding: 0 12px;
+}
+
+.table {
+  margin-top: 30px;
+
+  :global(.table-row) {
+    cursor: pointer;
+  }
+}
+
+.category {
+  width: 54px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 20px;
+  height: 20px;
+  text-align: center;
+  border-radius: 1px;
+}
+
+.normal {
+  color: #36435C;
+  background-color: #eff4f9;
+}
+
+.warning {
+  color: #ffffff;
+  background-color: #F5A623;
+}
+
+.danger {
+  color: #ffffff;
+  background-color: #ff0000;
+}
+
+.kind {
+  display: inline-block;
+  padding: 0 3px;
+  text-align: center;
+  background-color: #D8DEE5;
+  border-radius: 1px;
+}
+
+.namespace {
+  display: inline-block;
+  margin-left: 5px;
+  font-size: 12px;
+  color: #242E42;
+  line-height: 20px;
+  height: 20px;
+}

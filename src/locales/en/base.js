@@ -125,4 +125,10 @@ export default {
   CREATE_STATUS_FAILED: 'Create failed',
 
   EMPTY_WRAPPER: 'No {resource} Found',
+
+  'rules text': 'How to define operational audit collection rules?',
+  'rules desc':
+    'KubeSphere can collect operation audits according to the rules you set. Click to see how to define the rules.',
+
+  EVENT_CREATE_DESC: 'You can change the search criteria and search again.',
 }
