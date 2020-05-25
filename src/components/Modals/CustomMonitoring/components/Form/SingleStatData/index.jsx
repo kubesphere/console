@@ -70,25 +70,6 @@ export default class SingleStatDataForm extends Component {
           </Form.Item>
 
           <Form.Item>
-            <FormItemContainer name={'valueName'} defaultValue={'avg'}>
-              {({ onChange, value }) => (
-                <Field label={t('VALUE_FOMATER')} tips={''}>
-                  <Select
-                    options={[
-                      {
-                        label: 'Average',
-                        value: 'avg',
-                      },
-                    ]}
-                    value={value}
-                    onChange={onChange}
-                  />
-                </Field>
-              )}
-            </FormItemContainer>
-          </Form.Item>
-
-          <Form.Item>
             <FormItemContainer name={'decimals'} defaultValue={0}>
               {({ onChange, value }) => (
                 <Field label={t('DECIMALS')} tips={''}>

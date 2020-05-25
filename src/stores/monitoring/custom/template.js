@@ -232,6 +232,7 @@ export default class CustomMonitoringTemplate {
       type: 'singlestat',
       decimals: 0,
       namespace: this.namespace,
+      valueName: 'last',
       targets: [
         {
           expr: '',
@@ -256,7 +257,7 @@ export default class CustomMonitoringTemplate {
         {
           expr: '',
           legendFormat: '',
-          step: '20s',
+          step: '1m',
           refId: 1,
         },
       ],
