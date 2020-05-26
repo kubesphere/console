@@ -22,6 +22,7 @@ export default {
   TOTAL_LOGS:
     '总共收录了 <span class={className}>{containers}</span> 个容器<br/> <span class={className}> {logs} </span> 条日志信息',
   LOG_DATE: 'YYYY年MM月DD日HH时',
+  EVENT_DATE: 'YYYY年MM月DD日0时',
   topic: '主题',
   'Key Word': '关键字',
   'Region Data': '元数据',
@@ -38,6 +39,17 @@ export default {
   'Workload Log Query Tip': '可以根据工作负载名称查看相关的日志信息',
   'Container Log Query Tip': '可以根据容器名称查看相关的日志信息',
   'Pod Log Query Tip': '可以根据容器组名称查看相关的日志信息',
+  'Trends in the total number of events in the last 12 hours':
+    '最近 12 小时事件总数变化趋势',
+  'Search Events by': '通过{field}查询事件',
+  'KeyWord Event Query Tip': '请输入关键字查找事件',
+  'Project Event Query Tip': '可以根据项目查看相关的事件信息',
+  'Name Event Query Tip': '可以根据名称查看相关的事件信息',
+  'Reason Event Query Tip': '可以根据原因查看相关的事件信息',
+  'Message Event Query Tip': '可以根据消息查看相关的事件信息',
+  'Category Event Query Tip': '可以根据类别查看相关的事件信息',
+  'Pod Event Query Tip': '可以根据容器组查看相关的事件信息',
+  'Event statistics': '事件统计',
   'Time topology': '时间拓扑图',
   'Display content': '显示内容',
   'Search Result': '搜索结果',
@@ -90,9 +102,11 @@ export default {
   START_REAL_TIME_LOG: '开始实时日志',
   STOP_REAL_TIME_LOG: '关闭实时日志',
   LOG_EXPORT: '日志导出',
-
   CREATE_CUSTOM_MONITORING_DASHBOARD: '创建自定义监控面板',
   SELECT_SUITABLE_MONITORING_TEMPLATE: '选择适合您应用应用模板',
   CUSTON_MONITORING_TEMPLATE_DESC: '监控面板将根据应用类型生成默认的面板配置',
   SERVICE_BUILT_INTERFACE: '服务已内置监控数据抓取接口',
+  TOTAL_EVENTS_TODAY:
+    '今日总共收录了 <span class={className}> {events} </span> 条事件',
+  NO_EVENTS_TODAY: '今日没有收录的事件',
 }
