@@ -1,6 +1,6 @@
 import React from 'react'
 import classnames from 'classnames'
-import { Tabs, Modal, Icon } from '@pitrix/lego-ui'
+import { Tabs, Icon } from '@pitrix/lego-ui'
 
 import Metadata from './Metadata'
 
@@ -107,36 +107,22 @@ export default class MetadataModal extends React.Component {
   }
 
   render() {
-    const { visible, onCancel } = this.props
     return (
-      <Modal
-        width={492}
-        height={500}
-        onCancel={onCancel}
-        visible={visible}
-        closable={false}
-        maskStyle={{
-          backgroundColor: 'transparent',
-        }}
-        className={styles.modal}
-        footer={null}
-      >
-        <Tabs direction="vertical" className={styles.detail}>
-          <TabPanel label={<Icon name="resource" size={16} />} name="resource">
-            <div className={styles.content}>
-              {this.renderHeader('Event metadata')}
-              {this.renderEventMetadata()}
-            </div>
-          </TabPanel>
-          <TabPanel label={<Icon name="cloud" size={16} />} name="cloud">
-            <div className={styles.content}>
-              {this.renderHeader('Operation details')}
-              {this.renderDetail()}
-              {this.renderFooter()}
-            </div>
-          </TabPanel>
-        </Tabs>
-      </Modal>
+      <Tabs direction="vertical" className={styles.tabs}>
+        <TabPanel label={<Icon name="resource" size={16} />} name="resource">
+          <div className={styles.content}>
+            {this.renderHeader('Event metadata')}
+            {this.renderEventMetadata()}
+          </div>
+        </TabPanel>
+        <TabPanel label={<Icon name="cloud" size={16} />} name="cloud">
+          <div className={styles.content}>
+            {this.renderHeader('Operation details')}
+            {this.renderDetail()}
+            {this.renderFooter()}
+          </div>
+        </TabPanel>
+      </Tabs>
     )
   }
 }

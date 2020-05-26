@@ -18,6 +18,7 @@
 
 export default {
   LOG_DATE: 'YYYY/MM/DD HH:mm',
+  EVENT_DATE: 'YYYY/MM/DD 00:00',
   ES_DESC:
     'Elasticsearch is a distributed, RESTful search and analytics engine.',
   KAFKA_DESC: 'Kafka is a popular open-source stream-processing platform.',
@@ -74,6 +75,7 @@ export default {
     'A total of <span class={className}>{containers}</span> containers and <span class={className}> {logs} </span> logs were collected today.',
   TOTAL_EVENTS_TODAY:
     'A total of <span class={className}> {events} </span> events were collected today.',
+  NO_EVENTS_TODAY: 'Events not included today',
   START_REAL_TIME_LOG: 'turn on real-time logging',
   STOP_REAL_TIME_LOG: 'turn off real-time logging',
   LOG_EXPORT: 'Log Export',

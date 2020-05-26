@@ -28,7 +28,7 @@ export function toArray(data = {}, level = 0) {
 export const dropDownItems = {
   workspace_filter: {
     icon: 'magnifier',
-    text: t('Key Word'),
+    text: t('Workspace'),
   },
   involved_object_namespace_filter: {
     icon: 'project',

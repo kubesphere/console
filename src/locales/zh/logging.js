@@ -22,6 +22,7 @@ export default {
   TOTAL_LOGS:
     '总共收录了 <span class={className}>{containers}</span> 个容器<br/> <span class={className}> {logs} </span> 条日志信息',
   LOG_DATE: 'YYYY年MM月DD日HH时',
+  EVENT_DATE: 'YYYY年MM月DD日0时',
   topic: '主题',
   'Key Word': '关键字',
   'Region Data': '元数据',
@@ -103,4 +104,5 @@ export default {
   LOG_EXPORT: '日志导出',
   TOTAL_EVENTS_TODAY:
     '今日总共收录了 <span class={className}> {events} </span> 条事件',
+  NO_EVENTS_TODAY: '今日没有收录的事件',
 }

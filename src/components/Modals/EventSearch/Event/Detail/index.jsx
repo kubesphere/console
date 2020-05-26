@@ -1,5 +1,5 @@
 import React from 'react'
-import { Tabs, Select } from '@pitrix/lego-ui'
+import { Select } from '@pitrix/lego-ui'
 import { observer } from 'mobx-react'
 import { action } from 'mobx'
 import { min } from 'lodash'
@@ -19,14 +19,11 @@ import { getColumns } from './schema'
 
 import styles from './index.scss'
 
-const { TabPanel } = Tabs
-
 @observer
 export default class Detail extends React.PureComponent {
   constructor(props) {
     super(props)
     this.state = {
-      tab: 'window1',
       visible: false,
       detail: {},
       eventMetadata: [],
@@ -51,13 +48,13 @@ export default class Detail extends React.PureComponent {
 
   get duration() {
     const { searchInputState } = this.props || {}
-    const now = Math.floor(Date.now() / 1000)
+    const now = Math.ceil(Date.now() / 1000)
     const { start, end, step } = searchInputState
 
     if (start) {
       return {
-        start_time: min([Math.floor(start), now]),
-        end_time: min([Math.floor(end), now]),
+        start_time: min([Math.ceil(start), now]),
+        end_time: min([Math.ceil(end), now]),
         interval: step,
       }
     }
@@ -73,10 +70,6 @@ export default class Detail extends React.PureComponent {
   onFetch = params => {
     this.store.page = params.page
     this.onSearchParamsChange()
-  }
-
-  handleTabChange = tab => {
-    this.setState({ tab })
   }
 
   getQueryParams() {
@@ -165,34 +158,33 @@ export default class Detail extends React.PureComponent {
   }
 
   render() {
-    const { tab } = this.state
     return (
-      <Tabs
-        type="card"
-        activeName={tab}
-        onChange={this.handleTabChange}
-        className={styles.tabs}
-      >
-        <TabPanel className="tab-close" label={t('窗口1')} name="window1">
-          <div className={styles.detail}>
-            {this.renderSearchBar()}
+      <div className={styles.container}>
+        {this.renderSearchBar()}
+        <div className={styles.searchResult}>
+          <div className={styles.wrapper}>
             {this.renderTable()}
+            {this.renderDetailModal()}
           </div>
-          {this.renderDetailModal()}
-        </TabPanel>
-      </Tabs>
+        </div>
+      </div>
     )
   }
 
   renderDetailModal() {
     const { visible, detail, eventMetadata } = this.state
+
+    if (!visible) {
+      return null
+    }
+
     return (
-      <MetadataModal
-        visible={visible}
-        onCancel={this.onCancel}
-        detail={detail}
-        eventMetadata={eventMetadata}
-      />
+      <React.Fragment>
+        <div className={styles.mask} onClick={this.onCancel} />
+        <div className={styles.detail}>
+          <MetadataModal detail={detail} eventMetadata={eventMetadata} />
+        </div>
+      </React.Fragment>
     )
   }
 }

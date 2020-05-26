@@ -26,15 +26,18 @@ export const getColumns = () => [
     ),
   },
   {
+    title: t('Project'),
+    dataIndex: 'metadata.namespace',
+    width: 120,
+  },
+  {
     title: t('resources'),
     dataIndex: 'involvedObject.kind',
     width: 220,
     render: (kind, record) => (
       <Fragment>
         <div className={classnames(styles.normalText, styles.kind)}>{kind}</div>
-        <div className={styles.namespace}>
-          {record.involvedObject.namespace}
-        </div>
+        <div className={styles.name}>{record.involvedObject.name}</div>
       </Fragment>
     ),
   },

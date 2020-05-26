@@ -31,7 +31,7 @@ export default class HomeModal extends React.Component {
   supportQueryParams = [
     {
       icon: 'magnifier',
-      title: t('Search Events by', { field: t('Key Word') }),
+      title: t('Search Events by', { field: t('Workspace') }),
       tips: t('KeyWord Event Query Tip'),
       key: 'workspace_filter',
     },
@@ -74,7 +74,13 @@ export default class HomeModal extends React.Component {
   ]
 
   componentDidMount() {
+    this.eventSearchStore.fetchTodayHistogram()
     this.eventSearchStore.fetchHistogram()
+    this.eventSearchStore.fetchQuery({
+      start_time: Math.ceil(Date.now() / 1000) - 60 * 60 * 12,
+      endTime: Math.ceil(Date.now() / 1000),
+      interval: '24m',
+    })
   }
 
   @action
@@ -112,24 +118,30 @@ export default class HomeModal extends React.Component {
   }
 
   renderBanner() {
+    const { histogramTodayData = {}, isLoading } = this.eventSearchStore
+
     return (
       <div className={styles.banner}>
         <div className={styles.illustration}>
           <img src="/assets/log-statistics.svg" alt="log-statistics" />
         </div>
-        <Loading spinning={this.eventSearchStore.isLoading}>
+        <Loading spinning={isLoading}>
           <div className={styles.statistics}>
             <h3>
-              {t.html('TOTAL_EVENTS_TODAY', {
-                events: this.eventSearchStore.histogramData.total,
-                className: styles.count,
-              })}
+              {histogramTodayData.events
+                ? t.html('TOTAL_EVENTS_TODAY', {
+                    events: histogramTodayData.events,
+                    className: styles.count,
+                  })
+                : t('NO_EVENTS_TODAY')}
             </h3>
-            <p>
-              <Icon name="clock" />
-              {t('Current Statistics Start Time')}:
-              {moment(new Date()).format(`${t('LOG_DATE')}`)}
-            </p>
+            {histogramTodayData.events ? (
+              <p>
+                <Icon name="clock" />
+                {t('Current Statistics Start Time')}:
+                {moment(new Date()).format(`${t('EVENT_DATE')}`)}
+              </p>
+            ) : null}
           </div>
         </Loading>
       </div>
@@ -149,12 +161,17 @@ export default class HomeModal extends React.Component {
   }
 
   renderRecentLogs() {
-    const { isLoading, histogramData = {}, interval } = this.eventSearchStore
+    const {
+      isLoading,
+      histogramData = {},
+      total,
+      interval,
+    } = this.eventSearchStore
     return (
       <Loading spinning={isLoading}>
         <div className={classnames(styles.card, styles.recent)}>
           <div className={styles.recentSummary}>
-            <h2 className={styles.count}>{histogramData.total}</h2>
+            <h2 className={styles.count}>{total || 0}</h2>
             <p>
               {t('Trends in the total number of events in the last 12 hours')}
             </p>
@@ -164,7 +181,7 @@ export default class HomeModal extends React.Component {
               xKey={'time'}
               data={toJS(histogramData.buckets || [])}
               legend={[['count', t('Event statistics')]]}
-              interval={interval}
+              interval={interval || '30m'}
               onBarClick={this.selectedDurationParameter}
             />
           </div>

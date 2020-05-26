@@ -1,6 +1,7 @@
 import { observable, action } from 'mobx'
 import { assign } from 'lodash'
 import { to } from 'utils'
+import moment from 'moment-mini'
 
 export default class EventSearchStore {
   resource = 'events'
@@ -9,13 +10,10 @@ export default class EventSearchStore {
   isLoading = true
 
   @observable
+  histogramTodayData = {}
+
+  @observable
   histogramData = {}
-
-  @observable
-  startTime = Math.floor(Date.now() / 1000) - 60 * 60 * 12
-
-  @observable
-  endTime = Math.floor(Date.now() / 1000)
 
   @observable
   interval = '30m'
@@ -56,13 +54,37 @@ export default class EventSearchStore {
   }
 
   @action
+  async fetchTodayHistogram(params = {}) {
+    this.isLoading = true
+
+    const defaultParams = {
+      operation: 'statistics',
+      start_time: Math.ceil(
+        moment()
+          .startOf('day')
+          .valueOf() / 1000
+      ),
+      end_time: Math.ceil(Date.now() / 1000),
+      interval: this.interval,
+    }
+
+    const { statistics = {} } = await to(
+      request.get(this.fetchUrl, assign(defaultParams, params))
+    )
+
+    this.isLoading = false
+
+    this.histogramTodayData = statistics
+  }
+
+  @action
   async fetchHistogram(params = {}) {
     this.isLoading = true
 
     const defaultParams = {
       operation: 'histogram',
-      start_time: this.startTime,
-      end_time: this.endTime,
+      start_time: Math.ceil(Date.now() / 1000) - 60 * 60 * 12,
+      end_time: Math.ceil(Date.now() / 1000),
       interval: this.interval,
     }
 
