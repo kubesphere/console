@@ -17,7 +17,8 @@
  */
 
 import React, { Component } from 'react'
-import { inject } from 'mobx-react'
+import { inject, observer } from 'mobx-react'
+import { get } from 'lodash'
 import { Text } from 'components/Base'
 import { getLocalTime } from 'utils'
 
@@ -26,6 +27,7 @@ import Resource from './Resource'
 import styles from './index.scss'
 
 @inject('rootStore')
+@observer
 export default class PlatformStatus extends Component {
   get resources() {
     return [
@@ -33,16 +35,19 @@ export default class PlatformStatus extends Component {
         icon: 'enterprise',
         name: 'Workspaces',
         link: '/access/workspaces',
+        metric: 'kubesphere_workspace_count',
       },
       {
         icon: 'human',
         name: 'Accounts',
         link: '/access/accounts',
+        metric: 'kubesphere_user_count',
       },
       {
         icon: 'appcenter',
         name: 'App Templates',
         link: '/apps',
+        metric: 'kubesphere_app_template_count',
       },
     ]
   }
@@ -52,6 +57,7 @@ export default class PlatformStatus extends Component {
   }
 
   render() {
+    const { metrics } = this.props
     return (
       <div className={styles.wrapper}>
         <div className={styles.title}>
@@ -65,6 +71,7 @@ export default class PlatformStatus extends Component {
           <Resource
             key={resource.name}
             data={resource}
+            count={get(metrics, `${resource.metric}.data.result[0].value[1]`)}
             onClick={this.handleClick}
           />
         ))}

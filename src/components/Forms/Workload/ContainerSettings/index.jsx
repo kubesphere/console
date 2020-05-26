@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { concat, get, set, unset, isEmpty, omitBy, has, groupBy } from 'lodash'
+import { concat, get, set, unset, isEmpty, omitBy, has } from 'lodash'
 import React from 'react'
 import { safeParseJSON, generateId } from 'utils'
 import { MODULE_KIND_MAP } from 'utils/constants'
@@ -174,6 +174,7 @@ export default class ContainerSetting extends React.Component {
       if (container.pullSecret) {
         pullSecrets[container.pullSecret] = ''
         containerSecretMap[container.name] = container.pullSecret
+        delete container.pullSecret
       }
     })
 
@@ -191,7 +192,12 @@ export default class ContainerSetting extends React.Component {
   }
 
   updateService = formData => {
-    const { formTemplate, module } = this.props
+    const { formTemplate, module, withService } = this.props
+
+    if (!withService) {
+      return
+    }
+
     const containers = get(formData, `${this.prefix}spec.containers`, [])
 
     // auto gen service ports by workload container ports
@@ -265,34 +271,31 @@ export default class ContainerSetting extends React.Component {
     }
 
     // split mergedContainers and update formTemplate
-    const groupedContainers = groupBy(mergedContainers, 'type')
-    set(
-      this.formTemplate,
-      `${this.prefix}spec.containers`,
-      groupedContainers['worker']
-    )
-    set(
-      this.formTemplate,
-      `${this.prefix}spec.initContainers`,
-      groupedContainers['init'] || []
-    )
+    const _containers = []
+    const _initContainers = []
+    mergedContainers.forEach(item => {
+      if (item.type === 'worker') {
+        delete item.type
+        _containers.push(item)
+      } else {
+        delete item.type
+        _initContainers.push(item)
+      }
+    })
+    set(this.formTemplate, `${this.prefix}spec.containers`, _containers)
+    set(this.formTemplate, `${this.prefix}spec.initContainers`, _initContainers)
 
     // update image pull secrets
     this.updatePullSecrets(this.formTemplate)
 
-    if (this.props.withService) {
-      this.updateService(this.formTemplate)
-    }
+    this.updateService(this.formTemplate)
 
     this.hideContainer()
   }
 
   handleDelete = () => {
     this.updatePullSecrets(this.formTemplate)
-
-    if (this.props.withService) {
-      this.updateService(this.formTemplate)
-    }
+    this.updateService(this.formTemplate)
   }
 
   handleClusterChange = value => {

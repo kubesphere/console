@@ -16,41 +16,85 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 import React from 'react'
-import { MD5 } from 'object-hash'
+import BasicFormModal from 'src/pages/projects/components/Modals/CustomMonitorBasic'
 import CustomMonitoringModal from 'components/Modals/CustomMonitoring'
 import CustomMonitoringTemplate from 'stores/monitoring/custom/template'
+import tempalteSettings from 'stores/monitoring/custom/template.json'
 
 export default class CrateDashboardModalContainer extends React.Component {
-  constructor(props) {
-    super(props)
-
-    /**
-     * store custom monitor data make it ease to change and test
-     */
-    this.store = new CustomMonitoringTemplate({
-      title: 'New Custom Monitor Template',
-      namespace: props.namespace,
-      description: 'Custom Monitor Description',
-      isEditing: true,
-      refresh: '',
-    })
+  state = {
+    finishBasis: false,
   }
 
   onSave = async () => {
-    const params = this.store.toJS()
-    this.props.onSave({
-      name: MD5({ ...params, time: Date.now() }),
-      ...params,
+    this.props.onSave(this.store.toJS())
+  }
+
+  handleBasicConfirm = ({ name, description, panels = '' }) => {
+    const { settings } = tempalteSettings[panels] || {}
+
+    this.store = new CustomMonitoringTemplate({
+      namespace: this.props.namespace,
+      description,
+      isEditing: true,
+      name,
+      ...settings,
     })
+
+    this.setState({ finishBasis: true })
+  }
+
+  tempalteSettingsOpts = Object.entries(tempalteSettings)
+    .map(([key, configs]) => ({
+      value: key,
+      image: configs.logo,
+      label: configs.name,
+      description: configs.description,
+    }))
+    .concat({
+      value: '-',
+      image: '/assets/prometheus.svg',
+      label: t('Custom'),
+      description: t('SERVICE_BUILT_INTERFACE'),
+    })
+
+  nameValidator = async (rule, value, callback) => {
+    if (!value) {
+      return callback()
+    }
+
+    const { exist } =
+      (await this.props.checkName({
+        name: value,
+      })) || {}
+
+    if (exist) {
+      return callback({ message: t('Name exists'), field: rule.field })
+    }
+    callback()
   }
 
   render() {
+    const { finishBasis } = this.state
+
+    if (finishBasis) {
+      return (
+        <CustomMonitoringModal
+          store={this.store}
+          isSaving={this.props.isSubmitting}
+          onCancel={this.props.onCancel}
+          onSave={this.onSave}
+        />
+      )
+    }
+
     return (
-      <CustomMonitoringModal
-        store={this.store}
-        isSaving={this.props.isSubmitting}
+      <BasicFormModal
+        data={{}}
+        nameValidator={this.nameValidator}
         onCancel={this.props.onCancel}
-        onSave={this.onSave}
+        templateOpts={this.tempalteSettingsOpts}
+        onOk={this.handleBasicConfirm}
       />
     )
   }

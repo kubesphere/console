@@ -55,7 +55,7 @@ export default class CustomMonitoringDashboards extends React.Component {
         dataIndex: 'title',
         sortOrder: getSortOrder('name'),
         search: true,
-        render: (title, { name, _originData }) => (
+        render: (title, { name, _originData, description }) => (
           <Avatar
             icon={ICON_TYPES[module]}
             iconSize={40}
@@ -64,10 +64,10 @@ export default class CustomMonitoringDashboards extends React.Component {
                 className={styles.link}
                 onClick={this.openDashboard(_originData)}
               >
-                {title}
+                {name} {title && `(${title})`}
               </div>
             }
-            desc={name}
+            desc={description}
           />
         ),
       },
@@ -144,6 +144,11 @@ export default class CustomMonitoringDashboards extends React.Component {
     this.setState({ editModalVisiable: false, editData: {} })
   }
 
+  checkName = ({ name }) => {
+    const { namespace, cluster } = this.props.match.params
+    return this.props.store.checkName({ name, namespace, cluster })
+  }
+
   createDashboard = async params => {
     await this.props.store.create({
       namespace: this.props.match.params.namespace,
@@ -183,7 +188,9 @@ export default class CustomMonitoringDashboards extends React.Component {
 
         {createModalVisiable && (
           <CreateModal
+            checkName={this.checkName}
             namespace={this.props.match.params.namespace}
+            dashboardStore={this.props.store}
             isSaving={this.props.store.isSubmitting}
             onCancel={this.hideCreateModal}
             onSave={this.createDashboard}

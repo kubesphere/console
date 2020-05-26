@@ -118,7 +118,7 @@ export default class ContaineForm extends React.Component {
   }
 
   handleSubmit = callback => {
-    const { onSave } = this.props
+    const { onSave, withService } = this.props
     const form = this.formRef.current
 
     form &&
@@ -141,6 +141,12 @@ export default class ContaineForm extends React.Component {
           data.ports = data.ports.filter(
             item => !(!item.name && !item.containerPort && !item.hostPort)
           )
+        }
+
+        if (!withService) {
+          data.ports.forEach(item => {
+            delete item.servicePort
+          })
         }
 
         onSave(data)

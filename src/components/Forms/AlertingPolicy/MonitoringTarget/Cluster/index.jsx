@@ -124,6 +124,7 @@ export default class ClusterTarget extends React.Component {
     const { sortType } = this.state
 
     this.store.fetchNodes({
+      cluster: this.props.cluster,
       metrics: Object.values(NodeMetrics),
       sort_metric: NodeMetrics[sortType],
       ...params,
@@ -230,7 +231,6 @@ export default class ClusterTarget extends React.Component {
   renderNodes() {
     const { data, total, page, isLoading } = this.store.nodes
     const nodes = toJS(data)
-
     return (
       <div className={styles.box}>
         <ScrollLoad
@@ -243,9 +243,9 @@ export default class ClusterTarget extends React.Component {
         >
           {nodes.map(node => (
             <NodeItem
-              key={node.name}
+              key={node.node}
               data={node}
-              checked={this.isNodeChecked(node.name)}
+              checked={this.isNodeChecked(node.node)}
               onClick={this.handleSelectNode}
             />
           ))}

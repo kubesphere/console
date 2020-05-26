@@ -51,7 +51,7 @@ export default class DropdownContent extends React.Component {
   }
 
   get registryUrl() {
-    const { formTemplate, imageRegistries } = this.props
+    const { imageRegistries } = this.props
     if (!isEmpty(imageRegistries) && this.secretValue) {
       const selectedSecret = imageRegistries.find(
         item => item.value === this.secretValue
@@ -64,11 +64,8 @@ export default class DropdownContent extends React.Component {
         return url
       }
     }
-    return get(
-      formTemplate,
-      'metadata.annotations["kubesphere.io/registryUrl"]',
-      ''
-    )
+
+    return ''
   }
 
   get imageName() {
@@ -130,12 +127,7 @@ export default class DropdownContent extends React.Component {
 
   handleSecretChange = value => {
     const { formTemplate } = this.props
-    const currentSecret = this.secretsOptions.find(item => item.value === value)
-    let url = currentSecret.url || 'docker.io'
-
-    url = url.endsWith('/') ? url : `${url}/`
     set(formTemplate, 'pullSecret', value)
-    set(formTemplate, 'metadata.annotations["kubesphere.io/registryUrl"]', url)
     this.props.onChange(this.registryUrl)
   }
 

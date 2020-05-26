@@ -48,6 +48,8 @@ import Visibility from '../containers/Visibility'
 import KubeCtl from '../containers/KubeCtl'
 import KubeConfig from '../containers/KubeConfig'
 import NetworkPolicies from '../containers/Network/Policies'
+import AlertMessages from '../containers/Alerting/Messages'
+import AlertPolicies from '../containers/Alerting/Policies'
 
 import detail from './detail'
 
@@ -167,6 +169,14 @@ export default [
       {
         path: `${PATH}/monitor-resource`,
         component: ResourceMonitor,
+      },
+      {
+        path: `${PATH}/alert-messages`,
+        component: AlertMessages,
+      },
+      {
+        path: `${PATH}/alert-policies`,
+        component: AlertPolicies,
       },
       {
         path: `${PATH}/base-info`,

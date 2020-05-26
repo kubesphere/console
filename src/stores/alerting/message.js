@@ -46,7 +46,8 @@ export default class MessageStore extends Base {
   getDetailUrl = ({ id, ...params }) =>
     `${this.getListUrl(params)}?${this.module}_ids=${id}`
 
-  getCommentUrl = () => `${this.apiVersion}/comment`
+  getCommentUrl = (params = {}) =>
+    `${this.apiVersion}${this.getPath(params)}/comment`
 
   @action
   async fetchNotifications({
@@ -82,13 +83,13 @@ export default class MessageStore extends Base {
   }
 
   @action
-  async fetchComments({ id }) {
+  async fetchComments({ cluster, id }) {
     this.comments.isLoading = true
 
     const params = {
       history_ids: id,
     }
-    const result = await request.get(this.getCommentUrl(), params)
+    const result = await request.get(this.getCommentUrl({ cluster }), params)
     const results = result.comment_set || []
 
     this.comments.update({
@@ -98,8 +99,8 @@ export default class MessageStore extends Base {
   }
 
   @action
-  createComment(data) {
-    return this.submitting(request.post(this.getCommentUrl(), data))
+  createComment(params, data) {
+    return this.submitting(request.post(this.getCommentUrl(params), data))
   }
 
   fetchList(params) {

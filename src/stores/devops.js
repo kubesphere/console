@@ -59,9 +59,9 @@ export default class DevOpsStore extends Base {
 
   getDetailUrlV2 = project_id => `${this.getDevopsUrlV2()}/${project_id}`
 
-  getBaseUrl = () => `${this.apiVersion}/`
+  getBaseUrl = params => `${this.apiVersion}${this.getPath(params)}/`
 
-  getDevOpsUrl = () => `${this.getBaseUrl()}devopsprojects`
+  getDevOpsUrl = params => `${this.getBaseUrl(params)}devopsprojects`
 
   getDevOpsDetailUrl = name => `${this.getBaseUrl()}devopsprojects/${name}`
 
@@ -117,12 +117,12 @@ export default class DevOpsStore extends Base {
   }
 
   @action
-  create(data, { workspace }) {
+  create(data, { cluster, workspace }) {
     data.kind = 'DevOpsProject'
     data.apiVersion = 'devops.kubesphere.io/v1alpha3'
     data.metadata.labels = { 'kubesphere.io/workspace': workspace }
 
-    return this.submitting(request.post(this.getDevOpsUrl(), data))
+    return this.submitting(request.post(this.getDevOpsUrl({ cluster }), data))
   }
 
   @action

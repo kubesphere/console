@@ -116,7 +116,6 @@ client:
           children:
             - { name: ip-ranges, title: IP Ranges }
             - { name: networkpolicies, title: Network Policies }
-            - { name: network-topo, title: Network Topology }
         - { name: customresources, title: Custom Resources, icon: select }
         - name: storage
           title: Storage Management
@@ -269,12 +268,12 @@ client:
           icon: monitor
           children:
             - {
-                name: alert-message,
+                name: alert-messages,
                 title: Alerting Message,
                 authKey: 'alerting',
               }
             - {
-                name: alert-policy,
+                name: alert-policies,
                 title: Alerting Policy,
                 authKey: 'alerting',
               }
