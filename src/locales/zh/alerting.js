@@ -105,8 +105,7 @@ export default {
   ALERT_COMMENT: '处理意见',
   ALERT_COMMENT_DESC:
     '处理意见将作为告警处理的记录保留，但并不能作为处理告警的方法。记录信息将给相关用户查看该告警的处理情况。',
-  ALERT_POLICY_SETTING_TITLE: '暂时没有设置相关告警策略',
-  ALERT_POLICY_SETTING_DESC: '您可以通过设置告警规则，及时发现资源的异常情况',
+  ALERTING_POLICY_CREATE_DESC: '您可以通过设置告警规则，及时发现资源的异常情况',
   'ALERTING-POLICY_BASEINFO_DESC': '设置告警策略的基础信息',
   'ALERTING-POLICY_MONITORING-TARGET_DESC': '选择告警策略的监控目标',
   'ALERTING-POLICY_ALERTING-RULE_DESC': '设置告警规则',

@@ -91,7 +91,7 @@ export default class ProjectDetail extends React.Component {
       onClick: () =>
         this.trigger('resource.delete', {
           type: t(this.name),
-          resource: this.store.detail.name,
+          detail: this.store.detail,
         }),
     },
   ]
