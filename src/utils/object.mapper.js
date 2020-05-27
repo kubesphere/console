@@ -16,7 +16,17 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, set, pick, isEmpty, omit, uniqBy, find, keyBy } from 'lodash'
+import {
+  get,
+  set,
+  pick,
+  isEmpty,
+  omit,
+  uniqBy,
+  find,
+  keyBy,
+  includes,
+} from 'lodash'
 import {
   safeParseJSON,
   generateId,
@@ -388,6 +398,10 @@ const VolumeMapper = item => {
     deletionTime,
     phase: getVolumePhase(item),
     ...getBaseInfo(item),
+    storageProvisioner: get(
+      item,
+      'metadata.annotations["volume.beta.kubernetes.io/storage-provisioner"]'
+    ),
     status: get(item, 'status', {}),
     conditions: get(item, 'status.conditions', []),
     namespace: get(item, 'metadata.namespace'),
@@ -1013,6 +1027,21 @@ const NetworkPoliciesMapper = item => ({
   key: `${get(item, 'metadata.namespace')}-${get(item, 'metadata.name')}`,
 })
 
+const StorageclasscapabilitiesMapper = item => {
+  const { metadata, spec } = item
+  const volumeFeature = get(spec, 'features.volume')
+  return {
+    metadata,
+    spec,
+    snapshotFeature: get(spec, 'features.snapshot'),
+    volumeFeature,
+    supportExpandVolume: includes(
+      ['OFFLINE', 'ONLINE'],
+      volumeFeature.expandMode
+    ),
+  }
+}
+
 export default {
   deployments: WorkLoadMapper,
   daemonsets: WorkLoadMapper,
@@ -1064,5 +1093,6 @@ export default {
   pipelines: PipelinesMapper,
   networkpolicies: NetworkPoliciesMapper,
   namespacenetworkpolicies: NetworkPoliciesMapper,
+  storageclasscapabilities: StorageclasscapabilitiesMapper,
   default: DefaultMapper,
 }

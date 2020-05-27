@@ -839,6 +839,7 @@ export const API_VERSIONS = {
   dashboards: 'apis/monitoring.kubesphere.io/v1alpha1',
   namespacenetworkpolicies: 'apis/network.kubesphere.io/v1alpha1',
   networkpolicies: 'apis/networking.k8s.io/v1',
+  storageclasscapabilities: 'apis/storage.kubesphere.io/v1alpha1',
 }
 
 export const MONITOR_GRAPH_COLORS = [
