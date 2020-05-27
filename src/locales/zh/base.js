@@ -98,6 +98,7 @@ export default {
   Stopped: '已停止',
   Disabled: '已停用',
   'Not Enabled': '未启用',
+  Enabled: '已启用',
   Ceased: '已销毁',
   Used: '已使用',
   Remain: '剩余',

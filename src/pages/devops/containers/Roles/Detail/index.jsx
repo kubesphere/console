@@ -68,21 +68,32 @@ export default class RoleDetail extends React.Component {
   }
 
   getOperations = () => {
-    const { detail, rulesInfo } = this.store
+    const { detail } = this.store
 
     return [
       {
         key: 'edit',
-        type: 'control',
-        text: t('Edit'),
+        icon: 'pen',
+        text: t('Edit Info'),
+        action: 'edit',
+        onClick: () =>
+          this.trigger('resource.baseinfo.edit', {
+            type: t(this.name),
+            detail: toJS(this.store.detail),
+            success: this.fetchData,
+          }),
+      },
+      {
+        key: 'editRole',
+        icon: 'pen',
+        text: t('Edit Authorization'),
         action: 'edit',
         show: this.showEdit,
         onClick: () =>
           this.trigger('role.edit', {
-            detail,
-            title: t('Edit DevOps Role'),
-            type: t(this.name),
-            rulesInfo: toJS(rulesInfo),
+            module: this.module,
+            detail: toJS(this.store.detail),
+            roleTemplates: toJS(this.store.roleTemplates.data),
             success: this.fetchData,
           }),
       },

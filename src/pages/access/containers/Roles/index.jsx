@@ -50,12 +50,21 @@ export default class Roles extends React.Component {
         icon: 'pen',
         text: t('Edit'),
         action: 'edit',
+        onClick: item =>
+          trigger('resource.baseinfo.edit', {
+            detail: item,
+          }),
+      },
+      {
+        key: 'editRole',
+        icon: 'pen',
+        text: t('Edit Authorization'),
+        action: 'edit',
         show: this.showAction,
         onClick: item =>
           trigger('role.edit', {
             module,
             detail: item,
-            title: t('Edit Account Role'),
             roleTemplates: toJS(store.roleTemplates.data),
             success: routing.query,
           }),
@@ -89,18 +98,19 @@ export default class Roles extends React.Component {
   }
 
   getColumns = () => {
-    const { getSortOrder } = this.props
+    const { getSortOrder, module } = this.props
     return [
       {
         title: t('Name'),
         dataIndex: 'name',
         search: true,
         width: '25%',
-        render: name => (
+        render: (name, record) => (
           <Avatar
-            icon={ICON_TYPES[this.module]}
+            icon={ICON_TYPES[module]}
             to={`/access/roles/${name}`}
             title={name}
+            desc={record.aliasName}
           />
         ),
       },

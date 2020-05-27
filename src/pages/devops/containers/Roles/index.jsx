@@ -53,8 +53,7 @@ export default class Secrets extends React.Component {
   }
 
   get itemActions() {
-    const { routing, trigger } = this.props
-    const { rulesInfo } = this.props.store
+    const { routing, trigger, store } = this.props
 
     return [
       {
@@ -62,12 +61,22 @@ export default class Secrets extends React.Component {
         icon: 'pen',
         text: t('Edit'),
         action: 'edit',
+        onClick: item =>
+          trigger('resource.baseinfo.edit', {
+            detail: item,
+          }),
+      },
+      {
+        key: 'editRole',
+        icon: 'pen',
+        text: t('Edit Authorization'),
+        action: 'edit',
         show: this.showAction,
         onClick: item =>
           trigger('role.edit', {
-            title: t('Edit Project Role'),
+            module,
             detail: item,
-            rulesInfo: toJS(rulesInfo),
+            roleTemplates: toJS(store.roleTemplates.data),
             success: routing.query,
           }),
       },
@@ -151,8 +160,10 @@ export default class Secrets extends React.Component {
 
   showCreate = () =>
     this.props.trigger('role.create', {
+      module: 'devopsroles',
       devops: this.devopsName,
       cluster: this.cluster,
+      roleTemplates: toJS(this.props.store.roleTemplates.data),
       success: this.getData,
     })
 

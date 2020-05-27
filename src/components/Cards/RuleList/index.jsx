@@ -28,13 +28,9 @@ export default class RuleList extends React.Component {
       <ul className={styles.wrapper} data-test="rule-list">
         {Object.keys(templates).map(key => (
           <li key={key}>
-            <span className={styles.name}>
-              {t(`RULE_${key.toUpperCase()}`)}
-            </span>
+            <span className={styles.name}>{t(key)}</span>
             <span>
-              {templates[key]
-                .map(role => t(`RULE_${role.aliasName.toUpperCase()}`))
-                .join(' / ')}
+              {templates[key].map(role => t(role.aliasName)).join(' / ')}
             </span>
           </li>
         ))}
