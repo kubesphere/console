@@ -130,6 +130,7 @@ export default class Volumes extends React.Component {
           columns={this.getColumns()}
           searchType="keyword"
           keyword={filters.name}
+          filters={filters}
           placeholder={t('Please input a name to find')}
           pagination={pagination}
           isLoading={isLoading}
