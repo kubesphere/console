@@ -21,7 +21,7 @@ import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import isEqual from 'react-fast-compare'
 import { toJS } from 'mobx'
-import { find, isUndefined, isEmpty } from 'lodash'
+import { get, find, isUndefined, isEmpty } from 'lodash'
 import {
   Icon,
   Table,
@@ -34,6 +34,7 @@ import {
   Pagination,
 } from '@pitrix/lego-ui'
 import { Button, Search } from 'components/Base'
+import { safeParseJSON } from 'utils'
 import CustomColumns from './CustomColumns'
 import Empty from './Empty'
 
@@ -84,8 +85,14 @@ export default class WorkloadTable extends React.Component {
   constructor(props) {
     super(props)
 
+    const hideColumns = get(
+      safeParseJSON(localStorage.getItem('hide-columns'), {}),
+      props.tableId,
+      []
+    )
+
     this.state = {
-      hideColumns: [],
+      hideColumns,
     }
 
     this.hideableColumns = props.columns
@@ -175,11 +182,23 @@ export default class WorkloadTable extends React.Component {
   }
 
   handleColumnsHide = columns => {
-    this.setState({
-      hideColumns: this.hideableColumnValues.filter(
-        value => !columns.includes(value)
-      ),
-    })
+    this.setState(
+      {
+        hideColumns: this.hideableColumnValues.filter(
+          value => !columns.includes(value)
+        ),
+      },
+      () => {
+        if (this.props.tableId) {
+          const hideColumnsData = safeParseJSON(
+            localStorage.getItem('hide-columns'),
+            {}
+          )
+          hideColumnsData[this.props.tableId] = this.state.hideColumns
+          localStorage.setItem('hide-columns', JSON.stringify(hideColumnsData))
+        }
+      }
+    )
   }
 
   handleCancelSelect = () => {
