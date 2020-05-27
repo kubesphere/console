@@ -153,6 +153,7 @@ export default function withList(options) {
           enabledActions: this.enabledActions,
           itemActions: this.defaultItemActions,
           tableActions: this.defaultTableActions,
+          tableId: this.props.match.path,
         }
       }
 
