@@ -102,7 +102,7 @@ const UserMapper = item => ({
     'metadata.annotations["iam.kubesphere.io/role-binding"]',
     ''
   ),
-  status: get(item, 'status.state', ''),
+  status: get(item, 'status.state', 'Pending'),
   conditions: get(item, 'status.conditions', []),
   _originData: getOriginData(item),
 })
@@ -490,6 +490,10 @@ const RoleMapper = item => ({
   labels: get(item, 'metadata.labels', {}),
   namespace: get(item, 'metadata.namespace'),
   annotations: get(item, 'metadata.annotations'),
+  dependencies: safeParseJSON(
+    get(item, 'metadata.annotations["iam.kubesphere.io/dependencies"]', ''),
+    []
+  ),
   roleTemplates: safeParseJSON(
     get(
       item,

@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { set, cloneDeep } from 'lodash'
+import { set, uniq, cloneDeep } from 'lodash'
 import { Modal, Notify } from 'components/Base'
 import ClusterVisibility from 'clusters/components/Modals/ClusterVisibility'
 import FORM_TEMLATES from 'utils/form.templates'
@@ -58,7 +58,11 @@ export default {
                   cloneDeep(item._originData)
                 )
                 const clusters = item.clusters || []
-                set(formData, 'clusters', [...clusters, cluster.name])
+                set(
+                  formData,
+                  'spec.clusters',
+                  uniq([...clusters, cluster.name])
+                )
                 set(formData, 'metadata.resourceVersion', item.resourceVersion)
                 requests.push(workspaceStore.update(item, formData))
               })
@@ -73,7 +77,7 @@ export default {
                 const clusters = item.clusters || []
                 set(
                   formData,
-                  'clusters',
+                  'spec.clusters',
                   clusters.filter(name => name !== cluster.name)
                 )
                 set(formData, 'metadata.resourceVersion', item.resourceVersion)

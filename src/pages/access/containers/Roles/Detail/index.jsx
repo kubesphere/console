@@ -22,7 +22,7 @@ import { observer, inject } from 'mobx-react'
 import { get, isEmpty } from 'lodash'
 import { Loading } from '@pitrix/lego-ui'
 
-import { getLocalTime } from 'utils'
+import { getLocalTime, getDisplayName } from 'utils'
 import { trigger } from 'utils/action'
 import RoleStore from 'stores/role'
 
@@ -87,11 +87,22 @@ export default class RoleDetail extends React.Component {
       icon: 'pen',
       text: t('Edit Info'),
       action: 'edit',
+      onClick: () =>
+        this.trigger('resource.baseinfo.edit', {
+          type: t(this.name),
+          detail: toJS(this.store.detail),
+          success: this.fetchData,
+        }),
+    },
+    {
+      key: 'editRole',
+      icon: 'pen',
+      text: t('Edit Authorization'),
+      action: 'edit',
       show: this.showEdit,
       onClick: () =>
         this.trigger('role.edit', {
           module: this.module,
-          title: t('Edit Account Role'),
           detail: toJS(this.store.detail),
           roleTemplates: toJS(this.store.roleTemplates.data),
           success: this.fetchData,
@@ -142,7 +153,7 @@ export default class RoleDetail extends React.Component {
     const sideProps = {
       module: this.module,
       authKey: this.authKey,
-      name: get(this.store.detail, 'name'),
+      name: getDisplayName(this.store.detail),
       desc: this.detailDesc,
       operations: this.getOperations(),
       attrs: this.getAttrs(),
