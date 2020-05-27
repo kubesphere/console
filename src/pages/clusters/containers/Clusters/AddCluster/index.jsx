@@ -19,7 +19,7 @@
 import React from 'react'
 import { get, set, unset, cloneDeep } from 'lodash'
 import { Columns, Column } from '@pitrix/lego-ui'
-import { inject } from 'mobx-react'
+import { inject, observer } from 'mobx-react'
 import { Button, Form } from 'components/Base'
 import { ReactComponent as BackIcon } from 'src/assets/back.svg'
 
@@ -30,6 +30,7 @@ import Configuration from './Configuration'
 import styles from './index.scss'
 
 @inject('rootStore')
+@observer
 export default class AddCluster extends React.Component {
   state = {
     currentStep: 0,
@@ -68,18 +69,20 @@ export default class AddCluster extends React.Component {
 
   routing = this.props.rootStore.routing
 
-  handleImport = data => {
+  handleImport = async data => {
     const postData = cloneDeep(data)
+
     if (get(postData, 'spec.connection.type') === 'proxy') {
       unset(postData, 'spec.connection.kubeconfig')
     } else {
       const config = get(postData, 'spec.connection.kubeconfig', '')
-      set(postData, 'spec.connection.kubeconfig', atob(config))
+      set(postData, 'spec.connection.kubeconfig', btoa(config))
+      await this.store.validate(postData)
     }
-    this.store.create(postData).then(() => {
-      const name = get(postData, 'metadata.name')
-      this.routing.push(`/clusters/${name}`)
-    })
+
+    await this.store.create(postData)
+    const name = get(postData, 'metadata.name')
+    this.routing.push(`/clusters/${name}`)
   }
 
   handlePrev = () => {
@@ -112,6 +115,7 @@ export default class AddCluster extends React.Component {
   renderFooter() {
     const { currentStep } = this.state
     const total = this.steps.length - 1
+    const { isValidating, isSubmitting } = this.store
     return (
       <div className={styles.footer}>
         {currentStep < total ? (
@@ -119,8 +123,12 @@ export default class AddCluster extends React.Component {
             {t('Next')}
           </Button>
         ) : (
-          <Button type="control" htmlType="submit">
-            {t('Import')}
+          <Button
+            type="control"
+            htmlType="submit"
+            loading={isValidating || isSubmitting}
+          >
+            {isValidating ? t('Validating') : t('Import')}
           </Button>
         )}
       </div>
