@@ -33,6 +33,9 @@ export default class ClusterStore extends Base {
   @observable
   agent = ''
 
+  @observable
+  isValidating = false
+
   module = 'clusters'
 
   getAgentUrl = ({ cluster }) =>
@@ -106,5 +109,25 @@ export default class ClusterStore extends Base {
 
     this.agent = result
     this.isAgentLoading = false
+  }
+
+  @action
+  async validate(data) {
+    this.isValidating = true
+    await request.post(
+      'kapis/cluster.kubesphere.io/v1alpha1/clusters/validation',
+      data,
+      {},
+      (res, err) => {
+        this.isValidating = false
+        window.onunhandledrejection({
+          status: 400,
+          reason: t('Validation failed'),
+          message: err.message,
+        })
+        return Promise.reject()
+      }
+    )
+    this.isValidating = false
   }
 }

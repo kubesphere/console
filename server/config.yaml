@@ -114,7 +114,6 @@ client:
           title: Network Management
           icon: earth
           children:
-            - { name: ip-ranges, title: IP Ranges }
             - { name: networkpolicies, title: Network Policies }
         - { name: customresources, title: Custom Resources, icon: select }
         - name: storage

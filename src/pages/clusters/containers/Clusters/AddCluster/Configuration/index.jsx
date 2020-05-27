@@ -17,7 +17,7 @@
  */
 
 import React from 'react'
-import { Icon, Select } from '@pitrix/lego-ui'
+import { Icon, Input, Select } from '@pitrix/lego-ui'
 import { Form, Text, CodeEditor } from 'components/Base'
 
 import SubTitle from '../SubTitle'
@@ -70,14 +70,40 @@ export default class BaseInfo extends React.Component {
             onChange={this.handleTypeChange}
           />
         </Form.Item>
+        {connectType === 'direct' && (
+          <Form.Item
+            label={t('CLUSTER_API_SERVER_TITLE')}
+            desc={t.html('CLUSTER_API_SERVER_DESC')}
+            rules={[
+              {
+                required: true,
+                message: t(
+                  'Please input the kubesphere api server address of the cluster'
+                ),
+              },
+            ]}
+          >
+            <Input name="spec.connection.kubesphereAPIEndpoint" />
+          </Form.Item>
+        )}
+        {connectType === 'direct' && (
+          <div className={styles.tip}>
+            {t.html('CLUSTER_DIRECT_IMPORT_TIP')}
+          </div>
+        )}
         {connectType === 'direct' ? (
           <div className={styles.editorWrapper}>
             <div className={styles.editor}>
               <div className={styles.editorTitle}>
                 <Icon name="kubernetes" size={20} />
-                <span>{t('请填写目标集群的 KubeConfig')}</span>
+                <span>{t('INPUT_KUBECONFIG')}</span>
+                <a className={styles.link} href="" target="_blank">
+                  {t.html('HOW_TO_GET_KUBECONFIG')}
+                </a>
               </div>
-              <Form.Item>
+              <Form.Item
+                rules={[{ required: true, message: t('INPUT_KUBECONFIG') }]}
+              >
                 <CodeEditor
                   mode="yaml"
                   name="spec.connection.kubeconfig"
@@ -93,6 +119,9 @@ export default class BaseInfo extends React.Component {
               title={t('请根据集群中提供的代理连接设置加入集群')}
               description={t('需要在集群中设置下相应的代理Agent')}
             />
+            <div className="margin-t12">
+              {t.html('CLUSTER_AGENT_IMPORT_TIP')}
+            </div>
           </div>
         )}
       </div>
