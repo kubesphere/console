@@ -273,12 +273,19 @@ export default class Nodes extends React.Component {
           return (
             <Text
               title={
-                <div className={styles.resource}>
-                  <span>{`${Math.round(metrics.cpu_utilisation * 100)}%`}</span>
-                  <Tooltip content={this.renderCPUTooltip(record)}>
-                    <Icon name="information" />
-                  </Tooltip>
-                </div>
+                <Tooltip
+                  content={this.renderCPUTooltip(record)}
+                  placement="right"
+                >
+                  <div className={styles.resource}>
+                    <span>{`${Math.round(
+                      metrics.cpu_utilisation * 100
+                    )}%`}</span>
+                    {metrics.cpu_utilisation >= 0.9 && (
+                      <Icon name="exclamation" />
+                    )}
+                  </div>
+                </Tooltip>
               }
               description={`${metrics.cpu_used}/${metrics.cpu_total} Core`}
             />
@@ -307,14 +314,19 @@ export default class Nodes extends React.Component {
           return (
             <Text
               title={
-                <div className={styles.resource}>
-                  <span>{`${Math.round(
-                    metrics.memory_utilisation * 100
-                  )}%`}</span>
-                  <Tooltip content={this.renderCPUTooltip(record)}>
-                    <Icon name="information" />
-                  </Tooltip>
-                </div>
+                <Tooltip
+                  content={this.renderCPUTooltip(record)}
+                  placement="right"
+                >
+                  <div className={styles.resource}>
+                    <span>{`${Math.round(
+                      metrics.memory_utilisation * 100
+                    )}%`}</span>
+                    {metrics.memory_utilisation >= 0.9 && (
+                      <Icon name="exclamation" />
+                    )}
+                  </div>
+                </Tooltip>
               }
               description={`${metrics.memory_used}/${metrics.memory_total} Gi`}
             />
