@@ -38,6 +38,7 @@ export default class Secrets extends React.Component {
   componentDidMount() {
     this.props.store.fetchRoleTemplates({
       devops: this.devopsName,
+      cluster: this.cluster,
     })
   }
 
@@ -45,6 +46,10 @@ export default class Secrets extends React.Component {
 
   get devopsName() {
     return this.props.devopsStore.project_name
+  }
+
+  get cluster() {
+    return this.props.match.params.cluster
   }
 
   get itemActions() {
@@ -97,6 +102,7 @@ export default class Secrets extends React.Component {
   getData = () => {
     this.props.store.fetchList({
       devops: this.devopsName,
+      cluster: this.cluster,
     })
   }
 
@@ -146,6 +152,7 @@ export default class Secrets extends React.Component {
   showCreate = () =>
     this.props.trigger('role.create', {
       devops: this.devopsName,
+      cluster: this.cluster,
       success: this.getData,
     })
 

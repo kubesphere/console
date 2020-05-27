@@ -45,7 +45,7 @@ export default {
     on({ store, detail, success, ...props }) {
       const modal = Modal.open({
         onOk: newObject => {
-          store.update(detail.name, newObject).then(() => {
+          store.update(detail, newObject).then(() => {
             Modal.close(modal)
             Notify.success({ content: `${t('Updated Successfully')}!` })
             success && success()

@@ -25,7 +25,7 @@ import { Input, Select, TextArea } from '@pitrix/lego-ui'
 import { Modal, Form } from 'components/Base'
 import { PATTERN_NAME } from 'utils/constants'
 
-import DevOpsStore from 'stores/devops'
+import UserStore from 'stores/user'
 
 @observer
 export default class DevOpsEditModal extends React.Component {
@@ -50,29 +50,28 @@ export default class DevOpsEditModal extends React.Component {
 
     this.form = React.createRef()
 
-    this.store = new DevOpsStore()
-
-    if (props.detail.project_id) {
-      this.store.fetchMembers({
+    this.store = new UserStore()
+    if (props.detail.workspace) {
+      this.store.fetchList({
         limit: Infinity,
-        project_id: props.detail.project_id,
+        workspace: props.detail.workspace,
       })
     }
   }
 
   componentDidUpdate(prevProps) {
-    const project_id = get(this.props, 'detail.project_id')
+    const workspace = get(this.props, 'detail.workspace')
 
-    if (project_id && project_id !== get(prevProps, 'detail.project_id')) {
+    if (workspace && workspace !== get(prevProps, 'detail.workspace')) {
       this.store.fetchMembers({
         limit: Infinity,
-        project_id,
+        workspace,
       })
     }
   }
 
   getMembersOptions() {
-    const { data } = toJS(this.store.members)
+    const { data } = toJS(this.store.list)
 
     return data.map(member => ({
       label: member.username,

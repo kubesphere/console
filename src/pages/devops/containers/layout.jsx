@@ -41,7 +41,9 @@ class DevOpsLayout extends Component {
 
   componentDidUpdate(prevProps) {
     if (
-      prevProps.match.params.project_id !== this.props.match.params.project_id
+      prevProps.match.params.project_id !==
+        this.props.match.params.project_id ||
+      prevProps.match.params.cluster !== this.props.match.params.cluster
     ) {
       this.init(this.props.match.params)
     }

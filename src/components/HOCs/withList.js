@@ -248,7 +248,6 @@ export class ListPage extends React.Component {
   initWebsocket() {
     if ('getWatchListUrl' in this.store) {
       const url = this.store.getWatchListUrl(this.props.match.params)
-
       const watchTypes = this.props.watchTypes || ['MODIFIED', 'DELETED']
 
       this.websocket.watch(url)

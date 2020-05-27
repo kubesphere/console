@@ -46,8 +46,8 @@ class RunSider extends Base {
   }
 
   get listUrl() {
-    const { project_id } = this.props.match.params
-    return `/devops/${project_id}/pipelines`
+    const { project_id, cluster } = this.props.match.params
+    return `/cluster/${cluster}/devops/${project_id}/pipelines`
   }
 
   refreshHandler = () => {
@@ -108,9 +108,9 @@ class RunSider extends Base {
     const result = await this.store.replay(params)
     if (params.branch) {
       this.routing.push(
-        `/devops/${params.project_id}/pipelines/${params.name}${
-          params.branch ? `/branch/${params.branch}` : ''
-        }/activity`
+        `/cluster/${params.cluster}/devops/${params.project_id}/pipelines/${
+          params.name
+        }${params.branch ? `/branch/${params.branch}` : ''}/activity`
       )
     }
     if (result.id) {

@@ -73,9 +73,10 @@ class Credential extends React.Component {
   }
 
   getData(params) {
-    const { project_id } = this.props.match.params
+    const { project_id, cluster } = this.props.match.params
     this.store.fetchList({
       namespace: project_id,
+      cluster,
       ...params,
     })
   }
@@ -195,13 +196,14 @@ class Credential extends React.Component {
   }
 
   renderModals() {
-    const { project_id } = this.props.match.params
+    const { project_id, cluster } = this.props.match.params
     return (
       <CreateModal
         visible={this.state.showCreate}
         onOk={this.handleCreate}
         onCancel={this.hideCreate}
         project_id={project_id}
+        cluster={cluster}
       />
     )
   }

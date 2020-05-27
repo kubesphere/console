@@ -79,6 +79,7 @@ export default class Branch extends React.Component {
 
     await this.props.detailStore.scanRepository({
       project_id: params.project_id,
+      cluster: params.cluster,
       name: detail.name,
     })
     this.store.fetchDetail(params)

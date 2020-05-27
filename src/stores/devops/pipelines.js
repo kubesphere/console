@@ -129,13 +129,19 @@ export default class PipelineStore extends BaseStore {
   devopsProjectName = ''
 
   @action
-  async fetchList({ project_name, workspace, namespace, ...filters } = {}) {
+  async fetchList({
+    project_name,
+    workspace,
+    namespace,
+    cluster,
+    ...filters
+  } = {}) {
     this.list.isLoading = true
     const { page, keyword, filter } = filters
 
     const searchWord = keyword ? `*${encodeURIComponent(keyword)}*` : ''
 
-    const url = `${this.baseUrlV2}search`
+    const url = `${this.getBaseUrlV2({ cluster })}search`
 
     const result = await this.request.get(url, {
       q: `type:pipeline;organization:jenkins;pipeline:${namespace}/${searchWord ||
@@ -156,19 +162,19 @@ export default class PipelineStore extends BaseStore {
   }
 
   @action
-  async fetchDetail({ name, isSilent }) {
+  async fetchDetail({ cluster, name, isSilent }) {
     if (!isSilent) {
       this.isLoading = true
     }
 
     const result = await this.request.get(
-      `${this.devopsUrlV2}${this.project_id}/pipelines/${decodeURIComponent(
-        name
-      )}/`
+      `${this.getDevopsUrlV2({ cluster })}${
+        this.project_id
+      }/pipelines/${decodeURIComponent(name)}/`
     )
 
     const resultKub = await this.request.get(
-      `${this.getDetailUrl({ name, namespace: this.project_id })}`
+      `${this.getDetailUrl({ name, namespace: this.project_id, cluster })}`
     )
 
     const devopsName = get(result, 'fullDisplayName')
@@ -191,9 +197,9 @@ export default class PipelineStore extends BaseStore {
   }
 
   @action
-  async checkPipelineName({ name, project_name }) {
+  async checkPipelineName({ name, cluster, project_name }) {
     return await this.request.get(
-      `${this.devopsUrlV2}${project_name}/pipelines/${name}/`,
+      `${this.getDevopsUrlV2({ cluster })}${project_name}/pipelines/${name}/`,
       {},
       {
         headers: { 'x-check-exist': true },
@@ -202,16 +208,19 @@ export default class PipelineStore extends BaseStore {
   }
 
   @action
-  async getJenkinsFile({ name, project_id }) {
+  async getJenkinsFile({ cluster, name, project_id }) {
     this.pipelineJsonData.isLoading = true
     name = decodeURIComponent(name)
 
     if (isEmpty(this.detail)) {
-      await this.fetchDetail({ name, project_id })
+      await this.fetchDetail({ cluster, name, project_id })
     }
 
     this.jenkinsfile = get(this.pipelineConfig, 'spec.pipeline.jenkinsfile', '')
-    const json = await this.convertJenkinsFileToJson(toJS(this.jenkinsfile))
+    const json = await this.convertJenkinsFileToJson(
+      toJS(this.jenkinsfile),
+      cluster
+    )
 
     this.pipelineJsonData = {
       pipelineJson: json,
@@ -220,10 +229,10 @@ export default class PipelineStore extends BaseStore {
   }
 
   @action
-  async convertJenkinsFileToJson(jenkinsfile) {
+  async convertJenkinsFileToJson(jenkinsfile, cluster) {
     if (jenkinsfile) {
       const result = await this.request.post(
-        `${this.baseUrlV2}tojson`,
+        `${this.getBaseUrlV2({ cluster })}tojson`,
         { jenkinsfile: toJS(this.jenkinsfile) },
         FORM_HEAR
       )
@@ -232,7 +241,7 @@ export default class PipelineStore extends BaseStore {
   }
 
   @action
-  async getPullRequest({ name, project_id, workspace, ...filters }) {
+  async getPullRequest({ name, project_id, workspace, cluster, ...filters }) {
     name = decodeURIComponent(name)
 
     const { page } = filters
@@ -241,7 +250,9 @@ export default class PipelineStore extends BaseStore {
       await this.fetchDetail({ name, project_id })
     }
     const result = await this.request.get(
-      `${this.devopsUrlV2}${project_id}/pipelines/${name}/branches/`,
+      `${this.getDevopsUrlV2({
+        cluster,
+      })}${project_id}/pipelines/${name}/branches/`,
       {
         filter: 'pull-requests',
         start: (page - 1) * TABLE_LIMIT || 0,
@@ -260,17 +271,19 @@ export default class PipelineStore extends BaseStore {
   }
 
   @action
-  async getBranches({ project_id, name, branch, ...filters }) {
+  async getBranches({ cluster, project_id, name, branch, ...filters }) {
     name = decodeURIComponent(name)
 
     const { page } = filters
 
     if (isEmpty(this.detail)) {
-      await this.fetchDetail({ name, project_id })
+      await this.fetchDetail({ cluster, name, project_id })
     }
 
     const result = await this.request.get(
-      `${this.devopsUrlV2}${project_id}/pipelines/${name}/branches/`,
+      `${this.getDevopsUrlV2({
+        cluster,
+      })}${project_id}/pipelines/${name}/branches/`,
       {
         filter: 'origin',
         start: (page - 1) * TABLE_LIMIT || 0,
@@ -291,17 +304,19 @@ export default class PipelineStore extends BaseStore {
   }
 
   @action
-  async getActivities({ name, branch, project_id, ...filters }) {
+  async getActivities({ name, branch, project_id, cluster, ...filters }) {
     name = decodeURIComponent(name)
 
     const { page } = filters
     const { limit = 10 } = this.activityList
 
     if (isEmpty(this.detail)) {
-      await this.fetchDetail({ name, project_id })
+      await this.fetchDetail({ cluster, name, project_id })
     }
     let result = await this.request.get(
-      `${this.devopsUrlV2}${project_id}/pipelines/${name}/runs/`,
+      `${this.getDevopsUrlV2({
+        cluster,
+      })}${project_id}/pipelines/${name}/runs/`,
       {
         start: (page - 1) * limit || 0,
         limit,
@@ -324,13 +339,13 @@ export default class PipelineStore extends BaseStore {
 
   @action
   async getBranchDetail(params) {
-    const { project_id, name, branch } = params
+    const { project_id, cluster, name, branch } = params
 
     return await this.request
       .get(
-        `${
-          this.devopsUrlV2
-        }${project_id}/pipelines/${name}/branches/${encodeURIComponent(
+        `${this.getDevopsUrlV2({
+          cluster,
+        })}${project_id}/pipelines/${name}/branches/${encodeURIComponent(
           branch
         )}/`
       )
@@ -343,35 +358,43 @@ export default class PipelineStore extends BaseStore {
   }
 
   async replay(params, _runid) {
-    const { project_id, name, branch, runid } = params
+    const { project_id, name, branch, runid, cluster } = params
     return await this.request.post(
-      `${this.devopsUrlV2}${project_id}/pipelines/${decodeURIComponent(name)}${
+      `${this.getDevopsUrlV2({
+        cluster,
+      })}${project_id}/pipelines/${decodeURIComponent(name)}${
         branch ? `/branches/${encodeURIComponent(branch)}` : ''
       }/runs/${_runid || runid}/replay`
     )
   }
 
   async stop(params, _runid) {
-    const { project_id, name, branch, runid } = params
+    const { project_id, name, branch, runid, cluster } = params
     return await this.request.post(
-      `${this.devopsUrlV2}${project_id}/pipelines/${name}${
+      `${this.getDevopsUrlV2({ cluster })}${project_id}/pipelines/${name}${
         branch ? `/branches/${encodeURIComponent(branch)}` : ''
       }/runs/${_runid || runid}/replay/`
     )
   }
 
-  async handleActivityReplay(href) {
-    return await this.request.post(`${this.baseUrlV2}${href}/replay/`)
-  }
-
-  async handleActivityStop(href) {
+  async handleActivityReplay({ url, cluster }) {
     return await this.request.post(
-      `${this.baseUrlV2}${href}/stop/?blocking=true&timeOutInSecs=10`
+      `${this.getBaseUrlV2({ cluster })}${url}/replay/`
     )
   }
 
-  async runBranch({ project_id, name, branch, parameters }) {
-    const href_temp = `${this.devopsUrlV2}${project_id}/pipelines/${name}${
+  async handleActivityStop({ url, cluster }) {
+    return await this.request.post(
+      `${this.getBaseUrlV2({
+        cluster,
+      })}${url}/stop/?blocking=true&timeOutInSecs=10`
+    )
+  }
+
+  async runBranch({ cluster, project_id, name, branch, parameters }) {
+    const href_temp = `${this.getDevopsUrlV2({
+      cluster,
+    })}${project_id}/pipelines/${name}${
       branch ? `/branches/${encodeURIComponent(branch)}` : ''
     }/runs`
     return await this.request
@@ -380,7 +403,7 @@ export default class PipelineStore extends BaseStore {
       .then(() => {
         // pipeline parameters not updated immediately
         setTimeout(() => {
-          this.fetchDetail({ project_id, name, isSilent: true })
+          this.fetchDetail({ cluster, project_id, name, isSilent: true })
         }, 1000)
       })
   }
@@ -408,22 +431,26 @@ export default class PipelineStore extends BaseStore {
   }
 
   @action
-  async createPipeline({ data, namespace }) {
+  async createPipeline({ data, namespace, cluster }) {
     data.kind = 'Pipeline'
     data.apiVersion = 'devops.kubesphere.io/v1alpha3'
 
-    const url = `${API_VERSIONS.devops}${this.getPath({ namespace })}/pipelines`
+    const url = `${API_VERSIONS.devops}${this.getPath({
+      namespace,
+      cluster,
+    })}/pipelines`
 
     return await this.request.post(url, data)
   }
 
   @action
-  async updatePipeline({ data, project_id }) {
+  async updatePipeline({ cluster, data, project_id }) {
     data.kind = 'Pipeline'
     data.apiVersion = 'devops.kubesphere.io/v1alpha3'
 
     const url = `${API_VERSIONS.devops}${this.getPath({
       namespace: project_id,
+      cluster,
     })}/pipelines/${data.metadata.name}`
 
     const result = await this.request.put(url, data)
@@ -439,20 +466,22 @@ export default class PipelineStore extends BaseStore {
     return this.updatePipeline({
       data,
       project_id: params.project_id,
+      cluster: params.cluster,
     })
   }
 
   @action
-  async deletePipeline(name, project_id) {
+  async deletePipeline(name, project_id, cluster) {
     const url = `${API_VERSIONS.devops}${this.getPath({
       namespace: project_id,
+      cluster: cluster,
     })}/pipelines/${name}`
 
     return await this.request.delete(url)
   }
 
   @action
-  async scanRepository({ project_id, name }) {
+  async scanRepository({ project_id, name, cluster }) {
     if (globals.user.crumb === undefined) {
       await this.getCrumb()
     }
@@ -463,7 +492,7 @@ export default class PipelineStore extends BaseStore {
 
     return await this.request.defaults({
       method: 'POST',
-      url: `${this.devopsUrlV2}${project_id ||
+      url: `${this.getDevopsUrlV2({ cluster })}${project_id ||
         this.project_id}/pipelines/${name || this.detail.name}/scan`,
       options,
       handler: resp =>
@@ -475,24 +504,26 @@ export default class PipelineStore extends BaseStore {
     })
   }
 
-  async getRepoScanLogs({ project_id, name }) {
+  async getRepoScanLogs({ project_id, name, cluster }) {
     const logs = await this.request.get(
-      `${this.devopsUrlV2}${project_id}/pipelines/${name}/consolelog`
+      `${this.getDevopsUrlV2({
+        cluster,
+      })}${project_id}/pipelines/${name}/consolelog`
     )
     this.reponsitorylog = logs
   }
 
   async checkCron(value) {
     return await this.request.get(
-      `${this.devopsUrlV2}check/cron?value=${value}`
+      `${this.getDevopsUrlV2()}check/cron?value=${value}`
     )
   }
 
-  async checkScriptCompile({ project_id, pipeline, value }) {
+  async checkScriptCompile({ project_id, pipeline, value, cluster }) {
     return await this.request.post(
-      `${
-        this.devopsUrlV2
-      }/${project_id}/pipelines/${pipeline}/checkScriptCompile`,
+      `${this.getDevopsUrlV2({
+        cluster,
+      })}/${project_id}/pipelines/${pipeline}/checkScriptCompile`,
       {
         value,
       },
@@ -500,12 +531,14 @@ export default class PipelineStore extends BaseStore {
     )
   }
 
-  async getBranchLists({ project_id, name, workspace, ...filters }) {
+  async getBranchLists({ project_id, name, workspace, cluster, ...filters }) {
     name = decodeURIComponent(name)
     const { page } = filters
 
     return await this.request.get(
-      `${this.devopsUrlV2}${project_id}/pipelines/${name}/branches/`,
+      `${this.getDevopsUrlV2({
+        cluster,
+      })}${project_id}/pipelines/${name}/branches/`,
       {
         filter: 'origin',
         start: (page - 1) * 100 || 0,

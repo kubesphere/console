@@ -34,6 +34,10 @@ class Events extends React.Component {
     loading: PropTypes.bool,
   }
 
+  get cluster() {
+    return this.props.match.params.cluster
+  }
+
   getColumns = () => [
     {
       title: t('name'),
@@ -46,9 +50,9 @@ class Events extends React.Component {
       render: record => {
         if (record.ranges) {
           const arr = record.name.split('/')
-          const url = `/devops/${arr[0]}/pipelines/${arr[1]}${
-            arr[2] ? `/branch/${arr[2]}` : ''
-          }/activity`
+          const url = `/cluster/${this.cluster}/devops/${arr[0]}/pipelines/${
+            arr[1]
+          }${arr[2] ? `/branch/${arr[2]}` : ''}/activity`
           return (
             <span>
               {record.ranges.ranges.map(range => (
@@ -69,7 +73,6 @@ class Events extends React.Component {
 
   render() {
     const { usage, isLoading } = this.props.detailStore
-
     return (
       <Card title={t('Events')}>
         <Table

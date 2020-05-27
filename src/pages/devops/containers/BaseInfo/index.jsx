@@ -44,8 +44,14 @@ class BaseInfo extends React.Component {
   memberStore = new UserStore()
 
   componentDidMount() {
-    this.memberStore.fetchList({ devops: this.project_id })
-    this.roleStore.fetchList({ devops: this.project_id })
+    this.memberStore.fetchList({
+      devops: this.project_name,
+      cluster: this.cluster,
+    })
+    this.roleStore.fetchList({
+      devops: this.project_name,
+      cluster: this.cluster,
+    })
   }
 
   get routing() {
@@ -62,6 +68,14 @@ class BaseInfo extends React.Component {
 
   get project_id() {
     return this.props.match.params.project_id
+  }
+
+  get project_name() {
+    return this.store.project_name
+  }
+
+  get cluster() {
+    return this.props.match.params.cluster
   }
 
   get enabledActions() {
@@ -120,7 +134,7 @@ class BaseInfo extends React.Component {
   }
 
   handleEdit = ({ name, ...data }) => {
-    this.store.update(name, data, true).then(() => {
+    this.store.update({ name, cluster: this.cluster }, data, true).then(() => {
       this.hideEdit()
       this.store.fetchDetail(this.props.match.params)
     })
@@ -133,10 +147,11 @@ class BaseInfo extends React.Component {
   }
 
   handleDelete = () => {
-    const { project_id } = this.props.match.params
-    this.store.delete({ name: project_id }).then(() => {
-      this.routing.push('/')
-    })
+    this.store
+      .delete({ name: this.project_name, cluster: this.cluster })
+      .then(() => {
+        this.routing.push('/')
+      })
   }
 
   handleMoreMenuClick = (e, key) => {
@@ -200,14 +215,14 @@ class BaseInfo extends React.Component {
               icon="group"
               title={memberCount}
               desc={t('Members')}
-              url={`/devops/${this.project_id}/members`}
+              url={`/cluster/${this.cluster}/devops/${this.project_id}/members`}
             />
             <Info
               className={styles.info}
               icon="role"
               title={roleCount}
               desc={t('Project Roles')}
-              url={`/devops/${this.project_id}/roles`}
+              url={`/cluster/${this.cluster}/devops/${this.project_id}/roles`}
             />
           </div>
         </Card>

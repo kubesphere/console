@@ -41,11 +41,22 @@ export default class Members extends React.Component {
   roleStore = new RoleStore()
 
   componentDidMount() {
-    this.roleStore.fetchList({ devops: this.devopsName, limit: -1 })
+    this.roleStore.fetchList({
+      devops: this.devopsName,
+      cluster: this.cluster,
+      limit: -1,
+    })
   }
 
   getData = () => {
-    this.props.store.fetchList({ devops: this.devopsName })
+    this.props.store.fetchList({
+      devops: this.devopsName,
+      cluster: this.cluster,
+    })
+  }
+
+  get cluster() {
+    return this.props.match.params.cluster
   }
 
   get devopsName() {
@@ -124,6 +135,7 @@ export default class Members extends React.Component {
               devops: this.devopsName,
               namespace: this.workspace,
               workspace: this.workspace,
+              cluster: this.cluster,
               roles: toJS(this.roleStore.list.data),
               roleModule: this.roleStore.module,
               title: t('Invite members to the project'),
@@ -178,7 +190,10 @@ export default class Members extends React.Component {
       isHideable: true,
       width: '19%',
       render: status => (
-        <Status type={status} name={t(`USER_${status.toUpperCase()}`)} />
+        <Status
+          type={status}
+          name={status ? t(`USER_${status.toUpperCase()}`) : ''}
+        />
       ),
     },
     {

@@ -86,13 +86,13 @@ export default class BaseInfo extends React.Component {
   }
 
   renderRepoSelectForm() {
-    const { formTemplate } = this.props
-
+    const { formTemplate, project_id, cluster } = this.props
     return (
       <RepoSelectForm
         sourceData={formTemplate['multi_branch_pipeline']}
-        project_name={formTemplate.project_name}
+        project_id={project_id}
         name={formTemplate.name}
+        cluster={cluster}
         onSave={this.handleRepoChange}
         onCancel={this.hideSelectRepo}
       />
@@ -149,6 +149,7 @@ export default class BaseInfo extends React.Component {
                   ref={this.scmRef}
                   onClick={this.showSelectRepo}
                   handleDeleteSource={this.handleDeleteSource}
+                  project_id={this.props.project_id}
                 />
               </Form.Item>
             </Column>
