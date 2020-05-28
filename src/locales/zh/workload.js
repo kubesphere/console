@@ -629,7 +629,7 @@ export default {
 
   'Container Security Context': '容器 Security Context',
   'Pod Security Context': '容器组 Security Context',
-  'Access Control': '访问控制权',
+  'Access Control': '访问控制',
   'User and User Group': '用户和用户组',
   'User Group': '用户组',
   CONTAINER_SECURITY_CTX_DESC:
