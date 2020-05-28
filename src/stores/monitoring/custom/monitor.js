@@ -238,7 +238,10 @@ function parseExpr2GrafanaQuery({ __name__, ...reset } = {}) {
 
 function generateLegendName(legendFormat = '', metric = {}) {
   if (isString(legendFormat)) {
-    return legendFormat.replace(/\{(.*?)\}/g, (noop, match) => metric[match])
+    return legendFormat.replace(
+      /\{\{(.*?)\}\}/g,
+      (noop, match) => metric[match]
+    )
   }
 }
 
