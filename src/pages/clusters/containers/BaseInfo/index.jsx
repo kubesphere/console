@@ -22,6 +22,7 @@ import { observer, inject } from 'mobx-react'
 import { Checkbox } from '@pitrix/lego-ui'
 import { Button, Alert, Panel, Text } from 'components/Base'
 import Banner from 'components/Cards/Banner'
+import EditBasicInfoModal from 'clusters/components/Modals/EditBasicInfo'
 import { trigger } from 'utils/action'
 import { CLUSTER_PROVIDER_ICON } from 'utils/constants'
 
@@ -53,12 +54,12 @@ export default class Overview extends React.Component {
   monitorStore = new ClusterMonitorStore()
 
   componentDidMount() {
-    if (this.cluster.detail.isReady) {
+    if (this.store.detail.isReady) {
       this.fetchData()
     }
   }
 
-  get cluster() {
+  get store() {
     return this.props.clusterStore
   }
 
@@ -72,10 +73,14 @@ export default class Overview extends React.Component {
 
   fetchData = () => {
     this.monitorStore.fetchMetrics({
-      cluster: this.cluster.detail.name,
+      cluster: this.store.detail.name,
       metrics: Object.values(MetricTypes),
       last: true,
     })
+  }
+
+  fetchClusterDetail = () => {
+    this.store.fetchDetail({ name: this.props.match.params.cluster })
   }
 
   getResourceOptions = () => {
@@ -111,19 +116,27 @@ export default class Overview extends React.Component {
     ]
   }
 
+  showEdit = () => {
+    this.trigger('resource.baseinfo.edit', {
+      detail: this.store.detail,
+      modal: EditBasicInfoModal,
+      success: this.fetchClusterDetail,
+    })
+  }
+
   handleChange = (e, checked) => {
     this.setState({ confirm: checked })
   }
 
   handleUnbind = () => {
-    const { name } = this.cluster.detail
-    this.cluster
+    const { name } = this.store.detail
+    this.store
       .delete({ name })
       .then(() => this.props.rootStore.routing.push('/clusters'))
   }
 
   render() {
-    const { name, provider, kubernetesVersion } = this.cluster.detail
+    const { name, provider, kubernetesVersion } = this.store.detail
 
     const options = this.getResourceOptions()
 
@@ -146,6 +159,9 @@ export default class Overview extends React.Component {
               title={kubernetesVersion}
               description={t('Kubernetes Version')}
             />
+            <Button className={styles.action} onClick={this.showEdit}>
+              {t('Edit Info')}
+            </Button>
           </div>
           <div className={styles.content}>
             {options.map(option => (

@@ -958,6 +958,7 @@ const ClusterMapper = item => {
       item,
       'metadata.labels["cluster.kubesphere.io/visibility"]'
     ),
+    _originData: getOriginData(item),
   }
 }
 
