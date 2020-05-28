@@ -17,23 +17,19 @@
  */
 
 import { getIndexRoute } from 'utils/router.config'
-
-import Egress from './Egress'
-import Ingress from './Ingress'
-// import Events from 'core/containers/Base/Detail/Events'
-// import EnvVariables from 'core/containers/Base/Detail/EnvVariables'
+import Viewer from './Viewer'
 
 export default path => [
   {
     path: `${path}/egress`,
     title: t('Traffic Egress'),
-    component: Egress,
+    component: Viewer,
     exact: true,
   },
   {
     path: `${path}/ingress`,
     title: t('Traffic Ingress'),
-    component: Ingress,
+    component: Viewer,
     exact: true,
   },
   getIndexRoute({ path, to: `${path}/egress`, exact: true }),

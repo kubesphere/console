@@ -19,6 +19,7 @@
 export default {
   'Network Policy': '网络策略',
   'Network Policys': '网络策略',
+  'Create Network Policy': '创建网络策略',
   'Add WhiteList': '添加白名单',
   Egress: '出口',
   Ingress: '入口',
@@ -52,4 +53,6 @@ export default {
   NETWORK_POLICY_D_DESC: '匹配Egress(出口)流量以及Ingress(入口)流量',
   NETWORK_POLICY_D_OP1: 'Egress(出口)',
   NETWORK_POLICY_D_OP2: 'Ingress(入口)',
+  NETWORK_POLICY_CREATE_DESC:
+    '通过配置网络策略，允许在同个集群内实现网络的隔离，也就是可以在某些实例（Pod）之间架起防火墙。',
 }
