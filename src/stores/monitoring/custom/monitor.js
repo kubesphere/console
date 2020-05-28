@@ -116,6 +116,11 @@ export default class PanelMonitor {
   }
 
   @action
+  clearMonitorMetrics() {
+    this.metrics = []
+  }
+
+  @action
   fetchMetrics = async ({ start, end }) => {
     const { targets = [], namespace } = this.config
 
