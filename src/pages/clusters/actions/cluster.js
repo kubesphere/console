@@ -33,20 +33,18 @@ export default {
             return Modal.close(modal)
           }
 
-          if (data.public === true) {
-            await store.patch(
-              { name: store.detail.name },
-              {
-                metadata: {
-                  labels: {
-                    'cluster.kubesphere.io/visibility': data.public
-                      ? 'public'
-                      : 'private',
-                  },
+          await store.patch(
+            { name: store.detail.name },
+            {
+              metadata: {
+                labels: {
+                  'cluster.kubesphere.io/visibility': data.public
+                    ? 'public'
+                    : 'private',
                 },
-              }
-            )
-          }
+              },
+            }
+          )
 
           const requests = []
           if (data.public === false) {

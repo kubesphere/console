@@ -17,14 +17,36 @@
  */
 
 import React from 'react'
+import PropTypes from 'prop-types'
+import copy from 'fast-copy'
+
 import { Input, TextArea } from '@pitrix/lego-ui'
-import { PATTERN_NAME } from 'utils/constants'
-import { Form } from 'components/Base'
+import { Form, Modal } from 'components/Base'
 import { SelectInput } from 'components/Inputs'
 
-import SubTitle from '../SubTitle'
+export default class EditBasicInfoModal extends React.Component {
+  static propTypes = {
+    detail: PropTypes.object,
+    visible: PropTypes.bool,
+    onOk: PropTypes.func,
+    onCancel: PropTypes.func,
+    isSubmitting: PropTypes.bool,
+  }
 
-export default class BaseInfo extends React.Component {
+  static defaultProps = {
+    visible: false,
+    onOk() {},
+    onCancel() {},
+    isSubmitting: false,
+  }
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      formData: copy(props.detail),
+    }
+  }
+
   get groups() {
     return [
       {
@@ -63,58 +85,44 @@ export default class BaseInfo extends React.Component {
     ]
   }
 
-  nameValidator = (rule, value, callback) => {
-    if (!value) {
-      return callback()
-    }
-
-    this.props.store.checkName({ name: value }).then(resp => {
-      if (resp.exist) {
-        return callback({ message: t('Name exists'), field: rule.field })
-      }
-      callback()
-    })
+  handleOk = data => {
+    const { onOk } = this.props
+    onOk(data)
   }
 
   render() {
+    const { visible, isSubmitting, onCancel } = this.props
+    const { formData } = this.state
+
     return (
-      <div>
-        <SubTitle
-          title={t('Cluster Settings')}
-          description={t('CLUSTER_SETTINGS_DESC')}
-        />
-        <Form.Item
-          label={t('Cluster Name')}
-          desc={t('CLUSTER_NAME_DESC')}
-          rules={[
-            { required: true, message: t('Please input role name') },
-            {
-              pattern: PATTERN_NAME,
-              message: `${t('Invalid name')}, ${t('CLUSTER_NAME_DESC')}`,
-            },
-            { validator: this.nameValidator },
-          ]}
-        >
-          <Input name="metadata.name" />
+      <Modal.Form
+        data={formData}
+        width={691}
+        title={t('Edit Cluster Info')}
+        description={t('Edit cluster basic information')}
+        icon="cluster"
+        onOk={this.handleOk}
+        okText={t('Update')}
+        onCancel={onCancel}
+        visible={visible}
+        isSubmitting={isSubmitting}
+      >
+        <Form.Item label={t('Cluster Name')} desc={t('CLUSTER_NAME_DESC')}>
+          <Input name="metadata.name" disabled />
         </Form.Item>
         <Form.Item label={t('CLUSTER_TAG')} desc={t('CLUSTER_TAG_DESC')}>
           <SelectInput
             name="metadata.labels['cluster.kubesphere.io/group']"
             options={this.groups}
-            placeholder={t('Please select or input a tag')}
           />
         </Form.Item>
         <Form.Item label={t('Provider')} desc={t('CLUSTER_PROVIDER_DESC')}>
-          <SelectInput
-            name="spec.provider"
-            options={this.providers}
-            placeholder={t('Please select or input a provider')}
-          />
+          <SelectInput name="spec.provider" options={this.providers} />
         </Form.Item>
         <Form.Item label={t('Description')}>
           <TextArea name="metadata.annotations['kubesphere.io/description']" />
         </Form.Item>
-      </div>
+      </Modal.Form>
     )
   }
 }

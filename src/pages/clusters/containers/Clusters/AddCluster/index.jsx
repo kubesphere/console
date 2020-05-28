@@ -37,13 +37,8 @@ export default class AddCluster extends React.Component {
     formTemplate: {
       apiVersion: 'cluster.kubesphere.io/v1alpha1',
       kind: 'Cluster',
-      metadata: {
-        labels: {
-          'cluster.kubesphere.io/group': 'production',
-        },
-      },
       spec: {
-        provider: 'Custom',
+        provider: '',
         connection: {
           type: 'direct',
           kubeconfig: '',

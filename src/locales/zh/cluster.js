@@ -45,6 +45,8 @@ export default {
 
   'Kubernetes Version': 'Kubernetes 版本',
 
+  'Edit Cluster Info': '编辑集群信息',
+
   'Cluster List': '集群列表',
   'Cluster Info': '集群信息',
   'Kubernetes Status': 'Kubernetes 组件状态',
@@ -87,9 +89,13 @@ export default {
 
   'Select Clusters': '集群选择',
 
+  'Edit cluster basic information': '编辑集群基础信息',
+
   'Scheduler scheduling times': '调度器调度次数',
   'Failed scheduling pods': '调度失败的容器组',
 
+  'Please select or input a tag': '请选择或输入标识',
+  'Please select or input a provider': '请选择或输入服务商',
   'Please input the kubesphere api server address of the cluster':
     '请输入待加入集群的 Kubesphere API Server 地址',
 

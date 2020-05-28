@@ -1,6 +1,7 @@
 @import '~scss/variables';
 
 .header {
+  position: relative;
   display: flex;
 
   & > div {
@@ -31,4 +32,10 @@
   position: absolute;
   top: 56px;
   right: 20px;
+}
+
+.action {
+  position: absolute;
+  top: 4px;
+  right: 6px;
 }
