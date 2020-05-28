@@ -43,4 +43,6 @@ export default {
   NETWORK_POLICY_D_DESC: 'Match Egress traffic and Ingress traffic',
   NETWORK_POLICY_D_OP1: 'Egress',
   NETWORK_POLICY_D_OP2: 'Ingress',
+  NETWORK_POLICY_CREATE_DESC:
+    'The network policy is configured to allow network isolation within the same cluster, that is, the ability to build a firewall between certain instances (pods).',
 }
