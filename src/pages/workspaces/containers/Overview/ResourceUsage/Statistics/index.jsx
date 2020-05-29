@@ -36,7 +36,6 @@ export default class ResourceStatistics extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = { devopsCount: '' }
     this.workspace = props.workspace
     this.monitorStore = new WorkspaceMonitorStore()
     this.fetchData()
@@ -48,12 +47,6 @@ export default class ResourceStatistics extends React.Component {
 
   fetchData = async () => {
     this.monitorStore.fetchStatistics(this.workspace)
-
-    // temporary fix to get devops count
-    if (globals.app.hasKSModule('devops')) {
-      const devopsCount = await this.monitorStore.getDevopsCount(this.workspace)
-      this.setState({ devopsCount })
-    }
   }
 
   getLink = routeName => {
@@ -102,7 +95,7 @@ export default class ResourceStatistics extends React.Component {
                 <Info
                   icon={ICON_TYPES['devops']}
                   desc={t('DevOps Projects')}
-                  title={this.state.devopsCount}
+                  title={metrics.workspace_devops_project_count}
                   url={this.getLink('devops')}
                   size="large"
                 />

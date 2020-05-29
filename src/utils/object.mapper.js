@@ -75,6 +75,9 @@ const WorkspaceMapper = item => ({
   annotations: get(item, 'metadata.annotations', {}),
   manager: get(item, 'spec.manager') || getResourceCreator(item),
   clusters: get(item, 'spec.clusters', []),
+  networkIsolation:
+    get(item, 'metadata.annotations["kubesphere.io/network-isolate"]') ===
+    'enabled',
   _originData: getOriginData(item),
 })
 

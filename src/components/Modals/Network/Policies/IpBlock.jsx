@@ -149,10 +149,7 @@ export default class NetworkPoliciesIpBlockModal extends React.Component {
             ]}
           />
         </Form.Item>
-        <Form.Item
-          label={t('CIDR:')}
-          desc={t('将根据流量的方向以及~~~ 缺少描述')}
-        >
+        <Form.Item label={t('CIDR:')} desc={t('CIDR_DESC')}>
           <div className={styles.cidr}>
             <Input
               name="cidr-ip"

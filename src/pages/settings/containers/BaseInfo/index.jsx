@@ -17,9 +17,9 @@
  */
 
 import React, { Component } from 'react'
-import { Button, Panel, Text } from 'components/Base'
+import { Panel, Text } from 'components/Base'
 import Banner from 'components/Cards/Banner'
-import PlatformEditModal from 'settings/components/Modals/PlatformEdit'
+import { getDocsUrl } from 'utils'
 
 import styles from './index.scss'
 
@@ -44,7 +44,7 @@ export default class BaseInfo extends Component {
         <Banner
           icon="home"
           title={t('Platform Info')}
-          description={t('提供平台标题及描述等信息')}
+          description={t('PLATFORM_INFO_DESC')}
         />
         <Panel title={t('Basic Info')}>
           <div className={styles.header}>
@@ -53,7 +53,9 @@ export default class BaseInfo extends Component {
               title={location.host}
               description={t('Platform URL')}
             />
-            <Button onClick={this.showEdit}>{t('Edit Info')}</Button>
+            <a href={`${getDocsUrl('custom_console')}`} target="_blank">
+              {t('HOW_TO_MODIFY_PLATFORM_INFO')}
+            </a>
           </div>
           <div className={styles.content}>
             <div className={styles.image}>
@@ -71,11 +73,6 @@ export default class BaseInfo extends Component {
             </div>
           </div>
         </Panel>
-        <PlatformEditModal
-          visible={this.state.showEdit}
-          onOk={this.handleEdit}
-          onCancel={this.hideEdit}
-        />
       </div>
     )
   }

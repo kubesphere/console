@@ -38,12 +38,19 @@ export default {
   'View Workspace': '进入企业空间',
   'Delete Workspace': '删除企业空间',
 
+  'Workspace Info': '企业空间信息',
+
   'Manage Organizations': '管理组织结构',
 
   'Involved Projects': '参与项目',
   'Created Projects': '创建的项目',
   'Workspace name exists': '企业空间名称已存在',
   'current name is not available': '当前名称不可用',
+
+  'Clusters Authorization Info': '集群授权信息',
+  'Workspace Network Isolation': '企业空间网络隔离',
+
+  'Clusters Info': '集群信息',
 
   WORKSPACE_OVERVIEW_DESC:
     '企业空间为 KubeSphere 提供了安全隔离的、具有访问权限控制的工作平台。这里您可以看到当前企业空间内资源运行的概况。',
@@ -79,4 +86,19 @@ export default {
 
   DELETE_WORKSPACE_TIP:
     '确定删除企业空间 <strong>{resource}</strong> ? 删除后将无法恢复, 企业空间下的资源也同时会被销毁。',
+
+  DELETE_WORKSPACE_DESC: '删除后将无法恢复, 企业空间下的资源也同时会被销毁。',
+  SURE_TO_DELETE_WORKSPACE: '确定删除企业空间',
+
+  WORKSPACE_BASE_INFO_Q1: '如何为企业空间申请更多的集群？',
+  WORKSPACE_BASE_INFO_A1:
+    '集群由平台管理员以及集群管理员共同运营维护，如果您需要使用更多的集群请联系您的平台管理员，或者提交申请',
+  WORKSPACE_BASE_INFO_Q2: '如何定义网络策略?',
+  WORKSPACE_BASE_INFO_A2: '',
+
+  WORKSPACE_CLUSTERS_DESC: '集群信息是企业空间对集群资源的使用情况的统计',
+
+  HOW_TO_APPLY_MORE_CLUSTER_Q: '如何为企业空间申请更多的集群？',
+  HOW_TO_APPLY_MORE_CLUSTER_A:
+    '集群由平台管理员以及集群管理员共同运营维护，如果您需要使用更多的集群请联系您的平台管理员，或者提交申请',
 }

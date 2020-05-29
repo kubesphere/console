@@ -53,4 +53,6 @@ export default {
   NETWORK_POLICY_D_DESC: '匹配Egress(出口)流量以及Ingress(入口)流量',
   NETWORK_POLICY_D_OP1: 'Egress(出口)',
   NETWORK_POLICY_D_OP2: 'Ingress(入口)',
+
+  CIDR_DESC: '将根据流量的方向',
 }

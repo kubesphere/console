@@ -5,6 +5,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+   a {
+     color: $blue;
+     font-weight: 600;
+   }
 }
 
 .content {
