@@ -99,6 +99,8 @@ export default {
   'Please input the kubesphere api server address of the cluster':
     '请输入待加入集群的 Kubesphere API Server 地址',
 
+  'All Projects': '全部项目',
+
   NO_CLUSTER_TIP: '请添加至少 1 个集群',
   NO_CLUSTER_TIP_DESC:
     '集群是一组运行着 Kubernetes 的节点（物理或者虚拟机）, Kubesphere 的功能也依托于集群中的节点来运行',

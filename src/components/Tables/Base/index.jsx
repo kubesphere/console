@@ -160,6 +160,11 @@ export default class WorkloadTable extends React.Component {
     })
   }
 
+  get showEmpty() {
+    const { data, isLoading, filters } = this.props
+    return isEmpty(data) && !isLoading && isEmpty(filters)
+  }
+
   handleChange = (_, filters, sorter) => {
     this.props.onFetch({
       sortBy: sorter.field || '',
@@ -494,7 +499,6 @@ export default class WorkloadTable extends React.Component {
       isLoading,
       silentLoading,
       rowKey,
-      filters,
       selectedRowKeys,
       onSelectRowKeys,
       hideHeader,
@@ -504,7 +508,7 @@ export default class WorkloadTable extends React.Component {
     } = this.props
     const { hideColumns } = this.state
 
-    if (isEmpty(data) && !isLoading && isEmpty(filters)) {
+    if (this.showEmpty) {
       return this.renderEmpty()
     }
 

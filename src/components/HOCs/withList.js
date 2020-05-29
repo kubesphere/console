@@ -19,7 +19,7 @@
 import React from 'react'
 import { reaction, toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
-import { throttle, isEmpty } from 'lodash'
+import { isEmpty, throttle } from 'lodash'
 import { parse } from 'qs'
 import isEqual from 'react-fast-compare'
 import { MODULE_KIND_MAP } from 'utils/constants'
@@ -109,8 +109,14 @@ export default function withList(options) {
       getData = async ({ silent, ...params } = {}) => {
         this.query = params
 
+        const namespaceParams = {}
+        if (this.props.clusterStore) {
+          namespaceParams.namespace = this.props.clusterStore.project
+        }
+
         silent && (this.list.silent = true)
         await this.store.fetchList({
+          ...namespaceParams,
           ...this.props.match.params,
           ...params,
         })
@@ -205,6 +211,10 @@ export function withProjectList(options) {
   return withList({ injectStores: ['rootStore', 'projectStore'], ...options })
 }
 
+export function withClusterList(options) {
+  return withList({ injectStores: ['rootStore', 'clusterStore'], ...options })
+}
+
 export class ListPage extends React.Component {
   get store() {
     return this.props.store
@@ -223,15 +233,13 @@ export class ListPage extends React.Component {
       this.initWebsocket()
     }
 
-    if (!this.props.noSubscribe) {
-      this.unsubscribe = this.routing.history.subscribe(location => {
-        if (location.pathname === this.props.match.url) {
-          const params = parse(location.search.slice(1))
-          this.query = params || {}
-          this.props.getData(params)
-        }
-      })
-    }
+    this.unsubscribe = this.routing.history.subscribe(location => {
+      if (location.pathname === this.props.match.url) {
+        const params = parse(location.search.slice(1))
+        this.query = params || {}
+        this.props.getData(params)
+      }
+    })
   }
 
   componentDidUpdate(prevProps) {
@@ -248,22 +256,27 @@ export class ListPage extends React.Component {
   initWebsocket() {
     if ('getWatchListUrl' in this.store) {
       const url = this.store.getWatchListUrl(this.props.match.params)
-      const watchTypes = this.props.watchTypes || ['MODIFIED', 'DELETED']
 
       this.websocket.watch(url)
 
-      const _fetchData = throttle(this.props.getData, 3000)
+      const _getData = throttle(() => {
+        if (this.store.list.isLoading) {
+          return
+        }
+        const params = parse(location.search.slice(1))
+        return this.props.getData({ ...params, silent: true })
+      }, 1000)
 
       this.disposer = reaction(
         () => this.websocket.message,
         message => {
           const kind = MODULE_KIND_MAP[this.props.module]
-          if (
-            message.object.kind === kind &&
-            watchTypes.includes(message.type)
-          ) {
-            const params = parse(location.search.slice(1))
-            _fetchData({ ...params, silent: true })
+          if (message.object.kind === kind) {
+            if (message.type === 'MODIFIED') {
+              this.store.list.updateItem(this.store.mapper(message.object))
+            } else if (message.type === 'DELETED' || message.type === 'ADDED') {
+              _getData()
+            }
           }
         }
       )

@@ -54,6 +54,10 @@ class ClusterLayout extends Component {
       name: params.cluster,
     })
 
+    this.clusterStore.fetchProjects({
+      cluster: params.cluster,
+    })
+
     this.clusterStore.initializing = false
   }
 

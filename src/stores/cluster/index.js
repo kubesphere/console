@@ -22,6 +22,7 @@ import { action, observable } from 'mobx'
 import { LIST_DEFAULT_ORDER, DEFAULT_CLUSTER } from 'utils/constants'
 
 import Base from 'stores/base'
+import List from 'stores/base.list'
 
 export default class ClusterStore extends Base {
   @observable
@@ -37,6 +38,11 @@ export default class ClusterStore extends Base {
   isValidating = false
 
   module = 'clusters'
+
+  @observable
+  project = ''
+
+  projects = new List()
 
   getAgentUrl = ({ cluster }) =>
     `kapis/cluster.kubesphere.io/v1alpha1/clusters/${cluster}/agent/deployment`
@@ -129,5 +135,50 @@ export default class ClusterStore extends Base {
       }
     )
     this.isValidating = false
+  }
+
+  @action
+  setProject(project) {
+    this.project = project
+  }
+
+  @action
+  async fetchProjects({ cluster, namespace, more, type, ...params } = {}) {
+    this.projects.isLoading = true
+
+    if (!params.sortBy && params.ascending === undefined) {
+      params.sortBy = LIST_DEFAULT_ORDER[this.module] || 'createTime'
+    }
+
+    if (params.limit === Infinity || params.limit === -1) {
+      params.limit = -1
+      params.page = 1
+    }
+
+    params.limit = params.limit || 10
+
+    const result = await request.get(
+      `kapis/resources.kubesphere.io/v1alpha3${this.getPath({
+        cluster,
+        namespace,
+      })}/namespaces`,
+      {
+        ...params,
+      }
+    )
+    const data = get(result, 'items', []).map(item => ({
+      cluster,
+      ...this.mapper(item),
+    }))
+
+    this.projects.update({
+      data: more ? [...this.projects.data, ...data] : data,
+      total: result.totalItems || result.total_count || data.length || 0,
+      ...params,
+      limit: Number(params.limit) || 10,
+      page: Number(params.page) || 1,
+      isLoading: false,
+      ...(this.projects.silent ? {} : { selectedRowKeys: [] }),
+    })
   }
 }
