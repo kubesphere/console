@@ -21,7 +21,7 @@ import { Link } from 'react-router-dom'
 
 import { Avatar, Text } from 'components/Base'
 import Banner from 'components/Cards/Banner'
-import withList, { ListPage } from 'components/HOCs/withList'
+import { withClusterList, ListPage } from 'components/HOCs/withList'
 import ResourceTable from 'clusters/components/ResourceTable'
 
 import { getLocalTime, getDisplayName } from 'utils'
@@ -29,7 +29,7 @@ import { ICON_TYPES, SERVICE_TYPES } from 'utils/constants'
 
 import ServiceStore from 'stores/service'
 
-@withList({
+@withClusterList({
   store: new ServiceStore(),
   module: 'services',
   name: 'Service',
@@ -198,14 +198,13 @@ export default class Services extends React.Component {
   }
 
   render() {
-    const { query, match, bannerProps, tableProps } = this.props
+    const { match, bannerProps, tableProps } = this.props
     return (
       <ListPage {...this.props}>
         <Banner {...bannerProps} />
         <ResourceTable
           {...tableProps}
           itemActions={this.itemActions}
-          namespace={query.namespace}
           columns={this.getColumns()}
           onCreate={this.showCreate}
           cluster={match.params.cluster}

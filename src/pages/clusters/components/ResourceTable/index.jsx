@@ -18,6 +18,7 @@
 
 import React from 'react'
 import { observer, inject } from 'mobx-react'
+import { isEmpty } from 'lodash'
 
 import {
   Dropdown,
@@ -30,39 +31,33 @@ import {
 import { Button } from 'components/Base'
 import BaseTable from 'components/Tables/Base'
 import withTableActions from 'components/HOCs/withTableActions'
-import ProjectStore from 'stores/project'
 import ProjectSelect from './ProjectSelect'
 
 class ResourceTable extends BaseTable {
-  projectStore = new ProjectStore()
-
   routing = this.props.rootStore.routing
 
-  componentDidMount() {
-    this.fetchProjects()
+  get showEmpty() {
+    const { data, isLoading, filters, clusterStore } = this.props
+    return (
+      isEmpty(data) && !isLoading && isEmpty(filters) && !clusterStore.project
+    )
   }
 
   fetchProjects = (params = {}) => {
     const { cluster } = this.props
-    return this.projectStore.fetchList({
+    return this.props.clusterStore.fetchProjects({
       cluster,
       ...params,
     })
   }
 
-  handleClusterChange = namespace => {
-    const { module, cluster } = this.props
-
-    if (!namespace) {
-      this.routing.push(`/clusters/${cluster}/${module}`)
-    } else {
-      this.routing.push(`/clusters/${cluster}/${module}?namespace=${namespace}`)
-    }
+  handleClusterChange = project => {
+    this.props.clusterStore.setProject(project)
+    this.props.onFetch()
   }
 
   renderNormalTitle() {
-    const { hideCustom, module, cluster, namespace } = this.props
-
+    const { hideCustom, module, cluster, clusterStore } = this.props
     return (
       <Level>
         <LevelLeft>
@@ -70,8 +65,8 @@ class ResourceTable extends BaseTable {
             <ProjectSelect
               module={module}
               cluster={cluster}
-              namespace={namespace}
-              store={this.projectStore}
+              list={clusterStore.projects}
+              namespace={clusterStore.project}
               onFetch={this.fetchProjects}
               onChange={this.handleClusterChange}
             />
@@ -102,4 +97,6 @@ class ResourceTable extends BaseTable {
   }
 }
 
-export default inject('rootStore')(observer(withTableActions(ResourceTable)))
+export default inject('rootStore', 'clusterStore')(
+  observer(withTableActions(ResourceTable))
+)

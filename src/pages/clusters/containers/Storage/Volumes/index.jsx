@@ -20,7 +20,7 @@
 import React from 'react'
 import { isEmpty } from 'lodash'
 import { getLocalTime, getDisplayName } from 'utils'
-import withList, { ListPage } from 'components/HOCs/withList'
+import { withClusterList, ListPage } from 'components/HOCs/withList'
 import ResourceTable from 'clusters/components/ResourceTable'
 import VolumeStore from 'stores/volume'
 import { getVolumeStatus } from 'utils/status'
@@ -32,7 +32,7 @@ import Banner from 'components/Cards/Banner'
 
 import styles from './index.scss'
 
-@withList({
+@withClusterList({
   store: new VolumeStore(),
   module: 'volumes',
   name: 'Volume',
@@ -179,14 +179,13 @@ export default class Volumes extends React.Component {
   }
 
   render() {
-    const { query, match, bannerProps, tableProps } = this.props
+    const { match, bannerProps, tableProps } = this.props
     return (
       <ListPage {...this.props}>
         <Banner {...bannerProps} tips={this.tips} />
         <ResourceTable
           {...tableProps}
           itemActions={this.itemActions}
-          namespace={query.namespace}
           columns={this.getColumns()}
           onCreate={this.showCreate}
           cluster={match.params.cluster}

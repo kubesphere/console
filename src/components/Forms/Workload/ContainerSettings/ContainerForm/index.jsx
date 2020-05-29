@@ -143,9 +143,11 @@ export default class ContaineForm extends React.Component {
           )
         }
 
-        if (!withService) {
+        if (!withService && data.ports) {
           data.ports.forEach(item => {
-            delete item.servicePort
+            if (item.servicePort !== undefined) {
+              delete item.servicePort
+            }
           })
         }
 
