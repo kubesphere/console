@@ -41,14 +41,17 @@ export default class UsersStore extends Base {
     if (cluster) {
       path += `/klusters/${cluster}`
     }
+
+    if (devops) {
+      path += `/devops/${devops}`
+    }
+
     if (workspace) {
       path += `/workspaces/${workspace}`
     }
+
     if (namespace) {
       path += `/namespaces/${namespace}`
-    }
-    if (devops) {
-      path += `/devops/${devops}`
     }
 
     return path

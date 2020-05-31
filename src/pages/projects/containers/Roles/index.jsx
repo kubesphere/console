@@ -55,7 +55,7 @@ export default class Secrets extends React.Component {
           }),
       },
       {
-        key: 'edit',
+        key: 'editRole',
         icon: 'pen',
         text: t('Edit Authorization'),
         action: 'edit',

@@ -44,6 +44,13 @@ export default class Secrets extends React.Component {
 
   showAction = record => !globals.config.presetRoles.includes(record.name)
 
+  get prefix() {
+    if (this.props.match.url.endsWith('/')) {
+      return this.props.match.url
+    }
+    return this.props.match.url
+  }
+
   get devopsName() {
     return this.props.devopsStore.project_name
   }
@@ -74,7 +81,7 @@ export default class Secrets extends React.Component {
         show: this.showAction,
         onClick: item =>
           trigger('role.edit', {
-            module,
+            module: 'devopsroles',
             detail: item,
             roleTemplates: toJS(store.roleTemplates.data),
             success: routing.query,
@@ -124,11 +131,11 @@ export default class Secrets extends React.Component {
         sorter: true,
         sortOrder: getSortOrder('name'),
         search: true,
-        render: (name, record) => (
+        render: name => (
           <Avatar
             icon={ICON_TYPES[module]}
             title={name}
-            to={`/devops/${record.namespace}/roles/${name}`}
+            to={`${this.prefix}/${name}`}
           />
         ),
       },
