@@ -24,6 +24,7 @@ import { Loading } from '@pitrix/lego-ui'
 
 import { trigger } from 'utils/action'
 import UserStore from 'stores/user'
+import WorkspaceStore from 'stores/workspace'
 
 import DetailPage from 'clusters/containers/Base/Detail'
 
@@ -34,6 +35,7 @@ import routes from './routes'
 @trigger
 export default class MemberDetail extends React.Component {
   store = new UserStore()
+  workspaceStore = new WorkspaceStore()
 
   componentDidMount() {
     this.fetchData()
@@ -108,7 +110,10 @@ export default class MemberDetail extends React.Component {
   }
 
   render() {
-    const stores = { detailStore: this.store }
+    const stores = {
+      detailStore: this.store,
+      workspaceStore: this.workspaceStore,
+    }
 
     if (this.store.isLoading && !this.store.detail.name) {
       return <Loading className="ks-page-loading" />

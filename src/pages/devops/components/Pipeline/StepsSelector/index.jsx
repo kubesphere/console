@@ -366,6 +366,7 @@ export default class StepsEditor extends React.Component {
         <div className={styles.tabs}>
           {Object.keys(PIPELINE_TASKS).map(task => (
             <div
+              key={task}
               className={classNames(styles.tab, {
                 [styles.tab_active]: this.activeTab === task,
               })}

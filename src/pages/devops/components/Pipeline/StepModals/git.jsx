@@ -18,7 +18,7 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-
+import { toJS } from 'mobx'
 import { Form, Modal } from 'components/Base'
 import { Input, Select } from '@pitrix/lego-ui'
 
@@ -120,7 +120,7 @@ export default class Git extends React.Component {
               </p>
             }
           >
-            <Select name="credentialsId" options={credentials} />
+            <Select name="credentialsId" options={toJS(credentials)} />
           </Form.Item>
           <Form.Item label={t('Branch')}>
             <Input name="branch" />

@@ -80,8 +80,14 @@ export default class DevOpsStore extends Base {
   getDevOpsDetailUrl = ({ cluster, name }) =>
     `${this.getDevOpsUrl({ cluster })}/${name}`
 
-  getWatchListUrl = (params = {}) =>
-    `${this.apiVersion}/watch${this.getPath(params)}/devopsprojects`
+  getWatchListUrl = ({ workspace, ...params }) => {
+    if (workspace) {
+      return `${
+        this.apiVersion
+      }/watch/devopsprojects?labelSelector=kubesphere.io/workspace=${workspace}`
+    }
+    return `${this.apiVersion}/watch${this.getPath(params)}/devopsprojects`
+  }
 
   getWatchUrl = (params = {}) =>
     `${this.getWatchListUrl(params)}/${params.name}`
