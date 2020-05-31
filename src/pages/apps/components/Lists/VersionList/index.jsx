@@ -95,7 +95,7 @@ export default class VersionList extends React.Component {
 
     return globals.app.getActions({
       workspace: this.props.params.workspace,
-      module: 'apps',
+      module: 'app-templates',
     })
   }
 

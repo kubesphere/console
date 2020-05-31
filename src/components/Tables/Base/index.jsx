@@ -80,6 +80,7 @@ export default class WorkloadTable extends React.Component {
     hideCustom: false,
     extraProps: {},
     pagination: {},
+    filters: {},
   }
 
   constructor(props) {

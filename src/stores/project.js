@@ -16,9 +16,8 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, isEmpty, set, unset } from 'lodash'
+import { get, isEmpty, unset } from 'lodash'
 import { action, observable } from 'mobx'
-import { formatRules } from 'utils'
 import { LIST_DEFAULT_ORDER } from 'utils/constants'
 import ObjectMapper from 'utils/object.mapper'
 
@@ -151,34 +150,6 @@ export default class ProjectStore extends Base {
     this.detail = { cluster, ...this.mapper(detail) }
 
     this.isLoading = false
-  }
-
-  @action
-  async fetchRules({ namespace, workspace }) {
-    this.initializing = true
-
-    const rules = await request.get(
-      `kapis/tenant.kubesphere.io/v1alpha2/namespaces/${namespace}/rules`,
-      null,
-      null,
-      () => {}
-    )
-
-    if (rules) {
-      const formatedRules = formatRules(rules)
-
-      if (workspace === globals.config.systemWorkspace) {
-        Object.keys(formatedRules).forEach(key => {
-          formatedRules[key] = globals.config.systemWorkspaceProjectRules[
-            key
-          ] || ['view', 'edit']
-        })
-      }
-
-      set(globals.user, `rules[${namespace}]`, formatedRules)
-    }
-
-    this.initializing = false
   }
 
   @action

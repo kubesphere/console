@@ -27,18 +27,16 @@ import { ReactComponent as ForkIcon } from 'src/assets/fork.svg'
 
 import styles from './nav.scss'
 
-@observer
 class Nav extends Component {
   static defaultProps = {
     module: '',
   }
 
   get enabledActions() {
-    const { project_id } = this.props.match.params
-
     return globals.app.getActions({
       module: 'pipelines',
-      project: project_id,
+      cluster: this.props.match.params.cluster,
+      // devops: this.props.devopsStore.data.name,
     })
   }
 

@@ -87,6 +87,7 @@ export default class ProjectDetail extends React.Component {
       icon: 'trash',
       text: t('Delete'),
       action: 'delete',
+      type: 'danger',
       show: this.store.detail.workspace !== globals.config.systemWorkspace,
       onClick: () =>
         this.trigger('resource.delete', {
@@ -148,6 +149,6 @@ export default class ProjectDetail extends React.Component {
       ],
     }
 
-    return <DetailPage stores={stores} routes={routes} sideProps={sideProps} />
+    return <DetailPage stores={stores} routes={routes} {...sideProps} />
   }
 }

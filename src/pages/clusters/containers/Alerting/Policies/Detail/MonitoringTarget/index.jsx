@@ -47,21 +47,6 @@ export default class MonitoringTarget extends React.Component {
     return this.props.match.params
   }
 
-  get namespace() {
-    return this.params.namespace
-  }
-
-  get cluster() {
-    return this.params.cluster
-  }
-
-  get enabledActions() {
-    return globals.app.getActions({
-      module: this.module,
-      project: this.namespace,
-    })
-  }
-
   componentDidMount() {
     this.fetchData()
   }
@@ -71,7 +56,6 @@ export default class MonitoringTarget extends React.Component {
     const data = {
       resourceType,
       resourceFilter,
-      cluster: this.cluster,
       ...this.params,
     }
     this.resourceStore.fetchResources(data)

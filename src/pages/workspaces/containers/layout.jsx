@@ -52,28 +52,9 @@ class WorkspaceLayout extends Component {
 
     await Promise.all([
       this.store.fetchDetail(params),
-      this.store.fetchClusters({ workspace: this.workspace, limit: -1 }),
+      this.store.fetchClusters({ ...params, limit: -1 }),
+      this.props.rootStore.getRules(params),
     ])
-    // const workspaceRule = get(
-    //   globals.user,
-    //   `workspace_rules[${params.workspace}]`
-    // )
-
-    // if (workspaceRule === undefined) {
-    //   await this.store.fetchRules(params)
-    // }
-
-    // if (
-    //   !globals.app.hasPermission({ module: 'workspaces', action: 'manage' }) &&
-    //   !globals.app.hasPermission({
-    //     module: 'workspaces',
-    //     action: 'view',
-    //     workspace: params.workspace,
-    //   })
-    // ) {
-    //   this.routing.push('/404')
-    //   return
-    // }
 
     this.store.initializing = false
   }
@@ -88,27 +69,6 @@ class WorkspaceLayout extends Component {
 
   enterWorkspace = async workspace =>
     this.routing.push(`/workspaces/${workspace}/overview`)
-  // if (globals.app.isClusterAdmin) {
-  //   return this.routing.push(`/workspaces/${workspace}/overview`)
-  // }
-
-  // const workspace_rule = get(globals.user, `workspace_rules[${workspace}]`)
-  // if (!workspace_rule) {
-  //   await this.store.fetchRules({ workspace })
-  // }
-
-  // if (
-  //   globals.app.hasPermission({ module: 'workspaces', action: 'manage' }) ||
-  //   globals.app.hasPermission({
-  //     module: 'workspaces',
-  //     action: 'view',
-  //     workspace,
-  //   })
-  // ) {
-  //   return this.routing.push(`/workspaces/${workspace}/overview`)
-  // }
-
-  // return this.routing.push(`/dashboard`)
 
   render() {
     const { match, route, location } = this.props
@@ -126,7 +86,6 @@ class WorkspaceLayout extends Component {
               icon={detail.logo}
               value={this.workspace}
               onChange={this.enterWorkspace}
-              // multi={globals.user.workspaces.length > 1}
             />
             <Nav
               className="ks-page-nav"

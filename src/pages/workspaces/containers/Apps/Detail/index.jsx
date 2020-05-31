@@ -57,7 +57,7 @@ export default class RoleDetail extends React.Component {
   }
 
   get authKey() {
-    return 'apps'
+    return 'app-templates'
   }
 
   get name() {
@@ -201,6 +201,6 @@ export default class RoleDetail extends React.Component {
       ],
     }
 
-    return <DetailPage stores={stores} routes={routes} sideProps={sideProps} />
+    return <DetailPage stores={stores} routes={routes} {...sideProps} />
   }
 }

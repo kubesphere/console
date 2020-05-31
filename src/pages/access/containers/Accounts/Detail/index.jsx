@@ -44,6 +44,10 @@ export default class AccountDetail extends React.Component {
     return 'accounts'
   }
 
+  get authKey() {
+    return 'users'
+  }
+
   get name() {
     return 'Account'
   }
@@ -101,6 +105,7 @@ export default class AccountDetail extends React.Component {
       icon: 'trash',
       text: t('Delete'),
       action: 'delete',
+      type: 'danger',
       show: this.showEdit,
       onClick: () =>
         this.trigger('resource.delete', {
@@ -146,6 +151,7 @@ export default class AccountDetail extends React.Component {
 
     const sideProps = {
       module: this.module,
+      authKey: this.authKey,
       name: get(this.store.detail, 'username'),
       desc: this.detailDesc,
       operations: this.getOperations(),
@@ -158,6 +164,6 @@ export default class AccountDetail extends React.Component {
       ],
     }
 
-    return <DetailPage stores={stores} routes={routes} sideProps={sideProps} />
+    return <DetailPage stores={stores} routes={routes} {...sideProps} />
   }
 }

@@ -35,7 +35,11 @@ export default class NodeItem extends React.Component {
   }
 
   get canViewNode() {
-    return globals.app.hasPermission({ module: 'nodes', action: 'view' })
+    return globals.app.hasPermission({
+      module: 'nodes',
+      action: 'view',
+      cluster: this.props.cluster,
+    })
   }
 
   get isUnschedulable() {

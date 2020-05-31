@@ -38,6 +38,7 @@ export default class RoleDetail extends React.Component {
 
   componentDidMount() {
     this.fetchData()
+    this.store.fetchRoleTemplates(this.props.match.params)
   }
 
   get module() {
@@ -55,7 +56,7 @@ export default class RoleDetail extends React.Component {
   get listUrl() {
     const { cluster, namespace } = this.props.match.params
 
-    return `/cluster/${cluster}/projects/${namespace}/${this.module}`
+    return `/cluster/${cluster}/devops/${namespace}/${this.module}`
   }
 
   get showEdit() {
@@ -172,7 +173,7 @@ export default class RoleDetail extends React.Component {
     return (
       <DetailPage
         stores={stores}
-        sideProps={sideProps}
+        {...sideProps}
         routes={getRoutes(this.props.match.path)}
       />
     )

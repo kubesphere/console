@@ -20,6 +20,8 @@ import React from 'react'
 import { observer, inject } from 'mobx-react'
 import { Columns, Column, Icon } from '@pitrix/lego-ui'
 
+import { CLUSTER_PROVIDER_ICON } from 'utils/constants'
+
 import Tools from './Tools'
 import ClusterInfo from './ClusterInfo'
 import ClusterNodes from './ClusterNodes'
@@ -43,7 +45,10 @@ export default class Dashboard extends React.Component {
     return (
       <div className={styles.wrapper}>
         <div className={styles.title}>
-          {detail.icon && <Icon name={detail.icon} size={48} />}
+          <Icon
+            name={CLUSTER_PROVIDER_ICON[detail.provider] || 'kubernetes'}
+            size={48}
+          />
           <div className={styles.text}>
             <div className="h4">{detail.name}</div>
             <p>{detail.description}</p>

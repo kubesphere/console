@@ -27,29 +27,12 @@ import UserDashboard from './User'
 
 import styles from './index.scss'
 
-const ROLESMAP = {
-  'cluster-admin': 'Super administrator',
-  'workspaces-manager': 'Workspaces Manager',
-  'cluster-regular': 'Regular user',
-}
-
 @inject('rootStore')
 class Dashboard extends React.Component {
-  // componentDidMount() {
-  //   if (
-  //     !globals.app.isClusterAdmin &&
-  //     globals.app.hasPermission({ module: 'workspaces', action: 'manage' })
-  //   ) {
-  //     this.props.rootStore.routing.push('/workspaces')
-  //   }
-  // }
-
-  getRoleText = role => ROLESMAP[role] || globals.user.cluster_role
-
   renderHeader() {
-    const { avatar_url, cluster_role, username, last_login_time } =
+    const { avatar_url, globalrole, username, last_login_time } =
       globals.user || {}
-    const roleText = t(this.getRoleText(cluster_role))
+
     const loginTime = `${t('Last login time')}: ${getLocalTime(
       last_login_time
     ).format(`YYYY-MM-DD HH:mm:ss`)}`
@@ -64,7 +47,7 @@ class Dashboard extends React.Component {
           <div className={styles.info}>
             <p>
               <Icon name="role" size={16} />
-              {roleText}
+              {globalrole}
             </p>
             <p>
               <Icon name="clock" size={16} />
@@ -77,7 +60,7 @@ class Dashboard extends React.Component {
   }
 
   renderContent() {
-    if (globals.app.isClusterAdmin) {
+    if (globals.app.isPlatformAdmin) {
       return <AdminDashboard />
     }
 

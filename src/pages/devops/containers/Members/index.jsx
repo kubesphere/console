@@ -32,7 +32,6 @@ import RoleStore from 'stores/role'
 @withList({
   store: new UserStore(),
   module: 'users',
-  authKey: 'members',
   name: 'DevOps Member',
   rowKey: 'username',
   injectStores: ['rootStore', 'devopsStore'],
@@ -77,6 +76,14 @@ export default class Members extends React.Component {
         description: t('HOW_TO_INVITE_MEMBER_A'),
       },
     ]
+  }
+
+  get enabledActions() {
+    return globals.app.getActions({
+      module: 'members',
+      devops: this.devopsName,
+      cluster: this.cluster,
+    })
   }
 
   showAction(record) {
@@ -133,7 +140,6 @@ export default class Members extends React.Component {
           onClick: () =>
             trigger('member.invite', {
               devops: this.devopsName,
-              namespace: this.workspace,
               workspace: this.workspace,
               cluster: this.cluster,
               roles: toJS(this.roleStore.list.data),
@@ -229,6 +235,7 @@ export default class Members extends React.Component {
         <Table
           {...tableProps}
           searchType="name"
+          enabledActions={this.enabledActions}
           tableActions={this.tableActions}
           itemActions={this.itemActions}
           columns={this.getColumns()}

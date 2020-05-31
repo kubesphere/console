@@ -44,19 +44,20 @@ export default class Secrets extends React.Component {
 
   showAction = record => !globals.config.presetRoles.includes(record.name)
 
-  get prefix() {
-    if (this.props.match.url.endsWith('/')) {
-      return this.props.match.url
-    }
-    return this.props.match.url
-  }
-
   get devopsName() {
     return this.props.devopsStore.project_name
   }
 
   get cluster() {
     return this.props.match.params.cluster
+  }
+
+  get enabledActions() {
+    return globals.app.getActions({
+      module: 'roles',
+      devops: this.devopsName,
+      cluster: this.cluster,
+    })
   }
 
   get itemActions() {
@@ -135,7 +136,7 @@ export default class Secrets extends React.Component {
           <Avatar
             icon={ICON_TYPES[module]}
             title={name}
-            to={`${this.prefix}/${name}`}
+            to={`${this.props.match.url}/${name}`}
           />
         ),
       },
@@ -189,6 +190,7 @@ export default class Secrets extends React.Component {
         />
         <Table
           {...tableProps}
+          enabledActions={this.enabledActions}
           emptyProps={this.emptyProps}
           tableActions={this.tableActions}
           itemActions={this.itemActions}

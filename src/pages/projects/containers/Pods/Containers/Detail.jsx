@@ -26,7 +26,7 @@ import { trigger } from 'utils/action'
 import { createCenterWindowOpt } from 'utils/dom'
 import ContainerStore from 'stores/container'
 
-import DetailPage from 'clusters/containers/Base/Detail'
+import DetailPage from 'projects/containers/Base/Detail'
 
 import getRoutes from './routes'
 
@@ -206,7 +206,7 @@ export default class ContainerDetail extends React.Component {
     return (
       <DetailPage
         stores={stores}
-        sideProps={sideProps}
+        {...sideProps}
         routes={getRoutes(this.props.match.path)}
       />
     )

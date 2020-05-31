@@ -33,6 +33,7 @@ import RoleStore from 'stores/role'
 @withList({
   store: new RoleStore('workspaceroles'),
   module: 'workspaceroles',
+  authKey: 'roles',
   name: 'Workspace Role',
 })
 export default class Roles extends React.Component {

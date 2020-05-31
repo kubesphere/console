@@ -52,26 +52,28 @@ class GrayRelease extends React.Component {
   }
 
   get canDeployComposingApp() {
-    const { namespace: project } = this.props.match.params
-
+    const { cluster, namespace: project } = this.props.match.params
     const canCreateDeployment = globals.app
       .getActions({
-        module: 'deployments',
+        cluster,
         project,
+        module: 'deployments',
       })
       .includes('create')
 
     const canCreateService = globals.app
       .getActions({
-        module: 'services',
+        cluster,
         project,
+        module: 'services',
       })
       .includes('create')
 
     const canCreateApp = globals.app
       .getActions({
-        module: 'applications',
+        cluster,
         project,
+        module: 'applications',
       })
       .includes('edit')
 

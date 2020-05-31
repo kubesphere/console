@@ -29,7 +29,6 @@ class JobsResourceStatus extends Base {
       <div>
         {this.renderContainerPorts()}
         {this.renderPods()}
-        {this.renderVolumes()}
       </div>
     )
   }

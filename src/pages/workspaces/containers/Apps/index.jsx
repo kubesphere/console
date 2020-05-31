@@ -31,6 +31,7 @@ import AppStore from 'stores/openpitrix/app'
 @withList({
   store: new AppStore(),
   module: 'apps',
+  authKey: 'app-templates',
   name: 'App Template',
   rowKey: 'app_id',
 })

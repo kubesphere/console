@@ -51,13 +51,27 @@ class DevOpsLayout extends Component {
 
   async init(params) {
     this.store.initializing = true
+
     await this.store.fetchDetail(params)
+    await Promise.all([
+      this.props.rootStore.getRules({
+        cluster: params.cluster,
+        devops: this.store.data.name,
+      }),
+      this.props.rootStore.getRules({
+        workspace: this.store.data.workspace,
+      }),
+    ])
 
     this.store.initializing = false
   }
 
-  get project() {
-    return this.props.match.params.project_id
+  get cluster() {
+    return this.props.match.params.cluster
+  }
+
+  get devops() {
+    return this.store.data.name
   }
 
   get routing() {
@@ -81,13 +95,16 @@ class DevOpsLayout extends Component {
             <Selector
               type="devops"
               title={t('DevOps Project')}
-              value={this.project}
+              value={this.devops}
               onChange={this.handleChange}
               workspace={data.workspace}
             />
             <Nav
               className="ks-page-nav"
-              navs={globals.app.getDevOpsNavs(this.project)}
+              navs={globals.app.getDevOpsNavs({
+                devops: this.devops,
+                cluster: this.cluster,
+              })}
               location={location}
               match={match}
             />

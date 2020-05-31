@@ -17,8 +17,9 @@
  */
 
 import React from 'react'
+import { pick, isEmpty } from 'lodash'
 import { NavLink, withRouter } from 'react-router-dom'
-import { Provider } from 'mobx-react'
+import { inject, Provider } from 'mobx-react'
 import { Loading } from '@pitrix/lego-ui'
 import pathToRegexp from 'path-to-regexp'
 
@@ -41,7 +42,39 @@ class DetailPage extends React.Component {
   }
 
   async init() {
+    const params = pick(this.props.match.params, [
+      'cluster',
+      'workspace',
+      'namespace',
+      'project_id',
+    ])
+    if (!isEmpty(params)) {
+      await this.props.rootStore.getRules({
+        ...params,
+        project: params.namespace || params.project_id,
+      })
+    }
     this.setState({ initializing: false })
+  }
+
+  get authKey() {
+    return this.props.authKey || this.props.module
+  }
+
+  get enabledActions() {
+    const { namespace: project, ...rest } = this.props.match.params
+    return globals.app.getActions({
+      module: this.authKey,
+      ...rest,
+      project,
+    })
+  }
+
+  getEnabledOperations = () => {
+    const { operations = [] } = this.props
+    return operations.filter(
+      item => !item.action || this.enabledActions.includes(item.action)
+    )
   }
 
   renderNav(routes) {
@@ -70,7 +103,7 @@ class DetailPage extends React.Component {
   }
 
   render() {
-    const { sideProps, routes, stores } = this.props
+    const { routes, stores, ...sideProps } = this.props
 
     if (this.state.initializing) {
       return <Loading className="ks-page-loading" />
@@ -83,6 +116,7 @@ class DetailPage extends React.Component {
             <BaseInfo
               {...sideProps}
               icon={sideProps.icon || ICON_TYPES[sideProps.module]}
+              operations={this.getEnabledOperations()}
             />
           </div>
           <div className={styles.content}>
@@ -95,5 +129,5 @@ class DetailPage extends React.Component {
   }
 }
 
-export default withRouter(DetailPage)
+export default inject('rootStore')(withRouter(DetailPage))
 export const Component = DetailPage

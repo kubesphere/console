@@ -37,11 +37,14 @@ export default class ResourceStatistics extends React.Component {
     super(props)
 
     this.monitoringStore = new ClusterMonitoringStore({
-      cluster: props.match.params.cluster,
+      cluster: this.cluster,
     })
     this.fetchData()
   }
 
+  get cluster() {
+    return this.props.match.params.cluster
+  }
   get routing() {
     return this.props.rootStore.routing
   }
@@ -51,7 +54,10 @@ export default class ResourceStatistics extends React.Component {
   }
 
   getLink = routeName => {
-    const actions = globals.app.getActions({ module: routeName })
+    const actions = globals.app.getActions({
+      module: routeName,
+      cluster: this.cluster,
+    })
     if (actions.includes('view') || actions.includes('manage')) {
       return `/${routeName}`
     }

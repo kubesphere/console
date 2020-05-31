@@ -50,9 +50,12 @@ class ClusterLayout extends Component {
   async init(params) {
     this.clusterStore.initializing = true
 
-    await this.clusterStore.fetchDetail({
-      name: params.cluster,
-    })
+    await Promise.all([
+      this.clusterStore.fetchDetail({
+        name: params.cluster,
+      }),
+      this.props.rootStore.getRules({ cluster: params.cluster }),
+    ])
 
     this.clusterStore.fetchProjects({
       cluster: params.cluster,

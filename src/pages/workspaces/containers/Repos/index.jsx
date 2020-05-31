@@ -28,6 +28,7 @@ import AppRepoStore from 'stores/openpitrix/repo'
 @withList({
   store: new AppRepoStore(),
   module: 'repos',
+  authKey: 'app-repos',
   name: 'App Repository',
   rowKey: 'repo_id',
 })

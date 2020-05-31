@@ -29,7 +29,7 @@ import Volume from 'stores/volume'
 import StorageClass from 'stores/storageClass'
 import StorageClassCapability from 'stores/storageclasscapabilities'
 
-import DetailPage from 'clusters/containers/Base/Detail'
+import DetailPage from 'projects/containers/Base/Detail'
 
 import getRoutes from './routes'
 
@@ -165,6 +165,7 @@ export default class VolumeDetail extends React.Component {
       icon: 'trash',
       text: t('Delete'),
       action: 'delete',
+      type: 'danger',
       onClick: () =>
         this.trigger('resource.delete', {
           type: t(this.name),
@@ -250,6 +251,7 @@ export default class VolumeDetail extends React.Component {
 
     const sideProps = {
       module: this.module,
+      authKey: this.authKey,
       name: getDisplayName(this.store.detail),
       attrs: this.getAttrs(),
       operations: this.getOperations(),
@@ -265,7 +267,7 @@ export default class VolumeDetail extends React.Component {
     return (
       <DetailPage
         stores={stores}
-        sideProps={sideProps}
+        {...sideProps}
         routes={getRoutes(this.props.match.path)}
       />
     )

@@ -26,7 +26,7 @@ import { trigger } from 'utils/action'
 import UserStore from 'stores/user'
 import WorkspaceStore from 'stores/workspace'
 
-import DetailPage from 'clusters/containers/Base/Detail'
+import DetailPage from 'core/containers/Base/Detail/Page'
 
 import routes from './routes'
 
@@ -134,6 +134,6 @@ export default class MemberDetail extends React.Component {
       ],
     }
 
-    return <DetailPage stores={stores} routes={routes} sideProps={sideProps} />
+    return <DetailPage stores={stores} routes={routes} {...sideProps} />
   }
 }

@@ -95,6 +95,7 @@ export default class StorageClassDetail extends React.Component {
       icon: 'trash',
       text: t('Delete'),
       action: 'delete',
+      type: 'danger',
       onClick: () =>
         this.trigger('resource.delete', {
           type: t(this.name),
@@ -165,6 +166,7 @@ export default class StorageClassDetail extends React.Component {
 
     const sideProps = {
       module: this.module,
+      authKey: this.authKey,
       name: getDisplayName(this.store.detail),
       operations: this.getOperations(),
       attrs: this.getAttrs(),
@@ -177,6 +179,6 @@ export default class StorageClassDetail extends React.Component {
       ],
     }
 
-    return <DetailPage stores={stores} routes={routes} sideProps={sideProps} />
+    return <DetailPage stores={stores} routes={routes} {...sideProps} />
   }
 }

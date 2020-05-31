@@ -16,9 +16,10 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get } from 'lodash'
+import { get, set, uniq, isArray } from 'lodash'
 import { observable, action } from 'mobx'
 import { Notify } from 'components/Base'
+import { safeParseJSON } from 'utils'
 import cookie from 'utils/cookie'
 
 import Base from './base'
@@ -38,20 +39,21 @@ export default class UsersStore extends Base {
 
   getPath({ cluster, workspace, namespace, devops } = {}) {
     let path = ''
+
     if (cluster) {
       path += `/klusters/${cluster}`
     }
 
+    if (namespace) {
+      return `${path}/namespaces/${namespace}`
+    }
+
     if (devops) {
-      path += `/devops/${devops}`
+      return `${path}/devops/${devops}`
     }
 
     if (workspace) {
-      path += `/workspaces/${workspace}`
-    }
-
-    if (namespace) {
-      path += `/namespaces/${namespace}`
+      return `/workspaces/${workspace}`
     }
 
     return path
@@ -70,6 +72,73 @@ export default class UsersStore extends Base {
 
     this.logs.data = result
     this.logs.isLoading = false
+  }
+
+  @action
+  async fetchRules({ name, ...params }) {
+    let module = 'globalroles'
+    if (params.workspace) {
+      module = 'workspaceroles'
+    } else if (params.namespace || params.devops) {
+      module = 'roles'
+    } else if (params.cluster) {
+      module = 'clusterroles'
+    }
+
+    const resp = await request.get(
+      `kapis/iam.kubesphere.io/v1alpha2${this.getPath(
+        params
+      )}/users/${name}/${module}`
+    )
+
+    const rules = {}
+    resp.forEach(item => {
+      const rule = safeParseJSON(
+        get(
+          item,
+          "metadata.annotations['iam.kubesphere.io/role-template-rules']"
+        ),
+        {}
+      )
+
+      Object.keys(rule).forEach(key => {
+        rules[key] = rules[key] || []
+        if (isArray(rule[key])) {
+          rules[key].push(...rule[key])
+        } else {
+          rules[key].push(rule[key])
+        }
+        rules[key] = uniq(rules[key])
+      })
+    })
+
+    switch (module) {
+      case 'globaleroles':
+        set(globals.user, `globalRules`, rules)
+        break
+      case 'clusterroles':
+        set(globals.user, `clusterRules[${params.cluster}]`, rules)
+        break
+      case 'workspaceroles':
+        set(globals.user, `workspaceRules[${params.workspace}]`, rules)
+        break
+      case 'roles':
+        if (params.namespace) {
+          set(
+            globals.user,
+            `projectRules[${params.cluster}][${params.namespace}]`,
+            rules
+          )
+        } else if (params.devops) {
+          set(
+            globals.user,
+            `devopsRules[${params.cluster}][${params.devops}]`,
+            rules
+          )
+        }
+        break
+      default:
+    }
   }
 
   @action

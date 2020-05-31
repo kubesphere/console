@@ -32,7 +32,7 @@ import ProjectStore from 'stores/project'
 @withList({
   store: new ProjectStore(),
   name: 'Project',
-  module: 'namespaces',
+  module: 'projects',
 })
 export default class Projects extends React.Component {
   get itemActions() {

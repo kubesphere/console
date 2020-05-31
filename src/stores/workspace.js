@@ -16,10 +16,9 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { isEmpty, set, intersection } from 'lodash'
+import { isEmpty } from 'lodash'
 import { action, observable } from 'mobx'
 import ObjectMapper from 'utils/object.mapper'
-import { formatRules } from 'utils'
 import { DEFAULT_CLUSTER } from 'utils/constants'
 
 import Base from 'stores/base'
@@ -72,34 +71,6 @@ export default class WorkspaceStore extends Base {
 
     this.detail = this.mapper(detail)
     this.isLoading = false
-  }
-
-  @action
-  async fetchRules({ workspace } = {}) {
-    this.initializing = true
-
-    if (isEmpty(workspace)) {
-      this.initializing = false
-      return
-    }
-
-    const rules = await request.get(
-      `kapis/tenant.kubesphere.io/v1alpha2/workspaces/${workspace}/rules`
-    )
-
-    const formatedRules = formatRules(rules)
-    if (workspace === globals.config.systemWorkspace) {
-      Object.keys(formatedRules).forEach(key => {
-        formatedRules[key] = intersection(
-          formatedRules[key],
-          globals.config.systemWorkspaceRules[key]
-        )
-      })
-    }
-
-    set(globals.user, `workspace_rules[${workspace}]`, formatedRules)
-
-    this.initializing = false
   }
 
   @action

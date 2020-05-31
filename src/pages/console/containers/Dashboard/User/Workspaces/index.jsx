@@ -110,7 +110,6 @@ export default class Workspaces extends React.Component {
   fetchDetail(workspace) {
     if (workspace) {
       this.store.fetchDetail({ workspace })
-      this.store.fetchRules({ workspace })
     }
   }
 

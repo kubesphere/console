@@ -217,7 +217,7 @@ export default class StatefulSetDetail extends React.Component {
     return (
       <DetailPage
         stores={stores}
-        sideProps={sideProps}
+        {...sideProps}
         routes={getRoutes(this.props.match.path)}
       />
     )

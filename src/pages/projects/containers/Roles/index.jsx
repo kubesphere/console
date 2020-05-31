@@ -62,7 +62,6 @@ export default class Secrets extends React.Component {
         show: this.showAction,
         onClick: item =>
           trigger('role.edit', {
-            module,
             detail: item,
             roleTemplates: toJS(store.roleTemplates.data),
             success: routing.query,

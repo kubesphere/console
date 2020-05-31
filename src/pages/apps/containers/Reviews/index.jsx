@@ -48,7 +48,7 @@ export default class Reviews extends Base {
   }
 
   get name() {
-    return 'Reviews'
+    return 'App Reviews'
   }
 
   get canHandle() {

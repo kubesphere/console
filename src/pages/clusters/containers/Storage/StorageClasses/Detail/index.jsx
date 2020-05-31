@@ -53,6 +53,10 @@ export default class StorageClassDetail extends React.Component {
     return 'Storage Class'
   }
 
+  get module() {
+    return 'storageclasses'
+  }
+
   get listUrl() {
     const { cluster } = this.props.match.params
     return `/clusters/${cluster}/storageclasses`
@@ -91,6 +95,7 @@ export default class StorageClassDetail extends React.Component {
       icon: 'trash',
       text: t('Delete'),
       action: 'delete',
+      type: 'danger',
       onClick: () =>
         this.trigger('resource.delete', {
           type: t(this.name),
@@ -150,6 +155,6 @@ export default class StorageClassDetail extends React.Component {
       ],
     }
 
-    return <DetailPage stores={stores} routes={routes} sideProps={sideProps} />
+    return <DetailPage stores={stores} routes={routes} {...sideProps} />
   }
 }

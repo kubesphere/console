@@ -28,7 +28,7 @@ import { SERVICE_TYPES } from 'utils/constants'
 import ServiceStore from 'stores/service'
 import FederatedStore from 'stores/federated'
 
-import DetailPage from 'clusters/containers/Base/Detail'
+import DetailPage from 'projects/containers/Base/Detail'
 
 import getRoutes from './routes'
 
@@ -292,7 +292,7 @@ export default class ServiceDetail extends React.Component {
     return (
       <DetailPage
         stores={stores}
-        sideProps={sideProps}
+        {...sideProps}
         routes={getRoutes(this.props.match.path, this.store.detail)}
       />
     )

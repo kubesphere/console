@@ -32,7 +32,7 @@ import CICDTable from '../Pipelines/Table'
 import CreateModal from './credentialModal'
 import styles from './index.scss'
 
-@inject('rootStore')
+@inject('rootStore', 'devopsStore')
 @observer
 class Credential extends React.Component {
   constructor(props) {
@@ -68,7 +68,8 @@ class Credential extends React.Component {
   get enabledActions() {
     return globals.app.getActions({
       module: 'credentials',
-      project: this.props.match.params.project_name,
+      cluster: this.props.match.params.cluster,
+      devops: this.props.devopsStore.data.name,
     })
   }
 

@@ -40,21 +40,6 @@ export default class AlertRules extends React.Component {
     return this.props.match.params
   }
 
-  get cluster() {
-    return this.params.cluster
-  }
-
-  get namespace() {
-    return this.params.namespace
-  }
-
-  get enabledActions() {
-    return globals.app.getActions({
-      module: this.module,
-      project: this.namespace,
-    })
-  }
-
   componentDidMount() {
     this.fetchData()
   }
@@ -62,7 +47,6 @@ export default class AlertRules extends React.Component {
   fetchData = () => {
     this.store.fetchRules({
       limit: Infinity,
-      cluster: this.cluster,
       ...this.params,
     })
   }
