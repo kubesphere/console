@@ -131,4 +131,9 @@ export default {
     'KubeSphere can collect operation audits according to the rules you set. Click to see how to define the rules.',
 
   EVENT_CREATE_DESC: 'You can change the search criteria and search again.',
+
+  KUBECTL_DESC: 'A command line tool for controlling the current Kubernetes cluster',
+  TOOLBOX_KUBECTL_DESC: 'A command line tool for controlling the Kubernetes clusters',
+  
+  KUBECONFIG_DESC: 'A file that is used to configure access to the current Kubernetes cluster',
 }

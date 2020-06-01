@@ -26,7 +26,7 @@
     </a>
     <div class="login">
       <div class="login-form <%- error ? 'login-form-error' : '' %>">
-        <div class="login-header"><%- t('Log In please') %></div>
+        <div class="login-header"><%- t('Please Log In') %></div>
         <div class="login-divider"></div>
         <% if (oauthServers) { %> <% oauthServers.forEach(function(server) { %>
         <div class="login-oauth" data-url="<%- server.url %>">
@@ -39,7 +39,7 @@
         <% } %>
         <form action="<%- loginPath %>" method="post">
           <div class="login-form-item">
-            <label for="username"><%- t('UserName or Email') %>:</label>
+            <label for="username"><%- t('Username or Email') %>:</label>
             <input
               type="text"
               id="username"

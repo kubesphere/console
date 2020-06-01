@@ -75,8 +75,8 @@ export default class KubeTools extends React.Component {
           {
             icon: 'terminal',
             link: '/kubectl',
-            title: 'kubectl',
-            description: t('KUBECTL_DESC'),
+            title: 'Kubectl',
+            description: t('TOOLBOX_KUBECTL_DESC'),
             hidden: globals.user.cluster_role !== 'cluster-admin',
             action: 'toolbox.kubectl',
           },

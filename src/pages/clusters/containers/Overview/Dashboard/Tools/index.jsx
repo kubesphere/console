@@ -54,8 +54,8 @@ export default class Tools extends Component {
           >
             <Text
               icon="terminal"
-              title="KubeCtl"
-              description={t('kubectl是对 Kubernetes集群管理的命令行工具')}
+              title="Kubectl"
+              description={t('KUBECTL_DESC')}
             />
           </div>
           <div
@@ -66,7 +66,7 @@ export default class Tools extends Component {
             <Text
               icon="data"
               title="KubeConfig"
-              description={t('用于配置集群访问信息的文件')}
+              description={t('KUBECONFIG_DESC')}
             />
           </div>
         </div>
