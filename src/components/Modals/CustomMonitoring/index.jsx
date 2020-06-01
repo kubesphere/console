@@ -64,6 +64,8 @@ export default class CustomMonitoringModal extends React.Component {
     const hasSelectedMonitor = this.modalStore.selectedMonitor
     const isEditing = this.store.isEditing
 
+    const shouldMonitorDeatilShow = hasSelectedMonitor && isEditing
+
     return (
       <Provider monitoringStore={this.store} modalStore={this.modalStore}>
         <Modal
@@ -86,11 +88,10 @@ export default class CustomMonitoringModal extends React.Component {
           <Layout
             sidebar={<TextContainer />}
             content={
-              hasSelectedMonitor && isEditing ? (
-                <MonitorView />
-              ) : (
-                <GraphOverview />
-              )
+              <>
+                {shouldMonitorDeatilShow && <MonitorView />}
+                <GraphOverview hidden={shouldMonitorDeatilShow} />
+              </>
             }
           />
         </Modal>

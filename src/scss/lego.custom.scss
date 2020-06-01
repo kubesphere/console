@@ -494,6 +494,13 @@ label.checkbox {
   table {
     padding: 0 12px 12px;
   }
+
+  .table-filter-dropdown {
+    .dropdown-content {
+      max-height: 310px;
+      overflow: auto;
+    }
+  }
 }
 
 .table table .table-thead > tr > th {

@@ -69,7 +69,7 @@ export default [
         component: Projects,
       },
       {
-        path: '/devops/:project_id',
+        path: '/cluster/:cluster/devops/:project_id',
         component: DevOps,
         ksModule: 'devops',
       },

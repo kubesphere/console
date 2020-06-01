@@ -236,10 +236,10 @@ export default class Store extends BaseStore {
   }
 
   @action
-  async convertJsonToJenkinsFile() {
+  async convertJsonToJenkinsFile({ cluster }) {
     return this.request
       .post(
-        `kapis/devops.kubesphere.io/v1alpha2/tojenkinsfile`,
+        `${this.getBaseUrlV2({ cluster })}/tojenkinsfile`,
         {
           json: JSON.stringify(formatPipeLineJson(toJS(this.jsonData.json))),
         },
@@ -313,6 +313,7 @@ export default class Store extends BaseStore {
     this.isCredentialLoading = true
     const result = await this.credentialStore.fetchList({
       namespace: this.params.project_id,
+      cluster: this.params.cluster,
     })
 
     this.credentials = result.map(credential => ({

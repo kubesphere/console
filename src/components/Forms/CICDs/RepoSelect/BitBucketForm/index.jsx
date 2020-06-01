@@ -42,11 +42,14 @@ export default class BitBucketForm extends GitHubForm {
 
   @action
   handlePasswordConfirm = async () => {
+    const { cluster, project_id } = this.props
     const data = this.tokenFormRef.current.getData()
     this.setState({ isLoading: true })
-    this.props.store.creatBitBucketServers(data).finally(() => {
-      this.setState({ isLoading: false })
-    })
+    this.props.store
+      .creatBitBucketServers({ cluster, project_id, ...data })
+      .finally(() => {
+        this.setState({ isLoading: false })
+      })
   }
 
   handleSubmit = e => {

@@ -16,10 +16,11 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { isEmpty } from 'lodash'
+import { get, isEmpty } from 'lodash'
 import { Modal, Notify } from 'components/Base'
 import NetworkPoliciesModal from 'components/Modals/Network/Policies'
 import NetworkPoliciesIpBlockModal from 'components/Modals/Network/Policies/IpBlock'
+import AddByYamlModal from 'components/Modals/Network/Policies/AddByYaml'
 import DeleteModal from 'components/Modals/Delete'
 import FORM_TEMPLATES from 'utils/form.templates'
 
@@ -79,6 +80,22 @@ export default {
           })
         },
         resource: ruleName,
+        ...props,
+      })
+    },
+  },
+  'network.policies.addByYaml': {
+    on({ store, detail, success, ...props }) {
+      const { cluster } = props
+      const modal = Modal.open({
+        modal: AddByYamlModal,
+        store,
+        onOk: async data => {
+          const namespace = get(data, 'metadata.namespace')
+          await store.create(data, { namespace, cluster })
+          Modal.close(modal)
+          success && success()
+        },
         ...props,
       })
     },

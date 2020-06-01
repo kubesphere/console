@@ -128,6 +128,12 @@ export default class Overview extends React.Component {
 
     const pagination = { total, page, limit }
 
+    const emptyProps = {
+      name: 'Workspace',
+      module: 'workspaces',
+      desc: t('CLUSTER_AUTHORIZATION_DESC'),
+    }
+
     return (
       <div className={styles.tableWrapper}>
         <Table
@@ -138,6 +144,7 @@ export default class Overview extends React.Component {
           isLoading={isLoading}
           onFetch={this.getData}
           searchType="name"
+          emptyProps={emptyProps}
           columns={this.getColumns()}
         />
       </div>

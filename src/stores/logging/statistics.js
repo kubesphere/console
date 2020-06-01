@@ -33,8 +33,9 @@ export default class LoggingHistogram extends LoggingStore {
   @action
   async fetch(params = {}, maxAge) {
     const start_time = new Date(new Date().setHours(0, 0, 0, 0)).getTime()
+    const end_time = new Date().getTime()
     const operation = 'statistics'
-    const defaultParams = { operation, start_time }
+    const defaultParams = { operation, start_time, end_time }
     const requestParams = assign(defaultParams, params)
 
     const resp = await this.request(requestParams, 'get', maxAge)

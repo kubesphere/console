@@ -32,6 +32,8 @@ import CRDAppDetail from '../containers/Applications/CRDAppDetail'
 import OPAppDetail from '../containers/Applications/OPAppDetail'
 import RoleDetail from '../containers/Roles/Detail'
 import ImageBuilderDetail from '../containers/ImageBuilder/Detail'
+import AlertPoliciesDetail from '../containers/Alerting/Policies/Detail'
+import AlertMessagesDetail from '../containers/Alerting/Messages/Detail'
 
 const PATH = '/cluster/:cluster/projects/:namespace'
 
@@ -107,5 +109,13 @@ export default [
   {
     path: `${PATH}/s2ibuilders/:name`,
     component: ImageBuilderDetail,
+  },
+  {
+    path: `${PATH}/alert-policies/:name`,
+    component: AlertPoliciesDetail,
+  },
+  {
+    path: `${PATH}/alert-messages/:id`,
+    component: AlertMessagesDetail,
   },
 ]

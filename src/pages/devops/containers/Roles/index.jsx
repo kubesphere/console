@@ -38,18 +38,29 @@ export default class Secrets extends React.Component {
   componentDidMount() {
     this.props.store.fetchRoleTemplates({
       devops: this.devopsName,
+      cluster: this.cluster,
     })
   }
 
   showAction = record => !globals.config.presetRoles.includes(record.name)
 
+  get prefix() {
+    if (this.props.match.url.endsWith('/')) {
+      return this.props.match.url
+    }
+    return this.props.match.url
+  }
+
   get devopsName() {
     return this.props.devopsStore.project_name
   }
 
+  get cluster() {
+    return this.props.match.params.cluster
+  }
+
   get itemActions() {
-    const { routing, trigger } = this.props
-    const { rulesInfo } = this.props.store
+    const { routing, trigger, store } = this.props
 
     return [
       {
@@ -57,12 +68,22 @@ export default class Secrets extends React.Component {
         icon: 'pen',
         text: t('Edit'),
         action: 'edit',
+        onClick: item =>
+          trigger('resource.baseinfo.edit', {
+            detail: item,
+          }),
+      },
+      {
+        key: 'editRole',
+        icon: 'pen',
+        text: t('Edit Authorization'),
+        action: 'edit',
         show: this.showAction,
         onClick: item =>
           trigger('role.edit', {
-            title: t('Edit Project Role'),
+            module: 'devopsroles',
             detail: item,
-            rulesInfo: toJS(rulesInfo),
+            roleTemplates: toJS(store.roleTemplates.data),
             success: routing.query,
           }),
       },
@@ -97,6 +118,7 @@ export default class Secrets extends React.Component {
   getData = () => {
     this.props.store.fetchList({
       devops: this.devopsName,
+      cluster: this.cluster,
     })
   }
 
@@ -109,7 +131,13 @@ export default class Secrets extends React.Component {
         sorter: true,
         sortOrder: getSortOrder('name'),
         search: true,
-        render: name => <Avatar icon={ICON_TYPES[module]} title={name} />,
+        render: name => (
+          <Avatar
+            icon={ICON_TYPES[module]}
+            title={name}
+            to={`${this.prefix}/${name}`}
+          />
+        ),
       },
       {
         title: t('Description'),
@@ -139,9 +167,16 @@ export default class Secrets extends React.Component {
 
   showCreate = () =>
     this.props.trigger('role.create', {
+      module: 'devopsroles',
       devops: this.devopsName,
+      cluster: this.cluster,
+      roleTemplates: toJS(this.props.store.roleTemplates.data),
       success: this.getData,
     })
+
+  get emptyProps() {
+    return { desc: t('DEVOPS_PROJECT_ROLES_DESC') }
+  }
 
   render() {
     const { bannerProps, tableProps } = this.props
@@ -154,6 +189,7 @@ export default class Secrets extends React.Component {
         />
         <Table
           {...tableProps}
+          emptyProps={this.emptyProps}
           tableActions={this.tableActions}
           itemActions={this.itemActions}
           columns={this.getColumns()}

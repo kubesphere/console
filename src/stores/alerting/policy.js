@@ -95,17 +95,18 @@ export default class PolicyStore extends Base {
   }
 
   @action
-  create(params) {
-    const { AlertingPolicy = {}, Notification = {} } = params || {}
+  create(data, params) {
+    const { AlertingPolicy = {}, Notification = {} } = data || {}
 
     const { address_ids = [] } = Notification
     const req = this.addressStore
       .createList({
         address_id: address_ids,
+        cluster: params.cluster,
       })
       .then(result => {
         const address_list_id = result.address_list_id || ''
-        const data = {
+        const postData = {
           ...this.getPolicyFormData(AlertingPolicy),
           action: {
             action_name: `${address_list_id}`,
@@ -113,7 +114,7 @@ export default class PolicyStore extends Base {
           },
         }
 
-        return request.post(this.getListUrl(params), data)
+        return request.post(this.getListUrl(params), postData)
       })
 
     return this.submitting(req)
@@ -167,10 +168,11 @@ export default class PolicyStore extends Base {
   }
 
   @action
-  async fetchNotificationRule({ workspace, namespace, addressListId }) {
+  async fetchNotificationRule({ cluster, addressListId }) {
     this.notification.isLoading = true
 
     const params = {
+      cluster,
       address_list_id: addressListId,
     }
     const results = await this.addressStore.fetchList(params)
@@ -178,8 +180,6 @@ export default class PolicyStore extends Base {
     // fetch ks user info
     const emails = results.map(item => item.address)
     const users = await this.userStore.fetchList({
-      workspace,
-      namespace,
       emails,
     })
 

@@ -172,7 +172,7 @@ export default class StepsEditor extends React.Component {
   }
 
   renderStepsModal = () => {
-    const { project_id } = this.props.store.params
+    const { project_id, cluster } = this.props.store.params
     const { edittingData, isAddingStep } = this.props.store
 
     if (isAddingStep === 'condition') {
@@ -282,6 +282,7 @@ export default class StepsEditor extends React.Component {
           onOk={this.hideCreateCredential}
           onCancel={this.hideCreateCredential}
           project_id={project_id}
+          cluster={cluster}
           credentialType={this.state.isShowkubernetesDeploy ? 'kubeconfig' : ''}
         />
         <Sonarqube
@@ -328,8 +329,9 @@ export default class StepsEditor extends React.Component {
             {t('Add conditions')}
           </div>
           <div className={styles.taskList}>
-            {PIPELINE_CONDITIONS.map(task => (
+            {PIPELINE_CONDITIONS.map((task, index) => (
               <div
+                key={index}
                 className={styles.task}
                 key={task}
                 onClick={this.handleAddTask(task)}
@@ -364,6 +366,7 @@ export default class StepsEditor extends React.Component {
         <div className={styles.tabs}>
           {Object.keys(PIPELINE_TASKS).map(task => (
             <div
+              key={task}
               className={classNames(styles.tab, {
                 [styles.tab_active]: this.activeTab === task,
               })}

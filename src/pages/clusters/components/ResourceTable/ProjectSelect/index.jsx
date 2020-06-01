@@ -26,8 +26,7 @@ import styles from './index.scss'
 export default class ProjectSelect extends Component {
   getProjects() {
     return [
-      { label: t('All'), value: '' },
-      ...this.props.store.list.data.map(item => ({
+      ...this.props.list.data.map(item => ({
         label: item.name,
         value: item.name,
       })),
@@ -37,7 +36,7 @@ export default class ProjectSelect extends Component {
   valueRenderer = option => `${t('Project')}: ${option.label}`
 
   render() {
-    const { namespace = '', store, onChange, onFetch } = this.props
+    const { namespace = '', list, onChange, onFetch } = this.props
 
     return (
       <SearchSelect
@@ -45,12 +44,13 @@ export default class ProjectSelect extends Component {
         value={namespace}
         onChange={onChange}
         options={this.getProjects()}
-        page={store.list.page}
-        total={store.list.total}
-        currentLength={store.list.data.length}
-        isLoading={store.list.isLoading}
+        page={list.page}
+        total={list.total}
+        currentLength={list.data.length}
+        isLoading={list.isLoading}
         valueRenderer={this.valueRenderer}
         onFetch={onFetch}
+        placeholder={t('All Projects')}
       />
     )
   }

@@ -27,6 +27,7 @@ import { trigger } from 'utils/action'
 import { toJS } from 'mobx'
 import Volume from 'stores/volume'
 import StorageClass from 'stores/storageClass'
+import StorageClassCapability from 'stores/storageclasscapabilities'
 
 import DetailPage from 'clusters/containers/Base/Detail'
 
@@ -38,6 +39,7 @@ import getRoutes from './routes'
 export default class VolumeDetail extends React.Component {
   store = new Volume()
   storageclass = new StorageClass()
+  storageclasscapabilities = new StorageClassCapability()
 
   componentDidMount() {
     this.fetchData()
@@ -63,19 +65,17 @@ export default class VolumeDetail extends React.Component {
     return `/cluster/${cluster}/projects/${namespace}/volumes`
   }
 
-  get pvcDetailInKs() {
-    const { name } = this.props.match.params
-    return this.store.list.data.find(pvc => pvc.name === name) || {}
-  }
-
   fetchData = async () => {
-    const { cluster, namespace, name } = this.props.match.params
+    const { cluster } = this.props.match.params
     await this.store.fetchDetail(this.props.match.params)
-
-    await this.store.fetchList({ limit: Infinity, cluster, namespace, name })
 
     const { storageClassName } = this.store.detail
     await this.storageclass.fetchDetail({
+      cluster,
+      name: storageClassName,
+    })
+
+    await this.storageclasscapabilities.fetchDetail({
       cluster,
       name: storageClassName,
     })
@@ -123,7 +123,11 @@ export default class VolumeDetail extends React.Component {
       text: t('Create Snapshot'),
       icon: 'copy',
       action: 'create',
-      disabled: !get(this.pvcDetailInKs, 'allowSnapshot', false),
+      disabled: !get(
+        this.storageclasscapabilities,
+        'detail.snapshotFeature.create',
+        false
+      ),
       onClick: () => {
         this.trigger('volume.create.snapshot', {
           store: this.store,
@@ -135,7 +139,11 @@ export default class VolumeDetail extends React.Component {
       text: t('Expand Volume'),
       icon: 'scaling',
       action: 'edit',
-      disabled: !get(this.storageclass, 'detail.allowVolumeExpansion', false),
+      disabled: !get(
+        this.storageclasscapabilities,
+        'detail.supportExpandVolume',
+        false
+      ),
       onClick: () => {
         const { detail, isSubmitting } = this.store
         const originData = toJS(detail._originData)
@@ -160,7 +168,6 @@ export default class VolumeDetail extends React.Component {
       onClick: () =>
         this.trigger('resource.delete', {
           type: t(this.name),
-          resource: this.store.detail.name,
           detail: toJS(this.store.detail),
           success: this.returnTolist,
         }),

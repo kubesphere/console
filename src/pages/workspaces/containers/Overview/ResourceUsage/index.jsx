@@ -19,7 +19,7 @@
 import React from 'react'
 import { inject, observer } from 'mobx-react'
 
-import WorksapceStore from 'stores/workspace'
+import WorkspaceStore from 'stores/workspace'
 
 import ResourceStatistics from './Statistics'
 import PhysicalResource from './Physical'
@@ -48,7 +48,7 @@ class ResourceUsage extends React.Component {
     return name
   }
 
-  workspaceStore = new WorksapceStore()
+  workspaceStore = new WorkspaceStore()
 
   componentDidMount() {
     this.workspaceStore.fetchClusters({ workspace: this.workspace })

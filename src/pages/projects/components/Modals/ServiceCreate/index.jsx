@@ -207,6 +207,9 @@ export default class ServiceCreateModal extends React.Component {
       const description = `${
         isS2i ? t('Language Type') : t('Artifacts Type')
       } : ${t(type)}`
+
+      this.workloadStore.setModule('deployments')
+
       return (
         <CreateModal
           icon={type}

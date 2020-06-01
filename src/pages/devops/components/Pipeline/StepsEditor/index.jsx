@@ -51,6 +51,10 @@ export default class StepsEditor extends React.Component {
     activeStage: {},
   }
 
+  state = {
+    stage: null,
+  }
+
   @observable
   zIndex = ''
   @observable
@@ -344,7 +348,7 @@ export default class StepsEditor extends React.Component {
     return (
       <div className={styles.sheet}>
         <div className={styles.title}>
-          {t('Stage')}{' '}
+          {t('Stage')}
           <span className={styles.delete} onClick={this.handleDelete}>
             <Icon name="trash" clickable />
           </span>

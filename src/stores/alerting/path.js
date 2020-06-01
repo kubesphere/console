@@ -17,7 +17,8 @@
  */
 
 export const getLevelPath = (params = {}, level = 'cluster') => {
-  const { node, workspace, namespace } = params
+  const { cluster, node, workspace, namespace } = params
+  const clusterPrefix = cluster ? `/klusters/${cluster}` : ''
   const nodePath = node ? `/nodes/${node}` : ''
   const workspacePath = workspace ? `/workspaces/${workspace}` : ''
   const namespacePath = namespace ? `/namespaces/${namespace}` : ''
@@ -30,24 +31,24 @@ export const getLevelPath = (params = {}, level = 'cluster') => {
       path = '/clusters'
       break
     case 'node':
-      path = '/nodes'
+      path = `${clusterPrefix}/nodes`
       break
     case 'workspace':
       path = workspacePath
       break
     case 'namespace':
-      path = namespacePath
+      path = `${clusterPrefix}${namespacePath}`
       break
     case 'workload':
-      path = `${namespacePath}/workloads`
+      path = `${clusterPrefix}${namespacePath}/workloads`
       break
     case 'pod':
-      path = `${prefix}/pods`
+      path = `${clusterPrefix}${prefix}/pods`
       break
     case 'container': {
       const { pod } = params
       const podPath = pod ? `/pods/${pod}` : ''
-      path = `${prefix}${podPath}/containers`
+      path = `${clusterPrefix}${prefix}${podPath}/containers`
       break
     }
   }

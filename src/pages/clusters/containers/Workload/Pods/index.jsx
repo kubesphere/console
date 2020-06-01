@@ -22,7 +22,7 @@ import { Icon } from '@pitrix/lego-ui'
 
 import { Indicator } from 'components/Base'
 import Banner from 'components/Cards/Banner'
-import withList, { ListPage } from 'components/HOCs/withList'
+import { withClusterList, ListPage } from 'components/HOCs/withList'
 import StatusReason from 'projects/components/StatusReason'
 import ResourceTable from 'clusters/components/ResourceTable'
 
@@ -33,7 +33,7 @@ import PodStore from 'stores/pod'
 
 import styles from './index.scss'
 
-@withList({
+@withClusterList({
   store: new PodStore(),
   module: 'pods',
   name: 'Pod',
@@ -182,14 +182,13 @@ export default class Pods extends React.Component {
   )
 
   render() {
-    const { query, match, bannerProps, tableProps } = this.props
+    const { match, bannerProps, tableProps } = this.props
     return (
       <ListPage {...this.props}>
         <Banner {...bannerProps} />
         <ResourceTable
           {...tableProps}
           itemActions={this.itemActions}
-          namespace={query.namespace}
           columns={this.getColumns()}
           onCreate={null}
           cluster={match.params.cluster}

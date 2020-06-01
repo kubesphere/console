@@ -33,4 +33,9 @@
     display: inline-block;
     vertical-align: middle;
   }
+
+  :global .qicon-dark {
+    color: #fff;
+    fill: #ea4641;
+  }
 }

@@ -88,11 +88,22 @@ export default class RoleDetail extends React.Component {
       icon: 'pen',
       text: t('Edit Info'),
       action: 'edit',
+      onClick: () =>
+        this.trigger('resource.baseinfo.edit', {
+          type: t(this.name),
+          detail: toJS(this.store.detail),
+          success: this.fetchData,
+        }),
+    },
+    {
+      key: 'editRole',
+      icon: 'pen',
+      text: t('Edit Authorization'),
+      action: 'edit',
       show: this.showEdit,
       onClick: () =>
         this.trigger('role.edit', {
           module: this.module,
-          title: t('Edit Cluster Role'),
           detail: toJS(this.store.detail),
           roleTemplates: toJS(this.store.roleTemplates.data),
           success: this.fetchData,

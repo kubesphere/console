@@ -152,12 +152,13 @@ export default class Pipeline extends React.Component {
 
   handleRunOk = async (parameters, branch) => {
     const { detail } = this.props.detailStore
-    const { project_id } = this.props.match.params
+    const { project_id, cluster } = this.props.match.params
     await this.props.detailStore.runBranch({
-      project_id,
       name: detail.name,
       branch,
       parameters,
+      cluster,
+      project_id,
     })
     this.props.rootStore.routing.push('./activity')
   }

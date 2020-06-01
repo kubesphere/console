@@ -32,7 +32,7 @@ export default {
             success && success()
           })
         },
-        detail: detail._originData,
+        detail: detail._originData || detail,
         modal: EditBasicInfoModal,
         store,
         ...props,

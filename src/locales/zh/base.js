@@ -78,13 +78,12 @@ export default {
   'API Documents': 'API 文档',
 
   CLUSTERS_MANAGEMENT_DESC:
-    '可以对KubeSphere中的集群进行统一管理，包括集群中的节点、服务组件、应用资源等',
-  ACCESS_CONTROL_DESC:
-    '可以对KubeSphere平台中的企业空间、账号、以及角色权限进行统一管理',
+    '对多集群以及每个集群的基础资源、服务组件和应用资源等的统一管理',
+  ACCESS_CONTROL_DESC: '对平台中的企业空间、账号、以及角色权限进行统一管理',
   APPS_MANAGEMENT_DESC:
-    '应用商店管理平台内公开应用商店中的应用上架、下架以及应用审核等功能',
+    '对云原生应用的上架、下架以及审核等应用全生命周期的统一管理',
   PLATFORM_SETTINGS_DESC:
-    '平台设置可以对KubeSphere进行OEM定制、邮件服务器设置、密码安全、第三方登录等设置',
+    '定制化平台设置，如平台基本信息、邮件服务器、密码安全、第三方登录、日志收集器等',
 
   Loading: '加载中',
   Active: '已启用',
@@ -98,6 +97,7 @@ export default {
   Stopped: '已停止',
   Disabled: '已停用',
   'Not Enabled': '未启用',
+  Enabled: '已启用',
   Ceased: '已销毁',
   Used: '已使用',
   Remain: '剩余',
@@ -441,10 +441,11 @@ export default {
     'KubeSphere可以根据您设置的规则进行操作审计的收集，点击查看如何定义规则。',
   category: '类别',
   resources: '资源',
-  'Operation details': '操作详情',
-  'Event metadata': '事件元数据',
   'Earliest start time': '最早发生时间',
   'Most recent start time': '最近发生时间',
+  'Related resources': '关联资源',
+  'Operation details': '操作详情',
+  'Event metadata': '事件元数据',
 
   NanoSeconds: '纳秒',
   MicroSeconds: '微秒',

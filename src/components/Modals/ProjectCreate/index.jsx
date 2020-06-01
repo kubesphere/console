@@ -18,14 +18,14 @@
 
 import React from 'react'
 import { observer } from 'mobx-react'
+import { get } from 'lodash'
 import PropTypes from 'prop-types'
 import { Columns, Column, Select, Input, TextArea } from '@pitrix/lego-ui'
 import { Modal, Form } from 'components/Base'
 import { ArrayInput, ObjectInput } from 'components/Inputs'
+import { PATTERN_SERVICE_NAME, PATTERN_LENGTH_63 } from 'utils/constants'
 
 import WorkspaceStore from 'stores/workspace'
-import MemberStore from 'stores/user'
-import RoleStore from 'stores/role'
 
 import styles from './index.scss'
 
@@ -52,8 +52,6 @@ export default class ProjectCreateModal extends React.Component {
 
     this.store = props.store
     this.workspaceStore = new WorkspaceStore()
-    this.memberStore = new MemberStore()
-    this.roleStore = new RoleStore('workspaceroles')
   }
 
   componentDidMount() {
@@ -84,12 +82,41 @@ export default class ProjectCreateModal extends React.Component {
     })
   }
 
-  fetchMembers(params) {
-    this.memberStore.fetchList(params)
+  nameValidator = (rule, value, callback) => {
+    if (!value) {
+      return callback()
+    }
+
+    this.props.store.checkName({ name: value }).then(resp => {
+      if (resp.exist) {
+        return callback({ message: t('Name exists'), field: rule.field })
+      }
+      callback()
+    })
   }
 
-  fetchRoles(params) {
-    this.roleStore.fetchList(params)
+  multiClusterNameValidator = async (rule, value, callback) => {
+    if (!value) {
+      return callback()
+    }
+
+    const clusters = get(this.props.formTemplate, 'spec.placement.clusters', [])
+
+    const resps = await Promise.all(
+      clusters.map(cluster =>
+        this.store.checkName({ name: value, cluster: cluster.name })
+      )
+    )
+
+    const index = resps.findIndex(item => item.exist)
+
+    if (index > -1) {
+      return callback({
+        message: t('NAME_EXIST_IN_CLUSTER', { cluster: clusters[index].name }),
+        field: rule.field,
+      })
+    }
+    callback()
   }
 
   render() {
@@ -118,7 +145,19 @@ export default class ProjectCreateModal extends React.Component {
               <Form.Item
                 label={t('Name')}
                 desc={t('SERVICE_NAME_DESC')}
-                rules={[{ required: true, message: t('Please input name') }]}
+                rules={[
+                  { required: true, message: t('Please input name') },
+                  {
+                    pattern: PATTERN_SERVICE_NAME,
+                    message: `${t('Invalid name')}, ${t('SERVICE_NAME_DESC')}`,
+                  },
+                  { pattern: PATTERN_LENGTH_63, message: t('NAME_TOO_LONG') },
+                  {
+                    validator: hideCluster
+                      ? this.nameValidator
+                      : this.multiClusterNameValidator,
+                  },
+                ]}
               >
                 <Input name="metadata.name" autoFocus={true} />
               </Form.Item>
@@ -153,7 +192,11 @@ export default class ProjectCreateModal extends React.Component {
               label={t('Cluster Settings')}
               desc={t('PROJECT_CLUSTER_SETTINGS_DESC')}
             >
-              <Form.Item>
+              <Form.Item
+                rules={[
+                  { required: true, message: t('Please select a cluster') },
+                ]}
+              >
                 <ArrayInput
                   name="spec.placement.clusters"
                   addText={t('Add Cluster')}
@@ -170,23 +213,6 @@ export default class ProjectCreateModal extends React.Component {
               </Form.Item>
             </Form.Group>
           )}
-          {/* <Form.Group
-            label={t('Member Settings')}
-            desc={t('MEMBER_SETTINGS_DESC')}
-          >
-            <Form.Item>
-              <ArrayInput
-                name="metadata.annotations['kubesphere.io/members']"
-                itemType="object"
-                addText={t('Add Cluster')}
-              >
-                <ObjectInput>
-                  <Select name="username" options={this.users} />
-                  <Select name="role" options={this.roles} />
-                </ObjectInput>
-              </ArrayInput>
-            </Form.Item>
-          </Form.Group> */}
         </div>
       </Modal.Form>
     )

@@ -17,9 +17,10 @@
  */
 
 import React from 'react'
-import { Input, TextArea, Select } from '@pitrix/lego-ui'
+import { Input, TextArea } from '@pitrix/lego-ui'
 import { PATTERN_NAME } from 'utils/constants'
 import { Form } from 'components/Base'
+import { SelectInput } from 'components/Inputs'
 
 import SubTitle from '../SubTitle'
 
@@ -40,29 +41,24 @@ export default class BaseInfo extends React.Component {
   get providers() {
     return [
       {
-        label: 'Amazon',
-        value: 'Amazon',
-        icon: 'aws',
-      },
-      {
-        label: 'QingCloud',
-        value: 'QingCloud',
-        icon: 'qingcloud',
-      },
-      {
-        label: 'Google',
-        value: 'Google',
-        icon: 'google',
-      },
-      {
-        label: 'Azure',
-        value: 'Azure',
+        label: 'AKS',
+        value: 'AKS',
         icon: 'windows',
       },
       {
-        label: 'Custom',
-        value: 'Custom',
-        icon: 'kubernetes',
+        label: 'EKS',
+        value: 'EKS',
+        icon: 'aws',
+      },
+      {
+        label: 'GEK',
+        value: 'GEK',
+        icon: 'google',
+      },
+      {
+        label: 'QKE',
+        value: 'QKE',
+        icon: 'qingcloud',
       },
     ]
   }
@@ -102,16 +98,21 @@ export default class BaseInfo extends React.Component {
           <Input name="metadata.name" />
         </Form.Item>
         <Form.Item label={t('CLUSTER_TAG')} desc={t('CLUSTER_TAG_DESC')}>
-          <Select
+          <SelectInput
             name="metadata.labels['cluster.kubesphere.io/group']"
             options={this.groups}
+            placeholder={t('Please select or input a tag')}
+          />
+        </Form.Item>
+        <Form.Item label={t('Provider')} desc={t('CLUSTER_PROVIDER_DESC')}>
+          <SelectInput
+            name="spec.provider"
+            options={this.providers}
+            placeholder={t('Please select or input a provider')}
           />
         </Form.Item>
         <Form.Item label={t('Description')}>
           <TextArea name="metadata.annotations['kubesphere.io/description']" />
-        </Form.Item>
-        <Form.Item label={t('Provider')} desc={t('CLUSTER_PROVIDER_DESC')}>
-          <Select name="spec.provider" options={this.providers} />
         </Form.Item>
       </div>
     )

@@ -89,7 +89,7 @@ export default class PipelineDetail extends Base {
 
   get updateTime() {
     const { activityList } = this.store
-    const updateTime = get(activityList, 'data.0.startTime', '')
+    const updateTime = get(toJS(activityList.data), '[0].startTime', '')
     if (!updateTime) {
       return '-'
     }
@@ -189,7 +189,7 @@ export default class PipelineDetail extends Base {
   }
 
   getAttrs = () => {
-    const { activityList, project_id } = toJS(this.store)
+    const { activityList, project_id } = this.store
     return [
       {
         name: t('DevOps Project'),
@@ -198,7 +198,9 @@ export default class PipelineDetail extends Base {
       {
         name: t('Status'),
         value: (
-          <Status {...getPipelineStatus(get(activityList.data, '[0]', {}))} />
+          <Status
+            {...getPipelineStatus(get(toJS(activityList.data), '[0]', {}))}
+          />
         ),
       },
       {
@@ -236,6 +238,7 @@ export default class PipelineDetail extends Base {
     await this.store.scanRepository({
       project_id: params.project_id,
       name: detail.name,
+      cluster: params.cluster,
     })
     Notify.success({
       content: t('Scan repo success'),

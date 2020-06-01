@@ -29,11 +29,14 @@ import Credential from '../containers/Credential'
 import PipelineRoutes from './pipeline'
 import CredentialRoutes from './credential'
 
-const PATH = '/devops/:project_id'
+import detail from './detail'
+
+const PATH = '/cluster/:cluster/devops/:project_id'
 
 export default [
   ...PipelineRoutes,
   ...CredentialRoutes,
+  ...detail,
   {
     path: PATH,
     component: Layout,

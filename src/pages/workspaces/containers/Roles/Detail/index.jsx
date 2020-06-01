@@ -88,11 +88,22 @@ export default class RoleDetail extends React.Component {
       icon: 'pen',
       text: t('Edit Info'),
       action: 'edit',
+      onClick: () =>
+        this.trigger('resource.baseinfo.edit', {
+          type: t(this.name),
+          detail: toJS(this.store.detail),
+          success: this.fetchData,
+        }),
+    },
+    {
+      key: 'editRole',
+      icon: 'pen',
+      text: t('Edit Authorization'),
+      action: 'edit',
       show: this.showEdit,
       onClick: () =>
         this.trigger('role.edit', {
           module: this.module,
-          title: t('Edit Workspace Role'),
           detail: toJS(this.store.detail),
           roleTemplates: toJS(this.store.roleTemplates.data),
           success: this.fetchData,
@@ -109,7 +120,7 @@ export default class RoleDetail extends React.Component {
         this.trigger('role.delete', {
           type: t(this.name),
           detail: toJS(this.store.detail),
-          worksapce: this.props.match.params.worksapce,
+          workspace: this.props.match.params.workspace,
           success: () => this.routing.push(this.listUrl),
         }),
     },
