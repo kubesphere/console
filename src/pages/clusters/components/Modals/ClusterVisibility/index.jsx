@@ -47,9 +47,10 @@ export default class ClusterVisibility extends React.Component {
 
   handleOk = () => {
     const { onOk } = this.props
-    const { authedWorkspaces, isPublic } = this.state
+    const { allWorkspaces, authedWorkspaces, isPublic } = this.state
     const savedAuthWorkspaces = toJS(this.authedWorkspaceStore.list.data)
 
+    const allWorkspacesMap = keyBy(allWorkspaces, 'name')
     const authedWorkspacesMap = keyBy(authedWorkspaces, 'name')
     const savedAuthWorkspacesMap = keyBy(savedAuthWorkspaces, 'name')
 
@@ -57,9 +58,9 @@ export default class ClusterVisibility extends React.Component {
       workspace => !savedAuthWorkspacesMap[workspace.name]
     )
 
-    const deleteWorkspaces = savedAuthWorkspaces.filter(
-      workspace => !authedWorkspacesMap[workspace.name]
-    )
+    const deleteWorkspaces = savedAuthWorkspaces
+      .filter(workspace => !authedWorkspacesMap[workspace.name])
+      .map(workspace => allWorkspacesMap[workspace.name])
 
     onOk({ public: isPublic, addWorkspaces, deleteWorkspaces })
   }

@@ -234,6 +234,7 @@ export const mergeLabels = (formData, labels) => {
       merge(formData, 'spec.selector', labels)
       break
     default:
+      merge(formData, 'metadata.labels', labels)
   }
 }
 

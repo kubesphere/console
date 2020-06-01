@@ -99,6 +99,7 @@ export default class DaemonSetDetail extends React.Component {
       onClick: () =>
         this.trigger('workload.template.edit', {
           detail: this.store.detail,
+          ...this.props.match.params,
         }),
     },
     {
@@ -128,7 +129,7 @@ export default class DaemonSetDetail extends React.Component {
       text: t('Delete'),
       action: 'delete',
       onClick: () =>
-        this.trigger('resource.delete', {
+        this.trigger('workload.delete', {
           type: t(this.name),
           detail: this.store.detail,
           success: () => this.routing.push(this.listUrl),

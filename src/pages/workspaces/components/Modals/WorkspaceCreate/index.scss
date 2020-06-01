@@ -2,7 +2,7 @@
 @import '~scss/mixins';
 
 .modal {
-  min-width: 1280px;
+  min-width: $content-width;
   width: 100vw;
   height: 100vh;
   border-radius: 0;

@@ -22,7 +22,7 @@ import classNames from 'classnames'
 import { get } from 'lodash'
 
 import Store from 'stores/rank/project'
-import WorksapceStore from 'stores/workspace'
+import WorkspaceStore from 'stores/workspace'
 
 import {
   Select,
@@ -54,7 +54,7 @@ class Ranking extends React.Component {
       limit: 10,
       sort_type: 'desc',
     })
-    this.workspaceStore = new WorksapceStore()
+    this.workspaceStore = new WorkspaceStore()
   }
 
   get workspace() {

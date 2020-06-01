@@ -430,7 +430,7 @@ export function avgs(values = []) {
 
 export const unitTransformMap = {
   none: unitTransformFactory([['', 0]]),
-  bit: unitTransformFactory([
+  ...unitTransformGroupFactory([
     ['bit', 0],
     ['Byte', 8],
     ['KB', 8 * 1024],
@@ -438,7 +438,7 @@ export const unitTransformMap = {
     ['GB', 8 * 1024 ** 3],
     ['TB', 8 * 1024 ** 4],
   ]),
-  'bit/s': unitTransformFactory([
+  ...unitTransformGroupFactory([
     ['bit/s', 0],
     ['Byte/s', 8],
     ['KB/s', 8 * 1024],
@@ -446,7 +446,7 @@ export const unitTransformMap = {
     ['GB/s', 8 * 1024 ** 3],
     ['TB/s', 8 * 1024 ** 4],
   ]),
-  bps: unitTransformFactory([
+  ...unitTransformGroupFactory([
     ['bps', 0],
     ['Bps', 8],
     ['KBps', 8 * 1024],
@@ -454,10 +454,27 @@ export const unitTransformMap = {
     ['Gbps', 1024 ** 3],
     ['Tbps', 1024 ** 4],
   ]),
-  percent(number, decimals) {
+  'percent (0-100)': unitTransformFactory([['%', 0]]),
+  'percent (0.0-1.0)': function(number, decimals) {
     const format = unitTransformFactory([['%', 0]])
     return format(number * 100, decimals)
   },
+}
+
+export function unitTransformGroupFactory(config) {
+  const basicUnitTransform = unitTransformFactory(config)
+  const clone = [...config]
+  const [basicUnit] = clone.shift()
+
+  return clone.reduce(
+    (group, [unit, rate]) => ({
+      ...group,
+      [unit](number, decimals) {
+        return basicUnitTransform(number * rate, decimals)
+      },
+    }),
+    { [basicUnit]: basicUnitTransform }
+  )
 }
 
 export function unitTransformFactory(config) {
@@ -478,6 +495,10 @@ export function unitTransformFactory(config) {
     const [unit, rate] = config[rightConfigIndex]
 
     const count = rate === 0 ? abs : abs / rate
-    return `${isNegative ? '-' : ''}${count.toFixed(decimals)} ${unit}`
+    const fixedCount = count.toFixed(decimals)
+
+    return Number(fixedCount) === 0
+      ? '0'
+      : `${isNegative ? '-' : ''}${fixedCount} ${unit}`
   }
 }

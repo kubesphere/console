@@ -21,7 +21,7 @@ import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import isEqual from 'react-fast-compare'
 import { toJS } from 'mobx'
-import { find, isUndefined, isEmpty } from 'lodash'
+import { get, find, isUndefined, isEmpty } from 'lodash'
 import {
   Icon,
   Table,
@@ -34,7 +34,9 @@ import {
   Pagination,
 } from '@pitrix/lego-ui'
 import { Button, Search } from 'components/Base'
+import { safeParseJSON } from 'utils'
 import CustomColumns from './CustomColumns'
+import Empty from './Empty'
 
 import styles from './index.scss'
 
@@ -51,7 +53,6 @@ export default class WorkloadTable extends React.Component {
     isLoading: PropTypes.bool,
     pagination: PropTypes.object,
     filters: PropTypes.object,
-    keyword: PropTypes.string,
     rowKey: PropTypes.any,
     onFetch: PropTypes.func,
     onSelectRowKeys: PropTypes.func,
@@ -78,13 +79,20 @@ export default class WorkloadTable extends React.Component {
     hideSearch: false,
     hideCustom: false,
     extraProps: {},
+    pagination: {},
   }
 
   constructor(props) {
     super(props)
 
+    const hideColumns = get(
+      safeParseJSON(localStorage.getItem('hide-columns'), {}),
+      props.tableId,
+      []
+    )
+
     this.state = {
-      hideColumns: [],
+      hideColumns,
     }
 
     this.hideableColumns = props.columns
@@ -121,7 +129,6 @@ export default class WorkloadTable extends React.Component {
       nextProps.columns.length !== this.props.columns.length ||
       nextProps.selectedRowKeys.length !== this.props.selectedRowKeys.length ||
       !isEqual(nextProps.filters, this.props.filters) ||
-      nextProps.keyword !== this.props.keyword ||
       nextProps.isLoading !== this.props.isLoading ||
       !isEqual(nextProps.pagination, this.props.pagination)
     ) {
@@ -153,6 +160,11 @@ export default class WorkloadTable extends React.Component {
     })
   }
 
+  get showEmpty() {
+    const { data, isLoading, filters } = this.props
+    return isEmpty(data) && !isLoading && isEmpty(filters)
+  }
+
   handleChange = (_, filters, sorter) => {
     this.props.onFetch({
       sortBy: sorter.field || '',
@@ -162,32 +174,36 @@ export default class WorkloadTable extends React.Component {
   }
 
   handlePagination = page => {
-    const { keyword, onFetch } = this.props
-    const params = { page }
-
-    if (!isEmpty(keyword)) params.keyword = keyword
-
-    onFetch(params)
+    const { onFetch } = this.props
+    onFetch({ page })
   }
 
   handleRefresh = () => {
-    const { keyword, pagination } = this.props
-    const params = {
+    const { pagination } = this.props
+    this.props.onFetch({
       limit: pagination.limit,
       page: pagination.page,
-    }
-
-    if (!isEmpty(keyword)) params.keyword = keyword
-
-    this.props.onFetch(params)
+    })
   }
 
   handleColumnsHide = columns => {
-    this.setState({
-      hideColumns: this.hideableColumnValues.filter(
-        value => !columns.includes(value)
-      ),
-    })
+    this.setState(
+      {
+        hideColumns: this.hideableColumnValues.filter(
+          value => !columns.includes(value)
+        ),
+      },
+      () => {
+        if (this.props.tableId) {
+          const hideColumnsData = safeParseJSON(
+            localStorage.getItem('hide-columns'),
+            {}
+          )
+          hideColumnsData[this.props.tableId] = this.state.hideColumns
+          localStorage.setItem('hide-columns', JSON.stringify(hideColumnsData))
+        }
+      }
+    )
   }
 
   handleCancelSelect = () => {
@@ -275,7 +291,7 @@ export default class WorkloadTable extends React.Component {
   )
 
   renderSearch() {
-    const { hideSearch, searchType, keyword } = this.props
+    const { hideSearch, searchType, filters } = this.props
 
     if (hideSearch) {
       return null
@@ -288,7 +304,7 @@ export default class WorkloadTable extends React.Component {
       return (
         <Search
           className={styles.keyword}
-          value={keyword}
+          value={filters[searchType]}
           onSearch={this.handleSearch}
           placeholder={placeholder}
         />
@@ -439,7 +455,23 @@ export default class WorkloadTable extends React.Component {
     )
   }
 
+  renderEmpty() {
+    const { module, name, emptyProps = {} } = this.props
+    return (
+      <Empty
+        action={this.renderActions()}
+        name={name}
+        module={module}
+        {...emptyProps}
+      />
+    )
+  }
+
   renderTableFooter = () => {
+    if (!this.props.pagination) {
+      return null
+    }
+
     const { total, page, limit } = this.props.pagination
 
     return (
@@ -475,6 +507,10 @@ export default class WorkloadTable extends React.Component {
       getCheckboxProps,
     } = this.props
     const { hideColumns } = this.state
+
+    if (this.showEmpty) {
+      return this.renderEmpty()
+    }
 
     const props = {}
 

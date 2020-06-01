@@ -19,7 +19,6 @@
 import { get } from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
-import { toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import { Input, TextArea } from '@pitrix/lego-ui'
 import { Modal, Form } from 'components/Base'
@@ -67,15 +66,6 @@ export default class DevOpsEditModal extends React.Component {
         workspace,
       })
     }
-  }
-
-  getMembersOptions() {
-    const { data } = toJS(this.store.list)
-
-    return data.map(member => ({
-      label: member.username,
-      value: member.username,
-    }))
   }
 
   handleOk = data => {

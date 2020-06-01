@@ -38,8 +38,8 @@ export default class ResourceStatus extends React.Component {
   }
 
   componentDidMount() {
-    const { namespace } = this.props.match.params
-    this.routerStore.getGateway({ namespace })
+    const { cluster, namespace } = this.props.match.params
+    this.routerStore.getGateway({ cluster, namespace })
   }
 
   renderServiceAccess() {

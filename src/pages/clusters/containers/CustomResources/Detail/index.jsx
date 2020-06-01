@@ -22,7 +22,7 @@ import { observer, inject } from 'mobx-react'
 import { isEmpty } from 'lodash'
 import { Loading } from '@pitrix/lego-ui'
 
-import { getDisplayName, getLocalTime } from 'utils'
+import { getLocalTime } from 'utils'
 import { trigger } from 'utils/action'
 import CRDStore from 'stores/crd'
 
@@ -57,33 +57,7 @@ export default class CustomResourceDetail extends React.Component {
     this.store.fetchDetail(this.props.match.params)
   }
 
-  getOperations = () => [
-    {
-      key: 'edit',
-      icon: 'pen',
-      text: t('Edit Info'),
-      type: 'control',
-      action: 'edit',
-      onClick: () =>
-        this.trigger('resource.baseinfo.edit', {
-          type: t(this.name),
-          detail: toJS(this.store.detail),
-          success: this.fetchData,
-        }),
-    },
-    {
-      key: 'delete',
-      icon: 'trash',
-      text: t('Delete'),
-      type: 'danger',
-      action: 'delete',
-      onClick: () =>
-        this.trigger('resource.delete', {
-          type: t(this.name),
-          resource: this.store.detail.name,
-        }),
-    },
-  ]
+  getOperations = () => []
 
   getAttrs = () => {
     const detail = toJS(this.store.detail)
@@ -96,6 +70,10 @@ export default class CustomResourceDetail extends React.Component {
       {
         name: t('Cluster'),
         value: this.props.match.params.cluster,
+      },
+      {
+        name: t('Scope'),
+        value: detail.scope,
       },
       {
         name: t('Created Time'),
@@ -117,8 +95,8 @@ export default class CustomResourceDetail extends React.Component {
 
     const sideProps = {
       module: this.module,
-      name: getDisplayName(this.store.detail),
-      desc: this.store.detail.description,
+      name: this.store.detail.kind,
+      desc: this.store.detail.name,
       operations: this.getOperations(),
       attrs: this.getAttrs(),
       breadcrumbs: [

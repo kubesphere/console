@@ -194,6 +194,7 @@ export const ICON_TYPES = {
   images: 'cdn',
   registries: 'cdn',
   volumes: 'storage',
+  persistentvolumeclaims: 'storage',
   storageclasses: 'database',
   nodes: 'nodes',
   devops: 'strategy-group',
@@ -249,7 +250,7 @@ export const MODULE_KIND_MAP = {
   nodes: 'Node',
   volumesnapshots: 'VolumeSnapshot',
   namespaces: 'Namespace',
-  workspaces: 'WorkspaceCompat',
+  workspaces: 'WorkspaceTemplate',
 }
 
 export const QUOTAS_MAP = {
@@ -838,6 +839,7 @@ export const API_VERSIONS = {
   dashboards: 'apis/monitoring.kubesphere.io/v1alpha1',
   namespacenetworkpolicies: 'apis/network.kubesphere.io/v1alpha1',
   networkpolicies: 'apis/networking.k8s.io/v1',
+  storageclasscapabilities: 'apis/storage.kubesphere.io/v1alpha1',
 }
 
 export const MONITOR_GRAPH_COLORS = [
@@ -916,4 +918,18 @@ export const DEFAULT_CLUSTER = {
     },
     name: 'default',
   },
+}
+
+export const CREDENTIAL_KEY = {
+  username_password: 'basic-auth',
+  ssh: 'ssh-auth',
+  secret_text: 'secret-text',
+  kubeconfig: 'kubeconfig',
+}
+
+export const CREDENTIAL_DISPLAY_KEY = {
+  'basic-auth': 'username_password',
+  'ssh-auth': 'ssh',
+  'secret-text': 'secret_text',
+  kubeconfig: 'kubeconfig',
 }

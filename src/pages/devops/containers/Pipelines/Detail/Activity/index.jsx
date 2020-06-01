@@ -137,7 +137,11 @@ export default class Activity extends React.Component {
     const url = `devops/${params.project_id}/pipelines/${
       params.name
     }${this.getActivityDetailLinks(record)}`
-    await this.props.detailStore.handleActivityReplay(url)
+
+    await this.props.detailStore.handleActivityReplay({
+      url,
+      cluster: params.cluster,
+    })
     this.handleFetch()
   }
 
@@ -148,6 +152,7 @@ export default class Activity extends React.Component {
     await this.props.detailStore.scanRepository({
       project_id: params.project_id,
       name: detail.name,
+      cluster: params.cluster,
     })
     this.store.fetchDetail(params)
     Notify.success({
@@ -175,10 +180,15 @@ export default class Activity extends React.Component {
     const url = `devops/${params.project_id}/pipelines/${
       params.name
     }${this.getActivityDetailLinks(record)}`
-    await this.props.detailStore.handleActivityStop(url)
+    await this.props.detailStore.handleActivityStop({
+      url,
+      cluster: params.cluster,
+    })
+
     Notify.success({
       content: t('Stop Job Successfully, Status updated later'),
     })
+
     this.handleFetch()
   }
 

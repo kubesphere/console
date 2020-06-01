@@ -36,19 +36,24 @@ export default class UsersStore extends Base {
 
   module = 'users'
 
-  getPath({ cluster, workspace, namespace } = {}) {
+  getPath({ cluster, workspace, namespace, devops } = {}) {
     let path = ''
     if (cluster) {
-      path = `/klusters/${cluster}`
+      path += `/klusters/${cluster}`
     }
+
+    if (devops) {
+      path += `/devops/${devops}`
+    }
+
     if (workspace) {
-      path = `/workspaces/${workspace}`
+      path += `/workspaces/${workspace}`
     }
+
     if (namespace) {
-      path = cluster
-        ? `/klusters/${cluster}/namespaces/${namespace}`
-        : `/namespaces/${namespace}`
+      path += `/namespaces/${namespace}`
     }
+
     return path
   }
 

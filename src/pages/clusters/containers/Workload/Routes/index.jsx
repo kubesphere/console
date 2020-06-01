@@ -21,7 +21,7 @@ import { Link } from 'react-router-dom'
 
 import { Avatar } from 'components/Base'
 import Banner from 'components/Cards/Banner'
-import withList, { ListPage } from 'components/HOCs/withList'
+import { withClusterList, ListPage } from 'components/HOCs/withList'
 import ResourceTable from 'clusters/components/ResourceTable'
 
 import { getLocalTime, getDisplayName } from 'utils'
@@ -29,7 +29,7 @@ import { ICON_TYPES } from 'utils/constants'
 
 import RouterStore from 'stores/router'
 
-@withList({
+@withClusterList({
   store: new RouterStore(),
   module: 'ingresses',
   name: 'Route',
@@ -155,14 +155,13 @@ export default class Routers extends React.Component {
   }
 
   render() {
-    const { query, match, bannerProps, tableProps } = this.props
+    const { match, bannerProps, tableProps } = this.props
     return (
       <ListPage {...this.props}>
         <Banner {...bannerProps} />
         <ResourceTable
           {...tableProps}
           itemActions={this.itemActions}
-          namespace={query.namespace}
           columns={this.getColumns()}
           onCreate={this.showCreate}
           cluster={match.params.cluster}

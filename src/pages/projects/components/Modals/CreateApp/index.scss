@@ -2,7 +2,7 @@
 @import '~scss/mixins';
 
 .modal {
-  min-width: 1280px;
+  min-width: $content-width;
   width: 100vw;
   height: 100vh;
   border-radius: 0;
@@ -21,11 +21,23 @@
   margin: 0 auto;
 }
 
+.steps {
+  @include vertical-center;
+  z-index: 0;
+
+  & > div:first-child {
+    display: inline-block;
+    width: calc(50vw - 494px);
+    min-width: 250px;
+  }
+}
+
 .header {
   position: relative;
   display: flex;
   height: 68px;
   align-items: center;
+  justify-content: space-between;
   padding-left: 24px;
   padding-right: 20px;
 
@@ -47,9 +59,8 @@
 }
 
 .title {
-  position: absolute;
-  @include vertical-center;
   @include TypographySymbolText($dark-color07);
+  z-index: 1;
 
   span {
     display: inline-block;
@@ -66,41 +77,6 @@
     }
     &:nth-child(3) {
       margin-right: 8px;
-    }
-  }
-}
-
-.steps {
-  display: inline-flex;
-  padding: 4px 8px;
-  border-radius: 3px;
-  background-color: $dark-color07;
-
-  & > div {
-    @include TypographySymbolText(#fff);
-
-    & + div {
-      position: relative;
-      padding-left: 84px;
-      &::before {
-        content: '';
-        @include vertical-center;
-        left: 16px;
-        height: 1px;
-        width: 52px;
-        border-bottom: 1px dashed $light-color07;
-      }
-    }
-
-    & > span {
-      display: inline-block;
-      vertical-align: middle;
-    }
-
-    :global {
-      .icon {
-        margin-right: 8px;
-      }
     }
   }
 }
@@ -122,4 +98,5 @@
   align-items: center;
   box-shadow: 0 -1px 0 0 $light-color04;
   background-color: #ffffff;
+  z-index: 10;
 }

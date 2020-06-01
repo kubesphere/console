@@ -16,7 +16,17 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, set, pick, isEmpty, omit, uniqBy, find, keyBy } from 'lodash'
+import {
+  get,
+  set,
+  pick,
+  isEmpty,
+  omit,
+  uniqBy,
+  find,
+  keyBy,
+  includes,
+} from 'lodash'
 import {
   safeParseJSON,
   generateId,
@@ -36,6 +46,7 @@ const getOriginData = item =>
     'metadata.uid',
     'metadata.selfLink',
     'metadata.generation',
+    'metadata.finalizers',
     'metadata.ownerReferences',
     'metadata.resourceVersion',
     'metadata.creationTimestamp',
@@ -52,11 +63,17 @@ const getBaseInfo = item => ({
   isFedManaged: get(item, 'metadata.labels["kubefed.io/managed"]') === 'true',
 })
 
+const DefaultMapper = item => ({
+  ...getBaseInfo(item),
+  namespace: get(item, 'metadata.namespace'),
+  _originData: getOriginData(item),
+})
+
 const WorkspaceMapper = item => ({
   ...getBaseInfo(item),
   annotations: get(item, 'metadata.annotations', {}),
   manager: get(item, 'spec.manager') || getResourceCreator(item),
-  clusters: get(item, 'clusters', []),
+  clusters: get(item, 'spec.clusters', []),
   _originData: getOriginData(item),
 })
 
@@ -85,7 +102,7 @@ const UserMapper = item => ({
     'metadata.annotations["iam.kubesphere.io/role-binding"]',
     ''
   ),
-  status: get(item, 'status.state', ''),
+  status: get(item, 'status.state', 'Pending'),
   conditions: get(item, 'status.conditions', []),
   _originData: getOriginData(item),
 })
@@ -381,6 +398,10 @@ const VolumeMapper = item => {
     deletionTime,
     phase: getVolumePhase(item),
     ...getBaseInfo(item),
+    storageProvisioner: get(
+      item,
+      'metadata.annotations["volume.beta.kubernetes.io/storage-provisioner"]'
+    ),
     status: get(item, 'status', {}),
     conditions: get(item, 'status.conditions', []),
     namespace: get(item, 'metadata.namespace'),
@@ -469,6 +490,10 @@ const RoleMapper = item => ({
   labels: get(item, 'metadata.labels', {}),
   namespace: get(item, 'metadata.namespace'),
   annotations: get(item, 'metadata.annotations'),
+  dependencies: safeParseJSON(
+    get(item, 'metadata.annotations["iam.kubesphere.io/dependencies"]', ''),
+    []
+  ),
   roleTemplates: safeParseJSON(
     get(
       item,
@@ -933,6 +958,7 @@ const ClusterMapper = item => {
       item,
       'metadata.labels["cluster.kubesphere.io/visibility"]'
     ),
+    _originData: getOriginData(item),
   }
 }
 
@@ -954,6 +980,7 @@ const DevOpsMapper = item => ({
   createTime: get(item, 'metadata.creationTimestamp'),
   workspace: get(item, 'metadata.labels["kubesphere.io/workspace"]'),
   namespace: get(item, 'status.adminNamespace'),
+  _originData: getOriginData(item),
 })
 
 const PipelinesMapper = item => ({
@@ -969,6 +996,7 @@ const CRDMapper = item => {
     scope: get(item, 'spec.scope'),
     kind: get(item, 'spec.names.kind'),
     latestVersion: get(versions[versions.length - 1], 'name'),
+    module: get(item, 'status.acceptedNames.plural'),
     _originData: getOriginData(item),
   }
 }
@@ -1003,6 +1031,21 @@ const NetworkPoliciesMapper = item => ({
   _originData: getOriginData(item),
   key: `${get(item, 'metadata.namespace')}-${get(item, 'metadata.name')}`,
 })
+
+const StorageclasscapabilitiesMapper = item => {
+  const { metadata, spec } = item
+  const volumeFeature = get(spec, 'features.volume')
+  return {
+    metadata,
+    spec,
+    snapshotFeature: get(spec, 'features.snapshot'),
+    volumeFeature,
+    supportExpandVolume: includes(
+      ['OFFLINE', 'ONLINE'],
+      volumeFeature.expandMode
+    ),
+  }
+}
 
 export default {
   deployments: WorkLoadMapper,
@@ -1055,4 +1098,6 @@ export default {
   pipelines: PipelinesMapper,
   networkpolicies: NetworkPoliciesMapper,
   namespacenetworkpolicies: NetworkPoliciesMapper,
+  storageclasscapabilities: StorageclasscapabilitiesMapper,
+  default: DefaultMapper,
 }

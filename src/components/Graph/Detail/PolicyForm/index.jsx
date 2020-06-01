@@ -74,10 +74,11 @@ export default class PolicyForm extends React.Component {
 
   getData(props) {
     const { name } = props.detail
-    const { namespace } = toJS(props.store.detail)
+    const { cluster, namespace } = toJS(props.store.detail)
 
     this.store
       .fetchListByK8s({
+        cluster,
         namespace,
         labelSelector: joinSelector({ app: name }),
         limit: 1,

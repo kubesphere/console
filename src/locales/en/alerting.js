@@ -36,6 +36,8 @@ export default {
     'The relevant alert policy is not set temporarily',
   ALERT_POLICY_SETTING_DESC:
     'You can find the abnormal condition of the resource in time by setting the alert rules',
+  ALERTING_POLICY_CREATE_DESC:
+    'You can find the abnormal condition of the resource in time by setting the alert rules',
   'ALERTING-POLICY_BASEINFO_DESC':
     'Set basic information about the alert policy',
   'ALERTING-POLICY_MONITORING-TARGET_DESC':

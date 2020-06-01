@@ -119,18 +119,9 @@ export default {
   WORKLOAD_DESC:
     '工作负载 (Workload) 通常是访问服务的实际载体, 也是对节点日志收集、监控等系统应用的实际运行载体，是对一组容器组 (Pod) 的抽象模型。',
 
-  DEPLOYMENT_DESC:
-    'KubeSphere 部署提供对常见用户应用程序的细粒度管理。部署配置，它将应用程序的特定组件的所需状态描述为 Pod 模板。',
-  DEPLOYMENT_CREATE_DESC:
-    '部署 (Deployment) 为 Pod 和 ReplicaSet 提供了一个声明式定义 (declarative) 方法，用来替代以前的 ReplicationController 来方便的管理应用。<br/>典型的应用场景包括定义 Deployment 来创建 Pod 和 ReplicaSet、滚动升级和回滚应用、扩容和缩容以及暂停和继续 Deployment。',
-  STATEFULSET_DESC:
-    '有状态副本集 (StatefulSet) 是为了解决有状态服务的问题，用来管理有状态应用，可以保证部署和扩容缩容的顺序。',
-  STATEFULSET_CREATE_DESC:
-    '有状态副本集 (StatefulSet) 是为了解决有状态服务的问题，用来管理有状态应用，可以保证部署和扩容缩容的顺序。',
-  DAEMONSET_DESC:
-    '守护进程集 (DaemonSet) 可以保证在每个主机节点上都运行一个容器副本，常用来部署一些集群的日志、监控或者其他系统管理应用。',
-  DAEMONSET_CREATE_DESC:
-    '守护进程集可以保证在每个主机节点上都运行一个容器副本，常用来部署一些集群的日志、监控或者其他系统管理应用。',
+  WORKLOAD_CREATE_DESC:
+    '工作负载 (Workload) 通常是访问服务的实际载体, 也是对节点日志收集、监控等系统应用的实际运行载体，是对一组容器组 (Pod) 的抽象模型。',
+
   JOB_DESC:
     '任务 (Job) 负责批量处理短暂的一次性任务，即仅执行一次的任务，它保证批处理任务的一个或多个容器组成功结束。',
   JOB_CREATE_DESC:
@@ -638,7 +629,7 @@ export default {
 
   'Container Security Context': '容器 Security Context',
   'Pod Security Context': '容器组 Security Context',
-  'Access Control': '访问控制权',
+  'Access Control': '访问控制',
   'User and User Group': '用户和用户组',
   'User Group': '用户组',
   CONTAINER_SECURITY_CTX_DESC:

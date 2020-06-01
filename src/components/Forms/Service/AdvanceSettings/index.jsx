@@ -29,7 +29,7 @@ import SessionAffinity from './SessionAffinity'
 
 export default class AdvancedSettings extends React.Component {
   get namespace() {
-    return get(this.formTemplate, 'Service.metadata.namespace')
+    return get(this.props.formTemplate, 'Service.metadata.namespace')
   }
 
   get kind() {
@@ -57,7 +57,14 @@ export default class AdvancedSettings extends React.Component {
   }
 
   render() {
-    const { formRef, formTemplate, module, store, noWorkload } = this.props
+    const {
+      formRef,
+      formTemplate,
+      cluster,
+      module,
+      store,
+      noWorkload,
+    } = this.props
     return (
       <Form data={formTemplate} ref={formRef}>
         {(noWorkload || module !== 'statefulsets') && (
@@ -103,6 +110,7 @@ export default class AdvancedSettings extends React.Component {
             module={module}
             kind={this.kind}
             namespace={this.namespace}
+            cluster={cluster}
             formTemplate={formTemplate}
             onLabelsChange={this.handleLabelsChange}
           />

@@ -17,6 +17,7 @@
  */
 
 import React from 'react'
+import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import moment from 'moment-mini'
 import { get } from 'lodash'
@@ -24,7 +25,7 @@ import { Loading } from '@pitrix/lego-ui'
 
 import { ICON_TYPES } from 'utils/constants'
 import { renderRoutes } from 'utils/router.config'
-import { updatePipelineParams } from 'utils/devops'
+import { updatePipelineParams, updatePipelineParamsInSpec } from 'utils/devops'
 import { getPipelineStatus } from 'utils/status'
 
 import Notify from 'components/Base/Notify'
@@ -88,7 +89,7 @@ export default class PipelineDetail extends Base {
 
   get updateTime() {
     const { activityList } = this.store
-    const updateTime = get(activityList, 'data.0.startTime', '')
+    const updateTime = get(toJS(activityList.data), '[0].startTime', '')
     if (!updateTime) {
       return '-'
     }
@@ -145,22 +146,21 @@ export default class PipelineDetail extends Base {
   }
 
   getOperations = () => {
-    const { detail } = this.store
-
-    return [
+    const { detail } = toJS(this.store)
+    const list = [
       {
         key: 'edit',
         type: 'control',
         text: t('EDIT'),
         action: 'edit',
-        onClick: this.showEditModal,
+        onClick: () => this.showEditModal('showEditBaseInfo'),
       },
       {
         key: 'editConfig',
         type: 'control',
         text: t('Edit Config'),
         action: 'edit',
-        onClick: this.showEditConfigModal,
+        onClick: () => this.showEditModal('showEditConfig'),
       },
       ...(detail.scmSource
         ? [
@@ -185,21 +185,22 @@ export default class PipelineDetail extends Base {
         onClick: this.showDeleteModal,
       },
     ]
+    return list
   }
 
   getAttrs = () => {
-    const { activityList } = this.store
-    const { params } = this.props.match
-
+    const { activityList, project_id } = this.store
     return [
       {
         name: t('DevOps Project'),
-        value: params.project_id,
+        value: project_id,
       },
       {
         name: t('Status'),
         value: (
-          <Status {...getPipelineStatus(get(activityList.data, '[0]', {}))} />
+          <Status
+            {...getPipelineStatus(get(toJS(activityList.data), '[0]', {}))}
+          />
         ),
       },
       {
@@ -209,27 +210,13 @@ export default class PipelineDetail extends Base {
     ]
   }
 
-  showEditModal = async () => {
+  showEditModal = async type => {
     const { params } = this.props.match
-    const { detail } = this.store
 
-    const pipeLineConfig = await this.store.getPipeLineConfig(
-      detail.name,
-      params
-    )
+    const pipeLineConfig = await this.store.getPipeLineConfig()
+
     pipeLineConfig.project_id = params.project_id
-    this.setState({ showEditBaseInfo: true, formTemplate: pipeLineConfig })
-  }
-
-  showEditConfigModal = async () => {
-    const { params } = this.props.match
-    const { detail } = this.store
-
-    const pipeLineConfig = await this.store.getPipeLineConfig(
-      detail.name,
-      params
-    )
-    this.setState({ showEditConfig: true, formTemplate: pipeLineConfig })
+    this.setState({ [type]: true, formTemplate: pipeLineConfig })
   }
 
   hideEditModal = () => {
@@ -251,6 +238,7 @@ export default class PipelineDetail extends Base {
     await this.store.scanRepository({
       project_id: params.project_id,
       name: detail.name,
+      cluster: params.cluster,
     })
     Notify.success({
       content: t('Scan repo success'),
@@ -264,8 +252,10 @@ export default class PipelineDetail extends Base {
 
   handleEdit = async data => {
     const { params } = this.props.match
-    updatePipelineParams(data)
-    await this.store.updatePipeline(data, params)
+    updatePipelineParams(data, true)
+    updatePipelineParamsInSpec(data, params.project_id)
+
+    await this.store.updatePipeline({ data, project_id: params.project_id })
     this.fetchData()
     this.setState({ showEditBaseInfo: false, showEditConfig: false })
   }
@@ -300,8 +290,7 @@ export default class PipelineDetail extends Base {
   }
 
   renderSider() {
-    const { detail } = this.store
-
+    const { detail } = toJS(this.store)
     const operations = this.getOperations().filter(item =>
       this.enabledActions.includes(item.action)
     )

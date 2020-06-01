@@ -93,8 +93,9 @@ export default class AlertingRule extends React.Component {
   }
 
   fetchMetricTypes = () => {
+    const { cluster } = this.props
     const rs_type_id = get(this.formTemplate, 'resource_filter.rs_type_id')
-    this.typesStore.fetchMetricTypes({ rs_type_id })
+    this.typesStore.fetchMetricTypes({ rs_type_id, cluster })
   }
 
   showRule = data => {

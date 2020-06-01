@@ -121,6 +121,9 @@ export default class Accounts extends React.Component {
         disabled: !this.showAction(record),
         name: record.name,
       }),
+      emptyProps: {
+        desc: t('INVITE_WORKSPACE_MEMBER_DESC'),
+      },
     }
   }
 

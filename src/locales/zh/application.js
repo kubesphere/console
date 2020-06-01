@@ -202,6 +202,12 @@ export default {
   APPLICATION_TYPE_DESC:
     'KubeSphere 支持来自于应用商店和应用仓库的应用部署(基于 Helm)，同样也支持自制应用 (Application CRD)。',
 
+  APPLICATION_SERVICE_DESC:
+    '根据应用中服务类型的不同设置不同类型的服务组件，支持无状态服务和有状态服务',
+  APPLICATION_BASEINFO_DESC: '对应用的名称描述信息等基本的信息定义',
+
+  APPLICATION_YAML_DESC: '通过 YAML 定义您要创建的应用',
+
   HOW_TO_USE_APPLICATION_GOVE_Q: '如何使用应用治理?',
   HOW_TO_USE_APPLICATION_GOVE_A:
     '使用应用治理需要创建自制应用并对每项服务开启服务治理功能',

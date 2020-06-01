@@ -21,7 +21,7 @@ import React from 'react'
 import { isEmpty } from 'lodash'
 import { VOLUME_SNAPSHOT_STATUS } from 'utils/constants'
 
-import withList, { ListPage } from 'components/HOCs/withList'
+import { withClusterList, ListPage } from 'components/HOCs/withList'
 import ResourceTable from 'clusters/components/ResourceTable'
 import SnapshotStore from 'stores/volumeSnapshot'
 import { getLocalTime } from 'utils'
@@ -32,7 +32,7 @@ import { Icon, Tooltip } from '@pitrix/lego-ui'
 
 import styles from './index.scss'
 
-@withList({
+@withClusterList({
   store: new SnapshotStore(),
   module: 'volume-snapshots',
   name: 'VolumeSnapshot',
@@ -135,7 +135,7 @@ export default class VolumeSnapshot extends React.Component {
   }
 
   render() {
-    const { query, bannerProps, tableProps } = this.props
+    const { match, bannerProps, tableProps } = this.props
 
     return (
       <ListPage {...this.props} noWatch>
@@ -143,9 +143,9 @@ export default class VolumeSnapshot extends React.Component {
         <ResourceTable
           {...tableProps}
           itemActions={this.itemActions}
-          namespace={query.namespace}
           columns={this.getColumns()}
           onCreate={this.showCreate}
+          cluster={match.params.cluster}
         />
       </ListPage>
     )

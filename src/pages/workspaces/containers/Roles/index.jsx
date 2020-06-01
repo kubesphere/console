@@ -51,12 +51,21 @@ export default class Roles extends React.Component {
         icon: 'pen',
         text: t('Edit'),
         action: 'edit',
+        onClick: item =>
+          trigger('resource.baseinfo.edit', {
+            detail: item,
+          }),
+      },
+      {
+        key: 'editRole',
+        icon: 'pen',
+        text: t('Edit Authorization'),
+        action: 'edit',
         show: this.showAction,
         onClick: item =>
           trigger('role.edit', {
             module,
             detail: item,
-            title: t('Edit Workspace Role'),
             roleTemplates: toJS(store.roleTemplates.data),
             success: routing.query,
           }),
@@ -71,7 +80,7 @@ export default class Roles extends React.Component {
           trigger('role.delete', {
             detail: item,
             type: t(name),
-            worksapce: this.props.match.params.worksapce,
+            workspace: this.props.match.params.workspace,
             success: routing.query,
           }),
       },
@@ -146,6 +155,12 @@ export default class Roles extends React.Component {
     })
   }
 
+  get emptyProps() {
+    return {
+      desc: t('WORKSPACE_ROLE_DESC'),
+    }
+  }
+
   render() {
     const { bannerProps, tableProps } = this.props
     return (
@@ -157,6 +172,7 @@ export default class Roles extends React.Component {
         />
         <Table
           {...tableProps}
+          emptyProps={this.emptyProps}
           tableActions={this.tableActions}
           itemActions={this.itemActions}
           columns={this.getColumns()}

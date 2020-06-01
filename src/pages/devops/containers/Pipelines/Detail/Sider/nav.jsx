@@ -17,6 +17,7 @@
  */
 
 import React, { Component } from 'react'
+import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import { NavLink } from 'react-router-dom'
 import { Columns, Column } from '@pitrix/lego-ui'
@@ -43,8 +44,9 @@ class Nav extends Component {
 
   get isMutiBranch() {
     const { detailStore } = this.props
-
-    return Boolean(detailStore.detail.scmSource)
+    const scmSource = toJS(detailStore).detail.scmSource
+    const length = scmSource ? Object.keys(scmSource).length : 0
+    return Boolean(length)
   }
 
   renderBaseInfo() {
@@ -73,7 +75,6 @@ class Nav extends Component {
   renderNavLink(item) {
     const { name, title } = item
     const { detailStore, sonarqubeStore } = this.props
-
     const showPipelineConfig = this.enabledActions.includes('edit')
 
     if (!name) return null

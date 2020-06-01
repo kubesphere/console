@@ -56,7 +56,10 @@ export default class Pipeline extends React.Component {
   }
 
   get isMutiBranch() {
-    return Boolean(get(this.props.detailStore.detail, 'scmSource'))
+    const { detailStore } = this.props
+    const scmSource = toJS(detailStore).detail.scmSource
+    const length = scmSource ? Object.keys(scmSource).length : 0
+    return Boolean(length)
   }
 
   get sourceBranch() {
@@ -149,12 +152,13 @@ export default class Pipeline extends React.Component {
 
   handleRunOk = async (parameters, branch) => {
     const { detail } = this.props.detailStore
-    const { project_id } = this.props.match.params
+    const { project_id, cluster } = this.props.match.params
     await this.props.detailStore.runBranch({
-      project_id,
       name: detail.name,
       branch,
       parameters,
+      cluster,
+      project_id,
     })
     this.props.rootStore.routing.push('./activity')
   }
@@ -262,7 +266,7 @@ export default class Pipeline extends React.Component {
   render() {
     const { showEditPipeline, isSubmitting } = this.state
     const { params } = this.props.match
-    const { pipelineJsonData, detail, jenkinsfile } = this.props.detailStore
+    const { pipelineJsonData, jenkinsfile, detail } = this.props.detailStore
 
     return (
       <React.Fragment>

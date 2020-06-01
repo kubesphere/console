@@ -118,6 +118,8 @@ export default {
   "The project's file log collection is about to close.":
     '项目的落盘日志收集即将关闭.',
 
+  'Project Member': '项目成员',
+
   CLOSE_FILE_LOG_TIP:
     '落盘日志收集即将关闭。 关闭后，已开启落盘日志收集的服务在容器组副本重启前将继续进行落盘日志的收集，重启后，将不再收集。</br>如果需要再次收集，请开启落盘日志收集，并重起容器组副本。',
 
@@ -207,4 +209,6 @@ export default {
   PROJECT_CLUSTER_SETTINGS_DESC:
     '集群分配包括分配集群和节点，并且分配集群对应的资源配额、托管集群中的Namespace',
   NETWORK_ISOLATED_DESC: '设置网络隔离策略',
+
+  NAME_EXIST_IN_CLUSTER: '项目名在集群 {cluster} 中已存在',
 }

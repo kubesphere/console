@@ -40,21 +40,24 @@ class DevOpsLayout extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.match.params.project_name !== this.project) {
+    if (
+      prevProps.match.params.project_id !==
+        this.props.match.params.project_id ||
+      prevProps.match.params.cluster !== this.props.match.params.cluster
+    ) {
       this.init(this.props.match.params)
     }
   }
 
   async init(params) {
     this.store.initializing = true
-
     await this.store.fetchDetail(params)
 
     this.store.initializing = false
   }
 
   get project() {
-    return this.props.match.params.project_name
+    return this.props.match.params.project_id
   }
 
   get routing() {

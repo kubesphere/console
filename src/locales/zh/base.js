@@ -78,13 +78,13 @@ export default {
   'API Documents': 'API 文档',
 
   CLUSTERS_MANAGEMENT_DESC:
-    '可以对KubeSphere中的集群进行统一管理，包括集群中的节点、服务组件、应用资源等',
+    '对多集群以及每个集群的基础资源、服务组件和应用资源等的统一管理',
   ACCESS_CONTROL_DESC:
-    '可以对KubeSphere平台中的企业空间、账号、以及角色权限进行统一管理',
+    '对平台中的企业空间、账号、以及角色权限进行统一管理',
   APPS_MANAGEMENT_DESC:
-    '应用商店管理平台内公开应用商店中的应用上架、下架以及应用审核等功能',
+    '对云原生应用的上架、下架以及审核等应用全生命周期的统一管理',
   PLATFORM_SETTINGS_DESC:
-    '平台设置可以对KubeSphere进行OEM定制、邮件服务器设置、密码安全、第三方登录等设置',
+    '定制化平台设置，如平台基本信息、邮件服务器、密码安全、第三方登录、日志收集器等',
 
   Loading: '加载中',
   Active: '已启用',
@@ -98,6 +98,7 @@ export default {
   Stopped: '已停止',
   Disabled: '已停用',
   'Not Enabled': '未启用',
+  Enabled: '已启用',
   Ceased: '已销毁',
   Used: '已使用',
   Remain: '剩余',
@@ -408,6 +409,8 @@ export default {
   FILE_OVERSIZED_TIP: '文件过大，超过 2M 不能上传！',
   'Load more': '加载更多',
 
+  'Resource List': '资源列表',
+
   NOT_FOUND_DESC:
     '🙇 对不起没有找到相关资源，系统将在 {time}s 后返回 <a href="{link}">工作台</a>',
   DETAIL_NOT_FOUND_DESC:
@@ -421,6 +424,27 @@ export default {
   'Log Search': '日志查询',
   LOG_SEARCH_DESC: '针对企业空间、项目、资源等多维度的日志查询工具。',
   KUBECTL_DESC: 'kubectl 客户端命令行工具',
+
+  event: '事件',
+  EVENT_CREATE_DESC: '您可以改变搜索条件重新查询',
+  'Event Search': '事件查询',
+  EVENT_SEARCH_DESC: '针对企业空间、项目、资源等多维度的事件查询工具。',
+  EVENT_DESC: '事件查询（Event）是KubeSphere提供的平台内资源的历史事件查询',
+  'Search By Condition': '根据条件进行查找',
+  'search condition': '搜索条件',
+  'Search tips': '搜索提示',
+  Preferences: '偏好设置',
+  'Data Sources': '数据来源: 内置服务',
+  'Number of events': '事件数量',
+  'workspaces found': '共找到 {count} 个企业空间',
+  'rules text': '如何定义操作审计收集规则？ 🤔',
+  'rules desc':
+    'KubeSphere可以根据您设置的规则进行操作审计的收集，点击查看如何定义规则。',
+  category: '类别',
+  resources: '资源',
+  'Related resources': '关联资源',
+  'Operation details': '操作详情',
+  'Event metadata': '事件元数据',
 
   NanoSeconds: '纳秒',
   MicroSeconds: '微秒',
@@ -480,4 +504,6 @@ export default {
   CREATE_STATUS_FAILED: '创建失败',
 
   DATA_SOURCE: '数据源',
+
+  EMPTY_WRAPPER: '未发现{resource}',
 }

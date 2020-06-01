@@ -28,6 +28,7 @@ import styles from './index.scss'
 export default class YamlEditModal extends React.Component {
   static propTypes = {
     detail: PropTypes.object,
+    yaml: PropTypes.object,
     visible: PropTypes.bool,
     onOk: PropTypes.func,
     onCancel: PropTypes.func,
@@ -65,7 +66,11 @@ export default class YamlEditModal extends React.Component {
   }
 
   init(props) {
-    const { detail, store } = props
+    const { yaml, detail, store } = props
+    if (yaml) {
+      return this.setState({ value: yaml })
+    }
+
     if (detail && detail.name) {
       store.fetchDetail(detail).then(data => {
         this.setState({ value: data._originData })

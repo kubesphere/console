@@ -27,6 +27,9 @@ import Info from 'components/Cards/Info'
 import Banner from 'components/Cards/Banner'
 import EditModal from 'devops/components/Modals/DevOpsEdit'
 
+import UserStore from 'stores/user'
+import RoleStore from 'stores/role'
+
 import styles from './index.scss'
 
 @inject('rootStore', 'devopsStore')
@@ -37,9 +40,18 @@ class BaseInfo extends React.Component {
     showDelete: false,
   }
 
+  roleStore = new RoleStore()
+  memberStore = new UserStore()
+
   componentDidMount() {
-    this.store.fetchRoles(this.props.match.params)
-    this.store.fetchMembers(this.props.match.params)
+    this.memberStore.fetchList({
+      devops: this.project_name,
+      cluster: this.cluster,
+    })
+    this.roleStore.fetchList({
+      devops: this.project_name,
+      cluster: this.cluster,
+    })
   }
 
   get routing() {
@@ -54,8 +66,16 @@ class BaseInfo extends React.Component {
     return this.store.data.workspace
   }
 
+  get project_id() {
+    return this.props.match.params.project_id
+  }
+
   get project_name() {
-    return this.props.match.params.project_name
+    return this.store.project_name
+  }
+
+  get cluster() {
+    return this.props.match.params.cluster
   }
 
   get enabledActions() {
@@ -63,7 +83,7 @@ class BaseInfo extends React.Component {
       module: 'devops',
       workspace: this.workspace,
       project:
-        this.props.match.params.devops || this.props.match.params.project_name,
+        this.props.match.params.devops || this.props.match.params.project_id,
     })
   }
 
@@ -114,7 +134,7 @@ class BaseInfo extends React.Component {
   }
 
   handleEdit = ({ name, ...data }) => {
-    this.store.update(name, data, true).then(() => {
+    this.store.update({ name, cluster: this.cluster }, data, true).then(() => {
       this.hideEdit()
       this.store.fetchDetail(this.props.match.params)
     })
@@ -127,10 +147,11 @@ class BaseInfo extends React.Component {
   }
 
   handleDelete = () => {
-    const { project_name } = this.props.match.params
-    this.store.delete({ name: project_name }).then(() => {
-      this.routing.push('/')
-    })
+    this.store
+      .delete({ name: this.project_name, cluster: this.cluster })
+      .then(() => {
+        this.routing.push('/')
+      })
   }
 
   handleMoreMenuClick = (e, key) => {
@@ -175,6 +196,9 @@ class BaseInfo extends React.Component {
   }
 
   renderBaseInfo() {
+    const roleCount = this.roleStore.list.total
+    const memberCount = this.memberStore.list.total
+
     return (
       <div className="margin-t12">
         <Card title={t('Basic Info')} operations={this.renderOperations()}>
@@ -189,16 +213,16 @@ class BaseInfo extends React.Component {
             <Info
               className={styles.info}
               icon="group"
-              title={this.store.members.total}
+              title={memberCount}
               desc={t('Members')}
-              url={`/devops/${this.project_id}/members`}
+              url={`/cluster/${this.cluster}/devops/${this.project_id}/members`}
             />
             <Info
               className={styles.info}
               icon="role"
-              title={this.store.roles.total}
+              title={roleCount}
               desc={t('Project Roles')}
-              url={`/devops/${this.project_id}/roles`}
+              url={`/cluster/${this.cluster}/devops/${this.project_id}/roles`}
             />
           </div>
         </Card>
@@ -221,7 +245,6 @@ class BaseInfo extends React.Component {
         <EditModal
           detail={data}
           workspace={this.workspace}
-          members={toJS(this.store.members.data)}
           visible={this.state.showEdit}
           onOk={this.handleEdit}
           onCancel={this.hideEdit}

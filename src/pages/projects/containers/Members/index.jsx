@@ -130,6 +130,9 @@ export default class Members extends React.Component {
         disabled: !this.showAction(record),
         name: record.name,
       }),
+      emptyProps: {
+        desc: t('INVITE_MEMBER_DESC'),
+      },
     }
   }
 
@@ -185,7 +188,7 @@ export default class Members extends React.Component {
         <Banner
           {...bannerProps}
           tabs={this.tabs}
-          description={t('PROJECT_ROLE_DESC')}
+          description={t('INVITE_MEMBER_DESC')}
         />
         <Table
           {...tableProps}

@@ -78,7 +78,7 @@ class DetailPage extends React.Component {
 
     return (
       <Provider {...this.stores} {...stores}>
-        <div className={styles.main}>
+        <>
           <div className={styles.sider}>
             <BaseInfo
               {...sideProps}
@@ -89,7 +89,7 @@ class DetailPage extends React.Component {
             {this.renderNav(routes)}
             {renderRoutes(routes)}
           </div>
-        </div>
+        </>
       </Provider>
     )
   }

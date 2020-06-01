@@ -19,7 +19,9 @@
 export default {
   'DevOps Name': 'DevOps 工程名称',
   'DevOps Project': 'DevOps 工程',
+  'DevOps Role': '成员角色',
   'DevOps Roles': '成员角色',
+  'DevOps Member': '工程成员',
   'DevOps Members': '工程成员',
   'DevOps Credentials': '凭证',
   'DevOps BaseInfo': '基本信息',

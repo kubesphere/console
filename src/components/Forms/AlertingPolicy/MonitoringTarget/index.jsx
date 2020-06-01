@@ -77,7 +77,7 @@ export default class MonitoringTarget extends React.Component {
   }
 
   fetchResourceTypes = () => {
-    this.typesStore.fetchResourceTypes()
+    this.typesStore.fetchResourceTypes({ cluster: this.props.cluster })
   }
 
   updateResourceData = (type, data = {}) => {
@@ -105,8 +105,9 @@ export default class MonitoringTarget extends React.Component {
 
   render() {
     const { isValid, validMessage } = this.state
-    const { formRef } = this.props
+    const { formRef, cluster } = this.props
     const params = {
+      cluster,
       formTemplate: this.formTemplate,
       resourceTypes: this.resourceTypes,
     }

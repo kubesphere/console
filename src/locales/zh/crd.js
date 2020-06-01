@@ -22,4 +22,6 @@ export default {
 
   CUSTOM_RESOURCE_DEFINITION_DESC:
     '自定义资源即 Custom Resource Definition ,通过 CRD 以向 Kubernetes API 中增加新资源类型，在不修改 Kubernetes 的基础上创建自定义的 API server',
+  CUSTOM_RESOURCE_DEFINITION_CREATE_DESC:
+    '自定义资源即 Custom Resource Definition ,通过 CRD 以向 Kubernetes API 中增加新资源类型，在不修改 Kubernetes 的基础上创建自定义的 API server',
 }

@@ -17,12 +17,12 @@
  */
 
 import React from 'react'
-import { observer } from 'mobx-react'
-import { get } from 'lodash'
+import { observer, inject } from 'mobx-react'
 import { Component as Base } from 'projects/containers/Deployments/Detail/ResourceStatus'
 import PodsCard from 'components/Cards/Pods'
 import { Loading } from '@pitrix/lego-ui'
 
+@inject('detailStore', 's2iRunStore')
 @observer
 class JobsResourceStatus extends Base {
   get store() {
@@ -32,12 +32,10 @@ class JobsResourceStatus extends Base {
   renderPods() {
     const { params = {} } = this.props.match
     const { cluster, namespace } = params
-    const { jobDetail } = this.store
-    const jobName = get(jobDetail, 'name')
 
     return (
       <PodsCard
-        prefix={`/cluster/${cluster}/projects/${namespace}/jobs/${jobName}`}
+        prefix={`/cluster/${cluster}/projects/${namespace}`}
         detail={this.store.jobDetail}
       />
     )
@@ -53,7 +51,6 @@ class JobsResourceStatus extends Base {
       <div>
         {this.renderContainerPorts()}
         {this.renderPods()}
-        {this.renderVolumes()}
       </div>
     )
   }

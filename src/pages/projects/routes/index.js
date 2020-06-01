@@ -40,11 +40,13 @@ import Secrets from '../containers/Secrets'
 import Roles from '../containers/Roles'
 import Members from '../containers/Members'
 import AdvancedSettings from '../containers/AdvancedSettings'
+import AlertingPolicies from '../containers/Alerting/Policies'
+import AlertingMessages from '../containers/Alerting/Messages'
 import CustomMonitoring from '../containers/CustomMonitoring'
 import NetworkPolicies from '../containers/Network/Policies'
 
 import grayReleaseRoutes from './grayrelease'
-import imageBuilderRoutes from './imagebuilder'
+// import imageBuilderRoutes from './imagebuilder'
 
 import detail from './detail'
 
@@ -52,7 +54,7 @@ const PATH = '/cluster/:cluster/projects/:namespace'
 
 export default [
   ...detail,
-  ...imageBuilderRoutes,
+  // ...imageBuilderRoutes,
   {
     path: PATH,
     component: ProjectLayout,
@@ -117,6 +119,16 @@ export default [
       { path: `${PATH}/roles`, component: Roles, exact: true },
       { path: `${PATH}/members`, component: Members, exact: true },
       { path: `${PATH}/advanced`, component: AdvancedSettings, exact: true },
+      {
+        path: `${PATH}/alert-policies`,
+        component: AlertingPolicies,
+        exact: true,
+      },
+      {
+        path: `${PATH}/alert-messages`,
+        component: AlertingMessages,
+        exact: true,
+      },
       {
         path: `${PATH}/custom-monitoring`,
         component: CustomMonitoring,

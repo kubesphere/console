@@ -17,7 +17,7 @@
  */
 
 import React from 'react'
-import { action } from 'mobx'
+import { action, toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import moment from 'moment-mini'
 import { get } from 'lodash'
@@ -51,7 +51,7 @@ class BranchSider extends Base {
 
   get listUrl() {
     const { project_id } = this.props.match.params
-    return `/devops/${project_id}/pipelines`
+    return `/cluster/:cluster/devops/${project_id}/pipelines`
   }
 
   get name() {
@@ -66,7 +66,7 @@ class BranchSider extends Base {
 
   get updateTime() {
     const { activityList } = this.store
-    const updateTime = get(activityList.data, '[0].startTime', '')
+    const updateTime = get(toJS(activityList.data), '[0].startTime', '')
     if (!updateTime) {
       return '-'
     }
@@ -82,6 +82,7 @@ class BranchSider extends Base {
 
   fetchData = () => {
     const { params } = this.props.match
+    this.store.setProjectId(params.project_id)
     this.store.getBranchDetail(params)
     this.store.fetchDetail(params)
     this.getSonarqube()
@@ -122,7 +123,9 @@ class BranchSider extends Base {
       {
         name: t('Status'),
         value: (
-          <Status {...getPipelineStatus(get(activityList.data, '[0]', {}))} />
+          <Status
+            {...getPipelineStatus(get(toJS(activityList.data), '[0]', {}))}
+          />
         ),
       },
       {
@@ -151,7 +154,6 @@ class BranchSider extends Base {
   @action
   handleBranchSelect = async branch => {
     const { params } = this.props.match
-
     const result = await this.store.getBranchDetail({
       ...params,
       branch,

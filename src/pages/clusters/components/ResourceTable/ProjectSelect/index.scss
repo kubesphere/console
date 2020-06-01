@@ -1,4 +1,11 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
 .select {
   width: 200px;
   margin-right: 12px;
+
+  :global .select-placeholder {
+    @include TypographySymbolText;
+  }
 }

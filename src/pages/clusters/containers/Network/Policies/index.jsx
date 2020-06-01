@@ -17,18 +17,16 @@
  */
 
 import React from 'react'
+import { get } from 'lodash'
 import { Link } from 'react-router-dom'
-// import { toJS } from 'mobx'
 import { Avatar } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import NetworkStore from 'stores/network'
 import withList, { ListPage } from 'components/HOCs/withList'
-// import Table from 'components/Tables/List'
 import ResourceTable from 'clusters/components/ResourceTable'
 
 import { getLocalTime, getDisplayName } from 'utils'
 import { ICON_TYPES } from 'utils/constants'
-// import styles from './index.scss'
 
 @withList({
   store: new NetworkStore('networkpolicies'),
@@ -49,11 +47,18 @@ export default class NetworkPolicies extends React.Component {
   constructor(props) {
     super(props)
     this.store = props.store
-    this.state = {}
+  }
+
+  get params() {
+    return get(this.props.match, 'params', {})
+  }
+
+  get cluster() {
+    return get(this.params, 'cluster')
   }
 
   get itemActions() {
-    const { trigger } = this.props
+    const { trigger, routing } = this.props
     return [
       {
         key: 'edit',
@@ -63,6 +68,7 @@ export default class NetworkPolicies extends React.Component {
         onClick: item =>
           trigger('resource.baseinfo.edit', {
             detail: item,
+            success: routing.query,
           }),
       },
       {
@@ -73,6 +79,7 @@ export default class NetworkPolicies extends React.Component {
         onClick: item =>
           trigger('resource.yaml.edit', {
             detail: item,
+            success: routing.query,
           }),
       },
       {
@@ -84,12 +91,32 @@ export default class NetworkPolicies extends React.Component {
           trigger('resource.delete', {
             type: t(this.name),
             detail: item,
+            success: routing.query,
           }),
       },
     ]
   }
 
-  getColumns = () => {
+  get actions() {
+    const { trigger, routing } = this.props
+    const { cluster } = this
+    return [
+      {
+        key: 'create',
+        type: 'control',
+        text: t('Create Network Policy'),
+        action: 'create',
+        onClick: () =>
+          trigger('network.policies.addByYaml', {
+            ...this.props,
+            cluster,
+            success: routing.query,
+          }),
+      },
+    ]
+  }
+
+  get getColumns() {
     const { getSortOrder, module } = this.props
     const { cluster } = this.props.match.params
     return [
@@ -134,15 +161,6 @@ export default class NetworkPolicies extends React.Component {
     ]
   }
 
-  showCreate = () => {
-    const { query, match, module } = this.props
-    return this.props.trigger('workload.create', {
-      module,
-      namespace: query.namespace,
-      cluster: match.params.cluster,
-    })
-  }
-
   render() {
     const { tips } = this
     const { query, match, bannerProps, tableProps } = this.props
@@ -151,11 +169,11 @@ export default class NetworkPolicies extends React.Component {
         <Banner {...bannerProps} tips={tips} />
         <ResourceTable
           {...tableProps}
-          rowKey="key"
+          rowKey={`${query.namespace}-${name}`}
           itemActions={this.itemActions}
           namespace={query.namespace}
-          columns={this.getColumns()}
-          onCreate={this.showCreate}
+          columns={this.getColumns}
+          actions={this.actions}
           cluster={match.params.cluster}
         />
       </ListPage>

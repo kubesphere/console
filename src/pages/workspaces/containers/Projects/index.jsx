@@ -18,9 +18,7 @@
 
 import React from 'react'
 import { computed, get } from 'mobx'
-import { inject } from 'mobx-react'
 import { isUndefined } from 'lodash'
-import { parse } from 'qs'
 
 import { Avatar, Status } from 'components/Base'
 import Banner from 'components/Cards/Banner'
@@ -32,11 +30,11 @@ import { getSuitableValue } from 'utils/monitoring'
 
 import ProjectStore from 'stores/project'
 
-@inject('workspaceStore')
 @withList({
   store: new ProjectStore(),
   name: 'Project',
   module: 'projects',
+  injectStores: ['rootStore', 'workspaceStore'],
 })
 export default class Projects extends React.Component {
   workspaceStore = this.props.workspaceStore
@@ -49,14 +47,19 @@ export default class Projects extends React.Component {
     }))
   }
 
-  @computed
   get cluster() {
-    const params = parse(location.search.slice(1))
-    return params.cluster || this.hostCluster
+    if (this.query && this.query.cluster) {
+      return this.query.cluster
+    }
+    return this.hostCluster
   }
 
   @computed
   get hostCluster() {
+    if (this.workspaceStore.clusters.data.length < 1) {
+      return ''
+    }
+
     return get(
       this.workspaceStore.clusters.data.find(cluster => cluster.isHost) ||
         this.workspaceStore.clusters.data[0],

@@ -33,6 +33,7 @@ export default class Services extends React.Component {
   state = {
     components: omit(this.props.formData, ['application', 'ingress']) || {},
     componentsError: '',
+    editData: {},
     showAdd: false,
   }
 
@@ -58,12 +59,20 @@ export default class Services extends React.Component {
   showAdd = componentKey => {
     this.setState({
       showAdd: true,
-      selectComponentKey: componentKey,
+      editData: this.getEditData(this.state.components[componentKey]),
     })
   }
 
   hideAdd = () => {
-    this.setState({ showAdd: false, selectComponentKey: '' })
+    this.setState({ showAdd: false, editData: {} })
+  }
+
+  getEditData = (component = {}) => {
+    const data = {}
+    Object.values(component).forEach(item => {
+      data[item.kind] = item
+    })
+    return data
   }
 
   updateAppLabels(formData) {
@@ -165,24 +174,15 @@ export default class Services extends React.Component {
 
   render() {
     const { cluster, namespace, projectDetail } = this.props
-    const {
-      components,
-      showAdd,
-      selectComponentKey,
-      componentsError,
-    } = this.state
+    const { components, showAdd, editData, componentsError } = this.state
 
     return (
       <div className={styles.wrapper}>
         <div className={styles.step}>
           <div>{t('Service Components')}</div>
-          <p>
-            {t(
-              '根据应用中服务类型的不同设置不同类型的服务组件，支持无状态服务和有状态服务'
-            )}
-          </p>
+          <p>{t('APPLICATION_SERVICE_DESC')}</p>
         </div>
-        <div className={styles.title}>{t('组件列表')}</div>
+        <div className={styles.title}>{t('Application Components')}</div>
         <div className={styles.components}>
           <ServiceList
             error={componentsError}
@@ -195,7 +195,7 @@ export default class Services extends React.Component {
         <CreateServiceModal
           cluster={cluster}
           namespace={namespace}
-          detail={components[selectComponentKey]}
+          detail={editData}
           store={this.serviceStore}
           module="services"
           visible={showAdd}

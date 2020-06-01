@@ -15,10 +15,12 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
+import React from 'react'
+import { Icon } from '@pitrix/lego-ui'
 
 import { Modal } from 'components/Base'
-
 import LogModal from 'components/Modals/LogSearch'
+import EventModal from 'components/Modals/EventSearch'
 import KubeCtlModal from 'components/Modals/KubeCtl'
 import KubeConfigModal from 'components/Modals/KubeConfig'
 
@@ -31,6 +33,32 @@ export default {
         },
         modal: LogModal,
         title: t('Log Search'),
+        ...props,
+      })
+    },
+  },
+  'toolbox.eventsearch': {
+    on({ store, ...props }) {
+      const modal = Modal.open({
+        onOk: () => {
+          Modal.close(modal)
+        },
+        modal: EventModal,
+        title: (
+          <div>
+            <Icon size={20} name="thunder" style={{ marginRight: 7 }} />{' '}
+            <span
+              style={{
+                fontSize: 12,
+                fontWeight: 600,
+                lineHeight: '20px',
+                height: '20px',
+              }}
+            >
+              {t('Event Search')}
+            </span>
+          </div>
+        ),
         ...props,
       })
     },

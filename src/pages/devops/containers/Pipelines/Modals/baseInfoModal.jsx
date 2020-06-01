@@ -21,7 +21,6 @@ import PropTypes from 'prop-types'
 
 import { TextArea, Input } from '@pitrix/lego-ui'
 import { Modal, Form } from 'components/Base'
-import { updatePipelineParams } from 'utils/devops'
 import { get } from 'lodash'
 
 import RepoSelect from 'components/Forms/CICDs/RepoSelect'
@@ -84,7 +83,6 @@ export default class BaseInfoModal extends React.Component {
     const { onOk } = this.props
 
     const formData = this.form.current.getData()
-    updatePipelineParams(formData)
     await onOk(formData)
     if (this.state.subRoute) {
       this.props.handleScanRepository()
@@ -148,6 +146,7 @@ export default class BaseInfoModal extends React.Component {
           <RepoSelectForm
             sourceData={detail.multi_branch_pipeline}
             project_id={detail.project_id}
+            cluster={detail.cluster}
             name={name}
             onSave={this.handleRepoChange}
             onCancel={this.hideSelectRepo}

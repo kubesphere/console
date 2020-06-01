@@ -18,11 +18,10 @@
 
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { parse } from 'qs'
 
 import { Avatar, Status } from 'components/Base'
 import Banner from 'components/Cards/Banner'
-import withList, { ListPage } from 'components/HOCs/withList'
+import { withClusterList, ListPage } from 'components/HOCs/withList'
 import StatusReason from 'projects/components/StatusReason'
 import ResourceTable from 'clusters/components/ResourceTable'
 
@@ -32,23 +31,16 @@ import { CRONJOB_STATUS, ICON_TYPES } from 'utils/constants'
 
 import WorkloadStore from 'stores/workload'
 
-@withList({
+@withClusterList({
   store: new WorkloadStore('cronjobs'),
   module: 'cronjobs',
   name: 'CronJob',
   rowKey: 'uid',
 })
 export default class CronJobs extends React.Component {
-  get namespace() {
-    const { namespace = '' } = parse(this.props.location.search.slice(1))
-    return namespace
-  }
-
   handleTabChange = value => {
     const { cluster } = this.props.match.params
-    const { namespace } = this.props.query
-    const query = namespace ? `?namespace=${namespace}` : ''
-    this.props.routing.push(`/clusters/${cluster}/${value}${query}`)
+    this.props.routing.push(`/clusters/${cluster}/${value}`)
   }
 
   get tabs() {
@@ -221,14 +213,13 @@ export default class CronJobs extends React.Component {
   }
 
   render() {
-    const { query, match, bannerProps, tableProps } = this.props
+    const { match, bannerProps, tableProps } = this.props
     return (
       <ListPage {...this.props}>
         <Banner {...bannerProps} tabs={this.tabs} />
         <ResourceTable
           {...tableProps}
           itemActions={this.itemActions}
-          namespace={query.namespace}
           columns={this.getColumns()}
           onCreate={this.showCreate}
           cluster={match.params.cluster}

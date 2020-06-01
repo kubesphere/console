@@ -103,6 +103,7 @@ export default class CustomMonitoringTemplate {
     time = DAFAULT_TIME,
     isEditing = false,
     refresh = '',
+    name = '',
   }) {
     this.title = title
     this.namespace = namespace
@@ -112,6 +113,7 @@ export default class CustomMonitoringTemplate {
     this.templatings = templatings
     this.time = time
     this.refresh = refresh
+    this.name = name
 
     this.isEditing = isEditing
 
@@ -217,7 +219,6 @@ export default class CustomMonitoringTemplate {
       new MonitorRow({
         config: {
           id: this.uidFactory.generateUID(),
-          panels: [],
           title: 'New Row',
           type: 'row',
         },
@@ -233,6 +234,7 @@ export default class CustomMonitoringTemplate {
       type: 'singlestat',
       decimals: 0,
       namespace: this.namespace,
+      valueName: 'last',
       targets: [
         {
           expr: '',
@@ -252,35 +254,19 @@ export default class CustomMonitoringTemplate {
       bars,
       description: '',
       namespace: this.namespace,
-      legend: {
-        show: true,
-        avg: true,
-        total: false,
-        current: false,
-        max: true,
-        min: true,
-        values: true,
-      },
       stack: false,
       targets: [
         {
           expr: '',
           legendFormat: '',
-          step: '20s',
+          step: '1m',
           refId: 1,
         },
       ],
-      xaxis: {
-        show: true,
-      },
       yaxes: [
         {
           format: 'none',
-          show: true,
           decimals: 0,
-        },
-        {
-          show: false,
         },
       ],
       colors: MONITOR_GRAPH_COLORS[0].colors,
@@ -358,6 +344,7 @@ export default class CustomMonitoringTemplate {
         'templatings',
         'time',
         'refresh',
+        'name',
       ]),
       time: toJS(this.time),
       panels: [...unRowPanels, ...inRowPanels],

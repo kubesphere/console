@@ -22,6 +22,9 @@ export default {
   'Import Kubernetes Cluster': '导入Kubernetes集群',
   Import: '导入',
 
+  Validating: '校验中',
+  'Validation failed': '校验失败',
+
   'Cluster Name': '集群名称',
   'Cluster Management': '集群管理',
   'Nodes Management': '节点管理',
@@ -41,6 +44,8 @@ export default {
   'Connect Method': '连接方式',
 
   'Kubernetes Version': 'Kubernetes 版本',
+
+  'Edit Cluster Info': '编辑集群信息',
 
   'Cluster List': '集群列表',
   'Cluster Info': '集群信息',
@@ -70,6 +75,8 @@ export default {
 
   'Unbind Cluster': '解绑集群',
 
+  'Cluster Member': '集群成员',
+
   Authorized: '已授权',
   Unauthorized: '待授权',
 
@@ -81,6 +88,18 @@ export default {
   'Available Clusters': '可用集群',
 
   'Select Clusters': '集群选择',
+
+  'Edit cluster basic information': '编辑集群基础信息',
+
+  'Scheduler scheduling times': '调度器调度次数',
+  'Failed scheduling pods': '调度失败的容器组',
+
+  'Please select or input a tag': '请选择或输入标识',
+  'Please select or input a provider': '请选择或输入服务商',
+  'Please input the kubesphere api server address of the cluster':
+    '请输入待加入集群的 Kubesphere API Server 地址',
+
+  'All Projects': '全部项目',
 
   NO_CLUSTER_TIP: '请添加至少 1 个集群',
   NO_CLUSTER_TIP_DESC:
@@ -145,4 +164,17 @@ export default {
     '公开状态的集群意味着平台内的用户都可以使用该集群，并在集群中创建和调度资源',
 
   SELECT_CLUSTERS_DESC: '选择企业空间下可用的集群',
+
+  CLUSTER_API_SERVER_TITLE: '待加入集群的 Kubesphere API Server',
+  CLUSTER_API_SERVER_DESC:
+    '需要添加待加入集群的 KubeSphere API Server 地址，获取方式请查阅<a href="" target="_blank">文档</a>',
+
+  INPUT_KUBECONFIG: '请填写目标集群的 KubeConfig',
+
+  CLUSTER_DIRECT_IMPORT_TIP:
+    'KubeSphere 多集群控制平面通过提供的 kubeconfig 和暴露 kubesphere apiserver 地址来连接导入集群，此种方式要求当前集群能够通过 kubeconfig 中的 server 地址和 kubesphere apiserver 地址直接访问待导入集群</br></br>通常适用于:</br>1. 当前集群和待导入集群在同一内网网络中</br>2. 当前集群和待导入集群已通过vpn或隧道等其它技术连通所在网络</br>3. kubeconfig 的 server 地址和 kubesphere apiserver 地址可以通过公网访问',
+  CLUSTER_AGENT_IMPORT_TIP:
+    'KubeSphere 控制平面通过代理方式连接待导入集群，控制平面启动一个公开的代理服务，待导入集群创建相应的客户端组件连接代理服务，与控制平面之间建立一个反向代理。此种方式不需要待导入集群和控制平面在同一网络，也不要求待导入集群暴露集群的 apiserver 地址，但会有一定的网络性能损耗</br></br>通常适用于:</br>1. 当前集群和待导入集群不在同一网络中<br/>2. 当前集群和待导入集群无法通过vpn或隧道等其它技术连通所在网络<br/>3. 对集群间网络性能损耗能容忍',
+
+  HOW_TO_GET_KUBECONFIG: '如何获取KubeConfig?',
 }

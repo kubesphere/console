@@ -25,8 +25,7 @@ import { Link } from 'react-router-dom'
 import moment from 'moment-mini'
 import { Tabs, Columns, Column, Loading } from '@pitrix/lego-ui'
 
-import { Button, Modal } from 'components/Base'
-import AppDeployForm from 'components/Forms/AppTemplate'
+import { Button } from 'components/Base'
 import VersionStore from 'stores/openpitrix/version'
 import AppStore from 'stores/openpitrix/app'
 
@@ -122,34 +121,6 @@ export default class App extends React.Component {
     htmlElem.style.backgroundColor = 'white'
   }
 
-  showDeploy = () => {
-    if (!this.loggedIn) {
-      location.href = `/login?referer=${location.pathname}`
-    } else {
-      this.setState({ showDeploy: true })
-    }
-  }
-
-  hideDeploy = () => {
-    this.setState({ showDeploy: false })
-  }
-
-  handleDeploy = params => {
-    const { cluster, workspace, namespace, ...rest } = params
-    this.appStore.deploy(rest, { namespace }).then(() => {
-      this.hideDeploy()
-      this.routing.push(
-        `/cluster/${cluster}/projects/${namespace}/applications/template`
-      )
-    })
-  }
-
-  changeTab = tab => {
-    this.setState({
-      selectTab: tab,
-    })
-  }
-
   handleBack = () => {
     this.routing.push('/apps')
   }
@@ -182,26 +153,6 @@ export default class App extends React.Component {
             : keywords.map((v, idx) => <label key={idx}>{v}</label>)}
         </p>
       </div>
-    )
-  }
-
-  renderDeployModal() {
-    return (
-      <Modal
-        width={1162}
-        visible={this.state.showDeploy}
-        hideHeader
-        hideFooter
-        className={styles.deployModal}
-      >
-        <AppDeployForm
-          app={this.appStore.detail}
-          onOk={this.handleDeploy}
-          onCancel={this.hideDeploy}
-          isSubmitting={this.appStore.isSubmitting}
-          params={this.params}
-        />
-      </Modal>
     )
   }
 

@@ -55,12 +55,12 @@ export default class Policies extends React.Component {
     return get(this.params, 'namespace')
   }
 
-  get workspace() {
-    return get(this.projectStore, 'detail.workspace', '')
-  }
-
   get cluster() {
     return get(this.params, 'cluster')
+  }
+
+  get workspace() {
+    return get(this.projectStore, 'detail.workspace', '')
   }
 
   toggleNetworkIsolate = (flag = true) => {
@@ -70,9 +70,11 @@ export default class Policies extends React.Component {
       'metadata.annotations["kubesphere.io/network-isolate"]',
       flag ? 'true' : 'false'
     )
-    this.projectStore.patch({ name: this.namespace }, data).then(() => {
-      this.projectStore.fetchDetail(this.params)
-    })
+    this.projectStore
+      .patch({ name: this.namespace, cluster: this.cluster }, data)
+      .then(() => {
+        this.projectStore.fetchDetail(this.params)
+      })
   }
 
   handleEditNetworkIsolate = flag => {
@@ -104,8 +106,9 @@ export default class Policies extends React.Component {
             desc={t('NETWORK_POLICY_EMP_DESC')}
             actions={
               <Button
-                className={styles.onBtn}
+                type="control"
                 onClick={() => this.toggleNetworkIsolate()}
+                noShadow
               >
                 {t('On')}
               </Button>

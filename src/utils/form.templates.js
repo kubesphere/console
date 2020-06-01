@@ -424,7 +424,7 @@ const getBinaryTemplate = ({ namespace, name }) => ({
 
 const getWorkspaceTemplate = () => ({
   apiVersion: 'tenant.kubesphere.io/v1alpha2',
-  kind: 'WorkspaceCompat',
+  kind: 'WorkspaceTemplate',
   metadata: {
     name: '',
   },

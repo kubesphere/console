@@ -16,16 +16,16 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { set, flatten } from 'lodash'
+import { get, set } from 'lodash'
 import React from 'react'
 import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
+import { Input, TextArea } from '@pitrix/lego-ui'
 
-import { Modal, Steps, Button } from 'components/Base'
+import { Modal, Form, Alert } from 'components/Base'
+import EditAuthorization from 'components/Modals/EditAuthorization'
 
-import STEPS from './steps'
-
-import styles from './index.scss'
+import { PATTERN_NAME } from 'utils/constants'
 
 @observer
 export default class CreateModal extends React.Component {
@@ -36,7 +36,6 @@ export default class CreateModal extends React.Component {
     formTemplate: PropTypes.object,
     title: PropTypes.string,
     visible: PropTypes.bool,
-    edit: PropTypes.bool,
     onOk: PropTypes.func,
     onCancel: PropTypes.func,
     isSubmitting: PropTypes.bool,
@@ -50,174 +49,118 @@ export default class CreateModal extends React.Component {
     onCancel() {},
   }
 
-  constructor(props) {
-    super(props)
+  state = {
+    showEditAuthorization: false,
+  }
 
-    this.state = {
-      currentStep: 0,
-      formTemplate: props.formTemplate,
+  showEditAuthorization = () => {
+    this.setState({ showEditAuthorization: true })
+  }
+
+  hideEditAuthorization = () => {
+    this.setState({ showEditAuthorization: false })
+  }
+
+  handleCreate = roleTemplates => {
+    set(
+      this.props.formTemplate,
+      'metadata.annotations["iam.kubesphere.io/aggregation-roles"]',
+      JSON.stringify(roleTemplates)
+    )
+    this.props.onOk(this.props.formTemplate)
+  }
+
+  roleNameValidator = (rule, value, callback) => {
+    if (!value) {
+      return callback()
     }
 
-    this.formRef = React.createRef()
-  }
+    const { cluster, namespace } = this.props
+    const name = get(this.props.formTemplate, 'metadata.name')
 
-  componentDidUpdate(prevProps) {
-    const { visible, formTemplate } = this.props
-    if (visible && visible !== prevProps.visible) {
-      this.setState({ currentStep: 0, formTemplate })
+    if (this.props.edit && name === value) {
+      return callback()
     }
-  }
 
-  get steps() {
-    return STEPS
-  }
-
-  handleCreate = () => {
-    const form = this.formRef.current
-    const { onOk } = this.props
-
-    form &&
-      form.validate(() => {
-        const data = form.getData()
-
-        if (data.roleTemplates) {
-          set(
-            data,
-            'metadata.annotations["iam.kubesphere.io/aggregation-roles"]',
-            JSON.stringify(flatten(Object.values(data.roleTemplates)))
-          )
+    this.props.store
+      .checkName({ name: value, cluster, namespace })
+      .then(resp => {
+        if (resp.exist) {
+          return callback({ message: t('Role name exists'), field: rule.field })
         }
-
-        onOk(data)
+        callback()
       })
-  }
-
-  handleNext = () => {
-    const form = this.formRef.current
-    const stepCount = this.steps.length
-
-    form &&
-      form.validate(() => {
-        this.setState(({ currentStep }) => ({
-          currentStep: Math.min(currentStep + 1, stepCount - 1),
-        }))
-      })
-  }
-
-  handlePrev = () => {
-    this.setState(({ currentStep, subRoute }) => ({
-      currentStep: Math.max(currentStep - 1, 0),
-      subRoute,
-    }))
-  }
-
-  renderTabs() {
-    const { currentStep } = this.state
-
-    return (
-      <div className={styles.tabs}>
-        <Steps steps={this.steps} current={currentStep} />
-      </div>
-    )
-  }
-
-  renderContent() {
-    const {
-      module,
-      cluster,
-      namespace,
-      workspace,
-      roleTemplates,
-      store,
-      edit,
-    } = this.props
-    const { currentStep, formTemplate } = this.state
-
-    const Component = this.steps[currentStep].component
-
-    if (!Component) {
-      return null
-    }
-
-    return (
-      <div className={styles.content}>
-        <Component
-          store={store}
-          formRef={this.formRef}
-          formTemplate={formTemplate}
-          roleTemplates={roleTemplates}
-          module={module}
-          cluster={cluster}
-          namespace={namespace}
-          workspace={workspace}
-          edit={edit}
-        />
-      </div>
-    )
-  }
-
-  renderFooter() {
-    const { currentStep } = this.state
-    const { edit, isSubmitting, onCancel } = this.props
-
-    const showCreate = this.steps.every((step, index) =>
-      step.required ? currentStep >= index : true
-    )
-
-    const showNext = currentStep < this.steps.length - 1
-
-    return (
-      <div className={styles.footer} data-test="modal-footer">
-        <Button onClick={onCancel}>{t('Cancel')}</Button>
-        <Button
-          type="default"
-          onClick={this.handlePrev}
-          data-test="modal-previous"
-        >
-          {t('Previous')}
-        </Button>
-        {showNext && (
-          <Button
-            type="control"
-            onClick={this.handleNext}
-            data-test="modal-next"
-          >
-            {t('Next')}
-          </Button>
-        )}
-        {showCreate && (
-          <Button
-            type="control"
-            loading={isSubmitting}
-            disabled={isSubmitting}
-            onClick={this.handleCreate}
-            data-test="modal-create"
-          >
-            {edit ? t('Update') : t('Create')}
-          </Button>
-        )}
-      </div>
-    )
   }
 
   render() {
-    const { title, visible, onCancel, isSubmitting } = this.props
+    const {
+      title,
+      visible,
+      module,
+      onCancel,
+      formTemplate,
+      roleTemplates,
+      isSubmitting,
+    } = this.props
+    const { showEditAuthorization } = this.state
+
+    const isWorkspaceRole = module === 'workspaceroles'
+
+    if (showEditAuthorization) {
+      return (
+        <EditAuthorization
+          module={module}
+          visible={showEditAuthorization}
+          formTemplate={formTemplate}
+          roleTemplates={roleTemplates}
+          onOk={this.handleCreate}
+          onCancel={this.hideEditAuthorization}
+          isSubmitting={isSubmitting}
+        />
+      )
+    }
 
     return (
-      <Modal
-        width={960}
+      <Modal.Form
+        width={600}
         title={title || t('Create Role')}
-        bodyClassName={styles.body}
+        icon="role"
+        data={formTemplate}
         onCancel={onCancel}
+        onOk={this.showEditAuthorization}
+        okText={t('Edit Authorization')}
         visible={visible}
-        isSubmitting={isSubmitting}
-        maskClosable={false}
-        hideFooter
       >
-        {this.renderTabs()}
-        {this.renderContent()}
-        {this.renderFooter()}
-      </Modal>
+        <Form.Item
+          label={t(`${t('Role Name')}(${t('Alias')})`)}
+          desc={t('ALIAS_DESC')}
+        >
+          <Input name="metadata.annotations['kubesphere.io/alias-name']" />
+        </Form.Item>
+        <Form.Item
+          label={t('Role Identifier')}
+          desc={t('NAME_DESC')}
+          tip={isWorkspaceRole ? t('WORKSPACE_ROLE_NAME_TIP') : null}
+          rules={[
+            { required: true, message: t('Please input role name') },
+            {
+              pattern: PATTERN_NAME,
+              message: `${t('Invalid name')}, ${t('NAME_DESC')}`,
+            },
+            { validator: this.roleNameValidator },
+          ]}
+        >
+          <Input name="metadata.name" />
+        </Form.Item>
+        <Form.Item label={t('Description')}>
+          <TextArea name="metadata.annotations['kubesphere.io/description']" />
+        </Form.Item>
+        <Alert
+          className="margin-t12"
+          title={t('ROLE_CREATE_TIP_TITLE')}
+          message={t('ROLE_CREATE_TIP_MESSAGE')}
+        />
+      </Modal.Form>
     )
   }
 }

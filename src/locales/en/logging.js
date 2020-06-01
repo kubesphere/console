@@ -18,6 +18,7 @@
 
 export default {
   LOG_DATE: 'YYYY/MM/DD HH:mm',
+  EVENT_DATE: 'YYYY/MM/DD 00:00',
   ES_DESC:
     'Elasticsearch is a distributed, RESTful search and analytics engine.',
   KAFKA_DESC: 'Kafka is a popular open-source stream-processing platform.',
@@ -51,6 +52,20 @@ export default {
     'You can view related log information according to the container name.',
   'Pod Log Query Tip':
     'You can view related log information according to the pod name',
+  'Search Events by': 'Search events by {field}',
+  'KeyWord Event Query Tip': 'Please enter the keyword to find the event.',
+  'Project Event Query Tip':
+    'You can view related event information according to the project.',
+  'Name Event Query Tip':
+    'You can view related event information according to the name.',
+  'Message Event Query Tip':
+    'You can view related event information according to the message.',
+  'Category Event Query Tip':
+    'You can view related event information according to the category.',
+  'Reason Event Query Tip':
+    'You can view related event information according to the reason name.',
+  'Pod Event Query Tip':
+    'You can view related event information according to the pod name',
   TOTAL_LOGS:
     'A total of <span class={className}>{containers}</span> containers<br/> <span class={className}> {logs} </span> log information.',
   TIME_S: '{num} s',
@@ -58,7 +73,15 @@ export default {
     'The container does not support real-time logs in the current state, please try again later.',
   TOTAL_LOGS_TODAY:
     'A total of <span class={className}>{containers}</span> containers and <span class={className}> {logs} </span> logs were collected today.',
+  TOTAL_EVENTS_TODAY:
+    'A total of <span class={className}> {events} </span> events were collected today.',
+  NO_EVENTS_TODAY: 'Events not included today',
   START_REAL_TIME_LOG: 'turn on real-time logging',
   STOP_REAL_TIME_LOG: 'turn off real-time logging',
   LOG_EXPORT: 'Log Export',
+  CREATE_CUSTOM_MONITORING_DASHBOARD: 'Create custom monitoring dashboard',
+  SELECT_SUITABLE_MONITORING_TEMPLATE: 'Select suitable monitoring template',
+  CUSTON_MONITORING_TEMPLATE_DESC:
+    'Monitoring panel arranged to generate a default application type panel',
+  SERVICE_BUILT_INTERFACE: 'service monitoring is built interface data capture',
 }

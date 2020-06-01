@@ -98,7 +98,14 @@ export default class BaseStore {
   }
 
   @action
-  async fetchList({ cluster, workspace, namespace, more, ...params } = {}) {
+  async fetchList({
+    cluster,
+    workspace,
+    namespace,
+    more,
+    devops,
+    ...params
+  } = {}) {
     this.list.isLoading = true
 
     if (!params.sortBy && params.ascending === undefined) {
@@ -113,7 +120,7 @@ export default class BaseStore {
     params.limit = params.limit || 10
 
     const result = await request.get(
-      this.getResourceUrl({ cluster, workspace, namespace }),
+      this.getResourceUrl({ cluster, workspace, namespace, devops }),
       params
     )
     const data = get(result, 'items', []).map(item => ({
@@ -150,6 +157,7 @@ export default class BaseStore {
     )
     const data = result.items.map(item => ({
       cluster,
+      module: module || this.module,
       ...this.mapper(item),
     }))
 

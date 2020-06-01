@@ -105,11 +105,9 @@ export default class ResourceStatus extends React.Component {
   }
 
   renderPods() {
-    const { name } = this.props.match.params
-
     return (
       <PodsCard
-        prefix={`${this.prefix}/${this.module}/${name}`}
+        prefix={this.prefix}
         detail={this.store.detail}
         clusters={get(this.props.fedDetailStore, 'detail.clusters', [])}
         onUpdate={this.handlePodUpdate}

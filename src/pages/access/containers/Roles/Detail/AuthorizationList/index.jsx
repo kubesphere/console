@@ -32,7 +32,7 @@ export default class AuthorizationList extends React.Component {
 
     const templates = groupBy(
       roleTemplates.data.filter(rt => detail.roleTemplates.includes(rt.name)),
-      'annotations["iam.kubesphere.io/category"]'
+      'annotations["iam.kubesphere.io/module"]'
     )
 
     return (

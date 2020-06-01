@@ -41,8 +41,7 @@ export default class Secrets extends React.Component {
   showAction = record => !globals.config.presetRoles.includes(record.name)
 
   get itemActions() {
-    const { routing, trigger } = this.props
-    const { rulesInfo } = this.props.store
+    const { routing, trigger, store } = this.props
 
     return [
       {
@@ -50,12 +49,22 @@ export default class Secrets extends React.Component {
         icon: 'pen',
         text: t('Edit'),
         action: 'edit',
+        onClick: item =>
+          trigger('resource.baseinfo.edit', {
+            detail: item,
+          }),
+      },
+      {
+        key: 'editRole',
+        icon: 'pen',
+        text: t('Edit Authorization'),
+        action: 'edit',
         show: this.showAction,
         onClick: item =>
           trigger('role.edit', {
-            title: t('Edit Project Role'),
+            module,
             detail: item,
-            rulesInfo: toJS(rulesInfo),
+            roleTemplates: toJS(store.roleTemplates.data),
             success: routing.query,
           }),
       },
@@ -89,6 +98,10 @@ export default class Secrets extends React.Component {
     }
   }
 
+  get emptyProps() {
+    return { desc: t('PROJECT_ROLE_DESC') }
+  }
+
   getColumns = () => {
     const { getSortOrder, module } = this.props
     const { namespace, cluster } = this.props.match.params
@@ -99,10 +112,11 @@ export default class Secrets extends React.Component {
         sorter: true,
         sortOrder: getSortOrder('name'),
         search: true,
-        render: name => (
+        render: (name, record) => (
           <Avatar
             icon={ICON_TYPES[module]}
             title={name}
+            desc={record.aliasName}
             to={`/cluster/${cluster}/projects/${namespace}/${module}/${name}`}
           />
         ),
@@ -134,10 +148,11 @@ export default class Secrets extends React.Component {
   }
 
   showCreate = () => {
-    const { match, getData } = this.props
+    const { match, getData, store } = this.props
     return this.props.trigger('role.create', {
       namespace: match.params.namespace,
       cluster: match.params.cluster,
+      roleTemplates: toJS(store.roleTemplates.data),
       success: getData,
     })
   }
@@ -153,6 +168,7 @@ export default class Secrets extends React.Component {
         />
         <Table
           {...tableProps}
+          emptyProps={this.emptyProps}
           tableActions={this.tableActions}
           itemActions={this.itemActions}
           columns={this.getColumns()}

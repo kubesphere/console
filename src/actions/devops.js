@@ -18,7 +18,7 @@
 
 import { get } from 'lodash'
 import { Modal, Notify } from 'components/Base'
-import ProjectCreateModal from 'components/Modals/ProjectCreate'
+import DevOpsCreateModal from 'components/Modals/DevOpsCreate'
 import EditModal from 'components/Modals/DevOpsEdit'
 
 export default {
@@ -26,17 +26,17 @@ export default {
     on({ store, workspace, success, ...props }) {
       const modal = Modal.open({
         onOk: data => {
-          store.create(data, { workspace }).then(() => {
+          const cluster = get(data, 'spec.placement.cluster')
+          store.create(data, { cluster, workspace }).then(() => {
             Modal.close(modal)
             Notify.success({ content: `${t('Created Successfully')}!` })
-            const name = get(data, 'metadata.name')
-            success && success(name)
+            success && success()
           })
         },
-        type: 'devops',
         formTemplate: {},
-        modal: ProjectCreateModal,
+        modal: DevOpsCreateModal,
         store,
+        workspace,
         ...props,
       })
     },
@@ -45,7 +45,7 @@ export default {
     on({ store, detail, success, ...props }) {
       const modal = Modal.open({
         onOk: newObject => {
-          store.update(detail.name, newObject).then(() => {
+          store.update(detail, newObject).then(() => {
             Modal.close(modal)
             Notify.success({ content: `${t('Updated Successfully')}!` })
             success && success()

@@ -21,11 +21,11 @@ import { observer, inject } from 'mobx-react'
 import { Link } from 'react-router-dom'
 import { toJS } from 'mobx'
 import { parse } from 'qs'
-import { get, omit, set } from 'lodash'
+import { get, omit } from 'lodash'
 import { Menu, Dropdown, Column, Icon } from '@pitrix/lego-ui'
 
 import { JOB_STATUS } from 'utils/constants'
-import { updatePipelineParams } from 'utils/devops'
+import { updatePipelineParams, updatePipelineParamsInSpec } from 'utils/devops'
 import { Button } from 'components/Base'
 import Health from 'projects/components/Health'
 import EmptyTable from 'components/Cards/EmptyTable'
@@ -64,7 +64,8 @@ class CICDs extends React.Component {
     this.store = new PipelineStore()
 
     this.formTemplate = {
-      project_name: props.match.params.project_name,
+      project_name: this.props.devopsStore.project_name,
+      cluster: this.cluster,
       enable_timer_trigger: true,
       enable_discarder: true,
     }
@@ -195,9 +196,13 @@ class CICDs extends React.Component {
     }
   }
 
+  get cluster() {
+    return this.props.match.params.cluster
+  }
+
   get prefix() {
     if (this.props.match.url.endsWith('/')) {
-      return this.props.match.url.slice(0, -1)
+      return this.props.match.url
     }
     return this.props.match.url
   }
@@ -253,8 +258,9 @@ class CICDs extends React.Component {
     this.setState({ showCreate: true })
   }
 
-  showEditConfig = name => {
-    const formData = this.store.getPipeLineConfig(name)
+  showEditConfig = async name => {
+    await this.store.fetchDetail({ name })
+    const formData = this.store.getPipeLineConfig()
     formData.project_id = this.project_id
 
     this.setState({
@@ -266,8 +272,11 @@ class CICDs extends React.Component {
   hideCreate = () => {
     this.setState({ showCreate: false })
     // init formdata
+    const project_name = this.props.devopsStore.project_name
+    const cluster = this.cluster
     this.formTemplate = {
-      project_name: this.props.match.params.project_name,
+      project_name,
+      cluster,
       enable_timer_trigger: true,
     }
   }
@@ -291,39 +300,17 @@ class CICDs extends React.Component {
     this.setState({ showBranchModal: false })
   }
 
-  updatePipelineParamsInSpec = data => {
-    if (data.multi_branch_pipeline) {
-      data = set(data, 'metadata.name', data.multi_branch_pipeline.name)
-      data.spec = {
-        multi_branch_pipeline: { ...data.multi_branch_pipeline },
-        type: data.type,
-      }
-
-      delete data.multi_branch_pipeline
-    }
-
-    if (data.pipeline) {
-      data = set(data, 'metadata.name', data.pipeline.name)
-      data.spec = {
-        pipeline: { ...data.pipeline },
-        type: data.type,
-      }
-
-      delete data.pipeline
-    }
-
-    delete data.type
-
-    data = set(data, 'metadata.namespace', this.project_id)
-  }
-
   handleCreate = async data => {
     updatePipelineParams(data)
-    this.updatePipelineParamsInSpec(data)
+    updatePipelineParamsInSpec(data, this.project_id)
     this.setState({ isSubmitting: true })
 
     const result = await this.store
-      .createPipeline({ data, namespace: this.project_id })
+      .createPipeline({
+        data,
+        namespace: this.project_id,
+        cluster: this.cluster,
+      })
       .finally(() => {
         this.setState({ isSubmitting: false })
       })
@@ -337,11 +324,14 @@ class CICDs extends React.Component {
       await this.store.scanRepository({
         name: data.spec.multi_branch_pipeline.name,
         project_id: this.project_id,
+        cluster: this.cluster,
       })
       this.setState({ showCreate: false })
       this.props.rootStore.routing.push(
-        `/devops/${this.project_id}/pipelines/${encodeURIComponent(
-          data.multi_branch_pipeline.name
+        `/cluster/${this.cluster}/devops/${
+          this.project_id
+        }/pipelines/${encodeURIComponent(
+          data.spec.multi_branch_pipeline.name
         )}/activity`
       )
       return
@@ -349,6 +339,7 @@ class CICDs extends React.Component {
 
     if (result.metadata && result.metadata.name) {
       this.createName = result.metadata.name
+      this.store.fetchDetail({ name: this.createName, cluster: this.cluster })
       this.setState({
         showCreate: false,
         showEdit: true,
@@ -364,10 +355,10 @@ class CICDs extends React.Component {
       .finally(() => {
         this.setState({ isSubmitting: false })
       })
-    if (result.name) {
+    if (result.metadata.name) {
       this.setState({ showEdit: false })
       this.props.rootStore.routing.push(
-        `${this.prefix}/${encodeURIComponent(result.name)}/`
+        `${this.prefix}/${encodeURIComponent(result.metadata.name)}/`
       )
       const { namespace, project_id } = params
       localStorage.removeItem(
@@ -378,9 +369,13 @@ class CICDs extends React.Component {
 
   handleEditConfig = async data => {
     updatePipelineParams(data, true)
-    this.updatePipelineParamsInSpec(data)
+    updatePipelineParamsInSpec(data, this.project_id)
 
-    await this.store.updatePipeline({ data, project_id: this.project_id })
+    await this.store.updatePipeline({
+      data,
+      project_id: this.project_id,
+      cluster: this.cluster,
+    })
 
     this.setState({ showEditConfig: false })
     this.handleFetch()
@@ -390,7 +385,11 @@ class CICDs extends React.Component {
     this.setState({ isSubmitting: true })
 
     await this.store
-      .deletePipeline(this.state.selectPipeline.name, this.project_id)
+      .deletePipeline(
+        this.state.selectPipeline.name,
+        this.project_id,
+        this.cluster
+      )
       .finally(() => {
         this.setState({ isSubmitting: false })
       })
@@ -416,9 +415,9 @@ class CICDs extends React.Component {
           return (
             <Link
               className="item-name"
-              to={`/devops/${this.project_id}/pipelines/${encodeURIComponent(
-                record.name
-              )}/activity`}
+              to={`/cluster/${this.cluster}/devops/${
+                this.project_id
+              }/pipelines/${encodeURIComponent(record.name)}/activity`}
             >
               {name}
             </Link>
@@ -427,9 +426,9 @@ class CICDs extends React.Component {
         return (
           <Link
             className="item-name"
-            to={`/devops/${this.project_id}/pipelines/${encodeURIComponent(
-              record.name
-            )}`}
+            to={`/cluster/${this.cluster}/devops/${
+              this.project_id
+            }/pipelines/${encodeURIComponent(record.name)}`}
           >
             {name}
           </Link>
@@ -544,8 +543,6 @@ class CICDs extends React.Component {
   }
 
   renderModals() {
-    const { project_name } = this.props.match.params
-
     return (
       <React.Fragment>
         <CreateModal
@@ -558,15 +555,17 @@ class CICDs extends React.Component {
           onOk={this.handleCreate}
           onCancel={this.hideCreate}
           isSubmitting={this.state.isSubmitting}
+          project_id={this.project_id}
+          cluster={this.cluster}
           noCodeEdit
         />
         <EditPipelineConfig
           title={t('Edit Pipeline')}
           formTemplate={this.state.configFormData}
-          project_name={project_name}
           visible={this.state.showEditConfig}
           onOk={this.handleEditConfig}
           onCancel={this.hideEditConfig}
+          cluster={this.cluster}
         />
         <DeleteModal
           type={t('Pipeline')}

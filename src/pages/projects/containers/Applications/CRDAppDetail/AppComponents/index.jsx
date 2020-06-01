@@ -44,16 +44,20 @@ class Components extends React.Component {
 
   getData() {
     const { selector } = toJS(this.store.detail)
-    const { namespace } = this.props.match.params
+    const { cluster, namespace } = this.props.match.params
 
     if (selector) {
-      const params = { namespace, labelSelector: joinSelector(selector) }
+      const params = {
+        cluster,
+        namespace,
+        labelSelector: joinSelector(selector),
+      }
 
       this.store.fetchComponents(params)
       this.store.routerStore.fetchListByK8s(params)
     }
 
-    this.routerStore.getGateway({ namespace })
+    this.routerStore.getGateway({ cluster, namespace })
   }
 
   get prefix() {

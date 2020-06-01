@@ -17,10 +17,12 @@
  */
 
 import React from 'react'
+import { computed, get } from 'mobx'
+import { parse } from 'qs'
 
 import { Avatar } from 'components/Base'
 import Banner from 'components/Cards/Banner'
-import Table from 'components/Tables/List'
+import Table from 'workspaces/components/ResourceTable'
 import withList, { ListPage } from 'components/HOCs/withList'
 
 import { getLocalTime } from 'utils'
@@ -32,8 +34,11 @@ import DevOpsStore from 'stores/devops'
   name: 'DevOps Project',
   module: 'devops',
   rowKey: 'name',
+  injectStores: ['rootStore', 'workspaceStore'],
 })
 export default class DevOps extends React.Component {
+  workspaceStore = this.props.workspaceStore
+
   get itemActions() {
     const { trigger, getData } = this.props
     return [
@@ -55,7 +60,11 @@ export default class DevOps extends React.Component {
             type: t('DevOps Project'),
             resource: item.name,
             detail: item,
-            success: getData,
+            success: () => {
+              setTimeout(() => {
+                getData()
+              }, 500)
+            },
           }),
       },
     ]
@@ -74,27 +83,68 @@ export default class DevOps extends React.Component {
     ]
   }
 
+  @computed
+  get clusters() {
+    return this.workspaceStore.clusters.data.map(item => ({
+      label: item.name,
+      value: item.name,
+    }))
+  }
+
+  @computed
+  get cluster() {
+    const params = parse(location.search.slice(1))
+    return params.cluster || this.hostCluster
+  }
+
+  @computed
+  get hostCluster() {
+    if (this.workspaceStore.clusters.data.length < 1) {
+      return ''
+    }
+
+    return get(
+      this.workspaceStore.clusters.data.find(cluster => cluster.isHost) ||
+        this.workspaceStore.clusters.data[0],
+      'name'
+    )
+  }
+
+  getData = async ({ silent, ...params } = {}) => {
+    this.query = params
+
+    const { store } = this.props
+
+    silent && (store.list.silent = true)
+    await store.fetchList({
+      cluster: this.cluster,
+      ...this.props.match.params,
+      ...params,
+    })
+    store.list.silent = false
+  }
+
   getColumns = () => [
     {
       title: t('Name'),
       dataIndex: 'name',
-      width: '40%',
+      width: '20%',
       render: (name, record) => (
         <Avatar
           icon="strategy-group"
           iconSize={40}
-          to={`/devops/${record.name}`}
+          to={`/cluster/${this.cluster}/devops/${record.namespace}`}
           desc={record.description || '-'}
           title={name}
         />
       ),
     },
-    // {
-    //   title: t('ID'),
-    //   dataIndex: 'project_id',
-    //   isHideable: true,
-    //   width: '20%',
-    // },
+    {
+      title: t('ID'),
+      dataIndex: 'namespace',
+      isHideable: true,
+      width: '20%',
+    },
     {
       title: t('Creator'),
       dataIndex: 'creator',
@@ -114,14 +164,16 @@ export default class DevOps extends React.Component {
   showCreate = () =>
     this.props.trigger('devops.create', {
       ...this.props.match.params,
-      success: name => {
-        location.href = `/devops/${name}`
+      success: () => {
+        setTimeout(() => {
+          this.props.getData()
+        }, 500)
       },
     })
   render() {
     const { bannerProps, tableProps } = this.props
     return (
-      <ListPage {...this.props}>
+      <ListPage {...this.props} getData={this.getData}>
         <Banner
           {...bannerProps}
           description={t('DEVOPS_DESCRIPTION')}
@@ -133,6 +185,8 @@ export default class DevOps extends React.Component {
           columns={this.getColumns()}
           onCreate={this.showCreate}
           searchType="keyword"
+          cluster={this.cluster}
+          clusters={this.clusters}
         />
       </ListPage>
     )

@@ -16,13 +16,15 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get } from 'lodash'
+import { get, isEmpty } from 'lodash'
+import { toJS } from 'mobx'
 import { Modal, Notify } from 'components/Base'
 
 import CreateModal from 'components/Modals/Create'
 import CreateServiceModal from 'projects/components/Modals/ServiceCreate'
 import EditServiceModal from 'projects/components/Modals/ServiceSetting'
 import EditGatewayModal from 'projects/components/Modals/ServiceGatewaySetting'
+import DeleteModal from 'projects/components/Modals/ServiceDelete'
 import { MODULE_KIND_MAP } from 'utils/constants'
 import formPersist from 'utils/form.persist'
 import FORM_TEMPLATES from 'utils/form.templates'
@@ -126,6 +128,46 @@ export default {
         },
         modal: EditGatewayModal,
         detail: detail._originData,
+        store,
+        ...props,
+      })
+    },
+  },
+  'service.delete': {
+    on({ store, detail, success, ...props }) {
+      const modal = Modal.open({
+        onOk: () => {
+          Modal.close(modal)
+          Notify.success({ content: `${t('Deleted Successfully')}!` })
+          success && success()
+        },
+        store,
+        modal: DeleteModal,
+        resource: detail,
+        ...props,
+      })
+    },
+  },
+  'service.batch.delete': {
+    on({ store, success, rowKey = 'name', ...props }) {
+      const { data, selectedRowKeys } = toJS(store.list)
+
+      const resource = data.filter(item =>
+        selectedRowKeys.includes(item[rowKey])
+      )
+
+      if (isEmpty(resource)) {
+        return
+      }
+
+      const modal = Modal.open({
+        onOk: () => {
+          Modal.close(modal)
+          Notify.success({ content: `${t('Deleted Successfully')}!` })
+          success && success()
+        },
+        modal: DeleteModal,
+        resource,
         store,
         ...props,
       })

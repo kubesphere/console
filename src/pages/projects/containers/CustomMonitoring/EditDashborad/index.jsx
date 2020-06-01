@@ -37,7 +37,7 @@ export default class CrateDashboardModalContainer extends React.Component {
       time,
     } = spec
 
-    const { namespace } = metadata
+    const { namespace, name } = metadata
 
     this.store = new CustomMonitoringTemplate({
       title,
@@ -49,18 +49,18 @@ export default class CrateDashboardModalContainer extends React.Component {
       datasource,
       templatings,
       time,
+      name,
     })
   }
 
   onSave = async () => {
     const { metadata = {} } = this.props.data
-    const { name, resourceVersion } = metadata
+    const { resourceVersion } = metadata
 
     const params = this.store.toJS()
     await this.props.onSave({
-      name,
-      resourceVersion,
       ...params,
+      resourceVersion,
     })
     this.store.switchEditingMode(false)
   }

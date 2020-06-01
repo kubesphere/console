@@ -29,8 +29,10 @@ export default class TypesStore extends Base {
   metricTypes = {}
 
   @action
-  async fetchResourceTypes() {
-    const result = await request.get(`${this.apiVersion}/resource_type`)
+  async fetchResourceTypes(params = {}) {
+    const result = await request.get(
+      `${this.apiVersion}${this.getPath(params)}/resource_type`
+    )
     const data = get(result, 'resource_type_set') || []
     const types = {}
 
@@ -46,11 +48,14 @@ export default class TypesStore extends Base {
   }
 
   @action
-  async fetchMetricTypes({ rs_type_id, limit = 50 }) {
-    const result = await request.get(`${this.apiVersion}/metric`, {
-      rs_type_ids: rs_type_id,
-      limit,
-    })
+  async fetchMetricTypes({ cluster, rs_type_id, limit = 50 }) {
+    const result = await request.get(
+      `${this.apiVersion}${this.getPath({ cluster })}/metric`,
+      {
+        rs_type_ids: rs_type_id,
+        limit,
+      }
+    )
     const data = get(result, 'metric_set') || []
     const types = {}
 

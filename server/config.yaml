@@ -114,9 +114,7 @@ client:
           title: Network Management
           icon: earth
           children:
-            - { name: ip-ranges, title: IP Ranges }
             - { name: networkpolicies, title: Network Policies }
-            - { name: network-topo, title: Network Topology }
         - { name: customresources, title: Custom Resources, icon: select }
         - name: storage
           title: Storage Management
@@ -207,13 +205,17 @@ client:
         - { name: overview, title: Overview, icon: dashboard, skipAuth: true }
         - { name: projects, title: NAV_PROJECTS, icon: project }
         - { name: devops, title: DevOps Projects, icon: strategy-group }
-        - { name: apps, title: App Templates, icon: appcenter }
+        - name: apps
+          title: Apps Management
+          icon: appcenter
+          children:
+            - { name: apps, title: App Templates, icon: appcenter }
+            - { name: repos, title: App Repos }
         - name: management
           title: Workspace Settings
           icon: cogwheel
           children:
             - { name: base-info, title: Basic Info, skipAuth: true }
-            - { name: repos, title: App Repos }
             - { name: roles, title: Workspace Roles }
             - { name: members, title: Workspace Members }
 
@@ -269,12 +271,12 @@ client:
           icon: monitor
           children:
             - {
-                name: alert-message,
+                name: alert-messages,
                 title: Alerting Message,
                 authKey: 'alerting',
               }
             - {
-                name: alert-policy,
+                name: alert-policies,
                 title: Alerting Policy,
                 authKey: 'alerting',
               }

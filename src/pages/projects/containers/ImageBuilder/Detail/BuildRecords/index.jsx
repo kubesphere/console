@@ -24,7 +24,7 @@ import ImageBuilderLastRun from 'projects/components/Cards/ImageBuilderLastRun'
 import RunRecords from 'projects/components/Cards/ImageRunRecord'
 import styles from './index.scss'
 
-@inject('rootStore')
+@inject('detailStore', 's2iRunStore')
 @observer
 class BuildRecords extends React.Component {
   get store() {

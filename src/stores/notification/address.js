@@ -39,13 +39,13 @@ export default class AddressStore extends Base {
     this.module = 'address'
   }
 
-  getListUrl = () => `${this.apiVersion}/addresses`
+  getListUrl = params => `${this.apiVersion}${this.getPath(params)}/addresses`
 
   @action
-  async create({ address }) {
+  async create({ cluster, address }) {
     this.addressList.isLoading = true
 
-    const { address_id } = await request.post(this.getListUrl(), {
+    const { address_id } = await request.post(this.getListUrl({ cluster }), {
       address,
       notify_type: this.notify_type,
     })
@@ -56,8 +56,9 @@ export default class AddressStore extends Base {
     return address_id
   }
 
-  async markSureMailInList({ address }) {
-    const response = (await request.get(this.getListUrl(), { address })) || {}
+  async markSureMailInList({ cluster, address }) {
+    const response =
+      (await request.get(this.getListUrl({ cluster }), { address })) || {}
     const list = response[this.itemsKey] || []
 
     const addressMessage = list.find(({ address: mail }) => mail === address)
@@ -69,21 +70,24 @@ export default class AddressStore extends Base {
   }
 
   @action
-  async delete({ id }) {
+  async delete({ cluster, id }) {
     this.addressList.isLoading = true
 
     await this.submitting(
-      request.delete(this.getListUrl(), { address_id: [id] })
+      request.delete(this.getListUrl({ cluster }), { address_id: [id] })
     )
 
     this.addressList.isLoading = false
   }
 
   @action
-  createList({ address_id }) {
-    return request.post(`${this.apiVersion}/addresslists`, {
-      address_id,
-      extra: '{}',
-    })
+  createList({ cluster, address_id }) {
+    return request.post(
+      `${this.apiVersion}${this.getPath({ cluster })}/addresslists`,
+      {
+        address_id,
+        extra: '{}',
+      }
+    )
   }
 }

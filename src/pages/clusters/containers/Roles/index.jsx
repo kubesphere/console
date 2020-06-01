@@ -51,13 +51,22 @@ export default class ClusterRoles extends React.Component {
         icon: 'pen',
         text: t('Edit'),
         action: 'edit',
+        onClick: item =>
+          trigger('resource.baseinfo.edit', {
+            detail: item,
+          }),
+      },
+      {
+        key: 'editRole',
+        icon: 'pen',
+        text: t('Edit Authorization'),
+        action: 'edit',
         show: this.showAction,
         onClick: item =>
           trigger('role.edit', {
             module,
             detail: item,
-            title: t('Edit Cluster Role'),
-            rulesInfo: toJS(store.rulesInfo),
+            roleTemplates: toJS(store.roleTemplates.data),
             success: routing.query,
           }),
       },
@@ -137,10 +146,14 @@ export default class ClusterRoles extends React.Component {
     const { match, store, trigger, getData } = this.props
     return trigger('role.create', {
       title: t('Create Cluster Role'),
-      rulesInfo: toJS(store.rulesInfo),
+      roleTemplates: toJS(store.roleTemplates.data),
       cluster: match.params.cluster,
       success: getData,
     })
+  }
+
+  get emptyProps() {
+    return { desc: t('CLUSTER_ROLE_DESC') }
   }
 
   render() {
@@ -150,6 +163,7 @@ export default class ClusterRoles extends React.Component {
         <Banner {...bannerProps} tabs={this.tabs} />
         <Table
           {...tableProps}
+          emptyProps={this.emptyProps}
           tableActions={this.tableActions}
           itemActions={this.itemActions}
           columns={this.getColumns()}

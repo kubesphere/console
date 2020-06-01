@@ -35,6 +35,7 @@ const config = {
     publicPath: '/',
     pathinfo: false,
   },
+  devtool: 'cheap-module-source-map',
   module: {
     rules: [
       ...baseConfig.moduleRules,

@@ -20,7 +20,7 @@ import { action, observable, computed, toJS } from 'mobx'
 import { get, set, unset } from 'lodash'
 import { Message } from '@pitrix/lego-ui'
 
-import CredentialStore from 'stores/devops/cridential'
+import CredentialStore from 'stores/devops/credential'
 import BaseStore from 'stores/devops/base'
 
 const formatPipeLineJson = json => {
@@ -236,10 +236,10 @@ export default class Store extends BaseStore {
   }
 
   @action
-  async convertJsonToJenkinsFile() {
+  async convertJsonToJenkinsFile({ cluster }) {
     return this.request
       .post(
-        `kapis/devops.kubesphere.io/v1alpha2/tojenkinsfile`,
+        `${this.getBaseUrlV2({ cluster })}/tojenkinsfile`,
         {
           json: JSON.stringify(formatPipeLineJson(toJS(this.jsonData.json))),
         },
@@ -312,11 +312,13 @@ export default class Store extends BaseStore {
   getCredentials = async () => {
     this.isCredentialLoading = true
     const result = await this.credentialStore.fetchList({
-      project_id: this.params.project_id,
+      namespace: this.params.project_id,
+      cluster: this.params.cluster,
     })
+
     this.credentials = result.map(credential => ({
-      label: credential.id,
-      value: credential.id,
+      label: credential.name,
+      value: credential.name,
       type: credential.type,
     }))
     this.isCredentialLoading = false

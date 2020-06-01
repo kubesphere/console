@@ -19,6 +19,7 @@
 export default {
   user_active: 'Active',
   USER_ACTIVE: 'Active',
+  USER_PENDING: 'Pending',
   USER_DISABLED: 'Disabled',
   USER_NAME_DESC: 'Username can only contain lowercase letters and numbers.',
   EMAIL_DESC: '',
@@ -27,7 +28,9 @@ export default {
     'Password must contain numbers and letters, and must be at least 6 characters in length.',
   ROLE_DESC:
     'The role types are classified into cluster and project. The role of cluster type is used for managing the cluster.',
-  ACCOUNTS_MANAGEMENT_DESC:
+  USER_DESC:
+    'System admin manages user information such as creating/updating/reading/deleting an account using this management component. Admin can also manage the role of any account. User uses the account name or email to log in the platform.',
+  USER_CREATE_DESC:
     'System admin manages user information such as creating/updating/reading/deleting an account using this management component. Admin can also manage the role of any account. User uses the account name or email to log in the platform.',
   ROLE_BASEINFO_DESC: '',
   ROLE_AUTHORIZATION_DESC: '',
