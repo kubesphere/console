@@ -16,17 +16,17 @@
   }
 
   &.warning {
-    color: $yellow-color05;
-    background-color: $yellow-color01;
+    color: $white;
+    background-color: $yellow-color03;
   }
 
   &.primary {
-    color: $green-color05;
-    background-color: $green-color01;
+    color: $white;
+    background-color: $green-color03;
   }
 
   &.info {
-    color: $blue-color05;
-    background-color: $blue-color01;
+    color: $white;
+    background-color: $blue-color03;
   }
 }

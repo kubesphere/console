@@ -104,7 +104,6 @@ class Ranking extends React.Component {
       <Loading spinning={this.store.isLoading}>
         <div>
           <Table store={this.store} />
-
           {this.renderPagination()}
         </div>
       </Loading>

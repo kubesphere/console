@@ -74,11 +74,6 @@ export default class Selector extends React.Component {
             <div className="h6">{value}</div>
             <p>{t('Cluster Management')}</p>
           </div>
-          {globals.app.isMultiCluster && (
-            <div className={styles.arrow}>
-              <Icon name="caret-down" type="light" />
-            </div>
-          )}
         </div>
         <SelectModal
           visible={showSelect}

@@ -53,9 +53,9 @@ class GlobalNav extends React.Component {
         hideFooter
       >
         <div>
-          <div className={styles.navs}>
+          <div className={styles.navs} onClick={onCancel}>
             {navs.map(nav => (
-              <NavItem key={nav.name} data={nav} onClick={onCancel} />
+              <NavItem key={nav.name} data={nav} />
             ))}
           </div>
           <Icon

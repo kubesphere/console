@@ -17,6 +17,7 @@
  */
 
 import { get, uniq, isEmpty, includes, cloneDeep } from 'lodash'
+import { safeParseJSON } from 'utils'
 
 const NAV_KS_MODULE_MAP = {
   repos: 'openpitrix',
@@ -351,5 +352,14 @@ export default class GlobalValue {
 
   hasKSModule(module) {
     return isEmpty(globals.ksConfig) || get(globals.ksConfig, module)
+  }
+
+  cacheHistory(url, obj) {
+    let histories = safeParseJSON(localStorage.getItem('history-cache'), [])
+    histories = histories.filter(item => item.url !== url)
+    localStorage.setItem(
+      'history-cache',
+      JSON.stringify([{ url, ...obj }, ...histories].slice(0, 8))
+    )
   }
 }

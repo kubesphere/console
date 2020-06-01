@@ -50,11 +50,11 @@ export default class ServiceCard extends React.Component {
   }
 
   renderContent() {
-    const { service } = this.props
+    const { service, prefix } = this.props
 
     if (isEmpty(service)) return null
 
-    const { namespace, name, type } = service
+    const { name, type } = service
 
     return (
       <div className={styles.item}>
@@ -62,7 +62,7 @@ export default class ServiceCard extends React.Component {
         <div className={styles.info}>
           <div className={styles.base}>
             <strong>
-              <Link to={`/projects/${namespace}/services/${name}`}>{name}</Link>
+              <Link to={`${prefix}/services/${name}`}>{name}</Link>
             </strong>
             <p>{type}</p>
           </div>

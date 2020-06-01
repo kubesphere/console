@@ -18,7 +18,7 @@
 
 import React from 'react'
 import { Icon } from '@pitrix/lego-ui'
-import { set, pick } from 'lodash'
+import { set, pick, isEmpty } from 'lodash'
 
 import { Modal } from 'components/Base'
 import CreateModal from 'components/Modals/Create'
@@ -244,7 +244,7 @@ export default class ServiceCreateModal extends React.Component {
             isSubmitting={isSubmitting}
             onOk={onOk}
             onCancel={onCancel}
-            okBtnText={detail ? t('Update') : undefined}
+            okBtnText={!isEmpty(detail) ? t('Update') : t('Add')}
           />
         )
         break

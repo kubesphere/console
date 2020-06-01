@@ -102,10 +102,12 @@ export default class Application extends Base {
   }
 
   @action
-  fetchDetail = async ({ namespace, id: cluster_id }) => {
+  fetchDetail = async ({ cluster, namespace, id: cluster_id }) => {
     this.isLoading = true
 
-    const result = await request.get(this.getUrl({ namespace, cluster_id }))
+    const result = await request.get(
+      this.getUrl({ cluster, namespace, cluster_id })
+    )
 
     if (result.services) {
       result.services = result.services.map(ObjectMapper.services)
@@ -119,16 +121,16 @@ export default class Application extends Base {
       })
     }
 
-    const { cluster, ...rest } = result
-    this.detail = {
-      ...rest,
-      ...cluster,
-    }
-
     try {
       const clusterData = get(result, 'cluster.env', '')
       this.env.data = JSON.parse(clusterData)
     } catch (err) {}
+
+    this.detail = {
+      ...result,
+      ...result.cluster,
+      cluster,
+    }
 
     this.isLoading = false
   }

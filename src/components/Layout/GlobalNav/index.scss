@@ -19,6 +19,13 @@
   position: absolute;
   top: 32px;
   right: 32px;
+
+  &:hover {
+    :global .qicon-light {
+      color: #324558;
+      fill: #b6c2cd;
+    }
+  }
 }
 
 .navs {

@@ -1,4 +1,5 @@
 @import '~scss/variables';
+@import '~scss/mixins';
 
 .wrapper {
   max-width: 1400px;
@@ -62,7 +63,6 @@
   color: #ffffff;
 }
 
-
 .noData {
   height: 226px;
   border-radius: $border-radius;
@@ -85,24 +85,37 @@
   transform: translate(-50%, -50%);
 }
 
-.navTitle {
-  margin-bottom: 12px;
-  padding: 8px 12px;
+.titleWrapper {
+  position: relative;
+  margin-bottom: 20px;
+  padding: 12px;
   border-radius: $border-radius;
-  background-color: $dark;
-  box-shadow: $head-shadow;
-  
-  .logo {
-    float: left;
-    margin-right: 12px;
+  background-color: #242e42;
+  box-shadow: 0 8px 16px 0 rgba(36, 46, 66, 0.2);
+  cursor: pointer;
+
+  .icon {
+    display: inline-block;
+    vertical-align: middle;
     width: 40px;
     height: 40px;
+    margin-right: 12px;
   }
 
-  .word {
-    line-height: 40px;
-    font-size: 16px;
-    color: $white;
-    font-weight: bold;
+  .text {
+    display: inline-block;
+    vertical-align: middle;
+    width: calc(100% - 60px);
+
+    :global .h6 {
+      font-family: $font-family-id;
+      line-height: 1.43;
+      color: #ffffff;
+      @include ellipsis;
+    }
+
+    p {
+      color: #d8dee5;
+    }
   }
 }

@@ -76,7 +76,7 @@ export default class AppBanner extends Component {
   }
 
   showDeploySampleApp = () => {
-    const { rootStore } = this.props
+    const { rootStore, projectStore } = this.props
     const { cluster, namespace } = this.props.match.params
     this.trigger('crd.app.create', {
       sampleApp: 'bookinfo',
@@ -84,6 +84,7 @@ export default class AppBanner extends Component {
       namespace,
       cluster,
       store: this.store,
+      projectDetail: projectStore.detail,
       success: url => rootStore.routing.push(url),
     })
   }

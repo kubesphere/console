@@ -38,6 +38,7 @@ export default class OPApps extends React.Component {
 
   getData = (params = {}) => {
     const { store, projectStore } = this.props
+    const { cluster } = this.props.match.params
     const runtime_id = get(
       projectStore.detail,
       'annotations.openpitrix_runtime'
@@ -46,6 +47,7 @@ export default class OPApps extends React.Component {
     if (projectStore.detail.name) {
       store.fetchList({
         namespace: projectStore.detail.name,
+        cluster,
         runtime_id,
         ...params,
       })

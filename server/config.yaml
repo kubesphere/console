@@ -67,7 +67,7 @@ client:
       icon: key
       authKey: users|roles|workspaces
     - name: apps-manage
-      title: Apps Management
+      title: Apps Store Management
       icon: openpitrix
       authKey: app-templates
     - name: settings

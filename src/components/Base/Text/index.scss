@@ -25,7 +25,8 @@
 
   &:hover {
     .text {
-      & > div {
+      & > div,
+      & > p {
         color: $primary;
       }
     }

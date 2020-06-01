@@ -106,11 +106,12 @@ export default class CRDApps extends React.Component {
   }
 
   showCreate = () => {
-    const { match, module } = this.props
+    const { match, module, projectStore } = this.props
     return this.props.trigger('crd.app.create', {
       module,
       namespace: match.params.namespace,
       cluster: match.params.cluster,
+      projectDetail: projectStore.detail,
       success: url => this.routing.push(url),
     })
   }

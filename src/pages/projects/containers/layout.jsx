@@ -67,6 +67,13 @@ class ProjectLayout extends Component {
       this.store.detail.clusters = this.fedStore.detail.clusters
     }
 
+    globals.app.cacheHistory(this.props.match.url, {
+      type: 'Project',
+      name: this.store.detail.name,
+      description: this.store.detail.description,
+      isFedManaged: this.store.detail.isFedManaged,
+    })
+
     this.store.initializing = false
   }
 
@@ -98,11 +105,8 @@ class ProjectLayout extends Component {
           <div className="ks-page-side">
             <Selector
               title={t('Projects')}
-              value={this.project}
+              detail={detail}
               onChange={this.handleChange}
-              isFedManaged={detail.isFedManaged}
-              workspace={detail.workspace}
-              cluster={match.params.cluster}
             />
             <Nav
               className="ks-page-nav"

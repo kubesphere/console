@@ -61,6 +61,13 @@ class ClusterLayout extends Component {
       cluster: params.cluster,
     })
 
+    globals.app.cacheHistory(this.props.match.url, {
+      type: 'Cluster',
+      name: this.clusterStore.detail.name,
+      description: this.clusterStore.detail.description,
+      provider: this.clusterStore.detail.provider,
+    })
+
     this.clusterStore.initializing = false
   }
 
@@ -73,11 +80,7 @@ class ClusterLayout extends Component {
   }
 
   enterCluster = async cluster =>
-    // if (globals.app.isClusterAdmin) {
     this.routing.push(`/clusters/${cluster}/overview`)
-  // }
-
-  // return this.routing.push(`/dashboard`)
 
   render() {
     const { match, route, location } = this.props

@@ -42,6 +42,7 @@ export default class AppDeploy extends React.Component {
     visible: PropTypes.bool,
     app: PropTypes.object,
     store: PropTypes.object,
+    cluster: PropTypes.string,
     workspace: PropTypes.string,
     namespace: PropTypes.string,
     versionId: PropTypes.string,
@@ -148,7 +149,7 @@ export default class AppDeploy extends React.Component {
   }
 
   renderForm() {
-    const { app, workspace, namespace, versionId } = this.props
+    const { app, cluster, workspace, namespace, versionId } = this.props
     const { formData, currentStep, intializing } = this.state
 
     if (intializing) {
@@ -159,6 +160,7 @@ export default class AppDeploy extends React.Component {
 
     const props = {
       formData,
+      cluster,
       workspace,
       namespace,
       versionId,

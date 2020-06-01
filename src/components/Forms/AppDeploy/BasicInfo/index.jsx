@@ -23,7 +23,7 @@ import { get } from 'lodash'
 import { Input, TextArea, Columns, Column } from '@pitrix/lego-ui'
 import { compareVersion } from 'utils/app'
 import { PATTERN_NAME } from 'utils/constants'
-import { Form, SearchSelect, Tag } from 'components/Base'
+import { Form, SearchSelect, Tag, Text } from 'components/Base'
 
 import Placement from './Placement'
 
@@ -66,6 +66,19 @@ export default class BasicInfo extends React.Component {
 
   handleVersionChange = version_id => {
     this.props.fileStore.fetch({ version_id })
+  }
+
+  renderStaticPlacement() {
+    const { cluster, namespace, workspace } = this.props
+    return (
+      <div className={styles.placementWrapper}>
+        <div className={styles.placementContent}>
+          <Text icon="project" title={namespace} description={t('Project')} />
+          <Text title={cluster} description={t('Cluster')} />
+          <Text title={workspace} description={t('Workspace')} />
+        </div>
+      </div>
+    )
   }
 
   render() {
@@ -124,11 +137,22 @@ export default class BasicInfo extends React.Component {
           </Columns>
           <br />
           <div className={styles.title}>{t('Deploy Placement')}</div>
-          {!namespace && (
-            <div className={styles.placement}>
-              <Placement {...this.props} />
-            </div>
-          )}
+          <div className={styles.placement}>
+            {!namespace ? (
+              <Form.Item
+                rules={[
+                  {
+                    required: true,
+                    message: t('Please select a project to deploy'),
+                  },
+                ]}
+              >
+                <Placement name="namespace" {...this.props} />
+              </Form.Item>
+            ) : (
+              this.renderStaticPlacement()
+            )}
+          </div>
         </Form>
       </div>
     )
