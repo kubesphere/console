@@ -173,7 +173,7 @@ export default class RoleDetail extends React.Component {
     return (
       <DetailPage
         stores={stores}
-        sideProps={sideProps}
+        {...sideProps}
         routes={getRoutes(this.props.match.path)}
       />
     )

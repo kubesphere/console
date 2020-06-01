@@ -105,7 +105,8 @@ class CICDs extends React.Component {
   get enabledActions() {
     return globals.app.getActions({
       module: 'pipelines',
-      project: this.project_id,
+      cluster: this.props.match.params.cluster,
+      devops: this.props.devopsStore.data.name,
     })
   }
 

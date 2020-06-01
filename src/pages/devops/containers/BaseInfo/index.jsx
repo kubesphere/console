@@ -80,10 +80,9 @@ class BaseInfo extends React.Component {
 
   get enabledActions() {
     return globals.app.getActions({
-      module: 'devops',
-      workspace: this.workspace,
-      project:
-        this.props.match.params.devops || this.props.match.params.project_id,
+      module: 'devops-settings',
+      cluster: this.cluster,
+      devops: this.props.devopsStore.data.name,
     })
   }
 

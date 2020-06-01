@@ -47,11 +47,10 @@ export default class Pipeline extends React.Component {
   }
 
   get enabledActions() {
-    const { project_id } = this.props.match.params
-
     return globals.app.getActions({
       module: 'pipelines',
-      project: project_id,
+      cluster: this.props.match.params.cluster,
+      // devops: this.props.devopsStore.data.name,
     })
   }
 

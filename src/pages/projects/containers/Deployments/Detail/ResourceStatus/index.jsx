@@ -67,6 +67,7 @@ class ResourceStatus extends React.Component {
     return globals.app.getActions({
       module: this.module,
       project: this.props.match.params.namespace,
+      cluster: this.props.match.params.cluster,
     })
   }
 

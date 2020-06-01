@@ -118,13 +118,19 @@ class Overview extends React.Component {
   }
 
   handleNodeClick = () => {
-    globals.app.hasPermission({ module: 'nodes', action: 'view' }) &&
-      this.routing.push(`/clusters/${this.cluster}/nodes`)
+    globals.app.hasPermission({
+      module: 'nodes',
+      action: 'view',
+      cluster: this.cluster,
+    }) && this.routing.push(`/clusters/${this.cluster}/nodes`)
   }
 
   handleComponentsClick = () => {
-    globals.app.hasPermission({ module: 'monitoring', action: 'view' }) &&
-      this.routing.push(`/clusters/${this.cluster}/components`)
+    globals.app.hasPermission({
+      module: 'monitoring',
+      action: 'view',
+      cluster: this.cluster,
+    }) && this.routing.push(`/clusters/${this.cluster}/components`)
   }
 
   renderNodeStatus() {

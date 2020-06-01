@@ -79,9 +79,8 @@ export default function withList(options) {
         return globals.app.getActions({
           module: this.authKey,
           ...this.props.match.params,
-          project:
-            this.props.match.params.namespace ||
-            this.props.match.params.project_id,
+          project: this.props.match.params.namespace,
+          devops: this.props.match.params.project_id,
         })
       }
 

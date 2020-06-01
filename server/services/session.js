@@ -18,12 +18,14 @@
 
 const { parse } = require('qs')
 const get = require('lodash/get')
+const uniq = require('lodash/uniq')
 const isEmpty = require('lodash/isEmpty')
+const isArray = require('lodash/isArray')
 const jwtDecode = require('jwt-decode')
 
 const { send_gateway_request } = require('../libs/request')
 
-const { getServerConfig, isAppsRoute } = require('../libs/utils')
+const { getServerConfig, isAppsRoute, safeParseJSON } = require('../libs/utils')
 
 const { client: clientConfig } = getServerConfig()
 
@@ -69,6 +71,37 @@ const oAuthLogin = async params => {
   return { username, token: resp.access_token }
 }
 
+const getUserGlobalRules = async (username, token) => {
+  const resp = await send_gateway_request({
+    method: 'GET',
+    url: `/kapis/iam.kubesphere.io/v1alpha2/users/${username}/globalroles`,
+    token,
+  })
+
+  const rules = {}
+  resp.forEach(item => {
+    const rule = safeParseJSON(
+      get(
+        item,
+        "metadata.annotations['iam.kubesphere.io/role-template-rules']"
+      ),
+      {}
+    )
+
+    Object.keys(rule).forEach(key => {
+      rules[key] = rules[key] || []
+      if (isArray(rule[key])) {
+        rules[key].push(...rule[key])
+      } else {
+        rules[key].push(rule[key])
+      }
+      rules[key] = uniq(rules[key])
+    })
+  })
+
+  return rules
+}
+
 const getUserDetail = async (username, token) => {
   let user = {}
 
@@ -91,6 +124,8 @@ const getUserDetail = async (username, token) => {
   } else {
     throw new Error(resp)
   }
+
+  user.globalRules = await getUserGlobalRules(username, token)
 
   return user
 }

@@ -58,12 +58,13 @@ export default class OPApps extends React.Component {
   }
 
   get canCreate() {
-    const { namespace } = this.props.match.params
+    const { cluster, namespace } = this.props.match.params
     return (
       globals.app.enableAppStore &&
       globals.app.hasPermission({
-        module: 'applications',
+        cluster,
         project: namespace,
+        module: 'applications',
         action: 'create',
       })
     )

@@ -91,6 +91,7 @@ export default class Jobs extends React.Component {
         icon: 'trash',
         text: t('Delete'),
         action: 'delete',
+        type: 'danger',
         onClick: item =>
           trigger('resource.delete', {
             type: t(this.name),

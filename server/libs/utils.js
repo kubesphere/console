@@ -175,6 +175,18 @@ const decryptPassword = (encrypted, salt) => {
   return Buffer.from(b64, 'base64').toString('utf-8')
 }
 
+const safeParseJSON = (json, defaultValue) => {
+  let result
+  try {
+    result = JSON.parse(json)
+  } catch (e) {}
+
+  if (!result && defaultValue !== undefined) {
+    return defaultValue
+  }
+  return result
+}
+
 module.exports = {
   root,
   loadYaml,
@@ -186,4 +198,5 @@ module.exports = {
   isValidReferer,
   isAppsRoute,
   decryptPassword,
+  safeParseJSON,
 }

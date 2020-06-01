@@ -52,14 +52,8 @@ export default class ProjectSelectModal extends React.Component {
   get enabledActions() {
     const { workspace } = this.props
     return {
-      projects: globals.app.getActions({
-        workspace,
-        module: 'projects',
-      }),
-      devops: globals.app.getActions({
-        workspace,
-        module: 'devops',
-      }),
+      projects: globals.app.getActions({ workspace, module: 'projects' }),
+      devops: globals.app.getActions({ workspace, module: 'devops' }),
     }
   }
 

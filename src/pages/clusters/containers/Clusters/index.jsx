@@ -145,13 +145,15 @@ class Clusters extends React.Component {
           onClick={this.handleRefresh}
           data-test="cluster-refresh"
         />
-        <Button
-          type="control"
-          onClick={this.showAddCluster}
-          data-test="cluster-create"
-        >
-          {t('Add Cluster')}
-        </Button>
+        {this.enabledActions.includes('create') && (
+          <Button
+            type="control"
+            onClick={this.showAddCluster}
+            data-test="cluster-create"
+          >
+            {t('Add Cluster')}
+          </Button>
+        )}
       </div>
     )
   }

@@ -18,7 +18,7 @@
 
 import { set, get, isArray } from 'lodash'
 import { action, observable } from 'mobx'
-import { getFilterString, formatRules } from 'utils'
+import { getFilterString } from 'utils'
 
 import Base from 'stores/base'
 
@@ -225,32 +225,6 @@ export default class DevOpsStore extends Base {
     this.data = data
   }
 
-  @action
-  async fetchRules({ cluster, project_id }) {
-    this.initializing = true
-    const rules = await request.get(
-      `kapis/tenant.kubesphere.io/v1alpha2/${this.getPath({
-        cluster,
-      })}/${this.module}/${project_id}/rules`,
-      null,
-      null,
-      () => []
-    )
-    if (rules) {
-      const formatedRules = formatRules(rules)
-
-      if (project_id === globals.config.systemWorkspace) {
-        Object.keys(formatedRules).forEach(key => {
-          formatedRules[key] = globals.config.systemWorkspaceProjectRules[
-            key
-          ] || ['view', 'edit']
-        })
-      }
-      set(globals.user, `rules[${project_id}]`, formatedRules)
-    }
-
-    this.initializing = false
-  }
   @action
   async fetchRoles({ cluster, project_id }) {
     this.roles.isLoading = true

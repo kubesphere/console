@@ -17,17 +17,30 @@
  */
 
 import { withRouter } from 'react-router-dom'
+import { inject } from 'mobx-react'
 import { Component as Base } from 'core/containers/Base/Detail/Page'
 import ClusterStore from 'stores/cluster'
 
+@inject('rootStore')
 @withRouter
 export default class DetailPage extends Base {
+  get enabledActions() {
+    const { cluster } = this.props.match.params
+    return globals.app.getActions({
+      module: this.authKey,
+      cluster,
+    })
+  }
+
   async init() {
     const { cluster } = this.props.match.params
     if (cluster) {
       this.stores.clusterStore = new ClusterStore()
 
-      await this.stores.clusterStore.fetchDetail({ name: cluster })
+      await Promise.all([
+        this.stores.clusterStore.fetchDetail({ name: cluster }),
+        this.props.rootStore.getRules({ cluster }),
+      ])
     }
 
     this.setState({ initializing: false })

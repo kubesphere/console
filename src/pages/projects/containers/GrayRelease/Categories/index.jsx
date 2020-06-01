@@ -74,9 +74,9 @@ export default class Categories extends React.Component {
   }
 
   get canCreate() {
-    const { namespace: project } = this.props.match.params
+    const { cluster, namespace: project } = this.props.match.params
     return globals.app
-      .getActions({ module: 'applications', project })
+      .getActions({ cluster, project, module: 'applications' })
       .includes('edit')
   }
 

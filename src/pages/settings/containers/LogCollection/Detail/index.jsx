@@ -294,6 +294,7 @@ export default class LogCollectionDetail extends React.Component {
       text: t('Delete Log Collector'),
       icon: 'trash',
       action: 'delete',
+      type: 'danger',
       onClick: () =>
         this.trigger('resource.delete', {
           type: t(this.name),
@@ -351,7 +352,7 @@ export default class LogCollectionDetail extends React.Component {
         routes={routes.filter(
           route => !route.required || route.required(this.store.detail)
         )}
-        sideProps={sideProps}
+        {...sideProps}
       />
     )
   }

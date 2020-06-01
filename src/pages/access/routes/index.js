@@ -36,7 +36,7 @@ export default [
       { path: `${PATH}/accounts`, component: Accounts, exact: true },
       { path: `${PATH}/roles`, component: Roles, exact: true },
       { path: `${PATH}/workspaces`, component: Workspaces, exact: true },
-      getIndexRoute({ path: PATH, to: `${PATH}/accounts`, exact: true }),
+      getIndexRoute({ path: PATH, to: `${PATH}/workspaces`, exact: true }),
     ],
   },
 ]

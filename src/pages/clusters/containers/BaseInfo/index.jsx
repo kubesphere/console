@@ -63,6 +63,13 @@ export default class Overview extends React.Component {
     return this.props.clusterStore
   }
 
+  get enabledActions() {
+    return globals.app.getActions({
+      module: 'cluster-settings',
+      cluster: this.props.match.params.cluster,
+    })
+  }
+
   getValue = (data, unitType) => {
     const value = get(data, 'value[1]', 0)
     const unit = getSuitableUnit(value, unitType) || unit
@@ -140,6 +147,8 @@ export default class Overview extends React.Component {
 
     const options = this.getResourceOptions()
 
+    const actions = this.enabledActions
+
     return (
       <>
         <Banner
@@ -159,9 +168,11 @@ export default class Overview extends React.Component {
               title={kubernetesVersion}
               description={t('Kubernetes Version')}
             />
-            <Button className={styles.action} onClick={this.showEdit}>
-              {t('Edit Info')}
-            </Button>
+            {actions.includes('edit') && (
+              <Button className={styles.action} onClick={this.showEdit}>
+                {t('Edit Info')}
+              </Button>
+            )}
           </div>
           <div className={styles.content}>
             {options.map(option => (
@@ -174,7 +185,7 @@ export default class Overview extends React.Component {
             ))}
           </div>
         </Panel>
-        {globals.app.isMultiCluster && (
+        {globals.app.isMultiCluster && actions.includes('delete') && (
           <Panel title={t('Unbind Cluster')}>
             <Alert
               className={styles.tip}

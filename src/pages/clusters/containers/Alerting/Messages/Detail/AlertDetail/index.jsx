@@ -73,17 +73,6 @@ class AlertDetail extends React.Component {
     return this.props.match.params
   }
 
-  get namespace() {
-    return this.params.namespace
-  }
-
-  get enabledActions() {
-    return globals.app.getActions({
-      module: this.module,
-      project: this.namespace,
-    })
-  }
-
   get store() {
     return this.props.detailStore
   }

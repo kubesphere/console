@@ -76,7 +76,8 @@ class BranchSider extends Base {
   get enabledActions() {
     return globals.app.getActions({
       module: 'pipelines',
-      project: this.props.match.params.project_id,
+      cluster: this.props.match.params.cluster,
+      // devops: this.props.devopsStore.data.name,
     })
   }
 

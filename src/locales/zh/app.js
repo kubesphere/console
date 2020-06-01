@@ -69,6 +69,7 @@ export default {
   'Release / Suspended Time': '上架(下架)时间',
 
   'App Review': '应用审核',
+  'App Reviews': '应用审核',
   APP_REVIEW_DESC: '对服务商的认证及应用上架提供审核功能',
   Unprocessed: '待处理',
   Processed: '已处理',

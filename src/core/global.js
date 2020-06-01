@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, isEmpty, includes, cloneDeep } from 'lodash'
+import { get, uniq, isEmpty, includes, cloneDeep } from 'lodash'
 
 const NAV_KS_MODULE_MAP = {
   repos: 'openpitrix',
@@ -47,7 +47,7 @@ export default class GlobalValue {
    * @param {String} module - module name
    * @returns {Array} actions of current module in the project or workspace
    */
-  getActions({ workspace, project, module }) {
+  getActions({ cluster, workspace, project, devops, module }) {
     if (
       NAV_KS_MODULE_MAP[module] &&
       !this.hasKSModule(NAV_KS_MODULE_MAP[module])
@@ -59,15 +59,38 @@ export default class GlobalValue {
       return ['view', 'edit', 'create', 'delete', 'manage']
     }
 
+    const adapter = arr => {
+      if (arr.includes('manage')) {
+        return uniq([...arr, 'view', 'edit', 'create', 'delete'])
+      }
+      return arr
+    }
+
     if (project) {
-      return get(globals.user, `rules[${project}][${module}]`, [])
+      return adapter(
+        get(globals.user, `projectRules[${cluster}][${project}][${module}]`, [])
+      )
+    }
+
+    if (devops) {
+      return adapter(
+        get(globals.user, `devopsRules[${cluster}][${devops}][${module}]`, [])
+      )
     }
 
     if (workspace) {
-      return get(globals.user, `workspace_rules[${workspace}][${module}]`, [])
+      return adapter(
+        get(globals.user, `workspaceRules[${workspace}][${module}]`, [])
+      )
     }
 
-    return get(globals.user, `cluster_rules[${module}]`, [])
+    if (cluster) {
+      return adapter(
+        get(globals.user, `clusterRules[${cluster}][${module}]`, [])
+      )
+    }
+
+    return adapter(get(globals.user, `globalRules[${module}]`, []))
   }
 
   /**
@@ -79,7 +102,15 @@ export default class GlobalValue {
    * @param {Array} actions - actions name array
    * @returns {Boolean} true or false.
    */
-  hasPermission({ workspace, project, module, action, actions }) {
+  hasPermission({
+    cluster,
+    workspace,
+    project,
+    devops,
+    module,
+    action,
+    actions,
+  }) {
     if (
       NAV_KS_MODULE_MAP[module] &&
       !this.hasKSModule(NAV_KS_MODULE_MAP[module])
@@ -93,12 +124,18 @@ export default class GlobalValue {
 
     if (!isEmpty(actions)) {
       return includes(
-        this.getActions({ workspace, project, module }),
+        this.getActions({ cluster, workspace, project, devops, module }),
         ...actions
       )
     }
 
-    return this.getActions({ workspace, project, module }).includes(action)
+    return this.getActions({
+      cluster,
+      workspace,
+      project,
+      devops,
+      module,
+    }).includes(action)
   }
 
   checkNavItem(item, callback) {
@@ -110,7 +147,7 @@ export default class GlobalValue {
       return false
     }
 
-    if (item.admin && globals.user.cluster_role !== 'cluster-admin') {
+    if (item.admin && globals.user.globalrole !== 'platform-admin') {
       return false
     }
 
@@ -169,7 +206,9 @@ export default class GlobalValue {
 
       globals.config.clusterNavs.forEach(nav => {
         const filteredItems = nav.items.filter(item =>
-          this.checkNavItem(item, params => this.hasPermission(params))
+          this.checkNavItem(item, params =>
+            this.hasPermission({ ...params, cluster })
+          )
         )
         if (!isEmpty(filteredItems)) {
           navs.push({ ...nav, items: filteredItems })
@@ -231,14 +270,14 @@ export default class GlobalValue {
     return globals.config.manageAppNavs
   }
 
-  getProjectNavs(project) {
-    if (!this._cache_[`project_${project}_navs`]) {
+  getProjectNavs({ cluster, project }) {
+    if (!this._cache_[`project_${cluster}_${project}_navs`]) {
       const navs = []
 
       globals.config.projectNavs.forEach(nav => {
         const filteredItems = nav.items.filter(item =>
           this.checkNavItem(item, params =>
-            this.hasPermission({ ...params, project })
+            this.hasPermission({ ...params, cluster, project })
           )
         )
 
@@ -247,20 +286,20 @@ export default class GlobalValue {
         }
       })
 
-      this._cache_[`project_${project}_navs`] = navs
+      this._cache_[`project_${cluster}_${project}_navs`] = navs
     }
 
-    return this._cache_[`project_${project}_navs`]
+    return this._cache_[`project_${cluster}_${project}_navs`]
   }
 
-  getDevOpsNavs(project) {
-    if (!this._cache_[`devops_${project}_navs`]) {
+  getDevOpsNavs({ cluster, devops }) {
+    if (!this._cache_[`devops_${cluster}_${devops}_navs`]) {
       const navs = []
 
       globals.config.devopsNavs.forEach(nav => {
         const filteredItems = nav.items.filter(item =>
           this.checkNavItem(item, params =>
-            this.hasPermission({ ...params, project })
+            this.hasPermission({ ...params, cluster, devops })
           )
         )
 
@@ -268,11 +307,11 @@ export default class GlobalValue {
           navs.push({ ...nav, items: filteredItems })
         }
 
-        this._cache_[`devops_${project}_navs`] = navs
+        this._cache_[`devops_${cluster}_${devops}_navs`] = navs
       })
     }
 
-    return this._cache_[`devops_${project}_navs`]
+    return this._cache_[`devops_${cluster}_${devops}_navs`]
   }
 
   getPlatformSettingsNavs() {
@@ -298,13 +337,12 @@ export default class GlobalValue {
   get enableAppStore() {
     return (
       this.hasKSModule('openpitrix') &&
-      this.hasPermission({ module: 'apps', action: 'view' })
+      this.hasPermission({ module: 'app-templates', action: 'view' })
     )
   }
 
-  get isClusterAdmin() {
-    return true
-    // return globals.user.cluster_role === 'cluster-admin'
+  get isPlatformAdmin() {
+    return globals.user.globalrole === 'platform-admin'
   }
 
   get isMultiCluster() {

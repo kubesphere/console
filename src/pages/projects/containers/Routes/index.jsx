@@ -45,8 +45,9 @@ export default class Routers extends React.Component {
 
   get canSetGateway() {
     return globals.app.hasPermission({
-      module: 'advanced',
+      module: 'project-settings',
       action: 'manage',
+      cluster: this.props.match.params.cluster,
       project: this.props.match.params.namespace,
     })
   }

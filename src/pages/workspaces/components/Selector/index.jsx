@@ -90,7 +90,7 @@ export default class Selector extends React.Component {
   }
 
   render() {
-    const { icon, defaultIcon, value, multi } = this.props
+    const { icon, defaultIcon, value } = this.props
     const { showSelect, showCreate } = this.state
 
     const canCreate = globals.app
@@ -100,7 +100,7 @@ export default class Selector extends React.Component {
     return (
       <div>
         <div
-          className={classNames(styles.titleWrapper, { pointer: multi })}
+          className={classNames(styles.titleWrapper, 'pointer')}
           onClick={this.showSelect}
         >
           <div className={styles.icon}>
@@ -112,11 +112,9 @@ export default class Selector extends React.Component {
               {value}
             </div>
           </div>
-          {multi && (
-            <div className={styles.arrow}>
-              <Icon name="caret-down" type="light" />
-            </div>
-          )}
+          <div className={styles.arrow}>
+            <Icon name="caret-down" type="light" />
+          </div>
         </div>
         <SelectModal
           visible={showSelect}

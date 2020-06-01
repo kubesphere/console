@@ -64,13 +64,6 @@ export default class AlertHistory extends React.Component {
     return this.params.namespace
   }
 
-  get enabledActions() {
-    return globals.app.getActions({
-      module: this.module,
-      project: this.namespace,
-    })
-  }
-
   get prefix() {
     return this.namespace
       ? `/projects/${this.namespace}/alert-message/all`

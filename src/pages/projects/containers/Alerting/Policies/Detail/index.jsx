@@ -26,7 +26,7 @@ import { getDisplayName, getLocalTime } from 'utils'
 import { trigger } from 'utils/action'
 import AlertingPolicyStore from 'stores/alerting/policy'
 
-import DetailPage from 'clusters/containers/Base/Detail'
+import DetailPage from 'projects/containers/Base/Detail'
 
 import routes from './routes'
 
@@ -94,6 +94,7 @@ export default class AlertPolicyDetail extends React.Component {
       icon: 'trash',
       text: t('Delete'),
       action: 'delete',
+      type: 'danger',
       onClick: () =>
         this.trigger('resource.delete', {
           type: t(this.name),
@@ -147,6 +148,6 @@ export default class AlertPolicyDetail extends React.Component {
       ],
     }
 
-    return <DetailPage stores={stores} routes={routes} sideProps={sideProps} />
+    return <DetailPage stores={stores} routes={routes} {...sideProps} />
   }
 }

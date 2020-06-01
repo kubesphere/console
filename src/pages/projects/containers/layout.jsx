@@ -48,13 +48,30 @@ class ProjectLayout extends Component {
   async init(params) {
     this.store.initializing = true
 
-    await this.store.fetchDetail(params)
+    await Promise.all([
+      this.store.fetchDetail(params),
+      this.props.rootStore.getRules({
+        cluster: params.cluster,
+        namespace: params.namespace,
+      }),
+    ])
+
+    if (this.store.detail.workspace) {
+      this.props.rootStore.getRules({
+        workspace: this.store.detail.workspace,
+      })
+    }
+
     if (this.store.detail.isFedManaged) {
       await this.fedStore.fetchDetail({ ...params, name: params.namespace })
       this.store.detail.clusters = this.fedStore.detail.clusters
     }
 
     this.store.initializing = false
+  }
+
+  get cluster() {
+    return this.props.match.params.cluster
   }
 
   get project() {
@@ -89,7 +106,10 @@ class ProjectLayout extends Component {
             />
             <Nav
               className="ks-page-nav"
-              navs={globals.app.getProjectNavs(this.project)}
+              navs={globals.app.getProjectNavs({
+                project: this.project,
+                cluster: this.cluster,
+              })}
               location={location}
               match={match}
             />

@@ -138,6 +138,7 @@ export default class PodItem extends React.PureComponent {
   getNodeContent = () => {
     const { cluster, node, nodeIp } = this.props.detail
     const nodePermission = globals.app.hasPermission({
+      cluster,
       module: 'nodes',
       action: 'view',
     })

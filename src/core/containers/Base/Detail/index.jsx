@@ -73,8 +73,8 @@ export default class DetailBase extends React.Component {
     return globals.app.getActions({
       module: this.authKey,
       workspace: this.props.match.params.workspace,
-      project:
-        this.props.match.params.namespace || this.props.match.params.project_id,
+      project: this.props.match.params.namespace,
+      devops: this.props.match.params.project_id,
     })
   }
 

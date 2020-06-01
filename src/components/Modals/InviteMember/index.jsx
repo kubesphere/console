@@ -65,19 +65,20 @@ export default class InviteMemberModal extends React.Component {
 
   componentDidMount() {
     const { cluster, workspace, namespace, devops } = this.props
-    const params = devops ? { devops, cluster } : { workspace, namespace }
-    this.memberStore.fetchList({ limit: -1, ...params }).then(() => {
-      this.setState({
-        members: this.memberStore.list.data.map(user => user.name),
+    this.memberStore
+      .fetchList({ limit: -1, cluster, workspace, namespace, devops })
+      .then(() => {
+        this.setState({
+          members: this.memberStore.list.data.map(user => user.name),
+        })
       })
-    })
   }
 
   fetchData = (params = {}) => {
-    const { workspace, namespace } = this.props
+    const { workspace, namespace, devops } = this.props
     this.userStore.fetchList({
       name: this.state.keyword,
-      workspace: namespace ? workspace : undefined,
+      workspace: namespace || devops ? workspace : undefined,
       ...params,
     })
   }

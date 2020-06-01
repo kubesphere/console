@@ -110,26 +110,28 @@ export default class KubernetesStatus extends Component {
     return (
       <Panel title={t('Kubernetes Status')}>
         <Loading spinning={this.schedulerStore.isLoading}>
-          <div className={styles.level}>
-            <Text
-              title={`${request_rate} times/s`}
-              description={`API ${t('Request Per Second')}`}
-            />
-            <Text
-              title={`${request_latencies_total} ms`}
-              description={`API ${t('Request Latency')}`}
-            />
-          </div>
-          <div className={styles.level}>
-            <Text
-              title={schedule_attempts_count.scheduled}
-              description={t('Scheduler scheduling times')}
-            />
-            <Text
-              title={schedule_attempts_count.error}
-              description={t('Failed scheduling pods')}
-            />
-          </div>
+          <>
+            <div className={styles.level}>
+              <Text
+                title={`${request_rate} times/s`}
+                description={`API ${t('Request Per Second')}`}
+              />
+              <Text
+                title={`${request_latencies_total} ms`}
+                description={`API ${t('Request Latency')}`}
+              />
+            </div>
+            <div className={styles.level}>
+              <Text
+                title={schedule_attempts_count.scheduled}
+                description={t('Scheduler scheduling times')}
+              />
+              <Text
+                title={schedule_attempts_count.error}
+                description={t('Failed scheduling pods')}
+              />
+            </div>
+          </>
         </Loading>
       </Panel>
     )

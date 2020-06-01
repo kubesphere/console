@@ -221,6 +221,7 @@ export default {
   'DevOps Members Management': '成员管理',
   DEVOPS_MEMBERS_VIEW_DESC: '查看 DevOps 工程成员',
   DEVOPS_MEMBERS_MANAGEMENT_DESC: '邀请/编辑/移除 DevOps 工程成员',
+  DEVOPS_SETTINGS_DESC: '管理 DevOps 工程设置, 编辑 DevOps 工程信息',
 
   'Default user role which allows a user to manage resources within the projects created by the user himself or invited by others. It does not allow the user to manage unauthorized resources in the cluster.':
     '默认用户角色，仅允许对自己创建或受邀加入的项目中的资源进行管理，无权操作集群范围内其他资源。',
