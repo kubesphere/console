@@ -188,7 +188,8 @@ export default class DetailModal extends React.Component {
   }
 
   async fetchLogs(params = {}) {
-    await this.logStore.fetch(params)
+    const { cluster } = this.props.searchInputState
+    await this.logStore.fetch({ ...params, cluster })
     return this.logStore.records
   }
 

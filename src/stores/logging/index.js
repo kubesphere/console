@@ -38,37 +38,28 @@ export default class LoggingStore {
     return 'kapis/logging.kubesphere.io/v1alpha2'
   }
 
-  get encodedPathParams() {
-    const pathParams = Object.entries(this.pathParams)
-      .reduce((path, param) => {
-        const [key, value] = param
-        return path.concat(value ? [key, value] : [])
-      }, [])
-      .join('/')
-
-    return pathParams
-  }
-
   get apiPath() {
-    const encodedPathParams = this.encodedPathParams
-
-    return encodedPathParams
-      ? `${this.apiVersion}/${encodedPathParams}`
-      : this.clusterLogAPI
+    return this.clusterLogAPI
   }
 
   get clusterLogAPI() {
     return 'kapis/tenant.kubesphere.io/v1alpha2/logs'
   }
 
+  getApiPath(cluster) {
+    return cluster
+      ? `kapis/clusters/${cluster}/tenant.kubesphere.io/v1alpha2/logs`
+      : 'kapis/tenant.kubesphere.io/v1alpha2/logs'
+  }
+
   @action
   async request(params = {}, method = 'get') {
     this.isLoading = true
 
-    const { start_time, end_time } = params
+    const { start_time, end_time, cluster, ...rest } = params
 
-    const res = await request[method](this.apiPath, {
-      ...params,
+    const res = await request[method](this.getApiPath(cluster), {
+      ...rest,
       start_time: start_time ? Math.floor(start_time / 1000) : undefined,
       end_time: end_time ? Math.floor(end_time / 1000) : undefined,
     })

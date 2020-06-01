@@ -21,7 +21,7 @@ import { action, toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import moment from 'moment-mini'
 import classnames from 'classnames'
-import { Icon, Loading } from '@pitrix/lego-ui'
+import { Icon, Loading, Select } from '@pitrix/lego-ui'
 
 import TimeBar from 'components/Charts/Bar/TimeBar'
 import LogStatisticsStore from 'stores/logging/statistics'
@@ -86,8 +86,16 @@ export default class HomeModal extends React.Component {
   ]
 
   componentDidMount() {
-    this.logStatisticsStore.fetch({})
-    this.histogramStore.fetch()
+    this.updateStatistics()
+  }
+
+  updateStatistics() {
+    const { searchInputState } = this.props
+    const { cluster } = searchInputState
+    this.logStatisticsStore.fetch({
+      cluster,
+    })
+    this.histogramStore.fetch({ cluster })
   }
 
   @action
@@ -106,6 +114,11 @@ export default class HomeModal extends React.Component {
 
   onSearchParamsChange = () => {
     this.props.formStepState.next()
+  }
+
+  onClusterChange = cluster => {
+    this.props.searchInputState.setCluster(cluster)
+    this.updateStatistics()
   }
 
   render() {
@@ -153,35 +166,43 @@ export default class HomeModal extends React.Component {
   }
 
   renderSearchBar() {
-    const { searchInputState } = this.props
+    const { searchInputState, clustersOpts } = this.props
     return (
-      <SearchInput
-        className={styles.searchBar}
-        onChange={this.onSearchParamsChange}
-        params={searchInputState}
-        dropDownItems={{
-          log_query: {
-            icon: 'magnifier',
-            text: t('Key Word'),
-          },
-          namespace_query: {
-            icon: 'project',
-            text: t('Project'),
-          },
-          workload_query: {
-            icon: 'backup',
-            text: t('Workload'),
-          },
-          pod_query: {
-            icon: 'pod',
-            text: t('Pod'),
-          },
-          container_query: {
-            icon: 'docker',
-            text: t('Container'),
-          },
-        }}
-      />
+      <div className={styles.searchBarContainer}>
+        <Select
+          className={styles.clusterSelector}
+          value={searchInputState.cluster}
+          options={clustersOpts}
+          onChange={this.onClusterChange}
+        />
+        <SearchInput
+          className={styles.searchBar}
+          onChange={this.onSearchParamsChange}
+          params={searchInputState}
+          dropDownItems={{
+            log_query: {
+              icon: 'magnifier',
+              text: t('Key Word'),
+            },
+            namespace_query: {
+              icon: 'project',
+              text: t('Project'),
+            },
+            workload_query: {
+              icon: 'backup',
+              text: t('Workload'),
+            },
+            pod_query: {
+              icon: 'pod',
+              text: t('Pod'),
+            },
+            container_query: {
+              icon: 'docker',
+              text: t('Container'),
+            },
+          }}
+        />
+      </div>
     )
   }
 
