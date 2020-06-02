@@ -448,6 +448,8 @@ export default {
     'KubeSphere可以根据您设置的规则进行操作审计的收集，点击查看如何定义规则。',
   category: '类别',
   resources: '资源',
+  'Earliest start time': '最早发生时间',
+  'Most recent start time': '最近发生时间',
   'Related resources': '关联资源',
   'Operation details': '操作详情',
   'Event metadata': '事件元数据',
