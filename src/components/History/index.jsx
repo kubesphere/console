@@ -72,7 +72,7 @@ export default class History extends Component {
           ) : (
             <div className={styles.histories}>
               {histories.map(item => (
-                <Card key={item.url} data={item} />
+                <Card key={item.url} data={item} onClick={this.handleCancel} />
               ))}
             </div>
           )}

@@ -48,9 +48,9 @@ export default class Card extends Component {
   }
 
   render() {
-    const { data } = this.props
+    const { data, onClick } = this.props
     return (
-      <Link to={data.url}>
+      <Link to={data.url} onClick={onClick}>
         <Text
           icon={this.getIcon()}
           title={data.name}
