@@ -43,7 +43,6 @@ export default {
   Introduction: '使用说明',
   'Terms of service': '服务条款',
   'Config File': '配置文件',
-  'Chart File': '配置文件',
   'Chart Files': '配置文件',
   'Update Log': '更新日志',
   'No update log': '暂无更新日志',

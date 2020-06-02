@@ -146,7 +146,7 @@ export default class ServiceCreateModal extends React.Component {
     switch (type) {
       case 'statelessservice': {
         const module = 'deployments'
-        const formTemplate = detail
+        const formTemplate = !isEmpty(detail)
           ? pick(detail, ['Deployment', 'Service'])
           : {
               Deployment: FORM_TEMPLATES.deployments({ namespace }),
@@ -199,7 +199,7 @@ export default class ServiceCreateModal extends React.Component {
       }
       case 'statefulservice': {
         const module = 'statefulsets'
-        const formTemplate = detail
+        const formTemplate = !isEmpty(detail)
           ? pick(detail, ['StatefulSet', 'Service'])
           : {
               StatefulSet: FORM_TEMPLATES.statefulsets({ namespace }),

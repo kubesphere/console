@@ -19,7 +19,7 @@
 import { get } from 'lodash'
 import React from 'react'
 import { Icon, Columns, Column } from '@pitrix/lego-ui'
-import { Text, Indicator } from 'components/Base'
+import { Text, Tag, Indicator } from 'components/Base'
 import { getLocalTime } from 'utils'
 import { CLUSTER_PROVIDER_ICON } from 'utils/constants'
 
@@ -55,6 +55,11 @@ export default class ClusterCard extends React.Component {
             <div className="width-full">
               <div className="h5">
                 <a onClick={this.handleClick}>{data.name}</a>
+                {data.group && (
+                  <Tag className="margin-l12" type="info">
+                    {data.group}
+                  </Tag>
+                )}
               </div>
               {isReady ? (
                 <p className="ellipsis">{data.description || '-'}</p>

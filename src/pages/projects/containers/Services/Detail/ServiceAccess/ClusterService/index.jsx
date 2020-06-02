@@ -70,7 +70,7 @@ export default class ServicePort extends Component {
               <p>{clusterDetail.description || '-'}</p>
             </div>
             {clusterDetail.group && (
-              <Tag className={styles.group} type="warning">
+              <Tag className={styles.group} type="info">
                 {clusterDetail.group}
               </Tag>
             )}
@@ -78,7 +78,7 @@ export default class ServicePort extends Component {
           <Text
             icon="eip-pool"
             title={`${serviceDetail.name}.${serviceDetail.namespace}.svc`}
-            description={t('集群内部访问方式(DNS)')}
+            description={t('EIP_POOL_DESC')}
           />
           <Text title={serviceDetail.clusterIP} description={t('Virtual IP')} />
         </div>

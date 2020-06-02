@@ -42,3 +42,26 @@
   margin-top: 20px;
   min-height: 300px;
 }
+
+.cluster {
+  max-width: unset !important;
+}
+
+.itemOption,
+.itemValue {
+  .title {
+    @include TypographySymbolText;
+    margin-left: 4px;
+  }
+
+  .group {
+    @include vertical-center;
+    right: 12px;
+  }
+}
+
+.itemOption {
+  .title {
+    color: #fff;
+  }
+}
