@@ -88,29 +88,33 @@ export default class UsersStore extends Base {
     const resp = await request.get(
       `kapis/iam.kubesphere.io/v1alpha2${this.getPath(
         params
-      )}/users/${name}/${module}`
+      )}/users/${name}/${module}`,
+      {},
+      {},
+      () => {}
     )
 
     const rules = {}
-    resp.forEach(item => {
-      const rule = safeParseJSON(
-        get(
-          item,
-          "metadata.annotations['iam.kubesphere.io/role-template-rules']"
-        ),
-        {}
-      )
+    resp &&
+      resp.forEach(item => {
+        const rule = safeParseJSON(
+          get(
+            item,
+            "metadata.annotations['iam.kubesphere.io/role-template-rules']"
+          ),
+          {}
+        )
 
-      Object.keys(rule).forEach(key => {
-        rules[key] = rules[key] || []
-        if (isArray(rule[key])) {
-          rules[key].push(...rule[key])
-        } else {
-          rules[key].push(rule[key])
-        }
-        rules[key] = uniq(rules[key])
+        Object.keys(rule).forEach(key => {
+          rules[key] = rules[key] || []
+          if (isArray(rule[key])) {
+            rules[key].push(...rule[key])
+          } else {
+            rules[key].push(rule[key])
+          }
+          rules[key] = uniq(rules[key])
+        })
       })
-    })
 
     switch (module) {
       case 'globaleroles':

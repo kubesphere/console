@@ -56,6 +56,12 @@ class WorkspaceLayout extends Component {
       this.props.rootStore.getRules(params),
     ])
 
+    globals.app.cacheHistory(this.props.match.url, {
+      type: 'Workspace',
+      name: this.store.detail.name,
+      description: this.store.detail.description,
+    })
+
     this.store.initializing = false
   }
 
@@ -84,7 +90,7 @@ class WorkspaceLayout extends Component {
           <div className="ks-page-side">
             <Selector
               icon={detail.logo}
-              value={this.workspace}
+              detail={detail}
               onChange={this.enterWorkspace}
             />
             <Nav

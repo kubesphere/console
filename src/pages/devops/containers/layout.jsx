@@ -16,7 +16,6 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-// import { get } from 'lodash'
 import React, { Component } from 'react'
 import { inject, observer, Provider } from 'mobx-react'
 import { Loading } from '@pitrix/lego-ui'
@@ -63,6 +62,12 @@ class DevOpsLayout extends Component {
       }),
     ])
 
+    globals.app.cacheHistory(this.props.match.url, {
+      type: 'DevOps',
+      name: this.store.data.name,
+      description: this.store.data.description,
+    })
+
     this.store.initializing = false
   }
 
@@ -95,9 +100,8 @@ class DevOpsLayout extends Component {
             <Selector
               type="devops"
               title={t('DevOps Project')}
-              value={this.devops}
+              detail={data}
               onChange={this.handleChange}
-              workspace={data.workspace}
             />
             <Nav
               className="ks-page-nav"

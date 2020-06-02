@@ -33,6 +33,7 @@ export default {
     'KubeSphere 提供全生命周期的应用管理，可以上传或者创建新的应用模板，并且快速部署它们，也可以通过应用商店进行发布应用。',
 
   'Apps Management': '应用管理',
+  'Apps Store Management': '应用商店管理',
   'Certified Provider': '已认证服务商',
 
   'App Info': '应用信息',
@@ -60,6 +61,7 @@ export default {
   APP_ICON_SIZE: '图形大小: 96px*96*px',
   'Start edit': '开始编辑',
   File: '文件',
+  'Platform Apps Store Management': '平台级应用商店管理',
 
   'App Store': '应用商店',
   APP_STORE_DESC: '对已上架、已下架的应用进行管理',
@@ -71,6 +73,7 @@ export default {
   'App Review': '应用审核',
   'App Reviews': '应用审核',
   APP_REVIEW_DESC: '对服务商的认证及应用上架提供审核功能',
+  APP_REVIEWS_CREATE_DESC: '对服务商的认证及应用上架提供审核功能',
   Unprocessed: '待处理',
   Processed: '已处理',
   'Review Object': '审核对象',

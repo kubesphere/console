@@ -87,10 +87,11 @@ export default {
     '支持企业空间的管理，包括添加/删除/编辑企业空间, 查看平台的所有企业空间',
   'Workspaces View': '企业空间查看',
   WORKSPACES_VIEW_DESC: '可以查看用户当前授权的企业空间',
-  'App Templates View': '应用模板查看',
-  APP_TEMPLATES_VIEW_DESC: '可以查看用户当前授权的企业空间',
-  'App Templates Management': '应用模板管理',
-  APP_TEMPLATES_MANAGEMENT_DESC: '可以查看用户当前授权的企业空间',
+  'App Templates View': '应用商店查看',
+  APP_TEMPLATES_VIEW_DESC: '查看平台级别的应用商店',
+  'App Templates Management': '应用商店管理',
+  APP_TEMPLATES_MANAGEMENT_DESC:
+    '管理平台级别的应用商店, 对云原生应用的上架、下架以及审核等应用全生命周期的统一管理',
   'Platform Settings Management': '平台设置管理',
   PLATFORM_SETTINGS_MANAGEMENT_DESC:
     '管理平台设置, 如自定义平台信息,logo, 配置日志收集, 邮件通知等.',
@@ -221,6 +222,7 @@ export default {
   'DevOps Members Management': '成员管理',
   DEVOPS_MEMBERS_VIEW_DESC: '查看 DevOps 工程成员',
   DEVOPS_MEMBERS_MANAGEMENT_DESC: '邀请/编辑/移除 DevOps 工程成员',
+  'DevOps Settings': 'DevOps 工程设置',
   DEVOPS_SETTINGS_DESC: '管理 DevOps 工程设置, 编辑 DevOps 工程信息',
 
   'Default user role which allows a user to manage resources within the projects created by the user himself or invited by others. It does not allow the user to manage unauthorized resources in the cluster.':

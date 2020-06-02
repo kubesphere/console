@@ -77,11 +77,14 @@ export default {
   "User's Manual": '使用手册',
   'API Documents': 'API 文档',
 
+  History: '历史记录',
+
+  'Recent visit': '最近访问',
+
   CLUSTERS_MANAGEMENT_DESC:
     '对多集群以及每个集群的基础资源、服务组件和应用资源等的统一管理',
-  ACCESS_CONTROL_DESC:
-    '对平台中的企业空间、账号、以及角色权限进行统一管理',
-  APPS_MANAGEMENT_DESC:
+  ACCESS_CONTROL_DESC: '对平台中的企业空间、账号、以及角色权限进行统一管理',
+  APPS_STORE_MANAGEMENT_DESC:
     '对云原生应用的上架、下架以及审核等应用全生命周期的统一管理',
   PLATFORM_SETTINGS_DESC:
     '定制化平台设置，如平台基本信息、邮件服务器、密码安全、第三方登录、日志收集器等',
@@ -506,4 +509,16 @@ export default {
   DATA_SOURCE: '数据源',
 
   EMPTY_WRAPPER: '未发现{resource}',
+
+  'User Guides': '用户指南',
+  'Get help quickly': '快速获取帮助',
+  'Developer community': '开发者社区',
+  HISTORY_DESC:
+    '当您在多个企业空间或者项目下进行协同工作时，浏览器会记录下您最近访问的路径，您可以通过 Win + H 键（Command + H）查看历史记录，来快速切换您的访问资源。',
+  NO_HISTORY_TITLE: '浏览器暂未收录到您对集群或者企业空间等区域的访问记录',
+  NO_HISTORY_DESC: '您可以尝试对企业空间或者集群、项目等资源的访问',
+  USER_GUIDES_DESC: '最详尽的 KubeSphere 用户指南文档',
+  DEVELOPER_DESC: '通过在开发者社区提出问题获得帮助',
+  API_DOCS_DESC: '最详尽的 KubeSphere API 文档',
+  GITHUB_ISSUES_DESC: '通过在 GitHub 提出 Issue 获得帮助',
 }

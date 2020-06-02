@@ -128,7 +128,7 @@ export default class Volumes extends React.Component {
           className={styles.table}
           data={data}
           columns={this.getColumns()}
-          searchType="keyword"
+          searchType="name"
           keyword={filters.name}
           filters={filters}
           placeholder={t('Please input a name to find')}

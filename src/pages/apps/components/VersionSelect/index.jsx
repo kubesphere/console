@@ -20,10 +20,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { observer } from 'mobx-react'
-import { Icon } from '@pitrix/lego-ui'
+import { Icon, Select } from '@pitrix/lego-ui'
 import moment from 'moment-mini'
-
-import { SearchSelect } from 'components/Base'
 
 import styles from './index.scss'
 
@@ -84,7 +82,7 @@ export default class VersionSelect extends Component {
     return (
       <div className={classnames(styles.versionSelect, className)}>
         <h3>{t('Versions')}</h3>
-        <SearchSelect
+        <Select
           className={styles.select}
           value={selectVersion}
           options={this.versionOptions}

@@ -51,7 +51,7 @@ export default class Dashboard extends React.Component {
           />
           <div className={styles.text}>
             <div className="h4">{detail.name}</div>
-            <p>{detail.description}</p>
+            <p>{detail.description || '-'}</p>
           </div>
         </div>
         <Columns>

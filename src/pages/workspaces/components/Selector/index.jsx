@@ -19,7 +19,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import { Icon } from '@pitrix/lego-ui'
+import { Icon, Tooltip } from '@pitrix/lego-ui'
 
 import CreateModal from 'workspaces/components/Modals/WorkspaceCreate'
 import SelectModal from 'workspaces/components/Modals/WorkspaceSelect'
@@ -32,16 +32,12 @@ import styles from './index.scss'
 
 export default class Selector extends React.Component {
   static propTypes = {
-    icon: PropTypes.string,
-    defaultIcon: PropTypes.string,
-    value: PropTypes.string,
+    detail: PropTypes.object,
     onChange: PropTypes.func,
   }
 
   static defaultProps = {
-    icon: '',
-    defaultIcon: '/assets/default-workspace.svg',
-    value: '',
+    detail: {},
     onChange() {},
   }
 
@@ -90,7 +86,7 @@ export default class Selector extends React.Component {
   }
 
   render() {
-    const { icon, defaultIcon, value } = this.props
+    const { detail } = this.props
     const { showSelect, showCreate } = this.state
 
     const canCreate = globals.app
@@ -104,16 +100,13 @@ export default class Selector extends React.Component {
           onClick={this.showSelect}
         >
           <div className={styles.icon}>
-            <img src={icon || defaultIcon} alt="" />
+            <Icon name="enterprise" size={40} type="light" />
           </div>
           <div className={styles.text}>
-            <p>{t('Workspace')}</p>
-            <div className="h6" data-tooltip={value}>
-              {value}
-            </div>
-          </div>
-          <div className={styles.arrow}>
-            <Icon name="caret-down" type="light" />
+            <Tooltip content={detail.name}>
+              <div className="h6">{detail.name}</div>
+            </Tooltip>
+            <p>{detail.description || t('Workspace')}</p>
           </div>
         </div>
         <SelectModal

@@ -54,7 +54,9 @@ class ResourceStatus extends Base {
 
     if (!service.name) return null
 
-    return <ServiceCard service={service} loading={isLoading} />
+    return (
+      <ServiceCard prefix={this.prefix} service={service} loading={isLoading} />
+    )
   }
 
   renderContent() {

@@ -88,6 +88,10 @@ export const ROLE_MODULES = {
       name: 'Access Control',
       icon: 'human',
     },
+    {
+      name: 'DevOps Settings',
+      icon: 'strategy-group',
+    },
   ],
   clusterroles: [
     {

@@ -18,7 +18,7 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Icon } from '@pitrix/lego-ui'
+import { Icon, Tooltip } from '@pitrix/lego-ui'
 import { Tag } from 'components/Base'
 import SelectModal from 'components/Modals/ProjectSelect'
 
@@ -26,17 +26,13 @@ import styles from './index.scss'
 
 export default class Selector extends React.Component {
   static propTypes = {
-    icon: PropTypes.string,
-    defaultIcon: PropTypes.string,
-    value: PropTypes.string,
+    detail: PropTypes.object,
     onChange: PropTypes.func,
   }
 
   static defaultProps = {
-    icon: '',
-    defaultIcon: '/assets/default-project.svg',
     type: 'projects',
-    value: '',
+    detail: {},
     onChange() {},
   }
 
@@ -63,36 +59,31 @@ export default class Selector extends React.Component {
   }
 
   render() {
-    const {
-      icon,
-      defaultIcon,
-      title,
-      type,
-      value,
-      cluster,
-      workspace,
-      isFedManaged,
-    } = this.props
+    const { title, type, detail } = this.props
+    const { name, description, cluster, workspace, isFedManaged } = detail
     const { showSelect } = this.state
 
     return (
       <div>
         <div className={styles.titleWrapper} onClick={this.showSelect}>
           <div className={styles.icon}>
-            <img src={icon || defaultIcon} alt="" />
+            <Icon
+              name={type === 'devops' ? 'strategy-group' : 'project'}
+              size={40}
+              type="light"
+            />
           </div>
           <div className={styles.text}>
-            <p>
-              {title}{' '}
-              {isFedManaged && <Tag type="info">{t('MULTI_CLUSTER')}</Tag>}
-            </p>
-            <div className="h6" data-tooltip={value}>
-              {value}
-            </div>
+            <Tooltip content={name}>
+              <div className="h6">{name}</div>
+            </Tooltip>
+            <p>{description || title}</p>
           </div>
-          <div className={styles.arrow}>
-            <Icon name="caret-down" type="light" />
-          </div>
+          {isFedManaged && (
+            <Tag className={styles.tag} type="info">
+              {t('MULTI_CLUSTER')}
+            </Tag>
+          )}
         </div>
         <SelectModal
           defaultType={type}

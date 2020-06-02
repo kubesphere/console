@@ -42,6 +42,10 @@ export default class NodeUsageRank extends React.Component {
     return isNaN(number) ? '-' : `${number} ${unit}`
   }
 
+  get cluster() {
+    return this.props.store.cluster
+  }
+
   get canViewProjects() {
     return globals.app.hasPermission({
       module: 'projects',
@@ -62,7 +66,10 @@ export default class NodeUsageRank extends React.Component {
       render: node => (
         <div>
           <h3>
-            <Link to={`/projects/${node}/overview`} auth={this.canViewProjects}>
+            <Link
+              to={`/clusters/${this.cluster}/projects/${node}/overview`}
+              auth={this.canViewProjects}
+            >
               {node}
             </Link>
           </h3>

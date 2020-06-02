@@ -54,6 +54,8 @@ export default {
 
   APP_REVIEW_DESC:
     'Certify service providers and review applications in order to approve or reject the applications to show or not in the store.',
+  APP_REVIEWS_CREATE_DESC:
+    'Certify service providers and review applications in order to approve or reject the applications to show or not in the store.',
 
   REVIEW_CONTENT_DESC:
     'The following information must be true and accurate. Key instructions must be given in details. Terms and Conditions are required to state clearly.',

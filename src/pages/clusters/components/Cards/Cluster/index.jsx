@@ -57,7 +57,7 @@ export default class ClusterCard extends React.Component {
                 <a onClick={this.handleClick}>{data.name}</a>
               </div>
               {isReady ? (
-                <p className="ellipsis">{data.description}</p>
+                <p className="ellipsis">{data.description || '-'}</p>
               ) : (
                 <StatusReason data={data} />
               )}
@@ -73,7 +73,7 @@ export default class ClusterCard extends React.Component {
             />
           </Column>
           <Column className="is-2">
-            <Text title={data.provider} description={t('Cloud Provider')} />
+            <Text title={data.provider} description={t('Provider')} />
           </Column>
           <Column className="is-2">
             <Text

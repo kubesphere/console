@@ -192,6 +192,7 @@ export default class Placment extends Component {
                   placeholder={t('Please select a workspace')}
                   options={this.workspaces}
                   onChange={this.handleWorkspaceChange}
+                  prefixIcon={<Icon name="enterprise" size={16} />}
                   disabled={!!workspace}
                 />
               </Form.Item>
@@ -203,6 +204,7 @@ export default class Placment extends Component {
                   placeholder={t('Please select a cluster')}
                   options={this.clusters}
                   onChange={this.handleClusterChange}
+                  prefixIcon={<Icon name="cluster" size={16} />}
                 />
               </Form.Item>
             </Column>
@@ -221,6 +223,7 @@ export default class Placment extends Component {
                   total={this.projectStore.list.total}
                   isLoading={this.projectStore.list.isLoading}
                   currentLength={this.projectStore.list.data.length}
+                  prefixIcon={<Icon name="project" size={16} />}
                   onFetch={this.fetchNamespaces}
                 />
               </Form.Item>

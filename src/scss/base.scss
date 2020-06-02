@@ -190,7 +190,7 @@ pre {
     top: 88px;
     width: $nav-width;
     padding: 0 20px 40px 20px;
-    z-index: 2;
+    z-index: 201;
 
     @media (max-width: 1366px) {
       width: $narrow-nav-width;

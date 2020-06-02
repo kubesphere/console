@@ -125,7 +125,9 @@ const getUserDetail = async (username, token) => {
     throw new Error(resp)
   }
 
-  user.globalRules = await getUserGlobalRules(username, token)
+  try {
+    user.globalRules = await getUserGlobalRules(username, token)
+  } catch (error) {}
 
   return user
 }

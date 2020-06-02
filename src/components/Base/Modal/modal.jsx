@@ -181,6 +181,7 @@ export default class Modal extends React.Component {
       icon,
       imageIcon,
       disableSubmit,
+      ...rest
     } = this.props
 
     const style = {
@@ -205,6 +206,7 @@ export default class Modal extends React.Component {
         ariaHideApp={false}
         closeTimeoutMS={0}
         shouldCloseOnOverlayClick={maskClosable}
+        {...rest}
       >
         {!hideHeader && (
           <div className={classnames(styles.header, headerClassName)}>
