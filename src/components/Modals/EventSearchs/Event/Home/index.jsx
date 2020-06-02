@@ -30,12 +30,6 @@ export default class HomeModal extends React.Component {
 
   supportQueryParams = [
     {
-      icon: 'listview',
-      title: t('Search Events by', { field: t('message') }),
-      tips: t('Message Event Query Tip'),
-      key: 'message_search',
-    },
-    {
       icon: 'magnifier',
       title: t('Search Events by', { field: t('Workspace') }),
       tips: t('KeyWord Event Query Tip'),
@@ -49,21 +43,27 @@ export default class HomeModal extends React.Component {
     },
     {
       icon: 'log',
-      title: t('Search Events by', { field: t('Resource Name') }),
+      title: t('Search Events by', { field: t('name') }),
       tips: t('Name Event Query Tip'),
       key: 'involved_object_name_filter',
     },
-    // {
-    //   icon: 'pod',
-    //   title: t('Search Events by', { field: t('Pods') }),
-    //   tips: t('Pod Event Query Tip'),
-    //   key: 'involved_object_kind_filter',
-    // },
+    {
+      icon: 'pod',
+      title: t('Search Events by', { field: t('Pods') }),
+      tips: t('Pod Event Query Tip'),
+      key: 'involved_object_kind_filter',
+    },
     {
       icon: 'resource',
       title: t('Search Events by', { field: t('reason') }),
       tips: t('Reason Event Query Tip'),
       key: 'reason_filter',
+    },
+    {
+      icon: 'listview',
+      title: t('Search Events by', { field: t('message') }),
+      tips: t('Message Event Query Tip'),
+      key: 'message_search',
     },
     {
       icon: 'table-chart',

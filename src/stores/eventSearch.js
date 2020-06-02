@@ -1,7 +1,8 @@
 import { observable, action } from 'mobx'
-import { assign } from 'lodash'
+import { assign, get } from 'lodash'
 import { to } from 'utils'
 import moment from 'moment-mini'
+import stripAnsi from 'strip-ansi'
 
 export default class EventSearchStore {
   resource = 'events'
@@ -22,16 +23,22 @@ export default class EventSearchStore {
   data = []
 
   @observable
-  page = 1
+  from = 0
 
   @observable
   total = 0
 
   @observable
-  limit = 10
+  size = 10
 
   @observable
   namespaces = []
+
+  constructor(state = {}) {
+    Object.getOwnPropertyNames(state).forEach(prop => {
+      this[prop] = state[prop]
+    })
+  }
 
   get apiVersion() {
     return 'kapis/tenant.kubesphere.io/v1alpha2'
@@ -44,12 +51,6 @@ export default class EventSearchStore {
   @action
   changeTimeRang = time => {
     this.time_rang = time
-    this.fetchQuery()
-  }
-
-  @action
-  changePagination = page => {
-    this.page = page
     this.fetchQuery()
   }
 
@@ -98,25 +99,40 @@ export default class EventSearchStore {
   }
 
   @action
-  async fetchQuery(params = {}) {
+  async fetchQuery(params = {}, options = {}) {
     this.isLoading = true
 
     const defaultParams = {
       operation: 'query',
-      from: (this.page - 1) * 10,
-      size: this.limit,
+      from: this.from,
+      size: this.size,
     }
 
-    const { query = {} } = await to(
-      request.get(this.fetchUrl, assign(defaultParams, params))
-    )
+    const queryParams = assign(defaultParams, params)
 
-    const data = query.records || []
+    const resp = await to(request.get(this.fetchUrl, queryParams))
+
+    const query = get(resp, 'query', {})
+
+    const records = this.stripAnsiRecords(query.records || [])
+
+    this.data = options.loadMore ? this.data.concat(records) : records
 
     this.total = query.total || 0
 
-    this.data = data
-
     this.isLoading = false
+
+    this.from = queryParams.from
+
+    this.size = queryParams.size
+
+    this.preParams = queryParams
+  }
+
+  stripAnsiRecords(records = []) {
+    return records.map(record => ({
+      ...record,
+      logStripANSI: stripAnsi(record.log),
+    }))
   }
 }

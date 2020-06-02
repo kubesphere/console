@@ -28,6 +28,7 @@ export default class MetadataModal extends React.Component {
   renderDetail = () => {
     const { detail = {} } = this.props
     const {
+      metadata = {},
       source = {},
       involvedObject = {},
       type,
@@ -38,16 +39,25 @@ export default class MetadataModal extends React.Component {
     return (
       <div className={styles.center}>
         <div className={styles.row}>
+          <div className={styles.rowTitle}>{t('Workspace')}</div>
+          <div className={styles.rowDesc}>{t(metadata.namespace) || '-'}</div>
+        </div>
+        <div className={styles.row}>
           <div className={styles.rowTitle}>{t('Project')}</div>
-          <div className={styles.rowDesc}>
-            {t(involvedObject.namespace) || '-'}
-          </div>
+          <div className={styles.rowDesc}>{t(source.component) || '-'}</div>
         </div>
         <div className={styles.row}>
           <div className={styles.rowTitle}>{t('resources')}</div>
           <div className={styles.rowDesc}>
             <span>{`[${involvedObject.kind}]`}</span>
-            <span className={styles.namespace}>{involvedObject.name}</span>
+            <span className={styles.namespace}>{involvedObject.namespace}</span>
+          </div>
+        </div>
+        <div className={styles.row}>
+          <div className={styles.rowTitle}>{t('Related resources')}</div>
+          <div className={styles.rowDesc}>
+            <span>{`[${involvedObject.kind}]`}</span>
+            <span className={styles.namespace}>{involvedObject.namespace}</span>
           </div>
         </div>
         <div className={styles.row}>
@@ -71,11 +81,11 @@ export default class MetadataModal extends React.Component {
           <div className={styles.rowDesc}>{t(source.component) || '-'}</div>
         </div>
         <div className={styles.row}>
-          <div className={styles.rowTitle}>{t('Earliest start time')}</div>
+          <div className={styles.rowTitle}>{t('Start Time')}</div>
           <div className={styles.rowDesc}>{firstTimestamp}</div>
         </div>
         <div className={styles.row}>
-          <div className={styles.rowTitle}>{t('Most recent start time')}</div>
+          <div className={styles.rowTitle}>{t('Workspace')}</div>
           <div className={styles.rowDesc}>{lastTimestamp}</div>
         </div>
       </div>
