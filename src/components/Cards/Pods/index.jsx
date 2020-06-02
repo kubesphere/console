@@ -90,9 +90,12 @@ export default class PodsCard extends React.Component {
 
   initWebsocket() {
     const { onUpdate } = this.props
+    const { selectCluster } = this.state
     const { namespace, selector } = this.props.detail || {}
 
-    const url = `api/v1/watch/namespaces/${namespace}/pods?labelSelector=${joinSelector(
+    const url = `api${
+      selectCluster ? `/clusters/${selectCluster}` : ''
+    }/v1/watch/namespaces/${namespace}/pods?labelSelector=${joinSelector(
       selector
     )}`
 
@@ -106,7 +109,7 @@ export default class PodsCard extends React.Component {
         message => {
           if (message.object.kind === 'Pod' && message.type === 'MODIFIED') {
             this.fetchData({ noMetrics: true, silent: true }).then(() => {
-              onUpdate && onUpdate()
+              onUpdate && onUpdate(selectCluster)
             })
           }
         }
@@ -254,6 +257,7 @@ export default class PodsCard extends React.Component {
     this.setState({ selectCluster: cluster }, () => {
       this.params = this.getParams(this.props)
       this.fetchData()
+      this.initWebsocket()
     })
   }
 
