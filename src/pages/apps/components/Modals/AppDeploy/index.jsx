@@ -102,7 +102,6 @@ export default class AppDeploy extends React.Component {
   async init() {
     await this.versionStore.fetchList({
       app_id: this.props.app.app_id,
-      status: 'active',
     })
     if (!this.state.formData.version_id) {
       this.setState({

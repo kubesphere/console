@@ -168,6 +168,7 @@ export default class App extends React.Component {
 
     const props = {
       formData,
+      fromStore: true,
       versionStore: this.versionStore,
       fileStore: this.fileStore,
       appID: this.appID,
