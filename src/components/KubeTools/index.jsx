@@ -23,7 +23,6 @@ import { observable, action } from 'mobx'
 import { isEmpty } from 'lodash'
 
 import Draggable from 'react-draggable'
-import { Icon } from '@pitrix/lego-ui'
 import { Button, Text, List } from 'components/Base'
 import { trigger } from 'utils/action'
 import { createCenterWindowOpt } from 'utils/dom'
@@ -194,15 +193,12 @@ export default class KubeTools extends React.Component {
       <Draggable axis="y">
         <div className={styles.trigger} onMouseLeave={this.onMouseLeave}>
           <Button
-            className={classNames(styles.button, {
-              [styles.showTools]: this.showTools === 1,
-            })}
+            className={styles.button}
             onMouseEnter={this.onMouseEnter}
             type="control"
-          >
-            <span>{t('Toolbox')}</span>
-            <Icon name="chevron-up" size={24} type="light" />
-          </Button>
+            icon="hammer"
+            iconType="light"
+          />
           {this.renderTools()}
         </div>
       </Draggable>
