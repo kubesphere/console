@@ -25,6 +25,12 @@ export default class FederatedStore extends Base {
   @observable
   detail = {}
 
+  @observable
+  syncEvent = {
+    id: 0,
+    params: {},
+  }
+
   getPath({ namespace }) {
     let path = ''
     if (namespace) {
@@ -50,5 +56,12 @@ export default class FederatedStore extends Base {
     this.detail = detail
     this.isLoading = false
     return detail
+  }
+
+  @action sync(params) {
+    this.syncEvent = {
+      id: new Date().getTime(),
+      params,
+    }
   }
 }
