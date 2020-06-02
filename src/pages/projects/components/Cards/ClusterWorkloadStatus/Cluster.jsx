@@ -97,7 +97,7 @@ export default class Cluster extends Component {
             <p>{clusterDetail.description || '-'}</p>
           </div>
           {clusterDetail.group && (
-            <Tag className={styles.group} type="warning">
+            <Tag className={styles.group} type="info">
               {clusterDetail.group}
             </Tag>
           )}

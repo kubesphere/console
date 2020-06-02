@@ -256,7 +256,7 @@ export default class VersionItem extends React.PureComponent {
           activeName={tab}
           onChange={this.handleTabChange}
         >
-          <TabPanel label={t('Chart File')} name="configFile">
+          <TabPanel label={t('Chart Files')} name="configFile">
             <ConfigFile detail={detail} appName={appDetail.name} />
           </TabPanel>
           <TabPanel label={t('Audit Records')} name="auditRecord">
