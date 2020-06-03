@@ -1,5 +1,4 @@
 @import '~scss/variables';
-@import '~scss/mixins';
 
 .header {
   display: flex;
@@ -13,25 +12,10 @@
 
 .cluster {
   position: relative;
-  display: flex;
   width: 326px;
   padding: 8px;
   border-radius: 2px;
   background-color: $dark-color07;
-}
-
-.text {
-  flex: 1;
-  overflow: hidden;
-  & > div {
-    @include TypographyTitleH6(#fff);
-    @include ellipsis;
-  }
-
-  & > p {
-    @include TypographyParagraph(#fff);
-    @include ellipsis;
-  }
 }
 
 .icon {

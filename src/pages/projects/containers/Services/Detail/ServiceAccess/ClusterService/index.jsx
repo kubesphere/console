@@ -18,8 +18,9 @@
 
 import React, { Component } from 'react'
 import { observer } from 'mobx-react'
-import { Icon } from '@pitrix/lego-ui'
-import { Panel, Indicator, Tag, Text } from 'components/Base'
+import { Panel, Text } from 'components/Base'
+
+import ClusterTitle from 'components/ClusterTitle'
 
 import ClusterStore from 'stores/cluster'
 import ServiceStore from 'stores/service'
@@ -47,7 +48,6 @@ export default class ServicePort extends Component {
   }
 
   render() {
-    const { cluster } = this.props
     const clusterDetail = this.clusterStore.detail
     const serviceDetail = this.serviceStore.detail
 
@@ -55,25 +55,11 @@ export default class ServicePort extends Component {
       <Panel>
         <div className={styles.header}>
           <div className={styles.cluster}>
-            <Icon
-              className={styles.icon}
-              type="light"
-              name="kubernetes"
-              size={40}
+            <ClusterTitle
+              cluster={clusterDetail}
+              theme="light"
+              tagClass="float-right"
             />
-            <Indicator
-              className={styles.indicator}
-              type={clusterDetail.status}
-            />
-            <div className={styles.text}>
-              <div>{cluster}</div>
-              <p>{clusterDetail.description || t('Cluster Name')}</p>
-            </div>
-            {clusterDetail.group && (
-              <Tag className={styles.group} type="info">
-                {clusterDetail.group}
-              </Tag>
-            )}
           </div>
           <Text
             icon="eip-pool"

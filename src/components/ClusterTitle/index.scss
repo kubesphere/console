@@ -1,0 +1,61 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.wrapper {
+  display: flex;
+}
+
+.icon {
+  position: relative;
+  margin-right: 12px;
+
+  .indicator {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+}
+
+.title {
+  flex: 1;
+  overflow: hidden;
+}
+
+.name {
+  @include TypographyTitleH6($dark-color07);
+  @include ellipsis;
+
+  & > a,
+  & > span {
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
+
+.description {
+  @include TypographyParagraph($dark-color01);
+  @include ellipsis;
+}
+
+.light {
+  .name {
+    color: $white;
+  }
+  .description {
+    color: $white;
+  }
+}
+
+.large {
+  .name {
+    @include TypographyTitleH4($dark-color07);
+    text-shadow: 0 4px 8px rgba(36, 46, 66, 0.1);
+    font-family: $font-family-id;
+  }
+}
+
+.small {
+  .description {
+    display: none;
+  }
+}

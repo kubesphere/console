@@ -5,6 +5,7 @@
   :global .ReactModal__Overlay--after-open {
     background-color: transparent !important;
     z-index: 2001 !important;
+    transition: none;
   }
 }
 

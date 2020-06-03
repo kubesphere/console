@@ -132,8 +132,16 @@ export default {
 
   EVENT_CREATE_DESC: 'You can change the search criteria and search again.',
 
-  KUBECTL_DESC: 'A command line tool for controlling the current Kubernetes cluster',
-  TOOLBOX_KUBECTL_DESC: 'A command line tool for controlling the Kubernetes clusters',
-  
-  KUBECONFIG_DESC: 'A file that is used to configure access to the current Kubernetes cluster',
+  KUBECTL_DESC:
+    'A command line tool for controlling the current Kubernetes cluster',
+  TOOLBOX_KUBECTL_DESC:
+    'A command line tool for controlling the Kubernetes clusters',
+
+  KUBECONFIG_DESC:
+    'A file that is used to configure access to the current Kubernetes cluster',
+
+  ENV_PRODUCTOON: 'Production',
+  ENV_DEVELOPMENT: 'Development',
+  ENV_TESTING: 'Testing',
+  ENV_DEMO: 'Demo',
 }

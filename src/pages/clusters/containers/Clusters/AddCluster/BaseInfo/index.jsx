@@ -17,9 +17,9 @@
  */
 
 import React from 'react'
-import { Input, TextArea } from '@pitrix/lego-ui'
-import { PATTERN_NAME } from 'utils/constants'
-import { Form } from 'components/Base'
+import { Icon, Input, TextArea } from '@pitrix/lego-ui'
+import { PATTERN_NAME, CLUSTER_GROUP_TAG_TYPE } from 'utils/constants'
+import { Form, Tag } from 'components/Base'
 import { SelectInput } from 'components/Inputs'
 
 import SubTitle from '../SubTitle'
@@ -49,42 +49,59 @@ export default class BaseInfo extends React.Component {
   get providers() {
     return [
       {
-        label: 'ACK',
-        value: 'ACK',
-        icon: 'windows',
-      },
-      {
-        label: 'AKS',
-        value: 'AKS',
+        label: 'Aliyun ACK',
+        value: 'Aliyun ACK',
         icon: 'aliyun',
       },
       {
-        label: 'CCE',
-        value: 'CCE',
+        label: 'Aure Kubernetes Service',
+        value: 'Aure Kubernetes Service',
+        icon: 'windows',
+      },
+      {
+        label: 'Huawei Cloud CCE',
+        value: 'Huawei Cloud CCE',
         icon: 'kubernetes',
       },
       {
-        label: 'EKS',
-        value: 'EKS',
+        label: 'Amazon EKS',
+        value: 'Amazon EKS',
         icon: 'aws',
       },
       {
-        label: 'GEK',
-        value: 'GEK',
+        label: 'Google Kubernetes Engine',
+        value: 'Google Kubernetes Engine',
         icon: 'google-plus',
       },
       {
-        label: 'QKE',
-        value: 'QKE',
+        label: 'QingCloud Kubernetes Engine',
+        value: 'QingCloud Kubernetes Engine',
         icon: 'qingcloud',
       },
       {
-        label: 'TKE',
-        value: 'TKE',
+        label: 'Tencent Kubernetes Engine',
+        value: 'Tencent Kubernetes Engine',
         icon: 'kubernetes',
       },
     ]
   }
+
+  groupOptionRenderer = option => (
+    <>
+      <Tag type={CLUSTER_GROUP_TAG_TYPE[option.value]}>
+        {t(`ENV_${option.label.toUpperCase()}`)}
+      </Tag>
+      &nbsp;&nbsp;
+      {option.label}
+    </>
+  )
+
+  providerOptionRenderer = option => (
+    <>
+      <Icon name={option.icon} type="light" size={20} />
+      {option.label}
+    </>
+  )
 
   nameValidator = (rule, value, callback) => {
     if (!value) {
@@ -125,6 +142,7 @@ export default class BaseInfo extends React.Component {
             name="metadata.labels['cluster.kubesphere.io/group']"
             options={this.groups}
             placeholder={t('Please select or input a tag')}
+            optionRenderer={this.groupOptionRenderer}
           />
         </Form.Item>
         <Form.Item label={t('Provider')} desc={t('CLUSTER_PROVIDER_DESC')}>
@@ -132,6 +150,7 @@ export default class BaseInfo extends React.Component {
             name="spec.provider"
             options={this.providers}
             placeholder={t('Please select or input a provider')}
+            optionRenderer={this.providerOptionRenderer}
           />
         </Form.Item>
         <Form.Item label={t('Description')}>

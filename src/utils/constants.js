@@ -904,6 +904,13 @@ export const CLUSTER_PROVIDER_ICON = {
   QKE: 'qingcloud',
 }
 
+export const CLUSTER_GROUP_TAG_TYPE = {
+  production: 'warning',
+  development: 'secondary',
+  testing: 'info',
+  demo: 'primary',
+}
+
 export const ROLE_QUERY_KEY = {
   globalroles: 'globalrole',
   workspaceroles: 'workspacerole',

@@ -19,6 +19,7 @@
 import React from 'react'
 import { List } from 'components/Base'
 import { getLocalTime } from 'utils'
+import ClusterTitle from 'components/ClusterTitle'
 
 import styles from './index.scss'
 
@@ -52,13 +53,13 @@ export default class ClusterCard extends React.Component {
       },
     ]
 
+    const title = <ClusterTitle cluster={data} />
+
     return (
       <List.Item
-        icon="cluster"
         className={styles.wrapper}
         titleClass={styles.title}
-        title={<a>{data.name}</a>}
-        description={data.description || '-'}
+        title={title}
         details={details}
         onClick={this.handleClick}
       />

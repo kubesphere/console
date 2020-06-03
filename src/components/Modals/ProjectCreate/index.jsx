@@ -20,14 +20,11 @@ import React from 'react'
 import { observer } from 'mobx-react'
 import { get, isEmpty } from 'lodash'
 import PropTypes from 'prop-types'
-import { Columns, Column, Select, Input, Icon, TextArea } from '@pitrix/lego-ui'
-import { Modal, Form, Tag } from 'components/Base'
+import { Columns, Column, Select, Input, TextArea } from '@pitrix/lego-ui'
+import { Modal, Form } from 'components/Base'
 import { ArrayInput, ObjectInput } from 'components/Inputs'
-import {
-  PATTERN_SERVICE_NAME,
-  PATTERN_LENGTH_63,
-  CLUSTER_PROVIDER_ICON,
-} from 'utils/constants'
+import ClusterTitle from 'components/ClusterTitle'
+import { PATTERN_SERVICE_NAME, PATTERN_LENGTH_63 } from 'utils/constants'
 
 import WorkspaceStore from 'stores/workspace'
 
@@ -78,6 +75,7 @@ export default class ProjectCreateModal extends React.Component {
       value: item.name,
       provider: item.provider,
       group: item.group,
+      name: item.name,
     }))
   }
 
@@ -133,35 +131,10 @@ export default class ProjectCreateModal extends React.Component {
     callback()
   }
 
-  valueRenderer = item => (
-    <div className={styles.itemValue}>
-      <Icon
-        name={CLUSTER_PROVIDER_ICON[item.provider] || 'kubernetes'}
-        size={20}
-      />
-      <span className={styles.title}>{item.label}</span>
-      {item.group && (
-        <Tag className={styles.group} type="info">
-          {item.group}
-        </Tag>
-      )}
-    </div>
-  )
+  valueRenderer = item => <ClusterTitle cluster={item} size="small" noStatus />
 
   optionRenderer = item => (
-    <div className={styles.itemOption}>
-      <Icon
-        name={CLUSTER_PROVIDER_ICON[item.provider] || 'kubernetes'}
-        size={20}
-        type="light"
-      />
-      <span className={styles.title}>{item.label}</span>
-      {item.group && (
-        <Tag className={styles.group} type="info">
-          {item.group}
-        </Tag>
-      )}
-    </div>
+    <ClusterTitle cluster={item} size="small" theme="light" noStatus />
   )
 
   render() {

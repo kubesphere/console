@@ -20,8 +20,7 @@ import React, { Component } from 'react'
 import classNames from 'classnames'
 import { observer } from 'mobx-react'
 import { Checkbox } from '@pitrix/lego-ui'
-import { Text, Tag } from 'components/Base'
-import { CLUSTER_PROVIDER_ICON } from 'utils/constants'
+import ClusterTitle from 'components/ClusterTitle'
 
 import ClusterStore from 'stores/cluster'
 
@@ -73,17 +72,12 @@ export default class ClusterSettings extends Component {
               checked={value.includes(cluster.name)}
               disabled={!globals.app.isMultiCluster}
             />
-            <Text
-              icon={CLUSTER_PROVIDER_ICON[cluster.provider] || 'kubernetes'}
-              title={cluster.name}
-              description={cluster.description || t('Cluster Name')}
-              ellipsis
+            <ClusterTitle
+              className={styles.cluster}
+              tagClass="float-right"
+              cluster={cluster}
+              noStatus
             />
-            {cluster.group && (
-              <Tag className={styles.tag} type="info">
-                {cluster.group}
-              </Tag>
-            )}
           </div>
         ))}
       </div>
