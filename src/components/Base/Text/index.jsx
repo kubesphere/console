@@ -25,13 +25,21 @@ import styles from './index.scss'
 
 export default class Text extends React.PureComponent {
   render() {
-    const { icon, title, description, className, extra, onClick } = this.props
+    const {
+      icon,
+      title,
+      description,
+      className,
+      ellipsis,
+      extra,
+      onClick,
+    } = this.props
 
     return (
       <div
         className={classNames(
           styles.wrapper,
-          { [styles.clickable]: !!onClick },
+          { [styles.clickable]: !!onClick, [styles.ellipsis]: ellipsis },
           className
         )}
         onClick={onClick}

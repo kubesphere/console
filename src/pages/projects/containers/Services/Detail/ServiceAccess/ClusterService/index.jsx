@@ -67,7 +67,7 @@ export default class ServicePort extends Component {
             />
             <div className={styles.text}>
               <div>{cluster}</div>
-              <p>{clusterDetail.description || '-'}</p>
+              <p>{clusterDetail.description || t('Cluster Name')}</p>
             </div>
             {clusterDetail.group && (
               <Tag className={styles.group} type="info">

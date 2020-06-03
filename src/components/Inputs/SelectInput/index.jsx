@@ -62,7 +62,10 @@ export default class SelectInput extends React.Component {
     return (
       <Menu onClick={this.handleOptionsClick}>
         {options.map(option => (
-          <Menu.MenuItem key={option.value}>{option.label}</Menu.MenuItem>
+          <Menu.MenuItem key={option.value}>
+            {option.icon && <Icon name={option.icon} type="light" size={20} />}
+            {option.label}
+          </Menu.MenuItem>
         ))}
       </Menu>
     )
@@ -74,7 +77,12 @@ export default class SelectInput extends React.Component {
     return (
       <div className={styles.wrapper}>
         <Input {...rest} />
-        <Icon name="caret-down" clickable onClick={this.toggleOptions} />
+        <Icon
+          className={styles.caret}
+          name="caret-down"
+          clickable
+          onClick={this.toggleOptions}
+        />
         <Dropdown
           visible={this.state.showOptions}
           className="dropdown-default"

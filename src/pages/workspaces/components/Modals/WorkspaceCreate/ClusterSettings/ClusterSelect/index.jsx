@@ -77,6 +77,7 @@ export default class ClusterSettings extends Component {
               icon={CLUSTER_PROVIDER_ICON[cluster.provider] || 'kubernetes'}
               title={cluster.name}
               description={cluster.description || t('Cluster Name')}
+              ellipsis
             />
             {cluster.group && (
               <Tag className={styles.tag} type="info">

@@ -25,12 +25,16 @@
 }
 
 .text {
+  flex: 1;
+  overflow: hidden;
   & > div {
     @include TypographyTitleH6(#fff);
+    @include ellipsis;
   }
 
   & > p {
     @include TypographyParagraph(#fff);
+    @include ellipsis;
   }
 }
 
