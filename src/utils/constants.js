@@ -251,6 +251,7 @@ export const MODULE_KIND_MAP = {
   volumesnapshots: 'VolumeSnapshot',
   namespaces: 'Namespace',
   workspaces: 'WorkspaceTemplate',
+  dashboards: 'Dashboard',
 }
 
 export const QUOTAS_MAP = {
