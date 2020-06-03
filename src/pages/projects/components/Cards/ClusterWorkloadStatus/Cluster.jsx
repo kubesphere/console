@@ -118,7 +118,7 @@ export default class Cluster extends Component {
           <Indicator className={styles.indicator} type={clusterDetail.status} />
           <div className={styles.text}>
             <div>{cluster}</div>
-            <p>{clusterDetail.description || '-'}</p>
+            <p>{clusterDetail.description || t('Cluster Name')}</p>
           </div>
           {clusterDetail.group && (
             <Tag className={styles.group} type="info">

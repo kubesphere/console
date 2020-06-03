@@ -44,7 +44,7 @@ export default class ResourceStatus extends React.Component {
 
   renderServiceAccess() {
     const { name, namespace } = this.store.detail
-    const { clusters } = this.fedStore.detail
+    const { clusters = [] } = this.fedStore.detail
     const gateway = this.routerStore.gateway.data
     return (
       <div>

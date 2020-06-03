@@ -28,12 +28,20 @@ export default class BaseInfo extends React.Component {
   get groups() {
     return [
       {
-        label: t('production'),
+        label: 'production',
         value: 'production',
       },
       {
-        label: t('development'),
+        label: 'development',
         value: 'development',
+      },
+      {
+        label: 'testing',
+        value: 'testing',
+      },
+      {
+        label: 'demo',
+        value: 'demo',
       },
     ]
   }
@@ -41,9 +49,19 @@ export default class BaseInfo extends React.Component {
   get providers() {
     return [
       {
+        label: 'ACK',
+        value: 'ACK',
+        icon: 'windows',
+      },
+      {
         label: 'AKS',
         value: 'AKS',
-        icon: 'windows',
+        icon: 'aliyun',
+      },
+      {
+        label: 'CCE',
+        value: 'CCE',
+        icon: 'kubernetes',
       },
       {
         label: 'EKS',
@@ -53,12 +71,17 @@ export default class BaseInfo extends React.Component {
       {
         label: 'GEK',
         value: 'GEK',
-        icon: 'google',
+        icon: 'google-plus',
       },
       {
         label: 'QKE',
         value: 'QKE',
         icon: 'qingcloud',
+      },
+      {
+        label: 'TKE',
+        value: 'TKE',
+        icon: 'kubernetes',
       },
     ]
   }

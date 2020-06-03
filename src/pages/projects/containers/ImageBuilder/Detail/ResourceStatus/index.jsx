@@ -30,14 +30,10 @@ class JobsResourceStatus extends Base {
   }
 
   renderPods() {
-    const { params = {} } = this.props.match
-    const { cluster, namespace } = params
+    const { cluster } = this.props.match.params
 
     return (
-      <PodsCard
-        prefix={`/cluster/${cluster}/projects/${namespace}`}
-        detail={this.store.jobDetail}
-      />
+      <PodsCard prefix={`/cluster/${cluster}`} detail={this.store.jobDetail} />
     )
   }
 

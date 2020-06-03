@@ -55,6 +55,7 @@ export default class Card extends Component {
           icon={this.getIcon()}
           title={data.name}
           description={data.description || t(data.type)}
+          ellipsis
         />
         {data.isFedManaged && (
           <Tag className={styles.tag}>{t('MULTI_CLUSTER')}</Tag>

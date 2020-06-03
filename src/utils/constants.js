@@ -892,11 +892,15 @@ export const COMPONENT_ICON_MAP = {
 }
 
 export const CLUSTER_PROVIDER_ICON = {
-  Custom: 'kubernetes',
   QingCloud: 'qingcloud',
   Google: 'google-plus',
   Amazon: 'aws',
   Azure: 'windows',
+  ACK: 'windows',
+  AKS: 'aliyun',
+  EKS: 'aws',
+  GEK: 'google-plus',
+  QKE: 'qingcloud',
 }
 
 export const ROLE_QUERY_KEY = {
