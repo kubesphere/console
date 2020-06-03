@@ -11,11 +11,13 @@
   font-weight: 600;
   border-radius: 2px;
   max-width: 100px;
+  color: $white;
+  background-color: $dark-color06;
   @include ellipsis;
 
-  &.default {
+  &.secondary {
     color: $white;
-    background-color: $dark-color07;
+    background-color: $dark-color05;
   }
 
   &.warning {

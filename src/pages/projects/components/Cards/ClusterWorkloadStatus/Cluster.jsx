@@ -22,8 +22,7 @@ import { reaction } from 'mobx'
 import { observer } from 'mobx-react'
 
 import { Icon } from '@pitrix/lego-ui'
-import { Tag, Indicator } from 'components/Base'
-import { CLUSTER_PROVIDER_ICON } from 'utils/constants'
+import ClusterTitle from 'components/ClusterTitle'
 
 import ClusterStore from 'stores/cluster'
 import WorkloadStore from 'stores/workload'
@@ -99,8 +98,6 @@ export default class Cluster extends Component {
       return <div className={styles.clusterLoading} />
     }
 
-    const { cluster } = this.props
-
     const { podNums = 0, readyPodNums = 0 } = this.workloadStore.detail
     const unReadyNums = podNums - readyPodNums
 
@@ -108,24 +105,11 @@ export default class Cluster extends Component {
 
     return (
       <div className={styles.cluster}>
-        <div className={styles.textWrapper}>
-          <Icon
-            className={styles.icon}
-            type="light"
-            name={CLUSTER_PROVIDER_ICON[clusterDetail.provider] || 'kubernetes'}
-            size={40}
-          />
-          <Indicator className={styles.indicator} type={clusterDetail.status} />
-          <div className={styles.text}>
-            <div>{cluster}</div>
-            <p>{clusterDetail.description || t('Cluster Name')}</p>
-          </div>
-          {clusterDetail.group && (
-            <Tag className={styles.group} type="info">
-              {clusterDetail.group}
-            </Tag>
-          )}
-        </div>
+        <ClusterTitle
+          cluster={clusterDetail}
+          tagClass="float-right"
+          theme="light"
+        />
         <div className={styles.bottom}>
           <div className={styles.replicas}>
             <span>{readyPodNums}</span> / <span>{podNums}</span>

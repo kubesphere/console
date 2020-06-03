@@ -526,4 +526,9 @@ export default {
   DEVELOPER_DESC: '通过在开发者社区提出问题获得帮助',
   API_DOCS_DESC: '最详尽的 KubeSphere API 文档',
   GITHUB_ISSUES_DESC: '通过在 GitHub 提出 Issue 获得帮助',
+
+  ENV_PRODUCTION: '生产环境',
+  ENV_DEVELOPMENT: '开发环境',
+  ENV_TESTING: '测试环境',
+  ENV_DEMO: '演示环境',
 }

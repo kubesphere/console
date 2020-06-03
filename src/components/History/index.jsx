@@ -43,7 +43,7 @@ export default class History extends Component {
   }
 
   handleKeyDown = e => {
-    if (e.keyCode === 72 && e.metaKey) {
+    if (e.keyCode === 32 && e.altKey) {
       e.stopPropagation()
       e.preventDefault()
       this.setState(({ visible }) => ({

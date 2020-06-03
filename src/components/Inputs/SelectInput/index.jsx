@@ -57,14 +57,13 @@ export default class SelectInput extends React.Component {
   }
 
   renderOptions() {
-    const { options } = this.props
+    const { options, optionRenderer } = this.props
 
     return (
       <Menu onClick={this.handleOptionsClick}>
         {options.map(option => (
           <Menu.MenuItem key={option.value}>
-            {option.icon && <Icon name={option.icon} type="light" size={20} />}
-            {option.label}
+            {optionRenderer ? optionRenderer(option) : option.label}
           </Menu.MenuItem>
         ))}
       </Menu>
@@ -72,8 +71,7 @@ export default class SelectInput extends React.Component {
   }
 
   render() {
-    const { options, ...rest } = this.props
-
+    const { options, optionRenderer, ...rest } = this.props
     return (
       <div className={styles.wrapper}>
         <Input {...rest} />

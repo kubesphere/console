@@ -19,7 +19,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Text, Tag } from 'components/Base'
-import { CLUSTER_PROVIDER_ICON } from 'utils/constants'
+import ClusterTitle from 'components/ClusterTitle'
 
 import styles from './index.scss'
 
@@ -29,9 +29,6 @@ export default class Card extends Component {
 
     let icon
     switch (data.type) {
-      case 'Cluster':
-        icon = CLUSTER_PROVIDER_ICON[data.provider] || 'kubernetes'
-        break
       case 'Workspace':
         icon = 'enterprise'
         break
@@ -49,14 +46,19 @@ export default class Card extends Component {
 
   render() {
     const { data, onClick } = this.props
+
     return (
       <Link to={data.url} onClick={onClick}>
-        <Text
-          icon={this.getIcon()}
-          title={data.name}
-          description={data.description || t(data.type)}
-          ellipsis
-        />
+        {data.type === 'Cluster' ? (
+          <ClusterTitle tagClass="float-right" cluster={data} noStatus />
+        ) : (
+          <Text
+            icon={this.getIcon()}
+            title={data.name}
+            description={data.description || t(data.type)}
+            ellipsis
+          />
+        )}
         {data.isFedManaged && (
           <Tag className={styles.tag}>{t('MULTI_CLUSTER')}</Tag>
         )}

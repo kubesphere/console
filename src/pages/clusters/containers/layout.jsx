@@ -18,6 +18,7 @@
 
 import React, { Component } from 'react'
 import { inject, observer, Provider } from 'mobx-react'
+import { pick } from 'lodash'
 
 import { Loading } from '@pitrix/lego-ui'
 
@@ -63,9 +64,12 @@ class ClusterLayout extends Component {
 
     globals.app.cacheHistory(this.props.match.url, {
       type: 'Cluster',
-      name: this.clusterStore.detail.name,
-      description: this.clusterStore.detail.description,
-      provider: this.clusterStore.detail.provider,
+      ...pick(this.clusterStore.detail, [
+        'name',
+        'group',
+        'description',
+        'provider',
+      ]),
     })
 
     this.clusterStore.initializing = false
