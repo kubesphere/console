@@ -34,7 +34,7 @@ export default {
   NODE_STATUS_WARNING: 'Warning',
 
   CLUSTER_NODES_DESC:
-    '集群节点提供了当前集群下节点的运行状态，以及可以编辑删除节点',
+    'Cluster Nodes provides the status of nodes in the current cluster and allows you to edit and delete nodes.',
 
   NODE_NETWORKUNAVAILABLE_TIP:
     'If the network for the node is correctly configured.',
@@ -50,7 +50,7 @@ export default {
 
   NODE_TYPES_Q: 'What are the types of cluster nodes?',
   NODE_TYPES_A: 'The nodes are divided into master nodes and worker nodes.',
-  WHAT_IS_NODE_TAINTS_Q: 'What is node taints ?',
+  WHAT_IS_NODE_TAINTS_Q: 'What are node taints?',
   WHAT_IS_NODE_TAINTS_A:
     'Taints allow a node to repel a set of pods. Taints and tolerations work together to ensure that pods are not scheduled onto inappropriate nodes.',
 }

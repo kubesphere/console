@@ -28,7 +28,7 @@ export default {
   NAME_TOO_LONG: 'The maximum length of characters is set to 63.',
   LONG_NAME_TOO_LONG: 'The maximum length of characters is set to 253.',
   DESCRIPTION_DESC:
-    'The description will be added to the item as a comment and displayed in the details of the application, with the description is limited to 1000 characters.',
+    'The description will be added to the item as a comment and displayed in the details of the application. The description is limited to 1000 characters.',
   SHORT_DESCRIPTION_DESC: 'Description is limited to 1000 characters.',
   PROJECT_DESC:
     'It will be grouped by project resources, which you can view and manage by project.',
@@ -131,4 +131,18 @@ export default {
     'KubeSphere can collect operation audits according to the rules you set. Click to see how to define the rules.',
 
   EVENT_CREATE_DESC: 'You can change the search criteria and search again.',
+
+  CLUSTERS_MANAGEMENT_DESC:
+    'Unified management of multiple clusters and their basic resources, components and application resources',
+
+  ACCESS_CONTROL_DESC:
+    'Unified management of workspaces, accounts and role access',
+
+  APPS_STORE_MANAGEMENT_DESC:
+    'Unified lifecycle management of cloud native applications including their release, removal and review',
+
+  PLATFORM_SETTINGS_DESC:
+    'Customized platform settings, including basic info, mail server, password security, third party login and log collector',
+
+  DATA_SOURCE: 'Data Source',
 }

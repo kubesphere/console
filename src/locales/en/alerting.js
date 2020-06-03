@@ -25,7 +25,7 @@ export default {
   ALERT_POLICY_TYPE: '{type} Alerting Policy',
   ALERT_POLICY_DESC: 'Set alert rules',
   ALERT_MESSAGE_DESC:
-    'Alert messages are generated based on the monitoring metrics and the workload alert policies in the current project. It can help users detect problems and respond in time.',
+    'Alert messages are generated based on the monitoring metrics and the workload alert policies in the current project. They can help users detect problems and respond in time.',
   ALERT_POLICY_TRIGGER_RULE:
     'Trigger Rules: Any of the following conditions is met.',
   ALERT_METRIC_NAME: 'Metric Name',

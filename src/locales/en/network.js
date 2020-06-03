@@ -19,9 +19,9 @@
 export default {
   NETWORK_POLICY_DESC:
     'The network policy is configured to allow network isolation within the same cluster, that is, the ability to build a firewall between certain instances (pods).',
-  NETWORK_POLICY_Q: 'how to use network strategy better?',
+  NETWORK_POLICY_Q: 'How to use network strategies better?',
   NETWORK_POLICY_A:
-    'We have compiled several common application scenarios based on the actual usage scenarios, and you can refer to the documentation for more information',
+    'We have compiled several common application scenarios based on the actual usage scenarios, and you can refer to the documentation for more information.',
   NETWORK_POLICY_Q1: 'requirement to implement a network strategy',
   NETWORK_POLICY_A1: 'xxxxxxxxxx',
   NETWORK_POLICY_EMP_TITLE: 'project network isolation not enabled',
