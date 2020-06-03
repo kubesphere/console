@@ -124,11 +124,11 @@ export default class KubernetesStatus extends Component {
             <div className={styles.level}>
               <Text
                 title={schedule_attempts_count.scheduled}
-                description={t('Scheduler scheduling times')}
+                description={t('Scheduler Scheduling Times')}
               />
               <Text
                 title={schedule_attempts_count.error}
-                description={t('Failed scheduling pods')}
+                description={t('Failed Scheduling Pods')}
               />
             </div>
           </>

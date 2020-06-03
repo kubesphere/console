@@ -20,6 +20,7 @@ import React from 'react'
 import { observer, inject } from 'mobx-react'
 import { Columns, Column, Icon } from '@pitrix/lego-ui'
 
+import { Tag } from 'components/Base'
 import { CLUSTER_PROVIDER_ICON } from 'utils/constants'
 
 import Tools from './Tools'
@@ -50,7 +51,14 @@ export default class Dashboard extends React.Component {
             size={48}
           />
           <div className={styles.text}>
-            <div className="h4">{detail.name}</div>
+            <div className="h4">
+              {detail.name}
+              {detail.group && (
+                <Tag className="margin-l12" type="info">
+                  {detail.group}
+                </Tag>
+              )}
+            </div>
             <p>{detail.description || '-'}</p>
           </div>
         </div>

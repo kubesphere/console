@@ -4,7 +4,7 @@
 .trigger {
   position: fixed;
   right: 12px;
-  bottom: 80px;
+  bottom: 24px;
   z-index: $kube-tools-z-index;
 }
 
@@ -71,28 +71,7 @@
 }
 
 .button {
-  position: relative;
-  padding-right: 48px;
-  span {
-    display: inline-block;
-    vertical-align: middle;
-  }
-
-  :global {
-    .icon {
-      position: absolute;
-      top: 2px;
-      right: 12px;
-      transition: all 0.1s ease-in-out;
-    }
-  }
-
-  &.showTools {
-    :global .icon {
-      top: 4px;
-      transform: rotate(180deg);
-    }
-  }
+  padding: 5px 7px !important;
 }
 
 @keyframes toolFadeIn {

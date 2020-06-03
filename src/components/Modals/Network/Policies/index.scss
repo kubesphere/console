@@ -11,10 +11,12 @@
   min-height: 100px;
   overflow-y: auto;
   background-color: #fff;
-  & > :first-child {
-    & > [class='list-item'] {
-      padding-top: 8px;
-      padding-bottom: 7px;
+  :global {
+    .list-body {
+      > div[class='list-item'] {
+        padding-top: 8px;
+        padding-bottom: 7px;
+      }
     }
   }
 }

@@ -17,7 +17,7 @@
  */
 
 import React from 'react'
-import { inject } from 'mobx-react'
+import { inject, observer } from 'mobx-react'
 import { get, set } from 'lodash'
 import Banner from 'components/Cards/Banner'
 import { Button, Panel } from 'components/Base'
@@ -28,6 +28,7 @@ import IsolateInfo from './IsolateInfo'
 import styles from './index.scss'
 
 @inject('projectStore')
+@observer
 export default class Policies extends React.Component {
   name = 'Network Policy'
   module = 'namespacenetworkpolicies'
@@ -68,7 +69,7 @@ export default class Policies extends React.Component {
     set(
       data,
       'metadata.annotations["kubesphere.io/network-isolate"]',
-      flag ? 'true' : 'false'
+      flag ? 'enabled' : ''
     )
     this.projectStore
       .patch({ name: this.namespace, cluster: this.cluster }, data)
@@ -83,11 +84,12 @@ export default class Policies extends React.Component {
 
   render() {
     const { module, name, tips, namespace, cluster, workspace } = this
+    const { isSubmitting } = this.projectStore
     const networkIsolate =
       get(
         this.projectStore,
         'detail.annotations["kubesphere.io/network-isolate"]'
-      ) === 'true'
+      ) === 'enabled'
 
     return (
       <div>
@@ -107,8 +109,8 @@ export default class Policies extends React.Component {
             actions={
               <Button
                 type="control"
-                onClick={() => this.toggleNetworkIsolate()}
-                noShadow
+                loading={isSubmitting}
+                onClick={this.toggleNetworkIsolate}
               >
                 {t('On')}
               </Button>

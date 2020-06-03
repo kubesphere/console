@@ -18,12 +18,16 @@
 
 import React from 'react'
 import { observer } from 'mobx-react'
-import { get } from 'lodash'
+import { get, isEmpty } from 'lodash'
 import PropTypes from 'prop-types'
-import { Columns, Column, Select, Input, TextArea } from '@pitrix/lego-ui'
-import { Modal, Form } from 'components/Base'
+import { Columns, Column, Select, Input, Icon, TextArea } from '@pitrix/lego-ui'
+import { Modal, Form, Tag } from 'components/Base'
 import { ArrayInput, ObjectInput } from 'components/Inputs'
-import { PATTERN_SERVICE_NAME, PATTERN_LENGTH_63 } from 'utils/constants'
+import {
+  PATTERN_SERVICE_NAME,
+  PATTERN_LENGTH_63,
+  CLUSTER_PROVIDER_ICON,
+} from 'utils/constants'
 
 import WorkspaceStore from 'stores/workspace'
 
@@ -72,7 +76,17 @@ export default class ProjectCreateModal extends React.Component {
     return this.workspaceStore.clusters.data.map(item => ({
       label: item.name,
       value: item.name,
+      provider: item.provider,
+      group: item.group,
     }))
+  }
+
+  get defaultClusters() {
+    const clusters = this.workspaceStore.clusters.data
+      .filter(item => item.isHost)
+      .map(item => ({ name: item.name }))
+
+    return isEmpty(clusters) ? undefined : clusters
   }
 
   fetchClusters(params) {
@@ -118,6 +132,37 @@ export default class ProjectCreateModal extends React.Component {
     }
     callback()
   }
+
+  valueRenderer = item => (
+    <div className={styles.itemValue}>
+      <Icon
+        name={CLUSTER_PROVIDER_ICON[item.provider] || 'kubernetes'}
+        size={20}
+      />
+      <span className={styles.title}>{item.label}</span>
+      {item.group && (
+        <Tag className={styles.group} type="info">
+          {item.group}
+        </Tag>
+      )}
+    </div>
+  )
+
+  optionRenderer = item => (
+    <div className={styles.itemOption}>
+      <Icon
+        name={CLUSTER_PROVIDER_ICON[item.provider] || 'kubernetes'}
+        size={20}
+        type="light"
+      />
+      <span className={styles.title}>{item.label}</span>
+      {item.group && (
+        <Tag className={styles.group} type="info">
+          {item.group}
+        </Tag>
+      )}
+    </div>
+  )
 
   render() {
     const { visible, formTemplate, hideCluster, onOk, onCancel } = this.props
@@ -201,12 +246,15 @@ export default class ProjectCreateModal extends React.Component {
                   name="spec.placement.clusters"
                   addText={t('Add Cluster')}
                   itemType="object"
+                  defaultValue={this.defaultClusters}
                 >
                   <ObjectInput>
                     <Select
                       name="name"
+                      className={styles.cluster}
                       options={this.clusters}
-                      style={{ width: 700 }}
+                      valueRenderer={this.valueRenderer}
+                      optionRenderer={this.optionRenderer}
                     />
                   </ObjectInput>
                 </ArrayInput>

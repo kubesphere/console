@@ -86,6 +86,15 @@ export default class ResourceStatus extends React.Component {
     this.routerStore.getGateway(params)
   }
 
+  handlePodUpdate = _cluster => {
+    const { cluster, isFedManaged, namespace, name } = this.workloadStore.detail
+    if (!isFedManaged) {
+      this.workloadStore.fetchDetail({ cluster, namespace, name, silent: true })
+    } else {
+      this.fedWorkloadDetailStore.sync({ cluster: _cluster })
+    }
+  }
+
   renderReplicaInfo() {
     const detail = toJS(this.workloadStore.detail)
 
@@ -94,9 +103,10 @@ export default class ResourceStatus extends React.Component {
       return (
         <ClusterWorkloadStatus
           detail={detail}
+          store={this.workloadStore}
           fedDetail={fedDetail}
+          fedStore={this.fedWorkloadDetailStore}
           module={this.workloadStore.module}
-          store={this.fedWorkloadDetailStore}
         />
       )
     }
