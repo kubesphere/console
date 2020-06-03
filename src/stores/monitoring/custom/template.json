@@ -1,5 +1,5 @@
 {
-  "es": {
+  "Elasticsearch Overview": {
     "settings": {
       "datasource": "prometheus",
       "panels": [
@@ -215,7 +215,7 @@
     "name": "Elasticsearch",
     "logo": "/assets/elasticsearch.svg"
   },
-  "mysql": {
+  "MySQL Overview": {
     "settings": {
       "datasource": "prometheus",
       "panels": [
@@ -426,7 +426,7 @@
     "name": "Mysql",
     "logo": "/assets/mysql@2x.png"
   },
-  "redis": {
+  "Redis Overview": {
     "settings": {
       "datasource": "prometheus",
       "panels": [
@@ -618,5 +618,21 @@
     "name": "Redis",
     "description": "Prometheus Redis Exporter",
     "logo": "/assets/redis.svg"
+  },
+  "Custom Monitoring": {
+    "settings": {
+      "datasource": "prometheus",
+      "panels": [],
+      "refresh": "",
+      "templatings": [],
+      "time": {
+        "from": "now-30m",
+        "to": "now"
+      },
+      "title": "Custom Monitoring"
+    },
+    "name": "Custom",
+    "description": "Custom Your Exporter",
+    "logo": "/assets/prometheus.svg"
   }
 }

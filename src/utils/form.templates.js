@@ -452,6 +452,15 @@ const getNameSpaceNetworkPoliciesTemplate = ({ namespace }) => ({
   spec: {},
 })
 
+const getDashboardTemplate = ({ namespace }) => ({
+  apiVersion: 'monitoring.kubesphere.io/v1alpha1',
+  kind: 'Dashboard',
+  metadata: {
+    namespace,
+  },
+  spec: {},
+})
+
 const FORM_TEMPLATES = {
   deployments: getDeploymentTemplate,
   daemonsets: getDaemonSetTemplate,
@@ -480,6 +489,7 @@ const FORM_TEMPLATES = {
   b2iBuilders: getBinaryTemplate,
   'volume-snapshots': getVolumeSnapshotTemplate,
   namespacenetworkpolicies: getNameSpaceNetworkPoliciesTemplate,
+  dashboards: getDashboardTemplate,
 }
 
 export default FORM_TEMPLATES

@@ -99,6 +99,17 @@ export default class CustomMonitoringDashboards extends React.Component {
             success: routing.query,
           }),
       },
+      {
+        key: 'editYaml',
+        icon: 'pen',
+        text: t('Edit YAML'),
+        action: 'edit',
+        onClick: item =>
+          trigger('resource.yaml.edit', {
+            detail: item,
+            success: routing.query,
+          }),
+      },
     ]
   }
 
@@ -144,11 +155,6 @@ export default class CustomMonitoringDashboards extends React.Component {
     this.setState({ editModalVisiable: false, editData: {} })
   }
 
-  checkName = ({ name }) => {
-    const { namespace, cluster } = this.props.match.params
-    return this.props.store.checkName({ name, namespace, cluster })
-  }
-
   createDashboard = async params => {
     await this.props.store.create({
       namespace: this.props.match.params.namespace,
@@ -188,9 +194,8 @@ export default class CustomMonitoringDashboards extends React.Component {
 
         {createModalVisiable && (
           <CreateModal
-            checkName={this.checkName}
+            store={this.props.store}
             namespace={this.props.match.params.namespace}
-            dashboardStore={this.props.store}
             isSaving={this.props.store.isSubmitting}
             onCancel={this.hideCreateModal}
             onSave={this.createDashboard}
