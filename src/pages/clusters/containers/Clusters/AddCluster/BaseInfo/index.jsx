@@ -125,12 +125,12 @@ export default class BaseInfo extends React.Component {
         />
         <Form.Item
           label={t('Cluster Name')}
-          desc={t('CLUSTER_NAME_DESC')}
+          desc={t('NAME_DESC')}
           rules={[
             { required: true, message: t('Please input role name') },
             {
               pattern: PATTERN_NAME,
-              message: `${t('Invalid name')}, ${t('CLUSTER_NAME_DESC')}`,
+              message: `${t('Invalid name')}, ${t('NAME_DESC')}`,
             },
             { validator: this.nameValidator },
           ]}

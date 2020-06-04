@@ -62,8 +62,6 @@ export default {
   'Platform Running Status': '平台运行状态',
   'Data as of': '统计时间截止至',
   Workbench: '工作台',
-  'App Management': '应用管理',
-  'Cluster Management': '集群管理',
   'Access Control': '访问控制',
   'App Templates': '应用模板',
   'Service Components': '服务组件',
@@ -84,7 +82,7 @@ export default {
   CLUSTERS_MANAGEMENT_DESC:
     '对多集群以及每个集群的基础资源、服务组件和应用资源等的统一管理',
   ACCESS_CONTROL_DESC: '对平台中的企业空间、账号、以及角色权限进行统一管理',
-  APPS_STORE_MANAGEMENT_DESC:
+  APP_STORE_MANAGEMENT_DESC:
     '对云原生应用的上架、下架以及审核等应用全生命周期的统一管理',
   PLATFORM_SETTINGS_DESC:
     '定制化平台设置，如平台基本信息、邮件服务器、密码安全、第三方登录、日志收集器等',
@@ -413,6 +411,8 @@ export default {
   'Load more': '加载更多',
 
   'Resource List': '资源列表',
+
+  'Platform-level access control': '平台级的访问控制',
 
   NOT_FOUND_DESC:
     '🙇 对不起没有找到相关资源，系统将在 {time}s 后返回 <a href="{link}">工作台</a>',

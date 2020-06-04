@@ -32,7 +32,7 @@ export default {
   APPS_CREATE_DESC:
     'KubeSphere 提供全生命周期的应用管理，可以上传或者创建新的应用模板，并且快速部署它们，也可以通过应用商店进行发布应用。',
 
-  'App Management': '应用管理',
+  'Apps Management': '应用管理',
   'App Store Management': '应用商店管理',
   'Certified Provider': '已认证服务商',
 

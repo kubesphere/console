@@ -36,6 +36,23 @@ export default {
   CLUSTER_NODE_DESC:
     'Manage the cluster nodes and show the running status of them',
 
+  NODE_NETWORKUNAVAILABLE: 'NetworkUnavailable',
+  NODE_NETWORKUNAVAILABLE_DESC:
+    'Check if the network configuration on the node is available',
+  NODE_OUTOFDISK: 'OutOfDisk',
+  NODE_OUTOFDISK_DESC: 'Check if there is space on the node to add a new pod',
+  NODE_MEMORYPRESSURE: 'MemoryPressure',
+  NODE_MEMORYPRESSURE_DESC:
+    'If the memory usage pressure on the node is too high, the scheduling fails',
+  NODE_DISKPRESSURE: 'DiskPressure',
+  NODE_DISKPRESSURE_DESC:
+    'If pressure exists on the disk size–that is, if the disk capacity is low',
+  NODE_PIDPRESSURE: 'PIDPressure',
+  NODE_PIDPRESSURE_DESC:
+    'If pressure exists on the processes—that is, if there are too many processes on the node',
+  NODE_READY: 'Ready',
+  NODE_READY_DESC: 'If The node is healthy and ready to accept pods',
+
   NODE_NETWORKUNAVAILABLE_TIP:
     'If the network for the node is correctly configured.',
   NODE_OUTOFDISK_TIP:

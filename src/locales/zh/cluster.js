@@ -116,8 +116,6 @@ export default {
   IMPORT_CLUSTER_DESC: '导入已有的Kubernetes集群',
 
   CLUSTER_SETTINGS_DESC: '定义集群配置信息',
-  CLUSTER_NAME_DESC:
-    '只能包含小写字母、数字及分隔符("-")，且必须以小写字母或数字开头及结尾',
   CLUSTER_TAG: '标识',
   CLUSTER_TAG_DESC: '标识此集群的用途，例如 生产环境、测试环境、演示环境 等',
   CLUSTER_PROVIDER_DESC: '提供集群基础设施的厂商',
@@ -166,8 +164,7 @@ export default {
   SELECT_CLUSTERS_DESC: '选择企业空间下可用的集群',
 
   CLUSTER_API_SERVER_TITLE: '待加入集群的 Kubesphere API Server',
-  CLUSTER_API_SERVER_DESC:
-    '需要添加待加入集群的 KubeSphere API Server 地址，获取方式请查阅<a href="" target="_blank">文档</a>',
+  CLUSTER_API_SERVER_DESC: '需要添加待加入集群的 KubeSphere API Server 地址',
 
   INPUT_KUBECONFIG: '请填写目标集群的 KubeConfig',
 

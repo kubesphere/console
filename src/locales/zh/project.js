@@ -206,8 +206,7 @@ export default {
   PROJECT_TYPES_A:
     '项目网关负责创建对应的应用路由控制器，用来负责将请求转发到对应的后端服务；开启项目网关后可以将服务通过 Ingress 暴露给外网访问。',
 
-  PROJECT_CLUSTER_SETTINGS_DESC:
-    '集群分配包括分配集群和节点，并且分配集群对应的资源配额、托管集群中的Namespace',
+  PROJECT_CLUSTER_SETTINGS_DESC: '选择要创建项目的集群',
   NETWORK_ISOLATED_DESC: '设置网络隔离策略',
 
   NAME_EXIST_IN_CLUSTER: '项目名在集群 {cluster} 中已存在',
