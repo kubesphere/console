@@ -37,7 +37,7 @@ class AccessLayout extends Component {
             </div>
             <div className={styles.text}>
               <div className="h6">{t('Access Control')}</div>
-              <p>{t('平台级的访问控制')}</p>
+              <p>{t('Platform-level access control')}</p>
             </div>
           </div>
           <Nav

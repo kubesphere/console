@@ -104,4 +104,7 @@ export default {
     'The project gateway is responsible for creating the corresponding application routing controller to forward the request to the corresponding backend service. After opening the project gateway, the service can be exposed to the external network through Ingress.',
 
   NAME_EXIST_IN_CLUSTER: 'Name exists in {cluster}',
+
+  PROJECT_CLUSTER_SETTINGS_DESC: 'Select the cluster to create the project',
+  NETWORK_ISOLATED_DESC: 'Set network isolation strategy',
 }

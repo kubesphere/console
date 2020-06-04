@@ -60,7 +60,7 @@ client:
   # platform management navigations
   globalNavs:
     - name: clusters
-      title: Cluster Management
+      title: Clusters Management
       icon: cluster
     - name: access
       title: Access Control
@@ -122,12 +122,6 @@ client:
             - { name: volumes, title: Volumes }
             - { name: volume-snapshots, title: Snapshots Management }
             - { name: storageclasses, title: Storage Classes }
-        - {
-          name: mail-server,
-          title: Mail Server,
-          icon: mail,
-          authKey: alerting,
-        }
         - name: monitoring-alerting
           title: Monitoring & Alerting
           icon: monitor
@@ -168,6 +162,12 @@ client:
             - { name: visibility, title: Cluster Visibility, authKey: 'cluster-settings' }
             - { name: members, title: Cluster Members }
             - { name: roles, title: Cluster Roles }
+            - {
+                name: mail-server,
+                title: Mail Server,
+                icon: mail,
+                authKey: alerting,
+              }
 
   # access control page navigations
   accessNavs:

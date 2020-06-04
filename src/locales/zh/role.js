@@ -70,8 +70,8 @@ export default {
 
   'Depend on': '依赖于',
 
-  'Cluster Management': '集群管理',
-  'Cluster View': '集群查看',
+  'Clusters Management': '集群管理',
+  'Clusters View': '集群查看',
   CLUSTERS_VIEW_DESC:
     '集群管理的基础功能，获取集群查看功能后可以进行更高级功能的操作权限定义',
   'Users Management': '账户管理',
@@ -168,11 +168,11 @@ export default {
 
   'Cluster Resources Management': '集群资源管理',
   'Project Resources Management': '项目资源管理',
-  'Node Viewing': '节点查看',
-  'Node Management': '节点管理',
+  'Nodes View': '节点查看',
+  'Nodes Management': '节点管理',
   NODES_VIEW_DESC: '查看节点信息',
   NODES_MANAGEMENT_DESC: '管理节点, 停用/启用, 污点管理等',
-  'Component Management': '服务组件管理',
+  'Components Management': '服务组件管理',
   COMPONENTS_MANAGEMENT_DESC: '管理集群的服务组件',
   'CRD Management': '自定义资源(CRD)管理',
   CRD_MANAGEMENT_DESC: '管理集群的自定义资源, 可 查看/修改/删除 集群 CRD 资源',

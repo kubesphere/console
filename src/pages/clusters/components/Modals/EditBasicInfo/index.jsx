@@ -149,7 +149,7 @@ export default class EditBasicInfoModal extends React.Component {
         visible={visible}
         isSubmitting={isSubmitting}
       >
-        <Form.Item label={t('Cluster Name')} desc={t('CLUSTER_NAME_DESC')}>
+        <Form.Item label={t('Cluster Name')} desc={t('NAME_DESC')}>
           <Input name="metadata.name" disabled />
         </Form.Item>
         <Form.Item label={t('CLUSTER_TAG')} desc={t('CLUSTER_TAG_DESC')}>

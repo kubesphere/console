@@ -140,22 +140,22 @@ export default {
   KUBECONFIG_DESC:
     'A file that is used to configure access to the current Kubernetes cluster',
 
-  ENV_PRODUCTOON: 'Production',
+  ENV_PRODUCTION: 'Production',
   ENV_DEVELOPMENT: 'Development',
   ENV_TESTING: 'Testing',
   ENV_DEMO: 'Demo',
 
   CLUSTERS_MANAGEMENT_DESC:
-  'Unified management of multiple clusters and their basic resources, components and application resources',
-  
+    'Unified management of multiple clusters and their basic resources, components and application resources',
+
   ACCESS_CONTROL_DESC:
-  'Unified management of workspaces, accounts and role access',
-  
-  APPS_STORE_MANAGEMENT_DESC:
-  'Unified lifecycle management of cloud native applications including their release, removal and review',
-  
+    'Unified management of workspaces, accounts and role access',
+
+  APP_STORE_MANAGEMENT_DESC:
+    'Unified lifecycle management of cloud native applications including their release, removal and review',
+
   PLATFORM_SETTINGS_DESC:
-  'Customized platform settings, including basic info, mail server, password security, third party login and log collector',
-  
+    'Customized platform settings, including basic info, mail server, password security, third party login and log collector',
+
   DATA_SOURCE: 'Data Source',
 }

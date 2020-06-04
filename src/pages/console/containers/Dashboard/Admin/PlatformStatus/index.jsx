@@ -64,7 +64,7 @@ export default class PlatformStatus extends Component {
           <Text
             icon="blockchain"
             title={getLocalTime(Date.now()).format('YYYY-MM-DD HH:mm:ss')}
-            description={t('Statistical time is up to')}
+            description={t('Data as of')}
           />
         </div>
         {this.resources.map(resource => (
