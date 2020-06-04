@@ -60,14 +60,14 @@ client:
   # platform management navigations
   globalNavs:
     - name: clusters
-      title: Clusters Management
+      title: Cluster Management
       icon: cluster
     - name: access
       title: Access Control
       icon: key
       authKey: users|roles|workspaces
     - name: apps-manage
-      title: Apps Store Management
+      title: App Store Management
       icon: openpitrix
       authKey: app-templates
     - name: settings
