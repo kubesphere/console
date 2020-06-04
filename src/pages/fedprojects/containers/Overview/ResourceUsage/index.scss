@@ -1,0 +1,22 @@
+@import '~scss/variables';
+
+.wrapper {
+  padding: 12px 0;
+}
+
+.header {
+  padding: 10px;
+  margin-top: -12px;
+  border-bottom: 1px solid $border-color;
+}
+
+.timeSelect {
+  float: right;
+  width: 170px;
+}
+
+.cluster {
+  float: right;
+  width: 140px;
+  margin-right: 12px;
+}

@@ -27,7 +27,6 @@ import PodsCard from 'components/Cards/Pods'
 import ContainerPortsCard from 'components/Cards/Containers/Ports'
 import HPACard from 'projects/components/Cards/HPA'
 import ReplicaCard from 'projects/components/Cards/Replica'
-import ClusterWorkloadStatus from 'projects/components/Cards/ClusterWorkloadStatus'
 import S2iBuilderCard from 'projects/components/Cards/S2iBuilder'
 
 import styles from './index.scss'
@@ -47,10 +46,6 @@ class ResourceStatus extends React.Component {
 
   get store() {
     return this.props.detailStore
-  }
-
-  get fedStore() {
-    return this.props.fedDetailStore
   }
 
   get prefix() {
@@ -104,13 +99,9 @@ class ResourceStatus extends React.Component {
     this.store.scale({ cluster, namespace, name }, newReplicas)
   }
 
-  handlePodUpdate = _cluster => {
-    const { cluster, isFedManaged, namespace, name } = this.store.detail
-    if (!isFedManaged) {
-      this.store.fetchDetail({ cluster, namespace, name, silent: true })
-    } else {
-      this.fedStore.sync({ cluster: _cluster })
-    }
+  handlePodUpdate = () => {
+    const { cluster, namespace, name } = this.store.detail
+    this.store.fetchDetail({ cluster, namespace, name, silent: true })
   }
 
   handleDeleteHpa = () => {
@@ -147,19 +138,6 @@ class ResourceStatus extends React.Component {
 
   renderReplicaInfo() {
     const detail = toJS(this.store.detail)
-
-    if (detail.isFedManaged) {
-      const fedDetail = toJS(this.fedStore.detail)
-      return (
-        <ClusterWorkloadStatus
-          module={this.module}
-          detail={detail}
-          store={this.store}
-          fedDetail={fedDetail}
-          fedStore={this.fedStore}
-        />
-      )
-    }
 
     return (
       <ReplicaCard
@@ -214,7 +192,6 @@ class ResourceStatus extends React.Component {
       <PodsCard
         prefix={this.prefix}
         detail={this.store.detail}
-        clusters={get(this.fedStore, 'detail.clusters', [])}
         onUpdate={this.handlePodUpdate}
       />
     )
@@ -237,5 +214,5 @@ class ResourceStatus extends React.Component {
   }
 }
 
-export default inject('detailStore', 'fedDetailStore')(observer(ResourceStatus))
+export default inject('detailStore')(observer(ResourceStatus))
 export const Component = ResourceStatus

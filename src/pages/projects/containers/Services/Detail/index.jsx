@@ -26,7 +26,6 @@ import { getDisplayName, joinSelector, getLocalTime } from 'utils'
 import { trigger } from 'utils/action'
 import { SERVICE_TYPES } from 'utils/constants'
 import ServiceStore from 'stores/service'
-import FederatedStore from 'stores/federated'
 
 import DetailPage from 'projects/containers/Base/Detail'
 
@@ -37,8 +36,6 @@ import getRoutes from './routes'
 @trigger
 export default class ServiceDetail extends React.Component {
   store = new ServiceStore()
-
-  fedStore = new FederatedStore(this.module)
 
   componentDidMount() {
     this.fetchData()
@@ -69,13 +66,10 @@ export default class ServiceDetail extends React.Component {
   fetchData = () => {
     const { params } = this.props.match
     this.store.fetchDetail(params).then(() => {
-      const { selector, isFedManaged } = this.store.detail
+      const { selector } = this.store.detail
       const labelSelector = joinSelector(selector)
       if (!isEmpty(labelSelector)) {
         this.store.fetchWorkload({ ...params, labelSelector })
-      }
-      if (isFedManaged) {
-        this.fedStore.fetchDetail(params)
       }
     })
     this.store.fetchEndpoints(params)
@@ -267,7 +261,7 @@ export default class ServiceDetail extends React.Component {
   }
 
   render() {
-    const stores = { detailStore: this.store, fedDetailStore: this.fedStore }
+    const stores = { detailStore: this.store }
 
     if (this.store.isLoading && !this.store.detail.name) {
       return <Loading className="ks-page-loading" />
@@ -291,7 +285,7 @@ export default class ServiceDetail extends React.Component {
       <DetailPage
         stores={stores}
         {...sideProps}
-        routes={getRoutes(this.props.match.path, this.store.detail)}
+        routes={getRoutes(this.props.match.path)}
       />
     )
   }

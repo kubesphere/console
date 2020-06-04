@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, set, unset, isUndefined } from 'lodash'
+import { get, set, unset, isUndefined, isEmpty } from 'lodash'
 import React from 'react'
 import { toJS } from 'mobx'
 import { observer } from 'mobx-react'
@@ -27,7 +27,7 @@ import { MODULE_KIND_MAP } from 'utils/constants'
 import { findVolume, isNotPersistentVolume } from 'utils/volume'
 import { Alert, Form } from 'components/Base'
 import VolumeStore from 'stores/volume'
-import ProjectStore from 'stores/project'
+import FederatedStore from 'stores/federated'
 
 import VolumeList from './VolumeList'
 import AddVolume from './AddVolume'
@@ -44,22 +44,19 @@ class VolumeSettings extends React.Component {
     this.state = {
       state: '',
       selectVolume: {},
-      collectSavedLog: get(this.formTemplate, this.collectSavedLogPath),
+      collectSavedLog: get(this.fedFormTemplate, this.collectSavedLogPath),
     }
 
     this.store = new VolumeStore()
+
+    if (props.isFederated) {
+      this.store = new FederatedStore(this.store)
+    }
 
     this.store.fetchList({
       namespace: this.namespace,
       cluster: this.cluster,
       limit: -1,
-    })
-
-    this.projectStore = new ProjectStore()
-
-    this.projectStore.fetchDetail({
-      namespace: this.namespace,
-      cluster: this.cluster,
     })
 
     this.handleVolume = this.handleVolume.bind(this)
@@ -94,7 +91,7 @@ class VolumeSettings extends React.Component {
   get projectEnableCollectingFileLog() {
     return (
       get(
-        this.projectStore.detail,
+        this.props.projectDetail,
         'labels["logging.kubesphere.io/logsidecar-injection"]'
       ) === 'enabled'
     )
@@ -103,6 +100,12 @@ class VolumeSettings extends React.Component {
   get formTemplate() {
     const { formTemplate, module } = this.props
     return get(formTemplate, MODULE_KIND_MAP[module], formTemplate)
+  }
+
+  get fedFormTemplate() {
+    return this.props.isFederated
+      ? get(this.formTemplate, 'spec.template')
+      : this.formTemplate
   }
 
   get selectVolume() {
@@ -171,7 +174,7 @@ class VolumeSettings extends React.Component {
   }
 
   updateVolumes = newVolume => {
-    const volumes = get(this.formTemplate, `${this.prefix}spec.volumes`, [])
+    const volumes = get(this.fedFormTemplate, `${this.prefix}spec.volumes`, [])
 
     let newVolumes = []
 
@@ -185,17 +188,19 @@ class VolumeSettings extends React.Component {
       newVolumes = [...volumes, newSpecVolume]
     }
 
-    set(this.formTemplate, `${this.prefix}spec.volumes`, newVolumes)
+    set(this.fedFormTemplate, `${this.prefix}spec.volumes`, newVolumes)
+
+    this.checkMaxUnavalable(volumes)
   }
 
   updateVolumeMounts = newVolumeMounts => {
     const containers = get(
-      this.formTemplate,
+      this.fedFormTemplate,
       `${this.prefix}spec.containers`,
       []
     )
 
-    const volumes = get(this.formTemplate, `${this.prefix}spec.volumes`, [])
+    const volumes = get(this.fedFormTemplate, `${this.prefix}spec.volumes`, [])
 
     newVolumeMounts.forEach(({ containerName, volume, ...rest }) => {
       const container = containers.find(item => item.name === containerName)
@@ -227,16 +232,36 @@ class VolumeSettings extends React.Component {
       }
     })
 
-    set(this.formTemplate, `${this.prefix}spec.containers`, containers)
+    set(this.fedFormTemplate, `${this.prefix}spec.containers`, containers)
+  }
+
+  checkMaxUnavalable = volumes => {
+    if (['deployments', 'daemonsets'].includes(this.props.module)) {
+      const hasPVC = volumes.some(
+        volume => !isEmpty(volume.persistentVolumeClaim)
+      )
+      const maxUnavailable = get(
+        this.fedFormTemplate,
+        'spec.strategy.rollingUpdate.maxUnavailable',
+        null
+      )
+      if (hasPVC && !maxUnavailable) {
+        set(
+          this.fedFormTemplate,
+          'spec.strategy.rollingUpdate.maxUnavailable',
+          1
+        )
+      }
+    }
   }
 
   updateLogConfigs = newVolumeMounts => {
     const logConfig = safeParseJSON(
-      get(this.formTemplate, this.logPathPrefix, ''),
+      get(this.fedFormTemplate, this.logPathPrefix, ''),
       {}
     )
 
-    const volumes = get(this.formTemplate, `${this.prefix}spec.volumes`, [])
+    const volumes = get(this.fedFormTemplate, `${this.prefix}spec.volumes`, [])
 
     newVolumeMounts.forEach(vm => {
       const existVolume = findVolume(volumes, vm.volume)
@@ -251,13 +276,13 @@ class VolumeSettings extends React.Component {
       }
     })
 
-    set(this.formTemplate, this.logPathPrefix, JSON.stringify(logConfig))
+    set(this.fedFormTemplate, this.logPathPrefix, JSON.stringify(logConfig))
   }
 
   updateVolumeTemplate = data => {
     const namespace = get(this.formTemplate, 'metadata.namespace')
 
-    const volumes = get(this.formTemplate, 'spec.volumeClaimTemplates', [])
+    const volumes = get(this.fedFormTemplate, 'spec.volumeClaimTemplates', [])
 
     set(data, 'metadata.namespace', namespace)
 
@@ -275,12 +300,12 @@ class VolumeSettings extends React.Component {
       newVolumes = [...volumes, data]
     }
 
-    set(this.formTemplate, 'spec.volumeClaimTemplates', newVolumes)
+    set(this.fedFormTemplate, 'spec.volumeClaimTemplates', newVolumes)
   }
 
   updateVolumeTemplateMounts = newVolumeMounts => {
     const containers = get(
-      this.formTemplate,
+      this.fedFormTemplate,
       `${this.prefix}spec.containers`,
       []
     )
@@ -314,7 +339,7 @@ class VolumeSettings extends React.Component {
       }
     })
 
-    set(this.formTemplate, `${this.prefix}spec.containers`, containers)
+    set(this.fedFormTemplate, `${this.prefix}spec.containers`, containers)
   }
 
   handleVolume(newVolume = {}, newVolumeMounts = []) {
@@ -334,9 +359,9 @@ class VolumeSettings extends React.Component {
   }
 
   checkVolumeNameExist = name => {
-    const volumes = get(this.formTemplate, `${this.prefix}spec.volumes`, [])
+    const volumes = get(this.fedFormTemplate, `${this.prefix}spec.volumes`, [])
     const volumeTemplates = get(
-      this.formTemplate,
+      this.fedFormTemplate,
       'spec.volumeClaimTemplates',
       []
     )
@@ -353,7 +378,7 @@ class VolumeSettings extends React.Component {
     const isLoading = this.store.list.isLoading
 
     const containers = get(
-      this.formTemplate,
+      this.fedFormTemplate,
       `${this.prefix}spec.containers`,
       []
     )
@@ -376,7 +401,7 @@ class VolumeSettings extends React.Component {
 
   renderConfig() {
     const containers = get(
-      this.formTemplate,
+      this.fedFormTemplate,
       `${this.prefix}spec.containers`,
       []
     )
@@ -397,7 +422,7 @@ class VolumeSettings extends React.Component {
   renderVolumeTemplate() {
     const { collectSavedLog } = this.state
     const containers = get(
-      this.formTemplate,
+      this.fedFormTemplate,
       `${this.prefix}spec.containers`,
       []
     )
@@ -423,13 +448,13 @@ class VolumeSettings extends React.Component {
       }),
       () => {
         set(
-          this.formTemplate,
+          this.fedFormTemplate,
           this.collectSavedLogPath,
           this.state.collectSavedLog
         )
 
         if (this.state.collectSavedLog === 'false') {
-          unset(this.formTemplate, this.logPathPrefix)
+          unset(this.fedFormTemplate, this.logPathPrefix)
         }
       }
     )
@@ -494,23 +519,24 @@ class VolumeSettings extends React.Component {
     const isLoading = this.store.list.isLoading
 
     const containers = get(
-      this.formTemplate,
+      this.fedFormTemplate,
       `${this.prefix}spec.containers`,
       []
     )
 
     const showTip =
-      get(this.formTemplate, `${this.prefix}spec.volumes`, []).length === 0 &&
-      get(this.formTemplate, `spec.volumeClaimTemplates`, []).length === 0
+      get(this.fedFormTemplate, `${this.prefix}spec.volumes`, []).length ===
+        0 &&
+      get(this.fedFormTemplate, `spec.volumeClaimTemplates`, []).length === 0
 
     const logPath = safeParseJSON(
-      get(this.formTemplate, this.logPathPrefix, [])
+      get(this.fedFormTemplate, this.logPathPrefix, [])
     )
 
     const isSTS = module === 'statefulsets'
 
     return (
-      <Form data={this.formTemplate} ref={formRef} {...formProps}>
+      <Form data={this.fedFormTemplate} ref={formRef} {...formProps}>
         {this.renderTitle()}
         {collectSavedLog === 'true' && showTip && (
           <Alert

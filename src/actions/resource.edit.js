@@ -20,8 +20,6 @@ import { Modal } from 'components/Base'
 import EditBasicInfoModal from 'components/Modals/EditBasicInfo'
 import EditYamlModal from 'components/Modals/EditYaml'
 
-import FederatedStore from 'stores/federated'
-
 export default {
   'resource.baseinfo.edit': {
     on({ store, detail, success, ...props }) {
@@ -41,16 +39,14 @@ export default {
   },
   'resource.yaml.edit': {
     on({ store, detail, success, ...props }) {
-      const fedStore = new FederatedStore(store.module)
-      const _store = detail.isFedManaged ? fedStore : store
       const modal = Modal.open({
         onOk: async data => {
-          await _store.patch(detail, data)
+          await store.patch(detail, data)
           Modal.close(modal)
           success && success()
         },
         detail,
-        store: _store,
+        store,
         modal: EditYamlModal,
         ...props,
       })

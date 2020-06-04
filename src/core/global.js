@@ -337,6 +337,10 @@ export default class GlobalValue {
     return this._cache_[`project_${cluster}_${project}_navs`]
   }
 
+  getFederatedProjectNavs() {
+    return globals.config.federatedProjectNavs
+  }
+
   getDevOpsNavs({ cluster, workspace, devops }) {
     if (!get(globals.user, `devopsRules[${cluster}][${devops}]`)) {
       return []

@@ -36,6 +36,7 @@ export default {
       cluster,
       namespace,
       module,
+      isFederated,
       extendformTemplate,
       success,
       ...props
@@ -43,11 +44,21 @@ export default {
       const kind = MODULE_KIND_MAP[module]
       const formTemplate = {
         [kind]: {
-          ...FORM_TEMPLATES[module]({
+          ...FORM_TEMPLATES.volumes({
             namespace,
           }),
           ...extendformTemplate,
         },
+      }
+
+      if (isFederated) {
+        Object.keys(formTemplate).forEach(key => {
+          formTemplate[key] = FORM_TEMPLATES.federated({
+            data: formTemplate[key],
+            clusters: props.projectDetail.clusters.map(item => item.name),
+            kind: key,
+          })
+        })
       }
 
       const modal = Modal.open({
@@ -70,6 +81,7 @@ export default {
         namespace,
         name: kind,
         formTemplate,
+        isFederated,
         steps: fromSnapshot ? APPLY_SNAPSHOT_FORM_STEPS : FORM_STEPS,
         modal: CreateModal,
         store,

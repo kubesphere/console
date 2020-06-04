@@ -168,8 +168,8 @@ export default class StatefulSets extends React.Component {
             iconSize={40}
             title={getDisplayName(record)}
             desc={this.getItemDesc(record)}
-            isMultiCluster={record.isFedManaged}
             to={`${this.prefix}/${module}/${name}`}
+            isMultiCluster={record.isFedManaged}
           />
         ),
       },

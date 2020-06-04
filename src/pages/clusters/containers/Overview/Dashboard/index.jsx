@@ -20,7 +20,7 @@ import React from 'react'
 import { observer, inject } from 'mobx-react'
 import { Columns, Column } from '@pitrix/lego-ui'
 
-import ClusterTitle from 'components/ClusterTitle'
+import ClusterTitle from 'components/Clusters/ClusterTitle'
 
 import Tools from './Tools'
 import ClusterInfo from './ClusterInfo'

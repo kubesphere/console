@@ -166,6 +166,9 @@ export default class ContaineForm extends React.Component {
       className,
       configMaps,
       secrets,
+      quota,
+      limitRange,
+      imageRegistries,
       cluster,
       namespace,
       withService,
@@ -183,8 +186,11 @@ export default class ContaineForm extends React.Component {
         <Form ref={this.formRef} data={formData}>
           <ContainerSetting
             data={formData}
+            quota={quota}
             cluster={cluster}
             namespace={namespace}
+            limitRange={limitRange}
+            imageRegistries={imageRegistries}
             defaultContainerType={containerType}
             onContainerTypeChange={this.handleContainerTypeChange}
           />

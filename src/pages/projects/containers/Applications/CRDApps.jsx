@@ -34,15 +34,6 @@ import Banner from './Banner'
   name: 'Application',
 })
 export default class CRDApps extends React.Component {
-  type = 'composing'
-
-  get prefix() {
-    const { workspace, cluster, namespace } = this.props.match.params
-    return `/${workspace}/clusters/${cluster}/projects/${namespace}/applications/${
-      this.type
-    }`
-  }
-
   get canCreate() {
     const { workspace, cluster, namespace: project } = this.props.match.params
     const canCreateDeployment = globals.app
@@ -79,7 +70,7 @@ export default class CRDApps extends React.Component {
           <Avatar
             title={getDisplayName(record)}
             avatar={record.icon || '/assets/default-app.svg'}
-            to={`${this.prefix}/${name}`}
+            to={`${this.props.match.url}/${name}`}
             desc={get(record, 'annotations["kubesphere.io/description"]', '-')}
           />
         ),
@@ -110,12 +101,12 @@ export default class CRDApps extends React.Component {
   }
 
   showCreate = () => {
-    const { match, module, projectStore } = this.props
+    const { match, module, projectStore, getData } = this.props
     return this.props.trigger('crd.app.create', {
       module,
       ...match.params,
       projectDetail: projectStore.detail,
-      success: url => this.routing.push(url),
+      success: getData,
     })
   }
 
@@ -146,7 +137,7 @@ export default class CRDApps extends React.Component {
     const { bannerProps, tableProps, match } = this.props
     return (
       <ListPage {...this.props}>
-        <Banner {...bannerProps} match={match} type={this.type} />
+        <Banner {...bannerProps} match={match} />
         <Table
           {...tableProps}
           {...this.getTableProps()}

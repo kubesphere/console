@@ -96,5 +96,11 @@ export default {
     'The app repository comes from a third-party Helm Chart Repo, which visually displays and provides deployment and management capabilities in KubeSphere. Users can quickly deploy applications with one click based on templates in the app repository.',
   SEARCH_TIPS: 'You can filter based on relevant conditions',
 
-  APPLICATION_BASEINFO_DESC: 'Basic application information (such as name description)',
+  APPLICATION_BASEINFO_DESC:
+    'Basic application information (such as name description)',
+
+  TRAFFIC_MANAGEMENT_NO_MICROSERVICE_TIP:
+    'Traffic governance depends on the microservice module, the current cluster does not enable the microservice module',
+  TRACING_NO_MICROSERVICE_TIP:
+    'Tracing depends on the microservice module, the current cluster does not enable the microservice module',
 }

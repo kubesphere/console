@@ -38,6 +38,9 @@ const Workspaces = lazy(() =>
 const Projects = lazy(() =>
   import(/* webpackChunkName: "projects" */ 'projects/App.jsx')
 )
+const FederatedProjects = lazy(() =>
+  import(/* webpackChunkName: "fedprojects" */ 'fedprojects/App.jsx')
+)
 const DevOps = lazy(() =>
   import(/* webpackChunkName: "devops" */ 'devops/App.jsx')
 )
@@ -68,6 +71,10 @@ export default [
         path: '/:workspace/clusters/:cluster/devops/:project_id',
         component: DevOps,
         ksModule: 'devops',
+      },
+      {
+        path: '/:workspace/federatedprojects/:namespace',
+        component: FederatedProjects,
       },
       {
         path: '/workspaces/:workspace',

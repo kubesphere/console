@@ -1,0 +1,12 @@
+@import '~scss/variables';
+
+.wrapper {
+  border-radius: 2px;
+  border: solid 1px $border-color;
+  padding: 12px;
+  background-color: #ffffff;
+
+  & + .wrapper {
+    margin-top: 12px;
+  }
+}

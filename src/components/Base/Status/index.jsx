@@ -47,7 +47,7 @@ export default class Status extends PureComponent {
     return (
       <span className={classNames(styles.status, className)} style={style}>
         <Indicator className={styles.indicator} type={type} flicker={flicker} />
-        <strong>{name}</strong>
+        <span className="font-bold">{name}</span>
         {!isUndefined(total) && !isUndefined(ready) && (
           <span>
             &nbsp;({ready}/{total})

@@ -76,6 +76,8 @@ export default {
 
   'Current Version': '当前版本',
 
+  'Cluster Select': '集群选择',
+
   'Traffic Monitoring': '流量监测',
 
   'Traffic (requests per second)': '流量(每秒请求)',
@@ -150,6 +152,7 @@ export default {
   SERVICE_STATEFULSET: '有状态服务(有状态副本集)',
 
   'Temporarily unable to use traffic management': '暂时无法使用流量治理',
+  'Temporarily unable to use tracing': '暂时无法使用 Tracing',
   'The app has not received the request for a long time, please visit the app and try traffic management':
     '应用长时间未收到请求，请访问应用后尝试流量治理',
   'Application components combine workloads and services as components in applications':
@@ -234,4 +237,16 @@ export default {
   SEARCH_TIPS: '您可以根据相关条件进行过滤',
 
   'From workspace': '来自企业空间',
+  'Add stateful or stateless services': '添加有状态服务或无状态服务',
+  'Add Internet access rule for the application': '为应用添加外网访问规则',
+
+  INTERNET_ACCESS_DESC: '可以设置应用的外网访问规则(Ingress)',
+
+  'Microservice enabled': '微服务已启用',
+  'Microservice not enabled': '微服务未启用',
+
+  TRAFFIC_MANAGEMENT_NO_MICROSERVICE_TIP:
+    '流量治理依赖于微服务模块, 当前集群未启用微服务模块',
+  TRACING_NO_MICROSERVICE_TIP:
+    'Tracing 依赖于微服务模块, 当前集群未启用微服务模块',
 }

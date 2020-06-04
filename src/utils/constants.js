@@ -240,7 +240,6 @@ export const MODULE_KIND_MAP = {
   pods: 'Pod',
   services: 'Service',
   ingresses: 'Ingress',
-  volumes: 'PersistentVolumeClaim',
   persistentvolumeclaims: 'PersistentVolumeClaim',
   storageclasses: 'StorageClass',
   'alerting-policy': 'AlertingPolicy',
@@ -252,6 +251,7 @@ export const MODULE_KIND_MAP = {
   namespaces: 'Namespace',
   workspaces: 'WorkspaceTemplate',
   dashboards: 'Dashboard',
+  applications: 'Application',
 }
 
 export const QUOTAS_MAP = {
@@ -781,7 +781,7 @@ export const PROVISIONERS = [
   },
 ]
 
-export const S2i_SUPPORTED_TYPES = ['java', 'nodejs', 'python']
+export const S2I_SUPPORTED_TYPES = ['java', 'nodejs', 'python']
 export const B2I_SUPPORTED_TYPES = ['jar', 'war', 'binary']
 
 export const MAX_SIZE_UPLOAD = 2 * 1024 * 1024
@@ -819,6 +819,7 @@ export const API_VERSIONS = {
   configmaps: 'api/v1',
   events: 'api/v1',
   resourcequotas: 'api/v1',
+  limitranges: 'api/v1',
   persistentvolumeclaims: 'api/v1',
   ingresses: 'apis/extensions/v1beta1',
   nodes: 'api/v1',
@@ -893,15 +894,13 @@ export const COMPONENT_ICON_MAP = {
 }
 
 export const CLUSTER_PROVIDER_ICON = {
-  QingCloud: 'qingcloud',
-  Google: 'google-plus',
-  Amazon: 'aws',
-  Azure: 'windows',
-  ACK: 'windows',
-  AKS: 'aliyun',
-  EKS: 'aws',
-  GEK: 'google-plus',
-  QKE: 'qingcloud',
+  'Aliyun ACK': 'aliyun',
+  'Aure Kubernetes Service': 'windows',
+  'Huawei Cloud CCE': 'kubernetes',
+  'Amazon EKS': 'aws',
+  'Google Kubernetes Engine': 'google-plus',
+  'QingCloud Kubernetes Engine': 'qingcloud',
+  'Tencent Kubernetes Engine': 'kubernetes',
 }
 
 export const CLUSTER_GROUP_TAG_TYPE = {

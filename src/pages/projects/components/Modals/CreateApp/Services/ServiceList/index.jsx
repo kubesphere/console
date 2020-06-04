@@ -42,13 +42,14 @@ export default class ServiceComponents extends React.Component {
   }
 
   renderContent() {
-    const { data, onAdd, onDelete } = this.props
+    const { data, clusters, onAdd, onDelete } = this.props
     return (
       <div>
         {Object.keys(data).map(key => (
           <Item
             key={key}
             data={data[key]}
+            clusters={clusters}
             propsKey={key}
             onEdit={onAdd}
             onDelete={onDelete}
@@ -57,7 +58,7 @@ export default class ServiceComponents extends React.Component {
         <div className={styles.add} onClick={this.handleAdd}>
           <Text
             title={t('Add Service')}
-            description={t('根据应用需要添加有状态服务或者无状态服务')}
+            description={t('Add stateful or stateless services')}
           />
         </div>
       </div>

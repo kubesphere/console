@@ -21,7 +21,7 @@ import { action, observable } from 'mobx'
 import Base from 'stores/base'
 import { generateId } from 'utils'
 import TEMPLATE from 'utils/form.templates'
-import { S2i_SUPPORTED_TYPES, B2I_SUPPORTED_TYPES } from 'utils/constants'
+import { S2I_SUPPORTED_TYPES, B2I_SUPPORTED_TYPES } from 'utils/constants'
 
 import S2IRunStore from './run'
 
@@ -39,7 +39,7 @@ export default class S2IBuilderStore extends Base {
   getS2iSupportLanguage = async params => {
     const result = await this.getBuilderTemplate(params)
     const supportS2iLanguage = {
-      s2i: [...S2i_SUPPORTED_TYPES],
+      s2i: [...S2I_SUPPORTED_TYPES],
       b2i: [...B2I_SUPPORTED_TYPES],
     }
     const b2iMap = {

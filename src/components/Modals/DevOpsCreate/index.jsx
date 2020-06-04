@@ -22,7 +22,7 @@ import { isEmpty } from 'lodash'
 import PropTypes from 'prop-types'
 import { Columns, Column, Select, Input, TextArea } from '@pitrix/lego-ui'
 import { Modal, Form } from 'components/Base'
-import ClusterTitle from 'components/ClusterTitle'
+import ClusterTitle from 'components/Clusters/ClusterTitle'
 import { PATTERN_SERVICE_NAME, PATTERN_LENGTH_63 } from 'utils/constants'
 
 import WorkspaceStore from 'stores/workspace'

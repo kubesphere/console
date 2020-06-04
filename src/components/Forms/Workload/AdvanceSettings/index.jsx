@@ -39,10 +39,16 @@ export default class AdvancedSettings extends React.Component {
     return get(formTemplate, MODULE_KIND_MAP[module], formTemplate)
   }
 
+  get fedFormTemplate() {
+    return this.props.isFederated
+      ? get(this.formTemplate, 'spec.template')
+      : this.formTemplate
+  }
+
   render() {
     const { formRef, store, module } = this.props
     return (
-      <Form data={this.formTemplate} ref={formRef}>
+      <Form data={this.fedFormTemplate} ref={formRef}>
         {module !== 'daemonsets' && (
           <Form.Group
             label={t('Setting node schedule policy')}
@@ -53,7 +59,7 @@ export default class AdvancedSettings extends React.Component {
             <NodeSchedule
               prefix={this.props.prefix}
               namespace={this.namespace}
-              formTemplate={this.formTemplate}
+              formTemplate={this.fedFormTemplate}
             />
           </Form.Group>
         )}
@@ -69,7 +75,7 @@ export default class AdvancedSettings extends React.Component {
             store={store}
             cluster={this.cluster}
             namespace={this.namespace}
-            formTemplate={this.formTemplate}
+            formTemplate={this.fedFormTemplate}
           />
         </Form.Group>
       </Form>

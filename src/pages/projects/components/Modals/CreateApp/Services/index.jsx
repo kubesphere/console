@@ -19,7 +19,7 @@
 import { get, set, omit } from 'lodash'
 import React from 'react'
 
-import { mergeLabels } from 'utils'
+import { mergeLabels, updateFederatedAnnotations } from 'utils'
 import ServiceStore from 'stores/service'
 
 import CreateServiceModal from 'projects/components/Modals/ServiceCreate/InApp'
@@ -46,6 +46,10 @@ export default class Services extends React.Component {
     }
   }
 
+  get fedPrefix() {
+    return this.props.isFederated ? 'spec.template.' : ''
+  }
+
   validate(callback) {
     if (Object.keys(this.state.components).length <= 0) {
       return this.setState({
@@ -70,7 +74,8 @@ export default class Services extends React.Component {
   getEditData = (component = {}) => {
     const data = {}
     Object.values(component).forEach(item => {
-      data[item.kind] = item
+      const kind = item.kind.replace('Federated', '')
+      data[kind] = item
     })
     return data
   }
@@ -78,7 +83,7 @@ export default class Services extends React.Component {
   updateAppLabels(formData) {
     const appLabels = get(
       this.props.formData,
-      'application.spec.selector.matchLabels',
+      `application.${this.fedPrefix}spec.selector.matchLabels`,
       []
     )
     mergeLabels(formData.workload, appLabels)
@@ -86,7 +91,7 @@ export default class Services extends React.Component {
   }
 
   updateGovernance(formData) {
-    const { isGovernance } = this.props
+    const { isGovernance, isFederated } = this.props
     set(
       formData.workload,
       'metadata.annotations["servicemesh.kubesphere.io/enabled"]',
@@ -100,9 +105,16 @@ export default class Services extends React.Component {
 
     set(
       formData.workload,
-      'spec.template.metadata.annotations["sidecar.istio.io/inject"]',
+      `spec.template.${
+        this.fedPrefix
+      }metadata.annotations["sidecar.istio.io/inject"]`,
       String(isGovernance)
     )
+
+    if (isFederated) {
+      updateFederatedAnnotations(formData.workload)
+      updateFederatedAnnotations(formData.service)
+    }
   }
 
   updateComponentKind = () => {
@@ -135,7 +147,7 @@ export default class Services extends React.Component {
       },
     ]
 
-    set(application, 'spec.componentKinds', componentKinds)
+    set(application, `${this.fedPrefix}spec.componentKinds`, componentKinds)
   }
 
   handleAdd = data => {
@@ -173,7 +185,7 @@ export default class Services extends React.Component {
   }
 
   render() {
-    const { cluster, namespace, projectDetail } = this.props
+    const { cluster, namespace, isFederated, projectDetail } = this.props
     const { components, showAdd, editData, componentsError } = this.state
 
     return (
@@ -187,8 +199,8 @@ export default class Services extends React.Component {
           <ServiceList
             error={componentsError}
             data={components}
+            clusters={projectDetail.clusters}
             onAdd={this.showAdd}
-            onEdit={this.handleEdit}
             onDelete={this.handleDelete}
           />
         </div>
@@ -201,6 +213,7 @@ export default class Services extends React.Component {
           visible={showAdd}
           onCancel={this.hideAdd}
           onOk={this.handleAdd}
+          isFederated={isFederated}
           projectDetail={projectDetail}
         />
       </div>

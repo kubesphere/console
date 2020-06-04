@@ -29,7 +29,7 @@ import {
 } from 'recharts'
 
 import { Text, Panel } from 'components/Base'
-import ClusterTitle from 'components/ClusterTitle'
+import ClusterTitle from 'components/Clusters/ClusterTitle'
 import ResourceItem from 'clusters/containers/Overview/Dashboard/ResourcesUsage/ResourceItem'
 
 import ClusterMonitorStore from 'stores/monitoring/cluster'

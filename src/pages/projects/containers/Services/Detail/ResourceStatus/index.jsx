@@ -19,21 +19,18 @@
 import React from 'react'
 import { reaction, toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
-import { get } from 'lodash'
 
 import WorkloadStore from 'stores/workload'
-import FedStore from 'stores/federated'
 import RouterStore from 'stores/router'
 
 import { Panel, Text } from 'components/Base'
 import PodsCard from 'components/Cards/Pods'
-import ClusterWorkloadStatus from 'projects/components/Cards/ClusterWorkloadStatus'
 
 import Ports from '../Ports'
 
 import styles from './index.scss'
 
-@inject('detailStore', 'fedDetailStore')
+@inject('detailStore')
 @observer
 export default class ResourceStatus extends React.Component {
   constructor(props) {
@@ -43,7 +40,6 @@ export default class ResourceStatus extends React.Component {
 
     const workloadModule = this.store.workload.type
     this.workloadStore = new WorkloadStore(workloadModule)
-    this.fedWorkloadDetailStore = new FedStore(workloadModule)
     this.routerStore = new RouterStore()
 
     this.disposer = reaction(
@@ -73,41 +69,14 @@ export default class ResourceStatus extends React.Component {
     if (type) {
       this.workloadStore.setModule(type)
       await this.workloadStore.fetchDetail({ ...params, name })
-      if (this.workloadStore.detail.isFedManaged) {
-        this.fedWorkloadDetailStore.setModule(type)
-        this.fedWorkloadDetailStore.fetchDetail({ ...params, name })
-      }
     }
 
     this.routerStore.getGateway(params)
   }
 
-  handlePodUpdate = _cluster => {
-    const { cluster, isFedManaged, namespace, name } = this.workloadStore.detail
-    if (!isFedManaged) {
-      this.workloadStore.fetchDetail({ cluster, namespace, name, silent: true })
-    } else {
-      this.fedWorkloadDetailStore.sync({ cluster: _cluster })
-    }
-  }
-
-  renderReplicaInfo() {
-    const detail = toJS(this.workloadStore.detail)
-
-    if (detail.isFedManaged) {
-      const fedDetail = toJS(this.fedWorkloadDetailStore.detail)
-      return (
-        <ClusterWorkloadStatus
-          detail={detail}
-          store={this.workloadStore}
-          fedDetail={fedDetail}
-          fedStore={this.fedWorkloadDetailStore}
-          module={this.workloadStore.module}
-        />
-      )
-    }
-
-    return null
+  handlePodUpdate = () => {
+    const { cluster, namespace, name } = this.workloadStore.detail
+    this.workloadStore.fetchDetail({ cluster, namespace, name, silent: true })
   }
 
   renderPods() {
@@ -115,7 +84,6 @@ export default class ResourceStatus extends React.Component {
       <PodsCard
         prefix={this.prefix}
         detail={this.store.detail}
-        clusters={get(this.props.fedDetailStore, 'detail.clusters', [])}
         onUpdate={this.handlePodUpdate}
       />
     )
@@ -151,7 +119,7 @@ export default class ResourceStatus extends React.Component {
 
     return (
       <div>
-        {detail.isFedManaged ? this.renderReplicaInfo() : this.renderPorts()}
+        {this.renderPorts()}
         {this.renderPods()}
       </div>
     )

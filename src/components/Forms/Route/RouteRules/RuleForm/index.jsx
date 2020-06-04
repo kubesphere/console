@@ -29,6 +29,8 @@ import { ReactComponent as BackIcon } from 'src/assets/back.svg'
 
 import { PATTERN_HOST } from 'utils/constants'
 
+import ClusterSelect from './ClusterSelect'
+
 import styles from './index.scss'
 
 export default class RuleForm extends React.Component {
@@ -59,7 +61,7 @@ export default class RuleForm extends React.Component {
     super(props)
 
     this.state = {
-      type: this.getType(props.data),
+      type: props.isFederated ? 'specify' : this.getType(props.data),
       service: '',
       protocol: get(props, 'data.protocol', 'http'),
     }
@@ -86,6 +88,14 @@ export default class RuleForm extends React.Component {
       label: item.name,
       value: item.name,
     }))
+  }
+
+  get clusters() {
+    return get(this.props, 'projectDetail.clusters', []).slice()
+  }
+
+  get defaultClusters() {
+    return get(this.props, 'projectDetail.clusters', []).map(item => item.name)
   }
 
   getType(data) {
@@ -216,7 +226,7 @@ export default class RuleForm extends React.Component {
   }
 
   render() {
-    const { data, className } = this.props
+    const { data, className, isFederated } = this.props
     const { type } = this.state
 
     return (
@@ -228,30 +238,43 @@ export default class RuleForm extends React.Component {
           {t('Set Route Rule')}
         </div>
         <div className={styles.formWrapper}>
-          <div className={styles.form}>
-            <Form ref={this.formRef} data={data}>
-              <Form.Item label={t('Mode')}>
-                <RadioGroup
-                  wrapClassName="radio-default"
-                  buttonWidth={155}
-                  value={type}
-                  onChange={this.handleModeChange}
-                  size="small"
-                >
-                  <RadioButton value="auto">{t('Auto Generate')}</RadioButton>
-                  <RadioButton value="specify">
-                    {t('Specify Domain')}
-                  </RadioButton>
-                </RadioGroup>
-              </Form.Item>
+          <Form ref={this.formRef} data={data}>
+            {isFederated && (
+              <Form.Group label={t('Deploy Placement')}>
+                <Form.Item>
+                  <ClusterSelect
+                    name="clusters"
+                    options={this.clusters}
+                    defaultValue={this.defaultClusters}
+                  />
+                </Form.Item>
+              </Form.Group>
+            )}
+            <Form.Group noWrapper>
+              {!isFederated && (
+                <Form.Item label={t('Mode')}>
+                  <RadioGroup
+                    wrapClassName="radio-default"
+                    buttonWidth={155}
+                    value={type}
+                    onChange={this.handleModeChange}
+                    size="small"
+                  >
+                    <RadioButton value="auto">{t('Auto Generate')}</RadioButton>
+                    <RadioButton value="specify">
+                      {t('Specify Domain')}
+                    </RadioButton>
+                  </RadioGroup>
+                </Form.Item>
+              )}
               <Alert
                 className="margin-t12 margin-b12"
                 description={t.html(`RULE_SETTING_MODE_${type.toUpperCase()}`)}
                 type="info"
               />
               {this.renderForm()}
-            </Form>
-          </div>
+            </Form.Group>
+          </Form>
         </div>
       </div>
     )

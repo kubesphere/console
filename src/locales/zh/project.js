@@ -55,6 +55,10 @@ export default {
   'Delete Project': '删除项目',
   'Project Info': '项目信息',
   'Project Quota': '项目配额',
+  'Quota Management': '配额管理',
+
+  'Multi-cluster Project': '多集群项目',
+  'Multi-cluster Projects': '多集群项目',
 
   Opened: '已开启',
   Closed: '已关闭',
@@ -174,6 +178,7 @@ export default {
   QUOTA_EDIT_TIP: '值为空时将不限制配额',
 
   PROJECT_BASIC_INFO_DESC: '项目的基本信息涵盖了项目名称及项目的配额状态',
+  PROJECT_QUOTA_MANAGE_DESC: '管理项目的配额',
   PROJECT_ADVANCED_SETTINGS_DESC:
     '对项目中的外网访问网关以及服务治理和落盘日志收集等配置进行设置',
   PROJECT_MEMBERS_DESC: '对项目内的成员进行管理及角色分配',
@@ -197,7 +202,8 @@ export default {
   HOW_TO_INVITE_MEMBER_A:
     '项目管理员或者拥有成员邀请权限的用户可以邀请当前企业空间内的成员加入项目',
 
-  'How to invite other members to the current project?': '邀请其他成员到当前项目中?',
+  'How to invite other members to the current project?':
+    '邀请其他成员到当前项目中?',
   'How to set the project gateway?': '如何设置项目网关？',
   'You can limit the number of resources. Blank means no limit.':
     '您可以对资源的数量进行限制, 不填即不限制',
@@ -206,7 +212,8 @@ export default {
   PROJECT_TYPES_A:
     '项目网关负责创建对应的应用路由控制器，用来负责将请求转发到对应的后端服务；开启项目网关后可以将服务通过 Ingress 暴露给外网访问。',
 
-  PROJECT_CLUSTER_SETTINGS_DESC: '选择要创建项目的集群',
+  PROJECT_CLUSTER_SETTINGS_DESC:
+    '选择要创建项目的集群. 当选择了多个集群时, 将创建联邦项目',
   NETWORK_ISOLATED_DESC: '设置网络隔离策略',
 
   NAME_EXIST_IN_CLUSTER: '项目名在集群 {cluster} 中已存在',

@@ -17,7 +17,7 @@
  */
 
 import React from 'react'
-import { get, debounce } from 'lodash'
+import { get, set, debounce } from 'lodash'
 import { observer } from 'mobx-react'
 
 import { updateLabels } from 'utils'
@@ -45,6 +45,12 @@ export default class BaseInfo extends React.Component {
   get formTemplate() {
     const { formTemplate, module } = this.props
     return get(formTemplate, MODULE_KIND_MAP[module], formTemplate)
+  }
+
+  get fedFormTemplate() {
+    return this.props.isFederated
+      ? get(this.formTemplate, 'spec.template')
+      : this.formTemplate
   }
 
   get nameLengthRules() {
@@ -80,12 +86,16 @@ export default class BaseInfo extends React.Component {
   }
 
   handleNameChange = debounce(value => {
-    const { module, formTemplate } = this.props
+    const { module, isFederated } = this.props
 
-    const labels = get(this.formTemplate, 'metadata.labels', {})
+    const labels = get(this.fedFormTemplate, 'metadata.labels', {})
     labels.app = value
 
-    updateLabels(formTemplate, module, labels)
+    updateLabels(this.fedFormTemplate, module, labels)
+
+    if (isFederated) {
+      set(this.formTemplate, 'metadata.labels.app', value)
+    }
   }, 200)
 
   render() {

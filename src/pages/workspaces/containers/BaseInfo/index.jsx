@@ -24,7 +24,7 @@ import { Checkbox } from '@pitrix/lego-ui'
 import { Text, Panel, Alert, Button, Switch } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import EditBasicInfoModal from 'workspaces/components/Modals/EditBasicInfo'
-import ClusterTitle from 'components/ClusterTitle'
+import ClusterTitle from 'components/Clusters/ClusterTitle'
 
 import { getLocalTime } from 'utils'
 import { trigger } from 'utils/action'

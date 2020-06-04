@@ -63,6 +63,12 @@ export default class VolumeSettings extends React.Component {
     return get(formTemplate, MODULE_KIND_MAP[module], formTemplate)
   }
 
+  get fedFormTemplate() {
+    return this.props.isFederated
+      ? get(this.formTemplate, 'spec.template')
+      : this.formTemplate
+  }
+
   state = {
     method: this.formTemplate[CREATE_TYPE_NAME] || DEFAULT_CREATE_WAY,
   }
@@ -73,9 +79,9 @@ export default class VolumeSettings extends React.Component {
     /**
      * reset the form data, make it easy to dev
      */
-    set(this.formTemplate, 'spec.accessModes', [])
-    set(this.formTemplate, 'dataSource', {})
-    set(this.formTemplate, 'spec.resources.requests.storage', '0Gi')
+    set(this.fedFormTemplate, 'spec.accessModes', [])
+    set(this.fedFormTemplate, 'dataSource', {})
+    set(this.fedFormTemplate, 'spec.resources.requests.storage', '0Gi')
   }
 
   render() {
@@ -83,7 +89,7 @@ export default class VolumeSettings extends React.Component {
     const { method } = this.state
 
     return (
-      <Form data={this.formTemplate} ref={formRef}>
+      <Form data={this.fedFormTemplate} ref={formRef}>
         <Form.Item label={t('Method')}>
           <TypeSelect
             name={CREATE_TYPE_NAME}

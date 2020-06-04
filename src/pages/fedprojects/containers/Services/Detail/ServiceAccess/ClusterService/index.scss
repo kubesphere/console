@@ -1,0 +1,48 @@
+@import '~scss/variables';
+
+.header {
+  display: flex;
+  position: relative;
+  align-items: center;
+
+  & > div + div {
+    min-width: 30%;
+    margin-left: 20px;
+  }
+
+  .more {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}
+
+.cluster {
+  position: relative;
+  width: 326px;
+  padding: 8px;
+  border-radius: 2px;
+  background-color: $dark-color07;
+}
+
+.icon {
+  margin-right: 12px;
+}
+
+.indicator {
+  position: absolute;
+  top: 36px;
+  left: 36px;
+}
+
+.content {
+  margin-top: 12px;
+  border-radius: $border-radius;
+  background-color: $light-color01;
+}
+
+.group {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}

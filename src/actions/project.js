@@ -62,6 +62,7 @@ export default {
           const params = {
             name: data.name,
             namespace: detail.name,
+            cluster: detail.cluster,
           }
 
           const spec = get(data, 'spec.hard', {})
@@ -76,12 +77,15 @@ export default {
               spec: data.spec,
             })
           } else {
-            await quotaStore.create({
-              apiVersion: 'v1',
-              kind: 'ResourceQuota',
-              metadata: { ...params, name: detail.name },
-              spec: data.spec,
-            })
+            await quotaStore.create(
+              {
+                apiVersion: 'v1',
+                kind: 'ResourceQuota',
+                metadata: { ...params, name: detail.name },
+                spec: data.spec,
+              },
+              params
+            )
           }
 
           Modal.close(modal)

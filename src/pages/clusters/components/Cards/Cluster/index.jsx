@@ -21,7 +21,7 @@ import { Columns, Column } from '@pitrix/lego-ui'
 import { Text } from 'components/Base'
 import { getLocalTime } from 'utils'
 
-import ClusterTitle from 'components/ClusterTitle'
+import ClusterTitle from 'components/Clusters/ClusterTitle'
 
 import styles from './index.scss'
 

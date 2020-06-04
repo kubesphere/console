@@ -22,7 +22,7 @@ import { toJS } from 'mobx'
 import PropTypes from 'prop-types'
 import { Icon } from '@pitrix/lego-ui'
 import { Modal, Button, Notify, Switch } from 'components/Base'
-import { mergeLabels } from 'utils'
+import { mergeLabels, updateFederatedAnnotations } from 'utils'
 import FORM_TEMPLATES from 'utils/form.templates'
 
 import RouterStore from 'stores/router'
@@ -55,14 +55,14 @@ export default class ServiceDeployAppModal extends React.Component {
 
     this.state = {
       currentStep: 0,
-      formData: {
+      formData: this.federatedWrapper({
         application: FORM_TEMPLATES['applications']({
           namespace: props.namespace,
         }),
         ingress: FORM_TEMPLATES['ingresses']({
           namespace: props.namespace,
         }),
-      },
+      }),
       isCodeMode: false,
       isGovernance: this.serviceMeshEnable ? 'true' : 'false',
     }
@@ -74,15 +74,41 @@ export default class ServiceDeployAppModal extends React.Component {
   }
 
   componentDidMount() {
-    this.fetchData().then(() => {
-      const { sampleApp } = this.props
-      if (sampleApp) {
-        this.fecthSampleData(sampleApp)
-      }
-    })
+    if (!this.props.isFederated) {
+      this.fetchData().then(() => {
+        const { sampleApp } = this.props
+        if (sampleApp) {
+          this.fecthSampleData(sampleApp)
+        }
+      })
+    }
+  }
+
+  federatedWrapper(formTemplate) {
+    const { isFederated, projectDetail } = this.props
+    if (isFederated) {
+      Object.keys(formTemplate).forEach(key => {
+        formTemplate[key] = FORM_TEMPLATES.federated({
+          data: formTemplate[key],
+          clusters: projectDetail.clusters.map(item => item.name),
+          kind: formTemplate[key].kind,
+        })
+      })
+      const labels = get(
+        formTemplate.application,
+        'spec.template.metadata.labels',
+        {}
+      )
+      set(formTemplate.application, 'metadata.labels', labels)
+    }
+    return formTemplate
   }
 
   get serviceMeshEnable() {
+    if (this.props.isFederated) {
+      return globals.app.hasKSModule('servicemesh')
+    }
+
     return (
       globals.app.hasKSModule('servicemesh') &&
       get(this.routerStore, 'gateway.data.serviceMeshEnable')
@@ -141,12 +167,12 @@ export default class ServiceDeployAppModal extends React.Component {
         unset(item, 'metadata.annotations["servicemesh.kubesphere.io/enabled"]')
       }
 
-      if (item.kind === 'Application') {
+      if (item.kind.indexOf('Application') !== -1) {
         formData.application = item
-      } else if (item.kind === 'Service') {
+      } else if (item.kind.indexOf('Service') !== -1) {
         const componentName = get(item, 'metadata.labels.app')
         set(formData, `${componentName}.service`, item)
-      } else if (item.kind === 'Ingress') {
+      } else if (item.kind.indexOf('Ingress') !== -1) {
         formData.ingress = item
       } else {
         const componentName = get(item, 'metadata.labels.app')
@@ -167,6 +193,7 @@ export default class ServiceDeployAppModal extends React.Component {
   }
 
   handleOk = () => {
+    const { isFederated } = this.props
     const { isCodeMode } = this.state
 
     let data
@@ -175,6 +202,20 @@ export default class ServiceDeployAppModal extends React.Component {
     } else {
       data = this.state.formData
     }
+
+    if (isFederated) {
+      const newData = {}
+      const { application, ingress, ...components } = data
+      newData.Application = application
+      newData.Ingress = ingress
+      Object.keys(components).forEach(key => {
+        const component = components[key]
+        newData[`${key}-workload`] = component.workload
+        newData[`${key}-service`] = component.service
+      })
+      data = newData
+    }
+
     this.props.onOk(data)
   }
 
@@ -224,6 +265,7 @@ export default class ServiceDeployAppModal extends React.Component {
   }
 
   handleGovernanceChange = value => {
+    const { isFederated } = this.props
     const { application, ingress, ...components } = this.state.formData
     this.setState({ isGovernance: value })
     const valueStr = String(value)
@@ -243,6 +285,10 @@ export default class ServiceDeployAppModal extends React.Component {
         'spec.template.metadata.annotations["sidecar.istio.io/inject"]',
         valueStr
       )
+      if (isFederated) {
+        updateFederatedAnnotations(component.workload)
+        updateFederatedAnnotations(component.service)
+      }
     })
   }
 
@@ -275,7 +321,7 @@ export default class ServiceDeployAppModal extends React.Component {
   }
 
   renderForm() {
-    const { cluster, namespace, store, projectDetail } = this.props
+    const { cluster, namespace, store, isFederated, projectDetail } = this.props
     const { formData, gateway, currentStep, isGovernance } = this.state
 
     const step = this.steps[currentStep]
@@ -288,6 +334,7 @@ export default class ServiceDeployAppModal extends React.Component {
       formData,
       gateway,
       isGovernance,
+      isFederated,
       projectDetail,
       serviceMeshEnable: this.serviceMeshEnable,
       onLabelsChange: this.handleAppLabelsChange,

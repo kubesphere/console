@@ -22,13 +22,8 @@ import { inject, observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { isEmpty, get, throttle } from 'lodash'
-
-import { joinSelector } from 'utils'
-import { startAutoRefresh, stopAutoRefresh } from 'utils/monitoring'
-import PodStore from 'stores/pod'
-import PodMonitorStore from 'stores/monitoring/pod'
-
 import {
+  Icon,
   Level,
   LevelLeft,
   LevelRight,
@@ -36,6 +31,12 @@ import {
   Loading,
   Select,
 } from '@pitrix/lego-ui'
+
+import { joinSelector } from 'utils'
+import { startAutoRefresh, stopAutoRefresh } from 'utils/monitoring'
+import PodStore from 'stores/pod'
+import PodMonitorStore from 'stores/monitoring/pod'
+
 import { Panel, Search, Button } from 'components/Base'
 import PodItem from './Item'
 
@@ -79,7 +80,7 @@ export default class PodsCard extends React.Component {
 
     this.state = {
       expandItem: '',
-      selectCluster: get(props, 'detail.cluster'),
+      selectCluster: get(props, 'clusters[0]', ''),
     }
 
     this.websocket = props.rootStore.websocket
@@ -139,7 +140,7 @@ export default class PodsCard extends React.Component {
     const { selectCluster } = this.state
     const { name, namespace, kind, selector, _originData } = props.detail || {}
     const _kind = kind || get(_originData, 'kind', '')
-    const result = {}
+    let result = {}
 
     if (selectCluster) {
       result.cluster = selectCluster
@@ -162,11 +163,19 @@ export default class PodsCard extends React.Component {
       default:
         result.ownerKind = kind === 'Deployment' ? 'ReplicaSet' : kind
         result.labelSelector = joinSelector(selector)
+        if (isEmpty(selector)) {
+          result = {}
+        }
     }
     return result
   }
 
   fetchData = async ({ noMetrics, silent, ...params } = {}) => {
+    if (isEmpty(this.params)) {
+      this.store.list.isLoading = false
+      return
+    }
+
     const { limit } = this.props
     silent && (this.store.list.silent = true)
     await this.store.fetchList({
@@ -246,8 +255,8 @@ export default class PodsCard extends React.Component {
   getClustersOptions = () => {
     const { clusters } = this.props
     return clusters.map(cluster => ({
-      label: cluster.name,
-      value: cluster.name,
+      label: cluster,
+      value: cluster,
     }))
   }
 
@@ -266,6 +275,7 @@ export default class PodsCard extends React.Component {
         {!isEmpty(clusters) && (
           <Select
             name="cluster"
+            prefixIcon={<Icon name="cluster" />}
             className={styles.cluster}
             value={this.params.cluster}
             options={this.getClustersOptions()}
@@ -288,6 +298,7 @@ export default class PodsCard extends React.Component {
   renderContent() {
     const { prefix } = this.props
     const { data, isLoading, silent } = this.store.list
+    const { selectCluster } = this.state
 
     const content = (
       <div className={styles.body}>
@@ -297,7 +308,9 @@ export default class PodsCard extends React.Component {
           data.map(pod => (
             <PodItem
               key={pod.name}
-              prefix={prefix}
+              prefix={`${prefix}${
+                selectCluster ? `/clusters/${selectCluster}` : ''
+              }`}
               detail={pod}
               metrics={this.getPodMetrics(pod)}
               loading={this.monitorStore.isLoading}
@@ -332,8 +345,12 @@ export default class PodsCard extends React.Component {
   }
 
   render() {
-    const { className, title, hideHeader, hideFooter } = this.props
+    const { className, title, hideHeader, hideFooter, noWrapper } = this.props
     const { data, isLoading } = this.store.list
+
+    if (noWrapper) {
+      return this.renderContent()
+    }
 
     return (
       <Panel

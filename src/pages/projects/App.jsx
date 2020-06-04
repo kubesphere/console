@@ -23,7 +23,6 @@ import { Loading } from '@pitrix/lego-ui'
 import { renderRoutes } from 'utils/router.config'
 
 import ProjectStore from 'stores/project'
-import FederatedStore from 'stores/federated'
 
 import routes from './routes'
 
@@ -34,7 +33,6 @@ class ProjectLayout extends Component {
     super(props)
 
     this.store = new ProjectStore()
-    this.fedStore = new FederatedStore('namespaces')
 
     this.init(props.match.params)
   }
@@ -58,16 +56,10 @@ class ProjectLayout extends Component {
 
     await this.props.rootStore.getRules(params)
 
-    if (this.store.detail.isFedManaged) {
-      await this.fedStore.fetchDetail({ ...params, name: params.namespace })
-      this.store.detail.clusters = this.fedStore.detail.clusters
-    }
-
     globals.app.cacheHistory(this.props.match.url, {
       type: 'Project',
       name: this.store.detail.name,
       description: this.store.detail.description,
-      isFedManaged: this.store.detail.isFedManaged,
     })
 
     this.store.initializing = false

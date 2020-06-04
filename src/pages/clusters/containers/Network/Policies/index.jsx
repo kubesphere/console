@@ -44,6 +44,7 @@ export default class NetworkPolicies extends React.Component {
       description: t('NETWORK_POLICY_A1'),
     },
   ]
+
   constructor(props) {
     super(props)
     this.store = props.store

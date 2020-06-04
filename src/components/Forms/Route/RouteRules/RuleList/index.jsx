@@ -16,13 +16,14 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, set, isEmpty } from 'lodash'
+import { get, set, isEmpty, keyBy } from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { Button } from 'components/Base'
+import { Text } from 'components/Base'
+import ObjectMapper from 'utils/object.mapper'
 
-import Card from './Card'
+import Item from './Item'
 
 import styles from './index.scss'
 
@@ -53,8 +54,13 @@ export default class RuleList extends React.Component {
     this.props.onShow(data)
   }
 
-  handleDelete = host => {
-    const { value, onChange } = this.props
+  handleDelete = rule => {
+    const { value, onChange, isFederated } = this.props
+    const { host } = rule
+
+    if (isFederated) {
+      return this.handleFederatedDelete(rule)
+    }
 
     onChange(value.filter(item => item.host !== host))
 
@@ -72,31 +78,49 @@ export default class RuleList extends React.Component {
     }
   }
 
-  renderEmpty() {
-    const { disabled } = this.props
-    return (
-      <div className={styles.empty}>
-        <p>{t('Please add at least one routing rule')}</p>
-        <Button
-          className={styles.add}
-          onClick={this.handleAdd}
-          disabled={disabled}
-        >
-          {t('Add Route Rule')}
-        </Button>
-      </div>
+  handleFederatedDelete = rule => {
+    const { value, onChange } = this.props
+    const formTemplate = this.context.formData
+    const overrides = get(formTemplate, 'spec.overrides', [])
+    const override = overrides.find(
+      item => item.clusterName === rule.cluster.name
     )
+    override.clusterOverrides = override.clusterOverrides.filter(
+      item => !['/spec/rules', '/spec/tls'].includes(item.path)
+    )
+    onChange(value)
   }
 
   renderContent() {
-    const { value } = this.props
-    const tls = get(this.context.formData, 'spec.tls[0]')
+    const { value, isFederated, projectDetail } = this.props
+    const clusters = keyBy(projectDetail.clusters, 'name')
+
+    let rules = [...value]
+    let tls = get(this.context.formData, 'spec.tls[0]')
+
+    if (isFederated) {
+      const result = ObjectMapper.federated(ObjectMapper.ingresses)(
+        this.context.formData
+      )
+      if (result && result.clusterTemplates) {
+        rules = Object.keys(result.clusterTemplates).map(cluster => ({
+          ...get(result.clusterTemplates[cluster], 'spec.rules[0]', {}),
+          cluster: clusters[cluster],
+        }))
+
+        tls = Object.keys(result.clusterTemplates).map(cluster => ({
+          ...get(result.clusterTemplates[cluster], 'spec.tls[0]', {}),
+          cluster: clusters[cluster],
+        }))
+      }
+    }
 
     return (
-      <div className={styles.content}>
-        <ul className={styles.list}>
-          {value.map(item => (
-            <Card
+      <ul>
+        {rules
+          .filter(item => item.host)
+          .map(item => (
+            <Item
               rule={item}
               tls={tls}
               key={item.host}
@@ -104,23 +128,17 @@ export default class RuleList extends React.Component {
               onDelete={this.handleDelete}
             />
           ))}
-        </ul>
-        <div className="text-right">
-          <Button className={styles.add} onClick={this.handleAdd}>
-            {t('Add Route Rule')}
-          </Button>
+        <div className={styles.add} onClick={this.handleAdd}>
+          <Text
+            title={t('Add Route Rule')}
+            description={t('Please add at least one routing rule')}
+          />
         </div>
-      </div>
+      </ul>
     )
   }
 
   render() {
-    const { value } = this.props
-
-    return (
-      <div className={styles.wrapper}>
-        {value.length <= 0 ? this.renderEmpty() : this.renderContent()}
-      </div>
-    )
+    return <div className={styles.wrapper}>{this.renderContent()}</div>
   }
 }
