@@ -122,6 +122,12 @@ client:
             - { name: volumes, title: Volumes }
             - { name: volume-snapshots, title: Snapshots Management }
             - { name: storageclasses, title: Storage Classes }
+        - {
+          name: mail-server,
+          title: Mail Server,
+          icon: mail,
+          authKey: alerting,
+        }
         - name: monitoring-alerting
           title: Monitoring & Alerting
           icon: monitor
@@ -177,12 +183,12 @@ client:
       items:
         - { name: base-info, title: Platform Info, icon: home, authKey: platform-settings, }
         # - { name: third-login, title: Third-party Login, icon: passport, }
-        - {
-            name: mail-server,
-            title: Mail Server,
-            icon: mail,
-            authKey: platform-settings,
-          }
+        # - {
+        #     name: mail-server,
+        #     title: Mail Server,
+        #     icon: mail,
+        #     authKey: alerting,
+        #   }
         - {
             name: log-collection,
             title: Log Collection,
