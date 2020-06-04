@@ -82,4 +82,11 @@ export default {
   RULE_MANAGE: 'Manage',
   RULE_ADVANCED: 'Advanced Settings',
   RULE_S2IBUILDERS: 'Image Builder',
+  CLUSTER_SETTINGS_DESC: 'Manage cluster settings and authorizations to workspaces & edit cluster information',
+  ROLE_CREATE_TIP_TITLE: 'Next Step',
+  ROLE_CREATE_TIP_MESSAGE: 'You need to edit access after which the role can be created successfully.',
+  NODES_VIEW_DESC: 'View node information',
+  NODES_MANAGEMENT_DESC: 'Manage, enable and disable nodes; manage taints',
+  CRD_MANAGEMENT_DESC: 'Manage, view, modify and delele cluster CRDs',
+  COMPONENTS_MANAGEMENT_DESC: 'Manage cluster components',
 }

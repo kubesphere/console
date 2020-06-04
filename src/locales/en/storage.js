@@ -134,4 +134,5 @@ export default {
   CREATE_VOLUME_BY_STORAGECLASS: 'Create volume by storageclass',
   CREATE_VOLUME_BY_SNAPSHOT: 'Create volume by snapshot',
   SELECT_SNAPSHOT_TO_CREATE_VOLUME: 'select snapshot to create volume',
+  VOLUMESNAPSHOT_DESC: 'A volume snapshot refers to the replica of a volume at a certain time point. It can be used to configure new volumes (preset the snapshot data) or restore an existing volume to its previous status (displayed in snapshots).',
 }

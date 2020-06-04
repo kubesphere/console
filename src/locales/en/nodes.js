@@ -50,7 +50,7 @@ export default {
 
   NODE_TYPES_Q: 'What are the types of cluster nodes?',
   NODE_TYPES_A: 'The nodes are divided into master nodes and worker nodes.',
-  WHAT_IS_NODE_TAINTS_Q: 'What is node taints ?',
+  WHAT_IS_NODE_TAINTS_Q: 'What are node taints?',
   WHAT_IS_NODE_TAINTS_A:
     'Taints allow a node to repel a set of pods. Taints and tolerations work together to ensure that pods are not scheduled onto inappropriate nodes.',
 }

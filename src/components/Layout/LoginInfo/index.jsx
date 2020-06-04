@@ -73,7 +73,7 @@ export default class LoginInfo extends Component {
           <Icon name="wrench" /> {t('User Settings')}
         </Menu.MenuItem>
         <Menu.MenuItem key="logout">
-          <Icon name="logout" /> {t('Logout')}
+          <Icon name="logout" /> {t('Log Out')}
         </Menu.MenuItem>
         <Menu.MenuItem key="about">
           <Icon name="information" /> {t('About')}
