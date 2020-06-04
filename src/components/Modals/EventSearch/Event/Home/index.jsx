@@ -30,15 +30,15 @@ export default class HomeModal extends React.Component {
 
   supportQueryParams = [
     {
-      icon: 'listview',
+      icon: 'magnifier',
       title: t('Search Events by', { field: t('message') }),
       tips: t('Message Event Query Tip'),
       key: 'message_search',
     },
     {
-      icon: 'magnifier',
+      icon: 'appcenter',
       title: t('Search Events by', { field: t('Workspace') }),
-      tips: t('KeyWord Event Query Tip'),
+      tips: t('Workspace Event Query Tip'),
       key: 'workspace_filter',
     },
     {
@@ -48,17 +48,11 @@ export default class HomeModal extends React.Component {
       key: 'involved_object_namespace_filter',
     },
     {
-      icon: 'log',
+      icon: 'strategy-group',
       title: t('Search Events by', { field: t('Resource Name') }),
-      tips: t('Name Event Query Tip'),
+      tips: t('Resource Name Event Query Tip'),
       key: 'involved_object_name_filter',
     },
-    // {
-    //   icon: 'pod',
-    //   title: t('Search Events by', { field: t('Pods') }),
-    //   tips: t('Pod Event Query Tip'),
-    //   key: 'involved_object_kind_filter',
-    // },
     {
       icon: 'resource',
       title: t('Search Events by', { field: t('reason') }),
@@ -66,7 +60,7 @@ export default class HomeModal extends React.Component {
       key: 'reason_filter',
     },
     {
-      icon: 'table-chart',
+      icon: 'cardview',
       title: t('Search Events by', { field: t('category') }),
       tips: t('Category Event Query Tip'),
       key: 'type_filter',

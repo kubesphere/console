@@ -42,9 +42,9 @@ export default {
   'Trends in the total number of events in the last 12 hours':
     '最近 12 小时事件总数变化趋势',
   'Search Events by': '通过{field}查询事件',
-  'KeyWord Event Query Tip': '请输入关键字查找事件',
+  'Workspace Event Query Tip': '可以根据企业空间查看相关的事件信息',
   'Project Event Query Tip': '可以根据项目查看相关的事件信息',
-  'Name Event Query Tip': '可以根据名称查看相关的事件信息',
+  'Resource Name Event Query Tip': '可以根据资源名称查看相关的事件信息',
   'Reason Event Query Tip': '可以根据原因查看相关的事件信息',
   'Message Event Query Tip': '可以根据消息查看相关的事件信息',
   'Category Event Query Tip': '可以根据类别查看相关的事件信息',
@@ -59,6 +59,23 @@ export default {
   'Exact Query': '精确匹配',
   'Fuzzy Query': '模糊匹配',
   'Log Collection': '日志收集',
+
+  'Search Auditing by': '通过{field}查询审计',
+  'Workspace Auditing Query Tip': '可以根据企业空间查看相关的操作审计',
+  'Project Auditing Query Tip': '可以根据项目查看相关的操作审计',
+  'Resource Name Auditing Query Tip': '可以根据资源名称查看相关的操作审计',
+  'Resource Auditing Query Tip': '可以根据资源查看相关的操作审计',
+  'Verb Auditing Query Tip': '可以根据操作行为查看相关的操作审计',
+  'Status Code Auditing Query Tip': '可以根据状态码查看相关的操作审计',
+  'Operation Account Auditing Query Tip': '可以根据操作账号查看相关的操作审计',
+  'sourceIP Auditing Query Tip': '可以根据来源IP查看相关的操作审计',
+  'Trends in the total number of auditing in the last 12 hours':
+    '最近 12 小时操作审计总数变化趋势',
+  TOTAL_AUDITING_TODAY:
+    '今日总共收录了 <span class={className}> {auditing} </span> 条操作审计',
+  NO_AUDITING_TODAY: '今日没有收录的操作审计',
+  'Auditing statistics': '操作审计统计',
+
   LOG_COLLECTION_DESC:
     '系统将收集每个容器的标准输出和标准错误输出日志，并将其发送到一个或多个目标服务',
   'Add Log Collector': '添加日志接收者',

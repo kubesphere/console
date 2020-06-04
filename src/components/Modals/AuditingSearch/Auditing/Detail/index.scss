@@ -41,24 +41,19 @@
 }
 
 .searchResult {
-  height: 100%;
-  overflow-y: scroll;
+  position: relative;
   border-radius: $border-radius;
   background-color: $lightest;
   padding: 25px 12px 14px 12px;
-  // border: solid 1px #d8dee5;
   display: flex;
   flex-direction: column;
   flex: 1;
-
-  .wrapper {
-    position: relative;
-  }
 }
 
 .mask {
   width: 100%;
-  height: 100%;
+  height: calc(100% + 100px);
+  transform: translateY(-100px);
   background-color: transparent;
   z-index: 1;
   position: absolute;
@@ -69,58 +64,94 @@
 .detail {
   background-color: white;
   width: 492px;
-  height: calc(100% - 30px);
+  height: calc(100% - 40px);
   border: 1px solid #d5dee7;
   border-radius: 4px;
   box-shadow: 0 4px 8px 0 rgba(72, 91, 127, 0.2);
   position: absolute;
-  right: -24px;
-  bottom: 0;
+  right: 10px;
+  bottom: 15px;
   z-index: 2;
 }
 
 .table {
-  margin-top: 30px;
-
-  :global(.table-row) {
-    cursor: pointer;
+  border-radius: 4px;
+  background-color: #ffffff;
+  flex: 1;
+  overflow: hidden;
+  @at-root {
+    .logItem {
+      flex: 3.8;
+      white-space: pre-line;
+    }
+    .tr {
+      cursor: zoom-in;
+    }
   }
-}
 
-.category {
-  width: 54px;
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 20px;
-  height: 20px;
-  text-align: center;
-  border-radius: 1px;
-}
+  .timecol {
+    width: 180px;
+    margin: auto;
+    flex: unset;
+  }
 
-.normal {
-  color: #36435C;
-  background-color: #eff4f9;
-}
+  .Verbcol {
+    width: 100px;
+    margin: auto;
+    flex: unset;
+  }
 
-.warning {
-  color: #ffffff;
-  background-color: #F5A623;
-}
+  .statuscol {
+    width: 100px;
+    margin: auto;
+    flex: unset;
+  }
 
-.danger {
-  color: #ffffff;
-  background-color: #ff0000;
-}
+  .reasoncol {
+    width: 100px;
+    margin: auto;
+    flex: unset;
+  }
 
-.kind {
-  display: inline-block;
-  padding: 0 3px;
-  text-align: center;
-  background-color: #D8DEE5;
-  border-radius: 1px;
-}
+  .namecol {
+    width: 100px;
+    margin: auto;
+    flex: unset;
+    line-height: 1.5;
+  }
 
-.name {
-  display: inline-block;
-  margin-left: 5px;
+  .typecol {
+    width: 100px;
+    margin: auto;
+    flex: unset;
+  }
+  
+  .subresourcecol {
+    width: 100px;
+    margin: auto;
+    flex: unset;
+  }
+
+  .namespacecol {
+    width: 100px;
+    margin: auto;
+    flex: unset;
+    line-height: 1.5;
+  }
+
+  .workspacecol {
+    width: 100px;
+    margin: auto;
+    flex: unset;
+    line-height: 1.5;
+  }
+
+  .usernamecol {
+    margin: auto;
+    line-height: 1.5;
+  }
+
+  .body {
+    overflow: unset;
+  }
 }

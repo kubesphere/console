@@ -454,6 +454,15 @@ export default {
   'Operation details': '操作详情',
   'Event metadata': '事件元数据',
 
+  'Auditing Operating': '操作审计',
+  AUDITING_OPERATING_DESC:
+    '针对企业空间、项目、资源等多维度的操作审计查询工具。',
+  verb: '操作行为',
+  'Operation Account': '操作账号',
+  sourceIP: '来源IP',
+  Subresource: '子资源',
+  'Status Code': '状态码',
+
   NanoSeconds: '纳秒',
   MicroSeconds: '微秒',
   MilliSeconds: '毫秒',

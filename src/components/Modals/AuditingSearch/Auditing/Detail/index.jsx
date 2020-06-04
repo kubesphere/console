@@ -3,11 +3,10 @@ import { Select } from '@pitrix/lego-ui'
 import { observer } from 'mobx-react'
 import { action, observable } from 'mobx'
 import { min } from 'lodash'
-import classnames from 'classnames'
 
 import SearchInput from 'components/Modals/LogSearch/Logging/SearchInput'
 import Table from 'components/Tables/Visible'
-import EventSearchStore from 'stores/eventSearch'
+import AuditingStore from 'stores/auditing'
 
 import MetadataModal from './MetadataModal'
 import {
@@ -29,7 +28,7 @@ export default class Detail extends React.PureComponent {
       eventMetadata: [],
     }
 
-    this.store = new EventSearchStore({ size: 50 })
+    this.store = new AuditingStore({ size: 50 })
     this.tableRef = React.createRef()
   }
 
@@ -59,60 +58,79 @@ export default class Detail extends React.PureComponent {
   tableCols = [
     {
       thead: t('Time'),
-      key: 'time',
-      content: ({ lastTimestamp }) => lastTimestamp,
+      key: 'Time',
+      content: ({ RequestReceivedTimestamp }) => RequestReceivedTimestamp,
       hidden: false,
       className: styles.timecol,
     },
     {
-      thead: t('category'),
-      key: 'type',
+      thead: t('verb'),
+      key: 'verb',
       hidden: false,
-      content: ({ type }) => (
-        <div
-          className={classnames(
-            styles.category,
-            styles[type.toLocaleLowerCase()]
-          )}
-        >
-          {type}
-        </div>
-      ),
-      className: styles.typecol,
+      content: ({ Verb }) => Verb,
+      className: styles.Verbcol,
     },
     {
-      thead: t('Project'),
-      key: 'name',
+      thead: t('Status Code'),
+      key: 'Status Code',
       hidden: false,
-      content: ({ involvedObject = {} }) => involvedObject.namespace,
-      className: styles.namecol,
-    },
-    {
-      thead: t('resources'),
-      key: 'kind',
-      hidden: false,
-      content: ({ involvedObject = {} }) => (
-        <Fragment>
-          <div className={classnames(styles.normalText, styles.kind)}>
-            {involvedObject.kind}
-          </div>
-          <div className={styles.name}>{involvedObject.name}</div>
-        </Fragment>
-      ),
-      className: styles.kindcol,
+      content: ({ ResponseStatus: { code } = {} }) => code,
+      className: styles.statuscol,
     },
     {
       thead: t('reason'),
       key: 'reason',
-      hidden: false,
-      content: ({ reason }) => reason,
+      hidden: true,
+      content: ({ ResponseStatus: { reason } = {} }) => reason,
       className: styles.reasoncol,
     },
     {
-      thead: t('message'),
-      key: 'message',
+      thead: t('resources'),
+      key: 'resources',
       hidden: false,
-      content: this.renderHightLightMatchTd,
+      content: ({ ObjectRef: { Name } = {} }) => Name,
+      className: styles.namecol,
+    },
+    {
+      thead: t('Resource Type'),
+      key: 'Resource Type',
+      hidden: false,
+      content: ({ ObjectRef: { Resource } = {} }) => Resource,
+      className: styles.typecol,
+    },
+    {
+      thead: t('Subresource'),
+      key: 'Subresource',
+      hidden: true,
+      content: ({ ObjectRef: { Subresource } = {} }) => Subresource,
+      className: styles.subresourcecol,
+    },
+    {
+      thead: t('Project'),
+      key: 'Project',
+      hidden: false,
+      content: ({ ObjectRef: { Namespace } = {} }) => Namespace,
+      className: styles.namespacecol,
+    },
+    {
+      thead: t('Workspace'),
+      key: 'Workspace',
+      hidden: false,
+      content: ({ Workspace }) => Workspace,
+      className: styles.workspacecol,
+    },
+    {
+      thead: t('Operation Account'),
+      key: 'Operation Account',
+      hidden: false,
+      content: ({ User: { Username } = {} }) => Username,
+      className: styles.usernamecol,
+    },
+    {
+      thead: t('sourceIP'),
+      key: 'sourceIP',
+      hidden: false,
+      content: ({ SourceIPs }) => SourceIPs,
       mustShow: true,
       className: styles.messagecol,
     },
@@ -187,31 +205,6 @@ export default class Detail extends React.PureComponent {
     })
   }
 
-  renderHightLightMatchTd = ({ message }) => {
-    const item = this.props.searchInputState.query.find(
-      state => state.key === 'message_search'
-    )
-    if (!item) {
-      return message
-    }
-    const reg = new RegExp(item.value, 'gi')
-    const messages = message.split(reg)
-    if (messages.length === 1) {
-      return message
-    }
-    const match = message.match(reg)
-    return (
-      <Fragment>
-        {messages.map((mes, i) => (
-          <Fragment key={mes + i}>
-            {mes}
-            <span className={styles.hightLightMatch}>{match[i]}</span>
-          </Fragment>
-        ))}
-      </Fragment>
-    )
-  }
-
   renderSearchBar() {
     const { searchInputState } = this.props
     return (
@@ -237,6 +230,7 @@ export default class Detail extends React.PureComponent {
 
   renderTable = () => {
     const trKeyGetter = (tr, index) => index
+
     return (
       <div className={styles.table}>
         <Table
@@ -273,12 +267,12 @@ export default class Detail extends React.PureComponent {
     }
 
     return (
-      <React.Fragment>
+      <Fragment>
         <div className={styles.mask} onClick={this.onCancel} />
         <div className={styles.detail}>
           <MetadataModal detail={detail} eventMetadata={eventMetadata} />
         </div>
-      </React.Fragment>
+      </Fragment>
     )
   }
 }

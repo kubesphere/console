@@ -21,6 +21,7 @@ import { Icon } from '@pitrix/lego-ui'
 import { Modal } from 'components/Base'
 import LogModal from 'components/Modals/LogSearch'
 import EventModal from 'components/Modals/EventSearch'
+import AuditingModal from 'components/Modals/AuditingSearch'
 import KubeCtlModal from 'components/Modals/KubeCtl'
 import KubeConfigModal from 'components/Modals/KubeConfig'
 
@@ -56,6 +57,32 @@ export default {
               }}
             >
               {t('Event Search')}
+            </span>
+          </div>
+        ),
+        ...props,
+      })
+    },
+  },
+  'toolbox.auditingsearch': {
+    on({ store, ...props }) {
+      const modal = Modal.open({
+        onOk: () => {
+          Modal.close(modal)
+        },
+        modal: AuditingModal,
+        title: (
+          <div>
+            <Icon size={20} name="login-servers" style={{ marginRight: 7 }} />{' '}
+            <span
+              style={{
+                fontSize: 12,
+                fontWeight: 600,
+                lineHeight: '20px',
+                height: '20px',
+              }}
+            >
+              {t('Auditing Operating')}
             </span>
           </div>
         ),
