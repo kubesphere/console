@@ -53,11 +53,12 @@ export default {
   'Pod Log Query Tip':
     'You can view related log information according to the pod name',
   'Search Events by': 'Search events by {field}',
-  'KeyWord Event Query Tip': 'Please enter the keyword to find the event.',
+  'Workspace Event Query Tip':
+    'You can view related event information according to the workspace.',
   'Project Event Query Tip':
     'You can view related event information according to the project.',
-  'Name Event Query Tip':
-    'You can view related event information according to the name.',
+  'Resource Name Event Query Tip':
+    'You can view related event information according to the resource name.',
   'Message Event Query Tip':
     'You can view related event information according to the message.',
   'Category Event Query Tip':
@@ -84,4 +85,25 @@ export default {
   CUSTON_MONITORING_TEMPLATE_DESC:
     'Monitoring panel arranged to generate a default application type panel',
   SERVICE_BUILT_INTERFACE: 'service monitoring is built interface data capture',
+
+  'Search Auditing by': 'Search Auditing by {field}',
+  'Workspace Auditing Query Tip':
+    'You can view related event information according to the workspace',
+  'Project Auditing Query Tip':
+    'You can view related event information according to the project',
+  'Resource Name Auditing Query Tip':
+    'You can view related event information according to the resource name',
+  'Resource Auditing Query Tip':
+    'You can view related event information according to the resource',
+  'Verb Auditing Query Tip':
+    'You can view related event information according to the verb',
+  'Status Code Auditing Query Tip':
+    'You can view related event information according to the status code',
+  'Operation Account Auditing Query Tip':
+    'You can view related event information according to the operation account',
+  'sourceIP Auditing Query Tip':
+    'You can view related event information according to the source IP',
+  TOTAL_AUDITING_TODAY:
+    'A total of <span class={className}> {auditing} </span> auditing were collected today.',
+  NO_AUDITING_TODAY: 'Auditing not included today',
 }

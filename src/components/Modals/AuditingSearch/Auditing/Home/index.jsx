@@ -7,76 +7,20 @@ import { Icon, Loading } from '@pitrix/lego-ui'
 
 import SearchInput from 'components/Modals/LogSearch/Logging/SearchInput'
 import TimeBar from 'components/Charts/Bar/TimeBar'
-import EventSearchStore from 'stores/eventSearch'
+import AuditingStore from 'stores/auditing'
 
-import { dropDownItems } from '../utils'
+import { dropDownItems, getSecond, supportQueryParams } from '../utils'
 
 import styles from './index.scss'
 
-const getSecond = step => {
-  const [, count = 0, unit = 's'] = step.match(/(\d+)(\w+)/)
-  const unitMap = {
-    s: 1,
-    m: 60,
-    h: 60 * 60,
-    d: 60 * 60 * 24,
-  }
-  return count * unitMap[unit]
-}
-
 @observer
-export default class HomeModal extends React.Component {
-  eventSearchStore = new EventSearchStore()
-
-  supportQueryParams = [
-    {
-      icon: 'magnifier',
-      title: t('Search Events by', { field: t('Workspace') }),
-      tips: t('KeyWord Event Query Tip'),
-      key: 'workspace_filter',
-    },
-    {
-      icon: 'project',
-      title: t('Search Events by', { field: t('Project') }),
-      tips: t('Project Event Query Tip'),
-      key: 'involved_object_namespace_filter',
-    },
-    {
-      icon: 'log',
-      title: t('Search Events by', { field: t('name') }),
-      tips: t('Name Event Query Tip'),
-      key: 'involved_object_name_filter',
-    },
-    {
-      icon: 'pod',
-      title: t('Search Events by', { field: t('Pods') }),
-      tips: t('Pod Event Query Tip'),
-      key: 'involved_object_kind_filter',
-    },
-    {
-      icon: 'resource',
-      title: t('Search Events by', { field: t('reason') }),
-      tips: t('Reason Event Query Tip'),
-      key: 'reason_filter',
-    },
-    {
-      icon: 'listview',
-      title: t('Search Events by', { field: t('message') }),
-      tips: t('Message Event Query Tip'),
-      key: 'message_search',
-    },
-    {
-      icon: 'table-chart',
-      title: t('Search Events by', { field: t('category') }),
-      tips: t('Category Event Query Tip'),
-      key: 'type_filter',
-    },
-  ]
+export default class Home extends React.Component {
+  auditingStore = new AuditingStore()
 
   componentDidMount() {
-    this.eventSearchStore.fetchTodayHistogram()
-    this.eventSearchStore.fetchHistogram()
-    this.eventSearchStore.fetchQuery({
+    this.auditingStore.fetchTodayHistogram()
+    this.auditingStore.fetchHistogram()
+    this.auditingStore.fetchQuery({
       start_time: Math.ceil(Date.now() / 1000) - 60 * 60 * 12,
       endTime: Math.ceil(Date.now() / 1000),
       interval: '24m',
@@ -85,7 +29,7 @@ export default class HomeModal extends React.Component {
 
   @action
   selectedDurationParameter = ({ time: startTime = 0 }) => {
-    const { interval } = this.eventSearchStore
+    const { interval } = this.auditingStore
     const { searchInputState } = this.props
     searchInputState.end = Math.ceil(startTime / 1000) + getSecond(interval)
     searchInputState.start = Math.ceil(startTime / 1000)
@@ -118,7 +62,10 @@ export default class HomeModal extends React.Component {
   }
 
   renderBanner() {
-    const { histogramTodayData = {}, isLoading } = this.eventSearchStore
+    const {
+      histogramTodayData: { events } = {},
+      isLoading,
+    } = this.auditingStore
 
     return (
       <div className={styles.banner}>
@@ -128,20 +75,20 @@ export default class HomeModal extends React.Component {
         <Loading spinning={isLoading}>
           <div className={styles.statistics}>
             <h3>
-              {histogramTodayData.events
-                ? t.html('TOTAL_EVENTS_TODAY', {
-                    events: histogramTodayData.events,
+              {events
+                ? t.html('TOTAL_AUDITING_TODAY', {
+                    auditing: events,
                     className: styles.count,
                   })
-                : t('NO_EVENTS_TODAY')}
+                : t('NO_AUDITING_TODAY')}
             </h3>
-            {histogramTodayData.events ? (
+            {events && (
               <p>
                 <Icon name="clock" />
                 {t('Current Statistics Start Time')}:
                 {moment(new Date()).format(`${t('EVENT_DATE')}`)}
               </p>
-            ) : null}
+            )}
           </div>
         </Loading>
       </div>
@@ -163,23 +110,23 @@ export default class HomeModal extends React.Component {
   renderRecentLogs() {
     const {
       isLoading,
-      histogramData = {},
+      histogramData: { buckets = [] } = {},
       total,
       interval,
-    } = this.eventSearchStore
+    } = this.auditingStore
     return (
       <Loading spinning={isLoading}>
         <div className={classnames(styles.card, styles.recent)}>
           <div className={styles.recentSummary}>
             <h2 className={styles.count}>{total || 0}</h2>
             <p>
-              {t('Trends in the total number of events in the last 12 hours')}
+              {t('Trends in the total number of auditing in the last 12 hours')}
             </p>
           </div>
           <div className={styles.chart}>
             <TimeBar
               xKey={'time'}
-              data={toJS(histogramData.buckets || [])}
+              data={toJS(buckets)}
               legend={[['count', t('Event statistics')]]}
               interval={interval || '30m'}
               onBarClick={this.selectedDurationParameter}
@@ -191,7 +138,7 @@ export default class HomeModal extends React.Component {
   }
 
   renderQueryItems() {
-    return this.supportQueryParams.map(category => (
+    return supportQueryParams.map(category => (
       <div
         className={classnames(styles.card, styles.category)}
         key={category.key}

@@ -42,58 +42,6 @@
       line-height: 20px;
       height: 20px;
     }
-  
-    .center {
-      margin: 10px;
-    
-      .row {
-        display: flex;
-        margin-bottom: 10px;
-    
-        .rowTitle {
-          font-size: 12px;
-          color: #79879C;
-          line-height: 20px;
-          height: 20px;
-          width: 110px;
-        }
-    
-        .rowDesc {
-          font-size: 12px;
-          font-weight: 600;
-          color: #242E42;
-          line-height: 20px;
-          height: 20px;
-          margin-left: 10px;
-        }
-      }
-    }
-  }
-
-  .bottom {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    height: 88px;
-    margin: 10px auto;
-    background-color: #F9FBFD;
-    border-radius: 4px;
-    padding: 15px;
-  
-    .reason {
-      font-size: 12px;
-      font-weight: 600;
-      color: #242E42;
-      line-height: 20px;
-      height: 20px;
-    }
-  
-    .message {
-      font-size: 12px;
-      color: #242E42;
-      line-height: 20px;
-      height: 20px;
-    }
   }
 }
 

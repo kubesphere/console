@@ -1,11 +1,11 @@
 import React from 'react'
 import { Icon } from '@pitrix/lego-ui'
 import { observer, inject } from 'mobx-react'
-import EventSearch from 'components/Modals/EventSearch'
+import AuditingSearch from 'components/Modals/AuditingSearch'
 
 @inject('rootStore')
 @observer
-export default class EventSearchComponent extends React.Component {
+export default class AuditingSearchComponent extends React.Component {
   pageClose() {
     window.opener = null
     window.open('', '_self', '')
@@ -14,10 +14,10 @@ export default class EventSearchComponent extends React.Component {
 
   render() {
     return (
-      <EventSearch
+      <AuditingSearch
         title={
           <div>
-            <Icon size={20} name="thunder" style={{ marginRight: 7 }} />{' '}
+            <Icon size={20} name="login-servers" style={{ marginRight: 7 }} />{' '}
             <span
               style={{
                 fontSize: 12,
@@ -26,7 +26,7 @@ export default class EventSearchComponent extends React.Component {
                 height: '20px',
               }}
             >
-              {t('Event Search')}
+              {t('Auditing Operating')}
             </span>
           </div>
         }
