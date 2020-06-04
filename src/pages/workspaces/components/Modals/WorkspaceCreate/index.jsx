@@ -60,6 +60,17 @@ export default class WorkspaceCreateModal extends React.Component {
   }
 
   get steps() {
+    if (!globals.app.isMultiCluster) {
+      return [
+        {
+          title: 'Basic Info',
+          component: BaseInfo,
+          required: true,
+          isForm: true,
+        },
+      ]
+    }
+
     return [
       {
         title: 'Basic Info',

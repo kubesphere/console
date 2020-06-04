@@ -48,7 +48,7 @@ export default class LoggingStore {
 
   getApiPath(cluster) {
     return cluster
-      ? `kapis/clusters/${cluster}/tenant.kubesphere.io/v1alpha2/logs`
+      ? `kapis/klusters/${cluster}/tenant.kubesphere.io/v1alpha2/logs`
       : 'kapis/tenant.kubesphere.io/v1alpha2/logs'
   }
 
