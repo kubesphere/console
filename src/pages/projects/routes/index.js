@@ -46,15 +46,13 @@ import CustomMonitoring from '../containers/CustomMonitoring'
 import NetworkPolicies from '../containers/Network/Policies'
 
 import grayReleaseRoutes from './grayrelease'
-// import imageBuilderRoutes from './imagebuilder'
 
-import detail from './detail'
+import getDetailPath from './detail'
 
 const PATH = '/cluster/:cluster/projects/:namespace'
 
 export default [
-  ...detail,
-  // ...imageBuilderRoutes,
+  ...getDetailPath(PATH),
   {
     path: PATH,
     component: ProjectLayout,

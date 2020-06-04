@@ -35,9 +35,7 @@ import ImageBuilderDetail from '../containers/ImageBuilder/Detail'
 import AlertPoliciesDetail from '../containers/Alerting/Policies/Detail'
 import AlertMessagesDetail from '../containers/Alerting/Messages/Detail'
 
-const PATH = '/cluster/:cluster/projects/:namespace'
-
-export default [
+export default PATH => [
   {
     path: `${PATH}/deployments/:name`,
     component: DeploymentDetail,
