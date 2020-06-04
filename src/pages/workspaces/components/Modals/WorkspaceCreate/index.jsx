@@ -147,7 +147,9 @@ export default class WorkspaceCreateModal extends React.Component {
           <span>{t('Create Workspace')}</span>
         </div>
         <div className={styles.wrapper}>
-          <Steps steps={this.steps} current={currentStep} />
+          {this.steps.length > 1 && (
+            <Steps steps={this.steps} current={currentStep} />
+          )}
         </div>
         <div className={styles.headerBottom} />
       </div>

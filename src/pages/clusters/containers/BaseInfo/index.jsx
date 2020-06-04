@@ -168,7 +168,7 @@ export default class Overview extends React.Component {
               title={kubernetesVersion}
               description={t('Kubernetes Version')}
             />
-            {actions.includes('edit') && (
+            {actions.includes('edit') && globals.app.isMultiCluster && (
               <Button className={styles.action} onClick={this.showEdit}>
                 {t('Edit Info')}
               </Button>

@@ -124,6 +124,7 @@ export default class ProjectStore extends Base {
       data: more ? [...this.list.data, ...data] : data,
       total: result.totalItems || result.total_count || data.length || 0,
       ...params,
+      cluster,
       limit: Number(params.limit) || 10,
       page: Number(params.page) || 1,
       isLoading: false,

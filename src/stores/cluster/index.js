@@ -95,7 +95,7 @@ export default class ClusterStore extends Base {
     this.isLoading = true
 
     let detail
-    if (params.name === 'default' && !globals.app.isMultiCluster) {
+    if (!globals.app.isMultiCluster) {
       detail = this.mapper(cloneDeep(DEFAULT_CLUSTER))
     } else {
       const result = await request.get(this.getDetailUrl(params))

@@ -72,12 +72,12 @@ export default [
   },
   { path: '/clusters/add', component: AddCluster, exact: true },
   {
-    path: `/clusters/:cluster/kubectl`,
+    path: `${PATH}/kubectl`,
     exact: true,
     component: KubeCtl,
   },
   {
-    path: `/clusters/:cluster/kubeConfig`,
+    path: `${PATH}/kubeConfig`,
     component: KubeConfig,
     exact: true,
   },

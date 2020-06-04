@@ -170,6 +170,7 @@ export default class DevOps extends React.Component {
         }, 500)
       },
     })
+
   render() {
     const { bannerProps, tableProps } = this.props
     return (
