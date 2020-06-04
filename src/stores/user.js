@@ -59,8 +59,15 @@ export default class UsersStore extends Base {
     return path
   }
 
-  getResourceUrl = (params = {}) =>
-    `kapis/iam.kubesphere.io/v1alpha2${this.getPath(params)}/users`
+  getResourceUrl = (params = {}) => {
+    if (params.cluster && (!params.namespace && !params.devops)) {
+      return `kapis/iam.kubesphere.io/v1alpha2${this.getPath(
+        params
+      )}/clustermembers`
+    }
+
+    return `kapis/iam.kubesphere.io/v1alpha2${this.getPath(params)}/users`
+  }
 
   getListUrl = this.getResourceUrl
 

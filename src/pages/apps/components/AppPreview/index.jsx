@@ -32,7 +32,7 @@ import styles from './index.scss'
 
 const tabsMap = [
   { label: 'App Readme', value: 'readme' },
-  { label: 'Config files', value: 'files' },
+  { label: 'Chart Files', value: 'files' },
 ]
 
 @observer

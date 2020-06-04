@@ -16,6 +16,23 @@
   }
 }
 
+.ellipsis {
+  flex: 1;
+  overflow: hidden;
+
+  .text {
+    flex: 1;
+    overflow: hidden;
+
+    & > div {
+      @include ellipsis;
+    }
+    & > p {
+      @include ellipsis;
+    }
+  }
+}
+
 .icon {
   margin-right: 12px;
 }

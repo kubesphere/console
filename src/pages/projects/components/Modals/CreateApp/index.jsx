@@ -301,11 +301,9 @@ export default class ServiceDeployAppModal extends React.Component {
     }
 
     return (
-      <div className={styles.formWrapper}>
-        <div className={styles.wrapper}>
-          <div className={styles.form}>
-            <Component {...props} />
-          </div>
+      <div className={styles.wrapper}>
+        <div className={styles.form}>
+          <Component {...props} />
         </div>
       </div>
     )
@@ -384,7 +382,9 @@ export default class ServiceDeployAppModal extends React.Component {
         fullScreen
       >
         {this.renderHeader()}
-        {isCodeMode ? this.renderCode() : this.renderForm()}
+        <div className={styles.content}>
+          {isCodeMode ? this.renderCode() : this.renderForm()}
+        </div>
         {this.renderFooter()}
       </Modal>
     )

@@ -55,12 +55,12 @@ class ResourceStatus extends React.Component {
 
   get prefix() {
     const path = this.props.match.path
-    const { cluster, namespace } = this.props.match.params
+    const { cluster } = this.props.match.params
     if (path.startsWith('/clusters')) {
-      return `/clusters/${cluster}/projects/${namespace}`
+      return `/clusters/${cluster}`
     }
 
-    return `/cluster/${cluster}/projects/${namespace}`
+    return `/cluster/${cluster}`
   }
 
   get enabledActions() {
@@ -109,9 +109,13 @@ class ResourceStatus extends React.Component {
     this.store.scale({ cluster, namespace, name }, newReplicas)
   }
 
-  handlePodUpdate = () => {
-    const { cluster, namespace, name } = this.store.detail
-    this.store.fetchDetail({ cluster, namespace, name, silent: true })
+  handlePodUpdate = _cluster => {
+    const { cluster, isFedManaged, namespace, name } = this.store.detail
+    if (!isFedManaged) {
+      this.store.fetchDetail({ cluster, namespace, name, silent: true })
+    } else {
+      this.fedStore.sync({ cluster: _cluster })
+    }
   }
 
   handleDeleteHpa = () => {
@@ -155,8 +159,9 @@ class ResourceStatus extends React.Component {
         <ClusterWorkloadStatus
           module={this.module}
           detail={detail}
+          store={this.store}
           fedDetail={fedDetail}
-          store={this.fedStore}
+          fedStore={this.fedStore}
         />
       )
     }

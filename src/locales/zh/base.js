@@ -426,7 +426,10 @@ export default {
 
   'Log Search': '日志查询',
   LOG_SEARCH_DESC: '针对企业空间、项目、资源等多维度的日志查询工具。',
-  KUBECTL_DESC: 'kubectl 客户端命令行工具',
+  KUBECTL_DESC: '当前集群客户端命令行工具',
+  TOOLBOX_KUBECTL_DESC: '操作多集群的客户端命令行工具',
+
+  KUBECONFIG_DESC: '用于配置当前集群访问信息的文件',
 
   event: '事件',
   EVENT_CREATE_DESC: '您可以改变搜索条件重新查询',
@@ -445,6 +448,8 @@ export default {
     'KubeSphere可以根据您设置的规则进行操作审计的收集，点击查看如何定义规则。',
   category: '类别',
   resources: '资源',
+  'Earliest start time': '最早发生时间',
+  'Most recent start time': '最近发生时间',
   'Related resources': '关联资源',
   'Operation details': '操作详情',
   'Event metadata': '事件元数据',
@@ -521,4 +526,9 @@ export default {
   DEVELOPER_DESC: '通过在开发者社区提出问题获得帮助',
   API_DOCS_DESC: '最详尽的 KubeSphere API 文档',
   GITHUB_ISSUES_DESC: '通过在 GitHub 提出 Issue 获得帮助',
+
+  ENV_PRODUCTION: '生产环境',
+  ENV_DEVELOPMENT: '开发环境',
+  ENV_TESTING: '测试环境',
+  ENV_DEMO: '演示环境',
 }

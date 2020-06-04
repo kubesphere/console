@@ -97,3 +97,23 @@
     }
   }
 }
+
+.category {
+  width: 54px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 20px;
+  height: 20px;
+  text-align: center;
+  border-radius: 1px;
+}
+
+.normal {
+  color: #36435C;
+  background-color: #eff4f9;
+}
+
+.warning {
+  color: #ffffff;
+  background-color: #F5A623;
+}

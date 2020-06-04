@@ -33,8 +33,8 @@ export default {
   NODE_STATUS_RUNNING: 'Running',
   NODE_STATUS_WARNING: 'Warning',
 
-  CLUSTER_NODES_DESC:
-    'Cluster Nodes provides the status of nodes in the current cluster and allows you to edit and delete nodes.',
+  CLUSTER_NODE_DESC:
+    'Manage the cluster nodes and show the running status of them',
 
   NODE_NETWORKUNAVAILABLE_TIP:
     'If the network for the node is correctly configured.',

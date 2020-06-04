@@ -1,5 +1,4 @@
 @import '~scss/variables';
-@import '~scss/mixins';
 
 .header {
   display: flex;
@@ -13,21 +12,10 @@
 
 .cluster {
   position: relative;
-  display: flex;
   width: 326px;
   padding: 8px;
   border-radius: 2px;
   background-color: $dark-color07;
-}
-
-.text {
-  & > div {
-    @include TypographyTitleH6(#fff);
-  }
-
-  & > p {
-    @include TypographyParagraph(#fff);
-  }
 }
 
 .icon {
@@ -44,4 +32,10 @@
   margin-top: 12px;
   border-radius: $border-radius;
   background-color: $light-color01;
+}
+
+.group {
+  position: absolute;
+  top: 8px;
+  right: 8px;
 }

@@ -17,10 +17,12 @@
  */
 
 import React, { Component } from 'react'
+import { get } from 'lodash'
+import { reaction } from 'mobx'
 import { observer } from 'mobx-react'
 
 import { Icon } from '@pitrix/lego-ui'
-import { Tag, Indicator } from 'components/Base'
+import ClusterTitle from 'components/ClusterTitle'
 
 import ClusterStore from 'stores/cluster'
 import WorkloadStore from 'stores/workload'
@@ -35,6 +37,27 @@ export default class Cluster extends Component {
 
   componentDidMount() {
     this.fetchData()
+
+    this.dispatcher = reaction(
+      () => this.props.fedStore.syncEvent.id,
+      () => {
+        if (
+          get(this.props.fedStore.syncEvent, 'params.cluster') ===
+          this.props.cluster
+        ) {
+          const { workloadName, cluster, namespace } = this.props
+          this.workloadStore.fetchDetail({
+            name: workloadName,
+            cluster,
+            namespace,
+          })
+        }
+      }
+    )
+  }
+
+  componentWillUnmount() {
+    this.dispatcher && this.dispatcher()
   }
 
   fetchData() {
@@ -71,37 +94,22 @@ export default class Cluster extends Component {
   }
 
   render() {
-    if (this.clusterStore.isLoading || this.workloadStore.isLoading) {
+    if (this.clusterStore.isLoading) {
       return <div className={styles.clusterLoading} />
     }
 
-    const { cluster } = this.props
-
-    const { podNums, readyPodNums } = this.workloadStore.detail
+    const { podNums = 0, readyPodNums = 0 } = this.workloadStore.detail
     const unReadyNums = podNums - readyPodNums
 
     const clusterDetail = this.clusterStore.detail
 
     return (
       <div className={styles.cluster}>
-        <div className={styles.textWrapper}>
-          <Icon
-            className={styles.icon}
-            type="light"
-            name="kubernetes"
-            size={40}
-          />
-          <Indicator className={styles.indicator} type={clusterDetail.status} />
-          <div className={styles.text}>
-            <div>{cluster}</div>
-            <p>{clusterDetail.description || '-'}</p>
-          </div>
-          {clusterDetail.group && (
-            <Tag className={styles.group} type="warning">
-              {clusterDetail.group}
-            </Tag>
-          )}
-        </div>
+        <ClusterTitle
+          cluster={clusterDetail}
+          tagClass="float-right"
+          theme="light"
+        />
         <div className={styles.bottom}>
           <div className={styles.replicas}>
             <span>{readyPodNums}</span> / <span>{podNums}</span>
@@ -155,15 +163,6 @@ export default class Cluster extends Component {
               onClick={this.handleSubStract}
             />
           </div>
-          {/* <div className={styles.edit}>
-            <Icon
-              name="pen"
-              type="light"
-              size={24}
-              clickable
-              onClick={this.handleEdit}
-            />
-          </div> */}
         </div>
       </div>
     )

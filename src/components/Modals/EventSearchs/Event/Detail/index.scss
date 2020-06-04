@@ -1,0 +1,126 @@
+@import '~scss/variables';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 500px;
+}
+
+.searchBar {
+  border: solid 2px #d8dee5;
+  margin-left: 12px;
+  margin-right: 12px;
+  margin-bottom: -23px;
+  background: #fff;
+  display: flex;
+  position: relative;
+  border-radius: 4px;
+  z-index: 3;
+  @at-root {
+    .searchInput {
+      position: relative;
+      flex: 1;
+      border: none;
+      border-right: solid 2px #d8dee5;
+      border-radius: 0;
+    }
+    .queryModeSelect {
+      width: 120px;
+      line-height: 40px;
+      .queryModeOptions * {
+        border: none;
+        :global {
+          .option-selected-area {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+.searchResult {
+  height: 100%;
+  overflow-y: scroll;
+  border-radius: $border-radius;
+  background-color: $lightest;
+  padding: 25px 12px 14px 12px;
+  // border: solid 1px #d8dee5;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  .wrapper {
+    position: relative;
+  }
+}
+
+.mask {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  z-index: 1;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.detail {
+  background-color: white;
+  width: 492px;
+  height: calc(100% - 30px);
+  border: 1px solid #d5dee7;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px 0 rgba(72, 91, 127, 0.2);
+  position: absolute;
+  right: -24px;
+  bottom: 0;
+  z-index: 2;
+}
+
+.table {
+  margin-top: 30px;
+
+  :global(.table-row) {
+    cursor: pointer;
+  }
+}
+
+.category {
+  width: 54px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 20px;
+  height: 20px;
+  text-align: center;
+  border-radius: 1px;
+}
+
+.normal {
+  color: #36435C;
+  background-color: #eff4f9;
+}
+
+.warning {
+  color: #ffffff;
+  background-color: #F5A623;
+}
+
+.danger {
+  color: #ffffff;
+  background-color: #ff0000;
+}
+
+.kind {
+  display: inline-block;
+  padding: 0 3px;
+  text-align: center;
+  background-color: #D8DEE5;
+  border-radius: 1px;
+}
+
+.name {
+  display: inline-block;
+  margin-left: 5px;
+}

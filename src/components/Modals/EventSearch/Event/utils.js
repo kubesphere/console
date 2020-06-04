@@ -2,7 +2,7 @@ export const queryKeyMapping = {
   workspace_filter: 'workspace_search',
   involved_object_namespace_filter: 'involved_object_namespace_search',
   involved_object_name_filter: 'involved_object_name_search',
-  involved_object_kind_filter: 'involved_object_kind_search',
+  // involved_object_kind_filter: 'involved_object_kind_search',
   reason_filter: 'reason_search',
   message_search: 'message_search',
   type_filter: 'type_search',
@@ -26,6 +26,10 @@ export function toArray(data = {}, level = 0) {
 }
 
 export const dropDownItems = {
+  message_search: {
+    icon: 'listview',
+    text: t('message'),
+  },
   workspace_filter: {
     icon: 'magnifier',
     text: t('Workspace'),
@@ -36,19 +40,15 @@ export const dropDownItems = {
   },
   involved_object_name_filter: {
     icon: 'log',
-    text: t('name'),
+    text: t('Resource Name'),
   },
-  involved_object_kind_filter: {
-    icon: 'pod',
-    text: t('Pod'),
-  },
+  // involved_object_kind_filter: {
+  //   icon: 'pod',
+  //   text: t('Pod'),
+  // },
   reason_filter: {
     icon: 'resource',
     text: t('reason'),
-  },
-  message_search: {
-    icon: 'listview',
-    text: t('message'),
   },
   type_filter: {
     icon: 'table-chart',

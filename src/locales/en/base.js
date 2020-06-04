@@ -145,4 +145,16 @@ export default {
     'Customized platform settings, including basic info, mail server, password security, third party login and log collector',
 
   DATA_SOURCE: 'Data Source',
+  KUBECTL_DESC:
+    'A command line tool for controlling the current Kubernetes cluster',
+  TOOLBOX_KUBECTL_DESC:
+    'A command line tool for controlling the Kubernetes clusters',
+
+  KUBECONFIG_DESC:
+    'A file that is used to configure access to the current Kubernetes cluster',
+
+  ENV_PRODUCTOON: 'Production',
+  ENV_DEVELOPMENT: 'Development',
+  ENV_TESTING: 'Testing',
+  ENV_DEMO: 'Demo',
 }

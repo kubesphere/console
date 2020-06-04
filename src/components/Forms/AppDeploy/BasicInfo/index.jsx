@@ -56,11 +56,11 @@ export default class BasicInfo extends React.Component {
   )
 
   fetchVersions = async (params = {}) => {
-    const { appID, versionStore } = this.props
+    const { appID, versionStore, fromStore } = this.props
     return versionStore.fetchList({
       ...params,
       app_id: appID,
-      status: 'active',
+      status: fromStore ? 'active' : undefined,
     })
   }
 

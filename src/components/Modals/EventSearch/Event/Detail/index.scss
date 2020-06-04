@@ -41,8 +41,7 @@
 }
 
 .searchResult {
-  height: 100%;
-  overflow-y: scroll;
+  position: relative;
   border-radius: $border-radius;
   background-color: $lightest;
   padding: 25px 12px 14px 12px;
@@ -50,10 +49,6 @@
   display: flex;
   flex-direction: column;
   flex: 1;
-
-  .wrapper {
-    position: relative;
-  }
 }
 
 .mask {
@@ -69,21 +64,75 @@
 .detail {
   background-color: white;
   width: 492px;
-  height: calc(100% - 30px);
+  height: calc(100% - 40px);
   border: 1px solid #d5dee7;
   border-radius: 4px;
   box-shadow: 0 4px 8px 0 rgba(72, 91, 127, 0.2);
   position: absolute;
   right: -24px;
-  bottom: 0;
+  bottom: 15px;
   z-index: 2;
 }
 
 .table {
-  margin-top: 30px;
+  border-radius: 4px;
+  background-color: #ffffff;
+  flex: 1;
+  overflow: hidden;
+  @at-root {
+    .logItem {
+      flex: 3.8;
+      white-space: pre-line;
+    }
+    .tr {
+      cursor: pointer;
+    }
+  }
 
-  :global(.table-row) {
-    cursor: pointer;
+  .timecol {
+    width: 150px;
+    margin: auto;
+    flex: unset;
+  }
+
+  .typecol {
+    width: 120px;
+    margin: auto;
+    flex: unset;
+  }
+
+  .namecol {
+    width: 120px;
+    margin: auto;
+    flex: unset;
+  }
+
+  .kindcol {
+    width: 220px;
+    margin: auto;
+    flex: unset;
+    line-height: 20px;
+  }
+
+  .reasoncol {
+    width: 120px;
+    margin: auto;
+    flex: unset;
+  }
+
+  .messagecol {
+    width: calc(100% - 730px);
+    margin: auto;
+    flex: unset;
+    line-height: 1.5;
+  }
+
+  .body {
+    overflow: unset;
+  }
+
+  .hightLightMatch {
+    background: #ffc781;
   }
 }
 
@@ -105,11 +154,6 @@
 .warning {
   color: #ffffff;
   background-color: #F5A623;
-}
-
-.danger {
-  color: #ffffff;
-  background-color: #ff0000;
 }
 
 .kind {

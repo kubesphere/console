@@ -20,9 +20,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import copy from 'fast-copy'
 
-import { Input, TextArea } from '@pitrix/lego-ui'
-import { Form, Modal } from 'components/Base'
+import { Icon, Input, TextArea } from '@pitrix/lego-ui'
+import { Form, Modal, Tag } from 'components/Base'
 import { SelectInput } from 'components/Inputs'
+
+import { CLUSTER_GROUP_TAG_TYPE } from 'utils/constants'
 
 export default class EditBasicInfoModal extends React.Component {
   static propTypes = {
@@ -50,12 +52,20 @@ export default class EditBasicInfoModal extends React.Component {
   get groups() {
     return [
       {
-        label: t('production'),
+        label: 'production',
         value: 'production',
       },
       {
-        label: t('development'),
+        label: 'development',
         value: 'development',
+      },
+      {
+        label: 'testing',
+        value: 'testing',
+      },
+      {
+        label: 'demo',
+        value: 'demo',
       },
     ]
   }
@@ -63,27 +73,59 @@ export default class EditBasicInfoModal extends React.Component {
   get providers() {
     return [
       {
-        label: 'AKS',
-        value: 'AKS',
+        label: 'Aliyun ACK',
+        value: 'Aliyun ACK',
+        icon: 'aliyun',
+      },
+      {
+        label: 'Aure Kubernetes Service',
+        value: 'Aure Kubernetes Service',
         icon: 'windows',
       },
       {
-        label: 'EKS',
-        value: 'EKS',
+        label: 'Huawei Cloud CCE',
+        value: 'Huawei Cloud CCE',
+        icon: 'kubernetes',
+      },
+      {
+        label: 'Amazon EKS',
+        value: 'Amazon EKS',
         icon: 'aws',
       },
       {
-        label: 'GEK',
-        value: 'GEK',
-        icon: 'google',
+        label: 'Google Kubernetes Engine',
+        value: 'Google Kubernetes Engine',
+        icon: 'google-plus',
       },
       {
-        label: 'QKE',
-        value: 'QKE',
+        label: 'QingCloud Kubernetes Engine',
+        value: 'QingCloud Kubernetes Engine',
         icon: 'qingcloud',
+      },
+      {
+        label: 'Tencent Kubernetes Engine',
+        value: 'Tencent Kubernetes Engine',
+        icon: 'kubernetes',
       },
     ]
   }
+
+  groupOptionRenderer = option => (
+    <>
+      <Tag type={CLUSTER_GROUP_TAG_TYPE[option.value]}>
+        {t(`ENV_${option.label.toUpperCase()}`)}
+      </Tag>
+      &nbsp;&nbsp;
+      {option.label}
+    </>
+  )
+
+  providerOptionRenderer = option => (
+    <>
+      <Icon name={option.icon} type="light" size={20} />
+      {option.label}
+    </>
+  )
 
   handleOk = data => {
     const { onOk } = this.props
@@ -114,10 +156,15 @@ export default class EditBasicInfoModal extends React.Component {
           <SelectInput
             name="metadata.labels['cluster.kubesphere.io/group']"
             options={this.groups}
+            optionRenderer={this.groupOptionRenderer}
           />
         </Form.Item>
         <Form.Item label={t('Provider')} desc={t('CLUSTER_PROVIDER_DESC')}>
-          <SelectInput name="spec.provider" options={this.providers} />
+          <SelectInput
+            name="spec.provider"
+            options={this.providers}
+            optionRenderer={this.providerOptionRenderer}
+          />
         </Form.Item>
         <Form.Item label={t('Description')}>
           <TextArea name="metadata.annotations['kubesphere.io/description']" />

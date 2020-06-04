@@ -251,6 +251,7 @@ export const MODULE_KIND_MAP = {
   volumesnapshots: 'VolumeSnapshot',
   namespaces: 'Namespace',
   workspaces: 'WorkspaceTemplate',
+  dashboards: 'Dashboard',
 }
 
 export const QUOTAS_MAP = {
@@ -892,11 +893,22 @@ export const COMPONENT_ICON_MAP = {
 }
 
 export const CLUSTER_PROVIDER_ICON = {
-  Custom: 'kubernetes',
   QingCloud: 'qingcloud',
   Google: 'google-plus',
   Amazon: 'aws',
   Azure: 'windows',
+  ACK: 'windows',
+  AKS: 'aliyun',
+  EKS: 'aws',
+  GEK: 'google-plus',
+  QKE: 'qingcloud',
+}
+
+export const CLUSTER_GROUP_TAG_TYPE = {
+  production: 'warning',
+  development: 'secondary',
+  testing: 'info',
+  demo: 'primary',
 }
 
 export const ROLE_QUERY_KEY = {
