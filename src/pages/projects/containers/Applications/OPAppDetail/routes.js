@@ -22,7 +22,8 @@ import ResourceStatus from './ResourceStatus'
 import AppTemplate from './AppTemplate'
 import EnvVariables from './EnvVariables'
 
-const PATH = '/cluster/:cluster/projects/:namespace/applications/template/:id'
+const PATH =
+  '/cluster/:cluster/projects/:namespace/applications/template/:runtime_id/:id'
 
 export default [
   {

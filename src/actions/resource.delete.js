@@ -34,7 +34,7 @@ export default {
             success && success()
           })
         },
-        _store,
+        store: _store,
         modal: DeleteModal,
         resource: detail.name,
         ...props,
