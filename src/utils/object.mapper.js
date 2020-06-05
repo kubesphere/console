@@ -50,6 +50,7 @@ const getOriginData = item =>
     'metadata.ownerReferences',
     'metadata.resourceVersion',
     'metadata.creationTimestamp',
+    'metadata.managedFields',
   ])
 
 const getBaseInfo = item => ({

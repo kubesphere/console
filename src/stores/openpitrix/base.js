@@ -56,11 +56,8 @@ export default class Base {
     return 'kapis/openpitrix.io/v1/'
   }
 
-  getPath({ cluster, namespace }) {
+  getPath({ namespace }) {
     let path = ''
-    if (cluster) {
-      path += `/klusters/${cluster}`
-    }
     if (namespace) {
       path += `/namespaces/${namespace}`
     }

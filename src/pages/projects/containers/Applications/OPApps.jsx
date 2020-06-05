@@ -56,7 +56,14 @@ export default class OPApps extends React.Component {
 
   get prefix() {
     const { cluster, namespace } = this.props.match.params
-    return `/cluster/${cluster}/projects/${namespace}/applications/${this.type}`
+    const { projectStore } = this.props
+    const runtime_id = get(
+      projectStore.detail,
+      'annotations.openpitrix_runtime'
+    )
+    return `/cluster/${cluster}/projects/${namespace}/applications/${
+      this.type
+    }/${runtime_id}`
   }
 
   get canCreate() {
