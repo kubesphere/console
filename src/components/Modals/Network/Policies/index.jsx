@@ -50,10 +50,9 @@ export default class NetworkPoliciesModal extends React.Component {
   }
 
   componentDidMount() {
-    const { namespace, cluster, workspace } = this.props
+    const { namespace, cluster } = this.props
     const params = {
       cluster,
-      workspace,
       limit: -1,
     }
     this.projectStore.fetchList({
@@ -73,14 +72,12 @@ export default class NetworkPoliciesModal extends React.Component {
 
   handleNameSpaceChange = ns => {
     const { cluster } = this.props
-    const { workspace } = this
     this.setState({
       specCurNameSpace: ns,
     })
     this.serviceStore.fetchList({
       namespace: ns,
       cluster,
-      workspace,
       limit: -1,
     })
   }
