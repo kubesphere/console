@@ -106,6 +106,7 @@ export default class Policies extends React.Component {
             icon={ICON_TYPES[module]}
             title={t('NETWORK_POLICY_EMP_TITLE')}
             desc={t('NETWORK_POLICY_EMP_DESC')}
+            className={styles.eplist}
             actions={
               <Button
                 type="control"
