@@ -145,7 +145,7 @@ export default {
   ENV_TESTING: 'Testing',
   ENV_DEMO: 'Demo',
 
-  CLUSTERS_MANAGEMENT_DESC:
+  CLUSTERS_MANAGE_DESC:
     'Unified management of multiple clusters and their basic resources, components and application resources',
 
   ACCESS_CONTROL_DESC:

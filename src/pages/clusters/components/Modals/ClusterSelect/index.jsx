@@ -66,7 +66,7 @@ export default class ClusterSelectModal extends React.Component {
         width={960}
         icon="cluster"
         title={t('Cluster Management')}
-        description={t('CLUSTERS_MANAGEMENT_DESC')}
+        description={t('CLUSTERS_MANAGE_DESC')}
         hideFooter
       >
         <div className={styles.bar}>

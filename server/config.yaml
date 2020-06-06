@@ -61,6 +61,7 @@ client:
   globalNavs:
     - name: clusters
       title: Clusters Management
+      desc: CLUSTERS_MANAGE_DESC
       icon: cluster
     - name: access
       title: Access Control

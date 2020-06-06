@@ -79,7 +79,7 @@ export default {
 
   'Recent visit': '最近访问',
 
-  CLUSTERS_MANAGEMENT_DESC:
+  CLUSTERS_MANAGE_DESC:
     '对多集群以及每个集群的基础资源、服务组件和应用资源等的统一管理',
   ACCESS_CONTROL_DESC: '对平台中的企业空间、账号、以及角色权限进行统一管理',
   APP_STORE_MANAGEMENT_DESC:

@@ -71,9 +71,9 @@ export default {
   'Depend on': '依赖于',
 
   'Clusters Management': '集群管理',
+  CLUSTERS_MANAGEMENT_DESC: '创建删除集群，管理所有集群下的资源',
   'Clusters View': '集群查看',
-  CLUSTERS_VIEW_DESC:
-    '集群管理的基础功能，获取集群查看功能后可以进行更高级功能的操作权限定义',
+  CLUSTERS_VIEW_DESC: '查看平台中所有的集群及集群下所有的资源',
   'Users Management': '账户管理',
   USERS_MANAGEMENT_DESC: '支持账户的管理，包括添加/删除/更新账户信息',
   'Users View': '账户查看',
