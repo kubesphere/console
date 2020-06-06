@@ -44,7 +44,7 @@ export default class BaseInfo extends Component {
         <Banner
           icon="home"
           title={t('Platform Info')}
-          description={t('平台信息提供了平台的标题及LOGO信息的定制')}
+          description={t('提供平台标题及描述等信息')}
         />
         <Panel title={t('Basic Info')}>
           <div className={styles.header}>
