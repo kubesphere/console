@@ -19,8 +19,7 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
 import { Switch, Route } from 'react-router'
-import { isString, isObject, get } from 'lodash'
-import { isArray } from 'util'
+import { isString, isObject, isArray, get } from 'lodash'
 
 export const renderRoutes = (routes, extraProps = {}, switchProps = {}) =>
   routes ? (
@@ -39,7 +38,7 @@ export const renderRoutes = (routes, extraProps = {}, switchProps = {}) =>
         }
 
         if (route.redirect) {
-          const redirect = route.redirect
+          const { redirect } = route
 
           if (isString(redirect)) return <Redirect key={key} to={redirect} />
 

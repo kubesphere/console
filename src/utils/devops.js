@@ -18,6 +18,7 @@
 import { set } from 'lodash'
 
 const deleteUnenableAttrs = data => {
+  /* eslint-disable no-unused-vars */
   for (const key in data) {
     if (key.startsWith('enable_') && data[key] === false) {
       delete data[key.slice(7)]

@@ -163,7 +163,7 @@ export const transformTraceItem = data => {
   for (let i = 0; i < max; i++) {
     const span = data.spans[i]
     const { startTime, duration, processID } = span
-    let spanID = span.spanID
+    let { spanID } = span
     if (startTime < traceStartTime) {
       traceStartTime = startTime
     }

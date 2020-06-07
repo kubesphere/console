@@ -17,6 +17,7 @@
  */
 
 import { action, observable } from 'mobx'
+import { Notify } from '@pitrix/lego-ui'
 import ObjectMapper from 'utils/object.mapper'
 import { isArray, get } from 'lodash'
 import { getFilterString, parseUrl } from 'utils'
@@ -44,6 +45,7 @@ export default class S2irunStore extends Base {
 
   @observable
   jobDetail = {}
+
   @observable
   runDetail = {}
 
@@ -222,7 +224,7 @@ export default class S2irunStore extends Base {
         'status.containerStatuses[0]containerID'
       )
       if (!containerID) {
-        return Promise.reject('container not ready')
+        return Notify.error('container not ready')
       }
       this.containerName = get(podsDetail, 'spec.containers[0].name', '')
     }

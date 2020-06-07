@@ -65,6 +65,7 @@ export default class DevOpsStore extends Base {
     }
     return path
   }
+
   getBaseUrlV2 = params =>
     `kapis/devops.kubesphere.io/v1alpha2${this.getPath(params)}/`
 

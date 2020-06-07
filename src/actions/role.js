@@ -27,7 +27,7 @@ import FORM_TEMPLATES from 'utils/form.templates'
 export default {
   'role.create': {
     on({ store, cluster, namespace, workspace, success, devops, ...props }) {
-      const module = store.module
+      const { module } = store
       const modal = Modal.open({
         onOk: data => {
           if (!data) {
@@ -60,7 +60,7 @@ export default {
   },
   'role.edit': {
     on({ store, detail, success, ...props }) {
-      const module = store.module
+      const { module } = store
       const formTemplate = Object.assign(
         FORM_TEMPLATES[module]({ namespace: props.namespace }),
         cloneDeep(detail._originData)

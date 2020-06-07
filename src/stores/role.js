@@ -105,14 +105,12 @@ export default class RoleStore extends Base {
 
   @action
   batchDelete(rowKeys, { cluster, workspace, namespace }) {
-    for (const name in rowKeys) {
-      if (this.checkIfIsPresetRole(name)) {
-        Notify.error(
-          t('Error Tips'),
-          `${t('Unable to delete preset role')}: ${name}`
-        )
-        return
-      }
+    if (rowKeys.some(name => this.checkIfIsPresetRole(name))) {
+      Notify.error(
+        t('Error Tips'),
+        `${t('Unable to delete preset role')}: ${name}`
+      )
+      return
     }
 
     return this.submitting(
