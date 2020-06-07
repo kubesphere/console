@@ -64,7 +64,7 @@ class CICDs extends React.Component {
     this.store = new PipelineStore()
 
     this.formTemplate = {
-      project_name: this.props.devopsStore.project_name,
+      project_name: this.props.devopsStore.devops,
       cluster: this.cluster,
       enable_timer_trigger: true,
       enable_discarder: true,
@@ -106,7 +106,7 @@ class CICDs extends React.Component {
     return globals.app.getActions({
       module: 'pipelines',
       cluster: this.props.match.params.cluster,
-      devops: this.props.devopsStore.data.name,
+      devops: this.devops,
     })
   }
 
@@ -118,9 +118,14 @@ class CICDs extends React.Component {
     return this.props.devopsStore.project_id
   }
 
+  get devops() {
+    return this.store.getDevops(this.project_id)
+  }
+
   getData(params) {
     this.store.fetchList({
-      namespace: this.project_id,
+      project_id: this.project_id,
+      devops: this.devops,
       ...this.props.match.params,
       ...params,
     })
@@ -264,7 +269,7 @@ class CICDs extends React.Component {
   }
 
   showEditConfig = async name => {
-    await this.store.fetchDetail({ name })
+    await this.store.fetchDetail({ cluster: this.cluster, name })
     const formData = this.store.getPipeLineConfig()
     formData.project_id = this.project_id
 
@@ -277,7 +282,7 @@ class CICDs extends React.Component {
   hideCreate = () => {
     this.setState({ showCreate: false })
     // init formdata
-    const project_name = this.props.devopsStore.project_name
+    const project_name = this.devops
     const cluster = this.cluster
     this.formTemplate = {
       project_name,
@@ -293,7 +298,7 @@ class CICDs extends React.Component {
   hideEditModal = () => {
     this.setState({ showEdit: false })
     this.props.rootStore.routing.push(
-      `${this.prefix}/${encodeURIComponent(this.createName)}/`
+      `${this.prefix}/${encodeURIComponent(this.pipeline)}/`
     )
   }
 
@@ -313,7 +318,7 @@ class CICDs extends React.Component {
     const result = await this.store
       .createPipeline({
         data,
-        namespace: this.project_id,
+        devops: this.devops,
         cluster: this.cluster,
       })
       .finally(() => {
@@ -343,8 +348,11 @@ class CICDs extends React.Component {
     }
 
     if (result.metadata && result.metadata.name) {
-      this.createName = result.metadata.name
-      this.store.fetchDetail({ name: this.createName, cluster: this.cluster })
+      this.pipeline = result.metadata.name
+      this.store.fetchDetail({
+        name: this.pipeline,
+        cluster: this.cluster,
+      })
       this.setState({
         showCreate: false,
         showEdit: true,
@@ -365,9 +373,9 @@ class CICDs extends React.Component {
       this.props.rootStore.routing.push(
         `${this.prefix}/${encodeURIComponent(result.metadata.name)}/`
       )
-      const { namespace, project_id } = params
+      const { project_id } = params
       localStorage.removeItem(
-        `${globals.user.username}-${namespace}-${project_id}-${this.createName}`
+        `${globals.user.username}-${project_id}-${this.pipeline}`
       )
     }
   }
@@ -388,13 +396,9 @@ class CICDs extends React.Component {
 
   handleDelete = async () => {
     this.setState({ isSubmitting: true })
-
+    const name = this.state.selectPipeline.name
     await this.store
-      .deletePipeline(
-        this.state.selectPipeline.name,
-        this.project_id,
-        this.cluster
-      )
+      .deletePipeline(name, this.devops, this.cluster)
       .finally(() => {
         this.setState({ isSubmitting: false })
       })
@@ -420,7 +424,7 @@ class CICDs extends React.Component {
           return (
             <Link
               className="item-name"
-              to={`/${this.workspace}/clusters${this.cluster}/devops/${
+              to={`/${this.workspace}/clusters/${this.cluster}/devops/${
                 this.project_id
               }/pipelines/${encodeURIComponent(record.name)}/activity`}
             >
@@ -598,7 +602,7 @@ class CICDs extends React.Component {
         {this.renderContent()}
         {this.renderModals()}
         <PipelineModal
-          params={{ ...this.props.match.params, name: this.createName }}
+          params={{ ...this.props.match.params, name: this.pipeline }}
           jsonData={CREATE_TEMP}
           visible={this.state.showEdit}
           onOk={this.handleSaveJenkinsFile}

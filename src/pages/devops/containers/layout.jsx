@@ -48,6 +48,10 @@ class DevOpsLayout extends Component {
     }
   }
 
+  get workspace() {
+    return this.props.match.params.workspace
+  }
+
   async init(params) {
     this.store.initializing = true
 
@@ -68,10 +72,6 @@ class DevOpsLayout extends Component {
     })
 
     this.store.initializing = false
-  }
-
-  get workspace() {
-    return this.props.match.params.workspace
   }
 
   get cluster() {
@@ -105,6 +105,8 @@ class DevOpsLayout extends Component {
               title={t('DevOps Project')}
               detail={data}
               onChange={this.handleChange}
+              workspace={this.workspace}
+              cluster={this.cluster}
             />
             <Nav
               className="ks-page-nav"

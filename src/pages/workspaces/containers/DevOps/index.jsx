@@ -180,7 +180,7 @@ export default class DevOps extends React.Component {
   render() {
     const { bannerProps, tableProps } = this.props
     return (
-      <ListPage {...this.props} getData={this.getData}>
+      <ListPage {...this.props} getData={this.getData} noWatch>
         <Banner
           {...bannerProps}
           description={t('DEVOPS_DESCRIPTION')}
