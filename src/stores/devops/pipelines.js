@@ -474,7 +474,7 @@ export default class PipelineStore extends BaseStore {
   async deletePipeline(name, project_id, cluster) {
     const url = `${API_VERSIONS.devops}${this.getPath({
       namespace: project_id,
-      cluster: cluster,
+      cluster,
     })}/pipelines/${name}`
 
     return await this.request.delete(url)

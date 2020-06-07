@@ -372,7 +372,8 @@ export const getBrowserLang = () => {
 
   if (lang.indexOf('zh') !== -1) {
     return 'zh'
-  } else if (lang.indexOf('en') !== -1) {
+  }
+  if (lang.indexOf('en') !== -1) {
     return 'en'
   }
 

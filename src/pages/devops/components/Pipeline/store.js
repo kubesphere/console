@@ -98,16 +98,22 @@ export default class Store extends BaseStore {
 
   @observable
   jsonData = {}
+
   @observable
   activeLineIndex = ''
+
   @observable
   activeColunmIndex = ''
+
   @observable
   isAddingStep = false
+
   @observable
   edittingData = {}
+
   @observable
   params = {}
+
   @observable
   credentials = []
 

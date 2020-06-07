@@ -38,6 +38,7 @@ export default class CredentialStore extends BaseStore {
     filters: {},
     isLoading: true,
   }
+
   @observable
   detail = {}
 

@@ -81,10 +81,13 @@ export default class SCMStore extends BaseStore {
 
   @observable
   activeRepoIndex = ''
+
   @observable
   formData = {}
+
   @observable
   githubCredentialId = ''
+
   @observable
   creatBitBucketServersError = {}
 

@@ -82,7 +82,7 @@ export default class SocketClient {
     }
 
     this.client.onmessage = message => {
-      let data = message.data
+      let { data } = message
       if (typeof data === 'string') {
         try {
           data = JSON.parse(data)

@@ -65,12 +65,18 @@ export default {
   BASE_BAR_CHART: 'Base Bar Chart',
   STACK_LINE_CHART: 'Stacked Area Chart',
   STACK_BAR_CHAR: 'Stacked Bar Chart',
-  LINE_CHART_DESC: 'A line chart is mainly used to visualize a trend or change in data over time.',
-  BASE_LINE_CHART_DESC: 'A line chart is mainly used to visualize a trend or change in data over time. It is very useful for displaying a series of two-dimensional continuous data, such as website traffic or product prices.',
-  STACK_LINE_CHART_DESC: 'A stacked area chart is a special kind of area charts that can be used to compare multiple variables in an interval. It is very useful when multiple data series are available as you can analyze the relation of each group to the whole chart and display their respective proportion.',
-  BAR_CHART_DESC: 'A bar chart is the most common type of charts. It presents different categorical data with horizontal or vertical bars with heights or lengths proportional to the values that they represent.',
-  BASE_BAR_CHART_DESC: 'One axis of the base bar chart features the categories being compared, while the other axis represents the value of each.',
-  STACK_BAR_CHART_DESC: 'A stacked bar chart is an extension of bar charts. A standard bar chart compares individual data points with each other while in a stacked bar chart, parts of the data are adjacent or stacked. It can be used to present the total amount of a category as well as its sub-amounts (proportion). Therefore, it is very helpful for examining part-to-whole relations.',
+  LINE_CHART_DESC:
+    'A line chart is mainly used to visualize a trend or change in data over time.',
+  BASE_LINE_CHART_DESC:
+    'A line chart is mainly used to visualize a trend or change in data over time. It is very useful for displaying a series of two-dimensional continuous data, such as website traffic or product prices.',
+  STACK_LINE_CHART_DESC:
+    'A stacked area chart is a special kind of area charts that can be used to compare multiple variables in an interval. It is very useful when multiple data series are available as you can analyze the relation of each group to the whole chart and display their respective proportion.',
+  BAR_CHART_DESC:
+    'A bar chart is the most common type of charts. It presents different categorical data with horizontal or vertical bars with heights or lengths proportional to the values that they represent.',
+  BASE_BAR_CHART_DESC:
+    'One axis of the base bar chart features the categories being compared, while the other axis represents the value of each.',
+  STACK_BAR_CHART_DESC:
+    'A stacked bar chart is an extension of bar charts. A standard bar chart compares individual data points with each other while in a stacked bar chart, parts of the data are adjacent or stacked. It can be used to present the total amount of a category as well as its sub-amounts (proportion). Therefore, it is very helpful for examining part-to-whole relations.',
   DISPLAY_FORMAT: 'Display Format',
   FIELD_NAME: 'Field Name',
   COLUMN_NAME: 'Column Name',
@@ -82,7 +88,8 @@ export default {
   PER_PAGE_LINES: 'Lines Per Page',
   CUSTOM_DISPLAY_STYLE: 'Display Style',
   DATA_TYPE: 'Data Type',
-  CUSTOM_DISPLAY_MODAL_DESC: 'Customize the table display style according to your needs',
+  CUSTOM_DISPLAY_MODAL_DESC:
+    'Customize the table display style according to your needs',
   Y_AXIS: 'Y Axis',
   GRAPH_COLORS: 'Chart Colors',
   SINGLE_GRAPH_TYPE: 'The most common chart type',
@@ -97,5 +104,6 @@ export default {
   EDIT_TEMPLATE: 'Edit Template',
   SAVE_TEMPLATE: 'Save Template',
   THRESHOLD_FILL: 'Threshold Settings',
-  THRESHOLD_FILL_DESC: 'You can set a threshold and the style can be changed automatically after the threshold is exceeded.',
+  THRESHOLD_FILL_DESC:
+    'You can set a threshold and the style can be changed automatically after the threshold is exceeded.',
 }
