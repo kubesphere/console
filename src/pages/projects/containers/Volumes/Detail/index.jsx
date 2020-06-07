@@ -38,7 +38,9 @@ import getRoutes from './routes'
 @trigger
 export default class VolumeDetail extends React.Component {
   store = new Volume()
+
   storageclass = new StorageClass()
+
   storageclasscapabilities = new StorageClassCapability()
 
   componentDidMount() {
@@ -47,6 +49,10 @@ export default class VolumeDetail extends React.Component {
 
   get name() {
     return 'Volume'
+  }
+
+  get module() {
+    return 'volumes'
   }
 
   get authKey() {

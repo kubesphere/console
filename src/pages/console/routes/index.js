@@ -33,7 +33,7 @@ export default [
   { path: '/auditingsearch', exact: true, component: AuditingSearch },
   {
     path:
-      '/terminal/clusters/:cluster/projects/:namespace/pods/:podName/containers/:containerName',
+      '/terminal/cluster/:cluster/projects/:namespace/pods/:podName/containers/:containerName',
     component: ContainerTerminal,
   },
   {

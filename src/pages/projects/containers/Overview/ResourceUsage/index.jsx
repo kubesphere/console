@@ -190,7 +190,9 @@ class ResourceUsage extends React.Component {
         routeName: 's2ibuilders',
         num: used['count/s2ibuilders.devops.kubesphere.io'],
         metric: 'namespace_s2ibuilder_count',
-        disabled: !globals.app.hasKSModule('devops'),
+        disabled:
+          !globals.app.hasKSModule('devops') ||
+          !this.props.match.params.workspace,
       },
       {
         key: 'jobs',

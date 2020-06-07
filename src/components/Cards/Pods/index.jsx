@@ -93,11 +93,9 @@ export default class PodsCard extends React.Component {
     const { selectCluster } = this.state
     const { namespace, selector } = this.props.detail || {}
 
-    const url = `api${
-      selectCluster ? `/clusters/${selectCluster}` : ''
-    }/v1/watch/namespaces/${namespace}/pods?labelSelector=${joinSelector(
-      selector
-    )}`
+    const url = `api/v1/watch${
+      selectCluster ? `/klusters/${selectCluster}` : ''
+    }/namespaces/${namespace}/pods?labelSelector=${joinSelector(selector)}`
 
     if (url && namespace && selector) {
       this.websocket.watch(url)
