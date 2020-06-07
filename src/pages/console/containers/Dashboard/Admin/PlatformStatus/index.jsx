@@ -47,6 +47,7 @@ export default class PlatformStatus extends Component {
         icon: 'appcenter',
         name: 'App Templates',
         link: '/apps',
+        hide: !globals.app.hasKSModule('openpitrix'),
         metric: 'kubesphere_app_template_count',
       },
     ]
@@ -67,14 +68,19 @@ export default class PlatformStatus extends Component {
             description={t('Data as of')}
           />
         </div>
-        {this.resources.map(resource => (
-          <Resource
-            key={resource.name}
-            data={resource}
-            count={get(metrics, `${resource.metric}.data.result[0].value[1]`)}
-            onClick={this.handleClick}
-          />
-        ))}
+        {this.resources.map(resource => {
+          if (resource.hide) {
+            return null
+          }
+          return (
+            <Resource
+              key={resource.name}
+              data={resource}
+              count={get(metrics, `${resource.metric}.data.result[0].value[1]`)}
+              onClick={this.handleClick}
+            />
+          )
+        })}
       </div>
     )
   }

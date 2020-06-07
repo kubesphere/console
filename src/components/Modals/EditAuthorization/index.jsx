@@ -52,18 +52,20 @@ export default class EditAuthorizationModal extends React.Component {
 
     const roleTemplatesMap = keyBy(this.props.roleTemplates, 'name')
     const roleTemplates = props.formTemplate.roleTemplates || []
-    const roleModules = cloneDeep(ROLE_MODULES[props.module]).map(item => ({
-      ...item,
-      state: roleTemplates.some(
-        name =>
-          get(
-            roleTemplatesMap[name],
-            'annotations["iam.kubesphere.io/module"]'
-          ) === item.name
-      )
-        ? 'Enabled'
-        : 'Not Enabled',
-    }))
+    const roleModules = cloneDeep(ROLE_MODULES[props.module])
+      .filter(item => !item.hide)
+      .map(item => ({
+        ...item,
+        state: roleTemplates.some(
+          name =>
+            get(
+              roleTemplatesMap[name],
+              'annotations["iam.kubesphere.io/module"]'
+            ) === item.name
+        )
+          ? 'Enabled'
+          : 'Not Enabled',
+      }))
 
     this.state = {
       roleTemplates,

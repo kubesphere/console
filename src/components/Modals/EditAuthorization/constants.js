@@ -29,6 +29,7 @@ export const ROLE_MODULES = {
     {
       name: 'Apps Management',
       icon: 'openpitrix',
+      hide: !globals.app.hasKSModule('openpitrix'),
     },
     {
       name: 'Platform Settings',
@@ -43,10 +44,12 @@ export const ROLE_MODULES = {
     {
       name: 'Devops Management',
       icon: 'strategy-group',
+      hide: !globals.app.hasKSModule('devops'),
     },
     {
       name: 'Apps Management',
       icon: 'appcenter',
+      hide: !globals.app.hasKSModule('openpitrix'),
     },
     {
       name: 'Access Control',
