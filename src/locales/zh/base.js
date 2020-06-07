@@ -60,7 +60,7 @@ export default {
   'Platform Description': '平台描述',
   'Cluster Number': '集群数量',
   'Platform Running Status': '平台运行状态',
-  'Data as of': '统计时间截止至',
+  'As of Date': '统计截止时间',
   Workbench: '工作台',
   'Access Control': '访问控制',
   'App Templates': '应用模板',
@@ -420,7 +420,7 @@ export default {
   DETAIL_NOT_FOUND_DESC:
     '🙇 对不起没有找到相关资源，返回 <a href="{link}">{title}</a>',
   Toolbox: '工具箱',
-  TOOLBOX_DESC: '提供KubeSphere日志、事件、计量等相关的查询工具',
+  TOOLBOX_DESC: '提供日志、事件、审计等相关查询工具',
   'Analysis Tools': '分析工具',
   'Control Tools': '控制工具',
   'Third-party Tools': '第三方工具',
