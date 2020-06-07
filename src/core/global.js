@@ -20,12 +20,12 @@ import { get, uniq, isEmpty, includes, cloneDeep } from 'lodash'
 import { safeParseJSON } from 'utils'
 
 const NAV_KS_MODULE_MAP = {
-  repos: 'openpitrix',
   apps: 'openpitrix',
-  'apps-manage': 'openpitrix',
+  'app-templates': 'openpitrix',
+  'app-repos': 'openpitrix',
   alerting: 'alerting',
-  'alert-message': 'alerting',
-  'alert-policy': 'alerting',
+  'alert-messages': 'alerting',
+  'alert-policies': 'alerting',
   logging: 'logging',
   'mail-server': 'notification',
   'log-collection': 'logging',
