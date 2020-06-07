@@ -273,13 +273,15 @@ export default class PipelineDetail extends Base {
   }
 
   handleDelete = () => {
-    const { project_id, cluster } = this.props.match.params
+    const { project_id, cluster, workspace } = this.props.match.params
     const { detail } = this.store
     this.setState({ deleteLoading: true })
     const devops = this.store.getDevops(project_id)
     this.store.deletePipeline(detail.name, devops, cluster).then(() => {
       this.hideDeleteModal()
-      this.routing.push(`/cluster/${cluster}/devops/${project_id}/pipelines`)
+      this.routing.push(
+        `/${workspace}/clusters/${cluster}/devops/${project_id}/pipelines`
+      )
     })
   }
 
