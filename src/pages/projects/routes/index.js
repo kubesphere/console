@@ -18,7 +18,7 @@
 
 import { getIndexRoute } from 'utils/router.config'
 
-import ProjectLayout from '../containers/layout'
+import ListLayout from '../containers/Base/List'
 
 import Overview from '../containers/Overview'
 import CRDApps from '../containers/Applications/CRDApps'
@@ -55,7 +55,7 @@ export default [
   ...getDetailPath(PATH),
   {
     path: PATH,
-    component: ProjectLayout,
+    component: ListLayout,
     routes: [
       ...grayReleaseRoutes,
       {

@@ -60,9 +60,12 @@ export default class PodDetail extends React.Component {
       return referrer
     }
 
-    return `${
-      workspace ? `/${workspace}` : ''
-    }/clusters/${cluster}/projects/${namespace}/${this.module}`
+    if (workspace) {
+      return `/${workspace}/clusters/${cluster}/projects/${namespace}/${
+        this.module
+      }`
+    }
+    return `/clusters/${cluster}/${this.module}`
   }
 
   fetchData = () => {

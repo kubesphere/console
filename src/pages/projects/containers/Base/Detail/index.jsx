@@ -19,8 +19,6 @@
 import { inject } from 'mobx-react'
 import { withRouter } from 'react-router-dom'
 import { Component as Base } from 'core/containers/Base/Detail/Page'
-import ClusterStore from 'stores/cluster'
-import ProjectStore from 'stores/project'
 
 @inject('rootStore')
 @withRouter
@@ -37,28 +35,5 @@ export default class DetailPage extends Base {
         ? { cluster }
         : { cluster, workspace, project: namespace }),
     })
-  }
-
-  async init() {
-    const { cluster, workspace, namespace } = this.props.match.params
-    if (cluster) {
-      this.stores.clusterStore = new ClusterStore()
-      this.stores.projectStore = new ProjectStore()
-
-      await Promise.all([
-        this.stores.clusterStore.fetchDetail({ name: cluster }),
-        this.stores.projectStore.fetchDetail({ cluster, workspace, namespace }),
-      ])
-
-      if (workspace) {
-        await this.props.rootStore.getRules({ workspace })
-      }
-
-      await this.props.rootStore.getRules(
-        this.inCluster ? { cluster } : { cluster, workspace, namespace }
-      )
-    }
-
-    this.setState({ initializing: false })
   }
 }

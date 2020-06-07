@@ -16,29 +16,51 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+// import { get } from 'lodash'
 import React, { Component } from 'react'
+import { inject, observer } from 'mobx-react'
+
 import { renderRoutes } from 'utils/router.config'
 
 import { Nav } from 'components/Layout'
+import Selector from 'workspaces/components/Selector'
 
-class ListLayout extends Component {
+@inject('rootStore', 'workspaceStore')
+@observer
+class WorkspaceLayout extends Component {
+  get workspace() {
+    return this.props.match.params.workspace
+  }
+
+  get routing() {
+    return this.props.rootStore.routing
+  }
+
+  enterWorkspace = async workspace =>
+    this.routing.push(`/workspaces/${workspace}/overview`)
+
   render() {
-    const { navs, match, route, location } = this.props
-
+    const { match, route, location } = this.props
+    const { detail } = this.props.workspaceStore
     return (
-      <div>
-        <div className="list-nav-wrapper">
+      <div className="ks-page">
+        <div className="ks-page-side">
+          <Selector
+            icon={detail.logo}
+            detail={detail}
+            onChange={this.enterWorkspace}
+          />
           <Nav
-            className="list-nav"
-            navs={navs}
+            className="ks-page-nav"
+            navs={globals.app.getWorkspaceNavs(this.workspace)}
             location={location}
             match={match}
           />
         </div>
-        <div className="list-main">{renderRoutes(route.routes)}</div>
+        <div className="ks-page-main">{renderRoutes(route.routes)}</div>
       </div>
     )
   }
 }
 
-export default ListLayout
+export default WorkspaceLayout

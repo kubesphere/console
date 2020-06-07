@@ -16,10 +16,76 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import React, { Component } from 'react'
+import { inject, observer, Provider } from 'mobx-react'
+import { Loading } from '@pitrix/lego-ui'
+
 import { renderRoutes } from 'utils/router.config'
+
+import ProjectStore from 'stores/project'
+import FederatedStore from 'stores/federated'
 
 import routes from './routes'
 
-const App = () => renderRoutes(routes)
+@inject('rootStore')
+@observer
+class ProjectLayout extends Component {
+  constructor(props) {
+    super(props)
 
-export default App
+    this.store = new ProjectStore()
+    this.fedStore = new FederatedStore('namespaces')
+
+    this.init(props.match.params)
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.project !== prevProps.match.params.namespace) {
+      this.init(this.props.match.params)
+    }
+  }
+
+  async init(params) {
+    this.store.initializing = true
+
+    await this.store.fetchDetail(params)
+
+    if (params.workspace) {
+      await this.props.rootStore.getRules({
+        workspace: params.workspace,
+      })
+    }
+
+    await this.props.rootStore.getRules(params)
+
+    if (this.store.detail.isFedManaged) {
+      await this.fedStore.fetchDetail({ ...params, name: params.namespace })
+      this.store.detail.clusters = this.fedStore.detail.clusters
+    }
+
+    globals.app.cacheHistory(this.props.match.url, {
+      type: 'Project',
+      name: this.store.detail.name,
+      description: this.store.detail.description,
+      isFedManaged: this.store.detail.isFedManaged,
+    })
+
+    this.store.initializing = false
+  }
+
+  get project() {
+    return this.props.match.params.namespace
+  }
+
+  render() {
+    const { initializing } = this.store
+
+    if (initializing) {
+      return <Loading className="ks-page-loading" />
+    }
+
+    return <Provider projectStore={this.store}>{renderRoutes(routes)}</Provider>
+  }
+}
+
+export default ProjectLayout
