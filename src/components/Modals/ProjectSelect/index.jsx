@@ -136,11 +136,11 @@ export default class ProjectSelectModal extends React.Component {
   }
 
   handleOnEnter = item => {
-    const { cluster, onChange } = this.props
+    const { workspace, cluster, onChange } = this.props
     if (this.state.type === 'projects') {
-      onChange(`/cluster/${cluster}/projects/${item.name}`)
+      onChange(`/${workspace}/clusters/${cluster}/projects/${item.name}`)
     } else {
-      onChange(`/devops/${item.namespace}`)
+      onChange(`/${workspace}/clusters/${cluster}/devops/${item.namespace}`)
     }
   }
 

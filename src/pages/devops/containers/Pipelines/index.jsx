@@ -201,6 +201,10 @@ class CICDs extends React.Component {
     return this.props.match.params.cluster
   }
 
+  get workspace() {
+    return this.props.match.params.workspace
+  }
+
   get prefix() {
     if (this.props.match.url.endsWith('/')) {
       return this.props.match.url
@@ -329,7 +333,7 @@ class CICDs extends React.Component {
       })
       this.setState({ showCreate: false })
       this.props.rootStore.routing.push(
-        `/cluster/${this.cluster}/devops/${
+        `/${this.workspace}/clusters/${this.cluster}/devops/${
           this.project_id
         }/pipelines/${encodeURIComponent(
           data.spec.multi_branch_pipeline.name
@@ -416,7 +420,7 @@ class CICDs extends React.Component {
           return (
             <Link
               className="item-name"
-              to={`/cluster/${this.cluster}/devops/${
+              to={`/${this.workspace}/clusters${this.cluster}/devops/${
                 this.project_id
               }/pipelines/${encodeURIComponent(record.name)}/activity`}
             >
@@ -427,7 +431,7 @@ class CICDs extends React.Component {
         return (
           <Link
             className="item-name"
-            to={`/cluster/${this.cluster}/devops/${
+            to={`/${this.workspace}/clusters/${this.cluster}/devops/${
               this.project_id
             }/pipelines/${encodeURIComponent(record.name)}`}
           >

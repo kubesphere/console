@@ -23,7 +23,8 @@ import AlertingPolicy from 'clusters/containers/Alerting/Messages/Detail/AlertPo
 import NotificationHistory from 'clusters/containers/Alerting/Messages/Detail/NotificationHistory'
 import Comment from 'clusters/containers/Alerting/Messages/Detail/Comment'
 
-const PATH = '/cluster/:cluster/projects/:namespace/alert-messages/:id'
+const PATH =
+  '/:workspace/clusters/:cluster/projects/:namespace/alert-messages/:id'
 
 export default [
   {

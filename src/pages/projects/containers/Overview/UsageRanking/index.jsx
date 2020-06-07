@@ -62,12 +62,14 @@ class UsageRanking extends React.Component {
 
     const { workload = '' } = node
     const workloadName = workload.replace(/\w+:/, '')
-    const { cluster, namespace } = this.props.match.params
-
+    const { workspace, cluster, namespace } = this.props.match.params
+    const prefix = `${
+      workspace ? `/${workspace}` : ''
+    }/clustes/${cluster}/projects/${namespace}`
     const LINK_MAP = {
-      Deployment: `/cluster/${cluster}/projects/${namespace}/deployments/${workloadName}`,
-      StatefulSet: `/cluster/${cluster}/projects/${namespace}/statefulsets/${workloadName}`,
-      DaemonSet: `/cluster/${cluster}/projects/${namespace}/daemonsets/${workloadName}`,
+      Deployment: `${prefix}/deployments/${workloadName}`,
+      StatefulSet: `${prefix}/statefulsets/${workloadName}`,
+      DaemonSet: `${prefix}/daemonsets/${workloadName}`,
     }
 
     return LINK_MAP[owner_kind]

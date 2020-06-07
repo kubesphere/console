@@ -35,15 +35,11 @@ class AdvancedSettings extends React.Component {
     return this.props.match.params.namespace
   }
 
-  get cluster() {
-    return this.props.match.params.cluster
-  }
-
   get enableActions() {
     return globals.app.getActions({
       module: 'project-settings',
+      ...this.props.match.params,
       project: this.namespace,
-      cluster: this.cluster,
     })
   }
 

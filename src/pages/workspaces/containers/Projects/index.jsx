@@ -67,6 +67,10 @@ export default class Projects extends React.Component {
     )
   }
 
+  get workspace() {
+    return this.props.match.params.workspace
+  }
+
   getData = async ({ silent, ...params } = {}) => {
     this.query = params
 
@@ -143,7 +147,9 @@ export default class Projects extends React.Component {
             to={
               record.status === 'Terminating'
                 ? null
-                : `/cluster/${record.cluster}/projects/${name}`
+                : `/${this.workspace}/clusters/${
+                    record.cluster
+                  }/projects/${name}`
             }
             icon="project"
             iconSize={40}

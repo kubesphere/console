@@ -71,9 +71,9 @@ export default class Applications extends React.Component {
 
   handleClickApp = e => {
     const { app } = e.currentTarget.dataset
-    const { cluster, namespace } = this.props.match.params
+    const { workspace, cluster, namespace } = this.props.match.params
     this.routing.push(
-      `/cluster/${cluster}/projects/${namespace}/applications/template/${app}`
+      `/${workspace}/clusters/${cluster}/projects/${namespace}/applications/template/${app}`
     )
   }
 
@@ -84,11 +84,11 @@ export default class Applications extends React.Component {
   }
 
   renderExtras() {
-    const { cluster, namespace } = this.props.match.params
+    const { workspace, cluster, namespace } = this.props.match.params
     return (
       <Link
         className={styles.more}
-        to={`/cluster/${cluster}/projects/${namespace}/applications/template`}
+        to={`/${workspace}/clusters/${cluster}/projects/${namespace}/applications/template`}
       >
         {t('View All')}
       </Link>

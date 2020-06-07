@@ -44,15 +44,10 @@ export default class ContainerDetail extends React.Component {
   }
 
   get listUrl() {
-    const {
-      params: { cluster, namespace, podName },
-      path,
-    } = this.props.match
-    if (path.startsWith('/clusters')) {
-      return `/clusters/${cluster}/projects/${namespace}/pods/${podName}`
-    }
-
-    return `/cluster/${cluster}/projects/${namespace}/pods/${podName}`
+    const { workspace, cluster, namespace } = this.props.match.params
+    return `${
+      workspace ? `/${workspace}` : ''
+    }/clusters/${cluster}/projects/${namespace}/${this.module}`
   }
 
   fetchData = () => {

@@ -38,14 +38,14 @@ export default {
     },
   },
   'crd.app.create': {
-    on({ store, cluster, namespace, success, ...props }) {
+    on({ store, cluster, namespace, workspace, success, ...props }) {
       const modal = Modal.open({
         onOk: data => {
           store.create(data, { cluster, namespace }).then(() => {
             Modal.close(modal)
             success &&
               success(
-                `/cluster/${cluster}/projects/${namespace}/applications/composing`
+                `/${workspace}/clusters/${cluster}/projects/${namespace}/applications/composing`
               )
           })
         },

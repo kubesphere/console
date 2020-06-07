@@ -321,14 +321,14 @@ export default class GlobalValue {
     return this._cache_[`project_${cluster}_${project}_navs`]
   }
 
-  getDevOpsNavs({ cluster, devops }) {
+  getDevOpsNavs({ cluster, workspace, devops }) {
     if (!this._cache_[`devops_${cluster}_${devops}_navs`]) {
       const navs = []
 
       globals.config.devopsNavs.forEach(nav => {
         const filteredItems = nav.items.filter(item =>
           this.checkNavItem(item, params =>
-            this.hasPermission({ ...params, cluster, devops })
+            this.hasPermission({ ...params, cluster, workspace, devops })
           )
         )
 

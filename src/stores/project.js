@@ -135,10 +135,10 @@ export default class ProjectStore extends Base {
   }
 
   @action
-  async fetchDetail({ cluster, namespace }) {
+  async fetchDetail({ cluster, workspace, namespace }) {
     this.isLoading = true
     const detail = await request.get(
-      this.getDetailUrl({ cluster, name: namespace }),
+      this.getDetailUrl({ cluster, workspace, name: namespace }),
       null,
       null,
       res => {

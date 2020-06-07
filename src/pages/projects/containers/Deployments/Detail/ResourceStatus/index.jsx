@@ -54,20 +54,15 @@ class ResourceStatus extends React.Component {
   }
 
   get prefix() {
-    const path = this.props.match.path
-    const { cluster } = this.props.match.params
-    if (path.startsWith('/clusters')) {
-      return `/clusters/${cluster}`
-    }
-
-    return `/cluster/${cluster}`
+    const { workspace, cluster } = this.props.match.params
+    return `${workspace ? `/${workspace}` : ''}/clusters/${cluster}`
   }
 
   get enabledActions() {
     return globals.app.getActions({
       module: this.module,
+      ...this.props.match.params,
       project: this.props.match.params.namespace,
-      cluster: this.props.match.params.cluster,
     })
   }
 
@@ -242,5 +237,7 @@ class ResourceStatus extends React.Component {
   }
 }
 
-export default inject('detailStore', 'fedDetailStore')(observer(ResourceStatus))
+export default inject('detailStore', 'projectStore', 'fedDetailStore')(
+  observer(ResourceStatus)
+)
 export const Component = ResourceStatus

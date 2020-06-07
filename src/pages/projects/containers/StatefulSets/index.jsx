@@ -38,8 +38,8 @@ import WorkloadStore from 'stores/workload'
 })
 export default class StatefulSets extends React.Component {
   get prefix() {
-    const { namespace, cluster } = this.props.match.params
-    return `/cluster/${cluster}/projects/${namespace}`
+    const { workspace, namespace, cluster } = this.props.match.params
+    return `/${workspace}/clusters/${cluster}/projects/${namespace}`
   }
 
   handleTabChange = value => {

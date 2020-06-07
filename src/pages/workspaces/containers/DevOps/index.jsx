@@ -83,6 +83,10 @@ export default class DevOps extends React.Component {
     ]
   }
 
+  get workspace() {
+    return this.props.match.params.workspace
+  }
+
   @computed
   get clusters() {
     return this.workspaceStore.clusters.data.map(item => ({
@@ -133,7 +137,9 @@ export default class DevOps extends React.Component {
         <Avatar
           icon="strategy-group"
           iconSize={40}
-          to={`/cluster/${this.cluster}/devops/${record.namespace}`}
+          to={`/${this.workspace}/clusters/${this.cluster}/devops/${
+            record.namespace
+          }`}
           desc={record.description || '-'}
           title={name}
         />

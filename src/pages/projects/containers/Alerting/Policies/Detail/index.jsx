@@ -49,8 +49,8 @@ export default class AlertPolicyDetail extends React.Component {
   }
 
   get listUrl() {
-    const { cluster, namespace } = this.props.match.params
-    return `/cluster/${cluster}/projects/${namespace}/alert-policies`
+    const { workspace, cluster, namespace } = this.props.match.params
+    return `/${workspace}/clusters/${cluster}/projects/${namespace}/alert-policies`
   }
 
   get routing() {

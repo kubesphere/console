@@ -50,17 +50,13 @@ class ProjectLayout extends Component {
 
     await this.store.fetchDetail(params)
 
-    if (this.store.detail.workspace) {
+    if (params.workspace) {
       await this.props.rootStore.getRules({
-        workspace: this.store.detail.workspace,
+        workspace: params.workspace,
       })
     }
 
-    await this.props.rootStore.getRules({
-      cluster: params.cluster,
-      workspace: this.store.detail.workspace,
-      namespace: params.namespace,
-    })
+    await this.props.rootStore.getRules(params)
 
     if (this.store.detail.isFedManaged) {
       await this.fedStore.fetchDetail({ ...params, name: params.namespace })
@@ -75,6 +71,10 @@ class ProjectLayout extends Component {
     })
 
     this.store.initializing = false
+  }
+
+  get workspace() {
+    return this.props.match.params.workspace
   }
 
   get cluster() {
@@ -113,6 +113,7 @@ class ProjectLayout extends Component {
               navs={globals.app.getProjectNavs({
                 project: this.project,
                 cluster: this.cluster,
+                workspace: this.workspace,
               })}
               location={location}
               match={match}

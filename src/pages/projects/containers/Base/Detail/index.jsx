@@ -30,25 +30,25 @@ export default class DetailPage extends Base {
   }
 
   get enabledActions() {
-    const { cluster, namespace } = this.props.match.params
+    const { workspace, cluster, namespace } = this.props.match.params
     return globals.app.getActions({
       module: this.authKey,
-      ...(this.inCluster ? { cluster } : { cluster, project: namespace }),
+      ...(this.inCluster
+        ? { cluster }
+        : { cluster, workspace, project: namespace }),
     })
   }
 
   async init() {
-    const { cluster, namespace } = this.props.match.params
+    const { cluster, workspace, namespace } = this.props.match.params
     if (cluster) {
       this.stores.clusterStore = new ClusterStore()
       this.stores.projectStore = new ProjectStore()
 
       await Promise.all([
         this.stores.clusterStore.fetchDetail({ name: cluster }),
-        this.stores.projectStore.fetchDetail({ cluster, namespace }),
+        this.stores.projectStore.fetchDetail({ cluster, workspace, namespace }),
       ])
-
-      const { workspace } = this.stores.projectStore.detail
 
       if (workspace) {
         await this.props.rootStore.getRules({ workspace })

@@ -56,15 +56,10 @@ export default class StatefulSetDetail extends React.Component {
   }
 
   get listUrl() {
-    const {
-      params: { cluster, namespace },
-      path,
-    } = this.props.match
-    if (path.startsWith('/clusters')) {
-      return `/clusters/${cluster}/${this.module}`
-    }
-
-    return `/cluster/${cluster}/projects/${namespace}/${this.module}`
+    const { workspace, cluster, namespace } = this.props.match.params
+    return `${
+      workspace ? `/${workspace}` : ''
+    }/clusters/${cluster}/projects/${namespace}/${this.module}`
   }
 
   fetchData = async () => {

@@ -53,7 +53,7 @@ export default class PodDetail extends React.Component {
 
   get listUrl() {
     const {
-      params: { cluster, namespace, module, name },
+      params: { workspace, cluster, namespace, module, name },
       path,
     } = this.props.match
 
@@ -75,7 +75,7 @@ export default class PodDetail extends React.Component {
       return `/clusters/${cluster}/${suffix}`
     }
 
-    return `/cluster/${cluster}/projects/${namespace}/${suffix}`
+    return `/${workspace}/clusters/${cluster}/projects/${namespace}/${suffix}`
   }
 
   fetchData = () => {

@@ -61,13 +61,9 @@ export default class ResourceStatus extends React.Component {
   }
 
   get prefix() {
-    const path = this.props.match.path
-    const { cluster } = this.props.match.params
-    if (path.startsWith('/clusters')) {
-      return `/clusters/${cluster}`
-    }
+    const { workspace, cluster } = this.props.match.params
 
-    return `/cluster/${cluster}`
+    return `${workspace ? `/${workspace}` : ''}/clusters/${cluster}`
   }
 
   fetchDetail = async () => {
