@@ -66,8 +66,7 @@ export default class WorkspaceMonitor extends Base {
   async getDevopsCount(workspace) {
     const devopsStore = new Devops()
 
-    const result = await request.get(devopsStore.getDevOpsUrl(), {
-      labelSelector: `kubesphere.io/workspace=${workspace}`,
+    const result = await request.get(devopsStore.getDevOpsUrl({ workspace }), {
       paging: 'limit=Infinity',
     })
 

@@ -46,7 +46,7 @@ export default class ScanReponsitoryLogs extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (!prevProps.visible && this.props.visible) {
-      const { params } = this.props.visible
+      const { params } = this.props
       this.props.store.getRepoScanLogs(params)
     }
   }

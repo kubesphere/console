@@ -41,15 +41,17 @@ class BaseInfo extends React.Component {
   }
 
   roleStore = new RoleStore()
+
   memberStore = new UserStore()
 
   componentDidMount() {
     this.memberStore.fetchList({
-      devops: this.project_name,
+      devops: this.devops,
       cluster: this.cluster,
     })
+
     this.roleStore.fetchList({
-      devops: this.project_name,
+      devops: this.devops,
       cluster: this.cluster,
     })
   }
@@ -66,8 +68,8 @@ class BaseInfo extends React.Component {
     return this.props.match.params.project_id
   }
 
-  get project_name() {
-    return this.store.project_name
+  get devops() {
+    return this.store.devops
   }
 
   get workspace() {
@@ -82,7 +84,7 @@ class BaseInfo extends React.Component {
     return globals.app.getActions({
       module: 'devops-settings',
       cluster: this.cluster,
-      devops: this.props.devopsStore.data.name,
+      devops: this.devops,
     })
   }
 
@@ -133,10 +135,19 @@ class BaseInfo extends React.Component {
   }
 
   handleEdit = ({ name, ...data }) => {
-    this.store.update({ name, cluster: this.cluster }, data, true).then(() => {
-      this.hideEdit()
-      this.store.fetchDetail(this.props.match.params)
-    })
+    this.store
+      .update(
+        { name, cluster: this.cluster, workspace: this.workspace },
+        data,
+        true
+      )
+      .then(() => {
+        this.hideEdit()
+        this.store.fetchDetail({
+          workspace: this.workspace,
+          ...this.props.match.params,
+        })
+      })
   }
 
   hideDelete = () => {
@@ -147,7 +158,11 @@ class BaseInfo extends React.Component {
 
   handleDelete = () => {
     this.store
-      .delete({ name: this.project_name, cluster: this.cluster })
+      .delete({
+        name: this.devops,
+        cluster: this.cluster,
+        workspace: this.workspace,
+      })
       .then(() => {
         this.routing.push('/')
       })

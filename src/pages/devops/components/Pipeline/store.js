@@ -318,7 +318,7 @@ export default class Store extends BaseStore {
   getCredentials = async () => {
     this.isCredentialLoading = true
     const result = await this.credentialStore.fetchList({
-      namespace: this.params.project_id,
+      project_id: this.params.project_id,
       cluster: this.params.cluster,
     })
 

@@ -75,7 +75,7 @@ export default class ProjectSelectModal extends React.Component {
       types.push({
         label: t('DevOps Projects'),
         value: 'devops',
-        count: get(detail, 'annotations["kubesphere.io/devops-count"]', '0'),
+        count: get(this.devopsStore, 'list.total', '0'),
       })
     }
 
@@ -94,7 +94,7 @@ export default class ProjectSelectModal extends React.Component {
     if (this.state.type === 'projects') {
       this.projectStore.fetchList(params)
     } else {
-      this.devopsStore.fetchList(params)
+      this.devopsStore.fetchList({ workspace, ...params })
     }
   }
 
@@ -145,7 +145,7 @@ export default class ProjectSelectModal extends React.Component {
   }
 
   showCreate = () => {
-    const { workspace, rootStore } = this.props
+    const { workspace, rootStore, cluster } = this.props
     if (this.state.type === 'projects') {
       rootStore.triggerAction('project.create', {
         store: this.projectStore,
@@ -154,6 +154,7 @@ export default class ProjectSelectModal extends React.Component {
     } else {
       rootStore.triggerAction('devops.create', {
         store: this.devopsStore,
+        cluster,
         workspace,
       })
     }

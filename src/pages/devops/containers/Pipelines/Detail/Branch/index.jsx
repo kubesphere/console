@@ -42,10 +42,13 @@ export default class Branch extends React.Component {
   }
 
   get enabledActions() {
+    const { cluster, project_id } = this.props.match.params
+    const devops = this.store.getDevops(project_id)
+
     return globals.app.getActions({
       module: 'pipelines',
-      cluster: this.props.match.params.cluster,
-      // devops: this.props.devopsStore.data.name,
+      cluster,
+      devops,
     })
   }
 

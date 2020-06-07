@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { set } from 'lodash'
+import { set, cloneDeep } from 'lodash'
 
 const deleteUnenableAttrs = data => {
   /* eslint-disable no-unused-vars */
@@ -34,7 +34,13 @@ const deleteUnenableAttrs = data => {
 export const updatePipelineParams = (data, isEditor = false) => {
   const { multi_branch_pipeline, pipeline, type, ...rest } = data
 
-  const param = JSON.parse(JSON.stringify(rest))
+  if (!rest.description && rest.desc) {
+    rest.description = rest.desc
+    delete rest.desc
+  }
+
+  const param = cloneDeep(rest)
+
   if (param.metadata) {
     delete param.metadata
   }
