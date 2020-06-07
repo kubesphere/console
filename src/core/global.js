@@ -68,26 +68,54 @@ export default class GlobalValue {
     }
 
     if (project) {
+      const defaultActions = get(
+        globals.user,
+        `projectRules[${cluster}][${project}]._`,
+        []
+      )
       return adapter(
-        get(globals.user, `projectRules[${cluster}][${project}][${module}]`, [])
+        get(
+          globals.user,
+          `projectRules[${cluster}][${project}][${module}]`,
+          defaultActions
+        )
       )
     }
 
     if (devops) {
+      const defaultActions = get(
+        globals.user,
+        `devopsRules[${cluster}][${devops}]._`,
+        []
+      )
       return adapter(
-        get(globals.user, `devopsRules[${cluster}][${devops}][${module}]`, [])
+        get(
+          globals.user,
+          `devopsRules[${cluster}][${devops}][${module}]`,
+          defaultActions
+        )
       )
     }
 
     if (workspace) {
+      const defaultActions = get(
+        globals.user,
+        `workspaceRules[${workspace}]._`,
+        []
+      )
       return adapter(
-        get(globals.user, `workspaceRules[${workspace}][${module}]`, [])
+        get(
+          globals.user,
+          `workspaceRules[${workspace}][${module}]`,
+          defaultActions
+        )
       )
     }
 
     if (cluster) {
+      const defaultActions = get(globals.user, `clusterRules[${cluster}]._`, [])
       return adapter(
-        get(globals.user, `clusterRules[${cluster}][${module}]`, [])
+        get(globals.user, `clusterRules[${cluster}][${module}]`, defaultActions)
       )
     }
 
@@ -271,14 +299,14 @@ export default class GlobalValue {
     return globals.config.manageAppNavs
   }
 
-  getProjectNavs({ cluster, project }) {
+  getProjectNavs({ cluster, workspace, project }) {
     if (!this._cache_[`project_${cluster}_${project}_navs`]) {
       const navs = []
 
       globals.config.projectNavs.forEach(nav => {
         const filteredItems = nav.items.filter(item =>
           this.checkNavItem(item, params =>
-            this.hasPermission({ ...params, cluster, project })
+            this.hasPermission({ ...params, cluster, workspace, project })
           )
         )
 

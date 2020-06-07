@@ -48,6 +48,17 @@ class DetailPage extends React.Component {
       'namespace',
       'project_id',
     ])
+
+    if (params.workspace) {
+      await this.props.rootStore.getRules({
+        workspace: params.workspace,
+      })
+    } else if (params.cluster) {
+      await this.props.rootStore.getRules({
+        cluster: params.cluster,
+      })
+    }
+
     if (!isEmpty(params)) {
       await this.props.rootStore.getRules({
         ...params,

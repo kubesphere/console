@@ -42,7 +42,10 @@ export default class NavItem extends React.Component {
           </div>
           <div className={styles.title}>{t(data.title)}</div>
           <div className={styles.desc}>
-            {t(`${data.title.replace(/\s/g, '_').toUpperCase()}_DESC`)}
+            {t(
+              data.desc ||
+                `${data.title.replace(/\s/g, '_').toUpperCase()}_DESC`
+            )}
           </div>
           <div className={styles.bottomIcon}>
             <Icon name={data.icon} size={320} type="light" />
