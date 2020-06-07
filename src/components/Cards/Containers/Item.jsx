@@ -55,7 +55,7 @@ export default class ContainerItem extends React.Component {
     const { cluster, podName } = this.props
     const { namespace, name } = this.props.detail
 
-    const terminalUrl = `/terminal/clusters/${cluster}/projects/${namespace}/pods/${podName}/containers/${name}`
+    const terminalUrl = `/terminal/cluster/${cluster}/projects/${namespace}/pods/${podName}/containers/${name}`
     window.open(
       terminalUrl,
       `Connecting ${name}`,

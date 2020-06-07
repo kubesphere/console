@@ -230,6 +230,10 @@ export default class GlobalValue {
   }
 
   getClusterNavs(cluster) {
+    if (!get(globals.user, `clusterRules[${cluster}]`)) {
+      return []
+    }
+
     if (!this._cache_[`cluster_${cluster}_navs`]) {
       const navs = []
 
@@ -274,6 +278,10 @@ export default class GlobalValue {
   }
 
   getWorkspaceNavs(workspace) {
+    if (!get(globals.user, `workspaceRules[${workspace}]`)) {
+      return []
+    }
+
     if (!this._cache_[`workspace_${workspace}_navs`]) {
       const navs = []
 
@@ -300,6 +308,10 @@ export default class GlobalValue {
   }
 
   getProjectNavs({ cluster, workspace, project }) {
+    if (!get(globals.user, `projectRules[${cluster}][${project}]`)) {
+      return []
+    }
+
     if (!this._cache_[`project_${cluster}_${project}_navs`]) {
       const navs = []
 
@@ -322,6 +334,10 @@ export default class GlobalValue {
   }
 
   getDevOpsNavs({ cluster, workspace, devops }) {
+    if (!get(globals.user, `devopsRules[${cluster}][${devops}]`)) {
+      return []
+    }
+
     if (!this._cache_[`devops_${cluster}_${devops}_navs`]) {
       const navs = []
 

@@ -65,7 +65,7 @@ class UsageRanking extends React.Component {
     const { workspace, cluster, namespace } = this.props.match.params
     const prefix = `${
       workspace ? `/${workspace}` : ''
-    }/clustes/${cluster}/projects/${namespace}`
+    }/clusters/${cluster}/projects/${namespace}`
     const LINK_MAP = {
       Deployment: `${prefix}/deployments/${workloadName}`,
       StatefulSet: `${prefix}/statefulsets/${workloadName}`,

@@ -348,6 +348,7 @@ export default {
   CANCEL: '取消',
   NO_RESULTS_FOUND: '暂无结果',
   REACH_BOTTOM: '已到底部',
+  CLEAR_VALUE: '清除',
 
   'Edit Mode': '编辑模式',
   'Load More': '加载更多',
