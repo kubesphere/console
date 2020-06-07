@@ -61,8 +61,8 @@ class Components extends React.Component {
   }
 
   get prefix() {
-    const { cluster, namespace } = this.props.match.params
-    return `/cluster/${cluster}/projects/${namespace}`
+    const { workspace, cluster, namespace } = this.props.match.params
+    return `/${workspace}/clusters/${cluster}/projects/${namespace}`
   }
 
   render() {

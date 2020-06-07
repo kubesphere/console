@@ -138,7 +138,7 @@ export default class Pods extends React.Component {
 
   renderAvatar = (name, record) => {
     const { module } = this.props
-    const { cluster, namespace } = this.props.match.params
+    const { workspace, cluster, namespace } = this.props.match.params
     const { podStatus } = record
     return (
       <div className={styles.avatar}>
@@ -153,7 +153,7 @@ export default class Pods extends React.Component {
         <div>
           <Link
             className={styles.title}
-            to={`/cluster/${cluster}/projects/${namespace}/${module}/${name}`}
+            to={`/${workspace}/clusters/${cluster}/projects/${namespace}/${module}/${name}`}
           >
             {name}
           </Link>

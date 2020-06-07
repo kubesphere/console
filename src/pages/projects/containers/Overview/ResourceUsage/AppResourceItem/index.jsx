@@ -59,8 +59,8 @@ export default class ResourceCard extends React.Component {
   }
 
   get prefix() {
-    const { namespace, cluster } = this.props
-    return `/cluster/${cluster}/projects/${namespace}`
+    const { workspace, namespace, cluster } = this.props
+    return `/${workspace}/clusters/${cluster}/projects/${namespace}`
   }
 
   handleClick = () => {

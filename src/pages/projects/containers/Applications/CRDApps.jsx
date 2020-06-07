@@ -37,14 +37,17 @@ export default class CRDApps extends React.Component {
   type = 'composing'
 
   get prefix() {
-    const { cluster, namespace } = this.props.match.params
-    return `/cluster/${cluster}/projects/${namespace}/applications/${this.type}`
+    const { workspace, cluster, namespace } = this.props.match.params
+    return `/${workspace}/clusters/${cluster}/projects/${namespace}/applications/${
+      this.type
+    }`
   }
 
   get canCreate() {
-    const { cluster, namespace: project } = this.props.match.params
+    const { workspace, cluster, namespace: project } = this.props.match.params
     const canCreateDeployment = globals.app
       .getActions({
+        workspace,
         cluster,
         project,
         module: 'deployments',
@@ -53,6 +56,7 @@ export default class CRDApps extends React.Component {
 
     const canCreateService = globals.app
       .getActions({
+        workspace,
         cluster,
         project,
         module: 'services',
@@ -109,8 +113,7 @@ export default class CRDApps extends React.Component {
     const { match, module, projectStore } = this.props
     return this.props.trigger('crd.app.create', {
       module,
-      namespace: match.params.namespace,
-      cluster: match.params.cluster,
+      ...match.params,
       projectDetail: projectStore.detail,
       success: url => this.routing.push(url),
     })

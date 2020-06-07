@@ -23,7 +23,8 @@ import MonitoringTarget from 'clusters/containers/Alerting/Policies/Detail/Monit
 import NotificationRules from 'clusters/containers/Alerting/Policies/Detail/NotificationRules'
 import AlertingHistory from 'clusters/containers/Alerting/Policies/Detail/AlertHistory'
 
-const PATH = '/cluster/:cluster/projects/:namespace/alert-policies/:name'
+const PATH =
+  '/:workspace/clusters/:cluster/projects/:namespace/alert-policies/:name'
 
 export default [
   {

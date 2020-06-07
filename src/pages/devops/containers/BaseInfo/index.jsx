@@ -62,16 +62,16 @@ class BaseInfo extends React.Component {
     return this.props.devopsStore
   }
 
-  get workspace() {
-    return this.store.data.workspace
-  }
-
   get project_id() {
     return this.props.match.params.project_id
   }
 
   get project_name() {
     return this.store.project_name
+  }
+
+  get workspace() {
+    return this.props.match.params.workspace
   }
 
   get cluster() {
@@ -214,14 +214,18 @@ class BaseInfo extends React.Component {
               icon="group"
               title={memberCount}
               desc={t('Members')}
-              url={`/cluster/${this.cluster}/devops/${this.project_id}/members`}
+              url={`/${this.workspace}/clusters/${this.cluster}/devops/${
+                this.project_id
+              }/members`}
             />
             <Info
               className={styles.info}
               icon="role"
               title={roleCount}
               desc={t('Project Roles')}
-              url={`/cluster/${this.cluster}/devops/${this.project_id}/roles`}
+              url={`/${this.workspace}/clusters/${this.cluster}/devops/${
+                this.project_id
+              }/roles`}
             />
           </div>
         </Card>

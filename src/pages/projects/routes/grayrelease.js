@@ -22,7 +22,7 @@ import GrayReleaseLayout from '../containers/GrayRelease'
 import Categories from '../containers/GrayRelease/Categories'
 import Jobs from '../containers/GrayRelease/Jobs'
 
-const PATH = '/cluster/:cluster/projects/:namespace/grayrelease'
+const PATH = '/:workspace/clusters/:cluster/projects/:namespace/grayrelease'
 
 const ROUTES = [
   { name: 'cates', title: 'GRAY_RELEASE_CATEGORIES', component: Categories },

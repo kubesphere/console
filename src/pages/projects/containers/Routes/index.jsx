@@ -125,7 +125,6 @@ export default class Routers extends React.Component {
 
   getColumns = () => {
     const { getSortOrder, module } = this.props
-    const { cluster, namespace } = this.props.match.params
     return [
       {
         title: t('Name'),
@@ -139,7 +138,7 @@ export default class Routers extends React.Component {
             iconSize={40}
             title={getDisplayName(record)}
             desc={record.description || '-'}
-            to={`/cluster/${cluster}/namespaces/${namespace}/${module}/${name}`}
+            to={`${this.props.match.url}/${name}`}
           />
         ),
       },

@@ -127,7 +127,6 @@ export default class Services extends React.Component {
 
   getColumns = () => {
     const { getSortOrder, module } = this.props
-    const { cluster, namespace } = this.props.match.params
     return [
       {
         title: t('Name'),
@@ -142,7 +141,7 @@ export default class Services extends React.Component {
             title={getDisplayName(record)}
             desc={record.description || '-'}
             isMultiCluster={record.isFedManaged}
-            to={`/cluster/${cluster}/projects/${namespace}/${module}/${name}`}
+            to={`${this.props.match.url}/${name}`}
           />
         ),
       },

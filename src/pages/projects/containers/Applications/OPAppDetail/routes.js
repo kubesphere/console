@@ -23,7 +23,7 @@ import AppTemplate from './AppTemplate'
 import EnvVariables from './EnvVariables'
 
 const PATH =
-  '/cluster/:cluster/projects/:namespace/applications/template/:runtime_id/:id'
+  '/:workspace/clusters/:cluster/projects/:namespace/applications/template/:runtime_id/:id'
 
 export default [
   {

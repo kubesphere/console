@@ -49,7 +49,7 @@ import grayReleaseRoutes from './grayrelease'
 
 import getDetailPath from './detail'
 
-const PATH = '/cluster/:cluster/projects/:namespace'
+const PATH = '/:workspace/clusters/:cluster/projects/:namespace'
 
 export default [
   ...getDetailPath(PATH),

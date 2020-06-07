@@ -103,7 +103,6 @@ export default class Secrets extends React.Component {
 
   getColumns = () => {
     const { getSortOrder, module } = this.props
-    const { namespace, cluster } = this.props.match.params
     return [
       {
         title: t('Name'),
@@ -116,7 +115,7 @@ export default class Secrets extends React.Component {
             icon={ICON_TYPES[module]}
             title={name}
             desc={record.aliasName}
-            to={`/cluster/${cluster}/projects/${namespace}/${module}/${name}`}
+            to={`${this.props.match.url}/${name}`}
           />
         ),
       },

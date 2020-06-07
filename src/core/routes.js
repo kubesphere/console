@@ -61,17 +61,17 @@ export default [
         component: AccessControl,
       },
       {
-        path: '/workspaces/:workspace',
-        component: Workspaces,
-      },
-      {
-        path: '/cluster/:cluster/projects/:namespace',
+        path: '/:workspace/clusters/:cluster/projects/:namespace',
         component: Projects,
       },
       {
-        path: '/cluster/:cluster/devops/:project_id',
+        path: '/:workspace/clusters/:cluster/devops/:project_id',
         component: DevOps,
         ksModule: 'devops',
+      },
+      {
+        path: '/workspaces/:workspace',
+        component: Workspaces,
       },
       {
         path: '/apps',

@@ -24,7 +24,7 @@ import GrayRelease from './GrayRelease'
 import Tracing from './Tracing'
 
 const PATH =
-  '/cluster/:cluster/projects/:namespace/applications/composing/:name'
+  '/:workspace/clusters/:cluster/projects/:namespace/applications/composing/:name'
 
 export default [
   {

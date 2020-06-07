@@ -66,7 +66,7 @@ class BaseInfo extends React.Component {
   }
 
   get workspace() {
-    return this.store.detail.workspace
+    return this.params.workspace
   }
 
   get tips() {
@@ -85,8 +85,8 @@ class BaseInfo extends React.Component {
   get enabledActions() {
     return globals.app.getActions({
       module: 'project-settings',
+      ...this.params,
       project: this.params.namespace,
-      cluster: this.params.cluster,
     })
   }
 

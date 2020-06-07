@@ -50,8 +50,8 @@ class BranchSider extends Base {
   }
 
   get listUrl() {
-    const { project_id } = this.props.match.params
-    return `/cluster/:cluster/devops/${project_id}/pipelines`
+    const { workspace, project_id } = this.props.match.params
+    return `/${workspace}/clusters/:cluster/devops/${project_id}/pipelines`
   }
 
   get name() {

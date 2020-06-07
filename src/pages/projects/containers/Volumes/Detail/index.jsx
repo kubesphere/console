@@ -54,15 +54,10 @@ export default class VolumeDetail extends React.Component {
   }
 
   get listUrl() {
-    const {
-      params: { cluster, namespace },
-      path,
-    } = this.props.match
-    if (path.startsWith('/clusters')) {
-      return `/clusters/${cluster}/volumes`
-    }
-
-    return `/cluster/${cluster}/projects/${namespace}/volumes`
+    const { workspace, cluster, namespace } = this.props.match.params
+    return `${
+      workspace ? `/${workspace}` : ''
+    }/clusters/${cluster}/projects/${namespace}/${this.module}`
   }
 
   fetchData = async () => {

@@ -53,9 +53,8 @@ class CredentialDetail extends Base {
   }
 
   get listUrl() {
-    const { project_id, cluster } = this.props.match.params
-
-    return `/cluster/${cluster}/devops/${project_id}/credentials`
+    const { workspace, project_id, cluster } = this.props.match.params
+    return `/${workspace}/clusters/${cluster}/devops/${project_id}/credentials`
   }
 
   init() {
@@ -123,12 +122,12 @@ class CredentialDetail extends Base {
   }
 
   handleDelete = () => {
-    const { project_id, cluster } = this.props.match.params
+    const { project_id, workspace, cluster } = this.props.match.params
     const { detail } = this.store
 
     this.store.delete(detail.id).then(() => {
       this.routing.push(
-        `/cluster/${cluster}/devops/${project_id}/${this.module}`
+        `/${workspace}/clusters/${cluster}/devops/${project_id}/${this.module}`
       )
     })
   }

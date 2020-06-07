@@ -31,7 +31,7 @@ import CredentialRoutes from './credential'
 
 import detail from './detail'
 
-const PATH = '/cluster/:cluster/devops/:project_id'
+const PATH = '/:workspace/clusters/:cluster/devops/:project_id'
 
 export default [
   ...PipelineRoutes,

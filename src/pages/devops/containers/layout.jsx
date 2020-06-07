@@ -53,12 +53,12 @@ class DevOpsLayout extends Component {
 
     await this.store.fetchDetail(params)
     await this.props.rootStore.getRules({
-      workspace: this.store.data.workspace,
+      workspace: params.workspace,
     })
     await this.props.rootStore.getRules({
       cluster: params.cluster,
       devops: this.store.data.name,
-      workspace: this.store.data.workspace,
+      workspace: params.workspace,
     })
 
     globals.app.cacheHistory(this.props.match.url, {
@@ -68,6 +68,10 @@ class DevOpsLayout extends Component {
     })
 
     this.store.initializing = false
+  }
+
+  get workspace() {
+    return this.props.match.params.workspace
   }
 
   get cluster() {
@@ -107,6 +111,7 @@ class DevOpsLayout extends Component {
               navs={globals.app.getDevOpsNavs({
                 devops: this.devops,
                 cluster: this.cluster,
+                workspace: this.workspace,
               })}
               location={location}
               match={match}

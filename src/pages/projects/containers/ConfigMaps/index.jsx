@@ -83,7 +83,7 @@ export default class ConfigMaps extends React.Component {
 
   getColumns = () => {
     const { getSortOrder, module } = this.props
-    const { namespace, cluster } = this.props.match.params
+    const { workspace, namespace, cluster } = this.props.match.params
     return [
       {
         title: t('Name'),
@@ -97,7 +97,7 @@ export default class ConfigMaps extends React.Component {
             iconSize={40}
             title={getDisplayName(record)}
             desc={record.description || '-'}
-            to={`/cluster/${cluster}/projects/${namespace}/${module}/${name}`}
+            to={`/${workspace}/clusters/${cluster}/projects/${namespace}/${module}/${name}`}
             isMultiCluster={record.isFedManaged}
           />
         ),

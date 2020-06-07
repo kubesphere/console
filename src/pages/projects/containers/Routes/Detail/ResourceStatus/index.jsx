@@ -51,7 +51,7 @@ class ResourceStatus extends React.Component {
       return null
     }
 
-    const { cluster, namespace } = this.props.match.params
+    const { workspace, cluster, namespace } = this.props.match.params
 
     return (
       <Card title={t('Rules')}>
@@ -61,7 +61,9 @@ class ResourceStatus extends React.Component {
             tls={tls}
             rule={rule}
             gateway={gateway}
-            prefix={`/cluster/${cluster}/projects/${namespace}`}
+            prefix={`${
+              workspace ? `/${workspace}` : ''
+            }/clusters/${cluster}/projects/${namespace}`}
           />
         ))}
       </Card>

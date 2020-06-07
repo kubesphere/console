@@ -84,7 +84,6 @@ export default class Secrets extends React.Component {
 
   getColumns = () => {
     const { getSortOrder, module } = this.props
-    const { namespace, cluster } = this.props.match.params
     return [
       {
         title: t('Name'),
@@ -98,7 +97,7 @@ export default class Secrets extends React.Component {
             iconSize={40}
             title={getDisplayName(record)}
             desc={record.description || '-'}
-            to={`/cluster/${cluster}/projects/${namespace}/${module}/${name}`}
+            to={`${this.props.match.url}/${name}`}
             isMultiCluster={record.isFedManaged}
           />
         ),
