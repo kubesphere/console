@@ -46,10 +46,17 @@ export default class DetailPage extends Base {
       await Promise.all([
         this.stores.clusterStore.fetchDetail({ name: cluster }),
         this.stores.projectStore.fetchDetail({ cluster, namespace }),
-        this.props.rootStore.getRules(
-          this.inCluster ? { cluster } : { cluster, namespace }
-        ),
       ])
+
+      const { workspace } = this.stores.projectStore.detail
+
+      if (workspace) {
+        await this.props.rootStore.getRules({ workspace })
+      }
+
+      await this.props.rootStore.getRules(
+        this.inCluster ? { cluster } : { cluster, workspace, namespace }
+      )
     }
 
     this.setState({ initializing: false })

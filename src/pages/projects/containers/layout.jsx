@@ -48,19 +48,19 @@ class ProjectLayout extends Component {
   async init(params) {
     this.store.initializing = true
 
-    await Promise.all([
-      this.store.fetchDetail(params),
-      this.props.rootStore.getRules({
-        cluster: params.cluster,
-        namespace: params.namespace,
-      }),
-    ])
+    await this.store.fetchDetail(params)
 
     if (this.store.detail.workspace) {
-      this.props.rootStore.getRules({
+      await this.props.rootStore.getRules({
         workspace: this.store.detail.workspace,
       })
     }
+
+    await this.props.rootStore.getRules({
+      cluster: params.cluster,
+      workspace: this.store.detail.workspace,
+      namespace: params.namespace,
+    })
 
     if (this.store.detail.isFedManaged) {
       await this.fedStore.fetchDetail({ ...params, name: params.namespace })
