@@ -160,7 +160,14 @@ export default {
 
   DATA_SOURCE: 'Data Source',
 
-  LOG_SEARCH_DESC: 'A multi-dimensional log search tool for workspaces, projects and resources.',
+  LOG_SEARCH_DESC:
+    'A multi-dimensional log search tool for workspaces, projects and resources.',
 
-  EVENT_SEARCH_DESC: 'A multi-dimensional event search tool for workspaces, projects and resources.',
+  EVENT_SEARCH_DESC:
+    'A multi-dimensional event search tool for workspaces, projects and resources.',
+
+  PLATFORM_INFO_DESC:
+    'View platform title and description and other information',
+  HOW_TO_MODIFY_PLATFORM_INFO: 'How to modify platform info?',
+  PLATFORM_SETTINGS_SELECTOR_DESC: 'Customize platform settings',
 }

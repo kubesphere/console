@@ -48,14 +48,14 @@ export default class WorkspaceStore extends Base {
   getListUrl = this.getResourceUrl
 
   @action
-  async fetchDetail({ workspace } = {}) {
+  async fetchDetail({ cluster, workspace } = {}) {
     if (isEmpty(workspace)) {
       return
     }
 
     this.isLoading = true
     const detail = await request.get(
-      this.getDetailUrl({ name: workspace }),
+      this.getDetailUrl({ name: workspace, cluster }),
       null,
       null,
       res => {
@@ -69,8 +69,10 @@ export default class WorkspaceStore extends Base {
       }
     )
 
-    this.detail = this.mapper(detail)
+    this.detail = { ...this.mapper(detail), cluster }
     this.isLoading = false
+
+    return { ...this.mapper(detail), cluster }
   }
 
   @action

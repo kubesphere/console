@@ -84,7 +84,7 @@ export default class InviteMemberModal extends React.Component {
   }
 
   handleSearch = value => {
-    this.setState({ keyword: value }, this.fetchData)
+    this.setState({ name: value }, this.fetchData)
   }
 
   handleSelect = (username, roleRef) => {

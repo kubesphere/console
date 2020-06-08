@@ -109,7 +109,7 @@ export default class ProjectSelectModal extends React.Component {
   handleTypeChange = type => {
     if (this.state.type !== type) {
       this.setState({ type }, () => {
-        this.fetchData({ keyword: '' })
+        this.fetchData({ name: '' })
       })
     }
   }

@@ -115,7 +115,7 @@ client:
           icon: earth
           children:
             - { name: networkpolicies, title: Network Policies }
-        - { name: customresources, title: Custom Resources, icon: select}
+        - { name: customresources, title: Custom Resources, icon: select }
         - name: storage
           title: Storage Management
           icon: database
@@ -144,11 +144,7 @@ client:
                 title: Alerting Messages,
                 icon: loudspeaker,
               }
-            - {
-                name: alert-policies,
-                title: Alerting Policies,
-                icon: hammer,
-              }
+            - { name: alert-policies, title: Alerting Policies, icon: hammer }
         - name: cluster-settings
           title: Cluster Settings
           icon: cogwheel
@@ -160,7 +156,12 @@ client:
                 skipAuth: true,
                 showInDisable: true,
               }
-            - { name: visibility, title: Cluster Visibility, authKey: 'cluster-settings' }
+            - {
+                name: visibility,
+                title: Cluster Visibility,
+                authKey: 'cluster-settings',
+                multiCluster: true,
+              }
             - { name: members, title: Cluster Members }
             - { name: roles, title: Cluster Roles }
             - {
@@ -168,6 +169,7 @@ client:
                 title: Mail Server,
                 icon: mail,
                 authKey: alerting,
+                ksModule: 'alerting',
               }
 
   # access control page navigations
@@ -182,7 +184,12 @@ client:
   platformSettingsNavs:
     - cate: 'platformsettings'
       items:
-        - { name: base-info, title: Platform Info, icon: home, authKey: platform-settings, }
+        - {
+            name: base-info,
+            title: Platform Info,
+            icon: home,
+            authKey: platform-settings,
+          }
         # - { name: third-login, title: Third-party Login, icon: passport, }
         # - {
         #     name: mail-server,
@@ -208,13 +215,24 @@ client:
           title: Apps Management
           icon: appcenter
           children:
-            - { name: apps, title: App Templates, icon: appcenter, authKey: 'app-templates' }
+            - {
+                name: apps,
+                title: App Templates,
+                icon: appcenter,
+                authKey: 'app-templates',
+              }
             - { name: repos, title: App Repos, authKey: 'app-repos' }
         - name: management
           title: Workspace Settings
           icon: cogwheel
           children:
             - { name: base-info, title: Basic Info, skipAuth: true }
+            - {
+                name: clusters,
+                title: Clusters Info,
+                authKey: 'workspace-settings',
+                multiCluster: true,
+              }
             - { name: roles, title: Workspace Roles }
             - { name: members, title: Workspace Members }
 
@@ -292,7 +310,11 @@ client:
             - { name: networkpolicies, title: Network Policy }
             - { name: roles, title: Project Roles }
             - { name: members, title: Project Members }
-            - { name: advanced, title: Advanced Settings, authKey: 'project-settings' }
+            - {
+                name: advanced,
+                title: Advanced Settings,
+                authKey: 'project-settings',
+              }
 
   # devops page navigations
   devopsNavs:
@@ -349,14 +371,15 @@ client:
 
   # development
   # disable authorization check when developing
-  disableAuthorization: false
+  disableAuthorization: true
 
   # show kubeconfig
   enableKubeConfig: true
 
   # third party tools
-  thirdPartyTools: []
-    # - title: 
+  thirdPartyTools:
+    []
+    # - title:
     #   description:
     #   link:
 
@@ -387,6 +410,7 @@ client:
     s2i_template: /workload/s2i-template/
     helm_specification: /developer/helm-specification/
     helm_developer_guide: /developer/helm-developer-guide/
+    custom_console: /developer/custom_console/
   # devops:
   #  replace sonarqube link to customize url origin, default is useless
   # sonarqubeURL: http://139.123.123.123:8080

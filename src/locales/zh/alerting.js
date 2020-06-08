@@ -153,7 +153,7 @@ export default {
   load15: 'CPU 15分钟平均负载',
   'pod abnormal ratio': '容器组异常率',
   'pod utilization rate': '容器组利用率',
-  'cpu utilization rate': 'CPU利用率',
+  'cpu utilization rate': 'CPU 利用率',
   'memory available': '可用内存',
   'memory utilization rate': '内存利用率',
   'disk space available': '本地磁盘可用空间',

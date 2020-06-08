@@ -49,7 +49,7 @@ module.exports = {
   rules: {
     // allow paren-less arrow functions
     'arrow-parens': 0,
-    'import/no-extraneous-dependencies': [2, { devDependencies: true }],
+    'import/no-extraneous-dependencies': 0,
     'import/no-dynamic-require': 0,
     'import/no-cycle': 0,
     // allow async-await

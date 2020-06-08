@@ -541,4 +541,8 @@ export default {
   ENV_DEVELOPMENT: '开发环境',
   ENV_TESTING: '测试环境',
   ENV_DEMO: '演示环境',
+
+  HOW_TO_MODIFY_PLATFORM_INFO: '如何修改平台信息?',
+  PLATFORM_INFO_DESC: '查看平台标题及描述等信息',
+  PLATFORM_SETTINGS_SELECTOR_DESC: '定制化平台的系统配置',
 }

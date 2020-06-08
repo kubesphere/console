@@ -19,6 +19,7 @@
 import React, { Component } from 'react'
 import { observer } from 'mobx-react'
 import { get } from 'lodash'
+import { Icon, Loading } from '@pitrix/lego-ui'
 import {
   Radar,
   RadarChart,
@@ -26,14 +27,14 @@ import {
   PolarAngleAxis,
   PolarRadiusAxis,
 } from 'recharts'
-import { Loading } from '@pitrix/lego-ui'
-import { Panel } from 'components/Base'
 
-import { getLastMonitoringData } from 'utils/monitoring'
+import { Text, Panel } from 'components/Base'
+import ClusterTitle from 'components/ClusterTitle'
+import ResourceItem from 'clusters/containers/Overview/Dashboard/ResourcesUsage/ResourceItem'
 
 import ClusterMonitorStore from 'stores/monitoring/cluster'
 
-import ResourceItem from './ResourceItem'
+import { getLastMonitoringData } from 'utils/monitoring'
 
 import styles from './index.scss'
 
@@ -49,8 +50,8 @@ const MetricTypes = {
 }
 
 @observer
-export default class ResourcesUsage extends Component {
-  monitorStore = new ClusterMonitorStore({ cluster: this.props.cluster })
+export default class Card extends Component {
+  monitorStore = new ClusterMonitorStore({ cluster: this.props.cluster.name })
 
   componentDidMount() {
     this.fetchData()
@@ -106,28 +107,45 @@ export default class ResourcesUsage extends Component {
     }))
 
   render() {
+    const { cluster } = this.props
     const options = this.getResourceOptions()
     const radarOptions = this.getRadarOptions(options)
 
     return (
-      <Panel title={t('Cluster Resources Usage')}>
+      <Panel key={cluster.name}>
         <Loading spinning={this.monitorStore.isLoading}>
-          <div className={styles.wrapper}>
-            <div className={styles.chart}>
-              <RadarChart
-                cx={180}
-                cy={158}
-                width={360}
-                height={316}
-                data={radarOptions}
-              >
-                <PolarGrid gridType="circle" />
-                <PolarAngleAxis dataKey="name" />
-                <PolarRadiusAxis domain={[0, 100]} />
-                <Radar dataKey="usage" stroke="#345681" fill="#1c2d4267" />
-              </RadarChart>
+          <div className={styles.cluster}>
+            <div className={styles.info}>
+              <div className={styles.title}>
+                <ClusterTitle cluster={cluster} />
+              </div>
+              <div className={styles.desc}>
+                <Text
+                  title={cluster.kubernetesVersion}
+                  description={t('Kubernetes Version')}
+                />
+                <Text
+                  title={cluster.provider || '-'}
+                  description={t('Provider')}
+                />
+              </div>
+              <div className={styles.chart}>
+                <RadarChart
+                  cx={136}
+                  cy={100}
+                  width={250}
+                  height={200}
+                  data={radarOptions}
+                >
+                  <PolarGrid gridType="circle" />
+                  <PolarAngleAxis dataKey="name" />
+                  <PolarRadiusAxis domain={[0, 100]} />
+                  <Radar dataKey="usage" stroke="#345681" fill="#1c2d4267" />
+                </RadarChart>
+              </div>
+              <Icon name="cluster" size={200} className={styles.cornerIcon} />
             </div>
-            <div className={styles.list}>
+            <div className={styles.monitor}>
               {options.map(option => (
                 <ResourceItem key={option.name} {...option} />
               ))}

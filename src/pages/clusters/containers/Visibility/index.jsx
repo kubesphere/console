@@ -77,7 +77,7 @@ export default class Overview extends React.Component {
   getColumns() {
     return [
       {
-        title: t('Name'),
+        title: t('Workspace'),
         dataIndex: 'name',
         render: (name, record) => (
           <Avatar

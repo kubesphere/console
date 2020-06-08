@@ -90,7 +90,7 @@ export default class BaseInfo extends React.Component {
     }
 
     this._search = true
-    this.userStore.fetchList({ keyword: value })
+    this.userStore.fetchList({ name: value })
   }, 300)
 
   handleChange = value => {
@@ -114,7 +114,7 @@ export default class BaseInfo extends React.Component {
           <Form.Item
             controlClassName={styles.nameWrapper}
             label={t('Workspace Name')}
-            desc={t('WORKSPACE_NAME_DESC')}
+            desc={t('NAME_DESC')}
             rules={[
               {
                 required: true,
@@ -122,16 +122,15 @@ export default class BaseInfo extends React.Component {
               },
               {
                 pattern: PATTERN_NAME,
-                message: `${t('Invalid name')}, ${t('WORKSPACE_NAME_DESC')}`,
+                message: `${t('Invalid name')}`,
               },
               { validator: this.nameValidator },
             ]}
           >
-            <Input
-              name="metadata.name"
-              placeholder={t('name')}
-              autoFocus={true}
-            />
+            <Input name="metadata.name" autoFocus={true} />
+          </Form.Item>
+          <Form.Item label={t('Alias')} desc={t('ALIAS_DESC')}>
+            <Input name="metadata.annotations['kubesphere.io/alias-name']" />
           </Form.Item>
           <Form.Item label={t('Workspace Manager')}>
             <Select
