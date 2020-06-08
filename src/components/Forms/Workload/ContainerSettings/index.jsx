@@ -260,12 +260,15 @@ export default class ContainerSetting extends React.Component {
 
     const mergedContainers = concat(containers, initContainers)
 
+    const { selectContainer } = this.state
     // find if data exist in all containers
-    const container = mergedContainers.find(item => item.name === data.name)
+    const containerIndex = mergedContainers.findIndex(
+      item => item.name === selectContainer.name
+    )
 
     // update containers
-    if (!isEmpty(container)) {
-      Object.assign(container, data)
+    if (containerIndex > -1) {
+      mergedContainers[containerIndex] = data
     } else {
       mergedContainers.push(data)
     }
