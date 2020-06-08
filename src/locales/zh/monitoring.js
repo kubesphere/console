@@ -185,4 +185,6 @@ export default {
   VALUE_FOMATER: '数据取值',
   Y_AXIS: 'Y轴',
   'Custom Monitoring': '自定义监控',
+  CustomMonitorDashboards: '自定义监控面板',
+  CUSTOMMONITORDASHBOARD_DESC: '用户可以根据自己需求定义应用监控面板',
 }
