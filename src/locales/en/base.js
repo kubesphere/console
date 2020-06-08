@@ -121,9 +121,9 @@ export default {
   NAV_ACCOUNTS: 'Accounts',
   ALERT_WARNING: 'Warning',
 
-  CREATE_STATUS_SUCCESS: 'Create successfully',
+  CREATE_STATUS_SUCCESS: 'Created successfully',
   CREATE_STATUS_UPDATING: 'Creating',
-  CREATE_STATUS_FAILED: 'Create failed',
+  CREATE_STATUS_FAILED: 'Created unsuccessfully',
 
   EMPTY_WRAPPER: 'No {resource} Found',
 
@@ -159,4 +159,8 @@ export default {
     'Customized platform settings, including basic info, mail server, password security, third party login and log collector',
 
   DATA_SOURCE: 'Data Source',
+
+  LOG_SEARCH_DESC: 'A multi-dimensional log search tool for workspaces, projects and resources.',
+
+  EVENT_SEARCH_DESC: 'A multi-dimensional event search tool for workspaces, projects and resources.',
 }

@@ -19,5 +19,5 @@
 export default {
   TOTAL_CATE_COUNT: '{total} Apps in Total',
   HOME_APP_STORE_DESC:
-    'App Store provides application lifecycle management of Helm-based applications, helps users to deploy and manage applications with one click.',
+    'The official App Store of KubeSphere provides deployment and management features that allow users to quickly deploy apps with one click based on app templates.',
 }

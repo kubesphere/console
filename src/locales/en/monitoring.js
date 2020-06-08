@@ -29,7 +29,7 @@ export default {
     'Monitor the running status of the physical resources',
   MONITORING_APPLICATION_DESC:
     'Monitor the running status of the application resources',
-  TIMERANGE_SELECTOR_MSG: 'End time needs to be later than start time',
+  TIMERANGE_SELECTOR_MSG: 'End time must be later than start time',
   MONITORING_SELECT_LIMIT_MSG: 'You can select up to ten resources',
 
   AVERAGE: 'Average',

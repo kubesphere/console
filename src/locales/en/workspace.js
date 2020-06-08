@@ -50,4 +50,6 @@ export default {
 
   WORKSPACE_ROLE_DESC:
     "Workspace role determines the role's authorizations in the current workspace.",
+  
+  SEARCH_WORKSPACE_TIP: 'Please enter the workspace name to search',
 }
