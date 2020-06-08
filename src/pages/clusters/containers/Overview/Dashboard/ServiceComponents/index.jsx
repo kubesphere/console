@@ -19,6 +19,7 @@
 import React, { Component } from 'react'
 import { toJS } from 'mobx'
 import { observer } from 'mobx-react'
+import { Link } from 'react-router-dom'
 import { Icon } from '@pitrix/lego-ui'
 import { Panel } from 'components/Base'
 import { COMPONENT_ICON_MAP } from 'utils/constants'
@@ -37,13 +38,16 @@ export default class ServiceComponents extends Component {
   }
 
   render() {
+    const { cluster } = this.props
     const data = toJS(this.store.list.data)
     return (
       <Panel title={t('Service Components')}>
         <div className={styles.icons}>
           {Object.keys(data).map(item => (
             <span key={item} data-tooltip={item}>
-              <Icon name={COMPONENT_ICON_MAP[item]} size={44} clickable />
+              <Link to={`/clusters/${cluster}/components?type=${item}`}>
+                <Icon name={COMPONENT_ICON_MAP[item]} size={44} clickable />
+              </Link>
             </span>
           ))}
         </div>

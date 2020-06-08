@@ -21,6 +21,7 @@ import { observer, inject } from 'mobx-react'
 import { isEmpty } from 'lodash'
 import { RadioGroup, RadioButton, Tag, Loading } from '@pitrix/lego-ui'
 import Banner from 'components/Cards/Banner'
+import { parse } from 'qs'
 
 import ComponentStore from 'stores/component'
 
@@ -34,8 +35,10 @@ export default class ServiceComponents extends React.Component {
   constructor(props) {
     super(props)
 
+    const { type } = parse(location.search.slice(1)) || {}
+
     this.state = {
-      type: 'kubesphere',
+      type: type || 'kubesphere',
     }
 
     this.configs = this.getConfigs()

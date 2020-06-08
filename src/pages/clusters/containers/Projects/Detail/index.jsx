@@ -54,48 +54,65 @@ export default class ProjectDetail extends React.Component {
     return `/clusters/${cluster}/projects`
   }
 
+  get routing() {
+    return this.props.rootStore.routing
+  }
+
   fetchData = () => {
     this.store.fetchDetail(this.props.match.params)
   }
 
-  getOperations = () => [
-    {
-      key: 'edit',
-      icon: 'pen',
-      text: t('Edit Info'),
-      action: 'edit',
-      onClick: () =>
-        this.trigger('resource.baseinfo.edit', {
-          type: t(this.name),
-          detail: toJS(this.store.detail),
-          success: this.fetchData,
-        }),
-    },
-    {
-      key: 'editQuota',
-      icon: 'pen',
-      text: t('Edit Quota'),
-      action: 'edit',
-      onClick: () =>
-        this.trigger('project.quota.edit', {
-          type: t(this.name),
-          detail: toJS(this.store.detail),
-        }),
-    },
-    {
-      key: 'delete',
-      icon: 'trash',
-      text: t('Delete'),
-      action: 'delete',
-      type: 'danger',
-      show: this.store.detail.workspace !== globals.config.systemWorkspace,
-      onClick: () =>
-        this.trigger('resource.delete', {
-          type: t(this.name),
-          detail: this.store.detail,
-        }),
-    },
-  ]
+  getOperations = () => {
+    const { workspace, cluster, name } = this.store.detail
+    return [
+      {
+        key: 'enter',
+        text: t('Enter the project'),
+        action: 'view',
+        type: 'control',
+        onClick: () =>
+          this.routing.push(
+            `/${workspace}/clusters/${cluster}/projects/${name}`
+          ),
+      },
+      {
+        key: 'edit',
+        icon: 'pen',
+        text: t('Edit Info'),
+        action: 'edit',
+        onClick: () =>
+          this.trigger('resource.baseinfo.edit', {
+            type: t(this.name),
+            detail: toJS(this.store.detail),
+            success: this.fetchData,
+          }),
+      },
+      {
+        key: 'editQuota',
+        icon: 'pen',
+        text: t('Edit Quota'),
+        action: 'edit',
+        onClick: () =>
+          this.trigger('project.quota.edit', {
+            type: t(this.name),
+            detail: toJS(this.store.detail),
+          }),
+      },
+      {
+        key: 'delete',
+        icon: 'trash',
+        text: t('Delete'),
+        action: 'delete',
+        type: 'danger',
+        show: this.store.detail.workspace !== globals.config.systemWorkspace,
+        onClick: () =>
+          this.trigger('resource.delete', {
+            type: t(this.name),
+            detail: this.store.detail,
+          }),
+      },
+    ]
+  }
 
   getAttrs = () => {
     const detail = toJS(this.store.detail)
