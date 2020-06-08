@@ -463,7 +463,7 @@ export const isAppsPage = (path = location.pathname) =>
 export const getClusterUrl = url => {
   let requestURL = url
 
-  const reg = new RegExp(/\/(api|apis|kapis)\/(.*)\/(klusters\/[^/]*)\/(.*)/)
+  const reg = new RegExp(/\/(api|apis|kapis)\/(.*)\/?(klusters\/[^/]*)\/(.*)/)
   const match = requestURL.match(reg)
 
   if (match && match.length === 5) {

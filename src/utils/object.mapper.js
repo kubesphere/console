@@ -942,6 +942,7 @@ const ClusterMapper = item => {
   return {
     ...getBaseInfo(item),
     conditions,
+    configz: get(item, 'status.configz', {}),
     provider: get(item, 'spec.provider'),
     isHost:
       get(
