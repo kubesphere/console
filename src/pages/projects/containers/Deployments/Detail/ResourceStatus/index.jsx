@@ -237,7 +237,5 @@ class ResourceStatus extends React.Component {
   }
 }
 
-export default inject('detailStore', 'projectStore', 'fedDetailStore')(
-  observer(ResourceStatus)
-)
+export default inject('detailStore', 'fedDetailStore')(observer(ResourceStatus))
 export const Component = ResourceStatus

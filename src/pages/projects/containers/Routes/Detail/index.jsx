@@ -54,9 +54,12 @@ export default class RouteDetail extends React.Component {
 
   get listUrl() {
     const { workspace, cluster, namespace } = this.props.match.params
-    return `${
-      workspace ? `/${workspace}` : ''
-    }/clusters/${cluster}/projects/${namespace}/${this.module}`
+    if (workspace) {
+      return `/${workspace}/clusters/${cluster}/projects/${namespace}/${
+        this.module
+      }`
+    }
+    return `/clusters/${cluster}/${this.module}`
   }
 
   fetchData = () => {

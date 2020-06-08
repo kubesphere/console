@@ -18,7 +18,8 @@
 
 import { getIndexRoute } from 'utils/router.config'
 
-import Layout from '../containers/layout'
+import ClusterLayout from '../containers/layout'
+import ListLayout from '../containers/Base/List'
 
 import Clusters from '../containers/Clusters'
 import AddCluster from '../containers/Clusters/AddCluster'
@@ -57,7 +58,6 @@ import detail from './detail'
 const PATH = '/clusters/:cluster'
 
 export default [
-  ...detail,
   {
     path: '/clusters',
     component: Clusters,
@@ -72,158 +72,165 @@ export default [
   },
   { path: '/clusters/add', component: AddCluster, exact: true },
   {
-    path: `${PATH}/kubectl`,
-    exact: true,
-    component: KubeCtl,
-  },
-  {
-    path: `${PATH}/kubeConfig`,
-    component: KubeConfig,
-    exact: true,
-  },
-  {
     path: PATH,
-    component: Layout,
+    component: ClusterLayout,
     routes: [
+      ...detail,
       {
-        path: `${PATH}/overview`,
-        component: Overview,
+        path: `${PATH}/kubectl`,
+        exact: true,
+        component: KubeCtl,
+      },
+      {
+        path: `${PATH}/kubeConfig`,
+        component: KubeConfig,
         exact: true,
       },
       {
-        path: `${PATH}/nodes`,
-        component: Nodes,
+        path: '',
+        component: ListLayout,
+        routes: [
+          {
+            path: `${PATH}/overview`,
+            component: Overview,
+            exact: true,
+          },
+          {
+            path: `${PATH}/nodes`,
+            component: Nodes,
+          },
+          {
+            path: `${PATH}/components`,
+            component: ServiceComponents,
+          },
+          {
+            path: `${PATH}/projects`,
+            component: Projects,
+            exact: true,
+          },
+          {
+            path: `${PATH}/customresources`,
+            component: CustomResources,
+            exact: true,
+          },
+          {
+            path: `${PATH}/deployments`,
+            component: Deployments,
+            exact: true,
+          },
+          {
+            path: `${PATH}/statefulsets`,
+            component: StatefulSets,
+            exact: true,
+          },
+          {
+            path: `${PATH}/daemonsets`,
+            component: DaemonSets,
+            exact: true,
+          },
+          {
+            path: `${PATH}/jobs`,
+            component: Jobs,
+            exact: true,
+          },
+          {
+            path: `${PATH}/cronjobs`,
+            component: CronJobs,
+            exact: true,
+          },
+          {
+            path: `${PATH}/pods`,
+            component: Pods,
+            exact: true,
+          },
+          {
+            path: `${PATH}/services`,
+            component: Services,
+            exact: true,
+          },
+          {
+            path: `${PATH}/ingresses`,
+            component: Routes,
+            exact: true,
+          },
+          {
+            path: `${PATH}/storageclasses`,
+            component: StorageClasses,
+            exact: true,
+          },
+          {
+            path: `${PATH}/volumes`,
+            component: Volumes,
+            exact: true,
+          },
+          {
+            path: `${PATH}/volume-snapshots`,
+            component: VolumeSnapshots,
+            exact: true,
+          },
+          {
+            path: `${PATH}/monitor-cluster`,
+            component: ClusterMonitor,
+          },
+          {
+            path: `${PATH}/monitor-resource`,
+            component: ResourceMonitor,
+          },
+          {
+            path: `${PATH}/alert-messages`,
+            component: AlertMessages,
+          },
+          {
+            path: `${PATH}/alert-policies`,
+            component: AlertPolicies,
+          },
+          {
+            path: `${PATH}/base-info`,
+            component: BaseInfo,
+            exact: true,
+          },
+          {
+            path: `${PATH}/visibility`,
+            component: Visibility,
+            exact: true,
+          },
+          {
+            path: `${PATH}/members`,
+            component: Members,
+            exact: true,
+          },
+          {
+            path: `${PATH}/roles`,
+            component: Roles,
+            exact: true,
+          },
+          {
+            path: `${PATH}/storageclasses`,
+            component: StorageClasses,
+            exact: true,
+          },
+          {
+            path: `${PATH}/snapshots/:namespace?`,
+            component: VolumeSnapshots,
+          },
+          {
+            path: `${PATH}/networkpolicies`,
+            component: NetworkPolicies,
+            exact: true,
+          },
+          {
+            path: `${PATH}/mail-server`,
+            component: MailServer,
+            exact: true,
+          },
+          getIndexRoute({ path: PATH, to: `${PATH}/overview`, exact: true }),
+          getIndexRoute({
+            path: `${PATH}/workloads`,
+            to: `${PATH}/deployments`,
+            exact: true,
+          }),
+        ],
       },
-      {
-        path: `${PATH}/components`,
-        component: ServiceComponents,
-      },
-      {
-        path: `${PATH}/projects`,
-        component: Projects,
-        exact: true,
-      },
-      {
-        path: `${PATH}/customresources`,
-        component: CustomResources,
-        exact: true,
-      },
-      {
-        path: `${PATH}/deployments`,
-        component: Deployments,
-        exact: true,
-      },
-      {
-        path: `${PATH}/statefulsets`,
-        component: StatefulSets,
-        exact: true,
-      },
-      {
-        path: `${PATH}/daemonsets`,
-        component: DaemonSets,
-        exact: true,
-      },
-      {
-        path: `${PATH}/jobs`,
-        component: Jobs,
-        exact: true,
-      },
-      {
-        path: `${PATH}/cronjobs`,
-        component: CronJobs,
-        exact: true,
-      },
-      {
-        path: `${PATH}/pods`,
-        component: Pods,
-        exact: true,
-      },
-      {
-        path: `${PATH}/services`,
-        component: Services,
-        exact: true,
-      },
-      {
-        path: `${PATH}/ingresses`,
-        component: Routes,
-        exact: true,
-      },
-      {
-        path: `${PATH}/storageclasses`,
-        component: StorageClasses,
-        exact: true,
-      },
-      {
-        path: `${PATH}/volumes`,
-        component: Volumes,
-        exact: true,
-      },
-      {
-        path: `${PATH}/volume-snapshots`,
-        component: VolumeSnapshots,
-        exact: true,
-      },
-      {
-        path: `${PATH}/monitor-cluster`,
-        component: ClusterMonitor,
-      },
-      {
-        path: `${PATH}/monitor-resource`,
-        component: ResourceMonitor,
-      },
-      {
-        path: `${PATH}/alert-messages`,
-        component: AlertMessages,
-      },
-      {
-        path: `${PATH}/alert-policies`,
-        component: AlertPolicies,
-      },
-      {
-        path: `${PATH}/base-info`,
-        component: BaseInfo,
-        exact: true,
-      },
-      {
-        path: `${PATH}/visibility`,
-        component: Visibility,
-        exact: true,
-      },
-      {
-        path: `${PATH}/members`,
-        component: Members,
-        exact: true,
-      },
-      {
-        path: `${PATH}/roles`,
-        component: Roles,
-        exact: true,
-      },
-      {
-        path: `${PATH}/storageclasses`,
-        component: StorageClasses,
-        exact: true,
-      },
-      {
-        path: `${PATH}/snapshots/:namespace?`,
-        component: VolumeSnapshots,
-      },
-      {
-        path: `${PATH}/networkpolicies`,
-        component: NetworkPolicies,
-        exact: true,
-      },
-      {
-        path: `${PATH}/mail-server`,
-        component: MailServer,
-        exact: true,
-      },
-      getIndexRoute({ path: PATH, to: `${PATH}/overview`, exact: true }),
-      getIndexRoute({
-        path: `${PATH}/workloads`,
-        to: `${PATH}/deployments`,
-        exact: true,
-      }),
     ],
   },
 ]

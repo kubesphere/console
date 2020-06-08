@@ -18,7 +18,7 @@
 
 import { getIndexRoute } from 'utils/router.config'
 
-import Layout from '../containers/layout'
+import ListLayout from '../containers/Base/List'
 
 import BaseInfo from '../containers/BaseInfo'
 import Roles from '../containers/Roles'
@@ -37,7 +37,7 @@ export default [
   ...detail,
   {
     path: PATH,
-    component: Layout,
+    component: ListLayout,
     routes: [
       ...overviewRoutes,
       {

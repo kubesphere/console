@@ -44,6 +44,7 @@ export default class ClusterCard extends React.Component {
       {
         title: data.provider,
         description: t('Provider'),
+        className: styles.provider,
       },
       {
         title: data.createTime

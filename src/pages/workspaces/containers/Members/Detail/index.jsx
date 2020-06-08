@@ -35,6 +35,7 @@ import routes from './routes'
 @trigger
 export default class MemberDetail extends React.Component {
   store = new UserStore()
+
   workspaceStore = new WorkspaceStore()
 
   componentDidMount() {
