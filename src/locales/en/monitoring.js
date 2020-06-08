@@ -52,6 +52,7 @@ export default {
   PROPOSAL_APPLIED: 'Applied',
   PROPOSAL_FAILED: 'Failed',
   PROPOSAL_PENDING: 'Pending',
+
   ADD_MONITOR_ITEM: 'Add Monitoring Item',
   ADD_MONITOR_ROW: 'Add Monitoring Group',
   SELECT_CHART_TYPE: 'Select a Chart Type',
@@ -106,4 +107,8 @@ export default {
   THRESHOLD_FILL: 'Threshold Settings',
   THRESHOLD_FILL_DESC:
     'You can set a threshold and the style can be changed automatically after the threshold is exceeded.',
+
+  CustomMonitorDashboards: 'Custom Monitor Dashboards',
+  CUSTOMMONITORDASHBOARD_DESC:
+    'users can define application requirements according to their own monitoring dashboards',
 }
