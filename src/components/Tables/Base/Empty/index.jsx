@@ -19,6 +19,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
+import { isUndefined } from 'lodash'
 
 import { Icon } from '@pitrix/lego-ui'
 
@@ -42,17 +43,17 @@ export default class EmptyTable extends React.PureComponent {
   }
 
   render() {
-    const { module, name, desc, action, className } = this.props
-    const _desc =
-      desc ||
-      t.html(
-        `${name
-          .split(' ')
-          .join('_')
-          .toUpperCase()}_CREATE_DESC`
-      )
+    const { module, icon, name, desc, action, className } = this.props
+    const _desc = !isUndefined(desc)
+      ? desc
+      : t.html(
+          `${name
+            .split(' ')
+            .join('_')
+            .toUpperCase()}_CREATE_DESC`
+        )
 
-    const _icon = ICON_TYPES[module] || 'appcenter'
+    const _icon = icon || ICON_TYPES[module] || 'appcenter'
 
     return (
       <div className={classnames(styles.wrapper, className)}>

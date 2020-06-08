@@ -315,7 +315,7 @@ export default class Nodes extends React.Component {
             <Text
               title={
                 <Tooltip
-                  content={this.renderCPUTooltip(record)}
+                  content={this.renderMemoryTooltip(record)}
                   placement="right"
                 >
                   <div className={styles.resource}>
