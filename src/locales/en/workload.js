@@ -212,7 +212,7 @@ export default {
   HPA_MSG:
     'Automatically autoscale the replicas according to CPU and memory usage. If both CPU and memory are specified, the replicas is added or deleted after any of the conditions are met.',
   PROBE_MSG:
-    'Readiness Probe检查容器是否准备好处理请求。失败意味着容器不应从代理接收任何流量，即使它正在运行。Liveness Probe检查配置它的容器是否仍在运行。如果活态探测器失败，则会杀死容器，容器将遵循其重启策略',
+    'Readiness Probe checks whether the container is ready to handle requests. Failure means the container should not receive any traffic from the agent even if it were running. Liveness Probe checks whether the container that configures it is running. If the Probe fails, the container will be killed and the restart policy will be implemented for the container.',
   WORKLOAD_REPLICA_MSG:
     'In the user-defined scope, if the number of Pods increases, the ReplicationController will terminate the extra Pods. Instead, the RC will create a new Pod that remains in the defined scope. For example, the RC will recreate the Pod on the node after Pod maintenance (such as kernel upgrades).',
   DEPLOYMENTS_REPLICA_DESC:
@@ -329,4 +329,11 @@ export default {
     'The GID to run the entrypoint of the container process. Uses runtime default if unset.',
 
   WORKLOAD_CREATE_DESC: 'Workload is usually the actual carrier for access services and is also the actual carrier for system applications such as node log collection and monitoring. Workload is also an abstract model for a group of Pods.',
+
+  COMPARE_WITH: 'Comparison with the previous version {version}',
+  REVISION_DESC: 'After the resource template of workload is changed, a new log will be generated and Pods will be rescheduled for version update. The latest 10 versions will be saved by default. You can implement a redeployment based on the change log.',
+
+  CLUSTER_CONTAINER_IMAGE_DIFF_DESC: 'Set different containers in different clusters according to needs',
+  CLUSTER_SERVICE_DIFF_DESC: 'Different service ports can be set in different clusters',
+  POD_SCALE_DESC: 'The number of Pod instances that can be scaled'
 }
