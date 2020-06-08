@@ -64,7 +64,7 @@ export default {
   BASE_LINE_CHART: 'Base Line Chart',
   BASE_BAR_CHART: 'Base Bar Chart',
   STACK_LINE_CHART: 'Stacked Area Chart',
-  STACK_BAR_CHAR: 'Stacked Bar Chart',
+  STACK_BAR_CHART: 'Stacked Bar Chart',
   LINE_CHART_DESC:
     'A line chart is mainly used to visualize a trend or change in data over time.',
   BASE_LINE_CHART_DESC:
