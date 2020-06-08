@@ -300,7 +300,6 @@ client:
             - {
                 name: custom-monitoring,
                 title: Custom Monitoring,
-                authKey: 'alerting',
               }
         - name: settings
           title: Project Settings
