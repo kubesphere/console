@@ -474,7 +474,7 @@ export const getClusterUrl = url => {
       : `/${match[1]}/${match[2]}/${match[4]}`
   }
 
-  return requestURL
+  return requestURL.replace(/\/\/+/, '/')
 }
 
 export const lazy = ctor => () => ctor()
