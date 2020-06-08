@@ -77,6 +77,8 @@ export const updatePipelineParams = (data, isEditor = false) => {
 export const updatePipelineParamsInSpec = (data, project_id) => {
   if (data.multi_branch_pipeline) {
     data = set(data, 'metadata.name', data.multi_branch_pipeline.name)
+    delete data.multi_branch_pipeline.metadata
+
     data.spec = {
       multi_branch_pipeline: { ...data.multi_branch_pipeline },
       type: data.type,
@@ -87,6 +89,8 @@ export const updatePipelineParamsInSpec = (data, project_id) => {
 
   if (data.pipeline) {
     data = set(data, 'metadata.name', data.pipeline.name)
+    delete data.pipeline.metadata
+
     data.spec = {
       pipeline: { ...data.pipeline },
       type: data.type,
@@ -96,6 +100,8 @@ export const updatePipelineParamsInSpec = (data, project_id) => {
   }
 
   delete data.type
+  delete data.desc
+  delete data.description
 
   data = set(data, 'metadata.namespace', project_id)
 }

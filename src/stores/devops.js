@@ -108,7 +108,6 @@ export default class DevOpsStore extends Base {
     keyword,
   } = {}) {
     this.list.isLoading = true
-
     const params = {}
 
     if (workspace) {
@@ -131,29 +130,33 @@ export default class DevOpsStore extends Base {
       params.reverse = true
     }
 
-    const result = await request.get(
-      this.getDevOpsUrl({ cluster, workspace }),
-      params
-    )
+    if (cluster) {
+      const result = await request.get(
+        this.getDevOpsUrl({ cluster, workspace }),
+        params
+      )
 
-    this.devopsListData = get(result, 'items', [])
+      this.devopsListData = get(result, 'items', [])
 
-    const data = get(result, 'items', []).map(item => ({
-      cluster,
-      ...this.mapper(item),
-    }))
+      const data = get(result, 'items', []).map(item => ({
+        cluster,
+        ...this.mapper(item),
+      }))
 
-    this.list.update({
-      data,
-      total: result.total_count || data.length || 0,
-      limit: Number(limit) || 10,
-      page: Number(page) || 1,
-      order,
-      reverse,
-      keyword,
-      isLoading: false,
-      selectedRowKeys: [],
-    })
+      this.list.update({
+        data,
+        total: result.total_count || data.length || 0,
+        limit: Number(limit) || 10,
+        page: Number(page) || 1,
+        order,
+        reverse,
+        keyword,
+        isLoading: false,
+        selectedRowKeys: [],
+      })
+    } else {
+      this.list.isLoading = false
+    }
   }
 
   @action
@@ -242,7 +245,7 @@ export default class DevOpsStore extends Base {
     )
 
     this.itemDetail = detail
-    const data = this.mapper(detail)
+    const data = { cluster, ...this.mapper(detail) }
     this.devops = data.name
     this.project_id = data.namespace
     data.workspace = data.workspace || workspace

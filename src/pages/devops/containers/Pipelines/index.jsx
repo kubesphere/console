@@ -390,8 +390,9 @@ class CICDs extends React.Component {
       cluster: this.cluster,
     })
 
-    this.setState({ showEditConfig: false })
-    this.handleFetch()
+    this.setState({ showEditConfig: false }, () => {
+      this.handleFetch()
+    })
   }
 
   handleDelete = async () => {
