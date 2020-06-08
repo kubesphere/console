@@ -50,7 +50,8 @@ class RedisStore extends Store {
     return JSON.parse(data)
   }
 
-  async set(session, { sid = uid.sync(24), maxAge = 3600000 } = {}) {
+  // maxAge unit is second.
+  async set(session, { sid = uid.sync(24), maxAge = 3600 } = {}) {
     await this.redis
       .set(`sid-${sid}`, JSON.stringify(session), 'EX', maxAge)
       .catch(this.catch)
