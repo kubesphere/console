@@ -327,4 +327,6 @@ export default {
     'The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified.',
   RUN_AS_USER_GROUP_DESC:
     'The GID to run the entrypoint of the container process. Uses runtime default if unset.',
+
+  WORKLOAD_CREATE_DESC: 'Workload is usually the actual carrier for access services and is also the actual carrier for system applications such as node log collection and monitoring. Workload is also an abstract model for a group of Pods.',
 }
