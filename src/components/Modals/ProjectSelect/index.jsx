@@ -156,6 +156,9 @@ export default class ProjectSelectModal extends React.Component {
         store: this.devopsStore,
         cluster,
         workspace,
+        success: () => {
+          this.fetchData()
+        },
       })
     }
   }

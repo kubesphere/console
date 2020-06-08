@@ -273,6 +273,7 @@ class BaseInfo extends React.Component {
           desc={t.html('DELETE_DEVOPS_TIP', {
             resource: data.name,
           })}
+          resource={data.name}
           visible={this.state.showDelete}
           onOk={this.handleDelete}
           onCancel={this.hideDelete}

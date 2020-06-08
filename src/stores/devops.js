@@ -242,7 +242,7 @@ export default class DevOpsStore extends Base {
     )
 
     this.itemDetail = detail
-    const data = this.mapper(detail)
+    const data = { cluster, ...this.mapper(detail) }
     this.devops = data.name
     this.project_id = data.namespace
     data.workspace = data.workspace || workspace

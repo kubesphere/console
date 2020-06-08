@@ -260,8 +260,10 @@ export default class PipelineDetail extends Base {
     updatePipelineParamsInSpec(data, project_id)
 
     await this.store.updatePipeline({ data, project_id, cluster })
-    this.fetchData()
-    this.setState({ showEditBaseInfo: false, showEditConfig: false })
+
+    this.setState({ showEditBaseInfo: false, showEditConfig: false }, () => {
+      this.fetchData()
+    })
   }
 
   showDeleteModal = () => {
