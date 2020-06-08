@@ -18,7 +18,7 @@
 
 import React from 'react'
 import { Form } from 'components/Base'
-import { StringInput } from 'components/Inputs'
+import StringInput from 'components/Inputs/StringInput'
 
 import styles from './index.scss'
 
