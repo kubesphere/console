@@ -115,7 +115,8 @@ client:
           icon: earth
           children:
             - { name: networkpolicies, title: Network Policies }
-        - { name: customresources, title: Custom Resources, icon: select }
+        # Contains dangerous operations, only available for platform-admin.
+        - { name: customresources, title: Custom Resources, icon: select, admin: true }
         - name: storage
           title: Storage Management
           icon: database
@@ -345,7 +346,7 @@ client:
 
   # preset infos
   presetUsers: ['admin', 'sonarqube']
-  presetGlobalRoles: ['global-admin']
+  presetGlobalRoles: ['platform-admin']
   presetClusterRoles: [cluster-admin, cluster-regular, workspaces-manager]
   presetWorkspaceRoles: [workspace-admin, workspace-regular, workspace-viewer]
   presetDevOpsRoles: [owner, maintainer, developer, reporter]

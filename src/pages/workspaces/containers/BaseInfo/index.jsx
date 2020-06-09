@@ -236,11 +236,16 @@ class BaseInfo extends React.Component {
       return <Panel title={t('Network Policy')}>xxx</Panel>
     }
 
+    const { data, isLoading } = toJS(this.store.clusters)
+
     const { workspaces } = this.state
 
     return (
       <Panel className={styles.network} title={t('Network Policy')}>
-        {this.store.clusters.data.map(cluster => {
+        {isEmpty(data) && !isLoading && (
+          <div className={styles.empty}>{t('No Available Cluster')}</div>
+        )}
+        {data.map(cluster => {
           const workspace = workspaces[cluster.name] || {}
           const networkIsolation = workspace.networkIsolation || false
           return (

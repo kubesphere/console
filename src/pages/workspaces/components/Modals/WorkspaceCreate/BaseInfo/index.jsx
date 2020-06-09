@@ -42,6 +42,13 @@ export default class BaseInfo extends React.Component {
     }))
   }
 
+  get networkOptions() {
+    return [
+      { label: t('Off'), value: '' },
+      { label: t('On'), value: 'enabled' },
+    ]
+  }
+
   nameValidator = (rule, value, callback) => {
     if (!value) {
       return callback()
@@ -149,6 +156,16 @@ export default class BaseInfo extends React.Component {
                 this.userStore.list.total === this.userStore.list.data.length
               }
               onMenuScrollToBottom={this.handleScrollToBottom}
+            />
+          </Form.Item>
+          <Form.Item
+            label={t('Network Isolated')}
+            desc={t('NETWORK_ISOLATED_DESC')}
+          >
+            <Select
+              name="metadata.annotations['kubesphere.io/network-isolate']"
+              options={this.networkOptions}
+              defaultValue=""
             />
           </Form.Item>
           <Form.Item

@@ -37,7 +37,7 @@ export default {
       const modal = Modal.open({
         onOk: data => {
           set(data, 'metadata.labels["kubesphere.io/workspace"]', workspace)
-          store.create(data).then(() => {
+          store.create(data, { cluster, workspace }).then(() => {
             const clusters = get(data, 'spec.placement.clusters', [])
             clusters.length > 1 &&
               federatedStore.create(FED_TEMPLATES.namespaces(data), {
@@ -50,6 +50,7 @@ export default {
           })
         },
         hideCluster: !globals.app.isMultiCluster || !!cluster,
+        cluster,
         workspace,
         formTemplate: FORM_TEMPLATES.project(),
         modal: ProjectCreateModal,

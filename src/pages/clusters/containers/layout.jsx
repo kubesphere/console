@@ -55,9 +55,11 @@ export default class App extends Component {
         this.props.rootStore.getRules({ cluster: params.cluster }),
       ])
 
-      this.store.fetchProjects({
-        cluster: params.cluster,
-      })
+      if (this.store.detail.isReady) {
+        await this.store.fetchProjects({
+          cluster: params.cluster,
+        })
+      }
 
       globals.app.cacheHistory(this.props.match.url, {
         type: 'Cluster',

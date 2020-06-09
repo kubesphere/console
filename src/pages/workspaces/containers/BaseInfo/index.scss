@@ -1,4 +1,5 @@
 @import '~scss/variables';
+@import '~scss/mixins';
 
 .header {
   position: relative;
@@ -69,4 +70,11 @@
 
 .clusterTitle {
   width: 50%;
+}
+
+.empty {
+  padding: 12px;
+  background-color: $card-bg-color;
+  border-radius: $border-radius;
+  @include TypographyTitleH5($dark-color01);
 }

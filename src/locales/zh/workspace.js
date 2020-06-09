@@ -52,6 +52,8 @@ export default {
 
   'Clusters Info': '集群信息',
 
+  'No Available Cluster': '暂时没有可用集群',
+
   WORKSPACE_OVERVIEW_DESC:
     '企业空间为 KubeSphere 提供了安全隔离的、具有访问权限控制的工作平台。这里您可以看到当前企业空间内资源运行的概况。',
 
@@ -101,4 +103,9 @@ export default {
   HOW_TO_APPLY_MORE_CLUSTER_Q: '如何为企业空间申请更多的集群？',
   HOW_TO_APPLY_MORE_CLUSTER_A:
     '集群由平台管理员以及集群管理员共同运营维护，如果您需要使用更多的集群请联系您的平台管理员，或者提交申请',
+
+  NO_PUBLIC_CLUSTER_TIP:
+    '暂无可用的公开集群, 请在企业空间创建完毕后, 向平台管理员或集群管理员申请集群的授权',
+  NO_CLUSTER_TIP:
+    '您需要联系平台管理员或者集群管理员为企业空间授权集群的访问权限',
 }
