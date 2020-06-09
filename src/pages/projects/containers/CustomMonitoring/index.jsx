@@ -113,27 +113,6 @@ export default class CustomMonitoringDashboards extends React.Component {
     ]
   }
 
-  get tableActions() {
-    const { trigger, routing, tableProps } = this.props
-    return {
-      ...tableProps.tableActions,
-      selectActions: [
-        {
-          key: 'delete',
-          type: 'danger',
-          text: t('Delete'),
-          action: 'delete',
-          onClick: () => {
-            trigger('resource.batch.delete', {
-              type: t(this.name),
-              success: routing.query,
-            })
-          },
-        },
-      ],
-    }
-  }
-
   showCreateModal = () => {
     this.setState({ createModalVisiable: true })
   }
@@ -186,7 +165,6 @@ export default class CustomMonitoringDashboards extends React.Component {
           <Table
             {...tableProps}
             itemActions={this.itemActions}
-            tableActions={this.tableActions}
             columns={this.getColumns()}
             onCreate={this.showCreateModal}
           />
