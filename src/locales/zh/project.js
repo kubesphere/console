@@ -138,8 +138,8 @@ export default {
 
   PROJECT_ASSIGN_DESC: '项目一旦被分配到企业空间后将不允许修改企业空间',
 
-  'Invite members to the project': '邀请成员到该项目',
-  'Invite members to the DevOps project': '邀请成员到该工程',
+  'Invite Members to the Project': '邀请成员到该项目',
+  'Invite Members to the DevOps Project': '邀请成员到该工程',
   INVITE_MEMBER_DESC: '您可以邀请新的成员来协助您的项目',
   INVITE_MEMBER_DESC_DEVOPS: '您可以邀请新的成员来协助您的工程',
   INVITE_MEMBER_SEARCH_PLACEHODLER: '输入邮箱邀请项目成员',

@@ -72,7 +72,7 @@ export default {
   'Project Settings': '项目设置',
   'Grayscale Release': '灰度发布',
 
-  "User's Manual": '使用手册',
+  "User Manual": '使用手册',
   'API Documents': 'API 文档',
 
   History: '历史记录',
@@ -448,7 +448,7 @@ export default {
   'rules desc':
     'KubeSphere可以根据您设置的规则进行操作审计的收集，点击查看如何定义规则。',
   category: '类别',
-  resources: '资源',
+  Resources: '资源',
   'Earliest start time': '最早发生时间',
   'Most recent start time': '最近发生时间',
   'Related resources': '关联资源',

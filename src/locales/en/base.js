@@ -170,4 +170,6 @@ export default {
     'View platform title and description and other information',
   HOW_TO_MODIFY_PLATFORM_INFO: 'How to modify platform info?',
   PLATFORM_SETTINGS_SELECTOR_DESC: 'Customize platform settings',
+
+  AUDITING_OPERATING_DESC: 'A multi-dimensional auditing search tool for workspaces, projects and resources.',
 }

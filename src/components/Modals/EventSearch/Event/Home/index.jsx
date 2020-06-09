@@ -31,7 +31,7 @@ export default class HomeModal extends React.Component {
   supportQueryParams = [
     {
       icon: 'magnifier',
-      title: t('Search Events by', { field: t('message') }),
+      title: t('Search Events by', { field: t('Message') }),
       tips: t('Message Event Query Tip'),
       key: 'message_search',
     },
@@ -55,13 +55,13 @@ export default class HomeModal extends React.Component {
     },
     {
       icon: 'resource',
-      title: t('Search Events by', { field: t('reason') }),
+      title: t('Search Events by', { field: t('Reason') }),
       tips: t('Reason Event Query Tip'),
       key: 'reason_filter',
     },
     {
       icon: 'cardview',
-      title: t('Search Events by', { field: t('category') }),
+      title: t('Search Events by', { field: t('Category') }),
       tips: t('Category Event Query Tip'),
       key: 'type_filter',
     },

@@ -95,7 +95,7 @@ export default class RuleInfo extends React.Component {
     })
   }
 
-  addWhiteList = () => {
+  addAllowList = () => {
     this.trigger('network.policies.add', {
       ...this.props,
       success: this.fetchPolicies,
@@ -222,8 +222,8 @@ export default class RuleInfo extends React.Component {
         <div className={classNames({ hide: curTab === 'outer' })}>
           <div className={styles.rulemenu}>
             <div>{t('NETWORK_POLICY_R1_DESC1')}</div>
-            <Button onClick={this.addWhiteList} className={styles.addBtn}>
-              {t('Add WhiteList')}
+            <Button onClick={this.addAllowList} className={styles.addBtn}>
+              {t('Add Allowlist')}
             </Button>
           </div>
           <div className={styles.rulebody}>

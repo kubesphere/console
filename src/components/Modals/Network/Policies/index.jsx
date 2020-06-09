@@ -145,7 +145,7 @@ export default class NetworkPoliciesModal extends React.Component {
       <Modal.Form
         width={600}
         icon="add"
-        title={t('Add WhiteList')}
+        title={t('Add Allowlist')}
         closable={true}
         {...rest}
         onOk={this.handleSave}

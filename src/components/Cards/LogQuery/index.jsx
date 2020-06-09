@@ -283,7 +283,7 @@ class LogCollectionDetailContainers extends Component {
   renderRecentOpts() {
     return (
       <div className={styles.recentOpts}>
-        <h3>{t('Select time range')}</h3>
+        <h3>{t('Select Time Range')}</h3>
         <ul>
           {this.recentOpts.map(recent => (
             <li

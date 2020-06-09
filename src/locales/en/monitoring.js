@@ -108,7 +108,7 @@ export default {
   THRESHOLD_FILL_DESC:
     'You can set a threshold and the style can be changed automatically after the threshold is exceeded.',
 
-  CustomMonitorDashboards: 'Custom Monitor Dashboards',
+  CustomMonitorDashboards: 'Custom Monitoring Dashboards',
   CUSTOMMONITORDASHBOARD_DESC:
-    'users can define application requirements according to their own monitoring dashboards',
+    'Users can define their application dashboards according to their own needs.',
 }

@@ -140,7 +140,7 @@ export default class Members extends React.Component {
               cluster: this.cluster,
               roles: toJS(this.roleStore.list.data),
               roleModule: this.roleStore.module,
-              title: t('Invite members to the project'),
+              title: t('Invite Members to the Project'),
               desc: t('INVITE_MEMBER_DESC'),
               searchPlaceholder: t('INVITE_MEMBER_SEARCH_PLACEHODLER'),
               success: this.getData,

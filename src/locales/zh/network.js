@@ -20,7 +20,7 @@ export default {
   'Network Policy': '网络策略',
   'Network Policies': '网络策略',
   'Create Network Policy': '创建网络策略',
-  'Add WhiteList': '添加白名单',
+  'Add Allowlist': '添加白名单',
   Egress: '出口',
   Ingress: '入口',
   'Traffic Egress': '流量出口',
