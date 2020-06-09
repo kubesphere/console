@@ -99,12 +99,12 @@ export default class Pullrequest extends React.Component {
     {
       title: t('Last message'),
       width: '25%',
-      render: record => record.pullRequest.title || '',
+      render: record => get(record, 'pullRequest.title', ''),
     },
     {
       title: t('author'),
       width: '15%',
-      render: record => record.pullRequest.author || '',
+      render: record => get(record, 'pullRequest.author', ''),
     },
     {
       title: t('Time'),
@@ -136,7 +136,7 @@ export default class Pullrequest extends React.Component {
       <Table
         data={toJS(data)}
         columns={this.getColumns()}
-        rowKey={'displayName'}
+        rowKey="displayName"
         filters={omitFilters}
         pagination={pagination}
         isLoading={isLoading}
