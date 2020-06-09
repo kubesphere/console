@@ -143,7 +143,7 @@ export default class VisibleTable extends React.Component {
             onClose={this.handleClose}
           >
             <div>
-              {t('Display content')} <Icon name="cogwheel" />
+              {t('Display Content')} <Icon name="cogwheel" />
             </div>
           </Dropdown>
         </div>
@@ -153,7 +153,7 @@ export default class VisibleTable extends React.Component {
 
   renderDropdownContent = () => (
     <div className={styles.dropdown}>
-      <h3>{t('Display content')}</h3>
+      <h3>{t('Display Content')}</h3>
       {this.dropDownCols.map((col, index) => (
         <div
           key={col.thead}

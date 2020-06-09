@@ -106,7 +106,7 @@ export default class Members extends React.Component {
               roles: toJS(this.roleStore.list.data),
               roleModule: this.roleStore.module,
               workspace: get(this.props, 'projectStore.detail.workspace'),
-              title: t('Invite members to the project'),
+              title: t('Invite Members to the Project'),
               desc: t('INVITE_MEMBER_DESC'),
               searchPlaceholder: t('INVITE_MEMBER_SEARCH_PLACEHODLER'),
               success: routing.query,

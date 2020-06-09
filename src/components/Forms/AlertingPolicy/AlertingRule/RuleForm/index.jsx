@@ -111,8 +111,8 @@ export default class RuleForm extends React.Component {
     return t(metricLabel)
   }
 
-  uniqueNameValidator = blacklist => (rule, value, callback) => {
-    if (includes(blacklist, value)) {
+  uniqueNameValidator = blocklist => (rule, value, callback) => {
+    if (includes(blocklist, value)) {
       return callback({ message: t('Name exists') })
     }
     return callback()
@@ -124,12 +124,12 @@ export default class RuleForm extends React.Component {
 
     const exitNames = currentRules.map(({ rule_name }) => rule_name)
 
-    const blacklist =
+    const blocklist =
       type === 'Add'
         ? exitNames
         : exitNames.filter(name => name !== data.rule_name)
 
-    return [requireRule, { validator: this.uniqueNameValidator(blacklist) }]
+    return [requireRule, { validator: this.uniqueNameValidator(blocklist) }]
   }
 
   componentDidMount() {

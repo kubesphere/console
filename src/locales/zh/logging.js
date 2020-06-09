@@ -51,7 +51,7 @@ export default {
   'Pod Event Query Tip': '可以根据容器组查看相关的事件信息',
   'Event statistics': '事件统计',
   'Time topology': '时间拓扑图',
-  'Display content': '显示内容',
+  'Display Content': '显示内容',
   'Search Result': '搜索结果',
   'please enter a conditional filter log': '请输入条件过滤日志',
   'Log Query': '日志查询',

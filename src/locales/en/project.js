@@ -93,7 +93,7 @@ export default {
 
   PROJECT_BASIC_INFO_DESC:
     "The project's basic information covers project name and the project's quota status.",
-  PROJECT_ROLE_DESC: 'Project roles defines the user rights for this project.',
+  PROJECT_ROLE_DESC: 'Project roles define what access users have in the current project.',
   PROJECT_MEMBERS_DESC: 'Manage and assign roles for project members.',
   PROJECT_ADVANCED_SETTINGS_DESC:
     'Configure gateway access for external websites as well as microservice and the collection of logs on disks.',
