@@ -231,7 +231,7 @@ export default class PanelMonitor {
  */
 function parseExpr2GrafanaQuery({ __name__, ...reset } = {}) {
   if (!__name__) {
-    return ''
+    return JSON.stringify(reset || {})
   }
 
   const querys = Object.entries(reset || {}).map(
