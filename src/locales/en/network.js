@@ -17,16 +17,21 @@
  */
 
 export default {
+  'Network Policys': 'Network Policies',
   NETWORK_POLICY_DESC:
-    'The network policy is configured to allow network isolation within the same cluster, that is, the ability to build a firewall between certain instances (pods).',
-  NETWORK_POLICY_Q: 'How to use network policies better?',
+    'The Network policy configuration allows network isolation within the same cluster, which means firewalls can be set up between certain instances (Pods).',
+  NETWORK_ISOLATION_DESC:
+    'By configuring network isolation to control traffic between Pod within the same cluster and traffic from outside, applications are isolated and security is enhanced.',
+  NETWORK_POLICY_Q: 'How to use network policy better??',
+  NETWORK_ISOLATION_Q: 'How to use network isolation better?',
   NETWORK_POLICY_A:
     'We have compiled several common application scenarios based on the actual scenarios, and you can refer to the documentation for more information.',
-  NETWORK_POLICY_Q1: 'Requirement to implement a network policy',
+  NETWORK_POLICY_Q1: 'Requirement to implement a network isolation',
+  NETWORK_ISOLATION_Q1: 'Requirement to implement a network policy',
   NETWORK_POLICY_A1: 'xxxxxxxxxx',
   NETWORK_POLICY_EMP_TITLE: 'Project Network Isolation Not Enabled',
   NETWORK_POLICY_EMP_DESC:
-    'If project network isolation is not enabled for the current project, it will allow other projects in the workspace to access it directly by default. If network isolation is not enabled for the workspace, all projects in the cluster will be allowed to access it.',
+    'Due to the enterprise space setup, the current project allows access by other projects within the cluster. When project network isolation is enabled, other projects are denied access to the current project, and you can customize the items, services, and external addresses that need to be released',
   NETWORK_POLICY_STATUS: 'Project Network Isolation',
   NETWORK_POLICY_R_DESC1:
     'You can set access to the following resources (matching any of the following policies)',
@@ -41,6 +46,8 @@ export default {
   NETWORK_POLICY_R2_DESC1:
     'Select a specific IP CIDR range as an entry source or exit destination. Cluster external IP',
   NETWORK_POLICY_D_DESC: 'Match Egress traffic and Ingress traffic',
+  NETWORK_POLICY_D_DESC2:
+    'CIDR is a string representing the IP Block Valid examples are "192.168.1.1/24"',
   NETWORK_POLICY_D_OP1: 'Egress',
   NETWORK_POLICY_D_OP2: 'Ingress',
   NETWORK_POLICY_CREATE_DESC:

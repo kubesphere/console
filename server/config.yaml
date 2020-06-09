@@ -307,7 +307,7 @@ client:
           icon: cogwheel
           children:
             - { name: base-info, title: Basic Info, skipAuth: true }
-            - { name: networkpolicies, title: Network Policy }
+            - { name: networkpolicies, title: Network Isolation }
             - { name: roles, title: Project Roles }
             - { name: members, title: Project Members }
             - {
