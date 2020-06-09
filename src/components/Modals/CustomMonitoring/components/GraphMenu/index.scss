@@ -14,6 +14,11 @@
     justify-content: space-between;
 
     cursor: pointer;
+
+    & > span {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   }
 
   .legendsContainer {
