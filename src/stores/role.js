@@ -30,18 +30,23 @@ export default class RoleStore extends Base {
 
   getPath({ cluster, workspace, namespace, devops }) {
     let path = ''
+
     if (cluster) {
       path += `/klusters/${cluster}`
     }
-    if (workspace) {
-      path += `/workspaces/${workspace}`
-    }
+
     if (namespace) {
-      path += `/namespaces/${namespace}`
+      return `${path}/namespaces/${namespace}`
     }
+
     if (devops) {
-      path += `/devops/${devops}`
+      return `${path}/devops/${devops}`
     }
+
+    if (workspace) {
+      return `/workspaces/${workspace}`
+    }
+
     return path
   }
 
