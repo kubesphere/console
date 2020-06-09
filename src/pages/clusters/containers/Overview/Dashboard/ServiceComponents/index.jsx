@@ -17,7 +17,6 @@
  */
 
 import React, { Component } from 'react'
-import { toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import { Link } from 'react-router-dom'
 import { Icon } from '@pitrix/lego-ui'
@@ -32,6 +31,44 @@ import styles from './index.scss'
 export default class ServiceComponents extends Component {
   store = new ComponentStore()
 
+  get configs() {
+    return [
+      {
+        type: 'kubesphere',
+        title: 'KubeSphere',
+      },
+      {
+        type: 'kubernetes',
+        title: 'Kubernetes',
+      },
+      {
+        type: 'openpitrix',
+        title: 'OpenPitrix',
+        disabled: !globals.app.hasKSModule('openpitrix'),
+      },
+      {
+        type: 'istio',
+        title: 'Istio',
+        disabled: !globals.app.hasKSModule('servicemesh'),
+      },
+      {
+        type: 'monitoring',
+        title: 'Monitoring',
+        disabled: !globals.app.hasKSModule('monitoring'),
+      },
+      {
+        type: 'logging',
+        title: 'Logging',
+        disabled: !globals.app.hasKSModule('logging'),
+      },
+      {
+        type: 'devops',
+        title: 'DevOps',
+        disabled: !globals.app.hasKSModule('devops'),
+      },
+    ]
+  }
+
   componentDidMount() {
     const { cluster } = this.props
     this.store.fetchList({ cluster })
@@ -39,17 +76,22 @@ export default class ServiceComponents extends Component {
 
   render() {
     const { cluster } = this.props
-    const data = toJS(this.store.list.data)
     return (
       <Panel title={t('Service Components')}>
         <div className={styles.icons}>
-          {Object.keys(data).map(item => (
-            <span key={item} data-tooltip={item}>
-              <Link to={`/clusters/${cluster}/components?type=${item}`}>
-                <Icon name={COMPONENT_ICON_MAP[item]} size={44} clickable />
-              </Link>
-            </span>
-          ))}
+          {this.configs
+            .filter(item => !item.disabled)
+            .map(item => (
+              <span key={item.type} data-tooltip={item.title}>
+                <Link to={`/clusters/${cluster}/components?type=${item.type}`}>
+                  <Icon
+                    name={COMPONENT_ICON_MAP[item.type]}
+                    size={44}
+                    clickable
+                  />
+                </Link>
+              </span>
+            ))}
         </div>
       </Panel>
     )
