@@ -18,8 +18,11 @@
 
 import React, { Component } from 'react'
 import classNames from 'classnames'
+import { isEmpty } from 'lodash'
+import { toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import { Checkbox } from '@pitrix/lego-ui'
+import { Alert } from 'components/Base'
 import ClusterTitle from 'components/ClusterTitle'
 
 import ClusterStore from 'stores/cluster'
@@ -57,9 +60,15 @@ export default class ClusterSettings extends Component {
 
   render() {
     const { value = [] } = this.props
+    const { data, isLoading } = toJS(this.clusterStore.list)
+
+    if (isEmpty(data) && !isLoading) {
+      return <Alert type="warning" message={t('NO_PUBLIC_CLUSTER_TIP')} />
+    }
+
     return (
       <div className={styles.wrapper}>
-        {this.clusterStore.list.data.map(cluster => (
+        {data.map(cluster => (
           <div
             key={cluster.name}
             className={classNames(styles.item, {

@@ -18,7 +18,7 @@
 
 import React from 'react'
 import { inject, observer } from 'mobx-react'
-
+import EmptyList from 'components/Cards/EmptyList'
 import WorkspaceStore from 'stores/workspace'
 
 import ResourceStatistics from './Statistics'
@@ -54,11 +54,21 @@ class ResourceUsage extends React.Component {
     this.workspaceStore.fetchClusters({ workspace: this.workspace })
   }
 
+  renderEmpty() {
+    return (
+      <EmptyList
+        icon="cluster"
+        title={t('No Available Cluster')}
+        desc={t('NO_CLUSTER_TIP')}
+      />
+    )
+  }
+
   render() {
     return (
       <div>
         <ResourceStatistics workspace={this.workspace} />
-        {this.workspaceStore.clusters.data.length > 0 && (
+        {this.workspaceStore.clusters.data.length > 0 ? (
           <>
             <PhysicalResource
               workspace={this.workspace}
@@ -71,6 +81,8 @@ class ResourceUsage extends React.Component {
               defaultCluster={this.defaultCluster}
             />
           </>
+        ) : (
+          this.renderEmpty()
         )}
       </div>
     )

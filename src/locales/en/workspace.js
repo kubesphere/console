@@ -50,6 +50,12 @@ export default {
 
   WORKSPACE_ROLE_DESC:
     "Workspace role determines the role's authorizations in the current workspace.",
-  
+
   SEARCH_WORKSPACE_TIP: 'Please enter the workspace name to search',
+
+  NO_PUBLIC_CLUSTER_TIP:
+    'There are no public clusters available, please apply for cluster authorization from the platform administrator or cluster administrator after workspace is created',
+
+  NO_CLUSTER_TIP:
+    'You need to contact the platform administrator or cluster administrator to authorize the access rights of the cluster for the workspace',
 }

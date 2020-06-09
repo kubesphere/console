@@ -17,6 +17,7 @@
  */
 
 import React from 'react'
+import { isEmpty } from 'lodash'
 
 import {
   Dropdown,
@@ -28,6 +29,7 @@ import {
 } from '@pitrix/lego-ui'
 import { Button } from 'components/Base'
 import BaseTable from 'components/Tables/Base'
+import EmptyList from 'components/Cards/EmptyList'
 import withTableActions from 'components/HOCs/withTableActions'
 import ClusterSelect from './ClusterSelect'
 
@@ -70,6 +72,21 @@ class ResourceTable extends BaseTable {
         </LevelRight>
       </Level>
     )
+  }
+
+  render() {
+    const { clusters } = this.props
+    if (isEmpty(clusters)) {
+      return (
+        <EmptyList
+          icon="cluster"
+          title={t('No Available Cluster')}
+          desc={t('NO_CLUSTER_TIP')}
+        />
+      )
+    }
+
+    return BaseTable.prototype.render.call(this)
   }
 }
 

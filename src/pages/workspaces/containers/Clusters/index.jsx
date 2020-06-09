@@ -17,8 +17,11 @@
  */
 
 import React from 'react'
+import { isEmpty } from 'lodash'
+import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import Banner from 'components/Cards/Banner'
+import EmptyList from 'components/Cards/EmptyList'
 
 import ClusterMonitorStore from 'stores/monitoring/cluster'
 
@@ -64,9 +67,18 @@ class BaseInfo extends React.Component {
       return null
     }
 
-    return this.store.clusters.data.map(cluster => (
-      <Card key={cluster.name} cluster={cluster} />
-    ))
+    const { data, isLoading } = toJS(this.store.clusters)
+    if (isEmpty(data) && !isLoading) {
+      return (
+        <EmptyList
+          icon="cluster"
+          title={t('No Available Cluster')}
+          desc={t('NO_CLUSTER_TIP')}
+        />
+      )
+    }
+
+    return data.map(cluster => <Card key={cluster.name} cluster={cluster} />)
   }
 
   render() {

@@ -99,7 +99,8 @@ export default class ProjectCreateModal extends React.Component {
       return callback()
     }
 
-    this.props.store.checkName({ name: value }).then(resp => {
+    const { cluster } = this.props
+    this.props.store.checkName({ name: value, cluster }).then(resp => {
       if (resp.exist) {
         return callback({ message: t('Name exists'), field: rule.field })
       }
@@ -195,7 +196,7 @@ export default class ProjectCreateModal extends React.Component {
                 <Select
                   name="metadata.annotations['kubesphere.io/network-isolate']"
                   options={this.networkOptions}
-                  defaultValue={'enabled'}
+                  defaultValue=""
                 />
               </Form.Item>
             </Column>
