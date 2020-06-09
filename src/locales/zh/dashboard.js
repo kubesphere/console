@@ -39,8 +39,8 @@ export default {
   'View All Nodes': '查看全部主机',
   'Disk Throughput': '磁盘吞吐',
   'Network Bandwidth': '网络带宽',
-  'Network Outbound': '网络流出速率',
-  'Network Inbound': '网络流入速率',
+  'Outbound Traffic': '网络流出速率',
+  'Inbound Traffic': '网络流入速率',
   'monitoring data': '监控数据',
   'log data': '日志数据',
 

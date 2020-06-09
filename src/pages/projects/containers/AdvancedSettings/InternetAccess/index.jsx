@@ -142,7 +142,7 @@ class InternetAccess extends React.Component {
             <Icon name="loadbalancer" size={40} />
           </div>
           <div className={styles.text}>
-            <div>{t('Gateway not set')}</div>
+            <div>{t('Gateway Not Set')}</div>
             <p>{t('PROJECT_INTERNET_ACCESS_DESC')}</p>
           </div>
           {this.canEdit && (

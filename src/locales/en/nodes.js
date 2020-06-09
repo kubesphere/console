@@ -34,7 +34,7 @@ export default {
   NODE_STATUS_WARNING: 'Warning',
 
   CLUSTER_NODE_DESC:
-    'Manage the cluster nodes and show the running status of them',
+    'This module manages cluster nodes and shows the running status of them. You can edit or delete nodes here.',
 
   NODE_NETWORKUNAVAILABLE: 'NetworkUnavailable',
   NODE_NETWORKUNAVAILABLE_DESC:
@@ -51,7 +51,7 @@ export default {
   NODE_PIDPRESSURE_DESC:
     'If pressure exists on the processes—that is, if there are too many processes on the node',
   NODE_READY: 'Ready',
-  NODE_READY_DESC: 'If The node is healthy and ready to accept pods',
+  NODE_READY_DESC: 'If the node is healthy and ready to accept pods',
 
   NODE_NETWORKUNAVAILABLE_TIP:
     'If the network for the node is correctly configured.',

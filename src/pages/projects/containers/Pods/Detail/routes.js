@@ -33,7 +33,7 @@ export default path => [
   },
   {
     path: `${path}/schedule`,
-    title: 'Schedule Info',
+    title: 'Scheduling Info',
     component: ScheduleInfo,
   },
   {

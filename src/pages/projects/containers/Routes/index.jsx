@@ -194,7 +194,7 @@ export default class Routers extends React.Component {
           <Icon className="margin-r12" name="loadbalancer" size={40} />
           <Text
             className={styles.text}
-            title={t('Gateway not set')}
+            title={t('Gateway Not Set')}
             description={t('PROJECT_INTERNET_ACCESS_DESC')}
           />
           {this.canSetGateway && (

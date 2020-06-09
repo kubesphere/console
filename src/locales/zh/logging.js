@@ -106,7 +106,7 @@ export default {
   Activate: '激活',
   'Real-Time Data': '实时数据',
   TOOLBOX_SHIFT_TIPS: ' 👻 Shift + 鼠标左键 可以在新窗口中打开',
-  'No longer showing help information': '不再显示帮助信息',
+  'Hide help information': '不再显示帮助信息',
   ES_DESC: 'Elasticsearch 是分布式、RESTful 风格的搜索和分析引擎',
   KAFKA_DESC: 'Kafka 是流行的开源流处理平台',
   FLUENTD_DESC: 'Fluentd 是提供统一日志处理层的开源数据收集器',

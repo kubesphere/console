@@ -151,7 +151,7 @@ export default {
   Recreate: '替换升级',
   RollingUpdate: '滚动更新',
   'RollingUpdate (Recommended)': '滚动更新(推荐)',
-  'Restart Count': '重启次数',
+  'Restart Times': '重启次数',
   'Resource Requests': '资源预留',
   'Resource Limits': '资源限制',
   'Image Pull Policy': '镜像拉取策略',
@@ -531,9 +531,9 @@ export default {
   'KubeSphere supports pulling images from the Image Registries and creating new images through source code (Source to Image).':
     'Kubesphere 支持从镜像仓库拉取镜像以及通过代码构建新的镜像并部署',
 
-  'Schedule Info': '调度信息',
-  'Node Schedule Info': '节点调度信息',
-  'Pod Status Analyse': '容器状态分析',
+  'Scheduling Info': '调度信息',
+  'Node Scheduling Info': '节点调度信息',
+  'Pod Status Analysis': '容器状态分析',
   'Current Stage(phase)': '当前阶段(phase)',
   'Scheduled to node': '调度至节点',
   'How pods are assinged to nodes?': '容器组如何被调度至节点?',

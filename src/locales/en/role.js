@@ -86,7 +86,7 @@ export default {
     'Manage cluster settings and authorizations to workspaces & edit cluster information',
   ROLE_CREATE_TIP_TITLE: 'Next Step',
   ROLE_CREATE_TIP_MESSAGE:
-    'You need to edit access after which the role can be created successfully.',
+    'You need to edit authorization after which the role can be created successfully.',
   NODES_VIEW_DESC: 'View node information',
   NODES_MANAGEMENT_DESC: 'Manage, enable and disable nodes; manage taints',
   CRD_MANAGEMENT_DESC: 'Manage, view, modify and delele cluster CRDs',

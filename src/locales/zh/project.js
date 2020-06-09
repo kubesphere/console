@@ -50,7 +50,7 @@ export default {
   'Set Gateway': '设置网关',
   'Edit Gateway': '编辑网关',
 
-  'Gateway not set': '网关未设置',
+  'Gateway Not Set': '网关未设置',
 
   'Delete Project': '删除项目',
   'Project Info': '项目信息',
@@ -76,7 +76,7 @@ export default {
   'Edit Project Quota': '编辑项目配额',
   'Add quota item': '添加配额项',
 
-  'Network Isolated': '网络隔离',
+  'Network Isolation': '网络隔离',
 
   deployments: '部署',
   statefulsets: '有状态副本集',
@@ -199,7 +199,7 @@ export default {
 
   'Invite other members into current project ?': '邀请其他成员到当前项目中?',
   'How to setup the project gateway ?': '如何设置项目网关？',
-  'You can limit the number of resources, empty is no limit.':
+  'You can limit the number of resources. Blank means no limit.':
     '您可以对资源的数量进行限制, 不填即不限制',
 
   PROJECT_TYPES_Q: '项目中的服务如何通过外网访问？',

@@ -31,7 +31,7 @@ export default {
     'The description will be added to the item as a comment and displayed in the details of the application. The description is limited to 1000 characters.',
   SHORT_DESCRIPTION_DESC: 'Description is limited to 1000 characters.',
   PROJECT_DESC:
-    'It will be grouped by project resources, which you can view and manage by project.',
+    'Projects will be grouped by their resources, which you can view and manage by project.',
 
   DELETE_TITLE: 'Sure to delete {type}?',
   DELETE_TIP:
@@ -167,9 +167,9 @@ export default {
     'A multi-dimensional event search tool for workspaces, projects and resources.',
 
   PLATFORM_INFO_DESC:
-    'View platform title and description and other information',
+    'View platform title, description and other information',
   HOW_TO_MODIFY_PLATFORM_INFO: 'How to modify platform info?',
-  PLATFORM_SETTINGS_SELECTOR_DESC: 'Customize platform settings',
+  PLATFORM_SETTINGS_SELECTOR_DESC: 'Customized Platform Settings',
 
   AUDITING_OPERATING_DESC: 'A multi-dimensional auditing search tool for workspaces, projects and resources.',
 }

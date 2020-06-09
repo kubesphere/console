@@ -210,7 +210,7 @@ export default class ContainerItem extends React.Component {
           <div>
             {isUndefined(detail.restartCount) ? '-' : detail.restartCount}
           </div>
-          <p>{t('Restart Count')}</p>
+          <p>{t('Restart Times')}</p>
         </div>
         <div className={styles.text}>
           <div>

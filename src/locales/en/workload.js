@@ -256,15 +256,15 @@ export default {
 
   POD_CONDITION_INITIALIZED: 'Initialized',
   POD_CONDITION_INITIALIZED_DESC:
-    'All init containers have started successfully',
+    'All init containers have started successfully.',
   POD_CONDITION_READY: 'Ready',
   POD_CONDITION_READY_DESC:
-    'The pod is already running and can be accessed through the service',
+    'The pod is already running and can be accessed through the service.',
   POD_CONDITION_CONTAINERSREADY: 'ContainersReady',
-  POD_CONDITION_CONTAINERSREADY_DESC: 'Containers in the pod is ready.',
+  POD_CONDITION_CONTAINERSREADY_DESC: 'Containers in the pod are ready.',
   POD_CONDITION_PODSCHEDULED: 'PodScheduled',
   POD_CONDITION_PODSCHEDULED_DESC:
-    'The pod has been successfully assigned to a node',
+    'The pod has been successfully assigned to a node.',
   POD_ASSIGNED_DESC:
     "The request value (ie, Request) set by the pod in the pod group is used as the basis for determining the resource allocation. Only when the amount that can be allocated in the node ≥ the pod's requst value, can the pod be allocated to this node.",
   POD_DESC:

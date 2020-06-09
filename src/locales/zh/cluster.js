@@ -92,7 +92,7 @@ export default {
   'Edit cluster basic information': '编辑集群基础信息',
 
   'Scheduler Scheduling Times': '调度器调度次数',
-  'Failed Scheduling Pods': '调度失败的容器组',
+  'Scheduling Failed Pods': '调度失败的容器组',
 
   'Please select or input a tag': '请选择或输入标识',
   'Please select or input a provider': '请选择或输入服务商',

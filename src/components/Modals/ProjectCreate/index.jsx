@@ -190,7 +190,7 @@ export default class ProjectCreateModal extends React.Component {
           <Columns>
             <Column>
               <Form.Item
-                label={t('Network Isolated')}
+                label={t('Network Isolation')}
                 desc={t('NETWORK_ISOLATED_DESC')}
               >
                 <Select
