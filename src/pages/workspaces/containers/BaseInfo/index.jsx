@@ -233,7 +233,27 @@ class BaseInfo extends React.Component {
 
   renderNetwork() {
     if (!globals.app.isMultiCluster) {
-      return <Panel title={t('Network Policy')}>xxx</Panel>
+      const workspace = this.workspaceStore.detail
+      const networkIsolation = workspace.networkIsolation || false
+      return (
+        <Panel className={styles.network} title={t('Network Policy')}>
+          <div className={styles.item}>
+            <Text
+              icon="firewall"
+              title={t(networkIsolation ? 'On' : 'Off')}
+              description={t('Workspace Network Isolation')}
+            />
+            {this.enabledActions.includes('edit') && (
+              <Switch
+                className={styles.switch}
+                text={t(networkIsolation ? 'On' : 'Off')}
+                onChange={this.handleNetworkChange(workspace)}
+                checked={networkIsolation}
+              />
+            )}
+          </div>
+        </Panel>
+      )
     }
 
     const { data, isLoading } = toJS(this.store.clusters)

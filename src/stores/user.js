@@ -59,15 +59,26 @@ export default class UsersStore extends Base {
     return path
   }
 
-  getResourceUrl = (params = {}) => {
-    if (params.cluster && (!params.namespace && !params.devops)) {
-      return `kapis/iam.kubesphere.io/v1alpha2${this.getPath(
-        params
-      )}/clustermembers`
+  getModule({ cluster, workspace, namespace, devops } = {}) {
+    if (namespace || devops) {
+      return 'members'
     }
 
-    return `kapis/iam.kubesphere.io/v1alpha2${this.getPath(params)}/users`
+    if (workspace) {
+      return 'workspacemembers'
+    }
+
+    if (cluster) {
+      return 'clustermembers'
+    }
+
+    return 'users'
   }
+
+  getResourceUrl = (params = {}) =>
+    `kapis/iam.kubesphere.io/v1alpha2${this.getPath(params)}/${this.getModule(
+      params
+    )}`
 
   getListUrl = this.getResourceUrl
 
@@ -93,9 +104,9 @@ export default class UsersStore extends Base {
     }
 
     const resp = await request.get(
-      `kapis/iam.kubesphere.io/v1alpha2${this.getPath(
+      `kapis/iam.kubesphere.io/v1alpha2${this.getPath(params)}/${this.getModule(
         params
-      )}/users/${name}/${module}`,
+      )}/${name}/${module}`,
       {},
       {},
       () => {}

@@ -87,6 +87,16 @@ export default class ProjectStore extends Base {
     return `${this.apiVersion}/watch${this.getPath(params)}/namespaces`
   }
 
+  getListUrl = (params = {}) => {
+    if (params.workspace) {
+      return `kapis/tenant.kubesphere.io/v1alpha2/workspaces/${
+        params.workspace
+      }${this.getPath(params)}/namespaces`
+    }
+
+    return `${this.apiVersion}${this.getPath(params)}/namespaces`
+  }
+
   @action
   async fetchList({
     cluster,
@@ -168,7 +178,7 @@ export default class ProjectStore extends Base {
           )
         )
       }
-      params.cluster = clusters[0].name
+      params.cluster = get(clusters, '[0].name')
       return this.submitting(request.post(this.getResourceUrl(params), data))
     }
 

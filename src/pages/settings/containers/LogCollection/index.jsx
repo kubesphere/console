@@ -20,7 +20,6 @@ import React from 'react'
 import { observer, inject } from 'mobx-react'
 import { computed } from 'mobx'
 import classnames from 'classnames'
-import OutputStore from 'stores/logging/collection/output'
 import { get } from 'lodash'
 import Moment from 'moment-mini'
 
@@ -28,6 +27,7 @@ import { Link } from 'react-router-dom'
 import { Loading, Icon } from '@pitrix/lego-ui'
 import { Button, Banner } from 'components/Base'
 import CreateLogCollectionModal from 'components/Modals/LogCollectionCreate'
+import OutputStore from 'stores/logging/collection/output'
 
 import collectionConfig from './config'
 

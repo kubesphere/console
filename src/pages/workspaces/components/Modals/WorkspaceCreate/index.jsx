@@ -157,7 +157,7 @@ export default class WorkspaceCreateModal extends React.Component {
   }
 
   renderFooter() {
-    const { onCancel } = this.props
+    const { onCancel, isSubmitting } = this.props
     const { currentStep } = this.state
 
     const total = this.steps.length - 1
@@ -176,7 +176,11 @@ export default class WorkspaceCreateModal extends React.Component {
                 {t('Next')}
               </Button>
             ) : (
-              <Button type="control" onClick={this.handleOk}>
+              <Button
+                type="control"
+                onClick={this.handleOk}
+                loading={isSubmitting}
+              >
                 {t('Create')}
               </Button>
             )}

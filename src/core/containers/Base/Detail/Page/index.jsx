@@ -16,6 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { has } from 'lodash'
 import React from 'react'
 import { NavLink, withRouter } from 'react-router-dom'
 import { inject, Provider } from 'mobx-react'
@@ -49,9 +50,12 @@ class DetailPage extends React.Component {
 
   getEnabledOperations = () => {
     const { operations = [] } = this.props
-    return operations.filter(
-      item => !item.action || this.enabledActions.includes(item.action)
-    )
+    return operations.filter(item => {
+      if (has(item, 'show') && !item.show) {
+        return false
+      }
+      return !item.action || this.enabledActions.includes(item.action)
+    })
   }
 
   renderNav(routes) {
