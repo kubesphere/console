@@ -143,7 +143,7 @@ export default class PodDetail extends React.Component {
         value: detail.nodeIp,
       },
       {
-        name: `${t('Restart Times')}(${t('Total')})`,
+        name: `${t('Restart Count')}(${t('Total')})`,
         value: restarts,
       },
       {

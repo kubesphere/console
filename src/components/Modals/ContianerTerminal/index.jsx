@@ -155,7 +155,7 @@ export default class ContainerTerminalModal extends React.Component {
             <dd>{this.getResourceInfo('requests')}</dd>
             <dt>{t('Resource Limits')}</dt>
             <dd>{this.getResourceInfo('limits')}</dd>
-            <dt>{t('Restart Times')}</dt>
+            <dt>{t('Restart Count')}</dt>
             <dd>{selectContainer.restartCount}</dd>
           </dl>
         </div>

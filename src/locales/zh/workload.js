@@ -151,7 +151,7 @@ export default {
   Recreate: '替换升级',
   RollingUpdate: '滚动更新',
   'RollingUpdate (Recommended)': '滚动更新(推荐)',
-  'Restart Times': '重启次数',
+  'Restart Count': '重启次数',
   'Resource Requests': '资源预留',
   'Resource Limits': '资源限制',
   'Image Pull Policy': '镜像拉取策略',
