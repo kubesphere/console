@@ -117,14 +117,14 @@ export default class ContainerSetting extends React.Component {
   )
 
   renderImageForm = () => {
-    const { cluster, namespace } = this.props
+    const { data, cluster, namespace } = this.props
     return (
       <ImageSearch
         name="image"
         cluster={cluster}
         namespace={namespace}
         className={styles.imageSearch}
-        formTemplate={this.props.data}
+        formTemplate={data}
         imageRegistries={this.imageRegistries}
       />
     )

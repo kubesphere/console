@@ -164,7 +164,6 @@ export default class ContaineForm extends React.Component {
   render() {
     const {
       className,
-      data,
       configMaps,
       secrets,
       cluster,
@@ -183,7 +182,7 @@ export default class ContaineForm extends React.Component {
         </div>
         <Form ref={this.formRef} data={formData}>
           <ContainerSetting
-            data={data}
+            data={formData}
             cluster={cluster}
             namespace={namespace}
             defaultContainerType={containerType}
