@@ -55,7 +55,7 @@ export default class HomeModal extends React.Component {
   supportQueryParams = [
     {
       icon: 'magnifier',
-      title: t('Search Log by', { field: t('Key Word') }),
+      title: t('Search Log by', { field: t('Keyword') }),
       tips: t('KeyWord Log Query Tip'),
       key: 'log_query',
     },

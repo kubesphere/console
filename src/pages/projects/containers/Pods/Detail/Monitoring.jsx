@@ -76,14 +76,14 @@ class Monitorings extends React.Component {
     },
     {
       type: 'bandwidth',
-      title: 'Network Outbound',
+      title: 'Outbound Traffic',
       unitType: 'bandwidth',
       legend: ['Outbound'],
       data: get(this.metrics, `${MetricTypes.net_transmitted}.data.result`),
     },
     {
       type: 'bandwidth',
-      title: 'Network Inbound',
+      title: 'Inbound Traffic',
       unitType: 'bandwidth',
       legend: ['Inbound'],
       data: get(this.metrics, `${MetricTypes.net_received}.data.result`),

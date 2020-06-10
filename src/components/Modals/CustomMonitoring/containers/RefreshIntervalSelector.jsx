@@ -28,7 +28,7 @@ function generateOptions(opts) {
   return opts.map(interval => ({
     label: interval
       ? `${t('Interval')} ${translateTimeAlias(interval)}`
-      : t('No Refresh'),
+      : t('No Refreshing'),
     value: interval,
   }))
 }

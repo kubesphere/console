@@ -130,7 +130,7 @@ export default {
   EDIT_TEMPLATE: '编辑模板',
   SAVE_TEMPLATE: '保存模板',
 
-  'No Refresh': '不刷新',
+  'No Refreshing': '不刷新',
 
   GRAPH_COLORS: '图表配色',
   SINGLE_GRAPH_TYPE: '最常见的图表类型',

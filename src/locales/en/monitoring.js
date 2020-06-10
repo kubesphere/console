@@ -111,4 +111,6 @@ export default {
   CustomMonitorDashboards: 'Custom Monitoring Dashboards',
   CUSTOMMONITORDASHBOARD_DESC:
     'Users can define their application dashboards according to their own needs.',
+  CUSTOMMONITORDASHBOARD_CREATE_DESC: 'Users can define their application dashboards according to their own needs.',
+  METRIC_NAME: 'Metric Name',
 }
