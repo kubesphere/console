@@ -136,9 +136,9 @@ export default class DevOpsStore extends Base {
         params
       )
 
-      this.devopsListData = get(result, 'items', [])
+      this.devopsListData = get(result, 'items') || []
 
-      const data = get(result, 'items', []).map(item => ({
+      const data = this.devopsListData.map(item => ({
         cluster,
         ...this.mapper(item),
       }))

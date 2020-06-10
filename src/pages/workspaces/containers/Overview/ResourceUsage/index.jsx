@@ -44,7 +44,8 @@ class ResourceUsage extends React.Component {
   }
 
   get defaultCluster() {
-    const { name } = this.clusters.find(cluster => cluster.isHost) || {}
+    const { name } =
+      this.clusters.find(cluster => cluster.isHost) || this.clusters[0] || {}
     return name
   }
 
