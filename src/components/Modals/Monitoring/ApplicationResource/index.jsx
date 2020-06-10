@@ -121,9 +121,10 @@ export default class ResourceMonitorModal extends React.Component {
         workspace: this.props.workspace,
         ...params,
       })
-      const cluster = this.workspaceStore.clusters.data.find(
-        item => item.isHost
-      )
+      const cluster =
+        this.workspaceStore.clusters.data.find(item => item.isHost) ||
+        this.workspaceStore.clusters.data[0] ||
+        {}
       this.setState(
         ({ filter }) => ({
           filter: { ...filter, cluster: cluster.name },

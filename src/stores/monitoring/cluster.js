@@ -69,6 +69,10 @@ export default class ClusterMonitoring extends Base {
       this.resourceMetrics.isLoading = true
     }
 
+    if (filters.cluster) {
+      this.cluster = filters.cluster
+    }
+
     const params = this.getParams(filters)
 
     // set correct path
