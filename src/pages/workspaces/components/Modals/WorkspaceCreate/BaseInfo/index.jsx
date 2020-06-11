@@ -159,7 +159,7 @@ export default class BaseInfo extends React.Component {
             />
           </Form.Item>
           <Form.Item
-            label={t('Network Isolated')}
+            label={t('Network Isolation')}
             desc={t('NETWORK_ISOLATED_DESC')}
           >
             <Select

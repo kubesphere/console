@@ -22,7 +22,7 @@ export default {
   APPLICATIONS_DESC:
     'An application provides users with full business functionalities in one package. Application templates in KubeSphere are built on the Helm packaging specification. They are delivered through a unified public or private Helm repository. An application is composed of one or more Kubernetes objects such as workloads, services, ingress etc.',
   APP_DEPLOYMENT_DESC:
-    'Lightweight, portable, self-contained software packaging technology that enables applications to run in the same way almost anywhere.',
+    'Lightweight, portable and self-contained software packaging technology enables applications to run in almost any place in the same way.',
 
   LB_ALG_DESC:
     'Support standard load balancing algorithms</br>ROUND_ROBIN：Polling, the default load balancing algorithm.</br>LEAST_CONN：Randomly select two healthy hosts, and then select one host with fewer links from the selected two hosts.</br>RANDOM：Pick one randomly from all healthy hosts.',
@@ -93,7 +93,7 @@ export default {
   TIP_APP_GOVERNANCE:
     'Using App Governance requires creating a homebrew app and turning on service governance for each service',
   APP_REPOS_DESC:
-    'The application repository comes from a third-party Helm Chart Repo, which visually exposes and provides deployment and management capabilities in KubeSphere, allowing users to quickly deploy applications one-click based on templates in the application repository.',
+    'The app repository comes from a third-party Helm Chart Repo, which visually displays and provides deployment and management capabilities in KubeSphere. Users can quickly deploy applications with one click based on templates in the app repository.',
   SEARCH_TIPS: 'You can filter based on relevant conditions',
 
   APPLICATION_BASEINFO_DESC: 'Basic application information (such as name description)',

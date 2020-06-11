@@ -20,25 +20,25 @@ export default {
   FILE_UPLOAD_MAX: 'The file size cannot exceed 2M.',
 
   APP_TEMPLATE_DESC:
-    'KubeSphere provides lifecycle management of application template. You can upload or create new application template and test it quickly. In addition, you can publish your application template to App Store so that other users can purchase and deploy it.',
+    'KubeSphere provides lifecycle management of app templates. You can upload or create new app templates and test them quickly. In addition, you can publish your app templates to App Store so that other users can purchase and deploy them.',
 
   APP_TEMPLATE_CREATE_DESC:
-    'KubeSphere provides lifecycle management of application template. You can upload or create new application template and test it quickly. In addition, you can publish your application template to App Store so that other users can purchase and deploy it.',
+    'KubeSphere provides lifecycle management of app templates. You can upload or create new app templates and test them quickly. In addition, you can publish your app templates to App Store so that other users can purchase and deploy them.',
 
-  DEVELOP_APP_TITLE: 'How to Develop Application Template',
+  DEVELOP_APP_TITLE: 'How to develop app templates?',
 
   DEVELOP_APP_DESC:
-    'You can upload Helm Chart or use the resource orchestration tool provided by KubeSphere to develop application templates.',
+    'You can upload Helm Chart or use the resource orchestration tool provided by KubeSphere to develop app templates.',
 
-  HOW_PUBLISH_APP_TITLE: 'How to publish applications to App Store',
+  HOW_PUBLISH_APP_TITLE: 'How to publish applications to App Store?',
 
   HOW_PUBLISH_APP_DESC:
-    'KubeSphere currently supports uploading Helm Charts through Application Templates within Workspace, from where you can submit your template for review. Once approved then you can publish the template to App Store.',
+    'KubeSphere currently supports uploading Helm Charts through app templates within the workspace, where you can submit your template for review. Once the template is approved, you can publish it to App Store.',
 
   HOW_APP_DEPLOY_TITLE: 'How to deploy and test applications',
 
   APPS_CREATE_DESC:
-    'KubeSphere provides lifecycle management of application template. You can upload or create new application template and test it quickly. In addition, you can publish your application template to App Store so that other users can purchase and deploy it.',
+    'KubeSphere provides lifecycle management of app templates. You can upload or create new app templates and test them quickly. In addition, you can publish your app templates to App Store so that other users can purchase and deploy them.',
 
   APP_NAME_DESC: 'Important Identification of Applications',
 
@@ -84,7 +84,7 @@ export default {
   EDIT_APP_DESC: 'Set up the basic information of the application',
 
   CREATE_APP_DESC:
-    'Lightweight, portable, self-contained software packaging technology enables applications to run in almost any place in the same way.',
+    'Lightweight, portable and self-contained software packaging technology enables applications to run in almost any place in the same way.',
 
   RESOURCE_TOOL_TITLE: 'Created through Resource Choreographer',
 

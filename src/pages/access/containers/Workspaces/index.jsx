@@ -101,11 +101,11 @@ export default class Workspaces extends React.Component {
         ),
       },
       {
-        title: t('Projects Number'),
+        title: t('Project Number'),
         dataIndex: 'annotations["kubesphere.io/namespace-count"]',
       },
       {
-        title: t('DevOps Projects Number'),
+        title: t('DevOps Project Number'),
         dataIndex: 'annotations["kubesphere.io/devops-count"]',
       },
       {

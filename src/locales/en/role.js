@@ -104,8 +104,8 @@ export default {
   'Manage App Store at platform level and responsible for unified lifecycle management of cloud native applications including their release, removal and review',
   PLATFORM_SETTINGS_MANAGEMENT_DESC:
   'Manage platform settings, such as customized platform information, log collection configuration and email notification',
-  ACCOUNT_ROLE_DESC: 'Account roles define the access an account has in the platform',
-  ACCOUNT_ROLE_CREATE_DESC: 'Account roles define the access an account has in the platform',
+  ACCOUNT_ROLE_DESC: 'Account roles define the access an account has in the platform.',
+  ACCOUNT_ROLE_CREATE_DESC: 'Account roles define the access an account has in the platform.',
   PIPELINES_MANAGEMENT_DESC:
   'Manage DevOps project pipeline, including creating, editing and deleting',
   PIPELINES_VIEW_DESC: 'View DevOps project pipeline and download artifacts',

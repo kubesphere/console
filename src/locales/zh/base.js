@@ -413,7 +413,7 @@ export default {
 
   'Resource List': '资源列表',
 
-  'Platform-level access control': '平台级的访问控制',
+  'Platform-level Access Control': '平台级的访问控制',
 
   NOT_FOUND_DESC:
     '🙇 对不起没有找到相关资源，系统将在 {time}s 后返回 <a href="{link}">工作台</a>',

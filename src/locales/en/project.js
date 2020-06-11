@@ -101,7 +101,7 @@ export default {
   PROJECT_TYPES_Q:
     'How can the services in the project be accessed through the external network?',
   PROJECT_TYPES_A:
-    'The project gateway is responsible for creating the corresponding application routing controller to forward the request to the corresponding backend service. After opening the project gateway, the service can be exposed to the external network through Ingress.',
+    'The project gateway is responsible for creating the corresponding application routing controller to forward the request to the corresponding backend service. After the project gateway is opened, the service can be exposed to the external network through Ingress.',
 
   NAME_EXIST_IN_CLUSTER: 'Name exists in {cluster}',
 

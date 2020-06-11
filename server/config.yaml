@@ -230,7 +230,7 @@ client:
             - { name: base-info, title: Basic Info, skipAuth: true }
             - {
                 name: clusters,
-                title: Clusters Info,
+                title: Cluster Info,
                 authKey: 'workspace-settings',
                 multiCluster: true,
               }

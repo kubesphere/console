@@ -31,8 +31,8 @@ export default {
   'Workspaces Manager': '企业空间管理员',
   'Create Workspace': '创建企业空间',
 
-  'Projects Number': '项目数量',
-  'DevOps Projects Number': 'DevOps 工程数量',
+  'Project Number': '项目数量',
+  'DevOps Project Number': 'DevOps 工程数量',
   'Edit Quota': '编辑配额',
 
   'View Workspace': '进入企业空间',
@@ -50,7 +50,7 @@ export default {
   'Clusters Authorization Info': '集群授权信息',
   'Workspace Network Isolation': '企业空间网络隔离',
 
-  'Clusters Info': '集群信息',
+  'Cluster Info': '集群信息',
 
   'No Available Cluster': '暂时没有可用集群',
 

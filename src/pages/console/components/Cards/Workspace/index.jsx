@@ -63,7 +63,7 @@ export default class WorkspaceCard extends React.Component {
                     )}
                   </strong>
                 </p>
-                <p>{t('Projects Number')}</p>
+                <p>{t('Project Number')}</p>
               </div>
             </Column>
             {globals.app.hasKSModule('devops') && (
@@ -78,7 +78,7 @@ export default class WorkspaceCard extends React.Component {
                       )}
                     </strong>
                   </p>
-                  <p>{t('DevOps Projects Number')}</p>
+                  <p>{t('DevOps Project Number')}</p>
                 </div>
               </Column>
             )}

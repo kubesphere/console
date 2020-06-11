@@ -80,8 +80,8 @@ export default {
     '您的密码必须符合如下要求',
   'At least 1 uppercase and lowercase letter': '至少 1 个大写和小写字母',
   'At least 1 number': '至少 1 个数字',
-  'Password length is at least 6': '密码长度至少为 6',
+  'Password length is at least 6 characters': '密码长度至少为 6',
   'Password Strength': '密码强度',
-  'Avoid using the password that it has already been used on other websites, or a less secure password.':
+  'Avoid using the password that has already been used on other websites or the one that can be easily guessed.':
     '避免使用您在其它网站上的密码，或者是其他人很容易猜到的密码',
 }
