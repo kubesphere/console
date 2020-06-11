@@ -52,6 +52,7 @@ export default class Applications extends React.Component {
   get namespace() {
     return get(this.props.match, 'params.namespace')
   }
+
   get cluster() {
     return get(this.props.match, 'params.cluster')
   }

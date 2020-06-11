@@ -39,16 +39,11 @@ export default class OPApps extends React.Component {
   getData = (params = {}) => {
     const { store, projectStore } = this.props
     const { cluster } = this.props.match.params
-    const runtime_id = get(
-      projectStore.detail,
-      'annotations.openpitrix_runtime'
-    )
 
     if (projectStore.detail.name) {
       store.fetchList({
         namespace: projectStore.detail.name,
         cluster,
-        runtime_id,
         ...params,
       })
     }
@@ -56,14 +51,9 @@ export default class OPApps extends React.Component {
 
   get prefix() {
     const { workspace, cluster, namespace } = this.props.match.params
-    const { projectStore } = this.props
-    const runtime_id = get(
-      projectStore.detail,
-      'annotations.openpitrix_runtime'
-    )
     return `/${workspace}/clusters/${cluster}/projects/${namespace}/applications/${
       this.type
-    }/${runtime_id}`
+    }`
   }
 
   get canCreate() {

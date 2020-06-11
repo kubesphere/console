@@ -181,8 +181,8 @@ export default {
     on({ store, success, ...props }) {
       const modal = Modal.open({
         onOk: async params => {
-          const { workspace, namespace, ...rest } = params
-          await store.deploy(rest, { namespace, runtime_id: rest.runtime_id })
+          const { workspace, namespace, cluster, ...rest } = params
+          await store.deploy(rest, { namespace, cluster })
           Modal.close(modal)
           Notify.success({ content: `${t('Deploy Successfully')}!` })
           success && success()

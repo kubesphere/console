@@ -34,10 +34,10 @@ export default class Application extends Base {
     return 'kapis/openpitrix.io/v1'
   }
 
-  getPath({ runtime_id, namespace }) {
+  getPath({ cluster, namespace }) {
     let path = ''
-    if (runtime_id) {
-      path += `/runtimes/${runtime_id}`
+    if (cluster) {
+      path += `/clusters/${cluster}`
     }
     if (namespace) {
       path += `/namespaces/${namespace}`
@@ -45,10 +45,10 @@ export default class Application extends Base {
     return path
   }
 
-  getUrl = ({ namespace, runtime_id, cluster_id } = {}) => {
+  getUrl = ({ namespace, cluster, cluster_id } = {}) => {
     const url = `${this.baseUrl}${this.getPath({
       namespace,
-      runtime_id,
+      cluster,
     })}/applications`
 
     if (cluster_id) {
@@ -69,7 +69,6 @@ export default class Application extends Base {
     limit,
     page,
     cluster,
-    runtime_id,
     namespace,
     workspace,
     more,
@@ -79,11 +78,6 @@ export default class Application extends Base {
     ...filters
   } = {}) => {
     this.list.isLoading = true
-
-    if (!runtime_id) {
-      this.list.isLoading = false
-      return
-    }
 
     const params = {
       conditions: getFilterString({ status: status || this.defaultStatus }),
@@ -111,7 +105,7 @@ export default class Application extends Base {
     }
 
     const result = await request.get(
-      this.getUrl({ namespace, runtime_id }),
+      this.getUrl({ namespace, cluster }),
       params
     )
 
@@ -137,11 +131,11 @@ export default class Application extends Base {
   }
 
   @action
-  fetchDetail = async ({ namespace, runtime_id, id: cluster_id }) => {
+  fetchDetail = async ({ namespace, cluster, id: cluster_id }) => {
     this.isLoading = true
 
     const result = await request.get(
-      this.getUrl({ namespace, runtime_id, cluster_id })
+      this.getUrl({ namespace, cluster, cluster_id })
     )
 
     if (result.services) {
@@ -170,46 +164,40 @@ export default class Application extends Base {
   }
 
   @action
-  update = ({ cluster_id, runtime_id, zone, ...data }) =>
+  update = ({ cluster_id, cluster, zone, ...data }) =>
     this.submitting(
-      request.patch(
-        this.getUrl({ namespace: zone, cluster_id, runtime_id }),
-        data
-      )
+      request.patch(this.getUrl({ namespace: zone, cluster_id, cluster }), data)
     )
 
   @action
-  patch = ({ cluster_id, runtime_id, zone }, data) =>
+  patch = ({ cluster_id, cluster, zone }, data) =>
     this.submitting(
-      request.patch(
-        this.getUrl({ namespace: zone, cluster_id, runtime_id }),
-        data
-      )
+      request.patch(this.getUrl({ namespace: zone, cluster_id, cluster }), data)
     )
 
   @action
-  delete = ({ cluster_id, runtime_id, zone }) =>
+  delete = ({ cluster_id, cluster, zone }) =>
     this.submitting(
-      request.delete(this.getUrl({ namespace: zone, cluster_id, runtime_id }))
+      request.delete(this.getUrl({ namespace: zone, cluster_id, cluster }))
     )
 
   @action
-  batchDelete = (rowKeys, { namespace, runtime_id }) =>
+  batchDelete = (rowKeys, { namespace, cluster }) =>
     this.submitting(
       Promise.all(
         rowKeys.map(cluster_id =>
-          request.delete(this.getUrl({ namespace, runtime_id, cluster_id }))
+          request.delete(this.getUrl({ namespace, cluster, cluster_id }))
         )
       )
     )
 
   // todo: nex version
   @action
-  upgrade = ({ cluster_id, runtime_id, version_id }) =>
+  upgrade = ({ cluster_id, cluster, version_id }) =>
     this.submitting(
       request.post(`${this.baseUrl}clusters/upgrade`, {
         cluster_id,
-        runtime_id,
+        cluster,
         version_id,
       })
     )

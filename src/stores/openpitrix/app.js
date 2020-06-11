@@ -65,13 +65,13 @@ export default class App extends Base {
   }
 
   @action
-  async deploy(params, { namespace, runtime_id }) {
+  async deploy(params, { namespace, cluster }) {
     if (namespace) {
       await this.submitting(
         request.post(
           `${
             this.baseUrl
-          }runtimes/${runtime_id}/namespaces/${namespace}/applications`,
+          }clusters/${cluster}/namespaces/${namespace}/applications`,
           params
         )
       )

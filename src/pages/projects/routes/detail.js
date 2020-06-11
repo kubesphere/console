@@ -89,7 +89,7 @@ export default PATH => [
     component: CRDAppDetail,
   },
   {
-    path: `${PATH}/applications/template/:runtime_id/:id`,
+    path: `${PATH}/applications/template/:id`,
     component: OPAppDetail,
   },
   {
