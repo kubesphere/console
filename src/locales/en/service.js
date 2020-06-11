@@ -97,4 +97,6 @@ export default {
 
   SPECIFY_WORKLOAD_DESC:
     'Specify a workload that need to associate with the service',
+  
+  EIP_POOL_DESC: 'Access method within the cluster (DNS)',
 }

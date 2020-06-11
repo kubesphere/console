@@ -147,7 +147,7 @@ export default class Password extends React.Component {
               size={12}
               type="light"
             />
-            {t('Password length is at least 6')}
+            {t('Password length is at least 6 characters')}
           </li>
         </ul>
         <p>{t('Password Strength')}:</p>
@@ -156,7 +156,7 @@ export default class Password extends React.Component {
         </div>
         <p className={styles.tip}>
           {t(
-            'Avoid using the password that it has already been used on other websites, or a less secure password.'
+            'Avoid using the password that has already been used on other websites or the one that can be easily guessed.'
           )}
         </p>
       </div>

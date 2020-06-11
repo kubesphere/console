@@ -60,7 +60,7 @@ export default {
 
   INVITE_CLUSTER_MEMBER_DESC: 'You can invite new members to this cluster',
 
-  SELECT_CLUSTERS_DESC: 'Select the clusters available in the workspace',
+  SELECT_CLUSTERS_DESC: 'Select the cluster available in the workspace',
 
   CLUSTER_API_SERVER_TITLE: 'Kubesphere API Server to be added to the cluster',
   CLUSTER_API_SERVER_DESC:

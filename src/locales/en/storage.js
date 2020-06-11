@@ -136,4 +136,7 @@ export default {
   SELECT_SNAPSHOT_TO_CREATE_VOLUME: 'select snapshot to create volume',
   VOLUMESNAPSHOT_DESC:
     'A volume snapshot refers to the replica of a volume at a certain time point. It can be used to configure new volumes (preset the snapshot data) or restore an existing volume to its previous status (displayed in snapshots).',
+  VOLUMESNAPSHOT_CREATE_DESC:
+    'A volume snapshot refers to the replica of a volume at a certain time point. It can be used to configure new volumes (preset the snapshot data) or restore an existing volume to its previous status (displayed in snapshots).',
+  WHAT_IS_VOLUME_SNAPSHOTS: 'What are volume snapshots?',
 }

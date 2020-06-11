@@ -85,7 +85,7 @@ class BaseInfo extends React.Component {
     return (
       <div>
         <Banner
-          title={t('Clusters Info')}
+          title={t('Cluster Info')}
           icon="cluster"
           description={t('WORKSPACE_CLUSTERS_DESC')}
           tips={this.tips}
