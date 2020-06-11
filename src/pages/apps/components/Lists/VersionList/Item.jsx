@@ -31,7 +31,6 @@ import VersionStatus from 'apps/components/VersionStatus'
 import ConfigFile from 'apps/components/Cards/ConfigFile'
 import AuditRecord from 'apps/components/Lists/AuditRecord'
 import InstanceList from 'apps/components/Lists/InstanceList'
-import AppDeployModal from 'apps/components/Modals/AppDeploy'
 import VersionSubmitModal from 'apps/components/Modals/VersionSubmit'
 
 import { getLocalTime } from 'utils'
@@ -277,23 +276,11 @@ export default class VersionItem extends React.PureComponent {
   }
 
   renderModals() {
-    const { detail, params, appDetail, appStore } = this.props
+    const { detail } = this.props
     const { handleType } = this.state
 
     return (
       <div>
-        <AppDeployModal
-          title={appDetail.name}
-          description={appDetail.description}
-          icon={'snapshot'}
-          params={params}
-          app={appDetail}
-          versionId={detail.version_id}
-          visible={this.state.appDeploy}
-          isSubmitting={appStore.isSubmitting}
-          onOk={this.handleDeploy}
-          onCancel={this.hideHandleModal}
-        />
         <Confirm
           content={t.html(`VERSION_${handleType.toUpperCase()}_TIP`, {
             name: detail.name,
