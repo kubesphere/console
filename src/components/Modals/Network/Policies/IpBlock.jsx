@@ -19,7 +19,7 @@
 import React from 'react'
 import { inject, observer } from 'mobx-react'
 import { set } from 'lodash'
-import { Select, Input, Icon } from '@pitrix/lego-ui'
+import { Select, Input, Icon, RadioGroup, RadioButton } from '@pitrix/lego-ui'
 import { Modal, Button, Form } from 'components/Base'
 import ServiceStore from 'stores/service'
 import { generateId } from 'utils'
@@ -138,18 +138,28 @@ export default class NetworkPoliciesIpBlockModal extends React.Component {
         {...rest}
         onOk={this.handleSave}
       >
-        <Form.Item label={t('Direction')} desc={t('NETWORK_POLICY_D_DESC')}>
-          <Select
+        <Form.Item
+          label={`${t('Direction')}:`}
+          desc={t('NETWORK_POLICY_D_DESC')}
+        >
+          <RadioGroup
+            size="large"
             name="direction"
             defaultValue={specType}
+            wrapClassName={styles.dirCheck}
             onChange={v => this.setState({ specType: v })}
-            options={[
-              { value: 'egress', label: t('NETWORK_POLICY_D_OP1') },
-              { value: 'ingress', label: t('NETWORK_POLICY_D_OP2') },
-            ]}
-          />
+          >
+            <RadioButton value="egress">
+              <Icon name="upload" size={32} />
+              <div>{t('NETWORK_POLICY_D_OP1')}</div>
+            </RadioButton>
+            <RadioButton value="ingress">
+              <Icon name="download" size={32} />
+              <div>{t('NETWORK_POLICY_D_OP2')}</div>
+            </RadioButton>
+          </RadioGroup>
         </Form.Item>
-        <Form.Item label={t('CIDR:')} desc={t('CIDR_DESC')}>
+        <Form.Item label="CIDR:" desc={t('NETWORK_POLICY_D_DESC2')}>
           <div className={styles.cidr}>
             <Input
               name="cidr-ip"
@@ -168,7 +178,7 @@ export default class NetworkPoliciesIpBlockModal extends React.Component {
             />
           </div>
         </Form.Item>
-        <div className={styles.title}>{t('Port')}</div>
+        <div className={styles.title}>{`${t('Port')}:`}</div>
         {portRules.map(({ port, protocol }, idx) => (
           <div className={styles.rulerow} key={`${idx}`}>
             <div>

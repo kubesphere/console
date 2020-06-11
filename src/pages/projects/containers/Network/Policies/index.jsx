@@ -30,15 +30,15 @@ import styles from './index.scss'
 @inject('projectStore')
 @observer
 export default class Policies extends React.Component {
-  name = 'Network Policy'
+  name = 'Network Isolation'
   module = 'namespacenetworkpolicies'
   tips = [
     {
-      title: t('NETWORK_POLICY_Q'),
+      title: t('NETWORK_ISOLATION_Q'),
       description: t('NETWORK_POLICY_A'),
     },
     {
-      title: t('NETWORK_POLICY_Q1'),
+      title: t('NETWORK_ISOLATION_Q1'),
       description: t('NETWORK_POLICY_A1'),
     },
   ]

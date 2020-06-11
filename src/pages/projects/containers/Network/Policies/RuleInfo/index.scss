@@ -85,6 +85,22 @@
   & > :first-child {
     margin-right: 8px;
   }
+  :global {
+    label {
+      color: $dark-color01;
+    }
+  }
+}
+.pcell {
+  margin: 12px 20px 12px 40px;
+  & > :first-child {
+    margin-right: 8px;
+  }
+  :global {
+    label {
+      color: $dark-color01;
+    }
+  }
 }
 .port {
   margin: 12px 12px 12px 10px;

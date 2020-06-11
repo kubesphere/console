@@ -19,6 +19,7 @@
 import React from 'react'
 import { inject, observer } from 'mobx-react'
 import { set } from 'lodash'
+import { observable, toJS } from 'mobx'
 import classNames from 'classnames'
 import { Modal, Form, Panel } from 'components/Base'
 import ServiceStore from 'stores/service'
@@ -30,23 +31,28 @@ import {
   Select,
   List,
   Checkbox,
+  Icon,
 } from '@pitrix/lego-ui'
 import styles from './index.scss'
 
 @inject('projectStore')
 @observer
 export default class NetworkPoliciesModal extends React.Component {
+  @observable tabName = 'projects'
+
+  @observable specType = 'egress'
+
+  @observable specNameSpaces = []
+
+  @observable specCurNameSpace = ''
+
+  @observable specServices = []
+
   constructor(props) {
     super(props)
     this.projectStore = props.projectStore
     this.serviceStore = new ServiceStore()
-    this.state = {
-      tabName: 'projects',
-      specType: 'egress',
-      specNameSpaces: [],
-      specServices: [],
-      specCurNameSpace: props.namespace,
-    }
+    this.specCurNameSpace = props.namespace
   }
 
   componentDidMount() {
@@ -65,16 +71,15 @@ export default class NetworkPoliciesModal extends React.Component {
   }
 
   handleTabChange = tabName => {
-    this.setState({
-      tabName,
-    })
+    this.tabName = tabName
+    this.specNameSpaces = []
+    this.specCurNameSpace = this.props.namespace
+    this.specServices = []
   }
 
   handleNameSpaceChange = ns => {
     const { cluster } = this.props
-    this.setState({
-      specCurNameSpace: ns,
-    })
+    this.specCurNameSpace = ns
     this.serviceStore.fetchList({
       namespace: ns,
       cluster,
@@ -83,22 +88,18 @@ export default class NetworkPoliciesModal extends React.Component {
   }
 
   handleNameSpaceChecked = (item, checked) => {
-    const { specNameSpaces } = this.state
+    const { specNameSpaces } = this
     const hasIt = specNameSpaces.filter(ns => ns.name === item.name).length > 0
     if (checked && !hasIt) {
       specNameSpaces.push({ name: item.name })
-      this.setState({
-        specNameSpaces,
-      })
+      this.specNameSpaces = toJS(specNameSpaces)
     } else if (!checked && hasIt) {
-      this.setState({
-        specNameSpaces: specNameSpaces.filter(el => el.name !== item.name),
-      })
+      this.specNameSpaces = specNameSpaces.filter(el => el.name !== item.name)
     }
   }
 
   handleServiceChange = (item, checked) => {
-    const { specServices, specCurNameSpace } = this.state
+    const { specCurNameSpace, specServices } = this
     const hasIt =
       specServices.filter(
         ns => ns.name === item.name && ns.namespace === specCurNameSpace
@@ -109,24 +110,21 @@ export default class NetworkPoliciesModal extends React.Component {
         name: item.name,
         namespace: specCurNameSpace,
       })
-      this.setState({
-        specServices,
-      })
+      this.specServices = toJS(specServices)
     } else if (!checked && hasIt) {
-      this.setState({
-        specServices: specServices.filter(
-          el => !(el.name === item.name && el.namespace === specCurNameSpace)
-        ),
-      })
+      this.specServices = specServices.filter(
+        el => !(el.name === item.name && el.namespace === specCurNameSpace)
+      )
     }
   }
 
   handleSave = () => {
-    const { specType, specNameSpaces, specServices } = this.state
+    const { tabName, specType, specNameSpaces, specServices } = this
     const { formTemplate } = this.props
-    const rules = specNameSpaces
-      .map(ns => ({ namespace: ns }))
-      .concat(specServices.map(s => ({ service: s })))
+    const rules =
+      tabName === 'projects'
+        ? specNameSpaces.map(ns => ({ namespace: ns }))
+        : specServices.map(s => ({ service: s }))
     if (rules.length) {
       const direction = specType === 'egress' ? 'to' : 'from'
       set(formTemplate, `spec.${specType}[0].${direction}`, rules)
@@ -139,8 +137,13 @@ export default class NetworkPoliciesModal extends React.Component {
     const projectList = this.projectStore.list
     const serviceList = this.serviceStore.list
     const { ...rest } = this.props
-    const { tabName, specType, specServices, specCurNameSpace } = this.state
-
+    const {
+      specNameSpaces,
+      specType,
+      tabName,
+      specCurNameSpace,
+      specServices,
+    } = this
     return (
       <Modal.Form
         width={600}
@@ -150,15 +153,28 @@ export default class NetworkPoliciesModal extends React.Component {
         {...rest}
         onOk={this.handleSave}
       >
-        <Form.Item label={t('Direction')} desc={t('NETWORK_POLICY_D_DESC')}>
-          <Select
+        <Form.Item
+          label={`${t('Direction')}:`}
+          desc={t('NETWORK_POLICY_D_DESC')}
+        >
+          <RadioGroup
+            size="large"
+            name="direction"
             defaultValue={specType}
-            onChange={v => this.setState({ specType: v })}
-            options={[
-              { value: 'egress', label: t('NETWORK_POLICY_D_OP1') },
-              { value: 'ingress', label: t('NETWORK_POLICY_D_OP2') },
-            ]}
-          />
+            wrapClassName={styles.dirCheck}
+            onChange={v => {
+              this.specType = v
+            }}
+          >
+            <RadioButton value="egress">
+              <Icon name="upload" size={32} />
+              <div>{t('NETWORK_POLICY_D_OP1')}</div>
+            </RadioButton>
+            <RadioButton value="ingress">
+              <Icon name="download" size={32} />
+              <div>{t('NETWORK_POLICY_D_OP2')}</div>
+            </RadioButton>
+          </RadioGroup>
         </Form.Item>
 
         <Form.Item label={`${t('Type')}:`}>
@@ -185,6 +201,9 @@ export default class NetworkPoliciesModal extends React.Component {
             itemRenderer={item => (
               <Checkbox
                 value={item.name}
+                checked={
+                  specNameSpaces.filter(ns => ns.name === item.name).length > 0
+                }
                 onChange={(e, checked) => {
                   this.handleNameSpaceChecked(item, checked)
                 }}
