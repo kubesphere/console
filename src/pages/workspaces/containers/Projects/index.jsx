@@ -19,6 +19,7 @@
 import React from 'react'
 import { computed, get } from 'mobx'
 import { isUndefined } from 'lodash'
+import { parse } from 'qs'
 
 import { Avatar, Status } from 'components/Base'
 import Banner from 'components/Cards/Banner'
@@ -72,7 +73,7 @@ export default class Projects extends React.Component {
   }
 
   getData = async ({ silent, ...params } = {}) => {
-    this.query = params
+    this.query = parse(location.search.slice(1))
 
     const { store } = this.props
 
@@ -93,7 +94,11 @@ export default class Projects extends React.Component {
         icon: 'pen',
         text: t('Edit'),
         action: 'edit',
-        onClick: item => trigger('resource.baseinfo.edit', { detail: item }),
+        onClick: item =>
+          trigger('resource.baseinfo.edit', {
+            detail: item,
+            success: this.getData,
+          }),
       },
       {
         key: 'quotaEdit',
@@ -104,6 +109,9 @@ export default class Projects extends React.Component {
           trigger('project.quota.edit', {
             type: t('Project'),
             detail: item,
+            success: () => {
+              setTimeout(() => this.getData(), 500)
+            },
           }),
       },
       {
@@ -115,6 +123,9 @@ export default class Projects extends React.Component {
           trigger('resource.delete', {
             type: t('Project'),
             detail: item,
+            success: () => {
+              setTimeout(() => this.getData(), 500)
+            },
           }),
       },
     ]
@@ -189,6 +200,9 @@ export default class Projects extends React.Component {
 
   showCreate = () =>
     this.props.trigger('project.create', {
+      success: () => {
+        setTimeout(() => this.getData(), 500)
+      },
       ...this.props.match.params,
     })
 

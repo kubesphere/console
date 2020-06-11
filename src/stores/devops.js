@@ -130,33 +130,37 @@ export default class DevOpsStore extends Base {
       params.reverse = true
     }
 
-    if (cluster) {
-      const result = await request.get(
+    let result = {}
+
+    try {
+      result = await request.get(
         this.getDevOpsUrl({ cluster, workspace }),
         params
       )
+    } catch {}
 
-      this.devopsListData = get(result, 'items') || []
+    const items = Array.isArray(get(result, 'items'))
+      ? get(result, 'items')
+      : []
 
-      const data = this.devopsListData.map(item => ({
-        cluster,
-        ...this.mapper(item),
-      }))
+    this.devopsListData = items
 
-      this.list.update({
-        data,
-        total: result.total_count || data.length || 0,
-        limit: Number(limit) || 10,
-        page: Number(page) || 1,
-        order,
-        reverse,
-        keyword,
-        isLoading: false,
-        selectedRowKeys: [],
-      })
-    } else {
-      this.list.isLoading = false
-    }
+    const data = items.map(item => ({
+      cluster,
+      ...this.mapper(item),
+    }))
+
+    this.list.update({
+      data,
+      total: result.total_count || data.length || 0,
+      limit: Number(limit) || 10,
+      page: Number(page) || 1,
+      order,
+      reverse,
+      keyword,
+      isLoading: false,
+      selectedRowKeys: [],
+    })
   }
 
   @action
