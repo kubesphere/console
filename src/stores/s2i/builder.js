@@ -172,8 +172,7 @@ export default class S2IBuilderStore extends Base {
     }
 
     const name = `${builderName.slice(0, 37)}-${generateId(3)}`
-
-    return this.runStore.create({
+    const data = {
       apiVersion: 'devops.kubesphere.io/v1alpha1',
       kind: 'S2iRun',
       metadata: {
@@ -186,7 +185,8 @@ export default class S2IBuilderStore extends Base {
         binaryUrl,
         ...(binaryUrl ? { isBinaryURL: true } : {}),
       },
-    })
+    }
+    return this.runStore.create(data, { cluster, namespace })
   }
 
   @action
