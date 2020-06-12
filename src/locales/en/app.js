@@ -58,12 +58,12 @@ export default {
     'Certify service providers and review applications in order to approve or reject the applications to show or not in the store.',
 
   REVIEW_CONTENT_DESC:
-    'The following information must be true and accurate. Key instructions must be given in details. Terms and Conditions are required to state clearly.',
+    'The following information must be true and accurate. Key instructions must be given in detail. Terms and Conditions are required to be stated clearly.',
 
   REJECT_REASON_DESC: 'Please fill in the reasons for refusal of audit',
 
   APP_CATEGORIES_DESC:
-    'Create/Edit/Delete category and classify active applications of the store',
+    'This module allows you to create, edit and delete categories, and to classify active applications of the store.',
 
   ADJUST_CATEGORY_DESC:
     'Application classification will determine the classification of the application in the application store',
@@ -100,7 +100,7 @@ export default {
   HELM_DEVELOP_GUIDE: 'Helm Specification and Application Development',
 
   CATEGORY_NAME_DESC:
-    'No more than 8 characters is recommended, the maximum length of characters is set to 20',
+    'No more than 8 characters is recommended; the maximum length of characters is set to 20.',
 
   ICON_DESC: 'Please select an icon to identify the classification',
 
@@ -119,7 +119,7 @@ export default {
     ' appear in the App Store after approval',
 
   APP_CATEGORIES_CREATE_DESC:
-    'Application data for the category is not yet bound ',
+    'No application data available for the category.',
 
   AUDIT_RECORD_CREATE_DESC: 'No relevant audit record data',
 

@@ -20,7 +20,7 @@ export default {
   TOTAL_APPS: 'Total {num} applications',
 
   APPLICATIONS_DESC:
-    'An application provides users with full business functionalities in one package. Application templates in KubeSphere are built on the Helm packaging specification. They are delivered through a unified public or private Helm repository. An application is composed of one or more Kubernetes objects such as workloads, services, ingress etc.',
+    'An application provides users with comprehensive business functions in one package. App templates in KubeSphere are built on the Helm packaging specification. They are delivered through a unified public or private Helm repository. An application is composed of one or more Kubernetes objects including workloads, services and ingress.',
   APP_DEPLOYMENT_DESC:
     'Lightweight, portable and self-contained software packaging technology enables applications to run in almost any place in the same way.',
 

@@ -92,7 +92,7 @@ export default class AccountDetail extends React.Component {
     {
       key: 'modifyPassword',
       icon: 'pen',
-      text: t('Modify Password'),
+      text: t('Change Password'),
       action: 'edit',
       show: this.showEdit,
       onClick: () =>

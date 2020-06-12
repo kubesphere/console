@@ -34,14 +34,14 @@ export default {
     'Build and test software projects continuously and automatically.',
 
   PROJECT_ASSIGN_DESC:
-    'Once the project is assigned to the workspace, it will not be allowed to modifed.',
+    'Once the project is assigned to a workspace, it cannot be changed.',
 
   INVITE_MEMBER_DESC: 'You can invite new members to work with your project.',
   INVITE_MEMBER_DESC_DEVOPS:
     'You can invite new members to work with your DevOps project.',
   INVITE_MEMBER_SEARCH_PLACEHODLER: 'Enter an email to invite members',
   INVITE_MEMBER_CHOOSE_ROLE_TIP:
-    'Please select a role to assign to this member',
+    'Please assign a role to this member',
   PROJECT_ADMIN_DESC:
     'You can specify a member of the project as an administrator',
   DEVOPS_ADMIN_DESC:

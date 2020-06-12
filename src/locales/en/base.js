@@ -174,4 +174,6 @@ export default {
   AUDITING_OPERATING_DESC: 'A multi-dimensional auditing search tool for workspaces, projects and resources.',
 
   FILE_OVERSIZED_TIP: 'The file uploaded must be less than 2M!',
+
+  MULTI_CLUSTER_TIP: 'The resource is deployed in multiple clusters.'
 }

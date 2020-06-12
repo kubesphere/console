@@ -99,7 +99,7 @@ export default {
   'Support workspace management, including adding/deleting/editing workspaces; view all workspaces in the platform',
   USERS_MANAGEMENT_DESC: 'Support account management, including adding/deleting/updating account information',
   ROLES_MANAGEMENT_DESC: 'Support account role management, including adding/deleting/updating account roles',
-  APP_TEMPLATES_VIEW_DESC: 'View App Store at platform level',
+  APP_TEMPLATES_VIEW_DESC: 'View platform App Store',
   APP_TEMPLATES_MANAGEMENT_DESC:
   'Manage App Store at platform level and responsible for unified lifecycle management of cloud native applications including their release, removal and review',
   PLATFORM_SETTINGS_MANAGEMENT_DESC:
