@@ -285,7 +285,7 @@ export default class WorkloadTable extends React.Component {
           onClick={this.handleCancelSelect}
           data-test="table-cancel-select"
         >
-          {t('Cancel Select')}
+          {t('Deselect')}
         </Button>
       </LevelRight>
     </Level>

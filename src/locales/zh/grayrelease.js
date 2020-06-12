@@ -26,7 +26,7 @@ export default {
   NO_GRAY_RELEASE_JOBS_TIP_2: '您可以绑定灰度策略进行灰度任务发布',
 
   'Blue-green Deployment': '蓝绿部署',
-  'Canary Releases': '金丝雀发布',
+  'Canary Release': '金丝雀发布',
   'A/B Testing': 'A/B 测试',
   'Traffic Mirroring': '流量镜像',
 

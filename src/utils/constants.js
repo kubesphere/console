@@ -434,7 +434,7 @@ export const GRAY_RELEASE_CATEGORIES = [
   {
     icon: 'bird',
     type: 'Canary',
-    title: 'Canary Releases',
+    title: 'Canary Release',
     desc: 'CANARY_RELEASES_DESC',
   },
   {

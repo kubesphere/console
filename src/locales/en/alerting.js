@@ -52,9 +52,9 @@ export default {
 
   MAX_SEND_NOT_LIMIT: 'Not limited',
   MAX_SEND_COUNT: 'Resend up to {count}',
-  REPEAT_CUSTOM_TITLE: 'Customize repeated rules',
+  REPEAT_CUSTOM_TITLE: 'Customize Repetition Rules',
   REPEAT_CUSTOM_DESC:
-    'It will push the alerting message repeatedly every a period of time and how many times according to the degree of alert. The repeated rules are according to the default policies unless you modify them here.',
+    'Alerting messages will be pushed repeatedly at specific intervals according to their severity. The default policy will be adopted unless you make any change to it.',
   REPEAT_INTERVAL_NOT_REPEAT: 'Not repeating',
   REPEAT_INTERVAL_MINUTE: 'Alert once every {num} minutes',
   REPEAT_INTERVAL_HOUR: 'Alert once every {num} hour',
@@ -63,15 +63,15 @@ export default {
   REPEAT_RULE_EXP_TIP:
     'Periodic index increment notification: When the alert duration reaches 1, 2, 4, 8, 16, 32... times of the alert statistics period, an alert notification is sent.',
   REPEAT_RULE_TIPS:
-    'The alerting message will be pushed repeatedly according to the degree of alert. By default, <strong>Critical alert is repeated every 30 minutes</strong> / <strong>Major alert is repeated every 2 hours</strong> / <strong>Minor alert is not repeated</strong>.<br> If you need to modify the repeated rules, please customize the settings in Notification Rule section (next section).',
+    'Alerting messages will be pushed repeatedly according to their severity. By default, <strong>Critical alert is repeated every 30 minutes</strong> / <strong>Major alert is repeated every 2 hours</strong> / <strong>Minor alert is not repeated</strong>.<br> If you need to modify the repetition rules, please customize the settings in Notification Rule section (next section).',
 
-  NOTIFY_TIME_LABEL: 'The effective time of notification',
-  NOTIFY_TIME_TIP: 'You can set an effective time range for an alerting message',
+  NOTIFY_TIME_LABEL: 'Effective Notification Time Range',
+  NOTIFY_TIME_TIP: 'You can set an effective time range for an alerting message.',
   NOTIFY_LIST_ADD_TIP: 'Press the enter button or click to add',
   NOTIFY_LIST_INPUT_ERRPR_TIP:
     'The input format is incorrect. Please enter the correct email address.',
   NOTIFY_LIST_INPUT_PLACEHOLDER:
-    'Please enter the mailbox to find the members of the notification',
+    'Please enter the email address of the member to be notified.',
   NOTIFY_CURRENT_COUNT: 'Notification times: {count} in total',
   RESOURCE_SELECTOR_FORM_TIP: 'Please fill in the label selector',
   RESOURCE_NODE_FORM_TIP: 'Please select a cluster node',
@@ -82,8 +82,8 @@ export default {
   SEVERITY_MSG_NOT_REPEAT: 'No repeat notification',
   ALERT_RULE_STATUS_OCCURRED: 'Alerting',
   ALERT_RULE_STATUS_NO_OCCURRED: 'Not alert yet',
-  SENT_RULE_TIME_TITLE: 'Effective time period',
-  SENT_RULE_CHANNEL_TITLE: 'Notification method',
+  SENT_RULE_TIME_TITLE: 'Effective Time Period',
+  SENT_RULE_CHANNEL_TITLE: 'Notification Method',
 
   REQUESTS_FOR_TRIGGER_AN_ALARM_Q:
     'Prerequisites for triggering an alerting message?',
@@ -94,7 +94,7 @@ export default {
     'The platform administrator is required to set up the mail server.',
   HOW_TO_SUPRESS_AN_ALARM_Q: 'How to suppress alerting messages?',
   HOW_TO_SUPRESS_AN_ALARM_A:
-    'Each alerting policy can be level-set, and each level corresponds to a different alert period and repetition period.',
+    'Each alerting policy can be set at different levels, and each level corresponds to a different alert period and repetition period.',
 
   PROJECT_MONITOR_TARGET_TIPS:
     'An alert can specify only one resource type policy',

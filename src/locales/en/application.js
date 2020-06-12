@@ -43,11 +43,11 @@ export default {
     'Support stateless services (Deployment) and stateful services (StatefulSet)',
 
   BLUE_GREEN_DEPLOYMENT_DESC:
-    'The blue-green release provides a zero downtime deployment which can deploy the new version while preserving the old version, and bring both versions running at the same time. If there is a problem with running, you can quickly roll back to the old version.',
+    'The blue-green release provides a zero downtime deployment, which means the new version can be deployed with the old one preserved. It enables both versions running at the same time. If there is a problem with running, you can quickly roll back to the old version.',
   CANARY_RELEASES_DESC:
-    'Introduce a part of the actual traffic into a new version for testing the performance and reliability of the new version, aiming to protect the overall system stability, early detection and adjustment of the problem.',
+    'This method brings part of the actual traffic into a new version to test its performance and reliability. It can help detect potential problems in the actual environment while not affecting the overall system stability.',
   TRAFFIC_MIRROR_DESC:
-    'Traffic mirror is used to test the new version more realistically, to detect problems in advance without affecting the production environment, thus improving the security reliability of the release.',
+    'Traffic mirroring provides a more accurate way to test new versions as problems can be detected in advance while not affecting the production environment. Therefore, it serves as a more secure and reliable method for version releases.',
 
   SERVICE_DEPLOYMENT: 'Stateless service(Deployment)',
   SERVICE_STATEFULSET: 'Stateful service(StatefulSet)',

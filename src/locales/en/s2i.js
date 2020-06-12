@@ -57,7 +57,7 @@ export default {
   IMAGE_BUILDER_DESC:
     'Image Builder is a tool that makes it easy to write container images that take application source code or artifacts as an input and produce a new image that runs the assembled application as output. It includes Source to Image, a.k.a S2I which takes source code as input, and Binary to Image, a.k.a. B2I which takes application artifacts as input.',
   'Build image for service x': 'Build image for service {service}',
-  S2I_DESC: 'Please choose your souce code language',
+  S2I_DESC: 'Please choose your source code language',
   IMAGE_FROM_S2I: 'Build a new image from code',
   IMAGE_FROM_B2I: 'Build a new image from the artifact',
   B2I_DESC: 'Please choose your artifact to build a container image',
