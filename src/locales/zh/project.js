@@ -95,7 +95,7 @@ export default {
 
   'Resource Type': '资源类型',
 
-  'Help information': '帮助信息',
+  'Help Information': '帮助信息',
 
   'Enter Project': '进入项目',
   'Enter DevOps Project': '进入工程',
@@ -109,7 +109,7 @@ export default {
   'Target Workspace': '目标企业空间',
   'Choose a workspace': '选择一个企业空间',
   'Not Assigned': '未分配',
-  'Select an user of the workspace as the manager of the project.':
+  'Select a user of the workspace as the manager of the project.':
     '选择企业空间的用户作为管理员。',
 
   'Collecting File Log': '落盘日志收集',
@@ -197,8 +197,8 @@ export default {
   HOW_TO_INVITE_MEMBER_A:
     '项目管理员或者拥有成员邀请权限的用户可以邀请当前企业空间内的成员加入项目',
 
-  'Invite other members into current project ?': '邀请其他成员到当前项目中?',
-  'How to setup the project gateway ?': '如何设置项目网关？',
+  'How to invite other members to the current project?': '邀请其他成员到当前项目中?',
+  'How to set the project gateway?': '如何设置项目网关？',
   'You can limit the number of resources. Blank means no limit.':
     '您可以对资源的数量进行限制, 不填即不限制',
 

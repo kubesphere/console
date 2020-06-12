@@ -30,7 +30,7 @@ export default {
   Avatar: '头像',
   'Last Login Time': '上次登录时间',
   'Not logged in yet': '尚未登录',
-  'Modify Password': '修改密码',
+  'Change Password': '修改密码',
   'Password Setting': '密码设置',
   Email: '邮箱',
   USER_AVATAR_TIP: '头像尺寸必须小于 120px X 120px，支持 png，jpg 格式。',

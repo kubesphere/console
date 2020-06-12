@@ -212,7 +212,7 @@ export default {
   'Advanced Settings': '高级设置',
   Settings: '设置',
   Configuration: '配置',
-  'Multi-Cluster Deploy': '多集群部署',
+  'Multi-cluster Deployment': '多集群部署',
   MULTI_CLUSTER_TIP: '该资源部署在多个集群',
 
   Alias: '别名',
@@ -413,7 +413,7 @@ export default {
 
   'Resource List': '资源列表',
 
-  'Platform-level Access Control': '平台级的访问控制',
+  'Platform Access Control': '平台级的访问控制',
 
   NOT_FOUND_DESC:
     '🙇 对不起没有找到相关资源，系统将在 {time}s 后返回 <a href="{link}">工作台</a>',

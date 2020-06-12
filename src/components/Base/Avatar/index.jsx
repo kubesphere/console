@@ -39,7 +39,7 @@ export default class Avatar extends React.Component {
   renderClusterTip() {
     return (
       <div>
-        <div className="tooltip-title">{t('Multi-Cluster Deploy')}</div>
+        <div className="tooltip-title">{t('Multi-cluster Deployment')}</div>
         <p>{t('MULTI_CLUSTER_TIP')}</p>
       </div>
     )

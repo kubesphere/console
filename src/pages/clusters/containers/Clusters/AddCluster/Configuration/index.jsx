@@ -61,7 +61,7 @@ export default class BaseInfo extends React.Component {
           description={t('CLUSTER_SETTINGS_DESC')}
         />
         <Form.Item
-          label={t('Connect Method')}
+          label={t('Connection Method')}
           desc={t('CLUSTER_CONNECT_METHOD_DESC')}
         >
           <Select

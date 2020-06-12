@@ -41,7 +41,7 @@ export default {
   'Cluster Members': '集群成员',
   'Cluster Roles': '集群角色',
   'Kubernetes Settings': 'Kubernetes 设置',
-  'Connect Method': '连接方式',
+  'Connection Method': '连接方式',
 
   'Kubernetes Version': 'Kubernetes 版本',
 

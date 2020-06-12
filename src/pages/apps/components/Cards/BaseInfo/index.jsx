@@ -58,7 +58,7 @@ export default class BaseInfo extends React.Component {
                 </a>
                 {!detail.home && <span>-</span>}
               </dd>
-              <dt>{t('Service provider website')}</dt>
+              <dt>{t('Service Provider Website')}</dt>
             </dl>
           </div>
           <div>

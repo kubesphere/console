@@ -199,7 +199,7 @@ export default {
   'Format png/svg background transparency is the best':
     '格式: png/svg 背景透明最佳',
   CHOOSE_APP_CATEGORY_DESC: '选择适合的应用分类，便于用户更快发现你的应用',
-  'Service provider website': '服务商网站',
+  'Service Provider Website': '服务商网站',
   "Service provider's official website address": '服务商的官方网站地址',
   MODIFY_VERSION_TIPS: '每次修改的内容都将跟随下一次版本上架而真正生效。',
   UNDER_REVIEW_TIPS: '当前应用有版本正在审核中，以下信息暂时不可更改',
