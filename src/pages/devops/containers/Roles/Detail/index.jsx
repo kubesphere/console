@@ -94,7 +94,7 @@ export default class RoleDetail extends React.Component {
         show: this.showEdit,
         onClick: () =>
           this.trigger('role.edit', {
-            module: this.module,
+            module: 'devopsroles',
             detail: toJS(this.store.detail),
             roleTemplates: toJS(this.store.roleTemplates.data),
             success: this.fetchData,

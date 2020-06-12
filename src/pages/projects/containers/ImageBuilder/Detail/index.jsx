@@ -38,7 +38,9 @@ import getRoutes from './routes'
 @trigger
 export default class ImageBuilderDetail extends React.Component {
   store = new S2IBuilderStore(this.module)
+
   resourceStore = new ResourceStore(this.module)
+
   s2iRunStore = new S2IRunStore()
 
   componentDidMount() {

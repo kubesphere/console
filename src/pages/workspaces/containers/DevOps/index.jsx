@@ -40,7 +40,7 @@ export default class DevOps extends React.Component {
   workspaceStore = this.props.workspaceStore
 
   get itemActions() {
-    const { trigger, getData } = this.props
+    const { trigger } = this.props
     return [
       {
         key: 'edit',
@@ -48,7 +48,7 @@ export default class DevOps extends React.Component {
         text: t('Edit'),
         action: 'edit',
         onClick: item =>
-          trigger('devops.edit', { detail: item, success: getData }),
+          trigger('devops.edit', { detail: item, success: this.getData }),
       },
       {
         key: 'delete',
@@ -62,7 +62,7 @@ export default class DevOps extends React.Component {
             detail: item,
             success: () => {
               setTimeout(() => {
-                getData()
+                this.getData()
               }, 500)
             },
           }),
@@ -95,10 +95,11 @@ export default class DevOps extends React.Component {
     }))
   }
 
-  @computed
   get cluster() {
-    const params = parse(location.search.slice(1))
-    return params.cluster || this.hostCluster
+    if (this.query && this.query.cluster) {
+      return this.query.cluster
+    }
+    return this.hostCluster
   }
 
   @computed
@@ -115,8 +116,7 @@ export default class DevOps extends React.Component {
   }
 
   getData = async ({ silent, ...params } = {}) => {
-    this.query = params
-
+    this.query = parse(location.search.slice(1))
     const { store } = this.props
 
     silent && (store.list.silent = true)
@@ -172,7 +172,7 @@ export default class DevOps extends React.Component {
       ...this.props.match.params,
       success: () => {
         setTimeout(() => {
-          this.props.getData()
+          this.getData()
         }, 500)
       },
     })
