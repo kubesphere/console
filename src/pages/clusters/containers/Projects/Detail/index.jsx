@@ -70,6 +70,7 @@ export default class ProjectDetail extends React.Component {
         text: t('Enter the project'),
         action: 'view',
         type: 'control',
+        show: globals.app.workspaces.includes(workspace),
         onClick: () =>
           this.routing.push(
             `/${workspace}/clusters/${cluster}/projects/${name}`
@@ -80,6 +81,7 @@ export default class ProjectDetail extends React.Component {
         icon: 'pen',
         text: t('Edit Info'),
         action: 'edit',
+        type: 'control',
         onClick: () =>
           this.trigger('resource.baseinfo.edit', {
             type: t(this.name),

@@ -16,8 +16,6 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { getIndexRoute } from 'utils/router.config'
-
 import Layout from '../containers/layout'
 import Accounts from '../containers/Accounts'
 import Roles from '../containers/Roles'
@@ -36,7 +34,6 @@ export default [
       { path: `${PATH}/accounts`, component: Accounts, exact: true },
       { path: `${PATH}/roles`, component: Roles, exact: true },
       { path: `${PATH}/workspaces`, component: Workspaces, exact: true },
-      getIndexRoute({ path: PATH, to: `${PATH}/workspaces`, exact: true }),
     ],
   },
 ]

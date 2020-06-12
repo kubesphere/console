@@ -17,18 +17,38 @@
  */
 
 import React from 'react'
+import { isEmpty } from 'lodash'
 
 import { getLocalTime } from 'utils'
 import { Icon } from '@pitrix/lego-ui'
 import { inject } from 'mobx-react'
 
+import EmptyList from 'components/Cards/EmptyList'
 import AdminDashboard from './Admin'
-import UserDashboard from './User'
 
 import styles from './index.scss'
 
 @inject('rootStore')
 class Dashboard extends React.Component {
+  get routing() {
+    return this.props.rootStore.routing
+  }
+
+  get workspace() {
+    let workspace
+    const savedWorkspace = localStorage.getItem(
+      `${globals.user.username}-workspace`
+    )
+
+    if (savedWorkspace && globals.app.workspaces.includes(savedWorkspace)) {
+      workspace = savedWorkspace
+    } else {
+      workspace = globals.app.workspaces[0]
+    }
+
+    return workspace
+  }
+
   renderHeader() {
     const { avatar_url, globalrole, username, last_login_time } =
       globals.user || {}
@@ -64,7 +84,24 @@ class Dashboard extends React.Component {
       return <AdminDashboard />
     }
 
-    return <UserDashboard />
+    if (globals.user.globalrole === 'user-manager') {
+      return this.routing.push(`/access/accounts`)
+    }
+
+    if (globals.app.getActions({ module: 'workspaces' }).includes('create')) {
+      return this.routing.push(`/access/workspaces`)
+    }
+
+    if (!isEmpty(globals.user.workspaces)) {
+      return this.routing.push(`/workspaces/${this.workspace}`)
+    }
+
+    return (
+      <EmptyList
+        title={t('USER_DASHBOARD_EMPTY_TITLE')}
+        desc={t('USER_DASHBOARD_EMPTY_DESC')}
+      />
+    )
   }
 
   render() {

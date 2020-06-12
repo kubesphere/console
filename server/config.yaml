@@ -203,6 +203,7 @@ client:
             title: Log Collection,
             icon: file,
             authKey: platform-settings,
+            ksModule: 'logging',
           }
 
   # workspace page navigations
@@ -210,7 +211,7 @@ client:
     - cate: 'workspace'
       items:
         - { name: overview, title: Overview, icon: dashboard, skipAuth: true }
-        - { name: projects, title: NAV_PROJECTS, icon: project }
+        - { name: projects, title: NAV_PROJECTS, icon: project, skipAuth: true }
         - { name: devops, title: DevOps Projects, icon: strategy-group }
         - name: apps
           title: Apps Management
@@ -371,7 +372,7 @@ client:
 
   # development
   # disable authorization check when developing
-  disableAuthorization: true
+  disableAuthorization: false
 
   # show kubeconfig
   enableKubeConfig: true

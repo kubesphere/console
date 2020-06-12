@@ -195,7 +195,7 @@ export default class Projects extends React.Component {
   render() {
     const { bannerProps, tableProps } = this.props
     return (
-      <ListPage {...this.props} getData={this.getData}>
+      <ListPage {...this.props} getData={this.getData} module="namespaces">
         <Banner {...bannerProps} tips={this.tips} />
         <Table
           {...tableProps}

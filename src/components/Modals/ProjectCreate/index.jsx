@@ -139,7 +139,14 @@ export default class ProjectCreateModal extends React.Component {
   )
 
   render() {
-    const { visible, formTemplate, hideCluster, onOk, onCancel } = this.props
+    const {
+      visible,
+      formTemplate,
+      hideCluster,
+      onOk,
+      onCancel,
+      isSubmitting,
+    } = this.props
     return (
       <Modal.Form
         width={960}
@@ -149,6 +156,7 @@ export default class ProjectCreateModal extends React.Component {
         onOk={onOk}
         visible={visible}
         closable={false}
+        isSubmitting={isSubmitting}
         hideHeader
       >
         <div className={styles.header}>
