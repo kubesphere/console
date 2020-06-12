@@ -88,7 +88,7 @@ export default class Selector extends React.Component {
         <SelectModal
           defaultType={type}
           cluster={cluster}
-          workspace={workspace}
+          workspace={workspace || this.props.workspace}
           visible={showSelect}
           onChange={this.handleSelect}
           onCancel={this.hideSelect}

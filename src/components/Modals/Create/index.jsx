@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, isFunction, cloneDeep, isArray, keyBy } from 'lodash'
+import { get, isFunction, cloneDeep, isArray } from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Modal, Switch, Notify } from 'components/Base'
@@ -105,7 +105,13 @@ export default class CreateModal extends React.Component {
       if (isCodeMode && isFunction(get(this, 'codeRef.current.getData'))) {
         newState.formTemplate = this.codeRef.current.getData()
         if (isArray(newState.formTemplate)) {
-          newState.formTemplate = keyBy(newState.formTemplate, 'kind')
+          newState.formTemplate = newState.formTemplate.reduce(
+            (prev, cur) => ({
+              ...prev,
+              [cur.kind.replace('Federated', '')]: cur,
+            }),
+            {}
+          )
         }
       }
 
@@ -129,7 +135,6 @@ export default class CreateModal extends React.Component {
   renderCodeEditor() {
     const { onOk, onCancel, isSubmitting } = this.props
     const { formTemplate } = this.state
-
     return (
       <Code
         ref={this.codeRef}

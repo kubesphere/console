@@ -21,6 +21,7 @@ import React from 'react'
 import { PropTypes } from 'prop-types'
 import { Input, Select, TextArea } from '@pitrix/lego-ui'
 import { PATTERN_NAME, PATTERN_LENGTH_63 } from 'utils/constants'
+import { updateFederatedAnnotations } from 'utils'
 import { Form } from 'components/Base'
 
 import styles from './index.scss'
@@ -36,6 +37,12 @@ export default class BaseInfo extends React.Component {
 
   get formTemplate() {
     return this.props.formData.application
+  }
+
+  get fedFormTemplate() {
+    return this.props.isFederated
+      ? get(this.formTemplate, 'spec.template')
+      : this.formTemplate
   }
 
   get governances() {
@@ -67,28 +74,40 @@ export default class BaseInfo extends React.Component {
   handleNameChange = debounce(value => {
     set(this.formTemplate, 'metadata.labels["app.kubernetes.io/name"]', value)
     set(
-      this.formTemplate,
+      this.fedFormTemplate,
+      'metadata.labels["app.kubernetes.io/name"]',
+      value
+    )
+    set(
+      this.fedFormTemplate,
       'spec.selector.matchLabels["app.kubernetes.io/name"]',
       value
     )
     this.props.onLabelsChange(
-      get(this.formTemplate, 'spec.selector.matchLabels')
+      get(this.fedFormTemplate, 'spec.selector.matchLabels')
     )
+
+    if (this.props.isFederated) {
+      updateFederatedAnnotations(this.formTemplate)
+    }
   }, 200)
 
   handleVersionChange = debounce(value => {
     set(
-      this.formTemplate,
+      this.fedFormTemplate,
       'spec.selector.matchLabels["app.kubernetes.io/version"]',
       value
     )
     this.props.onLabelsChange(
-      get(this.formTemplate, 'spec.selector.matchLabels')
+      get(this.fedFormTemplate, 'spec.selector.matchLabels')
     )
   }, 200)
 
   handleGovernanceChange = value => {
     this.props.onGovernanceChange(value)
+    if (this.props.isFederated) {
+      updateFederatedAnnotations(this.formTemplate)
+    }
   }
 
   render() {

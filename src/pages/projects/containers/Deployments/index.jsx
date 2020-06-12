@@ -166,10 +166,10 @@ export default class Deployments extends React.Component {
           <Avatar
             icon={ICON_TYPES[module]}
             iconSize={40}
-            isMultiCluster={record.isFedManaged}
             title={getDisplayName(record)}
             desc={this.getItemDesc(record)}
             to={`${this.prefix}/${module}/${name}`}
+            isMultiCluster={record.isFedManaged}
           />
         ),
       },
@@ -206,10 +206,9 @@ export default class Deployments extends React.Component {
   }
 
   showCreate = () => {
-    const { match, module, projectStore } = this.props
+    const { match, module } = this.props
     return this.props.trigger('workload.create', {
       module,
-      projectDetail: projectStore.detail,
       namespace: match.params.namespace,
       cluster: match.params.cluster,
     })

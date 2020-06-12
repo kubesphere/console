@@ -24,6 +24,7 @@ import { Columns, Column } from '@pitrix/lego-ui'
 import { Button, Modal, Search, RadioGroup, ScrollLoad } from 'components/Base'
 import WorkspaceStore from 'stores/workspace'
 import ProjectStore from 'stores/project'
+import FederatedStore from 'stores/federated'
 import DevOpsStore from 'stores/devops'
 
 import Card from './Card'
@@ -38,7 +39,14 @@ export default class ProjectSelectModal extends React.Component {
 
     this.store = new WorkspaceStore()
     this.projectStore = new ProjectStore()
+    this.fedProjectStore = new FederatedStore({ module: 'namespaces' })
     this.devopsStore = new DevOpsStore()
+
+    this.stores = {
+      devops: this.devopsStore,
+      federatedprojects: this.fedProjectStore,
+      projects: this.projectStore,
+    }
 
     this.state = {
       type: props.defaultType || 'projects',
@@ -53,18 +61,27 @@ export default class ProjectSelectModal extends React.Component {
     const { workspace } = this.props
     return {
       projects: globals.app.getActions({ workspace, module: 'projects' }),
+      federatedprojects: globals.app.getActions({
+        workspace,
+        module: 'federatedprojects',
+      }),
       devops: globals.app.getActions({ workspace, module: 'devops' }),
     }
   }
 
   get types() {
-    const { detail } = this.store
     const types = []
     if (this.enabledActions.projects.includes('view')) {
       types.push({
         label: t('Projects'),
         value: 'projects',
-        count: get(detail, 'annotations["kubesphere.io/namespace-count"]', '0'),
+      })
+    }
+
+    if (this.enabledActions.federatedprojects.includes('view')) {
+      types.push({
+        label: t('Multi-cluster Projects'),
+        value: 'federatedprojects',
       })
     }
 
@@ -75,7 +92,6 @@ export default class ProjectSelectModal extends React.Component {
       types.push({
         label: t('DevOps Projects'),
         value: 'devops',
-        count: get(this.devopsStore, 'list.total', '0'),
       })
     }
 
@@ -83,23 +99,22 @@ export default class ProjectSelectModal extends React.Component {
   }
 
   get canCreate() {
-    return this.state.type === 'projects'
-      ? this.enabledActions.projects.includes('create')
-      : this.enabledActions.devops.includes('create')
+    return this.enabledActions[this.state.type].includes('create')
   }
 
   fetchData = query => {
     const { cluster, workspace } = this.props
     const params = { cluster, workspace, ...query }
-    if (this.state.type === 'projects') {
-      this.projectStore.fetchList(params)
-    } else {
-      this.devopsStore.fetchList({ workspace, ...params })
+
+    if (this.state.type === 'federatedprojects') {
+      params.labelSelector = `kubesphere.io/workspace=${workspace}`
     }
+
+    this.stores[this.state.type].fetchList(params)
   }
 
-  handleSearch = keyword => {
-    this.fetchData({ keyword })
+  handleSearch = name => {
+    this.fetchData({ name })
   }
 
   handleRefresh = () => {
@@ -116,29 +131,15 @@ export default class ProjectSelectModal extends React.Component {
 
   handleEnterWorkspace = () => {
     const { workspace, onChange } = this.props
-
-    if (globals.app.isClusterAdmin) {
-      return onChange(`/workspaces/${workspace}/overview`)
-    }
-
-    if (
-      globals.app.hasPermission({ module: 'workspaces', action: 'manage' }) ||
-      globals.app.hasPermission({
-        module: 'workspaces',
-        action: 'view',
-        workspace,
-      })
-    ) {
-      return onChange(`/workspaces/${workspace}/overview`)
-    }
-
-    return onChange(`/dashboard`)
+    return onChange(`/workspaces/${workspace}/overview`)
   }
 
   handleOnEnter = item => {
     const { workspace, cluster, onChange } = this.props
     if (this.state.type === 'projects') {
       onChange(`/${workspace}/clusters/${cluster}/projects/${item.name}`)
+    } else if (this.state.type === 'federatedprojects') {
+      onChange(`/${workspace}/federatedprojects/${item.name}`)
     } else {
       onChange(`/${workspace}/clusters/${cluster}/devops/${item.namespace}`)
     }
@@ -146,7 +147,10 @@ export default class ProjectSelectModal extends React.Component {
 
   showCreate = () => {
     const { workspace, rootStore, cluster } = this.props
-    if (this.state.type === 'projects') {
+    if (
+      this.state.type === 'projects' ||
+      this.state.type === 'federatedprojects'
+    ) {
       rootStore.triggerAction('project.create', {
         store: this.projectStore,
         workspace,
@@ -167,8 +171,7 @@ export default class ProjectSelectModal extends React.Component {
     const { visible, workspace, onCancel } = this.props
     const { type } = this.state
     const { detail } = this.store
-    const list =
-      type === 'projects' ? this.projectStore.list : this.devopsStore.list
+    const list = this.stores[type].list
     const { data, total, page, isLoading } = toJS(list)
 
     return (

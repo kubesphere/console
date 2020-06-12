@@ -18,7 +18,7 @@
 
 import { set } from 'lodash'
 import { Modal, Notify } from 'components/Base'
-import { mergeLabels } from 'utils'
+import { mergeLabels, updateFederatedAnnotations } from 'utils'
 
 import DeployAppModal from 'projects/components/Modals/DeployApp'
 import CreateAppModal from 'projects/components/Modals/CreateApp'
@@ -43,10 +43,7 @@ export default {
         onOk: data => {
           store.create(data, { cluster, namespace }).then(() => {
             Modal.close(modal)
-            success &&
-              success(
-                `/${workspace}/clusters/${cluster}/projects/${namespace}/applications/composing`
-              )
+            success && success()
           })
         },
         store,
@@ -60,7 +57,7 @@ export default {
   'crd.app.addcomponent': {
     on({ store, detail, cluster, namespace, success, ...props }) {
       const modal = Modal.open({
-        onOk: data => {
+        onOk: async data => {
           const labels = detail.selector
           const serviceMeshEnable = String(detail.serviceMeshEnable)
 
@@ -68,6 +65,7 @@ export default {
             service: data.Service,
             workload: data.Deployment || data.StatefulSet,
           }
+
           mergeLabels(component.service, labels)
           mergeLabels(component.workload, labels)
 
@@ -88,13 +86,21 @@ export default {
             serviceMeshEnable
           )
 
-          store
-            .addComponent(component, { name: detail.name, cluster, namespace })
-            .then(() => {
-              Modal.close(modal)
-              Notify.success({ content: `${t('Add Component Successfully')}!` })
-              success && success()
+          if (props.isFederated) {
+            updateFederatedAnnotations(component.workload)
+            updateFederatedAnnotations(component.service)
+            await store.create(component, { namespace })
+          } else {
+            await store.addComponent(component, {
+              name: detail.name,
+              cluster,
+              namespace,
             })
+          }
+
+          Modal.close(modal)
+          Notify.success({ content: `${t('Add Component Successfully')}!` })
+          success && success()
         },
         store,
         cluster,

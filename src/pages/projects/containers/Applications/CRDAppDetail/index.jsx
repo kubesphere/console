@@ -148,7 +148,7 @@ export default class CRDAppDetail extends React.Component {
   }
 
   render() {
-    const stores = { detailStore: this.store, fedDetailStore: this.fedStore }
+    const stores = { detailStore: this.store }
 
     if (this.store.isLoading && !this.store.detail.name) {
       return <Loading className="ks-page-loading" />

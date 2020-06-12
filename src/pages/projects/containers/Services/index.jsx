@@ -140,8 +140,8 @@ export default class Services extends React.Component {
             iconSize={40}
             title={getDisplayName(record)}
             desc={record.description || '-'}
-            isMultiCluster={record.isFedManaged}
             to={`${this.props.match.url}/${name}`}
+            isMultiCluster={record.isFedManaged}
           />
         ),
       },

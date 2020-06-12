@@ -20,6 +20,7 @@ import { get, set, omit, uniq, isEmpty } from 'lodash'
 import React from 'react'
 
 import ServiceStore from 'stores/service'
+import { generateId } from 'utils'
 import ObjectMapper from 'utils/object.mapper'
 
 import RuleList from './RuleList'
@@ -28,15 +29,33 @@ import RuleForm from './RuleForm'
 import styles from './index.scss'
 
 export default class Routes extends React.Component {
-  serviceStore = new ServiceStore()
+  constructor(props) {
+    super(props)
 
-  state = {
-    ingress: get(this.props.formData, 'ingress', {}),
-    services: Object.values(
-      omit(this.props.formData, ['application', 'ingress']) || {}
-    ).map(item => ObjectMapper.services(item.service)),
-    rulesError: '',
-    showAdd: false,
+    this.mapper = this.props.isFederated
+      ? item => {
+          const result = ObjectMapper.federated(ObjectMapper.services)(item)
+          return {
+            ...result,
+            ports: result.resource.ports,
+          }
+        }
+      : ObjectMapper.services
+
+    this.serviceStore = new ServiceStore()
+
+    this.state = {
+      ingress: get(this.props.formData, 'ingress', {}),
+      services: Object.values(
+        omit(this.props.formData, ['application', 'ingress']) || {}
+      ).map(item => this.mapper(item.service)),
+      rulesError: '',
+      showAdd: false,
+    }
+  }
+
+  componentDidMount() {
+    this.updateData()
   }
 
   componentDidUpdate(prevProps) {
@@ -46,8 +65,9 @@ export default class Routes extends React.Component {
         ingress: get(this.props.formData, 'ingress', {}),
         services: Object.values(
           omit(this.props.formData, ['application', 'ingress']) || {}
-        ).map(item => ObjectMapper.services(item.service)),
+        ).map(item => this.mapper(item.service)),
       })
+      this.updateData()
     }
   }
 
@@ -107,8 +127,76 @@ export default class Routes extends React.Component {
     set(application, 'spec.componentKinds', componentKinds)
   }
 
+  updateData = () => {
+    const { formData, isFederated } = this.props
+    const { ingress } = this.state
+    const applicationName = get(formData, 'application.metadata.name')
+    const namespace = get(formData, 'application.metadata.namespace')
+
+    const isServiceMeshEnable =
+      get(
+        formData,
+        'application.metadata.annotations["servicemesh.kubesphere.io/enabled"]'
+      ) === 'true'
+
+    if (!get(ingress, 'metadata.name')) {
+      set(
+        ingress,
+        'metadata.name',
+        `${applicationName}-ingress-${generateId()}`
+      )
+    }
+
+    if (isServiceMeshEnable) {
+      if (isFederated) {
+        const ods = get(ingress, 'spec.overrides', [])
+        ods.forEach(od => {
+          const ruleCod = od.clusterOverrides.find(
+            item => item.path === '/spec/rules'
+          )
+          const serviceName = get(
+            ruleCod,
+            '[0].http.paths[0].backend.serviceName'
+          )
+          if (serviceName) {
+            let annotationCod = od.clusterOverrides.find(
+              item => item.path === '/metadata/annotations'
+            )
+            if (!annotationCod) {
+              annotationCod = {
+                path: '/metadata/annotations',
+                value: {},
+              }
+            }
+            annotationCod.value = annotationCod.value || {}
+            annotationCod.value[
+              'nginx.ingress.kubernetes.io/upstream-vhost'
+            ] = `${serviceName}.${namespace}.svc.cluster.local`
+          }
+        })
+      } else {
+        const serviceName = get(
+          ingress,
+          'spec.rules[0].http.paths[0].backend.serviceName'
+        )
+        if (serviceName) {
+          set(
+            ingress,
+            'metadata.annotations["nginx.ingress.kubernetes.io/upstream-vhost"]',
+            `${serviceName}.${namespace}.svc.cluster.local`
+          )
+        }
+      }
+    }
+  }
+
   handleAdd = data => {
     const { protocol, secretName, _host, ...newRule } = data
+
+    if (this.props.isFederated) {
+      return this.handleFederatedAdd(data)
+    }
+
     const formTemplate = this.state.ingress
 
     const host = _host || newRule.host
@@ -147,10 +235,16 @@ export default class Routes extends React.Component {
     }
 
     this.updateComponentKind()
+    this.updateData()
     this.hideAdd()
   }
 
-  handleDelete = host => {
+  handleDelete = rule => {
+    if (this.props.isFederated) {
+      return this.handleFederatedDelete(rule)
+    }
+
+    const { host } = rule
     const { ingress } = this.state
     const rules = get(ingress, 'spec.rules', [])
     const newRules = rules.filter(item => item.host !== host)
@@ -170,15 +264,89 @@ export default class Routes extends React.Component {
     this.updateComponentKind()
   }
 
+  handleFederatedAdd = data => {
+    const { protocol, secretName, _host, clusters, ...newRule } = data
+
+    const formTemplate = this.state.ingress
+    const overrides = get(formTemplate, 'spec.overrides', [])
+
+    clusters.forEach(cluster => {
+      let override = overrides.find(item => item.clusterName === cluster)
+      if (!override) {
+        override = {
+          clusterName: cluster,
+          clusterOverrides: [],
+        }
+        overrides.push(override)
+      }
+
+      override.clusterOverrides = override.clusterOverrides || []
+
+      let rulesCod = override.clusterOverrides.find(
+        item => item.path === '/spec/rules'
+      )
+      if (!rulesCod) {
+        rulesCod = {
+          path: '/spec/rules',
+          value: [],
+        }
+        override.clusterOverrides.push(rulesCod)
+      }
+      rulesCod.value = [newRule]
+
+      if (protocol === 'https') {
+        const tls = [{ secretName, hosts: [newRule.host] }]
+        let tlsCod = override.clusterOverrides.find(
+          item => item.path === '/spec/tls'
+        )
+        if (!tlsCod) {
+          tlsCod = {
+            path: '/spec/tls',
+            value: [],
+          }
+          override.clusterOverrides.push(tlsCod)
+        }
+        tlsCod.value = tls
+      } else {
+        override.clusterOverrides = override.clusterOverrides.filter(
+          cod => cod.path !== '/spec/tls'
+        )
+      }
+    })
+
+    set(formTemplate, 'spec.overrides', overrides)
+    this.updateComponentKind()
+    this.hideAdd()
+  }
+
+  handleFederatedDelete = rule => {
+    const formTemplate = this.state.ingress
+    const overrides = get(formTemplate, 'spec.overrides', [])
+    const override = overrides.find(
+      item => item.clusterName === rule.cluster.name
+    )
+    override.clusterOverrides = override.clusterOverrides.filter(
+      item => !['/spec/rules', '/spec/tls'].includes(item.path)
+    )
+
+    this.setState({ ingress: { ...formTemplate } })
+  }
+
   render() {
-    const { cluster, namespace, gateway, projectDetail } = this.props
+    const {
+      cluster,
+      namespace,
+      gateway,
+      isFederated,
+      projectDetail,
+    } = this.props
     const { showAdd, ingress, services, rulesError, selectRule } = this.state
 
     return (
       <div className={styles.wrapper}>
         <div className={styles.step}>
           <div>{t('Internet Access')}</div>
-          <p>{t('可以设置应用的外网访问规则(Ingress)')}</p>
+          <p>{t('INTERNET_ACCESS_DESC')}</p>
         </div>
         <div className={styles.title}>{t('Route Rules')}</div>
         <div className={styles.rules}>
@@ -186,6 +354,8 @@ export default class Routes extends React.Component {
             error={rulesError}
             data={ingress}
             gateway={gateway}
+            isFederated={isFederated}
+            projectDetail={projectDetail}
             onAdd={this.showAdd}
             onDelete={this.handleDelete}
           />
@@ -195,6 +365,7 @@ export default class Routes extends React.Component {
           data={selectRule}
           cluster={cluster}
           namespace={namespace}
+          isFederated={isFederated}
           projectDetail={projectDetail}
           onOk={this.handleAdd}
           onCancel={this.hideAdd}

@@ -39,6 +39,28 @@ import ProjectStore from 'stores/project'
 export default class Projects extends React.Component {
   workspaceStore = this.props.workspaceStore
 
+  handleTabChange = value => {
+    const { workspace } = this.props.match.params
+    this.props.routing.push(`/workspaces/${workspace}/${value}`)
+  }
+
+  get tabs() {
+    return {
+      value: this.props.module,
+      onChange: this.handleTabChange,
+      options: [
+        {
+          value: 'projects',
+          label: t('Projects'),
+        },
+        {
+          value: 'federatedprojects',
+          label: t('Multi-cluster Projects'),
+        },
+      ],
+    }
+  }
+
   @computed
   get clusters() {
     return this.workspaceStore.clusters.data.map(item => ({
@@ -120,15 +142,6 @@ export default class Projects extends React.Component {
     ]
   }
 
-  get tips() {
-    return [
-      {
-        title: t('PROJECT_TYPES_Q'),
-        description: t('PROJECT_TYPES_A'),
-      },
-    ]
-  }
-
   getCheckboxProps = record => ({
     disabled: record.status === 'Terminating',
     name: record.name,
@@ -153,7 +166,6 @@ export default class Projects extends React.Component {
             }
             icon="project"
             iconSize={40}
-            isMultiCluster={record.isFedManaged}
             desc={record.description || '-'}
             title={getDisplayName(record)}
           />
@@ -196,7 +208,7 @@ export default class Projects extends React.Component {
     const { bannerProps, tableProps } = this.props
     return (
       <ListPage {...this.props} getData={this.getData} module="namespaces">
-        <Banner {...bannerProps} tips={this.tips} />
+        <Banner {...bannerProps} tabs={this.tabs} />
         <Table
           {...tableProps}
           itemActions={this.itemActions}

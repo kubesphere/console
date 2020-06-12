@@ -24,6 +24,7 @@ import BaseInfo from '../containers/BaseInfo'
 import Roles from '../containers/Roles'
 import Members from '../containers/Members'
 import Projects from '../containers/Projects'
+import FedProjects from '../containers/FedProjects'
 import DevOps from '../containers/DevOps'
 import Apps from '../containers/Apps'
 import Repos from '../containers/Repos'
@@ -41,6 +42,11 @@ export default [
     component: ListLayout,
     routes: [
       ...overviewRoutes,
+      {
+        path: `${PATH}/federatedprojects`,
+        component: FedProjects,
+        exact: true,
+      },
       {
         path: `${PATH}/projects`,
         component: Projects,

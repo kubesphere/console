@@ -17,6 +17,7 @@
  */
 
 import React from 'react'
+import { get, set } from 'lodash'
 import PropTypes from 'prop-types'
 
 import Placement from './Placement'
@@ -34,22 +35,38 @@ export default class ReplicasContorl extends React.Component {
   }
 
   handleChange = (name, newReplicas) => {
-    const { onChange, value } = this.props
+    const overrides = get(this.props.template, 'spec.overrides', [])
+    let od = overrides.find(item => item.clusterName === name)
+    if (!od) {
+      od = { clusterName: name, clusterOverrides: [] }
+      overrides.push(od)
+    }
 
-    value.forEach(item => {
-      if (item.name === name) {
-        item.replicas = newReplicas
-      }
-    })
+    od.clusterOverrides = od.clusterOverrides || []
+    const cod = od.clusterOverrides.find(item => item.path === '/spec/replicas')
+    if (cod) {
+      cod.value = newReplicas
+    } else {
+      od.clusterOverrides.push({ path: '/spec/replicas', value: newReplicas })
+    }
 
-    onChange && onChange(value.filter(item => !!item.replicas))
+    set(this.props.template, 'spec.overrides', overrides)
   }
 
   getValue = name => {
-    const { value } = this.props
-    const valueItem = value.find(item => item.name === name)
+    const overrides = get(this.props.template, 'spec.overrides', [])
+    const replicas = get(this.props.template, 'spec.template.spec.replicas', 0)
 
-    return valueItem ? valueItem.replicas : 0
+    let cod
+    overrides.forEach(od => {
+      if (od.clusterName === name) {
+        if (od.clusterOverrides) {
+          cod = od.clusterOverrides.find(item => item.path === '/spec/replicas')
+        }
+      }
+    })
+
+    return cod ? cod.value : replicas
   }
 
   render() {

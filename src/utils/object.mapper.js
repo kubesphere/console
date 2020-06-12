@@ -26,6 +26,7 @@ import {
   find,
   keyBy,
   includes,
+  cloneDeep,
 } from 'lodash'
 import {
   safeParseJSON,
@@ -144,6 +145,7 @@ const WorkLoadMapper = item => ({
   app:
     get(item, 'metadata.labels.release') ||
     get(item, 'metadata.labels["app.kubernetes.io/name"]'),
+  ownerReference: get(item, 'metadata.ownerReferences[0]', {}),
   hasS2i: Object.keys(get(item, 'metadata.labels', {})).some(labelKey =>
     labelKey.startsWith('s2ibuilder')
   ),
@@ -967,15 +969,38 @@ const ClusterMapper = item => {
   }
 }
 
-const FederatedMapper = item => ({
-  ...getBaseInfo(item),
-  status: get(item, 'status'),
-  overrides: get(item, 'spec.overrides'),
-  clusters: get(item, 'spec.placement.clusters'),
-  template: get(item, 'spec.template'),
-  namespace: get(item, 'metadata.namespace'),
-  _originData: getOriginData(item),
-})
+const FederatedMapper = resourceMapper => item => {
+  const overrides = get(item, 'spec.overrides', [])
+  const template = get(item, 'spec.template', {})
+  const clusters = get(item, 'spec.placement.clusters', [])
+
+  const overrideClusterMap = keyBy(overrides, 'clusterName')
+  const clusterTemplates = {}
+  clusters.forEach(({ name }) => {
+    clusterTemplates[name] = cloneDeep(template)
+    if (overrideClusterMap[name] && overrideClusterMap[name].clusterOverrides) {
+      overrideClusterMap[name].clusterOverrides.forEach(cod => {
+        const path = cod.path.startsWith('/') ? cod.path.slice(1) : cod.path
+        set(clusterTemplates[name], path.replace(/\//g, '.'), cod.value)
+      })
+    }
+  })
+
+  return {
+    ...getBaseInfo(item),
+    overrides,
+    template,
+    clusters,
+    clusterTemplates,
+    isFedManaged: true,
+    resource: resourceMapper(template),
+    namespace: get(item, 'metadata.namespace'),
+    labels: get(item, 'metadata.labels', {}),
+    annotations: get(item, 'metadata.annotations', {}),
+    app: get(item, 'metadata.labels["app.kubernetes.io/name"]'),
+    _originData: getOriginData(item),
+  }
+}
 
 const DevOpsMapper = item => ({
   uid: get(item, 'metadata.uid'),

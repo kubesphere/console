@@ -40,8 +40,7 @@ export default {
   INVITE_MEMBER_DESC_DEVOPS:
     'You can invite new members to work with your DevOps project.',
   INVITE_MEMBER_SEARCH_PLACEHODLER: 'Enter an email to invite members',
-  INVITE_MEMBER_CHOOSE_ROLE_TIP:
-    'Please assign a role to this member',
+  INVITE_MEMBER_CHOOSE_ROLE_TIP: 'Please assign a role to this member',
   PROJECT_ADMIN_DESC:
     'You can specify a member of the project as an administrator',
   DEVOPS_ADMIN_DESC:
@@ -93,7 +92,8 @@ export default {
 
   PROJECT_BASIC_INFO_DESC:
     "The project's basic information covers project name and the project's quota status.",
-  PROJECT_ROLE_DESC: 'Project roles define what access users have in the current project.',
+  PROJECT_ROLE_DESC:
+    'Project roles define what access users have in the current project.',
   PROJECT_MEMBERS_DESC: 'Manage and assign roles for project members.',
   PROJECT_ADVANCED_SETTINGS_DESC:
     'Configure gateway access for external websites as well as microservice and the collection of logs on disks.',
@@ -105,6 +105,7 @@ export default {
 
   NAME_EXIST_IN_CLUSTER: 'Name exists in {cluster}',
 
-  PROJECT_CLUSTER_SETTINGS_DESC: 'Select the cluster to create the project',
+  PROJECT_CLUSTER_SETTINGS_DESC:
+    'Select the cluster to create the project. When multiple clusters are selected, the multi-cluster project will be created',
   NETWORK_ISOLATED_DESC: 'Set network isolation strategy',
 }

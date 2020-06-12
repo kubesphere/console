@@ -72,7 +72,7 @@ export default {
   'Project Settings': '项目设置',
   'Grayscale Release': '灰度发布',
 
-  "User Manual": '使用手册',
+  'User Manual': '使用手册',
   'API Documents': 'API 文档',
 
   History: '历史记录',
@@ -199,6 +199,8 @@ export default {
   'Display selected': '显示已选',
   Display: '显示',
   Hidden: '隐藏',
+  Fold: '折叠',
+  Unfold: '展开',
 
   'Basic Info': '基本信息',
   'Pod Template': '容器组模板',
@@ -272,6 +274,8 @@ export default {
     '描述将被作为注释添加到资源中，并显示在应用的详情中，描述信息不超过 1000 个字符',
   SHORT_DESCRIPTION_DESC: '描述信息不超过 1000 个字符',
   PROJECT_DESC: '将根据项目进行资源进行分组, 可以按项目对资源进行查看管理',
+  'MULTI-CLUSTER_PROJECT_CREATE_DESC':
+    '将根据项目进行资源进行分组, 可以按项目对资源进行查看管理',
   Description: '描述信息',
 
   'Please input name': '请输入名称',

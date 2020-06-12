@@ -18,23 +18,19 @@
 
 import { Modal, Notify } from 'components/Base'
 import DeleteModal from 'components/Modals/Delete'
-import FederatedStore from 'stores/federated'
 
 export default {
   'resource.delete': {
     on({ store, detail, success, ...props }) {
-      const fedStore = new FederatedStore(store.module)
-      const _store = detail.isFedManaged ? fedStore : store
-
       const modal = Modal.open({
         onOk: () => {
-          _store.delete(detail).then(() => {
+          store.delete(detail).then(() => {
             Modal.close(modal)
             Notify.success({ content: `${t('Deleted Successfully')}!` })
             success && success()
           })
         },
-        store: _store,
+        store,
         modal: DeleteModal,
         resource: detail.name,
         ...props,
@@ -43,7 +39,6 @@ export default {
   },
   'resource.batch.delete': {
     on({ store, success, rowKey, ...props }) {
-      const fedStore = new FederatedStore(store.module)
       const { data, selectedRowKeys } = store.list
 
       const selectNames = data
@@ -56,11 +51,7 @@ export default {
 
           data.forEach(item => {
             if (selectNames.includes(item.name)) {
-              if (item.isFedManaged) {
-                reqs.push(fedStore.delete(item))
-              } else {
-                reqs.push(store.delete(item))
-              }
+              reqs.push(store.delete(item))
             }
           })
 

@@ -43,7 +43,7 @@ const SECRET_TYPES = [
 
 export default class SecretSettings extends React.Component {
   state = {
-    type: get(this.formTemplate, 'type', ''),
+    type: get(this.fedFormTemplate, 'type', ''),
     state: '',
     selectDataKey: '',
   }
@@ -51,6 +51,12 @@ export default class SecretSettings extends React.Component {
   get formTemplate() {
     const { formTemplate, module } = this.props
     return get(formTemplate, MODULE_KIND_MAP[module], formTemplate)
+  }
+
+  get fedFormTemplate() {
+    return this.props.isFederated
+      ? get(this.formTemplate, 'spec.template')
+      : this.formTemplate
   }
 
   getTypeOptions = () => [
@@ -68,7 +74,7 @@ export default class SecretSettings extends React.Component {
 
   handleTypeChange = type => {
     if (!type || SECRET_TYPES.includes(type)) {
-      set(this.formTemplate, 'data', {})
+      set(this.fedFormTemplate, 'data', {})
     }
 
     this.setState({ type })
@@ -92,13 +98,13 @@ export default class SecretSettings extends React.Component {
 
   handleData = data => {
     const { selectDataKey } = this.state
-    const originData = get(this.formTemplate, 'data', {})
+    const originData = get(this.fedFormTemplate, 'data', {})
 
     if (selectDataKey) {
       delete originData[selectDataKey]
     }
 
-    set(this.formTemplate, 'data', { ...originData, ...data })
+    set(this.fedFormTemplate, 'data', { ...originData, ...data })
 
     this.hideDataForm()
   }
@@ -117,7 +123,7 @@ export default class SecretSettings extends React.Component {
 
   renderDataForm() {
     const { selectDataKey } = this.state
-    const originData = get(this.formTemplate, 'data', {})
+    const originData = get(this.fedFormTemplate, 'data', {})
 
     return (
       <DataForm
@@ -298,7 +304,7 @@ export default class SecretSettings extends React.Component {
     }
 
     return (
-      <Form data={this.formTemplate} ref={formRef}>
+      <Form data={this.fedFormTemplate} ref={formRef}>
         {mode !== 'edit' ? (
           <Form.Item label={t('Type')} desc={t('SECRET_TYPE_DESC')}>
             <CustomSelect

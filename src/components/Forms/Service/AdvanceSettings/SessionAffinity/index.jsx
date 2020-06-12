@@ -22,23 +22,33 @@ import { Form } from 'components/Base'
 import { NumberInput } from 'components/Inputs'
 
 export default class SessionAffinity extends React.Component {
+  get fedPreifx() {
+    return this.props.isFederated ? 'spec.template.' : ''
+  }
+
   componentDidMount() {
     const { formTemplate } = this.props
 
-    set(formTemplate, 'Service.spec.sessionAffinity', 'ClientIP')
+    set(
+      formTemplate,
+      `Service.${this.fedPreifx}spec.sessionAffinity`,
+      'ClientIP'
+    )
   }
 
   componentWillUnmount() {
     const { formTemplate } = this.props
 
-    set(formTemplate, 'Service.spec.sessionAffinity', 'None')
+    set(formTemplate, `Service.${this.fedPreifx}spec.sessionAffinity`, 'None')
   }
 
   render() {
     return (
       <Form.Item label={t('Maximum session sticky time(s)')}>
         <NumberInput
-          name="Service.spec.sessionAffinityConfig.clientIP.timeoutSeconds"
+          name={`Service.${
+            this.fedPreifx
+          }spec.sessionAffinityConfig.clientIP.timeoutSeconds`}
           defaultValue={10800}
           min={0}
         />

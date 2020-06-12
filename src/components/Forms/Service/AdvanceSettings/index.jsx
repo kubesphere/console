@@ -32,6 +32,10 @@ export default class AdvancedSettings extends React.Component {
     return get(this.props.formTemplate, 'Service.metadata.namespace')
   }
 
+  get fedPreifx() {
+    return this.props.isFederated ? 'spec.template.' : ''
+  }
+
   get kind() {
     const { module } = this.props
     return MODULE_KIND_MAP[module]
@@ -40,8 +44,8 @@ export default class AdvancedSettings extends React.Component {
   handleLabelsChange = labels => {
     const { formTemplate, noWorkload } = this.props
     if (!noWorkload) {
-      set(formTemplate, 'Service.spec.selector', labels)
-      set(formTemplate, 'Service.metadata.labels', labels)
+      set(formTemplate, `Service.${this.fedPrefix}spec.selector`, labels)
+      set(formTemplate, `Service.${this.fedPrefix}metadata.labels`, labels)
     }
   }
 
@@ -50,7 +54,7 @@ export default class AdvancedSettings extends React.Component {
     if (!noWorkload) {
       set(
         formTemplate,
-        'Service.spec.sessionAffinity',
+        `Service.${this.fedPrefix}spec.sessionAffinity`,
         value ? 'clusterIP' : 'None'
       )
     }
@@ -64,6 +68,7 @@ export default class AdvancedSettings extends React.Component {
       module,
       store,
       noWorkload,
+      isFederated,
     } = this.props
     return (
       <Form data={formTemplate} ref={formRef}>
@@ -73,7 +78,10 @@ export default class AdvancedSettings extends React.Component {
             desc={t('SERVICES_INTERNET_ACCESS_DESC')}
             checkable
           >
-            <InternetAccess formTemplate={formTemplate} />
+            <InternetAccess
+              formTemplate={formTemplate}
+              isFederated={isFederated}
+            />
           </Form.Group>
         )}
         <Form.Group
@@ -81,7 +89,10 @@ export default class AdvancedSettings extends React.Component {
           desc={t('the maximum session sticky time is 10800s(3 hours)')}
           checkable
         >
-          <SessionAffinity formTemplate={formTemplate} />
+          <SessionAffinity
+            formTemplate={formTemplate}
+            isFederated={isFederated}
+          />
         </Form.Group>
         {!noWorkload && (
           <Form.Group
@@ -94,6 +105,7 @@ export default class AdvancedSettings extends React.Component {
               kind={this.kind}
               namespace={this.namespace}
               formTemplate={formTemplate}
+              isFederated={isFederated}
             />
           </Form.Group>
         )}
@@ -113,6 +125,7 @@ export default class AdvancedSettings extends React.Component {
             cluster={cluster}
             formTemplate={formTemplate}
             onLabelsChange={this.handleLabelsChange}
+            isFederated={isFederated}
           />
         </Form.Group>
       </Form>

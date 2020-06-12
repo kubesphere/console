@@ -1,0 +1,18 @@
+@import '~scss/variables';
+
+.item {
+  position: relative;
+
+  .more {
+    position: absolute;
+    top: 15px;
+    right: 28px;
+    z-index: 1;
+    cursor: pointer;
+    font-weight: 600;
+
+    &:hover {
+      color: $green;
+    }
+  }
+}

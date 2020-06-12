@@ -211,7 +211,12 @@ client:
     - cate: 'workspace'
       items:
         - { name: overview, title: Overview, icon: dashboard, skipAuth: true }
-        - { name: projects, title: NAV_PROJECTS, icon: project, skipAuth: true }
+        - name: projects
+          title: NAV_PROJECTS
+          icon: project
+          tabs:
+            - { name: projects, title: Projects }
+            - { name: federatedprojects, title: Multi-cluster Projects }
         - { name: devops, title: DevOps Projects, icon: strategy-group }
         - name: apps
           title: Apps Management
@@ -316,6 +321,37 @@ client:
                 title: Advanced Settings,
                 authKey: 'project-settings',
               }
+
+  federatedProjectNavs:
+    - cate: 'project'
+      items:
+        - { name: overview, title: Overview, icon: dashboard, skipAuth: true }
+        - name: app-workloads
+          title: Application Workloads
+          icon: appcenter
+          children:
+            - { name: applications, title: Applications, icon: application }
+            - { name: services, title: Services }
+            - name: workloads
+              title: Workloads
+              tabs:
+                - { name: deployments, title: Deployments }
+                - { name: statefulsets, title: StatefulSets }
+            - { name: ingresses, title: Routes }
+        - { name: volumes, title: Volumes, icon: storage }
+        - name: config
+          title: Configuration Center
+          icon: hammer
+          children:
+            - { name: secrets, title: Secrets }
+            - { name: configmaps, title: ConfigMaps }
+        - name: settings
+          title: Project Settings
+          icon: cogwheel
+          children:
+            - { name: base-info, title: Basic Info, skipAuth: true }
+            - { name: quota, title: Quota Management, authKey: 'project-settings' }
+            - { name: advanced, title: Advanced Settings, authKey: 'project-settings' }
 
   # devops page navigations
   devopsNavs:

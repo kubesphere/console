@@ -57,7 +57,10 @@ export default function withList(options) {
             text: t('Edit'),
             action: 'edit',
             onClick: item =>
-              this.trigger('resource.baseinfo.edit', { detail: item }),
+              this.trigger('resource.baseinfo.edit', {
+                detail: item,
+                success: this.routing.query,
+              }),
           },
           {
             key: 'delete',

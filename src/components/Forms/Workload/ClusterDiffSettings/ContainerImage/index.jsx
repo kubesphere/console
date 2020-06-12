@@ -52,7 +52,15 @@ export default class ContainerImages extends Component {
   }
 
   renderContent() {
-    const { cluster, namespace, container, containerType } = this.props
+    const {
+      cluster,
+      namespace,
+      container,
+      containerType,
+      quota,
+      limitRanges,
+      imageRegistries,
+    } = this.props
     return (
       <div className={styles.form}>
         <Form ref={this.formRef} type="inner" data={container}>
@@ -60,6 +68,9 @@ export default class ContainerImages extends Component {
             className={styles.formContent}
             cluster={cluster}
             namespace={namespace}
+            quota={quota}
+            limitRanges={limitRanges}
+            imageRegistries={imageRegistries}
             defaultContainerType={containerType}
           />
         </Form>

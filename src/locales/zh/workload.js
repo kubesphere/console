@@ -661,4 +661,7 @@ export default {
   CLUSTER_CONTAINER_IMAGE_DIFF_DESC:
     '根据不同的需要在不同的集群中设置不同的容器',
   CLUSTER_SERVICE_DIFF_DESC: '可以在不同集群设置不同的服务端口',
+
+  REPLICAS_AVAILABLE: '实际副本',
+  REPLICAS_EXPECTED: '期望副本',
 }

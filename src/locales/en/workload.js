@@ -328,12 +328,18 @@ export default {
   RUN_AS_USER_GROUP_DESC:
     'The GID to run the entrypoint of the container process. Uses runtime default if unset.',
 
-  WORKLOAD_CREATE_DESC: 'Workload is usually the actual carrier for access services and is also the actual carrier for system applications such as node log collection and monitoring. Workload is also an abstract model for a group of Pods.',
+  WORKLOAD_CREATE_DESC:
+    'Workload is usually the actual carrier for access services and is also the actual carrier for system applications such as node log collection and monitoring. Workload is also an abstract model for a group of Pods.',
 
   COMPARE_WITH: 'Comparison with the previous version {version}',
-  REVISION_DESC: 'After the resource template of workload is changed, a new log will be generated and Pods will be rescheduled for version update. The latest 10 versions will be saved by default. You can implement a redeployment based on the change log.',
+  REVISION_DESC:
+    'After the resource template of workload is changed, a new log will be generated and Pods will be rescheduled for version update. The latest 10 versions will be saved by default. You can implement a redeployment based on the change log.',
 
-  CLUSTER_CONTAINER_IMAGE_DIFF_DESC: 'Set different containers in different clusters according to needs',
-  CLUSTER_SERVICE_DIFF_DESC: 'Different service ports can be set in different clusters',
+  CLUSTER_CONTAINER_IMAGE_DIFF_DESC:
+    'Set different containers in different clusters according to needs',
+  CLUSTER_SERVICE_DIFF_DESC:
+    'Different service ports can be set in different clusters',
   POD_SCALE_DESC: 'The number of Pod instances that can be scaled',
+  REPLICAS_AVAILABLE: 'Available',
+  REPLICAS_EXPECTED: 'Expected',
 }

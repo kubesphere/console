@@ -32,6 +32,8 @@ export default {
   SHORT_DESCRIPTION_DESC: 'Description is limited to 1000 characters.',
   PROJECT_DESC:
     'Projects will be grouped by their resources, which you can view and manage by project.',
+  'MULTI-CLUSTER_PROJECT_CREATE_DESC':
+    'Projects will be grouped by their resources, which you can view and manage by project.',
 
   DELETE_TITLE: 'Sure to delete {type}?',
   DELETE_TIP:
@@ -166,14 +168,14 @@ export default {
   EVENT_SEARCH_DESC:
     'A multi-dimensional event search tool for workspaces, projects and resources.',
 
-  PLATFORM_INFO_DESC:
-    'View platform title, description and other information',
+  PLATFORM_INFO_DESC: 'View platform title, description and other information',
   HOW_TO_MODIFY_PLATFORM_INFO: 'How to modify platform info?',
   PLATFORM_SETTINGS_SELECTOR_DESC: 'Customized Platform Settings',
 
-  AUDITING_OPERATING_DESC: 'A multi-dimensional auditing search tool for workspaces, projects and resources.',
+  AUDITING_OPERATING_DESC:
+    'A multi-dimensional auditing search tool for workspaces, projects and resources.',
 
   FILE_OVERSIZED_TIP: 'The file uploaded must be less than 2M!',
 
-  MULTI_CLUSTER_TIP: 'The resource is deployed in multiple clusters.'
+  MULTI_CLUSTER_TIP: 'The resource is deployed in multiple clusters.',
 }

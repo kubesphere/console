@@ -39,6 +39,9 @@ export default {
 
   'Invalid host': '域名格式错误',
 
+  'Gateway IP': '网关 IP',
+  'Gateway Type': '网关类型',
+
   Mode: '模式',
   Paths: '路径',
   HostName: '域名',

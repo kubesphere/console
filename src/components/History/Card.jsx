@@ -19,7 +19,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Text, Tag } from 'components/Base'
-import ClusterTitle from 'components/ClusterTitle'
+import ClusterTitle from 'components/Clusters/ClusterTitle'
 
 import styles from './index.scss'
 

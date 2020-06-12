@@ -27,7 +27,7 @@ export default {
   VISIBILITY_PART: 'Partially Visible',
   VISIBILITY_PUBLIC: 'Public',
 
-  MULTI_CLUSTER: 'Multi-Cluster',
+  MULTI_CLUSTER: 'Multi-Clusters',
 
   IMPORT_CLUSTER_DESC: 'Import an existing Kubernetes cluster',
 

@@ -23,7 +23,7 @@ import { toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import { Checkbox } from '@pitrix/lego-ui'
 import { Alert } from 'components/Base'
-import ClusterTitle from 'components/ClusterTitle'
+import ClusterTitle from 'components/Clusters/ClusterTitle'
 
 import ClusterStore from 'stores/cluster'
 

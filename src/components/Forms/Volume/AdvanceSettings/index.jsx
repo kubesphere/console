@@ -38,10 +38,16 @@ export default class AdvancedSettings extends React.Component {
     return get(formTemplate, MODULE_KIND_MAP[module], formTemplate)
   }
 
+  get fedFormTemplate() {
+    return this.props.isFederated
+      ? get(this.formTemplate, 'spec.template')
+      : this.formTemplate
+  }
+
   render() {
     const { store, formRef } = this.props
     return (
-      <Form data={this.formTemplate} ref={formRef}>
+      <Form data={this.fedFormTemplate} ref={formRef}>
         <Form.Group
           label={t('Add metadata')}
           desc={t(
@@ -54,7 +60,7 @@ export default class AdvancedSettings extends React.Component {
             store={store}
             cluster={this.cluster}
             namespace={this.namespace}
-            formTemplate={this.formTemplate}
+            formTemplate={this.fedFormTemplate}
           />
         </Form.Group>
       </Form>

@@ -28,12 +28,22 @@ import FORM_STEPS from 'configs/steps/configmaps'
 
 export default {
   'configmap.create': {
-    on({ store, cluster, namespace, module, success, ...props }) {
+    on({ store, cluster, namespace, module, isFederated, success, ...props }) {
       const kind = MODULE_KIND_MAP[module]
       const formTemplate = {
         [kind]: FORM_TEMPLATES[module]({
           namespace,
         }),
+      }
+
+      if (isFederated) {
+        Object.keys(formTemplate).forEach(key => {
+          formTemplate[key] = FORM_TEMPLATES.federated({
+            data: formTemplate[key],
+            clusters: props.projectDetail.clusters.map(item => item.name),
+            kind: key,
+          })
+        })
       }
 
       const modal = Modal.open({
@@ -55,6 +65,7 @@ export default {
         cluster,
         namespace,
         name: kind,
+        isFederated,
         formTemplate,
         steps: FORM_STEPS,
         modal: CreateModal,

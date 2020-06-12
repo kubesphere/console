@@ -18,9 +18,10 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import { get, isEmpty } from 'lodash'
+import { get, isEmpty, keyBy } from 'lodash'
 import { Alert } from '@pitrix/lego-ui'
 import { Text } from 'components/Base'
+import ObjectMapper from 'utils/object.mapper'
 
 import Item from './Item'
 
@@ -44,26 +45,51 @@ export default class RuleList extends React.Component {
   }
 
   renderContent() {
-    const { data, onAdd, onDelete, gateway } = this.props
-    const rules = get(data, 'spec.rules', [])
-    const tls = get(data, 'spec.tls[0]', {})
+    const {
+      data,
+      onAdd,
+      onDelete,
+      isFederated,
+      projectDetail,
+      gateway,
+    } = this.props
+    const clusters = keyBy(projectDetail.clusters, 'name')
+    let rules = get(data, 'spec.rules', [])
+    let tls = get(data, 'spec.tls[0]', {})
+
+    if (isFederated) {
+      const result = ObjectMapper.federated(ObjectMapper.ingresses)(data)
+      if (result && result.clusterTemplates) {
+        rules = Object.keys(result.clusterTemplates).map(cluster => ({
+          ...get(result.clusterTemplates[cluster], 'spec.rules[0]', {}),
+          cluster: clusters[cluster],
+        }))
+
+        tls = Object.keys(result.clusterTemplates).map(cluster => ({
+          ...get(result.clusterTemplates[cluster], 'spec.tls[0]', {}),
+          cluster: clusters[cluster],
+        }))
+      }
+    }
 
     return (
       <ul>
-        {rules.map(rule => (
-          <Item
-            key={rule.host}
-            rule={rule}
-            tls={tls}
-            onEdit={onAdd}
-            onDelete={onDelete}
-          />
-        ))}
-        {!isEmpty(gateway) && (
+        {rules
+          .filter(item => item.host)
+          .map(rule => (
+            <Item
+              key={rule.host}
+              rule={rule}
+              tls={tls}
+              onEdit={onAdd}
+              onDelete={onDelete}
+            />
+          ))}
+        {(!isEmpty(gateway) || isFederated) && (
           <div className={styles.add} onClick={this.handleAdd}>
             <Text
               title={t('Add Route Rule')}
-              description={t('为应用添加外网访问规则')}
+              description={t('Add Internet access rule for the application')}
             />
           </div>
         )}
@@ -72,10 +98,10 @@ export default class RuleList extends React.Component {
   }
 
   render() {
-    const { gateway, error } = this.props
+    const { gateway, isFederated, error } = this.props
     return (
       <div className={styles.wrapper}>
-        {isEmpty(gateway) && (
+        {isEmpty(gateway) && !isFederated && (
           <Alert
             className="margin-b12"
             description={t.html('NO_INTERNET_ACCESS_TIP')}

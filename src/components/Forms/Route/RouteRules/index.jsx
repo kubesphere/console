@@ -18,7 +18,7 @@
 
 import { get, set, uniq, isEmpty } from 'lodash'
 import React from 'react'
-import { toJS } from 'mobx'
+import { toJS, computed } from 'mobx'
 import { observer } from 'mobx-react'
 import { Alert } from '@pitrix/lego-ui'
 import { Form } from 'components/Base'
@@ -26,6 +26,7 @@ import { MODULE_KIND_MAP } from 'utils/constants'
 import SecretStore from 'stores/secret'
 import ServiceStore from 'stores/service'
 import RouterStore from 'stores/router'
+import FederatedStore from 'stores/federated'
 
 import RuleList from './RuleList'
 import RuleForm from './RuleForm'
@@ -43,27 +44,36 @@ class RouteRules extends React.Component {
     this.serviceStore = new ServiceStore()
     this.routerStore = new RouterStore()
 
+    if (props.isFederated) {
+      this.secretStore = new FederatedStore(this.secretStore)
+      this.serviceStore = new FederatedStore(this.serviceStore)
+    }
+  }
+
+  componentDidMount() {
     this.secretStore.fetchList({
       namespace: this.namespace,
       cluster: this.cluster,
+      limit: 9999,
     })
     this.serviceStore.fetchList({
       namespace: this.namespace,
       cluster: this.cluster,
-      limit: Infinity,
+      limit: 9999,
     })
-    this.routerStore
-      .getGateway({ namespace: this.namespace, cluster: this.cluster })
-      .then(() => {
-        const { data } = toJS(this.routerStore.gateway)
-        if (data.serviceMeshEnable) {
-          set(
-            this.formTemplate,
-            'metadata.annotations["nginx.ingress.kubernetes.io/service-upstream"]',
-            'true'
-          )
-        }
-      })
+    !this.props.isFederated &&
+      this.routerStore
+        .getGateway({ namespace: this.namespace, cluster: this.cluster })
+        .then(() => {
+          const { data } = toJS(this.routerStore.gateway)
+          if (data.serviceMeshEnable) {
+            set(
+              this.formTemplate,
+              'metadata.annotations["nginx.ingress.kubernetes.io/service-upstream"]',
+              'true'
+            )
+          }
+        })
   }
 
   get formTemplate() {
@@ -77,6 +87,14 @@ class RouteRules extends React.Component {
 
   get namespace() {
     return get(this.formTemplate, 'metadata.namespace')
+  }
+
+  @computed
+  get services() {
+    return this.serviceStore.list.data.map(item => ({
+      ...item,
+      ports: item.resource.ports,
+    }))
   }
 
   showRule = (data = {}) => {
@@ -95,6 +113,10 @@ class RouteRules extends React.Component {
 
   handleRule = data => {
     const { protocol, secretName, _host, ...newRule } = data
+
+    if (this.props.isFederated) {
+      return this.handleFederatedRule(data)
+    }
 
     const host = _host || newRule.host
 
@@ -134,9 +156,71 @@ class RouteRules extends React.Component {
     this.hideRule()
   }
 
+  handleFederatedRule = data => {
+    const { protocol, secretName, _host, clusters, ...newRule } = data
+
+    const overrides = get(this.formTemplate, 'spec.overrides', [])
+
+    clusters.forEach(cluster => {
+      let override = overrides.find(item => item.clusterName === cluster)
+      if (!override) {
+        override = {
+          clusterName: cluster,
+          clusterOverrides: [],
+        }
+        overrides.push(override)
+      }
+
+      override.clusterOverrides = override.clusterOverrides || []
+
+      let rulesCod = override.clusterOverrides.find(
+        item => item.path === '/spec/rules'
+      )
+      if (!rulesCod) {
+        rulesCod = {
+          path: '/spec/rules',
+          value: [],
+        }
+        override.clusterOverrides.push(rulesCod)
+      }
+      rulesCod.value = [newRule]
+
+      if (protocol === 'https') {
+        const tls = [{ secretName, hosts: [newRule.host] }]
+        let tlsCod = override.clusterOverrides.find(
+          item => item.path === '/spec/tls'
+        )
+        if (!tlsCod) {
+          tlsCod = {
+            path: '/spec/tls',
+            value: [],
+          }
+          override.clusterOverrides.push(tlsCod)
+        }
+        tlsCod.value = tls
+      } else {
+        override.clusterOverrides = override.clusterOverrides.filter(
+          cod => cod.path !== '/spec/tls'
+        )
+      }
+    })
+
+    set(this.formTemplate, 'spec.overrides', overrides)
+    this.hideRule()
+  }
+
   rulesValidator = (_, value, callback) => {
+    const { isFederated } = this.props
     const { data, isLoading } = toJS(this.routerStore.gateway)
     const noGateway = isEmpty(data) && !isLoading
+
+    if (isFederated) {
+      const overrides = JSON.stringify(get(this.formTemplate, 'spec.overrides'))
+      if (overrides.indexOf('/spec/rules') === -1) {
+        return callback({ message: t('Please add at least one routing rule') })
+      }
+      return callback()
+    }
 
     if (noGateway) {
       return callback({ message: t('UNABLE_CREATE_ROUTE_TIP') })
@@ -150,8 +234,8 @@ class RouteRules extends React.Component {
   }
 
   renderRuleForm(data) {
+    const { isFederated, projectDetail } = this.props
     const { data: secrets } = toJS(this.secretStore.list)
-    const { data: services } = toJS(this.serviceStore.list)
     const { data: gateway } = toJS(this.routerStore.gateway)
 
     return (
@@ -159,7 +243,9 @@ class RouteRules extends React.Component {
         data={data}
         gateway={gateway}
         secrets={secrets}
-        services={services}
+        services={this.services}
+        isFederated={isFederated}
+        projectDetail={projectDetail}
         onSave={this.handleRule}
         onCancel={this.hideRule}
       />
@@ -167,7 +253,7 @@ class RouteRules extends React.Component {
   }
 
   render() {
-    const { formRef } = this.props
+    const { formRef, isFederated, projectDetail } = this.props
     const { showRule, selectRule } = this.state
     const { data, isLoading } = toJS(this.routerStore.gateway)
 
@@ -191,6 +277,8 @@ class RouteRules extends React.Component {
             name="spec.rules"
             onShow={this.showRule}
             disabled={noGateway}
+            isFederated={isFederated}
+            projectDetail={projectDetail}
           />
         </Form.Item>
       </Form>

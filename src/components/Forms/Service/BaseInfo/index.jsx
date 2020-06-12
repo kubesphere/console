@@ -22,7 +22,7 @@ import { observer } from 'mobx-react'
 import { Columns, Column, Input, Select, TextArea } from '@pitrix/lego-ui'
 import { Form } from 'components/Base'
 import ToggleView from 'components/ToggleView'
-import { updateLabels, generateId } from 'utils'
+import { updateLabels, updateFederatedAnnotations, generateId } from 'utils'
 import { ProjectSelect } from 'components/Inputs'
 
 import {
@@ -53,9 +53,7 @@ export default class ServiceBaseInfo extends React.Component {
     })
   }
 
-  get formTemplate() {
-    return this.props.formTemplate.Service
-  }
+  formTemplate = this.props.formTemplate.Service
 
   get workloadKind() {
     const { module, noWorkload } = this.props
@@ -91,36 +89,72 @@ export default class ServiceBaseInfo extends React.Component {
     ]
   }
 
-  handleNameChange = debounce(value => {
-    const { module, formTemplate, noWorkload } = this.props
+  handleNameChange = value => {
+    const { isFederated, noWorkload } = this.props
 
+    const labels = get(this.formTemplate, 'metadata.labels', {})
+    labels.app = value
+
+    updateLabels(
+      isFederated ? get(this.formTemplate, 'spec.template') : this.formTemplate,
+      'services',
+      labels
+    )
+
+    if (isFederated) {
+      set(this.formTemplate, 'metadata.labels.app', value)
+    }
+
+    if (!noWorkload) {
+      this.updateWorkload(value)
+    }
+  }
+
+  updateWorkload(value) {
+    const { module, formTemplate, isFederated } = this.props
     const aliasName = get(
       this.formTemplate,
       'metadata.annotations["kubesphere.io/alias-name"]'
     )
     const labels = get(this.formTemplate, 'metadata.labels', {})
     const namespace = get(this.formTemplate, 'metadata.namespace')
-    labels.app = value
+    const workloadName = `${value}-${generateId()}`
+    set(formTemplate[this.workloadKind], 'metadata.name', workloadName)
+    set(formTemplate[this.workloadKind], 'metadata.namespace', namespace)
+    set(
+      formTemplate[this.workloadKind],
+      'metadata.annotations["kubesphere.io/alias-name"]',
+      aliasName || value
+    )
 
-    if (!noWorkload) {
+    set(formTemplate[this.workloadKind], 'metadata.labels.app', value)
+    updateLabels(
+      isFederated
+        ? get(formTemplate[this.workloadKind], 'spec.template')
+        : formTemplate[this.workloadKind],
+      module,
+      labels
+    )
+
+    if (this.workloadKind === 'StatefulSet') {
       set(
         formTemplate[this.workloadKind],
-        'metadata.name',
-        `${value}-${generateId()}`
+        isFederated ? 'spec.template.spec.serviceName' : 'spec.serviceName',
+        value
       )
-      set(formTemplate[this.workloadKind], 'metadata.namespace', namespace)
-      set(
-        formTemplate[this.workloadKind],
-        'metadata.annotations["kubesphere.io/alias-name"]',
-        aliasName || value
-      )
-      if (this.workloadKind === 'StatefulSet') {
-        set(formTemplate[this.workloadKind], 'spec.serviceName', value)
-      }
     }
 
-    updateLabels(formTemplate, module, labels)
-  }, 200)
+    set(
+      formTemplate.Service,
+      'metadata.annotations["kubesphere.io/workloadName"]',
+      workloadName
+    )
+    set(
+      formTemplate.Service,
+      'metadata.annotations["kubesphere.io/workloadModule"]',
+      module
+    )
+  }
 
   handleAliasNameChange = debounce(value => {
     const { formTemplate, noWorkload } = this.props
@@ -134,17 +168,29 @@ export default class ServiceBaseInfo extends React.Component {
         value || name
       )
     }
+
+    if (this.props.isFederated) {
+      updateFederatedAnnotations(this.formTemplate)
+    }
   }, 200)
 
   handleServiceMeshChange = value => {
     const { formTemplate, noWorkload } = this.props
 
-    !noWorkload &&
+    if (!noWorkload) {
       set(
         formTemplate[this.workloadKind],
         'metadata.annotations["servicemesh.kubesphere.io/enabled"]',
         value
       )
+      if (this.props.isFederated) {
+        updateFederatedAnnotations(formTemplate[this.workloadKind])
+      }
+    }
+
+    if (this.props.isFederated) {
+      updateFederatedAnnotations(this.formTemplate)
+    }
   }
 
   handleAppChange = (value, option) => {

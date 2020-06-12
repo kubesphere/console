@@ -22,12 +22,54 @@ import { MODULE_KIND_MAP } from 'utils/constants'
 
 import { Form } from 'components/Base'
 
+import FederatedStore from 'stores/federated'
+import QuotaStore from 'stores/quota'
+
 import ClustersMapper from './ClustersMapper'
 import ContainersMapper from './ContainersMapper'
 import ContainerImage from './ContainerImage'
 import ContainerPorts from './ContainerPorts'
 
 export default class AdvancedSettings extends React.Component {
+  state = {
+    quota: {},
+    limitRange: {},
+    imageRegistries: [],
+  }
+
+  quotaStore = new QuotaStore()
+
+  limitRangeStore = new FederatedStore({
+    module: 'limitranges',
+  })
+
+  imageRegistryStore = new FederatedStore({
+    module: 'secrets',
+  })
+
+  componentDidMount() {
+    this.fetchData()
+  }
+
+  fetchData() {
+    const namespace = get(this.formTemplate, 'metadata.namespace')
+
+    Promise.all([
+      this.quotaStore.fetch({ namespace }),
+      this.limitRangeStore.fetchListByK8s({ namespace }),
+      this.imageRegistryStore.fetchListByK8s({
+        namespace,
+        fieldSelector: `spec.template.type=kubernetes.io/dockerconfigjson`,
+      }),
+    ]).then(([quota, limitRanges, imageRegistries]) => {
+      this.setState({
+        quota,
+        limitRange: get(limitRanges, '[0].limit'),
+        imageRegistries,
+      })
+    })
+  }
+
   get namespace() {
     return get(this.formTemplate, 'metadata.namespace')
   }
@@ -38,9 +80,8 @@ export default class AdvancedSettings extends React.Component {
   }
 
   render() {
-    const { formRef, withService } = this.props
-    const clusters = get(this.props, 'projectDetail.clusters', [])
-
+    const { formRef, projectDetail, withService } = this.props
+    const clusters = projectDetail.clusters
     return (
       <Form data={this.formTemplate} ref={formRef}>
         <Form.Group
@@ -51,7 +92,9 @@ export default class AdvancedSettings extends React.Component {
           <ClustersMapper clusters={clusters} namespace={this.namespace}>
             {props => (
               <ContainersMapper formTemplate={this.formTemplate} {...props}>
-                {containerProps => <ContainerImage {...containerProps} />}
+                {containerProps => (
+                  <ContainerImage {...containerProps} {...this.state} />
+                )}
               </ContainersMapper>
             )}
           </ClustersMapper>

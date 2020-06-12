@@ -25,7 +25,6 @@ import { Loading } from '@pitrix/lego-ui'
 import { getDisplayName, getLocalTime } from 'utils'
 import { trigger } from 'utils/action'
 import WorkloadStore from 'stores/workload'
-import FederatedStore from 'stores/federated'
 
 import DetailPage from 'projects/containers/Base/Detail'
 
@@ -36,8 +35,6 @@ import getRoutes from './routes'
 @trigger
 export default class DeploymentDetail extends React.Component {
   store = new WorkloadStore(this.module)
-
-  fedStore = new FederatedStore(this.module)
 
   componentDidMount() {
     this.fetchData()
@@ -68,9 +65,6 @@ export default class DeploymentDetail extends React.Component {
   fetchData = async () => {
     const { params } = this.props.match
     await this.store.fetchDetail(params)
-    if (this.store.detail.isFedManaged) {
-      this.fedStore.fetchDetail(params)
-    }
   }
 
   getOperations = () => [
@@ -91,7 +85,6 @@ export default class DeploymentDetail extends React.Component {
       icon: 'timed-task',
       text: t('Revision Rollback'),
       action: 'edit',
-      show: !this.store.detail.isFedManaged,
       onClick: () =>
         this.trigger('workload.revision.rollback', {
           detail: this.store.detail,
@@ -102,7 +95,6 @@ export default class DeploymentDetail extends React.Component {
       icon: 'firewall',
       text: t('Horizontal Pod Autoscaling'),
       action: 'edit',
-      show: !this.store.detail.isFedManaged,
       onClick: () =>
         this.trigger('workload.hpa.edit', {
           detail: this.store.detail,
@@ -191,7 +183,7 @@ export default class DeploymentDetail extends React.Component {
   }
 
   render() {
-    const stores = { detailStore: this.store, fedDetailStore: this.fedStore }
+    const stores = { detailStore: this.store }
 
     if (this.store.isLoading && !this.store.detail.name) {
       return <Loading className="ks-page-loading" />

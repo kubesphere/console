@@ -1,0 +1,50 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.card {
+  position: relative;
+  & + .card {
+    margin-top: 8px;
+  }
+}
+
+.content {
+  position: relative;
+  margin-bottom: 12px;
+
+  & > svg {
+    vertical-align: middle;
+  }
+}
+
+.path {
+  position: relative;
+  padding: 12px 20px;
+  margin-top: 8px;
+  border-radius: 22px;
+  background-color: $bg-color;
+  border: solid 1px $border-color;
+
+  .access {
+    right: 6px;
+    @include vertical-center;
+  }
+
+  span {
+    text-align: left;
+    color: $second-text-color;
+
+    strong {
+      font-family: $font-family-id;
+      font-size: $size-normal;
+      line-height: 1.43;
+      color: $text-color;
+    }
+  }
+}
+
+.tip {
+  position: absolute;
+  top: 24px;
+  right: 12px;
+}

@@ -42,7 +42,7 @@ export default class ContainersMapper extends Component {
   handleEdit = ({ index, containerType, data }) => {
     const { cluster, withService, formTemplate } = this.props
 
-    const prefix = `spec.template.spec.${
+    const prefix = `spec.template.spec.template.spec.${
       containerType === 'init' ? 'init_containers' : 'containers'
     }.${index}`
     const clusterOverrides = []
@@ -160,10 +160,14 @@ export default class ContainersMapper extends Component {
   render() {
     const { formTemplate } = this.props
 
-    const containers = get(formTemplate, 'spec.template.spec.containers', [])
+    const containers = get(
+      formTemplate,
+      'spec.template.spec.template.spec.containers',
+      []
+    )
     const initContainers = get(
       formTemplate,
-      'spec.template.spec.init_containers',
+      'spec.template.spec.template.spec.init_containers',
       []
     )
 
