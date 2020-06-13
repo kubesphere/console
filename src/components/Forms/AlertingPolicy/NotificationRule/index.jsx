@@ -126,7 +126,7 @@ export default class NotificationRule extends React.Component {
             </Form.Item>
           </Column>
           <Column>
-            <Form.Item label={t('Notification channel')}>
+            <Form.Item label={t('Notification Channel')}>
               <Checkbox checked={notifyTypes.indexOf('email') !== -1} disabled>
                 {t('Email')}
               </Checkbox>

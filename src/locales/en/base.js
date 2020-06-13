@@ -37,7 +37,7 @@ export default {
 
   DELETE_TITLE: 'Sure to delete {type}?',
   DELETE_TIP:
-    'Are you sure about deleting the {type} <strong>{resource}</strong> ? {type} cannot be recovered after being deleted.',
+    'Are you sure about deleting the {type} <strong>{resource}</strong> ? {type} cannot be recovered after it is deleted.',
   DELETE_CONFIRM_TIP:
     'Please enter the {type} name <strong>{resource}</strong> to make sure you understand the risks associated with the operation.',
   DELETE_APP_RESOURCE_TIP:
@@ -46,7 +46,7 @@ export default {
 
   DELETE_RESOURCE_TITLE: 'Warning',
   DELETE_RESOURCE_TIP:
-    'Are you sure about deleting the resource <strong>{resource}</strong> ? Resources cannot be recovered after being deleted.',
+    'Are you sure about deleting the resource <strong>{resource}</strong> ? The resource cannot be recovered after it is deleted.',
 
   DESTROY_TITLE: 'Sure to destroy ?',
   DESTROY_TIP:

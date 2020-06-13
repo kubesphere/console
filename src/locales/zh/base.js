@@ -33,7 +33,7 @@ export default {
   'Updated Time': '更新时间',
   'Running Time': '运行时间',
   'Custom Columns': '内容定制',
-  'Cancel Select': '取消选择',
+  'Deselect': '取消选择',
   Monitors: '监控',
   Events: '事件',
   Labels: '标签',
