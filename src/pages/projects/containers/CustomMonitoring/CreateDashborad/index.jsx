@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 import React from 'react'
-import { get } from 'lodash'
+import { get, isArray } from 'lodash'
 import CustomMonitoringModal from 'components/Modals/CustomMonitoring'
 import CustomMonitoringTemplate from 'stores/monitoring/custom/template'
 import tempalteSettings from 'stores/monitoring/custom/template.json'
@@ -36,7 +36,7 @@ export default class CrateDashboardModalContainer extends React.Component {
 
   handleBasicConfirm = params => {
     const kind = MODULE_KIND_MAP[this.props.store.module]
-    const config = params[kind]
+    const config = isArray(params) ? params[0] : params[kind]
 
     this.store = new CustomMonitoringTemplate({
       isEditing: true,
