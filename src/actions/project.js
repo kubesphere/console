@@ -24,25 +24,31 @@ import AssignWorkspaceModal from 'components/Modals/AssignWorkspace'
 import DefaultResourceEditModal from 'projects/components/Modals/DefaultResourceEdit'
 import GatewaySettingModal from 'projects/components/Modals/GatewaySetting'
 import FORM_TEMPLATES from 'utils/form.templates'
+import FED_TEMPLATES from 'utils/fed.templates'
 
 import QuotaStore from 'stores/quota'
+import FederatedStore from 'stores/federated'
 
 export default {
   'project.create': {
     on({ store, success, cluster, workspace, ...props }) {
       const modal = Modal.open({
-        onOk: data => {
+        onOk: async data => {
           set(data, 'metadata.labels["kubesphere.io/workspace"]', workspace)
-          store
-            .create(data, {
-              cluster,
-              workspace,
+          await store.create(data, { cluster, workspace })
+
+          const federatedStore = new FederatedStore(store)
+          const clusters = get(data, 'spec.placement.clusters', [])
+
+          if (clusters.length > 1) {
+            await federatedStore.create(FED_TEMPLATES.namespaces(data), {
+              namespace: get(data, 'metadata.name'),
             })
-            .then(() => {
-              Modal.close(modal)
-              Notify.success({ content: `${t('Created Successfully')}!` })
-              success && success()
-            })
+          }
+
+          Modal.close(modal)
+          Notify.success({ content: `${t('Created Successfully')}!` })
+          success && success()
         },
         hideCluster: !globals.app.isMultiCluster || !!cluster,
         cluster,
