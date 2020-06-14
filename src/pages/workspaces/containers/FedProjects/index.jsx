@@ -28,6 +28,7 @@ import ClusterWrapper from 'components/Clusters/ClusterWrapper'
 import { getDisplayName, getLocalTime } from 'utils'
 
 import FederatedStore from 'stores/federated'
+import ProjectStore from 'stores/project'
 
 @withList({
   store: new FederatedStore({ module: 'namespaces' }),
@@ -36,6 +37,8 @@ import FederatedStore from 'stores/federated'
   injectStores: ['rootStore', 'workspaceStore'],
 })
 export default class Projects extends React.Component {
+  projectStore = new ProjectStore()
+
   handleTabChange = value => {
     const { workspace } = this.props.match.params
     this.props.routing.push(`/workspaces/${workspace}/${value}`)
@@ -140,6 +143,8 @@ export default class Projects extends React.Component {
   showCreate = () =>
     this.props.trigger('project.create', {
       ...this.props.match.params,
+      store: this.projectStore,
+      success: this.getData,
     })
 
   render() {

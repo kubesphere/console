@@ -20,7 +20,6 @@ import { get, isEmpty, unset } from 'lodash'
 import { action, observable } from 'mobx'
 import { LIST_DEFAULT_ORDER } from 'utils/constants'
 import ObjectMapper from 'utils/object.mapper'
-import FED_TEMPLATES from 'utils/fed.templates'
 
 import Base from './base'
 import List from './base.list'
@@ -165,19 +164,9 @@ export default class ProjectStore extends Base {
   }
 
   @action
-  create(data, params = {}) {
+  async create(data, params = {}) {
     if (params.workspace) {
       const clusters = get(data, 'spec.placement.clusters', [])
-      if (clusters.length > 1) {
-        return this.submitting(
-          request.post(
-            `kapis/tenant.kubesphere.io/v1alpha2/workspaces/${
-              params.workspace
-            }/federatednamespaces`,
-            FED_TEMPLATES.namespaces(data)
-          )
-        )
-      }
       params.cluster = get(clusters, '[0].name')
       return this.submitting(request.post(this.getResourceUrl(params), data))
     }
