@@ -106,17 +106,6 @@ export default class JobDetail extends React.Component {
         }),
     },
     {
-      key: 'redeploy',
-      icon: 'restart',
-      text: t('Redeploy'),
-      action: 'edit',
-      onClick: () =>
-        this.trigger('workload.redeploy', {
-          module: this.module,
-          detail: this.store.detail,
-        }),
-    },
-    {
       key: 'delete',
       icon: 'trash',
       text: t('Delete'),

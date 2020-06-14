@@ -71,7 +71,7 @@ export default class GlobalValue {
       const defaultActions = get(
         globals.user,
         `projectRules[${cluster}][${project}]._`,
-        []
+        this.getActions({ cluster, module })
       )
       return adapter(
         get(

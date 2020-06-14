@@ -86,7 +86,7 @@ export default class RouteDetail extends React.Component {
       action: 'edit',
       onClick: () =>
         this.trigger('resource.yaml.edit', {
-          detail: this.store.detail,
+          detail: toJS(this.store.detail),
           success: this.fetchData,
         }),
     },
@@ -97,7 +97,7 @@ export default class RouteDetail extends React.Component {
       action: 'edit',
       onClick: () =>
         this.trigger('router.rules.edit', {
-          detail: this.store.detail,
+          detail: toJS(this.store.detail),
           success: this.fetchData,
         }),
     },
@@ -108,7 +108,7 @@ export default class RouteDetail extends React.Component {
       action: 'edit',
       onClick: () =>
         this.trigger('router.annotations.edit', {
-          detail: this.store.detail,
+          detail: toJS(this.store.detail),
           success: this.fetchData,
         }),
     },

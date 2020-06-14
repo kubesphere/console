@@ -56,6 +56,7 @@ export default class PodsCard extends React.Component {
     detail: PropTypes.object,
     hideHeader: PropTypes.bool,
     hideFooter: PropTypes.bool,
+    isFederated: PropTypes.bool,
     onSearch: PropTypes.func,
     onRefresh: PropTypes.func,
     onPage: PropTypes.func,
@@ -67,6 +68,7 @@ export default class PodsCard extends React.Component {
     detail: {},
     hideHeader: false,
     hideFooter: false,
+    isFederated: false,
     onSearch() {},
     onRefresh() {},
     onPage() {},
@@ -80,7 +82,8 @@ export default class PodsCard extends React.Component {
 
     this.state = {
       expandItem: '',
-      selectCluster: get(props, 'clusters[0]', ''),
+      selectCluster:
+        get(props, 'clusters[0]', '') || props.detail.cluster || '',
     }
 
     this.websocket = props.rootStore.websocket
@@ -269,10 +272,10 @@ export default class PodsCard extends React.Component {
   }
 
   renderHeader = () => {
-    const { clusters } = this.props
+    const { isFederated } = this.props
     return (
       <div className={styles.header}>
-        {!isEmpty(clusters) && (
+        {isFederated && (
           <Select
             name="cluster"
             prefixIcon={<Icon name="cluster" />}
@@ -296,7 +299,7 @@ export default class PodsCard extends React.Component {
   }
 
   renderContent() {
-    const { prefix } = this.props
+    const { prefix, isFederated } = this.props
     const { data, isLoading, silent } = this.store.list
     const { selectCluster } = this.state
 
@@ -308,9 +311,9 @@ export default class PodsCard extends React.Component {
           data.map(pod => (
             <PodItem
               key={pod.name}
-              prefix={`${prefix}${
-                selectCluster ? `/clusters/${selectCluster}` : ''
-              }`}
+              prefix={
+                isFederated ? `${prefix}/clusters/${selectCluster}` : prefix
+              }
               detail={pod}
               metrics={this.getPodMetrics(pod)}
               loading={this.monitorStore.isLoading}

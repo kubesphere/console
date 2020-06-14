@@ -100,7 +100,7 @@ export default class JobDetail extends React.Component {
       onClick: () =>
         this.trigger('resource.yaml.edit', {
           detail: this.store.detail,
-          readonly: true,
+          readOnly: true,
         }),
     },
     {
