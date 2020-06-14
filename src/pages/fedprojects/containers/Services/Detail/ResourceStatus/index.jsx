@@ -18,7 +18,7 @@
 
 import React from 'react'
 import { observer, inject } from 'mobx-react'
-import { get, keyBy } from 'lodash'
+import { get, isEmpty, keyBy } from 'lodash'
 
 import WorkloadStore from 'stores/workload'
 import FedStore from 'stores/federated'
@@ -35,6 +35,11 @@ export default class ResourceStatus extends React.Component {
     super(props)
 
     this.store = props.detailStore
+
+    this.workloadName = get(
+      this.store.detail.annotations,
+      '["kubesphere.io/workloadName"]'
+    )
 
     const workloadModule = get(
       this.store.detail.annotations,
@@ -55,10 +60,7 @@ export default class ResourceStatus extends React.Component {
 
   fetchData = async () => {
     const { namespace } = this.props.match.params
-    const name = get(
-      this.store.detail.annotations,
-      '["kubesphere.io/workloadName"]'
-    )
+    const name = this.workloadName
 
     const clusters = this.props.projectStore.detail.clusters.map(
       item => item.name
@@ -83,15 +85,6 @@ export default class ResourceStatus extends React.Component {
   }
 
   renderReplicaInfo() {
-    const name = get(
-      this.store.detail.annotations,
-      '["kubesphere.io/workloadName"]'
-    )
-
-    if (!name) {
-      return null
-    }
-
     const { detail, resources, isResourcesLoading } = this.workloadStore
     const clusters = keyBy(this.props.projectStore.detail.clusters, 'name')
 
@@ -103,6 +96,26 @@ export default class ResourceStatus extends React.Component {
         resources={resources}
         clusters={clusters}
         isLoading={isResourcesLoading}
+      />
+    )
+  }
+
+  renderWorkloadPods() {
+    const { resources } = this.workloadStore
+    const clusters = Object.keys(resources)
+    const detail = Object.values(resources)[0]
+
+    if (isEmpty(clusters) || isEmpty(detail)) {
+      return null
+    }
+
+    return (
+      <PodsCard
+        prefix={this.prefix}
+        detail={detail}
+        clusters={clusters}
+        onUpdate={this.handlePodUpdate}
+        isFederated
       />
     )
   }
@@ -128,10 +141,14 @@ export default class ResourceStatus extends React.Component {
   }
 
   renderContent() {
+    if (!this.workloadName) {
+      return this.renderPods()
+    }
+
     return (
       <div>
         {this.renderReplicaInfo()}
-        {this.renderPods()}
+        {this.renderWorkloadPods()}
       </div>
     )
   }
