@@ -17,7 +17,7 @@
  */
 
 import React, { Component } from 'react'
-import { omit, get } from 'lodash'
+import { omit } from 'lodash'
 
 import { Icon, Dropdown } from '@pitrix/lego-ui'
 import { observer } from 'mobx-react'
@@ -25,27 +25,23 @@ import { observer } from 'mobx-react'
 import { Form } from 'components/Base'
 import Confirm from 'components/Forms/Base/Confirm'
 
+import ConfigMapStore from 'stores/configmap'
 import SecretStore from 'stores/secret'
-import QuotaStore from 'stores/quota'
-import LimitRangeStore from 'stores/limitrange'
 
-import ContainerSetting from '../../ContainerSettings/ContainerForm/ContainerSetting'
+import Environments from '../../ContainerSettings/ContainerForm/Environments'
 
 import styles from './index.scss'
 
 @observer
 export default class ContainerImages extends Component {
   state = {
-    quota: {},
-    limitRange: {},
-    imageRegistries: [],
+    configMaps: [],
+    secrets: [],
   }
 
-  quotaStore = new QuotaStore()
+  configMapStore = new ConfigMapStore()
 
-  limitRangeStore = new LimitRangeStore()
-
-  imageRegistryStore = new SecretStore()
+  secretStore = new SecretStore()
 
   formRef = React.createRef()
 
@@ -57,29 +53,23 @@ export default class ContainerImages extends Component {
     const { cluster, namespace } = this.props
 
     Promise.all([
-      this.quotaStore.fetch({ cluster, namespace }),
-      this.limitRangeStore.fetchListByK8s({ cluster, namespace }),
-      this.imageRegistryStore.fetchListByK8s({
-        cluster,
-        namespace,
-        fieldSelector: `type=kubernetes.io/dockerconfigjson`,
-      }),
-    ]).then(([quota, limitRanges, imageRegistries]) => {
+      this.configMapStore.fetchListByK8s({ cluster, namespace }),
+      this.secretStore.fetchListByK8s({ cluster, namespace }),
+    ]).then(([configMaps, secrets]) => {
       this.setState({
-        quota,
-        limitRange: get(limitRanges, '[0].limit'),
-        imageRegistries,
+        configMaps,
+        secrets,
       })
     })
   }
 
   handleSubmit = () => {
-    const { index, containerType, onEdit } = this.props
+    const { index, onEdit } = this.props
     const form = this.formRef.current
 
     form &&
       form.validate(() => {
-        onEdit({ index, containerType, data: omit(form.getData(), 'type') })
+        onEdit({ index, data: omit(form.getData(), 'type') })
       })
   }
 
@@ -95,21 +85,19 @@ export default class ContainerImages extends Component {
   }
 
   renderContent() {
-    const { cluster, namespace, container, containerType } = this.props
-    const { quota, limitRanges, imageRegistries } = this.state
+    const { container } = this.props
+    const { configMaps, secrets } = this.state
 
     return (
       <div className={styles.form}>
         <Form ref={this.formRef} type="inner" data={container}>
-          <ContainerSetting
-            className={styles.formContent}
-            cluster={cluster}
-            namespace={namespace}
-            quota={quota}
-            limitRanges={limitRanges}
-            imageRegistries={imageRegistries}
-            defaultContainerType={containerType}
-          />
+          <div className={styles.formContent}>
+            <Environments
+              configMaps={configMaps}
+              secrets={secrets}
+              checkable={false}
+            />
+          </div>
         </Form>
         <Confirm
           className={styles.confirm}
@@ -133,7 +121,9 @@ export default class ContainerImages extends Component {
         always={isEdit}
       >
         <div>
-          <span>{`${t('Image')}: ${container.image}`}</span>
+          <span>{`${t('Environment Variables')}: ${(container.env || [])
+            .map(item => item.name)
+            .join(', ') || t('None')}`}</span>
           {selected && (
             <span className={styles.modify}>
               <span>{t('Edit')}</span>

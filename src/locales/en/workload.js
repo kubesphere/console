@@ -339,6 +339,8 @@ export default {
     'Set different containers in different clusters according to needs',
   CLUSTER_SERVICE_DIFF_DESC:
     'Different service ports can be set in different clusters',
+  CLUSTER_ENV_DIFF_DESC:
+    'Different container enviroments can be set in different clusters',
   POD_SCALE_DESC: 'The number of Pod instances that can be scaled',
   REPLICAS_AVAILABLE: 'Available',
   REPLICAS_EXPECTED: 'Expected',

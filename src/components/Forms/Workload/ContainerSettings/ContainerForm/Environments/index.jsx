@@ -23,6 +23,7 @@ import { EnvironmentInput } from 'components/Inputs'
 export default class Environments extends React.Component {
   static defaultProps = {
     prefix: '',
+    checkable: true,
   }
 
   get prefix() {
@@ -32,12 +33,12 @@ export default class Environments extends React.Component {
   }
 
   render() {
-    const { configMaps, secrets } = this.props
+    const { checkable, configMaps, secrets } = this.props
     return (
       <Form.Group
         label={t('Environment Variables')}
         desc={t('CONTAINER_ENVIROMENT_DESC')}
-        checkable
+        checkable={checkable}
       >
         <Form.Item>
           <EnvironmentInput
