@@ -45,7 +45,7 @@ const Card = ({ gateway, rule, tls = {}, prefix }) => {
         <Icon name="earth" size={40} />
         <div className={styles.title}>
           {host}
-          <p>
+          <div>
             <span>
               {t('Protocol')}: {protocol}
             </span>
@@ -61,7 +61,7 @@ const Card = ({ gateway, rule, tls = {}, prefix }) => {
                 <Icon name="question" />
               </Tooltip>
             </span>
-          </p>
+          </div>
         </div>
       </div>
       {rule.http.paths.map(path => (

@@ -96,6 +96,7 @@ export default class ServiceDetail extends React.Component {
       onClick: () =>
         this.trigger('service.edit', {
           detail: this.store.detail,
+          success: this.fetchData,
         }),
     },
     {
@@ -107,6 +108,7 @@ export default class ServiceDetail extends React.Component {
       onClick: () =>
         this.trigger('service.gateway.edit', {
           detail: this.store.detail,
+          success: this.fetchData,
         }),
     },
     {

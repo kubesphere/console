@@ -93,7 +93,7 @@ class RouteRules extends React.Component {
   get services() {
     return this.serviceStore.list.data.map(item => ({
       ...item,
-      ports: item.resource.ports,
+      ports: item.resource ? item.resource.ports : item.ports,
     }))
   }
 

@@ -96,4 +96,8 @@ export default {
   CLUSTER_VISIBILITY_Q2: 'What is a public cluster?',
   CLUSTER_VISIBILITY_A2:
     'A public cluster means all platform users can access the cluster, in which they are able to create and schedule resources.',
+
+  CLUSTER_AGENT_TITLE:
+    'Please add the cluster based on the Agent provided in the cluster.',
+  CLUSTER_AGENT_DESC: 'A corresponding Agent needs to be set in the cluster.',
 }

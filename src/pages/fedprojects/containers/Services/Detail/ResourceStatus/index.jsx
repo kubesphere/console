@@ -122,6 +122,7 @@ export default class ResourceStatus extends React.Component {
         clusters={clusters}
         onUpdate={this.handlePodUpdate}
         isLoading={isResourcesLoading}
+        isFederated
       />
     )
   }

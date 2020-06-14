@@ -116,8 +116,8 @@ export default class BaseInfo extends React.Component {
         ) : (
           <div className={styles.tip}>
             <Text
-              title={t('请根据集群中提供的代理连接设置加入集群')}
-              description={t('需要在集群中设置下相应的代理Agent')}
+              title={t('CLUSTER_AGENT_TITLE')}
+              description={t('CLUSTER_AGENT_DESC')}
             />
             <div className="margin-t12">
               {t.html('CLUSTER_AGENT_IMPORT_TIP')}

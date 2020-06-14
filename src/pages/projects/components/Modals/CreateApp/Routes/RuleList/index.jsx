@@ -45,19 +45,13 @@ export default class RuleList extends React.Component {
   }
 
   renderContent() {
-    const {
-      data,
-      onAdd,
-      onDelete,
-      isFederated,
-      projectDetail,
-      gateway,
-    } = this.props
-    const clusters = keyBy(projectDetail.clusters, 'name')
+    const { data, onAdd, onDelete, isFederated, gateway } = this.props
     let rules = get(data, 'spec.rules', [])
     let tls = get(data, 'spec.tls[0]', {})
 
     if (isFederated) {
+      const { projectDetail } = this.props
+      const clusters = keyBy(projectDetail.clusters, 'name')
       const result = ObjectMapper.federated(ObjectMapper.ingresses)(data)
       if (result && result.clusterTemplates) {
         rules = Object.keys(result.clusterTemplates).map(cluster => ({

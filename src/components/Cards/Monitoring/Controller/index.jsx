@@ -133,11 +133,14 @@ export default class MonitoringController extends React.Component {
 
   fetchData = (params = {}) => {
     const { cluster } = this.state
-    this.props.onFetch({
+    const query = {
       ...this.params,
       ...params,
-      cluster,
-    })
+    }
+    if (cluster) {
+      query.cluster = cluster
+    }
+    this.props.onFetch(query)
   }
 
   handleChange = data => {

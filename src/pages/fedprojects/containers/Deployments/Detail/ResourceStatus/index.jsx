@@ -121,6 +121,7 @@ class ResourceStatus extends React.Component {
         detail={detail}
         clusters={clusters}
         onUpdate={this.handlePodUpdate}
+        isFederated
       />
     )
   }

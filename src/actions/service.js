@@ -101,12 +101,13 @@ export default {
     },
   },
   'service.edit': {
-    on({ store, detail, ...props }) {
+    on({ store, detail, success, ...props }) {
       const modal = Modal.open({
         onOk: newObject => {
           store.update(detail, newObject).then(() => {
             Modal.close(modal)
             Notify.success({ content: `${t('Updated Successfully')}!` })
+            success && success()
           })
         },
         modal: EditServiceModal,
@@ -118,12 +119,13 @@ export default {
     },
   },
   'service.gateway.edit': {
-    on({ store, detail, ...props }) {
+    on({ store, detail, success, ...props }) {
       const modal = Modal.open({
         onOk: newObject => {
           store.update(detail, newObject).then(() => {
             Modal.close(modal)
             Notify.success({ content: `${t('Updated Successfully')}!` })
+            success && success()
           })
         },
         modal: EditGatewayModal,

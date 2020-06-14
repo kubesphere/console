@@ -170,7 +170,7 @@ export default class ContainerSetting extends React.Component {
       this.imageRegistryStore.fetchListByK8s({
         cluster,
         namespace,
-        fieldSelector: `spec.template.type=kubernetes.io/dockerconfigjson`,
+        fieldSelector: `type=kubernetes.io/dockerconfigjson`,
       }),
     ]).then(([configMaps, secrets, quota, limitRanges, imageRegistries]) => {
       this.setState({
