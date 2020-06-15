@@ -50,15 +50,16 @@ export default class App extends Component {
   async init(params) {
     this.store.initializing = true
 
-    await this.store.fetchDetail({ ...params, name: params.namespace })
+    await Promise.all([
+      this.store.fetchDetail({ ...params, name: params.namespace }),
+      this.props.rootStore.getRules({ workspace: params.workspace }),
+    ])
     await this.clusterStore.fetchList({
       names: this.store.detail.clusters.map(item => item.name).join(','),
       sortBy: 'createTime',
       ascending: true,
     })
     this.store.detail.clusters = toJS(this.clusterStore.list.data)
-
-    await this.props.rootStore.getRules({ workspace: params.workspace })
 
     await this.props.rootStore.getRules(params)
 

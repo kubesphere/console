@@ -63,7 +63,6 @@ export default [
         },
       ],
     }),
-    ksModule: 'devops',
     routes: getChildRoutes(ROUTES, PATH),
   },
 ]

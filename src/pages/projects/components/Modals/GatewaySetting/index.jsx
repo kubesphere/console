@@ -111,7 +111,7 @@ export default class GatewaySettingModal extends React.Component {
   }
 
   render() {
-    const { visible, onCancel, detail = {}, isSubmitting } = this.props
+    const { visible, onCancel, detail = {}, cluster, isSubmitting } = this.props
     const { type, isChecked } = this.state
 
     return (
@@ -152,7 +152,7 @@ export default class GatewaySettingModal extends React.Component {
                     `INGRESS_CONTROLLER_${type.toUpperCase()}_DESC`
                   )}
                 />
-                {globals.app.hasKSModule('servicemesh') && (
+                {globals.app.hasClusterModule(cluster, 'servicemesh') && (
                   <>
                     <div className={styles.toggle}>
                       {t('Application Governance')}

@@ -25,7 +25,7 @@ import styles from './index.scss'
 
 export default class WorkspaceCard extends React.Component {
   get canViewDevOps() {
-    return globals.app.hasKSModule('devops')
+    return globals.app.isMultiCluster || globals.app.hasKSModule('devops')
   }
 
   handleClick = () => {

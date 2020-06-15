@@ -89,7 +89,10 @@ export default class Application extends Base {
     }
 
     if (!isEmpty(filters)) {
-      params.conditions += `,${getFilterString(filters)}`
+      const filterString = getFilterString(filters)
+      if (filterString) {
+        params.conditions += `,${filterString}`
+      }
     }
 
     if (limit !== Infinity) {
@@ -113,6 +116,7 @@ export default class Application extends Base {
       ({ cluster: clusterDetail, ...item }) => ({
         ...clusterDetail,
         ...item,
+        cluster,
       })
     )
 
@@ -158,6 +162,7 @@ export default class Application extends Base {
     this.detail = {
       ...result,
       ...result.cluster,
+      cluster,
     }
 
     this.isLoading = false
@@ -176,10 +181,11 @@ export default class Application extends Base {
     )
 
   @action
-  delete = ({ cluster_id, cluster, zone }) =>
-    this.submitting(
+  delete = ({ cluster_id, cluster, zone }) => {
+    return this.submitting(
       request.delete(this.getUrl({ namespace: zone, cluster_id, cluster }))
     )
+  }
 
   @action
   batchDelete = (rowKeys, { namespace, cluster }) =>

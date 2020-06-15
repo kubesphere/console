@@ -32,6 +32,7 @@ export default class ServiceComponents extends Component {
   store = new ComponentStore()
 
   get configs() {
+    const { cluster } = this.props
     return [
       {
         type: 'kubesphere',
@@ -44,27 +45,27 @@ export default class ServiceComponents extends Component {
       {
         type: 'openpitrix',
         title: 'OpenPitrix',
-        disabled: !globals.app.hasKSModule('openpitrix'),
+        disabled: !globals.app.hasClusterModule(cluster, 'openpitrix'),
       },
       {
         type: 'istio',
         title: 'Istio',
-        disabled: !globals.app.hasKSModule('servicemesh'),
+        disabled: !globals.app.hasClusterModule(cluster, 'servicemesh'),
       },
       {
         type: 'monitoring',
         title: 'Monitoring',
-        disabled: !globals.app.hasKSModule('monitoring'),
+        disabled: !globals.app.hasClusterModule(cluster, 'monitoring'),
       },
       {
         type: 'logging',
         title: 'Logging',
-        disabled: !globals.app.hasKSModule('logging'),
+        disabled: !globals.app.hasClusterModule(cluster, 'logging'),
       },
       {
         type: 'devops',
         title: 'DevOps',
-        disabled: !globals.app.hasKSModule('devops'),
+        disabled: !globals.app.hasClusterModule(cluster, 'devops'),
       },
     ]
   }

@@ -212,16 +212,14 @@ class InternetAccess extends React.Component {
                 description={t('External IP')}
               />
             )}
-            {globals.app.hasKSModule('servicemesh') && (
-              <Text
-                title={
-                  gateway.serviceMeshEnable
-                    ? t('GATEWAY_SERVICE_MESH_STATUS_ON')
-                    : t('GATEWAY_SERVICE_MESH_STATUS_OFF')
-                }
-                description={t('Application Governance')}
-              />
-            )}
+            <Text
+              title={
+                gateway.serviceMeshEnable
+                  ? t('GATEWAY_SERVICE_MESH_STATUS_ON')
+                  : t('GATEWAY_SERVICE_MESH_STATUS_OFF')
+              }
+              description={t('Application Governance')}
+            />
           </div>
           {gateway.type === 'LoadBalancer' && (
             <div className={styles.annotations}>

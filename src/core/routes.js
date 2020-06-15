@@ -70,7 +70,6 @@ export default [
       {
         path: '/:workspace/clusters/:cluster/devops/:project_id',
         component: DevOps,
-        ksModule: 'devops',
       },
       {
         path: '/:workspace/federatedprojects/:namespace',
@@ -83,12 +82,10 @@ export default [
       {
         path: '/apps',
         component: AppStore,
-        ksModule: 'openpitrix',
       },
       {
         path: '/apps-manage',
         component: ManageApp,
-        ksModule: 'openpitrix',
       },
       {
         path: '/settings',

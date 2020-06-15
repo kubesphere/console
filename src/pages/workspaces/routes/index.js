@@ -55,13 +55,11 @@ export default [
       {
         path: `${PATH}/devops`,
         component: DevOps,
-        ksModule: 'devops',
         exact: true,
       },
       {
         path: `${PATH}/apps`,
         component: Apps,
-        ksModule: 'openpitrix',
         exact: true,
       },
       {
@@ -77,7 +75,6 @@ export default [
       {
         path: `${PATH}/repos`,
         component: Repos,
-        ksModule: 'openpitrix',
         exact: true,
       },
       {

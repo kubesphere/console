@@ -81,8 +81,9 @@ export default class Categories extends React.Component {
   }
 
   get serviceMeshEnable() {
+    const { cluster } = this.props.match.params
     return (
-      globals.app.hasKSModule('servicemesh') &&
+      globals.app.hasClusterModule(cluster, 'servicemesh') &&
       this.routerStore.gateway.data.serviceMeshEnable
     )
   }

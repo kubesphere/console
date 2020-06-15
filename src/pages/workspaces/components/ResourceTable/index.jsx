@@ -31,11 +31,12 @@ import { Button } from 'components/Base'
 import BaseTable from 'components/Tables/Base'
 import EmptyList from 'components/Cards/EmptyList'
 import withTableActions from 'components/HOCs/withTableActions'
+
 import ClusterSelect from './ClusterSelect'
 
 class ResourceTable extends BaseTable {
   renderNormalTitle() {
-    const { hideCustom, cluster, clusters, module } = this.props
+    const { hideCustom, clusters, cluster, onClusterChange } = this.props
 
     return (
       <Level>
@@ -43,9 +44,9 @@ class ResourceTable extends BaseTable {
           <LevelLeft>
             <LevelItem>
               <ClusterSelect
-                cluster={cluster}
-                module={module}
                 clusters={clusters}
+                cluster={cluster}
+                onChange={onClusterChange}
               />
             </LevelItem>
           </LevelLeft>

@@ -84,7 +84,7 @@ class AdvancedSettings extends React.Component {
           actions={this.enableActions}
           clusters={clusters}
         />
-        {globals.app.hasKSModule('logging') && !this.disabledLoggingSideCar && (
+        {!this.disabledLoggingSideCar && (
           <LogCollection namespace={name} actions={this.enableActions} />
         )}
       </div>

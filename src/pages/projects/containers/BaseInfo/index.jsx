@@ -36,7 +36,9 @@ import DefaultResource from './DefaultResource'
 @trigger
 class BaseInfo extends React.Component {
   roleStore = new RoleStore()
+
   memberStore = new UserStore()
+
   quotaStore = new QuotaStore()
 
   state = {
@@ -92,23 +94,6 @@ class BaseInfo extends React.Component {
 
   getData = () => {
     this.store.fetchDetail(this.params)
-  }
-
-  getWorkspaceUrl() {
-    const workspace = this.workspace
-
-    if (
-      globals.app.hasPermission({ module: 'workspaces', action: 'manage' }) ||
-      globals.app.hasPermission({
-        module: 'workspaces',
-        action: 'view',
-        workspace,
-      })
-    ) {
-      return `/workspaces/${workspace}/overview`
-    }
-
-    return '/'
   }
 
   get itemActions() {

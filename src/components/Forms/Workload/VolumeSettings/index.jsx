@@ -489,7 +489,7 @@ class VolumeSettings extends React.Component {
     return (
       <div className="font-bold margin-b8 relative">
         <span>{t('Mount Volumes')}</span>
-        {globals.app.hasKSModule('logging') && (
+        {globals.app.hasClusterModule(this.cluster, 'logging') && (
           <div className={styles.toggle}>
             {!this.projectEnableCollectingFileLog ? (
               <Tooltip content={t('PROJECT_COLLECT_SAVED_DISABLED_DESC')}>

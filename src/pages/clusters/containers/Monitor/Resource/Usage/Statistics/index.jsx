@@ -45,6 +45,7 @@ export default class ResourceStatistics extends React.Component {
   get cluster() {
     return this.props.match.params.cluster
   }
+
   get routing() {
     return this.props.rootStore.routing
   }
@@ -110,7 +111,7 @@ export default class ResourceStatistics extends React.Component {
                 size="large"
               />
             </Column>
-            {globals.app.hasKSModule('devops') && (
+            {globals.app.hasClusterModule(this.cluster, 'devops') && (
               <Column>
                 <Info
                   icon={ICON_TYPES['devops']}

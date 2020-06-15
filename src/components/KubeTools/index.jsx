@@ -55,7 +55,9 @@ export default class KubeTools extends React.Component {
             title: t('Log Search'),
             description: t('LOG_SEARCH_DESC'),
             link: '/logquery',
-            hidden: !globals.app.hasKSModule('logging'),
+            hidden:
+              !globals.app.isMultiCluster &&
+              !globals.app.hasKSModule('logging'),
             action: 'toolbox.logquery',
           },
           {
@@ -63,7 +65,8 @@ export default class KubeTools extends React.Component {
             title: t('Event Search'),
             description: t('EVENT_SEARCH_DESC'),
             link: '/eventsearch',
-            hidden: !globals.app.hasKSModule('events'),
+            hidden:
+              !globals.app.isMultiCluster && !globals.app.hasKSModule('events'),
             action: 'toolbox.eventsearch',
           },
           {
@@ -71,7 +74,9 @@ export default class KubeTools extends React.Component {
             title: t('Auditing Operating'),
             description: t('AUDITING_OPERATING_DESC'),
             link: '/auditingsearch',
-            hidden: !globals.app.hasKSModule('auditing'),
+            hidden:
+              !globals.app.isMultiCluster &&
+              !globals.app.hasKSModule('auditing'),
             action: 'toolbox.auditingsearch',
           },
         ],

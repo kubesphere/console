@@ -67,6 +67,7 @@ class AdvancedSettings extends React.Component {
   }
 
   render() {
+    const { cluster } = this.props
     return (
       <div>
         <Banner
@@ -76,9 +77,10 @@ class AdvancedSettings extends React.Component {
           tips={this.tips}
         />
         <InternetAccess match={this.props.match} actions={this.enableActions} />
-        {globals.app.hasKSModule('logging') && !this.disabledLoggingSideCar && (
-          <LogCollection store={this.store} actions={this.enableActions} />
-        )}
+        {globals.app.hasClusterModule(cluster, 'logging') &&
+          !this.disabledLoggingSideCar && (
+            <LogCollection store={this.store} actions={this.enableActions} />
+          )}
       </div>
     )
   }

@@ -106,11 +106,12 @@ export default class ServiceDeployAppModal extends React.Component {
 
   get serviceMeshEnable() {
     if (this.props.isFederated) {
-      return globals.app.hasKSModule('servicemesh')
+      return true
     }
 
+    const { cluster } = this.props
     return (
-      globals.app.hasKSModule('servicemesh') &&
+      globals.app.hasClusterModule(cluster, 'servicemesh') &&
       get(this.routerStore, 'gateway.data.serviceMeshEnable')
     )
   }

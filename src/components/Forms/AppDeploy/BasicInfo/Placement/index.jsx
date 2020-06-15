@@ -126,7 +126,7 @@ export default class Placment extends Component {
     }
   }
 
-  async fetchNamespaces(params = {}) {
+  fetchNamespaces = async (params = {}) => {
     const { workspace, cluster } = this.state.formData
     if (workspace && cluster) {
       await this.projectStore.fetchList({

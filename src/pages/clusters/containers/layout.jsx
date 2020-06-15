@@ -17,7 +17,7 @@
  */
 import React, { Component } from 'react'
 import { inject, observer, Provider } from 'mobx-react'
-import { pick } from 'lodash'
+import { set, pick } from 'lodash'
 
 import { Loading } from '@pitrix/lego-ui'
 
@@ -60,6 +60,8 @@ export default class App extends Component {
           cluster: params.cluster,
         })
       }
+
+      set(globals, `clusterConfig.${params.cluster}`, this.store.detail.configz)
 
       globals.app.cacheHistory(this.props.match.url, {
         type: 'Cluster',

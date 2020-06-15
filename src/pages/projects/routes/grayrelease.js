@@ -33,7 +33,6 @@ export default [
   {
     path: PATH,
     component: GrayReleaseLayout,
-    ksModule: 'servicemesh',
     routes: getChildRoutes(ROUTES, PATH),
   },
 ]

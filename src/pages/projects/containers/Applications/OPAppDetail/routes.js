@@ -37,7 +37,6 @@ export default [
     path: `${PATH}/template`,
     title: 'App Template',
     component: AppTemplate,
-    ksModule: 'servicemesh',
     exact: true,
   },
 
