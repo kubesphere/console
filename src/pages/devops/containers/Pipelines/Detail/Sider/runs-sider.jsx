@@ -177,7 +177,7 @@ class RunSider extends Base {
       key: 'rerun',
       type: 'control',
       text: t('Rerun'),
-      action: 'trigger',
+      action: 'edit',
       onClick: this.rePlay,
     },
   ]

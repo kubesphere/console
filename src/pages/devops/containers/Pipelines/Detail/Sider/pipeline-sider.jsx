@@ -171,13 +171,13 @@ export default class PipelineDetail extends Base {
             {
               key: 'scan',
               text: t('Scan Repository'),
-              action: 'trigger',
+              action: 'edit',
               onClick: this.handleScanRepository,
             },
             {
               key: 'scanLogs',
               text: t('Scan Reponsitory Logs'),
-              action: 'trigger',
+              action: 'edit',
               onClick: this.showScanLogsModal,
             },
           ]

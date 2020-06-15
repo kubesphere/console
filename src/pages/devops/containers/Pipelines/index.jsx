@@ -235,7 +235,7 @@ class CICDs extends React.Component {
         key: 'run',
         icon: 'triangle-right',
         text: t('Run'),
-        action: 'trigger',
+        action: 'edit',
       },
       {
         key: 'activity',
