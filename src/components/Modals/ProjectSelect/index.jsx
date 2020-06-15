@@ -85,9 +85,10 @@ export default class ProjectSelectModal extends React.Component {
       })
     }
 
+    // TODO: ADD CLUSTER
     if (
       this.enabledActions.devops.includes('view') &&
-      globals.app.hasKSModule('devops')
+      (globals.app.isMultiCluster || globals.app.hasKSModule('devops'))
     ) {
       types.push({
         label: t('DevOps Projects'),

@@ -90,7 +90,8 @@ export default class ResourceStatistics extends React.Component {
                 size="large"
               />
             </Column>
-            {globals.app.hasKSModule('devops') && (
+            {(globals.app.isMultiCluster ||
+              globals.app.hasKSModule('devops')) && (
               <Column>
                 <Info
                   icon={ICON_TYPES['devops']}

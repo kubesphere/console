@@ -76,6 +76,10 @@ export default class EnvironmentInputItem extends React.Component {
           },
         }
       }
+
+      if (!newValue.name && value.resourceKey) {
+        newValue.name = value.resourceKey
+      }
     }
 
     onChange(newValue)

@@ -71,6 +71,7 @@ client:
       title: App Store Management
       icon: openpitrix
       authKey: app-templates
+      ksModule: openpitrix
     - name: settings
       title: Platform Settings
       icon: cogwheel
@@ -116,7 +117,12 @@ client:
           children:
             - { name: networkpolicies, title: Network Policies }
         # Contains dangerous operations, only available for platform-admin.
-        - { name: customresources, title: Custom Resources, icon: select, admin: true }
+        - {
+            name: customresources,
+            title: Custom Resources,
+            icon: select,
+            admin: true,
+          }
         - name: storage
           title: Storage Management
           icon: database
@@ -144,8 +150,14 @@ client:
                 name: alert-messages,
                 title: Alerting Messages,
                 icon: loudspeaker,
+                clusterModule: 'alerting',
               }
-            - { name: alert-policies, title: Alerting Policies, icon: hammer }
+            - {
+                name: alert-policies,
+                title: Alerting Policies,
+                icon: hammer,
+                clusterModule: 'alerting',
+              }
         - name: cluster-settings
           title: Cluster Settings
           icon: cogwheel
@@ -170,7 +182,7 @@ client:
                 title: Mail Server,
                 icon: mail,
                 authKey: alerting,
-                ksModule: 'alerting',
+                clusterModule: 'alerting',
               }
 
   # access control page navigations
@@ -191,13 +203,6 @@ client:
             icon: home,
             authKey: platform-settings,
           }
-        # - { name: third-login, title: Third-party Login, icon: passport, }
-        # - {
-        #     name: mail-server,
-        #     title: Mail Server,
-        #     icon: mail,
-        #     authKey: alerting,
-        #   }
         - {
             name: log-collection,
             title: Log Collection,
@@ -226,9 +231,15 @@ client:
                 name: apps,
                 title: App Templates,
                 icon: appcenter,
-                authKey: 'app-templates',
+                authKey: app-templates,
+                ksModule: openpitrix,
               }
-            - { name: repos, title: App Repos, authKey: 'app-repos' }
+            - {
+                name: repos,
+                title: App Repos,
+                authKey: 'app-repos',
+                ksModule: openpitrix,
+              }
         - name: management
           title: Workspace Settings
           icon: cogwheel
@@ -286,10 +297,15 @@ client:
             name: grayrelease,
             title: Grayscale Release,
             icon: bird,
-            authKey: 'applications',
-            ksModule: 'servicemesh',
+            authKey: applications,
+            clusterModule: servicemesh,
           }
-        - { name: s2ibuilders, title: Image Builder, icon: vnas }
+        - {
+            name: s2ibuilders,
+            title: Image Builder,
+            icon: vnas,
+            clusterModule: devops,
+          }
         - name: monitoring
           title: Monitoring & Alerting
           icon: monitor
@@ -297,17 +313,16 @@ client:
             - {
                 name: alert-messages,
                 title: Alerting Message,
-                authKey: 'alerting',
+                authKey: alerting,
+                clusterModule: alerting,
               }
             - {
                 name: alert-policies,
                 title: Alerting Policy,
-                authKey: 'alerting',
+                authKey: alerting,
+                clusterModule: alerting,
               }
-            - {
-                name: custom-monitoring,
-                title: Custom Monitoring,
-              }
+            - { name: custom-monitoring, title: Custom Monitoring }
         - name: settings
           title: Project Settings
           icon: cogwheel
@@ -350,8 +365,16 @@ client:
           icon: cogwheel
           children:
             - { name: base-info, title: Basic Info, skipAuth: true }
-            - { name: quota, title: Quota Management, authKey: 'project-settings' }
-            - { name: advanced, title: Advanced Settings, authKey: 'project-settings' }
+            - {
+                name: quota,
+                title: Quota Management,
+                authKey: 'project-settings',
+              }
+            - {
+                name: advanced,
+                title: Advanced Settings,
+                authKey: 'project-settings',
+              }
 
   # devops page navigations
   devopsNavs:

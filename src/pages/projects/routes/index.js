@@ -93,7 +93,6 @@ export default [
       {
         path: `${PATH}/s2ibuilders`,
         component: ImageBuilder,
-        ksModule: 'devops',
         exact: true,
       },
       { path: `${PATH}/cronjobs`, component: CronJobs, exact: true },
@@ -101,7 +100,6 @@ export default [
       {
         path: `${PATH}/grayrelease`,
         component: GrayRelease,
-        ksModule: 'servicemesh',
         exact: true,
       },
       { path: `${PATH}/ingresses`, component: Routes, exact: true },

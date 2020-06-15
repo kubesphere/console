@@ -88,23 +88,6 @@ class BaseInfo extends React.Component {
     })
   }
 
-  getWorkspaceUrl() {
-    const workspace = this.workspace
-
-    if (
-      globals.app.hasPermission({ module: 'workspaces', action: 'manage' }) ||
-      globals.app.hasPermission({
-        module: 'workspaces',
-        action: 'view',
-        workspace,
-      })
-    ) {
-      return `/workspaces/${workspace}/overview`
-    }
-
-    return '/'
-  }
-
   get itemActions() {
     return [
       {
@@ -222,7 +205,7 @@ class BaseInfo extends React.Component {
               image="/assets/default-workspace.svg"
               title={this.workspace}
               desc={t('Workspace')}
-              url={this.getWorkspaceUrl()}
+              url={`/workspaces/${this.workspace}/overview`}
             />
             <Info
               className={styles.info}

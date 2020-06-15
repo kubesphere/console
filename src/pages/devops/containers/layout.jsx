@@ -55,10 +55,13 @@ class DevOpsLayout extends Component {
   async init(params) {
     this.store.initializing = true
 
-    await this.store.fetchDetail(params)
-    await this.props.rootStore.getRules({
-      workspace: params.workspace,
-    })
+    await Promise.all([
+      this.store.fetchDetail(params),
+      this.props.rootStore.getRules({
+        workspace: params.workspace,
+      }),
+    ])
+
     await this.props.rootStore.getRules({
       cluster: params.cluster,
       devops: this.store.data.name,

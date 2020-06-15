@@ -19,10 +19,12 @@
 import React, { Component } from 'react'
 import { inject, observer, Provider } from 'mobx-react'
 import { Loading } from '@pitrix/lego-ui'
+import { set } from 'lodash'
 
 import { renderRoutes } from 'utils/router.config'
 
 import ProjectStore from 'stores/project'
+import ClusterStore from 'stores/cluster'
 
 import routes from './routes'
 
@@ -33,6 +35,7 @@ class ProjectLayout extends Component {
     super(props)
 
     this.store = new ProjectStore()
+    this.clusterStore = new ClusterStore()
 
     this.init(props.match.params)
   }
@@ -46,15 +49,22 @@ class ProjectLayout extends Component {
   async init(params) {
     this.store.initializing = true
 
-    await this.store.fetchDetail(params)
-
-    if (params.workspace) {
-      await this.props.rootStore.getRules({
+    await Promise.all([
+      this.store.fetchDetail(params),
+      this.clusterStore.fetchDetail({ name: params.cluster }),
+      this.props.rootStore.getRules({
         workspace: params.workspace,
-      })
-    }
+      }),
+    ])
 
     await this.props.rootStore.getRules(params)
+
+    this.clusterStore.detail.configz.devops = false
+    set(
+      globals,
+      `clusterConfig.${params.cluster}`,
+      this.clusterStore.detail.configz
+    )
 
     globals.app.cacheHistory(this.props.match.url, {
       type: 'Project',

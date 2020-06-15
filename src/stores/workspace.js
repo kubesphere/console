@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { isEmpty } from 'lodash'
+import { get, isEmpty } from 'lodash'
 import { action, observable } from 'mobx'
 import ObjectMapper from 'utils/object.mapper'
 import { DEFAULT_CLUSTER } from 'utils/constants'
@@ -31,6 +31,9 @@ export default class WorkspaceStore extends Base {
   module = 'workspaces'
 
   clusters = new List()
+
+  @observable
+  cluster = ''
 
   namespaces = new List()
 
@@ -100,5 +103,20 @@ export default class WorkspaceStore extends Base {
       page: 1,
       isLoading: false,
     })
+
+    if (this.clusters.data.length > 1) {
+      this.selectCluster(
+        get(
+          this.clusters.data.find(cluster => cluster.isHost) ||
+            this.clusters.data[0],
+          'name'
+        )
+      )
+    }
+  }
+
+  @action
+  selectCluster(cluster) {
+    this.cluster = cluster
   }
 }

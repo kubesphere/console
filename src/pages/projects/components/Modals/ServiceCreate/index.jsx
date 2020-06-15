@@ -42,7 +42,8 @@ export default class ServiceCreateModal extends React.Component {
     this.workloadStore = new WorkloadStore()
 
     this.showDevOps =
-      globals.app.hasKSModule('devops') && !this.props.isFederated
+      globals.app.hasClusterModule(props.cluster, 'devops') &&
+      !this.props.isFederated
 
     this.state = {
       type: '',

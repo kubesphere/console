@@ -72,23 +72,6 @@ class BaseInfo extends React.Component {
     this.store.fetchDetail(this.params)
   }
 
-  getWorkspaceUrl() {
-    const workspace = this.params.workspace
-
-    if (
-      globals.app.hasPermission({ module: 'workspaces', action: 'manage' }) ||
-      globals.app.hasPermission({
-        module: 'workspaces',
-        action: 'view',
-        workspace,
-      })
-    ) {
-      return `/workspaces/${workspace}/overview`
-    }
-
-    return '/'
-  }
-
   get itemActions() {
     const { routing } = this.props
     const { detail } = this.store

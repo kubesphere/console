@@ -17,8 +17,8 @@
  */
 
 import React from 'react'
-import { computed, get } from 'mobx'
 import { isUndefined } from 'lodash'
+import { computed } from 'mobx'
 
 import { Avatar, Status } from 'components/Base'
 import Banner from 'components/Cards/Banner'
@@ -69,38 +69,29 @@ export default class Projects extends React.Component {
     }))
   }
 
-  get cluster() {
-    if (this.query && this.query.cluster) {
-      return this.query.cluster
-    }
-    return this.hostCluster
-  }
-
-  @computed
-  get hostCluster() {
-    if (this.workspaceStore.clusters.data.length < 1) {
-      return ''
-    }
-
-    return get(
-      this.workspaceStore.clusters.data.find(cluster => cluster.isHost) ||
-        this.workspaceStore.clusters.data[0],
-      'name'
-    )
-  }
-
   get workspace() {
     return this.props.match.params.workspace
   }
 
-  getData = async ({ silent, ...params } = {}) => {
-    this.query = params
+  get clusterProps() {
+    return {
+      clusters: this.clusters,
+      cluster: this.workspaceStore.cluster,
+      onClusterChange: this.handleClusterChange,
+    }
+  }
 
+  handleClusterChange = cluster => {
+    this.workspaceStore.selectCluster(cluster)
+    this.getData()
+  }
+
+  getData = async ({ silent, ...params } = {}) => {
     const { store } = this.props
 
     silent && (store.list.silent = true)
     await store.fetchList({
-      cluster: this.cluster,
+      cluster: this.workspaceStore.cluster,
       ...this.props.match.params,
       ...params,
     })
@@ -208,15 +199,17 @@ export default class Projects extends React.Component {
     const { bannerProps, tableProps } = this.props
     return (
       <ListPage {...this.props} getData={this.getData} module="namespaces">
-        <Banner {...bannerProps} tabs={this.tabs} />
+        <Banner
+          {...bannerProps}
+          tabs={globals.app.isMultiCluster ? this.tabs : []}
+        />
         <Table
           {...tableProps}
           itemActions={this.itemActions}
           columns={this.getColumns()}
           onCreate={this.showCreate}
           searchType="name"
-          cluster={this.cluster}
-          clusters={this.clusters}
+          {...this.clusterProps}
           getCheckboxProps={this.getCheckboxProps}
         />
       </ListPage>

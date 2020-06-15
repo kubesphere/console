@@ -72,7 +72,7 @@ class Jobs extends React.Component {
 
   get serviceMeshEnable() {
     return (
-      globals.app.hasKSModule('servicemesh') &&
+      globals.app.hasClusterModule(this.cluster, 'servicemesh') &&
       this.routerStore.gateway.data.serviceMeshEnable
     )
   }

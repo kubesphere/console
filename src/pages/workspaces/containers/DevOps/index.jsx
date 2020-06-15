@@ -17,7 +17,7 @@
  */
 
 import React from 'react'
-import { computed, get } from 'mobx'
+import { computed } from 'mobx'
 import { parse } from 'qs'
 
 import { Avatar } from 'components/Base'
@@ -95,24 +95,17 @@ export default class DevOps extends React.Component {
     }))
   }
 
-  get cluster() {
-    if (this.query && this.query.cluster) {
-      return this.query.cluster
+  get clusterProps() {
+    return {
+      clusters: this.clusters,
+      cluster: this.workspaceStore.cluster,
+      onClusterChange: this.handleClusterChange,
     }
-    return this.hostCluster
   }
 
-  @computed
-  get hostCluster() {
-    if (this.workspaceStore.clusters.data.length < 1) {
-      return ''
-    }
-
-    return get(
-      this.workspaceStore.clusters.data.find(cluster => cluster.isHost) ||
-        this.workspaceStore.clusters.data[0],
-      'name'
-    )
+  handleClusterChange = cluster => {
+    this.workspaceStore.selectCluster(cluster)
+    this.getData()
   }
 
   getData = async ({ silent, ...params } = {}) => {
@@ -121,7 +114,7 @@ export default class DevOps extends React.Component {
 
     silent && (store.list.silent = true)
     await store.fetchList({
-      cluster: this.cluster,
+      cluster: this.workspaceStore.cluster,
       ...this.props.match.params,
       ...params,
     })
@@ -192,8 +185,7 @@ export default class DevOps extends React.Component {
           columns={this.getColumns()}
           onCreate={this.showCreate}
           searchType="name"
-          cluster={this.cluster}
-          clusters={this.clusters}
+          {...this.clusterProps}
         />
       </ListPage>
     )

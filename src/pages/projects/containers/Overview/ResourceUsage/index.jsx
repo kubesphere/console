@@ -99,6 +99,10 @@ class ResourceUsage extends React.Component {
     return get(this.props.match, 'params.namespace')
   }
 
+  get cluster() {
+    return get(this.props.match, 'params.cluster')
+  }
+
   get timeOptions() {
     return [
       { label: `${t('Last')} ${t('TIME_H', { num: 1 })}`, value: 3600 },
@@ -191,7 +195,7 @@ class ResourceUsage extends React.Component {
         num: used['count/s2ibuilders.devops.kubesphere.io'],
         metric: 'namespace_s2ibuilder_count',
         disabled:
-          !globals.app.hasKSModule('devops') ||
+          !globals.app.hasClusterModule(this.cluster, 'devops') ||
           !this.props.match.params.workspace,
       },
       {
