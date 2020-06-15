@@ -30,10 +30,6 @@ export default class FederatedProjectLayout extends Component {
     return this.props.match.params.namespace
   }
 
-  get cluster() {
-    return this.props.match.params.cluster
-  }
-
   get routing() {
     return this.props.rootStore.routing
   }
@@ -53,7 +49,6 @@ export default class FederatedProjectLayout extends Component {
             detail={detail}
             workspace={match.params.workspace}
             onChange={this.handleChange}
-            cluster={this.cluster}
           />
           <Nav
             className="ks-page-nav"
