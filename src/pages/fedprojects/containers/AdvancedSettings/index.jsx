@@ -63,7 +63,7 @@ class AdvancedSettings extends React.Component {
         description: t('PROJECT_INTERNET_ACCESS_DESC'),
       },
       {
-        title: t('What is collecting file log ?'),
+        title: t('What is Disk Log Collection?'),
         description: t('WHAT_IS_COLLECT_FILE_LOG_A'),
       },
     ]

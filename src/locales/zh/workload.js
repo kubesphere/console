@@ -111,7 +111,7 @@ export default {
   REFFER_CONFIGMAP_DESC: '将配置中的值添加为卷。',
   REFFER_SECRET_DESC: '将密钥中的值添加为卷。',
 
-  'Choose an exist volume': '选择已有存储卷',
+  'Choose an existing volume': '选择已有存储卷',
   CHOOSE_EXIST_VOLUME_DESC: '请选择一个已经创建好的持久化存储卷挂载至容器',
 
   REQUEST_EXCCED: '资源预留不能超过资源限制',
@@ -430,7 +430,7 @@ export default {
   'Please select a volume': '请选择存储卷',
   'Please select a configmap': '请选择配置文件',
   'Please select a secret': '请选择密钥',
-  'What is collecting file log ?': '什么是落盘日志收集？',
+  'What is Disk Log Collection?': '什么是落盘日志收集？',
 
   'for example': '例如',
   'container mount path': '容器挂载路径',

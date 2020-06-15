@@ -32,9 +32,9 @@ export default {
   GATEWAY_SERVICE_MESH_STATUS_OFF: 'Off',
 
   INGRESS_CONTROLLER_NODEPORT_DESC:
-    'If the gateway is enabled, the system will automatically assign port numbers of http and https. Application routing can access the services through reverse proxy.',
+    'If the gateway is enabled, the system will automatically assign port numbers of http and https. Application routes can access services through the reverse proxy.',
   INGRESS_CONTROLLER_LOADBALANCER_DESC:
-    'To use QingCloud LoadBalancer as a service gateway, deploy the QingCloud Cloud Controller Manager plugin.',
+    'To use QingCloud LoadBalancer as a service gateway, please deploy the QingCloud Cloud Controller Manager plugin first.',
 
   NO_INTERNET_ACCESS_TIP:
     'The gateway address was not found in the current project, so you cannot set the application route. Please contact your project administrator to turn it on in <strong>Internet Access</strong>.',
@@ -42,7 +42,7 @@ export default {
     'The available gateway address was not found in the current project so the application route could not be created.',
 
   GATEWAY_APPLICATION_GOVERNANCE_TIP:
-    'You don\'t need to enable Application Governance if you don\'t use Tracing feature of App Governance, otherwise you need to turn this on. After opening this item, please check if the application route is added with annotation like "nginx.ingress.kubernetes.io/service-upstream: true" when route is inaccessible,. If not, please add it.',
+    'You don\'t need to enable Application Governance if you don\'t use the Tracing feature. Once Application Governance is enabled, please check if an annotation like "nginx.ingress.kubernetes.io/service-upstream: true" is added for the application route when the route is inaccessible. If not, please add one.',
 
   UNABLE_TO_ACCESS_TIP:
     '● Make sure that the domain name you set can be resolved to the IP address of the access portal. <br/>● If you are in a private cloud environment, modify the local host file and then access it via {$domain name}:{$node port}.<br/>● By configuring DNS access, modify the domain name to {$hostname} + {$gateway address} + nip.io, and then access the service via {$hostname}.{$gateway address} .nip.io:{$NodePort}. <br/>● If the access is blocked when using domain name, please confirm that if your domain name is existed and has been registered.',

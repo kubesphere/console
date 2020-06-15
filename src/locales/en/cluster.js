@@ -58,7 +58,7 @@ export default {
 
   CLUSTER_CONDITIONS: 'Cluster Conditions',
 
-  INVITE_CLUSTER_MEMBER_DESC: 'You can invite new members to this cluster',
+  INVITE_CLUSTER_MEMBER_DESC: 'You can invite new members to this cluster.',
 
   SELECT_CLUSTERS_DESC: 'Select the cluster available in the workspace',
 

@@ -106,12 +106,12 @@ class LogCollection extends React.Component {
 
     return (
       <>
-        <Panel title={t('Collecting File Log')}>
+        <Panel title={t('Disk Log Collection')}>
           <div className={styles.header}>
             <Icon name="log" size={40} />
             <div className={styles.item}>
               <div>{isOpen ? t('Opened') : t('Closed')}</div>
-              <p>{t('Collecting File Log')}</p>
+              <p>{t('Disk Log Collection')}</p>
             </div>
             {this.canEdit && (
               <div className={classNames(styles.item, 'text-right')}>
