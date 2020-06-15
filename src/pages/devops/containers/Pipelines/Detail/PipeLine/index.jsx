@@ -184,7 +184,6 @@ export default class Pipeline extends React.Component {
 
   renderBtnGroup() {
     const editable = this.enabledActions.includes('edit')
-    const runnable = this.enabledActions.includes('trigger')
 
     return (
       <div className={style.pipelineCard__btnGroup}>
@@ -196,7 +195,7 @@ export default class Pipeline extends React.Component {
         {editable && (
           <Button onClick={this.showEditPipeline}>{t('Edit Pipeline')}</Button>
         )}
-        {runnable && (
+        {editable && (
           <Button type="control" onClick={this.handleRun}>
             {t('Run')}
           </Button>
@@ -209,7 +208,6 @@ export default class Pipeline extends React.Component {
     const { pipelineJson, isLoading } = this.props.detailStore.pipelineJsonData
 
     const editable = this.enabledActions.includes('edit')
-    const runnable = this.enabledActions.includes('trigger')
 
     if (isLoading) {
       return (
@@ -244,7 +242,7 @@ export default class Pipeline extends React.Component {
               {t('Edit Jenkinsfile')}
             </Button>
           )}
-          {runnable && (
+          {editable && (
             <Button type="control" onClick={this.handleRun}>
               {t('Run')}
             </Button>

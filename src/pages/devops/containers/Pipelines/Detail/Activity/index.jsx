@@ -297,7 +297,7 @@ export default class Activity extends React.Component {
       render: record => {
         if (
           (record.branch && !record.commitId) ||
-          !this.enabledActions.includes('trigger')
+          !this.enabledActions.includes('edit')
         ) {
           return null
         }
@@ -324,7 +324,7 @@ export default class Activity extends React.Component {
       type: 'control',
       key: 'run',
       text: t('Run'),
-      action: 'trigger',
+      action: 'edit',
       onClick: this.handleRun,
     },
   ]
@@ -381,7 +381,7 @@ export default class Activity extends React.Component {
 
     const omitFilters = omit(filters, 'page')
 
-    const runnable = this.enabledActions.includes('trigger')
+    const runnable = this.enabledActions.includes('edit')
 
     if (isEmptyList && !filters.page) {
       if (isMutibranch && !detail.branchNames.length) {

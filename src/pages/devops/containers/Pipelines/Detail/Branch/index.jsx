@@ -149,7 +149,7 @@ export default class Branch extends React.Component {
     const isEmptyList = isLoading === false && total === 0
 
     const omitFilters = omit(filters, 'page')
-    const runnable = this.enabledActions.includes('trigger')
+    const runnable = this.enabledActions.includes('edit')
 
     if (isEmptyList && !filters.page) {
       return (

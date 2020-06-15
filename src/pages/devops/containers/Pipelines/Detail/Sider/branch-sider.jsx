@@ -103,7 +103,7 @@ class BranchSider extends Base {
       key: 'run',
       type: 'control',
       text: t('Run'),
-      action: 'trigger',
+      action: 'edit',
       onClick: this.handleRun,
     },
   ]
