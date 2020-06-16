@@ -24,7 +24,8 @@ export default {
   TIME_D: '{num, plural, =1 {1 day} other{# days}}',
   UTILIZATION: 'Utilization',
   RESOURCE_USAGE_TITLE: 'Resources Usage',
-  MONITORING_CLUSTER_DESC: 'You can monitor the running status of the cluster in this module.',
+  MONITORING_CLUSTER_DESC:
+    'You can monitor the running status of the cluster in this module.',
   MONITORING_PHYSICAL_DESC:
     'Monitor the running status of the physical resources',
   MONITORING_APPLICATION_DESC:
@@ -111,6 +112,7 @@ export default {
   CustomMonitorDashboards: 'Custom Monitoring Dashboards',
   CUSTOMMONITORDASHBOARD_DESC:
     'Users can define their application monitoring dashboards according to their own needs.',
-  CUSTOMMONITORDASHBOARD_CREATE_DESC: 'Users can define their application monitoring dashboards according to their own needs.',
+  CUSTOMMONITORDASHBOARD_CREATE_DESC:
+    'Users can define their application monitoring dashboards according to their own needs.',
   METRIC_NAME: 'Metric Name',
 }
