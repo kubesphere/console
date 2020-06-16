@@ -203,7 +203,7 @@ export default class RuleForm extends React.Component {
         onOk={this.handleSubmit}
       >
         {isFederated && (
-          <Form.Group label={t('Deploy Placement')}>
+          <Form.Group label={t('Deployment Location')}>
             <Form.Item>
               <ClusterSelect
                 name="clusters"

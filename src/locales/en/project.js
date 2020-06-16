@@ -108,4 +108,6 @@ export default {
   PROJECT_CLUSTER_SETTINGS_DESC:
     'Select the cluster to create the project. When multiple clusters are selected, the multi-cluster project will be created',
   NETWORK_ISOLATED_DESC: 'Set network isolation strategy',
+
+  PROJECT_QUOTA_MANAGE_DESC: 'This module allows you to manage project quotas.',
 }

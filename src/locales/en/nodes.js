@@ -22,7 +22,7 @@ export default {
   NOEXECUTE_OPTION: 'NoExecute',
 
   TAINTS_MSG:
-    'If the node is placed a taint with "key=value", then no pod will be able to schedule (PodToleratesNodeTaints policy) or try to avoid scheduling (TaintTolerationPriority policy) onto this node unless the pod has a matching toleration with "key=value".',
+    'If a taint with "key=value" is added to the node, it means no pod will be scheduled to this node (PodToleratesNodeTaints policy) or at least scheduling is avoided as much as possible (TaintTolerationPriority policy), unless the pod has a matching toleration with "key=value".',
   TAINTS_TIPS:
     'If there is at least one un-ignored taint with effect NoSchedule then the system will not schedule pods onto that node. <br />If there is no un-ignored taint with effect NoSchedule but there is at least one un-ignored taint with effect PreferNoSchedule then the system will try to not schedule pods onto the node.<br />if there is at least one un-ignored taint with effect NoExecute then the pods will be evicted from the node (if it is already running on the node), and will not be scheduled onto the node (if it is not yet running on the node).',
   NO_TAINTS_TIPS: 'No taints have been set yet.',

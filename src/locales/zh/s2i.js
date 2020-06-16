@@ -124,7 +124,7 @@ export default {
   'Build image for service x': '为 {service} 服务构建镜像',
   'Click to select the artifact file to upload': '点击制品文件进行上传',
   'Upload Artifacts': '上传制品',
-  'Choose a language': '选择语言',
+  'Choose a Language': '选择语言',
   B2I_DEFAULT_DESC: '点击制品文件进行上传',
   JAR_DESC:
     'Jar 文件是一种软件包文件格式，通常用于聚合大量的 Java 类文件、相关的元数据和资源（文本、图片等）文件到一个文件',

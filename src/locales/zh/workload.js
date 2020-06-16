@@ -106,7 +106,7 @@ export default {
   'Additional metadata settings for resources such as Label and Annotation':
     '对资源进行额外的元数据设置，例如 Label 和 Annotation',
 
-  'Deploy Placement': '部署位置',
+  'Deployment Location': '部署位置',
 
   REFFER_CONFIGMAP_DESC: '将配置中的值添加为卷。',
   REFFER_SECRET_DESC: '将密钥中的值添加为卷。',

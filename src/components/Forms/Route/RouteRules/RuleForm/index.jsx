@@ -240,7 +240,7 @@ export default class RuleForm extends React.Component {
         <div className={styles.formWrapper}>
           <Form ref={this.formRef} data={data}>
             {isFederated && (
-              <Form.Group label={t('Deploy Placement')}>
+              <Form.Group label={t('Deployment Location')}>
                 <Form.Item>
                   <ClusterSelect
                     name="clusters"

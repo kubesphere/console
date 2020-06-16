@@ -222,7 +222,7 @@ class AlertDetail extends React.Component {
         title={t('Alerting Detail')}
         loading={loading}
         isEmpty={isEmpty(data)}
-        empty={t('No relevant data')}
+        empty={t('No Relevant Data')}
       >
         {this.renderChart()}
         {this.renderAlertList()}

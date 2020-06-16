@@ -120,7 +120,7 @@ export default class Item extends React.Component {
                   )
                 })}
               </div>
-              <div className={styles.description}>{t('Deploy Placement')}</div>
+              <div className={styles.description}>{t('Deployment Location')}</div>
             </div>
           </div>
         )}

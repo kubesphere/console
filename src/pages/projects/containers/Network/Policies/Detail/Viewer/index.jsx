@@ -211,8 +211,8 @@ export default class Viewer extends React.Component {
 
     return (
       <div>
-        <span>This rule Allows pods in namespace '{namespace}' </span>
-        {!isEmpty(podsLabels) && <span> with labels {podsLabels} </span>}
+        <span>This rule allows pods in the namespace '{namespace}' </span>
+        {!isEmpty(podsLabels) && <span> with the label {podsLabels} </span>}
         <span>to receive traffic from </span>
         {!isEmpty(ipBlock) ? (
           <label>
@@ -221,11 +221,11 @@ export default class Viewer extends React.Component {
         ) : (
           <label>
             {!isEmpty(namespaceLabels) && (
-              <span>all pods in namespaces with labels {namespaceLabels} </span>
+              <span>all pods in the namespace with the label {namespaceLabels} </span>
             )}
             {!isEmpty(destPodLabels) && (
               <span>
-                pods in the same namespace with labels {destPodLabels}{' '}
+                pods in the same namespace with the label {destPodLabels}{' '}
               </span>
             )}
           </label>

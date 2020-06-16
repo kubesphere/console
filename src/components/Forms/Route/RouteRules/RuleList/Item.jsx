@@ -74,7 +74,7 @@ const Item = ({ rule, tls = {}, onDelete, onEdit }) => {
                 <span>{rule.cluster.name}</span>
               </Tag>
             </div>
-            <div className={styles.description}>{t('Deploy Placement')}</div>
+            <div className={styles.description}>{t('Deployment Location')}</div>
           </div>
         </div>
       )}

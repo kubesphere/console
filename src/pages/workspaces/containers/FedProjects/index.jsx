@@ -123,7 +123,7 @@ export default class Projects extends React.Component {
         ),
       },
       {
-        title: t('Deploy Placement'),
+        title: t('Deployment Location'),
         dataIndex: 'clusters',
         isHideable: true,
         render: clusters => (

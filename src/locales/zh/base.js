@@ -185,7 +185,7 @@ export default {
   RESOURCE_NOT_FOUND: '很抱歉，没有找到您所查找的资源。',
   'No Available Resource': '暂无可用资源',
   'No Data': '暂无数据',
-  'No relevant data': '暂时没有相关数据',
+  'No Relevant Data': '暂时没有相关数据',
 
   or: '或',
   refresh: '刷新',

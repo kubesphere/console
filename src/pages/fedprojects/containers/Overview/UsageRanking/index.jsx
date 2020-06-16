@@ -107,7 +107,7 @@ class UsageRanking extends React.Component {
     return (
       <div className={styles.empty}>
         <Icon name="backup" size={32} />
-        <div>{t('No relevant data')}</div>
+        <div>{t('No Relevant Data')}</div>
       </div>
     )
   }
