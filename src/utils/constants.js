@@ -846,7 +846,9 @@ export const API_VERSIONS = {
 
 export const MONITOR_GRAPH_COLORS = [
   {
-    nameI18nKey: '默认配色',
+    get nameI18nKey() {
+      return t('Default Color')
+    },
     colors: [
       '#60acfc',
       '#23c2db',
@@ -858,7 +860,9 @@ export const MONITOR_GRAPH_COLORS = [
     ],
   },
   {
-    nameI18nKey: '冷色调',
+    get nameI18nKey() {
+      return t('Cool Color')
+    },
     colors: [
       '#678ed7',
       '#60acfc',
@@ -870,7 +874,9 @@ export const MONITOR_GRAPH_COLORS = [
     ],
   },
   {
-    nameI18nKey: '暖色调',
+    get nameI18nKey() {
+      return t('Warm Color')
+    },
     colors: [
       '#717adf',
       '#d15c7f',

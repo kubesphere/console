@@ -189,4 +189,8 @@ export default {
   CustomMonitorDashboard: '自定义监控面板',
   CUSTOMMONITORDASHBOARD_DESC: '用户可以根据自己需求定义应用监控面板',
   CUSTOMMONITORDASHBOARD_CREATE_DESC: '用户可以根据自己需求定义应用监控面板',
+
+  'Default Color': '默认配色',
+  'Cool Color': '冷色调',
+  'Warm Color': '暖色调',
 }
