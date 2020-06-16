@@ -18,7 +18,6 @@
 
 import React from 'react'
 import { computed } from 'mobx'
-import { parse } from 'qs'
 
 import { Avatar } from 'components/Base'
 import Banner from 'components/Cards/Banner'
@@ -26,6 +25,7 @@ import Table from 'workspaces/components/ResourceTable'
 import withList, { ListPage } from 'components/HOCs/withList'
 
 import { getLocalTime } from 'utils'
+import { get } from 'lodash'
 
 import DevOpsStore from 'stores/devops'
 
@@ -92,6 +92,7 @@ export default class DevOps extends React.Component {
     return this.workspaceStore.clusters.data.map(item => ({
       label: item.name,
       value: item.name,
+      disabled: !get(item, 'configz.devops', false),
     }))
   }
 
@@ -109,7 +110,6 @@ export default class DevOps extends React.Component {
   }
 
   getData = async ({ silent, ...params } = {}) => {
-    this.query = parse(location.search.slice(1))
     const { store } = this.props
 
     silent && (store.list.silent = true)
@@ -126,17 +126,23 @@ export default class DevOps extends React.Component {
       title: t('Name'),
       dataIndex: 'name',
       width: '20%',
-      render: (name, record) => (
-        <Avatar
-          icon="strategy-group"
-          iconSize={40}
-          to={`/${this.workspace}/clusters/${
-            this.workspaceStore.cluster
-          }/devops/${record.namespace}`}
-          desc={record.description || '-'}
-          title={name}
-        />
-      ),
+      render: (name, record) => {
+        return (
+          <Avatar
+            icon="strategy-group"
+            iconSize={40}
+            to={
+              record.namespace && record.cluster
+                ? `/${this.workspace}/clusters/${record.cluster}/devops/${
+                    record.namespace
+                  }`
+                : null
+            }
+            desc={record.description || '-'}
+            title={name}
+          />
+        )
+      },
     },
     {
       title: t('ID'),

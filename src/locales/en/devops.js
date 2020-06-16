@@ -53,4 +53,6 @@ export default {
   DEVOPS_TIP_TYPE_Q: 'Which code repositories are supported by the Pipeline?',
   DEVOPS_TIP_TYPE_A:
     'The pipeline supports code repositories of git, github, SVN, and Bitbucket Server.',
+
+  NO_DEVOPS_INSTALL: 'DevOps not installed',
 }

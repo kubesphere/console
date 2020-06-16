@@ -27,14 +27,22 @@
   }
 
   .title {
-    & > div {
+    &>div {
       @include TypographyTitleH4($dark-color07);
     }
-  
-    & > p {
+
+    &>p {
       margin-top: 12px;
       @include TypographyParagraph($dark-color01);
     }
+  }
+}
+
+.toolmessage {
+  margin-left: 10px;
+
+  &>span {
+    vertical-align: middle;
   }
 }
 
