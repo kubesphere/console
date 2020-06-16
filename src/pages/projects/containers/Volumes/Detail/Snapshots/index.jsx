@@ -57,13 +57,17 @@ export default class PVCSnapshots extends Component {
     } = snapshot
 
     const status = t(`CREATE_STATUS_${backupStatus.toUpperCase()}`)
+    const { detailStore } = this.props
+    const { cluster } = detailStore.detail
 
     return (
       <div className={styles.item} key={uid}>
         <Icon name={'snapshot'} size={40} />
         <div className={styles.itemAttrs}>
           <h3>
-            <Link to={`/infrastructure/volume-snapshots/${namespace}/${name}`}>
+            <Link
+              to={`/clusters/${cluster}/projects/${namespace}/volume-snapshots/${name}`}
+            >
               {name}
             </Link>
           </h3>
