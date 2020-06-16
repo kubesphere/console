@@ -52,7 +52,9 @@ export default class LogCollection extends React.Component {
   }
 
   refresh = () => {
-    this.store.fetch()
+    this.store.fetch({
+      labelSelector: 'logging.kubesphere.io/component=logging',
+    })
   }
 
   showCreateModal = () => {
