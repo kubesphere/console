@@ -18,7 +18,7 @@
 
 import React from 'react'
 import { observer } from 'mobx-react'
-import { isEmpty } from 'lodash'
+import { get, isEmpty } from 'lodash'
 import PropTypes from 'prop-types'
 import { Columns, Column, Select, Input, TextArea } from '@pitrix/lego-ui'
 import { Modal, Form } from 'components/Base'
@@ -75,6 +75,7 @@ export default class ProjectCreateModal extends React.Component {
       provider: item.provider,
       group: item.group,
       name: item.name,
+      disabled: !get(item, 'configz.devops', false),
     }))
   }
 
@@ -96,7 +97,14 @@ export default class ProjectCreateModal extends React.Component {
   valueRenderer = item => <ClusterTitle cluster={item} size="small" noStatus />
 
   optionRenderer = item => (
-    <ClusterTitle cluster={item} size="small" theme="light" noStatus />
+    <>
+      <ClusterTitle cluster={item} size="small" theme="light" noStatus />
+      {item.disabled && (
+        <div className={styles.toolmessage}>
+          <span>{t('NO_DEVOPS_INSTALL')}</span>
+        </div>
+      )}
+    </>
   )
 
   render() {

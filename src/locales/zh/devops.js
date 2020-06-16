@@ -65,4 +65,6 @@ export default {
   DEVOPS_TIP_TYPE_Q: '流水线 (Pipeline) 支持哪些代码仓库类？',
   DEVOPS_TIP_TYPE_A:
     '流水线支持 Git、GitHub、SVN、以及 Bitbucket Server 代码仓库.',
+
+  NO_DEVOPS_INSTALL: '未安装 DevOps',
 }
