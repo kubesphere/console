@@ -18,74 +18,18 @@
 
 import React from 'react'
 import { Icon, Input, TextArea } from '@pitrix/lego-ui'
-import { PATTERN_NAME, CLUSTER_GROUP_TAG_TYPE } from 'utils/constants'
+import {
+  PATTERN_NAME,
+  CLUSTER_GROUP_TAG_TYPE,
+  CLUSTER_PROVIDERS,
+  CLUSTER_PRESET_GROUPS,
+} from 'utils/constants'
 import { Form, Tag } from 'components/Base'
 import { SelectInput } from 'components/Inputs'
 
 import SubTitle from '../SubTitle'
 
 export default class BaseInfo extends React.Component {
-  get groups() {
-    return [
-      {
-        label: 'production',
-        value: 'production',
-      },
-      {
-        label: 'development',
-        value: 'development',
-      },
-      {
-        label: 'testing',
-        value: 'testing',
-      },
-      {
-        label: 'demo',
-        value: 'demo',
-      },
-    ]
-  }
-
-  get providers() {
-    return [
-      {
-        label: 'Aliyun ACK',
-        value: 'Aliyun ACK',
-        icon: 'aliyun',
-      },
-      {
-        label: 'Aure Kubernetes Service',
-        value: 'Aure Kubernetes Service',
-        icon: 'windows',
-      },
-      {
-        label: 'Huawei Cloud CCE',
-        value: 'Huawei Cloud CCE',
-        icon: 'kubernetes',
-      },
-      {
-        label: 'Amazon EKS',
-        value: 'Amazon EKS',
-        icon: 'aws',
-      },
-      {
-        label: 'Google Kubernetes Engine',
-        value: 'Google Kubernetes Engine',
-        icon: 'google-plus',
-      },
-      {
-        label: 'QingCloud Kubernetes Engine',
-        value: 'QingCloud Kubernetes Engine',
-        icon: 'qingcloud',
-      },
-      {
-        label: 'Tencent Kubernetes Engine',
-        value: 'Tencent Kubernetes Engine',
-        icon: 'kubernetes',
-      },
-    ]
-  }
-
   groupOptionRenderer = option => (
     <>
       <Tag type={CLUSTER_GROUP_TAG_TYPE[option.value]}>
@@ -140,7 +84,7 @@ export default class BaseInfo extends React.Component {
         <Form.Item label={t('CLUSTER_TAG')} desc={t('CLUSTER_TAG_DESC')}>
           <SelectInput
             name="metadata.labels['cluster.kubesphere.io/group']"
-            options={this.groups}
+            options={CLUSTER_PRESET_GROUPS}
             placeholder={t('Please select or input a tag')}
             optionRenderer={this.groupOptionRenderer}
           />
@@ -148,7 +92,7 @@ export default class BaseInfo extends React.Component {
         <Form.Item label={t('Provider')} desc={t('CLUSTER_PROVIDER_DESC')}>
           <SelectInput
             name="spec.provider"
-            options={this.providers}
+            options={CLUSTER_PROVIDERS}
             placeholder={t('Please select or input a provider')}
             optionRenderer={this.providerOptionRenderer}
           />

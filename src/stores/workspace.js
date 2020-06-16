@@ -104,7 +104,7 @@ export default class WorkspaceStore extends Base {
       isLoading: false,
     })
 
-    if (this.clusters.data.length > 1) {
+    if (this.clusters.data.length > 0) {
       this.selectCluster(
         get(
           this.clusters.data.find(cluster => cluster.isHost) ||
