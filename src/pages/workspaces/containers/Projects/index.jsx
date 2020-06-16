@@ -201,7 +201,7 @@ export default class Projects extends React.Component {
       <ListPage {...this.props} getData={this.getData} module="namespaces">
         <Banner
           {...bannerProps}
-          tabs={globals.app.isMultiCluster ? this.tabs : []}
+          tabs={globals.app.isMultiCluster ? this.tabs : {}}
         />
         <Table
           {...tableProps}

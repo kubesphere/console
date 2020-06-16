@@ -49,6 +49,7 @@ export default class FederatedProjectLayout extends Component {
             detail={detail}
             workspace={match.params.workspace}
             onChange={this.handleChange}
+            isFederated
           />
           <Nav
             className="ks-page-nav"

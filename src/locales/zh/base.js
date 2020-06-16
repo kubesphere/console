@@ -33,7 +33,7 @@ export default {
   'Updated Time': '更新时间',
   'Running Time': '运行时间',
   'Custom Columns': '内容定制',
-  'Deselect': '取消选择',
+  Deselect: '取消选择',
   Monitors: '监控',
   Events: '事件',
   Labels: '标签',
@@ -417,7 +417,7 @@ export default {
 
   'Resource List': '资源列表',
 
-  'Platform Access Control': '平台级的访问控制',
+  'Platform-level Access Control': '平台级的访问控制',
 
   NOT_FOUND_DESC:
     '🙇 对不起没有找到相关资源，系统将在 {time}s 后返回 <a href="{link}">工作台</a>',

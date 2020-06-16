@@ -59,8 +59,8 @@ export default class Selector extends React.Component {
   }
 
   render() {
-    const { title, type, detail } = this.props
-    const { name, description, cluster, workspace, isFedManaged } = detail
+    const { title, type, detail, isFederated } = this.props
+    const { name, description, cluster, workspace } = detail
     const { showSelect } = this.state
 
     return (
@@ -79,7 +79,7 @@ export default class Selector extends React.Component {
             </Tooltip>
             <p>{description || title}</p>
           </div>
-          {isFedManaged && (
+          {isFederated && (
             <Tag className={styles.tag} type="info">
               {t('MULTI_CLUSTER')}
             </Tag>

@@ -103,6 +103,7 @@ export default class ContainerImages extends Component {
         <Form ref={this.formRef} type="inner" data={container}>
           <ContainerSetting
             className={styles.formContent}
+            data={container}
             cluster={cluster}
             namespace={namespace}
             quota={quota}

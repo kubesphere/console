@@ -34,14 +34,26 @@ export default class ClusterSettings extends Component {
   clusterStore = new ClusterStore()
 
   componentDidMount() {
-    this.clusterStore
-      .fetchList({
+    this.fetchData()
+  }
+
+  async fetchData() {
+    if (globals.app.hasPermission({ module: 'clusters', action: 'manage' })) {
+      await this.clusterStore.fetchList({
+        limit: -1,
+      })
+    } else {
+      await this.clusterStore.fetchList({
         limit: -1,
         label: 'cluster.kubesphere.io/visibility=public',
       })
-      .then(() => {
-        this.props.onChange(this.clusterStore.list.data.map(item => item.name))
-      })
+    }
+
+    this.props.onChange(
+      this.clusterStore.list.data
+        .filter(item => item.visibility === 'public')
+        .map(item => item.name)
+    )
   }
 
   handleClick = e => {

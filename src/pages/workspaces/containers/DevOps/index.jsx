@@ -130,9 +130,9 @@ export default class DevOps extends React.Component {
         <Avatar
           icon="strategy-group"
           iconSize={40}
-          to={`/${this.workspace}/clusters/${this.cluster}/devops/${
-            record.namespace
-          }`}
+          to={`/${this.workspace}/clusters/${
+            this.workspaceStore.cluster
+          }/devops/${record.namespace}`}
           desc={record.description || '-'}
           title={name}
         />

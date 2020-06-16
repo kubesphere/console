@@ -903,6 +903,63 @@ export const CLUSTER_PROVIDER_ICON = {
   'Tencent Kubernetes Engine': 'kubernetes',
 }
 
+export const CLUSTER_PROVIDERS = [
+  {
+    label: 'Aliyun ACK',
+    value: 'Aliyun ACK',
+    icon: 'aliyun',
+  },
+  {
+    label: 'Aure Kubernetes Service',
+    value: 'Aure Kubernetes Service',
+    icon: 'windows',
+  },
+  {
+    label: 'Huawei Cloud CCE',
+    value: 'Huawei Cloud CCE',
+    icon: 'kubernetes',
+  },
+  {
+    label: 'Amazon EKS',
+    value: 'Amazon EKS',
+    icon: 'aws',
+  },
+  {
+    label: 'Google Kubernetes Engine',
+    value: 'Google Kubernetes Engine',
+    icon: 'google-plus',
+  },
+  {
+    label: 'QingCloud Kubernetes Engine',
+    value: 'QingCloud Kubernetes Engine',
+    icon: 'qingcloud',
+  },
+  {
+    label: 'Tencent Kubernetes Engine',
+    value: 'Tencent Kubernetes Engine',
+    icon: 'kubernetes',
+  },
+]
+
+export const CLUSTER_PRESET_GROUPS = [
+  {
+    label: 'production',
+    value: 'production',
+  },
+  {
+    label: 'development',
+    value: 'development',
+  },
+  {
+    label: 'testing',
+    value: 'testing',
+  },
+  {
+    label: 'demo',
+    value: 'demo',
+  },
+]
+
 export const CLUSTER_GROUP_TAG_TYPE = {
   production: 'warning',
   development: 'secondary',

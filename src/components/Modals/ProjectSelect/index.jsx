@@ -20,8 +20,9 @@ import { get } from 'lodash'
 import React from 'react'
 import { toJS } from 'mobx'
 import { inject, observer } from 'mobx-react'
-import { Columns, Column } from '@pitrix/lego-ui'
+import { Columns, Column, Select } from '@pitrix/lego-ui'
 import { Button, Modal, Search, RadioGroup, ScrollLoad } from 'components/Base'
+
 import WorkspaceStore from 'stores/workspace'
 import ProjectStore from 'stores/project'
 import FederatedStore from 'stores/federated'
@@ -50,11 +51,26 @@ export default class ProjectSelectModal extends React.Component {
 
     this.state = {
       type: props.defaultType || 'projects',
+      cluster: props.cluster || '',
     }
   }
 
   componentDidMount() {
     this.store.fetchDetail({ workspace: this.props.workspace })
+    this.store.fetchClusters({ workspace: this.props.workspace }).then(() => {
+      if (!this.state.cluster) {
+        this.setState({
+          cluster: get(this.store.clusters, 'data[0].name', ''),
+        })
+      }
+    })
+  }
+
+  get clusters() {
+    return this.store.clusters.data.map(item => ({
+      label: item.name,
+      value: item.name,
+    }))
   }
 
   get enabledActions() {
@@ -78,7 +94,10 @@ export default class ProjectSelectModal extends React.Component {
       })
     }
 
-    if (this.enabledActions.federatedprojects.includes('view')) {
+    if (
+      globals.app.isMultiCluster &&
+      this.enabledActions.federatedprojects.includes('view')
+    ) {
       types.push({
         label: t('Multi-cluster Projects'),
         value: 'federatedprojects',
@@ -104,7 +123,8 @@ export default class ProjectSelectModal extends React.Component {
   }
 
   fetchData = query => {
-    const { cluster, workspace } = this.props
+    const { workspace } = this.props
+    const { cluster } = this.state
     const params = { cluster, workspace, ...query }
 
     if (this.state.type === 'federatedprojects') {
@@ -130,13 +150,20 @@ export default class ProjectSelectModal extends React.Component {
     }
   }
 
+  handleClusterChange = cluster => {
+    this.setState({ cluster }, () => {
+      this.fetchData()
+    })
+  }
+
   handleEnterWorkspace = () => {
     const { workspace, onChange } = this.props
     return onChange(`/workspaces/${workspace}/overview`)
   }
 
   handleOnEnter = item => {
-    const { workspace, cluster, onChange } = this.props
+    const { workspace, onChange } = this.props
+    const { cluster } = this.state
     if (this.state.type === 'projects') {
       onChange(`/${workspace}/clusters/${cluster}/projects/${item.name}`)
     } else if (this.state.type === 'federatedprojects') {
@@ -146,8 +173,11 @@ export default class ProjectSelectModal extends React.Component {
     }
   }
 
+  clusterRenderer = option => `${t('Cluster')}: ${option.label}`
+
   showCreate = () => {
-    const { workspace, rootStore, cluster } = this.props
+    const { workspace, rootStore } = this.props
+    const { cluster } = this.state
     if (
       this.state.type === 'projects' ||
       this.state.type === 'federatedprojects'
@@ -170,7 +200,7 @@ export default class ProjectSelectModal extends React.Component {
 
   render() {
     const { visible, workspace, onCancel } = this.props
-    const { type } = this.state
+    const { type, cluster } = this.state
     const { detail } = this.store
     const list = this.stores[type].list
     const { data, total, page, isLoading } = toJS(list)
@@ -187,7 +217,7 @@ export default class ProjectSelectModal extends React.Component {
         hideFooter
       >
         <div className={styles.bar}>
-          <Columns>
+          <Columns className="is-variable is-1">
             <Column className="is-narrow">
               <RadioGroup
                 value={type}
@@ -195,6 +225,17 @@ export default class ProjectSelectModal extends React.Component {
                 onChange={this.handleTypeChange}
               />
             </Column>
+            {globals.app.isMultiCluster && type !== 'federatedprojects' && (
+              <Column className="is-narrow">
+                <Select
+                  className={styles.cluster}
+                  options={this.clusters}
+                  value={cluster}
+                  onChange={this.handleClusterChange}
+                  valueRenderer={this.clusterRenderer}
+                />
+              </Column>
+            )}
             <Column>
               <Search
                 placeholder={t('Please enter a name to find')}
