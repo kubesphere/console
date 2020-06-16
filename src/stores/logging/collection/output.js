@@ -41,8 +41,11 @@ export default class outputStore extends Base {
   getDetailUrl = ({ name }) =>
     `${this.getListUrl({ namespace: KS_LOG_NAMESPACE })}/${name}`
 
-  fetch() {
-    this.fetchListByK8s({ namespace: KS_LOG_NAMESPACE })
+  fetch(params) {
+    this.fetchListByK8s({
+      namespace: KS_LOG_NAMESPACE,
+      ...params,
+    })
   }
 
   create({ Name, enabled = true, ...params }) {
