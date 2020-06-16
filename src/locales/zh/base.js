@@ -310,7 +310,7 @@ export default {
 
   exists: '已存在',
 
-  'No Limits': '无限制',
+  'No Limit': '无限制',
   Quota: '配额',
   'Left Quota': '剩余配额',
 
@@ -495,7 +495,7 @@ export default {
 
   Setting: '设置中',
   'Not set': '未设置',
-  'Has been set': '已设置',
+  Finished: '已设置',
 
   'Learn more': '了解更多',
 

@@ -21,7 +21,7 @@ export default {
   NETWORK_POLICY_DESC:
     'The Network policy configuration allows network isolation within the same cluster, which means firewalls can be set up between certain instances (Pods).',
   NETWORK_ISOLATION_DESC:
-    'By configuring network isolation to control traffic between Pod within the same cluster and traffic from outside, applications are isolated and security is enhanced.',
+    'By configuring network isolation to control traffic among Pods within the same cluster and traffic from outside, applications are isolated and security is enhanced.',
   NETWORK_POLICY_Q: 'How to use a network policy better?',
   NETWORK_ISOLATION_Q: 'How to use network isolation better?',
   NETWORK_POLICY_A:
@@ -31,7 +31,7 @@ export default {
   NETWORK_POLICY_A1: 'xxxxxxxxxx',
   NETWORK_POLICY_EMP_TITLE: 'Project Network Isolation Not Enabled',
   NETWORK_POLICY_EMP_DESC:
-    'Due to the enterprise space setup, the current project allows access by other projects within the cluster. When project network isolation is enabled, other projects are denied access to the current project, and you can customize the items, services, and external addresses that need to be released',
+    'The current project can be accessed by other projects in the cluster based on the workspace settings. Once network isolation is enabled for the project, other projects will be unable to access it while you can still customize specific projects, services or external addresses that can be released.',
   NETWORK_POLICY_STATUS: 'Project Network Isolation',
   NETWORK_POLICY_R_DESC1:
     'You can set access to the following resources (matching any of the following policies)',
@@ -47,7 +47,7 @@ export default {
     'Select a specific IP CIDR range as an entry source or exit destination. Cluster external IP',
   NETWORK_POLICY_D_DESC: 'Match Egress traffic and Ingress traffic',
   NETWORK_POLICY_D_DESC2:
-    'CIDR is a string representing the IP Block Valid examples are "192.168.1.1/24"',
+    'CIDR is a string representing a valid IP block, such as "192.168.1.1/24".',
   NETWORK_POLICY_D_OP1: 'Egress',
   NETWORK_POLICY_D_OP2: 'Ingress',
   NETWORK_POLICY_CREATE_DESC:

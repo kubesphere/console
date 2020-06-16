@@ -45,7 +45,7 @@ export default {
   Mounted: '已挂载',
   'Not Mounted': '未挂载',
   Scalable: '可扩展性',
-  'Reclaim Policy': '回收机制',
+  'Reclaiming Policy': '回收机制',
   DELETE_STORAGE_TIP: '如果存储卷正在被挂载时，待工作负载被删除时一同删除。',
   SRORAGE_SETTING_DESC:
     'ReadWriteOnce：单个节点读写。<br/>ReadOnlyMany：多节点只读。<br/>ReadWriteMany：多节点读写。<br/>挂载时只能使用一种模式。',
@@ -67,12 +67,12 @@ export default {
   PersistentVolumes: '持久化存储卷',
 
   'Set as default storage class': '设为默认存储类型',
-  'storage class name': '存储类型名称',
+  'Storage Class Name': '存储类型名称',
   Default: '默认',
   StorageClasses: '存储类型',
   'Storage System': '存储系统',
 
-  'Supported Access Modes': '支持的访问模式',
+  'Supported Access Mode': '支持的访问模式',
 
   'Custom Provisioner': '自定义供应者',
   Parameters: '参数',

@@ -100,5 +100,5 @@ export default {
     'An alert can specify only one resource type policy',
 
   RULE_NAME_DESC:
-    'Rule name can be composed of any character to help you better distinguish resources.',
+    'The rule name can be composed of any character to help you better distinguish resources.',
 }

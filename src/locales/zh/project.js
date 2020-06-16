@@ -116,7 +116,7 @@ export default {
   'Select a user of the workspace as the manager of the project.':
     '选择企业空间的用户作为管理员。',
 
-  'Collecting File Log': '落盘日志收集',
+  'Disk Log Collection': '落盘日志收集',
 
   'Are you sure to close ?': '确认关闭？',
   "The project's file log collection is about to close.":

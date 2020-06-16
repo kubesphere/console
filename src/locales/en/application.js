@@ -43,7 +43,7 @@ export default {
     'Support stateless services (Deployment) and stateful services (StatefulSet)',
 
   BLUE_GREEN_DEPLOYMENT_DESC:
-    'The blue-green release provides a zero downtime deployment, which means the new version can be deployed with the old one preserved. It enables both versions running at the same time. If there is a problem with running, you can quickly roll back to the old version.',
+    'The blue-green release provides a zero downtime deployment, which means the new version can be deployed with the old one preserved. It enables both versions to run at the same time. If there is a problem with running, you can quickly roll back to the old version.',
   CANARY_RELEASES_DESC:
     'This method brings part of the actual traffic into a new version to test its performance and reliability. It can help detect potential problems in the actual environment while not affecting the overall system stability.',
   TRAFFIC_MIRROR_DESC:

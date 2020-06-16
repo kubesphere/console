@@ -34,8 +34,8 @@ export default {
     '通过配置网络隔离控制同一集群内 Pod 之间的流量以及来自外部的流量，从而实现隔离应用并增强应用的安全性。',
   NETWORK_POLICY_CREATE_DESC:
     '通过配置网络策略控制同一集群内 Pod 之间的流量以及来自外部的流量，从而实现隔离应用并增强应用的安全性。',
-  NETWORK_POLICY_Q: '如何更好的使用网络策略?',
-  NETWORK_ISOLATION_Q: '如何更好的使用网络隔离?',
+  NETWORK_POLICY_Q: '如何更好地使用网络策略?',
+  NETWORK_ISOLATION_Q: '如何更好地使用网络隔离?',
   NETWORK_POLICY_A:
     '根据实际使用场景我们整理了几种较为常见的应用场景，您可以查阅文档了解更多',
   NETWORK_POLICY_Q1: '实现网络策略的必要条件',

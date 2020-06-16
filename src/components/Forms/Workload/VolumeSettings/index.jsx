@@ -464,7 +464,7 @@ class VolumeSettings extends React.Component {
     return (
       <div>
         <div className="tooltip-title">
-          {t('What is collecting file log ?')}
+          {t('What is Disk Log Collection?')}
         </div>
         <p>{t('COLLECT_FILE_LOG_TIP')}</p>
       </div>
@@ -500,7 +500,7 @@ class VolumeSettings extends React.Component {
             )}
             <span className="text-secondary align-middle">
               {' '}
-              {t('Collecting file log')}{' '}
+              {t('Disk Log Collection')}{' '}
             </span>
             <Tooltip content={this.renderToolTipContent()}>
               <Icon name="question" />
