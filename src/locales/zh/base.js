@@ -495,7 +495,7 @@ export default {
 
   Setting: '设置中',
   'Not set': '未设置',
-  'Has been set': '已设置',
+  Finished: '已设置',
 
   'Learn more': '了解更多',
 

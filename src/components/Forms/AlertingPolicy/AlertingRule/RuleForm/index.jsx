@@ -186,7 +186,7 @@ export default class RuleForm extends React.Component {
       this.setState({ errorItems: ['thresholds'] })
 
       return callback({
-        message: t('Please input a thresholds'),
+        message: t('Please input the threshold'),
       })
     }
 

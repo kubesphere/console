@@ -25,7 +25,7 @@ import styles from './index.scss'
 
 const STATES = {
   current: 'Setting',
-  finished: 'Has been set',
+  finished: 'Finished',
   notfinish: 'Not set',
 }
 
