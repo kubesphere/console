@@ -90,7 +90,7 @@ export default class SecretStore extends Base {
         const msg = get(err, 'message', '')
         if (msg) {
           Notify.error({
-            title: t('Registry verify failed'),
+            title: t('Registry verification failed'),
             content: t(msg),
           })
         }

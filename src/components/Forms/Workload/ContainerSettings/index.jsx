@@ -407,7 +407,7 @@ export default class ContainerSetting extends React.Component {
   renderDeployPlacementTip() {
     return (
       <div>
-        <div className="tooltip-title">{t('What is deploy placement ?')}</div>
+        <div className="tooltip-title">{t('What is Deployment Location ?')}</div>
         <p>{t('DEPLOY_PLACEMENT_TIP')}</p>
       </div>
     )
@@ -424,7 +424,7 @@ export default class ContainerSetting extends React.Component {
       return (
         <Form.Item
           className="margin-b12"
-          label={t('Deploy Placement')}
+          label={t('Deployment Location')}
           tip={this.renderDeployPlacementTip()}
         >
           <ClusterReplicasControl

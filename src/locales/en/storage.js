@@ -85,10 +85,10 @@ export default {
     'QingCloud CSI plugin implements the Container Storage Interface (CSI) of Kubernetes, enabling the container orchestrator (CO) to use QingCloud storage. Currently, QingCloud CSI plugin supports the block storage service in QingCloud platform. For detailed information, please refer to the <a href="https://github.com/yunify/qingcloud-csi/blob/master/README.md#feature-matrix">features</a>.',
 
   QINGCLOUD_CSI_TYPE_DESC:
-    'In QingCloud public cloud platform, 0 represents high performance volume. 2 represents high capacity volume. 3 represents super high performance volume. 5 represents Enterprise Server SAN. 100 represents standard volume .',
-  CREATE_VOLUME_MAX_SIZE: 'Limit the range of volume size',
-  CREATE_VOLUME_STEP_SIZE: 'Set the incremental size of volume',
-  CREATE_VOLUME_MIN_SIZE: 'Limit the range of volume size',
+    'In QingCloud public cloud platform, 0 represents high performance volume. 2 represents high capacity volume. 3 represents super high performance volume. 5 represents Enterprise Server SAN. 100 represents standard volume.',
+  CREATE_VOLUME_MAX_SIZE: 'Volume size upper limit',
+  CREATE_VOLUME_STEP_SIZE: 'Volume size increment',
+  CREATE_VOLUME_MIN_SIZE: 'Volume size lower limit',
   VOLUME_FS_TYPE: 'ext3, ext4, xfs',
 
   GLUSTERFS_RESTURL_DESC:
@@ -108,7 +108,7 @@ export default {
   GLUSTERFS_VOLUME_TYPE_DESC:
     'The volume type and its parameters can be configured with this optional value.',
   QINGCLOUD_VOLUME_TAGS_DESC:
-    'Automatically pin tags when you create a hard drive, multiple tags separated by commas.',
+    'Tags will be associated automatically when a hard drive is created. Please separate multiple tags with commas.',
 
   CEPHRBD_MONITORS_DESC:
     'Ceph monitors, comma delimited. This parameter is required.',

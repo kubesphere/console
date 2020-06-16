@@ -53,8 +53,8 @@ export default class SecretDataList extends React.Component {
           />
         ))}
         <List.Add
-          title={t('Add data')}
-          description={t('Add key / value pair formal data')}
+          title={t('Add Data')}
+          description={t('Add key / value pair data')}
           onClick={onAdd}
         />
       </List>
