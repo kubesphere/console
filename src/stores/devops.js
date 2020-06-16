@@ -130,14 +130,12 @@ export default class DevOpsStore extends Base {
       params.reverse = true
     }
 
-    let result = {}
-
-    try {
-      result = await request.get(
-        this.getDevOpsUrl({ cluster, workspace }),
-        params
-      )
-    } catch {}
+    const result = await request.get(
+      this.getDevOpsUrl({ cluster, workspace }),
+      params,
+      null,
+      () => {}
+    )
 
     const items = Array.isArray(get(result, 'items'))
       ? get(result, 'items')
@@ -152,7 +150,7 @@ export default class DevOpsStore extends Base {
 
     this.list.update({
       data,
-      total: result.total_count || data.length || 0,
+      total: get(result, 'total_count') || data.length || 0,
       limit: Number(limit) || 10,
       page: Number(page) || 1,
       order,

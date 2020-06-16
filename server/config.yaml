@@ -222,7 +222,13 @@ client:
           tabs:
             - { name: projects, title: Projects }
             - { name: federatedprojects, title: Multi-cluster Projects }
-        - { name: devops, title: DevOps Projects, icon: strategy-group }
+        - {
+            name: devops,
+            title: DevOps Projects,
+            icon: strategy-group,
+            # only work on single cluster mode.
+            singleClusterMoudle: devops,
+          }
         - name: apps
           title: Apps Management
           icon: appcenter

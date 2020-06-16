@@ -25,7 +25,6 @@ import Table from 'workspaces/components/ResourceTable'
 import withList, { ListPage } from 'components/HOCs/withList'
 
 import { getLocalTime } from 'utils'
-import { get } from 'lodash'
 
 import DevOpsStore from 'stores/devops'
 
@@ -92,7 +91,6 @@ export default class DevOps extends React.Component {
     return this.workspaceStore.clusters.data.map(item => ({
       label: item.name,
       value: item.name,
-      disabled: !get(item, 'configz.devops', false),
     }))
   }
 
