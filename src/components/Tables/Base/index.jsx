@@ -67,7 +67,7 @@ export default class WorkloadTable extends React.Component {
     selectActions: PropTypes.array,
     extraProps: PropTypes.object,
     alwaysUpdate: PropTypes.bool,
-    emptyText: PropTypes.oneOfType([PropTypes.string || PropTypes.func]),
+    emptyText: PropTypes.any,
   }
 
   static defaultProps = {

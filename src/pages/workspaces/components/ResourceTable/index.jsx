@@ -77,7 +77,7 @@ class ResourceTable extends BaseTable {
 
   render() {
     const { clusters } = this.props
-    if (isEmpty(clusters)) {
+    if (globals.isMultiCluster && isEmpty(clusters)) {
       return (
         <EmptyList
           icon="cluster"
