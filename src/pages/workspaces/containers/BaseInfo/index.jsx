@@ -17,7 +17,7 @@
  */
 
 import React from 'react'
-import { get, keyBy, isEmpty } from 'lodash'
+import { get, isEmpty } from 'lodash'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import { Checkbox } from '@pitrix/lego-ui'
@@ -29,7 +29,6 @@ import ClusterTitle from 'components/Clusters/ClusterTitle'
 import { getLocalTime } from 'utils'
 import { trigger } from 'utils/action'
 
-import WorkspaceStore from 'stores/workspace'
 import WorkspaceMonitorStore from 'stores/monitoring/workspace'
 
 import styles from './index.scss'
@@ -40,28 +39,12 @@ import styles from './index.scss'
 class BaseInfo extends React.Component {
   monitorStore = new WorkspaceMonitorStore()
 
-  workspaceStore = new WorkspaceStore()
-
   state = {
     confirm: false,
-    workspaces: {},
   }
 
   componentDidMount() {
     this.fetchMetrics()
-
-    if (globals.app.isMultiCluster) {
-      Promise.all(
-        this.store.detail.clusters.map(cluster =>
-          this.workspaceStore.fetchDetail({
-            cluster,
-            workspace: this.workspace,
-          })
-        )
-      ).then(workspaces => {
-        this.setState({ workspaces: keyBy(workspaces, 'cluster') })
-      })
-    }
   }
 
   get store() {
@@ -120,20 +103,45 @@ class BaseInfo extends React.Component {
 
   showEdit = () => {
     this.trigger('resource.baseinfo.edit', {
-      detail: this.store.detail,
+      detail: toJS(this.store.detail),
       modal: EditBasicInfoModal,
       success: this.fetchDetail,
     })
   }
 
-  handleNetworkChange = workspace => () => {
-    const annotations = {
-      ...workspace.annotations,
-      'kubesphere.io/network-isolate': workspace.networkIsolation
-        ? 'disabled'
-        : 'enabled',
+  handleNetworkChange = cluster => () => {
+    const detail = toJS(this.store.detail)
+    const { overrides } = detail
+    let override = overrides.find(od => od.clusterName === cluster)
+    if (!override) {
+      override = {
+        clusterName: cluster,
+        clusterOverrides: [],
+      }
+      overrides.push(override)
     }
-    this.store.patch(workspace, { metadata: { annotations } })
+
+    let cod = override.clusterOverrides.find(
+      item => item.path === '/spec/networkIsolation'
+    )
+    if (!cod) {
+      cod = {
+        path: '/spec/networkIsolation',
+      }
+      override.clusterOverrides.push(cod)
+    }
+
+    cod.value = !get(
+      detail,
+      `clusterTemplates[${cluster}].spec.networkIsolation`
+    )
+
+    this.store
+      .patch(detail, {
+        metadata: { name: detail.name },
+        spec: { overrides },
+      })
+      .then(() => this.fetchDetail())
   }
 
   handleDeleteCheckboxChange = (e, checked) => {
@@ -176,9 +184,11 @@ class BaseInfo extends React.Component {
       <Panel title={t('Workspace Info')}>
         <div className={styles.header}>
           <Text
+            className={styles.title}
             icon="enterprise"
             title={detail.name}
-            description={t('Workspace')}
+            description={detail.description || t('Workspace')}
+            ellipsis
           />
           <Text title={detail.manager} description={t('Manager')} />
           <Text
@@ -232,8 +242,8 @@ class BaseInfo extends React.Component {
   }
 
   renderNetwork() {
+    const workspace = this.store.detail
     if (!globals.app.isMultiCluster) {
-      const workspace = this.workspaceStore.detail
       const networkIsolation = workspace.networkIsolation || false
       return (
         <Panel className={styles.network} title={t('Network Policy')}>
@@ -258,16 +268,19 @@ class BaseInfo extends React.Component {
 
     const { data, isLoading } = toJS(this.store.clusters)
 
-    const { workspaces } = this.state
-
     return (
       <Panel className={styles.network} title={t('Network Policy')}>
         {isEmpty(data) && !isLoading && (
           <div className={styles.empty}>{t('No Available Cluster')}</div>
         )}
         {data.map(cluster => {
-          const workspace = workspaces[cluster.name] || {}
-          const networkIsolation = workspace.networkIsolation || false
+          const clusterTemp =
+            get(workspace, `clusterTemplates[${cluster.name}]`) || {}
+          const networkIsolation =
+            get(clusterTemp, 'spec.networkIsolation') ||
+            workspace.networkIsolation ||
+            false
+
           return (
             <div className={styles.item} key={cluster.name}>
               <ClusterTitle cluster={cluster} className={styles.clusterTitle} />
@@ -279,7 +292,7 @@ class BaseInfo extends React.Component {
               <Switch
                 className={styles.switch}
                 text={t(networkIsolation ? 'On' : 'Off')}
-                onChange={this.handleNetworkChange(workspace)}
+                onChange={this.handleNetworkChange(cluster.name)}
                 checked={networkIsolation}
               />
             </div>

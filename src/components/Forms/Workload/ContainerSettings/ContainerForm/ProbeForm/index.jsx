@@ -20,7 +20,6 @@ import React from 'react'
 import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import { get } from 'lodash'
 
 import {
   Columns,
@@ -55,7 +54,7 @@ export default class ProbeForm extends React.Component {
     super(props)
 
     this.state = {
-      formData: get(props.data, {}),
+      formData: props.data || {},
       checkerType: this.checkerType,
     }
 

@@ -98,6 +98,10 @@ export default class FormItem extends React.Component {
       resetValidateResults && resetValidateResults(name)
     }
 
+    if (this.props.unControl) {
+      return
+    }
+
     this.forceUpdate()
 
     if (this.schema && !this.state.componentError) {

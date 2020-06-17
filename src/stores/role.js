@@ -88,7 +88,10 @@ export default class RoleStore extends Base {
         namespace,
         devops,
       }),
-      { ...params, label: 'iam.kubesphere.io/role-template!=true' }
+      {
+        ...params,
+        annotation: 'kubesphere.io/creator',
+      }
     )
 
     const data = result.items.map(item => ({

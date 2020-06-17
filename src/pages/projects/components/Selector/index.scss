@@ -29,6 +29,7 @@
 
     p {
       color: #d8dee5;
+      @include ellipsis;
     }
   }
 
