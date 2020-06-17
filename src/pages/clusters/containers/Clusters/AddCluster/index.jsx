@@ -43,6 +43,7 @@ export default class AddCluster extends React.Component {
           type: 'direct',
           kubeconfig: '',
         },
+        joinFederation: true,
       },
     },
   }

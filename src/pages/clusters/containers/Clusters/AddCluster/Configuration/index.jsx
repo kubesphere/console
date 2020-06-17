@@ -74,14 +74,6 @@ export default class BaseInfo extends React.Component {
           <Form.Item
             label={t('CLUSTER_API_SERVER_TITLE')}
             desc={t.html('CLUSTER_API_SERVER_DESC')}
-            rules={[
-              {
-                required: true,
-                message: t(
-                  'Please input the kubesphere api server address of the cluster'
-                ),
-              },
-            ]}
           >
             <Input name="spec.connection.kubesphereAPIEndpoint" />
           </Form.Item>
