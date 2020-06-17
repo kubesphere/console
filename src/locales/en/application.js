@@ -56,7 +56,7 @@ export default {
     'Create a fixed number of connection objects for the application, save them in the pool for reuse. The existing pool is available for each access, and is returned to the pool after use.',
 
   APP_GOVERNANCE_DESC:
-    'If application governance enabled, the Istio-proxy container is injected as a SideCar in each component. <a href="https://istio.io/docs/setup/kubernetes/additional-setup/sidecar-injection/" target="_blank">READ MORE</a>',
+    'If Application Governance is enabled, the Istio-proxy container will be injected as a SideCar in each component. <a href="https://istio.io/docs/setup/kubernetes/additional-setup/sidecar-injection/" target="_blank">READ MORE</a>',
 
   POD_ISOLATION_RATIO_DESC:
     'Maximum % of Pod for the upstream service that can be ejected. It uses up rounding, when set to 13% it will isolate up to 2 instances if 10 instances exist.',
@@ -73,20 +73,20 @@ export default {
   WORKLOAD_NAME_EXIST: 'Workload {name} exists',
 
   APPLICATION_TYPE_DESC:
-    'KubeSphere supports application deployments (based on Helm) from the app store, as well as Application CRD.',
+    'KubeSphere supports application deployments (based on Helm) from the App Store, as well as Application CRD.',
 
-  HOW_TO_USE_APPLICATION_GOVE_Q: 'How to use application governance',
+  HOW_TO_USE_APPLICATION_GOVE_Q: 'How to use Application Governance?',
   HOW_TO_USE_APPLICATION_GOVE_A:
-    'Using App Governance requires creating a composing app and turning on service governance for each service.',
+    'Please create a composing app and enable service governance for each service before you use Application Governance.',
 
   FROM_APP_STORE_DESC:
-    'From the official app store of KubeSphere, providing high-quality applications and easy deployment',
+    'From the official App Store of KubeSphere with high-quality applications and easy deployments.',
   FROM_APP_TEMPLATES_DESC:
-    'From the application templates of workspace and the third-party helm application templates of app repo',
+    'From the app templates of workspace and the third-party Helm app templates of App Repository.',
   COMPOSING_APP_DESC:
-    'Publish services to build applications through resource orchestration(support application governance function)',
+    'You can publish services to build applications through resource orchestration (Application Governance supported).',
   APP_TEMPLATES_MODAL_DESC:
-    'The application template comes from the workspace and the third-party helm application templates. It supports one click deployment and can be visualized in KubeSphere to show and provide deployment and management functions',
+    'The app template comes from the workspace and the third-party Helm app templates. It supports one click deployment and can be visualized in KubeSphere to show and provide deployments and management functions.',
 
   TIP_APP_TYPE:
     'KubeSphere supports application deployment (based on Helm) from app stores and app repositories, as well as home-made applications (Application CRD).',
@@ -103,4 +103,6 @@ export default {
     'Traffic governance depends on the microservice module, the current cluster does not enable the microservice module',
   TRACING_NO_MICROSERVICE_TIP:
     'Tracing depends on the microservice module, the current cluster does not enable the microservice module',
+  
+  APPLICATION_SERVICE_DESC: 'You can set different service components based on the service type in an application. Stateful and stateless services are both supported.'
 }

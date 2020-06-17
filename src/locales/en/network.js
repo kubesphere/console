@@ -44,7 +44,7 @@ export default {
   NETWORK_POLICY_R2_TITLE: 'Cluster External IP Address',
   NETWORK_POLICY_R2_DESC: 'Allow access for CIRD outside the cluster',
   NETWORK_POLICY_R2_DESC1:
-    'Select a specific IP CIDR range as an entry source or exit destination. Cluster external IP',
+    'Select a specific IP CIDR range as an entry source or exit destination.',
   NETWORK_POLICY_D_DESC: 'Match Egress traffic and Ingress traffic',
   NETWORK_POLICY_D_DESC2:
     'CIDR is a string representing a valid IP block, such as "192.168.1.1/24".',

@@ -27,9 +27,9 @@ export default {
 
   'App README': '应用介绍',
 
-  'The app has no documentation': '该应用没有说明文档',
-  'The version has no documentation': '该版本没有说明文档',
-  'The app has no chart file': '该应用没有配置文件',
+  'The app has no documentation.': '该应用没有说明文档',
+  'The version has no documentation.': '该版本没有说明文档',
+  'The app has no chart file.': '该应用没有配置文件',
 
   TOTAL_APP_REPOS: '共计 {num} 个应用仓库',
 

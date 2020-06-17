@@ -371,7 +371,7 @@ export default class ContainerSetting extends React.Component {
 
   containersValidator = (rule, value, callback) => {
     if (isEmpty(value)) {
-      return callback({ message: t('Please add at least one container') })
+      return callback({ message: t('Please add at least one container.') })
     }
 
     callback()
