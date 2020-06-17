@@ -172,7 +172,7 @@ export default {
   HOST_PATH_DESC:
     'HostPath allows you to mount the file system on the host to the Pod. If the Pod needs to use files on the host, you can use HostPath.',
   SELECT_SECRET_DESC:
-    'Select the key you want to use and the file path where each key will be exposed. The file path is relative to the mount path. The content of each file is the value of the key.',
+    'Select the key you want to use and the file path where each key will be exposed. The file path is equivalent to the mount path. The content of each file is the value of the key.',
   EMPTY_DIR_DESC:
     'Temporary volumes are assigned to the host along with the Pod. When a Pod is deleted from the host, the temporary volume is also deleted and the data of the volume is permanently deleted. <br /> Note: Deleting a container does not affect the temporary volume.',
   SELECT_VOLUME_TYPE_DESC: 'You can choose to an proper volume type to add',
@@ -201,13 +201,13 @@ export default {
   INITIAL_DELAY_DESC:
     'Number of seconds after the container has started before liveness probes are initiated.',
   TIMEOUT_DESC:
-    'Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1.',
+    'Number of seconds after which the probe times out. It defaults to 1 second and the minimum value is 1.',
   PERIOD_SECONDS_DESC:
-    'How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.',
+    'Probe frequency (in seconds), which defaults to 10 seconds. The minimum value is 1.',
   SUCCESS_THRESHOLD_DESC:
-    'Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.',
+    'Minimum consecutive successes for the probe to be considered successful after having failed. It defaults to 1 and must be 1 for liveness and startup. The minimum value is 1.',
   FAILURE_THRESHOLD_DESC:
-    'Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.',
+    'Minimum consecutive failures for the probe to be considered failed after having succeeded. It defaults to 3 and the minimum value is 1.',
 
   HPA_MSG:
     'Automatically autoscale the replicas according to CPU and memory usage. If both CPU and memory are specified, the replicas is added or deleted after any of the conditions are met.',
@@ -222,8 +222,8 @@ export default {
   DAEMONSETS_REPLICA_DESC:
     'DaemonSet ensures that each node in the cluster runs a replica. When a node joins the cluster or leaves, the number of replicas is automatically adjusted to ensure that the number of replicas is the same as the number of nodes in the cluster. You can use the Daemonsets to run storage services such as glusterfs, ceph, etc. As well as running log collection services such as fluent, logstash, etc. and run monitoring services.',
 
-  REFFER_CONFIGMAP_DESC: "Add a new volume from ConfigMap's value",
-  REFFER_SECRET_DESC: "Add a new volume from Secret's value",
+  REFFER_CONFIGMAP_DESC: "Add a new volume from the ConfigMap value.",
+  REFFER_SECRET_DESC: "Add a new volume from the Secret value.",
 
   MONITORING_ALERT_DESC:
     'The current monitoring graph only displays five replicas. You can click "View all replicas" to view more monitoring graphs if the number of replicas exceeds five.',
@@ -235,22 +235,22 @@ export default {
   CONTAINER_MEMORY_DESC:
     "It's used as the judgment of resource allocation when scheduling containers. The container is allowed to be scheduled to the node only if the total amount of memory that can be allocated on the node is equal or greater than the request value of the container memory.",
   IMAGE_PULL_POLICY_ALWAYS:
-    'Pull the image every time the pod is started.（Always）',
+    'Redownload Image (Always)',
   IMAGE_PULL_POLICY_IFNOTPRESENT:
-    'Pull the image only if it is not already present locally（IfNotPresent）',
-  IMAGE_PULL_POLICY_NEVER: 'Use local image（Never）',
-  IMAGE_PULL_POLICY_ALWAYS_DESC: 'Pull the image every time the pod is started',
+    'Use Local Image First (IfNotPresent)',
+  IMAGE_PULL_POLICY_NEVER: 'Only Use Local Image (Never)',
+  IMAGE_PULL_POLICY_ALWAYS_DESC: 'Pull the image every time the pod is started.',
   IMAGE_PULL_POLICY_IFNOTPRESENT_DESC:
-    'Pull the image only if it is not already present locally',
+    'Pull the image only if it does not exist locally.',
   IMAGE_PULL_POLICY_NEVER_DESC:
-    'Only local image will be used, which will cause the container to be abnormal if the required image does not exist locally.',
+    'Only the local image will be used, which will cause the container to be abnormal if the required image does not exist locally.',
 
   LIVENESS_PROBE_DESC:
     'This check method is used to detect if the container is alive.',
   READINESS_PROBE_DESC:
-    'This check is used to detect if the container is ready to process requests.',
+    'This check method is used to detect if the container is ready to service requests.',
   STARTUP_PROBE_DESC:
-    'StartupProbe indicates that the Pod has successfully initialized.',
+    'This check method is used to detect if the container is started successfully.',
 
   SEARCH_IMAGE_PLACEHOLDER: 'Enter keyword to search image',
 
@@ -290,7 +290,7 @@ export default {
     'When you add the PersistentVolumeClaim（PVC) (read & write mode), you can collect log information from the PVC. Once it  opens, the filebeat pod image, which can be used to collect relevant logs, will be installed through SideCar.',
 
   ISTIO_PROTOCOL_TIP:
-    'In order to fully use the governance function, please select the protocol used for real services; for example, if the service is  revealed as HTTP, select http protocol. Then you can get http-[name] as your interface name.',
+    'In order to fully use the Application Governance function, please select the protocol the service will actually be using. For example, please select HTTP protocol for a HTTP service and you will get a port name like http-[name].',
 
   CONTAINER_LOG_PATH_TIP:
     'The container log relative path is the path from the pod mount path, which can be given in glob mode. When there are multiple groups, separate them by commas. For example, when the pod mount path is /data, the pod log relative path is configured as log/*.log, which means that all .log suffix files in the /data/log directory are matched. If you need to match all .log suffix files in the /data/log directory and its subdirectories, you can configure the pod log relative path to log/**/*.log.',
@@ -299,7 +299,7 @@ export default {
   DELETE_WORKLOAD_DESC:
     'You are about to delete the workload(s) {resource}. Please confirm whether to delete the associated resource?',
   CHOOSE_EXIST_VOLUME_DESC:
-    'Select a volume that has been created then mount it into the container.',
+    'Select a volume that has been created and mount it to the container.',
 
   REDEPLOY_CONFIRM_DESC:
     'You are about to redeploy the workload {resource} ({type}), the pod will be redeployed according to the update strategy, and your business may be temporarily interrupted.',
@@ -312,7 +312,7 @@ export default {
 
   ACCESS_CONTROL_PRIVILEGED: 'Privileged',
   ACCESS_CONTROL_PRIVILEGED_DESC:
-    'At this point, the process in the container is essentially equivalent to the root user on the host node.',
+    'The process in the container is essentially equivalent to the root user on the host node.',
   ACCESS_CONTROL_ALLOWPRIVILEGEESCALATION: 'AllowPrivilegeEscalation',
   ACCESS_CONTROL_ALLOWPRIVILEGEESCALATION_DESC:
     'Whether the process can acquire more privileges than the parent process. When running in privileged mode, it is enabled.',

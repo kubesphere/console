@@ -75,7 +75,7 @@ export default class Ports extends React.Component {
       <Form.Group
         className={className}
         label={withService ? t('Service Settings') : t('Port Settings')}
-        desc={t('Setting for container access strategy')}
+        desc={t('Please set the access policy for the container.')}
       >
         <Form.Item
           rules={[

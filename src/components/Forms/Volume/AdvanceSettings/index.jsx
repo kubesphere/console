@@ -49,9 +49,9 @@ export default class AdvancedSettings extends React.Component {
     return (
       <Form data={this.fedFormTemplate} ref={formRef}>
         <Form.Group
-          label={t('Add metadata')}
+          label={t('Add Metadata')}
           desc={t(
-            'Additional metadata settings for resources such as Label and Annotation'
+            'Additional metadata settings for resources such as Labels and Annotations.'
           )}
           keepDataWhenUnCheck
           checkable

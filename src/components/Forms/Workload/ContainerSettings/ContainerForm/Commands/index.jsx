@@ -36,7 +36,7 @@ export default class Commands extends React.Component {
   render() {
     return (
       <Form.Group
-        label={t('Start command')}
+        label={t('Start Command')}
         desc={t('START_COMMAND_DESC')}
         checkable
       >

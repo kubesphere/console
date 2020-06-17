@@ -57,7 +57,7 @@ export default class ProbeCard extends React.Component {
       details = [{ title: probe.tcpSocket.port, description: t('Port') }]
     } else {
       const { command = [] } = probe.exec
-      probeType = 'Exec Commnad Check'
+      probeType = 'Exec Command Check'
       details = [{ title: command.join(' '), description: t('Command') }]
     }
 

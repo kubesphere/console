@@ -207,7 +207,7 @@ export default class ProbeForm extends React.Component {
             size="small"
           >
             <RadioButton value="http">{t('HTTP Request Check')}</RadioButton>
-            <RadioButton value="command">{t('Exec Commnad Check')}</RadioButton>
+            <RadioButton value="command">{t('Exec Command Check')}</RadioButton>
             <RadioButton value="tcp">{t('TCP Port Check')}</RadioButton>
           </RadioGroup>
         </div>

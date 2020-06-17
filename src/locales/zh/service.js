@@ -76,9 +76,9 @@ export default {
   'Please input valid Selector': '请输入正确的选择器',
   TOTAL_WORKLOAD: '共 {count} 个工作负载',
 
-  'Open Session Sticky': '开启会话保持',
-  'Maximum session sticky time(s)': '最大会话保持时间(秒)',
-  'the maximum session sticky time is 10800s(3 hours)':
+  'Enable Sticky Session': '开启会话保持',
+  'Maximum Session Sticky Time (s)': '最大会话保持时间(秒)',
+  'The maximum session sticky time is 10800s (3 hours).':
     '会话保持时间默认是 10800 秒(即 3 小时)',
 
   SERVICE_NAME_DESC:

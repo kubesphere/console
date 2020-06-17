@@ -233,7 +233,7 @@ export default class Item extends React.Component {
             name="mountPath"
             defaultValue={value.mountPath}
             disabled={value.readOnly === 'null'}
-            placeholder={`${t('container mount path')}, ${t(
+            placeholder={`${t('Container mount path')}, ${t(
               'for example'
             )}: /data`}
             onChange={this.handleMountPathChange}

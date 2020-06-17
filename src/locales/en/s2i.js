@@ -27,10 +27,10 @@ export default {
   START_COMMAND_DESC:
     'By default, the container runs the default image command. You can change the container command from here.',
   RUN_COMMAND_DESC:
-    'The start command of the container separated by "," if you need the container to run different command than the default image command.',
+    'The start command of the container. By default, the start command for packaging will be used. Please use commas to separate multiple commands.',
   CONTAINER_PARAMS_DESC:
-    'The start command parameters of the container separated by ","',
-  CONTAINER_ENVIROMENT_DESC: "Add the container's environment variable",
+    'The start command parameters of the container. Please use commas to separate multiple ones.',
+  CONTAINER_ENVIROMENT_DESC: "Please add the container's environment variable.",
   IMAGE_PULL_POLICY_DESC:
     'By default, the image is pulled only if it is not already present locally.',
   S2I_ENVIROMENT_DESC:
@@ -71,4 +71,5 @@ export default {
     'Image Builder is a tool that makes it easy to write container images that take application source code or artifacts as an input and produce a new image that runs the assembled application as output. It includes Source to Image, a.k.a S2I which takes source code as input, and Binary to Image, a.k.a. B2I which takes application artifacts as input.',
   WRONG_FILE_EXTENSION_NAME:
     'The selected file type does not match, please select the {type} type',
+  PROBE_COMMAND_DESC: 'Please use commas to separate multiple commands.',
 }
