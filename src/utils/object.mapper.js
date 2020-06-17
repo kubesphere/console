@@ -71,16 +71,36 @@ const DefaultMapper = item => ({
   _originData: getOriginData(item),
 })
 
-const WorkspaceMapper = item => ({
-  ...getBaseInfo(item),
-  annotations: get(item, 'metadata.annotations', {}),
-  manager: get(item, 'spec.manager') || getResourceCreator(item),
-  clusters: get(item, 'spec.clusters', []),
-  networkIsolation:
-    get(item, 'metadata.annotations["kubesphere.io/network-isolate"]') ===
-    'enabled',
-  _originData: getOriginData(item),
-})
+const WorkspaceMapper = item => {
+  const overrides = get(item, 'spec.overrides', [])
+  const template = get(item, 'spec.template', {})
+  const clusters = get(item, 'spec.placement.clusters', [])
+
+  const overrideClusterMap = keyBy(overrides, 'clusterName')
+  const clusterTemplates = {}
+  clusters.forEach(({ name }) => {
+    clusterTemplates[name] = cloneDeep(template)
+    if (overrideClusterMap[name] && overrideClusterMap[name].clusterOverrides) {
+      overrideClusterMap[name].clusterOverrides.forEach(cod => {
+        const path = cod.path.startsWith('/') ? cod.path.slice(1) : cod.path
+        set(clusterTemplates[name], path.replace(/\//g, '.'), cod.value)
+      })
+    }
+  })
+
+  return {
+    ...getBaseInfo(item),
+    annotations: get(item, 'metadata.annotations', {}),
+    manager:
+      get(item, 'spec.template.spec.manager') || getResourceCreator(item),
+    clusters: clusters.map(_item => _item.name),
+    networkIsolation:
+      get(item, 'spec.template.spec.networkIsolation') === 'true',
+    overrides,
+    clusterTemplates,
+    _originData: getOriginData(item),
+  }
+}
 
 const UserMapper = item => ({
   ...getBaseInfo(item),

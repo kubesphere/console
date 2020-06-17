@@ -78,3 +78,7 @@
   border-radius: $border-radius;
   @include TypographyTitleH5($dark-color01);
 }
+
+.title {
+  max-width: 30%;
+}

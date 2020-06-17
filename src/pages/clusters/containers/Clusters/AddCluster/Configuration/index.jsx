@@ -95,6 +95,7 @@ export default class BaseInfo extends React.Component {
               </div>
               <Form.Item
                 rules={[{ required: true, message: t('INPUT_KUBECONFIG') }]}
+                unControl
               >
                 <CodeEditor
                   mode="yaml"

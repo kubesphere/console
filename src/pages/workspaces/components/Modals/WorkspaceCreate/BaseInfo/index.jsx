@@ -44,8 +44,8 @@ export default class BaseInfo extends React.Component {
 
   get networkOptions() {
     return [
-      { label: t('Off'), value: '' },
-      { label: t('On'), value: 'enabled' },
+      { label: t('Off'), value: 'false' },
+      { label: t('On'), value: 'true' },
     ]
   }
 
@@ -141,7 +141,7 @@ export default class BaseInfo extends React.Component {
           </Form.Item>
           <Form.Item label={t('Workspace Manager')}>
             <Select
-              name="spec.manager"
+              name="spec.template.spec.manager"
               searchable
               options={this.getUsers()}
               defaultValue={globals.user.username}
@@ -163,9 +163,9 @@ export default class BaseInfo extends React.Component {
             desc={t('NETWORK_ISOLATED_DESC')}
           >
             <Select
-              name="metadata.annotations['kubesphere.io/network-isolate']"
+              name="spec.template.spec.networkIsolation"
               options={this.networkOptions}
-              defaultValue=""
+              defaultValue="true"
             />
           </Form.Item>
           <Form.Item

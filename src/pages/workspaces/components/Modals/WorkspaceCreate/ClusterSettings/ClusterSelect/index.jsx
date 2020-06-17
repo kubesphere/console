@@ -49,11 +49,14 @@ export default class ClusterSettings extends Component {
       })
     }
 
-    this.props.onChange(
-      this.clusterStore.list.data
-        .filter(item => item.visibility === 'public')
-        .map(item => item.name)
-    )
+    const { value, onChange } = this.props
+    if (isEmpty(value)) {
+      onChange(
+        this.clusterStore.list.data
+          .filter(item => item.visibility === 'public')
+          .map(item => ({ name: item.name }))
+      )
+    }
   }
 
   handleClick = e => {
@@ -63,9 +66,9 @@ export default class ClusterSettings extends Component {
     const name = e.currentTarget.dataset.cluster
 
     if (value.includes(name)) {
-      newValue = value.filter(item => item !== name)
+      newValue = value.filter(item => item.name !== name)
     } else {
-      newValue = [...value, name]
+      newValue = [...value, { name }]
     }
     onChange(newValue)
   }
@@ -90,7 +93,7 @@ export default class ClusterSettings extends Component {
             onClick={globals.app.isMultiCluster ? this.handleClick : null}
           >
             <Checkbox
-              checked={value.includes(cluster.name)}
+              checked={value.some(item => item.name === cluster.name)}
               disabled={!globals.app.isMultiCluster}
             />
             <ClusterTitle
