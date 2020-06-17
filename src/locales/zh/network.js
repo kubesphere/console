@@ -55,9 +55,9 @@ export default {
   NETWORK_POLICY_R2_TITLE: '集群外部IP地址',
   NETWORK_POLICY_R2_DESC: '允许集群外部CIRD访问',
   NETWORK_POLICY_R2_DESC1:
-    '选择特定的IP CIDR范围以允许作为入口源或出口目的地。集群外部IP',
-  NETWORK_POLICY_D_DESC: '匹配Egress(出口)流量以及Ingress(入口)流量',
-  NETWORK_POLICY_D_DESC2: 'CIDR代表一个合法的IP地址块,例如“192.168.1.1/24”',
+    '选择特定的 IP CIDR 范围以允许作为入口源或出口目的地。',
+  NETWORK_POLICY_D_DESC: '匹配 Egress(出口) 流量以及 Ingress(入口) 流量',
+  NETWORK_POLICY_D_DESC2: 'CIDR 代表一个合法的 IP 地址段,例如 “192.168.1.1/24”',
   NETWORK_POLICY_D_OP1: 'Egress(出口)',
   NETWORK_POLICY_D_OP2: 'Ingress(入口)',
 

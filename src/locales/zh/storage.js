@@ -44,7 +44,7 @@ export default {
   'Mount Info': '挂载信息',
   Mounted: '已挂载',
   'Not Mounted': '未挂载',
-  Scalable: '可扩展性',
+  Scalable: '可扩容性',
   'Reclaiming Policy': '回收机制',
   DELETE_STORAGE_TIP: '如果存储卷正在被挂载时，待工作负载被删除时一同删除。',
   SRORAGE_SETTING_DESC:

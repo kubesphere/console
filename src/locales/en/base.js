@@ -109,7 +109,7 @@ export default {
     'please confirm that the modified content is correct, you can save the settings or cancel the settings.',
 
   KS_DESCRIPTION:
-    'KubeSphere is an open source project aiming to provide enterprise-grade multi-tenant container platform which is on top of Kubernetes, the current mainstream container orchestration platform. It provides easy-to-use interface and wizard-style operations, reducing the learning curve and operating cost of Kubernetes in terms of the daily work of development, test and maintenance.',
+    'KubeSphere is an open source project aiming to provide enterprise-grade multi-tenant container platform on top of Kubernetes, the current mainstream container orchestration platform. It provides easy-to-use interface and wizard-style operations, reducing the learning curve and operating cost of Kubernetes in terms of the daily work of development, test and maintenance.',
 
   REPS_ADDRESS: 'GitHub',
   ISSUE_FEEDBACK: 'Feedback',
@@ -158,7 +158,7 @@ export default {
     'Unified lifecycle management of cloud native applications including their release, removal and review',
 
   PLATFORM_SETTINGS_DESC:
-    'Customized platform settings, including basic info, mail server, password security, third party login and log collector',
+    'Customized platform settings, including basic info and log collector',
 
   DATA_SOURCE: 'Data Source',
 

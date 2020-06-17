@@ -33,7 +33,7 @@ export default {
   'Custom Resources': '自定义资源 CRD',
   'Storage Management': '存储管理',
   'Cluster Settings': '集群设置',
-  'Snapshots Management': '快照管理',
+  'Snapshots': '存储卷快照',
   'IP Ranges': 'IP 地址范围',
   'Network Policies': '网络策略',
   'Network Topology': '网络拓扑',
@@ -139,7 +139,7 @@ export default {
   CLUSTER_AGENT_TIP_3_DESC: '执行命令之后等待集群状态的更新',
 
   CLUSTER_CONDITIONS: '集群状态',
-  CLUSTER_BASE_INFO_DESC: '对当前集群的基础信息进下汇总',
+  CLUSTER_BASE_INFO_DESC: '当前集群基础信息总览',
 
   UNBIND_CLUSTER_DESC:
     '解绑集群后，KubeSphere将无法再对该集群进行管理。 解绑后，该集群内的Kubernetes资源不会被删除。',

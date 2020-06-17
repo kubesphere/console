@@ -23,7 +23,7 @@ export default {
   USER_DISABLED: 'Disabled',
   USER_NAME_DESC: 'Username can only contain lowercase letters and numbers.',
   EMAIL_DESC: '',
-  USER_SETTING_EMAIL_DESC: 'Email is used for logging in.',
+  USER_SETTING_EMAIL_DESC: 'Email is used for login.',
   PASSWORD_DESC:
     'Password must contain numbers and letters, and must be at least 6 characters in length.',
   ROLE_DESC:
