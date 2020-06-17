@@ -72,11 +72,11 @@ export default {
   ROLLING_UPDATE_POD_TIP:
     'It limits the minimum and maximum available quantities based on the current replicas when it is in rolling update. The minimum number of replicas cannot exceed the current number of replicas, and the maximum number of Pods cannot exceed 2 times the current replicas.',
   ONDELETE_ALERT_TIP:
-    'The controller will not automatically update the Pods and will update and replace the Pods instance when the Pods is manually deleted.',
+    'The controller will not automatically update the Pod. It will update and replace Pod instances when the Pod is manually deleted.',
   ROLLINGUPDATE_ALERT_TIP:
-    'The RollingUpdate will gradually replace the old version of the instances with new ones. During the upgrade process, the traffic will be load balanced and distributed to the old and new instances simultaneously, so the service will not be interrupted.',
+    'A rolling update means the instance of the old version will be gradually replaced with new ones. During the upgrade process, the traffic will be load balanced and distributed to the old and new instances simultaneously, so the service will not be interrupted.',
   RECREATE_ALERT_TIP:
-    'All existing Pods will be killed before new ones are created, noted that the business will be interrupted during the update process.',
+    'All existing Pods will be killed before new ones are created. Please note that the service will be interrupted during the update process.',
 
   STATEFULSET_PARTITION_DESC:
     'Partition indicates the ordinal at which the StatefulSet should be partitioned. Default value is 0.',

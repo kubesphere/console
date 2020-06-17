@@ -218,7 +218,7 @@ export default {
   'App Types': '应用的类型',
   TIP_APP_TYPE:
     'KubeSphere 支持来自于应用商店和应用仓库的应用部署(基于 Helm)，同样也支持自制应用 (Application CRD)。',
-  'How to use app governance': '如何使用应用治理',
+  'How to use Application Governance': '如何使用应用治理',
   TIP_APP_GOVERNANCE:
     '使用应用治理需要创建自制应用并对每项服务开启服务治理功能',
   'App store deployment': '应用商店部署',

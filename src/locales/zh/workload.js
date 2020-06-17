@@ -75,7 +75,7 @@ export default {
   'Volume Name': '存储卷名称',
   'HTTP Request': 'HTTP 请求',
   'Diff Settings': '差异化配置',
-  'Deploy Mode': '部署模式',
+  'Deployment Mode': '部署模式',
   'Instance Status': '实例状态',
 
   'No Request': '不预留',
@@ -204,7 +204,7 @@ export default {
   'Add new container': '添加新的容器',
   'Adding new contianer': '正在添加新的容器',
   'Add Node Selector': '添加节点选择器',
-  'Please add at least one container': '请至少添加一个容器',
+  'Please add at least one container.': '请至少添加一个容器',
   'Container Name': '容器名称',
   'Container Type': '容器类型',
   'Advanced Options': '高级选项',
@@ -521,13 +521,13 @@ export default {
   'Not found this image': '没有找到此镜像',
   SEARCH_IMAGE_PLACEHOLDER: '输入关键字查找镜像',
 
-  "Pod's default deployment": '容器组默认部署',
-  "Pod's decentralized deployment": '容器组分散部署',
-  "Pod's aggregation deployment": '容器组聚合部署',
-  'Pod will be deployed at scattered nodes':
+  "Pod Default Deployment": '容器组默认部署',
+  "Pod Decentralized Deployment": '容器组分散部署',
+  "Pod Aggregation Deployment": '容器组聚合部署',
+  'Pod replicas will be deployed on different nodes.':
     '容器组副本将会尽量分散在不同的节点中',
-  'Pod will be deployed at the same node': '容器组副本将会部署在同一节点上',
-  'Pod will be deployed by default policy': '容器组副本将根据默认策略部署',
+  'Pod replicas will be deployed on the same node.': '容器组副本将会部署在同一节点上',
+  'Pod replicas will be deployed by the default policy.': '容器组副本将根据默认策略部署',
   'KubeSphere supports pulling images from the Image Registries and creating new images through source code (Source to Image).':
     'Kubesphere 支持从镜像仓库拉取镜像以及通过代码构建新的镜像并部署',
 

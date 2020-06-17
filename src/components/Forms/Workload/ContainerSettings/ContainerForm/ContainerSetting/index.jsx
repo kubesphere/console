@@ -167,7 +167,7 @@ export default class ContainerSetting extends React.Component {
         className={className}
         label={t('Container Settings')}
         desc={t(
-          'Setting for the name of the container and the computing resources of the container'
+          'Please set the container name and computing resources.'
         )}
         noWrapper
       >

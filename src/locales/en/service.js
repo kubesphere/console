@@ -30,7 +30,7 @@ export default {
   SERVICE_DESC:
     'A Service is an abstraction that defines a logical collection of Pods and a strategy for accessing them.',
   SERVICE_CREATE_DESC:
-    'A Service is an abstraction that defines a logical collection of Pods and a strategy for accessing them.',
+    'A Service is an abstraction that defines a logical collection of Pods and a strategy for accessing them. You can select the service type or how a service is created. KubeSphere supports both stateful and stateless services and services can be created through codes or artifacts.',
 
   SERVICES_BASEINFO_DESC:
     'The name and description of the service need to be provided to create the service. The service name cannot be the same as the existing service name under the same project.',
@@ -59,7 +59,7 @@ export default {
   SERVICE_NODE_PORT_DESC:
     'If your current network is on the same network as the cluster node, you can access it through the cluster IP address + node port number or through the node IP + node port.',
 
-  SERVICE_TYPE: 'You can create stateless service or stateful service',
+  SERVICE_TYPE: 'You can create a stateless service or a stateful service.',
 
   SERVICE_TYPES_Q: 'Service types',
   SERVICE_TYPES_A:
@@ -88,7 +88,7 @@ export default {
   STATEFUL_SERVICE_DESC:
     'Stateful services are used to manage stateful applications, ensuring the order of deployment and capacity expansion, providing stable persistent storage and network identification, orderly scaling, etc.',
   STATELESS_SERVICE_DESC:
-    'The most commonly used service in container services, by controlling container group templates to control container group status, including rolling upgrades and rollbacks',
+    'The most commonly used service in container services. It defines the Pod template to control the Pod status, including rolling updates and rollbacks.',
 
   SERVISE_SIMPLE_DESC: '',
 

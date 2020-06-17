@@ -90,7 +90,7 @@ export default class AppPreview extends React.Component {
     }
 
     return (
-      <p className={styles.noReadme}>{t('The version has no documentation')}</p>
+      <p className={styles.noReadme}>{t('The version has no documentation.')}</p>
     )
   }
 

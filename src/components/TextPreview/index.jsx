@@ -177,7 +177,7 @@ export default class TextPreview extends React.Component {
   render() {
     const { selectFile } = this.state
     if (!selectFile) {
-      return <p>{t('The app has no chart file')}</p>
+      return <p>{t('The app has no chart file.')}</p>
     }
 
     return (
