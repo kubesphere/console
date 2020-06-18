@@ -85,7 +85,7 @@ export default {
   APP_STORE_MANAGEMENT_DESC:
     '对云原生应用的上架、下架以及审核等应用全生命周期的统一管理',
   PLATFORM_SETTINGS_DESC:
-    '定制化平台设置，如平台基本信息、邮件服务器、密码安全、第三方登录、日志收集器等',
+    '定制化平台设置，如平台基本信息、日志收集器等',
 
   Loading: '加载中',
   Active: '已启用',
