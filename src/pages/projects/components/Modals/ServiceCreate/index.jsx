@@ -378,7 +378,7 @@ export default class ServiceCreateModal extends React.Component {
         const title =
           type === 'externalservice'
             ? `${t('Create ')}${t('External Service')}`
-            : t('Create service by specify workloads')
+            : t('Create service by specifying workloads')
 
         const description =
           type === 'externalservice'

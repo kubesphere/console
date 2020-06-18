@@ -47,11 +47,11 @@ export default {
   UNABLE_TO_ACCESS_TIP:
     '● Make sure that the domain name you set can be resolved to the IP address of the access portal. <br/>● If you are in a private cloud environment, modify the local host file and then access it via {$domain name}:{$node port}.<br/>● By configuring DNS access, modify the domain name to {$hostname} + {$gateway address} + nip.io, and then access the service via {$hostname}.{$gateway address} .nip.io:{$NodePort}. <br/>● If the access is blocked when using domain name, please confirm that if your domain name is existed and has been registered.',
 
-  PREREQUESTS_FOR_USE_ROUTE_Q: 'Prerequisites for using route?',
+  PREREQUESTS_FOR_USE_ROUTE_Q: 'Prerequisites for using routes?',
   PREREQUESTS_FOR_USE_ROUTE_A:
-    'To use the route, the administrator needs to set the internet access to the current project.',
+    'To use the route, the administrator needs to set the Internet Access for the current project.',
 
-  ACCESS_TYPES_OF_ROUTE_Q: 'Access types the route supports ?',
+  ACCESS_TYPES_OF_ROUTE_Q: 'Access types the route supports?',
   ACCESS_TYPES_OF_ROUTE_A:
-    'KubeSphere route supports custom domain names (HostName) and wildcard DNS access methods.',
+    'KubeSphere routes support custom domain names (HostName) and the wildcard DNS access method.',
 }

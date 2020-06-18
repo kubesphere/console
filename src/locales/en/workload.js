@@ -32,9 +32,9 @@ export default {
   DAEMONSET_CREATE_DESC:
     'A DaemonSet ensures that all (or some) Nodes run a copy of a Pod. Typically, a DaemonSet is used to running a logs collection, monitoring daemon or other system management applications.',
   JOB_DESC:
-    'A Job is used to execute one-time task. A job creates one or more pods and ensures that a specified number of them successfully terminate.',
+    'A Job is used to execute one-time tasks. A job creates one or more pods and ensures that a specified number of them successfully terminate.',
   JOB_CREATE_DESC:
-    'A Job is used to execute one-time task. A job creates one or more pods and ensures that a specified number of them successfully terminate.',
+    'A Job is used to execute one-time tasks. A job creates one or more pods and ensures that a specified number of them successfully terminate.',
   CRONJOB_DESC:
     'A CronJob creates Jobs on a time-based schedule. For example, it runs a job periodically on a given schedule or only runs a job once on a given time.',
   CRONJOB_CREATE_DESC:
@@ -143,13 +143,13 @@ export default {
   JOB_ACTIVE_DL_SECONDS_LABEL: 'Active Deadline Seconds',
 
   JOB_BACK_OFF_LIMIT_DESC:
-    'Specifies the number of retries before marking this job failed. Defaults to 6.',
+    'It specifies the number of retries before marking this job failed. It defaults to 6.',
   JOB_PARALLELISM_DESC:
-    'Specifies the maximum desired number of pods the job should run at any given time.',
+    'It specifies the maximum desired number of pods the job should run at any given time.',
   JOB_COMPLETION_DESC:
-    'Specifies the desired number of successfully finished pods the job should be run with.',
+    'It specifies the desired number of successfully finished pods the job should be run with.',
   JOB_ACTIVE_DL_SECONDS:
-    'Specifies the duration in seconds relative to the startTime that the job may be active before the system tries to terminate it; value must be positive integer.',
+    'It specifies the duration in seconds relative to the startTime that the job may be active before the system tries to terminate it; value must be positive integer.',
 
   RESTART_POLICY_TIP:
     'RestartPolicy can only specify Never or OnFailure, when the job is not completed:<br/>* If RestartPolicy specifies Never, the job creates a new Pod when the Pod fails, and the failed Pod does not disappear.<br/>* If RestartPolicy specifies OnFailure, the job will internally restart the container when the Pod fails, instead of creating a new Pod.',
@@ -162,10 +162,10 @@ export default {
   CRONJOBS_VOLUME_DESC:
     'You can mount a temporary volumes, or persistent volumes to a Pod of the cronjob.',
   CRONJOB_CRON_DESC:
-    'It runs a job periodically on a given time-based schedule. See the <a href="//en.wikipedia.org/wiki/Cron" target="_blank">CRON</a> grammar reference',
+    'It runs a job periodically on a given time-based schedule. Please see <a href="//en.wikipedia.org/wiki/Cron" target="_blank">CRON</a> for grammar reference.',
 
   START_DEADLINE_SECONDS_DESC:
-    'Optional deadline in seconds for starting the job if it misses scheduled time for any reason. ',
+    'An optional deadline in seconds for starting the job if it misses its scheduled time for any reason. ',
 
   VOLUME_EMPTY_TIP: 'No created volumes, please',
 
@@ -189,7 +189,7 @@ export default {
   REPLICAS_PLACEHOLDER: 'Default: 1',
 
   ADD_VOLUME_TEMPLATE_DESC:
-    'Add a volume template, the life cycle of the volume will be the same with the pod',
+    'The life cycle of the volume will be the same as that of the pod.',
 
   EDIT: 'Edit',
   MORE: 'More',
@@ -268,9 +268,9 @@ export default {
   POD_ASSIGNED_DESC:
     "The request value (ie, Request) set by the pod in the pod group is used as the basis for determining the resource allocation. Only when the amount that can be allocated in the node ≥ the pod's requst value, can the pod be allocated to this node.",
   POD_DESC:
-    'Pod is a high-level abstraction for management and deployment. It is also a set of interfaces for Pods. Pods serve as unit of deployment, horizontal scaling, and replication.',
+    'A Pod is the basic execution unit of a Kubernetes application, representing the smallest and simplest unit in the Kubernetes object model that you create or deploy.',
   POD_CREATE_DESC:
-    'Pod is a high-level abstraction for management and deployment. It is also a set of interfaces for Pods. Pods serve as unit of deployment, horizontal scaling, and replication.',
+    'A Pod is the basic execution unit of a Kubernetes application, representing the smallest and simplest unit in the Kubernetes object model that you create or deploy.',
   FILL_IMAGE_DEFAULT_PORTS_DESC:
     'Whether to expose the default port of the image?',
 
@@ -285,9 +285,9 @@ export default {
     'You have enabled the option of collecting the logs on disk. Please add at least one volume and specify the directory in which the log is located.',
 
   PROJECT_COLLECT_SAVED_DISABLED_DESC:
-    'Please contact project admin to open the file log collection at "Project Settings => Advanced Settings".',
+    'Please contact the project admin to enable Disk Log Collection in "Project Settings => Advanced Settings".',
   COLLECT_FILE_LOG_TIP:
-    'When you add the PersistentVolumeClaim（PVC) (read & write mode), you can collect log information from the PVC. Once it  opens, the filebeat pod image, which can be used to collect relevant logs, will be installed through SideCar.',
+    'When you add the PersistentVolumeClaim（PVC) (read & write mode), you can collect log information from the PVC. Once it is enabled, the filebeat pod image, which can be used to collect relevant logs, will be installed through SideCar.',
 
   ISTIO_PROTOCOL_TIP:
     'In order to fully use the Application Governance function, please select the protocol the service will actually be using. For example, please select HTTP protocol for a HTTP service and you will get a port name like http-[name].',

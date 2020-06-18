@@ -321,7 +321,7 @@ export default {
   'Environment Variables': '环境变量',
   'File List': '文件列表',
   Rerun: '重新执行',
-  'Please input schedule': '请输入定时计划',
+  'Please input a schedule.': '请输入定时计划',
 
   'Please select rollback revision': '请选择回退版本',
 
@@ -395,9 +395,9 @@ export default {
   DAEMONSETS_REPLICA_DESC:
     '守护进程集 (DaemonSet) 可以确保集群中的每个节点运行一个副本，当有节点加入集群或者离开集群的时候，会自动地调整副本的数量来保证副本的数量与集群的节点数量一致。您可以使用守护进程集来运行存储服务，如 glusterfs，ceph 等；运行日志搜集服务，如 fluent，logstash 等；运行监控服务等。',
 
-  'Number of failed jobs allowed to be retained': '允许保留的失败的任务个数',
-  'Number of success jobs allowed to be retained': '允许保留的成功的任务个数',
-  'Concurrency policy settings': '并发策略设置',
+  'The number of failed jobs allowed to be retained.': '允许保留的失败的任务个数',
+  'The number of successful jobs allowed to be retained.': '允许保留的成功的任务个数',
+  'The concurrency policy setting.': '并发策略设置',
   'Can be found by node IP or node name': '可以通过节点 IP 或者节点名称查找',
   START_DEADLINE_SECONDS_DESC:
     '即在指定 启动时间 + 启动 Job 的期限 这个周期之内都可以启动任务',
