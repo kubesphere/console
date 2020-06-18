@@ -44,7 +44,7 @@ export default class SessionAffinity extends React.Component {
 
   render() {
     return (
-      <Form.Item label={t('Maximum session sticky time(s)')}>
+      <Form.Item label={t('Maximum Session Sticky Time (s)')}>
         <NumberInput
           name={`Service.${
             this.fedPreifx

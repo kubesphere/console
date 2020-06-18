@@ -71,7 +71,7 @@ export default {
   EmptyDir: '临时存储卷',
   'Temporary Volume': '临时存储卷',
   'New Volume': '新建存储卷',
-  'Exist Volumes': '已有存储卷',
+  'Existing Volume': '已有存储卷',
   'Volume Name': '存储卷名称',
   'HTTP Request': 'HTTP 请求',
   'Diff Settings': '差异化配置',
@@ -100,10 +100,10 @@ export default {
 
   'Collecting file log': '收集落盘日志',
 
-  'Add metadata': '添加元数据',
-  'Setting node schedule policy': '设置节点调度策略',
-  'Running pods on the specified nodes': '可以让容器组副本在指定的节点运行',
-  'Additional metadata settings for resources such as Label and Annotation':
+  'Add Metadata': '添加元数据',
+  'Set Node Scheduling Policy': '设置节点调度策略',
+  'You can allow Pod replicas to run on specified nodes.': '可以让容器组副本在指定的节点运行',
+  'Additional metadata settings for resources such as Labels and Annotations.':
     '对资源进行额外的元数据设置，例如 Label 和 Annotation',
 
   'Deployment Location': '部署位置',
@@ -230,10 +230,10 @@ export default {
   'Add HostPath': '添加 HostPath',
   'Add Volume Template': '添加存储卷模板',
 
-  'Support EmptyDir and PersistentVolumeClaim':
+  'Support EmptyDir and PersistentVolumeClaim.':
     '支持临时存储卷以及持久化存储卷',
 
-  'Mount the configmap or secret to the specified directory':
+  'Mount the configmap or secret to the specified directory.':
     '将配置文件或密钥挂载至指定目录',
 
   'Please specify an image': '请指定镜像',
@@ -337,7 +337,7 @@ export default {
   'Success Threshold': '健康阈值',
   'Failure Threshold': '不健康阈值',
   'HTTP Request Check': 'HTTP 请求检查',
-  'Exec Commnad Check': '执行命令检查',
+  'Exec Command Check': '执行命令检查',
   'TCP Port Check': 'TCP 端口检查',
   'Init Container': '初始容器',
   'Worker Container': '工作容器',
@@ -352,9 +352,9 @@ export default {
   'Select resource': '选择资源',
   'Restart Policy': '重启策略',
 
-  'Container liveness check': '容器存活检查',
-  'Container ready check': '容器就绪检查',
-  'Container start check': '容器启动检查',
+  'Container Liveness Check': '容器存活检查',
+  'Container Readiness Check': '容器就绪检查',
+  'Container Startup Check': '容器启动检查',
 
   Redeploy: '重新部署',
   'Redeploy Successfully': '重新部署成功',
@@ -433,7 +433,7 @@ export default {
   'What is Disk Log Collection?': '什么是落盘日志收集？',
 
   'for example': '例如',
-  'container mount path': '容器挂载路径',
+  'Container mount path': '容器挂载路径',
   'container log relative path': '容器日志相对路径',
   'log path relative to container mount path': '日志路径相对于容器挂载路径',
 

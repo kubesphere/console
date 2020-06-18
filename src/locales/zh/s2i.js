@@ -61,12 +61,12 @@ export default {
   IMAGE_FROM_B2I: '通过制品构建新的镜像',
   S2I_DESC: '您可以选择您的代码开发语言，并将它们制作成镜像',
   B2I_DESC: '您可以将已有制品构建成新的镜像',
-  'Setting for container access strategy': '设置容器的访问策略',
+  'Please set the access policy for the container.': '设置容器的访问策略',
   'Please set the container name and computing resources.':
     '对容器的名称及容器的计算资源进行设置',
-  'Check the health of the container regularly according to the needs of the user.':
+  'The health of the container will be checked regularly according to user needs.':
     '根据用户需要，定时检查容器健康状况。',
-  'Start command': '启动命令',
+  'Start Command': '启动命令',
   START_COMMAND_DESC:
     '在默认情况下，镜像会运行默认命令，如果想运行特定命令或重写镜像默认值。',
   'Run Command': '运行命令',

@@ -86,7 +86,7 @@ export default {
   SERVICE_TYPE_STATELESSSERVICE: 'Stateless Service',
   SERVICE_TYPE_EXTERNALSERVICE: 'External Service',
   STATEFUL_SERVICE_DESC:
-    'Stateful services are used to manage stateful applications, ensuring the order of deployment and capacity expansion, providing stable persistent storage and network identification, orderly scaling, etc.',
+    'Stateful services are used to manage stateful applications, ensuring ordered and graceful deployment and scaling. They also provide stable persistent storage and network identifiers.',
   STATELESS_SERVICE_DESC:
     'The most commonly used service in container services. It defines the Pod template to control the Pod status, including rolling updates and rollbacks.',
 

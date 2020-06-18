@@ -51,8 +51,8 @@ export default class AdvancedSettings extends React.Component {
       <Form data={this.fedFormTemplate} ref={formRef}>
         {module !== 'daemonsets' && (
           <Form.Group
-            label={t('Setting node schedule policy')}
-            desc={t('Running pods on the specified nodes')}
+            label={t('Set Node Scheduling Policy')}
+            desc={t('You can allow Pod replicas to run on specified nodes.')}
             keepDataWhenUnCheck
             checkable
           >
@@ -64,9 +64,9 @@ export default class AdvancedSettings extends React.Component {
           </Form.Group>
         )}
         <Form.Group
-          label={t('Add metadata')}
+          label={t('Add Metadata')}
           desc={t(
-            'Additional metadata settings for resources such as Label and Annotation'
+            'Additional metadata settings for resources such as Labels and Annotations.'
           )}
           keepDataWhenUnCheck
           checkable
