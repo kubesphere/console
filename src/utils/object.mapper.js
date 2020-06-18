@@ -985,6 +985,7 @@ const ClusterMapper = item => {
       item,
       'metadata.labels["cluster.kubesphere.io/visibility"]'
     ),
+    connectionType: get(item, 'spec.connection.type'),
     _originData: getOriginData(item),
   }
 }

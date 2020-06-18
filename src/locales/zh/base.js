@@ -84,8 +84,7 @@ export default {
   ACCESS_CONTROL_DESC: '对平台中的企业空间、账号、以及角色权限进行统一管理',
   APP_STORE_MANAGEMENT_DESC:
     '对云原生应用的上架、下架以及审核等应用全生命周期的统一管理',
-  PLATFORM_SETTINGS_DESC:
-    '定制化平台设置，如平台基本信息、日志收集器等',
+  PLATFORM_SETTINGS_DESC: '定制化平台设置，如平台基本信息、日志收集器等',
 
   Loading: '加载中',
   Active: '已启用',
@@ -533,7 +532,7 @@ export default {
   'Get help quickly': '快速获取帮助',
   'Developer community': '开发者社区',
   HISTORY_DESC:
-    '当您在多个企业空间或者项目下进行协同工作时，浏览器会记录下您最近访问的路径，您可以通过 Win + H 键（Command + H）查看历史记录，来快速切换您的访问资源。',
+    '当您在多个企业空间或者项目下进行协同工作时，浏览器会记录下您最近访问的路径，您可以通过 F1 / (Win + K) / (Command + K) 查看历史记录，来快速切换您的访问资源。',
   NO_HISTORY_TITLE: '浏览器暂未收录到您对集群或者企业空间等区域的访问记录',
   NO_HISTORY_DESC: '您可以尝试对企业空间或者集群、项目等资源的访问',
   USER_GUIDES_DESC: '最详尽的 KubeSphere 用户指南文档',

@@ -26,37 +26,12 @@ import Card from './Card'
 import styles from './index.scss'
 
 export default class History extends Component {
-  state = {
-    visible: false,
-  }
-
-  componentDidMount() {
-    document.addEventListener('keydown', this.handleKeyDown)
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('keydown', this.handleKeyDown)
-  }
-
   get histories() {
     return safeParseJSON(localStorage.getItem('history-cache'), [])
   }
 
-  handleKeyDown = e => {
-    if (e.keyCode === 32 && e.altKey) {
-      e.stopPropagation()
-      e.preventDefault()
-      this.setState(({ visible }) => ({
-        visible: !visible,
-      }))
-    }
-  }
-
-  handleCancel = () => {
-    this.setState({ visible: false })
-  }
-
   renderHistory() {
+    const { onCancel } = this.props
     const histories = this.histories
     return (
       <div className={styles.section}>
@@ -72,7 +47,7 @@ export default class History extends Component {
           ) : (
             <div className={styles.histories}>
               {histories.map(item => (
-                <Card key={item.url} data={item} onClick={this.handleCancel} />
+                <Card key={item.url} data={item} onClick={onCancel} />
               ))}
             </div>
           )}
@@ -122,13 +97,14 @@ export default class History extends Component {
   }
 
   render() {
+    const { visible, onCancel } = this.props
     return (
       <Modal
         className={styles.modal}
         bodyClassName={styles.body}
         portalClassName={styles.portal}
-        visible={this.state.visible}
-        onCancel={this.handleCancel}
+        visible={visible}
+        onCancel={onCancel}
         width="100%"
         hideHeader
         hideFooter
@@ -138,7 +114,7 @@ export default class History extends Component {
           icon="close"
           iconType="light"
           type="control"
-          onClick={this.handleCancel}
+          onClick={onCancel}
         />
         <div className={styles.wrapper}>
           <div className={styles.title}>

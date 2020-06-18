@@ -49,7 +49,7 @@ export default class List {
     Object.keys(params).forEach(key => {
       if (Object.prototype.hasOwnProperty.call(this, key)) {
         this[key] = params[key]
-      } else {
+      } else if (params[key]) {
         this.filters[key] = params[key]
       }
     })

@@ -49,7 +49,7 @@ export default class Initializing extends Component {
   }
 
   render() {
-    const { conditions } = this.props.store.detail
+    const { conditions, connectionType } = this.props.store.detail
 
     if (get(conditions, 'Initialized.status') === 'False') {
       return (
@@ -74,38 +74,40 @@ export default class Initializing extends Component {
             description={t.html('CLUSTER_WAITING_JOIN_DESC')}
           />
         </div>
-        <div className={styles.content}>
-          <div className={styles.card}>
-            <Text
-              title={t.html('CLUSTER_AGENT_TIP_1')}
-              description={t.html('CLUSTER_AGENT_TIP_1_DESC')}
-            />
-          </div>
-          <div className={styles.card}>
-            <Text
-              className="margin-b12"
-              title={t.html('CLUSTER_AGENT_TIP_2')}
-              description={t.html('CLUSTER_AGENT_TIP_2_DESC')}
-            />
-            <Button className={styles.copy} onClick={this.handleCopy}>
-              {t('Click to Copy')}
-            </Button>
-            <Loading spinning={this.props.store.isAgentLoading}>
-              <CodeEditor
-                mode="yaml"
-                className={styles.editor}
-                options={this.editOptions}
-                value={toJS(this.props.store.agent)}
+        {connectionType === 'proxy' && (
+          <div className={styles.content}>
+            <div className={styles.card}>
+              <Text
+                title={t.html('CLUSTER_AGENT_TIP_1')}
+                description={t.html('CLUSTER_AGENT_TIP_1_DESC')}
               />
-            </Loading>
+            </div>
+            <div className={styles.card}>
+              <Text
+                className="margin-b12"
+                title={t.html('CLUSTER_AGENT_TIP_2')}
+                description={t.html('CLUSTER_AGENT_TIP_2_DESC')}
+              />
+              <Button className={styles.copy} onClick={this.handleCopy}>
+                {t('Click to Copy')}
+              </Button>
+              <Loading spinning={this.props.store.isAgentLoading}>
+                <CodeEditor
+                  mode="yaml"
+                  className={styles.editor}
+                  options={this.editOptions}
+                  value={toJS(this.props.store.agent)}
+                />
+              </Loading>
+            </div>
+            <div className={styles.card}>
+              <Text
+                title={t.html('CLUSTER_AGENT_TIP_3')}
+                description={t.html('CLUSTER_AGENT_TIP_3_DESC')}
+              />
+            </div>
           </div>
-          <div className={styles.card}>
-            <Text
-              title={t.html('CLUSTER_AGENT_TIP_3')}
-              description={t.html('CLUSTER_AGENT_TIP_3_DESC')}
-            />
-          </div>
-        </div>
+        )}
       </Panel>
     )
   }
