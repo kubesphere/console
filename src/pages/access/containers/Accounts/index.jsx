@@ -134,7 +134,7 @@ export default class Accounts extends React.Component {
   render() {
     const { bannerProps, tableProps } = this.props
     return (
-      <ListPage {...this.props} noWatch>
+      <ListPage {...this.props}>
         <Banner {...bannerProps} tabs={this.tabs} title={t('NAV_ACCOUNTS')} />
         <Table
           {...tableProps}

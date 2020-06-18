@@ -252,6 +252,7 @@ export const MODULE_KIND_MAP = {
   workspaces: 'WorkspaceTemplate',
   dashboards: 'Dashboard',
   applications: 'Application',
+  users: 'User',
 }
 
 export const QUOTAS_MAP = {
