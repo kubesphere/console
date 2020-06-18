@@ -48,6 +48,18 @@ export default class KubeTools extends React.Component {
   get toolList() {
     return [
       {
+        group: 'History',
+        data: [
+          {
+            key: 'history',
+            icon: 'clock',
+            title: t('History'),
+            description: t('HISTORY_DESC'),
+            onClick: this.props.rootStore.toggleHistory,
+          },
+        ],
+      },
+      {
         group: 'Analysis Tools',
         data: [
           {
@@ -166,14 +178,14 @@ export default class KubeTools extends React.Component {
                   {group.data.map(item => (
                     <List.Item
                       className={styles.toolItem}
-                      key={item.link}
+                      key={item.key || item.link}
                       icon={item.icon}
                       title={item.title}
                       data-title={item.title}
                       data-link={item.link}
                       data-action={item.action}
                       description={item.description}
-                      onClick={this.handleToolItemClick}
+                      onClick={item.onClick || this.handleToolItemClick}
                     />
                   ))}
                 </div>
@@ -188,7 +200,7 @@ export default class KubeTools extends React.Component {
                   {this.thirdPartyToolList.map(item => (
                     <List.Item
                       className={styles.toolItem}
-                      key={item.link}
+                      key={item.key || item.link}
                       icon={item.icon}
                       title={item.title}
                       data-title={item.title}

@@ -55,7 +55,7 @@ class CodeEditor extends PureComponent {
 
   handleChange = value => {
     const { onChange } = this.props
-    onChange(value)
+    this.setState({ value }, () => onChange(value))
   }
 
   render() {
