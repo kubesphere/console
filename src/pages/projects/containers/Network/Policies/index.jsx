@@ -39,7 +39,7 @@ export default class Policies extends React.Component {
     },
     {
       title: t('NETWORK_ISOLATION_Q1'),
-      description: t('NETWORK_POLICY_A1'),
+      description: t.html('NETWORK_POLICY_A1'),
     },
   ]
 

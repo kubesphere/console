@@ -41,7 +41,7 @@ export default class NetworkPolicies extends React.Component {
     },
     {
       title: t('NETWORK_POLICY_Q1'),
-      description: t('NETWORK_POLICY_A1'),
+      description: t.html('NETWORK_POLICY_A1'),
     },
   ]
 

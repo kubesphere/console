@@ -78,7 +78,7 @@ export default class ServiceBaseInfo extends React.Component {
   get applications() {
     return [
       {
-        label: t('Not Join'),
+        label: t('Not Associate'),
         value: '',
       },
       ...this.appStore.list.data.map(app => ({
@@ -280,7 +280,7 @@ export default class ServiceBaseInfo extends React.Component {
               <Columns>
                 <Column>
                   <Form.Item
-                    label={t('Join Application')}
+                    label={t('Associated Application')}
                     desc={t('SERVICE_NAME_DESC')}
                   >
                     <Select

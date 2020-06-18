@@ -131,7 +131,7 @@ export default class BaseInfo extends React.Component {
             <Form.Item
               label={t('Schedule')}
               desc={t.html('CRONJOB_CRON_DESC')}
-              rules={[{ required: true, message: t('Please input schedule') }]}
+              rules={[{ required: true, message: t('Please input a schedule.') }]}
             >
               <SelectInput
                 name="spec.schedule"
@@ -161,7 +161,7 @@ export default class BaseInfo extends React.Component {
               </Form.Item>
               <Form.Item
                 label={t('failedJobsHistoryLimit')}
-                desc={t('Number of failed jobs allowed to be retained')}
+                desc={t('The number of failed jobs allowed to be retained.')}
               >
                 <NumberInput
                   min={0}
@@ -173,7 +173,7 @@ export default class BaseInfo extends React.Component {
             <Column>
               <Form.Item
                 label={t('successfulJobsHistoryLimit')}
-                desc={t('Number of success jobs allowed to be retained')}
+                desc={t('The number of successful jobs allowed to be retained.')}
               >
                 <NumberInput
                   min={0}
@@ -183,7 +183,7 @@ export default class BaseInfo extends React.Component {
               </Form.Item>
               <Form.Item
                 label={t('concurrencyPolicy')}
-                desc={t('Concurrency policy settings')}
+                desc={t('The concurrency policy setting.')}
               >
                 <Select
                   name="spec.concurrencyPolicy"

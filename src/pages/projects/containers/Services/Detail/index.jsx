@@ -197,7 +197,7 @@ export default class ServiceDetail extends React.Component {
         value: joinSelector(detail.selector),
       },
       {
-        name: t('Endpoints'),
+        name: t('Endpoint'),
         value: this.renderEndpoints(),
       },
       {

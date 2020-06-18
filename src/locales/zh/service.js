@@ -44,7 +44,7 @@ export default {
   'Stateful Service': '有状态服务',
   'External Service': '外部服务',
   'Simple Service': '简单服务',
-  'Join Application': '关联应用',
+  'Associated Application': '关联应用',
   'Service Mesh': '服务治理',
 
   'Internal access': '内部访问',
@@ -57,12 +57,12 @@ export default {
   'Add Selector': '添加选择器',
 
   'Invalid port': '无效端口',
-  'Not Join': '不关联',
+  'Not Associate': '不关联',
 
   'Custom Creation': '自定义创建',
   'Specify Workloads': '指定工作负载',
-  'Create service by specify workloads': '指定工作负载创建服务',
-  'Create service by yaml': '通过 Yaml 创建服务',
+  'Create service by specifying workloads': '指定工作负载创建服务',
+  'Create service by Yaml': '通过 Yaml 创建服务',
 
   'Sure to delete the service(s)?': '确认删除服务',
   'No related resources found with current service(s)':

@@ -18,7 +18,7 @@
 
 export default {
   SERVICE_EXTERNAL_NAME_DESC:
-    'Map the service to the contents of the externalName field by returning a CNAME record with its value',
+    'Map the service to the contents of the externalName field by returning a CNAME record with its value.',
   TOTAL_WORKLOAD: '{ count } workloads in total',
 
   SERVICE_SELECTOR_AFFECT_1: '',
@@ -61,14 +61,14 @@ export default {
 
   SERVICE_TYPE: 'You can create a stateless service or a stateful service.',
 
-  SERVICE_TYPES_Q: 'Service types',
+  SERVICE_TYPES_Q: 'Service Types',
   SERVICE_TYPES_A:
     'The service is divided into a stateless service (Virtual Service + Depolyment) and a stateful service (Headless Service + Statefulset). In a stateless service, replicas can share one volume, and a stateful service needs to have its own independent volume.',
 
   SCENARIOS_FOR_SERVICES_Q:
-    'Usage scenarios for stateless services and stateful services?',
+    'What are the application scenarios for stateless services and stateful services?',
   SCENARIOS_FOR_SERVICES_A:
-    'Stateless services are useful for scenarios where persistent data is not stored locally and multiple instances respond to uniform requests (eg, Nginx, Tomcat, etc.). Stateful services are available for services that require data storage, or for multi-threaded services, queues, etc. (MySQL database, Kafka, ZooKeeper, etc.).',
+    'Stateless services are useful for scenarios where persistent data is not stored locally and multiple instances respond to uniform requests (Nginx, Tomcat, etc.). Stateful services are helpful when it comes to data storage, multithreading or queues (MySQL database, Kafka, Zookeeper, etc.).',
   SERVICE_SIMPLE_DESC: 'Create a service from an existing pods group',
   DELETE_SERVICE_DESC:
     'You are about to delete the service(s) {resource}. Please confirm whether to delete the associated resource?',
@@ -80,7 +80,7 @@ export default {
     'You can build an existing artifact into a new image and complete the deployment',
 
   SERVICE_CUSTOM_CREATE:
-    'You can specify a workload to create a service or by editing the configuration (Yaml)',
+    'You can create a service either by specifying a workload or by editing the configuration (Yaml).',
 
   SERVICE_TYPE_STATEFULSERVICE: 'Stateful Service',
   SERVICE_TYPE_STATELESSSERVICE: 'Stateless Service',
@@ -93,10 +93,10 @@ export default {
   SERVISE_SIMPLE_DESC: '',
 
   SERVICE_PORTS_DESC:
-    'Set the port exposed by the container image and the service port',
+    'Set the port exposed by the container image and the service port.',
 
   SPECIFY_WORKLOAD_DESC:
-    'Specify a workload that need to associate with the service',
+    'Specify a workload that needs to be associated with the service.',
   
   EIP_POOL_DESC: 'Access method within the cluster (DNS)',
 }
