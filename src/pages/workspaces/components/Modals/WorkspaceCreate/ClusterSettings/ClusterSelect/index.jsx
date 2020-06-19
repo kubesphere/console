@@ -65,7 +65,7 @@ export default class ClusterSettings extends Component {
 
     const name = e.currentTarget.dataset.cluster
 
-    if (value.includes(name)) {
+    if (value.some(item => item.name === name)) {
       newValue = value.filter(item => item.name !== name)
     } else {
       newValue = [...value, { name }]

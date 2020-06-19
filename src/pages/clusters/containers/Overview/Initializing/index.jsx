@@ -49,7 +49,8 @@ export default class Initializing extends Component {
   }
 
   render() {
-    const { conditions, connectionType } = this.props.store.detail
+    const { detail, isAgentLoading, agent } = this.props.store
+    const { conditions, connectionType } = detail
 
     if (get(conditions, 'Initialized.status') === 'False') {
       return (
@@ -91,13 +92,15 @@ export default class Initializing extends Component {
               <Button className={styles.copy} onClick={this.handleCopy}>
                 {t('Click to Copy')}
               </Button>
-              <Loading spinning={this.props.store.isAgentLoading}>
-                <CodeEditor
-                  mode="yaml"
-                  className={styles.editor}
-                  options={this.editOptions}
-                  value={toJS(this.props.store.agent)}
-                />
+              <Loading spinning={isAgentLoading}>
+                {agent && (
+                  <CodeEditor
+                    mode="yaml"
+                    className={styles.editor}
+                    options={this.editOptions}
+                    value={agent}
+                  />
+                )}
               </Loading>
             </div>
             <div className={styles.card}>
