@@ -178,7 +178,7 @@ export default class Resources extends React.Component {
         <div className={styles.title}>
           <strong>{t(name)}</strong>
           <Checkbox checked={showChecked} onChange={this.toggleChecked}>
-            {t('Show only selected')}
+            {t('Only Show Selected')}
           </Checkbox>
         </div>
         <div className={styles.content}>

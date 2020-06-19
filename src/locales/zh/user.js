@@ -73,7 +73,7 @@ export default {
 
   'Current Password': '当前密码',
 
-  'You must enter the correct current password to change to a new password':
+  'You must enter the correct current password to change to a new password.':
     '您必须输入正确的当前密码才可更改为新的密码',
 
   'Your password must meet the following requirements':

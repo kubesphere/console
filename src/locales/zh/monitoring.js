@@ -62,8 +62,8 @@ export default {
 
   'Select Time Range': '选择时间范围',
   'Custom Time Range': '自定义时间范围',
-  'Show only selected': '仅显示已选',
-  'View all replicas': '查看全部副本',
+  'Only Show Selected': '仅显示已选',
+  'View All Replicas': '查看全部副本',
   'View All': '查看全部',
   'View More': '查看更多',
 
