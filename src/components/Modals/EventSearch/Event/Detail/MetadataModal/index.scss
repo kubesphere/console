@@ -1,3 +1,5 @@
+@import '~scss/variables';
+
 .tabs {
   height: 100%;
 
@@ -18,7 +20,7 @@
     :global(li.is-active) {
       border-right: none !important;
       z-index: 1;
-      background-color: white;
+      background-color: $white;
     }
 
     li:last-child {
@@ -38,7 +40,7 @@
     .title {
       font-size: 12px;
       font-weight: 600;
-      color: #242E42;
+      color: $dark-color07;
       line-height: 20px;
       height: 20px;
     }
@@ -52,7 +54,7 @@
     
         .rowTitle {
           font-size: 12px;
-          color: #79879C;
+          color: $dark-color01;
           line-height: 20px;
           height: 20px;
           width: 110px;
@@ -61,7 +63,7 @@
         .rowDesc {
           font-size: 12px;
           font-weight: 600;
-          color: #242E42;
+          color: $dark-color07;
           line-height: 20px;
           height: 20px;
           margin-left: 10px;
@@ -76,21 +78,21 @@
     justify-content: space-around;
     height: 88px;
     margin: 10px auto;
-    background-color: #F9FBFD;
+    background-color: $light-color01;
     border-radius: 4px;
     padding: 15px;
   
     .reason {
       font-size: 12px;
       font-weight: 600;
-      color: #242E42;
+      color: $dark-color07;
       line-height: 20px;
       height: 20px;
     }
   
     .message {
       font-size: 12px;
-      color: #242E42;
+      color: $dark-color07;
       line-height: 20px;
       height: 20px;
     }
@@ -108,11 +110,11 @@
 }
 
 .normal {
-  color: #36435C;
-  background-color: #eff4f9;
+  color: $dark-color06;
+  background-color: $light-color02;
 }
 
 .warning {
-  color: #ffffff;
+  color: $white;
   background-color: #F5A623;
 }

@@ -1,8 +1,10 @@
 import React, { Fragment } from 'react'
 import { Select, Icon, Tooltip } from '@pitrix/lego-ui'
+import { min } from 'lodash'
+import moment from 'moment-mini'
+import classnames from 'classnames'
 import { observer } from 'mobx-react'
 import { action, observable, toJS } from 'mobx'
-import { min } from 'lodash'
 
 import SearchInput from 'components/Modals/LogSearch/Logging/SearchInput'
 import Table from 'components/Tables/Visible'
@@ -90,7 +92,8 @@ export default class Detail extends React.PureComponent {
     {
       thead: t('Time'),
       key: 'Time',
-      content: ({ RequestReceivedTimestamp }) => RequestReceivedTimestamp,
+      content: ({ RequestReceivedTimestamp }) =>
+        `[${moment(RequestReceivedTimestamp).format('YYYY-MM-DD HH:mm:ss')}]`,
       hidden: false,
       className: styles.timecol,
     },
@@ -105,7 +108,7 @@ export default class Detail extends React.PureComponent {
       thead: t('Status Code'),
       key: 'Status Code',
       hidden: false,
-      content: ({ ResponseStatus: { code } = {} }) => t(httpcodes[code]),
+      content: ({ ResponseStatus: { code } = {} }) => httpcodes[code],
       className: styles.statuscol,
     },
     {
@@ -451,7 +454,7 @@ export default class Detail extends React.PureComponent {
   }
 
   renderDetailModal() {
-    const { visible, detail, eventMetadata } = this.state
+    const { visible, detail, eventMetadata, showHistogram } = this.state
 
     if (!visible) {
       return null
@@ -460,7 +463,11 @@ export default class Detail extends React.PureComponent {
     return (
       <Fragment>
         <div className={styles.mask} onClick={this.onCancel} />
-        <div className={styles.detail}>
+        <div
+          className={classnames(styles.detail, {
+            [styles.visibleHeight]: showHistogram,
+          })}
+        >
           <MetadataModal detail={detail} eventMetadata={eventMetadata} />
         </div>
       </Fragment>
