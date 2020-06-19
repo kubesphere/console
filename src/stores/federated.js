@@ -35,12 +35,6 @@ export default class FederatedStore extends Base {
   initializing = false
 
   @observable
-  syncEvent = {
-    id: 0,
-    params: {},
-  }
-
-  @observable
   resources = {}
 
   @observable
@@ -215,10 +209,11 @@ export default class FederatedStore extends Base {
     return this.submitting(withDryRun(reqs))
   }
 
-  @action sync(params) {
-    this.syncEvent = {
-      id: new Date().getTime(),
-      params,
-    }
+  @action updateResource(cluster, data) {
+    this.isResourcesLoading = true
+    Object.assign(this.resources, {
+      [cluster]: { ...this.mapper(data), cluster },
+    })
+    this.isResourcesLoading = false
   }
 }

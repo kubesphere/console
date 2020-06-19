@@ -266,9 +266,11 @@ class InternetAccess extends React.Component {
   }
 
   renderModals() {
+    const { cluster } = this.props
     return (
       <div>
         <GatewaySettingModal
+          cluster={cluster}
           detail={toJS(this.store.gateway.data)}
           visible={this.state.showGatewaySetting}
           onOk={this.handleGatewaySetting}

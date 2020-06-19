@@ -46,15 +46,6 @@ class ResourceStatus extends React.Component {
     })
   }
 
-  handlePodUpdate = cluster => {
-    const { detail } = this.store
-    this.store.fetchResources({
-      name: detail.name,
-      clusters: [cluster],
-      namespace: detail.namespace,
-    })
-  }
-
   renderReplicaInfo() {
     const { detail, resources, isResourcesLoading } = this.store
     const clusters = keyBy(this.props.projectStore.detail.clusters, 'name')
@@ -120,7 +111,6 @@ class ResourceStatus extends React.Component {
         prefix={this.prefix}
         detail={detail}
         clusters={clusters}
-        onUpdate={this.handlePodUpdate}
         isFederated
       />
     )

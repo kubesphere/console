@@ -420,12 +420,6 @@ export default class WorkloadTable extends React.Component {
   }
 
   renderEmptyText() {
-    const { isLoading } = this.props
-
-    if (isLoading) {
-      return null
-    }
-
     return (
       this.props.emptyText || (
         <div className={styles.emptyText}>

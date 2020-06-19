@@ -228,11 +228,12 @@ export default class GlobalValue {
       const navs = []
 
       globals.config.clusterNavs.forEach(nav => {
-        const filteredItems = nav.items.filter(item =>
-          this.checkNavItem(item, params =>
+        const filteredItems = nav.items.filter(item => {
+          item.cluster = cluster
+          return this.checkNavItem(item, params =>
             this.hasPermission({ ...params, cluster })
           )
-        )
+        })
         if (!isEmpty(filteredItems)) {
           navs.push({ ...nav, items: filteredItems })
         }

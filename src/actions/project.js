@@ -166,6 +166,7 @@ export default {
         modal: GatewaySettingModal,
         store,
         detail,
+        cluster,
         ...props,
       })
     },

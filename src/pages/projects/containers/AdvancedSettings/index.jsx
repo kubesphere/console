@@ -35,6 +35,10 @@ class AdvancedSettings extends React.Component {
     return this.props.match.params.namespace
   }
 
+  get cluster() {
+    return this.props.match.params.cluster
+  }
+
   get enableActions() {
     return globals.app.getActions({
       module: 'project-settings',
@@ -67,7 +71,6 @@ class AdvancedSettings extends React.Component {
   }
 
   render() {
-    const { cluster } = this.props
     return (
       <div>
         <Banner
@@ -77,7 +80,7 @@ class AdvancedSettings extends React.Component {
           tips={this.tips}
         />
         <InternetAccess match={this.props.match} actions={this.enableActions} />
-        {globals.app.hasClusterModule(cluster, 'logging') &&
+        {globals.app.hasClusterModule(this.cluster, 'logging') &&
           !this.disabledLoggingSideCar && (
             <LogCollection store={this.store} actions={this.enableActions} />
           )}

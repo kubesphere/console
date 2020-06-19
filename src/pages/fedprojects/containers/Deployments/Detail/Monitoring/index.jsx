@@ -56,6 +56,7 @@ export default class Monitorings extends React.Component {
       showMultipleModal: false,
       selectItem: {},
       pods: [],
+      cluster: '',
     }
 
     this.monitorStore = new PodMonitorStore()
@@ -75,10 +76,8 @@ export default class Monitorings extends React.Component {
   }
 
   get resourceParams() {
-    const { cluster, namespace, name } = this.store.detail
-
+    const { namespace, name } = this.store.detail
     return {
-      cluster,
       namespace,
       workloadKind: this.monitoringModule,
       workloadName: name,
@@ -95,11 +94,12 @@ export default class Monitorings extends React.Component {
   }
 
   fetchData = (params = {}) => {
-    const { pods } = this.state
-    if (isEmpty(pods)) {
+    const { cluster, pods } = this.state
+    if (isEmpty(pods) || params.cluster !== cluster) {
       this.resourceStore
         .fetchSortedMetrics({
           ...this.resourceParams,
+          cluster: params.cluster,
           metrics: [MetricTypes.cpu_usage],
           limit: 6,
         })
@@ -107,7 +107,7 @@ export default class Monitorings extends React.Component {
           const result = get(data[MetricTypes.cpu_usage], 'data.result') || []
           const _pods = result.map(item => get(item, 'metric.pod'))
 
-          this.setState({ pods: _pods }, () => {
+          this.setState({ pods: _pods, cluster: params.cluster }, () => {
             this.fetchMetrics({ resources: _pods, ...params })
           })
         })
