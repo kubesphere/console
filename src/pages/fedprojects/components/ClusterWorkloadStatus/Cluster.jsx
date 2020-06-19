@@ -17,15 +17,46 @@
  */
 
 import React, { Component } from 'react'
+import { reaction } from 'mobx'
 import { observer } from 'mobx-react'
 
 import { Icon } from '@pitrix/lego-ui'
 import ClusterTitle from 'components/Clusters/ClusterTitle'
 
+import WebSocketStore from 'stores/websocket'
+
 import styles from './index.scss'
 
 @observer
 export default class Cluster extends Component {
+  websocket = new WebSocketStore()
+
+  componentDidMount() {
+    this.initWebsocket()
+  }
+
+  componentWillUnmount() {
+    this.disposer && this.disposer()
+    this.websocket.close()
+  }
+
+  initWebsocket() {
+    const { workload, store } = this.props
+
+    const url = store.resourceStore.getWatchUrl(workload)
+    if (url) {
+      this.websocket.watch(url)
+      this.disposer = reaction(
+        () => this.websocket.message,
+        message => {
+          if (message.type === 'MODIFIED') {
+            store.updateResource(workload.cluster, message.object)
+          }
+        }
+      )
+    }
+  }
+
   triggerReplicasChange = async num => {
     const { cluster, onReplicasChange } = this.props
     await onReplicasChange(cluster.name, num)

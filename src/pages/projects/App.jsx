@@ -59,7 +59,6 @@ class ProjectLayout extends Component {
 
     await this.props.rootStore.getRules(params)
 
-    this.clusterStore.detail.configz.devops = false
     set(
       globals,
       `clusterConfig.${params.cluster}`,

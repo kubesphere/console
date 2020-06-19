@@ -20,7 +20,6 @@ import { get, isFunction, cloneDeep, isArray } from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Modal, Switch, Notify } from 'components/Base'
-import formPersist from 'utils/form.persist'
 import Form from './Form'
 import Code from './Code'
 
@@ -69,16 +68,7 @@ export default class CreateModal extends React.Component {
         this.setState({
           currentStep: 0,
           isCodeMode: this.props.onlyCode || false,
-          formTemplate: cloneDeep(
-            formPersist.get(`${this.props.module}_create_form`) ||
-              this.props.formTemplate
-          ),
         })
-      } else {
-        formPersist.set(
-          `${this.props.module}_create_form`,
-          this.state.formTemplate
-        )
       }
     }
   }

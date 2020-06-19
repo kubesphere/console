@@ -89,14 +89,16 @@ export default class ResourceQuota extends React.Component {
             />
           ))}
         </div>
-        <div className={styles.folder}>
-          <Button
-            icon={isFold ? 'chevron-down' : 'chevron-up'}
-            onClick={this.toggleFold}
-          >
-            {isFold ? t('Unfold') : t('Fold')}
-          </Button>
-        </div>
+        {Object.keys(QUOTAS_MAP).length > 3 && (
+          <div className={styles.folder}>
+            <Button
+              icon={isFold ? 'chevron-down' : 'chevron-up'}
+              onClick={this.toggleFold}
+            >
+              {isFold ? t('Unfold') : t('Fold')}
+            </Button>
+          </div>
+        )}
       </Panel>
     )
   }

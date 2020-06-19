@@ -83,7 +83,6 @@ export default class Projects extends React.Component {
 
   handleClusterChange = cluster => {
     this.workspaceStore.selectCluster(cluster)
-    this.getData()
   }
 
   getData = async ({ silent, ...params } = {}) => {
@@ -196,9 +195,23 @@ export default class Projects extends React.Component {
     })
 
   render() {
-    const { bannerProps, tableProps } = this.props
+    const { match, bannerProps, tableProps } = this.props
+
+    const matchParams = {
+      ...match,
+      params: {
+        ...match.params,
+        cluster: this.workspaceStore.cluster,
+      },
+    }
+
     return (
-      <ListPage {...this.props} getData={this.getData} module="namespaces">
+      <ListPage
+        {...this.props}
+        match={matchParams}
+        getData={this.getData}
+        module="namespaces"
+      >
         <Banner
           {...bannerProps}
           tabs={globals.app.isMultiCluster ? this.tabs : {}}

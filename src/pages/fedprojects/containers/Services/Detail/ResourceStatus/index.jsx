@@ -75,15 +75,6 @@ export default class ResourceStatus extends React.Component {
     }
   }
 
-  handlePodUpdate = cluster => {
-    const { detail } = this.workloadStore
-    this.workloadStore.fetchResources({
-      name: detail.name,
-      clusters: [cluster],
-      namespace: detail.namespace,
-    })
-  }
-
   renderReplicaInfo() {
     const { detail, resources, isResourcesLoading } = this.workloadStore
     const clusters = keyBy(this.props.projectStore.detail.clusters, 'name')
@@ -133,7 +124,6 @@ export default class ResourceStatus extends React.Component {
         prefix={this.prefix}
         detail={detail}
         clusters={clusters}
-        onUpdate={this.handlePodUpdate}
         isLoading={isResourcesLoading}
         isFederated
       />

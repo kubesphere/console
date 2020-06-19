@@ -247,6 +247,9 @@ export class ListPage extends React.Component {
   componentDidUpdate(prevProps) {
     if (!isEqual(prevProps.match.params, this.props.match.params)) {
       this.props.getData()
+      if (!this.props.noWatch) {
+        this.initWebsocket()
+      }
     }
   }
 
