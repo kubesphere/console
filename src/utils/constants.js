@@ -454,6 +454,7 @@ export const PATTERN_IMAGE = /^\S+$/
 export const PATTERN_LENGTH_52 = /^.{0,52}$/
 export const PATTERN_LENGTH_63 = /^.{0,63}$/
 export const PATTERN_LENGTH_253 = /^.{0,253}$/
+export const PATTERN_LENGTH_1000 = /^.{0,1000}$/
 export const PATTERN_PORT_NAME = /^[a-z]([-a-z0-9]*[a-z0-9])?$/
 export const PATTERN_COMPONENT_VERSION = /^[a-z0-9]+$/
 export const PATTERN_PIPELINE_NAME = /^[a-zA-Z0-9]([-a-zA-Z0-9_]*)?$/

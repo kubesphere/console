@@ -23,7 +23,11 @@ import PropTypes from 'prop-types'
 import { Columns, Column, Select, Input, TextArea } from '@pitrix/lego-ui'
 import { Modal, Form } from 'components/Base'
 import ClusterTitle from 'components/Clusters/ClusterTitle'
-import { PATTERN_SERVICE_NAME, PATTERN_LENGTH_63 } from 'utils/constants'
+import {
+  PATTERN_SERVICE_NAME,
+  PATTERN_LENGTH_63,
+  PATTERN_LENGTH_1000,
+} from 'utils/constants'
 
 import WorkspaceStore from 'stores/workspace'
 
@@ -172,7 +176,16 @@ export default class ProjectCreateModal extends React.Component {
               </Column>
             )}
             <Column>
-              <Form.Item label={t('Description')}>
+              <Form.Item
+                label={t('Description')}
+                desc={t('DESCRIPTION_DESC')}
+                rules={[
+                  {
+                    pattern: PATTERN_LENGTH_1000,
+                    message: t('LONG_DESC_TOO_LONG'),
+                  },
+                ]}
+              >
                 <TextArea name="metadata.annotations['kubesphere.io/description']" />
               </Form.Item>
             </Column>

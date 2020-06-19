@@ -27,6 +27,7 @@ export default {
     'It can only contain lowercase letters, numbers and hyphens("-"), and must begin with a lowercase letter, ending with a number or lowercase letter. The maximum length of characters is set to 253.',
   NAME_TOO_LONG: 'The maximum length of characters is set to 63.',
   LONG_NAME_TOO_LONG: 'The maximum length of characters is set to 253.',
+  LONG_DESC_TOO_LONG: 'The maximum length of characters is set to 1000.',
   DESCRIPTION_DESC:
     'The description will be added to the item as a comment and displayed in the details of the application. The description is limited to 1000 characters.',
   SHORT_DESCRIPTION_DESC: 'Description is limited to 1000 characters.',

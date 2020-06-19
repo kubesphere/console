@@ -288,6 +288,7 @@ class CICDs extends React.Component {
       project_name,
       cluster,
       enable_timer_trigger: true,
+      enable_discarder: true,
     }
   }
 
