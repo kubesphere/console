@@ -3,77 +3,35 @@ import { action, toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import moment from 'moment-mini'
 import classnames from 'classnames'
-import { Icon, Loading } from '@pitrix/lego-ui'
+import { Icon, Loading, Select } from '@pitrix/lego-ui'
 
 import SearchInput from 'components/Modals/LogSearch/Logging/SearchInput'
 import TimeBar from 'components/Charts/Bar/TimeBar'
 import EventSearchStore from 'stores/eventSearch'
 
-import { dropDownItems } from '../utils'
+import { dropDownItems, getSecond, supportQueryParams } from '../utils'
 
 import styles from './index.scss'
-
-const getSecond = step => {
-  const [, count = 0, unit = 's'] = step.match(/(\d+)(\w+)/)
-  const unitMap = {
-    s: 1,
-    m: 60,
-    h: 60 * 60,
-    d: 60 * 60 * 24,
-  }
-  return count * unitMap[unit]
-}
 
 @observer
 export default class HomeModal extends React.Component {
   eventSearchStore = new EventSearchStore()
 
-  supportQueryParams = [
-    {
-      icon: 'magnifier',
-      title: t('Search Events by', { field: t('message') }),
-      tips: t('Message Event Query Tip'),
-      key: 'message_search',
-    },
-    {
-      icon: 'appcenter',
-      title: t('Search Events by', { field: t('Workspace') }),
-      tips: t('Workspace Event Query Tip'),
-      key: 'workspace_filter',
-    },
-    {
-      icon: 'project',
-      title: t('Search Events by', { field: t('Project') }),
-      tips: t('Project Event Query Tip'),
-      key: 'involved_object_namespace_filter',
-    },
-    {
-      icon: 'strategy-group',
-      title: t('Search Events by', { field: t('Resource Name') }),
-      tips: t('Resource Name Event Query Tip'),
-      key: 'involved_object_name_filter',
-    },
-    {
-      icon: 'resource',
-      title: t('Search Events by', { field: t('reason') }),
-      tips: t('Reason Event Query Tip'),
-      key: 'reason_filter',
-    },
-    {
-      icon: 'cardview',
-      title: t('Search Events by', { field: t('category') }),
-      tips: t('Category Event Query Tip'),
-      key: 'type_filter',
-    },
-  ]
-
   componentDidMount() {
-    this.eventSearchStore.fetchTodayHistogram()
-    this.eventSearchStore.fetchHistogram()
+    this.updateStatistics()
+  }
+
+  updateStatistics() {
+    const { searchInputState } = this.props
+    const { cluster } = searchInputState
+
+    this.eventSearchStore.fetchTodayHistogram({ cluster })
+    this.eventSearchStore.fetchHistogram({ cluster })
     this.eventSearchStore.fetchQuery({
       start_time: Math.ceil(Date.now() / 1000) - 60 * 60 * 12,
       endTime: Math.ceil(Date.now() / 1000),
       interval: '24m',
+      cluster,
     })
   }
 
@@ -93,6 +51,11 @@ export default class HomeModal extends React.Component {
 
   onSearchParamsChange = () => {
     this.props.formStepState.next()
+  }
+
+  onClusterChange = cluster => {
+    this.props.searchInputState.setCluster(cluster)
+    this.updateStatistics()
   }
 
   render() {
@@ -143,14 +106,22 @@ export default class HomeModal extends React.Component {
   }
 
   renderSearchBar() {
-    const { searchInputState } = this.props
+    const { searchInputState, clustersOpts } = this.props
     return (
-      <SearchInput
-        className={styles.searchBar}
-        onChange={this.onSearchParamsChange}
-        params={searchInputState}
-        dropDownItems={dropDownItems}
-      />
+      <div className={styles.searchBarContainer}>
+        <Select
+          className={styles.clusterSelector}
+          value={searchInputState.cluster}
+          options={clustersOpts}
+          onChange={this.onClusterChange}
+        />
+        <SearchInput
+          className={styles.searchBar}
+          onChange={this.onSearchParamsChange}
+          params={searchInputState}
+          dropDownItems={dropDownItems}
+        />
+      </div>
     )
   }
 
@@ -185,7 +156,7 @@ export default class HomeModal extends React.Component {
   }
 
   renderQueryItems() {
-    return this.supportQueryParams.map(category => (
+    return supportQueryParams.map(category => (
       <div
         className={classnames(styles.card, styles.category)}
         key={category.key}

@@ -3,7 +3,7 @@ import { action, toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import moment from 'moment-mini'
 import classnames from 'classnames'
-import { Icon, Loading } from '@pitrix/lego-ui'
+import { Icon, Loading, Select } from '@pitrix/lego-ui'
 
 import SearchInput from 'components/Modals/LogSearch/Logging/SearchInput'
 import TimeBar from 'components/Charts/Bar/TimeBar'
@@ -18,12 +18,20 @@ export default class Home extends React.Component {
   auditingStore = new AuditingStore()
 
   componentDidMount() {
-    this.auditingStore.fetchTodayHistogram()
-    this.auditingStore.fetchHistogram()
+    this.updateStatistics()
+  }
+
+  updateStatistics() {
+    const { searchInputState } = this.props
+    const { cluster } = searchInputState
+
+    this.auditingStore.fetchTodayHistogram({ cluster })
+    this.auditingStore.fetchHistogram({ cluster })
     this.auditingStore.fetchQuery({
       start_time: Math.ceil(Date.now() / 1000) - 60 * 60 * 12,
       endTime: Math.ceil(Date.now() / 1000),
       interval: '24m',
+      cluster,
     })
   }
 
@@ -43,6 +51,11 @@ export default class Home extends React.Component {
 
   onSearchParamsChange = () => {
     this.props.formStepState.next()
+  }
+
+  onClusterChange = cluster => {
+    this.props.searchInputState.setCluster(cluster)
+    this.updateStatistics()
   }
 
   render() {
@@ -82,13 +95,13 @@ export default class Home extends React.Component {
                   })
                 : t('NO_AUDITING_TODAY')}
             </h3>
-            {events && (
+            {events ? (
               <p>
                 <Icon name="clock" />
                 {t('Current Statistics Start Time')}:
                 {moment(new Date()).format(`${t('EVENT_DATE')}`)}
               </p>
-            )}
+            ) : null}
           </div>
         </Loading>
       </div>
@@ -96,21 +109,29 @@ export default class Home extends React.Component {
   }
 
   renderSearchBar() {
-    const { searchInputState } = this.props
+    const { searchInputState, clustersOpts } = this.props
     return (
-      <SearchInput
-        className={styles.searchBar}
-        onChange={this.onSearchParamsChange}
-        params={searchInputState}
-        dropDownItems={dropDownItems}
-      />
+      <div className={styles.searchBarContainer}>
+        <Select
+          className={styles.clusterSelector}
+          value={searchInputState.cluster}
+          options={clustersOpts}
+          onChange={this.onClusterChange}
+        />
+        <SearchInput
+          className={styles.searchBar}
+          onChange={this.onSearchParamsChange}
+          params={searchInputState}
+          dropDownItems={dropDownItems}
+        />
+      </div>
     )
   }
 
   renderRecentLogs() {
     const {
       isLoading,
-      histogramData: { buckets = [] } = {},
+      histogramData = {},
       total,
       interval,
     } = this.auditingStore
@@ -126,8 +147,8 @@ export default class Home extends React.Component {
           <div className={styles.chart}>
             <TimeBar
               xKey={'time'}
-              data={toJS(buckets)}
-              legend={[['count', t('Event statistics')]]}
+              data={toJS(histogramData.buckets || [])}
+              legend={[['count', t('Auditing statistics')]]}
               interval={interval || '30m'}
               onBarClick={this.selectedDurationParameter}
             />

@@ -1,12 +1,13 @@
 import React, { Fragment } from 'react'
-import { Select } from '@pitrix/lego-ui'
+import { Select, Icon, Tooltip } from '@pitrix/lego-ui'
 import { observer } from 'mobx-react'
-import { action, observable } from 'mobx'
+import { action, observable, toJS } from 'mobx'
 import { min } from 'lodash'
 import classnames from 'classnames'
 
 import SearchInput from 'components/Modals/LogSearch/Logging/SearchInput'
 import Table from 'components/Tables/Visible'
+import TimeBar from 'components/Charts/Bar/TimeBar'
 import EventSearchStore from 'stores/eventSearch'
 
 import MetadataModal from './MetadataModal'
@@ -15,9 +16,17 @@ import {
   toArray,
   queryModeOptions,
   dropDownItems,
+  getSecond,
 } from '../utils'
 
 import styles from './index.scss'
+
+const DefaultRealTimeConfig = {
+  duration: 600,
+  step: '10s',
+}
+
+const stepLevelList = ['m', 'h', 'd', 'M', 'y']
 
 @observer
 export default class Detail extends React.PureComponent {
@@ -27,10 +36,26 @@ export default class Detail extends React.PureComponent {
       visible: false,
       detail: {},
       eventMetadata: [],
+      showHistogram: true,
+      polling: false,
+      pollingFrequency: 5000,
     }
+
+    this.frequencyOptions = [5, 10, 15].map(second => ({
+      value: second * 1000,
+      label: `${t('TIME_S', { num: second })}`,
+    }))
 
     this.store = new EventSearchStore({ size: 50 })
     this.tableRef = React.createRef()
+  }
+
+  get defaultDuration() {
+    return {
+      start_time: 0,
+      end_time: Math.ceil(Date.now() / 1000),
+      interval: '1d',
+    }
   }
 
   get duration() {
@@ -45,11 +70,16 @@ export default class Detail extends React.PureComponent {
         interval: step,
       }
     }
-    return {}
+    return this.defaultDuration
   }
 
   componentDidMount() {
     this.refreshQuery()
+    this.fetchHistogram()
+  }
+
+  componentWillUnmount() {
+    this.stopPolling()
   }
 
   @observable
@@ -93,9 +123,7 @@ export default class Detail extends React.PureComponent {
       hidden: false,
       content: ({ involvedObject = {} }) => (
         <Fragment>
-          <div className={classnames(styles.normalText, styles.kind)}>
-            {involvedObject.kind}
-          </div>
+          <div className={styles.kind}>{involvedObject.kind}</div>
           <div className={styles.name}>{involvedObject.name}</div>
         </Fragment>
       ),
@@ -126,6 +154,17 @@ export default class Detail extends React.PureComponent {
   }
 
   @action
+  selectedDurationParameter = ({ time: startTime = 0 }) => {
+    const { interval } = this.store
+    const { searchInputState } = this.props
+    searchInputState.end = Math.ceil(startTime / 1000) + getSecond(interval)
+    searchInputState.start = Math.ceil(startTime / 1000)
+    searchInputState.step = this.getNextStepLevel(interval)
+    this.fetchHistogram()
+    this.refreshQuery()
+  }
+
+  @action
   onTableScrollEnd = () => {
     const { from, size, total } = this.store
     if (total > from + size) {
@@ -144,46 +183,69 @@ export default class Detail extends React.PureComponent {
     this.logs.push(...newLogs)
   }
 
+  getNextStepLevel(interval) {
+    const [, current = 'm'] = interval.match(/\d+(\w+)$/)
+    const level = stepLevelList.findIndex(step => step === current)
+    return level < 1 ? `1${stepLevelList[0]}` : `1${stepLevelList[level - 1]}`
+  }
+
   @action
-  async fetchQuery(params) {
+  async fetchQuery(pars) {
+    const { cluster } = this.props.searchInputState
+    const params = Object.assign({}, pars, { cluster })
     await this.store.fetchQuery(params)
     return this.store.data
   }
 
+  @action
+  fetchHistogram() {
+    const query = this.getQueryParams()
+    this.store.interval = this.duration.interval
+    this.store.fetchHistogram({ ...query, ...this.duration })
+  }
+
   getQueryParams() {
-    const { query: inputQuery, queryMode } = this.props.searchInputState
+    const {
+      query: inputQuery,
+      queryMode,
+      cluster,
+    } = this.props.searchInputState
     return inputQuery
       .filter(({ key }) => key)
-      .reduce((searchQuery, query) => {
-        const queryKey = query.key
-        const newQueryValue = query.value
-        const key = queryMode ? queryKey : queryKeyMapping[queryKey]
-        const preQueryValue = searchQuery[key]
-        searchQuery[key] = preQueryValue
-          ? `${preQueryValue},${newQueryValue}`
-          : newQueryValue
-        return searchQuery
-      }, {})
+      .reduce(
+        (searchQuery, query) => {
+          const queryKey = query.key
+          const newQueryValue = query.value
+          const key = queryMode ? queryKey : queryKeyMapping[queryKey]
+          const preQueryValue = searchQuery[key]
+          searchQuery[key] = preQueryValue
+            ? `${preQueryValue},${newQueryValue}`
+            : newQueryValue
+          return searchQuery
+        },
+        { cluster }
+      )
   }
 
   onSearchParamsChange = () => {
+    this.stopPolling()
     this.refreshQuery()
+    this.fetchHistogram()
   }
 
-  changeQueryMode = mode => {
-    this.props.searchInputState.queryMode = mode
-    this.onSearchParamsChange()
+  @action
+  toggleHistogram = () => {
+    this.setState(({ showHistogram }) => ({
+      showHistogram: !showHistogram,
+    }))
   }
 
-  onCancel = () => {
-    this.setState({ visible: false })
-  }
-
-  openDetailsModal = record => {
+  @action
+  togglePolling = () => {
+    const { polling } = this.state
+    polling ? this.stopPolling() : this.startPolling()
     this.setState({
-      detail: record,
-      eventMetadata: toArray(record),
-      visible: true,
+      polling: !polling,
     })
   }
 
@@ -212,10 +274,88 @@ export default class Detail extends React.PureComponent {
     )
   }
 
-  renderSearchBar() {
+  startPolling() {
+    this.poll()
+    this.pollingInterval = setInterval(this.poll, this.state.pollingFrequency)
+  }
+
+  poll = () => {
     const { searchInputState } = this.props
+    const { duration, step } = DefaultRealTimeConfig
+    searchInputState.end = Math.ceil(Date.now() / 1000)
+    searchInputState.start = searchInputState.end - duration
+    searchInputState.step = step
+    searchInputState.durationAlias = `${duration / 60}m`
+    this.fetchHistogram()
+    this.refreshQuery()
+  }
+
+  stopPolling() {
+    this.setState({
+      polling: false,
+    })
+    clearInterval(this.pollingInterval)
+  }
+
+  @action
+  async addPollingQuery() {
+    const query = this.getQueryParams()
+    const duration = {
+      from: 0,
+      start_time: Date.now() - this.state.pollingFrequency,
+      end_time: Date.now(),
+    }
+    const logs = await this.fetchQuery({ ...query, ...duration })
+    this.logs.push(...logs)
+    this.scrollToBottom()
+  }
+
+  @action
+  changeFrequency = value => {
+    this.setState({
+      pollingFrequency: value,
+    })
+    if (this.state.polling) {
+      this.stopPolling()
+      this.startPolling()
+    }
+  }
+
+  changeQueryMode = mode => {
+    this.props.searchInputState.queryMode = mode
+    this.onSearchParamsChange()
+  }
+
+  changeClusterChange = cluster => {
+    this.props.searchInputState.setCluster(cluster)
+    this.onSearchParamsChange()
+  }
+
+  onCancel = () => {
+    this.setState({ visible: false })
+  }
+
+  openDetailsModal = record => {
+    this.setState({
+      detail: record,
+      eventMetadata: toArray(record),
+      visible: true,
+    })
+  }
+
+  renderSearchBar() {
+    const { searchInputState, clustersOpts } = this.props
     return (
       <div className={styles.searchBar}>
+        <span className={styles.clusterSelect}>
+          <Select
+            value={searchInputState.cluster}
+            onChange={this.changeClusterChange}
+            className={styles.queryModeOptions}
+            options={clustersOpts}
+          />
+        </span>
+
         <SearchInput
           className={styles.searchInput}
           placeholder={t('search condition')}
@@ -231,6 +371,67 @@ export default class Detail extends React.PureComponent {
             options={queryModeOptions}
           />
         </span>
+      </div>
+    )
+  }
+
+  renderToolBar() {
+    const { showHistogram, polling, pollingFrequency } = this.state
+
+    return (
+      <div className={styles.toolbar}>
+        <div>
+          {t('Time topology')}
+          <span
+            className={styles.showHistogramBtn}
+            onClick={this.toggleHistogram}
+          >
+            {showHistogram ? t('Display') : t('Hidden')}
+            <Icon name="caret-down" type="light" />
+          </span>
+        </div>
+        <div>
+          <span className={styles.pollingBtn} onClick={this.togglePolling}>
+            <Tooltip
+              content={
+                polling ? t('STOP_REAL_TIME_LOG') : t('START_REAL_TIME_LOG')
+              }
+            >
+              <Icon name={polling ? 'stop' : 'start'} type="light" size={16} />
+            </Tooltip>
+          </span>
+          <span className={styles.frequencyOpts}>
+            <span> {t('Refresh Rate')}:</span>
+            <Select
+              value={pollingFrequency}
+              onChange={this.changeFrequency}
+              className={styles.frequencyOptions}
+              options={this.frequencyOptions}
+            />
+          </span>
+        </div>
+      </div>
+    )
+  }
+
+  renderTimeChart() {
+    const { logsCount, histogramData, interval } = this.store
+    const { buckets = [] } = toJS(histogramData) || {}
+    return (
+      <div className={styles.chartContainer}>
+        <div className={styles.recentSummary}>
+          <h2 className={styles.count}>{logsCount}</h2>
+          <p>{t('Search Result')}</p>
+        </div>
+        <div className={styles.chart}>
+          <TimeBar
+            xKey={'time'}
+            data={buckets}
+            legend={[['count', t('Event statistics')]]}
+            interval={interval}
+            onBarClick={this.selectedDurationParameter}
+          />
+        </div>
       </div>
     )
   }
@@ -254,10 +455,13 @@ export default class Detail extends React.PureComponent {
   }
 
   render() {
+    const { showHistogram } = this.state
     return (
       <div className={styles.container}>
         {this.renderSearchBar()}
         <div className={styles.searchResult}>
+          {this.renderToolBar()}
+          {showHistogram && this.renderTimeChart()}
           {this.renderTable()}
           {this.renderDetailModal()}
         </div>

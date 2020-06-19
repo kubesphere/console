@@ -5,8 +5,6 @@ import moment from 'moment-mini'
 import stripAnsi from 'strip-ansi'
 
 export default class EventSearchStore {
-  resource = 'events'
-
   @observable
   isLoading = true
 
@@ -34,18 +32,19 @@ export default class EventSearchStore {
   @observable
   namespaces = []
 
+  @observable
+  logsCount = 0
+
   constructor(state = {}) {
     Object.getOwnPropertyNames(state).forEach(prop => {
       this[prop] = state[prop]
     })
   }
 
-  get apiVersion() {
-    return 'kapis/tenant.kubesphere.io/v1alpha2/auditing'
-  }
-
-  get fetchUrl() {
-    return `${this.apiVersion}/${this.resource}`
+  fetchUrl(cluster) {
+    return cluster
+      ? `kapis/clusters/${cluster}/tenant.kubesphere.io/v1alpha2/auditing/events`
+      : 'kapis/tenant.kubesphere.io/v1alpha2/auditing/events'
   }
 
   @action
@@ -55,7 +54,7 @@ export default class EventSearchStore {
   }
 
   @action
-  async fetchTodayHistogram(params = {}) {
+  async fetchTodayHistogram({ cluster, ...params } = {}) {
     this.isLoading = true
 
     const defaultParams = {
@@ -70,7 +69,7 @@ export default class EventSearchStore {
     }
 
     const { statistics = {} } = await to(
-      request.get(this.fetchUrl, assign(defaultParams, params))
+      request.get(this.fetchUrl(cluster), assign(defaultParams, params))
     )
 
     this.isLoading = false
@@ -79,7 +78,7 @@ export default class EventSearchStore {
   }
 
   @action
-  async fetchHistogram(params = {}) {
+  async fetchHistogram({ cluster, ...params } = {}) {
     this.isLoading = true
 
     const defaultParams = {
@@ -90,8 +89,10 @@ export default class EventSearchStore {
     }
 
     const { histogram = {} } = await to(
-      request.get(this.fetchUrl, assign(defaultParams, params))
+      request.get(this.fetchUrl(cluster), assign(defaultParams, params))
     )
+
+    this.logsCount = histogram.total || 0
 
     this.isLoading = false
 
@@ -99,7 +100,7 @@ export default class EventSearchStore {
   }
 
   @action
-  async fetchQuery(params = {}, options = {}) {
+  async fetchQuery({ cluster, ...params } = {}, options = {}) {
     this.isLoading = true
 
     const defaultParams = {
@@ -110,7 +111,7 @@ export default class EventSearchStore {
 
     const queryParams = assign(defaultParams, params)
 
-    const resp = await to(request.get(this.fetchUrl, queryParams))
+    const resp = await to(request.get(this.fetchUrl(cluster), queryParams))
 
     const query = get(resp, 'query', {})
 
