@@ -47,13 +47,7 @@ export default class SecretStore extends Base {
   module = 'secrets'
 
   @action
-  async create(data) {
-    const namespace = get(data, 'metadata.namespace')
-
-    if (!namespace) {
-      return
-    }
-
+  async create(data, params) {
     this.isSubmitting = true
 
     if (data && data.type === 'kubernetes.io/dockerconfigjson') {
@@ -62,7 +56,7 @@ export default class SecretStore extends Base {
 
     data && dataFomatter(data)
 
-    return this.submitting(request.post(this.getListUrl({ namespace }), data))
+    return this.submitting(request.post(this.getListUrl(params), data))
   }
 
   @action
