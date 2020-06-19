@@ -23,6 +23,8 @@ import { Message } from '@pitrix/lego-ui'
 import CredentialStore from 'stores/devops/credential'
 import BaseStore from 'stores/devops/base'
 
+import { generateId } from 'utils'
+
 const formatPipeLineJson = json => {
   if (!get(json, 'pipeline.stages')) return
   json.pipeline.stages = json.pipeline.stages.map(stage => {
@@ -60,6 +62,7 @@ export default class Store extends BaseStore {
           steps: [],
         },
       ],
+      name: `stage-${generateId(5)}`,
     }
   }
 

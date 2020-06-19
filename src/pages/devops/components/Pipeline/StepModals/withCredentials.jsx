@@ -20,7 +20,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { get } from 'lodash'
 
-import { action } from 'mobx'
+import { action, toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import { Form, Modal } from 'components/Base'
 import { Input, Select } from '@pitrix/lego-ui'
@@ -192,7 +192,7 @@ export default class WithCredentials extends React.Component {
           >
             <Select
               name="credentialsId"
-              options={credentials}
+              options={toJS(credentials)}
               onChange={this.handleCredentialChange}
             />
           </Form.Item>
