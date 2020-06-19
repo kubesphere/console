@@ -101,11 +101,11 @@ export default {
   ACCESS_LOADBALANCER_TIP:
     '通过云服务商提供的负载均衡器来访问服务 (LoadBalancer)',
 
-  'The currently selectors': '当前设置的选择器',
+  'The current selector': '当前设置的选择器',
   'Commonly included tags in the current workloads':
     '当前的工作负载中共同包含的标签',
   SERVICE_SELECTOR_AFFECT_2: '共影响到 {count} 个工作负载',
-  ' has no corresponding workload': '没有对应的工作负载',
+  ' has no corresponding workload.': '没有对应的工作负载',
   'Please input selectors that have corresponding workloads':
     '请输入有对应工作负载的选择器',
   Creating: '正在创建',

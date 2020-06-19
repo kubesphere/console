@@ -311,7 +311,7 @@ export default {
   'Revision Rollback': '版本回退',
   'Rollback Revisions': '回退版本',
   'Current Revision': '当前版本',
-  'Excute Records': '执行记录',
+  'Execution Records': '执行记录',
   'Job Records': '任务记录',
   'Cluster Resource Status': '集群资源状态',
   'Resource Status': '资源状态',
@@ -359,7 +359,7 @@ export default {
   Redeploy: '重新部署',
   'Redeploy Successfully': '重新部署成功',
 
-  'Last schedule time': '上次执行时间',
+  'Last Executed Time': '上次执行时间',
 
   REDEPLOY_CONFIRM_DESC:
     '您即将重新部署工作负载 {resource} ({type}) , 容器组将根据更新策略进行重新部署，您的业务可能会被暂时中断。',

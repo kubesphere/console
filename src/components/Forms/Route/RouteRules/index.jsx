@@ -217,7 +217,7 @@ class RouteRules extends React.Component {
     if (isFederated) {
       const overrides = JSON.stringify(get(this.formTemplate, 'spec.overrides'))
       if (overrides.indexOf('/spec/rules') === -1) {
-        return callback({ message: t('Please add at least one routing rule') })
+        return callback({ message: t('Please add at least one routing rule.') })
       }
       return callback()
     }
@@ -227,7 +227,7 @@ class RouteRules extends React.Component {
     }
 
     if (isEmpty(value)) {
-      return callback({ message: t('Please add at least one routing rule') })
+      return callback({ message: t('Please add at least one routing rule.') })
     }
 
     callback()

@@ -104,7 +104,7 @@ export default {
   'sourceIP Auditing Query Tip':
     'You can view related event information according to the source IP',
   TOTAL_AUDITING_TODAY:
-    'A total of <span class={className}> {auditing} </span> auditing were collected today.',
+    'A total of <span class={className}> {auditing} </span> auditing logs were collected today.',
   NO_AUDITING_TODAY: 'Auditing not included today',
   CUSTOM_MONITORING_DASHBOARD: 'Custom Monitoring Dashboard',
 }

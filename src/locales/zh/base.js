@@ -77,7 +77,7 @@ export default {
 
   History: '历史记录',
 
-  'Recent visit': '最近访问',
+  'Recent Visit': '最近访问',
 
   CLUSTERS_MANAGE_DESC:
     '对多集群以及每个集群的基础资源、服务组件和应用资源等的统一管理',
@@ -288,7 +288,7 @@ export default {
   'Please input a name to find': '请输入名称进行查找',
   'Name exists': '名称已存在',
   'Duplicate keys': '无法添加重复的 key',
-  'No empty keys': '无法添加空的 key',
+  'Empty keys': '无法添加空的 key',
 
   'Log Out': '登出',
   About: '关于',
@@ -366,7 +366,7 @@ export default {
   'No parameters': '暂无参数',
   'Back To List': '返回列表',
   List: '列表',
-  'Range of time': '时间范围',
+  'Time Range': '时间范围',
   'Last Updated Time': '上次更新时间',
   'Updated at': '更新于',
   'Sure to delete': '确认删除',
@@ -529,7 +529,7 @@ export default {
   EMPTY_WRAPPER: '未发现{resource}',
 
   'User Guides': '用户指南',
-  'Get help quickly': '快速获取帮助',
+  'Quick Support': '快速获取帮助',
   'Developer community': '开发者社区',
   HISTORY_DESC:
     '当您在多个企业空间或者项目下进行协同工作时，浏览器会记录下您最近访问的路径，您可以通过 F1 / (Win + K) / (Command + K) 查看历史记录，来快速切换您的访问资源。',

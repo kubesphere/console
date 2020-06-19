@@ -220,7 +220,7 @@ export default class ContainerItem extends React.Component {
                   .map(port => `${port.containerPort}/${port.protocol}`)
                   .join(', ')}
           </div>
-          <p>{t('Port')}</p>
+          <p>{t('Ports')}</p>
         </div>
         <ContainerLogModal
           visible={showContainerLog}

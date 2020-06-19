@@ -131,9 +131,9 @@ export default {
   DEPENDENT_STORAGE_CLASS_DELETE_TIPS:
     'Please check if the storage class are required by other resource. If there are resources dependent on the it, close them first',
 
-  CREATE_VOLUME_BY_STORAGECLASS: 'Create volume by storageclass',
-  CREATE_VOLUME_BY_SNAPSHOT: 'Create volume by snapshot',
-  SELECT_SNAPSHOT_TO_CREATE_VOLUME: 'select snapshot to create volume',
+  CREATE_VOLUME_BY_STORAGECLASS: 'Create Volume by Storageclass',
+  CREATE_VOLUME_BY_SNAPSHOT: 'Create Volume by Snapshot',
+  SELECT_SNAPSHOT_TO_CREATE_VOLUME: 'Select snapshot to create volume.',
   VOLUMESNAPSHOT_DESC:
     'A volume snapshot refers to a snapshot of a volume at a particular time point. It can be used to create new volumes (preset the snapshot data) or restore an existing volume to its previous status (displayed in snapshots).',
   VOLUMESNAPSHOT_CREATE_DESC:

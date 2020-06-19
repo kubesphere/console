@@ -159,7 +159,7 @@ class ExcuteRecords extends React.Component {
 
   render() {
     return (
-      <Card className={styles.main} title={t('Excute Records')}>
+      <Card className={styles.main} title={t('Execution Records')}>
         <div className={styles.content}>{this.renderTable()}</div>
       </Card>
     )
