@@ -3,16 +3,21 @@
 
 .wrapper {
   display: inline-block;
+  vertical-align: middle;
   height: 20px;
   padding: 0 4px;
   font-size: $size-small;
   line-height: 20px;
   font-weight: 600;
   border-radius: 2px;
+  max-width: 100px;
+  color: $white;
+  background-color: $dark-color06;
+  @include ellipsis;
 
-  &.default {
+  &.secondary {
     color: $white;
-    background-color: $dark-color07;
+    background-color: $dark-color05;
   }
 
   &.warning {

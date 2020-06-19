@@ -30,18 +30,23 @@ export default class RoleStore extends Base {
 
   getPath({ cluster, workspace, namespace, devops }) {
     let path = ''
+
     if (cluster) {
       path += `/klusters/${cluster}`
     }
-    if (workspace) {
-      path += `/workspaces/${workspace}`
-    }
+
     if (namespace) {
-      path += `/namespaces/${namespace}`
+      return `${path}/namespaces/${namespace}`
     }
+
     if (devops) {
-      path += `/devops/${devops}`
+      return `${path}/devops/${devops}`
     }
+
+    if (workspace) {
+      return `/workspaces/${workspace}`
+    }
+
     return path
   }
 
@@ -83,7 +88,10 @@ export default class RoleStore extends Base {
         namespace,
         devops,
       }),
-      { ...params, annotation: 'kubesphere.io/creator=' }
+      {
+        ...params,
+        annotation: 'kubesphere.io/creator',
+      }
     )
 
     const data = result.items.map(item => ({
@@ -105,14 +113,12 @@ export default class RoleStore extends Base {
 
   @action
   batchDelete(rowKeys, { cluster, workspace, namespace }) {
-    for (const name in rowKeys) {
-      if (this.checkIfIsPresetRole(name)) {
-        Notify.error(
-          t('Error Tips'),
-          `${t('Unable to delete preset role')}: ${name}`
-        )
-        return
-      }
+    if (rowKeys.some(name => this.checkIfIsPresetRole(name))) {
+      Notify.error(
+        t('Error Tips'),
+        `${t('Unable to delete preset role')}: ${name}`
+      )
+      return
     }
 
     return this.submitting(

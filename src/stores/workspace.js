@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { isEmpty } from 'lodash'
+import { get, isEmpty } from 'lodash'
 import { action, observable } from 'mobx'
 import ObjectMapper from 'utils/object.mapper'
 import { DEFAULT_CLUSTER } from 'utils/constants'
@@ -31,6 +31,9 @@ export default class WorkspaceStore extends Base {
   module = 'workspaces'
 
   clusters = new List()
+
+  @observable
+  cluster = ''
 
   namespaces = new List()
 
@@ -48,14 +51,14 @@ export default class WorkspaceStore extends Base {
   getListUrl = this.getResourceUrl
 
   @action
-  async fetchDetail({ workspace } = {}) {
+  async fetchDetail({ cluster, workspace } = {}) {
     if (isEmpty(workspace)) {
       return
     }
 
     this.isLoading = true
     const detail = await request.get(
-      this.getDetailUrl({ name: workspace }),
+      this.getDetailUrl({ name: workspace, cluster }),
       null,
       null,
       res => {
@@ -69,8 +72,10 @@ export default class WorkspaceStore extends Base {
       }
     )
 
-    this.detail = this.mapper(detail)
+    this.detail = { ...this.mapper(detail), cluster }
     this.isLoading = false
+
+    return { ...this.mapper(detail), cluster }
   }
 
   @action
@@ -98,5 +103,20 @@ export default class WorkspaceStore extends Base {
       page: 1,
       isLoading: false,
     })
+
+    if (this.clusters.data.length > 0) {
+      this.selectCluster(
+        get(
+          this.clusters.data.find(cluster => cluster.isHost) ||
+            this.clusters.data[0],
+          'name'
+        )
+      )
+    }
+  }
+
+  @action
+  selectCluster(cluster) {
+    this.cluster = cluster
   }
 }

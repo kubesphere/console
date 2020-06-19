@@ -38,6 +38,10 @@ class Events extends React.Component {
     return this.props.match.params.cluster
   }
 
+  get workspace() {
+    return this.props.match.params.workspace
+  }
+
   getColumns = () => [
     {
       title: t('name'),
@@ -50,9 +54,9 @@ class Events extends React.Component {
       render: record => {
         if (record.ranges) {
           const arr = record.name.split('/')
-          const url = `/cluster/${this.cluster}/devops/${arr[0]}/pipelines/${
-            arr[1]
-          }${arr[2] ? `/branch/${arr[2]}` : ''}/activity`
+          const url = `/${this.workspace}/clusters/${this.cluster}/devops/${
+            arr[0]
+          }/pipelines/${arr[1]}${arr[2] ? `/branch/${arr[2]}` : ''}/activity`
           return (
             <span>
               {record.ranges.ranges.map(range => (

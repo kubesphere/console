@@ -125,7 +125,6 @@ export default class Routers extends React.Component {
 
   getColumns = () => {
     const { getSortOrder, module } = this.props
-    const { cluster, namespace } = this.props.match.params
     return [
       {
         title: t('Name'),
@@ -139,7 +138,7 @@ export default class Routers extends React.Component {
             iconSize={40}
             title={getDisplayName(record)}
             desc={record.description || '-'}
-            to={`/cluster/${cluster}/namespaces/${namespace}/${module}/${name}`}
+            to={`${this.props.match.url}/${name}`}
           />
         ),
       },
@@ -195,7 +194,7 @@ export default class Routers extends React.Component {
           <Icon className="margin-r12" name="loadbalancer" size={40} />
           <Text
             className={styles.text}
-            title={t('Gateway not set')}
+            title={t('Gateway Not Set')}
             description={t('PROJECT_INTERNET_ACCESS_DESC')}
           />
           {this.canSetGateway && (

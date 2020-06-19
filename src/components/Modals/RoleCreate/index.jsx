@@ -132,12 +132,6 @@ export default class CreateModal extends React.Component {
         visible={visible}
       >
         <Form.Item
-          label={t(`${t('Role Name')}(${t('Alias')})`)}
-          desc={t('ALIAS_DESC')}
-        >
-          <Input name="metadata.annotations['kubesphere.io/alias-name']" />
-        </Form.Item>
-        <Form.Item
           label={t('Role Identifier')}
           desc={t('NAME_DESC')}
           tip={isWorkspaceRole ? t('WORKSPACE_ROLE_NAME_TIP') : null}
@@ -151,6 +145,12 @@ export default class CreateModal extends React.Component {
           ]}
         >
           <Input name="metadata.name" />
+        </Form.Item>
+        <Form.Item
+          label={t(`${t('Role Name')}(${t('Alias')})`)}
+          desc={t('ALIAS_DESC')}
+        >
+          <Input name="metadata.annotations['kubesphere.io/alias-name']" />
         </Form.Item>
         <Form.Item label={t('Description')}>
           <TextArea name="metadata.annotations['kubesphere.io/description']" />

@@ -82,6 +82,8 @@ export default class EditPipelineConfig extends React.Component {
       }
     })
 
+    formTemplate.description = scmData.description
+
     this.setState({
       formTemplate,
     })

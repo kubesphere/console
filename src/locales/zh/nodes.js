@@ -101,7 +101,7 @@ export default {
   NODE_OUTOFDISK: '磁盘可用空间(OutOfDisk)',
   NODE_OUTOFDISK_DESC: '检查节点上是否有空间添加新的容器组',
   NODE_MEMORYPRESSURE: '内存压力(MemoryPressure)',
-  NODE_MEMORYPRESSURE_DESC: '如果节点上的内容使用压力过大,则调度失败',
+  NODE_MEMORYPRESSURE_DESC: '如果节点上的内存使用压力过大,则调度失败',
   NODE_DISKPRESSURE: '磁盘压力(DiskPressure)',
   NODE_DISKPRESSURE_DESC: '磁盘大小存在压力 - 即磁盘容量低',
   NODE_PIDPRESSURE: '进程压力(PIDPressure)',

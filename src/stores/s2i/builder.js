@@ -21,7 +21,7 @@ import { action, observable } from 'mobx'
 import Base from 'stores/base'
 import { generateId } from 'utils'
 import TEMPLATE from 'utils/form.templates'
-import { S2i_SUPPORTED_TYPES, B2I_SUPPORTED_TYPES } from 'utils/constants'
+import { S2I_SUPPORTED_TYPES, B2I_SUPPORTED_TYPES } from 'utils/constants'
 
 import S2IRunStore from './run'
 
@@ -39,7 +39,7 @@ export default class S2IBuilderStore extends Base {
   getS2iSupportLanguage = async params => {
     const result = await this.getBuilderTemplate(params)
     const supportS2iLanguage = {
-      s2i: [...S2i_SUPPORTED_TYPES],
+      s2i: [...S2I_SUPPORTED_TYPES],
       b2i: [...B2I_SUPPORTED_TYPES],
     }
     const b2iMap = {
@@ -172,8 +172,7 @@ export default class S2IBuilderStore extends Base {
     }
 
     const name = `${builderName.slice(0, 37)}-${generateId(3)}`
-
-    return this.runStore.create({
+    const data = {
       apiVersion: 'devops.kubesphere.io/v1alpha1',
       kind: 'S2iRun',
       metadata: {
@@ -186,7 +185,8 @@ export default class S2IBuilderStore extends Base {
         binaryUrl,
         ...(binaryUrl ? { isBinaryURL: true } : {}),
       },
-    })
+    }
+    return this.runStore.create(data, { cluster, namespace })
   }
 
   @action

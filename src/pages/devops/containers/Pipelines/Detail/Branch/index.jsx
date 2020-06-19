@@ -42,10 +42,13 @@ export default class Branch extends React.Component {
   }
 
   get enabledActions() {
+    const { cluster, project_id } = this.props.match.params
+    const devops = this.store.getDevops(project_id)
+
     return globals.app.getActions({
       module: 'pipelines',
-      cluster: this.props.match.params.cluster,
-      // devops: this.props.devopsStore.data.name,
+      cluster,
+      devops,
     })
   }
 
@@ -146,7 +149,7 @@ export default class Branch extends React.Component {
     const isEmptyList = isLoading === false && total === 0
 
     const omitFilters = omit(filters, 'page')
-    const runnable = this.enabledActions.includes('trigger')
+    const runnable = this.enabledActions.includes('edit')
 
     if (isEmptyList && !filters.page) {
       return (

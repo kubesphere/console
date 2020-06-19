@@ -60,10 +60,15 @@ export default class JenkinsEdit extends React.Component {
   }
 
   checkScriptCompile = async () => {
-    const { project_id, name: pipeline } = this.props.params
+    const { project_id, name: pipeline, cluster } = this.props.params
     this.setState({ isLoading: true })
     const res = await this.store
-      .checkScriptCompile({ value: this.newValue, pipeline, project_id })
+      .checkScriptCompile({
+        value: this.newValue,
+        pipeline,
+        project_id,
+        cluster,
+      })
       .finally(() => {
         this.setState({ isLoading: false })
       })

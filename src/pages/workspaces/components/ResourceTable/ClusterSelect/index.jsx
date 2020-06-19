@@ -17,40 +17,21 @@
  */
 
 import React, { Component } from 'react'
-import { observer, inject } from 'mobx-react'
-import { withRouter } from 'react-router'
 import { Select } from '@pitrix/lego-ui'
 
 import styles from './index.scss'
 
-@withRouter
-@inject('rootStore')
-@observer
 export default class ClusterSelect extends Component {
-  routing = this.props.rootStore.routing
-
-  get workspace() {
-    return this.props.match.params.workspace
-  }
-
-  handleChange = cluster => {
-    const { module } = this.props
-
-    this.routing.push(
-      `/workspaces/${this.workspace}/${module}?cluster=${cluster}`
-    )
-  }
-
   valueRenderer = option => `${t('Cluster')}: ${option.label}`
 
   render() {
-    const { cluster, clusters } = this.props
+    const { cluster, clusters, onChange } = this.props
 
     return (
       <Select
         className={styles.select}
         value={cluster}
-        onChange={this.handleChange}
+        onChange={onChange}
         options={clusters}
         valueRenderer={this.valueRenderer}
       />

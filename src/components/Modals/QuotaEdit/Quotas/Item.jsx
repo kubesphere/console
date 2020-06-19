@@ -66,7 +66,7 @@ export default class QuotaItem extends React.Component {
           className="margin-l12"
           value={value}
           placeholder={t(
-            'You can limit the number of resources, empty is no limit.'
+            'You can limit the number of resources. Blank means no limit.'
           )}
           onChange={onChange}
         />

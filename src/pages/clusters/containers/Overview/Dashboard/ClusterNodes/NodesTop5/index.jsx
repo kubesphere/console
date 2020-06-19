@@ -75,7 +75,7 @@ export default class NodesTop5 extends Component {
                     {node.node}
                   </Link>
                 }
-                description={get(node, 'node_ip', '-')}
+                description={get(node, 'host_ip', '-')}
               />
               <Text
                 className={styles.cpu}

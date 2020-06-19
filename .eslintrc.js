@@ -49,8 +49,9 @@ module.exports = {
   rules: {
     // allow paren-less arrow functions
     'arrow-parens': 0,
-    'import/no-extraneous-dependencies': [2, { devDependencies: true }],
+    'import/no-extraneous-dependencies': 0,
     'import/no-dynamic-require': 0,
+    'import/no-cycle': 0,
     // allow async-await
     'generator-star-spacing': 0,
     // allow debugger during development
@@ -65,6 +66,7 @@ module.exports = {
     'no-return-await': 0,
     'no-restricted-syntax': 0,
     'no-await-in-loop': 0,
+    'no-restricted-globals': 0,
     'no-empty': [
       2,
       {
@@ -97,6 +99,8 @@ module.exports = {
     'class-methods-use-this': 0,
     'no-nested-ternary': 0,
     'no-use-before-define': 0,
+    'prefer-destructuring': 0,
+    'max-classes-per-file': 0,
   },
   globals: {
     t: true,

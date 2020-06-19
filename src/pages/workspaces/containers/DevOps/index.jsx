@@ -17,8 +17,7 @@
  */
 
 import React from 'react'
-import { computed, get } from 'mobx'
-import { parse } from 'qs'
+import { computed } from 'mobx'
 
 import { Avatar } from 'components/Base'
 import Banner from 'components/Cards/Banner'
@@ -40,7 +39,7 @@ export default class DevOps extends React.Component {
   workspaceStore = this.props.workspaceStore
 
   get itemActions() {
-    const { trigger, getData } = this.props
+    const { trigger } = this.props
     return [
       {
         key: 'edit',
@@ -48,7 +47,7 @@ export default class DevOps extends React.Component {
         text: t('Edit'),
         action: 'edit',
         onClick: item =>
-          trigger('devops.edit', { detail: item, success: getData }),
+          trigger('devops.edit', { detail: item, success: this.getData }),
       },
       {
         key: 'delete',
@@ -62,7 +61,7 @@ export default class DevOps extends React.Component {
             detail: item,
             success: () => {
               setTimeout(() => {
-                getData()
+                this.getData()
               }, 500)
             },
           }),
@@ -83,6 +82,10 @@ export default class DevOps extends React.Component {
     ]
   }
 
+  get workspace() {
+    return this.props.match.params.workspace
+  }
+
   @computed
   get clusters() {
     return this.workspaceStore.clusters.data.map(item => ({
@@ -91,33 +94,25 @@ export default class DevOps extends React.Component {
     }))
   }
 
-  @computed
-  get cluster() {
-    const params = parse(location.search.slice(1))
-    return params.cluster || this.hostCluster
+  get clusterProps() {
+    return {
+      clusters: this.clusters,
+      cluster: this.workspaceStore.cluster,
+      onClusterChange: this.handleClusterChange,
+    }
   }
 
-  @computed
-  get hostCluster() {
-    if (this.workspaceStore.clusters.data.length < 1) {
-      return ''
-    }
-
-    return get(
-      this.workspaceStore.clusters.data.find(cluster => cluster.isHost) ||
-        this.workspaceStore.clusters.data[0],
-      'name'
-    )
+  handleClusterChange = cluster => {
+    this.workspaceStore.selectCluster(cluster)
+    this.getData()
   }
 
   getData = async ({ silent, ...params } = {}) => {
-    this.query = params
-
     const { store } = this.props
 
     silent && (store.list.silent = true)
     await store.fetchList({
-      cluster: this.cluster,
+      cluster: this.workspaceStore.cluster,
       ...this.props.match.params,
       ...params,
     })
@@ -129,15 +124,23 @@ export default class DevOps extends React.Component {
       title: t('Name'),
       dataIndex: 'name',
       width: '20%',
-      render: (name, record) => (
-        <Avatar
-          icon="strategy-group"
-          iconSize={40}
-          to={`/cluster/${this.cluster}/devops/${record.namespace}`}
-          desc={record.description || '-'}
-          title={name}
-        />
-      ),
+      render: (name, record) => {
+        return (
+          <Avatar
+            icon="strategy-group"
+            iconSize={40}
+            to={
+              record.namespace && record.cluster
+                ? `/${this.workspace}/clusters/${record.cluster}/devops/${
+                    record.namespace
+                  }`
+                : null
+            }
+            desc={record.description || '-'}
+            title={name}
+          />
+        )
+      },
     },
     {
       title: t('ID'),
@@ -154,7 +157,7 @@ export default class DevOps extends React.Component {
     },
     {
       title: t('Created Time'),
-      dataIndex: 'create_time',
+      dataIndex: 'createTime',
       isHideable: true,
       width: '20%',
       render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
@@ -166,14 +169,15 @@ export default class DevOps extends React.Component {
       ...this.props.match.params,
       success: () => {
         setTimeout(() => {
-          this.props.getData()
+          this.getData()
         }, 500)
       },
     })
+
   render() {
     const { bannerProps, tableProps } = this.props
     return (
-      <ListPage {...this.props} getData={this.getData}>
+      <ListPage {...this.props} getData={this.getData} noWatch>
         <Banner
           {...bannerProps}
           description={t('DEVOPS_DESCRIPTION')}
@@ -185,8 +189,7 @@ export default class DevOps extends React.Component {
           columns={this.getColumns()}
           onCreate={this.showCreate}
           searchType="name"
-          cluster={this.cluster}
-          clusters={this.clusters}
+          {...this.clusterProps}
         />
       </ListPage>
     )

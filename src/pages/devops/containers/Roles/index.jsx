@@ -37,15 +37,15 @@ import RoleStore from 'stores/role'
 export default class Secrets extends React.Component {
   componentDidMount() {
     this.props.store.fetchRoleTemplates({
-      devops: this.devopsName,
+      devops: this.devops,
       cluster: this.cluster,
     })
   }
 
   showAction = record => !globals.config.presetRoles.includes(record.name)
 
-  get devopsName() {
-    return this.props.devopsStore.project_name
+  get devops() {
+    return this.props.devopsStore.devops
   }
 
   get cluster() {
@@ -55,7 +55,7 @@ export default class Secrets extends React.Component {
   get enabledActions() {
     return globals.app.getActions({
       module: 'roles',
-      devops: this.devopsName,
+      devops: this.devops,
       cluster: this.cluster,
     })
   }
@@ -118,7 +118,7 @@ export default class Secrets extends React.Component {
 
   getData = () => {
     this.props.store.fetchList({
-      devops: this.devopsName,
+      devops: this.devops,
       cluster: this.cluster,
     })
   }
@@ -169,7 +169,7 @@ export default class Secrets extends React.Component {
   showCreate = () =>
     this.props.trigger('role.create', {
       module: 'devopsroles',
-      devops: this.devopsName,
+      devops: this.devops,
       cluster: this.cluster,
       roleTemplates: toJS(this.props.store.roleTemplates.data),
       success: this.getData,

@@ -37,6 +37,7 @@ export default {
         modal: DevOpsCreateModal,
         store,
         workspace,
+        hideCluster: !globals.app.isMultiCluster,
         ...props,
       })
     },

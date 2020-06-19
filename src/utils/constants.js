@@ -240,7 +240,6 @@ export const MODULE_KIND_MAP = {
   pods: 'Pod',
   services: 'Service',
   ingresses: 'Ingress',
-  volumes: 'PersistentVolumeClaim',
   persistentvolumeclaims: 'PersistentVolumeClaim',
   storageclasses: 'StorageClass',
   'alerting-policy': 'AlertingPolicy',
@@ -251,6 +250,9 @@ export const MODULE_KIND_MAP = {
   volumesnapshots: 'VolumeSnapshot',
   namespaces: 'Namespace',
   workspaces: 'WorkspaceTemplate',
+  dashboards: 'Dashboard',
+  applications: 'Application',
+  users: 'User',
 }
 
 export const QUOTAS_MAP = {
@@ -433,7 +435,7 @@ export const GRAY_RELEASE_CATEGORIES = [
   {
     icon: 'bird',
     type: 'Canary',
-    title: 'Canary Releases',
+    title: 'Canary Release',
     desc: 'CANARY_RELEASES_DESC',
   },
   {
@@ -780,7 +782,7 @@ export const PROVISIONERS = [
   },
 ]
 
-export const S2i_SUPPORTED_TYPES = ['java', 'nodejs', 'python']
+export const S2I_SUPPORTED_TYPES = ['java', 'nodejs', 'python']
 export const B2I_SUPPORTED_TYPES = ['jar', 'war', 'binary']
 
 export const MAX_SIZE_UPLOAD = 2 * 1024 * 1024
@@ -818,6 +820,7 @@ export const API_VERSIONS = {
   configmaps: 'api/v1',
   events: 'api/v1',
   resourcequotas: 'api/v1',
+  limitranges: 'api/v1',
   persistentvolumeclaims: 'api/v1',
   ingresses: 'apis/extensions/v1beta1',
   nodes: 'api/v1',
@@ -833,8 +836,8 @@ export const API_VERSIONS = {
   workspaces: 'apis/tenant.kubesphere.io/v1alpha2',
   users: 'apis/iam.kubesphere.io/v1alpha2',
   globalroles: 'apis/iam.kubesphere.io/v1alpha2',
-  devops: 'apis/devops.kubesphere.io/v1alpha3',
-  pipelines: 'apis/devops.kubesphere.io/v1alpha3',
+  devops: 'kapis/devops.kubesphere.io/v1alpha3',
+  pipelines: 'kapis/devops.kubesphere.io/v1alpha3',
   workspaceroles: 'apis/iam.kubesphere.io/v1alpha2',
   dashboards: 'apis/monitoring.kubesphere.io/v1alpha1',
   namespacenetworkpolicies: 'apis/network.kubesphere.io/v1alpha1',
@@ -844,7 +847,9 @@ export const API_VERSIONS = {
 
 export const MONITOR_GRAPH_COLORS = [
   {
-    nameI18nKey: '默认配色',
+    get nameI18nKey() {
+      return t('Default Color')
+    },
     colors: [
       '#60acfc',
       '#23c2db',
@@ -856,7 +861,9 @@ export const MONITOR_GRAPH_COLORS = [
     ],
   },
   {
-    nameI18nKey: '冷色调',
+    get nameI18nKey() {
+      return t('Cool Color')
+    },
     colors: [
       '#678ed7',
       '#60acfc',
@@ -868,7 +875,9 @@ export const MONITOR_GRAPH_COLORS = [
     ],
   },
   {
-    nameI18nKey: '暖色调',
+    get nameI18nKey() {
+      return t('Warm Color')
+    },
     colors: [
       '#717adf',
       '#d15c7f',
@@ -892,11 +901,77 @@ export const COMPONENT_ICON_MAP = {
 }
 
 export const CLUSTER_PROVIDER_ICON = {
-  Custom: 'kubernetes',
-  QingCloud: 'qingcloud',
-  Google: 'google-plus',
-  Amazon: 'aws',
-  Azure: 'windows',
+  'Aliyun ACK': 'aliyun',
+  'Aure Kubernetes Service': 'windows',
+  'Huawei Cloud CCE': 'kubernetes',
+  'Amazon EKS': 'aws',
+  'Google Kubernetes Engine': 'google-plus',
+  'QingCloud Kubernetes Engine': 'qingcloud',
+  'Tencent Kubernetes Engine': 'kubernetes',
+}
+
+export const CLUSTER_PROVIDERS = [
+  {
+    label: 'Aliyun ACK',
+    value: 'Aliyun ACK',
+    icon: 'aliyun',
+  },
+  {
+    label: 'Aure Kubernetes Service',
+    value: 'Aure Kubernetes Service',
+    icon: 'windows',
+  },
+  {
+    label: 'Huawei Cloud CCE',
+    value: 'Huawei Cloud CCE',
+    icon: 'kubernetes',
+  },
+  {
+    label: 'Amazon EKS',
+    value: 'Amazon EKS',
+    icon: 'aws',
+  },
+  {
+    label: 'Google Kubernetes Engine',
+    value: 'Google Kubernetes Engine',
+    icon: 'google-plus',
+  },
+  {
+    label: 'QingCloud Kubernetes Engine',
+    value: 'QingCloud Kubernetes Engine',
+    icon: 'qingcloud',
+  },
+  {
+    label: 'Tencent Kubernetes Engine',
+    value: 'Tencent Kubernetes Engine',
+    icon: 'kubernetes',
+  },
+]
+
+export const CLUSTER_PRESET_GROUPS = [
+  {
+    label: 'production',
+    value: 'production',
+  },
+  {
+    label: 'development',
+    value: 'development',
+  },
+  {
+    label: 'testing',
+    value: 'testing',
+  },
+  {
+    label: 'demo',
+    value: 'demo',
+  },
+]
+
+export const CLUSTER_GROUP_TAG_TYPE = {
+  production: 'warning',
+  development: 'secondary',
+  testing: 'info',
+  demo: 'primary',
 }
 
 export const ROLE_QUERY_KEY = {

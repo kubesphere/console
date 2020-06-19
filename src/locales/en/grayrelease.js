@@ -34,7 +34,7 @@ export default {
     'Release based on traffic ratio: According to the traffic ratio configuration rule, the specified proportion of traffic will be split from the original version to the grayscale version.',
 
   GRAY_RELEASE_DESC:
-    'Grayscale release is an important means for the iterative software products to be safely launched in production environment. It provides a release method for software version deployment and upgrade smooth transition.',
+    'Grayscale release represents an important means of software product update in the production environment. It provides a release method for the smooth transition of software applications as they are updated and deployed.',
   GRAY_RELEASE_BY_CONTENT_TIP:
     'Release based on request content: According to the request content configuration rule, only traffic that meets certain conditions in the requested content will be split into grayscale versions. This policy is only valid for direct access to the portal service.',
 
@@ -53,7 +53,7 @@ export default {
     'The gateway for application governance is not found in the current project, so you cannot deploy the sample app. Please contact your project administrator to turn it on in [Advanced Settings].',
 
   PREREQUEST_FOR_USE_GRAYRELEASE_Q:
-    'Prerequisites for using grayscale release ?',
+    'Prerequisites for using grayscale release?',
   PREREQUEST_FOR_USE_GRAYRELEASE_A:
-    'With the grayscale release feature you need to create a composing app and turn on service governance for services that require grayscale release.',
+    'You need to create a composing app before you adopt grayscale release and enable the service governance feature for the service that will use grayscale release.',
 }

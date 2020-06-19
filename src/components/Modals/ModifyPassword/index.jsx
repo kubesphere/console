@@ -68,7 +68,7 @@ export default class ModifyPasswordModal extends Component {
 
     return (
       <Modal.Form
-        title={t('Modify Password')}
+        title={t('Change Password')}
         icon="pen"
         width={691}
         data={detail}

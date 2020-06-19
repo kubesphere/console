@@ -40,10 +40,12 @@ export default class LogSearchModal extends React.Component {
 
   @computed
   get clustersOpts() {
-    return this.clusters.list.data.map(({ name }) => ({
-      value: name,
-      label: `${t('Cluster')}: ${name}`,
-    }))
+    return this.clusters.list.data
+      .filter(item => item.configz.logging)
+      .map(({ name }) => ({
+        value: name,
+        label: `${t('Cluster')}: ${name}`,
+      }))
   }
 
   initStepState() {
@@ -125,9 +127,10 @@ export default class LogSearchModal extends React.Component {
   async componentDidMount() {
     await this.clusters.fetchList({
       limit: -1,
+      ascending: true,
     })
 
-    this.searchInputState.setCluster(this.clusters.list.data[0].name)
+    this.searchInputState.setCluster(this.clustersOpts[0].value)
   }
 
   render() {

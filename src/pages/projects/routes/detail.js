@@ -35,17 +35,7 @@ import ImageBuilderDetail from '../containers/ImageBuilder/Detail'
 import AlertPoliciesDetail from '../containers/Alerting/Policies/Detail'
 import AlertMessagesDetail from '../containers/Alerting/Messages/Detail'
 
-const PATH = '/cluster/:cluster/projects/:namespace'
-
-export default [
-  {
-    path: `${PATH}/:module/:name/pods/:podName/containers/:containerName`,
-    component: ContainerDetail,
-  },
-  {
-    path: `${PATH}/:module/:name/pods/:podName`,
-    component: PodDetail,
-  },
+export default PATH => [
   {
     path: `${PATH}/deployments/:name`,
     component: DeploymentDetail,
@@ -67,12 +57,12 @@ export default [
     component: CronJobDetail,
   },
   {
-    path: `${PATH}/pods/:podName`,
-    component: PodDetail,
-  },
-  {
     path: `${PATH}/pods/:podName/containers/:containerName`,
     component: ContainerDetail,
+  },
+  {
+    path: `${PATH}/pods/:podName`,
+    component: PodDetail,
   },
   {
     path: `${PATH}/services/:name`,

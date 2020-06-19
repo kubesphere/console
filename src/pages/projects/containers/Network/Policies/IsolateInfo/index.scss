@@ -1,7 +1,6 @@
 @import '~scss/variables';
 .wrapper {
   display: flex;
-  justify-content: flex-start;
   align-items: center;
   margin-bottom: 12px;
 }
@@ -9,8 +8,10 @@
   flex: 1;
   display: flex;
   padding: 0px 12px;
-  .icon {
-    margin-left: 15px;
+  :global {
+    .icon {
+      margin-left: 8px;
+    }
   }
 }
 .isolate {
@@ -47,7 +48,6 @@
   cursor: pointer;
   &::after {
     position: absolute;
-
     left: 100%;
     top: 0;
     width: 12px;

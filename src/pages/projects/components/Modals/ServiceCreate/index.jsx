@@ -40,6 +40,11 @@ export default class ServiceCreateModal extends React.Component {
     super(props)
     this.s2iStore = new S2iBuilderStore()
     this.workloadStore = new WorkloadStore()
+
+    this.showDevOps =
+      globals.app.hasClusterModule(props.cluster, 'devops') &&
+      !this.props.isFederated
+
     this.state = {
       type: '',
       workloadModule: 'deployments',
@@ -58,14 +63,18 @@ export default class ServiceCreateModal extends React.Component {
               name: 'Stateful Service',
               value: 'statefulservice',
             },
-            {
-              icon: 'ip',
-              name: 'External Service',
-              value: 'externalservice',
-            },
+            ...(this.props.isFederated
+              ? []
+              : [
+                  {
+                    icon: 'ip',
+                    name: 'External Service',
+                    value: 'externalservice',
+                  },
+                ]),
           ],
         },
-        ...(globals.app.hasKSModule('devops')
+        ...(this.showDevOps
           ? [
               {
                 name: 'SERVICE_FROM_CODE',
@@ -81,24 +90,28 @@ export default class ServiceCreateModal extends React.Component {
               },
             ]
           : []),
-        {
-          name: 'Custom Creation',
-          description: 'SERVICE_CUSTOM_CREATE',
-          options: [
-            {
-              icon: 'clock',
-              name: 'Specify Workloads',
-              value: 'simpleservice',
-            },
-            { icon: 'coding', name: 'Edit by YAML', value: 'yaml' },
-          ],
-        },
+        ...(this.props.isFederated
+          ? []
+          : [
+              {
+                name: 'Custom Creation',
+                description: 'SERVICE_CUSTOM_CREATE',
+                options: [
+                  {
+                    icon: 'clock',
+                    name: 'Specify Workloads',
+                    value: 'simpleservice',
+                  },
+                  { icon: 'coding', name: 'Edit by YAML', value: 'yaml' },
+                ],
+              },
+            ]),
       ],
     }
   }
 
   componentDidMount() {
-    globals.app.hasKSModule('devops') && this.fetchData()
+    this.showDevOps && this.fetchData()
   }
 
   componentDidUpdate(prevProps) {
@@ -188,6 +201,7 @@ export default class ServiceCreateModal extends React.Component {
       onCancel,
       cluster,
       namespace,
+      isFederated,
       projectDetail,
       isSubmitting,
     } = this.props
@@ -242,7 +256,16 @@ export default class ServiceCreateModal extends React.Component {
           Deployment: FORM_TEMPLATES.deployments({ namespace }),
           Service: FORM_TEMPLATES.services({ namespace }),
         }
-        const steps = [...FORM_STEPS[type]]
+
+        if (isFederated) {
+          Object.keys(formTemplate).forEach(key => {
+            formTemplate[key] = FORM_TEMPLATES.federated({
+              data: formTemplate[key],
+              clusters: projectDetail.clusters.map(item => item.name),
+              kind: key,
+            })
+          })
+        }
 
         set(
           formTemplate,
@@ -252,7 +275,8 @@ export default class ServiceCreateModal extends React.Component {
 
         this.workloadStore.setModule(module)
 
-        if (projectDetail && projectDetail.isFedManaged) {
+        const steps = [...FORM_STEPS[type]]
+        if (isFederated) {
           steps.push({
             title: 'Diff Settings',
             icon: 'blue-green-deployment',
@@ -270,6 +294,7 @@ export default class ServiceCreateModal extends React.Component {
             visible={visible}
             cluster={cluster}
             namespace={namespace}
+            isFederated={isFederated}
             projectDetail={projectDetail}
             steps={steps}
             formTemplate={formTemplate}
@@ -286,7 +311,16 @@ export default class ServiceCreateModal extends React.Component {
           StatefulSet: FORM_TEMPLATES.statefulsets({ namespace }),
           Service: FORM_TEMPLATES.services({ namespace }),
         }
-        const steps = [...FORM_STEPS[type]]
+
+        if (isFederated) {
+          Object.keys(formTemplate).forEach(key => {
+            formTemplate[key] = FORM_TEMPLATES.federated({
+              data: formTemplate[key],
+              clusters: projectDetail.clusters.map(item => item.name),
+              kind: key,
+            })
+          })
+        }
 
         set(
           formTemplate,
@@ -296,7 +330,8 @@ export default class ServiceCreateModal extends React.Component {
 
         this.workloadStore.setModule(module)
 
-        if (projectDetail && projectDetail.isFedManaged) {
+        const steps = [...FORM_STEPS[type]]
+        if (isFederated) {
           steps.push({
             title: 'Diff Settings',
             icon: 'blue-green-deployment',
@@ -314,6 +349,7 @@ export default class ServiceCreateModal extends React.Component {
             visible={visible}
             cluster={cluster}
             namespace={namespace}
+            isFederated={isFederated}
             projectDetail={projectDetail}
             steps={steps}
             formTemplate={formTemplate}
@@ -329,10 +365,20 @@ export default class ServiceCreateModal extends React.Component {
         const module = 'services'
         const formTemplate = { Service: FORM_TEMPLATES.services({ namespace }) }
 
+        if (isFederated) {
+          Object.keys(formTemplate).forEach(key => {
+            formTemplate[key] = FORM_TEMPLATES.federated({
+              data: formTemplate[key],
+              clusters: projectDetail.clusters.map(item => item.name),
+              kind: key,
+            })
+          })
+        }
+
         const title =
           type === 'externalservice'
             ? `${t('Create ')}${t('External Service')}`
-            : t('Create service by specify workloads')
+            : t('Create service by specifying workloads')
 
         const description =
           type === 'externalservice'
@@ -357,6 +403,8 @@ export default class ServiceCreateModal extends React.Component {
             visible={visible}
             cluster={cluster}
             namespace={namespace}
+            isFederated={isFederated}
+            projectDetail={projectDetail}
             steps={FORM_STEPS[type]}
             formTemplate={formTemplate}
             isSubmitting={isSubmitting}
@@ -370,6 +418,16 @@ export default class ServiceCreateModal extends React.Component {
         const module = 'services'
         const formTemplate = { Service: FORM_TEMPLATES.services({ namespace }) }
 
+        if (isFederated) {
+          Object.keys(formTemplate).forEach(key => {
+            formTemplate[key] = FORM_TEMPLATES.federated({
+              data: formTemplate[key],
+              clusters: projectDetail.clusters.map(item => item.name),
+              kind: key,
+            })
+          })
+        }
+
         const title = t('Create service by yaml')
 
         content = (
@@ -381,6 +439,8 @@ export default class ServiceCreateModal extends React.Component {
             visible={visible}
             cluster={cluster}
             namespace={namespace}
+            isFederated={isFederated}
+            projectDetail={projectDetail}
             formTemplate={formTemplate}
             isSubmitting={isSubmitting}
             onOk={onOk}

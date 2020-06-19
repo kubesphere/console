@@ -62,7 +62,7 @@ export default class MonitoringTarget extends React.Component {
   }
 
   renderItem(type, item) {
-    const { cluster, namespace } = this.params
+    const { workspace, cluster, namespace } = this.params
 
     if (type === 'node') {
       return <NodeItem key={item.name} data={item} cluster={cluster} />
@@ -75,7 +75,9 @@ export default class MonitoringTarget extends React.Component {
       return (
         <WorkloadItem
           key={item.name}
-          prefix={`/cluster/${cluster}/projects/${namespace}/${workloadType}`}
+          prefix={`${
+            workspace ? `/${workspace}` : ''
+          }/clusters/${cluster}/projects/${namespace}/${workloadType}`}
           type={workloadType}
           data={item}
         />

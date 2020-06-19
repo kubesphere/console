@@ -25,7 +25,7 @@ import ResourceStore from 'stores/workload/resource'
 
 import ServiceCard from './ServiceCard'
 
-@inject('detailStore', 'fedDetailStore')
+@inject('detailStore')
 @observer
 class ResourceStatus extends Base {
   resourceStore = new ResourceStore()

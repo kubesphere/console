@@ -21,6 +21,7 @@ import React from 'react'
 import { Select } from '@pitrix/lego-ui'
 import { Form } from 'components/Base'
 import { PropertiesInput } from 'components/Inputs'
+import { updateFederatedAnnotations } from 'utils'
 
 import styles from './index.scss'
 
@@ -31,6 +32,10 @@ export default class InternetAccess extends React.Component {
     this.state = {
       mode: get(this.formTemplate, 'spec.type', 'ClusterIP'),
     }
+  }
+
+  get fedPreifx() {
+    return this.props.isFederated ? 'spec.template.' : ''
   }
 
   get formTemplate() {
@@ -55,11 +60,10 @@ export default class InternetAccess extends React.Component {
   handleAccessModeChange = mode => {
     if (mode === 'LoadBalancer') {
       let annotations = get(this.formTemplate, 'metadata.annotations', {})
-      annotations = Object.assign(
-        {},
-        globals.config.loadBalancerDefaultAnnotations,
-        annotations
-      )
+      annotations = {
+        ...globals.config.loadBalancerDefaultAnnotations,
+        ...annotations,
+      }
       set(this.formTemplate, 'metadata.annotations', annotations)
     } else {
       Object.keys(globals.config.loadBalancerDefaultAnnotations).forEach(
@@ -69,7 +73,17 @@ export default class InternetAccess extends React.Component {
       )
     }
 
+    if (this.props.isFederated) {
+      updateFederatedAnnotations(this.formTemplate)
+    }
+
     this.setState({ mode })
+  }
+
+  handleAnnotationsChange = () => {
+    if (this.props.isFederated) {
+      updateFederatedAnnotations(this.formTemplate)
+    }
   }
 
   optionRenderer = option => (
@@ -86,7 +100,7 @@ export default class InternetAccess extends React.Component {
       <>
         <Form.Item label={t('Access Method')}>
           <Select
-            name="Service.spec.type"
+            name={`Service.${this.fedPreifx}spec.type`}
             options={this.accessModes}
             onChange={this.handleAccessModeChange}
             optionRenderer={this.optionRenderer}
@@ -97,6 +111,7 @@ export default class InternetAccess extends React.Component {
             <PropertiesInput
               name="Service.metadata.annotations"
               hiddenKeys={globals.config.preservedAnnotations}
+              onChange={this.handleAnnotationsChange}
               addText={t('Add Annotation')}
             />
           </Form.Item>

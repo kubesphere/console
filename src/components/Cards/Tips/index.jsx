@@ -62,7 +62,7 @@ export default class Tips extends React.Component {
           <div className={styles.helpDoc}>
             <div className={styles.doc}>{tips}</div>
             <div className={styles.hiddenBtn} onClick={this.hideHelpDoc}>
-              * {t('No longer showing help information')}
+              * {t('Hide help information')}
             </div>
           </div>
         ) : (

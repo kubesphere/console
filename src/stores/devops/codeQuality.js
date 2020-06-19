@@ -24,6 +24,7 @@ import BaseStore from './base'
 export default class CodeQualityStore extends BaseStore {
   @observable
   detail = {}
+
   @observable
   isLoading = true
 

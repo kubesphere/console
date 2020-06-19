@@ -61,12 +61,12 @@ export default {
   IMAGE_FROM_B2I: '通过制品构建新的镜像',
   S2I_DESC: '您可以选择您的代码开发语言，并将它们制作成镜像',
   B2I_DESC: '您可以将已有制品构建成新的镜像',
-  'Setting for container access strategy': '设置容器的访问策略',
-  'Setting for the name of the container and the computing resources of the container':
+  'Please set the access policy for the container.': '设置容器的访问策略',
+  'Please set the container name and computing resources.':
     '对容器的名称及容器的计算资源进行设置',
-  'Check the health of the container regularly according to the needs of the user.':
+  'The health of the container will be checked regularly according to user needs.':
     '根据用户需要，定时检查容器健康状况。',
-  'Start command': '启动命令',
+  'Start Command': '启动命令',
   START_COMMAND_DESC:
     '在默认情况下，镜像会运行默认命令，如果想运行特定命令或重写镜像默认值。',
   'Run Command': '运行命令',
@@ -124,7 +124,7 @@ export default {
   'Build image for service x': '为 {service} 服务构建镜像',
   'Click to select the artifact file to upload': '点击制品文件进行上传',
   'Upload Artifacts': '上传制品',
-  'Choose a language': '选择语言',
+  'Choose a Language': '选择语言',
   B2I_DEFAULT_DESC: '点击制品文件进行上传',
   JAR_DESC:
     'Jar 文件是一种软件包文件格式，通常用于聚合大量的 Java 类文件、相关的元数据和资源（文本、图片等）文件到一个文件',

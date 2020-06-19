@@ -37,6 +37,9 @@ export default class ClusterStore extends Base {
   @observable
   isValidating = false
 
+  @observable
+  version = ''
+
   module = 'clusters'
 
   @observable
@@ -95,7 +98,7 @@ export default class ClusterStore extends Base {
     this.isLoading = true
 
     let detail
-    if (params.name === 'default' && !globals.app.isMultiCluster) {
+    if (!globals.app.isMultiCluster) {
       detail = this.mapper(cloneDeep(DEFAULT_CLUSTER))
     } else {
       const result = await request.get(this.getDetailUrl(params))
@@ -180,5 +183,14 @@ export default class ClusterStore extends Base {
       isLoading: false,
       ...(this.projects.silent ? {} : { selectedRowKeys: [] }),
     })
+  }
+
+  @action
+  async fetchVersion({ cluster }) {
+    const result = await request.get(
+      `kapis/clusters/${cluster}/version`.replace('/clusters/default', '')
+    )
+
+    this.version = get(result, 'kubernetes.gitVersion')
   }
 }

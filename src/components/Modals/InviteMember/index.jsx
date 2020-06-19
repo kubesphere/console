@@ -84,7 +84,7 @@ export default class InviteMemberModal extends React.Component {
   }
 
   handleSearch = value => {
-    this.setState({ keyword: value }, this.fetchData)
+    this.setState({ name: value }, this.fetchData)
   }
 
   handleSelect = (username, roleRef) => {
@@ -129,7 +129,7 @@ export default class InviteMemberModal extends React.Component {
         <div className={styles.body}>
           <div className={styles.title}>
             <div className="h4">
-              {title || t('Invite members to the project')}
+              {title || t('Invite Members to the Project')}
             </div>
             <p>{desc || t('INVITE_MEMBER_DESC')}</p>
           </div>

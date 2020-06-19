@@ -207,7 +207,7 @@ export default class AppReview extends Component {
           <TabPanel label={t('Introduction')} name="readme">
             <AppReadme readme={readme} />
           </TabPanel>
-          <TabPanel label={t('Chart File')} name="configFiles">
+          <TabPanel label={t('Chart Files')} name="configFiles">
             {this.renderConfigFiles()}
           </TabPanel>
           <TabPanel label={t('Update Log')} name="updateLog">

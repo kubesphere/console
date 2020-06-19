@@ -1,4 +1,5 @@
 @import '~scss/variables';
+@import '~scss/mixins';
 
 .wrapper {
   cursor: pointer;
@@ -16,4 +17,11 @@
 
 .name {
   min-width: 400px;
+}
+
+.provider {
+  width: 160px;
+  & > div {
+    @include ellipsis;
+  }
 }

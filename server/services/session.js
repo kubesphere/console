@@ -132,6 +132,22 @@ const getUserDetail = async (username, token) => {
   return user
 }
 
+const getWorkspaces = async token => {
+  let workspaces = []
+
+  const resp = await send_gateway_request({
+    method: 'GET',
+    url: '/kapis/tenant.kubesphere.io/v1alpha2/workspaces',
+    token,
+  })
+
+  if (resp && resp.items) {
+    workspaces = resp.items.map(item => item.metadata.name)
+  }
+
+  return workspaces
+}
+
 const getKSConfig = async token => {
   let resp = []
   try {
@@ -163,14 +179,15 @@ const getCurrentUser = async ctx => {
     ctx.throw(401, 'Not Login')
   }
 
-  const [userDetail, ksConfig] = await Promise.all([
+  const [userDetail, workspaces, ksConfig] = await Promise.all([
     getUserDetail(username, token),
+    getWorkspaces(token),
     getKSConfig(token),
   ])
 
   return {
     config: clientConfig,
-    user: userDetail,
+    user: { ...userDetail, workspaces },
     ksConfig,
   }
 }

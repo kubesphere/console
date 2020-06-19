@@ -27,61 +27,15 @@ import {
   PolarRadiusAxis,
 } from 'recharts'
 import { Loading } from '@pitrix/lego-ui'
-import { Panel, Text } from 'components/Base'
-import { PieChart } from 'components/Charts'
+import { Panel } from 'components/Base'
 
-import {
-  getSuitableUnit,
-  getValueByUnit,
-  getLastMonitoringData,
-} from 'utils/monitoring'
+import { getLastMonitoringData } from 'utils/monitoring'
 
 import ClusterMonitorStore from 'stores/monitoring/cluster'
 
+import ResourceItem from './ResourceItem'
+
 import styles from './index.scss'
-
-const Item = props => {
-  const title = t(props.name)
-  const unit = getSuitableUnit(props.total, props.unitType) || unit
-  const used = getValueByUnit(props.used, unit)
-  const total = getValueByUnit(props.total, unit) || used
-
-  return (
-    <div className={styles.item}>
-      <div className={styles.pie}>
-        <PieChart
-          width={48}
-          height={48}
-          data={[
-            {
-              name: 'Used',
-              itemStyle: {
-                fill: '#329dce',
-              },
-              value: used,
-            },
-            {
-              name: 'Left',
-              itemStyle: {
-                fill: '#c7deef',
-              },
-              value: total - used,
-            },
-          ]}
-        />
-      </div>
-      <Text
-        title={`${Math.round((used * 100) / total)}%`}
-        description={title}
-      />
-      <Text title={unit ? `${used} ${unit}` : used} description={t('Used')} />
-      <Text
-        title={unit ? `${total} ${unit}` : total}
-        description={t('Total')}
-      />
-    </div>
-  )
-}
 
 const MetricTypes = {
   cpu_usage: 'cluster_cpu_usage',
@@ -175,7 +129,7 @@ export default class ResourcesUsage extends Component {
             </div>
             <div className={styles.list}>
               {options.map(option => (
-                <Item key={option.name} {...option} />
+                <ResourceItem key={option.name} {...option} />
               ))}
             </div>
           </div>

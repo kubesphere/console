@@ -33,7 +33,7 @@ export default {
   'Updated Time': '更新时间',
   'Running Time': '运行时间',
   'Custom Columns': '内容定制',
-  'Cancel Select': '取消选择',
+  Deselect: '取消选择',
   Monitors: '监控',
   Events: '事件',
   Labels: '标签',
@@ -58,12 +58,10 @@ export default {
   'Platform URL': '平台地址',
   'Platform Title': '平台标题',
   'Platform Description': '平台描述',
-  'Clusters Number': '集群数量',
+  'Cluster Number': '集群数量',
   'Platform Running Status': '平台运行状态',
-  'Statistical time is up to': '统计时间截止至',
+  'As of Date': '统计截止时间',
   Workbench: '工作台',
-  'Apps Management': '应用管理',
-  'Clusters Management': '集群管理',
   'Access Control': '访问控制',
   'App Templates': '应用模板',
   'Service Components': '服务组件',
@@ -74,20 +72,19 @@ export default {
   'Project Settings': '项目设置',
   'Grayscale Release': '灰度发布',
 
-  "User's Manual": '使用手册',
+  'User Manual': '使用手册',
   'API Documents': 'API 文档',
 
   History: '历史记录',
 
   'Recent visit': '最近访问',
 
-  CLUSTERS_MANAGEMENT_DESC:
+  CLUSTERS_MANAGE_DESC:
     '对多集群以及每个集群的基础资源、服务组件和应用资源等的统一管理',
   ACCESS_CONTROL_DESC: '对平台中的企业空间、账号、以及角色权限进行统一管理',
-  APPS_STORE_MANAGEMENT_DESC:
+  APP_STORE_MANAGEMENT_DESC:
     '对云原生应用的上架、下架以及审核等应用全生命周期的统一管理',
-  PLATFORM_SETTINGS_DESC:
-    '定制化平台设置，如平台基本信息、邮件服务器、密码安全、第三方登录、日志收集器等',
+  PLATFORM_SETTINGS_DESC: '定制化平台设置，如平台基本信息、日志收集器等',
 
   Loading: '加载中',
   Active: '已启用',
@@ -187,7 +184,7 @@ export default {
   RESOURCE_NOT_FOUND: '很抱歉，没有找到您所查找的资源。',
   'No Available Resource': '暂无可用资源',
   'No Data': '暂无数据',
-  'No relevant data': '暂时没有相关数据',
+  'No Relevant Data': '暂时没有相关数据',
 
   or: '或',
   refresh: '刷新',
@@ -201,6 +198,8 @@ export default {
   'Display selected': '显示已选',
   Display: '显示',
   Hidden: '隐藏',
+  Fold: '折叠',
+  Unfold: '展开',
 
   'Basic Info': '基本信息',
   'Pod Template': '容器组模板',
@@ -214,7 +213,7 @@ export default {
   'Advanced Settings': '高级设置',
   Settings: '设置',
   Configuration: '配置',
-  'Multi-Cluster Deploy': '多集群部署',
+  'Multi-cluster Deployment': '多集群部署',
   MULTI_CLUSTER_TIP: '该资源部署在多个集群',
 
   Alias: '别名',
@@ -274,6 +273,8 @@ export default {
     '描述将被作为注释添加到资源中，并显示在应用的详情中，描述信息不超过 1000 个字符',
   SHORT_DESCRIPTION_DESC: '描述信息不超过 1000 个字符',
   PROJECT_DESC: '将根据项目进行资源进行分组, 可以按项目对资源进行查看管理',
+  'MULTI-CLUSTER_PROJECT_CREATE_DESC':
+    '将根据项目进行资源进行分组, 可以按项目对资源进行查看管理',
   Description: '描述信息',
 
   'Please input name': '请输入名称',
@@ -289,7 +290,7 @@ export default {
   'Duplicate keys': '无法添加重复的 key',
   'No empty keys': '无法添加空的 key',
 
-  Logout: '登出',
+  'Log Out': '登出',
   About: '关于',
   'User Settings': '个人设置',
   Language: '语言',
@@ -308,7 +309,7 @@ export default {
 
   exists: '已存在',
 
-  'No Limits': '无限制',
+  'No Limit': '无限制',
   Quota: '配额',
   'Left Quota': '剩余配额',
 
@@ -350,6 +351,7 @@ export default {
   CANCEL: '取消',
   NO_RESULTS_FOUND: '暂无结果',
   REACH_BOTTOM: '已到底部',
+  CLEAR_VALUE: '清除',
 
   'Edit Mode': '编辑模式',
   'Load More': '加载更多',
@@ -414,12 +416,14 @@ export default {
 
   'Resource List': '资源列表',
 
+  'Platform-level Access Control': '平台级的访问控制',
+
   NOT_FOUND_DESC:
     '🙇 对不起没有找到相关资源，系统将在 {time}s 后返回 <a href="{link}">工作台</a>',
   DETAIL_NOT_FOUND_DESC:
     '🙇 对不起没有找到相关资源，返回 <a href="{link}">{title}</a>',
   Toolbox: '工具箱',
-  TOOLBOX_DESC: '提供KubeSphere日志、事件、计量等相关的查询工具',
+  TOOLBOX_DESC: '提供日志、事件、审计等相关查询工具',
   'Analysis Tools': '分析工具',
   'Control Tools': '控制工具',
   'Third-party Tools': '第三方工具',
@@ -447,7 +451,7 @@ export default {
   'rules desc':
     'KubeSphere可以根据您设置的规则进行操作审计的收集，点击查看如何定义规则。',
   category: '类别',
-  resources: '资源',
+  Resources: '资源',
   'Earliest start time': '最早发生时间',
   'Most recent start time': '最近发生时间',
   'Related resources': '关联资源',
@@ -488,9 +492,9 @@ export default {
   CONTENT_NOT_SAVED_TIPS: '内容已经修改但并未保存',
   SAVE_EDIT_HINTS: '请确认修改的内容是正确的，您可以保存设置或者取消设置。',
 
-  'Setting up': '设置中',
+  Setting: '设置中',
   'Not set': '未设置',
-  'Has been set': '已设置',
+  Finished: '已设置',
 
   'Learn more': '了解更多',
 
@@ -528,11 +532,20 @@ export default {
   'Get help quickly': '快速获取帮助',
   'Developer community': '开发者社区',
   HISTORY_DESC:
-    '当您在多个企业空间或者项目下进行协同工作时，浏览器会记录下您最近访问的路径，您可以通过 Win + H 键（Command + H）查看历史记录，来快速切换您的访问资源。',
+    '当您在多个企业空间或者项目下进行协同工作时，浏览器会记录下您最近访问的路径，您可以通过 F1 / (Win + K) / (Command + K) 查看历史记录，来快速切换您的访问资源。',
   NO_HISTORY_TITLE: '浏览器暂未收录到您对集群或者企业空间等区域的访问记录',
   NO_HISTORY_DESC: '您可以尝试对企业空间或者集群、项目等资源的访问',
   USER_GUIDES_DESC: '最详尽的 KubeSphere 用户指南文档',
   DEVELOPER_DESC: '通过在开发者社区提出问题获得帮助',
   API_DOCS_DESC: '最详尽的 KubeSphere API 文档',
   GITHUB_ISSUES_DESC: '通过在 GitHub 提出 Issue 获得帮助',
+
+  ENV_PRODUCTION: '生产环境',
+  ENV_DEVELOPMENT: '开发环境',
+  ENV_TESTING: '测试环境',
+  ENV_DEMO: '演示环境',
+
+  HOW_TO_MODIFY_PLATFORM_INFO: '如何修改平台信息?',
+  PLATFORM_INFO_DESC: '查看平台标题及描述等信息',
+  PLATFORM_SETTINGS_SELECTOR_DESC: '定制化平台的系统配置',
 }

@@ -52,10 +52,7 @@ export default class PodDetail extends React.Component {
   }
 
   get listUrl() {
-    const {
-      params: { cluster, namespace, module, name },
-      path,
-    } = this.props.match
+    const { workspace, cluster, namespace } = this.props.match.params
 
     const referrer = localStorage.getItem('pod-detail-referrer')
 
@@ -63,19 +60,12 @@ export default class PodDetail extends React.Component {
       return referrer
     }
 
-    let suffix = this.module
-    if (module && name) {
-      suffix = `${module}/${name}`
+    if (workspace) {
+      return `/${workspace}/clusters/${cluster}/projects/${namespace}/${
+        this.module
+      }`
     }
-
-    if (path.startsWith('/clusters')) {
-      if (module && name) {
-        suffix = `projects/${namespace}/${suffix}`
-      }
-      return `/clusters/${cluster}/${suffix}`
-    }
-
-    return `/cluster/${cluster}/projects/${namespace}/${suffix}`
+    return `/clusters/${cluster}/${this.module}`
   }
 
   fetchData = () => {

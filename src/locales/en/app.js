@@ -20,25 +20,25 @@ export default {
   FILE_UPLOAD_MAX: 'The file size cannot exceed 2M.',
 
   APP_TEMPLATE_DESC:
-    'KubeSphere provides lifecycle management of application template. You can upload or create new application template and test it quickly. In addition, you can publish your application template to App Store so that other users can purchase and deploy it.',
+    'KubeSphere provides lifecycle management of app templates. You can upload or create new app templates and test them quickly. In addition, you can publish your app templates to App Store so that other users can purchase and deploy them.',
 
   APP_TEMPLATE_CREATE_DESC:
-    'KubeSphere provides lifecycle management of application template. You can upload or create new application template and test it quickly. In addition, you can publish your application template to App Store so that other users can purchase and deploy it.',
+    'KubeSphere provides lifecycle management of app templates. You can upload or create new app templates and test them quickly. In addition, you can publish your app templates to App Store so that other users can purchase and deploy them.',
 
-  DEVELOP_APP_TITLE: 'How to Develop Application Template',
+  DEVELOP_APP_TITLE: 'How to develop app templates?',
 
   DEVELOP_APP_DESC:
-    'You can upload Helm Chart or use the resource orchestration tool provided by KubeSphere to develop application templates.',
+    'You can upload Helm Chart or use the resource orchestration tool provided by KubeSphere to develop app templates.',
 
-  HOW_PUBLISH_APP_TITLE: 'How to publish applications to App Store',
+  HOW_PUBLISH_APP_TITLE: 'How to publish applications to App Store?',
 
   HOW_PUBLISH_APP_DESC:
-    'KubeSphere currently supports uploading Helm Charts through Application Templates within Workspace, from where you can submit your template for review. Once approved then you can publish the template to App Store.',
+    'KubeSphere currently supports uploading Helm Charts through app templates within the workspace, where you can submit your template for review. Once the template is approved, you can publish it to App Store.',
 
   HOW_APP_DEPLOY_TITLE: 'How to deploy and test applications',
 
   APPS_CREATE_DESC:
-    'KubeSphere provides lifecycle management of application template. You can upload or create new application template and test it quickly. In addition, you can publish your application template to App Store so that other users can purchase and deploy it.',
+    'KubeSphere provides lifecycle management of app templates. You can upload or create new app templates and test them quickly. In addition, you can publish your app templates to App Store so that other users can purchase and deploy them.',
 
   APP_NAME_DESC: 'Important Identification of Applications',
 
@@ -58,12 +58,12 @@ export default {
     'Certify service providers and review applications in order to approve or reject the applications to show or not in the store.',
 
   REVIEW_CONTENT_DESC:
-    'The following information must be true and accurate. Key instructions must be given in details. Terms and Conditions are required to state clearly.',
+    'The following information must be true and accurate. Key instructions must be given in detail. Terms and Conditions are required to be stated clearly.',
 
   REJECT_REASON_DESC: 'Please fill in the reasons for refusal of audit',
 
   APP_CATEGORIES_DESC:
-    'Create/Edit/Delete category and classify active applications of the store',
+    'This module allows you to create, edit and delete categories, and to classify active applications of the store.',
 
   ADJUST_CATEGORY_DESC:
     'Application classification will determine the classification of the application in the application store',
@@ -84,7 +84,7 @@ export default {
   EDIT_APP_DESC: 'Set up the basic information of the application',
 
   CREATE_APP_DESC:
-    'Lightweight, portable, self-contained software packaging technology enables applications to run in almost any place in the same way.',
+    'Lightweight, portable and self-contained software packaging technology enables applications to run in almost any place in the same way.',
 
   RESOURCE_TOOL_TITLE: 'Created through Resource Choreographer',
 
@@ -100,7 +100,7 @@ export default {
   HELM_DEVELOP_GUIDE: 'Helm Specification and Application Development',
 
   CATEGORY_NAME_DESC:
-    'No more than 8 characters is recommended, the maximum length of characters is set to 20',
+    'No more than 8 characters is recommended; the maximum length of characters is set to 20.',
 
   ICON_DESC: 'Please select an icon to identify the classification',
 
@@ -119,7 +119,7 @@ export default {
     ' appear in the App Store after approval',
 
   APP_CATEGORIES_CREATE_DESC:
-    'Application data for the category is not yet bound ',
+    'No application data available for the category.',
 
   AUDIT_RECORD_CREATE_DESC: 'No relevant audit record data',
 

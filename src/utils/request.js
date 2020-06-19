@@ -180,7 +180,8 @@ function handleResponse(response, reject) {
 
       if (typeof reject === 'function') {
         return reject(error, response)
-      } else if (window.onunhandledrejection) {
+      }
+      if (window.onunhandledrejection) {
         window.onunhandledrejection(error)
       }
 
@@ -201,7 +202,8 @@ function handleResponse(response, reject) {
 
     if (typeof reject === 'function') {
       return reject(response, error)
-    } else if (window.onunhandledrejection) {
+    }
+    if (window.onunhandledrejection) {
       window.onunhandledrejection(error)
     }
 

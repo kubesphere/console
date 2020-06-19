@@ -20,9 +20,15 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import copy from 'fast-copy'
 
-import { Input, TextArea } from '@pitrix/lego-ui'
-import { Form, Modal } from 'components/Base'
+import { Icon, Input, TextArea } from '@pitrix/lego-ui'
+import { Form, Modal, Tag } from 'components/Base'
 import { SelectInput } from 'components/Inputs'
+
+import {
+  CLUSTER_GROUP_TAG_TYPE,
+  CLUSTER_PROVIDERS,
+  CLUSTER_PRESET_GROUPS,
+} from 'utils/constants'
 
 export default class EditBasicInfoModal extends React.Component {
   static propTypes = {
@@ -47,43 +53,22 @@ export default class EditBasicInfoModal extends React.Component {
     }
   }
 
-  get groups() {
-    return [
-      {
-        label: t('production'),
-        value: 'production',
-      },
-      {
-        label: t('development'),
-        value: 'development',
-      },
-    ]
-  }
+  groupOptionRenderer = option => (
+    <>
+      <Tag type={CLUSTER_GROUP_TAG_TYPE[option.value]}>
+        {t(`ENV_${option.label.toUpperCase()}`)}
+      </Tag>
+      &nbsp;&nbsp;
+      {option.label}
+    </>
+  )
 
-  get providers() {
-    return [
-      {
-        label: 'AKS',
-        value: 'AKS',
-        icon: 'windows',
-      },
-      {
-        label: 'EKS',
-        value: 'EKS',
-        icon: 'aws',
-      },
-      {
-        label: 'GEK',
-        value: 'GEK',
-        icon: 'google',
-      },
-      {
-        label: 'QKE',
-        value: 'QKE',
-        icon: 'qingcloud',
-      },
-    ]
-  }
+  providerOptionRenderer = option => (
+    <>
+      <Icon name={option.icon} type="light" size={20} />
+      {option.label}
+    </>
+  )
 
   handleOk = data => {
     const { onOk } = this.props
@@ -107,17 +92,22 @@ export default class EditBasicInfoModal extends React.Component {
         visible={visible}
         isSubmitting={isSubmitting}
       >
-        <Form.Item label={t('Cluster Name')} desc={t('CLUSTER_NAME_DESC')}>
+        <Form.Item label={t('Cluster Name')} desc={t('NAME_DESC')}>
           <Input name="metadata.name" disabled />
         </Form.Item>
         <Form.Item label={t('CLUSTER_TAG')} desc={t('CLUSTER_TAG_DESC')}>
           <SelectInput
             name="metadata.labels['cluster.kubesphere.io/group']"
-            options={this.groups}
+            options={CLUSTER_PRESET_GROUPS}
+            optionRenderer={this.groupOptionRenderer}
           />
         </Form.Item>
         <Form.Item label={t('Provider')} desc={t('CLUSTER_PROVIDER_DESC')}>
-          <SelectInput name="spec.provider" options={this.providers} />
+          <SelectInput
+            name="spec.provider"
+            options={CLUSTER_PROVIDERS}
+            optionRenderer={this.providerOptionRenderer}
+          />
         </Form.Item>
         <Form.Item label={t('Description')}>
           <TextArea name="metadata.annotations['kubesphere.io/description']" />

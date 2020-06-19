@@ -142,7 +142,7 @@ class InternetAccess extends React.Component {
             <Icon name="loadbalancer" size={40} />
           </div>
           <div className={styles.text}>
-            <div>{t('Gateway not set')}</div>
+            <div>{t('Gateway Not Set')}</div>
             <p>{t('PROJECT_INTERNET_ACCESS_DESC')}</p>
           </div>
           {this.canEdit && (
@@ -184,6 +184,7 @@ class InternetAccess extends React.Component {
   }
 
   renderInternetAccess(gateway) {
+    const { cluster } = this.props.match.params
     return (
       <Panel className="margin-t12" title={t('Internet Access')}>
         <div className={styles.header}>
@@ -209,7 +210,7 @@ class InternetAccess extends React.Component {
               <p>{t('External IP')}</p>
             </div>
           )}
-          {globals.app.hasKSModule('servicemesh') && (
+          {globals.app.hasClusterModule(cluster, 'servicemesh') && (
             <div className={styles.item}>
               <div>
                 {gateway.serviceMeshEnable

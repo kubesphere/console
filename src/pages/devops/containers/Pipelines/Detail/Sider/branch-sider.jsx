@@ -50,8 +50,8 @@ class BranchSider extends Base {
   }
 
   get listUrl() {
-    const { project_id } = this.props.match.params
-    return `/cluster/:cluster/devops/${project_id}/pipelines`
+    const { workspace, project_id } = this.props.match.params
+    return `/${workspace}/clusters/:cluster/devops/${project_id}/pipelines`
   }
 
   get name() {
@@ -74,10 +74,13 @@ class BranchSider extends Base {
   }
 
   get enabledActions() {
+    const { cluster, project_id } = this.props.match.params
+    const devops = this.store.getDevops(project_id)
+
     return globals.app.getActions({
       module: 'pipelines',
-      cluster: this.props.match.params.cluster,
-      // devops: this.props.devopsStore.data.name,
+      cluster,
+      devops,
     })
   }
 
@@ -100,7 +103,7 @@ class BranchSider extends Base {
       key: 'run',
       type: 'control',
       text: t('Run'),
-      action: 'trigger',
+      action: 'edit',
       onClick: this.handleRun,
     },
   ]

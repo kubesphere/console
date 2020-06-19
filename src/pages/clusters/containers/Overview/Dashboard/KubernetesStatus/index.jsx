@@ -128,7 +128,7 @@ export default class KubernetesStatus extends Component {
               />
               <Text
                 title={schedule_attempts_count.error}
-                description={t('Failed Scheduling Pods')}
+                description={t('Scheduling Failed Pods')}
               />
             </div>
           </>

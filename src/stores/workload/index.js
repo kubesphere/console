@@ -16,15 +16,13 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, set, has, isEmpty } from 'lodash'
+import { get, has } from 'lodash'
 import { action } from 'mobx'
 
 import { withDryRun } from 'utils'
 import { MODULE_KIND_MAP } from 'utils/constants'
-import FED_TEMPLATES from 'utils/fed.templates'
 
 import Base from 'stores/base'
-import FederatedStore from 'stores/federated'
 
 import HpaStore from './hpa'
 import ServiceStore from '../service'
@@ -58,54 +56,13 @@ export default class WorkloadStore extends Base {
   }
 
   getServiceRequest = (data, params) => {
-    const isFedManaged = !!get(data, 'spec.placement')
     const serviceStore = new ServiceStore()
-    const fedStore = new FederatedStore('services')
-
     params.namespace = params.namespace || get(data, 'metadata.namespace')
-
-    if (isFedManaged) {
-      return {
-        url: fedStore.getListUrl(params),
-        data: FED_TEMPLATES.services({
-          data,
-          kind: 'Service',
-        }),
-      }
-    }
-
     return { url: serviceStore.getListUrl(params), data }
   }
 
   getWorkloadRequest = (data, params) => {
-    const isFedManaged = !!get(data, 'spec.placement')
-
     params.namespace = params.namespace || get(data, 'metadata.namespace')
-
-    if (['deployments', 'daemonsets'].includes(this.module)) {
-      const hasPVC = get(data, 'spec.template.spec.volumes', []).some(
-        volume => !isEmpty(volume.persistentVolumeClaim)
-      )
-      const maxUnavailable = get(
-        data,
-        'spec.strategy.rollingUpdate.maxUnavailable',
-        null
-      )
-      if (hasPVC && !maxUnavailable) {
-        set(data, 'spec.strategy.rollingUpdate.maxUnavailable', 1)
-      }
-    }
-
-    if (isFedManaged) {
-      const fedStore = new FederatedStore(this.module)
-      return {
-        url: fedStore.getListUrl(params),
-        data: FED_TEMPLATES.workloads({
-          data,
-          kind: MODULE_KIND_MAP[this.module],
-        }),
-      }
-    }
 
     return { url: this.getListUrl(params), data }
   }

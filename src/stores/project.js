@@ -86,6 +86,16 @@ export default class ProjectStore extends Base {
     return `${this.apiVersion}/watch${this.getPath(params)}/namespaces`
   }
 
+  getListUrl = (params = {}) => {
+    if (params.workspace) {
+      return `kapis/tenant.kubesphere.io/v1alpha2/workspaces/${
+        params.workspace
+      }${this.getPath(params)}/namespaces`
+    }
+
+    return `${this.apiVersion}${this.getPath(params)}/namespaces`
+  }
+
   @action
   async fetchList({
     cluster,
@@ -134,10 +144,10 @@ export default class ProjectStore extends Base {
   }
 
   @action
-  async fetchDetail({ cluster, namespace }) {
+  async fetchDetail({ cluster, workspace, namespace }) {
     this.isLoading = true
     const detail = await request.get(
-      this.getDetailUrl({ cluster, name: namespace }),
+      this.getDetailUrl({ cluster, workspace, name: namespace }),
       null,
       null,
       res => {
@@ -150,6 +160,17 @@ export default class ProjectStore extends Base {
     this.detail = { cluster, ...this.mapper(detail) }
 
     this.isLoading = false
+  }
+
+  @action
+  async create(data, params = {}) {
+    if (params.workspace) {
+      const clusters = get(data, 'spec.placement.clusters', [])
+      params.cluster = get(clusters, '[0].name')
+      return this.submitting(request.post(this.getResourceUrl(params), data))
+    }
+
+    return this.submitting(request.post(this.getListUrl(params), data))
   }
 
   @action

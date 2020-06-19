@@ -59,7 +59,7 @@ class NotificationRules extends React.Component {
         title={t('ALERT_COMMENT')}
         loading={isLoading}
         isEmpty={isEmpty(data)}
-        empty={t('No relevant data')}
+        empty={t('No Relevant Data')}
       >
         <div className={styles.main}>
           {data.map(item => (

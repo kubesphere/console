@@ -40,6 +40,10 @@ import styles from './index.scss'
   rowKey: 'uid',
 })
 export default class Pods extends React.Component {
+  componentDidMount() {
+    localStorage.setItem('pod-detail-referrer', location.pathname)
+  }
+
   get itemActions() {
     const { getData, trigger } = this.props
     return [

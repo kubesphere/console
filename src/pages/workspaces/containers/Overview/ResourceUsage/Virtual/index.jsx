@@ -126,6 +126,8 @@ export default class VirtualResource extends Base {
     customAction: this.renderClusters(),
   })
 
+  valueRenderer = option => `${t('Cluster')}: ${option.value}`
+
   renderClusters() {
     if (this.props.clusterOpts.length) {
       return (
@@ -134,6 +136,7 @@ export default class VirtualResource extends Base {
           value={this.state.cluster}
           options={this.props.clusterOpts}
           onChange={this.handleClusterChange}
+          valueRenderer={this.valueRenderer}
         />
       )
     }

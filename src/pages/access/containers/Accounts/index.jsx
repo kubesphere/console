@@ -41,7 +41,7 @@ export default class Accounts extends React.Component {
   }
 
   get itemActions() {
-    const { trigger, getData } = this.props
+    const { trigger, getData, routing } = this.props
     return [
       {
         key: 'edit',
@@ -66,7 +66,7 @@ export default class Accounts extends React.Component {
             type: t('User'),
             resource: item.username,
             detail: item,
-            success: getData,
+            success: routing.query,
           }),
       },
     ]
@@ -134,7 +134,7 @@ export default class Accounts extends React.Component {
   render() {
     const { bannerProps, tableProps } = this.props
     return (
-      <ListPage {...this.props} noWatch>
+      <ListPage {...this.props}>
         <Banner {...bannerProps} tabs={this.tabs} title={t('NAV_ACCOUNTS')} />
         <Table
           {...tableProps}

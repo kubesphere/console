@@ -136,7 +136,7 @@ export default class BasicInfo extends React.Component {
             <Column />
           </Columns>
           <br />
-          <div className={styles.title}>{t('Deploy Placement')}</div>
+          <div className={styles.title}>{t('Deployment Location')}</div>
           <div className={styles.placement}>
             {!namespace ? (
               <Form.Item

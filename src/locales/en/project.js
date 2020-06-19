@@ -34,21 +34,20 @@ export default {
     'Build and test software projects continuously and automatically.',
 
   PROJECT_ASSIGN_DESC:
-    'Once the project is assigned to the workspace, it will not be allowed to modifed.',
+    'Once the project is assigned to a workspace, it cannot be changed.',
 
-  INVITE_MEMBER_DESC: 'You can invite new members to work with your project.',
+  INVITE_MEMBER_DESC: 'You can invite new members to assist your project.',
   INVITE_MEMBER_DESC_DEVOPS:
-    'You can invite new members to work with your DevOps project.',
-  INVITE_MEMBER_SEARCH_PLACEHODLER: 'Enter an email to invite members',
-  INVITE_MEMBER_CHOOSE_ROLE_TIP:
-    'Please select a role to assign to this member',
+    'You can invite new members to assist your DevOps project.',
+  INVITE_MEMBER_SEARCH_PLACEHODLER: 'Enter an email address to invite members',
+  INVITE_MEMBER_CHOOSE_ROLE_TIP: 'Please assign a role to this member',
   PROJECT_ADMIN_DESC:
     'You can specify a member of the project as an administrator',
   DEVOPS_ADMIN_DESC:
     'You can specify a member of the devops project as an administrator',
 
   PROJECT_INTERNET_ACCESS_DESC:
-    'Before creating a route, you need to enable the internet access portal, that is, the gateway. This step is to create a corresponding routing controller to forward the request to the corresponding backend service.',
+    'Before creating a route, you need to enable the internet access portal (i.e. the gateway). This step is to create a corresponding routing controller to forward the request to the corresponding backend service.',
 
   DELETE_INTERNET_ACCESS_TITLE:
     'Are you sure about deleting the external network access settings ?',
@@ -70,17 +69,17 @@ export default {
   QUOTA_EDIT_TIP:
     'If the value is empty, the resource quota will not be limited.',
 
-  HOW_TO_USE_QUOTA_Q: 'How to use quota ?',
+  HOW_TO_USE_QUOTA_Q: 'How to use quotas?',
   HOW_TO_USE_QUOTA_A:
     "Resource Quotas are a mechanism used to limit user's resources usage. You can limit the number of CPUs, memory, and pod replicas.",
 
-  WHAT_IS_LIMIT_RANGE_Q: 'What is container resource defaut request ?',
+  WHAT_IS_LIMIT_RANGE_Q: 'What is the container resource default request?',
   WHAT_IS_LIMIT_RANGE_A:
-    'The container resource default request (LimitRange) is based on project resource management, including resource limits and resource requests, etc.',
+    'The container resource default request (LimitRange) is based on project resource management, including resource limits and resource requests.',
 
-  WHAT_IS_INTERNET_GATEWAY: 'What is an internet access gateway?',
+  WHAT_IS_INTERNET_GATEWAY: 'What is an Internet Access Gateway?',
   WHAT_IS_COLLECT_FILE_LOG_A:
-    'The log paths in the volumes mounted by the container are given in glob mode, and the log paths can be configured in the workload to collect these logs. The administrator needs to open the file log collection in advance.',
+    'The log path in the volume mounted to the container is given in glob pattern. The log path can be configured in the workload to collect logs. The administrator needs to enable Disk Log Collection in advance.',
 
   HOW_TO_INVITE_MEMBER_Q: 'How to invite members ?',
   HOW_TO_INVITE_MEMBER_A:
@@ -89,19 +88,26 @@ export default {
   CLOSE_FILE_LOG_TIP:
     'The file log collection is about to close. After disabled, the service still continues to collect the file logs before the Pod replicas restart. After Pod restarted, file logs will not be collected. If you need to collect them again, turn on the file log collection and restart the Pods.',
   COLLECTING_FILE_LOG_DESC:
-    'Redirect the file-based logs to standout using sidecar which is collected by the system log system so that you can search and view the logs through container log terminal or log searcher.',
+    'Disk logs in the container will be collected and exported to stdout, which will then be collected by the system log collector together.',
 
   PROJECT_BASIC_INFO_DESC:
-    "The project's basic information covers project name and the project's quota status.",
-  PROJECT_ROLE_DESC: 'Project roles defines the user rights for this project.',
+    "The project basic information includes the project name and the project's quota status.",
+  PROJECT_ROLE_DESC:
+    'Project roles define the authorization users have in the current project.',
   PROJECT_MEMBERS_DESC: 'Manage and assign roles for project members.',
   PROJECT_ADVANCED_SETTINGS_DESC:
-    'Configure gateway access for external websites as well as microservice and the collection of logs on disks.',
+    'This module allows you to configure gateway access for external addresses and service governance. Besides, you can also configure the collection of logs on the disk.',
 
   PROJECT_TYPES_Q:
     'How can the services in the project be accessed through the external network?',
   PROJECT_TYPES_A:
-    'The project gateway is responsible for creating the corresponding application routing controller to forward the request to the corresponding backend service. After opening the project gateway, the service can be exposed to the external network through Ingress.',
+    'The project gateway is responsible for creating the corresponding application routing controller to forward the request to the corresponding backend service. After the project gateway is opened, the service can be exposed to the external network through Ingress.',
 
   NAME_EXIST_IN_CLUSTER: 'Name exists in {cluster}',
+
+  PROJECT_CLUSTER_SETTINGS_DESC:
+    'Select the cluster to create the project. When multiple clusters are selected, the multi-cluster project will be created',
+  NETWORK_ISOLATED_DESC: 'Set network isolation strategy',
+
+  PROJECT_QUOTA_MANAGE_DESC: 'This module allows you to manage project quotas.',
 }

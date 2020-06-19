@@ -24,8 +24,8 @@ import { Icon } from '@pitrix/lego-ui'
 import styles from './index.scss'
 
 const STATES = {
-  current: 'Setting up',
-  finished: 'Has been set',
+  current: 'Setting',
+  finished: 'Finished',
   notfinish: 'Not set',
 }
 

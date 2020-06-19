@@ -18,8 +18,6 @@
 
 import React, { Suspense } from 'react'
 import ReactDOM from 'react-dom'
-import { createBrowserHistory } from 'history'
-import { syncHistoryWithStore } from 'mobx-react-router'
 import { AppContainer } from 'react-hot-loader'
 import { Loading, LocaleProvider } from '@pitrix/lego-ui'
 
@@ -28,7 +26,6 @@ import request from 'utils/request'
 
 import Notify from 'components/Base/Notify'
 
-import RootStore from 'stores/root'
 import App from './App'
 import GlobalValue from './global'
 import i18n from './i18n'
@@ -61,10 +58,6 @@ window.request = request
 
 globals.app = new GlobalValue()
 
-const store = new RootStore()
-const browserHistory = createBrowserHistory()
-const history = syncHistoryWithStore(browserHistory, store.routing)
-
 const render = async component => {
   const { locales } = await i18n.init()
   ReactDOM.render(
@@ -79,10 +72,10 @@ const render = async component => {
   )
 }
 
-render(<App rootStore={store} history={history} />)
+render(<App />)
 
 module.hot &&
   module.hot.accept('./App', () => {
     const NextApp = require('./App').default
-    render(<NextApp rootStore={store} history={history} />)
+    render(<NextApp />)
   })

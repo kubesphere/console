@@ -1,12 +1,84 @@
-.baseInfo {
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.header {
+  position: relative;
   display: flex;
-  justify-items: flex-start;
+
+  & > div {
+    width: 260px;
+    margin-right: 20px;
+  }
 }
 
-.info {
-  width: 400px;
+.content {
+  display: flex;
+  padding: 20px;
+  margin-top: 12px;
+  margin-left: -12px;
+  margin-right: -12px;
+  background-color: $light-color01;
 
-  & + .info {
-    margin-left: 12px;
+  & > div {
+    width: 250px;
+    margin-right: 20px;
   }
+}
+
+.tip {
+  margin-bottom: 12px;
+}
+
+.unbind {
+  position: absolute;
+  top: 56px;
+  right: 20px;
+}
+
+.action {
+  position: absolute;
+  top: 4px;
+  right: 6px;
+}
+
+.item {
+  padding: 8px 12px;
+  background-color: $card-bg-color;
+
+  & + .item {
+    margin-top: 8px;
+  }
+}
+
+.network {
+  .item {
+    position: relative;
+    display: flex;
+
+    & > div {
+      min-width: 252px;
+      margin-right: 20px;
+    }
+
+    .switch {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+    }
+  }
+}
+
+.clusterTitle {
+  width: 50%;
+}
+
+.empty {
+  padding: 12px;
+  background-color: $card-bg-color;
+  border-radius: $border-radius;
+  @include TypographyTitleH5($dark-color01);
+}
+
+.title {
+  max-width: 30%;
 }

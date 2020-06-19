@@ -28,14 +28,16 @@ export default {
   NAME_TOO_LONG: 'The maximum length of characters is set to 63.',
   LONG_NAME_TOO_LONG: 'The maximum length of characters is set to 253.',
   DESCRIPTION_DESC:
-    'The description will be added to the item as a comment and displayed in the details of the application, with the description is limited to 1000 characters.',
+    'The description will be added to the item as a comment and displayed in the details of the application. The description is limited to 1000 characters.',
   SHORT_DESCRIPTION_DESC: 'Description is limited to 1000 characters.',
   PROJECT_DESC:
-    'It will be grouped by project resources, which you can view and manage by project.',
+    'Projects will be grouped by their resources, which you can view and manage by project.',
+  'MULTI-CLUSTER_PROJECT_CREATE_DESC':
+    'Projects will be grouped by their resources, which you can view and manage by project.',
 
   DELETE_TITLE: 'Sure to delete {type}?',
   DELETE_TIP:
-    'Are you sure about deleting the {type} <strong>{resource}</strong> ? {type} cannot be recovered after being deleted.',
+    'Are you sure about deleting the {type} <strong>{resource}</strong> ? {type} cannot be recovered after it is deleted.',
   DELETE_CONFIRM_TIP:
     'Please enter the {type} name <strong>{resource}</strong> to make sure you understand the risks associated with the operation.',
   DELETE_APP_RESOURCE_TIP:
@@ -44,7 +46,7 @@ export default {
 
   DELETE_RESOURCE_TITLE: 'Warning',
   DELETE_RESOURCE_TIP:
-    'Are you sure about deleting the resource <strong>{resource}</strong> ? Resources cannot be recovered after being deleted.',
+    'Are you sure about deleting the resource <strong>{resource}</strong> ? The resource cannot be recovered after it is deleted.',
 
   DESTROY_TITLE: 'Sure to destroy ?',
   DESTROY_TIP:
@@ -91,6 +93,7 @@ export default {
   CANCEL: 'Cancel',
   NO_RESULTS_FOUND: 'No result found',
   REACH_BOTTOM: 'Reach bottom',
+  CLEAR_VALUE: 'Clear',
   QUOTA_LIMIT_TIP:
     'The configuration here refers to Limits in Kubernetes resource management, which is mainly used to limit the maximum value of resources used by each container.',
 
@@ -106,7 +109,7 @@ export default {
     'please confirm that the modified content is correct, you can save the settings or cancel the settings.',
 
   KS_DESCRIPTION:
-    'KubeSphere is an open source project aiming to provide enterprise-grade multi-tenant container platform which is on top of Kubernetes, the current mainstream container orchestration platform. It provides easy-to-use interface and wizard-style operations, reducing the learning curve and operating cost of Kubernetes in terms of the daily work of development, test and maintenance.',
+    'KubeSphere is an open source project aiming to provide enterprise-grade multi-tenant container platform on top of Kubernetes, the current mainstream container orchestration platform. It provides easy-to-use interface and wizard-style operations, reducing the learning curve and operating cost of Kubernetes in terms of the daily work of development, test and maintenance.',
 
   REPS_ADDRESS: 'GitHub',
   ISSUE_FEEDBACK: 'Feedback',
@@ -120,9 +123,9 @@ export default {
   NAV_ACCOUNTS: 'Accounts',
   ALERT_WARNING: 'Warning',
 
-  CREATE_STATUS_SUCCESS: 'Create successfully',
+  CREATE_STATUS_SUCCESS: 'Created successfully',
   CREATE_STATUS_UPDATING: 'Creating',
-  CREATE_STATUS_FAILED: 'Create failed',
+  CREATE_STATUS_FAILED: 'Created unsuccessfully',
 
   EMPTY_WRAPPER: 'No {resource} Found',
 
@@ -132,8 +135,47 @@ export default {
 
   EVENT_CREATE_DESC: 'You can change the search criteria and search again.',
 
-  KUBECTL_DESC: 'A command line tool for controlling the current Kubernetes cluster',
-  TOOLBOX_KUBECTL_DESC: 'A command line tool for controlling the Kubernetes clusters',
-  
-  KUBECONFIG_DESC: 'A file that is used to configure access to the current Kubernetes cluster',
+  KUBECTL_DESC:
+    'A command line tool for controlling the current Kubernetes cluster',
+  TOOLBOX_KUBECTL_DESC:
+    'A command line tool for controlling the Kubernetes clusters',
+
+  KUBECONFIG_DESC:
+    'A file that is used to configure access to the current Kubernetes cluster',
+
+  ENV_PRODUCTION: 'Production',
+  ENV_DEVELOPMENT: 'Development',
+  ENV_TESTING: 'Testing',
+  ENV_DEMO: 'Demo',
+
+  CLUSTERS_MANAGE_DESC:
+    'Unified management of multiple clusters and their basic resources, components and application resources',
+
+  ACCESS_CONTROL_DESC:
+    'Unified management of workspaces, accounts and role access',
+
+  APP_STORE_MANAGEMENT_DESC:
+    'Unified lifecycle management of cloud native applications including their release, removal and review',
+
+  PLATFORM_SETTINGS_DESC:
+    'Customized platform settings, including basic info and log collector',
+
+  DATA_SOURCE: 'Data Source',
+
+  LOG_SEARCH_DESC:
+    'A multi-dimensional log search tool for workspaces, projects and resources.',
+
+  EVENT_SEARCH_DESC:
+    'A multi-dimensional event search tool for workspaces, projects and resources.',
+
+  PLATFORM_INFO_DESC: 'View platform title, description and other information',
+  HOW_TO_MODIFY_PLATFORM_INFO: 'How to modify platform info?',
+  PLATFORM_SETTINGS_SELECTOR_DESC: 'Customized Platform Settings',
+
+  AUDITING_OPERATING_DESC:
+    'A multi-dimensional auditing search tool for workspaces, projects and resources.',
+
+  FILE_OVERSIZED_TIP: 'The file uploaded must be less than 2M!',
+
+  MULTI_CLUSTER_TIP: 'The resource is deployed in multiple clusters.',
 }

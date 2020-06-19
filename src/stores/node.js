@@ -40,7 +40,7 @@ export default class NodeStore extends Base {
   @action
   async fetchCount(params) {
     const resp = await request.get(this.getResourceUrl(params), {
-      role: 'master',
+      labelSelector: 'node-role.kubernetes.io/master=',
     })
 
     const masterWorker = resp.items.filter(

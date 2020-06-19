@@ -49,6 +49,7 @@ export default class ApplicationStore extends Base {
 
   @observable
   isTracingLoading = true
+
   tracing = {
     data: [],
     total: 0,
@@ -70,6 +71,7 @@ export default class ApplicationStore extends Base {
       cluster,
       namespace,
     })}/graph?duration=60s&graphType=versionedApp&injectServiceNodes=true&groupBy=app&appenders=deadNode,sidecarsCheck,serviceEntry,istio,responseTime`
+
   getHealthUrl = ({ cluster, namespace, type }) =>
     `kapis/servicemesh.kubesphere.io/v1alpha2${this.getPath({
       cluster,

@@ -1,0 +1,108 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.wrapper {
+  display: flex;
+}
+
+.cluster,
+.clusterLoading {
+  width: 326px; 
+  height: 108px;
+  padding: 8px;
+  margin-right: 12px;
+  color: #fff;
+  background-image: url('/assets/cluster-card-bg.svg');
+}
+
+.clusterLoading {
+  background-image: url('/assets/cluster-card-loading.svg');
+}
+
+.textWrapper {
+  position: relative;
+  display: flex;
+}
+
+.text {
+  flex: 1;
+  overflow: hidden;
+  & > div {
+    @include TypographyTitleH6(#fff);
+    @include ellipsis;
+  }
+
+  & > p {
+    @include TypographyParagraph(#fff);
+    @include ellipsis;
+  }
+}
+
+.icon {
+  margin-right: 12px;
+}
+
+.bottom {
+  position: relative;
+  display: flex;
+  margin-top: 8px;
+  padding: 0 4px 4px;
+}
+
+.replicas {
+  margin-right: 12px;
+  @include TypographySymbolText(#fff);
+
+  span {
+    &:first-of-type {
+      @include TypographyTitleH2(#fff);
+      line-height: 40px;
+    }
+  }
+}
+
+.pods {
+  display: flex;
+  align-items: flex-end;
+}
+
+.more {
+  transform: rotate(90deg);
+}
+
+.control,
+.edit {
+  position: absolute;
+  bottom: 4px;
+  right: 6px;
+  :global {
+    .icon {
+      padding: 4px;
+      border-radius: $border-radius;
+      background-color: $dark-color06;
+    }
+    .icon.icon-clickable:hover,
+    .icon.icon-clickable:active {
+      background-color: $dark-color07;
+    }
+    .icon + .icon {
+      margin-left: 4px;
+    }
+  }
+}
+
+.edit {
+  bottom: 32px;
+}
+
+.indicator {
+  position: absolute;
+  top: 28px;
+  left: 30px;
+}
+
+.group {
+  position: absolute;
+  top: 0;
+  right: 0;
+}

@@ -86,11 +86,11 @@ export default class SecretStore extends Base {
       `kapis/resources.kubesphere.io/v1alpha2/registry/verify`,
       params,
       {},
-      err => {
+      (_, err) => {
         const msg = get(err, 'message', '')
         if (msg) {
           Notify.error({
-            title: t('Registry verify failed'),
+            title: t('Registry verification failed'),
             content: t(msg),
           })
         }

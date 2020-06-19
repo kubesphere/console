@@ -117,6 +117,15 @@ export default class ResourceStatus extends React.Component {
     ]
   }
 
+  get emptyProps() {
+    const { kind } = this.props.detailStore.detail
+    return {
+      icon: 'select',
+      desc: '',
+      name: ` ${kind} ${t('resources')}`,
+    }
+  }
+
   render() {
     const { data, page, total, limit, isLoading } = this.store.list
     const pagination = { page, total, limit }
@@ -131,6 +140,7 @@ export default class ResourceStatus extends React.Component {
           itemActions={this.itemActions}
           enabledActions={this.enabledActions}
           pagination={pagination}
+          emptyProps={this.emptyProps}
           searchType="name"
           hideCustom
         />

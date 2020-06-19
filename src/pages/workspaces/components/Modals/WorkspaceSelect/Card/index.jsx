@@ -25,7 +25,7 @@ import styles from './index.scss'
 
 export default class WorkspaceCard extends React.Component {
   get canViewDevOps() {
-    return globals.app.hasKSModule('devops')
+    return globals.app.isMultiCluster || globals.app.hasKSModule('devops')
   }
 
   handleClick = () => {
@@ -39,13 +39,13 @@ export default class WorkspaceCard extends React.Component {
     const details = [
       {
         title: get(data, 'annotations["kubesphere.io/namespace-count"]', 0),
-        description: t('Projects Number'),
+        description: t('Project Number'),
       },
       ...(this.canViewDevOps
         ? [
             {
               title: get(data, 'annotations["kubesphere.io/devops-count"]', 0),
-              description: t('DevOps Projects Number'),
+              description: t('DevOps Project Number'),
             },
           ]
         : []),

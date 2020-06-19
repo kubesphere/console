@@ -31,7 +31,7 @@ export default class Empty extends React.PureComponent {
 
   static defaultProps = {
     img: '/assets/empty-card.svg',
-    desc: 'No relevant data',
+    desc: 'No Relevant Data',
   }
 
   render() {

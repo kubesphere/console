@@ -43,6 +43,18 @@ const typesDict = {
   kubeconfig: 'kubeconfigContent',
 }
 
+const setCredentialType = str => {
+  const typeReg = /\$\{\[([\w-]*)\(/
+  const type = str.match(typeReg) && str.match(typeReg)[1]
+  if (type) {
+    const credentialType = Object.entries(typesDict).find(
+      typeArr => typeArr[1] === type
+    )[0]
+    return credentialType
+  }
+  return null
+}
+
 @observer
 export default class WithCredentials extends React.Component {
   static propTypes = {
@@ -73,21 +85,9 @@ export default class WithCredentials extends React.Component {
       const str = get(nextProps, 'edittingData.data.value', '')
       if (str) {
         const formData = groovyToJS(str)
-        const credentialType = this.setCredentialType(str)
+        const credentialType = setCredentialType(str)
         return { formData, credentialType }
       }
-    }
-    return null
-  }
-
-  setCredentialType = str => {
-    const typeReg = /\$\{\[([\w-]*)\(/
-    const type = str.match(typeReg) && str.match(typeReg)[1]
-    if (type) {
-      const credentialType = Object.entries(typesDict).find(
-        typeArr => typeArr[1] === type
-      )[0]
-      return credentialType
     }
     return null
   }

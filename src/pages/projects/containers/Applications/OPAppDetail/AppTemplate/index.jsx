@@ -99,7 +99,7 @@ export default class AppTemplate extends React.Component {
       )
     }
 
-    return <p>{t('The app has no documentation')}</p>
+    return <p>{t('The app has no documentation.')}</p>
   }
 
   renderSettings() {

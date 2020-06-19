@@ -142,23 +142,14 @@ export default class Group extends React.Component {
           </div>
           {desc && <div className={styles.groupDesc}>{desc}</div>}
         </div>
-        {noWrapper ? (
-          <div
-            className={classNames({
-              [styles.hideGroup]: hideChildren,
-            })}
-          >
-            {children}
-          </div>
-        ) : (
-          <div
-            className={classNames(styles.groupContent, {
-              [styles.hideGroup]: hideChildren,
-            })}
-          >
-            {children}
-          </div>
-        )}
+        <div
+          className={classNames({
+            [styles.groupContent]: !noWrapper,
+            [styles.hideGroup]: hideChildren,
+          })}
+        >
+          {children}
+        </div>
       </div>
     )
   }

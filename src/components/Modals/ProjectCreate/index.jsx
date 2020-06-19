@@ -18,11 +18,12 @@
 
 import React from 'react'
 import { observer } from 'mobx-react'
-import { get } from 'lodash'
+import { get, isEmpty } from 'lodash'
 import PropTypes from 'prop-types'
 import { Columns, Column, Select, Input, TextArea } from '@pitrix/lego-ui'
 import { Modal, Form } from 'components/Base'
 import { ArrayInput, ObjectInput } from 'components/Inputs'
+import ClusterTitle from 'components/Clusters/ClusterTitle'
 import { PATTERN_SERVICE_NAME, PATTERN_LENGTH_63 } from 'utils/constants'
 
 import WorkspaceStore from 'stores/workspace'
@@ -72,7 +73,18 @@ export default class ProjectCreateModal extends React.Component {
     return this.workspaceStore.clusters.data.map(item => ({
       label: item.name,
       value: item.name,
+      provider: item.provider,
+      group: item.group,
+      name: item.name,
     }))
+  }
+
+  get defaultClusters() {
+    const clusters = this.workspaceStore.clusters.data
+      .filter(item => item.isHost)
+      .map(item => ({ name: item.name }))
+
+    return isEmpty(clusters) ? undefined : clusters
   }
 
   fetchClusters(params) {
@@ -87,7 +99,8 @@ export default class ProjectCreateModal extends React.Component {
       return callback()
     }
 
-    this.props.store.checkName({ name: value }).then(resp => {
+    const { cluster } = this.props
+    this.props.store.checkName({ name: value, cluster }).then(resp => {
       if (resp.exist) {
         return callback({ message: t('Name exists'), field: rule.field })
       }
@@ -119,8 +132,21 @@ export default class ProjectCreateModal extends React.Component {
     callback()
   }
 
+  valueRenderer = item => <ClusterTitle cluster={item} size="small" noStatus />
+
+  optionRenderer = item => (
+    <ClusterTitle cluster={item} size="small" theme="light" noStatus />
+  )
+
   render() {
-    const { visible, formTemplate, hideCluster, onOk, onCancel } = this.props
+    const {
+      visible,
+      formTemplate,
+      hideCluster,
+      onOk,
+      onCancel,
+      isSubmitting,
+    } = this.props
     return (
       <Modal.Form
         width={960}
@@ -130,6 +156,7 @@ export default class ProjectCreateModal extends React.Component {
         onOk={onOk}
         visible={visible}
         closable={false}
+        isSubmitting={isSubmitting}
         hideHeader
       >
         <div className={styles.header}>
@@ -171,13 +198,13 @@ export default class ProjectCreateModal extends React.Component {
           <Columns>
             <Column>
               <Form.Item
-                label={t('Network Isolated')}
+                label={t('Network Isolation')}
                 desc={t('NETWORK_ISOLATED_DESC')}
               >
                 <Select
                   name="metadata.annotations['kubesphere.io/network-isolate']"
                   options={this.networkOptions}
-                  defaultValue={'enabled'}
+                  defaultValue=""
                 />
               </Form.Item>
             </Column>
@@ -201,12 +228,15 @@ export default class ProjectCreateModal extends React.Component {
                   name="spec.placement.clusters"
                   addText={t('Add Cluster')}
                   itemType="object"
+                  defaultValue={this.defaultClusters}
                 >
                   <ObjectInput>
                     <Select
                       name="name"
+                      className={styles.cluster}
                       options={this.clusters}
-                      style={{ width: 700 }}
+                      valueRenderer={this.valueRenderer}
+                      optionRenderer={this.optionRenderer}
                     />
                   </ObjectInput>
                 </ArrayInput>

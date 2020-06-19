@@ -52,9 +52,11 @@ export default class OPAppDetail extends React.Component {
   }
 
   get listUrl() {
-    const { cluster, namespace } = this.props.match.params
+    const { cluster, workspace, namespace } = this.props.match.params
 
-    return `/cluster/${cluster}/projects/${namespace}/${this.module}/template`
+    return `/${workspace}/clusters/${cluster}/projects/${namespace}/${
+      this.module
+    }/template`
   }
 
   get routing() {
@@ -154,7 +156,7 @@ export default class OPAppDetail extends React.Component {
   render() {
     const detail = toJS(this.store.detail)
 
-    const stores = { detailStore: this.store, fedDetailStore: this.fedStore }
+    const stores = { detailStore: this.store }
 
     if (this.store.isLoading && !this.store.detail.name) {
       return <Loading className="ks-page-loading" />

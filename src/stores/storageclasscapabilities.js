@@ -16,13 +16,23 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-// import { get, set, isString, isEmpty, isArray } from 'lodash'
-// import { action, observable } from 'mobx'
-// import ObjectMapper from 'utils/object.mapper'
+import { action } from 'mobx'
 import Base from './base'
 
 export default class StorageClassCapabilityStore extends Base {
   constructor(module = 'storageclasscapabilities') {
     super(module)
+  }
+
+  @action
+  async fetchDetail(params, filter, options, reject) {
+    this.isLoading = true
+
+    const result = await request.get(this.getDetailUrl(params), {}, {}, reject)
+    const detail = { ...params, ...this.mapper(result) }
+
+    this.detail = detail
+    this.isLoading = false
+    return detail
   }
 }

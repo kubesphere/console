@@ -53,8 +53,6 @@ class Credential extends React.Component {
   }
 
   componentDidMount() {
-    const { namespace } = this.props.match.params
-    this.store.project_name = namespace
     this.unsubscribe = this.routing.history.subscribe(location => {
       const params = parse(location.search.slice(1))
       this.getData(params)
@@ -69,14 +67,14 @@ class Credential extends React.Component {
     return globals.app.getActions({
       module: 'credentials',
       cluster: this.props.match.params.cluster,
-      devops: this.props.devopsStore.data.name,
+      devops: this.props.devopsStore.devops,
     })
   }
 
   getData(params) {
     const { project_id, cluster } = this.props.match.params
     this.store.fetchList({
-      namespace: project_id,
+      project_id,
       cluster,
       ...params,
     })

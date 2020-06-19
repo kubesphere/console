@@ -41,15 +41,17 @@ class BaseInfo extends React.Component {
   }
 
   roleStore = new RoleStore()
+
   memberStore = new UserStore()
 
   componentDidMount() {
     this.memberStore.fetchList({
-      devops: this.project_name,
+      devops: this.devops,
       cluster: this.cluster,
     })
+
     this.roleStore.fetchList({
-      devops: this.project_name,
+      devops: this.devops,
       cluster: this.cluster,
     })
   }
@@ -62,16 +64,16 @@ class BaseInfo extends React.Component {
     return this.props.devopsStore
   }
 
-  get workspace() {
-    return this.store.data.workspace
-  }
-
   get project_id() {
     return this.props.match.params.project_id
   }
 
-  get project_name() {
-    return this.store.project_name
+  get devops() {
+    return this.store.devops
+  }
+
+  get workspace() {
+    return this.props.match.params.workspace
   }
 
   get cluster() {
@@ -82,25 +84,8 @@ class BaseInfo extends React.Component {
     return globals.app.getActions({
       module: 'devops-settings',
       cluster: this.cluster,
-      devops: this.props.devopsStore.data.name,
+      devops: this.devops,
     })
-  }
-
-  getWorkspaceUrl() {
-    const workspace = this.workspace
-
-    if (
-      globals.app.hasPermission({ module: 'workspaces', action: 'manage' }) ||
-      globals.app.hasPermission({
-        module: 'workspaces',
-        action: 'view',
-        workspace,
-      })
-    ) {
-      return `/workspaces/${workspace}/overview`
-    }
-
-    return '/'
   }
 
   get itemActions() {
@@ -133,10 +118,19 @@ class BaseInfo extends React.Component {
   }
 
   handleEdit = ({ name, ...data }) => {
-    this.store.update({ name, cluster: this.cluster }, data, true).then(() => {
-      this.hideEdit()
-      this.store.fetchDetail(this.props.match.params)
-    })
+    this.store
+      .update(
+        { name, cluster: this.cluster, workspace: this.workspace },
+        data,
+        true
+      )
+      .then(() => {
+        this.hideEdit()
+        this.store.fetchDetail({
+          workspace: this.workspace,
+          ...this.props.match.params,
+        })
+      })
   }
 
   hideDelete = () => {
@@ -147,7 +141,11 @@ class BaseInfo extends React.Component {
 
   handleDelete = () => {
     this.store
-      .delete({ name: this.project_name, cluster: this.cluster })
+      .delete({
+        name: this.devops,
+        cluster: this.cluster,
+        workspace: this.workspace,
+      })
       .then(() => {
         this.routing.push('/')
       })
@@ -207,21 +205,25 @@ class BaseInfo extends React.Component {
               image="/assets/default-workspace.svg"
               title={this.workspace}
               desc={t('Workspace')}
-              url={this.getWorkspaceUrl()}
+              url={`/workspaces/${this.workspace}/overview`}
             />
             <Info
               className={styles.info}
               icon="group"
               title={memberCount}
               desc={t('Members')}
-              url={`/cluster/${this.cluster}/devops/${this.project_id}/members`}
+              url={`/${this.workspace}/clusters/${this.cluster}/devops/${
+                this.project_id
+              }/members`}
             />
             <Info
               className={styles.info}
               icon="role"
               title={roleCount}
               desc={t('Project Roles')}
-              url={`/cluster/${this.cluster}/devops/${this.project_id}/roles`}
+              url={`/${this.workspace}/clusters/${this.cluster}/devops/${
+                this.project_id
+              }/roles`}
             />
           </div>
         </Card>
@@ -254,6 +256,7 @@ class BaseInfo extends React.Component {
           desc={t.html('DELETE_DEVOPS_TIP', {
             resource: data.name,
           })}
+          resource={data.name}
           visible={this.state.showDelete}
           onOk={this.handleDelete}
           onCancel={this.hideDelete}

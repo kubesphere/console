@@ -137,6 +137,7 @@ export default class ServiceCreateModal extends React.Component {
       cluster,
       namespace,
       detail,
+      isFederated,
       projectDetail,
       isSubmitting,
     } = this.props
@@ -146,7 +147,7 @@ export default class ServiceCreateModal extends React.Component {
     switch (type) {
       case 'statelessservice': {
         const module = 'deployments'
-        const formTemplate = detail
+        const formTemplate = !isEmpty(detail)
           ? pick(detail, ['Deployment', 'Service'])
           : {
               Deployment: FORM_TEMPLATES.deployments({ namespace }),
@@ -160,6 +161,16 @@ export default class ServiceCreateModal extends React.Component {
           component: withProps(steps[0].component, { noApp: true }),
         }
 
+        if (isEmpty(detail) && isFederated) {
+          Object.keys(formTemplate).forEach(key => {
+            formTemplate[key] = FORM_TEMPLATES.federated({
+              data: formTemplate[key],
+              clusters: projectDetail.clusters.map(item => item.name),
+              kind: key,
+            })
+          })
+        }
+
         set(
           formTemplate,
           'Service.metadata.annotations["kubesphere.io/serviceType"]',
@@ -168,7 +179,7 @@ export default class ServiceCreateModal extends React.Component {
 
         this.workloadStore.setModule(module)
 
-        if (projectDetail && projectDetail.isFedManaged) {
+        if (isFederated) {
           steps.push({
             title: 'Diff Settings',
             icon: 'blue-green-deployment',
@@ -186,20 +197,21 @@ export default class ServiceCreateModal extends React.Component {
             visible={visible}
             cluster={cluster}
             namespace={namespace}
+            isFederated={isFederated}
             projectDetail={projectDetail}
             steps={steps}
             formTemplate={formTemplate}
             isSubmitting={isSubmitting}
             onOk={onOk}
             onCancel={onCancel}
-            okBtnText={detail ? t('Update') : undefined}
+            okBtnText={!isEmpty(detail) ? t('Update') : t('Add')}
           />
         )
         break
       }
       case 'statefulservice': {
         const module = 'statefulsets'
-        const formTemplate = detail
+        const formTemplate = !isEmpty(detail)
           ? pick(detail, ['StatefulSet', 'Service'])
           : {
               StatefulSet: FORM_TEMPLATES.statefulsets({ namespace }),
@@ -212,6 +224,16 @@ export default class ServiceCreateModal extends React.Component {
           component: withProps(steps[0].component, { noApp: true }),
         }
 
+        if (isFederated) {
+          Object.keys(formTemplate).forEach(key => {
+            formTemplate[key] = FORM_TEMPLATES.federated({
+              data: formTemplate[key],
+              clusters: projectDetail.clusters.map(item => item.name),
+              kind: key,
+            })
+          })
+        }
+
         set(
           formTemplate,
           'Service.metadata.annotations["kubesphere.io/serviceType"]',
@@ -220,7 +242,7 @@ export default class ServiceCreateModal extends React.Component {
 
         this.workloadStore.setModule(module)
 
-        if (projectDetail && projectDetail.isFedManaged) {
+        if (isFederated) {
           steps.push({
             title: 'Diff Settings',
             icon: 'blue-green-deployment',
@@ -238,6 +260,7 @@ export default class ServiceCreateModal extends React.Component {
             visible={visible}
             cluster={cluster}
             namespace={namespace}
+            isFederated={isFederated}
             projectDetail={projectDetail}
             steps={steps}
             formTemplate={formTemplate}

@@ -25,23 +25,6 @@ import { getDisplayName } from 'utils'
 import styles from './index.scss'
 
 export default class BaseInfo extends React.Component {
-  getWorkspaceUrl() {
-    const { workspace } = this.props.detail
-
-    if (
-      globals.app.hasPermission({ module: 'workspaces', action: 'manage' }) ||
-      globals.app.hasPermission({
-        module: 'workspaces',
-        action: 'view',
-        workspace,
-      })
-    ) {
-      return `/workspaces/${workspace}/overview`
-    }
-
-    return '/'
-  }
-
   render() {
     const { className, detail = {} } = this.props
 
@@ -64,7 +47,9 @@ export default class BaseInfo extends React.Component {
           <div className={styles.text}>
             <div>
               {detail.workspace ? (
-                <Link to={this.getWorkspaceUrl()}>{detail.workspace}</Link>
+                <Link to={`/workspaces/${detail.workspace}/overview`}>
+                  {detail.workspace}
+                </Link>
               ) : (
                 '-'
               )}

@@ -98,16 +98,22 @@ export default class Store extends BaseStore {
 
   @observable
   jsonData = {}
+
   @observable
   activeLineIndex = ''
+
   @observable
   activeColunmIndex = ''
+
   @observable
   isAddingStep = false
+
   @observable
   edittingData = {}
+
   @observable
   params = {}
+
   @observable
   credentials = []
 
@@ -312,7 +318,7 @@ export default class Store extends BaseStore {
   getCredentials = async () => {
     this.isCredentialLoading = true
     const result = await this.credentialStore.fetchList({
-      namespace: this.params.project_id,
+      project_id: this.params.project_id,
       cluster: this.params.cluster,
     })
 

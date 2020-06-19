@@ -38,7 +38,7 @@ export default class BaseInfo extends React.Component {
             <Column>
               <Form.Item
                 label={t('Name')}
-                desc={t('storage class name')}
+                desc={t('Storage Class Name')}
                 rules={[{ required: true, message: t('Please input name') }]}
               >
                 <Input name="metadata.name" autoFocus={true} />

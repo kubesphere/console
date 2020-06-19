@@ -26,7 +26,9 @@ export default class Metadata extends React.Component {
   labelsValidator = (rule, value, callback) => {
     if (isUndefined(value)) {
       return callback()
-    } else if (isEmpty(value)) {
+    }
+
+    if (isEmpty(value)) {
       return callback({ message: t('Labels cannot be empty') })
     }
 

@@ -16,6 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { get, set } from 'lodash'
 import { Modal, Notify } from 'components/Base'
 import CreateModal from 'workspaces/components/Modals/WorkspaceCreate'
 
@@ -28,6 +29,10 @@ export default {
             Modal.close(modal)
             return
           }
+
+          const isolation =
+            get(data, 'spec.template.spec.networkIsolation') === 'true'
+          set(data, 'spec.template.spec.networkIsolation', isolation)
 
           store.create(data).then(() => {
             Modal.close(modal)

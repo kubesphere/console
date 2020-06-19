@@ -15,9 +15,10 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { set } from 'lodash'
+import { set, cloneDeep } from 'lodash'
 
 const deleteUnenableAttrs = data => {
+  /* eslint-disable no-unused-vars */
   for (const key in data) {
     if (key.startsWith('enable_') && data[key] === false) {
       delete data[key.slice(7)]
@@ -33,7 +34,13 @@ const deleteUnenableAttrs = data => {
 export const updatePipelineParams = (data, isEditor = false) => {
   const { multi_branch_pipeline, pipeline, type, ...rest } = data
 
-  const param = JSON.parse(JSON.stringify(rest))
+  if (!rest.description && rest.desc) {
+    rest.description = rest.desc
+    delete rest.desc
+  }
+
+  const param = cloneDeep(rest)
+
   if (param.metadata) {
     delete param.metadata
   }
@@ -70,6 +77,8 @@ export const updatePipelineParams = (data, isEditor = false) => {
 export const updatePipelineParamsInSpec = (data, project_id) => {
   if (data.multi_branch_pipeline) {
     data = set(data, 'metadata.name', data.multi_branch_pipeline.name)
+    delete data.multi_branch_pipeline.metadata
+
     data.spec = {
       multi_branch_pipeline: { ...data.multi_branch_pipeline },
       type: data.type,
@@ -80,6 +89,8 @@ export const updatePipelineParamsInSpec = (data, project_id) => {
 
   if (data.pipeline) {
     data = set(data, 'metadata.name', data.pipeline.name)
+    delete data.pipeline.metadata
+
     data.spec = {
       pipeline: { ...data.pipeline },
       type: data.type,
@@ -89,6 +100,8 @@ export const updatePipelineParamsInSpec = (data, project_id) => {
   }
 
   delete data.type
+  delete data.desc
+  delete data.description
 
   data = set(data, 'metadata.namespace', project_id)
 }

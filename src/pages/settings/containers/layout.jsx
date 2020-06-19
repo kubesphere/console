@@ -37,7 +37,7 @@ class AccessLayout extends Component {
             </div>
             <div className={styles.text}>
               <div className="h6">{t('Platform Settings')}</div>
-              <p>{t('对整个平台进行系统设置')}</p>
+              <p>{t('PLATFORM_SETTINGS_SELECTOR_DESC')}</p>
             </div>
           </div>
           <Nav

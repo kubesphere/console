@@ -25,9 +25,9 @@ export default {
     'Please input the basic information of the DevOps project',
 
   DEVOPS_DESCRIPTION:
-    'DevOps is a separate namespace that defines a set of pipelines. Users can group their pipelines according to their own (for example: project type, organization type).',
+    'DevOps is a separate namespace that defines a set of pipelines. Users can group their pipelines themselves (for example: project type, organization type).',
   DEVOPS_PROJECT_CREATE_DESC:
-    'DevOps is a separate namespace that defines a set of pipelines. Users can group their pipelines according to their own (for example: project type, organization type).',
+    'DevOps is a separate namespace that defines a set of pipelines. Users can group their pipelines themselves (for example: project type, organization type).',
 
   DEVOPS_ADMIN_DESC:
     'You can specify a member of the project as an administrator',
@@ -48,9 +48,11 @@ export default {
 
   DEVOPS_TIP_GITOPS_Q: 'How to get started with GitOps?',
   DEVOPS_TIP_GITOPS_A:
-    'Create relevant code repository pipeline and apply kubernetes to deploy steps. The the GitOps can be realized.',
+    'You can start using GitOps by creating a pipeline that is associated with the code repository and deploying steps with Kubernetes.',
 
   DEVOPS_TIP_TYPE_Q: 'Which code repositories are supported by the Pipeline?',
   DEVOPS_TIP_TYPE_A:
     'The pipeline supports code repositories of git, github, SVN, and Bitbucket Server.',
+
+  NO_DEVOPS_INSTALL: 'DevOps not installed',
 }

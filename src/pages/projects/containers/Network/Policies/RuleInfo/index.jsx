@@ -25,6 +25,7 @@ import { Icon } from '@pitrix/lego-ui'
 
 import { Button } from 'components/Base'
 import { trigger } from 'utils/action'
+import ServiceStore from 'stores/service'
 import NetWorkStore from 'stores/network'
 import styles from './index.scss'
 
@@ -36,6 +37,8 @@ export default class RuleInfo extends React.Component {
   constructor(props) {
     super(props)
     this.store = new NetWorkStore(props.module)
+    this.projectStore = props.projectStore
+    this.serviceStore = new ServiceStore()
     this.state = {
       curTab: 'inner',
     }
@@ -43,6 +46,18 @@ export default class RuleInfo extends React.Component {
 
   componentDidMount() {
     this.fetchPolicies()
+    const { namespace, cluster } = this.props
+    const params = {
+      cluster,
+      limit: -1,
+    }
+    this.projectStore.fetchList({
+      ...params,
+    })
+    this.serviceStore.fetchList({
+      namespace,
+      ...params,
+    })
   }
   renderTabs() {
     const { curTab } = this.state
@@ -95,7 +110,7 @@ export default class RuleInfo extends React.Component {
     })
   }
 
-  addWhiteList = () => {
+  addAllowList = () => {
     this.trigger('network.policies.add', {
       ...this.props,
       success: this.fetchPolicies,
@@ -117,6 +132,21 @@ export default class RuleInfo extends React.Component {
     })
   }
 
+  getDiscription = (isProject, name) => {
+    let discription = ''
+    const psList = get(
+      isProject ? this.projectStore : this.serviceStore,
+      'list.data'
+    )
+    if (psList) {
+      const info = psList.find(ps => ps.name === name)
+      if (info) {
+        discription = get(info, 'description')
+      }
+    }
+    return discription
+  }
+
   renderRules = (list, direction) => (
     <>
       {list.map(item => (
@@ -126,18 +156,38 @@ export default class RuleInfo extends React.Component {
               item,
               `spec.${direction}[0].${direction === 'egress' ? 'to' : 'from'}`,
               []
-            ).map(node => {
-              const iconCls = get(node, 'namespace.name')
-                ? 'project'
-                : 'appcenter'
-              const showName =
-                iconCls === 'project'
-                  ? get(node, 'namespace.name')
-                  : get(node, 'service.name')
+            ).map((rule, idx, rules) => {
+              const isProjectRule = !!get(rule, 'namespace.name')
+              const iconCls = isProjectRule ? 'project' : 'appcenter'
+              const showName = isProjectRule
+                ? get(rule, 'namespace.name')
+                : get(rule, 'service.name')
+              const description = this.getDiscription(isProjectRule, showName)
+
+              let curProjectEl = ''
+              if (!isProjectRule && idx + 1 === rules.length) {
+                const serviceProjectName = get(rule, 'service.namespace')
+                const projectDescription = this.getDiscription(
+                  true,
+                  serviceProjectName
+                )
+                curProjectEl = (
+                  <span className={styles.pcell}>
+                    <Icon name="project" />
+                    <b>{serviceProjectName}</b>
+                    <label>
+                      {!isEmpty(projectDescription) &&
+                        `(${projectDescription})`}
+                    </label>
+                  </span>
+                )
+              }
               return (
                 <span className={styles.cell} key={showName}>
                   <Icon name={iconCls} />
-                  {showName}
+                  <b>{showName}</b>
+                  <label>{!isEmpty(description) && `(${description})`}</label>
+                  {curProjectEl}
                 </span>
               )
             })}
@@ -161,19 +211,21 @@ export default class RuleInfo extends React.Component {
           <div className={styles.prow}>
             <span className={styles.cell}>
               <Icon name="eip" />
-              {get(
-                item,
-                `spec.${direction}[0].${
-                  direction === 'egress' ? 'to' : 'from'
-                }[0].ipBlock.cidr`
-              )}
+              <b>
+                {get(
+                  item,
+                  `spec.${direction}[0].${
+                    direction === 'egress' ? 'to' : 'from'
+                  }[0].ipBlock.cidr`
+                )}
+              </b>
             </span>
             <Icon name="port" />
             {get(item, `spec.${direction}[0].ports`, []).map(rule => {
               const showName = `${rule.port}/${rule.protocol}`
               return (
                 <span className={styles.port} key={showName}>
-                  {showName}
+                  <b>{showName}</b>
                 </span>
               )
             })}
@@ -222,8 +274,8 @@ export default class RuleInfo extends React.Component {
         <div className={classNames({ hide: curTab === 'outer' })}>
           <div className={styles.rulemenu}>
             <div>{t('NETWORK_POLICY_R1_DESC1')}</div>
-            <Button onClick={this.addWhiteList} className={styles.addBtn}>
-              {t('Add WhiteList')}
+            <Button onClick={this.addAllowList} className={styles.addBtn}>
+              {t('Add Allowlist')}
             </Button>
           </div>
           <div className={styles.rulebody}>

@@ -102,8 +102,7 @@ export default class Volumes extends React.Component {
   }
 
   getColumns() {
-    const { getSortOrder, module } = this.props
-    const { cluster } = this.props.match.params
+    const { getSortOrder } = this.props
 
     return [
       {
@@ -116,9 +115,7 @@ export default class Volumes extends React.Component {
           <Avatar
             icon={'storage'}
             iconSize={40}
-            to={`/cluster/${cluster}/projects/${
-              record.namespace
-            }/${module}/${name}`}
+            to={`${this.props.match.url}/${name}`}
             desc={this.getItemDesc(record)}
             title={getDisplayName(record)}
           />

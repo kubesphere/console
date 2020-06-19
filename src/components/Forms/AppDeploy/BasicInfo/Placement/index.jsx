@@ -70,6 +70,7 @@ export default class Placment extends Component {
     return this.projectStore.list.data.map(item => ({
       label: item.name,
       value: item.name,
+      opRuntime: item.opRuntime,
     }))
   }
 
@@ -93,6 +94,11 @@ export default class Placment extends Component {
 
     if (!namespace) {
       set(this.state.formData, 'namespace', get(this.namespaces, '[0].value'))
+      set(
+        this.state.formData,
+        'runtime_id',
+        get(this.namespaces, '[0].opRuntime')
+      )
     }
 
     Object.assign(this.props.formData, this.state.formData)
@@ -120,7 +126,7 @@ export default class Placment extends Component {
     }
   }
 
-  async fetchNamespaces(params = {}) {
+  fetchNamespaces = async (params = {}) => {
     const { workspace, cluster } = this.state.formData
     if (workspace && cluster) {
       await this.projectStore.fetchList({

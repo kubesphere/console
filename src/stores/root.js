@@ -32,6 +32,9 @@ export default class RootStore {
   showGlobalNav = false
 
   @observable
+  showHistory = false
+
+  @observable
   actions = {}
 
   constructor() {
@@ -65,6 +68,16 @@ export default class RootStore {
   @action
   hideGlobalNav = () => {
     this.showGlobalNav = false
+  }
+
+  @action
+  toggleHistory = () => {
+    this.showHistory = !this.showHistory
+  }
+
+  @action
+  hideHistory = () => {
+    this.showHistory = false
   }
 
   @action

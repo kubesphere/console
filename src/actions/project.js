@@ -32,24 +32,26 @@ import FederatedStore from 'stores/federated'
 export default {
   'project.create': {
     on({ store, success, cluster, workspace, ...props }) {
-      const federatedStore = new FederatedStore(store.module)
-
       const modal = Modal.open({
-        onOk: data => {
+        onOk: async data => {
           set(data, 'metadata.labels["kubesphere.io/workspace"]', workspace)
-          store.create(data).then(() => {
-            const clusters = get(data, 'spec.placement.clusters', [])
-            clusters.length > 1 &&
-              federatedStore.create(FED_TEMPLATES.namespaces(data), {
-                namespace: get(data, 'metadata.name'),
-              })
+          await store.create(data, { cluster, workspace })
 
-            Modal.close(modal)
-            Notify.success({ content: `${t('Created Successfully')}!` })
-            success && success()
-          })
+          const federatedStore = new FederatedStore(store)
+          const clusters = get(data, 'spec.placement.clusters', [])
+
+          if (clusters.length > 1) {
+            await federatedStore.create(FED_TEMPLATES.namespaces(data), {
+              namespace: get(data, 'metadata.name'),
+            })
+          }
+
+          Modal.close(modal)
+          Notify.success({ content: `${t('Created Successfully')}!` })
+          success && success()
         },
         hideCluster: !globals.app.isMultiCluster || !!cluster,
+        cluster,
         workspace,
         formTemplate: FORM_TEMPLATES.project(),
         modal: ProjectCreateModal,
@@ -66,6 +68,7 @@ export default {
           const params = {
             name: data.name,
             namespace: detail.name,
+            cluster: detail.cluster,
           }
 
           const spec = get(data, 'spec.hard', {})
@@ -80,12 +83,15 @@ export default {
               spec: data.spec,
             })
           } else {
-            await quotaStore.create({
-              apiVersion: 'v1',
-              kind: 'ResourceQuota',
-              metadata: { ...params, name: detail.name },
-              spec: data.spec,
-            })
+            await quotaStore.create(
+              {
+                apiVersion: 'v1',
+                kind: 'ResourceQuota',
+                metadata: { ...params, name: detail.name },
+                spec: data.spec,
+              },
+              params
+            )
           }
 
           Modal.close(modal)

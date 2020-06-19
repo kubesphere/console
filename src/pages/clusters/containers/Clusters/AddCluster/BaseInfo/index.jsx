@@ -17,51 +17,35 @@
  */
 
 import React from 'react'
-import { Input, TextArea } from '@pitrix/lego-ui'
-import { PATTERN_NAME } from 'utils/constants'
-import { Form } from 'components/Base'
+import { Icon, Input, TextArea } from '@pitrix/lego-ui'
+import {
+  PATTERN_NAME,
+  CLUSTER_GROUP_TAG_TYPE,
+  CLUSTER_PROVIDERS,
+  CLUSTER_PRESET_GROUPS,
+} from 'utils/constants'
+import { Form, Tag } from 'components/Base'
 import { SelectInput } from 'components/Inputs'
 
 import SubTitle from '../SubTitle'
 
 export default class BaseInfo extends React.Component {
-  get groups() {
-    return [
-      {
-        label: t('production'),
-        value: 'production',
-      },
-      {
-        label: t('development'),
-        value: 'development',
-      },
-    ]
-  }
+  groupOptionRenderer = option => (
+    <>
+      <Tag type={CLUSTER_GROUP_TAG_TYPE[option.value]}>
+        {t(`ENV_${option.label.toUpperCase()}`)}
+      </Tag>
+      &nbsp;&nbsp;
+      {option.label}
+    </>
+  )
 
-  get providers() {
-    return [
-      {
-        label: 'AKS',
-        value: 'AKS',
-        icon: 'windows',
-      },
-      {
-        label: 'EKS',
-        value: 'EKS',
-        icon: 'aws',
-      },
-      {
-        label: 'GEK',
-        value: 'GEK',
-        icon: 'google',
-      },
-      {
-        label: 'QKE',
-        value: 'QKE',
-        icon: 'qingcloud',
-      },
-    ]
-  }
+  providerOptionRenderer = option => (
+    <>
+      <Icon name={option.icon} type="light" size={20} />
+      {option.label}
+    </>
+  )
 
   nameValidator = (rule, value, callback) => {
     if (!value) {
@@ -85,12 +69,12 @@ export default class BaseInfo extends React.Component {
         />
         <Form.Item
           label={t('Cluster Name')}
-          desc={t('CLUSTER_NAME_DESC')}
+          desc={t('NAME_DESC')}
           rules={[
             { required: true, message: t('Please input role name') },
             {
               pattern: PATTERN_NAME,
-              message: `${t('Invalid name')}, ${t('CLUSTER_NAME_DESC')}`,
+              message: `${t('Invalid name')}, ${t('NAME_DESC')}`,
             },
             { validator: this.nameValidator },
           ]}
@@ -100,15 +84,17 @@ export default class BaseInfo extends React.Component {
         <Form.Item label={t('CLUSTER_TAG')} desc={t('CLUSTER_TAG_DESC')}>
           <SelectInput
             name="metadata.labels['cluster.kubesphere.io/group']"
-            options={this.groups}
+            options={CLUSTER_PRESET_GROUPS}
             placeholder={t('Please select or input a tag')}
+            optionRenderer={this.groupOptionRenderer}
           />
         </Form.Item>
         <Form.Item label={t('Provider')} desc={t('CLUSTER_PROVIDER_DESC')}>
           <SelectInput
             name="spec.provider"
-            options={this.providers}
+            options={CLUSTER_PROVIDERS}
             placeholder={t('Please select or input a provider')}
+            optionRenderer={this.providerOptionRenderer}
           />
         </Form.Item>
         <Form.Item label={t('Description')}>

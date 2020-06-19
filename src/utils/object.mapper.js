@@ -26,6 +26,7 @@ import {
   find,
   keyBy,
   includes,
+  cloneDeep,
 } from 'lodash'
 import {
   safeParseJSON,
@@ -50,6 +51,7 @@ const getOriginData = item =>
     'metadata.ownerReferences',
     'metadata.resourceVersion',
     'metadata.creationTimestamp',
+    'metadata.managedFields',
   ])
 
 const getBaseInfo = item => ({
@@ -69,13 +71,36 @@ const DefaultMapper = item => ({
   _originData: getOriginData(item),
 })
 
-const WorkspaceMapper = item => ({
-  ...getBaseInfo(item),
-  annotations: get(item, 'metadata.annotations', {}),
-  manager: get(item, 'spec.manager') || getResourceCreator(item),
-  clusters: get(item, 'spec.clusters', []),
-  _originData: getOriginData(item),
-})
+const WorkspaceMapper = item => {
+  const overrides = get(item, 'spec.overrides', [])
+  const template = get(item, 'spec.template', {})
+  const clusters = get(item, 'spec.placement.clusters', [])
+
+  const overrideClusterMap = keyBy(overrides, 'clusterName')
+  const clusterTemplates = {}
+  clusters.forEach(({ name }) => {
+    clusterTemplates[name] = cloneDeep(template)
+    if (overrideClusterMap[name] && overrideClusterMap[name].clusterOverrides) {
+      overrideClusterMap[name].clusterOverrides.forEach(cod => {
+        const path = cod.path.startsWith('/') ? cod.path.slice(1) : cod.path
+        set(clusterTemplates[name], path.replace(/\//g, '.'), cod.value)
+      })
+    }
+  })
+
+  return {
+    ...getBaseInfo(item),
+    annotations: get(item, 'metadata.annotations', {}),
+    manager:
+      get(item, 'spec.template.spec.manager') || getResourceCreator(item),
+    clusters: clusters.map(_item => _item.name),
+    networkIsolation:
+      get(item, 'spec.template.spec.networkIsolation') === 'true',
+    overrides,
+    clusterTemplates,
+    _originData: getOriginData(item),
+  }
+}
 
 const UserMapper = item => ({
   ...getBaseInfo(item),
@@ -140,6 +165,7 @@ const WorkLoadMapper = item => ({
   app:
     get(item, 'metadata.labels.release') ||
     get(item, 'metadata.labels["app.kubernetes.io/name"]'),
+  ownerReference: get(item, 'metadata.ownerReferences[0]', {}),
   hasS2i: Object.keys(get(item, 'metadata.labels', {})).some(labelKey =>
     labelKey.startsWith('s2ibuilder')
   ),
@@ -941,6 +967,7 @@ const ClusterMapper = item => {
   return {
     ...getBaseInfo(item),
     conditions,
+    configz: get(item, 'status.configz', {}),
     provider: get(item, 'spec.provider'),
     isHost:
       get(
@@ -958,19 +985,43 @@ const ClusterMapper = item => {
       item,
       'metadata.labels["cluster.kubesphere.io/visibility"]'
     ),
+    connectionType: get(item, 'spec.connection.type'),
     _originData: getOriginData(item),
   }
 }
 
-const FederatedMapper = item => ({
-  ...getBaseInfo(item),
-  status: get(item, 'status'),
-  overrides: get(item, 'spec.overrides'),
-  clusters: get(item, 'spec.placement.clusters'),
-  template: get(item, 'spec.template'),
-  namespace: get(item, 'metadata.namespace'),
-  _originData: getOriginData(item),
-})
+const FederatedMapper = resourceMapper => item => {
+  const overrides = get(item, 'spec.overrides', [])
+  const template = get(item, 'spec.template', {})
+  const clusters = get(item, 'spec.placement.clusters', [])
+
+  const overrideClusterMap = keyBy(overrides, 'clusterName')
+  const clusterTemplates = {}
+  clusters.forEach(({ name }) => {
+    clusterTemplates[name] = cloneDeep(template)
+    if (overrideClusterMap[name] && overrideClusterMap[name].clusterOverrides) {
+      overrideClusterMap[name].clusterOverrides.forEach(cod => {
+        const path = cod.path.startsWith('/') ? cod.path.slice(1) : cod.path
+        set(clusterTemplates[name], path.replace(/\//g, '.'), cod.value)
+      })
+    }
+  })
+
+  return {
+    ...getBaseInfo(item),
+    overrides,
+    template,
+    clusters,
+    clusterTemplates,
+    isFedManaged: true,
+    resource: resourceMapper(template),
+    namespace: get(item, 'metadata.namespace'),
+    labels: get(item, 'metadata.labels', {}),
+    annotations: get(item, 'metadata.annotations', {}),
+    app: get(item, 'metadata.labels["app.kubernetes.io/name"]'),
+    _originData: getOriginData(item),
+  }
+}
 
 const DevOpsMapper = item => ({
   uid: get(item, 'metadata.uid'),

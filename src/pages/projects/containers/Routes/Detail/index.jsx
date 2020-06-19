@@ -53,15 +53,13 @@ export default class RouteDetail extends React.Component {
   }
 
   get listUrl() {
-    const {
-      params: { cluster, namespace },
-      path,
-    } = this.props.match
-    if (path.startsWith('/clusters')) {
-      return `/clusters/${cluster}/ingresses`
+    const { workspace, cluster, namespace } = this.props.match.params
+    if (workspace) {
+      return `/${workspace}/clusters/${cluster}/projects/${namespace}/${
+        this.module
+      }`
     }
-
-    return `/cluster/${cluster}/projects/${namespace}/ingresses`
+    return `/clusters/${cluster}/${this.module}`
   }
 
   fetchData = () => {
@@ -88,7 +86,7 @@ export default class RouteDetail extends React.Component {
       action: 'edit',
       onClick: () =>
         this.trigger('resource.yaml.edit', {
-          detail: this.store.detail,
+          detail: toJS(this.store.detail),
           success: this.fetchData,
         }),
     },
@@ -99,7 +97,7 @@ export default class RouteDetail extends React.Component {
       action: 'edit',
       onClick: () =>
         this.trigger('router.rules.edit', {
-          detail: this.store.detail,
+          detail: toJS(this.store.detail),
           success: this.fetchData,
         }),
     },
@@ -110,7 +108,7 @@ export default class RouteDetail extends React.Component {
       action: 'edit',
       onClick: () =>
         this.trigger('router.annotations.edit', {
-          detail: this.store.detail,
+          detail: toJS(this.store.detail),
           success: this.fetchData,
         }),
     },

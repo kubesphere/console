@@ -17,32 +17,40 @@
  */
 
 export default {
+  'Network Policys': 'Network Policies',
   NETWORK_POLICY_DESC:
-    'The network policy is configured to allow network isolation within the same cluster, that is, the ability to build a firewall between certain instances (pods).',
-  NETWORK_POLICY_Q: 'how to use network strategy better?',
+    'The Network policy configuration allows network isolation within the same cluster, which means firewalls can be set up between certain instances (Pods).',
+  NETWORK_ISOLATION_DESC:
+    'By configuring network isolation to control traffic among Pods within the same cluster and traffic from outside, applications are isolated and security is enhanced.',
+  NETWORK_POLICY_Q: 'How to use a network policy better?',
+  NETWORK_ISOLATION_Q: 'How to use network isolation better?',
   NETWORK_POLICY_A:
-    'We have compiled several common application scenarios based on the actual usage scenarios, and you can refer to the documentation for more information',
-  NETWORK_POLICY_Q1: 'requirement to implement a network strategy',
-  NETWORK_POLICY_A1: 'xxxxxxxxxx',
-  NETWORK_POLICY_EMP_TITLE: 'project network isolation not enabled',
+    'We have compiled several common application scenarios based on the actual scenarios, and you can refer to the documentation for more information.',
+  NETWORK_POLICY_Q1: 'Requirement to implement a network policy',
+  NETWORK_ISOLATION_Q1: 'Requirement to implement network isolation',
+  NETWORK_POLICY_A1: 'Make sure that the CNI network plugin used by the cluster supports <a href=“https://kubernetes.io/docs/concepts/services-networking/network-policies/” target=“_blank”>NetworkPolicy</a>. There are a number of CNI network plugins that support NetworkPolicy, including Calico, Cilium, Kube-router, Romana and Weave Net.',
+  NETWORK_POLICY_EMP_TITLE: 'Project Network Isolation Not Enabled',
   NETWORK_POLICY_EMP_DESC:
-    'If project network isolation is not enabled for the current project, it will allow other projects in the namespace to access directly by default. If network isolation is not enabled for the namespace, all projects in the cluster will be allowed to access',
-  NETWORK_POLICY_STATUS: 'project network isolation',
+    'The current project can be accessed by other projects in the cluster based on the workspace settings. Once network isolation is enabled for the project, other projects will be unable to access it while you can still customize specific projects, services or external addresses that can be released.',
+  NETWORK_POLICY_STATUS: 'Project Network Isolation',
   NETWORK_POLICY_R_DESC1:
     'You can set access to the following resources (matching any of the following policies)',
   NETWORK_POLICY_R_DESC2:
     'The following resources can be allowed to access the current project (matching any of the following policies)',
-  NETWORK_POLICY_R1_TITLE: 'Cluster internal whitelist',
-  NETWORK_POLICY_R1_DESC: 'Allows access to services within the cluster',
+  NETWORK_POLICY_R1_TITLE: 'Cluster Internal Allowlist',
+  NETWORK_POLICY_R1_DESC: 'Allow access for services within the cluster',
   NETWORK_POLICY_R1_DESC1:
-    'Select the specified project or service as a whitelist member to allow these resources to access the current project.',
-  NETWORK_POLICY_R2_TITLE: 'Cluster external IP address',
-  NETWORK_POLICY_R2_DESC: 'Allow access to CIRD outside the cluster',
+    'Select a specific project or service as an allowlist member so that these resources can access the current project.',
+  NETWORK_POLICY_R2_TITLE: 'Cluster External IP Address',
+  NETWORK_POLICY_R2_DESC: 'Allow access for CIRD outside the cluster',
   NETWORK_POLICY_R2_DESC1:
-    'Select a specific IP CIDR range to allow as an entry source or exit destination. Cluster external IP',
+    'Select a specific IP CIDR range as an entry source or exit destination.',
   NETWORK_POLICY_D_DESC: 'Match Egress traffic and Ingress traffic',
+  NETWORK_POLICY_D_DESC2:
+    'CIDR is a string representing a valid IP block, such as "192.168.1.1/24".',
   NETWORK_POLICY_D_OP1: 'Egress',
   NETWORK_POLICY_D_OP2: 'Ingress',
   NETWORK_POLICY_CREATE_DESC:
     'The network policy is configured to allow network isolation within the same cluster, that is, the ability to build a firewall between certain instances (pods).',
+  CIDR_DESC: 'Based on the traffic direction',
 }

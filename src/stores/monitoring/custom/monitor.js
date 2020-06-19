@@ -44,6 +44,9 @@ export default class PanelMonitor {
   @observable
   metrics = []
 
+  @observable
+  timeRange = { start: 0, end: 0 }
+
   @computed
   get type() {
     return this.config.type
@@ -123,6 +126,8 @@ export default class PanelMonitor {
   @action
   fetchMetrics = async ({ start, end }) => {
     const { targets = [], namespace } = this.config
+
+    this.timeRange = { start, end }
 
     const req = {
       ID: ++this.requestID,
@@ -231,7 +236,7 @@ export default class PanelMonitor {
  */
 function parseExpr2GrafanaQuery({ __name__, ...reset } = {}) {
   if (!__name__) {
-    return ''
+    return JSON.stringify(reset || {})
   }
 
   const querys = Object.entries(reset || {}).map(

@@ -90,7 +90,7 @@ export default class SecretDataForm extends React.Component {
           <a className="custom-icon" onClick={this.handleGoBack}>
             <BackIcon />
           </a>
-          {!detail[selectKey] ? t('Add data') : t('Edit data')}
+          {!detail[selectKey] ? t('Add Data') : t('Edit Data')}
         </div>
         <div className={styles.formWrapper}>
           <Form data={this.state.formData} ref={this.formRef}>

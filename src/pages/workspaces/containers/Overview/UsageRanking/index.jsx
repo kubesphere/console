@@ -22,7 +22,6 @@ import classNames from 'classnames'
 import { get } from 'lodash'
 
 import Store from 'stores/rank/project'
-import WorkspaceStore from 'stores/workspace'
 
 import {
   Select,
@@ -34,12 +33,13 @@ import {
   Loading,
 } from '@pitrix/lego-ui'
 import { Button } from 'components/Base'
+import EmptyList from 'components/Cards/EmptyList'
 import SortMetricSelect from 'clusters/components/Cards/Monitoring/UsageRank/select'
 import Table from 'clusters/containers/Monitor/Resource/Ranking/Project/Table'
 
 import styles from './index.scss'
 
-@inject('rootStore')
+@inject('rootStore', 'workspaceStore')
 @observer
 class Ranking extends React.Component {
   constructor(props) {
@@ -54,7 +54,7 @@ class Ranking extends React.Component {
       limit: 10,
       sort_type: 'desc',
     })
-    this.workspaceStore = new WorkspaceStore()
+    this.workspaceStore = this.props.workspaceStore
   }
 
   get workspace() {
@@ -80,16 +80,14 @@ class Ranking extends React.Component {
   }
 
   componentDidMount() {
-    this.workspaceStore
-      .fetchClusters({ workspace: this.workspace })
-      .then(() => {
-        const cluster = this.workspaceStore.clusters.data.find(
-          item => item.isHost
-        )
-        this.setState({ cluster: cluster.name }, () => {
-          this.fetchMetrics()
-        })
+    const cluster =
+      this.workspaceStore.clusters.data.find(item => item.isHost) ||
+      this.workspaceStore.clusters.data[0]
+    if (cluster) {
+      this.setState({ cluster: cluster.name }, () => {
+        this.fetchMetrics()
       })
+    }
   }
 
   handleClusterChange = cluster => {
@@ -99,11 +97,21 @@ class Ranking extends React.Component {
   }
 
   render() {
+    if (this.workspaceStore.clusters.data.length > 0) {
+      return (
+        <div className={styles.wrapper}>
+          {this.renderToolbar()}
+          {this.renderList()}
+        </div>
+      )
+    }
+
     return (
-      <div className={styles.wrapper}>
-        {this.renderToolbar()}
-        {this.renderList()}
-      </div>
+      <EmptyList
+        icon="cluster"
+        title={t('No Available Cluster')}
+        desc={t('NO_CLUSTER_TIP')}
+      />
     )
   }
 

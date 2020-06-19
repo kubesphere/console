@@ -19,8 +19,6 @@
 import { omit, isArray, get, set, isEmpty } from 'lodash'
 import { saveAs } from 'file-saver'
 import { action, observable, toJS } from 'mobx'
-import { API_VERSIONS } from 'utils/constants'
-
 import BaseStore from './base'
 
 const TABLE_LIMIT = 10
@@ -126,17 +124,12 @@ export default class PipelineStore extends BaseStore {
   project_id = ''
 
   @observable
-  devopsProjectName = ''
+  devops = ''
 
   @action
-  async fetchList({
-    project_name,
-    workspace,
-    namespace,
-    cluster,
-    ...filters
-  } = {}) {
+  async fetchList({ devops, workspace, project_id, cluster, ...filters } = {}) {
     this.list.isLoading = true
+
     const { page, keyword, filter } = filters
 
     const searchWord = keyword ? `*${encodeURIComponent(keyword)}*` : ''
@@ -144,12 +137,13 @@ export default class PipelineStore extends BaseStore {
     const url = `${this.getBaseUrlV2({ cluster })}search`
 
     const result = await this.request.get(url, {
-      q: `type:pipeline;organization:jenkins;pipeline:${namespace}/${searchWord ||
+      q: `type:pipeline;organization:jenkins;pipeline:${project_id}/${searchWord ||
         '*'};excludedFromFlattening:jenkins.branch.MultiBranchProject,hudson.matrix.MatrixProject&filter=${filter ||
         'no-folders'}`,
     })
 
-    this.setProjectId(namespace)
+    this.setProjectId(project_id)
+    this.devops = devops
 
     this.list = {
       data: result.items || [],
@@ -162,28 +156,29 @@ export default class PipelineStore extends BaseStore {
   }
 
   @action
-  async fetchDetail({ cluster, name, isSilent }) {
+  async fetchDetail({ cluster, name, isSilent, project_id }) {
     if (!isSilent) {
       this.isLoading = true
     }
 
     const result = await this.request.get(
-      `${this.getDevopsUrlV2({ cluster })}${
-        this.project_id
-      }/pipelines/${decodeURIComponent(name)}/`
-    )
-
-    const resultKub = await this.request.get(
-      `${this.getDetailUrl({ name, namespace: this.project_id, cluster })}`
+      `${this.getDevopsUrlV2({ cluster })}${project_id ||
+        this.project_id}/pipelines/${decodeURIComponent(name)}/`
     )
 
     const devopsName = get(result, 'fullDisplayName')
 
     if (devopsName !== '') {
       try {
-        this.devopsProjectName = devopsName.split('/')[0].slice(0, -5)
+        this.devops = devopsName.split('/')[0].slice(0, -5)
       } catch {}
     }
+
+    const resultKub = await this.request.get(
+      `${this.getDevOpsDetailUrl({ devops: this.devops, cluster })}/${
+        this.module
+      }/${name}`
+    )
 
     this.setPipelineConfig(resultKub)
     this.detail = result
@@ -210,10 +205,10 @@ export default class PipelineStore extends BaseStore {
   @action
   async getJenkinsFile({ cluster, name, project_id }) {
     this.pipelineJsonData.isLoading = true
-    name = decodeURIComponent(name)
+    const decodeName = decodeURIComponent(name)
 
     if (isEmpty(this.detail)) {
-      await this.fetchDetail({ cluster, name, project_id })
+      await this.fetchDetail({ cluster, name: decodeName, project_id })
     }
 
     this.jenkinsfile = get(this.pipelineConfig, 'spec.pipeline.jenkinsfile', '')
@@ -242,12 +237,12 @@ export default class PipelineStore extends BaseStore {
 
   @action
   async getPullRequest({ name, project_id, workspace, cluster, ...filters }) {
-    name = decodeURIComponent(name)
+    const decodeName = decodeURIComponent(name)
 
     const { page } = filters
 
     if (isEmpty(this.detail)) {
-      await this.fetchDetail({ name, project_id })
+      await this.fetchDetail({ name: decodeName, project_id })
     }
     const result = await this.request.get(
       `${this.getDevopsUrlV2({
@@ -272,12 +267,12 @@ export default class PipelineStore extends BaseStore {
 
   @action
   async getBranches({ cluster, project_id, name, branch, ...filters }) {
-    name = decodeURIComponent(name)
+    const decodeName = decodeURIComponent(name)
 
     const { page } = filters
 
     if (isEmpty(this.detail)) {
-      await this.fetchDetail({ cluster, name, project_id })
+      await this.fetchDetail({ cluster, name: decodeName, project_id })
     }
 
     const result = await this.request.get(
@@ -431,12 +426,12 @@ export default class PipelineStore extends BaseStore {
   }
 
   @action
-  async createPipeline({ data, namespace, cluster }) {
+  async createPipeline({ data, devops, cluster }) {
     data.kind = 'Pipeline'
     data.apiVersion = 'devops.kubesphere.io/v1alpha3'
 
-    const url = `${API_VERSIONS.devops}${this.getPath({
-      namespace,
+    const url = `${this.getDevOpsDetailUrl({
+      devops,
       cluster,
     })}/pipelines`
 
@@ -447,9 +442,9 @@ export default class PipelineStore extends BaseStore {
   async updatePipeline({ cluster, data, project_id }) {
     data.kind = 'Pipeline'
     data.apiVersion = 'devops.kubesphere.io/v1alpha3'
-
-    const url = `${API_VERSIONS.devops}${this.getPath({
-      namespace: project_id,
+    const devops = this.getDevops(project_id)
+    const url = `${this.getDevOpsDetailUrl({
+      devops,
       cluster,
     })}/pipelines/${data.metadata.name}`
 
@@ -471,10 +466,10 @@ export default class PipelineStore extends BaseStore {
   }
 
   @action
-  async deletePipeline(name, project_id, cluster) {
-    const url = `${API_VERSIONS.devops}${this.getPath({
-      namespace: project_id,
-      cluster: cluster,
+  async deletePipeline(name, devops, cluster) {
+    const url = `${this.getDevOpsDetailUrl({
+      devops,
+      cluster,
     })}/pipelines/${name}`
 
     return await this.request.delete(url)
@@ -523,7 +518,7 @@ export default class PipelineStore extends BaseStore {
     return await this.request.post(
       `${this.getDevopsUrlV2({
         cluster,
-      })}/${project_id}/pipelines/${pipeline}/checkScriptCompile`,
+      })}${project_id}/pipelines/${pipeline}/checkScriptCompile`,
       {
         value,
       },
@@ -532,13 +527,13 @@ export default class PipelineStore extends BaseStore {
   }
 
   async getBranchLists({ project_id, name, workspace, cluster, ...filters }) {
-    name = decodeURIComponent(name)
+    const decodeName = decodeURIComponent(name)
     const { page } = filters
 
     return await this.request.get(
       `${this.getDevopsUrlV2({
         cluster,
-      })}${project_id}/pipelines/${name}/branches/`,
+      })}${project_id}/pipelines/${decodeName}/branches/`,
       {
         filter: 'origin',
         start: (page - 1) * 100 || 0,

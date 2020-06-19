@@ -57,18 +57,22 @@ class Jobs extends React.Component {
     return this.props.match.params.cluster
   }
 
+  get workspace() {
+    return this.props.match.params.workspace
+  }
+
   get canCreate() {
-    const { cluster, namespace: project } = this.props.match.params
+    const { cluster, workspace, namespace: project } = this.props.match.params
     return (
       globals.app
-        .getActions({ cluster, project, module: 'applications' })
+        .getActions({ cluster, workspace, project, module: 'applications' })
         .includes('edit') && this.serviceMeshEnable
     )
   }
 
   get serviceMeshEnable() {
     return (
-      globals.app.hasKSModule('servicemesh') &&
+      globals.app.hasClusterModule(this.cluster, 'servicemesh') &&
       this.routerStore.gateway.data.serviceMeshEnable
     )
   }
@@ -78,7 +82,10 @@ class Jobs extends React.Component {
   }
 
   showDetail = item => {
-    this.setState({ showDetailModal: true, selectItem: item })
+    this.setState({
+      showDetailModal: true,
+      selectItem: { ...item, workspace: this.workspace },
+    })
   }
 
   hideDetail = () => {
@@ -95,10 +102,10 @@ class Jobs extends React.Component {
   }
 
   showCreateGrayReleaseJob = () => {
-    const { cluster, namespace } = this.props.match.params
+    const { workspace, cluster, namespace } = this.props.match.params
 
     this.props.rootStore.routing.push(
-      `/cluster/${cluster}/projects/${namespace}/grayrelease/cates`
+      `/${workspace}/clusters/${cluster}/projects/${namespace}/grayrelease/cates`
     )
   }
 

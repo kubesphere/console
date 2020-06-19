@@ -17,10 +17,15 @@
  */
 
 import React from 'react'
+import { inject } from 'mobx-react'
 import ResourceUsage from 'projects/containers/Overview/ResourceUsage'
 
+@inject('detailStore')
 export default class Overview extends React.Component {
   render() {
-    return <ResourceUsage match={this.props.match} />
+    const { detail } = this.props.detailStore
+    return (
+      <ResourceUsage match={this.props.match} workspace={detail.workspace} />
+    )
   }
 }

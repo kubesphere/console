@@ -17,7 +17,6 @@
  */
 
 import React from 'react'
-import { get } from 'lodash'
 import { toJS } from 'mobx'
 import { Avatar, Status } from 'components/Base'
 import Banner from 'components/Cards/Banner'
@@ -41,7 +40,7 @@ export default class Members extends React.Component {
 
   componentDidMount() {
     this.roleStore.fetchList({
-      devops: this.devopsName,
+      devops: this.devops,
       cluster: this.cluster,
       limit: -1,
     })
@@ -49,7 +48,7 @@ export default class Members extends React.Component {
 
   getData = () => {
     this.props.store.fetchList({
-      devops: this.devopsName,
+      devops: this.devops,
       cluster: this.cluster,
     })
   }
@@ -58,15 +57,12 @@ export default class Members extends React.Component {
     return this.props.match.params.cluster
   }
 
-  get devopsName() {
-    return this.props.devopsStore.project_name
+  get devops() {
+    return this.props.devopsStore.devops
   }
 
   get workspace() {
-    return get(
-      this.props.devopsStore,
-      'itemDetail.metadata.labels["kubesphere.io/workspace"]'
-    )
+    return this.props.match.params.workspace
   }
 
   get tips() {
@@ -81,7 +77,7 @@ export default class Members extends React.Component {
   get enabledActions() {
     return globals.app.getActions({
       module: 'members',
-      devops: this.devopsName,
+      devops: this.devops,
       cluster: this.cluster,
     })
   }
@@ -103,7 +99,7 @@ export default class Members extends React.Component {
           trigger('member.edit', {
             detail: item,
             ...this.props.match.params,
-            devops: this.devopsName,
+            devops: this.devops,
             roles: toJS(this.roleStore.list.data),
             role: item.role,
             success: this.getData,
@@ -118,7 +114,7 @@ export default class Members extends React.Component {
         onClick: item =>
           trigger('member.remove', {
             detail: item,
-            devops: this.devopsName,
+            devops: this.devops,
             success: this.getData,
             ...this.props.match.params,
           }),
@@ -139,12 +135,12 @@ export default class Members extends React.Component {
           action: 'create',
           onClick: () =>
             trigger('member.invite', {
-              devops: this.devopsName,
+              devops: this.devops,
               workspace: this.workspace,
               cluster: this.cluster,
               roles: toJS(this.roleStore.list.data),
               roleModule: this.roleStore.module,
-              title: t('Invite members to the project'),
+              title: t('Invite Members to the Project'),
               desc: t('INVITE_MEMBER_DESC'),
               searchPlaceholder: t('INVITE_MEMBER_SEARCH_PLACEHODLER'),
               success: this.getData,
@@ -160,7 +156,7 @@ export default class Members extends React.Component {
           onClick: () =>
             trigger('member.remove.batch', {
               success: this.getData,
-              devops: this.devopsName,
+              devops: this.devops,
               ...this.props.match.params,
             }),
         },
