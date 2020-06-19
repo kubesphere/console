@@ -216,17 +216,17 @@ export default {
   WORKLOAD_REPLICA_MSG:
     'In the user-defined scope, if the number of Pods increases, the ReplicationController will terminate the extra Pods. Instead, the RC will create a new Pod that remains in the defined scope. For example, the RC will recreate the Pod on the node after Pod maintenance (such as kernel upgrades).',
   DEPLOYMENTS_REPLICA_DESC:
-    "Deployment is used to describe a desired state that is expected to be reached by the application, it's mainly used to describe the stateless application. The number and state of replicas are maintained by the deployment controller, ensuring that the state is consistent with the defined expected state. You can increase the replicas to meet higher loads. Roll back the deployment version can eliminate bugs in the program, and create an autoscaler to flexibly handle the load in different scenarios.",
+    "Deployment is used to describe a desired state that is expected to be reached by the application. It is mainly used to describe stateless applications. The number and state of replicas are maintained by the deployment controller, ensuring the state is consistent with the defined expected state. You can increase the replicas to meet higher loads. Rolling back the deployment version can eliminate program bugs. And you can create an autoscaler to flexibly handle the load in different scenarios.",
   STATEFULSETS_REPLICA_DESC:
-    "StatefulSet is used to describe stateful application, for example, there are master-slave relationships between replicas, and data needs to be persisted. As with deployment, the replicas created by statefulsets are identical, except that each replica has a constant and unique identifier, and the identifier doesn't change even if the replica is rescheduled. You can use the statefulsets to achieve an orderly deployment, an orderly deletion, and an orderly rolling update for your application.",
+    "StatefulSet is used to describe stateful applications, such as master-slave relations between replicas and persistent data storage. Like a Deployment, a StatefulSet creates identical replicas. The difference is that each replica has a persistent and unique identifier that it maintains across any rescheduling. You can use StatefulSets to achieve ordered deployment, deletion and rolling updates.",
   DAEMONSETS_REPLICA_DESC:
-    'DaemonSet ensures that each node in the cluster runs a replica. When a node joins the cluster or leaves, the number of replicas is automatically adjusted to ensure that the number of replicas is the same as the number of nodes in the cluster. You can use the Daemonsets to run storage services such as glusterfs, ceph, etc. As well as running log collection services such as fluent, logstash, etc. and run monitoring services.',
+    'DaemonSet ensures that each node in the cluster runs a replica. When a node joins the cluster or leaves, the number of replicas is automatically adjusted to ensure that the number of replicas is the same as the number of nodes in the cluster. You can use DaemonSets to run storage services (GlusterFS, Ceph, etc.), log collection services (Fluentd, Logstash, etc.), and monitoring services.',
 
   REFFER_CONFIGMAP_DESC: "Add a new volume from the ConfigMap value.",
   REFFER_SECRET_DESC: "Add a new volume from the Secret value.",
 
   MONITORING_ALERT_DESC:
-    'The current monitoring graph only displays five replicas. You can click "View all replicas" to view more monitoring graphs if the number of replicas exceeds five.',
+    'The current monitoring graph displays five replicas at most. You can click "View All Replicas" to view more monitoring graphs if the number of replicas exceeds five.',
 
   RESOURCE_REQUESTS: 'Request',
   RESOURCE_LIMITS: 'Limit',

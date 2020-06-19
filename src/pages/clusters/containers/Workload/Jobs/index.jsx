@@ -161,7 +161,7 @@ export default class Jobs extends React.Component {
         ),
       },
       {
-        title: t('Last schedule time'),
+        title: t('Last Executed Time'),
         dataIndex: 'updateTime',
         sorter: true,
         sortOrder: getSortOrder('updateTime'),

@@ -31,16 +31,16 @@ export default class Help extends React.Component {
       <div className={classNames(styles.wrapper, className)}>
         <div className={styles.header}>
           <Icon name="question" size={24} />
-          {t('Help information')}
+          {t('Help Information')}
         </div>
         <div className={styles.tip}>
           <a href={getDocsUrl('project_members')} target="_blank">
-            💁 {t('Invite other members into current project ?')}
+            💁 {t('How to invite other members to the current project?')}
           </a>
         </div>
         <div className={styles.tip}>
           <a href={getDocsUrl('internet')} target="_blank">
-            💁 {t('How to setup the project gateway ?')}
+            💁 {t('How to set the project gateway?')}
           </a>
         </div>
       </div>

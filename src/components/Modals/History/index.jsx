@@ -35,7 +35,7 @@ export default class History extends Component {
     const histories = this.histories
     return (
       <div className={styles.section}>
-        <div className={styles.sectionTitle}>{t('Recent visit')}</div>
+        <div className={styles.sectionTitle}>{t('Recent Visit')}</div>
         <div className={styles.sectionContent}>
           {isEmpty(histories) ? (
             <div className={styles.empty}>
@@ -59,7 +59,7 @@ export default class History extends Component {
   renderHelp() {
     return (
       <div className={styles.section}>
-        <div className={styles.sectionTitle}>{t('Get help quickly')}</div>
+        <div className={styles.sectionTitle}>{t('Quick Support')}</div>
         <div className={styles.sectionContent}>
           <div className={styles.links}>
             <a href={get(globals.config, 'documents.url', '')} target="_blank">

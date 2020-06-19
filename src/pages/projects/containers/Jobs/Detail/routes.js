@@ -26,7 +26,7 @@ import ExcuteRecords from 'projects/containers/Jobs/Detail/ExcuteRecords'
 export default path => [
   {
     path: `${path}/records`,
-    title: 'Excute Records',
+    title: 'Execution Records',
     component: ExcuteRecords,
     exact: true,
   },

@@ -179,4 +179,13 @@ export default {
   FILE_OVERSIZED_TIP: 'The file uploaded must be less than 2M!',
 
   MULTI_CLUSTER_TIP: 'The resource is deployed in multiple clusters.',
+
+  HISTORY_DESC: 'When you work in multiple workspaces or projects, your web browser will record the latest path you visited. You can check your history using F1, Win+K, or Command +K, which helps you quickly switch between the resources you access.',
+  NO_HISTORY_TITLE: 'You web browser has not recorded any history of you accessing clusters or workspaces.',
+  NO_HISTORY_DESC: 'You can try to access resources, such as workspaces, clusters or projects.',
+
+  USER_GUIDES_DESC: 'The most comprehensive user guide of KubeSphere.',
+  DEVELOPER_DESC: 'Raise a question in the developer community to get help.',
+  API_DOCS_DESC: 'The most comprehensive KubeSphere API documentation.',
+  GITHUB_ISSUES_DESC: 'Raise an issue in GitHub to get help.',
 }

@@ -311,7 +311,7 @@ export default {
   'Revision Rollback': '版本回退',
   'Rollback Revisions': '回退版本',
   'Current Revision': '当前版本',
-  'Excute Records': '执行记录',
+  'Execution Records': '执行记录',
   'Job Records': '任务记录',
   'Cluster Resource Status': '集群资源状态',
   'Resource Status': '资源状态',
@@ -359,7 +359,7 @@ export default {
   Redeploy: '重新部署',
   'Redeploy Successfully': '重新部署成功',
 
-  'Last schedule time': '上次执行时间',
+  'Last Executed Time': '上次执行时间',
 
   REDEPLOY_CONFIRM_DESC:
     '您即将重新部署工作负载 {resource} ({type}) , 容器组将根据更新策略进行重新部署，您的业务可能会被暂时中断。',
@@ -393,7 +393,7 @@ export default {
   STATEFULSETS_REPLICA_DESC:
     '有状态副本集 (StatefulSet) 用来描述有状态应用，比如副本之间有主从关系，数据需要做持久化。与部署 (Deployment) 相同的是，有状态副本集创建的副本也是完全相同的，不同的是每个副本有个固定且唯一的标识，即使副本被重新调度了，标识也不会发生变化。您可以用有状态副本集来实现应用的有序部署，有序的删除，有序的滚动更新。',
   DAEMONSETS_REPLICA_DESC:
-    '守护进程集 (DaemonSet) 可以确保集群中的每个节点运行一个副本，当有节点加入集群或者离开集群的时候，会自动地调整副本的数量来保证副本的数量与集群的节点数量一致。您可以使用守护进程集来运行存储服务，如 glusterfs，ceph 等；运行日志搜集服务，如 fluent，logstash 等；运行监控服务等。',
+    '守护进程集 (DaemonSet) 可以确保集群中的每个节点运行一个副本，当有节点加入集群或者离开集群的时候，会自动地调整副本的数量来保证副本的数量与集群的节点数量一致。您可以使用守护进程集来运行存储服务，如 GlusterFS，Ceph 等；运行日志搜集服务，如 Fluentd，Logstash 等；运行监控服务等。',
 
   'The number of failed jobs allowed to be retained.': '允许保留的失败的任务个数',
   'The number of successful jobs allowed to be retained.': '允许保留的成功的任务个数',

@@ -27,7 +27,7 @@ import ImageArtifacts from './ImageProduct'
 export default path => [
   {
     path: `${path}/records`,
-    title: 'Excute Records',
+    title: 'Execution Records',
     component: ImageBuildRecords,
     excat: true,
   },

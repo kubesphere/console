@@ -24,7 +24,7 @@ export default {
   LOG_DATE: 'YYYY年MM月DD日HH时',
   EVENT_DATE: 'YYYY年MM月DD日0时',
   topic: '主题',
-  'Key Word': '关键字',
+  Keyword: '关键字',
   'Region Data': '元数据',
   'Refresh Rate': '刷新频率',
   'Back to previous': '返回上一级',
