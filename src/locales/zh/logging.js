@@ -79,7 +79,6 @@ export default {
 
   Continue: '继续',
   'Switching Protocols': '切换协议',
-  OK: '成功',
   Created: '已创建',
   Accepted: '已接受',
   'Non-Authoritative Information': '非授权信息',
