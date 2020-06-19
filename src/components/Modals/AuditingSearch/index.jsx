@@ -1,14 +1,26 @@
 import React from 'react'
 import { observer } from 'mobx-react'
-import { observable, action } from 'mobx'
+import { observable, action, computed } from 'mobx'
+
 import FullScreen from 'components/Modals/FullscreenModal'
+import Clusters from 'stores/cluster'
 
 import { Home, Detail } from './Auditing'
 
 @FullScreen
 @observer
 export default class AuditingOperating extends React.Component {
+  clusters = new Clusters()
+
   formStepState = this.initStepState()
+
+  @computed
+  get clustersOpts() {
+    return this.clusters.list.data.map(({ name }) => ({
+      value: name,
+      label: `${t('Cluster')}: ${name}`,
+    }))
+  }
 
   initStepState() {
     const state = observable({
@@ -32,7 +44,13 @@ export default class AuditingOperating extends React.Component {
       durationAlias: '',
       nextParamsKey: '',
       queryMode: 1,
+      cluster: '',
     })
+
+    state.setCluster = action(cluster => {
+      state.cluster = cluster
+    })
+
     return state
   })()
 
@@ -55,12 +73,30 @@ export default class AuditingOperating extends React.Component {
     return this.formStepConfig[this.formStepState.step] || {}
   }
 
+  async componentDidMount() {
+    await this.clusters.fetchList({
+      limit: -1,
+    })
+
+    this.searchInputState.setCluster(this.clusters.list.data[0].name)
+  }
+
   render() {
     const { Component, props } = this.Content
     if (!Component) {
       return
     }
 
-    return <Component formStepState={this.formStepState} {...props} />
+    if (!this.searchInputState.cluster) {
+      return null
+    }
+
+    return (
+      <Component
+        clustersOpts={this.clustersOpts}
+        formStepState={this.formStepState}
+        {...props}
+      />
+    )
   }
 }

@@ -57,6 +57,8 @@ export default {
     'You can view related event information according to the workspace.',
   'Project Event Query Tip':
     'You can view related event information according to the project.',
+  'Resource Type Event Query Tip':
+    'You can view related event information according to the resource type.',
   'Resource Name Event Query Tip':
     'You can view related event information according to the resource name.',
   'Message Event Query Tip':
@@ -93,8 +95,8 @@ export default {
     'You can view related event information according to the project',
   'Resource Name Auditing Query Tip':
     'You can view related event information according to the resource name',
-  'Resource Auditing Query Tip':
-    'You can view related event information according to the resource',
+  'Resource Type Auditing Query Tip':
+    'You can view related event information according to the resource type',
   'Verb Auditing Query Tip':
     'You can view related event information according to the verb',
   'Status Code Auditing Query Tip':
