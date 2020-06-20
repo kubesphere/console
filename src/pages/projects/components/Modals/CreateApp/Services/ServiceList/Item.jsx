@@ -65,10 +65,12 @@ export default class Item extends React.Component {
       findKey(MODULE_KIND_MAP, o => o === workloadKind) || 'deployments'
 
     const clusterMap = keyBy(clusters, 'name')
-    const workloadClusters = get(data, 'workload.spec.placement.clusters').map(
-      item => clusterMap[item.name]
-    )
-    const overrides = get(data, 'workload.spec.overrides')
+    const workloadClusters = get(
+      data,
+      'workload.spec.placement.clusters',
+      []
+    ).map(item => clusterMap[item.name])
+    const overrides = get(data, 'workload.spec.overrides', [])
 
     return (
       <div className={styles.item}>
@@ -87,7 +89,7 @@ export default class Item extends React.Component {
             </div>
           </div>
         </div>
-        {workloadClusters && (
+        {!isEmpty(workloadClusters) && (
           <div className={styles.clusters}>
             <div className={styles.text}>
               <div className={styles.title}>
@@ -96,10 +98,15 @@ export default class Item extends React.Component {
                     data,
                     'workload.spec.template.spec.replicas'
                   )
-                  const cods = get(overrides, `${cluster}.clusterOverrides`, [])
+
                   const od =
-                    cods.find(item => item.path === '/spec/repliacs') || {}
-                  replicas = od.value || replicas
+                    overrides.find(item => item.clusterName === cluster.name) ||
+                    {}
+                  const cods = od.clusterOverrides || []
+                  const cod =
+                    cods.find(item => item.path === '/spec/replicas') || {}
+
+                  replicas = cod.value || replicas
                   return (
                     <Tag
                       key={cluster.name}
@@ -120,7 +127,9 @@ export default class Item extends React.Component {
                   )
                 })}
               </div>
-              <div className={styles.description}>{t('Deployment Location')}</div>
+              <div className={styles.description}>
+                {t('Deployment Location')}
+              </div>
             </div>
           </div>
         )}
