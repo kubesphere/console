@@ -18,16 +18,19 @@
 
 import { get } from 'lodash'
 import React, { Component } from 'react'
-import { toJS } from 'mobx'
-import { observer } from 'mobx-react'
+import { toJS, reaction } from 'mobx'
+import { observer, inject } from 'mobx-react'
 import { Loading } from '@pitrix/lego-ui'
 import { Button, Panel, Text, Notify, CodeEditor } from 'components/Base'
 import { copyToClipboard } from 'utils/dom'
 
 import styles from './index.scss'
 
+@inject('rootStore')
 @observer
 export default class Initializing extends Component {
+  websocket = this.props.rootStore.websocket
+
   get editOptions() {
     return {
       width: '100%',
@@ -40,6 +43,30 @@ export default class Initializing extends Component {
     const { name, conditions } = this.props.store.detail
     if (get(conditions, 'Initialized.status') === 'True') {
       this.props.store.fetchAgent({ cluster: name })
+    }
+
+    this.initWebsocket()
+  }
+
+  componentWillUnmount() {
+    this.websocket.close()
+    this.disposer && this.disposer()
+  }
+
+  initWebsocket = () => {
+    const { store } = this.props
+    const url = store.getWatchUrl(store.detail)
+    if (url) {
+      this.websocket.watch(url)
+
+      this.disposer = reaction(
+        () => this.websocket.message,
+        message => {
+          if (message.type === 'MODIFIED') {
+            store.fetchDetail(store.detail)
+          }
+        }
+      )
     }
   }
 
@@ -93,14 +120,14 @@ export default class Initializing extends Component {
                 {t('Click to Copy')}
               </Button>
               <Loading spinning={isAgentLoading}>
-                {agent && (
+                {agent ? (
                   <CodeEditor
                     mode="yaml"
                     className={styles.editor}
                     options={this.editOptions}
                     value={agent}
                   />
-                )}
+                ) : null}
               </Loading>
             </div>
             <div className={styles.card}>
