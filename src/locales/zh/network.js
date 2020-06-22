@@ -40,7 +40,8 @@ export default {
     '根据实际使用场景我们整理了几种较为常见的应用场景，您可以查阅文档了解更多',
   NETWORK_POLICY_Q1: '实现网络策略的必要条件',
   NETWORK_ISOLATION_Q1: '实现网络隔离的必要条件',
-  NETWORK_POLICY_A1: 'xxxxxxxxxx',
+  NETWORK_POLICY_A1:
+    'Kubernetes所使用CNI必须支持Kubernetes原生网络策略，例如Calico,Cilium, Kube-router, Romana and Weave Net。',
   NETWORK_POLICY_EMP_TITLE: '项目网络隔离未开启',
   NETWORK_POLICY_EMP_DESC:
     '由于企业空间的设置，当前项目允许集群内其他项目进行访问。启用项目网络隔离后，将禁止其他项目访问当前项目，同时可以自定义需要放行的项目、服务、外部地址',
