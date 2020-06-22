@@ -18,7 +18,7 @@
 
 import React from 'react'
 import { inject, observer } from 'mobx-react'
-import { set } from 'lodash'
+import { set, isEmpty } from 'lodash'
 import { Select, Input, Icon, RadioGroup, RadioButton } from '@pitrix/lego-ui'
 import { Modal, Button, Form } from 'components/Base'
 import ServiceStore from 'stores/service'
@@ -92,7 +92,8 @@ export default class NetworkPoliciesIpBlockModal extends React.Component {
     let validated = cidr.ip.valid && cidr.mask.valid
 
     portRules.forEach(rule => {
-      rule.port.valid = PATTERN_IP_MASK.test(rule.port.value)
+      rule.port.valid =
+        isEmpty(rule.port.value) || PATTERN_IP_MASK.test(rule.port.value)
       validated = rule.port.valid
     })
     this.setState({
@@ -107,10 +108,12 @@ export default class NetworkPoliciesIpBlockModal extends React.Component {
     const { specType, cidr, portRules } = this.state
     if (this.validFormData()) {
       const { formTemplate } = this.props
-      const ports = portRules.map(rule => ({
-        port: +rule.port.value,
-        protocol: rule.protocol,
-      }))
+      const ports = portRules
+        .filter(rule => !isEmpty(rule.port.value))
+        .map(rule => ({
+          port: +rule.port.value,
+          protocol: rule.protocol,
+        }))
       const ipBlock = {
         ipBlock: {
           cidr: `${cidr.ip.value}/${cidr.mask.value}`,
