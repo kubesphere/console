@@ -159,7 +159,7 @@ export default class ConfigMapDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('Secrets'),
+          label: t('ConfigMaps'),
           url: this.listUrl,
         },
       ],
