@@ -19,18 +19,13 @@
 export default {
   WORKSPACE_OVERVIEW_DESC:
     'Workspace provides KubeSphere with a secure, isolated and accessible platform. Here you can see the resource running status in the current workspace.',
-
   WORKSPACE_DESC:
     'Workspace is a logical unit to organize your workload projects / Kubernetes namespaces, DevOps projects, manage resource access and share information within your team. It is an isolated working place for your team.',
-
   WORKSPACE_SEARCH_PLACEHOLDER: 'Please enter your workspace name to find it',
-
   WORKSPACE_CREATE_DESC:
     'Workspace is a logical unit to organize your projects and DevOps projects. Resource access and shared team resources can be managed here. It can serve as an independent workspace for your team.',
-
   WORKSPACE_NAME_DESC:
     'Please keep your workspace name short, such as the abbreviation of your company name.',
-
   WORKSPACE_LOGO_PLACEHOLDER:
     'The workspace logo size must be less than 200px X 200px and supports PNG, JPG format. It is recommended to upload a PNG format image with a transparent background for the best display.',
 
@@ -42,9 +37,6 @@ export default {
     'You can invite new members to work in the workspace.',
   INVITE_WORKSPACE_MEMBER_SEARCH_PLACEHODLER:
     'Enter email addresss to invite workspace members',
-
-  DELETE_WORKSPACE_TIP:
-    'Are you sure to delete the workspace <strong>{resource}</strong> ? You will not be able to recover it, and the resources under the workspace will also be deleted.',
 
   MEMBER_CREATE_DESC: '',
 
@@ -73,4 +65,6 @@ export default {
 
   DELETE_WORKSPACE_DESC: 'The workspace cannot be restored after it is deleted and the resources in the workspace will also be removed.',
   SURE_TO_DELETE_WORKSPACE: 'Sure to delete the workspace',
+  DELETE_WORKSPACE_TIP:
+  'Are you sure to delete the workspace <strong>{resource}</strong> ? You will not be able to recover it, and the resources under the workspace will also be deleted.',
 }

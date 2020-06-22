@@ -39,7 +39,6 @@ export default {
     'A CronJob creates Jobs on a time-based schedule. For example, it runs a job periodically on a given schedule or only runs a job once on a given time.',
   CRONJOB_CREATE_DESC:
     'A CronJob creates Jobs on a time-based schedule. For example, it runs a job periodically on a given schedule or only runs a job once on a given time.',
-
   CRONJOB_NAME_DESC:
     'It can only contain lowercase letters, numbers and hyphens("-"), and must begin with a lowercase letter, ending with a number or lowercase letter. The maximum length of characters is set to 52.',
   CRONJOB_NAME_TOO_LONG: 'The maximum length of characters is set to 52.',
@@ -138,16 +137,12 @@ export default {
     'You can mount a temporary volumes, or persistent volumes to a Pod of the job.',
 
   JOB_BACK_OFF_LIMIT_LABEL: 'Back off Limit',
+  JOB_BACK_OFF_LIMIT_DESC: 'It specifies the number of retries before marking this job failed. It defaults to 6.',
   JOB_PARALLELISM_LABEL: 'Parallelism',
+  JOB_PARALLELISM_DESC: 'It specifies the maximum desired number of pods the job should run at any given time.',
   JOB_COMPLETION_LABEL: 'Completions',
+  JOB_COMPLETION_DESC: 'It specifies the desired number of successfully finished pods the job should be run with.',
   JOB_ACTIVE_DL_SECONDS_LABEL: 'Active Deadline Seconds',
-
-  JOB_BACK_OFF_LIMIT_DESC:
-    'It specifies the number of retries before marking this job failed. It defaults to 6.',
-  JOB_PARALLELISM_DESC:
-    'It specifies the maximum desired number of pods the job should run at any given time.',
-  JOB_COMPLETION_DESC:
-    'It specifies the desired number of successfully finished pods the job should be run with.',
   JOB_ACTIVE_DL_SECONDS:
     'It specifies the duration in seconds relative to the startTime that the job may be active before the system tries to terminate it; value must be positive integer.',
 

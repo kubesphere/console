@@ -72,7 +72,7 @@ export default class History extends Component {
             <a href={get(globals.config, 'slackUrl', '')} target="_blank">
               <Text
                 icon="loudspeaker"
-                title={t('Developer community')}
+                title={t('Developer Community')}
                 description={t('DEVELOPER_DESC')}
               />
             </a>

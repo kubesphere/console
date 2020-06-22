@@ -531,7 +531,7 @@ export default {
 
   'User Guides': '用户指南',
   'Quick Support': '快速获取帮助',
-  'Developer community': '开发者社区',
+  'Developer Community': '开发者社区',
   HISTORY_DESC:
     '当您在多个企业空间或者项目下进行协同工作时，浏览器会记录下您最近访问的路径，您可以通过 F1 / (Win + K) / (Command + K) 查看历史记录，来快速切换您的访问资源。',
   NO_HISTORY_TITLE: '浏览器暂未收录到您对集群或者企业空间等区域的访问记录',
