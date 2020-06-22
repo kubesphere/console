@@ -170,4 +170,8 @@ export default {
   TOTAL_EVENTS_TODAY:
     '今日总共收录了 <span class={className}> {events} </span> 条事件',
   NO_EVENTS_TODAY: '今日没有收录的事件',
+
+  'No cluster with event query enabled': '暂无启用事件查询的集群',
+  'No cluster with auditing module enabled': '暂无启用审计模块的集群',
+  'No cluster with logging module enabled': '暂无启用日志模块的集群',
 }
