@@ -31,7 +31,9 @@ import styles from './index.scss'
 @observer
 export default class Policies extends React.Component {
   name = 'Network Isolation'
+
   module = 'namespacenetworkpolicies'
+
   tips = [
     {
       title: t('NETWORK_ISOLATION_Q'),

@@ -4,14 +4,14 @@ $toolbarHeight: 48px;
 $logCountColor: #329dce;
 
 .searchBar {
-  border: solid 2px #d8dee5;
+  display: flex;
+  position: relative;
   margin-left: 12px;
   margin-right: 12px;
   margin-bottom: -23px;
   background: #fff;
-  display: flex;
-  position: relative;
   border-radius: 4px;
+  border: solid 2px #d8dee5;
   @at-root {
     .searchInput {
       position: relative;

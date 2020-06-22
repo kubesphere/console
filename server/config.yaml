@@ -115,7 +115,11 @@ client:
           title: Network Management
           icon: earth
           children:
-            - { name: networkpolicies, title: Network Policies }
+            - {
+                name: networkpolicies,
+                title: Network Policies,
+                clusterModule: network,
+              }
         # Contains dangerous operations, only available for platform-admin.
         - {
             name: customresources,
@@ -227,7 +231,7 @@ client:
             title: DevOps Projects,
             icon: strategy-group,
             # only work on single cluster mode.
-            singleClusterMoudle: devops,
+            singleClusterModule: devops,
           }
         - name: apps
           title: Apps Management
@@ -334,7 +338,7 @@ client:
           icon: cogwheel
           children:
             - { name: base-info, title: Basic Info, skipAuth: true }
-            - { name: networkpolicies, title: Network Isolation }
+            - { name: networkpolicies, title: Network Isolation, clusterModule: network, }
             - { name: roles, title: Project Roles }
             - { name: members, title: Project Members }
             - {
@@ -441,6 +445,9 @@ client:
 
   # show kubeconfig
   enableKubeConfig: true
+
+  # show kubeconfig
+  defaultNetworkIsolation: false
 
   # third party tools
   thirdPartyTools:

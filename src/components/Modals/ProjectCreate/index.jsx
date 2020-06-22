@@ -204,7 +204,9 @@ export default class ProjectCreateModal extends React.Component {
                 <Select
                   name="metadata.annotations['kubesphere.io/network-isolate']"
                   options={this.networkOptions}
-                  defaultValue=""
+                  defaultValue={
+                    globals.config.defaultNetworkIsolation ? 'enabled' : ''
+                  }
                 />
               </Form.Item>
             </Column>
