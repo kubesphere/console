@@ -32,7 +32,7 @@ export default {
   NEW_TAG_DESC: '输入重新构建镜像的标签',
   S2I_RELATIVE_PATH_DESC:
     '源代码仓库地址（目前支持 git）并且可以指定代码分支及在源代码终端的相对路径',
-  'Specify a relative directory inside the application. (defaultvalue /)':
+  'Specify a relative directory inside the application. (Default value /)':
     '可以指定代码编译的相对路径，默认为 /',
   'building logs': '构建日志',
   'Building Log': '构建日志',
