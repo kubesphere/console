@@ -98,6 +98,7 @@ export default class EventSearch extends React.Component {
   async componentDidMount() {
     await this.clusters.fetchList({
       limit: -1,
+      ascending: true,
     })
 
     this.searchInputState.setCluster(get(this, 'clustersOpts[0].value', ''))

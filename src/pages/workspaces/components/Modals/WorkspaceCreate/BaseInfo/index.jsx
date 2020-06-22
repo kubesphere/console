@@ -165,7 +165,7 @@ export default class BaseInfo extends React.Component {
             <Select
               name="spec.template.spec.networkIsolation"
               options={this.networkOptions}
-              defaultValue="true"
+              defaultValue={String(globals.config.defaultNetworkIsolation)}
             />
           </Form.Item>
           <Form.Item
