@@ -21,7 +21,7 @@ import PropTypes from 'prop-types'
 
 import { observer } from 'mobx-react'
 import { observable, computed, action } from 'mobx'
-import { assign } from 'lodash'
+import { get, assign } from 'lodash'
 import FullScreen from 'components/Modals/FullscreenModal'
 import Clusters from 'stores/cluster'
 
@@ -41,7 +41,7 @@ export default class LogSearchModal extends React.Component {
   @computed
   get clustersOpts() {
     return this.clusters.list.data
-      .filter(item => item.configz.logging)
+      .filter(item => get(item, 'configz.logging'))
       .map(({ name }) => ({
         value: name,
         label: `${t('Cluster')}: ${name}`,
@@ -130,7 +130,7 @@ export default class LogSearchModal extends React.Component {
       ascending: true,
     })
 
-    this.searchInputState.setCluster(this.clustersOpts[0].value)
+    this.searchInputState.setCluster(get(this, `clustersOpts[0].value`))
   }
 
   render() {
@@ -139,8 +139,15 @@ export default class LogSearchModal extends React.Component {
       return null
     }
 
-    if (!this.searchInputState.cluster) {
-      return null
+    if (globals.app.isMultiCluster && !this.searchInputState.cluster) {
+      return (
+        <EmptyList
+          className="no-shadow"
+          icon="cluster"
+          title={t('No Available Cluster')}
+          desc={t('No cluster with logging module enabled')}
+        />
+      )
     }
 
     return (
