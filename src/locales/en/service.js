@@ -75,9 +75,9 @@ export default {
   SERVICE_FROM_CODE: 'Build a new service from source code repository',
   SERVICE_FROM_ARTIFACTS: 'Build a new service through the artifact',
   SERVICE_FROM_CODE_DESC:
-    'You can build your existing code into a image and deploy it by Source to Image',
+    'You can build your existing code into an image and deploy it through Source to Image.',
   SERVICE_FROM_ARTIFACTS_DESC:
-    'You can build an existing artifact into a new image and complete the deployment',
+    'You can build an existing artifact into a new image and complete the deployment.',
 
   SERVICE_CUSTOM_CREATE:
     'You can create a service either by specifying a workload or by editing the configuration (Yaml).',

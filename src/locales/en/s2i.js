@@ -34,7 +34,7 @@ export default {
   IMAGE_PULL_POLICY_DESC:
     'By default, the image is pulled only if it is not already present locally.',
   S2I_ENVIROMENT_DESC:
-    'Application developers can use the following environment variables to configure the runtime behavior of this image; for the detailed configurations, please see <a href={link} target="_blank">Compiling Templates</a>.',
+    'Application developers can use the following environment variables to configure the runtime behavior of this image; for detailed configurations, please see <a href={link} target="_blank">Compiling Templates</a>.',
   S2I_UPDATE_WORKLOAD: 'Update workload after building successful',
   S2I_UPDATA_WORKLOAD_DESC:
     'After the image is rebuilt successfully, the image of the relevant workload will be updated and the workload version will be updated.',
@@ -42,16 +42,16 @@ export default {
     'Get the code from the existing code repository and build the image by way of Source to Image. The process of building the image each time will be done as a job.',
   IMAGE_FROM_EXSIT: 'Select an existing image deployment container',
   IMAGE_FROM_EXSIT_DESC:
-    'Pulling a image from a public or private image repository',
+    'Pull an image from a public or private image repository',
   S2I_SECRET_DESC:
-    'If it is a private code repository, choose the code repository key',
+    'If it is a private code repository, choose the code repository key.',
   S2I_IMAGE_REPONSITRY_DESC:
-    'The source code repository address (currently supports git) and can specify code branches and relative paths in the source code terminal',
-  S2I_RELATIVE_PATH: 'Code relative path (optional):',
+    'The source code repository address (currently supports git). You can specify code branches and relative paths in the source code terminal.',
+  S2I_RELATIVE_PATH: 'Code Relative Path (Optional):',
   S2I_IMAGENAME_DESC:
-    'Image name and tag, defaults to the project name of the code repository',
+    'Image name and tag, which defaults to the project name of the code repository.',
   S2I_TARGET_IMAGE_REPONSTRY_DESC:
-    'You need to select a image repository with push permissions to store the image. If not, you can <a href={link} target="_blank">create a new image repository credential</a>.',
+    'You need to select an image repository with push permissions to store the image. If not, you can <a href={link} target="_blank">create a new image repository credential</a>.',
   S2I_BUILDERNAME_DESC:
     'Select the editing environment, you can also view the <a href={link} target="_blank">corresponding compilation template</a>',
   IMAGE_BUILDER_DESC:

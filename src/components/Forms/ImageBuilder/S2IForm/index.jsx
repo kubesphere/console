@@ -202,7 +202,7 @@ export default class S2IForm extends React.Component {
           <Form.Item
             label={t('S2I_RELATIVE_PATH')}
             desc={t(
-              'Specify a relative directory inside the application. (defaultvalue /)'
+              'Specify a relative directory inside the application. (Default value /)'
             )}
           >
             <Input
