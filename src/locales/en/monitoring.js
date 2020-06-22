@@ -54,6 +54,12 @@ export default {
   PROPOSAL_FAILED: 'Failed',
   PROPOSAL_PENDING: 'Pending',
 
+  CustomMonitorDashboards: 'Custom Monitoring Dashboards',
+  CUSTOMMONITORDASHBOARD_DESC:
+    'Users can define their application monitoring dashboards according to their own needs.',
+  CUSTOMMONITORDASHBOARD_CREATE_DESC:
+    'Users can define their application monitoring dashboards according to their own needs.',
+
   ADD_MONITOR_ITEM: 'Add Monitoring Item',
   ADD_MONITOR_ROW: 'Add Monitoring Group',
   SELECT_CHART_TYPE: 'Select a Chart Type',
@@ -100,6 +106,7 @@ export default {
   STACKED_GRAPH_TYPE_DESC: 'Useful for displaying part-to-whole relations',
   MONITOR_TYPE_NO_SUPPORT: 'The type is not supported currently',
   MONITOR_METRICS: 'Monitoring Metrics',
+  METRIC_NAME: 'Metric Name',
   DEBUGB_DATA: 'Debugging Data',
   TIME_FORMAT: 'Time Format',
   HIGHT_RULES: 'Highlighting Rules',
@@ -108,11 +115,4 @@ export default {
   THRESHOLD_FILL: 'Threshold Settings',
   THRESHOLD_FILL_DESC:
     'You can set a threshold and the style can be changed automatically after the threshold is exceeded.',
-
-  CustomMonitorDashboards: 'Custom Monitoring Dashboards',
-  CUSTOMMONITORDASHBOARD_DESC:
-    'Users can define their application monitoring dashboards according to their own needs.',
-  CUSTOMMONITORDASHBOARD_CREATE_DESC:
-    'Users can define their application monitoring dashboards according to their own needs.',
-  METRIC_NAME: 'Metric Name',
 }

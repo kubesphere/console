@@ -45,9 +45,9 @@ export default {
   'Involved Projects': '参与项目',
   'Created Projects': '创建的项目',
   'Workspace name exists': '企业空间名称已存在',
-  'current name is not available': '当前名称不可用',
+  'The current name is not applicable.': '当前名称不可用',
 
-  'Clusters Authorization Info': '集群授权信息',
+  'Cluster Authorization Info': '集群授权信息',
   'Workspace Network Isolation': '企业空间网络隔离',
 
   'Cluster Info': '集群信息',
