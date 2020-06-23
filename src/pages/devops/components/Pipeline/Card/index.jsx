@@ -146,7 +146,7 @@ export default class PipelineCard extends React.Component {
             [style['pipelineCard__title-error']]: node.error,
           })}
         >
-          {node.name || t('No name')}
+          {node.name || t('Unnamed')}
         </div>
         <div
           className={classNames(style.pipelineCard__content, {

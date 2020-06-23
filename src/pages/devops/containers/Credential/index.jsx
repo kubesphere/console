@@ -173,7 +173,7 @@ class Credential extends React.Component {
         <EmptyTable
           desc={t(`${this.name.toUpperCase()}_CREATE_DESC`)}
           onCreate={showCreate}
-          createText={t('Create credentials')}
+          createText={t('Create Credentials')}
         />
       )
     }

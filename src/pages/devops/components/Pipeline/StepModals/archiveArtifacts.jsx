@@ -79,7 +79,7 @@ export default class ArchiveArtifacts extends React.Component {
         title={t('archiveArtifacts')}
       >
         <Form data={this.state.formData} ref={this.formRef}>
-          <Form.Item label={t('artifacts')}>
+          <Form.Item label={t('Artifacts')}>
             <Input name="artifacts" />
           </Form.Item>
         </Form>

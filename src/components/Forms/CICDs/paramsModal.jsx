@@ -251,7 +251,7 @@ export default class ParamsModal extends React.Component {
         onOk={this.handleOk}
         visible={visible}
         closable={false}
-        title={t('Params input')}
+        title={t('Params Input')}
       >
         <Form ref={this.formRef}>
           {branches && branches.length ? (

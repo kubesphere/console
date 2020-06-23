@@ -192,7 +192,7 @@ export default class CredentialModal extends React.Component {
             <Form.Item label={t('Username')}>
               <Input name="username_password.username" />
             </Form.Item>
-            <Form.Item label={t('token / password')}>
+            <Form.Item label={t('Token / Password')}>
               <Input name="username_password.password" type="password" />
             </Form.Item>
           </React.Fragment>
@@ -210,7 +210,7 @@ export default class CredentialModal extends React.Component {
           <Form.Item
             className={styles.narrowItem}
             label={t('Content')}
-            desc={t("The default value here is the current user's kubeconfig")}
+            desc={t("The default value here is the current user's kubeconfig.")}
           >
             {this.isGetConfigLoading ? (
               <Loading>
@@ -244,13 +244,13 @@ export default class CredentialModal extends React.Component {
         visible={visible}
         closable={false}
         isSubmitting={this.isSubmitting}
-        title={title || t('Create credentials')}
+        title={title || t('Create Credentials')}
       >
         <Form data={this.formData} ref={this.formRef}>
           <Form.Item
             label={t('Credential ID')}
             error={
-              this.isConflict ? { message: t('this name has been used') } : null
+              this.isConflict ? { message: t('This name has been used.') } : null
             }
             rules={[
               { required: true, message: t('Please input credential name') },

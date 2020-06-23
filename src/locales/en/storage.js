@@ -27,16 +27,14 @@ export default {
   VOLUME_STATUS_PENDING: 'Pending',
   VOLUME_STATUS_TERMINATING: 'Terminating',
   VOLUME_STATUS_UPDATING: 'Updating',
+  VOLUME_CONDITION_FILESYSTEMRESIZEPENDING: 'Disk Expanding',
 
   VOLUMES_BASEINFO_DESC:
-    'The volume can persist data, and its lifecycle is independent of the workload. Make sure the storage class is created before creating a volume.',
-
+    'The volume can persist data, and its lifecycle is independent of the workload. Make sure the storage class is created before you create a volume.',
   VOLUME_CREATE_DESC:
     'A volume is a PVC (PersistentVolumeClaim) created using dynamic volume provisioning.',
-
   VOLUME_SETTINGS_DESC:
     'Fill in the capacity of the volume as needed, and the volume size and access mode must be compatible with the storage class and storage server capabilities. The access mode is usually selected as RWO.',
-
   VOLUME_STORAGE_CLASS_DESC:
     'The cluster administrator configures the storage server parameters and provides storage for the user by type.',
 
@@ -58,7 +56,7 @@ export default {
     'The storage type records the configuration information of a certain type of storage provided by the administrator. Before creating a specific type of storage volume, the corresponding storage type must be configured.',
 
   STORAGE_CLASS_SET_DEFAULT_DESC:
-    'After setting to the default storage class, if there is no specification, the system will create a storage volume of this storage class by default. Only one default storage class is allowed in a Kubernetes cluster',
+    'After the default storage class is set, the system will create volumes of this class by default if no special requirement is added. Only one default storage class is allowed in a Kubernetes cluster.',
 
   STORAGECLASSES_BASEINFO_DESC:
     'A StorageClass provides a way for administrators to configure the "classes" of storage they offer. Different classes might map to quality-of-service levels, or to backup policies, or to arbitrary policies determined by the cluster administrators. You need to create a StorageClass before users can create volume (i.e., PVC) based on the StorageClass.',

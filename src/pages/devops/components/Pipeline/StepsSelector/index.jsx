@@ -89,7 +89,7 @@ export default class StepsEditor extends React.Component {
       cleanWs: t('Clean Workspace'),
       input: t('REVIEW_DESC'),
       withCredentials: t('Load credentials into environment variables'),
-      kubernetesDeploy: t('Deploy resources to the kubernetes cluster'),
+      kubernetesDeploy: t('Deploy resources to the Kubernetes cluster'),
       timeout: t(
         'Executes the code inside the block with a determined time out limit.'
       ),

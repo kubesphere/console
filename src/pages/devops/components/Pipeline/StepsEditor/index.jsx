@@ -364,7 +364,7 @@ export default class StepsEditor extends React.Component {
             {t('pipeline_conditions')}
             <span>
               {t(
-                'The conditions required to perform the current phase. (optional)'
+                'The conditions required to implement the current phase (optional).'
               )}
             </span>
           </div>
@@ -380,7 +380,7 @@ export default class StepsEditor extends React.Component {
           )}
           <div className={styles.title}>
             {t('Task')}
-            <span>{t('drag and drop tasks to sort')}</span>
+            <span>{t('Drag and drop tasks to sort')}</span>
           </div>
           {this.renderSteps(this.steps, [])}
           {this.hasNestStage ? null : (

@@ -160,7 +160,7 @@ export default class PipelineLog extends React.Component {
           </div>
           <div className={styles.right}>
             <div className={styles.header}>
-              <span>{`${t('Use time')} ${formatUsedTime(
+              <span>{`${t('Time Used')} ${formatUsedTime(
                 this.activeStage.durationInMillis
               )}`}</span>
               <Button onClick={this.handleDownloadLogs}>
