@@ -111,7 +111,7 @@ export default {
           })
         },
         modal: EditServiceModal,
-        detail: detail._originData,
+        detail: toJS(detail._originData),
         type: detail.type,
         store,
         ...props,
