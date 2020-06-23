@@ -22,10 +22,10 @@ export default {
   PROJECT_CREATE_DESC:
     'A project is a Kubernetes namespace in KubeSphere, which provides a mechanism to organize resources in a workspace.',
   PROJECT_ADVANCE_DESC: 'Set the default resource request of the project',
-
   PROJECT_NAME_DESC:
     'Project name can only contain lowercase letters, numbers and hyphens ("-").',
   PROJECT_BASEINFO_DESC: 'Project basic information settings',
+
   PROJECT_TYPES_PROJECT_TITLE: 'Create a resource project',
   PROJECT_TYPES_PROJECT_DESC:
     'The project in KubeSphere corresponds to the Kubernetes namespace, which is an abstract collection of a set of resources and objects that can be grouped according to different business units or product projects.',
@@ -41,30 +41,30 @@ export default {
     'You can invite new members to assist your DevOps project.',
   INVITE_MEMBER_SEARCH_PLACEHODLER: 'Enter an email address to invite members',
   INVITE_MEMBER_CHOOSE_ROLE_TIP: 'Please assign a role to this member',
+  DELETE_MEMBER_TIP: 'Are you sure about deleting the member <strong>{name}</strong>? The member cannot access this project once removed.',
+
   PROJECT_ADMIN_DESC:
-    'You can specify a member of the project as an administrator',
+    'You can specify a member of the project as an administrator.',
   DEVOPS_ADMIN_DESC:
-    'You can specify a member of the devops project as an administrator',
+    'You can specify a member of the DevOps project as an administrator.',
 
   PROJECT_INTERNET_ACCESS_DESC:
-    'Before creating a route, you need to enable the internet access portal (i.e. the gateway). This step is to create a corresponding routing controller to forward the request to the corresponding backend service.',
-
+    'Before creating a route, you need to enable the Internet access portal (i.e. the gateway). This step is to create a corresponding routing controller to forward the request to the corresponding backend service.',
   DELETE_INTERNET_ACCESS_TITLE:
-    'Are you sure about deleting the external network access settings ?',
-  DELETE_INTERNET_ACCESS_DESC: 'You can re-bind after deleting',
+    'Are you sure about deleting the external network access settings?',
+  DELETE_INTERNET_ACCESS_DESC: 'You can rebind after the deletion.',
 
   NO_RELATE_PROJECTS_TITLE: 'No project associated with you',
   NO_RELATE_PROJECTS_DESC:
     'You can create or contact the project manager to invite you to the project to start your work.',
 
   DELETE_PROJECT_TIP:
-    'Are you sure about deleting the project <strong>{resource}</strong> ? After the deletion, you will not be able to recover, and the resources under the project will also be destroyed.',
+    'Are you sure about deleting the project <strong>{resource}</strong>? After the deletion, you will not be able to recover it, and the resources under the project will also be destroyed.',
 
   DEFAULT_RESOURCE_UNIT_DESC:
     'The value of CPU indicates the number of CPU cores when it has no unit. 1 Core = 1000m',
-
   DEFAULT_RESOURCE_ALERT:
-    'When creating a workload, this settings will be used by default if the resource limit and request for the workload is not set. If there is no special requirements, please keep this default settings.',
+    'When you create a workload, this setting will be used by default if the resource limit and request for the workload are not set. If there is no special requirements, please keep this default setting unchanged.',
 
   QUOTA_EDIT_TIP:
     'If the value is empty, the resource quota will not be limited.',
@@ -81,7 +81,7 @@ export default {
   WHAT_IS_COLLECT_FILE_LOG_A:
     'The log path in the volume mounted to the container is given in glob pattern. The log path can be configured in the workload to collect logs. The administrator needs to enable Disk Log Collection in advance.',
 
-  HOW_TO_INVITE_MEMBER_Q: 'How to invite members ?',
+  HOW_TO_INVITE_MEMBER_Q: 'How to invite members?',
   HOW_TO_INVITE_MEMBER_A:
     'Project administrators or users with member invitation privileges can invite members of the current workspace to join the project.',
 
@@ -92,6 +92,7 @@ export default {
 
   PROJECT_BASIC_INFO_DESC:
     "The project basic information includes the project name and the project's quota status.",
+  PROJECT_QUOTA_MANAGE_DESC: 'This module allows you to manage project quotas.',
   PROJECT_ROLE_DESC:
     'Project roles define the authorization users have in the current project.',
   PROJECT_MEMBERS_DESC: 'Manage and assign roles for project members.',
@@ -106,8 +107,6 @@ export default {
   NAME_EXIST_IN_CLUSTER: 'Name exists in {cluster}',
 
   PROJECT_CLUSTER_SETTINGS_DESC:
-    'Select the cluster to create the project. When multiple clusters are selected, the multi-cluster project will be created',
+    'Select the cluster to create the project. When multiple clusters are selected, a multi-cluster project will be created.',
   NETWORK_ISOLATED_DESC: 'Set network isolation strategy',
-
-  PROJECT_QUOTA_MANAGE_DESC: 'This module allows you to manage project quotas.',
 }

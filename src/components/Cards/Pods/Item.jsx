@@ -195,7 +195,7 @@ export default class PodItem extends React.PureComponent {
     if (isEmpty(metrics.cpu) && isEmpty(metrics.memory))
       return (
         <div className={styles.monitors}>
-          {t('NO_RESOURCE', { resource: t('monitoring data') })}
+          {t('NO_RESOURCE', { resource: t('Monitoring Data') })}
         </div>
       )
 

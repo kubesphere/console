@@ -72,8 +72,8 @@ export default {
   SERVICE_SIMPLE_DESC: 'Create a service from an existing pods group',
   DELETE_SERVICE_DESC:
     'You are about to delete the service(s) {resource}. Please confirm whether to delete the associated resource?',
-  SERVICE_FROM_CODE: 'Build a new service from source code repository',
-  SERVICE_FROM_ARTIFACTS: 'Build a new service through the artifact',
+  SERVICE_FROM_CODE: 'Build a New Service from Source Code Repository',
+  SERVICE_FROM_ARTIFACTS: 'Build a New Service through the Artifact',
   SERVICE_FROM_CODE_DESC:
     'You can build your existing code into an image and deploy it through Source to Image.',
   SERVICE_FROM_ARTIFACTS_DESC:

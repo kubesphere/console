@@ -84,7 +84,7 @@ export default {
   'CPU Used': 'CPU 使用',
   'Memory Used': '内存使用',
   'Pod Used': '容器组使用',
-  'Schedule Policy': '调度策略',
+  'Scheduling Policy': '调度策略',
   'Add Type': '添加类型',
   'Add Node Type': '添加节点类型',
   'Type Name': '类型名称',
