@@ -21,6 +21,7 @@ import { observer, inject } from 'mobx-react'
 import { isEmpty } from 'lodash'
 import { RadioGroup, RadioButton, Tag, Loading } from '@pitrix/lego-ui'
 import Banner from 'components/Cards/Banner'
+import { parse } from 'qs'
 
 import ComponentStore from 'stores/component'
 
@@ -34,8 +35,10 @@ export default class ServiceComponents extends React.Component {
   constructor(props) {
     super(props)
 
+    const { type } = parse(location.search.slice(1)) || {}
+
     this.state = {
-      type: 'kubesphere',
+      type: type || 'kubesphere',
     }
 
     this.configs = this.getConfigs()
@@ -75,31 +78,31 @@ export default class ServiceComponents extends React.Component {
       type: 'openpitrix',
       title: 'OpenPitrix',
       icon: '/assets/openpitrix.svg',
-      disabled: !globals.app.hasKSModule('openpitrix'),
+      disabled: !globals.app.hasClusterModule(this.cluster, 'openpitrix'),
     },
     {
       type: 'istio',
       title: 'Istio',
       icon: '/assets/istio.svg',
-      disabled: !globals.app.hasKSModule('servicemesh'),
+      disabled: !globals.app.hasClusterModule(this.cluster, 'servicemesh'),
     },
     {
       type: 'monitoring',
       title: 'Monitoring',
       icon: '/assets/monitoring.svg',
-      disabled: !globals.app.hasKSModule('monitoring'),
+      disabled: !globals.app.hasClusterModule(this.cluster, 'monitoring'),
     },
     {
       type: 'logging',
       title: 'Logging',
       icon: '/assets/logging.svg',
-      disabled: !globals.app.hasKSModule('logging'),
+      disabled: !globals.app.hasClusterModule(this.cluster, 'logging'),
     },
     {
       type: 'devops',
       title: 'DevOps',
       icon: '/assets/dev-ops.svg',
-      disabled: !globals.app.hasKSModule('devops'),
+      disabled: !globals.app.hasClusterModule(this.cluster, 'devops'),
     },
   ]
 

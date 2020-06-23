@@ -18,7 +18,7 @@
 
 import RoleDetail from '../containers/Roles/Detail'
 
-const PATH = '/cluster/:cluster/devops/:namespace'
+const PATH = '/:workspace/clusters/:cluster/devops/:namespace'
 
 export default [
   {

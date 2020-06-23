@@ -18,10 +18,12 @@
 
 import React, { Component } from 'react'
 import classNames from 'classnames'
+import { isEmpty } from 'lodash'
+import { toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import { Checkbox } from '@pitrix/lego-ui'
-import { Text, Tag } from 'components/Base'
-import { CLUSTER_PROVIDER_ICON } from 'utils/constants'
+import { Alert } from 'components/Base'
+import ClusterTitle from 'components/Clusters/ClusterTitle'
 
 import ClusterStore from 'stores/cluster'
 
@@ -32,14 +34,29 @@ export default class ClusterSettings extends Component {
   clusterStore = new ClusterStore()
 
   componentDidMount() {
-    this.clusterStore
-      .fetchList({
+    this.fetchData()
+  }
+
+  async fetchData() {
+    if (globals.app.hasPermission({ module: 'clusters', action: 'manage' })) {
+      await this.clusterStore.fetchList({
+        limit: -1,
+      })
+    } else {
+      await this.clusterStore.fetchList({
         limit: -1,
         label: 'cluster.kubesphere.io/visibility=public',
       })
-      .then(() => {
-        this.props.onChange(this.clusterStore.list.data.map(item => item.name))
-      })
+    }
+
+    const { value, onChange } = this.props
+    if (isEmpty(value)) {
+      onChange(
+        this.clusterStore.list.data
+          .filter(item => item.visibility === 'public')
+          .map(item => ({ name: item.name }))
+      )
+    }
   }
 
   handleClick = e => {
@@ -48,19 +65,25 @@ export default class ClusterSettings extends Component {
 
     const name = e.currentTarget.dataset.cluster
 
-    if (value.includes(name)) {
-      newValue = value.filter(item => item !== name)
+    if (value.some(item => item.name === name)) {
+      newValue = value.filter(item => item.name !== name)
     } else {
-      newValue = [...value, name]
+      newValue = [...value, { name }]
     }
     onChange(newValue)
   }
 
   render() {
     const { value = [] } = this.props
+    const { data, isLoading } = toJS(this.clusterStore.list)
+
+    if (isEmpty(data) && !isLoading) {
+      return <Alert type="warning" message={t('NO_PUBLIC_CLUSTER_TIP')} />
+    }
+
     return (
       <div className={styles.wrapper}>
-        {this.clusterStore.list.data.map(cluster => (
+        {data.map(cluster => (
           <div
             key={cluster.name}
             className={classNames(styles.item, {
@@ -70,19 +93,15 @@ export default class ClusterSettings extends Component {
             onClick={globals.app.isMultiCluster ? this.handleClick : null}
           >
             <Checkbox
-              checked={value.includes(cluster.name)}
+              checked={value.some(item => item.name === cluster.name)}
               disabled={!globals.app.isMultiCluster}
             />
-            <Text
-              icon={CLUSTER_PROVIDER_ICON[cluster.provider] || 'kubernetes'}
-              title={cluster.name}
-              description={cluster.description || t('Cluster Name')}
+            <ClusterTitle
+              className={styles.cluster}
+              tagClass="float-right"
+              cluster={cluster}
+              noStatus
             />
-            {cluster.group && (
-              <Tag className={styles.tag} type="info">
-                {cluster.group}
-              </Tag>
-            )}
           </div>
         ))}
       </div>

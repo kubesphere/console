@@ -33,12 +33,16 @@ import DetailPage from 'projects/containers/Base/Detail'
 
 import getRoutes from './routes'
 
+function noop() {}
+
 @inject('rootStore')
 @observer
 @trigger
 export default class VolumeDetail extends React.Component {
   store = new Volume()
+
   storageclass = new StorageClass()
+
   storageclasscapabilities = new StorageClassCapability()
 
   componentDidMount() {
@@ -49,20 +53,22 @@ export default class VolumeDetail extends React.Component {
     return 'Volume'
   }
 
+  get module() {
+    return 'volumes'
+  }
+
   get authKey() {
     return 'volumes'
   }
 
   get listUrl() {
-    const {
-      params: { cluster, namespace },
-      path,
-    } = this.props.match
-    if (path.startsWith('/clusters')) {
-      return `/clusters/${cluster}/volumes`
+    const { workspace, cluster, namespace } = this.props.match.params
+    if (workspace) {
+      return `/${workspace}/clusters/${cluster}/projects/${namespace}/${
+        this.module
+      }`
     }
-
-    return `/cluster/${cluster}/projects/${namespace}/volumes`
+    return `/clusters/${cluster}/${this.module}`
   }
 
   fetchData = async () => {
@@ -75,10 +81,15 @@ export default class VolumeDetail extends React.Component {
       name: storageClassName,
     })
 
-    await this.storageclasscapabilities.fetchDetail({
-      cluster,
-      name: storageClassName,
-    })
+    await this.storageclasscapabilities.fetchDetail(
+      {
+        cluster,
+        name: storageClassName,
+      },
+      {},
+      {},
+      noop
+    )
   }
 
   getOperations = () => [

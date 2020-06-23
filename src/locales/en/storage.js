@@ -42,7 +42,7 @@ export default {
 
   PROVISIONER_DESC: 'Provide backend storage',
 
-  ACCESS_MODES_DESC: 'Select the access modes supported by the storage class',
+  ACCESS_MODES_DESC: 'Select the access mode supported by the storage class.',
 
   DELETE_STORAGE_TIP:
     'If the storage volume is being mounted, delete it when the workload is deleted.',
@@ -67,14 +67,14 @@ export default {
   VOLUME_BASEINFO_TIP:
     'The volume is provisioned through dynamic volume provisioning which allows storage volumes to be created on-demand. The volume is used for persisting data, and has explict lifecycle independent of any individual pod that uses it. At lease one StorageClass must be configured by adminstrators before creating a volume.',
 
-  WHAT_IS_STORAGE_CLASS_Q: 'What is storage class ?',
+  WHAT_IS_STORAGE_CLASS_Q: 'What is a Storage Class?',
   WHAT_IS_STORAGE_CLASS_A:
-    'The Storage Class is configured by the cluster administrator to configure the storage server parameters and provide storage for the cluster users by class.',
+    'The Storage Class is configured by the cluster administrator to configure storage server parameters and provide storage for cluster users by class.',
 
-  WHAT_IS_LOCAL_VOLUME_Q: 'What is Local Volume ?',
+  WHAT_IS_LOCAL_VOLUME_Q: 'What is a Local Volume?',
   WHAT_IS_LOCAL_VOLUME_A:
     'A local volume is a mounted local storage device, such as a disk, partition, or directory.',
-  CHOOSE_STORAGE_SYSTEM_TIP: 'Choose the storage system you need',
+  CHOOSE_STORAGE_SYSTEM_TIP: 'Choose the Storage System You Need',
   PROVISIONER_DEPENDENCE_DESC:
     'The storage system needs to deploy corresponding storage plugins so as to provide services.',
 
@@ -82,25 +82,25 @@ export default {
     'The current PVC has been mounted to the work load, so the expansion will lead to the workload restart, and a new version. Business may be a brief interruption. ',
 
   QINGCLOUD_CSI_DESC:
-    'QingCloud CSI plugin implements the Container Storage Interface (CSI) of Kubernetes, enabling the container orchestrator (CO) to use QingCloud storage. Currently, QingCloud CSI plugin supports the block storage service in QingCloud platform. For detailed info please refer the <a href="https://github.com/yunify/qingcloud-csi/blob/master/README.md#feature-matrix">features</a>.',
+    'QingCloud CSI plugin implements the Container Storage Interface (CSI) of Kubernetes, enabling the container orchestrator (CO) to use QingCloud storage. Currently, QingCloud CSI plugin supports the block storage service in QingCloud platform. For detailed information, please refer to the <a href="https://github.com/yunify/qingcloud-csi/blob/master/README.md#feature-matrix">features</a>.',
 
   QINGCLOUD_CSI_TYPE_DESC:
-    'In QingCloud public cloud platform, 0 represents high performance volume. 2 represents high capacity volume. 3 represents super high performance volume. 5 represents Enterprise Server SAN. 100 represents standard volume .',
-  CREATE_VOLUME_MAX_SIZE: 'Limit the range of volume size',
-  CREATE_VOLUME_STEP_SIZE: 'Set the incremental size of volume',
-  CREATE_VOLUME_MIN_SIZE: 'Limit the range of volume size',
+    'In QingCloud public cloud platform, 0 represents high performance volume. 2 represents high capacity volume. 3 represents super high performance volume. 5 represents Enterprise Server SAN. 100 represents standard volume.',
+  CREATE_VOLUME_MAX_SIZE: 'Volume size upper limit',
+  CREATE_VOLUME_STEP_SIZE: 'Volume size increment',
+  CREATE_VOLUME_MIN_SIZE: 'Volume size lower limit',
   VOLUME_FS_TYPE: 'ext3, ext4, xfs',
 
   GLUSTERFS_RESTURL_DESC:
     'Heketi service url which provisions gluster volumes on demand. ',
   GLUSTERFS_ID_DESC: 'Gluster ID',
-  GLUSTERFS_RESTAUTHENABLED_DESC: 'Enables authentication to the REST server',
+  GLUSTERFS_RESTAUTHENABLED_DESC: 'Enable authentication to the REST server.',
   GLUSTERFS_RESTUSER_DESC:
-    'Gluster REST service/Heketi user who has access to create volumes in the Gluster Trusted Pool',
+    'The Gluster REST service/Heketi user who has access to creating volumes in the Gluster Trusted Pool.',
   GLUSTERFS_SECRET_NAMESPACE_DESC:
     'Identification of Secret instance that contains user password to use when talking to Gluster REST service.',
   GLUSTERFS_SECRET_NAME_DESC:
-    'These parameters are optional, empty password will be used when both secretNamespace and secretName are omitted',
+    'These parameters are optional; an empty password will be used when both secretNamespace and secretName are omitted.',
   GLUSTERFS_GID_MIN_DESC:
     'The minimum value of GID range for the storage class. A unique value (GID) in this range ( gidMin-gidMax ) will be used for dynamically provisioned volumes. These are optional values.',
   GLUSTERFS_GID_MAX_DESC:
@@ -108,7 +108,7 @@ export default {
   GLUSTERFS_VOLUME_TYPE_DESC:
     'The volume type and its parameters can be configured with this optional value.',
   QINGCLOUD_VOLUME_TAGS_DESC:
-    'Automatically pin tags when you create a hard drive, multiple tags separated by commas.',
+    'Tags will be associated automatically when a hard drive is created. Please separate multiple tags with commas.',
 
   CEPHRBD_MONITORS_DESC:
     'Ceph monitors, comma delimited. This parameter is required.',
@@ -131,7 +131,12 @@ export default {
   DEPENDENT_STORAGE_CLASS_DELETE_TIPS:
     'Please check if the storage class are required by other resource. If there are resources dependent on the it, close them first',
 
-  CREATE_VOLUME_BY_STORAGECLASS: 'Create volume by storageclass',
-  CREATE_VOLUME_BY_SNAPSHOT: 'Create volume by snapshot',
-  SELECT_SNAPSHOT_TO_CREATE_VOLUME: 'select snapshot to create volume',
+  CREATE_VOLUME_BY_STORAGECLASS: 'Create Volume by Storageclass',
+  CREATE_VOLUME_BY_SNAPSHOT: 'Create Volume by Snapshot',
+  SELECT_SNAPSHOT_TO_CREATE_VOLUME: 'Select snapshot to create volume.',
+  VOLUMESNAPSHOT_DESC:
+    'A volume snapshot refers to a snapshot of a volume at a particular time point. It can be used to create new volumes (preset the snapshot data) or restore an existing volume to its previous status (displayed in snapshots).',
+  VOLUMESNAPSHOT_CREATE_DESC:
+    'A volume snapshot refers to a snapshot of a volume at a particular time point. It can be used to create new volumes (preset the snapshot data) or restore an existing volume to its previous status (displayed in snapshots).',
+  WHAT_IS_VOLUME_SNAPSHOTS: 'What are volume snapshots?',
 }

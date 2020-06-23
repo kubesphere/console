@@ -99,28 +99,18 @@ export default class CustomMonitoringDashboards extends React.Component {
             success: routing.query,
           }),
       },
+      {
+        key: 'editYaml',
+        icon: 'pen',
+        text: t('Edit YAML'),
+        action: 'edit',
+        onClick: item =>
+          trigger('resource.yaml.edit', {
+            detail: item,
+            success: routing.query,
+          }),
+      },
     ]
-  }
-
-  get tableActions() {
-    const { trigger, routing, tableProps } = this.props
-    return {
-      ...tableProps.tableActions,
-      selectActions: [
-        {
-          key: 'delete',
-          type: 'danger',
-          text: t('Delete'),
-          action: 'delete',
-          onClick: () => {
-            trigger('resource.batch.delete', {
-              type: t(this.name),
-              success: routing.query,
-            })
-          },
-        },
-      ],
-    }
   }
 
   showCreateModal = () => {
@@ -142,11 +132,6 @@ export default class CustomMonitoringDashboards extends React.Component {
 
   hideEditModal = () => {
     this.setState({ editModalVisiable: false, editData: {} })
-  }
-
-  checkName = ({ name }) => {
-    const { namespace, cluster } = this.props.match.params
-    return this.props.store.checkName({ name, namespace, cluster })
   }
 
   createDashboard = async params => {
@@ -180,7 +165,6 @@ export default class CustomMonitoringDashboards extends React.Component {
           <Table
             {...tableProps}
             itemActions={this.itemActions}
-            tableActions={this.tableActions}
             columns={this.getColumns()}
             onCreate={this.showCreateModal}
           />
@@ -188,9 +172,8 @@ export default class CustomMonitoringDashboards extends React.Component {
 
         {createModalVisiable && (
           <CreateModal
-            checkName={this.checkName}
+            store={this.props.store}
             namespace={this.props.match.params.namespace}
-            dashboardStore={this.props.store}
             isSaving={this.props.store.isSubmitting}
             onCancel={this.hideCreateModal}
             onSave={this.createDashboard}

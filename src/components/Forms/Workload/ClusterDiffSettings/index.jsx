@@ -26,6 +26,7 @@ import ClustersMapper from './ClustersMapper'
 import ContainersMapper from './ContainersMapper'
 import ContainerImage from './ContainerImage'
 import ContainerPorts from './ContainerPorts'
+import Environments from './Environments'
 
 export default class AdvancedSettings extends React.Component {
   get namespace() {
@@ -38,9 +39,8 @@ export default class AdvancedSettings extends React.Component {
   }
 
   render() {
-    const { formRef, withService } = this.props
-    const clusters = get(this.props, 'projectDetail.clusters', [])
-
+    const { formRef, projectDetail, withService } = this.props
+    const clusters = projectDetail.clusters
     return (
       <Form data={this.formTemplate} ref={formRef}>
         <Form.Group
@@ -70,6 +70,19 @@ export default class AdvancedSettings extends React.Component {
                 {...props}
               >
                 {containerProps => <ContainerPorts {...containerProps} />}
+              </ContainersMapper>
+            )}
+          </ClustersMapper>
+        </Form.Group>
+        <Form.Group
+          label={t('Environment Variables')}
+          desc={t('CLUSTER_ENV_DIFF_DESC')}
+          checkable
+        >
+          <ClustersMapper clusters={clusters} namespace={this.namespace}>
+            {props => (
+              <ContainersMapper formTemplate={this.formTemplate} {...props}>
+                {containerProps => <Environments {...containerProps} />}
               </ContainersMapper>
             )}
           </ClustersMapper>

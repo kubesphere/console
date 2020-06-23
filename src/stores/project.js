@@ -79,11 +79,21 @@ export default class ProjectStore extends Base {
 
   getWatchListUrl = ({ workspace, ...params }) => {
     if (workspace) {
-      return `${
-        this.apiVersion
-      }/watch/namespaces?labelSelector=kubesphere.io/workspace=${workspace}`
+      return `${this.apiVersion}/watch${this.getPath(
+        params
+      )}/namespaces?labelSelector=kubesphere.io/workspace=${workspace}`
     }
     return `${this.apiVersion}/watch${this.getPath(params)}/namespaces`
+  }
+
+  getListUrl = (params = {}) => {
+    if (params.workspace) {
+      return `kapis/tenant.kubesphere.io/v1alpha2/workspaces/${
+        params.workspace
+      }${this.getPath(params)}/namespaces`
+    }
+
+    return `${this.apiVersion}${this.getPath(params)}/namespaces`
   }
 
   @action
@@ -124,6 +134,7 @@ export default class ProjectStore extends Base {
       data: more ? [...this.list.data, ...data] : data,
       total: result.totalItems || result.total_count || data.length || 0,
       ...params,
+      cluster: globals.app.isMultiCluster ? cluster : undefined,
       limit: Number(params.limit) || 10,
       page: Number(params.page) || 1,
       isLoading: false,
@@ -134,10 +145,10 @@ export default class ProjectStore extends Base {
   }
 
   @action
-  async fetchDetail({ cluster, namespace }) {
+  async fetchDetail({ cluster, workspace, namespace }) {
     this.isLoading = true
     const detail = await request.get(
-      this.getDetailUrl({ cluster, name: namespace }),
+      this.getDetailUrl({ cluster, workspace, name: namespace }),
       null,
       null,
       res => {
@@ -150,6 +161,17 @@ export default class ProjectStore extends Base {
     this.detail = { cluster, ...this.mapper(detail) }
 
     this.isLoading = false
+  }
+
+  @action
+  async create(data, params = {}) {
+    if (params.workspace) {
+      const clusters = get(data, 'spec.placement.clusters', [])
+      params.cluster = get(clusters, '[0].name')
+      return this.submitting(request.post(this.getResourceUrl(params), data))
+    }
+
+    return this.submitting(request.post(this.getListUrl(params), data))
   }
 
   @action

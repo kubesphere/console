@@ -23,6 +23,8 @@ import { Message } from '@pitrix/lego-ui'
 import CredentialStore from 'stores/devops/credential'
 import BaseStore from 'stores/devops/base'
 
+import { generateId } from 'utils'
+
 const formatPipeLineJson = json => {
   if (!get(json, 'pipeline.stages')) return
   json.pipeline.stages = json.pipeline.stages.map(stage => {
@@ -60,6 +62,7 @@ export default class Store extends BaseStore {
           steps: [],
         },
       ],
+      name: `stage-${generateId(5)}`,
     }
   }
 
@@ -98,16 +101,22 @@ export default class Store extends BaseStore {
 
   @observable
   jsonData = {}
+
   @observable
   activeLineIndex = ''
+
   @observable
   activeColunmIndex = ''
+
   @observable
   isAddingStep = false
+
   @observable
   edittingData = {}
+
   @observable
   params = {}
+
   @observable
   credentials = []
 
@@ -312,7 +321,7 @@ export default class Store extends BaseStore {
   getCredentials = async () => {
     this.isCredentialLoading = true
     const result = await this.credentialStore.fetchList({
-      namespace: this.params.project_id,
+      project_id: this.params.project_id,
       cluster: this.params.cluster,
     })
 

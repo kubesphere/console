@@ -11,10 +11,12 @@
   min-height: 100px;
   overflow-y: auto;
   background-color: #fff;
-  & > :first-child {
-    & > [class='list-item'] {
-      padding-top: 8px;
-      padding-bottom: 7px;
+  :global {
+    .list-body {
+      > div[class='list-item'] {
+        padding-top: 8px;
+        padding-bottom: 7px;
+      }
     }
   }
 }
@@ -67,9 +69,41 @@
   padding-top: 12px;
 }
 .title {
-  margin-top: 4px;
+  margin-top: 12px;
+  margin-bottom: 8px;
 }
 .disp {
   margin-top: 4px;
   color: $second-text-color;
+}
+.dirCheck {
+  :global {
+    div.control {
+      margin-right: 15px !important;
+      > label.radio-button {
+        transition: all 0.3s ease-in-out;
+        font-size: 12px;
+        font-weight: 700;
+        color: $dark-color01;
+        &:hover {
+          border-color: $dark-color01;
+          box-shadow: 0 4px 8px 0 rgba(36, 46, 66, 0.2) !important;
+        }
+        &.radio-button-wrapper-checked {
+          color: $dark-color07;
+          border-color: $dark-color01;
+        }
+        border-radius: 5px !important;
+        padding: 0 15px;
+        height: 60px;
+        .label-value {
+          width: 82px;
+          > span.icon {
+            margin-left: 0;
+            margin-right: 0;
+          }
+        }
+      }
+    }
+  }
 }

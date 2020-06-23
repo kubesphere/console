@@ -168,22 +168,22 @@ class Overview extends React.Component {
       {
         type: 'openpitrix',
         icon: '/assets/openpitrix.svg',
-        disabled: !globals.app.hasKSModule('openpitrix'),
+        disabled: !globals.app.hasClusterModule(this.cluster, 'openpitrix'),
       },
       {
         type: 'istio',
         icon: '/assets/istio.svg',
-        disabled: !globals.app.hasKSModule('servicemesh'),
+        disabled: !globals.app.hasClusterModule(this.cluster, 'servicemesh'),
       },
       {
         type: 'monitoring',
         icon: '/assets/monitoring.svg',
-        disabled: !globals.app.hasKSModule('monitoring'),
+        disabled: !globals.app.hasClusterModule(this.cluster, 'monitoring'),
       },
       {
         type: 'logging',
         icon: '/assets/logging.svg',
-        disabled: !globals.app.hasKSModule('logging'),
+        disabled: !globals.app.hasClusterModule(this.cluster, 'logging'),
       },
     ]
 

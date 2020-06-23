@@ -16,12 +16,17 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, findKey } from 'lodash'
+import { get, keyBy, isEmpty, findKey } from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Buttons, Icon } from '@pitrix/lego-ui'
 import { Button, Tag } from 'components/Base'
-import { MODULE_KIND_MAP, ICON_TYPES } from 'utils/constants'
+import {
+  CLUSTER_PROVIDER_ICON,
+  CLUSTER_GROUP_TAG_TYPE,
+  MODULE_KIND_MAP,
+  ICON_TYPES,
+} from 'utils/constants'
 
 import ClusterDiffs from './ClusterDiffs'
 
@@ -54,13 +59,18 @@ export default class Item extends React.Component {
   }
 
   render() {
-    const { data } = this.props
-    const workloadKind = get(data, 'workload.kind')
+    const { data, clusters } = this.props
+    const workloadKind = get(data, 'workload.kind').replace('Federated', '')
     const type =
       findKey(MODULE_KIND_MAP, o => o === workloadKind) || 'deployments'
 
-    const clusters = get(data, 'workload.spec.placement.clusters')
-    const overrides = get(data, 'workload.spec.overrides')
+    const clusterMap = keyBy(clusters, 'name')
+    const workloadClusters = get(
+      data,
+      'workload.spec.placement.clusters',
+      []
+    ).map(item => clusterMap[item.name])
+    const overrides = get(data, 'workload.spec.overrides', [])
 
     return (
       <div className={styles.item}>
@@ -79,24 +89,51 @@ export default class Item extends React.Component {
             </div>
           </div>
         </div>
-        {clusters && (
+        {!isEmpty(workloadClusters) && (
           <div className={styles.clusters}>
             <div className={styles.text}>
               <div className={styles.title}>
-                {clusters.map(cluster => (
-                  <Tag key={cluster.name}>
-                    <Icon name="kubernetes" type="light" size={20} />
-                    <span>
-                      {cluster.replicas} {t('Replicas')}
-                    </span>
-                  </Tag>
-                ))}
+                {clusters.map(cluster => {
+                  let replicas = get(
+                    data,
+                    'workload.spec.template.spec.replicas'
+                  )
+
+                  const od =
+                    overrides.find(item => item.clusterName === cluster.name) ||
+                    {}
+                  const cods = od.clusterOverrides || []
+                  const cod =
+                    cods.find(item => item.path === '/spec/replicas') || {}
+
+                  replicas = cod.value || replicas
+                  return (
+                    <Tag
+                      key={cluster.name}
+                      type={CLUSTER_GROUP_TAG_TYPE[cluster.group]}
+                    >
+                      <Icon
+                        name={
+                          CLUSTER_PROVIDER_ICON[cluster.provider] ||
+                          'kubernetes'
+                        }
+                        size={16}
+                        type="light"
+                      />
+                      <span>
+                        {replicas} {t('Replicas')}
+                      </span>
+                    </Tag>
+                  )
+                })}
               </div>
-              <div className={styles.description}>{t('Deploy Placement')}</div>
+              <div className={styles.description}>
+                {t('Deployment Location')}
+              </div>
             </div>
           </div>
         )}
-        {overrides && (
+        {!isEmpty(overrides) && (
           <div className={styles.overrides}>
             <ClusterDiffs
               overrides={overrides}

@@ -37,10 +37,13 @@ const AgentType = [
 export default class Sider extends React.Component {
   @observable
   stageName
+
   @observable
   formData = {}
+
   @observable
   showYaml = false
+
   @observable
   loading = false
 
@@ -122,7 +125,7 @@ export default class Sider extends React.Component {
                 'The label on which to run the Pipeline or individual stage'
               )}
             >
-              <Input name="label" defaultValue="default" />
+              <Input name="label" defaultValue="base" />
             </Form.Item>
           </Form>
         )

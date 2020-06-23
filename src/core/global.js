@@ -19,21 +19,6 @@
 import { get, uniq, isEmpty, includes, cloneDeep } from 'lodash'
 import { safeParseJSON } from 'utils'
 
-const NAV_KS_MODULE_MAP = {
-  repos: 'openpitrix',
-  apps: 'openpitrix',
-  'apps-manage': 'openpitrix',
-  alerting: 'alerting',
-  'alert-message': 'alerting',
-  'alert-policy': 'alerting',
-  logging: 'logging',
-  'mail-server': 'notification',
-  'log-collection': 'logging',
-  devops: 'devops',
-  s2ibuilders: 'devops',
-  grayrelease: 'servicemesh',
-}
-
 /** A global class for authorization check. */
 export default class GlobalValue {
   constructor() {
@@ -49,13 +34,6 @@ export default class GlobalValue {
    * @returns {Array} actions of current module in the project or workspace
    */
   getActions({ cluster, workspace, project, devops, module }) {
-    if (
-      NAV_KS_MODULE_MAP[module] &&
-      !this.hasKSModule(NAV_KS_MODULE_MAP[module])
-    ) {
-      return []
-    }
-
     if (globals.config.disableAuthorization) {
       return ['view', 'edit', 'create', 'delete', 'manage']
     }
@@ -68,26 +46,54 @@ export default class GlobalValue {
     }
 
     if (project) {
+      const defaultActions = get(
+        globals.user,
+        `projectRules[${cluster}][${project}]._`,
+        this.getActions({ cluster, module })
+      )
       return adapter(
-        get(globals.user, `projectRules[${cluster}][${project}][${module}]`, [])
+        get(
+          globals.user,
+          `projectRules[${cluster}][${project}][${module}]`,
+          defaultActions
+        )
       )
     }
 
     if (devops) {
+      const defaultActions = get(
+        globals.user,
+        `devopsRules[${cluster}][${devops}]._`,
+        []
+      )
       return adapter(
-        get(globals.user, `devopsRules[${cluster}][${devops}][${module}]`, [])
+        get(
+          globals.user,
+          `devopsRules[${cluster}][${devops}][${module}]`,
+          defaultActions
+        )
       )
     }
 
     if (workspace) {
+      const defaultActions = get(
+        globals.user,
+        `workspaceRules[${workspace}]._`,
+        []
+      )
       return adapter(
-        get(globals.user, `workspaceRules[${workspace}][${module}]`, [])
+        get(
+          globals.user,
+          `workspaceRules[${workspace}][${module}]`,
+          defaultActions
+        )
       )
     }
 
     if (cluster) {
+      const defaultActions = get(globals.user, `clusterRules[${cluster}]._`, [])
       return adapter(
-        get(globals.user, `clusterRules[${cluster}][${module}]`, [])
+        get(globals.user, `clusterRules[${cluster}][${module}]`, defaultActions)
       )
     }
 
@@ -112,13 +118,6 @@ export default class GlobalValue {
     action,
     actions,
   }) {
-    if (
-      NAV_KS_MODULE_MAP[module] &&
-      !this.hasKSModule(NAV_KS_MODULE_MAP[module])
-    ) {
-      return false
-    }
-
     if (globals.config.disableAuthorization) {
       return true
     }
@@ -144,7 +143,22 @@ export default class GlobalValue {
       return true
     }
 
+    if (item.multiCluster && !globals.app.isMultiCluster) {
+      return false
+    }
+
     if (item.ksModule && !this.hasKSModule(item.ksModule)) {
+      return false
+    }
+
+    if (item.singleClusterModule && !globals.app.isMultiCluster) {
+      item.clusterModule = item.singleClusterModule
+    }
+
+    if (
+      item.clusterModule &&
+      !this.hasClusterModule(item.cluster, item.clusterModule)
+    ) {
       return false
     }
 
@@ -158,10 +172,14 @@ export default class GlobalValue {
 
     if (item._children) {
       item.children = item._children.filter(child => {
+        const { cluster } = item
         if (child.tabs) {
-          return child.tabs.some(_child => this.checkNavItem(_child, callback))
+          return child.tabs.some(_child => {
+            _child.cluster = cluster
+            return this.checkNavItem(_child, callback)
+          })
         }
-
+        child.cluster = cluster
         return this.checkNavItem(child, callback)
       })
 
@@ -202,15 +220,20 @@ export default class GlobalValue {
   }
 
   getClusterNavs(cluster) {
+    if (!get(globals.user, `clusterRules[${cluster}]`)) {
+      return []
+    }
+
     if (!this._cache_[`cluster_${cluster}_navs`]) {
       const navs = []
 
       globals.config.clusterNavs.forEach(nav => {
-        const filteredItems = nav.items.filter(item =>
-          this.checkNavItem(item, params =>
+        const filteredItems = nav.items.filter(item => {
+          item.cluster = cluster
+          return this.checkNavItem(item, params =>
             this.hasPermission({ ...params, cluster })
           )
-        )
+        })
         if (!isEmpty(filteredItems)) {
           navs.push({ ...nav, items: filteredItems })
         }
@@ -246,6 +269,10 @@ export default class GlobalValue {
   }
 
   getWorkspaceNavs(workspace) {
+    if (!get(globals.user, `workspaceRules[${workspace}]`)) {
+      return []
+    }
+
     if (!this._cache_[`workspace_${workspace}_navs`]) {
       const navs = []
 
@@ -271,16 +298,21 @@ export default class GlobalValue {
     return globals.config.manageAppNavs
   }
 
-  getProjectNavs({ cluster, project }) {
+  getProjectNavs({ cluster, workspace, project }) {
+    if (!get(globals.user, `projectRules[${cluster}][${project}]`)) {
+      return []
+    }
+
     if (!this._cache_[`project_${cluster}_${project}_navs`]) {
       const navs = []
 
       globals.config.projectNavs.forEach(nav => {
-        const filteredItems = nav.items.filter(item =>
-          this.checkNavItem(item, params =>
-            this.hasPermission({ ...params, cluster, project })
+        const filteredItems = nav.items.filter(item => {
+          item.cluster = cluster
+          return this.checkNavItem(item, params =>
+            this.hasPermission({ ...params, cluster, workspace, project })
           )
-        )
+        })
 
         if (!isEmpty(filteredItems)) {
           navs.push({ ...nav, items: filteredItems })
@@ -293,16 +325,25 @@ export default class GlobalValue {
     return this._cache_[`project_${cluster}_${project}_navs`]
   }
 
-  getDevOpsNavs({ cluster, devops }) {
+  getFederatedProjectNavs() {
+    return globals.config.federatedProjectNavs
+  }
+
+  getDevOpsNavs({ cluster, workspace, devops }) {
+    if (!get(globals.user, `devopsRules[${cluster}][${devops}]`)) {
+      return []
+    }
+
     if (!this._cache_[`devops_${cluster}_${devops}_navs`]) {
       const navs = []
 
       globals.config.devopsNavs.forEach(nav => {
-        const filteredItems = nav.items.filter(item =>
-          this.checkNavItem(item, params =>
-            this.hasPermission({ ...params, cluster, devops })
+        const filteredItems = nav.items.filter(item => {
+          item.cluster = cluster
+          return this.checkNavItem(item, params =>
+            this.hasPermission({ ...params, cluster, workspace, devops })
           )
-        )
+        })
 
         if (!isEmpty(filteredItems)) {
           navs.push({ ...nav, items: filteredItems })
@@ -351,7 +392,14 @@ export default class GlobalValue {
   }
 
   hasKSModule(module) {
-    return isEmpty(globals.ksConfig) || get(globals.ksConfig, module)
+    return get(globals, `ksConfig.${module}`)
+  }
+
+  hasClusterModule(cluster, module) {
+    if (!this.isMultiCluster) {
+      return this.hasKSModule(module)
+    }
+    return get(globals, `clusterConfig.${cluster}.${module}`)
   }
 
   cacheHistory(url, obj) {

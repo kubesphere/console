@@ -50,11 +50,10 @@ export default {
           if (data.public === false) {
             if (data.addWorkspaces) {
               data.addWorkspaces.forEach(item => {
-                const formData = Object.assign(
-                  {},
-                  FORM_TEMLATES.workspaces(),
-                  cloneDeep(item._originData)
-                )
+                const formData = {
+                  ...FORM_TEMLATES.workspaces(),
+                  ...cloneDeep(item._originData),
+                }
                 const clusters = item.clusters || []
                 set(
                   formData,
@@ -67,11 +66,10 @@ export default {
             }
             if (data.deleteWorkspaces) {
               data.deleteWorkspaces.forEach(item => {
-                const formData = Object.assign(
-                  {},
-                  FORM_TEMLATES.workspaces(),
-                  cloneDeep(item._originData)
-                )
+                const formData = {
+                  ...FORM_TEMLATES.workspaces(),
+                  ...cloneDeep(item._originData),
+                }
                 const clusters = item.clusters || []
                 set(
                   formData,

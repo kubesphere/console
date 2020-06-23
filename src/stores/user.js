@@ -59,8 +59,26 @@ export default class UsersStore extends Base {
     return path
   }
 
+  getModule({ cluster, workspace, namespace, devops } = {}) {
+    if (namespace || devops) {
+      return 'members'
+    }
+
+    if (workspace) {
+      return 'workspacemembers'
+    }
+
+    if (cluster) {
+      return 'clustermembers'
+    }
+
+    return 'users'
+  }
+
   getResourceUrl = (params = {}) =>
-    `kapis/iam.kubesphere.io/v1alpha2${this.getPath(params)}/users`
+    `kapis/iam.kubesphere.io/v1alpha2${this.getPath(params)}/${this.getModule(
+      params
+    )}`
 
   getListUrl = this.getResourceUrl
 
@@ -77,18 +95,18 @@ export default class UsersStore extends Base {
   @action
   async fetchRules({ name, ...params }) {
     let module = 'globalroles'
-    if (params.workspace) {
-      module = 'workspaceroles'
-    } else if (params.namespace || params.devops) {
+    if (params.namespace || params.devops) {
       module = 'roles'
+    } else if (params.workspace) {
+      module = 'workspaceroles'
     } else if (params.cluster) {
       module = 'clusterroles'
     }
 
     const resp = await request.get(
-      `kapis/iam.kubesphere.io/v1alpha2${this.getPath(
+      `kapis/iam.kubesphere.io/v1alpha2${this.getPath(params)}/${this.getModule(
         params
-      )}/users/${name}/${module}`,
+      )}/${name}/${module}`,
       {},
       {},
       () => {}
@@ -120,27 +138,60 @@ export default class UsersStore extends Base {
       case 'globaleroles':
         set(globals.user, `globalRules`, rules)
         break
-      case 'clusterroles':
-        set(globals.user, `clusterRules[${params.cluster}]`, rules)
+      case 'clusterroles': {
+        const parentActions = globals.app.getActions({ module: 'clusters' })
+        set(globals.user, `clusterRules[${params.cluster}]`, {
+          ...rules,
+          _: parentActions,
+        })
         break
-      case 'workspaceroles':
-        set(globals.user, `workspaceRules[${params.workspace}]`, rules)
+      }
+      case 'workspaceroles': {
+        const parentActions = globals.app.getActions({ module: 'workspaces' })
+        set(globals.user, `workspaceRules[${params.workspace}]`, {
+          ...rules,
+          _: parentActions,
+        })
         break
-      case 'roles':
+      }
+      case 'roles': {
+        const obj = {}
+        if (params.workspace) {
+          obj.workspace = params.workspace
+        } else if (params.cluster) {
+          obj.cluster = params.cluster
+        }
+
         if (params.namespace) {
+          const parentActions = globals.app.getActions({
+            ...obj,
+            module: 'projects',
+          })
           set(
             globals.user,
             `projectRules[${params.cluster}][${params.namespace}]`,
-            rules
+            {
+              ...rules,
+              _: parentActions,
+            }
           )
         } else if (params.devops) {
+          const parentActions = globals.app.getActions({
+            ...obj,
+            module: 'devops',
+          })
+
           set(
             globals.user,
             `devopsRules[${params.cluster}][${params.devops}]`,
-            rules
+            {
+              ...rules,
+              _: parentActions,
+            }
           )
         }
         break
+      }
       default:
     }
   }

@@ -39,6 +39,6 @@ export default class AppReadme extends React.PureComponent {
       return <Markdown source={readme} className={styles.markdown} />
     }
 
-    return <p>{t('The version has no documentation')}</p>
+    return <p>{t('The version has no documentation.')}</p>
   }
 }

@@ -20,10 +20,12 @@ import { get } from 'lodash'
 import React from 'react'
 import { toJS } from 'mobx'
 import { inject, observer } from 'mobx-react'
-import { Columns, Column } from '@pitrix/lego-ui'
+import { Columns, Column, Select } from '@pitrix/lego-ui'
 import { Button, Modal, Search, RadioGroup, ScrollLoad } from 'components/Base'
+
 import WorkspaceStore from 'stores/workspace'
 import ProjectStore from 'stores/project'
+import FederatedStore from 'stores/federated'
 import DevOpsStore from 'stores/devops'
 
 import Card from './Card'
@@ -38,44 +40,78 @@ export default class ProjectSelectModal extends React.Component {
 
     this.store = new WorkspaceStore()
     this.projectStore = new ProjectStore()
+    this.fedProjectStore = new FederatedStore({ module: 'namespaces' })
     this.devopsStore = new DevOpsStore()
+
+    this.stores = {
+      devops: this.devopsStore,
+      federatedprojects: this.fedProjectStore,
+      projects: this.projectStore,
+    }
 
     this.state = {
       type: props.defaultType || 'projects',
+      cluster: props.cluster || '',
     }
   }
 
   componentDidMount() {
     this.store.fetchDetail({ workspace: this.props.workspace })
+    this.store.fetchClusters({ workspace: this.props.workspace }).then(() => {
+      if (!this.state.cluster) {
+        this.setState({
+          cluster: get(this.store.clusters, 'data[0].name', ''),
+        })
+      }
+    })
+  }
+
+  get clusters() {
+    return this.store.clusters.data.map(item => ({
+      label: item.name,
+      value: item.name,
+    }))
   }
 
   get enabledActions() {
     const { workspace } = this.props
     return {
       projects: globals.app.getActions({ workspace, module: 'projects' }),
+      federatedprojects: globals.app.getActions({
+        workspace,
+        module: 'federatedprojects',
+      }),
       devops: globals.app.getActions({ workspace, module: 'devops' }),
     }
   }
 
   get types() {
-    const { detail } = this.store
     const types = []
     if (this.enabledActions.projects.includes('view')) {
       types.push({
         label: t('Projects'),
         value: 'projects',
-        count: get(detail, 'annotations["kubesphere.io/namespace-count"]', '0'),
       })
     }
 
     if (
+      globals.app.isMultiCluster &&
+      this.enabledActions.federatedprojects.includes('view')
+    ) {
+      types.push({
+        label: t('Multi-cluster Projects'),
+        value: 'federatedprojects',
+      })
+    }
+
+    // TODO: ADD CLUSTER
+    if (
       this.enabledActions.devops.includes('view') &&
-      globals.app.hasKSModule('devops')
+      (globals.app.isMultiCluster || globals.app.hasKSModule('devops'))
     ) {
       types.push({
         label: t('DevOps Projects'),
         value: 'devops',
-        count: get(detail, 'annotations["kubesphere.io/devops-count"]', '0'),
       })
     }
 
@@ -83,23 +119,23 @@ export default class ProjectSelectModal extends React.Component {
   }
 
   get canCreate() {
-    return this.state.type === 'projects'
-      ? this.enabledActions.projects.includes('create')
-      : this.enabledActions.devops.includes('create')
+    return this.enabledActions[this.state.type].includes('create')
   }
 
   fetchData = query => {
-    const { cluster, workspace } = this.props
+    const { workspace } = this.props
+    const { cluster } = this.state
     const params = { cluster, workspace, ...query }
-    if (this.state.type === 'projects') {
-      this.projectStore.fetchList(params)
-    } else {
-      this.devopsStore.fetchList(params)
+
+    if (this.state.type === 'federatedprojects') {
+      params.labelSelector = `kubesphere.io/workspace=${workspace}`
     }
+
+    this.stores[this.state.type].fetchList(params)
   }
 
-  handleSearch = keyword => {
-    this.fetchData({ keyword })
+  handleSearch = name => {
+    this.fetchData({ name })
   }
 
   handleRefresh = () => {
@@ -109,44 +145,45 @@ export default class ProjectSelectModal extends React.Component {
   handleTypeChange = type => {
     if (this.state.type !== type) {
       this.setState({ type }, () => {
-        this.fetchData({ keyword: '' })
+        this.fetchData({ name: '' })
       })
     }
+  }
+
+  handleClusterChange = cluster => {
+    this.setState({ cluster }, () => {
+      this.fetchData()
+    })
   }
 
   handleEnterWorkspace = () => {
     const { workspace, onChange } = this.props
-
-    if (globals.app.isClusterAdmin) {
-      return onChange(`/workspaces/${workspace}/overview`)
-    }
-
-    if (
-      globals.app.hasPermission({ module: 'workspaces', action: 'manage' }) ||
-      globals.app.hasPermission({
-        module: 'workspaces',
-        action: 'view',
-        workspace,
-      })
-    ) {
-      return onChange(`/workspaces/${workspace}/overview`)
-    }
-
-    return onChange(`/dashboard`)
+    return onChange(`/workspaces/${workspace}/overview`)
   }
 
   handleOnEnter = item => {
-    const { cluster, onChange } = this.props
+    const { workspace, onChange } = this.props
+    const { cluster } = this.state
     if (this.state.type === 'projects') {
-      onChange(`/cluster/${cluster}/projects/${item.name}`)
+      onChange(`/${workspace}/clusters/${cluster}/projects/${item.name}`)
+    } else if (this.state.type === 'federatedprojects') {
+      onChange(`/${workspace}/federatedprojects/${item.name}`)
     } else {
-      onChange(`/devops/${item.namespace}`)
+      item.namespace && cluster
+        ? onChange(`/${workspace}/clusters/${cluster}/devops/${item.namespace}`)
+        : null
     }
   }
 
+  clusterRenderer = option => `${t('Cluster')}: ${option.label}`
+
   showCreate = () => {
     const { workspace, rootStore } = this.props
-    if (this.state.type === 'projects') {
+    const { cluster } = this.state
+    if (
+      this.state.type === 'projects' ||
+      this.state.type === 'federatedprojects'
+    ) {
       rootStore.triggerAction('project.create', {
         store: this.projectStore,
         workspace,
@@ -154,17 +191,20 @@ export default class ProjectSelectModal extends React.Component {
     } else {
       rootStore.triggerAction('devops.create', {
         store: this.devopsStore,
+        cluster,
         workspace,
+        success: () => {
+          this.fetchData()
+        },
       })
     }
   }
 
   render() {
     const { visible, workspace, onCancel } = this.props
-    const { type } = this.state
+    const { type, cluster } = this.state
     const { detail } = this.store
-    const list =
-      type === 'projects' ? this.projectStore.list : this.devopsStore.list
+    const list = this.stores[type].list
     const { data, total, page, isLoading } = toJS(list)
 
     return (
@@ -179,7 +219,7 @@ export default class ProjectSelectModal extends React.Component {
         hideFooter
       >
         <div className={styles.bar}>
-          <Columns>
+          <Columns className="is-variable is-1">
             <Column className="is-narrow">
               <RadioGroup
                 value={type}
@@ -187,6 +227,17 @@ export default class ProjectSelectModal extends React.Component {
                 onChange={this.handleTypeChange}
               />
             </Column>
+            {globals.app.isMultiCluster && type !== 'federatedprojects' && (
+              <Column className="is-narrow">
+                <Select
+                  className={styles.cluster}
+                  options={this.clusters}
+                  value={cluster}
+                  onChange={this.handleClusterChange}
+                  valueRenderer={this.clusterRenderer}
+                />
+              </Column>
+            )}
             <Column>
               <Search
                 placeholder={t('Please enter a name to find')}

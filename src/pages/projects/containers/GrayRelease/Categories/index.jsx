@@ -74,15 +74,16 @@ export default class Categories extends React.Component {
   }
 
   get canCreate() {
-    const { cluster, namespace: project } = this.props.match.params
+    const { cluster, workspace, namespace: project } = this.props.match.params
     return globals.app
-      .getActions({ cluster, project, module: 'applications' })
+      .getActions({ cluster, workspace, project, module: 'applications' })
       .includes('edit')
   }
 
   get serviceMeshEnable() {
+    const { cluster } = this.props.match.params
     return (
-      globals.app.hasKSModule('servicemesh') &&
+      globals.app.hasClusterModule(cluster, 'servicemesh') &&
       this.routerStore.gateway.data.serviceMeshEnable
     )
   }
@@ -99,12 +100,12 @@ export default class Categories extends React.Component {
   }
 
   handleCreate = data => {
-    const { cluster, namespace } = this.props.match.params
+    const { workspace, cluster, namespace } = this.props.match.params
     this.store.create(data, { cluster, namespace }).then(() => {
       this.hideCreate()
       Notify.success({ content: `${t('Created Successfully')}!` })
       this.routing.push(
-        `/cluster/${cluster}/projects/${namespace}/grayrelease/jobs`
+        `/${workspace}/clusters/${cluster}/projects/${namespace}/grayrelease/jobs`
       )
       formPersist.delete(`${this.module}_create_form`)
     })

@@ -21,7 +21,7 @@ export default {
   'Custom Resource Definitions': '自定义资源 (CRD)',
 
   CUSTOM_RESOURCE_DEFINITION_DESC:
-    '自定义资源即 Custom Resource Definition ,通过 CRD 以向 Kubernetes API 中增加新资源类型，在不修改 Kubernetes 的基础上创建自定义的 API server',
+    '自定义资源即 CRD 是一种 Kubernetes 实现自定义资源类型的扩展方式，用户可以如同操作内置资源对象一样操作 CRD 对象。',
   CUSTOM_RESOURCE_DEFINITION_CREATE_DESC:
-    '自定义资源即 Custom Resource Definition ,通过 CRD 以向 Kubernetes API 中增加新资源类型，在不修改 Kubernetes 的基础上创建自定义的 API server',
+    '自定义资源即 CRD 是一种 Kubernetes 实现自定义资源类型的扩展方式，用户可以如同操作内置资源对象一样操作 CRD 对象。',
 }

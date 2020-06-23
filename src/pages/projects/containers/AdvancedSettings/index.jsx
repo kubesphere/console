@@ -42,8 +42,8 @@ class AdvancedSettings extends React.Component {
   get enableActions() {
     return globals.app.getActions({
       module: 'project-settings',
+      ...this.props.match.params,
       project: this.namespace,
-      cluster: this.cluster,
     })
   }
 
@@ -64,7 +64,7 @@ class AdvancedSettings extends React.Component {
         description: t('PROJECT_INTERNET_ACCESS_DESC'),
       },
       {
-        title: t('What is collecting file log ?'),
+        title: t('What is Disk Log Collection?'),
         description: t('WHAT_IS_COLLECT_FILE_LOG_A'),
       },
     ]
@@ -80,9 +80,10 @@ class AdvancedSettings extends React.Component {
           tips={this.tips}
         />
         <InternetAccess match={this.props.match} actions={this.enableActions} />
-        {globals.app.hasKSModule('logging') && !this.disabledLoggingSideCar && (
-          <LogCollection store={this.store} actions={this.enableActions} />
-        )}
+        {globals.app.hasClusterModule(this.cluster, 'logging') &&
+          !this.disabledLoggingSideCar && (
+            <LogCollection store={this.store} actions={this.enableActions} />
+          )}
       </div>
     )
   }

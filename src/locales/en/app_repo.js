@@ -21,11 +21,11 @@ export default {
   APP_REPO_URL_DESC:
     'The entered URL needs to be validated before added or edited.',
   APP_REPOSITORY_CREATE_DESC:
-    "You can add   third-party applications  repository source which supports Helm's Kubernetes.",
+    "You can add a third-party app repository source which supports Helm-based Kubernetes apps.",
   APP_REPO_DESC:
-    "You can add   third-party applications  repository source which supports Helm's Kubernetes.",
+    "You can add a third-party app repository source which supports Helm-based Kubernetes apps.",
 
-  HOW_TO_USE_APP_REPO_Q: 'How to use application repository?',
+  HOW_TO_USE_APP_REPO_Q: 'How to use an app repository?',
   HOW_TO_USE_APP_REPO_A:
-    'The added application repository can be seen in the workspace projects. By entering Application => Deploy applications => Application repository, you can find all the applications in the current repository and deploy them.',
+    'The added app repository can be seen in the workspace projects. By entering Application => Deploy applications => App repository, you can find all the applications in the current repository and deploy them.',
 }

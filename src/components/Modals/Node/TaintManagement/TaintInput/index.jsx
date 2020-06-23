@@ -99,7 +99,7 @@ export default class TaintInput extends React.Component {
     // some key is empty, throw error
     const emptyKeyIndex = value.findIndex(item => isEmpty(item.key))
     if (emptyKeyIndex !== -1) {
-      this.showKeyError({ index: emptyKeyIndex, message: t('No empty keys') })
+      this.showKeyError({ index: emptyKeyIndex, message: t('Empty keys') })
       return false
     }
 

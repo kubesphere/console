@@ -71,9 +71,9 @@ export default {
   'Depend on': '依赖于',
 
   'Clusters Management': '集群管理',
+  CLUSTERS_MANAGEMENT_DESC: '创建删除集群，管理所有集群下的资源',
   'Clusters View': '集群查看',
-  CLUSTERS_VIEW_DESC:
-    '集群管理的基础功能，获取集群查看功能后可以进行更高级功能的操作权限定义',
+  CLUSTERS_VIEW_DESC: '查看平台中所有的集群及集群下所有的资源',
   'Users Management': '账户管理',
   USERS_MANAGEMENT_DESC: '支持账户的管理，包括添加/删除/更新账户信息',
   'Users View': '账户查看',
@@ -232,19 +232,19 @@ export default {
 
   'Unable to delete preset role': '无法删除预置角色',
 
-  'Allows cluster-admin access to perform any action on any resource, it gives full control over every resource in the cluster and in all namespaces.':
+  'Allows cluster-admin access to perform any action on any resource. It gives full control over all resources in the cluster and in all namespaces.':
     '集群管理员，可以管理集群中所有的资源。',
-  'Normal user in the cluster, there is no permission for any resource operations until he is invited to the workspace.':
+  'Normal user in the cluster; there is no permission for any resource operations until the user with this role is invited to a workspace.':
     '集群中的普通用户，在被邀请加入企业空间之前没有任何资源操作权限。',
   'Allows workspace-manager access to manage all the workspaces in the cluster.':
     '集群中企业空间管理员，可以管理集群中所有的企业空间。',
-  'Allows admin access to perform any action on any resource, it gives full control over every resource in the workspace.':
+  'Allows admin access to perform any action on any resource. It gives full control over all resources in the workspace.':
     '企业空间管理员，可以管理企业空间下所有的资源。',
-  'Normal user in the workspace, can create namespace and DevOps project.':
+  'Normal user in the workspace who can create namespace and DevOps project.':
     '企业空间普通成员，可以在企业空间下创建工程和项目。',
   'Allows viewer access to view all resources in the workspace.':
     '企业空间的观察者，可以查看企业空间下所有的资源信息。',
-  'Allows admin access to perform any action on any resource, it gives full control over every resource in the namespace.':
+  'Allows admin access to perform any action on any resource. It gives full control over all resources in the namespace.':
     '	项目管理员，可以管理项目下所有的资源。',
   'The maintainer of the namespace who can manage resources other than users and roles in the namespace.':
     '项目维护者，可以管理项目下除用户和角色之外的资源。',

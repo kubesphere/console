@@ -90,7 +90,7 @@ export default class AppPreview extends React.Component {
     }
 
     return (
-      <p className={styles.noReadme}>{t('The version has no documentation')}</p>
+      <p className={styles.noReadme}>{t('The version has no documentation.')}</p>
     )
   }
 
@@ -132,7 +132,7 @@ export default class AppPreview extends React.Component {
         <TabPanel label={t('App Description')} name="versionInfo">
           <div className={styles.wrapper}>{this.renderReadMe()}</div>
         </TabPanel>
-        <TabPanel label={t('Chart File')} name="chartFiles">
+        <TabPanel label={t('Chart Files')} name="chartFiles">
           <div className={styles.wrapper}>{this.renderChartFiles()}</div>
         </TabPanel>
       </Tabs>

@@ -50,7 +50,7 @@ export default class DevOpsStore extends Base {
   project_id = ''
 
   @observable
-  project_name = ''
+  devops = ''
 
   getPath({ cluster, namespace, workspace } = {}) {
     let path = ''
@@ -65,6 +65,7 @@ export default class DevOpsStore extends Base {
     }
     return path
   }
+
   getBaseUrlV2 = params =>
     `kapis/devops.kubesphere.io/v1alpha2${this.getPath(params)}/`
 
@@ -75,22 +76,26 @@ export default class DevOpsStore extends Base {
 
   getBaseUrl = params => `${this.apiVersion}${this.getPath(params)}/`
 
-  getDevOpsUrl = params => `${this.getBaseUrl(params)}devopsprojects`
+  getDevOpsUrl = params => `${this.getBaseUrl(params)}devops`
 
-  getDevOpsDetailUrl = ({ cluster, name }) =>
-    `${this.getDevOpsUrl({ cluster })}/${name}`
+  getDevOpsDetailUrl = ({ workspace, cluster, devops }) =>
+    `${this.getDevOpsUrl({ cluster, workspace })}/${devops}`
 
   getWatchListUrl = ({ workspace, ...params }) => {
     if (workspace) {
-      return `${
-        this.apiVersion
-      }/watch/devopsprojects?labelSelector=kubesphere.io/workspace=${workspace}`
+      return `${this.apiVersion}/watch/${
+        this.module
+      }?labelSelector=kubesphere.io/workspace=${workspace}`
     }
     return `${this.apiVersion}/watch${this.getPath(params)}/devopsprojects`
   }
 
   getWatchUrl = (params = {}) =>
     `${this.getWatchListUrl(params)}/${params.name}`
+
+  getDevops(project_id) {
+    return project_id.slice(0, -5)
+  }
 
   @action
   async fetchList({
@@ -103,7 +108,6 @@ export default class DevOpsStore extends Base {
     keyword,
   } = {}) {
     this.list.isLoading = true
-
     const params = {}
 
     if (workspace) {
@@ -126,18 +130,27 @@ export default class DevOpsStore extends Base {
       params.reverse = true
     }
 
-    const result = await request.get(this.getDevOpsUrl({ cluster }), params)
+    const result = await request.get(
+      this.getDevOpsUrl({ cluster, workspace }),
+      params,
+      null,
+      () => {}
+    )
 
-    this.devopsListData = get(result, 'items', [])
+    const items = Array.isArray(get(result, 'items'))
+      ? get(result, 'items')
+      : []
 
-    const data = get(result, 'items', []).map(item => ({
+    this.devopsListData = items
+
+    const data = items.map(item => ({
       cluster,
       ...this.mapper(item),
     }))
 
     this.list.update({
       data,
-      total: result.total_count || data.length || 0,
+      total: get(result, 'total_count') || data.length || 0,
       limit: Number(limit) || 10,
       page: Number(page) || 1,
       order,
@@ -153,11 +166,13 @@ export default class DevOpsStore extends Base {
     data.kind = 'DevOpsProject'
     data.apiVersion = 'devops.kubesphere.io/v1alpha3'
     data.metadata.labels = { 'kubesphere.io/workspace': workspace }
-    return this.submitting(request.post(this.getDevOpsUrl({ cluster }), data))
+    return this.submitting(
+      request.post(this.getDevOpsUrl({ cluster, workspace }), data)
+    )
   }
 
   @action
-  update(params, item, isBaseInfoEditor = false) {
+  update({ cluster, workspace, name }, item, isBaseInfoEditor = false) {
     let data = null
     if (isBaseInfoEditor) {
       data = this.itemDetail
@@ -177,38 +192,51 @@ export default class DevOpsStore extends Base {
       )
 
       return this.submitting(
-        request.put(`${this.getDevOpsDetailUrl(params)}`, data, {
-          headers: {
-            'content-type': 'application/json',
-          },
-        })
+        request.put(
+          `${this.getDevOpsDetailUrl({ cluster, workspace, devops: name })}`,
+          data,
+          {
+            headers: {
+              'content-type': 'application/json',
+            },
+          }
+        )
       )
     }
   }
 
   @action
-  delete({ name, cluster }) {
+  delete({ name, cluster, workspace }) {
     return this.submitting(
-      request.delete(`${this.getDevOpsDetailUrl({ cluster, name })}`)
+      request.delete(
+        `${this.getDevOpsDetailUrl({ workspace, cluster, devops: name })}`
+      )
     )
   }
 
   @action
   batchDelete(rowKeys, params) {
+    const { workspace, cluster, name } = params
     return this.submitting(
       Promise.all(
         rowKeys.map(project_id =>
-          request.delete(`${this.getDevOpsDetailUrl(params)}/${project_id}`)
+          request.delete(
+            `${this.getDevOpsDetailUrl({
+              workspace,
+              cluster,
+              devops: name,
+            })}/${project_id}`
+          )
         )
       )
     )
   }
 
   @action
-  async fetchDetail({ cluster, project_id }) {
-    const name = project_id.slice(0, -5)
+  async fetchDetail({ cluster, project_id, workspace }) {
+    const devops = this.getDevops(project_id)
     const detail = await request.get(
-      this.getDevOpsDetailUrl({ cluster, name }),
+      this.getDevOpsDetailUrl({ workspace, cluster, devops }),
       null,
       null,
       res => {
@@ -219,9 +247,10 @@ export default class DevOpsStore extends Base {
     )
 
     this.itemDetail = detail
-    const data = this.mapper(detail)
-    this.project_name = data.name
+    const data = { cluster, ...this.mapper(detail) }
+    this.devops = data.name
     this.project_id = data.namespace
+    data.workspace = data.workspace || workspace
     this.data = data
   }
 

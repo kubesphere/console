@@ -18,10 +18,16 @@
 
 import React from 'react'
 import { observer } from 'mobx-react'
+import { get, isEmpty } from 'lodash'
 import PropTypes from 'prop-types'
 import { Columns, Column, Select, Input, TextArea } from '@pitrix/lego-ui'
 import { Modal, Form } from 'components/Base'
-import { PATTERN_SERVICE_NAME, PATTERN_LENGTH_63 } from 'utils/constants'
+import ClusterTitle from 'components/Clusters/ClusterTitle'
+import {
+  PATTERN_SERVICE_NAME,
+  PATTERN_LENGTH_63,
+  PATTERN_LENGTH_1000,
+} from 'utils/constants'
 
 import WorkspaceStore from 'stores/workspace'
 
@@ -70,7 +76,19 @@ export default class ProjectCreateModal extends React.Component {
     return this.workspaceStore.clusters.data.map(item => ({
       label: item.name,
       value: item.name,
+      provider: item.provider,
+      group: item.group,
+      name: item.name,
+      disabled: !get(item, 'configz.devops', false),
     }))
+  }
+
+  get defaultCluster() {
+    const clusters = this.workspaceStore.clusters.data
+      .filter(item => item.isHost)
+      .map(item => item.name)
+
+    return isEmpty(clusters) ? undefined : clusters[0]
   }
 
   fetchClusters(params) {
@@ -79,6 +97,19 @@ export default class ProjectCreateModal extends React.Component {
       workspace: this.props.workspace,
     })
   }
+
+  valueRenderer = item => <ClusterTitle cluster={item} size="small" noStatus />
+
+  optionRenderer = item => (
+    <>
+      <ClusterTitle cluster={item} size="small" theme="light" noStatus />
+      {item.disabled && (
+        <div className={styles.toolmessage}>
+          <span>{t('NO_DEVOPS_INSTALL')}</span>
+        </div>
+      )}
+    </>
+  )
 
   render() {
     const { visible, formTemplate, hideCluster, onOk, onCancel } = this.props
@@ -135,13 +166,26 @@ export default class ProjectCreateModal extends React.Component {
                 >
                   <Select
                     name="spec.placement.cluster"
+                    className={styles.cluster}
                     options={this.clusters}
+                    valueRenderer={this.valueRenderer}
+                    optionRenderer={this.optionRenderer}
+                    defaultValue={this.defaultCluster}
                   />
                 </Form.Item>
               </Column>
             )}
             <Column>
-              <Form.Item label={t('Description')}>
+              <Form.Item
+                label={t('Description')}
+                desc={t('DESCRIPTION_DESC')}
+                rules={[
+                  {
+                    pattern: PATTERN_LENGTH_1000,
+                    message: t('LONG_DESC_TOO_LONG'),
+                  },
+                ]}
+              >
                 <TextArea name="metadata.annotations['kubesphere.io/description']" />
               </Form.Item>
             </Column>

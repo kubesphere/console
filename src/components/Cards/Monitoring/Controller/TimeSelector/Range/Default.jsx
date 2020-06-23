@@ -87,7 +87,7 @@ export default class DefaultRange extends React.Component {
 
     return (
       <div className={styles.default}>
-        <div className={styles.title}>{t('Select time range')}</div>
+        <div className={styles.title}>{t('Select Time Range')}</div>
         <ul onClick={this.handleClick}>
           {options.map(({ label, value }) => (
             <li

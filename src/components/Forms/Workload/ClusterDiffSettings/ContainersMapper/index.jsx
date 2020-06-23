@@ -41,14 +41,13 @@ export default class ContainersMapper extends Component {
 
   handleEdit = ({ index, containerType, data }) => {
     const { cluster, withService, formTemplate } = this.props
-
     const prefix = `spec.template.spec.${
       containerType === 'init' ? 'init_containers' : 'containers'
     }.${index}`
     const clusterOverrides = []
     Object.keys(data).forEach(key => {
       const path = `${prefix}.${key}`
-      if (get(formTemplate, path) !== data[key]) {
+      if (get(formTemplate, `spec.template.${path}`) !== data[key]) {
         clusterOverrides.push({
           path: `/${path.replace(/\./g, '/')}`,
           value: data[key],
@@ -160,10 +159,14 @@ export default class ContainersMapper extends Component {
   render() {
     const { formTemplate } = this.props
 
-    const containers = get(formTemplate, 'spec.template.spec.containers', [])
+    const containers = get(
+      formTemplate,
+      'spec.template.spec.template.spec.containers',
+      []
+    )
     const initContainers = get(
       formTemplate,
-      'spec.template.spec.init_containers',
+      'spec.template.spec.template.spec.init_containers',
       []
     )
 

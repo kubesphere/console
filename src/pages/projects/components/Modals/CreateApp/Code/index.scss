@@ -32,6 +32,7 @@
 
 .editor {
   height: calc(100vh - 340px);
+  min-height: 500px;
 
   & > div {
     height: 100%;

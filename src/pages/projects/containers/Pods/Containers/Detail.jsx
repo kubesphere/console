@@ -44,15 +44,10 @@ export default class ContainerDetail extends React.Component {
   }
 
   get listUrl() {
-    const {
-      params: { cluster, namespace, podName },
-      path,
-    } = this.props.match
-    if (path.startsWith('/clusters')) {
-      return `/clusters/${cluster}/projects/${namespace}/pods/${podName}`
-    }
-
-    return `/cluster/${cluster}/projects/${namespace}/pods/${podName}`
+    const { workspace, cluster, namespace, podName } = this.props.match.params
+    return `${
+      workspace ? `/${workspace}` : ''
+    }/clusters/${cluster}/projects/${namespace}/pods/${podName}`
   }
 
   fetchData = () => {
@@ -64,7 +59,7 @@ export default class ContainerDetail extends React.Component {
       key: 'terminal',
       type: 'control',
       text: t('Terminal'),
-      action: 'terminal',
+      action: 'edit',
       onClick: this.handleOpenTerminal,
     },
   ]
@@ -169,7 +164,7 @@ export default class ContainerDetail extends React.Component {
       containerName,
     } = this.props.match.params
 
-    const terminalUrl = `/terminal/clusters/${cluster}/projects/${namespace}/pods/${podName}/containers/${containerName}`
+    const terminalUrl = `/terminal/cluster/${cluster}/projects/${namespace}/pods/${podName}/containers/${containerName}`
     window.open(
       terminalUrl,
       `Connecting ${containerName}`,

@@ -38,21 +38,21 @@ export default class CustomResources extends React.Component {
     const { getSortOrder } = this.props
     return [
       {
-        title: t('Name'),
-        dataIndex: 'name',
+        title: t('Kind'),
+        dataIndex: 'kind',
         search: true,
-        render: (name, record) => (
+        render: (kind, record) => (
           <Avatar
-            to={`/clusters/${cluster}/customresources/${name}`}
-            title={name}
+            to={`/clusters/${cluster}/customresources/${record.name}`}
+            title={kind}
             desc={`${record.group}/${record.latestVersion}`}
           />
         ),
       },
       {
-        title: t('Kind'),
-        key: 'kind',
-        dataIndex: 'kind',
+        title: t('Name'),
+        key: 'name',
+        dataIndex: 'name',
       },
       {
         title: t('Scope'),

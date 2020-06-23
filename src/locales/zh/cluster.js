@@ -33,7 +33,7 @@ export default {
   'Custom Resources': '自定义资源 CRD',
   'Storage Management': '存储管理',
   'Cluster Settings': '集群设置',
-  'Snapshots Management': '快照管理',
+  'Snapshots': '存储卷快照',
   'IP Ranges': 'IP 地址范围',
   'Network Policies': '网络策略',
   'Network Topology': '网络拓扑',
@@ -41,7 +41,7 @@ export default {
   'Cluster Members': '集群成员',
   'Cluster Roles': '集群角色',
   'Kubernetes Settings': 'Kubernetes 设置',
-  'Connect Method': '连接方式',
+  'Connection Method': '连接方式',
 
   'Kubernetes Version': 'Kubernetes 版本',
 
@@ -65,11 +65,11 @@ export default {
 
   'Click to Copy': '点击复制',
 
-  'Cluster initialized failed': '集群初始化失败',
+  'Cluster initialization failed': '集群初始化失败',
 
   'Not Ready': '未就绪',
 
-  'Copy successful': '复制成功',
+  'Copy successfully': '复制成功',
 
   Unbind: '解除绑定',
 
@@ -86,13 +86,11 @@ export default {
   'The current cluster is public': '当前集群处于公开状态',
 
   'Available Clusters': '可用集群',
-
   'Select Clusters': '集群选择',
-
   'Edit cluster basic information': '编辑集群基础信息',
 
   'Scheduler Scheduling Times': '调度器调度次数',
-  'Failed Scheduling Pods': '调度失败的容器组',
+  'Scheduling Failed Pods': '调度失败的容器组',
 
   'Please select or input a tag': '请选择或输入标识',
   'Please select or input a provider': '请选择或输入服务商',
@@ -100,6 +98,8 @@ export default {
     '请输入待加入集群的 Kubesphere API Server 地址',
 
   'All Projects': '全部项目',
+
+  'Enter the project': '进入项目',
 
   NO_CLUSTER_TIP: '请添加至少 1 个集群',
   NO_CLUSTER_TIP_DESC:
@@ -116,8 +116,6 @@ export default {
   IMPORT_CLUSTER_DESC: '导入已有的Kubernetes集群',
 
   CLUSTER_SETTINGS_DESC: '定义集群配置信息',
-  CLUSTER_NAME_DESC:
-    '只能包含小写字母、数字及分隔符("-")，且必须以小写字母或数字开头及结尾',
   CLUSTER_TAG: '标识',
   CLUSTER_TAG_DESC: '标识此集群的用途，例如 生产环境、测试环境、演示环境 等',
   CLUSTER_PROVIDER_DESC: '提供集群基础设施的厂商',
@@ -139,7 +137,7 @@ export default {
   CLUSTER_AGENT_TIP_3_DESC: '执行命令之后等待集群状态的更新',
 
   CLUSTER_CONDITIONS: '集群状态',
-  CLUSTER_BASE_INFO_DESC: '对当前集群的基础信息进下汇总',
+  CLUSTER_BASE_INFO_DESC: '当前集群基础信息总览',
 
   UNBIND_CLUSTER_DESC:
     '解绑集群后，KubeSphere将无法再对该集群进行管理。 解绑后，该集群内的Kubernetes资源不会被删除。',
@@ -166,8 +164,7 @@ export default {
   SELECT_CLUSTERS_DESC: '选择企业空间下可用的集群',
 
   CLUSTER_API_SERVER_TITLE: '待加入集群的 Kubesphere API Server',
-  CLUSTER_API_SERVER_DESC:
-    '需要添加待加入集群的 KubeSphere API Server 地址，获取方式请查阅<a href="" target="_blank">文档</a>',
+  CLUSTER_API_SERVER_DESC: '需要添加待加入集群的 KubeSphere API Server 地址',
 
   INPUT_KUBECONFIG: '请填写目标集群的 KubeConfig',
 
@@ -177,4 +174,7 @@ export default {
     'KubeSphere 控制平面通过代理方式连接待导入集群，控制平面启动一个公开的代理服务，待导入集群创建相应的客户端组件连接代理服务，与控制平面之间建立一个反向代理。此种方式不需要待导入集群和控制平面在同一网络，也不要求待导入集群暴露集群的 apiserver 地址，但会有一定的网络性能损耗</br></br>通常适用于:</br>1. 当前集群和待导入集群不在同一网络中<br/>2. 当前集群和待导入集群无法通过vpn或隧道等其它技术连通所在网络<br/>3. 对集群间网络性能损耗能容忍',
 
   HOW_TO_GET_KUBECONFIG: '如何获取KubeConfig?',
+
+  CLUSTER_AGENT_TITLE: '请根据集群中提供的代理连接设置加入集群',
+  CLUSTER_AGENT_DESC: '需要在集群中设置下相应的代理Agent',
 }

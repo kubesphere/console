@@ -74,7 +74,7 @@ class GrayRelease extends Base {
   }
 
   renderHeader() {
-    const { cluster, namespace } = this.props.match.params
+    const { cluster, workspace, namespace } = this.props.match.params
 
     return (
       <div className={styles.header}>
@@ -84,7 +84,7 @@ class GrayRelease extends Base {
           </Column>
           <Column className="is-narrow">
             <Link
-              to={`/cluster/${cluster}/projects/${namespace}/grayrelease/cates`}
+              to={`/${workspace}/clusters/${cluster}/projects/${namespace}/grayrelease/cates`}
             >
               <Button type="control">
                 {t('Create Grayscale Release Job')}

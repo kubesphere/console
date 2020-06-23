@@ -17,6 +17,7 @@
  */
 
 import React, { Component } from 'react'
+import { pick } from 'lodash'
 
 import { Icon, Dropdown } from '@pitrix/lego-ui'
 import { Form } from 'components/Base'
@@ -35,7 +36,7 @@ export default class ContainerPorts extends Component {
 
     form &&
       form.validate(() => {
-        onEdit({ index, containerType, data: form.getData() })
+        onEdit({ index, containerType, data: pick(form.getData(), ['ports']) })
       })
   }
 

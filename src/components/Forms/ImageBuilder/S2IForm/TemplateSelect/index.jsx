@@ -50,6 +50,10 @@ export default class TemplateSelect extends React.PureComponent {
     return get(this.props.formTemplate, 'metadata.annotations.languageType')
   }
 
+  get builderImage() {
+    return get(this.props.formTemplate, 'spec.config.builderImage')
+  }
+
   get containerList() {
     const { builderTemplate } = this.props
 
@@ -100,7 +104,9 @@ export default class TemplateSelect extends React.PureComponent {
 
     return get(
       builderTemplate.find(
-        template => get(template, 'spec.codeFramework') === this.languageType
+        template =>
+          get(template, 'spec.codeFramework') === this.languageType &&
+          get(template, 'spec.config.builderImage') === this.builderImage
       ),
       'spec.defaultBaseImage',
       ''

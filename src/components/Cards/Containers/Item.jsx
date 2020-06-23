@@ -55,7 +55,7 @@ export default class ContainerItem extends React.Component {
     const { cluster, podName } = this.props
     const { namespace, name } = this.props.detail
 
-    const terminalUrl = `/terminal/clusters/${cluster}/projects/${namespace}/pods/${podName}/containers/${name}`
+    const terminalUrl = `/terminal/cluster/${cluster}/projects/${namespace}/pods/${podName}/containers/${name}`
     window.open(
       terminalUrl,
       `Connecting ${name}`,
@@ -106,7 +106,7 @@ export default class ContainerItem extends React.Component {
       probeDetail = `Open socket on port ${probe.tcpSocket.port} (TCP)`
     } else {
       const { command = [] } = probe.exec
-      probeType = 'Exec Commnad Check'
+      probeType = 'Exec Command Check'
       probeDetail = command.join(' ')
     }
 

@@ -47,6 +47,7 @@ export default class PlatformStatus extends Component {
         icon: 'appcenter',
         name: 'App Templates',
         link: '/apps',
+        hide: !globals.app.hasKSModule('openpitrix'),
         metric: 'kubesphere_app_template_count',
       },
     ]
@@ -64,17 +65,22 @@ export default class PlatformStatus extends Component {
           <Text
             icon="blockchain"
             title={getLocalTime(Date.now()).format('YYYY-MM-DD HH:mm:ss')}
-            description={t('Statistical time is up to')}
+            description={t('As of Date')}
           />
         </div>
-        {this.resources.map(resource => (
-          <Resource
-            key={resource.name}
-            data={resource}
-            count={get(metrics, `${resource.metric}.data.result[0].value[1]`)}
-            onClick={this.handleClick}
-          />
-        ))}
+        {this.resources.map(resource => {
+          if (resource.hide) {
+            return null
+          }
+          return (
+            <Resource
+              key={resource.name}
+              data={resource}
+              count={get(metrics, `${resource.metric}.data.result[0].value[1]`)}
+              onClick={this.handleClick}
+            />
+          )
+        })}
       </div>
     )
   }

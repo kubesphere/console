@@ -15,30 +15,27 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import React, { Component } from 'react'
 import { inject, observer, Provider } from 'mobx-react'
+import { set, pick } from 'lodash'
 
 import { Loading } from '@pitrix/lego-ui'
 
 import { renderRoutes } from 'utils/router.config'
 
-import { Nav } from 'components/Layout'
-import Selector from 'clusters/components/Selector'
-
 import ClusterStore from 'stores/cluster'
-
-import styles from './layout.scss'
 
 @inject('rootStore')
 @observer
-class ClusterLayout extends Component {
+export default class App extends Component {
   constructor(props) {
     super(props)
 
-    this.clusterStore = new ClusterStore()
+    this.store = new ClusterStore()
+  }
 
-    this.init(props.match.params)
+  componentDidMount() {
+    this.init(this.props.match.params)
   }
 
   componentDidUpdate(prevProps) {
@@ -48,70 +45,53 @@ class ClusterLayout extends Component {
   }
 
   async init(params) {
-    this.clusterStore.initializing = true
+    this.store.initializing = true
 
-    await Promise.all([
-      this.clusterStore.fetchDetail({
-        name: params.cluster,
-      }),
-      this.props.rootStore.getRules({ cluster: params.cluster }),
-    ])
+    if (params.cluster) {
+      await Promise.all([
+        this.store.fetchDetail({
+          name: params.cluster,
+        }),
+        this.props.rootStore.getRules({ cluster: params.cluster }),
+      ])
 
-    this.clusterStore.fetchProjects({
-      cluster: params.cluster,
-    })
+      if (this.store.detail.isReady) {
+        await this.store.fetchProjects({
+          cluster: params.cluster,
+        })
+      }
 
-    globals.app.cacheHistory(this.props.match.url, {
-      type: 'Cluster',
-      name: this.clusterStore.detail.name,
-      description: this.clusterStore.detail.description,
-      provider: this.clusterStore.detail.provider,
-    })
+      set(globals, `clusterConfig.${params.cluster}`, this.store.detail.configz)
 
-    this.clusterStore.initializing = false
+      globals.app.cacheHistory(this.props.match.url, {
+        type: 'Cluster',
+        ...pick(this.store.detail, [
+          'name',
+          'group',
+          'description',
+          'provider',
+        ]),
+      })
+    }
+
+    this.store.initializing = false
   }
 
   get cluster() {
     return this.props.match.params.cluster
   }
 
-  get routing() {
-    return this.props.rootStore.routing
-  }
-
-  enterCluster = async cluster =>
-    this.routing.push(`/clusters/${cluster}/overview`)
-
   render() {
-    const { match, route, location } = this.props
-    const { detail, initializing } = this.clusterStore
+    const { initializing } = this.store
 
     if (initializing) {
-      return <Loading className={styles.loading} />
+      return <Loading className="ks-page-loading" />
     }
 
     return (
-      <Provider clusterStore={this.clusterStore}>
-        <>
-          <div className="ks-page-side">
-            <Selector
-              icon={detail.icon}
-              value={this.cluster}
-              onChange={this.enterCluster}
-            />
-            <Nav
-              className="ks-page-nav"
-              navs={globals.app.getClusterNavs(this.cluster)}
-              location={location}
-              match={match}
-              disabled={!detail.isReady}
-            />
-          </div>
-          <div className="ks-page-main">{renderRoutes(route.routes)}</div>
-        </>
+      <Provider clusterStore={this.store}>
+        {renderRoutes(this.props.route.routes)}
       </Provider>
     )
   }
 }
-
-export default ClusterLayout

@@ -38,8 +38,8 @@ import WorkloadStore from 'stores/workload'
 })
 export default class Jobs extends React.Component {
   get prefix() {
-    const { namespace, cluster } = this.props.match.params
-    return `/cluster/${cluster}/projects/${namespace}`
+    const { workspace, namespace, cluster } = this.props.match.params
+    return `/${workspace}/clusters/${cluster}/projects/${namespace}`
   }
 
   handleTabChange = value => {
@@ -150,7 +150,7 @@ export default class Jobs extends React.Component {
         render: (status, record) => <JobStatus data={record} module={module} />,
       },
       {
-        title: t('Last schedule time'),
+        title: t('Last Executed Time'),
         dataIndex: 'updateTime',
         sorter: true,
         sortOrder: getSortOrder('updateTime'),

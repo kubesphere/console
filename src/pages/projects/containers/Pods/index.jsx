@@ -39,6 +39,10 @@ import styles from './index.scss'
   name: 'Pod',
 })
 export default class Pods extends React.Component {
+  componentDidMount() {
+    localStorage.setItem('pod-detail-referrer', location.pathname)
+  }
+
   get itemActions() {
     const { getData, trigger } = this.props
     return [
@@ -138,7 +142,7 @@ export default class Pods extends React.Component {
 
   renderAvatar = (name, record) => {
     const { module } = this.props
-    const { cluster, namespace } = this.props.match.params
+    const { workspace, cluster, namespace } = this.props.match.params
     const { podStatus } = record
     return (
       <div className={styles.avatar}>
@@ -153,7 +157,7 @@ export default class Pods extends React.Component {
         <div>
           <Link
             className={styles.title}
-            to={`/cluster/${cluster}/projects/${namespace}/${module}/${name}`}
+            to={`/${workspace}/clusters/${cluster}/projects/${namespace}/${module}/${name}`}
           >
             {name}
           </Link>

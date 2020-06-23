@@ -38,6 +38,9 @@ const Workspaces = lazy(() =>
 const Projects = lazy(() =>
   import(/* webpackChunkName: "projects" */ 'projects/App.jsx')
 )
+const FederatedProjects = lazy(() =>
+  import(/* webpackChunkName: "fedprojects" */ 'fedprojects/App.jsx')
+)
 const DevOps = lazy(() =>
   import(/* webpackChunkName: "devops" */ 'devops/App.jsx')
 )
@@ -61,27 +64,28 @@ export default [
         component: AccessControl,
       },
       {
+        path: '/:workspace/clusters/:cluster/projects/:namespace',
+        component: Projects,
+      },
+      {
+        path: '/:workspace/clusters/:cluster/devops/:project_id',
+        component: DevOps,
+      },
+      {
+        path: '/:workspace/federatedprojects/:namespace',
+        component: FederatedProjects,
+      },
+      {
         path: '/workspaces/:workspace',
         component: Workspaces,
       },
       {
-        path: '/cluster/:cluster/projects/:namespace',
-        component: Projects,
-      },
-      {
-        path: '/cluster/:cluster/devops/:project_id',
-        component: DevOps,
-        ksModule: 'devops',
-      },
-      {
         path: '/apps',
         component: AppStore,
-        ksModule: 'openpitrix',
       },
       {
         path: '/apps-manage',
         component: ManageApp,
-        ksModule: 'openpitrix',
       },
       {
         path: '/settings',

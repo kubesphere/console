@@ -19,6 +19,7 @@
 import React, { Component } from 'react'
 import classNames from 'classnames'
 import { Icon } from '@pitrix/lego-ui'
+import { CLUSTER_PROVIDER_ICON } from 'utils/constants'
 
 import styles from './index.scss'
 
@@ -45,24 +46,28 @@ export default class ClustersMapper extends Component {
 
     return (
       <div className={styles.wrapper}>
-        {clusters.map(({ name }) => (
+        {clusters.map(cluster => (
           <div
-            key={name}
+            key={cluster.name}
             className={classNames(styles.cluster, {
-              [styles.selected]: name === selectCluster,
+              [styles.selected]: cluster.name === selectCluster,
             })}
             onClick={this.handleClick}
-            data-cluster={name}
+            data-cluster={cluster.name}
           >
             <div className={styles.title}>
-              <Icon name="kubernetes" type="light" size={20} />
-              <span>{name}</span>
+              <Icon
+                name={CLUSTER_PROVIDER_ICON[cluster.provider]}
+                type="light"
+                size={20}
+              />
+              <span>{cluster.name}</span>
             </div>
             <div>
               {children({
                 namespace,
-                cluster: name,
-                selected: name === selectCluster,
+                cluster: cluster.name,
+                selected: cluster.name === selectCluster,
                 onSelect: this.handleSelect,
               })}
             </div>

@@ -17,8 +17,8 @@
  */
 
 import React from 'react'
-import { computed, get } from 'mobx'
 import { isUndefined } from 'lodash'
+import { computed } from 'mobx'
 
 import { Avatar, Status } from 'components/Base'
 import Banner from 'components/Cards/Banner'
@@ -39,6 +39,28 @@ import ProjectStore from 'stores/project'
 export default class Projects extends React.Component {
   workspaceStore = this.props.workspaceStore
 
+  handleTabChange = value => {
+    const { workspace } = this.props.match.params
+    this.props.routing.push(`/workspaces/${workspace}/${value}`)
+  }
+
+  get tabs() {
+    return {
+      value: this.props.module,
+      onChange: this.handleTabChange,
+      options: [
+        {
+          value: 'projects',
+          label: t('Projects'),
+        },
+        {
+          value: 'federatedprojects',
+          label: t('Multi-cluster Projects'),
+        },
+      ],
+    }
+  }
+
   @computed
   get clusters() {
     return this.workspaceStore.clusters.data.map(item => ({
@@ -47,34 +69,28 @@ export default class Projects extends React.Component {
     }))
   }
 
-  get cluster() {
-    if (this.query && this.query.cluster) {
-      return this.query.cluster
-    }
-    return this.hostCluster
+  get workspace() {
+    return this.props.match.params.workspace
   }
 
-  @computed
-  get hostCluster() {
-    if (this.workspaceStore.clusters.data.length < 1) {
-      return ''
+  get clusterProps() {
+    return {
+      clusters: this.clusters,
+      cluster: this.workspaceStore.cluster,
+      onClusterChange: this.handleClusterChange,
     }
+  }
 
-    return get(
-      this.workspaceStore.clusters.data.find(cluster => cluster.isHost) ||
-        this.workspaceStore.clusters.data[0],
-      'name'
-    )
+  handleClusterChange = cluster => {
+    this.workspaceStore.selectCluster(cluster)
   }
 
   getData = async ({ silent, ...params } = {}) => {
-    this.query = params
-
     const { store } = this.props
 
     silent && (store.list.silent = true)
     await store.fetchList({
-      cluster: this.cluster,
+      cluster: this.workspaceStore.cluster,
       ...this.props.match.params,
       ...params,
     })
@@ -116,15 +132,6 @@ export default class Projects extends React.Component {
     ]
   }
 
-  get tips() {
-    return [
-      {
-        title: t('PROJECT_TYPES_Q'),
-        description: t('PROJECT_TYPES_A'),
-      },
-    ]
-  }
-
   getCheckboxProps = record => ({
     disabled: record.status === 'Terminating',
     name: record.name,
@@ -143,11 +150,12 @@ export default class Projects extends React.Component {
             to={
               record.status === 'Terminating'
                 ? null
-                : `/cluster/${record.cluster}/projects/${name}`
+                : `/${this.workspace}/clusters/${
+                    record.cluster
+                  }/projects/${name}`
             }
             icon="project"
             iconSize={40}
-            isMultiCluster={record.isFedManaged}
             desc={record.description || '-'}
             title={getDisplayName(record)}
           />
@@ -187,18 +195,34 @@ export default class Projects extends React.Component {
     })
 
   render() {
-    const { bannerProps, tableProps } = this.props
+    const { match, bannerProps, tableProps } = this.props
+
+    const matchParams = {
+      ...match,
+      params: {
+        ...match.params,
+        cluster: this.workspaceStore.cluster,
+      },
+    }
+
     return (
-      <ListPage {...this.props} getData={this.getData}>
-        <Banner {...bannerProps} tips={this.tips} />
+      <ListPage
+        {...this.props}
+        match={matchParams}
+        getData={this.getData}
+        module="namespaces"
+      >
+        <Banner
+          {...bannerProps}
+          tabs={globals.app.isMultiCluster ? this.tabs : {}}
+        />
         <Table
           {...tableProps}
           itemActions={this.itemActions}
           columns={this.getColumns()}
           onCreate={this.showCreate}
           searchType="name"
-          cluster={this.cluster}
-          clusters={this.clusters}
+          {...this.clusterProps}
           getCheckboxProps={this.getCheckboxProps}
         />
       </ListPage>

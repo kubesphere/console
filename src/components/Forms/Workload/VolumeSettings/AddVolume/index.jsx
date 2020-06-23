@@ -207,7 +207,7 @@ export default class AddVolume extends React.Component {
             onChange={this.handleTypeChange}
             size="small"
           >
-            <RadioButton value="exist">{t('Exist Volumes')}</RadioButton>
+            <RadioButton value="exist">{t('Existing Volume')}</RadioButton>
             <RadioButton value="temp">{t('Temporary Volume')}</RadioButton>
             {module === 'daemonsets' && (
               <RadioButton value="host">{t('HostPath')}</RadioButton>

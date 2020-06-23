@@ -33,7 +33,7 @@ export default {
     'KubeSphere 提供全生命周期的应用管理，可以上传或者创建新的应用模板，并且快速部署它们，也可以通过应用商店进行发布应用。',
 
   'Apps Management': '应用管理',
-  'Apps Store Management': '应用商店管理',
+  'App Store Management': '应用商店管理',
   'Certified Provider': '已认证服务商',
 
   'App Info': '应用信息',
@@ -43,7 +43,6 @@ export default {
   Introduction: '使用说明',
   'Terms of service': '服务条款',
   'Config File': '配置文件',
-  'Chart File': '配置文件',
   'Chart Files': '配置文件',
   'Update Log': '更新日志',
   'No update log': '暂无更新日志',
@@ -61,7 +60,7 @@ export default {
   APP_ICON_SIZE: '图形大小: 96px*96*px',
   'Start edit': '开始编辑',
   File: '文件',
-  'Platform Apps Store Management': '平台级应用商店管理',
+  'Platform App Store Management': '平台级应用商店管理',
 
   'App Store': '应用商店',
   APP_STORE_DESC: '对已上架、已下架的应用进行管理',
@@ -200,7 +199,7 @@ export default {
   'Format png/svg background transparency is the best':
     '格式: png/svg 背景透明最佳',
   CHOOSE_APP_CATEGORY_DESC: '选择适合的应用分类，便于用户更快发现你的应用',
-  'Service provider website': '服务商网站',
+  'Service Provider Website': '服务商网站',
   "Service provider's official website address": '服务商的官方网站地址',
   MODIFY_VERSION_TIPS: '每次修改的内容都将跟随下一次版本上架而真正生效。',
   UNDER_REVIEW_TIPS: '当前应用有版本正在审核中，以下信息暂时不可更改',

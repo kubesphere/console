@@ -45,8 +45,8 @@ class RunSider extends Base {
   }
 
   get listUrl() {
-    const { project_id, cluster } = this.props.match.params
-    return `/cluster/${cluster}/devops/${project_id}/pipelines`
+    const { workspace, project_id, cluster } = this.props.match.params
+    return `/${workspace}/clusters/${cluster}/devops/${project_id}/pipelines`
   }
 
   refreshHandler = () => {
@@ -72,16 +72,24 @@ class RunSider extends Base {
 
   componentDidUpdate(prevProps) {
     const { runDetail } = this.store
-    const { params } = this.props.match
+    const {
+      project_id,
+      runid,
+      branch,
+      workspace,
+      cluster,
+    } = this.props.match.params
     const { params: lastParams } = prevProps.match
-    if (params.runId !== lastParams.runid) {
+
+    if (runid !== lastParams.runid) {
       clearInterval(this.refreshTimer)
       this.refreshTimer = setInterval(this.refreshHandler, 4000)
     }
-    if (runDetail.id && runDetail.id !== params.runid) {
+
+    if (runDetail.id && runDetail.id !== runid) {
       this.routing.push(
-        `/devops/${params.project_id}/pipelines/${params.name}${
-          params.branch ? `/branch/${params.branch}` : ''
+        `/${workspace}/clusters/${cluster}devops/${project_id}/pipelines/${name}${
+          branch ? `/branch/${branch}` : ''
         }/run/${runDetail.id}`
       )
     }
@@ -107,9 +115,11 @@ class RunSider extends Base {
     const result = await this.store.replay(params)
     if (params.branch) {
       this.routing.push(
-        `/cluster/${params.cluster}/devops/${params.project_id}/pipelines/${
-          params.name
-        }${params.branch ? `/branch/${params.branch}` : ''}/activity`
+        `/${params.workspace}/clusters/${params.cluster}/devops/${
+          params.project_id
+        }/pipelines/${params.name}${
+          params.branch ? `/branch/${params.branch}` : ''
+        }/activity`
       )
     }
     if (result.id) {
@@ -152,10 +162,13 @@ class RunSider extends Base {
   }
 
   get enabledActions() {
+    const { cluster, project_id } = this.props.match.params
+    const devops = this.store.getDevops(project_id)
+
     return globals.app.getActions({
       module: 'pipelines',
-      cluster: this.props.match.params.cluster,
-      // devops: this.props.devopsStore.data.name,
+      cluster,
+      devops,
     })
   }
 
@@ -164,7 +177,7 @@ class RunSider extends Base {
       key: 'rerun',
       type: 'control',
       text: t('Rerun'),
-      action: 'trigger',
+      action: 'edit',
       onClick: this.rePlay,
     },
   ]

@@ -16,10 +16,77 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import React, { Component } from 'react'
+import { inject, observer, Provider } from 'mobx-react'
+import { Loading } from '@pitrix/lego-ui'
+import { set } from 'lodash'
+
 import { renderRoutes } from 'utils/router.config'
+
+import ProjectStore from 'stores/project'
+import ClusterStore from 'stores/cluster'
 
 import routes from './routes'
 
-const App = () => renderRoutes(routes)
+@inject('rootStore')
+@observer
+class ProjectLayout extends Component {
+  constructor(props) {
+    super(props)
 
-export default App
+    this.store = new ProjectStore()
+    this.clusterStore = new ClusterStore()
+
+    this.init(props.match.params)
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.project !== prevProps.match.params.namespace) {
+      this.init(this.props.match.params)
+    }
+  }
+
+  async init(params) {
+    this.store.initializing = true
+
+    await Promise.all([
+      this.store.fetchDetail(params),
+      this.clusterStore.fetchDetail({ name: params.cluster }),
+      this.props.rootStore.getRules({
+        workspace: params.workspace,
+      }),
+    ])
+
+    await this.props.rootStore.getRules(params)
+
+    set(
+      globals,
+      `clusterConfig.${params.cluster}`,
+      this.clusterStore.detail.configz
+    )
+
+    globals.app.cacheHistory(this.props.match.url, {
+      type: 'Project',
+      name: this.store.detail.name,
+      description: this.store.detail.description,
+    })
+
+    this.store.initializing = false
+  }
+
+  get project() {
+    return this.props.match.params.namespace
+  }
+
+  render() {
+    const { initializing } = this.store
+
+    if (initializing) {
+      return <Loading className="ks-page-loading" />
+    }
+
+    return <Provider projectStore={this.store}>{renderRoutes(routes)}</Provider>
+  }
+}
+
+export default ProjectLayout

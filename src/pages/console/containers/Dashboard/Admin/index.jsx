@@ -67,13 +67,13 @@ export default class AdminDashboard extends React.Component {
             {globals.app.isMultiCluster ? (
               <Text
                 title={clusterCount}
-                description={t('Clusters Number')}
+                description={t('Cluster Number')}
                 onClick={this.handleClusterClick}
               />
             ) : (
               <Text
                 title={1}
-                description={t('Clusters Number')}
+                description={t('Cluster Number')}
                 onClick={this.handleClusterClick}
               />
             )}

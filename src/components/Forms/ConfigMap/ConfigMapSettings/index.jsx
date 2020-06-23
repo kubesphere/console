@@ -35,15 +35,21 @@ export default class ConfigMapSettings extends React.Component {
     return get(formTemplate, MODULE_KIND_MAP[module], formTemplate)
   }
 
+  get fedFormTemplate() {
+    return this.props.isFederated
+      ? get(this.formTemplate, 'spec.template')
+      : this.formTemplate
+  }
+
   handleData = data => {
     const { selectDataKey } = this.state
-    const originData = get(this.formTemplate, 'data', {})
+    const originData = get(this.fedFormTemplate, 'data', {})
 
     if (selectDataKey) {
       delete originData[selectDataKey]
     }
 
-    set(this.formTemplate, 'data', { ...originData, ...data })
+    set(this.fedFormTemplate, 'data', { ...originData, ...data })
 
     this.hideDataForm()
   }
@@ -62,7 +68,7 @@ export default class ConfigMapSettings extends React.Component {
 
   renderDataForm() {
     const { selectDataKey } = this.state
-    const originData = get(this.formTemplate, 'data', {})
+    const originData = get(this.fedFormTemplate, 'data', {})
 
     return (
       <DataForm
@@ -83,7 +89,7 @@ export default class ConfigMapSettings extends React.Component {
     }
 
     return (
-      <Form data={this.formTemplate} ref={formRef}>
+      <Form data={this.fedFormTemplate} ref={formRef}>
         <Form.Item label={t('Config Value')}>
           <DataList
             name="data"

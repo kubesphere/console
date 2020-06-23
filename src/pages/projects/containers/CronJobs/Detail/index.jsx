@@ -53,15 +53,13 @@ export default class JobDetail extends React.Component {
   }
 
   get listUrl() {
-    const {
-      params: { cluster, namespace },
-      path,
-    } = this.props.match
-    if (path.startsWith('/clusters')) {
-      return `/clusters/${cluster}/${this.module}`
+    const { workspace, cluster, namespace } = this.props.match.params
+    if (workspace) {
+      return `/${workspace}/clusters/${cluster}/projects/${namespace}/${
+        this.module
+      }`
     }
-
-    return `/cluster/${cluster}/projects/${namespace}/${this.module}`
+    return `/clusters/${cluster}/${this.module}`
   }
 
   fetchData = () => {
@@ -104,17 +102,6 @@ export default class JobDetail extends React.Component {
       action: 'edit',
       onClick: () =>
         this.trigger('resource.yaml.edit', {
-          detail: this.store.detail,
-        }),
-    },
-    {
-      key: 'redeploy',
-      icon: 'restart',
-      text: t('Redeploy'),
-      action: 'edit',
-      onClick: () =>
-        this.trigger('workload.redeploy', {
-          module: this.module,
           detail: this.store.detail,
         }),
     },

@@ -76,7 +76,7 @@ const PolicyCard = ({ data = {}, actions = [] }) => {
                     : '-'}
                 </strong>
               </p>
-              <p>{t('Recent alert time')}</p>
+              <p>{t('Recent Alert Time')}</p>
             </div>
           </Column>
         </Columns>

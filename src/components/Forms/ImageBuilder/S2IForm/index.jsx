@@ -202,7 +202,7 @@ export default class S2IForm extends React.Component {
           <Form.Item
             label={t('S2I_RELATIVE_PATH')}
             desc={t(
-              'Specify a relative directory inside the application. (defaultvalue /)'
+              'Specify a relative directory inside the application. (Default value /)'
             )}
           >
             <Input
@@ -276,7 +276,7 @@ export default class S2IForm extends React.Component {
             <Loading spinning={this.state.readRepoLoading} size={18}>
               <Form.Item
                 className={this.state.repoNeedSecret ? '' : styles.disabled}
-                label={t('secret')}
+                label={t('Secret')}
                 desc={
                   this.state.repoNeedSecret
                     ? t('S2I_SECRET_DESC')

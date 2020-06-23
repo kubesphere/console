@@ -18,7 +18,7 @@
 
 import { getIndexRoute } from 'utils/router.config'
 
-import ProjectLayout from '../containers/layout'
+import ListLayout from '../containers/Base/List'
 
 import Overview from '../containers/Overview'
 import CRDApps from '../containers/Applications/CRDApps'
@@ -46,18 +46,16 @@ import CustomMonitoring from '../containers/CustomMonitoring'
 import NetworkPolicies from '../containers/Network/Policies'
 
 import grayReleaseRoutes from './grayrelease'
-// import imageBuilderRoutes from './imagebuilder'
 
-import detail from './detail'
+import getDetailPath from './detail'
 
-const PATH = '/cluster/:cluster/projects/:namespace'
+const PATH = '/:workspace/clusters/:cluster/projects/:namespace'
 
 export default [
-  ...detail,
-  // ...imageBuilderRoutes,
+  ...getDetailPath(PATH),
   {
     path: PATH,
-    component: ProjectLayout,
+    component: ListLayout,
     routes: [
       ...grayReleaseRoutes,
       {
@@ -95,7 +93,6 @@ export default [
       {
         path: `${PATH}/s2ibuilders`,
         component: ImageBuilder,
-        ksModule: 'devops',
         exact: true,
       },
       { path: `${PATH}/cronjobs`, component: CronJobs, exact: true },
@@ -103,7 +100,6 @@ export default [
       {
         path: `${PATH}/grayrelease`,
         component: GrayRelease,
-        ksModule: 'servicemesh',
         exact: true,
       },
       { path: `${PATH}/ingresses`, component: Routes, exact: true },

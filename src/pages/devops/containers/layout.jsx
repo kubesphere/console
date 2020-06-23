@@ -48,19 +48,25 @@ class DevOpsLayout extends Component {
     }
   }
 
+  get workspace() {
+    return this.props.match.params.workspace
+  }
+
   async init(params) {
     this.store.initializing = true
 
-    await this.store.fetchDetail(params)
     await Promise.all([
+      this.store.fetchDetail(params),
       this.props.rootStore.getRules({
-        cluster: params.cluster,
-        devops: this.store.data.name,
-      }),
-      this.props.rootStore.getRules({
-        workspace: this.store.data.workspace,
+        workspace: params.workspace,
       }),
     ])
+
+    await this.props.rootStore.getRules({
+      cluster: params.cluster,
+      devops: this.store.data.name,
+      workspace: params.workspace,
+    })
 
     globals.app.cacheHistory(this.props.match.url, {
       type: 'DevOps',
@@ -102,12 +108,15 @@ class DevOpsLayout extends Component {
               title={t('DevOps Project')}
               detail={data}
               onChange={this.handleChange}
+              workspace={this.workspace}
+              cluster={this.cluster}
             />
             <Nav
               className="ks-page-nav"
               navs={globals.app.getDevOpsNavs({
                 devops: this.devops,
                 cluster: this.cluster,
+                workspace: this.workspace,
               })}
               location={location}
               match={match}

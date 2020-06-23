@@ -21,7 +21,7 @@ import S2IForm from 'components/Forms/ImageBuilder/S2IForm'
 
 export default [
   {
-    title: 'Choose a language',
+    title: 'Choose a Language',
     component: LanguageSelect,
   },
   {

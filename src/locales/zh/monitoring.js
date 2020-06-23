@@ -60,10 +60,10 @@ export default {
   Scheduler: '调度器',
   Node: '节点',
 
-  'Select time range': '选择时间范围',
-  'Custom time range': '自定义时间范围',
-  'Show only selected': '仅显示已选',
-  'View all replicas': '查看全部副本',
+  'Select Time Range': '选择时间范围',
+  'Custom Time Range': '自定义时间范围',
+  'Only Show Selected': '仅显示已选',
+  'View All Replicas': '查看全部副本',
   'View All': '查看全部',
   'View More': '查看更多',
 
@@ -130,7 +130,7 @@ export default {
   EDIT_TEMPLATE: '编辑模板',
   SAVE_TEMPLATE: '保存模板',
 
-  'No Refresh': '不刷新',
+  'No Refreshing': '不刷新',
 
   GRAPH_COLORS: '图表配色',
   SINGLE_GRAPH_TYPE: '最常见的图表类型',
@@ -185,4 +185,12 @@ export default {
   VALUE_FOMATER: '数据取值',
   Y_AXIS: 'Y轴',
   'Custom Monitoring': '自定义监控',
+  CustomMonitorDashboards: '自定义监控面板',
+  CustomMonitorDashboard: '自定义监控面板',
+  CUSTOMMONITORDASHBOARD_DESC: '用户可以根据自己需求定义应用监控面板',
+  CUSTOMMONITORDASHBOARD_CREATE_DESC: '用户可以根据自己需求定义应用监控面板',
+
+  'Default Color': '默认配色',
+  'Cool Color': '冷色调',
+  'Warm Color': '暖色调',
 }

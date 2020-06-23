@@ -164,7 +164,7 @@ export default class AppBaseEdit extends React.Component {
             />
           </Form.Item>
           <Form.Item
-            label={t('Service provider website')}
+            label={t('Service Provider Website')}
             desc={t("Service provider's official website address")}
             rules={[
               {

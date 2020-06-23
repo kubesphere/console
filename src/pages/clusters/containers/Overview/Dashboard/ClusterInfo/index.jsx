@@ -23,13 +23,13 @@ import styles from './index.scss'
 
 export default class ClusterInfo extends Component {
   render() {
-    const { cluster } = this.props
+    const { cluster, version } = this.props
     return (
       <Panel title={t('Cluster Info')}>
         <div className={styles.level}>
           <Text title={cluster.provider} description={t('Provider')} />
           <Text
-            title={cluster.kubernetesVersion}
+            title={cluster.kubernetesVersion || version}
             description={t('Kubernetes Version')}
           />
         </div>

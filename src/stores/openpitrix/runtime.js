@@ -33,13 +33,11 @@ export default class Runtime extends Base {
     this.list.isLoading = true
 
     const { limit, page } = this.list
-    const params = Object.assign(
-      {
-        limit,
-        page,
-      },
-      filters
-    )
+    const params = {
+      limit,
+      page,
+      ...filters,
+    }
 
     const data = []
     await this.projectStore.fetchList(params)

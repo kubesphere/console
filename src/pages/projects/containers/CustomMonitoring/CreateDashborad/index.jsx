@@ -16,10 +16,14 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 import React from 'react'
-import BasicFormModal from 'src/pages/projects/components/Modals/CustomMonitorBasic'
+import { get, isArray } from 'lodash'
 import CustomMonitoringModal from 'components/Modals/CustomMonitoring'
 import CustomMonitoringTemplate from 'stores/monitoring/custom/template'
 import tempalteSettings from 'stores/monitoring/custom/template.json'
+import CreateModal from 'components/Modals/Create'
+import FORM_STEPS from 'configs/steps/dashborads'
+import { MODULE_KIND_MAP } from 'utils/constants'
+import FORM_TEMPLATES from 'utils/form.templates'
 
 export default class CrateDashboardModalContainer extends React.Component {
   state = {
@@ -30,15 +34,15 @@ export default class CrateDashboardModalContainer extends React.Component {
     this.props.onSave(this.store.toJS())
   }
 
-  handleBasicConfirm = ({ name, description, panels = '' }) => {
-    const { settings } = tempalteSettings[panels] || {}
+  handleBasicConfirm = params => {
+    const kind = MODULE_KIND_MAP[this.props.store.module]
+    const config = isArray(params) ? params[0] : params[kind]
 
     this.store = new CustomMonitoringTemplate({
-      namespace: this.props.namespace,
-      description,
       isEditing: true,
-      name,
-      ...settings,
+      name: get(config, 'metadata.name'),
+      namespace: get(config, 'metadata.namespace'),
+      ...config.spec,
     })
 
     this.setState({ finishBasis: true })
@@ -58,24 +62,16 @@ export default class CrateDashboardModalContainer extends React.Component {
       description: t('SERVICE_BUILT_INTERFACE'),
     })
 
-  nameValidator = async (rule, value, callback) => {
-    if (!value) {
-      return callback()
-    }
-
-    const { exist } =
-      (await this.props.checkName({
-        name: value,
-      })) || {}
-
-    if (exist) {
-      return callback({ message: t('Name exists'), field: rule.field })
-    }
-    callback()
-  }
-
   render() {
     const { finishBasis } = this.state
+    const { namespace, store } = this.props
+    const { module } = store
+    const kind = MODULE_KIND_MAP[module]
+    const formTemplate = {
+      [kind]: FORM_TEMPLATES[module]({
+        namespace,
+      }),
+    }
 
     if (finishBasis) {
       return (
@@ -89,12 +85,16 @@ export default class CrateDashboardModalContainer extends React.Component {
     }
 
     return (
-      <BasicFormModal
-        data={{}}
-        nameValidator={this.nameValidator}
-        onCancel={this.props.onCancel}
-        templateOpts={this.tempalteSettingsOpts}
+      <CreateModal
+        visible
+        module={module}
+        name="CUSTOM_MONITORING_DASHBOARD"
+        namespace={namespace}
+        formTemplate={formTemplate}
+        steps={FORM_STEPS}
+        store={this.props.store}
         onOk={this.handleBasicConfirm}
+        onCancel={this.props.onCancel}
       />
     )
   }

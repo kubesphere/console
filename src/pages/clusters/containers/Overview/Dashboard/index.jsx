@@ -18,9 +18,9 @@
 
 import React from 'react'
 import { observer, inject } from 'mobx-react'
-import { Columns, Column, Icon } from '@pitrix/lego-ui'
+import { Columns, Column } from '@pitrix/lego-ui'
 
-import { CLUSTER_PROVIDER_ICON } from 'utils/constants'
+import ClusterTitle from 'components/Clusters/ClusterTitle'
 
 import Tools from './Tools'
 import ClusterInfo from './ClusterInfo'
@@ -29,11 +29,13 @@ import ResourcesUsage from './ResourcesUsage'
 import KubernetesStatus from './KubernetesStatus'
 import ServiceComponents from './ServiceComponents'
 
-import styles from './index.scss'
-
 @inject('clusterStore')
 @observer
 export default class Dashboard extends React.Component {
+  componentDidMount() {
+    this.cluster.fetchVersion(this.props.match.params)
+  }
+
   get cluster() {
     return this.props.clusterStore
   }
@@ -43,20 +45,18 @@ export default class Dashboard extends React.Component {
     const { detail } = this.cluster
 
     return (
-      <div className={styles.wrapper}>
-        <div className={styles.title}>
-          <Icon
-            name={CLUSTER_PROVIDER_ICON[detail.provider] || 'kubernetes'}
-            size={48}
-          />
-          <div className={styles.text}>
-            <div className="h4">{detail.name}</div>
-            <p>{detail.description || '-'}</p>
-          </div>
-        </div>
+      <div>
+        <ClusterTitle
+          className="margin-b12"
+          cluster={detail}
+          size="large"
+          noStatus
+        />
         <Columns>
           <Column>
-            {globals.app.isMultiCluster && <ClusterInfo cluster={detail} />}
+            {globals.app.isMultiCluster && (
+              <ClusterInfo cluster={detail} version={this.cluster.version} />
+            )}
             <ServiceComponents cluster={match.params.cluster} />
             <ResourcesUsage cluster={match.params.cluster} />
             <Tools cluster={match.params.cluster} />

@@ -455,6 +455,7 @@ export default class GatewaySettingModal extends React.Component {
       onTakeover: detail.type !== 'Mirror' ? this.handleTakeover : null,
       namespace: this.props.detail.namespace,
       cluster: this.props.detail.cluster,
+      workspace: this.props.detail.workspace,
       maxLength: Math.min(
         Math.max(
           get(data, `[${detail.newVersion}].pods.length`, 0),

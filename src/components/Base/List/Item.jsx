@@ -26,7 +26,7 @@ import styles from './index.scss'
 export default class Item extends React.Component {
   renderDetail(details) {
     return details.map((detail, index) => (
-      <div key={index} className={styles.text}>
+      <div key={index} className={classNames(styles.text, detail.className)}>
         <div className={styles.title}>{detail.title}</div>
         {detail.description && (
           <div className={styles.description}>{detail.description}</div>

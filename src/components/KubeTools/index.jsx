@@ -48,6 +48,18 @@ export default class KubeTools extends React.Component {
   get toolList() {
     return [
       {
+        group: 'History',
+        data: [
+          {
+            key: 'history',
+            icon: 'clock',
+            title: t('History'),
+            description: t('HISTORY_DESC'),
+            onClick: this.props.rootStore.toggleHistory,
+          },
+        ],
+      },
+      {
         group: 'Analysis Tools',
         data: [
           {
@@ -55,7 +67,9 @@ export default class KubeTools extends React.Component {
             title: t('Log Search'),
             description: t('LOG_SEARCH_DESC'),
             link: '/logquery',
-            hidden: !globals.app.hasKSModule('logging'),
+            hidden:
+              !globals.app.isMultiCluster &&
+              !globals.app.hasKSModule('logging'),
             action: 'toolbox.logquery',
           },
           {
@@ -63,6 +77,8 @@ export default class KubeTools extends React.Component {
             title: t('Event Search'),
             description: t('EVENT_SEARCH_DESC'),
             link: '/eventsearch',
+            hidden:
+              !globals.app.isMultiCluster && !globals.app.hasKSModule('events'),
             action: 'toolbox.eventsearch',
           },
           {
@@ -70,6 +86,9 @@ export default class KubeTools extends React.Component {
             title: t('Auditing Operating'),
             description: t('AUDITING_OPERATING_DESC'),
             link: '/auditingsearch',
+            hidden:
+              !globals.app.isMultiCluster &&
+              !globals.app.hasKSModule('auditing'),
             action: 'toolbox.auditingsearch',
           },
         ],
@@ -82,12 +101,21 @@ export default class KubeTools extends React.Component {
             link: '/kubectl',
             title: 'Kubectl',
             description: t('TOOLBOX_KUBECTL_DESC'),
-            hidden: globals.user.cluster_role !== 'cluster-admin',
+            hidden: globals.user.globalrole !== 'platform-admin',
             action: 'toolbox.kubectl',
           },
         ],
       },
     ]
+  }
+
+  get enabledTools() {
+    const { toolList } = this
+    toolList.forEach(item => {
+      item.data = item.data.filter(dataItem => !dataItem.hidden)
+    })
+
+    return toolList.filter(item => !isEmpty(item.data))
   }
 
   get thirdPartyToolList() {
@@ -143,21 +171,21 @@ export default class KubeTools extends React.Component {
             />
           </div>
           <div className={styles.toolsContent}>
-            {this.toolList.map(group => (
+            {this.enabledTools.map(group => (
               <div key={group.group} className={styles.toolsGroup}>
                 <div className={styles.groupTitle}>{t(group.group)}</div>
                 <div className={styles.groupContent}>
                   {group.data.map(item => (
                     <List.Item
                       className={styles.toolItem}
-                      key={item.link}
+                      key={item.key || item.link}
                       icon={item.icon}
                       title={item.title}
                       data-title={item.title}
                       data-link={item.link}
                       data-action={item.action}
                       description={item.description}
-                      onClick={this.handleToolItemClick}
+                      onClick={item.onClick || this.handleToolItemClick}
                     />
                   ))}
                 </div>
@@ -172,7 +200,7 @@ export default class KubeTools extends React.Component {
                   {this.thirdPartyToolList.map(item => (
                     <List.Item
                       className={styles.toolItem}
-                      key={item.link}
+                      key={item.key || item.link}
                       icon={item.icon}
                       title={item.title}
                       data-title={item.title}
@@ -195,6 +223,10 @@ export default class KubeTools extends React.Component {
   }
 
   render() {
+    if (isEmpty(this.enabledTools)) {
+      return null
+    }
+
     return (
       <Draggable axis="y">
         <div className={styles.trigger} onMouseLeave={this.onMouseLeave}>

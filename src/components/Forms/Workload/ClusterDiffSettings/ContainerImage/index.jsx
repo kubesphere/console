@@ -17,18 +17,61 @@
  */
 
 import React, { Component } from 'react'
-import { omit } from 'lodash'
+import { omit, get } from 'lodash'
 
 import { Icon, Dropdown } from '@pitrix/lego-ui'
+import { observer } from 'mobx-react'
+
 import { Form } from 'components/Base'
 import Confirm from 'components/Forms/Base/Confirm'
+
+import SecretStore from 'stores/secret'
+import QuotaStore from 'stores/quota'
+import LimitRangeStore from 'stores/limitrange'
 
 import ContainerSetting from '../../ContainerSettings/ContainerForm/ContainerSetting'
 
 import styles from './index.scss'
 
+@observer
 export default class ContainerImages extends Component {
+  state = {
+    quota: {},
+    limitRange: {},
+    imageRegistries: [],
+  }
+
+  quotaStore = new QuotaStore()
+
+  limitRangeStore = new LimitRangeStore()
+
+  imageRegistryStore = new SecretStore()
+
   formRef = React.createRef()
+
+  componentDidMount() {
+    this.fetchData()
+  }
+
+  fetchData() {
+    const { cluster, namespace } = this.props
+
+    Promise.all([
+      this.quotaStore.fetch({ cluster, namespace }),
+      this.limitRangeStore.fetchListByK8s({ cluster, namespace }),
+      this.imageRegistryStore.fetchListByK8s({
+        cluster,
+        namespace,
+        fieldSelector: `type=kubernetes.io/dockerconfigjson`,
+      }),
+    ]).then(([quota, limitRanges, imageRegistries]) => {
+      this.setState({
+        quota,
+        limitRange: get(limitRanges, '[0].limit'),
+        imageRegistries,
+      })
+    })
+  }
 
   handleSubmit = () => {
     const { index, containerType, onEdit } = this.props
@@ -53,13 +96,19 @@ export default class ContainerImages extends Component {
 
   renderContent() {
     const { cluster, namespace, container, containerType } = this.props
+    const { quota, limitRanges, imageRegistries } = this.state
+
     return (
       <div className={styles.form}>
         <Form ref={this.formRef} type="inner" data={container}>
           <ContainerSetting
             className={styles.formContent}
+            data={container}
             cluster={cluster}
             namespace={namespace}
+            quota={quota}
+            limitRanges={limitRanges}
+            imageRegistries={imageRegistries}
             defaultContainerType={containerType}
           />
         </Form>

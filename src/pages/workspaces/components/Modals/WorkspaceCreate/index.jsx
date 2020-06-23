@@ -60,6 +60,17 @@ export default class WorkspaceCreateModal extends React.Component {
   }
 
   get steps() {
+    if (!globals.app.isMultiCluster) {
+      return [
+        {
+          title: 'Basic Info',
+          component: BaseInfo,
+          required: true,
+          isForm: true,
+        },
+      ]
+    }
+
     return [
       {
         title: 'Basic Info',
@@ -136,7 +147,9 @@ export default class WorkspaceCreateModal extends React.Component {
           <span>{t('Create Workspace')}</span>
         </div>
         <div className={styles.wrapper}>
-          <Steps steps={this.steps} current={currentStep} />
+          {this.steps.length > 1 && (
+            <Steps steps={this.steps} current={currentStep} />
+          )}
         </div>
         <div className={styles.headerBottom} />
       </div>
@@ -144,7 +157,7 @@ export default class WorkspaceCreateModal extends React.Component {
   }
 
   renderFooter() {
-    const { onCancel } = this.props
+    const { onCancel, isSubmitting } = this.props
     const { currentStep } = this.state
 
     const total = this.steps.length - 1
@@ -163,7 +176,11 @@ export default class WorkspaceCreateModal extends React.Component {
                 {t('Next')}
               </Button>
             ) : (
-              <Button type="control" onClick={this.handleOk}>
+              <Button
+                type="control"
+                onClick={this.handleOk}
+                loading={isSubmitting}
+              >
                 {t('Create')}
               </Button>
             )}

@@ -49,15 +49,10 @@ class JobRecords extends React.Component {
   }
 
   get prefix() {
-    const {
-      params: { cluster, namespace },
-      path,
-    } = this.props.match
-    if (path.startsWith('/clusters')) {
-      return `/clusters/${cluster}/projects/${namespace}`
-    }
-
-    return `/cluster/${cluster}/projects/${namespace}`
+    const { cluster, workspace, namespace } = this.props.match.params
+    return `${
+      workspace ? `/${workspace}` : ''
+    }/clusters/${cluster}/projects/${namespace}`
   }
 
   componentDidMount() {

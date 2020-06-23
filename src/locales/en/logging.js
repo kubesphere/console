@@ -83,9 +83,9 @@ export default {
   STOP_REAL_TIME_LOG: 'turn off real-time logging',
   LOG_EXPORT: 'Log Export',
   CREATE_CUSTOM_MONITORING_DASHBOARD: 'Create custom monitoring dashboard',
-  SELECT_SUITABLE_MONITORING_TEMPLATE: 'Select suitable monitoring template',
+  SELECT_SUITABLE_MONITORING_TEMPLATE: 'Select Suitable Monitoring Template',
   CUSTON_MONITORING_TEMPLATE_DESC:
-    'Monitoring panel arranged to generate a default application type panel',
+    'The default monitoring dashboard setting will be created based on the app type.',
   SERVICE_BUILT_INTERFACE: 'service monitoring is built interface data capture',
 
   'Search Auditing by': 'Search Auditing by {field}',
@@ -106,6 +106,7 @@ export default {
   'sourceIP Auditing Query Tip':
     'You can view related event information according to the source IP',
   TOTAL_AUDITING_TODAY:
-    'A total of <span class={className}> {auditing} </span> auditing were collected today.',
+    'A total of <span class={className}> {auditing} </span> auditing logs were collected today.',
   NO_AUDITING_TODAY: 'Auditing not included today',
+  CUSTOM_MONITORING_DASHBOARD: 'Custom Monitoring Dashboard',
 }

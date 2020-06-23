@@ -52,9 +52,10 @@ class GrayRelease extends React.Component {
   }
 
   get canDeployComposingApp() {
-    const { cluster, namespace: project } = this.props.match.params
+    const { workspace, cluster, namespace: project } = this.props.match.params
     const canCreateDeployment = globals.app
       .getActions({
+        workspace,
         cluster,
         project,
         module: 'deployments',
@@ -63,6 +64,7 @@ class GrayRelease extends React.Component {
 
     const canCreateService = globals.app
       .getActions({
+        workspace,
         cluster,
         project,
         module: 'services',
@@ -71,6 +73,7 @@ class GrayRelease extends React.Component {
 
     const canCreateApp = globals.app
       .getActions({
+        workspace,
         cluster,
         project,
         module: 'applications',
@@ -85,11 +88,11 @@ class GrayRelease extends React.Component {
   }
 
   handleDeployApp = data => {
-    const { cluster, namespace } = this.props.match.params
+    const { workspace, cluster, namespace } = this.props.match.params
     this.store.create(data).then(() => {
       this.hideDeployAppModal()
       this.routing.push(
-        `/cluster/${cluster}/projects/${namespace}/applications/composing/${get(
+        `/${workspace}/clusters/${cluster}/projects/${namespace}/applications/composing/${get(
           data,
           'application.metadata.name'
         )}`

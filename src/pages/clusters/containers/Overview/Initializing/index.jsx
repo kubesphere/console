@@ -18,16 +18,19 @@
 
 import { get } from 'lodash'
 import React, { Component } from 'react'
-import { toJS } from 'mobx'
-import { observer } from 'mobx-react'
+import { toJS, reaction } from 'mobx'
+import { observer, inject } from 'mobx-react'
 import { Loading } from '@pitrix/lego-ui'
 import { Button, Panel, Text, Notify, CodeEditor } from 'components/Base'
 import { copyToClipboard } from 'utils/dom'
 
 import styles from './index.scss'
 
+@inject('rootStore')
 @observer
 export default class Initializing extends Component {
+  websocket = this.props.rootStore.websocket
+
   get editOptions() {
     return {
       width: '100%',
@@ -41,6 +44,30 @@ export default class Initializing extends Component {
     if (get(conditions, 'Initialized.status') === 'True') {
       this.props.store.fetchAgent({ cluster: name })
     }
+
+    this.initWebsocket()
+  }
+
+  componentWillUnmount() {
+    this.websocket.close()
+    this.disposer && this.disposer()
+  }
+
+  initWebsocket = () => {
+    const { store } = this.props
+    const url = store.getWatchUrl(store.detail)
+    if (url) {
+      this.websocket.watch(url)
+
+      this.disposer = reaction(
+        () => this.websocket.message,
+        message => {
+          if (message.type === 'MODIFIED') {
+            store.fetchDetail(store.detail)
+          }
+        }
+      )
+    }
   }
 
   handleCopy = () => {
@@ -49,7 +76,8 @@ export default class Initializing extends Component {
   }
 
   render() {
-    const { conditions } = this.props.store.detail
+    const { detail, isAgentLoading, agent } = this.props.store
+    const { conditions, connectionType } = detail
 
     if (get(conditions, 'Initialized.status') === 'False') {
       return (
@@ -74,38 +102,42 @@ export default class Initializing extends Component {
             description={t.html('CLUSTER_WAITING_JOIN_DESC')}
           />
         </div>
-        <div className={styles.content}>
-          <div className={styles.card}>
-            <Text
-              title={t.html('CLUSTER_AGENT_TIP_1')}
-              description={t.html('CLUSTER_AGENT_TIP_1_DESC')}
-            />
-          </div>
-          <div className={styles.card}>
-            <Text
-              className="margin-b12"
-              title={t.html('CLUSTER_AGENT_TIP_2')}
-              description={t.html('CLUSTER_AGENT_TIP_2_DESC')}
-            />
-            <Button className={styles.copy} onClick={this.handleCopy}>
-              {t('Click to Copy')}
-            </Button>
-            <Loading spinning={this.props.store.isAgentLoading}>
-              <CodeEditor
-                mode="yaml"
-                className={styles.editor}
-                options={this.editOptions}
-                value={toJS(this.props.store.agent)}
+        {connectionType === 'proxy' && (
+          <div className={styles.content}>
+            <div className={styles.card}>
+              <Text
+                title={t.html('CLUSTER_AGENT_TIP_1')}
+                description={t.html('CLUSTER_AGENT_TIP_1_DESC')}
               />
-            </Loading>
+            </div>
+            <div className={styles.card}>
+              <Text
+                className="margin-b12"
+                title={t.html('CLUSTER_AGENT_TIP_2')}
+                description={t.html('CLUSTER_AGENT_TIP_2_DESC')}
+              />
+              <Button className={styles.copy} onClick={this.handleCopy}>
+                {t('Click to Copy')}
+              </Button>
+              <Loading spinning={isAgentLoading}>
+                {agent ? (
+                  <CodeEditor
+                    mode="yaml"
+                    className={styles.editor}
+                    options={this.editOptions}
+                    value={agent}
+                  />
+                ) : null}
+              </Loading>
+            </div>
+            <div className={styles.card}>
+              <Text
+                title={t.html('CLUSTER_AGENT_TIP_3')}
+                description={t.html('CLUSTER_AGENT_TIP_3_DESC')}
+              />
+            </div>
           </div>
-          <div className={styles.card}>
-            <Text
-              title={t.html('CLUSTER_AGENT_TIP_3')}
-              description={t.html('CLUSTER_AGENT_TIP_3_DESC')}
-            />
-          </div>
-        </div>
+        )}
       </Panel>
     )
   }

@@ -118,7 +118,7 @@ export default class AssignWorkspaceModal extends Component {
         <Form.Item
           label={t('Project Manager')}
           desc={t(
-            'Select an user of the workspace as the manager of the project.'
+            'Select a user of the workspace as the manager of the project.'
           )}
         >
           <SearchSelect

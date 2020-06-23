@@ -140,13 +140,13 @@ export default class Monitorings extends React.Component {
     },
     {
       type: 'bandwidth',
-      title: 'Network Outbound',
+      title: 'Outbound Traffic',
       unitType: 'bandwidth',
       metricType: MetricTypes.net_transmitted,
     },
     {
       type: 'bandwidth',
-      title: 'Network Inbound',
+      title: 'Inbound Traffic',
       unitType: 'bandwidth',
       metricType: MetricTypes.net_received,
     },
@@ -208,7 +208,7 @@ export default class Monitorings extends React.Component {
                   className={styles.more}
                   onClick={this.showMultipleModal(item)}
                 >
-                  {t('View all replicas')}
+                  {t('View All Replicas')}
                 </div>
               )}
               <MultiArea width="100%" {...config} />

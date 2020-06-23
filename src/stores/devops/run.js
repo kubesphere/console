@@ -64,12 +64,16 @@ export default class PipelineRunStore extends BaseStore {
 
   @observable
   isLoading = true
+
   @observable
   getNodesStatusLoading = false
+
   @observable
   nodesStatus = []
+
   @observable
   runDetail = {}
+
   // entire run log
   @observable
   runDetailLogs = ''

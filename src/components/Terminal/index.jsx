@@ -18,7 +18,7 @@
 
 import React, { lazy, Suspense, Component } from 'react'
 import { observer } from 'mobx-react'
-import { getWebSocketProtocol } from 'utils'
+import { getWebSocketProtocol, getClusterUrl } from 'utils'
 
 const ContainerTerminal = lazy(() =>
   import(/* webpackChunkName: "terminal" */ './terminal')
@@ -31,7 +31,7 @@ export default class SessionTerminal extends Component {
   get url() {
     return `${getWebSocketProtocol(window.location.protocol)}://${
       window.location.host
-    }/${this.props.url}`
+    }${getClusterUrl(`/${this.props.url}`)}`
   }
 
   resizeTerminal = () => {

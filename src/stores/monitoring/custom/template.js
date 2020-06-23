@@ -84,6 +84,7 @@ export default class CustomMonitoringTemplate {
   textMonitors = {}
 
   unNameGraphRow = new MonitorRow({ config: { id: 0 } })
+
   /**
    * row list which store name row
    */

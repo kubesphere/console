@@ -19,8 +19,6 @@
 import { get } from 'lodash'
 import { getWebSocketProtocol } from 'utils'
 
-let socketInstance // singleton socket client
-
 const readyStates = ['connecting', 'open', 'closing', 'closed']
 const defaultOptions = {
   reopenLimit: 3,
@@ -61,16 +59,15 @@ export default class SocketClient {
   initClient() {
     const subProto = get(this.options, 'subProtocol')
 
-    if (!socketInstance) {
-      socketInstance = new WebSocket(this.endpoint, subProto)
+    if (!this.client) {
+      this.client = new WebSocket(this.endpoint, subProto)
     }
 
-    if (socketInstance && socketInstance.readyState > 1) {
-      socketInstance.close()
-      socketInstance = new WebSocket(this.endpoint, subProto)
+    if (this.client && this.client.readyState > 1) {
+      this.client.close()
+      this.client = new WebSocket(this.endpoint, subProto)
     }
 
-    this.client = socketInstance
     return this.client
   }
 
@@ -82,7 +79,7 @@ export default class SocketClient {
     }
 
     this.client.onmessage = message => {
-      let data = message.data
+      let { data } = message
       if (typeof data === 'string') {
         try {
           data = JSON.parse(data)
@@ -114,7 +111,7 @@ export default class SocketClient {
 
   close(val) {
     val && (this.immediately = true)
-    socketInstance.close()
+    this.client.close()
   }
 
   setUp() {

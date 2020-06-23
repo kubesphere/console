@@ -41,7 +41,7 @@ export default class SinglestatMonitor extends Base {
   @computed
   get stat() {
     const { valueName, decimals = 0, format: unitFormat } = this.config
-    const metrics = this.metrics
+    const { metrics } = this
     const metricsLength = this.metrics.length
 
     if (metricsLength > 1) {
@@ -52,18 +52,16 @@ export default class SinglestatMonitor extends Base {
       return 'No Date'
     }
 
-    if (metricsLength === 1) {
-      /**
-       * values: number[]
-       */
-      const values = get(metrics, '0.values', []).map(([, value]) =>
-        Number(value)
-      )
+    /**
+     * values: number[]
+     */
+    const values = get(metrics, '0.values', []).map(([, value]) =>
+      Number(value)
+    )
 
-      const handler = NAME_VALUE_HANDLE_MAP[valueName] || avgs
-      const number = handler(values) || 0
-      const format = unitTransformMap[unitFormat] || unitTransformMap.none
-      return format(number, decimals)
-    }
+    const handler = NAME_VALUE_HANDLE_MAP[valueName] || avgs
+    const number = handler(values) || 0
+    const format = unitTransformMap[unitFormat] || unitTransformMap.none
+    return format(number, decimals)
   }
 }

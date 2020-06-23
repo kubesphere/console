@@ -115,7 +115,7 @@ class NotificationHistory extends React.Component {
         title={t('Recent Notification')}
         loading={isLoading}
         isEmpty={isEmpty(data)}
-        empty={t('No relevant data')}
+        empty={t('No Relevant Data')}
       >
         {this.renderHeader()}
         <Table

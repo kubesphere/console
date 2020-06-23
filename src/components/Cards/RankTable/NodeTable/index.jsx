@@ -42,7 +42,12 @@ export default class NodeUsageRank extends React.Component {
   }
 
   get canViewNode() {
-    return globals.app.hasPermission({ module: 'nodes', action: 'view' })
+    const { cluster } = this.props
+    return globals.app.hasPermission({
+      cluster,
+      module: 'nodes',
+      action: 'view',
+    })
   }
 
   columns = [

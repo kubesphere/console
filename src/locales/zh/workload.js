@@ -71,11 +71,11 @@ export default {
   EmptyDir: '临时存储卷',
   'Temporary Volume': '临时存储卷',
   'New Volume': '新建存储卷',
-  'Exist Volumes': '已有存储卷',
+  'Existing Volume': '已有存储卷',
   'Volume Name': '存储卷名称',
   'HTTP Request': 'HTTP 请求',
   'Diff Settings': '差异化配置',
-  'Deploy Mode': '部署模式',
+  'Deployment Mode': '部署模式',
   'Instance Status': '实例状态',
 
   'No Request': '不预留',
@@ -100,18 +100,18 @@ export default {
 
   'Collecting file log': '收集落盘日志',
 
-  'Add metadata': '添加元数据',
-  'Setting node schedule policy': '设置节点调度策略',
-  'Running pods on the specified nodes': '可以让容器组副本在指定的节点运行',
-  'Additional metadata settings for resources such as Label and Annotation':
+  'Add Metadata': '添加元数据',
+  'Set Node Scheduling Policy': '设置节点调度策略',
+  'You can allow Pod replicas to run on specified nodes.': '可以让容器组副本在指定的节点运行',
+  'Additional metadata settings for resources such as Labels and Annotations.':
     '对资源进行额外的元数据设置，例如 Label 和 Annotation',
 
-  'Deploy Placement': '部署位置',
+  'Deployment Location': '部署位置',
 
   REFFER_CONFIGMAP_DESC: '将配置中的值添加为卷。',
   REFFER_SECRET_DESC: '将密钥中的值添加为卷。',
 
-  'Choose an exist volume': '选择已有存储卷',
+  'Choose an existing volume': '选择已有存储卷',
   CHOOSE_EXIST_VOLUME_DESC: '请选择一个已经创建好的持久化存储卷挂载至容器',
 
   REQUEST_EXCCED: '资源预留不能超过资源限制',
@@ -204,7 +204,7 @@ export default {
   'Add new container': '添加新的容器',
   'Adding new contianer': '正在添加新的容器',
   'Add Node Selector': '添加节点选择器',
-  'Please add at least one container': '请至少添加一个容器',
+  'Please add at least one container.': '请至少添加一个容器',
   'Container Name': '容器名称',
   'Container Type': '容器类型',
   'Advanced Options': '高级选项',
@@ -230,10 +230,10 @@ export default {
   'Add HostPath': '添加 HostPath',
   'Add Volume Template': '添加存储卷模板',
 
-  'Support EmptyDir and PersistentVolumeClaim':
+  'Support EmptyDir and PersistentVolumeClaim.':
     '支持临时存储卷以及持久化存储卷',
 
-  'Mount the configmap or secret to the specified directory':
+  'Mount the configmap or secret to the specified directory.':
     '将配置文件或密钥挂载至指定目录',
 
   'Please specify an image': '请指定镜像',
@@ -311,7 +311,7 @@ export default {
   'Revision Rollback': '版本回退',
   'Rollback Revisions': '回退版本',
   'Current Revision': '当前版本',
-  'Excute Records': '执行记录',
+  'Execution Records': '执行记录',
   'Job Records': '任务记录',
   'Cluster Resource Status': '集群资源状态',
   'Resource Status': '资源状态',
@@ -321,7 +321,7 @@ export default {
   'Environment Variables': '环境变量',
   'File List': '文件列表',
   Rerun: '重新执行',
-  'Please input schedule': '请输入定时计划',
+  'Please input a schedule.': '请输入定时计划',
 
   'Please select rollback revision': '请选择回退版本',
 
@@ -337,7 +337,7 @@ export default {
   'Success Threshold': '健康阈值',
   'Failure Threshold': '不健康阈值',
   'HTTP Request Check': 'HTTP 请求检查',
-  'Exec Commnad Check': '执行命令检查',
+  'Exec Command Check': '执行命令检查',
   'TCP Port Check': 'TCP 端口检查',
   'Init Container': '初始容器',
   'Worker Container': '工作容器',
@@ -352,14 +352,14 @@ export default {
   'Select resource': '选择资源',
   'Restart Policy': '重启策略',
 
-  'Container liveness check': '容器存活检查',
-  'Container ready check': '容器就绪检查',
-  'Container start check': '容器启动检查',
+  'Container Liveness Check': '容器存活检查',
+  'Container Readiness Check': '容器就绪检查',
+  'Container Startup Check': '容器启动检查',
 
   Redeploy: '重新部署',
   'Redeploy Successfully': '重新部署成功',
 
-  'Last schedule time': '上次执行时间',
+  'Last Executed Time': '上次执行时间',
 
   REDEPLOY_CONFIRM_DESC:
     '您即将重新部署工作负载 {resource} ({type}) , 容器组将根据更新策略进行重新部署，您的业务可能会被暂时中断。',
@@ -393,11 +393,11 @@ export default {
   STATEFULSETS_REPLICA_DESC:
     '有状态副本集 (StatefulSet) 用来描述有状态应用，比如副本之间有主从关系，数据需要做持久化。与部署 (Deployment) 相同的是，有状态副本集创建的副本也是完全相同的，不同的是每个副本有个固定且唯一的标识，即使副本被重新调度了，标识也不会发生变化。您可以用有状态副本集来实现应用的有序部署，有序的删除，有序的滚动更新。',
   DAEMONSETS_REPLICA_DESC:
-    '守护进程集 (DaemonSet) 可以确保集群中的每个节点运行一个副本，当有节点加入集群或者离开集群的时候，会自动地调整副本的数量来保证副本的数量与集群的节点数量一致。您可以使用守护进程集来运行存储服务，如 glusterfs，ceph 等；运行日志搜集服务，如 fluent，logstash 等；运行监控服务等。',
+    '守护进程集 (DaemonSet) 可以确保集群中的每个节点运行一个副本，当有节点加入集群或者离开集群的时候，会自动地调整副本的数量来保证副本的数量与集群的节点数量一致。您可以使用守护进程集来运行存储服务，如 GlusterFS，Ceph 等；运行日志搜集服务，如 Fluentd，Logstash 等；运行监控服务等。',
 
-  'Number of failed jobs allowed to be retained': '允许保留的失败的任务个数',
-  'Number of success jobs allowed to be retained': '允许保留的成功的任务个数',
-  'Concurrency policy settings': '并发策略设置',
+  'The number of failed jobs allowed to be retained.': '允许保留的失败的任务个数',
+  'The number of successful jobs allowed to be retained.': '允许保留的成功的任务个数',
+  'The concurrency policy setting.': '并发策略设置',
   'Can be found by node IP or node name': '可以通过节点 IP 或者节点名称查找',
   START_DEADLINE_SECONDS_DESC:
     '即在指定 启动时间 + 启动 Job 的期限 这个周期之内都可以启动任务',
@@ -430,10 +430,10 @@ export default {
   'Please select a volume': '请选择存储卷',
   'Please select a configmap': '请选择配置文件',
   'Please select a secret': '请选择密钥',
-  'What is collecting file log ?': '什么是落盘日志收集？',
+  'What is Disk Log Collection?': '什么是落盘日志收集？',
 
   'for example': '例如',
-  'container mount path': '容器挂载路径',
+  'Container mount path': '容器挂载路径',
   'container log relative path': '容器日志相对路径',
   'log path relative to container mount path': '日志路径相对于容器挂载路径',
 
@@ -521,19 +521,19 @@ export default {
   'Not found this image': '没有找到此镜像',
   SEARCH_IMAGE_PLACEHOLDER: '输入关键字查找镜像',
 
-  "Pod's default deployment": '容器组默认部署',
-  "Pod's decentralized deployment": '容器组分散部署',
-  "Pod's aggregation deployment": '容器组聚合部署',
-  'Pod will be deployed at scattered nodes':
+  "Pod Default Deployment": '容器组默认部署',
+  "Pod Decentralized Deployment": '容器组分散部署',
+  "Pod Aggregation Deployment": '容器组聚合部署',
+  'Pod replicas will be deployed on different nodes.':
     '容器组副本将会尽量分散在不同的节点中',
-  'Pod will be deployed at the same node': '容器组副本将会部署在同一节点上',
-  'Pod will be deployed by default policy': '容器组副本将根据默认策略部署',
+  'Pod replicas will be deployed on the same node.': '容器组副本将会部署在同一节点上',
+  'Pod replicas will be deployed by the default policy.': '容器组副本将根据默认策略部署',
   'KubeSphere supports pulling images from the Image Registries and creating new images through source code (Source to Image).':
     'Kubesphere 支持从镜像仓库拉取镜像以及通过代码构建新的镜像并部署',
 
-  'Schedule Info': '调度信息',
-  'Node Schedule Info': '节点调度信息',
-  'Pod Status Analyse': '容器状态分析',
+  'Scheduling Info': '调度信息',
+  'Node Scheduling Info': '节点调度信息',
+  'Pod Status Analysis': '容器状态分析',
   'Current Stage(phase)': '当前阶段(phase)',
   'Scheduled to node': '调度至节点',
   'How pods are assinged to nodes?': '容器组如何被调度至节点?',
@@ -622,7 +622,7 @@ export default {
 
   'Please select at least one container to mount': '请至少选择一个容器进行挂载',
   'Sure to delete the workload(s)?': '确认删除工作负载',
-  'No related resources found with current workload(s)':
+  'No related resources found with the current workload(s)':
     '当前工作负载下没有关联的资源',
   DELETE_WORKLOAD_DESC:
     '您即将删除工作负载 {resource}，请您进行确认是否删除关联资源?',
@@ -661,4 +661,8 @@ export default {
   CLUSTER_CONTAINER_IMAGE_DIFF_DESC:
     '根据不同的需要在不同的集群中设置不同的容器',
   CLUSTER_SERVICE_DIFF_DESC: '可以在不同集群设置不同的服务端口',
+  CLUSTER_ENV_DIFF_DESC: '可以在不同集群设置不同的环境变量',
+
+  REPLICAS_AVAILABLE: '实际副本',
+  REPLICAS_EXPECTED: '期望副本',
 }

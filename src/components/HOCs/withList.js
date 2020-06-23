@@ -57,7 +57,10 @@ export default function withList(options) {
             text: t('Edit'),
             action: 'edit',
             onClick: item =>
-              this.trigger('resource.baseinfo.edit', { detail: item }),
+              this.trigger('resource.baseinfo.edit', {
+                detail: item,
+                success: this.routing.query,
+              }),
           },
           {
             key: 'delete',
@@ -244,6 +247,9 @@ export class ListPage extends React.Component {
   componentDidUpdate(prevProps) {
     if (!isEqual(prevProps.match.params, this.props.match.params)) {
       this.props.getData()
+      if (!this.props.noWatch) {
+        this.initWebsocket()
+      }
     }
   }
 
@@ -272,7 +278,11 @@ export class ListPage extends React.Component {
           const kind = MODULE_KIND_MAP[this.props.module]
           if (message.object.kind === kind) {
             if (message.type === 'MODIFIED') {
-              this.store.list.updateItem(this.store.mapper(message.object))
+              const data = {
+                ...this.props.match.params,
+                ...this.store.mapper(message.object),
+              }
+              this.store.list.updateItem(data)
             } else if (message.type === 'DELETED' || message.type === 'ADDED') {
               _getData()
             }

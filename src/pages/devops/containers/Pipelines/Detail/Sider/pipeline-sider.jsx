@@ -97,10 +97,13 @@ export default class PipelineDetail extends Base {
   }
 
   get enabledActions() {
+    const { cluster, project_id } = this.props.match.params
+    const devops = this.store.getDevops(project_id)
+
     return globals.app.getActions({
       module: 'pipelines',
-      cluster: this.props.match.params.cluster,
-      // devops: this.props.devopsStore.data.name,
+      cluster,
+      devops,
     })
   }
 
@@ -168,13 +171,13 @@ export default class PipelineDetail extends Base {
             {
               key: 'scan',
               text: t('Scan Repository'),
-              action: 'trigger',
+              action: 'edit',
               onClick: this.handleScanRepository,
             },
             {
               key: 'scanLogs',
               text: t('Scan Reponsitory Logs'),
-              action: 'trigger',
+              action: 'edit',
               onClick: this.showScanLogsModal,
             },
           ]
@@ -252,13 +255,15 @@ export default class PipelineDetail extends Base {
   }
 
   handleEdit = async data => {
-    const { params } = this.props.match
+    const { project_id, cluster } = this.props.match.params
     updatePipelineParams(data, true)
-    updatePipelineParamsInSpec(data, params.project_id)
+    updatePipelineParamsInSpec(data, project_id)
 
-    await this.store.updatePipeline({ data, project_id: params.project_id })
-    this.fetchData()
-    this.setState({ showEditBaseInfo: false, showEditConfig: false })
+    await this.store.updatePipeline({ data, project_id, cluster })
+
+    this.setState({ showEditBaseInfo: false, showEditConfig: false }, () => {
+      this.fetchData()
+    })
   }
 
   showDeleteModal = () => {
@@ -270,12 +275,15 @@ export default class PipelineDetail extends Base {
   }
 
   handleDelete = () => {
-    const { project_id } = this.props.match.params
+    const { project_id, cluster, workspace } = this.props.match.params
     const { detail } = this.store
     this.setState({ deleteLoading: true })
-    this.store.deletePipeline(detail.name, project_id).then(() => {
+    const devops = this.store.getDevops(project_id)
+    this.store.deletePipeline(detail.name, devops, cluster).then(() => {
       this.hideDeleteModal()
-      this.routing.push(`/devops/${project_id}/pipelines`)
+      this.routing.push(
+        `/${workspace}/clusters/${cluster}/devops/${project_id}/pipelines`
+      )
     })
   }
 

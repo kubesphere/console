@@ -22,7 +22,8 @@ import ResourceStatus from './ResourceStatus'
 import AppTemplate from './AppTemplate'
 import EnvVariables from './EnvVariables'
 
-const PATH = '/cluster/:cluster/projects/:namespace/applications/template/:id'
+const PATH =
+  '/:workspace/clusters/:cluster/projects/:namespace/applications/template/:id'
 
 export default [
   {
@@ -36,7 +37,6 @@ export default [
     path: `${PATH}/template`,
     title: 'App Template',
     component: AppTemplate,
-    ksModule: 'servicemesh',
     exact: true,
   },
 

@@ -73,7 +73,8 @@ export const getStatefulSetStatus = ({ spec = {}, status = {} }) => {
 export const getDaemonSetStatus = ({ status }) => {
   if (status.numberAvailable === 0) {
     return 'Stopped'
-  } else if (status.numberAvailable === status.desiredNumberScheduled) {
+  }
+  if (status.numberAvailable === status.desiredNumberScheduled) {
     return 'Running'
   }
   return 'Updating'

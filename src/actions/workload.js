@@ -52,7 +52,7 @@ const FORM_STEPS = {
 
 export default {
   'workload.create': {
-    on({ store, cluster, namespace, module, success, ...props }) {
+    on({ store, cluster, namespace, module, success, isFederated, ...props }) {
       const kind = MODULE_KIND_MAP[module]
       const formTemplate = {
         [kind]: FORM_TEMPLATES[module]({
@@ -67,9 +67,19 @@ export default {
         })
       }
 
+      if (isFederated) {
+        Object.keys(formTemplate).forEach(key => {
+          formTemplate[key] = FORM_TEMPLATES.federated({
+            data: formTemplate[key],
+            clusters: props.projectDetail.clusters.map(item => item.name),
+            kind: key,
+          })
+        })
+      }
+
       const steps = [...FORM_STEPS[module]]
 
-      if (props.projectDetail && props.projectDetail.isFedManaged) {
+      if (isFederated) {
         steps.push({
           title: 'Diff Settings',
           icon: 'blue-green-deployment',
@@ -105,6 +115,7 @@ export default {
         cluster,
         namespace,
         name: kind,
+        isFederated,
         formTemplate,
         modal: CreateModal,
         store,

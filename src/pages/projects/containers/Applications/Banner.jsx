@@ -30,16 +30,17 @@ export default class AppBanner extends Component {
   store = new CRDAppStore()
 
   handleTabChange = value => {
-    const { cluster, namespace } = this.props.match.params
+    const { workspace, cluster, namespace } = this.props.match.params
     this.props.rootStore.routing.push(
-      `/cluster/${cluster}/projects/${namespace}/applications/${value}`
+      `/${workspace}/clusters/${cluster}/projects/${namespace}/applications/${value}`
     )
   }
 
   get canDeployComposingApp() {
-    const { cluster, namespace: project } = this.props.match.params
+    const { workspace, cluster, namespace: project } = this.props.match.params
     const canCreateDeployment = globals.app
       .getActions({
+        workspace,
         cluster,
         project,
         module: 'deployments',
@@ -48,6 +49,7 @@ export default class AppBanner extends Component {
 
     const canCreateService = globals.app
       .getActions({
+        workspace,
         cluster,
         project,
         module: 'services',
@@ -76,13 +78,12 @@ export default class AppBanner extends Component {
   }
 
   showDeploySampleApp = () => {
-    const { rootStore, projectStore } = this.props
-    const { cluster, namespace } = this.props.match.params
+    const { rootStore, projectStore, match } = this.props
+
     this.trigger('crd.app.create', {
       sampleApp: 'bookinfo',
       module: 'applications',
-      namespace,
-      cluster,
+      ...match.params,
       store: this.store,
       projectDetail: projectStore.detail,
       success: url => rootStore.routing.push(url),

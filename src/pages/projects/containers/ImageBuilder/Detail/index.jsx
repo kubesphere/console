@@ -38,7 +38,9 @@ import getRoutes from './routes'
 @trigger
 export default class ImageBuilderDetail extends React.Component {
   store = new S2IBuilderStore(this.module)
+
   resourceStore = new ResourceStore(this.module)
+
   s2iRunStore = new S2IRunStore()
 
   componentDidMount() {
@@ -62,15 +64,10 @@ export default class ImageBuilderDetail extends React.Component {
   }
 
   get listUrl() {
-    const {
-      params: { cluster, namespace },
-      path,
-    } = this.props.match
-    if (path.startsWith('/clusters')) {
-      return `/clusters/${cluster}/${this.module}`
-    }
-
-    return `/cluster/${cluster}/projects/${namespace}/${this.module}`
+    const { workspace, cluster, namespace } = this.props.match.params
+    return `${
+      workspace ? `/${workspace}` : ''
+    }/clusters/${cluster}/projects/${namespace}/${this.module}`
   }
 
   fetchData = async params => {

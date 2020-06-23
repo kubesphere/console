@@ -91,7 +91,7 @@ export default class CustomRange extends React.Component {
 
     return (
       <div className={classnames(styles.custom, className)}>
-        <div className={styles.title}>{t('Custom time range')}</div>
+        <div className={styles.title}>{t('Custom Time Range')}</div>
         <Form data={this.formData}>
           <Form.Item label={t('Start Time')}>
             <DatePicker

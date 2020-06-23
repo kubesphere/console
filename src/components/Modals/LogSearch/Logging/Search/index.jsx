@@ -399,7 +399,7 @@ export default class LogSearchModal extends React.Component {
           dropDownItems={{
             log_query: {
               icon: 'magnifier',
-              text: t('Key Word'),
+              text: t('Keyword'),
             },
             namespace_query: {
               icon: 'project',

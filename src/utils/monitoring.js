@@ -454,6 +454,15 @@ export const unitTransformMap = {
     ['Gbps', 1024 ** 3],
     ['Tbps', 1024 ** 4],
   ]),
+  ...unitTransformGroupFactory([
+    ['ms', 0],
+    ['seconds', 1000],
+    ['minutes', 1000 * 60],
+    ['hours', 1000 * 60 * 60],
+    ['days', 1000 * 60 * 60 * 24],
+    ['weeks', 10000 * 60 * 60 * 24 * 7],
+    ['months', 10000 * 60 * 60 * 24 * 30],
+  ]),
   'percent (0-100)': unitTransformFactory([['%', 0]]),
   'percent (0.0-1.0)': function(number, decimals) {
     const format = unitTransformFactory([['%', 0]])

@@ -129,7 +129,7 @@ export default class NodeUsageRank extends React.Component {
     },
     {
       sort_metric: 'namespace_net_bytes_transmitted',
-      title: t('Network Outbound'),
+      title: t('Outbound Traffic'),
       key: 'namespace_net_bytes_transmitted',
       width: this.rankTdWidth,
       render: node => (
@@ -146,7 +146,7 @@ export default class NodeUsageRank extends React.Component {
     },
     {
       sort_metric: 'namespace_net_bytes_received',
-      title: t('Network Inbound'),
+      title: t('Inbound Traffic'),
       key: 'namespace_net_bytes_received',
       width: this.rankTdWidth,
       render: node => (

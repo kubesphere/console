@@ -1,0 +1,70 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.item {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  margin-bottom: 8px;
+  line-height: 20px;
+  background-color: $th-bg-color;
+  border-radius: 4px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  :global(.icon) {
+    min-width: 40px;
+  }
+
+  .info {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    line-height: 20px;
+
+    strong {
+      font-size: $size-normal;
+      font-weight: 600;
+      color: $text-color;
+      @include break-all;
+    }
+
+    .record {
+      display: flex;
+      line-height: 20px;
+
+      label {
+        white-space: nowrap;
+      }
+
+      .text {
+        word-break: break-all;
+        @include break-all;
+
+        & > p {
+          display: inline-block;
+          vertical-align: middle;
+          margin: 0 5px;
+        }
+      }
+    }
+
+    & > div {
+      display: table-cell;
+      vertical-align: middle;
+      min-height: 40px;
+      padding: 0 20px;
+      border-left: 1px dashed $btn-flat-active-bg;
+
+      &:first-child {
+        border-left: none;
+      }
+    }
+
+    .base {
+      width: 28%;
+    }
+  }
+}

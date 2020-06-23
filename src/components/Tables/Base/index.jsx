@@ -67,7 +67,7 @@ export default class WorkloadTable extends React.Component {
     selectActions: PropTypes.array,
     extraProps: PropTypes.object,
     alwaysUpdate: PropTypes.bool,
-    emptyText: PropTypes.oneOfType([PropTypes.string || PropTypes.func]),
+    emptyText: PropTypes.any,
   }
 
   static defaultProps = {
@@ -285,7 +285,7 @@ export default class WorkloadTable extends React.Component {
           onClick={this.handleCancelSelect}
           data-test="table-cancel-select"
         >
-          {t('Cancel Select')}
+          {t('Deselect')}
         </Button>
       </LevelRight>
     </Level>
@@ -420,12 +420,6 @@ export default class WorkloadTable extends React.Component {
   }
 
   renderEmptyText() {
-    const { isLoading } = this.props
-
-    if (isLoading) {
-      return null
-    }
-
     return (
       this.props.emptyText || (
         <div className={styles.emptyText}>

@@ -19,7 +19,6 @@
 import { withRouter } from 'react-router-dom'
 import { inject } from 'mobx-react'
 import { Component as Base } from 'core/containers/Base/Detail/Page'
-import ClusterStore from 'stores/cluster'
 
 @inject('rootStore')
 @withRouter
@@ -30,19 +29,5 @@ export default class DetailPage extends Base {
       module: this.authKey,
       cluster,
     })
-  }
-
-  async init() {
-    const { cluster } = this.props.match.params
-    if (cluster) {
-      this.stores.clusterStore = new ClusterStore()
-
-      await Promise.all([
-        this.stores.clusterStore.fetchDetail({ name: cluster }),
-        this.props.rootStore.getRules({ cluster }),
-      ])
-    }
-
-    this.setState({ initializing: false })
   }
 }

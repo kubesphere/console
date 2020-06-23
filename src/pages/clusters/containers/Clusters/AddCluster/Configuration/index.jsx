@@ -61,7 +61,7 @@ export default class BaseInfo extends React.Component {
           description={t('CLUSTER_SETTINGS_DESC')}
         />
         <Form.Item
-          label={t('Connect Method')}
+          label={t('Connection Method')}
           desc={t('CLUSTER_CONNECT_METHOD_DESC')}
         >
           <Select
@@ -74,14 +74,6 @@ export default class BaseInfo extends React.Component {
           <Form.Item
             label={t('CLUSTER_API_SERVER_TITLE')}
             desc={t.html('CLUSTER_API_SERVER_DESC')}
-            rules={[
-              {
-                required: true,
-                message: t(
-                  'Please input the kubesphere api server address of the cluster'
-                ),
-              },
-            ]}
           >
             <Input name="spec.connection.kubesphereAPIEndpoint" />
           </Form.Item>
@@ -103,6 +95,7 @@ export default class BaseInfo extends React.Component {
               </div>
               <Form.Item
                 rules={[{ required: true, message: t('INPUT_KUBECONFIG') }]}
+                unControl
               >
                 <CodeEditor
                   mode="yaml"
@@ -116,8 +109,8 @@ export default class BaseInfo extends React.Component {
         ) : (
           <div className={styles.tip}>
             <Text
-              title={t('请根据集群中提供的代理连接设置加入集群')}
-              description={t('需要在集群中设置下相应的代理Agent')}
+              title={t('CLUSTER_AGENT_TITLE')}
+              description={t('CLUSTER_AGENT_DESC')}
             />
             <div className="margin-t12">
               {t.html('CLUSTER_AGENT_IMPORT_TIP')}

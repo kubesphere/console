@@ -1,0 +1,82 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.detail {
+  display: flex;
+  padding: 12px;
+  border-radius: $border-radius;
+  border: solid 1px $border-color;
+  background-color: $white;
+  align-items: center;
+
+  & > div {
+    min-width: 250px;
+  }
+}
+
+.actions {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+}
+
+.annotations {
+  & > p {
+    margin-top: 20px;
+    font-size: $size-normal;
+    font-weight: $font-bold;
+    line-height: 1.43;
+  }
+
+  & > ul {
+    margin-top: 20px;
+
+    & > li {
+      padding: 11px 36px;
+      border-radius: 60px;
+      background-color: $bg-color;
+      border: solid 1px $border-color;
+      font-family: $font-family-id;
+
+      & + li {
+        margin-top: 8px;
+      }
+
+      & > span {
+        display: inline-block;
+        min-width: 360px;
+
+        & + span {
+          margin-left: 86px;
+        }
+      }
+    }
+  }
+}
+
+.cluster {
+  position: relative;
+  width: 326px;
+  padding: 8px;
+  border-radius: 2px;
+  background-color: $dark-color07;
+  margin-right: 20px;
+}
+
+.content {
+  margin-top: 12px;
+  border-radius: $border-radius;
+  padding: 12px;
+  background-color: $light-color01;
+}
+
+.empty {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  & > button {
+    @include vertical-center;
+    right: 12px;
+  }
+}

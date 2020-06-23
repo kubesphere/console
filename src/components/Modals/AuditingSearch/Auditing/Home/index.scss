@@ -115,13 +115,15 @@
 
 .searchBarContainer {
   display:flex;
-  border: solid 1px #ccc;
+  border: solid 1px $border-color;
   border-radius: 4px;
 
   .clusterSelector {
     flex-basis: 130px;
-    line-height: 44px;
-    border-right: solid 1px #ccc;
+    border-right: solid 1px $border-color;
+    border-radius: 4px 0 0 4px;
+    line-height: 40px;
+    overflow: hidden;
     :global {
       .select-control {
         border: none;

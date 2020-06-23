@@ -55,7 +55,7 @@ export default class HomeModal extends React.Component {
   supportQueryParams = [
     {
       icon: 'magnifier',
-      title: t('Search Log by', { field: t('Key Word') }),
+      title: t('Search Log by', { field: t('Keyword') }),
       tips: t('KeyWord Log Query Tip'),
       key: 'log_query',
     },
@@ -182,7 +182,7 @@ export default class HomeModal extends React.Component {
           dropDownItems={{
             log_query: {
               icon: 'magnifier',
-              text: t('Key Word'),
+              text: t('Keyword'),
             },
             namespace_query: {
               icon: 'project',

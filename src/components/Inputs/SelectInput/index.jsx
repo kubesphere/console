@@ -57,24 +57,30 @@ export default class SelectInput extends React.Component {
   }
 
   renderOptions() {
-    const { options } = this.props
+    const { options, optionRenderer } = this.props
 
     return (
       <Menu onClick={this.handleOptionsClick}>
         {options.map(option => (
-          <Menu.MenuItem key={option.value}>{option.label}</Menu.MenuItem>
+          <Menu.MenuItem key={option.value}>
+            {optionRenderer ? optionRenderer(option) : option.label}
+          </Menu.MenuItem>
         ))}
       </Menu>
     )
   }
 
   render() {
-    const { options, ...rest } = this.props
-
+    const { options, optionRenderer, ...rest } = this.props
     return (
       <div className={styles.wrapper}>
         <Input {...rest} />
-        <Icon name="caret-down" clickable onClick={this.toggleOptions} />
+        <Icon
+          className={styles.caret}
+          name="caret-down"
+          clickable
+          onClick={this.toggleOptions}
+        />
         <Dropdown
           visible={this.state.showOptions}
           className="dropdown-default"

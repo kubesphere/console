@@ -1,0 +1,35 @@
+@import '~scss/variables';
+
+.cluster {
+  position: relative;
+  width: 326px;
+  padding: 8px;
+  border-radius: 2px;
+  background-color: $dark-color07;
+  margin-right: 20px;
+}
+
+.content {
+  margin-top: 12px;
+
+  &.fold {
+    height: 258px;
+    overflow: hidden;
+  }
+}
+
+.actions {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+}
+
+
+.folder {
+  margin-top: 12px;
+  text-align: center;
+
+  button {
+    width: 100%;
+  }
+}

@@ -59,7 +59,7 @@ export default {
         forward: FluentdForm,
         kafka: KafkaForm,
       }
-      const type = store.detail.type
+      const { type } = store.detail
       const EditForm = EditFormMap[type] || null
       const data = store.detail.config
 

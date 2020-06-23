@@ -53,15 +53,13 @@ export default class DaemonSetDetail extends React.Component {
   }
 
   get listUrl() {
-    const {
-      params: { cluster, namespace },
-      path,
-    } = this.props.match
-    if (path.startsWith('/clusters')) {
-      return `/clusters/${cluster}/${this.module}`
+    const { workspace, cluster, namespace } = this.props.match.params
+    if (workspace) {
+      return `/${workspace}/clusters/${cluster}/projects/${namespace}/${
+        this.module
+      }`
     }
-
-    return `/cluster/${cluster}/projects/${namespace}/${this.module}`
+    return `/clusters/${cluster}/${this.module}`
   }
 
   fetchData = () => {

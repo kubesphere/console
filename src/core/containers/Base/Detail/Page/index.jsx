@@ -16,11 +16,10 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { has } from 'lodash'
 import React from 'react'
-import { pick, isEmpty } from 'lodash'
 import { NavLink, withRouter } from 'react-router-dom'
 import { inject, Provider } from 'mobx-react'
-import { Loading } from '@pitrix/lego-ui'
 import pathToRegexp from 'path-to-regexp'
 
 import { ICON_TYPES } from 'utils/constants'
@@ -33,28 +32,7 @@ import styles from './index.scss'
 class DetailPage extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { initializing: true }
     this.stores = {}
-  }
-
-  componentDidMount() {
-    this.init()
-  }
-
-  async init() {
-    const params = pick(this.props.match.params, [
-      'cluster',
-      'workspace',
-      'namespace',
-      'project_id',
-    ])
-    if (!isEmpty(params)) {
-      await this.props.rootStore.getRules({
-        ...params,
-        project: params.namespace || params.project_id,
-      })
-    }
-    this.setState({ initializing: false })
   }
 
   get authKey() {
@@ -72,9 +50,12 @@ class DetailPage extends React.Component {
 
   getEnabledOperations = () => {
     const { operations = [] } = this.props
-    return operations.filter(
-      item => !item.action || this.enabledActions.includes(item.action)
-    )
+    return operations.filter(item => {
+      if (has(item, 'show') && !item.show) {
+        return false
+      }
+      return !item.action || this.enabledActions.includes(item.action)
+    })
   }
 
   renderNav(routes) {
@@ -104,10 +85,6 @@ class DetailPage extends React.Component {
 
   render() {
     const { routes, stores, ...sideProps } = this.props
-
-    if (this.state.initializing) {
-      return <Loading className="ks-page-loading" />
-    }
 
     return (
       <Provider {...this.stores} {...stores}>

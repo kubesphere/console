@@ -24,7 +24,7 @@ export default {
   LOG_DATE: 'YYYY年MM月DD日HH时',
   EVENT_DATE: 'YYYY年MM月DD日0时',
   topic: '主题',
-  'Key Word': '关键字',
+  Keyword: '关键字',
   'Region Data': '元数据',
   'Refresh Rate': '刷新频率',
   'Back to previous': '返回上一级',
@@ -52,7 +52,7 @@ export default {
   'Pod Event Query Tip': '可以根据容器组查看相关的事件信息',
   'Event statistics': '事件统计',
   'Time topology': '时间拓扑图',
-  'Display content': '显示内容',
+  'Display Content': '显示内容',
   'Search Result': '搜索结果',
   'please enter a conditional filter log': '请输入条件过滤日志',
   'Log Query': '日志查询',
@@ -76,7 +76,7 @@ export default {
   TOTAL_AUDITING_TODAY:
     '今日总共收录了 <span class={className}> {auditing} </span> 条操作审计',
   NO_AUDITING_TODAY: '今日没有收录的操作审计',
-
+  
   LOG_COLLECTION_DESC:
     '系统将收集每个容器的标准输出和标准错误输出日志，并将其发送到一个或多个目标服务',
   'Add Log Collector': '添加日志接收者',
@@ -107,7 +107,7 @@ export default {
   Activate: '激活',
   'Real-Time Data': '实时数据',
   TOOLBOX_SHIFT_TIPS: ' 👻 Shift + 鼠标左键 可以在新窗口中打开',
-  'No longer showing help information': '不再显示帮助信息',
+  'Hide help information': '不再显示帮助信息',
   ES_DESC: 'Elasticsearch 是分布式、RESTful 风格的搜索和分析引擎',
   KAFKA_DESC: 'Kafka 是流行的开源流处理平台',
   FLUENTD_DESC: 'Fluentd 是提供统一日志处理层的开源数据收集器',
@@ -120,6 +120,7 @@ export default {
   START_REAL_TIME_LOG: '开始实时日志',
   STOP_REAL_TIME_LOG: '关闭实时日志',
   LOG_EXPORT: '日志导出',
+  CUSTOM_MONITORING_DASHBOARD: '自定义监控面板',
   CREATE_CUSTOM_MONITORING_DASHBOARD: '创建自定义监控面板',
   SELECT_SUITABLE_MONITORING_TEMPLATE: '选择适合您应用应用模板',
   CUSTON_MONITORING_TEMPLATE_DESC: '监控面板将根据应用类型生成默认的面板配置',
@@ -127,4 +128,8 @@ export default {
   TOTAL_EVENTS_TODAY:
     '今日总共收录了 <span class={className}> {events} </span> 条事件',
   NO_EVENTS_TODAY: '今日没有收录的事件',
+
+  'No cluster with event query enabled': '暂无启用事件查询的集群',
+  'No cluster with auditing module enabled': '暂无启用审计模块的集群',
+  'No cluster with logging module enabled': '暂无启用日志模块的集群',
 }

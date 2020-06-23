@@ -147,7 +147,7 @@ export default class TextPreview extends React.Component {
           <>
             <div className={styles.icon}>
               <Icon name="coding" size={20} />
-              <span>{t('Config files')}</span>
+              <span>{t('Chart Files')}</span>
             </div>
             {this.renderFileSelect()}
           </>
@@ -177,7 +177,7 @@ export default class TextPreview extends React.Component {
   render() {
     const { selectFile } = this.state
     if (!selectFile) {
-      return <p>{t('The app has no config file')}</p>
+      return <p>{t('The app has no chart file.')}</p>
     }
 
     return (

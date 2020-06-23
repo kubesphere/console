@@ -1,0 +1,32 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.wrapper {
+  position: relative;
+  padding-bottom: 8px;
+  background-color: #fff;
+  border-radius: $border-radius;
+  box-shadow: $base-shadow;
+}
+
+.header {
+  position: relative;
+  height: 44px;
+  padding: 12px 12px 12px 40px;
+  @include TypographyTitleH6($dark-color07);
+
+  :global .icon {
+    @include vertical-center;
+    left: 12px;
+  }
+}
+
+.tip {
+  padding: 6px 12px;
+  background-color: $lightest;
+  @include TypographyParagraph;
+
+  & + .tip {
+    margin-top: 4px;
+  }
+}

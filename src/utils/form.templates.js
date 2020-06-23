@@ -16,6 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { get, cloneDeep, unset } from 'lodash'
 import { MODULE_KIND_MAP } from './constants'
 
 const getDeploymentTemplate = ({ namespace }) => ({
@@ -46,6 +47,35 @@ const getDeploymentTemplate = ({ namespace }) => ({
     },
   },
 })
+
+const getFederatedTemplate = ({ data, clusters, kind }) => {
+  const namespace = get(data, 'metadata.namespace')
+
+  const placement = { clusters: clusters.map(item => ({ name: item })) }
+
+  const overrides = clusters.map(cluster => {
+    const override = {
+      clusterName: cluster,
+      clusterOverrides: [],
+    }
+
+    return override
+  })
+
+  const template = cloneDeep(data)
+
+  unset(template, 'apiVersion')
+  unset(template, 'kind')
+  unset(template, 'metadata.name')
+  unset(template, 'metadata.annotations')
+
+  return {
+    apiVersion: 'types.kubefed.io/v1beta1',
+    kind: `Federated${kind}`,
+    metadata: { namespace },
+    spec: { placement, template, overrides },
+  }
+}
 
 const getDaemonSetTemplate = ({ namespace }) => ({
   apiVersion: 'apps/v1',
@@ -452,6 +482,15 @@ const getNameSpaceNetworkPoliciesTemplate = ({ namespace }) => ({
   spec: {},
 })
 
+const getDashboardTemplate = ({ namespace }) => ({
+  apiVersion: 'monitoring.kubesphere.io/v1alpha1',
+  kind: 'Dashboard',
+  metadata: {
+    namespace,
+  },
+  spec: {},
+})
+
 const FORM_TEMPLATES = {
   deployments: getDeploymentTemplate,
   daemonsets: getDaemonSetTemplate,
@@ -480,6 +519,8 @@ const FORM_TEMPLATES = {
   b2iBuilders: getBinaryTemplate,
   'volume-snapshots': getVolumeSnapshotTemplate,
   namespacenetworkpolicies: getNameSpaceNetworkPoliciesTemplate,
+  dashboards: getDashboardTemplate,
+  federated: getFederatedTemplate,
 }
 
 export default FORM_TEMPLATES

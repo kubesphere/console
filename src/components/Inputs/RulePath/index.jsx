@@ -80,6 +80,7 @@ export default class RulePath extends React.Component {
       <ObjectInput {...this.props} onChange={this.handleChange}>
         <Input name="path" placeholder={t('Path')} defaultValue="/" />
         <Select
+          className="margin-r12"
           name="backend.serviceName"
           placeholder={t('Please select a service')}
           options={this.services}

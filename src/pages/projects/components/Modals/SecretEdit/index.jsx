@@ -65,17 +65,6 @@ export default class SecretEditModal extends React.Component {
     }
   }
 
-  componentDidUpdate(prevProps) {
-    const { detail, visible } = this.props
-    if (detail !== prevProps.detail) {
-      this.setState({ formTemplate: this.getFormTemplate(detail) })
-    }
-
-    if (visible && visible !== prevProps.visible) {
-      this.setState({ subRoute: {} })
-    }
-  }
-
   registerSubRoute = (onSave, onCancel) => {
     this.setState({
       subRoute: {

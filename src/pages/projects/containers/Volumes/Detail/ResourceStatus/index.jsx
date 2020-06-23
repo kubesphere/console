@@ -45,13 +45,8 @@ class ResourceStatus extends React.Component {
   }
 
   get prefix() {
-    const path = this.props.match.path
-    const { cluster, namespace } = this.props.match.params
-    if (path.startsWith('/clusters')) {
-      return `/clusters/${cluster}/projects/${namespace}`
-    }
-
-    return `/cluster/${cluster}/projects/${namespace}`
+    const { workspace, cluster } = this.props.match.params
+    return `${workspace ? `/${workspace}` : ''}/clusters/${cluster}`
   }
 
   constructor(props) {
