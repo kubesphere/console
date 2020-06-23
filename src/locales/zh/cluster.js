@@ -65,11 +65,11 @@ export default {
 
   'Click to Copy': '点击复制',
 
-  'Cluster initialized failed': '集群初始化失败',
+  'Cluster initialization failed': '集群初始化失败',
 
   'Not Ready': '未就绪',
 
-  'Copy successful': '复制成功',
+  'Copy successfully': '复制成功',
 
   Unbind: '解除绑定',
 
@@ -86,9 +86,7 @@ export default {
   'The current cluster is public': '当前集群处于公开状态',
 
   'Available Clusters': '可用集群',
-
   'Select Clusters': '集群选择',
-
   'Edit cluster basic information': '编辑集群基础信息',
 
   'Scheduler Scheduling Times': '调度器调度次数',

@@ -76,7 +76,7 @@ export default {
 
   'Current Version': '当前版本',
 
-  'Cluster Select': '集群选择',
+  'Cluster Selection': '集群选择',
 
   'Traffic Monitoring': '流量监测',
 

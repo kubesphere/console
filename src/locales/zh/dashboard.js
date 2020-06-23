@@ -41,8 +41,8 @@ export default {
   'Network Bandwidth': '网络带宽',
   'Outbound Traffic': '网络流出速率',
   'Inbound Traffic': '网络流入速率',
-  'monitoring data': '监控数据',
-  'log data': '日志数据',
+  'Monitoring Data': '监控数据',
+  'Log Data': '日志数据',
 
   'Super administrator': '超级管理员',
   'Regular user': '普通用户',
