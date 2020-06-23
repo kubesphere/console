@@ -36,11 +36,17 @@ import ClusterSelect from './ClusterSelect'
 
 class ResourceTable extends BaseTable {
   renderNormalTitle() {
-    const { hideCustom, clusters, cluster, onClusterChange } = this.props
+    const {
+      hideCustom,
+      showClusterSelect,
+      clusters,
+      cluster,
+      onClusterChange,
+    } = this.props
 
     return (
       <Level>
-        {globals.app.isMultiCluster && (
+        {showClusterSelect && (
           <LevelLeft>
             <LevelItem>
               <ClusterSelect
@@ -77,7 +83,7 @@ class ResourceTable extends BaseTable {
 
   render() {
     const { clusters } = this.props
-    if (globals.isMultiCluster && isEmpty(clusters)) {
+    if (globals.app.isMultiCluster && isEmpty(clusters)) {
       return (
         <EmptyList
           icon="cluster"

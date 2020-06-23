@@ -45,6 +45,7 @@ class ResourceStatus extends React.Component {
   renderRules() {
     const detail = toJS(this.store.detail)
     const gateway = toJS(this.store.gateway.data)
+
     const tls = detail.tls[0] || {}
 
     if (isEmpty(detail.rules)) {
