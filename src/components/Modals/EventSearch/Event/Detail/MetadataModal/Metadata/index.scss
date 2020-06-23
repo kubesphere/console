@@ -1,3 +1,5 @@
+@import '~scss/variables';
+
 .close {
   height: 20px;
   overflow: hidden;
@@ -10,14 +12,14 @@
 .title {
   font-size: 12px;
   font-weight: 600;
-  color: #000000;
+  color: $black;
   line-height: 20px;
   height: 20px; 
 }
 
 .count {
   font-size: 12px;
-  color: #79879C;
+  color: $dark-color01;
   line-height: 20px;
   height: 20px;
 }
@@ -25,7 +27,7 @@
 .text {
   font-size: 12px;
   font-weight: 600;
-  color: #000000;
+  color: $black;
   line-height: 24px;
 }
 
