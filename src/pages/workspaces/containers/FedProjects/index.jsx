@@ -21,7 +21,7 @@ import React from 'react'
 import { computed } from 'mobx'
 import { Avatar } from 'components/Base'
 import Banner from 'components/Cards/Banner'
-import Table from 'components/Tables/List'
+import Table from 'workspaces/components/ResourceTable'
 import withList, { ListPage } from 'components/HOCs/withList'
 import ClusterWrapper from 'components/Clusters/ClusterWrapper'
 
@@ -149,6 +149,7 @@ export default class Projects extends React.Component {
 
   render() {
     const { bannerProps, tableProps } = this.props
+
     return (
       <ListPage {...this.props} getData={this.getData}>
         <Banner
@@ -164,6 +165,7 @@ export default class Projects extends React.Component {
           columns={this.getColumns()}
           onCreate={this.showCreate}
           searchType="name"
+          clusters={this.clusters}
         />
       </ListPage>
     )
