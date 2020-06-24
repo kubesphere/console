@@ -41,6 +41,7 @@ export default {
 
   'Registry Address': '仓库地址',
   'Registry verification failed': '镜像仓库校验失败',
+  'Registry verification success': '镜像仓库校验通过',
   'Account Password Secret': '账号密码密钥',
 
   Data: '数据',
@@ -51,4 +52,11 @@ export default {
   'DATA-KEY': '键(Key)',
   'DATA-VALUE': '值(Value)',
   'Example: docker.io': '例：docker.io',
+
+  IMAGE_REGISTRY_REQUIRED_DESC:
+    '镜像仓库密钥需要至少包含仓库地址, 用户名, 密码信息.',
+
+  IMAGE_REGISTRY_VALIDATE_TIP: '创建镜像仓库密钥前, 请先验证密钥是否可用',
+
+  'Please input the registry address': '请输入镜像仓库地址',
 }

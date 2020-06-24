@@ -37,8 +37,18 @@ import { getLocalTime } from 'utils'
 export default class Accounts extends React.Component {
   roleStore = new RoleStore('workspaceroles')
 
+  get canViewRoles() {
+    const { workspace } = this.props.match.params
+    return globals.app.hasPermission({
+      workspace,
+      module: 'roles',
+      action: 'view',
+    })
+  }
+
   componentDidMount() {
-    this.roleStore.fetchList({ ...this.props.match.params, limit: -1 })
+    this.canViewRoles &&
+      this.roleStore.fetchList({ ...this.props.match.params, limit: -1 })
   }
 
   showAction(record) {

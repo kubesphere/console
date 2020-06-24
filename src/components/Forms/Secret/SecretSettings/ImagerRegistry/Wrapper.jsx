@@ -16,37 +16,26 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get } from 'lodash'
-import { action } from 'mobx'
-import Base from './base'
+import React, { Component } from 'react'
 
-export default class SecretStore extends Base {
-  module = 'secrets'
+import styles from './index.scss'
 
-  @action
-  async validateImageRegistrySecret(data) {
-    const { url, username, password } = data
-
-    const params = { username, password, serverhost: url }
-
-    const result = {
-      validate: true,
-      reason: '',
-    }
-
-    await request.post(
-      `kapis/resources.kubesphere.io/v1alpha2/registry/verify`,
-      params,
-      {},
-      (_, err) => {
-        const msg = get(err, 'message', '')
-        if (msg) {
-          result.reason = t(msg)
-        }
-        result.validate = false
-      }
+export default class Wrapper extends Component {
+  render() {
+    const { label, desc, required, children } = this.props
+    return (
+      <div className={styles.wrapper}>
+        {label && (
+          <label className={styles.label} htmlFor={name}>
+            {label}
+            {required ? <span className={styles.requiredIcon}>*</span> : null}
+          </label>
+        )}
+        <div className={styles.control}>
+          {children}
+          {desc && <div className={styles.desc}>{desc}</div>}
+        </div>
+      </div>
     )
-
-    return result
   }
 }

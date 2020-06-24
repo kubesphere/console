@@ -77,6 +77,7 @@ export default class Secrets extends React.Component {
           trigger('resource.delete', {
             type: t(this.name),
             detail: item,
+            success: getData,
           }),
       },
     ]
@@ -129,12 +130,13 @@ export default class Secrets extends React.Component {
   }
 
   showCreate = () => {
-    const { match, module, projectStore } = this.props
+    const { match, module, getData, projectStore } = this.props
     return this.props.trigger('secret.create', {
       module,
       isFederated: true,
       projectDetail: projectStore.detail,
       namespace: match.params.namespace,
+      success: getData,
     })
   }
 

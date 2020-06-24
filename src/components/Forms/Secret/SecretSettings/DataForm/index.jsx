@@ -17,6 +17,7 @@
  */
 
 import React from 'react'
+import { trim } from 'lodash'
 import PropTypes from 'prop-types'
 import { Input, TextArea } from '@pitrix/lego-ui'
 import { Form } from 'components/Base'
@@ -65,7 +66,7 @@ export default class SecretDataForm extends React.Component {
 
     return {
       key: selectKey || '',
-      value: detail[selectKey] || '',
+      value: atob(detail[selectKey] || ''),
     }
   }
 
@@ -76,7 +77,7 @@ export default class SecretDataForm extends React.Component {
     form &&
       form.validate(() => {
         const { key, value } = form.getData()
-        onOk({ [key]: value })
+        onOk({ [trim(key)]: btoa(value) })
         callback && callback()
       })
   }
