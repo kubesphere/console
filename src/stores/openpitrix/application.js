@@ -169,6 +169,13 @@ export default class Application extends Base {
   }
 
   @action
+  async upgrade(params, { namespace, cluster }) {
+    return this.submitting(
+      request.post(this.getUrl({ namespace, cluster }), params)
+    )
+  }
+
+  @action
   update = ({ cluster_id, cluster, zone, ...data }) =>
     this.submitting(
       request.patch(this.getUrl({ namespace: zone, cluster_id, cluster }), data)
@@ -195,16 +202,5 @@ export default class Application extends Base {
           request.delete(this.getUrl({ namespace, cluster, cluster_id }))
         )
       )
-    )
-
-  // todo: nex version
-  @action
-  upgrade = ({ cluster_id, cluster, version_id }) =>
-    this.submitting(
-      request.post(`${this.baseUrl}clusters/upgrade`, {
-        cluster_id,
-        cluster,
-        version_id,
-      })
     )
 }

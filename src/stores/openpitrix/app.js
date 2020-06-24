@@ -79,20 +79,6 @@ export default class App extends Base {
   }
 
   @action
-  async upgrade(params) {
-    await this.submitting(
-      request.post(`${this.baseUrl}clusters/upgrade`, params)
-    )
-  }
-
-  @action
-  async rollback(params) {
-    await this.submitting(
-      request.post(`${this.baseUrl}clusters/rollback`, params)
-    )
-  }
-
-  @action
   uploadIcon = base64Str =>
     this.upload({
       app_id: this.detail.app_id,
