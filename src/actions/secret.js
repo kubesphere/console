@@ -78,7 +78,7 @@ export default {
     on({ store, detail, success, ...props }) {
       const modal = Modal.open({
         onOk: data => {
-          store.updateWithEncode(detail, data).then(() => {
+          store.update(detail, data).then(() => {
             Modal.close(modal)
             success && success()
           })

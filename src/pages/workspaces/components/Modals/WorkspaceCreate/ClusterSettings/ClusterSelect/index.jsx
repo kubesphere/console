@@ -45,7 +45,7 @@ export default class ClusterSettings extends Component {
     } else {
       await this.clusterStore.fetchList({
         limit: -1,
-        label: 'cluster.kubesphere.io/visibility=public',
+        labelSelector: 'cluster.kubesphere.io/visibility=public',
       })
     }
 

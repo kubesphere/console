@@ -57,8 +57,8 @@ export default {
                 const clusters = item.clusters || []
                 set(
                   formData,
-                  'spec.clusters',
-                  uniq([...clusters, cluster.name])
+                  'spec.placement.clusters',
+                  uniq([...clusters, cluster.name]).map(name => ({ name }))
                 )
                 set(formData, 'metadata.resourceVersion', item.resourceVersion)
                 requests.push(workspaceStore.update(item, formData))
@@ -73,8 +73,10 @@ export default {
                 const clusters = item.clusters || []
                 set(
                   formData,
-                  'spec.clusters',
-                  clusters.filter(name => name !== cluster.name)
+                  'spec.placement.clusters',
+                  clusters
+                    .filter(name => name !== cluster.name)
+                    .map(name => ({ name }))
                 )
                 set(formData, 'metadata.resourceVersion', item.resourceVersion)
                 requests.push(workspaceStore.update(item, formData))

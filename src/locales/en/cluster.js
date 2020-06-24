@@ -59,7 +59,7 @@ export default {
 
   CLUSTER_CONDITIONS: 'Cluster Conditions',
   CLUSTER_BASE_INFO_DESC:
-  'This module summarizes the basic information of the current cluster.',
+    'This module summarizes the basic information of the current cluster.',
 
   INVITE_CLUSTER_MEMBER_DESC: 'You can invite new members to this cluster.',
 
@@ -70,7 +70,7 @@ export default {
   INPUT_KUBECONFIG: 'Please fill in the KubeConfig of the target cluster',
 
   CLUSTER_DIRECT_IMPORT_TIP:
-    'The multi-cluster control interface of KubeSphere connects to imported clusters through the kubeconfig provided and the KubeSphere apiserver address exposed. For this method, the current cluster must be able to directly access clusters that are to be imported through the server address in the kubeconfig and the Kubesphere apiserver address.</br></br>This method generally applies to the conditions below:</br>1. The current cluster and clusters to be imported are in the same internal network.</br>2. The network of both the current cluster and clusters to be imported is connected through VPN or other technologies (e.g. Tunneling).</br>3. The server address in the kubeconfig and the Kubesphere apiserver address can be accessed through public network.',
+    'The multi-cluster control interface of KubeSphere connects to imported clusters through the kubeconfig provided. For this method, the current cluster must be able to directly access clusters that are to be imported through the server address in the kubeconfig.</br></br>This method generally applies to the conditions below:</br>1. The current cluster and clusters to be imported are in the same internal network.</br>2. The network of both the current cluster and clusters to be imported is connected through VPN or other technologies (e.g. Tunneling).</br>3. The server address in the kubeconfig can be accessed through public network.',
   CLUSTER_AGENT_IMPORT_TIP:
     'The KubeSphere control interface connects to clusters that are to be imported through a proxy. The control interface runs a public proxy service, which is connected to a client component created by clusters to be imported. Thus, a reserve proxy is created. For this method, the control interface and clusters to be imported do not need to be in the same network. The apiserver address of clusters to be imported does not need to be exposed either. However, network performance may be affected.</br></br>This method generally applies to the conditions below:</br>1. The current cluster and clusters to be imported are not in the same network.<br/>2. The network of both the current cluster and clusters to be imported cannot be connected through VPN or other technologies (e.g. Tunneling).<br/>3. Network performance deficiencies within clusters can be accepted.',
   CLUSTER_AGENT_TITLE:

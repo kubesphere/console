@@ -18,6 +18,7 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
+import { trim } from 'lodash'
 import { Input, TextArea } from '@pitrix/lego-ui'
 import { Form } from 'components/Base'
 import { ReactComponent as BackIcon } from 'src/assets/back.svg'
@@ -76,7 +77,7 @@ export default class SecretDataForm extends React.Component {
     form &&
       form.validate(() => {
         const { key, value } = form.getData()
-        onOk({ [key]: value })
+        onOk({ [trim(key)]: value })
         callback && callback()
       })
   }

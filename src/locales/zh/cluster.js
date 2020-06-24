@@ -33,7 +33,7 @@ export default {
   'Custom Resources': '自定义资源 CRD',
   'Storage Management': '存储管理',
   'Cluster Settings': '集群设置',
-  'Snapshots': '存储卷快照',
+  Snapshots: '存储卷快照',
   'IP Ranges': 'IP 地址范围',
   'Network Policies': '网络策略',
   'Network Topology': '网络拓扑',
@@ -169,7 +169,7 @@ export default {
   INPUT_KUBECONFIG: '请填写目标集群的 KubeConfig',
 
   CLUSTER_DIRECT_IMPORT_TIP:
-    'KubeSphere 多集群控制平面通过提供的 kubeconfig 和暴露 kubesphere apiserver 地址来连接导入集群，此种方式要求当前集群能够通过 kubeconfig 中的 server 地址和 kubesphere apiserver 地址直接访问待导入集群</br></br>通常适用于:</br>1. 当前集群和待导入集群在同一内网网络中</br>2. 当前集群和待导入集群已通过vpn或隧道等其它技术连通所在网络</br>3. kubeconfig 的 server 地址和 kubesphere apiserver 地址可以通过公网访问',
+    'KubeSphere 多集群控制平面通过提供的 kubeconfig 来直接连接导入集群，此种方式要求当前集群能够通过 kubeconfig 中的 server 地址直接访问待导入集群. </br>通常适用于:</br>1. 当前集群和待导入集群在同一内网网络中</br>2. 当前集群和待导入集群已通过vpn或隧道等其它技术连通所在网络</br>3. kubeconfig 的 server 地址可以通过公网访问',
   CLUSTER_AGENT_IMPORT_TIP:
     'KubeSphere 控制平面通过代理方式连接待导入集群，控制平面启动一个公开的代理服务，待导入集群创建相应的客户端组件连接代理服务，与控制平面之间建立一个反向代理。此种方式不需要待导入集群和控制平面在同一网络，也不要求待导入集群暴露集群的 apiserver 地址，但会有一定的网络性能损耗</br></br>通常适用于:</br>1. 当前集群和待导入集群不在同一网络中<br/>2. 当前集群和待导入集群无法通过vpn或隧道等其它技术连通所在网络<br/>3. 对集群间网络性能损耗能容忍',
 

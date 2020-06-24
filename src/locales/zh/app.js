@@ -116,7 +116,6 @@ export default {
   'Edit App Informatio': '编辑应用信息',
   EDIT_APP_DESC: '对应用的基本信息进行设置',
   'App Number': '应用编号',
-  Category: '分类',
   'App Version Types': '交付类型',
   'App Provider': '应用服务商',
   'Create Time': '创建时间',

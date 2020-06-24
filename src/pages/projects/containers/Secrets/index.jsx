@@ -107,7 +107,7 @@ export default class Secrets extends React.Component {
         dataIndex: 'type',
         isHideable: true,
         width: '24%',
-        render: type => t(SECRET_TYPES[type] || type),
+        render: type => (SECRET_TYPES[type] ? t(SECRET_TYPES[type]) : type),
       },
       {
         title: t('Config Number'),

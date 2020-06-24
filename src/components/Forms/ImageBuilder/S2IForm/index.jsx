@@ -17,7 +17,6 @@
  */
 
 import React from 'react'
-import PropTypes from 'prop-types'
 import { get, set } from 'lodash'
 import classnames from 'classnames'
 import { Input, Select, Alert, Loading } from '@pitrix/lego-ui'
@@ -54,10 +53,6 @@ export default class S2IForm extends React.Component {
   static defaultProps = {
     mode: 'create',
     prefix: '',
-  }
-
-  static contextTypes = {
-    formData: PropTypes.object,
   }
 
   get prefix() {
