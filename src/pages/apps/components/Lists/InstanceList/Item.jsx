@@ -18,12 +18,13 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
 import classnames from 'classnames'
 import { inject } from 'mobx-react'
 
 import { Status, Image } from 'components/Base'
 import { getLocalTime } from 'utils'
+
+import ProjectStore from 'stores/project'
 
 import styles from './index.scss'
 
@@ -45,19 +46,41 @@ export default class InstanceItem extends React.PureComponent {
   constructor(props) {
     super(props)
     this.store = this.props.store
+
+    this.projectStore = new ProjectStore()
+  }
+
+  get routing() {
+    return this.props.rootStore.routing
+  }
+
+  handleClick = async () => {
+    const { detail } = this.props
+    const { cluster } = detail
+    const { cluster_id, zone, runtime_id } = cluster
+
+    await this.projectStore.fetchDetail({
+      cluster: runtime_id,
+      namespace: zone,
+    })
+
+    const { workspace } = this.projectStore.detail
+
+    const link = `/${workspace}/clusters/${runtime_id}/projects/${zone}/applications/template/${cluster_id}`
+
+    this.routing.push(link)
   }
 
   renderContent() {
     const { detail, showVersion } = this.props
     const { cluster, version } = detail
-    const { cluster_id, zone } = cluster
-    const link = `/projects/${zone}/applications/template/${cluster_id}`
+    const { zone, runtime_id } = cluster
 
     return (
       <div className={styles.content}>
         <dl>
           <dt>
-            <Link to={link}>{cluster.name}</Link>
+            <a onClick={this.handleClick}>{cluster.name}</a>
           </dt>
           <dd>{t('Instance Name')}</dd>
         </dl>
@@ -70,6 +93,10 @@ export default class InstanceItem extends React.PureComponent {
         <dl>
           <dt>{zone}</dt>
           <dd>{t('In Project')}</dd>
+        </dl>
+        <dl>
+          <dt>{runtime_id}</dt>
+          <dd>{t('Cluster')}</dd>
         </dl>
         <dl>
           <dt>

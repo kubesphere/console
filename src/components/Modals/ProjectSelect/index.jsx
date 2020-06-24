@@ -129,6 +129,8 @@ export default class ProjectSelectModal extends React.Component {
 
     if (this.state.type === 'federatedprojects') {
       params.labelSelector = `kubesphere.io/workspace=${workspace}`
+    } else {
+      params.labelSelector = 'kubefed.io/managed!=true'
     }
 
     this.stores[this.state.type].fetchList(params)

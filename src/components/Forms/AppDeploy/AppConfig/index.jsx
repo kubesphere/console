@@ -81,6 +81,7 @@ export default class Services extends React.Component {
         ...getValueObj(this.state.valuesYaml),
         Name: formData.name || '',
         Description: formData.desc || '',
+        Workspace: formData.workspace,
       })
     )
   }

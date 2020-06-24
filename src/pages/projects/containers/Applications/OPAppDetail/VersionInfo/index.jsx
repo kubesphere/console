@@ -17,26 +17,27 @@
  */
 
 import React from 'react'
-import { Link } from 'react-router-dom'
 
 import { Button } from 'components/Base'
 
 import styles from './index.scss'
 
-const Item = ({ data, currentVersion, urlPrefix }) => {
-  const url = `${urlPrefix}&version=${data.version_id}`
+const Item = ({ data, onUpgrade, currentVersion }) => {
+  const handleUpgrade = () => onUpgrade(data.version_id)
 
   return (
     <div className={styles.item}>
-      <Link to={url}>{data.name}</Link>
+      <span>{data.name}</span>
       {currentVersion.version_id === data.version_id && (
         <div className={styles.tag}>{t('Current Version')}</div>
       )}
       {currentVersion.version_id !== data.version_id && (
         <div className={styles.operations}>
-          <Link to={url}>
-            <Button noShadow>{t('Deploy New Application')}</Button>
-          </Link>
+          <Button onClick={handleUpgrade} noShadow>
+            {currentVersion.create_time < data.create_time
+              ? t('Upgrade')
+              : t('Rollback')}
+          </Button>
         </div>
       )}
     </div>
@@ -48,6 +49,7 @@ export default class VersionInfo extends React.Component {
     const {
       data,
       detail,
+      cluster,
       workspace,
       namespace,
       onUpgrade,
@@ -58,7 +60,7 @@ export default class VersionInfo extends React.Component {
 
     const urlPrefix = `/apps/${
       detail.app_id
-    }?workspace=${workspace}&namespace=${namespace}`
+    }?workspace=${workspace}&cluster=${cluster}&namespace=${namespace}`
 
     return (
       <ul>

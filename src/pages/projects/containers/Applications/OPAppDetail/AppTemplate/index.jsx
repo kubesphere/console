@@ -16,15 +16,15 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, isEmpty } from 'lodash'
+import { isEmpty } from 'lodash'
 import React from 'react'
 import { when, toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
+import { Tabs } from '@pitrix/lego-ui'
 
 import AppVersionStore from 'stores/openpitrix/version'
 import AppFileStore from 'stores/openpitrix/file'
 
-import { Tabs } from '@pitrix/lego-ui'
 import { Card } from 'components/Base'
 import Markdown from 'components/Base/Markdown'
 import TextPreview from 'components/TextPreview'
@@ -54,7 +54,7 @@ export default class AppTemplate extends React.Component {
   }
 
   get workspace() {
-    return get(this, 'props.rootStore.project.detail.workspace')
+    return this.props.match.params.workspace
   }
 
   getData() {
@@ -73,21 +73,28 @@ export default class AppTemplate extends React.Component {
     this.setState({ tab })
   }
 
-  handleUpgrade = version_id => {
+  handleUpgrade = async version_id => {
     const {
-      detail: { cluster_id },
+      detail: { cluster_id, name, app_id, env },
     } = toJS(this.store)
+    const { workspace, namespace, cluster } = this.props.match.params
+    await this.store.upgrade(
+      {
+        app_id,
+        cluster_id,
+        name,
+        version_id,
+        conf: env,
+      },
+      { namespace, cluster }
+    )
 
-    this.store.upgrade({ cluster_id, version_id })
+    this.props.rootStore.routing.push(
+      `/${workspace}/clusters/${cluster}/projects/${namespace}/applications/template`
+    )
   }
 
-  handleRollback = version_id => {
-    const {
-      detail: { cluster_id },
-    } = toJS(this.store)
-
-    this.store.upgrade({ cluster_id, version_id })
-  }
+  handleRollback = () => {}
 
   renderReadme() {
     const files = this.appFileStore.files
@@ -109,7 +116,7 @@ export default class AppTemplate extends React.Component {
 
   renderVersionInfo() {
     const { detail } = toJS(this.store)
-    const { namespace } = this.props.match.params
+    const { cluster, workspace, namespace } = this.props.match.params
     const { data, isLoading } = toJS(this.appVersionStore.list)
 
     return (
@@ -117,7 +124,8 @@ export default class AppTemplate extends React.Component {
         data={data}
         loading={isLoading}
         detail={detail}
-        workspace={this.workspace}
+        cluster={cluster}
+        workspace={workspace}
         namespace={namespace}
         onUpgrade={this.handleUpgrade}
         onRollback={this.handleRollback}
