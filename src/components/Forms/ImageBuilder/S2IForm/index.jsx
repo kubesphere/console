@@ -73,9 +73,7 @@ export default class S2IForm extends React.Component {
   }
 
   get namespace() {
-    const { formTemplate } = this.props
-
-    return get(formTemplate, `${this.prefix}metadata.namespace`)
+    return this.props.namespace
   }
 
   fetchData = async () => {

@@ -16,12 +16,10 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get } from 'lodash'
 import { Modal, Notify } from 'components/Base'
 
 import CreateModal from 'components/Modals/Create'
 import RerunModal from 'components/Forms/ImageBuilder/RerunForm'
-import { MODULE_KIND_MAP } from 'utils/constants'
 import FORM_TEMPLATES from 'utils/form.templates'
 import formPersist from 'utils/form.persist'
 import FORM_STEPS from 'configs/steps/imagebuilder'
@@ -29,17 +27,12 @@ import FORM_STEPS from 'configs/steps/imagebuilder'
 export default {
   'imagebuilder.create': {
     on({ store, cluster, namespace, module, success, ...props }) {
-      const kind = MODULE_KIND_MAP[module]
-      const formTemplate = {
-        [kind]: FORM_TEMPLATES[module]({
-          namespace,
-        }),
-      }
+      const formTemplate = FORM_TEMPLATES[module]({
+        namespace,
+      })
 
       const modal = Modal.open({
-        onOk: newObject => {
-          const data = get(newObject, kind)
-
+        onOk: data => {
           if (!data) {
             return
           }

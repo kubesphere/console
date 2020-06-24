@@ -128,10 +128,13 @@ export default class S2IBuilderStore extends Base {
     delete data.isUpdateWorkload
   }
 
-  creatBinary(name, namespace) {
+  creatBinary(name, namespace, cluster) {
     const data = TEMPLATE['b2iBuilders']({ name, namespace })
     return request.post(
-      `apis/devops.kubesphere.io/v1alpha1/namespaces/${namespace}/s2ibinaries/${name}`,
+      `apis/devops.kubesphere.io/v1alpha1/${this.getPath({
+        namespace,
+        cluster,
+      })}/s2ibinaries/${name}`,
       data
     )
   }

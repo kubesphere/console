@@ -172,7 +172,7 @@ export default class S2irunStore extends Base {
   }
 
   @action
-  getLog = async logURL => {
+  getLog = async (logURL, cluster) => {
     if (this.logData.logURL !== logURL) {
       this.logData = {
         isLoading: true,
@@ -181,14 +181,27 @@ export default class S2irunStore extends Base {
         hasMore: true,
       }
     }
+
+    let url = parseUrl(logURL).pathname.slice(1)
+
+    const ulrList =
+      url.indexOf('namespaces') >= 0 ? url.split(/\/namespaces\/([\w]+)\//) : []
+
+    url =
+      ulrList.length > 2
+        ? `${ulrList[0]}${this.getPath({ namespace: ulrList[1], cluster })}/${
+            ulrList[2]
+          }`
+        : url
+
     const result = await request.get(
-      `${parseUrl(logURL).pathname.slice(1)}?size=300&from=${
-        this.logData.start
-      }&sort=asc`
+      `${url}?size=300&from=${this.logData.start}&sort=asc`
     )
+
     const logRecords = get(result, 'query.records', [])
     const total = get(result, 'query.total', [])
     const { log } = this.logData
+
     if (isArray(logRecords)) {
       const totalLog = logRecords.reduce(
         (logStr, logItem) => logStr + logItem.log,
@@ -205,7 +218,7 @@ export default class S2irunStore extends Base {
   }
 
   @action
-  async fetchPodsLogs(logURL) {
+  async fetchPodsLogs(logURL, cluster) {
     if (get(this.logData, 'logURL', '') !== logURL) {
       this.logData = {
         isLoading: false,
@@ -215,10 +228,12 @@ export default class S2irunStore extends Base {
       }
     }
     this.logData.isLoading = true
-    const logPath = get(logURL.match(/namespaces\/([\w-/]*)\?/), '1')
+    const namespace = get(logURL.match(/namespaces\/([\w-/]*)\?/), '1')
 
     if (!this.containerName) {
-      const podsDetail = await request.get(`api/v1/namespaces/${logPath}`)
+      const podsDetail = await request.get(
+        `api/v1${this.getPath({ namespace, cluster })}`
+      )
       const containerID = get(
         podsDetail,
         'status.containerStatuses[0]containerID'
@@ -228,11 +243,14 @@ export default class S2irunStore extends Base {
       }
       this.containerName = get(podsDetail, 'spec.containers[0].name', '')
     }
-    const result = await request.get(`api/v1/namespaces/${logPath}/log`, {
-      container: this.containerName,
-      timestamps: true,
-      tailLines: 1000,
-    })
+    const result = await request.get(
+      `api/v1${this.getPath({ namespace, cluster })}/log`,
+      {
+        container: this.containerName,
+        timestamps: true,
+        tailLines: 1000,
+      }
+    )
     this.logData = {
       logURL,
       isLoading: false,

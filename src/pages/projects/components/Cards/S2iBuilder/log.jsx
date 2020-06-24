@@ -61,7 +61,7 @@ export default class Log extends React.Component {
   }
 
   getLog = async () => {
-    const { logURL, status } = this.props.runDetail
+    const { logURL, status, cluster } = this.props.runDetail
     const { logData } = this.store
     const isRunning = status === 'Building' || status === 'Unknown'
     clearTimeout(this.refreshTimer)
@@ -71,9 +71,9 @@ export default class Log extends React.Component {
       return
     }
     if (globals.app.hasKSModule('logging')) {
-      await this.store.getLog(logURL)
+      await this.store.getLog(logURL, cluster)
     } else {
-      await this.store.fetchPodsLogs(logURL).catch(error => {
+      await this.store.fetchPodsLogs(logURL, cluster).catch(error => {
         if (error === 'container not ready') {
           this.setState({ isContainerPending: true })
         }
