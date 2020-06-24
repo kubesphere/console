@@ -32,6 +32,8 @@ import { ReactComponent as ForkIcon } from 'src/assets/fork.svg'
 
 import PipelineStore from 'stores/devops/pipelines'
 import CodeQualityStore from 'stores/devops/codeQuality'
+import DevopsStore from 'stores/devops'
+
 import { renderRoutes } from 'utils/router.config'
 import { getPipelineStatus } from 'utils/status'
 
@@ -43,10 +45,12 @@ class BranchSider extends Base {
     super(props)
 
     this.store = new PipelineStore()
+    this.devopsStore = new DevopsStore()
     this.sonarqubeStore = new CodeQualityStore()
     this.state = {
       showBranchModal: false,
     }
+    this.init()
   }
 
   get listUrl() {
@@ -81,6 +85,23 @@ class BranchSider extends Base {
       module: 'pipelines',
       cluster,
       devops,
+    })
+  }
+
+  init = async () => {
+    const { params } = this.props.match
+
+    await Promise.all([
+      this.devopsStore.fetchDetail(params),
+      this.props.rootStore.getRules({
+        workspace: params.workspace,
+      }),
+    ])
+
+    await this.props.rootStore.getRules({
+      cluster: params.cluster,
+      workspace: params.workspace,
+      devops: this.store.getDevops(params.project_id),
     })
   }
 

@@ -323,41 +323,13 @@ class CICDs extends React.Component {
         cluster: this.cluster,
       })
       .finally(() => {
-        this.setState({ isSubmitting: false })
+        this.setState({ isSubmitting: false, showCreate: false }, () => {
+          this.getData()
+        })
       })
 
     if (!result) {
-      this.setState({ isSubmitting: false })
-      return
-    }
-
-    if (data.spec.multi_branch_pipeline) {
-      await this.store.scanRepository({
-        name: data.spec.multi_branch_pipeline.name,
-        project_id: this.project_id,
-        cluster: this.cluster,
-      })
-      this.setState({ showCreate: false })
-      this.props.rootStore.routing.push(
-        `/${this.workspace}/clusters/${this.cluster}/devops/${
-          this.project_id
-        }/pipelines/${encodeURIComponent(
-          data.spec.multi_branch_pipeline.name
-        )}/activity`
-      )
-      return
-    }
-
-    if (result.metadata && result.metadata.name) {
-      this.pipeline = result.metadata.name
-      this.store.fetchDetail({
-        name: this.pipeline,
-        cluster: this.cluster,
-      })
-      this.setState({
-        showCreate: false,
-        showEdit: true,
-      })
+      this.setState({ isSubmitting: false, showCreate: false })
     }
   }
 
@@ -518,7 +490,7 @@ class CICDs extends React.Component {
 
     const isEmptyList = isLoading === false && total === 0
 
-    const omitFilters = omit(filters, 'page')
+    const omitFilters = omit(filters, ['limit', 'page'])
 
     const showCreate = this.enabledActions.includes('create')
       ? this.showCreate

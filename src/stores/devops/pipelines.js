@@ -130,17 +130,24 @@ export default class PipelineStore extends BaseStore {
   async fetchList({ devops, workspace, project_id, cluster, ...filters } = {}) {
     this.list.isLoading = true
 
-    const { page, keyword, filter } = filters
+    const { page, limit, keyword, filter } = filters
 
     const searchWord = keyword ? `*${encodeURIComponent(keyword)}*` : ''
 
     const url = `${this.getBaseUrlV2({ cluster })}search`
 
-    const result = await this.request.get(url, {
-      q: `type:pipeline;organization:jenkins;pipeline:${project_id}/${searchWord ||
-        '*'};excludedFromFlattening:jenkins.branch.MultiBranchProject,hudson.matrix.MatrixProject&filter=${filter ||
-        'no-folders'}`,
-    })
+    filters.limit = limit || 10
+    filters.page = page || 1
+
+    const result = await this.request.get(
+      url,
+      {
+        q: `type:pipeline;organization:jenkins;pipeline:${project_id}/${searchWord ||
+          '*'};excludedFromFlattening:jenkins.branch.MultiBranchProject,hudson.matrix.MatrixProject&filter=${filter ||
+          'no-folders'}`,
+      },
+      { params: { ...filters } }
+    )
 
     this.setProjectId(project_id)
     this.devops = devops
@@ -148,7 +155,7 @@ export default class PipelineStore extends BaseStore {
     this.list = {
       data: result.items || [],
       total: result.total_count,
-      limit: 10,
+      limit: parseInt(limit, 10) || 10,
       page: parseInt(page, 10) || 1,
       filters: omit(filters, 'project_id'),
       isLoading: false,
