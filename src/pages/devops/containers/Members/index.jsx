@@ -38,12 +38,22 @@ import RoleStore from 'stores/role'
 export default class Members extends React.Component {
   roleStore = new RoleStore()
 
-  componentDidMount() {
-    this.roleStore.fetchList({
+  get canViewRoles() {
+    return globals.app.hasPermission({
+      ...this.props.match.params,
       devops: this.devops,
-      cluster: this.cluster,
-      limit: -1,
+      module: 'roles',
+      action: 'view',
     })
+  }
+
+  componentDidMount() {
+    this.canViewRoles &&
+      this.roleStore.fetchList({
+        devops: this.devops,
+        cluster: this.cluster,
+        limit: -1,
+      })
   }
 
   getData = () => {

@@ -17,7 +17,7 @@
  */
 
 import React from 'react'
-import { Icon, Input, Select } from '@pitrix/lego-ui'
+import { Icon, Select } from '@pitrix/lego-ui'
 import { Form, Text, CodeEditor } from 'components/Base'
 
 import SubTitle from '../SubTitle'
@@ -70,14 +70,6 @@ export default class BaseInfo extends React.Component {
             onChange={this.handleTypeChange}
           />
         </Form.Item>
-        {connectType === 'direct' && (
-          <Form.Item
-            label={t('CLUSTER_API_SERVER_TITLE')}
-            desc={t.html('CLUSTER_API_SERVER_DESC')}
-          >
-            <Input name="spec.connection.kubesphereAPIEndpoint" />
-          </Form.Item>
-        )}
         {connectType === 'direct' && (
           <div className={styles.tip}>
             {t.html('CLUSTER_DIRECT_IMPORT_TIP')}

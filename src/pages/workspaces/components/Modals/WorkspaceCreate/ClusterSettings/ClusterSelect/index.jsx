@@ -45,7 +45,7 @@ export default class ClusterSettings extends Component {
     } else {
       await this.clusterStore.fetchList({
         limit: -1,
-        label: 'cluster.kubesphere.io/visibility=public',
+        labelSelector: 'cluster.kubesphere.io/visibility=public',
       })
     }
 
@@ -73,6 +73,10 @@ export default class ClusterSettings extends Component {
     onChange(newValue)
   }
 
+  handleCheckboxClick = e => {
+    e.stopPropagation()
+  }
+
   render() {
     const { value = [] } = this.props
     const { data, isLoading } = toJS(this.clusterStore.list)
@@ -95,6 +99,7 @@ export default class ClusterSettings extends Component {
             <Checkbox
               checked={value.some(item => item.name === cluster.name)}
               disabled={!globals.app.isMultiCluster}
+              onClick={this.handleCheckboxClick}
             />
             <ClusterTitle
               className={styles.cluster}

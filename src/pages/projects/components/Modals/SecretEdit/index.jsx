@@ -97,22 +97,7 @@ export default class SecretEditModal extends React.Component {
 
   getFormTemplate(detail = {}) {
     const originData = toJS(detail._originData)
-
-    if (detail.type === 'kubernetes.io/dockerconfigjson') {
-      const data = detail.data
-      const url = Object.keys(data['.dockerconfigjson'].auths)[0]
-
-      return {
-        ...originData,
-        data: {
-          '.dockerconfigjson': {
-            url,
-            ...data['.dockerconfigjson'].auths[url],
-          },
-        },
-      }
-    }
-    return { ...originData, data: detail.data }
+    return { ...originData }
   }
 
   handleOk = () => {

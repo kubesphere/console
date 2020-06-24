@@ -25,16 +25,7 @@ import DeleteModal from 'components/Modals/Delete'
 
 export default {
   'member.invite': {
-    on({
-      store,
-      cluster,
-      workspace,
-      namespace,
-      roleModule,
-      success,
-      devops,
-      ...props
-    }) {
+    on({ store, cluster, workspace, namespace, success, devops, ...props }) {
       const modal = Modal.open({
         onOk: data => {
           store

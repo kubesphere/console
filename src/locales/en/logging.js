@@ -68,7 +68,7 @@ export default {
   'Category Event Query Tip':
     'You can view related event information according to the category.',
   'Reason Event Query Tip':
-    'You can view related event information according to the reason name.',
+    'You can view related event information according to the reason.',
   'Pod Event Query Tip':
     'You can view related event information according to the pod name.',
   TOTAL_LOGS:

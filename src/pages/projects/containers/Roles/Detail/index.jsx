@@ -79,6 +79,7 @@ export default class RoleDetail extends React.Component {
         icon: 'pen',
         text: t('Edit Info'),
         action: 'edit',
+        show: this.showEdit,
         onClick: () =>
           this.trigger('resource.baseinfo.edit', {
             type: t(this.name),

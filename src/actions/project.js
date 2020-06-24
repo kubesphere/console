@@ -35,14 +35,18 @@ export default {
       const modal = Modal.open({
         onOk: async data => {
           set(data, 'metadata.labels["kubesphere.io/workspace"]', workspace)
-          await store.create(data, { cluster, workspace })
-
-          const federatedStore = new FederatedStore(store)
           const clusters = get(data, 'spec.placement.clusters', [])
 
           if (clusters.length > 1) {
+            const federatedStore = new FederatedStore(store)
+            await store.create(data, { workspace })
             await federatedStore.create(FED_TEMPLATES.namespaces(data), {
               namespace: get(data, 'metadata.name'),
+            })
+          } else {
+            await store.create(data, {
+              cluster: get(clusters, '[0].name'),
+              workspace,
             })
           }
 

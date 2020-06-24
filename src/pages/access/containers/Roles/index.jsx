@@ -18,7 +18,6 @@
 
 import React from 'react'
 import { toJS } from 'mobx'
-import { get } from 'lodash'
 
 import { Avatar } from 'components/Base'
 import Banner from 'components/Cards/Banner'
@@ -51,6 +50,7 @@ export default class Roles extends React.Component {
         icon: 'pen',
         text: t('Edit'),
         action: 'edit',
+        show: this.showAction,
         onClick: item =>
           trigger('resource.baseinfo.edit', {
             detail: item,
@@ -121,13 +121,6 @@ export default class Roles extends React.Component {
         dataIndex: 'description',
         isHideable: true,
         width: '55%',
-        render: (description, record) => {
-          const name = get(record, 'name')
-          if (description && globals.config.presetGlobalRoles.includes(name)) {
-            return t(description)
-          }
-          return description
-        },
       },
       {
         title: t('Created Time'),

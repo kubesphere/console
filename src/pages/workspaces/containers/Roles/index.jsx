@@ -16,7 +16,6 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get } from 'lodash'
 import React from 'react'
 import { toJS } from 'mobx'
 
@@ -41,8 +40,14 @@ export default class Roles extends React.Component {
     this.props.store.fetchRoleTemplates(this.props.match.params)
   }
 
+  get workspace() {
+    return this.props.match.params.workspace
+  }
+
   showAction = record =>
-    !globals.config.presetWorkspaceRoles.includes(record.name)
+    !globals.config.presetWorkspaceRoles.includes(
+      record.name.slice(this.workspace.length + 1)
+    )
 
   get itemActions() {
     const { trigger, store, name, module, routing } = this.props
@@ -52,6 +57,7 @@ export default class Roles extends React.Component {
         icon: 'pen',
         text: t('Edit'),
         action: 'edit',
+        show: this.showAction,
         onClick: item =>
           trigger('resource.baseinfo.edit', {
             detail: item,
@@ -123,16 +129,6 @@ export default class Roles extends React.Component {
         dataIndex: 'description',
         isHideable: true,
         width: '55%',
-        render: (description, record) => {
-          const name = get(record, 'name')
-          if (
-            description &&
-            globals.config.presetWorkspaceRoles.includes(name)
-          ) {
-            return t(description)
-          }
-          return description
-        },
       },
       {
         title: t('Created Time'),

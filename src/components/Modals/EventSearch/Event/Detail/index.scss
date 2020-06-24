@@ -1,6 +1,8 @@
 @import '~scss/variables';
 
 $toolbarHeight: 48px;
+$chartHeight: 160px;
+$chartContainerPadding: 8px;
 
 .container {
   display: flex;
@@ -10,11 +12,11 @@ $toolbarHeight: 48px;
 }
 
 .searchBar {
-  border: solid 2px #d8dee5;
+  border: solid 2px $light-color04;
   margin-left: 12px;
   margin-right: 12px;
   margin-bottom: -23px;
-  background: #fff;
+  background: $white;
   display: flex;
   position: relative;
   border-radius: 4px;
@@ -24,8 +26,8 @@ $toolbarHeight: 48px;
       position: relative;
       flex: 1;
       border: none;
-      border-right: solid 2px #d8dee5;
-      border-left: solid 2px #d8dee5;
+      border-right: solid 2px $light-color04;
+      border-left: solid 2px $light-color04;
       border-radius: 0;
     }
     .clusterSelect,
@@ -47,7 +49,7 @@ $toolbarHeight: 48px;
 .searchResult {
   position: relative;
   border-radius: $border-radius;
-  border: solid 1px #d8dee5;
+  border: solid 1px $light-color04;
   background-color: $lightest;
   padding: 25px 12px 14px 12px;
   display: flex;
@@ -59,9 +61,9 @@ $toolbarHeight: 48px;
   height: $toolbarHeight;
   line-height: $toolbarHeight;
   border-radius: 4px;
-  background-color: #242e42;
-  margin: 8px 0;
-  color: #fff;
+  background-color: $dark-color07;
+  margin: $size-medium 0;
+  color: $white;
   display: flex;
   justify-content: space-between;
   padding: 0 20px;
@@ -76,7 +78,7 @@ $toolbarHeight: 48px;
         font-size: 10px;
       }
       .select-value-label {
-        color: #fff !important;
+        color: $white !important;
       }
       .select-control {
         border: none;
@@ -91,10 +93,10 @@ $toolbarHeight: 48px;
 }
 
 .chartContainer {
-  margin: 8px 0;
+  margin: $chartContainerPadding 0;
   border-radius: 4px;
-  box-shadow: 0 4px 8px 0 rgba(36, 46, 66, 0.06);
-  background-color: #ffffff;
+  box-shadow: $base-shadow;
+  background-color: $white;
   display: flex;
   align-items: center;
   padding: 0 32px;
@@ -115,7 +117,7 @@ $toolbarHeight: 48px;
       }
       .chart {
         flex: 1;
-        height: 160px;
+        height: $chartHeight;
       }
     }
   }
@@ -133,9 +135,9 @@ $toolbarHeight: 48px;
 }
 
 .detail {
-  background-color: white;
+  background-color: $white;
   width: 492px;
-  height: calc(100% - 40px);
+  height: calc(100% - 64px - #{$toolbarHeight} - #{$chartContainerPadding});
   border: 1px solid #d5dee7;
   border-radius: 4px;
   box-shadow: 0 4px 8px 0 rgba(72, 91, 127, 0.2);
@@ -145,9 +147,13 @@ $toolbarHeight: 48px;
   z-index: 2;
 }
 
+.visibleHeight {
+  height: calc(100% - 64px - #{$toolbarHeight} - #{$size-medium} - #{$chartContainerPadding} - #{$chartHeight});
+}
+
 .table {
   border-radius: 4px;
-  background-color: #ffffff;
+  background-color: $white;
   flex: 1;
   overflow: hidden;
   @at-root {
@@ -203,7 +209,7 @@ $toolbarHeight: 48px;
   }
 
   .hightLightMatch {
-    background: #ffc781;
+    background: $yellow-color02;
   }
 }
 
@@ -220,7 +226,7 @@ $toolbarHeight: 48px;
   text-align: center;
   &:hover {
     border-radius: 2px;
-    background-color: #36435c;
+    background-color: $dark-color06;
   }
 }
 
@@ -235,20 +241,20 @@ $toolbarHeight: 48px;
 }
 
 .normal {
-  color: #36435C;
-  background-color: #eff4f9;
+  color: $dark-color06;
+  background-color: $light-color02;
 }
 
 .warning {
-  color: #ffffff;
-  background-color: #F5A623;
+  color: $white;
+  background-color: $yellow-color03;
 }
 
 .kind {
   display: inline-block;
   padding: 0 3px;
   text-align: center;
-  background-color: #D8DEE5;
+  background-color: $light-color04;
   border-radius: 1px;
 }
 

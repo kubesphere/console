@@ -99,6 +99,7 @@ export default class DevOps extends React.Component {
       clusters: this.clusters,
       cluster: this.workspaceStore.cluster,
       onClusterChange: this.handleClusterChange,
+      showClusterSelect: globals.app.isMultiCluster,
     }
   }
 

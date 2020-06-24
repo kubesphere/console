@@ -50,8 +50,8 @@ export default class ClusterStore extends Base {
   getAgentUrl = ({ cluster }) =>
     `kapis/cluster.kubesphere.io/v1alpha1/clusters/${cluster}/agent/deployment`
 
-  getDetailUrl = (params = {}) =>
-    `${this.getResourceUrl(params)}/${params.name}`
+  getTenantUrl = (params = {}) =>
+    `kapis/tenant.kubesphere.io/v1alpha3${this.getPath(params)}/${this.module}`
 
   @action
   async fetchList({ cluster, workspace, namespace, more, ...params } = {}) {
@@ -71,9 +71,16 @@ export default class ClusterStore extends Base {
     let result
     if (!globals.app.isMultiCluster) {
       result = { items: [DEFAULT_CLUSTER] }
-    } else {
+    } else if (
+      globals.app.hasPermission({ module: 'clusters', action: 'view' })
+    ) {
       result = await request.get(
         this.getResourceUrl({ cluster, workspace, namespace }),
+        params
+      )
+    } else {
+      result = await request.get(
+        this.getTenantUrl({ cluster, workspace, namespace }),
         params
       )
     }
@@ -104,7 +111,9 @@ export default class ClusterStore extends Base {
     if (!globals.app.isMultiCluster) {
       detail = this.mapper(cloneDeep(DEFAULT_CLUSTER))
     } else {
-      const result = await request.get(this.getDetailUrl(params))
+      const result = await request.get(
+        `${this.getResourceUrl(params)}/${params.name}`
+      )
       detail = { ...params, ...this.mapper(result) }
     }
 

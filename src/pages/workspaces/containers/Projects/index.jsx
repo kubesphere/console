@@ -78,6 +78,7 @@ export default class Projects extends React.Component {
       clusters: this.clusters,
       cluster: this.workspaceStore.cluster,
       onClusterChange: this.handleClusterChange,
+      showClusterSelect: globals.app.isMultiCluster,
     }
   }
 
@@ -93,6 +94,7 @@ export default class Projects extends React.Component {
       cluster: this.workspaceStore.cluster,
       ...this.props.match.params,
       ...params,
+      labelSelector: 'kubefed.io/managed!=true',
     })
     store.list.silent = false
   }

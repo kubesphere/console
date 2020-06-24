@@ -28,6 +28,7 @@ import { findVolume, isNotPersistentVolume } from 'utils/volume'
 import { Alert, Form } from 'components/Base'
 import VolumeStore from 'stores/volume'
 import FederatedStore from 'stores/federated'
+import ProjectStore from 'stores/project'
 
 import VolumeList from './VolumeList'
 import AddVolume from './AddVolume'
@@ -49,8 +50,13 @@ class VolumeSettings extends React.Component {
 
     this.store = new VolumeStore()
 
+    this.projectStore = new ProjectStore()
+
     if (props.isFederated) {
       this.store = new FederatedStore(this.store)
+      this.projectStore = new FederatedStore({
+        module: this.projectStore.module,
+      })
     }
 
     this.store.fetchList({
@@ -62,6 +68,15 @@ class VolumeSettings extends React.Component {
     this.handleVolume = this.handleVolume.bind(this)
     this.handleVolumeTemplate = this.handleVolumeTemplate.bind(this)
     this.handleLogToggle = this.handleLogToggle.bind(this)
+  }
+
+  componentDidMount() {
+    if (this.namespace) {
+      this.projectStore.fetchDetail({
+        namespace: this.namespace,
+        cluster: this.cluster,
+      })
+    }
   }
 
   get prefix() {
@@ -91,7 +106,7 @@ class VolumeSettings extends React.Component {
   get projectEnableCollectingFileLog() {
     return (
       get(
-        this.props.projectDetail,
+        this.projectStore.detail,
         'labels["logging.kubesphere.io/logsidecar-injection"]'
       ) === 'enabled'
     )
@@ -463,9 +478,7 @@ class VolumeSettings extends React.Component {
   renderToolTipContent() {
     return (
       <div>
-        <div className="tooltip-title">
-          {t('What is Disk Log Collection?')}
-        </div>
+        <div className="tooltip-title">{t('What is Disk Log Collection?')}</div>
         <p>{t('COLLECT_FILE_LOG_TIP')}</p>
       </div>
     )

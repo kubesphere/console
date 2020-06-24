@@ -47,11 +47,11 @@ const getTypeSelectParams = type => {
 
   if (type === 'system') {
     params = {
-      label: 'kubesphere.io/workspace=system-workspace',
+      labelSelector: 'kubesphere.io/workspace=system-workspace',
     }
   } else if (type === 'user') {
     params = {
-      label: 'kubesphere.io/workspace!=system-workspace',
+      labelSelector: 'kubesphere.io/workspace!=system-workspace',
     }
   }
   return params

@@ -1,8 +1,28 @@
+/*
+ * This file is part of KubeSphere Console.
+ * Copyright (C) 2019 The KubeSphere Console Authors.
+ *
+ * KubeSphere Console is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * KubeSphere Console is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
 import React, { Fragment } from 'react'
 import { Select, Icon, Tooltip } from '@pitrix/lego-ui'
+import { min } from 'lodash'
+import moment from 'moment-mini'
+import classnames from 'classnames'
 import { observer } from 'mobx-react'
 import { action, observable, toJS } from 'mobx'
-import { min } from 'lodash'
 
 import SearchInput from 'components/Modals/LogSearch/Logging/SearchInput'
 import Table from 'components/Tables/Visible'
@@ -90,7 +110,8 @@ export default class Detail extends React.PureComponent {
     {
       thead: t('Time'),
       key: 'Time',
-      content: ({ RequestReceivedTimestamp }) => RequestReceivedTimestamp,
+      content: ({ RequestReceivedTimestamp }) =>
+        `[${moment(RequestReceivedTimestamp).format('YYYY-MM-DD HH:mm:ss')}]`,
       hidden: false,
       className: styles.timecol,
     },
@@ -105,7 +126,7 @@ export default class Detail extends React.PureComponent {
       thead: t('Status Code'),
       key: 'Status Code',
       hidden: false,
-      content: ({ ResponseStatus: { code } = {} }) => t(httpcodes[code]),
+      content: ({ ResponseStatus: { code } = {} }) => httpcodes[code],
       className: styles.statuscol,
     },
     {
@@ -130,7 +151,7 @@ export default class Detail extends React.PureComponent {
       className: styles.reasoncol,
     },
     {
-      thead: t('resources'),
+      thead: t('Resources'),
       key: 'resources',
       hidden: false,
       content: ({ ObjectRef = {} }) => (
@@ -210,7 +231,7 @@ export default class Detail extends React.PureComponent {
   @action
   async fetchQuery(pars) {
     const { cluster } = this.props.searchInputState
-    const params = Object.assign({}, pars, { cluster })
+    const params = { ...pars, cluster }
     await this.store.fetchQuery(params)
     return this.store.data
   }
@@ -451,7 +472,7 @@ export default class Detail extends React.PureComponent {
   }
 
   renderDetailModal() {
-    const { visible, detail, eventMetadata } = this.state
+    const { visible, detail, eventMetadata, showHistogram } = this.state
 
     if (!visible) {
       return null
@@ -460,7 +481,11 @@ export default class Detail extends React.PureComponent {
     return (
       <Fragment>
         <div className={styles.mask} onClick={this.onCancel} />
-        <div className={styles.detail}>
+        <div
+          className={classnames(styles.detail, {
+            [styles.visibleHeight]: showHistogram,
+          })}
+        >
           <MetadataModal detail={detail} eventMetadata={eventMetadata} />
         </div>
       </Fragment>

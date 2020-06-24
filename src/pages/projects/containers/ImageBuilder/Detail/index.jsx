@@ -139,7 +139,7 @@ export default class ImageBuilderDetail extends React.Component {
     const { binaryName } = this.s2iRunStore.runDetail
     const sourceUrl = get(spec, 'config.sourceUrl', '')
     const path = get(parseUrl(sourceUrl), 'pathname', `/${sourceUrl}`)
-    const downLoadUrl = `${window.location.protocol}//${
+    const downLoadUrl = `${window.location.protocol}/${
       window.location.host
     }/b2i_download${path}`
 

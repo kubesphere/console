@@ -17,36 +17,22 @@
  */
 
 import { get } from 'lodash'
-import { action } from 'mobx'
-import Base from './base'
+import React, { Component } from 'react'
 
-export default class SecretStore extends Base {
-  module = 'secrets'
+export default class Base64Wrapper extends Component {
+  handleChange = e => {
+    const value = get(e, 'target.value', e)
+    const { onChange } = this.props
+    return onChange(btoa(value))
+  }
 
-  @action
-  async validateImageRegistrySecret(data) {
-    const { url, username, password } = data
-
-    const params = { username, password, serverhost: url }
-
-    const result = {
-      validate: true,
-      reason: '',
-    }
-
-    await request.post(
-      `kapis/resources.kubesphere.io/v1alpha2/registry/verify`,
-      params,
-      {},
-      (_, err) => {
-        const msg = get(err, 'message', '')
-        if (msg) {
-          result.reason = t(msg)
-        }
-        result.validate = false
-      }
-    )
-
-    return result
+  render() {
+    const { name, children, value } = this.props
+    const node = React.cloneElement(children, {
+      name,
+      value: atob(value || ''),
+      onChange: this.handleChange,
+    })
+    return node
   }
 }
