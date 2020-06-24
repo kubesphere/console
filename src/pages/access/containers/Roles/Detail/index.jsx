@@ -19,7 +19,7 @@
 import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
-import { get, isEmpty } from 'lodash'
+import { isEmpty } from 'lodash'
 import { Loading } from '@pitrix/lego-ui'
 
 import { getLocalTime, getDisplayName } from 'utils'
@@ -61,17 +61,6 @@ export default class RoleDetail extends React.Component {
     return this.props.rootStore.routing
   }
 
-  get detailDesc() {
-    const name = this.store.detail.name
-    const desc = get(this.store.detail, 'description')
-
-    if (globals.config.presetGlobalRoles.includes(name)) {
-      return t(desc)
-    }
-
-    return desc
-  }
-
   get showEdit() {
     const { name } = this.props.match.params
     return !globals.config.presetGlobalRoles.includes(name)
@@ -87,6 +76,7 @@ export default class RoleDetail extends React.Component {
       icon: 'pen',
       text: t('Edit Info'),
       action: 'edit',
+      show: this.showEdit,
       onClick: () =>
         this.trigger('resource.baseinfo.edit', {
           type: t(this.name),
@@ -154,7 +144,7 @@ export default class RoleDetail extends React.Component {
       module: this.module,
       authKey: this.authKey,
       name: getDisplayName(this.store.detail),
-      desc: this.detailDesc,
+      desc: this.store.detail.description,
       operations: this.getOperations(),
       attrs: this.getAttrs(),
       breadcrumbs: [

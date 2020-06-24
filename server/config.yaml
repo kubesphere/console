@@ -415,11 +415,11 @@ client:
     roles: [view, create, edit, delete]
 
   # preset infos
-  presetUsers: ['admin', 'sonarqube']
-  presetGlobalRoles: ['platform-admin']
-  presetClusterRoles: [cluster-admin, cluster-regular, workspaces-manager]
-  presetWorkspaceRoles: [workspace-admin, workspace-regular, workspace-viewer]
-  presetDevOpsRoles: [owner, maintainer, developer, reporter]
+  presetUsers: [admin, sonarqube]
+  presetGlobalRoles: [platform-admin, platform-regular, workspace-manager, user-manager]
+  presetClusterRoles: [cluster-admin, cluster-viewer]
+  presetWorkspaceRoles: [admin, regular, viewer, self-provisioner]
+  presetDevOpsRoles: [admin, operator, viewer]
   presetRoles: [admin, operator, viewer]
 
   # system annotations that need to be hidden for edit

@@ -63,7 +63,7 @@ export default class RoleDetail extends React.Component {
 
   get showEdit() {
     const { name } = this.props.match.params
-    return !globals.config.presetRoles.includes(name)
+    return !globals.config.presetDevOpsRoles.includes(name)
   }
 
   fetchData = () => {

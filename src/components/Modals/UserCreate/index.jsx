@@ -50,10 +50,11 @@ export default class UserCreateModal extends Component {
   }
 
   state = {
-    formTemplate: Object.assign(
-      { apiVersion: 'iam.kubesphere.io/v1alpha2', kind: 'User' },
-      get(this.props, 'detail._originData', {})
-    ),
+    formTemplate: {
+      apiVersion: 'iam.kubesphere.io/v1alpha2',
+      kind: 'User',
+      ...get(this.props, 'detail._originData', {}),
+    },
   }
 
   globalRoleStore = new RoleStore('globalroles')
@@ -99,19 +100,12 @@ export default class UserCreateModal extends Component {
     })
   }
 
-  optionRenderer = option => {
-    let desc = get(option.item, 'description')
-    if (desc && globals.config.presetClusterRoles.includes(option.item.name)) {
-      desc = t(desc)
-    }
-
-    return (
-      <div className={styles.option}>
-        <div>{option.item.name}</div>
-        <p>{desc}</p>
-      </div>
-    )
-  }
+  optionRenderer = option => (
+    <div className={styles.option}>
+      <div>{option.item.name}</div>
+      <p>{option.item.description}</p>
+    </div>
+  )
 
   render() {
     const { store, detail, ...rest } = this.props

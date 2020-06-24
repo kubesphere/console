@@ -42,7 +42,7 @@ export default class Secrets extends React.Component {
     })
   }
 
-  showAction = record => !globals.config.presetRoles.includes(record.name)
+  showAction = record => !globals.config.presetDevOpsRoles.includes(record.name)
 
   get devops() {
     return this.props.devopsStore.devops
@@ -69,6 +69,7 @@ export default class Secrets extends React.Component {
         icon: 'pen',
         text: t('Edit'),
         action: 'edit',
+        show: this.showAction,
         onClick: item =>
           trigger('resource.baseinfo.edit', {
             detail: item,
@@ -146,13 +147,6 @@ export default class Secrets extends React.Component {
         dataIndex: 'description',
         isHideable: true,
         width: '40%',
-        render: (description, record) => {
-          const name = record.name
-          if (description && globals.config.presetRoles.includes(name)) {
-            return t(description)
-          }
-          return description
-        },
       },
       {
         title: t('Created Time'),
