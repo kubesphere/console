@@ -72,6 +72,7 @@ export default class BaseInfo extends React.Component {
     this.props.store
       .checkPipelineName({
         name: value,
+        cluster: this.props.cluster,
         project_name: this.props.formTemplate.project_name,
       })
       .then(resp => {

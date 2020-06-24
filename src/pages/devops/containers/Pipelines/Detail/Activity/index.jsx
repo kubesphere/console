@@ -282,7 +282,8 @@ export default class Activity extends React.Component {
       title: t('Duration'),
       dataIndex: 'durationInMillis',
       width: '10%',
-      render: durationInMillis => formatUsedTime(durationInMillis),
+      render: durationInMillis =>
+        durationInMillis ? formatUsedTime(durationInMillis) : '-',
     },
     {
       title: t('Updated Time'),

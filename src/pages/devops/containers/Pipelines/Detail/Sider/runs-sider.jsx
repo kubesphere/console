@@ -30,23 +30,43 @@ import BaseInfo from 'core/containers/Base/Detail/BaseInfo'
 import Status from 'devops/components/Status'
 
 import RunDetailStore from 'stores/devops/run'
+import DevopsStore from 'stores/devops'
 
 class RunSider extends Base {
   constructor(props) {
     super(props)
 
     this.store = new RunDetailStore()
+    this.devopsStore = new DevopsStore()
 
     this.state = {
       showEdit: false,
       showYamlEdit: false,
     }
     this.refreshTimer = setInterval(this.refreshHandler, 4000)
+    this.init()
   }
 
   get listUrl() {
     const { workspace, project_id, cluster } = this.props.match.params
     return `/${workspace}/clusters/${cluster}/devops/${project_id}/pipelines`
+  }
+
+  init = async () => {
+    const { params } = this.props.match
+
+    await Promise.all([
+      this.devopsStore.fetchDetail(params),
+      this.props.rootStore.getRules({
+        workspace: params.workspace,
+      }),
+    ])
+
+    await this.props.rootStore.getRules({
+      cluster: params.cluster,
+      workspace: params.workspace,
+      devops: this.store.getDevops(params.project_id),
+    })
   }
 
   refreshHandler = () => {

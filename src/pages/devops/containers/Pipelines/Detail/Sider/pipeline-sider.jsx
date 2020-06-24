@@ -35,6 +35,7 @@ import Status from 'devops/components/Status'
 import PipelineStore from 'stores/devops/pipelines'
 import DeleteModal from 'components/Modals/Delete'
 import CodeQualityStore from 'stores/devops/codeQuality'
+import DevopsStore from 'stores/devops'
 
 import ScanRepositoryLogs from '../../Modals/scanRepositoryLogsModal'
 import BaseInfoModal from '../../Modals/baseInfoModal'
@@ -50,6 +51,7 @@ export default class PipelineDetail extends Base {
 
     this.store = new PipelineStore()
     this.sonarqubeStore = new CodeQualityStore()
+    this.devopsStore = new DevopsStore()
 
     const { project_id } = this.props.match.params
     this.store.setProjectId(project_id)
@@ -109,10 +111,24 @@ export default class PipelineDetail extends Base {
 
   fetchData = async () => {
     const { params } = this.props.match
+
     const result = await this.store.fetchDetail(params).catch(e => {
       if (e.status === 404) {
         this.store.notFound = true
       }
+    })
+
+    await Promise.all([
+      this.devopsStore.fetchDetail(params),
+      this.props.rootStore.getRules({
+        workspace: params.workspace,
+      }),
+    ])
+
+    await this.props.rootStore.getRules({
+      cluster: params.cluster,
+      workspace: params.workspace,
+      devops: this.store.getDevops(params.project_id),
     })
 
     if (!result) {
