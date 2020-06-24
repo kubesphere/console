@@ -77,12 +77,11 @@ export default class Services extends React.Component {
     set(
       formData,
       'conf',
-      getValue(
-        Object.assign({}, getValueObj(this.state.valuesYaml), {
-          Name: formData.name || '',
-          Description: formData.desc || '',
-        })
-      )
+      getValue({
+        ...getValueObj(this.state.valuesYaml),
+        Name: formData.name || '',
+        Description: formData.desc || '',
+      })
     )
   }
 
