@@ -53,7 +53,7 @@ export default class ImageBuilderLastRun extends React.Component {
   }
 
   getLog = async () => {
-    const { logURL, status } = this.props.runDetail
+    const { logURL, status, cluster } = this.props.runDetail
     const { logData } = this.store
     const isRunning = status === 'Building' || status === 'Unknown'
     clearTimeout(this.refreshTimer)
@@ -62,11 +62,13 @@ export default class ImageBuilderLastRun extends React.Component {
       this.refreshTimer = setTimeout(this.getLog, 4000)
       return
     }
+
     if (globals.app.hasKSModule('logging')) {
-      await this.store.getLog(logURL)
+      await this.store.getLog(logURL, cluster)
     } else {
-      await this.store.fetchPodsLogs(logURL)
+      await this.store.fetchPodsLogs(logURL, cluster)
     }
+
     this.handleScrollToBottom()
     if (logData.hasMore) {
       this.getLog()
@@ -163,7 +165,6 @@ export default class ImageBuilderLastRun extends React.Component {
   render() {
     const { count, status, imageName, startTime, name } = this.props.runDetail
     const { loading } = this.props
-
     if (loading) {
       return null
     }

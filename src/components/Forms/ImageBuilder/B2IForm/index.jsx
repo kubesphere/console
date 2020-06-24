@@ -64,9 +64,7 @@ export default class S2IForm extends React.Component {
   }
 
   get namespace() {
-    const { formTemplate } = this.props
-
-    return get(formTemplate, `${this.prefix}metadata.namespace`)
+    return this.props.namespace
   }
 
   fetchData = async () => {
@@ -165,7 +163,6 @@ export default class S2IForm extends React.Component {
 
   render() {
     const { formTemplate, formRef, mode, prefix } = this.props
-
     return (
       <Form ref={formRef} data={formTemplate}>
         <Form.Item
@@ -176,6 +173,7 @@ export default class S2IForm extends React.Component {
             name={`${this.prefix}spec.config.sourceUrl`}
             namespace={this.namespace}
             formTemplate={prefix ? formTemplate[prefix] : formTemplate}
+            cluster={this.props.cluster}
           />
         </Form.Item>
         <TemplateSelect
