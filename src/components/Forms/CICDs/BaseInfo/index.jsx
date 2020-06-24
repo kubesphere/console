@@ -78,7 +78,7 @@ export default class BaseInfo extends React.Component {
         if (resp.exist) {
           return callback({
             field: rule.field,
-            message: t('This name has exsited.'),
+            message: t('This name has existed.'),
           })
         }
         callback()

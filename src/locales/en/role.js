@@ -189,7 +189,7 @@ export default {
   ROLE_PROJECTS_JOIN_TIP:
     'Enter username or email address to invite users to the project',
 
-  ROLE_PLATFORM_ADMIN: 'Platform administrator who can manages all resources in the platform.',
+  ROLE_PLATFORM_ADMIN: 'Platform administrator who can manage all resources in the platform.',
   ROLE_PLATFORM_REGULAR:
     'Normal user in the platform who has no access to any resources before joining the workspace or cluster.',
   ROLE_USER_MANAGER: 'User manager in the platform who manages all users.',
