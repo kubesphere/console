@@ -232,24 +232,30 @@ export default {
 
   'Unable to delete preset role': '无法删除预置角色',
 
-  'Allows cluster-admin access to perform any action on any resource. It gives full control over all resources in the cluster and in all namespaces.':
-    '集群管理员，可以管理集群中所有的资源。',
-  'Normal user in the cluster; there is no permission for any resource operations until the user with this role is invited to a workspace.':
-    '集群中的普通用户，在被邀请加入企业空间之前没有任何资源操作权限。',
-  'Allows workspace-manager access to manage all the workspaces in the cluster.':
-    '集群中企业空间管理员，可以管理集群中所有的企业空间。',
-  'Allows admin access to perform any action on any resource. It gives full control over all resources in the workspace.':
-    '企业空间管理员，可以管理企业空间下所有的资源。',
-  'Normal user in the workspace who can create namespace and DevOps project.':
-    '企业空间普通成员，可以在企业空间下创建工程和项目。',
-  'Allows viewer access to view all resources in the workspace.':
-    '企业空间的观察者，可以查看企业空间下所有的资源信息。',
-  'Allows admin access to perform any action on any resource. It gives full control over all resources in the namespace.':
-    '	项目管理员，可以管理项目下所有的资源。',
-  'The maintainer of the namespace who can manage resources other than users and roles in the namespace.':
-    '项目维护者，可以管理项目下除用户和角色之外的资源。',
-  'Allows viewer access to view all resources in the namespace.':
-    '项目观察者，可以查看项目下所有的资源。',
+  ROLE_PLATFORM_ADMIN: '平台管理员, 可以管理平台内的所有资源.',
+  ROLE_PLATFORM_REGULAR:
+    '平台普通用户, 在被邀请加入企业空间或集群之前没有任何资源操作权限。',
+  ROLE_USER_MANAGER: '平台用户管理员, 管理平台所有用户',
+  ROLE_WORKSPACE_MANAGER: '平台企业空间管理员, 管理平台所有企业空间',
+
+  ROLE_CLUSTER_ADMIN: '集群管理员，可以管理集群中所有的资源。',
+  ROLE_CLUSTER_VIEWER: '集群观察者，可以查看集群下所有的资源。',
+
+  ROLE_WORKSPACE_ADMIN: '企业空间管理员，可以管理企业空间下所有的资源。',
+  ROLE_WORKSPACE_REGULAR:
+    '企业空间普通成员，可以在企业空间下创建 DevOps 工程和项目。',
+  ROLE_WORKSPACE_VIEWER: '企业空间的观察者，可以查看企业空间下所有的资源信息。',
+  ROLE_WORKSPACE_SELF_PROVISIONER:
+    '企业空间普通成员，无法创建 DevOps 工程和项目。',
+
+  ROLE_PROJECT_ADMIN: '项目管理员，可以管理项目下所有的资源。',
+  ROLE_PROJECT_OPERATOR: '项目维护者，可以管理项目下除用户和角色之外的资源。',
+  ROLE_PROJECT_VIEWER: '项目观察者，可以查看项目下所有的资源。',
+
+  ROLE_DEVOPS_ADMIN: 'DevOps 工程管理员, 可以管理 DevOps 工程下所有的资源',
+  ROLE_DEVOPS_OPERATOR:
+    'DevOps 工程普通成员, 可以在 DevOps 工程下创建流水线凭证等.',
+  ROLE_DEVOPS_VIEWER: 'DevOps 工程观察者，可以查看 DevOps 工程下所有的资源。',
 
   ACCOUNT_ROLE_DESC: '账号角色可以定义平台内的账号拥有的权限',
   ACCOUNT_ROLE_CREATE_DESC: '账号角色可以定义平台内的账号拥有的权限',

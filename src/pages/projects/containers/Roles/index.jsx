@@ -33,7 +33,7 @@ import RoleStore from 'stores/role'
   module: 'roles',
   name: 'Project Role',
 })
-export default class Secrets extends React.Component {
+export default class Roles extends React.Component {
   componentDidMount() {
     this.props.store.fetchRoleTemplates(this.props.match.params)
   }
@@ -49,6 +49,7 @@ export default class Secrets extends React.Component {
         icon: 'pen',
         text: t('Edit'),
         action: 'edit',
+        show: this.showAction,
         onClick: item =>
           trigger('resource.baseinfo.edit', {
             detail: item,
@@ -125,13 +126,6 @@ export default class Secrets extends React.Component {
         dataIndex: 'description',
         isHideable: true,
         width: '40%',
-        render: (description, record) => {
-          const name = record.name
-          if (description && globals.config.presetRoles.includes(name)) {
-            return t(description)
-          }
-          return description
-        },
       },
       {
         title: t('Created Time'),

@@ -19,11 +19,10 @@
 import { isEmpty, get } from 'lodash'
 import { action } from 'mobx'
 import { Notify } from 'components/Base'
+import { LIST_DEFAULT_ORDER } from 'utils/constants'
 
 import Base from 'stores/base'
 import List from 'stores/base.list'
-
-import { LIST_DEFAULT_ORDER } from 'utils/constants'
 
 export default class RoleStore extends Base {
   roleTemplates = new List()
@@ -97,7 +96,7 @@ export default class RoleStore extends Base {
     const data = result.items.map(item => ({
       cluster,
       workspace,
-      ...this.mapper(item),
+      ...this.mapper(item, devops ? 'devopsroles' : this.module),
     }))
 
     this.list.update({

@@ -62,17 +62,6 @@ export default class RoleDetail extends React.Component {
     return this.props.rootStore.routing
   }
 
-  get detailDesc() {
-    const name = this.store.detail.name
-    const desc = get(this.store.detail, 'description')
-
-    if (globals.config.presetClusterRoles.includes(name)) {
-      return t(desc)
-    }
-
-    return desc
-  }
-
   get showEdit() {
     const { name } = this.props.match.params
     return !globals.config.presetClusterRoles.includes(name)
@@ -88,6 +77,7 @@ export default class RoleDetail extends React.Component {
       icon: 'pen',
       text: t('Edit Info'),
       action: 'edit',
+      show: this.showEdit,
       onClick: () =>
         this.trigger('resource.baseinfo.edit', {
           type: t(this.name),
@@ -156,7 +146,7 @@ export default class RoleDetail extends React.Component {
       module: this.module,
       authKey: this.authKey,
       name: get(this.store.detail, 'name'),
-      desc: this.detailDesc,
+      desc: this.store.detail.description,
       operations: this.getOperations(),
       attrs: this.getAttrs(),
       breadcrumbs: [
