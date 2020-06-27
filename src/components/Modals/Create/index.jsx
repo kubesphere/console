@@ -68,6 +68,7 @@ export default class CreateModal extends React.Component {
         this.setState({
           currentStep: 0,
           isCodeMode: this.props.onlyCode || false,
+          formTemplate: cloneDeep(this.props.formTemplate),
         })
       }
     }
