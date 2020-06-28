@@ -40,9 +40,9 @@ export default {
   CONFIG_FILE_DESC: 'Application Default Profile',
   LICENSE_FILE_DESC: 'Protocol in Text Format',
   LOCALE_EN__FILE_DESC:
-    'English Translation for the Application',
+    'English Translation for the Application Configuration',
   LOCALE_ZH_FILE_DESC:
-    'Chinese Translation for the Application',
+    'Chinese Translation for the Application Configuration',
 
   CHART_FILE_DESC:
     'Yaml file, used to describe the basic information of' +
