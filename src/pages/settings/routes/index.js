@@ -22,9 +22,6 @@ import { getIndexRoute } from 'utils/router.config'
 import Layout from '../containers/layout'
 import BaseInfo from '../containers/BaseInfo'
 import ThirdPartyLogin from '../containers/ThirdPartyLogin'
-import CollectionLayout from '../containers/LogCollection'
-import Mail from '../containers/MailServices'
-import logCollectionRoutes from './logCollection'
 
 const PATH = '/settings'
 
@@ -32,7 +29,6 @@ const navs = globals.app.getPlatformSettingsNavs()
 const indexRoute = get(navs, '[0].items[0].name', 'nodes')
 
 export default [
-  ...logCollectionRoutes,
   {
     path: PATH,
     component: Layout,
@@ -44,14 +40,6 @@ export default [
       {
         path: `${PATH}/third-login`,
         component: ThirdPartyLogin,
-      },
-      {
-        path: `${PATH}/mail-server`,
-        component: Mail,
-      },
-      {
-        path: `${PATH}/log-collection`,
-        component: CollectionLayout,
       },
       getIndexRoute({ path: PATH, to: `${PATH}/${indexRoute}`, exact: true }),
       getIndexRoute({ path: '*', to: '/404', exact: true }),

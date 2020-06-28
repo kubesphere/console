@@ -192,7 +192,7 @@ export default class ContainerDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('Pods'),
+          label: t('Container'),
           url: this.listUrl,
         },
       ],

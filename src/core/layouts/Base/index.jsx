@@ -30,7 +30,7 @@ import GlobalSVG from 'components/SVG'
 
 import styles from './index.scss'
 
-const appStoreScrollThreshold = 150
+const appStoreScrollThreshold = 10
 
 @inject('rootStore')
 @observer

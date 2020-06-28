@@ -28,16 +28,13 @@ export default {
     on({ store, success, ...props }) {
       const modal = Modal.open({
         onOk: async ({ enabled }) => {
-          await store.patch(
-            { name: store.detail.name },
-            {
-              metadata: {
-                labels: {
-                  'logging.kubesphere.io/enabled': enabled ? 'true' : 'false',
-                },
+          await store.patch(store.detail, {
+            metadata: {
+              labels: {
+                'logging.kubesphere.io/enabled': enabled ? 'true' : 'false',
               },
-            }
-          )
+            },
+          })
           Modal.close(modal)
           success && success()
           Notify.success({ content: `${t('Updated Successfully')}!` })
@@ -65,14 +62,11 @@ export default {
 
       const modal = Modal.open({
         onOk: async params => {
-          await store.patch(
-            { name: store.detail.name },
-            {
-              spec: {
-                [type]: params,
-              },
-            }
-          )
+          await store.patch(store.detail, {
+            spec: {
+              [type]: params,
+            },
+          })
           Modal.close(modal)
           success && success()
           Notify.success({ content: `${t('Updated Successfully')}!` })
@@ -81,8 +75,9 @@ export default {
         data,
         width: 691,
         icon: 'timed-task',
-        title: t('Log Collection'),
+        title: t('Log Collections'),
         children: <EditForm />,
+        store,
         ...props,
       })
     },

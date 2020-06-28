@@ -38,8 +38,8 @@ export default class outputStore extends Base {
     return 'apis/logging.kubesphere.io/v1alpha2'
   }
 
-  getDetailUrl = ({ name }) =>
-    `${this.getListUrl({ namespace: KS_LOG_NAMESPACE })}/${name}`
+  getDetailUrl = ({ name, cluster }) =>
+    `${this.getListUrl({ namespace: KS_LOG_NAMESPACE, cluster })}/${name}`
 
   fetch(params) {
     this.fetchListByK8s({
@@ -48,16 +48,17 @@ export default class outputStore extends Base {
     })
   }
 
-  create({ Name, enabled = true, ...params }) {
+  create({ Name, enabled = true, cluster, component, ...params }) {
     const MATCH = 'kube.*'
     const createParams = {
       apiVersion: 'logging.kubesphere.io/v1alpha2',
       kind: 'Output',
       metadata: {
-        name: Name,
+        name: `${Name}-${component}`,
         namespace: KS_LOG_NAMESPACE,
         labels: {
           'logging.kubesphere.io/enabled': `${enabled}`,
+          'logging.kubesphere.io/component': component,
         },
       },
       spec: {
@@ -65,6 +66,6 @@ export default class outputStore extends Base {
         [Name]: { ...collectionDefaultSetting[Name], ...params },
       },
     }
-    return super.create(createParams)
+    return super.create(createParams, { cluster, namespace: KS_LOG_NAMESPACE })
   }
 }

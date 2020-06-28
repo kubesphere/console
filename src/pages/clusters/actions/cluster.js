@@ -16,10 +16,9 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { set, uniq, cloneDeep } from 'lodash'
+import { set, uniq } from 'lodash'
 import { Modal, Notify } from 'components/Base'
 import ClusterVisibility from 'clusters/components/Modals/ClusterVisibility'
-import FORM_TEMLATES from 'utils/form.templates'
 
 import WorkspaceStore from 'stores/workspace'
 
@@ -50,26 +49,19 @@ export default {
           if (data.public === false) {
             if (data.addWorkspaces) {
               data.addWorkspaces.forEach(item => {
-                const formData = {
-                  ...FORM_TEMLATES.workspaces(),
-                  ...cloneDeep(item._originData),
-                }
+                const formData = {}
                 const clusters = item.clusters || []
                 set(
                   formData,
                   'spec.placement.clusters',
                   uniq([...clusters, cluster.name]).map(name => ({ name }))
                 )
-                set(formData, 'metadata.resourceVersion', item.resourceVersion)
-                requests.push(workspaceStore.update(item, formData))
+                requests.push(workspaceStore.patch(item, formData))
               })
             }
             if (data.deleteWorkspaces) {
               data.deleteWorkspaces.forEach(item => {
-                const formData = {
-                  ...FORM_TEMLATES.workspaces(),
-                  ...cloneDeep(item._originData),
-                }
+                const formData = {}
                 const clusters = item.clusters || []
                 set(
                   formData,
@@ -78,8 +70,7 @@ export default {
                     .filter(name => name !== cluster.name)
                     .map(name => ({ name }))
                 )
-                set(formData, 'metadata.resourceVersion', item.resourceVersion)
-                requests.push(workspaceStore.update(item, formData))
+                requests.push(workspaceStore.patch(item, formData))
               })
             }
           }

@@ -21,13 +21,14 @@ import { observer, inject } from 'mobx-react'
 import { computed } from 'mobx'
 import classnames from 'classnames'
 import { get } from 'lodash'
-import Moment from 'moment-mini'
 
 import { Link } from 'react-router-dom'
 import { Loading, Icon } from '@pitrix/lego-ui'
-import { Button, Banner } from 'components/Base'
+import { Button, Text, Panel } from 'components/Base'
+import Banner from 'components/Cards/Banner'
 import CreateLogCollectionModal from 'components/Modals/LogCollectionCreate'
 import OutputStore from 'stores/logging/collection/output'
+import { getLocalTime } from 'utils'
 
 import collectionConfig from './config'
 
@@ -39,7 +40,7 @@ export default class LogCollection extends React.Component {
   store = new OutputStore()
 
   state = {
-    createModelVisible: false,
+    showCreate: false,
   }
 
   @computed
@@ -47,57 +48,78 @@ export default class LogCollection extends React.Component {
     return this.store.list.data
   }
 
+  get component() {
+    return this.props.match.params.component
+  }
+
+  get cluster() {
+    return this.props.match.params.cluster
+  }
+
   componentDidMount() {
     this.refresh()
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.component !== prevProps.match.params.component) {
+      this.refresh()
+    }
+  }
+
   refresh = () => {
     this.store.fetch({
-      labelSelector: 'logging.kubesphere.io/component=logging',
+      labelSelector: `logging.kubesphere.io/component=${this.component}`,
+      cluster: this.props.match.params.cluster,
     })
+  }
+
+  handleTabChange = component => {
+    this.props.rootStore.routing.push(
+      `/clusters/${this.cluster}/log-collections/${component}`
+    )
+  }
+
+  get tabs() {
+    return {
+      value: this.component,
+      onChange: this.handleTabChange,
+      options: [
+        {
+          value: 'logging',
+          label: t('Logging'),
+        },
+        {
+          value: 'events',
+          label: t('Events'),
+        },
+        {
+          value: 'auditing',
+          label: t('Auditing'),
+        },
+      ],
+    }
   }
 
   showCreateModal = () => {
     this.setState({
-      createModelVisible: true,
+      showCreate: true,
     })
   }
 
   hideCreateModal = () => {
     this.setState({
-      createModelVisible: false,
+      showCreate: false,
     })
   }
 
   createCollection = async params => {
-    await this.store.create(params)
+    await this.store.create({
+      ...params,
+      cluster: this.cluster,
+      component: this.component,
+    })
     this.hideCreateModal()
     this.refresh()
-  }
-
-  render() {
-    return (
-      <div className={styles.wrapper}>
-        <div className={styles.header}>
-          <Banner
-            type="purple"
-            icon="file"
-            rightIcon="/assets/banner-icon-1.svg"
-            name={t('Log Collection')}
-            desc={t('LOG_COLLECTION_DESC')}
-            className={styles.banner}
-          />
-          <div className={styles.toolbar}>
-            <Button type="flat" onClick={this.refresh}>
-              <Icon name="refresh" />
-            </Button>
-            {this.renderCreateButton()}
-          </div>
-        </div>
-        {this.renderCollection()}
-        {this.renderModal()}
-      </div>
-    )
   }
 
   renderCreateButton() {
@@ -113,13 +135,13 @@ export default class LogCollection extends React.Component {
   }
 
   renderModal() {
-    const { createModelVisible } = this.state
+    const { showCreate } = this.state
     return (
-      createModelVisible && (
+      showCreate && (
         <CreateLogCollectionModal
-          title={t('Log Collector')}
+          title={`${t('Log Collector')}(${t(this.component)})`}
           store={this.store}
-          visible={createModelVisible}
+          visible={showCreate}
           isSubmitting={this.store.isSubmitting}
           onCancel={this.hideCreateModal}
           onOk={this.createCollection}
@@ -148,36 +170,29 @@ export default class LogCollection extends React.Component {
     const address = collection.address
 
     return (
-      <div
+      <Link
         key={collection.uid}
-        className={classnames(styles.pane, styles.collection)}
+        to={`${this.props.match.url}/${collection.name}`}
       >
-        <Link to={`/settings/log-collection/${collection.name}`}>
-          <div className={styles.collectionSummery}>
-            <div>
-              <ICON width={40} height={40} />
-            </div>
-            <div className={styles.dl}>
-              <h3>{title}</h3>
-              <p>
-                {t('Address')}: {address}
-              </p>
-            </div>
-            <div className={styles.dl}>
-              <h3>{collection.enabled ? t('Collecting') : t('Close')}</h3>
-              <p>{t('Status')}</p>
-            </div>
-            <div className={styles.dl}>
-              <h3>
-                {Moment(collection.creationTimestamp).format(
-                  'YYYY-MM-DD HH:mm:ss'
-                )}
-              </h3>
-              <p>{t('Created Time')}</p>
-            </div>
-          </div>
-        </Link>
-      </div>
+        <Panel className={styles.item}>
+          <ICON width={40} height={40} />
+          <Text
+            title={<span className={styles.title}>{title}</span>}
+            description={`${t('Address')}: ${address}`}
+          />
+          <Text
+            title={collection.enabled ? t('Collecting') : t('Close')}
+            description={t('Status')}
+          />
+          <Text title={t(collection.component)} description={t('Type')} />
+          <Text
+            title={getLocalTime(collection.creationTimestamp).format(
+              'YYYY-MM-DD HH:mm:ss'
+            )}
+            description={t('Created Time')}
+          />
+        </Panel>
+      </Link>
     )
   }
 
@@ -187,6 +202,30 @@ export default class LogCollection extends React.Component {
         <Icon size={40} name="file" />
         <p>{t('EMPTY_LOG_COLLECTIONS')}</p>
         {this.renderCreateButton()}
+      </div>
+    )
+  }
+
+  render() {
+    return (
+      <div className={styles.wrapper}>
+        <Banner
+          className={styles.header}
+          icon="file"
+          title={t('Log Collections')}
+          description={t('LOG_COLLECTION_DESC')}
+          tabs={this.tabs}
+          extra={
+            <div className={styles.extra}>
+              <Button type="flat" onClick={this.refresh}>
+                <Icon name="refresh" />
+              </Button>
+              {this.renderCreateButton()}
+            </div>
+          }
+        />
+        {this.renderCollection()}
+        {this.renderModal()}
       </div>
     )
   }

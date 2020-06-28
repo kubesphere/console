@@ -115,7 +115,7 @@ export default class Detail extends React.PureComponent {
       className: styles.timecol,
     },
     {
-      thead: t('category'),
+      thead: t('Category'),
       key: 'type',
       hidden: false,
       content: ({ type }) => (
@@ -150,14 +150,14 @@ export default class Detail extends React.PureComponent {
       className: styles.kindcol,
     },
     {
-      thead: t('reason'),
+      thead: t('Reason'),
       key: 'reason',
       hidden: false,
       content: ({ reason }) => reason,
       className: styles.reasoncol,
     },
     {
-      thead: t('message'),
+      thead: t('Message'),
       key: 'message',
       hidden: false,
       content: this.renderHightLightMatchTd,

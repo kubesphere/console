@@ -27,7 +27,7 @@ export default {
   TOTAL_COLLECTIONS: 'Total {num} log collectors',
   TOOLBOX_SHIFT_TIPS:
     ' 👻 You can open the page in a new window with "SHIFT + LEFT CLICK".',
-  
+
   LOG_COLLECTION_DESC:
     'The system will collect the stdout and stderr logs from each container and send them to one or more target services.',
   LOG_COLLECTION_ENABLE_TIPS:
@@ -108,7 +108,7 @@ export default {
     'You can view related event information according to the status code.',
   'Operation Account Auditing Query Tip':
     'You can view related event information according to the operation account.',
-  'sourceIP Auditing Query Tip':
+  'Source IP Auditing Query Tip':
     'You can view related event information according to the source IP.',
   TOTAL_AUDITING_TODAY:
     'A total of <span class={className}> {auditing} </span> auditing logs were collected today.',

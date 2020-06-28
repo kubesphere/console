@@ -951,6 +951,7 @@ const LogOutPutMapper = item => {
     enabled:
       get(metadata, 'labels["logging.kubesphere.io/enabled"]') === 'true',
     config: spec[type],
+    component: get(metadata, 'labels["logging.kubesphere.io/component"]'),
     _originData: item,
   }
 }

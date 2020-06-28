@@ -70,7 +70,7 @@ class PodsResourceStatus extends React.Component {
         volumes={volumes}
         containers={containers}
         loading={this.store.isLoading}
-        prefix={`/${
+        prefix={`${
           workspace ? `/${workspace}` : ''
         }/clusters/${cluster}/projects/${namespace}`}
       />
