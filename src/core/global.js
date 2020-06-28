@@ -151,10 +151,6 @@ export default class GlobalValue {
       return false
     }
 
-    if (item.singleClusterModule && !globals.app.isMultiCluster) {
-      item.clusterModule = item.singleClusterModule
-    }
-
     if (
       item.clusterModule &&
       !this.hasClusterModule(item.cluster, item.clusterModule)

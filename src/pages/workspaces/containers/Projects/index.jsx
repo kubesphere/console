@@ -61,6 +61,14 @@ export default class Projects extends React.Component {
     }
   }
 
+  get showFederated() {
+    const { workspace } = this.props.match.params
+    return (
+      globals.app.isMultiCluster &&
+      globals.app.hasPermission({ workspace, module: 'federatedprojects' })
+    )
+  }
+
   @computed
   get clusters() {
     return this.workspaceStore.clusters.data.map(item => ({
@@ -214,10 +222,7 @@ export default class Projects extends React.Component {
         getData={this.getData}
         module="namespaces"
       >
-        <Banner
-          {...bannerProps}
-          tabs={globals.app.isMultiCluster ? this.tabs : {}}
-        />
+        <Banner {...bannerProps} tabs={this.showFederated ? this.tabs : {}} />
         <Table
           {...tableProps}
           itemActions={this.itemActions}

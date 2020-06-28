@@ -18,6 +18,7 @@
 
 import React, { Component } from 'react'
 import { inject, observer, Provider } from 'mobx-react'
+import { get, set } from 'lodash'
 import { Loading } from '@pitrix/lego-ui'
 
 import { renderRoutes } from 'utils/router.config'
@@ -51,6 +52,14 @@ class WorkspaceLayout extends Component {
       this.store.fetchClusters({ ...params, limit: -1 }),
       this.props.rootStore.getRules(params),
     ])
+
+    if (globals.app.isMultiCluster) {
+      set(
+        globals.ksConfig,
+        'devops',
+        this.store.clusters.data.some(cluster => get(cluster, 'configz.devops'))
+      )
+    }
 
     globals.app.cacheHistory(this.props.match.url, {
       type: 'Workspace',
