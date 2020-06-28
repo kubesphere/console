@@ -17,8 +17,8 @@
  */
 
 import React from 'react'
-import { isUndefined } from 'lodash'
 import { computed } from 'mobx'
+import { get } from 'lodash'
 
 import { Avatar, Status } from 'components/Base'
 import Banner from 'components/Cards/Banner'
@@ -26,9 +26,16 @@ import Table from 'workspaces/components/ResourceTable'
 import withList, { ListPage } from 'components/HOCs/withList'
 
 import { getDisplayName } from 'utils'
-import { getSuitableValue } from 'utils/monitoring'
+import { getSuitableValue, getValueByUnit } from 'utils/monitoring'
 
 import ProjectStore from 'stores/project'
+import ProjectMonitorStore from 'stores/monitoring/project'
+
+const MetricTypes = {
+  cpu: 'namespace_cpu_usage',
+  memory: 'namespace_memory_usage_wo_cache',
+  pod: 'namespace_pod_count',
+}
 
 @withList({
   store: new ProjectStore(),
@@ -38,6 +45,8 @@ import ProjectStore from 'stores/project'
 })
 export default class Projects extends React.Component {
   workspaceStore = this.props.workspaceStore
+
+  monitoringStore = new ProjectMonitorStore()
 
   handleTabChange = value => {
     const { workspace } = this.props.match.params
@@ -104,6 +113,13 @@ export default class Projects extends React.Component {
       ...params,
       labelSelector: 'kubefed.io/managed!=true',
     })
+    await this.monitoringStore.fetchMetrics({
+      cluster: this.workspaceStore.cluster,
+      ...this.props.match.params,
+      resources: store.list.data.map(item => item.name),
+      metrics: Object.values(MetricTypes),
+      last: true,
+    })
     store.list.silent = false
   }
 
@@ -140,6 +156,15 @@ export default class Projects extends React.Component {
           }),
       },
     ]
+  }
+
+  getLastValue = (record, type, unit) => {
+    const metricsData = this.monitoringStore.data
+    const result = get(metricsData, `${type}.data.result`) || []
+    const metrics = result.find(
+      item => get(item, 'metric.namespace') === record.name
+    )
+    return getValueByUnit(get(metrics, 'value[1]', 0), unit)
   }
 
   getCheckboxProps = record => ({
@@ -180,21 +205,31 @@ export default class Projects extends React.Component {
       },
       {
         title: t('CPU Usage'),
-        dataIndex: 'annotations.namespace_cpu_usage',
+        key: 'namespace_cpu_usage',
         isHideable: true,
-        render: count => getSuitableValue(count, 'cpu', '-'),
+        render: record =>
+          getSuitableValue(
+            this.getLastValue(record, MetricTypes.cpu),
+            'cpu',
+            '-'
+          ),
       },
       {
         title: t('Memory Usage'),
-        dataIndex: 'annotations.namespace_memory_usage_wo_cache',
+        key: 'namespace_memory_usage_wo_cache',
         isHideable: true,
-        render: count => getSuitableValue(count, 'memory', '-'),
+        render: record =>
+          getSuitableValue(
+            this.getLastValue(record, MetricTypes.memory),
+            'memory',
+            '-'
+          ),
       },
       {
         title: t('Pod Count'),
-        dataIndex: 'annotations.namespace_pod_count',
+        key: 'namespace_pod_count',
         isHideable: true,
-        render: count => (!isUndefined(count) ? count : 0),
+        render: record => this.getLastValue(record, MetricTypes.pod),
       },
     ]
   }
@@ -215,6 +250,8 @@ export default class Projects extends React.Component {
       },
     }
 
+    const isLoadingMonitor = this.monitoringStore.isLoading
+
     return (
       <ListPage
         {...this.props}
@@ -230,7 +267,9 @@ export default class Projects extends React.Component {
           onCreate={this.showCreate}
           searchType="name"
           {...this.clusterProps}
+          monitorLoading={isLoadingMonitor}
           getCheckboxProps={this.getCheckboxProps}
+          alwaysUpdate
         />
       </ListPage>
     )

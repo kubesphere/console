@@ -17,7 +17,7 @@
  */
 
 import React from 'react'
-import { isUndefined } from 'lodash'
+import { get } from 'lodash'
 
 import { Avatar, Status } from 'components/Base'
 import Banner from 'components/Cards/Banner'
@@ -25,9 +25,16 @@ import Table from 'components/Tables/List'
 import withList, { ListPage } from 'components/HOCs/withList'
 
 import { getDisplayName } from 'utils'
-import { getSuitableValue } from 'utils/monitoring'
+import { getSuitableValue, getValueByUnit } from 'utils/monitoring'
 
 import ProjectStore from 'stores/project'
+import ProjectMonitorStore from 'stores/monitoring/project'
+
+const MetricTypes = {
+  cpu: 'namespace_cpu_usage',
+  memory: 'namespace_memory_usage_wo_cache',
+  pod: 'namespace_pod_count',
+}
 
 @withList({
   store: new ProjectStore(),
@@ -35,6 +42,8 @@ import ProjectStore from 'stores/project'
   module: 'projects',
 })
 export default class Projects extends React.Component {
+  monitoringStore = new ProjectMonitorStore()
+
   get itemActions() {
     const { trigger, routing } = this.props
     return [
@@ -105,12 +114,28 @@ export default class Projects extends React.Component {
     params.type = params.type || 'user'
     this.type = params.type
 
-    silent && (this.props.store.list.silent = true)
-    await this.props.store.fetchList({
+    const { store } = this.props
+    silent && (store.list.silent = true)
+    await store.fetchList({
       ...this.props.match.params,
       ...params,
     })
-    this.props.store.list.silent = false
+    await this.monitoringStore.fetchMetrics({
+      ...this.props.match.params,
+      resources: store.list.data.map(item => item.name),
+      metrics: Object.values(MetricTypes),
+      last: true,
+    })
+    store.list.silent = false
+  }
+
+  getLastValue = (record, type, unit) => {
+    const metricsData = this.monitoringStore.data
+    const result = get(metricsData, `${type}.data.result`) || []
+    const metrics = result.find(
+      item => get(item, 'metric.namespace') === record.name
+    )
+    return getValueByUnit(get(metrics, 'value[1]', 0), unit)
   }
 
   getColumns = () => {
@@ -146,21 +171,31 @@ export default class Projects extends React.Component {
       },
       {
         title: t('CPU Usage'),
-        dataIndex: 'annotations.namespace_cpu_usage',
+        key: 'namespace_cpu_usage',
         isHideable: true,
-        render: count => getSuitableValue(count, 'cpu', '-'),
+        render: record =>
+          getSuitableValue(
+            this.getLastValue(record, MetricTypes.cpu),
+            'cpu',
+            '-'
+          ),
       },
       {
         title: t('Memory Usage'),
-        dataIndex: 'annotations.namespace_memory_usage_wo_cache',
+        key: 'namespace_memory_usage_wo_cache',
         isHideable: true,
-        render: count => getSuitableValue(count, 'memory', '-'),
+        render: record =>
+          getSuitableValue(
+            this.getLastValue(record, MetricTypes.memory),
+            'memory',
+            '-'
+          ),
       },
       {
         title: t('Pod Count'),
-        dataIndex: 'annotations.namespace_pod_count',
+        key: 'namespace_pod_count',
         isHideable: true,
-        render: count => (!isUndefined(count) ? count : 0),
+        render: record => this.getLastValue(record, MetricTypes.pod),
       },
     ]
   }
@@ -173,6 +208,8 @@ export default class Projects extends React.Component {
 
   render() {
     const { bannerProps, tableProps } = this.props
+    const isLoadingMonitor = this.monitoringStore.isLoading
+
     return (
       <ListPage {...this.props} getData={this.getData} module="namespaces">
         <Banner {...bannerProps} tabs={this.tabs} />
@@ -181,7 +218,9 @@ export default class Projects extends React.Component {
           itemActions={this.itemActions}
           columns={this.getColumns()}
           onCreate={this.showCreate}
+          monitorLoading={isLoadingMonitor}
           searchType="name"
+          alwaysUpdate
         />
       </ListPage>
     )
