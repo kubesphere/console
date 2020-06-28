@@ -119,7 +119,7 @@ export default {
   'Image Size': '镜像大小',
   'File Size': '文件大小',
   'Published Time': '发布时间',
-  'file has not uploaded': '文件还未上传',
+  'The file has not been uploaded.': '文件还未上传',
   'Upload file failed': '文件上传失败',
   binary: '二进制文件',
   'Build image for service x': '为 {service} 服务构建镜像',

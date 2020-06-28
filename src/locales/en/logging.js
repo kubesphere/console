@@ -53,7 +53,7 @@ export default {
   'Container Log Query Tip':
     'You can view related log information according to the container name.',
   'Pod Log Query Tip':
-    'You can view related log information according to the pod name',
+    'You can view related log information according to the pod name.',
   'Search Events by': 'Search events by {field}',
   'Workspace Event Query Tip':
     'You can view related event information according to the workspace.',

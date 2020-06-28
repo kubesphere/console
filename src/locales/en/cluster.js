@@ -37,7 +37,7 @@ export default {
   CLUSTER_TAG_DESC:
     'To indicate what the cluster is used for, such as a production environment, testing environment or demo environment',
   CLUSTER_PROVIDER_DESC: 'The cluster infrastructure provider',
-  CLUSTER_CONNECT_METHOD_DESC: 'Directly connect to the cluster or use a agent',
+  CLUSTER_CONNECT_METHOD_DESC: 'Directly connect to the cluster or use an agent',
 
   CONNTECT_DIRECT: 'Direct connection to Kubernetes cluster',
   CONNTECT_PROXY: 'Cluster connection agent',
