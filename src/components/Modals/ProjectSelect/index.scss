@@ -36,6 +36,21 @@
   }
 }
 
-.cluster {
-  width: 120px;
+.searchWrapper {
+  position: relative;
+  .cluster {
+    @include vertical-center;
+    left: 12px;
+    z-index: 5;
+  }
+
+  .search {
+    :global .input {
+      opacity: 1;
+      padding-left: 124px;
+      background-color: #ffffff;
+      border-color: #79879c !important;
+      box-shadow: none !important;
+    }
+  }
 }

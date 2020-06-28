@@ -20,7 +20,7 @@ import { get } from 'lodash'
 import React from 'react'
 import { toJS } from 'mobx'
 import { inject, observer } from 'mobx-react'
-import { Columns, Column, Select } from '@pitrix/lego-ui'
+import { Columns, Column } from '@pitrix/lego-ui'
 import { Button, Modal, Search, RadioGroup, ScrollLoad } from 'components/Base'
 
 import WorkspaceStore from 'stores/workspace'
@@ -29,6 +29,7 @@ import FederatedStore from 'stores/federated'
 import DevOpsStore from 'stores/devops'
 
 import Card from './Card'
+import ClusterSelect from './ClusterSelect'
 
 import styles from './index.scss'
 
@@ -52,6 +53,7 @@ export default class ProjectSelectModal extends React.Component {
     this.state = {
       type: props.defaultType || 'projects',
       cluster: props.cluster || '',
+      search: '',
     }
   }
 
@@ -124,8 +126,8 @@ export default class ProjectSelectModal extends React.Component {
 
   fetchData = query => {
     const { workspace } = this.props
-    const { cluster } = this.state
-    const params = { cluster, workspace, ...query }
+    const { cluster, search } = this.state
+    const params = { cluster, workspace, name: search, ...query }
 
     if (this.state.type === 'federatedprojects') {
       params.labelSelector = `kubesphere.io/workspace=${workspace}`
@@ -137,25 +139,19 @@ export default class ProjectSelectModal extends React.Component {
   }
 
   handleSearch = name => {
-    this.fetchData({ name })
+    this.setState({ search: name }, this.fetchData)
   }
 
-  handleRefresh = () => {
-    this.fetchData()
-  }
+  handleRefresh = () => this.fetchData
 
   handleTypeChange = type => {
     if (this.state.type !== type) {
-      this.setState({ type }, () => {
-        this.fetchData({ name: '' })
-      })
+      this.setState({ type, search: '' }, this.fetchData)
     }
   }
 
   handleClusterChange = cluster => {
-    this.setState({ cluster }, () => {
-      this.fetchData()
-    })
+    this.setState({ cluster, search: '' }, this.fetchData)
   }
 
   handleEnterWorkspace = () => {
@@ -195,9 +191,7 @@ export default class ProjectSelectModal extends React.Component {
         store: this.devopsStore,
         cluster,
         workspace,
-        success: () => {
-          this.fetchData()
-        },
+        success: this.fetchData,
       })
     }
   }
@@ -229,22 +223,23 @@ export default class ProjectSelectModal extends React.Component {
                 onChange={this.handleTypeChange}
               />
             </Column>
-            {globals.app.isMultiCluster && type !== 'federatedprojects' && (
-              <Column className="is-narrow">
-                <Select
-                  className={styles.cluster}
-                  options={this.clusters}
-                  value={cluster}
-                  onChange={this.handleClusterChange}
-                  valueRenderer={this.clusterRenderer}
-                />
-              </Column>
-            )}
             <Column>
-              <Search
-                placeholder={t('Please enter a name to find')}
-                onSearch={this.handleSearch}
-              />
+              <div className={styles.searchWrapper}>
+                {globals.app.isMultiCluster && type !== 'federatedprojects' && (
+                  <ClusterSelect
+                    className={styles.cluster}
+                    options={this.clusters}
+                    value={cluster}
+                    onChange={this.handleClusterChange}
+                  />
+                )}
+                <Search
+                  className={styles.search}
+                  value={this.state.search}
+                  placeholder={t('Please enter a name to find')}
+                  onSearch={this.handleSearch}
+                />
+              </div>
             </Column>
             <Column className="is-narrow">
               <div>
