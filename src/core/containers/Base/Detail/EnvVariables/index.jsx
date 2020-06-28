@@ -34,7 +34,7 @@ class EnvVariables extends React.Component {
   }
 
   get module() {
-    return this.props.module
+    return this.store.module
   }
 
   get store() {

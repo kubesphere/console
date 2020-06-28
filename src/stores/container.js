@@ -40,6 +40,8 @@ export default class ContainerStore {
 
   watchHandler = null
 
+  module = 'containers'
+
   getDetailUrl = ({ cluster, namespace, podName }) => {
     let path = `api/v1`
 
@@ -63,6 +65,7 @@ export default class ContainerStore {
       pod.initContainers.find(item => item.name === containerName)
     detail.createTime = get(pod, 'createTime', '')
     detail.app = detail.app || pod.app
+    detail.cluster = cluster
 
     this.volumes = await getWorkloadVolumes(pod)
 

@@ -71,6 +71,7 @@ client:
       title: App Store Management
       icon: openpitrix
       authKey: app-templates
+      authAction: manage
       ksModule: openpitrix
     - name: settings
       title: Platform Settings
@@ -111,6 +112,12 @@ client:
             - { name: pods, title: Pods }
             - { name: services, title: Services }
             - { name: ingresses, title: Routes }
+        - name: config
+          title: Configuration Center
+          icon: hammer
+          children:
+            - { name: secrets, title: Secrets }
+            - { name: configmaps, title: ConfigMaps }
         - name: network
           title: Network Management
           icon: earth
@@ -186,7 +193,14 @@ client:
                 title: Mail Server,
                 icon: mail,
                 authKey: alerting,
-                clusterModule: 'alerting',
+                clusterModule: alerting,
+              }
+            - {
+                name: log-collections,
+                title: Log Collections,
+                icon: file,
+                authKey: logging,
+                clusterModule: logging,
               }
 
   # access control page navigations
@@ -206,13 +220,6 @@ client:
             title: Platform Info,
             icon: home,
             authKey: platform-settings,
-          }
-        - {
-            name: log-collection,
-            title: Log Collection,
-            icon: file,
-            authKey: platform-settings,
-            ksModule: 'logging',
           }
 
   # workspace page navigations

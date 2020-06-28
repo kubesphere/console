@@ -1,0 +1,43 @@
+@import '~scss/variables';
+
+.empty {
+  text-align: center;
+  padding: 20px;
+  p {
+    font-size: 12px;
+    line-height: 1.67;
+    color: #79879c;
+    margin-top: 20px;
+    margin-bottom: 12px;
+  }
+}
+
+.header {
+  position: relative;
+}
+
+.extra {
+  position: absolute;
+  bottom: 6px;
+  right: 12px;
+}
+
+.item {
+  display: flex;
+  padding: 20px;
+
+  &:hover {
+    .title {
+      color: $primary;
+    }
+  }
+
+  & > div {
+    min-width: 200px;
+    margin-left: 20px;
+
+    &:first-of-type {
+      flex: 1;
+    }
+  }
+}

@@ -40,6 +40,8 @@ import CronJobs from '../containers/Workload/CronJobs'
 import Pods from '../containers/Workload/Pods'
 import Services from '../containers/Workload/Services'
 import Routes from '../containers/Workload/Routes'
+import Secrets from '../containers/Secrets'
+import ConfigMaps from '../containers/ConfigMaps'
 import ClusterMonitor from '../containers/Monitor/Cluster'
 import ResourceMonitor from '../containers/Monitor/Resource'
 import Members from '../containers/Members'
@@ -52,6 +54,7 @@ import NetworkPolicies from '../containers/Network/Policies'
 import AlertMessages from '../containers/Alerting/Messages'
 import AlertPolicies from '../containers/Alerting/Policies'
 import MailServer from '../containers/MailServices'
+import LogCollections from '../containers/LogCollections'
 
 import detail from './detail'
 
@@ -154,6 +157,16 @@ export default [
             exact: true,
           },
           {
+            path: `${PATH}/secrets`,
+            component: Secrets,
+            exact: true,
+          },
+          {
+            path: `${PATH}/configmaps`,
+            component: ConfigMaps,
+            exact: true,
+          },
+          {
             path: `${PATH}/storageclasses`,
             component: StorageClasses,
             exact: true,
@@ -223,10 +236,19 @@ export default [
             component: MailServer,
             exact: true,
           },
+          {
+            path: `${PATH}/log-collections/:component`,
+            component: LogCollections,
+          },
           getIndexRoute({ path: PATH, to: `${PATH}/overview`, exact: true }),
           getIndexRoute({
             path: `${PATH}/workloads`,
             to: `${PATH}/deployments`,
+            exact: true,
+          }),
+          getIndexRoute({
+            path: `${PATH}/log-collections`,
+            to: `${PATH}/log-collections/logging`,
             exact: true,
           }),
         ],

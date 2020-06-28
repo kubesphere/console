@@ -60,7 +60,7 @@ export default {
   'Auditing statistics': '操作审计统计',
   'Exact Query': '精确匹配',
   'Fuzzy Query': '模糊匹配',
-  'Log Collection': '日志收集',
+  'Log Collections': '日志收集',
 
   'Search Auditing by': '通过{field}查询审计',
   'Workspace Auditing Query Tip': '可以根据企业空间查看相关的操作审计',
@@ -70,14 +70,14 @@ export default {
   'Verb Auditing Query Tip': '可以根据操作行为查看相关的操作审计',
   'Status Code Auditing Query Tip': '可以根据状态码查看相关的操作审计',
   'Operation Account Auditing Query Tip': '可以根据操作账号查看相关的操作审计',
-  'sourceIP Auditing Query Tip': '可以根据来源IP查看相关的操作审计',
+  'Source IP Auditing Query Tip': '可以根据来源IP查看相关的操作审计',
   'Trends in the total number of auditing in the last 12 hours':
     '最近 12 小时操作审计总数变化趋势',
   
   TOTAL_AUDITING_TODAY:
     '今日总共收录了 <span class={className}> {auditing} </span> 条操作审计',
   NO_AUDITING_TODAY: '今日没有收录的操作审计',
-  
+
   LOG_COLLECTION_DESC:
     '系统将收集每个容器的标准输出和标准错误输出日志，并将其发送到一个或多个目标服务',
   'Add Log Collector': '添加日志接收者',

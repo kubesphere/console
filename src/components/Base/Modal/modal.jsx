@@ -29,33 +29,27 @@ import { Image } from 'components/Base'
 import Button from '../Button'
 import styles from './index.scss'
 
-ReactModal.defaultStyles.overlay = Object.assign(
-  {},
-  ReactModal.defaultStyles.overlay,
-  {
-    padding: 0,
-    minWidth: 500,
-    backgroundColor: 'rgba(35, 45, 65, 0.7)',
-    zIndex: 2000,
-    overflow: 'auto',
-  }
-)
+ReactModal.defaultStyles.overlay = {
+  ...ReactModal.defaultStyles.overlay,
+  padding: 0,
+  minWidth: 500,
+  backgroundColor: 'rgba(35, 45, 65, 0.7)',
+  zIndex: 2000,
+  overflow: 'auto',
+}
 
-ReactModal.defaultStyles.content = Object.assign(
-  {},
-  omit(ReactModal.defaultStyles.content, [
+ReactModal.defaultStyles.content = {
+  ...omit(ReactModal.defaultStyles.content, [
     'top',
     'left',
     'right',
     'bottom',
     'padding',
   ]),
-  {
-    width: 744,
-    position: 'relative',
-    margin: '0 auto',
-  }
-)
+  width: 744,
+  position: 'relative',
+  margin: '0 auto',
+}
 
 export default class Modal extends React.Component {
   static propTypes = {

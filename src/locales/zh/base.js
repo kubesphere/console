@@ -429,6 +429,10 @@ export default {
   'Control Tools': '控制工具',
   'Third-party Tools': '第三方工具',
 
+  Logging: '日志',
+  logging: '日志',
+  Auditing: '审计',
+  auditing: '审计',
   'Log Search': '日志查询',
   LOG_SEARCH_DESC: '针对企业空间、项目、资源等多维度的日志查询工具。',
   KUBECTL_DESC: '当前集群客户端命令行工具',
@@ -437,6 +441,7 @@ export default {
   KUBECONFIG_DESC: '用于配置当前集群访问信息的文件',
 
   event: '事件',
+  events: '事件',
   EVENT_CREATE_DESC: '您可以改变搜索条件重新查询',
   'Event Search': '事件查询',
   EVENT_SEARCH_DESC: '针对企业空间、项目、资源等多维度的事件查询工具。',
@@ -464,7 +469,7 @@ export default {
     '针对企业空间、项目、资源等多维度的操作审计查询工具。',
   verb: '操作行为',
   'Operation Account': '操作账号',
-  sourceIP: '来源IP',
+  'Source IP': '来源 IP',
   Subresource: '子资源',
   'Status Code': '状态码',
 

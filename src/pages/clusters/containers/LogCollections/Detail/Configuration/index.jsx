@@ -20,7 +20,7 @@ import React from 'react'
 import { observer, inject } from 'mobx-react'
 import { get } from 'lodash'
 
-import { Card } from 'components/Base'
+import { Panel } from 'components/Base'
 import Attributes from 'core/containers/Base/Detail/BaseInfo/Attributes'
 
 import styles from './index.scss'
@@ -33,7 +33,7 @@ export default class Configuration extends React.Component {
     const { HTTP_User, HTTP_Password, type, address } = detail
 
     return (
-      <Card>
+      <Panel>
         <Attributes className={styles.attributes}>
           <Attributes.Item
             className={styles.item}
@@ -58,7 +58,7 @@ export default class Configuration extends React.Component {
             </div>
           )}
         </Attributes>
-      </Card>
+      </Panel>
     )
   }
 }

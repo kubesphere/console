@@ -144,7 +144,7 @@ export default class Detail extends React.PureComponent {
       className: styles.namespacecol,
     },
     {
-      thead: t('reason'),
+      thead: t('Reason'),
       key: 'reason',
       hidden: true,
       content: ({ ResponseStatus: { reason } = {} }) => reason,
@@ -177,7 +177,7 @@ export default class Detail extends React.PureComponent {
       className: styles.usernamecol,
     },
     {
-      thead: t('sourceIP'),
+      thead: t('Source IP'),
       key: 'sourceIP',
       hidden: true,
       content: ({ SourceIPs }) => SourceIPs,

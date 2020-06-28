@@ -23,6 +23,8 @@ import JobDetail from 'projects/containers/Jobs/Detail'
 import CronJobDetail from 'projects/containers/CronJobs/Detail'
 import ServiceDetail from 'projects/containers/Services/Detail'
 import RouteDetail from 'projects/containers/Routes/Detail'
+import SecretDetail from 'projects/containers/Secrets/Detail'
+import ConfigMapDetail from 'projects/containers/ConfigMaps/Detail'
 import PodDetail from 'projects/containers/Pods/Detail'
 import ContainerDetail from 'projects/containers/Pods/Containers/Detail'
 import NetworkPoliciesDetail from 'projects/containers/Network/Policies/Detail'
@@ -38,6 +40,7 @@ import CustomResourceDetail from '../containers/CustomResources/Detail'
 import RoleDetail from '../containers/Roles/Detail'
 import AlertPolicyDetail from '../containers/Alerting/Policies/Detail'
 import AlertMessageDetail from '../containers/Alerting/Messages/Detail'
+import LogCollectionDetail from '../containers/LogCollections/Detail'
 
 const PATH = '/clusters/:cluster'
 
@@ -61,6 +64,10 @@ export default [
   {
     path: `${PATH}/alert-messages/:id`,
     component: AlertMessageDetail,
+  },
+  {
+    path: `${PATH}/log-collections/:component/:name`,
+    component: LogCollectionDetail,
   },
   {
     path: `${PATH}/components/:namespace/:name`,
@@ -93,6 +100,14 @@ export default [
   {
     path: `${PATH}/projects/:namespace/ingresses/:name`,
     component: RouteDetail,
+  },
+  {
+    path: `${PATH}/projects/:namespace/secrets/:name`,
+    component: SecretDetail,
+  },
+  {
+    path: `${PATH}/projects/:namespace/configmaps/:name`,
+    component: ConfigMapDetail,
   },
   {
     path: `${PATH}/projects/:namespace/pods/:podName/containers/:containerName`,

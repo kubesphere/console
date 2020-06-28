@@ -124,7 +124,7 @@ function buildRequest({
 function watchResource(url, params = {}, callback) {
   const xhr = new XMLHttpRequest()
 
-  xhr.open('GET', `${url}${qs.stringify(params)}`, true)
+  xhr.open('GET', getClusterUrl(`/${url}?${qs.stringify(params)}`), true)
 
   xhr.onreadystatechange = () => {
     if (xhr.readyState >= 3 && xhr.status === 200) {

@@ -21,7 +21,7 @@ import { getIndexRoute } from 'utils/router.config'
 import ResourceStatus from './Configuration'
 import Log from './Log'
 
-const PATH = '/settings/log-collection/:name'
+const PATH = '/clusters/:cluster/log-collections/:component/:name'
 
 export default [
   {
