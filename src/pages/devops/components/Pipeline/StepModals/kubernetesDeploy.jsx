@@ -186,13 +186,13 @@ export default class KubernetesDeploy extends React.Component {
                 className={styles.dockerCredentialsContent__trashicon}
                 onClick={this.handleRemove(credential.key)}
               />
-              <Form.Item label={t('Docker registry URL')}>
+              <Form.Item label={t('Docker Registry URL')}>
                 <Input
                   value={credential.url}
                   onChange={this.handleCredentialChange(credential.key, 'url')}
                 />
               </Form.Item>
-              <Form.Item label={t('Registry credentials')}>
+              <Form.Item label={t('Registry Credentials')}>
                 <Select
                   value={credential.credentialsId}
                   options={passWordCredentials}
@@ -258,7 +258,7 @@ export default class KubernetesDeploy extends React.Component {
           >
             <Select name="kubeconfigId" options={kubeconfigCredentials} />
           </Form.Item>
-          <Form.Item label={t('Config Files')}>
+          <Form.Item label={t('Config File Path')}>
             <Input name="configs" />
           </Form.Item>
           <Columns className="margin-t12">
@@ -272,7 +272,7 @@ export default class KubernetesDeploy extends React.Component {
             <Column>
               <Form.Item>
                 <Checkbox name="deleteResource" defaultValue={false}>
-                  {t('Enable Delete All Resource to the deployment file')}
+                  {t('Delete all resources of the deployment file')}
                 </Checkbox>
               </Form.Item>
             </Column>
@@ -284,7 +284,7 @@ export default class KubernetesDeploy extends React.Component {
               className={styles.clickable}
               onClick={this.showAdvencedSetting}
             >
-              {t('show advanced setting')}
+              {t('Show Advanced Settings')}
             </div>
           )}
         </Form>

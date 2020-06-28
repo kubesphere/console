@@ -29,7 +29,7 @@ export default {
   MONITORING_PHYSICAL_DESC:
     'Monitor the running status of the physical resources',
   MONITORING_APPLICATION_DESC:
-    'You can nonitor the running status of the application resources in this module.',
+    'You can monitor the running status of the application resources in this module.',
   TIMERANGE_SELECTOR_MSG: 'End time must be later than start time',
   MONITORING_SELECT_LIMIT_MSG: 'You can select up to ten resources',
 

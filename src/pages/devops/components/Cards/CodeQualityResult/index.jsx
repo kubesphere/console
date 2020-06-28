@@ -102,7 +102,7 @@ class CodeQualityResult extends React.Component {
     return (
       <div className={styles.otherCards}>
         <StatusCard
-          title={t('Lines of code')}
+          title={t('Lines of Code')}
           value={totalCode}
           unit={totalCodeUnit}
           url={`${
@@ -121,7 +121,7 @@ class CodeQualityResult extends React.Component {
         />
         <StatusCard
           hasIcon
-          title={t('Code vulnerability')}
+          title={t('Code Vulnerability')}
           value={vulnerabilities}
           unit={t('个')}
           resultClass={securityRating}

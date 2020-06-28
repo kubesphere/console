@@ -107,7 +107,7 @@ export default class Git extends React.Component {
             <Input name="url" />
           </Form.Item>
           <Form.Item
-            label={t('Credential Id')}
+            label={t('Credential ID')}
             desc={
               <p>
                 {t('ADD_NEW_CREDENTIAL_DESC')}

@@ -53,7 +53,7 @@ export default class valueSelect extends React.Component {
       <div className={styles.empty} onClick={onClick}>
         <p>
           {t(
-            'Please select a code repository as the code source for the pipeline'
+            'Please select a code repository as the code source for the pipeline.'
           )}
         </p>
       </div>

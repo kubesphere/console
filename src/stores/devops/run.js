@@ -269,7 +269,7 @@ export default class PipelineRunStore extends BaseStore {
       resp => {
         if (resp.status === 400) {
           Message.error({
-            content: t("Sorry, You don't have permission to do this"),
+            content: t("Sorry, you don't have the permission to do this."),
           })
           return true
         }

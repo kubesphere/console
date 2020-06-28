@@ -120,10 +120,10 @@ export default class WithCredentials extends React.Component {
       case 'username_password':
         return (
           <React.Fragment>
-            <Form.Item label={t('password Variable')}>
+            <Form.Item label={t('Password Variable')}>
               <Input name="passwordVariable" />
             </Form.Item>
-            <Form.Item label={t('username Variable')}>
+            <Form.Item label={t('Username Variable')}>
               <Input name="usernameVariable" />
             </Form.Item>
           </React.Fragment>

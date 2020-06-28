@@ -188,23 +188,23 @@ export default class AdvanceSettings extends React.Component {
           )}
         >
           <Checkbox name={`${this.prefix}.disable_concurrent`} value={true}>
-            {t('No concurrent builds')}
+            {t('No Concurrent Builds')}
           </Checkbox>
         </Form.Item>
         <div className="h6">
-          {t('Parametric build')} {this.renderTip(t('tips_Parametric_build'))}
+          {t('Parametric Build')} {this.renderTip(t('tips_Parametric_build'))}
         </div>
         <ParamsInput
           name={`${this.prefix}.parameters`}
           formTemplate={this.props.formTemplate}
         />
-        <div className="h6">{t('Build trigger')}</div>
+        <div className="h6">{t('Build Trigger')}</div>
         <Form.Item>
           <Checkbox
             name={`enable_timer_trigger`}
             onChange={this.handleChange('enable_timer_trigger')}
           >
-            {t('Timing build')}
+            {t('Scheduled Build')}
             {this.renderTip(t('tips_Timing_build'))}
           </Checkbox>
         </Form.Item>
@@ -241,13 +241,13 @@ export default class AdvanceSettings extends React.Component {
             name="enable_remote_trigger"
             onChange={this.handleChange('enable_remote_trigger')}
           >
-            {t('Trigger a remote build (for example, using a script)')}
+            {t('Trigger a Remote Build (for example, using a script)')}
           </Checkbox>
         </Form.Item>
         {enable_remote_trigger && (
           <div className={styles.wrapper}>
             <Form.Item
-              label={t('Authentication token')}
+              label={t('Authentication Token')}
               desc={t('AUTHENTICATION_TOKEN_DESC')}
               tip={t('tips_Authentication_token')}
             >
@@ -395,7 +395,7 @@ export default class AdvanceSettings extends React.Component {
             </Form.Item>
           </div>
         )}
-        <div className="h6">{t('Build trigger')}</div>
+        <div className="h6">{t('Build Trigger')}</div>
         <Form.Item>
           <Checkbox
             name="enable_multibranch_job_trigger"
@@ -462,9 +462,9 @@ export default class AdvanceSettings extends React.Component {
           <Columns>
             <Column>
               <Form.Item
-                label={t('Days to keep old items')}
+                label={t('Days to Keep Builds')}
                 desc={`${t(
-                  'if not empty, old items are only kept up to this number of days'
+                  'Old builds will be deleted after this number of days'
                 )}. (${t('defaultValue -1 means not discard')})`}
               >
                 <Input
@@ -475,9 +475,9 @@ export default class AdvanceSettings extends React.Component {
             </Column>
             <Column>
               <Form.Item
-                label={t('Maximum number of builds to keep')}
+                label={t('Maximum Number of Builds to Keep')}
                 desc={`${t(
-                  'if not empty, only up to this number of old items are kept'
+                  'Old builds will be discarded after the build number exceeds the maximum amount'
                 )}. (${t('defaultValue -1 means not discard')})`}
               >
                 <Input
@@ -543,7 +543,7 @@ export default class AdvanceSettings extends React.Component {
               onChange={this.handleChange('enable_discarder')}
             >
               {isEmpty(multi_branch_pipeline)
-                ? t('Discard old items')
+                ? t('Discard Old Builds')
                 : t('Discard old branch')}
               {this.renderTip(
                 isEmpty(multi_branch_pipeline)

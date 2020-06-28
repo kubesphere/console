@@ -273,7 +273,7 @@ export default class Activity extends React.Component {
           },
         ]),
     {
-      title: t('Last message'),
+      title: t('Last Message'),
       dataIndex: 'causes',
       width: '25%',
       render: causes => _result(causes, '[0].shortDescription', ''),

@@ -79,7 +79,7 @@ export default class BaseInfo extends React.Component {
         if (resp.exist) {
           return callback({
             field: rule.field,
-            message: t('This name has exsited'),
+            message: t('This name has existed.'),
           })
         }
         callback()
@@ -119,7 +119,7 @@ export default class BaseInfo extends React.Component {
               <Form.Item
                 label={t('Name')}
                 desc={t(
-                  'The name of the Pipeline, the pipeline within the same project cannot be renamed'
+                  'The name of the pipeline. Pipelines in the same project must have different names.'
                 )}
                 rules={[
                   { required: true, message: t('Please input pipeline name') },

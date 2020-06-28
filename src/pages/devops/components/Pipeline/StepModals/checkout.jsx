@@ -123,7 +123,7 @@ export default class Checkout extends React.Component {
             <Select name="credentialsId" options={passWordCredentials} />
           </Form.Item>
           <Form.Item
-            label={t('remote url')}
+            label={t('Remote Repository URL')}
             rules={[{ required: true, message: t('This param is required') }]}
           >
             <Input name="remote" />

@@ -26,7 +26,6 @@ export default {
 
   SERVICE_NAME_DESC:
     'It can only contain lowercase letters, numbers and hyphens("-"), and must begin with a lowercase letter, ending with a number or lowercase letter. The maximum length of characters is set to 63.',
-
   SERVICE_DESC:
     'A Service is an abstraction that defines a logical collection of Pods and a strategy for accessing them.',
   SERVICE_CREATE_DESC:
@@ -36,7 +35,6 @@ export default {
     'The name and description of the service need to be provided to create the service. The service name cannot be the same as the existing service name under the same project.',
   SERVICES_SETTINGS_DESC:
     'Service settings define how to access an existing workload.',
-
   SERVICES_INTERNET_ACCESS_DESC: 'Expose the service outside of the cluster.',
 
   VIRTUAL_IP_TITLE:
@@ -60,7 +58,6 @@ export default {
     'If your current network is on the same network as the cluster node, you can access it through the cluster IP address + node port number or through the node IP + node port.',
 
   SERVICE_TYPE: 'You can create a stateless service or a stateful service.',
-
   SERVICE_TYPES_Q: 'Service Types',
   SERVICE_TYPES_A:
     'The service is divided into a stateless service (Virtual Service + Depolyment) and a stateful service (Headless Service + Statefulset). In a stateless service, replicas can share one volume, and a stateful service needs to have its own independent volume.',
@@ -90,11 +87,9 @@ export default {
   STATELESS_SERVICE_DESC:
     'The most commonly used service in container services. It defines the Pod template to control the Pod status, including rolling updates and rollbacks.',
 
-  SERVISE_SIMPLE_DESC: '',
-
+  SERVISE_SIMPLE_DESC: 'Create a service with existing Pods.',
   SERVICE_PORTS_DESC:
-    'Set the port exposed by the container image and the service port.',
-
+    'Set the port to expose the container image and the service port.',
   SPECIFY_WORKLOAD_DESC:
     'Specify a workload that needs to be associated with the service.',
   

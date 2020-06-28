@@ -97,7 +97,7 @@ export default class Pullrequest extends React.Component {
       ),
     },
     {
-      title: t('Last message'),
+      title: t('Last Message'),
       width: '25%',
       render: record => get(record, 'pullRequest.title', ''),
     },

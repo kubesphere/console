@@ -54,11 +54,9 @@ export default {
     'Certify service providers and review applications in order to approve or reject the applications to show or not in the store.',
   APP_REVIEWS_CREATE_DESC:
     'Certify service providers and review applications in order to approve or reject the applications to show or not in the store.',
-
   REVIEW_CONTENT_DESC:
     'The following information must be true and accurate. Key instructions must be given in detail. Terms and Conditions are required to be stated clearly.',
-
-  REJECT_REASON_DESC: 'Please fill in the reasons for refusal of audit',
+  REJECT_REASON_DESC: 'Please fill in the reasons for refusal of review.',
 
   APP_CATEGORIES_DESC:
     'This module allows you to create, edit and delete categories, and to classify active applications of the store.',
@@ -78,7 +76,6 @@ export default {
   'Upload your Helm Chart in the file format such as tar.gz or tgz.',
 
   EDIT_APP_DESC: 'Set up the basic information of the application',
-
   CREATE_APP_DESC:
     'Lightweight, portable and self-contained software packaging technology enables applications to run in almost any place in the same way.',
 
@@ -88,16 +85,17 @@ export default {
     ' create application templates and deploy tests through resource pre-editing',
 
   APP_CREATE_GUIDE: 'See the application development specification',
-
   HELM_DEVELOP_GUIDE: 'Helm Specification and Application Development',
 
   CATEGORY_NAME_DESC:
     'No more than 8 characters is recommended; the maximum length of characters is set to 20.',
+  APP_CATE_All: 'All',
+  APP_CATE_UNCATEGORIZED: 'Uncategorized',
 
   ICON_DESC: 'Please select an icon to identify the classification',
 
   MODIFY_VERSION_TIPS:
-    'Every modification will follow the next release and take effect. ',
+    'Every modification will follow the next release and take effect.',
 
   UNDER_REVIEW_TIPS:
     'The current version of the application is under review,' +
@@ -107,7 +105,7 @@ export default {
     'Submit the application to the App Store and it will' +
     ' appear in the App Store after approval',
 
-  AUDIT_RECORD_CREATE_DESC: 'No relevant audit record data',
+  AUDIT_RECORD_CREATE_DESC: 'No relevant review record',
 
   UPLOAD_SUPPORT_FORMAT: 'File formats support tar.gz and tgz',
 
@@ -126,10 +124,6 @@ export default {
   NO_DEPLOY_RUNTIME_NOTE: 'The project has no available deploy runtime',
 
   START_UPLOAD: 'Upload',
-
-  APP_CATE_All: 'All',
-
-  APP_CATE_UNCATEGORIZED: 'Uncategorized',
 
   APP_ICON_NOTE: 'JPG or PNG within 200px * 200px',
 

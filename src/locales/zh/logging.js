@@ -54,7 +54,7 @@ export default {
   'Time topology': '时间拓扑图',
   'Display Content': '显示内容',
   'Search Result': '搜索结果',
-  'please enter a conditional filter log': '请输入条件过滤日志',
+  'Please enter a filter to search for logs.': '请输入条件过滤日志',
   'Log Query': '日志查询',
   'Log statistics': '日志统计',
   'Auditing statistics': '操作审计统计',
@@ -73,6 +73,7 @@ export default {
   'sourceIP Auditing Query Tip': '可以根据来源IP查看相关的操作审计',
   'Trends in the total number of auditing in the last 12 hours':
     '最近 12 小时操作审计总数变化趋势',
+  
   TOTAL_AUDITING_TODAY:
     '今日总共收录了 <span class={className}> {auditing} </span> 条操作审计',
   NO_AUDITING_TODAY: '今日没有收录的操作审计',
@@ -84,10 +85,12 @@ export default {
     '暂时没有设置日志收集器，您可以添加日志收集器将日志导出到外埠的日志收集工具中',
   LOG_COLLECTION_TIPS:
     '每种类型的日志接收者只能添加一个，如果已存在则只能修改，不可以再添加',
+  
   Address: '地址',
   'Service Address': '服务地址',
   'Add Service Address': '添加服务地址',
   'Please input service address': '请输入服务地址',
+
   URL_SYNTAX_ERROR: 'URL 语法错误',
   'Please input path': '请输入地址',
   LOG_COLLECTION_ES_URL_TIPS:
@@ -96,6 +99,7 @@ export default {
     '如果您的 Elasticsearch 开启了 X-Pack 内置的本地身份验证功能，请设置用户名和密码。',
   LOG_COLLECTION_FLUENTD_URL_TIPS: '输入接收日志的 Fluentd 的地址',
   LOG_COLLECTION_FLUENTD_USER_TIPS: '用于身份验证的用户名',
+
   'Refresh Interval': '刷新频率',
   'Recently Updated': '最近刷新',
   'Recently Configured Updated': '最近配置更新',
@@ -106,6 +110,7 @@ export default {
   'Log Collector': '日志接收者',
   Activate: '激活',
   'Real-Time Data': '实时数据',
+
   TOOLBOX_SHIFT_TIPS: ' 👻 Shift + 鼠标左键 可以在新窗口中打开',
   'Hide help information': '不再显示帮助信息',
   ES_DESC: 'Elasticsearch 是分布式、RESTful 风格的搜索和分析引擎',
