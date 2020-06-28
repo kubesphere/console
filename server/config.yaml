@@ -237,8 +237,7 @@ client:
             name: devops,
             title: DevOps Projects,
             icon: strategy-group,
-            # only work on single cluster mode.
-            singleClusterModule: devops,
+            ksModule: devops,
           }
         - name: apps
           title: Apps Management
