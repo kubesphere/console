@@ -41,7 +41,7 @@ export default {
   APP_RECOVER_TIP:
     '应用<strong>{name}</strong>上架后，相关的下架版本都将变成上架，你确定要上架该应用吗？',
 
-  'Version Manage': '版本管理',
+  'Version Management': '版本管理',
   'App Information': '应用信息',
   'Audit Records': '应用审核',
   'App Instances': '应用实例',
@@ -121,5 +121,5 @@ export default {
     '版本号格式错误，只能包含数字、小数点及中括号("[]")，并且必需以数字开头并包含小数点',
   UPDATE_LOG_DESC: '用于详细描述此次更新的具体内容',
 
-  'Version Number format is error': '版本号的格式错误',
+  'Wrong version number format': '版本号的格式错误',
 }

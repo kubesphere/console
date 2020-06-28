@@ -49,7 +49,7 @@ export default {
     'There are no public clusters available, please apply for cluster authorization from the platform administrator or cluster administrator after workspace is created',
 
   NO_CLUSTER_TIP:
-    'You need to contact the platform administrator or cluster administrator to authorize the access rights of the cluster for the workspace',
+    'You need to contact the platform administrator or cluster administrator to authorize the access rights of the cluster for the workspace.',
   
   WORKSPACE_BASE_INFO_Q1: 'How to apply for more clusters for the workspace?',
   WORKSPACE_BASE_INFO_A1:
