@@ -21,7 +21,8 @@ export default {
 
   JOIN_PROJECT_PLACEHOLDER:
     'Invite members by user name or email to join the project.',
-  ROLE_PROJECTS_JOIN_TIP: 'Enter the username or email address to invite users to the project.',
+  ROLE_PROJECTS_JOIN_TIP:
+    'Enter the username or email address to invite users to the project.',
   ROLE_DELETE_TIP:
     'The current role is already bound to the user, please try again after unbinding.',
   ROLE_NO_AVAILABLE_TIP: 'No roles are available for the current project.',
@@ -126,7 +127,8 @@ export default {
     'Create, edit and delete DevOps project roles (system preset roles cannot be deleted)',
   DEVOPS_MEMBERS_VIEW_DESC: 'View DevOps project members',
   DEVOPS_MEMBERS_MANAGEMENT_DESC: 'Invite/edit/remove DevOps project members',
-  DEVOPS_SETTINGS_DESC: 'Manage DevOps project settings and edit DevOps project information',
+  DEVOPS_SETTINGS_DESC:
+    'Manage DevOps project settings and edit DevOps project information',
 
   CLUSTER_MEMBERS_MANAGEMENT_DESC: 'Invite/edit/remove cluster members',
   CLUSTER_MEMBERS_VIEW_DESC: 'View cluster members',
@@ -134,7 +136,8 @@ export default {
     'Create, edit and delete cluster roles (system preset roles cannot be deleted)',
   CLUSTER_ROLES_VIEW_DESC: 'View cluster roles',
 
-  NETWORK_POLICIES_MANAGEMENT_DESC: 'Create/edit/delete cluster network policies',
+  NETWORK_POLICIES_MANAGEMENT_DESC:
+    'Create/edit/delete cluster network policies',
   NETWORK_POLICIES_VIEW_DESC: 'View cluster network policies',
   STORAGECLASSES_VIEW_DESC: 'View all storage classes in the cluster',
   STORAGECLASSES_MANAGEMENT_DESC:
@@ -172,8 +175,10 @@ export default {
     'Have the access to create projects and the project administrator has to be the creator',
   PROJECTS_VIEW_DESC: 'View all projects in the workspace',
 
-  DEVOPS_MANAGEMENT_DESC: 'Manage all DevOps projects in the workspace, including creating/editing/deleting DevOps projects',
-  DEVOPS_CREATE_DESC: 'Have the access to create DevOps projects and the DevOps project administrator has to be the creator',
+  DEVOPS_MANAGEMENT_DESC:
+    'Manage all DevOps projects in the workspace, including creating/editing/deleting DevOps projects',
+  DEVOPS_CREATE_DESC:
+    'Have the access to create DevOps projects and the DevOps project administrator has to be the creator',
   DEVOPS_VIEW_DESC: 'View all DevOps projects in the workspace',
 
   WORKSPACE_ROLES_VIEW_DESC: 'View workspace roles',
@@ -186,14 +191,14 @@ export default {
   WORKSPACE_APP_TEMPLATES_VIEW_DESC: 'View workspace app templates',
   WORKSPACE_APP_TEMPLATES_MANAGEMENT_DESC:
     'Upload/edit/delete workspace app templates; release/remove apps to App Store in the platform',
-  ROLE_PROJECTS_JOIN_TIP:
-    'Enter username or email address to invite users to the project',
 
-  ROLE_PLATFORM_ADMIN: 'Platform administrator who can manage all resources in the platform.',
+  ROLE_PLATFORM_ADMIN:
+    'Platform administrator who can manage all resources in the platform.',
   ROLE_PLATFORM_REGULAR:
     'Normal user in the platform who has no access to any resources before joining the workspace or cluster.',
   ROLE_USER_MANAGER: 'User manager in the platform who manages all users.',
-  ROLE_WORKSPACE_MANAGER: 'Workspace manager in the platform who manages all workspaces in the platform.',
+  ROLE_WORKSPACE_MANAGER:
+    'Workspace manager in the platform who manages all workspaces in the platform.',
 
   ROLE_CLUSTER_ADMIN:
     'Allows cluster-admin access to perform any action on any resource. It gives full control over all resources in the cluster and in all namespaces.',

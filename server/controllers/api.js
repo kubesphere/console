@@ -18,9 +18,9 @@
 
 const fs = require('fs')
 const yaml = require('js-yaml/dist/js-yaml')
+const omit = require('lodash/omit')
 const { send_dockerhub_request } = require('../libs/request')
 const { getCache, root } = require('../libs/utils')
-const omit = require('lodash/omit')
 
 const NEED_OMIT_HEADERS = ['cookie', 'referer', 'host']
 const cache = getCache()

@@ -74,7 +74,11 @@ export default class Projects extends React.Component {
     const { workspace } = this.props.match.params
     return (
       globals.app.isMultiCluster &&
-      globals.app.hasPermission({ workspace, module: 'federatedprojects' })
+      globals.app.hasPermission({
+        workspace,
+        module: 'federatedprojects',
+        action: 'view',
+      })
     )
   }
 
@@ -107,19 +111,22 @@ export default class Projects extends React.Component {
     const { store } = this.props
 
     silent && (store.list.silent = true)
-    await store.fetchList({
-      cluster: this.workspaceStore.cluster,
-      ...this.props.match.params,
-      ...params,
-      labelSelector: 'kubefed.io/managed!=true',
-    })
-    await this.monitoringStore.fetchMetrics({
-      cluster: this.workspaceStore.cluster,
-      ...this.props.match.params,
-      resources: store.list.data.map(item => item.name),
-      metrics: Object.values(MetricTypes),
-      last: true,
-    })
+    const { cluster } = this.workspaceStore
+    if (cluster) {
+      await store.fetchList({
+        cluster,
+        ...this.props.match.params,
+        ...params,
+        labelSelector: 'kubefed.io/managed!=true',
+      })
+      await this.monitoringStore.fetchMetrics({
+        cluster,
+        ...this.props.match.params,
+        resources: store.list.data.map(item => item.name),
+        metrics: Object.values(MetricTypes),
+        last: true,
+      })
+    }
     store.list.silent = false
   }
 

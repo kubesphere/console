@@ -68,7 +68,9 @@ class ResourceUsage extends React.Component {
   render() {
     return (
       <div>
-        <ResourceStatistics workspace={this.workspace} />
+        {!globals.app.isMultiCluster && (
+          <ResourceStatistics workspace={this.workspace} />
+        )}
         {this.workspaceStore.clusters.data.length > 0 ? (
           <>
             <PhysicalResource

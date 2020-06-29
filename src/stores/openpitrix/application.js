@@ -36,7 +36,7 @@ export default class Application extends Base {
 
   getPath({ cluster, namespace }) {
     let path = ''
-    if (cluster && globals.app.isMultiCluster) {
+    if (cluster) {
       path += `/clusters/${cluster}`
     }
     if (namespace) {

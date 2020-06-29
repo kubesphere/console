@@ -57,6 +57,8 @@ export default {
   'Project Quota': '项目配额',
   'Quota Management': '配额管理',
 
+  'Project Placement': '项目位置',
+
   'Multi-cluster Project': '多集群项目',
   'Multi-cluster Projects': '多集群项目',
 
@@ -217,4 +219,7 @@ export default {
   NETWORK_ISOLATED_DESC: '设置网络隔离策略',
 
   NAME_EXIST_IN_CLUSTER: '项目名在集群 {cluster} 中已存在',
+
+  MULTI_CLUSER_PROJECT_TIP:
+    '当前项目为多集群项目，项目将分布在不同集群中共同来构成多集群项目，您可以切换到不同集群查看项目在该集群中的设置。',
 }

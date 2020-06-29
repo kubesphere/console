@@ -93,7 +93,7 @@ const WorkspaceMapper = item => {
     annotations: get(item, 'metadata.annotations', {}),
     manager:
       get(item, 'spec.template.spec.manager') || getResourceCreator(item),
-    clusters: clusters.map(_item => _item.name),
+    clusters,
     networkIsolation:
       get(item, 'spec.template.spec.networkIsolation') === 'true',
     overrides,
