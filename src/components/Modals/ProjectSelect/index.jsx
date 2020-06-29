@@ -18,6 +18,7 @@
 
 import { get } from 'lodash'
 import React from 'react'
+import classNames from 'classnames'
 import { toJS } from 'mobx'
 import { inject, observer } from 'mobx-react'
 import { Columns, Column } from '@pitrix/lego-ui'
@@ -109,7 +110,7 @@ export default class ProjectSelectModal extends React.Component {
     // TODO: ADD CLUSTER
     if (
       this.enabledActions.devops.includes('view') &&
-      (globals.app.isMultiCluster || globals.app.hasKSModule('devops'))
+      globals.app.hasKSModule('devops')
     ) {
       types.push({
         label: t('DevOps Projects'),
@@ -203,6 +204,9 @@ export default class ProjectSelectModal extends React.Component {
     const list = this.stores[type].list
     const { data, total, page, isLoading } = toJS(list)
 
+    const showClusterSelect =
+      globals.app.isMultiCluster && type !== 'federatedprojects'
+
     return (
       <Modal
         bodyClassName={styles.body}
@@ -225,7 +229,7 @@ export default class ProjectSelectModal extends React.Component {
             </Column>
             <Column>
               <div className={styles.searchWrapper}>
-                {globals.app.isMultiCluster && type !== 'federatedprojects' && (
+                {showClusterSelect && (
                   <ClusterSelect
                     className={styles.cluster}
                     options={this.clusters}
@@ -234,7 +238,9 @@ export default class ProjectSelectModal extends React.Component {
                   />
                 )}
                 <Search
-                  className={styles.search}
+                  className={classNames(styles.search, {
+                    [styles.withSelect]: showClusterSelect,
+                  })}
                   value={this.state.search}
                   placeholder={t('Please enter a name to find')}
                   onSearch={this.handleSearch}

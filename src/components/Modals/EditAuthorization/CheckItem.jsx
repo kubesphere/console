@@ -38,11 +38,16 @@ export default class CheckItem extends Component {
     onChange(newTemplates)
   }
 
+  handleCheckboxClick = e => e.stopPropagation()
+
   render() {
     const { roleTemplates, roleTemplatesMap, data } = this.props
     return (
       <div className={styles.checkItem} onClick={this.handleCheck}>
-        <Checkbox checked={roleTemplates.includes(data.name)} />
+        <Checkbox
+          checked={roleTemplates.includes(data.name)}
+          onClick={this.handleCheckboxClick}
+        />
         <Text
           title={t(data.aliasName)}
           description={t(

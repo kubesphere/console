@@ -1,0 +1,15 @@
+@import '~scss/variables';
+
+.clusters {
+  display: flex;
+  margin-top: 12px;
+}
+
+.cluster {
+  position: relative;
+  width: 326px;
+  padding: 8px;
+  border-radius: 2px;
+  background-color: $dark-color07;
+  margin-right: 12px;
+}

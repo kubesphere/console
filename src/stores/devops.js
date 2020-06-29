@@ -156,6 +156,7 @@ export default class DevOpsStore extends Base {
       order,
       reverse,
       keyword,
+      cluster: globals.app.isMultiCluster ? cluster : undefined,
       isLoading: false,
       selectedRowKeys: [],
     })
