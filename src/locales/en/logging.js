@@ -50,6 +50,8 @@ export default {
     'Please enter the keyword to find the log. You can also find the error log by keywords such as “Error”, “Fail”, “Fatal”, “Exception” and “Warning”.',
   'Project Log Query Tip':
     'You can view related log information according to the project name.',
+  'Workload Log Query Tip': 
+    'You can view related log information according to the workload name.',
   'Container Log Query Tip':
     'You can view related log information according to the container name.',
   'Pod Log Query Tip':

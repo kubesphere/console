@@ -51,7 +51,7 @@ export default {
   'Select file': '选择文件',
   'Application Name': '应用名称',
   'Application Version': '应用版本',
-  'App Abstraction': '应用简介',
+  'App Description': '应用简介',
   APP_ABSTRACTION_DESC: '对应用的概括性介绍',
   APP_DETAIL_DESC: '在用户搜索应用时会非常有帮助',
   'Upload Icon': '上传图标',
