@@ -66,8 +66,7 @@ export default class WorkspaceCard extends React.Component {
                 <p>{t('Project Number')}</p>
               </div>
             </Column>
-            {(globals.app.isMultiCluster ||
-              globals.app.hasKSModule('devops')) && (
+            {globals.app.hasKSModule('devops') && (
               <Column className="is-2">
                 <div>
                   <p>

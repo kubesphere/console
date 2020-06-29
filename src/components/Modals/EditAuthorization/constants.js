@@ -44,7 +44,7 @@ export const ROLE_MODULES = {
     {
       name: 'Devops Management',
       icon: 'strategy-group',
-      hide: !globals.app.isMultiCluster && !globals.app.hasKSModule('devops'),
+      hide: !globals.app.hasKSModule('devops'),
     },
     {
       name: 'Apps Management',

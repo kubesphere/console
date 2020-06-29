@@ -74,7 +74,11 @@ export default class Projects extends React.Component {
     const { workspace } = this.props.match.params
     return (
       globals.app.isMultiCluster &&
-      globals.app.hasPermission({ workspace, module: 'federatedprojects' })
+      globals.app.hasPermission({
+        workspace,
+        module: 'federatedprojects',
+        action: 'view',
+      })
     )
   }
 

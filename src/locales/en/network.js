@@ -29,7 +29,7 @@ export default {
   NETWORK_POLICY_Q1: 'Requirement to implement a network policy',
   NETWORK_ISOLATION_Q1: 'Requirement to implement network isolation',
   NETWORK_POLICY_A1:
-    'Make sure that the CNI network plugin used by the cluster supports <a href=“https://kubernetes.io/docs/concepts/services-networking/network-policies/” target=“_blank”>NetworkPolicy</a>. There are a number of CNI network plugins that support NetworkPolicy, including Calico, Cilium, Kube-router, Romana and Weave Net.',
+    'Make sure that the CNI network plugin used by the cluster supports <a href="https://kubernetes.io/docs/concepts/services-networking/network-policies/" target="_blank">NetworkPolicy</a>. There are a number of CNI network plugins that support NetworkPolicy, including Calico, Cilium, Kube-router, Romana and Weave Net.',
   NETWORK_POLICY_EMP_TITLE: 'Project Network Isolation Not Enabled',
   NETWORK_POLICY_EMP_DESC:
     'The current project can be accessed by other projects in the cluster based on the workspace settings. Once network isolation is enabled for the project, other projects will be unable to access it while you can still customize specific projects, services or external addresses that can be released.',

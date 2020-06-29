@@ -17,15 +17,18 @@
  */
 
 import React from 'react'
+import { computed } from 'mobx'
 
 import { Avatar } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import withList, { ListPage } from 'components/HOCs/withList'
 import Table from 'components/Tables/List'
+import ClusterWrapper from 'components/Clusters/ClusterWrapper'
 
 import { getLocalTime, getDisplayName } from 'utils'
 
 import WorkspaceStore from 'stores/workspace'
+import ClusterStore from 'stores/cluster'
 
 @withList({
   store: new WorkspaceStore(),
@@ -33,6 +36,17 @@ import WorkspaceStore from 'stores/workspace'
   name: 'Workspace',
 })
 export default class Workspaces extends React.Component {
+  clusterStore = new ClusterStore()
+
+  componentDidMount() {
+    this.clusterStore.fetchList({ limit: -1 })
+  }
+
+  @computed
+  get clusters() {
+    return this.clusterStore.list.data
+  }
+
   showAction(record) {
     return globals.config.systemWorkspace !== record.name
   }
@@ -101,12 +115,12 @@ export default class Workspaces extends React.Component {
         ),
       },
       {
-        title: t('Project Number'),
-        dataIndex: 'annotations["kubesphere.io/namespace-count"]',
-      },
-      {
-        title: t('DevOps Project Number'),
-        dataIndex: 'annotations["kubesphere.io/devops-count"]',
+        title: t('Cluster Info'),
+        dataIndex: 'clusters',
+        width: '30%',
+        render: clusters => (
+          <ClusterWrapper clusters={clusters} clustersDetail={this.clusters} />
+        ),
       },
       {
         title: t('Created Time'),
@@ -114,7 +128,7 @@ export default class Workspaces extends React.Component {
         sorter: true,
         sortOrder: getSortOrder('createTime'),
         isHideable: true,
-        width: 150,
+        width: 250,
         render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
       },
     ]
@@ -130,6 +144,7 @@ export default class Workspaces extends React.Component {
 
   render() {
     const { bannerProps, tableProps } = this.props
+    const isClusterLoading = this.clusterStore.list.isLoading
     return (
       <ListPage {...this.props} noWatch>
         <Banner {...bannerProps} />
@@ -139,7 +154,9 @@ export default class Workspaces extends React.Component {
           itemActions={this.itemActions}
           tableActions={this.tableActions}
           onCreate={this.showCreate}
+          isClusterLoading={isClusterLoading}
           searchType="name"
+          alwaysUpdate
         />
       </ListPage>
     )

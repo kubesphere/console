@@ -16,11 +16,18 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { omit } from 'lodash'
 import Base from './base'
 
 export default class ProjectMonitoring extends Base {
-  getApi = ({ namespace }) => {
-    const path = namespace ? `/${namespace}` : ''
-    return `${this.apiVersion}/namespaces${path}`
+  handleParams = params => omit(params, ['cluster', 'workspace'])
+
+  getApi = ({ workspace, namespace }) => {
+    let path = '/namespaces'
+    path += namespace ? `/${namespace}` : ''
+    if (workspace && !namespace) {
+      path = `/workspaces/${workspace}${path}`
+    }
+    return `${this.apiVersion}${path}`
   }
 }
