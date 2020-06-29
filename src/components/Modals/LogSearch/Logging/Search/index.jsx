@@ -380,6 +380,8 @@ export default class LogSearchModal extends React.Component {
     )
   }
 
+  clusterRenderer = option => `${t('Cluster')}: ${option.label}`
+
   renderSearchBar() {
     return (
       <div className={styles.searchBar}>
@@ -388,6 +390,7 @@ export default class LogSearchModal extends React.Component {
             value={this.props.searchInputState.cluster}
             onChange={this.changeClusterChange}
             className={styles.queryModeOptions}
+            valueRenderer={this.clusterRenderer}
             options={this.props.clustersOpts}
           />
         </span>

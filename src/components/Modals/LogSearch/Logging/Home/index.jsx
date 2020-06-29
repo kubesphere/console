@@ -165,6 +165,8 @@ export default class HomeModal extends React.Component {
     )
   }
 
+  clusterRenderer = option => `${t('Cluster')}: ${option.label}`
+
   renderSearchBar() {
     const { searchInputState, clustersOpts } = this.props
     return (
@@ -173,6 +175,7 @@ export default class HomeModal extends React.Component {
           className={styles.clusterSelector}
           value={searchInputState.cluster}
           options={clustersOpts}
+          valueRenderer={this.clusterRenderer}
           onChange={this.onClusterChange}
         />
         <SearchInput
