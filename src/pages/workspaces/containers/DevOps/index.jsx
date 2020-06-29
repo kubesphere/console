@@ -112,11 +112,14 @@ export default class DevOps extends React.Component {
     const { store } = this.props
 
     silent && (store.list.silent = true)
-    await store.fetchList({
-      cluster: this.workspaceStore.cluster,
-      ...this.props.match.params,
-      ...params,
-    })
+    const { cluster } = this.workspaceStore
+    if (cluster) {
+      await store.fetchList({
+        cluster,
+        ...this.props.match.params,
+        ...params,
+      })
+    }
     store.list.silent = false
   }
 
