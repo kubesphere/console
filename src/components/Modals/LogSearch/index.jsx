@@ -43,10 +43,7 @@ export default class LogSearchModal extends React.Component {
   get clustersOpts() {
     return this.clusters.list.data
       .filter(item => get(item, 'configz.logging'))
-      .map(({ name }) => ({
-        value: name,
-        label: `${t('Cluster')}: ${name}`,
-      }))
+      .map(({ name }) => ({ value: name, label: name }))
   }
 
   initStepState() {

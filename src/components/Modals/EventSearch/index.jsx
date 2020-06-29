@@ -37,11 +37,8 @@ export default class EventSearch extends React.Component {
   @computed
   get clustersOpts() {
     return this.clusters.list.data
-      .filter(item => get(item, 'configz.logging'))
-      .map(({ name }) => ({
-        value: name,
-        label: `${t('Cluster')}: ${name}`,
-      }))
+      .filter(item => get(item, 'configz.events'))
+      .map(({ name }) => ({ value: name, label: name }))
   }
 
   initStepState() {

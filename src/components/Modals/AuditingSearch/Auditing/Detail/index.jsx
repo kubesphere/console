@@ -344,6 +344,8 @@ export default class Detail extends React.PureComponent {
     })
   }
 
+  clusterRenderer = option => `${t('Cluster')}: ${option.label}`
+
   renderSearchBar() {
     const { searchInputState, clustersOpts } = this.props
     return (
@@ -353,10 +355,10 @@ export default class Detail extends React.PureComponent {
             value={searchInputState.cluster}
             onChange={this.changeClusterChange}
             className={styles.queryModeOptions}
+            valueRenderer={this.clusterRenderer}
             options={clustersOpts}
           />
         </span>
-
         <SearchInput
           className={styles.searchInput}
           placeholder={t('search condition')}
