@@ -220,7 +220,8 @@ export default {
     'The maintainer of the namespace who can manage resources other than users and roles in the namespace.',
   ROLE_PROJECT_VIEWER:
     'Allows viewer access to view all resources in the namespace.',
-  ROLE_PROJECT_OPERATOR: 'The maintainer of the project who can manage resources other than users and roles in the project.'
+  ROLE_PROJECT_OPERATOR:
+    'The maintainer of the project who can manage resources other than users and roles in the project.',
 
   ROLE_DEVOPS_ADMIN:
     'Allows admin access to perform any action on any resource. It gives full control over all resources in the DevOps project.',
