@@ -219,7 +219,6 @@ export default class UsersStore extends Base {
 
     const lang = get(data, 'spec.lang')
     if (lang && data.lang !== cookie('lang')) {
-      cookie('lang', data.lang, { path: '/' })
       window.location.reload()
     }
   }
