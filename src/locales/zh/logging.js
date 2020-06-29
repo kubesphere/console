@@ -71,7 +71,7 @@ export default {
   'Status Code Auditing Query Tip': '可以根据状态码查看相关的操作审计',
   'Operation Account Auditing Query Tip': '可以根据操作账号查看相关的操作审计',
   'Source IP Auditing Query Tip': '可以根据来源IP查看相关的操作审计',
-  'Trends in the total number of auditing in the last 12 hours':
+  'Trends in the total number of auditing logs in the last 12 hours':
     '最近 12 小时操作审计总数变化趋势',
   
   TOTAL_AUDITING_TODAY:

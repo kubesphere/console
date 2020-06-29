@@ -1505,7 +1505,7 @@
       "title": "Custom Monitoring"
     },
     "name": "Custom",
-    "description": "Custom Your Exporter",
+    "description": "Customize Your Exporter",
     "logo": "/assets/prometheus.svg"
   }
 }

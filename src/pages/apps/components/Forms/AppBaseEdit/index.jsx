@@ -141,7 +141,7 @@ export default class AppBaseEdit extends React.Component {
             />
           </Form.Item>
           <Form.Item
-            label={t('App Abstraction')}
+            label={t('App Description')}
             desc={t('APP_ABSTRACTION_DESC')}
           >
             <TextArea

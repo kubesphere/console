@@ -181,7 +181,7 @@ export default {
     'Create, edit and delete workspace roles (system preset roles cannot be deleted)',
   WORKSPACE_MEMBERS_VIEW_DESC: 'View workspace members',
   WORKSPACE_MEMBERS_MANAGEMENT_DESC: 'Invite/edit/remove workspace members',
-  WORKSPACE_APP_REPOS_VIEW_DESC: 'View app repository list ',
+  WORKSPACE_APP_REPOS_VIEW_DESC: 'View app repository lists',
   WORKSPACE_APP_REPOS_MANAGEMENT_DESC: 'Create/edit/delete app repositories',
   WORKSPACE_APP_TEMPLATES_VIEW_DESC: 'View workspace app templates',
   WORKSPACE_APP_TEMPLATES_MANAGEMENT_DESC:
@@ -193,7 +193,6 @@ export default {
   ROLE_PLATFORM_REGULAR:
     'Normal user in the platform who has no access to any resources before joining the workspace or cluster.',
   ROLE_USER_MANAGER: 'User manager in the platform who manages all users.',
-  ROLE_WORKSPACE_MANAGER: 'Workspace manager in the platform who manages all workspaces in the platform.',
 
   ROLE_CLUSTER_ADMIN:
     'Allows cluster-admin access to perform any action on any resource. It gives full control over all resources in the cluster and in all namespaces.',
@@ -202,24 +201,26 @@ export default {
 
   ROLE_WORKSPACE_ADMIN:
     'Allows admin access to perform any action on any resource. It gives full control over all resources in the workspace.',
+  ROLE_WORKSPACE_MANAGER: 'Workspace manager in the platform who manages all workspaces in the platform.',
   ROLE_WORKSPACE_REGULAR:
-    'Normal user in the workspace who can create namespace and DevOps project.',
+    'Normal user in the workspace who can create namespaces and DevOps projects.',
   ROLE_WORKSPACE_VIEWER:
     'Allows viewer access to view all resources in the workspace.',
   ROLE_WORKSPACE_SELF_PROVISIONER:
-    'Normal user in the workspace who can not create namespace and DevOps project.',
+    'Normal user in the workspace who cannot create namespaces and DevOps projects.',
 
   ROLE_PROJECT_ADMIN:
-    'Allows admin access to perform any action on any resource, it gives full control over every resource in the namespace.',
+    'Allows admin access to perform any action on any resource. It gives full control over all resources in the namespace.',
   ROLE_PROJECT_REGULAR:
     'The maintainer of the namespace who can manage resources other than users and roles in the namespace.',
   ROLE_PROJECT_VIEWER:
     'Allows viewer access to view all resources in the namespace.',
+  ROLE_PROJECT_OPERATOR: 'The maintainer of the project who can manage resources other than users and roles in the project.'
 
   ROLE_DEVOPS_ADMIN:
-    'Allows admin access to perform any action on any resource, it gives full control over every resource in the devops.',
+    'Allows admin access to perform any action on any resource. It gives full control over all resources in the DevOps project.',
   ROLE_DEVOPS_REGULAR:
-    'The maintainer of the namespace who can manage resources other than users and roles in the devops.',
+    'The maintainer of the namespace who can manage resources other than users and roles in the DevOps project.',
   ROLE_DEVOPS_VIEWER:
-    'Allows viewer access to view all resources in the devops.',
+    'Allows viewer access to view all resources in the DevOps project.',
 }

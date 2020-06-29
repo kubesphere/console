@@ -67,6 +67,7 @@ export default {
   GRAPH_TYPES: 'Chart Types',
   LINE_CHART: 'Line Chart',
   BAR_CHART: 'Bar Chart',
+  SINGLE_STATE_CHART: 'Real-time Text',
   DISPLAY_POSITION: 'Display Position',
   APPLICABLE_SCENE: 'Applicable Scenario',
   BASE_LINE_CHART: 'Base Line Chart',

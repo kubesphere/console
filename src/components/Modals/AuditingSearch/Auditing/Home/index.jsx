@@ -141,7 +141,7 @@ export default class Home extends React.Component {
           <div className={styles.recentSummary}>
             <h2 className={styles.count}>{total || 0}</h2>
             <p>
-              {t('Trends in the total number of auditing in the last 12 hours')}
+              {t('Trends in the total number of auditing logs in the last 12 hours')}
             </p>
           </div>
           <div className={styles.chart}>
