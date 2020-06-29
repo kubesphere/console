@@ -18,11 +18,13 @@
 
 import React from 'react'
 import { get } from 'lodash'
-import { toJS } from 'mobx'
+import { toJS, computed } from 'mobx'
 import { observer } from 'mobx-react'
 import { Columns, Column } from '@pitrix/lego-ui'
 import { Button, Modal, Search, ScrollLoad } from 'components/Base'
 import WorkspaceStore from 'stores/workspace'
+import ClusterStore from 'stores/cluster'
+
 import WorkspaceCard from './Card'
 import styles from './index.scss'
 
@@ -31,6 +33,16 @@ export default class WorkspaceSelectModal extends React.Component {
   constructor(props) {
     super(props)
     this.store = new WorkspaceStore()
+    this.clusterStore = new ClusterStore()
+  }
+
+  componentDidMount() {
+    this.clusterStore.fetchList({ limit: -1 })
+  }
+
+  @computed
+  get clusters() {
+    return this.clusterStore.list.data
   }
 
   fetchData = params => {
@@ -106,6 +118,7 @@ export default class WorkspaceSelectModal extends React.Component {
               <WorkspaceCard
                 key={item.uid}
                 data={item}
+                clustersDetail={this.clusters}
                 onEnter={this.handleOnEnter}
               />
             ))}

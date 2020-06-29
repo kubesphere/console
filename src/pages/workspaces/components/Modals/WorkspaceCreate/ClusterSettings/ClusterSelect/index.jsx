@@ -73,9 +73,7 @@ export default class ClusterSettings extends Component {
     onChange(newValue)
   }
 
-  handleCheckboxClick = e => {
-    e.stopPropagation()
-  }
+  handleCheckboxClick = e => e.stopPropagation()
 
   render() {
     const { value = [] } = this.props

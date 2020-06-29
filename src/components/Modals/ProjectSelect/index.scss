@@ -47,10 +47,15 @@
   .search {
     :global .input {
       opacity: 1;
-      padding-left: 124px;
       background-color: #ffffff;
       border-color: #79879c !important;
       box-shadow: none !important;
+    }
+
+    &.withSelect {
+      :global .input {
+        padding-left: 124px;
+      }
     }
   }
 }

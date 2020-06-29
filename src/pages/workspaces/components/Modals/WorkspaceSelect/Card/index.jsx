@@ -16,39 +16,36 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get } from 'lodash'
+import { isEmpty } from 'lodash'
 import React from 'react'
 import { List } from 'components/Base'
+import ClusterWrapper from 'components/Clusters/ClusterWrapper'
 import { getLocalTime } from 'utils'
 
 import styles from './index.scss'
 
 export default class WorkspaceCard extends React.Component {
-  get canViewDevOps() {
-    return globals.app.isMultiCluster || globals.app.hasKSModule('devops')
-  }
-
   handleClick = () => {
     const { data, onEnter } = this.props
     onEnter && onEnter(data.name)
   }
 
   render() {
-    const { data } = this.props
+    const { data, clustersDetail } = this.props
 
     const details = [
       {
-        title: get(data, 'annotations["kubesphere.io/namespace-count"]', 0),
-        description: t('Project Number'),
+        title: isEmpty(data.clusters) ? (
+          '-'
+        ) : (
+          <ClusterWrapper
+            clusters={data.clusters}
+            clustersDetail={clustersDetail}
+          />
+        ),
+        className: styles.clusters,
+        description: t('Cluster Info'),
       },
-      ...(this.canViewDevOps
-        ? [
-            {
-              title: get(data, 'annotations["kubesphere.io/devops-count"]', 0),
-              description: t('DevOps Project Number'),
-            },
-          ]
-        : []),
       {
         title: data.createTime
           ? getLocalTime(data.createTime).format(`YYYY-MM-DD HH:mm:ss`)
