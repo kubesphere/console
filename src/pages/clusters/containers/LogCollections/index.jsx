@@ -87,14 +87,17 @@ export default class LogCollection extends React.Component {
         {
           value: 'logging',
           label: t('Logging'),
+          hidden: !globals.app.hasClusterModule(this.cluster, 'logging'),
         },
         {
           value: 'events',
           label: t('Events'),
+          hidden: !globals.app.hasClusterModule(this.cluster, 'events'),
         },
         {
           value: 'auditing',
           label: t('Auditing'),
+          hidden: !globals.app.hasClusterModule(this.cluster, 'auditing'),
         },
       ],
     }

@@ -199,7 +199,7 @@ client:
                 name: log-collections,
                 title: Log Collections,
                 icon: file,
-                authKey: logging,
+                authKey: logging|events|auditing,
                 clusterModule: logging,
               }
 
