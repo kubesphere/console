@@ -19,8 +19,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { trim } from 'lodash'
-import { Input, TextArea } from '@pitrix/lego-ui'
-import { Form } from 'components/Base'
+import { Input } from '@pitrix/lego-ui'
+import { Form, TextArea } from 'components/Base'
 import { ReactComponent as BackIcon } from 'src/assets/back.svg'
 
 import styles from './index.scss'
@@ -109,7 +109,14 @@ export default class SecretDataForm extends React.Component {
                 'Enter the value of the configuration map entry or use the contents of the file'
               )}
             >
-              <TextArea name="value" placeholder="value" rows={4} resize />
+              <TextArea
+                maxHeight={430}
+                autoResize
+                resize
+                name="value"
+                placeholder="value"
+                rows={4}
+              />
             </Form.Item>
           </Form>
         </div>
