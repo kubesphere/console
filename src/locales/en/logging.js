@@ -74,12 +74,12 @@ export default {
   'Pod Event Query Tip':
     'You can view related event information according to the pod name.',
   TOTAL_LOGS:
-    'A total of <span class={className}>{containers}</span> containers<br/> <span class={className}> {logs} </span> log information.',
+    'A total of <span class={className}> {logs} </span> logs from<br/> <span class={className}>{containers}</span> containers were collected.',
   TIME_S: '{num} s',
   CONTAINER_REAL_TIME_LOGS_UNSUPPORTED_TIPS:
     'The container does not support real-time logs in the current state, please try again later.',
   TOTAL_LOGS_TODAY:
-    'A total of <span class={className}>{containers}</span> containers and <span class={className}> {logs} </span> logs were collected today.',
+    'A total of <span class={className}> {logs} </span> logs from <span class={className}>{containers}</span> containers were collected today.',
   TOTAL_EVENTS_TODAY:
     'A total of <span class={className}> {events} </span> events were collected today.',
   NO_EVENTS_TODAY: 'Events not found today',

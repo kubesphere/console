@@ -156,7 +156,7 @@ export default {
     '集群授权可以将集群通过授权的形式指定给企业空间使用该集群',
 
   CLUSTER_VISIBILITY_Q1: '如何将集群授权给指定的企业空间使用？',
-  CLUSTER_VISIBILITY_A1: '',
+  CLUSTER_VISIBILITY_A1: '集群可以通过“编辑可见范围”将集群授权给不同的企业空间使用',
   CLUSTER_VISIBILITY_Q2: '什么是公开集群?',
   CLUSTER_VISIBILITY_A2:
     '公开状态的集群意味着平台内的用户都可以使用该集群，并在集群中创建和调度资源',
