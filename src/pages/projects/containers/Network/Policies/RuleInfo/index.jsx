@@ -59,6 +59,7 @@ export default class RuleInfo extends React.Component {
       ...params,
     })
   }
+
   renderTabs() {
     const { curTab } = this.state
     return (
@@ -330,6 +331,7 @@ export default class RuleInfo extends React.Component {
       </>
     )
   }
+
   render() {
     return (
       <div className={styles.wrapper}>

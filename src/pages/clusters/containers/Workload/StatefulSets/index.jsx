@@ -65,6 +65,8 @@ export default class StatefulSets extends React.Component {
     }
   }
 
+  showAction = record => !record.isFedManaged
+
   get itemActions() {
     const { module, trigger } = this.props
     return [
@@ -73,6 +75,7 @@ export default class StatefulSets extends React.Component {
         icon: 'pen',
         text: t('Edit'),
         action: 'edit',
+        show: this.showAction,
         onClick: item =>
           trigger('resource.baseinfo.edit', {
             detail: item,
@@ -83,6 +86,7 @@ export default class StatefulSets extends React.Component {
         icon: 'pen',
         text: t('Edit YAML'),
         action: 'edit',
+        show: this.showAction,
         onClick: item =>
           trigger('resource.yaml.edit', {
             detail: item,
@@ -93,6 +97,7 @@ export default class StatefulSets extends React.Component {
         icon: 'restart',
         text: t('Redeploy'),
         action: 'edit',
+        show: this.showAction,
         onClick: item =>
           trigger('workload.redeploy', {
             module,
@@ -104,6 +109,7 @@ export default class StatefulSets extends React.Component {
         icon: 'trash',
         text: t('Delete'),
         action: 'delete',
+        show: this.showAction,
         onClick: item =>
           trigger('resource.delete', {
             type: t(this.name),
@@ -148,9 +154,9 @@ export default class StatefulSets extends React.Component {
             title={getDisplayName(record)}
             desc={this.getItemDesc(record)}
             isMultiCluster={record.isFedManaged}
-            to={`/clusters/${cluster}/projects/${
-              record.namespace
-            }/${module}/${name}`}
+            to={`/clusters/${cluster}/${
+              record.isFedManaged ? 'federatedprojects' : 'projects'
+            }/${record.namespace}/${module}/${name}`}
           />
         ),
       },

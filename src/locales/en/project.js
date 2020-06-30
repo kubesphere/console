@@ -41,7 +41,8 @@ export default {
     'You can invite new members to assist your DevOps project.',
   INVITE_MEMBER_SEARCH_PLACEHODLER: 'Enter an email address to invite members',
   INVITE_MEMBER_CHOOSE_ROLE_TIP: 'Please assign a role to this member',
-  DELETE_MEMBER_TIP: 'Are you sure about deleting the member <strong>{name}</strong>? The member cannot access this project once removed.',
+  DELETE_MEMBER_TIP:
+    'Are you sure about deleting the member <strong>{name}</strong>? The member cannot access this project once removed.',
 
   PROJECT_ADMIN_DESC:
     'You can specify a member of the project as an administrator.',
@@ -109,4 +110,9 @@ export default {
   PROJECT_CLUSTER_SETTINGS_DESC:
     'Select the cluster to create the project. When multiple clusters are selected, a multi-cluster project will be created.',
   NETWORK_ISOLATED_DESC: 'Set network isolation strategy',
+
+  FEDPROJECT_RESOURCE_TIP:
+    'Unable to create multi-cluster project resources in cluster management, please go to the multi-cluster project page to operate.',
+  FEDPROJECT_CANNOT_DEPLOY_APP_TIP:
+    'Unable to deploy applications in multi-cluster projects.',
 }

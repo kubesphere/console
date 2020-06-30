@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, omitBy, isEmpty, set } from 'lodash'
+import { get, omitBy, uniqBy, isEmpty, set } from 'lodash'
 import { Modal, Notify } from 'components/Base'
 import QuotaEditModal from 'components/Modals/QuotaEdit'
 import ProjectCreateModal from 'components/Modals/ProjectCreate'
@@ -35,10 +35,14 @@ export default {
       const modal = Modal.open({
         onOk: async data => {
           set(data, 'metadata.labels["kubesphere.io/workspace"]', workspace)
-          const clusters = get(data, 'spec.placement.clusters', [])
+          const clusters = uniqBy(
+            get(data, 'spec.placement.clusters', []),
+            'name'
+          )
 
           if (clusters.length > 1) {
             const federatedStore = new FederatedStore(store)
+            set(data, 'spec.placement.clusters', clusters)
             await store.create(data, { workspace })
             await federatedStore.create(FED_TEMPLATES.namespaces(data), {
               namespace: get(data, 'metadata.name'),

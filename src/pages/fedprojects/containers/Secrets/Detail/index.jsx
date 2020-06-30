@@ -54,8 +54,13 @@ export default class SecretDetail extends React.Component {
   }
 
   get listUrl() {
-    const { workspace, namespace } = this.props.match.params
-    return `/${workspace}/federatedprojects/${namespace}/${this.module}`
+    const { workspace, cluster, namespace } = this.props.match.params
+
+    if (workspace) {
+      return `/${workspace}/federatedprojects/${namespace}/${this.module}`
+    }
+
+    return `/clusters/${cluster}/${this.module}`
   }
 
   fetchData = () => {

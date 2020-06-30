@@ -1,16 +1,9 @@
 @import '~scss/variables';
 @import '~scss/mixins';
 
-.select {
-  width: 200px;
-  margin-right: 12px;
-
-  :global .select-placeholder {
-    @include TypographySymbolText;
-  }
-}
-
 .option {
+  position: relative;
+  width: 100%;
   @include ellipsis;
   & > span,
   & > img {
@@ -20,4 +13,9 @@
     width: 16px;
     height: 16px;
   }
+}
+
+.tip {
+  @include vertical-center;
+  right: 0;
 }

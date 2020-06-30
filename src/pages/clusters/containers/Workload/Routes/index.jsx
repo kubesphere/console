@@ -36,6 +36,8 @@ import RouterStore from 'stores/router'
   rowKey: 'uid',
 })
 export default class Routers extends React.Component {
+  showAction = record => !record.isFedManaged
+
   get itemActions() {
     const { trigger } = this.props
     return [
@@ -44,6 +46,7 @@ export default class Routers extends React.Component {
         icon: 'pen',
         text: t('Edit'),
         action: 'edit',
+        show: this.showAction,
         onClick: item =>
           trigger('resource.baseinfo.edit', {
             detail: item,
@@ -54,6 +57,7 @@ export default class Routers extends React.Component {
         icon: 'pen',
         text: t('Edit YAML'),
         action: 'edit',
+        show: this.showAction,
         onClick: item =>
           trigger('resource.yaml.edit', {
             detail: item,
@@ -64,6 +68,7 @@ export default class Routers extends React.Component {
         icon: 'firewall',
         text: t('Edit Rules'),
         action: 'edit',
+        show: this.showAction,
         onClick: item =>
           trigger('router.rules.edit', {
             detail: item,
@@ -74,6 +79,7 @@ export default class Routers extends React.Component {
         icon: 'firewall',
         text: t('Edit Annotations'),
         action: 'edit',
+        show: this.showAction,
         onClick: item =>
           trigger('router.annotations.edit', {
             detail: item,
@@ -84,6 +90,7 @@ export default class Routers extends React.Component {
         icon: 'trash',
         text: t('Delete'),
         action: 'delete',
+        show: this.showAction,
         onClick: item =>
           trigger('resource.delete', {
             type: t(this.name),
@@ -109,9 +116,9 @@ export default class Routers extends React.Component {
             iconSize={40}
             title={getDisplayName(record)}
             isMultiCluster={record.isFedManaged}
-            to={`/clusters/${cluster}/projects/${
-              record.namespace
-            }/${module}/${name}`}
+            to={`/clusters/${cluster}/${
+              record.isFedManaged ? 'federatedprojects' : 'projects'
+            }/${record.namespace}/${module}/${name}`}
           />
         ),
       },

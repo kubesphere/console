@@ -18,6 +18,7 @@
 
 import React, { Component } from 'react'
 import { observer } from 'mobx-react'
+import { Icon } from '@pitrix/lego-ui'
 import { SearchSelect } from 'components/Base'
 
 import styles from './index.scss'
@@ -29,11 +30,21 @@ export default class ProjectSelect extends Component {
       ...this.props.list.data.map(item => ({
         label: item.name,
         value: item.name,
+        isFedManaged: item.isFedManaged,
       })),
     ]
   }
 
-  valueRenderer = option => `${t('Project')}: ${option.label}`
+  optionRenderer = option => (
+    <span className={styles.option}>
+      {option.isFedManaged ? (
+        <img className={styles.indicator} src="/assets/cluster.svg" />
+      ) : (
+        <Icon name="project" />
+      )}
+      {option.label}
+    </span>
+  )
 
   render() {
     const { namespace = '', list, onChange, onFetch } = this.props
@@ -48,7 +59,8 @@ export default class ProjectSelect extends Component {
         total={list.total}
         currentLength={list.data.length}
         isLoading={list.isLoading}
-        valueRenderer={this.valueRenderer}
+        valueRenderer={this.optionRenderer}
+        optionRenderer={this.optionRenderer}
         onFetch={onFetch}
         placeholder={t('All Projects')}
       />
