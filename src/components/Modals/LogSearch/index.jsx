@@ -26,6 +26,10 @@ import EmptyList from 'components/Cards/EmptyList'
 import FullScreen from 'components/Modals/FullscreenModal'
 import Clusters from 'stores/cluster'
 
+/**
+ * 页面的显示组件
+ * 都是Container
+ */
 import { Home, Search, Detail } from './Logging'
 
 @FullScreen
@@ -46,6 +50,7 @@ export default class LogSearchModal extends React.Component {
       .map(({ name }) => ({ value: name, label: name }))
   }
 
+  // 用于保存日志具体显示那个页面
   initStepState() {
     const state = observable({
       step: 0,
@@ -59,6 +64,7 @@ export default class LogSearchModal extends React.Component {
     return state
   }
 
+  // 保存过滤的filter
   searchInputState = (() => {
     const state = observable({
       query: [],
@@ -78,6 +84,7 @@ export default class LogSearchModal extends React.Component {
     return state
   })()
 
+  // 保存详细页面的filter
   detailState = (() => {
     const state = observable({
       container: '',
@@ -94,6 +101,7 @@ export default class LogSearchModal extends React.Component {
     return state
   })()
 
+  // 配置具体页面需要使用的store
   formStepConfig = [
     {
       Component: Home,
@@ -122,6 +130,7 @@ export default class LogSearchModal extends React.Component {
     return this.formStepConfig[this.formStepState.step] || {}
   }
 
+  // 异步获取需要的cluster信息
   async componentDidMount() {
     await this.clusters.fetchList({
       limit: -1,

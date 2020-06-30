@@ -62,6 +62,7 @@ export default class LogSearchModal extends React.Component {
 
   histogramStore = new HistogramStore()
 
+  // 用于缓存高亮的计算结果
   markMemoizee = memoizee(markAll, {
     normalizer: ([log, args = [], handler = () => {}]) =>
       `${log}+${args.toString()})+${handler.name}`,
@@ -145,6 +146,7 @@ export default class LogSearchModal extends React.Component {
     }
   }
 
+  // 业务逻辑，模糊匹配 会带上 _query 如 pods_query
   getQueryParams() {
     const {
       query: inputQuery,
@@ -217,6 +219,7 @@ export default class LogSearchModal extends React.Component {
 
   @action
   selectedDurationParameter = ({ time: startTime = 0 }) => {
+    // 选择具体的柱状图的时间，需要改变间隔step，并刷新数据
     const { interval } = this.histogramStore
     const { searchInputState } = this.props
     searchInputState.end = Math.ceil(startTime / 1000) + getSecond(interval)
@@ -252,6 +255,7 @@ export default class LogSearchModal extends React.Component {
   }
 
   onSearchParamsChange = () => {
+    // 改变filter之后需要停止polling，并刷新数据
     this.stopPolling()
     this.fetchHistogram()
     this.refreshQuery()
@@ -362,6 +366,7 @@ export default class LogSearchModal extends React.Component {
   }
 
   selectLog = log => {
+    // 选择日志，就调到下一个页面，并把数据放到store中
     this.props.detailState.setState({ ...log })
     this.props.formStepState.next()
   }

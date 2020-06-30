@@ -23,6 +23,9 @@ import moment from 'moment-mini'
 import classnames from 'classnames'
 import { Icon, Loading, Select } from '@pitrix/lego-ui'
 
+/**
+ * TimeBar 建议使用Rechart XAxis type 改为 number
+ */
 import TimeBar from 'components/Charts/Bar/TimeBar'
 import LogStatisticsStore from 'stores/logging/statistics'
 import HistogramStore from 'stores/logging/histogram'
@@ -31,6 +34,7 @@ import SearchInput from '../SearchInput'
 
 import styles from './index.scss'
 
+/** 建议使用 monitoring utils 中的方法 */
 const getSecond = step => {
   const [, count = 0, unit = 's'] = step.match(/(\d+)(\w+)/)
   const unitMap = {
@@ -113,6 +117,7 @@ export default class HomeModal extends React.Component {
   }
 
   onSearchParamsChange = () => {
+    // 控制页面到下一个
     this.props.formStepState.next()
   }
 
@@ -169,6 +174,8 @@ export default class HomeModal extends React.Component {
 
   renderSearchBar() {
     const { searchInputState, clustersOpts } = this.props
+
+    // 使用3.0的日志之后建议删除相关的全部组件
     return (
       <div className={styles.searchBarContainer}>
         <Select
