@@ -25,6 +25,9 @@ export const MONITOR_PANEL_TYPE = {
   GRAPH: 'graph',
 }
 
+/**
+ * 自定义监控获取监控数据的基类
+ */
 export default class PanelMonitor {
   get apiVersion() {
     return 'kapis/monitoring.kubesphere.io/v1alpha3'
@@ -66,11 +69,13 @@ export default class PanelMonitor {
      * grafana template panel config
      */
     this.config = config
+    /** requestID 用于确保获得的数据放回对应的是最新的请求 */
     this.requestID = 0
   }
 
   /**
    * monitoring template and config
+   * 监听Template的变化，这个应该改成监听者模式，用派发的方式实现
    */
   monitoring = (template = this.template) => {
     if (this.isObserving) {
@@ -78,6 +83,7 @@ export default class PanelMonitor {
     }
     this.isObserving = true
 
+    /** 轮询数据 */
     this.pollingController = polling(
       () => {
         const { from, to } = template.getTimeRange()
@@ -88,6 +94,7 @@ export default class PanelMonitor {
       }
     )
 
+    /** 监听template的数据和本对象target的变化，然后开启新的轮询 */
     this.disposer = reaction(
       () => ({
         time: template.timeRange,
@@ -149,6 +156,7 @@ export default class PanelMonitor {
           return { data, target }
         })
       )
+      /** 一个Expr 可能返回多个 metric ，所以需要对返回的 metric 进行标记 */
       req.metrics = result.reduce((metrics, metricsGroup) => {
         const { data = [], target = {} } = metricsGroup
         const { expr, refId: targetID } = target
@@ -170,6 +178,7 @@ export default class PanelMonitor {
         return metrics.concat(parsedMetrics)
       }, [])
     } catch (err) {
+      // 失败需要保存，用于在页面中显示
       req.errorMessage = err.message
     } finally {
       if (req.ID === this.requestID) {

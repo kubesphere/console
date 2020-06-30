@@ -83,14 +83,19 @@ export default class CustomMonitoringTemplate {
   @observable
   textMonitors = {}
 
+  // 用于存储页面中没有分组的Monitor
   unNameGraphRow = new MonitorRow({ config: { id: 0 } })
 
   /**
    * row list which store name row
+   * 用于存放分组行数据
    */
   @observable
   graphMonitorRows = []
 
+  /**
+   * 存放支持的metrics 用于提示 expr 的输入
+   */
   @observable
   targetsMetadata = []
 
@@ -121,7 +126,11 @@ export default class CustomMonitoringTemplate {
     /**
      * hack for grafana panels to ks panels which has side effect
      */
+    /** 必要的副作用操作，用于将panels分为可以用于监控的子对象，并对其进行分组方便页面的渲染 */
     this.generateMonitorList()
+    /**
+     * 必要的UID生成器，React需要ID来作为key
+     */
     this.uidFactory = CreateUidFactory(this.panels.map(panel => panel.id))
   }
 
@@ -156,6 +165,8 @@ export default class CustomMonitoringTemplate {
     /**
      * group panel
      */
+
+    /** 分组，将singleStat 分出来，用于页面左边的渲染 */
     const { textPanels, otherPanels } = this.panels.reduce(
       (panelGroup, panel) => {
         const panelTargetGroup =
@@ -171,6 +182,7 @@ export default class CustomMonitoringTemplate {
 
     this.textMonitors = this.generateTextMonitors(textPanels)
 
+    /** 将非singlestat 的panel 分为已命名的row和匿名row */
     const { unNameGraphRow, graphRows } = this.gennerateGraphMonitorRows(
       otherPanels
     )
@@ -313,6 +325,7 @@ export default class CustomMonitoringTemplate {
   }
 
   async fetchMetadata() {
+    /** 获取支持的metric */
     const { data: targetsMetadata } = (await request.get(
       `kapis/monitoring.kubesphere.io/v1alpha3/namespaces/${
         this.namespace
