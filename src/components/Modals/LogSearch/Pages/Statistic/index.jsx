@@ -139,6 +139,10 @@ class LogStatisticPage extends Component {
   }
 }
 
+/**
+ * Container 负责处理 LogStatisticPage 的全部事件
+ * 建议重构，参考自定义监控的组织方式
+ *  */
 @observer
 export default class LogStatisticPageContainer extends Component {
   statisticStore = new Statistic({
@@ -153,6 +157,9 @@ export default class LogStatisticPageContainer extends Component {
   }
 
   onQueryFieldChange = fields => {
+    /**
+     * 写入数据并跳转到下一个页面
+     */
     this.props.tab.updateFields(fields)
     this.props.tab.linkToSearchPage()
   }

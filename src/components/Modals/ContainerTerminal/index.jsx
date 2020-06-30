@@ -161,6 +161,10 @@ class ContainerTerminalContainer extends React.Component {
 
 const ContainerTerminalModal = fullscreen(ContainerTerminalContainer)
 
+/**
+ * 默认渲染就是点击关闭就关闭整个页面，可以通过传递props改变。
+ */
+
 export default props => (
   <ContainerTerminalModal
     onCancel={windowClose}

@@ -32,6 +32,7 @@ export default class LoggingStore {
   /**
    * {number} count
    * {string} unit - one of ['Seconds', 'Minutes', 'Hours', 'Days']
+   * eg: {count: 0, unit: 'Seconds'}
    */
   @observable
   recent = null
@@ -76,11 +77,13 @@ export default class LoggingStore {
       [END_TIME]: 0,
     })
 
+    /** 指定具体时间跟，最近一段时间分开处理 */
     recent
       ? this.setTimeRangeWithRecent(recent)
       : this.setTimeRangeDirect({ startTime, endTime })
   }
 
+  // 指定最近多长时间
   @action
   setTimeRangeWithRecent({ count = 0, unit = 'Seconds' }) {
     this[START_TIME] = 0
@@ -88,6 +91,7 @@ export default class LoggingStore {
     this.recent = { count, unit }
   }
 
+  // 指定具体时间
   @action
   setTimeRangeDirect({ startTime = 0, endTime = 0 }) {
     this.recent = null
@@ -95,6 +99,7 @@ export default class LoggingStore {
     this[END_TIME] = endTime
   }
 
+  // 返回一个具体时间段
   @computed
   get timeRange() {
     const startTime = this[START_TIME]
@@ -123,6 +128,7 @@ export default class LoggingStore {
     return 'kapis/logging.kubesphere.io/v1alpha2'
   }
 
+  /** 用于拼接API的filter */
   get encodedPathParams() {
     const pathParams = Object.entries(this.pathParams)
       .reduce((path, param) => {

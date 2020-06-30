@@ -99,6 +99,7 @@ export default class LogDetailStore extends LoggingStore {
     return nextPageRecords
   }
 
+  // 简单的轮询获取日志
   @action
   watchNewLogs({
     pollingInterval = 5000,
@@ -143,10 +144,15 @@ export default class LogDetailStore extends LoggingStore {
     clearTimeout(this.pollingTimer)
   }
 
+  /**
+   * 获取一条日志的上下文
+   *
+   *  */
   async fetchContext({ targetLog, size }) {
     const { log, time, container, pod, namespace } = targetLog
     const timestamp = +new Date(time)
 
+    /** 获取这条日志之后的日志，开始时间这条日志的时间，结束时间为现在，并且排序为正序，这条日志在里面 */
     const nextContext = await this.request({
       start_time: timestamp,
       end_time: Date.now(),
@@ -163,6 +169,7 @@ export default class LogDetailStore extends LoggingStore {
       contextLog => contextLog.time === time && contextLog.log === log
     )
 
+    // 获取之前的日志，时间为0，结束时间为这条日志的时间减一，日志的size做一个处理，防止上文获取的日志是第N条，浪费带宽
     const preContext = await this.request({
       start_time: 0,
       end_time: timestamp - 1,

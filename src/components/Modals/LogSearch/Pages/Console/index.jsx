@@ -40,6 +40,7 @@ import styles from './index.scss'
 
 /**
  * Only render view and export events;
+ * 纯渲染组件，只负责渲染与暴露事件
  */
 class LogSearchPage extends Component {
   static propTypes = {
@@ -519,6 +520,9 @@ export default class LogStatisticPageContainer extends Component {
      * */
     const isMonitoring = recent
 
+    /**
+     * 建议参考自定义监控的方式，将页面切割成若干个 Container 组件的树
+     */
     return (
       <LogSearchPage
         recent={recent}

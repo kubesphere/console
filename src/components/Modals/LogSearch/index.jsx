@@ -36,6 +36,7 @@ import styles from './index.scss'
  */
 @observer
 class LogSearchContainer extends React.Component {
+  /** Container 级别的 Store  */
   tabsStore = new Store()
 
   /**
@@ -75,6 +76,9 @@ class LogSearchContainer extends React.Component {
     const tabsStore = this.tabsStore
     const { activeTab } = tabsStore
 
+    /**
+     * @TODO 这里应该吧AddableTabs 改变为 render component 更加清晰
+     */
     return (
       <AddableTabs
         disableEmpty
