@@ -92,7 +92,9 @@ const WorkspaceMapper = item => {
     ...getBaseInfo(item),
     annotations: get(item, 'metadata.annotations', {}),
     manager:
-      get(item, 'spec.template.spec.manager') || getResourceCreator(item),
+      get(item, 'spec.template.spec.manager') ||
+      get(item, 'spec.manager') ||
+      getResourceCreator(item),
     clusters,
     networkIsolation:
       get(item, 'spec.template.spec.networkIsolation') === 'true',

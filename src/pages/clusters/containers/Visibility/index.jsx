@@ -90,6 +90,10 @@ export default class Overview extends React.Component {
         ),
       },
       {
+        title: t('Manager'),
+        dataIndex: 'manager',
+      },
+      {
         title: t('Created Time'),
         dataIndex: 'createTime',
         width: '20%',
