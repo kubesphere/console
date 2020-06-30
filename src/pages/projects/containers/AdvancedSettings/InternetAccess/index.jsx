@@ -207,7 +207,7 @@ class InternetAccess extends React.Component {
           ) : (
             <div className={styles.item}>
               <div>{this.getExternalIP(gateway)}</div>
-              <p>{t('External IP')}</p>
+              <p>{t('External Address')}</p>
             </div>
           )}
           {globals.app.hasClusterModule(cluster, 'servicemesh') && (

@@ -500,7 +500,9 @@ const ServiceMapper = item => {
     sessionAffinity: get(item, 'spec.sessionAffinity'),
     externalIPs: get(item, 'spec.externalIPs', []),
     externalName: get(item, 'spec.externalName'),
-    loadBalancerIngress: get(item, 'status.loadBalancer.ingress[0].ip'),
+    loadBalancerIngress:
+      get(item, 'status.loadBalancer.ingress[0].ip') ||
+      get(item, 'status.loadBalancer.ingress[0].hostname'),
     app:
       get(item, 'metadata.labels.release') ||
       get(item, 'metadata.labels["app.kubernetes.io/name"]'),
@@ -628,7 +630,9 @@ const GatewayMapper = item => ({
   type: get(item, 'spec.type'),
   externalIPs: get(item, 'spec.externalIPs', []),
   ports: get(item, 'spec.ports', []),
-  loadBalancerIngress: get(item, 'status.loadBalancer.ingress[0].ip'),
+  loadBalancerIngress:
+    get(item, 'status.loadBalancer.ingress[0].ip') ||
+    get(item, 'status.loadBalancer.ingress[0].hostname'),
   serviceMeshEnable:
     get(item, 'metadata.annotations["servicemesh.kubesphere.io/enabled"]') ===
     'true',

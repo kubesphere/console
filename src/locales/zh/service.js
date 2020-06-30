@@ -22,7 +22,7 @@ export default {
   Ports: '端口',
   selector: '选择器',
   Selector: '选择器',
-  'External IP': '外部 IP',
+  'External Address': '外部地址',
   'LoadBalancer IP': '负载均衡 IP',
   'Create Service': '创建服务',
   'Delete Service': '删除服务',

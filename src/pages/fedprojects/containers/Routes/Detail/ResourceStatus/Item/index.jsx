@@ -128,7 +128,7 @@ export default class Item extends React.Component {
           ) : (
             <Text
               title={this.getExternalIP(gateway)}
-              description={t('External IP')}
+              description={t('External Address')}
             />
           )}
         </div>
