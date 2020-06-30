@@ -324,7 +324,7 @@ export default {
     'The GID to run the entrypoint of the container process. Uses runtime default if unset.',
 
   WORKLOAD_CREATE_DESC:
-    'Workload is usually the actual carrier for access services and is also the actual carrier for system applications such as node log collection and monitoring. Workload is also an abstract model for a group of Pods.',
+    'Workload is usually the actual carrier for accessing services and is also the actual carrier for system applications such as node log collection and monitoring. Workload is also an abstract model for a group of Pods.',
 
   COMPARE_WITH: 'Comparison with the previous version {version}',
   REVISION_DESC:
