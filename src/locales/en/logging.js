@@ -50,7 +50,7 @@ export default {
     'Please enter the keyword to find the log. You can also find the error log by keywords such as “Error”, “Fail”, “Fatal”, “Exception” and “Warning”.',
   'Project Log Query Tip':
     'You can view related log information according to the project name.',
-  'Workload Log Query Tip': 
+  'Workload Log Query Tip':
     'You can view related log information according to the workload name.',
   'Container Log Query Tip':
     'You can view related log information according to the container name.',
@@ -115,4 +115,8 @@ export default {
   TOTAL_AUDITING_TODAY:
     'A total of <span class={className}> {auditing} </span> auditing logs were collected today.',
   NO_AUDITING_TODAY: 'Auditing logs not found today',
+
+  LOGGING_LOG_COLLECTOR: 'Log Collector',
+  EVENTS_LOG_COLLECTOR: 'Events Log Collector',
+  AUDITING_LOG_COLLECTOR: 'Auditing Log Collector',
 }
