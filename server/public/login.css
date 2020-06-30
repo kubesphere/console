@@ -274,7 +274,7 @@ input::-webkit-input-placeholder {
 }
 
 .captcha-wrapper > input {
-  width: 244px;
+  width: 150px;
 }
 
 @keyframes onAutoFillStart {
