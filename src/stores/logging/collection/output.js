@@ -31,6 +31,12 @@ const collectionDefaultSetting = {
 
 const KS_LOG_NAMESPACE = 'kubesphere-logging-system'
 
+const MATCHS = {
+  logging: 'kube.*',
+  events: 'kube_events',
+  auditing: 'kube_auditing',
+}
+
 export default class outputStore extends Base {
   module = 'outputs'
 
@@ -49,7 +55,6 @@ export default class outputStore extends Base {
   }
 
   create({ Name, enabled = true, cluster, component, ...params }) {
-    const MATCH = 'kube.*'
     const createParams = {
       apiVersion: 'logging.kubesphere.io/v1alpha2',
       kind: 'Output',
@@ -62,7 +67,7 @@ export default class outputStore extends Base {
         },
       },
       spec: {
-        match: MATCH,
+        match: MATCHS[component],
         [Name]: { ...collectionDefaultSetting[Name], ...params },
       },
     }
