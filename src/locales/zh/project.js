@@ -222,4 +222,8 @@ export default {
 
   MULTI_CLUSER_PROJECT_TIP:
     '当前项目为多集群项目，项目将分布在不同集群中共同来构成多集群项目，您可以切换到不同集群查看项目在该集群中的设置。',
+
+  FEDPROJECT_RESOURCE_TIP:
+    '无法在集群管理内创建多集群项目的资源, 请到多集群项目页面内进行操作.',
+  FEDPROJECT_CANNOT_DEPLOY_APP_TIP: '无法在多集群项目里部署应用.',
 }

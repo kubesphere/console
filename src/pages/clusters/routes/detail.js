@@ -30,6 +30,15 @@ import ContainerDetail from 'projects/containers/Pods/Containers/Detail'
 import NetworkPoliciesDetail from 'projects/containers/Network/Policies/Detail'
 import Volume from 'projects/containers/Volumes/Detail'
 
+import FedDeploymentDetail from 'fedprojects/containers/Deployments/Detail'
+import FedStatefulSetDetail from 'fedprojects/containers/StatefulSets/Detail'
+import FedServiceDetail from 'fedprojects/containers/Services/Detail'
+import FedRouteDetail from 'fedprojects/containers/Routes/Detail'
+import FedSecretDetail from 'fedprojects/containers/Secrets/Detail'
+import FedConfigMapDetail from 'fedprojects/containers/ConfigMaps/Detail'
+import FedProjectLayout from '../layouts/FedProject'
+import ProjectLayout from '../layouts/Project'
+
 import NodeDetail from '../containers/Nodes/Detail'
 import ProjectDetail from '../containers/Projects/Detail'
 import StorageClassDetail from '../containers/Storage/StorageClasses/Detail'
@@ -74,67 +83,103 @@ export default [
     component: ComponentDetail,
   },
   {
-    path: `${PATH}/projects/:namespace/deployments/:name`,
-    component: DeploymentDetail,
-  },
-  {
-    path: `${PATH}/projects/:namespace/statefulsets/:name`,
-    component: StatefulSetDetail,
-  },
-  {
-    path: `${PATH}/projects/:namespace/daemonsets/:name`,
-    component: DaemonSetDetail,
-  },
-  {
-    path: `${PATH}/projects/:namespace/jobs/:name`,
-    component: JobDetail,
-  },
-  {
-    path: `${PATH}/projects/:namespace/cronjobs/:name`,
-    component: CronJobDetail,
-  },
-  {
-    path: `${PATH}/projects/:namespace/services/:name`,
-    component: ServiceDetail,
-  },
-  {
-    path: `${PATH}/projects/:namespace/ingresses/:name`,
-    component: RouteDetail,
-  },
-  {
-    path: `${PATH}/projects/:namespace/secrets/:name`,
-    component: SecretDetail,
-  },
-  {
-    path: `${PATH}/projects/:namespace/configmaps/:name`,
-    component: ConfigMapDetail,
-  },
-  {
-    path: `${PATH}/projects/:namespace/pods/:podName/containers/:containerName`,
-    component: ContainerDetail,
-  },
-  {
-    path: `${PATH}/projects/:namespace/pods/:podName`,
-    component: PodDetail,
-  },
-  {
     path: `${PATH}/storageclasses/:name`,
     component: StorageClassDetail,
   },
   {
-    path: `${PATH}/projects/:namespace/volume-snapshots/:name`,
-    component: VolumeSnapshotsDetail,
-  },
-  {
-    path: `${PATH}/projects/:namespace/volumes/:name`,
-    component: Volume,
-  },
-  {
-    path: `${PATH}/projects/:namespace/networkpolicies/:name`,
-    component: NetworkPoliciesDetail,
-  },
-  {
     path: `${PATH}/projects/:namespace`,
-    component: ProjectDetail,
+    component: ProjectLayout,
+    routes: [
+      {
+        path: `${PATH}/projects/:namespace/deployments/:name`,
+        component: DeploymentDetail,
+      },
+      {
+        path: `${PATH}/projects/:namespace/statefulsets/:name`,
+        component: StatefulSetDetail,
+      },
+      {
+        path: `${PATH}/projects/:namespace/daemonsets/:name`,
+        component: DaemonSetDetail,
+      },
+      {
+        path: `${PATH}/projects/:namespace/jobs/:name`,
+        component: JobDetail,
+      },
+      {
+        path: `${PATH}/projects/:namespace/cronjobs/:name`,
+        component: CronJobDetail,
+      },
+      {
+        path: `${PATH}/projects/:namespace/services/:name`,
+        component: ServiceDetail,
+      },
+      {
+        path: `${PATH}/projects/:namespace/ingresses/:name`,
+        component: RouteDetail,
+      },
+      {
+        path: `${PATH}/projects/:namespace/secrets/:name`,
+        component: SecretDetail,
+      },
+      {
+        path: `${PATH}/projects/:namespace/configmaps/:name`,
+        component: ConfigMapDetail,
+      },
+      {
+        path: `${PATH}/projects/:namespace/pods/:podName/containers/:containerName`,
+        component: ContainerDetail,
+      },
+      {
+        path: `${PATH}/projects/:namespace/pods/:podName`,
+        component: PodDetail,
+      },
+      {
+        path: `${PATH}/projects/:namespace/volume-snapshots/:name`,
+        component: VolumeSnapshotsDetail,
+      },
+      {
+        path: `${PATH}/projects/:namespace/volumes/:name`,
+        component: Volume,
+      },
+      {
+        path: `${PATH}/projects/:namespace/networkpolicies/:name`,
+        component: NetworkPoliciesDetail,
+      },
+      {
+        path: `${PATH}/projects/:namespace`,
+        component: ProjectDetail,
+      },
+    ],
+  },
+  {
+    path: `${PATH}/federatedprojects/:namespace`,
+    component: FedProjectLayout,
+    routes: [
+      {
+        path: `${PATH}/federatedprojects/:namespace/deployments/:name`,
+        component: FedDeploymentDetail,
+      },
+      {
+        path: `${PATH}/federatedprojects/:namespace/statefulsets/:name`,
+        component: FedStatefulSetDetail,
+      },
+      {
+        path: `${PATH}/federatedprojects/:namespace/services/:name`,
+        component: FedServiceDetail,
+      },
+      {
+        path: `${PATH}/federatedprojects/:namespace/ingresses/:name`,
+        component: FedRouteDetail,
+      },
+      {
+        path: `${PATH}/federatedprojects/:namespace/secrets/:name`,
+        component: FedSecretDetail,
+      },
+      {
+        path: `${PATH}/federatedprojects/:namespace/configmaps/:name`,
+        component: FedConfigMapDetail,
+      },
+    ],
   },
 ]

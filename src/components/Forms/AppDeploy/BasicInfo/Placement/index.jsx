@@ -21,7 +21,14 @@ import { computed } from 'mobx'
 import { observer } from 'mobx-react'
 import { get, set } from 'lodash'
 import classNames from 'classnames'
-import { Icon, Columns, Column, Select, Loading } from '@pitrix/lego-ui'
+import {
+  Icon,
+  Columns,
+  Column,
+  Select,
+  Tooltip,
+  Loading,
+} from '@pitrix/lego-ui'
 import { Text, Form, SearchSelect } from 'components/Base'
 import Confirm from 'components/Forms/Base/Confirm'
 import WorkspaceStore from 'stores/workspace'
@@ -71,6 +78,8 @@ export default class Placment extends Component {
       label: item.name,
       value: item.name,
       opRuntime: item.opRuntime,
+      disabled: item.isFedManaged,
+      isFedManaged: item.isFedManaged,
     }))
   }
 
@@ -93,11 +102,13 @@ export default class Placment extends Component {
     await this.fetchNamespaces()
 
     if (!namespace) {
-      set(this.state.formData, 'namespace', get(this.namespaces, '[0].value'))
+      const firstValidNamepsace =
+        this.namespaces.find(item => !item.disabled) || {}
+      set(this.state.formData, 'namespace', firstValidNamepsace.value || '')
       set(
         this.state.formData,
         'runtime_id',
-        get(this.namespaces, '[0].opRuntime')
+        firstValidNamepsace.opRuntime || ''
       )
     }
 
@@ -185,6 +196,22 @@ export default class Placment extends Component {
     )
   }
 
+  projectOptionRenderer = option => (
+    <span className={styles.option}>
+      {option.isFedManaged ? (
+        <img className={styles.indicator} src="/assets/cluster.svg" />
+      ) : (
+        <Icon name="project" />
+      )}
+      {option.label}
+      {option.isFedManaged && (
+        <Tooltip content={t('FEDPROJECT_CANNOT_DEPLOY_APP_TIP')}>
+          <Icon className={styles.tip} name="question" />
+        </Tooltip>
+      )}
+    </span>
+  )
+
   renderForm() {
     const { workspace } = this.props
     return (
@@ -229,8 +256,9 @@ export default class Placment extends Component {
                   total={this.projectStore.list.total}
                   isLoading={this.projectStore.list.isLoading}
                   currentLength={this.projectStore.list.data.length}
-                  prefixIcon={<Icon name="project" size={16} />}
                   onFetch={this.fetchNamespaces}
+                  valueRenderer={this.projectOptionRenderer}
+                  optionRenderer={this.projectOptionRenderer}
                 />
               </Form.Item>
             </Column>

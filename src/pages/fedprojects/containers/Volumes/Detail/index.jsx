@@ -53,11 +53,13 @@ export default class VolumeDetail extends React.Component {
   }
 
   get listUrl() {
-    const {
-      params: { workspace, namespace },
-    } = this.props.match
+    const { workspace, cluster, namespace } = this.props.match.params
 
-    return `/${workspace}/federatedprojects/${namespace}/${this.module}`
+    if (workspace) {
+      return `/${workspace}/federatedprojects/${namespace}/${this.module}`
+    }
+
+    return `/clusters/${cluster}/${this.module}`
   }
 
   fetchData = async () => {

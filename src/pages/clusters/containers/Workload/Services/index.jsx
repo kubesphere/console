@@ -36,6 +36,8 @@ import ServiceStore from 'stores/service'
   rowKey: 'uid',
 })
 export default class Services extends React.Component {
+  showAction = record => !record.isFedManaged
+
   get itemActions() {
     const { trigger } = this.props
     return [
@@ -44,6 +46,7 @@ export default class Services extends React.Component {
         icon: 'pen',
         text: t('Edit'),
         action: 'edit',
+        show: this.showAction,
         onClick: item =>
           trigger('resource.baseinfo.edit', {
             detail: item,
@@ -54,6 +57,7 @@ export default class Services extends React.Component {
         icon: 'pen',
         text: t('Edit YAML'),
         action: 'edit',
+        show: this.showAction,
         onClick: item =>
           trigger('resource.yaml.edit', {
             detail: item,
@@ -64,6 +68,7 @@ export default class Services extends React.Component {
         icon: 'network-router',
         text: t('Edit Service'),
         action: 'edit',
+        show: this.showAction,
         onClick: item =>
           trigger('service.edit', {
             detail: item,
@@ -74,7 +79,8 @@ export default class Services extends React.Component {
         icon: 'ip',
         text: t('Edit Internet Access'),
         action: 'edit',
-        show: record => record.type === SERVICE_TYPES.VirtualIP,
+        show: record =>
+          this.showAction(record) && record.type === SERVICE_TYPES.VirtualIP,
         onClick: item =>
           trigger('service.gateway.edit', {
             detail: item,
@@ -85,6 +91,7 @@ export default class Services extends React.Component {
         icon: 'trash',
         text: t('Delete'),
         action: 'delete',
+        show: this.showAction,
         onClick: item =>
           trigger('resource.delete', {
             type: t(this.name),
@@ -112,9 +119,9 @@ export default class Services extends React.Component {
             title={getDisplayName(record)}
             desc={record.description || '-'}
             isMultiCluster={record.isFedManaged}
-            to={`/clusters/${cluster}/projects/${
-              record.namespace
-            }/${module}/${name}`}
+            to={`/clusters/${cluster}/${
+              record.isFedManaged ? 'federatedprojects' : 'projects'
+            }/${record.namespace}/${module}/${name}`}
           />
         ),
       },

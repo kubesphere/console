@@ -28,7 +28,7 @@ import ProjectStore from 'stores/project'
 import WorkspaceStore from 'stores/workspace'
 import ClusterMonitorStore from 'stores/monitoring/cluster'
 
-import { Select, Table } from '@pitrix/lego-ui'
+import { Icon, Select, Table } from '@pitrix/lego-ui'
 import { Form, Button } from 'components/Base'
 import { SimpleArea } from 'components/Charts'
 import ControllerModal from 'components/Modals/Monitoring/Controller'
@@ -93,6 +93,7 @@ export default class ResourceMonitorModal extends React.Component {
     const result = data.map(namespace => ({
       label: getDisplayName(namespace),
       value: namespace.name,
+      isFedManaged: namespace.isFedManaged,
     }))
 
     result.unshift({
@@ -208,6 +209,31 @@ export default class ResourceMonitorModal extends React.Component {
     })
   }
 
+  projectOptionRenderer = option => (
+    <span className={styles.option}>
+      {option.isFedManaged ? (
+        <img className={styles.indicator} src="/assets/cluster.svg" />
+      ) : (
+        <Icon name="project" />
+      )}
+      {option.label}
+    </span>
+  )
+
+  clusterOptionRenderer = option => (
+    <span className={styles.option}>
+      <Icon name="cluster" type="light" />
+      {option.label}
+    </span>
+  )
+
+  clusterValueRenderer = option => (
+    <span className={styles.option}>
+      <Icon name="cluster" />
+      {option.label}
+    </span>
+  )
+
   renderFilterForm() {
     const { cluster, namespace } = this.state.filter
     const formData = {
@@ -228,6 +254,8 @@ export default class ResourceMonitorModal extends React.Component {
               onCloseResetsInput={false}
               openOnClick={true}
               isLoadingAtBottom
+              valueRenderer={this.clusterValueRenderer}
+              optionRenderer={this.clusterOptionRenderer}
               isLoading={this.workspaceStore.clusters.isLoading}
               onMenuScrollToBottom={this.hanldeClusterScrollBottom}
             />
@@ -244,6 +272,8 @@ export default class ResourceMonitorModal extends React.Component {
             onCloseResetsInput={false}
             openOnClick={true}
             isLoadingAtBottom
+            valueRenderer={this.projectOptionRenderer}
+            optionRenderer={this.projectOptionRenderer}
             isLoading={this.projectStore.list.isLoading}
             onMenuScrollToBottom={this.hanldeNamespaceScrollBottom}
           />

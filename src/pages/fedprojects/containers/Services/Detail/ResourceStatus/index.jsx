@@ -55,7 +55,8 @@ export default class ResourceStatus extends React.Component {
   }
 
   get prefix() {
-    return `/${this.props.match.params.workspace}`
+    const { workspace } = this.props.match.params
+    return workspace ? `/${workspace}` : ''
   }
 
   fetchData = async () => {

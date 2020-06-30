@@ -18,8 +18,11 @@
 
 import React, { Component } from 'react'
 import { observer } from 'mobx-react'
+import { Icon, Tooltip } from '@pitrix/lego-ui'
 import { SearchSelect } from 'components/Base'
 import ProjectStore from 'stores/project'
+
+import styles from './index.scss'
 
 @observer
 export default class ProjectSelect extends Component {
@@ -44,6 +47,8 @@ export default class ProjectSelect extends Component {
     const result = data.map(item => ({
       label: item.name,
       value: item.name,
+      disabled: item.isFedManaged,
+      isFedManaged: item.isFedManaged,
     }))
 
     if (defaultValue && !data.includes(defaultValue)) {
@@ -55,6 +60,22 @@ export default class ProjectSelect extends Component {
 
     return result
   }
+
+  optionRenderer = option => (
+    <span className={styles.option}>
+      {option.isFedManaged ? (
+        <img className={styles.indicator} src="/assets/cluster.svg" />
+      ) : (
+        <Icon name="project" />
+      )}
+      {option.label}
+      {option.isFedManaged && (
+        <Tooltip content={t('FEDPROJECT_RESOURCE_TIP')}>
+          <Icon className={styles.tip} name="question" />
+        </Tooltip>
+      )}
+    </span>
+  )
 
   render() {
     const { cluster, ...rest } = this.props
@@ -70,6 +91,8 @@ export default class ProjectSelect extends Component {
         total={this.projectStore.list.total}
         currentLength={this.projectStore.list.data.length}
         isLoading={this.projectStore.list.isLoading}
+        valueRenderer={this.optionRenderer}
+        optionRenderer={this.optionRenderer}
         onFetch={this.fetchProjects}
         {...rest}
       />

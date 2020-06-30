@@ -35,6 +35,8 @@ import SecretStore from 'stores/secret'
   rowKey: 'uid',
 })
 export default class Secrets extends React.Component {
+  showAction = record => !record.isFedManaged
+
   get itemActions() {
     const { trigger, getData } = this.props
     return [
@@ -43,6 +45,7 @@ export default class Secrets extends React.Component {
         icon: 'pen',
         text: t('Edit'),
         action: 'edit',
+        show: this.showAction,
         onClick: item =>
           trigger('resource.baseinfo.edit', {
             detail: item,
@@ -53,6 +56,7 @@ export default class Secrets extends React.Component {
         icon: 'pen',
         text: t('Edit YAML'),
         action: 'edit',
+        show: this.showAction,
         onClick: item =>
           trigger('resource.yaml.edit', {
             detail: item,
@@ -63,6 +67,7 @@ export default class Secrets extends React.Component {
         icon: 'pen',
         text: t('Edit Secret'),
         action: 'edit',
+        show: this.showAction,
         onClick: item =>
           trigger('secret.edit', {
             detail: item,
@@ -74,6 +79,7 @@ export default class Secrets extends React.Component {
         icon: 'trash',
         text: t('Delete'),
         action: 'delete',
+        show: this.showAction,
         onClick: item =>
           trigger('resource.delete', {
             type: t(this.name),
@@ -101,9 +107,9 @@ export default class Secrets extends React.Component {
             desc={record.description || '-'}
             to={`${this.props.match.url}/${name}`}
             isMultiCluster={record.isFedManaged}
-            to={`/clusters/${cluster}/projects/${
-              record.namespace
-            }/${module}/${name}`}
+            to={`/clusters/${cluster}/${
+              record.isFedManaged ? 'federatedprojects' : 'projects'
+            }/${record.namespace}/${module}/${name}`}
           />
         ),
       },

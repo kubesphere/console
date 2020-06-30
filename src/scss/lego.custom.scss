@@ -403,6 +403,10 @@ label.checkbox {
       }
     }
   }
+
+  .select-option.is-disabled {
+    opacity: 1;
+  }
 }
 
 // recharts
