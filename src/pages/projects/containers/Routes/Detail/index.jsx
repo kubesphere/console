@@ -140,6 +140,7 @@ export default class RouteDetail extends React.Component {
     let ips = []
     loadBalancerIngress.forEach(item => {
       item.ip && ips.push(item.ip)
+      item.hostname && ips.push(item.hostname)
     })
     ips = ips.map((ip, index) => <p key={index}>{ip}</p>)
 

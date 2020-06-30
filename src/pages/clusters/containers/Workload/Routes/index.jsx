@@ -124,9 +124,16 @@ export default class Routers extends React.Component {
       },
       {
         title: t('Gateway Address'),
-        dataIndex: 'loadBalancerIngress[0].ip',
+        dataIndex: 'loadBalancerIngress',
         isHideable: true,
         width: '22%',
+        render: loadBalancerIngress => (
+          <div>
+            {loadBalancerIngress.map((item, index) => (
+              <p key={index}>{item.ip || item.hostname}</p>
+            ))}
+          </div>
+        ),
       },
       {
         title: t('Project'),
