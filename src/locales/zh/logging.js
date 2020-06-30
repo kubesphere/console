@@ -73,7 +73,7 @@ export default {
   'Source IP Auditing Query Tip': '可以根据来源IP查看相关的操作审计',
   'Trends in the total number of auditing logs in the last 12 hours':
     '最近 12 小时操作审计总数变化趋势',
-  
+
   TOTAL_AUDITING_TODAY:
     '今日总共收录了 <span class={className}> {auditing} </span> 条操作审计',
   NO_AUDITING_TODAY: '今日没有收录的操作审计',
@@ -85,7 +85,7 @@ export default {
     '暂时没有设置日志收集器，您可以添加日志收集器将日志导出到外埠的日志收集工具中',
   LOG_COLLECTION_TIPS:
     '每种类型的日志接收者只能添加一个，如果已存在则只能修改，不可以再添加',
-  
+
   Address: '地址',
   'Service Address': '服务地址',
   'Add Service Address': '添加服务地址',
@@ -137,4 +137,8 @@ export default {
   'No cluster with event query enabled': '暂无启用事件查询的集群',
   'No cluster with auditing module enabled': '暂无启用审计模块的集群',
   'No cluster with logging module enabled': '暂无启用日志模块的集群',
+
+  LOGGING_LOG_COLLECTOR: '日志接收者',
+  EVENTS_LOG_COLLECTOR: '事件日志接收者',
+  AUDITING_LOG_COLLECTOR: '审计日志接收者',
 }

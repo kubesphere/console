@@ -142,7 +142,7 @@ export default class LogCollection extends React.Component {
     return (
       showCreate && (
         <CreateLogCollectionModal
-          title={`${t('Log Collector')}(${t(this.component)})`}
+          title={`${t(`${this.component.toUpperCase()}_LOG_COLLECTOR`)}`}
           store={this.store}
           visible={showCreate}
           isSubmitting={this.store.isSubmitting}
