@@ -107,10 +107,12 @@ export default class RuleForm extends React.Component {
 
     const { gateway } = this.props
     const service = get(data, 'http.paths[0].backend.serviceName')
-    const ip = gateway.loadBalancerIngress
+    const _host = gateway.isHostName
+      ? gateway.loadBalancerIngress
+      : `${service}.${namespace}.${gateway.loadBalancerIngress}.nip.io`
     const namespace = gateway.namespace
 
-    return host === `${service}.${namespace}.${ip}.nip.io` ? 'auto' : 'specify'
+    return host === _host ? 'auto' : 'specify'
   }
 
   checkItemValid = item =>
@@ -157,12 +159,13 @@ export default class RuleForm extends React.Component {
         if (this.state.type === 'auto') {
           const { gateway } = this.props
           const service = get(data, 'http.paths[0].backend.serviceName')
-          const ip = gateway.loadBalancerIngress
           const namespace = gateway.namespace
           onSave({
             ...data,
             protocol: 'http',
-            host: `${service}.${namespace}.${ip}.nip.io`,
+            host: gateway.isHostName
+              ? gateway.loadBalancerIngress
+              : `${service}.${namespace}.${gateway.loadBalancerIngress}.nip.io`,
           })
         } else {
           onSave(data)
