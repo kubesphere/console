@@ -407,7 +407,9 @@ export default class ContainerSetting extends React.Component {
   renderDeployPlacementTip() {
     return (
       <div>
-        <div className="tooltip-title">{t('What is Deployment Location ?')}</div>
+        <div className="tooltip-title">
+          {t('What is Deployment Location ?')}
+        </div>
         <p>{t('DEPLOY_PLACEMENT_TIP')}</p>
       </div>
     )

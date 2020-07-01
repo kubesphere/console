@@ -20,6 +20,7 @@ import React from 'react'
 import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
+import { cloneDeep } from 'lodash'
 
 import {
   Columns,
@@ -54,7 +55,7 @@ export default class ProbeForm extends React.Component {
     super(props)
 
     this.state = {
-      formData: props.data || {},
+      formData: cloneDeep(props.data),
       checkerType: this.checkerType,
     }
 

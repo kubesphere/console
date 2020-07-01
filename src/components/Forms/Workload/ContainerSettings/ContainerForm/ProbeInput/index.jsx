@@ -75,7 +75,7 @@ export default class ProbeInput extends React.Component {
 
   handleDelete = () => {
     const { onChange } = this.props
-    onChange()
+    onChange({})
   }
 
   renderProbeInfo() {
