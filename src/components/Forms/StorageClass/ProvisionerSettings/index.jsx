@@ -17,9 +17,9 @@
  */
 
 import React from 'react'
-import { get, set } from 'lodash'
+import { get, set, omit } from 'lodash'
 import { Form } from 'components/Base'
-import { CardSelect } from 'components/Inputs'
+import CardSelect from 'components/Inputs/CardSelect'
 import { MODULE_KIND_MAP, PROVISIONERS } from 'utils/constants'
 
 import styles from './index.scss'
@@ -42,7 +42,7 @@ export default class ProvisionerSettings extends React.Component {
   }
 
   provisionersOptions = [
-    ...PROVISIONERS,
+    ...PROVISIONERS.map(item => omit(item, ['description'])),
     { label: t('Custom'), value: '', icon: 'hammer' },
   ]
 

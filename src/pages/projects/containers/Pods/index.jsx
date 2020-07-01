@@ -17,67 +17,57 @@
  */
 
 import React from 'react'
-import { observer, inject } from 'mobx-react'
-
+import { Link } from 'react-router-dom'
 import { Icon } from '@pitrix/lego-ui'
 
-import { getLocalTime } from 'utils'
-import { ICON_TYPES, POD_STATUS } from 'utils/constants'
-
-import { Status, Indicator } from 'components/Base'
-import Link from 'components/Link'
-import Base from 'core/containers/Base/List'
-import EditYamlModal from 'components/Modals/EditYaml'
+import { Indicator } from 'components/Base'
+import Banner from 'components/Cards/Banner'
+import Table from 'components/Tables/List'
+import { withProjectList, ListPage } from 'components/HOCs/withList'
 import StatusReason from 'projects/components/StatusReason'
+
+import { getLocalTime } from 'utils'
+import { POD_STATUS, ICON_TYPES } from 'utils/constants'
+
 import PodStore from 'stores/pod'
 
 import styles from './index.scss'
 
-@inject('rootStore')
-@observer
-export default class Pods extends Base {
-  init() {
-    this.store = new PodStore()
-    this.initWebsocket()
-  }
-
-  get module() {
-    return 'pods'
-  }
-
-  get name() {
-    return 'Pod'
-  }
-
-  getTableProps() {
-    return {
-      ...super.getTableProps(),
-      onCreate: null,
-    }
-  }
-
-  get canViewNode() {
-    return globals.app.hasPermission({
-      module: 'nodes',
-      action: 'view',
-    })
+@withProjectList({
+  store: new PodStore(),
+  module: 'pods',
+  name: 'Pod',
+})
+export default class Pods extends React.Component {
+  componentDidMount() {
+    localStorage.setItem('pod-detail-referrer', location.pathname)
   }
 
   get itemActions() {
+    const { getData, trigger } = this.props
     return [
       {
         key: 'viewYaml',
-        icon: 'pen',
+        icon: 'eye',
         text: t('View YAML'),
         action: 'view',
-        onClick: this.showModal('viewYaml'),
+        onClick: item =>
+          trigger('resource.yaml.edit', {
+            detail: item,
+            readOnly: true,
+          }),
       },
       {
         key: 'delete',
         icon: 'trash',
         text: t('Delete'),
         action: 'delete',
-        onClick: this.showModal('deleteModal'),
+        onClick: item =>
+          trigger('resource.delete', {
+            type: t(this.name),
+            detail: item,
+            success: getData,
+          }),
       },
     ]
   }
@@ -106,58 +96,58 @@ export default class Pods extends Base {
     return desc
   }
 
-  getColumns = () => [
-    {
-      title: t('Name'),
-      dataIndex: 'name',
-      sorter: true,
-      sortOrder: this.getSortOrder('name'),
-      search: true,
-      render: this.renderAvatar,
-    },
-    {
-      title: t('Node'),
-      dataIndex: 'node',
-      isHideable: true,
-      width: '18%',
-      render: this.renderNode,
-    },
-    {
-      title: t('Pod IP'),
-      dataIndex: 'podIp',
-      isHideable: true,
-      width: '15%',
-    },
-    {
-      title: t('Application'),
-      dataIndex: 'app.kubernetes.io/name',
-      isHideable: true,
-      search: true,
-      width: '15%',
-      render: (_, record) => record.app,
-    },
-    {
-      title: t('Updated Time'),
-      dataIndex: 'startTime',
-      sorter: true,
-      sortOrder: this.getSortOrder('startTime'),
-      isHideable: true,
-      width: 150,
-      render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
-    },
-    {
-      key: 'more',
-      width: 20,
-      render: this.renderMore,
-    },
-  ]
+  getColumns = () => {
+    const { getSortOrder } = this.props
+    return [
+      {
+        title: t('Name'),
+        dataIndex: 'name',
+        sorter: true,
+        sortOrder: getSortOrder('name'),
+        search: true,
+        render: this.renderAvatar,
+      },
+      {
+        title: t('Node'),
+        dataIndex: 'node',
+        isHideable: true,
+        width: '18%',
+        render: this.renderNode,
+      },
+      {
+        title: t('Pod IP'),
+        dataIndex: 'podIp',
+        isHideable: true,
+        width: '15%',
+      },
+      {
+        title: t('Application'),
+        dataIndex: 'app.kubernetes.io/name',
+        isHideable: true,
+        search: true,
+        width: '15%',
+        render: (_, record) => record.app,
+      },
+      {
+        title: t('Updated Time'),
+        dataIndex: 'startTime',
+        sorter: true,
+        sortOrder: getSortOrder('startTime'),
+        isHideable: true,
+        width: 150,
+        render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
+      },
+    ]
+  }
 
   renderAvatar = (name, record) => {
+    const { module } = this.props
+    const { workspace, cluster, namespace } = this.props.match.params
     const { podStatus } = record
     return (
       <div className={styles.avatar}>
         <div className={styles.icon}>
-          <Icon name={ICON_TYPES[this.module]} size={40} />
+          <Icon name={ICON_TYPES[module]} size={40} />
           <Indicator
             className={styles.indicator}
             type={podStatus.type}
@@ -165,7 +155,10 @@ export default class Pods extends Base {
           />
         </div>
         <div>
-          <Link className={styles.title} to={`${this.prefix}/${name}`}>
+          <Link
+            className={styles.title}
+            to={`/${workspace}/clusters/${cluster}/projects/${namespace}/${module}/${name}`}
+          >
             {name}
           </Link>
           <div className={styles.desc}>{this.getItemDesc(record)}</div>
@@ -175,35 +168,32 @@ export default class Pods extends Base {
   }
 
   renderNode = (_, record) => {
+    const { cluster } = this.props.match.params
     const { node, nodeIp } = record
 
     if (!node) return '-'
 
     const text = `${node}(${nodeIp})`
 
-    return (
-      <Link to={`/infrastructure/nodes/${node}`} auth={this.canViewNode}>
-        {text}
-      </Link>
-    )
+    return <Link to={`/clusters/${cluster}/nodes/${node}`}>{text}</Link>
   }
 
   renderStatus = podStatus => (
     <Status type={podStatus.type} name={t(podStatus.type)} flicker />
   )
 
-  renderExtraModals() {
-    const { viewYaml, selectItem = {} } = this.state
-
+  render() {
+    const { bannerProps, tableProps } = this.props
     return (
-      <div>
-        <EditYamlModal
-          visible={viewYaml}
-          detail={selectItem._originData}
-          onCancel={this.hideModal('viewYaml')}
-          readOnly
+      <ListPage {...this.props}>
+        <Banner {...bannerProps} />
+        <Table
+          {...tableProps}
+          itemActions={this.itemActions}
+          columns={this.getColumns()}
+          onCreate={null}
         />
-      </div>
+      </ListPage>
     )
   }
 }

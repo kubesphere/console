@@ -19,106 +19,158 @@
 import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
+import { isEmpty } from 'lodash'
+import { Loading } from '@pitrix/lego-ui'
 
+import { getDisplayName, getLocalTime } from 'utils'
+import { trigger } from 'utils/action'
 import ConfigMapStore from 'stores/configmap'
 
-import Base from 'core/containers/Base/Detail'
-import EditBasicInfoModal from 'components/Modals/EditBasicInfo'
-import EditYamlModal from 'components/Modals/EditYaml'
-import EditConfigMapModal from 'projects/components/Modals/ConfigMapEdit'
+import DetailPage from 'projects/containers/Base/Detail'
 
-class ConfigMapDetail extends Base {
+import getRoutes from './routes'
+
+@inject('rootStore')
+@observer
+@trigger
+export default class ConfigMapDetail extends React.Component {
+  store = new ConfigMapStore()
+
+  componentDidMount() {
+    this.fetchData()
+  }
+
+  get module() {
+    return 'configmaps'
+  }
+
   get name() {
     return 'ConfigMap'
   }
 
-  init() {
-    this.store = new ConfigMapStore()
+  get routing() {
+    return this.props.rootStore.routing
+  }
+
+  get listUrl() {
+    const { cluster, workspace, namespace } = this.props.match.params
+    if (workspace) {
+      return `/${workspace}/clusters/${cluster}/projects/${namespace}/${
+        this.module
+      }`
+    }
+    return `/clusters/${cluster}/${this.module}`
+  }
+
+  fetchData = () => {
+    this.store.fetchDetail(this.props.match.params)
   }
 
   getOperations = () => [
     {
       key: 'edit',
-      type: 'control',
-      text: t('EDIT'),
+      icon: 'pen',
+      text: t('Edit Info'),
       action: 'edit',
-      onClick: this.showModal('editBaseInfo'),
+      onClick: () =>
+        this.trigger('resource.baseinfo.edit', {
+          type: t(this.name),
+          detail: toJS(this.store.detail),
+          success: this.fetchData,
+        }),
     },
     {
       key: 'editYaml',
       icon: 'pen',
       text: t('Edit YAML'),
       action: 'edit',
-      onClick: this.showModal('editYaml'),
+      onClick: () =>
+        this.trigger('resource.yaml.edit', {
+          detail: this.store.detail,
+          success: this.fetchData,
+        }),
     },
     {
       key: 'editConfigMap',
       icon: 'pen',
       text: t('Modify Config'),
       action: 'edit',
-      onClick: this.showModal('editConfigMap'),
+      onClick: () =>
+        this.trigger('configmap.edit', {
+          detail: this.store.detail,
+          success: this.fetchData,
+        }),
     },
     {
       key: 'delete',
       icon: 'trash',
       text: t('Delete'),
       action: 'delete',
-      onClick: this.showModal('deleteModule'),
+      type: 'danger',
+      onClick: () =>
+        this.trigger('resource.delete', {
+          type: t(this.name),
+          detail: this.store.detail,
+          success: () => this.routing.push(this.listUrl),
+        }),
     },
   ]
 
   getAttrs = () => {
     const detail = toJS(this.store.detail)
+    const { cluster, namespace } = this.props.match.params
+
+    if (isEmpty(detail)) {
+      return
+    }
 
     return [
       {
+        name: t('Cluster'),
+        value: cluster,
+      },
+      {
         name: t('Project'),
-        value: detail.namespace,
+        value: namespace,
       },
       {
         name: t('Created Time'),
-        value: this.createTime,
+        value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
         name: t('Creator'),
-        value: this.creator,
+        value: detail.creator,
       },
     ]
   }
 
-  renderExtraModals() {
-    const { detail, isSubmitting } = this.store
-    const { editBaseInfo, editYaml, editConfigMap } = this.state
+  render() {
+    const stores = { detailStore: this.store }
 
-    const originData = toJS(detail._originData)
+    if (this.store.isLoading) {
+      return <Loading className="ks-page-loading" />
+    }
+
+    const sideProps = {
+      module: this.module,
+      name: getDisplayName(this.store.detail),
+      desc: this.store.detail.description,
+      operations: this.getOperations(),
+      attrs: this.getAttrs(),
+      breadcrumbs: [
+        {
+          label: t('ConfigMaps'),
+          url: this.listUrl,
+        },
+      ],
+    }
 
     return (
-      <div>
-        <EditBasicInfoModal
-          visible={editBaseInfo}
-          detail={originData}
-          onOk={this.handleEdit('editBaseInfo')}
-          onCancel={this.hideModal('editBaseInfo')}
-          isSubmitting={isSubmitting}
-        />
-        <EditYamlModal
-          visible={editYaml}
-          detail={originData}
-          onOk={this.handleEdit('editYaml', 'update')}
-          onCancel={this.hideModal('editYaml')}
-          isSubmitting={isSubmitting}
-        />
-        <EditConfigMapModal
-          visible={editConfigMap}
-          detail={originData}
-          onOk={this.handleEdit('editConfigMap', 'update')}
-          onCancel={this.hideModal('editConfigMap')}
-          isSubmitting={isSubmitting}
-        />
-      </div>
+      <DetailPage
+        stores={stores}
+        {...sideProps}
+        routes={getRoutes(this.props.match.path)}
+      />
     )
   }
 }
-
-export default inject('rootStore')(observer(ConfigMapDetail))
-export const Component = ConfigMapDetail

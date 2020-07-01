@@ -16,148 +16,169 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { set, get } from 'lodash'
 import React from 'react'
-import { computed, toJS } from 'mobx'
+import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
+import { isEmpty } from 'lodash'
+import { Loading } from '@pitrix/lego-ui'
 
-import FORM_TEMPLATES from 'utils/form.templates'
+import { getDisplayName, getLocalTime } from 'utils'
+import { trigger } from 'utils/action'
 import RoleStore from 'stores/role'
 
-import Base from 'core/containers/Base/Detail'
-import DeleteRoleModal from 'components/Modals/RoleDelete'
-import EditModal from 'components/Modals/RoleCreate'
+import DetailPage from 'projects/containers/Base/Detail'
+
+import getRoutes from './routes'
 
 @inject('rootStore')
 @observer
-export default class RolesDetail extends Base {
+@trigger
+export default class RoleDetail extends React.Component {
+  store = new RoleStore()
+
+  componentDidMount() {
+    this.fetchData()
+    this.store.fetchRoleTemplates(this.props.match.params)
+  }
+
+  get module() {
+    return 'roles'
+  }
+
   get name() {
     return 'Project Role'
   }
 
-  get authKey() {
-    return 'roles'
+  get routing() {
+    return this.props.rootStore.routing
   }
 
-  init() {
-    this.store = new RoleStore(this.module)
+  get listUrl() {
+    const { workspace, cluster, namespace } = this.props.match.params
 
-    this.store.fetchRulesInfo()
+    return `/${workspace}/clusters/${cluster}/projects/${namespace}/${
+      this.module
+    }`
+  }
+
+  get showEdit() {
+    const { name } = this.props.match.params
+    return !globals.config.presetRoles.includes(name)
   }
 
   fetchData = () => {
-    this.store.fetchDetail(this.props.match.params).catch(this.catch)
-    this.store.fetchRules(this.props.match.params)
-    this.store.fetchUsers(this.props.match.params)
-  }
-
-  get formTemplate() {
-    const { namespace } = this.props.match.params
-    return FORM_TEMPLATES[this.module]({ namespace })
-  }
-
-  @computed
-  get detailDesc() {
-    const name = this.store.detail.name
-    const desc = get(this.store.detail, 'description')
-
-    if (globals.config.presetRoles.includes(name)) {
-      return t(desc)
-    }
-
-    return desc
-  }
-
-  getDetailFormTemplate(data) {
-    if (!data) {
-      return {}
-    }
-
-    const formTemplate = this.formTemplate
-
-    set(formTemplate, 'metadata.name', data.name)
-    set(
-      formTemplate,
-      "metadata.annotations['kubesphere.io/description']",
-      get(data, 'description')
-    )
-
-    return formTemplate
+    this.store.fetchDetail(this.props.match.params)
   }
 
   getOperations = () => {
-    const { name } = this.props.match.params
-    const enableEdit = !globals.config.presetRoles.includes(name)
+    const { detail } = this.store
 
     return [
       {
         key: 'edit',
-        type: 'control',
-        text: t('EDIT'),
+        icon: 'pen',
+        text: t('Edit Info'),
         action: 'edit',
-        show: enableEdit,
-        onClick: this.showModal('editBaseInfo'),
+        show: this.showEdit,
+        onClick: () =>
+          this.trigger('resource.baseinfo.edit', {
+            type: t(this.name),
+            detail: toJS(this.store.detail),
+            success: this.fetchData,
+          }),
+      },
+      {
+        key: 'editRole',
+        icon: 'pen',
+        text: t('Edit Authorization'),
+        action: 'edit',
+        show: this.showEdit,
+        onClick: () =>
+          this.trigger('role.edit', {
+            module: this.module,
+            detail: toJS(this.store.detail),
+            roleTemplates: toJS(this.store.roleTemplates.data),
+            success: this.fetchData,
+          }),
       },
       {
         key: 'delete',
-        type: 'danger',
+        icon: 'trash',
         text: t('Delete'),
         action: 'delete',
-        show: enableEdit,
-        onClick: this.showModal('deleteModule'),
+        type: 'danger',
+        show: this.showEdit,
+        onClick: () =>
+          this.trigger('role.delete', {
+            detail,
+            type: t(this.name),
+            cluster: this.props.match.params.cluster,
+            namespace: this.props.match.params.namespace,
+            success: () => this.routing.push(this.listUrl),
+          }),
       },
     ]
   }
 
   getAttrs = () => {
     const detail = toJS(this.store.detail)
+    const { cluster, namespace } = this.props.match.params
+
+    if (isEmpty(detail)) {
+      return
+    }
 
     return [
       {
+        name: t('Cluster'),
+        value: cluster,
+      },
+      {
         name: t('Project'),
-        value: detail.namespace,
+        value: namespace,
       },
       {
         name: t('Created Time'),
-        value: this.createTime,
+        value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
         name: t('Updated Time'),
-        value: this.updateTime,
+        value: getLocalTime(detail.updateTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
         name: t('Creator'),
-        value: this.creator,
+        value: detail.creator,
       },
     ]
   }
 
-  renderModals() {
-    const { detail, rulesInfo, isSubmitting } = this.store
-    const { deleteModule, editBaseInfo } = this.state
+  render() {
+    const stores = { detailStore: this.store }
+
+    if (this.store.isLoading && !this.store.detail.name) {
+      return <Loading className="ks-page-loading" />
+    }
+
+    const sideProps = {
+      module: this.module,
+      name: getDisplayName(this.store.detail),
+      desc: this.store.detail.description,
+      operations: this.getOperations(),
+      attrs: this.getAttrs(),
+      breadcrumbs: [
+        {
+          label: t('Project Roles'),
+          url: this.listUrl,
+        },
+      ],
+    }
 
     return (
-      <div>
-        <DeleteRoleModal
-          detail={detail}
-          module={this.module}
-          visible={deleteModule}
-          onOk={this.handleDelete}
-          onCancel={this.hideModal('deleteModule')}
-          isSubmitting={isSubmitting}
-        />
-        <EditModal
-          store={this.store}
-          visible={editBaseInfo}
-          title={t('Edit Member Role')}
-          rulesInfo={toJS(rulesInfo)}
-          formTemplate={this.getDetailFormTemplate(detail)}
-          onOk={this.handleEdit('editBaseInfo')}
-          onCancel={this.hideModal('editBaseInfo')}
-          isSubmitting={isSubmitting}
-          edit
-        />
-      </div>
+      <DetailPage
+        stores={stores}
+        {...sideProps}
+        routes={getRoutes(this.props.match.path)}
+      />
     )
   }
 }

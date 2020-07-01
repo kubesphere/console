@@ -1,94 +1,52 @@
 @import '~scss/variables';
+@import '~scss/mixins';
 
 .body {
+  position: relative;
   padding: 0;
+  padding-top: 180px;
   overflow: hidden;
   max-height: none;
 }
 
-.content {
-  max-width: 920px;
-  margin: 0 auto;
-  min-height: 476px;
-  max-height: calc(100vh - 222px);
-  padding: 20px 0 48px 0;
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-
-.footer {
-  padding: 12px 20px;
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 180px;
+  padding: 50px 24px 50px 314px;
   background-color: $bg-color;
-  text-align: right;
-}
-
-.typeWrapper {
-  width: 651px;
-  height: 600px;
-  margin: 0 auto;
-  background-color: #ffffff;
-  text-align: center;
-
-  :global {
-    .h3 {
-      line-height: 1.33;
-      padding-top: 80px;
-      margin-bottom: 8px;
-      text-shadow: 0 2px 4px rgba(36, 46, 66, 0.1);
-    }
-  }
-
-  & > p {
-    margin-bottom: 40px;
-    color: #79879c;
-  }
-}
-
-.type {
-  position: relative;
-  padding: 20px 20px 20px 24px;
-  border-radius: 4px;
-  background-color: #ffffff;
-  border: solid 1px $light-color03;
-  text-align: left;
-  cursor: pointer;
-  z-index: 1;
-  transition: all $trans-speed ease-in-out;
-
-  &:hover {
-    box-shadow: 0 8px 16px 0 rgba(36, 46, 66, 0.08);
-  }
 
   img {
-    display: inline-block;
-    vertical-align: middle;
-    width: 32px;
-    height: 32px;
-    padding: 2px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 274px;
+    height: 200px;
   }
 
-  & + .type {
-    margin-top: 8px;
-  }
-}
+  .title {
+    & > div {
+      @include TypographyTitleH4($dark-color07);
+    }
 
-.text {
-  display: inline-block;
-  vertical-align: middle;
-  width: 553px;
-  margin-left: 20px;
-
-  :global .h6 {
-    line-height: 1.43;
-  }
-
-  & > p {
-    color: $dark-grey;
+    & > p {
+      margin-top: 12px;
+      @include TypographyParagraph($dark-color01);
+    }
   }
 }
 
-.bottomImage {
-  position: absolute;
-  right: 30px;
-  bottom: 28px;
+.content {
+  margin-top: 20px;
+  min-height: 300px;
+}
+
+.cluster {
+  max-width: unset !important;
+
+  :global .select-option {
+    position: relative;
+  }
 }

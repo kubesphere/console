@@ -17,18 +17,67 @@
  */
 
 import React from 'react'
-import { toJS } from 'mobx'
-import { observer } from 'mobx-react'
+import { toJS, computed, get } from 'mobx'
+import { inject, observer } from 'mobx-react'
+
 import { getLocalTime, getDisplayName } from 'utils'
-import { Table } from '@pitrix/lego-ui'
+import Table from 'workspaces/components/ResourceTable'
+
 import { Avatar, Card } from 'components/Base'
+import DevOpsStore from 'stores/devops'
 
 import styles from './index.scss'
 
+@inject('detailStore', 'workspaceStore')
 @observer
 export default class MemberDevOpsProjects extends React.Component {
+  devopsStore = new DevOpsStore()
+
   componentDidMount() {
-    this.props.detailStore.fetchDevOps(this.props.match.params)
+    this.workspaceStore
+      .fetchClusters({
+        workspace: this.workspace,
+        limit: -1,
+      })
+      .then(() => {
+        this.devopsStore.fetchList({
+          cluster: this.cluster,
+          workspace: this.workspace,
+        })
+      })
+  }
+
+  get workspaceStore() {
+    return this.props.workspaceStore
+  }
+
+  get workspace() {
+    return this.props.match.params.workspace
+  }
+
+  get clusters() {
+    return this.workspaceStore.clusters.data.map(item => ({
+      label: item.name,
+      value: item.name,
+    }))
+  }
+
+  @computed
+  get cluster() {
+    return this.hostCluster
+  }
+
+  @computed
+  get hostCluster() {
+    if (this.clusters.length < 1) {
+      return ''
+    }
+
+    return get(
+      this.workspaceStore.clusters.data.find(cluster => cluster.isHost) ||
+        this.workspaceStore.clusters.data[0],
+      'name'
+    )
   }
 
   getColumns = () => [
@@ -38,7 +87,9 @@ export default class MemberDevOpsProjects extends React.Component {
       width: '33%',
       render: (name, record) => (
         <Avatar
-          to={`/devops/${record.project_id}`}
+          to={`/${this.workspace}/clusters/${record.cluster}/devops/${
+            record.namespace
+          }`}
           icon="project"
           title={getDisplayName(record)}
         />
@@ -55,15 +106,19 @@ export default class MemberDevOpsProjects extends React.Component {
   ]
 
   render() {
-    const { data, isLoading } = toJS(this.props.detailStore.devops)
-
+    const { data, isLoading } = toJS(this.devopsStore.list)
     return (
       <Card title={t('DevOps Projects')}>
         <Table
+          hideSearch
+          hideCustom
           className={styles.table}
-          dataSource={data}
+          data={data}
           columns={this.getColumns()}
           loading={isLoading}
+          cluster={this.cluster}
+          clusters={this.clusters}
+          name="devops"
         />
       </Card>
     )

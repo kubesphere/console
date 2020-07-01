@@ -17,28 +17,52 @@
  */
 
 import React from 'react'
-import { observer } from 'mobx-react'
 import { isEmpty } from 'lodash'
+import { observer } from 'mobx-react'
+import { Loading } from '@pitrix/lego-ui'
 
-import ContainerStore from 'stores/container'
+import { getDisplayName } from 'utils'
+import { trigger } from 'utils/action'
 import { createCenterWindowOpt } from 'utils/dom'
+import ContainerStore from 'stores/container'
 
-import Base from 'core/containers/Base/Detail'
-import BaseInfo from 'core/containers/Base/Detail/BaseInfo'
+import DetailPage from 'projects/containers/Base/Detail'
+
+import getRoutes from './routes'
 
 @observer
-class ContainersDetail extends Base {
+@trigger
+export default class ContainerDetail extends React.Component {
+  store = new ContainerStore()
+
+  componentDidMount() {
+    this.fetchData()
+  }
+
   get name() {
-    return 'Containers'
+    return 'Container'
   }
 
-  get authKey() {
-    return 'pods'
+  get listUrl() {
+    const { workspace, cluster, namespace, podName } = this.props.match.params
+    return `${
+      workspace ? `/${workspace}` : ''
+    }/clusters/${cluster}/projects/${namespace}/pods/${podName}`
   }
 
-  get detailDesc() {
-    return t('Container')
+  fetchData = () => {
+    this.store.fetchDetail(this.props.match.params)
   }
+
+  getOperations = () => [
+    {
+      key: 'terminal',
+      type: 'control',
+      text: t('Terminal'),
+      action: 'edit',
+      onClick: this.handleOpenTerminal,
+    },
+  ]
 
   get ports() {
     const { ports = [] } = this.store.detail
@@ -59,10 +83,6 @@ class ContainersDetail extends Base {
     return isEmpty(command) ? '-' : command.join(' ')
   }
 
-  init() {
-    this.store = new ContainerStore()
-  }
-
   getResourceInfo = type => {
     const { resources = {} } = this.store.detail
     const resourceType = resources[type]
@@ -75,17 +95,9 @@ class ContainersDetail extends Base {
     )
   }
 
-  getOperations = () => [
-    {
-      key: 'terminal',
-      type: 'control',
-      text: t('Terminal'),
-      action: 'terminal',
-      onClick: this.handleOpenTerminal,
-    },
-  ]
-
   getAttrs = () => {
+    const { cluster, namespace } = this.props.match.params
+
     const { detail = {} } = this.store
 
     if (isEmpty(detail)) return null
@@ -94,12 +106,16 @@ class ContainersDetail extends Base {
 
     return [
       {
+        name: t('Cluster'),
+        value: cluster,
+      },
+      {
         name: t('Project'),
-        value: this.namespace,
+        value: namespace,
       },
       {
         name: t('Application'),
-        value: this.application,
+        value: detail.application,
       },
       {
         name: t('Status'),
@@ -141,9 +157,14 @@ class ContainersDetail extends Base {
   }
 
   handleOpenTerminal = () => {
-    const { namespace, podName, containerName } = this.props.match.params
+    const {
+      cluster,
+      namespace,
+      podName,
+      containerName,
+    } = this.props.match.params
 
-    const terminalUrl = `/terminal/${namespace}/pods/${podName}/containers/${containerName}`
+    const terminalUrl = `/terminal/cluster/${cluster}/projects/${namespace}/pods/${podName}/containers/${containerName}`
     window.open(
       terminalUrl,
       `Connecting ${containerName}`,
@@ -156,18 +177,33 @@ class ContainersDetail extends Base {
     )
   }
 
-  renderSider() {
+  render() {
+    const stores = { detailStore: this.store }
+
+    if (this.store.isLoading && !this.store.detail.name) {
+      return <Loading className="ks-page-loading" />
+    }
+
+    const sideProps = {
+      module: this.module,
+      name: getDisplayName(this.store.detail),
+      desc: t('Container'),
+      operations: this.getOperations(),
+      attrs: this.getAttrs(),
+      breadcrumbs: [
+        {
+          label: t('Container'),
+          url: this.listUrl,
+        },
+      ],
+    }
+
     return (
-      <BaseInfo
-        icon="docker"
-        name={this.detailName}
-        desc={this.detailDesc}
-        operations={this.getEnabledOperations()}
-        labels={this.labels}
-        attrs={this.getAttrs()}
+      <DetailPage
+        stores={stores}
+        {...sideProps}
+        routes={getRoutes(this.props.match.path)}
       />
     )
   }
 }
-
-export default ContainersDetail

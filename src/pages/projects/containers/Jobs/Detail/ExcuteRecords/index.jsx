@@ -35,7 +35,7 @@ import { Card, Status, Search } from 'components/Base'
 
 import styles from './index.scss'
 
-@inject('rootStore')
+@inject('rootStore', 'detailStore', 'recordStore')
 @observer
 class ExcuteRecords extends React.Component {
   get store() {
@@ -57,10 +57,11 @@ class ExcuteRecords extends React.Component {
   }
 
   fetchData = params => {
-    const { name, namespace } = this.props.match.params
-
     if (this.recordStore) {
-      this.recordStore.fetchExcuteRecords({ ...params, name, namespace })
+      this.recordStore.fetchExcuteRecords({
+        ...params,
+        ...this.props.match.params,
+      })
     }
   }
 
@@ -158,7 +159,7 @@ class ExcuteRecords extends React.Component {
 
   render() {
     return (
-      <Card className={styles.main} title={t('Excute Records')}>
+      <Card className={styles.main} title={t('Execution Records')}>
         <div className={styles.content}>{this.renderTable()}</div>
       </Card>
     )

@@ -82,6 +82,12 @@ export const SERVICE_TYPES = {
   Unknown: 'Unknown',
 }
 
+export const VOLUME_SNAPSHOT_STATUS = [
+  { text: 'VOLUME_SNAPSHOT_STATUS_CREATING', value: 'creating' },
+  { text: 'VOLUME_SNAPSHOT_STATUS_READY', value: 'ready' },
+  { text: 'VOLUME_SNAPSHOT_STATUS_FAILED', value: 'failed' },
+]
+
 export const INGRESS_ANNOTATIONS = [
   'nginx.ingress.kubernetes.io/app-root',
   'nginx.ingress.kubernetes.io/affinity',
@@ -188,14 +194,18 @@ export const ICON_TYPES = {
   images: 'cdn',
   registries: 'cdn',
   volumes: 'storage',
+  persistentvolumeclaims: 'storage',
   storageclasses: 'database',
-  nodes: 'laptop',
+  nodes: 'nodes',
   devops: 'strategy-group',
   projects: 'project',
+  namespaces: 'project',
   users: 'human',
   roles: 'role',
   members: 'group',
+  globalroles: 'role',
   clusterroles: 'role',
+  workspaceroles: 'role',
   components: 'components',
   accounts: 'human',
   workspaces: 'enterprise',
@@ -214,6 +224,11 @@ export const ICON_TYPES = {
   scheduler: 'scheduler',
   s2ibuilders: 'vnas',
   apps: 'appcenter',
+  'volume-snapshots': 'snapshot',
+  customresourcedefinitions: 'select',
+  network: 'eip-group',
+  networkpolicies: 'firewall',
+  namespacenetworkpolicies: 'firewall',
 }
 
 export const MODULE_KIND_MAP = {
@@ -225,13 +240,19 @@ export const MODULE_KIND_MAP = {
   pods: 'Pod',
   services: 'Service',
   ingresses: 'Ingress',
-  volumes: 'PersistentVolumeClaim',
+  persistentvolumeclaims: 'PersistentVolumeClaim',
   storageclasses: 'StorageClass',
   'alerting-policy': 'AlertingPolicy',
   configmaps: 'ConfigMap',
   secrets: 'Secret',
   s2ibuilders: 'S2iBuilder',
   nodes: 'Node',
+  volumesnapshots: 'VolumeSnapshot',
+  namespaces: 'Namespace',
+  workspaces: 'WorkspaceTemplate',
+  dashboards: 'Dashboard',
+  applications: 'Application',
+  users: 'User',
 }
 
 export const QUOTAS_MAP = {
@@ -414,7 +435,7 @@ export const GRAY_RELEASE_CATEGORIES = [
   {
     icon: 'bird',
     type: 'Canary',
-    title: 'Canary Releases',
+    title: 'Canary Release',
     desc: 'CANARY_RELEASES_DESC',
   },
   {
@@ -433,6 +454,7 @@ export const PATTERN_IMAGE = /^\S+$/
 export const PATTERN_LENGTH_52 = /^.{0,52}$/
 export const PATTERN_LENGTH_63 = /^.{0,63}$/
 export const PATTERN_LENGTH_253 = /^.{0,253}$/
+export const PATTERN_LENGTH_1000 = /^.{0,1000}$/
 export const PATTERN_PORT_NAME = /^[a-z]([-a-z0-9]*[a-z0-9])?$/
 export const PATTERN_COMPONENT_VERSION = /^[a-z0-9]+$/
 export const PATTERN_PIPELINE_NAME = /^[a-zA-Z0-9]([-a-zA-Z0-9_]*)?$/
@@ -441,6 +463,8 @@ export const PATTERN_HOST = /^(?=^.{3,255}$)[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-z
 export const PATTERN_URL = /[a-zA-z]+:\/\/[^\s]*/
 export const PATTERN_VERSION_NO = /^\d+((\.|\d|^\s+|\s|\[)*)+((\d|\])$)/
 export const PATTERN_EMAIL = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/
+export const PATTERN_IP = /^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/
+export const PATTERN_IP_MASK = /^[1-9][0-9]*$/
 export const PATTERN_IMAGE_TAG = /^(.*?)([0-9a-zA-Z/]*)(:[-.\w]*[0-9a-zA-Z])*$/
 // https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-put-user.html#_path_parameters_76
 export const PATTERN_ES_USER_NAME = /^\b.{1,1024}\b$/
@@ -759,7 +783,7 @@ export const PROVISIONERS = [
   },
 ]
 
-export const S2i_SUPPORTED_TYPES = ['java', 'nodejs', 'python']
+export const S2I_SUPPORTED_TYPES = ['java', 'nodejs', 'python']
 export const B2I_SUPPORTED_TYPES = ['jar', 'war', 'binary']
 
 export const MAX_SIZE_UPLOAD = 2 * 1024 * 1024
@@ -780,4 +804,208 @@ export const SCHEME_REG = /^(http(s)?:\/\/)?(.*)/
 export const LIST_DEFAULT_ORDER = {
   deployments: 'updateTime',
   jobs: 'updateTime',
+  pods: 'startTime',
+}
+
+export const API_VERSIONS = {
+  deployments: 'apis/apps/v1',
+  statefulsets: 'apis/apps/v1',
+  daemonsets: 'apis/apps/v1',
+  jobs: 'apis/batch/v1',
+  cronjobs: 'apis/batch/v1beta1',
+  pods: 'api/v1',
+  namespaces: 'api/v1',
+  services: 'api/v1',
+  volumes: 'api/v1',
+  secrets: 'api/v1',
+  configmaps: 'api/v1',
+  events: 'api/v1',
+  resourcequotas: 'api/v1',
+  limitranges: 'api/v1',
+  persistentvolumeclaims: 'api/v1',
+  ingresses: 'apis/extensions/v1beta1',
+  nodes: 'api/v1',
+  storageclasses: 'apis/storage.k8s.io/v1',
+  roles: 'apis/rbac.authorization.k8s.io/v1',
+  clusterroles: 'apis/rbac.authorization.k8s.io/v1',
+  applications: 'apis/app.k8s.io/v1beta1',
+  strategies: 'apis/servicemesh.kubesphere.io/v1alpha2',
+  servicepolicies: 'apis/servicemesh.kubesphere.io/v1alpha2',
+  horizontalpodautoscalers: 'apis/autoscaling/v2beta2',
+  customresourcedefinitions: 'apis/apiextensions.k8s.io/v1',
+  clusters: 'apis/cluster.kubesphere.io/v1alpha1',
+  workspaces: 'apis/tenant.kubesphere.io/v1alpha2',
+  users: 'apis/iam.kubesphere.io/v1alpha2',
+  globalroles: 'apis/iam.kubesphere.io/v1alpha2',
+  devops: 'kapis/devops.kubesphere.io/v1alpha3',
+  pipelines: 'kapis/devops.kubesphere.io/v1alpha3',
+  workspaceroles: 'apis/iam.kubesphere.io/v1alpha2',
+  dashboards: 'apis/monitoring.kubesphere.io/v1alpha1',
+  namespacenetworkpolicies: 'apis/network.kubesphere.io/v1alpha1',
+  networkpolicies: 'apis/networking.k8s.io/v1',
+  storageclasscapabilities: 'apis/storage.kubesphere.io/v1alpha1',
+}
+
+export const MONITOR_GRAPH_COLORS = [
+  {
+    get nameI18nKey() {
+      return t('Default Color')
+    },
+    colors: [
+      '#60acfc',
+      '#23c2db',
+      '#64d5b2',
+      '#d5ec5a',
+      '#ffb64e',
+      '#fb816d',
+      '#d15c7f',
+    ],
+  },
+  {
+    get nameI18nKey() {
+      return t('Cool Color')
+    },
+    colors: [
+      '#678ed7',
+      '#60acfc',
+      '#23c2db',
+      '#33d3eb',
+      '#9cdc82',
+      '#d5ec5a',
+      '#ffe168',
+    ],
+  },
+  {
+    get nameI18nKey() {
+      return t('Warm Color')
+    },
+    colors: [
+      '#717adf',
+      '#d15c7f',
+      '#fb6f6c',
+      '#ff9f69',
+      '#ffb64e',
+      '#ffda43',
+      '#ffe88e',
+    ],
+  },
+]
+
+export const COMPONENT_ICON_MAP = {
+  kubernetes: 'kubernetes',
+  kubesphere: 'kubesphere',
+  istio: 'istio',
+  openpitrix: 'openpitrix',
+  devops: 'jenkins',
+  logging: 'record',
+  monitoring: 'monitor',
+}
+
+export const CLUSTER_PROVIDER_ICON = {
+  'Aliyun ACK': 'aliyun',
+  'Aure Kubernetes Service': 'windows',
+  'Huawei Cloud CCE': 'kubernetes',
+  'Amazon EKS': 'aws',
+  'Google Kubernetes Engine': 'google-plus',
+  'QingCloud Kubernetes Engine': 'qingcloud',
+  'Tencent Kubernetes Engine': 'kubernetes',
+}
+
+export const CLUSTER_PROVIDERS = [
+  {
+    label: 'Aliyun ACK',
+    value: 'Aliyun ACK',
+    icon: 'aliyun',
+  },
+  {
+    label: 'Aure Kubernetes Service',
+    value: 'Aure Kubernetes Service',
+    icon: 'windows',
+  },
+  {
+    label: 'Huawei Cloud CCE',
+    value: 'Huawei Cloud CCE',
+    icon: 'kubernetes',
+  },
+  {
+    label: 'Amazon EKS',
+    value: 'Amazon EKS',
+    icon: 'aws',
+  },
+  {
+    label: 'Google Kubernetes Engine',
+    value: 'Google Kubernetes Engine',
+    icon: 'google-plus',
+  },
+  {
+    label: 'QingCloud Kubernetes Engine',
+    value: 'QingCloud Kubernetes Engine',
+    icon: 'qingcloud',
+  },
+  {
+    label: 'Tencent Kubernetes Engine',
+    value: 'Tencent Kubernetes Engine',
+    icon: 'kubernetes',
+  },
+]
+
+export const CLUSTER_PRESET_GROUPS = [
+  {
+    label: 'production',
+    value: 'production',
+  },
+  {
+    label: 'development',
+    value: 'development',
+  },
+  {
+    label: 'testing',
+    value: 'testing',
+  },
+  {
+    label: 'demo',
+    value: 'demo',
+  },
+]
+
+export const CLUSTER_GROUP_TAG_TYPE = {
+  production: 'warning',
+  development: 'secondary',
+  testing: 'info',
+  demo: 'primary',
+}
+
+export const ROLE_QUERY_KEY = {
+  globalroles: 'globalrole',
+  workspaceroles: 'workspacerole',
+  clusterroles: 'clusterrole',
+  roles: 'role',
+}
+
+export const DEFAULT_CLUSTER = {
+  apiVersion: 'cluster.kubesphere.io/v1alpha1',
+  kind: 'Cluster',
+  metadata: {
+    annotations: {
+      'cluster.kubesphere.io/is-host-cluster': 'true',
+    },
+    labels: {
+      'cluster.kubesphere.io/visibility': 'public',
+    },
+    name: 'default',
+  },
+}
+
+export const CREDENTIAL_KEY = {
+  username_password: 'basic-auth',
+  ssh: 'ssh-auth',
+  secret_text: 'secret-text',
+  kubeconfig: 'kubeconfig',
+}
+
+export const CREDENTIAL_DISPLAY_KEY = {
+  'basic-auth': 'username_password',
+  'ssh-auth': 'ssh',
+  'secret-text': 'secret_text',
+  kubeconfig: 'kubeconfig',
 }

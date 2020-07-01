@@ -17,120 +17,85 @@
  */
 
 import React from 'react'
-import { observer, inject } from 'mobx-react'
-import { find } from 'lodash'
-import { Icon, Menu } from '@pitrix/lego-ui'
 
-import Base from 'core/containers/Base/List'
+import { Avatar, Status, Notify } from 'components/Base'
+import Banner from 'components/Cards/Banner'
+import Table from 'components/Tables/List'
+import withList, { ListPage } from 'components/HOCs/withList'
+
 import AppRepoStore from 'stores/openpitrix/repo'
 
-import { Notify, Avatar, Status } from 'components/Base'
-import CreateModal from 'components/Modals/AppRepoCreate'
-import DeleteModal from 'components/Modals/Delete'
-import Banner from 'components/Cards/Banner'
-
-import styles from './index.scss'
-
-const EditModal = CreateModal
-
-@inject('rootStore')
-@observer
-export default class AppRepos extends Base {
-  init() {
-    this.state = {
-      createModal: false,
-      batchDeleteModal: false,
-      showEdit: false,
-      showDelete: false,
-      selectRepo: {},
-    }
-
-    this.store = new AppRepoStore()
-  }
-
-  get name() {
-    return 'App Repository'
-  }
-
-  get authKey() {
-    return 'repos'
-  }
-
-  get rowKey() {
-    return 'repo_id'
-  }
-
-  get module() {
-    return 'repos'
+@withList({
+  store: new AppRepoStore(),
+  module: 'repos',
+  authKey: 'app-repos',
+  name: 'App Repository',
+  rowKey: 'repo_id',
+})
+export default class Roles extends React.Component {
+  get tips() {
+    return [
+      {
+        title: t('HOW_TO_USE_APP_REPO_Q'),
+        description: t('HOW_TO_USE_APP_REPO_A'),
+      },
+    ]
   }
 
   get workspace() {
     return this.props.match.params.workspace
   }
 
-  get enabledActions() {
-    const actions = globals.app.getActions({
-      module: 'repos',
-      workspace: this.workspace,
-    })
-
-    return [
-      ...actions,
-      ...(actions.includes('manage') ? ['create', 'edit', 'delete'] : []),
-    ]
-  }
-
-  get selectedRepos() {
-    return this.store.list.selectedRowKeys.slice()
-  }
-
-  get selectedRepoNames() {
-    const { data } = this.store.list
-    return this.selectedRepos.map(repo_id => find(data, { repo_id }).name)
-  }
+  showAction = record =>
+    !globals.config.presetWorkspaceRoles.includes(record.name)
 
   get itemActions() {
+    const { trigger, name, routing } = this.props
     return [
       {
         key: 'edit',
         icon: 'pen',
         text: t('Edit'),
         action: 'edit',
+        show: this.showAction,
+        onClick: item =>
+          trigger('openpitrix.repo.edit', {
+            detail: item,
+            success: routing.query,
+          }),
       },
       {
         key: 'delete',
         icon: 'trash',
         text: t('Delete'),
         action: 'delete',
+        show: this.showAction,
+        onClick: item =>
+          trigger('resource.delete', {
+            detail: item,
+            type: t(name),
+            success: routing.query,
+          }),
       },
     ]
   }
 
-  get enabledItemActions() {
-    return this.itemActions.filter(
-      item => !item.action || this.enabledActions.includes(item.action)
-    )
-  }
-
-  getData(params = {}) {
-    this.store.fetchList({
-      status: 'active',
-      workspace: this.workspace,
-      ...params,
-    })
-  }
-
-  getTableProps() {
+  get tableActions() {
+    const { trigger, routing, tableProps } = this.props
     return {
-      ...Base.prototype.getTableProps.call(this),
+      ...tableProps.tableActions,
       searchType: 'keyword',
       actions: [
         {
           key: 'create',
           type: 'control',
-          text: t('Create Repo'),
+          text: t('Add Repo'),
           action: 'manage',
-          onClick: this.showModal('createModal'),
+          onClick: () =>
+            trigger('openpitrix.repo.add', {
+              workspace: this.workspace,
+              success: routing.query,
+            }),
         },
       ],
       selectActions: [
@@ -145,17 +110,32 @@ export default class AppRepos extends Base {
     }
   }
 
+  handleIndex = async () => {
+    await Promise.all(
+      this.props.store.list.selectedRowKeys.map(async repo => {
+        const resp = await this.props.store.index({ repo_id: repo })
+        const { message } = resp
+
+        if (message === 'success') {
+          Notify.success(t('Index Successfully'))
+        }
+      })
+    )
+    this.props.store.setSelectRowKeys([])
+  }
+
   getColumns = () => [
     {
       title: t('Name'),
       dataIndex: 'name',
-      width: '30%',
-      render: (name, { description }) => (
+      search: true,
+      width: '25%',
+      render: (name, record) => (
         <Avatar
           icon="catalog"
           iconSize={40}
           title={name}
-          desc={description || '-'}
+          desc={record.description || '-'}
           noLink
         />
       ),
@@ -171,152 +151,25 @@ export default class AppRepos extends Base {
       title: t('URL'),
       dataIndex: 'url',
     },
-    {
-      key: 'more',
-      width: 20,
-      render: this.renderMore,
-    },
   ]
 
-  get tips() {
-    return [
-      {
-        title: t('HOW_TO_USE_APP_REPO_Q'),
-        description: t('HOW_TO_USE_APP_REPO_A'),
-      },
-    ]
-  }
-
-  hideCreate = () => {
-    this.setState({ createModal: false })
-  }
-
-  handleCreate = async data => {
-    await this.store
-      .create({
-        ...data,
-        app_default_status: 'active',
-        workspace: this.workspace,
-      })
-      .then(() => {
-        this.getData()
-        this.hideCreate()
-      })
-  }
-
-  hideEdit = () => {
-    this.setState({ showEdit: false })
-  }
-
-  handleEdit = data => {
-    this.store.update(data).then(() => {
-      this.getData()
-      this.hideEdit()
-    })
-  }
-
-  hideBatchDelete = () => {
-    this.setState({ batchDeleteModal: false })
-  }
-
-  handleBatchDelete = async () => {
-    const repos = this.selectedRepos
-    try {
-      await this.store.delete({ repo_id: repos })
-      this.hideBatchDelete()
-      this.getData()
-    } catch (err) {}
-  }
-
-  hideDelete = () => {
-    this.setState({ showDelete: false })
-  }
-
-  handleDelete = async () => {
-    const repos = this.state.selectRepo.repo_id
-    try {
-      await this.store.delete({ repo_id: repos })
-      this.hideDelete()
-      this.getData()
-    } catch (err) {}
-  }
-
-  handleIndex = async () => {
-    await Promise.all(
-      this.selectedRepos.map(async repo => {
-        const resp = await this.store.index({ repo_id: repo })
-        const { message } = resp
-
-        if (message === 'success') {
-          Notify.success(t('Index Successfully'))
-        }
-      })
-    )
-    this.store.setSelectRowKeys([])
-  }
-
-  handleMoreClick = repo => (e, key) => {
-    switch (key) {
-      case 'edit':
-        this.setState({ showEdit: true, selectRepo: repo })
-        break
-      case 'delete':
-        this.setState({ showDelete: true, selectRepo: repo })
-        break
-      default:
-        break
-    }
-  }
-
-  renderHeader() {
+  render() {
+    const { bannerProps, tableProps } = this.props
     return (
-      <Banner
-        title={t('App Repositories')}
-        description={t('APP_REPO_DESC')}
-        className={styles.header}
-        module={this.module}
-        tips={this.tips}
-      />
-    )
-  }
-
-  renderMoreMenu = record => (
-    <Menu onClick={this.handleMoreClick(record)}>
-      {this.enabledItemActions.map(action => (
-        <Menu.MenuItem key={action.key}>
-          <Icon name={action.icon} /> {action.text}
-        </Menu.MenuItem>
-      ))}
-    </Menu>
-  )
-
-  renderModals() {
-    return (
-      <div>
-        <CreateModal
-          store={this.store}
-          visible={this.state.createModal}
-          isSubmitting={this.store.isSubmitting}
-          onOk={this.handleCreate}
-          onCancel={this.hideCreate}
+      <ListPage {...this.props} noWatch>
+        <Banner
+          {...bannerProps}
+          tips={this.tips}
+          title={t('App Repositories')}
+          description={t('APP_REPO_DESC')}
         />
-        <EditModal
-          store={this.store}
-          detail={this.state.selectRepo}
-          visible={this.state.showEdit}
-          isSubmitting={this.store.isSubmitting}
-          onOk={this.handleEdit}
-          onCancel={this.hideEdit}
+        <Table
+          {...tableProps}
+          tableActions={this.tableActions}
+          itemActions={this.itemActions}
+          columns={this.getColumns()}
         />
-        <DeleteModal
-          type={t(this.name)}
-          resource={this.state.selectRepo.name}
-          visible={this.state.showDelete}
-          isSubmitting={this.store.isSubmitting}
-          onOk={this.handleDelete}
-          onCancel={this.hideDelete}
-        />
-      </div>
+      </ListPage>
     )
   }
 }

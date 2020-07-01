@@ -17,7 +17,7 @@
  */
 
 import React from 'react'
-import { get, debounce } from 'lodash'
+import { get, set, debounce } from 'lodash'
 import { observer } from 'mobx-react'
 
 import { updateLabels } from 'utils'
@@ -30,9 +30,14 @@ import {
 
 import { Columns, Column, Input, TextArea } from '@pitrix/lego-ui'
 import { Form } from 'components/Base'
+import { ProjectSelect } from 'components/Inputs'
 
 @observer
 export default class BaseInfo extends React.Component {
+  get cluster() {
+    return this.props.cluster
+  }
+
   get namespace() {
     return get(this.formTemplate, 'metadata.namespace')
   }
@@ -40,6 +45,12 @@ export default class BaseInfo extends React.Component {
   get formTemplate() {
     const { formTemplate, module } = this.props
     return get(formTemplate, MODULE_KIND_MAP[module], formTemplate)
+  }
+
+  get fedFormTemplate() {
+    return this.props.isFederated
+      ? get(this.formTemplate, 'spec.template')
+      : this.formTemplate
   }
 
   get nameLengthRules() {
@@ -61,7 +72,11 @@ export default class BaseInfo extends React.Component {
     }
 
     this.props.store
-      .checkName({ name: value, namespace: this.namespace })
+      .checkName({
+        name: value,
+        namespace: this.namespace,
+        cluster: this.cluster,
+      })
       .then(resp => {
         if (resp.exist) {
           return callback({ message: t('Name exists'), field: rule.field })
@@ -71,12 +86,16 @@ export default class BaseInfo extends React.Component {
   }
 
   handleNameChange = debounce(value => {
-    const { module, formTemplate } = this.props
+    const { module, isFederated } = this.props
 
-    const labels = get(this.formTemplate, 'metadata.labels', {})
+    const labels = get(this.fedFormTemplate, 'metadata.labels', {})
     labels.app = value
 
-    updateLabels(formTemplate, module, labels)
+    updateLabels(this.fedFormTemplate, module, labels)
+
+    if (isFederated) {
+      set(this.formTemplate, 'metadata.labels.app', value)
+    }
   }, 200)
 
   render() {
@@ -115,12 +134,22 @@ export default class BaseInfo extends React.Component {
           </Column>
         </Columns>
         <Columns>
+          {!this.props.namespace && (
+            <Column>
+              <Form.Item label={t('Project')} desc={t('PROJECT_DESC')}>
+                <ProjectSelect
+                  name="metadata.namespace"
+                  cluster={this.props.cluster}
+                  defaultValue={this.namespace || 'default'}
+                />
+              </Form.Item>
+            </Column>
+          )}
           <Column>
             <Form.Item label={t('Description')}>
               <TextArea name="metadata.annotations['kubesphere.io/description']" />
             </Form.Item>
           </Column>
-          <Column />
         </Columns>
       </Form>
     )

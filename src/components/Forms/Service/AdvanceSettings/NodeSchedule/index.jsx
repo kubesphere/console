@@ -22,7 +22,9 @@ import { PropertiesInput } from 'components/Inputs'
 
 export default class NodeSchedule extends React.Component {
   get prefix() {
-    return `${this.props.kind}.spec.template.spec.`
+    return this.props.isFederated
+      ? `${this.props.kind}.spec.template.spec.template.spec.`
+      : `${this.props.kind}.spec.template.spec.`
   }
 
   render() {

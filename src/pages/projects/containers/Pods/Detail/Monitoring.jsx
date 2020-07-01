@@ -49,8 +49,9 @@ class Monitorings extends React.Component {
   }
 
   fetchData = params => {
-    const { namespace, name } = this.store.detail
+    const { cluster, namespace, name } = this.store.detail
     this.monitorStore.fetchMetrics({
+      cluster,
       namespace,
       pod: name,
       metrics: Object.values(MetricTypes),
@@ -75,14 +76,14 @@ class Monitorings extends React.Component {
     },
     {
       type: 'bandwidth',
-      title: 'Network Outbound',
+      title: 'Outbound Traffic',
       unitType: 'bandwidth',
       legend: ['Outbound'],
       data: get(this.metrics, `${MetricTypes.net_transmitted}.data.result`),
     },
     {
       type: 'bandwidth',
-      title: 'Network Inbound',
+      title: 'Inbound Traffic',
       unitType: 'bandwidth',
       legend: ['Inbound'],
       data: get(this.metrics, `${MetricTypes.net_received}.data.result`),
@@ -114,5 +115,5 @@ class Monitorings extends React.Component {
   }
 }
 
-export default inject('rootStore')(observer(Monitorings))
+export default inject('rootStore', 'detailStore')(observer(Monitorings))
 export const Component = Monitorings

@@ -72,13 +72,14 @@ export default class BaseInfo extends React.Component {
     this.props.store
       .checkPipelineName({
         name: value,
-        project_id: this.props.formTemplate.project_id,
+        cluster: this.props.cluster,
+        project_name: this.props.formTemplate.project_name,
       })
       .then(resp => {
         if (resp.exist) {
           return callback({
             field: rule.field,
-            message: t('This name has exsited'),
+            message: t('This name has existed.'),
           })
         }
         callback()
@@ -86,13 +87,13 @@ export default class BaseInfo extends React.Component {
   }
 
   renderRepoSelectForm() {
-    const { formTemplate } = this.props
-
+    const { formTemplate, project_id, cluster } = this.props
     return (
       <RepoSelectForm
         sourceData={formTemplate['multi_branch_pipeline']}
-        project_id={formTemplate.project_id}
+        project_id={project_id}
         name={formTemplate.name}
+        cluster={cluster}
         onSave={this.handleRepoChange}
         onCancel={this.hideSelectRepo}
       />
@@ -118,7 +119,7 @@ export default class BaseInfo extends React.Component {
               <Form.Item
                 label={t('Name')}
                 desc={t(
-                  'The name of the Pipeline, the pipeline within the same project cannot be renamed'
+                  'The name of the pipeline. Pipelines in the same project must have different names.'
                 )}
                 rules={[
                   { required: true, message: t('Please input pipeline name') },
@@ -137,7 +138,7 @@ export default class BaseInfo extends React.Component {
             </Column>
             <Column>
               <Form.Item label={t('Project')} desc={t('PROJECT_DESC')}>
-                <Input name="project_id" disabled />
+                <Input name="project_name" disabled />
               </Form.Item>
             </Column>
           </Columns>
@@ -149,6 +150,7 @@ export default class BaseInfo extends React.Component {
                   ref={this.scmRef}
                   onClick={this.showSelectRepo}
                   handleDeleteSource={this.handleDeleteSource}
+                  project_id={this.props.project_id}
                 />
               </Form.Item>
             </Column>

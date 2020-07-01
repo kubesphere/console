@@ -34,7 +34,7 @@ class EnvVariables extends React.Component {
   }
 
   get module() {
-    return this.props.module
+    return this.store.module
   }
 
   get store() {
@@ -42,7 +42,11 @@ class EnvVariables extends React.Component {
   }
 
   get namespace() {
-    return toJS(this.store.detail).namespace
+    return this.store.detail.namespace
+  }
+
+  get cluster() {
+    return this.store.detail.cluster
   }
 
   get containers() {
@@ -60,6 +64,7 @@ class EnvVariables extends React.Component {
   fetchData = () => {
     this.envStore.fetchList({
       namespace: this.namespace,
+      cluster: this.cluster,
       containers: this.containers,
     })
   }
@@ -82,5 +87,5 @@ class EnvVariables extends React.Component {
   }
 }
 
-export default inject('rootStore')(observer(EnvVariables))
+export default inject('rootStore', 'detailStore')(observer(EnvVariables))
 export const Component = EnvVariables

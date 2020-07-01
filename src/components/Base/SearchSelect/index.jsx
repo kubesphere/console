@@ -61,28 +61,8 @@ export default class SearchSelect extends React.Component {
 
   handleInputChange = debounce(value => {
     const { onFetch } = this.props
-
-    // Workaround for search in select, should be fixed after lego-ui upgrade
-    if (!value && this._select) {
-      this._select = false
-      return
-    }
-
-    this._search = true
-    onFetch({ keyword: value })
+    onFetch({ name: value })
   }, 300)
-
-  handleChange = value => {
-    const { onFetch, onChange } = this.props
-
-    this._select = true
-    if (!value && this._search) {
-      onFetch()
-      this._search = false
-    } else {
-      onChange(value)
-    }
-  }
 
   render() {
     const {
@@ -99,16 +79,18 @@ export default class SearchSelect extends React.Component {
         name={name}
         value={value}
         options={options}
-        searchable
-        onChange={this.handleChange}
         onInputChange={this.handleInputChange}
         onBlurResetsInput={false}
         onCloseResetsInput={false}
+        onSelectResetsInput={false}
         openOnClick={true}
         isLoadingAtBottom
         isLoading={isLoading}
         bottomTextVisible={total === currentLength}
         onMenuScrollToBottom={this.handleScrollToBottom}
+        valueRenderer={this.valueRenderer}
+        searchable
+        clearable
         {...rest}
       />
     )

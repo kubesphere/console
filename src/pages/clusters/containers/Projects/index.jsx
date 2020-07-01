@@ -17,87 +17,46 @@
  */
 
 import React from 'react'
-import { throttle } from 'lodash'
-import { reaction } from 'mobx'
-import { observer, inject } from 'mobx-react'
-import { parse } from 'qs'
+import { get } from 'lodash'
+
+import { Avatar, Status } from 'components/Base'
+import Banner from 'components/Cards/Banner'
+import Table from 'components/Tables/List'
+import withList, { ListPage } from 'components/HOCs/withList'
+
+import { getDisplayName } from 'utils'
+import { getSuitableValue, getValueByUnit } from 'utils/monitoring'
 
 import ProjectStore from 'stores/project'
+import ProjectMonitorStore from 'stores/monitoring/project'
 
-import { Avatar, Notify, Status } from 'components/Base'
-import DeleteModal from 'components/Modals/Delete'
-import EditModal from 'components/Modals/ProjectEdit'
-import AssignWorkspaceModal from 'components/Modals/AssignWorkspace'
+const MetricTypes = {
+  cpu: 'namespace_cpu_usage',
+  memory: 'namespace_memory_usage_wo_cache',
+  pod: 'namespace_pod_count',
+}
 
-import { getLocalTime, getDisplayName } from 'utils'
-
-import Base from 'core/containers/Base/List'
-
-import styles from './index.scss'
-
-const WORKSPACE_STATUS = [
-  { text: 'All', value: 'all' },
-  { text: 'Not Assigned', value: 'not_assigned' },
-]
-
-@inject('rootStore')
-@observer
-export default class Projects extends Base {
-  init() {
-    this.store = new ProjectStore()
-    this.initWebsocket()
-  }
-
-  initWebsocket() {
-    const { workspace } = this.props.match.params
-
-    if ('getWatchListUrl' in this.store) {
-      const url = this.store.getWatchListUrl({ workspace })
-
-      this.websocket.watch(url)
-
-      this.getData = throttle(this.getData, 1000)
-
-      this.disposer = reaction(
-        () => this.websocket.message,
-        message => {
-          if (message.type === 'DELETED') {
-            const params = parse(location.search.slice(1))
-            this.getData({ ...params, silent: true })
-          }
-        }
-      )
-    }
-  }
-
-  get name() {
-    return 'Project'
-  }
-
-  get authKey() {
-    return 'projects'
-  }
-
-  get className() {
-    return styles.wrapper
-  }
-
-  getTableProps() {
-    return {
-      ...Base.prototype.getTableProps.call(this),
-      searchType: 'keyword',
-      onCreate: null,
-    }
-  }
+@withList({
+  store: new ProjectStore(),
+  name: 'Project',
+  module: 'projects',
+})
+export default class Projects extends React.Component {
+  monitoringStore = new ProjectMonitorStore()
 
   get itemActions() {
+    const { trigger, routing } = this.props
     return [
       {
         key: 'edit',
         icon: 'pen',
         text: t('Edit'),
-        action: 'manage',
-        onClick: this.showModal('editModal'),
+        action: 'edit',
+        onClick: item =>
+          trigger('resource.baseinfo.edit', {
+            detail: item,
+            success: routing.query,
+          }),
       },
       {
         key: 'modify',
@@ -105,169 +64,165 @@ export default class Projects extends Base {
         text: t('Assign Workspace'),
         action: 'manage',
         show: record => !record.workspace,
-        onClick: this.showModal('assignWorkspaceModal'),
+        onClick: item =>
+          trigger('project.assignworkspace', {
+            detail: item,
+            success: routing.query,
+          }),
       },
       {
         key: 'delete',
         icon: 'trash',
         text: t('Delete'),
-        action: 'manage',
-        onClick: this.showModal('deleteModal'),
+        action: 'delete',
+        show: record => record.workspace !== globals.config.systemWorkspace,
+        onClick: item =>
+          trigger('resource.delete', {
+            type: t(this.name),
+            resource: item.name,
+            detail: item,
+            success: routing.query,
+          }),
       },
     ]
   }
 
-  getWorkspaceOptions() {
-    return WORKSPACE_STATUS.map(status => ({
-      text: t(status.text),
-      value: status.value,
-    }))
+  get tabs() {
+    return {
+      value: this.type || 'user',
+      onChange: this.handleTabChange,
+      options: [
+        {
+          value: 'user',
+          label: t('User Projects'),
+        },
+        {
+          value: 'system',
+          label: t('System Projects'),
+        },
+      ],
+    }
   }
 
-  getColumns = () => [
-    {
-      title: t('Name'),
-      dataIndex: 'name',
-      search: true,
-      width: '30%',
-      render: this.renderAvatar,
-    },
-    {
-      title: t('Workspace'),
-      dataIndex: 'kubesphere.io/workspace',
-      filters: this.getWorkspaceOptions(),
-      filteredValue: this.getFilteredValue('kubesphere.io/workspace'),
-      search: true,
-      isHideable: true,
-      width: '20%',
-      render: (_, record) =>
-        record.workspace || <span className="tag">{t('Not Assigned')}</span>,
-    },
-    {
-      title: t('Creator'),
-      dataIndex: 'creator',
-      isHideable: true,
-      width: '20%',
-      render: creator => creator || '-',
-    },
-    {
-      title: t('Created Time'),
-      dataIndex: 'createTime',
-      sorter: true,
-      sortOrder: this.getSortOrder('createTime'),
-      isHideable: true,
-      width: '20%',
-      render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
-    },
-    {
-      key: 'more',
-      render: (field, record) => {
-        if (record.status === 'Terminating') {
-          return <Status type="terminating" name={t('Terminating')} flicker />
-        }
-
-        return this.renderMore(field, record)
-      },
-    },
-  ]
-
-  handleFetch = (params, refresh) => {
-    this.routing.query(params, refresh)
+  handleTabChange = type => {
+    const { cluster } = this.props.match.params
+    this.props.routing.push(`/clusters/${cluster}/projects?type=${type}`)
   }
 
-  handleSelectRowKeys = params => {
-    this.store.setSelectRowKeys('list', params)
-  }
+  getData = async ({ silent, ...params } = {}) => {
+    this.query = params
+    params.type = params.type || 'user'
+    this.type = params.type
 
-  handleAssignWorkspace = data => {
-    this.store.patch(this.state.selectItem, data).then(() => {
-      this.hideModal('assignWorkspaceModal')()
-      Notify.success({ content: `${t('Updated Successfully')}!` })
-      this.routing.query()
+    const { store } = this.props
+    silent && (store.list.silent = true)
+    await store.fetchList({
+      ...this.props.match.params,
+      ...params,
     })
+    await this.monitoringStore.fetchMetrics({
+      ...this.props.match.params,
+      resources: store.list.data.map(item => item.name),
+      metrics: Object.values(MetricTypes),
+      last: true,
+    })
+    store.list.silent = false
   }
 
-  renderAvatar = (name, record) => {
-    const url = record.workspace ? `/projects/${name}` : ''
-    const props = globals.app.isClusterAdmin ? { to: url } : { noLink: true }
-    return (
-      <Avatar
-        icon="project"
-        iconSize={40}
-        title={getDisplayName(record)}
-        desc={record.description || '-'}
-        {...props}
-      />
+  getLastValue = (record, type, unit) => {
+    const metricsData = this.monitoringStore.data
+    const result = get(metricsData, `${type}.data.result`) || []
+    const metrics = result.find(
+      item => get(item, 'metric.namespace') === record.name
     )
+    return getValueByUnit(get(metrics, 'value[1]', 0), unit)
   }
 
-  renderHeader() {
-    return (
-      <div className={styles.header}>
-        <img className={styles.leftIcon} src="/assets/noicon.svg" alt="" />
-        <img
-          className={styles.rightIcon}
-          src="/assets/banner-icon-2.svg"
-          alt=""
-        />
-        <div className={styles.title}>
-          <div className="h4">{t('NAV_PROJECTS')}</div>
-          <p>{t('PROJECTS_DESC')}</p>
-        </div>
-      </div>
-    )
-  }
-
-  renderModals() {
-    const { isSubmitting } = this.store
-    const {
-      editModal,
-      deleteModal,
-      batchDeleteModal,
-      assignWorkspaceModal,
-      selectItem = {},
-    } = this.state
-
-    return (
-      <div>
-        <DeleteModal
-          type={t(this.name)}
-          resource={selectItem[this.rowKey]}
-          desc={t.html('DELETE_PROJECT_TIP', {
-            resource: selectItem[this.rowKey],
-          })}
-          visible={deleteModal}
-          onOk={this.handleDelete}
-          onCancel={this.hideModal('deleteModal')}
-          isSubmitting={isSubmitting}
-        />
-        {this.list.selectedRowKeys && (
-          <DeleteModal
-            type={t(this.name)}
-            resource={this.list.selectedRowKeys.join(', ')}
-            visible={batchDeleteModal}
-            desc={t.html('DELETE_PROJECT_TIP', {
-              resource: this.list.selectedRowKeys.join(', '),
-            })}
-            onOk={this.handleBatchDelete}
-            onCancel={this.hideModal('batchDeleteModal')}
-            isSubmitting={isSubmitting}
+  getColumns = () => {
+    const { getSortOrder, prefix } = this.props
+    return [
+      {
+        title: t('Name'),
+        dataIndex: 'name',
+        sorter: true,
+        sortOrder: getSortOrder('name'),
+        render: (name, record) => (
+          <Avatar
+            to={record.status === 'Terminating' ? null : `${prefix}/${name}`}
+            icon="project"
+            iconSize={40}
+            isMultiCluster={record.isFedManaged}
+            desc={record.description || '-'}
+            title={getDisplayName(record)}
           />
-        )}
-        <EditModal
-          detail={selectItem}
-          visible={editModal}
-          onOk={this.handleEdit}
-          onCancel={this.hideModal('editModal')}
-          isSubmitting={isSubmitting}
+        ),
+      },
+      {
+        title: t('Status'),
+        dataIndex: 'status',
+        isHideable: true,
+        search: true,
+        render: status => <Status type={status} name={t(status)} flicker />,
+      },
+      {
+        title: t('Workspace'),
+        dataIndex: 'workspace',
+        isHideable: true,
+      },
+      {
+        title: t('CPU Usage'),
+        key: 'namespace_cpu_usage',
+        isHideable: true,
+        render: record =>
+          getSuitableValue(
+            this.getLastValue(record, MetricTypes.cpu),
+            'cpu',
+            '-'
+          ),
+      },
+      {
+        title: t('Memory Usage'),
+        key: 'namespace_memory_usage_wo_cache',
+        isHideable: true,
+        render: record =>
+          getSuitableValue(
+            this.getLastValue(record, MetricTypes.memory),
+            'memory',
+            '-'
+          ),
+      },
+      {
+        title: t('Pod Count'),
+        key: 'namespace_pod_count',
+        isHideable: true,
+        render: record => this.getLastValue(record, MetricTypes.pod),
+      },
+    ]
+  }
+
+  showCreate = () =>
+    this.props.trigger('project.create', {
+      ...this.props.match.params,
+      success: this.getData,
+    })
+
+  render() {
+    const { bannerProps, tableProps } = this.props
+    const isLoadingMonitor = this.monitoringStore.isLoading
+
+    return (
+      <ListPage {...this.props} getData={this.getData} module="namespaces">
+        <Banner {...bannerProps} tabs={this.tabs} />
+        <Table
+          {...tableProps}
+          itemActions={this.itemActions}
+          columns={this.getColumns()}
+          onCreate={this.showCreate}
+          monitorLoading={isLoadingMonitor}
+          searchType="name"
+          alwaysUpdate
         />
-        <AssignWorkspaceModal
-          visible={assignWorkspaceModal}
-          onOk={this.handleAssignWorkspace}
-          onCancel={this.hideModal('assignWorkspaceModal')}
-          isSubmitting={isSubmitting}
-        />
-      </div>
+      </ListPage>
     )
   }
 }

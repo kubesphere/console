@@ -63,6 +63,7 @@ export default class ParamsModal extends React.Component {
           value: branch,
         }))
       : []
+
     if (params && params.branch) {
       _options = [{ label: params.branch, value: params.branch }]
     }
@@ -71,15 +72,19 @@ export default class ParamsModal extends React.Component {
       if (isString(a.value) && a.value.toLowerCase() === 'master') {
         return -1
       }
+
       if (isString(b.value) && b.value.toLowerCase() === 'master') {
         return 1
       }
+
       if (a.value < b.value) {
         return -1
       }
+
       if (a.value > b.value) {
         return 1
       }
+
       return 0
     })
 
@@ -89,12 +94,15 @@ export default class ParamsModal extends React.Component {
   componentDidUpdate(prevProps) {
     const { visible, branches } = this.props
     const { visible: prevVisible } = prevProps
+
     if (!prevVisible && visible && branches.length) {
       this.start = 1
+
       if (branches.length > 90) {
         // length > 90 ,branch list need new api to get
         this.getBranches()
       }
+
       this.props.onBranchSelect(get(this.branchOptions, '[0].value', ''))
     }
   }
@@ -106,6 +114,7 @@ export default class ParamsModal extends React.Component {
       ...params,
       page: this.start,
     })
+
     if (isArray(result) && result.length) {
       const _branches = result.map(item => item.name)
       this.setState({ branches: { ...this.state.branches, ..._branches } })
@@ -137,6 +146,7 @@ export default class ParamsModal extends React.Component {
 
   renderParamsItem(param) {
     const type = param.type.toLowerCase().split('parameterdefinition')[0]
+
     switch (type) {
       case 'string':
         return (
@@ -241,7 +251,7 @@ export default class ParamsModal extends React.Component {
         onOk={this.handleOk}
         visible={visible}
         closable={false}
-        title={t('Params input')}
+        title={t('Params Input')}
       >
         <Form ref={this.formRef}>
           {branches && branches.length ? (

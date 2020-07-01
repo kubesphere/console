@@ -16,6 +16,8 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { getClusterUrl } from 'utils/index'
+
 function getError(option, xhr) {
   const msg = `cannot post ${option.action} ${xhr.status}'`
   const err = new Error(msg)
@@ -66,6 +68,8 @@ export default function upload(option) {
   }
 
   const formData = new FormData()
+
+  option.action = getClusterUrl(option.action)
 
   if (option.data) {
     Object.keys(option.data).forEach(key => {

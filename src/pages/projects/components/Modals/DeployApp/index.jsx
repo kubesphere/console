@@ -50,25 +50,25 @@ export default class DeployAppModal extends React.Component {
     onCancel() {},
   }
 
-  handleServiceForm = () => {
-    this.props.onOk('service-form')
-  }
-
   handleAppTemplate = () => {
-    this.props.onOk('app-template')
+    const { namespace, cluster, workspace, routing, onOk } = this.props
+    onOk()
+    routing.push(
+      `/apps?workspace=${workspace}&cluster=${cluster}&namespace=${namespace}`
+    )
   }
 
   handleAppRepo = () => {
-    this.props.onOk('app-repo')
+    const { onOk, trigger, ...rest } = this.props
+    onOk()
+    trigger('openpitrix.app.create', {
+      trigger,
+      ...rest,
+    })
   }
 
   render() {
-    const {
-      visible,
-      onCancel,
-      canDeployComposingApp,
-      canDeployTemplateApp,
-    } = this.props
+    const { visible, onCancel } = this.props
 
     return (
       <Modal
@@ -76,10 +76,10 @@ export default class DeployAppModal extends React.Component {
         style={{ borderRadius: '8px' }}
         onOk={this.handleOk}
         onCancel={onCancel}
-        hideHeader
-        hideFooter
         visible={visible}
         bodyClassName={styles.body}
+        hideHeader
+        hideFooter
       >
         <div className={styles.header}>
           <div className={styles.logo}>
@@ -92,30 +92,18 @@ export default class DeployAppModal extends React.Component {
         </div>
 
         <div className={styles.footer}>
-          {canDeployComposingApp && (
-            <Item
-              icon="templet"
-              title={t('From App Store')}
-              desc={t('FROM_APP_STORE_DESC')}
-              onEnter={this.handleAppTemplate}
-            />
-          )}
-          {canDeployTemplateApp && (
-            <Item
-              icon="catalog"
-              title={t('From App Templates')}
-              desc={t('FROM_APP_TEMPLATES_DESC')}
-              onEnter={this.handleAppRepo}
-            />
-          )}
-          {canDeployComposingApp && (
-            <Item
-              icon="stretch"
-              title={t('Composing App')}
-              desc={t('COMPOSING_APP_DESC')}
-              onEnter={this.handleServiceForm}
-            />
-          )}
+          <Item
+            icon="templet"
+            title={t('From App Store')}
+            desc={t('FROM_APP_STORE_DESC')}
+            onEnter={this.handleAppTemplate}
+          />
+          <Item
+            icon="catalog"
+            title={t('From App Templates')}
+            desc={t('FROM_APP_TEMPLATES_DESC')}
+            onEnter={this.handleAppRepo}
+          />
         </div>
       </Modal>
     )

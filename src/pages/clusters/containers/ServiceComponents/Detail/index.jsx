@@ -18,35 +18,40 @@
 
 import React from 'react'
 import { observer, inject } from 'mobx-react'
+import { Loading } from '@pitrix/lego-ui'
 
-import { getLocalTime } from 'utils'
+import { getLocalTime, getDisplayName } from 'utils'
 import { getComponentStatus } from 'utils/status'
 import ComponentStore from 'stores/component'
-
-import Base from 'core/containers/Base/Detail'
 import { Status } from 'components/Base'
+import DetailPage from 'clusters/containers/Base/Detail'
+
+import routes from './routes'
 
 @inject('rootStore')
 @observer
-export default class ComponentDetail extends Base {
+export default class ComponentDetail extends React.Component {
+  store = new ComponentStore()
+
   get name() {
     return 'Service Component'
   }
 
-  get authKey() {
+  get module() {
     return 'components'
   }
 
   get listUrl() {
-    return `/components`
+    const { cluster } = this.props.match.params
+    return `/clusters/${cluster}/components`
   }
 
-  init() {
-    this.store = new ComponentStore(this.module)
+  componentDidMount() {
+    this.fetchData()
   }
 
   fetchData = () => {
-    this.store.fetchDetail(this.props.match.params).catch(this.catch)
+    this.store.fetchDetail(this.props.match.params)
   }
 
   getOperations = () => []
@@ -62,6 +67,10 @@ export default class ComponentDetail extends Base {
         value: <Status type={status} name={t(status)} />,
       },
       {
+        name: t('Cluster'),
+        value: this.props.match.params.cluster,
+      },
+      {
         name: t('Project'),
         value: detail.namespace,
       },
@@ -74,5 +83,29 @@ export default class ComponentDetail extends Base {
         value: getLocalTime(detail.startedAt).format('YYYY-MM-DD HH:mm:ss'),
       },
     ]
+  }
+
+  render() {
+    const stores = { detailStore: this.store }
+
+    if (this.store.isLoading && !this.store.detail.name) {
+      return <Loading className="ks-page-loading" />
+    }
+
+    const sideProps = {
+      module: this.module,
+      name: getDisplayName(this.store.detail),
+      desc: this.store.detail.description,
+      operations: this.getOperations(),
+      attrs: this.getAttrs(),
+      breadcrumbs: [
+        {
+          label: t('Components'),
+          url: this.listUrl,
+        },
+      ],
+    }
+
+    return <DetailPage stores={stores} routes={routes} {...sideProps} />
   }
 }

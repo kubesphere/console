@@ -31,10 +31,10 @@ import VersionStatus from 'apps/components/VersionStatus'
 import ConfigFile from 'apps/components/Cards/ConfigFile'
 import AuditRecord from 'apps/components/Lists/AuditRecord'
 import InstanceList from 'apps/components/Lists/InstanceList'
-import AppDeployModal from 'apps/components/Modals/AppDeploy'
 import VersionSubmitModal from 'apps/components/Modals/VersionSubmit'
 
 import { getLocalTime } from 'utils'
+import { trigger } from 'utils/action'
 
 import {
   CAN_DELETE_STATUS,
@@ -51,6 +51,7 @@ import styles from './index.scss'
 const { TabPanel } = Tabs
 
 @inject('rootStore')
+@trigger
 export default class VersionItem extends React.PureComponent {
   static propTypes = {
     className: PropTypes.string,
@@ -93,9 +94,12 @@ export default class VersionItem extends React.PureComponent {
     this.props.handleExpandExtra(detail.version_id)
   }
 
-  showDeployModel = () => () => {
-    this.setState({
-      appDeploy: true,
+  showDeploy = () => {
+    this.trigger('openpitrix.template.deploy', {
+      ...this.props.params,
+      store: this.props.appStore,
+      app: this.props.appDetail,
+      versionId: this.props.detail.version_id,
     })
   }
 
@@ -175,14 +179,6 @@ export default class VersionItem extends React.PureComponent {
     })
   }
 
-  handleDeploy = params => {
-    const { namespace, ...rest } = params
-    this.props.appStore.deploy(rest, { namespace }).then(() => {
-      this.hideHandleModal()
-      Notify.success({ content: `${t('Deploy Successfully')}!` })
-    })
-  }
-
   renderContent() {
     const { detail } = this.props
     return (
@@ -235,7 +231,7 @@ export default class VersionItem extends React.PureComponent {
           </Button>
         )}
         {!isAdmin && (
-          <Button onClick={this.showDeployModel()} type={'default'}>
+          <Button onClick={this.showDeploy} type="default">
             {t('Test Deploy')}
           </Button>
         )}
@@ -259,7 +255,7 @@ export default class VersionItem extends React.PureComponent {
           activeName={tab}
           onChange={this.handleTabChange}
         >
-          <TabPanel label={t('Chart File')} name="configFile">
+          <TabPanel label={t('Chart Files')} name="configFile">
             <ConfigFile detail={detail} appName={appDetail.name} />
           </TabPanel>
           <TabPanel label={t('Audit Records')} name="auditRecord">
@@ -280,23 +276,11 @@ export default class VersionItem extends React.PureComponent {
   }
 
   renderModals() {
-    const { detail, params, appDetail, appStore } = this.props
+    const { detail } = this.props
     const { handleType } = this.state
 
     return (
       <div>
-        <AppDeployModal
-          title={appDetail.name}
-          description={appDetail.description}
-          icon={'snapshot'}
-          params={params}
-          app={appDetail}
-          versionId={detail.version_id}
-          visible={this.state.appDeploy}
-          isSubmitting={appStore.isSubmitting}
-          onOk={this.handleDeploy}
-          onCancel={this.hideHandleModal}
-        />
         <Confirm
           content={t.html(`VERSION_${handleType.toUpperCase()}_TIP`, {
             name: detail.name,

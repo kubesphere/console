@@ -22,6 +22,7 @@ import { get } from 'lodash'
 import { to } from 'utils'
 
 import Base from './base'
+import Devops from '../devops'
 
 export default class WorkspaceMonitor extends Base {
   @observable
@@ -63,11 +64,16 @@ export default class WorkspaceMonitor extends Base {
 
   @action
   async getDevopsCount(workspace) {
-    const result = await request.get(
-      `kapis/tenant.kubesphere.io/v1alpha2/workspaces/${workspace}/devops`
-    )
+    const devopsStore = new Devops()
 
-    return get(result, 'total_count', 0)
+    const result = await request.get(devopsStore.getDevOpsUrl({ workspace }), {
+      paging: 'limit=Infinity',
+    })
+
+    const totalCount =
+      result && result.items.length > 0 ? result.items.length : 0
+
+    return totalCount
   }
 
   @action
@@ -81,6 +87,10 @@ export default class WorkspaceMonitor extends Base {
       filters.last = true
     } else {
       this.resourceMetrics.isLoading = true
+    }
+
+    if (filters.cluster) {
+      this.cluster = filters.cluster
     }
 
     const params = this.getParams(filters)

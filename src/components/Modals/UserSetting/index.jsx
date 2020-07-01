@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, has, isEmpty } from 'lodash'
+import { get, has, cloneDeep, isEmpty, set } from 'lodash'
 import React from 'react'
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
@@ -25,14 +25,14 @@ import { Icon, Tooltip } from '@pitrix/lego-ui'
 import { Modal, Button } from 'components/Base'
 import Confirm from 'components/Forms/Base/Confirm'
 
+import UserStore from 'stores/user'
+
 import TABS from './tabs'
 
 import styles from './index.scss'
 
 export default class UserSettingModal extends React.Component {
   static propTypes = {
-    detail: PropTypes.object,
-    module: PropTypes.string,
     visible: PropTypes.bool,
     onOk: PropTypes.func,
     onCancel: PropTypes.func,
@@ -62,6 +62,8 @@ export default class UserSettingModal extends React.Component {
       activeTab: get(this.tabs, '[0].name'),
       updatedTabs: {},
     }
+
+    this.store = new UserStore()
   }
 
   get updateTip() {
@@ -74,8 +76,19 @@ export default class UserSettingModal extends React.Component {
   }
 
   get tabs() {
-    const { module } = this.props
-    return TABS[module] || []
+    return TABS
+  }
+
+  componentDidMount() {
+    this.store.fetchDetail({ name: globals.user.username }).then(() => {
+      this.setState({
+        formData: {
+          apiVersion: 'iam.kubesphere.io/v1alpha2',
+          kind: 'User',
+          ...cloneDeep(this.store.detail._originData),
+        },
+      })
+    })
   }
 
   registerUpdate = (name, params) => {
@@ -102,6 +115,7 @@ export default class UserSettingModal extends React.Component {
     if (form) {
       form.validate(() => {
         const data = form.getData()
+        set(data, 'metadata.resourceVersion', this.store.detail.resourceVersion)
         onOk(data)
         this.cancelUpdate(name)
       })
@@ -165,7 +179,7 @@ export default class UserSettingModal extends React.Component {
   }
 
   renderForm = ({ name, component }) => {
-    const { store, module } = this.props
+    const { store } = this.props
     const { activeTab } = this.state
     const Component = component
 
@@ -192,10 +206,9 @@ export default class UserSettingModal extends React.Component {
       >
         <Component
           store={store}
-          module={module}
           ref={this[refName]}
           formRef={this[formRefName]}
-          formData={this.formData}
+          formData={this.state.formData}
         />
       </div>
     )

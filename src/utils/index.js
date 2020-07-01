@@ -190,7 +190,7 @@ export const isValidLabel = label =>
   )
 
 export const updateLabels = (template, module, value) => {
-  const formTemplate = template[MODULE_KIND_MAP[module]]
+  const formTemplate = template[MODULE_KIND_MAP[module]] || template
 
   set(formTemplate, 'metadata.labels', value)
 
@@ -207,6 +207,27 @@ export const updateLabels = (template, module, value) => {
   }
 }
 
+export const updateFederatedAnnotations = template => {
+  const annotations = get(template, 'metadata.annotations', {})
+  const overrides = get(template, 'spec.overrides', [])
+
+  overrides.forEach(od => {
+    od.clusterOverrides = od.clusterOverrides || []
+    const cod = od.clusterOverrides.find(
+      item => item.path === '/metadata/annotations'
+    )
+    if (cod) {
+      cod.value = annotations
+    } else {
+      od.clusterOverrides.push({
+        path: '/metadata/annotations',
+        value: annotations,
+      })
+    }
+  })
+  set(template, 'spec.overrides', overrides)
+}
+
 const merge = (origin, path, newObj) => {
   const data = get(origin, path)
   if (!data) {
@@ -221,19 +242,25 @@ export const mergeLabels = (formData, labels) => {
     return
   }
 
+  const isFederated = formData.kind.startsWith('Federated')
+  const prefix = isFederated ? 'spec.template.' : ''
+
+  isFederated && merge(formData, `metadata.labels`, labels)
+
   switch (formData.kind) {
     case 'Deployment':
     case 'DaemonSet':
     case 'StatefulSet':
-      merge(formData, 'metadata.labels', labels)
-      merge(formData, 'spec.selector.matchLabels', labels)
-      merge(formData, 'spec.template.metadata.labels', labels)
+      merge(formData, `${prefix}metadata.labels`, labels)
+      merge(formData, `${prefix}spec.selector.matchLabels`, labels)
+      merge(formData, `${prefix}spec.template.metadata.labels`, labels)
       break
     case 'Service':
-      merge(formData, 'metadata.labels', labels)
-      merge(formData, 'spec.selector', labels)
+      merge(formData, `${prefix}metadata.labels`, labels)
+      merge(formData, `${prefix}spec.selector`, labels)
       break
     default:
+      merge(formData, `${prefix}metadata.labels`, labels)
   }
 }
 
@@ -371,7 +398,8 @@ export const getBrowserLang = () => {
 
   if (lang.indexOf('zh') !== -1) {
     return 'zh'
-  } else if (lang.indexOf('en') !== -1) {
+  }
+  if (lang.indexOf('en') !== -1) {
     return 'en'
   }
 
@@ -457,3 +485,22 @@ export const withDryRun = async requests => {
  */
 export const isAppsPage = (path = location.pathname) =>
   path === '/apps' || path.startsWith('/apps/app-')
+
+export const getClusterUrl = url => {
+  let requestURL = url
+
+  const reg = new RegExp(/\/(api|apis|kapis)\/(.*)\/?(klusters\/[^/]*)\/(.*)/)
+  const match = requestURL.match(reg)
+
+  if (match && match.length === 5) {
+    requestURL = globals.app.isMultiCluster
+      ? `/${match[1]}/${match[3].replace('klusters', 'clusters')}/${match[2]}/${
+          match[4]
+        }`
+      : `/${match[1]}/${match[2]}/${match[4]}`
+  }
+
+  return requestURL.replace(/\/\/+/, '/')
+}
+
+export const lazy = ctor => () => ctor()

@@ -17,61 +17,33 @@
  */
 
 import React from 'react'
-import { observer, inject } from 'mobx-react'
 import { capitalize } from 'lodash'
 
-import { Status, Notify, Button } from 'components/Base'
+import { Avatar, Status, Button } from 'components/Base'
 import Banner from 'components/Cards/Banner'
-import EmptyTable from 'components/Cards/EmptyTable'
-import Base from 'core/containers/Base/List'
-import Avatar from 'apps/components/Avatar'
-import CreateModal from 'apps/components/Modals/AppCreate'
-import UploadModal from 'apps/components/Modals/HelmUpload'
-
+import Table from 'components/Tables/List'
+import withList, { ListPage } from 'components/HOCs/withList'
 import { getLocalTime, getDisplayName } from 'utils'
 import { transferAppStatus } from 'utils/app'
+
 import AppStore from 'stores/openpitrix/app'
 
-import styles from './index.scss'
-
-@inject('rootStore')
-@observer
-export default class Apps extends Base {
-  init() {
-    this.store = new AppStore()
-  }
-
-  get authKey() {
-    return 'apps'
-  }
-
-  get name() {
-    return 'Apps'
-  }
-
-  get workspace() {
-    return this.props.match.params.workspace
-  }
-
-  get rowKey() {
-    return 'app_id'
-  }
-
-  get module() {
-    return 'apps'
-  }
-
-  getData(params) {
-    this.store.fetchList({ isv: this.workspace, statistics: true, ...params })
-  }
-
+@withList({
+  store: new AppStore(),
+  module: 'apps',
+  authKey: 'app-templates',
+  name: 'App Template',
+  rowKey: 'app_id',
+})
+export default class Roles extends React.Component {
   get tips() {
+    const { enabledActions } = this.props
     return [
       {
         title: t('DEVELOP_APP_TITLE'),
         description: t('DEVELOP_APP_DESC'),
-        operation: this.enabledActions.includes('create') ? (
-          <Button type="flat" onClick={this.showModal('uploadModal')}>
+        operation: enabledActions.includes('create') ? (
+          <Button type="flat" onClick={this.showUpload}>
             {t('Upload Template')}
           </Button>
         ) : null,
@@ -84,12 +56,42 @@ export default class Apps extends Base {
     ]
   }
 
-  getTableProps() {
+  get workspace() {
+    return this.props.match.params.workspace
+  }
+
+  getData = params => {
+    this.props.store.fetchList({
+      isv: this.workspace,
+      statistics: true,
+      ...params,
+    })
+  }
+
+  get itemActions() {
+    return []
+  }
+
+  get tableActions() {
+    const { tableProps } = this.props
     return {
-      ...Base.prototype.getTableProps.call(this),
-      onCreate: this.showModal('createModal'),
+      ...tableProps.tableActions,
+      onCreate: this.showCreate,
       selectActions: [],
     }
+  }
+
+  showCreate = () => {
+    this.props.trigger('openpitrix.template.create', {
+      success: this.showUpload,
+    })
+  }
+
+  showUpload = () => {
+    this.props.trigger('openpitrix.template.upload', {
+      workspace: this.workspace,
+      success: this.props.routing.query,
+    })
   }
 
   getColumns = () => [
@@ -141,79 +143,18 @@ export default class Apps extends Base {
     },
   ]
 
-  startUpload = () => {
-    this.hideModal('createModal')()
-    this.showModal('uploadModal')()
-  }
-
-  handleCreate = params => {
-    this.store.create({ ...params, isv: this.workspace }).then(() => {
-      this.hideModal('uploadModal')()
-      Notify.success({ content: `${t('Created Successfully')}!` })
-      this.store.fetchList({ isv: this.workspace })
-    })
-  }
-
-  renderEmpty() {
-    const onCreate = this.enabledActions.includes('create')
-      ? this.showModal('createModal')
-      : null
-
+  render() {
+    const { bannerProps, tableProps } = this.props
     return (
-      <EmptyTable
-        name={this.name}
-        createText={t('Upload Template')}
-        onCreate={onCreate}
-        {...this.getEmptyProps()}
-      />
-    )
-  }
-
-  renderBannerImages() {
-    return (
-      <>
-        <img src={'/assets/banner/shape-5.svg'} className={styles.img1} />
-        <img src={'/assets/banner/shape-3.svg'} className={styles.img2} />
-        <img src={'/assets/banner/shape-4.svg'} className={styles.img3} />
-      </>
-    )
-  }
-
-  renderHeader() {
-    return (
-      <Banner
-        className={styles.header}
-        title={t('App Templates')}
-        description={t('APP_TEMPLATE_DESCRIPTION')}
-        module={this.module}
-        tips={this.tips}
-        extra={this.renderBannerImages()}
-      />
-    )
-  }
-
-  renderModals() {
-    const { isSubmitting } = this.store
-    const { createModal, uploadModal } = this.state
-
-    return (
-      <div>
-        <CreateModal
-          visible={createModal}
-          onOk={this.startUpload}
-          onCancel={this.hideModal('createModal')}
+      <ListPage {...this.props} getData={this.getData} noWatch>
+        <Banner {...bannerProps} tips={this.tips} title={t('App Templates')} />
+        <Table
+          {...tableProps}
+          tableActions={this.tableActions}
+          itemActions={this.itemActions}
+          columns={this.getColumns()}
         />
-        <UploadModal
-          title={t('UPLOAD_HELM_TITLE')}
-          description={t('UPLOAD_HELM_DESC')}
-          icon={'templet'}
-          type={'CREATE_APP'}
-          visible={uploadModal}
-          isSubmitting={isSubmitting}
-          onOk={this.handleCreate}
-          onCancel={this.hideModal('uploadModal')}
-        />
-      </div>
+      </ListPage>
     )
   }
 }

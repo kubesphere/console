@@ -40,8 +40,9 @@ class Monitorings extends Base {
   }
 
   fetchData = params => {
-    const { namespace, name } = this.store.detail
+    const { cluster, namespace, name } = this.store.detail
     this.monitorStore.fetchMetrics({
+      cluster,
       namespace,
       container: name,
       podName: this.podName,
@@ -68,5 +69,5 @@ class Monitorings extends Base {
   ]
 }
 
-export default inject('rootStore')(observer(Monitorings))
+export default inject('rootStore', 'detailStore')(observer(Monitorings))
 export const Component = Monitorings

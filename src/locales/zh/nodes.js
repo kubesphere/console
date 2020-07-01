@@ -17,13 +17,10 @@
  */
 
 export default {
-  Node: '主机',
-  nodes: '主机',
-  Nodes: '主机',
-  host: '主机',
-  Hosts: '主机',
-  Master: '主节点',
-  Worker: '计算节点',
+  'Cluster Node': '集群节点',
+  'Master Node': 'Master 节点',
+  'Worker Node': '工作节点',
+  'Add Node': '添加节点',
   'System Version': '系统版本',
   'Node Status': '节点状态',
   'Online Nodes': '在线节点',
@@ -48,13 +45,20 @@ export default {
   'Pod Quantity Trend': '容器组数量变化',
   'Local Storage Capacity': '本地存储容量',
   used: '已用',
-  'Resource Status': '资源状态',
+  'Resource Usage Status': '资源使用状态',
   Taints: '污点',
   taints: '污点',
   Taint: '污点',
   taint: '污点',
   Conditions: '状态',
   Annotations: '注解',
+
+  'Resource Usage': '资源使用情况',
+
+  'CPU Requests': 'CPU 请求',
+  'CPU Limits': 'CPU 限制',
+  'Memory Requests': '内存请求',
+  'Memory Limits': '内存限制',
 
   NODE_STATUS_UNSCHEDULABLE: '无法调度',
   NODE_STATUS_RUNNING: '运行中',
@@ -80,20 +84,40 @@ export default {
   'CPU Used': 'CPU 使用',
   'Memory Used': '内存使用',
   'Pod Used': '容器组使用',
+  'Scheduling Policy': '调度策略',
+  'Add Type': '添加类型',
+  'Add Node Type': '添加节点类型',
+  'Type Name': '类型名称',
 
-  NODE_DESC:
-    'KubeSphere 集群中的计算能力由主机提供，集群中的节点是所有容器组运行所在的工作主机。',
+  Metadata: '元数据',
 
-  NODE_NETWORKUNAVAILABLE_TIP: '当前节点网络配置是否正确',
-  NODE_OUTOFDISK_TIP: '当前节点是否有足够的空间添加和运行新的 Pods',
-  NODE_MEMORYPRESSURE_TIP: '当前节点的内存压力的高低',
-  NODE_DISKPRESSURE_TIP: '当前节点的磁盘压力高低',
-  NODE_PIDPRESSURE_TIP: '当前节点的进程是否存在压力',
-  NODE_READY_TIP: '当前节点的状态是否健康和能够准备接收新的 Pods 运行',
+  CLUSTER_NODE_DESC:
+    '集群节点提供了当前集群下节点的运行状态，以及可以编辑删除节点',
+  CLUSTER_NODE_CREATE_DESC:
+    '集群节点提供了当前集群下节点的运行状态，以及可以编辑删除节点',
+
+  NODE_NETWORKUNAVAILABLE: '网络配置(NetworkUnavailable)',
+  NODE_NETWORKUNAVAILABLE_DESC: '检查节点上的网络配置是否正确',
+  NODE_OUTOFDISK: '磁盘可用空间(OutOfDisk)',
+  NODE_OUTOFDISK_DESC: '检查节点上是否有空间添加新的容器组',
+  NODE_MEMORYPRESSURE: '内存压力(MemoryPressure)',
+  NODE_MEMORYPRESSURE_DESC: '如果节点上的内存使用压力过大,则调度失败',
+  NODE_DISKPRESSURE: '磁盘压力(DiskPressure)',
+  NODE_DISKPRESSURE_DESC: '磁盘大小存在压力 - 即磁盘容量低',
+  NODE_PIDPRESSURE: '进程压力(PIDPressure)',
+  NODE_PIDPRESSURE_DESC: '如果节点进程压力过大，则会调度失败',
+  NODE_READY: '容器组接收(Ready)',
+  NODE_READY_DESC: '节点健康且可以接收新的容器组',
 
   NODE_TYPES_Q: '集群节点的类型？',
   NODE_TYPES_A: '节点分为主控 (Master) 节点和工作 (Worker) 节点',
   WHAT_IS_NODE_TAINTS_Q: '什么是节点污点？',
   WHAT_IS_NODE_TAINTS_A:
     '节点污点 (Taints) 可以阻止某些容器组 (Pod) 副本部署至该节点中, 与容忍度 (Tolerations) 一起工作确保容器组不会被调度到不合适的节点上',
+
+  NODE_TYPE_DESC:
+    '节点类型为提供了主机节点分组功能，用户可以通过创建合适关系的节点类型并将主机节点加入相应的分组，从而将容器组按照分组关系部署到合适的物理节点上，来提高资源的可用性，业务的连续性。',
+
+  NODE_TYPE_DESCRIPTION_DEC:
+    '描述信息在选择节点类型时将帮助用户更好的选择节点类型并使用集群',
 }

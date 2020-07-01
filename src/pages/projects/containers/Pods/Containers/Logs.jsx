@@ -17,12 +17,13 @@
  */
 
 import React from 'react'
-import { observer } from 'mobx-react'
+import { inject, observer } from 'mobx-react'
 import { get } from 'lodash'
 
 import { Card, Empty } from 'components/Base'
 import ContainerLog from 'components/Cards/ContainerLog'
 
+@inject('detailStore')
 @observer
 class Logs extends React.Component {
   get store() {

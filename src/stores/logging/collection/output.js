@@ -16,9 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { observable, action, computed, toJS } from 'mobx'
-import { get } from 'lodash'
-import Base from './index'
+import Base from 'stores/base'
 
 const collectionDefaultSetting = {
   es: {
@@ -28,180 +26,51 @@ const collectionDefaultSetting = {
     Type: 'flb_type',
     Time_Key: '@timestamp',
     Logstash_Prefix: 'logstash',
-    Match: 'kube.*',
-  },
-  kafka: {
-    Match: 'kube.*',
-    Brokers: null,
-    Topics: null,
-  },
-  forward: {
-    Match: 'kube.*',
   },
 }
 
+const KS_LOG_NAMESPACE = 'kubesphere-logging-system'
+
+const MATCHS = {
+  logging: 'kube.*',
+  events: 'kube_events',
+  auditing: 'kube_auditing',
+}
+
 export default class outputStore extends Base {
-  @observable
-  outputs = []
+  module = 'outputs'
 
-  @observable
-  isCreating = false
+  get apiVersion() {
+    return 'apis/logging.kubesphere.io/v1alpha2'
+  }
 
-  @observable
-  fetchError = false
+  getDetailUrl = ({ name, cluster }) =>
+    `${this.getListUrl({ namespace: KS_LOG_NAMESPACE, cluster })}/${name}`
 
-  @computed
-  get collections() {
-    return this.outputs.map((output = {}) => {
-      const parameterDict = (output.parameters || []).reduce(
-        (dit, param = {}) => {
-          dit[param.name] = param.value
-          dit[`${param.name}_valueFrom`] = param.valueFrom
-          return dit
-        },
-        {}
-      )
-      return { ...output, ...parameterDict }
+  fetch(params) {
+    this.fetchListByK8s({
+      namespace: KS_LOG_NAMESPACE,
+      ...params,
     })
   }
 
-  getCollection(collectionID) {
-    return this.collections.find(({ id }) => id === collectionID)
-  }
-
-  getOutput(outputID) {
-    return this.outputs.find(({ id }) => id === outputID)
-  }
-
-  get path() {
-    return 'outputs'
-  }
-
-  @action
-  async fetch(params = {}) {
-    const response = await this.request(params, this.path)
-    this.fetchError = response.status !== 200
-    this.outputs = get(response, 'outputs', [])
-  }
-
-  @action
-  async create(params = {}) {
-    this.isCreating = true
-    const defaultParams = get(collectionDefaultSetting, params.Name, {})
-    const parameters = {
-      ...defaultParams,
-      ...params,
+  create({ Name, enabled = true, cluster, component, ...params }) {
+    const createParams = {
+      apiVersion: 'logging.kubesphere.io/v1alpha2',
+      kind: 'Output',
+      metadata: {
+        name: `${Name}-${component}`,
+        namespace: KS_LOG_NAMESPACE,
+        labels: {
+          'logging.kubesphere.io/enabled': `${enabled}`,
+          'logging.kubesphere.io/component': component,
+        },
+      },
+      spec: {
+        match: MATCHS[component],
+        [Name]: { ...collectionDefaultSetting[Name], ...params },
+      },
     }
-
-    const newCollectionSetting = {
-      type: 'fluentbit_output',
-      name: `fluentbit-output-${params.Name}`,
-      parameters: Object.entries(parameters)
-        .filter(([, value]) => value)
-        .map(([key, value]) => ({
-          name: key,
-          value,
-        })),
-    }
-    await this.request(newCollectionSetting, this.path, 'post')
-    this.isCreating = false
-  }
-
-  @action
-  async editParameters(noop, newCollection) {
-    const outputs = toJS(this.outputs)
-
-    const preCollection = outputs.find(({ id }) => id === newCollection.id)
-    if (!preCollection) {
-      throw Error('500')
-    }
-
-    const newParams = Object.entries(newCollection)
-      .filter(([key]) => key.match(/^[A-Z]/))
-      .reduce((params, [key, value]) => {
-        const [, keyForValueFrom] = key.match(/(.+?)_valueFrom$/) || []
-        const paramsKey = keyForValueFrom || key
-        const preValue = get(params, paramsKey, {})
-        params[paramsKey] = keyForValueFrom
-          ? {
-              ...preValue,
-              ...{
-                valueFrom: value,
-              },
-            }
-          : {
-              ...preValue,
-              ...{
-                value,
-              },
-            }
-        return params
-      }, {})
-
-    preCollection.parameters = Object.entries(newParams).map(
-      ([key, value]) => ({
-        ...{ name: key },
-        ...value,
-      })
-    )
-
-    const response = await this.request(
-      preCollection,
-      `${this.path}/${newCollection.id}`,
-      'put'
-    )
-    if (response.status !== 200) {
-      throw Error(response.status)
-    }
-  }
-
-  @action
-  async update(output) {
-    const { updatetime, ...rest } = output
-
-    const errorMessage = this.paramValidator(rest.parameters)
-
-    if (errorMessage) {
-      throw Error(errorMessage)
-    }
-
-    const { status } = await this.request(
-      rest,
-      `${this.path}/${output.id}`,
-      'put'
-    )
-    if (status !== 200) {
-      throw Error(status)
-    }
-  }
-
-  @action
-  async delete(collection) {
-    const response = await this.request(
-      {},
-      `${this.path}/${collection}`,
-      'delete'
-    )
-    if (response.status !== 200) {
-      throw Error(response.status)
-    }
-  }
-
-  getValueInParams(params, key) {
-    return (params.find(param => param.name === key) || {}).value
-  }
-
-  paramValidator = (parameters = []) => {
-    const type = this.getValueInParams(parameters, 'Name')
-    if (type === 'es') {
-      const username = this.getValueInParams(parameters, 'HTTP_User')
-      const password = this.getValueInParams(parameters, 'HTTP_Password')
-      if (username && !password) {
-        return t('Please input password')
-      }
-      if (!username && password) {
-        return t('Please input user name')
-      }
-    }
+    return super.create(createParams, { cluster, namespace: KS_LOG_NAMESPACE })
   }
 }

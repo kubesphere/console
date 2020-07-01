@@ -31,7 +31,7 @@ import ImageArtifacts from '../containers/ImageBuilder/Detail/ImageProduct'
 const MODULE = 's2ibuilders'
 const PATH = `/projects/:namespace/${MODULE}/:name`
 const ROUTES = [
-  { name: 'records', title: 'Excute Records', component: ImageBuildRecords },
+  { name: 'records', title: 'Execution Records', component: ImageBuildRecords },
   {
     name: 'resource-status',
     title: 'Resource Status',
@@ -63,7 +63,6 @@ export default [
         },
       ],
     }),
-    ksModule: 'devops',
     routes: getChildRoutes(ROUTES, PATH),
   },
 ]

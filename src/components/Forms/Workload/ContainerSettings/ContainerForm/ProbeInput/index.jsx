@@ -56,7 +56,7 @@ export default class ProbeInput extends React.Component {
       return 'TCP Port Check'
     }
 
-    return 'Exec Commnad Check'
+    return 'Exec Command Check'
   }
 
   showForm = () => {
@@ -75,7 +75,7 @@ export default class ProbeInput extends React.Component {
 
   handleDelete = () => {
     const { onChange } = this.props
-    onChange()
+    onChange({})
   }
 
   renderProbeInfo() {

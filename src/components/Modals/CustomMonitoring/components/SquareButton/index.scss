@@ -1,0 +1,10 @@
+@import '~scss/variables';
+
+.wrapper {
+  border-radius: 2px;
+  border: solid 1px $dark-color06;
+}
+
+.danger {
+  border-color: transparent;
+}

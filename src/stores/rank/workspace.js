@@ -35,7 +35,7 @@ const metrics_filter = [
   'workspace_net_bytes_received',
 ]
 
-export default class NodeStore extends Store {
+export default class WorkspaceStore extends Store {
   @observable
   sort_metric_options = sort_metric_options
 

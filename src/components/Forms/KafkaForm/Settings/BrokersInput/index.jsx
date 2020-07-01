@@ -26,7 +26,7 @@ import styles from './index.scss'
 export default class BrokersInput extends React.Component {
   onChange = (value = {}) => {
     const Brokers = value
-      .map(({ Host = '', Port = '' }) => `${Host.replace(/,/g, '')}:${Port}`)
+      .map(({ host = '', port = '' }) => `${host.replace(/,/g, '')}:${port}`)
       .join(',')
     this.props.onChange(Brokers)
   }
@@ -35,10 +35,10 @@ export default class BrokersInput extends React.Component {
     const brokers = get(this.props, 'value', '')
       .split(',')
       .map(broker => {
-        const [, Host = '', Port = ''] = broker.match(/(.*):(.*)$/) || []
+        const [, host = '', port = ''] = broker.match(/(.*):(.*)$/) || []
         return {
-          Port,
-          Host,
+          port,
+          host,
         }
       })
 
@@ -51,14 +51,14 @@ export default class BrokersInput extends React.Component {
       >
         <ObjectInput className={styles.address}>
           <Input
-            name="Host"
+            name="host"
             className={styles.host}
             placeholder={`${t('eg.')} 192.168.1.10`}
           />
           <NumberInput
             className={styles.port}
             placeholder="9092"
-            name="Port"
+            name="port"
             min={0}
             max={65535}
             integer

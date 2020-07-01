@@ -20,9 +20,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { observer } from 'mobx-react'
-import { observable, action } from 'mobx'
-import { assign } from 'lodash'
+import { observable, computed, action } from 'mobx'
+import { get, assign } from 'lodash'
+import EmptyList from 'components/Cards/EmptyList'
 import FullScreen from 'components/Modals/FullscreenModal'
+import Clusters from 'stores/cluster'
 
 import { Home, Search, Detail } from './Logging'
 
@@ -33,7 +35,16 @@ export default class LogSearchModal extends React.Component {
     onCancel: PropTypes.func,
   }
 
+  clusters = new Clusters()
+
   formStepState = this.initStepState()
+
+  @computed
+  get clustersOpts() {
+    return this.clusters.list.data
+      .filter(item => get(item, 'configz.logging'))
+      .map(({ name }) => ({ value: name, label: name }))
+  }
 
   initStepState() {
     const state = observable({
@@ -57,7 +68,13 @@ export default class LogSearchModal extends React.Component {
       durationAlias: '',
       nextParamsKey: '',
       queryMode: 1,
+      cluster: '',
     })
+
+    state.setCluster = action(cluster => {
+      state.cluster = cluster
+    })
+
     return state
   })()
 
@@ -105,12 +122,38 @@ export default class LogSearchModal extends React.Component {
     return this.formStepConfig[this.formStepState.step] || {}
   }
 
+  async componentDidMount() {
+    await this.clusters.fetchList({
+      limit: -1,
+      ascending: true,
+    })
+
+    this.searchInputState.setCluster(get(this, `clustersOpts[0].value`))
+  }
+
   render() {
     const { Component, props } = this.Content
     if (!Component) {
-      return
+      return null
     }
 
-    return <Component formStepState={this.formStepState} {...props} />
+    if (globals.app.isMultiCluster && !this.searchInputState.cluster) {
+      return (
+        <EmptyList
+          className="no-shadow"
+          icon="cluster"
+          title={t('No Available Cluster')}
+          desc={t('No cluster with logging module enabled')}
+        />
+      )
+    }
+
+    return (
+      <Component
+        clustersOpts={this.clustersOpts}
+        formStepState={this.formStepState}
+        {...props}
+      />
+    )
   }
 }

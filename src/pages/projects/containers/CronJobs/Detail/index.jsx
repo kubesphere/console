@@ -19,43 +19,65 @@
 import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
+import { isEmpty } from 'lodash'
+import { Loading } from '@pitrix/lego-ui'
 
+import { getDisplayName, getLocalTime } from 'utils'
+import { trigger } from 'utils/action'
 import WorkloadStore from 'stores/workload'
-import RecordStore from 'stores/workload/record'
 
-import Base from 'core/containers/Base/Detail'
-import EditBasicInfoModal from 'components/Modals/EditBasicInfo'
-import EditYamlModal from 'components/Modals/EditYaml'
+import DetailPage from 'projects/containers/Base/Detail'
+
+import getRoutes from './routes'
 
 @inject('rootStore')
 @observer
-class CronJobsDetail extends Base {
-  state = {
-    editBaseInfo: false,
-    editYaml: false,
-    deleteModule: false,
+@trigger
+export default class JobDetail extends React.Component {
+  store = new WorkloadStore(this.module)
+
+  componentDidMount() {
+    this.fetchData()
+  }
+
+  get module() {
+    return 'cronjobs'
   }
 
   get name() {
     return 'CronJob'
   }
 
-  get suspend() {
-    return this.store.detail.suspend
+  get routing() {
+    return this.props.rootStore.routing
   }
 
-  init() {
-    this.store = new WorkloadStore(this.module)
-    this.recordStore = new RecordStore()
+  get listUrl() {
+    const { workspace, cluster, namespace } = this.props.match.params
+    if (workspace) {
+      return `/${workspace}/clusters/${cluster}/projects/${namespace}/${
+        this.module
+      }`
+    }
+    return `/clusters/${cluster}/${this.module}`
+  }
+
+  fetchData = () => {
+    this.store.fetchDetail(this.props.match.params)
   }
 
   getOperations = () => [
     {
       key: 'edit',
-      type: 'control',
-      text: t('EDIT'),
+      icon: 'pen',
+      text: t('Edit Info'),
       action: 'edit',
-      onClick: this.showModal('editBaseInfo'),
+      onClick: () =>
+        this.trigger('resource.baseinfo.edit', {
+          type: t(this.name),
+          detail: toJS(this.store.detail),
+          success: this.fetchData,
+        }),
     },
     {
       key: 'start',
@@ -63,7 +85,7 @@ class CronJobsDetail extends Base {
       text: t('Start'),
       action: 'edit',
       onClick: this.handleSwitch(true),
-      show: this.suspend,
+      show: this.store.detail.suspend,
     },
     {
       key: 'pause',
@@ -71,33 +93,58 @@ class CronJobsDetail extends Base {
       text: t('Pause'),
       action: 'edit',
       onClick: this.handleSwitch(false),
-      show: !this.suspend,
+      show: !this.store.detail.suspend,
     },
     {
       key: 'editYaml',
       icon: 'pen',
       text: t('Edit YAML'),
       action: 'edit',
-      onClick: this.showModal('editYaml'),
+      onClick: () =>
+        this.trigger('resource.yaml.edit', {
+          detail: this.store.detail,
+        }),
     },
     {
       key: 'delete',
       icon: 'trash',
       text: t('Delete'),
       action: 'delete',
-      onClick: this.showModal('deleteModule'),
+      type: 'danger',
+      onClick: () =>
+        this.trigger('resource.delete', {
+          type: t(this.name),
+          detail: this.store.detail,
+          success: () => this.routing.push(this.listUrl),
+        }),
     },
   ]
+
+  handleSwitch = params => () => {
+    this.store.switch(this.store.detail, params).then(() => {
+      this.fetchData()
+    })
+  }
 
   getAttrs = () => {
     const { detail } = this.store
     const { spec = {} } = detail
     const status = this.suspend ? t('Suspend') : t('Running')
 
+    const { cluster, namespace } = this.props.match.params
+
+    if (isEmpty(detail)) {
+      return
+    }
+
     return [
       {
+        name: t('Cluster'),
+        value: cluster,
+      },
+      {
         name: t('Project'),
-        value: this.namespace,
+        value: namespace,
       },
       {
         name: t('Status'),
@@ -125,46 +172,42 @@ class CronJobsDetail extends Base {
       },
       {
         name: t('Created Time'),
-        value: this.createTime,
+        value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
         name: t('Creator'),
-        value: this.creator,
+        value: detail.creator,
       },
     ]
   }
 
-  handleSwitch = params => () => {
-    this.store.switch(this.store.detail, params).then(() => {
-      this.fetchData()
-    })
-  }
+  render() {
+    const stores = { detailStore: this.store }
 
-  renderExtraModals() {
-    const { detail = {}, isSubmitting } = this.store
-    const { editBaseInfo, editYaml } = this.state
+    if (this.store.isLoading && !this.store.detail.name) {
+      return <Loading className="ks-page-loading" />
+    }
 
-    const originData = toJS(detail._originData)
+    const sideProps = {
+      module: this.module,
+      name: getDisplayName(this.store.detail),
+      desc: this.store.detail.description,
+      operations: this.getOperations(),
+      attrs: this.getAttrs(),
+      breadcrumbs: [
+        {
+          label: t(`${this.name}s`),
+          url: this.listUrl,
+        },
+      ],
+    }
 
     return (
-      <div>
-        <EditBasicInfoModal
-          visible={editBaseInfo}
-          detail={originData}
-          onOk={this.handleEdit('editBaseInfo')}
-          onCancel={this.hideModal('editBaseInfo')}
-          isSubmitting={isSubmitting}
-        />
-        <EditYamlModal
-          visible={editYaml}
-          detail={originData}
-          onOk={this.handleEdit('editYaml', 'update')}
-          onCancel={this.hideModal('editYaml')}
-          isSubmitting={isSubmitting}
-        />
-      </div>
+      <DetailPage
+        stores={stores}
+        {...sideProps}
+        routes={getRoutes(this.props.match.path)}
+      />
     )
   }
 }
-
-export default CronJobsDetail

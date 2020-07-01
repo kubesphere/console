@@ -35,6 +35,7 @@ const config = {
     publicPath: '/',
     pathinfo: false,
   },
+  devtool: 'cheap-module-source-map',
   module: {
     rules: [
       ...baseConfig.moduleRules,
@@ -111,7 +112,7 @@ const config = {
     },
   },
   resolve: merge({}, baseConfig.resolve, {
-    alias: { 'react-dom': '@hot-loader/react-dom' }
+    alias: { 'react-dom': '@hot-loader/react-dom' },
   }),
   plugins: [
     ...baseConfig.plugins,

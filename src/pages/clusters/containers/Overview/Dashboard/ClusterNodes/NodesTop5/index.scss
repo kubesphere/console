@@ -1,0 +1,45 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.header {
+  display: flex;
+  align-items: center;
+
+  & > div:first-child {
+    flex: 1;
+    @include TypographySymbolText;
+  }
+
+  .select {
+    width: 160px;
+  }
+}
+
+.list {
+  margin-top: 12px;
+  & > div {
+    display: flex;
+    padding: 12px;
+    margin-bottom: 8px;
+    background-color: $light-color01;
+  }
+}
+
+.cpu {
+  width: 124px;
+  padding: 12px;
+  margin: -12px;
+  margin-left: auto;
+  background-color: #dbefe2;
+}
+
+.footer {
+  margin: -12px;
+  margin-top: 12px;
+  padding: 12px;
+  border-top: 1px solid $border-color;
+
+  button {
+    width: 100%;
+  }
+}

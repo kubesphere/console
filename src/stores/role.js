@@ -16,251 +16,140 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { isEmpty, omit, set } from 'lodash'
-import { action, observable } from 'mobx'
-import moment from 'moment-mini'
-import { getFilterString } from 'utils'
-import ObjectMapper from 'utils/object.mapper'
+import { isEmpty, get } from 'lodash'
+import { action } from 'mobx'
 import { Notify } from 'components/Base'
+import { LIST_DEFAULT_ORDER } from 'utils/constants'
 
-export default class RoleStore {
-  @observable
-  list = {
-    data: [],
-    page: 1,
-    limit: 10,
-    total: 0,
-    order: '',
-    reverse: false,
-    filters: {},
-    isLoading: true,
-    selectedRowKeys: [],
+import Base from 'stores/base'
+import List from 'stores/base.list'
+
+export default class RoleStore extends Base {
+  roleTemplates = new List()
+
+  getPath({ cluster, workspace, namespace, devops }) {
+    let path = ''
+
+    if (cluster) {
+      path += `/klusters/${cluster}`
+    }
+
+    if (namespace) {
+      return `${path}/namespaces/${namespace}`
+    }
+
+    if (devops) {
+      return `${path}/devops/${devops}`
+    }
+
+    if (workspace) {
+      return `/workspaces/${workspace}`
+    }
+
+    return path
   }
 
-  @observable
-  rules = {
-    data: [],
-    total: 0,
-    isLoading: true,
-  }
+  getResourceUrl = params =>
+    `kapis/iam.kubesphere.io/v1alpha2${this.getPath(params)}/${this.module}`
 
-  @observable
-  users = {
-    data: [],
-    page: 1,
-    limit: 10,
-    total: 0,
-    isLoading: true,
-  }
+  getListUrl = this.getResourceUrl
 
-  @observable
-  detail = {}
-  @observable
-  originDetail = {}
-
-  @observable
-  rulesInfo = []
-
-  @observable
-  isSubmitting = false
-
-  constructor(type) {
-    this.type = type || 'roles'
-  }
-
-  getListUrl = namespace =>
-    this.type === 'roles'
-      ? `apis/rbac.authorization.k8s.io/v1/namespaces/${namespace}/${this.type}`
-      : `apis/rbac.authorization.k8s.io/v1/${this.type}`
-
-  getDetailUrl = (name, namespace) => `${this.getListUrl(namespace)}/${name}`
-
-  @action
-  submitting = promise => {
-    this.isSubmitting = true
-
-    setTimeout(() => {
-      promise
-        .catch(() => {})
-        .finally(() => {
-          this.isSubmitting = false
-        })
-    }, 500)
-
-    return promise
+  constructor(module = 'roles') {
+    super(module)
   }
 
   @action
   async fetchList({
-    limit,
-    page,
-    order,
-    reverse,
+    cluster,
     workspace,
     namespace,
-    ...filters
+    devops,
+    more,
+    ...params
   } = {}) {
     this.list.isLoading = true
 
-    if (!order && reverse === undefined) {
-      order = 'createTime'
-      reverse = true
+    if (!params.sortBy && params.ascending === undefined) {
+      params.sortBy = LIST_DEFAULT_ORDER[this.module] || 'createTime'
     }
 
-    const params = {}
-
-    filters.userfacing = true
-
-    if (!isEmpty(filters)) {
-      params.conditions = getFilterString(filters)
+    if (params.limit === Infinity || params.limit === -1) {
+      params.limit = -1
+      params.page = 1
     }
 
-    if (limit !== Infinity) {
-      params.paging = `limit=${limit || 10},page=${page || 1}`
-    }
+    params.limit = params.limit || 10
 
-    if (order) {
-      params.orderBy = order
-    }
-
-    if (reverse) {
-      params.reverse = true
-    }
-
-    const url =
-      this.type === 'clusterroles'
-        ? `kapis/iam.kubesphere.io/v1alpha2/${this.type}`
-        : `kapis/iam.kubesphere.io/v1alpha2/namespaces/${namespace}/${
-            this.type
-          }`
-
-    const result = await request.get(url, params)
-
-    this.list = {
-      data: result.items.map(ObjectMapper.roles) || [],
-      total: result.total_count || 0,
-      limit: Number(limit) || 10,
-      page: Number(page) || 1,
-      order,
-      reverse,
-      filters: omit(filters, ['namespace', 'userfacing']),
-      isLoading: false,
-      selectedRowKeys: [],
-    }
-  }
-
-  @action
-  create(data, { namespace }) {
-    return this.submitting(request.post(this.getListUrl(namespace), data))
-  }
-
-  @action
-  patch({ name, namespace }, data) {
-    set(
-      data,
-      'metadata.annotations.lastUpdateTime',
-      moment()
-        .utc()
-        .format()
-        .replace('+00:00', 'Z')
-    )
-    return this.submitting(
-      request.patch(this.getDetailUrl(name, namespace), data)
-    )
-  }
-
-  @action
-  batchDelete(rowKeys, { namespace }) {
-    for (const name in rowKeys) {
-      if (this.checkIfIsPresetRole(name)) {
-        Notify.error(
-          t('Error Tips'),
-          `${t('Unable to delete preset role')}: ${name}`
-        )
-        return
+    const result = await request.get(
+      this.getResourceUrl({
+        cluster,
+        workspace,
+        namespace,
+        devops,
+      }),
+      {
+        ...params,
+        annotation: 'kubesphere.io/creator',
       }
+    )
+
+    const data = result.items.map(item => ({
+      cluster,
+      workspace,
+      ...this.mapper(item, devops ? 'devopsroles' : this.module),
+    }))
+
+    this.list.update({
+      data: more ? [...this.list.data, ...data] : data,
+      total: result.totalItems || result.total_count || data.length || 0,
+      ...params,
+      limit: Number(params.limit) || 10,
+      page: Number(params.page) || 1,
+      isLoading: false,
+      ...(this.list.silent ? {} : { selectedRowKeys: [] }),
+    })
+  }
+
+  @action
+  batchDelete(rowKeys, { cluster, workspace, namespace }) {
+    if (rowKeys.some(name => this.checkIfIsPresetRole(name))) {
+      Notify.error(
+        t('Error Tips'),
+        `${t('Unable to delete preset role')}: ${name}`
+      )
+      return
     }
 
     return this.submitting(
       Promise.all(
         rowKeys.map(rowKey =>
-          request.delete(this.getDetailUrl(rowKey, namespace))
+          request.delete(
+            this.getDetailUrl({ name: rowKey, cluster, workspace, namespace })
+          )
         )
       )
     )
   }
 
   @action
-  async fetchRulesInfo() {
+  async fetchRoleTemplates(params) {
+    this.roleTemplates.isLoading = true
+
     const result = await request.get(
-      `kapis/iam.kubesphere.io/v1alpha2/rulesmapping/${this.type}`
+      `kapis/iam.kubesphere.io/v1alpha2${this.getPath(params)}/${
+        this.module
+      }?label=iam.kubesphere.io/role-template=true`
     )
-    this.rulesInfo = result
+
+    this.roleTemplates.update({
+      data: get(result, 'items', []).map(this.mapper),
+      total: result.totalItems || result.total_count || 0,
+      isLoading: false,
+    })
   }
 
   @action
-  async fetchDetail({ name, namespace }) {
-    const result = await request.get(this.getDetailUrl(name, namespace))
-
-    this.detail = ObjectMapper.roles(result)
-    this.originDetail = result
-  }
-
-  @action
-  async fetchRules({ name, namespace }) {
-    this.rules.isLoading = true
-    let result
-    if (this.type === 'roles') {
-      result = await request.get(
-        `kapis/iam.kubesphere.io/v1alpha2/namespaces/${namespace}/${
-          this.type
-        }/${name}/rules`
-      )
-    } else {
-      result = await request.get(
-        `kapis/iam.kubesphere.io/v1alpha2/${this.type}/${name}/rules`
-      )
-    }
-
-    result = result || []
-
-    this.rules.data = result
-    this.rules.total = result.length
-    this.rules.isLoading = false
-  }
-
-  @action
-  async fetchUsers({ name, namespace }) {
-    this.users.isLoading = true
-
-    let resp = []
-    if (this.type === 'roles') {
-      resp = await request.get(
-        `kapis/iam.kubesphere.io/v1alpha2/namespaces/${namespace}/${
-          this.type
-        }/${name}/users`
-      )
-    } else {
-      resp = await request.get(
-        `kapis/iam.kubesphere.io/v1alpha2/${this.type}/${name}/users`
-      )
-    }
-
-    if (resp) {
-      if (resp.items) {
-        this.users.data = resp.items || []
-        this.users.total = resp.total_count || 0
-      } else {
-        this.users.data = resp
-        this.users.total = resp.length || 0
-      }
-    }
-
-    this.users.isLoading = false
-  }
-
-  @action
-  delete({ name, namespace }) {
+  delete({ cluster, name, workspace, namespace }) {
     if (this.checkIfIsPresetRole(name)) {
       Notify.error(
         t('Error Tips'),
@@ -270,11 +159,24 @@ export default class RoleStore {
       return
     }
 
-    return this.submitting(request.delete(this.getDetailUrl(name, namespace)))
+    return this.submitting(
+      request.delete(this.getDetailUrl({ cluster, name, workspace, namespace }))
+    )
+  }
+
+  @action
+  checkName(params) {
+    return request.get(
+      this.getDetailUrl(params),
+      {},
+      {
+        headers: { 'x-check-exist': true },
+      }
+    )
   }
 
   checkIfIsPresetRole(name) {
-    if (this.type === 'roles') {
+    if (this.module === 'roles') {
       return (
         isEmpty(globals.config.presetRoles) &&
         globals.config.presetRoles.includes(name)
@@ -285,21 +187,5 @@ export default class RoleStore {
       isEmpty(globals.config.presetClusterRoles) &&
       globals.config.presetClusterRoles.includes(name)
     )
-  }
-
-  @action
-  checkRoleName({ name, namespace }) {
-    return request.get(
-      this.getDetailUrl(name, namespace),
-      {},
-      {
-        headers: { 'x-check-exist': true },
-      }
-    )
-  }
-
-  @action
-  setSelectRowKeys(selectedRowKeys) {
-    this.list.selectedRowKeys.replace(selectedRowKeys)
   }
 }

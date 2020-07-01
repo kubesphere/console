@@ -21,6 +21,8 @@ export default {
   'All Components': '全部服务组件',
   components: '服务组件',
   Components: '服务组件',
+  'Installed Components': '已安装组件',
+  'Not Installed Components': '未安装组件',
   'Instance Count': '实例数量',
 
   'Service Details': '服务详情',

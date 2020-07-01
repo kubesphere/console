@@ -16,9 +16,11 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { omit, isUndefined } from 'lodash'
+import { get, omit, isUndefined, isFunction } from 'lodash'
 import React from 'react'
+import ReactDOM from 'react-dom'
 import ReactModal from 'react-modal'
+import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 
@@ -27,33 +29,27 @@ import { Image } from 'components/Base'
 import Button from '../Button'
 import styles from './index.scss'
 
-ReactModal.defaultStyles.overlay = Object.assign(
-  {},
-  ReactModal.defaultStyles.overlay,
-  {
-    padding: 0,
-    minWidth: 500,
-    backgroundColor: 'rgba(35, 45, 65, 0.7)',
-    zIndex: 2000,
-    overflow: 'auto',
-  }
-)
+ReactModal.defaultStyles.overlay = {
+  ...ReactModal.defaultStyles.overlay,
+  padding: 0,
+  minWidth: 500,
+  backgroundColor: 'rgba(35, 45, 65, 0.7)',
+  zIndex: 2000,
+  overflow: 'auto',
+}
 
-ReactModal.defaultStyles.content = Object.assign(
-  {},
-  omit(ReactModal.defaultStyles.content, [
+ReactModal.defaultStyles.content = {
+  ...omit(ReactModal.defaultStyles.content, [
     'top',
     'left',
     'right',
     'bottom',
     'padding',
   ]),
-  {
-    width: 744,
-    position: 'relative',
-    margin: '0 auto',
-  }
-)
+  width: 744,
+  position: 'relative',
+  margin: '0 auto',
+}
 
 export default class Modal extends React.Component {
   static propTypes = {
@@ -99,15 +95,48 @@ export default class Modal extends React.Component {
     disableSubmit: false,
   }
 
+  static open = options => {
+    const modalWrapper = document.createElement('div')
+    document.body.appendChild(modalWrapper)
+    document.activeElement.blur()
+
+    const wrapCancel = () => {
+      if (isFunction(options.onCancel)) {
+        options.onCancel()
+      }
+      Modal.close(modalWrapper)
+    }
+
+    const Component = options.modal
+    const WrappedComponent = observer(() => (
+      <Component
+        {...omit(options, 'modal', 'onCancel')}
+        isSubmitting={get(options, 'store.isSubmitting')}
+        onCancel={wrapCancel}
+        visible
+      />
+    ))
+    ReactDOM.render(<WrappedComponent />, modalWrapper)
+
+    return modalWrapper
+  }
+
+  static close = modal => {
+    const unmounted = ReactDOM.unmountComponentAtNode(modal)
+    if (unmounted && modal.parentNode) {
+      modal.parentNode.removeChild(modal)
+    }
+  }
+
   renderTitle() {
-    const { icon, imageSrc, title, description, rightScreen } = this.props
+    const { icon, imageIcon, title, description, rightScreen } = this.props
     const size = rightScreen ? 48 : isUndefined(description) ? 20 : 40
 
     return (
       <div className={styles.title}>
-        {imageSrc ? (
+        {imageIcon ? (
           <label className={styles.image}>
-            <Image src={imageSrc} iconLetter={imageSrc} iconSize={size} />
+            <Image src={imageIcon} iconLetter={imageIcon} iconSize={size} />
           </label>
         ) : (
           icon && <Icon name={icon} size={size} />
@@ -144,15 +173,16 @@ export default class Modal extends React.Component {
       maskClosable,
       isSubmitting,
       icon,
-      imageSrc,
+      imageIcon,
       disableSubmit,
+      ...rest
     } = this.props
 
     const style = {
       content: {},
     }
 
-    const showIcon = (icon || imageSrc) && rightScreen
+    const showIcon = (icon || imageIcon) && rightScreen
 
     if (!fullScreen && !rightScreen) {
       style.content.width = width
@@ -170,14 +200,19 @@ export default class Modal extends React.Component {
         ariaHideApp={false}
         closeTimeoutMS={0}
         shouldCloseOnOverlayClick={maskClosable}
+        {...rest}
       >
         {!hideHeader && (
           <div className={classnames(styles.header, headerClassName)}>
             {this.renderTitle()}
             {showIcon && (
               <div className={styles.iconBg}>
-                {imageSrc ? (
-                  <Image src={imageSrc} iconLetter={imageSrc} iconSize={200} />
+                {imageIcon ? (
+                  <Image
+                    src={imageIcon}
+                    iconLetter={imageIcon}
+                    iconSize={200}
+                  />
                 ) : (
                   <Icon name={icon} size={200} />
                 )}

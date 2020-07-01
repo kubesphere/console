@@ -69,9 +69,12 @@ export default class Activity extends React.Component {
   }
 
   get enabledActions() {
+    const { project_id } = this.props.match.params
+    const devops = this.store.getDevops(project_id)
     return globals.app.getActions({
       module: 'pipelines',
-      project: this.props.match.params.project_id,
+      cluster: this.props.match.params.cluster,
+      devops,
     })
   }
 
@@ -137,7 +140,11 @@ export default class Activity extends React.Component {
     const url = `devops/${params.project_id}/pipelines/${
       params.name
     }${this.getActivityDetailLinks(record)}`
-    await this.props.detailStore.handleActivityReplay(url)
+
+    await this.props.detailStore.handleActivityReplay({
+      url,
+      cluster: params.cluster,
+    })
     this.handleFetch()
   }
 
@@ -148,6 +155,7 @@ export default class Activity extends React.Component {
     await this.props.detailStore.scanRepository({
       project_id: params.project_id,
       name: detail.name,
+      cluster: params.cluster,
     })
     this.store.fetchDetail(params)
     Notify.success({
@@ -175,10 +183,15 @@ export default class Activity extends React.Component {
     const url = `devops/${params.project_id}/pipelines/${
       params.name
     }${this.getActivityDetailLinks(record)}`
-    await this.props.detailStore.handleActivityStop(url)
+    await this.props.detailStore.handleActivityStop({
+      url,
+      cluster: params.cluster,
+    })
+
     Notify.success({
       content: t('Stop Job Successfully, Status updated later'),
     })
+
     this.handleFetch()
   }
 
@@ -260,7 +273,7 @@ export default class Activity extends React.Component {
           },
         ]),
     {
-      title: t('Last message'),
+      title: t('Last Message'),
       dataIndex: 'causes',
       width: '25%',
       render: causes => _result(causes, '[0].shortDescription', ''),
@@ -269,7 +282,8 @@ export default class Activity extends React.Component {
       title: t('Duration'),
       dataIndex: 'durationInMillis',
       width: '10%',
-      render: durationInMillis => formatUsedTime(durationInMillis),
+      render: durationInMillis =>
+        durationInMillis ? formatUsedTime(durationInMillis) : '-',
     },
     {
       title: t('Updated Time'),
@@ -284,7 +298,7 @@ export default class Activity extends React.Component {
       render: record => {
         if (
           (record.branch && !record.commitId) ||
-          !this.enabledActions.includes('trigger')
+          !this.enabledActions.includes('edit')
         ) {
           return null
         }
@@ -311,7 +325,7 @@ export default class Activity extends React.Component {
       type: 'control',
       key: 'run',
       text: t('Run'),
-      action: 'trigger',
+      action: 'edit',
       onClick: this.handleRun,
     },
   ]
@@ -368,7 +382,7 @@ export default class Activity extends React.Component {
 
     const omitFilters = omit(filters, 'page')
 
-    const runnable = this.enabledActions.includes('trigger')
+    const runnable = this.enabledActions.includes('edit')
 
     if (isEmptyList && !filters.page) {
       if (isMutibranch && !detail.branchNames.length) {

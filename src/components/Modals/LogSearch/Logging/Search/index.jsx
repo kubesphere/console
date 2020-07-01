@@ -146,21 +146,28 @@ export default class LogSearchModal extends React.Component {
   }
 
   getQueryParams() {
-    const { query: inputQuery, queryMode } = this.props.searchInputState
+    const {
+      query: inputQuery,
+      queryMode,
+      cluster,
+    } = this.props.searchInputState
     return inputQuery
       .filter(({ key }) => key)
-      .reduce((searchQuery, query) => {
-        const queryKey = query.key
-        const newQueryValue = query.value
-        const key = queryMode
-          ? queryKey.replace(/([^(log)]+)_query/, '$1s')
-          : queryKey
-        const preQueryValue = searchQuery[key]
-        searchQuery[key] = preQueryValue
-          ? `${preQueryValue},${newQueryValue}`
-          : newQueryValue
-        return searchQuery
-      }, {})
+      .reduce(
+        (searchQuery, query) => {
+          const queryKey = query.key
+          const newQueryValue = query.value
+          const key = queryMode
+            ? queryKey.replace(/([^(log)]+)_query/, '$1s')
+            : queryKey
+          const preQueryValue = searchQuery[key]
+          searchQuery[key] = preQueryValue
+            ? `${preQueryValue},${newQueryValue}`
+            : newQueryValue
+          return searchQuery
+        },
+        { cluster }
+      )
   }
 
   get duration() {
@@ -349,6 +356,11 @@ export default class LogSearchModal extends React.Component {
     this.onSearchParamsChange()
   }
 
+  changeClusterChange = cluster => {
+    this.props.searchInputState.setCluster(cluster)
+    this.onSearchParamsChange()
+  }
+
   selectLog = log => {
     this.props.detailState.setState({ ...log })
     this.props.formStepState.next()
@@ -368,9 +380,21 @@ export default class LogSearchModal extends React.Component {
     )
   }
 
+  clusterRenderer = option => `${t('Cluster')}: ${option.label}`
+
   renderSearchBar() {
     return (
       <div className={styles.searchBar}>
+        <span className={styles.clusterSelect}>
+          <Select
+            value={this.props.searchInputState.cluster}
+            onChange={this.changeClusterChange}
+            className={styles.queryModeOptions}
+            valueRenderer={this.clusterRenderer}
+            options={this.props.clustersOpts}
+          />
+        </span>
+
         <SearchInput
           className={styles.searchInput}
           onChange={this.onSearchParamsChange}
@@ -378,7 +402,7 @@ export default class LogSearchModal extends React.Component {
           dropDownItems={{
             log_query: {
               icon: 'magnifier',
-              text: t('Key Word'),
+              text: t('Keyword'),
             },
             namespace_query: {
               icon: 'project',

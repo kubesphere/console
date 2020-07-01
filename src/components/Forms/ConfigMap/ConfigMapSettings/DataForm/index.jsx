@@ -18,8 +18,9 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Input, TextArea } from '@pitrix/lego-ui'
-import { Form } from 'components/Base'
+import { trim } from 'lodash'
+import { Input } from '@pitrix/lego-ui'
+import { Form, TextArea } from 'components/Base'
 import { ReactComponent as BackIcon } from 'src/assets/back.svg'
 
 import styles from './index.scss'
@@ -76,7 +77,7 @@ export default class SecretDataForm extends React.Component {
     form &&
       form.validate(() => {
         const { key, value } = form.getData()
-        onOk({ [key]: value })
+        onOk({ [trim(key)]: value })
         callback && callback()
       })
   }
@@ -90,7 +91,7 @@ export default class SecretDataForm extends React.Component {
           <a className="custom-icon" onClick={this.handleGoBack}>
             <BackIcon />
           </a>
-          {!detail[selectKey] ? t('Add data') : t('Edit data')}
+          {!detail[selectKey] ? t('Add Data') : t('Edit Data')}
         </div>
         <div className={styles.formWrapper}>
           <Form data={this.state.formData} ref={this.formRef}>
@@ -108,7 +109,14 @@ export default class SecretDataForm extends React.Component {
                 'Enter the value of the configuration map entry or use the contents of the file'
               )}
             >
-              <TextArea name="value" placeholder="value" rows={4} resize />
+              <TextArea
+                maxHeight={430}
+                autoResize
+                resize
+                name="value"
+                placeholder="value"
+                rows={4}
+              />
             </Form.Item>
           </Form>
         </div>

@@ -17,64 +17,30 @@
  */
 
 import { action } from 'mobx'
-import { get } from 'lodash'
 
 import { getHpaFormattedData } from 'utils/workload'
 
 import Base from '../base'
 
 export default class HpaStore extends Base {
-  constructor() {
-    super()
-    this.module = 'horizontalpodautoscalers'
-  }
-
-  get apiVersion() {
-    return 'apis/autoscaling/v2beta2'
-  }
-
-  getDetailUrl = ({ name, namespace }) =>
-    `${
-      this.apiVersion
-    }/namespaces/${namespace}/horizontalpodautoscalers/${name}`
+  module = 'horizontalpodautoscalers'
 
   @action
-  async fetchDetail({ name, namespace }) {
-    this.isLoading = true
-
-    const result = await request.get(this.getDetailUrl({ name, namespace }))
-    const detail = this.mapper(result)
-
-    this.detail = detail
-    this.originDetail = result
-    this.isLoading = false
+  create(data, params) {
+    return this.submitting(
+      request.post(this.getListUrl(params), getHpaFormattedData(data))
+    )
   }
 
   @action
-  create(data) {
-    const namespace = get(data, 'metadata.namespace')
-
-    if (!namespace) {
-      return
-    }
-
-    const params = getHpaFormattedData(data)
-
-    return this.submitting(request.post(this.getListUrl({ namespace }), params))
-  }
-
-  @action
-  async patch({ name, namespace }, newObject) {
-    const params = getHpaFormattedData(newObject)
-
+  async patch(params, newObject) {
     await this.submitting(
-      request.patch(this.getDetailUrl({ name, namespace }), params)
+      request.patch(this.getDetailUrl(params), getHpaFormattedData(newObject))
     )
   }
 
   @action
   reset() {
     this.detail = {}
-    this.originDetail = {}
   }
 }

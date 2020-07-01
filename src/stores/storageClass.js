@@ -19,6 +19,7 @@
 import { get, set, isString, isEmpty, isArray } from 'lodash'
 import { action, observable } from 'mobx'
 import ObjectMapper from 'utils/object.mapper'
+import VolumeSnapshotClasses from 'stores/volumeSnapshotClasses'
 import Base from './base'
 
 export default class StorageClassStore extends Base {
@@ -34,18 +35,24 @@ export default class StorageClassStore extends Base {
     isLoading: true,
   }
 
-  constructor() {
-    super()
-    this.module = 'storageclasses'
+  module = 'storageclasses'
+
+  getResourceUrl = params =>
+    `kapis/resources.kubesphere.io/v1alpha3${this.getPath(params)}/${
+      this.module
+    }`
+
+  async delete(params) {
+    await super.delete(params)
+    const volumeSnapshotClassStore = new VolumeSnapshotClasses()
+    await volumeSnapshotClassStore.deleteSilent(params)
   }
 
-  get apiVersion() {
-    return 'apis/storage.k8s.io/v1'
+  async batchDelete(rowKeys) {
+    await super.batchDelete(rowKeys)
+    const volumeSnapshotClassStore = new VolumeSnapshotClasses()
+    volumeSnapshotClassStore.silentBatchDelete(rowKeys)
   }
-
-  getListUrl = () => `${this.apiVersion}/storageclasses`
-
-  getResourceUrl = () => `kapis/resources.kubesphere.io/v1alpha2/${this.module}`
 
   @action
   create(data) {
@@ -71,7 +78,19 @@ export default class StorageClassStore extends Base {
       )
     }
 
-    return this.submitting(request.post(this.getListUrl(), data))
+    return this.submitting(request.post(this.getListUrl({}), data))
+  }
+
+  async createAlongWithSnapshotClasses(data) {
+    await this.create(data)
+    const volumeSnapshotClassStore = new VolumeSnapshotClasses()
+
+    await volumeSnapshotClassStore.create({
+      metadata: {
+        name: get(data, 'metadata.name'),
+      },
+      driver: get(data, 'provisioner'),
+    })
   }
 
   @action
@@ -107,10 +126,6 @@ export default class StorageClassStore extends Base {
     const max = Number(get(detail, 'parameters.maxSize')) || DEFAULT_MAX_SIZE
     const step = Number(get(detail, 'parameters.stepSize')) || DEFAULT_STEP
 
-    return {
-      min,
-      max,
-      step,
-    }
+    return { min, max, step }
   }
 }

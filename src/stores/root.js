@@ -21,6 +21,7 @@ import { RouterStore } from 'mobx-react-router'
 import { parse } from 'qs'
 import { getQueryString } from 'utils'
 
+import UserStore from 'stores/user'
 import WebSocketStore from 'stores/websocket'
 
 export default class RootStore {
@@ -30,9 +31,16 @@ export default class RootStore {
   @observable
   showGlobalNav = false
 
+  @observable
+  showHistory = false
+
+  @observable
+  actions = {}
+
   constructor() {
     this.websocket = new WebSocketStore()
 
+    this.user = new UserStore()
     this.routing = new RouterStore()
     this.routing.query = this.query
 
@@ -63,6 +71,26 @@ export default class RootStore {
   }
 
   @action
+  toggleHistory = () => {
+    this.showHistory = !this.showHistory
+  }
+
+  @action
+  hideHistory = () => {
+    this.showHistory = false
+  }
+
+  @action
+  registerActions = actions => {
+    extendObservable(this.actions, actions)
+  }
+
+  @action
+  triggerAction(id, ...rest) {
+    this.actions[id] && this.actions[id].on(...rest)
+  }
+
+  @action
   async login(params) {
     return await request.post('login', params)
   }
@@ -70,5 +98,10 @@ export default class RootStore {
   @action
   async logout() {
     await request.post('logout')
+  }
+
+  @action
+  getRules(params) {
+    return this.user.fetchRules({ ...params, name: globals.user.username })
   }
 }

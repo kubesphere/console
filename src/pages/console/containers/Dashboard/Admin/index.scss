@@ -1,0 +1,12 @@
+.info {
+  display: flex;
+
+  & > div {
+    width: 120px;
+    margin-right: 9px;
+  }
+}
+
+.status {
+  padding: 0 0 12px 0;
+}

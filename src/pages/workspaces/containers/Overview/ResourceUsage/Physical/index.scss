@@ -1,0 +1,18 @@
+@import '~scss/variables';
+
+.clusterSelector {
+  width: 200px;
+  color: $white;
+  margin-left: 15px;
+
+  :global {
+    .select-control {
+      background: $dark-color07 !important;
+    }
+
+    .select-value-label {
+      color: $white !important;
+    }
+
+  }
+}

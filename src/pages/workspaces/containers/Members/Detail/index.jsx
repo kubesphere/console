@@ -17,51 +17,82 @@
  */
 
 import React from 'react'
-import { observer, inject } from 'mobx-react'
 import { toJS } from 'mobx'
+import { observer, inject } from 'mobx-react'
+import { isEmpty } from 'lodash'
+import { Loading } from '@pitrix/lego-ui'
 
-import WorkspaceMemberStore from 'stores/workspace/member'
+import { trigger } from 'utils/action'
+import UserStore from 'stores/user'
+import WorkspaceStore from 'stores/workspace'
 
-import Base from 'core/containers/Base/Detail'
-import { Notify } from 'components/Base'
-import DeleteModal from 'components/Modals/Delete'
-import BaseInfo from './BaseInfo'
+import DetailPage from 'core/containers/Base/Detail/Page'
+
+import routes from './routes'
 
 @inject('rootStore')
 @observer
-export default class MemberDetail extends Base {
+@trigger
+export default class MemberDetail extends React.Component {
+  store = new UserStore()
+
+  workspaceStore = new WorkspaceStore()
+
+  componentDidMount() {
+    this.fetchData()
+  }
+
   get workspace() {
     return this.props.match.params.workspace
   }
 
-  get name() {
-    return 'Workspace Member'
+  get module() {
+    return this.store.module
   }
 
   get authKey() {
     return 'members'
   }
 
+  get name() {
+    return 'Workspace Member'
+  }
+
   get listUrl() {
     return `/workspaces/${this.workspace}/members`
   }
 
-  init() {
-    this.store = new WorkspaceMemberStore()
+  get routing() {
+    return this.props.rootStore.routing
+  }
+
+  fetchData = () => {
+    this.store.fetchDetail(this.props.match.params)
   }
 
   getOperations = () => [
     {
       key: 'delete',
-      type: 'default',
+      icon: 'trash',
       text: t('Remove from Workspace'),
       action: 'delete',
-      onClick: this.showModal('deleteModule'),
+      type: 'danger',
+      show: this.store.detail.name !== globals.user.username,
+      onClick: () =>
+        this.trigger('member.remove', {
+          detail: toJS(this.store.detail),
+          success: () => this.routing.push(this.listUrl),
+          ...this.props.match.params,
+        }),
     },
   ]
 
   getAttrs = () => {
-    const { detail } = toJS(this.store)
+    const detail = toJS(this.store.detail)
+
+    if (isEmpty(detail)) {
+      return
+    }
 
     return [
       {
@@ -70,7 +101,7 @@ export default class MemberDetail extends Base {
       },
       {
         name: t('Workspace Role'),
-        value: detail.workspace_role,
+        value: detail.workspacerole,
       },
       {
         name: t('Email'),
@@ -79,44 +110,31 @@ export default class MemberDetail extends Base {
     ]
   }
 
-  handleDelete = () => {
-    const { workspace, member } = this.props.match.params
-    this.store.deleteMember({ workspace }, [member]).then(() => {
-      this.hideModal('deleteModule')()
-      Notify.success({ content: `${t('Deleted Successfully')}!` })
-    })
-  }
+  render() {
+    const stores = {
+      detailStore: this.store,
+      workspaceStore: this.workspaceStore,
+    }
 
-  renderSider() {
-    const { detail } = toJS(this.store)
+    if (this.store.isLoading && !this.store.detail.name) {
+      return <Loading className="ks-page-loading" />
+    }
 
-    return (
-      <BaseInfo
-        iconSrc={detail.avatar_url}
-        name={detail.username}
-        desc={detail.description}
-        operations={this.getEnabledOperations()}
-        attrs={this.getAttrs()}
-      />
-    )
-  }
+    const sideProps = {
+      module: this.module,
+      authKey: this.authKey,
+      name: this.store.detail.name,
+      desc: this.store.detail.email,
+      operations: this.getOperations(),
+      attrs: this.getAttrs(),
+      breadcrumbs: [
+        {
+          label: t('Workspace Roles'),
+          url: this.listUrl,
+        },
+      ],
+    }
 
-  renderModals() {
-    const { deleteModule } = this.state
-    const { detail } = toJS(this.store)
-
-    return (
-      <div>
-        <DeleteModal
-          desc={t.html('REMOVE_USER_TIP', {
-            resource: detail.username,
-          })}
-          visible={deleteModule}
-          onOk={this.handleDelete}
-          onCancel={this.hideModal('deleteModule')}
-        />
-        {this.renderExtraModals()}
-      </div>
-    )
+    return <DetailPage stores={stores} routes={routes} {...sideProps} />
   }
 }

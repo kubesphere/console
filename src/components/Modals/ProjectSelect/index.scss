@@ -35,3 +35,27 @@
     }
   }
 }
+
+.searchWrapper {
+  position: relative;
+  .cluster {
+    @include vertical-center;
+    left: 12px;
+    z-index: 5;
+  }
+
+  .search {
+    :global .input {
+      opacity: 1;
+      background-color: #ffffff;
+      border-color: #79879c !important;
+      box-shadow: none !important;
+    }
+
+    &.withSelect {
+      :global .input {
+        padding-left: 124px;
+      }
+    }
+  }
+}

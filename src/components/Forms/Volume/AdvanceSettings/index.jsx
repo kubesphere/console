@@ -25,6 +25,10 @@ import { Form } from 'components/Base'
 import Metadata from './Metadata'
 
 export default class AdvancedSettings extends React.Component {
+  get cluster() {
+    return this.props.cluster
+  }
+
   get namespace() {
     return get(this.formTemplate, 'metadata.namespace')
   }
@@ -34,22 +38,29 @@ export default class AdvancedSettings extends React.Component {
     return get(formTemplate, MODULE_KIND_MAP[module], formTemplate)
   }
 
+  get fedFormTemplate() {
+    return this.props.isFederated
+      ? get(this.formTemplate, 'spec.template')
+      : this.formTemplate
+  }
+
   render() {
     const { store, formRef } = this.props
     return (
-      <Form data={this.formTemplate} ref={formRef}>
+      <Form data={this.fedFormTemplate} ref={formRef}>
         <Form.Group
-          label={t('Add metadata')}
+          label={t('Add Metadata')}
           desc={t(
-            'Additional metadata settings for resources such as Label and Annotation'
+            'Additional metadata settings for resources such as Labels and Annotations.'
           )}
           keepDataWhenUnCheck
           checkable
         >
           <Metadata
             store={store}
+            cluster={this.cluster}
             namespace={this.namespace}
-            formTemplate={this.formTemplate}
+            formTemplate={this.fedFormTemplate}
           />
         </Form.Group>
       </Form>

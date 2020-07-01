@@ -19,23 +19,59 @@
 import React from 'react'
 import { observer } from 'mobx-react'
 import classnames from 'classnames'
+import { get } from 'lodash'
 
+import { TypeSelect } from 'components/Base'
 import ContainerTerminal from 'components/Terminal'
 import UserTip from 'components/Cards/Tips'
-import TerminalStore from 'stores/terminal'
 import fullScreen from 'components/Modals/FullscreenModal'
+import TerminalStore from 'stores/terminal'
+import ClusterStore from 'stores/cluster'
+import { CLUSTER_PROVIDER_ICON } from 'utils/constants'
 
 import styles from './index.scss'
 
 @fullScreen
 @observer
 export default class KubeCtlModal extends React.Component {
+  state = {
+    cluster: this.props.cluster || '',
+  }
+
   store = new TerminalStore()
+
+  clusterStore = new ClusterStore()
 
   terminalRef = React.createRef()
 
   componentDidMount() {
-    this.store.fetchKubeCtl()
+    if (!this.props.cluster) {
+      this.clusterStore.fetchListByK8s().then(() => {
+        const cluster = get(this.clusters, '[0].value')
+        this.setState({ cluster }, () => {
+          this.store.fetchKubeCtl({ cluster })
+        })
+      })
+    } else {
+      this.store.fetchKubeCtl({ cluster: this.props.cluster })
+    }
+  }
+
+  get clusters() {
+    return this.clusterStore.list.data
+      .filter(item => item.isReady)
+      .map(item => ({
+        label: item.name,
+        value: item.name,
+        icon: CLUSTER_PROVIDER_ICON[item.provider] || 'kubernetes',
+        description: item.provider,
+      }))
+  }
+
+  handleClusterChange = cluster => {
+    this.setState({ cluster }, () => {
+      this.store.fetchKubeCtl({ cluster })
+    })
   }
 
   onTipsToggle = () => {
@@ -46,7 +82,7 @@ export default class KubeCtlModal extends React.Component {
   render() {
     return (
       <UserTip
-        wrapperClassName={styles.kubeCtl}
+        wrapperClassName={styles.kubectl}
         onToggleTip={this.onTipsToggle}
         localStorageKey="kubectl-doc"
         article={this.renderTerminal()}
@@ -58,8 +94,17 @@ export default class KubeCtlModal extends React.Component {
 
   renderTips() {
     return (
-      <div className={classnames('markdown-body', styles.doc)}>
-        {t.html('KUBECTL_TIP')}
+      <div>
+        {!this.props.cluster && globals.app.isMultiCluster && (
+          <TypeSelect
+            options={this.clusters}
+            value={this.state.cluster}
+            onChange={this.handleClusterChange}
+          />
+        )}
+        <div className={classnames('markdown-body', styles.doc)}>
+          {t.html('KUBECTL_TIP')}
+        </div>
       </div>
     )
   }

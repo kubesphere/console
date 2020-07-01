@@ -94,11 +94,11 @@ export default class GatewaySettingModal extends React.Component {
   }
 
   initWebsocket(detail) {
-    const { namespace, selector } = detail || {}
+    const { cluster, namespace, selector } = detail || {}
 
-    const url = `api/v1/watch/namespaces/${namespace}/pods?labelSelector=${joinSelector(
-      selector
-    )}`
+    const url = `api/v1/watch/${
+      cluster ? `klusters/${cluster}` : ''
+    }namespaces/${namespace}/pods?labelSelector=${joinSelector(selector)}`
 
     if (url && namespace && selector) {
       this.websocket.watch(url)
@@ -134,9 +134,8 @@ export default class GatewaySettingModal extends React.Component {
   }
 
   getData(detail = {}) {
-    const { name, namespace } = detail
-    if (name && namespace) {
-      this.store.fetchDetail({ name, namespace }).then(() => {
+    if (detail.name && detail.namespace) {
+      this.store.fetchDetail(detail).then(() => {
         const data = toJS(this.store.detail)
         if (data.type === 'Canary' && !data.byContent) {
           const ratio = get(data, 'newRoute.weight', 50)
@@ -165,6 +164,7 @@ export default class GatewaySettingModal extends React.Component {
 
   getWorkLoadDetail({ silent, ...detail } = {}) {
     const {
+      cluster,
       namespace,
       selector,
       hosts: service,
@@ -173,8 +173,9 @@ export default class GatewaySettingModal extends React.Component {
     } = detail
     if (namespace && selector) {
       const labelSelector = joinSelector(selector)
-      this.workloadStore.fetchListByK8s({ namespace, labelSelector })
+      this.workloadStore.fetchListByK8s({ cluster, namespace, labelSelector })
       this.store.fetchComponents({
+        cluster,
         namespace,
         service,
         labelSelector,
@@ -218,9 +219,9 @@ export default class GatewaySettingModal extends React.Component {
   }
 
   handlePatch = data => {
-    const { name, namespace } = toJS(this.store.detail)
-    this.store.patch({ name, namespace }, data).then(() => {
-      this.store.fetchDetail({ name, namespace }).then(() => {
+    const params = toJS(this.store.detail)
+    this.store.patch(params, data).then(() => {
+      this.store.fetchDetail(params).then(() => {
         const detail = toJS(this.store.detail)
         if (detail.type === 'Canary' && !detail.byContent) {
           const ratio = get(detail, 'newRoute.weight', 50)
@@ -318,7 +319,6 @@ export default class GatewaySettingModal extends React.Component {
 
   handleComponentEdit = (data, updatedModules) => {
     const detail = toJS(this.store.detail)
-    const { name, namespace } = detail
 
     const newData = {}
     if (updatedModules.includes('grayReleaseStrategy')) {
@@ -329,7 +329,7 @@ export default class GatewaySettingModal extends React.Component {
     }
 
     this.store.update(detail, newData).then(() => {
-      this.store.fetchDetail({ name, namespace }).then(() => {
+      this.store.fetchDetail(detail).then(() => {
         this.hideEditModal()
 
         const _detail = toJS(this.store.detail)
@@ -344,16 +344,26 @@ export default class GatewaySettingModal extends React.Component {
   }
 
   handleOffline = () => {
-    const { type, hosts, namespace, governor, oldVersion, newVersion } = toJS(
-      this.store.detail
-    )
+    const {
+      type,
+      hosts,
+      cluster,
+      namespace,
+      governor,
+      oldVersion,
+      newVersion,
+    } = toJS(this.store.detail)
 
     if (governor) {
       const { onDelete } = this.props
       const version = governor === oldVersion ? newVersion : oldVersion
 
       if (version) {
-        this.workloadStore.delete({ name: `${hosts}-${version}`, namespace })
+        this.workloadStore.delete({
+          name: `${hosts}-${version}`,
+          cluster,
+          namespace,
+        })
         onDelete()
       }
       return
@@ -363,7 +373,11 @@ export default class GatewaySettingModal extends React.Component {
       const { onDelete } = this.props
       const version = newVersion
       if (version) {
-        this.workloadStore.delete({ name: `${hosts}-${version}`, namespace })
+        this.workloadStore.delete({
+          name: `${hosts}-${version}`,
+          cluster,
+          namespace,
+        })
         onDelete()
       }
 
@@ -440,6 +454,8 @@ export default class GatewaySettingModal extends React.Component {
       showEditModal: this.showEditModal,
       onTakeover: detail.type !== 'Mirror' ? this.handleTakeover : null,
       namespace: this.props.detail.namespace,
+      cluster: this.props.detail.cluster,
+      workspace: this.props.detail.workspace,
       maxLength: Math.min(
         Math.max(
           get(data, `[${detail.newVersion}].pods.length`, 0),
@@ -772,6 +788,7 @@ export default class GatewaySettingModal extends React.Component {
   render() {
     const { visible, onCancel } = this.props
     const { showEditModal, tipInfo, tipType } = this.state
+    const detail = toJS(this.store.detail)
 
     return (
       <Modal
@@ -797,6 +814,7 @@ export default class GatewaySettingModal extends React.Component {
           visible={showEditModal}
           module="grayreleases"
           formData={this.formData}
+          cluster={detail.cluster}
           onOk={this.handleComponentEdit}
           onCancel={this.hideEditModal}
           isSubmitting={this.store.isSubmitting}

@@ -26,7 +26,9 @@ export default class Metadata extends React.Component {
   labelsValidator = (rule, value, callback) => {
     if (isUndefined(value)) {
       return callback()
-    } else if (isEmpty(value)) {
+    }
+
+    if (isEmpty(value)) {
       return callback({ message: t('Labels cannot be empty') })
     }
 
@@ -35,7 +37,11 @@ export default class Metadata extends React.Component {
     }
 
     this.props.store
-      .checkLabels({ labels: value, namespace: this.props.namespace })
+      .checkLabels({
+        labels: value,
+        namespace: this.props.namespace,
+        cluster: this.props.cluster,
+      })
       .then(resp => {
         if (resp.exist) {
           return callback({ message: t('Labels exists'), field: rule.field })

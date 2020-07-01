@@ -48,17 +48,19 @@ export default class RadioGroupWithOptions extends React.Component {
         size="small"
         {...rest}
       >
-        {options.map(option => (
-          <RadioButton key={option.value} value={option.value}>
-            {option.label}
-            {!isUndefined(option.count) && (
-              <Badge
-                status={option.value === value ? 'success' : 'default'}
-                count={Number(option.count)}
-              />
-            )}
-          </RadioButton>
-        ))}
+        {options
+          .filter(option => !option.hidden)
+          .map(option => (
+            <RadioButton key={option.value} value={option.value}>
+              {option.label}
+              {!isUndefined(option.count) && (
+                <Badge
+                  status={option.value === value ? 'success' : 'default'}
+                  count={Number(option.count)}
+                />
+              )}
+            </RadioButton>
+          ))}
       </RadioGroup>
     )
   }

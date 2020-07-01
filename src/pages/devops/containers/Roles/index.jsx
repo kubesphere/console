@@ -18,95 +18,179 @@
 
 import React from 'react'
 import { toJS } from 'mobx'
-import { observer, inject } from 'mobx-react'
-import { ICON_TYPES } from 'utils/constants'
 import { Avatar } from 'components/Base'
 import Banner from 'components/Cards/Banner'
-import BaseTable from 'components/Tables/Base'
+import withList, { ListPage } from 'components/HOCs/withList'
+import Table from 'components/Tables/List'
 
-@inject('rootStore')
-@observer
-class Roles extends React.Component {
+import { getLocalTime } from 'utils'
+import { ICON_TYPES } from 'utils/constants'
+
+import RoleStore from 'stores/role'
+
+@withList({
+  store: new RoleStore(),
+  module: 'roles',
+  name: 'DevOps Role',
+  injectStores: ['rootStore', 'devopsStore'],
+})
+export default class Secrets extends React.Component {
   componentDidMount() {
-    this.getData()
+    this.props.store.fetchRoleTemplates({
+      devops: this.devops,
+      cluster: this.cluster,
+    })
   }
 
-  get prefix() {
-    return this.props.match.url
+  showAction = record => !globals.config.presetDevOpsRoles.includes(record.name)
+
+  get devops() {
+    return this.props.devopsStore.devops
   }
 
-  get module() {
-    return 'roles'
+  get cluster() {
+    return this.props.match.params.cluster
   }
 
-  get name() {
-    return 'Project Roles'
+  get enabledActions() {
+    return globals.app.getActions({
+      module: 'roles',
+      devops: this.devops,
+      cluster: this.cluster,
+    })
   }
 
-  get routing() {
-    return this.props.rootStore.routing
+  get itemActions() {
+    const { routing, trigger, store } = this.props
+
+    return [
+      {
+        key: 'edit',
+        icon: 'pen',
+        text: t('Edit'),
+        action: 'edit',
+        show: this.showAction,
+        onClick: item =>
+          trigger('resource.baseinfo.edit', {
+            detail: item,
+          }),
+      },
+      {
+        key: 'editRole',
+        icon: 'pen',
+        text: t('Edit Authorization'),
+        action: 'edit',
+        show: this.showAction,
+        onClick: item =>
+          trigger('role.edit', {
+            module: 'devopsroles',
+            detail: item,
+            roleTemplates: toJS(store.roleTemplates.data),
+            success: routing.query,
+          }),
+      },
+      {
+        key: 'delete',
+        icon: 'trash',
+        text: t('Delete'),
+        action: 'delete',
+        show: this.showAction,
+        onClick: item =>
+          trigger('role.delete', {
+            detail: item,
+            type: t(this.name),
+            success: routing.query,
+          }),
+      },
+    ]
   }
 
-  get store() {
-    return this.props.rootStore.devops
+  get tableActions() {
+    const { tableProps } = this.props
+    return {
+      ...tableProps.tableActions,
+      onCreate: this.showCreate,
+      getCheckboxProps: record => ({
+        disabled: !this.showAction(record),
+        name: record.name,
+      }),
+    }
   }
 
-  getData() {
-    this.store.fetchRoles(this.props.match.params)
+  getData = () => {
+    this.props.store.fetchList({
+      devops: this.devops,
+      cluster: this.cluster,
+    })
   }
 
-  getColumns = () => [
-    {
-      title: t('Name'),
-      dataIndex: 'name',
-      width: '33%',
-      render: name => (
-        <Avatar icon={ICON_TYPES[this.module]} title={name} noLink />
-      ),
-    },
-    {
-      title: t('Description'),
-      dataIndex: 'description',
-      isHideable: true,
-      width: '66%',
-      render: desc => t(desc),
-    },
-  ]
+  getColumns = () => {
+    const { getSortOrder, module } = this.props
+    return [
+      {
+        title: t('Name'),
+        dataIndex: 'name',
+        sorter: true,
+        sortOrder: getSortOrder('name'),
+        search: true,
+        render: name => (
+          <Avatar
+            icon={ICON_TYPES[module]}
+            title={name}
+            to={`${this.props.match.url}/${name}`}
+          />
+        ),
+      },
+      {
+        title: t('Description'),
+        key: 'description',
+        dataIndex: 'description',
+        isHideable: true,
+        width: '40%',
+      },
+      {
+        title: t('Created Time'),
+        dataIndex: 'createTime',
+        sorter: true,
+        sortOrder: getSortOrder('createTime'),
+        isHideable: true,
+        width: 150,
+        render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
+      },
+    ]
+  }
 
-  renderTable() {
-    const { data, filters, isLoading, total, page, limit } = toJS(
-      this.store.roles
-    )
+  showCreate = () =>
+    this.props.trigger('role.create', {
+      module: 'devopsroles',
+      devops: this.devops,
+      cluster: this.cluster,
+      roleTemplates: toJS(this.props.store.roleTemplates.data),
+      success: this.getData,
+    })
 
-    const pagination = { total, page, limit }
-
-    return (
-      <div className="margin-t12">
-        <BaseTable
-          data={data}
-          columns={this.getColumns()}
-          filters={filters}
-          pagination={pagination}
-          isLoading={isLoading}
-          hideSearch
-        />
-      </div>
-    )
+  get emptyProps() {
+    return { desc: t('DEVOPS_PROJECT_ROLES_DESC') }
   }
 
   render() {
+    const { bannerProps, tableProps } = this.props
     return (
-      <div>
+      <ListPage {...this.props} getData={this.getData} noWatch>
         <Banner
-          title={t('DevOps Roles')}
-          icon="role"
+          {...bannerProps}
+          tabs={this.tabs}
           description={t('DEVOPS_PROJECT_ROLES_DESC')}
-          module={this.module}
         />
-        {this.renderTable()}
-      </div>
+        <Table
+          {...tableProps}
+          enabledActions={this.enabledActions}
+          emptyProps={this.emptyProps}
+          tableActions={this.tableActions}
+          itemActions={this.itemActions}
+          columns={this.getColumns()}
+        />
+      </ListPage>
     )
   }
 }
-
-export default Roles

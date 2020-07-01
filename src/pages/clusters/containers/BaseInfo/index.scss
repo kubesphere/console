@@ -1,0 +1,41 @@
+@import '~scss/variables';
+
+.header {
+  position: relative;
+  display: flex;
+
+  & > div {
+    width: 260px;
+    margin-right: 20px;
+  }
+}
+
+.content {
+  display: flex;
+  padding: 20px;
+  margin-top: 12px;
+  margin-left: -12px;
+  margin-right: -12px;
+  background-color: $light-color01;
+
+  & > div {
+    width: 250px;
+    margin-right: 20px;
+  }
+}
+
+.tip {
+  margin-bottom: 12px;
+}
+
+.unbind {
+  position: absolute;
+  top: 56px;
+  right: 20px;
+}
+
+.action {
+  position: absolute;
+  top: 4px;
+  right: 6px;
+}

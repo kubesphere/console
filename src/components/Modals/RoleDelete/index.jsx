@@ -23,7 +23,9 @@ import { observer } from 'mobx-react'
 
 import { Modal } from 'components/Base'
 
-import RoleStore from 'stores/role'
+import UserStore from 'stores/user'
+
+import { ROLE_QUERY_KEY } from 'utils/constants'
 
 import styles from './index.scss'
 
@@ -49,20 +51,32 @@ export default class RoleDeleteModal extends React.Component {
   constructor(props) {
     super(props)
 
-    this.store = new RoleStore(props.module)
+    this.store = new UserStore()
   }
 
-  componentDidUpdate(prevProps) {
-    const { visible, detail } = this.props
+  componentDidMount() {
+    const {
+      visible,
+      module,
+      detail,
+      cluster,
+      workspace,
+      namespace,
+    } = this.props
 
-    if (visible && visible !== prevProps.visible && detail.name) {
-      this.store.fetchUsers(detail)
+    if (visible && detail.name) {
+      this.store.fetchList({
+        [ROLE_QUERY_KEY[module]]: detail.name,
+        cluster,
+        workspace,
+        namespace,
+      })
     }
   }
 
   render() {
     const { detail, visible, onOk, onCancel, isSubmitting } = this.props
-    const { data, isLoading } = toJS(this.store.users)
+    const { data, isLoading } = toJS(this.store.list)
 
     return (
       <Modal

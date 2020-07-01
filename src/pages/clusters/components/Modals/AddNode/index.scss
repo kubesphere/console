@@ -1,0 +1,33 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.wrapper {
+  padding: 12px;
+  border-radius: $border-radius;
+  background-color: $light-color01;
+}
+
+.step {
+  padding: 12px;
+  background-color: #fff;
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+
+  & + .step {
+    margin-top: 12px;
+  }
+
+  pre {
+    padding: 8px;
+    margin-top: 12px;
+    background-color: $dark-color07;
+    border-radius: $border-radius;
+    word-break: break-all;
+
+    code {
+      font-family: Monaco;
+      color: #fff;
+      line-height: 2;
+    }
+  }
+}

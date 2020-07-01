@@ -74,10 +74,11 @@ export default class PolicyForm extends React.Component {
 
   getData(props) {
     const { name } = props.detail
-    const { namespace } = toJS(props.store.detail)
+    const { cluster, namespace } = toJS(props.store.detail)
 
     this.store
       .fetchListByK8s({
+        cluster,
         namespace,
         labelSelector: joinSelector({ app: name }),
         limit: 1,
@@ -166,7 +167,8 @@ export default class PolicyForm extends React.Component {
       set(data, 'metadata.resourceVersion', this.detail.resourceVersion)
       this.store.update(this.detail, data).then(callback)
     } else {
-      this.store.create(data).then(callback)
+      const { cluster, namespace } = toJS(this.props.store.detail)
+      this.store.create(data, { cluster, namespace }).then(callback)
     }
   }
 

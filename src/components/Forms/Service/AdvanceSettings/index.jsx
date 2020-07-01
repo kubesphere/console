@@ -29,7 +29,11 @@ import SessionAffinity from './SessionAffinity'
 
 export default class AdvancedSettings extends React.Component {
   get namespace() {
-    return get(this.formTemplate, 'Service.metadata.namespace')
+    return get(this.props.formTemplate, 'Service.metadata.namespace')
+  }
+
+  get fedPreifx() {
+    return this.props.isFederated ? 'spec.template.' : ''
   }
 
   get kind() {
@@ -40,8 +44,8 @@ export default class AdvancedSettings extends React.Component {
   handleLabelsChange = labels => {
     const { formTemplate, noWorkload } = this.props
     if (!noWorkload) {
-      set(formTemplate, 'Service.spec.selector', labels)
-      set(formTemplate, 'Service.metadata.labels', labels)
+      set(formTemplate, `Service.${this.fedPrefix}spec.selector`, labels)
+      set(formTemplate, `Service.${this.fedPrefix}metadata.labels`, labels)
     }
   }
 
@@ -50,14 +54,22 @@ export default class AdvancedSettings extends React.Component {
     if (!noWorkload) {
       set(
         formTemplate,
-        'Service.spec.sessionAffinity',
+        `Service.${this.fedPrefix}spec.sessionAffinity`,
         value ? 'clusterIP' : 'None'
       )
     }
   }
 
   render() {
-    const { formRef, formTemplate, module, store, noWorkload } = this.props
+    const {
+      formRef,
+      formTemplate,
+      cluster,
+      module,
+      store,
+      noWorkload,
+      isFederated,
+    } = this.props
     return (
       <Form data={formTemplate} ref={formRef}>
         {(noWorkload || module !== 'statefulsets') && (
@@ -66,20 +78,26 @@ export default class AdvancedSettings extends React.Component {
             desc={t('SERVICES_INTERNET_ACCESS_DESC')}
             checkable
           >
-            <InternetAccess formTemplate={formTemplate} />
+            <InternetAccess
+              formTemplate={formTemplate}
+              isFederated={isFederated}
+            />
           </Form.Group>
         )}
         <Form.Group
-          label={t('Open Session Sticky')}
-          desc={t('the maximum session sticky time is 10800s(3 hours)')}
+          label={t('Enable Sticky Session')}
+          desc={t('The maximum session sticky time is 10800s (3 hours).')}
           checkable
         >
-          <SessionAffinity formTemplate={formTemplate} />
+          <SessionAffinity
+            formTemplate={formTemplate}
+            isFederated={isFederated}
+          />
         </Form.Group>
         {!noWorkload && (
           <Form.Group
-            label={t('Setting node schedule policy')}
-            desc={t('Running pods on the specified nodes')}
+            label={t('Set Node Scheduling Policy')}
+            desc={t('You can allow Pod replicas to run on specified nodes.')}
             keepDataWhenUnCheck
             checkable
           >
@@ -87,13 +105,14 @@ export default class AdvancedSettings extends React.Component {
               kind={this.kind}
               namespace={this.namespace}
               formTemplate={formTemplate}
+              isFederated={isFederated}
             />
           </Form.Group>
         )}
         <Form.Group
-          label={t('Add metadata')}
+          label={t('Add Metadata')}
           desc={t(
-            'Additional metadata settings for resources such as Label and Annotation'
+            'Additional metadata settings for resources such as Labels and Annotations.'
           )}
           keepDataWhenUnCheck
           checkable
@@ -103,8 +122,10 @@ export default class AdvancedSettings extends React.Component {
             module={module}
             kind={this.kind}
             namespace={this.namespace}
+            cluster={cluster}
             formTemplate={formTemplate}
             onLabelsChange={this.handleLabelsChange}
+            isFederated={isFederated}
           />
         </Form.Group>
       </Form>

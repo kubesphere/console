@@ -55,6 +55,7 @@ export default class AlertStoreBase extends Base {
   @action
   async fetchList({
     node,
+    cluster,
     workspace,
     namespace,
     pod,
@@ -69,6 +70,7 @@ export default class AlertStoreBase extends Base {
     this.list.isLoading = true
 
     const levels = {
+      cluster,
       node,
       workspace,
       namespace,
@@ -99,6 +101,7 @@ export default class AlertStoreBase extends Base {
     const result = await request.get(api, params)
     const items = (result[this.itemsKey] || []).map(item => ({
       ...this.mapper(item),
+      cluster,
       namespace,
     }))
 
@@ -110,21 +113,20 @@ export default class AlertStoreBase extends Base {
       keyword,
       status,
       reverse,
-      filters: omit(filters, 'namespace'),
+      filters: omit(filters, ['namespace', 'sort_key']),
       isLoading: false,
       selectedRowKeys: [],
     })
   }
 
   @action
-  async fetchDetail({ id, name, node, workspace, namespace, pod }) {
+  async fetchDetail(params = {}) {
     this.isLoading = true
 
-    const api = this.getDetailUrl({ id, name, node, workspace, namespace, pod })
-    const result = await request.get(api)
+    const result = await request.get(this.getDetailUrl(params))
     const data = this.mapper(get(result, `[${this.itemsKey}][0]`) || {})
 
-    this.detail = data
+    this.detail = { cluster: params.cluster, ...data }
     this.isLoading = false
 
     return data

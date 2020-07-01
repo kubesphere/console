@@ -77,13 +77,14 @@ export default class ContainerSetting extends React.Component {
   }
 
   fetchData() {
-    const { namespace } = this.props
+    const { cluster, namespace } = this.props
 
     Promise.all([
-      this.quotaStore.fetch({ namespace }),
-      this.projectStore.fetchLimitRanges({ namespace }),
-      this.secretStore.fetchByK8s({
-        namespace: this.props.namespace,
+      this.quotaStore.fetch({ cluster, namespace }),
+      this.projectStore.fetchLimitRanges({ cluster, namespace }),
+      this.secretStore.fetchListByK8s({
+        cluster,
+        namespace,
         fieldSelector: `type=kubernetes.io/dockerconfigjson`,
       }),
     ]).then(() => {
@@ -156,7 +157,7 @@ export default class ContainerSetting extends React.Component {
       <Form.Group
         label={t('Container Settings')}
         desc={t(
-          'Setting for the name of the container and the computing resources of the container'
+          'Please set the container name and computing resources.'
         )}
         noWrapper
       >

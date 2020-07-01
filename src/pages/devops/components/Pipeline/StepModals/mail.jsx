@@ -88,17 +88,17 @@ export default class Mail extends React.Component {
           <Form.Item label={t('Recipient')}>
             <Input name="to" />
           </Form.Item>
-          <Form.Item label={t('cc')}>
+          <Form.Item label={t('CC')}>
             <Input name="cc" />
           </Form.Item>
           <Form.Item
-            label={t('subject')}
+            label={t('Subject')}
             rules={[{ required: true, message: t('This param is required') }]}
           >
             <Input name="subject" />
           </Form.Item>
           <Form.Item
-            label={t('body')}
+            label={t('Body')}
             rules={[{ required: true, message: t('This param is required') }]}
           >
             <TextArea name="body" />

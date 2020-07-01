@@ -64,14 +64,13 @@ export default class S2IForm extends React.Component {
   }
 
   get namespace() {
-    const { formTemplate } = this.props
-
-    return get(formTemplate, `${this.prefix}metadata.namespace`)
+    return this.props.namespace
   }
 
   fetchData = async () => {
-    const results = await this.secretStore.fetchByK8s({
+    const results = await this.secretStore.fetchListByK8s({
       namespace: this.namespace,
+      cluster: this.props.cluster,
       fieldSelector: `type=kubernetes.io/basic-auth`,
     })
 
@@ -85,8 +84,9 @@ export default class S2IForm extends React.Component {
   }
 
   fetchImageSecrets = async () => {
-    const results = await this.secretStore.fetchByK8s({
+    const results = await this.secretStore.fetchListByK8s({
       namespace: this.namespace,
+      cluster: this.props.cluster,
       fieldSelector: `type=kubernetes.io/dockerconfigjson`,
     })
 
@@ -163,17 +163,17 @@ export default class S2IForm extends React.Component {
 
   render() {
     const { formTemplate, formRef, mode, prefix } = this.props
-
     return (
       <Form ref={formRef} data={formTemplate}>
         <Form.Item
           label={t('Upload Artifacts')}
-          rules={[{ required: true, message: t('file has not uploaded') }]}
+          rules={[{ required: true, message: t('The file has not been uploaded.') }]}
         >
           <Uploader
             name={`${this.prefix}spec.config.sourceUrl`}
             namespace={this.namespace}
             formTemplate={prefix ? formTemplate[prefix] : formTemplate}
+            cluster={this.props.cluster}
           />
         </Form.Item>
         <TemplateSelect

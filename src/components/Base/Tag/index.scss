@@ -3,25 +3,35 @@
 
 .wrapper {
   display: inline-block;
+  vertical-align: middle;
   height: 20px;
   padding: 0 4px;
   font-size: $size-small;
   line-height: 20px;
   font-weight: 600;
   border-radius: 2px;
+  max-width: 100px;
+  color: $white;
+  background-color: $dark-color06;
+  @include ellipsis;
 
-  &.default {
+  &.secondary {
     color: $white;
-    background-color: $dark-color07;
+    background-color: $dark-color05;
   }
 
   &.warning {
-    color: $yellow-color05;
-    background-color: $yellow-color01;
+    color: $white;
+    background-color: $yellow-color03;
   }
 
   &.primary {
-    color: $green-color05;
-    background-color: $green-color01;
+    color: $white;
+    background-color: $green-color03;
+  }
+
+  &.info {
+    color: $white;
+    background-color: $blue-color03;
   }
 }

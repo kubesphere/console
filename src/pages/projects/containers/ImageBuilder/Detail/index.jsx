@@ -19,29 +19,32 @@
 import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
-import { get, isEmpty } from 'lodash'
+import { get } from 'lodash'
 
-import { getLocalTime, parseUrl } from 'utils'
+import { Loading } from '@pitrix/lego-ui'
+
+import { getDisplayName, getLocalTime, parseUrl } from 'utils'
+import { trigger } from 'utils/action'
 import S2IBuilderStore from 'stores/s2i/builder'
 import S2IRunStore from 'stores/s2i/run'
 import ResourceStore from 'stores/workload/resource'
-import { renderRoutes } from 'utils/router.config'
 
-import { Loading } from '@pitrix/lego-ui'
-import Base from 'core/containers/Base/Detail'
-import EditYamlModal from 'components/Modals/EditYaml'
-import RerunModal from 'components/Forms/ImageBuilder/RerunForm'
+import DetailPage from 'projects/containers/Base/Detail'
 
-import EditModal from './Components/EditModal'
-import styles from './index.scss'
+import getRoutes from './routes'
 
 @inject('rootStore')
 @observer
-class ImageBuilderDetail extends Base {
-  state = {
-    editBaseInfo: false,
-    viewYaml: false,
-    deleteModule: false,
+@trigger
+export default class ImageBuilderDetail extends React.Component {
+  store = new S2IBuilderStore(this.module)
+
+  resourceStore = new ResourceStore(this.module)
+
+  s2iRunStore = new S2IRunStore()
+
+  componentDidMount() {
+    this.fetchData()
   }
 
   get module() {
@@ -52,63 +55,31 @@ class ImageBuilderDetail extends Base {
     return 's2ibuilders'
   }
 
-  get selectors() {
-    const { spec = {} } = this.store.detail
-    const selector = get(spec, 'selector.matchLabels', {})
-
-    return isEmpty(selector) ? (
-      '-'
-    ) : (
-      <span>
-        {Object.keys(selector)
-          .map(key => `${key} = ${selector[key]}`)
-          .join(', ')}
-      </span>
-    )
+  get routing() {
+    return this.props.rootStore.routing
   }
 
-  get labels() {
-    const label = get(this.store.detail, 'labels', {})
-    label.tag = get(this.store.detail, 'spec.config.tag', '')
-    return label
+  get params() {
+    return this.props.match.params
   }
 
-  get updateTime() {
-    const conditions = get(this.store.detail, 'status.conditions', [])
-
-    if (isEmpty(conditions)) return '-'
-
-    let lastTime = new Date(
-      get(conditions, '[0].lastTransitionTime', 0)
-    ).valueOf()
-    conditions.forEach(({ lastTransitionTime }) => {
-      const value = new Date(lastTransitionTime).valueOf()
-      value > lastTime && (lastTime = value)
-    })
-
-    return getLocalTime(lastTime).format('YYYY-MM-DD HH:mm:ss')
-  }
-
-  init() {
-    this.store = new S2IBuilderStore(this.module)
-    this.resourceStore = new ResourceStore(this.module)
-    this.s2iRunStore = new S2IRunStore()
+  get listUrl() {
+    const { workspace, cluster, namespace } = this.props.match.params
+    return `${
+      workspace ? `/${workspace}` : ''
+    }/clusters/${cluster}/projects/${namespace}/${this.module}`
   }
 
   fetchData = async params => {
-    if (this.store.fetchDetail) {
-      const builderResult = await this.store
-        .fetchDetail(this.params, params)
-        .catch(this.catch)
-      const runDetail = await this.s2iRunStore.fetchRunDetail({
-        ...this.params,
-        runName: get(builderResult, 'status.lastRunName', ''),
-      })
-      await this.s2iRunStore.fetchJobDetail({
-        ...this.params,
-        name: get(runDetail, '_originData.status.kubernetesJobName', ''),
-      })
-    }
+    const builderResult = await this.store.fetchDetail(this.params, params)
+    const runDetail = await this.s2iRunStore.fetchRunDetail({
+      ...this.params,
+      runName: get(builderResult, 'status.lastRunName', ''),
+    })
+    await this.s2iRunStore.fetchJobDetail({
+      ...this.params,
+      name: get(runDetail, '_originData.status.kubernetesJobName', ''),
+    })
   }
 
   getOperations = () => [
@@ -117,35 +88,47 @@ class ImageBuilderDetail extends Base {
       text: t('Rerun'),
       action: 'edit',
       type: 'control',
-      onClick: this.showModal('reRun'),
+      onClick: () =>
+        this.trigger('imagebuilder.rerun', {
+          detail: toJS(this.store.detail),
+          success: this.fetchData,
+        }),
     },
     {
       key: 'edit',
       icon: 'pen',
-      text: t('EDIT'),
+      text: t('Edit Info'),
       action: 'edit',
-      onClick: this.showModal('editBaseInfo'),
-    },
-    {
-      key: 'viewYaml',
-      icon: 'eye',
-      text: t('View YAML'),
-      action: 'view',
-      onClick: this.showModal('viewYaml'),
+      onClick: () =>
+        this.trigger('resource.baseinfo.edit', {
+          type: t(this.name),
+          detail: toJS(this.store.detail),
+          success: this.fetchData,
+        }),
     },
     {
       key: 'editYaml',
       icon: 'pen',
       text: t('Edit YAML'),
       action: 'edit',
-      onClick: this.showModal('editYaml'),
+      onClick: () =>
+        this.trigger('resource.yaml.edit', {
+          detail: this.store.detail,
+          success: this.fetchData,
+        }),
     },
     {
       key: 'delete',
       icon: 'trash',
       text: t('Delete'),
       action: 'delete',
-      onClick: this.showModal('deleteModule'),
+      type: 'danger',
+      onClick: () =>
+        this.trigger('resource.delete', {
+          type: t(this.name),
+          detail: this.store.detail,
+          success: () => this.routing.push(this.listUrl),
+        }),
     },
   ]
 
@@ -156,7 +139,7 @@ class ImageBuilderDetail extends Base {
     const { binaryName } = this.s2iRunStore.runDetail
     const sourceUrl = get(spec, 'config.sourceUrl', '')
     const path = get(parseUrl(sourceUrl), 'pathname', `/${sourceUrl}`)
-    const downLoadUrl = `${window.location.protocol}//${
+    const downLoadUrl = `${window.location.protocol}/${
       window.location.host
     }/b2i_download${path}`
 
@@ -167,7 +150,7 @@ class ImageBuilderDetail extends Base {
       },
       {
         name: t('Project'),
-        value: this.namespace,
+        value: detail.namespace,
       },
       {
         name: t('type'),
@@ -197,7 +180,7 @@ class ImageBuilderDetail extends Base {
       },
       {
         name: t('Created Time'),
-        value: this.createTime,
+        value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
         name: t('Creator'),
@@ -206,64 +189,37 @@ class ImageBuilderDetail extends Base {
     ]
   }
 
-  handleRerun = formData => {
-    this.store.updateBuilder(formData, this.params).then(() => {
-      this.fetchData()
-      this.setState({ reRun: false, editYaml: false })
-    })
-  }
+  render() {
+    const stores = {
+      detailStore: this.store,
+      s2iRunStore: this.s2iRunStore,
+      resourceStore: this.resourceStore,
+    }
 
-  renderSubView() {
-    const { route } = this.props
+    if (this.store.isLoading) {
+      return <Loading className="ks-page-loading" />
+    }
 
-    if (this.store.isLoading || this.s2iRunStore.isLoading)
-      return (
-        <div className={styles.loading}>
-          <Loading />
-        </div>
-      )
-
-    return renderRoutes(route.routes, {
-      ...this.baseProps,
-      ...this.getRouteProps(),
-    })
-  }
-
-  renderExtraModals() {
-    const { detail = {}, isSubmitting } = this.store
-    const { editBaseInfo, viewYaml, reRun, editYaml } = this.state
+    const sideProps = {
+      module: this.module,
+      name: getDisplayName(this.store.detail),
+      desc: this.store.detail.description,
+      operations: this.getOperations(),
+      attrs: this.getAttrs(),
+      breadcrumbs: [
+        {
+          label: t('Image Builders'),
+          url: this.listUrl,
+        },
+      ],
+    }
 
     return (
-      <div>
-        <EditModal
-          visible={editBaseInfo}
-          detail={detail}
-          onOk={this.handleEdit('editBaseInfo')}
-          onCancel={this.hideModal('editBaseInfo')}
-          isSubmitting={isSubmitting}
-        />
-        <EditYamlModal
-          readOnly
-          visible={viewYaml}
-          detail={toJS(detail._originData)}
-          onCancel={this.hideModal('viewYaml')}
-        />
-        <EditYamlModal
-          visible={editYaml}
-          detail={toJS(detail._originData)}
-          onCancel={this.hideModal('editYaml')}
-          onOk={this.handleRerun}
-        />
-        <RerunModal
-          detail={detail._originData}
-          visible={reRun}
-          isSubmitting={isSubmitting}
-          onOk={this.handleRerun}
-          onCancel={this.hideModal('reRun')}
-        />
-      </div>
+      <DetailPage
+        stores={stores}
+        {...sideProps}
+        routes={getRoutes(this.props.match.path)}
+      />
     )
   }
 }
-
-export default ImageBuilderDetail

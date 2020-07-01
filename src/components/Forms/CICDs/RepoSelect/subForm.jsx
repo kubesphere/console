@@ -27,7 +27,7 @@ import SCMStore from 'stores/devops/scm'
 import { REPO_TYPES, REPO_KEY_MAP } from 'utils/constants'
 import { ReactComponent as BackIcon } from 'src/assets/back.svg'
 
-import CredentialModal from 'devops/containers/Cridential/credentialModal'
+import CredentialModal from 'devops/containers/Credential/credentialModal'
 
 import GitForm from './GitForm'
 import GithubForm from './GithubForm'
@@ -61,7 +61,6 @@ export default class RepoSelectForm extends React.Component {
 
     this.formRef = React.createRef()
     this.tokenFormRef = React.createRef()
-
     this.store = new SCMStore()
   }
 
@@ -71,12 +70,13 @@ export default class RepoSelectForm extends React.Component {
   showCredential = false
 
   componentDidMount() {
-    const { onCancel, project_id, name } = this.props
+    const { onCancel, project_id, name, cluster } = this.props
     const { registerSubRoute } = this.context
     const { sourceData } = this.props
 
     registerSubRoute && registerSubRoute(this.handleSubmit, onCancel)
-    this.store.getCredential(project_id)
+
+    this.store.getCredential({ project_id, cluster })
     this.store.name = name
 
     if (!isEmpty(sourceData)) {
@@ -104,9 +104,8 @@ export default class RepoSelectForm extends React.Component {
   }
 
   hideCreateCredential = async () => {
-    const { project_id } = this.props
-
-    await this.store.getCredential(project_id)
+    const { project_id, cluster } = this.props
+    await this.store.getCredential({ project_id, cluster })
     this.showCredential = false
   }
 
@@ -193,13 +192,15 @@ export default class RepoSelectForm extends React.Component {
   }
 
   renderForm() {
-    const { project_id, enableTypeChange } = this.props
+    const { project_id, enableTypeChange, cluster } = this.props
     if (this.source_type === 'github') {
       return (
         <GithubForm
           store={this.store}
           formRef={this.formRef}
           handleSubmit={this.handleSubmit}
+          cluster={cluster}
+          project_id={project_id}
         />
       )
     }
@@ -213,6 +214,7 @@ export default class RepoSelectForm extends React.Component {
           project_id={project_id}
           showCredential={this.showCreateCredential}
           enableTypeChange={enableTypeChange}
+          cluster={cluster}
         />
       )
     }
@@ -223,6 +225,8 @@ export default class RepoSelectForm extends React.Component {
           store={this.store}
           formRef={this.formRef}
           handleSubmit={this.handleSubmit}
+          cluster={cluster}
+          project_id={project_id}
         />
       )
     }
@@ -239,7 +243,7 @@ export default class RepoSelectForm extends React.Component {
   }
 
   render() {
-    const { project_id } = this.props
+    const { project_id, cluster } = this.props
 
     return (
       <div className={styles.formWrapper}>
@@ -258,6 +262,7 @@ export default class RepoSelectForm extends React.Component {
           onOk={this.hideCreateCredential}
           onCancel={this.hideCreateCredential}
           project_id={project_id}
+          cluster={cluster}
         />
       </div>
     )

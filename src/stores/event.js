@@ -32,11 +32,15 @@ export default class EventsStore {
   }
 
   @action
-  async fetchList({ name, namespace, ...rest }) {
+  async fetchList({ name, cluster, namespace, ...rest }) {
     this.list.isLoading = true
 
+    const clusterPath = cluster ? `/klusters/${cluster}` : ''
     const namespacePath = namespace ? `/namespaces/${namespace}` : ''
-    const result = await request.get(`api/v1${namespacePath}/events`, rest)
+    const result = await request.get(
+      `api/v1${clusterPath}${namespacePath}/events`,
+      rest
+    )
 
     this.list = {
       data: orderBy(result.items.map(ObjectMapper.events), 'startTime', 'desc'),

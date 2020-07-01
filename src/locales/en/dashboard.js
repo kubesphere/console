@@ -31,7 +31,7 @@ export default {
   RESOURCE_WARNING_TIPS: 'There are {warnNum} {tipName} display abnormally.',
   CPU_AVERAGE_LOAD: 'Load Average',
 
-  USER_DASHBOARD_EMPTY_TITLE: 'You do not belong to any workspaces currently',
+  USER_DASHBOARD_EMPTY_TITLE: 'You do not belong to any workspaces currently.',
   USER_DASHBOARD_EMPTY_DESC:
-    'You can contact an workspace administrator to invite you to join the workspace.',
+    'You can contact a workspace administrator to invite you to join a workspace.',
 }

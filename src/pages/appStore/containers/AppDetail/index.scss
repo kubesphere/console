@@ -1,0 +1,108 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+$toolbar-height: 52px;
+
+%sectionTitle {
+  margin-bottom: 12px;
+  line-height: 20px;
+  font-size: $size-normal;
+  font-weight: bold;
+  color: $text-color;
+}
+
+.content {
+  position: relative;
+  top: -$header-height;
+
+  :global {
+    .tabs-app {
+      > .tabs {
+        display: inline-block;
+        height: 52px;
+        background-color: $bg-color;
+
+        ul {
+          display: inline-block;
+          position: relative;
+          z-index: 11;
+          width: $apps-content-width;
+          margin: 0 auto;
+          display: block;
+          padding: 0 20px;
+          border: 0;
+          border-radius: 0;
+
+          li {
+            display: inline-block;
+            margin: 0;
+            padding: 0 12px;
+            min-width: 100px;
+            height: 52px;
+            line-height: 52px;
+            border-radius: 0;
+            border: 0 none;
+            text-align: center;
+            font-size: $size-small;
+            font-weight: bold;
+            cursor: pointer;
+
+            &.is-active {
+              background-color: $white;
+              color: $green-color04;
+            }
+          }
+        }
+      }
+
+      > .tab-content {
+        position: relative;
+        width: $apps-content-width;
+        padding: 32px 20px;
+        margin: 0 auto;
+      }
+    }
+
+    .columns {
+      width: 100%;
+    }
+  }
+
+  .loading {
+    display: block;
+    padding: 150px;
+  }
+
+  .deployButton {
+    position: absolute;
+    z-index: 11;
+    top: -42px;
+    right: 40px;
+  }
+
+  .keywords {
+    h3 {
+      @extend %sectionTitle;
+    }
+    > p {
+      > label {
+        float: left;
+        margin: 0 8px 8px 0;
+        padding: 2px 8px;
+        font-size: $size-small;
+        line-height: 20px;
+        color: $dark-color06;
+        background: $light-color03;
+        border-radius: 2px;
+      }
+    }
+  }
+}
+
+.deployModal {
+  & > div {
+    padding: 0;
+    overflow: hidden;
+    max-height: none;
+  }
+}

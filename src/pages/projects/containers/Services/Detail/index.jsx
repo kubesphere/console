@@ -16,102 +16,132 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, isEmpty } from 'lodash'
 import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
-
+import { get, isEmpty } from 'lodash'
 import { Loading } from '@pitrix/lego-ui'
-import { joinSelector } from 'utils'
+
+import { getDisplayName, joinSelector, getLocalTime } from 'utils'
+import { trigger } from 'utils/action'
 import { SERVICE_TYPES } from 'utils/constants'
 import ServiceStore from 'stores/service'
 
-import Base from 'core/containers/Base/Detail'
-import EditBasicInfoModal from 'components/Modals/EditBasicInfo'
-import EditYamlModal from 'components/Modals/EditYaml'
-import EditGatewayModal from 'projects/components/Modals/ServiceGatewaySetting'
-import EditServiceModal from 'projects/components/Modals/ServiceSetting'
-import ServiceDeleteModal from 'projects/components/Modals/ServiceDelete'
+import DetailPage from 'projects/containers/Base/Detail'
 
-class ServiceDetail extends Base {
+import getRoutes from './routes'
+
+@inject('rootStore')
+@observer
+@trigger
+export default class ServiceDetail extends React.Component {
+  store = new ServiceStore()
+
+  componentDidMount() {
+    this.fetchData()
+  }
+
+  get module() {
+    return 'services'
+  }
+
   get name() {
     return 'Service'
   }
 
-  get isLoading() {
-    return this.store.isLoading
+  get routing() {
+    return this.props.rootStore.routing
   }
 
-  init() {
-    this.store = new ServiceStore()
+  get listUrl() {
+    const { workspace, cluster, namespace } = this.props.match.params
+    if (workspace) {
+      return `/${workspace}/clusters/${cluster}/projects/${namespace}/${
+        this.module
+      }`
+    }
+    return `/clusters/${cluster}/${this.module}`
   }
 
   fetchData = () => {
-    this.store
-      .fetchDetail(this.props.match.params)
-      .then(() => {
-        const { namespace, selector } = this.store.detail
-        const labelSelector = joinSelector(selector)
-        if (!isEmpty(labelSelector)) {
-          this.store.fetchWorkloads({ namespace, labelSelector })
-          this.store.fetchPods({ namespace, labelSelector })
-        }
-      })
-      .catch(this.catch)
-    this.store.fetchEndpoints(this.props.match.params)
+    const { params } = this.props.match
+    this.store.fetchDetail(params).then(() => {
+      const { selector } = this.store.detail
+      const labelSelector = joinSelector(selector)
+      if (!isEmpty(labelSelector)) {
+        this.store.fetchWorkload({ ...params, labelSelector })
+      }
+    })
+    this.store.fetchEndpoints(params)
   }
 
-  getOperations = () => {
-    const actions = [
-      {
-        key: 'edit',
-        type: 'control',
-        text: t('EDIT'),
-        action: 'edit',
-        onClick: this.showModal('editBaseInfo'),
-      },
-      {
-        key: 'editService',
-        icon: 'network-router',
-        text: t('Edit Service'),
-        action: 'edit',
-        onClick: this.showModal('editService'),
-      },
-    ]
-
-    const detail = toJS(this.store.detail)
-    if (detail.type === SERVICE_TYPES.VirtualIP) {
-      actions.push({
-        key: 'editGateway',
-        icon: 'ip',
-        text: t('Edit Internet Access'),
-        action: 'edit',
-        onClick: this.showModal('editGateway'),
-      })
-    }
-
-    return [
-      ...actions,
-      {
-        key: 'editYaml',
-        icon: 'pen',
-        text: t('Edit YAML'),
-        action: 'edit',
-        onClick: this.showModal('editYaml'),
-      },
-      {
-        key: 'delete',
-        icon: 'trash',
-        type: 'danger',
-        text: t('Delete'),
-        action: 'delete',
-        onClick: this.showModal('deleteModule'),
-      },
-    ]
-  }
+  getOperations = () => [
+    {
+      key: 'edit',
+      icon: 'pen',
+      text: t('Edit Info'),
+      action: 'edit',
+      onClick: () =>
+        this.trigger('resource.baseinfo.edit', {
+          type: t(this.name),
+          detail: this.store.detail,
+          success: this.fetchData,
+        }),
+    },
+    {
+      key: 'editService',
+      icon: 'network-router',
+      text: t('Edit Service'),
+      action: 'edit',
+      onClick: () =>
+        this.trigger('service.edit', {
+          detail: this.store.detail,
+          success: this.fetchData,
+        }),
+    },
+    {
+      key: 'editGateway',
+      icon: 'ip',
+      text: t('Edit Internet Access'),
+      action: 'edit',
+      show: record => record.type === SERVICE_TYPES.VirtualIP,
+      onClick: () =>
+        this.trigger('service.gateway.edit', {
+          detail: this.store.detail,
+          success: this.fetchData,
+        }),
+    },
+    {
+      key: 'editYaml',
+      icon: 'pen',
+      text: t('Edit YAML'),
+      action: 'edit',
+      onClick: () =>
+        this.trigger('resource.yaml.edit', {
+          detail: this.store.detail,
+        }),
+    },
+    {
+      key: 'delete',
+      icon: 'trash',
+      text: t('Delete'),
+      action: 'delete',
+      onClick: () =>
+        this.trigger('service.delete', {
+          type: t(this.name),
+          detail: this.store.detail,
+          success: () => this.routing.push(this.listUrl),
+        }),
+    },
+  ]
 
   getAttrs = () => {
     const detail = toJS(this.store.detail)
+    const { cluster, namespace } = this.props.match.params
+
+    if (isEmpty(detail)) {
+      return
+    }
 
     let externalIP
     if (detail.type === 'ExternalName') {
@@ -126,8 +156,12 @@ class ServiceDetail extends Base {
 
     return [
       {
+        name: t('Cluster'),
+        value: cluster,
+      },
+      {
         name: t('Project'),
-        value: detail.namespace,
+        value: namespace,
       },
       {
         name: t('Type'),
@@ -144,14 +178,14 @@ class ServiceDetail extends Base {
       },
       {
         name: t('Application'),
-        value: this.application,
+        value: detail.application,
       },
       {
         name: t('Virtual IP'),
         value: detail.clusterIP,
       },
       {
-        name: t('External IP'),
+        name: t('External Address'),
         value: externalIP,
       },
       {
@@ -163,29 +197,25 @@ class ServiceDetail extends Base {
         value: joinSelector(detail.selector),
       },
       {
-        name: t('DNS'),
-        value: this.getDNS(),
-      },
-      {
-        name: t('Endpoints'),
+        name: t('Endpoint'),
         value: this.renderEndpoints(),
       },
       {
         name: t('Created Time'),
-        value: this.createTime,
+        value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
         name: t('Updated Time'),
-        value: this.updateTime,
+        value: getLocalTime(detail.updateTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
         name: t('Creator'),
-        value: this.creator,
+        value: detail.creator,
       },
     ]
   }
 
-  getDNS() {
+  renderDNS() {
     const { detail: service, workloads, pods } = this.store
 
     if (
@@ -232,61 +262,33 @@ class ServiceDetail extends Base {
     return endpoints.map((end, index) => <p key={index}>{end}</p>)
   }
 
-  renderModals() {
-    const { detail, isSubmitting } = this.store
-    const {
-      deleteModule,
-      editBaseInfo,
-      editYaml,
-      editService,
-      editGateway,
-    } = this.state
+  render() {
+    const stores = { detailStore: this.store }
 
-    const originData = toJS(detail._originData)
+    if (this.store.isLoading && !this.store.detail.name) {
+      return <Loading className="ks-page-loading" />
+    }
+
+    const sideProps = {
+      module: this.module,
+      name: getDisplayName(this.store.detail),
+      desc: this.store.detail.description,
+      operations: this.getOperations(),
+      attrs: this.getAttrs(),
+      breadcrumbs: [
+        {
+          label: t(`${this.name}s`),
+          url: this.listUrl,
+        },
+      ],
+    }
 
     return (
-      <div>
-        <ServiceDeleteModal
-          type={t(this.name)}
-          resource={detail}
-          visible={deleteModule}
-          onOk={this.handleDelete}
-          onCancel={this.hideModal('deleteModule')}
-          isSubmitting={isSubmitting}
-        />
-        <EditBasicInfoModal
-          visible={editBaseInfo}
-          detail={originData}
-          onOk={this.handleEdit('editBaseInfo')}
-          onCancel={this.hideModal('editBaseInfo')}
-          isSubmitting={isSubmitting}
-        />
-        <EditYamlModal
-          visible={editYaml}
-          detail={originData}
-          onOk={this.handleEdit('editYaml', 'update')}
-          onCancel={this.hideModal('editYaml')}
-          isSubmitting={isSubmitting}
-        />
-        <EditGatewayModal
-          visible={editGateway}
-          detail={originData}
-          onOk={this.handleEdit('editGateway', 'update')}
-          onCancel={this.hideModal('editGateway')}
-          isSubmitting={isSubmitting}
-        />
-        <EditServiceModal
-          visible={editService}
-          detail={originData}
-          type={detail.type}
-          onOk={this.handleEdit('editService', 'update')}
-          onCancel={this.hideModal('editService')}
-          isSubmitting={isSubmitting}
-        />
-      </div>
+      <DetailPage
+        stores={stores}
+        {...sideProps}
+        routes={getRoutes(this.props.match.path)}
+      />
     )
   }
 }
-
-export default inject('rootStore')(observer(ServiceDetail))
-export const Component = ServiceDetail

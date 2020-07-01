@@ -17,6 +17,7 @@
  */
 
 import { action, observable } from 'mobx'
+import { Notify } from '@pitrix/lego-ui'
 import ObjectMapper from 'utils/object.mapper'
 import { isArray, get } from 'lodash'
 import { getFilterString, parseUrl } from 'utils'
@@ -44,6 +45,7 @@ export default class S2irunStore extends Base {
 
   @observable
   jobDetail = {}
+
   @observable
   runDetail = {}
 
@@ -60,11 +62,11 @@ export default class S2irunStore extends Base {
   }
 
   @action
-  async fetchJobDetail({ name, namespace }) {
+  async fetchJobDetail({ name, cluster, namespace }) {
     this.isLoading = true
 
     const result = await request.get(
-      `apis/batch/v1/namespaces/${namespace}/jobs/${name}`
+      `apis/batch/v1${this.getPath({ cluster, namespace })}/jobs/${name}`
     )
     const detail = ObjectMapper['jobs'](result)
     this.jobDetail = detail
@@ -72,12 +74,17 @@ export default class S2irunStore extends Base {
   }
 
   @action
-  async fetchRunDetail({ namespace, runName }) {
+  async fetchRunDetail({ cluster, namespace, runName }) {
+    if (!runName) {
+      return
+    }
+
     this.getRunDetailLoading = true
     const result = await request.get(
-      `apis/devops.kubesphere.io/v1alpha1/namespaces/${namespace}/${
-        this.module
-      }/${runName}`
+      `apis/devops.kubesphere.io/v1alpha1${this.getPath({
+        cluster,
+        namespace,
+      })}/${this.module}/${runName}`
     )
 
     this.runDetail = ObjectMapper['s2iruns'](result)
@@ -86,11 +93,16 @@ export default class S2irunStore extends Base {
   }
 
   @action
-  async deleteRun({ namespace, runName }) {
+  async deleteRun({ cluster, namespace, runName }) {
+    if (!runName) {
+      return
+    }
+
     await request.delete(
-      `apis/devops.kubesphere.io/v1alpha1/namespaces/${namespace}/${
-        this.module
-      }/${runName}`
+      `apis/devops.kubesphere.io/v1alpha1${this.getPath({
+        cluster,
+        namespace,
+      })}/${this.module}/${runName}`
     )
   }
 
@@ -102,6 +114,7 @@ export default class S2irunStore extends Base {
     order,
     reverse,
     workspace,
+    cluster,
     namespace,
     more,
     ...filters
@@ -132,14 +145,16 @@ export default class S2irunStore extends Base {
     params.reverse = true
 
     const result = await request.get(
-      `kapis/resources.kubesphere.io/v1alpha2/namespaces/${namespace}/${
-        this.module
-      }`,
+      `kapis/resources.kubesphere.io/v1alpha2${this.getPath({
+        cluster,
+        namespace,
+      })}/${this.module}`,
       params
     )
     const data = result.items.map(this.mapper)
     data.forEach((item, index) => {
       item.count = result.total_count - index - 10 * (page - 1)
+      item.cluster = cluster
     })
 
     this.list = {
@@ -156,11 +171,8 @@ export default class S2irunStore extends Base {
     return this.list
   }
 
-  getS2IBuilderTemplate = async () =>
-    await request.get('apis/devops.kubesphere.io/v1alpha1/s2ibuildertemplates')
-
   @action
-  getLog = async logURL => {
+  getLog = async (logURL, cluster) => {
     if (this.logData.logURL !== logURL) {
       this.logData = {
         isLoading: true,
@@ -169,14 +181,27 @@ export default class S2irunStore extends Base {
         hasMore: true,
       }
     }
+
+    let url = parseUrl(logURL).pathname.slice(1)
+
+    const ulrList =
+      url.indexOf('namespaces') >= 0 ? url.split(/\/namespaces\/([\w]+)\//) : []
+
+    url =
+      ulrList.length > 2
+        ? `${ulrList[0]}${this.getPath({ namespace: ulrList[1], cluster })}/${
+            ulrList[2]
+          }`
+        : url
+
     const result = await request.get(
-      `${parseUrl(logURL).pathname.slice(1)}?size=300&from=${
-        this.logData.start
-      }&sort=asc`
+      `${url}?size=300&from=${this.logData.start}&sort=asc`
     )
+
     const logRecords = get(result, 'query.records', [])
     const total = get(result, 'query.total', [])
     const { log } = this.logData
+
     if (isArray(logRecords)) {
       const totalLog = logRecords.reduce(
         (logStr, logItem) => logStr + logItem.log,
@@ -193,7 +218,7 @@ export default class S2irunStore extends Base {
   }
 
   @action
-  async fetchPodsLogs(logURL) {
+  async fetchPodsLogs(logURL, cluster) {
     if (get(this.logData, 'logURL', '') !== logURL) {
       this.logData = {
         isLoading: false,
@@ -203,24 +228,29 @@ export default class S2irunStore extends Base {
       }
     }
     this.logData.isLoading = true
-    const logPath = get(logURL.match(/namespaces\/([\w-/]*)\?/), '1')
+    const namespace = get(logURL.match(/namespaces\/([\w-/]*)\?/), '1')
 
     if (!this.containerName) {
-      const podsDetail = await request.get(`api/v1//namespaces/${logPath}`)
+      const podsDetail = await request.get(
+        `api/v1${this.getPath({ namespace, cluster })}`
+      )
       const containerID = get(
         podsDetail,
         'status.containerStatuses[0]containerID'
       )
       if (!containerID) {
-        return Promise.reject('container not ready')
+        return Notify.error('container not ready')
       }
       this.containerName = get(podsDetail, 'spec.containers[0].name', '')
     }
-    const result = await request.get(`api/v1/namespaces/${logPath}/log`, {
-      container: this.containerName,
-      timestamps: true,
-      tailLines: 1000,
-    })
+    const result = await request.get(
+      `api/v1${this.getPath({ namespace, cluster })}/log`,
+      {
+        container: this.containerName,
+        timestamps: true,
+        tailLines: 1000,
+      }
+    )
     this.logData = {
       logURL,
       isLoading: false,

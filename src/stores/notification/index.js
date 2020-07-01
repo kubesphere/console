@@ -25,18 +25,16 @@ export default class NotificationStoreBase extends Base {
     return 'kapis/notification.kubesphere.io/v1'
   }
 
-  get apiVersion2() {
-    return 'kapis/notification.kubesphere.io/v2'
-  }
-
   get itemsKey() {
     return `${this.module}_set`
   }
 
-  getListUrl = () => `${this.apiVersion}/notifications`
+  getListUrl = (params = {}) =>
+    `${this.apiVersion}${this.getPath(params)}/notifications`
 
   @action
   async fetchList({
+    cluster,
     reverse = false,
     limit = 10,
     page = 1,
@@ -49,7 +47,7 @@ export default class NotificationStoreBase extends Base {
       ...filters,
     }
 
-    const result = await request.get(this.getListUrl(), params)
+    const result = await request.get(this.getListUrl({ cluster }), params)
     const items = result[this.itemsKey] || []
 
     this.list = {
@@ -67,7 +65,7 @@ export default class NotificationStoreBase extends Base {
   }
 
   @action
-  create(data) {
-    return this.submitting(request.post(this.getListUrl(), data))
+  create(params, data) {
+    return this.submitting(request.post(this.getListUrl(params), data))
   }
 }

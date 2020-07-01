@@ -67,12 +67,13 @@ export default class ContainerLog extends React.Component {
   }
 
   getData(params, callback) {
-    const { namespace, podName, containerName } = this.props
+    const { cluster, namespace, podName, containerName } = this.props
 
     this.store.stopWatchLogs()
 
     return this.store.watchLogs(
       {
+        cluster,
         namespace,
         podName,
         container: containerName,
@@ -136,7 +137,7 @@ export default class ContainerLog extends React.Component {
 
     if (!result) {
       Notify.info({
-        content: `${t('NO_RESOURCE', { resource: t('log data') })}!`,
+        content: `${t('NO_RESOURCE', { resource: t('Log Data') })}!`,
       })
       return
     }
@@ -241,7 +242,7 @@ export default class ContainerLog extends React.Component {
     return (
       <Card
         className={className}
-        empty={t('NO_RESOURCE', { resource: t('log data') })}
+        empty={t('NO_RESOURCE', { resource: t('Log Data') })}
         loading={isLoading}
       >
         {this.renderContent()}

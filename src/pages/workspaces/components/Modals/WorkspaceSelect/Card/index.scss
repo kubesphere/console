@@ -1,0 +1,23 @@
+@import '~scss/variables';
+
+.wrapper {
+  cursor: pointer;
+
+  &:hover {
+    a {
+      color: $primary;
+    }
+  }
+}
+
+.title {
+  flex: 1;
+}
+
+.name {
+  min-width: 400px;
+}
+
+.clusters {
+  min-width: 400px;
+}

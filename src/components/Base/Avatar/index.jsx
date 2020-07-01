@@ -20,7 +20,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { Link } from 'react-router-dom'
-import { Icon } from '@pitrix/lego-ui'
+import { Icon, Tooltip } from '@pitrix/lego-ui'
 
 import styles from './index.scss'
 
@@ -36,6 +36,15 @@ export default class Avatar extends React.Component {
     iconSize: 20,
   }
 
+  renderClusterTip() {
+    return (
+      <div>
+        <div className="tooltip-title">{t('Multi-cluster Deployment')}</div>
+        <p>{t('MULTI_CLUSTER_TIP')}</p>
+      </div>
+    )
+  }
+
   render() {
     const {
       className,
@@ -46,6 +55,7 @@ export default class Avatar extends React.Component {
       desc,
       to,
       noLink,
+      isMultiCluster,
     } = this.props
 
     const titleComponent = to ? <Link to={to}>{title}</Link> : title
@@ -64,6 +74,11 @@ export default class Avatar extends React.Component {
           />
         ) : (
           icon && <Icon className={styles.icon} name={icon} size={iconSize} />
+        )}
+        {(avatar || icon) && isMultiCluster && (
+          <Tooltip content={this.renderClusterTip()}>
+            <img className={styles.indicator} src="/assets/cluster.svg" />
+          </Tooltip>
         )}
         <div className={styles.text}>
           <div className={styles.title}>{titleComponent}</div>

@@ -17,11 +17,12 @@
  */
 
 require('whatwg-fetch')
-const isEmpty = require('lodash/isEmpty')
 const get = require('lodash/get')
 const set = require('lodash/set')
 const merge = require('lodash/merge')
+const isEmpty = require('lodash/isEmpty')
 const qs = require('qs')
+const { getClusterUrl } = require('./index')
 const cookie = require('./cookie').default
 
 const methods = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
@@ -44,7 +45,6 @@ module.exports = methods.reduce(
   {
     defaults: buildRequest,
     watch: watchResource,
-    toQueryString,
   }
 )
 
@@ -85,7 +85,9 @@ function buildRequest({
     ) !== -1
 
   if (method === 'GET') {
-    requestURL += !isEmpty(params) ? toQueryString(omitNil(params)) : ''
+    if (!isEmpty(params)) {
+      requestURL += `?${qs.stringify(params)}`
+    }
   } else if (isForm) {
     request.body = qs.stringify(params)
   } else {
@@ -114,13 +116,15 @@ function buildRequest({
     return
   }
 
-  return fetch(requestURL, request).then(resp => responseHandler(resp, reject))
+  return fetch(getClusterUrl(requestURL), request).then(resp =>
+    responseHandler(resp, reject)
+  )
 }
 
 function watchResource(url, params = {}, callback) {
   const xhr = new XMLHttpRequest()
 
-  xhr.open('GET', `${url}${toQueryString(params)}`, true)
+  xhr.open('GET', getClusterUrl(`/${url}?${qs.stringify(params)}`), true)
 
   xhr.onreadystatechange = () => {
     if (xhr.readyState >= 3 && xhr.status === 200) {
@@ -176,7 +180,8 @@ function handleResponse(response, reject) {
 
       if (typeof reject === 'function') {
         return reject(error, response)
-      } else if (window.onunhandledrejection) {
+      }
+      if (window.onunhandledrejection) {
         window.onunhandledrejection(error)
       }
 
@@ -197,42 +202,13 @@ function handleResponse(response, reject) {
 
     if (typeof reject === 'function') {
       return reject(response, error)
-    } else if (window.onunhandledrejection) {
+    }
+    if (window.onunhandledrejection) {
       window.onunhandledrejection(error)
     }
 
     return Promise.reject(error)
   })
-}
-
-/**
- * Transform an JSON object to a query string
- * @param params
- * @returns {string}
- */
-function toQueryString(params) {
-  return `?${Object.keys(params)
-    .map(k => {
-      const name = encodeURIComponent(k)
-      if (Array.isArray(params[k])) {
-        return params[k]
-          .map(val => `${name}=${encodeURIComponent(val)}`)
-          .join('&')
-      }
-      if (k === 'q') {
-        return `${name}=${params[k]}`
-      }
-      return `${name}=${encodeURIComponent(params[k])}`
-    })
-    .join('&')}`
-}
-
-function omitNil(obj) {
-  if (typeof obj !== 'object') return obj
-  return Object.keys(obj).reduce((acc, v) => {
-    if (obj[v] !== undefined) acc[v] = obj[v]
-    return acc
-  }, {})
 }
 
 function formatError(response, data) {

@@ -17,7 +17,7 @@
  */
 
 import { action, observable } from 'mobx'
-import { getWebSocketProtocol } from 'utils'
+import { getWebSocketProtocol, getClusterUrl } from 'utils'
 import SocketClient from 'utils/socket.client'
 
 export default class WebSocketStore {
@@ -32,7 +32,7 @@ export default class WebSocketStore {
     this.wsClient = new SocketClient(
       `${getWebSocketProtocol(window.location.protocol)}://${
         window.location.host
-      }/${url}`,
+      }${getClusterUrl(`/${url}`)}`,
       {
         onmessage: this.receive,
       }

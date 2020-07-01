@@ -16,10 +16,11 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { observer } from 'mobx-react'
+import { observer, inject } from 'mobx-react'
 
 import { Component as ResourceBase } from 'projects/containers/Deployments/Detail/ResourceStatus'
 
+@inject('detailStore')
 @observer
 class DaemonSetsResourceStatus extends ResourceBase {
   get enableScaleReplica() {

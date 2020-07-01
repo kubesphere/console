@@ -126,7 +126,7 @@ export default class NotificationRule extends React.Component {
             </Form.Item>
           </Column>
           <Column>
-            <Form.Item label={t('Notification channel')}>
+            <Form.Item label={t('Notification Channel')}>
               <Checkbox checked={notifyTypes.indexOf('email') !== -1} disabled>
                 {t('Email')}
               </Checkbox>
@@ -140,6 +140,7 @@ export default class NotificationRule extends React.Component {
   renderNotificationList() {
     return (
       <NotificationList
+        cluster={this.props.cluster}
         formTemplate={this.props.formTemplate}
         notifyTypes={this.state.notifyTypes}
       />

@@ -24,17 +24,20 @@ export default class TerminalStore {
 
   @computed
   get kubeWebsocketUrl() {
-    const { namespace, pod, container, shell = 'sh' } = this.kubectl
-    return `kapis/terminal.kubesphere.io/v1alpha2/namespaces/${namespace}/pods/${pod}?container=${container}&shell=${shell}`
+    const { cluster, namespace, pod, container, shell = 'sh' } = this.kubectl
+    return `kapis/terminal.kubesphere.io/v1alpha2${this.getClusterPath({
+      cluster,
+    })}/namespaces/${namespace}/pods/${pod}?container=${container}&shell=${shell}`
   }
 
   @observable
   kubectl = {
+    cluster: '',
     namespace: '',
     pod: '',
     container: '',
     shell: 'bash',
-    isLoading: false,
+    isLoading: true,
   }
 
   @observable
@@ -47,25 +50,34 @@ export default class TerminalStore {
     assign(this.kubectl, props)
   }
 
+  getClusterPath({ cluster } = {}) {
+    return cluster ? `/klusters/${cluster}` : ''
+  }
+
   @action
-  async fetchKubeCtl() {
+  async fetchKubeCtl({ cluster }) {
     this.kubectl.isLoading = true
     const result = await request.get(
-      `kapis/resources.kubesphere.io/v1alpha2/users/${this.username}/kubectl`,
+      `kapis/resources.kubesphere.io/v1alpha2${this.getClusterPath({
+        cluster,
+      })}/users/${this.username}/kubectl`,
       null,
       null,
       this.reject
     )
     this.kubectl = {
+      cluster,
       ...result,
       isLoading: false,
     }
   }
 
   @action
-  async fetchKubeConfig() {
+  async fetchKubeConfig(params) {
     const result = await request.get(
-      `kapis/resources.kubesphere.io/v1alpha2/users/${this.username}/kubeconfig`
+      `kapis/resources.kubesphere.io/v1alpha2${this.getClusterPath(
+        params
+      )}/users/${this.username}/kubeconfig`
     )
     this.kubeconfig = result
   }

@@ -27,20 +27,32 @@ export default class DashboardStore {
     isLoading: true,
   }
 
+  getPath({ cluster, namespace }) {
+    let path = ''
+    if (cluster) {
+      path += `/klusters/${cluster}`
+    }
+    if (namespace) {
+      path += `/namespaces/${namespace}`
+    }
+    return path
+  }
+
   @action
-  async fetchResourceStatus({ namespace }) {
+  async fetchResourceStatus(params) {
     this.resource.isLoading = true
 
-    const namespacePath = namespace ? `/namespaces/${namespace}` : ''
     const [quota, status] = await Promise.all([
       to(
         request.get(
-          `kapis/resources.kubesphere.io/v1alpha2${namespacePath}/quotas`
+          `kapis/resources.kubesphere.io/v1alpha2${this.getPath(params)}/quotas`
         )
       ),
       to(
         request.get(
-          `kapis/resources.kubesphere.io/v1alpha2${namespacePath}/abnormalworkloads`
+          `kapis/resources.kubesphere.io/v1alpha2${this.getPath(
+            params
+          )}/abnormalworkloads`
         )
       ),
     ])

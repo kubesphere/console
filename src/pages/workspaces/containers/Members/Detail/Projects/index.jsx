@@ -17,18 +17,63 @@
  */
 
 import React from 'react'
-import { toJS } from 'mobx'
-import { observer } from 'mobx-react'
+import { toJS, computed, get } from 'mobx'
+import { observer, inject } from 'mobx-react'
 import { getLocalTime, getDisplayName } from 'utils'
-import { Table } from '@pitrix/lego-ui'
-import { Avatar, Card } from 'components/Base'
+
+import Table from 'workspaces/components/ResourceTable'
+import { Card } from 'components/Base'
+
+import ProjectStore from 'stores/project'
 
 import styles from './index.scss'
 
+@inject('detailStore', 'workspaceStore')
 @observer
 export default class MemberProjects extends React.Component {
+  projectStore = new ProjectStore()
+
   componentDidMount() {
-    this.props.detailStore.fetchProjects(this.props.match.params)
+    this.workspaceStore
+      .fetchClusters({
+        workspace: this.workspace,
+        limit: -1,
+      })
+      .then(() => {
+        this.projectStore.fetchList({
+          workspace: this.workspace,
+          cluster: this.cluster,
+        })
+      })
+  }
+
+  get clusters() {
+    return this.workspaceStore.clusters.data.map(item => ({
+      label: item.name,
+      value: item.name,
+    }))
+  }
+
+  get workspaceStore() {
+    return this.props.workspaceStore
+  }
+
+  @computed
+  get cluster() {
+    return this.hostCluster
+  }
+
+  @computed
+  get hostCluster() {
+    if (this.clusters.length < 1) {
+      return ''
+    }
+
+    return get(
+      this.workspaceStore.clusters.data.find(cluster => cluster.isHost) ||
+        this.workspaceStore.clusters.data[0],
+      'name'
+    )
   }
 
   get workspace() {
@@ -40,13 +85,7 @@ export default class MemberProjects extends React.Component {
       title: t('Name'),
       dataIndex: 'name',
       width: '33%',
-      render: (name, record) => (
-        <Avatar
-          to={`/projects/${name}`}
-          icon="project"
-          title={getDisplayName(record)}
-        />
-      ),
+      render: (name, record) => getDisplayName(record),
     },
     {
       title: t('Created Time'),
@@ -59,15 +98,20 @@ export default class MemberProjects extends React.Component {
   ]
 
   render() {
-    const { data, isLoading } = toJS(this.props.detailStore.projects)
+    const { data, isLoading } = toJS(this.projectStore.list)
 
     return (
       <Card title={t('Projects')}>
         <Table
           className={styles.table}
-          dataSource={data}
+          data={data}
+          hideSearch
+          hideCustom
           columns={this.getColumns()}
           loading={isLoading}
+          cluster={this.cluster}
+          clusters={this.clusters}
+          name="Projects"
         />
       </Card>
     )

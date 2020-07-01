@@ -37,8 +37,6 @@ export default class ClusterMonitoring extends Base {
     isLoading: false,
   }
 
-  getApi = () => `${this.apiVersion}/cluster`
-
   @action
   async fetchStatistics() {
     this.statistics.isLoading = true
@@ -46,7 +44,7 @@ export default class ClusterMonitoring extends Base {
     const params = {
       type: 'statistics',
     }
-    const result = await to(request.get(`${this.apiVersion}/cluster`, params))
+    const result = await to(request.get(this.getApi(), params))
     const data = this.getResult(result)
 
     this.statistics = {
@@ -71,6 +69,10 @@ export default class ClusterMonitoring extends Base {
       this.resourceMetrics.isLoading = true
     }
 
+    if (filters.cluster) {
+      this.cluster = filters.cluster
+    }
+
     const params = this.getParams(filters)
 
     // set correct path
@@ -81,7 +83,7 @@ export default class ClusterMonitoring extends Base {
     )
     let path = 'cluster'
 
-    if (workspace && workspace !== 'all') {
+    if (workspace) {
       path = `workspaces/${workspace}`
       params.metrics_filter = `${metricType.replace(paramsReg, 'workspace_')}$`
     }

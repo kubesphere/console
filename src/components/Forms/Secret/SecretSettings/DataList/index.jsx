@@ -47,14 +47,14 @@ export default class SecretDataList extends React.Component {
             key={key}
             icon="key"
             title={key}
-            description={_value || '-'}
+            description={atob(_value) || '-'}
             onDelete={this.handleDelete(key)}
             onEdit={this.handleEdit(key)}
           />
         ))}
         <List.Add
-          title={t('Add data')}
-          description={t('Add key / value pair formal data')}
+          title={t('Add Data')}
+          description={t('Add key / value pair data')}
           onClick={onAdd}
         />
       </List>

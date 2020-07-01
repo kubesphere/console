@@ -19,176 +19,197 @@
 import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
-import { get } from 'lodash'
+import { isEmpty } from 'lodash'
+import { Loading } from '@pitrix/lego-ui'
 
-import ServiceStore from 'stores/service'
+import { getDisplayName, getLocalTime } from 'utils'
+import { trigger } from 'utils/action'
+import WorkloadStore from 'stores/workload'
 
-import { Notify } from 'components/Base'
-import { Component as DeploymentDetail } from 'projects/containers/Deployments/Detail'
-import EditBasicInfoModal from 'components/Modals/EditBasicInfo'
-import EditYamlModal from 'components/Modals/EditYaml'
-import RollBackModal from 'projects/components/Modals/RollBack'
-import EditTemplateModal from 'projects/components/Modals/ConfigTemplate'
-import EditServiceModal from 'projects/components/Modals/ServiceSetting/StatefulSet'
-import RedeployModal from 'projects/components/Modals/Redeploy'
+import DetailPage from 'projects/containers/Base/Detail'
 
-import { MODULE_KIND_MAP } from 'utils/constants'
+import getRoutes from './routes'
 
 @inject('rootStore')
 @observer
-class StatefulSetsDetail extends DeploymentDetail {
-  constructor(props) {
-    super(props)
+@trigger
+export default class StatefulSetDetail extends React.Component {
+  store = new WorkloadStore(this.module)
 
-    this.state = {
-      ...this.state,
-      editService: false,
-    }
+  componentDidMount() {
+    this.fetchData()
+  }
 
-    this.serviceStore = new ServiceStore()
+  get module() {
+    return 'statefulsets'
   }
 
   get name() {
     return 'StatefulSet'
   }
 
+  get routing() {
+    return this.props.rootStore.routing
+  }
+
+  get listUrl() {
+    const { workspace, cluster, namespace } = this.props.match.params
+    if (workspace) {
+      return `/${workspace}/clusters/${cluster}/projects/${namespace}/${
+        this.module
+      }`
+    }
+    return `/clusters/${cluster}/${this.module}`
+  }
+
+  fetchData = async () => {
+    const { params } = this.props.match
+    await this.store.fetchDetail(params)
+  }
+
   getOperations = () => [
     {
       key: 'edit',
-      type: 'control',
-      text: t('EDIT'),
+      icon: 'pen',
+      text: t('Edit Info'),
       action: 'edit',
-      onClick: this.showModal('editBaseInfo'),
+      onClick: () =>
+        this.trigger('resource.baseinfo.edit', {
+          type: t(this.name),
+          detail: toJS(this.store.detail),
+          success: this.fetchData,
+        }),
     },
     {
       key: 'rollBack',
       icon: 'timed-task',
       text: t('Revision Rollback'),
       action: 'edit',
-      onClick: this.showModal('rollBack'),
+      onClick: () =>
+        this.trigger('workload.revision.rollback', {
+          detail: this.store.detail,
+        }),
     },
     {
       key: 'editService',
-      show: this.resourceStore.isExistService,
+      show: this.store.detail.spec.serviceName,
       icon: 'network-router',
       text: t('Edit Service'),
       action: 'edit',
-      onClick: this.showModal('editService'),
+      onClick: () =>
+        this.trigger('workload.service.edit', {
+          detail: this.store.detail,
+        }),
     },
     {
       key: 'editConfigTemplate',
       icon: 'storage',
       text: t('Edit Config Template'),
       action: 'edit',
-      onClick: this.showModal('editConfigTemplate'),
+      onClick: () =>
+        this.trigger('workload.template.edit', {
+          detail: this.store.detail,
+          ...this.props.match.params,
+        }),
     },
     {
       key: 'editYaml',
       icon: 'pen',
       text: t('Edit YAML'),
       action: 'edit',
-      onClick: this.showModal('editYaml'),
+      onClick: () =>
+        this.trigger('resource.yaml.edit', {
+          detail: this.store.detail,
+        }),
     },
     {
       key: 'redeploy',
       icon: 'restart',
       text: t('Redeploy'),
       action: 'edit',
-      onClick: this.showModal('redeploy'),
+      onClick: () =>
+        this.trigger('workload.redeploy', {
+          module: this.module,
+          detail: this.store.detail,
+        }),
     },
     {
       key: 'delete',
       icon: 'trash',
       text: t('Delete'),
       action: 'delete',
-      onClick: this.showModal('deleteModal'),
+      onClick: () =>
+        this.trigger('workload.delete', {
+          type: t(this.name),
+          detail: this.store.detail,
+          success: () => this.routing.push(this.listUrl),
+        }),
     },
   ]
 
-  fetchData = async params => {
-    if (this.store.fetchDetail) {
-      await this.store.fetchDetail(this.params, params).catch(this.catch)
+  getAttrs = () => {
+    const detail = toJS(this.store.detail)
+    const { cluster, namespace } = this.props.match.params
+
+    if (isEmpty(detail)) {
+      return
     }
+
+    return [
+      {
+        name: t('Cluster'),
+        value: cluster,
+      },
+      {
+        name: t('Project'),
+        value: namespace,
+      },
+      {
+        name: t('Application'),
+        value: detail.application,
+      },
+      {
+        name: t('Created Time'),
+        value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
+      },
+      {
+        name: t('Updated Time'),
+        value: getLocalTime(detail.updateTime).format('YYYY-MM-DD HH:mm:ss'),
+      },
+      {
+        name: t('Creator'),
+        value: detail.creator,
+      },
+    ]
   }
 
-  handleEditService = newObject => {
-    this.serviceStore.update(this.serviceDetail, newObject).then(() => {
-      this.hideModal('editService')()
-      Notify.success({ content: `${t('Updated Successfully')}!` })
-      this.fetchData()
-    })
-  }
+  render() {
+    const stores = { detailStore: this.store }
 
-  renderExtraModals() {
-    const { detail = {}, isSubmitting } = this.store
-    const {
-      editBaseInfo,
-      rollBack,
-      redeploy,
-      editConfigTemplate,
-      editService,
-      editYaml,
-    } = this.state
-    const originData = toJS(detail._originData)
+    if (this.store.isLoading && !this.store.detail.name) {
+      return <Loading className="ks-page-loading" />
+    }
 
-    this.serviceDetail = {
-      type: 'Headless(Selector)',
-      name: get(originData, 'spec.serviceName', ''),
-      namespace: detail.namespace,
+    const sideProps = {
+      module: this.module,
+      name: getDisplayName(this.store.detail),
+      desc: this.store.detail.description,
+      operations: this.getOperations(),
+      attrs: this.getAttrs(),
+      breadcrumbs: [
+        {
+          label: t('StatefulSets'),
+          url: this.listUrl,
+        },
+      ],
     }
 
     return (
-      <div>
-        <EditBasicInfoModal
-          visible={editBaseInfo}
-          detail={originData}
-          onOk={this.handleEdit('editBaseInfo')}
-          onCancel={this.hideModal('editBaseInfo')}
-          isSubmitting={isSubmitting}
-        />
-        <RollBackModal
-          visible={rollBack}
-          module={this.module}
-          detail={detail}
-          onOk={this.handleRollBack}
-          onCancel={this.hideModal('rollBack')}
-          isSubmitting={this.revisionStore.isSubmitting}
-        />
-        <EditTemplateModal
-          visible={editConfigTemplate}
-          store={this.store}
-          module={this.module}
-          detail={originData}
-          onOk={this.handleEdit('editConfigTemplate', 'update')}
-          onCancel={this.hideModal('editConfigTemplate')}
-          isSubmitting={isSubmitting}
-        />
-        <EditYamlModal
-          visible={editYaml}
-          detail={originData}
-          onOk={this.handleEdit('editYaml', 'update')}
-          onCancel={this.hideModal('editYaml')}
-          isSubmitting={isSubmitting}
-        />
-        <RedeployModal
-          visible={redeploy}
-          detail={detail}
-          type={MODULE_KIND_MAP[this.module]}
-          onOk={this.handleRedeploy}
-          onCancel={this.hideModal('redeploy')}
-          isSubmitting={isSubmitting}
-        />
-        <EditServiceModal
-          visible={editService}
-          store={this.serviceStore}
-          detail={this.serviceDetail}
-          onOk={this.handleEditService}
-          onCancel={this.hideModal('editService')}
-          isSubmitting={this.serviceStore.isSubmitting}
-        />
-      </div>
+      <DetailPage
+        stores={stores}
+        {...sideProps}
+        routes={getRoutes(this.props.match.path)}
+      />
     )
   }
 }
-
-export default StatefulSetsDetail

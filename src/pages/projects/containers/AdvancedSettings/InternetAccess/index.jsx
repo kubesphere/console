@@ -77,15 +77,15 @@ class InternetAccess extends React.Component {
 
   handleGatewaySetting = data => {
     this.hideGatewaySetting()
-    const { namespace } = this.props.match.params
+    const { cluster, namespace } = this.props.match.params
     const gateway = toJS(this.store.gateway.data)
 
     const func = isEmpty(gateway)
       ? this.store.addGateway.bind(this.store)
       : this.store.updateGateway.bind(this.store)
 
-    func({ namespace }, data).then(() => {
-      this.store.getGateway({ namespace })
+    func({ cluster, namespace }, data).then(() => {
+      this.store.getGateway({ cluster, namespace })
     })
   }
 
@@ -94,10 +94,10 @@ class InternetAccess extends React.Component {
   }
 
   handleDelete = () => {
-    const { namespace } = this.props.match.params
-    this.store.deleteGateway({ namespace }).then(() => {
+    const { cluster, namespace } = this.props.match.params
+    this.store.deleteGateway({ cluster, namespace }).then(() => {
       this.hideDelete()
-      this.store.getGateway({ namespace })
+      this.store.getGateway({ cluster, namespace })
     })
   }
 
@@ -142,7 +142,7 @@ class InternetAccess extends React.Component {
             <Icon name="loadbalancer" size={40} />
           </div>
           <div className={styles.text}>
-            <div>{t('Gateway not set')}</div>
+            <div>{t('Gateway Not Set')}</div>
             <p>{t('PROJECT_INTERNET_ACCESS_DESC')}</p>
           </div>
           {this.canEdit && (
@@ -184,6 +184,7 @@ class InternetAccess extends React.Component {
   }
 
   renderInternetAccess(gateway) {
+    const { cluster } = this.props.match.params
     return (
       <Panel className="margin-t12" title={t('Internet Access')}>
         <div className={styles.header}>
@@ -206,10 +207,10 @@ class InternetAccess extends React.Component {
           ) : (
             <div className={styles.item}>
               <div>{this.getExternalIP(gateway)}</div>
-              <p>{t('External IP')}</p>
+              <p>{t('External Address')}</p>
             </div>
           )}
-          {globals.app.hasKSModule('servicemesh') && (
+          {globals.app.hasClusterModule(cluster, 'servicemesh') && (
             <div className={styles.item}>
               <div>
                 {gateway.serviceMeshEnable
@@ -264,9 +265,11 @@ class InternetAccess extends React.Component {
   }
 
   renderModals() {
+    const { cluster } = this.props.match.params
     return (
       <div>
         <GatewaySettingModal
+          cluster={cluster}
           detail={toJS(this.store.gateway.data)}
           visible={this.state.showGatewaySetting}
           onOk={this.handleGatewaySetting}

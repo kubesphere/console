@@ -116,11 +116,12 @@ export default class ContainerSetting extends React.Component {
   getReplicas = () => get(this.formTemplate, `spec.replicas`) || 1
 
   fetchData() {
+    const { cluster } = this.props
     const namespace = get(this.formTemplate, 'metadata.namespace')
 
     Promise.all([
-      this.configMapStore.fetchByK8s({ namespace }),
-      this.secretStore.fetchByK8s({ namespace }),
+      this.configMapStore.fetchListByK8s({ cluster, namespace }),
+      this.secretStore.fetchListByK8s({ cluster, namespace }),
     ]).then(([configMaps, secrets]) => {
       this.setState({ configMaps, secrets })
     })
@@ -209,12 +210,13 @@ export default class ContainerSetting extends React.Component {
   }
 
   renderContainerForm() {
-    const { withService, module } = this.props
+    const { withService, cluster, module } = this.props
     const { configMaps, secrets } = this.state
 
     return (
       <ContainerForm
         module={module}
+        cluster={cluster}
         namespace={this.namespace}
         data={this.formTemplate}
         configMaps={configMaps}

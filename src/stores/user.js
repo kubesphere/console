@@ -16,10 +16,11 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { get, set, uniq, isArray } from 'lodash'
 import { observable, action } from 'mobx'
 import { Notify } from 'components/Base'
+import { safeParseJSON } from 'utils'
 import cookie from 'utils/cookie'
-import { getFilterString } from 'utils'
 
 import Base from './base'
 
@@ -34,92 +35,172 @@ export default class UsersStore extends Base {
   @observable
   roles = []
 
-  getListUrl = () => 'kapis/iam.kubesphere.io/v1alpha2/users'
+  module = 'users'
 
-  getDetailUrl = ({ name }) => `${this.getListUrl()}/${name}`
+  getPath({ cluster, workspace, namespace, devops } = {}) {
+    let path = ''
 
-  getResourceUrl = () => this.getListUrl()
-
-  @action
-  async fetchList({ page = 1, limit = 10, more, keyword, ...params } = {}) {
-    this.list.isLoading = true
-
-    if (keyword) {
-      params.conditions = getFilterString({ keyword })
+    if (cluster) {
+      path += `/klusters/${cluster}`
     }
 
-    if (limit !== Infinity) {
-      params.paging = `limit=${limit || 10},page=${page || 1}`
+    if (namespace) {
+      return `${path}/namespaces/${namespace}`
     }
 
-    if (params.reverse === undefined) {
-      params.reverse = true
+    if (devops) {
+      return `${path}/devops/${devops}`
     }
 
-    const result = await request.get(this.getResourceUrl(), params)
+    if (workspace) {
+      return `/workspaces/${workspace}`
+    }
 
-    this.list.update({
-      data: more ? [...this.list.data, ...result.items] : result.items,
-      total: result.total_count || 0,
-      limit: Number(limit) || 10,
-      page: Number(page) || 1,
-      keyword,
-      isLoading: false,
-      selectedRowKeys: [],
-    })
-    return result
+    return path
   }
 
-  @action
-  async fetchDetail({ name }) {
-    this.isLoading = true
+  getModule({ cluster, workspace, namespace, devops } = {}) {
+    if (namespace || devops) {
+      return 'members'
+    }
 
-    const result = await request.get(this.getDetailUrl({ name }))
+    if (workspace) {
+      return 'workspacemembers'
+    }
 
-    this.detail = result
-    this.isLoading = false
+    if (cluster) {
+      return 'clustermembers'
+    }
+
+    return 'users'
   }
 
-  @action
-  async fetchUserRoles({ username }) {
-    const result = await request.get(
-      `kapis/iam.kubesphere.io/v1alpha2/users/${username}/roles`
-    )
+  getResourceUrl = (params = {}) =>
+    `kapis/iam.kubesphere.io/v1alpha2${this.getPath(params)}/${this.getModule(
+      params
+    )}`
 
-    this.roles = result
-  }
+  getListUrl = this.getResourceUrl
 
   @action
   async fetchLogs({ name }) {
     this.logs.isLoading = true
 
-    const result = await request.get(`${this.getDetailUrl({ name })}/logs`)
+    const result = await request.get(`k${this.getDetailUrl({ name })}/logs`)
 
     this.logs.data = result
     this.logs.isLoading = false
   }
 
   @action
-  create(data) {
-    return this.submitting(request.post(this.getListUrl(), data))
-  }
+  async fetchRules({ name, ...params }) {
+    let module = 'globalroles'
+    if (params.namespace || params.devops) {
+      module = 'roles'
+    } else if (params.workspace) {
+      module = 'workspaceroles'
+    } else if (params.cluster) {
+      module = 'clusterroles'
+    }
 
-  @action
-  checkUserName(name) {
-    return request.get(
-      this.getDetailUrl({ name }),
+    const resp = await request.get(
+      `kapis/iam.kubesphere.io/v1alpha2${this.getPath(params)}/${this.getModule(
+        params
+      )}/${name}/${module}`,
       {},
-      {
-        headers: { 'x-check-exist': true },
-      }
+      {},
+      () => {}
     )
+
+    const rules = {}
+    resp &&
+      resp.forEach(item => {
+        const rule = safeParseJSON(
+          get(
+            item,
+            "metadata.annotations['iam.kubesphere.io/role-template-rules']"
+          ),
+          {}
+        )
+
+        Object.keys(rule).forEach(key => {
+          rules[key] = rules[key] || []
+          if (isArray(rule[key])) {
+            rules[key].push(...rule[key])
+          } else {
+            rules[key].push(rule[key])
+          }
+          rules[key] = uniq(rules[key])
+        })
+      })
+
+    switch (module) {
+      case 'globaleroles':
+        set(globals.user, `globalRules`, rules)
+        break
+      case 'clusterroles': {
+        const parentActions = globals.app.getActions({ module: 'clusters' })
+        set(globals.user, `clusterRules[${params.cluster}]`, {
+          ...rules,
+          _: parentActions,
+        })
+        break
+      }
+      case 'workspaceroles': {
+        const parentActions = globals.app.getActions({ module: 'workspaces' })
+        set(globals.user, `workspaceRules[${params.workspace}]`, {
+          ...rules,
+          _: parentActions,
+        })
+        break
+      }
+      case 'roles': {
+        const obj = {}
+        if (params.workspace) {
+          obj.workspace = params.workspace
+        } else if (params.cluster) {
+          obj.cluster = params.cluster
+        }
+
+        if (params.namespace) {
+          const parentActions = globals.app.getActions({
+            ...obj,
+            module: 'projects',
+          })
+          set(
+            globals.user,
+            `projectRules[${params.cluster}][${params.namespace}]`,
+            {
+              ...rules,
+              _: parentActions,
+            }
+          )
+        } else if (params.devops) {
+          const parentActions = globals.app.getActions({
+            ...obj,
+            module: 'devops',
+          })
+
+          set(
+            globals.user,
+            `devopsRules[${params.cluster}][${params.devops}]`,
+            {
+              ...rules,
+              _: parentActions,
+            }
+          )
+        }
+        break
+      }
+      default:
+    }
   }
 
   @action
   checkEmail(email) {
     return request.get(
-      `${this.getListUrl()}?conditions=email=${email}`,
-      {},
+      `${this.getListUrl()}`,
+      { email },
       {
         headers: { 'x-check-exist': true },
       }
@@ -127,30 +208,32 @@ export default class UsersStore extends Base {
   }
 
   @action
-  async update(data, { username } = {}) {
-    const name = username || data.username || this.detail.username
-
-    await this.submitting(request.put(this.getDetailUrl({ name }), data))
+  async update({ name, ...params }, data) {
+    await this.submitting(
+      request.put(this.getDetailUrl({ name, ...params }), data)
+    )
 
     if (data.password && name === globals.user.username) {
       return await request.post('logout')
     }
 
-    if (data.lang && data.lang !== cookie('lang')) {
-      cookie('lang', data.lang, { path: '/' })
+    const lang = get(data, 'spec.lang')
+    if (lang && data.lang !== cookie('lang')) {
       window.location.reload()
     }
   }
 
   @action
-  async batchDelete(rowKeys) {
+  async batchDelete({ rowKeys, ...params }) {
     if (rowKeys.includes(globals.user.username)) {
       Notify.error(t('Error Tips'), t('Unable to delete itself'))
     } else {
       await this.submitting(
         Promise.all(
           rowKeys.map(username =>
-            request.delete(`${this.getDetailUrl({ name: username })}`)
+            request.delete(
+              `${this.getDetailUrl({ name: username, ...params })}`
+            )
           )
         )
       )
@@ -159,14 +242,12 @@ export default class UsersStore extends Base {
   }
 
   @action
-  delete({ username }) {
-    if (username === globals.user.username) {
+  delete(user) {
+    if (user.name === globals.user.username) {
       Notify.error(t('Error Tips'), t('Unable to delete itself'))
       return
     }
 
-    return this.submitting(
-      request.delete(`${this.getDetailUrl({ name: username })}`)
-    )
+    return this.submitting(request.delete(`${this.getDetailUrl(user)}`))
   }
 }

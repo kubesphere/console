@@ -1,0 +1,13 @@
+@import '~scss/variables';
+
+.icons {
+  :global {
+    .icon {
+      background-color: $light-color01; 
+    }
+  }
+
+  span {
+    margin-right: 8px;
+  }
+}

@@ -18,7 +18,7 @@
 
 export default {
   SERVICE_EXTERNAL_NAME_DESC:
-    'Map the service to the contents of the externalName field by returning a CNAME record with its value',
+    'Map the service to the contents of the externalName field by returning a CNAME record with its value.',
   TOTAL_WORKLOAD: '{ count } workloads in total',
 
   SERVICE_SELECTOR_AFFECT_1: '',
@@ -26,17 +26,15 @@ export default {
 
   SERVICE_NAME_DESC:
     'It can only contain lowercase letters, numbers and hyphens("-"), and must begin with a lowercase letter, ending with a number or lowercase letter. The maximum length of characters is set to 63.',
-
   SERVICE_DESC:
     'A Service is an abstraction that defines a logical collection of Pods and a strategy for accessing them.',
   SERVICE_CREATE_DESC:
-    'A Service is an abstraction that defines a logical collection of Pods and a strategy for accessing them.',
+    'A Service is an abstraction that defines a logical collection of Pods and a strategy for accessing them. You can select the service type or how a service is created. KubeSphere supports both stateful and stateless services and services can be created through codes or artifacts.',
 
   SERVICES_BASEINFO_DESC:
     'The name and description of the service need to be provided to create the service. The service name cannot be the same as the existing service name under the same project.',
   SERVICES_SETTINGS_DESC:
     'Service settings define how to access an existing workload.',
-
   SERVICES_INTERNET_ACCESS_DESC: 'Expose the service outside of the cluster.',
 
   VIRTUAL_IP_TITLE:
@@ -59,42 +57,41 @@ export default {
   SERVICE_NODE_PORT_DESC:
     'If your current network is on the same network as the cluster node, you can access it through the cluster IP address + node port number or through the node IP + node port.',
 
-  SERVICE_TYPE: 'You can create stateless service or stateful service',
-
-  SERVICE_TYPES_Q: 'Service types',
+  SERVICE_TYPE: 'You can create a stateless service or a stateful service.',
+  SERVICE_TYPES_Q: 'Service Types',
   SERVICE_TYPES_A:
     'The service is divided into a stateless service (Virtual Service + Depolyment) and a stateful service (Headless Service + Statefulset). In a stateless service, replicas can share one volume, and a stateful service needs to have its own independent volume.',
 
   SCENARIOS_FOR_SERVICES_Q:
-    'Usage scenarios for stateless services and stateful services?',
+    'What are the application scenarios for stateless services and stateful services?',
   SCENARIOS_FOR_SERVICES_A:
-    'Stateless services are useful for scenarios where persistent data is not stored locally and multiple instances respond to uniform requests (eg, Nginx, Tomcat, etc.). Stateful services are available for services that require data storage, or for multi-threaded services, queues, etc. (MySQL database, Kafka, ZooKeeper, etc.).',
+    'Stateless services are useful for scenarios where persistent data is not stored locally and multiple instances respond to uniform requests (Nginx, Tomcat, etc.). Stateful services are helpful when it comes to data storage, multithreading or queues (MySQL database, Kafka, Zookeeper, etc.).',
   SERVICE_SIMPLE_DESC: 'Create a service from an existing pods group',
   DELETE_SERVICE_DESC:
     'You are about to delete the service(s) {resource}. Please confirm whether to delete the associated resource?',
-  SERVICE_FROM_CODE: 'Build a new service from source code repository',
-  SERVICE_FROM_ARTIFACTS: 'Build a new service through the artifact',
+  SERVICE_FROM_CODE: 'Build a New Service from Source Code Repository',
+  SERVICE_FROM_ARTIFACTS: 'Build a New Service through the Artifact',
   SERVICE_FROM_CODE_DESC:
-    'You can build your existing code into a image and deploy it by Source to Image',
+    'You can build your existing code into an image and deploy it through Source to Image.',
   SERVICE_FROM_ARTIFACTS_DESC:
-    'You can build an existing artifact into a new image and complete the deployment',
+    'You can build an existing artifact into a new image and complete the deployment.',
 
   SERVICE_CUSTOM_CREATE:
-    'You can specify a workload to create a service or by editing the configuration (Yaml)',
+    'You can create a service either by specifying a workload or by editing the configuration (Yaml).',
 
   SERVICE_TYPE_STATEFULSERVICE: 'Stateful Service',
   SERVICE_TYPE_STATELESSSERVICE: 'Stateless Service',
   SERVICE_TYPE_EXTERNALSERVICE: 'External Service',
   STATEFUL_SERVICE_DESC:
-    'Stateful services are used to manage stateful applications, ensuring the order of deployment and capacity expansion, providing stable persistent storage and network identification, orderly scaling, etc.',
+    'Stateful services are used to manage stateful applications, ensuring ordered and graceful deployment and scaling. They also provide stable persistent storage and network identifiers.',
   STATELESS_SERVICE_DESC:
-    'The most commonly used service in container services, by controlling container group templates to control container group status, including rolling upgrades and rollbacks',
+    'The most commonly used service in container services. It defines the Pod template to control the Pod status, including rolling updates and rollbacks.',
 
-  SERVISE_SIMPLE_DESC: '',
-
+  SERVISE_SIMPLE_DESC: 'Create a service with existing Pods.',
   SERVICE_PORTS_DESC:
-    'Set the port exposed by the container image and the service port',
-
+    'Set the port to expose the container image and the service port.',
   SPECIFY_WORKLOAD_DESC:
-    'Specify a workload that need to associate with the service',
+    'Specify a workload that needs to be associated with the service.',
+  
+  EIP_POOL_DESC: 'Access method within the cluster (DNS)',
 }

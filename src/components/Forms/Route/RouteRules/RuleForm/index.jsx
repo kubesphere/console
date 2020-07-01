@@ -29,6 +29,8 @@ import { ReactComponent as BackIcon } from 'src/assets/back.svg'
 
 import { PATTERN_HOST } from 'utils/constants'
 
+import ClusterSelect from './ClusterSelect'
+
 import styles from './index.scss'
 
 export default class RuleForm extends React.Component {
@@ -59,7 +61,7 @@ export default class RuleForm extends React.Component {
     super(props)
 
     this.state = {
-      type: this.getType(props.data),
+      type: props.isFederated ? 'specify' : this.getType(props.data),
       service: '',
       protocol: get(props, 'data.protocol', 'http'),
     }
@@ -88,6 +90,14 @@ export default class RuleForm extends React.Component {
     }))
   }
 
+  get clusters() {
+    return get(this.props, 'projectDetail.clusters', []).slice()
+  }
+
+  get defaultClusters() {
+    return get(this.props, 'projectDetail.clusters', []).map(item => item.name)
+  }
+
   getType(data) {
     const host = get(data, 'host')
 
@@ -97,10 +107,12 @@ export default class RuleForm extends React.Component {
 
     const { gateway } = this.props
     const service = get(data, 'http.paths[0].backend.serviceName')
-    const ip = gateway.loadBalancerIngress
+    const _host = gateway.isHostName
+      ? gateway.loadBalancerIngress
+      : `${service}.${namespace}.${gateway.loadBalancerIngress}.nip.io`
     const namespace = gateway.namespace
 
-    return host === `${service}.${namespace}.${ip}.nip.io` ? 'auto' : 'specify'
+    return host === _host ? 'auto' : 'specify'
   }
 
   checkItemValid = item =>
@@ -147,12 +159,13 @@ export default class RuleForm extends React.Component {
         if (this.state.type === 'auto') {
           const { gateway } = this.props
           const service = get(data, 'http.paths[0].backend.serviceName')
-          const ip = gateway.loadBalancerIngress
           const namespace = gateway.namespace
           onSave({
             ...data,
             protocol: 'http',
-            host: `${service}.${namespace}.${ip}.nip.io`,
+            host: gateway.isHostName
+              ? gateway.loadBalancerIngress
+              : `${service}.${namespace}.${gateway.loadBalancerIngress}.nip.io`,
           })
         } else {
           onSave(data)
@@ -216,7 +229,7 @@ export default class RuleForm extends React.Component {
   }
 
   render() {
-    const { data, className } = this.props
+    const { data, className, isFederated } = this.props
     const { type } = this.state
 
     return (
@@ -228,30 +241,43 @@ export default class RuleForm extends React.Component {
           {t('Set Route Rule')}
         </div>
         <div className={styles.formWrapper}>
-          <div className={styles.form}>
-            <Form ref={this.formRef} data={data}>
-              <Form.Item label={t('Mode')}>
-                <RadioGroup
-                  wrapClassName="radio-default"
-                  buttonWidth={155}
-                  value={type}
-                  onChange={this.handleModeChange}
-                  size="small"
-                >
-                  <RadioButton value="auto">{t('Auto Generate')}</RadioButton>
-                  <RadioButton value="specify">
-                    {t('Specify Domain')}
-                  </RadioButton>
-                </RadioGroup>
-              </Form.Item>
+          <Form ref={this.formRef} data={data}>
+            {isFederated && (
+              <Form.Group label={t('Deployment Location')}>
+                <Form.Item>
+                  <ClusterSelect
+                    name="clusters"
+                    options={this.clusters}
+                    defaultValue={this.defaultClusters}
+                  />
+                </Form.Item>
+              </Form.Group>
+            )}
+            <Form.Group noWrapper>
+              {!isFederated && (
+                <Form.Item label={t('Mode')}>
+                  <RadioGroup
+                    wrapClassName="radio-default"
+                    buttonWidth={155}
+                    value={type}
+                    onChange={this.handleModeChange}
+                    size="small"
+                  >
+                    <RadioButton value="auto">{t('Auto Generate')}</RadioButton>
+                    <RadioButton value="specify">
+                      {t('Specify Domain')}
+                    </RadioButton>
+                  </RadioGroup>
+                </Form.Item>
+              )}
               <Alert
                 className="margin-t12 margin-b12"
                 description={t.html(`RULE_SETTING_MODE_${type.toUpperCase()}`)}
                 type="info"
               />
               {this.renderForm()}
-            </Form>
-          </div>
+            </Form.Group>
+          </Form>
         </div>
       </div>
     )

@@ -18,11 +18,14 @@
 
 import { getIndexRoute } from 'utils/router.config'
 
-import ProjectLayout from '../containers/layout'
+import ListLayout from '../containers/Base/List'
 
 import Overview from '../containers/Overview'
-import Applications from '../containers/Applications'
-import Workloads from '../containers/Workloads'
+import CRDApps from '../containers/Applications/CRDApps'
+import OPApps from '../containers/Applications/OPApps'
+import Deployments from '../containers/Deployments'
+import StatefulSets from '../containers/StatefulSets'
+import DaemonSets from '../containers/DaemonSets'
 import Pods from '../containers/Pods'
 import Jobs from '../containers/Jobs'
 import ImageBuilder from '../containers/ImageBuilder'
@@ -37,42 +40,23 @@ import Secrets from '../containers/Secrets'
 import Roles from '../containers/Roles'
 import Members from '../containers/Members'
 import AdvancedSettings from '../containers/AdvancedSettings'
+import AlertingPolicies from '../containers/Alerting/Policies'
+import AlertingMessages from '../containers/Alerting/Messages'
+import CustomMonitoring from '../containers/CustomMonitoring'
+import NetworkPolicies from '../containers/Network/Policies'
 
-import workloadRoutes from './workload'
-import serviceRoutes from './service'
-import routerRoutes from './router'
-import roleRoutes from './role'
-import volumeRoutes from './volume'
-import applicationRoutes from './application'
-import configmapRoutes from './configmap'
-import secretRoutes from './secret'
-import podRoutes from './pod'
-import alertingMessageRoutes from './alerting/message'
-import alertingPolicyRoutes from './alerting/policy'
-import alertingRoutes from './alerting'
 import grayReleaseRoutes from './grayrelease'
-import imageBuilderRoutes from './imagebuilder'
 
-const PATH = '/projects/:namespace'
+import getDetailPath from './detail'
+
+const PATH = '/:workspace/clusters/:cluster/projects/:namespace'
 
 export default [
-  ...workloadRoutes,
-  ...serviceRoutes,
-  ...routerRoutes,
-  ...roleRoutes,
-  ...volumeRoutes,
-  ...applicationRoutes,
-  ...configmapRoutes,
-  ...secretRoutes,
-  ...podRoutes,
-  ...alertingMessageRoutes,
-  ...alertingPolicyRoutes,
-  ...imageBuilderRoutes,
+  ...getDetailPath(PATH),
   {
     path: PATH,
-    component: ProjectLayout,
+    component: ListLayout,
     routes: [
-      ...alertingRoutes,
       ...grayReleaseRoutes,
       {
         path: `${PATH}/overview`,
@@ -80,18 +64,28 @@ export default [
         exact: true,
       },
       {
-        path: `${PATH}/applications`,
-        component: Applications,
+        path: `${PATH}/applications/composing`,
+        component: CRDApps,
         exact: true,
       },
       {
-        path: `${PATH}/applications/:type`,
-        component: Applications,
+        path: `${PATH}/applications/template`,
+        component: OPApps,
         exact: true,
       },
       {
-        path: `${PATH}/:module(deployments|statefulsets|daemonsets)`,
-        component: Workloads,
+        path: `${PATH}/deployments`,
+        component: Deployments,
+        exact: true,
+      },
+      {
+        path: `${PATH}/statefulsets`,
+        component: StatefulSets,
+        exact: true,
+      },
+      {
+        path: `${PATH}/daemonsets`,
+        component: DaemonSets,
         exact: true,
       },
       { path: `${PATH}/pods`, component: Pods, exact: true },
@@ -99,27 +93,51 @@ export default [
       {
         path: `${PATH}/s2ibuilders`,
         component: ImageBuilder,
-        ksModule: 'devops',
         exact: true,
       },
       { path: `${PATH}/cronjobs`, component: CronJobs, exact: true },
       { path: `${PATH}/services`, component: Services, exact: true },
       {
-        path: `${PATH}/grayreleases`,
+        path: `${PATH}/grayrelease`,
         component: GrayRelease,
-        ksModule: 'servicemesh',
+        exact: true,
       },
-      { path: `${PATH}/routes`, component: Routes, exact: true },
+      { path: `${PATH}/ingresses`, component: Routes, exact: true },
       { path: `${PATH}/volumes`, component: Volumes, exact: true },
       { path: `${PATH}/base-info`, component: BaseInfo, exact: true },
+      {
+        path: `${PATH}/networkpolicies`,
+        component: NetworkPolicies,
+        exact: true,
+      },
       { path: `${PATH}/configmaps`, component: ConfigMaps, exact: true },
       { path: `${PATH}/secrets`, component: Secrets, exact: true },
       { path: `${PATH}/roles`, component: Roles, exact: true },
       { path: `${PATH}/members`, component: Members, exact: true },
       { path: `${PATH}/advanced`, component: AdvancedSettings, exact: true },
+      {
+        path: `${PATH}/alert-policies`,
+        component: AlertingPolicies,
+        exact: true,
+      },
+      {
+        path: `${PATH}/alert-messages`,
+        component: AlertingMessages,
+        exact: true,
+      },
+      {
+        path: `${PATH}/custom-monitoring`,
+        component: CustomMonitoring,
+        exact: true,
+      },
       getIndexRoute({
         path: `${PATH}/workloads`,
         to: `${PATH}/deployments`,
+        exact: true,
+      }),
+      getIndexRoute({
+        path: `${PATH}/applications`,
+        to: `${PATH}/applications/${getDefaultAppType()}`,
         exact: true,
       }),
       getIndexRoute({ path: PATH, to: `${PATH}/overview`, exact: true }),
@@ -127,3 +145,7 @@ export default [
     ],
   },
 ]
+
+function getDefaultAppType() {
+  return globals.app.enableAppStore ? 'template' : 'composing'
+}

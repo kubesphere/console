@@ -16,22 +16,50 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+const { parse } = require('qs')
+const get = require('lodash/get')
+const uniq = require('lodash/uniq')
 const isEmpty = require('lodash/isEmpty')
-const intersection = require('lodash/intersection')
+const isArray = require('lodash/isArray')
 const jwtDecode = require('jwt-decode')
 
 const { send_gateway_request } = require('../libs/request')
 
-const { getServerConfig, formatRules, isAppsRoute } = require('../libs/utils')
+const { getServerConfig, isAppsRoute, safeParseJSON } = require('../libs/utils')
 
 const { client: clientConfig } = getServerConfig()
 
 const login = async (data, headers) => {
+  const base64Str = Buffer.from(`${data.username}:${data.password}`).toString(
+    'base64'
+  )
   const resp = await send_gateway_request({
-    method: 'POST',
-    url: '/kapis/iam.kubesphere.io/v1alpha2/login',
-    headers,
-    params: data,
+    method: 'GET',
+    url: '/oauth/authorize?client_id=default&response_type=token',
+    headers: {
+      ...headers,
+      Authorization: `Basic ${base64Str}`,
+    },
+    redirect: 'manual',
+  })
+
+  const { access_token } = parse(
+    resp.headers.get('location').replace(/http.*(\?|#)/, '')
+  )
+
+  if (!access_token) {
+    throw new Error(resp.message)
+  }
+
+  const { username } = jwtDecode(access_token)
+
+  return { username, token: access_token }
+}
+
+const oAuthLogin = async params => {
+  const resp = await send_gateway_request({
+    method: 'GET',
+    url: `/oauth/callback/${params.state}?code=${params.code}`,
   })
 
   if (!resp.access_token) {
@@ -43,20 +71,35 @@ const login = async (data, headers) => {
   return { username, token: resp.access_token }
 }
 
-const oAuthLogin = async params => {
+const getUserGlobalRules = async (username, token) => {
   const resp = await send_gateway_request({
-    method: 'POST',
-    url: `/kapis/iam.kubesphere.io/v1alpha2/login/oauth/${params.state}`,
-    params,
+    method: 'GET',
+    url: `/kapis/iam.kubesphere.io/v1alpha2/users/${username}/globalroles`,
+    token,
   })
 
-  if (!resp.access_token) {
-    throw new Error(resp.message)
-  }
+  const rules = {}
+  resp.forEach(item => {
+    const rule = safeParseJSON(
+      get(
+        item,
+        "metadata.annotations['iam.kubesphere.io/role-template-rules']"
+      ),
+      {}
+    )
 
-  const { username } = jwtDecode(resp.access_token)
+    Object.keys(rule).forEach(key => {
+      rules[key] = rules[key] || []
+      if (isArray(rule[key])) {
+        rules[key].push(...rule[key])
+      } else {
+        rules[key].push(rule[key])
+      }
+      rules[key] = uniq(rules[key])
+    })
+  })
 
-  return { username, token: resp.access_token }
+  return rules
 }
 
 const getUserDetail = async (username, token) => {
@@ -69,18 +112,22 @@ const getUserDetail = async (username, token) => {
   })
 
   if (resp) {
-    user = resp
+    user = {
+      email: get(resp, 'spec.email'),
+      lang: get(resp, 'spec.lang'),
+      username: get(resp, 'metadata.name'),
+      globalrole: get(
+        resp,
+        'metadata.annotations["iam.kubesphere.io/globalrole"]'
+      ),
+    }
   } else {
     throw new Error(resp)
   }
 
-  return user
-}
-
-const formatUserDetail = user => {
-  user.groups = user.groups || []
-
-  user.cluster_rules = formatRules(user.cluster_rules)
+  try {
+    user.globalRules = await getUserGlobalRules(username, token)
+  } catch (error) {}
 
   return user
 }
@@ -101,21 +148,12 @@ const getWorkspaces = async token => {
   return workspaces
 }
 
-const getWorkspaceRules = async (token, workspace) => {
-  const resp = await send_gateway_request({
-    method: 'GET',
-    url: `/kapis/tenant.kubesphere.io/v1alpha2/workspaces/${workspace}/rules`,
-    token,
-  })
-  return resp
-}
-
 const getKSConfig = async token => {
   let resp = []
   try {
     resp = await send_gateway_request({
       method: 'GET',
-      url: `/kapis/v1alpha1/configz`,
+      url: `/kapis/config.kubesphere.io/v1alpha2/configs/configz`,
       token,
     })
   } catch (error) {
@@ -147,31 +185,9 @@ const getCurrentUser = async ctx => {
     getKSConfig(token),
   ])
 
-  const workspace_rules = {}
-
-  if (workspaces.length === 1) {
-    const rules = await getWorkspaceRules(token, workspaces[0])
-
-    const formatedRules = formatRules(rules)
-    if (workspaces[0] === clientConfig.systemWorkspace) {
-      Object.keys(formatedRules).forEach(key => {
-        formatedRules[key] = intersection(
-          formatedRules[key],
-          clientConfig.systemWorkspaceRules[key]
-        )
-      })
-    }
-
-    workspace_rules[workspaces[0]] = formatedRules
-  }
-
   return {
-    config: { ...clientConfig },
-    user: {
-      ...formatUserDetail(userDetail),
-      workspaces,
-      workspace_rules,
-    },
+    config: clientConfig,
+    user: { ...userDetail, workspaces },
     ksConfig,
   }
 }
@@ -181,31 +197,32 @@ const getOAuthInfo = async () => {
   try {
     resp = await send_gateway_request({
       method: 'GET',
-      url: `/kapis/iam.kubesphere.io/v1alpha2/oauth/configs`,
+      url: `/kapis/config.kubesphere.io/v1alpha2/configs/oauth`,
     })
   } catch (error) {
     console.error(error)
   }
 
   const servers = []
-  if (!isEmpty(resp)) {
-    resp.forEach(item => {
-      if (item && item.Endpoint) {
-        const title = item.Description
+  if (resp && !isEmpty(resp.identityProviders)) {
+    resp.identityProviders.forEach(item => {
+      if (item && item.provider) {
+        const title = item.name
         const params = {
-          state: item.Name,
-          client_id: item.ClientID,
+          state: item.name,
+          client_id: item.provider.clientID,
           response_type: 'code',
         }
 
-        if (item.Redirect_URL) {
-          params.redirect_uri = item.Redirect_URL
-        }
-        if (item.Scopes && item.Scopes.length > 0) {
-          params.scope = item.Scopes.join(' ')
+        if (item.provider.redirectURL) {
+          params.redirect_uri = item.provider.redirectURL
         }
 
-        const url = `${item.Endpoint.AuthURL}?${Object.keys(params)
+        if (item.provider.scopes && item.provider.scopes.length > 0) {
+          params.scope = item.provider.scopes.join(' ')
+        }
+
+        const url = `${item.provider.endpoint.authURL}?${Object.keys(params)
           .map(
             key =>
               `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`

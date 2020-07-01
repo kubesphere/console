@@ -44,7 +44,8 @@ class UsageRanking extends React.Component {
     super(props)
 
     this.store = new Store({
-      namespaces: get(this.props.match, 'params.namespace'),
+      cluster: get(props.match, 'params.cluster'),
+      namespaces: get(props.match, 'params.namespace'),
     })
   }
 
@@ -59,14 +60,16 @@ class UsageRanking extends React.Component {
       return
     }
 
-    const { resource_name = '' } = node
-    const workloadName = resource_name.replace(/\w+:/, '')
-    const { namespace } = this.props.match.params
-
+    const { workload = '' } = node
+    const workloadName = workload.replace(/\w+:/, '')
+    const { workspace, cluster, namespace } = this.props.match.params
+    const prefix = `${
+      workspace ? `/${workspace}` : ''
+    }/clusters/${cluster}/projects/${namespace}`
     const LINK_MAP = {
-      Deployment: `/projects/${namespace}/deployments/${workloadName}`,
-      StatefulSet: `/projects/${namespace}/statefulsets/${workloadName}`,
-      DaemonSet: `/projects/${namespace}/daemonsets/${workloadName}`,
+      Deployment: `${prefix}/deployments/${workloadName}`,
+      StatefulSet: `${prefix}/statefulsets/${workloadName}`,
+      DaemonSet: `${prefix}/daemonsets/${workloadName}`,
     }
 
     return LINK_MAP[owner_kind]
@@ -85,7 +88,7 @@ class UsageRanking extends React.Component {
     return (
       <div className={styles.empty}>
         <Icon name="backup" size={32} />
-        <div>{t('No relevant data')}</div>
+        <div>{t('No Relevant Data')}</div>
       </div>
     )
   }
@@ -109,7 +112,7 @@ class UsageRanking extends React.Component {
           }
 
           const link = this.getWorkloadLink(app)
-          const workloadName = app.resource_name.replace(/\w+:/, '')
+          const workloadName = app.workload.replace(/\w+:/, '')
 
           const percent =
             (app[this.store.sort_metric] * 100) /

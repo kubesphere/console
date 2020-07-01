@@ -22,6 +22,13 @@
       fill: #f5a623;
     }
   }
+
+  &.icon-clickable:hover {
+    .qicon-light {
+      color: #324558;
+      fill: #b6c2cd;
+    }
+  }
 }
 
 // dropdown
@@ -396,6 +403,10 @@ label.checkbox {
       }
     }
   }
+
+  .select-option.is-disabled {
+    opacity: 1;
+  }
 }
 
 // recharts
@@ -493,6 +504,13 @@ label.checkbox {
 
   table {
     padding: 0 12px 12px;
+  }
+
+  .table-filter-dropdown {
+    .dropdown-content {
+      max-height: 310px;
+      overflow: auto;
+    }
   }
 }
 
@@ -903,6 +921,14 @@ label.checkbox:before {
   height: 16px;
   min-width: 32px;
 
+  &.checked {
+    box-shadow: 0 2px 4px 0 rgba(85, 188, 138, 0.2), inset 0 1px 3px 0 rgba(59, 116, 122, 0.2);
+
+    &::after {
+      box-shadow: 0 2px 4px 0 rgba(36, 46, 66, 0.2);
+    }
+  }
+
   & > span.text {
     line-height: 16px;
     font-size: 12px;
@@ -921,6 +947,7 @@ label.checkbox:before {
     height: 12px;
     right: 2px;
     left: 2px;
+    
   }
 }
 

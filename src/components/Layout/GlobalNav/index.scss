@@ -1,102 +1,76 @@
 @import '~scss/variables';
 @import '~scss/mixins';
 
-.wrapper {
-  position: fixed;
-  top: 60px;
-  left: 8px;
-  width: $nav-width;
-  height: calc(100vh - 68px);
-  padding: 40px 20px;
-  border-radius: $border-radius;
-  background-color: $dark;
-  box-shadow: 4px 8px 16px 0 rgba(0, 0, 0, 0.1);
-  transition: left $trans-speed ease-in-out;
-  overflow-y: auto;
-  z-index: 212;
+.modal {
+  border-radius: 0;
+  box-shadow: none;
+  background-color: transparent;
+}
 
-  .subNav > ul > li {
-    &.select {
-      box-shadow: 0 4px 8px 0 rgba(25, 30, 41, 0.2);
-      background-color: #36435c;
-      border: solid 1px #404e68;
-    }
+.body {
+  padding: 0;
+  border-radius: 0;
+  max-height: unset;
+  overflow: hidden;
+  background-color: #181d28d0;
+}
 
-    &:hover {
-      background-color: #36435c;
-    }
+.close {
+  position: absolute;
+  top: 32px;
+  right: 32px;
 
-    &:active {
-      background-color: #242e42;
-      border: solid 1px #404e68;
-    }
-
-    & > a {
-      color: $light;
-      transition: color $trans-speed ease-in-out;
-
-      @media (max-width: 1366px) {
-        padding: 7px 12px;
-      }
-
-      :global .qicon {
-        color: #324558;
-        fill: #b6c2cd;
-      }
+  &:hover {
+    :global .qicon-light {
+      color: #324558;
+      fill: #b6c2cd;
     }
   }
 }
 
-.subNav {
-  & > p {
-    color: #79879c;
+.navs {
+  display: flex;
+  justify-content: center;
+}
+
+.nav {
+  position: relative;
+  width: 240px;
+  height: 100vh;
+  padding: 0 20px;
+  text-align: center;
+  padding-top: calc(50vh - 160px);
+  overflow: hidden;
+
+  &:hover {
+    background-color: $blue-color03;
+
+    .bottomIcon {
+      opacity: 0.09;
+    }
+  }
+
+  .icon {
     margin-bottom: 12px;
   }
 
-  & > ul {
-    margin-bottom: 20px;
+  .title {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.4;
+    color: #ffffff;
+    text-shadow: 0 4px 8px rgba(36, 46, 66, 0.1);
+    margin-bottom: 12px;
+  }
 
-    & > li {
-      border-radius: 18px;
-      border: solid 1px transparent;
-      transition: all $trans-speed ease-in-out;
+  .desc {
+    color: #ffffff;
+  }
 
-      & > a,
-      .title {
-        display: block;
-        padding: 7px 12px;
-        color: #4a5974;
-        font-weight: 500;
-        cursor: pointer;
-
-        @media (max-width: 1366px) {
-          padding: 7px 0;
-        }
-
-        :global {
-          .icon {
-            margin-right: 8px;
-            vertical-align: text-bottom;
-          }
-        }
-      }
-
-      &.select,
-      &:hover,
-      &:active {
-        & > a {
-          color: $primary;
-
-          :global .qicon {
-            color: #00aa72;
-            fill: #90e0c5;
-          }
-        }
-      }
-
-      & + li {
-        margin-top: 4px;
-      }
-    }
+  .bottomIcon {
+    position: absolute;
+    bottom: -160px;
+    left: 0;
+    opacity: 0;
   }
 }

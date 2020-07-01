@@ -107,11 +107,13 @@ export default class ResourceTarget extends React.Component {
   checkItemValid = item => !(isEmpty(item) || (!item.key && !item.value))
 
   fetchWorkloads = (params = {}) => {
+    const { cluster, namespace } = this.props
     const { filterType } = this.state
 
     this.store.fetchWorkloads({
       type: filterType,
-      namespace: this.namespace,
+      cluster,
+      namespace,
       ...params,
     })
   }

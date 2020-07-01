@@ -18,55 +18,96 @@
 
 import { get } from 'lodash'
 import React from 'react'
+import classNames from 'classnames'
 import { toJS } from 'mobx'
-import { observer } from 'mobx-react'
+import { inject, observer } from 'mobx-react'
 import { Columns, Column } from '@pitrix/lego-ui'
 import { Button, Modal, Search, RadioGroup, ScrollLoad } from 'components/Base'
+
 import WorkspaceStore from 'stores/workspace'
+import ProjectStore from 'stores/project'
+import FederatedStore from 'stores/federated'
+import DevOpsStore from 'stores/devops'
 
 import Card from './Card'
+import ClusterSelect from './ClusterSelect'
 
 import styles from './index.scss'
 
+@inject('rootStore')
 @observer
 export default class ProjectSelectModal extends React.Component {
   constructor(props) {
     super(props)
+
     this.store = new WorkspaceStore()
+    this.projectStore = new ProjectStore()
+    this.fedProjectStore = new FederatedStore({ module: 'namespaces' })
+    this.devopsStore = new DevOpsStore()
+
+    this.stores = {
+      devops: this.devopsStore,
+      federatedprojects: this.fedProjectStore,
+      projects: this.projectStore,
+    }
+
     this.state = {
       type: props.defaultType || 'projects',
+      cluster: props.cluster || '',
+      search: '',
     }
   }
 
+  componentDidMount() {
+    this.store.fetchDetail({ workspace: this.props.workspace })
+    this.store.fetchClusters({ workspace: this.props.workspace }).then(() => {
+      if (!this.state.cluster) {
+        this.setState({
+          cluster: get(this.store.clusters, 'data[0].name', ''),
+        })
+      }
+    })
+  }
+
+  get clusters() {
+    return this.store.clusters.data.map(item => ({
+      label: item.name,
+      value: item.name,
+    }))
+  }
+
   get enabledActions() {
+    const { workspace } = this.props
     return {
-      projects: globals.app.getActions({
-        workspace: this.props.workspace.name,
-        module: 'projects',
+      projects: globals.app.getActions({ workspace, module: 'projects' }),
+      federatedprojects: globals.app.getActions({
+        workspace,
+        module: 'federatedprojects',
       }),
-      devops: globals.app.getActions({
-        workspace: this.props.workspace.name,
-        module: 'devops',
-      }),
+      devops: globals.app.getActions({ workspace, module: 'devops' }),
     }
   }
 
   get types() {
-    const { workspace = {} } = this.props
     const types = []
-
     if (this.enabledActions.projects.includes('view')) {
       types.push({
         label: t('Projects'),
         value: 'projects',
-        count: get(
-          workspace,
-          'annotations["kubesphere.io/namespace-count"]',
-          '0'
-        ),
       })
     }
 
+    if (
+      globals.app.isMultiCluster &&
+      this.enabledActions.federatedprojects.includes('view')
+    ) {
+      types.push({
+        label: t('Multi-cluster Projects'),
+        value: 'federatedprojects',
+      })
+    }
+
+    // TODO: ADD CLUSTER
     if (
       this.enabledActions.devops.includes('view') &&
       globals.app.hasKSModule('devops')
@@ -74,79 +115,97 @@ export default class ProjectSelectModal extends React.Component {
       types.push({
         label: t('DevOps Projects'),
         value: 'devops',
-        count: get(workspace, 'annotations["kubesphere.io/devops-count"]', '0'),
       })
     }
 
     return types
   }
 
+  get canCreate() {
+    return this.enabledActions[this.state.type].includes('create')
+  }
+
   fetchData = query => {
-    const { keyword } = this.store.list
-    const { workspace = {} } = this.props
-    const params = {
-      keyword,
-      workspace: workspace.name,
-      ...query,
-    }
-    if (this.state.type === 'projects') {
-      this.store.fetchNamespaces(params)
+    const { workspace } = this.props
+    const { cluster, search } = this.state
+    const params = { cluster, workspace, name: search, ...query }
+
+    if (this.state.type === 'federatedprojects') {
+      params.labelSelector = `kubesphere.io/workspace=${workspace}`
     } else {
-      this.store.fetchDevOps(params)
+      params.labelSelector = 'kubefed.io/managed!=true'
     }
+
+    this.stores[this.state.type].fetchList(params)
   }
 
-  handleSearch = keyword => {
-    this.fetchData({ keyword })
+  handleSearch = name => {
+    this.setState({ search: name }, this.fetchData)
   }
 
-  handleRefresh = () => {
-    this.fetchData()
-  }
+  handleRefresh = () => this.fetchData
 
   handleTypeChange = type => {
     if (this.state.type !== type) {
-      this.setState({ type }, () => {
-        this.fetchData({ keyword: '' })
-      })
+      this.setState({ type, search: '' }, this.fetchData)
     }
+  }
+
+  handleClusterChange = cluster => {
+    this.setState({ cluster, search: '' }, this.fetchData)
   }
 
   handleEnterWorkspace = () => {
-    const { workspace = {}, onChange } = this.props
-
-    if (globals.app.isClusterAdmin) {
-      return onChange(`/workspaces/${workspace.name}/overview`)
-    }
-
-    if (
-      globals.app.hasPermission({ module: 'workspaces', action: 'manage' }) ||
-      globals.app.hasPermission({
-        module: 'workspaces',
-        action: 'view',
-        workspace: workspace.name,
-      })
-    ) {
-      return onChange(`/workspaces/${workspace.name}/overview`)
-    }
-
-    return onChange(`/dashboard`)
+    const { workspace, onChange } = this.props
+    return onChange(`/workspaces/${workspace}/overview`)
   }
 
   handleOnEnter = item => {
-    const { onChange } = this.props
-    if (this.state.type === 'devops') {
-      onChange(`/devops/${item.project_id}`)
+    const { workspace, onChange } = this.props
+    const { cluster } = this.state
+    if (this.state.type === 'projects') {
+      onChange(`/${workspace}/clusters/${cluster}/projects/${item.name}`)
+    } else if (this.state.type === 'federatedprojects') {
+      onChange(`/${workspace}/federatedprojects/${item.name}`)
     } else {
-      onChange(`/projects/${item.name}`)
+      item.namespace && cluster
+        ? onChange(`/${workspace}/clusters/${cluster}/devops/${item.namespace}`)
+        : null
+    }
+  }
+
+  clusterRenderer = option => `${t('Cluster')}: ${option.label}`
+
+  showCreate = () => {
+    const { workspace, rootStore } = this.props
+    const { cluster } = this.state
+    if (
+      this.state.type === 'projects' ||
+      this.state.type === 'federatedprojects'
+    ) {
+      rootStore.triggerAction('project.create', {
+        store: this.projectStore,
+        workspace,
+      })
+    } else {
+      rootStore.triggerAction('devops.create', {
+        store: this.devopsStore,
+        cluster,
+        workspace,
+        success: this.fetchData,
+      })
     }
   }
 
   render() {
-    const { visible, workspace = {}, onCancel, onShowCreate } = this.props
-    const { type } = this.state
-    const list = type === 'devops' ? this.store.devops : this.store.namespaces
+    const { visible, workspace, onCancel } = this.props
+    const { type, cluster } = this.state
+    const { detail } = this.store
+    const list = this.stores[type].list
     const { data, total, page, isLoading } = toJS(list)
+
+    const showClusterSelect =
+      globals.app.isMultiCluster && type !== 'federatedprojects'
 
     return (
       <Modal
@@ -155,12 +214,12 @@ export default class ProjectSelectModal extends React.Component {
         onCancel={onCancel}
         width={960}
         icon="enterprise"
-        title={<a onClick={this.handleEnterWorkspace}>{workspace.name}</a>}
-        description={get(workspace, 'description') || '-'}
+        title={<a onClick={this.handleEnterWorkspace}>{workspace}</a>}
+        description={get(detail, 'description') || t('Workspace')}
         hideFooter
       >
         <div className={styles.bar}>
-          <Columns>
+          <Columns className="is-variable is-1">
             <Column className="is-narrow">
               <RadioGroup
                 value={type}
@@ -169,10 +228,24 @@ export default class ProjectSelectModal extends React.Component {
               />
             </Column>
             <Column>
-              <Search
-                placeholder={t('Please enter a name to find')}
-                onSearch={this.handleSearch}
-              />
+              <div className={styles.searchWrapper}>
+                {showClusterSelect && (
+                  <ClusterSelect
+                    className={styles.cluster}
+                    options={this.clusters}
+                    value={cluster}
+                    onChange={this.handleClusterChange}
+                  />
+                )}
+                <Search
+                  className={classNames(styles.search, {
+                    [styles.withSelect]: showClusterSelect,
+                  })}
+                  value={this.state.search}
+                  placeholder={t('Please enter a name to find')}
+                  onSearch={this.handleSearch}
+                />
+              </div>
             </Column>
             <Column className="is-narrow">
               <div>
@@ -181,8 +254,8 @@ export default class ProjectSelectModal extends React.Component {
                   type="flat"
                   onClick={this.handleRefresh}
                 />
-                {onShowCreate && (
-                  <Button type="control" onClick={onShowCreate}>
+                {this.canCreate && (
+                  <Button type="control" onClick={this.showCreate}>
                     {t('Create Project')}
                   </Button>
                 )}

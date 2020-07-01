@@ -17,6 +17,13 @@
  */
 
 export default {
+  node_cpu_utilisation: 'CPU 使用率',
+  node_load1: 'CPU 平均负载',
+  node_memory_utilisation: '内存使用率',
+  node_disk_size_utilisation: '本地存储用量',
+  node_pod_utilisation: '容器组用量',
+  node_disk_inode_utilisation: 'inode 使用率',
+
   'Sort By node_cpu_utilisation': '按 CPU 使用率排行',
   'Sort By node_memory_utilisation': '按内存使用率排行',
   'Sort By node_disk_size_utilisation': '按本地存储用量排行',

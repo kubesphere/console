@@ -18,7 +18,6 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import classnames from 'classnames'
 import { Link } from 'react-router-dom'
 import { Icon } from '@pitrix/lego-ui'
 
@@ -26,16 +25,7 @@ import styles from './index.scss'
 
 export default class NavItem extends React.Component {
   static propTypes = {
-    item: PropTypes.object,
-    current: PropTypes.string,
-    prefix: PropTypes.string,
-    onClick: PropTypes.func,
-  }
-
-  checkSelect = (item = {}) => {
-    const { current } = this.props
-
-    return current.startsWith(item.name)
+    data: PropTypes.object,
   }
 
   renderIcon(icon) {
@@ -43,19 +33,25 @@ export default class NavItem extends React.Component {
   }
 
   render() {
-    const { item, prefix, onClick } = this.props
-
+    const { data, onClick } = this.props
     return (
-      <li
-        key={item.name}
-        className={classnames({
-          [styles.select]: this.checkSelect(item),
-        })}
-      >
-        <Link to={`${prefix}/${item.name}`} onClick={onClick}>
-          {this.renderIcon(item.icon)} {t(item.title)}
-        </Link>
-      </li>
+      <Link to={`/${data.name}`} onClick={onClick}>
+        <div className={styles.nav}>
+          <div className={styles.icon}>
+            <Icon name={data.icon} size={60} type="light" />
+          </div>
+          <div className={styles.title}>{t(data.title)}</div>
+          <div className={styles.desc}>
+            {t(
+              data.desc ||
+                `${data.title.replace(/\s/g, '_').toUpperCase()}_DESC`
+            )}
+          </div>
+          <div className={styles.bottomIcon}>
+            <Icon name={data.icon} size={320} type="light" />
+          </div>
+        </div>
+      </Link>
     )
   }
 }

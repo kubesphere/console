@@ -37,9 +37,9 @@ class LogCollection extends React.Component {
   }
 
   handleSwitch = () => {
-    const { data } = this.props.store
+    const { detail } = this.props.store
     const isOpen =
-      get(data, 'labels["logging.kubesphere.io/logsidecar-injection"]') ===
+      get(detail, 'labels["logging.kubesphere.io/logsidecar-injection"]') ===
       'enabled'
 
     if (isOpen) {
@@ -50,27 +50,27 @@ class LogCollection extends React.Component {
   }
 
   handleToggle = () => {
-    const { data } = this.props.store
+    const { detail } = this.props.store
     const isOpen =
-      get(data, 'labels["logging.kubesphere.io/logsidecar-injection"]') ===
+      get(detail, 'labels["logging.kubesphere.io/logsidecar-injection"]') ===
       'enabled'
 
     this.props.store
-      .patch(
-        { name: data.name },
-        {
-          metadata: {
-            labels: {
-              'logging.kubesphere.io/logsidecar-injection': isOpen
-                ? 'disabled'
-                : 'enabled',
-            },
+      .patch(detail, {
+        metadata: {
+          labels: {
+            'logging.kubesphere.io/logsidecar-injection': isOpen
+              ? 'disabled'
+              : 'enabled',
           },
-        }
-      )
+        },
+      })
       .then(() => {
         this.hideCloseConfirm()
-        this.props.store.fetchDetail({ namespace: data.name })
+        this.props.store.fetchDetail({
+          namespace: detail.name,
+          cluster: detail.cluster,
+        })
       })
   }
 
@@ -80,19 +80,19 @@ class LogCollection extends React.Component {
 
   render() {
     const { showCloseConfirm } = this.state
-    const { data } = this.props.store
+    const { detail } = this.props.store
     const isOpen =
-      get(data, 'labels["logging.kubesphere.io/logsidecar-injection"]') ===
+      get(detail, 'labels["logging.kubesphere.io/logsidecar-injection"]') ===
       'enabled'
 
     return (
       <>
-        <Panel title={t('Collecting File Log')}>
+        <Panel title={t('Disk Log Collection')}>
           <div className={styles.header}>
             <Icon name="log" size={40} />
             <div className={styles.item}>
               <div>{isOpen ? t('Opened') : t('Closed')}</div>
-              <p>{t('Collecting File Log')}</p>
+              <p>{t('Disk Log Collection')}</p>
             </div>
             {this.canEdit && (
               <div className={classNames(styles.item, 'text-right')}>

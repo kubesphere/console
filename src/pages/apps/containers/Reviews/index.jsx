@@ -25,6 +25,7 @@ import { Status, Notify } from 'components/Base'
 import Base from 'core/containers/Base/List'
 import Banner from 'components/Cards/Banner'
 import Avatar from 'apps/components/Avatar'
+import EmptyTable from 'components/Cards/EmptyTable'
 import AppReviewModal from 'apps/components/Modals/AppReview'
 import RejectModal from 'apps/components/Modals/ReviewReject'
 
@@ -38,20 +39,20 @@ import styles from './index.scss'
 @inject('rootStore')
 @observer
 export default class Reviews extends Base {
+  state = {
+    type: this.props.match.params.type,
+  }
+
   init() {
     this.store = new ReviewStore()
   }
 
   get name() {
-    return 'Reviews'
-  }
-
-  get reviewType() {
-    return this.props.match.params.type
+    return 'App Reviews'
   }
 
   get canHandle() {
-    return this.reviewType === 'unprocessed'
+    return this.state.type === 'unprocessed'
   }
 
   get authKey() {
@@ -71,7 +72,7 @@ export default class Reviews extends Base {
 
   get tabs() {
     return {
-      value: this.reviewType,
+      value: this.state.type,
       onChange: this.handleTabChange,
       options: [
         {
@@ -91,7 +92,7 @@ export default class Reviews extends Base {
   }
 
   getData = async params => {
-    const queryStatus = REVIEW_QUERY_STATUS[this.reviewType]
+    const queryStatus = REVIEW_QUERY_STATUS[this.state.type]
     await this.store.fetchReviewList({
       status: queryStatus,
       queryApp: true,
@@ -213,6 +214,15 @@ export default class Reviews extends Base {
 
   handleTabChange = value => {
     this.routing.push(`/apps-manage/reviews/${value}`)
+    this.setState({ type: value }, () => {
+      this.getData()
+    })
+  }
+
+  renderEmpty() {
+    return (
+      <EmptyTable name={this.name} onCreate={null} {...this.getEmptyProps()} />
+    )
   }
 
   renderHeader() {

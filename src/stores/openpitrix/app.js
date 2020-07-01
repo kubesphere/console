@@ -65,29 +65,17 @@ export default class App extends Base {
   }
 
   @action
-  async deploy(params, { namespace }) {
+  async deploy(params, { namespace, cluster }) {
     if (namespace) {
       await this.submitting(
         request.post(
-          `${this.baseUrl}namespaces/${namespace}/applications`,
+          `${
+            this.baseUrl
+          }clusters/${cluster}/namespaces/${namespace}/applications`,
           params
         )
       )
     }
-  }
-
-  @action
-  async upgrade(params) {
-    await this.submitting(
-      request.post(`${this.baseUrl}clusters/upgrade`, params)
-    )
-  }
-
-  @action
-  async rollback(params) {
-    await this.submitting(
-      request.post(`${this.baseUrl}clusters/rollback`, params)
-    )
   }
 
   @action

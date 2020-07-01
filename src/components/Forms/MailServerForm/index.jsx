@@ -128,11 +128,15 @@ export default class MailServerForm extends Component {
         </Item>
 
         <div className={styles.row}>
-          <Item label={`SMTP ${t('Users')}`}>
+          <Item label={`SMTP ${t('User')}`}>
             <Input name="email" />
           </Item>
           <Item label={`SMTP ${t('Password')}`}>
-            <Input name="password" type="password" />
+            <Input
+              name="password"
+              autoComplete="new-password"
+              type="password"
+            />
           </Item>
         </div>
 

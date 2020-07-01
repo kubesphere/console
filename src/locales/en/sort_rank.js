@@ -17,6 +17,13 @@
  */
 
 export default {
+  node_cpu_utilisation: 'CPU Utilization',
+  node_load1: 'Load Average',
+  node_memory_utilisation: 'Memory Utilization',
+  node_disk_size_utilisation: 'Local Storage',
+  node_pod_utilisation: 'Pod Utilization',
+  node_disk_inode_utilisation: 'inode Utilization',
+
   'Sort By node_cpu_utilisation': 'Sort By CPU',
   'Sort By node_memory_utilisation': 'Sort By Memory',
   'Sort By node_disk_size_utilisation': 'Sort By Local Storage',
@@ -26,17 +33,17 @@ export default {
   'Sort By namespace_memory_usage_wo_cache': 'Sort By Memory Usage',
   'Sort By namespace_cpu_usage': 'Sort By CPU Usage',
   'Sort By namespace_pod_count': 'Sort By Pod Usage',
-  'Sort By namespace_net_bytes_received': 'Sort By Network Inbound',
-  'Sort By namespace_net_bytes_transmitted': 'Sort By Network Outbound',
+  'Sort By namespace_net_bytes_received': 'Sort By Inbound Traffic',
+  'Sort By namespace_net_bytes_transmitted': 'Sort By Outbound Traffic',
   'Sort By workspace_memory_usage': 'Sort By Memory Usage',
   'Sort By workspace_memory_usage_wo_cache': 'Sort By Memory Usage',
   'Sort By workspace_pod_count': 'Sort By Pod Count',
   'Sort By workspace_cpu_usage': 'Sort By CPU Usage',
-  'Sort By workspace_net_bytes_transmitted': 'Sort By Network Outbound',
-  'Sort By workspace_net_bytes_received': 'Sort By Network Inbound',
+  'Sort By workspace_net_bytes_transmitted': 'Sort By Outbound Traffic',
+  'Sort By workspace_net_bytes_received': 'Sort By Inbound Traffic',
 
   'Sort By workload_cpu_usage': 'Sort By CPU Usage',
   'Sort By workload_memory_usage_wo_cache': 'Sort By Memory Usage',
-  'Sort By workload_net_bytes_transmitted': 'Sort By Network Outbound',
-  'Sort By workload_net_bytes_received': 'Sort By Network Inbound',
+  'Sort By workload_net_bytes_transmitted': 'Sort By Outbound Traffic',
+  'Sort By workload_net_bytes_received': 'Sort By Inbound Traffic',
 }

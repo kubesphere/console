@@ -18,16 +18,17 @@
 
 import React from 'react'
 import { toJS } from 'mobx'
-import { observer } from 'mobx-react'
+import { observer, inject } from 'mobx-react'
 import { isEmpty } from 'lodash'
 
 import ContainersCard from 'components/Cards/Containers'
 import VolumesCard from 'components/Cards/Volumes'
 
+@inject('detailStore')
 @observer
 class PodsResourceStatus extends React.Component {
   get module() {
-    return this.props.module
+    return this.props.detailStore.module
   }
 
   get store() {
@@ -42,10 +43,13 @@ class PodsResourceStatus extends React.Component {
   }
 
   renderContainers() {
-    const { name, containers, initContainers } = toJS(this.store.detail)
+    const { name, cluster, containers, initContainers } = toJS(
+      this.store.detail
+    )
     return (
       <ContainersCard
         prefix={this.prefix}
+        cluster={cluster}
         title={t('Containers')}
         containers={containers}
         initContainers={initContainers}
@@ -56,7 +60,7 @@ class PodsResourceStatus extends React.Component {
 
   renderVolumes() {
     const { volumes, containers } = toJS(this.store.detail)
-    const { namespace } = this.props.match.params
+    const { workspace, cluster, namespace } = this.props.match.params
 
     if (isEmpty(volumes)) return null
 
@@ -66,7 +70,9 @@ class PodsResourceStatus extends React.Component {
         volumes={volumes}
         containers={containers}
         loading={this.store.isLoading}
-        prefix={`/projects/${namespace}`}
+        prefix={`${
+          workspace ? `/${workspace}` : ''
+        }/clusters/${cluster}/projects/${namespace}`}
       />
     )
   }

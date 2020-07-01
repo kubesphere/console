@@ -43,7 +43,10 @@ export default class ETCDNodes extends React.Component {
   constructor(props) {
     super(props)
 
-    this.store = new ComponentMonitorStore('etcd')
+    this.store = new ComponentMonitorStore({
+      module: 'etcd',
+      cluster: props.cluster,
+    })
   }
 
   getReulst = type => get(this.metrics, `${type}.data.result`) || []

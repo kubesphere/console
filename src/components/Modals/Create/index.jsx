@@ -16,11 +16,10 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, isFunction, cloneDeep } from 'lodash'
+import { get, isFunction, cloneDeep, isArray } from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Modal, Switch, Notify } from 'components/Base'
-import formPersist from 'utils/form.persist'
 import Form from './Form'
 import Code from './Code'
 
@@ -69,16 +68,8 @@ export default class CreateModal extends React.Component {
         this.setState({
           currentStep: 0,
           isCodeMode: this.props.onlyCode || false,
-          formTemplate: cloneDeep(
-            formPersist.get(`${this.props.module}_create_form`) ||
-              this.props.formTemplate
-          ),
+          formTemplate: cloneDeep(this.props.formTemplate),
         })
-      } else {
-        formPersist.set(
-          `${this.props.module}_create_form`,
-          this.state.formTemplate
-        )
       }
     }
   }
@@ -104,6 +95,15 @@ export default class CreateModal extends React.Component {
 
       if (isCodeMode && isFunction(get(this, 'codeRef.current.getData'))) {
         newState.formTemplate = this.codeRef.current.getData()
+        if (isArray(newState.formTemplate)) {
+          newState.formTemplate = newState.formTemplate.reduce(
+            (prev, cur) => ({
+              ...prev,
+              [cur.kind.replace('Federated', '')]: cur,
+            }),
+            {}
+          )
+        }
       }
 
       return newState
@@ -111,31 +111,14 @@ export default class CreateModal extends React.Component {
   }
 
   renderForms() {
-    const {
-      module,
-      onOk,
-      onCancel,
-      store,
-      okBtnText,
-      steps,
-      isSubmitting,
-      updateModule,
-    } = this.props
     const { formTemplate, currentStep } = this.state
 
     return (
       <Form
+        {...this.props}
         ref={this.formRef}
         formTemplate={formTemplate}
-        store={store}
-        module={module}
-        steps={steps}
-        onOk={onOk}
-        onCancel={onCancel}
-        okBtnText={okBtnText}
         currentStep={currentStep}
-        updateModule={updateModule}
-        isSubmitting={isSubmitting}
       />
     )
   }
@@ -143,7 +126,6 @@ export default class CreateModal extends React.Component {
   renderCodeEditor() {
     const { onOk, onCancel, isSubmitting } = this.props
     const { formTemplate } = this.state
-
     return (
       <Code
         ref={this.codeRef}

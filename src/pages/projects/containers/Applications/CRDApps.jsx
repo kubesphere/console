@@ -16,142 +16,136 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get } from 'lodash'
 import React from 'react'
-import { observer, inject } from 'mobx-react'
+import { get } from 'lodash'
+
+import { Status, Avatar } from 'components/Base'
+import { withProjectList, ListPage } from 'components/HOCs/withList'
+import Table from 'components/Tables/List'
 
 import { getLocalTime, getDisplayName } from 'utils'
 
-import { Status, Avatar } from 'components/Base'
-import EditModal from 'components/Modals/EditBasicInfo'
-import EmptyTable from 'components/Cards/EmptyTable'
-import Base from 'core/containers/Base/List'
+import CRDAppStore from 'stores/application/crd'
+import Banner from './Banner'
 
-@inject('rootStore')
-@observer
-export default class CRDApps extends Base {
-  init() {
-    this.store = this.props.store
+@withProjectList({
+  store: new CRDAppStore(),
+  module: 'applications',
+  name: 'Application',
+})
+export default class CRDApps extends React.Component {
+  type = 'composing'
 
-    this.state = {
-      showServiceDeployApp: false,
-      sampleApp: '',
-      deleteModal: false,
-    }
+  get canCreate() {
+    const { workspace, cluster, namespace: project } = this.props.match.params
+    const canCreateDeployment = globals.app
+      .getActions({
+        workspace,
+        cluster,
+        project,
+        module: 'deployments',
+      })
+      .includes('create')
+
+    const canCreateService = globals.app
+      .getActions({
+        workspace,
+        cluster,
+        project,
+        module: 'services',
+      })
+      .includes('create')
+
+    return canCreateDeployment && canCreateService
   }
 
-  get rowKey() {
-    return 'name'
+  getColumns = () => {
+    const { getSortOrder } = this.props
+    return [
+      {
+        title: t('Name'),
+        dataIndex: 'name',
+        sorter: true,
+        sortOrder: getSortOrder('name'),
+        search: true,
+        render: (name, record) => (
+          <Avatar
+            title={getDisplayName(record)}
+            avatar={record.icon || '/assets/default-app.svg'}
+            to={`${this.props.match.url}/${name}`}
+            desc={get(record, 'annotations["kubesphere.io/description"]', '-')}
+          />
+        ),
+      },
+      {
+        title: t('Status'),
+        dataIndex: 'status',
+        isHideable: true,
+        width: '20%',
+        render: status => <Status name={t(status)} type={status} />,
+      },
+      {
+        title: t('Version'),
+        dataIndex: 'version',
+        isHideable: true,
+        width: '20%',
+      },
+      {
+        title: t('Created Time'),
+        dataIndex: 'createTime',
+        sorter: true,
+        sortOrder: getSortOrder('createTime'),
+        isHideable: true,
+        width: 180,
+        render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
+      },
+    ]
   }
 
-  get prefix() {
-    const { namespace } = this.props.match.params
-    return `/projects/${namespace}/applications/composing`
-  }
-
-  get module() {
-    return 'applications'
-  }
-
-  getColumns = () => [
-    {
-      title: t('Name'),
-      dataIndex: 'name',
-      sorter: true,
-      sortOrder: this.getSortOrder('name'),
-      search: true,
-      render: (name, record) => (
-        <Avatar
-          title={getDisplayName(record)}
-          avatar={record.icon || '/assets/default-app.svg'}
-          to={`${this.prefix}/${name}`}
-          desc={get(record, 'annotations["kubesphere.io/description"]', '-')}
-        />
-      ),
-    },
-    {
-      title: t('Status'),
-      dataIndex: 'status',
-      isHideable: true,
-      width: '20%',
-      render: status => <Status name={t(status)} type={status} />,
-    },
-    {
-      title: t('Version'),
-      dataIndex: 'version',
-      isHideable: true,
-      width: '20%',
-    },
-    {
-      title: t('Created Time'),
-      dataIndex: 'createTime',
-      sorter: true,
-      sortOrder: this.getSortOrder('createTime'),
-      isHideable: true,
-      width: 180,
-      render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
-    },
-    {
-      key: 'more',
-      width: 20,
-      render: this.renderMore,
-    },
-  ]
-
-  getData = (params = {}) => {
-    this.store.fetchList({
-      namespace: this.props.match.params.namespace,
-      ...params,
+  showCreate = () => {
+    const { match, module, projectStore, getData } = this.props
+    return this.props.trigger('crd.app.create', {
+      module,
+      ...match.params,
+      projectDetail: projectStore.detail,
+      success: getData,
     })
   }
 
   getTableProps() {
-    const actions = this.props.canCreate
+    const actions = this.canCreate
       ? [
           {
-            key: 'deploy',
+            key: 'create',
             type: 'control',
-            text: t('Deploy New Application'),
-            onClick: this.props.showDeployAppModal,
+            text: t('Create Application'),
+            onClick: this.showCreate,
           },
         ]
       : []
 
     return {
-      ...Base.prototype.getTableProps.call(this),
       actions,
       onCreate: null,
       selectActions: [],
+      emptyProps: {
+        title: t('Composing App'),
+        desc: t('COMPOSING_APP_DESC'),
+      },
     }
   }
 
-  renderHeader() {
-    return null
-  }
-
-  renderEmpty() {
-    const onCreate = this.props.canCreate ? this.props.showDeployAppModal : null
-
+  render() {
+    const { bannerProps, tableProps, match } = this.props
     return (
-      <EmptyTable
-        createText={t('Deploy New Application')}
-        desc={t('APP_TEMPLATE_DESC')}
-        onCreate={onCreate}
-      />
-    )
-  }
-
-  renderExtraModals() {
-    const { selectItem = {} } = this.state
-
-    return (
-      <EditModal
-        visible={this.state.editModal}
-        detail={selectItem._originData}
-        onOk={this.handleEdit}
-        onCancel={this.hideModal('editModal')}
-        isSubmitting={this.store.isSubmitting}
-      />
+      <ListPage {...this.props}>
+        <Banner {...bannerProps} match={match} type={this.type} />
+        <Table
+          {...tableProps}
+          {...this.getTableProps()}
+          columns={this.getColumns()}
+        />
+      </ListPage>
     )
   }
 }

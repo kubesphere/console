@@ -68,8 +68,8 @@ export default class Pullrequest extends React.Component {
   }
 
   get prefix() {
-    const { project_id, name } = this.props.match.params
-    return `/devops/${project_id}/pipelines/${name}`
+    const { workspace, project_id, name, cluster } = this.props.match.params
+    return `/${workspace}/clusters/${cluster}/devops/${project_id}/pipelines/${name}`
   }
 
   getFilteredValue = dataIndex => this.store.list.filters[dataIndex]
@@ -97,14 +97,14 @@ export default class Pullrequest extends React.Component {
       ),
     },
     {
-      title: t('Last message'),
+      title: t('Last Message'),
       width: '25%',
-      render: record => record.pullRequest.title || '',
+      render: record => get(record, 'pullRequest.title', ''),
     },
     {
       title: t('author'),
       width: '15%',
-      render: record => record.pullRequest.author || '',
+      render: record => get(record, 'pullRequest.author', ''),
     },
     {
       title: t('Time'),
@@ -136,7 +136,7 @@ export default class Pullrequest extends React.Component {
       <Table
         data={toJS(data)}
         columns={this.getColumns()}
-        rowKey={'displayName'}
+        rowKey="displayName"
         filters={omitFilters}
         pagination={pagination}
         isLoading={isLoading}

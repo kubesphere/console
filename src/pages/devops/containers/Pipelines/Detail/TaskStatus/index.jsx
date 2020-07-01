@@ -36,6 +36,7 @@ import PipelineContent from 'devops/components/PipelineStatus'
 import PipelineLog from '../PipelineLogDialog'
 import style from './index.scss'
 
+// @inject('devopsStore')
 @observer
 export default class Pipeline extends React.Component {
   constructor(props) {
@@ -53,11 +54,13 @@ export default class Pipeline extends React.Component {
   }
 
   get enabledActions() {
-    const { project_id } = this.props.match.params
+    const { cluster, project_id } = this.props.match.params
+    const devops = this.store.getDevops(project_id)
 
     return globals.app.getActions({
       module: 'pipelines',
-      project: project_id,
+      cluster,
+      devops,
     })
   }
 

@@ -1,36 +1,29 @@
 @import '~scss/variables';
 
-.wrapper {
-  max-width: 1400px;
-  padding: 20px;
-  margin: 0 auto;
-}
-
 .header {
   position: relative;
   margin-bottom: 20px;
   border-radius: $border-radius;
   overflow: hidden;
-  background-color: #36435c;
+  background-color: #fff;
   box-shadow: 0 4px 8px 0 rgba(36, 46, 66, 0.06);
 }
 
 .title {
   position: relative;
-  padding: 30px 40px;
-  color: #ffffff;
+  padding: 24px 20px;
+  color: $dark-color07;
   overflow: hidden;
 
   :global {
     .h4 {
-      color: #ffffff;
       line-height: 1.4;
       text-shadow: 0 4px 8px rgba(36, 46, 66, 0.1);
     }
   }
 
   & > p {
-    color: #eff4f9;
+    color: $dark-color01;
     margin-top: 3px;
   }
 
@@ -50,8 +43,8 @@
 }
 
 .toolbar {
-  padding: 8px 20px;
-  background-color: #fff;
+  padding: 8px 14px;
+  background-color: $light-color02;
 
   :global {
     .radio-default label.radio-button {

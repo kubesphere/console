@@ -49,6 +49,7 @@ export default class Categories extends React.Component {
     this.module = 'strategies'
 
     this.namespace = this.props.match.params.namespace
+    this.cluster = this.props.match.params.cluster
   }
 
   componentDidMount() {
@@ -73,15 +74,16 @@ export default class Categories extends React.Component {
   }
 
   get canCreate() {
-    const { namespace: project } = this.props.match.params
+    const { cluster, workspace, namespace: project } = this.props.match.params
     return globals.app
-      .getActions({ module: 'applications', project })
+      .getActions({ cluster, workspace, project, module: 'applications' })
       .includes('edit')
   }
 
   get serviceMeshEnable() {
+    const { cluster } = this.props.match.params
     return (
-      globals.app.hasKSModule('servicemesh') &&
+      globals.app.hasClusterModule(cluster, 'servicemesh') &&
       this.routerStore.gateway.data.serviceMeshEnable
     )
   }
@@ -98,11 +100,13 @@ export default class Categories extends React.Component {
   }
 
   handleCreate = data => {
-    const { namespace } = this.props.match.params
-    this.store.create(data, { namespace }).then(() => {
+    const { workspace, cluster, namespace } = this.props.match.params
+    this.store.create(data, { cluster, namespace }).then(() => {
       this.hideCreate()
       Notify.success({ content: `${t('Created Successfully')}!` })
-      this.routing.push(`/projects/${namespace}/grayrelease/jobs`)
+      this.routing.push(
+        `/${workspace}/clusters/${cluster}/projects/${namespace}/grayrelease/jobs`
+      )
       formPersist.delete(`${this.module}_create_form`)
     })
   }
@@ -147,6 +151,8 @@ export default class Categories extends React.Component {
           title={t(cate.title)}
           module={`grayreleases_${cate.type}`}
           formTemplate={this.formTemplate}
+          cluster={this.cluster}
+          namespace={this.namespace}
           store={this.store}
           visible={showCreateModal}
           steps={this.steps}

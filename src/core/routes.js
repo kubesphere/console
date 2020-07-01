@@ -20,19 +20,26 @@ import { lazy } from 'react'
 
 import BaseLayout from 'core/layouts/Base'
 
-import KubeCtl from 'clusters/containers/KubeCtl'
-import KubeConfig from 'clusters/containers/KubeConfig'
-import LogQuery from 'clusters/containers/LogQuery'
-import ContainerTerminal from 'clusters/containers/ContainerTerminal'
-
+const Console = lazy(() =>
+  import(/* webpackChunkName: "console" */ 'console/App.jsx')
+)
 const Clusters = lazy(() =>
   import(/* webpackChunkName: "clusters" */ 'clusters/App.jsx')
+)
+const AccessControl = lazy(() =>
+  import(/* webpackChunkName: "clusters" */ 'access/App.jsx')
+)
+const Settings = lazy(() =>
+  import(/* webpackChunkName: "clusters" */ 'settings/App.jsx')
 )
 const Workspaces = lazy(() =>
   import(/* webpackChunkName: "workspaces" */ 'workspaces/App.jsx')
 )
 const Projects = lazy(() =>
   import(/* webpackChunkName: "projects" */ 'projects/App.jsx')
+)
+const FederatedProjects = lazy(() =>
+  import(/* webpackChunkName: "fedprojects" */ 'fedprojects/App.jsx')
 )
 const DevOps = lazy(() =>
   import(/* webpackChunkName: "devops" */ 'devops/App.jsx')
@@ -46,54 +53,47 @@ const AppStore = lazy(() =>
 
 export default [
   {
-    path: '/terminal/:namespace/pods/:podName/containers/:containerName',
-    component: ContainerTerminal,
-  },
-  {
-    path: '/kubeCtl',
-    exact: true,
-    component: KubeCtl,
-  },
-  {
-    path: '/logQuery',
-    component: LogQuery,
-    ksModule: 'logging',
-    exact: true,
-  },
-  {
-    path: '/kubeConfig',
-    component: KubeConfig,
-    exact: true,
-  },
-  {
     component: BaseLayout,
     routes: [
+      {
+        path: '/clusters',
+        component: Clusters,
+      },
+      {
+        path: '/access',
+        component: AccessControl,
+      },
+      {
+        path: '/:workspace/clusters/:cluster/projects/:namespace',
+        component: Projects,
+      },
+      {
+        path: '/:workspace/clusters/:cluster/devops/:project_id',
+        component: DevOps,
+      },
+      {
+        path: '/:workspace/federatedprojects/:namespace',
+        component: FederatedProjects,
+      },
       {
         path: '/workspaces/:workspace',
         component: Workspaces,
       },
       {
-        path: '/projects/:namespace',
-        component: Projects,
-      },
-      {
-        path: '/devops/:project_id',
-        component: DevOps,
-        ksModule: 'devops',
-      },
-      {
         path: '/apps',
         component: AppStore,
-        ksModule: 'openpitrix',
       },
       {
         path: '/apps-manage',
         component: ManageApp,
-        ksModule: 'openpitrix',
+      },
+      {
+        path: '/settings',
+        component: Settings,
       },
       {
         path: '*',
-        component: Clusters,
+        component: Console,
       },
     ],
   },

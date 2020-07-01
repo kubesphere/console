@@ -16,91 +16,165 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get } from 'lodash'
 import React from 'react'
-import { observer, inject } from 'mobx-react'
-import { getLocalTime } from 'utils'
-import { ICON_TYPES } from 'utils/constants'
+import { toJS } from 'mobx'
 
 import { Avatar } from 'components/Base'
 import Banner from 'components/Cards/Banner'
-import Base from 'core/containers/Base/List'
+import Table from 'components/Tables/List'
+import withList, { ListPage } from 'components/HOCs/withList'
 
-import RoleStore from 'stores/workspace/role'
+import { getLocalTime } from 'utils'
+import { ICON_TYPES } from 'utils/constants'
 
-@inject('rootStore')
-@observer
-class Roles extends Base {
-  init() {
-    this.store = new RoleStore()
+import RoleStore from 'stores/role'
+
+@withList({
+  store: new RoleStore('workspaceroles'),
+  module: 'workspaceroles',
+  authKey: 'roles',
+  name: 'Workspace Role',
+})
+export default class Roles extends React.Component {
+  componentDidMount() {
+    this.props.store.fetchRoleTemplates(this.props.match.params)
   }
 
-  get module() {
-    return 'roles'
+  get workspace() {
+    return this.props.match.params.workspace
   }
 
-  get name() {
-    return 'Workspace Role'
+  showAction = record =>
+    !globals.config.presetWorkspaceRoles.includes(
+      record.name.slice(this.workspace.length + 1)
+    )
+
+  get itemActions() {
+    const { trigger, store, name, module, routing } = this.props
+    return [
+      {
+        key: 'edit',
+        icon: 'pen',
+        text: t('Edit'),
+        action: 'edit',
+        show: this.showAction,
+        onClick: item =>
+          trigger('resource.baseinfo.edit', {
+            detail: item,
+          }),
+      },
+      {
+        key: 'editRole',
+        icon: 'pen',
+        text: t('Edit Authorization'),
+        action: 'edit',
+        show: this.showAction,
+        onClick: item =>
+          trigger('role.edit', {
+            module,
+            detail: item,
+            roleTemplates: toJS(store.roleTemplates.data),
+            success: routing.query,
+          }),
+      },
+      {
+        key: 'delete',
+        icon: 'trash',
+        text: t('Delete'),
+        action: 'delete',
+        show: this.showAction,
+        onClick: item =>
+          trigger('role.delete', {
+            detail: item,
+            type: t(name),
+            workspace: this.props.match.params.workspace,
+            success: routing.query,
+          }),
+      },
+    ]
   }
 
-  getData(params) {
-    this.store.fetchList({ ...this.props.match.params, ...params })
-  }
-
-  getTableProps() {
+  get tableActions() {
+    const { tableProps } = this.props
     return {
-      onFetch: this.handleFetch,
-      hideSearch: true,
+      ...tableProps.tableActions,
+      onCreate: this.showCreate,
+      getCheckboxProps: record => ({
+        disabled: !this.showAction(record),
+        name: record.name,
+      }),
     }
   }
 
-  getColumns = () => [
-    {
-      title: t('Name'),
-      key: 'name',
-      dataIndex: 'name',
-      width: '30%',
-      render: name => (
-        <Avatar
-          title={name}
-          icon={ICON_TYPES[this.module]}
-          to={`${this.prefix}/${name}`}
-        />
-      ),
-    },
-    {
-      title: t('Description'),
-      key: 'description',
-      dataIndex: 'description',
-      isHideable: true,
-      width: '40%',
-      render: (description, record) => {
-        const name = get(record, 'name')
-        if (description && globals.config.presetWorkspaceRoles.includes(name)) {
-          return t(description)
-        }
-        return description
+  getColumns = () => {
+    const { getSortOrder } = this.props
+    const { workspace } = this.props.match.params
+    return [
+      {
+        title: t('Name'),
+        dataIndex: 'name',
+        search: true,
+        width: '25%',
+        render: name => (
+          <Avatar
+            icon={ICON_TYPES[this.module]}
+            to={`/workspaces/${workspace}/roles/${name}`}
+            title={name}
+          />
+        ),
       },
-    },
-    {
-      title: t('Created Time'),
-      dataIndex: 'createTime',
-      isHideable: true,
-      width: '30%',
-      render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
-    },
-  ]
+      {
+        title: t('Description'),
+        key: 'description',
+        dataIndex: 'description',
+        isHideable: true,
+        width: '55%',
+      },
+      {
+        title: t('Created Time'),
+        dataIndex: 'createTime',
+        sorter: true,
+        sortOrder: getSortOrder('createTime'),
+        isHideable: true,
+        width: '19%',
+        render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
+      },
+    ]
+  }
 
-  renderHeader() {
+  showCreate = () => {
+    const { match, store, trigger, getData } = this.props
+    return trigger('role.create', {
+      title: t('Create Workspace Role'),
+      roleTemplates: toJS(store.roleTemplates.data),
+      workspace: match.params.workspace,
+      success: getData,
+    })
+  }
+
+  get emptyProps() {
+    return {
+      desc: t('WORKSPACE_ROLE_DESC'),
+    }
+  }
+
+  render() {
+    const { bannerProps, tableProps } = this.props
     return (
-      <Banner
-        title={t('Workspace Roles')}
-        icon="role"
-        description={t('WORKSPACE_ROLE_DESC')}
-        module={this.module}
-      />
+      <ListPage {...this.props} noWatch>
+        <Banner
+          {...bannerProps}
+          tabs={this.tabs}
+          title={t('Workspace Roles')}
+        />
+        <Table
+          {...tableProps}
+          emptyProps={this.emptyProps}
+          tableActions={this.tableActions}
+          itemActions={this.itemActions}
+          columns={this.getColumns()}
+        />
+      </ListPage>
     )
   }
 }
-
-export default Roles

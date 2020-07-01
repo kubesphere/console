@@ -26,6 +26,10 @@ import Metadata from './Metadata'
 import NodeSchedule from './NodeSchedule'
 
 export default class AdvancedSettings extends React.Component {
+  get cluster() {
+    return this.props.cluster
+  }
+
   get namespace() {
     return get(this.formTemplate, 'metadata.namespace')
   }
@@ -35,36 +39,43 @@ export default class AdvancedSettings extends React.Component {
     return get(formTemplate, MODULE_KIND_MAP[module], formTemplate)
   }
 
+  get fedFormTemplate() {
+    return this.props.isFederated
+      ? get(this.formTemplate, 'spec.template')
+      : this.formTemplate
+  }
+
   render() {
     const { formRef, store, module } = this.props
     return (
-      <Form data={this.formTemplate} ref={formRef}>
+      <Form data={this.fedFormTemplate} ref={formRef}>
         {module !== 'daemonsets' && (
           <Form.Group
-            label={t('Setting node schedule policy')}
-            desc={t('Running pods on the specified nodes')}
+            label={t('Set Node Scheduling Policy')}
+            desc={t('You can allow Pod replicas to run on specified nodes.')}
             keepDataWhenUnCheck
             checkable
           >
             <NodeSchedule
               prefix={this.props.prefix}
               namespace={this.namespace}
-              formTemplate={this.formTemplate}
+              formTemplate={this.fedFormTemplate}
             />
           </Form.Group>
         )}
         <Form.Group
-          label={t('Add metadata')}
+          label={t('Add Metadata')}
           desc={t(
-            'Additional metadata settings for resources such as Label and Annotation'
+            'Additional metadata settings for resources such as Labels and Annotations.'
           )}
           keepDataWhenUnCheck
           checkable
         >
           <Metadata
             store={store}
+            cluster={this.cluster}
             namespace={this.namespace}
-            formTemplate={this.formTemplate}
+            formTemplate={this.fedFormTemplate}
           />
         </Form.Group>
       </Form>

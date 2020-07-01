@@ -171,7 +171,7 @@ export const CPU_RULE_CONFIG = getBaseRuleConfig({
 
 export const MEMORY_RULE_CONFIG = getBaseRuleConfig({
   thresholds: {
-    unit: 'MiB',
+    unit: 'Mi',
   },
 })
 

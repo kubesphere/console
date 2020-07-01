@@ -16,42 +16,21 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { set, isArray } from 'lodash'
+import { set, get, isArray } from 'lodash'
 import { action, observable } from 'mobx'
-import { getFilterString, formatRules } from 'utils'
+import { getFilterString } from 'utils'
 
-import MemberList from 'stores/member.list'
+import Base from 'stores/base'
 
-export default class DevOpsStore {
+import RoleStore from 'stores/role'
+
+export default class DevOpsStore extends Base {
   @observable
   initializing = true
 
-  @observable
-  list = {
-    data: [],
-    page: 1,
-    limit: 10,
-    total: 0,
-    order: '',
-    reverse: false,
-    keyword: '',
-    isLoading: true,
-    selectedRowKeys: [],
-  }
+  roleStore = new RoleStore()
 
-  @observable
-  isLoading = false
-
-  @observable
-  isSubmitting = false
-
-  @observable
-  data = {}
-
-  @observable
-  limitRanges = {}
-
-  members = new MemberList()
+  module = 'devops'
 
   @observable
   roles = {
@@ -61,32 +40,79 @@ export default class DevOpsStore {
     isLoading: true,
   }
 
-  @action
-  submitting = promise => {
-    this.isSubmitting = true
+  @observable
+  data = {}
 
-    setTimeout(() => {
-      promise
-        .catch(() => {})
-        .finally(() => {
-          this.isSubmitting = false
-        })
-    }, 500)
+  @observable
+  devopsListData = []
 
-    return promise
+  @observable
+  project_id = ''
+
+  @observable
+  devops = ''
+
+  getPath({ cluster, namespace, workspace } = {}) {
+    let path = ''
+    if (cluster) {
+      path += `/klusters/${cluster}`
+    }
+    if (workspace) {
+      path += `/workspaces/${workspace}`
+    }
+    if (namespace) {
+      path += `/namespaces/${namespace}`
+    }
+    return path
   }
 
-  getListUrl = () => 'kapis/devops.kubesphere.io/v1alpha2/devops'
-  getDetailUrl = project_id => `${this.getListUrl()}/${project_id}`
+  getBaseUrlV2 = params =>
+    `kapis/devops.kubesphere.io/v1alpha2${this.getPath(params)}/`
+
+  getDevopsUrlV2 = params => `${this.getBaseUrlV2(params)}devops/`
 
   getResourceUrl = ({ workspace }) =>
-    `kapis/tenant.kubesphere.io/v1alpha2/workspaces/${workspace}/devops`
+    `${this.getBaseUrlV2({ workspace })}devops`
+
+  getBaseUrl = params => `${this.apiVersion}${this.getPath(params)}/`
+
+  getDevOpsUrl = params => `${this.getBaseUrl(params)}devops`
+
+  getDevOpsDetailUrl = ({ workspace, cluster, devops }) =>
+    `${this.getDevOpsUrl({ cluster, workspace })}/${devops}`
+
+  getWatchListUrl = ({ workspace, ...params }) => {
+    if (workspace) {
+      return `${this.apiVersion}/watch/${
+        this.module
+      }?labelSelector=kubesphere.io/workspace=${workspace}`
+    }
+    return `${this.apiVersion}/watch${this.getPath(params)}/devopsprojects`
+  }
+
+  getWatchUrl = (params = {}) =>
+    `${this.getWatchListUrl(params)}/${params.name}`
+
+  getDevops(project_id) {
+    return project_id.slice(0, -5)
+  }
 
   @action
-  async fetchList({ workspace, limit, page, order, reverse, keyword } = {}) {
+  async fetchList({
+    workspace,
+    cluster,
+    limit,
+    page,
+    order,
+    reverse,
+    keyword,
+  } = {}) {
     this.list.isLoading = true
-
     const params = {}
+
+    if (workspace) {
+      params.labelSelector = `kubesphere.io/workspace=${workspace}`
+    }
 
     if (limit !== Infinity) {
       params.paging = `limit=${limit || 10},page=${page || 1}`
@@ -104,65 +130,114 @@ export default class DevOpsStore {
       params.reverse = true
     }
 
-    const result = await request.get(this.getResourceUrl({ workspace }), params)
+    const result = await request.get(
+      this.getDevOpsUrl({ cluster, workspace }),
+      params,
+      null,
+      () => {}
+    )
 
-    this.list = {
-      data: result.items,
-      total: result.total_count || 0,
+    const items = Array.isArray(get(result, 'items'))
+      ? get(result, 'items')
+      : []
+
+    this.devopsListData = items
+
+    const data = items.map(item => ({
+      cluster,
+      ...this.mapper(item),
+    }))
+
+    this.list.update({
+      data,
+      total: get(result, 'total_count') || data.length || 0,
       limit: Number(limit) || 10,
       page: Number(page) || 1,
       order,
       reverse,
       keyword,
+      cluster: globals.app.isMultiCluster ? cluster : undefined,
       isLoading: false,
       selectedRowKeys: [],
-    }
+    })
   }
 
   @action
-  create(data, { workspace }) {
+  create(data, { cluster, workspace }) {
+    data.kind = 'DevOpsProject'
+    data.apiVersion = 'devops.kubesphere.io/v1alpha3'
+    data.metadata.labels = { 'kubesphere.io/workspace': workspace }
     return this.submitting(
-      request.post(this.getResourceUrl({ workspace }), data)
+      request.post(this.getDevOpsUrl({ cluster, workspace }), data)
     )
   }
 
   @action
-  update(project_id, data) {
-    return this.submitting(
-      request.patch(
-        `kapis/devops.kubesphere.io/v1alpha2/devops/${project_id}`,
+  update({ cluster, workspace, name }, item, isBaseInfoEditor = false) {
+    let data = null
+    if (isBaseInfoEditor) {
+      data = this.itemDetail
+    } else {
+      const result = this.devopsListData.filter(
+        v => v.metadata.uid === item.uid
+      )
+
+      data = result.length > 0 ? result[0] : null
+    }
+
+    if (data) {
+      data = set(
         data,
-        {
-          headers: {
-            'content-type': 'application/json',
-          },
-        }
+        'metadata.annotations["kubesphere.io/description"]',
+        item.description
+      )
+
+      return this.submitting(
+        request.put(
+          `${this.getDevOpsDetailUrl({ cluster, workspace, devops: name })}`,
+          data,
+          {
+            headers: {
+              'content-type': 'application/json',
+            },
+          }
+        )
+      )
+    }
+  }
+
+  @action
+  delete({ name, cluster, workspace }) {
+    return this.submitting(
+      request.delete(
+        `${this.getDevOpsDetailUrl({ workspace, cluster, devops: name })}`
       )
     )
   }
 
   @action
-  delete({ project_id }, { workspace }) {
-    return this.submitting(
-      request.delete(`${this.getResourceUrl({ workspace })}/${project_id}`)
-    )
-  }
-
-  @action
   batchDelete(rowKeys, params) {
+    const { workspace, cluster, name } = params
     return this.submitting(
       Promise.all(
         rowKeys.map(project_id =>
-          request.delete(`${this.getResourceUrl(params)}/${project_id}`)
+          request.delete(
+            `${this.getDevOpsDetailUrl({
+              workspace,
+              cluster,
+              devops: name,
+            })}/${project_id}`
+          )
         )
       )
     )
   }
 
   @action
-  async fetchDetail({ project_id }) {
+  async fetchDetail({ cluster, project_id, workspace }) {
+    const devops = this.getDevops(project_id)
     const detail = await request.get(
-      this.getDetailUrl(project_id),
+      this.getDevOpsDetailUrl({ workspace, cluster, devops }),
       null,
       null,
       res => {
@@ -172,32 +247,20 @@ export default class DevOpsStore {
       }
     )
 
-    this.data = detail
+    this.itemDetail = detail
+    const data = { cluster, ...this.mapper(detail) }
+    this.devops = data.name
+    this.project_id = data.namespace
+    data.workspace = data.workspace || workspace
+    this.data = data
   }
 
   @action
-  async fetchRules({ project_id }) {
-    this.initializing = true
-
-    const rules = await request.get(
-      `kapis/tenant.kubesphere.io/v1alpha2/devops/${project_id}/rules`,
-      null,
-      null,
-      () => []
-    )
-
-    set(globals.user, `rules[${project_id}]`, formatRules(rules))
-
-    this.initializing = false
-  }
-
-  @action
-  async fetchRoles({ project_id }) {
+  async fetchRoles({ cluster, project_id }) {
     this.roles.isLoading = true
     const result = await request.get(
-      `${this.getListUrl()}/${project_id}/defaultroles`
+      `${this.getListUrl({ cluster })}/${project_id}/defaultroles`
     )
-
     if (isArray(result)) {
       this.roles.data = result.map(role => {
         role.description = t(`pipeline_${role.name}`)
@@ -205,67 +268,7 @@ export default class DevOpsStore {
       })
       this.roles.total = result.length
     }
-
     this.roles.isLoading = false
-  }
-
-  @action
-  async fetchMembers({ project_id }) {
-    this.members.isLoading = true
-    const result = await request.get(
-      `${this.getDetailUrl(project_id)}/members`,
-      { paging: `limit=9999,page=1` }
-    )
-
-    if (result) {
-      this.members.init({
-        originData: result.items,
-        page: 1,
-      })
-    }
-
-    this.members.isLoading = false
-    return result
-  }
-
-  @action
-  addMember({ project_id, ...params }) {
-    return this.submitting(
-      request.post(`${this.getDetailUrl(project_id)}/members`, params)
-    )
-  }
-
-  @action
-  updateMember({ project_id, username, ...params }) {
-    return this.submitting(
-      request.patch(
-        `${this.getDetailUrl(project_id)}/members/${username}`,
-        params,
-        {
-          headers: {
-            'content-type': 'application/json',
-          },
-        }
-      )
-    )
-  }
-
-  @action
-  deleteMember(project_id, { username }) {
-    return this.submitting(
-      request.delete(`${this.getDetailUrl(project_id)}/members/${username}`)
-    )
-  }
-
-  @action
-  batchDeleteMembers(project_id, rowKeys) {
-    return this.submitting(
-      Promise.all(
-        rowKeys.map(rowKey =>
-          request.delete(`${this.getDetailUrl(project_id)}/members/${rowKey}`)
-        )
-      )
-    )
   }
 
   @action

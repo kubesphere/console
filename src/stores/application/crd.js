@@ -16,30 +16,29 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, set, isEmpty, pickBy, keyBy, findKey } from 'lodash'
+import { get, set, pickBy, keyBy, findKey } from 'lodash'
 import { observable, action } from 'mobx'
 
-import { joinSelector, generateId, withDryRun, getFilterString } from 'utils'
+import { joinSelector, generateId, withDryRun } from 'utils'
 import { TIME_MICROSECOND_MAP, MODULE_KIND_MAP } from 'utils/constants'
 import { transformTraces } from 'utils/tracing'
-import ObjectMapper from 'utils/object.mapper'
 
 import ServiceStore from 'stores/service'
 import RouterStore from 'stores/router'
 import GrayReleaseStore from 'stores/grayrelease'
 import PodStore from 'stores/pod'
 
-import List from 'stores/base.list'
+import Base from 'stores/base'
 
-export default class ApplicationStore {
-  constructor() {
+export default class ApplicationStore extends Base {
+  constructor(module = 'applications') {
+    super(module)
+
     this.serviceStore = new ServiceStore()
     this.routerStore = new RouterStore()
     this.grayReleaseStore = new GrayReleaseStore()
     this.podStore = new PodStore()
   }
-
-  list = new List()
 
   @observable
   components = {
@@ -50,6 +49,7 @@ export default class ApplicationStore {
 
   @observable
   isTracingLoading = true
+
   tracing = {
     data: [],
     total: 0,
@@ -61,102 +61,22 @@ export default class ApplicationStore {
   }
 
   @observable
-  detail = {}
-  @observable
-  isLoading = false
-
-  @observable
-  isSubmitting = false
-
-  @observable
   env = {
     data: {},
     isLoading: false,
   }
 
-  @action
-  submitting = promise => {
-    this.isSubmitting = true
+  getGraphUrl = ({ cluster, namespace }) =>
+    `kapis/servicemesh.kubesphere.io/v1alpha2${this.getPath({
+      cluster,
+      namespace,
+    })}/graph?duration=60s&graphType=versionedApp&injectServiceNodes=true&groupBy=app&appenders=deadNode,sidecarsCheck,serviceEntry,istio,responseTime`
 
-    setTimeout(() => {
-      promise.finally(() => {
-        this.isSubmitting = false
-      })
-    }, 500)
-
-    return promise
-  }
-
-  getResourceUrl = ({ namespace }) =>
-    `kapis/resources.kubesphere.io/v1alpha2/namespaces/${namespace}/applications`
-  getListUrl = ({ namespace }) =>
-    `apis/app.k8s.io/v1beta1/namespaces/${namespace}/applications`
-  getDetailUrl = ({ name, namespace }) =>
-    `${this.getListUrl({ namespace })}/${name}`
-  getGraphUrl = ({ namespace }) =>
-    `kapis/servicemesh.kubesphere.io/v1alpha2/namespaces/${namespace}/graph?duration=60s&graphType=versionedApp&injectServiceNodes=true&groupBy=app&appenders=deadNode,sidecarsCheck,serviceEntry,istio,responseTime`
-  getHealthUrl = ({ namespace, type }) =>
-    `kapis/servicemesh.kubesphere.io/v1alpha2/namespaces/${namespace}/health?rateInterval=60s&type=${type}`
-
-  @action
-  async fetchList({
-    limit,
-    page,
-    order,
-    reverse,
-    namespace,
-    runtime_id,
-    workspace,
-    ...filters
-  } = {}) {
-    this.list.isLoading = true
-
-    const params = {}
-
-    if (!order && reverse === undefined) {
-      order = 'createTime'
-      reverse = true
-    }
-
-    if (!isEmpty(filters)) {
-      params.conditions = getFilterString(filters)
-    }
-
-    if (limit !== Infinity) {
-      params.paging = `limit=${limit || 10},page=${page || 1}`
-    }
-
-    if (order) {
-      params.orderBy = order
-    }
-
-    if (reverse) {
-      params.reverse = true
-    }
-
-    const result = await request.get(this.getResourceUrl({ namespace }), params)
-    this.list.update({
-      data: get(result, 'items', []).map(ObjectMapper.applications),
-      total: result.total_count || 0,
-      limit: Number(limit) || 10,
-      page: Number(page) || 1,
-      order,
-      reverse,
-      filters,
-      isLoading: false,
-      selectedRowKeys: [],
-    })
-  }
-
-  @action
-  async fetchDetail({ name, namespace } = {}) {
-    this.isLoading = true
-
-    const result = await request.get(this.getDetailUrl({ name, namespace }))
-
-    this.detail = ObjectMapper.applications(result)
-    this.isLoading = false
-  }
+  getHealthUrl = ({ cluster, namespace, type }) =>
+    `kapis/servicemesh.kubesphere.io/v1alpha2${this.getPath({
+      cluster,
+      namespace,
+    })}/health?rateInterval=60s&type=${type}`
 
   @action
   async fetchComponents(params) {
@@ -204,7 +124,7 @@ export default class ApplicationStore {
   }
 
   @action
-  async fetchGraph({ namespace, selector } = {}) {
+  async fetchGraph({ cluster, namespace, selector } = {}) {
     const [
       serviceResult,
       result,
@@ -212,13 +132,13 @@ export default class ApplicationStore {
       serviceHealth,
       workloadHealth,
     ] = await Promise.all([
-      request.get(`api/v1/namespaces/${namespace}/services`, {
+      request.get(`api/v1${this.getPath({ cluster, namespace })}/services`, {
         labelSelector: joinSelector(selector),
       }),
-      request.get(this.getGraphUrl({ namespace })),
-      request.get(this.getHealthUrl({ namespace, type: 'app' })),
-      request.get(this.getHealthUrl({ namespace, type: 'service' })),
-      request.get(this.getHealthUrl({ namespace, type: 'workload' })),
+      request.get(this.getGraphUrl({ cluster, namespace })),
+      request.get(this.getHealthUrl({ cluster, namespace, type: 'app' })),
+      request.get(this.getHealthUrl({ cluster, namespace, type: 'service' })),
+      request.get(this.getHealthUrl({ cluster, namespace, type: 'workload' })),
     ])
 
     const serviceNames =
@@ -261,7 +181,7 @@ export default class ApplicationStore {
   }
 
   @action
-  fetchAppMetrics({ name, namespace }, options = {}) {
+  fetchAppMetrics({ name, cluster, namespace }, options = {}) {
     const queryTime = Math.floor(new Date().getTime() / 1000)
     const metricsParams = {
       queryTime,
@@ -281,13 +201,16 @@ export default class ApplicationStore {
       ...options,
     }
     return request.get(
-      `kapis/servicemesh.kubesphere.io/v1alpha2/namespaces/${namespace}/apps/${name}/metrics`,
+      `kapis/servicemesh.kubesphere.io/v1alpha2${this.getPath({
+        cluster,
+        namespace,
+      })}/apps/${name}/metrics`,
       metricsParams
     )
   }
 
   @action
-  fetchServiceMetrics({ name, namespace }, options = {}) {
+  fetchServiceMetrics({ name, cluster, namespace }, options = {}) {
     const queryTime = Math.floor(new Date().getTime() / 1000)
     const metricsParams = {
       queryTime,
@@ -302,13 +225,16 @@ export default class ApplicationStore {
       ...options,
     }
     return request.get(
-      `kapis/servicemesh.kubesphere.io/v1alpha2/namespaces/${namespace}/services/${name}/metrics`,
+      `kapis/servicemesh.kubesphere.io/v1alpha2${this.getPath({
+        cluster,
+        namespace,
+      })}/services/${name}/metrics`,
       metricsParams
     )
   }
 
   @action
-  fetchWorkloadMetrics({ name, namespace }, options = {}) {
+  fetchWorkloadMetrics({ name, cluster, namespace }, options = {}) {
     const metricsParams = {
       duration: 60,
       step: 20,
@@ -320,13 +246,16 @@ export default class ApplicationStore {
       ...options,
     }
     return request.get(
-      `kapis/servicemesh.kubesphere.io/v1alpha2/namespaces/${namespace}/workloads/${name}/metrics`,
+      `kapis/servicemesh.kubesphere.io/v1alpha2${this.getPath({
+        cluster,
+        namespace,
+      })}/workloads/${name}/metrics`,
       metricsParams
     )
   }
 
   @action
-  async fetchTracing({ service, namespace, ...rest }) {
+  async fetchTracing({ service, cluster, namespace, ...rest }) {
     this.isTracingLoading = true
 
     const params = {
@@ -343,7 +272,10 @@ export default class ApplicationStore {
 
     try {
       const result = await request.get(
-        `kapis/servicemesh.kubesphere.io/v1alpha2/namespaces/${namespace}/services/${service}/traces`,
+        `kapis/servicemesh.kubesphere.io/v1alpha2${this.getPath({
+          cluster,
+          namespace,
+        })}/services/${service}/traces`,
         params
       )
 
@@ -361,13 +293,8 @@ export default class ApplicationStore {
   }
 
   @action
-  create(data) {
+  create(data, params) {
     const { application, ingress, ...components } = data
-    const namespace = get(application, 'metadata.namespace')
-
-    if (!namespace) {
-      return
-    }
 
     const isServiceMeshEnable =
       get(
@@ -375,9 +302,7 @@ export default class ApplicationStore {
         'metadata.annotations["servicemesh.kubesphere.io/enabled"]'
       ) === 'true'
 
-    const requests = [
-      { url: this.getListUrl({ namespace }), data: application },
-    ]
+    const requests = [{ url: this.getListUrl(params), data: application }]
 
     const rules = get(ingress, 'spec.rules', [])
     if (rules.length > 0) {
@@ -399,13 +324,13 @@ export default class ApplicationStore {
           set(
             ingress,
             'metadata.annotations["nginx.ingress.kubernetes.io/upstream-vhost"]',
-            `${serviceName}.${namespace}.svc.cluster.local`
+            `${serviceName}.${params.namespace}.svc.cluster.local`
           )
         }
       }
 
       requests.push({
-        url: `apis/extensions/v1beta1/namespaces/${namespace}/ingresses`,
+        url: `apis/extensions/v1beta1${this.getPath(params)}/ingresses`,
         data: ingress,
       })
     }
@@ -418,11 +343,11 @@ export default class ApplicationStore {
 
         requests.push(
           {
-            url: `apis/apps/v1/namespaces/${namespace}/${module}`,
+            url: `apis/apps/v1${this.getPath(params)}/${module}`,
             data: component.workload,
           },
           {
-            url: `api/v1/namespaces/${namespace}/services`,
+            url: `api/v1${this.getPath(params)}/services`,
             data: component.service,
           }
         )
@@ -433,10 +358,10 @@ export default class ApplicationStore {
   }
 
   @action
-  addComponent(component, { namespace }) {
+  addComponent(component, params) {
     const requests = []
 
-    if (!namespace) {
+    if (!params.namespace) {
       return
     }
 
@@ -447,11 +372,11 @@ export default class ApplicationStore {
 
       requests.push(
         {
-          url: `apis/apps/v1/namespaces/${namespace}/${module}`,
+          url: `apis/apps/v1${this.getPath(params)}/${module}`,
           data: component.workload,
         },
         {
-          url: `api/v1/namespaces/${namespace}/services`,
+          url: `api/v1${this.getPath(params)}/services`,
           data: component.service,
         }
       )
@@ -461,23 +386,23 @@ export default class ApplicationStore {
   }
 
   @action
-  patch({ namespace, name }, data) {
+  patch({ namespace, cluster, name }, data) {
     return this.submitting(
-      request.patch(this.getDetailUrl({ name, namespace }), data)
+      request.patch(this.getDetailUrl({ name, cluster, namespace }), data)
     )
   }
 
   @action
-  delete({ name, namespace }) {
+  delete({ name, cluster, namespace }) {
     return this.submitting(
-      request.delete(this.getDetailUrl({ name, namespace }))
+      request.delete(this.getDetailUrl({ name, cluster, namespace }))
     )
   }
 
   @action
-  checkName({ name, namespace }) {
+  checkName({ name, cluster, namespace }) {
     return request.get(
-      this.getDetailUrl({ name, namespace }),
+      this.getDetailUrl({ name, cluster, namespace }),
       {},
       {
         headers: { 'x-check-exist': true },

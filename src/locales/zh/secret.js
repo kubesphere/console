@@ -34,19 +34,29 @@ export default {
 
   SECRET_DESC:
     '密钥 (Secret) 是一种包含少量敏感信息的资源对象，例如密码、token、秘钥等，以键/值对形式保存并且可以在容器组中使用。',
+  SECRET_CREATE_DESC:
+    '密钥 (Secret) 是一种包含少量敏感信息的资源对象，例如密码、token、秘钥等，以键/值对形式保存并且可以在容器组中使用。',
 
   SECRET_NO_CHINESE_CODE_DESC: '密钥中不能包含中文字符',
 
   'Registry Address': '仓库地址',
-  'Registry verify failed': '镜像仓库校验失败',
+  'Registry verification failed': '镜像仓库校验失败',
+  'Registry verification success': '镜像仓库校验通过',
   'Account Password Secret': '账号密码密钥',
 
   Data: '数据',
-  'Add data': '添加数据',
-  'Edit data': '编辑数据',
-  'Add key / value pair formal data': '添加键/值对形式数据',
+  'Add Data': '添加数据',
+  'Edit Data': '编辑数据',
+  'Add key / value pair data': '添加键/值对形式数据',
 
   'DATA-KEY': '键(Key)',
   'DATA-VALUE': '值(Value)',
   'Example: docker.io': '例：docker.io',
+
+  IMAGE_REGISTRY_REQUIRED_DESC:
+    '镜像仓库密钥需要至少包含仓库地址, 用户名, 密码信息.',
+
+  IMAGE_REGISTRY_VALIDATE_TIP: '创建镜像仓库密钥前, 请先验证密钥是否可用',
+
+  'Please input the registry address': '请输入镜像仓库地址',
 }

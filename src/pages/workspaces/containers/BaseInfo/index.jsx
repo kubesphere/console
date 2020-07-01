@@ -20,34 +20,35 @@ import React from 'react'
 import { get, isEmpty } from 'lodash'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
-import { Icon, Dropdown, Menu } from '@pitrix/lego-ui'
-import { Card, Button } from 'components/Base'
-import DeleteModal from 'components/Modals/Delete'
-import EditModal from 'components/Modals/WorkspaceEdit'
-import Info from 'components/Cards/Info'
+import { Checkbox } from '@pitrix/lego-ui'
+import { Text, Panel, Alert, Button, Switch } from 'components/Base'
 import Banner from 'components/Cards/Banner'
+import EditBasicInfoModal from 'workspaces/components/Modals/EditBasicInfo'
+import ClusterTitle from 'components/Clusters/ClusterTitle'
 
-import RoleStore from 'stores/workspace/role'
+import { getLocalTime } from 'utils'
+import { trigger } from 'utils/action'
+
+import WorkspaceMonitorStore from 'stores/monitoring/workspace'
 
 import styles from './index.scss'
 
-@inject('rootStore')
+@inject('rootStore', 'workspaceStore')
 @observer
+@trigger
 class BaseInfo extends React.Component {
-  constructor(props) {
-    super(props)
+  monitorStore = new WorkspaceMonitorStore()
 
-    this.state = {
-      showEdit: false,
-      showDelete: false,
-    }
+  state = {
+    confirm: false,
+  }
 
-    this.roleStore = new RoleStore()
-    this.roleStore.fetchList(this.props.match.params)
+  componentDidMount() {
+    this.fetchMetrics()
   }
 
   get store() {
-    return this.props.rootStore.workspace
+    return this.props.workspaceStore
   }
 
   get module() {
@@ -62,172 +63,258 @@ class BaseInfo extends React.Component {
     return this.props.match.params.workspace
   }
 
-  get enabledActions() {
-    return globals.app.getActions({
-      module: 'workspaces',
-      workspace: this.workspace,
-    })
+  get isMultiCluster() {
+    return !isEmpty(this.store.detail.clusters)
   }
 
-  get itemActions() {
+  get tips() {
     return [
       {
-        key: 'edit',
-        icon: 'pen',
-        action: 'edit',
-        text: t('Edit Info'),
-      },
-      {
-        key: 'delete',
-        icon: 'trash',
-        action: 'delete',
-        text: t('Delete Workspace'),
+        title: t('WORKSPACE_BASE_INFO_Q1'),
+        description: t('WORKSPACE_BASE_INFO_A1'),
       },
     ]
   }
 
-  get enabledItemActions() {
-    return this.itemActions.filter(
-      item => !item.action || this.enabledActions.includes(item.action)
+  get enabledActions() {
+    return globals.app.getActions({
+      module: 'workspaces',
+    })
+  }
+
+  getMetrics = () => {
+    const data = toJS(this.monitorStore.statistics.data)
+    const metrics = {}
+
+    Object.entries(data).forEach(([key, value]) => {
+      metrics[key] = get(value, 'data.result[0].value[1]', 0)
+    })
+
+    return metrics
+  }
+
+  fetchMetrics = () => {
+    this.monitorStore.fetchStatistics(this.workspace)
+  }
+
+  fetchDetail = () => {
+    this.store.fetchDetail({ workspace: this.workspace })
+  }
+
+  showEdit = () => {
+    this.trigger('resource.baseinfo.edit', {
+      detail: toJS(this.store.detail),
+      modal: EditBasicInfoModal,
+      success: this.fetchDetail,
+    })
+  }
+
+  handleNetworkChange = cluster => () => {
+    const detail = toJS(this.store.detail)
+    const { overrides } = detail
+    let override = overrides.find(od => od.clusterName === cluster)
+    if (!override) {
+      override = {
+        clusterName: cluster,
+        clusterOverrides: [],
+      }
+      overrides.push(override)
+    }
+
+    let cod = override.clusterOverrides.find(
+      item => item.path === '/spec/networkIsolation'
     )
+    if (!cod) {
+      cod = {
+        path: '/spec/networkIsolation',
+      }
+      override.clusterOverrides.push(cod)
+    }
+
+    cod.value = !get(
+      detail,
+      `clusterTemplates[${cluster}].spec.networkIsolation`
+    )
+
+    this.store
+      .patch(detail, {
+        metadata: { name: detail.name },
+        spec: { overrides },
+      })
+      .then(() => this.fetchDetail())
   }
 
-  canViewModule = (module, action = 'view') =>
-    globals.app.hasPermission({ module, action, workspace: this.workspace })
-
-  hideEdit = () => {
-    this.setState({
-      showEdit: false,
-    })
-  }
-
-  handleEdit = data => {
-    const name = get(data, 'metadata.name')
-    this.store.update(data).then(() => {
-      this.hideEdit()
-      this.store.fetchDetail({ workspace: name })
-    })
-  }
-
-  hideDelete = () => {
-    this.setState({
-      showDelete: false,
-    })
+  handleDeleteCheckboxChange = (e, checked) => {
+    this.setState({ confirm: checked })
   }
 
   handleDelete = () => {
-    this.store.delete(this.props.match.params).then(() => {
-      this.routing.push('/')
-    })
+    const { name } = this.store.detail
+    this.store
+      .delete({ name })
+      .then(() => this.props.rootStore.routing.push('/'))
   }
 
-  handleMoreMenuClick = (e, key) => {
-    switch (key) {
-      case 'edit':
-        this.setState({ showEdit: true })
-        break
-      case 'delete':
-        this.setState({ showDelete: true })
-        break
-      default:
-        break
-    }
-  }
+  getResourceOptions = () => {
+    const metrics = this.getMetrics()
 
-  renderMoreMenu() {
-    return (
-      <Menu onClick={this.handleMoreMenuClick}>
-        {this.enabledItemActions.map(action => (
-          <Menu.MenuItem key={action.key}>
-            <Icon name={action.icon} /> {action.text}
-          </Menu.MenuItem>
-        ))}
-      </Menu>
-    )
-  }
-
-  renderOperations() {
-    if (isEmpty(this.enabledItemActions)) {
-      return null
-    }
-
-    return (
-      <Dropdown
-        content={this.renderMoreMenu()}
-        trigger="click"
-        placement="bottomRight"
-      >
-        <Button icon="more" type="flat" />
-      </Dropdown>
-    )
+    return [
+      {
+        name: 'Projects',
+        icon: 'project',
+        value: metrics.workspace_namespace_count,
+      },
+      {
+        name: 'DevOps Projects',
+        icon: 'strategy-group',
+        value: metrics.workspace_devops_project_count,
+      },
+      {
+        name: 'Workspace Members',
+        icon: 'human',
+        value: metrics.workspace_member_count,
+      },
+    ]
   }
 
   renderBaseInfo() {
-    const { detail } = toJS(this.props.rootStore.workspace)
-    const { total } = toJS(this.roleStore.list)
+    const { detail } = this.store
+    const options = this.getResourceOptions()
     return (
-      <div className="margin-t12">
-        <Card title={t('Basic Info')} operations={this.renderOperations()}>
-          <div className={styles.baseInfo}>
-            <Info
-              className={styles.info}
-              image="/assets/default-workspace.svg"
-              title={detail.name}
-              desc={t(get(detail, 'description') || 'Workspace')}
+      <Panel title={t('Workspace Info')}>
+        <div className={styles.header}>
+          <Text
+            className={styles.title}
+            icon="enterprise"
+            title={detail.name}
+            description={detail.description || t('Workspace')}
+            ellipsis
+          />
+          <Text title={detail.manager} description={t('Manager')} />
+          <Text
+            title={getLocalTime(detail.createTime).format(
+              'YYYY-MM-DD HH:mm:ss'
+            )}
+            description={t('Created Time')}
+          />
+          {this.enabledActions.includes('edit') && (
+            <Button className={styles.action} onClick={this.showEdit}>
+              {t('Edit Info')}
+            </Button>
+          )}
+        </div>
+        <div className={styles.content}>
+          {options.map(option => (
+            <Text
+              key={option.name}
+              icon={option.icon}
+              title={option.value}
+              description={t(option.name)}
             />
-            <Info
-              icon="group"
-              className={styles.info}
-              title={get(
-                detail,
-                'annotations["kubesphere.io/member-count"]',
-                0
-              )}
-              desc={t('Workspace Members')}
+          ))}
+        </div>
+      </Panel>
+    )
+  }
+
+  renderDelete() {
+    return (
+      <Panel title={t('Delete Workspace')}>
+        <Alert
+          className={styles.tip}
+          type="error"
+          title={`${t('Delete Workspace')} ?`}
+          message={t('DELETE_WORKSPACE_DESC')}
+        />
+        <Button
+          className={styles.unbind}
+          type="danger"
+          disabled={!this.state.confirm}
+          onClick={this.handleDelete}
+        >
+          {t('Delete')}
+        </Button>
+        <Checkbox onChange={this.handleDeleteCheckboxChange}>
+          {t('SURE_TO_DELETE_WORKSPACE')}
+        </Checkbox>
+      </Panel>
+    )
+  }
+
+  renderNetwork() {
+    const workspace = this.store.detail
+    if (!globals.app.isMultiCluster) {
+      const networkIsolation = workspace.networkIsolation || false
+      return (
+        <Panel className={styles.network} title={t('Network Policy')}>
+          <div className={styles.item}>
+            <Text
+              icon="firewall"
+              title={t(networkIsolation ? 'On' : 'Off')}
+              description={t('Workspace Network Isolation')}
             />
-            <Info
-              icon="role"
-              title={total}
-              className={styles.info}
-              desc={t('Workspace Roles')}
-            />
+            {this.enabledActions.includes('edit') && (
+              <Switch
+                className={styles.switch}
+                text={t(networkIsolation ? 'On' : 'Off')}
+                onChange={this.handleNetworkChange(workspace)}
+                checked={networkIsolation}
+              />
+            )}
           </div>
-        </Card>
-      </div>
+        </Panel>
+      )
+    }
+
+    const { data, isLoading } = toJS(this.store.clusters)
+
+    return (
+      <Panel className={styles.network} title={t('Network Policy')}>
+        {isEmpty(data) && !isLoading && (
+          <div className={styles.empty}>{t('No Available Cluster')}</div>
+        )}
+        {data.map(cluster => {
+          const clusterTemp =
+            get(workspace, `clusterTemplates[${cluster.name}]`) || {}
+          const networkIsolation =
+            get(clusterTemp, 'spec.networkIsolation') ||
+            workspace.networkIsolation ||
+            false
+
+          return (
+            <div className={styles.item} key={cluster.name}>
+              <ClusterTitle cluster={cluster} className={styles.clusterTitle} />
+              <Text
+                icon="firewall"
+                title={t(networkIsolation ? 'On' : 'Off')}
+                description={t('Workspace Network Isolation')}
+              />
+              <Switch
+                className={styles.switch}
+                text={t(networkIsolation ? 'On' : 'Off')}
+                onChange={this.handleNetworkChange(cluster.name)}
+                checked={networkIsolation}
+              />
+            </div>
+          )
+        })}
+      </Panel>
     )
   }
 
   render() {
-    const { detail, isSubmitting } = this.props.rootStore.workspace
-
     return (
       <div>
         <Banner
           title={t('Basic Info')}
           icon="cdn"
           description={t('WORKSPACE_CREATE_DESC')}
-          className={styles.header}
+          tips={this.tips}
           module={this.module}
         />
         {this.renderBaseInfo()}
-        <EditModal
-          detail={detail._originData}
-          visible={this.state.showEdit}
-          onOk={this.handleEdit}
-          onCancel={this.hideEdit}
-          isSubmitting={isSubmitting}
-        />
-        <DeleteModal
-          type={t('Workspace')}
-          resource={detail.name}
-          desc={t.html('DELETE_WORKSPACE_TIP', {
-            resource: detail.name,
-          })}
-          visible={this.state.showDelete}
-          isSubmitting={isSubmitting}
-          onOk={this.handleDelete}
-          onCancel={this.hideDelete}
-        />
+        {this.renderNetwork()}
+        {this.enabledActions.includes('delete') && this.renderDelete()}
       </div>
     )
   }

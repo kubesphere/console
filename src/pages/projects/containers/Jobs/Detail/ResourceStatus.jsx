@@ -17,10 +17,11 @@
  */
 
 import React from 'react'
-import { observer } from 'mobx-react'
+import { observer, inject } from 'mobx-react'
 
 import { Component as Base } from 'projects/containers/Deployments/Detail/ResourceStatus'
 
+@inject('detailStore')
 @observer
 class JobsResourceStatus extends Base {
   renderContent() {
@@ -28,7 +29,6 @@ class JobsResourceStatus extends Base {
       <div>
         {this.renderContainerPorts()}
         {this.renderPods()}
-        {this.renderVolumes()}
       </div>
     )
   }

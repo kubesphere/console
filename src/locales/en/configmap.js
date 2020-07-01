@@ -18,9 +18,9 @@
 
 export default {
   CONFIGMAP_CREATE_DESC:
-    'ConfigMap is used to store common configuration variables, allowing users to unify environment variables for different modules in a distributed system into one object.',
+    'A ConfigMap is an object used to store common configuration variables, allowing the unified management of environment variables for different modules in a distributed system.',
   CONFIGMAP_DESC:
-    'ConfigMap is used to store common configuration variables, allowing users to unify environment variables for different modules in a distributed system into one object.',
+    'A ConfigMap is often used to store configuration info needed for workloads. Many applications will read the info from configuration files, command line parameters or environment variables.',
   CONFIGMAPS_BASEINFO_DESC: '',
   CONFIGMAP_SETTINGS_DESC: '',
 }

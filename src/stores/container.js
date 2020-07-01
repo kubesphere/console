@@ -40,12 +40,24 @@ export default class ContainerStore {
 
   watchHandler = null
 
+  module = 'containers'
+
+  getDetailUrl = ({ cluster, namespace, podName }) => {
+    let path = `api/v1`
+
+    if (cluster) {
+      path += `/klusters/${cluster}`
+    }
+
+    return `${path}/namespaces/${namespace}/pods/${podName}`
+  }
+
   @action
-  async fetchDetail({ namespace, podName, containerName }) {
+  async fetchDetail({ cluster, namespace, podName, containerName }) {
     this.isLoading = true
 
     const result = await request.get(
-      `api/v1/namespaces/${namespace}/pods/${podName}`
+      this.getDetailUrl({ cluster, namespace, podName })
     )
     const pod = ObjectMapper.pods(result)
     const detail =
@@ -53,6 +65,7 @@ export default class ContainerStore {
       pod.initContainers.find(item => item.name === containerName)
     detail.createTime = get(pod, 'createTime', '')
     detail.app = detail.app || pod.app
+    detail.cluster = cluster
 
     this.volumes = await getWorkloadVolumes(pod)
 
@@ -61,14 +74,17 @@ export default class ContainerStore {
   }
 
   @action
-  async watchLogs({ namespace, podName, silent, ...params }, callback) {
+  async watchLogs(
+    { cluster, namespace, podName, silent, ...params },
+    callback
+  ) {
     if (!silent) {
       this.logs.isLoading = true
     }
 
     if (params.follow) {
       this.watchHandler = request.watch(
-        `/api/v1/namespaces/${namespace}/pods/${podName}/log`,
+        `${this.getDetailUrl({ cluster, namespace, podName })}/log`,
         params,
         data => {
           this.logs = {
@@ -80,7 +96,7 @@ export default class ContainerStore {
       )
     } else {
       const result = await request.get(
-        `api/v1/namespaces/${namespace}/pods/${podName}/log`,
+        `${this.getDetailUrl({ cluster, namespace, podName })}/log`,
         params
       )
 
@@ -99,9 +115,9 @@ export default class ContainerStore {
   }
 
   @action
-  async fetchAllLogs({ namespace, podName, ...params }) {
+  async fetchAllLogs({ cluster, namespace, podName, ...params }) {
     return await request.get(
-      `api/v1/namespaces/${namespace}/pods/${podName}/log`,
+      `${this.getDetailUrl({ cluster, namespace, podName })}/log`,
       params
     )
   }

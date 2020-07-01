@@ -24,9 +24,9 @@ export default {
   username_password: 'Account Credentials',
   login_Plateform: 'Login platform',
   CREDENTIALS_DESC: `Credential is an object that contains some sensitive data, 
-    such as username and password, SSH key and Token, etc., 
-    used to provide authentication for the process of pulling code, 
-    push/pull image, SSH script execution, etc. when Pipeline is running`,
+    such as username and password, SSH key and Token.
+    It is used to provide authentication for the process of pulling code, 
+    pushing/pulling images, executing SSH scripts, etc. when a pipeline is running.`,
   tips_Parametric_build: `The parameterized build process allows 
     you to pass in one or more parameters when you build. 
     For example: You may have a pipeline for publishing software and you 
@@ -53,13 +53,13 @@ export default {
     Build records include console output, archive artifacts, 
     and other metadata related to a particular build. 
     Keeping less builds saves disk space used by Jenkins. 
-    We provide two options to determine when the old build should be discarded: 
+    We provide two conditions to determine when the old build should be discarded: 
     1. Number of days to keep the build: 
-    If the build reaches a certain number of days, the build is discarded. 
-    2. Keep the number of builds: 
+    The build will be discarded after a certain number of days. 
+    2. Number of builds to be kept: 
     If there are already a certain number of builds, discard the oldest build. 
-    The these two options can work on the build at the same time, 
-    and if any of the limits are exceeded, any builds that exceed the limit will be discarded.`,
+    These two conditions apply to the build at the same time, 
+    and if either one is met first, the build will be discarded.`,
   tips_disable_concurrent_withscm: `This will determine when the branch should be discarded and all build records under the branch. 
     The build record includes the console output,
     Archive artifacts and other metadata related to a particular build. 
@@ -85,12 +85,13 @@ export default {
     the days of the month: the first few days of a month (1-31 )  
     Month: The first few days of the first few days (0-12), the first few days of the week (0-12), 
     0 and 7 are Sundays. `,
-  CICDS_BASEINFO_DESC: 'Please enter the basic information of the pipeline',
+  
+  CICDS_BASEINFO_DESC: 'Please enter the basic information of the pipeline.',
   CICD_ADVANCE_SETTINGS_DESC:
-    'configure a complex behavior policy for the pipeline (optional)',
+    'Configure a complex behavior policy for the pipeline (Optional).',
   CREDENTIALS_CREATE_DESC: 'Create credentials for DevOps projects',
   CHECKOUT_DESC:
-    'Pull code, often used to pull non-git code, such as svn, etc.',
+    'Pull code; often used to pull non-git code, such as svn.',
   PRIVATE_IMAGE_DESC: `To deploy from a private image repository, 
     you need to create a mirrored repository and then pull the image. `,
   AGENT_TYPE_DESC: `The agent section specifies 
@@ -103,6 +104,7 @@ export default {
     Token = TOKEN_NAME You can choose to append &cause=reason to provide the text that 
     will be included in the build reason for the record. `,
   ACTIVITY_EMPTY_TIP: 'The current pipeline is not running yet',
+
   PIPELINE_NO_CONFIG:
     'The relevant configuration file was not found in the current pipeline',
   NOT_VALID_JENKINS_FILE: `The current Jenkinsfile is not a standard declarative Jenkinsfile 
@@ -116,10 +118,11 @@ export default {
     However, in some cases, message notifications may fail. 
     This option will check if the index has been executed within the specified time interval, 
     and if not, trigger the index. `,
-  KUBERNETES_DEPLOY_DESC: `Deploying in a kubernetes cluster, 
-    in a continuous integration/continuous deployment environment, 
-    only those resources that need to be updated regularly should be placed in the deployment step, 
-    so this step is mostly processing the deployment of such resources.`,
+  
+  KUBERNETES_DEPLOY_DESC: `Deploy resources on a Kubernetes cluster. 
+    In a continuous integration or continuous deployment environment, 
+    only those resources that need to be updated regularly should be placed in the deployment step. 
+    Therefore, this step is mostly used to process the deployment of such resources.`,
   KUBERNETES_DEPLOY_DESC_MORE: `<br />
   <label>This step has the following main features:</label>
   <li>Distribution without kubectl</li>
@@ -140,19 +143,20 @@ export default {
   Replication
   Controller (rolling updates are not supported, use deployment if you want to use rolling updates)
   </li>`,
+
   OPTIONS_PR_PARAMS_1: 'Source code version of PR merged with target branch',
   OPTIONS_PR_PARAMS_2: 'Source code version of PR itself',
   OPTIONS_PR_PARAMS_3: `Two pipelines are created when PR is discovered.
     A pipeline uses the source code version of PR itself,
     A pipelined version of the source code merged with the target branch using PR`,
-  ADD_NEW_CREDENTIAL_DESC: `Obtaining a warehouse code may require credentials, 
-  selecting an existing document or adding a new one`,
+  
+  ADD_NEW_CREDENTIAL_DESC: 'Obtaining repository code may require credentials. Please select an existing credential or add a new one.',
   PIPELINE_PREPAIR_DESC:
-    'Preparing the environment, there will be a graphical display later',
+    'The environment is being prepared. There will be a graphical display later.',
   PARAMS_DESC: `The following parameters are generated based on the pipeline settings or
-     the parameters section of the Jenkinsfile, which is entered according to the operational requirements.`,
+     the parameters section of the Jenkinsfile, which are entered according to operational requirements.`,
   EDIT_CREDENTIAL_DESC:
-    'The following form will not display the original credential information, re-enter it will overwrite it',
+    'The following form will not display the original credential information. Re-entering it will overwrite it.',
   pipeline_conditions: 'Conditions',
   PARAMS_STRING: 'String',
   PARAMS_TEXT: 'Text',
@@ -166,22 +170,23 @@ export default {
   REG_FILTER_DESC:
     'Enable regular expressions, ignoring names that do not match the provided regular expression (including branches and PR, etc.)',
   waitForQualityGate_desc:
-    "Code quality check standards are derived from SonarQube's Quality Gate. If you need custom check criteria, go to SonarQube settings.",
+    "Code quality check standards are derived from SonarQube's Quality Gate. If you need to customize the standards, go to SonarQube settings.",
   PIPELINE_DESC:
-    "Pipeline's task execution will begin after initialization is complete",
+    "Pipeline's task execution will begin after the initialization is complete.",
   REVIEW_DESC:
-    'When the pipeline runs here, this task will be suspended, and you can choose to continue or terminate after the audit.',
+    'When the pipeline runs here, this task will be suspended, and you can choose to continue or terminate after the review.',
   INPUT_DESC:
     'When the pipeline runs here, the task will be suspended, and the creator and @somebody can choose to continue or terminate the pipeline.',
   INPUT_MESSAGE_DESC:
     'This message will be displayed in the pipeline running state.',
+  
   withSonarQubeEnv_DESC:
     'Quickly locate potential or obvious errors in your code',
   waitForQualityGate_DESC: 'Executed after performing code analysis',
   script_DESC: 'Execute groovy script',
   PIPELINE_QUEUED_TITLE: 'Pipeline will be initialized soon',
   PIPELINE_QUEUED_DESC:
-    'You need to wait for the agent to start and execute the pipeline (note that if the agent has not started for a long time, please check the agent configuration and cluster resources)',
+    'You need to wait for the agent to start and execute the pipeline (note that if the agent has not started for a long time, please check the agent configuration and cluster resources).',
   pipeline_owner:
     'The owner of the DevOps project, with the highest authorization of the project, can perform all operations',
   pipeline_maintainer:
@@ -202,7 +207,7 @@ export default {
   >
     Get Token
   </a>`,
-  GET_GITHUB_TOKEN_DESC: `For access github
+  GET_GITHUB_TOKEN_DESC: `For accessing GitHub
   <a
     class="float-right"
     href="https://github.com/settings/tokens/new?scopes=repo,read:user,user:email,write:repo_hook"
@@ -210,10 +215,11 @@ export default {
   >
     Get Token 
   </a>`,
+
   bitbucket_server_ACCESSTOKEN_PLACEHOLDER:
-    'Please input your bitbucket account information',
-  github_ACCESSTOKEN_PLACEHOLDER: 'Please input your github access token',
-  PIPELINES_FOOTER_SEE_MORE: 'Go to the branch details page to see more',
+    'Please input your Bitbucket account information.',
+  github_ACCESSTOKEN_PLACEHOLDER: 'Please input your GitHub access token.',
+  PIPELINES_FOOTER_SEE_MORE: 'Go to the branch details page to see more.',
   CRON_DESC: 'Would last have run at {lastTime}; would next run at {nextTime}',
   JENKINS_LINS_ERROR: 'has syntax error at line {line}.',
   WHEN_DELETE_PIEPLINE_DESC:

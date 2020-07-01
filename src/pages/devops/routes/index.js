@@ -24,16 +24,19 @@ import Pipelines from '../containers/Pipelines'
 import BaseInfo from '../containers/BaseInfo'
 import Roles from '../containers/Roles'
 import Members from '../containers/Members'
-import Credential from '../containers/Cridential'
+import Credential from '../containers/Credential'
 
 import PipelineRoutes from './pipeline'
-import CridentialRoutes from './cridential'
+import CredentialRoutes from './credential'
 
-const PATH = '/devops/:project_id'
+import detail from './detail'
+
+const PATH = '/:workspace/clusters/:cluster/devops/:project_id'
 
 export default [
   ...PipelineRoutes,
-  ...CridentialRoutes,
+  ...CredentialRoutes,
+  ...detail,
   {
     path: PATH,
     component: Layout,

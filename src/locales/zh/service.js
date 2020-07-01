@@ -22,7 +22,7 @@ export default {
   Ports: '端口',
   selector: '选择器',
   Selector: '选择器',
-  'External IP': '外部 IP',
+  'External Address': '外部地址',
   'LoadBalancer IP': '负载均衡 IP',
   'Create Service': '创建服务',
   'Delete Service': '删除服务',
@@ -39,11 +39,12 @@ export default {
   'Virtual IP': '虚拟 IP',
 
   'Service Type': '服务类型',
+  'Service Access': '服务访问',
   'Stateless Service': '无状态服务',
   'Stateful Service': '有状态服务',
   'External Service': '外部服务',
   'Simple Service': '简单服务',
-  'Join Application': '关联应用',
+  'Associated Application': '关联应用',
   'Service Mesh': '服务治理',
 
   'Internal access': '内部访问',
@@ -56,12 +57,12 @@ export default {
   'Add Selector': '添加选择器',
 
   'Invalid port': '无效端口',
-  'Not Join': '不关联',
+  'Not Associate': '不关联',
 
   'Custom Creation': '自定义创建',
   'Specify Workloads': '指定工作负载',
-  'Create service by specify workloads': '指定工作负载创建服务',
-  'Create service by yaml': '通过 Yaml 创建服务',
+  'Create service by specifying workloads': '指定工作负载创建服务',
+  'Create service by Yaml': '通过 Yaml 创建服务',
 
   'Sure to delete the service(s)?': '确认删除服务',
   'No related resources found with current service(s)':
@@ -75,9 +76,9 @@ export default {
   'Please input valid Selector': '请输入正确的选择器',
   TOTAL_WORKLOAD: '共 {count} 个工作负载',
 
-  'Open Session Sticky': '开启会话保持',
-  'Maximum session sticky time(s)': '最大会话保持时间(秒)',
-  'the maximum session sticky time is 10800s(3 hours)':
+  'Enable Sticky Session': '开启会话保持',
+  'Maximum Session Sticky Time (s)': '最大会话保持时间(秒)',
+  'The maximum session sticky time is 10800s (3 hours).':
     '会话保持时间默认是 10800 秒(即 3 小时)',
 
   SERVICE_NAME_DESC:
@@ -100,11 +101,11 @@ export default {
   ACCESS_LOADBALANCER_TIP:
     '通过云服务商提供的负载均衡器来访问服务 (LoadBalancer)',
 
-  'The currently selectors': '当前设置的选择器',
+  'The current selector': '当前设置的选择器',
   'Commonly included tags in the current workloads':
     '当前的工作负载中共同包含的标签',
   SERVICE_SELECTOR_AFFECT_2: '共影响到 {count} 个工作负载',
-  ' has no corresponding workload': '没有对应的工作负载',
+  ' has no corresponding workload.': '没有对应的工作负载',
   'Please input selectors that have corresponding workloads':
     '请输入有对应工作负载的选择器',
   Creating: '正在创建',
@@ -161,4 +162,6 @@ export default {
   SERVICE_TYPE_EXTERNALSERVICE: '映射外部服务',
 
   SERVICE_PORTS_DESC: '设置容器镜像暴露的端口以及服务端口',
+
+  EIP_POOL_DESC: '集群内部访问方式(DNS)',
 }

@@ -19,7 +19,6 @@
 import React from 'react'
 import { set, get, unset } from 'lodash'
 import PropTypes from 'prop-types'
-import { S2i_SUPPORTED_TYPES, B2I_SUPPORTED_TYPES } from 'utils/constants'
 import classnames from 'classnames'
 import { Form } from 'components/Base'
 import { Icon } from '@pitrix/lego-ui'
@@ -35,8 +34,8 @@ export default class LanguageSelect extends React.Component {
     super(props)
     this.store = new S2iBuilderStore()
     this.state = {
-      s2i: [...S2i_SUPPORTED_TYPES],
-      b2i: [...B2I_SUPPORTED_TYPES],
+      s2i: [],
+      b2i: [],
     }
   }
 
@@ -49,7 +48,10 @@ export default class LanguageSelect extends React.Component {
   }
 
   fetchData = async () => {
-    const supportS2iLanguage = await this.store.getS2iSupportLanguage()
+    const { cluster } = this.props
+    const supportS2iLanguage = await this.store.getS2iSupportLanguage({
+      cluster,
+    })
     this.setState(supportS2iLanguage)
   }
 

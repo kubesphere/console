@@ -37,9 +37,10 @@ export default class Base {
     total: 0,
     reverse: false,
     filters: {},
-    isLoading: false,
+    isLoading: true,
     keyword: '',
     selectedRowKeys: [],
+    setSelectRowKeys: this.setSelectRowKeys,
   }
 
   @observable
@@ -53,6 +54,14 @@ export default class Base {
 
   get baseUrl() {
     return 'kapis/openpitrix.io/v1/'
+  }
+
+  getPath({ namespace }) {
+    let path = ''
+    if (namespace) {
+      path += `/namespaces/${namespace}`
+    }
+    return path
   }
 
   getUrl = ({ app_id, version_id, name } = {}) => {

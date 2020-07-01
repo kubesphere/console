@@ -49,10 +49,10 @@ export default class BaseList extends React.Component {
   }
 
   initWebsocket() {
-    const { namespace } = this.props.match.params
+    const { cluster, namespace } = this.props.match.params
 
     if (namespace && 'getWatchListUrl' in this.store) {
-      const url = this.store.getWatchListUrl({ namespace })
+      const url = this.store.getWatchListUrl({ cluster, namespace })
 
       this.websocket.watch(url)
 
@@ -90,8 +90,8 @@ export default class BaseList extends React.Component {
     return globals.app.getActions({
       module: this.authKey,
       workspace: this.props.match.params.workspace,
-      project:
-        this.props.match.params.namespace || this.props.match.params.project_id,
+      project: this.props.match.params.namespace,
+      devops: this.props.match.params.project_id,
     })
   }
 

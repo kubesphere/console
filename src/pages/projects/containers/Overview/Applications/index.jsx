@@ -28,7 +28,7 @@ import ApplicationStore from 'stores/openpitrix/application'
 
 import styles from './index.scss'
 
-@inject('rootStore')
+@inject('rootStore', 'projectStore')
 @observer
 export default class Applications extends React.Component {
   constructor(props) {
@@ -36,7 +36,7 @@ export default class Applications extends React.Component {
     this.store = new ApplicationStore()
 
     this.disposer = when(
-      () => this.project.data.name === this.namespace,
+      () => this.project.detail.name === this.namespace,
       this.fetchData.bind(this)
     )
   }
@@ -53,22 +53,28 @@ export default class Applications extends React.Component {
     return get(this.props.match, 'params.namespace')
   }
 
+  get cluster() {
+    return get(this.props.match, 'params.cluster')
+  }
+
   get project() {
-    return this.props.rootStore.project
+    return this.props.projectStore
   }
 
   fetchData() {
     this.store.fetchList({
       namespace: this.namespace,
-      runtime_id: get(this.project, 'data.annotations["openpitrix_runtime"]'),
+      cluster: this.cluster,
+      runtime_id: get(this.project, 'detail.annotations["openpitrix_runtime"]'),
       limit: 3,
     })
   }
 
   handleClickApp = e => {
     const { app } = e.currentTarget.dataset
+    const { workspace, cluster, namespace } = this.props.match.params
     this.routing.push(
-      `/projects/${this.namespace}/applications/template/${app}`
+      `/${workspace}/clusters/${cluster}/projects/${namespace}/applications/template/${app}`
     )
   }
 
@@ -79,10 +85,11 @@ export default class Applications extends React.Component {
   }
 
   renderExtras() {
+    const { workspace, cluster, namespace } = this.props.match.params
     return (
       <Link
         className={styles.more}
-        to={`/projects/${this.namespace}/applications/template`}
+        to={`/${workspace}/clusters/${cluster}/projects/${namespace}/applications/template`}
       >
         {t('View All')}
       </Link>

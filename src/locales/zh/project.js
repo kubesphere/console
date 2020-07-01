@@ -32,6 +32,7 @@ export default {
   'Project Role': '项目角色',
   projects: '项目',
   Projects: '项目',
+  'Project Overview': '项目预览',
   'Members Management': '成员管理',
   'Project Manager': '项目管理员',
   'Manage Project': '项目管理',
@@ -45,13 +46,21 @@ export default {
   'Remove Members': '移除成员',
   'Remove Member': '移除成员',
   'Invite Member': '邀请成员',
+  'Gateway Info': '网关信息',
   'Set Gateway': '设置网关',
   'Edit Gateway': '编辑网关',
 
-  'Gateway not set': '网关未设置',
+  'Gateway Not Set': '网关未设置',
 
   'Delete Project': '删除项目',
   'Project Info': '项目信息',
+  'Project Quota': '项目配额',
+  'Quota Management': '配额管理',
+
+  'Project Placement': '项目位置',
+
+  'Multi-cluster Project': '多集群项目',
+  'Multi-cluster Projects': '多集群项目',
 
   Opened: '已开启',
   Closed: '已关闭',
@@ -73,6 +82,8 @@ export default {
   'Edit Project Quota': '编辑项目配额',
   'Add quota item': '添加配额项',
 
+  'Network Isolation': '网络隔离',
+
   deployments: '部署',
   statefulsets: '有状态副本集',
   daemonsets: '守护进程集',
@@ -90,7 +101,7 @@ export default {
 
   'Resource Type': '资源类型',
 
-  'Help information': '帮助信息',
+  'Help Information': '帮助信息',
 
   'Enter Project': '进入项目',
   'Enter DevOps Project': '进入工程',
@@ -104,14 +115,18 @@ export default {
   'Target Workspace': '目标企业空间',
   'Choose a workspace': '选择一个企业空间',
   'Not Assigned': '未分配',
-  'Select an user of the workspace as the manager of the project.':
+  'Select a user of the workspace as the manager of the project.':
     '选择企业空间的用户作为管理员。',
 
-  'Collecting File Log': '落盘日志收集',
+  'Disk Log Collection': '落盘日志收集',
 
   'Are you sure to close ?': '确认关闭？',
   "The project's file log collection is about to close.":
     '项目的落盘日志收集即将关闭.',
+
+  'Select the cluster to create the project.': '选择要创建项目的集群.',
+
+  'Project Member': '项目成员',
 
   CLOSE_FILE_LOG_TIP:
     '落盘日志收集即将关闭。 关闭后，已开启落盘日志收集的服务在容器组副本重启前将继续进行落盘日志的收集，重启后，将不再收集。</br>如果需要再次收集，请开启落盘日志收集，并重起容器组副本。',
@@ -131,8 +146,8 @@ export default {
 
   PROJECT_ASSIGN_DESC: '项目一旦被分配到企业空间后将不允许修改企业空间',
 
-  'Invite members to the project': '邀请成员到该项目',
-  'Invite members to the DevOps project': '邀请成员到该工程',
+  'Invite Members to the Project': '邀请成员到该项目',
+  'Invite Members to the DevOps Project': '邀请成员到该工程',
   INVITE_MEMBER_DESC: '您可以邀请新的成员来协助您的项目',
   INVITE_MEMBER_DESC_DEVOPS: '您可以邀请新的成员来协助您的工程',
   INVITE_MEMBER_SEARCH_PLACEHODLER: '输入邮箱邀请项目成员',
@@ -167,6 +182,7 @@ export default {
   QUOTA_EDIT_TIP: '值为空时将不限制配额',
 
   PROJECT_BASIC_INFO_DESC: '项目的基本信息涵盖了项目名称及项目的配额状态',
+  PROJECT_QUOTA_MANAGE_DESC: '管理项目的配额',
   PROJECT_ADVANCED_SETTINGS_DESC:
     '对项目中的外网访问网关以及服务治理和落盘日志收集等配置进行设置',
   PROJECT_MEMBERS_DESC: '对项目内的成员进行管理及角色分配',
@@ -190,12 +206,26 @@ export default {
   HOW_TO_INVITE_MEMBER_A:
     '项目管理员或者拥有成员邀请权限的用户可以邀请当前企业空间内的成员加入项目',
 
-  'Invite other members into current project ?': '邀请其他成员到当前项目中?',
-  'How to setup the project gateway ?': '如何设置项目网关？',
-  'You can limit the number of resources, empty is no limit.':
+  'How to invite other members to the current project?':
+    '邀请其他成员到当前项目中?',
+  'How to set the project gateway?': '如何设置项目网关？',
+  'You can limit the number of resources. Blank means no limit.':
     '您可以对资源的数量进行限制, 不填即不限制',
 
   PROJECT_TYPES_Q: '项目中的服务如何通过外网访问？',
   PROJECT_TYPES_A:
     '项目网关负责创建对应的应用路由控制器，用来负责将请求转发到对应的后端服务；开启项目网关后可以将服务通过 Ingress 暴露给外网访问。',
+
+  PROJECT_CLUSTER_SETTINGS_DESC:
+    '选择要创建项目的集群. 当选择了多个集群时, 将创建联邦项目',
+  NETWORK_ISOLATED_DESC: '设置网络隔离策略',
+
+  NAME_EXIST_IN_CLUSTER: '项目名在集群 {cluster} 中已存在',
+
+  MULTI_CLUSER_PROJECT_TIP:
+    '当前项目为多集群项目，项目将分布在不同集群中共同来构成多集群项目，您可以切换到不同集群查看项目在该集群中的设置。',
+
+  FEDPROJECT_RESOURCE_TIP:
+    '无法在集群管理内创建多集群项目的资源, 请到多集群项目页面内进行操作.',
+  FEDPROJECT_CANNOT_DEPLOY_APP_TIP: '无法在多集群项目里部署应用.',
 }

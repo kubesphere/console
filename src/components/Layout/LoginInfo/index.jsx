@@ -20,11 +20,10 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { inject, observer } from 'mobx-react'
 import classnames from 'classnames'
-import { omit } from 'lodash'
 import { Dropdown, Menu, Icon } from '@pitrix/lego-ui'
 
 import AboutModal from 'components/Modals/About'
-import UserEditModal from 'components/Modals/UserSetting'
+import { trigger } from 'utils/action'
 
 import UserStore from 'stores/user'
 
@@ -32,6 +31,7 @@ import styles from './index.scss'
 
 @inject('rootStore')
 @observer
+@trigger
 export default class LoginInfo extends Component {
   static propTypes = {
     isAppsPage: PropTypes.bool,
@@ -42,7 +42,6 @@ export default class LoginInfo extends Component {
 
     this.store = new UserStore()
     this.state = {
-      showUserEdit: false,
       showAbout: false,
     }
   }
@@ -50,7 +49,7 @@ export default class LoginInfo extends Component {
   handleMoreClick = (e, key) => {
     switch (key) {
       case 'setting':
-        this.setState({ showUserEdit: true })
+        this.trigger('user.setting', {})
         break
       case 'about':
         this.setState({ showAbout: true })
@@ -67,26 +66,6 @@ export default class LoginInfo extends Component {
     this.setState({ showAbout: false })
   }
 
-  hideUserEditModal = () => {
-    this.setState({ showUserEdit: false })
-  }
-
-  handleUserEdit = data => {
-    this.store.update(
-      {
-        ...omit(globals.user, [
-          '_update_time_',
-          'workspace_rules',
-          'rules',
-          'workspaces',
-          'cluster_rules',
-        ]),
-        ...data,
-      },
-      globals.user
-    )
-  }
-
   renderDropDown() {
     return (
       <Menu onClick={this.handleMoreClick}>
@@ -94,7 +73,7 @@ export default class LoginInfo extends Component {
           <Icon name="wrench" /> {t('User Settings')}
         </Menu.MenuItem>
         <Menu.MenuItem key="logout">
-          <Icon name="logout" /> {t('Logout')}
+          <Icon name="logout" /> {t('Log Out')}
         </Menu.MenuItem>
         <Menu.MenuItem key="about">
           <Icon name="information" /> {t('About')}
@@ -109,13 +88,6 @@ export default class LoginInfo extends Component {
         <AboutModal
           visible={this.state.showAbout}
           onCancel={this.hideAboutModal}
-        />
-        <UserEditModal
-          module="users"
-          detail={globals.user}
-          visible={this.state.showUserEdit}
-          onOk={this.handleUserEdit}
-          onCancel={this.hideUserEditModal}
         />
       </div>
     )

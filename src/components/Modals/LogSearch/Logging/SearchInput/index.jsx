@@ -91,7 +91,7 @@ export default class SearchBar extends React.Component {
   get currentParamText() {
     const { dropDownItems, params } = this.props
     return params.nextParamsKey === '_time'
-      ? t('Range of time')
+      ? t('Time Range')
       : get(dropDownItems, `${params.nextParamsKey}.text`)
   }
 
@@ -260,7 +260,7 @@ export default class SearchBar extends React.Component {
     return start ? (
       <span className={styles.param} key={'_duration'}>
         <span>
-          {t('Range of time')}:
+          {t('Time Range')}:
           {durationAlias
             ? `${t('Last')} ${getTimeLabel(durationAlias)}`
             : `${getDateStr(start)} ~ ${getDateStr(end)}`}
@@ -300,7 +300,7 @@ export default class SearchBar extends React.Component {
         {this.renderFilterKey()}
         <input
           type="text"
-          placeholder={t('please enter a conditional filter log')}
+          placeholder={t('Please enter a filter to search for logs.')}
           value={this.searchWord}
           ref={this.inputRef}
           disabled={this.showDurationDropDown}
@@ -344,7 +344,7 @@ export default class SearchBar extends React.Component {
             <span className={styles.icon}>
               <Icon name="clock" size="20" />
             </span>
-            <span>{t('Range of time')}</span>
+            <span>{t('Time Range')}</span>
           </div>
         )}
       </div>

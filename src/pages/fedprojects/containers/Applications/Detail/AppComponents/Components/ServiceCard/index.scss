@@ -1,0 +1,17 @@
+@import '~scss/variables';
+
+.wrapper {
+  display: flex;
+  padding: 12px;
+  border-radius: 2px;
+  border: solid 1px $border-color;
+  background-color: #ffffff;
+
+  & + .wrapper {
+    margin-top: 12px;
+  }
+
+  & > div {
+    min-width: 250px;
+  }
+}

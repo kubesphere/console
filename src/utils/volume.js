@@ -21,9 +21,11 @@ import { get } from 'lodash'
 export const getVolumeType = volume => {
   if (volume.persistentVolumeClaim) {
     return 'Volume'
-  } else if (volume.hostPath) {
+  }
+  if (volume.hostPath) {
     return 'HostPath'
-  } else if (volume.emptyDir) {
+  }
+  if (volume.emptyDir) {
     return 'EmptyDir'
   }
 }

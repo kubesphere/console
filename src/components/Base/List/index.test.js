@@ -45,8 +45,8 @@ it('renders correctly', () => {
         />
       ))}
       <List.Add
-        title={'Add data'}
-        description={'Add key / value pair formal data'}
+        title={'Add Data'}
+        description={'Add key / value pair data'}
         onClick={onAdd}
       />
     </List>

@@ -17,77 +17,86 @@
  */
 
 import React from 'react'
-import { observer, inject } from 'mobx-react'
+
+import { Avatar } from 'components/Base'
+import Banner from 'components/Cards/Banner'
+import { withProjectList, ListPage } from 'components/HOCs/withList'
+import JobStatus from 'projects/components/JobStatus'
+import StatusReason from 'projects/components/StatusReason'
+import Table from 'components/Tables/List'
 
 import { getLocalTime, getDisplayName } from 'utils'
-import { JOB_STATUS, ICON_TYPES } from 'utils/constants'
 import { getWorkloadStatus } from 'utils/status'
-import { getFormTemplate } from 'utils/form.templates'
+import { JOB_STATUS, ICON_TYPES } from 'utils/constants'
 
 import WorkloadStore from 'stores/workload'
 
-import FORM_STEPS from 'configs/steps/jobs'
-
-import { Avatar } from 'components/Base'
-import Base from 'core/containers/Base/List'
-import JobBanner from 'projects/components/JobBanner'
-import StatusReason from 'projects/components/StatusReason'
-import JobStatus from 'projects/components/JobStatus'
-import CreateModal from 'components/Modals/Create'
-import EditBasicInfoModal from 'components/Modals/EditBasicInfo'
-
-@inject('rootStore')
-@observer
-class Jobs extends Base {
-  init() {
-    this.store = new WorkloadStore(this.module)
-    this.store.fetchCounts(['jobs', 'cronjobs'])
-    this.initWebsocket()
+@withProjectList({
+  store: new WorkloadStore('jobs'),
+  module: 'jobs',
+  name: 'Job',
+})
+export default class Jobs extends React.Component {
+  get prefix() {
+    const { workspace, namespace, cluster } = this.props.match.params
+    return `/${workspace}/clusters/${cluster}/projects/${namespace}`
   }
 
-  get module() {
-    return 'jobs'
+  handleTabChange = value => {
+    this.props.routing.push(`${this.prefix}/${value}`)
   }
 
-  get name() {
-    return 'Job'
-  }
-
-  get quotaKey() {
-    return 'count/jobs.batch'
-  }
-
-  get steps() {
-    return FORM_STEPS
-  }
-
-  get formTemplate() {
-    const { namespace } = this.props.match.params
-    return getFormTemplate(namespace, this.module)
+  get tabs() {
+    return {
+      value: this.props.module,
+      onChange: this.handleTabChange,
+      options: [
+        {
+          value: 'jobs',
+          label: t('Jobs'),
+        },
+        {
+          value: 'cronjobs',
+          label: t('CronJobs'),
+        },
+      ],
+    }
   }
 
   get itemActions() {
+    const { trigger } = this.props
     return [
       {
         key: 'edit',
         icon: 'pen',
-        text: t('EDIT'),
+        text: t('Edit'),
         action: 'edit',
-        onClick: this.showModal('editModal'),
+        onClick: item =>
+          trigger('resource.baseinfo.edit', {
+            detail: item,
+          }),
       },
       {
         key: 'rerun',
         icon: 'refresh',
         text: t('Rerun'),
         action: 'edit',
-        onClick: this.handleRerun,
+        onClick: item =>
+          trigger('job.rerun', {
+            detail: item,
+          }),
       },
       {
         key: 'delete',
         icon: 'trash',
         text: t('Delete'),
         action: 'delete',
-        onClick: this.showModal('deleteModal'),
+        type: 'danger',
+        onClick: item =>
+          trigger('resource.delete', {
+            type: t(this.name),
+            detail: item,
+          }),
       },
     ]
   }
@@ -110,98 +119,69 @@ class Jobs extends Base {
     return desc
   }
 
-  getColumns = () => [
-    {
-      title: t('Name'),
-      dataIndex: 'name',
-      sorter: true,
-      sortOrder: this.getSortOrder('name'),
-      search: true,
-      render: (name, record) => (
-        <Avatar
-          icon={ICON_TYPES[this.module]}
-          iconSize={40}
-          title={getDisplayName(record)}
-          desc={this.getItemDesc(record)}
-          to={`${this.prefix}/${name}`}
-        />
-      ),
-    },
-    {
-      title: t('Status'),
-      dataIndex: 'status',
-      filters: this.getStatus(),
-      filteredValue: this.getFilteredValue('status'),
-      isHideable: true,
-      search: true,
-      width: '25%',
-      render: this.renderStatus,
-    },
-    {
-      title: t('Last schedule time'),
-      dataIndex: 'updateTime',
-      sorter: true,
-      sortOrder: this.getSortOrder('updateTime'),
-      isHideable: true,
-      search: true,
-      width: '20%',
-      render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
-    },
-    {
-      key: 'more',
-      width: 20,
-      render: this.renderMore,
-    },
-  ]
+  getColumns = () => {
+    const { getSortOrder, getFilteredValue, module } = this.props
+    return [
+      {
+        title: t('Name'),
+        dataIndex: 'name',
+        sorter: true,
+        sortOrder: getSortOrder('name'),
+        search: true,
+        render: (name, record) => (
+          <Avatar
+            icon={ICON_TYPES[module]}
+            iconSize={40}
+            title={getDisplayName(record)}
+            desc={this.getItemDesc(record)}
+            to={`${this.prefix}/${module}/${name}`}
+            isMultiCluster={record.isFedManaged}
+          />
+        ),
+      },
+      {
+        title: t('Status'),
+        dataIndex: 'status',
+        filters: this.getStatus(),
+        filteredValue: getFilteredValue('status'),
+        isHideable: true,
+        search: true,
+        width: '20%',
+        render: (status, record) => <JobStatus data={record} module={module} />,
+      },
+      {
+        title: t('Last Executed Time'),
+        dataIndex: 'updateTime',
+        sorter: true,
+        sortOrder: getSortOrder('updateTime'),
+        isHideable: true,
+        width: '20%',
+        render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
+      },
+    ]
+  }
 
-  handleRerun = item => {
-    this.store.rerun(item).then(() => {
-      this.getData()
+  showCreate = () => {
+    const { match, module } = this.props
+    return this.props.trigger('workload.create', {
+      module,
+      namespace: match.params.namespace,
+      cluster: match.params.cluster,
     })
   }
 
-  renderStatus = (status, record) => (
-    <JobStatus data={record} module={this.module} />
-  )
-
-  renderHeader() {
+  render() {
+    const { bannerProps, tableProps } = this.props
     return (
-      <JobBanner
-        module={this.module}
-        {...this.props.match.params}
-        jobsCount={this.store.counts.jobs}
-        cronjobsCount={this.store.counts.cronjobs}
-      />
-    )
-  }
-
-  renderExtraModals() {
-    const { createModal, editModal, selectItem = {} } = this.state
-    const { isSubmitting } = this.store
-
-    return (
-      <div>
-        <CreateModal
-          name={this.name}
-          module={this.module}
-          store={this.store}
-          visible={createModal}
-          steps={this.steps}
-          formTemplate={this.formTemplate}
-          isSubmitting={isSubmitting}
-          onOk={this.handleCreate}
-          onCancel={this.hideModal('createModal')}
+      <ListPage {...this.props}>
+        <Banner {...bannerProps} tabs={this.tabs} />
+        <Table
+          {...tableProps}
+          itemActions={this.itemActions}
+          columns={this.getColumns()}
+          onCreate={this.showCreate}
         />
-        <EditBasicInfoModal
-          visible={editModal}
-          detail={selectItem._originData}
-          isSubmitting={isSubmitting}
-          onOk={this.handleEdit}
-          onCancel={this.hideModal('editModal')}
-        />
-      </div>
+      </ListPage>
     )
   }
 }
-
-export default Jobs

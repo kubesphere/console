@@ -17,28 +17,28 @@
  */
 
 import React from 'react'
-import { toJS } from 'mobx'
-import { observer } from 'mobx-react'
-import { get, isEmpty } from 'lodash'
+import { observer, inject } from 'mobx-react'
+import { get } from 'lodash'
 
-import VolumesCard from 'components/Cards/Volumes'
 import { Component as Base } from 'projects/containers/Deployments/Detail/ResourceStatus'
+import ResourceStore from 'stores/workload/resource'
+
 import ServiceCard from './ServiceCard'
 
+@inject('detailStore')
 @observer
 class ResourceStatus extends Base {
+  resourceStore = new ResourceStore()
+
   get serviceName() {
     return get(this.store.detail, 'spec.serviceName', '')
   }
 
-  get enableScaleReplica() {
-    return true
-  }
-
   fetchData = async () => {
-    const { namespace } = this.store.detail
+    const { cluster, namespace } = this.store.detail
     const params = {
       name: this.serviceName,
+      cluster,
       namespace,
     }
 
@@ -54,24 +54,8 @@ class ResourceStatus extends Base {
 
     if (!service.name) return null
 
-    return <ServiceCard service={service} loading={isLoading} />
-  }
-
-  renderVolumes() {
-    const { isLoading } = this.store
-    const { volumes = [], containers } = toJS(this.store.detail)
-    const { namespace } = this.props.match.params
-
-    if (isEmpty(volumes)) return null
-
     return (
-      <VolumesCard
-        title={this.volumesTitle}
-        volumes={volumes}
-        containers={containers}
-        loading={isLoading}
-        prefix={`/projects/${namespace}`}
-      />
+      <ServiceCard prefix={this.prefix} service={service} loading={isLoading} />
     )
   }
 
@@ -82,7 +66,6 @@ class ResourceStatus extends Base {
         {this.renderServices()}
         {this.renderContainerPorts()}
         {this.renderPods()}
-        {this.renderVolumes()}
       </div>
     )
   }

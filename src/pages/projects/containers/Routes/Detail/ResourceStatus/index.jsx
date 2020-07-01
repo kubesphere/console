@@ -19,7 +19,7 @@
 import { omit, isEmpty } from 'lodash'
 import React from 'react'
 import { toJS } from 'mobx'
-import { observer } from 'mobx-react'
+import { observer, inject } from 'mobx-react'
 import { Card } from 'components/Base'
 import Annotations from 'projects/components/Cards/Annotations'
 
@@ -27,30 +27,32 @@ import Rule from './Rule'
 
 import styles from './index.scss'
 
+@inject('detailStore')
 @observer
 class ResourceStatus extends React.Component {
   constructor(props) {
     super(props)
 
     this.store = props.detailStore
-    this.module = props.module
+    this.module = this.store.module
   }
 
   componentDidMount() {
     const detail = toJS(this.store.detail)
-    this.store.getGateway({ namespace: detail.namespace })
+    this.store.getGateway(detail)
   }
 
   renderRules() {
     const detail = toJS(this.store.detail)
     const gateway = toJS(this.store.gateway.data)
+
     const tls = detail.tls[0] || {}
 
     if (isEmpty(detail.rules)) {
       return null
     }
 
-    const { namespace } = this.props.match.params
+    const { workspace, cluster, namespace } = this.props.match.params
 
     return (
       <Card title={t('Rules')}>
@@ -60,7 +62,9 @@ class ResourceStatus extends React.Component {
             tls={tls}
             rule={rule}
             gateway={gateway}
-            prefix={`/projects/${namespace}`}
+            prefix={`${
+              workspace ? `/${workspace}` : ''
+            }/clusters/${cluster}/projects/${namespace}`}
           />
         ))}
       </Card>

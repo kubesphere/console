@@ -65,7 +65,7 @@ it('renders correctly', () => {
 
   const props = {
     title: 'Workloads',
-    description: 'WORKLOADS_DESC',
+    description: 'WORKLOAD_DESC',
     module: 'deployments',
     tips,
     tabs,

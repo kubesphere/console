@@ -12,7 +12,8 @@
       line-height: 3.43;
     }
     .searchBar {
-      margin-top: -35px;
+      flex: 1;
+      border: none;
     }
   }
 }
@@ -108,6 +109,26 @@
     }
     .chart {
       flex: 1;
+    }
+  }
+}
+
+.searchBarContainer {
+  display:flex;
+  border: solid 1px $border-color;
+  border-radius: 4px;
+
+  .clusterSelector {
+    flex-basis: 130px;
+    border-right: solid 1px $border-color;
+    border-radius: 4px 0 0 4px;
+    line-height: 40px;
+    overflow: hidden;
+    :global {
+      .select-control {
+        border: none;
+        border-radius: 0;
+      }
     }
   }
 }

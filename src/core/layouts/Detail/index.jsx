@@ -58,40 +58,7 @@ class DetailLayout extends Component {
     this.init(this.props.match.params)
   }
 
-  async init(params = {}) {
-    const rootStore = this.props.rootStore
-
-    if (params.namespace && rootStore.project) {
-      const projectRule = get(globals.user, `rules[${params.namespace}]`)
-
-      await rootStore.project.fetchDetail(params)
-      if (projectRule === undefined) {
-        await rootStore.project.fetchRules({
-          namespace: params.namespace,
-          workspace: rootStore.project.data.workspace,
-        })
-      }
-    }
-
-    if (params.project_id && rootStore.devops) {
-      const devopsRule = get(globals.user, `rules[${params.project_id}]`)
-
-      if (devopsRule === undefined) {
-        await rootStore.devops.fetchRules(params)
-      }
-    }
-
-    if (params.workspace && rootStore.workspace) {
-      const workspaceRule = get(
-        globals.user,
-        `workspace_rules[${params.workspace}]`
-      )
-
-      if (workspaceRule === undefined) {
-        await rootStore.workspace.fetchRules(params)
-      }
-    }
-
+  async init() {
     this.setState({ initializing: false })
   }
 

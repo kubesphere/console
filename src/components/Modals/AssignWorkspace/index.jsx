@@ -23,7 +23,7 @@ import { observer } from 'mobx-react'
 import { Alert, Modal, Form, SearchSelect } from 'components/Base'
 
 import WorkspaceStore from 'stores/workspace'
-import WorkspaceMemberStore from 'stores/workspace/member'
+import UserStore from 'stores/user'
 
 @observer
 export default class AssignWorkspaceModal extends Component {
@@ -49,11 +49,11 @@ export default class AssignWorkspaceModal extends Component {
     this.formTemplate = {}
 
     this.workspaceStore = new WorkspaceStore()
-    this.memberStore = new WorkspaceMemberStore()
+    this.memberStore = new UserStore()
   }
 
   componentDidMount() {
-    this.workspaceStore.fetchResourceList()
+    this.workspaceStore.fetchList()
   }
 
   getWorkspaces() {
@@ -118,7 +118,7 @@ export default class AssignWorkspaceModal extends Component {
         <Form.Item
           label={t('Project Manager')}
           desc={t(
-            'Select an user of the workspace as the manager of the project.'
+            'Select a user of the workspace as the manager of the project.'
           )}
         >
           <SearchSelect

@@ -19,6 +19,7 @@
 import { action, observable } from 'mobx'
 
 export default class Members {
+  @observable
   data = []
 
   originData = []

@@ -19,62 +19,120 @@
 import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
+import { isEmpty } from 'lodash'
+import { Loading } from '@pitrix/lego-ui'
 
+import { getDisplayName, getLocalTime } from 'utils'
+import { trigger } from 'utils/action'
 import { SECRET_TYPES } from 'utils/constants'
 import SecretStore from 'stores/secret'
 
-import Base from 'core/containers/Base/Detail'
-import EditYamlModal from 'components/Modals/EditYaml'
-import EditBasicInfoModal from 'components/Modals/EditBasicInfo'
-import SecretEditModal from 'projects/components/Modals/SecretEdit'
+import DetailPage from 'projects/containers/Base/Detail'
 
-class SecretDetail extends Base {
+import getRoutes from './routes'
+
+@inject('rootStore')
+@observer
+@trigger
+export default class SecretDetail extends React.Component {
+  store = new SecretStore()
+
+  componentDidMount() {
+    this.fetchData()
+  }
+
+  get module() {
+    return 'secrets'
+  }
+
   get name() {
     return 'Secret'
   }
 
-  init() {
-    this.store = new SecretStore()
+  get routing() {
+    return this.props.rootStore.routing
+  }
+
+  get listUrl() {
+    const { workspace, cluster, namespace } = this.props.match.params
+    if (workspace) {
+      return `/${workspace}/clusters/${cluster}/projects/${namespace}/${
+        this.module
+      }`
+    }
+    return `/clusters/${cluster}/${this.module}`
+  }
+
+  fetchData = () => {
+    this.store.fetchDetail(this.props.match.params)
   }
 
   getOperations = () => [
     {
       key: 'edit',
-      type: 'control',
-      text: t('EDIT'),
+      icon: 'pen',
+      text: t('Edit Info'),
       action: 'edit',
-      onClick: this.showModal('editBaseInfo'),
+      onClick: () =>
+        this.trigger('resource.baseinfo.edit', {
+          type: t(this.name),
+          detail: toJS(this.store.detail),
+          success: this.fetchData,
+        }),
     },
     {
       key: 'editYaml',
       icon: 'pen',
       text: t('Edit YAML'),
       action: 'edit',
-      onClick: this.showModal('editYaml'),
+      onClick: () =>
+        this.trigger('resource.yaml.edit', {
+          detail: this.store.detail,
+          success: this.fetchData,
+        }),
     },
     {
       key: 'editSecret',
       icon: 'pen',
       text: t('Edit Secret'),
       action: 'edit',
-      onClick: this.showModal('editSecret'),
+      onClick: () =>
+        this.trigger('secret.edit', {
+          detail: this.store.detail,
+          success: this.fetchData,
+        }),
     },
     {
       key: 'delete',
       icon: 'trash',
       text: t('Delete'),
       action: 'delete',
-      onClick: this.showModal('deleteModule'),
+      type: 'danger',
+      onClick: () =>
+        this.trigger('resource.delete', {
+          type: t(this.name),
+          detail: this.store.detail,
+          success: () => this.routing.push(this.listUrl),
+        }),
     },
   ]
 
   getAttrs = () => {
     const detail = toJS(this.store.detail)
+    const { cluster, namespace } = this.props.match.params
+
+    if (isEmpty(detail)) {
+      return
+    }
 
     return [
       {
+        name: t('Cluster'),
+        value: cluster,
+      },
+      {
         name: t('Project'),
-        value: detail.namespace,
+        value: namespace,
       },
       {
         name: t('Type'),
@@ -82,48 +140,46 @@ class SecretDetail extends Base {
       },
       {
         name: t('Created Time'),
-        value: this.createTime,
+        value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
+      },
+      {
+        name: t('Updated Time'),
+        value: getLocalTime(detail.updateTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
         name: t('Creator'),
-        value: this.creator,
+        value: detail.creator,
       },
     ]
   }
 
-  renderExtraModals() {
-    const { detail, isSubmitting } = this.store
-    const { editBaseInfo, editYaml, editSecret } = this.state
+  render() {
+    const stores = { detailStore: this.store }
 
-    const originData = toJS(detail._originData)
+    if (this.store.isLoading && !this.store.detail.name) {
+      return <Loading className="ks-page-loading" />
+    }
+
+    const sideProps = {
+      module: this.module,
+      name: getDisplayName(this.store.detail),
+      desc: this.store.detail.description,
+      operations: this.getOperations(),
+      attrs: this.getAttrs(),
+      breadcrumbs: [
+        {
+          label: t('Secrets'),
+          url: this.listUrl,
+        },
+      ],
+    }
 
     return (
-      <div>
-        <EditBasicInfoModal
-          visible={editBaseInfo}
-          detail={originData}
-          onOk={this.handleEdit('editBaseInfo')}
-          onCancel={this.hideModal('editBaseInfo')}
-          isSubmitting={isSubmitting}
-        />
-        <EditYamlModal
-          visible={editYaml}
-          detail={originData}
-          onOk={this.handleEdit('editYaml', 'update')}
-          onCancel={this.hideModal('editYaml')}
-          isSubmitting={isSubmitting}
-        />
-        <SecretEditModal
-          visible={editSecret}
-          detail={detail}
-          onOk={this.handleEdit('editSecret', 'updateWithEncode')}
-          onCancel={this.hideModal('editSecret')}
-          isSubmitting={isSubmitting}
-        />
-      </div>
+      <DetailPage
+        stores={stores}
+        {...sideProps}
+        routes={getRoutes(this.props.match.path)}
+      />
     )
   }
 }
-
-export default inject('rootStore')(observer(SecretDetail))
-export const Component = SecretDetail

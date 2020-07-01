@@ -24,7 +24,8 @@ import Sider from '../../containers/Pipelines/Detail/Sider/branch-sider'
 
 import { Activity, CodeQuality } from '../../containers/Pipelines/Detail'
 
-const PATH = '/devops/:project_id/pipelines/:name/branch/:branch'
+const PATH =
+  '/:workspace/clusters/:cluster/devops/:project_id/pipelines/:name/branch/:branch'
 
 const ROUTES = [
   { name: 'activity', title: 'Activity', component: Activity },
@@ -40,11 +41,12 @@ export default [
       breadcrumbs: [
         {
           label: 'Pipeline List',
-          url: '/devops/:project_id/pipelines',
+          url: '/:workspace/clusters/:cluster/devops/:project_id/pipelines',
         },
         {
           label: 'Branch',
-          url: '/devops/:project_id/pipelines/:name/branch',
+          url:
+            '/:workspace/clusters/:cluster/devops/:project_id/pipelines/:name/branch',
         },
       ],
     }),

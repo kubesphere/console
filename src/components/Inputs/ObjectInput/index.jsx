@@ -29,7 +29,7 @@ export default class ObjectInput extends React.Component {
     value: PropTypes.object,
     defaultValue: PropTypes.object,
     onChange: PropTypes.func,
-    children: PropTypes.arrayOf(PropTypes.node).isRequired,
+    children: PropTypes.node.isRequired,
   }
 
   static defaultProps = {

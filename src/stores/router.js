@@ -33,18 +33,14 @@ export default class RouterStore extends Base {
     this.module = 'ingresses'
   }
 
-  get apiVersion() {
-    return 'apis/extensions/v1beta1'
-  }
-
-  getGatewayUrl = namespace =>
-    `kapis/resources.kubesphere.io/v1alpha2/namespaces/${namespace}/router`
+  getGatewayUrl = params =>
+    `kapis/resources.kubesphere.io/v1alpha2${this.getPath(params)}/router`
 
   @action
-  async getGateway({ namespace }) {
+  async getGateway(params) {
     this.gateway.isLoading = true
 
-    const url = this.getGatewayUrl(namespace)
+    const url = this.getGatewayUrl(params)
     let data = {}
 
     try {
@@ -59,17 +55,17 @@ export default class RouterStore extends Base {
   }
 
   @action
-  addGateway({ namespace }, router) {
-    return this.submitting(request.post(this.getGatewayUrl(namespace), router))
+  addGateway(params, data) {
+    return this.submitting(request.post(this.getGatewayUrl(params), data))
   }
 
   @action
-  updateGateway({ namespace }, router) {
-    return this.submitting(request.put(this.getGatewayUrl(namespace), router))
+  updateGateway(params, data) {
+    return this.submitting(request.put(this.getGatewayUrl(params), data))
   }
 
   @action
-  deleteGateway({ namespace }) {
-    return this.submitting(request.delete(this.getGatewayUrl(namespace)))
+  deleteGateway(params) {
+    return this.submitting(request.delete(this.getGatewayUrl(params)))
   }
 }

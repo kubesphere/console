@@ -17,27 +17,42 @@
  */
 
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { Router } from 'react-router'
+import { createBrowserHistory } from 'history'
+import { syncHistoryWithStore } from 'mobx-react-router'
+import { lazy } from 'utils'
 import { renderRoutes } from 'utils/router.config'
 import { Provider } from 'mobx-react'
+
+import RootStore from 'stores/root'
 
 import 'scss/main.scss'
 
 import routes from './routes'
 
+const getActions = lazy(() => import('src/actions'))
+
 class App extends Component {
-  static propTypes = {
-    rootStore: PropTypes.object,
-    history: PropTypes.object,
+  constructor(props) {
+    super(props)
+
+    this.rootStore = new RootStore()
+    this.history = syncHistoryWithStore(
+      createBrowserHistory(),
+      this.rootStore.routing
+    )
+  }
+
+  componentDidMount() {
+    getActions().then(actions =>
+      this.rootStore.registerActions(actions.default)
+    )
   }
 
   render() {
-    const { rootStore, history } = this.props
-
     return (
-      <Provider rootStore={rootStore}>
-        <Router history={history}>{renderRoutes(routes)}</Router>
+      <Provider rootStore={this.rootStore}>
+        <Router history={this.history}>{renderRoutes(routes)}</Router>
       </Provider>
     )
   }

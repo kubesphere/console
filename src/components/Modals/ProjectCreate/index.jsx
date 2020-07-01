@@ -17,29 +17,20 @@
  */
 
 import React from 'react'
+import { observer } from 'mobx-react'
+import { get, isEmpty, set, uniqBy } from 'lodash'
 import PropTypes from 'prop-types'
-import { Icon } from '@pitrix/lego-ui'
-import { Modal, Steps, Button } from 'components/Base'
+import { Columns, Column, Select, Input, TextArea } from '@pitrix/lego-ui'
+import { Modal, Form } from 'components/Base'
+import { ArrayInput, ObjectInput } from 'components/Inputs'
+import ClusterTitle from 'components/Clusters/ClusterTitle'
+import { PATTERN_SERVICE_NAME, PATTERN_LENGTH_63 } from 'utils/constants'
 
-import steps from './steps'
+import WorkspaceStore from 'stores/workspace'
 
 import styles from './index.scss'
 
-const PROJECT_TYPES = [
-  {
-    key: 'projects',
-    icon: 'project',
-    title: 'PROJECT_TYPES_PROJECT_TITLE',
-    desc: 'PROJECT_TYPES_PROJECT_DESC',
-  },
-  {
-    key: 'devops',
-    icon: 'strategy-group',
-    title: 'PROJECT_TYPES_DEVOPS_TITLE',
-    desc: 'PROJECT_TYPES_DEVOPS_DESC',
-  },
-]
-
+@observer
 export default class ProjectCreateModal extends React.Component {
   static propTypes = {
     formTemplate: PropTypes.object,
@@ -47,7 +38,6 @@ export default class ProjectCreateModal extends React.Component {
     isSubmitting: PropTypes.bool,
     onOk: PropTypes.func,
     onCancel: PropTypes.func,
-    type: PropTypes.string,
   }
 
   static defaultProps = {
@@ -56,211 +46,241 @@ export default class ProjectCreateModal extends React.Component {
     isSubmitting: false,
     onOk() {},
     onCancel() {},
-    type: '',
   }
 
   constructor(props) {
     super(props)
 
-    this.state = {
-      selectType: props.type,
-      currentStep: 0,
-      formTemplate: props.formTemplate,
-    }
-
-    this.formRef = React.createRef()
+    this.store = props.store
+    this.workspaceStore = new WorkspaceStore()
   }
 
-  componentDidUpdate(prevProps) {
-    const { visible, type, formTemplate } = this.props
-    if (visible && visible !== prevProps.visible) {
-      this.setState({
-        currentStep: 0,
-        selectType: type,
-        formTemplate,
-      })
+  componentDidMount() {
+    const { hideCluster } = this.props
+    if (!hideCluster) {
+      this.fetchClusters()
     }
   }
 
-  handleTypeChange = e => {
-    const { type } = e.currentTarget.dataset
-    this.setState({ selectType: type })
+  get networkOptions() {
+    return [
+      { label: t('Off'), value: '' },
+      { label: t('On'), value: 'enabled' },
+    ]
   }
 
-  handleCreate = () => {
-    const form = this.formRef.current
-    const { onOk } = this.props
-    const { selectType, formTemplate } = this.state
-
-    form &&
-      form.validate(() => {
-        onOk({ ...formTemplate[selectType], type: selectType })
-      })
-  }
-
-  handleNext = () => {
-    const form = this.formRef.current
-    const selectSteps = steps[this.state.selectType] || []
-    const stepCount = selectSteps.length
-
-    form &&
-      form.validate(() => {
-        this.setState(({ currentStep }) => ({
-          currentStep: Math.min(currentStep + 1, stepCount - 1),
-        }))
-      })
-  }
-
-  handlePrev = () => {
-    this.setState(({ currentStep, subRoute }) => ({
-      currentStep: Math.max(currentStep - 1, 0),
-      subRoute,
+  get clusters() {
+    return this.workspaceStore.clusters.data.map(item => ({
+      label: item.name,
+      value: item.name,
+      provider: item.provider,
+      group: item.group,
+      name: item.name,
     }))
   }
 
-  renderTabs() {
-    const { currentStep, selectType } = this.state
-    const selectSteps = steps[selectType] || []
+  get defaultClusters() {
+    const clusters = this.workspaceStore.clusters.data
+      .filter(item => item.isHost)
+      .map(item => ({ name: item.name }))
 
-    if (selectSteps.length < 2) {
-      return null
+    return isEmpty(clusters) ? undefined : clusters
+  }
+
+  fetchClusters(params) {
+    this.workspaceStore.fetchClusters({
+      ...params,
+      workspace: this.props.workspace,
+    })
+  }
+
+  nameValidator = (rule, value, callback) => {
+    if (!value) {
+      return callback()
+    }
+
+    const { cluster } = this.props
+    this.props.store.checkName({ name: value, cluster }).then(resp => {
+      if (resp.exist) {
+        return callback({ message: t('Name exists'), field: rule.field })
+      }
+      callback()
+    })
+  }
+
+  multiClusterNameValidator = async (rule, value, callback) => {
+    if (!value) {
+      return callback()
+    }
+
+    const clusters = get(this.props.formTemplate, 'spec.placement.clusters', [])
+
+    const resps = await Promise.all(
+      clusters.map(cluster =>
+        this.store.checkName({ name: value, cluster: cluster.name })
+      )
+    )
+
+    const index = resps.findIndex(item => item.exist)
+
+    if (index > -1) {
+      return callback({
+        message: t('NAME_EXIST_IN_CLUSTER', { cluster: clusters[index].name }),
+        field: rule.field,
+      })
+    }
+    callback()
+  }
+
+  valueRenderer = item => <ClusterTitle cluster={item} size="small" noStatus />
+
+  optionRenderer = item => (
+    <ClusterTitle cluster={item} size="small" theme="light" noStatus />
+  )
+
+  handleClusterChange = clusters => {
+    set(
+      this.props.formTemplate,
+      'spec.placement.clusters',
+      uniqBy(clusters, 'name')
+    )
+  }
+
+  renderClusters() {
+    const { multiCluster } = this.props
+
+    if (!multiCluster) {
+      return (
+        <Form.Group
+          label={t('Cluster Settings')}
+          desc={t('Select the cluster to create the project.')}
+        >
+          <Form.Item
+            rules={[{ required: true, message: t('Please select a cluster') }]}
+          >
+            <Select
+              name="spec.placement.clusters[0].name"
+              className={styles.cluster}
+              options={this.clusters}
+              valueRenderer={this.valueRenderer}
+              optionRenderer={this.optionRenderer}
+            />
+          </Form.Item>
+        </Form.Group>
+      )
     }
 
     return (
-      <div className={styles.tabs}>
-        <Steps steps={selectSteps} current={currentStep} />
-      </div>
-    )
-  }
-
-  renderContent() {
-    const { currentStep, selectType, formTemplate } = this.state
-    const selectSteps = steps[selectType] || []
-
-    const Component = selectSteps[currentStep].component
-
-    if (!Component) {
-      return null
-    }
-
-    return (
-      <div className={styles.content}>
-        <Component
-          formRef={this.formRef}
-          formTemplate={formTemplate[selectType]}
-        />
-      </div>
-    )
-  }
-
-  renderFooter() {
-    const { isSubmitting } = this.props
-    const { currentStep, selectType } = this.state
-    const selectSteps = steps[selectType] || []
-
-    const showCreate = selectSteps.every((step, index) =>
-      step.required ? currentStep >= index : true
-    )
-
-    const showNext = currentStep < selectSteps.length - 1
-
-    return (
-      <div className={styles.footer}>
-        {currentStep ? (
-          <Button
-            type="default"
-            onClick={this.handlePrev}
-            data-test="modal-previous"
+      <Form.Group
+        label={t('Cluster Settings')}
+        desc={t('PROJECT_CLUSTER_SETTINGS_DESC')}
+      >
+        <Form.Item
+          rules={[{ required: true, message: t('Please select a cluster') }]}
+        >
+          <ArrayInput
+            name="spec.placement.clusters"
+            addText={t('Add Cluster')}
+            itemType="object"
+            defaultValue={this.defaultClusters}
+            onChange={this.handleClusterChange}
           >
-            {t('Previous')}
-          </Button>
-        ) : null}
-        {showNext && (
-          <Button
-            type="control"
-            onClick={this.handleNext}
-            data-test="modal-next"
-          >
-            {t('Next')}
-          </Button>
-        )}
-        {showCreate && (
-          <Button
-            type="control"
-            loading={isSubmitting}
-            disabled={isSubmitting}
-            onClick={this.handleCreate}
-            data-test="modal-create"
-          >
-            {t('Create')}
-          </Button>
-        )}
-      </div>
-    )
-  }
-
-  renderSelect() {
-    return (
-      <div className={styles.typeWrapper}>
-        <div className="h3">{t('Select Project Type')}</div>
-        <p>-</p>
-        {PROJECT_TYPES.map(type => (
-          <div
-            key={type.key}
-            className={styles.type}
-            data-type={type.key}
-            onClick={this.handleTypeChange}
-          >
-            {type.icon.startsWith('/') ? (
-              <img src={type.icon} alt="" />
-            ) : (
-              <Icon name={type.icon} size={32} />
-            )}
-            <div className={styles.text}>
-              <div className="h6">{t(type.title)}</div>
-              <p>{t(type.desc)}</p>
-            </div>
-          </div>
-        ))}
-        <img
-          className={styles.bottomImage}
-          src="/assets/undraw-target-kriv.svg"
-          alt=""
-        />
-      </div>
+            <ObjectInput>
+              <Select
+                name="name"
+                className={styles.cluster}
+                options={this.clusters}
+                valueRenderer={this.valueRenderer}
+                optionRenderer={this.optionRenderer}
+              />
+            </ObjectInput>
+          </ArrayInput>
+        </Form.Item>
+      </Form.Group>
     )
   }
 
   render() {
-    const { visible, onCancel } = this.props
-
-    const showSelect = this.state.selectType === ''
-
+    const {
+      visible,
+      formTemplate,
+      hideCluster,
+      onOk,
+      onCancel,
+      isSubmitting,
+    } = this.props
     return (
-      <Modal
-        width={this.state.selectType === 'devops' ? 700 : 960}
-        title={
-          this.state.selectType === 'devops'
-            ? t('Create DevOps Project')
-            : t('Create Project')
-        }
+      <Modal.Form
+        width={960}
         bodyClassName={styles.body}
+        data={formTemplate}
         onCancel={onCancel}
+        onOk={onOk}
         visible={visible}
         closable={false}
-        hideFooter
-        hideHeader={showSelect}
+        isSubmitting={isSubmitting}
+        hideHeader
       >
-        {showSelect ? (
-          this.renderSelect()
-        ) : (
-          <div>
-            {this.renderTabs()}
-            {this.renderContent()}
-            {this.renderFooter()}
+        <div className={styles.header}>
+          <img src="/assets/project-create.svg" alt="" />
+          <div className={styles.title}>
+            <div>{t('Create Project')}</div>
+            <p>{t('PROJECT_CREATE_DESC')}</p>
           </div>
-        )}
-      </Modal>
+        </div>
+        <div className={styles.content}>
+          <Columns>
+            <Column>
+              <Form.Item
+                label={t('Name')}
+                desc={t('SERVICE_NAME_DESC')}
+                rules={[
+                  { required: true, message: t('Please input name') },
+                  {
+                    pattern: PATTERN_SERVICE_NAME,
+                    message: `${t('Invalid name')}, ${t('SERVICE_NAME_DESC')}`,
+                  },
+                  { pattern: PATTERN_LENGTH_63, message: t('NAME_TOO_LONG') },
+                  {
+                    validator: hideCluster
+                      ? this.nameValidator
+                      : this.multiClusterNameValidator,
+                  },
+                ]}
+              >
+                <Input name="metadata.name" autoFocus={true} />
+              </Form.Item>
+            </Column>
+            <Column>
+              <Form.Item label={t('Alias')} desc={t('ALIAS_DESC')}>
+                <Input name="metadata.annotations['kubesphere.io/alias-name']" />
+              </Form.Item>
+            </Column>
+          </Columns>
+          <Columns>
+            <Column>
+              <Form.Item
+                label={t('Network Isolation')}
+                desc={t('NETWORK_ISOLATED_DESC')}
+              >
+                <Select
+                  name="metadata.annotations['kubesphere.io/network-isolate']"
+                  options={this.networkOptions}
+                  defaultValue={
+                    globals.config.defaultNetworkIsolation ? 'enabled' : ''
+                  }
+                />
+              </Form.Item>
+            </Column>
+            <Column>
+              <Form.Item label={t('Description')}>
+                <TextArea name="metadata.annotations['kubesphere.io/description']" />
+              </Form.Item>
+            </Column>
+          </Columns>
+          {!hideCluster && this.renderClusters()}
+        </div>
+      </Modal.Form>
     )
   }
 }

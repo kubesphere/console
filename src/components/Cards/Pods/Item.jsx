@@ -109,7 +109,12 @@ export default class PodItem extends React.PureComponent {
     )
   }
 
-  getLink = name => `${this.props.prefix}/pods/${name}`
+  getLink = () => {
+    const { detail } = this.props
+    return `${this.props.prefix}/projects/${detail.namespace}/pods/${
+      detail.name
+    }`
+  }
 
   getMonitoringCfgs = metrics => [
     {
@@ -131,8 +136,9 @@ export default class PodItem extends React.PureComponent {
   ]
 
   getNodeContent = () => {
-    const { node, nodeIp } = this.props.detail
+    const { cluster, node, nodeIp } = this.props.detail
     const nodePermission = globals.app.hasPermission({
+      cluster,
       module: 'nodes',
       action: 'view',
     })
@@ -142,7 +148,7 @@ export default class PodItem extends React.PureComponent {
     const text = `${node}(${nodeIp})`
 
     return nodePermission ? (
-      <Link to={`/infrastructure/nodes/${node}`}>{text}</Link>
+      <Link to={`/clusters/${cluster}/nodes/${node}`}>{text}</Link>
     ) : (
       text
     )
@@ -151,6 +157,10 @@ export default class PodItem extends React.PureComponent {
   handleExpandExtra = () => {
     const { detail, onExpand } = this.props
     onExpand(detail.name)
+  }
+
+  handleLinkClick = () => {
+    localStorage.setItem('pod-detail-referrer', location.pathname)
   }
 
   renderStatusTip() {
@@ -185,7 +195,7 @@ export default class PodItem extends React.PureComponent {
     if (isEmpty(metrics.cpu) && isEmpty(metrics.memory))
       return (
         <div className={styles.monitors}>
-          {t('NO_RESOURCE', { resource: t('monitoring data') })}
+          {t('NO_RESOURCE', { resource: t('Monitoring Data') })}
         </div>
       )
 
@@ -223,11 +233,17 @@ export default class PodItem extends React.PureComponent {
       <div className={styles.content}>
         <div className={styles.text}>
           <div>
-            {prefix ? <Link to={this.getLink(name)}>{name}</Link> : name}
+            {prefix ? (
+              <Link to={this.getLink()}>
+                <span onClick={this.handleLinkClick}>{name}</span>
+              </Link>
+            ) : (
+              name
+            )}
           </div>
           {this.getUpdateStatus()}
         </div>
-        {!location.pathname.startsWith('/infrastructure/nodes') && (
+        {!location.pathname.indexOf('/nodes') !== -1 && (
           <div className={styles.text}>
             <div>{this.getNodeContent()}</div>
             <p>{t('Node')}</p>
@@ -247,7 +263,12 @@ export default class PodItem extends React.PureComponent {
 
   renderExtraContent() {
     const { prefix } = this.props
-    const { containers = [], initContainers = [], name } = this.props.detail
+    const {
+      cluster,
+      containers = [],
+      initContainers = [],
+      name,
+    } = this.props.detail
 
     if (isEmpty(containers)) return null
 
@@ -260,18 +281,22 @@ export default class PodItem extends React.PureComponent {
           {containers.map(container => (
             <ContainerItem
               key={container.name}
-              prefix={prefix && this.getLink(name)}
+              prefix={prefix && this.getLink()}
               podName={name}
               detail={container}
+              cluster={cluster}
+              onContainerClick={this.handleLinkClick}
               isCreating={this.isCreating}
             />
           ))}
           {initContainers.map(container => (
             <ContainerItem
               key={container.name}
-              prefix={prefix && this.getLink(name)}
+              prefix={prefix && this.getLink()}
               podName={name}
               detail={container}
+              cluster={cluster}
+              onContainerClick={this.handleLinkClick}
               isCreating={this.isCreating}
               isInit
             />

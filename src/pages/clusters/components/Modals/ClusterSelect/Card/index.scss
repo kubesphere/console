@@ -1,0 +1,27 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.wrapper {
+  cursor: pointer;
+
+  &:hover {
+    a {
+      color: $primary;
+    }
+  }
+}
+
+.title {
+  flex: 1;
+}
+
+.name {
+  min-width: 400px;
+}
+
+.provider {
+  width: 160px;
+  & > div {
+    @include ellipsis;
+  }
+}

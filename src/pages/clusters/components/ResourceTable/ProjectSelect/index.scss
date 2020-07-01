@@ -1,0 +1,23 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.select {
+  width: 200px;
+  margin-right: 12px;
+
+  :global .select-placeholder {
+    @include TypographySymbolText;
+  }
+}
+
+.option {
+  @include ellipsis;
+  & > span,
+  & > img {
+    display: inline-block;
+    vertical-align: text-bottom;
+    margin-right: 6px;
+    width: 16px;
+    height: 16px;
+  }
+}

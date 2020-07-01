@@ -18,7 +18,6 @@
 
 import React from 'react'
 import { get } from 'lodash'
-import { toJS } from 'mobx'
 import { generateId, cpuFormat, memoryFormat } from 'utils'
 
 import { PATTERN_NAME, PATTERN_LENGTH_63 } from 'utils/constants'
@@ -28,31 +27,13 @@ import { Form, Tag } from 'components/Base'
 import { ResourceLimit } from 'components/Inputs'
 import ToggleView from 'components/ToggleView'
 
-import QuotaStore from 'stores/quota'
-import ProjectStore from 'stores/project'
-import SecretStore from 'stores/secret'
-
-import ImageSearch from './ImageSearch'
+import ImageInput from './ImageInput'
 
 import styles from './index.scss'
 
 export default class ContainerSetting extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      quota: {},
-      limitRange: {},
-      imageRegistries: [],
-    }
-
-    this.quotaStore = new QuotaStore()
-    this.projectStore = new ProjectStore()
-    this.secretStore = new SecretStore()
-  }
-
   get defaultResourceLimit() {
-    const { limitRange = {} } = this.state
+    const { limitRange = {} } = this.props
 
     if (!limitRange.defaultRequest && !limitRange.default) {
       return undefined
@@ -71,31 +52,8 @@ export default class ContainerSetting extends React.Component {
     ]
   }
 
-  componentDidMount() {
-    this.fetchData()
-  }
-
-  fetchData() {
-    const { namespace } = this.props
-
-    Promise.all([
-      this.quotaStore.fetch({ namespace }),
-      this.projectStore.fetchLimitRanges({ namespace }),
-      this.secretStore.fetchByK8s({
-        namespace: this.props.namespace,
-        fieldSelector: `type=kubernetes.io/dockerconfigjson`,
-      }),
-    ]).then(() => {
-      this.setState({
-        quota: this.quotaStore.data,
-        limitRange: get(toJS(this.projectStore.limitRanges), 'data[0].limit'),
-        imageRegistries: this.secretStore.list.data,
-      })
-    })
-  }
-
   get imageRegistries() {
-    return this.state.imageRegistries.map(item => {
+    return this.props.imageRegistries.map(item => {
       const auths = get(item, 'data[".dockerconfigjson"].auths', {})
       const url = Object.keys(auths)[0] || ''
       const username = get(auths[url], 'username')
@@ -115,19 +73,22 @@ export default class ContainerSetting extends React.Component {
     </Tag>
   )
 
-  renderImageForm = () => (
-    <ImageSearch
-      name="image"
-      className={styles.imageSearch}
-      namespace={this.props.namespace}
-      formTemplate={this.props.data}
-      imageRegistries={this.imageRegistries}
-    />
-  )
+  renderImageForm = () => {
+    const { data, cluster, namespace } = this.props
+    return (
+      <ImageInput
+        name="image"
+        cluster={cluster}
+        namespace={namespace}
+        className={styles.imageSearch}
+        formTemplate={data}
+        imageRegistries={this.imageRegistries}
+      />
+    )
+  }
 
   renderAdvancedSettings() {
-    const { defaultContainerType, onContainerTypeChange } = this.props
-    const { quota } = this.state
+    const { defaultContainerType, onContainerTypeChange, quota } = this.props
 
     const cpuRequestLeft = get(quota, 'left["requests.cpu"]')
     const memoryRequestLeft = get(quota, 'left["requests.memory"]')
@@ -155,7 +116,7 @@ export default class ContainerSetting extends React.Component {
     return (
       <ToggleView>
         <>
-          <Columns>
+          <Columns className={styles.columns}>
             <Column>
               <Form.Item
                 label={t('Container Name')}
@@ -200,11 +161,13 @@ export default class ContainerSetting extends React.Component {
   }
 
   render() {
+    const { className } = this.props
     return (
       <Form.Group
+        className={className}
         label={t('Container Settings')}
         desc={t(
-          'Setting for the name of the container and the computing resources of the container'
+          'Please set the container name and computing resources.'
         )}
         noWrapper
       >

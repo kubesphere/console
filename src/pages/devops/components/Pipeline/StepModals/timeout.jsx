@@ -115,7 +115,7 @@ export default class Timeout extends React.Component {
                   label: t('Timeout after no activity in logs for this block'),
                   value: true,
                 },
-                { label: t('absolute duration'), value: false },
+                { label: t('Absolute duration'), value: false },
               ]}
             />
           </Form.Item>

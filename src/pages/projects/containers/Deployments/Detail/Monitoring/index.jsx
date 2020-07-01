@@ -40,7 +40,15 @@ const MetricTypes = {
   net_received: 'pod_net_bytes_received',
 }
 
-class Monitorings extends React.Component {
+const MONITOR_MODULES = {
+  deployments: 'deployment',
+  statefulsets: 'statefulset',
+  daemonsets: 'daemonset',
+}
+
+@inject('detailStore')
+@observer
+export default class Monitorings extends React.Component {
   constructor(props) {
     super(props)
 
@@ -59,7 +67,7 @@ class Monitorings extends React.Component {
   }
 
   get monitoringModule() {
-    return 'deployment'
+    return MONITOR_MODULES[this.store.module]
   }
 
   get metrics() {
@@ -67,9 +75,10 @@ class Monitorings extends React.Component {
   }
 
   get resourceParams() {
-    const { namespace, name } = this.store.detail
+    const { cluster, namespace, name } = this.store.detail
 
     return {
+      cluster,
       namespace,
       workloadKind: this.monitoringModule,
       workloadName: name,
@@ -87,7 +96,6 @@ class Monitorings extends React.Component {
 
   fetchData = (params = {}) => {
     const { pods } = this.state
-
     if (isEmpty(pods)) {
       this.resourceStore
         .fetchSortedMetrics({
@@ -97,7 +105,7 @@ class Monitorings extends React.Component {
         })
         .then(data => {
           const result = get(data[MetricTypes.cpu_usage], 'data.result') || []
-          const _pods = result.map(item => get(item, 'metric.resource_name'))
+          const _pods = result.map(item => get(item, 'metric.pod'))
 
           this.setState({ pods: _pods }, () => {
             this.fetchMetrics({ resources: _pods, ...params })
@@ -132,13 +140,13 @@ class Monitorings extends React.Component {
     },
     {
       type: 'bandwidth',
-      title: 'Network Outbound',
+      title: 'Outbound Traffic',
       unitType: 'bandwidth',
       metricType: MetricTypes.net_transmitted,
     },
     {
       type: 'bandwidth',
-      title: 'Network Inbound',
+      title: 'Inbound Traffic',
       unitType: 'bandwidth',
       metricType: MetricTypes.net_received,
     },
@@ -186,7 +194,7 @@ class Monitorings extends React.Component {
         {configs.map(item => {
           item.data = get(this.metrics, `${item.metricType}.data.result`) || []
           item.legend = item.data.map((record, index) =>
-            get(record, 'metric.resource_name', `pod${index}`)
+            get(record, 'metric.pod', `pod${index}`)
           )
 
           const config = getAreaChartOps(item)
@@ -200,7 +208,7 @@ class Monitorings extends React.Component {
                   className={styles.more}
                   onClick={this.showMultipleModal(item)}
                 >
-                  {t('View all replicas')}
+                  {t('View All Replicas')}
                 </div>
               )}
               <MultiArea width="100%" {...config} />
@@ -238,6 +246,3 @@ class Monitorings extends React.Component {
     )
   }
 }
-
-export default inject('rootStore')(observer(Monitorings))
-export const Component = Monitorings

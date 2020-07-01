@@ -17,88 +17,186 @@
  */
 
 import React from 'react'
-import { toJS } from 'mobx'
+import { isEmpty, get } from 'lodash'
 import { observer, inject } from 'mobx-react'
-import { get } from 'lodash'
+import { Loading } from '@pitrix/lego-ui'
 
-import VolumeStore from 'stores/volume'
-
-import StorageClass from 'stores/storageClass'
-import Base from 'core/containers/Base/Detail'
 import { Status } from 'components/Base'
-import EditBasicInfoModal from 'components/Modals/EditBasicInfo'
-import EditYamlModal from 'components/Modals/EditYaml'
-import ExpandModal from 'projects/components/Modals/ExpandVolume'
+import { getDisplayName } from 'utils'
+import { trigger } from 'utils/action'
+import { toJS } from 'mobx'
+import Volume from 'stores/volume'
+import StorageClass from 'stores/storageClass'
+import StorageClassCapability from 'stores/storageclasscapabilities'
 
-class VolumeDetail extends Base {
+import DetailPage from 'projects/containers/Base/Detail'
+
+import getRoutes from './routes'
+
+function noop() {}
+
+@inject('rootStore')
+@observer
+@trigger
+export default class VolumeDetail extends React.Component {
+  store = new Volume()
+
+  storageclass = new StorageClass()
+
+  storageclasscapabilities = new StorageClassCapability()
+
+  componentDidMount() {
+    this.fetchData()
+  }
+
   get name() {
     return 'Volume'
   }
 
+  get module() {
+    return 'volumes'
+  }
+
+  get authKey() {
+    return 'volumes'
+  }
+
   get listUrl() {
-    const { storage } = this.props.match.params
-    return storage
-      ? `/infrastructure/storageclasses/${storage}/`
-      : `/projects/${this.namespace}/${this.module}`
-  }
-
-  init() {
-    this.store = new VolumeStore()
-    this.storageclass = new StorageClass()
-  }
-
-  fetchData = async params => {
-    try {
-      await this.store.fetchDetail(this.params, params)
-
-      this.store.fetchVolumeMountStatus()
-    } catch (e) {
-      this.catch(e)
+    const { workspace, cluster, namespace } = this.props.match.params
+    if (workspace) {
+      return `/${workspace}/clusters/${cluster}/projects/${namespace}/${
+        this.module
+      }`
     }
+    return `/clusters/${cluster}/${this.module}`
+  }
 
-    const { namespace, storageClassName } = this.store.detail
+  fetchData = async () => {
+    const { cluster } = this.props.match.params
+    await this.store.fetchDetail(this.props.match.params)
+
+    const { storageClassName } = this.store.detail
     await this.storageclass.fetchDetail({
-      namespace,
+      cluster,
       name: storageClassName,
     })
+
+    await this.storageclasscapabilities.fetchDetail(
+      {
+        cluster,
+        name: storageClassName,
+      },
+      {},
+      {},
+      noop
+    )
   }
 
   getOperations = () => [
     {
       key: 'edit',
-      type: 'control',
-      text: t('EDIT'),
+      icon: 'pen',
+      text: t('Edit Info'),
       action: 'edit',
-      onClick: this.showModal('editBaseInfo'),
-    },
-    {
-      key: 'expand',
-      text: t('Expand Volume'),
-      icon: 'scaling',
-      action: 'edit',
-      disabled: !get(this.storageclass, 'detail.allowVolumeExpansion', false),
-      onClick: this.showModal('expand'),
+      onClick: () =>
+        this.trigger('resource.baseinfo.edit', {
+          type: t(this.name),
+          detail: toJS(this.store.detail),
+          success: this.fetchData,
+        }),
     },
     {
       key: 'editYaml',
       icon: 'pen',
       text: t('Edit YAML'),
       action: 'edit',
-      onClick: this.showModal('editYaml'),
+      onClick: () =>
+        this.trigger('resource.yaml.edit', {
+          detail: this.store.detail,
+          success: this.fetchData,
+        }),
+    },
+    {
+      key: 'clone',
+      type: 'control',
+      text: t('Volume Clone'),
+      icon: 'copy',
+      action: 'create',
+      onClick: () => {
+        this.trigger('volume.clone', {
+          store: this.store,
+        })
+      },
+    },
+    {
+      key: 'snapshot',
+      type: 'control',
+      text: t('Create Snapshot'),
+      icon: 'copy',
+      action: 'create',
+      disabled: !get(
+        this.storageclasscapabilities,
+        'detail.snapshotFeature.create',
+        false
+      ),
+      onClick: () => {
+        this.trigger('volume.create.snapshot', {
+          store: this.store,
+        })
+      },
+    },
+    {
+      key: 'expand',
+      text: t('Expand Volume'),
+      icon: 'scaling',
+      action: 'edit',
+      disabled: !get(
+        this.storageclasscapabilities,
+        'detail.supportExpandVolume',
+        false
+      ),
+      onClick: () => {
+        const { detail, isSubmitting } = this.store
+        const originData = toJS(detail._originData)
+        const storageClassSizeConfig = this.storageclass.getStorageSizeConfig()
+
+        this.trigger('volume.expand', {
+          store: this.store,
+          isExpanding: isSubmitting,
+          shouldAlertVisible: detail.inUse,
+          detail: originData,
+          max: storageClassSizeConfig.max,
+          min: storageClassSizeConfig.min,
+          step: storageClassSizeConfig.step,
+        })
+      },
     },
     {
       key: 'delete',
       icon: 'trash',
       text: t('Delete'),
       action: 'delete',
-      onClick: this.showModal('deleteModule'),
+      type: 'danger',
+      onClick: () =>
+        this.trigger('resource.delete', {
+          type: t(this.name),
+          detail: toJS(this.store.detail),
+          success: this.returnTolist,
+        }),
     },
   ]
 
   getAttrs = () => {
-    const detail = toJS(this.store.detail)
-
-    const phase = detail.phase || ''
+    const { detail = {} } = this.store
+    const {
+      createTime,
+      creator,
+      phase,
+      capacity,
+      namespace,
+      accessMode = '-',
+    } = detail
+    if (isEmpty(detail)) return null
 
     const storageClassName =
       detail.storageClassName ||
@@ -107,24 +205,26 @@ class VolumeDetail extends Base {
     return [
       {
         name: t('Project'),
-        value: detail.namespace,
+        value: namespace,
       },
       {
         name: t('Status'),
         value: (
-          <Status
-            type={phase}
-            name={t(`VOLUME_STATUS_${phase.toUpperCase()}`)}
-          />
+          <div>
+            <Status
+              type={phase}
+              name={t(`VOLUME_STATUS_${phase.toUpperCase()}`)}
+            />
+          </div>
         ),
       },
       {
         name: t('Capacity'),
-        value: get(detail, 'capacity', '-'),
+        value: capacity,
       },
       {
         name: t('Access Mode'),
-        value: get(detail, 'accessMode', '-'),
+        value: accessMode,
       },
       {
         name: t('Storage Class'),
@@ -139,54 +239,48 @@ class VolumeDetail extends Base {
         ),
       },
       {
-        name: t('Created Time'),
-        value: this.createTime,
+        name: t('Create Time'),
+        value: createTime,
       },
       {
         name: t('Creator'),
-        value: this.creator,
+        value: creator,
       },
     ]
   }
 
-  renderExtraModals() {
-    const { detail, isSubmitting } = this.store
-    const { editBaseInfo, editYaml, expand } = this.state
+  returnTolist = () => {
+    this.props.rootStore.routing.push(this.listUrl)
+  }
 
-    const originData = toJS(detail._originData)
-    const storageClassSizeConfig = this.storageclass.getStorageSizeConfig()
+  render() {
+    const stores = { detailStore: this.store }
+
+    if (this.store.isLoading && !this.store.detail.name) {
+      return <Loading className="ks-page-loading" />
+    }
+
+    const sideProps = {
+      module: this.module,
+      authKey: this.authKey,
+      name: getDisplayName(this.store.detail),
+      attrs: this.getAttrs(),
+      operations: this.getOperations(),
+      icon: 'storage',
+      breadcrumbs: [
+        {
+          label: t('Volumes'),
+          url: this.listUrl,
+        },
+      ],
+    }
 
     return (
-      <div>
-        <EditBasicInfoModal
-          visible={editBaseInfo}
-          detail={originData}
-          onOk={this.handleEdit('editBaseInfo')}
-          onCancel={this.hideModal('editBaseInfo')}
-          isSubmitting={isSubmitting}
-        />
-        <EditYamlModal
-          visible={editYaml}
-          detail={originData}
-          onOk={this.handleEdit('editYaml', 'update')}
-          onCancel={this.hideModal('editYaml')}
-          isSubmitting={isSubmitting}
-        />
-        <ExpandModal
-          visible={expand}
-          onCancel={this.hideModal('expand')}
-          onOk={this.handleEdit('expand')}
-          isExpanding={isSubmitting}
-          shouldAlertVisible={detail.inUse}
-          detail={originData}
-          max={storageClassSizeConfig.max}
-          min={storageClassSizeConfig.min}
-          step={storageClassSizeConfig.step}
-        />
-      </div>
+      <DetailPage
+        stores={stores}
+        {...sideProps}
+        routes={getRoutes(this.props.match.path)}
+      />
     )
   }
 }
-
-export default inject('rootStore')(observer(VolumeDetail))
-export const Component = VolumeDetail

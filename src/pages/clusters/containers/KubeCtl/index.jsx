@@ -20,6 +20,10 @@ import React, { Component } from 'react'
 import KubeModal from 'components/Modals/KubeCtl'
 
 class KubeCtlWindow extends Component {
+  get cluster() {
+    return this.props.match.params.cluster
+  }
+
   pageClose() {
     window.opener = null
     window.open('', '_self', '')
@@ -27,7 +31,13 @@ class KubeCtlWindow extends Component {
   }
 
   render() {
-    return <KubeModal onCancel={this.pageClose} title="kubectl" />
+    return (
+      <KubeModal
+        onCancel={this.pageClose}
+        title="kubectl"
+        cluster={this.cluster}
+      />
+    )
   }
 }
 

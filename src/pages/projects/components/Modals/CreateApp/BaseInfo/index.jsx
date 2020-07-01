@@ -21,6 +21,7 @@ import React from 'react'
 import { PropTypes } from 'prop-types'
 import { Input, Select, TextArea } from '@pitrix/lego-ui'
 import { PATTERN_NAME, PATTERN_LENGTH_63 } from 'utils/constants'
+import { updateFederatedAnnotations } from 'utils'
 import { Form } from 'components/Base'
 
 import styles from './index.scss'
@@ -32,6 +33,16 @@ export default class BaseInfo extends React.Component {
 
   static defaultProps = {
     onLabelsChange() {},
+  }
+
+  get formTemplate() {
+    return this.props.formData.application
+  }
+
+  get fedFormTemplate() {
+    return this.props.isFederated
+      ? get(this.formTemplate, 'spec.template')
+      : this.formTemplate
   }
 
   get governances() {
@@ -47,7 +58,11 @@ export default class BaseInfo extends React.Component {
     }
 
     this.props.store
-      .checkName({ name: value, namespace: this.props.namespace })
+      .checkName({
+        name: value,
+        namespace: this.props.namespace,
+        cluster: this.props.cluster,
+      })
       .then(resp => {
         if (resp.exist) {
           return callback({ message: t('Name exists'), field: rule.field })
@@ -57,32 +72,42 @@ export default class BaseInfo extends React.Component {
   }
 
   handleNameChange = debounce(value => {
-    set(this.props.formData, 'metadata.labels["app.kubernetes.io/name"]', value)
+    set(this.formTemplate, 'metadata.labels["app.kubernetes.io/name"]', value)
     set(
-      this.props.formData,
+      this.fedFormTemplate,
+      'metadata.labels["app.kubernetes.io/name"]',
+      value
+    )
+    set(
+      this.fedFormTemplate,
       'spec.selector.matchLabels["app.kubernetes.io/name"]',
       value
     )
-
     this.props.onLabelsChange(
-      get(this.props.formData, 'spec.selector.matchLabels')
+      get(this.fedFormTemplate, 'spec.selector.matchLabels')
     )
+
+    if (this.props.isFederated) {
+      updateFederatedAnnotations(this.formTemplate)
+    }
   }, 200)
 
   handleVersionChange = debounce(value => {
     set(
-      this.props.formData,
+      this.fedFormTemplate,
       'spec.selector.matchLabels["app.kubernetes.io/version"]',
       value
     )
-
     this.props.onLabelsChange(
-      get(this.props.formData, 'spec.selector.matchLabels')
+      get(this.fedFormTemplate, 'spec.selector.matchLabels')
     )
   }, 200)
 
   handleGovernanceChange = value => {
     this.props.onGovernanceChange(value)
+    if (this.props.isFederated) {
+      updateFederatedAnnotations(this.formTemplate)
+    }
   }
 
   render() {
@@ -90,8 +115,11 @@ export default class BaseInfo extends React.Component {
 
     return (
       <div className={styles.wrapper}>
-        <div className="h5">{t('Basic Info')}</div>
-        <Form data={this.props.formData} ref={formRef}>
+        <div className={styles.step}>
+          <div>{t('Basic Info')}</div>
+          <p>{t('APPLICATION_BASEINFO_DESC')}</p>
+        </div>
+        <Form data={this.formTemplate} ref={formRef}>
           <Form.Item
             label={t('Application Name')}
             desc={t('NAME_DESC')}

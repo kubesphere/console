@@ -39,31 +39,34 @@ export default class HealthChecker extends React.Component {
       <Form.Group
         label={t('Health Checker')}
         desc={t(
-          'Check the health of the container regularly according to the needs of the user.'
+          'The health of the container will be checked regularly according to user needs.'
         )}
         checkable
       >
         <Form.Item
           className={styles.item}
-          label={t('Container liveness check')}
+          label={t('Container Liveness Check')}
         >
           <ProbeInput
             name={`${this.prefix}livenessProbe`}
-            type={t('Container liveness check')}
+            type={t('Container Liveness Check')}
             description={t('LIVENESS_PROBE_DESC')}
           />
         </Form.Item>
-        <Form.Item className={styles.item} label={t('Container ready check')}>
+        <Form.Item
+          className={styles.item}
+          label={t('Container Readiness Check')}
+        >
           <ProbeInput
             name={`${this.prefix}readinessProbe`}
-            type={t('Container ready check')}
+            type={t('Container Readiness Check')}
             description={t('READINESS_PROBE_DESC')}
           />
         </Form.Item>
-        <Form.Item className={styles.item} label={t('Container start check')}>
+        <Form.Item className={styles.item} label={t('Container Startup Check')}>
           <ProbeInput
             name={`${this.prefix}startupProbe`}
-            type={t('Container start check')}
+            type={t('Container Startup Check')}
             description={t('STARTUP_PROBE_DESC')}
           />
         </Form.Item>

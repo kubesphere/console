@@ -91,6 +91,10 @@ export default class Password extends React.Component {
     this.setState({ showTip: strength > -1 })
   }
 
+  handleInputBlur = () => {
+    this.setState({ showTip: false })
+  }
+
   getColor = () => {
     const { strength } = this.state
 
@@ -143,7 +147,7 @@ export default class Password extends React.Component {
               size={12}
               type="light"
             />
-            {t('Password length is at least 6')}
+            {t('Password length is at least 6 characters')}
           </li>
         </ul>
         <p>{t('Password Strength')}:</p>
@@ -152,7 +156,7 @@ export default class Password extends React.Component {
         </div>
         <p className={styles.tip}>
           {t(
-            'Avoid using the password that it has already been used on other websites, or a less secure password.'
+            'Avoid using the password that has already been used on other websites or the one that can be easily guessed.'
           )}
         </p>
       </div>
@@ -170,7 +174,7 @@ export default class Password extends React.Component {
             className={tipClassName}
             visible={showTip && strength > -1}
             content={this.renderStrengthContent()}
-            placement="bottomLeft"
+            placement="bottomRight"
             closeAfterClick={false}
             onClose={this.handleDropdownClose}
           >
@@ -179,6 +183,7 @@ export default class Password extends React.Component {
           <InputPassword
             {...rest}
             onChange={this.handleChange}
+            onBlur={this.handleInputBlur}
             onClick={this.handleInputClick}
           />
         </div>

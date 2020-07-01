@@ -19,58 +19,42 @@
 export default {
   VERSION_DELETE_TIP:
     'Are you sure to delete the version <strong>{name} </strong >?',
-
   VERSION_SUBMIT_TIP:
     'Are you sure to submit the version <strong>{name}</strong> for audit?',
-
   VERSION_CANCEL_TIP:
     'Are you sure to cancel the review of version <strong>{name}</strong>?',
-
   VERSION_RELEASE_TIP:
-    'Users can view and deploy the version <strong> {name} </strong> in the store when it is released. Are you sure to release it now? ',
-
+    'Users can view and deploy the version <strong> {name} </strong> in the store when it is released. Are you sure to release it now?',
   VERSION_SUSPEND_TIP:
-    'The version <strong>{name}</strong > will not be displayed in the store when it is suspended. Are you sure to suspend it now? ',
-
+    'The version <strong>{name}</strong > will not be displayed in the store when it is suspended. Are you sure to suspend it now?',
   VERSION_RECOVER_TIP:
     'The version <strong>{name}</strong> will be displayed again in the store. Are you sure to activate it now?',
 
   APP_SUSPEND_TIP:
-    "The app <strong>{name}</strong> can't be purchased from the store when it is suspended. Are you sure to suspend it now? ",
-
+    "The app <strong>{name}</strong> can't be purchased from the store when it is suspended. Are you sure to suspend it now?",
   APP_RECOVER_TIP:
-    'The app <strong>{name}</strong> and the suspended versions will be displayed again in the store.  Are you sure to activate it now?',
+    'The app <strong>{name}</strong> and the suspended versions will be displayed again in the store. Are you sure to activate it now?',
 
   PACKAGE_FILE_DESC:
-    'Package.json file, which describes the basic information of an application or version, including name, version number, etc',
-
+    'Package.json file, which describes the basic information of an application or version, such as the name and version number.',
   CONFIG_FILE_DESC: 'Application Default Profile',
-
   LICENSE_FILE_DESC: 'Protocol in Text Format',
-
   LOCALE_EN__FILE_DESC:
-    'International Cultural English Translation of Application Configuration',
-
+    'English Translation for the Application Configuration',
   LOCALE_ZH_FILE_DESC:
-    'Application Configuration for International Chinese Translation',
+    'Chinese Translation for the Application Configuration',
 
   CHART_FILE_DESC:
     'Yaml file, used to describe the basic information of' +
-    ' Chart, including name version, etc',
-
-  README_FILE_DESC: 'Introduction to Applications, Instructions for Use',
-
+    ' Chart, such as the name and version.',
+  README_FILE_DESC: 'App Introductions and Instructions',
   REQUIREMENTS_FILE_DESC:
     'Description files for storing other Charts currently dependent on Chart',
-
   VALUES_FILE_DESC: "Chart's default configuration file",
-
   CHARTS_FILE_DESC:
     'Place other Charts that Chart currently depends on in this directory',
-
   TEMPLATES_FILE_DESC:
     'Deploy file template directory, fill in the corresponding value in values.yaml, and generate the final kubernetes configuration file',
-
   NOTES_FILE_DESC: 'Guide to Use',
 
   VERSION_SUBMIT_TEST_STEPS:
@@ -85,14 +69,11 @@ export default {
 
   VERSION_SUBMIT_NOTE:
     'Before submitting for review, make sure that your application has passed the following basic functions',
-
   VERSION_SUBMIT_DOC: 'Refer to a more comprehensive test manual',
-
   VERSION_NUMBER_DESC:
-    'The important identification of the version, it can only contain numbers, decimal points and brackets ("[]"), and must start with a number and contain decimal points',
-
+    'The important identification of the version. It can only contain numbers, decimal points and brackets ("[]"), and must start with a number and contain decimal points.',
   VERSION_NUMBER_ERROR_NOTE:
-    'Version Number format is error, it can only contain numbers, decimal points and brackets ("[]"), and must start with a number and contain decimal points',
+    'Incorrect version number format. It can only contain numbers, decimal points and brackets ("[]"), and must start with a number and contain decimal points.',
 
-  UPDATE_LOG_DESC: 'Used to describe the details of this update',
+  UPDATE_LOG_DESC: 'Used to describe the details of this update.',
 }

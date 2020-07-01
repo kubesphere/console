@@ -17,6 +17,7 @@
  */
 
 import React from 'react'
+import { toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import { get } from 'lodash'
 import { RadioButton, RadioGroup } from '@pitrix/lego-ui'
@@ -71,7 +72,7 @@ export default class WorkloadSelect extends React.Component {
 
   render() {
     const { type, selectItem } = this.state
-    const { data, total, page, isLoading } = this.store.list
+    const { data, total, page, isLoading } = toJS(this.store.list)
 
     return (
       <div>

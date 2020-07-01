@@ -16,12 +16,11 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, isEmpty } from 'lodash'
+import { get } from 'lodash'
 import { action, observable } from 'mobx'
 import ObjectMapper from 'utils/object.mapper'
 
-import { getFilterString } from 'utils'
-import { LIST_DEFAULT_ORDER } from 'utils/constants'
+import { LIST_DEFAULT_ORDER, API_VERSIONS } from 'utils/constants'
 
 import List from './base.list'
 
@@ -42,32 +41,41 @@ export default class BaseStore {
   }
 
   get apiVersion() {
-    return 'apis/apps/v1'
+    return API_VERSIONS[this.module] || ''
   }
 
   get mapper() {
     return ObjectMapper[this.module] || (data => data)
   }
 
-  getListUrl = ({ namespace }) =>
-    `${this.apiVersion}/namespaces/${namespace}/${this.module}`
+  getPath({ cluster, namespace } = {}) {
+    let path = ''
+    if (cluster) {
+      path += `/klusters/${cluster}`
+    }
+    if (namespace) {
+      path += `/namespaces/${namespace}`
+    }
+    return path
+  }
 
-  getDetailUrl = ({ name, namespace }) =>
-    `${this.getListUrl({ namespace })}/${name}`
+  getListUrl = (params = {}) =>
+    `${this.apiVersion}${this.getPath(params)}/${this.module}${
+      params.dryRun ? '?dryRun=All' : ''
+    }`
 
-  getWatchListUrl = ({ namespace }) =>
-    `${this.apiVersion}/watch/namespaces/${namespace}/${this.module}`
+  getDetailUrl = (params = {}) => `${this.getListUrl(params)}/${params.name}`
 
-  getWatchUrl = ({ name, namespace }) =>
-    `${this.getWatchListUrl({ namespace })}/${name}`
+  getWatchListUrl = (params = {}) =>
+    `${this.apiVersion}/watch${this.getPath(params)}/${this.module}`
 
-  getResourceUrl = ({ namespace }) => {
-    const namespacePath = namespace ? `/namespaces/${namespace}` : ''
+  getWatchUrl = (params = {}) =>
+    `${this.getWatchListUrl(params)}/${params.name}`
 
-    return `kapis/resources.kubesphere.io/v1alpha2${namespacePath}/${
+  getResourceUrl = (params = {}) =>
+    `kapis/resources.kubesphere.io/v1alpha3${this.getPath(params)}/${
       this.module
     }`
-  }
 
   @action
   setModule(module) {
@@ -91,60 +99,41 @@ export default class BaseStore {
 
   @action
   async fetchList({
-    limit,
-    page,
-    order,
-    reverse,
+    cluster,
     workspace,
     namespace,
     more,
-    resources = [],
-    conditions,
-    ...filters
+    devops,
+    ...params
   } = {}) {
     this.list.isLoading = true
 
-    const params = {}
-
-    if (!order && reverse === undefined) {
-      order = LIST_DEFAULT_ORDER[this.module] || 'createTime'
-      reverse = true
+    if (!params.sortBy && params.ascending === undefined) {
+      params.sortBy = LIST_DEFAULT_ORDER[this.module] || 'createTime'
     }
 
-    if (limit === Infinity || limit === -1) {
-      limit = -1
-      page = 1
+    if (params.limit === Infinity || params.limit === -1) {
+      params.limit = -1
+      params.page = 1
     }
 
-    if (!isEmpty(resources)) {
-      filters.name = resources.join('|')
-    }
+    params.limit = params.limit || 10
 
-    if (!isEmpty(filters) || conditions) {
-      params.conditions = conditions || getFilterString(filters)
-    }
-
-    params.paging = `limit=${limit || 10},page=${page || 1}`
-
-    if (order) {
-      params.orderBy = order
-    }
-
-    if (reverse) {
-      params.reverse = true
-    }
-
-    const result = await request.get(this.getResourceUrl({ namespace }), params)
-    const data = get(result, 'items', []).map(this.mapper)
+    const result = await request.get(
+      this.getResourceUrl({ cluster, workspace, namespace, devops }),
+      params
+    )
+    const data = get(result, 'items', []).map(item => ({
+      cluster,
+      ...this.mapper(item),
+    }))
 
     this.list.update({
       data: more ? [...this.list.data, ...data] : data,
-      total: result.total_count || 0,
-      limit: Number(limit) || 10,
-      page: Number(page) || 1,
-      order,
-      reverse,
-      filters,
+      total: result.totalItems || result.total_count || data.length || 0,
+      ...params,
+      limit: Number(params.limit) || 10,
+      page: Number(params.page) || 1,
       isLoading: false,
       ...(this.list.silent ? {} : { selectedRowKeys: [] }),
     })
@@ -153,22 +142,24 @@ export default class BaseStore {
   }
 
   @action
-  async fetchListByK8s({ namespace, labelSelector, ...rest }) {
+  async fetchListByK8s({ cluster, namespace, module, ...rest } = {}) {
     this.list.isLoading = true
 
-    if (!namespace) {
-      this.list.isLoading = false
-      return
+    if (module) {
+      this.module = module
     }
 
     const params = rest
 
-    if (!isEmpty(labelSelector)) {
-      params.labelSelector = labelSelector
-    }
-
-    const result = await request.get(this.getListUrl({ namespace }), params)
-    const data = result.items.map(this.mapper)
+    const result = await request.get(
+      this.getListUrl({ cluster, namespace, module }),
+      params
+    )
+    const data = result.items.map(item => ({
+      cluster,
+      module: module || this.module,
+      ...this.mapper(item),
+    }))
 
     this.list.update({
       data,
@@ -180,11 +171,11 @@ export default class BaseStore {
   }
 
   @action
-  async fetchDetail({ name, namespace }) {
+  async fetchDetail(params) {
     this.isLoading = true
 
-    const result = await request.get(this.getDetailUrl({ name, namespace }))
-    const detail = this.mapper(result)
+    const result = await request.get(this.getDetailUrl(params))
+    const detail = { ...params, ...this.mapper(result) }
 
     this.detail = detail
     this.isLoading = false
@@ -197,35 +188,23 @@ export default class BaseStore {
   }
 
   @action
-  create(data) {
-    const namespace = get(data, 'metadata.namespace')
-
-    if (!namespace) {
-      return
-    }
-
-    return this.submitting(request.post(this.getListUrl({ namespace }), data))
+  create(data, params = {}) {
+    return this.submitting(request.post(this.getListUrl(params), data))
   }
 
   @action
-  update({ name, namespace }, newObject) {
-    return this.submitting(
-      request.put(this.getDetailUrl({ name, namespace }), newObject)
-    )
+  update(params, newObject) {
+    return this.submitting(request.put(this.getDetailUrl(params), newObject))
   }
 
   @action
-  patch({ name, namespace }, newObject) {
-    return this.submitting(
-      request.patch(this.getDetailUrl({ name, namespace }), newObject)
-    )
+  patch(params, newObject) {
+    return this.submitting(request.patch(this.getDetailUrl(params), newObject))
   }
 
   @action
-  delete({ name, namespace }) {
-    return this.submitting(
-      request.delete(this.getDetailUrl({ name, namespace }))
-    )
+  delete(params) {
+    return this.submitting(request.delete(this.getDetailUrl(params)))
   }
 
   @action
@@ -241,9 +220,9 @@ export default class BaseStore {
   }
 
   @action
-  checkName({ name, namespace }) {
+  checkName(params) {
     return request.get(
-      this.getDetailUrl({ name, namespace }),
+      this.getDetailUrl(params),
       {},
       {
         headers: { 'x-check-exist': true },
@@ -252,9 +231,9 @@ export default class BaseStore {
   }
 
   @action
-  checkLabels({ labels, namespace }) {
+  checkLabels({ labels, ...params }) {
     return request.get(
-      this.getDetailUrl({ name, namespace }),
+      this.getListUrl(params),
       {
         labelSelector: Object.keys(labels)
           .map(key => `${key}=${labels[key]}`)

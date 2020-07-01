@@ -69,7 +69,7 @@ export default class ContainerItem extends React.Component {
       probeDetail = `Open socket on port ${probe.tcpSocket.port} (TCP)`
     } else {
       const { command = [] } = probe.exec
-      probeType = 'Exec Commnad Check'
+      probeType = 'Exec Command Check'
       probeDetail = command.join(' ')
     }
 

@@ -76,9 +76,21 @@ export default class SelectorsInput extends React.Component {
     const labelSelector = joinSelector(value)
 
     Promise.all([
-      this.store.fetchByK8s({ namespace, labelSelector }, 'deployments'),
-      this.store.fetchByK8s({ namespace, labelSelector }, 'daemonsets'),
-      this.store.fetchByK8s({ namespace, labelSelector }, 'statefulsets'),
+      this.store.fetchListByK8s({
+        namespace,
+        labelSelector,
+        module: 'deployments',
+      }),
+      this.store.fetchListByK8s({
+        namespace,
+        labelSelector,
+        module: 'daemonsets',
+      }),
+      this.store.fetchListByK8s({
+        namespace,
+        labelSelector,
+        module: 'statefulsets',
+      }),
     ]).then(([relatedDeployments, relatedDaemonSets, relatedStatefulSets]) => {
       this.setState({
         relatedDeployments,
@@ -111,10 +123,10 @@ export default class SelectorsInput extends React.Component {
       return null
     }
 
-    let tips = t('The currently selectors')
+    let tips = t('The current selector')
 
     if (count === 0) {
-      tips += t(' has no corresponding workload')
+      tips += t(' has no corresponding workload.')
       return <Alert className={styles.alert} message={tips} type="warning" />
     }
 

@@ -18,6 +18,7 @@
 
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
+import { Icon } from '@pitrix/lego-ui'
 
 import { renderRoutes } from 'utils/router.config'
 import { Nav } from 'components/Layout'
@@ -33,9 +34,14 @@ export default class AppsLayout extends Component {
     return (
       <div className="ks-page-body">
         <div className="ks-page-side">
-          <div className={styles.navTitle}>
-            <img src="/assets/op-logo.svg" alt="" className={styles.logo} />
-            <label className={styles.word}>{t('Apps Management')}</label>
+          <div className={styles.titleWrapper}>
+            <div className={styles.icon}>
+              <Icon name="openpitrix" size={40} type="light" />
+            </div>
+            <div className={styles.text}>
+              <div className="h6">{t('App Store Management')}</div>
+              <p>{t('Platform App Store Management')}</p>
+            </div>
           </div>
           <Nav
             className="ks-page-nav"

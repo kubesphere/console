@@ -18,7 +18,7 @@
 
 import React from 'react'
 import { toJS } from 'mobx'
-import { observer } from 'mobx-react'
+import { observer, inject } from 'mobx-react'
 import { has } from 'lodash'
 
 import { joinSelector } from 'utils'
@@ -38,19 +38,27 @@ class Events extends React.Component {
     this.fetchData()
   }
 
+  get store() {
+    return this.props.detailStore
+  }
+
+  get cluster() {
+    return this.props.match.params.cluster
+  }
+
+  get module() {
+    return this.store.module
+  }
+
   get kind() {
     if (has(this.props.match.params, 'revision')) {
-      if (this.props.module === 'deployments') {
+      if (this.module === 'deployments') {
         return 'ReplicaSet'
       }
       return 'ControllerRevision'
     }
 
-    return MODULE_KIND_MAP[this.props.module]
-  }
-
-  get store() {
-    return this.props.detailStore
+    return MODULE_KIND_MAP[this.module]
   }
 
   fetchData() {
@@ -65,6 +73,7 @@ class Events extends React.Component {
 
     this.eventStore.fetchList({
       namespace,
+      cluster: this.cluster,
       fieldSelector: joinSelector(fields),
     })
   }
@@ -76,5 +85,5 @@ class Events extends React.Component {
   }
 }
 
-export default observer(Events)
+export default inject('detailStore')(observer(Events))
 export const Component = Events

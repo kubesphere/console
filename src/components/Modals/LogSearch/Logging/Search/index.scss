@@ -4,22 +4,24 @@ $toolbarHeight: 48px;
 $logCountColor: #329dce;
 
 .searchBar {
-  border: solid 2px #d8dee5;
+  display: flex;
+  position: relative;
   margin-left: 12px;
   margin-right: 12px;
   margin-bottom: -23px;
   background: #fff;
-  display: flex;
-  position: relative;
   border-radius: 4px;
+  border: solid 2px #d8dee5;
   @at-root {
     .searchInput {
       position: relative;
       flex: 1;
       border: none;
       border-right: solid 2px #d8dee5;
+      border-left: solid 2px #d8dee5;
       border-radius: 0;
     }
+    .clusterSelect,
     .queryModeSelect {
       width: 120px;
       line-height: 40px;

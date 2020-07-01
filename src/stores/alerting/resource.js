@@ -55,6 +55,7 @@ export default class ResourceStore extends Base {
 
   @action
   async fetchNodes({
+    cluster,
     sort_type,
     sort_metric,
     resources = [],
@@ -82,7 +83,9 @@ export default class ResourceStore extends Base {
     }
 
     const result = await request.get(
-      'kapis/monitoring.kubesphere.io/v1alpha2/nodes',
+      `kapis${this.getPath({
+        cluster,
+      })}/monitoring.kubesphere.io/v1alpha3/nodes`,
       params
     )
     const data = (get(result, 'results') || []).reduce(
@@ -122,11 +125,11 @@ export default class ResourceStore extends Base {
   }
 
   @action
-  async fetchComponents() {
+  async fetchComponents(params) {
     this.components.isLoading = true
 
     const result = await request.get(
-      'kapis/resources.kubesphere.io/v1alpha2/components'
+      `kapis${this.getPath(params)}/resources.kubesphere.io/v1alpha2/components`
     )
     const data = Object.entries(result || {}).map(([key, value]) => {
       const item = {
@@ -200,6 +203,7 @@ export default class ResourceStore extends Base {
 
   @action
   async fetchWorkloads({
+    cluster,
     workspace,
     namespace,
     order,
@@ -236,7 +240,10 @@ export default class ResourceStore extends Base {
     }
 
     const result = await request.get(
-      `kapis/resources.kubesphere.io/v1alpha2/namespaces/${namespace}/${type}`,
+      `kapis/resources.kubesphere.io/v1alpha2${this.getPath({
+        cluster,
+        namespace,
+      })}/${type}`,
       params
     )
     const data = result.items.map(item =>
@@ -259,7 +266,12 @@ export default class ResourceStore extends Base {
   }
 
   @action
-  async fetchResources({ namespace, resourceType, resourceFilter = {} }) {
+  async fetchResources({
+    cluster,
+    namespace,
+    resourceType,
+    resourceFilter = {},
+  }) {
     this.resources.isLoading = true
 
     const kind = get(resourceFilter, 'workload_kind')
@@ -272,12 +284,12 @@ export default class ResourceStore extends Base {
     switch (resourceType) {
       case 'node': {
         store = new NodeStore()
-        params.resources = get(resourceFilter, 'node_id', '').split('|')
+        params.names = get(resourceFilter, 'node_id', '').split('|')
         break
       }
       case 'workload': {
         store = new WorkloadStore(`${kind}s`)
-        params.resources = get(resourceFilter, 'workload_name', '').split('|')
+        params.names = get(resourceFilter, 'workload_name', '').split('|')
         break
       }
       default:
@@ -289,17 +301,18 @@ export default class ResourceStore extends Base {
         selector: resourceFilter.selector,
         workload_kind: kind,
       }
-      const api = this.getResourceUrl({ namespace }, resourceType)
+      const api = this.getResourceUrl({ cluster, namespace }, resourceType)
       const result = await request.get(api, _params)
 
-      params.resources = result || []
+      params.names = result || []
     }
 
     let data = []
-    if (!isEmpty(params.resources)) {
+    if (!isEmpty(params.names)) {
       data = await store.fetchList({
         ...params,
-        conditions: getFilterString({ name: params.resources.join('|') }, []),
+        cluster,
+        names: params.names.join(','),
       })
     }
 

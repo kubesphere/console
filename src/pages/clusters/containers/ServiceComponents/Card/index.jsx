@@ -25,7 +25,7 @@ import { getComponentStatus } from 'utils/status'
 
 import styles from './index.scss'
 
-const Card = ({ component = {} }) => {
+const Card = ({ cluster, component = {} }) => {
   const { name, namespace } = component
   const status = getComponentStatus(component)
   const descKey = `${String(name).toUpperCase()}_DESC`
@@ -39,7 +39,9 @@ const Card = ({ component = {} }) => {
         </Column>
         <Column className="is-4">
           <div className="h6">
-            <Link to={`/components/${namespace}/${name}`}>{name}</Link>
+            <Link to={`/clusters/${cluster}/components/${namespace}/${name}`}>
+              {name}
+            </Link>
             {descText !== descKey ? <p>{descText}</p> : null}
           </div>
         </Column>

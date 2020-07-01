@@ -15,8 +15,10 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
+import { set, cloneDeep } from 'lodash'
 
 const deleteUnenableAttrs = data => {
+  /* eslint-disable no-unused-vars */
   for (const key in data) {
     if (key.startsWith('enable_') && data[key] === false) {
       delete data[key.slice(7)]
@@ -29,26 +31,79 @@ const deleteUnenableAttrs = data => {
   }
 }
 
-export const updatePipelineParams = data => {
+export const updatePipelineParams = (data, isEditor = false) => {
   const { multi_branch_pipeline, pipeline, type, ...rest } = data
+
+  if (!rest.description && rest.desc) {
+    rest.description = rest.desc
+    delete rest.desc
+  }
+
+  const param = cloneDeep(rest)
+
+  if (param.metadata) {
+    delete param.metadata
+  }
+
   if (multi_branch_pipeline) {
-    rest && Object.assign(data.multi_branch_pipeline, rest)
+    !isEditor
+      ? rest
+        ? Object.assign(data.multi_branch_pipeline, rest)
+        : null
+      : Object.assign(data.multi_branch_pipeline, param)
+
     data.type = 'multi-branch-pipeline'
     deleteUnenableAttrs(data.multi_branch_pipeline)
-  } else {
-    if (data.pipeline) {
-      Object.assign(data.pipeline, rest)
-    } else {
-      data.pipeline = rest
-    }
+  }
+
+  if (data.pipeline) {
+    !isEditor
+      ? Object.assign(data.pipeline, rest)
+      : Object.assign(data.pipeline, param)
+
     data.type = 'pipeline'
     deleteUnenableAttrs(data.pipeline)
   }
-  for (const key in rest) {
-    if (key !== 'project_id') {
-      delete data[key]
+
+  if (!isEditor) {
+    for (const key in rest) {
+      if (key !== 'project_name') {
+        delete data[key]
+      }
     }
   }
+}
+
+export const updatePipelineParamsInSpec = (data, project_id) => {
+  if (data.multi_branch_pipeline) {
+    data = set(data, 'metadata.name', data.multi_branch_pipeline.name)
+    delete data.multi_branch_pipeline.metadata
+
+    data.spec = {
+      multi_branch_pipeline: { ...data.multi_branch_pipeline },
+      type: data.type,
+    }
+
+    delete data.multi_branch_pipeline
+  }
+
+  if (data.pipeline) {
+    data = set(data, 'metadata.name', data.pipeline.name)
+    delete data.pipeline.metadata
+
+    data.spec = {
+      pipeline: { ...data.pipeline },
+      type: data.type,
+    }
+
+    delete data.pipeline
+  }
+
+  delete data.type
+  delete data.desc
+  delete data.description
+
+  data = set(data, 'metadata.namespace', project_id)
 }
 
 export const groovyToJS = str => {

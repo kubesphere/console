@@ -52,26 +52,31 @@ class GrayRelease extends React.Component {
   }
 
   get canDeployComposingApp() {
-    const { namespace: project } = this.props.match.params
-
+    const { workspace, cluster, namespace: project } = this.props.match.params
     const canCreateDeployment = globals.app
       .getActions({
-        module: 'deployments',
+        workspace,
+        cluster,
         project,
+        module: 'deployments',
       })
       .includes('create')
 
     const canCreateService = globals.app
       .getActions({
-        module: 'services',
+        workspace,
+        cluster,
         project,
+        module: 'services',
       })
       .includes('create')
 
     const canCreateApp = globals.app
       .getActions({
-        module: 'applications',
+        workspace,
+        cluster,
         project,
+        module: 'applications',
       })
       .includes('edit')
 
@@ -83,11 +88,11 @@ class GrayRelease extends React.Component {
   }
 
   handleDeployApp = data => {
-    const { namespace } = this.props.match.params
+    const { workspace, cluster, namespace } = this.props.match.params
     this.store.create(data).then(() => {
       this.hideDeployAppModal()
       this.routing.push(
-        `/projects/${namespace}/applications/composing/${get(
+        `/${workspace}/clusters/${cluster}/projects/${namespace}/applications/composing/${get(
           data,
           'application.metadata.name'
         )}`
@@ -105,7 +110,7 @@ class GrayRelease extends React.Component {
   render() {
     const { route } = this.props
     const { showDeployApp, sampleApp } = this.state
-    const { namespace } = this.props.match.params
+    const { cluster, namespace } = this.props.match.params
 
     return (
       <div>
@@ -122,6 +127,7 @@ class GrayRelease extends React.Component {
           store={this.store}
           visible={showDeployApp}
           namespace={namespace}
+          cluster={cluster}
           sampleApp={sampleApp}
           onOk={this.handleDeployApp}
           onCancel={this.hideDeployAppModal}

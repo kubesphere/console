@@ -16,90 +16,145 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { isEmpty, isArray } from 'lodash'
 import React from 'react'
 import { toJS } from 'mobx'
-import { observer, inject } from 'mobx-react'
 import { Avatar, Status } from 'components/Base'
-import EmptyTable from 'components/Cards/EmptyTable'
-import DeleteModal from 'components/Modals/Delete'
-import ModifyMemberModal from 'components/Modals/ModifyMember'
-import InviteMemberModal from 'components/Modals/InviteMember'
 import Banner from 'components/Cards/Banner'
+import withList, { ListPage } from 'components/HOCs/withList'
+import Table from 'components/Tables/List'
 
-import Base from 'core/containers/Base/List'
+import { getLocalTime } from 'utils'
 
-@inject('rootStore')
-@observer
-class Members extends Base {
-  init() {
-    this.store = this.props.rootStore.devops
-    this.store.fetchRoles(this.props.match.params)
+import UserStore from 'stores/user'
+import RoleStore from 'stores/role'
+
+@withList({
+  store: new UserStore(),
+  module: 'users',
+  name: 'DevOps Member',
+  rowKey: 'username',
+  injectStores: ['rootStore', 'devopsStore'],
+})
+export default class Members extends React.Component {
+  roleStore = new RoleStore()
+
+  get canViewRoles() {
+    return globals.app.hasPermission({
+      ...this.props.match.params,
+      devops: this.devops,
+      module: 'roles',
+      action: 'view',
+    })
   }
 
-  get module() {
-    return 'users'
+  componentDidMount() {
+    this.canViewRoles &&
+      this.roleStore.fetchList({
+        devops: this.devops,
+        cluster: this.cluster,
+        limit: -1,
+      })
   }
 
-  get authKey() {
-    return 'members'
+  getData = () => {
+    this.props.store.fetchList({
+      devops: this.devops,
+      cluster: this.cluster,
+    })
   }
 
-  get name() {
-    return 'Member'
+  get cluster() {
+    return this.props.match.params.cluster
+  }
+
+  get devops() {
+    return this.props.devopsStore.devops
   }
 
   get workspace() {
-    return this.store.data.workspace
+    return this.props.match.params.workspace
   }
 
-  get rowKey() {
-    return 'username'
+  get tips() {
+    return [
+      {
+        title: t('HOW_TO_INVITE_MEMBER_Q'),
+        description: t('HOW_TO_INVITE_MEMBER_A'),
+      },
+    ]
   }
 
-  get list() {
-    return this.store.members
+  get enabledActions() {
+    return globals.app.getActions({
+      module: 'members',
+      devops: this.devops,
+      cluster: this.cluster,
+    })
+  }
+
+  showAction(record) {
+    return globals.user.username !== record.name
   }
 
   get itemActions() {
+    const { trigger } = this.props
     return [
       {
         key: 'modify',
         icon: 'pen',
         text: t('Modify Member Role'),
         action: 'edit',
-        onClick: this.showModal('modifyModal'),
+        show: this.showAction,
+        onClick: item =>
+          trigger('member.edit', {
+            detail: item,
+            ...this.props.match.params,
+            devops: this.devops,
+            roles: toJS(this.roleStore.list.data),
+            role: item.role,
+            success: this.getData,
+          }),
       },
       {
         key: 'delete',
         icon: 'trash',
         text: t('Remove Member'),
         action: 'delete',
-        onClick: this.showModal('deleteModal'),
+        show: this.showAction,
+        onClick: item =>
+          trigger('member.remove', {
+            detail: item,
+            devops: this.devops,
+            success: this.getData,
+            ...this.props.match.params,
+          }),
       },
     ]
   }
 
-  getData(params) {
-    this.store.fetchMembers({ ...this.props.match.params, ...params })
-  }
+  get tableActions() {
+    const { trigger, tableProps } = this.props
 
-  handlePaging = params => this.list.paging(params)
-
-  getTableProps() {
     return {
-      hideSearch: true,
-      onFetch: this.handleFetch,
-      onPaging: this.handlePaging,
-      onSelectRowKeys: this.handleSelectRowKeys,
-      onDelete: this.showModal('batchDeleteModal'),
+      ...tableProps.tableActions,
       actions: [
         {
           key: 'invite',
           type: 'control',
           text: t('Invite Member'),
           action: 'create',
-          onClick: this.showModal('inviteModal'),
+          onClick: () =>
+            trigger('member.invite', {
+              devops: this.devops,
+              workspace: this.workspace,
+              cluster: this.cluster,
+              roles: toJS(this.roleStore.list.data),
+              roleModule: this.roleStore.module,
+              title: t('Invite Members to the Project'),
+              desc: t('INVITE_MEMBER_DESC'),
+              searchPlaceholder: t('INVITE_MEMBER_SEARCH_PLACEHODLER'),
+              success: this.getData,
+            }),
         },
       ],
       selectActions: [
@@ -108,13 +163,21 @@ class Members extends Base {
           type: 'danger',
           text: t('Remove Members'),
           action: 'delete',
-          onClick: this.showModal('batchDeleteModal'),
+          onClick: () =>
+            trigger('member.remove.batch', {
+              success: this.getData,
+              devops: this.devops,
+              ...this.props.match.params,
+            }),
         },
       ],
       getCheckboxProps: record => ({
-        disabled: record.username === globals.user.username,
-        name: record.username,
+        disabled: !this.showAction(record),
+        name: record.name,
       }),
+      emptyProps: {
+        desc: t('INVITE_MEMBER_DESC_DEVOPS'),
+      },
     }
   }
 
@@ -122,13 +185,13 @@ class Members extends Base {
     {
       title: t('Member Name'),
       dataIndex: 'username',
+      sorter: true,
       search: true,
-      width: '40%',
       render: (name, record) => (
         <Avatar
           avatar={record.avatar_url || '/assets/default-user.svg'}
           title={name}
-          desc={record.email}
+          desc={record.email || '-'}
           noLink
         />
       ),
@@ -137,174 +200,53 @@ class Members extends Base {
       title: t('Status'),
       dataIndex: 'status',
       isHideable: true,
-      width: '30%',
-      render: status => <Status type={status} name={t(status)} />,
+      width: '19%',
+      render: status => (
+        <Status
+          type={status}
+          name={status ? t(`USER_${status.toUpperCase()}`) : ''}
+        />
+      ),
     },
     {
       title: t('Role'),
       dataIndex: 'role',
       isHideable: true,
-      width: '30%',
+      width: '19%',
     },
     {
-      key: 'more',
-      render: (field, record) => {
-        if (record.username === globals.user.username) {
-          return null
-        }
-        return this.renderMore(field, record)
-      },
+      title: t('Last Login Time'),
+      dataIndex: 'last_login_time',
+      isHideable: true,
+      width: 150,
+      render: login_time => (
+        <p>
+          {login_time
+            ? getLocalTime(login_time).format('YYYY-MM-DD HH:mm:ss')
+            : t('Not logged in yet')}
+        </p>
+      ),
     },
   ]
 
-  handleInvite = (username, role) =>
-    this.store
-      .addMember({ ...this.props.match.params, username, role })
-      .then(() => {
-        this.routing.query()
-      })
-
-  handleModify = (member, role) => {
-    const { project_id } = this.props.match.params
-
-    const promises = []
-    if (isArray(member)) {
-      member.forEach(item => {
-        promises.push(
-          this.store.updateMember({ project_id, username: item.username, role })
-        )
-      })
-    } else {
-      promises.push(
-        this.store.updateMember({ project_id, username: member.username, role })
-      )
-    }
-
-    Promise.all(promises).then(() => {
-      if (isArray(member)) {
-        this.store.setSelectRowKeys('members', [])
-      }
-      this.hideModal('modifyModal')()
-      this.routing.query()
-    })
-  }
-
-  handleDelete = () => {
-    const { selectItem } = this.state
-    const { project_id } = this.props.match.params
-
-    this.store.deleteMember(project_id, selectItem).then(() => {
-      this.hideModal('deleteModal')()
-      this.routing.query()
-    })
-  }
-
-  handleSelectRowKeys = params => {
-    this.store.setSelectRowKeys('members', params)
-  }
-
-  handleBatchDelete = () => {
-    const { project_id } = this.props.match.params
-    const { selectedRowKeys } = this.store.members
-
-    if (selectedRowKeys.length > 0) {
-      this.store.batchDeleteMembers(project_id, selectedRowKeys).then(() => {
-        this.hideModal('batchDeleteModal')()
-        this.store.setSelectRowKeys('members', [])
-        this.routing.query()
-      })
-    }
-  }
-
-  renderEmpty() {
-    const onCreate = this.enabledActions.includes('create')
-      ? this.showModal('inviteModal')
-      : null
-
+  render() {
+    const { bannerProps, tableProps } = this.props
     return (
-      <EmptyTable
-        name={this.name}
-        onCreate={onCreate}
-        {...this.getEmptyProps()}
-      />
-    )
-  }
-
-  renderModals() {
-    const {
-      modifyModal,
-      inviteModal,
-      deleteModal,
-      batchDeleteModal,
-      selectItem = {},
-    } = this.state
-
-    const { selectedRowKeys, originData: members } = toJS(this.store.members)
-    const roles = toJS(this.store.roles.data)
-
-    const users = !isEmpty(selectItem)
-      ? [selectItem]
-      : selectedRowKeys.map(rowKey =>
-          members.find(member => member.username === rowKey)
-        )
-    const usernames = this.list.selectedRowKeys.join(', ')
-    return (
-      <div>
-        <DeleteModal
-          title={t('Sure to remove')}
-          desc={t.html('REMOVE_MEMBER_TIP', {
-            resource: selectItem[this.rowKey],
-          })}
-          resource={selectItem[this.rowKey]}
-          visible={deleteModal}
-          onOk={this.handleDelete}
-          onCancel={this.hideModal('deleteModal')}
-          isSubmitting={this.store.isSubmitting}
+      <ListPage {...this.props} getData={this.getData} noWatch>
+        <Banner
+          {...bannerProps}
+          tabs={this.tabs}
+          description={t('DEVOPS_PROJECT_MEM_DESC')}
         />
-        {this.list.selectedRowKeys && (
-          <DeleteModal
-            visible={batchDeleteModal}
-            title={t('Sure to remove')}
-            desc={t.html('REMOVE_MEMBER_TIP', { resource: usernames })}
-            resource={usernames}
-            onOk={this.handleBatchDelete}
-            onCancel={this.hideModal('batchDeleteModal')}
-            isSubmitting={this.store.isSubmitting}
-          />
-        )}
-        <ModifyMemberModal
-          roles={roles}
-          users={users}
-          visible={modifyModal}
-          onOk={this.handleModify}
-          onCancel={this.hideModal('modifyModal')}
-          isSubmitting={this.store.isSubmitting}
+        <Table
+          {...tableProps}
+          searchType="name"
+          enabledActions={this.enabledActions}
+          tableActions={this.tableActions}
+          itemActions={this.itemActions}
+          columns={this.getColumns()}
         />
-        <InviteMemberModal
-          title={t('Invite members to the DevOps project')}
-          desc={t('INVITE_MEMBER_DESC_DEVOPS')}
-          visible={inviteModal}
-          workspace={this.workspace}
-          roles={roles}
-          users={members}
-          onOk={this.handleInvite}
-          onCancel={this.hideModal('inviteModal')}
-          isSubmitting={this.store.isSubmitting}
-        />
-      </div>
-    )
-  }
-
-  renderHeader() {
-    return (
-      <Banner
-        title={t('DevOps Members')}
-        icon="group"
-        description={t('DEVOPS_PROJECT_MEM_DESC')}
-        module={this.module}
-      />
+      </ListPage>
     )
   }
 }
-
-export default Members

@@ -1,0 +1,15 @@
+.tableColorStyle {
+  display: flex;
+  align-items: center;
+  input {
+    width: 60px !important;
+  }
+  & > span {
+    width: 30px;
+    text-align: center;
+  }
+}
+
+.thresholds {
+  display: inline-block;
+}

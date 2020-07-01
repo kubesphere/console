@@ -32,7 +32,7 @@ import styles from './index.scss'
 
 const tabsMap = [
   { label: 'App Readme', value: 'readme' },
-  { label: 'Config files', value: 'files' },
+  { label: 'Chart Files', value: 'files' },
 ]
 
 @observer
@@ -114,7 +114,7 @@ export default class AppPreview extends React.Component {
       return <Markdown source={readme} className={styles.markdown} />
     }
 
-    return <p>{t('The app has no documentation')}</p>
+    return <p>{t('The app has no documentation.')}</p>
   }
 
   renderSetting = () => <TextPreview files={this.files} />

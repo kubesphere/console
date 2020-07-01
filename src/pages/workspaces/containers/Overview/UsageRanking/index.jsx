@@ -24,6 +24,7 @@ import { get } from 'lodash'
 import Store from 'stores/rank/project'
 
 import {
+  Select,
   Pagination,
   Level,
   LevelLeft,
@@ -32,42 +33,85 @@ import {
   Loading,
 } from '@pitrix/lego-ui'
 import { Button } from 'components/Base'
+import EmptyList from 'components/Cards/EmptyList'
 import SortMetricSelect from 'clusters/components/Cards/Monitoring/UsageRank/select'
-import Table from 'clusters/containers/MonitoringCenter/Monitoring/Resource/Ranking/Project/Table'
+import Table from 'clusters/containers/Monitor/Resource/Ranking/Project/Table'
 
 import styles from './index.scss'
 
-@inject('rootStore')
+@inject('rootStore', 'workspaceStore')
 @observer
 class Ranking extends React.Component {
   constructor(props) {
     super(props)
+
+    this.state = {
+      cluster: '',
+    }
 
     this.store = new Store({
       workspace: this.workspace,
       limit: 10,
       sort_type: 'desc',
     })
+    this.workspaceStore = this.props.workspaceStore
   }
 
   get workspace() {
     return get(this.props, 'match.params.workspace')
   }
 
+  get clusters() {
+    return this.workspaceStore.clusters.data.map(cluster => ({
+      label: `${t('Cluster')}: ${cluster.name}`,
+      value: cluster.name,
+    }))
+  }
+
   export = () => {
     this.store.download('project.usage.rank.json')
   }
 
+  fetchMetrics = () => {
+    if (this.state.cluster) {
+      this.store.cluster = this.state.cluster
+      this.store.fetchAll()
+    }
+  }
+
   componentDidMount() {
-    this.store.fetchAll()
+    const cluster =
+      this.workspaceStore.clusters.data.find(item => item.isHost) ||
+      this.workspaceStore.clusters.data[0]
+    if (cluster) {
+      this.setState({ cluster: cluster.name }, () => {
+        this.fetchMetrics()
+      })
+    }
+  }
+
+  handleClusterChange = cluster => {
+    this.setState({ cluster }, () => {
+      this.fetchMetrics()
+    })
   }
 
   render() {
+    if (this.workspaceStore.clusters.data.length > 0) {
+      return (
+        <div className={styles.wrapper}>
+          {this.renderToolbar()}
+          {this.renderList()}
+        </div>
+      )
+    }
+
     return (
-      <div className={styles.wrapper}>
-        {this.renderToolbar()}
-        {this.renderList()}
-      </div>
+      <EmptyList
+        icon="cluster"
+        title={t('No Available Cluster')}
+        desc={t('NO_CLUSTER_TIP')}
+      />
     )
   }
 
@@ -81,6 +125,11 @@ class Ranking extends React.Component {
         )}
       >
         <div className={styles.toolbar_filter}>
+          <Select
+            options={this.clusters}
+            value={this.state.cluster}
+            onChange={this.handleClusterChange}
+          />
           <SortMetricSelect store={this.store} />
           <span className={styles.sort_button}>
             <Icon

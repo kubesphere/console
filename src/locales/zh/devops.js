@@ -19,7 +19,9 @@
 export default {
   'DevOps Name': 'DevOps 工程名称',
   'DevOps Project': 'DevOps 工程',
+  'DevOps Role': '成员角色',
   'DevOps Roles': '成员角色',
+  'DevOps Member': '工程成员',
   'DevOps Members': '工程成员',
   'DevOps Credentials': '凭证',
   'DevOps BaseInfo': '基本信息',
@@ -63,4 +65,6 @@ export default {
   DEVOPS_TIP_TYPE_Q: '流水线 (Pipeline) 支持哪些代码仓库类？',
   DEVOPS_TIP_TYPE_A:
     '流水线支持 Git、GitHub、SVN、以及 Bitbucket Server 代码仓库.',
+
+  NO_DEVOPS_INSTALL: '未安装 DevOps',
 }

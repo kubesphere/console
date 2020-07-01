@@ -20,7 +20,7 @@ import { get, set, debounce } from 'lodash'
 import React from 'react'
 import { Columns, Column, Input, TextArea, Select } from '@pitrix/lego-ui'
 import { Form } from 'components/Base'
-import { NumberInput, SelectInput } from 'components/Inputs'
+import { NumberInput, SelectInput, ProjectSelect } from 'components/Inputs'
 import ToggleView from 'components/ToggleView'
 import {
   MODULE_KIND_MAP,
@@ -60,7 +60,11 @@ export default class BaseInfo extends React.Component {
     }
 
     this.props.store
-      .checkName({ name: value, namespace: this.namespace })
+      .checkName({
+        name: value,
+        namespace: this.namespace,
+        cluster: this.props.cluster,
+      })
       .then(resp => {
         if (resp.exist) {
           return callback({ message: t('Name exists'), field: rule.field })
@@ -111,17 +115,23 @@ export default class BaseInfo extends React.Component {
             </Form.Item>
           </Column>
         </Columns>
-        <Columns>
-          <Column>
-            <Form.Item label={t('Description')}>
-              <TextArea name="metadata.annotations['kubesphere.io/description']" />
-            </Form.Item>
-          </Column>
-          <Column>
+        <Columns className="is-multiline">
+          {!this.props.namespace && (
+            <Column className="is-6">
+              <Form.Item label={t('Project')} desc={t('PROJECT_DESC')}>
+                <ProjectSelect
+                  name="metadata.namespace"
+                  cluster={this.props.cluster}
+                  defaultValue={this.namespace || 'default'}
+                />
+              </Form.Item>
+            </Column>
+          )}
+          <Column className="is-6">
             <Form.Item
               label={t('Schedule')}
               desc={t.html('CRONJOB_CRON_DESC')}
-              rules={[{ required: true, message: t('Please input schedule') }]}
+              rules={[{ required: true, message: t('Please input a schedule.') }]}
             >
               <SelectInput
                 name="spec.schedule"
@@ -129,7 +139,13 @@ export default class BaseInfo extends React.Component {
               />
             </Form.Item>
           </Column>
+          <Column className="is-6">
+            <Form.Item label={t('Description')}>
+              <TextArea name="metadata.annotations['kubesphere.io/description']" />
+            </Form.Item>
+          </Column>
         </Columns>
+
         <ToggleView>
           <Columns className="margin-t8">
             <Column>
@@ -145,7 +161,7 @@ export default class BaseInfo extends React.Component {
               </Form.Item>
               <Form.Item
                 label={t('failedJobsHistoryLimit')}
-                desc={t('Number of failed jobs allowed to be retained')}
+                desc={t('The number of failed jobs allowed to be retained.')}
               >
                 <NumberInput
                   min={0}
@@ -157,7 +173,7 @@ export default class BaseInfo extends React.Component {
             <Column>
               <Form.Item
                 label={t('successfulJobsHistoryLimit')}
-                desc={t('Number of success jobs allowed to be retained')}
+                desc={t('The number of successful jobs allowed to be retained.')}
               >
                 <NumberInput
                   min={0}
@@ -167,7 +183,7 @@ export default class BaseInfo extends React.Component {
               </Form.Item>
               <Form.Item
                 label={t('concurrencyPolicy')}
-                desc={t('Concurrency policy settings')}
+                desc={t('The concurrency policy setting.')}
               >
                 <Select
                   name="spec.concurrencyPolicy"

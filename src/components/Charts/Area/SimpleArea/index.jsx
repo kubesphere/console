@@ -69,9 +69,7 @@ export default class SimpleArea extends React.Component {
     areaColors: PropTypes.array,
     renderTitle: PropTypes.func,
     renderTooltip: PropTypes.func,
-    renderArea: PropTypes.func,
     alert: PropTypes.object,
-    xAxisTickFormatter: PropTypes.func,
   }
 
   static defaultProps = {
@@ -85,9 +83,6 @@ export default class SimpleArea extends React.Component {
     areaColors: AreaColors,
     data: [],
     alert: {},
-    xAxisTickFormatter(value) {
-      return value
-    },
   }
 
   constructor(props) {
@@ -165,27 +160,16 @@ export default class SimpleArea extends React.Component {
   }
 
   renderArea() {
-    const { unit, areaColors, renderArea } = this.props
+    const { unit, areaColors } = this.props
     const { series, activeSeries } = this.state
-
-    if (renderArea) {
-      return renderArea()
-    }
 
     return series.map((key, index) => {
       const colorName = areaColors[index]
       const color = COLORS_MAP[colorName] || colorName
 
-      let fillProps = {}
-      if (COLORS_MAP[colorName]) {
-        fillProps = {
-          fill: `url(#${colorName}-area)`,
-        }
-      } else {
-        fillProps = {
-          fill: colorName,
-          fillOpacity: 0.2,
-        }
+      const fillProps = {
+        fill: color,
+        fillOpacity: 0.1,
       }
 
       return (
@@ -204,6 +188,7 @@ export default class SimpleArea extends React.Component {
           }
           unit={unit}
           hide={!activeSeries.includes(key)}
+          connectNulls
           {...fillProps}
         />
       )
@@ -211,39 +196,31 @@ export default class SimpleArea extends React.Component {
   }
 
   render() {
-    const {
-      theme,
-      xAxisTickFormatter,
-      width,
-      height,
-      bgColor,
-      xKey,
-      data,
-      alert,
-    } = this.props
+    const { theme, width, height, xKey, data, alert, xAxis, yAxis } = this.props
     const classNames = classnames(styles.chart, 'chart', `chart-${theme}`)
 
     return (
-      <div
-        className={classNames}
-        style={{ width, height, background: bgColor }}
-      >
+      <div className={classNames} style={{ width, height }}>
         {this.renderTitle()}
-        <ResponsiveContainer debounce={1}>
+        <ResponsiveContainer width={width} height={height} debounce={1}>
           <AreaChart
             data={data}
-            margin={{ top: 50, bottom: -20, left: 0, right: 25 }}
+            margin={{ top: 42, bottom: -20, left: 13, right: 13 }}
           >
             <CartesianGrid
-              stroke="#d8dee5"
-              strokeDasharray="2 3"
+              stroke={'#d8dee5'}
+              strokeDasharray="2 2"
               vertical={false}
             />
             <XAxis
+              height={40}
               dataKey={xKey}
               axisLine={false}
               tickLine={false}
-              tickFormatter={xAxisTickFormatter}
+              interval="preserveStartEnd"
+              minTickGap={60}
+              tickMargin={12}
+              {...xAxis}
             />
             <YAxis
               width={45}
@@ -254,14 +231,10 @@ export default class SimpleArea extends React.Component {
                 if (value > 100000) return `${Math.round(value / 1000)}k`
                 return value
               }}
+              {...yAxis}
             />
             <Tooltip
-              wrapperStyle={{ zIndex: 101 }}
-              cursor={{
-                stroke: COLORS_MAP[theme === 'dark' ? 'lightest' : 'dark'],
-                strokeDasharray: '3,2',
-                strokeWidth: 2,
-              }}
+              wrapperStyle={{ zIndex: 9999 }}
               content={this.renderCustomTooltip()}
             />
             {this.renderLegend()}

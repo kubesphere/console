@@ -1,4 +1,5 @@
 @import '~scss/variables';
+@import '~scss/mixins';
 
 $banner-height: 152px + $header-height;
 
@@ -45,9 +46,7 @@ $banner-height: 152px + $header-height;
     @extend %shapePos;
     opacity: 0.05;
     transition: all 0.5s ease-in-out;
-    &:hover {
-      transform: scale3d(1.1, 1.1, 0.3);
-    }
+    z-index: -1;
 
     &.shape_1 {
       background: url('/assets/banner/shape-1.svg') no-repeat;
@@ -93,7 +92,78 @@ $banner-height: 152px + $header-height;
     left: 0;
   }
 
-  .cont {
-    position: absolute;
+  .appOutline {
+    overflow: hidden;
+    padding-top: 98px;
+    color: $white;
+
+    .back {
+      margin-bottom: 12px;
+
+      :global .custom-icon {
+        display: inline-block;
+        height: 20px;
+        color: #fff;
+
+        &:hover {
+          color: $primary;
+
+          svg {
+            color: #00aa72;
+            fill: #90e0c5;
+          }
+        }
+
+        span {
+          display: inline-block;
+          vertical-align: middle;
+        }
+
+        svg {
+          display: inline-block;
+          vertical-align: middle;
+          width: 20px;
+          height: 20px;
+          margin-right: 8px;
+          color: #fff;
+          fill: #B6C2CD;
+        }
+      }
+    }
+
+    .intro {
+      display: flex;
+      align-items: center;
+      .icon {
+        position: relative;
+        float: left;
+        width: 48px;
+        height: 48px;
+        line-height: 48px;
+        margin-right: 20px;
+        color: $text-color;
+        background-color: $bg-color;
+        border-radius: $border-radius;
+      }
+      .text {
+        float: left;
+        width: calc(100% - 70px);
+        color: #fff;
+
+        > div {
+          font-size: 24px;
+          line-height: 32px;
+          font-weight: 600;
+          text-shadow: 0 2px 4px rgba(36, 46, 66, 0.1);
+          color: #ffffff;
+        }
+        > p {
+          font-size: $size-small;
+          line-height: 20px;
+          @include ellipsis;
+          margin-top: 8px;
+        }
+      }
+    }
   }
 }

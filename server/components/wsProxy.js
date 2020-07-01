@@ -29,7 +29,14 @@ module.exports = function(app) {
   })
 
   app.server.on('upgrade', (req, socket, head) => {
-    const target = serverConfig.gatewayServer.wsUrl
+    const target = serverConfig.apiServer.wsUrl
     wsProxy.ws(req, socket, head, { target })
+
+    wsProxy.on('proxyReqWs', (proxyReq, _req) => {
+      const token = _req.headers.cookie.match(
+        new RegExp('(?:^|;)\\s?token=(.*?)(?:;|$)', 'i')
+      )[1]
+      proxyReq.setHeader('Authorization', `Bearer ${token}`)
+    })
   })
 }

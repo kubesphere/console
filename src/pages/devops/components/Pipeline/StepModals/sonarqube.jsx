@@ -89,13 +89,13 @@ export default class withSonarQubeEnv extends React.Component {
             type="info"
             className={styles.info}
             message={t(
-              'Load the sonarqube configuration provided by Jenkins into the Pipeline'
+              'Load the sonarqube configuration provided by Jenkins into the Pipeline.'
             )}
           />
           <Form.Item
             label={t('config name')}
             rules={[{ required: true, message: t('This param is required') }]}
-            desc={t('sonar is the default config name')}
+            desc={t('sonar is the default config name.')}
           >
             <Input name="name" defaultValue={'sonar'} />
           </Form.Item>

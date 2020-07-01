@@ -30,7 +30,7 @@ export default {
   Avatar: '头像',
   'Last Login Time': '上次登录时间',
   'Not logged in yet': '尚未登录',
-  'Modify Password': '修改密码',
+  'Change Password': '修改密码',
   'Password Setting': '密码设置',
   Email: '邮箱',
   USER_AVATAR_TIP: '头像尺寸必须小于 120px X 120px，支持 png，jpg 格式。',
@@ -57,10 +57,13 @@ export default {
   'Repeat the new password': '重复新的密码',
 
   USER_ACTIVE: '活跃',
+  USER_PENDING: '等待中',
   USER_DISABLED: '已禁用',
-  ACCOUNTS_MANAGEMENT_DESC:
+  USER_DESC:
     '系统管理员用此功能模块管理账号，如创建、更新、读取、删除账号等，同时还能关联每个账号的角色；用户用账号名称或邮件地址登录 KubeSphere 平台。',
-  PLATFORM_ROLES_DESC: '平台角色定义了在集群范围内授权用户的访问权限。',
+  USER_CREATE_DESC:
+    '系统管理员用此功能模块管理账号，如创建、更新、读取、删除账号等，同时还能关联每个账号的角色；用户用账号名称或邮件地址登录 KubeSphere 平台。',
+  CLUSTER_ROLE_DESC: '集群角色定义了在集群范围内授权用户的访问权限。',
   ROLE_BASEINFO_DESC: '',
   ROLE_AUTHORIZATION_DESC: '',
   MEMBER_ROLE_CREATE_DESC:
@@ -70,15 +73,15 @@ export default {
 
   'Current Password': '当前密码',
 
-  'You must enter the correct current password to change to a new password':
+  'You must enter the correct current password to change to a new password.':
     '您必须输入正确的当前密码才可更改为新的密码',
 
   'Your password must meet the following requirements':
     '您的密码必须符合如下要求',
   'At least 1 uppercase and lowercase letter': '至少 1 个大写和小写字母',
   'At least 1 number': '至少 1 个数字',
-  'Password length is at least 6': '密码长度至少为 6',
+  'Password length is at least 6 characters': '密码长度至少为 6',
   'Password Strength': '密码强度',
-  'Avoid using the password that it has already been used on other websites, or a less secure password.':
+  'Avoid using the password that has already been used on other websites or the one that can be easily guessed.':
     '避免使用您在其它网站上的密码，或者是其他人很容易猜到的密码',
 }

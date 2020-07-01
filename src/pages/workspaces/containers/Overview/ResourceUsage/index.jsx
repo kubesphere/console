@@ -17,36 +17,76 @@
  */
 
 import React from 'react'
-import { inject } from 'mobx-react'
+import { inject, observer } from 'mobx-react'
+import EmptyList from 'components/Cards/EmptyList'
+import WorkspaceStore from 'stores/workspace'
 
 import ResourceStatistics from './Statistics'
 import PhysicalResource from './Physical'
 import VirtualResource from './Virtual'
 
 @inject('rootStore')
+@observer
 class ResourceUsage extends React.Component {
   get workspace() {
     return this.props.match.params.workspace
   }
 
-  renderResourceCount() {
-    return <ResourceStatistics workspace={this.workspace} />
+  get clusters() {
+    return this.workspaceStore.clusters.data
   }
 
-  renderPhysicalResource() {
-    return <PhysicalResource workspace={this.workspace} />
+  get clustersOpts() {
+    return this.clusters.map(({ name }) => ({
+      label: name,
+      value: name,
+    }))
   }
 
-  renderVirtualResource() {
-    return <VirtualResource workspace={this.workspace} />
+  get defaultCluster() {
+    const { name } =
+      this.clusters.find(cluster => cluster.isHost) || this.clusters[0] || {}
+    return name
+  }
+
+  workspaceStore = new WorkspaceStore()
+
+  componentDidMount() {
+    this.workspaceStore.fetchClusters({ workspace: this.workspace })
+  }
+
+  renderEmpty() {
+    return (
+      <EmptyList
+        icon="cluster"
+        title={t('No Available Cluster')}
+        desc={t('NO_CLUSTER_TIP')}
+      />
+    )
   }
 
   render() {
     return (
       <div>
-        {this.renderResourceCount()}
-        {this.renderPhysicalResource()}
-        {this.renderVirtualResource()}
+        {!globals.app.isMultiCluster && (
+          <ResourceStatistics workspace={this.workspace} />
+        )}
+        {this.workspaceStore.clusters.data.length > 0 ? (
+          <>
+            <PhysicalResource
+              workspace={this.workspace}
+              clusterOpts={this.clustersOpts}
+              defaultCluster={this.defaultCluster}
+            />
+            <VirtualResource
+              workspace={this.workspace}
+              clusterOpts={this.clustersOpts}
+              defaultCluster={this.defaultCluster}
+            />
+          </>
+        ) : (
+          this.renderEmpty()
+        )}
       </div>
     )
   }

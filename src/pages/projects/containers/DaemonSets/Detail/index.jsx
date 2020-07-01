@@ -16,16 +16,188 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import React from 'react'
+import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
+import { isEmpty } from 'lodash'
+import { Loading } from '@pitrix/lego-ui'
 
-import { Component as DeploymentDetail } from 'projects/containers/Deployments/Detail'
+import { getDisplayName, getLocalTime } from 'utils'
+import { trigger } from 'utils/action'
+import WorkloadStore from 'stores/workload'
+
+import DetailPage from 'projects/containers/Base/Detail'
+
+import getRoutes from './routes'
 
 @inject('rootStore')
 @observer
-class DaemonSetsDetail extends DeploymentDetail {
+@trigger
+export default class DaemonSetDetail extends React.Component {
+  store = new WorkloadStore('daemonsets')
+
+  componentDidMount() {
+    this.fetchData()
+  }
+
+  get module() {
+    return 'daemonsets'
+  }
+
   get name() {
     return 'DaemonSet'
   }
-}
 
-export default DaemonSetsDetail
+  get routing() {
+    return this.props.rootStore.routing
+  }
+
+  get listUrl() {
+    const { workspace, cluster, namespace } = this.props.match.params
+    if (workspace) {
+      return `/${workspace}/clusters/${cluster}/projects/${namespace}/${
+        this.module
+      }`
+    }
+    return `/clusters/${cluster}/${this.module}`
+  }
+
+  fetchData = () => {
+    this.store.fetchDetail(this.props.match.params)
+  }
+
+  getOperations = () => [
+    {
+      key: 'edit',
+      icon: 'pen',
+      text: t('Edit Info'),
+      action: 'edit',
+      onClick: () =>
+        this.trigger('resource.baseinfo.edit', {
+          type: t(this.name),
+          detail: this.store.detail,
+          success: this.fetchData,
+        }),
+    },
+    {
+      key: 'rollBack',
+      icon: 'timed-task',
+      text: t('Revision Rollback'),
+      action: 'edit',
+      onClick: () =>
+        this.trigger('workload.revision.rollback', {
+          detail: this.store.detail,
+        }),
+    },
+    {
+      key: 'editConfigTemplate',
+      icon: 'storage',
+      text: t('Edit Config Template'),
+      action: 'edit',
+      onClick: () =>
+        this.trigger('workload.template.edit', {
+          detail: this.store.detail,
+          ...this.props.match.params,
+        }),
+    },
+    {
+      key: 'editYaml',
+      icon: 'pen',
+      text: t('Edit YAML'),
+      action: 'edit',
+      onClick: () =>
+        this.trigger('resource.yaml.edit', {
+          detail: this.store.detail,
+        }),
+    },
+    {
+      key: 'redeploy',
+      icon: 'restart',
+      text: t('Redeploy'),
+      action: 'edit',
+      onClick: () =>
+        this.trigger('workload.redeploy', {
+          module: this.module,
+          detail: this.store.detail,
+        }),
+    },
+    {
+      key: 'delete',
+      icon: 'trash',
+      text: t('Delete'),
+      action: 'delete',
+      onClick: () =>
+        this.trigger('workload.delete', {
+          type: t(this.name),
+          detail: this.store.detail,
+          success: () => this.routing.push(this.listUrl),
+        }),
+    },
+  ]
+
+  getAttrs = () => {
+    const detail = toJS(this.store.detail)
+    const { cluster, namespace } = this.props.match.params
+
+    if (isEmpty(detail)) {
+      return
+    }
+
+    return [
+      {
+        name: t('Cluster'),
+        value: cluster,
+      },
+      {
+        name: t('Project'),
+        value: namespace,
+      },
+      {
+        name: t('Application'),
+        value: detail.application,
+      },
+      {
+        name: t('Created Time'),
+        value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
+      },
+      {
+        name: t('Updated Time'),
+        value: getLocalTime(detail.updateTime).format('YYYY-MM-DD HH:mm:ss'),
+      },
+      {
+        name: t('Creator'),
+        value: detail.creator,
+      },
+    ]
+  }
+
+  render() {
+    const stores = { detailStore: this.store }
+
+    if (this.store.isLoading && !this.store.detail.name) {
+      return <Loading className="ks-page-loading" />
+    }
+
+    const sideProps = {
+      module: this.module,
+      name: getDisplayName(this.store.detail),
+      desc: this.store.detail.description,
+      operations: this.getOperations(),
+      attrs: this.getAttrs(),
+      breadcrumbs: [
+        {
+          label: t('DaemonSets'),
+          url: this.listUrl,
+        },
+      ],
+    }
+
+    return (
+      <DetailPage
+        stores={stores}
+        {...sideProps}
+        routes={getRoutes(this.props.match.path)}
+      />
+    )
+  }
+}

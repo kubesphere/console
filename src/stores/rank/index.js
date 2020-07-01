@@ -44,7 +44,10 @@ export default class BaseRankStore {
   sort_type = 'desc'
 
   get apiVersion() {
-    return `kapis/monitoring.kubesphere.io/v1alpha2`
+    if (globals.app.isMultiCluster && this.cluster) {
+      return `kapis/clusters/${this.cluster}/monitoring.kubesphere.io/v1alpha3`
+    }
+    return `kapis/monitoring.kubesphere.io/v1alpha3`
   }
 
   get fetchUrl() {

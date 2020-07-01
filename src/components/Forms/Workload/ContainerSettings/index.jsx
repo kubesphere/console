@@ -16,16 +16,21 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { concat, get, set, unset, isEmpty, omitBy, has, groupBy } from 'lodash'
+import { concat, get, set, unset, isEmpty, omitBy, has } from 'lodash'
 import React from 'react'
 import { safeParseJSON, generateId } from 'utils'
 import { MODULE_KIND_MAP } from 'utils/constants'
 
+import FederatedStore from 'stores/federated'
 import ConfigMapStore from 'stores/configmap'
 import SecretStore from 'stores/secret'
+import QuotaStore from 'stores/quota'
+import LimitRangeStore from 'stores/limitrange'
 
 import { Form } from 'components/Base'
+import PodAffinity from './PodAffinity'
 import ReplicasControl from './ReplicasControl'
+import ClusterReplicasControl from './ClusterReplicasControl'
 import UpdateStrategy from './UpdateStrategy'
 import ContainerList from './ContainerList'
 import ContainerForm from './ContainerForm'
@@ -40,6 +45,9 @@ export default class ContainerSetting extends React.Component {
       selectContainer: {},
       configMaps: [],
       secrets: [],
+      quota: {},
+      limitRange: {},
+      imageRegistries: [],
       replicas: this.getReplicas(),
     }
 
@@ -47,6 +55,24 @@ export default class ContainerSetting extends React.Component {
 
     this.configMapStore = new ConfigMapStore()
     this.secretStore = new SecretStore()
+    this.quotaStore = new QuotaStore()
+    this.limitRangeStore = new LimitRangeStore()
+    this.imageRegistryStore = new SecretStore()
+
+    if (props.isFederated) {
+      this.configMapStore = new FederatedStore({
+        module: this.configMapStore.module,
+      })
+      this.secretStore = new FederatedStore({
+        module: this.secretStore.module,
+      })
+      this.limitRangeStore = new FederatedStore({
+        module: this.limitRangeStore.module,
+      })
+      this.imageRegistryStore = new FederatedStore({
+        module: this.imageRegistryStore.module,
+      })
+    }
 
     this.handleContainer = this.handleContainer.bind(this)
   }
@@ -72,6 +98,12 @@ export default class ContainerSetting extends React.Component {
     return get(formTemplate, MODULE_KIND_MAP[module], formTemplate)
   }
 
+  get fedFormTemplate() {
+    return this.props.isFederated
+      ? get(this.formTemplate, 'spec.template')
+      : this.formTemplate
+  }
+
   get containerSecretPath() {
     return `${
       this.prefix
@@ -80,12 +112,12 @@ export default class ContainerSetting extends React.Component {
 
   checkPullSecret() {
     const containers = get(
-      this.formTemplate,
+      this.fedFormTemplate,
       `${this.prefix}spec.containers`,
       []
     )
     const initContainers = get(
-      this.formTemplate,
+      this.fedFormTemplate,
       `${this.prefix}spec.initContainers`,
       []
     )
@@ -119,20 +151,35 @@ export default class ContainerSetting extends React.Component {
         'Service.metadata.annotations["kubesphere.io/serviceType"]',
         'statefulservice'
       )
-      set(this.formTemplate, 'spec.serviceName', serviceName)
+
+      set(this.fedFormTemplate, `spec.serviceName`, serviceName)
     }
   }
 
-  getReplicas = () => get(this.formTemplate, `spec.replicas`) || 1
+  getReplicas = () => get(this.fedFormTemplate, `spec.replicas`) || 1
 
   fetchData() {
+    const { cluster } = this.props
     const namespace = get(this.formTemplate, 'metadata.namespace')
 
     Promise.all([
-      this.configMapStore.fetchByK8s({ namespace }),
-      this.secretStore.fetchByK8s({ namespace }),
-    ]).then(([configMaps, secrets]) => {
-      this.setState({ configMaps, secrets })
+      this.configMapStore.fetchListByK8s({ cluster, namespace }),
+      this.secretStore.fetchListByK8s({ cluster, namespace }),
+      this.quotaStore.fetch({ cluster, namespace }),
+      this.limitRangeStore.fetchListByK8s({ cluster, namespace }),
+      this.imageRegistryStore.fetchListByK8s({
+        cluster,
+        namespace,
+        fieldSelector: `type=kubernetes.io/dockerconfigjson`,
+      }),
+    ]).then(([configMaps, secrets, quota, limitRanges, imageRegistries]) => {
+      this.setState({
+        configMaps,
+        secrets,
+        quota,
+        limitRange: get(limitRanges, '[0].limit'),
+        imageRegistries,
+      })
     })
   }
 
@@ -154,16 +201,20 @@ export default class ContainerSetting extends React.Component {
     })
   }
 
-  updatePullSecrets = formData => {
+  updatePullSecrets = () => {
     const pullSecrets = {}
     const containerSecretMap = {}
 
     const containerSecretPath = this.containerSecretPath
     const imagePullSecretsPath = `${this.prefix}spec.imagePullSecrets`
 
-    const containers = get(formData, `${this.prefix}spec.containers`, [])
+    const containers = get(
+      this.fedFormTemplate,
+      `${this.prefix}spec.containers`,
+      []
+    )
     const initContainers = get(
-      formData,
+      this.fedFormTemplate,
       `${this.prefix}spec.initContainers`,
       []
     )
@@ -171,25 +222,39 @@ export default class ContainerSetting extends React.Component {
       if (container.pullSecret) {
         pullSecrets[container.pullSecret] = ''
         containerSecretMap[container.name] = container.pullSecret
+        delete container.pullSecret
       }
     })
 
     if (!isEmpty(pullSecrets)) {
       set(
-        formData,
+        this.fedFormTemplate,
         imagePullSecretsPath,
         Object.keys(pullSecrets).map(key => ({ name: key }))
       )
-      set(formData, containerSecretPath, JSON.stringify(containerSecretMap))
+      set(
+        this.formTemplate,
+        containerSecretPath,
+        JSON.stringify(containerSecretMap)
+      )
     } else {
-      set(formData, imagePullSecretsPath, null)
-      set(formData, containerSecretPath, null)
+      set(this.fedFormTemplate, imagePullSecretsPath, null)
+      set(this.formTemplate, containerSecretPath, null)
     }
   }
 
-  updateService = formData => {
-    const { formTemplate, module } = this.props
-    const containers = get(formData, `${this.prefix}spec.containers`, [])
+  updateService = () => {
+    const { formTemplate, module, withService } = this.props
+
+    if (!withService) {
+      return
+    }
+
+    const containers = get(
+      this.fedFormTemplate,
+      `${this.prefix}spec.containers`,
+      []
+    )
 
     // auto gen service ports by workload container ports
     const servicePorts = []
@@ -208,18 +273,33 @@ export default class ContainerSetting extends React.Component {
       }
     })
 
-    set(formTemplate, 'Service.spec.ports', servicePorts)
+    const serviceTemplate = formTemplate.Service
 
-    const labels = get(formData, 'metadata.labels', {})
-    const podLabels = get(formData, `${this.prefix}metadata.labels`, {})
+    const serivcePrefix = this.props.isFederated ? 'spec.template.' : ''
 
-    set(formTemplate, 'Service.metadata.labels', labels)
-    set(formTemplate, 'Service.spec.selector', podLabels)
+    set(serviceTemplate, `${serivcePrefix}spec.ports`, servicePorts)
+
+    const labels = get(this.formTemplate, 'metadata.labels', {})
+    const podLabels = get(
+      this.fedFormTemplate,
+      `${this.prefix}metadata.labels`,
+      {}
+    )
+
+    set(serviceTemplate, 'metadata.labels', labels)
+    set(serviceTemplate, `${serivcePrefix}spec.selector`, podLabels)
+
+    const placement = get(this.formTemplate, 'spec.placement')
+    if (placement) {
+      set(serviceTemplate, 'spec.placement', placement)
+    } else {
+      unset(serviceTemplate, 'spec.placement')
+    }
 
     if (module === 'statefulsets') {
-      set(formTemplate, 'Service.spec.clusterIP', 'None')
+      set(serviceTemplate, `${serivcePrefix}clusterIP`, 'None')
     } else {
-      unset(formTemplate, 'Service.spec.clusterIP')
+      unset(serviceTemplate, `${serivcePrefix}clusterIP`)
     }
   }
 
@@ -232,90 +312,130 @@ export default class ContainerSetting extends React.Component {
 
     // merge init containers and worker containers, in order to fix container type change.
     const containers = get(
-      this.formTemplate,
+      this.fedFormTemplate,
       `${this.prefix}spec.containers`,
       []
     ).map(c => ({ ...c, type: 'worker' }))
     const initContainers = get(
-      this.formTemplate,
+      this.fedFormTemplate,
       `${this.prefix}spec.initContainers`,
       []
     ).map(c => ({ ...c, type: 'init' }))
 
     const mergedContainers = concat(containers, initContainers)
 
+    const { selectContainer } = this.state
     // find if data exist in all containers
-    const container = mergedContainers.find(item => item.name === data.name)
+    const containerIndex = mergedContainers.findIndex(
+      item => item.name === selectContainer.name
+    )
 
     // update containers
-    if (!isEmpty(container)) {
-      Object.assign(container, data)
+    if (containerIndex > -1) {
+      mergedContainers[containerIndex] = data
     } else {
       mergedContainers.push(data)
     }
 
     // split mergedContainers and update formTemplate
-    const groupedContainers = groupBy(mergedContainers, 'type')
+    const _containers = []
+    const _initContainers = []
+    mergedContainers.forEach(item => {
+      if (item.type === 'worker') {
+        delete item.type
+        _containers.push(item)
+      } else {
+        delete item.type
+        _initContainers.push(item)
+      }
+    })
+    set(this.fedFormTemplate, `${this.prefix}spec.containers`, _containers)
     set(
-      this.formTemplate,
-      `${this.prefix}spec.containers`,
-      groupedContainers['worker']
-    )
-    set(
-      this.formTemplate,
+      this.fedFormTemplate,
       `${this.prefix}spec.initContainers`,
-      groupedContainers['init'] || []
+      _initContainers
     )
 
     // update image pull secrets
-    this.updatePullSecrets(this.formTemplate)
+    this.updatePullSecrets()
 
-    if (this.props.withService) {
-      this.updateService(this.formTemplate)
-    }
+    this.updateService()
 
     this.hideContainer()
   }
 
   handleDelete = () => {
-    this.updatePullSecrets(this.formTemplate)
-
-    if (this.props.withService) {
-      this.updateService(this.formTemplate)
-    }
+    this.updatePullSecrets()
+    this.updateService()
   }
 
   containersValidator = (rule, value, callback) => {
     if (isEmpty(value)) {
-      return callback({ message: t('Please add at least one container') })
+      return callback({ message: t('Please add at least one container.') })
     }
 
     callback()
   }
 
   renderContainerForm(data) {
-    const { withService } = this.props
-    const { configMaps, secrets } = this.state
+    const { cluster, withService } = this.props
+    const {
+      configMaps,
+      secrets,
+      quota,
+      limitRange,
+      imageRegistries,
+    } = this.state
     const type = !data.image ? 'Add' : 'Edit'
+    const params = { configMaps, secrets, quota, limitRange, imageRegistries }
 
     return (
       <ContainerForm
         type={type}
         module={this.module}
+        cluster={cluster}
         namespace={this.namespace}
         data={data}
         onSave={this.handleContainer}
         onCancel={this.hideContainer}
-        configMaps={configMaps}
-        secrets={secrets}
         withService={withService}
+        {...params}
       />
+    )
+  }
+
+  renderDeployPlacementTip() {
+    return (
+      <div>
+        <div className="tooltip-title">
+          {t('What is Deployment Location ?')}
+        </div>
+        <p>{t('DEPLOY_PLACEMENT_TIP')}</p>
+      </div>
     )
   }
 
   renderReplicasControl() {
     if (this.module === 'daemonsets') {
       return null
+    }
+
+    const { projectDetail, isFederated } = this.props
+
+    if (isFederated) {
+      return (
+        <Form.Item
+          className="margin-b12"
+          label={t('Deployment Location')}
+          tip={this.renderDeployPlacementTip()}
+        >
+          <ClusterReplicasControl
+            module={this.module}
+            template={this.formTemplate}
+            clusters={projectDetail.clusters}
+          />
+        </Form.Item>
+      )
     }
 
     return (
@@ -332,7 +452,7 @@ export default class ContainerSetting extends React.Component {
 
   renderContainerList() {
     const initContainers = get(
-      this.formTemplate,
+      this.fedFormTemplate,
       `${this.prefix}spec.initContainers`,
       []
     )
@@ -360,7 +480,7 @@ export default class ContainerSetting extends React.Component {
         <UpdateStrategy
           formRef={formRef}
           module={module}
-          data={this.formTemplate}
+          data={this.fedFormTemplate}
           replicas={replicas}
         />
       </div>
@@ -375,6 +495,14 @@ export default class ContainerSetting extends React.Component {
     )
   }
 
+  renderPodAffinity() {
+    return (
+      <div className="margin-b12">
+        <PodAffinity module={this.module} template={this.fedFormTemplate} />
+      </div>
+    )
+  }
+
   render() {
     const { formRef } = this.props
     const { showContainer, selectContainer } = this.state
@@ -384,11 +512,12 @@ export default class ContainerSetting extends React.Component {
     }
 
     return (
-      <Form data={this.formTemplate} ref={formRef}>
+      <Form data={this.fedFormTemplate} ref={formRef}>
         {this.renderReplicasControl()}
         {this.renderContainerList()}
         {this.renderUpdateStrategy()}
         {this.renderPodSecurityContext()}
+        {this.renderPodAffinity()}
       </Form>
     )
   }

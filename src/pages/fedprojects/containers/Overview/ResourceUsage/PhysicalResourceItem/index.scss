@@ -1,0 +1,26 @@
+@import '~scss/variables';
+
+.wrapper {
+  padding: 12px;
+  background-color: $lightest;
+  border-bottom: 1px solid $border-color;
+}
+
+.chartWrapper {
+  position: relative;
+  background-color: $dark-color07;
+  border-radius: $border-radius;
+}
+
+.chart {
+  height: 120px;
+}
+
+.title {
+  position: absolute;
+  left: 12px;
+  top: 6px;
+  color: #fff;
+  font-weight: $font-bold;
+  line-height: 20px;
+}

@@ -38,7 +38,12 @@ export default class ContainerTerminalModal extends React.Component {
   constructor(props) {
     super(props)
 
-    const { containerName, podName, namespace } = this.props.match.params
+    const {
+      containerName,
+      podName,
+      cluster,
+      namespace,
+    } = this.props.match.params
 
     this.state = {
       container: {
@@ -47,6 +52,7 @@ export default class ContainerTerminalModal extends React.Component {
     }
 
     this.store = new TerminalStore({
+      cluster,
       namespace,
       pod: podName,
       container: containerName,
@@ -56,12 +62,13 @@ export default class ContainerTerminalModal extends React.Component {
 
   componentDidMount() {
     const params = this.props.match.params
-    const { namespace, podName, containerName } = params
+    const { cluster, namespace, podName, containerName } = params
 
     this.podStore
       .fetchDetail({
-        name: podName,
+        cluster,
         namespace,
+        name: podName,
       })
       .then(() => {
         const container = this.podStore.detail.containers.find(
@@ -92,7 +99,7 @@ export default class ContainerTerminalModal extends React.Component {
 
   render() {
     return (
-      <div className={styles.kubeCtl}>
+      <div className={styles.kubectl}>
         <div className={styles.terminalWrapper}>
           <div className={classnames(styles.pane, styles.terminal)}>
             <ContainerTerminal url={this.store.kubeWebsocketUrl} />

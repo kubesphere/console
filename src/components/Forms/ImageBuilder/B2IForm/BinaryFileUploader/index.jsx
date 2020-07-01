@@ -92,16 +92,18 @@ class Uploader extends React.Component {
 
   setFileStatus = (fileId, fileStatus) => {
     this.setState(prevState => ({
-      files: Object.assign({}, prevState.files, {
-        [fileId]: Object.assign({}, prevState.files[fileId], fileStatus),
-      }),
+      files: {
+        ...prevState.files,
+        [fileId]: { ...prevState.files[fileId], ...fileStatus },
+      },
     }))
   }
 
   getUploadUrl = () =>
-    `/kapis/devops.kubesphere.io/v1alpha2/namespaces/${
-      this.props.namespace
-    }/s2ibinaries/${this.binaryName}/file`
+    `/kapis/devops.kubesphere.io/v1alpha2${this.store.getPath({
+      namespace: this.props.namespace,
+      cluster: this.props.cluster,
+    })}/s2ibinaries/${this.binaryName}/file`
 
   beforeUploadHandler = async file => {
     const extensionName = file.name.slice(file.name.lastIndexOf('.') + 1)
@@ -113,7 +115,8 @@ class Uploader extends React.Component {
     }
     return await this.store.creatBinary(
       this.formatFileName(file.name),
-      this.props.namespace
+      this.props.namespace,
+      this.props.cluster
     )
   }
 
@@ -154,7 +157,7 @@ class Uploader extends React.Component {
       JSON.stringify(info)
     )
     Notify.success({
-      content: t('Upload file success'),
+      content: t('File Uploaded Successfully'),
     })
     this.props.uploadSuccess && this.props.uploadSuccess()
   }

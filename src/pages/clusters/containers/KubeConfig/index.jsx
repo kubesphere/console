@@ -27,6 +27,12 @@ export default class KubeConfigModal extends React.Component {
   }
 
   render() {
-    return <KubeConfig title={t('kubeconfig')} onCancel={this.pageClose} />
+    return (
+      <KubeConfig
+        title={t('kubeconfig')}
+        match={this.props.match}
+        onCancel={this.pageClose}
+      />
+    )
   }
 }

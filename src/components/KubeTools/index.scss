@@ -1,76 +1,87 @@
 @import '~scss/variables';
+@import '~scss/mixins';
+
+.trigger {
+  position: fixed;
+  right: 12px;
+  bottom: 24px;
+  z-index: $kube-tools-z-index;
+}
 
 .tools {
-  position: fixed;
-  right: 15px;
-  bottom: 70px;
-  z-index: $kube-tools-z-index;
-  line-height: 36px;
-  text-align: center;
-  width: 36px;
-  height: 36px;
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1)),
-    linear-gradient(to bottom, #329dce, #329dce);
-  border-radius: 50%;
-  color: $white;
+  position: absolute;
+  bottom: 70%;
+  right: 0;
+  height: 0;
+  overflow: hidden;
+
+  &.showTools {
+    height: auto;
+    overflow: unset;
+    padding-bottom: 20px;
+    animation: toolFadeIn 0.3s ease;
+  }
+}
+
+.toolsWrapper {
+  width: 420px;
+  background-color: $white;
+  border-radius: $border-radius;
+  overflow: hidden;
+  box-shadow: 0 4px 8px 0 rgba(36, 46, 66, 0.2);
+}
+
+.toolsContent {
+  padding: 12px;
+  background-color: $white;
+}
+
+.toolsHeader {
+  padding: 12px;
+  background-color: $card-bg-color;
+}
+
+.toolsTitle {
+  padding: 12px;
+  border-radius: $border-radius;
+  background-color: $dark-color07;
+
+  & > div > div,
+  & > div > p {
+    color: $white;
+  }
+}
+
+.toolsFooter {
+  padding: 10px 12px;
+  background-color: $card-bg-color;
+
+  & > p {
+    @include TypographyParagraph($dark-color01);
+  }
+}
+
+.groupTitle {
+  margin: 12px 0;
+  @include TypographySymbolText;
+}
+
+.toolItem {
   cursor: pointer;
-  transition: right $trans-speed cubic-bezier(0.175, 0.35, 0.32, 1);
-  * {
-    user-select: none;
+}
+
+.button {
+  padding: 5px 7px !important;
+}
+
+@keyframes toolFadeIn {
+  0% {
+    opacity: 0;
+    padding-bottom: 0;
   }
 
-  @at-root {
-    .toolsNavContainer {
-      position: absolute;
-      bottom: 70%;
-      right: 0;
-      padding-bottom: 20px;
-      width: 370px;
-    }
-    .toolsNav {
-      text-align: left;
-      padding: 20px;
-      border-radius: 4px;
-      box-shadow: 0 8px 16px 0 rgba(36, 46, 66, 0.2);
-      background-image: linear-gradient(170deg, #59c2de, #2689b6);
-      h3 {
-        font-size: 16px;
-        font-weight: 600;
-      }
-      p {
-        font-size: 12px;
-        line-height: 1.67;
-      }
-      .bulb {
-        font-size: 18px;
-      }
-    }
-    .tool {
-      margin: 8px 0;
-      margin-right: 12px;
-      line-height: 40px;
-      border-radius: 4px;
-      background: #fff;
-      position: relative;
-      color: #404e68;
-      padding: 0 1em;  
-      .title {
-        font-weight: 600;
-        margin-left: .5em;
-        vertical-align: middle;
-      }
-      .tips {
-        width: 24px;
-        height: 24px;
-        background-color: #36435c;
-        display: inline-block;
-        border-radius: 50%;
-        position: absolute;
-        right: -13px;
-        line-height: 22px;
-        text-align: center;
-        top: 20%;
-      }
-    }
+  100% {
+    opacity: 1;
+    padding-bottom: 20px;
   }
 }

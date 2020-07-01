@@ -1,0 +1,24 @@
+@import '~scss/variables';
+
+.wrapper {
+  width: 140px;
+
+  :global {
+    .select-control {
+      background: $dark-color07 !important;
+      border: solid 1px $dark-color06;
+    }
+
+    .select-value-label {
+      color: $white !important;
+    }
+
+    .select-arrow-zone {
+      .icon {
+        svg {
+          color: $white;
+        }
+      }
+    }
+  }
+}

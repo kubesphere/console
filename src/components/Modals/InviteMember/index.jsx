@@ -21,10 +21,9 @@ import PropTypes from 'prop-types'
 import { toJS } from 'mobx'
 import { observer } from 'mobx-react'
 
-import { Modal, Button, Search, ScrollLoad } from 'components/Base'
+import { Modal, Search, ScrollLoad } from 'components/Base'
 
 import UserStore from 'stores/user'
-import WorkspaceMemberStore from 'stores/workspace/member'
 
 import User from './User'
 
@@ -34,9 +33,10 @@ import styles from './index.scss'
 export default class InviteMemberModal extends React.Component {
   static propTypes = {
     roles: PropTypes.array,
-    users: PropTypes.array,
     visible: PropTypes.bool,
     workspace: PropTypes.string,
+    namespace: PropTypes.string,
+    cluster: PropTypes.string,
     title: PropTypes.string,
     desc: PropTypes.string,
     searchPlaceholder: PropTypes.string,
@@ -46,7 +46,6 @@ export default class InviteMemberModal extends React.Component {
 
   static defaultProps = {
     roles: [],
-    users: [],
     visible: false,
     onOk() {},
     onCancel() {},
@@ -56,37 +55,53 @@ export default class InviteMemberModal extends React.Component {
     super(props)
 
     this.userStore = new UserStore()
+    this.memberStore = new UserStore()
 
-    this.workspaceMemberStore = new WorkspaceMemberStore()
-
-    this.state = {}
-  }
-
-  get users() {
-    return this.props.users.map(user => user.username)
-  }
-
-  fetchData = (params = {}) => {
-    if (this.props.workspace) {
-      this.workspaceMemberStore.fetchList({
-        workspace: this.props.workspace,
-        keyword: this.state.keyword,
-        ...params,
-        paging: false,
-      })
-    } else {
-      this.userStore.fetchList({ keyword: this.state.keyword, ...params })
+    this.state = {
+      members: [],
+      newMembers: [],
     }
   }
 
-  handleSearch = value => {
-    this.setState({ keyword: value }, this.fetchData)
+  componentDidMount() {
+    const { cluster, workspace, namespace, devops } = this.props
+    this.memberStore
+      .fetchList({ limit: -1, cluster, workspace, namespace, devops })
+      .then(() => {
+        this.setState({
+          members: this.memberStore.list.data.map(user => user.name),
+        })
+      })
   }
 
-  handleSelect = (userName, role) => {
-    const { onOk } = this.props
+  fetchData = (params = {}) => {
+    const { workspace, namespace, devops } = this.props
+    this.userStore.fetchList({
+      name: this.state.keyword,
+      workspace: namespace || devops ? workspace : undefined,
+      ...params,
+    })
+  }
 
-    onOk(userName, role)
+  handleSearch = value => {
+    this.setState({ name: value }, this.fetchData)
+  }
+
+  handleSelect = (username, roleRef) => {
+    this.setState(({ members, newMembers }) => ({
+      members: [...members, username],
+      newMembers: [
+        ...newMembers,
+        {
+          username,
+          roleRef,
+        },
+      ],
+    }))
+  }
+
+  handleSubmit = () => {
+    this.props.onOk(this.state.newMembers)
   }
 
   render() {
@@ -98,24 +113,23 @@ export default class InviteMemberModal extends React.Component {
       desc,
       searchPlaceholder,
     } = this.props
-    const { data = [], total, page, isLoading } = this.props.workspace
-      ? toJS(this.workspaceMemberStore.list)
-      : toJS(this.userStore.list)
+    const { members } = this.state
+    const { data = [], total, page, isLoading } = toJS(this.userStore.list)
 
     return (
       <Modal
         width={691}
         icon="pen"
         onCancel={onCancel}
+        onOk={this.handleSubmit}
         visible={visible}
         bodyClassName={styles.modalBody}
         hideHeader
-        hideFooter
       >
         <div className={styles.body}>
           <div className={styles.title}>
             <div className="h4">
-              {title || t('Invite members to the project')}
+              {title || t('Invite Members to the Project')}
             </div>
             <p>{desc || t('INVITE_MEMBER_DESC')}</p>
           </div>
@@ -136,21 +150,16 @@ export default class InviteMemberModal extends React.Component {
               >
                 {data.map(item => (
                   <User
-                    key={item.username}
+                    key={item.name}
                     user={item}
                     roles={roles}
-                    selected={this.users.includes(item.username)}
+                    selected={members.includes(item.name)}
                     onSelect={this.handleSelect}
                   />
                 ))}
               </ScrollLoad>
             </div>
           </div>
-        </div>
-        <div className={styles.footer}>
-          <Button onClick={onCancel} data-test="modal-close">
-            {t('Close')}
-          </Button>
         </div>
       </Modal>
     )

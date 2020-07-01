@@ -27,9 +27,12 @@ import Info from 'components/Cards/Info'
 import Banner from 'components/Cards/Banner'
 import EditModal from 'devops/components/Modals/DevOpsEdit'
 
+import UserStore from 'stores/user'
+import RoleStore from 'stores/role'
+
 import styles from './index.scss'
 
-@inject('rootStore')
+@inject('rootStore', 'devopsStore')
 @observer
 class BaseInfo extends React.Component {
   state = {
@@ -37,51 +40,52 @@ class BaseInfo extends React.Component {
     showDelete: false,
   }
 
-  componentDidMount() {
-    this.store.fetchRoles(this.props.match.params)
-    this.store.fetchMembers(this.props.match.params)
-  }
+  roleStore = new RoleStore()
 
-  get store() {
-    return this.props.rootStore.devops
+  memberStore = new UserStore()
+
+  componentDidMount() {
+    this.memberStore.fetchList({
+      devops: this.devops,
+      cluster: this.cluster,
+    })
+
+    this.roleStore.fetchList({
+      devops: this.devops,
+      cluster: this.cluster,
+    })
   }
 
   get routing() {
     return this.props.rootStore.routing
   }
 
-  get workspace() {
-    return this.store.data.workspace
+  get store() {
+    return this.props.devopsStore
   }
 
   get project_id() {
     return this.props.match.params.project_id
   }
 
-  get enabledActions() {
-    return globals.app.getActions({
-      module: 'devops',
-      workspace: this.workspace,
-      project:
-        this.props.match.params.devops || this.props.match.params.project_id,
-    })
+  get devops() {
+    return this.store.devops
   }
 
-  getWorkspaceUrl() {
-    const workspace = this.workspace
+  get workspace() {
+    return this.props.match.params.workspace
+  }
 
-    if (
-      globals.app.hasPermission({ module: 'workspaces', action: 'manage' }) ||
-      globals.app.hasPermission({
-        module: 'workspaces',
-        action: 'view',
-        workspace,
-      })
-    ) {
-      return `/workspaces/${workspace}/overview`
-    }
+  get cluster() {
+    return this.props.match.params.cluster
+  }
 
-    return '/'
+  get enabledActions() {
+    return globals.app.getActions({
+      module: 'devops-settings',
+      cluster: this.cluster,
+      devops: this.devops,
+    })
   }
 
   get itemActions() {
@@ -113,11 +117,20 @@ class BaseInfo extends React.Component {
     })
   }
 
-  handleEdit = ({ project_id, ...data }) => {
-    this.store.update(project_id, data).then(() => {
-      this.hideEdit()
-      this.store.fetchDetail(this.props.match.params)
-    })
+  handleEdit = ({ name, ...data }) => {
+    this.store
+      .update(
+        { name, cluster: this.cluster, workspace: this.workspace },
+        data,
+        true
+      )
+      .then(() => {
+        this.hideEdit()
+        this.store.fetchDetail({
+          workspace: this.workspace,
+          ...this.props.match.params,
+        })
+      })
   }
 
   hideDelete = () => {
@@ -127,9 +140,12 @@ class BaseInfo extends React.Component {
   }
 
   handleDelete = () => {
-    const { project_id } = this.props.match.params
     this.store
-      .delete({ project_id }, { workspace: this.workspace })
+      .delete({
+        name: this.devops,
+        cluster: this.cluster,
+        workspace: this.workspace,
+      })
       .then(() => {
         this.routing.push('/')
       })
@@ -177,6 +193,9 @@ class BaseInfo extends React.Component {
   }
 
   renderBaseInfo() {
+    const roleCount = this.roleStore.list.total
+    const memberCount = this.memberStore.list.total
+
     return (
       <div className="margin-t12">
         <Card title={t('Basic Info')} operations={this.renderOperations()}>
@@ -186,21 +205,25 @@ class BaseInfo extends React.Component {
               image="/assets/default-workspace.svg"
               title={this.workspace}
               desc={t('Workspace')}
-              url={this.getWorkspaceUrl()}
+              url={`/workspaces/${this.workspace}/overview`}
             />
             <Info
               className={styles.info}
               icon="group"
-              title={this.store.members.total}
+              title={memberCount}
               desc={t('Members')}
-              url={`/devops/${this.project_id}/members`}
+              url={`/${this.workspace}/clusters/${this.cluster}/devops/${
+                this.project_id
+              }/members`}
             />
             <Info
               className={styles.info}
               icon="role"
-              title={this.store.roles.total}
+              title={roleCount}
               desc={t('Project Roles')}
-              url={`/devops/${this.project_id}/roles`}
+              url={`/${this.workspace}/clusters/${this.cluster}/devops/${
+                this.project_id
+              }/roles`}
             />
           </div>
         </Card>
@@ -223,7 +246,6 @@ class BaseInfo extends React.Component {
         <EditModal
           detail={data}
           workspace={this.workspace}
-          members={toJS(this.store.members.data)}
           visible={this.state.showEdit}
           onOk={this.handleEdit}
           onCancel={this.hideEdit}
@@ -234,6 +256,7 @@ class BaseInfo extends React.Component {
           desc={t.html('DELETE_DEVOPS_TIP', {
             resource: data.name,
           })}
+          resource={data.name}
           visible={this.state.showDelete}
           onOk={this.handleDelete}
           onCancel={this.hideDelete}

@@ -19,49 +19,44 @@
 import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
-import { get, isEmpty, omitBy } from 'lodash'
+import { get } from 'lodash'
 
-import FORM_TEMPLATES from 'utils/form.templates'
 import RoleStore from 'stores/role'
-import { Notify } from 'components/Base'
-import ProjectEditModal from 'components/Modals/ProjectEdit'
-import QuotaEditModal from 'components/Modals/QuotaEdit'
-import ProjectDeleteModal from 'components/Modals/Delete'
-import DefaultResourceEditModal from 'projects/components/Modals/DefaultResourceEdit'
+import UserStore from 'stores/user'
+import QuotaStore from 'stores/quota'
+
+import { trigger } from 'utils/action'
 import Banner from 'components/Cards/Banner'
 import ProjectInfo from './ProjectInfo'
 import ResourceQuota from './ResourceQuota'
 import DefaultResource from './DefaultResource'
 
-@inject('rootStore')
+@inject('rootStore', 'projectStore')
 @observer
+@trigger
 class BaseInfo extends React.Component {
-  constructor(props) {
-    super(props)
+  roleStore = new RoleStore()
 
-    this.state = {
-      showEdit: false,
-      showDelete: false,
-      showEditQuota: false,
-      showEditDefaultResource: false,
-    }
+  memberStore = new UserStore()
 
-    this.roleStore = new RoleStore()
+  quotaStore = new QuotaStore()
+
+  state = {
+    showEdit: false,
+    showDelete: false,
+    showEditQuota: false,
+    showEditDefaultResource: false,
   }
 
   componentDidMount() {
-    this.store.fetchMembers(this.params)
+    this.memberStore.fetchList(this.params)
     this.roleStore.fetchList(this.params)
-    this.store.fetchLimitRanges(this.params)
     this.quotaStore.fetch(this.params)
+    this.store.fetchLimitRanges(this.params)
   }
 
   get store() {
-    return this.props.rootStore.project
-  }
-
-  get quotaStore() {
-    return this.props.rootStore.quota
+    return this.props.projectStore
   }
 
   get routing() {
@@ -73,11 +68,7 @@ class BaseInfo extends React.Component {
   }
 
   get workspace() {
-    return this.store.data.workspace
-  }
-
-  get namespace() {
-    return this.params.namespace
+    return this.params.workspace
   }
 
   get tips() {
@@ -95,47 +86,55 @@ class BaseInfo extends React.Component {
 
   get enabledActions() {
     return globals.app.getActions({
-      module: 'projects',
-      project: this.namespace,
+      module: 'project-settings',
+      ...this.params,
+      project: this.params.namespace,
     })
   }
 
-  getWorkspaceUrl() {
-    const workspace = this.workspace
-
-    if (
-      globals.app.hasPermission({ module: 'workspaces', action: 'manage' }) ||
-      globals.app.hasPermission({
-        module: 'workspaces',
-        action: 'view',
-        workspace,
-      })
-    ) {
-      return `/workspaces/${workspace}/overview`
-    }
-
-    return '/'
+  getData = () => {
+    this.store.fetchDetail(this.params)
   }
 
   get itemActions() {
+    const { routing } = this.props
+    const { detail } = this.store
+    const limitRanges = toJS(this.store.limitRanges.data)
     const actions = [
       {
         key: 'edit',
         icon: 'pen',
         action: 'edit',
         text: t('Edit Info'),
+        onClick: () =>
+          this.trigger('resource.baseinfo.edit', {
+            detail,
+            success: this.getData,
+          }),
       },
       {
         key: 'edit-default-resource',
         icon: 'pen',
         action: 'edit',
         text: t('Edit Resource Default Request'),
+        onClick: () =>
+          this.trigger('project.default.resource', {
+            ...this.props.match.params,
+            detail: limitRanges[0],
+            success: () => this.store.fetchLimitRanges(this.props.match.params),
+          }),
       },
       {
         key: 'delete',
         icon: 'trash',
         action: 'delete',
         text: t('Delete Project'),
+        onClick: () =>
+          this.trigger('resource.delete', {
+            detail,
+            desc: t.html('DELETE_PROJECT_TIP', { resource: detail.name }),
+            success: () => routing.push('/'),
+          }),
       },
     ]
 
@@ -151,6 +150,11 @@ class BaseInfo extends React.Component {
         icon: 'pen',
         action: 'edit',
         text: t('Edit Quota'),
+        onClick: () =>
+          this.trigger('project.quota.edit', {
+            detail,
+            success: () => this.quotaStore.fetch(this.params),
+          }),
       })
     }
 
@@ -163,154 +167,18 @@ class BaseInfo extends React.Component {
     )
   }
 
-  hideEdit = () => {
-    this.setState({
-      showEdit: false,
-    })
-  }
-
-  handleEdit = data => {
-    this.store.patch({ name: this.namespace }, data).then(() => {
-      this.hideEdit()
-      this.store.fetchDetail(this.params)
-    })
-  }
-
-  hideDelete = () => {
-    this.setState({
-      showDelete: false,
-    })
-  }
-
-  handleDelete = () => {
-    this.store
-      .delete({ name: this.namespace }, { workspace: this.workspace })
-      .then(() => {
-        this.routing.push('/')
-      })
-  }
-
-  showEditDefaultResource = () => {
-    this.setState({ showEditDefaultResource: true })
-  }
-
-  hideEditDefaultResource = () => {
-    this.setState({ showEditDefaultResource: false })
-  }
-
-  handleEditDefaultResource = data => {
-    const limitRanges = toJS(this.store.limitRanges.data)
-
-    if (isEmpty(limitRanges[0])) {
-      this.store
-        .createLimitRange(
-          { namespace: this.props.match.params.namespace },
-          {
-            ...FORM_TEMPLATES.limitRange(),
-            spec: {
-              limits: [
-                {
-                  ...data,
-                  type: 'Container',
-                },
-              ],
-            },
-          }
-        )
-        .then(() => {
-          this.store.fetchLimitRanges(this.props.match.params)
-          this.hideEditDefaultResource()
-        })
-    } else {
-      this.store
-        .updateLimitRange(limitRanges[0], {
-          ...limitRanges[0]._originData,
-          spec: {
-            limits: [
-              {
-                ...limitRanges[0].limit,
-                ...data,
-              },
-            ],
-          },
-        })
-        .then(() => {
-          this.store.fetchLimitRanges(this.props.match.params)
-          this.hideEditDefaultResource()
-        })
-    }
-  }
-
-  showEditQuota = () => {
-    this.setState({ showEditQuota: true })
-  }
-
-  hideEditQuota = () => {
-    this.setState({ showEditQuota: false })
-  }
-
-  handleEditQuota = data => {
-    const params = {
-      name: data.name,
-      namespace: this.namespace,
-    }
-
-    const spec = get(data, 'spec.hard', {})
-    data.spec = { hard: omitBy(spec, isEmpty) }
-
-    this.quotaStore.checkName(params).then(resp => {
-      if (resp.exist) {
-        this.quotaStore
-          .update(params, {
-            apiVersion: 'v1',
-            kind: 'ResourceQuota',
-            metadata: { ...params, name: this.namespace },
-            spec: data.spec,
-          })
-          .then(this.postEditQuota)
-      } else {
-        this.quotaStore
-          .create({
-            apiVersion: 'v1',
-            kind: 'ResourceQuota',
-            metadata: { ...params, name: this.namespace },
-            spec: data.spec,
-          })
-          .then(this.postEditQuota)
-      }
-    })
-  }
-
-  postEditQuota = () => {
-    this.hideEditQuota()
-    this.quotaStore.fetch(this.params)
-    Notify.success({ content: `${t('Updated Successfully')}!` })
-  }
-
   handleMoreMenuClick = (e, key) => {
-    switch (key) {
-      case 'edit':
-        this.setState({ showEdit: true })
-        break
-      case 'edit-default-resource':
-        this.setState({ showEditDefaultResource: true })
-        break
-      case 'edit-quota':
-        this.setState({ showEditQuota: true })
-        break
-      case 'delete':
-        this.setState({ showDelete: true })
-        break
-      default:
-        break
+    const action = this.enabledItemActions.find(_action => _action.key === key)
+    if (action && action.onClick) {
+      action.onClick()
     }
   }
 
   render() {
-    const data = toJS(this.store.data)
+    const detail = toJS(this.store.detail)
 
     const roleCount = this.roleStore.list.total
-    const memberCount = this.store.members.total
+    const memberCount = this.memberStore.list.total
     const serviceCount = get(this.quotaStore, 'data.used["count/services"]', 0)
     const limitRanges = toJS(this.store.limitRanges.data)
     const quota = toJS(this.quotaStore.data)
@@ -325,7 +193,7 @@ class BaseInfo extends React.Component {
           tips={this.tips}
         />
         <ProjectInfo
-          detail={data}
+          detail={detail}
           roleCount={roleCount}
           memberCount={memberCount}
           serviceCount={serviceCount}
@@ -335,36 +203,6 @@ class BaseInfo extends React.Component {
         />
         <DefaultResource detail={limitRanges[0]} />
         <ResourceQuota detail={quota} />
-        <DefaultResourceEditModal
-          detail={limitRanges[0]}
-          namespace={this.namespace}
-          visible={this.state.showEditDefaultResource}
-          onOk={this.handleEditDefaultResource}
-          onCancel={this.hideEditDefaultResource}
-          isSubmitting={this.store.isSubmitting}
-        />
-        <ProjectEditModal
-          detail={data}
-          visible={this.state.showEdit}
-          onOk={this.handleEdit}
-          onCancel={this.hideEdit}
-          isSubmitting={this.store.isSubmitting}
-        />
-        <ProjectDeleteModal
-          detail={data}
-          desc={t.html('DELETE_PROJECT_TIP', { resource: data.name })}
-          visible={this.state.showDelete}
-          onOk={this.handleDelete}
-          onCancel={this.hideDelete}
-          isSubmitting={this.store.isSubmitting}
-        />
-        <QuotaEditModal
-          detail={data}
-          visible={this.state.showEditQuota}
-          onOk={this.handleEditQuota}
-          onCancel={this.hideEditQuota}
-          isSubmitting={this.quotaStore.isSubmitting}
-        />
       </div>
     )
   }

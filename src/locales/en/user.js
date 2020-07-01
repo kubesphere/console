@@ -19,22 +19,24 @@
 export default {
   user_active: 'Active',
   USER_ACTIVE: 'Active',
+  USER_PENDING: 'Pending',
   USER_DISABLED: 'Disabled',
   USER_NAME_DESC: 'Username can only contain lowercase letters and numbers.',
   EMAIL_DESC: '',
-  USER_SETTING_EMAIL_DESC: 'Email is used for logging in.',
+  USER_SETTING_EMAIL_DESC: 'Email is used for login.',
   PASSWORD_DESC:
     'Password must contain numbers and letters, and must be at least 6 characters in length.',
   ROLE_DESC:
     'The role types are classified into cluster and project. The role of cluster type is used for managing the cluster.',
-  ACCOUNTS_MANAGEMENT_DESC:
-    'System admin manages user information such as creating/updating/reading/deleting an account using this management component. Admin can also manage the role of any account. User uses the account name or email to log in the platform.',
-  PLATFORM_ROLES_DESC:
-    'The platform role defines the access control mechanism within the cluster scope for authorized users.',
+  USER_DESC: 'This module allows the system admin to manage accounts, such as creating/updating/reading/deleting an account. The admin can also manage the role of each account. Users can log in the platform through their account name or email address.',
+  USER_CREATE_DESC:
+    'This module allows the system admin to manage accounts, such as creating/updating/reading/deleting an account. The admin can also manage the role of each account. Users can log in the platform through their account name or email address.',
   ROLE_BASEINFO_DESC: '',
   ROLE_AUTHORIZATION_DESC: '',
   USER_AVATAR_TIP:
     'The avatar size must be less than 120px X 120px and support png, jpg format.',
   MEMBER_ROLE_CREATE_DESC:
     "User rights management roles depend on the definition, role identifies the user's identity, defines the relationship between the user and can access resources / operations. When KubeSphere does not meet the requirements of preset roles, according to the actual situation, create a custom role to a user, self-defined roles that is the biggest advantage of fine-grained management of platform resources, specify what the role has certain specified resource authorization.",
+  CLUSTER_ROLE_DESC:
+    'This module allows you to manage the access of users within a cluster.',
 }

@@ -20,7 +20,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { get } from 'lodash'
 
-import { action } from 'mobx'
+import { action, toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import { Form, Modal } from 'components/Base'
 import { Input, Select } from '@pitrix/lego-ui'
@@ -41,6 +41,18 @@ const typesDict = {
   username_password: 'usernamePassword',
   ssh: 'sshUserPrivateKey',
   kubeconfig: 'kubeconfigContent',
+}
+
+const setCredentialType = str => {
+  const typeReg = /\$\{\[([\w-]*)\(/
+  const type = str.match(typeReg) && str.match(typeReg)[1]
+  if (type) {
+    const credentialType = Object.entries(typesDict).find(
+      typeArr => typeArr[1] === type
+    )[0]
+    return credentialType
+  }
+  return null
 }
 
 @observer
@@ -73,21 +85,9 @@ export default class WithCredentials extends React.Component {
       const str = get(nextProps, 'edittingData.data.value', '')
       if (str) {
         const formData = groovyToJS(str)
-        const credentialType = this.setCredentialType(str)
+        const credentialType = setCredentialType(str)
         return { formData, credentialType }
       }
-    }
-    return null
-  }
-
-  setCredentialType = str => {
-    const typeReg = /\$\{\[([\w-]*)\(/
-    const type = str.match(typeReg) && str.match(typeReg)[1]
-    if (type) {
-      const credentialType = Object.entries(typesDict).find(
-        typeArr => typeArr[1] === type
-      )[0]
-      return credentialType
     }
     return null
   }
@@ -95,7 +95,6 @@ export default class WithCredentials extends React.Component {
   @action
   handleCredentialChange = id => {
     const { credentials } = this.props.store
-
     const selectedCredential = credentials.find(
       credential => credential.value === id
     )
@@ -121,10 +120,10 @@ export default class WithCredentials extends React.Component {
       case 'username_password':
         return (
           <React.Fragment>
-            <Form.Item label={t('password Variable')}>
+            <Form.Item label={t('Password Variable')}>
               <Input name="passwordVariable" />
             </Form.Item>
-            <Form.Item label={t('username Variable')}>
+            <Form.Item label={t('Username Variable')}>
               <Input name="usernameVariable" />
             </Form.Item>
           </React.Fragment>
@@ -193,7 +192,7 @@ export default class WithCredentials extends React.Component {
           >
             <Select
               name="credentialsId"
-              options={credentials}
+              options={toJS(credentials)}
               onChange={this.handleCredentialChange}
             />
           </Form.Item>

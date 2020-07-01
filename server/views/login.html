@@ -26,11 +26,11 @@
     </a>
     <div class="login">
       <div class="login-form <%- error ? 'login-form-error' : '' %>">
-        <div class="login-header"><%- t('Log In please') %></div>
+        <div class="login-header"><%- t('Please Log In') %></div>
         <div class="login-divider"></div>
         <% if (oauthServers) { %> <% oauthServers.forEach(function(server) { %>
         <div class="login-oauth" data-url="<%- server.url %>">
-          <span><%- t(server.title) %></span>
+          <span><%- t('Log In with %s', server.title) %></span>
         </div>
         <% }) %> <% } %> <% if (error) { %>
         <div class="login-error">
@@ -39,7 +39,7 @@
         <% } %>
         <form action="<%- loginPath %>" method="post">
           <div class="login-form-item">
-            <label for="username"><%- t('UserName or Email') %>:</label>
+            <label for="username"><%- t('Username or Email') %>:</label>
             <input
               type="text"
               id="username"
@@ -138,6 +138,11 @@
           Array.prototype.forEach.call($oauthBtns, function(el) {
             el.addEventListener('click', handleOAuthLogin)
           })
+
+          // clear error login data. prevent auto submit on page reloading.
+          if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href)
+          }
         }
 
         function ready(fn) {

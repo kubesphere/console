@@ -67,6 +67,11 @@ export default class Component extends React.Component {
     this.getData(props.pods)
   }
 
+  get prefix() {
+    const { workspace, cluster, namespace } = this.props
+    return `/${workspace}/clusters/${cluster}/projects/${namespace}`
+  }
+
   componentDidUpdate(prevProps) {
     const { pods } = this.props
     if (!isEqual(pods, prevProps.pods)) {
@@ -78,6 +83,7 @@ export default class Component extends React.Component {
     if (!isEmpty(_pods)) {
       this.monitorStore
         .fetchMetrics({
+          cluster: this.props.cluster,
           namespace: this.props.namespace,
           resources: _pods.map(pod => pod.name),
           metrics: Object.values(MetricTypes),
@@ -169,9 +175,9 @@ export default class Component extends React.Component {
           <div className={styles.title}>
             <div className="h6">
               <Link
-                to={`/projects/${jobDetail.namespace}/${workloadType}/${
-                  data.name
-                }-${data.version}`}
+                to={`${this.prefix}/${workloadType}/${data.name}-${
+                  data.version
+                }`}
               >
                 {data.name}
               </Link>
@@ -222,7 +228,7 @@ export default class Component extends React.Component {
         </div>
         <ul className={styles.pods} style={listStyle}>
           {pods.map(item => (
-            <Item data={item} key={item.uid} />
+            <Item data={item} key={item.uid} prefix={this.prefix} />
           ))}
         </ul>
       </div>

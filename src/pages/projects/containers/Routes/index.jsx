@@ -17,64 +17,37 @@
  */
 
 import React from 'react'
-import { isEmpty } from 'lodash'
 import { toJS } from 'mobx'
-import { observer, inject } from 'mobx-react'
+import { isEmpty } from 'lodash'
+
 import { Icon } from '@pitrix/lego-ui'
+import { Avatar, Text, Panel, Button } from 'components/Base'
+import Banner from 'components/Cards/Banner'
+import Table from 'components/Tables/List'
+import { withProjectList, ListPage } from 'components/HOCs/withList'
+
 import { getLocalTime, getDisplayName, getDocsUrl } from 'utils'
 import { ICON_TYPES } from 'utils/constants'
-import { getFormTemplate } from 'utils/form.templates'
-import { Text, Panel, Button, Avatar, Notify } from 'components/Base'
-import Base from 'core/containers/Base/List'
-import CreateModal from 'components/Modals/Create'
-import EditYamlModal from 'components/Modals/EditYaml'
-import EditBasicInfoModal from 'components/Modals/EditBasicInfo'
-import EditRouteAnnotationsModal from 'projects/components/Modals/RouteAnnotationsEdit'
-import EditRouteRulesModal from 'projects/components/Modals/RouteRulesEdit'
-import GatewaySettingModal from 'projects/components/Modals/GatewaySetting'
 
 import RouterStore from 'stores/router'
 
-import FORM_STEPS from 'configs/steps/ingresses'
-
 import styles from './index.scss'
 
-@inject('rootStore')
-@observer
-export default class Routes extends Base {
-  init() {
-    this.store = new RouterStore(this.module)
-
-    this.store.getGateway(this.props.match.params)
-
-    this.initWebsocket()
-  }
-
-  get module() {
-    return 'ingresses'
-  }
-
-  get authKey() {
-    return 'routes'
-  }
-
-  get name() {
-    return 'Route'
-  }
-
-  get steps() {
-    return FORM_STEPS
-  }
-
-  get formTemplate() {
-    const { namespace } = this.props.match.params
-    return getFormTemplate(namespace, this.module)
+@withProjectList({
+  store: new RouterStore(),
+  module: 'ingresses',
+  name: 'Route',
+})
+export default class Routers extends React.Component {
+  componentDidMount() {
+    this.props.store.getGateway(this.props.match.params)
   }
 
   get canSetGateway() {
     return globals.app.hasPermission({
-      module: 'advanced',
+      module: 'project-settings',
       action: 'manage',
+      cluster: this.props.match.params.cluster,
       project: this.props.match.params.namespace,
     })
   }
@@ -94,214 +67,131 @@ export default class Routes extends Base {
   }
 
   get itemActions() {
+    const { trigger } = this.props
     return [
       {
         key: 'edit',
         icon: 'pen',
-        text: t('EDIT'),
+        text: t('Edit'),
         action: 'edit',
-        onClick: this.showModal('editModal'),
+        onClick: item =>
+          trigger('resource.baseinfo.edit', {
+            detail: item,
+          }),
       },
       {
         key: 'editYaml',
         icon: 'pen',
         text: t('Edit YAML'),
         action: 'edit',
-        onClick: this.showModal('editYamlModal'),
+        onClick: item =>
+          trigger('resource.yaml.edit', {
+            detail: item,
+          }),
       },
       {
         key: 'editRules',
         icon: 'firewall',
         text: t('Edit Rules'),
         action: 'edit',
-        onClick: this.showModal('editRulesModal'),
+        onClick: item =>
+          trigger('router.rules.edit', {
+            detail: item,
+          }),
       },
       {
         key: 'editAnnotations',
         icon: 'firewall',
         text: t('Edit Annotations'),
         action: 'edit',
-        onClick: this.showModal('editAnnotationsModal'),
+        onClick: item =>
+          trigger('router.annotations.edit', {
+            detail: item,
+          }),
       },
       {
         key: 'delete',
         icon: 'trash',
         text: t('Delete'),
         action: 'delete',
-        onClick: this.showModal('deleteModal'),
+        onClick: item =>
+          trigger('resource.delete', {
+            type: t(this.name),
+            detail: item,
+          }),
       },
     ]
   }
 
-  getColumns = () => [
-    {
-      title: t('Name'),
-      dataIndex: 'name',
-      sorter: true,
-      sortOrder: this.getSortOrder('name'),
-      search: true,
-      render: (name, record) => (
-        <Avatar
-          icon={ICON_TYPES[this.module]}
-          iconSize={40}
-          title={getDisplayName(record)}
-          desc={record.description || '-'}
-          to={`${this.prefix}/${name}`}
-        />
-      ),
-    },
-    {
-      title: t('Gateway Address'),
-      dataIndex: 'loadBalancerIngress[0].ip',
-      isHideable: true,
-      width: '22%',
-    },
-    {
-      title: t('Application'),
-      dataIndex: 'app.kubernetes.io/name',
-      isHideable: true,
-      search: true,
-      width: '22%',
-      render: (_, record) => record.app,
-    },
-    {
-      title: t('Created Time'),
-      dataIndex: 'createTime',
-      sorter: true,
-      sortOrder: this.getSortOrder('createTime'),
-      isHideable: true,
-      width: 150,
-      render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
-    },
-    {
-      key: 'more',
-      width: 20,
-      render: this.renderMore,
-    },
-  ]
-
-  getEmptyProps() {
-    const { data, isLoading } = this.store.gateway
-
-    if (isEmpty(data) && !isLoading) {
-      return { onCreate: null }
-    }
-
-    return {}
+  getColumns = () => {
+    const { getSortOrder, module } = this.props
+    return [
+      {
+        title: t('Name'),
+        dataIndex: 'name',
+        sorter: true,
+        sortOrder: getSortOrder('name'),
+        search: true,
+        render: (name, record) => (
+          <Avatar
+            icon={ICON_TYPES[module]}
+            iconSize={40}
+            title={getDisplayName(record)}
+            desc={record.description || '-'}
+            to={`${this.props.match.url}/${name}`}
+          />
+        ),
+      },
+      {
+        title: t('Gateway Address'),
+        dataIndex: 'loadBalancerIngress',
+        isHideable: true,
+        width: '22%',
+        render: loadBalancerIngress => (
+          <div>
+            {loadBalancerIngress.map((item, index) => (
+              <p key={index}>{item.ip || item.hostname}</p>
+            ))}
+          </div>
+        ),
+      },
+      {
+        title: t('Application'),
+        dataIndex: 'app.kubernetes.io/name',
+        isHideable: true,
+        search: true,
+        width: '22%',
+        render: (_, record) => record.app,
+      },
+      {
+        title: t('Created Time'),
+        dataIndex: 'createTime',
+        sorter: true,
+        sortOrder: getSortOrder('createTime'),
+        isHideable: true,
+        width: 150,
+        render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
+      },
+    ]
   }
 
-  handleEditAnnotations = newObject => {
-    const { selectItem } = this.state
-
-    this.store.update(selectItem, newObject).then(() => {
-      this.hideModal('editAnnotationsModal')()
-      Notify.success({ content: `${t('Updated Successfully')}!` })
-      this.routing.query()
+  showCreate = () => {
+    const { match, module, projectStore } = this.props
+    return this.props.trigger('router.create', {
+      module,
+      projectDetail: projectStore.detail,
+      namespace: match.params.namespace,
+      cluster: match.params.cluster,
     })
   }
 
-  handleYamlEdit = newObject => {
-    const { selectItem } = this.state
-
-    this.store.update(selectItem, newObject).then(() => {
-      this.hideModal('editYamlModal')()
+  showAddGateway = () => {
+    const { store, trigger, match } = this.props
+    trigger('project.gateway.edit', {
+      detail: toJS(store.gateway.data),
+      ...this.props.match.params,
+      success: () => store.getGateway(match.params),
     })
-  }
-
-  handleEditRules = newObject => {
-    const { selectItem } = this.state
-
-    this.store.update(selectItem, newObject).then(() => {
-      this.hideModal('editRulesModal')()
-      Notify.success({ content: `${t('Updated Successfully')}!` })
-      this.routing.query()
-    })
-  }
-
-  handleGatewaySetting = data => {
-    const { namespace } = this.props.match.params
-
-    this.store.addGateway({ namespace }, data).then(() => {
-      this.hideModal('addGateway')()
-      this.store.getGateway({ namespace })
-    })
-  }
-
-  renderExtraModals() {
-    const {
-      createModal,
-      editModal,
-      editYamlModal,
-      editAnnotationsModal,
-      editRulesModal,
-      addGateway,
-      selectItem = {},
-    } = this.state
-
-    const { isSubmitting } = this.store
-
-    return (
-      <div>
-        <EditRouteAnnotationsModal
-          visible={editAnnotationsModal}
-          detail={selectItem._originData}
-          isSubmitting={isSubmitting}
-          onOk={this.handleEditAnnotations}
-          onCancel={this.hideModal('editAnnotationsModal')}
-        />
-        <EditRouteRulesModal
-          visible={editRulesModal}
-          detail={selectItem._originData}
-          isSubmitting={isSubmitting}
-          onOk={this.handleEditRules}
-          onCancel={this.hideModal('editRulesModal')}
-        />
-        <GatewaySettingModal
-          detail={toJS(this.store.gateway.data)}
-          visible={addGateway}
-          onOk={this.handleGatewaySetting}
-          onCancel={this.hideModal('addGateway')}
-          isSubmitting={isSubmitting}
-        />
-        <CreateModal
-          name={this.name}
-          module={this.module}
-          store={this.store}
-          visible={createModal}
-          steps={this.steps}
-          formTemplate={this.formTemplate}
-          isSubmitting={isSubmitting}
-          onOk={this.handleCreate}
-          onCancel={this.hideModal('createModal')}
-        />
-        <EditBasicInfoModal
-          visible={editModal}
-          detail={selectItem._originData}
-          isSubmitting={isSubmitting}
-          onOk={this.handleEdit}
-          onCancel={this.hideModal('editModal')}
-        />
-        <EditYamlModal
-          store={this.store}
-          visible={editYamlModal}
-          detail={selectItem._originData}
-          isSubmitting={isSubmitting}
-          onOk={this.handleYamlEdit}
-          onCancel={this.hideModal('editYamlModal')}
-        />
-      </div>
-    )
-  }
-
-  renderHeader() {
-    const { data, isLoading } = this.store.gateway
-
-    return (
-      <>
-        {Base.prototype.renderHeader.call(this)}
-        {isEmpty(data) && !isLoading && this.renderCreateGateway()}
-      </>
-    )
   }
 
   renderCreateGateway() {
@@ -311,20 +201,40 @@ export default class Routes extends Base {
           <Icon className="margin-r12" name="loadbalancer" size={40} />
           <Text
             className={styles.text}
-            title={t('Gateway not set')}
+            title={t('Gateway Not Set')}
             description={t('PROJECT_INTERNET_ACCESS_DESC')}
           />
           {this.canSetGateway && (
             <Button
               className={styles.button}
               type="control"
-              onClick={this.showModal('addGateway')}
+              onClick={this.showAddGateway}
             >
               {t('Set Gateway')}
             </Button>
           )}
         </div>
       </Panel>
+    )
+  }
+
+  render() {
+    const { bannerProps, tableProps } = this.props
+    const { data, isLoading } = this.props.store.gateway
+    return (
+      <ListPage {...this.props}>
+        <Banner {...bannerProps} tips={this.tips} />
+        {isEmpty(data) && !isLoading ? (
+          this.renderCreateGateway()
+        ) : (
+          <Table
+            {...tableProps}
+            itemActions={this.itemActions}
+            columns={this.getColumns()}
+            onCreate={this.showCreate}
+          />
+        )}
+      </ListPage>
     )
   }
 }

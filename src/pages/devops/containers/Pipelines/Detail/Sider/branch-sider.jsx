@@ -17,7 +17,7 @@
  */
 
 import React from 'react'
-import { action } from 'mobx'
+import { action, toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import moment from 'moment-mini'
 import { get } from 'lodash'
@@ -32,6 +32,8 @@ import { ReactComponent as ForkIcon } from 'src/assets/fork.svg'
 
 import PipelineStore from 'stores/devops/pipelines'
 import CodeQualityStore from 'stores/devops/codeQuality'
+import DevopsStore from 'stores/devops'
+
 import { renderRoutes } from 'utils/router.config'
 import { getPipelineStatus } from 'utils/status'
 
@@ -43,15 +45,17 @@ class BranchSider extends Base {
     super(props)
 
     this.store = new PipelineStore()
+    this.devopsStore = new DevopsStore()
     this.sonarqubeStore = new CodeQualityStore()
     this.state = {
       showBranchModal: false,
     }
+    this.init()
   }
 
   get listUrl() {
-    const { project_id } = this.props.match.params
-    return `/devops/${project_id}/pipelines`
+    const { workspace, project_id } = this.props.match.params
+    return `/${workspace}/clusters/:cluster/devops/${project_id}/pipelines`
   }
 
   get name() {
@@ -66,7 +70,7 @@ class BranchSider extends Base {
 
   get updateTime() {
     const { activityList } = this.store
-    const updateTime = get(activityList.data, '[0].startTime', '')
+    const updateTime = get(toJS(activityList.data), '[0].startTime', '')
     if (!updateTime) {
       return '-'
     }
@@ -74,14 +78,36 @@ class BranchSider extends Base {
   }
 
   get enabledActions() {
+    const { cluster, project_id } = this.props.match.params
+    const devops = this.store.getDevops(project_id)
+
     return globals.app.getActions({
       module: 'pipelines',
-      project: this.props.match.params.project_id,
+      cluster,
+      devops,
+    })
+  }
+
+  init = async () => {
+    const { params } = this.props.match
+
+    await Promise.all([
+      this.devopsStore.fetchDetail(params),
+      this.props.rootStore.getRules({
+        workspace: params.workspace,
+      }),
+    ])
+
+    await this.props.rootStore.getRules({
+      cluster: params.cluster,
+      workspace: params.workspace,
+      devops: this.store.getDevops(params.project_id),
     })
   }
 
   fetchData = () => {
     const { params } = this.props.match
+    this.store.setProjectId(params.project_id)
     this.store.getBranchDetail(params)
     this.store.fetchDetail(params)
     this.getSonarqube()
@@ -98,7 +124,7 @@ class BranchSider extends Base {
       key: 'run',
       type: 'control',
       text: t('Run'),
-      action: 'trigger',
+      action: 'edit',
       onClick: this.handleRun,
     },
   ]
@@ -122,7 +148,9 @@ class BranchSider extends Base {
       {
         name: t('Status'),
         value: (
-          <Status {...getPipelineStatus(get(activityList.data, '[0]', {}))} />
+          <Status
+            {...getPipelineStatus(get(toJS(activityList.data), '[0]', {}))}
+          />
         ),
       },
       {
@@ -151,7 +179,6 @@ class BranchSider extends Base {
   @action
   handleBranchSelect = async branch => {
     const { params } = this.props.match
-
     const result = await this.store.getBranchDetail({
       ...params,
       branch,

@@ -22,19 +22,21 @@ import { inject, observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { isEmpty, get, throttle } from 'lodash'
+import {
+  Icon,
+  Level,
+  LevelLeft,
+  LevelRight,
+  Pagination,
+  Loading,
+  Select,
+} from '@pitrix/lego-ui'
 
 import { joinSelector } from 'utils'
 import { startAutoRefresh, stopAutoRefresh } from 'utils/monitoring'
 import PodStore from 'stores/pod'
 import PodMonitorStore from 'stores/monitoring/pod'
 
-import {
-  Level,
-  LevelLeft,
-  LevelRight,
-  Pagination,
-  Loading,
-} from '@pitrix/lego-ui'
 import { Panel, Search, Button } from 'components/Base'
 import PodItem from './Item'
 
@@ -54,6 +56,7 @@ export default class PodsCard extends React.Component {
     detail: PropTypes.object,
     hideHeader: PropTypes.bool,
     hideFooter: PropTypes.bool,
+    isFederated: PropTypes.bool,
     onSearch: PropTypes.func,
     onRefresh: PropTypes.func,
     onPage: PropTypes.func,
@@ -65,6 +68,7 @@ export default class PodsCard extends React.Component {
     detail: {},
     hideHeader: false,
     hideFooter: false,
+    isFederated: false,
     onSearch() {},
     onRefresh() {},
     onPage() {},
@@ -76,23 +80,26 @@ export default class PodsCard extends React.Component {
     this.store = new PodStore()
     this.monitorStore = new PodMonitorStore()
 
-    this.params = this.getParams(props)
+    this.state = {
+      expandItem: '',
+      selectCluster:
+        get(props, 'clusters[0]', '') || props.detail.cluster || '',
+    }
 
     this.websocket = props.rootStore.websocket
     this.initWebsocket()
 
-    this.state = {
-      expandItem: '',
-    }
+    this.params = this.getParams(props)
   }
 
   initWebsocket() {
     const { onUpdate } = this.props
+    const { selectCluster } = this.state
     const { namespace, selector } = this.props.detail || {}
 
-    const url = `api/v1/watch/namespaces/${namespace}/pods?labelSelector=${joinSelector(
-      selector
-    )}`
+    const url = `api/v1/watch${
+      selectCluster ? `/klusters/${selectCluster}` : ''
+    }/namespaces/${namespace}/pods?labelSelector=${joinSelector(selector)}`
 
     if (url && namespace && selector) {
       this.websocket.watch(url)
@@ -104,7 +111,7 @@ export default class PodsCard extends React.Component {
         message => {
           if (message.object.kind === 'Pod' && message.type === 'MODIFIED') {
             this.fetchData({ noMetrics: true, silent: true }).then(() => {
-              onUpdate && onUpdate()
+              onUpdate && onUpdate(selectCluster)
             })
           }
         }
@@ -133,9 +140,14 @@ export default class PodsCard extends React.Component {
   }
 
   getParams = (props = {}) => {
-    const { name, namespace, kind, _originData } = props.detail || {}
+    const { selectCluster } = this.state
+    const { name, namespace, kind, selector, _originData } = props.detail || {}
     const _kind = kind || get(_originData, 'kind', '')
-    const result = {}
+    let result = {}
+
+    if (selectCluster) {
+      result.cluster = selectCluster
+    }
 
     if (namespace) {
       result.namespace = namespace
@@ -148,17 +160,25 @@ export default class PodsCard extends React.Component {
       case 'Node':
         result.nodeName = name
         break
-      case 'Service':
-        result.serviceName = name
+      case 'Namespace':
+        result.namespace = name
         break
       default:
-        result.ownerKind = _kind
-        result.ownerName = name
+        result.ownerKind = kind === 'Deployment' ? 'ReplicaSet' : kind
+        result.labelSelector = joinSelector(selector)
+        if (isEmpty(selector)) {
+          result = {}
+        }
     }
     return result
   }
 
   fetchData = async ({ noMetrics, silent, ...params } = {}) => {
+    if (isEmpty(this.params)) {
+      this.store.list.isLoading = false
+      return
+    }
+
     const { limit } = this.props
     silent && (this.store.list.silent = true)
     await this.store.fetchList({
@@ -194,33 +214,13 @@ export default class PodsCard extends React.Component {
     return pagination
   }
 
-  getPodPrefix = (pod = {}) => {
-    if (this.props.prefix) {
-      return this.props.prefix
-    }
-
-    let prefix = `/projects/${pod.namespace}`
-
-    const { name, kind, _originData } = this.props.detail
-    const _kind = kind || get(_originData, 'kind', '')
-    if (_kind === 'Node') {
-      prefix = `/infrastructure/nodes/${name}/projects/${pod.namespace}`
-    }
-
-    return prefix
-  }
-
   getPodMetrics = pod => {
     const data = this.monitorStore.data
     const metrics = {}
 
     Object.entries(MetricTypes).forEach(([key, value]) => {
       const records = get(data, `${value}.data.result`) || []
-      metrics[key] = records.find(
-        item =>
-          get(item, 'metric.resource_name', get(item, 'metric.pod')) ===
-          pod.name
-      )
+      metrics[key] = records.find(item => get(item, 'metric.pod') === pod.name)
     })
     return metrics
   }
@@ -255,22 +255,53 @@ export default class PodsCard extends React.Component {
     }))
   }
 
-  renderHeader = () => (
-    <div className={styles.header}>
-      <Search
-        className={styles.search}
-        name="search"
-        placeholder={t('Please input a keyword to filter')}
-        onSearch={this.handleSearch}
-      />
-      <div className={styles.actions}>
-        <Button type="flat" icon="refresh" onClick={this.handleRefresh} />
+  getClustersOptions = () => {
+    const { clusters } = this.props
+    return clusters.map(cluster => ({
+      label: cluster,
+      value: cluster,
+    }))
+  }
+
+  handleClusterChange = cluster => {
+    this.setState({ selectCluster: cluster }, () => {
+      this.params = this.getParams(this.props)
+      this.fetchData()
+      this.initWebsocket()
+    })
+  }
+
+  renderHeader = () => {
+    const { isFederated } = this.props
+    return (
+      <div className={styles.header}>
+        {isFederated && (
+          <Select
+            name="cluster"
+            prefixIcon={<Icon name="cluster" />}
+            className={styles.cluster}
+            value={this.params.cluster}
+            options={this.getClustersOptions()}
+            onChange={this.handleClusterChange}
+          />
+        )}
+        <Search
+          className={styles.search}
+          name="search"
+          placeholder={t('Please input a keyword to filter')}
+          onSearch={this.handleSearch}
+        />
+        <div className={styles.actions}>
+          <Button type="flat" icon="refresh" onClick={this.handleRefresh} />
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 
   renderContent() {
+    const { prefix, isFederated } = this.props
     const { data, isLoading, silent } = this.store.list
+    const { selectCluster } = this.state
 
     const content = (
       <div className={styles.body}>
@@ -280,7 +311,9 @@ export default class PodsCard extends React.Component {
           data.map(pod => (
             <PodItem
               key={pod.name}
-              prefix={this.getPodPrefix(pod)}
+              prefix={
+                isFederated ? `${prefix}/clusters/${selectCluster}` : prefix
+              }
               detail={pod}
               metrics={this.getPodMetrics(pod)}
               loading={this.monitorStore.isLoading}
@@ -315,8 +348,12 @@ export default class PodsCard extends React.Component {
   }
 
   render() {
-    const { className, title, hideHeader, hideFooter } = this.props
+    const { className, title, hideHeader, hideFooter, noWrapper } = this.props
     const { data, isLoading } = this.store.list
+
+    if (noWrapper) {
+      return this.renderContent()
+    }
 
     return (
       <Panel

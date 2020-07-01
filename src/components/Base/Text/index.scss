@@ -16,6 +16,42 @@
   }
 }
 
+.ellipsis {
+  flex: 1;
+  overflow: hidden;
+
+  .text {
+    flex: 1;
+    overflow: hidden;
+
+    & > div {
+      @include ellipsis;
+    }
+    & > p {
+      @include ellipsis;
+    }
+  }
+}
+
 .icon {
   margin-right: 12px;
+}
+
+.clickable {
+  cursor: pointer;
+
+  &:hover {
+    .text {
+      & > div,
+      & > p {
+        color: $primary;
+      }
+    }
+    .icon {
+      :global .qicon {
+        color: #00aa72;
+        fill: #90e0c5;
+      }
+    }
+  }
 }

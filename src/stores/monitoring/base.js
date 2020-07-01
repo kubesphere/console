@@ -45,13 +45,10 @@ export const getMinuteValue = (timeStr = '60s', hasUnit = true) => {
 
 export const getTimeRange = ({ step = '600s', times = 20 } = {}) => {
   const interval = parseFloat(step) * times
-  const end = Date.now() / 1000
+  const end = Math.floor(Date.now() / 1000)
   const start = end - interval
 
-  return {
-    start,
-    end,
-  }
+  return { start, end }
 }
 
 export default class BaseMonitoringStore {
@@ -71,12 +68,15 @@ export default class BaseMonitoringStore {
 
   data = {}
 
-  constructor(module) {
-    this.module = module
+  constructor(filters = {}) {
+    Object.keys(filters).forEach(key => set(this, key, filters[key]))
   }
 
   get apiVersion() {
-    return 'kapis/monitoring.kubesphere.io/v1alpha2'
+    if (globals.app.isMultiCluster && this.cluster) {
+      return `kapis/clusters/${this.cluster}/monitoring.kubesphere.io/v1alpha3`
+    }
+    return 'kapis/monitoring.kubesphere.io/v1alpha3'
   }
 
   getApi = () => `${this.apiVersion}/cluster`
@@ -251,6 +251,10 @@ export default class BaseMonitoringStore {
       this.isLoading = true
     }
 
+    if (filters.cluster) {
+      this.cluster = filters.cluster
+    }
+
     const params = this.getParams(filters)
     const api = this.getApi(filters)
     const response = await to(request.get(api, params))
@@ -272,18 +276,16 @@ export default class BaseMonitoringStore {
 
   @action
   checkEtcd = async () => {
-    if (this.isConfirmSupportETCD) {
-      return
-    }
-
-    const api =
-      './apis/monitoring.coreos.com/v1/namespaces/kubesphere-monitoring-system/servicemonitors/etcd'
+    const api = `apis${
+      this.cluster && globals.app.isMultiCluster
+        ? `/clusters/${this.cluster}`
+        : ''
+    }/monitoring.coreos.com/v1/namespaces/kubesphere-monitoring-system/servicemonitors/etcd`
     this.etcdChecking = true
 
     try {
       const response = await request.get(api, {}, {}, () => {})
       this.supportETCD = response.code !== '404'
-      this.isConfirmSupportETCD = true
     } catch (e) {
       this.supportETCD = false
     } finally {

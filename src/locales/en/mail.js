@@ -17,20 +17,20 @@
  */
 
 export default {
-  MAIL_SERVER_DESC: 'Provides mail delivery service with custom settings.',
+  MAIL_SERVER_DESC: 'This module provides email delivery services with custom settings.',
   EMPTY_MAIL_SERVER:
-    'Temporarily no mail server is set up. You need to set up a mail server to provide mail delivery service.',
-  TEST_EMAIL_RECIPIENT: 'Acceptance test mail address',
-  TEST_EMAIL_ADDRESS_FORM_DESC: 'The testing address to receive the email',
-  SENDER_MAIL: 'Sender Mail',
+    'Temporarily no email server has been set up. You need to set up an email server to provide email delivery services.',
+  TEST_EMAIL_RECIPIENT: 'Testing Email Address',
+  TEST_EMAIL_ADDRESS_FORM_DESC: 'The testing address to receive emails',
+  SENDER_MAIL: 'Sender Email Address',
   SENDER_NICKNAME: 'Sender Nickname',
   FROM_EMAIL_ADDR_DESC:
-    'The sender mail account(Do not fill in means the same as the "SMTP User" value)',
+    'The sender email account (Blank means it is the same as the "SMTP User" value)',
 
   MAIL_SERVER_CONFIG_NEED_SAVE_TIP:
-    'Current mailbox configuration is not available',
+    'The email configuration has been set successfully, please save the server configuration.',
   MAIL_SERVER_CONFIG_INVALID_TIP:
-    'Mail configuration is successful, please save the server configuration',
+    'The current email configuration is not available.',
   MAIL_SERVER_CONFIG_NEED_VERIFIED_TIP:
-    'Your current mail configuration has changed, please re-send a test message and save the configuration, modify or cancel',
+    'The current email configuration has changed, please resend a test email and save the configuration. Or you can also discard your modification.',
 }

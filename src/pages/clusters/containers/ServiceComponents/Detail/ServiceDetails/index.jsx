@@ -17,12 +17,17 @@
  */
 
 import React from 'react'
-import { observer } from 'mobx-react'
+import { observer, inject } from 'mobx-react'
 
 import PodsCard from 'components/Cards/Pods'
 
+import ServiceStore from 'stores/service'
+
+@inject('detailStore')
 @observer
 export default class ServiceDetails extends React.Component {
+  serviceStore = new ServiceStore()
+
   get module() {
     return this.props.module
   }
@@ -31,15 +36,22 @@ export default class ServiceDetails extends React.Component {
     return this.props.detailStore
   }
 
+  componentDidMount() {
+    this.serviceStore.fetchDetail(this.props.match.params)
+  }
+
   render() {
-    const { namespace, name } = this.props.match.params
-    const detail = {
-      kind: 'Service',
-      ...this.store.detail,
+    const { cluster } = this.props.match.params
+
+    if (this.serviceStore.isLoading) {
+      return null
     }
 
     return (
-      <PodsCard detail={detail} prefix={`/components/${namespace}/${name}`} />
+      <PodsCard
+        detail={this.serviceStore.detail}
+        prefix={`/clusters/${cluster}`}
+      />
     )
   }
 }

@@ -17,16 +17,15 @@
  */
 
 import React from 'react'
-import { computed, toJS } from 'mobx'
+import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import { get, capitalize } from 'lodash'
+import { Loading } from '@pitrix/lego-ui'
 
-import { Notify, Image } from 'components/Base'
-import Base from 'core/containers/Base/Detail'
-import BaseInfo from 'core/containers/Base/Detail/BaseInfo'
-import AppEditModal from 'apps/components/Modals/AppEdit'
-import HelmUploadModal from 'apps/components/Modals/HelmUpload'
-import AppDeployModal from 'apps/components/Modals/AppDeploy'
+import { trigger } from 'utils/action'
+
+import DetailPage from 'core/containers/Base/Detail/Page'
+import { Image } from 'components/Base'
 
 import AppStore from 'stores/openpitrix/app'
 import VersionStore from 'stores/openpitrix/version'
@@ -37,18 +36,32 @@ import {
 } from 'utils/app'
 import { getLocalTime } from 'utils'
 
+import routes from './routes'
+
 import styles from './index.scss'
 
 @inject('rootStore')
 @observer
-export default class AppDetail extends Base {
-  init() {
-    this.store = new AppStore()
-    this.versionStore = new VersionStore()
+@trigger
+export default class RoleDetail extends React.Component {
+  store = new AppStore()
+
+  versionStore = new VersionStore()
+
+  componentDidMount() {
+    this.fetchData()
+  }
+
+  get module() {
+    return this.store.module
   }
 
   get authKey() {
-    return 'apps'
+    return 'app-templates'
+  }
+
+  get name() {
+    return 'Apps'
   }
 
   get workspace() {
@@ -59,49 +72,64 @@ export default class AppDetail extends Base {
     return `/workspaces/${this.workspace}/apps`
   }
 
-  getOperations = () => [
-    {
-      key: 'editApp',
-      type: 'control',
-      text: t('Edit Info'),
-      action: 'manage',
-      onClick: this.showModal('editApp'),
-    },
-    {
-      key: 'appDeploy',
-      icon: 'snapshot',
-      text: t('Deploy'),
-      action: 'manage',
-      onClick: this.showModal('appDeploy'),
-    },
-    {
-      key: 'addVersion',
-      icon: 'tag',
-      text: t('New Version'),
-      action: 'manage',
-      onClick: this.showModal('helmUpload'),
-    },
-    {
-      key: 'delete',
-      icon: 'trash',
-      text: t('Delete'),
-      action: 'manage',
-      onClick: this.showModal('deleteModule'),
-    },
-  ]
-
-  @computed
-  get detailName() {
-    const { name } = this.store.detail
-
-    return name
+  get routing() {
+    return this.props.rootStore.routing
   }
 
-  @computed
-  get detailDesc() {
-    const { description } = this.store.detail
+  fetchData = () => {
+    this.store.fetchDetail(this.props.match.params)
+  }
 
-    return description
+  getOperations = () => {
+    const { detail } = this.store
+    return [
+      {
+        key: 'editApp',
+        type: 'control',
+        text: t('Edit Info'),
+        action: 'manage',
+        onClick: () =>
+          this.trigger('openpitrix.template.edit', {
+            detail: toJS(detail),
+            title: t('Edit App Information'),
+            description: t('EDIT_APP_DESC'),
+            icon: 'pen',
+          }),
+      },
+      {
+        key: 'appDeploy',
+        icon: 'snapshot',
+        text: t('Deploy'),
+        action: 'manage',
+        onClick: () =>
+          this.trigger('openpitrix.template.deploy', {
+            ...this.props.match.params,
+            app: toJS(detail),
+          }),
+      },
+      {
+        key: 'addVersion',
+        icon: 'tag',
+        text: t('New Version'),
+        action: 'manage',
+        onClick: () =>
+          this.trigger('openpitrix.template.addVersion', {
+            title: t('UPLOAD_HELM_TITLE'),
+            description: t('New Version'),
+            icon: 'templet',
+            appId: detail.app_id,
+            type: 'ADD_VERSION',
+            versionStore: this.versionStore,
+          }),
+      },
+      {
+        key: 'delete',
+        icon: 'trash',
+        text: t('Delete'),
+        action: 'manage',
+        onClick: () => this.showModal('deleteModule'),
+      },
+    ]
   }
 
   getAttrs = () => {
@@ -136,35 +164,9 @@ export default class AppDetail extends Base {
     ]
   }
 
-  saveApp = params => {
-    this.store.update(params).then(() => {
-      this.hideModal('editApp')()
-      Notify.success({ content: `${t('Modify Successfully')}!` })
-      this.fetchData()
-    })
-  }
-
-  handleAddVersion = params => {
-    this.versionStore.create(params).then(() => {
-      this.hideModal('helmUpload')()
-      Notify.success({ content: `${t('Add Version Successfully')}!` })
-      this.fetchData()
-    })
-  }
-
-  handleDeploy = params => {
-    const { workspace, namespace, ...rest } = params
-    this.store.deploy(rest, { namespace }).then(() => {
-      this.hideModal('appDeploy')()
-      Notify.success({ content: `${t('Deploy Successfully')}!` })
-      this.fetchData()
-    })
-  }
-
-  renderSider() {
+  renderIcon = () => {
     const { detail } = this.store
-
-    const icon = (
+    return (
       <div className={styles.appName}>
         <Image
           iconSize={32}
@@ -174,58 +176,31 @@ export default class AppDetail extends Base {
         />
       </div>
     )
-
-    return (
-      <BaseInfo
-        icon={icon}
-        name={get(detail, 'name', '')}
-        desc={this.detailDesc}
-        operations={this.getEnabledOperations()}
-        labels={this.labels}
-        attrs={this.getAttrs()}
-      />
-    )
   }
 
-  renderExtraModals() {
-    const { detail, isSubmitting } = this.store
-    const { editApp, helmUpload } = this.state
+  render() {
+    const stores = { detailStore: this.store, versionStore: this.versionStore }
 
-    return (
-      <div>
-        <AppEditModal
-          isSubmitting={isSubmitting}
-          title={t('Edit App Information')}
-          description={t('EDIT_APP_DESC')}
-          icon={'pen'}
-          visible={editApp}
-          onOk={this.saveApp}
-          onCancel={this.hideModal('editApp')}
-          detail={toJS(detail)}
-          store={this.store}
-        />
-        <HelmUploadModal
-          title={t('UPLOAD_HELM_TITLE')}
-          description={t('New Version')}
-          icon={'templet'}
-          visible={helmUpload}
-          appId={detail.app_id}
-          isSubmitting={isSubmitting}
-          type={'ADD_VERSION'}
-          onOk={this.handleAddVersion}
-          onCancel={this.hideModal('helmUpload')}
-        />
-        <AppDeployModal
-          title={detail.name}
-          description={detail.description}
-          params={this.props.match.params}
-          app={toJS(detail)}
-          visible={this.state.appDeploy}
-          isSubmitting={isSubmitting}
-          onOk={this.handleDeploy}
-          onCancel={this.hideModal('appDeploy')}
-        />
-      </div>
-    )
+    if (this.store.isLoading && !this.store.detail.name) {
+      return <Loading className="ks-page-loading" />
+    }
+
+    const sideProps = {
+      icon: this.renderIcon(),
+      module: this.module,
+      authKey: this.authKey,
+      name: this.store.detail.name,
+      desc: this.store.detail.description,
+      operations: this.getOperations(),
+      attrs: this.getAttrs(),
+      breadcrumbs: [
+        {
+          label: t('App Templates'),
+          url: this.listUrl,
+        },
+      ],
+    }
+
+    return <DetailPage stores={stores} routes={routes} {...sideProps} />
   }
 }

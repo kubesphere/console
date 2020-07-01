@@ -85,7 +85,7 @@ export default class AppInfo extends React.PureComponent {
       <div className={classnames(styles.appInfo, className)}>
         <div>
           <h3 className={styles.title}>{t('Introduction')}</h3>
-          <Markdown source={abstraction || t('None')} hideLoading={true} />
+          <Markdown source={abstraction || t('None')} />
         </div>
         <div>
           <h3 className={styles.title}>{t('Screenshots')}</h3>

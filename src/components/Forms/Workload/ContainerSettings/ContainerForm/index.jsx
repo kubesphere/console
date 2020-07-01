@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { isEmpty } from 'lodash'
+import { isEmpty, cloneDeep } from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
@@ -39,6 +39,7 @@ export default class ContaineForm extends React.Component {
     className: PropTypes.string,
     type: PropTypes.string,
     titlePrefix: PropTypes.string,
+    cluster: PropTypes.string,
     namespace: PropTypes.string,
     module: PropTypes.string,
     data: PropTypes.object,
@@ -52,6 +53,7 @@ export default class ContaineForm extends React.Component {
     className: '',
     type: 'Add',
     titlePrefix: '',
+    cluster: '',
     namespace: '',
     module: '',
     data: {},
@@ -85,6 +87,7 @@ export default class ContaineForm extends React.Component {
 
     this.state = {
       containerType: props.data.type || 'worker',
+      formData: cloneDeep(props.data),
     }
   }
 
@@ -116,7 +119,7 @@ export default class ContaineForm extends React.Component {
   }
 
   handleSubmit = callback => {
-    const { onSave } = this.props
+    const { onSave, withService } = this.props
     const form = this.formRef.current
 
     form &&
@@ -141,6 +144,14 @@ export default class ContaineForm extends React.Component {
           )
         }
 
+        if (!withService && data.ports) {
+          data.ports.forEach(item => {
+            if (item.servicePort !== undefined) {
+              delete item.servicePort
+            }
+          })
+        }
+
         onSave(data)
         callback && callback()
       })
@@ -153,13 +164,16 @@ export default class ContaineForm extends React.Component {
   render() {
     const {
       className,
-      data,
       configMaps,
       secrets,
+      quota,
+      limitRange,
+      imageRegistries,
+      cluster,
       namespace,
       withService,
     } = this.props
-    const { containerType } = this.state
+    const { containerType, formData } = this.state
 
     return (
       <div className={classNames(styles.wrapper, className)}>
@@ -169,10 +183,14 @@ export default class ContaineForm extends React.Component {
           </a>
           {this.title}
         </div>
-        <Form ref={this.formRef} data={data}>
+        <Form ref={this.formRef} data={formData}>
           <ContainerSetting
-            data={data}
+            data={formData}
+            quota={quota}
+            cluster={cluster}
             namespace={namespace}
+            limitRange={limitRange}
+            imageRegistries={imageRegistries}
             defaultContainerType={containerType}
             onContainerTypeChange={this.handleContainerTypeChange}
           />

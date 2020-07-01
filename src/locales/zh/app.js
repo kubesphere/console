@@ -17,7 +17,9 @@
  */
 
 export default {
-  APP_TEMPLATE_DESCRIPTION:
+  APP_TEMPLATE_DESC:
+    'KubeSphere 提供全生命周期的应用管理，可以上传或者创建新的应用模板，并且快速部署它们，也可以通过应用商店进行发布应用。',
+  APP_TEMPLATE_CREATE_DESC:
     'KubeSphere 提供全生命周期的应用管理，可以上传或者创建新的应用模板，并且快速部署它们，也可以通过应用商店进行发布应用。',
   DEVELOP_APP_TITLE: '开发应用模板',
   DEVELOP_APP_DESC:
@@ -31,15 +33,16 @@ export default {
     'KubeSphere 提供全生命周期的应用管理，可以上传或者创建新的应用模板，并且快速部署它们，也可以通过应用商店进行发布应用。',
 
   'Apps Management': '应用管理',
+  'App Store Management': '应用商店管理',
   'Certified Provider': '已认证服务商',
 
   'App Info': '应用信息',
   'Base Info': '基本信息',
   'App Details': '应用详情',
+  'App Config': '应用配置',
   Introduction: '使用说明',
   'Terms of service': '服务条款',
   'Config File': '配置文件',
-  'Chart File': '配置文件',
   'Chart Files': '配置文件',
   'Update Log': '更新日志',
   'No update log': '暂无更新日志',
@@ -47,7 +50,8 @@ export default {
   APP_NAME_DESC: '应用的重要标识',
   'Select file': '选择文件',
   'Application Name': '应用名称',
-  'App Abstraction': '应用简介',
+  'Application Version': '应用版本',
+  'App Description': '应用简介',
   APP_ABSTRACTION_DESC: '对应用的概括性介绍',
   APP_DETAIL_DESC: '在用户搜索应用时会非常有帮助',
   'Upload Icon': '上传图标',
@@ -56,6 +60,7 @@ export default {
   APP_ICON_SIZE: '图形大小: 96px*96*px',
   'Start edit': '开始编辑',
   File: '文件',
+  'Platform App Store Management': '平台级应用商店管理',
 
   'App Store': '应用商店',
   APP_STORE_DESC: '对已上架、已下架的应用进行管理',
@@ -65,7 +70,9 @@ export default {
   'Release / Suspended Time': '上架(下架)时间',
 
   'App Review': '应用审核',
+  'App Reviews': '应用审核',
   APP_REVIEW_DESC: '对服务商的认证及应用上架提供审核功能',
+  APP_REVIEWS_CREATE_DESC: '对服务商的认证及应用上架提供审核功能',
   Unprocessed: '待处理',
   Processed: '已处理',
   'Review Object': '审核对象',
@@ -109,7 +116,6 @@ export default {
   'Edit App Informatio': '编辑应用信息',
   EDIT_APP_DESC: '对应用的基本信息进行设置',
   'App Number': '应用编号',
-  Category: '分类',
   'App Version Types': '交付类型',
   'App Provider': '应用服务商',
   'Create Time': '创建时间',
@@ -192,7 +198,7 @@ export default {
   'Format png/svg background transparency is the best':
     '格式: png/svg 背景透明最佳',
   CHOOSE_APP_CATEGORY_DESC: '选择适合的应用分类，便于用户更快发现你的应用',
-  'Service provider website': '服务商网站',
+  'Service Provider Website': '服务商网站',
   "Service provider's official website address": '服务商的官方网站地址',
   MODIFY_VERSION_TIPS: '每次修改的内容都将跟随下一次版本上架而真正生效。',
   UNDER_REVIEW_TIPS: '当前应用有版本正在审核中，以下信息暂时不可更改',
@@ -209,4 +215,9 @@ export default {
   APP_CATE_UNCATEGORIZED: '未分类',
 
   MISS_FILE_NOTE: '文件{file}没有找到',
+
+  'Please select a project to deploy': '请选择项目部署',
+  'Please select a workspace': '请选择企业空间',
+  'Please select a cluster': '请选择集群',
+  'Please select a project': '请选择项目',
 }

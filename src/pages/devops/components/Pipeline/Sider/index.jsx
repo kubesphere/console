@@ -37,10 +37,13 @@ const AgentType = [
 export default class Sider extends React.Component {
   @observable
   stageName
+
   @observable
   formData = {}
+
   @observable
   showYaml = false
+
   @observable
   loading = false
 
@@ -48,6 +51,7 @@ export default class Sider extends React.Component {
     const args = toJS(
       get(this.props.store.jsonData, 'json.pipeline.agent.arguments', [])
     )
+
     this.formData = args.reduce((data, arg) => {
       data[arg.key] = arg.value.value
       return data
@@ -93,7 +97,7 @@ export default class Sider extends React.Component {
     this.getAgentArguments()
     this.loading = true
     const result = await this.props.store
-      .convertJsonToJenkinsFile()
+      .convertJsonToJenkinsFile(this.props.store.params)
       .finally(() => {
         this.loading = false
       })
@@ -121,7 +125,7 @@ export default class Sider extends React.Component {
                 'The label on which to run the Pipeline or individual stage'
               )}
             >
-              <Input name="label" defaultValue="default" />
+              <Input name="label" defaultValue="base" />
             </Form.Item>
           </Form>
         )

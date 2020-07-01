@@ -17,28 +17,31 @@
  */
 
 import React from 'react'
-import { Link } from 'react-router-dom'
-import { observer, inject } from 'mobx-react'
 import { reaction } from 'mobx'
-import { parse } from 'qs'
+import { Link } from 'react-router-dom'
 import { get } from 'lodash'
+
+import { Avatar, Status } from 'components/Base'
+import Banner from 'components/Cards/Banner'
+import { withProjectList, ListPage } from 'components/HOCs/withList'
+import Table from 'components/Tables/List'
 
 import { getLocalTime, getDisplayName } from 'utils'
 import { ICON_TYPES } from 'utils/constants'
-import { Avatar, Status } from 'components/Base'
-import Banner from 'components/Cards/Banner'
-import STEPS from 'configs/steps/imagebuilder'
-import EditBasicInfoModal from 'components/Modals/EditBasicInfo'
-import CreateModal from 'components/Modals/Create'
-import FORM_TEMPLATES from 'utils/form.templates'
 
 import S2IBuilderStore from 'stores/s2i/builder'
 
-import Base from 'core/containers/Base/List'
+@withProjectList({
+  store: new S2IBuilderStore('s2ibuilders'),
+  module: 's2ibuilders',
+  name: 'Image Builder',
+})
+export default class ImageBuilders extends React.Component {
+  get store() {
+    return this.props.store
+  }
 
-class ImageBuilder extends Base {
-  init() {
-    this.store = new S2IBuilderStore(this.module)
+  componentDidMount() {
     this.freshDisposer = reaction(
       () => this.store.list.isLoading,
       () => {
@@ -54,164 +57,128 @@ class ImageBuilder extends Base {
     )
   }
 
-  get module() {
-    return 's2ibuilders'
-  }
-
-  get name() {
-    return 'Image Builder'
-  }
-
-  get steps() {
-    return STEPS
+  componentWillUnmount() {
+    this.freshDisposer && this.freshDisposer()
+    clearTimeout(this.freshTimer)
   }
 
   get itemActions() {
+    const { trigger, name } = this.props
     return [
       {
         key: 'edit',
         icon: 'pen',
-        text: t('EDIT'),
+        text: t('Edit'),
         action: 'edit',
-        onClick: this.showModal('editModal'),
+        onClick: item =>
+          trigger('resource.baseinfo.edit', {
+            detail: item,
+          }),
       },
       {
         key: 'delete',
         icon: 'trash',
         text: t('Delete'),
         action: 'delete',
-        onClick: this.showModal('deleteModal'),
+        onClick: item =>
+          trigger('resource.delete', {
+            type: t(name),
+            detail: item,
+          }),
       },
     ]
   }
 
-  get formTemplate() {
-    const { namespace } = this.props.match.params
-
-    return FORM_TEMPLATES.s2ibuilders({ namespace })
-  }
-
-  unMountActions = () => {
-    this.freshDisposer && this.freshDisposer()
-    clearTimeout(this.freshTimer)
-  }
-
-  handleFresh = () => {
-    const params = parse(location.search.slice(1))
-    this.getData({ ...params, silent: true })
-  }
-
-  getColumns = () => [
-    {
-      title: t('Name'),
-      dataIndex: 'name',
-      render: (name, record) => (
-        <Avatar
-          icon={ICON_TYPES[this.module]}
-          iconSize={40}
-          title={getDisplayName(record)}
-          desc={
-            record.serviceName
-              ? t('Build image for service x', {
-                  service: record.serviceName,
-                })
-              : '-'
-          }
-          to={`${this.prefix}/${name}`}
-        />
-      ),
-    },
-    {
-      title: t('Status'),
-      dataIndex: 'status',
-      isHideable: true,
-      width: '15%',
-      render: status => {
-        let _status = get(status, 'lastRunState', '')
-        _status = _status === 'Running' ? 'Building' : _status
-        return (
-          <Status
-            name={t(_status || 'Not running yet')}
-            type={_status || 'Unknown'}
-            flicker
+  getColumns = () => {
+    const { prefix, module } = this.props
+    return [
+      {
+        title: t('Name'),
+        dataIndex: 'name',
+        render: (name, record) => (
+          <Avatar
+            icon={ICON_TYPES[module]}
+            iconSize={40}
+            title={getDisplayName(record)}
+            desc={
+              record.serviceName
+                ? t('Build image for service x', {
+                    service: record.serviceName,
+                  })
+                : '-'
+            }
+            to={`${prefix}/${name}`}
           />
-        )
+        ),
       },
-    },
-    {
-      title: t('type'),
-      dataIndex: 'type',
-      isHideable: true,
-      width: '15%',
-      render: type => t(type),
-    },
-    {
-      title: t('Service'),
-      dataIndex: 'serviceName',
-      width: '15%',
-      render: name => {
-        if (name) {
-          return <Link to={`./services/${name}/`}>{name}</Link>
-        }
-        return '-'
+      {
+        title: t('Status'),
+        dataIndex: 'status',
+        isHideable: true,
+        width: '15%',
+        render: status => {
+          let _status = get(status, 'lastRunState', '')
+          _status = _status === 'Running' ? 'Building' : _status
+          return (
+            <Status
+              name={t(_status || 'Not running yet')}
+              type={_status || 'Unknown'}
+              flicker
+            />
+          )
+        },
       },
-    },
-    {
-      title: t('Created Time'),
-      dataIndex: 'createTime',
-      isHideable: true,
-      width: 150,
-      render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
-    },
-    {
-      key: 'more',
-      width: 20,
-      render: this.renderMore,
-    },
-  ]
-
-  renderHeader() {
-    return (
-      <Banner
-        className="margin-b12"
-        title={t(this.title)}
-        description={t(`IMAGE_BUILDER_DESC`)}
-        module={this.module}
-        tips={this.tips}
-      />
-    )
+      {
+        title: t('type'),
+        dataIndex: 'type',
+        isHideable: true,
+        width: '15%',
+        render: type => t(type),
+      },
+      {
+        title: t('Service'),
+        dataIndex: 'serviceName',
+        width: '15%',
+        render: name => {
+          if (name) {
+            return <Link to={`./services/${name}/`}>{name}</Link>
+          }
+          return '-'
+        },
+      },
+      {
+        title: t('Created Time'),
+        dataIndex: 'createTime',
+        isHideable: true,
+        width: 150,
+        render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
+      },
+    ]
   }
 
-  renderExtraModals() {
-    const { editModal, selectItem = {}, createModal } = this.state
-    const { namespace } = this.props.match.params
+  showCreate = () => {
+    const { match, module, projectStore } = this.props
+    return this.props.trigger('imagebuilder.create', {
+      module,
+      projectDetail: projectStore.detail,
+      namespace: match.params.namespace,
+      cluster: match.params.cluster,
+    })
+  }
 
+  render() {
+    const { bannerProps, tableProps } = this.props
     return (
-      <div>
-        <CreateModal
-          noCodeEdit
-          namespace={namespace}
-          name={this.name}
-          module={this.module}
-          store={this.store}
-          visible={createModal}
-          steps={this.steps}
-          formTemplate={this.formTemplate}
-          isSubmitting={this.store.isSubmitting}
-          onOk={this.handleCreate}
-          onCancel={this.hideModal('createModal')}
+      <ListPage {...this.props}>
+        <Banner {...bannerProps} description={t(`IMAGE_BUILDER_DESC`)} />
+        <Table
+          {...tableProps}
+          itemActions={this.itemActions}
+          tableActions={this.tableActions}
+          columns={this.getColumns()}
+          onCreate={this.showCreate}
         />
-        <EditBasicInfoModal
-          visible={editModal}
-          detail={selectItem._originData}
-          isSubmitting={this.store.isSubmitting}
-          onOk={this.handleEdit}
-          onCancel={this.hideModal('editModal')}
-        />
-      </div>
+      </ListPage>
     )
   }
 }
-
-export default inject('rootStore')(observer(ImageBuilder))
-export const Component = ImageBuilder

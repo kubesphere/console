@@ -32,7 +32,7 @@ export default {
   MAIL_SERVER_CONFIG_NEED_VERIFIED_TIP:
     '您当前的服务器配置已发生变化，请重新发送测试邮件并保存配置，或者取消修改',
 
-  'Server UserName': '服务器用户名',
+  'Server Username': '服务器用户名',
   'Sender Email': '发件邮箱',
   'Platform Settings': '平台设置',
   TEST_EMAIL_RECIPIENT: '测试邮件接受地址',

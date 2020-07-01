@@ -17,7 +17,6 @@
  */
 
 import { action, observable } from 'mobx'
-import { isEmpty } from 'lodash'
 
 import { getNodeRoles } from 'utils/node'
 
@@ -36,40 +35,12 @@ export default class NodeStore extends Base {
   @observable
   masterWorkerCount = 0
 
-  constructor() {
-    super()
-    this.module = 'nodes'
-  }
-
-  getListUrl = () => `api/v1/${this.module}`
-
-  getDetailUrl = ({ name }) => `${this.getListUrl()}/${name}`
-
-  getResourceUrl = () => `kapis/resources.kubesphere.io/v1alpha2/${this.module}`
+  module = 'nodes'
 
   @action
-  async fetchListByK8s({ namespace, labelSelector, ...rest }) {
-    this.list.isLoading = true
-
-    const params = rest
-
-    if (!isEmpty(labelSelector)) {
-      params.labelSelector = labelSelector
-    }
-
-    const result = await request.get(this.getListUrl({ namespace }), params)
-
-    this.list = {
-      data: result.items.map(this.mapper),
-      total: result.items.length,
-      isLoading: false,
-    }
-  }
-
-  @action
-  async fetchCount() {
-    const resp = await request.get(this.getResourceUrl(), {
-      conditions: 'role=master',
+  async fetchCount(params) {
+    const resp = await request.get(this.getResourceUrl(params), {
+      labelSelector: 'node-role.kubernetes.io/master=',
     })
 
     const masterWorker = resp.items.filter(
@@ -78,7 +49,7 @@ export default class NodeStore extends Base {
           .length > 0
     ).length
 
-    this.masterCount = resp.total_count
+    this.masterCount = resp.totalItems
     this.masterWorkerCount = masterWorker
   }
 
@@ -97,22 +68,28 @@ export default class NodeStore extends Base {
   }
 
   @action
-  async cordon({ name }) {
+  async cordon({ cluster, name }) {
     const data = {
       spec: { unschedulable: true },
     }
-    const result = await request.patch(this.getDetailUrl({ name }), data)
+    const result = await request.patch(
+      this.getDetailUrl({ cluster, name }),
+      data
+    )
 
     this.detail = this.mapper(result)
     this.originDetail = result
   }
 
   @action
-  async uncordon({ name }) {
+  async uncordon({ cluster, name }) {
     const data = {
       spec: { unschedulable: null },
     }
-    const result = await request.patch(this.getDetailUrl({ name }), data)
+    const result = await request.patch(
+      this.getDetailUrl({ cluster, name }),
+      data
+    )
 
     this.detail = this.mapper(result)
     this.originDetail = result
@@ -125,7 +102,7 @@ export default class NodeStore extends Base {
         const node = this.list.data[rowKey]
         if (node.role === 'master') return null
 
-        return request.delete(this.getDetailUrl({ name: node.name }), {
+        return request.delete(this.getDetailUrl(node), {
           orphanDependents: false,
         })
       })

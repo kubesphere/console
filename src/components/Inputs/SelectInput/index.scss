@@ -1,0 +1,32 @@
+@import '~scss/mixins';
+
+.wrapper {
+  position: relative;
+  display: inline-block;
+  width: 455px;
+  height: 32px;
+
+  .caret {
+    @include vertical-center;
+    right: 12px;
+  }
+
+  :global {
+    .dropdown.dropdown-default .menu {
+      width: 455px;
+      padding: 8px 0;
+
+      .menu-item {
+        border-radius: 0;
+      }
+    }
+  }
+
+  .trigger {
+    position: absolute;
+    width: 0;
+    height: 32px;
+    top: 0;
+    right: 0;
+  }
+}

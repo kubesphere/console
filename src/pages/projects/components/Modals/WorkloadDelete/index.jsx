@@ -61,20 +61,6 @@ export default class WorkloadDeleteModal extends React.Component {
     }
   }
 
-  componentDidUpdate(prevProps) {
-    const { visible, resource } = this.props
-
-    if (visible !== prevProps.visible) {
-      if (visible) {
-        this.setState({ enableConfirm: false, relatedResources: [], timer: 3 })
-        this.fetchRelatedResources(resource)
-        this.startTimer()
-      } else {
-        this.timer && clearInterval(this.timer)
-      }
-    }
-  }
-
   componentDidMount() {
     if (this.props.visible) {
       this.fetchRelatedResources(this.props.resource)
@@ -112,11 +98,14 @@ export default class WorkloadDeleteModal extends React.Component {
     this.setState({ isLoading: true })
     let selectors = []
     let namespace
+    let cluster
     if (isArray(resource)) {
       namespace = resource[0].namespace
+      cluster = resource[0].cluster
       selectors = resource.map(item => item.selector)
     } else {
       namespace = resource.namespace
+      cluster = resource.cluster
       selectors.push(resource.selector)
     }
 
@@ -126,53 +115,53 @@ export default class WorkloadDeleteModal extends React.Component {
       if (!isEmpty(selector)) {
         const labelSelector = joinSelector(selector)
         requests.push(
-          this.volumeStore.fetchListByK8s({ namespace, labelSelector }),
-          this.serviceStore.fetchListByK8s({ namespace, labelSelector })
+          this.volumeStore.fetchListByK8s({
+            cluster,
+            namespace,
+            labelSelector,
+          }),
+          this.serviceStore.fetchListByK8s({
+            cluster,
+            namespace,
+            labelSelector,
+          })
         )
       }
     })
 
     const results = await Promise.all(requests)
     this.setState({
-      relatedResources: flatten(
-        results.map((resources = []) =>
-          resources.map(item => {
-            if (item.storageClassName) {
-              return {
-                ...item,
-                type: 'volumes',
-              }
-            }
-
-            return {
-              ...item,
-              type: 'services',
-            }
-          })
-        )
-      ),
+      relatedResources: flatten(results),
       isLoading: false,
     })
   }
 
   stopPropagation = e => e.stopPropagation()
 
-  handleOk = () => {
-    const { onOk } = this.props
+  handleOk = async () => {
+    const { onOk, resource, store } = this.props
     const { selectedRelatedResourceIds, relatedResources } = this.state
 
     const requests = []
-    relatedResources.forEach(resource => {
-      if (selectedRelatedResourceIds.includes(resource.uid)) {
-        if (resource.type === 'services') {
-          requests.push(this.serviceStore.delete(resource))
-        } else if (resource.type === 'volumes') {
-          requests.push(this.volumeStore.delete(resource))
+    relatedResources.forEach(item => {
+      if (selectedRelatedResourceIds.includes(item.uid)) {
+        if (item.module === 'services') {
+          requests.push(this.serviceStore.delete(item))
+        } else if (item.module === 'persistentvolumeclaims') {
+          requests.push(this.volumeStore.delete(item))
         }
       }
     })
 
-    Promise.all(requests)
+    await Promise.all(requests)
+
+    if (isArray(resource)) {
+      await Promise.all(resource.map(item => store.delete(item)))
+      store.list.setSelectRowKeys([])
+    } else {
+      await store.delete(resource)
+    }
+
     onOk()
   }
 
@@ -221,7 +210,7 @@ export default class WorkloadDeleteModal extends React.Component {
               onClick={this.stopPropagation}
             />
             <Icon
-              name={ICON_TYPES[resource.type]}
+              name={ICON_TYPES[resource.module]}
               size={20}
               type={
                 selectedRelatedResourceIds.includes(resource.uid)
@@ -231,7 +220,7 @@ export default class WorkloadDeleteModal extends React.Component {
             />
             <span className={styles.resourceName}>{resource.name}</span>
             <span className={styles.resourceType}>
-              {t(MODULE_KIND_MAP[resource.type])}
+              {t(MODULE_KIND_MAP[resource.module])}
             </span>
           </div>
         ))}
@@ -246,10 +235,9 @@ export default class WorkloadDeleteModal extends React.Component {
     const title = `${t('Sure to delete the workload(s)?')}`
 
     const description = t('DELETE_WORKLOAD_DESC', {
-      resource:
-        resource.length > 1
-          ? resource.map(item => item.name).join(', ')
-          : resource.name,
+      resource: isArray(resource)
+        ? resource.map(item => item.name).join(', ')
+        : resource.name,
     })
 
     return (

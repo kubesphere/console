@@ -61,18 +61,12 @@ export default class ProjectInfo extends React.Component {
           </div>
           <div className={styles.item}>
             <div>
-              <Link to="/">
-                {get(
-                  detail,
-                  'annotations["kubesphere.io/workspace"]',
-                  workspace || '-'
-                )}
-              </Link>
+              <Link to={`/workspaces/${workspace}`}>{workspace}</Link>
             </div>
             <p>{t('Workspace')}</p>
           </div>
           <div className={styles.item}>
-            <div>{get(detail, 'creator', '-')}</div>
+            <div>{get(detail, 'creator') || '-'}</div>
             <p>{t('Creator')}</p>
           </div>
           <div className={styles.item}>

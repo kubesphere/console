@@ -18,10 +18,10 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import { get, set, debounce } from 'lodash'
+import { set, debounce } from 'lodash'
 import { Columns, Column, Addons } from '@pitrix/lego-ui'
 
-import { TypeSelect, Button, Form } from 'components/Base'
+import { Button } from 'components/Base'
 import { NumberInput } from 'components/Inputs'
 
 import styles from './index.scss'
@@ -33,53 +33,6 @@ export default class ReplicasContorl extends React.Component {
 
   state = {
     replicas: this.props.replicas || 1,
-  }
-
-  get replicasPolicyOptions() {
-    const matchLabels = get(
-      this.props.template,
-      'spec.template.metadata.labels',
-      {}
-    )
-
-    const affinity = {
-      preferredDuringSchedulingIgnoredDuringExecution: [
-        {
-          weight: 100,
-          podAffinityTerm: {
-            labelSelector: {
-              matchLabels,
-            },
-            topologyKey: 'kubernetes.io/hostname',
-          },
-        },
-      ],
-    }
-
-    return [
-      {
-        uid: 'default',
-        label: t("Pod's default deployment"),
-        value: {},
-        description: t('Pod will be deployed by default policy'),
-      },
-      {
-        uid: 'decentralized',
-        label: t("Pod's decentralized deployment"),
-        value: {
-          podAntiAffinity: affinity,
-        },
-        description: t('Pod will be deployed at scattered nodes'),
-      },
-      {
-        uid: 'aggregation',
-        label: t("Pod's aggregation deployment"),
-        value: {
-          podAffinity: affinity,
-        },
-        description: t('Pod will be deployed at the same node'),
-      },
-    ]
   }
 
   triggerChange = debounce(() => {
@@ -129,25 +82,11 @@ export default class ReplicasContorl extends React.Component {
     )
   }
 
-  renderPolicy() {
-    const options = this.replicasPolicyOptions
-    return (
-      <Form.Item>
-        <TypeSelect
-          name="spec.template.spec.affinity"
-          options={options}
-          defaultValue={options[0].value}
-        />
-      </Form.Item>
-    )
-  }
-
   render() {
     return (
       <div className={styles.wrapper}>
         <Columns className="is-vcentered is-2">
           <Column className="is-narrow">{this.renderReplicas()}</Column>
-          <Column>{this.renderPolicy()}</Column>
         </Columns>
       </div>
     )

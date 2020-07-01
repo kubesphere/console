@@ -24,18 +24,23 @@ import BaseStore from './base'
 export default class CodeQualityStore extends BaseStore {
   @observable
   detail = {}
+
   @observable
   isLoading = true
 
   @action
-  fetchDetail = async ({ project_id, branch, name }) => {
+  fetchDetail = async ({ project_id, branch, name, cluster }) => {
     let url = ''
     if (branch) {
-      url = `kapis/devops.kubesphere.io/v1alpha2/devops/${project_id}/pipelines/${name}/branches/${encodeURIComponent(
+      url = `${this.getDevopsUrlV2({
+        cluster,
+      })}${project_id}/pipelines/${name}/branches/${encodeURIComponent(
         branch
       )}/sonarstatus `
     } else {
-      url = `kapis/devops.kubesphere.io/v1alpha2/devops/${project_id}/pipelines/${name}/sonarstatus`
+      url = `${this.getDevopsUrlV2({
+        cluster,
+      })}${project_id}/pipelines/${name}/sonarstatus`
     }
     this.isLoading = true
     const result = await this.request

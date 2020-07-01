@@ -16,33 +16,23 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get } from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Icon } from '@pitrix/lego-ui'
-
-import ProjectStore from 'stores/project'
-import DevOpsStore from 'stores/devops'
-
+import { Icon, Tooltip } from '@pitrix/lego-ui'
+import { Tag } from 'components/Base'
 import SelectModal from 'components/Modals/ProjectSelect'
-import CreateModal from 'components/Modals/ProjectCreate'
-import FORM_TEMPLATES from 'utils/form.templates'
 
 import styles from './index.scss'
 
 export default class Selector extends React.Component {
   static propTypes = {
-    icon: PropTypes.string,
-    defaultIcon: PropTypes.string,
-    value: PropTypes.string,
+    detail: PropTypes.object,
     onChange: PropTypes.func,
   }
 
   static defaultProps = {
-    icon: '',
-    defaultIcon: '/assets/default-project.svg',
     type: 'projects',
-    value: '',
+    detail: {},
     onChange() {},
   }
 
@@ -51,60 +41,6 @@ export default class Selector extends React.Component {
 
     this.state = {
       showSelect: false,
-      showCreate: false,
-      isSubmitting: false,
-    }
-
-    this.projectStore = new ProjectStore()
-    this.devopsStore = new DevOpsStore()
-  }
-
-  get enabledActions() {
-    return {
-      projects: globals.app.getActions({
-        workspace: this.workspace,
-        module: 'projects',
-      }),
-      devops: globals.app.getActions({
-        workspace: this.workspace,
-        module: 'devops',
-      }),
-    }
-  }
-
-  get workspace() {
-    return this.props.workspace.name
-  }
-
-  get createType() {
-    if (
-      this.enabledActions.projects.includes('create') &&
-      this.enabledActions.devops.includes('create')
-    ) {
-      return ''
-    } else if (this.enabledActions.projects.includes('create')) {
-      return 'projects'
-    } else if (this.enabledActions.devops.includes('create')) {
-      return 'devops'
-    }
-
-    return null
-  }
-
-  get formTemplate() {
-    if (!FORM_TEMPLATES.project) {
-      return {}
-    }
-
-    const template = FORM_TEMPLATES.project()
-    const limitRangeTemplate = FORM_TEMPLATES.limitRange()
-
-    return {
-      projects: {
-        Project: template,
-        LimitRange: limitRangeTemplate,
-      },
-      devops: {},
     }
   }
 
@@ -122,84 +58,41 @@ export default class Selector extends React.Component {
     onChange(value)
   }
 
-  showCreate = () => {
-    this.setState({ showCreate: true })
-  }
-
-  hideCreate = () => {
-    this.setState({ showCreate: false })
-  }
-
-  handleCreate = ({ type, ...data }) => {
-    const { onChange } = this.props
-    this.setState({ isSubmitting: true })
-    if (type === 'devops') {
-      this.devopsStore
-        .create(data, { workspace: this.workspace })
-        .then(result => {
-          this.hideCreate()
-          if (result.project_id) {
-            onChange(`/devops/${result.project_id}`)
-          }
-        })
-        .finally(() => {
-          this.setState({ isSubmitting: false })
-        })
-    } else {
-      const namespace =
-        get(data, 'metadata.name') || get(data, 'Project.metadata.name')
-      if (namespace) {
-        this.projectStore
-          .create(data, { workspace: this.workspace })
-          .then(() => {
-            this.hideCreate()
-            onChange(`/projects/${namespace}`)
-          })
-          .finally(() => {
-            this.setState({ isSubmitting: false })
-          })
-      }
-    }
-  }
-
   render() {
-    const { icon, defaultIcon, title, type, value, workspace } = this.props
+    const { title, type, detail, isFederated } = this.props
+    const { name, description, cluster, workspace } = detail
     const { showSelect } = this.state
 
     return (
       <div>
         <div className={styles.titleWrapper} onClick={this.showSelect}>
           <div className={styles.icon}>
-            <img src={icon || defaultIcon} alt="" />
+            <Icon
+              name={type === 'devops' ? 'strategy-group' : 'project'}
+              size={40}
+              type="light"
+            />
           </div>
           <div className={styles.text}>
-            <p>{title}</p>
-            <div className="h6" data-tooltip={value}>
-              {value}
-            </div>
+            <Tooltip content={name}>
+              <div className="h6">{name}</div>
+            </Tooltip>
+            <p>{description || title}</p>
           </div>
-          <div className={styles.arrow}>
-            <Icon name="caret-down" type="light" />
-          </div>
+          {isFederated && (
+            <Tag className={styles.tag} type="info">
+              {t('MULTI_CLUSTER')}
+            </Tag>
+          )}
         </div>
         <SelectModal
           defaultType={type}
-          workspace={workspace}
+          cluster={cluster}
+          workspace={workspace || this.props.workspace}
           visible={showSelect}
           onChange={this.handleSelect}
           onCancel={this.hideSelect}
-          onShowCreate={this.createType !== null ? this.showCreate : null}
         />
-        {this.createType !== null && (
-          <CreateModal
-            type={this.createType}
-            formTemplate={this.formTemplate}
-            visible={this.state.showCreate}
-            isSubmitting={this.state.isSubmitting}
-            onOk={this.handleCreate}
-            onCancel={this.hideCreate}
-          />
-        )}
       </div>
     )
   }

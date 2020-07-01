@@ -31,17 +31,28 @@ export default class ResourceStore {
   @observable
   isLoading = true
 
-  getServiceUrl = ({ name, namespace }) =>
-    `api/v1/namespaces/${namespace}/services/${name}`
+  getPath({ cluster, namespace } = {}) {
+    let path = ''
+    if (cluster) {
+      path += `/klusters/${cluster}`
+    }
+    if (namespace) {
+      path += `/namespaces/${namespace}`
+    }
+    return path
+  }
+
+  getServiceUrl = ({ name, cluster, namespace }) =>
+    `api/v${this.getPath({ cluster, namespace })}/services/${name}`
 
   @action
-  async checkService({ name, namespace }) {
+  async checkService({ name, cluster, namespace }) {
     if (!name || !namespace) {
       return
     }
 
     const result = await request.get(
-      this.getServiceUrl({ name, namespace }),
+      this.getServiceUrl({ name, cluster, namespace }),
       {},
       {
         headers: { 'x-check-exist': true },
@@ -52,11 +63,11 @@ export default class ResourceStore {
   }
 
   @action
-  async fetchService({ name, namespace }) {
+  async fetchService({ name, cluster, namespace }) {
     this.isLoading = true
 
     const result = await to(
-      request.get(this.getServiceUrl({ name, namespace }))
+      request.get(this.getServiceUrl({ name, cluster, namespace }))
     )
 
     this.service = ObjectMapper.services(result)

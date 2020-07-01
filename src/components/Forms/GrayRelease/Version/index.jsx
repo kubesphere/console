@@ -61,16 +61,19 @@ export default class Version extends ContainerSettings {
     return this.props.formTemplate.workload || {}
   }
 
+  get cluster() {
+    return this.props.cluster
+  }
+
   get namespace() {
     return get(this.formTemplate, 'metadata.namespace')
   }
 
   fetchData() {
-    const namespace = get(this.formTemplate, 'metadata.namespace')
-
+    const params = { namespace: this.namespace, cluster: this.cluster }
     Promise.all([
-      this.configMapStore.fetchByK8s({ namespace }),
-      this.secretStore.fetchByK8s({ namespace }),
+      this.configMapStore.fetchListByK8s(params),
+      this.secretStore.fetchListByK8s(params),
     ]).then(([configMaps, secrets]) => {
       this.setState({
         configMaps,
@@ -91,6 +94,7 @@ export default class Version extends ContainerSettings {
       .checkName({
         name,
         namespace: this.namespace,
+        cluster: this.props.cluster,
       })
       .then(resp => {
         if (resp.exist) {

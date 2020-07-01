@@ -16,9 +16,8 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get } from 'lodash'
 import React, { Component } from 'react'
-import { inject, observer } from 'mobx-react'
+import { inject, observer, Provider } from 'mobx-react'
 import { Loading } from '@pitrix/lego-ui'
 
 import { renderRoutes } from 'utils/router.config'
@@ -26,7 +25,6 @@ import { Nav } from 'components/Layout'
 import Selector from 'projects/components/Selector'
 
 import DevOpsStore from 'stores/devops'
-import WorkspaceStore from 'stores/workspace'
 
 import styles from './layout.scss'
 
@@ -36,104 +34,97 @@ class DevOpsLayout extends Component {
   constructor(props) {
     super(props)
 
-    if (!this.props.rootStore.workspace) {
-      const workspaceStore = new WorkspaceStore()
-      this.props.rootStore.register('workspace', workspaceStore)
-    }
-
-    if (!this.props.rootStore.devops) {
-      const devopsStore = new DevOpsStore()
-      props.rootStore.register('devops', devopsStore)
-    }
-
+    this.store = new DevOpsStore()
     this.init(props.match.params)
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.match.params.project_id !== this.project) {
+    if (
+      prevProps.match.params.project_id !==
+        this.props.match.params.project_id ||
+      prevProps.match.params.cluster !== this.props.match.params.cluster
+    ) {
       this.init(this.props.match.params)
     }
   }
 
-  async init(params) {
-    const { devops } = this.props.rootStore
-
-    devops.initializing = true
-
-    await this.fetchDevOps(params.project_id)
-    await this.fetchWorkspace(devops.data.workspace)
-
-    devops.initializing = false
+  get workspace() {
+    return this.props.match.params.workspace
   }
 
-  get project() {
-    return this.props.match.params.project_id
+  async init(params) {
+    this.store.initializing = true
+
+    await Promise.all([
+      this.store.fetchDetail(params),
+      this.props.rootStore.getRules({
+        workspace: params.workspace,
+      }),
+    ])
+
+    await this.props.rootStore.getRules({
+      cluster: params.cluster,
+      devops: this.store.data.name,
+      workspace: params.workspace,
+    })
+
+    globals.app.cacheHistory(this.props.match.url, {
+      type: 'DevOps',
+      name: this.store.data.name,
+      description: this.store.data.description,
+    })
+
+    this.store.initializing = false
+  }
+
+  get cluster() {
+    return this.props.match.params.cluster
+  }
+
+  get devops() {
+    return this.store.data.name
   }
 
   get routing() {
     return this.props.rootStore.routing
   }
 
-  fetchDevOps(project_id) {
-    const requests = []
-    const { devops } = this.props.rootStore
-
-    requests.push(devops.fetchDetail({ project_id }))
-
-    const devopsRule = get(globals.user, `rules[${project_id}]`)
-    if (devopsRule === undefined) {
-      requests.push(devops.fetchRules({ project_id }))
-    }
-
-    return Promise.all(requests)
-  }
-
-  fetchWorkspace(workspace) {
-    const requests = []
-    const { workspace: workspaceStore } = this.props.rootStore
-
-    requests.push(workspaceStore.fetchDetail({ workspace }))
-
-    const workspaceRule = get(globals.user, `workspace_rules[${workspace}]`)
-    if (workspaceRule === undefined) {
-      requests.push(workspaceStore.fetchRules({ workspace }))
-    }
-
-    return Promise.all(requests)
-  }
-
   handleChange = url => this.routing.push(url)
 
   render() {
     const { match, route, location } = this.props
-    const { initializing, data: devopsDetail } = this.props.rootStore.devops
-    const { detail } = this.props.rootStore.workspace
+    const { initializing, data } = this.store
 
     if (initializing) {
       return <Loading className={styles.loading} />
     }
 
     return (
-      <div>
-        <div className="ks-page-side">
-          <Selector
-            type="devops"
-            icon="/assets/default-project.svg"
-            defaultIcon="/assets/default-project.svg"
-            title={t('DevOps Project')}
-            value={devopsDetail.name}
-            onChange={this.handleChange}
-            workspace={detail}
-          />
-          <Nav
-            className="ks-page-nav"
-            navs={globals.app.getDevOpsNavs(this.project)}
-            location={location}
-            match={match}
-          />
-        </div>
-        <div className="ks-page-main">{renderRoutes(route.routes)}</div>
-      </div>
+      <Provider devopsStore={this.store}>
+        <>
+          <div className="ks-page-side">
+            <Selector
+              type="devops"
+              title={t('DevOps Project')}
+              detail={data}
+              onChange={this.handleChange}
+              workspace={this.workspace}
+              cluster={this.cluster}
+            />
+            <Nav
+              className="ks-page-nav"
+              navs={globals.app.getDevOpsNavs({
+                devops: this.devops,
+                cluster: this.cluster,
+                workspace: this.workspace,
+              })}
+              location={location}
+              match={match}
+            />
+          </div>
+          <div className="ks-page-main">{renderRoutes(route.routes)}</div>
+        </>
+      </Provider>
     )
   }
 }

@@ -19,24 +19,21 @@
 import React, { Component } from 'react'
 import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
-import pathToReg from 'path-to-regexp'
 import { get } from 'lodash'
 
-import { Tabs, Columns, Column } from '@pitrix/lego-ui'
+import { Columns, Column } from '@pitrix/lego-ui'
 
-import { Button, Notify } from 'components/Base'
+import { Button, RadioGroup } from 'components/Base'
 import AppPreview from 'appStore/components/AppPreview'
-import AppDeployForm from 'components/Forms/AppTemplate'
 import AppBase from 'appStore/components/AppBase'
 import VersionSelect from 'apps/components/VersionSelect'
 
 import AppStore from 'stores/openpitrix/app'
 import VersionStore from 'stores/openpitrix/version'
+
 import Banner from './Banner'
 
 import styles from './index.scss'
-
-const { TabPanel } = Tabs
 
 @observer
 class AppDetail extends Component {
@@ -44,12 +41,10 @@ class AppDetail extends Component {
     app: PropTypes.object,
     setType: PropTypes.func,
     workspace: PropTypes.string,
-    onDeploySuccess: PropTypes.func,
   }
 
   static defaultProps = {
     app: {},
-    onDeploySuccess() {},
   }
 
   constructor(props) {
@@ -84,6 +79,19 @@ class AppDetail extends Component {
     this.props.setType()
   }
 
+  get tabs() {
+    return [
+      {
+        label: t('App Info'),
+        value: 'versionInfo',
+      },
+      {
+        label: t('Chart Files'),
+        value: 'chartFiles',
+      },
+    ]
+  }
+
   fetchVersions = async (params = {}) => {
     await this.versionStore.fetchList({
       ...params,
@@ -101,21 +109,9 @@ class AppDetail extends Component {
   }
 
   showDeploy = () => {
-    this.setState({ showDeploy: true })
-  }
-
-  hideDeploy = () => {
-    this.setState({ showDeploy: false })
-  }
-
-  handleDeploy = params => {
-    const { namespace, ...rest } = params
-    this.appStore.deploy(rest, { namespace }).then(() => {
-      this.hideDeploy()
-      Notify.success({
-        content: `${t('Deploy Successfully')}!`,
-      })
-      this.props.onDeploySuccess()
+    this.props.onDeploy({
+      app: this.appStore.detail,
+      store: this.appStore,
     })
   }
 
@@ -134,104 +130,44 @@ class AppDetail extends Component {
     )
   }
 
-  renderDeployForm() {
-    const urlParts = pathToReg(`/projects/:namespace/:module/:type?`).exec(
-      location.pathname
-    )
-    return (
-      <AppDeployForm
-        app={this.appStore.detail}
-        onOk={this.handleDeploy}
-        onCancel={this.hideDeploy}
-        isSubmitting={this.appStore.isSubmitting}
-        noHeader
-        fromProjectApp
-        contentClass={styles.content}
-        footerClass={styles.footer}
-        className={styles.deployForm}
-        params={{
-          version: this.state.selectAppVersion,
-          workspace: this.props.workspace,
-          namespace: urlParts[1] || '',
-          module: urlParts[2] || '',
-        }}
-      />
-    )
-  }
-
-  renderDeployButton() {
-    return (
-      <div className={styles.deployButton}>
-        <Button type="control" onClick={this.showDeploy} noShadow>
-          {t('Deploy')}
-        </Button>
-      </div>
-    )
-  }
-
-  renderContent() {
+  render() {
+    const { app } = this.props
     const { selectAppVersion, tab } = this.state
     const { detail } = this.appStore
 
     return (
-      <div className={styles.appContent}>
-        <Tabs
-          className="tabs-new"
-          activeName={tab}
-          onChange={this.handleTabChange}
-        >
-          <TabPanel label={t('App Info')} name="versionInfo">
-            {this.renderDeployButton()}
-            <Columns>
-              <Column className="is-9">
-                <AppPreview
-                  appId={this.appId}
-                  versionId={selectAppVersion}
-                  currentTab={tab}
-                />
-              </Column>
-              <Column>
-                {this.renderVersionList()}
-                <AppBase app={detail} />
-              </Column>
-            </Columns>
-          </TabPanel>
-          <TabPanel label={t('Chart File')} name="chartFiles">
-            {this.renderDeployButton()}
-            <Columns>
-              <Column className="is-9">
-                <AppPreview
-                  appId={this.appId}
-                  versionId={selectAppVersion}
-                  currentTab={tab}
-                />
-              </Column>
-              <Column>
-                {this.renderVersionList()}
-                <AppBase app={detail} />
-              </Column>
-            </Columns>
-          </TabPanel>
-        </Tabs>
-      </div>
-    )
-  }
-
-  render() {
-    const { app } = this.props
-    const { showDeploy } = this.state
-
-    return (
       <>
-        <div className={styles.header}>
-          <Banner
-            onClickBack={this.handleClickBack}
-            title={app.name}
-            desc={app.description}
-            icon={app.icon}
+        <Banner
+          onClickBack={this.handleClickBack}
+          title={app.name}
+          desc={app.description}
+          icon={app.icon}
+        />
+        <div className={styles.bar}>
+          <RadioGroup
+            value={tab}
+            options={this.tabs}
+            onChange={this.handleTabChange}
           />
+          <Button type="control" onClick={this.showDeploy} noShadow>
+            {t('Deploy')}
+          </Button>
         </div>
-        {showDeploy ? this.renderDeployForm() : this.renderContent()}
+        <div className={styles.content}>
+          <Columns>
+            <Column className="is-9">
+              <AppPreview
+                appId={this.appId}
+                versionId={selectAppVersion}
+                currentTab={tab}
+              />
+            </Column>
+            <Column>
+              {this.renderVersionList()}
+              <AppBase app={detail} />
+            </Column>
+          </Columns>
+        </div>
       </>
     )
   }

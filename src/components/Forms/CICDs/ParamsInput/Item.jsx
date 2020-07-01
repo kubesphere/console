@@ -91,7 +91,7 @@ export default class ParamsInput extends React.Component {
             <Form.Item
               label={t('Default Value')}
               desc={t(
-                'Specifies the default value of the field, allowing the user to save the typed actual value.'
+                'It specifies the default value of the field, allowing the user to save the typed actual value.'
               )}
             >
               <Input

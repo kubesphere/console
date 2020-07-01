@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { isEmpty, get, omit } from 'lodash'
+import { get, isEmpty } from 'lodash'
 import { observable, action } from 'mobx'
 
 import { getFilterString } from 'utils'
@@ -31,15 +31,31 @@ export default class Application extends Base {
   defaultStatus = CLUSTER_QUERY_STATUS
 
   get baseUrl() {
-    return 'kapis/openpitrix.io/v1/'
+    return 'kapis/openpitrix.io/v1'
   }
 
-  getUrl = ({ namespace, cluster_id } = {}) => {
+  getPath({ cluster, namespace }) {
+    let path = ''
+    if (cluster) {
+      path += `/clusters/${cluster}`
+    }
+    if (namespace) {
+      path += `/namespaces/${namespace}`
+    }
+    return path
+  }
+
+  getUrl = ({ namespace, cluster, cluster_id } = {}) => {
+    const url = `${this.baseUrl}${this.getPath({
+      namespace,
+      cluster,
+    })}/applications`
+
     if (cluster_id) {
-      return `${this.baseUrl}namespaces/${namespace}/applications/${cluster_id}`
+      return `${url}/${cluster_id}`
     }
 
-    return `${this.baseUrl}namespaces/${namespace}/applications`
+    return url
   }
 
   @observable
@@ -52,6 +68,7 @@ export default class Application extends Base {
   fetchList = async ({
     limit,
     page,
+    cluster,
     namespace,
     workspace,
     more,
@@ -61,11 +78,6 @@ export default class Application extends Base {
     ...filters
   } = {}) => {
     this.list.isLoading = true
-
-    if (!filters.runtime_id) {
-      this.list.isLoading = false
-      return
-    }
 
     const params = {
       conditions: getFilterString({ status: status || this.defaultStatus }),
@@ -77,7 +89,10 @@ export default class Application extends Base {
     }
 
     if (!isEmpty(filters)) {
-      params.conditions += `,${getFilterString(filters)}`
+      const filterString = getFilterString(filters)
+      if (filterString) {
+        params.conditions += `,${filterString}`
+      }
     }
 
     if (limit !== Infinity) {
@@ -93,33 +108,39 @@ export default class Application extends Base {
     }
 
     const result = await request.get(
-      `${this.baseUrl}namespaces/${namespace}/applications`,
+      this.getUrl({ namespace, cluster }),
       params
     )
 
-    const data = (result.items || []).map(({ cluster, ...item }) => ({
-      ...cluster,
-      ...item,
-    }))
+    const data = (result.items || []).map(
+      ({ cluster: clusterDetail, ...item }) => ({
+        ...clusterDetail,
+        ...item,
+        cluster,
+      })
+    )
 
-    this.list = {
+    Object.assign(this.list, {
       data: more ? [...this.list.data, ...data] : data,
       total: result.total_count || 0,
       limit: Number(limit) || 10,
       page: Number(page) || 1,
       order,
       reverse,
-      filters: omit(filters, 'runtime_id'),
-      isLoading: false,
+      filters,
       selectedRowKeys: [],
-    }
+    })
+
+    this.list.isLoading = false
   }
 
   @action
-  fetchDetail = async ({ namespace, id: cluster_id }) => {
+  fetchDetail = async ({ namespace, cluster, id: cluster_id }) => {
     this.isLoading = true
 
-    const result = await request.get(this.getUrl({ namespace, cluster_id }))
+    const result = await request.get(
+      this.getUrl({ namespace, cluster, cluster_id })
+    )
 
     if (result.services) {
       result.services = result.services.map(ObjectMapper.services)
@@ -133,55 +154,53 @@ export default class Application extends Base {
       })
     }
 
-    const { cluster, ...rest } = result
-    this.detail = {
-      ...rest,
-      ...cluster,
-    }
-
     try {
       const clusterData = get(result, 'cluster.env', '')
       this.env.data = JSON.parse(clusterData)
     } catch (err) {}
 
+    this.detail = {
+      ...result,
+      ...result.cluster,
+      cluster,
+    }
+
     this.isLoading = false
   }
 
   @action
-  update = ({ cluster_id, zone, ...data }) =>
+  async upgrade(params, { namespace, cluster }) {
+    return this.submitting(
+      request.post(this.getUrl({ namespace, cluster }), params)
+    )
+  }
+
+  @action
+  update = ({ cluster_id, cluster, zone, ...data }) =>
     this.submitting(
-      request.patch(this.getUrl({ namespace: zone, cluster_id }), data)
+      request.patch(this.getUrl({ namespace: zone, cluster_id, cluster }), data)
     )
 
   @action
-  patch = ({ cluster_id, zone }, data) =>
+  patch = ({ cluster_id, cluster, zone }, data) =>
     this.submitting(
-      request.patch(this.getUrl({ namespace: zone, cluster_id }), data)
+      request.patch(this.getUrl({ namespace: zone, cluster_id, cluster }), data)
     )
 
   @action
-  delete = ({ cluster_id, zone }) =>
-    this.submitting(
-      request.delete(this.getUrl({ namespace: zone, cluster_id }))
+  delete = ({ cluster_id, cluster, zone }) => {
+    return this.submitting(
+      request.delete(this.getUrl({ namespace: zone, cluster_id, cluster }))
     )
+  }
 
   @action
-  batchDelete = (rowKeys, { namespace }) =>
+  batchDelete = (rowKeys, { namespace, cluster }) =>
     this.submitting(
       Promise.all(
         rowKeys.map(cluster_id =>
-          request.delete(this.getUrl({ namespace, cluster_id }))
+          request.delete(this.getUrl({ namespace, cluster, cluster_id }))
         )
       )
-    )
-
-  // todo: nex version
-  @action
-  upgrade = ({ cluster_id, version_id }) =>
-    this.submitting(
-      request.post(`${this.baseUrl}clusters/upgrade`, {
-        cluster_id,
-        version_id,
-      })
     )
 }

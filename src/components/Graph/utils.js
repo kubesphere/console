@@ -161,8 +161,7 @@ const groupNodes = ({ nodes = [], edges = [] } = {}, health = {}) => {
 
     for (let index = 0; index < edges.length; index++) {
       const edge = edges[index]
-      const source = edge.data.source
-      const target = edge.data.target
+      const { source, target } = edge.data
       if (ids.includes(source) && ids.includes(target)) {
         innerEdges.push(edge)
       } else if (!ids.includes(source) && ids.includes(target)) {

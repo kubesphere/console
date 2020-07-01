@@ -34,6 +34,10 @@ import styles from './index.scss'
 class MailServerConfig extends React.Component {
   store = new Store()
 
+  get cluster() {
+    return this.props.match.params.cluster
+  }
+
   tipMap = {
     needVerified: {
       type: 'error',
@@ -64,7 +68,9 @@ class MailServerConfig extends React.Component {
   }
 
   async fetchConfig() {
-    await this.store.fetchConfig()
+    await this.store.fetchConfig({
+      cluster: this.cluster,
+    })
     this.setState({
       config: toJS(this.store.config),
     })
@@ -86,7 +92,9 @@ class MailServerConfig extends React.Component {
   }
 
   setMailConfig = async data => {
-    await this.store.setConfig(data)
+    await this.store.setConfig(data, {
+      cluster: this.cluster,
+    })
 
     Notify.success({ content: t('Update Successfully'), duration: 1000 })
     this.setState({
@@ -108,7 +116,9 @@ class MailServerConfig extends React.Component {
   }
 
   onValidate = async config => {
-    const isValid = await this.store.validate(config)
+    const isValid = await this.store.validate(config, {
+      cluster: this.cluster,
+    })
     this.setState({
       formStatus: isValid ? 'needSaved' : 'configInvalid',
     })

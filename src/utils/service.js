@@ -41,7 +41,7 @@ export const getServiceType = item => {
 }
 
 export const getServicePort = item => {
-  let protocol = item.protocol
+  let { protocol } = item
   if (item.name && item.name.indexOf('-') !== -1) {
     protocol = item.name.split('-')[0].toUpperCase()
   }

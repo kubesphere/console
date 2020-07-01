@@ -20,7 +20,6 @@ import React from 'react'
 import { Redirect } from 'react-router-dom'
 import { Switch, Route } from 'react-router'
 import { isString, isObject, get } from 'lodash'
-import { isArray } from 'util'
 
 export const renderRoutes = (routes, extraProps = {}, switchProps = {}) =>
   routes ? (
@@ -28,18 +27,8 @@ export const renderRoutes = (routes, extraProps = {}, switchProps = {}) =>
       {routes.map((route, i) => {
         const key = route.key || i
 
-        if (route.ksModule) {
-          if (
-            isArray(route.ksModule)
-              ? route.ksModule.some(module => !globals.app.hasKSModule(module))
-              : !globals.app.hasKSModule(route.ksModule)
-          ) {
-            return null
-          }
-        }
-
         if (route.redirect) {
-          const redirect = route.redirect
+          const { redirect } = route
 
           if (isString(redirect)) return <Redirect key={key} to={redirect} />
 
@@ -78,22 +67,10 @@ export const getIndexRoute = ({ path, to, ...rest }) => ({
 })
 
 export const getChildRoutes = (routes, path) => {
-  const newRoutes = routes
-    .filter(route => {
-      if (!route.ksModule) {
-        return true
-      }
-
-      if (isArray(route.ksModule)) {
-        return route.ksModule.every(module => globals.app.hasKSModule(module))
-      }
-
-      return globals.app.hasKSModule(route.ksModule)
-    })
-    .map(route => ({
-      ...route,
-      path: `${path}/${route.name}`,
-    }))
+  const newRoutes = routes.map(route => ({
+    ...route,
+    path: `${path}/${route.name}`,
+  }))
 
   newRoutes.push(
     getIndexRoute({ path, to: get(newRoutes[0], 'path'), exact: true }),

@@ -27,7 +27,7 @@ import styles from './index.scss'
 
 export default class Item extends React.Component {
   render() {
-    const { data } = this.props
+    const { data, prefix } = this.props
     const { type } = data.podStatus
 
     return (
@@ -40,9 +40,7 @@ export default class Item extends React.Component {
             flicker
           />
         </div>
-        <Link to={`/projects/${data.namespace}/pods/${data.name}`}>
-          {data.name}
-        </Link>
+        <Link to={`${prefix}/pods/${data.name}`}>{data.name}</Link>
         <div className={styles.metric}>
           <Icon name="memory" size={20} />
           <div>

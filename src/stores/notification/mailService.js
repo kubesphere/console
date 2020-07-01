@@ -50,18 +50,26 @@ export default class AddressStore extends Base {
   }
 
   get mailServiceVersion2Path() {
-    return `${this.apiVersion2}/serviceconfigs`
+    return 'kapis/notification.kubesphere.io/v2/serviceconfigs'
+  }
+
+  getMailServiceURL(cluster) {
+    return `kapis/clusters/${cluster}/notification.kubesphere.io/v1/serviceconfigs`
+  }
+
+  getMailServiceV2URL(cluster) {
+    return `kapis/clusters/${cluster}/notification.kubesphere.io/v2/serviceconfigs`
   }
 
   @action
-  async fetchConfig() {
+  async fetchConfig({ cluster }) {
     this.isLoading = true
 
     const params = {
-      service_type: ['email'],
+      service_type: 'email',
     }
 
-    const result = await request.get(this.mailServicePath, params)
+    const result = await request.get(this.getMailServiceURL(cluster), params)
 
     const { password, ...config } = get(result, 'email_service_config', {})
 
@@ -71,7 +79,7 @@ export default class AddressStore extends Base {
   }
 
   @action
-  async setConfig(config) {
+  async setConfig(config, { cluster }) {
     const data = this.paramsTrim({
       ...config,
       ...this.notificationEmailConfig,
@@ -80,7 +88,7 @@ export default class AddressStore extends Base {
     const { test_email_recipient, ...email_service_config } = data
 
     await this.submitting(
-      request.post(this.mailServicePath, {
+      request.post(this.getMailServiceURL(cluster), {
         email_service_config,
         language: get(globals, 'user.lang', cookie('lang')),
       })
@@ -90,7 +98,7 @@ export default class AddressStore extends Base {
   }
 
   @action
-  async validate(data) {
+  async validate(data, { cluster }) {
     this.verifying = true
 
     const config = this.paramsTrim({
@@ -107,7 +115,7 @@ export default class AddressStore extends Base {
     }
 
     const response = await request.post(
-      `${this.mailServiceVersion2Path}/validation`,
+      `${this.getMailServiceV2URL(cluster)}/validation`,
       params,
       {},
       error => {

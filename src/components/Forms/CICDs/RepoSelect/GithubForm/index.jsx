@@ -47,13 +47,17 @@ export default class GitHubForm extends React.Component {
     this.props.store.handleChangeActiveRepoIndex(parseInt(repoIndex, 10))
 
     const repoList = get(orgList.data, `[${repoIndex}].repositories.items`, [])
+
     if (!repoList.length) {
-      this.props.store.getRepoList(parseInt(repoIndex, 10))
+      this.props.store.getRepoList({
+        activeRepoIndex: parseInt(repoIndex, 10),
+        cluster: this.props.cluster,
+      })
     }
   }
 
   handleGetRepoList = () => {
-    this.props.store.getRepoList()
+    this.props.store.getRepoList({ cluster: this.props.cluster })
   }
 
   handleSubmit = e => {
@@ -65,7 +69,7 @@ export default class GitHubForm extends React.Component {
         repo: get(
           orgList.data,
           `${activeRepoIndex}.repositories.items.${index}.name`
-        ), // repo
+        ),
         credential_id: githubCredentialId,
         owner: get(orgList.data[activeRepoIndex], 'name'),
         discover_branches: 1,
@@ -82,12 +86,14 @@ export default class GitHubForm extends React.Component {
 
   @action
   handlePasswordConfirm = async () => {
-    const { name } = this.props
+    const { name, cluster, project_id } = this.props
     const data = this.tokenFormRef.current.getData()
     this.setState({ isLoading: true })
-    this.props.store.putAccessToken({ token: data.token, name }).finally(() => {
-      this.setState({ isLoading: false })
-    })
+    this.props.store
+      .putAccessToken({ token: data.token, name, cluster, project_id })
+      .finally(() => {
+        this.setState({ isLoading: false })
+      })
   }
 
   renderAccessTokenForm() {

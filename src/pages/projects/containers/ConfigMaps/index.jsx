@@ -17,180 +17,131 @@
  */
 
 import React from 'react'
-import { observer, inject } from 'mobx-react'
-import { getLocalTime, getDisplayName } from 'utils'
-import { ICON_TYPES } from 'utils/constants'
-import { getFormTemplate } from 'utils/form.templates'
-import ConfigMapStore from 'stores/configmap'
 
 import { Avatar } from 'components/Base'
-import Base from 'core/containers/Base/List'
-import CreateModal from 'components/Modals/Create'
-import EditYamlModal from 'components/Modals/EditYaml'
-import EditBasicInfoModal from 'components/Modals/EditBasicInfo'
-import ConfigMapEditModal from 'projects/components/Modals/ConfigMapEdit'
+import Banner from 'components/Cards/Banner'
+import { withProjectList, ListPage } from 'components/HOCs/withList'
+import Table from 'components/Tables/List'
 
-import FORM_STEPS from 'configs/steps/configmaps'
+import { getLocalTime, getDisplayName } from 'utils'
+import { ICON_TYPES } from 'utils/constants'
 
-@inject('rootStore')
-@observer
-export default class ConfigMaps extends Base {
-  init() {
-    this.store = new ConfigMapStore()
-    this.initWebsocket()
-  }
+import ConfigMapStore from 'stores/configmap'
 
-  get module() {
-    return 'configmaps'
-  }
-
-  get name() {
-    return 'ConfigMap'
-  }
-
-  get steps() {
-    return FORM_STEPS
-  }
-
-  get formTemplate() {
-    const { namespace } = this.props.match.params
-    return getFormTemplate(namespace, this.module)
-  }
-
+@withProjectList({
+  store: new ConfigMapStore(),
+  module: 'configmaps',
+  name: 'ConfigMap',
+})
+export default class ConfigMaps extends React.Component {
   get itemActions() {
+    const { trigger } = this.props
     return [
       {
         key: 'edit',
         icon: 'pen',
         text: t('Edit'),
         action: 'edit',
-        onClick: this.showModal('editModal'),
+        onClick: item =>
+          trigger('resource.baseinfo.edit', {
+            detail: item,
+          }),
       },
       {
         key: 'editYaml',
         icon: 'pen',
         text: t('Edit YAML'),
         action: 'edit',
-        onClick: this.showModal('editYamlModal'),
+        onClick: item =>
+          trigger('resource.yaml.edit', {
+            detail: item,
+          }),
       },
       {
         key: 'editConfigMap',
         icon: 'pen',
         text: t('Modify Config'),
         action: 'edit',
-        onClick: this.showModal('editConfigMapModal'),
+        onClick: item =>
+          trigger('configmap.edit', {
+            detail: item,
+          }),
       },
       {
         key: 'delete',
         icon: 'trash',
         text: t('Delete'),
         action: 'delete',
-        onClick: this.showModal('deleteModal'),
+        onClick: item =>
+          trigger('resource.delete', {
+            type: t(this.name),
+            detail: item,
+          }),
       },
     ]
   }
 
-  getColumns = () => [
-    {
-      title: t('Name'),
-      dataIndex: 'name',
-      sorter: true,
-      sortOrder: this.getSortOrder('name'),
-      search: true,
-      render: (name, record) => (
-        <Avatar
-          icon={ICON_TYPES[this.module]}
-          iconSize={40}
-          title={getDisplayName(record)}
-          desc={record.description || '-'}
-          to={`${this.prefix}/${name}`}
-        />
-      ),
-    },
-    {
-      title: t('Config Field'),
-      dataIndex: 'data',
-      isHideable: true,
-      width: '33%',
-      render: data => Object.keys(data).join(','),
-    },
-    {
-      title: t('Created Time'),
-      dataIndex: 'createTime',
-      sorter: true,
-      sortOrder: this.getSortOrder('createTime'),
-      isHideable: true,
-      width: 150,
-      render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
-    },
-    {
-      key: 'more',
-      width: 20,
-      render: this.renderMore,
-    },
-  ]
+  getColumns = () => {
+    const { getSortOrder, module } = this.props
+    return [
+      {
+        title: t('Name'),
+        dataIndex: 'name',
+        sorter: true,
+        sortOrder: getSortOrder('name'),
+        search: true,
+        render: (name, record) => (
+          <Avatar
+            icon={ICON_TYPES[module]}
+            iconSize={40}
+            title={getDisplayName(record)}
+            desc={record.description || '-'}
+            to={`${this.props.match.url}/${name}`}
+            isMultiCluster={record.isFedManaged}
+          />
+        ),
+      },
+      {
+        title: t('Config Field'),
+        dataIndex: 'data',
+        isHideable: true,
+        width: '33%',
+        render: data => Object.keys(data).join(','),
+      },
+      {
+        title: t('Created Time'),
+        dataIndex: 'createTime',
+        sorter: true,
+        sortOrder: getSortOrder('createTime'),
+        isHideable: true,
+        width: 150,
+        render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
+      },
+    ]
+  }
 
-  handleYamlEdit = newObject => {
-    const { selectItem } = this.state
-
-    this.store.update(selectItem, newObject).then(() => {
-      this.hideModal('editYamlModal')()
+  showCreate = () => {
+    const { match, module, projectStore } = this.props
+    return this.props.trigger('configmap.create', {
+      module,
+      projectDetail: projectStore.detail,
+      namespace: match.params.namespace,
+      cluster: match.params.cluster,
     })
   }
 
-  handleEditConfigMap = data => {
-    this.store.update(this.state.selectItem, data).then(() => {
-      this.hideModal('editConfigMapModal')()
-      this.routing.query()
-    })
-  }
-
-  renderExtraModals() {
-    const {
-      createModal,
-      editModal,
-      editYamlModal,
-      editConfigMapModal,
-      selectItem = {},
-    } = this.state
-    const { isSubmitting } = this.store
-
+  render() {
+    const { bannerProps, tableProps } = this.props
     return (
-      <div>
-        <CreateModal
-          name={this.name}
-          module={this.module}
-          store={this.store}
-          visible={createModal}
-          steps={this.steps}
-          formTemplate={this.formTemplate}
-          isSubmitting={isSubmitting}
-          onOk={this.handleCreate}
-          onCancel={this.hideModal('createModal')}
+      <ListPage {...this.props}>
+        <Banner {...bannerProps} tabs={this.tabs} />
+        <Table
+          {...tableProps}
+          itemActions={this.itemActions}
+          columns={this.getColumns()}
+          onCreate={this.showCreate}
         />
-        <EditBasicInfoModal
-          visible={editModal}
-          detail={selectItem._originData}
-          isSubmitting={isSubmitting}
-          onOk={this.handleEdit}
-          onCancel={this.hideModal('editModal')}
-        />
-        <EditYamlModal
-          store={this.store}
-          visible={editYamlModal}
-          detail={selectItem._originData}
-          isSubmitting={isSubmitting}
-          onOk={this.handleYamlEdit}
-          onCancel={this.hideModal('editYamlModal')}
-        />
-        <ConfigMapEditModal
-          visible={editConfigMapModal}
-          detail={selectItem._originData}
-          onOk={this.handleEditConfigMap}
-          onCancel={this.hideModal('editConfigMapModal')}
-          isSubmitting={isSubmitting}
-        />
-      </div>
+      </ListPage>
     )
   }
 }

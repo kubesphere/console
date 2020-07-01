@@ -17,159 +17,196 @@
  */
 
 import React from 'react'
-import { observer, inject } from 'mobx-react'
-import { toJS } from 'mobx'
+import { get } from 'lodash'
+import { Link } from 'react-router-dom'
+import { Avatar, Status } from 'components/Base'
+import { withProjectList, ListPage } from 'components/HOCs/withList'
+import Table from 'components/Tables/List'
+
 import { getLocalTime } from 'utils'
 
-import { get } from 'lodash'
-import { Status } from 'components/Base'
-import Avatar from 'apps/components/Avatar'
+import OpAppStore from 'stores/openpitrix/application'
+import Banner from './Banner'
 
-import EditModal from 'projects/components/Modals/AppEdit'
-
-import EmptyTable from 'components/Cards/EmptyTable'
-
-import Base from 'core/containers/Base/List'
-
-@inject('rootStore')
-@observer
-export default class OPApps extends Base {
-  init() {
-    this.store = this.props.store
-
-    this.state = {
-      showAppRepo: false,
-      deleteModal: false,
-    }
-  }
-
-  get module() {
-    return 'applications'
-  }
-
-  get rowKey() {
-    return 'name'
-  }
-
-  get prefix() {
-    const { namespace } = this.props.match.params
-    return `/projects/${namespace}/applications/template`
-  }
-
-  getColumns = () => [
-    {
-      title: t('Name'),
-      dataIndex: 'name',
-      sorter: true,
-      sortOrder: this.getSortOrder('name'),
-      render: (name, record) => (
-        <Avatar
-          isApp
-          to={`${this.prefix}/${record.cluster_id}`}
-          avatar={record.app.icon}
-          iconLetter={name}
-          iconSize={40}
-          title={name}
-          desc={record.description}
-        />
-      ),
-    },
-    {
-      title: t('Status'),
-      dataIndex: 'status',
-      isHideable: true,
-      width: '20%',
-      render: (status, record) => (
-        <Status
-          name={t(record.transition_status || status)}
-          type={record.transition_status || status}
-        />
-      ),
-    },
-    {
-      title: t('Version'),
-      dataIndex: 'version.name',
-      isHideable: true,
-      width: '20%',
-    },
-    {
-      title: t('Last Updated Time'),
-      dataIndex: 'status_time',
-      sorter: true,
-      sortOrder: this.getSortOrder('status_time'),
-      isHideable: true,
-      width: 180,
-      render: (time, record) =>
-        getLocalTime(record.update_time || record.status_time).format(
-          'YYYY-MM-DD HH:mm:ss'
-        ),
-    },
-    {
-      key: 'more',
-      width: 20,
-      render: this.renderMore,
-    },
-  ]
+@withProjectList({
+  store: new OpAppStore(),
+  module: 'applications',
+  name: 'Application',
+})
+export default class OPApps extends React.Component {
+  type = 'template'
 
   getData = (params = {}) => {
-    const runtime_id = get(this.props.project, 'annotations.openpitrix_runtime')
+    const { store, projectStore } = this.props
+    const { cluster } = this.props.match.params
 
-    if (this.props.project.name) {
-      this.store.fetchList({
-        namespace: this.props.project.name,
-        runtime_id,
+    if (projectStore.detail.name) {
+      store.fetchList({
+        namespace: projectStore.detail.name,
+        cluster,
         ...params,
       })
     }
   }
 
+  get prefix() {
+    const { workspace, cluster, namespace } = this.props.match.params
+    return `/${workspace}/clusters/${cluster}/projects/${namespace}/applications/${
+      this.type
+    }`
+  }
+
+  get canCreate() {
+    const { cluster, namespace } = this.props.match.params
+    return (
+      globals.app.enableAppStore &&
+      globals.app.hasPermission({
+        cluster,
+        project: namespace,
+        module: 'applications',
+        action: 'create',
+      })
+    )
+  }
+
+  get itemActions() {
+    const { routing, trigger } = this.props
+    return [
+      {
+        key: 'edit',
+        icon: 'pen',
+        text: t('Edit'),
+        action: 'edit',
+        onClick: item =>
+          trigger('openpitrix.app.edit', {
+            detail: item,
+            success: routing.query,
+          }),
+      },
+      {
+        key: 'delete',
+        icon: 'trash',
+        text: t('Delete'),
+        action: 'delete',
+        onClick: item =>
+          trigger('resource.delete', {
+            type: t(this.name),
+            detail: item,
+            success: routing.query,
+          }),
+      },
+    ]
+  }
+
+  getColumns = () => {
+    const { getSortOrder } = this.props
+    return [
+      {
+        title: t('Name'),
+        dataIndex: 'name',
+        sorter: true,
+        sortOrder: getSortOrder('name'),
+        render: (name, record) => (
+          <Avatar
+            isApp
+            to={`${this.prefix}/${record.cluster_id}`}
+            avatar={record.app.icon}
+            iconLetter={name}
+            iconSize={40}
+            title={name}
+            desc={record.description}
+          />
+        ),
+      },
+      {
+        title: t('Status'),
+        dataIndex: 'status',
+        isHideable: true,
+        width: '16%',
+        render: (status, record) => (
+          <Status
+            name={t(record.transition_status || status)}
+            type={record.transition_status || status}
+          />
+        ),
+      },
+      {
+        title: t('Application'),
+        dataIndex: 'app.name',
+        isHideable: true,
+        width: '16%',
+        render: (name, record) => (
+          <Link to={`/apps/${record.version.app_id}`}>{name}</Link>
+        ),
+      },
+      {
+        title: t('Version'),
+        dataIndex: 'version.name',
+        isHideable: true,
+        width: '16%',
+      },
+      {
+        title: t('Last Updated Time'),
+        dataIndex: 'status_time',
+        sorter: true,
+        sortOrder: getSortOrder('status_time'),
+        isHideable: true,
+        width: 180,
+        render: (time, record) =>
+          getLocalTime(record.update_time || record.status_time).format(
+            'YYYY-MM-DD HH:mm:ss'
+          ),
+      },
+    ]
+  }
+
+  showDeploy = () => {
+    const { match, module, projectStore, trigger } = this.props
+    return this.props.trigger('app.deploy', {
+      module,
+      namespace: match.params.namespace,
+      cluster: match.params.cluster,
+      workspace: get(projectStore, 'detail.workspace'),
+      runtime_id: get(projectStore, 'detail.opRuntime'),
+      routing: this.props.rootStore.routing,
+      trigger,
+    })
+  }
+
   getTableProps() {
-    const actions = this.props.canCreate
+    const actions = this.canCreate
       ? [
           {
             key: 'deploy',
             type: 'control',
             text: t('Deploy New Application'),
-            onClick: this.props.showDeployAppModal,
+            onClick: this.showDeploy,
           },
         ]
       : []
 
     return {
-      ...Base.prototype.getTableProps.call(this),
       actions,
       onCreate: null,
       selectActions: [],
+      emptyProps: {
+        desc: t('APP_DEPLOYMENT_DESC'),
+      },
     }
   }
 
-  renderHeader() {
-    return null
-  }
-
-  renderEmpty() {
-    const onCreate = this.props.canCreate ? this.props.showDeployAppModal : null
-
+  render() {
+    const { bannerProps, tableProps, match } = this.props
     return (
-      <EmptyTable
-        createText={t('Deploy New Application')}
-        desc={t('APP_TEMPLATE_DESC')}
-        onCreate={onCreate}
-      />
-    )
-  }
-
-  renderExtraModals() {
-    const { selectItem } = this.state
-
-    return (
-      <EditModal
-        visible={this.state.editModal}
-        detail={toJS(selectItem)}
-        onOk={this.handleEdit}
-        onCancel={this.hideModal('editModal')}
-        isSubmitting={this.store.isSubmitting}
-      />
+      <ListPage {...this.props} getData={this.getData}>
+        <Banner {...bannerProps} match={match} type={this.type} />
+        <Table
+          {...tableProps}
+          {...this.getTableProps()}
+          itemActions={this.itemActions}
+          columns={this.getColumns()}
+        />
+      </ListPage>
     )
   }
 }

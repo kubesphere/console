@@ -24,7 +24,7 @@ import { getComponentStatus } from 'utils/status'
 export default class ComponentStore {
   @observable
   list = {
-    data: [],
+    data: {},
     isLoading: true,
   }
 
@@ -47,9 +47,11 @@ export default class ComponentStore {
     return 'kapis/resources.kubesphere.io/v1alpha2'
   }
 
-  getListUrl = () => `${this.apiVersion}/components`
+  getListUrl = ({ cluster }) =>
+    `${this.apiVersion}/klusters/${cluster}/components`
 
-  getDetailUrl = ({ name }) => `${this.getListUrl()}/${name}`
+  getDetailUrl = ({ cluster, name }) =>
+    `${this.getListUrl({ cluster })}/${name}`
 
   get totalCount() {
     const { kubesphere, kubernetes, openpitrix } = this.count
@@ -58,10 +60,10 @@ export default class ComponentStore {
   }
 
   @action
-  async fetchList() {
+  async fetchList(params) {
     this.isLoading = true
 
-    const result = await request.get(this.getListUrl())
+    const result = await request.get(this.getListUrl(params))
     const components = groupBy(result, 'namespace')
 
     const data = {
@@ -101,10 +103,10 @@ export default class ComponentStore {
   }
 
   @action
-  async fetchDetail({ name }) {
+  async fetchDetail({ cluster, name }) {
     this.isLoading = true
 
-    const result = await request.get(this.getDetailUrl({ name }))
+    const result = await request.get(this.getDetailUrl({ cluster, name }))
 
     this.detail = result
     this.isLoading = false

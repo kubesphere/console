@@ -55,7 +55,7 @@ export default class SvnForm extends React.Component {
             />
           </Form.Item>
           <Form.Item
-            label={t('remote url')}
+            label={t('Remote Repository URL')}
             rules={[{ required: true, message: t('This param is required') }]}
           >
             <Input name="svn_source.remote" />
@@ -83,13 +83,13 @@ export default class SvnForm extends React.Component {
           </Form.Item>
           {this.state.type !== 'single_svn' ? (
             <React.Fragment>
-              <Form.Item label={t('includes branch')}>
+              <Form.Item label={t('Branch Included')}>
                 <Input
                   name="svn_source.includes"
                   defaultValue="trunk,branches/*,tags/*,sandbox/*"
                 />
               </Form.Item>
-              <Form.Item label={t('excludes branch')}>
+              <Form.Item label={t('Branch Excluded')}>
                 <Input name="svn_source.excludes" />
               </Form.Item>
             </React.Fragment>

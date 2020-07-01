@@ -18,22 +18,13 @@
 
 import { get, has, isEmpty } from 'lodash'
 import React from 'react'
-import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import pathToRegexp from 'path-to-regexp'
 
 import { getDisplayName } from 'utils'
 
-import { Icon, Input, Select } from '@pitrix/lego-ui'
+import { Input, Select } from '@pitrix/lego-ui'
 
 import ObjectInput from '../ObjectInput'
-
-const TYPE_MODULE_MAP = {
-  ConfigMap: 'configmaps',
-  Secret: 'secrets',
-}
-
-const pathRe = pathToRegexp('/projects/:namespace/:module')
 
 export default class EnvironmentInputItem extends React.Component {
   static propTypes = {
@@ -60,16 +51,6 @@ export default class EnvironmentInputItem extends React.Component {
     return { resourceType, resourceName, resourceKey }
   }
 
-  getDetailPrefix(type) {
-    const results = pathRe.exec(location.pathname) || []
-
-    if (results.length > 2) {
-      return `/projects/${results[1]}/${TYPE_MODULE_MAP[type]}`
-    }
-
-    return ''
-  }
-
   handleChange = value => {
     const { configMaps, secrets, onChange } = this.props
     const newValue = { name: value.name, valueFrom: {} }
@@ -94,6 +75,10 @@ export default class EnvironmentInputItem extends React.Component {
             key: value.resourceKey,
           },
         }
+      }
+
+      if (!newValue.name && value.resourceKey) {
+        newValue.name = value.resourceKey
       }
     }
 
@@ -129,20 +114,12 @@ export default class EnvironmentInputItem extends React.Component {
     return options
   }
 
-  valueRenderer = option => {
-    const prefix = this.getDetailPrefix(option.type)
-    return (
-      <p>
-        {option.label}
-        <span style={{ color: '#abb4be' }}> ({t(option.type)})</span>
-        {prefix && (
-          <Link to={`${prefix}/${option.value}`} target="_blank">
-            <Icon className="align-text-bottom" name="question" />
-          </Link>
-        )}
-      </p>
-    )
-  }
+  valueRenderer = option => (
+    <p>
+      {option.label}
+      <span style={{ color: '#abb4be' }}> ({t(option.type)})</span>
+    </p>
+  )
 
   getKeysOptions({ resourceType, resourceName }) {
     const { configMaps, secrets } = this.props

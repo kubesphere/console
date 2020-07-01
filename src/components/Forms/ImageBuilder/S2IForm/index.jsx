@@ -17,7 +17,6 @@
  */
 
 import React from 'react'
-import PropTypes from 'prop-types'
 import { get, set } from 'lodash'
 import classnames from 'classnames'
 import { Input, Select, Alert, Loading } from '@pitrix/lego-ui'
@@ -56,10 +55,6 @@ export default class S2IForm extends React.Component {
     prefix: '',
   }
 
-  static contextTypes = {
-    formData: PropTypes.object,
-  }
-
   get prefix() {
     const { prefix } = this.props
     return prefix ? `${prefix}.` : ''
@@ -73,14 +68,13 @@ export default class S2IForm extends React.Component {
   }
 
   get namespace() {
-    const { formTemplate } = this.props
-
-    return get(formTemplate, `${this.prefix}metadata.namespace`)
+    return this.props.namespace
   }
 
   fetchData = async () => {
-    const results = await this.secretStore.fetchByK8s({
+    const results = await this.secretStore.fetchListByK8s({
       namespace: this.namespace,
+      cluster: this.props.cluster,
       fieldSelector: `type=kubernetes.io/basic-auth`,
     })
 
@@ -94,8 +88,9 @@ export default class S2IForm extends React.Component {
   }
 
   fetchImageSecrets = async () => {
-    const results = await this.secretStore.fetchByK8s({
+    const results = await this.secretStore.fetchListByK8s({
       namespace: this.namespace,
+      cluster: this.props.cluster,
       fieldSelector: `type=kubernetes.io/dockerconfigjson`,
     })
 
@@ -115,7 +110,9 @@ export default class S2IForm extends React.Component {
 
   getTemplateList = async () => {
     this.setState({ isGetTemplateListLoading: true })
-    const lists = await this.builderStore.getBuilderTemplate()
+    const lists = await this.builderStore.getBuilderTemplate({
+      cluster: this.props.cluster,
+    })
     this.setState({
       builderTemplateLists: get(lists, 'items', []),
       isGetTemplateListLoading: false,
@@ -198,7 +195,7 @@ export default class S2IForm extends React.Component {
           <Form.Item
             label={t('S2I_RELATIVE_PATH')}
             desc={t(
-              'Specify a relative directory inside the application. (defaultvalue /)'
+              'Specify a relative directory inside the application. (Default value /)'
             )}
           >
             <Input
@@ -272,7 +269,7 @@ export default class S2IForm extends React.Component {
             <Loading spinning={this.state.readRepoLoading} size={18}>
               <Form.Item
                 className={this.state.repoNeedSecret ? '' : styles.disabled}
-                label={t('secret')}
+                label={t('Secret')}
                 desc={
                   this.state.repoNeedSecret
                     ? t('S2I_SECRET_DESC')

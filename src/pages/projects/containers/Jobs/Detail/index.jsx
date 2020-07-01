@@ -19,75 +19,71 @@
 import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
-import { get, isEmpty } from 'lodash'
+import { Loading } from '@pitrix/lego-ui'
 
-import { getLocalTime } from 'utils'
+import { getDisplayName, getLocalTime } from 'utils'
 import { getJobStatus } from 'utils/status'
+import { trigger } from 'utils/action'
 import WorkloadStore from 'stores/workload'
 import RecordStore from 'stores/workload/record'
 import ResourceStore from 'stores/workload/resource'
 
-import Base from 'core/containers/Base/Detail'
-import EditBasicInfoModal from 'components/Modals/EditBasicInfo'
-import EditYamlModal from 'components/Modals/EditYaml'
+import DetailPage from 'projects/containers/Base/Detail'
+
+import getRoutes from './routes'
 
 @inject('rootStore')
 @observer
-class JobsDetail extends Base {
-  state = {
-    editBaseInfo: false,
-    viewYaml: false,
-    deleteModule: false,
+@trigger
+export default class JobDetail extends React.Component {
+  store = new WorkloadStore(this.module)
+
+  resourceStore = new ResourceStore(this.module)
+
+  recordStore = new RecordStore()
+
+  componentDidMount() {
+    this.fetchData()
+  }
+
+  get module() {
+    return 'jobs'
   }
 
   get name() {
     return 'Job'
   }
 
-  get selectors() {
-    const { spec = {} } = this.store.detail
-    const selector = get(spec, 'selector.matchLabels', {})
-
-    return isEmpty(selector) ? (
-      '-'
-    ) : (
-      <span>
-        {Object.keys(selector)
-          .map(key => `${key} = ${selector[key]}`)
-          .join(', ')}
-      </span>
-    )
+  get routing() {
+    return this.props.rootStore.routing
   }
 
-  get updateTime() {
-    const conditions = get(this.store.detail, 'status.conditions', [])
-
-    if (isEmpty(conditions)) return '-'
-
-    let lastTime = new Date(
-      get(conditions, '[0].lastTransitionTime', 0)
-    ).valueOf()
-    conditions.forEach(({ lastTransitionTime }) => {
-      const value = new Date(lastTransitionTime).valueOf()
-      value > lastTime && (lastTime = value)
-    })
-
-    return getLocalTime(lastTime).format('YYYY-MM-DD HH:mm:ss')
+  get listUrl() {
+    const { workspace, cluster, namespace } = this.props.match.params
+    if (workspace) {
+      return `/${workspace}/clusters/${cluster}/projects/${namespace}/${
+        this.module
+      }`
+    }
+    return `/clusters/${cluster}/${this.module}`
   }
 
-  init() {
-    this.store = new WorkloadStore(this.module)
-    this.resourceStore = new ResourceStore(this.module)
-    this.recordStore = new RecordStore()
+  fetchData = () => {
+    this.store.fetchDetail(this.props.match.params)
   }
 
   getOperations = () => [
     {
       key: 'edit',
-      type: 'control',
-      text: t('EDIT'),
+      icon: 'pen',
+      text: t('Edit Info'),
       action: 'edit',
-      onClick: this.showModal('editBaseInfo'),
+      onClick: () =>
+        this.trigger('resource.baseinfo.edit', {
+          type: t(this.name),
+          detail: toJS(this.store.detail),
+          success: this.fetchData,
+        }),
     },
     {
       key: 'rerun',
@@ -98,29 +94,51 @@ class JobsDetail extends Base {
     },
     {
       key: 'viewYaml',
-      icon: 'pen',
+      icon: 'eye',
       text: t('View YAML'),
       action: 'view',
-      onClick: this.showModal('viewYaml'),
+      onClick: () =>
+        this.trigger('resource.yaml.edit', {
+          detail: this.store.detail,
+          readOnly: true,
+        }),
     },
     {
       key: 'delete',
       icon: 'trash',
       text: t('Delete'),
       action: 'delete',
-      onClick: this.showModal('deleteModule'),
+      type: 'danger',
+      onClick: () =>
+        this.trigger('resource.delete', {
+          type: t(this.name),
+          detail: this.store.detail,
+          success: () => this.routing.push(this.listUrl),
+        }),
     },
   ]
 
+  handleRerun = () => {
+    const { detail } = this.store
+    this.store.rerun(detail).then(() => {
+      this.fetchData()
+    })
+  }
+
   getAttrs = () => {
+    const { cluster, namespace } = this.props.match.params
     const detail = toJS(this.store.detail)
     const { spec = {} } = detail
     const status = getJobStatus(detail)
 
     return [
       {
+        name: t('Cluster'),
+        value: cluster,
+      },
+      {
         name: t('Project'),
-        value: this.namespace,
+        value: namespace,
       },
       {
         name: t('Status'),
@@ -143,51 +161,47 @@ class JobsDetail extends Base {
         value: spec.activeDeadlineSeconds,
       },
       {
-        name: t('Selector'),
-        value: this.selectors,
-      },
-      {
         name: t('Created Time'),
-        value: this.createTime,
+        value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
         name: t('Creator'),
-        value: this.creator,
+        value: detail.creator,
       },
     ]
   }
 
-  handleRerun = () => {
-    const { detail } = this.store
-    this.store.rerun(detail).then(() => {
-      this.fetchData()
-    })
-  }
+  render() {
+    const stores = {
+      detailStore: this.store,
+      resourceStore: this.resourceStore,
+      recordStore: this.recordStore,
+    }
 
-  renderExtraModals() {
-    const { detail = {}, isSubmitting } = this.store
-    const { editBaseInfo, viewYaml } = this.state
+    if (this.store.isLoading && !this.store.detail.name) {
+      return <Loading className="ks-page-loading" />
+    }
 
-    const originData = toJS(detail._originData)
+    const sideProps = {
+      module: this.module,
+      name: getDisplayName(this.store.detail),
+      desc: this.store.detail.description,
+      operations: this.getOperations(),
+      attrs: this.getAttrs(),
+      breadcrumbs: [
+        {
+          label: t(`${this.name}s`),
+          url: this.listUrl,
+        },
+      ],
+    }
 
     return (
-      <div>
-        <EditBasicInfoModal
-          visible={editBaseInfo}
-          detail={originData}
-          onOk={this.handleEdit('editBaseInfo')}
-          onCancel={this.hideModal('editBaseInfo')}
-          isSubmitting={isSubmitting}
-        />
-        <EditYamlModal
-          visible={viewYaml}
-          detail={originData}
-          onCancel={this.hideModal('viewYaml')}
-          readOnly
-        />
-      </div>
+      <DetailPage
+        stores={stores}
+        {...sideProps}
+        routes={getRoutes(this.props.match.path)}
+      />
     )
   }
 }
-
-export default JobsDetail

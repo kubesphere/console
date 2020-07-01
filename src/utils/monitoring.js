@@ -45,7 +45,7 @@ const UnitTypes = {
   },
   memory: {
     conditions: [1024 ** 4, 1024 ** 3, 1024 ** 2, 1024, 0],
-    units: ['TiB', 'GiB', 'MiB', 'KiB', 'Bytes'],
+    units: ['Ti', 'Gi', 'Mi', 'Ki', 'Bytes'],
   },
   disk: {
     conditions: [1000 ** 4, 1000 ** 3, 1000 ** 2, 1000, 0],
@@ -62,6 +62,10 @@ const UnitTypes = {
   bandwidth: {
     conditions: [1024 ** 2 / 8, 1024 / 8, 0],
     units: ['Mbps', 'Kbps', 'bps'],
+  },
+  number: {
+    conditions: [1000 ** 4, 1000 ** 3, 1000 ** 2, 1000, 0],
+    units: ['T', 'G', 'M', 'K', ''],
   },
 }
 
@@ -121,34 +125,38 @@ export const getValueByUnit = (num, unit) => {
       value *= 1000
       if (value < 1) return 0
       break
-    case 'KiB':
+    case 'Ki':
       value /= 1024
       break
-    case 'MiB':
+    case 'Mi':
       value /= 1024 ** 2
       break
-    case 'GiB':
+    case 'Gi':
       value /= 1024 ** 3
       break
-    case 'TiB':
+    case 'Ti':
       value /= 1024 ** 4
       break
     case 'Bytes':
     case 'B':
     case 'B/s':
       break
+    case 'K':
     case 'KB':
     case 'KB/s':
       value /= 1000
       break
+    case 'M':
     case 'MB':
     case 'MB/s':
       value /= 1000 ** 2
       break
+    case 'G':
     case 'GB':
     case 'GB/s':
       value /= 1000 ** 3
       break
+    case 'T':
     case 'TB':
     case 'TB/s':
       value /= 1000 ** 4
@@ -170,9 +178,9 @@ export const getValueByUnit = (num, unit) => {
   return Number(value) === 0 ? 0 : Number(value.toFixed(2))
 }
 
-export const getFormatTime = ms =>
+export const getFormatTime = (ms, showDay) =>
   getLocalTime(Number(ms))
-    .format('YYYY-MM-DD HH:mm:ss')
+    .format(showDay ? 'MM-DD HH:mm' : 'HH:mm')
     .replace(/:00$/g, '')
 
 export const getChartData = ({
@@ -181,12 +189,13 @@ export const getChartData = ({
   xKey = 'time',
   legend = [],
   valuesData = [],
-  xFormatter,
 }) => {
   /*
     build a value map => { 1566289260: {...} }
     e.g. { 1566289260: { 'utilisation': 30.2 } }
   */
+  let minX = 0
+  let maxX = 0
   const valueMap = {}
   valuesData.forEach((values, index) => {
     values.forEach(item => {
@@ -207,14 +216,19 @@ export const getChartData = ({
             ? null
             : getValueByUnit(value, isUndefined(unit) ? type : unit)
       }
+
+      if (!minX || minX > time) minX = time
+      if (!maxX || maxX < time) maxX = time
     })
   })
 
-  const formatter = key => (xKey === 'time' ? getFormatTime(key * 1000) : key)
+  const showDay = maxX - minX > 3600 * 24
+  const formatter = key =>
+    xKey === 'time' ? getFormatTime(key * 1000, showDay) : key
 
   // generate the chart data
   const chartData = Object.entries(valueMap).map(([key, value]) => ({
-    [xKey]: (xFormatter || formatter)(key),
+    [xKey]: formatter(key),
     ...value,
   }))
 
@@ -228,7 +242,6 @@ export const getAreaChartOps = ({
   xKey = 'time',
   legend = [],
   data = [],
-  xFormatter,
   ...rest
 }) => {
   const seriesData = isArray(data) ? data : []
@@ -243,17 +256,12 @@ export const getAreaChartOps = ({
     xKey,
     legend,
     valuesData,
-    xFormatter,
   })
-
-  const xAxisTickFormatter =
-    xKey === 'time' ? getXAxisTickFormatter(chartData) : value => value
 
   return {
     ...rest,
     title,
     unit,
-    xAxisTickFormatter,
     data: chartData,
   }
 }
@@ -386,4 +394,120 @@ export const fillEmptyMetrics = (params, result) => {
   })
 
   return result
+}
+
+/**
+ * @param number:[] IDList
+ */
+export function CreateUidFactory(IDList = []) {
+  const IDStore = {
+    IDList,
+    maxID: IDList.length ? Math.max.apply(null, IDList) : 0,
+  }
+
+  return {
+    generateUID() {
+      const ID = ++IDStore.maxID
+      IDStore.IDList.push(ID)
+      return ID
+    },
+    clear() {
+      IDStore.IDList = []
+      IDStore.maxID = 0
+    },
+  }
+}
+
+/**
+ *
+ * @param number[] values
+ */
+export function avgs(values = []) {
+  const count = values.length
+  const sum = values.reduce((previous, current) => previous + current, 0)
+  return sum / count
+}
+
+export const unitTransformMap = {
+  none: unitTransformFactory([['', 0]]),
+  ...unitTransformGroupFactory([
+    ['bit', 0],
+    ['Byte', 8],
+    ['KB', 8 * 1024],
+    ['MB', 8 * 1024 ** 2],
+    ['GB', 8 * 1024 ** 3],
+    ['TB', 8 * 1024 ** 4],
+  ]),
+  ...unitTransformGroupFactory([
+    ['bit/s', 0],
+    ['Byte/s', 8],
+    ['KB/s', 8 * 1024],
+    ['MB/s', 8 * 1024 ** 2],
+    ['GB/s', 8 * 1024 ** 3],
+    ['TB/s', 8 * 1024 ** 4],
+  ]),
+  ...unitTransformGroupFactory([
+    ['bps', 0],
+    ['Bps', 8],
+    ['KBps', 8 * 1024],
+    ['Mbps', 1024 ** 2],
+    ['Gbps', 1024 ** 3],
+    ['Tbps', 1024 ** 4],
+  ]),
+  ...unitTransformGroupFactory([
+    ['ms', 0],
+    ['seconds', 1000],
+    ['minutes', 1000 * 60],
+    ['hours', 1000 * 60 * 60],
+    ['days', 1000 * 60 * 60 * 24],
+    ['weeks', 10000 * 60 * 60 * 24 * 7],
+    ['months', 10000 * 60 * 60 * 24 * 30],
+  ]),
+  'percent (0-100)': unitTransformFactory([['%', 0]]),
+  'percent (0.0-1.0)': function(number, decimals) {
+    const format = unitTransformFactory([['%', 0]])
+    return format(number * 100, decimals)
+  },
+}
+
+export function unitTransformGroupFactory(config) {
+  const basicUnitTransform = unitTransformFactory(config)
+  const clone = [...config]
+  const [basicUnit] = clone.shift()
+
+  return clone.reduce(
+    (group, [unit, rate]) => ({
+      ...group,
+      [unit](number, decimals) {
+        return basicUnitTransform(number * rate, decimals)
+      },
+    }),
+    { [basicUnit]: basicUnitTransform }
+  )
+}
+
+export function unitTransformFactory(config) {
+  return function(number, decimals = 0) {
+    const isNegative = number < 0
+    const abs = Math.abs(number)
+
+    let rightConfigIndex = 0
+    for (let index = 0; index < config.length; index++) {
+      const [, minNumber] = config[index]
+      if (abs >= minNumber) {
+        rightConfigIndex = index
+      } else {
+        break
+      }
+    }
+
+    const [unit, rate] = config[rightConfigIndex]
+
+    const count = rate === 0 ? abs : abs / rate
+    const fixedCount = count.toFixed(decimals)
+
+    return Number(fixedCount) === 0
+      ? '0'
+      : `${isNegative ? '-' : ''}${fixedCount} ${unit}`
+  }
 }

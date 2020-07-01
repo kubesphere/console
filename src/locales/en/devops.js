@@ -25,9 +25,9 @@ export default {
     'Please input the basic information of the DevOps project',
 
   DEVOPS_DESCRIPTION:
-    'DevOps is a separate namespace that defines a set of pipelines. Users can group their pipelines according to their own (for example: project type, organization type).',
+    'DevOps is a separate namespace that defines a set of pipelines. Users can group their pipelines themselves (for example, project type and organization type).',
   DEVOPS_PROJECT_CREATE_DESC:
-    'DevOps is a separate namespace that defines a set of pipelines. Users can group their pipelines according to their own (for example: project type, organization type).',
+    'DevOps is a separate namespace that defines a set of pipelines. Users can group their pipelines themselves (for example, project type and organization type).',
 
   DEVOPS_ADMIN_DESC:
     'You can specify a member of the project as an administrator',
@@ -37,7 +37,7 @@ export default {
     'You can create or contact the project manager to invite you to the DevOps project to start your work.',
 
   DEVOPS_PROJECT_CREDENTIALS_DESC:
-    'Credential is an object that contains some sensitive data, such as username and password, SSH key and Token, etc., used to provide authentication for the process of pulling code, push/pull image, SSH script execution, etc. when Pipeline is running',
+    'Credential is an object that contains some sensitive data, such as username and password, SSH key and Token. It is used to provide authentication for the process of pulling code, pushing/pulling images, executing SSH scripts, etc. when a pipeline is running.',
 
   DEVOPS_PROJECT_ROLES_DESC:
     'The project roles defines the permissions that users have under the current DevOps project.',
@@ -48,9 +48,11 @@ export default {
 
   DEVOPS_TIP_GITOPS_Q: 'How to get started with GitOps?',
   DEVOPS_TIP_GITOPS_A:
-    'Create relevant code repository pipeline and apply kubernetes to deploy steps. The the GitOps can be realized.',
+    'You can start using GitOps by creating a pipeline that is associated with the code repository and deploying steps with Kubernetes.',
 
   DEVOPS_TIP_TYPE_Q: 'Which code repositories are supported by the Pipeline?',
   DEVOPS_TIP_TYPE_A:
-    'The pipeline supports code repositories of git, github, SVN, and Bitbucket Server.',
+    'The pipeline supports code repositories of Git, GitHub, SVN, and Bitbucket Server.',
+
+  NO_DEVOPS_INSTALL: 'DevOps not installed',
 }

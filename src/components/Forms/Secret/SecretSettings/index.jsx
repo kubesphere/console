@@ -18,21 +18,17 @@
 
 import { get, set, isUndefined } from 'lodash'
 import React from 'react'
-import {
-  Columns,
-  Column,
-  Input,
-  InputPassword,
-  TextArea,
-} from '@pitrix/lego-ui'
+import { Input, InputPassword, TextArea } from '@pitrix/lego-ui'
 import { Form } from 'components/Base'
-import { CustomSelect, SchemeInput } from 'components/Inputs'
+import { CustomSelect } from 'components/Inputs'
 
 import { hasChinese } from 'utils'
 import { MODULE_KIND_MAP } from 'utils/constants'
 
 import DataList from './DataList'
 import DataForm from './DataForm'
+import Base64Wrapper from './Base64Wrapper'
+import ImagerRegistry from './ImagerRegistry'
 
 const SECRET_TYPES = [
   'Opaque',
@@ -43,14 +39,22 @@ const SECRET_TYPES = [
 
 export default class SecretSettings extends React.Component {
   state = {
-    type: get(this.formTemplate, 'type', ''),
+    type: get(this.fedFormTemplate, 'type', ''),
     state: '',
     selectDataKey: '',
   }
 
+  imageRegistryRef = React.createRef()
+
   get formTemplate() {
     const { formTemplate, module } = this.props
     return get(formTemplate, MODULE_KIND_MAP[module], formTemplate)
+  }
+
+  get fedFormTemplate() {
+    return this.props.isFederated
+      ? get(this.formTemplate, 'spec.template')
+      : this.formTemplate
   }
 
   getTypeOptions = () => [
@@ -68,7 +72,7 @@ export default class SecretSettings extends React.Component {
 
   handleTypeChange = type => {
     if (!type || SECRET_TYPES.includes(type)) {
-      set(this.formTemplate, 'data', {})
+      set(this.fedFormTemplate, 'data', {})
     }
 
     this.setState({ type })
@@ -90,15 +94,21 @@ export default class SecretSettings extends React.Component {
     callback()
   }
 
+  imageValidator = (rule, value, callback) => {
+    if (this.imageRegistryRef.current.validate()) {
+      return callback()
+    }
+  }
+
   handleData = data => {
     const { selectDataKey } = this.state
-    const originData = get(this.formTemplate, 'data', {})
+    const originData = get(this.fedFormTemplate, 'data', {})
 
     if (selectDataKey) {
       delete originData[selectDataKey]
     }
 
-    set(this.formTemplate, 'data', { ...originData, ...data })
+    set(this.fedFormTemplate, 'data', { ...originData, ...data })
 
     this.hideDataForm()
   }
@@ -117,7 +127,7 @@ export default class SecretSettings extends React.Component {
 
   renderDataForm() {
     const { selectDataKey } = this.state
-    const originData = get(this.formTemplate, 'data', {})
+    const originData = get(this.fedFormTemplate, 'data', {})
 
     return (
       <DataForm
@@ -149,7 +159,7 @@ export default class SecretSettings extends React.Component {
 
   renderTLS() {
     return (
-      <div className="margin-t8">
+      <div key="tls" className="margin-t8">
         <Form.Item
           label={t('Credential')}
           rules={[
@@ -157,7 +167,9 @@ export default class SecretSettings extends React.Component {
             { validator: this.dataValidator },
           ]}
         >
-          <TextArea name="data['tls.crt']" rows="6" resize />
+          <Base64Wrapper name="data['tls.crt']">
+            <TextArea rows="6" resize />
+          </Base64Wrapper>
         </Form.Item>
         <Form.Item
           label={t('Private Key')}
@@ -166,7 +178,9 @@ export default class SecretSettings extends React.Component {
             { validator: this.dataValidator },
           ]}
         >
-          <TextArea name="data['tls.key']" rows="6" resize />
+          <Base64Wrapper name="data['tls.key']">
+            <TextArea rows="6" resize />
+          </Base64Wrapper>
         </Form.Item>
       </div>
     )
@@ -174,71 +188,19 @@ export default class SecretSettings extends React.Component {
 
   renderImage() {
     return (
-      <div className="margin-t8">
-        <input name="username" className="hidden-input" type="text" disabled />
-        <input
-          name="password"
-          className="hidden-input"
-          type="password"
-          disabled
-        />
-        <Columns>
-          <Column>
-            <Form.Item
-              label={t('Registry Address')}
-              desc={t('Example: docker.io')}
-              rules={[
-                { required: true, message: t('Please input registry address') },
-                { validator: this.dataValidator },
-              ]}
-            >
-              <SchemeInput name="data['.dockerconfigjson'].url" />
-            </Form.Item>
-          </Column>
-          <Column>
-            <Form.Item
-              label={t('User Name')}
-              rules={[
-                { required: true, message: t('Please input user name') },
-                { validator: this.dataValidator },
-              ]}
-            >
-              <Input
-                name="data['.dockerconfigjson'].username"
-                autoComplete="nope"
-              />
-            </Form.Item>
-          </Column>
-        </Columns>
-        <Columns>
-          <Column>
-            <Form.Item label={t('Email')}>
-              <Input name="data['.dockerconfigjson'].email" />
-            </Form.Item>
-          </Column>
-          <Column>
-            <Form.Item
-              label={t('Password')}
-              rules={[
-                { required: true, message: t('Please input password') },
-                { validator: this.dataValidator },
-              ]}
-            >
-              <InputPassword
-                type="password"
-                name="data['.dockerconfigjson'].password"
-                autoComplete="new-password"
-              />
-            </Form.Item>
-          </Column>
-        </Columns>
+      <div key="image" className="margin-t8">
+        <Form.Item rules={[{ validator: this.imageValidator }]}>
+          <Base64Wrapper name="data['.dockerconfigjson']">
+            <ImagerRegistry ref={this.imageRegistryRef} />
+          </Base64Wrapper>
+        </Form.Item>
       </div>
     )
   }
 
   renderBasicAuth() {
     return (
-      <div className="margin-t8">
+      <div key="basic" className="margin-t8">
         <Form.Item
           label={t('User Name')}
           rules={[
@@ -246,7 +208,9 @@ export default class SecretSettings extends React.Component {
             { validator: this.dataValidator },
           ]}
         >
-          <Input name="data.username" autoComplete="nope" />
+          <Base64Wrapper name="data.username">
+            <Input autoComplete="nope" />
+          </Base64Wrapper>
         </Form.Item>
         <Form.Item
           label={t('Password')}
@@ -255,11 +219,9 @@ export default class SecretSettings extends React.Component {
             { validator: this.dataValidator },
           ]}
         >
-          <InputPassword
-            type="password"
-            name="data.password"
-            autoComplete="new-password"
-          />
+          <Base64Wrapper name="data.password">
+            <InputPassword type="password" autoComplete="new-password" />
+          </Base64Wrapper>
         </Form.Item>
       </div>
     )
@@ -298,7 +260,7 @@ export default class SecretSettings extends React.Component {
     }
 
     return (
-      <Form data={this.formTemplate} ref={formRef}>
+      <Form data={this.fedFormTemplate} ref={formRef}>
         {mode !== 'edit' ? (
           <Form.Item label={t('Type')} desc={t('SECRET_TYPE_DESC')}>
             <CustomSelect

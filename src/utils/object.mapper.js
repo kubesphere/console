@@ -16,7 +16,18 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, set, isEmpty, omit, uniqBy, find, keyBy } from 'lodash'
+import {
+  get,
+  set,
+  pick,
+  isEmpty,
+  omit,
+  uniqBy,
+  find,
+  keyBy,
+  includes,
+  cloneDeep,
+} from 'lodash'
 import {
   safeParseJSON,
   generateId,
@@ -36,11 +47,11 @@ const getOriginData = item =>
     'metadata.uid',
     'metadata.selfLink',
     'metadata.generation',
+    'metadata.finalizers',
     'metadata.ownerReferences',
     'metadata.resourceVersion',
     'metadata.creationTimestamp',
-    'metadata.annotations["kubesphere.io/creator"]',
-    'metadata.annotations["creator"]',
+    'metadata.managedFields',
   ])
 
 const getBaseInfo = item => ({
@@ -51,12 +62,75 @@ const getBaseInfo = item => ({
   aliasName: getAliasName(item),
   createTime: get(item, 'metadata.creationTimestamp'),
   resourceVersion: get(item, 'metadata.resourceVersion'),
+  isFedManaged: get(item, 'metadata.labels["kubefed.io/managed"]') === 'true',
 })
 
-const WorkspaceMapper = item => ({
+const DefaultMapper = item => ({
   ...getBaseInfo(item),
-  annotations: get(item, 'metadata.annotations', {}),
-  manager: get(item, 'spec.manager') || getResourceCreator(item),
+  namespace: get(item, 'metadata.namespace'),
+  _originData: getOriginData(item),
+})
+
+const WorkspaceMapper = item => {
+  const overrides = get(item, 'spec.overrides', [])
+  const template = get(item, 'spec.template', {})
+  const clusters = get(item, 'spec.placement.clusters', [])
+
+  const overrideClusterMap = keyBy(overrides, 'clusterName')
+  const clusterTemplates = {}
+  clusters.forEach(({ name }) => {
+    clusterTemplates[name] = cloneDeep(template)
+    if (overrideClusterMap[name] && overrideClusterMap[name].clusterOverrides) {
+      overrideClusterMap[name].clusterOverrides.forEach(cod => {
+        const path = cod.path.startsWith('/') ? cod.path.slice(1) : cod.path
+        set(clusterTemplates[name], path.replace(/\//g, '.'), cod.value)
+      })
+    }
+  })
+
+  return {
+    ...getBaseInfo(item),
+    annotations: get(item, 'metadata.annotations', {}),
+    manager:
+      get(item, 'spec.template.spec.manager') ||
+      get(item, 'spec.manager') ||
+      getResourceCreator(item),
+    clusters,
+    networkIsolation:
+      get(item, 'spec.template.spec.networkIsolation') === 'true',
+    overrides,
+    clusterTemplates,
+    _originData: getOriginData(item),
+  }
+}
+
+const UserMapper = item => ({
+  ...getBaseInfo(item),
+  username: get(item, 'metadata.name', ''),
+  email: get(item, 'spec.email', ''),
+  role: get(item, 'metadata.annotations["iam.kubesphere.io/role"]', ''),
+  globalrole: get(
+    item,
+    'metadata.annotations["iam.kubesphere.io/globalrole"]',
+    ''
+  ),
+  clusterrole: get(
+    item,
+    'metadata.annotations["iam.kubesphere.io/clusterrole"]',
+    ''
+  ),
+  workspacerole: get(
+    item,
+    'metadata.annotations["iam.kubesphere.io/workspacerole"]',
+    ''
+  ),
+  roleBind: get(
+    item,
+    'metadata.annotations["iam.kubesphere.io/role-binding"]',
+    ''
+  ),
+  status: get(item, 'status.state', 'Pending'),
+  conditions: get(item, 'status.conditions', []),
   _originData: getOriginData(item),
 })
 
@@ -93,6 +167,7 @@ const WorkLoadMapper = item => ({
   app:
     get(item, 'metadata.labels.release') ||
     get(item, 'metadata.labels["app.kubernetes.io/name"]'),
+  ownerReference: get(item, 'metadata.ownerReferences[0]', {}),
   hasS2i: Object.keys(get(item, 'metadata.labels', {})).some(labelKey =>
     labelKey.startsWith('s2ibuilder')
   ),
@@ -351,12 +426,17 @@ const VolumeMapper = item => {
     deletionTime,
     phase: getVolumePhase(item),
     ...getBaseInfo(item),
+    storageProvisioner: get(
+      item,
+      'metadata.annotations["volume.beta.kubernetes.io/storage-provisioner"]'
+    ),
     status: get(item, 'status', {}),
     conditions: get(item, 'status.conditions', []),
     namespace: get(item, 'metadata.namespace'),
     labels: get(item, 'metadata.labels'),
     annotations: get(item, 'metadata.annotations'),
     accessMode: get(item, 'spec.accessModes[0]'),
+    accessModes: get(item, 'spec.accessModes'),
     storageClassName: get(item, 'spec.storageClassName'),
     resources: get(item, 'spec.resources'),
     capacity: get(
@@ -366,6 +446,9 @@ const VolumeMapper = item => {
     ),
     inUse: get(item, 'metadata.annotations["kubesphere.io/in-use"]') === 'true',
     type: 'pvc',
+    allowSnapshot:
+      get(item, 'metadata.annotations["kubesphere.io/allow-snapshot"]') ===
+      'true',
     _originData: getOriginData(item),
   }
 }
@@ -409,10 +492,17 @@ const ServiceMapper = item => {
     annotations: get(item, 'metadata.annotations', {}),
     status: get(item, 'status'),
     ports: get(item, 'spec.ports', []),
+    workloadType: get(
+      item,
+      'metadata.annotations["kubesphere.io/workloadType"]',
+      'Deployment'
+    ),
     sessionAffinity: get(item, 'spec.sessionAffinity'),
     externalIPs: get(item, 'spec.externalIPs', []),
     externalName: get(item, 'spec.externalName'),
-    loadBalancerIngress: get(item, 'status.loadBalancer.ingress[0].ip'),
+    loadBalancerIngress:
+      get(item, 'status.loadBalancer.ingress[0].ip') ||
+      get(item, 'status.loadBalancer.ingress[0].hostname'),
     app:
       get(item, 'metadata.labels.release') ||
       get(item, 'metadata.labels["app.kubernetes.io/name"]'),
@@ -420,16 +510,88 @@ const ServiceMapper = item => {
   }
 }
 
-export const EndpointMapper = item => ({
+const EndpointMapper = item => ({
   addresses: item.addresses || [],
   ports: item.ports || [],
 })
 
-const RoleMapper = item => ({
-  ...getBaseInfo(item),
+const getRoleBaseInfo = (item, module) => {
+  const baseInfo = getBaseInfo(item)
+
+  const labels = get(item, 'metadata.labels', {})
+  if (!labels['iam.kubesphere.io/role-template']) {
+    switch (module) {
+      case 'workspaceroles': {
+        const name = baseInfo.name.slice(
+          labels['kubesphere.io/workspace'].length + 1
+        )
+        if (globals.config.presetWorkspaceRoles.includes(name)) {
+          baseInfo.description = t(
+            `ROLE_WORKSPACE_${name.toUpperCase().replace(/-/g, '_')}`
+          )
+        }
+        break
+      }
+      case 'globalroles': {
+        const name = baseInfo.name
+        if (globals.config.presetGlobalRoles.includes(name)) {
+          baseInfo.description = t(
+            `ROLE_${name.toUpperCase().replace(/-/g, '_')}`
+          )
+        }
+        break
+      }
+      case 'clusterroles': {
+        const name = baseInfo.name
+        if (globals.config.presetClusterRoles.includes(name)) {
+          baseInfo.description = t(
+            `ROLE_${name.toUpperCase().replace(/-/g, '_')}`
+          )
+        }
+        break
+      }
+      case 'roles': {
+        const name = baseInfo.name
+        if (globals.config.presetRoles.includes(name)) {
+          baseInfo.description = t(
+            `ROLE_PROJECT_${name.toUpperCase().replace(/-/g, '_')}`
+          )
+        }
+        break
+      }
+      case 'devopsroles': {
+        const name = baseInfo.name
+        if (globals.config.presetRoles.includes(name)) {
+          baseInfo.description = t(
+            `ROLE_DEVOPS_${name.toUpperCase().replace(/-/g, '_')}`
+          )
+        }
+        break
+      }
+      default:
+    }
+  }
+
+  return baseInfo
+}
+
+const RoleMapper = (item, kind = 'roles') => ({
+  ...getRoleBaseInfo(item, kind),
   labels: get(item, 'metadata.labels', {}),
   namespace: get(item, 'metadata.namespace'),
   annotations: get(item, 'metadata.annotations'),
+  dependencies: safeParseJSON(
+    get(item, 'metadata.annotations["iam.kubesphere.io/dependencies"]', ''),
+    []
+  ),
+  roleTemplates: safeParseJSON(
+    get(
+      item,
+      'metadata.annotations["iam.kubesphere.io/aggregation-roles"]',
+      ''
+    ),
+    []
+  ),
   rules: get(item, 'rules'),
   _originData: getOriginData(item),
 })
@@ -457,7 +619,7 @@ const IngressMapper = item => ({
   _originData: getOriginData(item),
 })
 
-export const GatewayMapper = item => ({
+const GatewayMapper = item => ({
   uid: get(item, 'metadata.uid'),
   namespace: get(item, 'metadata.labels.project'), // it's not metadata.namespace
   annotations: omit(
@@ -468,14 +630,17 @@ export const GatewayMapper = item => ({
   type: get(item, 'spec.type'),
   externalIPs: get(item, 'spec.externalIPs', []),
   ports: get(item, 'spec.ports', []),
-  loadBalancerIngress: get(item, 'status.loadBalancer.ingress[0].ip'),
+  loadBalancerIngress:
+    get(item, 'status.loadBalancer.ingress[0].ip') ||
+    get(item, 'status.loadBalancer.ingress[0].hostname'),
+  isHostName: !!get(item, 'status.loadBalancer.ingress[0].hostname'),
   serviceMeshEnable:
     get(item, 'metadata.annotations["servicemesh.kubesphere.io/enabled"]') ===
     'true',
   _originData: getOriginData(item),
 })
 
-export const ConfigmapMapper = item => ({
+const ConfigmapMapper = item => ({
   ...getBaseInfo(item),
   namespace: get(item, 'metadata.namespace'),
   labels: get(item, 'metadata.labels', {}),
@@ -507,7 +672,7 @@ const secretDataParser = data => {
   )
 }
 
-export const SecretMapper = item => ({
+const SecretMapper = item => ({
   ...getBaseInfo(item),
   namespace: get(item, 'metadata.namespace'),
   labels: get(item, 'metadata.labels', {}),
@@ -517,7 +682,7 @@ export const SecretMapper = item => ({
   _originData: getOriginData(item),
 })
 
-export const LimitRangeMapper = item => ({
+const LimitRangeMapper = item => ({
   ...getBaseInfo(item),
   namespace: get(item, 'metadata.namespace'),
   limit: get(item, 'spec.limits[0]', ''),
@@ -540,7 +705,7 @@ const getApplicationStatus = item => {
   return 'Updating'
 }
 
-export const ApplicationMapper = item => ({
+const ApplicationMapper = item => ({
   ...getBaseInfo(item),
   namespace: get(item, 'metadata.namespace'),
   version: get(item, 'metadata.labels["app.kubernetes.io/version"]'),
@@ -555,7 +720,7 @@ export const ApplicationMapper = item => ({
   _originData: getOriginData(item),
 })
 
-export const ServicePolicyMapper = item => ({
+const ServicePolicyMapper = item => ({
   ...getBaseInfo(item),
   namespace: get(item, 'metadata.namespace'),
   labels: get(item, 'metadata.labels', {}),
@@ -570,7 +735,7 @@ export const ServicePolicyMapper = item => ({
   _originData: getOriginData(item),
 })
 
-export const StrategyMapper = item => {
+const StrategyMapper = item => {
   const type = get(item, 'spec.type')
   const principal = get(item, 'spec.principal')
   const governor = get(item, 'spec.governor')
@@ -625,7 +790,7 @@ export const StrategyMapper = item => {
   }
 }
 
-export const AlertMapper = item => {
+const AlertMapper = item => {
   const alertStatus = safeParseJSON(get(item, 'alert_status'), {})
   const policyConfig = safeParseJSON(get(item, 'policy_config'), {})
   const resourceFilter = safeParseJSON(get(item, 'rs_filter_param'), {})
@@ -663,7 +828,7 @@ export const AlertMapper = item => {
   }
 }
 
-export const AlertRuleMapper = item => {
+const AlertRuleMapper = item => {
   const resources = get(item, 'resources') || []
 
   let alertStatus = isEmpty(resources) ? 'unknown' : 'cleared'
@@ -693,7 +858,7 @@ export const AlertRuleMapper = item => {
   }
 }
 
-export const AlertResourceMapper = item => {
+const AlertResourceMapper = item => {
   const resource_uri = safeParseJSON(get(item, 'resource_uri'), {})
   const selector = safeParseJSON(get(resource_uri, 'selector'), [])
   const node_id = (get(resource_uri, 'node_id') || '').split('|')
@@ -712,7 +877,7 @@ export const AlertResourceMapper = item => {
   }
 }
 
-export const AlertMessageMapper = item => {
+const AlertMessageMapper = item => {
   const notificationStatus = safeParseJSON(get(item, 'notification_status'), [])
   const resourceFilter = safeParseJSON(get(item, 'rs_filter_param'), {})
 
@@ -774,7 +939,31 @@ const findCodeDetail = (messures, key, path, defaultValue) => {
   return get(detail, path || 'value', defaultValue || '')
 }
 
-export const CodeQualityMapper = item => {
+const LogOutPutMapper = item => {
+  const { metadata, spec } = item
+  const rules = pick(spec, ['es', 'kafka', 'forward'])
+  const type = get(Object.keys(rules), '[0]', '')
+  const address =
+    type === 'kafka'
+      ? get(rules, 'kafka.brokers')
+      : `${get(rules, `${type}.host`)}:${get(rules, `${type}.port`)}`
+
+  return {
+    uid: metadata.uid,
+    creationTimestamp: metadata.creationTimestamp,
+    rules: pick(spec, ['es', 'kafka', 'forward']),
+    type,
+    name: metadata.name,
+    address,
+    enabled:
+      get(metadata, 'labels["logging.kubesphere.io/enabled"]') === 'true',
+    config: spec[type],
+    component: get(metadata, 'labels["logging.kubesphere.io/component"]'),
+    _originData: item,
+  }
+}
+
+const CodeQualityMapper = item => {
   const messures = get(item, 'measures.component.measures', [])
   const severities = find(
     get(item, 'issues.facets', []),
@@ -802,7 +991,7 @@ export const CodeQualityMapper = item => {
   }
 }
 
-export const ImageDetailMapper = detail => {
+const ImageDetailMapper = detail => {
   const layers = get(detail, 'imageManifest.layers', [])
   const size = layers.reduce((prev, layer) => prev + layer.size, 0)
   return {
@@ -817,6 +1006,163 @@ export const ImageDetailMapper = detail => {
     ),
     status: get(detail, 'status', ''),
     slug: get(detail, 'slug', ''),
+  }
+}
+
+const VolumeSnapshotMapper = detail => {
+  const { spec = {}, status = {}, metadata = {} } = detail
+  const { error = {}, readyToUse } = status
+  const { message } = error
+  const { namespace = '' } = metadata
+  const snapshotSourceName = get(spec, 'source.persistentVolumeClaimName')
+
+  return {
+    ...getBaseInfo(detail),
+    snapshotClassName: get(spec, 'volumeSnapshotClassName', '-'),
+    restoreSize: get(status, 'restoreSize', 0),
+    error,
+    errorMessage: message,
+    generating: !readyToUse && isEmpty(error),
+    readyToUse,
+    backupStatus: readyToUse ? 'success' : message ? 'failed' : 'updating',
+    namespace,
+    snapshotSourceName,
+  }
+}
+
+const ClusterMapper = item => {
+  const conditions = keyBy(get(item, 'status.conditions', []), 'type')
+  return {
+    ...getBaseInfo(item),
+    conditions,
+    configz: get(item, 'status.configz', {}),
+    provider: get(item, 'spec.provider'),
+    isHost:
+      get(
+        item,
+        'metadata.annotations["cluster.kubesphere.io/is-host-cluster"]'
+      ) === 'true',
+    nodeCount: get(item, 'status.nodeCount'),
+    kubernetesVersion: get(item, 'status.kubernetesVersion'),
+    labels: get(item, 'metadata.labels'),
+    group: get(item, 'metadata.labels["cluster.kubesphere.io/group"]'),
+    isReady: globals.app.isMultiCluster
+      ? get(conditions, 'Ready.status') === 'True'
+      : true,
+    visibility: get(
+      item,
+      'metadata.labels["cluster.kubesphere.io/visibility"]'
+    ),
+    connectionType: get(item, 'spec.connection.type'),
+    _originData: getOriginData(item),
+  }
+}
+
+const FederatedMapper = resourceMapper => item => {
+  const overrides = get(item, 'spec.overrides', [])
+  const template = get(item, 'spec.template', {})
+  const clusters = get(item, 'spec.placement.clusters', [])
+
+  const overrideClusterMap = keyBy(overrides, 'clusterName')
+  const clusterTemplates = {}
+  clusters.forEach(({ name }) => {
+    clusterTemplates[name] = cloneDeep(template)
+    if (overrideClusterMap[name] && overrideClusterMap[name].clusterOverrides) {
+      overrideClusterMap[name].clusterOverrides.forEach(cod => {
+        const path = cod.path.startsWith('/') ? cod.path.slice(1) : cod.path
+        set(clusterTemplates[name], path.replace(/\//g, '.'), cod.value)
+      })
+    }
+  })
+
+  return {
+    ...getBaseInfo(item),
+    overrides,
+    template,
+    clusters,
+    clusterTemplates,
+    isFedManaged: true,
+    resource: resourceMapper(template),
+    namespace: get(item, 'metadata.namespace'),
+    labels: get(item, 'metadata.labels', {}),
+    annotations: get(item, 'metadata.annotations', {}),
+    app: get(item, 'metadata.labels["app.kubernetes.io/name"]'),
+    _originData: getOriginData(item),
+  }
+}
+
+const DevOpsMapper = item => ({
+  uid: get(item, 'metadata.uid'),
+  name: get(item, 'metadata.name'),
+  creator: getResourceCreator(item),
+  description: getDescription(item),
+  createTime: get(item, 'metadata.creationTimestamp'),
+  workspace: get(item, 'metadata.labels["kubesphere.io/workspace"]'),
+  namespace: get(item, 'status.adminNamespace'),
+  _originData: getOriginData(item),
+})
+
+const PipelinesMapper = item => ({
+  ...getBaseInfo(item),
+})
+
+const CRDMapper = item => {
+  const versions = get(item, 'spec.versions', [])
+  return {
+    versions,
+    ...getBaseInfo(item),
+    group: get(item, 'spec.group'),
+    scope: get(item, 'spec.scope'),
+    kind: get(item, 'spec.names.kind'),
+    latestVersion: get(versions[versions.length - 1], 'name'),
+    module: get(item, 'status.acceptedNames.plural'),
+    _originData: getOriginData(item),
+  }
+}
+
+const DashboardMapper = item => {
+  const { metadata = {}, spec = {} } = item
+
+  /**
+   * name - uniqueName
+   */
+  const { creationTimestamp, name, namespace } = metadata
+
+  /**
+   * title - nickname
+   */
+  const { datasource, description, title } = spec
+
+  return {
+    creationTimestamp,
+    name,
+    namespace,
+    datasource,
+    description,
+    title,
+    _originData: item,
+  }
+}
+
+const NetworkPoliciesMapper = item => ({
+  ...getBaseInfo(item),
+  namespace: get(item, 'metadata.namespace'),
+  _originData: getOriginData(item),
+  key: `${get(item, 'metadata.namespace')}-${get(item, 'metadata.name')}`,
+})
+
+const StorageclasscapabilitiesMapper = item => {
+  const { metadata, spec } = item
+  const volumeFeature = get(spec, 'features.volume')
+  return {
+    metadata,
+    spec,
+    snapshotFeature: get(spec, 'features.snapshot'),
+    volumeFeature,
+    supportExpandVolume: includes(
+      ['OFFLINE', 'ONLINE'],
+      volumeFeature.expandMode
+    ),
   }
 }
 
@@ -842,6 +1188,9 @@ export default {
   endpoints: EndpointMapper,
   ingresses: IngressMapper,
   roles: RoleMapper,
+  clusterroles: RoleMapper,
+  globalroles: RoleMapper,
+  workspaceroles: RoleMapper,
   rolebinds: RoleBindMapper,
   gateway: GatewayMapper,
   configmaps: ConfigmapMapper,
@@ -857,4 +1206,17 @@ export default {
   workspaces: WorkspaceMapper,
   codequality: CodeQualityMapper,
   imageBlob: ImageDetailMapper,
+  volumesnapshots: VolumeSnapshotMapper,
+  users: UserMapper,
+  clusters: ClusterMapper,
+  federated: FederatedMapper,
+  outputs: LogOutPutMapper,
+  devops: DevOpsMapper,
+  dashboards: DashboardMapper,
+  customresourcedefinitions: CRDMapper,
+  pipelines: PipelinesMapper,
+  networkpolicies: NetworkPoliciesMapper,
+  namespacenetworkpolicies: NetworkPoliciesMapper,
+  storageclasscapabilities: StorageclasscapabilitiesMapper,
+  default: DefaultMapper,
 }

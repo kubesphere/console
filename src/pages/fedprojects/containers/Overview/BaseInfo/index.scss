@@ -1,0 +1,41 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.wrapper {
+  position: relative;
+  padding: 0 12px;
+  padding-right: 170px;
+  background-color: #fff;
+  border-radius: $border-radius;
+  box-shadow: $base-shadow;
+}
+
+.header {
+  position: relative;
+  height: 64px;
+  padding: 12px 0 12px 52px;
+
+  :global .icon {
+    @include vertical-center;
+    left: 0;
+  }
+}
+
+.content {
+  display: flex;
+  padding: 8px;
+  border-radius: $border-radius $border-radius 0 0;
+  background-color: $lightest;
+
+  & > div {
+    min-width: 200px;
+  }
+}
+
+.background {
+  position: absolute;
+  top: 0;
+  right: 12px;
+  width: 138px;
+  height: 120px;
+}

@@ -1,0 +1,109 @@
+@import '~scss/variables';
+
+.panel_p {
+  background-color: $light-color01;
+}
+.panel_s {
+  background-color: $light-color01;
+  padding: 0 !important;
+}
+.list {
+  min-height: 100px;
+  overflow-y: auto;
+  background-color: #fff;
+  :global {
+    .list-body {
+      > div[class='list-item'] {
+        padding-top: 8px;
+        padding-bottom: 7px;
+      }
+    }
+  }
+}
+.sheader {
+  background-color: $light-color02;
+  padding: 7px 0 7px 12px;
+}
+.sbody {
+  margin: 12px;
+  border-radius: 4px;
+}
+.cidr {
+  display: flex;
+  align-items: center;
+  & > :first-child {
+    width: 320px;
+  }
+  & > :nth-child(2) {
+    padding: 0 7px;
+  }
+  & > :last-child {
+    width: 80px;
+  }
+}
+.rulerow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $light-color02;
+  padding: 6px 24px;
+  border-radius: 22px;
+  margin-bottom: 5px;
+  & > :first-child {
+    display: flex;
+    & > :first-child {
+      width: 160px;
+      margin-right: 10px;
+    }
+    & > :last-child {
+      width: 290px;
+    }
+  }
+}
+.error {
+  border: 1px solid $danger !important;
+}
+.addBtn {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 12px;
+}
+.title {
+  margin-top: 12px;
+  margin-bottom: 8px;
+}
+.disp {
+  margin-top: 4px;
+  color: $second-text-color;
+}
+.dirCheck {
+  :global {
+    div.control {
+      margin-right: 15px !important;
+      > label.radio-button {
+        transition: all 0.3s ease-in-out;
+        font-size: 12px;
+        font-weight: 700;
+        color: $dark-color01;
+        &:hover {
+          border-color: $dark-color01;
+          box-shadow: 0 4px 8px 0 rgba(36, 46, 66, 0.2) !important;
+        }
+        &.radio-button-wrapper-checked {
+          color: $dark-color07;
+          border-color: $dark-color01;
+        }
+        border-radius: 5px !important;
+        padding: 0 15px;
+        height: 60px;
+        .label-value {
+          width: 82px;
+          > span.icon {
+            margin-left: 0;
+            margin-right: 0;
+          }
+        }
+      }
+    }
+  }
+}

@@ -19,47 +19,38 @@
 import React from 'react'
 import { computed, toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
-import { Link } from 'react-router-dom'
-import classnames from 'classnames'
-import moment from 'moment-mini'
-import { get, sortBy, isUndefined } from 'lodash'
 
-import { getLocalTime, cacheFunc } from 'utils'
+import { get, sortBy } from 'lodash'
+
+import { getLocalTime } from 'utils'
+import { getValue } from 'utils/yaml'
 import { getCurrentRevision } from 'utils/workload'
 import RevisionStore from 'stores/workload/revision'
 
-import { Icon } from '@pitrix/lego-ui'
-import { Button, Card } from 'components/Base'
-import EditYamlModal from 'components/Modals/EditYaml'
+import { Text, TypeSelect, Alert, Panel, Tag } from 'components/Base'
+import DiffYaml from 'components/DiffYaml'
 
 import styles from './index.scss'
 
 class RevisionControl extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.revisionStore = props.revisionStore || new RevisionStore(this.module)
-  }
+  revisionStore = new RevisionStore(this.module)
 
   state = {
     showViewYaml: false,
-    selectItem: {},
+    lastRevision: 0,
+    selectRevision: 0,
+  }
+
+  componentDidMount() {
+    this.fetchData()
   }
 
   get module() {
-    return this.props.module
+    return this.store.module
   }
 
   get store() {
     return this.props.detailStore
-  }
-
-  get routing() {
-    return this.props.rootStore.routing
-  }
-
-  get name() {
-    return 'Deployments'
   }
 
   @computed
@@ -69,131 +60,112 @@ class RevisionControl extends React.Component {
   }
 
   @computed
-  get diffDate() {
+  get revisions() {
     const { data } = toJS(this.revisionStore.list)
-    const createTime = get(
-      data.find(item => item.revision === this.curRevision),
-      'createTime'
-    )
-    return getLocalTime(createTime).fromNow()
-  }
-
-  getDetailLink = revisionId => {
-    const { name, namespace } = this.props.match.params
-    return `/projects/${namespace}/${
-      this.module
-    }/${name}/revisions/${revisionId}`
-  }
-
-  componentDidMount() {
-    this.fetchData()
+    return sortBy(data, item => parseInt(item.revision, 10))
+      .reverse()
+      .map(item => {
+        let label = `#${item.revision} (${item.name.replace(
+          `${item.ownerName}-`,
+          ''
+        )})`
+        if (item.revision === this.curRevision) {
+          label = (
+            <span>
+              <span>{label}</span> <Tag type="primary">{t('Running')}</Tag>
+            </span>
+          )
+        }
+        const description = t('CREATE_TIME', {
+          diff: getLocalTime(item.createTime).format(
+            `${t('MMMM Do YYYY')} HH:mm:ss`
+          ),
+        })
+        return {
+          label,
+          description,
+          icon: 'timed-task',
+          value: item.revision,
+        }
+      })
   }
 
   fetchData = () => {
-    this.revisionStore.fetchList(this.store.detail)
+    this.revisionStore.fetchList(this.store.detail).then(() => {
+      this.setState({ selectRevision: this.curRevision })
+    })
   }
 
-  handleClick = e => {
-    e.persist()
-    const { revision } = e.target.dataset
-
-    if (!isUndefined(revision)) {
-      this.routing.push(this.getDetailLink(revision))
-    }
+  handleRevisionChange = value => {
+    this.setState({ selectRevision: value })
   }
 
-  hideViewYaml = () => {
-    this.setState({ showViewYaml: false })
-  }
+  renderDiff() {
+    const { selectRevision } = this.state
+    const data = toJS(this.revisionStore.list.data)
+    const lastRevision = Math.max(Number(selectRevision) - 1, 0)
 
-  handleViewYaml = item =>
-    cacheFunc(
-      `_view_${item.revision}`,
-      () => {
-        this.setState({
-          showViewYaml: true,
-          selectItem: item._originData,
-        })
-      },
-      this
-    )
+    const newRevision = data.find(item => item.revision === selectRevision)
+    const oldRevision = data.find(item => item.revision === lastRevision)
 
-  renderRevisionItem = item => {
-    const { revision, createTime } = item
-    const isCur = parseInt(revision, 10) === this.curRevision
-
+    const newYaml = newRevision ? getValue(newRevision._originData) : ''
+    const oldYaml = oldRevision ? getValue(oldRevision._originData) : ''
     return (
-      <div key={revision} className={styles.item} data-revision={revision}>
-        <div
-          className={classnames(styles.icon, {
-            [styles.checked]: isCur,
-          })}
-        >
-          {isCur && <Icon name="check" type="light" />}
-        </div>
-        <div>
-          <div className={styles.title}>#{revision}</div>
-          <p className={styles.text}>
-            {t('CREATE_TIME', {
-              diff: moment(createTime).format(`${t('MMMM Do YYYY')} HH:mm:ss`),
-            })}
-          </p>
-        </div>
-        <div className={styles.operations}>
-          <Button type="ghost" icon="eye" onClick={this.handleViewYaml(item)} />
-        </div>
-      </div>
-    )
-  }
-
-  renderModals() {
-    const { showViewYaml, selectItem } = this.state
-
-    return (
-      <EditYamlModal
-        visible={showViewYaml}
-        detail={selectItem}
-        onCancel={this.hideViewYaml}
-        readOnly
+      <DiffYaml
+        datas={[oldYaml, newYaml]}
+        title={`${t('Config File')} (Yaml)`}
+        description={
+          oldRevision
+            ? t('COMPARE_WITH', {
+                version: `#${lastRevision} (${oldRevision.name.replace(
+                  `${oldRevision.ownerName}-`,
+                  ''
+                )})`,
+              })
+            : ''
+        }
       />
     )
   }
 
   render() {
-    const { data, isLoading } = toJS(this.revisionStore.list)
-    const revisions = sortBy(data, item =>
-      parseInt(item.revision, 10)
-    ).reverse()
-
-    const text = this.diffDate
-      ? t('UPDATE_TIME', { diff: this.diffDate })
-      : t('Updated just now')
+    const { data, isLoading } = this.revisionStore.list
+    const { selectRevision } = this.state
+    const revision = data.find(item => item.revision === selectRevision)
 
     return (
       <div>
-        <Card className={styles.main} loading={isLoading}>
-          <div className={styles.header}>
-            <Icon name="timed-task" size={40} />
-            <div>
-              <div className={styles.title}>
-                {t('Revision')}
-                <Link to={this.getDetailLink(this.curRevision)}>
-                  #{this.curRevision}
-                </Link>
-                {t('is running')}
-              </div>
-              <p className={styles.text}>{text}</p>
+        <Panel title={t('Records')}>
+          <Alert className="margin-b12" message={t('REVISION_DESC')} hideIcon />
+          <TypeSelect
+            value={selectRevision}
+            options={this.revisions}
+            loading={isLoading}
+            onChange={this.handleRevisionChange}
+          />
+        </Panel>
+        {revision && (
+          <Panel>
+            <div className={styles.header}>
+              <Text
+                title={get(revision, 'labels.version', '-')}
+                description={t('Version')}
+              />
+              <Text title={`#${revision.revision}`} description={t('Record')} />
+              <Text
+                title={getLocalTime(revision.createTime).format(
+                  `${t('MMMM Do YYYY')} HH:mm:ss`
+                )}
+                description={t('Created Time')}
+              />
             </div>
-          </div>
-          <div className={styles.list} onClick={this.handleClick}>
-            {revisions.map(this.renderRevisionItem)}
-          </div>
-        </Card>
-        {this.renderModals()}
+            <div className={styles.diffWrapper}>{this.renderDiff()}</div>
+          </Panel>
+        )}
       </div>
     )
   }
 }
 
-export default inject('rootStore')(observer(RevisionControl))
+export default inject('rootStore', 'detailStore')(observer(RevisionControl))
 export const Component = RevisionControl

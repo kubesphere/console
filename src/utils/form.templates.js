@@ -16,6 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { get, cloneDeep, unset } from 'lodash'
 import { MODULE_KIND_MAP } from './constants'
 
 const getDeploymentTemplate = ({ namespace }) => ({
@@ -46,6 +47,35 @@ const getDeploymentTemplate = ({ namespace }) => ({
     },
   },
 })
+
+const getFederatedTemplate = ({ data, clusters, kind }) => {
+  const namespace = get(data, 'metadata.namespace')
+
+  const placement = { clusters: clusters.map(item => ({ name: item })) }
+
+  const overrides = clusters.map(cluster => {
+    const override = {
+      clusterName: cluster,
+      clusterOverrides: [],
+    }
+
+    return override
+  })
+
+  const template = cloneDeep(data)
+
+  unset(template, 'apiVersion')
+  unset(template, 'kind')
+  unset(template, 'metadata.name')
+  unset(template, 'metadata.annotations')
+
+  return {
+    apiVersion: 'types.kubefed.io/v1beta1',
+    kind: `Federated${kind}`,
+    metadata: { namespace },
+    spec: { placement, template, overrides },
+  }
+}
 
 const getDaemonSetTemplate = ({ namespace }) => ({
   apiVersion: 'apps/v1',
@@ -213,13 +243,25 @@ const getRoleTemplate = ({ namespace }) => ({
   metadata: {
     namespace,
   },
-  rules: {},
+  rules: [],
 })
 
 const getClusterRoleTemplate = () => ({
   apiVersion: 'rbac.authorization.k8s.io/v1',
   kind: 'ClusterRole',
-  rules: {},
+  rules: [],
+})
+
+const getGlobalRoleTemplate = () => ({
+  apiVersion: 'iam.kubesphere.io/v1alpha2',
+  kind: 'GlobalRole',
+  rules: [],
+})
+
+const getWorkspaceRoleTemplate = () => ({
+  apiVersion: 'iam.kubesphere.io/v1alpha2',
+  kind: 'WorkspaceRole',
+  rules: [],
 })
 
 const getVolumeTemplate = ({ namespace }) => ({
@@ -411,11 +453,42 @@ const getBinaryTemplate = ({ namespace, name }) => ({
 })
 
 const getWorkspaceTemplate = () => ({
-  apiVersion: 'tenant.kubesphere.io/v1alpha1',
-  kind: 'Workspace',
+  apiVersion: 'tenant.kubesphere.io/v1alpha2',
+  kind: 'WorkspaceTemplate',
   metadata: {
     name: '',
   },
+})
+
+const getVolumeSnapshotTemplate = () => ({
+  apiVersion: 'snapshot.storage.k8s.io/v1alpha1',
+  kind: 'VolumeSnapshot',
+  metadata: {
+    name: '',
+  },
+  spec: {
+    source: {
+      kind: 'PersistentVolumeClaim',
+    },
+  },
+})
+
+const getNameSpaceNetworkPoliciesTemplate = ({ namespace }) => ({
+  apiVersion: 'network.kubesphere.io/v1alpha1',
+  kind: 'NamespaceNetworkPolicy',
+  metadata: {
+    namespace,
+  },
+  spec: {},
+})
+
+const getDashboardTemplate = ({ namespace }) => ({
+  apiVersion: 'monitoring.kubesphere.io/v1alpha1',
+  kind: 'Dashboard',
+  metadata: {
+    namespace,
+  },
+  spec: {},
 })
 
 const FORM_TEMPLATES = {
@@ -431,6 +504,8 @@ const FORM_TEMPLATES = {
   hpa: getHorizontalPodAutoscalerTemplate,
   roles: getRoleTemplate,
   clusterroles: getClusterRoleTemplate,
+  globalroles: getGlobalRoleTemplate,
+  workspaceroles: getWorkspaceRoleTemplate,
   volumes: getVolumeTemplate,
   storageclasses: getStorageClassTemplate,
   project: getProjectTemplate,
@@ -442,6 +517,10 @@ const FORM_TEMPLATES = {
   workspaces: getWorkspaceTemplate,
   s2ibuilders: getS2IBuilderTemplate,
   b2iBuilders: getBinaryTemplate,
+  'volume-snapshots': getVolumeSnapshotTemplate,
+  namespacenetworkpolicies: getNameSpaceNetworkPoliciesTemplate,
+  dashboards: getDashboardTemplate,
+  federated: getFederatedTemplate,
 }
 
 export default FORM_TEMPLATES

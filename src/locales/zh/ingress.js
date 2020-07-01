@@ -39,6 +39,9 @@ export default {
 
   'Invalid host': '域名格式错误',
 
+  'Gateway IP': '网关 IP',
+  'Gateway Type': '网关类型',
+
   Mode: '模式',
   Paths: '路径',
   HostName: '域名',
@@ -60,7 +63,7 @@ export default {
   GATEWAY_APPLICATION_GOVERNANCE_TIP:
     '如您不需要使用应用治理的功能，无需打开此项；如果您需要使用应用治理的 Tracing 功能，请打开此项。打开此项后，如果您的应用路由无法访问，请检查应用路由中是否添加 `nginx.ingress.kubernetes.io/service-upstream: true` 注解，如无，请手动添加。',
 
-  'Please add at least one routing rule': '请至少添加一个路由规则',
+  'Please add at least one routing rule.': '请至少添加一个路由规则',
 
   UNABLE_TO_ACCESS_TIP:
     '● 请确保您设置的域名可以解析到访问入口的 IP 地址;<br/>● 如果在私有云环境中，请修改本地的 host 文件，并通过 域名+节点端口 的方式来访问;<br/>● 通过通配 DNS 访问，将域名修改为 hostname + 网关地址 + nip.io，然后可以通过 hostname.网关地址.nip.io:节点端口 的形式来访问服务;<br/>● 如果通过域名访问被拦截，请确认您的域名是真实而且已经备案。',

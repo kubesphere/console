@@ -16,12 +16,13 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, set, unset, isEmpty } from 'lodash'
+import { get, isEmpty, unset } from 'lodash'
 import { action, observable } from 'mobx'
-import { getFilterString, formatRules } from 'utils'
+import { LIST_DEFAULT_ORDER } from 'utils/constants'
 import ObjectMapper from 'utils/object.mapper'
 
-import MemberList from 'stores/member.list'
+import Base from './base'
+import List from './base.list'
 
 const formatLimitRange = (limitRange = {}) => {
   const cpuLimit = get(limitRange, 'spec.limits[0].default.cpu')
@@ -41,226 +42,113 @@ const formatLimitRange = (limitRange = {}) => {
   return limitRange
 }
 
-export default class ProjectStore {
+const getTypeSelectParams = type => {
+  let params = {}
+
+  if (type === 'system') {
+    params = {
+      labelSelector: 'kubesphere.io/workspace=system-workspace',
+    }
+  } else if (type === 'user') {
+    params = {
+      labelSelector: 'kubesphere.io/workspace!=system-workspace',
+    }
+  }
+  return params
+}
+
+export default class ProjectStore extends Base {
   @observable
   initializing = true
 
-  @observable
-  list = {
-    data: [],
-    page: 1,
-    limit: 10,
-    total: 0,
-    order: '',
-    reverse: false,
-    keyword: '',
-    filters: {},
-    isLoading: true,
-    selectedRowKeys: [],
+  limitRanges = new List()
+
+  module = 'namespaces'
+
+  getResourceUrl = ({ workspace, ...params }) => {
+    if (workspace) {
+      return `kapis/tenant.kubesphere.io/v1alpha2/workspaces/${workspace}${this.getPath(
+        params
+      )}/namespaces`
+    }
+
+    return `kapis/resources.kubesphere.io/v1alpha3${this.getPath(
+      params
+    )}/namespaces`
   }
 
-  @observable
-  isLoading = false
-
-  @observable
-  isSubmitting = false
-
-  @observable
-  data = {}
-
-  @observable
-  limitRanges = {
-    data: [],
-    total: 0,
-    isLoading: true,
+  getWatchListUrl = ({ workspace, ...params }) => {
+    if (workspace) {
+      return `${this.apiVersion}/watch${this.getPath(
+        params
+      )}/namespaces?labelSelector=kubesphere.io/workspace=${workspace}`
+    }
+    return `${this.apiVersion}/watch${this.getPath(params)}/namespaces`
   }
 
-  members = new MemberList()
+  getListUrl = (params = {}) => {
+    if (params.workspace) {
+      return `kapis/tenant.kubesphere.io/v1alpha2/workspaces/${
+        params.workspace
+      }${this.getPath(params)}/namespaces`
+    }
 
-  getResourceUrl = ({ workspace }) =>
-    workspace
-      ? `kapis/tenant.kubesphere.io/v1alpha2/workspaces/${workspace}/namespaces`
-      : `kapis/resources.kubesphere.io/v1alpha2/namespaces`
-
-  getWatchListUrl = ({ workspace }) =>
-    workspace
-      ? `api/v1/watch/namespaces?labelSelector=kubesphere.io/workspace=${workspace}`
-      : 'api/v1/watch/namespaces'
-
-  @action
-  submitting = promise => {
-    this.isSubmitting = true
-
-    setTimeout(() => {
-      promise
-        .catch(() => {})
-        .finally(() => {
-          this.isSubmitting = false
-        })
-    }, 500)
-
-    return promise
+    return `${this.apiVersion}${this.getPath(params)}/namespaces`
   }
 
   @action
   async fetchList({
+    cluster,
     workspace,
-    limit,
-    page,
-    order,
-    reverse,
-    keyword,
+    namespace,
     more,
-    metrics,
-    ...filters
+    type,
+    ...params
   } = {}) {
     this.list.isLoading = true
 
-    const params = {}
-
-    if (!order && reverse === undefined) {
-      order = 'createTime'
-      reverse = true
+    if (!params.sortBy && params.ascending === undefined) {
+      params.sortBy = LIST_DEFAULT_ORDER[this.module] || 'createTime'
     }
 
-    if (limit !== Infinity) {
-      params.paging = `limit=${limit || 10},page=${page || 1}`
+    if (params.limit === Infinity || params.limit === -1) {
+      params.limit = -1
+      params.page = 1
     }
 
-    if (keyword) {
-      params.conditions = getFilterString({ name: keyword })
-    } else if (!isEmpty(filters)) {
-      const { 'kubesphere.io/workspace': assigned, ...rest } = filters
-      params.conditions = getFilterString(rest)
-      if (assigned === 'not_assigned') {
-        params.conditions = params.conditions
-          ? `${params.conditions},kubesphere.io/workspace~`
-          : 'kubesphere.io/workspace~'
+    params.limit = params.limit || 10
+
+    const result = await request.get(
+      this.getResourceUrl({ cluster, workspace, namespace }),
+      {
+        ...params,
+        ...getTypeSelectParams(type),
       }
-    }
+    )
+    const data = get(result, 'items', []).map(item => ({
+      cluster,
+      ...this.mapper(item),
+    }))
 
-    if (order) {
-      params.orderBy = order
-    }
-
-    if (reverse) {
-      params.reverse = true
-    }
-
-    if (metrics) {
-      params.metrics = metrics
-    }
-
-    const result = await request.get(this.getResourceUrl({ workspace }), params)
-    const items = result.items.map(ObjectMapper.namespaces)
-
-    this.list = {
-      data: more ? [...this.list.data, ...items] : items,
-      total: result.total_count || 0,
-      limit: Number(limit) || 10,
-      page: Number(page) || 1,
-      order,
-      reverse,
-      keyword,
-      filters,
+    this.list.update({
+      data: more ? [...this.list.data, ...data] : data,
+      total: result.totalItems || result.total_count || data.length || 0,
+      ...params,
+      cluster: globals.app.isMultiCluster ? cluster : undefined,
+      limit: Number(params.limit) || 10,
+      page: Number(params.page) || 1,
       isLoading: false,
-      selectedRowKeys: [],
-    }
-  }
-
-  @action
-  async create(data, { workspace }) {
-    const namespace = get(data, 'Project.metadata.name')
-
-    this.isSubmitting = true
-
-    await request
-      .post(this.getResourceUrl({ workspace }), data.Project)
-      .then(() => {
-        const limitRange = formatLimitRange(data.LimitRange)
-
-        if (isEmpty(limitRange)) {
-          return
-        }
-
-        return request.post(
-          `api/v1/namespaces/${namespace}/limitranges`,
-          limitRange
-        )
-      })
-
-    await this.checkCreateSuccess(namespace)
-
-    this.isSubmitting = false
-  }
-
-  checkCreateSuccess(namespace) {
-    return new Promise((resolve, reject) => {
-      let count = 0
-      this.interval = setInterval(async () => {
-        const res = await request.get(
-          `apis/rbac.authorization.k8s.io/v1/namespaces/${namespace}/rolebindings/admin`,
-          {},
-          {
-            headers: { 'x-check-exist': true },
-          }
-        )
-
-        if (res.exist) {
-          clearInterval(this.interval)
-          resolve()
-        } else {
-          count++
-          if (count >= 5) {
-            clearInterval(this.interval)
-            reject()
-          }
-        }
-      }, 1500)
+      ...(this.list.silent ? {} : { selectedRowKeys: [] }),
     })
+
+    return data
   }
 
   @action
-  checkName({ name }) {
-    return this.submitting(
-      request.get(
-        `api/v1/namespaces/${name}`,
-        {},
-        {
-          headers: { 'x-check-exist': true },
-        }
-      )
-    )
-  }
-
-  @action
-  delete({ name }) {
-    return this.submitting(
-      Promise.all([
-        request.delete(`api/v1/namespaces/${name}`),
-        request.delete(`api/v1/namespaces/${name}/limitranges`),
-      ])
-    )
-  }
-
-  @action
-  batchDelete(rowKeys) {
-    return this.submitting(
-      Promise.all(
-        rowKeys.map(name =>
-          Promise.all([
-            request.delete(`api/v1/namespaces/${name}`),
-            request.delete(`api/v1/namespaces/${name}/limitranges`),
-          ])
-        )
-      )
-    )
-  }
-
-  @action
-  async fetchDetail({ namespace }) {
+  async fetchDetail({ cluster, workspace, namespace }) {
+    this.isLoading = true
     const detail = await request.get(
-      `api/v1/namespaces/${namespace}`,
+      this.getDetailUrl({ cluster, workspace, name: namespace }),
       null,
       null,
       res => {
@@ -270,145 +158,41 @@ export default class ProjectStore {
       }
     )
 
-    this.data = ObjectMapper.namespaces(detail)
+    this.detail = { cluster, ...this.mapper(detail) }
+
+    this.isLoading = false
   }
 
   @action
-  async fetchRules({ namespace, workspace }) {
-    this.initializing = true
-
-    const rules = await request.get(
-      `kapis/tenant.kubesphere.io/v1alpha2/namespaces/${namespace}/rules`,
-      null,
-      null,
-      () => {}
-    )
-
-    if (rules) {
-      const formatedRules = formatRules(rules)
-
-      if (workspace === globals.config.systemWorkspace) {
-        Object.keys(formatedRules).forEach(key => {
-          formatedRules[key] = globals.config.systemWorkspaceProjectRules[
-            key
-          ] || ['view', 'edit']
-        })
-      }
-
-      set(globals.user, `rules[${namespace}]`, formatedRules)
+  async create(data, params = {}) {
+    if (params.workspace) {
+      const clusters = get(data, 'spec.placement.clusters', [])
+      params.cluster = get(clusters, '[0].name')
+      return this.submitting(request.post(this.getResourceUrl(params), data))
     }
 
-    this.initializing = false
+    return this.submitting(request.post(this.getListUrl(params), data))
   }
 
   @action
-  patch({ name }, data) {
-    return this.submitting(request.patch(`api/v1/namespaces/${name}`, data))
-  }
-
-  @action
-  async fetchMembers({ namespace }) {
-    this.members.isLoading = true
-
-    const result = await request.get(
-      `kapis/iam.kubesphere.io/v1alpha2/namespaces/${namespace}/users`,
-      {
-        paging: `limit=-1,page=1`,
-      }
-    )
-
-    this.members.init({
-      originData: result,
-      page: 1,
-    })
-
-    this.members.isLoading = false
-  }
-
-  @action
-  addMember(namespace, name, role) {
-    return request.post(
-      `apis/rbac.authorization.k8s.io/v1/namespaces/${namespace}/rolebindings`,
-      {
-        kind: 'RoleBinding',
-        apiVersion: 'rbac.authorization.k8s.io/v1',
-        metadata: {
-          name: `${role}-${name}`,
-        },
-        subjects: [
-          {
-            kind: 'User',
-            apiGroup: 'rbac.authorization.k8s.io',
-            name,
-          },
-        ],
-        roleRef: {
-          apiGroup: 'rbac.authorization.k8s.io',
-          kind: 'Role',
-          name: role,
-        },
-      }
-    )
-  }
-
-  @action
-  deleteMember(namespace, member) {
-    return this.submitting(
-      request.delete(
-        `apis/rbac.authorization.k8s.io/v1/namespaces/${namespace}/rolebindings/${
-          member.role_binding
-        }`
-      )
-    )
-  }
-
-  @action
-  batchDeleteMembers(namespace, rowKeys) {
-    return this.submitting(
-      Promise.all(
-        rowKeys.map(rowKey => {
-          const member = this.members.data.find(
-            user => user.username === rowKey
-          )
-          return request.delete(
-            `apis/rbac.authorization.k8s.io/v1/namespaces/${namespace}/rolebindings/${
-              member.role_binding
-            }`
-          )
-        })
-      )
-    )
-  }
-
-  @action
-  async changeMemberRole(namespace, member, newRole) {
-    await this.deleteMember(namespace, member)
-    await this.addMember(namespace, member.username, newRole)
-  }
-
-  @action
-  setSelectRowKeys(key, selectedRowKeys) {
-    this[key] && this[key].selectedRowKeys.replace(selectedRowKeys)
-  }
-
-  @action
-  async fetchLimitRanges({ namespace }) {
+  async fetchLimitRanges({ cluster, namespace }) {
     this.limitRanges.isLoading = false
     const result = await request.get(
-      `api/v1/namespaces/${namespace}/limitranges`
+      `api/v1${this.getPath({ cluster, namespace })}/limitranges`
     )
+    const data = result.items.map(ObjectMapper.limitranges)
 
-    this.limitRanges = {
-      data: result.items.map(ObjectMapper.limitranges),
+    this.limitRanges.update({
+      data,
       total: result.items.length,
       isLoading: false,
-    }
+    })
 
-    return this.limitRanges.data
+    return data
   }
 
   @action
-  createLimitRange({ namespace }, data) {
+  createLimitRange(params, data) {
     const limitRange = formatLimitRange(data)
 
     if (isEmpty(limitRange)) {
@@ -416,15 +200,15 @@ export default class ProjectStore {
     }
 
     return this.submitting(
-      request.post(`api/v1/namespaces/${namespace}/limitranges`, limitRange)
+      request.post(`api/v1${this.getPath(params)}/limitranges`, limitRange)
     )
   }
 
   @action
-  updateLimitRange({ namespace, name }, data) {
+  updateLimitRange(params, data) {
     return this.submitting(
       request.put(
-        `api/v1/namespaces/${namespace}/limitranges/${name}`,
+        `api/v1${this.getPath(params)}/limitranges/${params.name}`,
         formatLimitRange(data)
       )
     )

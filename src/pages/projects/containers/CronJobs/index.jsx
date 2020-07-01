@@ -17,66 +17,73 @@
  */
 
 import React from 'react'
-import { observer, inject } from 'mobx-react'
+
+import { Avatar, Status } from 'components/Base'
+import Banner from 'components/Cards/Banner'
+import { withProjectList, ListPage } from 'components/HOCs/withList'
+import StatusReason from 'projects/components/StatusReason'
+import Table from 'components/Tables/List'
 
 import { getLocalTime, getDisplayName } from 'utils'
-import { CRONJOB_STATUS, ICON_TYPES } from 'utils/constants'
 import { getWorkloadStatus } from 'utils/status'
-import { getFormTemplate } from 'utils/form.templates'
+import { CRONJOB_STATUS, ICON_TYPES } from 'utils/constants'
 
-import { Avatar } from 'components/Base'
-
-import FORM_STEPS from 'configs/steps/cronjobs'
 import WorkloadStore from 'stores/workload'
 
-import Base from 'core/containers/Base/List'
-import JobBanner from 'projects/components/JobBanner'
-import StatusReason from 'projects/components/StatusReason'
-import WorkloadStatus from 'projects/components/WorkloadStatus'
-import CreateModal from 'components/Modals/Create'
-import EditBasicInfoModal from 'components/Modals/EditBasicInfo'
-import EditYamlModal from 'components/Modals/EditYaml'
-
-@inject('rootStore')
-@observer
-class CronJobs extends Base {
-  init() {
-    this.store = new WorkloadStore(this.module)
-    this.initWebsocket()
+@withProjectList({
+  store: new WorkloadStore('cronjobs'),
+  module: 'cronjobs',
+  name: 'CronJob',
+})
+export default class CronJobs extends React.Component {
+  get prefix() {
+    const { workspace, namespace, cluster } = this.props.match.params
+    return `/${workspace}/clusters/${cluster}/projects/${namespace}`
   }
 
-  get module() {
-    return 'cronjobs'
+  handleTabChange = value => {
+    this.props.routing.push(`${this.prefix}/${value}`)
   }
 
-  get name() {
-    return 'CronJob'
-  }
-
-  get steps() {
-    return FORM_STEPS
-  }
-
-  get formTemplate() {
-    const { namespace } = this.props.match.params
-    return getFormTemplate(namespace, this.module)
+  get tabs() {
+    return {
+      value: this.props.module,
+      onChange: this.handleTabChange,
+      options: [
+        {
+          value: 'jobs',
+          label: t('Jobs'),
+        },
+        {
+          value: 'cronjobs',
+          label: t('CronJobs'),
+        },
+      ],
+    }
   }
 
   get itemActions() {
+    const { trigger } = this.props
     return [
       {
         key: 'edit',
         icon: 'pen',
-        text: t('EDIT'),
+        text: t('Edit'),
         action: 'edit',
-        onClick: this.showModal('editModal'),
+        onClick: item =>
+          trigger('resource.baseinfo.edit', {
+            detail: item,
+          }),
       },
       {
         key: 'editYaml',
         icon: 'pen',
         text: t('Edit YAML'),
         action: 'edit',
-        onClick: this.showModal('editYamlModal'),
+        onClick: item =>
+          trigger('resource.yaml.edit', {
+            detail: item,
+          }),
       },
       {
         show: record => record.suspend,
@@ -99,9 +106,19 @@ class CronJobs extends Base {
         icon: 'trash',
         text: t('Delete'),
         action: 'delete',
-        onClick: this.showModal('deleteModal'),
+        onClick: item =>
+          trigger('resource.delete', {
+            type: t(this.name),
+            detail: item,
+          }),
       },
     ]
+  }
+
+  handleSwitch = params => item => {
+    this.props.store.switch(item, params).then(() => {
+      this.props.routing.query()
+    })
   }
 
   getStatus() {
@@ -109,12 +126,6 @@ class CronJobs extends Base {
       text: t(status.text),
       value: status.value,
     }))
-  }
-
-  handleSwitch = params => item => {
-    this.store.switch(item, params).then(() => {
-      this.getData()
-    })
   }
 
   getItemDesc = record => {
@@ -128,119 +139,79 @@ class CronJobs extends Base {
     return desc
   }
 
-  getColumns = () => [
-    {
-      title: t('Name'),
-      dataIndex: 'name',
-      sorter: true,
-      sortOrder: this.getSortOrder('name'),
-      search: true,
-      render: (name, record) => (
-        <Avatar
-          icon={ICON_TYPES[this.module]}
-          iconSize={40}
-          title={getDisplayName(record)}
-          desc={this.getItemDesc(record)}
-          to={`${this.prefix}/${name}`}
-        />
-      ),
-    },
-    {
-      title: t('Status'),
-      dataIndex: 'status',
-      filters: this.getStatus(),
-      filteredValue: this.getFilteredValue('status'),
-      isHideable: true,
-      search: true,
-      width: '20%',
-      render: this.renderStatus,
-    },
-    {
-      title: t('Schedule'),
-      dataIndex: 'spec.schedule',
-      isHideable: true,
-      search: true,
-      width: '20%',
-    },
-    {
-      title: t('Created Time'),
-      dataIndex: 'createTime',
-      sorter: true,
-      sortOrder: this.getSortOrder('createTime'),
-      isHideable: true,
-      search: true,
-      width: 150,
-      render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
-    },
-    {
-      key: 'more',
-      width: 20,
-      render: this.renderMore,
-    },
-  ]
+  getColumns = () => {
+    const { getSortOrder, getFilteredValue, module } = this.props
+    return [
+      {
+        title: t('Name'),
+        dataIndex: 'name',
+        sorter: true,
+        sortOrder: getSortOrder('name'),
+        search: true,
+        render: (name, record) => (
+          <Avatar
+            icon={ICON_TYPES[module]}
+            iconSize={40}
+            title={getDisplayName(record)}
+            desc={this.getItemDesc(record)}
+            to={`${this.prefix}/${name}`}
+          />
+        ),
+      },
+      {
+        title: t('Status'),
+        dataIndex: 'status',
+        filters: this.getStatus(),
+        filteredValue: getFilteredValue('status'),
+        isHideable: true,
+        search: true,
+        width: '15%',
+        render: (_, record) => {
+          const { status } = getWorkloadStatus(record, module)
+          return <Status type={status} name={t(status)} />
+        },
+      },
+      {
+        title: t('Schedule'),
+        dataIndex: 'spec.schedule',
+        isHideable: true,
+        search: true,
+        width: '15%',
+      },
+      {
+        title: t('Created Time'),
+        dataIndex: 'creationTimestamp',
+        sorter: true,
+        sortOrder: getSortOrder('creationTimestamp'),
+        isHideable: true,
+        search: true,
+        width: 150,
+        render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
+      },
+    ]
+  }
 
-  handleYamlEdit = newObject => {
-    const { selectItem } = this.state
-
-    this.store.update(selectItem, newObject).then(() => {
-      this.hideModal('editYamlModal')()
+  showCreate = () => {
+    const { match, module } = this.props
+    return this.props.trigger('workload.create', {
+      module,
+      namespace: match.params.namespace,
+      cluster: match.params.cluster,
     })
   }
 
-  renderStatus = (status, record) => (
-    <WorkloadStatus data={record} module={this.module} />
-  )
-
-  renderHeader() {
+  render() {
+    const { bannerProps, tableProps } = this.props
     return (
-      <JobBanner
-        module={this.module}
-        {...this.props.match.params}
-        count={this.store.list.total}
-      />
-    )
-  }
-
-  renderExtraModals() {
-    const {
-      createModal,
-      editModal,
-      editYamlModal,
-      selectItem = {},
-    } = this.state
-    const { isSubmitting } = this.store
-
-    return (
-      <div>
-        <CreateModal
-          name={this.name}
-          module={this.module}
-          store={this.store}
-          visible={createModal}
-          steps={this.steps}
-          formTemplate={this.formTemplate}
-          isSubmitting={isSubmitting}
-          onOk={this.handleCreate}
-          onCancel={this.hideModal('createModal')}
+      <ListPage {...this.props}>
+        <Banner {...bannerProps} tabs={this.tabs} />
+        <Table
+          {...tableProps}
+          itemActions={this.itemActions}
+          columns={this.getColumns()}
+          onCreate={this.showCreate}
         />
-        <EditYamlModal
-          store={this.store}
-          visible={editYamlModal}
-          detail={selectItem._originData}
-          isSubmitting={isSubmitting}
-          onOk={this.handleYamlEdit}
-          onCancel={this.hideModal('editYamlModal')}
-        />
-        <EditBasicInfoModal
-          visible={editModal}
-          detail={selectItem._originData}
-          isSubmitting={isSubmitting}
-          onOk={this.handleEdit}
-          onCancel={this.hideModal('editModal')}
-        />
-      </div>
+      </ListPage>
     )
   }
 }
-
-export default CronJobs

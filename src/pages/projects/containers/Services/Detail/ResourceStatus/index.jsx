@@ -17,117 +17,74 @@
  */
 
 import React from 'react'
-import { toJS } from 'mobx'
-import { observer } from 'mobx-react'
-import { isEmpty } from 'lodash'
-import { Tooltip, Icon } from '@pitrix/lego-ui'
-import { Button, Panel, Text } from 'components/Base'
-import PodsCard from 'components/Cards/Pods'
-import Workloads from 'projects/components/Cards/Workloads'
+import { reaction, toJS } from 'mobx'
+import { observer, inject } from 'mobx-react'
 
+import WorkloadStore from 'stores/workload'
 import RouterStore from 'stores/router'
+
+import { Panel, Text } from 'components/Base'
+import PodsCard from 'components/Cards/Pods'
+
+import Ports from '../Ports'
 
 import styles from './index.scss'
 
+@inject('detailStore')
 @observer
-class ResourceStatus extends React.Component {
+export default class ResourceStatus extends React.Component {
   constructor(props) {
     super(props)
 
-    this.module = props.module
     this.store = props.detailStore
+
+    const workloadModule = this.store.workload.type
+    this.workloadStore = new WorkloadStore(workloadModule)
     this.routerStore = new RouterStore()
-  }
 
-  componentDidMount() {
-    const { namespace } = this.props.match.params
-    this.routerStore.getGateway({ namespace })
-  }
-
-  get prefix() {
-    const { namespace } = this.props.match.params
-    return `/projects/${namespace}`
-  }
-
-  renderPorts() {
-    const detail = toJS(this.store.detail)
-    const gateway = toJS(this.routerStore.gateway.data)
-
-    if (isEmpty(detail.ports)) {
-      return null
-    }
-
-    return (
-      <Panel title={t('Ports')}>
-        <div className={styles.portsWrapper}>
-          {detail.ports.map((port, index) => (
-            <div key={index} className={styles.ports}>
-              <Icon name="pod" size={40} />
-              <div className={styles.port}>
-                <p>
-                  <strong>{port.targetPort}</strong>
-                </p>
-                <p>{t('Container Port')}</p>
-              </div>
-              <div className={styles.protocol}>→ {port.protocol} → </div>
-              <Icon name="network-router" size={40} />
-              <div className={styles.port}>
-                <p>
-                  <strong>{port.port}</strong>
-                </p>
-                <p>{t('Service Port')}</p>
-              </div>
-              {port.nodePort && (
-                <>
-                  <div className={styles.protocol}>→ {port.protocol} → </div>
-                  <Icon name="nodes" size={40} />
-                  <div className={styles.port}>
-                    <p>
-                      <strong>{port.nodePort}</strong>
-                    </p>
-                    <div>
-                      {t('Node Port')}
-                      <Tooltip
-                        content={t('SERVICE_NODE_PORT_DESC')}
-                        trigger="hover"
-                      >
-                        <Icon name="information" />
-                      </Tooltip>
-                    </div>
-                  </div>
-                  {gateway.loadBalancerIngress && (
-                    <a
-                      href={`http://${gateway.loadBalancerIngress}:${
-                        port.nodePort
-                      }`}
-                      target="_blank"
-                    >
-                      <Button className={styles.access} noShadow>
-                        {t('Click to visit')}
-                      </Button>
-                    </a>
-                  )}
-                </>
-              )}
-            </div>
-          ))}
-        </div>
-      </Panel>
+    this.disposer = reaction(
+      () => this.store.workload,
+      () => this.fetchDetail()
     )
   }
 
-  renderWorkloads() {
-    const { data, isLoading } = toJS(this.store.workloads)
-    return <Workloads data={data} prefix={this.prefix} isLoading={isLoading} />
+  componentDidMount() {
+    this.fetchDetail()
+  }
+
+  componentWillUnmount() {
+    this.disposer && this.disposer()
+  }
+
+  get prefix() {
+    const { workspace, cluster } = this.props.match.params
+
+    return `${workspace ? `/${workspace}` : ''}/clusters/${cluster}`
+  }
+
+  fetchDetail = async () => {
+    const { params } = this.props.match
+    const { name, type } = this.store.workload
+
+    if (type) {
+      this.workloadStore.setModule(type)
+      await this.workloadStore.fetchDetail({ ...params, name })
+    }
+
+    this.routerStore.getGateway(params)
+  }
+
+  handlePodUpdate = () => {
+    const { cluster, namespace, name } = this.workloadStore.detail
+    this.workloadStore.fetchDetail({ cluster, namespace, name, silent: true })
   }
 
   renderPods() {
-    const { namespace, name } = this.props.match.params
-
     return (
       <PodsCard
+        prefix={this.prefix}
         detail={this.store.detail}
-        prefix={`/projects/${namespace}/${this.module}/${name}`}
+        onUpdate={this.handlePodUpdate}
       />
     )
   }
@@ -142,8 +99,19 @@ class ResourceStatus extends React.Component {
     )
   }
 
-  renderContent() {
+  renderPorts() {
     const detail = toJS(this.store.detail)
+    const gateway = this.routerStore.gateway.data
+
+    return (
+      <Panel title={t('Service Ports')}>
+        <Ports detail={detail} gateway={gateway} />
+      </Panel>
+    )
+  }
+
+  renderContent() {
+    const { detail } = this.store
 
     if (detail.specType === 'ExternalName') {
       return this.renderExternal()
@@ -152,7 +120,6 @@ class ResourceStatus extends React.Component {
     return (
       <div>
         {this.renderPorts()}
-        {this.renderWorkloads()}
         {this.renderPods()}
       </div>
     )
@@ -162,5 +129,3 @@ class ResourceStatus extends React.Component {
     return <div className={styles.main}>{this.renderContent()}</div>
   }
 }
-
-export default ResourceStatus

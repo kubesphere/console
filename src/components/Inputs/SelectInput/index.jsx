@@ -18,7 +18,9 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Dropdown, Menu, Input } from '@pitrix/lego-ui'
+import { Dropdown, Menu, Input, Icon } from '@pitrix/lego-ui'
+
+import styles from './index.scss'
 
 export default class SelectInput extends React.Component {
   static propTypes = {
@@ -29,8 +31,25 @@ export default class SelectInput extends React.Component {
   }
 
   static defaultProps = {
+    value: '',
     onChange() {},
     options: [],
+  }
+
+  state = {
+    showOptions: false,
+  }
+
+  toggleOptions = () => {
+    this.setState(({ showOptions }) => ({
+      showOptions: !showOptions,
+    }))
+  }
+
+  hideOptions = () => {
+    this.setState({
+      showOptions: false,
+    })
   }
 
   handleOptionsClick = (e, key) => {
@@ -38,24 +57,40 @@ export default class SelectInput extends React.Component {
   }
 
   renderOptions() {
-    const { options } = this.props
+    const { options, optionRenderer } = this.props
 
     return (
       <Menu onClick={this.handleOptionsClick}>
         {options.map(option => (
-          <Menu.MenuItem key={option.value}>{option.label}</Menu.MenuItem>
+          <Menu.MenuItem key={option.value}>
+            {optionRenderer ? optionRenderer(option) : option.label}
+          </Menu.MenuItem>
         ))}
       </Menu>
     )
   }
 
   render() {
-    const { options, ...rest } = this.props
-
+    const { options, optionRenderer, ...rest } = this.props
     return (
-      <Dropdown content={this.renderOptions()}>
+      <div className={styles.wrapper}>
         <Input {...rest} />
-      </Dropdown>
+        <Icon
+          className={styles.caret}
+          name="caret-down"
+          clickable
+          onClick={this.toggleOptions}
+        />
+        <Dropdown
+          visible={this.state.showOptions}
+          className="dropdown-default"
+          content={this.renderOptions()}
+          placement="bottomRight"
+          onClose={this.hideOptions}
+        >
+          <div className={styles.trigger} />
+        </Dropdown>
+      </div>
     )
   }
 }

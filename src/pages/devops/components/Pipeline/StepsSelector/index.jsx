@@ -22,7 +22,7 @@ import { Icon } from '@pitrix/lego-ui'
 import { observable, action } from 'mobx'
 import { observer } from 'mobx-react'
 import { ReactComponent as BackIcon } from 'src/assets/back.svg'
-import CredentialModal from 'devops/containers/Cridential/credentialModal'
+import CredentialModal from 'devops/containers/Credential/credentialModal'
 import { PIPELINE_TASKS, PIPELINE_CONDITIONS } from 'src/utils/constants'
 
 import {
@@ -89,7 +89,7 @@ export default class StepsEditor extends React.Component {
       cleanWs: t('Clean Workspace'),
       input: t('REVIEW_DESC'),
       withCredentials: t('Load credentials into environment variables'),
-      kubernetesDeploy: t('Deploy resources to the kubernetes cluster'),
+      kubernetesDeploy: t('Deploy resources to the Kubernetes cluster'),
       timeout: t(
         'Executes the code inside the block with a determined time out limit.'
       ),
@@ -172,7 +172,7 @@ export default class StepsEditor extends React.Component {
   }
 
   renderStepsModal = () => {
-    const { project_id } = this.props.store.params
+    const { project_id, cluster } = this.props.store.params
     const { edittingData, isAddingStep } = this.props.store
 
     if (isAddingStep === 'condition') {
@@ -282,6 +282,7 @@ export default class StepsEditor extends React.Component {
           onOk={this.hideCreateCredential}
           onCancel={this.hideCreateCredential}
           project_id={project_id}
+          cluster={cluster}
           credentialType={this.state.isShowkubernetesDeploy ? 'kubeconfig' : ''}
         />
         <Sonarqube
@@ -328,8 +329,9 @@ export default class StepsEditor extends React.Component {
             {t('Add conditions')}
           </div>
           <div className={styles.taskList}>
-            {PIPELINE_CONDITIONS.map(task => (
+            {PIPELINE_CONDITIONS.map((task, index) => (
               <div
+                key={index}
                 className={styles.task}
                 key={task}
                 onClick={this.handleAddTask(task)}
@@ -364,6 +366,7 @@ export default class StepsEditor extends React.Component {
         <div className={styles.tabs}>
           {Object.keys(PIPELINE_TASKS).map(task => (
             <div
+              key={task}
               className={classNames(styles.tab, {
                 [styles.tab_active]: this.activeTab === task,
               })}

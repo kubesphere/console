@@ -19,10 +19,12 @@
 import React from 'react'
 import { observer, inject } from 'mobx-react'
 import { isEmpty } from 'lodash'
+import { RadioGroup, RadioButton, Tag, Loading } from '@pitrix/lego-ui'
+import Banner from 'components/Cards/Banner'
+import { parse } from 'qs'
 
 import ComponentStore from 'stores/component'
 
-import { RadioGroup, RadioButton, Tag, Loading } from '@pitrix/lego-ui'
 import Card from './Card'
 
 import styles from './index.scss'
@@ -33,17 +35,23 @@ export default class ServiceComponents extends React.Component {
   constructor(props) {
     super(props)
 
+    const { type } = parse(location.search.slice(1)) || {}
+
     this.state = {
-      type: 'kubesphere',
+      type: type || 'kubesphere',
     }
 
     this.configs = this.getConfigs()
     this.store = new ComponentStore()
-    this.store.fetchList()
+    this.store.fetchList({ cluster: this.cluster })
   }
 
   get prefix() {
     return this.props.match.url
+  }
+
+  get cluster() {
+    return this.props.match.params.cluster
   }
 
   getColor = healthy => (healthy ? '#f5a623' : '#55bc8a')
@@ -70,31 +78,31 @@ export default class ServiceComponents extends React.Component {
       type: 'openpitrix',
       title: 'OpenPitrix',
       icon: '/assets/openpitrix.svg',
-      disabled: !globals.app.hasKSModule('openpitrix'),
+      disabled: !globals.app.hasClusterModule(this.cluster, 'openpitrix'),
     },
     {
       type: 'istio',
       title: 'Istio',
       icon: '/assets/istio.svg',
-      disabled: !globals.app.hasKSModule('servicemesh'),
+      disabled: !globals.app.hasClusterModule(this.cluster, 'servicemesh'),
     },
     {
       type: 'monitoring',
       title: 'Monitoring',
       icon: '/assets/monitoring.svg',
-      disabled: !globals.app.hasKSModule('monitoring'),
+      disabled: !globals.app.hasClusterModule(this.cluster, 'monitoring'),
     },
     {
       type: 'logging',
       title: 'Logging',
       icon: '/assets/logging.svg',
-      disabled: !globals.app.hasKSModule('logging'),
+      disabled: !globals.app.hasClusterModule(this.cluster, 'logging'),
     },
     {
       type: 'devops',
       title: 'DevOps',
       icon: '/assets/dev-ops.svg',
-      disabled: !globals.app.hasKSModule('devops'),
+      disabled: !globals.app.hasClusterModule(this.cluster, 'devops'),
     },
   ]
 
@@ -104,19 +112,12 @@ export default class ServiceComponents extends React.Component {
 
   renderHeader() {
     return (
-      <div className={styles.header}>
-        <div className={styles.title}>
-          <img className={styles.leftIcon} src="/assets/noicon.svg" alt="" />
-          <img
-            className={styles.rightIcon}
-            src="/assets/banner-icon-2.svg"
-            alt=""
-          />
-          <div className="h4">{t('Service Components')}</div>
-          <p>{t('SERVICE_COMPONENTS_DESC')}</p>
-        </div>
-        <div className={styles.toolbar}>{this.renderBar()}</div>
-      </div>
+      <Banner
+        icon="components"
+        title={t('Service Components')}
+        description={t('SERVICE_COMPONENTS_DESC')}
+        extra={<div className={styles.toolbar}>{this.renderBar()}</div>}
+      />
     )
   }
 
@@ -150,7 +151,7 @@ export default class ServiceComponents extends React.Component {
     return (
       <div className={styles.cards}>
         {data.map(item => (
-          <Card key={item.name} component={item} />
+          <Card key={item.name} component={item} cluster={this.cluster} />
         ))}
       </div>
     )

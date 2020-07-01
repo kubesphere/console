@@ -29,6 +29,10 @@ export default class AdvancedSettings extends React.Component {
     return this.props.prefix || 'spec.template.spec.'
   }
 
+  get cluster() {
+    return this.props.cluster
+  }
+
   get namespace() {
     return get(this.formTemplate, 'metadata.namespace')
   }
@@ -43,9 +47,9 @@ export default class AdvancedSettings extends React.Component {
     return (
       <Form data={this.formTemplate} ref={formRef}>
         <Form.Group
-          label={t('Add metadata')}
+          label={t('Add Metadata')}
           desc={t(
-            'Additional metadata settings for resources such as Label and Annotation'
+            'Additional metadata settings for resources such as Labels and Annotations.'
           )}
           keepDataWhenUnCheck
           checkable
@@ -53,6 +57,7 @@ export default class AdvancedSettings extends React.Component {
           <Metadata
             store={store}
             prefix={this.prefix}
+            cluster={this.cluster}
             namespace={this.namespace}
             formTemplate={this.formTemplate}
           />

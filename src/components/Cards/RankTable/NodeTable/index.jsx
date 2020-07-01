@@ -42,7 +42,12 @@ export default class NodeUsageRank extends React.Component {
   }
 
   get canViewNode() {
-    return globals.app.hasPermission({ module: 'nodes', action: 'view' })
+    const { cluster } = this.props
+    return globals.app.hasPermission({
+      cluster,
+      module: 'nodes',
+      action: 'view',
+    })
   }
 
   columns = [
@@ -57,10 +62,10 @@ export default class NodeUsageRank extends React.Component {
         <div>
           <h3>
             <Link
-              to={`/infrastructure/nodes/${node.resource_name}`}
+              to={`/clusters/${this.props.cluster}/nodes/${node.node}`}
               auth={this.canViewNode}
             >
-              {node.resource_name}
+              {node.node}
             </Link>
             {node.node_role === 'master' && (
               <span className={styles.label}>Master</span>
@@ -111,8 +116,8 @@ export default class NodeUsageRank extends React.Component {
         <div>
           <h3>{this.toPercentage(node.node_memory_utilisation)}</h3>
           <div>
-            {getValueByUnit(node.node_memory_usage_wo_cache, 'GiB') || '-'} /{' '}
-            {getValueByUnit(node.node_memory_total, 'GiB') || '-'} GiB
+            {getValueByUnit(node.node_memory_usage_wo_cache, 'Gi') || '-'} /{' '}
+            {getValueByUnit(node.node_memory_total, 'Gi') || '-'} Gi
           </div>
         </div>
       ),

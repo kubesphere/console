@@ -20,12 +20,10 @@ import React from 'react'
 import moment from 'moment-mini'
 import classnames from 'classnames'
 import { observer } from 'mobx-react'
-import { get } from 'lodash'
-import { observable, computed, action } from 'mobx'
+import { observable, action } from 'mobx'
 import { Link } from 'react-router-dom'
 import stripAnsi from 'strip-ansi'
 
-import PodStore from 'stores/service'
 import LogStore from 'stores/logging/query'
 
 import { ReactComponent as BackIcon } from 'src/assets/back.svg'
@@ -40,32 +38,19 @@ export default class DetailModal extends React.Component {
     super(props)
 
     const { pod, container, namespace, log, time } = this.props.detailState
+
     const timestamp = new Date(time).getTime()
 
     this.logStore = new LogStore({
-      pathParams: {
-        namespaces: namespace,
-      },
       sort: 'desc',
       pods: pod,
+      namespaces: namespace,
       containers: container,
       size: 100,
       log_query: log,
       startTime: timestamp - 1000,
       endTime: timestamp + 1000,
     })
-
-    this.podStore = new PodStore()
-    this.podStore.pods.data = [
-      {
-        name: pod.name,
-        containers: [
-          {
-            name: container,
-          },
-        ],
-      },
-    ]
 
     this.state = {
       pollingFrequency: 5000,
@@ -82,61 +67,6 @@ export default class DetailModal extends React.Component {
 
   @observable
   logs = []
-
-  @computed
-  get namespaceLink() {
-    const { workspace } = this.logStore
-    const { namespace } = this.props.detailState
-    return workspace ? `/projects/${namespace}` : ''
-  }
-
-  @computed
-  get podLink() {
-    const { namespaces } = this.logStore.pathParams
-    const { pods } = this.logStore
-    return pods ? `/projects/${namespaces}/pods/${pods}` : this.namespaceLink
-  }
-
-  @computed
-  get containerLink() {
-    const { namespaces } = this.logStore.pathParams
-    const { pods, containers } = this.logStore
-    return pods && containers
-      ? `/projects/${namespaces}/pods/${pods}/containers/${containers}`
-      : this.namespaceLink
-  }
-
-  @computed
-  get PodOpts() {
-    return this.podStore.pods.data.map(pod => ({
-      label: pod.name || t('All'),
-      value: pod.name || '',
-    }))
-  }
-
-  @computed
-  get ContainersOpts() {
-    const selectPod = this.logStore.pods
-    const containers = this.getPodContainers(selectPod)
-    return containers.map(container => ({
-      label: container.name,
-      value: container.name,
-    }))
-  }
-
-  @action
-  changePod = pod => {
-    this.logStore.pods = pod || ''
-    const container = get(this.getPodContainers(pod), '[0].name', '')
-    this.changeContainer(container)
-  }
-
-  @action
-  changeContainer = container => {
-    this.logStore.containers = container
-    this.logStore.log_query = ''
-    this.refreshLogs()
-  }
 
   @action
   changeSearchLog = e => {
@@ -229,18 +159,11 @@ export default class DetailModal extends React.Component {
     this.logs.push(...nextPageLogs)
   }
 
-  getPodContainers(podName) {
-    const podDetail =
-      this.podStore.pods.data.find(pod => pod.name === podName) || {}
-    return get(podDetail, 'containers', [])
-  }
-
   pre = () => {
     this.props.formStepState.pre()
   }
 
   componentDidMount() {
-    this.fetchPods()
     this.refreshLogs()
   }
 
@@ -265,38 +188,9 @@ export default class DetailModal extends React.Component {
   }
 
   async fetchLogs(params = {}) {
-    await this.logStore.fetch(params)
+    const { cluster } = this.props.searchInputState
+    await this.logStore.fetch({ ...params, cluster })
     return this.logStore.records
-  }
-
-  async fetchPods() {
-    const { namespace } = this.props.detailState
-    await this.podStore.fetchPods({
-      namespace,
-    })
-    this.makeSureTargetResourceInStore()
-  }
-
-  makeSureTargetResourceInStore() {
-    const { pod, container } = this.props.detailState
-    const pods = this.podStore.pods.data
-    const targetPodInStore = pods.find(_pod => _pod.name === pod)
-    const virtualContainer = { name: container }
-    const virtualPod = [
-      {
-        name: pod,
-        container: [virtualContainer],
-      },
-    ]
-    if (targetPodInStore) {
-      const containers = targetPodInStore.containers || []
-      const targetContainerInStore = containers.find(
-        _container => _container.name === container
-      )
-      targetContainerInStore || containers.push(virtualContainer)
-    } else {
-      pods.push(virtualPod)
-    }
   }
 
   closeModal = () => {
@@ -374,13 +268,13 @@ export default class DetailModal extends React.Component {
       log_query,
       startTime: start_time,
       endTime: end_time,
-      pathParams,
+      namespaces,
     } = this.logStore
 
     const link = this.logStore.exportLinkFactory({
-      namespace: pathParams.namespaces,
-      pod,
-      container,
+      namespaces,
+      pods: pod,
+      containers: container,
       log_query,
       start_time,
       end_time,
@@ -483,48 +377,29 @@ export default class DetailModal extends React.Component {
       <div className={styles.summery}>
         <h3>{t('Region Data')}</h3>
         <div className={styles.dataList}>
-          <div onClick={this.toProjectPage}>
+          <div>
             <h4>{t('Project')}</h4>
             <p>
-              {this.renderLink(
-                this.namespaceLink,
-                <span>
-                  <Icon name="project" /> {detailState.namespace}
-                </span>
-              )}
+              <span>
+                <Icon name="project" /> {detailState.namespace}
+              </span>
             </p>
           </div>
           <div>
             <h4>{t('Pod')}</h4>
-            <div className={styles.selectContainer}>
-              <Select
-                value={this.logStore.pods}
-                onChange={this.changePod}
-                options={this.PodOpts}
-              />
-              <div className={styles.resourceIcon}>
-                {this.renderLink(
-                  this.podLink,
-                  <Icon name="cogwheel" size={16} />
-                )}
-              </div>
-            </div>
+            <p>
+              <span>
+                <Icon name="pod" /> {detailState.pod}
+              </span>
+            </p>
           </div>
           <div>
             <h4>{t('Container')}</h4>
-            <div className={styles.selectContainer}>
-              <Select
-                value={this.logStore.containers}
-                options={this.ContainersOpts}
-                onChange={this.changeContainer}
-              />
-              <div className={styles.resourceIcon}>
-                {this.renderLink(
-                  this.containerLink,
-                  <Icon name="cogwheel" size={16} />
-                )}
-              </div>
-            </div>
+            <p>
+              <span>
+                <Icon name="docker" /> {detailState.container}
+              </span>
+            </p>
           </div>
         </div>
       </div>

@@ -18,9 +18,9 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import classnames from 'classnames'
 
-import { trimEnd } from 'lodash'
+import { Icon } from '@pitrix/lego-ui'
+import { Modal } from 'components/Base'
 
 import NavItem from './item'
 
@@ -28,55 +28,46 @@ import styles from './index.scss'
 
 class GlobalNav extends React.Component {
   static propTypes = {
-    className: PropTypes.string,
     navs: PropTypes.array.isRequired,
-    prefix: PropTypes.string,
-    checkSelect: PropTypes.func,
-    onItemClick: PropTypes.func,
-    innerRef: PropTypes.object,
+    visible: PropTypes.bool,
+    onCancel: PropTypes.func,
   }
 
   static defaultProps = {
-    className: '',
-    prefix: '',
-    checkSelect() {},
-    onItemClick() {},
-  }
-
-  get currentPath() {
-    const {
-      location: { pathname },
-      match: { url },
-    } = this.props
-
-    const length = trimEnd(url, '/').length
-    return pathname.slice(length + 1)
+    navs: [],
+    visible: false,
+    onCancel() {},
   }
 
   render() {
-    const { className, navs, innerRef, onItemClick } = this.props
-
-    const classNames = classnames(styles.wrapper, className)
+    const { visible, navs, onCancel } = this.props
 
     return (
-      <div ref={innerRef} className={classNames}>
-        {navs.map(nav => (
-          <div key={nav.cate} className={styles.subNav}>
-            {nav.title && <p>{t(nav.title)}</p>}
-            <ul>
-              {nav.items.map(item => (
-                <NavItem
-                  key={item.name}
-                  item={item}
-                  prefix=""
-                  current={this.currentPath}
-                  onClick={onItemClick}
-                />
-              ))}
-            </ul>
+      <Modal
+        visible={visible}
+        className={styles.modal}
+        bodyClassName={styles.body}
+        width="100%"
+        onCancel={onCancel}
+        hideHeader
+        hideFooter
+      >
+        <div>
+          <div className={styles.navs} onClick={onCancel}>
+            {navs.map(nav => (
+              <NavItem key={nav.name} data={nav} />
+            ))}
           </div>
-        ))}
-      </div>
+          <Icon
+            className={styles.close}
+            name="close"
+            size="medium"
+            type="light"
+            clickable
+            onClick={onCancel}
+          />
+        </div>
+      </Modal>
     )
   }
 }

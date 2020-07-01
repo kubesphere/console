@@ -21,7 +21,7 @@ import PropTypes from 'prop-types'
 import { get } from 'lodash'
 import classnames from 'classnames'
 
-import { Modal } from 'components/Base'
+import { Modal, Alert } from 'components/Base'
 import widthBack from 'components/Modals/WithBack'
 
 import collectionConfig from './config'
@@ -90,8 +90,8 @@ export default class CreateLogCollectionModal extends Component {
   }
 
   hasCollectionType(type) {
-    return this.props.store.collections.find(
-      collection => collection.Name === type
+    return this.props.store.list.data.find(
+      collection => collection.type === type
     )
   }
 
@@ -132,7 +132,11 @@ export default class CreateLogCollectionModal extends Component {
   renderFormSelector() {
     return (
       <div>
-        <p className={styles.createTip}>{t('LOG_COLLECTION_TIPS')}</p>
+        <Alert
+          className="margin-b12"
+          type="info"
+          message={t('LOG_COLLECTION_TIPS')}
+        />
         <div className={styles.items}>{this.renderFormSelectorItems()}</div>
       </div>
     )

@@ -17,7 +17,7 @@
  */
 
 import React from 'react'
-import { observer } from 'mobx-react'
+import { observer, inject } from 'mobx-react'
 import { computed } from 'mobx'
 import { get } from 'lodash'
 
@@ -27,6 +27,7 @@ import UsageCard from './UsageCard'
 
 import styles from './index.scss'
 
+@inject('detailStore')
 @observer
 class ResourceStatus extends React.Component {
   get store() {
@@ -43,32 +44,39 @@ class ResourceStatus extends React.Component {
     return storageClassName === 'csi-qingcloud' && inUse
   }
 
+  get prefix() {
+    const { workspace, cluster } = this.props.match.params
+    return `${workspace ? `/${workspace}` : ''}/clusters/${cluster}`
+  }
+
   constructor(props) {
     super(props)
 
-    const { namespace, name } = this.props.match.params
+    const { cluster, namespace, name } = this.props.match.params
 
     this.monitor = new VolumeMonitor({
+      cluster,
       namespace,
       pvc: name,
     })
   }
 
   render() {
-    const { namespace, name } = this.props.match.params
     const detail = {
       kind: 'PVC',
       ...get(this.props.match, 'params'),
     }
-
-    const prefix = `/projects/${namespace}/${this.module}/${name}`
 
     return (
       <div className={styles.main}>
         {this.shouldMonitoringShow && (
           <UsageCard title={t('Volume')} store={this.monitor} />
         )}
-        <PodsCard title={t('Mounted Pods')} detail={detail} prefix={prefix} />
+        <PodsCard
+          title={t('Mounted Pods')}
+          detail={detail}
+          prefix={this.prefix}
+        />
       </div>
     )
   }
