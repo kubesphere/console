@@ -63,7 +63,11 @@ export default class Overview extends React.Component {
   }
 
   getData = params => {
-    this.workspaceStore.fetchList({ ...this.props.match.params, ...params })
+    this.workspaceStore.fetchList({
+      ...this.props.match.params,
+      ...params,
+      labelSelector: 'kubefed.io/managed=true',
+    })
   }
 
   afterEdit = async () => {
