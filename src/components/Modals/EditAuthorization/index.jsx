@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, cloneDeep, keyBy, groupBy } from 'lodash'
+import { get, cloneDeep, keyBy, groupBy, sortBy } from 'lodash'
 import React from 'react'
 import classNames from 'classnames'
 import { observer } from 'mobx-react'
@@ -146,7 +146,7 @@ export default class EditAuthorizationModal extends React.Component {
       roleTemplatesMap,
       currentModule,
     } = this.state
-    const templates = groupedTemplates[currentModule] || []
+    const templates = sortBy(groupedTemplates[currentModule] || [], 'aliasName')
     return (
       <div className={styles.content}>
         <div className={styles.title}>{t('Authorization List')}</div>

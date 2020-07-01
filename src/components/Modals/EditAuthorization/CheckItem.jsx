@@ -58,7 +58,7 @@ export default class CheckItem extends Component {
           <div className={styles.extra}>
             {t('Depend on')}:{' '}
             {data.dependencies.map(item => (
-              <Tag type="info" key={item}>
+              <Tag className={styles.tag} type="info" key={item}>
                 {t(roleTemplatesMap[item].aliasName)}
               </Tag>
             ))}
