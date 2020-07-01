@@ -1,7 +1,7 @@
 version: '2'
 services:
   base:
-    image: node:8-alpine
+    image: node:10-alpine
     volumes:
       - nodemodules:/root/KubeSphereUI/node_modules
       - .:/root/KubeSphereUI
