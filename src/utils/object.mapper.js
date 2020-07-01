@@ -633,6 +633,7 @@ const GatewayMapper = item => ({
   loadBalancerIngress:
     get(item, 'status.loadBalancer.ingress[0].ip') ||
     get(item, 'status.loadBalancer.ingress[0].hostname'),
+  isHostName: !!get(item, 'status.loadBalancer.ingress[0].hostname'),
   serviceMeshEnable:
     get(item, 'metadata.annotations["servicemesh.kubesphere.io/enabled"]') ===
     'true',

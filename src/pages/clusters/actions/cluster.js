@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { set, uniq } from 'lodash'
+import { set, uniqBy } from 'lodash'
 import { Modal, Notify } from 'components/Base'
 import ClusterVisibility from 'clusters/components/Modals/ClusterVisibility'
 
@@ -53,8 +53,7 @@ export default {
                 const clusters = item.clusters || []
                 set(
                   formData,
-                  'spec.placement.clusters',
-                  uniq([...clusters, cluster.name]).map(name => ({ name }))
+                  uniqBy([...clusters, { name: cluster.name }], 'name')
                 )
                 requests.push(workspaceStore.patch(item, formData))
               })
@@ -66,9 +65,7 @@ export default {
                 set(
                   formData,
                   'spec.placement.clusters',
-                  clusters
-                    .filter(name => name !== cluster.name)
-                    .map(name => ({ name }))
+                  clusters.filter(({ name }) => name !== cluster.name)
                 )
                 requests.push(workspaceStore.patch(item, formData))
               })
