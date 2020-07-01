@@ -15,6 +15,8 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
+
+import { action } from 'mobx'
 import Base from './base'
 
 export default class VolumeSnapshotClassStore extends Base {
@@ -38,6 +40,23 @@ export default class VolumeSnapshotClassStore extends Base {
       },
       options
     )
+  }
+
+  @action
+  async fetchDetail(params) {
+    this.isLoading = true
+
+    const result = await request.get(
+      this.getDetailUrl(params),
+      {},
+      {},
+      () => {}
+    )
+    const detail = { ...params, ...this.mapper(result) }
+
+    this.detail = detail
+    this.isLoading = false
+    return detail
   }
 
   async deleteSilent(params) {

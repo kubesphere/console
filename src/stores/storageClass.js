@@ -55,7 +55,7 @@ export default class StorageClassStore extends Base {
   }
 
   @action
-  create(data) {
+  create(data, params) {
     if (data.provisioner === 'custom') {
       data.provisioner = data.parameters.provisioner
       delete data.parameters.provisioner
@@ -78,19 +78,29 @@ export default class StorageClassStore extends Base {
       )
     }
 
-    return this.submitting(request.post(this.getListUrl({}), data))
+    return this.submitting(request.post(this.getListUrl(params), data))
   }
 
-  async createAlongWithSnapshotClasses(data) {
-    await this.create(data)
+  async createAlongWithSnapshotClasses(data, params) {
+    await this.create(data, params)
     const volumeSnapshotClassStore = new VolumeSnapshotClasses()
 
-    await volumeSnapshotClassStore.create({
-      metadata: {
-        name: get(data, 'metadata.name'),
-      },
-      driver: get(data, 'provisioner'),
-    })
+    if (
+      get(
+        data,
+        'metadata.annotations["storageclass.kubesphere.io/support-snapshot"]'
+      ) === 'true'
+    ) {
+      await volumeSnapshotClassStore.create(
+        {
+          metadata: {
+            name: get(data, 'metadata.name'),
+          },
+          driver: get(data, 'provisioner'),
+        },
+        params
+      )
+    }
   }
 
   @action

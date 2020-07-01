@@ -84,6 +84,12 @@ export default class StorageClasses extends React.Component {
         render: value => (value ? t('Yes') : '-'),
       },
       {
+        title: t('Support Volume Snapshot'),
+        dataIndex: 'supportSnapshot',
+        isHideable: true,
+        render: supportSnapshot => (supportSnapshot ? t('True') : t('False')),
+      },
+      {
         title: t('Provisioner'),
         dataIndex: 'provisioner',
         isHideable: true,

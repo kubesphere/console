@@ -302,7 +302,12 @@ client:
                 - { name: cronjobs, title: CronJobs }
             - { name: ingresses, title: Routes }
             - { name: pods, title: Pods }
-        - { name: volumes, title: Volumes, icon: storage }
+        - name: storage
+          title: Storage Management
+          icon: database
+          children:
+            - { name: volumes, title: Volumes }
+            - { name: volume-snapshots, title: Snapshots }
         - name: config
           title: Configuration Center
           icon: hammer

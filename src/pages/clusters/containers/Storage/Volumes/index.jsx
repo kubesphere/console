@@ -34,7 +34,7 @@ import styles from './index.scss'
 
 @withClusterList({
   store: new VolumeStore(),
-  module: 'volumes',
+  module: 'persistentvolumeclaims',
   name: 'Volume',
   rowKey: 'uid',
 })
@@ -107,7 +107,7 @@ export default class Volumes extends React.Component {
   }
 
   getColumns() {
-    const { getSortOrder, module } = this.props
+    const { getSortOrder } = this.props
     const { cluster } = this.props.match.params
 
     return [
@@ -123,7 +123,7 @@ export default class Volumes extends React.Component {
             iconSize={40}
             to={`/clusters/${cluster}/${
               record.isFedManaged ? 'federatedprojects' : 'projects'
-            }/${record.namespace}/${module}/${name}`}
+            }/${record.namespace}/volumes/${name}`}
             isMultiCluster={record.isFedManaged}
             desc={this.getItemDesc(record)}
             title={getDisplayName(record)}

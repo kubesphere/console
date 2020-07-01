@@ -53,6 +53,7 @@ export default class VolumeStore extends Base {
 
   async cloneVolume({ name }) {
     const {
+      cluster,
       namespace,
       name: sourceName,
       accessModes,
@@ -81,7 +82,7 @@ export default class VolumeStore extends Base {
       },
     }
 
-    const path = `api/v1/namespaces/${namespace}/persistentvolumeclaims`
+    const path = this.getListUrl({ cluster, namespace })
 
     await this.submitting(request.post(path, params))
   }
@@ -91,9 +92,14 @@ export default class VolumeStore extends Base {
    */
   async createSnapshot({ name }) {
     const snapshotstore = new VolumeSnapshotStore()
-    const { namespace, name: sourceName, storageClassName } = this.detail
+    const {
+      cluster,
+      namespace,
+      name: sourceName,
+      storageClassName,
+    } = this.detail
 
-    const path = snapshotstore.getListUrl({ namespace })
+    const path = snapshotstore.getListUrl({ cluster, namespace })
 
     const params = {
       apiVersion: 'snapshot.storage.k8s.io/v1beta1',

@@ -21,8 +21,8 @@ import React from 'react'
 import { isEmpty } from 'lodash'
 import { VOLUME_SNAPSHOT_STATUS } from 'utils/constants'
 
-import { withClusterList, ListPage } from 'components/HOCs/withList'
-import ResourceTable from 'clusters/components/ResourceTable'
+import { withProjectList, ListPage } from 'components/HOCs/withList'
+import Table from 'components/Tables/List'
 import SnapshotStore from 'stores/volumeSnapshot'
 import { getLocalTime } from 'utils'
 import { Avatar, Status } from 'components/Base'
@@ -32,7 +32,7 @@ import { Icon, Tooltip } from '@pitrix/lego-ui'
 
 import styles from './index.scss'
 
-@withClusterList({
+@withProjectList({
   store: new SnapshotStore(),
   module: 'volume-snapshots',
   name: 'VolumeSnapshot',
@@ -66,8 +66,7 @@ export default class VolumeSnapshot extends React.Component {
   }
 
   getColumns() {
-    const { getSortOrder, module } = this.props
-    const { cluster } = this.props.match.params
+    const { getSortOrder } = this.props
 
     return [
       {
@@ -80,9 +79,7 @@ export default class VolumeSnapshot extends React.Component {
           <Avatar
             icon={'snapshot'}
             iconSize={40}
-            to={`/clusters/${cluster}/projects/${
-              record.namespace
-            }/${module}/${name}`}
+            to={`${this.props.match.url}/${name}`}
             title={name}
             desc={record.snapshotClassName}
           />
@@ -136,17 +133,16 @@ export default class VolumeSnapshot extends React.Component {
   }
 
   render() {
-    const { match, bannerProps, tableProps } = this.props
+    const { bannerProps, tableProps } = this.props
 
     return (
       <ListPage {...this.props} noWatch>
         <Banner {...bannerProps} tabs={this.tabs} />
-        <ResourceTable
+        <Table
           {...tableProps}
           itemActions={this.itemActions}
           columns={this.getColumns()}
           onCreate={this.showCreate}
-          cluster={match.params.cluster}
         />
       </ListPage>
     )

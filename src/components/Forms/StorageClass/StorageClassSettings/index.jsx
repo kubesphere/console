@@ -40,6 +40,19 @@ export default class StorageClassSetting extends React.Component {
     return get(formTemplate, MODULE_KIND_MAP[module], formTemplate)
   }
 
+  getSnapshotOptions() {
+    return [
+      {
+        label: t('True'),
+        value: 'true',
+      },
+      {
+        label: t('False'),
+        value: 'false',
+      },
+    ]
+  }
+
   getAccessModesOptions() {
     const { provisioner: provisionerValue } = this.formTemplate
     const provisioner =
@@ -113,6 +126,7 @@ export default class StorageClassSetting extends React.Component {
   render() {
     const { formRef } = this.props
 
+    const snapshotOptions = this.getSnapshotOptions()
     const accessModesOptions = this.getAccessModesOptions()
     const defaultModes = accessModesOptions.map(({ value }) => value)
 
@@ -132,8 +146,12 @@ export default class StorageClassSetting extends React.Component {
               </Form.Item>
             </Column>
             <Column>
-              <Form.Item label={t('Reclaiming Policy')}>
-                <Input name="reclaimPolicy" disabled />
+              <Form.Item label={t('Support Volume Snapshot')}>
+                <Select
+                  name="metadata.annotations['storageclass.kubesphere.io/support-snapshot']"
+                  options={snapshotOptions}
+                  defaultValue="false"
+                />
               </Form.Item>
             </Column>
           </Columns>
@@ -151,7 +169,14 @@ export default class StorageClassSetting extends React.Component {
                 />
               </Form.Item>
             </Column>
-            {this.isCustomizedProvision && (
+            <Column>
+              <Form.Item label={t('Reclaiming Policy')}>
+                <Input name="reclaimPolicy" disabled />
+              </Form.Item>
+            </Column>
+          </Columns>
+          {this.isCustomizedProvision && (
+            <Columns>
               <Column>
                 <Form.Item
                   rules={[
@@ -165,8 +190,8 @@ export default class StorageClassSetting extends React.Component {
                   <Input name={'provisioner'} />
                 </Form.Item>
               </Column>
-            )}
-          </Columns>
+            </Columns>
+          )}
           {this.renderParams()}
         </Form>
       </div>

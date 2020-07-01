@@ -26,6 +26,7 @@ import ContainerDetail from '../containers/Pods/Containers/Detail'
 import ServiceDetail from '../containers/Services/Detail'
 import RouteDetail from '../containers/Routes/Detail'
 import VolumeDetail from '../containers/Volumes/Detail'
+import VolumeSnapshotDetail from '../containers/VolumeSnapshots/Detail'
 import SecretDetail from '../containers/Secrets/Detail'
 import ConfigMapDetail from '../containers/ConfigMaps/Detail'
 import CRDAppDetail from '../containers/Applications/CRDAppDetail'
@@ -75,6 +76,10 @@ export default PATH => [
   {
     path: `${PATH}/volumes/:name`,
     component: VolumeDetail,
+  },
+  {
+    path: `${PATH}/volume-snapshots/:name`,
+    component: VolumeSnapshotDetail,
   },
   {
     path: `${PATH}/secrets/:name`,

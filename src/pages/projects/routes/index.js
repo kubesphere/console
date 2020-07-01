@@ -34,6 +34,7 @@ import Services from '../containers/Services'
 import GrayRelease from '../containers/GrayRelease'
 import Routes from '../containers/Routes'
 import Volumes from '../containers/Volumes'
+import VolumeSnapshots from '../containers/VolumeSnapshots'
 import BaseInfo from '../containers/BaseInfo'
 import ConfigMaps from '../containers/ConfigMaps'
 import Secrets from '../containers/Secrets'
@@ -104,6 +105,11 @@ export default [
       },
       { path: `${PATH}/ingresses`, component: Routes, exact: true },
       { path: `${PATH}/volumes`, component: Volumes, exact: true },
+      {
+        path: `${PATH}/volume-snapshots`,
+        component: VolumeSnapshots,
+        exact: true,
+      },
       { path: `${PATH}/base-info`, component: BaseInfo, exact: true },
       {
         path: `${PATH}/networkpolicies`,
