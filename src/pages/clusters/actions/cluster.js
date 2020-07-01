@@ -53,6 +53,7 @@ export default {
                 const clusters = item.clusters || []
                 set(
                   formData,
+                  'spec.placement.clusters',
                   uniqBy([...clusters, { name: cluster.name }], 'name')
                 )
                 requests.push(workspaceStore.patch(item, formData))

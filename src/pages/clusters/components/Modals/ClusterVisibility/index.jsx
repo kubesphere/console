@@ -78,7 +78,12 @@ export default class ClusterVisibility extends React.Component {
   fetchAuthedWorkspaces = params => {
     const { cluster = {} } = this.props
     this.authedWorkspaceStore
-      .fetchList({ ...params, limit: -1, cluster: cluster.name })
+      .fetchList({
+        ...params,
+        limit: -1,
+        cluster: cluster.name,
+        labelSelector: 'kubefed.io/managed=true',
+      })
       .then(() => {
         this.setState({
           authedWorkspaces: [...toJS(this.authedWorkspaceStore.list.data)],
