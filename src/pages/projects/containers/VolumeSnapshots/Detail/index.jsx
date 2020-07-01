@@ -28,9 +28,9 @@ import { trigger } from 'utils/action'
 import { toJS } from 'mobx'
 import VolumeSnapshotStore from 'stores/volumeSnapshot'
 
-import DetailPage from 'clusters/containers/Base/Detail'
+import DetailPage from 'projects/containers/Base/Detail'
 
-import routes from './routes'
+import getRoutes from './routes'
 
 @inject('rootStore')
 @observer
@@ -46,13 +46,22 @@ export default class StorageClassDetail extends React.Component {
     return 'Volume Snapshot'
   }
 
+  get module() {
+    return 'volume-snapshots'
+  }
+
   get authKey() {
     return 'volumes'
   }
 
   get listUrl() {
-    const { cluster } = this.props.match.params
-    return `/clusters/${cluster}/volume-snapshots`
+    const { workspace, cluster, namespace } = this.props.match.params
+    if (workspace) {
+      return `/${workspace}/clusters/${cluster}/projects/${namespace}/${
+        this.module
+      }`
+    }
+    return `/clusters/${cluster}/${this.module}`
   }
 
   fetchData = () => {
@@ -68,7 +77,7 @@ export default class StorageClassDetail extends React.Component {
       onClick: () => {
         this.trigger('volume.create', {
           fromSnapshot: true,
-          module: 'volumes',
+          module: 'persistentvolumeclaims',
           namespace: this.props.match.params.namespace,
           store: new VolumeStore(),
           noCodeEdit: true,
@@ -179,6 +188,12 @@ export default class StorageClassDetail extends React.Component {
       ],
     }
 
-    return <DetailPage stores={stores} routes={routes} {...sideProps} />
+    return (
+      <DetailPage
+        stores={stores}
+        {...sideProps}
+        routes={getRoutes(this.props.match.path)}
+      />
+    )
   }
 }

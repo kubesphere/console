@@ -58,6 +58,7 @@ export default class PVCSnapshots extends Component {
 
     const status = t(`CREATE_STATUS_${backupStatus.toUpperCase()}`)
     const { detailStore } = this.props
+    const { workspace } = this.props.match.params
     const { cluster } = detailStore.detail
 
     return (
@@ -66,7 +67,9 @@ export default class PVCSnapshots extends Component {
         <div className={styles.itemAttrs}>
           <h3>
             <Link
-              to={`/clusters/${cluster}/projects/${namespace}/volume-snapshots/${name}`}
+              to={`${
+                workspace ? `/${workspace}` : ''
+              }/clusters/${cluster}/projects/${namespace}/volume-snapshots/${name}`}
             >
               {name}
             </Link>

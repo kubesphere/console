@@ -37,7 +37,7 @@ export default class StorageClassDetail extends React.Component {
   store = new StorageClassStore()
 
   componentDidMount() {
-    this.store.fetchList({ limit: Infinity })
+    this.store.fetchList({ limit: -1 })
     this.fetchData()
   }
 
@@ -63,7 +63,8 @@ export default class StorageClassDetail extends React.Component {
   }
 
   fetchData = () => {
-    this.store.fetchDetail(this.props.match.params)
+    const { params } = this.props.match
+    this.store.fetchDetail(params)
   }
 
   getOperations = () => [
@@ -75,7 +76,7 @@ export default class StorageClassDetail extends React.Component {
       onClick: () =>
         this.trigger('resource.yaml.edit', {
           detail: toJS(this.store.detail),
-          readonly: true,
+          readOnly: true,
         }),
     },
     {
@@ -87,6 +88,19 @@ export default class StorageClassDetail extends React.Component {
         this.trigger('storageclass.set.default', {
           detail: toJS(this.store.detail),
           defaultStorageClass: this.defaultStorageClass.name,
+          success: this.fetchData,
+        }),
+    },
+    {
+      key: 'setSnapshot',
+      icon: 'pen',
+      text: this.store.detail.supportSnapshot
+        ? t('Disable Volume Snapshot')
+        : t('Enable Volume Snapshot'),
+      action: 'edit',
+      onClick: () =>
+        this.trigger('storageclass.toggle.snapshot', {
+          detail: toJS(this.store.detail),
           success: this.fetchData,
         }),
     },
@@ -126,6 +140,10 @@ export default class StorageClassDetail extends React.Component {
       {
         name: t('Reclaiming Policy'),
         value: detail.reclaimPolicy,
+      },
+      {
+        name: t('Support Volume Snapshot'),
+        value: detail.supportSnapshot ? t('True') : t('False'),
       },
     ]
   }

@@ -21,19 +21,19 @@ import { Modal, Notify } from 'components/Base'
 
 import CreateModal from 'components/Modals/Create'
 import SetDefaultStorageClassModal from 'components/Modals/SetDefaultStorageClass'
+import StorageClassSnapshotModal from 'components/Modals/StorageClassSnapshot'
 import { MODULE_KIND_MAP } from 'utils/constants'
 import FORM_TEMPLATES from 'utils/form.templates'
 import formPersist from 'utils/form.persist'
 import FORM_STEPS from 'configs/steps/storageclasses'
+import VolumeSnapshotClassStore from 'stores/volumeSnapshotClasses'
 
 export default {
   'storageclass.create': {
-    on({ store, cluster, namespace, module, success, ...props }) {
+    on({ store, cluster, module, success, ...props }) {
       const kind = MODULE_KIND_MAP[module]
       const formTemplate = {
-        [kind]: FORM_TEMPLATES[module]({
-          namespace,
-        }),
+        [kind]: FORM_TEMPLATES[module]({}),
       }
 
       const modal = Modal.open({
@@ -44,18 +44,15 @@ export default {
             return
           }
 
-          store
-            .createAlongWithSnapshotClasses(data, { cluster, namespace })
-            .then(() => {
-              Modal.close(modal)
-              Notify.success({ content: `${t('Created Successfully')}!` })
-              success && success()
-              formPersist.delete(`${module}_create_form`)
-            })
+          store.createAlongWithSnapshotClasses(data, { cluster }).then(() => {
+            Modal.close(modal)
+            Notify.success({ content: `${t('Created Successfully')}!` })
+            success && success()
+            formPersist.delete(`${module}_create_form`)
+          })
         },
         module,
         cluster,
-        namespace,
         name: kind,
         steps: FORM_STEPS,
         formTemplate,
@@ -95,6 +92,45 @@ export default {
         },
         cluster,
         modal: SetDefaultStorageClassModal,
+        store,
+        ...props,
+      })
+    },
+  },
+  'storageclass.toggle.snapshot': {
+    on({ store, detail, success, ...props }) {
+      const volumeSnapshotClassStore = new VolumeSnapshotClassStore()
+      const modal = Modal.open({
+        onOk: async () => {
+          await store.patch(detail, {
+            metadata: {
+              annotations: {
+                'storageclass.kubesphere.io/support-snapshot': detail.supportSnapshot
+                  ? 'false'
+                  : 'true',
+              },
+            },
+          })
+
+          if (detail.supportSnapshot) {
+            await volumeSnapshotClassStore.deleteSilent(detail)
+          } else {
+            await volumeSnapshotClassStore.create(
+              {
+                metadata: {
+                  name: detail.name,
+                },
+                driver: detail.provisioner,
+              },
+              detail
+            )
+          }
+
+          Modal.close(modal)
+          success && success()
+        },
+        modal: StorageClassSnapshotModal,
+        supportSnapshot: detail.supportSnapshot,
         store,
         ...props,
       })

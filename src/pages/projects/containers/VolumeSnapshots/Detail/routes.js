@@ -20,20 +20,16 @@ import { getIndexRoute } from 'utils/router.config'
 import Events from 'core/containers/Base/Detail/Events'
 import Source from './Source'
 
-const PATH = '/clusters/:cluster/projects/:namespace/volume-snapshots/:name'
-const SOURCE_PATH = `${PATH}/source`
-const EVENT_PATH = `${PATH}/event`
-
-export default [
+export default PATH => [
   {
     name: 'source',
-    path: SOURCE_PATH,
+    path: `${PATH}/source`,
     title: 'DATA_SOURCE',
     component: Source,
   },
   {
     name: 'event',
-    path: EVENT_PATH,
+    path: `${PATH}/event`,
     title: 'Events',
     component: Events,
   },
