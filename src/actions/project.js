@@ -32,6 +32,13 @@ import FederatedStore from 'stores/federated'
 export default {
   'project.create': {
     on({ store, success, cluster, workspace, ...props }) {
+      const multiCluster =
+        globals.app.isMultiCluster &&
+        globals.app.hasPermission({
+          workspace,
+          module: 'federatedprojects',
+          action: 'view',
+        })
       const modal = Modal.open({
         onOk: async data => {
           set(data, 'metadata.labels["kubesphere.io/workspace"]', workspace)
@@ -59,6 +66,7 @@ export default {
           success && success()
         },
         hideCluster: !globals.app.isMultiCluster || !!cluster,
+        multiCluster,
         cluster,
         workspace,
         formTemplate: FORM_TEMPLATES.project(),

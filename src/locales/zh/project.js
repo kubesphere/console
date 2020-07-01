@@ -124,6 +124,8 @@ export default {
   "The project's file log collection is about to close.":
     '项目的落盘日志收集即将关闭.',
 
+  'Select the cluster to create the project.': '选择要创建项目的集群.',
+
   'Project Member': '项目成员',
 
   CLOSE_FILE_LOG_TIP:

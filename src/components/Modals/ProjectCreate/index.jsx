@@ -18,7 +18,7 @@
 
 import React from 'react'
 import { observer } from 'mobx-react'
-import { get, isEmpty } from 'lodash'
+import { get, isEmpty, set, uniqBy } from 'lodash'
 import PropTypes from 'prop-types'
 import { Columns, Column, Select, Input, TextArea } from '@pitrix/lego-ui'
 import { Modal, Form } from 'components/Base'
@@ -138,6 +138,68 @@ export default class ProjectCreateModal extends React.Component {
     <ClusterTitle cluster={item} size="small" theme="light" noStatus />
   )
 
+  handleClusterChange = clusters => {
+    set(
+      this.props.formTemplate,
+      'spec.placement.clusters',
+      uniqBy(clusters, 'name')
+    )
+  }
+
+  renderClusters() {
+    const { multiCluster } = this.props
+
+    if (!multiCluster) {
+      return (
+        <Form.Group
+          label={t('Cluster Settings')}
+          desc={t('Select the cluster to create the project.')}
+        >
+          <Form.Item
+            rules={[{ required: true, message: t('Please select a cluster') }]}
+          >
+            <Select
+              name="spec.placement.clusters[0].name"
+              className={styles.cluster}
+              options={this.clusters}
+              valueRenderer={this.valueRenderer}
+              optionRenderer={this.optionRenderer}
+            />
+          </Form.Item>
+        </Form.Group>
+      )
+    }
+
+    return (
+      <Form.Group
+        label={t('Cluster Settings')}
+        desc={t('PROJECT_CLUSTER_SETTINGS_DESC')}
+      >
+        <Form.Item
+          rules={[{ required: true, message: t('Please select a cluster') }]}
+        >
+          <ArrayInput
+            name="spec.placement.clusters"
+            addText={t('Add Cluster')}
+            itemType="object"
+            defaultValue={this.defaultClusters}
+            onChange={this.handleClusterChange}
+          >
+            <ObjectInput>
+              <Select
+                name="name"
+                className={styles.cluster}
+                options={this.clusters}
+                valueRenderer={this.valueRenderer}
+                optionRenderer={this.optionRenderer}
+              />
+            </ObjectInput>
+          </ArrayInput>
+        </Form.Item>
+      </Form.Group>
+    )
+  }
+
   render() {
     const {
       visible,
@@ -216,35 +278,7 @@ export default class ProjectCreateModal extends React.Component {
               </Form.Item>
             </Column>
           </Columns>
-          {!hideCluster && (
-            <Form.Group
-              label={t('Cluster Settings')}
-              desc={t('PROJECT_CLUSTER_SETTINGS_DESC')}
-            >
-              <Form.Item
-                rules={[
-                  { required: true, message: t('Please select a cluster') },
-                ]}
-              >
-                <ArrayInput
-                  name="spec.placement.clusters"
-                  addText={t('Add Cluster')}
-                  itemType="object"
-                  defaultValue={this.defaultClusters}
-                >
-                  <ObjectInput>
-                    <Select
-                      name="name"
-                      className={styles.cluster}
-                      options={this.clusters}
-                      valueRenderer={this.valueRenderer}
-                      optionRenderer={this.optionRenderer}
-                    />
-                  </ObjectInput>
-                </ArrayInput>
-              </Form.Item>
-            </Form.Group>
-          )}
+          {!hideCluster && this.renderClusters()}
         </div>
       </Modal.Form>
     )
