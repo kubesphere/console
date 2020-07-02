@@ -317,7 +317,7 @@ export default {
 
   RUN_AS_NON_ROOT: 'Run as non root',
   RUN_AS_NON_ROOT_DESC:
-    'kubernetes will perform a check before running the container to ensure that the container process is not running as the root user (UID 0), otherwise the container will not start.',
+    'Kubernetes will perform a check before running the container to ensure that the container process is not running as the root user (UID 0), otherwise the container will not start.',
   RUN_AS_USER_DESC:
     'The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified.',
   RUN_AS_USER_GROUP_DESC:

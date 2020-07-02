@@ -649,7 +649,7 @@ export default {
     '该容器的文件系统根路径是否为只读。',
   RUN_AS_NON_ROOT: '仅允许非 Root 用户',
   RUN_AS_NON_ROOT_DESC:
-    'kubernetes 在运行容器之前将执行检查，以确保容器进程不是以 root 用户（UID为0）运行，否则将不能启动容器.',
+    'Kubernetes 在运行容器之前将执行检查，以确保容器进程不是以 root 用户（UID为0）运行，否则将不能启动容器。',
   RUN_AS_USER_DESC: '执行容器 entrypoint 进程的 UID。默认为 docker 引擎的 GID',
   RUN_AS_USER_GROUP_DESC:
     '执行容器 entrypoint 进程的 GID。默认为 docker 引擎的 GID',
