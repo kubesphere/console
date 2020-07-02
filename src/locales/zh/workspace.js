@@ -106,6 +106,6 @@ export default {
 
   NO_PUBLIC_CLUSTER_TIP:
     '暂无可用的公开集群, 请在企业空间创建完毕后, 向平台管理员或集群管理员申请集群的授权',
-  NO_CLUSTER_TIP:
+  WORKSPACE_NO_CLUSTER_TIP:
     '您需要联系平台管理员或者集群管理员为企业空间授权集群的访问权限',
 }

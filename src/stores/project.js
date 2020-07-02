@@ -166,8 +166,6 @@ export default class ProjectStore extends Base {
   @action
   async create(data, params = {}) {
     if (params.workspace) {
-      const clusters = get(data, 'spec.placement.clusters', [])
-      params.cluster = get(clusters, '[0].name')
       return this.submitting(request.post(this.getResourceUrl(params), data))
     }
 

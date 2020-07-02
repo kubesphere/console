@@ -37,7 +37,8 @@ export default {
   CLUSTER_TAG_DESC:
     'To indicate what the cluster is used for, such as a production environment, testing environment or demo environment',
   CLUSTER_PROVIDER_DESC: 'The cluster infrastructure provider',
-  CLUSTER_CONNECT_METHOD_DESC: 'Directly connect to the cluster or use an agent',
+  CLUSTER_CONNECT_METHOD_DESC:
+    'Directly connect to the cluster or use an agent',
 
   CONNTECT_DIRECT: 'Direct connection to Kubernetes cluster',
   CONNTECT_PROXY: 'Cluster connection agent',
@@ -93,7 +94,8 @@ export default {
     'Clusters can be assigned to workspaces through authorization.',
 
   CLUSTER_VISIBILITY_Q1: 'How to authorize clusters to specific workspaces?',
-  CLUSTER_VISIBILITY_A1: 'You can authorize the cluster to different workspaces by clicking Edit Visibility.',
+  CLUSTER_VISIBILITY_A1:
+    'You can authorize the cluster to different workspaces by clicking Edit Visibility.',
   CLUSTER_VISIBILITY_Q2: 'What is a public cluster?',
   CLUSTER_VISIBILITY_A2:
     'A public cluster means all platform users can access the cluster, in which they are able to create and schedule resources.',
