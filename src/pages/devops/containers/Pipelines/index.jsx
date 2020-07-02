@@ -496,7 +496,7 @@ class CICDs extends React.Component {
       ? this.showCreate
       : null
 
-    if (isEmptyList && Object.keys(filters).length <= 0) {
+    if (isEmptyList && Object.keys(omitFilters).length <= 0) {
       return <EmptyTable desc={t('CI/CD_CREATE_DESC')} onCreate={showCreate} />
     }
 
