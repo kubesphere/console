@@ -32,7 +32,7 @@ export default {
   NO_WORKSPACE_TIP:
     'Your account does not belong to any workspace currently. Please create one or contact the administrator to invite you to work in a workspace.',
   WORKSPACE_MEMBER_DESC:
-    "This module allows you to manage workspace members and assign roles to them. Members in the current workspace can be invited as project members.",
+    'This module allows you to manage workspace members and assign roles to them. Members in the current workspace can be invited as project members.',
   INVITE_WORKSPACE_MEMBER_DESC:
     'You can invite new members to work in the workspace.',
   INVITE_WORKSPACE_MEMBER_SEARCH_PLACEHODLER:
@@ -48,23 +48,26 @@ export default {
   NO_PUBLIC_CLUSTER_TIP:
     'There are no public clusters available, please apply for cluster authorization from the platform administrator or cluster administrator after workspace is created',
 
-  NO_CLUSTER_TIP:
+  WORKSPACE_NO_CLUSTER_TIP:
     'You need to contact the platform administrator or cluster administrator to authorize the access rights of the cluster for the workspace.',
-  
+
   WORKSPACE_BASE_INFO_Q1: 'How to apply for more clusters for the workspace?',
   WORKSPACE_BASE_INFO_A1:
     'A cluster is operated and maintained by the platform administrator and cluster administrator. If you need more clusters, please contact your platform administrator or submit an application.',
   WORKSPACE_BASE_INFO_Q2: 'How to define a network policy?',
   WORKSPACE_BASE_INFO_A2: '',
 
-  WORKSPACE_CLUSTERS_DESC: 'Cluster information shows how cluster resources are used in the workspace.',
+  WORKSPACE_CLUSTERS_DESC:
+    'Cluster information shows how cluster resources are used in the workspace.',
 
-  HOW_TO_APPLY_MORE_CLUSTER_Q: 'How to apply for more clusters for the workspace?',
+  HOW_TO_APPLY_MORE_CLUSTER_Q:
+    'How to apply for more clusters for the workspace?',
   HOW_TO_APPLY_MORE_CLUSTER_A:
     'A cluster is operated and maintained by the platform administrator and cluster administrator. If you need more clusters, please contact your platform administrator or submit an application.',
 
-  DELETE_WORKSPACE_DESC: 'The workspace cannot be restored after it is deleted and the resources in the workspace will also be removed.',
+  DELETE_WORKSPACE_DESC:
+    'The workspace cannot be restored after it is deleted and the resources in the workspace will also be removed.',
   SURE_TO_DELETE_WORKSPACE: 'Sure to delete the workspace',
   DELETE_WORKSPACE_TIP:
-  'Are you sure to delete the workspace <strong>{resource}</strong> ? You will not be able to recover it, and the resources under the workspace will also be deleted.',
+    'Are you sure to delete the workspace <strong>{resource}</strong> ? You will not be able to recover it, and the resources under the workspace will also be deleted.',
 }
