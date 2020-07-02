@@ -127,7 +127,7 @@ export default {
     'This parameter is optional and should only be used if you set imageFormat to “2”.',
 
   DEPENDENT_STORAGE_CLASS_DELETE_TIPS:
-    'Please check if the storage class are required by other resource. If there are resources dependent on the it, close them first',
+    'Please check if the storage class is being used by other resources. If there is any resource dependent on the storage class, you need to disable the resource first.',
 
   CREATE_VOLUME_BY_STORAGECLASS: 'Create Volume by Storageclass',
   CREATE_VOLUME_BY_SNAPSHOT: 'Create Volume by Snapshot',

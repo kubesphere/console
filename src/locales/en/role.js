@@ -197,8 +197,6 @@ export default {
   ROLE_PLATFORM_REGULAR:
     'Normal user in the platform who has no access to any resources before joining the workspace or cluster.',
   ROLE_USER_MANAGER: 'User manager in the platform who manages all users.',
-  ROLE_WORKSPACE_MANAGER:
-    'Workspace manager in the platform who manages all workspaces in the platform.',
 
   ROLE_CLUSTER_ADMIN:
     'Allows cluster-admin access to perform any action on any resource. It gives full control over all resources in the cluster and in all namespaces.',
@@ -213,6 +211,8 @@ export default {
     'Allows viewer access to view all resources in the workspace.',
   ROLE_WORKSPACE_SELF_PROVISIONER:
     'Regular user in the workspace who can create namespaces and DevOps projects.',
+  ROLE_WORKSPACE_MANAGER:
+    'Workspace manager in the platform who manages all workspaces in the platform.',
 
   ROLE_PROJECT_ADMIN:
     'Allows admin access to perform any action on any resource. It gives full control over all resources in the namespace.',
@@ -229,4 +229,6 @@ export default {
     'The maintainer of the namespace who can manage resources other than users and roles in the DevOps project.',
   ROLE_DEVOPS_VIEWER:
     'Allows viewer access to view all resources in the DevOps project.',
+  ROLE_DEVOPS_OPERATOR:
+    'Normal member in a DevOps project who can create pipeline credentials in the DevOps project.',
 }

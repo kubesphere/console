@@ -256,7 +256,7 @@ export default {
 
   ROLE_DEVOPS_ADMIN: 'DevOps 工程管理员，可以管理 DevOps 工程下所有的资源。',
   ROLE_DEVOPS_OPERATOR:
-    'DevOps 工程普通成员，可以在 DevOps 工程下创建流水线凭证等.',
+    'DevOps 工程普通成员，可以在 DevOps 工程下创建流水线凭证等。',
   ROLE_DEVOPS_VIEWER: 'DevOps 工程观察者，可以查看 DevOps 工程下所有的资源。',
 
   ACCOUNT_ROLE_DESC: '账号角色可以定义平台内的账号拥有的权限',
