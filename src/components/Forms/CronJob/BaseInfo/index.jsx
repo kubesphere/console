@@ -118,11 +118,17 @@ export default class BaseInfo extends React.Component {
         <Columns className="is-multiline">
           {!this.props.namespace && (
             <Column className="is-6">
-              <Form.Item label={t('Project')} desc={t('PROJECT_DESC')}>
+              <Form.Item
+                label={t('Project')}
+                desc={t('PROJECT_DESC')}
+                rules={[
+                  { required: true, message: t('Please select a project') },
+                ]}
+              >
                 <ProjectSelect
                   name="metadata.namespace"
                   cluster={this.props.cluster}
-                  defaultValue={this.namespace || 'default'}
+                  defaultValue={this.namespace}
                 />
               </Form.Item>
             </Column>
@@ -131,7 +137,9 @@ export default class BaseInfo extends React.Component {
             <Form.Item
               label={t('Schedule')}
               desc={t.html('CRONJOB_CRON_DESC')}
-              rules={[{ required: true, message: t('Please input a schedule.') }]}
+              rules={[
+                { required: true, message: t('Please input a schedule.') },
+              ]}
             >
               <SelectInput
                 name="spec.schedule"
@@ -173,7 +181,9 @@ export default class BaseInfo extends React.Component {
             <Column>
               <Form.Item
                 label={t('successfulJobsHistoryLimit')}
-                desc={t('The number of successful jobs allowed to be retained.')}
+                desc={t(
+                  'The number of successful jobs allowed to be retained.'
+                )}
               >
                 <NumberInput
                   min={0}

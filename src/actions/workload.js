@@ -52,15 +52,7 @@ const FORM_STEPS = {
 
 export default {
   'workload.create': {
-    on({
-      store,
-      cluster,
-      namespace = '',
-      module,
-      success,
-      isFederated,
-      ...props
-    }) {
+    on({ store, cluster, namespace, module, success, isFederated, ...props }) {
       const kind = MODULE_KIND_MAP[module]
       const formTemplate = {
         [kind]: FORM_TEMPLATES[module]({
