@@ -28,6 +28,7 @@ import { PATTERN_SERVICE_NAME, PATTERN_LENGTH_63 } from 'utils/constants'
 
 import WorkspaceStore from 'stores/workspace'
 
+import { computed } from 'mobx'
 import styles from './index.scss'
 
 @observer
@@ -69,6 +70,7 @@ export default class ProjectCreateModal extends React.Component {
     ]
   }
 
+  @computed
   get clusters() {
     return this.workspaceStore.clusters.data.map(item => ({
       label: item.name,
@@ -79,6 +81,7 @@ export default class ProjectCreateModal extends React.Component {
     }))
   }
 
+  @computed
   get defaultClusters() {
     const clusters = this.workspaceStore.clusters.data
       .filter(item => item.isHost)
@@ -100,7 +103,7 @@ export default class ProjectCreateModal extends React.Component {
     }
 
     const { cluster } = this.props
-    this.props.store.checkName({ name: value, cluster }).then(resp => {
+    this.store.checkName({ name: value, cluster }).then(resp => {
       if (resp.exist) {
         return callback({ message: t('Name exists'), field: rule.field })
       }
@@ -108,27 +111,53 @@ export default class ProjectCreateModal extends React.Component {
     })
   }
 
-  multiClusterNameValidator = async (rule, value, callback) => {
-    if (!value) {
+  singleClusterValidator = (rule, value, callback) => {
+    const name = get(this.props.formTemplate, 'metadata.name')
+
+    if (!value || !name) {
       return callback()
     }
 
-    const clusters = get(this.props.formTemplate, 'spec.placement.clusters', [])
+    this.store.checkName({ name, cluster: value }).then(resp => {
+      if (resp.exist) {
+        return callback({ message: t('Name exists'), field: rule.field })
+      }
+      callback()
+    })
+  }
 
-    const resps = await Promise.all(
-      clusters.map(cluster =>
-        this.store.checkName({ name: value, cluster: cluster.name })
-      )
-    )
+  multiClusterValidator = async (rule, value, callback) => {
+    const name = get(this.props.formTemplate, 'metadata.name')
+
+    if (!value || !name) {
+      return callback()
+    }
+
+    if (value.length > 1) {
+      const resp = await this.store.checkName({ name })
+      if (resp.exist) {
+        return callback({
+          message: t('Project name exists on host cluster'),
+          field: rule.field,
+        })
+      }
+    }
+
+    const resps = await Promise.all([
+      ...value.map(cluster =>
+        this.store.checkName({ name, cluster: cluster.name })
+      ),
+    ])
 
     const index = resps.findIndex(item => item.exist)
 
-    if (index > -1) {
+    if (index > -1 && value[index]) {
       return callback({
-        message: t('NAME_EXIST_IN_CLUSTER', { cluster: clusters[index].name }),
+        message: t('NAME_EXIST_IN_CLUSTER', { cluster: value[index].name }),
         field: rule.field,
       })
     }
+
     callback()
   }
 
@@ -156,7 +185,10 @@ export default class ProjectCreateModal extends React.Component {
           desc={t('Select the cluster to create the project.')}
         >
           <Form.Item
-            rules={[{ required: true, message: t('Please select a cluster') }]}
+            rules={[
+              { required: true, message: t('Please select a cluster') },
+              { validator: this.singleClusterValidator },
+            ]}
           >
             <Select
               name="spec.placement.clusters[0].name"
@@ -176,7 +208,10 @@ export default class ProjectCreateModal extends React.Component {
         desc={t('PROJECT_CLUSTER_SETTINGS_DESC')}
       >
         <Form.Item
-          rules={[{ required: true, message: t('Please select a cluster') }]}
+          rules={[
+            { required: true, message: t('Please select a cluster') },
+            { validator: this.multiClusterValidator },
+          ]}
         >
           <ArrayInput
             name="spec.placement.clusters"
@@ -242,9 +277,7 @@ export default class ProjectCreateModal extends React.Component {
                   },
                   { pattern: PATTERN_LENGTH_63, message: t('NAME_TOO_LONG') },
                   {
-                    validator: hideCluster
-                      ? this.nameValidator
-                      : this.multiClusterNameValidator,
+                    validator: hideCluster ? this.nameValidator : null,
                   },
                 ]}
               >

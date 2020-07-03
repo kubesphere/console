@@ -16,18 +16,20 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, omitBy, uniqBy, isEmpty, set } from 'lodash'
+import { get, set, cloneDeep, omitBy, uniqBy, isEmpty } from 'lodash'
 import { Modal, Notify } from 'components/Base'
 import QuotaEditModal from 'components/Modals/QuotaEdit'
 import ProjectCreateModal from 'components/Modals/ProjectCreate'
 import AssignWorkspaceModal from 'components/Modals/AssignWorkspace'
 import DefaultResourceEditModal from 'projects/components/Modals/DefaultResourceEdit'
 import GatewaySettingModal from 'projects/components/Modals/GatewaySetting'
+import DeleteModal from 'components/Modals/Delete'
 import FORM_TEMPLATES from 'utils/form.templates'
 import FED_TEMPLATES from 'utils/fed.templates'
 
 import QuotaStore from 'stores/quota'
 import FederatedStore from 'stores/federated'
+import ProjectStore from 'stores/project'
 
 export default {
   'project.create': {
@@ -50,13 +52,20 @@ export default {
           if (clusters.length > 1) {
             const federatedStore = new FederatedStore(store)
             set(data, 'spec.placement.clusters', clusters)
-            await store.create(data, { workspace })
+
+            const hostData = cloneDeep(data)
+            set(
+              hostData,
+              'metadata.labels["kubesphere.io/kubefed-host-namespace"]',
+              'true'
+            )
+            await store.create(hostData, { workspace })
             await federatedStore.create(FED_TEMPLATES.namespaces(data), {
               namespace: get(data, 'metadata.name'),
             })
           } else {
             await store.create(data, {
-              cluster: get(clusters, '[0].name'),
+              cluster: cluster || get(clusters, '[0].name'),
               workspace,
             })
           }
@@ -183,6 +192,29 @@ export default {
         store,
         detail,
         cluster,
+        ...props,
+      })
+    },
+  },
+  'fedproject.delete': {
+    on({ store, detail, success, ...props }) {
+      const projectStore = new ProjectStore()
+      const modal = Modal.open({
+        onOk: () => {
+          store.delete(detail).then(() => {
+            projectStore.delete({ name: detail.name })
+            Modal.close(modal)
+            Notify.success({ content: `${t('Deleted Successfully')}!` })
+            success && success()
+          })
+        },
+        store,
+        modal: DeleteModal,
+        resource: detail.name,
+        desc: t.html('MULTI_CLUSTER_PROJECT_DELETE_TIP', {
+          type: t('Multi-cluster Project'),
+          resource: detail.name,
+        }),
         ...props,
       })
     },

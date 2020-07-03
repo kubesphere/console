@@ -19,6 +19,7 @@
 import React from 'react'
 import { computed } from 'mobx'
 import { get } from 'lodash'
+import { Tooltip, Icon } from '@pitrix/lego-ui'
 
 import { Avatar, Status } from 'components/Base'
 import Banner from 'components/Cards/Banner'
@@ -117,7 +118,8 @@ export default class Projects extends React.Component {
         cluster,
         ...this.props.match.params,
         ...params,
-        labelSelector: 'kubefed.io/managed!=true',
+        labelSelector:
+          'kubefed.io/managed!=true, kubesphere.io/kubefed-host-namespace!=true',
       })
       await this.monitoringStore.fetchMetrics({
         cluster,
@@ -145,6 +147,7 @@ export default class Projects extends React.Component {
         icon: 'pen',
         text: t('Edit Quota'),
         action: 'edit',
+        show: item => !item.isFedHostNamespace,
         onClick: item =>
           trigger('project.quota.edit', {
             type: t('Project'),
@@ -190,7 +193,7 @@ export default class Projects extends React.Component {
         render: (name, record) => (
           <Avatar
             to={
-              record.status === 'Terminating'
+              record.status === 'Terminating' || record.isFedHostNamespace
                 ? null
                 : `/${this.workspace}/clusters/${
                     record.cluster
@@ -199,7 +202,7 @@ export default class Projects extends React.Component {
             icon="project"
             iconSize={40}
             desc={record.description || '-'}
-            title={getDisplayName(record)}
+            title={this.renderTitle(record)}
           />
         ),
       },
@@ -239,6 +242,21 @@ export default class Projects extends React.Component {
         render: record => this.getLastValue(record, MetricTypes.pod),
       },
     ]
+  }
+
+  renderTitle(record) {
+    if (record.isFedHostNamespace) {
+      return (
+        <span>
+          <span className="margin-r8">{getDisplayName(record)}</span>
+          <Tooltip content={t('FED_HOST_NAMESPACE_TIP')}>
+            <Icon name="information" />
+          </Tooltip>
+        </span>
+      )
+    }
+
+    return getDisplayName(record)
   }
 
   showCreate = () =>

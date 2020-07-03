@@ -42,18 +42,18 @@ const formatLimitRange = (limitRange = {}) => {
   return limitRange
 }
 
-const getTypeSelectParams = type => {
-  let params = {}
-
+const withTypeSelectParams = (params, type) => {
   if (type === 'system') {
-    params = {
-      labelSelector: 'kubesphere.io/workspace=system-workspace',
-    }
+    params.labelSelector = 'kubesphere.io/workspace=system-workspace'
   } else if (type === 'user') {
-    params = {
-      labelSelector: 'kubesphere.io/workspace!=system-workspace',
-    }
+    params.labelSelector =
+      'kubesphere.io/workspace!=system-workspace,!kubesphere.io/kubefed-host-namespace,!kubesphere.io/devopsproject'
+  } else {
+    params.labelSelector = `!kubesphere.io/kubefed-host-namespace,!kubesphere.io/devopsproject${
+      params.labelSelector ? `,${params.labelSelector}` : ''
+    }`
   }
+
   return params
 }
 
@@ -120,10 +120,7 @@ export default class ProjectStore extends Base {
 
     const result = await request.get(
       this.getResourceUrl({ cluster, workspace, namespace }),
-      {
-        ...params,
-        ...getTypeSelectParams(type),
-      }
+      withTypeSelectParams(params, type)
     )
     const data = get(result, 'items', []).map(item => ({
       cluster,

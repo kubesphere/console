@@ -143,6 +143,14 @@ export default class WorkloadTable extends React.Component {
     return false
   }
 
+  componentDidMount() {
+    this.mounted = true
+  }
+
+  componentWillUnmount() {
+    this.mounted = false
+  }
+
   get tags() {
     const { filters } = this.props
     if (typeof filters !== 'object') return []
@@ -162,8 +170,8 @@ export default class WorkloadTable extends React.Component {
   }
 
   get showEmpty() {
-    const { data, isLoading, filters } = this.props
-    return isEmpty(data) && !isLoading && isEmpty(filters)
+    const { data, filters } = this.props
+    return this.mounted && isEmpty(data) && isEmpty(filters)
   }
 
   handleChange = (_, filters, sorter) => {

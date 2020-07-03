@@ -24,6 +24,7 @@ import { parse } from 'qs'
 import isEqual from 'react-fast-compare'
 import { MODULE_KIND_MAP } from 'utils/constants'
 import { trigger } from 'utils/action'
+import ObjectMapper from 'utils/object.mapper'
 
 export default function withList(options) {
   return WrappedComponent => {
@@ -276,11 +277,16 @@ export class ListPage extends React.Component {
         () => this.websocket.message,
         message => {
           const kind = MODULE_KIND_MAP[this.props.module]
+
+          const mapper = this.props.module.startsWith('federated')
+            ? ObjectMapper.federated(this.store.mapper)
+            : this.store.mapper
+
           if (message.object.kind === kind) {
             if (message.type === 'MODIFIED') {
               const data = {
                 ...this.props.match.params,
-                ...this.store.mapper(message.object),
+                ...mapper(message.object),
               }
               this.store.list.updateItem(data)
             } else if (message.type === 'DELETED' || message.type === 'ADDED') {

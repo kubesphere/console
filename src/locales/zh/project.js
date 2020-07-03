@@ -175,6 +175,11 @@ export default {
   'Empty value means no limit, CPU 1 Core = 1000m':
     '值为空表示无限制, CPU 1核 = 1000m',
 
+  'Project name exists on host cluster': '项目名在 Host 集群上已存在.',
+
+  MULTI_CLUSTER_PROJECT_DELETE_TIP:
+    '删除多集群项目同时也会删除依赖于 Host 集群上的同名项目,</br>请输入{type}名称 <strong>{resource}</strong> 确保您已了解操作所带来的风险。',
+
   DEFAULT_RESOURCE_UNIT_DESC: 'CPU无单位时为核数, 1核 = 1000m',
   DEFAULT_RESOURCE_ALERT:
     '创建工作负载时，如未设置工作负载的资源使用限制，将默认使用此设置。如无特殊需求，请保持此设定默认。',
@@ -217,7 +222,7 @@ export default {
     '项目网关负责创建对应的应用路由控制器，用来负责将请求转发到对应的后端服务；开启项目网关后可以将服务通过 Ingress 暴露给外网访问。',
 
   PROJECT_CLUSTER_SETTINGS_DESC:
-    '选择要创建项目的集群. 当选择了多个集群时, 将创建联邦项目',
+    '选择要创建项目的集群. 当选择了多个集群时, 将创建多集群项目, 并会在 Host 集群上创建同名项目',
   NETWORK_ISOLATED_DESC: '设置网络隔离策略',
 
   NAME_EXIST_IN_CLUSTER: '项目名在集群 {cluster} 中已存在',
@@ -228,4 +233,7 @@ export default {
   FEDPROJECT_RESOURCE_TIP:
     '无法在集群管理内创建多集群项目的资源, 请到多集群项目页面内进行操作.',
   FEDPROJECT_CANNOT_DEPLOY_APP_TIP: '无法在多集群项目里部署应用.',
+
+  FED_HOST_NAMESPACE_TIP:
+    '该项目为多集群项目的相关资源, 请勿在此项目下操作资源',
 }
