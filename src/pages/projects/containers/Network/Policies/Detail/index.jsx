@@ -34,7 +34,9 @@ import getRoutes from './routes'
 @trigger
 export default class NetworkpoliciesDetail extends React.Component {
   name = 'Network Policy'
+
   module = 'networkpolicies'
+
   store = new NetWorkStore(this.module)
 
   componentDidMount() {
@@ -50,6 +52,10 @@ export default class NetworkpoliciesDetail extends React.Component {
 
   get routing() {
     return this.props.rootStore.routing
+  }
+
+  get cluster() {
+    return this.props.match.params.cluster
   }
 
   fetchData = async () => {
@@ -139,7 +145,7 @@ export default class NetworkpoliciesDetail extends React.Component {
       breadcrumbs: [
         {
           label: t(this.name),
-          url: this.listUrl,
+          url: `/clusters/${this.cluster}/networkpolicies`,
         },
       ],
     }
