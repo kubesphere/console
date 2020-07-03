@@ -385,16 +385,17 @@ export default class LogSearchModal extends React.Component {
   renderSearchBar() {
     return (
       <div className={styles.searchBar}>
-        <span className={styles.clusterSelect}>
-          <Select
-            value={this.props.searchInputState.cluster}
-            onChange={this.changeClusterChange}
-            className={styles.queryModeOptions}
-            valueRenderer={this.clusterRenderer}
-            options={this.props.clustersOpts}
-          />
-        </span>
-
+        {globals.app.isMultiCluster && (
+          <span className={styles.clusterSelect}>
+            <Select
+              value={this.props.searchInputState.cluster}
+              onChange={this.changeClusterChange}
+              className={styles.queryModeOptions}
+              valueRenderer={this.clusterRenderer}
+              options={this.props.clustersOpts}
+            />
+          </span>
+        )}
         <SearchInput
           className={styles.searchInput}
           onChange={this.onSearchParamsChange}

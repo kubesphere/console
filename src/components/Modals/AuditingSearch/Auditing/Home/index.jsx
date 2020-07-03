@@ -132,13 +132,15 @@ export default class Home extends React.Component {
     const { searchInputState, clustersOpts } = this.props
     return (
       <div className={styles.searchBarContainer}>
-        <Select
-          className={styles.clusterSelector}
-          value={searchInputState.cluster}
-          options={clustersOpts}
-          valueRenderer={this.clusterRenderer}
-          onChange={this.onClusterChange}
-        />
+        {globals.app.isMultiCluster && (
+          <Select
+            className={styles.clusterSelector}
+            value={searchInputState.cluster}
+            options={clustersOpts}
+            valueRenderer={this.clusterRenderer}
+            onChange={this.onClusterChange}
+          />
+        )}
         <SearchInput
           className={styles.searchBar}
           onChange={this.onSearchParamsChange}
@@ -162,7 +164,9 @@ export default class Home extends React.Component {
           <div className={styles.recentSummary}>
             <h2 className={styles.count}>{total || 0}</h2>
             <p>
-              {t('Trends in the total number of auditing logs in the last 12 hours')}
+              {t(
+                'Trends in the total number of auditing logs in the last 12 hours'
+              )}
             </p>
           </div>
           <div className={styles.chart}>
