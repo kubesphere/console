@@ -63,10 +63,11 @@ export default class ContainerItem extends React.Component {
   }
 
   renderTitle() {
+    const { type, name } = this.props.detail
     return (
       <div className={styles.title}>
         <Icon name="docker" size={20} />
-        {t('Container')}: {this.props.detail.name}
+        {type === 'init' ? t('Init Container') : t('Container')}: {name}
       </div>
     )
   }

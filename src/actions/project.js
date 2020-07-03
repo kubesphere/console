@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, set, cloneDeep, omitBy, uniqBy, isEmpty } from 'lodash'
+import { get, set, unset, cloneDeep, omitBy, uniqBy, isEmpty } from 'lodash'
 import { Modal, Notify } from 'components/Base'
 import QuotaEditModal from 'components/Modals/QuotaEdit'
 import ProjectCreateModal from 'components/Modals/ProjectCreate'
@@ -59,6 +59,7 @@ export default {
               'metadata.labels["kubesphere.io/kubefed-host-namespace"]',
               'true'
             )
+            unset(hostData, 'spec.placement')
             await store.create(hostData, { workspace })
             await federatedStore.create(FED_TEMPLATES.namespaces(data), {
               namespace: get(data, 'metadata.name'),

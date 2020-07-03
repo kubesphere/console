@@ -166,7 +166,6 @@ export default class Jobs extends React.Component {
         sorter: true,
         sortOrder: getSortOrder('updateTime'),
         isHideable: true,
-        search: true,
         width: '20%',
         render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
       },

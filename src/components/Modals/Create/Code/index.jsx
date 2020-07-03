@@ -18,6 +18,7 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
+import { keyBy, isArray } from 'lodash'
 
 import { Button } from 'components/Base'
 import EditMode from 'components/EditMode'
@@ -48,8 +49,8 @@ export default class CodeMode extends React.Component {
 
   handleCreate = () => {
     const { onOk } = this.props
-
-    onOk(this.getData())
+    const data = this.getData()
+    onOk(isArray(data) ? keyBy(data, 'kind') : data)
   }
 
   render() {

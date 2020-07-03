@@ -61,11 +61,24 @@ class EnvVariables extends React.Component {
     return []
   }
 
+  get initContainers() {
+    const data = toJS(this.store.detail)
+    const { spec, initContainers = [] } = data
+
+    if (this.module === 'containers') return [data]
+
+    if (!isEmpty(initContainers)) return initContainers
+    if (!isEmpty(spec)) return get(spec, 'template.spec.initContainers', [])
+
+    return []
+  }
+
   fetchData = () => {
     this.envStore.fetchList({
       namespace: this.namespace,
       cluster: this.cluster,
       containers: this.containers,
+      initContainers: this.initContainers,
     })
   }
 
