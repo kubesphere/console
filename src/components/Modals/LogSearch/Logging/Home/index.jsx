@@ -171,13 +171,15 @@ export default class HomeModal extends React.Component {
     const { searchInputState, clustersOpts } = this.props
     return (
       <div className={styles.searchBarContainer}>
-        <Select
-          className={styles.clusterSelector}
-          value={searchInputState.cluster}
-          options={clustersOpts}
-          valueRenderer={this.clusterRenderer}
-          onChange={this.onClusterChange}
-        />
+        {globals.app.isMultiCluster && (
+          <Select
+            className={styles.clusterSelector}
+            value={searchInputState.cluster}
+            options={clustersOpts}
+            valueRenderer={this.clusterRenderer}
+            onChange={this.onClusterChange}
+          />
+        )}
         <SearchInput
           className={styles.searchBar}
           onChange={this.onSearchParamsChange}

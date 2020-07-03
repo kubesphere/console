@@ -350,15 +350,17 @@ export default class Detail extends React.PureComponent {
     const { searchInputState, clustersOpts } = this.props
     return (
       <div className={styles.searchBar}>
-        <span className={styles.clusterSelect}>
-          <Select
-            value={searchInputState.cluster}
-            onChange={this.changeClusterChange}
-            className={styles.queryModeOptions}
-            valueRenderer={this.clusterRenderer}
-            options={clustersOpts}
-          />
-        </span>
+        {globals.app.isMultiCluster && (
+          <span className={styles.clusterSelect}>
+            <Select
+              value={searchInputState.cluster}
+              onChange={this.changeClusterChange}
+              className={styles.queryModeOptions}
+              valueRenderer={this.clusterRenderer}
+              options={clustersOpts}
+            />
+          </span>
+        )}
         <SearchInput
           className={styles.searchInput}
           placeholder={t('search condition')}
