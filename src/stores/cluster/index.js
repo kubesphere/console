@@ -158,7 +158,7 @@ export default class ClusterStore extends Base {
   }
 
   @action
-  async fetchProjects({ cluster, namespace, more, type, ...params } = {}) {
+  async fetchProjects({ cluster, namespace, more, ...params } = {}) {
     this.projects.isLoading = true
 
     if (!params.sortBy && params.ascending === undefined) {
@@ -178,6 +178,8 @@ export default class ClusterStore extends Base {
         namespace,
       })}/namespaces`,
       {
+        labelSelector:
+          '!kubesphere.io/kubefed-host-namespace,!kubesphere.io/devopsproject',
         ...params,
       }
     )

@@ -141,6 +141,9 @@ const NamespaceMapper = item => ({
   workspace: get(item, 'metadata.labels["kubesphere.io/workspace"]', ''),
   status: get(item, 'status.phase'),
   opRuntime: get(item, 'metadata.annotations.openpitrix_runtime'),
+  isFedHostNamespace:
+    get(item, 'metadata.labels["kubesphere.io/kubefed-host-namespace"]') ===
+    'true',
   _originData: getOriginData(item),
 })
 
@@ -1092,6 +1095,7 @@ const FederatedMapper = resourceMapper => item => {
     labels: get(item, 'metadata.labels', {}),
     annotations: get(item, 'metadata.annotations', {}),
     app: get(item, 'metadata.labels["app.kubernetes.io/name"]'),
+    status: get(item, 'metadata.deletionTimestamp') ? 'Terminating' : 'Active',
     _originData: getOriginData(item),
   }
 }

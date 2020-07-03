@@ -22,7 +22,6 @@ import { inject, observer } from 'mobx-react'
 import { getSuitableValue } from 'utils/monitoring'
 
 import { Icon } from '@pitrix/lego-ui'
-import Link from 'components/Link'
 import { Empty } from 'components/Base'
 import Table from 'components/Tables/Ranking'
 
@@ -42,18 +41,6 @@ export default class NodeUsageRank extends React.Component {
     return isNaN(number) ? '-' : `${number} ${unit}`
   }
 
-  get cluster() {
-    return this.props.store.cluster
-  }
-
-  get canViewProjects() {
-    return globals.app.hasPermission({
-      module: 'projects',
-      workspace: this.props.store.workspace,
-      action: 'view',
-    })
-  }
-
   columns = [
     {
       width: this.IconWidth,
@@ -63,16 +50,9 @@ export default class NodeUsageRank extends React.Component {
     {
       dataIndex: 'namespace',
       title: t('Project'),
-      render: node => (
+      render: namespace => (
         <div>
-          <h3>
-            <Link
-              to={`/clusters/${this.cluster}/projects/${node}/overview`}
-              auth={this.canViewProjects}
-            >
-              {node}
-            </Link>
-          </h3>
+          <h3>{namespace}</h3>
         </div>
       ),
     },

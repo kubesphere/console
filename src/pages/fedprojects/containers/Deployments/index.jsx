@@ -32,7 +32,7 @@ import WorkloadStore from 'stores/workload'
 
 @withProjectList({
   store: new FederatedStore(new WorkloadStore('deployments')),
-  module: 'deployments',
+  module: 'federateddeployments',
   name: 'Workload',
 })
 export default class Deployments extends React.Component {

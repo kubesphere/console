@@ -45,6 +45,17 @@ export default class List {
   }
 
   @action
+  updateItem(item) {
+    if (item.uid) {
+      const index = this.data.findIndex(_item => _item.uid === item.uid)
+      if (index >= 0) {
+        this.data[index] = { ...this.data[index], ...item }
+        this.data = [...this.data]
+      }
+    }
+  }
+
+  @action
   setSelectRowKeys = rowKeys => {
     this.selectedRowKeys = rowKeys
   }

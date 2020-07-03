@@ -253,6 +253,13 @@ export const MODULE_KIND_MAP = {
   dashboards: 'Dashboard',
   applications: 'Application',
   users: 'User',
+  federatednamespaces: 'FederatedNamespace',
+  federateddeployments: 'FederatedDeployment',
+  federatedstatefulsets: 'FederatedStatefulSet',
+  federatedservices: 'FederatedService',
+  federatedingresses: 'FederatedIngress',
+  federatedsecrets: 'FederatedSecret',
+  federatedconfigmaps: 'FederatedConfigMap',
 }
 
 export const QUOTAS_MAP = {

@@ -19,7 +19,7 @@
 import React from 'react'
 
 import { computed } from 'mobx'
-import { Avatar } from 'components/Base'
+import { Avatar, Status } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import Table from 'workspaces/components/ResourceTable'
 import withList, { ListPage } from 'components/HOCs/withList'
@@ -98,13 +98,17 @@ export default class Projects extends React.Component {
         text: t('Delete'),
         action: 'delete',
         onClick: item =>
-          trigger('resource.delete', {
-            type: t('Project'),
+          trigger('fedproject.delete', {
             detail: item,
           }),
       },
     ]
   }
+
+  getCheckboxProps = record => ({
+    disabled: record.deletionTime,
+    name: record.name,
+  })
 
   getColumns = () => {
     return [
@@ -113,7 +117,11 @@ export default class Projects extends React.Component {
         dataIndex: 'name',
         render: (name, record) => (
           <Avatar
-            to={`/${this.workspace}/federatedprojects/${name}`}
+            to={
+              record.deletionTime
+                ? null
+                : `/${this.workspace}/federatedprojects/${name}`
+            }
             icon="project"
             iconSize={40}
             isMultiCluster={true}
@@ -121,6 +129,13 @@ export default class Projects extends React.Component {
             title={getDisplayName(record)}
           />
         ),
+      },
+      {
+        title: t('Status'),
+        dataIndex: 'status',
+        isHideable: true,
+        search: true,
+        render: status => <Status type={status} name={t(status)} flicker />,
       },
       {
         title: t('Deployment Location'),
@@ -151,7 +166,11 @@ export default class Projects extends React.Component {
     const { bannerProps, tableProps } = this.props
 
     return (
-      <ListPage {...this.props} getData={this.getData}>
+      <ListPage
+        {...this.props}
+        getData={this.getData}
+        module="federatednamespaces"
+      >
         <Banner
           {...bannerProps}
           tabs={this.tabs}
@@ -166,6 +185,7 @@ export default class Projects extends React.Component {
           onCreate={this.showCreate}
           searchType="name"
           clusters={this.clusters}
+          getCheckboxProps={this.getCheckboxProps}
         />
       </ListPage>
     )
