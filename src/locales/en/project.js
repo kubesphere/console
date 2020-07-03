@@ -87,7 +87,7 @@ export default {
     'Project administrators or users with member invitation privileges can invite members of the current workspace to join the project.',
 
   CLOSE_FILE_LOG_TIP:
-    'The file log collection is about to close. After disabled, the service still continues to collect the file logs before the Pod replicas restart. After Pod restarted, file logs will not be collected. If you need to collect them again, turn on the file log collection and restart the Pods.',
+    'Disk Log Collection will be turned off. After it is disabled, the service with this function enabled will not stop collecting disk logs until Pod replicas restart. </br>If you need to collect them again, please enable Disk Log Collection and restart the Pod.',
   COLLECTING_FILE_LOG_DESC:
     'Disk logs in the container will be collected and exported to stdout, which will then be collected by the system log collector together.',
 
@@ -115,4 +115,6 @@ export default {
     'Unable to create multi-cluster project resources in cluster management, please go to the multi-cluster project page to operate.',
   FEDPROJECT_CANNOT_DEPLOY_APP_TIP:
     'Unable to deploy applications in multi-cluster projects.',
+  MULTI_CLUSER_PROJECT_TIP:
+    'The current multi-cluster project runs on different clusters. You can switch between clusters to check the setting of this project in each of them.',
 }
