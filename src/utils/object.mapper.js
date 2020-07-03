@@ -161,6 +161,7 @@ const WorkLoadMapper = item => ({
   podNums: get(item, 'spec.replicas', 0),
   selector: get(item, 'spec.selector.matchLabels'),
   containers: get(item, 'spec.template.spec.containers'),
+  initContainers: get(item, 'spec.template.spec.initContainers'),
   volumes: get(item, 'spec.template.spec.volumes'),
   strategy: get(item, 'spec.strategy', {}),
   updateStrategy: get(item, 'spec.updateStrategy.type'),

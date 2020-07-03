@@ -425,6 +425,7 @@ class VolumeSettings extends React.Component {
       <MountConfig
         volume={this.selectVolume}
         containers={containers}
+        cluster={this.cluster}
         namespace={this.namespace}
         containers={containers}
         onSave={this.handleVolume}

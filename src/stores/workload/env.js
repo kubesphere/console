@@ -33,11 +33,16 @@ export default class EnvStore {
   }
 
   @action
-  async fetchList({ namespace, containers }) {
+  async fetchList({ namespace, containers, initContainers }) {
     this.list.isLoading = true
 
+    const mergeContainers = [
+      ...initContainers.map(item => ({ ...item, type: 'init' })),
+      ...containers.map(item => ({ ...item, type: 'work' })),
+    ]
+
     const data = await Promise.all(
-      containers.map(container => {
+      mergeContainers.map(container => {
         container.namespace = namespace
         return this.fetchVariables(container)
       })

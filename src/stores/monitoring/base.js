@@ -46,7 +46,7 @@ export const getMinuteValue = (timeStr = '60s', hasUnit = true) => {
 export const getTimeRange = ({ step = '600s', times = 20 } = {}) => {
   const interval = parseFloat(step) * times
   const end = Math.floor(Date.now() / 1000)
-  const start = end - interval
+  const start = Math.floor(end - interval)
 
   return { start, end }
 }
@@ -108,6 +108,14 @@ export default class BaseMonitoringStore {
         params.start = timeRange.start
         params.end = timeRange.end
       }
+    }
+
+    if (params.start) {
+      params.start = Math.floor(params.start)
+    }
+
+    if (params.end) {
+      params.end = Math.floor(params.end)
     }
 
     if (!isEmpty(resources)) {
