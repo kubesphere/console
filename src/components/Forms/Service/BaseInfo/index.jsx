@@ -259,11 +259,17 @@ export default class ServiceBaseInfo extends React.Component {
         <Columns>
           {!this.props.namespace && (
             <Column>
-              <Form.Item label={t('Project')} desc={t('PROJECT_DESC')}>
+              <Form.Item
+                label={t('Project')}
+                desc={t('PROJECT_DESC')}
+                rules={[
+                  { required: true, message: t('Please select a project') },
+                ]}
+              >
                 <ProjectSelect
                   name="metadata.namespace"
                   cluster={this.props.cluster}
-                  defaultValue={this.namespace || 'default'}
+                  defaultValue={this.namespace}
                 />
               </Form.Item>
             </Column>
