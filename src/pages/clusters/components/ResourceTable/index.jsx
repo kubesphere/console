@@ -53,7 +53,7 @@ class ResourceTable extends BaseTable {
 
   handleClusterChange = project => {
     this.props.clusterStore.setProject(project)
-    this.props.onFetch()
+    this.props.onFetch({}, true)
   }
 
   renderNormalTitle() {
