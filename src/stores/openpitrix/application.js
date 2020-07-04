@@ -34,8 +34,11 @@ export default class Application extends Base {
     return 'kapis/openpitrix.io/v1'
   }
 
-  getPath({ cluster, namespace }) {
+  getPath({ workspace, cluster, namespace }) {
     let path = ''
+    if (workspace) {
+      path += `/workspaces/${workspace}`
+    }
     if (cluster) {
       path += `/clusters/${cluster}`
     }
@@ -45,8 +48,9 @@ export default class Application extends Base {
     return path
   }
 
-  getUrl = ({ namespace, cluster, cluster_id } = {}) => {
+  getUrl = ({ workspace, namespace, cluster, cluster_id } = {}) => {
     const url = `${this.baseUrl}${this.getPath({
+      workspace,
       namespace,
       cluster,
     })}/applications`
@@ -108,7 +112,7 @@ export default class Application extends Base {
     }
 
     const result = await request.get(
-      this.getUrl({ namespace, cluster }),
+      this.getUrl({ workspace, namespace, cluster }),
       params
     )
 
@@ -116,6 +120,7 @@ export default class Application extends Base {
       ({ cluster: clusterDetail, ...item }) => ({
         ...clusterDetail,
         ...item,
+        workspace,
         cluster,
       })
     )
@@ -135,11 +140,11 @@ export default class Application extends Base {
   }
 
   @action
-  fetchDetail = async ({ namespace, cluster, id: cluster_id }) => {
+  fetchDetail = async ({ workspace, namespace, cluster, id: cluster_id }) => {
     this.isLoading = true
 
     const result = await request.get(
-      this.getUrl({ namespace, cluster, cluster_id })
+      this.getUrl({ workspace, namespace, cluster, cluster_id })
     )
 
     if (result.services) {
@@ -162,6 +167,7 @@ export default class Application extends Base {
     this.detail = {
       ...result,
       ...result.cluster,
+      workspace,
       cluster,
     }
 
@@ -169,37 +175,47 @@ export default class Application extends Base {
   }
 
   @action
-  async upgrade(params, { namespace, cluster }) {
+  async upgrade(params, { workspace, namespace, cluster }) {
     return this.submitting(
-      request.post(this.getUrl({ namespace, cluster }), params)
+      request.post(this.getUrl({ workspace, namespace, cluster }), params)
     )
   }
 
   @action
-  update = ({ cluster_id, cluster, zone, ...data }) =>
+  update = ({ cluster_id, cluster, workspace, zone, ...data }) =>
     this.submitting(
-      request.patch(this.getUrl({ namespace: zone, cluster_id, cluster }), data)
+      request.patch(
+        this.getUrl({ namespace: zone, cluster_id, cluster, workspace }),
+        data
+      )
     )
 
   @action
-  patch = ({ cluster_id, cluster, zone }, data) =>
+  patch = ({ cluster_id, cluster, workspace, zone }, data) =>
     this.submitting(
-      request.patch(this.getUrl({ namespace: zone, cluster_id, cluster }), data)
+      request.patch(
+        this.getUrl({ namespace: zone, cluster_id, cluster, workspace }),
+        data
+      )
     )
 
   @action
-  delete = ({ cluster_id, cluster, zone }) => {
+  delete = ({ cluster_id, cluster, workspace, zone }) => {
     return this.submitting(
-      request.delete(this.getUrl({ namespace: zone, cluster_id, cluster }))
+      request.delete(
+        this.getUrl({ namespace: zone, cluster_id, cluster, workspace })
+      )
     )
   }
 
   @action
-  batchDelete = (rowKeys, { namespace, cluster }) =>
+  batchDelete = (rowKeys, { namespace, cluster, workspace }) =>
     this.submitting(
       Promise.all(
         rowKeys.map(cluster_id =>
-          request.delete(this.getUrl({ namespace, cluster, cluster_id }))
+          request.delete(
+            this.getUrl({ namespace, cluster, workspace, cluster_id })
+          )
         )
       )
     )

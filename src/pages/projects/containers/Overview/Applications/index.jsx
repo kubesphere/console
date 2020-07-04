@@ -17,7 +17,7 @@
  */
 
 import React from 'react'
-import { toJS, when } from 'mobx'
+import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import { Link } from 'react-router-dom'
 import { get, isEmpty } from 'lodash'
@@ -28,44 +28,25 @@ import ApplicationStore from 'stores/openpitrix/application'
 
 import styles from './index.scss'
 
-@inject('rootStore', 'projectStore')
+@inject('rootStore')
 @observer
 export default class Applications extends React.Component {
   constructor(props) {
     super(props)
     this.store = new ApplicationStore()
-
-    this.disposer = when(
-      () => this.project.detail.name === this.namespace,
-      this.fetchData.bind(this)
-    )
   }
 
-  componentWillUnmount() {
-    this.disposer && this.disposer()
+  componentDidMount() {
+    this.fetchData()
   }
 
   get routing() {
     return this.props.rootStore.routing
   }
 
-  get namespace() {
-    return get(this.props.match, 'params.namespace')
-  }
-
-  get cluster() {
-    return get(this.props.match, 'params.cluster')
-  }
-
-  get project() {
-    return this.props.projectStore
-  }
-
   fetchData() {
     this.store.fetchList({
-      namespace: this.namespace,
-      cluster: this.cluster,
-      runtime_id: get(this.project, 'detail.annotations["openpitrix_runtime"]'),
+      ...this.props.match.params,
       limit: 3,
     })
   }
