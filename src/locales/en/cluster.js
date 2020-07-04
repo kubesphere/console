@@ -68,7 +68,7 @@ export default {
   CLUSTER_API_SERVER_DESC:
     'You need to input the KubeSphere API Server address to be added to the cluster',
 
-  INPUT_KUBECONFIG: 'Please fill in the KubeConfig of the target cluster',
+  INPUT_KUBECONFIG: 'Please fill in the kubeconfig of the target cluster',
 
   CLUSTER_DIRECT_IMPORT_TIP:
     'The multi-cluster control interface of KubeSphere connects to imported clusters through the kubeconfig provided. For this method, the current cluster must be able to directly access clusters that are to be imported through the server address in the kubeconfig.</br></br>This method generally applies to the conditions below:</br>1. The current cluster and clusters to be imported are in the same internal network.</br>2. The network of both the current cluster and clusters to be imported is connected through VPN or other technologies (e.g. Tunneling).</br>3. The server address in the kubeconfig can be accessed through public network.',
@@ -78,7 +78,7 @@ export default {
     'Please add the cluster based on the Agent provided in the cluster.',
   CLUSTER_AGENT_DESC: 'A corresponding Agent needs to be set in the cluster.',
 
-  HOW_TO_GET_KUBECONFIG: 'How to get KubeConfig?',
+  HOW_TO_GET_KUBECONFIG: 'How to get kubeconfig?',
 
   UNBIND_CLUSTER_DESC:
     'After the cluster is unbound, KubeSphere will be unable to manage the cluster and Kubernetes resources within the cluster will not be deleted.',
