@@ -19,7 +19,7 @@
 export default {
   'Add Cluster': '添加集群',
   'Add New Cluster': '添加新集群',
-  'Import Kubernetes Cluster': '导入Kubernetes集群',
+  'Import Kubernetes Cluster': '导入 Kubernetes 集群',
   Import: '导入',
 
   Validating: '校验中',
@@ -106,16 +106,16 @@ export default {
   NO_CLUSTER_TIP: '请添加至少 1 个集群',
   NO_CLUSTER_TIP_DESC:
     '集群是一组运行着 Kubernetes 的节点（物理或者虚拟机）, Kubesphere 的功能也依托于集群中的节点来运行',
-  ADD_NEW_CLUSTER_DESC: '添加新的Kubernetes集群',
+  ADD_NEW_CLUSTER_DESC: '添加新的 Kubernetes 集群',
   CHOOSE_PROVIDER_DESC:
-    'KubeSphere提供了在主流服务商中快速部署Kubernetes集群的方案',
+    'KubeSphere 提供了在主流服务商中快速部署 Kubernetes 集群的方案',
 
   VISIBILITY_PART: '部分可见',
   VISIBILITY_PUBLIC: '公开',
 
   MULTI_CLUSTER: '多集群',
 
-  IMPORT_CLUSTER_DESC: '导入已有的Kubernetes集群',
+  IMPORT_CLUSTER_DESC: '导入已有的 Kubernetes 集群',
 
   CLUSTER_SETTINGS_DESC: '定义集群配置信息',
   CLUSTER_TAG: '标识',
@@ -123,7 +123,7 @@ export default {
   CLUSTER_PROVIDER_DESC: '提供集群基础设施的厂商',
   CLUSTER_CONNECT_METHOD_DESC: '可以直接连接集群或者使用代理',
 
-  CONNTECT_DIRECT: '直接连接Kubernetes集群',
+  CONNTECT_DIRECT: '直接连接 Kubernetes 集群',
   CONNTECT_PROXY: '集群连接代理',
 
   CLUSTER_WAITING_JOIN_DESC:
@@ -142,7 +142,7 @@ export default {
   CLUSTER_BASE_INFO_DESC: '当前集群基础信息总览',
 
   UNBIND_CLUSTER_DESC:
-    '解绑集群后，KubeSphere将无法再对该集群进行管理。 解绑后，该集群内的Kubernetes资源不会被删除。',
+    '解绑集群后，KubeSphere 将无法再对该集群进行管理。 解绑后，该集群内的 Kubernetes 资源不会被删除。',
   SURE_TO_UNBIND_CLUSTER: '我确定要执行解绑集群的操作',
 
   'Invite members to the cluster': '邀请成员到该集群',
@@ -172,12 +172,12 @@ export default {
   INPUT_KUBECONFIG: '请填写目标集群的 KubeConfig',
 
   CLUSTER_DIRECT_IMPORT_TIP:
-    'KubeSphere 多集群控制平面通过提供的 kubeconfig 来直接连接导入集群，此种方式要求当前集群能够通过 kubeconfig 中的 server 地址直接访问待导入集群. </br>通常适用于:</br>1. 当前集群和待导入集群在同一内网网络中</br>2. 当前集群和待导入集群已通过vpn或隧道等其它技术连通所在网络</br>3. kubeconfig 的 server 地址可以通过公网访问',
+    'KubeSphere 多集群控制平面通过提供的 kubeconfig 来直接连接导入集群，此种方式要求当前集群能够通过 kubeconfig 中的 server 地址直接访问待导入集群。 </br></br>通常适用于:</br>1. 当前集群和待导入集群在同一内网网络中</br>2. 当前集群和待导入集群已通过 VPN 或隧道等其它技术连通所在网络</br>3. kubeconfig 的 server 地址可以通过公网访问',
   CLUSTER_AGENT_IMPORT_TIP:
-    'KubeSphere 控制平面通过代理方式连接待导入集群，控制平面启动一个公开的代理服务，待导入集群创建相应的客户端组件连接代理服务，与控制平面之间建立一个反向代理。此种方式不需要待导入集群和控制平面在同一网络，也不要求待导入集群暴露集群的 apiserver 地址，但会有一定的网络性能损耗</br></br>通常适用于:</br>1. 当前集群和待导入集群不在同一网络中<br/>2. 当前集群和待导入集群无法通过vpn或隧道等其它技术连通所在网络<br/>3. 对集群间网络性能损耗能容忍',
+    'KubeSphere 控制平面通过代理方式连接待导入集群，控制平面启动一个公开的代理服务，待导入集群创建相应的客户端组件连接代理服务，与控制平面之间建立一个反向代理。此种方式不需要待导入集群和控制平面在同一网络，也不要求待导入集群暴露集群的 apiserver 地址，但会有一定的网络性能损耗。</br></br>通常适用于:</br>1. 当前集群和待导入集群不在同一网络中<br/>2. 当前集群和待导入集群无法通过 VPN 或隧道等其它技术连通所在网络<br/>3. 对集群间网络性能损耗能容忍',
 
-  HOW_TO_GET_KUBECONFIG: '如何获取KubeConfig?',
+  HOW_TO_GET_KUBECONFIG: '如何获取 KubeConfig?',
 
   CLUSTER_AGENT_TITLE: '请根据集群中提供的代理连接设置加入集群',
-  CLUSTER_AGENT_DESC: '需要在集群中设置下相应的代理Agent',
+  CLUSTER_AGENT_DESC: '需要在集群中设置下相应的代理 Agent',
 }
