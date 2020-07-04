@@ -53,7 +53,6 @@ class VolumeSettings extends React.Component {
     this.projectStore = new ProjectStore()
 
     if (props.isFederated) {
-      this.store = new FederatedStore(this.store)
       this.projectStore = new FederatedStore({
         module: this.projectStore.module,
       })
@@ -73,6 +72,7 @@ class VolumeSettings extends React.Component {
   componentDidMount() {
     if (this.namespace) {
       this.projectStore.fetchDetail({
+        name: this.namespace,
         namespace: this.namespace,
         cluster: this.cluster,
       })
@@ -84,7 +84,9 @@ class VolumeSettings extends React.Component {
   }
 
   get cluster() {
-    return this.props.cluster
+    return (
+      this.props.cluster || get(this.props.projectDetail, 'clusters[0].name')
+    )
   }
 
   get namespace() {
@@ -415,6 +417,7 @@ class VolumeSettings extends React.Component {
   }
 
   renderConfig() {
+    const { isFederated, projectDetail } = this.props
     const containers = get(
       this.fedFormTemplate,
       `${this.prefix}spec.containers`,
@@ -430,6 +433,8 @@ class VolumeSettings extends React.Component {
         containers={containers}
         onSave={this.handleVolume}
         onCancel={this.resetState}
+        isFederated={isFederated}
+        projectDetail={projectDetail}
         checkVolumeNameExist={this.checkVolumeNameExist}
       />
     )

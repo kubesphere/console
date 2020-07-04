@@ -186,8 +186,8 @@ client:
                 authKey: 'cluster-settings',
                 multiCluster: true,
               }
-            - { name: members, title: Cluster Members }
-            - { name: roles, title: Cluster Roles }
+            # - { name: members, title: Cluster Members }
+            # - { name: roles, title: Cluster Roles }
             - {
                 name: mail-server,
                 title: Mail Server,

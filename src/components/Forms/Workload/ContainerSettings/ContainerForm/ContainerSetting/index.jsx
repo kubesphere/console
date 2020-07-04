@@ -18,7 +18,7 @@
 
 import React from 'react'
 import { get } from 'lodash'
-import { generateId, cpuFormat, memoryFormat } from 'utils'
+import { generateId } from 'utils'
 
 import { PATTERN_NAME, PATTERN_LENGTH_63 } from 'utils/constants'
 
@@ -74,11 +74,10 @@ export default class ContainerSetting extends React.Component {
   )
 
   renderImageForm = () => {
-    const { data, cluster, namespace } = this.props
+    const { data, namespace } = this.props
     return (
       <ImageInput
         name="image"
-        cluster={cluster}
         namespace={namespace}
         className={styles.imageSearch}
         formTemplate={data}
@@ -88,30 +87,7 @@ export default class ContainerSetting extends React.Component {
   }
 
   renderAdvancedSettings() {
-    const { defaultContainerType, onContainerTypeChange, quota } = this.props
-
-    const cpuRequestLeft = get(quota, 'left["requests.cpu"]')
-    const memoryRequestLeft = get(quota, 'left["requests.memory"]')
-    const cpuLimitLeft = get(quota, 'left["limits.cpu"]')
-    const memoryLimitLeft = get(quota, 'left["limits.memory"]')
-
-    const message = (
-      <div className={styles.message}>
-        {t('Left Quota')}:&nbsp;&nbsp;&nbsp;&nbsp;[{t('Resource Request')}: CPU{' '}
-        {cpuRequestLeft ? `${cpuFormat(cpuRequestLeft)} Core` : t('No Limit')},{' '}
-        {t('Memory')}{' '}
-        {memoryRequestLeft
-          ? `${memoryFormat(memoryRequestLeft)} Mi`
-          : t('No Limit')}
-        ]&nbsp;&nbsp;&nbsp;&nbsp;[{t('Resource Limit')}: CPU{' '}
-        {cpuLimitLeft ? `${cpuFormat(cpuLimitLeft)} Core` : t('No Limit')},{' '}
-        {t('Memory')}{' '}
-        {memoryLimitLeft
-          ? `${memoryFormat(memoryLimitLeft)} Mi`
-          : t('No Limit')}
-        ]
-      </div>
-    )
+    const { defaultContainerType, onContainerTypeChange } = this.props
 
     return (
       <ToggleView>
@@ -154,7 +130,6 @@ export default class ContainerSetting extends React.Component {
               defaultValue={this.defaultResourceLimit}
             />
           </Form.Item>
-          {message}
         </>
       </ToggleView>
     )
@@ -166,9 +141,7 @@ export default class ContainerSetting extends React.Component {
       <Form.Group
         className={className}
         label={t('Container Settings')}
-        desc={t(
-          'Please set the container name and computing resources.'
-        )}
+        desc={t('Please set the container name and computing resources.')}
         noWrapper
       >
         {this.renderImageForm()}

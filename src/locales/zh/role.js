@@ -117,6 +117,7 @@ export default {
 
   'Projects Management': '项目管理',
   'Projects View': '项目查看',
+  'Federated Projects Management': '联邦项目管理',
   'Projects Create': '项目创建',
   'Devops Management': 'Devops 工程管理',
   'Devops View': 'Devops 工程查看',
@@ -126,6 +127,8 @@ export default {
     '管理企业空间里的所有项目，可以 创建/编辑/删除 项目',
   PROJECTS_CREATE_DESC: '拥有创建项目的权限，项目管理员只能为创建者自己',
   PROJECTS_VIEW_DESC: '可以查看企业空间里的所有项目',
+  FEDERATED_PROJECTS_MANAGEMENT_DESC:
+    '管理企业空间里的所有多集群项目，可以 创建/编辑/删除 多集群项目',
   DEVOPS_MANAGEMENT_DESC:
     '管理企业空间里的所有 DevOps 工程，可以 创建/编辑/删除 DevOps 工程',
   DEVOPS_CREATE_DESC:
@@ -244,8 +247,7 @@ export default {
 
   ROLE_WORKSPACE_ADMIN: '企业空间管理员，可以管理企业空间下所有的资源。',
   ROLE_WORKSPACE_MANAGER: '平台企业空间管理员，管理平台所有企业空间。',
-  ROLE_WORKSPACE_REGULAR:
-    '企业空间普通成员，无法创建 DevOps 工程和项目。',
+  ROLE_WORKSPACE_REGULAR: '企业空间普通成员，无法创建 DevOps 工程和项目。',
   ROLE_WORKSPACE_VIEWER: '企业空间的观察者，可以查看企业空间下所有的资源信息。',
   ROLE_WORKSPACE_SELF_PROVISIONER:
     '企业空间普通成员，可以在企业空间下创建 DevOps 工程和项目。',

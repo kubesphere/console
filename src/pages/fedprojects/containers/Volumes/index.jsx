@@ -108,7 +108,7 @@ export default class Volumes extends React.Component {
             iconSize={40}
             title={getDisplayName(record)}
             desc={record.storageClassName || '-'}
-            to={`${this.props.match.url}/${name}`}
+            to={record.deletionTime ? null : `${this.props.match.url}/${name}`}
             isMultiCluster={true}
           />
         ),
@@ -118,14 +118,17 @@ export default class Volumes extends React.Component {
         dataIndex: 'status',
         isHideable: true,
         search: true,
-        render: (_, record) => (
-          <ClusterWrapper
-            clusters={record.clusters}
-            clustersDetail={this.props.projectStore.detail.clusters}
-          >
-            {cluster => this.renderStatus({ cluster, record })}
-          </ClusterWrapper>
-        ),
+        render: (status, record) =>
+          status === 'Deleting' ? (
+            <Status type={status} name={t(status)} flicker />
+          ) : (
+            <ClusterWrapper
+              clusters={record.clusters}
+              clustersDetail={this.props.projectStore.detail.clusters}
+            >
+              {cluster => this.renderStatus({ cluster, record })}
+            </ClusterWrapper>
+          ),
       },
       {
         title: t('Mount'),
@@ -204,7 +207,7 @@ export default class Volumes extends React.Component {
   render() {
     const { query, match, bannerProps, tableProps } = this.props
     return (
-      <ListPage {...this.props}>
+      <ListPage {...this.props} module="federatedvolumes">
         <Banner {...bannerProps} tips={this.tips} />
         <Table
           {...tableProps}

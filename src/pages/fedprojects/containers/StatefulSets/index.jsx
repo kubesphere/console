@@ -154,7 +154,7 @@ export default class StatefulSets extends React.Component {
             isMultiCluster={record.isFedManaged}
             title={getDisplayName(record)}
             desc={this.getItemDesc(record)}
-            to={`${this.prefix}/${module}/${name}`}
+            to={record.deletionTime ? null : `${this.prefix}/${module}/${name}`}
           />
         ),
       },
@@ -204,7 +204,7 @@ export default class StatefulSets extends React.Component {
   render() {
     const { bannerProps, tableProps } = this.props
     return (
-      <ListPage {...this.props}>
+      <ListPage {...this.props} module="federatedstatefulsets">
         <Banner {...bannerProps} tabs={this.tabs} />
         <Table
           {...tableProps}

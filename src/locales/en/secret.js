@@ -23,7 +23,11 @@ export default {
     'A Secret is an object that contains a small amount of sensitive data such as a password, a token, or a key.',
   SECRET_TYPE_DESC: 'You can choose or customize a Secret type.',
 
-  SECRET_NO_CHINESE_CODE_DESC: 'Chinese characters cannot be included in the secret.',
+  SECRET_NO_CHINESE_CODE_DESC:
+    'Chinese characters cannot be included in the secret.',
+
+  IMAGE_REGISTRY_VALIDATE_TIP:
+    'Before creating image registry secret, please verify that if it is validate.',
 
   'DATA-KEY': 'Key',
   'DATA-VALUE': 'Value',

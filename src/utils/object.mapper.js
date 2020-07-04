@@ -40,6 +40,7 @@ import { getWorkloadUpdateTime } from 'utils/workload'
 import { getServiceType } from 'utils/service'
 import { getNodeRoles } from 'utils/node'
 import { getPodStatusAndRestartCount } from 'utils/status'
+import { FED_ACTIVE_STATUS } from 'utils/constants'
 
 const getOriginData = item =>
   omit(item, [
@@ -1071,7 +1072,6 @@ const FederatedMapper = resourceMapper => item => {
   const overrides = get(item, 'spec.overrides', [])
   const template = get(item, 'spec.template', {})
   const clusters = get(item, 'spec.placement.clusters', [])
-
   const overrideClusterMap = keyBy(overrides, 'clusterName')
   const clusterTemplates = {}
   clusters.forEach(({ name }) => {
@@ -1096,7 +1096,9 @@ const FederatedMapper = resourceMapper => item => {
     labels: get(item, 'metadata.labels', {}),
     annotations: get(item, 'metadata.annotations', {}),
     app: get(item, 'metadata.labels["app.kubernetes.io/name"]'),
-    status: get(item, 'metadata.deletionTimestamp') ? 'Terminating' : 'Active',
+    status: get(item, 'metadata.deletionTimestamp')
+      ? 'Deleting'
+      : FED_ACTIVE_STATUS[item.kind] || 'Active',
     _originData: getOriginData(item),
   }
 }

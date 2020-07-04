@@ -24,6 +24,7 @@ export default {
   LoadBalancer: '负载均衡',
   Volume: '存储卷',
   Terminating: '删除中',
+  Deleting: '删除中',
   'Create Project': '创建项目',
   'Edit Project': '编辑项目',
   Details: '详情',

@@ -132,25 +132,62 @@ export default {
     },
   },
   'project.default.resource': {
-    on({ store, detail, namespace, cluster, success, ...props }) {
+    on({
+      store,
+      detail,
+      namespace,
+      cluster,
+      success,
+      isFederated,
+      projectDetail,
+      ...props
+    }) {
+      if (isFederated) {
+        detail.limit = get(detail, 'resource.limit')
+      }
+
       const modal = Modal.open({
         onOk: async data => {
           if (isEmpty(detail)) {
-            await store.createLimitRange(
-              { namespace, cluster },
-              {
-                ...FORM_TEMPLATES.limitRange(),
-                spec: { limits: [{ ...data, type: 'Container' }] },
-              }
-            )
+            let formTemplate = FORM_TEMPLATES.limitRange()
+
+            if (isFederated) {
+              formTemplate = FORM_TEMPLATES.federated({
+                data: FORM_TEMPLATES.limitRange(),
+                clusters: projectDetail.clusters.map(item => item.name),
+                kind: 'LimitRange',
+              })
+              set(formTemplate, 'metadata.name', namespace)
+              set(formTemplate, 'spec.template.spec', {
+                limits: [{ ...data, type: 'Container' }],
+              })
+            } else {
+              set(formTemplate, 'spec', {
+                limits: [{ ...data, type: 'Container' }],
+              })
+            }
+
+            await store.create(formTemplate, { namespace, cluster })
           } else {
-            await store.updateLimitRange(
-              { ...detail, namespace, cluster },
-              {
-                ...detail._originData,
-                spec: { limits: [{ ...detail.limit, ...data }] },
-              }
+            const formTemplate = {
+              ...detail._originData,
+            }
+
+            if (isFederated) {
+              set(formTemplate, 'spec.template.spec', {
+                limits: [{ ...detail.limit, ...data }],
+              })
+            } else {
+              set(formTemplate, 'spec', {
+                limits: [{ ...detail.limit, ...data }],
+              })
+            }
+            set(
+              formTemplate,
+              'metadata.resourceVersion',
+              detail.resourceVersion
             )
+            await store.update({ ...detail, namespace, cluster }, formTemplate)
           }
 
           Modal.close(modal)
@@ -159,6 +196,7 @@ export default {
         },
         modal: DefaultResourceEditModal,
         store,
+        detail,
         ...props,
       })
     },

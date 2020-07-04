@@ -18,7 +18,7 @@
 
 import React from 'react'
 
-import { Avatar, Text } from 'components/Base'
+import { Avatar, Status, Text } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import { withProjectList, ListPage } from 'components/HOCs/withList'
 import Table from 'components/Tables/List'
@@ -121,9 +121,16 @@ export default class Services extends React.Component {
             title={getDisplayName(record)}
             desc={record.description || '-'}
             isMultiCluster={true}
-            to={`${this.props.match.url}/${name}`}
+            to={record.deletionTime ? null : `${this.props.match.url}/${name}`}
           />
         ),
+      },
+      {
+        title: t('Status'),
+        dataIndex: 'status',
+        isHideable: true,
+        search: true,
+        render: status => <Status type={status} name={t(status)} flicker />,
       },
       {
         title: t('Service Type'),
@@ -165,7 +172,7 @@ export default class Services extends React.Component {
   render() {
     const { bannerProps, tableProps } = this.props
     return (
-      <ListPage {...this.props}>
+      <ListPage {...this.props} module="federatedservices">
         <Banner {...bannerProps} tips={this.tips} />
         <Table
           {...tableProps}

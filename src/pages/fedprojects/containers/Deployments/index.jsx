@@ -18,7 +18,7 @@
 
 import React from 'react'
 
-import { Avatar } from 'components/Base'
+import { Avatar, Status } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import { withProjectList, ListPage } from 'components/HOCs/withList'
 import Table from 'components/Tables/List'
@@ -32,7 +32,7 @@ import WorkloadStore from 'stores/workload'
 
 @withProjectList({
   store: new FederatedStore(new WorkloadStore('deployments')),
-  module: 'federateddeployments',
+  module: 'deployments',
   name: 'Workload',
 })
 export default class Deployments extends React.Component {
@@ -135,7 +135,7 @@ export default class Deployments extends React.Component {
             isMultiCluster={record.isFedManaged}
             title={getDisplayName(record)}
             desc={record.description || '-'}
-            to={`${this.props.match.url}/${name}`}
+            to={record.deletionTime ? null : `${this.props.match.url}/${name}`}
           />
         ),
       },
@@ -145,12 +145,15 @@ export default class Deployments extends React.Component {
         isHideable: true,
         search: true,
         width: '22%',
-        render: (status, record) => (
-          <FedWorkloadStatus
-            data={record}
-            clusters={projectStore.detail.clusters}
-          />
-        ),
+        render: (status, record) =>
+          status === 'Deleting' ? (
+            <Status type={status} name={t(status)} flicker />
+          ) : (
+            <FedWorkloadStatus
+              data={record}
+              clusters={projectStore.detail.clusters}
+            />
+          ),
       },
       {
         title: t('Application'),
@@ -184,7 +187,7 @@ export default class Deployments extends React.Component {
   render() {
     const { bannerProps, tableProps } = this.props
     return (
-      <ListPage {...this.props}>
+      <ListPage {...this.props} module="federateddeployments">
         <Banner {...bannerProps} tabs={this.tabs} />
         <Table
           {...tableProps}
