@@ -17,7 +17,7 @@
  */
 
 import React from 'react'
-import { Avatar } from 'components/Base'
+import { Avatar, Status } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import Table from 'components/Tables/List'
 import { withProjectList, ListPage } from 'components/HOCs/withList'
@@ -100,10 +100,17 @@ export default class Routers extends React.Component {
             iconSize={40}
             title={getDisplayName(record)}
             desc={record.description || '-'}
-            to={`${this.props.match.url}/${name}`}
+            to={record.deletionTime ? null : `${this.props.match.url}/${name}`}
             isMultiCluster={true}
           />
         ),
+      },
+      {
+        title: t('Status'),
+        dataIndex: 'status',
+        isHideable: true,
+        search: true,
+        render: status => <Status type={status} name={t(status)} flicker />,
       },
       {
         title: t('Application'),
@@ -138,7 +145,7 @@ export default class Routers extends React.Component {
   render() {
     const { bannerProps, tableProps } = this.props
     return (
-      <ListPage {...this.props}>
+      <ListPage {...this.props} module="federatedingresses">
         <Banner {...bannerProps} tips={this.tips} />
         <Table
           {...tableProps}

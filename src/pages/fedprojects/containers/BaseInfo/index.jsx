@@ -22,7 +22,6 @@ import { observer, inject } from 'mobx-react'
 import { get } from 'lodash'
 
 import FederatedStore from 'stores/federated'
-import LimitRangeStore from 'stores/limitrange'
 
 import { trigger } from 'utils/action'
 import Banner from 'components/Cards/Banner'
@@ -33,10 +32,10 @@ import DefaultResource from './DefaultResource'
 @observer
 @trigger
 class BaseInfo extends React.Component {
-  limitRangeStore = new FederatedStore(new LimitRangeStore())
+  limitRangeStore = new FederatedStore({ module: 'limitranges' })
 
   componentDidMount() {
-    this.limitRangeStore.fetchListByK8s(this.params)
+    this.limitRangeStore.fetchList(this.params)
   }
 
   get store() {
@@ -96,8 +95,11 @@ class BaseInfo extends React.Component {
         onClick: () =>
           this.trigger('project.default.resource', {
             ...this.props.match.params,
+            store: this.limitRangeStore,
             detail: limitRanges[0],
-            success: () => this.store.fetchLimitRanges(this.props.match.params),
+            isFederated: true,
+            projectDetail: this.store.detail,
+            success: () => this.limitRangeStore.fetchList(this.params),
           }),
       },
       {

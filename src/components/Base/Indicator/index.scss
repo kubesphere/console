@@ -64,6 +64,7 @@
   &.released,
   &.unfinished,
   &.major,
+  &.deleting,
   &.in-review {
     background-color: rgba(245, 196, 20, 0.1);
     box-shadow: 0 8px 16px 0 rgba(245, 196, 20, 0.36);
@@ -84,8 +85,7 @@
   &.failed,
   &.critical,
   &.rejected,
-  &.ceasing,
-  &.deleting {
+  &.ceasing {
     background-color: rgba(202, 38, 33, 0.1);
     box-shadow: 0 8px 16px 0 rgba(202, 38, 33, 0.2);
     &::before {

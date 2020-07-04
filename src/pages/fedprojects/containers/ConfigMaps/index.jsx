@@ -18,7 +18,7 @@
 
 import React from 'react'
 
-import { Avatar } from 'components/Base'
+import { Avatar, Status } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import { withProjectList, ListPage } from 'components/HOCs/withList'
 import Table from 'components/Tables/List'
@@ -96,10 +96,17 @@ export default class ConfigMaps extends React.Component {
             iconSize={40}
             title={getDisplayName(record)}
             desc={record.description || '-'}
-            to={`${this.props.match.url}/${name}`}
+            to={record.deletionTime ? null : `${this.props.match.url}/${name}`}
             isMultiCluster={true}
           />
         ),
+      },
+      {
+        title: t('Status'),
+        dataIndex: 'status',
+        isHideable: true,
+        search: true,
+        render: status => <Status type={status} name={t(status)} flicker />,
       },
       {
         title: t('Config Field'),
@@ -133,7 +140,7 @@ export default class ConfigMaps extends React.Component {
   render() {
     const { bannerProps, tableProps } = this.props
     return (
-      <ListPage {...this.props}>
+      <ListPage {...this.props} module="federatedconfigmaps">
         <Banner {...bannerProps} tabs={this.tabs} />
         <Table
           {...tableProps}

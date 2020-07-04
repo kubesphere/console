@@ -21,10 +21,8 @@ import React from 'react'
 import { safeParseJSON, generateId } from 'utils'
 import { MODULE_KIND_MAP } from 'utils/constants'
 
-import FederatedStore from 'stores/federated'
 import ConfigMapStore from 'stores/configmap'
 import SecretStore from 'stores/secret'
-import QuotaStore from 'stores/quota'
 import LimitRangeStore from 'stores/limitrange'
 
 import { Form } from 'components/Base'
@@ -45,7 +43,6 @@ export default class ContainerSetting extends React.Component {
       selectContainer: {},
       configMaps: [],
       secrets: [],
-      quota: {},
       limitRange: {},
       imageRegistries: [],
       replicas: this.getReplicas(),
@@ -55,24 +52,8 @@ export default class ContainerSetting extends React.Component {
 
     this.configMapStore = new ConfigMapStore()
     this.secretStore = new SecretStore()
-    this.quotaStore = new QuotaStore()
     this.limitRangeStore = new LimitRangeStore()
     this.imageRegistryStore = new SecretStore()
-
-    if (props.isFederated) {
-      this.configMapStore = new FederatedStore({
-        module: this.configMapStore.module,
-      })
-      this.secretStore = new FederatedStore({
-        module: this.secretStore.module,
-      })
-      this.limitRangeStore = new FederatedStore({
-        module: this.limitRangeStore.module,
-      })
-      this.imageRegistryStore = new FederatedStore({
-        module: this.imageRegistryStore.module,
-      })
-    }
 
     this.handleContainer = this.handleContainer.bind(this)
   }
@@ -159,24 +140,28 @@ export default class ContainerSetting extends React.Component {
   getReplicas = () => get(this.fedFormTemplate, `spec.replicas`) || 1
 
   fetchData() {
-    const { cluster } = this.props
-    const namespace = get(this.formTemplate, 'metadata.namespace')
+    const { cluster, projectDetail, isFederated } = this.props
+
+    const params = {
+      cluster: cluster || get(projectDetail, 'clusters[0].name'),
+      namespace: get(this.formTemplate, 'metadata.namespace'),
+    }
+    if (isFederated) {
+      params.labelSelector = 'kubefed.io/managed=true'
+    }
 
     Promise.all([
-      this.configMapStore.fetchListByK8s({ cluster, namespace }),
-      this.secretStore.fetchListByK8s({ cluster, namespace }),
-      this.quotaStore.fetch({ cluster, namespace }),
-      this.limitRangeStore.fetchListByK8s({ cluster, namespace }),
+      this.configMapStore.fetchListByK8s(params),
+      this.secretStore.fetchListByK8s(params),
+      this.limitRangeStore.fetchListByK8s(params),
       this.imageRegistryStore.fetchListByK8s({
-        cluster,
-        namespace,
+        ...params,
         fieldSelector: `type=kubernetes.io/dockerconfigjson`,
       }),
-    ]).then(([configMaps, secrets, quota, limitRanges, imageRegistries]) => {
+    ]).then(([configMaps, secrets, limitRanges, imageRegistries]) => {
       this.setState({
         configMaps,
         secrets,
-        quota,
         limitRange: get(limitRanges, '[0].limit'),
         imageRegistries,
       })
@@ -378,27 +363,21 @@ export default class ContainerSetting extends React.Component {
   }
 
   renderContainerForm(data) {
-    const { cluster, withService } = this.props
-    const {
-      configMaps,
-      secrets,
-      quota,
-      limitRange,
-      imageRegistries,
-    } = this.state
+    const { withService, isFederated } = this.props
+    const { configMaps, secrets, limitRange, imageRegistries } = this.state
     const type = !data.image ? 'Add' : 'Edit'
-    const params = { configMaps, secrets, quota, limitRange, imageRegistries }
+    const params = { configMaps, secrets, limitRange, imageRegistries }
 
     return (
       <ContainerForm
         type={type}
         module={this.module}
-        cluster={cluster}
         namespace={this.namespace}
         data={data}
         onSave={this.handleContainer}
         onCancel={this.hideContainer}
         withService={withService}
+        isFederated={isFederated}
         {...params}
       />
     )

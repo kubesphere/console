@@ -81,7 +81,7 @@ export default class CRDApps extends React.Component {
           <Avatar
             title={getDisplayName(record)}
             avatar={record.icon || '/assets/default-app.svg'}
-            to={`${this.props.match.url}/${name}`}
+            to={record.deletionTime ? null : `${this.props.match.url}/${name}`}
             desc={get(record, 'annotations["kubesphere.io/description"]', '-')}
           />
         ),
@@ -91,14 +91,17 @@ export default class CRDApps extends React.Component {
         dataIndex: 'status',
         isHideable: true,
         width: '20%',
-        render: (status, record) => (
-          <ClusterWrapper
-            clusters={record.clusters}
-            clustersDetail={this.props.projectStore.detail.clusters}
-          >
-            {cluster => this.renderStatus({ cluster, record })}
-          </ClusterWrapper>
-        ),
+        render: (status, record) =>
+          status === 'Deleting' ? (
+            <Status type={status} name={t(status)} flicker />
+          ) : (
+            <ClusterWrapper
+              clusters={record.clusters}
+              clustersDetail={this.props.projectStore.detail.clusters}
+            >
+              {cluster => this.renderStatus({ cluster, record })}
+            </ClusterWrapper>
+          ),
       },
       {
         title: t('Version'),
