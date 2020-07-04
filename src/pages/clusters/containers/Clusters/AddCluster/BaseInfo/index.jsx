@@ -52,6 +52,13 @@ export default class BaseInfo extends React.Component {
       return callback()
     }
 
+    if (value.length > 63) {
+      return callback({
+        message: `${t('Invalid name')}, ${t('NAME_DESC')}`,
+        field: rule.field,
+      })
+    }
+
     this.props.store.checkName({ name: value }).then(resp => {
       if (resp.exist) {
         return callback({ message: t('Name exists'), field: rule.field })
@@ -71,7 +78,7 @@ export default class BaseInfo extends React.Component {
           label={t('Cluster Name')}
           desc={t('NAME_DESC')}
           rules={[
-            { required: true, message: t('Please input role name') },
+            { required: true, message: t('Please input cluster name') },
             {
               pattern: PATTERN_NAME,
               message: `${t('Invalid name')}, ${t('NAME_DESC')}`,

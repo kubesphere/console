@@ -102,7 +102,8 @@ export default {
 
   'Add Metadata': '添加元数据',
   'Set Node Scheduling Policy': '设置节点调度策略',
-  'You can allow Pod replicas to run on specified nodes.': '可以让容器组副本在指定的节点运行',
+  'You can allow Pod replicas to run on specified nodes.':
+    '可以让容器组副本在指定的节点运行',
   'Additional metadata settings for resources such as Labels and Annotations.':
     '对资源进行额外的元数据设置，例如 Label 和 Annotation',
 
@@ -132,7 +133,7 @@ export default {
     '定时任务 (CronJob) 管理基于时间的任务，例如在给定时间点只运行一次，或周期性地在给定时间点运行。',
 
   CRONJOB_NAME_DESC:
-    '最长 52 个字符，只能包含小写字母、数字及分隔符("-")，且必须以小写字母或数字开头及结尾',
+    '最长 52 个字符，只能包含小写字母、数字及分隔符("-")，且必须以小写字母开头, 小写字母或数字结尾',
   CRONJOB_NAME_TOO_LONG: '最长 52 个字符',
 
   IMAGE_PLACEHOLDER: '点击右侧图标可选择镜像，或直接输入名称 例：nginx:latest',
@@ -395,8 +396,10 @@ export default {
   DAEMONSETS_REPLICA_DESC:
     '守护进程集 (DaemonSet) 可以确保集群中的每个节点运行一个副本，当有节点加入集群或者离开集群的时候，会自动地调整副本的数量来保证副本的数量与集群的节点数量一致。您可以使用守护进程集来运行存储服务，如 GlusterFS，Ceph 等；运行日志搜集服务，如 Fluentd，Logstash 等；运行监控服务等。',
 
-  'The number of failed jobs allowed to be retained.': '允许保留的失败的任务个数',
-  'The number of successful jobs allowed to be retained.': '允许保留的成功的任务个数',
+  'The number of failed jobs allowed to be retained.':
+    '允许保留的失败的任务个数',
+  'The number of successful jobs allowed to be retained.':
+    '允许保留的成功的任务个数',
   'The concurrency policy setting.': '并发策略设置',
   'Can be found by node IP or node name': '可以通过节点 IP 或者节点名称查找',
   START_DEADLINE_SECONDS_DESC:
@@ -521,13 +524,15 @@ export default {
   'Not found this image': '没有找到此镜像',
   SEARCH_IMAGE_PLACEHOLDER: '输入关键字查找镜像',
 
-  "Pod Default Deployment": '容器组默认部署',
-  "Pod Decentralized Deployment": '容器组分散部署',
-  "Pod Aggregation Deployment": '容器组聚合部署',
+  'Pod Default Deployment': '容器组默认部署',
+  'Pod Decentralized Deployment': '容器组分散部署',
+  'Pod Aggregation Deployment': '容器组聚合部署',
   'Pod replicas will be deployed on different nodes.':
     '容器组副本将会尽量分散在不同的节点中',
-  'Pod replicas will be deployed on the same node.': '容器组副本将会部署在同一节点上',
-  'Pod replicas will be deployed by the default policy.': '容器组副本将根据默认策略部署',
+  'Pod replicas will be deployed on the same node.':
+    '容器组副本将会部署在同一节点上',
+  'Pod replicas will be deployed by the default policy.':
+    '容器组副本将根据默认策略部署',
   'KubeSphere supports pulling images from the Image Registries and creating new images through source code (Source to Image).':
     'Kubesphere 支持从镜像仓库拉取镜像以及通过代码构建新的镜像并部署',
 

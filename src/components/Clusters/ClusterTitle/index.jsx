@@ -83,9 +83,11 @@ export default class ClusterTitle extends Component {
         <div className={styles.title}>
           <div className={styles.name}>
             {onClick ? (
-              <a onClick={onClick}>{cluster.name}</a>
+              <a title={cluster.name} onClick={onClick}>
+                {cluster.name}
+              </a>
             ) : (
-              <span>{cluster.name}</span>
+              <span title={cluster.name}>{cluster.name}</span>
             )}
             {cluster.group && (
               <Tag
