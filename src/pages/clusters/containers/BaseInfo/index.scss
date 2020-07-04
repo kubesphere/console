@@ -5,7 +5,7 @@
   display: flex;
 
   & > div {
-    width: 260px;
+    min-width: 260px;
     margin-right: 20px;
   }
 }

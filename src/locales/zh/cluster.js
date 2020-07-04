@@ -82,6 +82,8 @@ export default {
   Authorized: '已授权',
   Unauthorized: '待授权',
 
+  'Please input cluster name': '请输入集群名称',
+
   'Authorize the cluster to workspace': '集群授权企业空间',
   'Set as public cluster': '设置为公开集群',
 
