@@ -24,7 +24,6 @@ import RouterStore from 'stores/router'
 import { Panel, Text } from 'components/Base'
 import ClusterTitle from 'components/Clusters/ClusterTitle'
 import MoreActions from 'components/MoreActions'
-import { trigger } from 'utils/action'
 
 import Ports from '../../Ports'
 
@@ -32,7 +31,6 @@ import styles from './index.scss'
 
 @inject('rootStore')
 @observer
-@trigger
 export default class ClusterService extends Component {
   routerStore = new RouterStore()
 
@@ -51,12 +49,7 @@ export default class ClusterService extends Component {
       icon: 'ip',
       text: t('Edit Internet Access'),
       action: 'edit',
-      onClick: () =>
-        this.trigger('service.gateway.edit', {
-          cluster: this.cluster,
-          detail: this.props.detail,
-          isFederated: true,
-        }),
+      onClick: () => this.props.updateService(this.cluster),
     },
   ]
 

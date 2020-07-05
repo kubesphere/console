@@ -155,6 +155,7 @@ export default class ServicePort extends React.Component {
             max={65535}
             value={servicePort}
             integer
+            placeholder={t('required')}
             onChange={this.handleServicePortChange}
           />
         </AddonsInput>

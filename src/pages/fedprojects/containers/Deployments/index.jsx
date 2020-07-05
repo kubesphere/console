@@ -100,7 +100,7 @@ export default class Deployments extends React.Component {
   }
 
   get tableActions() {
-    const { trigger, name, rowKey, tableProps } = this.props
+    const { trigger, name, tableProps } = this.props
     return {
       ...tableProps.tableActions,
       selectActions: [
@@ -112,7 +112,7 @@ export default class Deployments extends React.Component {
           onClick: () =>
             trigger('resource.batch.delete', {
               type: t(name),
-              rowKey,
+              rowKey: 'name',
             }),
         },
       ],

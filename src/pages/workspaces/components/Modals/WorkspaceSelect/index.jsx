@@ -19,7 +19,7 @@
 import React from 'react'
 import { get } from 'lodash'
 import { toJS, computed } from 'mobx'
-import { observer } from 'mobx-react'
+import { inject, observer } from 'mobx-react'
 import { Columns, Column } from '@pitrix/lego-ui'
 import { Button, Modal, Search, ScrollLoad } from 'components/Base'
 import WorkspaceStore from 'stores/workspace'
@@ -28,6 +28,7 @@ import ClusterStore from 'stores/cluster'
 import WorkspaceCard from './Card'
 import styles from './index.scss'
 
+@inject('rootStore')
 @observer
 export default class WorkspaceSelectModal extends React.Component {
   constructor(props) {
@@ -63,11 +64,22 @@ export default class WorkspaceSelectModal extends React.Component {
     onChange && onChange(workspace)
   }
 
+  showCreate = () => {
+    this.props.rootStore.triggerAction('workspace.create', {
+      store: this.store,
+      success: this.fetchData,
+    })
+  }
+
   render() {
-    const { visible, onCancel, onShowCreate } = this.props
+    const { visible, onCancel } = this.props
     const { data, total, page, isLoading } = toJS(this.store.list)
 
     const keyword = get(this.store.list, 'filters.name')
+
+    const canCreate = globals.app
+      .getActions({ module: 'workspaces' })
+      .includes('manage')
 
     return (
       <Modal
@@ -96,8 +108,8 @@ export default class WorkspaceSelectModal extends React.Component {
                   type="flat"
                   onClick={this.handleRefresh}
                 />
-                {onShowCreate && (
-                  <Button type="control" onClick={onShowCreate}>
+                {canCreate && (
+                  <Button type="control" onClick={this.showCreate}>
                     {t('Create Workspace')}
                   </Button>
                 )}

@@ -40,7 +40,6 @@ export default {
   'resource.batch.delete': {
     on({ store, success, rowKey, ...props }) {
       const { data, selectedRowKeys } = store.list
-
       const selectNames = data
         .filter(item => selectedRowKeys.includes(item[rowKey]))
         .map(item => item.name)

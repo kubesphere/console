@@ -427,7 +427,7 @@ client:
 
   # preset infos
   presetUsers: [admin, sonarqube]
-  presetGlobalRoles: [platform-admin, platform-regular, workspace-manager, user-manager]
+  presetGlobalRoles: [platform-admin, platform-regular, workspaces-manager, users-manager]
   presetClusterRoles: [cluster-admin, cluster-viewer]
   presetWorkspaceRoles: [admin, regular, viewer, self-provisioner]
   presetDevOpsRoles: [admin, operator, viewer]

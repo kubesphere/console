@@ -37,9 +37,9 @@ import ClusterMonitorStore from 'stores/monitoring/cluster'
 import styles from './index.scss'
 
 const MetricTypes = {
-  cpu_usage: 'cluster_cpu_usage',
-  memory_usage: 'cluster_memory_usage_wo_cache',
-  disk_size_usage: 'cluster_disk_size_usage',
+  cpu_usage: 'cluster_cpu_total',
+  memory_usage: 'cluster_memory_total',
+  disk_size_usage: 'cluster_disk_size_capacity',
   node_count: 'cluster_node_total',
 }
 

@@ -16,27 +16,35 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, debounce, isEmpty, isUndefined } from 'lodash'
+import { get, debounce, isEmpty, isUndefined, set } from 'lodash'
 import React from 'react'
 import { Form } from 'components/Base'
 import { PropertiesInput } from 'components/Inputs'
 import { isValidLabel, updateLabels } from 'utils'
 
 export default class Metadata extends React.Component {
-  get fedFormTemplate() {
-    return get(
-      this.props.formTemplate.workload,
-      this.props.isFederated ? 'spec.template' : ''
-    )
-  }
-
-  get fedPreifx() {
+  get fedPrefix() {
     return this.props.isFederated ? 'spec.template.' : ''
   }
 
   handleLabelsChange = debounce(value => {
-    const { module, onLabelsChange } = this.props
-    updateLabels(this.fedFormTemplate, module, value)
+    const {
+      module,
+      kind,
+      isFederated,
+      formTemplate,
+      onLabelsChange,
+    } = this.props
+
+    const template = isFederated
+      ? get(formTemplate[kind], 'spec.template')
+      : formTemplate[kind]
+    updateLabels(template, module, value)
+
+    if (isFederated) {
+      set(formTemplate[kind], 'metadata.labels', value)
+    }
+
     onLabelsChange && onLabelsChange(value)
   }, 200)
 
@@ -78,7 +86,7 @@ export default class Metadata extends React.Component {
           ]}
         >
           <PropertiesInput
-            name={`${kind}.${this.fedPreifx}metadata.labels`}
+            name={`${kind}.${this.fedPrefix}metadata.labels`}
             addText={t('Add Label')}
             onChange={this.handleLabelsChange}
             readOnlyKeys={['app']}

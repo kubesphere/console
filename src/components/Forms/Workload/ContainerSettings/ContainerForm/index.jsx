@@ -138,7 +138,7 @@ export default class ContaineForm extends React.Component {
 
         if (data.ports) {
           data.ports = data.ports.filter(
-            item => !(!item.name && !item.containerPort && !item.hostPort)
+            item => item.name && item.containerPort
           )
         }
 

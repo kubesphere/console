@@ -26,6 +26,7 @@ import ClusterDiffSettings from 'components/Forms/Workload/ClusterDiffSettings'
 
 import S2iBuilderStore from 'stores/s2i/builder'
 import WorkloadStore from 'stores/workload'
+import FederatedStore from 'stores/federated'
 
 import FORM_STEPS from 'configs/steps/services'
 import { withProps } from 'utils'
@@ -275,6 +276,8 @@ export default class ServiceCreateModal extends React.Component {
 
         this.workloadStore.setModule(module)
 
+        let workloadStore = this.workloadStore
+
         const steps = [...FORM_STEPS[type]]
         if (isFederated) {
           steps.push({
@@ -282,13 +285,14 @@ export default class ServiceCreateModal extends React.Component {
             icon: 'blue-green-deployment',
             component: withProps(ClusterDiffSettings, { withService: true }),
           })
+          workloadStore = new FederatedStore(this.workloadStore)
         }
 
         content = (
           <CreateModal
             width={960}
             module={module}
-            store={this.workloadStore}
+            store={workloadStore}
             name={t('Stateless Service')}
             description={t('STATELESS_SERVICE_DESC')}
             visible={visible}
@@ -330,6 +334,8 @@ export default class ServiceCreateModal extends React.Component {
 
         this.workloadStore.setModule(module)
 
+        let workloadStore = this.workloadStore
+
         const steps = [...FORM_STEPS[type]]
         if (isFederated) {
           steps.push({
@@ -337,13 +343,14 @@ export default class ServiceCreateModal extends React.Component {
             icon: 'blue-green-deployment',
             component: withProps(ClusterDiffSettings, { withService: true }),
           })
+          workloadStore = new FederatedStore(this.workloadStore)
         }
 
         content = (
           <CreateModal
             width={960}
             module={module}
-            store={this.workloadStore}
+            store={workloadStore}
             name={t('Stateful Service')}
             description={t('STATEFUL_SERVICE_DESC')}
             visible={visible}

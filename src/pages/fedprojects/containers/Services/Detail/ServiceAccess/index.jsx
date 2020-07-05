@@ -20,13 +20,16 @@ import React from 'react'
 import { keyBy } from 'lodash'
 import { observer, inject } from 'mobx-react'
 import { Loading } from '@pitrix/lego-ui'
+import { trigger } from 'utils/action'
 
+import { toJS } from 'mobx'
 import ClusterService from './ClusterService'
 
 import styles from './index.scss'
 
-@inject('detailStore', 'projectStore')
+@inject('rootStore', 'detailStore', 'projectStore')
 @observer
+@trigger
 export default class ServiceAccess extends React.Component {
   store = this.props.detailStore
 
@@ -36,6 +39,28 @@ export default class ServiceAccess extends React.Component {
       module: 'services',
       ...rest,
       project,
+    })
+  }
+
+  fetchData = () => {
+    const { params } = this.props.match
+    const clusters = this.props.projectStore.detail.clusters.map(
+      item => item.name
+    )
+    this.store.fetchDetail(params)
+    this.store.fetchResources({
+      ...params,
+      clusters,
+    })
+  }
+
+  handleUpdateService = cluster => {
+    const { detail, resources } = this.store
+    this.trigger('fedservice.gateway.edit', {
+      cluster,
+      detail: toJS(detail),
+      resources: toJS(resources),
+      success: this.fetchData,
     })
   }
 
@@ -54,6 +79,7 @@ export default class ServiceAccess extends React.Component {
               detail={resources[cluster]}
               cluster={clusters[cluster]}
               enabledActions={this.enabledActions}
+              updateService={this.handleUpdateService}
             />
           ))}
         </div>

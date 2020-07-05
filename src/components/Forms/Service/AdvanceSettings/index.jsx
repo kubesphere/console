@@ -32,7 +32,7 @@ export default class AdvancedSettings extends React.Component {
     return get(this.props.formTemplate, 'Service.metadata.namespace')
   }
 
-  get fedPreifx() {
+  get fedPrefix() {
     return this.props.isFederated ? 'spec.template.' : ''
   }
 
@@ -46,6 +46,7 @@ export default class AdvancedSettings extends React.Component {
     if (!noWorkload) {
       set(formTemplate, `Service.${this.fedPrefix}spec.selector`, labels)
       set(formTemplate, `Service.${this.fedPrefix}metadata.labels`, labels)
+      set(formTemplate, `Service.metadata.labels`, labels)
     }
   }
 

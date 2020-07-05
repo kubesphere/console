@@ -71,7 +71,7 @@ export default class NodeUsageRank extends React.Component {
               <span className={styles.label}>Master</span>
             )}
           </h3>
-          <p>{get(node, 'node_ip', '-')}</p>
+          <p>{get(node, 'host_ip', '-')}</p>
         </div>
       ),
     },
