@@ -36,19 +36,6 @@ import Banner from './Banner'
 export default class OPApps extends React.Component {
   type = 'template'
 
-  getData = (params = {}) => {
-    const { store, projectStore } = this.props
-    const { cluster } = this.props.match.params
-
-    if (projectStore.detail.name) {
-      store.fetchList({
-        namespace: projectStore.detail.name,
-        cluster,
-        ...params,
-      })
-    }
-  }
-
   get prefix() {
     const { workspace, cluster, namespace } = this.props.match.params
     return `/${workspace}/clusters/${cluster}/projects/${namespace}/applications/${
@@ -198,7 +185,7 @@ export default class OPApps extends React.Component {
   render() {
     const { bannerProps, tableProps, match } = this.props
     return (
-      <ListPage {...this.props} getData={this.getData}>
+      <ListPage {...this.props}>
         <Banner {...bannerProps} match={match} type={this.type} />
         <Table
           {...tableProps}
