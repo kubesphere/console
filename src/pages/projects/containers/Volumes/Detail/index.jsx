@@ -122,6 +122,11 @@ export default class VolumeDetail extends React.Component {
       text: t('Volume Clone'),
       icon: 'copy',
       action: 'create',
+      disabled: !get(
+        this.storageclasscapabilities,
+        'detail.volumeFeature.clone',
+        false
+      ),
       onClick: () => {
         this.trigger('volume.clone', {
           store: this.store,

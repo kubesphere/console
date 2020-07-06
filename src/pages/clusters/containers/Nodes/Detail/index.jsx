@@ -168,6 +168,10 @@ export default class NodeDetail extends React.Component {
         value: nodeInfo.kubeProxyVersion,
       },
       {
+        name: t('Architecture'),
+        value: nodeInfo.architecture,
+      },
+      {
         name: t('Created Time'),
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },

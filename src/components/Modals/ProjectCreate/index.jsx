@@ -54,6 +54,8 @@ export default class ProjectCreateModal extends React.Component {
 
     this.store = props.store
     this.workspaceStore = new WorkspaceStore()
+
+    this.clusterRef = React.createRef()
   }
 
   componentDidMount() {
@@ -175,6 +177,15 @@ export default class ProjectCreateModal extends React.Component {
     )
   }
 
+  handleNameChange = () => {
+    if (this.clusterRef.current && this.clusterRef.current.state.error) {
+      const name = 'spec.placement.clusters'
+      this.clusterRef.current.validate({
+        [name]: get(this.props.formTemplate, name),
+      })
+    }
+  }
+
   renderClusters() {
     const { multiCluster } = this.props
 
@@ -185,6 +196,7 @@ export default class ProjectCreateModal extends React.Component {
           desc={t('Select the cluster to create the project.')}
         >
           <Form.Item
+            ref={this.clusterRef}
             rules={[
               { required: true, message: t('Please select a cluster') },
               { validator: this.singleClusterValidator },
@@ -208,6 +220,7 @@ export default class ProjectCreateModal extends React.Component {
         desc={t('PROJECT_CLUSTER_SETTINGS_DESC')}
       >
         <Form.Item
+          ref={this.clusterRef}
           rules={[
             { required: true, message: t('Please select a cluster') },
             { validator: this.multiClusterValidator },
@@ -281,7 +294,11 @@ export default class ProjectCreateModal extends React.Component {
                   },
                 ]}
               >
-                <Input name="metadata.name" autoFocus={true} />
+                <Input
+                  name="metadata.name"
+                  autoFocus={true}
+                  onChange={this.handleNameChange}
+                />
               </Form.Item>
             </Column>
             <Column>
