@@ -184,6 +184,7 @@ export default class CustomMonitoringDashboards extends React.Component {
         {editModalVisiable && (
           <EditModal
             data={editData}
+            cluster={cluster}
             isSaving={this.props.store.isSubmitting}
             onCancel={this.hideEditModal}
             onSave={this.editDashboard}
