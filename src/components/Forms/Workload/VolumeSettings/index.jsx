@@ -244,7 +244,7 @@ class VolumeSettings extends React.Component {
           .filter(vm => vm.readOnly !== 'null')
           .map(({ logPath, ...vm }) => ({
             ...vm,
-            readOnly: vm.readOnly === 'true',
+            readOnly: String(vm.readOnly) === 'true',
           }))
       }
     })
@@ -391,7 +391,7 @@ class VolumeSettings extends React.Component {
 
   renderVolume() {
     const { collectSavedLog } = this.state
-    const volumes = this.store.list.data
+    const volumes = toJS(this.store.list.data)
     const isLoading = this.store.list.isLoading
 
     const containers = get(
