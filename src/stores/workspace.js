@@ -61,11 +61,11 @@ export default class WorkspaceStore extends Base {
       this.getDetailUrl({ name: workspace, cluster }),
       null,
       null,
-      res => {
+      (_, err) => {
         if (
-          res.reason === 'Not Found' ||
-          res.reason === 'No Such Object' ||
-          res.reason === 'Forbidden'
+          err.reason === 'Not Found' ||
+          err.reason === 'No Such Object' ||
+          err.reason === 'Forbidden'
         ) {
           global.navigateTo('/404')
         }

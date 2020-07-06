@@ -62,6 +62,10 @@ class DevOpsLayout extends Component {
       }),
     ])
 
+    if (!this.store.detail.name) {
+      return this.props.rootStore.routing.push('/404')
+    }
+
     await this.props.rootStore.getRules({
       cluster: params.cluster,
       devops: this.store.data.name,
