@@ -109,6 +109,13 @@ export default class AddTemporary extends React.Component {
       return callback()
     }
 
+    if (value.length > 63) {
+      return callback({
+        message: `${t('Invalid name')}, ${t('NAME_DESC')}`,
+        field: rule.field,
+      })
+    }
+
     const { currentName, checkVolumeNameExist } = this.props
     if (checkVolumeNameExist(value) && currentName !== value) {
       callback({ message: t('volume name exist'), field: rule.field })
