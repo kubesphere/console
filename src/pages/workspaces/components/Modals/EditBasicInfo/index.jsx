@@ -128,7 +128,7 @@ export default class EditBasicInfoModal extends React.Component {
         </Form.Item>
         <Form.Item label={t('Workspace Manager')}>
           <Select
-            name="spec.manager"
+            name="spec.template.spec.manager"
             searchable
             options={this.getUsers()}
             defaultValue={globals.user.username}
