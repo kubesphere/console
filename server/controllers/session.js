@@ -76,7 +76,7 @@ const handleLogin = async ctx => {
         Object.assign(error, {
           status: 400,
           reason: 'Internal Server Error',
-          message: 'username or password wrong, please try again',
+          message: 'Wrong username or password, please try again',
         })
       }
     } catch (err) {
@@ -88,28 +88,28 @@ const handleLogin = async ctx => {
           Object.assign(error, {
             status: err.code,
             reason: 'User Not Match',
-            message: 'username or password wrong, please try again',
+            message: 'Wrong username or password, please try again',
           })
           break
         case 429:
           Object.assign(error, {
             status: err.code,
             reason: 'Too Many Requests',
-            message: 'too many failed login attempts, please wait!',
+            message: 'Too many failed login attempts, please wait!',
           })
           break
         case 502:
           Object.assign(error, {
             status: err.code,
             reason: 'Internal Server Error',
-            message: 'unable to access backend services',
+            message: 'Unable to access backend services',
           })
           break
         case 'ETIMEDOUT':
           Object.assign(error, {
             status: 400,
             reason: 'Internal Server Error',
-            message: 'unable to access gateway',
+            message: 'Unable to access gateway',
           })
           break
         default:
