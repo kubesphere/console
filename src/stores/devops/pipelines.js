@@ -485,7 +485,7 @@ export default class PipelineStore extends BaseStore {
   @action
   async scanRepository({ project_id, name, cluster }) {
     if (globals.user.crumb === undefined) {
-      await this.getCrumb()
+      await this.getCrumb({ cluster })
     }
     const options = {}
     if (globals.user.crumb) {
