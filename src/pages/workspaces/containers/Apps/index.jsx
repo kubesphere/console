@@ -62,7 +62,7 @@ export default class Roles extends React.Component {
 
   getData = params => {
     this.props.store.fetchList({
-      isv: this.workspace,
+      workspace: this.workspace,
       statistics: true,
       ...params,
     })

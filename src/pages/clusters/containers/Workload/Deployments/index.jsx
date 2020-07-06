@@ -137,6 +137,11 @@ export default class Deployments extends React.Component {
     return desc
   }
 
+  getCheckboxProps = record => ({
+    disabled: record.isFedManaged,
+    name: record.name,
+  })
+
   getColumns = () => {
     const { getSortOrder, getFilteredValue, module } = this.props
     const { cluster } = this.props.match.params
@@ -216,6 +221,7 @@ export default class Deployments extends React.Component {
           columns={this.getColumns()}
           onCreate={this.showCreate}
           cluster={match.params.cluster}
+          getCheckboxProps={this.getCheckboxProps}
         />
       </ListPage>
     )
