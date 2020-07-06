@@ -264,7 +264,6 @@ client:
             - {
                 name: clusters,
                 title: Cluster Info,
-                authKey: 'workspace-settings',
                 multiCluster: true,
               }
             - { name: roles, title: Workspace Roles }
