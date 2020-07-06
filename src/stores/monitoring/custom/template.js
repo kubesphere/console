@@ -96,6 +96,7 @@ export default class CustomMonitoringTemplate {
 
   constructor({
     title = '',
+    cluster = '',
     namespace = '' /** require */,
     datasource = DATASOURCE /** now ks only support prometheus */,
     description = '',
@@ -107,6 +108,7 @@ export default class CustomMonitoringTemplate {
     name = '',
   }) {
     this.title = title
+    this.cluster = cluster
     this.namespace = namespace
     this.datasource = datasource
     this.description = description
@@ -181,7 +183,12 @@ export default class CustomMonitoringTemplate {
 
   generateTextMonitors(panels) {
     const monitors = panels.map(
-      panel => new SinglestateMonitor({ ...panel, namespace: this.namespace })
+      panel =>
+        new SinglestateMonitor({
+          ...panel,
+          namespace: this.namespace,
+          cluster: this.cluster,
+        })
     )
     return new MonitorRow({ monitors })
   }
@@ -201,7 +208,11 @@ export default class CustomMonitoringTemplate {
         }
 
         const Constructor = MONITOR_MAP[panel.type] || Monitor
-        const monitor = new Constructor({ ...panel, namespace: this.namespace })
+        const monitor = new Constructor({
+          ...panel,
+          namespace: this.namespace,
+          cluster: this.cluster,
+        })
         const lastRow = rows.pop()
         lastRow.push(monitor)
         return [...rows, lastRow]
@@ -235,6 +246,7 @@ export default class CustomMonitoringTemplate {
       type: 'singlestat',
       decimals: 0,
       namespace: this.namespace,
+      cluster: this.cluster,
       valueName: 'last',
       targets: [
         {
@@ -255,6 +267,7 @@ export default class CustomMonitoringTemplate {
       bars,
       description: '',
       namespace: this.namespace,
+      cluster: this.cluster,
       stack: false,
       targets: [
         {
@@ -284,6 +297,7 @@ export default class CustomMonitoringTemplate {
       type: 'graph',
       decimals: 0,
       namespaces: this.namespace,
+      cluster: this.cluster,
       targets: [
         {
           expr: '',
@@ -314,9 +328,9 @@ export default class CustomMonitoringTemplate {
 
   async fetchMetadata() {
     const { data: targetsMetadata } = (await request.get(
-      `kapis/monitoring.kubesphere.io/v1alpha3/namespaces/${
-        this.namespace
-      }/targets/metadata`
+      `kapis/monitoring.kubesphere.io/v1alpha3${
+        this.cluster ? `/klusters/${this.cluster}` : ''
+      }/namespaces/${this.namespace}/targets/metadata`
     )) || { data: [] }
     this.targetsMetadata = targetsMetadata || []
   }
@@ -327,11 +341,11 @@ export default class CustomMonitoringTemplate {
     const unRowPanels = [
       ...unNameGraphRow.monitors,
       ...textMonitors.monitors,
-    ].map(monitor => omit(toJS(monitor.config), ['namespace']))
+    ].map(monitor => omit(toJS(monitor.config), ['cluster', 'namespace']))
 
     const inRowPanels = graphMonitorRows.reduce((panels, row) => {
       const monitorConfigs = row.monitors.map(monitor =>
-        omit(toJS(monitor.config), ['namespace'])
+        omit(toJS(monitor.config), ['cluster', 'namespace'])
       )
       return panels.concat(row.config, monitorConfigs)
     }, [])
@@ -339,6 +353,7 @@ export default class CustomMonitoringTemplate {
     return {
       ...pick(this, [
         'title',
+        'cluster',
         'namespace',
         'datasource',
         'description',

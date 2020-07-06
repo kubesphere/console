@@ -136,7 +136,7 @@ export default class CustomMonitoringDashboards extends React.Component {
 
   createDashboard = async params => {
     await this.props.store.create({
-      namespace: this.props.match.params.namespace,
+      ...this.props.match.params,
       ...params,
     })
     this.hideCreateModal()
@@ -145,7 +145,7 @@ export default class CustomMonitoringDashboards extends React.Component {
 
   editDashboard = async params => {
     const result = await this.props.store.edit({
-      namespace: this.props.match.params.namespace,
+      ...this.props.match.params,
       ...params,
     })
     this.setState({ editData: result })
@@ -157,6 +157,7 @@ export default class CustomMonitoringDashboards extends React.Component {
   render() {
     const { bannerProps, tableProps } = this.props
     const { createModalVisiable, editModalVisiable, editData } = this.state
+    const { cluster, namespace } = this.props.match.params
 
     return (
       <div>
@@ -173,7 +174,8 @@ export default class CustomMonitoringDashboards extends React.Component {
         {createModalVisiable && (
           <CreateModal
             store={this.props.store}
-            namespace={this.props.match.params.namespace}
+            cluster={cluster}
+            namespace={namespace}
             isSaving={this.props.store.isSubmitting}
             onCancel={this.hideCreateModal}
             onSave={this.createDashboard}

@@ -35,6 +35,7 @@ export default class CrateDashboardModalContainer extends React.Component {
   }
 
   handleBasicConfirm = params => {
+    const { cluster } = this.props
     const kind = MODULE_KIND_MAP[this.props.store.module]
     const config = isArray(params) ? params[0] : params[kind]
 
@@ -42,6 +43,7 @@ export default class CrateDashboardModalContainer extends React.Component {
       isEditing: true,
       name: get(config, 'metadata.name'),
       namespace: get(config, 'metadata.namespace'),
+      cluster,
       ...config.spec,
     })
 
@@ -64,7 +66,7 @@ export default class CrateDashboardModalContainer extends React.Component {
 
   render() {
     const { finishBasis } = this.state
-    const { namespace, store } = this.props
+    const { cluster, namespace, store } = this.props
     const { module } = store
     const kind = MODULE_KIND_MAP[module]
     const formTemplate = {
@@ -77,6 +79,7 @@ export default class CrateDashboardModalContainer extends React.Component {
       return (
         <CustomMonitoringModal
           store={this.store}
+          cluster={cluster}
           isSaving={this.props.isSubmitting}
           onCancel={this.props.onCancel}
           onSave={this.onSave}
@@ -89,6 +92,7 @@ export default class CrateDashboardModalContainer extends React.Component {
         visible
         module={module}
         name="CUSTOM_MONITORING_DASHBOARD"
+        cluster={cluster}
         namespace={namespace}
         formTemplate={formTemplate}
         steps={FORM_STEPS}
