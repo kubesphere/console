@@ -70,15 +70,19 @@ export default class FederatedStore extends Base {
     `${this.getWatchListUrl(params)}/${params.name}`
 
   @action
-  async fetchList({
-    namespace,
-    page = this.list.page,
-    name,
-    limit,
-    more,
-    ...rest
-  } = {}) {
+  async fetchList({ namespace, page, name, limit, more, ...rest } = {}) {
     this.list.isLoading = true
+
+    page = Number(page)
+    if (!page || page === 1) {
+      this.list.continues = {}
+      page = 1
+    }
+
+    if (page > 1 && !this.list.continues[page]) {
+      page = 1
+      this.list.continues = {}
+    }
 
     const params = rest
 
@@ -134,7 +138,7 @@ export default class FederatedStore extends Base {
       })
     }
 
-    this.list.continues[Number(page) + 1] = result.metadata.continue
+    this.list.continues[page + 1] = result.metadata.continue
 
     if (page === 1) {
       this.list.total = data.length + (result.metadata.remainingItemCount || 0)
@@ -142,7 +146,7 @@ export default class FederatedStore extends Base {
 
     this.list.update({
       data: more ? [...this.list.data, ...data] : data,
-      page: Number(page),
+      page,
       name,
     })
 

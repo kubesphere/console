@@ -49,7 +49,7 @@ export default class BaseInfo extends React.Component {
 
   handleNameChange = debounce(value => {
     const labels = get(this.formTemplate, 'metadata.labels', {})
-    labels.app = value
+    labels.app = value.slice(0, 63)
 
     set(this.formTemplate, 'spec.jobTemplate.metadata.labels', labels)
   }, 200)

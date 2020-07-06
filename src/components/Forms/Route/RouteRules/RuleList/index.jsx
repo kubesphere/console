@@ -120,11 +120,11 @@ export default class RuleList extends React.Component {
       <ul>
         {rules
           .filter(item => item.host)
-          .map(item => (
+          .map((item, index) => (
             <Item
               rule={item}
               tls={tls}
-              key={item.host}
+              key={index}
               onEdit={this.handleEdit}
               onDelete={this.handleDelete}
             />

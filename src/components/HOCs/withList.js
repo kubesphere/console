@@ -260,28 +260,33 @@ export class ListPage extends React.Component {
   }
 
   initWebsocket() {
+    const { isFederated } = this.props
     if ('getWatchListUrl' in this.store) {
       const url = this.store.getWatchListUrl(this.props.match.params)
 
       this.websocket.watch(url)
 
-      const _getData = throttle(() => {
+      const _getData = throttle(query => {
         if (this.store.list.isLoading) {
           return
         }
         const params = parse(location.search.slice(1))
-        return this.props.getData({ ...params, silent: true })
+        return this.props.getData({ ...params, ...query, silent: true })
       }, 1000)
+
+      let kind = MODULE_KIND_MAP[this.props.module]
+
+      if (isFederated) {
+        kind = `Federated${kind}`
+      }
+
+      const mapper = isFederated
+        ? ObjectMapper.federated(this.store.mapper)
+        : this.store.mapper
 
       this.disposer = reaction(
         () => this.websocket.message,
         message => {
-          const kind = MODULE_KIND_MAP[this.props.module]
-
-          const mapper = this.props.module.startsWith('federated')
-            ? ObjectMapper.federated(this.store.mapper)
-            : this.store.mapper
-
           if (message.object.kind === kind) {
             if (message.type === 'MODIFIED') {
               const data = {
@@ -290,7 +295,7 @@ export class ListPage extends React.Component {
               }
               this.store.list.updateItem(data)
             } else if (message.type === 'DELETED' || message.type === 'ADDED') {
-              _getData()
+              _getData(isFederated ? { page: 1 } : {})
             }
           }
         }

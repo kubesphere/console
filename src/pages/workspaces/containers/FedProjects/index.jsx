@@ -174,7 +174,8 @@ export default class Projects extends React.Component {
       <ListPage
         {...this.props}
         getData={this.getData}
-        module="federatednamespaces"
+        module="namespaces"
+        isFederated
       >
         <Banner
           {...bannerProps}

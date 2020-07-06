@@ -59,7 +59,6 @@ export default class Metadata extends React.Component {
             name="metadata.labels"
             addText={t('Add Label')}
             onChange={this.handleLabelsChange}
-            readOnlyKeys={['app']}
           />
         </Form.Item>
         <Form.Item label={t('Annotations')}>

@@ -74,6 +74,17 @@ export default class CreateModal extends React.Component {
     }
   }
 
+  getFormDataFromCode = code =>
+    isArray(code)
+      ? code.reduce(
+          (prev, cur) => ({
+            ...prev,
+            [cur.kind.replace('Federated', '')]: cur,
+          }),
+          {}
+        )
+      : code
+
   handleModeChange = () => {
     this.setState(({ isCodeMode, formTemplate }) => {
       const newState = { formTemplate, isCodeMode: !isCodeMode }
@@ -94,20 +105,18 @@ export default class CreateModal extends React.Component {
       }
 
       if (isCodeMode && isFunction(get(this, 'codeRef.current.getData'))) {
-        newState.formTemplate = this.codeRef.current.getData()
-        if (isArray(newState.formTemplate)) {
-          newState.formTemplate = newState.formTemplate.reduce(
-            (prev, cur) => ({
-              ...prev,
-              [cur.kind.replace('Federated', '')]: cur,
-            }),
-            {}
-          )
-        }
+        newState.formTemplate = this.getFormDataFromCode(
+          this.codeRef.current.getData()
+        )
       }
 
       return newState
     })
+  }
+
+  handleCode = data => {
+    const { onOk } = this.props
+    onOk(this.getFormDataFromCode(data))
   }
 
   renderForms() {
@@ -124,13 +133,13 @@ export default class CreateModal extends React.Component {
   }
 
   renderCodeEditor() {
-    const { onOk, onCancel, isSubmitting } = this.props
+    const { onCancel, isSubmitting } = this.props
     const { formTemplate } = this.state
     return (
       <Code
         ref={this.codeRef}
         formTemplate={formTemplate}
-        onOk={onOk}
+        onOk={this.handleCode}
         onCancel={onCancel}
         isSubmitting={isSubmitting}
       />

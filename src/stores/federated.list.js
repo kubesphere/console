@@ -29,6 +29,9 @@ export default class List {
   @observable
   total = 0
 
+  @observable
+  filters = {}
+
   continues = { 1: '' }
 
   @observable
@@ -39,8 +42,13 @@ export default class List {
 
   @action
   update(params) {
+    this.filters = {}
     Object.keys(params).forEach(key => {
-      this[key] = params[key]
+      if (Object.prototype.hasOwnProperty.call(this, key)) {
+        this[key] = params[key]
+      } else if (params[key]) {
+        this.filters[key] = params[key]
+      }
     })
   }
 

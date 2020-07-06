@@ -253,13 +253,6 @@ export const MODULE_KIND_MAP = {
   dashboards: 'Dashboard',
   applications: 'Application',
   users: 'User',
-  federatednamespaces: 'FederatedNamespace',
-  federateddeployments: 'FederatedDeployment',
-  federatedstatefulsets: 'FederatedStatefulSet',
-  federatedservices: 'FederatedService',
-  federatedingresses: 'FederatedIngress',
-  federatedsecrets: 'FederatedSecret',
-  federatedconfigmaps: 'FederatedConfigMap',
 }
 
 export const QUOTAS_MAP = {
@@ -1025,3 +1018,13 @@ export const FED_ACTIVE_STATUS = {
   FederatedVolume: 'Running',
   FederatedIngress: 'Running',
 }
+
+export const APP_LABEL_MODULES = [
+  'applications',
+  'deployments',
+  'statfulsets',
+  'daemonsets',
+  'jobs',
+  'cronjobs',
+  'services',
+]

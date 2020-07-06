@@ -120,14 +120,11 @@ export default class Deployments extends React.Component {
   }
 
   getColumns = () => {
-    const { getSortOrder, module, projectStore } = this.props
+    const { module, projectStore } = this.props
     return [
       {
         title: t('Name'),
         dataIndex: 'name',
-        sorter: true,
-        sortOrder: getSortOrder('name'),
-        search: true,
         render: (name, record) => (
           <Avatar
             icon={ICON_TYPES[module]}
@@ -143,7 +140,6 @@ export default class Deployments extends React.Component {
         title: t('Status'),
         dataIndex: 'status',
         isHideable: true,
-        search: true,
         width: '22%',
         render: (status, record) =>
           status === 'Deleting' ? (
@@ -159,14 +155,11 @@ export default class Deployments extends React.Component {
         title: t('Application'),
         dataIndex: 'app',
         isHideable: true,
-        search: true,
         width: '22%',
       },
       {
         title: t('Updated Time'),
         dataIndex: 'updateTime',
-        sorter: true,
-        sortOrder: getSortOrder('updateTime'),
         isHideable: true,
         width: 150,
         render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
@@ -187,7 +180,7 @@ export default class Deployments extends React.Component {
   render() {
     const { bannerProps, tableProps } = this.props
     return (
-      <ListPage {...this.props} module="federateddeployments">
+      <ListPage {...this.props} isFederated>
         <Banner {...bannerProps} tabs={this.tabs} />
         <Table
           {...tableProps}
@@ -195,6 +188,7 @@ export default class Deployments extends React.Component {
           tableActions={this.tableActions}
           columns={this.getColumns()}
           onCreate={this.showCreate}
+          searchType="name"
         />
       </ListPage>
     )
