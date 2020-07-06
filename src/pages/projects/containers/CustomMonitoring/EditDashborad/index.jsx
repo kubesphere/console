@@ -41,6 +41,7 @@ export default class CrateDashboardModalContainer extends React.Component {
 
     this.store = new CustomMonitoringTemplate({
       title,
+      cluster: props.cluster,
       namespace,
       description,
       refresh,
@@ -69,6 +70,7 @@ export default class CrateDashboardModalContainer extends React.Component {
     return (
       <CustomMonitoringModal
         store={this.store}
+        cluster={this.props.cluster}
         isSaving={this.props.isSubmitting}
         onCancel={this.props.onCancel}
         onSave={this.onSave}
