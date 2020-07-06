@@ -89,6 +89,11 @@ export default class Secrets extends React.Component {
     ]
   }
 
+  getCheckboxProps = record => ({
+    disabled: record.isFedManaged,
+    name: record.name,
+  })
+
   getColumns = () => {
     const { getSortOrder, module } = this.props
     const { cluster } = this.props.match.params
@@ -159,6 +164,7 @@ export default class Secrets extends React.Component {
           columns={this.getColumns()}
           onCreate={this.showCreate}
           cluster={match.params.cluster}
+          getCheckboxProps={this.getCheckboxProps}
         />
       </ListPage>
     )

@@ -128,7 +128,7 @@ export default {
     on({ store, workspace, success, ...props }) {
       const modal = Modal.open({
         onOk: async data => {
-          await store.create({ ...data, isv: workspace })
+          await store.create({ ...data, workspace })
           Notify.success({ content: `${t('Upload Successfully')}!` })
           Modal.close(modal)
           success && success()

@@ -40,6 +40,7 @@ class Apps extends Component {
     fetchApps: PropTypes.func,
     selectRepo: PropTypes.string,
   }
+
   static defaultProps = {
     workspace: '',
     store: {},
@@ -97,18 +98,14 @@ class Apps extends Component {
   }
 
   fetchApps = async (params = {}, replaceAll = true) => {
-    await this.appStore.fetchList(
-      Object.assign(
-        {
-          page: 1,
-          limit: STORE_APP_LIMIT,
-          status: this.isFormWorkspace ? '' : 'active',
-          isv: this.isFormWorkspace ? this.props.workspace : '',
-          repo_id: this.selectedRepo,
-        },
-        params
-      )
-    )
+    await this.appStore.fetchList({
+      page: 1,
+      limit: STORE_APP_LIMIT,
+      status: this.isFormWorkspace ? '' : 'active',
+      workspace: this.isFormWorkspace ? this.props.workspace : '',
+      repo_id: this.selectedRepo,
+      ...params,
+    })
 
     const { allApps, list } = this.appStore
 
