@@ -126,7 +126,7 @@ class VolumeSettings extends React.Component {
   }
 
   get selectVolume() {
-    return this.state.selectVolume
+    return { ...this.state.selectVolume }
   }
 
   showVolume = () => {
@@ -165,7 +165,7 @@ class VolumeSettings extends React.Component {
   }
 
   resetState = state => {
-    this.setState({ state: state || '' })
+    this.setState({ state: state || '', selectVolume: {} })
   }
 
   showConfig = () => {
@@ -192,14 +192,16 @@ class VolumeSettings extends React.Component {
 
   updateVolumes = newVolume => {
     const volumes = get(this.fedFormTemplate, `${this.prefix}spec.volumes`, [])
-
     let newVolumes = []
 
-    const existVolume = findVolume(volumes, newVolume)
+    const existVolume = !isEmpty(this.selectVolume)
+      ? this.selectVolume
+      : undefined
+
     const newSpecVolume = this.formatSpecVolume(existVolume, newVolume)
     if (existVolume) {
       newVolumes = volumes.map(item =>
-        item.name === newVolume.name ? newSpecVolume : item
+        item.name === existVolume.name ? newSpecVolume : item
       )
     } else {
       newVolumes = [...volumes, newSpecVolume]
@@ -360,6 +362,12 @@ class VolumeSettings extends React.Component {
   }
 
   handleVolume(newVolume = {}, newVolumeMounts = []) {
+    if (!newVolume.uid) {
+      newVolumeMounts.forEach(vm => {
+        vm.name = newVolume.name
+      })
+    }
+
     this.updateVolumes(newVolume)
     this.updateVolumeMounts(newVolumeMounts)
     this.updateLogConfigs(newVolumeMounts)
@@ -368,6 +376,10 @@ class VolumeSettings extends React.Component {
   }
 
   handleVolumeTemplate(newVolume = {}, newVolumeMounts = []) {
+    newVolumeMounts.forEach(vm => {
+      vm.name = newVolume.name
+    })
+
     this.updateVolumeTemplate(newVolume)
     this.updateVolumeTemplateMounts(newVolumeMounts)
     this.updateLogConfigs(newVolumeMounts)
