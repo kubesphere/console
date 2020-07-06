@@ -27,7 +27,7 @@ import { getDisplayName } from 'utils'
 
 import styles from './index.scss'
 
-export default class MountEdit extends React.Component {
+export default class AddExistVolumes extends React.Component {
   static propTypes = {
     formRef: PropTypes.object,
     formData: PropTypes.object,
