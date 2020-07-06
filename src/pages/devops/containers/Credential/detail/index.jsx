@@ -23,7 +23,7 @@ import { get } from 'lodash'
 import { getLocalTime } from 'utils'
 import { ICON_TYPES } from 'utils/constants'
 import CredentialStore from 'stores/devops/credential'
-
+import DevopsStore from 'stores/devops'
 import Base from 'core/containers/Base/Detail'
 import BaseInfo from 'core/containers/Base/Detail/BaseInfo'
 import CreateModal from '../credentialModal'
@@ -59,12 +59,30 @@ class CredentialDetail extends Base {
 
   init() {
     this.store = new CredentialStore(this.module)
+    this.devopsStore = new DevopsStore()
   }
 
   fetchData = () => {
     const { params } = this.props.match
     this.store.setParams(params)
     this.store.fetchDetail(params).catch(this.catch)
+    this.getRole()
+  }
+
+  getRole = async () => {
+    const { params } = this.props.match
+    await Promise.all([
+      this.devopsStore.fetchDetail(params),
+      this.props.rootStore.getRules({
+        workspace: params.workspace,
+      }),
+    ])
+
+    await this.props.rootStore.getRules({
+      cluster: params.cluster,
+      workspace: params.workspace,
+      devops: this.store.getDevops(params.project_id),
+    })
   }
 
   getOperations = () => [
@@ -134,13 +152,16 @@ class CredentialDetail extends Base {
 
   renderSider() {
     const { detail } = this.store
+    const operations = this.getOperations().filter(item =>
+      this.enabledActions.includes(item.action)
+    )
 
     return (
       <BaseInfo
         icon={ICON_TYPES[this.module]}
         name={detail.id || ''}
         desc={get(detail, 'description')}
-        operations={this.getEnabledOperations()}
+        operations={operations}
         labels={detail.labels}
         attrs={this.getAttrs()}
       />
