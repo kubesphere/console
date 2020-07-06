@@ -51,7 +51,7 @@ export default class ProjectSelect extends Component {
       isFedManaged: item.isFedManaged,
     }))
 
-    if (defaultValue && !data.includes(defaultValue)) {
+    if (defaultValue && !data.find(item => item.name === defaultValue)) {
       result.unshift({
         label: defaultValue,
         value: defaultValue,

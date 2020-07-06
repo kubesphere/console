@@ -177,7 +177,6 @@ export default class Deployments extends React.Component {
         title: t('Project'),
         dataIndex: 'namespace',
         isHideable: true,
-        search: true,
         width: '22%',
         render: namespace => (
           <Link to={`/clusters/${cluster}/projects/${namespace}`}>
