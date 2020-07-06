@@ -50,7 +50,7 @@ export default class SCMStore extends BaseStore {
         } else if (resp.status === 428) {
           this.creatBitBucketServersError = {
             password: {
-              message: t('username or password wrong, please try again'),
+              message: t('Wrong username or password, please try again'),
             },
           }
           return
