@@ -16,38 +16,11 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { isEmpty, isUndefined } from 'lodash'
 import React from 'react'
 import { Form } from 'components/Base'
 import { AnnotationsInput, PropertiesInput } from 'components/Inputs'
-import { isValidLabel } from 'utils'
 
 export default class Metadata extends React.Component {
-  labelsValidator = (rule, value, callback) => {
-    if (isUndefined(value)) {
-      return callback()
-    } else if (isEmpty(value)) {
-      return callback({ message: t('Labels cannot be empty') })
-    }
-
-    if (!isValidLabel(value)) {
-      return callback({ message: t('LABEL_FORMAT_DESC') })
-    }
-
-    this.props.store
-      .checkLabels({
-        labels: value,
-        namespace: this.props.namespace,
-        cluster: this.props.cluster,
-      })
-      .then(resp => {
-        if (resp.exist) {
-          return callback({ message: t('Labels exists'), field: rule.field })
-        }
-        callback()
-      })
-  }
-
   render() {
     return (
       <>
@@ -58,18 +31,8 @@ export default class Metadata extends React.Component {
             hiddenKeys={globals.config.preservedAnnotations}
           />
         </Form.Item>
-        <Form.Item
-          label={t('Labels')}
-          rules={[
-            { required: true, message: t('Labels cannot be empty') },
-            { validator: this.labelsValidator },
-          ]}
-        >
-          <PropertiesInput
-            name="metadata.labels"
-            addText={t('Add Label')}
-            readOnlyKeys={['app']}
-          />
+        <Form.Item label={t('Labels')}>
+          <PropertiesInput name="metadata.labels" addText={t('Add Label')} />
         </Form.Item>
       </>
     )

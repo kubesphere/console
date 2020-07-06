@@ -93,15 +93,10 @@ export default class Volumes extends React.Component {
   }
 
   getColumns() {
-    const { getSortOrder } = this.props
-
     return [
       {
         title: t('Name'),
         dataIndex: 'name',
-        sortOrder: getSortOrder('name'),
-        search: true,
-        sorter: true,
         render: (name, record) => (
           <Avatar
             icon="storage"
@@ -117,7 +112,6 @@ export default class Volumes extends React.Component {
         title: t('Status'),
         dataIndex: 'status',
         isHideable: true,
-        search: true,
         render: (status, record) =>
           status === 'Deleting' ? (
             <Status type={status} name={t(status)} flicker />
@@ -135,7 +129,6 @@ export default class Volumes extends React.Component {
         dataIndex: 'inUse',
         isHideable: true,
         width: '14%',
-        // render: inUse => (inUse ? t('Mounted') : t('Not Mounted')),
         render: (_, record) => (
           <ClusterWrapper
             clusters={record.clusters}
@@ -164,8 +157,6 @@ export default class Volumes extends React.Component {
       {
         title: t('Created Time'),
         dataIndex: 'createTime',
-        sorter: true,
-        sortOrder: getSortOrder('createTime'),
         isHideable: true,
         width: 150,
         render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm'),
@@ -207,7 +198,7 @@ export default class Volumes extends React.Component {
   render() {
     const { query, match, bannerProps, tableProps } = this.props
     return (
-      <ListPage {...this.props} module="federatedvolumes">
+      <ListPage {...this.props} isFederated>
         <Banner {...bannerProps} tips={this.tips} />
         <Table
           {...tableProps}
@@ -216,6 +207,7 @@ export default class Volumes extends React.Component {
           columns={this.getColumns()}
           onCreate={this.showCreate}
           cluster={match.params.cluster}
+          searchType="name"
         />
       </ListPage>
     )

@@ -86,14 +86,11 @@ export default class Routers extends React.Component {
   }
 
   getColumns = () => {
-    const { getSortOrder, module } = this.props
+    const { module } = this.props
     return [
       {
         title: t('Name'),
         dataIndex: 'name',
-        sorter: true,
-        sortOrder: getSortOrder('name'),
-        search: true,
         render: (name, record) => (
           <Avatar
             icon={ICON_TYPES[module]}
@@ -109,22 +106,19 @@ export default class Routers extends React.Component {
         title: t('Status'),
         dataIndex: 'status',
         isHideable: true,
-        search: true,
+        width: '22%',
         render: status => <Status type={status} name={t(status)} flicker />,
       },
       {
         title: t('Application'),
         dataIndex: 'app.kubernetes.io/name',
         isHideable: true,
-        search: true,
         width: '22%',
         render: (_, record) => record.app,
       },
       {
         title: t('Created Time'),
         dataIndex: 'createTime',
-        sorter: true,
-        sortOrder: getSortOrder('createTime'),
         isHideable: true,
         width: 150,
         render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
@@ -145,13 +139,14 @@ export default class Routers extends React.Component {
   render() {
     const { bannerProps, tableProps } = this.props
     return (
-      <ListPage {...this.props} module="federatedingresses">
+      <ListPage {...this.props} isFederated>
         <Banner {...bannerProps} tips={this.tips} />
         <Table
           {...tableProps}
           itemActions={this.itemActions}
           columns={this.getColumns()}
           onCreate={this.showCreate}
+          searchType="name"
         />
       </ListPage>
     )

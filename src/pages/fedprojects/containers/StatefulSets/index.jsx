@@ -18,7 +18,7 @@
 
 import React from 'react'
 
-import { Avatar } from 'components/Base'
+import { Avatar, Status } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import { withProjectList, ListPage } from 'components/HOCs/withList'
 import Table from 'components/Tables/List'
@@ -139,14 +139,11 @@ export default class StatefulSets extends React.Component {
   }
 
   getColumns = () => {
-    const { getSortOrder, module, projectStore } = this.props
+    const { module, projectStore } = this.props
     return [
       {
         title: t('Name'),
         dataIndex: 'name',
-        sorter: true,
-        sortOrder: getSortOrder('name'),
-        search: true,
         render: (name, record) => (
           <Avatar
             icon={ICON_TYPES[module]}
@@ -162,28 +159,27 @@ export default class StatefulSets extends React.Component {
         title: t('Status'),
         dataIndex: 'status',
         isHideable: true,
-        search: true,
         width: '22%',
-        render: (status, record) => (
-          <FedWorkloadStatus
-            data={record}
-            clusters={projectStore.detail.clusters}
-          />
-        ),
+        render: (status, record) =>
+          status === 'Deleting' ? (
+            <Status type={status} name={t(status)} flicker />
+          ) : (
+            <FedWorkloadStatus
+              data={record}
+              clusters={projectStore.detail.clusters}
+            />
+          ),
       },
       {
         title: t('Application'),
         dataIndex: 'app.kubernetes.io/name',
         isHideable: true,
-        search: true,
         width: '22%',
         render: (_, record) => record.app,
       },
       {
         title: t('Updated Time'),
         dataIndex: 'updateTime',
-        sorter: true,
-        sortOrder: getSortOrder('updateTime'),
         isHideable: true,
         width: 150,
         render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
@@ -204,7 +200,7 @@ export default class StatefulSets extends React.Component {
   render() {
     const { bannerProps, tableProps } = this.props
     return (
-      <ListPage {...this.props} module="federatedstatefulsets">
+      <ListPage {...this.props} isFederated>
         <Banner {...bannerProps} tabs={this.tabs} />
         <Table
           {...tableProps}
@@ -212,6 +208,7 @@ export default class StatefulSets extends React.Component {
           tableActions={this.tableActions}
           columns={this.getColumns()}
           onCreate={this.showCreate}
+          searchType="name"
         />
       </ListPage>
     )

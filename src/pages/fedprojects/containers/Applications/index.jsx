@@ -69,14 +69,10 @@ export default class CRDApps extends React.Component {
   }
 
   getColumns = () => {
-    const { getSortOrder } = this.props
     return [
       {
         title: t('Name'),
         dataIndex: 'name',
-        sorter: true,
-        sortOrder: getSortOrder('name'),
-        search: true,
         render: (name, record) => (
           <Avatar
             title={getDisplayName(record)}
@@ -112,8 +108,6 @@ export default class CRDApps extends React.Component {
       {
         title: t('Created Time'),
         dataIndex: 'createTime',
-        sorter: true,
-        sortOrder: getSortOrder('createTime'),
         isHideable: true,
         width: 180,
         render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
@@ -168,7 +162,7 @@ export default class CRDApps extends React.Component {
   render() {
     const { bannerProps, tableProps } = this.props
     return (
-      <ListPage {...this.props} noWatch>
+      <ListPage {...this.props} isFederated>
         <Banner
           {...bannerProps}
           tips={this.tips}
@@ -178,6 +172,7 @@ export default class CRDApps extends React.Component {
           {...tableProps}
           {...this.getTableProps()}
           columns={this.getColumns()}
+          searchType="name"
         />
       </ListPage>
     )

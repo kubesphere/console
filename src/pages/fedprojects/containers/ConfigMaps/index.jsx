@@ -82,14 +82,11 @@ export default class ConfigMaps extends React.Component {
   }
 
   getColumns = () => {
-    const { getSortOrder, module } = this.props
+    const { module } = this.props
     return [
       {
         title: t('Name'),
         dataIndex: 'name',
-        sorter: true,
-        sortOrder: getSortOrder('name'),
-        search: true,
         render: (name, record) => (
           <Avatar
             icon={ICON_TYPES[module]}
@@ -105,7 +102,6 @@ export default class ConfigMaps extends React.Component {
         title: t('Status'),
         dataIndex: 'status',
         isHideable: true,
-        search: true,
         render: status => <Status type={status} name={t(status)} flicker />,
       },
       {
@@ -118,8 +114,6 @@ export default class ConfigMaps extends React.Component {
       {
         title: t('Created Time'),
         dataIndex: 'createTime',
-        sorter: true,
-        sortOrder: getSortOrder('createTime'),
         isHideable: true,
         width: 150,
         render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
@@ -140,13 +134,14 @@ export default class ConfigMaps extends React.Component {
   render() {
     const { bannerProps, tableProps } = this.props
     return (
-      <ListPage {...this.props} module="federatedconfigmaps">
+      <ListPage {...this.props} isFederated>
         <Banner {...bannerProps} tabs={this.tabs} />
         <Table
           {...tableProps}
           itemActions={this.itemActions}
           columns={this.getColumns()}
           onCreate={this.showCreate}
+          searchType="name"
         />
       </ListPage>
     )

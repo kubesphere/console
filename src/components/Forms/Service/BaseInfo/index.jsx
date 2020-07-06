@@ -75,7 +75,7 @@ export default class ServiceBaseInfo extends React.Component {
     const { isFederated, noWorkload } = this.props
 
     const labels = get(this.formTemplate, 'metadata.labels', {})
-    labels.app = value
+    labels.app = value.slice(0, 63)
 
     updateLabels(
       isFederated ? get(this.formTemplate, 'spec.template') : this.formTemplate,
@@ -84,7 +84,7 @@ export default class ServiceBaseInfo extends React.Component {
     )
 
     if (isFederated) {
-      set(this.formTemplate, 'metadata.labels.app', value)
+      set(this.formTemplate, 'metadata.labels.app', value.slice(0, 63))
     }
 
     if (!noWorkload) {
