@@ -112,7 +112,14 @@ export default class ClusterStore extends Base {
       detail = this.mapper(cloneDeep(DEFAULT_CLUSTER))
     } else {
       const result = await request.get(
-        `${this.getResourceUrl(params)}/${params.name}`
+        `${this.getResourceUrl(params)}/${params.name}`,
+        null,
+        null,
+        (_, err) => {
+          if (err.reason === 'Not Found') {
+            global.navigateTo('/404')
+          }
+        }
       )
       detail = { ...params, ...this.mapper(result) }
     }

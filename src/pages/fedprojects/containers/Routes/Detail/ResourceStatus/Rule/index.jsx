@@ -44,6 +44,7 @@ const Card = ({ gateway, rule, tls = {}, prefix }) => {
       <span>
         {t('Protocol')}: {protocol}
       </span>
+      &nbsp;&nbsp;
       {protocol === 'https' && (
         <span>
           {t('Certificate')}: {tls.secretName}

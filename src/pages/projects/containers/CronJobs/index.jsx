@@ -154,7 +154,7 @@ export default class CronJobs extends React.Component {
             iconSize={40}
             title={getDisplayName(record)}
             desc={this.getItemDesc(record)}
-            to={`${this.prefix}/${name}`}
+            to={`${this.prefix}/${module}/${name}`}
           />
         ),
       },
