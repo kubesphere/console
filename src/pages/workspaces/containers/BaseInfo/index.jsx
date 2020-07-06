@@ -78,7 +78,8 @@ class BaseInfo extends React.Component {
 
   get enabledActions() {
     return globals.app.getActions({
-      module: 'workspaces',
+      module: 'workspace-settings',
+      workspace: this.workspace,
     })
   }
 
@@ -197,7 +198,7 @@ class BaseInfo extends React.Component {
             )}
             description={t('Created Time')}
           />
-          {this.enabledActions.includes('edit') && (
+          {this.enabledActions.includes('manage') && (
             <Button className={styles.action} onClick={this.showEdit}>
               {t('Edit Info')}
             </Button>
@@ -253,7 +254,7 @@ class BaseInfo extends React.Component {
               title={t(networkIsolation ? 'On' : 'Off')}
               description={t('Workspace Network Isolation')}
             />
-            {this.enabledActions.includes('edit') && (
+            {this.enabledActions.includes('manage') && (
               <Switch
                 className={styles.switch}
                 text={t(networkIsolation ? 'On' : 'Off')}
@@ -289,12 +290,14 @@ class BaseInfo extends React.Component {
                 title={t(networkIsolation ? 'On' : 'Off')}
                 description={t('Workspace Network Isolation')}
               />
-              <Switch
-                className={styles.switch}
-                text={t(networkIsolation ? 'On' : 'Off')}
-                onChange={this.handleNetworkChange(cluster.name)}
-                checked={networkIsolation}
-              />
+              {this.enabledActions.includes('manage') && (
+                <Switch
+                  className={styles.switch}
+                  text={t(networkIsolation ? 'On' : 'Off')}
+                  onChange={this.handleNetworkChange(cluster.name)}
+                  checked={networkIsolation}
+                />
+              )}
             </div>
           )
         })}
@@ -314,7 +317,7 @@ class BaseInfo extends React.Component {
         />
         {this.renderBaseInfo()}
         {this.renderNetwork()}
-        {this.enabledActions.includes('delete') && this.renderDelete()}
+        {this.enabledActions.includes('manage') && this.renderDelete()}
       </div>
     )
   }

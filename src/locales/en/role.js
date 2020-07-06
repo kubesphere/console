@@ -110,8 +110,7 @@ export default {
   APP_TEMPLATES_VIEW_DESC: 'View platform App Store',
   APP_TEMPLATES_MANAGEMENT_DESC:
     'Manage App Store at platform level and responsible for unified lifecycle management of cloud native applications including their release, removal and review',
-  PLATFORM_SETTINGS_MANAGEMENT_DESC:
-    'Manage platform settings, such as customized platform information, log collection configuration and email notification',
+  PLATFORM_SETTINGS_MANAGEMENT_DESC: 'Manage platform settings.',
   ACCOUNT_ROLE_DESC:
     'Account roles define the authorization an account has in the platform.',
   ACCOUNT_ROLE_CREATE_DESC:
@@ -193,6 +192,8 @@ export default {
   WORKSPACE_APP_TEMPLATES_VIEW_DESC: 'View workspace app templates',
   WORKSPACE_APP_TEMPLATES_MANAGEMENT_DESC:
     'Upload/edit/delete workspace app templates; release/remove apps to App Store in the platform',
+  WORKSPACE_SETTINGS_DESC:
+    'Manage workspace settings, edit workspace information, network policies, etc.',
 
   ROLE_PLATFORM_ADMIN:
     'Platform administrator who can manage all resources in the platform.',

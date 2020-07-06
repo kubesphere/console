@@ -93,8 +93,7 @@ export default {
   APP_TEMPLATES_MANAGEMENT_DESC:
     '管理平台级别的应用商店，对云原生应用的上架、下架以及审核等应用全生命周期的统一管理。',
   'Platform Settings Management': '平台设置管理',
-  PLATFORM_SETTINGS_MANAGEMENT_DESC:
-    '管理平台设置，如自定义平台信息，logo，配置日志收集，邮件通知等。',
+  PLATFORM_SETTINGS_MANAGEMENT_DESC: '管理平台设置',
 
   'Workspace Roles View': '角色查看',
   'Workspace Roles Management': '角色管理',
@@ -114,6 +113,7 @@ export default {
   WORKSPACE_APP_TEMPLATES_VIEW_DESC: '查看企业空间应用模板',
   WORKSPACE_APP_TEMPLATES_MANAGEMENT_DESC:
     '上传/编辑/删除 企业空间应用模板，上架/下架应用到平台的应用商店',
+  WORKSPACE_SETTINGS_DESC: '管理企业空间设置，编辑企业空间信息、网络策略等',
 
   'Projects Management': '项目管理',
   'Projects View': '项目查看',

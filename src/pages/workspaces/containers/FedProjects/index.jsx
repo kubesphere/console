@@ -159,7 +159,12 @@ export default class Projects extends React.Component {
     this.props.trigger('project.create', {
       ...this.props.match.params,
       store: this.projectStore,
-      success: this.getData,
+      success: type => {
+        this.handleTabChange(type)
+        if (type === 'federatedprojects') {
+          this.getData()
+        }
+      },
     })
 
   render() {

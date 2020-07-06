@@ -43,6 +43,8 @@ export default {
         })
       const modal = Modal.open({
         onOk: async data => {
+          let selectCluster = ''
+          let projectType = 'projects'
           set(data, 'metadata.labels["kubesphere.io/workspace"]', workspace)
           const clusters = uniqBy(
             get(data, 'spec.placement.clusters', []),
@@ -64,16 +66,19 @@ export default {
             await federatedStore.create(FED_TEMPLATES.namespaces(data), {
               namespace: get(data, 'metadata.name'),
             })
+            projectType = 'federatedprojects'
           } else {
-            await store.create(data, {
+            const params = {
               cluster: cluster || get(clusters, '[0].name'),
               workspace,
-            })
+            }
+            await store.create(data, params)
+            selectCluster = params.cluster
           }
 
           Modal.close(modal)
           Notify.success({ content: `${t('Created Successfully')}!` })
-          success && success()
+          success && success(projectType, selectCluster)
         },
         hideCluster: !globals.app.isMultiCluster || !!cluster,
         multiCluster,

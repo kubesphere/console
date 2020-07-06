@@ -55,6 +55,10 @@ export const ROLE_MODULES = {
       name: 'Access Control',
       icon: 'key',
     },
+    {
+      name: 'Workspace Settings',
+      icon: 'cogwheel',
+    },
   ],
   roles: [
     {
