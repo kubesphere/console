@@ -16,17 +16,18 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { isEmpty } from 'lodash'
 import React from 'react'
 import { toJS } from 'mobx'
 import { inject, observer } from 'mobx-react'
-import { Table } from '@pitrix/lego-ui'
 
 import { getLocalTime } from 'utils'
 import { ROLE_QUERY_KEY } from 'utils/constants'
-import { Card, Status } from 'components/Base'
+import { Panel, Status } from 'components/Base'
+import Table from 'components/Tables/Base'
 
 import UserStore from 'stores/user'
+
+import styles from './index.scss'
 
 @inject('detailStore')
 @observer
@@ -34,6 +35,10 @@ export default class AuthorizedUsers extends React.Component {
   store = new UserStore()
 
   componentDidMount() {
+    this.fetchData()
+  }
+
+  fetchData = (params = {}) => {
     const { name, namespace, workspace, cluster } = this.props.match.params
     const { module } = this.props.detailStore
     this.store.fetchList({
@@ -41,6 +46,7 @@ export default class AuthorizedUsers extends React.Component {
       namespace,
       workspace,
       cluster,
+      ...params,
     })
   }
 
@@ -73,22 +79,23 @@ export default class AuthorizedUsers extends React.Component {
   ]
 
   render() {
-    const { data, isLoading } = toJS(this.store.list)
+    const { data, total, page, limit, isLoading } = toJS(this.store.list)
 
-    const isEmptyList = isEmpty(data) && !isLoading
+    const pagination = { total, page, limit }
 
     return (
-      <Card
-        title={t('Authorized Users')}
-        isEmpty={isEmptyList}
-        empty={t('No authorized users')}
-      >
+      <Panel title={t('Authorized Users')}>
         <Table
-          dataSource={data}
+          className={styles.table}
+          data={data}
           columns={this.getColumns()}
-          loading={isLoading}
+          pagination={pagination}
+          isLoading={isLoading}
+          onFetch={this.fetchData}
+          hideCustom
+          hideHeader
         />
-      </Card>
+      </Panel>
     )
   }
 }
