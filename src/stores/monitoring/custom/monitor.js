@@ -125,7 +125,7 @@ export default class PanelMonitor {
 
   @action
   fetchMetrics = async ({ start, end }) => {
-    const { targets = [], namespace } = this.config
+    const { targets = [], cluster, namespace } = this.config
 
     this.timeRange = { start, end }
 
@@ -140,6 +140,7 @@ export default class PanelMonitor {
         targets.map(async target => {
           const { expr, step } = target
           const data = await this.fetchMetric({
+            cluster,
             namespace,
             expr,
             step,
@@ -193,13 +194,16 @@ export default class PanelMonitor {
     })
   }
 
-  fetchMetric = async ({ expr, step, start, end, namespace }) => {
+  fetchMetric = async ({ expr, step, start, end, cluster, namespace }) => {
     if (!expr) {
       return []
     }
+
     const response =
       (await request.get(
-        `${this.apiVersion}/namespaces/${namespace}/targets/query`,
+        `${this.apiVersion}${
+          cluster ? `/klusters/${cluster}` : ''
+        }/namespaces/${namespace}/targets/query`,
         {
           expr,
           step,

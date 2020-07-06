@@ -27,10 +27,10 @@ import Base from 'stores/base'
 export default class CustomMonitoringDashboardStore extends Base {
   module = 'dashboards'
 
-  getListUrl = ({ namespace }) =>
-    `${this.apiVersion}/namespaces/${namespace}/${this.module}`
+  getListUrl = ({ cluster, namespace }) =>
+    `${this.apiVersion}${this.getPath({ cluster, namespace })}/${this.module}`
 
-  create({ namespace, name, ...spec }) {
+  create({ cluster, namespace, name, ...spec }) {
     return super.create(
       {
         apiVersion: 'monitoring.kubesphere.io/v1alpha1',
@@ -41,13 +41,13 @@ export default class CustomMonitoringDashboardStore extends Base {
         },
         spec,
       },
-      { namespace }
+      { cluster, namespace }
     )
   }
 
-  edit({ namespace, name, resourceVersion, ...spec }) {
+  edit({ cluster, namespace, name, resourceVersion, ...spec }) {
     return this.update(
-      { namespace, name },
+      { cluster, namespace, name },
       {
         apiVersion: 'monitoring.kubesphere.io/v1alpha1',
         kind: 'Dashboard',
