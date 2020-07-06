@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, isEmpty } from 'lodash'
+import { get, isEmpty, set } from 'lodash'
 import { toJS } from 'mobx'
 import { Modal, Notify } from 'components/Base'
 
@@ -26,6 +26,7 @@ import EditServiceModal from 'projects/components/Modals/ServiceSetting'
 import EditGatewayModal from 'projects/components/Modals/ServiceGatewaySetting'
 import DeleteModal from 'projects/components/Modals/ServiceDelete'
 import { MODULE_KIND_MAP } from 'utils/constants'
+import { getOverrides } from 'utils/cluster'
 import formPersist from 'utils/form.persist'
 import FORM_TEMPLATES from 'utils/form.templates'
 import FORM_STEPS from 'configs/steps/services'
@@ -130,6 +131,38 @@ export default {
         },
         modal: EditGatewayModal,
         detail: detail._originData,
+        store,
+        ...props,
+      })
+    },
+  },
+  'fedservice.gateway.edit': {
+    on({ store, cluster, detail, resources, success, ...props }) {
+      const modal = Modal.open({
+        onOk: newObject => {
+          const { name, namespace, template, overrides } = detail
+          const data = {}
+          let override = overrides.find(od => od.clusterName === cluster)
+          if (!override) {
+            override = {
+              clusterName: cluster,
+              clusterOverrides: [],
+            }
+            overrides.push(override)
+          }
+
+          const keys = ['metadata.annotations', 'spec.type', 'spec.ports']
+          override.clusterOverrides = getOverrides(template, newObject, keys)
+          set(data, 'spec.overrides', overrides)
+
+          store.patch({ name, namespace }, data).then(() => {
+            Modal.close(modal)
+            Notify.success({ content: `${t('Updated Successfully')}!` })
+            success && success()
+          })
+        },
+        modal: EditGatewayModal,
+        detail: get(resources, `${cluster}._originData`),
         store,
         ...props,
       })

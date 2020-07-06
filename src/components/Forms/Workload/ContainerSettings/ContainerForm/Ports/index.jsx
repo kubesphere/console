@@ -45,7 +45,11 @@ export default class Ports extends React.Component {
     if (value.length > 0) {
       const names = []
       value.forEach(item => {
-        if (!item.name || !item.containerPort) {
+        if (
+          !item.name ||
+          !item.containerPort ||
+          (this.props.withService && !item.servicePort)
+        ) {
           return callback({ message: t('Invalid port') })
         }
 
@@ -67,7 +71,13 @@ export default class Ports extends React.Component {
     callback()
   }
 
-  checkContainerPortValid = value => value && value.name && value.containerPort
+  checkContainerPortValid = value => {
+    if (this.props.withService) {
+      return value && value.name && value.containerPort && value.servicePort
+    }
+
+    return value && value.name && value.containerPort
+  }
 
   render() {
     const { withService, className } = this.props

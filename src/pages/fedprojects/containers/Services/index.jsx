@@ -86,7 +86,7 @@ export default class Services extends React.Component {
   }
 
   get tableActions() {
-    const { tableProps, name, rowKey, trigger } = this.props
+    const { tableProps, name, trigger } = this.props
     return {
       ...tableProps.tableActions,
       selectActions: [
@@ -98,7 +98,7 @@ export default class Services extends React.Component {
           onClick: () =>
             trigger('resource.batch.delete', {
               type: t(name),
-              rowKey,
+              rowKey: 'name',
             }),
         },
       ],

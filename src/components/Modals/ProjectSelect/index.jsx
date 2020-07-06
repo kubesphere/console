@@ -186,6 +186,7 @@ export default class ProjectSelectModal extends React.Component {
       rootStore.triggerAction('project.create', {
         store: this.projectStore,
         workspace,
+        success: this.fetchData,
       })
     } else {
       rootStore.triggerAction('devops.create', {

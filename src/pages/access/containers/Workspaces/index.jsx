@@ -135,9 +135,8 @@ export default class Workspaces extends React.Component {
   }
 
   showCreate = () => {
-    const { module, getData } = this.props
+    const { getData } = this.props
     return this.props.trigger('workspace.create', {
-      module,
       success: getData,
     })
   }

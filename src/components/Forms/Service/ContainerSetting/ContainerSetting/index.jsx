@@ -156,9 +156,7 @@ export default class ContainerSetting extends React.Component {
     return (
       <Form.Group
         label={t('Container Settings')}
-        desc={t(
-          'Please set the container name and computing resources.'
-        )}
+        desc={t('Please set the container name and computing resources.')}
         noWrapper
       >
         <Form.Item
