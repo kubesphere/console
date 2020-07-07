@@ -37,7 +37,7 @@ export default {
   USER_AVATAR_TIP:
     'The avatar size must be less than 120px X 120px and support png, jpg format.',
   MEMBER_ROLE_CREATE_DESC:
-    'What a user is authorized to do depends on the role which defines the user’s identity, as well as the relation between the user and resources that the user has access to view and handle. Users can create custom roles when the preset role of KubeSphere does not meet their needs. The biggest advantage of custom roles is that they can be set to support detailed management of platform resources as different roles can be authorized to access different resources.',
+    'What a user is authorized to do depends on the role which defines the user’s identity, as well as the relation between the user and resources that the user has access to view and handle. Users can create custom roles when the preset role of KubeSphere does not meet their needs. The biggest advantage of custom roles is that they can be set to support fine-grained management of platform resources as different roles can be authorized to access different resources.',
   CLUSTER_ROLE_DESC:
     'This module allows you to manage the access of users within a cluster.',
 }
