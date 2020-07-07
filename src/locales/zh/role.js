@@ -38,6 +38,7 @@ export default {
 
   'Role Identifier': '角色标识符',
   'Edit Authorization': '编辑权限',
+  WORKSPACE_ROLE_NAME_TIP: '请设置一个唯一标识符作为角色名称。',
 
   'Create Project Role': '创建项目角色',
   'Edit Project Role': '编辑项目角色',

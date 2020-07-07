@@ -28,7 +28,8 @@ export default {
     'Password must contain numbers and letters, and must be at least 6 characters in length.',
   ROLE_DESC:
     'The role types are classified into cluster and project. The role of cluster type is used for managing the cluster.',
-  USER_DESC: 'This module allows the system admin to manage accounts, such as creating/updating/reading/deleting an account. The admin can also manage the role of each account. Users can log in the platform through their account name or email address.',
+  USER_DESC:
+    'This module allows the system admin to manage accounts, such as creating/updating/reading/deleting an account. The admin can also manage the role of each account. Users can log in the platform through their account name or email address.',
   USER_CREATE_DESC:
     'This module allows the system admin to manage accounts, such as creating/updating/reading/deleting an account. The admin can also manage the role of each account. Users can log in the platform through their account name or email address.',
   ROLE_BASEINFO_DESC: '',
@@ -36,7 +37,7 @@ export default {
   USER_AVATAR_TIP:
     'The avatar size must be less than 120px X 120px and support png, jpg format.',
   MEMBER_ROLE_CREATE_DESC:
-    "User rights management roles depend on the definition, role identifies the user's identity, defines the relationship between the user and can access resources / operations. When KubeSphere does not meet the requirements of preset roles, according to the actual situation, create a custom role to a user, self-defined roles that is the biggest advantage of fine-grained management of platform resources, specify what the role has certain specified resource authorization.",
+    'What a user is authorized to do depends on the role which defines the user’s identity, as well as the relation between the user and resources that the user has access to view and handle. Users can create custom roles when the preset role of KubeSphere does not meet their needs. The biggest advantage of custom roles is that they can be set to support fine-grained management of platform resources as different roles can be authorized to access different resources.',
   CLUSTER_ROLE_DESC:
     'This module allows you to manage the access of users within a cluster.',
 }
