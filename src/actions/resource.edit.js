@@ -20,6 +20,7 @@ import { toJS } from 'mobx'
 import { Modal } from 'components/Base'
 import EditBasicInfoModal from 'components/Modals/EditBasicInfo'
 import EditYamlModal from 'components/Modals/EditYaml'
+import { set } from 'lodash'
 
 export default {
   'resource.baseinfo.edit': {
@@ -42,7 +43,8 @@ export default {
     on({ store, detail, success, ...props }) {
       const modal = Modal.open({
         onOk: async data => {
-          await store.patch(detail, data)
+          set(data, 'metadata.resourceVersion', detail.resourceVersion)
+          await store.update(detail, data)
           Modal.close(modal)
           success && success()
         },
