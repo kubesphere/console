@@ -19,7 +19,7 @@
 import { getIndexRoute } from 'utils/router.config'
 
 import Usage from './Usage'
-import NodeUsageRanking from './Ranking'
+import UsageRanking from './Ranking'
 
 const PATH = '/clusters/:cluster/monitor-resource'
 export default [
@@ -31,8 +31,8 @@ export default [
   },
   {
     path: `${PATH}/ranking`,
-    title: 'Node Usage Ranking',
-    component: NodeUsageRanking,
+    title: 'Usage Ranking',
+    component: UsageRanking,
     exact: true,
   },
   getIndexRoute({ path: PATH, to: `${PATH}/usage`, exact: true }),

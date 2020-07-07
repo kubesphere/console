@@ -78,7 +78,6 @@ class Ranking extends React.Component {
       >
         <div className={styles.toolbar_filter}>
           <SortMetricSelect store={this.store} />
-
           <span className={styles.sort_button}>
             <Icon
               name={
@@ -103,7 +102,7 @@ class Ranking extends React.Component {
     return (
       <Loading spinning={this.store.isLoading}>
         <div>
-          <Table store={this.store} />
+          <Table cluster={this.props.cluster} store={this.store} />
           {this.renderPagination()}
         </div>
       </Loading>
