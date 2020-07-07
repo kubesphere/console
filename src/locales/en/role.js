@@ -86,6 +86,7 @@ export default {
 
   CLUSTER_SETTINGS_DESC:
     'Manage cluster settings and authorizations to workspaces & edit cluster information',
+  WORKSPACE_ROLE_NAME_TIP: 'Please give a unique identifier as the role name.',
   ROLE_CREATE_TIP_TITLE: 'Next Step',
   ROLE_CREATE_TIP_MESSAGE:
     'You need to edit authorization after which the role can be created successfully.',
@@ -205,7 +206,8 @@ export default {
   ROLE_CLUSTER_VIEWER:
     'Allows cluster-viwer to view all resources in the cluster.',
   ROLE_USERS_MANAGER: 'User manager in the platform who manages all users.',
-  ROLE_WORKSPACES_MANAGER: 'Workspace manager in the platform who manages all workspaces in the platform.',
+  ROLE_WORKSPACES_MANAGER:
+    'Workspace manager in the platform who manages all workspaces in the platform.',
 
   ROLE_WORKSPACE_ADMIN:
     'Allows admin access to perform any action on any resource. It gives full control over all resources in the workspace.',
