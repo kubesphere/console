@@ -227,7 +227,7 @@ export const getWorkloadReplicaCount = (record, module) => {
       result.total = get(record, 'podNums', 0)
       break
     case 'daemonsets':
-      result.ready = get(record, 'status.numberAvailable', 0)
+      result.ready = get(record, 'status.numberReady', 0)
       result.total = get(record, 'status.desiredNumberScheduled', 0)
       break
   }
