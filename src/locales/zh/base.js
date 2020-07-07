@@ -84,7 +84,7 @@ export default {
   ACCESS_CONTROL_DESC: '对平台中的企业空间、账号、以及角色权限进行统一管理',
   APP_STORE_MANAGEMENT_DESC:
     '对云原生应用的上架、下架以及审核等应用全生命周期的统一管理',
-  PLATFORM_SETTINGS_DESC: '定制化平台设置，如平台基本信息、日志收集器等',
+  PLATFORM_SETTINGS_DESC: '定制化平台设置，如平台基本信息等',
 
   Loading: '加载中',
   Active: '已启用',
