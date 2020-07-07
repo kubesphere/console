@@ -155,7 +155,11 @@ class Ranking extends React.Component {
     return (
       <Loading spinning={this.store.isLoading}>
         <div>
-          <Table store={this.store} />
+          <Table
+            store={this.store}
+            cluster={this.state.cluster}
+            workspace={this.workspace}
+          />
           {this.renderPagination()}
         </div>
       </Loading>

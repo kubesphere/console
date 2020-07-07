@@ -21,13 +21,12 @@ import { inject, observer } from 'mobx-react'
 
 import { getSuitableValue } from 'utils/monitoring'
 
-import { Icon } from '@pitrix/lego-ui'
-import { Empty } from 'components/Base'
+import { Avatar, Empty } from 'components/Base'
 import Table from 'components/Tables/Ranking'
 
 @inject('rootStore')
 @observer
-export default class NodeUsageRank extends React.Component {
+export default class ProjectUsageRank extends React.Component {
   IconWidth = 40
 
   rankTdWidth = 124
@@ -41,22 +40,24 @@ export default class NodeUsageRank extends React.Component {
     return isNaN(number) ? '-' : `${number} ${unit}`
   }
 
+  get prefix() {
+    const { workspace, cluster } = this.props
+    return `${workspace ? `/${workspace}` : ''}/clusters/${cluster}/projects`
+  }
+
   columns = [
-    {
-      width: this.IconWidth,
-      key: 'icon',
-      render: () => <Icon name="project" type="dark" size={40} />,
-    },
     {
       dataIndex: 'namespace',
       title: t('Project'),
       render: namespace => (
-        <div>
-          <h3>{namespace}</h3>
-        </div>
+        <Avatar
+          icon="project"
+          iconSize={40}
+          title={namespace}
+          to={`${this.prefix}/${namespace}`}
+        />
       ),
     },
-
     {
       sort_metric: 'namespace_cpu_usage',
       key: 'cpu',
