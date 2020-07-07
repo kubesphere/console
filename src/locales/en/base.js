@@ -159,7 +159,7 @@ export default {
     'Unified lifecycle management of cloud native applications including their release, removal and review',
 
   PLATFORM_SETTINGS_DESC:
-    'Customized platform settings, including basic info and log collector',
+    'Customized platform settings including basic info',
 
   DATA_SOURCE: 'Data Source',
 
