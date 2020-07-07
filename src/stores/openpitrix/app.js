@@ -33,14 +33,15 @@ export default class App extends Base {
   @observable
   allApps = []
 
-  uploadScreenshots = []
+  uploadScreenshotsList = []
 
   @action
   upload = async ({ app_id, ...data } = {}) => {
     await request.patch(this.getUrl({ app_id }), data)
   }
 
-  uploadBySequence = async (start, index, base64Str, detail) => {
+  @action
+  uploadBySequence = async (start, index, base64Str, screenshotStr) => {
     await this.upload({
       app_id: this.detail.app_id,
       type: 'screenshot',
@@ -48,20 +49,22 @@ export default class App extends Base {
       sequence: start + index,
     })
 
-    const screenshotStr = get(this.detail, 'screenshots', '')
     const newScreenshots = screenshotStr
       ? `${screenshotStr},${base64Str}`
       : base64Str
-    this.detail = {
-      ...detail,
-      screenshots: newScreenshots,
-    }
 
     const nextIndex = index + 1
-    const nextBase64Str = this.uploadScreenshots[nextIndex]
+    const nextBase64Str = this.uploadScreenshotsList[nextIndex]
     if (nextBase64Str) {
-      await this.uploadBySequence(start, nextIndex, nextBase64Str, detail)
+      return await this.uploadBySequence(
+        start,
+        nextIndex,
+        nextBase64Str,
+        newScreenshots
+      )
     }
+
+    return newScreenshots
   }
 
   @action
@@ -87,34 +90,37 @@ export default class App extends Base {
     })
 
   @action
-  uploadScreenshot = async (base64Str, detail, index) => {
-    const screenshotStr = get(this.detail, 'screenshots', '')
-    const screenshots = screenshotStr ? screenshotStr.split(',') : []
-    const total = index + screenshots.length
+  uploadScreenshot = async (base64Str, screenshotsList, index) => {
+    const len = screenshotsList.length
+    const total = index + len
+    let screenshotStr = ''
 
     if (total >= SCREENSHOTS_LIMIT) {
       return false
     }
 
     if (index === 0) {
-      this.uploadScreenshots = [base64Str]
-      await this.uploadBySequence(screenshots.length, index, base64Str, detail)
-    } else {
-      this.uploadScreenshots.push(base64Str)
+      this.uploadScreenshotsList = [base64Str]
+      const screenshotsStr = len < 1 ? '' : screenshotsList.join(',')
+      screenshotStr = await this.uploadBySequence(
+        len,
+        index,
+        base64Str,
+        screenshotsStr
+      )
+      return screenshotStr
     }
+    this.uploadScreenshotsList.push(base64Str)
   }
 
   @action
   deleteScreenshot = async (index, detail) => {
-    const screenshotStr = get(this.detail, 'screenshots', '')
+    let screenshotStr = get(detail, 'screenshots', '')
     const screenshots = screenshotStr ? screenshotStr.split(',') : []
 
     if (index >= 0) {
       screenshots.splice(index, 1)
-      this.detail = {
-        ...detail,
-        screenshots: screenshots.join(','),
-      }
+      screenshotStr = screenshots.join(',')
 
       await this.upload({
         app_id: this.detail.app_id,
@@ -122,19 +128,18 @@ export default class App extends Base {
         attachment_content: '',
         sequence: index,
       })
-
-      return
+    } else {
+      for (let i = screenshots.length - 1; i >= 0; i--) {
+        await this.upload({
+          app_id: this.detail.app_id,
+          type: 'screenshot',
+          attachment_content: '',
+          sequence: i,
+        })
+      }
+      screenshotStr = ''
     }
-
-    this.detail.screenshots = ''
-    for (let i = screenshots.length - 1; i >= 0; i--) {
-      await this.upload({
-        app_id: this.detail.app_id,
-        type: 'screenshot',
-        attachment_content: '',
-        sequence: i,
-      })
-    }
+    return screenshotStr
   }
 
   // data action value is: suspend、recover

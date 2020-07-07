@@ -45,13 +45,8 @@ export default class ImageSlider extends React.PureComponent {
     super(props)
     this.state = {
       showOverlay: false,
-      selectedIdx: 0,
       currentIdx: props.defaultIdx || 0,
     }
-  }
-
-  componentDidMount() {
-    this.startAnimation()
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -63,12 +58,6 @@ export default class ImageSlider extends React.PureComponent {
 
   componentWillUnmount() {
     this.stopAnimation()
-  }
-
-  startAnimation() {
-    if (this.props.images.length && !this.timer) {
-      // this.timer = setInterval(this.showNextPic, 2000)
-    }
   }
 
   stopAnimation() {
@@ -84,12 +73,11 @@ export default class ImageSlider extends React.PureComponent {
     this.stopAnimation()
     this.setState({
       showOverlay: true,
-      selectedIdx: parseInt(idx, 10) || 0,
+      currentIdx: parseInt(idx, 10) || 0,
     })
   }
 
   closeOverlay = () => {
-    this.startAnimation()
     this.setState({
       showOverlay: false,
     })
@@ -124,15 +112,12 @@ export default class ImageSlider extends React.PureComponent {
 
   goToIdx = idx => {
     this.stopAnimation()
-    this.setState({ currentIdx: idx }, () => {
-      this.startAnimation()
-    })
+    this.setState({ currentIdx: idx })
   }
 
   renderOverlay() {
-    const { showOverlay, selectedIdx } = this.state
-    const selectedPic = this.props.images[selectedIdx]
-
+    const { showOverlay, currentIdx } = this.state
+    const selectedPic = this.props.images[currentIdx]
     if (!showOverlay) {
       return null
     }

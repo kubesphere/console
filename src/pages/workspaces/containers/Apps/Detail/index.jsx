@@ -90,10 +90,11 @@ export default class RoleDetail extends React.Component {
         action: 'manage',
         onClick: () =>
           this.trigger('openpitrix.template.edit', {
-            detail: toJS(detail),
+            detail,
             title: t('Edit App Information'),
             description: t('EDIT_APP_DESC'),
             icon: 'pen',
+            success: () => this.fetchData(),
           }),
       },
       {
@@ -120,6 +121,7 @@ export default class RoleDetail extends React.Component {
             appId: detail.app_id,
             type: 'ADD_VERSION',
             versionStore: this.versionStore,
+            success: () => this.fetchData(),
           }),
       },
       {
@@ -127,7 +129,13 @@ export default class RoleDetail extends React.Component {
         icon: 'trash',
         text: t('Delete'),
         action: 'manage',
-        onClick: () => this.showModal('deleteModule'),
+        onClick: () =>
+          this.trigger('resource.delete', {
+            store: this.store,
+            type: t('App Templates'),
+            detail,
+            success: () => this.routing.push(this.listUrl),
+          }),
       },
     ]
   }

@@ -102,7 +102,6 @@ export default class AppList extends React.PureComponent {
 
   render() {
     const { apps, isLoading, total, onFetchMore, title, className } = this.props
-
     return (
       <div className={classnames(styles.appList, className)}>
         {title && <p className="apps-title">{title}</p>}

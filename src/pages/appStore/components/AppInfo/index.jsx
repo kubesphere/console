@@ -32,10 +32,12 @@ export default class AppInfo extends React.PureComponent {
     app: PropTypes.object.isRequired,
     versions: PropTypes.array,
   }
+
   static defaultProps = {
     app: {},
     versions: [],
   }
+
   filterImages(images) {
     if (typeof images === 'string') {
       return images
@@ -48,8 +50,10 @@ export default class AppInfo extends React.PureComponent {
     }
     return []
   }
+
   renderVersionTable() {
     const { versions } = this.props
+
     return (
       <table className={styles.versions}>
         <thead>
@@ -77,6 +81,7 @@ export default class AppInfo extends React.PureComponent {
       </table>
     )
   }
+
   render() {
     const { className, app } = this.props
     const { abstraction, screenshots } = app
