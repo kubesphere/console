@@ -30,27 +30,27 @@ const BANDWIDTH_RULE_CONFIG = getBaseRuleConfig({
 })
 
 export default {
-  workload_pod_cpu_usage: {
+  workload_cpu_usage: {
     label: 'cpu usage',
     prefixIcon: 'cpu',
     ruleConfig: CPU_RULE_CONFIG,
   },
-  workload_pod_memory_usage: {
+  workload_memory_usage: {
     label: 'memory usage (including cache)',
     prefixIcon: 'memory',
     ruleConfig: MEMORY_RULE_CONFIG,
   },
-  workload_pod_memory_usage_wo_cache: {
+  workload_memory_usage_wo_cache: {
     label: 'memory usage',
     prefixIcon: 'memory',
     ruleConfig: MEMORY_RULE_CONFIG,
   },
-  workload_pod_net_bytes_transmitted: {
+  workload_net_bytes_transmitted: {
     label: 'network data transmitting rate',
     prefixIcon: 'network',
     ruleConfig: BANDWIDTH_RULE_CONFIG,
   },
-  workload_pod_net_bytes_received: {
+  workload_net_bytes_received: {
     label: 'network data receiving rate',
     prefixIcon: 'network',
     ruleConfig: BANDWIDTH_RULE_CONFIG,
