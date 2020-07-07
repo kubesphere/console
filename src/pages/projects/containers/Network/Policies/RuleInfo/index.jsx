@@ -224,12 +224,12 @@ export default class RuleInfo extends React.Component {
             {get(item, `spec.${direction}[0].ports`, []).map((rule, i) => {
               const showName = `${rule.port}/${rule.protocol}`
               return (
-                <>
+                <label key={showName}>
                   {i === 0 && <Icon name="port" />}
-                  <span className={styles.port} key={showName}>
+                  <span className={styles.port}>
                     <b>{showName}</b>
                   </span>
-                </>
+                </label>
               )
             })}
           </div>

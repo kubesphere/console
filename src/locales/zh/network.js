@@ -63,4 +63,5 @@ export default {
   NETWORK_POLICY_D_OP2: 'Ingress(入口)',
 
   CIDR_DESC: '将根据流量的方向',
+  NETWORK_POLICY_MODAL_DIRECT: '请选择规则方向',
 }
