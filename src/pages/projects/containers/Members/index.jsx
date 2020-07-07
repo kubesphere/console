@@ -42,6 +42,7 @@ export default class Members extends React.Component {
   get canViewRoles() {
     return globals.app.hasPermission({
       ...this.props.match.params,
+      project: this.props.match.params.namespace,
       module: 'roles',
       action: 'view',
     })
