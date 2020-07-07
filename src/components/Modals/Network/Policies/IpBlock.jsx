@@ -90,12 +90,18 @@ export default class NetworkPoliciesIpBlockModal extends React.Component {
     cidr.ip.valid = PATTERN_IP.test(ip.value)
     cidr.mask.valid = PATTERN_IP_MASK.test(mask.value)
     let validated = cidr.ip.valid && cidr.mask.valid
-
-    portRules.forEach(rule => {
-      rule.port.valid =
-        isEmpty(rule.port.value) || PATTERN_IP_MASK.test(rule.port.value)
-      validated = rule.port.valid
-    })
+    const isValidPort = function(v) {
+      return v !== '' && /^(?![0])(\d{0,5})$/.test(v) && v < 65536
+    }
+    if (validated) {
+      portRules.forEach(rule => {
+        rule.port.valid =
+          isEmpty(rule.port.value) || isValidPort(rule.port.value)
+        if (!rule.port.valid) {
+          validated = false
+        }
+      })
+    }
     this.setState({
       cidr,
       portRules,

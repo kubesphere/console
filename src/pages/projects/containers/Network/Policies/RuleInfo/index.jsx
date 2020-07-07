@@ -221,13 +221,15 @@ export default class RuleInfo extends React.Component {
                 )}
               </b>
             </span>
-            <Icon name="port" />
-            {get(item, `spec.${direction}[0].ports`, []).map(rule => {
+            {get(item, `spec.${direction}[0].ports`, []).map((rule, i) => {
               const showName = `${rule.port}/${rule.protocol}`
               return (
-                <span className={styles.port} key={showName}>
-                  <b>{showName}</b>
-                </span>
+                <>
+                  {i === 0 && <Icon name="port" />}
+                  <span className={styles.port} key={showName}>
+                    <b>{showName}</b>
+                  </span>
+                </>
               )
             })}
           </div>
@@ -255,7 +257,11 @@ export default class RuleInfo extends React.Component {
       const item = get(toJS(data), '_originData')
       if (isEmpty(get(item, 'spec.egress[0].ports'))) {
         if (!isEmpty(get(item, 'spec.egress[0].to'))) {
-          innerEgressData.push(item)
+          if (!isEmpty(get(item, 'spec.egress[0].to[0].ipBlock'))) {
+            outerEgressData.push(item)
+          } else {
+            innerEgressData.push(item)
+          }
         }
       } else {
         outerEgressData.push(item)
@@ -263,7 +269,11 @@ export default class RuleInfo extends React.Component {
 
       if (isEmpty(get(item, 'spec.ingress[0].ports'))) {
         if (!isEmpty(get(item, 'spec.ingress[0].from'))) {
-          innerIngressData.push(item)
+          if (!isEmpty(get(item, 'spec.ingress[0].from[0].ipBlock'))) {
+            outerIngressData.push(item)
+          } else {
+            innerIngressData.push(item)
+          }
         }
       } else {
         outerIngressData.push(item)
