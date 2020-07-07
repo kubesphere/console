@@ -44,7 +44,7 @@ export default function WorkloadStatus({ data, module }) {
           type={statusResult}
           name={t(statusResult)}
           total={get(data, 'status.desiredNumberScheduled', 0)}
-          ready={get(data, 'status.numberAvailable', 0)}
+          ready={get(data, 'status.numberReady', 0)}
           flicker
         />
       </div>
