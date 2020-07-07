@@ -63,6 +63,9 @@
 .error {
   border: 1px solid $danger !important;
 }
+.errColor {
+  color: $danger;
+}
 .addBtn {
   display: flex;
   justify-content: flex-end;
@@ -92,6 +95,7 @@
         &.radio-button-wrapper-checked {
           color: $dark-color07;
           border-color: $dark-color01;
+          box-shadow: 0 4px 8px 0 rgba(36, 46, 66, 0.2) !important;
         }
         border-radius: 5px !important;
         padding: 0 15px;

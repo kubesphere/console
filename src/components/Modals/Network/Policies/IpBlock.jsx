@@ -35,7 +35,7 @@ export default class NetworkPoliciesIpBlockModal extends React.Component {
     this.projectStore = props.projectStore
     this.serviceStore = new ServiceStore()
     this.state = {
-      specType: 'egress',
+      specType: '',
       specNameSpaces: [],
       specServices: [],
       specCurNameSpace: props.namespace,
@@ -85,13 +85,18 @@ export default class NetworkPoliciesIpBlockModal extends React.Component {
   }
 
   validFormData = () => {
-    const { cidr, portRules } = this.state
+    const { specType, cidr, portRules } = this.state
     const { ip, mask } = cidr
     cidr.ip.valid = PATTERN_IP.test(ip.value)
     cidr.mask.valid = PATTERN_IP_MASK.test(mask.value)
     let validated = cidr.ip.valid && cidr.mask.valid
+    let choSpecType = specType
     const isValidPort = function(v) {
       return v !== '' && /^(?![0])(\d{0,5})$/.test(v) && v < 65536
+    }
+    if (specType === '') {
+      validated = false
+      choSpecType = false
     }
     if (validated) {
       portRules.forEach(rule => {
@@ -105,6 +110,7 @@ export default class NetworkPoliciesIpBlockModal extends React.Component {
     this.setState({
       cidr,
       portRules,
+      specType: choSpecType,
     })
 
     return validated
@@ -149,7 +155,15 @@ export default class NetworkPoliciesIpBlockModal extends React.Component {
       >
         <Form.Item
           label={`${t('Direction')}:`}
-          desc={t('NETWORK_POLICY_D_DESC')}
+          desc={
+            specType === false ? (
+              <span className={styles.errColor}>
+                {t('NETWORK_POLICY_MODAL_DIRECT')}
+              </span>
+            ) : (
+              t('NETWORK_POLICY_D_DESC')
+            )
+          }
         >
           <RadioGroup
             size="large"

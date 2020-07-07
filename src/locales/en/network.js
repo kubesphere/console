@@ -54,4 +54,5 @@ export default {
   NETWORK_POLICY_CREATE_DESC:
     'The network policy is configured to allow network isolation within the same cluster, that is, the ability to build a firewall between certain instances (pods).',
   CIDR_DESC: 'Based on the traffic direction',
+  NETWORK_POLICY_MODAL_DIRECT: 'Please select the rule direction',
 }
