@@ -31,7 +31,7 @@ export default {
   LOG_COLLECTION_DESC:
     'The system will collect the stdout and stderr logs from each container and send them to one or more target services.',
   LOG_COLLECTION_ENABLE_TIPS:
-    'The new state takes about 1 minute to take effect.',
+    'The new status takes about 1 minute to take effect.',
   LOG_COLLECTION_FLUENTD_USER_TIPS: 'Username for authentication',
   LOG_COLLECTION_FLUENTD_URL_TIPS:
     'Enter the address of the Fluentd that receives the log.',
