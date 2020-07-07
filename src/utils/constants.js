@@ -1022,7 +1022,7 @@ export const FED_ACTIVE_STATUS = {
 export const APP_LABEL_MODULES = [
   'applications',
   'deployments',
-  'statfulsets',
+  'statefulsets',
   'daemonsets',
   'jobs',
   'cronjobs',
