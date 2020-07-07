@@ -48,6 +48,8 @@ export default class RollBackModal extends React.Component {
     super(props)
 
     this.revisionStore = props.store
+
+    this.form = React.createRef()
   }
 
   get revisions() {
@@ -101,7 +103,7 @@ export default class RollBackModal extends React.Component {
 
   handleOk = () => {
     const { detail, onOk } = this.props
-    if (this.form) {
+    if (this.form && this.form.current) {
       const form = this.form.current
       form &&
         form.validate(() => {

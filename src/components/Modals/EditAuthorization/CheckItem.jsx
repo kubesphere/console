@@ -25,12 +25,20 @@ import styles from './index.scss'
 
 export default class CheckItem extends Component {
   handleCheck = () => {
-    const { roleTemplates, data, onChange } = this.props
+    const { roleTemplates, roleTemplatesMap, data, onChange } = this.props
 
     let newTemplates = [...roleTemplates]
-
     if (newTemplates.includes(data.name)) {
-      newTemplates = newTemplates.filter(item => item !== data.name)
+      if (
+        !newTemplates.some(
+          item =>
+            roleTemplatesMap[item] &&
+            roleTemplatesMap[item].dependencies &&
+            roleTemplatesMap[item].dependencies.includes(data.name)
+        )
+      ) {
+        newTemplates = newTemplates.filter(item => item !== data.name)
+      }
     } else {
       newTemplates.push(data.name, ...data.dependencies)
     }
