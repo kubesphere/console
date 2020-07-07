@@ -99,18 +99,21 @@ export default class Roles extends React.Component {
       title: t('Name'),
       dataIndex: 'app_id',
       width: '27%',
-      render: (app_id, app) => (
-        <Avatar
-          isApp
-          to={`/workspaces/${this.workspace}/apps/${app_id}`}
-          avatarType={'appIcon'}
-          avatar={app.icon}
-          iconLetter={app.name}
-          iconSize={40}
-          title={getDisplayName(app)}
-          desc={app.description}
-        />
-      ),
+      render: (app_id, app) => {
+        const avatar = this.getAvatar(app.icon)
+        return (
+          <Avatar
+            isApp
+            to={`/workspaces/${this.workspace}/apps/${app_id}`}
+            avatarType={'appIcon'}
+            avatar={avatar}
+            iconLetter={app.name}
+            iconSize={40}
+            title={getDisplayName(app)}
+            desc={app.description}
+          />
+        )
+      },
     },
     {
       title: t('Status'),
@@ -142,6 +145,14 @@ export default class Roles extends React.Component {
       render: (time, item) => getLocalTime(time || item.status_time).fromNow(),
     },
   ]
+
+  getAvatar = icon => {
+    const baseUrl = this.props.store.baseUrl
+
+    return String(icon).startsWith('att-')
+      ? `/${baseUrl}/attachments/${icon}?filename=raw`
+      : icon
+  }
 
   render() {
     const { bannerProps, tableProps } = this.props

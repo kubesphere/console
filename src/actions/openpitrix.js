@@ -154,6 +154,7 @@ export default {
         },
         store,
         modal: TemplateEditModal,
+        success,
         ...props,
       })
     },

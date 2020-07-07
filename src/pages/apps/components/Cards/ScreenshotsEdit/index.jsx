@@ -51,30 +51,43 @@ export default class Screenshots extends React.Component {
   uploadScreenshot = async (file, fileList) => {
     const { checkFile, handleFileByBase64Str } = this.props.fileStore
     const { uploadScreenshot } = this.props.store
-    const { detail } = this.props
+    const { detail, handleChange } = this.props
     const result = checkFile(file, 'screenshots')
 
     if (result) {
       this.setState({ error: result })
     } else {
       const index = fileList.indexOf(file)
+
       handleFileByBase64Str(file, async base64Str => {
         this.setState({ error: '' })
-        uploadScreenshot(base64Str, detail, index)
+        const screenshotStr = get(detail, 'screenshots', '')
+        const screenshotsList = screenshotStr ? screenshotStr.split(',') : []
+        const screenshots = await uploadScreenshot(
+          base64Str,
+          screenshotsList,
+          index
+        )
+        handleChange(screenshots, 'screenshots')
       })
     }
 
     return Promise.reject()
   }
 
+  deleteScreenshot = async (index, detail) => {
+    const { handleChange, store } = this.props
+    const { deleteScreenshot } = store
+    const screenshotsList = await deleteScreenshot(index, detail)
+    handleChange(screenshotsList, 'screenshots')
+  }
+
   render() {
     const { error } = this.state
-    const { detail, store } = this.props
-    const { deleteScreenshot } = store
+    const { detail } = this.props
     const screenshotStr = get(detail, 'screenshots', '')
     const screenshots = screenshotStr ? screenshotStr.split(',') : []
     const len = screenshots.length
-
     return (
       <div>
         <div className={styles.title}>{t('App Screenshots')}</div>
@@ -84,7 +97,11 @@ export default class Screenshots extends React.Component {
               <li key={index}>
                 <Image src={item} isBase64Str />
                 <div className={styles.delete}>
-                  <label onClick={() => deleteScreenshot(index, detail)}>
+                  <label
+                    onClick={() => {
+                      this.deleteScreenshot(index, detail)
+                    }}
+                  >
                     <Icon name="trash" size={20} className={styles.icon} />
                     {t('Delete picture')}
                   </label>
@@ -116,7 +133,9 @@ export default class Screenshots extends React.Component {
               {len > 0 ? (
                 <label
                   className={styles.deleteAll}
-                  onClick={() => deleteScreenshot(-1, detail)}
+                  onClick={() => {
+                    this.deleteScreenshot(-1, detail)
+                  }}
                 >
                   {t('Delete all')}
                 </label>

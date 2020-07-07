@@ -89,16 +89,12 @@ export default class Home extends React.Component {
       params.category_id = category
     }
 
-    await this.appStore.fetchList(
-      Object.assign(
-        {
-          limit: STORE_APP_LIMIT,
-          status: 'active',
-        },
-        params,
-        filters
-      )
-    )
+    await this.appStore.fetchList({
+      limit: STORE_APP_LIMIT,
+      status: 'active',
+      ...params,
+      ...filters,
+    })
 
     const { allApps, list } = this.appStore
 
