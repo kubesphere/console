@@ -144,9 +144,11 @@ class LogCollection extends React.Component {
                 }}
               />
               <div className={styles.title}>
-                <div>{t('Are you sure to close ?')}</div>
+                <div>{t('Are you sure to disable it?')}</div>
                 <p>
-                  {t("The project's file log collection is about to close.")}
+                  {t(
+                    'Disk Log Collection of the project is about to be disabled.'
+                  )}
                 </p>
               </div>
             </div>

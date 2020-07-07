@@ -119,9 +119,9 @@ export default {
   'Projects View': '项目查看',
   'Federated Projects Management': '联邦项目管理',
   'Projects Create': '项目创建',
-  'Devops Management': 'Devops 工程管理',
-  'Devops View': 'Devops 工程查看',
-  'Devops Create': 'Devops 工程创建',
+  'DevOps Management': 'DevOps 工程管理',
+  'DevOps View': 'DevOps 工程查看',
+  'DevOps Create': 'DevOps 工程创建',
 
   PROJECTS_MANAGEMENT_DESC:
     '管理企业空间里的所有项目，可以 创建/编辑/删除 项目',

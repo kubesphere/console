@@ -121,8 +121,8 @@ export default {
 
   'Disk Log Collection': '落盘日志收集',
 
-  'Are you sure to close ?': '确认关闭？',
-  "The project's file log collection is about to close.":
+  'Are you sure to disable it?': '确认关闭？',
+  'Disk Log Collection of the project is about to be disabled.':
     '项目的落盘日志收集即将关闭.',
 
   'Select the cluster to create the project.': '选择要创建项目的集群.',

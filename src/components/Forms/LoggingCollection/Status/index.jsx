@@ -25,11 +25,11 @@ import styles from './index.scss'
 class LogCollectionStatusForm extends Component {
   statusLabel = [
     {
-      label: t('Activate'),
+      label: t('Activated'),
       value: 1,
     },
     {
-      label: t('Close'),
+      label: t('Closed'),
       value: 0,
     },
   ]

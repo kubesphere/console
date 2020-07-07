@@ -78,7 +78,7 @@ export default {
   'Review Object': '审核对象',
   'Request for Approval': '应用上架',
   Operator: '操作者',
-  'Apply No / Reject Reason': '申请编号 / 拒绝原因',
+  'Application Number / Rejection Reason': '申请编号 / 拒绝原因',
   'Review Status': '审核状态',
   'Updated Time': '更新时间',
   Submitter: '提交者',
