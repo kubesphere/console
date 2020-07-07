@@ -46,25 +46,31 @@ export default class PodAffinity extends Component {
     return [
       {
         uid: 'default',
-        label: t("Pod Default Deployment"),
+        label: t('Pod Default Deployment'),
         value: {},
-        description: t('Pod replicas will be deployed by the default policy.'),
+        description: t(
+          'Pod replicas will be deployed according to the default policy.'
+        ),
       },
       {
         uid: 'decentralized',
-        label: t("Pod Decentralized Deployment"),
+        label: t('Pod Decentralized Deployment'),
         value: {
           podAntiAffinity: affinity,
         },
-        description: t('Pod replicas will be deployed on different nodes.'),
+        description: t(
+          'Pod replicas will be deployed on different nodes as much as possible.'
+        ),
       },
       {
         uid: 'aggregation',
-        label: t("Pod Aggregation Deployment"),
+        label: t('Pod Aggregation Deployment'),
         value: {
           podAffinity: affinity,
         },
-        description: t('Pod replicas will be deployed on the same node.'),
+        description: t(
+          'Pod replicas will be deployed on the same node as much as possible.'
+        ),
       },
     ]
   }
