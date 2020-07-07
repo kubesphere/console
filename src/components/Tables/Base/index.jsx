@@ -380,7 +380,7 @@ export default class WorkloadTable extends React.Component {
               onClick={this.handleRefresh}
               data-test="table-refresh"
             />
-            {!hideCustom && (
+            {!hideCustom && !isEmpty(this.hideableColumns) && (
               <Dropdown
                 content={this.renderColumnsMenu()}
                 placement="bottomRight"
