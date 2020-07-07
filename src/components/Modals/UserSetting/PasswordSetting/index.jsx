@@ -103,7 +103,7 @@ export default class PasswordSetting extends React.Component {
             ]}
           >
             <InputPassword
-              name="current_password"
+              name="currentPassword"
               placeholder={t('Please input current password')}
               autoComplete="cur-password"
             />
