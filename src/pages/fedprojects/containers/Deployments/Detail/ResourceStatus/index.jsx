@@ -99,18 +99,18 @@ class ResourceStatus extends React.Component {
   }
 
   renderPods() {
-    const { resources } = this.store
-    const clusters = Object.keys(resources)
-    const detail = Object.values(resources)[0]
+    const { detail, resources } = this.store
+    const clusters = detail.clusters.map(item => item.name)
+    const resourceDetail = Object.values(resources)[0]
 
-    if (isEmpty(clusters) || isEmpty(detail)) {
+    if (isEmpty(resourceDetail)) {
       return null
     }
 
     return (
       <PodsCard
         prefix={this.prefix}
-        detail={detail}
+        detail={resourceDetail}
         clusters={clusters}
         isFederated
       />
