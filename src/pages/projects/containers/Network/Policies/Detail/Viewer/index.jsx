@@ -119,7 +119,13 @@ export default class Viewer extends React.Component {
       const ports = get(direction, 'ports', [])
       const rules = get(direction, `${fromto}`, [])
       rules.forEach(rule => {
-        data.push({ namespace, specPodSelector, ports, ...rule })
+        data.push({
+          namespace,
+          specPodSelector,
+          ports,
+          direction: this.direction,
+          ...rule,
+        })
       })
     })
     return data
@@ -188,6 +194,7 @@ export default class Viewer extends React.Component {
     const namespace = get(record, 'namespace', '')
     const ipBlock = get(record, 'ipBlock')
     const ipExpect = get(ipBlock, 'except')
+    const { direction } = record
 
     const ipBlockLabel = this.renderIpBlock(ipBlock)
 
@@ -213,7 +220,11 @@ export default class Viewer extends React.Component {
       <div>
         <span>This rule allows pods in the namespace '{namespace}' </span>
         {!isEmpty(podsLabels) && <span> with the label {podsLabels} </span>}
-        <span>to receive traffic from </span>
+        <span>
+          {direction === 'egress'
+            ? 'to connect to '
+            : 'to receive traffic from '}
+        </span>
         {!isEmpty(ipBlock) ? (
           <label>
             {ipExpect && 'all IPs in '} subnet '{ipBlockLabel}'{' '}
@@ -221,7 +232,9 @@ export default class Viewer extends React.Component {
         ) : (
           <label>
             {!isEmpty(namespaceLabels) && (
-              <span>all pods in the namespace with the label {namespaceLabels} </span>
+              <span>
+                all pods in the namespace with the label {namespaceLabels}{' '}
+              </span>
             )}
             {!isEmpty(destPodLabels) && (
               <span>
