@@ -27,7 +27,7 @@ import { cpuFormat, memoryFormat } from 'utils'
 import styles from './index.scss'
 
 const Card = ({ type = 'worker', container, onDelete, onEdit, readOnly }) => {
-  const handleDelete = () => onDelete(container.name)
+  const handleDelete = () => onDelete({ type, ...container })
   const handleEdit = () => onEdit({ type, ...container })
   const limits = get(container, 'resources.limits', {})
   const requests = get(container, 'resources.requests', {})
