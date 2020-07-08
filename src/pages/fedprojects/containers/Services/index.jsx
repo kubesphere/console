@@ -77,9 +77,10 @@ export default class Services extends React.Component {
         text: t('Delete'),
         action: 'delete',
         onClick: item =>
-          trigger('resource.delete', {
+          trigger('service.delete', {
             type: t(this.name),
             detail: item,
+            isFederated: true,
           }),
       },
     ]
@@ -96,9 +97,10 @@ export default class Services extends React.Component {
           text: t('Delete'),
           action: 'delete',
           onClick: () =>
-            trigger('resource.batch.delete', {
+            trigger('service.batch.delete', {
               type: t(name),
               rowKey: 'name',
+              isFederated: true,
             }),
         },
       ],

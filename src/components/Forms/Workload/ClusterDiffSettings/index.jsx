@@ -17,7 +17,7 @@
  */
 
 import React from 'react'
-import { get } from 'lodash'
+import { get, keyBy } from 'lodash'
 import { MODULE_KIND_MAP } from 'utils/constants'
 
 import { Form } from 'components/Base'
@@ -38,9 +38,13 @@ export default class AdvancedSettings extends React.Component {
     return get(formTemplate, MODULE_KIND_MAP[module], formTemplate)
   }
 
+  get clusters() {
+    return get(this.formTemplate, 'spec.placement.clusters', [])
+  }
+
   render() {
     const { formRef, projectDetail, withService } = this.props
-    const clusters = projectDetail.clusters
+    const clustersDetail = keyBy(projectDetail.clusters, 'name')
     return (
       <Form data={this.formTemplate} ref={formRef}>
         <Form.Group
@@ -48,7 +52,11 @@ export default class AdvancedSettings extends React.Component {
           desc={t('CLUSTER_CONTAINER_IMAGE_DIFF_DESC')}
           checkable
         >
-          <ClustersMapper clusters={clusters} namespace={this.namespace}>
+          <ClustersMapper
+            clusters={this.clusters}
+            clustersDetail={clustersDetail}
+            namespace={this.namespace}
+          >
             {props => (
               <ContainersMapper formTemplate={this.formTemplate} {...props}>
                 {containerProps => <ContainerImage {...containerProps} />}
@@ -61,7 +69,11 @@ export default class AdvancedSettings extends React.Component {
           desc={t('CLUSTER_SERVICE_DIFF_DESC')}
           checkable
         >
-          <ClustersMapper clusters={clusters} namespace={this.namespace}>
+          <ClustersMapper
+            clusters={this.clusters}
+            clustersDetail={clustersDetail}
+            namespace={this.namespace}
+          >
             {props => (
               <ContainersMapper
                 formTemplate={this.formTemplate}
@@ -79,7 +91,11 @@ export default class AdvancedSettings extends React.Component {
           desc={t('CLUSTER_ENV_DIFF_DESC')}
           checkable
         >
-          <ClustersMapper clusters={clusters} namespace={this.namespace}>
+          <ClustersMapper
+            clusters={this.clusters}
+            clustersDetail={clustersDetail}
+            namespace={this.namespace}
+          >
             {props => (
               <ContainersMapper formTemplate={this.formTemplate} {...props}>
                 {containerProps => <Environments {...containerProps} />}

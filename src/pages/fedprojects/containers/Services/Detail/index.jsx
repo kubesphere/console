@@ -63,15 +63,12 @@ export default class ServiceDetail extends React.Component {
     return `/clusters/${cluster}/${this.module}`
   }
 
-  fetchData = () => {
+  fetchData = async () => {
     const { params } = this.props.match
-    const clusters = this.props.projectStore.detail.clusters.map(
-      item => item.name
-    )
-    this.store.fetchDetail(params)
-    this.store.fetchResources({
+    await this.store.fetchDetail(params)
+    await this.store.fetchResources({
       ...params,
-      clusters,
+      clusters: this.store.detail.clusters.map(item => item.name),
     })
   }
 

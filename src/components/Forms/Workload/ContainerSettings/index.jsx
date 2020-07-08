@@ -172,6 +172,10 @@ export default class ContainerSetting extends React.Component {
     this.setState({ replicas: value })
   }
 
+  handleClusterUpdate = () => {
+    this.updateService()
+  }
+
   showContainer = data => {
     this.setState({
       showContainer: true,
@@ -412,6 +416,7 @@ export default class ContainerSetting extends React.Component {
             module={this.module}
             template={this.formTemplate}
             clusters={projectDetail.clusters}
+            onClusterUpdate={this.handleClusterUpdate}
           />
         </Form.Item>
       )

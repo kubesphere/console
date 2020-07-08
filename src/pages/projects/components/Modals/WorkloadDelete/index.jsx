@@ -19,7 +19,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import { flatten, isArray, isEmpty } from 'lodash'
+import { flatten, isArray, isEmpty, get } from 'lodash'
 import { Icon, Checkbox } from '@pitrix/lego-ui'
 
 import { joinSelector } from 'utils'
@@ -29,6 +29,8 @@ import EmptyList from 'components/Cards/EmptyList'
 
 import ServiceStore from 'stores/service'
 import VolumeStore from 'stores/volume'
+import FederatedStore from 'stores/federated'
+
 import styles from './index.scss'
 
 export default class WorkloadDeleteModal extends React.Component {
@@ -52,6 +54,15 @@ export default class WorkloadDeleteModal extends React.Component {
 
     this.serviceStore = new ServiceStore()
     this.volumeStore = new VolumeStore()
+
+    if (props.isFederated) {
+      this.serviceStore = new FederatedStore({
+        module: this.serviceStore.module,
+      })
+      this.volumeStore = new FederatedStore({
+        module: this.volumeStore.module,
+      })
+    }
 
     this.state = {
       relatedResources: [],
@@ -102,11 +113,14 @@ export default class WorkloadDeleteModal extends React.Component {
     if (isArray(resource)) {
       namespace = resource[0].namespace
       cluster = resource[0].cluster
-      selectors = resource.map(item => item.selector)
+      selectors = resource.map(
+        item => item.selector || get(item, 'resource.selector')
+      )
     } else {
       namespace = resource.namespace
       cluster = resource.cluster
-      selectors.push(resource.selector)
+
+      selectors.push(resource.selector || get(resource, 'resource.selector'))
     }
 
     const requests = []

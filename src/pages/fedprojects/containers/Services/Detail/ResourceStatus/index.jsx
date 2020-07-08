@@ -63,9 +63,7 @@ export default class ResourceStatus extends React.Component {
     const { namespace } = this.props.match.params
     const name = this.workloadName
 
-    const clusters = this.props.projectStore.detail.clusters.map(
-      item => item.name
-    )
+    const clusters = this.store.detail.clusters.map(item => item.name)
     if (name) {
       this.workloadStore.fetchDetail({ name, namespace })
       this.workloadStore.fetchResources({
@@ -94,19 +92,18 @@ export default class ResourceStatus extends React.Component {
 
   renderWorkloadPods() {
     const { resources } = this.workloadStore
-    const clusters = Object.keys(resources)
-    const detail = Object.values(resources)[0]
+    const clusters = this.store.detail.clusters.map(item => item.name)
+    const resourceDetail = Object.values(resources)[0]
 
-    if (isEmpty(clusters) || isEmpty(detail)) {
+    if (isEmpty(resourceDetail)) {
       return null
     }
 
     return (
       <PodsCard
         prefix={this.prefix}
-        detail={detail}
+        detail={resourceDetail}
         clusters={clusters}
-        onUpdate={this.handlePodUpdate}
         isFederated
       />
     )
@@ -115,9 +112,7 @@ export default class ResourceStatus extends React.Component {
   renderPods() {
     const { resources, isResourcesLoading } = this.store
 
-    const clusters = this.props.projectStore.detail.clusters.map(
-      item => item.name
-    )
+    const clusters = this.store.detail.clusters.map(item => item.name)
     const detail = Object.values(resources)[0]
 
     return (

@@ -44,9 +44,7 @@ export default class ServiceAccess extends React.Component {
 
   fetchData = () => {
     const { params } = this.props.match
-    const clusters = this.props.projectStore.detail.clusters.map(
-      item => item.name
-    )
+    const clusters = this.store.detail.clusters.map(item => item.name)
     this.store.fetchDetail(params)
     this.store.fetchResources({
       ...params,

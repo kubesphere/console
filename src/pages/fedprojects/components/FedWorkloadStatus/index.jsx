@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get } from 'lodash'
+import { get, keyBy } from 'lodash'
 import React, { Component } from 'react'
 import { Icon } from '@pitrix/lego-ui'
 import { Tag } from 'components/Base'
@@ -27,11 +27,18 @@ import styles from './index.scss'
 export default class FedWorkloadStatus extends Component {
   render() {
     const { data, clusters } = this.props
+    const clustersDetail = keyBy(clusters, 'name')
 
     return (
       <div className={styles.wrapper}>
         <div className={styles.tags}>
-          {clusters.map(cluster => {
+          {data.clusters.map(item => {
+            const cluster = clustersDetail[item.name]
+
+            if (!cluster) {
+              return null
+            }
+
             const resource = get(data, `resources[${cluster.name}]`, {})
             const replicas = get(
               data,

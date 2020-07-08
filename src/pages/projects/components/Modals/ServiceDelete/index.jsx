@@ -19,7 +19,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import { flatten, isArray, isEmpty } from 'lodash'
+import { get, flatten, isArray, isEmpty } from 'lodash'
 import { Icon, Checkbox } from '@pitrix/lego-ui'
 
 import { joinSelector, getDisplayName } from 'utils'
@@ -29,6 +29,7 @@ import EmptyList from 'components/Cards/EmptyList'
 
 import WorkloadStore from 'stores/workload'
 import VolumeStore from 'stores/volume'
+import FederatedStore from 'stores/federated'
 import Builder from 'stores/s2i/builder'
 import styles from './index.scss'
 
@@ -63,6 +64,15 @@ export default class ServiceDeleteModal extends React.Component {
     this.workloadStore = new WorkloadStore()
     this.volumeStore = new VolumeStore()
     this.builderStore = new Builder()
+
+    if (props.isFederated) {
+      this.workloadStore = new FederatedStore({
+        module: 'deployments',
+      })
+      this.volumeStore = new FederatedStore({
+        module: this.volumeStore.module,
+      })
+    }
   }
 
   componentDidMount() {
@@ -104,16 +114,21 @@ export default class ServiceDeleteModal extends React.Component {
     let namespace
     let cluster
     if (isArray(resource)) {
-      selectors = resource.map(item => item.selector)
+      selectors = resource.map(
+        item => item.selector || get(item, 'resource.selector')
+      )
       namespace = resource[0].namespace
       cluster = resource[0].cluster
     } else {
-      selectors.push(resource.selector)
+      selectors.push(resource.selector || get(resource, 'resource.selector'))
       namespace = resource.namespace
       cluster = resource.cluster
     }
 
     const requests = []
+    const _modules = this.props.isFederated
+      ? ['deployments', 'statefulsets']
+      : modules
 
     selectors.forEach(selector => {
       if (!isEmpty(selector)) {
@@ -125,7 +140,7 @@ export default class ServiceDeleteModal extends React.Component {
             namespace,
             labelSelector,
           }),
-          ...modules.map(module =>
+          ..._modules.map(module =>
             this.workloadStore.fetchListByK8s({
               cluster,
               namespace,
