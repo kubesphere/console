@@ -22,16 +22,17 @@ import { Link } from 'react-router-dom'
 import { Avatar } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import NetworkStore from 'stores/network'
-import withList, { ListPage } from 'components/HOCs/withList'
+import { withClusterList, ListPage } from 'components/HOCs/withList'
 import ResourceTable from 'clusters/components/ResourceTable'
 
 import { getLocalTime, getDisplayName } from 'utils'
 import { ICON_TYPES } from 'utils/constants'
 
-@withList({
+@withClusterList({
   store: new NetworkStore('networkpolicies'),
   name: 'Network Policy',
   module: 'networkpolicies',
+  rowKey: 'key',
 })
 export default class NetworkPolicies extends React.Component {
   tips = [
@@ -170,7 +171,7 @@ export default class NetworkPolicies extends React.Component {
         <Banner {...bannerProps} tips={tips} />
         <ResourceTable
           {...tableProps}
-          rowKey={`${query.namespace}-${name}`}
+          rowKey="key"
           itemActions={this.itemActions}
           namespace={query.namespace}
           columns={this.getColumns}
