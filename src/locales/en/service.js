@@ -25,7 +25,7 @@ export default {
   SERVICE_SELECTOR_AFFECT_2: ' affect {count} workloads',
 
   SERVICE_NAME_DESC:
-    'It can only contain lowercase letters, numbers and hyphens("-"), and must begin with a lowercase letter, ending with a number or lowercase letter. The maximum length of characters is set to 63.',
+    'It can only contain lowercase letters, numbers and hyphens("-"), and must begin and end with a lowercase letter or a number. The maximum length of characters is set to 63.',
   SERVICE_DESC:
     'A Service is an abstraction that defines a logical collection of Pods and a strategy for accessing them.',
   SERVICE_CREATE_DESC:
@@ -92,6 +92,6 @@ export default {
     'Set the port to expose the container image and the service port.',
   SPECIFY_WORKLOAD_DESC:
     'Specify a workload that needs to be associated with the service.',
-  
+
   EIP_POOL_DESC: 'Access method within the cluster (DNS)',
 }
