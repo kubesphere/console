@@ -430,11 +430,7 @@ export default class ContainerSetting extends React.Component {
   }
 
   renderContainerList() {
-    const initContainers = get(
-      this.fedFormTemplate,
-      `${this.prefix}spec.initContainers`,
-      []
-    )
+    const specTemplate = get(this.fedFormTemplate, `${this.prefix}spec`)
 
     return (
       <Form.Item
@@ -445,7 +441,7 @@ export default class ContainerSetting extends React.Component {
           name={`${this.prefix}spec.containers`}
           onShow={this.showContainer}
           onDelete={this.handleDelete}
-          initContainers={initContainers}
+          specTemplate={specTemplate}
         />
       </Form.Item>
     )

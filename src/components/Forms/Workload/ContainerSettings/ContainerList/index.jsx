@@ -35,7 +35,7 @@ export default class ContainerList extends React.Component {
     onDelete: PropTypes.func,
     onShow: PropTypes.func,
     readOnlyList: PropTypes.array,
-    initContainers: PropTypes.array,
+    specTemplate: PropTypes.object,
   }
 
   static defaultProps = {
@@ -43,7 +43,7 @@ export default class ContainerList extends React.Component {
     name: '',
     value: [],
     readOnlyList: [],
-    initContainers: [],
+    specTemplate: {},
     onChange() {},
     onShow() {},
     onDelete() {},
@@ -57,11 +57,19 @@ export default class ContainerList extends React.Component {
     this.props.onShow(data)
   }
 
-  handleDelete = name => {
-    const { value, onChange, onDelete } = this.props
+  handleDelete = container => {
+    const { value, specTemplate, onChange, onDelete } = this.props
 
-    onChange(value.filter(item => item.name !== name))
-    onDelete && onDelete(name)
+    if (container.type === 'init' && specTemplate.initContainers) {
+      specTemplate.initContainers = specTemplate.initContainers.filter(
+        item => item.name !== container.name
+      )
+      onChange([...value])
+    } else {
+      onChange(value.filter(item => item.name !== container.name))
+    }
+
+    onDelete && onDelete(container.name)
   }
 
   renderContainers() {
@@ -79,7 +87,10 @@ export default class ContainerList extends React.Component {
   }
 
   renderInitContainers() {
-    const { initContainers } = this.props
+    const {
+      specTemplate: { initContainers = [] },
+    } = this.props
+
     return initContainers.map(item => (
       <Card
         container={item}
@@ -92,7 +103,11 @@ export default class ContainerList extends React.Component {
   }
 
   render() {
-    const { value, initContainers, className } = this.props
+    const {
+      value,
+      specTemplate: { initContainers = [] },
+      className,
+    } = this.props
 
     return (
       <div className={classNames(styles.wrapper, className)}>
