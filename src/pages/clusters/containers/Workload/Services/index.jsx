@@ -205,7 +205,7 @@ export default class Services extends React.Component {
       module,
       namespace: query.namespace,
       cluster: match.params.cluster,
-      success: () => getData({ slient: true }),
+      success: getData,
     })
   }
 

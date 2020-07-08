@@ -17,6 +17,7 @@
  */
 
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import { Avatar } from 'components/Base'
 import Banner from 'components/Cards/Banner'
@@ -115,6 +116,17 @@ export default class ConfigMaps extends React.Component {
               record.isFedManaged ? 'federatedprojects' : 'projects'
             }/${record.namespace}/${module}/${name}`}
           />
+        ),
+      },
+      {
+        title: t('Project'),
+        dataIndex: 'namespace',
+        isHideable: true,
+        width: '22%',
+        render: namespace => (
+          <Link to={`/clusters/${cluster}/projects/${namespace}`}>
+            {namespace}
+          </Link>
         ),
       },
       {

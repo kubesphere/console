@@ -106,6 +106,10 @@ export default class SelectorsInput extends React.Component {
     this.setState({ selectLabels: labels })
   }
 
+  handleCancel = () => {
+    this.setState({ visible: false })
+  }
+
   renderRelatedTips() {
     const { value: selector } = this.props
 
@@ -176,6 +180,7 @@ export default class SelectorsInput extends React.Component {
       <WorkloadSelect
         namespace={this.props.namespace}
         onSelect={this.handleWorkloadSelect}
+        onCancel={this.handleCancel}
       />
     )
   }

@@ -17,6 +17,7 @@
  */
 
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import { Avatar } from 'components/Base'
 import Banner from 'components/Cards/Banner'
@@ -119,17 +120,28 @@ export default class Secrets extends React.Component {
         ),
       },
       {
+        title: t('Project'),
+        dataIndex: 'namespace',
+        isHideable: true,
+        width: '16%',
+        render: namespace => (
+          <Link to={`/clusters/${cluster}/projects/${namespace}`}>
+            {namespace}
+          </Link>
+        ),
+      },
+      {
         title: t('Type'),
         dataIndex: 'type',
         isHideable: true,
-        width: '24%',
+        width: '20%',
         render: type => (SECRET_TYPES[type] ? t(SECRET_TYPES[type]) : type),
       },
       {
         title: t('Config Number'),
         dataIndex: 'data',
         isHideable: true,
-        width: '20%',
+        width: '16%',
         render: data => Object.keys(data).length,
       },
       {
