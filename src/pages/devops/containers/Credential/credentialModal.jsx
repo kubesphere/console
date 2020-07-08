@@ -92,14 +92,19 @@ export default class CredentialModal extends React.Component {
 
   @observable
   formData = {}
+
   @observable
   type = 'username_password'
+
   @observable
   isConflict = false
+
   @observable
   kubeconfig = ''
+
   @observable
   isSubmitting = false
+
   @observable
   isGetConfigLoading = false
 
@@ -110,16 +115,18 @@ export default class CredentialModal extends React.Component {
 
   @action
   fetchKubeConfig = async () => {
+    const { cluster } = this.props
     this.isGetConfigLoading = true
     const result = await request
       .get(
-        `kapis/resources.kubesphere.io/v1alpha2/users/${
-          this.username
-        }/kubeconfig`
+        `kapis/resources.kubesphere.io/v1alpha2/${this.store.getPath({
+          cluster,
+        })}/users/${this.username}/kubeconfig`
       )
       .finally(() => {
         this.isGetConfigLoading = false
       })
+
     this.kubeconfig = result
     set(this.formData, 'kubeconfig.content', result)
     this.forceUpdate()
@@ -250,7 +257,9 @@ export default class CredentialModal extends React.Component {
           <Form.Item
             label={t('Credential ID')}
             error={
-              this.isConflict ? { message: t('This name has been used.') } : null
+              this.isConflict
+                ? { message: t('This name has been used.') }
+                : null
             }
             rules={[
               { required: true, message: t('Please input credential name') },
