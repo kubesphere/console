@@ -23,7 +23,7 @@ export default {
     'KubeSphere provides full lifecycle management for applications. You can upload or create new app templates and test them quickly. In addition, you can publish your apps to App Store so that other users can deploy with one click.',
   APP_TEMPLATE_CREATE_DESC:
     'KubeSphere provides full lifecycle management for applications. You can upload or create new app templates and test them quickly. In addition, you can publish your apps to App Store so that other users can deploy with one click.',
-  APP_TEMPLATES_DESC: 
+  APP_TEMPLATES_DESC:
     'KubeSphere provides full lifecycle management for applications. You can upload or create new app templates and test them quickly. In addition, you can publish your apps to App Store so that other users can deploy with one click.',
 
   DEVELOP_APP_TITLE: 'How to develop app templates?',
@@ -68,12 +68,12 @@ export default {
     ' choose to adjust these applications to other categories before deleting them',
   DELETE_CATEGORY_DESC: 'Are you sure to delete the category [{name}] ?',
   CHOOSE_APP_CATEGORY_DESC:
-  'Choose the appropriate application categories to facilitate users to find your applications faster',
+    'Choose the appropriate application categories to facilitate users to find your applications faster',
 
   UPLOAD_HELM_TITLE: 'Upload Helm Chart Package',
   UPLOAD_HELM_DESC: 'Upload existing Helm Chart',
   UPLOAD_HELM_DESCRIPTION:
-  'Upload your Helm Chart in the file format such as tar.gz or tgz.',
+    'Upload your Helm Chart in the file format such as tar.gz or tgz.',
 
   EDIT_APP_DESC: 'Set up the basic information of the application',
   CREATE_APP_DESC:
@@ -125,7 +125,7 @@ export default {
 
   START_UPLOAD: 'Upload',
 
-  APP_ICON_NOTE: 'JPG or PNG within 200px * 200px',
+  APP_ICON_NOTE: 'JPG or PNG within 96px * 96px',
 
   MISS_FILE_NOTE: 'The file {file} not found',
 }
