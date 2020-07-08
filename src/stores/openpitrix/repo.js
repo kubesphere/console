@@ -23,6 +23,8 @@ import Base from './base'
 export default class Repo extends Base {
   resourceName = 'repos'
 
+  defaultStatus = ['active']
+
   getUrl = ({ repo_id, name } = {}) => {
     if (repo_id) {
       return `${this.baseUrl}repos/${repo_id}/${name || ''}`
