@@ -36,14 +36,13 @@ export default class WorkloadSelect extends React.Component {
     this.state = {
       type: 'deployments',
       selectItem: {},
-      visible: false,
     }
 
     this.store = new WorkloadStore(this.state.type)
   }
 
   handleTypeChange = type => {
-    this.setState({ type, visible: true }, () => {
+    this.setState({ type }, () => {
       this.store.setModule(this.state.type)
       this.fetchData()
     })
@@ -54,11 +53,13 @@ export default class WorkloadSelect extends React.Component {
   }
 
   handleSelect = item => {
-    this.setState({ selectItem: item, visible: true })
+    this.setState({ selectItem: item })
   }
 
   handleCancel = () => {
-    this.setState({ visible: false, selectItem: {} })
+    this.setState({ selectItem: {} }, () => {
+      this.props.onCancel()
+    })
   }
 
   handleOK = () => {
@@ -66,8 +67,6 @@ export default class WorkloadSelect extends React.Component {
     const { selectItem } = this.state
 
     onSelect(get(selectItem, '_originData.spec.template.metadata.labels', {}))
-
-    this.setState({ visible: false })
   }
 
   render() {
