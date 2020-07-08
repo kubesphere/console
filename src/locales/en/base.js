@@ -22,9 +22,9 @@ export default {
   DETAILS: 'Details',
   NODES: 'Nodes',
   NAME_DESC:
-    'It can only contain lowercase letters, numbers and hyphens("-"), and must begin with a lowercase letter, ending with a number or lowercase letter. The maximum length of characters is set to 63.',
+    'It can only contain lowercase letters, numbers and hyphens("-"), and must begin and end with a lowercase letter or a number. The maximum length of characters is set to 63.',
   LONG_NAME_DESC:
-    'It can only contain lowercase letters, numbers and hyphens("-"), and must begin with a lowercase letter, ending with a number or lowercase letter. The maximum length of characters is set to 253.',
+    'It can only contain lowercase letters, numbers and hyphens("-"), and must begin and end with a lowercase letter or a number. The maximum length of characters is set to 253.',
   NAME_TOO_LONG: 'The maximum length of characters is set to 63.',
   LONG_NAME_TOO_LONG: 'The maximum length of characters is set to 253.',
   LONG_DESC_TOO_LONG: 'The maximum length of characters is set to 1000.',
@@ -158,8 +158,7 @@ export default {
   APP_STORE_MANAGEMENT_DESC:
     'Unified lifecycle management of cloud native applications including their release, removal and review',
 
-  PLATFORM_SETTINGS_DESC:
-    'Customized platform settings including basic info',
+  PLATFORM_SETTINGS_DESC: 'Customized platform settings including basic info',
 
   DATA_SOURCE: 'Data Source',
 

@@ -40,7 +40,7 @@ export default {
   CRONJOB_CREATE_DESC:
     'A CronJob creates Jobs on a time-based schedule. For example, it runs a job periodically on a given schedule or only runs a job once on a given time.',
   CRONJOB_NAME_DESC:
-    'It can only contain lowercase letters, numbers and hyphens("-"), and must begin with a lowercase letter, ending with a number or lowercase letter. The maximum length of characters is set to 52.',
+    'It can only contain lowercase letters, numbers and hyphens("-"), and must begin and end with a lowercase letter or a number. The maximum length of characters is set to 52.',
   CRONJOB_NAME_TOO_LONG: 'The maximum length of characters is set to 52.',
 
   REPLICAS_SCALE_NOTIFY_TITLE: 'Does it take effect immediately?',
@@ -99,9 +99,9 @@ export default {
   PORT_INPUT_DESC:
     'The name is required and cannot be duplicated when there are multiple ports,',
   PORT_NAME_DESC:
-    'The port name can only contain lowercase letters, numbers and hyphens("-"), and must begin with a lowercase letter, ending with a number or lowercase letter. The maximum length of characters is set to 63.',
+    'The port name can only contain lowercase letters, numbers and hyphens("-"), and must begin and end with a lowercase letter or a number. The maximum length of characters is set to 63.',
   WORKLOAD_PORT_NAME_DESC:
-    'The port name can only contain lowercase letters, numbers and hyphens("-"), and must begin with a lowercase letter, ending with a number or lowercase letter. The maximum length of characters is set to 15.',
+    'The port name can only contain lowercase letters, numbers and hyphens("-"), and must begin and end with a lowercase letter or a number. The maximum length of characters is set to 15.',
 
   DEPLOYMENTS_BASEINFO_DESC:
     'You can give the deployment a name that is easy to distinguish when you use it.',
@@ -137,11 +137,14 @@ export default {
     'You can mount a temporary volumes, or persistent volumes to a Pod of the job.',
 
   JOB_BACK_OFF_LIMIT_LABEL: 'Back off Limit',
-  JOB_BACK_OFF_LIMIT_DESC: 'It specifies the number of retries before marking this job failed. It defaults to 6.',
+  JOB_BACK_OFF_LIMIT_DESC:
+    'It specifies the number of retries before marking this job failed. It defaults to 6.',
   JOB_PARALLELISM_LABEL: 'Parallelism',
-  JOB_PARALLELISM_DESC: 'It specifies the maximum desired number of pods the job should run at any given time.',
+  JOB_PARALLELISM_DESC:
+    'It specifies the maximum desired number of pods the job should run at any given time.',
   JOB_COMPLETION_LABEL: 'Completions',
-  JOB_COMPLETION_DESC: 'It specifies the desired number of successfully finished pods the job should be run with.',
+  JOB_COMPLETION_DESC:
+    'It specifies the desired number of successfully finished pods the job should be run with.',
   JOB_ACTIVE_DL_SECONDS_LABEL: 'Active Deadline Seconds',
   JOB_ACTIVE_DL_SECONDS:
     'It specifies the duration in seconds relative to the startTime that the job may be active before the system tries to terminate it; value must be positive integer.',
@@ -211,14 +214,14 @@ export default {
   WORKLOAD_REPLICA_MSG:
     'In the user-defined scope, if the number of Pods increases, the ReplicationController will terminate the extra Pods. Instead, the RC will create a new Pod that remains in the defined scope. For example, the RC will recreate the Pod on the node after Pod maintenance (such as kernel upgrades).',
   DEPLOYMENTS_REPLICA_DESC:
-    "Deployment is used to describe a desired state that is expected to be reached by the application. It is mainly used to describe stateless applications. The number and state of replicas are maintained by the deployment controller, ensuring the state is consistent with the defined expected state. You can increase the replicas to meet higher loads. Rolling back the deployment version can eliminate program bugs. And you can create an autoscaler to flexibly handle the load in different scenarios.",
+    'Deployment is used to describe a desired state that is expected to be reached by the application. It is mainly used to describe stateless applications. The number and state of replicas are maintained by the deployment controller, ensuring the state is consistent with the defined expected state. You can increase the replicas to meet higher loads. Rolling back the deployment version can eliminate program bugs. And you can create an autoscaler to flexibly handle the load in different scenarios.',
   STATEFULSETS_REPLICA_DESC:
-    "StatefulSet is used to describe stateful applications, such as master-slave relations between replicas and persistent data storage. Like a Deployment, a StatefulSet creates identical replicas. The difference is that each replica has a persistent and unique identifier that it maintains across any rescheduling. You can use StatefulSets to achieve ordered deployment, deletion and rolling updates.",
+    'StatefulSet is used to describe stateful applications, such as master-slave relations between replicas and persistent data storage. Like a Deployment, a StatefulSet creates identical replicas. The difference is that each replica has a persistent and unique identifier that it maintains across any rescheduling. You can use StatefulSets to achieve ordered deployment, deletion and rolling updates.',
   DAEMONSETS_REPLICA_DESC:
     'DaemonSet ensures that each node in the cluster runs a replica. When a node joins the cluster or leaves, the number of replicas is automatically adjusted to ensure that the number of replicas is the same as the number of nodes in the cluster. You can use DaemonSets to run storage services (GlusterFS, Ceph, etc.), log collection services (Fluentd, Logstash, etc.), and monitoring services.',
 
-  REFFER_CONFIGMAP_DESC: "Add a new volume from the ConfigMap value.",
-  REFFER_SECRET_DESC: "Add a new volume from the Secret value.",
+  REFFER_CONFIGMAP_DESC: 'Add a new volume from the ConfigMap value.',
+  REFFER_SECRET_DESC: 'Add a new volume from the Secret value.',
 
   MONITORING_ALERT_DESC:
     'The current monitoring graph displays five replicas at most. You can click "View All Replicas" to view more monitoring graphs if the number of replicas exceeds five.',
@@ -229,12 +232,11 @@ export default {
     "It's used as the judgment of resource allocation when scheduling containers. The container is allowed to be scheduled to the node only if the total amount of CPU that can be allocated on the node is equal or greater than the request value of the container CPU.",
   CONTAINER_MEMORY_DESC:
     "It's used as the judgment of resource allocation when scheduling containers. The container is allowed to be scheduled to the node only if the total amount of memory that can be allocated on the node is equal or greater than the request value of the container memory.",
-  IMAGE_PULL_POLICY_ALWAYS:
-    'Redownload Image (Always)',
-  IMAGE_PULL_POLICY_IFNOTPRESENT:
-    'Use Local Image First (IfNotPresent)',
+  IMAGE_PULL_POLICY_ALWAYS: 'Redownload Image (Always)',
+  IMAGE_PULL_POLICY_IFNOTPRESENT: 'Use Local Image First (IfNotPresent)',
   IMAGE_PULL_POLICY_NEVER: 'Only Use Local Image (Never)',
-  IMAGE_PULL_POLICY_ALWAYS_DESC: 'Pull the image every time the pod is started.',
+  IMAGE_PULL_POLICY_ALWAYS_DESC:
+    'Pull the image every time the pod is started.',
   IMAGE_PULL_POLICY_IFNOTPRESENT_DESC:
     'Pull the image only if it does not exist locally.',
   IMAGE_PULL_POLICY_NEVER_DESC:

@@ -31,7 +31,7 @@ export default {
   LB_RANDOM: 'RANDOM',
 
   CLUSTER_NAME_DESC:
-    'It can only contain lowercase letters, numbers and hyphens("-"), and must begin with a lowercase letter, ending with a number or lowercase letter. The maximum length of characters is set to 14.',
+    'It can only contain lowercase letters, numbers and hyphens("-"), and must begin and end with a lowercase letter or a number. The maximum length of characters is set to 14.',
 
   CLUSTER_ALIAS_DESC:
     'Alias can be composed of any character to help you better distinguish resources and support Chinese names.',
@@ -96,6 +96,7 @@ export default {
     'Traffic governance depends on the microservice module, the current cluster does not enable the microservice module',
   TRACING_NO_MICROSERVICE_TIP:
     'Tracing depends on the microservice module, the current cluster does not enable the microservice module',
-  
-  APPLICATION_SERVICE_DESC: 'You can set different service components based on the service type in an application. Stateful and stateless services are both supported.'
+
+  APPLICATION_SERVICE_DESC:
+    'You can set different service components based on the service type in an application. Stateful and stateless services are both supported.',
 }
