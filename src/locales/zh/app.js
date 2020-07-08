@@ -55,7 +55,7 @@ export default {
   APP_ABSTRACTION_DESC: '对应用的概括性介绍',
   APP_DETAIL_DESC: '在用户搜索应用时会非常有帮助',
   'Upload Icon': '上传图标',
-  APP_ICON_NOTE: '200px*200px以内JPG或者PNG',
+  APP_ICON_NOTE: '96px*96*px以内JPG或者PNG',
   APP_ICON_FORMAT: '格式: png 背景透明最佳',
   APP_ICON_SIZE: '图形大小: 96px*96*px',
   'Start edit': '开始编辑',
