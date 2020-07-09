@@ -203,7 +203,7 @@ export default class Projects extends React.Component {
   showCreate = () =>
     this.props.trigger('project.create', {
       ...this.props.match.params,
-      success: this.getData,
+      success: () => this.getData(),
     })
 
   render() {

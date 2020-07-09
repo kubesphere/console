@@ -179,11 +179,14 @@ export default class ProjectSelectModal extends React.Component {
   showCreate = () => {
     const { workspace, rootStore } = this.props
     const { cluster } = this.state
-    if (
-      this.state.type === 'projects' ||
-      this.state.type === 'federatedprojects'
-    ) {
+    if (this.state.type === 'projects') {
       rootStore.triggerAction('project.create', {
+        store: this.projectStore,
+        workspace,
+        success: this.fetchData,
+      })
+    } else if (this.state.type === 'federatedprojects') {
+      rootStore.triggerAction('federated.project.create', {
         store: this.projectStore,
         workspace,
         success: this.fetchData,
