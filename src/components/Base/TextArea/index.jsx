@@ -42,22 +42,10 @@ export default class TextArea extends React.Component {
     maxHeight: 600,
   }
 
-  state = {
-    minHeight: 0,
-  }
-
   ref = React.createRef()
 
   componentDidMount() {
-    const minHeight = this.ref.current.node.offsetHeight
-    this.setState(
-      {
-        minHeight,
-      },
-      () => {
-        this.autoResize()
-      }
-    )
+    this.autoResize()
   }
 
   handleChange = e => {
@@ -76,11 +64,9 @@ export default class TextArea extends React.Component {
     if (node.scrollHeight > maxHeight) {
       node.style.height = `${maxHeight}px`
       node.style.overflow = 'auto'
-    } else if (node.scrollHeight > this.state.minHeight) {
+    } else {
       node.style.height = `${node.scrollHeight}px`
       node.style.overflow = 'hidden'
-    } else {
-      node.style.height = `${this.state.minHeight}px`
     }
   }
 
