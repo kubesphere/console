@@ -21,6 +21,7 @@ import PropTypes from 'prop-types'
 
 import { Input, TextArea } from '@pitrix/lego-ui'
 import { Modal, Form } from 'components/Base'
+import { PATTERN_LENGTH_1000 } from 'utils/constants'
 
 export default class AppEditModal extends React.Component {
   static propTypes = {
@@ -62,7 +63,13 @@ export default class AppEditModal extends React.Component {
         <Form.Item label={t('Name')} desc={t('LONG_NAME_DESC')}>
           <Input name="name" disabled />
         </Form.Item>
-        <Form.Item label={t('Description')} desc={t('DESCRIPTION_DESC')}>
+        <Form.Item
+          label={t('Description')}
+          desc={t('DESCRIPTION_DESC')}
+          rules={[
+            { pattern: PATTERN_LENGTH_1000, message: t('LONG_DESC_TOO_LONG') },
+          ]}
+        >
           <TextArea name="description" />
         </Form.Item>
       </Modal.Form>

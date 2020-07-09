@@ -20,7 +20,7 @@ import { debounce } from 'lodash'
 import React from 'react'
 import { observer } from 'mobx-react'
 import { Input, Select, TextArea } from '@pitrix/lego-ui'
-import { PATTERN_NAME } from 'utils/constants'
+import { PATTERN_NAME, PATTERN_LENGTH_1000 } from 'utils/constants'
 import { Form } from 'components/Base'
 import UserStore from 'stores/user'
 
@@ -172,6 +172,12 @@ export default class BaseInfo extends React.Component {
             controlClassName={styles.textarea}
             label={t('Description')}
             desc={t('SHORT_DESCRIPTION_DESC')}
+            rules={[
+              {
+                pattern: PATTERN_LENGTH_1000,
+                message: t('LONG_DESC_TOO_LONG'),
+              },
+            ]}
           >
             <TextArea
               name="metadata.annotations['kubesphere.io/description']"

@@ -23,6 +23,8 @@ import copy from 'fast-copy'
 import { Input, TextArea } from '@pitrix/lego-ui'
 import { Modal, Form } from 'components/Base'
 
+import { PATTERN_LENGTH_1000 } from 'utils/constants'
+
 export default class EditBasicInfoModal extends React.Component {
   static propTypes = {
     detail: PropTypes.object,
@@ -80,7 +82,13 @@ export default class EditBasicInfoModal extends React.Component {
         <Form.Item label={t('Alias')} desc={t('ALIAS_DESC')}>
           <Input name="metadata.annotations['kubesphere.io/alias-name']" />
         </Form.Item>
-        <Form.Item label={t('Description')} desc={t('DESCRIPTION_DESC')}>
+        <Form.Item
+          label={t('Description')}
+          desc={t('DESCRIPTION_DESC')}
+          rules={[
+            { pattern: PATTERN_LENGTH_1000, message: t('LONG_DESC_TOO_LONG') },
+          ]}
+        >
           <TextArea name="metadata.annotations['kubesphere.io/description']" />
         </Form.Item>
       </Modal.Form>

@@ -24,6 +24,7 @@ import { debounce, unset } from 'lodash'
 
 import { Input, Select, TextArea } from '@pitrix/lego-ui'
 import { Form, Modal } from 'components/Base'
+import { PATTERN_LENGTH_1000 } from 'utils/constants'
 
 import UserStore from 'stores/user'
 
@@ -145,7 +146,13 @@ export default class EditBasicInfoModal extends React.Component {
             onMenuScrollToBottom={this.handleScrollToBottom}
           />
         </Form.Item>
-        <Form.Item label={t('Description')} desc={t('SHORT_DESCRIPTION_DESC')}>
+        <Form.Item
+          label={t('Description')}
+          desc={t('SHORT_DESCRIPTION_DESC')}
+          rules={[
+            { pattern: PATTERN_LENGTH_1000, message: t('LONG_DESC_TOO_LONG') },
+          ]}
+        >
           <TextArea
             name="metadata.annotations['kubesphere.io/description']"
             rows="3"

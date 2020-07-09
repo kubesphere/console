@@ -21,6 +21,8 @@ import PropTypes from 'prop-types'
 
 import { Input, TextArea } from '@pitrix/lego-ui'
 import { Modal, Form } from 'components/Base'
+import { PATTERN_LENGTH_1000 } from 'utils/constants'
+
 import UrlInput from './url.input'
 
 import styles from './index.scss'
@@ -60,17 +62,15 @@ export default class AddRepoModal extends Component {
   }
 
   getFormData = detail => {
-    const data = Object.assign(
-      {
-        name: '',
-        repoType: 'Helm',
-        type: 'https',
-        visibility: 'public',
-        credential: '{}',
-        providers: ['kubernetes'],
-      },
-      detail
-    )
+    const data = {
+      name: '',
+      repoType: 'Helm',
+      type: 'https',
+      visibility: 'public',
+      credential: '{}',
+      providers: ['kubernetes'],
+      ...detail,
+    }
 
     return data
   }
@@ -121,7 +121,12 @@ export default class AddRepoModal extends Component {
           onValidate={this.handleUrlValidate}
           isSubmitting={this.props.isSubmitting}
         />
-        <Form.Item label={t('Description')}>
+        <Form.Item
+          label={t('Description')}
+          rules={[
+            { pattern: PATTERN_LENGTH_1000, message: t('LONG_DESC_TOO_LONG') },
+          ]}
+        >
           <TextArea
             name="description"
             placeholder={t('SHORT_DESCRIPTION_DESC')}
