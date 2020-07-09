@@ -98,7 +98,7 @@ export default class Projects extends React.Component {
         text: t('Delete'),
         action: 'delete',
         onClick: item =>
-          trigger('fedproject.delete', {
+          trigger('resource.delete', {
             detail: item,
           }),
       },
@@ -156,14 +156,11 @@ export default class Projects extends React.Component {
   }
 
   showCreate = () =>
-    this.props.trigger('project.create', {
+    this.props.trigger('federated.project.create', {
       ...this.props.match.params,
       store: this.projectStore,
-      success: type => {
-        this.handleTabChange(type)
-        if (type === 'federatedprojects') {
-          this.getData()
-        }
+      success: () => {
+        this.getData()
       },
     })
 

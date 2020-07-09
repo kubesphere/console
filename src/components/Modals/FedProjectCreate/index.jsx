@@ -18,10 +18,11 @@
 
 import React from 'react'
 import { observer } from 'mobx-react'
-import { get, isEmpty } from 'lodash'
+import { get, isEmpty, set, uniqBy } from 'lodash'
 import PropTypes from 'prop-types'
 import { Columns, Column, Select, Input, TextArea } from '@pitrix/lego-ui'
 import { Modal, Form } from 'components/Base'
+import { ArrayInput, ObjectInput } from 'components/Inputs'
 import ClusterTitle from 'components/Clusters/ClusterTitle'
 import { PATTERN_SERVICE_NAME, PATTERN_LENGTH_63 } from 'utils/constants'
 
@@ -31,7 +32,7 @@ import { computed } from 'mobx'
 import styles from './index.scss'
 
 @observer
-export default class ProjectCreateModal extends React.Component {
+export default class FedProjectCreateModal extends React.Component {
   static propTypes = {
     formTemplate: PropTypes.object,
     visible: PropTypes.bool,
@@ -58,10 +59,7 @@ export default class ProjectCreateModal extends React.Component {
   }
 
   componentDidMount() {
-    const { hideCluster } = this.props
-    if (!hideCluster) {
-      this.fetchClusters()
-    }
+    this.fetchClusters()
   }
 
   get networkOptions() {
@@ -84,7 +82,7 @@ export default class ProjectCreateModal extends React.Component {
   @computed
   get defaultClusters() {
     const clusters = this.workspaceStore.clusters.data
-      .filter(item => item.isReady)
+      .filter(item => item.isHost)
       .map(item => ({ name: item.name }))
 
     return isEmpty(clusters) ? undefined : clusters
@@ -111,27 +109,39 @@ export default class ProjectCreateModal extends React.Component {
     })
   }
 
-  singleClusterValidator = (rule, value, callback) => {
+  multiClusterValidator = async (rule, value, callback) => {
     const name = get(this.props.formTemplate, 'metadata.name')
 
     if (!value || !name) {
       return callback()
     }
 
-    this.store.checkName({ name, cluster: value }).then(resp => {
+    if (value.length > 1) {
+      const resp = await this.store.checkName({ name })
       if (resp.exist) {
-        return callback({ message: t('Name exists'), field: rule.field })
+        return callback({
+          message: t('Project name exists on host cluster'),
+          field: rule.field,
+        })
       }
-      callback()
-    })
-  }
+    }
 
-  handleNameChange = () => {
-    if (this.clusterRef.current && this.clusterRef.current.state.error) {
-      this.clusterRef.current.validate({
-        cluster: get(this.props.formTemplate, 'cluster'),
+    const resps = await Promise.all([
+      ...value.map(cluster =>
+        this.store.checkName({ name, cluster: cluster.name })
+      ),
+    ])
+
+    const index = resps.findIndex(item => item.exist)
+
+    if (index > -1 && value[index]) {
+      return callback({
+        message: t('NAME_EXIST_IN_CLUSTER', { cluster: value[index].name }),
+        field: rule.field,
       })
     }
+
+    callback()
   }
 
   valueRenderer = item => (
@@ -142,40 +152,60 @@ export default class ProjectCreateModal extends React.Component {
     <ClusterTitle cluster={item.cluster} size="small" theme="light" noStatus />
   )
 
+  handleClusterChange = clusters => {
+    set(
+      this.props.formTemplate,
+      'spec.placement.clusters',
+      uniqBy(clusters, 'name')
+    )
+  }
+
+  handleNameChange = () => {
+    if (this.clusterRef.current && this.clusterRef.current.state.error) {
+      const name = 'spec.placement.clusters'
+      this.clusterRef.current.validate({
+        [name]: get(this.props.formTemplate, name),
+      })
+    }
+  }
+
   renderClusters() {
     return (
       <Form.Group
         label={t('Cluster Settings')}
-        desc={t('Select the cluster to create the project.')}
+        desc={t('PROJECT_CLUSTER_SETTINGS_DESC')}
       >
         <Form.Item
           ref={this.clusterRef}
           rules={[
             { required: true, message: t('Please select a cluster') },
-            { validator: this.singleClusterValidator },
+            { validator: this.multiClusterValidator },
           ]}
         >
-          <Select
-            name="cluster"
-            className={styles.cluster}
-            options={this.clusters}
-            valueRenderer={this.valueRenderer}
-            optionRenderer={this.optionRenderer}
-          />
+          <ArrayInput
+            name="spec.placement.clusters"
+            addText={t('Add Cluster')}
+            itemType="object"
+            defaultValue={this.defaultClusters}
+            onChange={this.handleClusterChange}
+          >
+            <ObjectInput>
+              <Select
+                name="name"
+                className={styles.cluster}
+                options={this.clusters}
+                valueRenderer={this.valueRenderer}
+                optionRenderer={this.optionRenderer}
+              />
+            </ObjectInput>
+          </ArrayInput>
         </Form.Item>
       </Form.Group>
     )
   }
 
   render() {
-    const {
-      visible,
-      formTemplate,
-      hideCluster,
-      onOk,
-      onCancel,
-      isSubmitting,
-    } = this.props
+    const { visible, formTemplate, onOk, onCancel, isSubmitting } = this.props
     return (
       <Modal.Form
         width={960}
@@ -191,8 +221,8 @@ export default class ProjectCreateModal extends React.Component {
         <div className={styles.header}>
           <img src="/assets/project-create.svg" alt="" />
           <div className={styles.title}>
-            <div>{t('Create Project')}</div>
-            <p>{t('PROJECT_CREATE_DESC')}</p>
+            <div>{t('Create Multi-cluster Project')}</div>
+            <p>{t('MULTI_CLUSTER_PROJECT_CREATE_DESC')}</p>
           </div>
         </div>
         <div className={styles.content}>
@@ -208,9 +238,6 @@ export default class ProjectCreateModal extends React.Component {
                     message: `${t('Invalid name')}, ${t('SERVICE_NAME_DESC')}`,
                   },
                   { pattern: PATTERN_LENGTH_63, message: t('NAME_TOO_LONG') },
-                  {
-                    validator: hideCluster ? this.nameValidator : null,
-                  },
                 ]}
               >
                 <Input
@@ -247,7 +274,7 @@ export default class ProjectCreateModal extends React.Component {
               </Form.Item>
             </Column>
           </Columns>
-          {!hideCluster && this.renderClusters()}
+          {this.renderClusters()}
         </div>
       </Modal.Form>
     )

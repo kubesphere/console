@@ -26,6 +26,7 @@ export default {
   Terminating: '删除中',
   Deleting: '删除中',
   'Create Project': '创建项目',
+  'Create Multi-cluster Project': '创建多集群项目',
   'Edit Project': '编辑项目',
   Details: '详情',
   Members: '成员',
@@ -237,4 +238,7 @@ export default {
 
   FED_HOST_NAMESPACE_TIP:
     '该项目为多集群项目的相关资源, 请勿在此项目下操作资源',
+
+  MULTI_CLUSTER_PROJECT_CREATE_DESC:
+    '您可以创建多集群项目，让项目运行在多个集群中，为应用提供快速迭代开发的容器环境并实现高可用。',
 }
