@@ -145,6 +145,7 @@ class CICDs extends React.Component {
   async handleRun(record) {
     const hasBranches = record.branchNames && record.branchNames.length
     const hasParameters = record.parameters && record.parameters.length
+
     if (hasBranches || hasParameters) {
       this.setState({ showBranchModal: true })
     } else {
@@ -154,6 +155,7 @@ class CICDs extends React.Component {
         project_id: params.project_id,
         name: record.name,
       })
+
       this.props.rootStore.routing.push(
         `${this.prefix}/${encodeURIComponent(record.name)}/activity`
       )
@@ -174,8 +176,9 @@ class CICDs extends React.Component {
         )
         break
       case 'run':
-        this.setState({ selectPipeline: record })
-        this.handleRun(record)
+        this.setState({ selectPipeline: record }, () => {
+          this.handleRun(record)
+        })
         break
       default:
         break
@@ -184,22 +187,6 @@ class CICDs extends React.Component {
 
   handleFetch = (params, refresh) => {
     this.routing.query(params, refresh)
-  }
-
-  handleBranchSelect = async branch => {
-    const { params } = this.props.match
-    const { selectPipeline } = this.state
-
-    const result = await this.store.getBranchDetail({
-      ...params,
-      name: selectPipeline.name,
-      branch,
-    })
-
-    if (result.parameters) {
-      selectPipeline.parameters = result.parameters
-      this.setState({ selectPipeline })
-    }
   }
 
   get cluster() {
@@ -586,13 +573,9 @@ class CICDs extends React.Component {
         <ParamsModal
           onOk={this.handleRunBranch}
           onCancel={this.hideBranchModal}
-          onBranchSelect={this.handleBranchSelect}
           visible={this.state.showBranchModal}
           branches={
             this.state.selectPipeline && this.state.selectPipeline.branchNames
-          }
-          parameters={
-            this.state.selectPipeline && this.state.selectPipeline.parameters
           }
           params={{
             ...params,

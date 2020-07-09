@@ -236,7 +236,6 @@ class BranchSider extends Base {
   renderSider() {
     const { params } = this.props.match
     const { branch } = params
-    const { branchDetail } = this.store
 
     const operations = this.getOperations().filter(item =>
       this.enabledActions.includes(item.action)
@@ -254,7 +253,7 @@ class BranchSider extends Base {
           onOk={this.handleRunBranch}
           onCancel={this.hideBranchModal}
           visible={this.state.showBranchModal}
-          parameters={branchDetail.parameters}
+          params={params}
         />
       </React.Fragment>
     )
