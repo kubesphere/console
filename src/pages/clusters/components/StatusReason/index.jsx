@@ -24,7 +24,7 @@ import styles from './index.scss'
 
 const isSuccess = condition => condition.status === 'True'
 
-export default function StatusReason({ data }) {
+export default function StatusReason({ data, noTip }) {
   const conditions = (
     <div>
       <div className="tooltip-title">{t('CLUSTER_CONDITIONS')}</div>
@@ -65,17 +65,25 @@ export default function StatusReason({ data }) {
     </div>
   )
 
+  const icon = (
+    <Icon
+      name="information"
+      color={{
+        primary: '#ffffff',
+        secondary: status === 'error' ? '#ab2f29' : '#f5a623',
+      }}
+    />
+  )
+
   return (
     <span className={styles.reason}>
-      <Tooltip placement="right" content={conditions}>
-        <Icon
-          name="information"
-          color={{
-            primary: '#ffffff',
-            secondary: status === 'error' ? '#ab2f29' : '#f5a623',
-          }}
-        />
-      </Tooltip>
+      {noTip ? (
+        icon
+      ) : (
+        <Tooltip placement="right" content={conditions}>
+          {icon}
+        </Tooltip>
+      )}
       <span className={status === 'error' ? styles.error : styles.warning}>
         {t('Not Ready')}
       </span>

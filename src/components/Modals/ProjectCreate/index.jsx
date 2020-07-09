@@ -77,9 +77,8 @@ export default class ProjectCreateModal extends React.Component {
     return this.workspaceStore.clusters.data.map(item => ({
       label: item.name,
       value: item.name,
-      provider: item.provider,
-      group: item.group,
-      name: item.name,
+      cluster: item,
+      disabled: !item.isReady,
     }))
   }
 
@@ -163,10 +162,12 @@ export default class ProjectCreateModal extends React.Component {
     callback()
   }
 
-  valueRenderer = item => <ClusterTitle cluster={item} size="small" noStatus />
+  valueRenderer = item => (
+    <ClusterTitle cluster={item.cluster} size="small" noStatus />
+  )
 
   optionRenderer = item => (
-    <ClusterTitle cluster={item} size="small" theme="light" noStatus />
+    <ClusterTitle cluster={item.cluster} size="small" theme="light" />
   )
 
   handleClusterChange = clusters => {

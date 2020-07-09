@@ -50,3 +50,12 @@
     position: relative;
   }
 }
+
+
+.toolmessage {
+  margin-left: 10px;
+
+  &>span {
+    vertical-align: middle;
+  }
+}

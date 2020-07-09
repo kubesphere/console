@@ -26,8 +26,6 @@ import WorkspaceMonitorStore from 'stores/monitoring/workspace'
 
 import { Component as Base } from 'clusters/containers/Monitor/Resource/Usage/Virtual'
 
-import styles from './index.scss'
-
 const MetricTypes = {
   deployment_count: 'workspace_deployment_count',
   statefulset_count: 'workspace_statefulset_count',
@@ -43,14 +41,6 @@ const MetricTypes = {
 @inject('rootStore')
 @observer
 export default class VirtualResource extends Base {
-  state = {
-    cluster: this.props.defaultCluster,
-  }
-
-  handleClusterChange = cluster => {
-    this.setState({ cluster }, this.fetchData)
-  }
-
   get workspace() {
     return this.props.workspace
   }
@@ -126,24 +116,15 @@ export default class VirtualResource extends Base {
     customAction: this.renderClusters(),
   })
 
-  valueRenderer = option => `${t('Cluster')}: ${option.value}`
-
   renderClusters() {
-    if (this.props.clusterOpts.length) {
-      return (
-        <Select
-          className={styles.clusterSelector}
-          value={this.state.cluster}
-          options={this.props.clusterOpts}
-          onChange={this.handleClusterChange}
-          valueRenderer={this.valueRenderer}
-        />
-      )
+    const { clusterProps } = this.props
+    if (clusterProps.options.length) {
+      return <Select {...clusterProps} />
     }
   }
 
   fetchData = params => {
-    this.monitorStore.cluster = this.state.cluster
+    this.monitorStore.cluster = this.props.clusterProps.cluster
 
     this.monitorStore.fetchMetrics({
       workspace: this.workspace,

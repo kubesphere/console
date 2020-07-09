@@ -3,11 +3,14 @@
 .clusterSelector {
   width: 200px;
   color: $white;
+  font-size: 12px;
   margin-left: 15px;
 
   :global {
     .select-control {
-      background: $dark-color07 !important;
+      background-color: $dark-color07 !important;
+      box-shadow: none !important;
+      border: none !important;
     }
 
     .select-value-label {

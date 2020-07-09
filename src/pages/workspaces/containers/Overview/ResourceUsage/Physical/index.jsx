@@ -25,8 +25,6 @@ import WorkspaceMonitorStore from 'stores/monitoring/workspace'
 
 import { Component as Base } from 'clusters/containers/Monitor/Resource/Usage/Physical'
 
-import styles from './index.scss'
-
 const MetricTypes = {
   cpu_usage: 'workspace_cpu_usage',
   memory_usage: 'workspace_memory_usage_wo_cache',
@@ -36,12 +34,10 @@ const MetricTypes = {
 @inject('rootStore')
 @observer
 export default class PhysicalResource extends Base {
-  state = {
-    cluster: this.props.defaultCluster,
-  }
-
-  handleClusterChange = cluster => {
-    this.setState({ cluster }, this.fetchData)
+  componentDidUpdate(prevProps) {
+    if (prevProps.cluster !== this.props.cluster) {
+      this.fetchData()
+    }
   }
 
   get workspace() {
@@ -79,24 +75,15 @@ export default class PhysicalResource extends Base {
     customAction: this.renderClusters(),
   })
 
-  valueRenderer = option => `${t('Cluster')}: ${option.value}`
-
   renderClusters() {
-    if (this.props.clusterOpts.length) {
-      return (
-        <Select
-          className={styles.clusterSelector}
-          value={this.state.cluster}
-          options={this.props.clusterOpts}
-          onChange={this.handleClusterChange}
-          valueRenderer={this.valueRenderer}
-        />
-      )
+    const { clusterProps } = this.props
+    if (clusterProps.options.length) {
+      return <Select {...clusterProps} />
     }
   }
 
   fetchData = params => {
-    this.monitorStore.cluster = this.state.cluster
+    this.monitorStore.cluster = this.props.clusterProps.cluster
 
     this.monitorStore.fetchMetrics({
       workspace: this.workspace,

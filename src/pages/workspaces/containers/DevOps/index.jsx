@@ -91,6 +91,8 @@ export default class DevOps extends React.Component {
     return this.workspaceStore.clusters.data.map(item => ({
       label: item.name,
       value: item.name,
+      disabled: !item.isReady,
+      cluster: item,
     }))
   }
 
