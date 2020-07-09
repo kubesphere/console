@@ -36,6 +36,7 @@ import { Button } from 'components/Base'
 import EmptyList from 'components/Cards/EmptyList'
 import SortMetricSelect from 'clusters/components/Cards/Monitoring/UsageRank/select'
 import Table from 'clusters/containers/Monitor/Resource/Ranking/Project/Table'
+import StatusReason from 'clusters/components/StatusReason'
 
 import styles from './index.scss'
 
@@ -63,10 +64,25 @@ class Ranking extends React.Component {
 
   get clusters() {
     return this.workspaceStore.clusters.data.map(cluster => ({
-      label: `${t('Cluster')}: ${cluster.name}`,
+      label: cluster.name,
       value: cluster.name,
+      disabled: !cluster.isReady,
+      cluster,
     }))
   }
+
+  valueRenderer = option => `${t('Cluster')}: ${option.value}`
+
+  optionRenderer = option => (
+    <div>
+      <div>{option.value}</div>
+      {!option.cluster.isReady && (
+        <div>
+          <StatusReason data={option.cluster} noTip />
+        </div>
+      )}
+    </div>
+  )
 
   export = () => {
     this.store.download('project.usage.rank.json')
@@ -81,8 +97,7 @@ class Ranking extends React.Component {
 
   componentDidMount() {
     const cluster =
-      this.workspaceStore.clusters.data.find(item => item.isHost) ||
-      this.workspaceStore.clusters.data[0]
+      this.workspaceStore.clusters.data.find(item => item.isReady) || {}
     if (cluster) {
       this.setState({ cluster: cluster.name }, () => {
         this.fetchMetrics()
@@ -129,6 +144,8 @@ class Ranking extends React.Component {
             options={this.clusters}
             value={this.state.cluster}
             onChange={this.handleClusterChange}
+            valueRenderer={this.valueRenderer}
+            optionRenderer={this.optionRenderer}
           />
           <SortMetricSelect store={this.store} />
           <span className={styles.sort_button}>

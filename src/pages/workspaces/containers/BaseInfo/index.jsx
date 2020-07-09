@@ -290,7 +290,7 @@ class BaseInfo extends React.Component {
                 title={t(networkIsolation ? 'On' : 'Off')}
                 description={t('Workspace Network Isolation')}
               />
-              {this.enabledActions.includes('manage') && (
+              {this.enabledActions.includes('manage') && cluster.isReady && (
                 <Switch
                   className={styles.switch}
                   text={t(networkIsolation ? 'On' : 'Off')}

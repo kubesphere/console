@@ -261,11 +261,6 @@ client:
           icon: cogwheel
           children:
             - { name: base-info, title: Basic Info, skipAuth: true }
-            - {
-                name: clusters,
-                title: Cluster Info,
-                multiCluster: true,
-              }
             - { name: roles, title: Workspace Roles }
             - { name: members, title: Workspace Members }
 

@@ -28,6 +28,15 @@ import styles from './index.scss'
 @inject('rootStore')
 @observer
 class WorkspaceOverview extends React.Component {
+  get tips() {
+    return [
+      {
+        title: t('HOW_TO_APPLY_MORE_CLUSTER_Q'),
+        description: t('HOW_TO_APPLY_MORE_CLUSTER_A'),
+      },
+    ]
+  }
+
   renderBanner() {
     const { route } = this.props
 
@@ -40,6 +49,7 @@ class WorkspaceOverview extends React.Component {
           description={t('WORKSPACE_OVERVIEW_DESC')}
           module={this.module}
           routes={route.routes}
+          tips={globals.app.isMultiCluster ? this.tips : []}
         />
       </div>
     )

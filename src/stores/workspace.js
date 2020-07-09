@@ -106,11 +106,7 @@ export default class WorkspaceStore extends Base {
 
     if (this.clusters.data.length > 0) {
       this.selectCluster(
-        get(
-          this.clusters.data.find(cluster => cluster.isHost) ||
-            this.clusters.data[0],
-          'name'
-        )
+        get(this.clusters.data.find(cluster => cluster.isReady), 'name')
       )
     }
   }

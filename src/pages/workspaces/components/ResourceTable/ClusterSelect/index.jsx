@@ -18,11 +18,23 @@
 
 import React, { Component } from 'react'
 import { Select } from '@pitrix/lego-ui'
+import StatusReason from 'clusters/components/StatusReason'
 
 import styles from './index.scss'
 
 export default class ClusterSelect extends Component {
-  valueRenderer = option => `${t('Cluster')}: ${option.label}`
+  valueRenderer = option => `${t('Cluster')}: ${option.value}`
+
+  optionRenderer = option => (
+    <div>
+      <div>{option.value}</div>
+      {!option.cluster.isReady && (
+        <div>
+          <StatusReason data={option.cluster} noTip />
+        </div>
+      )}
+    </div>
+  )
 
   render() {
     const { cluster, clusters, onChange } = this.props
@@ -34,6 +46,7 @@ export default class ClusterSelect extends Component {
         onChange={onChange}
         options={clusters}
         valueRenderer={this.valueRenderer}
+        optionRenderer={this.optionRenderer}
       />
     )
   }

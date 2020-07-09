@@ -28,7 +28,6 @@ import FedProjects from '../containers/FedProjects'
 import DevOps from '../containers/DevOps'
 import Apps from '../containers/Apps'
 import Repos from '../containers/Repos'
-import Clusters from '../containers/Clusters'
 
 import detail from './detail'
 import overviewRoutes from './overview'
@@ -65,11 +64,6 @@ export default [
       {
         path: `${PATH}/base-info`,
         component: BaseInfo,
-        exact: true,
-      },
-      {
-        path: `${PATH}/clusters`,
-        component: Clusters,
         exact: true,
       },
       {

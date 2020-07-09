@@ -31,6 +31,7 @@ import {
 } from '@pitrix/lego-ui'
 import { Text, Form, SearchSelect } from 'components/Base'
 import Confirm from 'components/Forms/Base/Confirm'
+import StatusReason from 'clusters/components/StatusReason'
 import WorkspaceStore from 'stores/workspace'
 import ProjectStore from 'stores/project'
 
@@ -69,6 +70,8 @@ export default class Placment extends Component {
     return this.workspaceStore.clusters.data.map(item => ({
       label: item.name,
       value: item.name,
+      disabled: !item.isReady,
+      cluster: item,
     }))
   }
 
@@ -212,6 +215,17 @@ export default class Placment extends Component {
     </span>
   )
 
+  clusterOptionRenderer = option => (
+    <div>
+      <div>{option.value}</div>
+      {!option.cluster.isReady && (
+        <div>
+          <StatusReason data={option.cluster} noTip />
+        </div>
+      )}
+    </div>
+  )
+
   renderForm() {
     const { workspace } = this.props
     return (
@@ -237,6 +251,7 @@ export default class Placment extends Component {
                   placeholder={t('Please select a cluster')}
                   options={this.clusters}
                   onChange={this.handleClusterChange}
+                  optionRenderer={this.clusterOptionRenderer}
                   prefixIcon={<Icon name="cluster" size={16} />}
                 />
               </Form.Item>
