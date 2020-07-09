@@ -66,6 +66,7 @@ export default class ContainerStore {
     detail.createTime = get(pod, 'createTime', '')
     detail.app = detail.app || pod.app
     detail.cluster = cluster
+    pod.cluster = cluster
 
     this.volumes = await getWorkloadVolumes(pod)
 
