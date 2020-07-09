@@ -77,7 +77,7 @@ export default class AppEdit extends Component {
   }, 200)
 
   handleOk = async () => {
-    const fromData = pick(this.state.detail, [
+    const formData = pick(this.state.detail, [
       'app_id',
       'name',
       'abstraction',
@@ -85,10 +85,11 @@ export default class AppEdit extends Component {
       'home',
       'category_id',
       'readme',
+      'workspace',
     ])
 
     const form = this.formRef.current
-    form && form.validate(() => this.props.onOk(fromData))
+    form && form.validate(() => this.props.onOk(formData))
   }
 
   onCancel = () => {

@@ -16,21 +16,43 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { action } from 'mobx'
+import { action, observable } from 'mobx'
 
+import { get } from 'lodash'
 import Base from './base'
+import List from '../base.list'
 
 export default class Repo extends Base {
   resourceName = 'repos'
 
   defaultStatus = ['active']
 
-  getUrl = ({ repo_id, name } = {}) => {
-    if (repo_id) {
-      return `${this.baseUrl}repos/${repo_id}/${name || ''}`
+  @observable
+  events = new List()
+
+  getUrl = ({ workspace, repo_id, name } = {}) => {
+    let prefix = this.baseUrl
+
+    if (workspace) {
+      prefix += `workspaces/${workspace}/`
     }
 
-    return `${this.baseUrl}repos`
+    if (repo_id) {
+      return `${prefix}repos/${repo_id}/${name || ''}`
+    }
+
+    return `${prefix}repos`
+  }
+
+  @action
+  fetchDetail = async ({ workspace, repo_id } = {}) => {
+    this.isLoading = true
+
+    const result = await request.get(this.getUrl({ workspace, repo_id }))
+
+    this.detail = result || {}
+    this.detail.workspace = workspace
+    this.isLoading = false
   }
 
   @action
@@ -39,27 +61,40 @@ export default class Repo extends Base {
   }
 
   @action
-  index({ repo_id }) {
+  index({ workspace, repo_id }) {
     if (repo_id) {
-      return request.post(this.getUrl({ repo_id, name: 'action' }), {
+      return request.post(this.getUrl({ workspace, repo_id, name: 'action' }), {
         action: 'index',
       })
     }
   }
 
   @action
-  fetchEvents({ repo_id }) {
-    return request.get(this.getUrl({ repo_id, name: 'events' }), {})
+  async fetchEvents({ workspace, repo_id }) {
+    this.events.isLoading = true
+    const result = await request.get(
+      this.getUrl({ workspace, repo_id, name: 'events' }),
+      {}
+    )
+
+    this.events.update({
+      data: get(result, 'items', []),
+      total: get(result, 'total_count', 0),
+    })
+
+    this.events.isLoading = false
   }
 
   @action
-  update = async ({ repo_id, ...data } = {}) => {
-    await this.submitting(request.patch(this.getUrl({ repo_id }), data))
+  update = async ({ workspace, repo_id, ...data } = {}) => {
+    await this.submitting(
+      request.patch(this.getUrl({ workspace, repo_id }), data)
+    )
   }
 
   @action
-  delete = ({ repo_id }) =>
-    this.submitting(request.delete(this.getUrl({ repo_id }), {}))
+  delete = ({ workspace, repo_id }) =>
+    this.submitting(request.delete(this.getUrl({ workspace, repo_id }), {}))
 
   @action
   setSelectRowKeys(selectedRowKeys) {

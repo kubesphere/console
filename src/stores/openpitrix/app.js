@@ -36,14 +36,15 @@ export default class App extends Base {
   uploadScreenshotsList = []
 
   @action
-  upload = async ({ app_id, ...data } = {}) => {
-    await request.patch(this.getUrl({ app_id }), data)
+  upload = async ({ app_id, workspace, ...data } = {}) => {
+    await request.patch(this.getUrl({ app_id, workspace }), data)
   }
 
   @action
   uploadBySequence = async (start, index, base64Str, screenshotStr) => {
     await this.upload({
       app_id: this.detail.app_id,
+      workspace: this.detail.workspace,
       type: 'screenshot',
       attachment_content: base64Str,
       sequence: start + index,
@@ -85,6 +86,7 @@ export default class App extends Base {
   uploadIcon = base64Str =>
     this.upload({
       app_id: this.detail.app_id,
+      workspace: this.detail.workspace,
       type: 'icon',
       attachment_content: base64Str,
     })
@@ -124,6 +126,7 @@ export default class App extends Base {
 
       await this.upload({
         app_id: this.detail.app_id,
+        workspace: this.detail.workspace,
         type: 'screenshot',
         attachment_content: '',
         sequence: index,
@@ -132,6 +135,7 @@ export default class App extends Base {
       for (let i = screenshots.length - 1; i >= 0; i--) {
         await this.upload({
           app_id: this.detail.app_id,
+          workspace: this.detail.workspace,
           type: 'screenshot',
           attachment_content: '',
           sequence: i,
@@ -144,8 +148,8 @@ export default class App extends Base {
 
   // data action value is: suspend、recover
   @action
-  handle = async ({ app_id, ...data } = {}) => {
-    const url = this.getUrl({ app_id, name: 'action' })
+  handle = async ({ app_id, workspace, ...data } = {}) => {
+    const url = this.getUrl({ app_id, workspace, name: 'action' })
     return await this.submitting(request.post(url, data))
   }
 }

@@ -35,7 +35,7 @@ import AppStore from 'stores/openpitrix/app'
   name: 'App Template',
   rowKey: 'app_id',
 })
-export default class Roles extends React.Component {
+export default class Apps extends React.Component {
   get tips() {
     const { enabledActions } = this.props
     return [

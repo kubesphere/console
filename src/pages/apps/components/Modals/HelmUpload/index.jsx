@@ -108,7 +108,7 @@ export default class HelmUpload extends Component {
   }
 
   handleSubmit = () => {
-    const { appId, type, onOk } = this.props
+    const { appId, workspace, type, onOk } = this.props
     const { resultInfo } = this.state
 
     if (this.state.checkStatus !== 'success') {
@@ -124,6 +124,7 @@ export default class HelmUpload extends Component {
       const params = {
         type: 'helm',
         app_id: appId,
+        workspace,
         base64Str: resultInfo.base64Str,
       }
       this.fileStore.uploadPackage(type, params, onOk).then(() => {

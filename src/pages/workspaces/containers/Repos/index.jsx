@@ -32,7 +32,7 @@ import AppRepoStore from 'stores/openpitrix/repo'
   name: 'App Repository',
   rowKey: 'repo_id',
 })
-export default class Roles extends React.Component {
+export default class AppRepos extends React.Component {
   get tips() {
     return [
       {
@@ -46,9 +46,6 @@ export default class Roles extends React.Component {
     return this.props.match.params.workspace
   }
 
-  showAction = record =>
-    !globals.config.presetWorkspaceRoles.includes(record.name)
-
   get itemActions() {
     const { trigger, name, routing } = this.props
     return [
@@ -57,7 +54,6 @@ export default class Roles extends React.Component {
         icon: 'pen',
         text: t('Edit'),
         action: 'edit',
-        show: this.showAction,
         onClick: item =>
           trigger('openpitrix.repo.edit', {
             detail: item,
@@ -69,7 +65,6 @@ export default class Roles extends React.Component {
         icon: 'trash',
         text: t('Delete'),
         action: 'delete',
-        show: this.showAction,
         onClick: item =>
           trigger('resource.delete', {
             detail: item,
@@ -136,7 +131,7 @@ export default class Roles extends React.Component {
           iconSize={40}
           title={name}
           desc={record.description || '-'}
-          noLink
+          to={`${this.props.match.url}/${record.repo_id}`}
         />
       ),
     },
