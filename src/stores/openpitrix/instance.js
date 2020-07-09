@@ -25,5 +25,13 @@ export default class Instance extends Base {
 
   defaultStatus = CLUSTER_QUERY_STATUS
 
-  getUrl = ({ name } = {}) => `${this.baseUrl}${name || this.resourceName}`
+  getUrl = ({ workspace, name } = {}) => {
+    let prefix = this.baseUrl
+
+    if (workspace) {
+      prefix += `workspaces/${workspace}/`
+    }
+
+    return `${prefix}${name || this.resourceName}`
+  }
 }

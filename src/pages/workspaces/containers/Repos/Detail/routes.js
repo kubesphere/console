@@ -16,23 +16,18 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { action } from 'mobx'
+import { getIndexRoute } from 'utils/router.config'
 
-import { DEFAULT_QUERY_STATUS } from 'configs/openpitrix/version'
+import Events from './Events'
 
-import Base from './base'
+const PATH = '/workspaces/:workspace/repos/:repo_id'
 
-export default class Version extends Base {
-  resourceName = 'versions'
-
-  sortKey = 'create_time'
-
-  defaultStatus = DEFAULT_QUERY_STATUS
-
-  // data action value is: submit、cancel、release、suspend、recover
-  @action
-  handle = async ({ app_id, version_id, workspace, ...data } = {}) => {
-    const url = this.getUrl({ app_id, version_id, workspace, name: 'action' })
-    return await this.submitting(request.post(url, data))
-  }
-}
+export default [
+  {
+    path: `${PATH}/events`,
+    title: 'Events',
+    component: Events,
+    exact: true,
+  },
+  getIndexRoute({ path: PATH, to: `${PATH}/events`, exact: true }),
+]

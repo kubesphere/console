@@ -139,6 +139,7 @@ export default {
         description: t('UPLOAD_HELM_DESC'),
         icon: 'templet',
         type: 'CREATE_APP',
+        workspace,
         ...props,
       })
     },
@@ -174,6 +175,7 @@ export default {
         description: t('UPLOAD_HELM_DESC'),
         icon: 'templet',
         type: 'CREATE_APP',
+        workspace,
         ...props,
       })
     },

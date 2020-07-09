@@ -56,27 +56,24 @@ export default class Base {
     return 'kapis/openpitrix.io/v1/'
   }
 
-  getPath({ namespace }) {
-    let path = ''
-    if (namespace) {
-      path += `/namespaces/${namespace}`
-    }
-    return path
-  }
+  getUrl = ({ workspace, app_id, version_id, name } = {}) => {
+    let prefix = this.baseUrl
 
-  getUrl = ({ app_id, version_id, name } = {}) => {
+    if (workspace) {
+      prefix += `workspaces/${workspace}/`
+    }
+
     if (version_id) {
       const suffix = this.resourceName === 'versions' ? '' : this.resourceName
-      return `${this.baseUrl}apps/${app_id}/versions/${version_id}/${name ||
-        suffix}`
+      return `${prefix}apps/${app_id}/versions/${version_id}/${name || suffix}`
     }
 
     if (app_id) {
       const suffix = this.resourceName === 'apps' ? '' : this.resourceName
-      return `${this.baseUrl}apps/${app_id}/${name || suffix}`
+      return `${prefix}apps/${app_id}/${name || suffix}`
     }
 
-    return `${this.baseUrl}${name || this.resourceName}`
+    return `${prefix}${name || this.resourceName}`
   }
 
   @action
@@ -123,6 +120,7 @@ export default class Base {
     order,
     reverse,
     more,
+    workspace,
     ...filters
   } = {}) => {
     this.list.isLoading = true
@@ -158,13 +156,13 @@ export default class Base {
     }
 
     const result = await request.get(
-      this.getUrl({ app_id, version_id }),
+      this.getUrl({ workspace, app_id, version_id }),
       params,
       {},
       this.reject
     )
 
-    const data = get(result, 'items', [])
+    const data = get(result, 'items', []).map(item => ({ ...item, workspace }))
     Object.assign(this.list, {
       data: more ? [...this.list.data, ...data] : data,
       total: get(result, 'total_count', 0),
@@ -179,31 +177,38 @@ export default class Base {
   }
 
   @action
-  fetchDetail = async ({ app_id, appId, version_id, ...params } = {}) => {
+  fetchDetail = async ({
+    app_id,
+    appId,
+    version_id,
+    workspace,
+    ...params
+  } = {}) => {
     this.isLoading = true
 
     const result = await request.get(
-      this.getUrl({ app_id: app_id || appId, version_id }),
+      this.getUrl({ app_id: app_id || appId, version_id, workspace }),
       params,
       {},
       this.reject
     )
 
     this.detail = result || {}
+    this.detail.workspace = workspace
     this.isLoading = false
   }
 
   @action
-  create = async ({ app_id, version_id, ...data } = {}) => {
+  create = async ({ app_id, version_id, workspace, ...data } = {}) => {
     await this.submitting(
-      request.post(this.getUrl({ app_id, version_id }), data)
+      request.post(this.getUrl({ app_id, workspace, version_id }), data)
     )
   }
 
   @action
-  update = async ({ app_id, version_id, ...data } = {}) => {
+  update = async ({ app_id, version_id, workspace, ...data } = {}) => {
     await this.submitting(
-      request.patch(this.getUrl({ app_id, version_id }), data)
+      request.patch(this.getUrl({ app_id, workspace, version_id }), data)
     )
   }
 

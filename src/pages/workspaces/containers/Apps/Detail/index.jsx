@@ -120,6 +120,7 @@ export default class RoleDetail extends React.Component {
             icon: 'templet',
             appId: detail.app_id,
             type: 'ADD_VERSION',
+            workspace: detail.workspace,
             versionStore: this.versionStore,
             success: () => this.fetchData(),
           }),

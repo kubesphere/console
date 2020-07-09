@@ -100,11 +100,12 @@ export default class VersionList extends React.Component {
   }
 
   fetchData = (params = {}) => {
-    const { appId, isAdmin } = this.props
+    const { appId, workspace, isAdmin } = this.props
     const status = isAdmin ? STORE_QUERY_STATUS : this.store.defaultStatus
 
     this.store.fetchList({
       app_id: appId,
+      workspace,
       status,
       ...params,
     })
@@ -224,7 +225,7 @@ export default class VersionList extends React.Component {
   }
 
   renderModals() {
-    const { appId } = this.props
+    const { appId, workspace } = this.props
     const { isSubmitting } = this.store
 
     return (
@@ -235,6 +236,7 @@ export default class VersionList extends React.Component {
           icon={'templet'}
           visible={this.state.uploadModal}
           appId={appId}
+          workspace={workspace}
           isSubmitting={isSubmitting}
           type={'ADD_VERSION'}
           onOk={this.handleCreate}
