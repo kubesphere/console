@@ -70,6 +70,12 @@ export default class ReplicasContorl extends React.Component {
   }
 
   getValue = name => {
+    const clusters = get(this.props.template, 'spec.placement.clusters', [])
+
+    if (clusters.every(cluster => cluster.name !== name)) {
+      return 0
+    }
+
     const overrides = get(this.props.template, 'spec.overrides', [])
     const replicas = get(this.props.template, 'spec.template.spec.replicas', 0)
 
