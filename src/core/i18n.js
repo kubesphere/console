@@ -23,6 +23,7 @@ import cookie from 'utils/cookie'
 import { lazy, getBrowserLang } from 'utils'
 
 const getLocales = {
+  tc: lazy(() => import(/* webpackChunkName: "locales-tc" */ `../locales/tc`)),
   zh: lazy(() => import(/* webpackChunkName: "locales-zh" */ `../locales/zh`)),
   en: lazy(() => import(/* webpackChunkName: "locales-en" */ `../locales/en`)),
 }
