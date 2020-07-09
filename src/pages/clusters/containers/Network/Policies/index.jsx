@@ -127,7 +127,6 @@ export default class NetworkPolicies extends React.Component {
         dataIndex: 'name',
         sorter: true,
         sortOrder: getSortOrder('name'),
-        search: true,
         render: (name, record) => (
           <Avatar
             icon={ICON_TYPES[module]}
@@ -177,6 +176,7 @@ export default class NetworkPolicies extends React.Component {
           columns={this.getColumns}
           actions={this.actions}
           cluster={match.params.cluster}
+          searchType="name"
         />
       </ListPage>
     )
