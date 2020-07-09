@@ -31,6 +31,7 @@ export default class TextArea extends React.Component {
     onChange: PropTypes.func,
     autoResize: PropTypes.bool,
     maxHeight: PropTypes.number,
+    maxLength: PropTypes.number,
   }
 
   static defaultProps = {
@@ -50,8 +51,12 @@ export default class TextArea extends React.Component {
 
   handleChange = e => {
     this.autoResize()
-    const { onChange } = this.props
-    onChange && onChange(e.target.value)
+    const { onChange, maxLength } = this.props
+    let value = e.target.value
+    if (maxLength && value.length > maxLength) {
+      value = value.slice(0, maxLength)
+    }
+    onChange && onChange(value)
   }
 
   autoResize() {

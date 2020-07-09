@@ -20,8 +20,8 @@ import { get } from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
 import { observer } from 'mobx-react'
-import { Input, TextArea } from '@pitrix/lego-ui'
-import { Modal, Form } from 'components/Base'
+import { Input } from '@pitrix/lego-ui'
+import { Modal, Form, TextArea } from 'components/Base'
 import { PATTERN_NAME } from 'utils/constants'
 
 import WorkspaceMemberStore from 'stores/user'
@@ -102,7 +102,7 @@ export default class DevOpsEditModal extends React.Component {
           <Input name="creator" disabled />
         </Form.Item>
         <Form.Item label={t('Description')} desc={t('DESCRIPTION_DESC')}>
-          <TextArea name="description" />
+          <TextArea maxLength={1000} name="description" />
         </Form.Item>
       </Modal.Form>
     )

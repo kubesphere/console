@@ -21,9 +21,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { toJS } from 'mobx'
 import { observer } from 'mobx-react'
-import { Input, Select, TextArea } from '@pitrix/lego-ui'
-import { Modal, Form } from 'components/Base'
-import { PATTERN_NAME, PATTERN_LENGTH_1000 } from 'utils/constants'
+import { Input, Select } from '@pitrix/lego-ui'
+import { Modal, Form, TextArea } from 'components/Base'
+import { PATTERN_NAME } from 'utils/constants'
 
 import UserStore from 'stores/user'
 
@@ -112,14 +112,8 @@ export default class DevOpsEditModal extends React.Component {
         <Form.Item label={t('Creator')} desc={t('DEVOPS_ADMIN_DESC')}>
           <Select name="creator" options={this.getMembersOptions()} disabled />
         </Form.Item>
-        <Form.Item
-          label={t('Description')}
-          desc={t('DESCRIPTION_DESC')}
-          rules={[
-            { pattern: PATTERN_LENGTH_1000, message: t('LONG_DESC_TOO_LONG') },
-          ]}
-        >
-          <TextArea name="description" />
+        <Form.Item label={t('Description')} desc={t('DESCRIPTION_DESC')}>
+          <TextArea maxLength={1000} name="description" />
         </Form.Item>
       </Modal.Form>
     )

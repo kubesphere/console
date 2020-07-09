@@ -20,8 +20,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import copy from 'fast-copy'
 
-import { Input, TextArea } from '@pitrix/lego-ui'
-import { Modal, Form } from 'components/Base'
+import { Input } from '@pitrix/lego-ui'
+import { Modal, Form, TextArea } from 'components/Base'
 
 export default class EditBasicInfoModal extends React.Component {
   static propTypes = {
@@ -81,7 +81,10 @@ export default class EditBasicInfoModal extends React.Component {
           <Input name="metadata.annotations['kubesphere.io/alias-name']" />
         </Form.Item>
         <Form.Item label={t('Description')} desc={t('DESCRIPTION_DESC')}>
-          <TextArea name="metadata.annotations['kubesphere.io/description']" />
+          <TextArea
+            maxLength={1000}
+            name="metadata.annotations['kubesphere.io/description']"
+          />
         </Form.Item>
       </Modal.Form>
     )
