@@ -150,6 +150,17 @@ class CredentialDetail extends Base {
     })
   }
 
+  get enabledActions() {
+    const { cluster, project_id } = this.props.match.params
+    const devops = this.store.getDevops(project_id)
+
+    return globals.app.getActions({
+      module: 'credentials',
+      cluster,
+      devops,
+    })
+  }
+
   renderSider() {
     const { detail } = this.store
     const operations = this.getOperations().filter(item =>

@@ -21,7 +21,7 @@ import PropTypes from 'prop-types'
 import { Input, TextArea, RadioGroup, Radio, Select } from '@pitrix/lego-ui'
 import { observer } from 'mobx-react'
 import { Modal, Form } from 'components/Base'
-import { isArray, isString, get } from 'lodash'
+import { isString, get, isEmpty } from 'lodash'
 import PipelineStore from 'stores/devops/pipelines'
 
 import style from './paramsModal.scss'
@@ -38,7 +38,8 @@ export default class ParamsModal extends React.Component {
     this.formRef = React.createRef()
     this.store = new PipelineStore()
     this.state = {
-      branches: [],
+      parameters: null,
+      currentBranch: this.branch,
     }
   }
 
@@ -48,19 +49,23 @@ export default class ParamsModal extends React.Component {
     name: '',
     onOk() {},
     onCancel() {},
-    onBranchSelect() {},
+  }
+
+  get branch() {
+    const { branches, params } = this.props
+    let currentBranch = params.branch
+    if (!isEmpty(branches)) {
+      currentBranch = get(this.branchOptions, '[0].value')
+    }
+    return currentBranch
   }
 
   get branchOptions() {
     const { branches, params } = this.props
-    let _branches = branches
-    if (this.state.branches.length) {
-      _branches = this.state.branches
-    }
-    let _options = Array.isArray(_branches)
-      ? _branches.map(branch => ({
-          label: branch,
-          value: branch,
+    let _options = Array.isArray(branches)
+      ? branches.map(branch => ({
+          label: decodeURIComponent(branch),
+          value: decodeURIComponent(branch),
         }))
       : []
 
@@ -91,39 +96,24 @@ export default class ParamsModal extends React.Component {
     return options
   }
 
-  componentDidUpdate(prevProps) {
-    const { visible, branches } = this.props
-    const { visible: prevVisible } = prevProps
-
-    if (!prevVisible && visible && branches.length) {
-      this.start = 1
-
-      if (branches.length > 90) {
-        // length > 90 ,branch list need new api to get
-        this.getBranches()
-      }
-
-      this.props.onBranchSelect(get(this.branchOptions, '[0].value', ''))
-    }
+  init = () => {
+    const parameters = this.getParametersFromBranch(this.branch)
+    this.setState({
+      currentBranch: this.branch,
+      parameters,
+    })
   }
 
-  getBranches = async () => {
-    const { params, name } = this.props
-    const result = await this.store.getBranchLists({
-      name,
-      ...params,
-      page: this.start,
-    })
+  componentDidMount() {
+    this.init()
+  }
 
-    if (isArray(result) && result.length) {
-      const _branches = result.map(item => item.name)
-      this.setState({ branches: { ...this.state.branches, ..._branches } })
+  componentDidUpdate(prevProps) {
+    const { visible } = this.props
+    const { visible: prevVisible } = prevProps
 
-      if (result.length === 100) {
-        this.start = this.start + 1
-        this.getBranches()
-      }
-      this.getBranchParameters()
+    if (!prevVisible && visible) {
+      this.init()
     }
   }
 
@@ -136,12 +126,6 @@ export default class ParamsModal extends React.Component {
       }))
       this.props.onOk(params, branch)
     })
-  }
-
-  getBranchParameters = () => {
-    const { branch } = this.formRef.current.getData()
-
-    this.props.onBranchSelect(branch)
   }
 
   renderParamsItem(param) {
@@ -241,8 +225,20 @@ export default class ParamsModal extends React.Component {
     }
   }
 
+  handleBranchChange = branch => {
+    const parameters = this.getParametersFromBranch(branch)
+    this.setState({ currentBranch: branch, parameters })
+  }
+
+  getParametersFromBranch = async branch => {
+    const { params } = this.props.params
+    const result = await this.store.getBranchDetail({ branch, ...params })
+    return get(result, 'parameters', null)
+  }
+
   render() {
-    const { visible, onCancel, branches, parameters } = this.props
+    const { visible, onCancel, branches } = this.props
+    const { parameters, currentBranch } = this.state
 
     return (
       <Modal
@@ -254,7 +250,7 @@ export default class ParamsModal extends React.Component {
         title={t('Params Input')}
       >
         <Form ref={this.formRef}>
-          {branches && branches.length ? (
+          {!isEmpty(branches) ? (
             <Form.Item
               label={t('Branch')}
               rules={[{ required: true, message: t('This param is required') }]}
@@ -262,14 +258,12 @@ export default class ParamsModal extends React.Component {
               <Select
                 name="branch"
                 options={this.branchOptions}
-                defaultValue={
-                  this.branchOptions[0] && this.branchOptions[0].value
-                }
-                onChange={this.props.onBranchSelect}
+                value={currentBranch}
+                onChange={this.handleBranchChange}
               />
             </Form.Item>
           ) : null}
-          {parameters && parameters.length ? (
+          {!isEmpty(parameters) ? (
             <div className={style.desc}>{t('PARAMS_DESC')}</div>
           ) : null}
           {parameters && parameters.map(param => this.renderParamsItem(param))}

@@ -26,7 +26,7 @@ import {
   isUndefined,
 } from 'lodash'
 import { Link } from 'react-router-dom'
-import { toJS, action } from 'mobx'
+import { toJS } from 'mobx'
 import { parse } from 'qs'
 import { observer, inject } from 'mobx-react'
 import { Level, LevelLeft, LevelRight } from '@pitrix/lego-ui'
@@ -161,20 +161,6 @@ export default class Activity extends React.Component {
     Notify.success({
       content: t('Scan repo success'),
     })
-  }
-
-  @action
-  handleBranchSelect = async branch => {
-    const { params } = this.props.match
-
-    const result = await this.store.getBranchDetail({
-      ...params,
-      branch,
-    })
-
-    if (result.parameters) {
-      this.store.detail.parameters = result.parameters
-    }
   }
 
   handleStop = record => async () => {
@@ -331,17 +317,15 @@ export default class Activity extends React.Component {
   ]
 
   renderModals = () => {
-    const { detail } = this.store
+    const { branchDetail } = this.store
     const { params } = this.props.match
 
     return (
       <BranchSelectModal
         onOk={this.handleRunBranch}
-        onBranchSelect={this.handleBranchSelect}
         onCancel={this.hideBranchModal}
         visible={this.state.showBranchModal}
-        branches={toJS(detail.branchNames)}
-        parameters={detail.parameters}
+        branches={toJS(branchDetail.branchNames)}
         params={params || {}}
       />
     )

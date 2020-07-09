@@ -399,8 +399,11 @@ export default class PipelineStore extends BaseStore {
     })}${project_id}/pipelines/${name}${
       branch ? `/branches/${encodeURIComponent(branch)}` : ''
     }/runs`
+
+    const params = !isEmpty(parameters) ? { parameters } : {}
+
     return await this.request
-      .post(href_temp, !isEmpty(parameters) ? { parameters } : {})
+      .post(href_temp, params)
       // TODO: backend return updated parameters info in run api will be better way
       .then(() => {
         // pipeline parameters not updated immediately
