@@ -214,5 +214,5 @@ class ResourceStatus extends React.Component {
   }
 }
 
-export default inject('detailStore')(observer(ResourceStatus))
+export default inject('detailStore', 'hpaStore')(observer(ResourceStatus))
 export const Component = ResourceStatus

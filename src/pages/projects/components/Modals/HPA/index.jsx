@@ -53,23 +53,14 @@ export default class HPAModal extends React.Component {
 
     this.state = {
       loading: true,
+      formData: undefined,
     }
 
     this.store = props.store
   }
 
-  componentDidUpdate(prevProps) {
-    const { visible } = this.props
-
-    if (visible && visible !== prevProps.visible) {
-      this.fetchData(this.props)
-    }
-  }
-
   componentDidMount() {
-    if (this.props.visible) {
-      this.fetchData(this.props)
-    }
+    this.fetchData(this.props)
   }
 
   fetchData = params => {
@@ -83,10 +74,10 @@ export default class HPAModal extends React.Component {
 
         if (resp.exist) {
           this.store.fetchDetail(_params).then(() => {
-            this.setState({ loading: false })
+            this.setState({ loading: false, formData: this.getFormData() })
           })
         } else {
-          this.setState({ loading: false })
+          this.setState({ loading: false, formData: this.getFormData() })
         }
       })
     })
@@ -95,6 +86,7 @@ export default class HPAModal extends React.Component {
   getFormData = () => {
     const { name, namespace } = this.props.detail
     const detail = toJS(this.store.detail)
+
     const {
       cpuCurrentUtilization,
       cpuTargetUtilization,
@@ -141,12 +133,10 @@ export default class HPAModal extends React.Component {
   render() {
     const { visible, onCancel } = this.props
     const { isSubmitting } = this.store
-    const formData = this.getFormData()
+    const { formData, loading } = this.state
 
     return (
-      <Modal.Form
-        formRef={this.form}
-        data={formData}
+      <Modal
         width={691}
         title={t('Horizontal Pod Autoscaling')}
         icon="firewall"
@@ -155,8 +145,8 @@ export default class HPAModal extends React.Component {
         visible={visible}
         isSubmitting={isSubmitting}
       >
-        <Loading spinning={this.state.loading}>
-          <div>
+        <Loading spinning={loading}>
+          <Form data={formData} ref={this.form}>
             <Alert
               className={styles.alert}
               type="info"
@@ -177,6 +167,8 @@ export default class HPAModal extends React.Component {
                 interger
                 min={0}
                 max={100}
+                defaultValue=""
+                onChange={this.handleCPUChange}
               />
             </Form.Item>
             <Form.Item
@@ -188,7 +180,8 @@ export default class HPAModal extends React.Component {
                 interger
                 unit="Mi"
                 min={0}
-                defaultValue={0}
+                defaultValue=""
+                onChange={this.handleMemoryChange}
               />
             </Form.Item>
             <Form.Item
@@ -215,9 +208,9 @@ export default class HPAModal extends React.Component {
                 defaultValue={1}
               />
             </Form.Item>
-          </div>
+          </Form>
         </Loading>
-      </Modal.Form>
+      </Modal>
     )
   }
 }
