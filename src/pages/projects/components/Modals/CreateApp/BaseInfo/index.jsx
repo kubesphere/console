@@ -21,7 +21,7 @@ import React from 'react'
 import { PropTypes } from 'prop-types'
 import { Input, Select, TextArea } from '@pitrix/lego-ui'
 import { PATTERN_NAME, PATTERN_LENGTH_63 } from 'utils/constants'
-import { updateFederatedAnnotations } from 'utils'
+import { updateFederatedAnnotations, generateId } from 'utils'
 import { Form } from 'components/Base'
 
 import styles from './index.scss'
@@ -85,6 +85,12 @@ export default class BaseInfo extends React.Component {
     )
     this.props.onLabelsChange(
       get(this.fedFormTemplate, 'spec.selector.matchLabels')
+    )
+
+    set(
+      this.props.formData,
+      'ingress.metadata.name',
+      `${value}-ingress-${generateId()}`
     )
 
     if (this.props.isFederated) {

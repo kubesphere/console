@@ -18,7 +18,7 @@
 
 import React, { Component } from 'react'
 
-import { keyBy } from 'lodash'
+import { keyBy, isEmpty } from 'lodash'
 import { inject, observer } from 'mobx-react'
 import { joinSelector } from 'utils'
 import { Loading } from '@pitrix/lego-ui'
@@ -59,9 +59,24 @@ export default class Components extends Component {
     }
   }
 
+  renderServices() {
+    const { data } = this.serviceStore.list
+    if (isEmpty(data)) {
+      return <div className={styles.empty}>{t('No Components')}</div>
+    }
+
+    return (
+      <div>
+        {data.map(item => (
+          <ServiceCard key={item.name} data={item} prefix={this.prefix} />
+        ))}
+      </div>
+    )
+  }
+
   render() {
     const { cluster } = this.props
-    const { data, isLoading } = this.serviceStore.list
+    const { isLoading } = this.serviceStore.list
     const clusters = keyBy(this.props.projectStore.detail.clusters, 'name')
 
     return (
@@ -76,13 +91,7 @@ export default class Components extends Component {
           </div>
         </div>
         <div className={styles.content}>
-          <Loading spinning={isLoading}>
-            <>
-              {data.map(item => (
-                <ServiceCard key={item.name} data={item} prefix={this.prefix} />
-              ))}
-            </>
-          </Loading>
+          <Loading spinning={isLoading}>{this.renderServices()}</Loading>
         </div>
       </Panel>
     )
