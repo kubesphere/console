@@ -319,12 +319,12 @@ const HpaMapper = item => {
     memoryCurrentValue: get(
       currentMetrics,
       'memory.resource.current.averageValue',
-      ''
+      0
     ),
     memoryTargetValue: get(
       targetMetrics,
       'memory.resource.target.averageValue',
-      ''
+      0
     ),
     _originData: getOriginData(item),
   }

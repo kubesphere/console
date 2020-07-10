@@ -186,7 +186,7 @@ export default class HPAModal extends React.Component {
                 name="metadata.annotations.memoryTargetValue"
                 unit="Mi"
                 min={0}
-                defaultValue=""
+                defaultValue={0}
               />
             </Form.Item>
             <Form.Item
