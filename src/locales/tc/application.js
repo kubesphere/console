@@ -22,7 +22,7 @@ export default {
   'Deployed Applications': '已部署應用',
   'Deploy New Application': '部署新應用',
   'Deploy App': '部署應用',
-  'Create Application': '構建應用',
+  'Create Composing Application': '構建應用',
   'App Template': '應用範本',
   Deploy: '部署',
   'Application Type': '應用類型',

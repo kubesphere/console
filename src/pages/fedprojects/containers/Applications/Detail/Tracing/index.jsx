@@ -118,6 +118,11 @@ export default class Tracing extends React.Component {
   fetchTracing = () => {
     const { namespace } = toJS(this.detailStore.detail)
     const { cluster } = this.state
+
+    if (!cluster || !get(cluster, 'configz.servicemesh')) {
+      return
+    }
+
     const query = {
       namespace,
       cluster: cluster.name,
