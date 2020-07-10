@@ -104,10 +104,6 @@ export default class ParamsModal extends React.Component {
     })
   }
 
-  componentDidMount() {
-    this.init()
-  }
-
   componentDidUpdate(prevProps) {
     const { visible } = this.props
     const { visible: prevVisible } = prevProps
@@ -231,7 +227,7 @@ export default class ParamsModal extends React.Component {
   }
 
   getParametersFromBranch = async branch => {
-    const { params } = this.props.params
+    const { params } = this.props
     const result = await this.store.getBranchDetail({ branch, ...params })
     return get(result, 'parameters', null)
   }
