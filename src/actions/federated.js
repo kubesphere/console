@@ -19,24 +19,26 @@
 import { get, set, unset, cloneDeep, uniqBy } from 'lodash'
 import { Modal, Notify } from 'components/Base'
 import FedProjectCreateModal from 'components/Modals/FedProjectCreate'
+import DeleteModal from 'components/Modals/Delete'
 import FORM_TEMPLATES from 'utils/form.templates'
 import FED_TEMPLATES from 'utils/fed.templates'
 
 import FederatedStore from 'stores/federated'
+import ProjectStore from 'stores/project'
 
 export default {
   'federated.project.create': {
-    on({ store, success, cluster, workspace, ...props }) {
+    on({ store, success, cluster, workspace, clusters, ...props }) {
       const modal = Modal.open({
         onOk: async data => {
           set(data, 'metadata.labels["kubesphere.io/workspace"]', workspace)
-          const clusters = uniqBy(
+          const specClusters = uniqBy(
             get(data, 'spec.placement.clusters', []),
             'name'
           )
 
           const federatedStore = new FederatedStore(store)
-          set(data, 'spec.placement.clusters', clusters)
+          set(data, 'spec.placement.clusters', specClusters)
 
           const hostData = cloneDeep(data)
           set(
@@ -57,9 +59,29 @@ export default {
         },
         cluster,
         workspace,
+        clusters,
         formTemplate: FORM_TEMPLATES.project(),
         modal: FedProjectCreateModal,
         store,
+        ...props,
+      })
+    },
+  },
+  'federated.project.delete': {
+    on({ store, detail, success, ...props }) {
+      const projectStore = new ProjectStore()
+      const modal = Modal.open({
+        onOk: () => {
+          projectStore.delete({ name: detail.name }).then(() => {
+            Modal.close(modal)
+            Notify.success({ content: `${t('Deleted Successfully')}!` })
+            success && success()
+          })
+        },
+        store,
+        modal: DeleteModal,
+        resource: detail.name,
+        type: 'Multi-cluster Project',
         ...props,
       })
     },

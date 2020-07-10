@@ -98,7 +98,7 @@ export default class Projects extends React.Component {
         text: t('Delete'),
         action: 'delete',
         onClick: item =>
-          trigger('resource.delete', {
+          trigger('federated.project.delete', {
             detail: item,
           }),
       },

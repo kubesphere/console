@@ -135,7 +135,7 @@ export default {
           })
         },
         modal: EditGatewayModal,
-        detail: detail._originData,
+        detail: toJS(detail._originData),
         store,
         ...props,
       })

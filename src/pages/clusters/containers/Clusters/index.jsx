@@ -35,10 +35,12 @@ class Clusters extends React.Component {
     super(props)
 
     this.store = new ClusterStore()
+    this.hostStore = new ClusterStore()
   }
 
   componentDidMount() {
-    this.store.fetchList({ limit: 10 })
+    this.fetchHostData()
+    this.fetchData()
   }
 
   get authKey() {
@@ -55,21 +57,37 @@ class Clusters extends React.Component {
     return this.props.rootStore.routing
   }
 
+  fetchData = (params = {}) => {
+    this.store.fetchList({
+      ...params,
+      limit: 10,
+      labelSelector: '!cluster-role.kubesphere.io/host',
+    })
+  }
+
+  fetchHostData = (params = {}) => {
+    this.hostStore.fetchList({
+      ...params,
+      labelSelector: 'cluster-role.kubesphere.io/host=',
+      limit: -1,
+    })
+  }
+
   showAddCluster = () => {
     this.routing.push('/clusters/add')
   }
 
   handlePagination = page => {
-    this.store.fetchList({ page, limit: 10 })
+    this.fetchData({ page })
   }
 
   handleRefresh = () => {
-    this.store.fetchList({ page: 1, limit: 10 })
+    this.fetchData({ page: 1 })
   }
 
   handleSearch = name => {
-    const params = { name, limit: 10 }
-    this.store.fetchList(params)
+    this.fetchData({ name })
+    this.fetchHostData({ name })
   }
 
   enterCluster = async cluster => {
@@ -78,8 +96,20 @@ class Clusters extends React.Component {
 
   renderList() {
     const { data, page, total, limit, filters, isLoading } = this.store.list
+    const {
+      data: hostClusters,
+      isLoading: isHostLoading,
+      filters: hostFilters,
+    } = this.hostStore.list
 
-    if (isEmpty(data) && !isLoading && isEmpty(filters)) {
+    if (
+      isEmpty(data) &&
+      !isLoading &&
+      isEmpty(filters) &&
+      !isHostLoading &&
+      isEmpty(hostFilters) &&
+      isEmpty(hostClusters)
+    ) {
       return (
         <EmptyList
           icon="cluster"
@@ -96,22 +126,51 @@ class Clusters extends React.Component {
       )
     }
 
-    if (isLoading) {
+    if (isLoading || isHostLoading) {
       return <Loading className={styles.loading} />
     }
 
-    return (
-      <ul className={styles.cards}>
-        <div className="h6">
-          {t('Cluster List')} <span className={styles.total}>{total}</span>
-        </div>
-        {!isLoading && isEmpty(data) ? (
+    if (
+      !isLoading &&
+      isEmpty(data) &&
+      !isHostLoading &&
+      isEmpty(hostClusters)
+    ) {
+      return (
+        <>
+          <div className="h6 margin-b12">
+            {t('Cluster List')} <span className={styles.total}>{total}</span>
+          </div>
           <div className={styles.noData}>
             <img src="/assets/empty-card.svg" alt="" />
             <p>{t('RESOURCE_NOT_FOUND')}</p>
           </div>
-        ) : (
-          <>
+        </>
+      )
+    }
+
+    return (
+      <ul className={styles.cards}>
+        {!isEmpty(hostClusters) && (
+          <div className="margin-b12">
+            <div className="h6">
+              {hostClusters.length > 1 ? t('Host Clusters') : t('Host Cluster')}
+            </div>
+            {hostClusters.map(item => (
+              <ClusterCard
+                key={item.name}
+                data={item}
+                onEnter={this.enterCluster}
+              />
+            ))}
+          </div>
+        )}
+        {!isEmpty(data) && (
+          <div>
+            <div className="h6">
+              {t('Member Clusters')}{' '}
+              <span className={styles.total}>{total}</span>
+            </div>
             {data.map(item => (
               <ClusterCard
                 key={item.name}
@@ -127,7 +186,7 @@ class Clusters extends React.Component {
                 onChange={this.handlePagination}
               />
             </div>
-          </>
+          </div>
         )}
       </ul>
     )

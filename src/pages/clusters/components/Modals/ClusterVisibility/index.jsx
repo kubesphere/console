@@ -21,7 +21,7 @@ import { toJS } from 'mobx'
 import { get, keyBy } from 'lodash'
 import { Columns, Column, Toggle, Tooltip, Icon } from '@pitrix/lego-ui'
 
-import { Modal, Search } from 'components/Base'
+import { Alert, Modal, Search } from 'components/Base'
 
 import WorkspaceStore from 'stores/workspace'
 
@@ -123,6 +123,11 @@ export default class ClusterVisibility extends React.Component {
         title={t('Authorize the cluster to workspace')}
         description={t('AUTHORIZE_CLUSTER_TO_WORKSPACE_DESC')}
       >
+        <Alert
+          className="margin-b12"
+          type="warning"
+          message={t('HOST_CLUSTER_VISIBILITY_WARNING')}
+        />
         <div className={styles.wrapper}>
           <Columns>
             <Column>

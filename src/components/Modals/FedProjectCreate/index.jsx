@@ -18,15 +18,13 @@
 
 import React from 'react'
 import { observer } from 'mobx-react'
-import { get, isEmpty, set, uniqBy } from 'lodash'
+import { get, set, uniqBy } from 'lodash'
 import PropTypes from 'prop-types'
 import { Columns, Column, Select, Input, TextArea } from '@pitrix/lego-ui'
 import { Modal, Form } from 'components/Base'
 import { ArrayInput, ObjectInput } from 'components/Inputs'
 import ClusterTitle from 'components/Clusters/ClusterTitle'
 import { PATTERN_SERVICE_NAME, PATTERN_LENGTH_63 } from 'utils/constants'
-
-import WorkspaceStore from 'stores/workspace'
 
 import { computed } from 'mobx'
 import styles from './index.scss'
@@ -37,6 +35,7 @@ export default class FedProjectCreateModal extends React.Component {
     formTemplate: PropTypes.object,
     visible: PropTypes.bool,
     isSubmitting: PropTypes.bool,
+    clusters: PropTypes.array,
     onOk: PropTypes.func,
     onCancel: PropTypes.func,
   }
@@ -53,13 +52,8 @@ export default class FedProjectCreateModal extends React.Component {
     super(props)
 
     this.store = props.store
-    this.workspaceStore = new WorkspaceStore()
 
     this.clusterRef = React.createRef()
-  }
-
-  componentDidMount() {
-    this.fetchClusters()
   }
 
   get networkOptions() {
@@ -71,28 +65,12 @@ export default class FedProjectCreateModal extends React.Component {
 
   @computed
   get clusters() {
-    return this.workspaceStore.clusters.data.map(item => ({
+    return this.props.clusters.map(item => ({
       label: item.name,
       value: item.name,
       cluster: item,
       disabled: !item.isReady,
     }))
-  }
-
-  @computed
-  get defaultClusters() {
-    const clusters = this.workspaceStore.clusters.data
-      .filter(item => item.isHost)
-      .map(item => ({ name: item.name }))
-
-    return isEmpty(clusters) ? undefined : clusters
-  }
-
-  fetchClusters(params) {
-    this.workspaceStore.fetchClusters({
-      ...params,
-      workspace: this.props.workspace,
-    })
   }
 
   nameValidator = (rule, value, callback) => {
@@ -186,7 +164,6 @@ export default class FedProjectCreateModal extends React.Component {
             name="spec.placement.clusters"
             addText={t('Add Cluster')}
             itemType="object"
-            defaultValue={this.defaultClusters}
             onChange={this.handleClusterChange}
           >
             <ObjectInput>

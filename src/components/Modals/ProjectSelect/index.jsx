@@ -73,6 +73,8 @@ export default class ProjectSelectModal extends React.Component {
     return this.store.clusters.data.map(item => ({
       label: item.name,
       value: item.name,
+      cluster: item,
+      disabled: !item.isReady,
     }))
   }
 
@@ -189,6 +191,7 @@ export default class ProjectSelectModal extends React.Component {
       rootStore.triggerAction('federated.project.create', {
         store: this.projectStore,
         workspace,
+        clusters: this.store.clusters.data.slice(),
         success: this.fetchData,
       })
     } else {

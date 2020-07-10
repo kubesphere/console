@@ -17,6 +17,7 @@
  */
 
 import { get } from 'lodash'
+import { toJS } from 'mobx'
 import { Modal, Notify } from 'components/Base'
 
 import CreateModal from 'components/Modals/Create'
@@ -89,7 +90,7 @@ export default {
           })
         },
         store,
-        detail: detail._originData,
+        detail: toJS(detail._originData),
         modal: ConfigMapEditModal,
         ...props,
       })
