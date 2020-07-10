@@ -78,6 +78,14 @@ export default class AuthorizedUsers extends React.Component {
     },
   ]
 
+  get emptyProps() {
+    return {
+      icon: 'human',
+      name: 'Users',
+      desc: t('NO_AUTHORIZED_USERS'),
+    }
+  }
+
   render() {
     const { data, total, page, limit, isLoading } = toJS(this.store.list)
 
@@ -92,6 +100,7 @@ export default class AuthorizedUsers extends React.Component {
           pagination={pagination}
           isLoading={isLoading}
           onFetch={this.fetchData}
+          emptyProps={this.emptyProps}
           hideCustom
           hideHeader
         />

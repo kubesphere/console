@@ -234,7 +234,7 @@ export default {
   'Default user role which allows a user to manage resources within the projects created by the user himself or invited by others. It does not allow the user to manage unauthorized resources in the cluster.':
     '默认用户角色，仅允许对自己创建或受邀加入的项目中的资源进行管理，无权操作集群范围内其他资源。',
 
-  'No authorized users': '暂无授权用户',
+  NO_AUTHORIZED_USERS: '目前没有用户被授权此角色',
 
   'Unable to delete preset role': '无法删除预置角色',
 
