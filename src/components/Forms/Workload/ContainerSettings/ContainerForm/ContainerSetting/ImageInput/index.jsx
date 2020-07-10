@@ -99,7 +99,7 @@ export default class ImageSearch extends Component {
   }
 
   getImageDetail = async ({ image, secret, ...rest }) => {
-    const { namespace } = this.props
+    const { namespace, cluster } = this.props
     if (!image) {
       return
     }
@@ -107,18 +107,23 @@ export default class ImageSearch extends Component {
 
     this.setState({ isLoading: true })
     const result = await this.store.getImageDetail({
+      cluster,
       namespace,
       image,
       secret,
     })
+
     const selectedImage = { ...result, ...rest, image }
     set(globals, `cache[${image}]`, selectedImage)
+
     if (this.isUnMounted) {
       return
     }
+
     if (!isEmpty(selectedImage.exposedPorts)) {
       this.setState({ showPortsTips: true })
     }
+
     this.setState({ isLoading: false })
   }
 
@@ -126,6 +131,7 @@ export default class ImageSearch extends Component {
     const ports = this.selectedImage.exposedPorts.map(port => {
       const protocol = port.split('/')[1]
       const containerPort = Number(port.split('/')[0])
+
       return {
         name: `${protocol}-${containerPort}`,
         protocol: protocol.toUpperCase(),
@@ -133,6 +139,7 @@ export default class ImageSearch extends Component {
         servicePort: containerPort,
       }
     })
+
     if (!isEmpty(ports)) {
       set(this.props.formTemplate, 'ports', ports)
       this.context.forceUpdate()
@@ -171,8 +178,10 @@ export default class ImageSearch extends Component {
         logo,
         short_description,
       } = this.selectedImage
+
       const ports = exposedPorts.join('; ')
       const _message = message || short_description
+
       return (
         <div className={styles.selectedContent}>
           <div className={styles.selectedInfo}>

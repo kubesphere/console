@@ -75,10 +75,13 @@ export default class ContainerSetting extends React.Component {
 
   renderImageForm = () => {
     const { data, namespace } = this.props
+    const cluster = get(this.props.imageRegistries, '[0].cluster')
+
     return (
       <ImageInput
         name="image"
         namespace={namespace}
+        cluster={cluster}
         className={styles.imageSearch}
         formTemplate={data}
         imageRegistries={this.imageRegistries}
