@@ -169,6 +169,7 @@ class BaseInfo extends React.Component {
         name: 'DevOps Projects',
         icon: 'strategy-group',
         value: metrics.workspace_devops_project_count,
+        hidden: !globals.app.hasKsModule('devops'),
       },
       {
         name: 'Workspace Members',
@@ -205,14 +206,16 @@ class BaseInfo extends React.Component {
           )}
         </div>
         <div className={styles.content}>
-          {options.map(option => (
-            <Text
-              key={option.name}
-              icon={option.icon}
-              title={option.value}
-              description={t(option.name)}
-            />
-          ))}
+          {options
+            .filter(option => !option.hidden)
+            .map(option => (
+              <Text
+                key={option.name}
+                icon={option.icon}
+                title={option.value}
+                description={t(option.name)}
+              />
+            ))}
         </div>
       </Panel>
     )

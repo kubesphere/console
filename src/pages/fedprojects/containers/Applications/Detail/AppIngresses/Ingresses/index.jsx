@@ -57,7 +57,10 @@ export default class Components extends Component {
 
       this.routerStore.fetchListByK8s(params)
     }
-    this.routerStore.getGateway(detail)
+    this.routerStore.getGateway({
+      cluster,
+      ...detail,
+    })
   }
 
   getNodePorts(gateway) {

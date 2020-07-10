@@ -19,7 +19,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import { flatten, isArray, isEmpty, get } from 'lodash'
+import { flatten, isArray, isEmpty, get, uniqBy } from 'lodash'
 import { Icon, Checkbox } from '@pitrix/lego-ui'
 
 import { joinSelector } from 'utils'
@@ -145,7 +145,7 @@ export default class WorkloadDeleteModal extends React.Component {
 
     const results = await Promise.all(requests)
     this.setState({
-      relatedResources: flatten(results),
+      relatedResources: uniqBy(flatten(results), 'uid'),
       isLoading: false,
     })
   }

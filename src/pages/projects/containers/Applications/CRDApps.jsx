@@ -118,7 +118,7 @@ export default class CRDApps extends React.Component {
           {
             key: 'create',
             type: 'control',
-            text: t('Create Application'),
+            text: t('Create Composing Application'),
             onClick: this.showCreate,
           },
         ]

@@ -70,9 +70,9 @@ export default class RuleList extends React.Component {
       <ul>
         {rules
           .filter(item => item.host)
-          .map(rule => (
+          .map((rule, index) => (
             <Item
-              key={rule.host}
+              key={`${rule.host}-${index}`}
               rule={rule}
               tls={tls}
               onEdit={onAdd}
