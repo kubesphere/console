@@ -235,4 +235,6 @@ export default {
     'Allows viewer access to view all resources in the DevOps project.',
   ROLE_DEVOPS_OPERATOR:
     'Normal member in a DevOps project who can create pipeline credentials in the DevOps project.',
+
+  NO_AUTHORIZED_USERS: 'Currently there is no authorized user for this role.',
 }
