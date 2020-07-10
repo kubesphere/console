@@ -85,22 +85,25 @@ export default class VolumeSettings extends React.Component {
   }
 
   render() {
-    const { formRef, cluster } = this.props
+    const { formRef, isFederated, cluster } = this.props
     const { method } = this.state
 
     return (
       <Form data={this.fedFormTemplate} ref={formRef}>
-        <Form.Item label={t('Method')}>
-          <TypeSelect
-            name={CREATE_TYPE_NAME}
-            defaultValue={DEFAULT_CREATE_WAY}
-            options={CREATE_TYPE_OPTIONS}
-            onChange={this.handeChange}
-          />
-        </Form.Item>
+        {!isFederated && (
+          <Form.Item label={t('Method')}>
+            <TypeSelect
+              name={CREATE_TYPE_NAME}
+              defaultValue={DEFAULT_CREATE_WAY}
+              options={CREATE_TYPE_OPTIONS}
+              onChange={this.handeChange}
+            />
+          </Form.Item>
+        )}
         {method === CREATE_WAY.SNAPSHOT ? (
           <SnapshotForm
             namespace={get(this.formTemplate, 'metadata.namespace')}
+            cluster={cluster}
           />
         ) : (
           <FormTemplate cluster={cluster} />
