@@ -49,9 +49,11 @@ export default class SanpshotForm extends Component {
   }
 
   fetchSnapshots = (params = { limit: 10 }) => {
+    const { namespace, cluster } = this.props
     this.snapshotStore.fetchList({
       ...params,
-      namespace: this.props.namespace,
+      namespace,
+      cluster,
       status: 'ready',
     })
   }
