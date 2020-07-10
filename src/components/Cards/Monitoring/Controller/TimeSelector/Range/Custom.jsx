@@ -77,7 +77,7 @@ export default class CustomRange extends React.Component {
     const interval = endTime - startTime
 
     if (interval > 0) {
-      const times = Math.floor(interval / (getMinutes(step) * 60))
+      const times = Math.floor(interval / (getMinutes(step) * 60)) || 1
       const data = { step, times, start: startTime, end: endTime, lastTime: '' }
       this.props.onSubmit(data)
     } else {
