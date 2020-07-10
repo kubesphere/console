@@ -127,7 +127,7 @@ export default class AppDetail extends React.Component {
       },
       {
         name: t('Version'),
-        value: detail.version,
+        value: get(detail, 'resource.version'),
       },
       {
         name: t('Created Time'),

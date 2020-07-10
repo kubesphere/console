@@ -1,4 +1,5 @@
 @import '~scss/variables';
+@import '~scss/mixins';
 
 .cluster {
   position: relative;
@@ -13,4 +14,9 @@
   border-radius: $border-radius;
   padding: 12px;
   background-color: $light-color01;
+}
+
+
+.empty {
+  @include TypographyTitleH5($light-color08);
 }

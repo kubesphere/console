@@ -41,6 +41,9 @@ export default {
   'Application Route': '应用路由',
   'Traffic Management': '流量治理',
 
+  'No Components': '暂无组件',
+  'Cluster Select': '集群选择',
+
   'Application governance is not enabled': '应用治理未启用',
 
   'Build an app by services': '通过服务构建应用',
