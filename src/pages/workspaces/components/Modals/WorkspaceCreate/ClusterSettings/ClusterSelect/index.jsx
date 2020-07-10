@@ -33,6 +33,11 @@ import styles from './index.scss'
 export default class ClusterSettings extends Component {
   clusterStore = new ClusterStore()
 
+  state = {
+    showTip: false,
+    hostClusters: [],
+  }
+
   componentDidMount() {
     this.fetchData()
   }
@@ -49,14 +54,11 @@ export default class ClusterSettings extends Component {
       })
     }
 
-    const { value, onChange } = this.props
-    if (isEmpty(value)) {
-      onChange(
-        this.clusterStore.list.data
-          .filter(item => item.visibility === 'public')
-          .map(item => ({ name: item.name }))
-      )
-    }
+    this.setState({
+      hostClusters: this.clusterStore.list.data
+        .filter(item => item.isHost)
+        .map(item => item.name),
+    })
   }
 
   handleClick = e => {
@@ -70,6 +72,13 @@ export default class ClusterSettings extends Component {
     } else {
       newValue = [...value, { name }]
     }
+
+    this.setState({
+      showTip: newValue.some(item =>
+        this.state.hostClusters.includes(item.name)
+      ),
+    })
+
     onChange(newValue)
   }
 
@@ -85,6 +94,13 @@ export default class ClusterSettings extends Component {
 
     return (
       <div className={styles.wrapper}>
+        {this.state.showTip && (
+          <Alert
+            className="margin-b12"
+            type="warning"
+            message={t('SELECT_HOST_CLUSTER_WARNING')}
+          />
+        )}
         {data.map(cluster => (
           <div
             key={cluster.name}
@@ -103,7 +119,7 @@ export default class ClusterSettings extends Component {
               className={styles.cluster}
               tagClass="float-right"
               cluster={cluster}
-              noStatus
+              noTip
             />
           </div>
         ))}

@@ -99,4 +99,9 @@ export default {
   CLUSTER_VISIBILITY_Q2: 'What is a public cluster?',
   CLUSTER_VISIBILITY_A2:
     'A public cluster means all platform users can access the cluster, in which they are able to create and schedule resources.',
+
+  SELECT_HOST_CLUSTER_WARNING:
+    'Please try not to create resources on the host cluster to avoid excessive load, which leads to a decrease in the stability of the multi-cluster.',
+  HOST_CLUSTER_VISIBILITY_WARNING:
+    'Please be careful to authorize the host cluster to the workspace.If the load of the host cluster is too high, the stability of the multi-cluster will decrease.',
 }

@@ -19,6 +19,7 @@
 import {
   get,
   set,
+  has,
   pick,
   isEmpty,
   omit,
@@ -1047,11 +1048,10 @@ const ClusterMapper = item => {
     conditions,
     configz: get(item, 'status.configz', {}),
     provider: get(item, 'spec.provider'),
-    isHost:
-      get(
-        item,
-        'metadata.annotations["cluster.kubesphere.io/is-host-cluster"]'
-      ) === 'true',
+    isHost: has(
+      get(item, 'metadata.labels', {}),
+      'cluster-role.kubesphere.io/host'
+    ),
     nodeCount: get(item, 'status.nodeCount'),
     kubernetesVersion: get(item, 'status.kubernetesVersion'),
     labels: get(item, 'metadata.labels'),

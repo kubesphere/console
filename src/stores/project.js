@@ -49,9 +49,9 @@ const withTypeSelectParams = (params, type) => {
     params.labelSelector =
       'kubesphere.io/workspace!=system-workspace,!kubesphere.io/kubefed-host-namespace,!kubesphere.io/devopsproject'
   } else {
-    params.labelSelector = `!kubesphere.io/kubefed-host-namespace,!kubesphere.io/devopsproject${
-      params.labelSelector ? `,${params.labelSelector}` : ''
-    }`
+    params.labelSelector =
+      params.labelSelector ||
+      `!kubesphere.io/kubefed-host-namespace,!kubesphere.io/devopsproject`
   }
 
   return params

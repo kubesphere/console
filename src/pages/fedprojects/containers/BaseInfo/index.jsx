@@ -72,7 +72,6 @@ class BaseInfo extends React.Component {
   }
 
   get itemActions() {
-    const { routing } = this.props
     const { detail } = this.store
     const limitRanges = this.limitRangeStore.list.data
     const actions = [
@@ -108,10 +107,9 @@ class BaseInfo extends React.Component {
         action: 'delete',
         text: t('Delete Project'),
         onClick: () =>
-          this.trigger('resource.delete', {
+          this.trigger('federated.project.delete', {
             detail,
-            desc: t.html('DELETE_PROJECT_TIP', { resource: detail.name }),
-            success: () => routing.push('/'),
+            success: () => this.props.rootStore.routing.push('/'),
           }),
       },
     ]

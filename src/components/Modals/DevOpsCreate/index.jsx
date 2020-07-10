@@ -83,7 +83,7 @@ export default class ProjectCreateModal extends React.Component {
 
   get defaultCluster() {
     const clusters = this.workspaceStore.clusters.data
-      .filter(item => item.isHost)
+      .filter(item => item.isReady)
       .map(item => item.name)
 
     return isEmpty(clusters) ? undefined : clusters[0]

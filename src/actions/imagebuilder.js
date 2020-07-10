@@ -16,6 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { toJS } from 'mobx'
 import { Modal, Notify } from 'components/Base'
 
 import CreateModal from 'components/Modals/Create'
@@ -66,7 +67,7 @@ export default {
             success && success()
           })
         },
-        detail: detail._originData,
+        detail: toJS(detail._originData),
         modal: RerunModal,
         cluster: detail.cluster,
         store,
