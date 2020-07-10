@@ -21,9 +21,9 @@ export default {
   APP_REPO_URL_DESC:
     'The entered URL needs to be validated before added or edited.',
   APP_REPOSITORY_CREATE_DESC:
-    "You can add a third-party app repository source which supports Helm-based Kubernetes apps.",
+    'You can add a third-party app repository source which supports Helm-based Kubernetes apps.',
   APP_REPO_DESC:
-    "You can add a third-party app repository source which supports Helm-based Kubernetes apps.",
+    'You can add a third-party app repository source which supports Helm-based Kubernetes apps.',
 
   HOW_TO_USE_APP_REPO_Q: 'How to use an app repository?',
   HOW_TO_USE_APP_REPO_A:

@@ -17,7 +17,8 @@
  */
 
 export default {
-  MAIL_SERVER_DESC: 'This module provides email delivery services with custom settings.',
+  MAIL_SERVER_DESC:
+    'This module provides email delivery services with custom settings.',
   EMPTY_MAIL_SERVER:
     'Temporarily no email server has been set up. You need to set up an email server to provide email delivery services.',
   TEST_EMAIL_RECIPIENT: 'Testing Email Address',

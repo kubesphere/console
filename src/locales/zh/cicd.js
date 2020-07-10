@@ -308,9 +308,10 @@ export default {
   'Edit Credential': '编辑凭证',
   EDIT_CREDENTIAL_DESC: '下列表单不会显示原有凭证信息，重新输入会将其覆盖',
   'Token / Password': 'token / 密码',
-  "Sorry, you don't have the permission to do this.": '抱歉，您没有权限进行此操作',
+  "Sorry, you don't have the permission to do this.":
+    '抱歉，您没有权限进行此操作',
   'Drag and drop tasks to sort': '可以拖拽任务进行排序',
-  'Unnamed': '未命名',
+  Unnamed: '未命名',
   'Task failed, not operational': '任务已失败，不可操作',
   'Cancelled in review': '已在审核中取消',
   'Executes the code inside the block with a determined time out limit.':
@@ -450,8 +451,7 @@ export default {
   CRON_DESC: '上次运行时间 {lastTime}, 下次运行时间 {nextTime}.',
   'not support edit nested stage': '暂不支持编辑嵌套阶段',
   JENKINS_LINS_ERROR: '第 {line} 行有语法错误',
-  'Delete all resources of the deployment file':
-    '删除部署文件所对应的所有资源',
+  'Delete all resources of the deployment file': '删除部署文件所对应的所有资源',
   'Pipeline Event Trigger': '流水线事件触发',
   'When Create Pipeline': '当创建流水线',
   'When Delete Pipeline': '当删除流水线',
