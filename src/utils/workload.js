@@ -36,7 +36,7 @@ export const getHpaFormattedData = (formData = {}) => {
   const memoryCurrentValue = get(
     formData,
     'metadata.annotations.memoryCurrentValue',
-    ''
+    0
   )
   const memoryTargetValue = get(
     formData,

@@ -174,6 +174,7 @@ export default class HPAModal extends React.Component {
             >
               <NumberInput
                 name="metadata.annotations.cpuTargetUtilization"
+                interger
                 min={0}
                 max={100}
               />
@@ -184,9 +185,10 @@ export default class HPAModal extends React.Component {
             >
               <NumberInput
                 name="metadata.annotations.memoryTargetValue"
+                interger
                 unit="Mi"
                 min={0}
-                defaultValue=""
+                defaultValue={0}
               />
             </Form.Item>
             <Form.Item
