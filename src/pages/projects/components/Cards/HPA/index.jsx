@@ -20,6 +20,7 @@ import React from 'react'
 import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
+import { isUndefined } from 'lodash'
 
 import HpaStore from 'stores/workload/hpa'
 
@@ -64,9 +65,9 @@ export default class HPACard extends React.Component {
       minReplicas = 0,
       maxReplicas = 0,
       cpuCurrentUtilization = 0,
-      cpuTargetUtilization = 0,
+      cpuTargetUtilization,
       memoryCurrentValue = 0,
-      memoryTargetValue = 0,
+      memoryTargetValue,
     } = this.props.detail
 
     return [
@@ -83,13 +84,19 @@ export default class HPACard extends React.Component {
       {
         icon: 'cpu',
         name: t('Target Utilization'),
-        value: `${cpuTargetUtilization}%`,
+        value:
+          isUndefined(cpuTargetUtilization) || cpuTargetUtilization === ''
+            ? t('None')
+            : `${cpuTargetUtilization}%`,
         current: `${cpuCurrentUtilization}%`,
       },
       {
         icon: 'memory',
         name: t('Target Usage'),
-        value: memoryTargetValue,
+        value:
+          isUndefined(memoryTargetValue) || memoryTargetValue === ''
+            ? t('None')
+            : memoryTargetValue,
         current: this.getValue(memoryCurrentValue, 'memory'),
       },
     ]

@@ -295,9 +295,6 @@ const HpaMapper = item => {
     get(item, 'status.currentMetrics') || [],
     metric => get(metric, 'resource.name')
   )
-  const targetMetrics = keyBy(get(item, 'spec.metrics') || [], metric =>
-    get(metric, 'resource.name')
-  )
 
   return {
     ...getBaseInfo(item),
@@ -313,19 +310,15 @@ const HpaMapper = item => {
       'cpu.resource.current.averageUtilization'
     ),
     cpuTargetUtilization: get(
-      targetMetrics,
-      'cpu.resource.target.averageUtilization'
+      item,
+      'metadata.annotations.cpuTargetUtilization'
     ),
     memoryCurrentValue: get(
       currentMetrics,
       'memory.resource.current.averageValue',
       0
     ),
-    memoryTargetValue: get(
-      targetMetrics,
-      'memory.resource.target.averageValue',
-      0
-    ),
+    memoryTargetValue: get(item, 'metadata.annotations.memoryTargetValue', ''),
     _originData: getOriginData(item),
   }
 }

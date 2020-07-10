@@ -25,6 +25,7 @@ import { Loading } from '@pitrix/lego-ui'
 import { getDisplayName, getLocalTime } from 'utils'
 import { trigger } from 'utils/action'
 import WorkloadStore from 'stores/workload'
+import HpaStore from 'stores/workload/hpa'
 
 import DetailPage from 'projects/containers/Base/Detail'
 
@@ -35,6 +36,8 @@ import getRoutes from './routes'
 @trigger
 export default class DeploymentDetail extends React.Component {
   store = new WorkloadStore(this.module)
+
+  hpaStore = new HpaStore()
 
   componentDidMount() {
     this.fetchData()
@@ -65,6 +68,19 @@ export default class DeploymentDetail extends React.Component {
   fetchData = async () => {
     const { params } = this.props.match
     await this.store.fetchDetail(params)
+  }
+
+  fetchHPA = () => {
+    const { cluster, namespace, name } = this.store.detail
+
+    const { annotations = {} } = this.store.detail
+    const params = {
+      cluster,
+      namespace,
+      name: annotations['kubesphere.io/relatedHPA'] || name,
+    }
+
+    this.hpaStore.fetchDetail(params)
   }
 
   getOperations = () => [
@@ -98,6 +114,7 @@ export default class DeploymentDetail extends React.Component {
       onClick: () =>
         this.trigger('workload.hpa.edit', {
           detail: this.store.detail,
+          success: this.fetchHPA,
         }),
     },
     {
@@ -183,7 +200,7 @@ export default class DeploymentDetail extends React.Component {
   }
 
   render() {
-    const stores = { detailStore: this.store }
+    const stores = { detailStore: this.store, hpaStore: this.hpaStore }
 
     if (this.store.isLoading && !this.store.detail.name) {
       return <Loading className="ks-page-loading" />
