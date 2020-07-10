@@ -87,7 +87,7 @@ export default {
   PLATFORM_SETTINGS_DESC: '定制化平台设置，如平台基本信息等',
 
   Loading: '加载中',
-  Active: '已启用',
+  Active: '活跃',
   Running: '运行中',
   Succeeded: '运行中',
   'Not Running': '未运行',
@@ -108,7 +108,7 @@ export default {
   Completed: '已完成',
   Unfinished: '未完成',
   Healthy: '健康',
-  active: '已启用',
+  active: '活跃',
   running: '运行中',
   waiting: '等待中',
   pending: '等待中',

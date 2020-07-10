@@ -157,11 +157,10 @@ export default class Routers extends React.Component {
       },
       {
         title: t('Application'),
-        dataIndex: 'app.kubernetes.io/name',
+        dataIndex: 'app',
         isHideable: true,
         search: true,
         width: '22%',
-        render: (_, record) => record.app,
       },
       {
         title: t('Created Time'),
@@ -224,16 +223,13 @@ export default class Routers extends React.Component {
     return (
       <ListPage {...this.props}>
         <Banner {...bannerProps} tips={this.tips} />
-        {isEmpty(data) && !isLoading ? (
-          this.renderCreateGateway()
-        ) : (
-          <Table
-            {...tableProps}
-            itemActions={this.itemActions}
-            columns={this.getColumns()}
-            onCreate={this.showCreate}
-          />
-        )}
+        {isEmpty(data) && !isLoading && this.renderCreateGateway()}
+        <Table
+          {...tableProps}
+          itemActions={this.itemActions}
+          columns={this.getColumns()}
+          onCreate={this.showCreate}
+        />
       </ListPage>
     )
   }

@@ -122,11 +122,10 @@ export default class Pods extends React.Component {
       },
       {
         title: t('Application'),
-        dataIndex: 'app.kubernetes.io/name',
+        dataIndex: 'app',
         isHideable: true,
         search: true,
         width: '15%',
-        render: (_, record) => record.app,
       },
       {
         title: t('Updated Time'),

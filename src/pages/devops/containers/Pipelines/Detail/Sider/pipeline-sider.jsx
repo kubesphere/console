@@ -72,13 +72,6 @@ export default class PipelineDetail extends Base {
     return this.props.rootStore.routing
   }
 
-  get application() {
-    const { detail } = this.store
-    return detail.labels && detail.labels.chart && detail.labels.release
-      ? `${detail.labels.release}/${detail.labels.chart}`
-      : '-'
-  }
-
   get creator() {
     return get(this.store.detail, 'creator', t('unknown'))
   }

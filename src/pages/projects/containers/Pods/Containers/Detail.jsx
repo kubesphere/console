@@ -115,7 +115,7 @@ export default class ContainerDetail extends React.Component {
       },
       {
         name: t('Application'),
-        value: detail.application,
+        value: detail.app,
       },
       {
         name: t('Status'),

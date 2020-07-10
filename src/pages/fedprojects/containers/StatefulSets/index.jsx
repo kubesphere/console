@@ -174,10 +174,9 @@ export default class StatefulSets extends React.Component {
       },
       {
         title: t('Application'),
-        dataIndex: 'app.kubernetes.io/name',
+        dataIndex: 'app',
         isHideable: true,
         width: '22%',
-        render: (_, record) => record.app,
       },
       {
         title: t('Updated Time'),
