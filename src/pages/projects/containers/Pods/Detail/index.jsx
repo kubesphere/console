@@ -124,7 +124,7 @@ export default class PodDetail extends React.Component {
       },
       {
         name: t('Application'),
-        value: detail.application,
+        value: detail.app,
       },
       {
         name: t('Status'),

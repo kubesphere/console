@@ -155,7 +155,7 @@ export default class RouteDetail extends React.Component {
       },
       {
         name: t('Application'),
-        value: detail.application,
+        value: detail.app,
       },
       {
         name: t('Gateway Address'),

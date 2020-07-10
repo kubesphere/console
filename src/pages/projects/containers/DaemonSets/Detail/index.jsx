@@ -153,10 +153,6 @@ export default class DaemonSetDetail extends React.Component {
         value: namespace,
       },
       {
-        name: t('Application'),
-        value: detail.application,
-      },
-      {
         name: t('Created Time'),
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },

@@ -170,9 +170,7 @@ const WorkLoadMapper = item => ({
   availableCondition:
     get(item, 'status.conditions', []).find(cd => cd.type === 'Available') ||
     {},
-  app:
-    get(item, 'metadata.labels.release') ||
-    get(item, 'metadata.labels["app.kubernetes.io/name"]'),
+  app: get(item, 'metadata.labels["app.kubernetes.io/name"]'),
   ownerReference: get(item, 'metadata.ownerReferences[0]', {}),
   hasS2i: Object.keys(get(item, 'metadata.labels', {})).some(labelKey =>
     labelKey.startsWith('s2ibuilder')
@@ -382,9 +380,7 @@ const PodsMapper = item => ({
   node: get(item, 'spec.nodeName', ''),
   nodeIp: get(item, 'status.hostIP', 'none'),
   podIp: get(item, 'status.podIP'),
-  app:
-    get(item, 'metadata.labels.release') ||
-    get(item, 'metadata.labels["app.kubernetes.io/name"]'),
+  app: get(item, 'metadata.labels["app.kubernetes.io/name"]'),
   containers: getContainers(
     get(item, 'spec.containers', []),
     get(item, 'status.containerStatuses', []),
@@ -514,9 +510,7 @@ const ServiceMapper = item => {
     loadBalancerIngress:
       get(item, 'status.loadBalancer.ingress[0].ip') ||
       get(item, 'status.loadBalancer.ingress[0].hostname'),
-    app:
-      get(item, 'metadata.labels.release') ||
-      get(item, 'metadata.labels["app.kubernetes.io/name"]'),
+    app: get(item, 'metadata.labels["app.kubernetes.io/name"]'),
     _originData: getOriginData(item),
   }
 }
@@ -624,9 +618,7 @@ const IngressMapper = item => ({
   rules: get(item, 'spec.rules', []),
   tls: get(item, 'spec.tls', []),
   loadBalancerIngress: get(item, 'status.loadBalancer.ingress', []),
-  app:
-    get(item, 'metadata.labels.release') ||
-    get(item, 'metadata.labels["app.kubernetes.io/name"]'),
+  app: get(item, 'metadata.labels["app.kubernetes.io/name"]'),
   _originData: getOriginData(item),
 })
 

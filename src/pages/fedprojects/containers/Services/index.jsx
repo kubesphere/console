@@ -146,6 +146,13 @@ export default class Services extends React.Component {
         ),
       },
       {
+        title: t('Application'),
+        dataIndex: 'app',
+        isHideable: true,
+        search: true,
+        width: '22%',
+      },
+      {
         title: t('Created Time'),
         dataIndex: 'createTime',
         isHideable: true,

@@ -185,21 +185,21 @@ export default class ProjectSelectModal extends React.Component {
       rootStore.triggerAction('project.create', {
         store: this.projectStore,
         workspace,
-        success: this.fetchData,
+        success: () => this.fetchData(),
       })
     } else if (this.state.type === 'federatedprojects') {
       rootStore.triggerAction('federated.project.create', {
         store: this.projectStore,
         workspace,
         clusters: this.store.clusters.data.slice(),
-        success: this.fetchData,
+        success: () => this.fetchData(),
       })
     } else {
       rootStore.triggerAction('devops.create', {
         store: this.devopsStore,
         cluster,
         workspace,
-        success: this.fetchData,
+        success: () => this.fetchData(),
       })
     }
   }

@@ -77,6 +77,16 @@ export default class BaseStore {
       this.module
     }`
 
+  getFilterParams = params => {
+    const result = { ...params }
+    if (result.app) {
+      result.labelSelector = result.labelSelector || ''
+      result.labelSelector += `app.kubernetes.io/name=${result.app}`
+      delete result.app
+    }
+    return result
+  }
+
   @action
   setModule(module) {
     this.module = module
@@ -121,7 +131,7 @@ export default class BaseStore {
 
     const result = await request.get(
       this.getResourceUrl({ cluster, workspace, namespace, devops }),
-      params
+      this.getFilterParams(params)
     )
     const data = get(result, 'items', []).map(item => ({
       cluster,

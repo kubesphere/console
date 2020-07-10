@@ -185,14 +185,6 @@ export default class DaemonSets extends React.Component {
         ),
       },
       {
-        title: t('Application'),
-        dataIndex: 'app.kubernetes.io/name',
-        isHideable: true,
-        search: true,
-        width: '22%',
-        render: (_, record) => record.app,
-      },
-      {
         title: t('Created Time'),
         dataIndex: 'createTime',
         sorter: true,
