@@ -85,13 +85,12 @@ export default {
     the days of the month: the first few days of a month (1-31 )  
     Month: The first few days of the first few days (0-12), the first few days of the week (0-12), 
     0 and 7 are Sundays. `,
-  
+
   CICDS_BASEINFO_DESC: 'Please enter the basic information of the pipeline.',
   CICD_ADVANCE_SETTINGS_DESC:
     'Configure a complex behavior policy for the pipeline (Optional).',
   CREDENTIALS_CREATE_DESC: 'Create credentials for DevOps projects',
-  CHECKOUT_DESC:
-    'Pull code; often used to pull non-git code, such as svn.',
+  CHECKOUT_DESC: 'Pull code; often used to pull non-git code, such as svn.',
   PRIVATE_IMAGE_DESC: `To deploy from a private image repository, 
     you need to create a mirrored repository and then pull the image. `,
   AGENT_TYPE_DESC: `The agent section specifies 
@@ -118,7 +117,7 @@ export default {
     However, in some cases, message notifications may fail. 
     This option will check if the index has been executed within the specified time interval, 
     and if not, trigger the index. `,
-  
+
   KUBERNETES_DEPLOY_DESC: `Deploy resources on a Kubernetes cluster. 
     In a continuous integration or continuous deployment environment, 
     only those resources that need to be updated regularly should be placed in the deployment step. 
@@ -149,8 +148,9 @@ export default {
   OPTIONS_PR_PARAMS_3: `Two pipelines are created when PR is discovered.
     A pipeline uses the source code version of PR itself,
     A pipelined version of the source code merged with the target branch using PR`,
-  
-  ADD_NEW_CREDENTIAL_DESC: 'Obtaining repository code may require credentials. Please select an existing credential or add a new one.',
+
+  ADD_NEW_CREDENTIAL_DESC:
+    'Obtaining repository code may require credentials. Please select an existing credential or add a new one.',
   PIPELINE_PREPAIR_DESC:
     'The environment is being prepared. There will be a graphical display later.',
   PARAMS_DESC: `The following parameters are generated based on the pipeline settings or
@@ -179,7 +179,7 @@ export default {
     'When the pipeline runs here, the task will be suspended, and the creator and @somebody can choose to continue or terminate the pipeline.',
   INPUT_MESSAGE_DESC:
     'This message will be displayed in the pipeline running state.',
-  
+
   withSonarQubeEnv_DESC:
     'Quickly locate potential or obvious errors in your code',
   waitForQualityGate_DESC: 'Executed after performing code analysis',

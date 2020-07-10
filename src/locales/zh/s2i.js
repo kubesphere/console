@@ -117,7 +117,6 @@ export default {
     '构建是将代码或者制品容器化的工具，仅需要通过简单的设置即可将制品或代码直接生成容器镜像。',
   'Pull Command': '拉取命令',
   'Image Size': '镜像大小',
-  'File Size': '文件大小',
   'Published Time': '发布时间',
   'The file has not been uploaded.': '文件还未上传',
   'Upload file failed': '文件上传失败',
@@ -134,12 +133,12 @@ export default {
   BINARY_DESC: '',
   IMAGE_BUILDER_CREATE_DESC:
     '构建是将代码或者制品容器化的工具。仅需要通过简单的设置即可将制品和代码构建成服务。目前需配合服务创建一起使用。',
-  'The current code repository does not require a key.': '当前代码仓库不需要秘钥',
+  'The current code repository does not require a key.':
+    '当前代码仓库不需要秘钥',
   'Repository Not Found': '未找到代码仓库',
   'Currently only supports git repo': '当前仅支持 git 仓库',
   'Authentication required': '需要认证信息，请选择秘钥。',
   'Repo reading failed': '读取仓库失败',
   'exec: "git": executable file not found in $PATH': '当前 URL 未发现代码仓库',
-  Building: '构建中',
   WRONG_FILE_EXTENSION_NAME: '选择的文件类型不符合，请选择 {type} 类型',
 }

@@ -66,7 +66,8 @@ export default {
     'Alerting messages will be pushed repeatedly according to their severity. By default, <strong>Critical alert is repeated every 30 minutes</strong> / <strong>Major alert is repeated every 2 hours</strong> / <strong>Minor alert is not repeated</strong>.<br> If you need to modify the repetition rules, please customize the settings in Notification Rule section (next section).',
 
   NOTIFY_TIME_LABEL: 'Effective Notification Time Range',
-  NOTIFY_TIME_TIP: 'You can set an effective time range for an alerting message.',
+  NOTIFY_TIME_TIP:
+    'You can set an effective time range for an alerting message.',
   NOTIFY_LIST_ADD_TIP: 'Press the enter button or click to add',
   NOTIFY_LIST_INPUT_ERRPR_TIP:
     'The input format is incorrect. Please enter the correct email address.',
@@ -89,7 +90,8 @@ export default {
     'Prerequisites for triggering an alerting message?',
   REQUESTS_FOR_TRIGGER_AN_ALARM_A:
     'You need to set an alerting policy for a resource. When a certain indicator of a resource reaches the threshold of the alerting policy, the message is triggered and pushed.',
-  REQUESTS_FOR_PUSH_AN_ALARM_Q: 'Prerequisites for a push message of alerting policy?',
+  REQUESTS_FOR_PUSH_AN_ALARM_Q:
+    'Prerequisites for a push message of alerting policy?',
   REQUESTS_FOR_PUSH_AN_ALARM_A:
     'The platform administrator is required to set up the mail server.',
   HOW_TO_SUPRESS_AN_ALARM_Q: 'How to suppress alerting messages?',

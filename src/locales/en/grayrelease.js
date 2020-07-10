@@ -66,5 +66,6 @@ export default {
 
   JOB_OFFLINE_WARNING:
     'Before you take a task offline, you need to select an available version first, which is to make sure the service can run smoothly during the whole process. You need to select a version and take it offline. After that, the system will automatically transfer all the traffic to another available version.',
-  JOB_OFFLINE_INFO: 'Now you can take the task offline and the version {version} will be removed.',
+  JOB_OFFLINE_INFO:
+    'Now you can take the task offline and the version {version} will be removed.',
 }
