@@ -86,7 +86,7 @@ export default class AppTemplate extends React.Component {
         version_id,
         conf: env,
       },
-      { namespace, cluster }
+      { workspace, namespace, cluster }
     )
 
     this.props.rootStore.routing.push(

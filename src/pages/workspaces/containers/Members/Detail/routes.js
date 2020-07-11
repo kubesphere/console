@@ -34,6 +34,7 @@ export default [
     path: `${PATH}/devops`,
     title: 'DevOps Projects',
     component: DevOps,
+    ksModule: 'devops',
     exact: true,
   },
   getIndexRoute({ path: PATH, to: `${PATH}/projects`, exact: true }),

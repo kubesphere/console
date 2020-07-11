@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { has } from 'lodash'
+import { has, isString } from 'lodash'
 import React from 'react'
 import { NavLink, withRouter } from 'react-router-dom'
 import { inject, Provider } from 'mobx-react'
@@ -33,10 +33,43 @@ class DetailPage extends React.Component {
   constructor(props) {
     super(props)
     this.stores = {}
+
+    this.state = {
+      routes: this.getEnabledRoutes(),
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.routes !== this.props.routes) {
+      this.setState({ routes: this.getEnabledRoutes() })
+    }
   }
 
   get authKey() {
     return this.props.authKey || this.props.module
+  }
+
+  getEnabledRoutes() {
+    const { routes } = this.props
+    const { cluster } = this.props.match.params
+    return routes.filter(item => {
+      if (item.ksModule) {
+        const modules = isString(item.ksModule)
+          ? [item.ksModule]
+          : item.ksModule
+        return modules.every(module => globals.app.hasKSModule(module))
+      }
+      if (item.clusterModule) {
+        const modules = isString(item.clusterModule)
+          ? [item.clusterModule]
+          : item.clusterModule
+
+        return modules.every(module =>
+          globals.app.hasClusterModule(cluster, module)
+        )
+      }
+      return true
+    })
   }
 
   get enabledActions() {
@@ -84,7 +117,8 @@ class DetailPage extends React.Component {
   }
 
   render() {
-    const { routes, stores, ...sideProps } = this.props
+    const { stores, ...sideProps } = this.props
+    const { routes } = this.state
 
     return (
       <Provider {...this.stores} {...stores}>
