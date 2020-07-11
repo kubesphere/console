@@ -175,9 +175,12 @@ export default class Application extends Base {
   }
 
   @action
-  async upgrade(params, { workspace, namespace, cluster }) {
+  async upgrade(params, { workspace, namespace, cluster, cluster_id }) {
     return this.submitting(
-      request.post(this.getUrl({ workspace, namespace, cluster }), params)
+      request.post(
+        this.getUrl({ workspace, namespace, cluster, cluster_id }),
+        params
+      )
     )
   }
 
