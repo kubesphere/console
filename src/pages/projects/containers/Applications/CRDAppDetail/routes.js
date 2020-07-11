@@ -37,6 +37,7 @@ export default [
     path: `${PATH}/traffic`,
     title: 'Traffic Management',
     component: TrafficManangement,
+    clusterModule: 'servicemesh',
     exact: true,
   },
 
@@ -44,12 +45,14 @@ export default [
     path: `${PATH}/grayrelease`,
     title: 'Grayscale Release',
     component: GrayRelease,
+    clusterModule: 'servicemesh',
     exact: true,
   },
   {
     path: `${PATH}/tracing`,
     title: 'Tracing',
     component: Tracing,
+    clusterModule: ['servicemesh', 'logging'],
     exact: true,
   },
   getIndexRoute({ path: PATH, to: `${PATH}/components`, exact: true }),
