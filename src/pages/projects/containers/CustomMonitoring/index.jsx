@@ -34,6 +34,7 @@ import styles from './index.scss'
 @withList({
   store: new MonitoringDashboard(),
   module: 'dashboards',
+  authKey: 'custom-monitoring',
   name: 'CustomMonitorDashboard',
 })
 export default class CustomMonitoringDashboards extends React.Component {
@@ -88,6 +89,17 @@ export default class CustomMonitoringDashboards extends React.Component {
     const { trigger, routing } = this.props
     return [
       {
+        key: 'editYaml',
+        icon: 'pen',
+        text: t('Edit YAML'),
+        action: 'edit',
+        onClick: item =>
+          trigger('resource.yaml.edit', {
+            detail: item,
+            success: routing.query,
+          }),
+      },
+      {
         key: 'delete',
         icon: 'trash',
         text: t('Delete'),
@@ -95,17 +107,6 @@ export default class CustomMonitoringDashboards extends React.Component {
         onClick: item =>
           trigger('resource.delete', {
             type: t(this.name),
-            detail: item,
-            success: routing.query,
-          }),
-      },
-      {
-        key: 'editYaml',
-        icon: 'pen',
-        text: t('Edit YAML'),
-        action: 'edit',
-        onClick: item =>
-          trigger('resource.yaml.edit', {
             detail: item,
             success: routing.query,
           }),
