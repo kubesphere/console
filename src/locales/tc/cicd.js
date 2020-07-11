@@ -27,7 +27,7 @@ export default {
   'Build Trigger': '構建觸發器',
   'Scheduled Build': '定時構建',
   'Trigger a Remote Build (for example, using a script)':
-    '觸發遠程構建 (例如，使用脚本)',
+    '觸發遠程構建 (例如，使用腳本)',
   'Authentication Token': '身份驗證令牌',
   'Use the following URL to remotely triggerworkbench the build':
     '使用以下 URL 遠程觸發構建',
@@ -44,7 +44,7 @@ export default {
     'Pipeline 的名稱，同一個項目内 Pipeline 不能重名',
   'It specifies the default value of the field, allowing the user to save the typed actual value.':
     '指定字段的預設值，允許使用者保存鍵入實際值。',
-  'Comment information': '注釋資訊',
+  'Comment information': '註解資訊',
   'Alternate options, one per line. The first line will be used as the default option.':
     '備用選擇，每行一個。第一行的將作為預設選項。',
   'No need': '不需要',
@@ -86,7 +86,7 @@ export default {
   'Please input pipeline name': '請輸入流水線名稱',
   'Create Pipeline': '創建流水線',
   'Old builds will be discarded after the build number exceeds the maximum amount.':
-    '如果構建超過一定的數量將丢棄旧舊的構建',
+    '如果構建超過一定的數量將丢棄舊的構建',
   'Scan Repository': '掃描遠程分支',
   'Press enter for the next': '按Enter鍵以進行下一步',
   'Wrong Token': 'Token 錯誤',
@@ -113,25 +113,25 @@ export default {
   OPTIONS_PR_PARAMS_1: 'PR 與目標分支合併後的源代碼版本',
   OPTIONS_PR_PARAMS_2: 'PR 本身的源代碼版本',
   OPTIONS_PR_PARAMS_3: `當 PR 被發現時會創建兩個流水線，
-    一個流水线使用 PR 本身的源代碼版本，
-    一個流水线使用 PR 與目標分支合併後的源代碼版本`,
+    一個流水線使用 PR 本身的源代碼版本，
+    一個流水線使用 PR 與目標分支合併後的源代碼版本`,
   'From users with Admin or Write permission': '管理員或有編輯權限的使用者',
   Normal: '通用',
   'Run Pipeline': '運行流水線',
-  Artifacts: '制品',
-  artifacts: '制品',
-  Queue: '隊列中',
+  Artifacts: '成品',
+  artifacts: '成品',
+  Queue: '列隊中',
   Recipient: '收件人',
-  Sender: '發件人',
-  CC: '抄送',
+  Sender: '寄件人',
+  CC: '副本',
   Subject: '主題',
-  bcc: '密送',
+  bcc: '密件副本',
   remote: '倉庫地址',
   'Print message': '打印訊息',
   CREDENTIALS_DESC: `憑證是包含了一些敏感數據的對象，如用戶名密碼，SSH 密鑰和 Token 等,
     用於在 Pipeline 運行時, 為拉取代碼、push/pull 鏡像、SSH 執行腳本等過程提供認證`,
   'Credential Id': '憑證 ID',
-  'No artifacts records': '没有制品紀錄',
+  'No artifacts records': '没有成品紀錄',
   'Select this repo': '選擇此倉庫',
   'Scan repo success': '掃描倉庫觸發成功',
   'Pipeline Run Logs': '流水線運行日誌',
@@ -147,7 +147,7 @@ export default {
   Skipped: '已跳過',
   'Sub-healthy': '亞健康',
   Schedule: '行程表',
-  'Stop Job Successfully, Status updated later': '任务已停止，状态稍后更新',
+  'Stop Job Successfully, Status updated later': '任務已停止，狀態稍後更新',
   'Scan Reponsitory Logs': '掃描倉庫日誌',
   'Started By': '實施者',
   Rescan: '重新掃描',
@@ -163,303 +163,303 @@ export default {
   如果他们選擇不輸入任何内容，則構建以每個參數的預設值進行。
   如果項目的構建是自動啟動，例如，由定時觸發器啟動，這時將使用參數的預設值進行觸發。`,
   tips_Authentication_token: `如果需要通過訪問預定義 URL 開觸發構建，請啟用此選項。
-    此功能的的一個典型用法是通過源代碼管理系統的鉤子脚本來進行觸發。
+    此功能的的一個典型用法是通過源代碼管理系統的鉤子腳本來進行觸發。
     您需要提供一個字符串形式的授權令牌，以便只有擁有授權令牌的人才能觸發遠程構建。`,
   tips_disable_concurrent:
     '這將確定何時應丢棄項目的構建紀錄。構建紀錄包括控制台輸出，存檔工件以及與特定構建相關的其他元數據。\n' +
     '保留較少的構建可以節省 Jenkins 所使用的硬碟空間。\n' +
     '我们提供了兩個選項來確定應何時丢棄舊的構建：\n' +
-    '1. 保留構建的天數：如果構建達到一定的天數，则丢棄構建。\n' +
-    '2. 保留構建的個數：如果已經存在一定數量的構建，则丢棄最舊的構建。\n' +
-    '這兩個選項可以同时对構建进行作用，如果超出任一限制，则将丢棄超出该限制的任何構建。',
-  tips_disable_concurrent_withscm: `这将确定何时应丢棄分支以及分支下的所有構建记录。構建记录包括控制台输出，
-    存档工件以及与特定構建相关的其他元數据。保留较少的構建可以节省Jenkins所使用的磁盘空间。
-    我们提供了两個選項来确定应何时丢棄旧的分支： 1. 保留分支的天數：如果分支达到一定的天數，则丢棄分支。
-    2. 保留分支的個數：如果已经存在一定數量的分支，则丢棄最旧的分支。这两個選項ㄋ可以同时对分支进行作用，
-    如果超出任一限制，则将丢棄超出该限制的任何分支。`,
-  tips_Timing_build: '提供类似 cron 的功能来定期执行此项目',
+    '1. 保留構建的天數：如果構建達到一定的天數，則丢棄構建。\n' +
+    '2. 保留構建的個數：如果已經存在一定數量的構建，則丢棄最舊的構建。\n' +
+    '這兩個選項可以同时對構建進行作用，如果超出任一限制，則將丢棄超出該限制的任何構建。',
+  tips_disable_concurrent_withscm: `這將确定何时應丢棄分支以及分支下的所有構建紀錄。構建紀錄包括控制台輸出，
+    存檔工件以及與特定構建相關的其他元數據。保留較少的構建可以節省Jenkins所使用的硬碟空間。
+    我们提供了兩個選項来確定應何時丢棄舊的分支： 1. 保留分支的天數：如果分支達到一定的天數，則丢棄分支。
+    2. 保留分支的個數：如果已經存在一定數量的分支，則丢棄最舊的分支。這兩個選項可以同時對分支進行作用，
+    如果超出任一限制，則將丢棄超出該限制的任何分支。`,
+  tips_Timing_build: '提供類似 cron 的功能來定期執行此項目',
   tips_days_keep_withscm:
-    '如果分支达到保留的天数将进行删除. (預設值 -1: 将会丢弃已经被删除的分支)',
+    '如果分支達到保留的天數將進行删除. (預設值 -1: 將會丢棄已經被刪除的分支)',
   tips_numbers_keep_withscm:
-    '如果分支达到保留的個数将进行删除. (預設值 -1: 将会丢弃已经被删除的分支)',
+    '如果分支達到保留的個數將進行删除. (預設值 -1: 將會丢棄已經被刪除的分支)',
   tips_timer_trigger:
-    '该字段遵循 cron 的语法 (略有不同)。具体来说，每行包含由制表符或空格分隔的 5 個字段。\n' +
-    '分钟: 一個小时中的第几分钟 (0-59)\n' +
-    '小时: 一天中的第几小时 (0-23)\n' +
-    ' 月份的第几天:  一個月份中的第几天 (1-31)\n' +
-    ' 月份: 第几個月份 (1-12)\n' +
-    '星期的第几天 一個星期的第几天 (0-7)，0 和 7 都是星期天。',
-  'Edit Config': '编辑配置',
-  CICDS_BASEINFO_DESC: '请输入流水线的基本信息',
-  CICD_ADVANCE_SETTINGS_DESC: '	为流水线配置复杂行为策略（可选）',
-  CREDENTIALS_CREATE_DESC: '创建用于 DevOps 项目中的凭证',
-  'Wait for interactive input': '等待输入',
-  Break: '终止',
-  Proceed: '继续',
-  'credential Id': '凭证 ID',
+    '該字段遵循 cron 的語法 (略有不同)。具体來說，每行包含由製表符或空格分隔的 5 個字段。\n' +
+    '分鐘: 一個小時中的第幾分鐘 (0-59)\n' +
+    '小時: 一天中的第幾小時 (0-23)\n' +
+    ' 月份的第幾天:  一個月份中的第幾天 (1-31)\n' +
+    ' 月份: 第幾個月份 (1-12)\n' +
+    '星期的第幾天 一個星期的第幾天 (0-7)，0 和 7 都是星期天。',
+  'Edit Config': '編輯配置',
+  CICDS_BASEINFO_DESC: '請輸入流水線的基本資訊',
+  CICD_ADVANCE_SETTINGS_DESC: '	為流水線配置複雜行為策略（可選）',
+  CREDENTIALS_CREATE_DESC: '創建用於 DevOps 項目中的憑證',
+  'Wait for interactive input': '等待輸入',
+  Break: '終止',
+  Proceed: '繼續',
+  'credential Id': '憑證 ID',
   branch: '分支',
-  'Clean when aborted': '清理失败不影响运行',
-  'Not fail build': '失败不影响运行',
-  submitter: '审核者',
+  'Clean when aborted': '清理失敗不影響運行',
+  'Not fail build': '失敗不影響運行',
+  submitter: '審核者',
   submitterParameter: '提交參數',
-  'Private key': '私钥',
-  passphrase: '密码',
-  'This name has been used.': '此名称已被使用',
-  'Automatically generated by GitHub': '由 GitHub 自动生成',
-  'Params Input': '输入參數',
-  "Missing one or more required properties: 'name'": 'name 不能为空',
-  'Please add at least one step.': '至少添加一個步骤',
-  'This name has existed.': '此名称已存在',
-  'Please input the credential name.': '请输入凭证名称',
-  SCM: '代码仓库',
-  Review: '审核',
-  'No commit records': '没有提交记录',
-  'Clean Workspace': '清理企业空间',
-  'Save Artifact': '保存制品',
-  'Change Current Directory': '更改当前目录',
-  CHECKOUT_DESC: '拉取代码，常用于拉取非 Git 代码，例如 SVN 等等',
-  'Can send messages by email': '可以通过邮件发送消息',
-  'Can send messages in the build': '可以在構建中发送消息',
+  'Private key': '私鑰',
+  passphrase: '密碼',
+  'This name has been used.': '此名稱已被使用',
+  'Automatically generated by GitHub': '由 GitHub 自動生成',
+  'Params Input': '輸入參數',
+  "Missing one or more required properties: 'name'": 'name 不能為空',
+  'Please add at least one step.': '至少添加一個步驟',
+  'This name has existed.': '此名稱已存在',
+  'Please input the credential name.': '請輸入憑證名稱',
+  SCM: '代碼倉庫',
+  Review: '審核',
+  'No commit records': '没有提交紀錄',
+  'Clean Workspace': '清理企業空間',
+  'Save Artifact': '保存成品',
+  'Change Current Directory': '更改目前目錄',
+  CHECKOUT_DESC: '拉取代碼，常用於拉取非 Git 代碼，例如 SVN 等等',
+  'Can send messages by email': '可以通過郵件發送訊息',
+  'Can send messages in the build': '可以在構建中發送訊息',
   'Shell commands can be executed in the container':
-    '可以在容器中执行 shell 命令',
+    '可以在容器中執行 shell 命令',
   'You can execute shell commands or windows batch commands in the build.':
-    '可以在構建中执行 shell 命令或者 windows 的 batch 命令',
-  'Pull code by SVN': '通过 SVN 拉取代码',
-  'Pull code by Git': '通过 Git 拉取代码',
-  'Add nesting steps': '添加嵌套步骤',
-  'instance failed to match at least one schema': '至少需要一個嵌套步骤',
-  'Load credentials into environment variables': '加载凭证到环境变量',
-  'Password Variable': '密码变量',
-  'Username Variable': '用户名变量',
+    '可以在構建中執行 shell 命令或者 windows 的 batch 命令',
+  'Pull code by SVN': '通過 SVN 拉取代碼',
+  'Pull code by Git': '通過 Git 拉取代碼',
+  'Add nesting steps': '添加嵌套步驟',
+  'instance failed to match at least one schema': '至少需要一個嵌套步驟',
+  'Load credentials into environment variables': '加載憑證到還境變量',
+  'Password Variable': '密碼變量',
+  'Username Variable': '用戶名變量',
   PRIVATE_IMAGE_DESC:
-    '要从私有镜像仓库部署，需要先创建镜像仓库，然后拉取镜像。',
-  AGENT_TYPE_DESC: `Agent 部分指定整個 Pipeline 或特定阶段将在 Jenkins 环境中执行的位置，
-    具体取决于该 agent 部分的放置位置。该部分必须在 Pipeline 块内的顶层定义，但 stage 级使用是可选的。`,
-  AUTHENTICATION_TOKEN_DESC: `使用以下 URL 远程触发構建：
+    '要從私有鏡像倉庫部署，需要先創建鏡像倉庫，然後拉取鏡像。',
+  AGENT_TYPE_DESC: `Agent 部分指定整個 Pipeline 或特定階段將在 Jenkins 還境中執行的位置，
+    具體取決於該 agent 部分的放置位置。該部分必須在 Pipeline 塊内的頂層定義，但 stage 級使用是可選的。`,
+  AUTHENTICATION_TOKEN_DESC: `使用以下 URL 遠程觸發構建：
     JENKINS_URL / job / JOB_NAME / build？token =TOKEN_NAME
-    或者/ buildWithParameters？token = TOKEN_NAME 可选择附加＆cause =原因提供将包含在记录的構建原因中的文本。`,
+    或者/ buildWithParameters？token = TOKEN_NAME 可選擇附加＆cause =原因提供將包含在紀錄的構建原因中的文本。`,
   'Please select a code repository as the code source for the pipeline.':
-    '请选择一個代码仓库作为 Pipeline 的代码源',
+    '請選擇一個代碼倉庫作為 Pipeline 的代碼來源',
   'Pipeline config file not found': '未找到 Pipeline 配置文件',
-  ACTIVITY_EMPTY_TIP: '当前 Pipeline 还没有运行',
-  PIPELINE_NO_CONFIG: '当前 Pipeline 中并没有找到相关配置文件',
+  ACTIVITY_EMPTY_TIP: '目前 Pipeline 還没有運行',
+  PIPELINE_NO_CONFIG: '目前 Pipeline 中並没有找到相關配置文件',
   NOT_VALID_JENKINS_FILE:
-    '当前 Jenkinsfile 不是标准的声明式 Jenkinsfile，无法进行图形化显示',
-  PIPELINE_CRONJOB_CRON_DESC: `Every hour, on the hour 语法参照
+    '目前 Jenkinsfile 不是標準的聲明式 Jenkinsfile，無法進行圖形化顯示',
+  PIPELINE_CRONJOB_CRON_DESC: `Every hour, on the hour 語法參照
     <a href="//jenkins.io/doc/book/pipeline/syntax/#cron-syntax" target="_blank">CRON</a>`,
-  'passphrase Variable': '密码变量',
-  'show yaml editor': '用 YAML 编辑器编辑',
-  'Enable Variable Substitution in Config': '在配置中启用变量替换',
-  'Kubernetes Secrets': 'Kubernetes 密钥',
-  'Kubernetes Namespace for Secret': 'Kubernetes 密钥命名空间',
-  'Docker Container Registry Credentials': 'Docker 容器仓库凭证',
-  'Docker Registry URL': 'Docker 仓库 URL',
-  'Registry Credentials': '仓库凭证',
-  'Secret Name': '密钥名称',
-  'Show Advanced Settings': '展示高级设置',
-  'Config File Path': '配置文件路径',
-  'Add another credential': '增加一個凭证',
-  'Deploy resources to the Kubernetes cluster': '将资源部署到 kubernetes 集群',
-  'Create a credential': '新建凭证',
-  'Remote Repository URL': '远程仓库地址',
+  'passphrase Variable': '密碼變量',
+  'show yaml editor': '用 YAML 編輯器編輯',
+  'Enable Variable Substitution in Config': '在配置中啟用變量替換',
+  'Kubernetes Secrets': 'Kubernetes 密鑰',
+  'Kubernetes Namespace for Secret': 'Kubernetes 密鑰命名空間',
+  'Docker Container Registry Credentials': 'Docker 容器倉庫憑證',
+  'Docker Registry URL': 'Docker 倉庫 URL',
+  'Registry Credentials': '倉庫憑證',
+  'Secret Name': '密鑰名稱',
+  'Show Advanced Settings': '顯示高级設置',
+  'Config File Path': '配置文件路徑',
+  'Add another credential': '增加一個憑證',
+  'Deploy resources to the Kubernetes cluster': '將資源部署到 kubernetes 集群',
+  'Create a credential': '新建憑證',
+  'Remote Repository URL': '遠程倉庫地址',
   'Branch Included': '包括分支',
   'Branch Excluded': '排除分支',
   "The default value here is the current user's kubeconfig.":
     '这里的預設值为当前用户的 kubeconfig',
   'The label on which to run the Pipeline or individual stage':
-    '流水线或单個阶段的标签',
-  'single Svn': '单分支 SVN',
-  WEBHOOK_DESC: '推送消息到此 URL 以触发仓库的重新索引。',
-  TIME_TRIGGER_DESC: `某些类型的项目会在收到外部推送消息会自动重新索引。但在某些情况下，消息通知可能失败。
-    这個选项将检查指定时间间隔内是否执行了索引，如果没有则触发索引。`,
-  'Are you sure to close this pipeline Editor ?': '确定关闭流水线编辑？',
-  KUBERNETES_DEPLOY_DESC: `在 kubernetes 集群中进行部署，在持续集成/持续部署的环境当中，
-    只有那些需要定期更新的资源才应该放到部署步骤当中，所以此步骤大多数时间都在处理部署这类资源.`,
+    '流水線或單個階段的標籤',
+  'single Svn': '單分支 SVN',
+  WEBHOOK_DESC: '推送訊息到此 URL 以觸發倉庫的重新索引。',
+  TIME_TRIGGER_DESC: `某些類型的項目會在收到外部推送消息會自動重新索引。但在某些情况下，訊息通知可能失敗。
+    這個選項將檢查指定時間間隔内是否執行了索引，如果没有則觸發索引。`,
+  'Are you sure to close this pipeline Editor ?': '確定關閉流水線編輯？',
+  KUBERNETES_DEPLOY_DESC: `在 kubernetes 集群中進行部署，在持續集成/持續部署的環境當中，
+    只有那些需要定期更新的資源才應該放到部署步驟當中，所以此步驟大多數時間都在處理部署這類資源.`,
   KUBERNETES_DEPLOY_DESC_MORE: `<br />
-    <label>该步骤主要有以下特点:</label>
-    <li>无需 kubectl 的情况下实现部署</li>
-    <li>Jenkinsfile 中的变量替换，可以进行动态部署。</li>
-    <li>支持从私有镜像仓库拉取 Docker 镜像</li>
-    <label>目前该步骤支持以下资源:</label>
+    <label>該步驟主要有以下特點:</label>
+    <li>無需 kubectl 的情況下實現部署</li>
+    <li>Jenkinsfile 中的變量替換，可以進行動態部署。</li>
+    <li>支持從私有鏡像倉庫拉取 Docker 鏡像</li>
+    <label>目前該步驟支持以下資源:</label>
     <br />
     <li>配置</li>
-    <li>密钥</li>
+    <li>密鑰</li>
     <li>部署</li>
-    <li>守护进程集</li>
-    <li>应用路由</li>
-    <li>名称空间</li>
-    <li>任务</li>
-    <li>服务</li>
+    <li>守護進程集</li>
+    <li>應用路由</li>
+    <li>名稱空間</li>
+    <li>任務</li>
+    <li>服務</li>
     <li>Replica Set</li>
     <li>
       Replication
-      Controller (不支持滚动更新，如果要使用滚动更新请使用部署)
+      Controller (不支持滾動更新，如果要使用滾動更新请使用部署)
     </li>`,
   'username or group name, multiple values ​​used, separated':
-    '用户名或组名，多個值使用英文逗号分隔',
-  'key File Variable': '私钥变量',
-  'Text Variable': '文本变量',
-  'Kubeconfig Variable': 'kubeconfig 变量',
-  PIPELINE_PREPAIR_DESC: '正在准备环境，稍后有图形化展示',
+    '用戶名或組名，多個值使用英文逗號分隔',
+  'key File Variable': '私鑰變量',
+  'Text Variable': '文本變量',
+  'Kubeconfig Variable': 'kubeconfig 變量',
+  PIPELINE_PREPAIR_DESC: '正在準備環境，稍後有圖形化顯示',
   PARAMS_DESC:
-    '下列參數是根据流水线设置或 Jenkinsfile 中的 parameters 部分生成的字段，请根据运行需求输入。',
+    '下列參數是根據流水線設置或 Jenkinsfile 中的 parameters 部分生成的字段，請根據運行需求輸入。',
   'Chinese is not allowed in the pipeline configuration':
-    '配置中不允许含有中文',
-  'Edit Credential': '编辑凭证',
-  EDIT_CREDENTIAL_DESC: '下列表单不会显示原有凭证信息，重新输入会将其覆盖',
-  'Token / Password': 'token / 密码',
+    '配置中不允許含有中文',
+  'Edit Credential': '編輯憑證',
+  EDIT_CREDENTIAL_DESC: '下列表單不會顯示原有憑證資訊，重新輸入會將其覆蓋',
+  'Token / Password': 'token / 密碼',
   "Sorry, you don't have the permission to do this.":
-    '抱歉，您没有权限进行此操作',
-  'Drag and drop tasks to sort': '可以拖拽任务进行排序',
+    '抱歉，您没有權限進行此操作',
+  'Drag and drop tasks to sort': '可以拖放任務進行排序',
   Unnamed: '未命名',
-  'Task failed, not operational': '任务已失败，不可操作',
-  'Cancelled in review': '已在审核中取消',
+  'Task failed, not operational': '任務已失敗，不可操作',
+  'Cancelled in review': '已在審核中取消',
   'Executes the code inside the block with a determined time out limit.':
-    '使用确定的超时限制执行块内的代码.',
+    '使用確定的超時限制執行塊内的代碼.',
   'Timeout after no activity in logs for this block':
-    '此区块代码无日志输出后开始计算超时',
-  'Absolute duration': '代码块所用的绝对时间',
-  pipeline_conditions: '条件',
+    '此區塊代碼無日誌輸出後開始計算超時',
+  'Absolute duration': '代碼塊所用的絕對時間',
+  pipeline_conditions: '條件',
   'The conditions required to implement the current phase (optional).':
-    '执行当前阶段所需要满足的条件 （可选）',
-  'Add conditions': '添加条件',
-  'Add nesting conditions': '添加嵌套条件',
-  'Current branch name must match the input value': '当前分支名需符合输入值',
+    '執行目前階段段所需要滿足的條件 （可選）',
+  'Add conditions': '添加條件',
+  'Add nesting conditions': '添加嵌套條件',
+  'Current branch name must match the input value': '目前分支名需符合輸入值',
   'The environment variable entered before running the pipeline is match the current value.':
-    '运行流水线前输入的环境变量与当前值一致',
-  'Enter an expression': '输入一個表达式',
+    '運行流水線前輸入的環境變量與目前值一致',
+  'Enter an expression': '輸入一個表達式',
   'Negative prefix': '否定前缀',
-  'Internal nesting conditions must be matched': '内部嵌套的条件需全部满足',
+  'Internal nesting conditions must be matched': '内部嵌套的條件需全部滿足',
   'Internal nested conditions only need to satisfy one':
-    '内部嵌套的条件只需符合一個',
-  'Enviroment name': '环境变量名',
-  expression: '表达式',
+    '内部嵌套的條件只需符合一個',
+  'Enviroment name': '環境變量名',
+  expression: '表達式',
   PARAMS_STRING: '字符串參數 (String) ',
   PARAMS_TEXT: '文本 (Text) ',
-  PRARMS_BOOLEAN: '布尔值 (Boolean) ',
-  PARAMS_CHOICE: '选项參數 (Choice) ',
-  PARAMS_PASSWORD: '密码參數 (Password) ',
-  critical: '严重',
-  blocker: '阻断',
+  PRARMS_BOOLEAN: '布林值 (Boolean) ',
+  PARAMS_CHOICE: '選項參數 (Choice) ',
+  PARAMS_PASSWORD: '密碼參數 (Password) ',
+  critical: '嚴重',
+  blocker: '阻斷',
   major: '重要',
   minor: '次要',
   info: '提示',
-  Issues: '问题',
-  'Code Quality Check': '代码质量检查',
-  'Lines of Code': '行数',
-  'Code Vulnerability': '代码漏洞',
-  CodeSmells: '容易出错',
-  Coverage: '覆盖率',
-  "Didn't pass": '未通过',
-  'Test Result': '检测结果',
-  'Code Quality': '代码质量',
-  'Line number': '行号',
-  'Display All': '展示全部',
-  CODE_SMELL: '容易出错',
+  Issues: '問題',
+  'Code Quality Check': '代碼質量檢查',
+  'Lines of Code': '行數',
+  'Code Vulnerability': '代碼漏洞',
+  CodeSmells: '容易出錯',
+  Coverage: '覆蓋率',
+  "Didn't pass": '未通過',
+  'Test Result': '檢測結果',
+  'Code Quality': '代碼質量',
+  'Line number': '行號',
+  'Display All': '顯示全部',
+  CODE_SMELL: '容易出錯',
   BUG: 'Bug',
   VULNERABILITY: '漏洞',
   SECURITY_HOTSPOT: '安全',
   Line: '行',
-  'Show only the last 10': '仅显示最近 10 条',
-  abortPipeline: '检查结果是否影响后续任务',
-  waitForQualityGate: '代码质量检查(SonarQube)',
-  mail: '邮件',
-  echo: '打印消息',
-  dir: '切换目录',
-  withCredentials: '添加凭证',
+  'Show only the last 10': '僅顯示最近 10 條',
+  abortPipeline: '檢查結果是否影響後續任務',
+  waitForQualityGate: '代碼質量檢查(SonarQube)',
+  mail: '郵件',
+  echo: '打印訊息',
+  dir: '切換目錄',
+  withCredentials: '添加憑證',
   container: '指定容器',
-  archiveArtifacts: '保存制品',
-  input: '审核',
-  timeout: '超时',
-  Timeout: '超时',
+  archiveArtifacts: '保存成品',
+  input: '審核',
+  timeout: '超時',
+  Timeout: '超時',
   withSonarQubeEnv: 'Sonarqube 配置',
-  sh: 'shell 脚本',
+  sh: 'shell 腳本',
   'Git Clone Options': 'Git 克隆參數',
   'clone depth': '克隆深度',
-  'Regex filter': '过滤规则',
+  'Regex filter': '過濾規則',
   REG_FILTER_DESC:
-    '启用正则表达式，将忽略与提供的正则表达式不匹配的名称（包括分支与PR等)',
-  'Whether to open shallow clone': '是否开启浅克隆',
-  'Pipeline clone timeout (in minutes)': '流水线 clone 超时时间 (单位: 分钟)',
-  'config name': '配置名称',
+    '啟用正則表達式，將忽略與提供的正則表達式不匹配的名稱（包括分支與PR等)',
+  'Whether to open shallow clone': '是否開啟淺克隆',
+  'Pipeline clone timeout (in minutes)': '流水線 clone 超時時間 (單位: 分鐘)',
+  'config name': '配置名稱',
   waitForQualityGate_desc:
-    '代码质量检查标准来源于SonarQube的 Quality Gate (质量阈)，如果需要自定义检查标准请前往 SonarQube 设置',
-  'Inspection results do not affect subsequent tasks': '检查结果不影响后续任务',
-  'Start the follow-up task after the inspection': '检查通过后开始后续任务',
+    '代碼質量檢查標準來源於SonarQube的 Quality Gate (質量閥)，如果需要自定義檢查標準請前往 SonarQube 設置',
+  'Inspection results do not affect subsequent tasks': '檢查結果不影響後續任務',
+  'Start the follow-up task after the inspection': '檢查通過後開始後續任務',
   'Load the sonarqube configuration provided by Jenkins into the Pipeline.':
-    '将 Jenkins 中的 sonarqube 配置加载到流水线中',
-  PIPELINE_DESC: '初始化完成后将开始 Pipeline 的任务执行',
+    '將 Jenkins 中的 sonarqube 配置加載到流水線中',
+  PIPELINE_DESC: '初始化完成後將開始 Pipeline 的任務執行',
   'Pipeline initialization': 'Pipeline 初始化中',
   'Specify a container to add nested tasks to execute inside the container':
-    '指定容器，可添加嵌套任务在容器内执行',
+    '指定容器，可添加嵌套任務在容器内執行',
   INPUT_DESC:
-    '流水线运行至此任务将会暂停，创建者和被@的人可以选择继续或终止流水线',
-  INPUT_MESSAGE_DESC: '流水线运行状态中将会展示此消息',
-  'Can @somebody to help review': '可以@某人来帮助审核',
-  REVIEW_DESC: '流水线运行至此任务将会暂停，审核后可选择继续或终止',
-  withSonarQubeEnv_DESC: '快速的定位代码中潜在的或者明显的错误',
-  waitForQualityGate_DESC: '在执行代码分析后执行',
-  script_DESC: '执行groovy脚本',
-  Queued: '队列中',
-  PIPELINE_QUEUED_TITLE: 'Pipeline 即将进行初始化',
+    '流水線運行至此任務將會暫停，創建者和被@的人可以選擇繼續或終止流水線',
+  INPUT_MESSAGE_DESC: '流水線運行狀態中將會顯示此訊息',
+  'Can @somebody to help review': '可以@某人來幫助審核',
+  REVIEW_DESC: '流水線運行至此任務將會暫停，審核後可選擇繼續或终止',
+  withSonarQubeEnv_DESC: '快速的定位代碼中潛在的或者明顯的錯誤',
+  waitForQualityGate_DESC: '在執行代碼分析後執行',
+  script_DESC: '執行groovy腳本',
+  Queued: '列隊中',
+  PIPELINE_QUEUED_TITLE: 'Pipeline 即將進行初始化',
   PIPELINE_QUEUED_DESC:
-    '您需要等待 agent 启动并执行流水线（注：如 agent 长时间没有启动请检查 agent 配置和集群资源情况）',
-  pipeline_owner: 'DevOps 工程的所有者，可以进行 DevOps 工程的所有操作',
+    '您需要等待 agent 啟動並執行流水線（注：如 agent 長時間没有啟動請檢查 agent 配置和集群資源情況）',
+  pipeline_owner: 'DevOps 工程的所有者，可以進行 DevOps 工程的所有操作',
   pipeline_maintainer:
-    'DevOps 工程的主要维护者，可以进行项目内的凭证配置、Pipeline 配置等操作',
-  pipeline_developer: 'DevOps 工程的开发者，可以进行 Pipeline 的触发以及查看',
-  pipeline_reporter: 'DevOps 工程的观察者，可以查看 Pipeline 的运行情况',
-  'sonar is the default config name.': '預設配置名称是 sonar',
-  credentialsId: '凭证 ID',
-  enableConfigSubstitution: '启用变量替换',
+    'DevOps 工程的主要維護者，可以進行項目内的憑證配置、Pipeline 配置等操作',
+  pipeline_developer: 'DevOps 工程的開發者，可以進行 Pipeline 的觸發以及查看',
+  pipeline_reporter: 'DevOps 工程的觀察者，可以查看 Pipeline 的運行情况',
+  'sonar is the default config name.': '預設配置名稱是 sonar',
+  credentialsId: '憑證 ID',
+  enableConfigSubstitution: '啟用變量替換',
   configs: '配置',
-  secretNamespace: '密钥命名空间',
-  secretName: '秘钥名称',
-  dockerCredentials: 'Docker 容器仓库凭证',
-  passwordVariable: '密码变量',
-  usernameVariable: '用户名变量',
-  keyFileVariable: '私钥变量',
-  passphraseVariable: '密码变量',
+  secretNamespace: '密鑰命名空間',
+  secretName: '秘鑰名稱',
+  dockerCredentials: 'Docker 容器倉庫憑證',
+  passwordVariable: '密碼變量',
+  usernameVariable: '用戶名變量',
+  keyFileVariable: '私鑰變量',
+  passphraseVariable: '密碼變量',
   'No branches found': '未發現任何分支',
-  LoadPrevData_Desc: '检测到此流水线上次未编辑成功，是否加载上次数据继续编辑？',
-  Continue: '继续编辑',
+  LoadPrevData_Desc: '檢測到此流水線上次未編輯成功，是否加載上次數據繼續編輯？',
+  Continue: '繼續編輯',
   Discard: '忽略',
-  'Jenkinsfile syntax error, message': 'Jenkinsfile 语法错误，消息',
+  'Jenkinsfile syntax error, message': 'Jenkinsfile 語法錯誤，訊息',
   PATTERN_PIPELINE_NAME_VALID_NAME_TIP:
-    '名称不合法 （仅支持大小写字母、数字、_、-）',
-  WRONG_GITHUB_TOKEN_DESC: `Token 错误
+    '名稱不合法 （僅支持大小寫字母、數字、_、-）',
+  WRONG_GITHUB_TOKEN_DESC: `Token 錯誤
   <a
     class="float-right"
     href="https://github.com/settings/tokens/new?scopes=repo,read:user,user:email,write:repo_hook"
     target="_blank"
   >
-    重新获取 Token
+    重新獲取 Token
   </a>`,
-  GET_GITHUB_TOKEN_DESC: `用于获取 GitHub 代码仓库
+  GET_GITHUB_TOKEN_DESC: `用於獲取 GitHub 代碼倉庫
   <a
     class="float-right"
     href="https://github.com/settings/tokens/new?scopes=repo,read:user,user:email,write:repo_hook"
     target="_blank"
   >
-    获取 Token
+    獲取 Token
   </a>`,
-  bitbucket_server_ACCESSTOKEN_PLACEHOLDER: '请输入 BitBucket 账号信息',
-  github_ACCESSTOKEN_PLACEHOLDER: '请输入 GitHub access token',
+  bitbucket_server_ACCESSTOKEN_PLACEHOLDER: '請輸入 BitBucket 帳號資訊',
+  github_ACCESSTOKEN_PLACEHOLDER: '請輸入 GitHub access token',
   'url is invalid': 'url 不合法',
-  'pipeline syntax error': '流水线语法错误',
-  PIPELINES_FOOTER_SEE_MORE: '前往分支详情页查看更多 →',
-  CRON_DESC: '上次运行时间 {lastTime}, 下次运行时间 {nextTime}.',
-  'not support edit nested stage': '暂不支持编辑嵌套阶段',
-  JENKINS_LINS_ERROR: '第 {line} 行有语法错误',
-  'Delete all resources of the deployment file': '删除部署文件所对应的所有资源',
-  'Pipeline Event Trigger': '流水线事件触发',
-  'When Create Pipeline': '当创建流水线',
-  'When Delete Pipeline': '当删除流水线',
+  'pipeline syntax error': '流水線語法錯誤',
+  PIPELINES_FOOTER_SEE_MORE: '前往分支詳情頁查看更多 →',
+  CRON_DESC: '上次運行時間 {lastTime}, 下次運行時間 {nextTime}.',
+  'not support edit nested stage': '暫不支持編輯嵌套階段',
+  JENKINS_LINS_ERROR: '第 {line} 行有語法錯誤',
+  'Delete all resources of the deployment file': '刪除部署文件所對應的所有資源',
+  'Pipeline Event Trigger': '流水線事件觸發',
+  'When Create Pipeline': '創建流水線',
+  'When Delete Pipeline': '當刪除流水線',
   WHEN_DELETE_PIEPLINE_DESC:
-    '当有流水线被删除时，将自动触发指定流水线中的任务。',
+    '當有流水線被刪除時，將自動觸發指定流水線中的任務。',
   WHEN_CHRETE_PIEPLINE_DESC:
-    '当有创建新的流水线时，将自动触发指定流水线中的任务。',
-  'select a pipeline': '选择一個流水线',
-  timer: '定时器',
-  'Started By {name}': '由{name}触发扫描',
+    '當有創建新的流水線時，將自動觸發指定流水線中的任務。',
+  'select a pipeline': '選擇一個流水線',
+  timer: '定時器',
+  'Started By {name}': '由{name}觸發掃描',
 }
