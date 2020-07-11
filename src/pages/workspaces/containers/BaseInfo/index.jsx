@@ -169,7 +169,7 @@ class BaseInfo extends React.Component {
         name: 'DevOps Projects',
         icon: 'strategy-group',
         value: metrics.workspace_devops_project_count,
-        hidden: !globals.app.hasKsModule('devops'),
+        hidden: !globals.app.hasKSModule('devops'),
       },
       {
         name: 'Workspace Members',
