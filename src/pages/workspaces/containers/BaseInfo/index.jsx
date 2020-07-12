@@ -17,7 +17,7 @@
  */
 
 import React from 'react'
-import { get, isEmpty } from 'lodash'
+import { get, isEmpty, set } from 'lodash'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import { Checkbox } from '@pitrix/lego-ui'
@@ -145,6 +145,15 @@ class BaseInfo extends React.Component {
       .then(() => this.fetchDetail())
   }
 
+  handleSingleClusterNetworkChange = () => {
+    const detail = toJS(this.store.detail)
+    const obj = {}
+
+    set(obj, 'spec.template.spec.networkIsolation', !detail.networkIsolation)
+
+    this.store.patch(detail, obj).then(() => this.fetchDetail())
+  }
+
   handleDeleteCheckboxChange = (e, checked) => {
     this.setState({ confirm: checked })
   }
@@ -261,7 +270,7 @@ class BaseInfo extends React.Component {
               <Switch
                 className={styles.switch}
                 text={t(networkIsolation ? 'On' : 'Off')}
-                onChange={this.handleNetworkChange(workspace)}
+                onChange={this.handleSingleClusterNetworkChange}
                 checked={networkIsolation}
               />
             )}
@@ -293,14 +302,19 @@ class BaseInfo extends React.Component {
                 title={t(networkIsolation ? 'On' : 'Off')}
                 description={t('Workspace Network Isolation')}
               />
-              {this.enabledActions.includes('manage') && cluster.isReady && (
-                <Switch
-                  className={styles.switch}
-                  text={t(networkIsolation ? 'On' : 'Off')}
-                  onChange={this.handleNetworkChange(cluster.name)}
-                  checked={networkIsolation}
-                />
-              )}
+              {this.enabledActions.includes('manage') &&
+                (get(cluster, 'configz.network') ? (
+                  <Switch
+                    className={styles.switch}
+                    text={t(networkIsolation ? 'On' : 'Off')}
+                    onChange={this.handleNetworkChange(cluster.name)}
+                    checked={networkIsolation}
+                  />
+                ) : (
+                  <span className={styles.noModule}>
+                    {t('Network module is not installed')}
+                  </span>
+                ))}
             </div>
           )
         })}

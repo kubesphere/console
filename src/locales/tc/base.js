@@ -114,6 +114,7 @@ export default {
   pending: '等待中',
   updating: '更新中',
   'is updating': '正在更新',
+  upgrading: '升级中',
   warning: '异常',
   stopped: '已停止',
   disabled: '已停用',

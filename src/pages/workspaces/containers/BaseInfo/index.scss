@@ -82,3 +82,9 @@
 .title {
   max-width: 30%;
 }
+
+.noModule {
+  @include vertical-center;
+  right: 20px;
+  @include TypographyTitleH5($dark-color01);
+}
