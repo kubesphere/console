@@ -24,6 +24,7 @@ import { get } from 'lodash'
 import RoleStore from 'stores/role'
 import UserStore from 'stores/user'
 import QuotaStore from 'stores/quota'
+import LimitRangeStore from 'stores/limitrange'
 
 import { trigger } from 'utils/action'
 import Banner from 'components/Cards/Banner'
@@ -41,6 +42,8 @@ class BaseInfo extends React.Component {
 
   quotaStore = new QuotaStore()
 
+  limitRangeStore = new LimitRangeStore()
+
   state = {
     showEdit: false,
     showDelete: false,
@@ -52,7 +55,7 @@ class BaseInfo extends React.Component {
     this.memberStore.fetchList(this.params)
     this.roleStore.fetchList(this.params)
     this.quotaStore.fetch(this.params)
-    this.store.fetchLimitRanges(this.params)
+    this.limitRangeStore.fetchListByK8s(this.params)
   }
 
   get store() {
@@ -99,7 +102,7 @@ class BaseInfo extends React.Component {
   get itemActions() {
     const { routing } = this.props
     const { detail } = this.store
-    const limitRanges = toJS(this.store.limitRanges.data)
+    const limitRanges = this.limitRangeStore.list.data
     const actions = [
       {
         key: 'edit',
@@ -120,8 +123,9 @@ class BaseInfo extends React.Component {
         onClick: () =>
           this.trigger('project.default.resource', {
             ...this.props.match.params,
+            store: this.limitRangeStore,
             detail: limitRanges[0],
-            success: () => this.store.fetchLimitRanges(this.props.match.params),
+            success: () => this.limitRangeStore.fetchListByK8s(this.params),
           }),
       },
       {
@@ -141,8 +145,8 @@ class BaseInfo extends React.Component {
     if (
       globals.app.hasPermission({
         workspace: this.workspace,
-        module: 'workspaces',
-        action: 'edit',
+        module: 'projects',
+        action: 'manage',
       })
     ) {
       actions.splice(1, 0, {
@@ -180,7 +184,7 @@ class BaseInfo extends React.Component {
     const roleCount = this.roleStore.list.total
     const memberCount = this.memberStore.list.total
     const serviceCount = get(this.quotaStore, 'data.used["count/services"]', 0)
-    const limitRanges = toJS(this.store.limitRanges.data)
+    const limitRange = get(this.limitRangeStore, 'list.data[0]')
     const quota = toJS(this.quotaStore.data)
 
     return (
@@ -201,7 +205,7 @@ class BaseInfo extends React.Component {
           actions={this.enabledItemActions}
           onMenuClick={this.handleMoreMenuClick}
         />
-        <DefaultResource detail={limitRanges[0]} />
+        <DefaultResource detail={limitRange} />
         <ResourceQuota detail={quota} />
       </div>
     )

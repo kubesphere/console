@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, isEmpty, unset } from 'lodash'
+import { get, isEmpty, unset, omit } from 'lodash'
 import { action, observable } from 'mobx'
 import { LIST_DEFAULT_ORDER } from 'utils/constants'
 import ObjectMapper from 'utils/object.mapper'
@@ -130,7 +130,7 @@ export default class ProjectStore extends Base {
     this.list.update({
       data: more ? [...this.list.data, ...data] : data,
       total: result.totalItems || result.total_count || data.length || 0,
-      ...params,
+      ...omit(params, 'labelSelector'),
       cluster: globals.app.isMultiCluster ? cluster : undefined,
       limit: Number(params.limit) || 10,
       page: Number(params.page) || 1,

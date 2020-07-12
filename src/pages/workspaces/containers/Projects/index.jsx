@@ -265,7 +265,9 @@ export default class Projects extends React.Component {
     this.props.trigger('project.create', {
       ...this.props.match.params,
       success: cluster => {
-        this.workspaceStore.selectCluster(cluster)
+        if (cluster) {
+          this.workspaceStore.selectCluster(cluster)
+        }
         this.getData({ silent: true })
       },
     })

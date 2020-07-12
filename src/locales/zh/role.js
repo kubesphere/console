@@ -57,6 +57,7 @@ export default {
   Modules: '功能模块',
   'Authorized Actions': '可执行操作',
   'No Authorization': '暂无权限规则',
+  'Invited Successfully': '邀请成功',
   NO_AVAILABLE_ROLE: '当前项目无可用角色',
   JOIN_PROJECT_PLACEHOLDER: '输入用户名或者邮箱邀请用户加入到项目中',
   ROLE_DELETE_TIP: '当前角色已有用户绑定，请解绑后重试',

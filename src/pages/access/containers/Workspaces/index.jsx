@@ -97,7 +97,7 @@ export default class Workspaces extends React.Component {
   getColumns = () => {
     const { getSortOrder } = this.props
 
-    return [
+    const columns = [
       {
         title: t('Name'),
         dataIndex: 'name',
@@ -115,14 +115,6 @@ export default class Workspaces extends React.Component {
         ),
       },
       {
-        title: t('Cluster Info'),
-        dataIndex: 'clusters',
-        width: '30%',
-        render: clusters => (
-          <ClusterWrapper clusters={clusters} clustersDetail={this.clusters} />
-        ),
-      },
-      {
         title: t('Created Time'),
         dataIndex: 'createTime',
         sorter: true,
@@ -132,6 +124,19 @@ export default class Workspaces extends React.Component {
         render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
       },
     ]
+
+    if (globals.app.isMultiCluster) {
+      columns.splice(1, 0, {
+        title: t('Cluster Info'),
+        dataIndex: 'clusters',
+        width: '30%',
+        render: clusters => (
+          <ClusterWrapper clusters={clusters} clustersDetail={this.clusters} />
+        ),
+      })
+    }
+
+    return columns
   }
 
   showCreate = () => {
