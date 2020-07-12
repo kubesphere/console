@@ -141,15 +141,12 @@ export default class Projects extends React.Component {
         key: 'edit',
         icon: 'pen',
         text: t('Edit'),
-        action: 'edit',
         onClick: item => trigger('resource.baseinfo.edit', { detail: item }),
       },
       {
         key: 'quotaEdit',
         icon: 'pen',
         text: t('Edit Quota'),
-        action: 'edit',
-        show: item => !item.isFedHostNamespace,
         onClick: item =>
           trigger('project.quota.edit', {
             type: t('Project'),
@@ -160,7 +157,6 @@ export default class Projects extends React.Component {
         key: 'delete',
         icon: 'trash',
         text: t('Delete'),
-        action: 'delete',
         onClick: item =>
           trigger('resource.delete', {
             type: t('Project'),
