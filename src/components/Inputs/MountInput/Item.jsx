@@ -61,10 +61,25 @@ export default class Item extends React.Component {
   }
 
   getMountOptions() {
-    return MOUNT_OPTIONS.map(item => ({
-      label: t(item.label),
-      value: item.value,
-    }))
+    const { supportedAccessModes } = this.props
+    let mountOptions = []
+    if (
+      Array.isArray(supportedAccessModes) &&
+      supportedAccessModes.length > 0
+    ) {
+      mountOptions = MOUNT_OPTIONS.filter(mode =>
+        supportedAccessModes.includes(mode.label)
+      ).map(item => ({
+        label: t(item.label),
+        value: item.value,
+      }))
+    } else {
+      mountOptions = MOUNT_OPTIONS.map(item => ({
+        label: t(item.label),
+        value: item.value,
+      }))
+    }
+    return mountOptions
   }
 
   handleSelectChange = newValue => {

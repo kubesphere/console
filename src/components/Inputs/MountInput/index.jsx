@@ -89,7 +89,7 @@ export default class MountInput extends React.Component {
   }
 
   render() {
-    const { containers, collectSavedLog } = this.props
+    const { containers, collectSavedLog, supportedAccessModes } = this.props
 
     const formatValue = this.getFormatValue()
 
@@ -101,6 +101,7 @@ export default class MountInput extends React.Component {
             value={formatValue[index]}
             container={container.name}
             onChange={this.handleItemChange.bind(this, container.name)}
+            supportedAccessModes={supportedAccessModes}
             collectSavedLog={collectSavedLog}
           />
         ))}
