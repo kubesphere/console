@@ -68,7 +68,10 @@ export default class ResourceStatus extends React.Component {
 
     if (type) {
       this.workloadStore.setModule(type)
-      await this.workloadStore.fetchDetail({ ...params, name })
+      const result = await this.workloadStore.checkName({ ...params, name })
+      if (result.exist) {
+        await this.workloadStore.fetchDetail({ ...params, name })
+      }
     }
 
     this.routerStore.getGateway(params)
