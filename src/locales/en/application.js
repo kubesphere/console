@@ -99,4 +99,7 @@ export default {
 
   APPLICATION_SERVICE_DESC:
     'You can set different service components based on the service type in an application. Stateful and stateless services are both supported.',
+
+  INTERNET_ACCESS_DESC:
+    "You can set the application's internet access rules(Ingress)",
 }

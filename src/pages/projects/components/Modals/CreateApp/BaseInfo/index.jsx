@@ -166,7 +166,7 @@ export default class BaseInfo extends React.Component {
             />
           </Form.Item>
           <Form.Item label={t('Description')}>
-            <TextArea name="spec.descriptor.description" />
+            <TextArea name="metadata.annotations['kubesphere.io/description']" />
           </Form.Item>
         </Form>
       </div>
