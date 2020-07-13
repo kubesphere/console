@@ -25,7 +25,7 @@ export default {
   CONFIGMAP_DESC:
     '配置集 (ConfigMap) 常用於儲存工作負載所需的配置資訊，許多應用程序會從配置文件、命令行參數或環境變量中讀取配置資訊。',
   CONFIGMAP_CREATE_DESC:
-    '配置是儲存通用的配置變量的，使用戶可以將分布式系統中用於不同模組的環境變量統一到一個對像中管理',
+    '配置是儲存通用的配置變量的，使用戶可以將分布式系統中用於不同模組的環境變量統一到一個對象中管理',
   'Config Value': '配置項',
   'Modify Config': '修改配置',
   'The unique key value of this configuration map entry':
