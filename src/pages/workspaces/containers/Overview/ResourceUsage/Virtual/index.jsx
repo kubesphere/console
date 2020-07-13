@@ -41,6 +41,12 @@ const MetricTypes = {
 @inject('rootStore')
 @observer
 export default class VirtualResource extends Base {
+  componentDidUpdate(prevProps) {
+    if (prevProps.cluster !== this.props.cluster) {
+      this.fetchData()
+    }
+  }
+
   get workspace() {
     return this.props.workspace
   }
@@ -117,14 +123,14 @@ export default class VirtualResource extends Base {
   })
 
   renderClusters() {
-    const { clusterProps } = this.props
+    const { workspace, cluster, ...clusterProps } = this.props
     if (clusterProps.options.length) {
-      return <Select {...clusterProps} />
+      return <Select value={cluster} {...clusterProps} />
     }
   }
 
   fetchData = params => {
-    this.monitorStore.cluster = this.props.clusterProps.cluster
+    this.monitorStore.cluster = this.props.cluster
 
     this.monitorStore.fetchMetrics({
       workspace: this.workspace,

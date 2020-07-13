@@ -76,14 +76,14 @@ export default class PhysicalResource extends Base {
   })
 
   renderClusters() {
-    const { clusterProps } = this.props
+    const { workspace, cluster, ...clusterProps } = this.props
     if (clusterProps.options.length) {
-      return <Select {...clusterProps} />
+      return <Select value={cluster} {...clusterProps} />
     }
   }
 
   fetchData = params => {
-    this.monitorStore.cluster = this.props.clusterProps.cluster
+    this.monitorStore.cluster = this.props.cluster
 
     this.monitorStore.fetchMetrics({
       workspace: this.workspace,
