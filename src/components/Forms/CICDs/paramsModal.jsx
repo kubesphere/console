@@ -53,7 +53,7 @@ export default class ParamsModal extends React.Component {
 
   get branch() {
     const { branches, params } = this.props
-    let currentBranch = params.branch
+    let currentBranch = params ? params.branch : ''
     if (!isEmpty(branches)) {
       currentBranch = get(this.branchOptions, '[0].value')
     }
@@ -96,8 +96,8 @@ export default class ParamsModal extends React.Component {
     return options
   }
 
-  init = () => {
-    const parameters = this.getParametersFromBranch(this.branch)
+  init = async () => {
+    const parameters = await this.getParametersFromBranch(this.branch)
     this.setState({
       currentBranch: this.branch,
       parameters,
@@ -221,8 +221,8 @@ export default class ParamsModal extends React.Component {
     }
   }
 
-  handleBranchChange = branch => {
-    const parameters = this.getParametersFromBranch(branch)
+  handleBranchChange = async branch => {
+    const parameters = await this.getParametersFromBranch(branch)
     this.setState({ currentBranch: branch, parameters })
   }
 
@@ -254,7 +254,7 @@ export default class ParamsModal extends React.Component {
               <Select
                 name="branch"
                 options={this.branchOptions}
-                value={currentBranch}
+                defaultValue={currentBranch}
                 onChange={this.handleBranchChange}
               />
             </Form.Item>
@@ -262,7 +262,8 @@ export default class ParamsModal extends React.Component {
           {!isEmpty(parameters) ? (
             <div className={style.desc}>{t('PARAMS_DESC')}</div>
           ) : null}
-          {parameters && parameters.map(param => this.renderParamsItem(param))}
+          {Array.isArray(parameters) &&
+            parameters.map(param => this.renderParamsItem(param))}
         </Form>
       </Modal>
     )

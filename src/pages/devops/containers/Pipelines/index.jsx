@@ -317,6 +317,8 @@ class CICDs extends React.Component {
 
     if (!result) {
       this.setState({ isSubmitting: false, showCreate: false })
+    } else if (result.metadata && result.metadata.name) {
+      this.pipeline = result.metadata.name
     }
   }
 
@@ -550,7 +552,7 @@ class CICDs extends React.Component {
   }
 
   render() {
-    const { params } = this.prefix.match
+    const { params } = this.props.match
 
     return (
       <div className={styles.wrapper}>
@@ -563,7 +565,7 @@ class CICDs extends React.Component {
         {this.renderContent()}
         {this.renderModals()}
         <PipelineModal
-          params={{ ...this.props.match.params, name: this.pipeline }}
+          params={{ ...params, name: this.pipeline }}
           jsonData={CREATE_TEMP}
           visible={this.state.showEdit}
           onOk={this.handleSaveJenkinsFile}
