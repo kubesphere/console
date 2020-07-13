@@ -266,7 +266,10 @@
 
         function refreshCaptha() {
           $captcha_img &&
-            $captcha_img.setAttribute('src', '/captcha?refresh=true')
+            $captcha_img.setAttribute(
+              'src',
+              '/captcha?refresh=true&_=' + new Date().getTime()
+            )
         }
 
         function handleOAuthLogin(e) {
