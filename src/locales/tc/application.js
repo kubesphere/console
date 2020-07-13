@@ -249,7 +249,7 @@ export default {
   'Microservice not enabled': '微服務未啟用',
 
   TRAFFIC_MANAGEMENT_NO_MICROSERVICE_TIP:
-    '流量治理依赖於微服務模塊, 目前集群未啟用微服務模塊',
+    '流量治理依賴於微服務模組, 目前集群未啟用微服務模組',
   TRACING_NO_MICROSERVICE_TIP:
-    'Tracing 依賴於微服務模塊, 目前集群未啟用微服務模塊',
+    'Tracing 依賴於微服務模組, 目前集群未啟用微服務模組',
 }
