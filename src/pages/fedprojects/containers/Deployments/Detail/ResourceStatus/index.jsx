@@ -70,15 +70,15 @@ class ResourceStatus extends React.Component {
       return null
     }
 
-    const { isResourcesLoading } = this.store
+    const { resources, isResourcesLoading } = this.store
     const ports = []
-    Object.values(this.store.resources).forEach(resource => {
+    Object.values(resources).forEach(resource => {
       if (resource && resource.containers) {
         ports.push(
           ...uniqBy(
             flatten(
               resource.containers.map(container =>
-                isEmpty(container.ports) ? [] : container.ports
+                isEmpty(container.ports) ? [] : container.ports.slice()
               )
             ),
             'name'
