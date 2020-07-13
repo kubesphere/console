@@ -46,10 +46,6 @@ class Ranking extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = {
-      cluster: '',
-    }
-
     this.store = new Store({
       workspace: this.workspace,
       limit: 10,
@@ -89,26 +85,19 @@ class Ranking extends React.Component {
   }
 
   fetchMetrics = () => {
-    if (this.state.cluster) {
-      this.store.cluster = this.state.cluster
+    if (this.workspaceStore.cluster) {
+      this.store.cluster = this.workspaceStore.cluster
       this.store.fetchAll()
     }
   }
 
   componentDidMount() {
-    const cluster =
-      this.workspaceStore.clusters.data.find(item => item.isReady) || {}
-    if (cluster) {
-      this.setState({ cluster: cluster.name }, () => {
-        this.fetchMetrics()
-      })
-    }
+    this.fetchMetrics()
   }
 
   handleClusterChange = cluster => {
-    this.setState({ cluster }, () => {
-      this.fetchMetrics()
-    })
+    this.workspaceStore.selectCluster(cluster)
+    this.fetchMetrics()
   }
 
   render() {
@@ -142,7 +131,7 @@ class Ranking extends React.Component {
         <div className={styles.toolbar_filter}>
           <Select
             options={this.clusters}
-            value={this.state.cluster}
+            value={this.workspaceStore.cluster}
             onChange={this.handleClusterChange}
             valueRenderer={this.valueRenderer}
             optionRenderer={this.optionRenderer}
@@ -174,7 +163,7 @@ class Ranking extends React.Component {
         <div>
           <Table
             store={this.store}
-            cluster={this.state.cluster}
+            cluster={this.workspaceStore.cluster}
             workspace={this.workspace}
           />
           {this.renderPagination()}

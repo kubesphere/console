@@ -30,16 +30,14 @@ import styles from './index.scss'
 @inject('rootStore', 'workspaceStore')
 @observer
 class ResourceUsage extends React.Component {
-  state = {
-    cluster: this.defaultCluster,
-  }
+  workspaceStore = this.props.workspaceStore
 
   get workspace() {
     return this.props.match.params.workspace
   }
 
   get clusters() {
-    return this.props.workspaceStore.clusters.data
+    return this.workspaceStore.clusters.data
   }
 
   get clustersOpts() {
@@ -51,19 +49,15 @@ class ResourceUsage extends React.Component {
     }))
   }
 
-  get defaultCluster() {
-    const { name } = this.clusters.find(cluster => cluster.isReady) || {}
-    return name
-  }
-
   get clusterProps() {
     return {
       className: styles.clusterSelector,
-      value: this.state.cluster,
+      cluster: this.workspaceStore.cluster,
       options: this.clustersOpts,
       onChange: this.handleClusterChange,
       valueRenderer: this.valueRenderer,
       optionRenderer: this.optionRenderer,
+      workspaceStore: this.workspaceStore,
     }
   }
 
@@ -81,7 +75,7 @@ class ResourceUsage extends React.Component {
   )
 
   handleClusterChange = cluster => {
-    this.setState({ cluster })
+    this.workspaceStore.selectCluster(cluster)
   }
 
   renderEmpty() {
@@ -104,11 +98,11 @@ class ResourceUsage extends React.Component {
           <>
             <PhysicalResource
               workspace={this.workspace}
-              clusterProps={this.clusterProps}
+              {...this.clusterProps}
             />
             <VirtualResource
               workspace={this.workspace}
-              clusterProps={this.clusterProps}
+              {...this.clusterProps}
             />
           </>
         ) : (

@@ -25,7 +25,6 @@ import { isEmpty, get } from 'lodash'
 import { getLocalTime, getDisplayName } from 'utils'
 import { getSuitableValue, getAreaChartOps } from 'utils/monitoring'
 import ProjectStore from 'stores/project'
-import WorkspaceStore from 'stores/workspace'
 import ClusterMonitorStore from 'stores/monitoring/cluster'
 
 import { Icon, Select, Table } from '@pitrix/lego-ui'
@@ -57,14 +56,14 @@ export default class ResourceMonitorModal extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = {
-      filter: {
-        cluster: get(props, 'cluster', ''),
-        namespace: get(props.detail, 'namespace', 'all'),
-      },
-    }
+    this.workspaceStore = props.workspaceStore
 
-    this.workspaceStore = new WorkspaceStore()
+    this.state = {
+      cluster: this.workspaceStore
+        ? this.workspaceStore.cluster
+        : get(props, 'cluster', ''),
+      namespace: get(props.detail, 'namespace', 'all'),
+    }
 
     this.projectStore = new ProjectStore()
 
@@ -85,6 +84,8 @@ export default class ResourceMonitorModal extends React.Component {
     return this.workspaceStore.clusters.data.map(item => ({
       label: item.name,
       value: item.name,
+      cluster: item,
+      disabled: !item.isReady,
     }))
   }
 
@@ -111,34 +112,27 @@ export default class ResourceMonitorModal extends React.Component {
   async componentDidUpdate(prevProps) {
     const { visible } = this.props
     if (visible && visible !== prevProps.visible) {
-      await this.fetchClusters()
-      this.fetchData()
-    }
-  }
-
-  async fetchClusters(params = {}) {
-    if (this.props.workspace) {
-      await this.workspaceStore.fetchClusters({
-        workspace: this.props.workspace,
-        ...params,
-      })
-      const cluster =
-        this.workspaceStore.clusters.data.find(item => item.isReady) || {}
+      const { workspaceStore } = this.props
       this.setState(
-        ({ filter }) => ({
-          filter: { ...filter, cluster: cluster.name },
-        }),
-        this.fetchNamespaces
+        {
+          cluster: workspaceStore
+            ? workspaceStore.cluster
+            : get(this.props, 'cluster', ''),
+        },
+        async () => {
+          await this.fetchNamespaces()
+          await this.fetchData()
+        }
       )
-    } else {
-      this.fetchNamespaces()
     }
   }
 
   fetchNamespaces(params = {}) {
-    if (this.state.filter.cluster) {
+    const { cluster } = this.state
+
+    if (cluster) {
       this.projectStore.fetchList({
-        cluster: this.state.filter.cluster,
+        cluster,
         workspace: this.props.workspace,
         ...params,
       })
@@ -149,37 +143,18 @@ export default class ResourceMonitorModal extends React.Component {
     this.monitorStore.fetchApplicationResourceMetrics({
       metrics: [this.metricType],
       workspace: this.props.workspace,
-      ...this.state.filter,
+      ...this.state,
       ...params,
     })
   }
 
   handleClusterChange = cluster => {
-    this.setState(
-      ({ filter }) => ({
-        filter: { ...filter, cluster },
-      }),
-      this.fetchNamespaces
-    )
-  }
-
-  hanldeClusterScrollBottom = () => {
-    if (
-      !this.workspaceStore.clusters.isLoading &&
-      this.workspaceStore.clusters.data.length <
-        this.workspaceStore.clusters.total
-    ) {
-      this.fetchClusters({
-        page: this.workspaceStore.clusters.page + 1,
-        more: true,
-      })
-    }
+    this.workspaceStore && this.workspaceStore.selectCluster(cluster)
+    this.setState({ cluster }, this.fetchNamespaces)
   }
 
   handleNamespaceChange = namespace => {
-    this.setState(({ filter }) => ({
-      filter: { ...filter, namespace },
-    }))
+    this.setState({ namespace })
   }
 
   hanldeNamespaceScrollBottom = () => {
@@ -196,12 +171,9 @@ export default class ResourceMonitorModal extends React.Component {
 
   handleSubmit = () => {
     const formData = this.formRef.current && this.formRef.current.getData()
-    const filter = {
-      ...formData,
-    }
-    this.setState({ filter }, () => {
+    this.setState(formData, () => {
       this.fetchData({
-        ...filter,
+        ...formData,
         ...MonitorOptions,
       })
     })
@@ -233,9 +205,9 @@ export default class ResourceMonitorModal extends React.Component {
   )
 
   renderFilterForm() {
-    const { cluster, namespace } = this.state.filter
+    const { cluster, namespace } = this.state
     const formData = {
-      ...this.state.filter,
+      ...this.state,
     }
 
     return (
@@ -248,14 +220,8 @@ export default class ResourceMonitorModal extends React.Component {
               defaultValue={cluster}
               options={this.clusters}
               onChange={this.handleClusterChange}
-              onBlurResetsInput={false}
-              onCloseResetsInput={false}
-              openOnClick={true}
-              isLoadingAtBottom
               valueRenderer={this.clusterValueRenderer}
               optionRenderer={this.clusterOptionRenderer}
-              isLoading={this.workspaceStore.clusters.isLoading}
-              onMenuScrollToBottom={this.hanldeClusterScrollBottom}
             />
           </Form.Item>
         )}

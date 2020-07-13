@@ -228,6 +228,7 @@ class VirtualResource extends React.Component {
           detail={selectItem}
           cluster={this.cluster}
           workspace={this.workspace}
+          workspaceStore={this.props.workspaceStore}
           onCancel={this.hideModal}
         />
       </div>
