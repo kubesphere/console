@@ -17,6 +17,52 @@
  */
 
 export default {
+  'A built-in cluster administrator': 'A built-in cluster administrator',
+  Accounts: 'Accounts',
+  'Add User': 'Add User',
+  'At least 1 number': 'At least 1 number',
+  'At least 1 uppercase and lowercase letter':
+    'At least 1 uppercase and lowercase letter',
+  'Authorized Projects': 'Authorized Projects',
+  Avatar: 'Avatar',
+  'Avoid using the password that has already been used on other websites or the one that can be easily guessed.':
+    'Avoid using the password that has already been used on other websites or the one that can be easily guessed.',
+  'Change Password': 'Change Password',
+  'Create User': 'Create User',
+  'Current Password': 'Current Password',
+  'Edit User': 'Edit User',
+  Email: 'Email',
+  'Email exists': 'Email exists',
+  'Invalid email': 'Invalid email',
+  'Invalid user name': 'Invalid user name',
+  'Last Login Time': 'Last Login Time',
+  'Login History': 'Login History',
+  'New Password': 'New Password',
+  'Not logged in yet': 'Not logged in yet',
+  'Password length is at least 6 characters':
+    'Password length is at least 6 characters',
+  'Password Setting': 'Password Setting',
+  'Password Strength': 'Password Strength',
+  'Please input current password': 'Please input current password',
+  'Please input email': 'Please input email',
+  'Please input user name': 'Please input user name',
+  'Please repeat the new password': 'Please repeat the new password',
+  'Please select role': 'Please select role',
+  'Repeat the new password': 'Repeat the new password',
+  'The password entered twice must be the same':
+    'The password entered twice must be the same',
+  Time: 'Time',
+  'Unable to delete itself': 'Unable to delete itself',
+  User: 'User',
+  'User Management': 'User Management',
+  'User name exists': 'User name exists',
+  Users: 'Users',
+  users: 'users',
+  'You must enter the correct current password to change to a new password.':
+    'You must enter the correct current password to change to a new password.',
+  'Your password must meet the following requirements':
+    'Your password must meet the following requirements',
+
   user_active: 'Active',
   USER_ACTIVE: 'Active',
   USER_PENDING: 'Pending',

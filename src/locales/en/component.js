@@ -17,6 +17,15 @@
  */
 
 export default {
+  'All Components': 'All Components',
+  components: 'components',
+  Components: 'Components',
+  'Installed Components': 'Installed Components',
+  'Instance Count': 'Instance Count',
+  'Not Installed Components': 'Not Installed Components',
+  'Running Status': 'Running Status',
+  'Service Details': 'Service Details',
+
   SERVICE_COMPONENTS_DESC:
     'This module monitors the health status of various service components in KubeSphere, Kubernetes, OpenPitrix and so on. It shows the health status and running time of the current cluster, and helps users monitor the status of the cluster and locate problems in time.',
 

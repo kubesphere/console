@@ -17,6 +17,19 @@
  */
 
 export default {
+  'Create DevOps Project': 'Create DevOps Project',
+  'Delete DevOps Project': 'Delete DevOps Project',
+  'DevOps Basic Info': 'DevOps Basic Info',
+  'DevOps Credentials': 'DevOps Credentials',
+  'DevOps Member': 'DevOps Member',
+  'DevOps Members': 'DevOps Members',
+  'DevOps Name': 'DevOps Name',
+  'DevOps Project': 'DevOps Project',
+  'DevOps Project Manager': 'DevOps Project Manager',
+  'DevOps Role': 'DevOps Role',
+  'DevOps Roles': 'DevOps Roles',
+  Manager: 'Manager',
+
   DEVOPS_PROJECT_MANAGEMENT: 'Project Management',
   DEVOPS_PROJECT_MEMBERS: 'Project Members',
   DEVOPS_PROJECT_ROLES: 'Project Roles',

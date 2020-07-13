@@ -17,6 +17,16 @@
  */
 
 export default {
+  'Mail Server': 'Mail Server',
+  'Platform Settings': 'Platform Settings',
+  'Send a test email': 'Send a test email',
+  'Sender Email': 'Sender Email',
+  'Server Settings': 'Server Settings',
+  'Server Username': 'Server Username',
+  'SMTP Server Address': 'SMTP Server Address',
+  'The sender mail account': 'The sender mail account',
+  'Use SSL Secure Connection': 'Use SSL Secure Connection',
+
   MAIL_SERVER_DESC:
     'This module provides email delivery services with custom settings.',
   EMPTY_MAIL_SERVER:

@@ -17,6 +17,9 @@
  */
 
 export default {
+  'Custom Resource Definition': 'Custom Resource Definition',
+  'Custom Resource Definitions': 'Custom Resource Definitions',
+
   CUSTOM_RESOURCE_DEFINITION_DESC:
     'A Custom Resource Definition (CRD) allows you to add new resource types to Kubernetes API. You can create a customized API server without making any changes to Kubernetes.',
   CUSTOM_RESOURCE_DEFINITION_CREATE_DESC:

@@ -17,6 +17,31 @@
  */
 
 export default {
+  'Account Password Secret': 'Account Password Secret',
+  'Add Data': 'Add Data',
+  'Add key / value pair data': 'Add key / value pair data',
+  'Config Number': 'Config Number',
+  Data: 'Data',
+  'Edit Data': 'Edit Data',
+  'Edit Secret': 'Edit Secret',
+  'Example: docker.io': 'Example: docker.io',
+  'Image Repository Secret': 'Image Repository Secret',
+  IMAGE_REGISTRY_REQUIRED_DESC: 'IMAGE_REGISTRY_REQUIRED_DESC',
+  'Please input credential': 'Please input credential',
+  'Please input data': 'Please input data',
+  'Please input private key': 'Please input private key',
+  'Please input the registry address': 'Please input the registry address',
+  'Private Key': 'Private Key',
+  'Registry Address': 'Registry Address',
+  'Registry verification failed': 'Registry verification failed',
+  'Registry verification success': 'Registry verification success',
+  Secret: 'Secret',
+  'Secret Name': 'Secret Name',
+  'Secret Settings': 'Secret Settings',
+  secrets: 'secrets',
+  Secrets: 'Secrets',
+  Unverified: 'Unverified',
+
   SECRET_DESC:
     'A Secret is an object that contains a small amount of sensitive data such as a password, a token, or a key.',
   SECRET_CREATE_DESC:
