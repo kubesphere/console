@@ -24,8 +24,7 @@ import { isEmpty, get } from 'lodash'
 
 import { ICON_TYPES } from 'utils/constants'
 
-import { Icon } from '@pitrix/lego-ui'
-import { Panel } from 'components/Base'
+import { Panel, Text } from 'components/Base'
 
 import styles from './index.scss'
 
@@ -54,33 +53,21 @@ export default class ServiceCard extends React.Component {
 
     if (isEmpty(service)) return null
 
-    const { name, namespace, type } = service
+    const { name, namespace } = service
 
     return (
       <div className={styles.item}>
-        <Icon className={styles.icon} name={ICON_TYPES['services']} size={40} />
-        <div className={styles.info}>
-          <div className={styles.base}>
-            <strong>
-              <Link
-                to={`/${workspace}/federatedprojects/${namespace}/services/${name}`}
-              >
-                {name}
-              </Link>
-            </strong>
-            <p>{type}</p>
-          </div>
-          <div className={styles.ports}>
-            <div className={styles.record}>
-              <label>{t('Ports')}:</label>
-              <div className={styles.text}>
-                {this.ports.map((item, i) => (
-                  <p key={i}>{item}</p>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
+        <Text
+          icon={ICON_TYPES['services']}
+          title={
+            <Link
+              to={`/${workspace}/federatedprojects/${namespace}/services/${name}`}
+            >
+              {name}
+            </Link>
+          }
+          description={get(service, 'resource.type')}
+        />
       </div>
     )
   }
