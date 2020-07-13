@@ -36,6 +36,10 @@ export default class ResourceStatus extends React.Component {
 
     this.store = props.detailStore
 
+    this.state = {
+      workloadExist: true,
+    }
+
     this.workloadName = get(
       this.store.detail.annotations,
       '["kubesphere.io/workloadName"]'
@@ -64,13 +68,12 @@ export default class ResourceStatus extends React.Component {
     const name = this.workloadName
 
     const clusters = this.store.detail.clusters.map(item => item.name)
-    if (name) {
+    const result = await this.workloadStore.checkName({ name, namespace })
+    if (result.exist) {
       this.workloadStore.fetchDetail({ name, namespace })
-      this.workloadStore.fetchResources({
-        name,
-        namespace,
-        clusters,
-      })
+      this.workloadStore.fetchResources({ name, namespace, clusters })
+    } else {
+      this.setState({ workloadExist: false })
     }
   }
 
@@ -127,7 +130,7 @@ export default class ResourceStatus extends React.Component {
   }
 
   renderContent() {
-    if (!this.workloadName) {
+    if (!this.workloadName || !this.state.workloadExist) {
       return this.renderPods()
     }
 

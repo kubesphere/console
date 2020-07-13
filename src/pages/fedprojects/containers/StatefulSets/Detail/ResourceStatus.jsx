@@ -37,7 +37,8 @@ class ResourceStatus extends Base {
   fetchService = async () => {
     const { namespace, template } = this.store.detail
     const name = get(template, 'spec.serviceName', '')
-    if (name) {
+    const result = await this.serviceStore.checkName({ name, namespace })
+    if (result.exist) {
       await this.serviceStore.fetchDetail({ name, namespace })
     }
   }
