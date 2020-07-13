@@ -299,7 +299,7 @@ export default {
     'Select a volume that has been created and mount it to the container.',
 
   REDEPLOY_CONFIRM_DESC:
-    'You are about to redeploy the workload {resource} ({type}), the pod will be redeployed according to the update strategy, and your business may be temporarily interrupted.',
+    'You are about to redeploy the workload {resource} ({type}). The pod will be redeployed according to the update strategy, and your business may be temporarily interrupted.',
 
   CONTAINER_SECURITY_CTX_DESC:
     'A security context defines privilege and access control settings for a Pod or Container.',

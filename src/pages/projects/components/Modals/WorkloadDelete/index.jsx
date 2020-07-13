@@ -201,7 +201,7 @@ export default class WorkloadDeleteModal extends React.Component {
           icon="appcenter"
           className={styles.empty}
           title={t('No related resources')}
-          desc={t('No related resources found with current workload(s)')}
+          desc={t('No related resources found with the current workload(s)')}
         />
       )
     }
