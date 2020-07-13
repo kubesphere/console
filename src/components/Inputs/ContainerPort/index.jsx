@@ -138,7 +138,6 @@ export default class ContainerPort extends React.Component {
             max={65535}
             value={containerPort}
             integer
-            placeholder={t('required')}
             onChange={this.handleContainerPortChange}
           />
         </AddonsInput>
