@@ -17,94 +17,94 @@
  */
 
 export default {
-  'Running Status': '运行状态',
-  'All Components': '全部服务组件',
-  components: '服务组件',
-  Components: '服务组件',
-  'Installed Components': '已安装组件',
-  'Not Installed Components': '未安装组件',
-  'Instance Count': '实例数量',
+  'Running Status': '運行狀態',
+  'All Components': '全部服務組件',
+  components: '服務組件',
+  Components: '服務組件',
+  'Installed Components': '已安裝組件',
+  'Not Installed Components': '未安裝組件',
+  'Instance Count': '實例數量',
 
-  'Service Details': '服务详情',
+  'Service Details': '服務詳情',
 
   SERVICE_COMPONENTS_DESC:
-    '服务组件提供 KubeSphere、Kubernetes 和 OpenPitrix 集群内各项服务组件的健康状态监控，可以查看当前集群的健康状态和运行时间，能够帮助用户监测集群的状况和及时定位问题。',
+    '服務組件提供 KubeSphere、Kubernetes 和 OpenPitrix 集群内各項服務組件的健康狀態監控，可以查看目前集群的健康狀態和運行時間，能夠幫助使用者監測集群的狀況和即時定位問題。',
 
-  'KS-ACCOUNT_DESC': '提供用户、权限管理相关的 API',
-  'KS-APIGATEWAY_DESC': '负责处理服务请求和处理 API 调用过程中的所有任务',
+  'KS-ACCOUNT_DESC': '提供使用者、權限管理相關的 API',
+  'KS-APIGATEWAY_DESC': '負責處理服務請求和處理 API 調用過程中的所有任務',
   'KS-APISERVER_DESC':
-    '整个集群管理的 API 接口和集群内部各个模块之间通信的枢纽，以及集群安全控制',
-  'KS-CONSOLE_DESC': '提供 KubeSphere 的控制台服务',
-  OPENLDAP_DESC: '负责集中存储和管理用户账号信息',
-  REDIS_DESC: '将结构化的数据存储在内存中的存储系统',
+    '整個集群管理的 API 介面和集群内部各個模組之間通信的樞紐，以及集群安全控制',
+  'KS-CONSOLE_DESC': '提供 KubeSphere 的控制台服務',
+  OPENLDAP_DESC: '負責集中儲存和管理使用者帳號資訊',
+  REDIS_DESC: '將結構化的數據儲存在記憶體中的儲存系統',
 
-  COREDNS_DESC: '为 Kubernetes 集群提供服务发现的功能',
+  COREDNS_DESC: '為 Kubernetes 集群提供服務發現的功能',
   'KUBE-CONTROLLER-MANAGER_DESC':
-    '由一系列的控制器组成，处理集群中常规任务的后台线程',
+    '由一系列的控制器組成，處理集群中常規任務的後台線程',
   'KUBE-SCHEDULER_DESC':
-    'Kubernetes 的调度器，将 Pod 调度到合适的 Node 节点上去',
+    'Kubernetes 的調度器，將 Pod 調度到合適的 Node 節點上去',
   'METRICS-SERVER_DESC':
-    'Kubernetes 的监控组件，从每个节点的 Kubelet 采集指标信息',
-  'TILLER-DEPLOY_DESC': 'Helm 的服务端，负责管理发布 release',
+    'Kubernetes 的監控組件，從每個節點的 Kubelet 採集指標資訊',
+  'TILLER-DEPLOY_DESC': 'Helm 的服務端，負責管理發佈 release',
 
   'OPENPITRIX-API-GATEWAY_DESC':
-    '负责处理平台的服务请求和处理 API 调用过程中的所有任务',
-  'OPENPITRIX-APP-MANAGER_DESC': '提供 OpenPitrix 的应用生命周期管理',
-  'OPENPITRIX-CATEGORY-MANAGER_DESC': '提供 OpenPitrix 中的应用分类管理',
-  'OPENPITRIX-CLUSTER-MANAGER_DESC': '提供 OpenPitrix 中的应用实例生命周期管理',
-  'OPENPITRIX-DB_DESC': 'OpenPitrix 数据库',
-  'OPENPITRIX-ETCD_DESC': '高可用键值存储系统，用于共享配置、服务发现和全局锁',
+    '負責處理平台的服務請求和處理 API 調用過程中的所有任務',
+  'OPENPITRIX-APP-MANAGER_DESC': '提供 OpenPitrix 的應用生命週期管理',
+  'OPENPITRIX-CATEGORY-MANAGER_DESC': '提供 OpenPitrix 中的應用分類管理',
+  'OPENPITRIX-CLUSTER-MANAGER_DESC': '提供 OpenPitrix 中的應用實例生命週期管理',
+  'OPENPITRIX-DB_DESC': 'OpenPitrix 資料庫',
+  'OPENPITRIX-ETCD_DESC': '高可用鍵值儲存系統，用於共享配置、服務發現和全局鎖',
   'OPENPITRIX-IAM-SERVICE_DESC':
-    '控制哪些用户可使用您的资源（身份验证）以及可使用的资源和采用的方式（授权）',
-  'OPENPITRIX-JOB-MANAGER_DESC': '具体执行 OpenPitrix 应用实例生命周期 Action',
-  'OPENPITRIX-MINIO_DESC': '对象存储服务，用于存储非结构化数据',
-  'OPENPITRIX-REPO-INDEXER_DESC': '提供 OpenPitrix 的应用仓库索引服务',
-  'OPENPITRIX-REPO-MANAGER_DESC': '提供 OpenPitrix 的应用仓库管理',
-  'OPENPITRIX-RUNTIME-MANAGER_DESC': '提供平台中的云运行时环境管理',
+    '控制哪些使用者可使用您的資源（身份驗證）以及可使用的資源和採用的方式（授權）',
+  'OPENPITRIX-JOB-MANAGER_DESC': '具體執行 OpenPitrix 應用實例生命週期 Action',
+  'OPENPITRIX-MINIO_DESC': '對象儲存服務，用於儲存非結構化數據',
+  'OPENPITRIX-REPO-INDEXER_DESC': '提供 OpenPitrix 的應用倉庫索引服務',
+  'OPENPITRIX-REPO-MANAGER_DESC': '提供 OpenPitrix 的應用倉庫管理',
+  'OPENPITRIX-RUNTIME-MANAGER_DESC': '提供平台中的雲運行時環境管理',
   'OPENPITRIX-TASK-MANAGER_DESC':
-    '具体执行 OpenPitrix 应用实例生命周期 Action 子任务',
+    '具體執行 OpenPitrix 應用實例生命週期 Action 子任務',
 
   'ISTIO-CITADEL_DESC':
-    '通过内置身份和凭证管理赋能强大的服务间和最终用户身份验证',
+    '透過内建身份和憑證管理賦予强大的服務之間和最終使用者身份驗證',
   'ISTIO-GALLEY_DESC':
-    '代表其他的 Istio 控制平面组件，用来验证用户编写的 Istio API 配置',
-  'ISTIO-INGRESSGATEWAY_DESC': '提供外网访问的网关',
-  'ISTIO-PILOT_DESC': '为 Envoy sidecar 提供服务发现功能',
+    '代表其他的 Istio 控制平面組件，用來驗證使用者編寫的 Istio API 配置',
+  'ISTIO-INGRESSGATEWAY_DESC': '提供外網訪問的網關',
+  'ISTIO-PILOT_DESC': '為 Envoy sidecar 提供服務發現功能',
   'ISTIO-POLICY_DESC':
-    '用于向 Envoy 提供准入策略控制，黑白名单控制，速率限制等相关策略',
-  'ISTIO-SIDECAR-INJECTOR_DESC': '为配置注入的 Pod 自动注入 sidecar',
-  'ISTIO-TELEMETRY_DESC': '为 Envoy 提供了数据上报和日志搜集服务',
+    '用於向 Envoy 提供訪問策略控制，黑白名單控制，速率限制等相關策略',
+  'ISTIO-SIDECAR-INJECTOR_DESC': '為配置注入的 Pod 自動注入 sidecar',
+  'ISTIO-TELEMETRY_DESC': '為 Envoy 提供了數據上報和日誌搜集服務',
   'JAEGER-COLLECTOR_DESC':
-    '收集 sidecar 的数据，istio 里面 sidecar 就是 jaeger-agent',
+    '收集 sidecar 的數據，istio 裡面 sidecar 就是 jaeger-agent',
   'JAEGER-COLLECTOR-HEADLESS_DESC':
-    '收集 sidecar 的数据，Istio 里面 sidecar 就是 jaeger-agent',
+    '收集 sidecar 的數據，Istio 裡面 sidecar 就是 jaeger-agent',
   'JAEGER-OPERATOR_DESC':
-    '负责创建 jaeger 服务，并在配置更新时自动应用到 Jaeger 服务',
+    '負責創建 jaeger 服務，並在配置更新時自動應用到 Jaeger 服務',
   'JAEGER-QUERY_DESC':
-    '接收查询请求，然后从后端存储系统中检索 trace 并通过 UI 进行展示',
+    '接收查詢請求，然後從後端儲存系統中檢索 trace 並透過 UI 進行展示',
 
   'KUBE-STATE-METRICS_DESC':
-    '监听 Kubernetes API server 以获取集群中各种 API 对象的状态包括节点，工作负载和 Pod 等，并生成相关监控数据供 Prometheus 抓取',
-  'NODE-EXPORTER_DESC': '收集集群各个节点的监控数据，供 Prometheus 抓取',
-  'PROMETHEUS-K8S_DESC': '提供节点、工作负载、 API 对象相关监控数据',
+    '監聽 Kubernetes API server 以獲取集群中各種 API 對象的狀態包括節點，工作負載和 Pod 等，並生成相關監控數據供 Prometheus 抓取',
+  'NODE-EXPORTER_DESC': '收集集群各個節點的監控數據，供 Prometheus 抓取',
+  'PROMETHEUS-K8S_DESC': '提供節點、工作負載、 API 對象相關監控數據',
   'PROMETHEUS-K8S-SYSTEM_DESC':
-    '提供 etcd, coredns, kube-apiserver, kube-scheduler, kube-controller-manager 等 Kubernetes 组件的监控数据',
+    '提供 etcd, coredns, kube-apiserver, kube-scheduler, kube-controller-manager 等 Kubernetes 組件的監控數據',
   'PROMETHEUS-OPERATED_DESC':
-    '所有 Prometheus 实例对应的服务，供 Prometheus Operator 内部使用',
-  'PROMETHEUS-OPERATOR_DESC': '管理 Prometheus 实例的 Operator',
+    '所有 Prometheus 實例對應的服務，供 Prometheus Operator 内部使用',
+  'PROMETHEUS-OPERATOR_DESC': '管理 Prometheus 實例的 Operator',
 
   'ELASTICSEARCH-LOGGING-DATA_DESC':
-    '提供 Elasticsearch 数据存储、备份、搜索等数据服务',
-  'ELASTICSEARCH-LOGGING-DISCOVERY_DESC': '提供 Elasticsearch 集群管理服务',
-  'LOGSIDECAR-INJECTOR_DESC': '为指定 Pod 自动注入落盘日志收集 Sidecar 容器',
+    '提供 Elasticsearch 數據儲存、備份、搜索等數據服務',
+  'ELASTICSEARCH-LOGGING-DISCOVERY_DESC': '提供 Elasticsearch 集群管理服務',
+  'LOGSIDECAR-INJECTOR_DESC': '為指定 Pod 自動注入落盤日誌收集 Sidecar 容器',
 
-  'CONTROLLER-MANAGER-METRICS-SERVICE_DESC': '提供 S2I 控制器的监控数据',
-  'KS-JENKINS_DESC': 'Jenkins master 服务，提供 DevOps 基础功能',
-  'KS-JENKINS-AGENT_DESC': 'Jenkins agent 连接 Jenkins master 所使用的服务',
-  'KS-SONARQUBE-POSTGRESQL_DESC': '代码质量分析组件 Sonarqube 的后端数据库',
-  'KS-SONARQUBE-SONARQUBE_DESC': 'Sonarqube 的主服务',
-  S2IOPERATOR_DESC: 'S2I 控制器，S2I 的全生命周期管理',
+  'CONTROLLER-MANAGER-METRICS-SERVICE_DESC': '提供 S2I 控制器的監控數據',
+  'KS-JENKINS_DESC': 'Jenkins master 服務，提供 DevOps 基礎功能',
+  'KS-JENKINS-AGENT_DESC': 'Jenkins agent 連接 Jenkins master 所使用的服務',
+  'KS-SONARQUBE-POSTGRESQL_DESC': '代碼質量分析組件 Sonarqube 的後端資料庫',
+  'KS-SONARQUBE-SONARQUBE_DESC': 'Sonarqube 的主服務',
+  S2IOPERATOR_DESC: 'S2I 控制器，S2I 的全生命週期管理',
   'UC-JENKINS-UPDATE-CENTER_DESC':
-    'Jenkins 更新中心，提供 Jenkins 插件的安装包',
-  'WEBHOOK-SERVER-SERVICE_DESC': '为 S2I 提供默认值和验证 webhook',
+    'Jenkins 更新中心，提供 Jenkins 插件的安裝包',
+  'WEBHOOK-SERVER-SERVICE_DESC': '為 S2I 提供預設值和驗證 webhook',
 }
