@@ -328,6 +328,7 @@ export default class PipelineStore extends BaseStore {
     if (isArray(result)) {
       result = result.filter(activity => activity._links)
     }
+
     this.activityList = {
       limit,
       data: result.items || [],
@@ -342,21 +343,18 @@ export default class PipelineStore extends BaseStore {
   @action
   async getBranchDetail(params) {
     const { project_id, cluster, name, branch } = params
+    const result = await this.request.get(
+      `${this.getDevopsUrlV2({
+        cluster,
+      })}${project_id}/pipelines/${name}/branches/${encodeURIComponent(
+        branch
+      )}/`
+    )
+    if (result.name) {
+      this.branchDetail = result
+    }
 
-    return await this.request
-      .get(
-        `${this.getDevopsUrlV2({
-          cluster,
-        })}${project_id}/pipelines/${name}/branches/${encodeURIComponent(
-          branch
-        )}/`
-      )
-      .then(result => {
-        if (result.name) {
-          this.branchDetail = result
-        }
-        return result
-      })
+    return result
   }
 
   async replay(params, _runid) {

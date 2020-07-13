@@ -276,6 +276,7 @@ export default class MountConfig extends React.Component {
     const { type, formData } = this.state
 
     const options = this.getResourceOptions()
+    const supportedAccessModes = ['ReadOnly', 'Not Mount']
 
     const placeholder = {
       label: isEmpty(options)
@@ -298,6 +299,7 @@ export default class MountConfig extends React.Component {
           <Form.Item rules={[{ validator: this.mountValidator }]}>
             <MountInput
               name="volumeMounts"
+              supportedAccessModes={supportedAccessModes}
               containers={containers}
               collectSavedLog={collectSavedLog}
             />

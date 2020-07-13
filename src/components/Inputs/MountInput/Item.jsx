@@ -22,6 +22,8 @@ import PropTypes from 'prop-types'
 import { Icon, Select, Input, Tooltip, Control, Popper } from '@pitrix/lego-ui'
 import { Button } from 'components/Base'
 
+import { isEmpty } from 'lodash'
+
 import styles from './index.scss'
 
 const MOUNT_OPTIONS = [
@@ -41,6 +43,7 @@ export default class Item extends React.Component {
   static defaultProps = {
     name: '',
     value: {},
+    supportedAccessModes: [],
     onChange() {},
   }
 
@@ -61,10 +64,17 @@ export default class Item extends React.Component {
   }
 
   getMountOptions() {
-    return MOUNT_OPTIONS.map(item => ({
+    const { supportedAccessModes } = this.props
+
+    const hasAccessModes = mode =>
+      isEmpty(supportedAccessModes) || supportedAccessModes.includes(mode.label)
+
+    const setMountOptions = item => ({
       label: t(item.label),
       value: item.value,
-    }))
+    })
+
+    return MOUNT_OPTIONS.filter(hasAccessModes).map(setMountOptions)
   }
 
   handleSelectChange = newValue => {

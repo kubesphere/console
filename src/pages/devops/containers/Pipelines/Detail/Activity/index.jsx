@@ -317,7 +317,7 @@ export default class Activity extends React.Component {
   ]
 
   renderModals = () => {
-    const { branchDetail } = this.store
+    const { detail } = this.store
     const { params } = this.props.match
 
     return (
@@ -325,7 +325,7 @@ export default class Activity extends React.Component {
         onOk={this.handleRunBranch}
         onCancel={this.hideBranchModal}
         visible={this.state.showBranchModal}
-        branches={toJS(branchDetail.branchNames)}
+        branches={toJS(detail.branchNames)}
         params={params || {}}
       />
     )
