@@ -110,10 +110,7 @@ export default class Secrets extends React.Component {
     return {
       ...tableProps.tableActions,
       onCreate: this.showCreate,
-      getCheckboxProps: record => ({
-        disabled: !this.showAction(record),
-        name: record.name,
-      }),
+      selectActions: [],
     }
   }
 
