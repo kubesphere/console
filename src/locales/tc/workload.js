@@ -528,10 +528,10 @@ export default {
   'Pod Default Deployment': '容器组默认部署',
   'Pod Decentralized Deployment': '容器组分散部署',
   'Pod Aggregation Deployment': '容器组聚合部署',
-  'Pod replicas will be deployed on different nodes.':
+  'Pod replicas will be deployed on different nodes as much as possible.':
     '容器组副本将会尽量分散在不同的节点中',
-  'Pod replicas will be deployed on the same node.':
-    '容器组副本将会部署在同一节点上',
+  'Pod replicas will be deployed on the same node as much as possible.':
+    '容器组副本将会尽量部署在同一节点上',
   'Pod replicas will be deployed by the default policy.':
     '容器组副本将根据默认策略部署',
   'KubeSphere supports pulling images from the Image Registries and creating new images through source code (Source to Image).':
