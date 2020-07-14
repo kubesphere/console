@@ -453,16 +453,10 @@ export default class ContainerSetting extends React.Component {
   }
 
   renderUpdateStrategy() {
-    const { formRef, module } = this.props
-    const { replicas } = this.state
+    const { module } = this.props
     return (
       <div className="margin-t12">
-        <UpdateStrategy
-          formRef={formRef}
-          module={module}
-          data={this.fedFormTemplate}
-          replicas={replicas}
-        />
+        <UpdateStrategy module={module} data={this.fedFormTemplate} />
       </div>
     )
   }

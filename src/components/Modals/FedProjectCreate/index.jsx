@@ -53,6 +53,7 @@ export default class FedProjectCreateModal extends React.Component {
 
     this.store = props.store
 
+    this.formRef = React.createRef()
     this.clusterRef = React.createRef()
   }
 
@@ -140,7 +141,10 @@ export default class FedProjectCreateModal extends React.Component {
 
   handleNameChange = () => {
     if (this.clusterRef.current && this.clusterRef.current.state.error) {
-      const name = 'spec.placement.clusters'
+      if (this.formRef && this.formRef.current) {
+        const name = 'spec.placement.clusters'
+        this.formRef.current.resetValidateResults(name)
+      }
       this.clusterRef.current.validate({
         [name]: get(this.props.formTemplate, name),
       })
@@ -186,6 +190,7 @@ export default class FedProjectCreateModal extends React.Component {
     return (
       <Modal.Form
         width={960}
+        ref={this.this.formRef}
         bodyClassName={styles.body}
         data={formTemplate}
         onCancel={onCancel}

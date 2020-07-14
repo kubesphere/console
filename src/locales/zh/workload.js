@@ -168,19 +168,15 @@ export default {
 
   POD_SETTING_TIP: '更新时容器组数量',
   MIN_AVAILABLE_POD_LABEL: '容器组最小可用数量',
+  MAX_AVAILABLE_POD_LABEL: '容器组最大可用数量',
   MAX_SURGE_POD_LABEL: '更新时容器组最大数量',
   UPDATE_STRATEGY_DESC:
     '配置升级过程中替换容器组的策略 <a href="{link}" target="_blank">了解更多</a>',
-  MAX_UNAVAILABLE_DESC:
-    '升级过程中「允许存在的不可用的容器组」所占总容器组数的最大百分比',
-  MIN_AVAILABLE_POD_DESC:
-    '每次滚动升级要求存活的最小容器组数量，建议配置为正整数，最小为 1',
-  MAX_SURGE_POD_DESC: '升级过程中「允许超出副本数量的容器组」的最大数量',
-  MAX_SURGE_POD_VALIDATOR: '',
-  MIN_AVAILABLE_POD_VALIDATOR_MIN: '最小容器组数量不能小于1',
-  MIN_AVAILABLE_POD_VALIDATOR_MAX: '最小容器组数量不能大于当前副本数',
-  MAX_SURGE_POD_VALIDATOR_MIN: '最大容器组数量不能小于当前副本数',
-  MAX_SURGE_POD_VALIDATOR_MAX: '最大容器组数量不能大于当前副本数的两倍',
+  MAX_UNAVAILABLE_POD_DESC:
+    '升级过程中「允许存在的不可用的容器组」所占总容器组数的最大百分比或数量',
+  MIN_AVAILABLE_POD_DESC: '每次滚动升级要求存活的最小容器组数量或百分比',
+  MAX_SURGE_POD_DESC:
+    '升级过程中「允许超出副本数量的容器组」的最大数量或百分比',
   ROLLING_UPDATE_POD_TIP:
     '更新时，会根据当前容器组的副本数对最小可用及最大数量进行限制；最小容器组数不可以超过当前副本数，且最大容器组数量不能超过当前副本数的2倍。',
   ONDELETE_ALERT_TIP:
@@ -209,6 +205,7 @@ export default {
   'Container Name': '容器名称',
   'Container Type': '容器类型',
   'Advanced Options': '高级选项',
+  'Applied to the workload': '应用于工作负载',
   'CPU(m)': 'CPU(m)',
   Commands: '命令',
   'Add command': '添加命令',

@@ -54,6 +54,7 @@ export default class ProjectCreateModal extends React.Component {
     this.store = props.store
     this.workspaceStore = new WorkspaceStore()
 
+    this.formRef = React.createRef()
     this.clusterRef = React.createRef()
   }
 
@@ -127,7 +128,14 @@ export default class ProjectCreateModal extends React.Component {
   }
 
   handleNameChange = () => {
-    if (this.clusterRef.current && this.clusterRef.current.state.error) {
+    if (
+      this.clusterRef &&
+      this.clusterRef.current &&
+      this.clusterRef.current.state.error
+    ) {
+      if (this.formRef && this.formRef.current) {
+        this.formRef.current.resetValidateResults('cluster')
+      }
       this.clusterRef.current.validate({
         cluster: get(this.props.formTemplate, 'cluster'),
       })
@@ -179,6 +187,7 @@ export default class ProjectCreateModal extends React.Component {
     return (
       <Modal.Form
         width={960}
+        formRef={this.formRef}
         bodyClassName={styles.body}
         data={formTemplate}
         onCancel={onCancel}
