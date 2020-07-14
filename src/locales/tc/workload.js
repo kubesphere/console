@@ -378,9 +378,10 @@ export default {
 
   INITIAL_DELAY_DESC: '在检查其运行状况之前，容器启动后需要等待多长时间。',
   TIMEOUT_DESC:
-    '等待探针完成多长时间。如果超过时间，则认为探测失败。默认为1秒。最小值为1',
-  PERIOD_SECONDS_DESC: '执行探测的频率（以秒为单位）。默认为10秒。最小值为1',
-  SUCCESS_THRESHOLD_DESC: '探测失败后，连续最小成功探测为成功。默认值为1。',
+    '等待探针完成多长时间。如果超过时间，则认为探测失败。默认为1秒。最小值为1。',
+  PERIOD_SECONDS_DESC: '执行探测的频率（以秒为单位）。默认为10秒。最小值为1。',
+  SUCCESS_THRESHOLD_DESC:
+    '探测失败后，连续最小成功探测为成功。默认值为1。最小值为1。存活探针和启动探针内必须为1。',
   FAILURE_THRESHOLD_DESC: '探针进入失败状态时需要连续探测失败的最小次数。',
 
   HPA_MSG:

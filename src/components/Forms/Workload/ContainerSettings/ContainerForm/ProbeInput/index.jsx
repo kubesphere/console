@@ -126,11 +126,12 @@ export default class ProbeInput extends React.Component {
   }
 
   renderProbeForm() {
-    const { value } = this.props
+    const { probType, value } = this.props
     return (
       <ProbeForm
         className={styles.form}
         data={value}
+        probType={probType}
         onSave={this.handleForm}
         onCancel={this.hideForm}
       />
