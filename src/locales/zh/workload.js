@@ -627,6 +627,7 @@ export default {
 
   'Please select at least one container to mount': '请至少选择一个容器进行挂载',
   'Sure to delete the workload(s)?': '确认删除工作负载',
+  'No related resources': '没有关联的资源',
   'No related resources found with the current workload(s)':
     '当前工作负载下没有关联的资源',
   DELETE_WORKLOAD_DESC:
