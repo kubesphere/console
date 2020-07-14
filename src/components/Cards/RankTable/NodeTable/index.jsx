@@ -67,7 +67,7 @@ export default class NodeUsageRank extends React.Component {
             >
               {node.node}
             </Link>
-            {node.node_role === 'master' && (
+            {node.role === 'master' && (
               <span className={styles.label}>Master</span>
             )}
           </h3>

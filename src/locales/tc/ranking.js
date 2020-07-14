@@ -17,7 +17,6 @@
  */
 
 export default {
-  'Node Usage Ranking': '节点用量排行',
   'System Point': '节点',
   'Project Usage Rank': '项目资源用量排行',
   'Workspace Usage Rank': '企业空间资源用量排行',

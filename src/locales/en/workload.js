@@ -51,23 +51,16 @@ export default {
 
   POD_SETTING_TIP: 'The number of Pods when update',
   MIN_AVAILABLE_POD_LABEL: 'The minimum available number of Pods',
+  MAX_AVAILABLE_POD_LABEL: 'The maximum available number of Pods',
   MAX_SURGE_POD_LABEL: 'The maximum available number of Pods',
   UPDATE_STRATEGY_DESC:
     'It\'s used to configure the strategy for replacing pods during the upgrade process. <a href="{link}" target="_blank">Learn more.</a>',
-  MAX_UNAVAILABLE_DESC:
-    'The maximum percentage of unavailable pods allowed during the upgrade process',
+  MAX_UNAVAILABLE_POD_DESC:
+    'The maximum number of DaemonSet pods that can be unavailable during the update.',
   MIN_AVAILABLE_POD_DESC:
     'The number of minimum Pods available for each RollingUpdate, is recommended to be a positive integer with a minimum of 1',
   MAX_SURGE_POD_DESC:
     'The maximum number of Pods allowed during a rolling upgrade',
-  MIN_AVAILABLE_POD_VALIDATOR_MIN:
-    'The number of minimum Pods available cannot be less than 1',
-  MIN_AVAILABLE_POD_VALIDATOR_MAX:
-    'The number of minimum Pods available cannot be greater than the current number of replicas',
-  MAX_SURGE_POD_VALIDATOR_MIN:
-    'The maximum number of Pods cannot be less than the number of replicas',
-  MAX_SURGE_POD_VALIDATOR_MAX:
-    'The maximum number of Pods cannot be greater than twice the current number of replicas',
   ROLLING_UPDATE_POD_TIP:
     'It limits the minimum and maximum available quantities based on the current replicas when it is in rolling update. The minimum number of replicas cannot exceed the current number of replicas, and the maximum number of Pods cannot exceed 2 times the current replicas.',
   ONDELETE_ALERT_TIP:

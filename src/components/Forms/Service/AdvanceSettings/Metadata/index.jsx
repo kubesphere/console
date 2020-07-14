@@ -91,7 +91,9 @@ export default class Metadata extends React.Component {
             onChange={this.handleLabelsChange}
           />
         </Form.Item>
-        <Form.Item label={t('Annotations')}>
+        <Form.Item
+          label={`${t('Annotations')} (${t('Applied to the workload')})`}
+        >
           <PropertiesInput
             name={`${kind}.metadata.annotations`}
             addText={t('Add Annotation')}

@@ -23,29 +23,47 @@ import { toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import { AccessModes } from 'components/Inputs'
 import classNames from 'classnames'
-import { Icon } from '@pitrix/lego-ui'
+import { Icon, Loading } from '@pitrix/lego-ui'
 import PropTypes from 'prop-types'
 
 import SnapshotStore from 'stores/volumeSnapshot'
 
+import StorageClassStore from 'stores/storageClass'
+
+import { safeParseJSON } from 'utils'
+
 import styles from './index.scss'
 
 const ACCESSMODE_KEY = 'spec.accessModes[0]'
-const supportedAccessModes = ['ReadWriteOnce', 'ReadOnlyMany', 'ReadWriteMany']
 
 @observer
 export default class SanpshotForm extends Component {
   snapshotStore = new SnapshotStore()
 
+  storageClassStore = new StorageClassStore()
+
   static contextTypes = {
     formData: PropTypes.object,
-    onFormChange: PropTypes.func,
-    registerValidate: PropTypes.func,
-    resetValidate: PropTypes.func,
-    validateResults: PropTypes.array,
-    resetValidateResults: PropTypes.func,
-    registerGroup: PropTypes.func,
-    unRegisterGroup: PropTypes.func,
+  }
+
+  componentDidMount() {
+    if (this.storageClassName) {
+      this.fetchStorageClassDetail()
+    }
+  }
+
+  get storageClassName() {
+    return get(this.context.formData, 'storageClassName')
+  }
+
+  get supportedAccessModes() {
+    return safeParseJSON(
+      get(
+        this.storageClassStore.detail,
+        'annotations["storageclass.kubesphere.io/supported-access-modes"]',
+        ''
+      )
+    )
   }
 
   fetchSnapshots = (params = { limit: 10 }) => {
@@ -56,6 +74,18 @@ export default class SanpshotForm extends Component {
       cluster,
       status: 'ready',
     })
+  }
+
+  fetchStorageClassDetail = () => {
+    if (
+      this.storageClassName &&
+      this.storageClassName !== this.storageClassStore.detail.name
+    ) {
+      this.storageClassStore.fetchDetail({
+        cluster: this.props.cluster,
+        name: this.storageClassName,
+      })
+    }
   }
 
   handeSnapshotChange = name => {
@@ -74,21 +104,17 @@ export default class SanpshotForm extends Component {
     )
     set(this.context.formData, 'dataSource.kind', 'VolumeSnapshot')
     set(this.context.formData, 'dataSource.apiGroup', 'snapshot.storage.k8s.io')
+
+    this.fetchStorageClassDetail()
   }
 
   render() {
     const { data: snapshots, total, page, isLoading } = this.snapshotStore.list
+    const { isLoading: isStorageClassLoading } = this.storageClassStore
+    const supportedAccessModes = this.supportedAccessModes
 
     return (
       <>
-        <Form.Item label={t('Access Mode')} rules={[{ required: true }]}>
-          <AccessModes
-            name={ACCESSMODE_KEY}
-            defaultValue={get(supportedAccessModes, '[0]', '')}
-            supportedAccessModes={supportedAccessModes}
-          />
-        </Form.Item>
-
         <Form.Item
           label={t('Volume Snapshot')}
           rules={[{ required: true, message: t('This param is required') }]}
@@ -105,6 +131,21 @@ export default class SanpshotForm extends Component {
             onFetch={this.fetchSnapshots}
           />
         </Form.Item>
+        {this.storageClassName && (
+          <Loading spinning={isStorageClassLoading}>
+            <Form.Item
+              className="margin-t12"
+              label={t('Access Mode')}
+              rules={[{ required: true }]}
+            >
+              <AccessModes
+                name={ACCESSMODE_KEY}
+                defaultValue={get(supportedAccessModes, '[0]', '')}
+                supportedAccessModes={supportedAccessModes}
+              />
+            </Form.Item>
+          </Loading>
+        )}
       </>
     )
   }
