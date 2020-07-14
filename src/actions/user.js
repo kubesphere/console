@@ -77,7 +77,23 @@ export default {
             return
           }
 
-          await store.update({ name: globals.user.username }, data)
+          const { currentPassword, password, rePassword, ...rest } = data
+          if (currentPassword && password) {
+            await store.modifyPassword(
+              { name: globals.user.username },
+              { currentPassword, password }
+            )
+            setTimeout(() => {
+              location.href = '/login'
+            }, 1000)
+          } else {
+            set(
+              rest,
+              'metadata.resourceVersion',
+              this.store.detail.resourceVersion
+            )
+            await store.update({ name: globals.user.username }, rest)
+          }
 
           Modal.close(modal)
           Notify.success({ content: `${t('Updated Successfully')}!` })
@@ -97,8 +113,7 @@ export default {
             Modal.close(modal)
             return
           }
-
-          store.update(detail, data).then(() => {
+          store.modifyPassword(detail, data).then(() => {
             Modal.close(modal)
             Notify.success({ content: `${t('Updated Successfully')}!` })
             success && success()

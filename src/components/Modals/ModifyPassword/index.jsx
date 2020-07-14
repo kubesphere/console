@@ -42,6 +42,7 @@ export default class ModifyPasswordModal extends Component {
 
   state = {
     password: '',
+    formData: {},
   }
 
   handlePassswordChange = value => {
@@ -71,7 +72,7 @@ export default class ModifyPasswordModal extends Component {
         title={t('Change Password')}
         icon="pen"
         width={691}
-        data={detail}
+        data={this.state.formData}
         {...rest}
       >
         <input name="username" className="hidden-input" type="text" disabled />
@@ -82,7 +83,7 @@ export default class ModifyPasswordModal extends Component {
           disabled
         />
         <Form.Item label={t('Email')}>
-          <Input name="email" disabled />
+          <Input disabled value={detail.email} />
         </Form.Item>
         <Form.Item
           className={styles.password}

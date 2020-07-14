@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, has, cloneDeep, isEmpty, set } from 'lodash'
+import { get, has, cloneDeep, isEmpty } from 'lodash'
 import React from 'react'
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
@@ -115,7 +115,6 @@ export default class UserSettingModal extends React.Component {
     if (form) {
       form.validate(() => {
         const data = form.getData()
-        set(data, 'metadata.resourceVersion', this.store.detail.resourceVersion)
         onOk(data)
         this.cancelUpdate(name)
       })

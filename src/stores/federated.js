@@ -96,7 +96,12 @@ export default class FederatedStore extends Base {
       params.fieldSelector = `metadata.name=${name}`
     }
 
-    const result = await request.get(this.getListUrl({ namespace }), params)
+    const result = await request.get(
+      this.getListUrl({ namespace }),
+      params,
+      null,
+      () => {}
+    )
 
     const data = result.items.map(ObjectMapper.federated(this.mapper))
 

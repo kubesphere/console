@@ -224,6 +224,13 @@ export default class UsersStore extends Base {
   }
 
   @action
+  async modifyPassword({ name }, data) {
+    return this.submitting(
+      request.put(`${this.getDetailUrl({ name })}/password`, data)
+    )
+  }
+
+  @action
   async batchDelete({ rowKeys, ...params }) {
     if (rowKeys.includes(globals.user.username)) {
       Notify.error(t('Error Tips'), t('Unable to delete itself'))
