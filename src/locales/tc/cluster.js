@@ -180,7 +180,7 @@ export default {
   CLUSTER_AGENT_DESC: '需要在集群中設置下相應的代理Agent',
 
   SELECT_HOST_CLUSTER_WARNING:
-    '请尽量不要在 Host 集群上创建资源, 以免 Host 集群负载过高, 导致多集群稳定性下降.',
+    '请尽量不要在 Host 集群上创建资源，以免 Host 集群负载过高, 导致多集群稳定性下降。',
   HOST_CLUSTER_VISIBILITY_WARNING:
-    '请谨慎将 Host 集群授权给企业空间, Host 集群负载过高会导致多集群稳定性下降.',
+    '请谨慎将 Host 集群授权给企业空间，Host 集群负载过高会导致多集群稳定性下降。',
 }
