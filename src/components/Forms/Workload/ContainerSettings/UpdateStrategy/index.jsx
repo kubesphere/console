@@ -19,7 +19,7 @@
 import React from 'react'
 import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
-import { get, unset } from 'lodash'
+import { get, set, unset, isEmpty } from 'lodash'
 
 import { STRATEGIES, STRATEGIES_PREFIX } from 'utils/constants'
 
@@ -76,9 +76,33 @@ export default class UpdateStrategyForm extends React.Component {
   }
 
   handleStrategyChange = strategy => {
+    const { data, module } = this.props
     this.setState({ strategy }, () => {
       if (strategy !== 'RollingUpdate') {
-        unset(this.props.data, this.rollingUpdatePrefix)
+        unset(data, this.rollingUpdatePrefix)
+      } else {
+        const obj = get(data, this.rollingUpdatePrefix)
+        if (isEmpty(obj)) {
+          switch (module) {
+            case 'deployments':
+              set(data, this.rollingUpdatePrefix, {
+                maxUnavailable: '25%',
+                maxSurge: '25%',
+              })
+              break
+            case 'statfulsets':
+              set(data, this.rollingUpdatePrefix, {
+                partition: 0,
+              })
+              break
+            case 'daemonsets':
+              set(data, this.rollingUpdatePrefix, {
+                maxUnavailable: '25%',
+              })
+              break
+            default:
+          }
+        }
       }
     })
   }
@@ -112,8 +136,8 @@ export default class UpdateStrategyForm extends React.Component {
         <Columns className={styles.wrapper}>
           <Column>
             <Form.Item
-              label={t('MAX_AVAILABLE_POD_LABEL')}
-              desc={t('MAX_UNAVAILABLE_POD_DESC')}
+              label={t('MAX_UNAVAILABLE_POD_LABEL')}
+              desc={t('MAX_DAEMON_UNAVAILABLE_POD_DESC')}
               rules={[{ required: true, message: t('Please input value') }]}
             >
               <Input
@@ -144,8 +168,8 @@ export default class UpdateStrategyForm extends React.Component {
       <Columns className={styles.wrapper}>
         <Column>
           <Form.Item
-            label={t('MIN_AVAILABLE_POD_LABEL')}
-            desc={t('MIN_AVAILABLE_POD_DESC')}
+            label={t('MAX_UNAVAILABLE_POD_LABEL')}
+            desc={t('MAX_DEPLOY_UNAVAILABLE_POD_DESC')}
             rules={[{ required: true, message: t('Please input value') }]}
           >
             <Input
@@ -186,10 +210,7 @@ export default class UpdateStrategyForm extends React.Component {
 
     return (
       <>
-        <Form.Item
-          label={t('Update Strategy')}
-          rules={[{ validator: this.strategyValidator }]}
-        >
+        <Form.Item label={t('Update Strategy')}>
           <TypeSelect
             name={`${STRATEGIES_PREFIX[module]}.type`}
             onChange={this.handleStrategyChange}
