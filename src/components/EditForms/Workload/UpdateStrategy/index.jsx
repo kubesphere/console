@@ -17,28 +17,19 @@
  */
 
 import React from 'react'
-import { get } from 'lodash'
 
+import { Form } from 'components/Base'
 import UpdateStrategyForm from 'components/Forms/Workload/ContainerSettings/UpdateStrategy'
 
 export default class UpdateStrategy extends React.Component {
-  formRef = React.createRef()
-
   render() {
     const { formTemplate, formRef, formProps, module } = this.props
 
-    const replicas = get(formTemplate, 'spec.replicas')
-
     return (
       <div className="margin-t12">
-        <UpdateStrategyForm
-          ownRef={formRef}
-          formRef={this.formRef}
-          formProps={formProps}
-          module={module}
-          data={formTemplate}
-          replicas={replicas}
-        />
+        <Form data={formTemplate} ref={formRef} {...formProps}>
+          <UpdateStrategyForm module={module} data={formTemplate} />
+        </Form>
       </div>
     )
   }

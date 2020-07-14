@@ -104,6 +104,7 @@ export default class DeploymentDetail extends React.Component {
       onClick: () =>
         this.trigger('workload.revision.rollback', {
           detail: this.store.detail,
+          success: this.fetchData,
         }),
     },
     {
@@ -126,6 +127,7 @@ export default class DeploymentDetail extends React.Component {
         this.trigger('workload.template.edit', {
           detail: this.store.detail,
           ...this.props.match.params,
+          success: this.fetchData,
         }),
     },
     {
@@ -136,6 +138,7 @@ export default class DeploymentDetail extends React.Component {
       onClick: () =>
         this.trigger('resource.yaml.edit', {
           detail: this.store.detail,
+          success: this.fetchData,
         }),
     },
     {

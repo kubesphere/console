@@ -291,7 +291,7 @@ export class ListPage extends React.Component {
             if (message.type === 'MODIFIED') {
               const data = {
                 ...this.props.match.params,
-                ...mapper(message.object),
+                ...mapper(toJS(message.object)),
               }
               this.store.list.updateItem(data)
             } else if (message.type === 'DELETED' || message.type === 'ADDED') {

@@ -167,14 +167,13 @@ export default {
   REPLICAS_SCALE_NOTIFY_CANCEL: '放弃更改',
 
   POD_SETTING_TIP: '更新时容器组数量',
-  MIN_AVAILABLE_POD_LABEL: '容器组最小可用数量',
-  MAX_AVAILABLE_POD_LABEL: '容器组最大可用数量',
+  MAX_UNAVAILABLE_POD_LABEL: '容器组最大可用数量',
   MAX_SURGE_POD_LABEL: '更新时容器组最大数量',
   UPDATE_STRATEGY_DESC:
     '配置升级过程中替换容器组的策略 <a href="{link}" target="_blank">了解更多</a>',
-  MAX_UNAVAILABLE_POD_DESC:
+  MAX_DAEMON_UNAVAILABLE_POD_DESC:
     '升级过程中「允许存在的不可用的容器组」所占总容器组数的最大百分比或数量',
-  MIN_AVAILABLE_POD_DESC: '每次滚动升级要求存活的最小容器组数量或百分比',
+  MAX_DEPLOY_UNAVAILABLE_POD_DESC: '升级过程中可能不可用的 Pod 的最大数量。',
   MAX_SURGE_POD_DESC:
     '升级过程中「允许超出副本数量的容器组」的最大数量或百分比',
   ROLLING_UPDATE_POD_TIP:

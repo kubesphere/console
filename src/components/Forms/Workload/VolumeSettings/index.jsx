@@ -195,7 +195,7 @@ class VolumeSettings extends React.Component {
     let newVolumes = []
 
     const existVolume = !isEmpty(this.selectVolume)
-      ? this.selectVolume
+      ? get(this.selectVolume, 'specVolume', this.selectVolume)
       : undefined
 
     const newSpecVolume = this.formatSpecVolume(existVolume, newVolume)
@@ -256,20 +256,23 @@ class VolumeSettings extends React.Component {
 
   checkMaxUnavalable = volumes => {
     if (['deployments', 'daemonsets'].includes(this.props.module)) {
-      const hasPVC = volumes.some(
-        volume => !isEmpty(volume.persistentVolumeClaim)
-      )
-      const maxUnavailable = get(
-        this.fedFormTemplate,
-        'spec.strategy.rollingUpdate.maxUnavailable',
-        null
-      )
-      if (hasPVC && !maxUnavailable) {
-        set(
+      const strategyType = get(this.fedFormTemplate, 'spec.strategy.type')
+      if (strategyType === 'RollingUpdate') {
+        const hasPVC = volumes.some(
+          volume => !isEmpty(volume.persistentVolumeClaim)
+        )
+        const maxUnavailable = get(
           this.fedFormTemplate,
           'spec.strategy.rollingUpdate.maxUnavailable',
-          1
+          null
         )
+        if (hasPVC && !maxUnavailable) {
+          set(
+            this.fedFormTemplate,
+            'spec.strategy.rollingUpdate.maxUnavailable',
+            1
+          )
+        }
       }
     }
   }
