@@ -193,7 +193,7 @@ export default class ProbeForm extends React.Component {
   }
 
   render() {
-    const { className, onCancel } = this.props
+    const { className, probType, onCancel } = this.props
     const { formData, checkerType } = this.state
 
     return (
@@ -261,6 +261,9 @@ export default class ProbeForm extends React.Component {
                   name="successThreshold"
                   defaultValue={1}
                   min={1}
+                  readOnly={['livenessProbe', 'startupProbe'].includes(
+                    probType
+                  )}
                   integer
                 />
               </Form.Item>
