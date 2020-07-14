@@ -28,7 +28,7 @@ export default class Tip extends React.Component {
   static propTypes = {
     className: PropTypes.string,
     title: PropTypes.string,
-    description: PropTypes.string,
+    description: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
     closable: PropTypes.bool,
     operation: PropTypes.node,
     onClose: PropTypes.func,
