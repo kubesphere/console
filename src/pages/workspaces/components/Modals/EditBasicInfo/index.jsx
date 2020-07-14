@@ -22,8 +22,8 @@ import copy from 'fast-copy'
 import { observer } from 'mobx-react'
 import { debounce, unset } from 'lodash'
 
-import { Input, Select, TextArea } from '@pitrix/lego-ui'
-import { Form, Modal } from 'components/Base'
+import { Input, Select } from '@pitrix/lego-ui'
+import { Form, Modal, TextArea } from 'components/Base'
 
 import UserStore from 'stores/user'
 
@@ -149,6 +149,7 @@ export default class EditBasicInfoModal extends React.Component {
           <TextArea
             name="metadata.annotations['kubesphere.io/description']"
             rows="3"
+            maxLength={1000}
           />
         </Form.Item>
       </Modal.Form>

@@ -19,9 +19,9 @@
 import { debounce } from 'lodash'
 import React from 'react'
 import { observer } from 'mobx-react'
-import { Input, Select, TextArea } from '@pitrix/lego-ui'
+import { Input, Select } from '@pitrix/lego-ui'
 import { PATTERN_NAME } from 'utils/constants'
-import { Form } from 'components/Base'
+import { Form, TextArea } from 'components/Base'
 import UserStore from 'stores/user'
 
 import styles from './index.scss'
@@ -176,6 +176,7 @@ export default class BaseInfo extends React.Component {
             <TextArea
               name="metadata.annotations['kubesphere.io/description']"
               rows="3"
+              maxLength={1000}
             />
           </Form.Item>
         </Form>

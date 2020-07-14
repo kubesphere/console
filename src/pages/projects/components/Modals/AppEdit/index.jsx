@@ -19,8 +19,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { Input, TextArea } from '@pitrix/lego-ui'
-import { Modal, Form } from 'components/Base'
+import { Input } from '@pitrix/lego-ui'
+import { Modal, Form, TextArea } from 'components/Base'
 
 export default class AppEditModal extends React.Component {
   static propTypes = {
@@ -63,7 +63,7 @@ export default class AppEditModal extends React.Component {
           <Input name="name" disabled />
         </Form.Item>
         <Form.Item label={t('Description')} desc={t('DESCRIPTION_DESC')}>
-          <TextArea name="description" />
+          <TextArea maxLength={1000} name="description" />
         </Form.Item>
       </Modal.Form>
     )
