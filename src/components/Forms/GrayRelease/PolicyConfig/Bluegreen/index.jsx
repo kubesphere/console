@@ -104,7 +104,7 @@ export default class Bluegreen extends React.Component {
       <div className={styles.wrapper}>
         <div className={styles.item}>
           <div className={styles.title}>{t('Rule Description')}</div>
-          <p>{t('two versions')}</p>
+          <p>{t('Two Versions')}</p>
         </div>
         <div className={styles.item}>
           <div className={styles.title}>{t('Traffic Rules')}</div>

@@ -237,7 +237,7 @@ class BaseInfo extends React.Component {
     return (
       <div>
         <Banner
-          title={t('DevOps BaseInfo')}
+          title={t('DevOps Basic Info')}
           icon="cdn"
           description={t('DEVOPS_DESCRIPTION')}
           module={this.module}

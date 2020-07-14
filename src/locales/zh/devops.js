@@ -24,7 +24,7 @@ export default {
   'DevOps Member': '工程成员',
   'DevOps Members': '工程成员',
   'DevOps Credentials': '凭证',
-  'DevOps BaseInfo': '基本信息',
+  'DevOps Basic Info': '基本信息',
   DEVOPS_PROJECT_MANAGEMENT: '工程管理',
   DEVOPS_PROJECT_MEMBERS: '工程成员',
   DEVOPS_PROJECT_ROLES: '工程角色',

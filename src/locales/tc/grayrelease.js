@@ -107,7 +107,7 @@ export default {
 
   Recover: '恢复',
 
-  'two versions': '两个版本',
+  'Two Versions': '两个版本',
   'Traffic Rules': '流量规则',
   'Offline this version': '下线此版本',
   'Take over all traffic': '接管所有流量',
