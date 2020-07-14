@@ -90,10 +90,7 @@ export default class Components extends React.Component {
       <img src={option.icon || '/assets/default-app.svg'} alt="" />
       {t('Application')}: {option.name}
       {option.disabled && (
-        <Tooltip
-          trigger="click"
-          content={t('未开启应用治理的应用无法使用灰度发布')}
-        >
+        <Tooltip trigger="click" content={t('NO_SERVICE_MESH_TIP')}>
           <Icon name="question" className="float-right" />
         </Tooltip>
       )}

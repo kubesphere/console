@@ -17,6 +17,58 @@
  */
 
 export default {
+  Activate: 'Activate',
+  'Add Log Collector': 'Add Log Collector',
+  'Add Service Address': 'Add Service Address',
+  Address: 'Address',
+  'Auditing statistics': 'Auditing statistics',
+  'Back to previous': 'Back to previous',
+  'Change Status': 'Change Status',
+  Collecting: 'Collecting',
+  'Current Statistics Start Time': 'Current Statistics Start Time',
+  'Delete Log Collector': 'Delete Log Collector',
+  'Display Content': 'Display Content',
+  'Event statistics': 'Event statistics',
+  'Exact Query': 'Exact Query',
+  'Fuzzy Query': 'Fuzzy Query',
+  'Hide help information': 'Hide help information',
+  Keyword: 'Keyword',
+  'Log Collections': 'Log Collections',
+  'Log Collector': 'Log Collector',
+  'Log Management': 'Log Management',
+  'Log Query': 'Log Query',
+  'Log Start Time': 'Log Start Time',
+  'Log statistics': 'Log statistics',
+  'No cluster with auditing module enabled':
+    'No cluster with auditing module enabled',
+  'No cluster with event query enabled': 'No cluster with event query enabled',
+  'No cluster with logging module enabled':
+    'No cluster with logging module enabled',
+  'Passwords must be at least 6 characters long':
+    'Passwords must be at least 6 characters long',
+  'Please enter a filter to search for logs.':
+    'Please enter a filter to search for logs.',
+  'Please input path': 'Please input path',
+  'Please input service address': 'Please input service address',
+  'Real-Time Data': 'Real-Time Data',
+  'Recently Configured Updated': 'Recently Configured Updated',
+  'Recently Updated': 'Recently Updated',
+  'Refresh Interval': 'Refresh Interval',
+  'Refresh Rate': 'Refresh Rate',
+  'Region Data': 'Region Data',
+  'Release Collection': 'Release Collection',
+  'Search Result': 'Search Result',
+  'Search Rule': 'Search Rule',
+  'Service Address': 'Service Address',
+  'Time topology': 'Time topology',
+  topic: 'topic',
+  'Trends in the total number of auditing logs in the last 12 hours':
+    'Trends in the total number of auditing logs in the last 12 hours',
+  'Trends in the total number of events in the last 12 hours':
+    'Trends in the total number of events in the last 12 hours',
+  'Trends in the total number of logs in the last 12 hours':
+    'Trends in the total number of logs in the last 12 hours',
+
   LOG_DATE: 'YYYY/MM/DD HH:mm',
   EVENT_DATE: 'YYYY/MM/DD 00:00',
   ES_DESC:

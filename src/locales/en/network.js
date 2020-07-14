@@ -17,6 +17,17 @@
  */
 
 export default {
+  'Add Allowlist': 'Add Allowlist',
+  'Create Network Policy': 'Create Network Policy',
+  Direction: 'Direction',
+  Egress: 'Egress',
+  Ingress: 'Ingress',
+  'Network Isolation': 'Network Isolation',
+  'Network Policies': 'Network Policies',
+  'Network Policy': 'Network Policy',
+  'Traffic Egress': 'Traffic Egress',
+  'Traffic Ingress': 'Traffic Ingress',
+
   'Network Policys': 'Network Policies',
   NETWORK_POLICY_DESC:
     'The Network policy configuration allows network isolation within the same cluster, which means firewalls can be set up between certain instances (Pods).',

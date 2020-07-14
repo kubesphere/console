@@ -17,6 +17,38 @@
  */
 
 export default {
+  'Cluster Authorization Info': 'Cluster Authorization Info',
+  'Cluster Info': 'Cluster Info',
+  'Create Workspace': 'Create Workspace',
+  'Create Workspace Role': 'Create Workspace Role',
+  'Created Projects': 'Created Projects',
+  'Delete Workspace': 'Delete Workspace',
+  'DevOps Project Number': 'DevOps Project Number',
+  'Edit Quota': 'Edit Quota',
+  'Edit Workspace Role': 'Edit Workspace Role',
+  'Invite members to the workspace': 'Invite members to the workspace',
+  'Involved Projects': 'Involved Projects',
+  'Manage Organizations': 'Manage Organizations',
+  'No Available Cluster': 'No Available Cluster',
+  'Please input workspace name': 'Please input workspace name',
+  'Project Number': 'Project Number',
+  'Remove from Workspace': 'Remove from Workspace',
+  'The current name is not applicable.': 'The current name is not applicable.',
+  'View Workspace': 'View Workspace',
+  Workspace: 'Workspace',
+  'Workspace Info': 'Workspace Info',
+  'Workspace Logo': 'Workspace Logo',
+  'Workspace Manager': 'Workspace Manager',
+  'Workspace Members': 'Workspace Members',
+  'Workspace Name': 'Workspace Name',
+  'Workspace name exists': 'Workspace name exists',
+  'Workspace Network Isolation': 'Workspace Network Isolation',
+  'Workspace Role': 'Workspace Role',
+  'Workspace Roles': 'Workspace Roles',
+  'Workspace Settings': 'Workspace Settings',
+  Workspaces: 'Workspaces',
+  'Workspaces Manager': 'Workspaces Manager',
+
   WORKSPACE_OVERVIEW_DESC:
     'Workspace provides KubeSphere with a secure, isolated and accessible platform. Here you can see the resource running status in the current workspace.',
   WORKSPACE_DESC:

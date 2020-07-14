@@ -17,6 +17,32 @@
  */
 
 export default {
+  'Add Annotation': 'Add Annotation',
+  'Add Path': 'Add Path',
+  'Auto Generate': 'Auto Generate',
+  'Click to visit': 'Click to visit',
+  'Create Route': 'Create Route',
+  'Edit Annotations': 'Edit Annotations',
+  'Edit Rules': 'Edit Rules',
+  'Gateway Address': 'Gateway Address',
+  'Gateway IP': 'Gateway IP',
+  'Gateway Type': 'Gateway Type',
+  HostName: 'HostName',
+  'Invalid host': 'Invalid host',
+  'Invalid paths': 'Invalid paths',
+  Mode: 'Mode',
+  Paths: 'Paths',
+  'Please add at least one routing rule.':
+    'Please add at least one routing rule.',
+  'Please input Hostname': 'Please input Hostname',
+  'Please select a service': 'Please select a service',
+  Route: 'Route',
+  'Route Rules': 'Route Rules',
+  Rules: 'Rules',
+  'Set Route Rule': 'Set Route Rule',
+  'Specify Domain': 'Specify Domain',
+  'Unable to access': 'Unable to access',
+
   ROUTE_DESC:
     "A Route provides a way to aggregate services, and you can expose the cluster's internal services to the outside through an externally accessible IP address.",
   ROUTE_CREATE_DESC:

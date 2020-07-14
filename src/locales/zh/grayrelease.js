@@ -119,7 +119,7 @@ export default {
   'Port protocol is not HTTP, cannot publish policy by request content':
     '端口协议非 HTTP, 不能发布按内容分配的策略',
 
-  '': '未开启应用治理的应用无法使用灰度发布',
+  NO_SERVICE_MESH_TIP: '未开启应用治理的应用无法使用灰度发布',
 
   BLUE_GREEN_DEPLOYMENT_DESC:
     '蓝绿发布提供了一种零宕机的部署方式。在<strong>保留旧版本的同时部署新版本</strong>，将两个版本同时在线，如果有问题可以快速处理。',

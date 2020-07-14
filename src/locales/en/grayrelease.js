@@ -17,6 +17,80 @@
  */
 
 export default {
+  '95% requests duration': '95% requests duration',
+  'A/B Testing': 'A/B Testing',
+  'Allocate all traffic proportionally to grayscale release components':
+    'Allocate all traffic proportionally to grayscale release components',
+  'Blue-green Deployment': 'Blue-green Deployment',
+  'Canary Release': 'Canary Release',
+  'Cookie Content': 'Cookie Content',
+  'Create Grayscale Release Job': 'Create Grayscale Release Job',
+  'Create Job': 'Create Job',
+  'Custom Header': 'Custom Header',
+  'Deploy sample application': 'Deploy sample application',
+  'Deploy Sample Application': 'Deploy Sample Application',
+  'Edit Grayscale Release Job': 'Edit Grayscale Release Job',
+  'Exact Match': 'Exact Match',
+  'Forward by request content': 'Forward by request content',
+  'Forward by traffic ratio': 'Forward by traffic ratio',
+  'Grayscale Release': 'Grayscale Release',
+  'Grayscale Release Component': 'Grayscale Release Component',
+  'Grayscale Release Components': 'Grayscale Release Components',
+  'Grayscale Release Strategy': 'Grayscale Release Strategy',
+  'Grayscale Release Version': 'Grayscale Release Version',
+  'Grayscale release version access rule':
+    'Grayscale release version access rule',
+  'Grayscale Release Version Number': 'Grayscale Release Version Number',
+  'Has taken over all traffic': 'Has taken over all traffic',
+  'Introduce traffic that meets the following rules into grayscale version':
+    'Introduce traffic that meets the following rules into grayscale version',
+  'Job offline': 'Job offline',
+  'Job offline Successfully': 'Job offline Successfully',
+  'Job Status': 'Job Status',
+  'Mirrored traffic': 'Mirrored traffic',
+  'Mirrored traffic is only receiving traffic, no service':
+    'Mirrored traffic is only receiving traffic, no service',
+  'No workload found': 'No workload found',
+  'Not online': 'Not online',
+  'Offline this version': 'Offline this version',
+  'Operating System': 'Operating System',
+  'Please input grayscale release version':
+    'Please input grayscale release version',
+  'Please select a grayscale release component':
+    'Please select a grayscale release component',
+  'Policy Config': 'Policy Config',
+  'Port protocol is not HTTP, cannot publish policy by request content':
+    'Port protocol is not HTTP, cannot publish policy by request content',
+  'Prefix Match': 'Prefix Match',
+  'Real-time traffic distribution': 'Real-time traffic distribution',
+  'Real-time traffic ratio': 'Real-time traffic ratio',
+  Recover: 'Recover',
+  'Regex Match': 'Regex Match',
+  'Release Job Name': 'Release Job Name',
+  'Request duration': 'Request duration',
+  'Request success rate': 'Request success rate',
+  'Rule Description': 'Rule Description',
+  'Take Over': 'Take Over',
+  'Take over all traffic': 'Take over all traffic',
+  'The current version is not online, you can let this version take over all traffic and bring it online.':
+    'The current version is not online, you can let this version take over all traffic and bring it online.',
+  traffic: 'traffic',
+  'Traffic comes from the following operating systems':
+    'Traffic comes from the following operating systems',
+  'Traffic Control': 'Traffic Control',
+  'Traffic Mirroring': 'Traffic Mirroring',
+  'Traffic monitor': 'Traffic monitor',
+  'Traffic of last five minutes': 'Traffic of last five minutes',
+  'Traffic Ratio': 'Traffic Ratio',
+  'Traffic Rules': 'Traffic Rules',
+  'Two Versions': 'Two Versions',
+  'Unfinished grayscale release jobs exist':
+    'Unfinished grayscale release jobs exist',
+  'Unsupported workload type': 'Unsupported workload type',
+  'Version Compare': 'Version Compare',
+  'version number is invalid': 'version number is invalid',
+  'Version Off': 'Version Off',
+
   GRAY_RELEASE_CATEGORIES: 'Categories',
 
   BLUE_GREEN_DEPLOYMENT_DESC:
@@ -27,6 +101,9 @@ export default {
     'Traffic mirroring provides a more accurate way to test new versions as problems can be detected in advance while not affecting the production environment. Therefore, it serves as a more secure and reliable method for version releases.',
   AB_TESTING_DESC:
     'This method is very helpful to understand whether product updates or improvements have met expectations. It can be used when new needs arise and it will not affect the business stability.',
+
+  NO_SERVICE_MESH_TIP:
+    'Applications that are not enabled for application governance cannot be published in grayscale.',
 
   NO_GRAY_RELEASE_JOBS_TIP: 'There is no running grayscale release job.',
   NO_GRAY_RELEASE_JOBS_TIP_2:
