@@ -20,7 +20,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import copy from 'fast-copy'
 import { observer } from 'mobx-react'
-import { debounce, unset } from 'lodash'
+import { get, debounce, unset } from 'lodash'
 
 import { Input, Select } from '@pitrix/lego-ui'
 import { Form, Modal, TextArea } from 'components/Base'
@@ -55,10 +55,20 @@ export default class EditBasicInfoModal extends React.Component {
   }
 
   getUsers() {
-    return this.userStore.list.data.map(user => ({
+    const manger = get(this.props.detail, 'spec.template.spec.manager')
+    const users = this.userStore.list.data.map(user => ({
       label: user.username,
       value: user.username,
     }))
+
+    if (users.every(item => item.value !== manger)) {
+      users.unshift({
+        label: manger,
+        value: manger,
+      })
+    }
+
+    return users
   }
 
   handleOk = data => {

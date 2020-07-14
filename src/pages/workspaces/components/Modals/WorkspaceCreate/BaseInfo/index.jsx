@@ -36,10 +36,20 @@ export default class BaseInfo extends React.Component {
   }
 
   getUsers() {
-    return this.userStore.list.data.map(user => ({
+    const manger = globals.user.username
+    const users = this.userStore.list.data.map(user => ({
       label: user.username,
       value: user.username,
     }))
+
+    if (users.every(item => item.value !== manger)) {
+      users.unshift({
+        label: manger,
+        value: manger,
+      })
+    }
+
+    return users
   }
 
   get networkOptions() {
