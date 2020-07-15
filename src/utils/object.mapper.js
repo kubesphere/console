@@ -246,6 +246,9 @@ const S2IBuildersMapper = item => {
       ? replaceToLocalOrigin(sourceUrl)
       : sourceUrl,
     type: get(item, 'metadata.labels["s2i-type.kubesphere.io"]', 's2i'),
+    module: get(item, 'kind')
+      ? `${get(item, 'kind').toLowerCase()}s`
+      : 's2ibuilders',
     _originData: getOriginData(item),
   }
 }
