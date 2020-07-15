@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, has, cloneDeep, isEmpty } from 'lodash'
+import { get, set, has, cloneDeep, isEmpty } from 'lodash'
 import React from 'react'
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
@@ -81,13 +81,17 @@ export default class UserSettingModal extends React.Component {
 
   componentDidMount() {
     this.store.fetchDetail({ name: globals.user.username }).then(() => {
-      this.setState({
-        formData: {
-          apiVersion: 'iam.kubesphere.io/v1alpha2',
-          kind: 'User',
-          ...cloneDeep(this.store.detail._originData),
-        },
-      })
+      const formData = {
+        apiVersion: 'iam.kubesphere.io/v1alpha2',
+        kind: 'User',
+        ...cloneDeep(this.store.detail._originData),
+      }
+      set(
+        formData,
+        'metadata.resourceVersion',
+        this.store.detail.resourceVersion
+      )
+      this.setState({ formData })
     })
   }
 

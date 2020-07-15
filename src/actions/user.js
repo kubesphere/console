@@ -87,11 +87,6 @@ export default {
               location.href = '/login'
             }, 1000)
           } else {
-            set(
-              rest,
-              'metadata.resourceVersion',
-              this.store.detail.resourceVersion
-            )
             await store.update({ name: globals.user.username }, rest)
           }
 
