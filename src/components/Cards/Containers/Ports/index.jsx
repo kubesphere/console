@@ -58,7 +58,10 @@ export default class ContainerPorts extends React.Component {
           </thead>
           <tbody>
             {ports.map((item, index) => {
-              const protocol = item.name.split('-')[0].toUpperCase()
+              let protocol = ''
+              if (item.name && item.name.indexOf('-') !== -1) {
+                protocol = (item.name.split('-')[0] || '').toUpperCase()
+              }
               return (
                 <tr key={index}>
                   {isFederated && <td>{item.cluster}</td>}
