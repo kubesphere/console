@@ -49,7 +49,8 @@ export default class WorkloadSelect extends React.Component {
   }
 
   fetchData = (params = {}) => {
-    this.store.fetchList({ namespace: this.props.namespace, ...params })
+    const { cluster, namespace } = this.props
+    this.store.fetchList({ cluster, namespace, ...params })
   }
 
   handleSelect = item => {
