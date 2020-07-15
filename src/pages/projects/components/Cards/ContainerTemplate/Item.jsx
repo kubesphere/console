@@ -40,19 +40,32 @@ export default class ContainerItem extends React.Component {
   }
 
   renderProbe() {
-    const { livenessProbe, readinessProbe } = this.props.detail
+    const { livenessProbe, readinessProbe, startupProbe } = this.props.detail
 
-    if (!livenessProbe && !readinessProbe) return null
+    if (!livenessProbe && !readinessProbe && !startupProbe) return null
 
     return (
       <div className={styles.probe}>
-        {this.renderProbeRecord(readinessProbe, 'readiness')}
-        {this.renderProbeRecord(livenessProbe, 'liveness')}
+        {this.renderProbeRecord({
+          probe: readinessProbe,
+          title: t('Readiness Probe'),
+          tagType: 'primary',
+        })}
+        {this.renderProbeRecord({
+          probe: livenessProbe,
+          title: t('Liveness Probe'),
+          tagType: 'warning',
+        })}
+        {this.renderProbeRecord({
+          probe: startupProbe,
+          title: t('Startup Probe'),
+          tagType: 'info',
+        })}
       </div>
     )
   }
 
-  renderProbeRecord(probe, type) {
+  renderProbeRecord({ probe, title, tagType }) {
     if (!probe) return null
 
     const delay = probe.initialDelaySeconds || 0
@@ -76,9 +89,7 @@ export default class ContainerItem extends React.Component {
     return (
       <div className={styles.probeItem}>
         <div>
-          <Tag type={type === 'liveness' ? 'warning' : 'primary'}>
-            {type === 'liveness' ? t('Liveness Probe') : t('Readiness Probe')}
-          </Tag>
+          <Tag type={tagType}>{title}</Tag>
           <span className={styles.probeType}>{t(probeType)}</span>
           <span className={styles.probeTime}>
             {t('Initial Delay')}: {delay}s &nbsp;&nbsp;
