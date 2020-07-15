@@ -176,9 +176,11 @@ export default class SelectorsInput extends React.Component {
   }
 
   renderWorkloadSelectForm() {
+    const { cluster, namespace } = this.props
     return (
       <WorkloadSelect
-        namespace={this.props.namespace}
+        cluster={cluster}
+        namespace={namespace}
         onSelect={this.handleWorkloadSelect}
         onCancel={this.handleCancel}
       />

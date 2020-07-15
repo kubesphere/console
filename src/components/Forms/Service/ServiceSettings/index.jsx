@@ -136,6 +136,7 @@ export default class ServiceSettings extends React.Component {
       >
         <SelectorsInput
           name="spec.selector"
+          cluster={this.props.cluster}
           namespace={this.namespace}
           addText={`${t('Add')} LabelSelector`}
         />
