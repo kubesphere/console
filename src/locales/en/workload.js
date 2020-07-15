@@ -302,6 +302,7 @@ export default {
   'Specify Replicas Number': 'Specify Replicas Number',
   startingDeadlineSeconds: 'startingDeadlineSeconds',
   'startingDeadlineSeconds(s)': 'startingDeadlineSeconds(s)',
+  'Startup Probe': 'Startup Probe',
   'Storage Size': 'Storage Size',
   'Strategy Type': 'Strategy Type',
   'sub path': 'sub path',

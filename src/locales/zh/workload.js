@@ -371,6 +371,7 @@ export default {
   PROBE_TIME: '初始延时: {delay}s 超时时间:{timeout}s',
   'Readiness Probe': '就绪探针',
   'Liveness Probe': '存活探针',
+  'Startup Probe': '启动探针',
 
   INITIAL_DELAY_DESC: '在检查其运行状况之前，容器启动后需要等待多长时间。',
   TIMEOUT_DESC:
