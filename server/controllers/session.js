@@ -136,6 +136,8 @@ const handleLogin = async ctx => {
 
   ctx.session = {}
   ctx.cookies.set('token', user.token)
+  ctx.cookies.set('expire', user.expire)
+  ctx.cookies.set('refreshToken', user.refreshToken)
   ctx.cookies.set('currentUser', user.username, { httpOnly: false })
   ctx.cookies.set('referer', null)
 
