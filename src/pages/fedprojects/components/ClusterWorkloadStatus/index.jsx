@@ -72,7 +72,7 @@ export default class ClusterWorkloadStatus extends Component {
       <Panel title={t('Instance Status')}>
         <div className={styles.wrapper}>
           {detail.clusters.map(cluster => {
-            if (!resources[cluster.name]) {
+            if (!resources[cluster.name] || !resources[cluster.name].uid) {
               return null
             }
             return (

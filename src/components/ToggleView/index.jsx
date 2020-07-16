@@ -33,7 +33,7 @@ export default class ToggleView extends React.Component {
   }
 
   state = {
-    show: false,
+    show: this.props.defaultShow || false,
   }
 
   toggle = () => {

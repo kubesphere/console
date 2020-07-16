@@ -129,6 +129,10 @@
         border: none;
         border-radius: 0;
       }
+      .select-menu-outer {
+        width: auto !important;
+        min-width: 130px;
+      }
     }
   }
 }

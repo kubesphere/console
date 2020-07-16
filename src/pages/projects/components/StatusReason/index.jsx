@@ -92,9 +92,11 @@ export default function StatusReason({
           }}
         />
       </Tooltip>
-      <span className={status === 'error' ? styles.error : styles.warning}>
-        {t(reason)}
-      </span>
+      {reason && (
+        <span className={status === 'error' ? styles.error : styles.warning}>
+          {t(reason)}
+        </span>
+      )}
     </span>
   )
 }

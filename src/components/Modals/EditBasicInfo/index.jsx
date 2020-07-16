@@ -74,17 +74,14 @@ export default class EditBasicInfoModal extends React.Component {
         visible={visible}
         isSubmitting={isSubmitting}
       >
-        <Form.Item label={t('Name')} desc={t('LONG_NAME_DESC')}>
+        <Form.Item label={t('Name')}>
           <Input name="metadata.name" disabled />
         </Form.Item>
         <Form.Item label={t('Alias')} desc={t('ALIAS_DESC')}>
           <Input name="metadata.annotations['kubesphere.io/alias-name']" />
         </Form.Item>
-        <Form.Item label={t('Description')} desc={t('DESCRIPTION_DESC')}>
-          <TextArea
-            maxLength={1000}
-            name="metadata.annotations['kubesphere.io/description']"
-          />
+        <Form.Item label={t('Description')}>
+          <TextArea name="metadata.annotations['kubesphere.io/description']" />
         </Form.Item>
       </Modal.Form>
     )

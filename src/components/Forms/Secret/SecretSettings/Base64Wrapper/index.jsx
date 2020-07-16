@@ -18,6 +18,7 @@
 
 import { get } from 'lodash'
 import React, { Component } from 'react'
+import { safeAtob } from 'utils'
 
 export default class Base64Wrapper extends Component {
   handleChange = e => {
@@ -30,7 +31,7 @@ export default class Base64Wrapper extends Component {
     const { name, children, value } = this.props
     const node = React.cloneElement(children, {
       name,
-      value: atob(value || ''),
+      value: safeAtob(value || ''),
       onChange: this.handleChange,
     })
     return node

@@ -149,6 +149,7 @@ export default class Deployments extends React.Component {
           ) : (
             <FedWorkloadStatus
               data={record}
+              module={module}
               clusters={projectStore.detail.clusters}
             />
           ),

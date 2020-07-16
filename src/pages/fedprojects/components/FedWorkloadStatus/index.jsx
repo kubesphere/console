@@ -20,13 +20,15 @@ import { get, keyBy } from 'lodash'
 import React, { Component } from 'react'
 import { Icon } from '@pitrix/lego-ui'
 import { Tag } from 'components/Base'
+import StatusReason from 'projects/components/StatusReason'
 import { CLUSTER_PROVIDER_ICON, CLUSTER_GROUP_TAG_TYPE } from 'utils/constants'
+import { getWorkloadStatus } from 'utils/status'
 
 import styles from './index.scss'
 
 export default class FedWorkloadStatus extends Component {
   render() {
-    const { data, clusters } = this.props
+    const { data, clusters, module } = this.props
     const clustersDetail = keyBy(clusters, 'name')
 
     return (
@@ -45,6 +47,7 @@ export default class FedWorkloadStatus extends Component {
               `clusterTemplates[${cluster.name}].spec.replicas`,
               0
             )
+            const { status, reason } = getWorkloadStatus(resource, module)
 
             return (
               <Tag
@@ -60,6 +63,8 @@ export default class FedWorkloadStatus extends Component {
                   {resource.availablePodNums || resource.readyPodNums || 0} /{' '}
                   {replicas}
                 </span>
+                &nbsp;
+                {reason && <StatusReason status={status} data={resource} />}
               </Tag>
             )
           })}

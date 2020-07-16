@@ -26,13 +26,7 @@ import { ICON_TYPES } from 'utils/constants'
 
 import styles from './index.scss'
 
-const RESERVED_KEYS = ['limits.cpu', 'limits.memory', 'pods']
-
 const QuotaItem = ({ name, total, used }) => {
-  if (!total && !Number(used) && RESERVED_KEYS.indexOf(name) === -1) {
-    return null
-  }
-
   let ratio = 0
 
   if (name === 'limits.cpu' || name === 'requests.cpu') {

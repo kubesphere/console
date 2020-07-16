@@ -104,20 +104,21 @@ export default class Secrets extends React.Component {
         title: t('Status'),
         dataIndex: 'status',
         isHideable: true,
+        width: '12%',
         render: status => <Status type={status} name={t(status)} flicker />,
       },
       {
         title: t('Type'),
         dataIndex: 'resource.type',
         isHideable: true,
-        width: '24%',
+        width: '12%',
         render: type => t(SECRET_TYPES[type] || type),
       },
       {
         title: t('Config Number'),
         dataIndex: 'resource.data',
         isHideable: true,
-        width: '20%',
+        width: '12%',
         render: data => Object.keys(data).length,
       },
       {
