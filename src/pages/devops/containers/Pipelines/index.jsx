@@ -31,8 +31,6 @@ import Health from 'projects/components/Health'
 import EmptyTable from 'components/Cards/EmptyTable'
 import DeleteModal from 'components/Modals/Delete'
 import CreateModal from 'components/Modals/Create'
-import Status from 'devops/components/Status'
-import { getPipelineStatus } from 'utils/status'
 import ParamsModal from 'components/Forms/CICDs/paramsModal'
 import Banner from 'components/Cards/Banner'
 import PipelineStore from 'stores/devops/pipelines'
@@ -407,33 +405,17 @@ class CICDs extends React.Component {
         )
       },
     },
-    {
-      title: t('Status'),
-      width: '15%',
-      render: record => {
-        if (record.numberOfSuccessfulBranches !== undefined) {
-          return (
-            <span className={styles.sourcePipelineStatus}>
-              <span className={styles.pipelineSuccessNumber}>
-                {record.numberOfSuccessfulBranches}
-              </span>
-              {t('branch success')}
-            </span>
-          )
-        }
-        return <Status {...getPipelineStatus(get(record, 'latestRun', {}))} />
-      },
-    },
+
     {
       title: t('WeatherScore'),
       dataIndex: 'weatherScore',
-      width: '20%',
+      width: '30%',
       render: weatherScore => <Health score={weatherScore} />,
     },
     {
       title: t('Branch'),
       dataIndex: 'totalNumberOfBranches',
-      width: '20%',
+      width: '25%',
       render: totalNumberOfBranches =>
         totalNumberOfBranches === undefined ? '-' : totalNumberOfBranches,
     },
