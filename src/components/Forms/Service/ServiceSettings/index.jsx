@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, set, unset } from 'lodash'
+import { get, set, unset, isEmpty } from 'lodash'
 import React from 'react'
 
 import { Form, TypeSelect } from 'components/Base'
@@ -105,6 +105,10 @@ export default class ServiceSettings extends React.Component {
       return callback()
     }
 
+    if (isEmpty(value)) {
+      return callback({ message: t('Please input valid Selector') })
+    }
+
     if (!isValidLabel(value)) {
       return callback({ message: t('LABEL_FORMAT_DESC') })
     }
@@ -130,7 +134,7 @@ export default class ServiceSettings extends React.Component {
       <Form.Item
         label={t('LabelSelector')}
         rules={[
-          { required: true, message: t('Please input selector') },
+          { required: true, message: t('Please input valid Selector') },
           { validator: this.labelsValidator },
         ]}
       >

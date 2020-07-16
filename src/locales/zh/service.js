@@ -73,7 +73,7 @@ export default {
   'Map Services outside the cluster': '映射集群外部的服务',
   'Please input ports': '请输入端口',
   'Please select a workload': '请选择一个工作负载',
-  'Please input valid Selector': '请输入正确的选择器',
+  'Please input valid Selector': '请输入有效的选择器',
   TOTAL_WORKLOAD: '共 {count} 个工作负载',
 
   'Enable Sticky Session': '开启会话保持',
