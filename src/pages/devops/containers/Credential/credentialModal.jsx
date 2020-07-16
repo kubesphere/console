@@ -22,8 +22,8 @@ import PropTypes from 'prop-types'
 import { get, set } from 'lodash'
 import { observable, action } from 'mobx'
 import { observer } from 'mobx-react'
-import { Form, Modal } from 'components/Base'
-import { Input, Select, TextArea, Loading } from '@pitrix/lego-ui'
+import { Form, Modal, TextArea } from 'components/Base'
+import { Input, Select, Loading } from '@pitrix/lego-ui'
 import CredentialStore from 'stores/devops/credential'
 
 import styles from './index.scss'
@@ -285,8 +285,8 @@ export default class CredentialModal extends React.Component {
             <div className={styles.desc}>{t('EDIT_CREDENTIAL_DESC')}</div>
           ) : null}
           {this.renderCredentForm()}
-          <Form.Item label={t('Description')}>
-            <TextArea name="description" />
+          <Form.Item label={t('Description')} desc={t('DESCRIPTION_DESC')}>
+            <TextArea name="description" maxLength={256} />
           </Form.Item>
         </Form>
       </Modal>

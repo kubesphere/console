@@ -18,8 +18,8 @@
 
 import { get, set, debounce } from 'lodash'
 import React from 'react'
-import { Columns, Column, Input, TextArea, Select } from '@pitrix/lego-ui'
-import { Form } from 'components/Base'
+import { Columns, Column, Input, Select } from '@pitrix/lego-ui'
+import { Form, TextArea } from 'components/Base'
 import { NumberInput, SelectInput, ProjectSelect } from 'components/Inputs'
 import ToggleView from 'components/ToggleView'
 import {
@@ -148,8 +148,11 @@ export default class BaseInfo extends React.Component {
             </Form.Item>
           </Column>
           <Column className="is-6">
-            <Form.Item label={t('Description')}>
-              <TextArea name="metadata.annotations['kubesphere.io/description']" />
+            <Form.Item label={t('Description')} desc={t('DESCRIPTION_DESC')}>
+              <TextArea
+                name="metadata.annotations['kubesphere.io/description']"
+                maxLength={256}
+              />
             </Form.Item>
           </Column>
         </Columns>

@@ -167,9 +167,6 @@ export default {
   CLUSTER_NAME_DESC:
     'It can only contain lowercase letters, numbers and hyphens("-"), and must begin and end with a lowercase letter or a number. The maximum length of characters is set to 14.',
 
-  CLUSTER_ALIAS_DESC:
-    'Alias can be composed of any character to help you better distinguish resources and support Chinese names.',
-
   COMPONENT_VERSION_DESC:
     'For the application of governance to distinguish between components. It can only contain lowercase letters and numbers. The maximum length of characters is set to 16.',
 

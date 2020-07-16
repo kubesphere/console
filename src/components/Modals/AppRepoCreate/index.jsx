@@ -119,12 +119,8 @@ export default class AddRepoModal extends Component {
           onValidate={this.handleUrlValidate}
           isSubmitting={this.props.isSubmitting}
         />
-        <Form.Item label={t('Description')}>
-          <TextArea
-            name="description"
-            maxLength={1000}
-            placeholder={t('SHORT_DESCRIPTION_DESC')}
-          />
+        <Form.Item label={t('Description')} desc={t('DESCRIPTION_DESC')}>
+          <TextArea name="description" maxLength={256} />
         </Form.Item>
       </Modal.Form>
     )

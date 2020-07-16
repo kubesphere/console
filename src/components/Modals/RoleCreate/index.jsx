@@ -20,9 +20,9 @@ import { get, set } from 'lodash'
 import React from 'react'
 import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
-import { Input, TextArea } from '@pitrix/lego-ui'
+import { Input } from '@pitrix/lego-ui'
 
-import { Modal, Form, Alert } from 'components/Base'
+import { Modal, Form, Alert, TextArea } from 'components/Base'
 import EditAuthorization from 'components/Modals/EditAuthorization'
 
 import { PATTERN_NAME } from 'utils/constants'
@@ -152,8 +152,11 @@ export default class CreateModal extends React.Component {
         >
           <Input name="metadata.annotations['kubesphere.io/alias-name']" />
         </Form.Item>
-        <Form.Item label={t('Description')}>
-          <TextArea name="metadata.annotations['kubesphere.io/description']" />
+        <Form.Item label={t('Description')} desc={t('DESCRIPTION_DESC')}>
+          <TextArea
+            name="metadata.annotations['kubesphere.io/description']"
+            maxLength={256}
+          />
         </Form.Item>
         <Alert
           className="margin-t12"

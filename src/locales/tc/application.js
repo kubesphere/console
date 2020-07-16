@@ -131,9 +131,6 @@ export default {
   CLUSTER_NAME_DESC:
     '最長 14 个字元，只能包含小寫字母、數字及分隔符號("-")，且必須以小寫字母或數字開頭及結尾',
 
-  CLUSTER_ALIAS_DESC:
-    '别名可以由任意字元組成，幫助您更好的區分資源，並支持中文名稱',
-
   SERVICE_PORT_NAME_DESC:
     '端口的名字必須遵循如下格式 <protocol>[-<suffix>]，可以是 http、http2、 grpc、 mongo、 或者 redis 作為 <protocol> ，這樣才能使用 Istio 的路由功能。例如 name: http2-foo 和 name: http 都是有效的端口名稱，而 name: http2foo 不是。',
 

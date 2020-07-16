@@ -63,7 +63,7 @@ export default class AppEditModal extends React.Component {
           <Input name="name" disabled />
         </Form.Item>
         <Form.Item label={t('Description')} desc={t('DESCRIPTION_DESC')}>
-          <TextArea maxLength={1000} name="description" />
+          <TextArea maxLength={256} name="description" />
         </Form.Item>
       </Modal.Form>
     )

@@ -181,8 +181,8 @@ export default class ProjectCreateModal extends React.Component {
             <Column>
               <Form.Item label={t('Description')} desc={t('DESCRIPTION_DESC')}>
                 <TextArea
-                  maxLength={1000}
                   name="metadata.annotations['kubesphere.io/description']"
+                  maxLength={256}
                 />
               </Form.Item>
             </Column>

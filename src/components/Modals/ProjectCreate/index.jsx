@@ -20,8 +20,8 @@ import React from 'react'
 import { observer } from 'mobx-react'
 import { get, isEmpty } from 'lodash'
 import PropTypes from 'prop-types'
-import { Columns, Column, Select, Input, TextArea } from '@pitrix/lego-ui'
-import { Modal, Form } from 'components/Base'
+import { Columns, Column, Select, Input } from '@pitrix/lego-ui'
+import { Modal, Form, TextArea } from 'components/Base'
 import ClusterTitle from 'components/Clusters/ClusterTitle'
 import { PATTERN_SERVICE_NAME, PATTERN_LENGTH_63 } from 'utils/constants'
 
@@ -251,8 +251,11 @@ export default class ProjectCreateModal extends React.Component {
               </Form.Item>
             </Column>
             <Column>
-              <Form.Item label={t('Description')}>
-                <TextArea name="metadata.annotations['kubesphere.io/description']" />
+              <Form.Item label={t('Description')} desc={t('DESCRIPTION_DESC')}>
+                <TextArea
+                  name="metadata.annotations['kubesphere.io/description']"
+                  maxLength={256}
+                />
               </Form.Item>
             </Column>
           </Columns>

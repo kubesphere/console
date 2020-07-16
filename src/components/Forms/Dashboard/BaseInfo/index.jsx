@@ -19,10 +19,10 @@
 import React from 'react'
 import { observer } from 'mobx-react'
 import { get } from 'lodash'
-import { Columns, Column, Input, TextArea } from '@pitrix/lego-ui'
+import { Columns, Column, Input } from '@pitrix/lego-ui'
 import { PATTERN_NAME, MODULE_KIND_MAP } from 'utils/constants'
-import { Form } from 'components/Base'
-import { CardSelect } from 'components/Inputs'
+import { Form, TextArea } from 'components/Base'
+import CardSelect from 'components/Inputs/CardSelect'
 import tempalteSettings from 'stores/monitoring/custom/template.json'
 import ItemContianer from 'components/Modals/CustomMonitoring/components/Form/ItemContianer'
 
@@ -87,8 +87,8 @@ export default class BaseInfo extends React.Component {
           </Column>
 
           <Column>
-            <Form.Item label={t('Description')}>
-              <TextArea name="spec.description" />
+            <Form.Item label={t('Description')} desc={t('DESCRIPTION_DESC')}>
+              <TextArea name="spec.description" maxLength={256} />
             </Form.Item>
           </Column>
         </Columns>

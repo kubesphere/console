@@ -20,10 +20,10 @@ import React from 'react'
 import { computed } from 'mobx'
 import { observer } from 'mobx-react'
 import { get } from 'lodash'
-import { Input, TextArea, Columns, Column } from '@pitrix/lego-ui'
+import { Input, Columns, Column } from '@pitrix/lego-ui'
 import { compareVersion } from 'utils/app'
 import { PATTERN_NAME } from 'utils/constants'
-import { Form, SearchSelect, Tag, Text } from 'components/Base'
+import { Form, SearchSelect, Tag, Text, TextArea } from 'components/Base'
 
 import Placement from './Placement'
 
@@ -129,8 +129,8 @@ export default class BasicInfo extends React.Component {
           </Columns>
           <Columns>
             <Column>
-              <Form.Item label={t('Description')}>
-                <TextArea name="desc" />
+              <Form.Item label={t('Description')} desc={t('DESCRIPTION_DESC')}>
+                <TextArea name="desc" maxLength={256} />
               </Form.Item>
             </Column>
             <Column />
