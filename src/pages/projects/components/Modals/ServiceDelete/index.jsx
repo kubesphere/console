@@ -165,8 +165,12 @@ export default class ServiceDeleteModal extends React.Component {
     })
 
     const results = await Promise.all(requests)
+    const relatedResources = uniqBy(flatten(results), 'uid').filter(
+      item => !isEmpty(item.name)
+    )
+
     this.setState({
-      relatedResources: uniqBy(flatten(results), 'uid'),
+      relatedResources,
       isLoading: false,
     })
   }
@@ -176,7 +180,6 @@ export default class ServiceDeleteModal extends React.Component {
   handleOk = async () => {
     const { onOk, store, resource } = this.props
     const { selectedRelatedResourceIds, relatedResources } = this.state
-
     const requests = []
     relatedResources.forEach(item => {
       if (selectedRelatedResourceIds.includes(item.uid)) {
@@ -185,7 +188,7 @@ export default class ServiceDeleteModal extends React.Component {
         } else if (modules.includes(item.module)) {
           this.workloadStore.setModule(item.module)
           requests.push(this.workloadStore.delete(item))
-        } else if (item.module === 's2ibuilders') {
+        } else if (item.module === 's2ibuilders' || item.type === 's2i') {
           requests.push(this.builderStore.delete(item))
         }
       }
