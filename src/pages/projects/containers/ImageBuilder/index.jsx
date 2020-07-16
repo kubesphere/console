@@ -174,7 +174,6 @@ export default class ImageBuilders extends React.Component {
         <Table
           {...tableProps}
           itemActions={this.itemActions}
-          tableActions={this.tableActions}
           columns={this.getColumns()}
           onCreate={this.showCreate}
         />
