@@ -33,6 +33,13 @@ $logCountColor: #329dce;
           }
         }
       }
+
+      :global {
+        .select-menu-outer {
+          width: auto !important;
+          min-width: 130px;
+        }
+      }
     }
   }
 }

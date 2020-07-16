@@ -40,7 +40,7 @@ export default class AddressStore extends Base {
     this.config = params
     this.notificationEmailConfig = {
       validation_icon: logSVG,
-      validation_title: '[KubeSphere] 测试邮件',
+      validation_title: t('TEST_EMAIL_TITLE'),
     }
   }
 

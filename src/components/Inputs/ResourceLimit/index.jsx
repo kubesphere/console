@@ -113,7 +113,8 @@ export default class ResourceLimit extends React.Component {
   cpuFormatter = value => {
     if (value > 0 && value < 1) {
       return value.toFixed(2)
-    } else if (value > 1 && value !== Infinity) {
+    }
+    if (value > 1 && value !== Infinity) {
       return value.toFixed(1)
     }
     return value
@@ -123,9 +124,11 @@ export default class ResourceLimit extends React.Component {
     value = Math.round(value)
     if (value > 0 && value < 1000) {
       return value - (value % 10)
-    } else if (value > 1000 && value < 2000) {
+    }
+    if (value > 1000 && value < 2000) {
       return value - (value % 50)
-    } else if (value > 2000 && value !== Infinity) {
+    }
+    if (value > 2000 && value !== Infinity) {
       return value - (value % 100)
     }
     return value

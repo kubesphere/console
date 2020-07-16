@@ -35,6 +35,7 @@ export default {
   'Server Username': '服务器用户名',
   'Sender Email': '发件邮箱',
   'Platform Settings': '平台设置',
+  TEST_EMAIL_TITLE: '[KubeSphere] 测试邮件',
   TEST_EMAIL_RECIPIENT: '测试邮件接受地址',
   TEST_EMAIL_ADDRESS_FORM_DESC: '将作为接受测试邮件的地址',
 

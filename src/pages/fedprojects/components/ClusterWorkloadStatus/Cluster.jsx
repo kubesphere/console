@@ -22,6 +22,9 @@ import { observer } from 'mobx-react'
 
 import { Icon } from '@pitrix/lego-ui'
 import ClusterTitle from 'components/Clusters/ClusterTitle'
+import StatusReason from 'projects/components/StatusReason'
+
+import { getWorkloadStatus } from 'utils/status'
 
 import WebSocketStore from 'stores/websocket'
 
@@ -75,17 +78,22 @@ export default class Cluster extends Component {
   }
 
   render() {
-    const { cluster, workload = {} } = this.props
+    const { cluster, workload = {}, store } = this.props
 
     const { podNums = 0, readyPodNums = 0 } = workload
     const unReadyNums = podNums - readyPodNums
+    const { status, reason } = getWorkloadStatus(
+      workload,
+      store.resourceStore.module
+    )
 
     return (
       <div className={styles.cluster}>
         <ClusterTitle cluster={cluster} tagClass="float-right" theme="light" />
         <div className={styles.bottom}>
           <div className={styles.replicas}>
-            <span>{readyPodNums}</span> / <span>{podNums}</span>
+            <span>{readyPodNums}</span> / <span>{podNums}</span>&nbsp;
+            {reason && <StatusReason status={status} data={workload} />}
           </div>
           <div className={styles.pods}>
             {Array(Math.min(podNums, 6))

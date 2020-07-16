@@ -100,7 +100,10 @@ class ResourceStatus extends React.Component {
 
   renderPods() {
     const { detail, resources } = this.store
-    const clusters = detail.clusters.map(item => item.name)
+    const clustersMap = keyBy(this.props.projectStore.detail.clusters, 'name')
+    const clusters = detail.clusters
+      .filter(item => clustersMap[item.name])
+      .map(item => item.name)
     const resourceDetail = Object.values(resources)[0]
 
     if (isEmpty(resourceDetail)) {

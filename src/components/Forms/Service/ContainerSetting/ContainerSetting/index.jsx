@@ -17,14 +17,14 @@
  */
 
 import React from 'react'
-import { get } from 'lodash'
+import { get, isEmpty } from 'lodash'
 import { toJS } from 'mobx'
 import { generateId, cpuFormat, memoryFormat } from 'utils'
 
 import { PATTERN_NAME, PATTERN_LENGTH_63 } from 'utils/constants'
 
 import { Input } from '@pitrix/lego-ui'
-import { Form } from 'components/Base'
+import { Form, Alert } from 'components/Base'
 import { ResourceLimit } from 'components/Inputs'
 import ToggleView from 'components/ToggleView'
 
@@ -137,13 +137,20 @@ export default class ContainerSetting extends React.Component {
       </div>
     )
 
+    const defaultResourceLimit = this.defaultResourceLimit
+
     return (
-      <ToggleView>
+      <ToggleView defaultShow={isEmpty(defaultResourceLimit)}>
         <>
+          <Alert
+            className="margin-b12"
+            type="warning"
+            message={t('CONTAINER_RESOURCE_LIMIT_TIP')}
+          />
           <Form.Item>
             <ResourceLimit
               name={`${this.prefix}resources`}
-              defaultValue={this.defaultResourceLimit}
+              defaultValue={defaultResourceLimit}
             />
           </Form.Item>
           {message}
