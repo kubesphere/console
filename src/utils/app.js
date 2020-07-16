@@ -18,6 +18,7 @@
 
 import { capitalize } from 'lodash'
 
+import { safeAtob } from 'utils'
 import cookie from 'utils/cookie'
 import { STATUS_TRANSFER_MAP } from 'configs/openpitrix/version'
 import { saveAs } from 'file-saver'
@@ -79,7 +80,7 @@ export const getAppCategoryNames = categories => {
 
 export const downloadFileFromBase64 = (base64Str = '', fileName) => {
   // Convert the Base64 string back to text.
-  const byteString = atob(base64Str)
+  const byteString = safeAtob(base64Str)
 
   // Convert that text into a byte array.
   const ab = new ArrayBuffer(byteString.length)

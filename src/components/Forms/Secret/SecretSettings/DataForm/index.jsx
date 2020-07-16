@@ -22,6 +22,7 @@ import PropTypes from 'prop-types'
 import { Input, TextArea } from '@pitrix/lego-ui'
 import { Form } from 'components/Base'
 import { ReactComponent as BackIcon } from 'src/assets/back.svg'
+import { safeAtob } from 'utils'
 
 import styles from './index.scss'
 
@@ -66,7 +67,7 @@ export default class SecretDataForm extends React.Component {
 
     return {
       key: selectKey || '',
-      value: atob(detail[selectKey] || ''),
+      value: safeAtob(detail[selectKey] || ''),
     }
   }
 

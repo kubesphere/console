@@ -31,6 +31,7 @@ import {
 } from 'lodash'
 import {
   safeParseJSON,
+  safeAtob,
   generateId,
   getDescription,
   getAliasName,
@@ -653,7 +654,7 @@ const secretDataParser = data => {
     return Object.entries(get(data, 'data', {})).reduce(
       (prev, [key, value]) => ({
         ...prev,
-        [key]: atob(value) === 'undefined' ? '' : atob(value),
+        [key]: safeAtob(value) === 'undefined' ? '' : safeAtob(value),
       }),
       {}
     )
@@ -664,8 +665,8 @@ const secretDataParser = data => {
       ...prev,
       [key]:
         key === '.dockerconfigjson'
-          ? safeParseJSON(atob(value), {})
-          : atob(value),
+          ? safeParseJSON(safeAtob(value), {})
+          : safeAtob(value),
     }),
     {}
   )
