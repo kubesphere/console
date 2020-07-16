@@ -17,13 +17,13 @@
  */
 
 import React from 'react'
-import { get } from 'lodash'
+import { get, isEmpty } from 'lodash'
 import { generateId } from 'utils'
 
 import { PATTERN_NAME, PATTERN_LENGTH_63 } from 'utils/constants'
 
 import { Input, Select, Columns, Column } from '@pitrix/lego-ui'
-import { Form, Tag } from 'components/Base'
+import { Form, Tag, Alert } from 'components/Base'
 import { ResourceLimit } from 'components/Inputs'
 import ToggleView from 'components/ToggleView'
 
@@ -91,9 +91,9 @@ export default class ContainerSetting extends React.Component {
 
   renderAdvancedSettings() {
     const { defaultContainerType, onContainerTypeChange } = this.props
-
+    const defaultResourceLimit = this.defaultResourceLimit
     return (
-      <ToggleView>
+      <ToggleView defaultShow={isEmpty(defaultResourceLimit)}>
         <>
           <Columns className={styles.columns}>
             <Column>
@@ -127,10 +127,15 @@ export default class ContainerSetting extends React.Component {
               </Form.Item>
             </Column>
           </Columns>
+          <Alert
+            className="margin-b12"
+            type="warning"
+            message={t('CONTAINER_RESOURCE_LIMIT_TIP')}
+          />
           <Form.Item>
             <ResourceLimit
               name="resources"
-              defaultValue={this.defaultResourceLimit}
+              defaultValue={defaultResourceLimit}
             />
           </Form.Item>
         </>

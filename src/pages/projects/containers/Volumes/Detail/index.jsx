@@ -62,8 +62,14 @@ export default class VolumeDetail extends React.Component {
   }
 
   get listUrl() {
+    const { isFedManaged } = toJS(this.store.detail)
+
     const { workspace, cluster, namespace } = this.props.match.params
     if (workspace) {
+      if (isFedManaged) {
+        return `/${workspace}/federatedprojects/${namespace}/${this.module}`
+      }
+
       return `/${workspace}/clusters/${cluster}/projects/${namespace}/${
         this.module
       }`

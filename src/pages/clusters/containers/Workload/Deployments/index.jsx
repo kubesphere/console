@@ -127,7 +127,7 @@ export default class Deployments extends React.Component {
   }
 
   getItemDesc = record => {
-    const { status, reason } = getWorkloadStatus(record, this.module)
+    const { status, reason } = getWorkloadStatus(record, this.props.module)
     const desc = reason ? (
       <StatusReason status={status} reason={t(reason)} data={record} />
     ) : (

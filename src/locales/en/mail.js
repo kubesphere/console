@@ -31,6 +31,7 @@ export default {
     'This module provides email delivery services with custom settings.',
   EMPTY_MAIL_SERVER:
     'Temporarily no email server has been set up. You need to set up an email server to provide email delivery services.',
+  TEST_EMAIL_TITLE: '[KubeSphere] Testing Email',
   TEST_EMAIL_RECIPIENT: 'Testing Email Address',
   TEST_EMAIL_ADDRESS_FORM_DESC: 'The testing address to receive emails',
   SENDER_MAIL: 'Sender Email Address',

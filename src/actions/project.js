@@ -110,7 +110,7 @@ export default {
       projectDetail,
       ...props
     }) {
-      if (isFederated) {
+      if (isFederated && detail) {
         detail.limit = get(detail, 'resource.limit')
       }
 

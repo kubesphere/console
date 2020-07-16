@@ -18,7 +18,7 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import { get } from 'lodash'
+import { get, isEmpty } from 'lodash'
 
 import { Icon } from '@pitrix/lego-ui'
 import { List, Tag } from 'components/Base'
@@ -44,26 +44,31 @@ const Card = ({ type = 'worker', container, onDelete, onEdit, readOnly }) => {
     )
   }
 
-  const extras = (
-    <div className={styles.limits}>
-      {(limits.cpu || requests.cpu) && (
-        <span className={styles.limit}>
-          <Icon name="cpu" size={20} />
-          <span>{`${requests.cpu ? cpuFormat(requests.cpu) : 0} ~ ${
-            limits.cpu ? cpuFormat(limits.cpu) : '∞'
-          }`}</span>
-        </span>
-      )}
-      {(limits.memory || requests.memory) && (
-        <span className={styles.limit}>
-          <Icon name="memory" size={20} />
-          {`${requests.memory ? `${memoryFormat(requests.memory)}Mi` : 0} ~ ${
-            limits.memory ? `${memoryFormat(limits.memory)}Mi` : '∞'
-          }`}
-        </span>
-      )}
-    </div>
-  )
+  let extras
+  if (isEmpty(limits) && isEmpty(requests)) {
+    extras = <div className={styles.limits}>{t('No resource limits')}</div>
+  } else {
+    extras = (
+      <div className={styles.limits}>
+        {(limits.cpu || requests.cpu) && (
+          <span className={styles.limit}>
+            <Icon name="cpu" size={20} />
+            <span>{`${requests.cpu ? cpuFormat(requests.cpu) : 0} ~ ${
+              limits.cpu ? cpuFormat(limits.cpu) : '∞'
+            }`}</span>
+          </span>
+        )}
+        {(limits.memory || requests.memory) && (
+          <span className={styles.limit}>
+            <Icon name="memory" size={20} />
+            {`${requests.memory ? `${memoryFormat(requests.memory)}Mi` : 0} ~ ${
+              limits.memory ? `${memoryFormat(limits.memory)}Mi` : '∞'
+            }`}
+          </span>
+        )}
+      </div>
+    )
+  }
 
   const title =
     type === 'init' ? (

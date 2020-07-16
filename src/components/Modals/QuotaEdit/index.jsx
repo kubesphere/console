@@ -98,7 +98,8 @@ export default class QuotaEditModal extends React.Component {
     const memoryFormatter = value => {
       if (value > 0 && value < 1) {
         return value.toFixed(2)
-      } else if (value > 1 && value !== Infinity) {
+      }
+      if (value > 1 && value !== Infinity) {
         return value.toFixed(1)
       }
       return value

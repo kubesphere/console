@@ -663,6 +663,9 @@ export default {
   WORKLOAD_CREATE_DESC:
     'Workload is usually the actual carrier for accessing services and is also the actual carrier for system applications such as node log collection and monitoring. Workload is also an abstract model for a group of Pods.',
 
+  CONTAINER_RESOURCE_LIMIT_TIP:
+    "Pleas set the container's resource limits and requests, which will help the system to better schedule and improve stability. You can also set the default value through [Project Management] -> [Edit Resource Default Request].",
+
   COMPARE_WITH: 'Comparison with the previous version {version}',
   REVISION_DESC:
     'After the resource template of workload is changed, a new log will be generated and Pods will be rescheduled for version update. The latest 10 versions will be saved by default. You can implement a redeployment based on the change log.',
