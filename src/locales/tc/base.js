@@ -49,7 +49,7 @@ export default {
   Pods: '容器組',
   Memory: '記憶體',
   memory: '記憶體',
-  Custom: '自定議',
+  Custom: '自定義',
   Others: '其它',
 
   Platform: '平台管理',
@@ -114,13 +114,13 @@ export default {
   pending: '等待中',
   updating: '更新中',
   'is updating': '正在更新',
-  warning: '异常',
+  warning: '異常',
   stopped: '已停止',
   disabled: '已停用',
-  deleted: '已删除',
+  deleted: '已刪除',
   completed: '已完成',
   unfinished: '未完成',
-  terminated: '已终止',
+  terminated: '已終止',
   healthy: '健康',
   unknown: '未知',
   failed: '失敗',
@@ -135,7 +135,7 @@ export default {
   Cordon: '停止調度',
   Uncordon: '啟動調度',
   Delete: '刪除',
-  Destroy: '銷毁',
+  Destroy: '銷毀',
   Enable: '啟用',
   Disable: '停用',
   Reset: '重置',
@@ -180,7 +180,7 @@ export default {
 
   NOT_ENABLE: '{resource}暫未啟用',
   NOT_AVAILABLE: '暫時没有可用的{resource}',
-  NO_RESOURCE: '暫时没有{resource}',
+  NO_RESOURCE: '暫時没有{resource}',
   RESOURCE_NOT_FOUND: '很抱歉，没有找到您所尋找的資源。',
   'No Available Resource': '暫無可用資源',
   'No Data': '暫無數據',
@@ -197,7 +197,7 @@ export default {
   'Display all': '顯示全部',
   'Display selected': '顯示已選',
   Display: '顯示',
-  Hidden: '隐藏',
+  Hidden: '隱藏',
   Fold: '折疊',
   Unfold: '展開',
 
@@ -530,7 +530,7 @@ export default {
   CREATE_STATUS_UPDATING: '創建中',
   CREATE_STATUS_FAILED: '創建失敗',
 
-  DATA_SOURCE: '數據源',
+  DATA_SOURCE: '數據來源',
 
   EMPTY_WRAPPER: '未發現{resource}',
 
@@ -553,5 +553,5 @@ export default {
 
   HOW_TO_MODIFY_PLATFORM_INFO: '如何修改平台資訊?',
   PLATFORM_INFO_DESC: '查看平台標題及描述等資訊',
-  PLATFORM_SETTINGS_SELECTOR_DESC: '客製化平台的系统配置',
+  PLATFORM_SETTINGS_SELECTOR_DESC: '客製化平台的系統配置',
 }

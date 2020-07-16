@@ -59,7 +59,7 @@ export default {
   'Choose a provider': '選擇服務商',
 
   'User Projects': '使用者項目',
-  'System Projects': '系统項目',
+  'System Projects': '系統項目',
 
   'Waiting for the cluster to join': '等待集群加入',
 
@@ -180,7 +180,7 @@ export default {
   CLUSTER_AGENT_DESC: '需要在集群中設置下相應的代理Agent',
 
   SELECT_HOST_CLUSTER_WARNING:
-    '请尽量不要在 Host 集群上创建资源，以免 Host 集群负载过高，导致多集群稳定性下降。',
+    '請盡量不要在 Host 集群上創建資源，以免 Host 集群負載過高，導致多集群穩定性下降。',
   HOST_CLUSTER_VISIBILITY_WARNING:
-    '请谨慎将 Host 集群授权给企业空间，Host 集群负载过高会导致多集群稳定性下降。',
+    '請謹慎將 Host 集群授權给企業空間，Host 集群負載過高會導致多集群穩定性下降。',
 }

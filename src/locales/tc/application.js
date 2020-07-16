@@ -138,10 +138,10 @@ export default {
     '端口的名字必須遵循如下格式 <protocol>[-<suffix>]，可以是 http、http2、 grpc、 mongo、 或者 redis 作為 <protocol> ，這樣才能使用 Istio 的路由功能。例如 name: http2-foo 和 name: http 都是有效的端口名稱，而 name: http2foo 不是。',
 
   LB_ALG_DESC:
-    '支持標準的負載平衡算法</br>ROUND_ROBIN：輪詢，預設負載平衡算法。</br>LEAST_CONN：随機選取兩個健康的主機，再從所選取的兩個主機中選擇一個連接數較少的主機。</br>RANDOM：從所有健康的主機中，随機選取一個。',
+    '支持標準的負載平衡算法</br>ROUND_ROBIN：輪詢，預設負載平衡算法。</br>LEAST_CONN：隨機選取兩個健康的主機，再從所選取的兩個主機中選擇一個連接數較少的主機。</br>RANDOM：從所有健康的主機中，隨機選取一個。',
   LB_ROUND_ROBIN: '輪詢(ROUND_ROBIN)',
   LB_LEAST_CONN: '最小連接數(LEAST_CONN)',
-  LB_RANDOM: '随機(RANDOM)',
+  LB_RANDOM: '隨機(RANDOM)',
 
   'Last {num} records': '最近 {num} 條紀錄',
   'Last {hour} hour': '最近 {hour} 小時',
