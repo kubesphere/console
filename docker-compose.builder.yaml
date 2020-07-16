@@ -3,9 +3,9 @@ services:
   base:
     image: node:10-alpine
     volumes:
-      - nodemodules:/root/KubeSphereUI/node_modules
-      - .:/root/KubeSphereUI
-    working_dir: /root/KubeSphereUI
+      - nodemodules:/opt/kubesphere/console/node_modules
+      - .:/opt/kubesphere/console
+    working_dir: /opt/kubesphere/console
 
   install:
     extends:
