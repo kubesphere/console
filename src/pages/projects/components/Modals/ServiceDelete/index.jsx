@@ -194,13 +194,14 @@ export default class ServiceDeleteModal extends React.Component {
       }
     })
 
-    await Promise.all(requests)
     if (isArray(resource)) {
       await Promise.all(resource.map(item => store.delete(item)))
       store.list.setSelectRowKeys([])
     } else {
       await store.delete(resource)
     }
+
+    await Promise.all(requests)
 
     onOk()
   }

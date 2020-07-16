@@ -94,18 +94,6 @@ export default class NodeDetail extends React.Component {
             success: this.fetchData,
           }),
       },
-      {
-        key: 'delete',
-        icon: 'trash',
-        text: t('Delete'),
-        action: 'delete',
-        type: 'danger',
-        onClick: () =>
-          this.trigger('resource.delete', {
-            type: t(this.name),
-            detail: this.store.detail,
-          }),
-      },
     ]
   }
 

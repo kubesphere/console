@@ -196,7 +196,7 @@ export default class PodsCard extends React.Component {
   fetchMetrics = (params = {}) => {
     const { data, isLoading } = this.store.list
 
-    if (isEmpty(data) || isLoading) return false
+    if (isEmpty(data) || isLoading || isEmpty(this.params)) return false
 
     this.monitorStore.fetchMetrics({
       step: '1m',

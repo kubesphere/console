@@ -22,7 +22,7 @@ import { Tooltip, Icon } from '@pitrix/lego-ui'
 
 import { cpuFormat } from 'utils'
 import { ICON_TYPES, NODE_STATUS } from 'utils/constants'
-import { getNodeRoles, getNodeStatus } from 'utils/node'
+import { getNodeStatus } from 'utils/node'
 import { getValueByUnit } from 'utils/monitoring'
 import NodeStore from 'stores/node'
 import NodeMonitoringStore from 'stores/monitoring/node'
@@ -78,7 +78,7 @@ export default class Nodes extends React.Component {
   }
 
   get itemActions() {
-    const { store, routing, trigger } = this.props
+    const { store, routing } = this.props
     return [
       {
         key: 'uncordon',
@@ -96,20 +96,6 @@ export default class Nodes extends React.Component {
         show: item => !this.getUnschedulable(item),
         onClick: item => store.cordon(item).then(routing.query),
       },
-      {
-        key: 'delete',
-        icon: 'trash',
-        text: t('Delete'),
-        action: 'delete',
-        show: item => getNodeRoles(item.labels).includes('master'),
-        onClick: item =>
-          trigger('resource.delete', {
-            type: t('Cluster Node'),
-            resource: item.name,
-            detail: item,
-            success: routing.query,
-          }),
-      },
     ]
   }
 
@@ -126,17 +112,6 @@ export default class Nodes extends React.Component {
           action: 'edit',
           onClick: () =>
             trigger('node.taint.batch', {
-              success: routing.query,
-            }),
-        },
-        {
-          key: 'delete',
-          type: 'danger',
-          text: t('Delete'),
-          action: 'delete',
-          onClick: () =>
-            trigger('resource.delete.batch', {
-              type: t('Cluster Node'),
               success: routing.query,
             }),
         },

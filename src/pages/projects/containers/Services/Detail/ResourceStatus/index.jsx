@@ -66,7 +66,7 @@ export default class ResourceStatus extends React.Component {
     const { params } = this.props.match
     const { name, type } = this.store.workload
 
-    if (type) {
+    if (type && name) {
       this.workloadStore.setModule(type)
       const result = await this.workloadStore.checkName({ ...params, name })
       if (result.exist) {
