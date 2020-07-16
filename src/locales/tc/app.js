@@ -200,7 +200,7 @@ export default {
   CHOOSE_APP_CATEGORY_DESC: '選擇適合的應用分類，便於使用者更快發現你的應用',
   'Service Provider Website': '服務商網站',
   "Service provider's official website address": '服務商的官方網站地址',
-  MODIFY_VERSION_TIPS: '每次修改的内容都將跟随下一次版本上架而真正生效。',
+  MODIFY_VERSION_TIPS: '每次修改的内容都將跟隨下一次版本上架而真正生效。',
   UNDER_REVIEW_TIPS: '目前應用有版本正在審核中，以下資訊暫時不可更改',
 
   'Instance Name': '實例名稱',
