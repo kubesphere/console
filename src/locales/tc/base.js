@@ -266,13 +266,10 @@ export default {
   LONG_NAME_DESC:
     '最長 253 個字元，只能包含小寫字母、數字及分隔符號("-")，且必須以小寫字母或數字開頭及結尾',
   LONG_NAME_TOO_LONG: '最長 253 個字元',
-  LONG_DESC_TOO_LONG: '最長 1000 個字元',
   ALIAS_DESC: '别名可以由任意字元组成，幫助您更好的區分資源，並支持中文名稱',
   LABEL_FORMAT_DESC:
     '標籤的 key 和 value 最長 63 個字元，key 如果包含域名, 則最長 253 字元。只能包含大小寫字母、數字, 分隔符號("-")，下底線(_)及小數點(.)，且必須以數字或大小寫開頭和結尾',
-  DESCRIPTION_DESC:
-    '描述將被作為註解添加到資源中，並顯示在應用的詳情中，描述資訊不超過 1000 个字元',
-  SHORT_DESCRIPTION_DESC: '描述資訊不超過 1000 個字元',
+  DESCRIPTION_DESC: '描述資訊不超過 256 個字元',
   PROJECT_DESC: '將根據項目進行資源進行分組, 可以按項目對資源進行查看管理',
   'MULTI-CLUSTER_PROJECT_CREATE_DESC':
     '將根據項目進行資源進行分組, 可以按項目對資源進行查看管理',

@@ -20,8 +20,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import copy from 'fast-copy'
 
-import { Icon, Input, TextArea } from '@pitrix/lego-ui'
-import { Form, Modal, Tag } from 'components/Base'
+import { Icon, Input } from '@pitrix/lego-ui'
+import { Form, Modal, Tag, TextArea } from 'components/Base'
 import { SelectInput } from 'components/Inputs'
 
 import {
@@ -109,8 +109,11 @@ export default class EditBasicInfoModal extends React.Component {
             optionRenderer={this.providerOptionRenderer}
           />
         </Form.Item>
-        <Form.Item label={t('Description')}>
-          <TextArea name="metadata.annotations['kubesphere.io/description']" />
+        <Form.Item label={t('Description')} desc={t('DESCRIPTION_DESC')}>
+          <TextArea
+            name="metadata.annotations['kubesphere.io/description']"
+            maxLength={256}
+          />
         </Form.Item>
       </Modal.Form>
     )

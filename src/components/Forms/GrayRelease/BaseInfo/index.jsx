@@ -22,8 +22,8 @@ import { observer } from 'mobx-react'
 
 import { PATTERN_NAME } from 'utils/constants'
 
-import { Columns, Column, Input, TextArea } from '@pitrix/lego-ui'
-import { Form } from 'components/Base'
+import { Columns, Column, Input } from '@pitrix/lego-ui'
+import { Form, TextArea } from 'components/Base'
 
 @observer
 export default class BaseInfo extends React.Component {
@@ -88,8 +88,11 @@ export default class BaseInfo extends React.Component {
         </Columns>
         <Columns>
           <Column>
-            <Form.Item label={t('Description')}>
-              <TextArea name="metadata.annotations['kubesphere.io/description']" />
+            <Form.Item label={t('Description')} desc={t('DESCRIPTION_DESC')}>
+              <TextArea
+                name="metadata.annotations['kubesphere.io/description']"
+                maxLength={256}
+              />
             </Form.Item>
           </Column>
         </Columns>

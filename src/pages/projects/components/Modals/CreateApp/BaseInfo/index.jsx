@@ -19,10 +19,10 @@
 import { get, set, debounce } from 'lodash'
 import React from 'react'
 import { PropTypes } from 'prop-types'
-import { Input, Select, TextArea } from '@pitrix/lego-ui'
+import { Input, Select } from '@pitrix/lego-ui'
 import { PATTERN_NAME, PATTERN_LENGTH_63 } from 'utils/constants'
 import { updateFederatedAnnotations, generateId } from 'utils'
-import { Form } from 'components/Base'
+import { Form, TextArea } from 'components/Base'
 
 import styles from './index.scss'
 
@@ -165,8 +165,11 @@ export default class BaseInfo extends React.Component {
               disabled={!serviceMeshEnable}
             />
           </Form.Item>
-          <Form.Item label={t('Description')}>
-            <TextArea name="metadata.annotations['kubesphere.io/description']" />
+          <Form.Item label={t('Description')} desc={t('DESCRIPTION_DESC')}>
+            <TextArea
+              name="metadata.annotations['kubesphere.io/description']"
+              maxLength={256}
+            />
           </Form.Item>
         </Form>
       </div>

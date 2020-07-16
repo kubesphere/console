@@ -155,11 +155,11 @@ export default class EditBasicInfoModal extends React.Component {
             onMenuScrollToBottom={this.handleScrollToBottom}
           />
         </Form.Item>
-        <Form.Item label={t('Description')} desc={t('SHORT_DESCRIPTION_DESC')}>
+        <Form.Item label={t('Description')} desc={t('DESCRIPTION_DESC')}>
           <TextArea
             name="metadata.annotations['kubesphere.io/description']"
+            maxLength={256}
             rows="3"
-            maxLength={1000}
           />
         </Form.Item>
       </Modal.Form>

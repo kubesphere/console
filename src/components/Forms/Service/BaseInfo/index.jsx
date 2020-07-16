@@ -19,8 +19,8 @@
 import { get, set, debounce } from 'lodash'
 import React from 'react'
 import { observer } from 'mobx-react'
-import { Columns, Column, Input, TextArea } from '@pitrix/lego-ui'
-import { Form } from 'components/Base'
+import { Columns, Column, Input } from '@pitrix/lego-ui'
+import { Form, TextArea } from 'components/Base'
 import { updateLabels, updateFederatedAnnotations, generateId } from 'utils'
 import { ProjectSelect } from 'components/Inputs'
 
@@ -230,8 +230,11 @@ export default class ServiceBaseInfo extends React.Component {
             </Column>
           )}
           <Column>
-            <Form.Item label={t('Description')}>
-              <TextArea name="metadata.annotations['kubesphere.io/description']" />
+            <Form.Item label={t('Description')} desc={t('DESCRIPTION_DESC')}>
+              <TextArea
+                name="metadata.annotations['kubesphere.io/description']"
+                maxLength={256}
+              />
             </Form.Item>
           </Column>
         </Columns>

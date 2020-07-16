@@ -181,12 +181,12 @@ export default class BaseInfo extends React.Component {
           <Form.Item
             controlClassName={styles.textarea}
             label={t('Description')}
-            desc={t('SHORT_DESCRIPTION_DESC')}
+            desc={t('DESCRIPTION_DESC')}
           >
             <TextArea
               name="metadata.annotations['kubesphere.io/description']"
+              maxLength={256}
               rows="3"
-              maxLength={1000}
             />
           </Form.Item>
         </Form>
