@@ -32,7 +32,7 @@ export default {
   MAIL_SERVER_CONFIG_NEED_VERIFIED_TIP:
     '您目前的伺服器配置已發生變化，請重新發送測試郵件並保存配置，或是取消修改',
 
-  'Server Username': '服务器用户名',
+  'Server Username': '伺服器使用者名稱',
   'Sender Email': '寄件郵箱',
   'Platform Settings': '平台設置',
   TEST_EMAIL_TITLE: '[KubeSphere] 測試郵件',
