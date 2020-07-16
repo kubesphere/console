@@ -73,6 +73,7 @@ export default class AdvancedSettings extends React.Component {
         >
           <Metadata
             store={store}
+            module={module}
             cluster={this.cluster}
             namespace={this.namespace}
             formTemplate={this.fedFormTemplate}

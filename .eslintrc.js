@@ -102,6 +102,11 @@ module.exports = {
     'prefer-destructuring': 0,
     'max-classes-per-file': 0,
   },
+  parserOptions: {
+    ecmaFeatures: {
+      legacyDecorators: true
+    }
+  },
   globals: {
     t: true,
     globals: true,

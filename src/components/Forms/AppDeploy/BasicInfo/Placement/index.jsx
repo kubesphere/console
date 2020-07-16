@@ -191,9 +191,9 @@ export default class Placment extends Component {
     const { namespace, workspace, cluster } = formData
     return (
       <div className={styles.placement}>
-        <Text icon="project" title={namespace} description={t('Project')} />
-        <Text title={cluster} description={t('Cluster')} />
         <Text title={workspace} description={t('Workspace')} />
+        <Text title={cluster} description={t('Cluster')} />
+        <Text icon="project" title={namespace} description={t('Project')} />
         <Icon className={styles.icon} name="chevron-down" size={20} />
       </div>
     )

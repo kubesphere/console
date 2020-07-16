@@ -73,9 +73,9 @@ export default class BasicInfo extends React.Component {
     return (
       <div className={styles.placementWrapper}>
         <div className={styles.placementContent}>
-          <Text icon="project" title={namespace} description={t('Project')} />
-          <Text title={cluster} description={t('Cluster')} />
           <Text title={workspace} description={t('Workspace')} />
+          <Text title={cluster} description={t('Cluster')} />
+          <Text icon="project" title={namespace} description={t('Project')} />
         </div>
       </div>
     )
