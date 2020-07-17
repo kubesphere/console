@@ -99,8 +99,7 @@ const WorkspaceMapper = item => {
       get(item, 'spec.manager') ||
       getResourceCreator(item),
     clusters,
-    networkIsolation:
-      get(item, 'spec.template.spec.networkIsolation') === 'true',
+    networkIsolation: get(item, 'spec.template.spec.networkIsolation'),
     overrides,
     clusterTemplates,
     _originData: getOriginData(item),

@@ -52,13 +52,6 @@ export default class BaseInfo extends React.Component {
     return users
   }
 
-  get networkOptions() {
-    return [
-      { label: t('Off'), value: 'false' },
-      { label: t('On'), value: 'true' },
-    ]
-  }
-
   nameValidator = (rule, value, callback) => {
     if (!value) {
       return callback()
@@ -166,16 +159,6 @@ export default class BaseInfo extends React.Component {
                 this.userStore.list.total === this.userStore.list.data.length
               }
               onMenuScrollToBottom={this.handleScrollToBottom}
-            />
-          </Form.Item>
-          <Form.Item
-            label={t('Network Isolation')}
-            desc={t('NETWORK_ISOLATED_DESC')}
-          >
-            <Select
-              name="spec.template.spec.networkIsolation"
-              options={this.networkOptions}
-              defaultValue={String(globals.config.defaultNetworkIsolation)}
             />
           </Form.Item>
           <Form.Item

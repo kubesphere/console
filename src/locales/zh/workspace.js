@@ -53,6 +53,7 @@ export default {
   'Cluster Info': '集群信息',
 
   'No Available Cluster': '暂时没有可用集群',
+  'Network module is not installed': '网络模块未安装',
 
   WORKSPACE_OVERVIEW_DESC:
     '企业空间为 KubeSphere 提供了安全隔离的、具有访问权限控制的工作平台。这里您可以看到当前企业空间内资源运行的概况。',
