@@ -199,7 +199,7 @@ export default {
 
   HOW_TO_USE_QUOTA_Q: '如何使用配额?',
   HOW_TO_USE_QUOTA_A:
-    '资源配额（Resource Quotas）是用来限制用户资源用量的一种机制，可以对 CPU、内存、容器组数量等进行配额限制；点击项目管理可以对各类资源设置配额。',
+    '资源配额（Resource Quotas）是用来限制用户资源用量的一种机制，可以对 CPU、内存、容器组数量等进行配额限制。',
 
   WHAT_IS_LIMIT_RANGE_Q: '什么是容器资源默认请求?',
   WHAT_IS_LIMIT_RANGE_A:
