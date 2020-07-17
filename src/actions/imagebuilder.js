@@ -24,6 +24,15 @@ import RerunModal from 'components/Forms/ImageBuilder/RerunForm'
 import FORM_TEMPLATES from 'utils/form.templates'
 import formPersist from 'utils/form.persist'
 import FORM_STEPS from 'configs/steps/imagebuilder'
+import { get, isEmpty, isArray, set } from 'lodash'
+
+const filterImageEnv = (data, fn) => {
+  let environment = get(data, 'spec.config.environment')
+  if (isArray(environment)) {
+    environment = environment.filter(v => fn(v))
+  }
+  return environment
+}
 
 export default {
   'imagebuilder.create': {
@@ -37,6 +46,9 @@ export default {
           if (!data) {
             return
           }
+
+          const environment = filterImageEnv(data, v => !isEmpty(v))
+          set(data, 'spec.config.environment', environment)
 
           store.create(data, { cluster, namespace }).then(() => {
             Modal.close(modal)
@@ -62,6 +74,9 @@ export default {
     on({ store, detail, success, ...props }) {
       const modal = Modal.open({
         onOk: data => {
+          const environment = filterImageEnv(data, v => !isEmpty(v))
+          set(data, 'spec.config.environment', environment)
+
           store.updateBuilder(data, detail).then(() => {
             Modal.close(modal)
             success && success()
