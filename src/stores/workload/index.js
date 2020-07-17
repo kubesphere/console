@@ -125,7 +125,7 @@ export default class WorkloadStore extends Base {
   rerun({ name, cluster, namespace, resourceVersion }) {
     return this.submitting(
       request.post(
-        `kapis/resources.kubesphere.io/v1alpha2${this.getPath({
+        `kapis/operations.kubesphere.io/v1alpha2${this.getPath({
           cluster,
           namespace,
         })}/jobs/${name}?action=rerun&resourceVersion=${resourceVersion}`

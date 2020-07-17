@@ -64,7 +64,7 @@ export default class Jobs extends React.Component {
   }
 
   get itemActions() {
-    const { trigger } = this.props
+    const { trigger, store } = this.props
     return [
       {
         key: 'edit',
@@ -81,10 +81,7 @@ export default class Jobs extends React.Component {
         icon: 'refresh',
         text: t('Rerun'),
         action: 'edit',
-        onClick: item =>
-          trigger('job.rerun', {
-            detail: item,
-          }),
+        onClick: item => store.rerun(item),
       },
       {
         key: 'delete',
