@@ -95,7 +95,7 @@ export default class FedProjectCreateModal extends React.Component {
       return callback()
     }
 
-    if (value.length > 1) {
+    if (value.length > 0) {
       const resp = await this.store.checkName({ name })
       if (resp.exist) {
         return callback({
@@ -141,8 +141,8 @@ export default class FedProjectCreateModal extends React.Component {
 
   handleNameChange = () => {
     if (this.clusterRef.current && this.clusterRef.current.state.error) {
+      const name = 'spec.placement.clusters'
       if (this.formRef && this.formRef.current) {
-        const name = 'spec.placement.clusters'
         this.formRef.current.resetValidateResults(name)
       }
       this.clusterRef.current.validate({
@@ -190,7 +190,7 @@ export default class FedProjectCreateModal extends React.Component {
     return (
       <Modal.Form
         width={960}
-        ref={this.this.formRef}
+        formRef={this.formRef}
         bodyClassName={styles.body}
         data={formTemplate}
         onCancel={onCancel}
