@@ -41,7 +41,7 @@ export default {
   NETWORK_POLICY_Q1: '實現網路策略的必要條件',
   NETWORK_ISOLATION_Q1: '實現網路隔離的必要條件',
   NETWORK_POLICY_A1:
-    'Kubernetes所使用CNI必須支持Kubernetes原生<a href="https://kubernetes.io/zh/docs/concepts/services-networking/network-policies/" target="_blank">網路策略</a>，例如Calico,Cilium, Kube-router, Romana and Weave Net。',
+    'Kubernetes 所使用 CNI 必須支持 Kubernetes 原生<a href="https://kubernetes.io/zh/docs/concepts/services-networking/network-policies/" target="_blank">網路策略</a>，例如 Calico, Cilium, Kube-router, Romana and Weave Net。',
   NETWORK_POLICY_EMP_TITLE: '項目網路隔離未開啟',
   NETWORK_POLICY_EMP_DESC:
     '由於企業空間的設置，目前項目允許集群内其他項目進行訪問。啟用項目網路隔離後，將禁止其他項目訪問目前項目，同時可以自定義需要放行的項目、服務、外部地址',
@@ -53,8 +53,8 @@ export default {
   NETWORK_POLICY_R1_DESC: '允許集群内部服務訪問',
   NETWORK_POLICY_R1_DESC1:
     '選擇指定的項目或者服務作為白名單成員，允許這些資源訪問目前項目。',
-  NETWORK_POLICY_R2_TITLE: '集群外部IP地址',
-  NETWORK_POLICY_R2_DESC: '允許集群外部CIRD訪問',
+  NETWORK_POLICY_R2_TITLE: '集群外部 IP 地址',
+  NETWORK_POLICY_R2_DESC: '允許集群外部 CIRD 訪問',
   NETWORK_POLICY_R2_DESC1:
     '選擇特定的 IP CIDR 範圍以允許作為入口來源或出口目的地。',
   NETWORK_POLICY_D_DESC: '匹配 Egress(出口) 流量以及 Ingress(入口) 流量',
