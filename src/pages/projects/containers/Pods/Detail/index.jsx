@@ -21,7 +21,7 @@ import { get, isEmpty } from 'lodash'
 import { observer, inject } from 'mobx-react'
 import { Loading } from '@pitrix/lego-ui'
 
-import { getDisplayName } from 'utils'
+import { getDisplayName, getLocalTime } from 'utils'
 import { trigger } from 'utils/action'
 import PodStore from 'stores/pod'
 
@@ -152,7 +152,7 @@ export default class PodDetail extends React.Component {
       },
       {
         name: t('Created Time'),
-        value: detail.createTime,
+        value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
     ]
   }

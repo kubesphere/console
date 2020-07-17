@@ -17,8 +17,9 @@
  */
 
 import React from 'react'
+import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
-import { get, isEmpty, keyBy } from 'lodash'
+import { get, keyBy } from 'lodash'
 
 import WorkloadStore from 'stores/workload'
 import FedStore from 'stores/federated'
@@ -96,16 +97,11 @@ export default class ResourceStatus extends React.Component {
   renderWorkloadPods() {
     const { resources } = this.workloadStore
     const clusters = this.store.detail.clusters.map(item => item.name)
-    const resourceDetail = Object.values(resources)[0]
-
-    if (isEmpty(resourceDetail)) {
-      return null
-    }
 
     return (
       <PodsCard
         prefix={this.prefix}
-        detail={resourceDetail}
+        details={toJS(resources)}
         clusters={clusters}
         isFederated
       />
@@ -116,12 +112,11 @@ export default class ResourceStatus extends React.Component {
     const { resources, isResourcesLoading } = this.store
 
     const clusters = this.store.detail.clusters.map(item => item.name)
-    const detail = Object.values(resources)[0]
 
     return (
       <PodsCard
         prefix={this.prefix}
-        detail={detail}
+        details={toJS(resources)}
         clusters={clusters}
         isLoading={isResourcesLoading}
         isFederated
