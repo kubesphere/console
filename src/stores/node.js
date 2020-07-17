@@ -37,6 +37,16 @@ export default class NodeStore extends Base {
 
   module = 'nodes'
 
+  getFilterParams = params => {
+    const result = { ...params }
+    if (result.role) {
+      result.labelSelector = result.labelSelector || ''
+      result.labelSelector += `node-role.kubernetes.io/${result.role}=`
+      delete result.role
+    }
+    return result
+  }
+
   @action
   async fetchCount(params) {
     const resp = await request.get(this.getResourceUrl(params), {
