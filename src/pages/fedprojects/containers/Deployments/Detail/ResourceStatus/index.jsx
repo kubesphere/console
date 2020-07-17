@@ -17,6 +17,7 @@
  */
 
 import React from 'react'
+import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import { isEmpty, flatten, uniqBy, keyBy } from 'lodash'
 
@@ -104,16 +105,11 @@ class ResourceStatus extends React.Component {
     const clusters = detail.clusters
       .filter(item => clustersMap[item.name])
       .map(item => item.name)
-    const resourceDetail = Object.values(resources)[0]
-
-    if (isEmpty(resourceDetail)) {
-      return null
-    }
 
     return (
       <PodsCard
         prefix={this.prefix}
-        detail={resourceDetail}
+        details={toJS(resources)}
         clusters={clusters}
         isFederated
       />

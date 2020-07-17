@@ -123,11 +123,12 @@ export default class ContainerLog extends React.Component {
   }
 
   handleDownload = async () => {
-    const { namespace, podName, containerName: name } = this.props
+    const { cluster, namespace, podName, containerName: name } = this.props
 
     this.setState({ isDownloading: true })
 
     const result = await this.store.fetchAllLogs({
+      cluster,
       namespace,
       podName,
       container: name,
