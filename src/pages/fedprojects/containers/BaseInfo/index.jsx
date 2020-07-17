@@ -68,7 +68,8 @@ class BaseInfo extends React.Component {
   }
 
   getData = () => {
-    this.store.fetchDetail(this.params)
+    const { namespace } = this.params
+    this.store.fetchDetail({ namespace, name: namespace })
   }
 
   get itemActions() {
