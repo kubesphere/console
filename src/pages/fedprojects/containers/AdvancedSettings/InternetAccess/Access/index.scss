@@ -76,7 +76,6 @@
   align-items: center;
 
   & > button {
-    @include vertical-center;
-    right: 12px;
+    margin-left: 12px;
   }
 }
