@@ -17,149 +17,149 @@
  */
 
 export default {
-  'Grayscale Release': '灰度发布',
-  'Job Status': '任务状态',
+  'Grayscale Release': '灰度發佈',
+  'Job Status': '任務狀態',
 
   GRAY_RELEASE_CATEGORIES: '灰度策略',
-  TOTAL_GRAY_RELEASE_JOBS: '共计 {num} 个灰度任务',
-  NO_GRAY_RELEASE_JOBS_TIP: '暂时没有进行中的灰度任务',
-  NO_GRAY_RELEASE_JOBS_TIP_2: '您可以绑定灰度策略进行灰度任务发布',
+  TOTAL_GRAY_RELEASE_JOBS: '共計 {num} 個灰度任務',
+  NO_GRAY_RELEASE_JOBS_TIP: '暫時没有進行中的灰度任務',
+  NO_GRAY_RELEASE_JOBS_TIP_2: '您可以綁定灰度策略進行灰度任務發佈',
 
-  'Blue-green Deployment': '蓝绿部署',
-  'Canary Release': '金丝雀发布',
-  'A/B Testing': 'A/B 测试',
-  'Traffic Mirroring': '流量镜像',
+  'Blue-green Deployment': '藍綠部署',
+  'Canary Release': '金絲雀發佈',
+  'A/B Testing': 'A/B 測試',
+  'Traffic Mirroring': '流量鏡像',
 
   traffic: '流量',
 
-  'Release Job Name': '发布任务名称',
-  'Grayscale Release Components': '灰度组件',
-  'Grayscale Release Component': '灰度组件',
+  'Release Job Name': '發佈任務名稱',
+  'Grayscale Release Components': '灰度組件',
+  'Grayscale Release Component': '灰度組件',
   'Grayscale Release Version': '灰度版本',
-  'Grayscale Release Version Number': '灰度版本号',
+  'Grayscale Release Version Number': '灰度版本號',
   'Grayscale Release Strategy': '灰度策略',
-  'Version Compare': '版本对比',
+  'Version Compare': '版本對比',
   'Policy Config': '策略配置',
 
-  'Create Job': '发布任务',
+  'Create Job': '發佈任務',
 
-  'Rule Description': '规则描述',
+  'Rule Description': '規則描述',
   'Traffic Ratio': '流量比例',
 
-  'Version Off': '版本下线',
+  'Version Off': '版本下線',
   'Take Over': '接管所有流量',
 
-  'Edit Grayscale Release Job': '编辑灰度任务',
+  'Edit Grayscale Release Job': '編輯灰度任務',
 
-  'Please select a grayscale release component': '请选择一个灰度组件',
+  'Please select a grayscale release component': '請選擇一個灰度組件',
 
   'Exact Match': '完全匹配',
-  'Regex Match': '正则匹配',
-  'Prefix Match': '前缀匹配',
+  'Regex Match': '正則匹配',
+  'Prefix Match': '前綴匹配',
 
   'Traffic Control': '流量控制',
   'Introduce traffic that meets the following rules into grayscale version':
-    '将符合以下规则的流量引入灰度版本',
+    '將符合以下規則的流量引入灰度版本',
 
   'Cookie Content': 'Cookie 内容',
-  'Operating System': '操作系统',
-  'Custom Header': '自定义 Header',
+  'Operating System': '操作系統',
+  'Custom Header': '自定義 Header',
   'Mirrored traffic is only receiving traffic, no service':
-    '镜像流量只负责接收流量，不提供服务',
+    '鏡像流量只負責接收流量，不提供服務',
   'The current version is not online, you can let this version take over all traffic and bring it online.':
-    '当前版本未上线，您可以让该版本接管所有流量，使该版本上线',
-  'Mirrored traffic': '镜像流量',
+    '目前版本未上線，您可以讓該版本接管所有流量，使該版本上線',
+  'Mirrored traffic': '鏡像流量',
 
-  'version number is invalid': '版本号不可用',
+  'version number is invalid': '版本號不可用',
 
-  'Not online': '未上线',
+  'Not online': '未上線',
 
-  'Job offline': '任务下线',
+  'Job offline': '任務下線',
 
-  'Job offline Successfully': '任务下线成功',
+  'Job offline Successfully': '任務下線成功',
 
-  'Real-time traffic distribution': '实时流量分布',
-  'Real-time traffic ratio': '流量实时占比',
+  'Real-time traffic distribution': '實時流量分布',
+  'Real-time traffic ratio': '流量實時占比',
   'Allocate all traffic proportionally to grayscale release components':
-    '将所有的流量按比例分配给灰度组件',
+    '將所有的流量按比例分配給灰度組件',
 
   'Has taken over all traffic': '已接管全部流量',
 
-  'Traffic monitor': '流量监控',
-  'Request success rate': '请求成功率',
-  'Request duration': '请求延迟',
+  'Traffic monitor': '流量監控',
+  'Request success rate': '請求成功率',
+  'Request duration': '請求延遲',
 
-  'Traffic of last five minutes': '最近五分钟流量',
-  '95% requests duration': '95% 的请求延迟',
+  'Traffic of last five minutes': '最近五分鐘流量',
+  '95% requests duration': '95% 的請求延遲',
 
-  'Unfinished grayscale release jobs exist': ' 存在未完成的灰度任务',
-  'Unsupported workload type': '不支持该工作负载类型',
-  'No workload found': '未找到工作负载',
+  'Unfinished grayscale release jobs exist': ' 存在未完成的灰度任務',
+  'Unsupported workload type': '不支持該工作負載類型',
+  'No workload found': '未找到工作負載',
 
-  'Create Grayscale Release Job': '发布灰度任务',
+  'Create Grayscale Release Job': '發佈灰度任務',
 
-  'Grayscale release version access rule': '灰度版本访问规则',
+  'Grayscale release version access rule': '灰度版本訪問規則',
 
   'Traffic comes from the following operating systems':
-    '流量来自于以下操作系统',
+    '流量來自於以下操作系統',
 
-  'Please input grayscale release version': '请输入灰度版本号',
+  'Please input grayscale release version': '請輸入灰度版本號',
 
-  Recover: '恢复',
+  Recover: '恢復',
 
-  'Two Versions': '两个版本',
-  'Traffic Rules': '流量规则',
-  'Offline this version': '下线此版本',
+  'Two Versions': '兩個版本',
+  'Traffic Rules': '流量規則',
+  'Offline this version': '下線此版本',
   'Take over all traffic': '接管所有流量',
-  'Forward by traffic ratio': '按流量比例下发',
-  'Forward by request content': '按请求内容下发',
+  'Forward by traffic ratio': '按流量比例下發',
+  'Forward by request content': '按請求内容下發',
 
-  'Deploy sample application': '部署示例应用',
-  'Deploy Sample Application': '部署示例应用',
+  'Deploy sample application': '部署範例應用',
+  'Deploy Sample Application': '部署範例應用',
   'Port protocol is not HTTP, cannot publish policy by request content':
-    '端口协议非 HTTP, 不能发布按内容分配的策略',
+    '端口協議非 HTTP, 不能發佈按内容分配的策略',
 
-  NO_SERVICE_MESH_TIP: '未开启应用治理的应用无法使用灰度发布',
+  NO_SERVICE_MESH_TIP: '未開啟應用治理的應用無法使用灰度發佈',
 
   BLUE_GREEN_DEPLOYMENT_DESC:
-    '蓝绿发布提供了一种零宕机的部署方式。在<strong>保留旧版本的同时部署新版本</strong>，将两个版本同时在线，如果有问题可以快速处理。',
+    '藍綠發佈提供了一種零宕機的部署方式。在<strong>保留舊版本的同時部署新版本</strong>，將兩個版本同時在線，如果有問題可以快速處理。',
   CANARY_RELEASES_DESC:
-    '将一部分实际流量引入一个新版本进行测试，测试新版本的性能和表现，在保证系统整体稳定运行的前提下，尽早发现新版本在实际环境上的问题。',
+    '將一部分實際流量引入一個新版本進行測試，測試新版本的性能和表現，在保證系統整體穩定運行的前提下，盡早發現新版本在實際環境上的問題。',
   AB_TESTING_DESC:
-    '当产品已经相对稳定，同时又有新的业务需求或者产品形态，在保证业务的稳定运行前提下，获取产品更新或者优化是否达到合理的预期。',
+    '當產品已經相對穩定，同時又有新的業務需求或者產品形態，在保證業務的穩定運行前提下，獲取產品更新或者優化是否達到合理的預期。',
   TRAFFIC_MIRROR_DESC:
-    '流量镜像用来更为真实地测试新版本，提前发现问题，同时不对生产环境产生影响，从而，提高版本发布的安全性可靠性。',
-  GRAY_RELEASE_VERSION_DESC: '将新版本引入已有的应用服务网格中',
-  GRAY_RELEASE_VERSION_FORMAT_DESC: '只能包含小写字母及数字, 长度在16个字符内',
+    '流量鏡像用來更為真實地測試新版本，提前發現問題，同時不對生產環境產生影響，從而，提高版本發佈的安全性可靠性。',
+  GRAY_RELEASE_VERSION_DESC: '將新版本引入已有的應用服務網格中',
+  GRAY_RELEASE_VERSION_FORMAT_DESC: '只能包含小寫字母及數字, 長度在16個字元内',
   POLICY_CONFIG_DESC:
-    '基于流量比例发布：根据流量比例配置规则，将从原版本中切分指定比例的流量到灰度版本。',
+    '基於流量比例發佈：根據流量比例配置規則，將從原版本中切分指定比例的流量到灰度版本。',
 
   MIRROR_POLICY_DESC:
-    '微服务让我们可以更快地实现交付。在追求快速的同时保证业务的稳定性。流量镜像可以降低变更所带来的风险，并且同时让生产环境上的新变化变得更为安全。</br>流量镜像将生产环境的流量复制灰度版本中，在真正负载实时流量（也就是客户流量）之前验证新版本是不是没有问题',
+    '微服務讓我們可以更快地實現交付。在追求快速的同時保證業務的穩定性。流量鏡像可以降低變更所带来的風險，並且同時讓生產環境上的新變化變得更為安全。</br>流量鏡像將生產環境的流量複製灰度版本中，在真正負載實時流量（也就是客戶流量）之前驗證新版本是不是没有問題',
 
   JOB_OFFLINE_WARNING:
-    '为了保证服务的正常运行，任务下线需要将需要保留一个可用版本并且将流量全部切换至该版本。我们需要您选择一个需要下线的版本。系统会自动将全部流量切换至该另外的可用版本。',
-  JOB_OFFLINE_INFO: '现在可下线任务, 版本 {version} 将被移除。',
+    '為了保證服務的正常運行，任務下線需要將需要保留一個可用版本並且將流量全部切換至該版本。我们需要您選擇一個需要下線的版本。系統會自動將全部流量切換至該另外的可用版本。',
+  JOB_OFFLINE_INFO: '現在可下線任務, 版本 {version} 將被移除。',
 
   GRAY_RELEASE_DESC:
-    '灰度发布是迭代的软件产品在生产环境安全上线的一种重要手段，提供软件版本部署升级平滑过渡的一种发布方式。',
+    '灰度發佈是疊代的軟體產品在生產環境安全上線的一種重要手段，提供軟體版本部署升級平滑過渡的一種發佈方式。',
 
   GRAY_RELEASE_BY_CONTENT_TIP:
-    '基于请求内容发布：根据请求内容配置规则，只有请求内容中满足特定条件的流量会切分到灰度版本上。该策略只对直接访问的入口服务有效。',
+    '基於請求内容發佈：根據請求内容配置規則，只有請求内容中滿足特定條件的流量會切分到灰度版本上。該策略只對直接訪問的入口服務有效。',
 
   RATIO_MODIFY_NOTIFY_CONTENT:
-    '您已将{version}版本的目标流量配比调整至 {ratio}%  , 您也可以继续调整目标流量配比，或者使它立即生效。',
+    '您已將{version}版本的目標流量比例調整至 {ratio}%  , 您也可以繼續調整目標流量比例，或者使它立即生效。',
   CANARY_BY_TRAFFIC_DESC:
-    '根据基于流量比例规则，对组件 {component} 的访问满足 {ratio}% 的请求流量会转发到灰度版本 {newVersion}',
+    '根據基於流量比例規則，對組件 {component} 的訪問滿足 {ratio}% 的請求流量會轉發到灰度版本 {newVersion}',
 
-  DEPLOY_APP_CONFIRM: '确认部署示例应用?',
+  DEPLOY_APP_CONFIRM: '確認部署範例應用?',
 
-  DEPLOY_APP_TIP: '您即将部署示例应用 {name}',
+  DEPLOY_APP_TIP: '您即將部署範例應用 {name}',
 
   DEPLOY_SAMPLE_NO_INTERNET_ACCESS_TIP:
-    '当前项目中没有找到已开启应用治理的网关，因此您无法部署示例应用。请联系您的项目管理员在【高级设置】中设置外网访问方式',
+    '目前項目中没有找到已開啟應用治理的網關，因此您無法部署範例應用。請聯系您的項目管理員在【高級設置】中設置外網訪問方式',
 
-  PREREQUEST_FOR_USE_GRAYRELEASE_Q: '使用灰度发布的前提条件?',
+  PREREQUEST_FOR_USE_GRAYRELEASE_Q: '使用灰度發佈的前提條件?',
   PREREQUEST_FOR_USE_GRAYRELEASE_A:
-    '使用灰度发布功能您需要创建自定义应用，并且将需要灰度发布的服务开启服务治理功能。',
+    '使用灰度發佈功能您需要創建自定義應用，並且將需要灰度發佈的服務開啟服務治理功能。',
 }

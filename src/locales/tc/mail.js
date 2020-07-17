@@ -17,28 +17,28 @@
  */
 
 export default {
-  'Mail Server': '邮件服务器',
-  MAIL_SERVER_DESC: '为平台邮件发送服务提供设置',
+  'Mail Server': '郵件伺服器',
+  MAIL_SERVER_DESC: '為平台郵件發送服務提供具有自定義設置',
   EMPTY_MAIL_SERVER:
-    '暂时没有设置邮件服务器，您需要设置一个外埠邮件服务器来提供邮件发送服务',
-  'Server Settings': '服务器配置',
-  'SMTP Server Address': 'SMTP 服务器地址',
-  'Use SSL Secure Connection': '使用 SSL 安全连接',
-  FROM_EMAIL_ADDR_DESC: '将作为邮件的发件账号(不填意为与"SMTP 用户"值相同)',
-  'The sender mail account': '将作为邮件的发件账号',
-  'Send a test email': '发送测试邮件',
-  MAIL_SERVER_CONFIG_NEED_SAVE_TIP: '邮件配置成功，请保存服务器配置',
-  MAIL_SERVER_CONFIG_INVALID_TIP: '当前邮箱配置不可用',
+    '暫時没有設置郵件伺服器，您需要設置一個外埠郵件伺服器來提供郵件發送服務',
+  'Server Settings': '伺服器配置',
+  'SMTP Server Address': 'SMTP 伺服器地址',
+  'Use SSL Secure Connection': '使用 SSL 安全連接',
+  FROM_EMAIL_ADDR_DESC: '將作為郵件的寄件帳號(不填寫表示與"SMTP 使用者"值相同)',
+  'The sender mail account': '將作為郵件的寄件帳號',
+  'Send a test email': '發送測試郵件',
+  MAIL_SERVER_CONFIG_NEED_SAVE_TIP: '郵件配置成功，請保存伺服器配置',
+  MAIL_SERVER_CONFIG_INVALID_TIP: '目前郵箱配置不可用',
   MAIL_SERVER_CONFIG_NEED_VERIFIED_TIP:
-    '您当前的服务器配置已发生变化，请重新发送测试邮件并保存配置，或者取消修改',
+    '您目前的伺服器配置已發生變化，請重新發送測試郵件並保存配置，或是取消修改',
 
-  'Server Username': '服务器用户名',
-  'Sender Email': '发件邮箱',
-  'Platform Settings': '平台设置',
-  TEST_EMAIL_TITLE: '[KubeSphere] 测试邮件',
-  TEST_EMAIL_RECIPIENT: '测试邮件接受地址',
-  TEST_EMAIL_ADDRESS_FORM_DESC: '将作为接受测试邮件的地址',
+  'Server Username': '伺服器使用者名稱',
+  'Sender Email': '寄件郵箱',
+  'Platform Settings': '平台設置',
+  TEST_EMAIL_TITLE: '[KubeSphere] 測試郵件',
+  TEST_EMAIL_RECIPIENT: '測試郵件接受地址',
+  TEST_EMAIL_ADDRESS_FORM_DESC: '將作為接受測試郵件的地址',
 
-  SENDER_MAIL: '发件人邮箱',
-  SENDER_NICKNAME: '发件人昵称',
+  SENDER_MAIL: '寄件人郵箱',
+  SENDER_NICKNAME: '寄件人暱稱',
 }
