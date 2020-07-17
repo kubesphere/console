@@ -16,9 +16,10 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 import React, { Component } from 'react'
+import { set } from 'lodash'
+import { toJS } from 'mobx'
 import { inject, observer, Provider } from 'mobx-react'
 
-import { toJS } from 'mobx'
 import { Loading } from '@pitrix/lego-ui'
 
 import { renderRoutes } from 'utils/router.config'
@@ -60,6 +61,10 @@ export default class App extends Component {
       ascending: true,
     })
     this.store.detail.clusters = toJS(this.clusterStore.list.data)
+
+    this.store.detail.clusters.forEach(cluster => {
+      set(globals, `clusterConfig.${cluster.name}`, cluster.configz)
+    })
 
     await this.props.rootStore.getRules(params)
 
