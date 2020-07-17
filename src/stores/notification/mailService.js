@@ -54,11 +54,11 @@ export default class AddressStore extends Base {
   }
 
   getMailServiceURL(cluster) {
-    return `kapis/clusters/${cluster}/notification.kubesphere.io/v1/serviceconfigs`
+    return `kapis/notification.kubesphere.io/klusters/${cluster}/v1/serviceconfigs`
   }
 
   getMailServiceV2URL(cluster) {
-    return `kapis/clusters/${cluster}/notification.kubesphere.io/v2/serviceconfigs`
+    return `kapis/notification.kubesphere.io/klusters/${cluster}/v2/serviceconfigs`
   }
 
   @action
