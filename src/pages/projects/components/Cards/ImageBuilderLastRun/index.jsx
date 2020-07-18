@@ -55,7 +55,10 @@ export default class BuilderInfo extends React.Component {
             <Icon name="resource" size={40} />
           </span>
           <div className={styles.info}>
-            <p className={styles.value}>{binaryName}</p>
+            <p className={styles.value} title={binaryName}>
+              {binaryName}
+            </p>
+
             <p className={styles.name}>
               <a href={downLoadUrl} download>
                 {`${t('File Size')}: ${formatSize(binarySize)}`}

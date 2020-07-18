@@ -35,7 +35,7 @@ class JobsResourceStatus extends Base {
     return (
       <PodsCard
         prefix={`/${workspace ? `/${workspace}` : ''}/clusters/${cluster}`}
-        detail={this.store.jobDetail}
+        detail={{ cluster, ...this.store.jobDetail }}
       />
     )
   }

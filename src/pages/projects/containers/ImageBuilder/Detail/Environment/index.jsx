@@ -25,10 +25,11 @@ import EnvStore from 'stores/workload/env'
 
 import ContainerEnvCard from 'components/Cards/Containers/EnvVariables'
 
-class EnvVariables extends React.Component {
+@inject('s2iRunStore')
+@observer
+export default class EnvVariables extends React.Component {
   constructor(props) {
     super(props)
-
     this.envStore = new EnvStore()
   }
 
@@ -46,6 +47,10 @@ class EnvVariables extends React.Component {
 
   get namespace() {
     return this.store.jobDetail.namespace
+  }
+
+  get cluster() {
+    return this.props.match.params.cluster
   }
 
   get containers() {
@@ -66,6 +71,7 @@ class EnvVariables extends React.Component {
 
   fetchData = () => {
     this.envStore.fetchList({
+      cluster: this.cluster,
       namespace: this.namespace,
       containers: this.containers,
     })
@@ -73,7 +79,6 @@ class EnvVariables extends React.Component {
 
   render() {
     const { data, isLoading } = toJS(this.envStore.list)
-
     return (
       <div>
         {data.map((container, index) => (
@@ -88,6 +93,3 @@ class EnvVariables extends React.Component {
     )
   }
 }
-
-export default inject('s2iRunStore')(observer(EnvVariables))
-export const Component = EnvVariables

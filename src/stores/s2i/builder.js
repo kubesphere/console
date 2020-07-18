@@ -97,14 +97,15 @@ export default class S2IBuilderStore extends Base {
     return this.detail
   }
 
-  updateCreateData(data) {
-    if (!data.metadata.name) {
+  updateCreateData(data, isEditor = false) {
+    if (!isEditor) {
       const _name = `${get(data, 'spec.config.imageName', '').replace(
         /[_/:]/g,
         '-'
       )}-${get(data, 'spec.config.tag')}`
       data.metadata.name = `${_name.slice(0, 60)}-${generateId(3)}`
     }
+
     let repoUrl = get(data, 'metadata.annotations["kubesphere.io/repoUrl"]', '')
     repoUrl = repoUrl.replace(/^(http(s)?:\/\/)?(.*)$/, '$3')
 
@@ -116,6 +117,7 @@ export default class S2IBuilderStore extends Base {
         : `${repoUrl}/${imageName}`
       set(data, 'spec.config.imageName', totalImageName)
     }
+
     if (data.isUpdateWorkload === false) {
       set(
         data,
@@ -125,6 +127,7 @@ export default class S2IBuilderStore extends Base {
     } else {
       unset(data, 'metadata.annotations["devops.kubesphere.io/donotautoscale"]')
     }
+
     delete data.isUpdateWorkload
   }
 
@@ -140,7 +143,7 @@ export default class S2IBuilderStore extends Base {
   }
 
   create(data, { cluster, namespace }) {
-    this.updateCreateData(data)
+    this.updateCreateData(data, false)
     return request
       .post(this.getListUrl({ cluster, namespace }), data)
       .then(() => {
@@ -155,7 +158,7 @@ export default class S2IBuilderStore extends Base {
   }
 
   updateBuilder(data, { cluster, namespace, name }) {
-    this.updateCreateData(data)
+    this.updateCreateData(data, true)
     return request
       .patch(this.getDetailUrl({ cluster, namespace, name }), data)
       .then(() => {
