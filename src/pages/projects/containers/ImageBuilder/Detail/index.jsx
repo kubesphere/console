@@ -196,7 +196,7 @@ export default class ImageBuilderDetail extends React.Component {
       resourceStore: this.resourceStore,
     }
 
-    if (this.store.isLoading) {
+    if (this.store.isLoading || this.s2iRunStore.isLoading) {
       return <Loading className="ks-page-loading" />
     }
 

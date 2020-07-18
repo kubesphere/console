@@ -45,7 +45,12 @@ export default class EnvStore {
   }
 
   @action
-  async fetchList({ cluster, namespace, containers, initContainers }) {
+  async fetchList({
+    cluster,
+    namespace,
+    containers = [],
+    initContainers = [],
+  }) {
     this.list.isLoading = true
 
     const mergeContainers = [
