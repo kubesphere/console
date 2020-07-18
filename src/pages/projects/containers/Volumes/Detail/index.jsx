@@ -77,6 +77,10 @@ export default class VolumeDetail extends React.Component {
     return `/clusters/${cluster}/${this.module}`
   }
 
+  get isFedManaged() {
+    return this.store.detail.isFedManaged
+  }
+
   fetchData = async () => {
     const { cluster } = this.props.match.params
     await this.store.fetchDetail(this.props.match.params)
@@ -276,7 +280,7 @@ export default class VolumeDetail extends React.Component {
       authKey: this.authKey,
       name: getDisplayName(this.store.detail),
       attrs: this.getAttrs(),
-      operations: this.getOperations(),
+      operations: this.isFedManaged ? [] : this.getOperations(),
       icon: 'storage',
       breadcrumbs: [
         {

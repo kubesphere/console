@@ -28,6 +28,7 @@ import ContainerPortsCard from 'components/Cards/Containers/Ports'
 import HPACard from 'projects/components/Cards/HPA'
 import ReplicaCard from 'projects/components/Cards/Replica'
 import S2iBuilderCard from 'projects/components/Cards/S2iBuilder'
+import Placement from 'projects/components/Cards/Placement'
 
 import styles from './index.scss'
 
@@ -67,7 +68,9 @@ class ResourceStatus extends React.Component {
 
   get enableScaleReplica() {
     return (
-      this.enabledActions.includes('edit') && !get(this.hpaStore.detail, 'name')
+      this.enabledActions.includes('edit') &&
+      !get(this.hpaStore.detail, 'name') &&
+      !this.store.detail.isFedManaged
     )
   }
 
@@ -118,7 +121,22 @@ class ResourceStatus extends React.Component {
       })
   }
 
-  renderS2IBuilder = () => {
+  renderPlacement() {
+    const { name, namespace } = this.props.match.params
+    const { detail } = this.store
+    if (detail.isFedManaged) {
+      return (
+        <Placement
+          module={this.store.module}
+          name={name}
+          namespace={namespace}
+        />
+      )
+    }
+    return null
+  }
+
+  renderS2IBuilder() {
     const { cluster, namespace } = this.props.match.params
     const { detail } = this.store
 
@@ -200,6 +218,7 @@ class ResourceStatus extends React.Component {
   renderContent() {
     return (
       <div>
+        {this.renderPlacement()}
         {this.renderReplicaInfo()}
         {this.renderHpaConfig()}
         {this.renderContainerPorts()}

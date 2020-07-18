@@ -223,6 +223,9 @@ export default {
   MULTI_CLUSER_PROJECT_TIP:
     'The current multi-cluster project runs on different clusters. You can switch between clusters to check the setting of this project in each of them.',
 
+  MULTI_CLUSER_RESOURCE_TIP:
+    'The current multi-cluster resource runs on different clusters. You can switch between clusters to check the setting of this resource in each of them.',
+
   MULTI_CLUSTER_PROJECT_CREATE_DESC:
     'A multi-cluster project runs across different clusters, which helps you to build a container environment for rapid iteration of applications and achieve high availability.',
 }

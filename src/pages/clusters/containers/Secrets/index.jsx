@@ -113,9 +113,9 @@ export default class Secrets extends React.Component {
             desc={record.description || '-'}
             to={`${this.props.match.url}/${name}`}
             isMultiCluster={record.isFedManaged}
-            to={`/clusters/${cluster}/${
-              record.isFedManaged ? 'federatedprojects' : 'projects'
-            }/${record.namespace}/${module}/${name}`}
+            to={`/clusters/${cluster}/projects/${
+              record.namespace
+            }/${module}/${name}`}
           />
         ),
       },

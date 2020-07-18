@@ -69,6 +69,10 @@ export default class SecretDetail extends React.Component {
     return `/clusters/${cluster}/${this.module}`
   }
 
+  get isFedManaged() {
+    return this.store.detail.isFedManaged
+  }
+
   fetchData = () => {
     this.store.fetchDetail(this.props.match.params)
   }
@@ -170,7 +174,7 @@ export default class SecretDetail extends React.Component {
       module: this.module,
       name: getDisplayName(this.store.detail),
       desc: this.store.detail.description,
-      operations: this.getOperations(),
+      operations: this.isFedManaged ? [] : this.getOperations(),
       attrs: this.getAttrs(),
       breadcrumbs: [
         {

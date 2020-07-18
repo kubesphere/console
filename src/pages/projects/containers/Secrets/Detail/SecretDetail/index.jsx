@@ -20,6 +20,7 @@ import React from 'react'
 import { observer, inject } from 'mobx-react'
 import { Icon } from '@pitrix/lego-ui'
 import { Button, Card } from 'components/Base'
+import Placement from 'projects/components/Cards/Placement'
 
 import styles from './index.scss'
 
@@ -156,12 +157,30 @@ export default class SecretDetail extends React.Component {
     )
   }
 
+  renderPlacement() {
+    const { name, namespace } = this.props.match.params
+    const { detail } = this.store
+    if (detail.isFedManaged) {
+      return (
+        <Placement
+          module={this.store.module}
+          name={name}
+          namespace={namespace}
+        />
+      )
+    }
+    return null
+  }
+
   render() {
     const { detail } = this.store
     return (
-      <Card title={t('Secret')} operations={this.renderOperations()}>
-        {this.renderContent(detail)}
-      </Card>
+      <div>
+        {this.renderPlacement()}
+        <Card title={t('Secret')} operations={this.renderOperations()}>
+          {this.renderContent(detail)}
+        </Card>
+      </div>
     )
   }
 }
