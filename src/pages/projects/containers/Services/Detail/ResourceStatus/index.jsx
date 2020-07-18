@@ -25,6 +25,7 @@ import RouterStore from 'stores/router'
 
 import { Panel, Text } from 'components/Base'
 import PodsCard from 'components/Cards/Pods'
+import Placement from 'projects/components/Cards/Placement'
 
 import Ports from '../Ports'
 
@@ -102,6 +103,21 @@ export default class ResourceStatus extends React.Component {
     )
   }
 
+  renderPlacement() {
+    const { name, namespace } = this.props.match.params
+    const { detail } = this.store
+    if (detail.isFedManaged) {
+      return (
+        <Placement
+          module={this.store.module}
+          name={name}
+          namespace={namespace}
+        />
+      )
+    }
+    return null
+  }
+
   renderPorts() {
     const detail = toJS(this.store.detail)
     const gateway = this.routerStore.gateway.data
@@ -122,6 +138,7 @@ export default class ResourceStatus extends React.Component {
 
     return (
       <div>
+        {this.renderPlacement()}
         {this.renderPorts()}
         {this.renderPods()}
       </div>

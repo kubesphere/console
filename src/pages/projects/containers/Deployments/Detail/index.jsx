@@ -65,6 +65,10 @@ export default class DeploymentDetail extends React.Component {
     return this.props.rootStore.routing
   }
 
+  get isFedManaged() {
+    return this.store.detail.isFedManaged
+  }
+
   fetchData = async () => {
     const { params } = this.props.match
     await this.store.fetchDetail(params)
@@ -213,7 +217,7 @@ export default class DeploymentDetail extends React.Component {
       module: this.module,
       name: getDisplayName(this.store.detail),
       desc: this.store.detail.description,
-      operations: this.getOperations(),
+      operations: this.isFedManaged ? [] : this.getOperations(),
       attrs: this.getAttrs(),
       breadcrumbs: [
         {

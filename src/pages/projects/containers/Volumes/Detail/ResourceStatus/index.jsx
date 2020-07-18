@@ -22,6 +22,7 @@ import { computed } from 'mobx'
 import { get } from 'lodash'
 
 import PodsCard from 'components/Cards/Pods'
+import Placement from 'projects/components/Cards/Placement'
 import VolumeMonitor from 'stores/monitoring/volume'
 import UsageCard from './UsageCard'
 
@@ -61,6 +62,21 @@ class ResourceStatus extends React.Component {
     })
   }
 
+  renderPlacement() {
+    const { name, namespace } = this.props.match.params
+    const { detail } = this.store
+    if (detail.isFedManaged) {
+      return (
+        <Placement
+          module={this.store.module}
+          name={name}
+          namespace={namespace}
+        />
+      )
+    }
+    return null
+  }
+
   render() {
     const detail = {
       kind: 'PVC',
@@ -69,6 +85,7 @@ class ResourceStatus extends React.Component {
 
     return (
       <div className={styles.main}>
+        {this.renderPlacement()}
         {this.shouldMonitoringShow && (
           <UsageCard title={t('Volume')} store={this.monitor} />
         )}

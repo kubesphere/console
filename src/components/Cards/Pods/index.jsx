@@ -187,12 +187,16 @@ export default class PodsCard extends React.Component {
       case 'Namespace':
         result.namespace = name
         break
+      case 'Service':
+        result.labelSelector = joinSelector(selector)
+        break
       default:
         result.ownerKind = kind === 'Deployment' ? 'ReplicaSet' : kind
         result.labelSelector = joinSelector(selector)
-        if (isEmpty(selector)) {
-          result = {}
-        }
+    }
+
+    if (result.labelSelector && isEmpty(selector)) {
+      result = {}
     }
 
     return result

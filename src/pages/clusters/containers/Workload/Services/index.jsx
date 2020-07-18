@@ -124,9 +124,9 @@ export default class Services extends React.Component {
             title={getDisplayName(record)}
             desc={record.description || '-'}
             isMultiCluster={record.isFedManaged}
-            to={`/clusters/${cluster}/${
-              record.isFedManaged ? 'federatedprojects' : 'projects'
-            }/${record.namespace}/${module}/${name}`}
+            to={`/clusters/${cluster}/projects/${
+              record.namespace
+            }/${module}/${name}`}
           />
         ),
       },

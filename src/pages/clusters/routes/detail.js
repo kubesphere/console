@@ -31,13 +31,6 @@ import NetworkPoliciesDetail from 'projects/containers/Network/Policies/Detail'
 import Volume from 'projects/containers/Volumes/Detail'
 import VolumeSnapshotsDetail from 'projects/containers/VolumeSnapshots/Detail'
 
-import FedDeploymentDetail from 'fedprojects/containers/Deployments/Detail'
-import FedStatefulSetDetail from 'fedprojects/containers/StatefulSets/Detail'
-import FedServiceDetail from 'fedprojects/containers/Services/Detail'
-import FedRouteDetail from 'fedprojects/containers/Routes/Detail'
-import FedSecretDetail from 'fedprojects/containers/Secrets/Detail'
-import FedConfigMapDetail from 'fedprojects/containers/ConfigMaps/Detail'
-import FedProjectLayout from '../layouts/FedProject'
 import ProjectLayout from '../layouts/Project'
 
 import NodeDetail from '../containers/Nodes/Detail'
@@ -149,36 +142,6 @@ export default [
       {
         path: `${PATH}/projects/:namespace`,
         component: ProjectDetail,
-      },
-    ],
-  },
-  {
-    path: `${PATH}/federatedprojects/:namespace`,
-    component: FedProjectLayout,
-    routes: [
-      {
-        path: `${PATH}/federatedprojects/:namespace/deployments/:name`,
-        component: FedDeploymentDetail,
-      },
-      {
-        path: `${PATH}/federatedprojects/:namespace/statefulsets/:name`,
-        component: FedStatefulSetDetail,
-      },
-      {
-        path: `${PATH}/federatedprojects/:namespace/services/:name`,
-        component: FedServiceDetail,
-      },
-      {
-        path: `${PATH}/federatedprojects/:namespace/ingresses/:name`,
-        component: FedRouteDetail,
-      },
-      {
-        path: `${PATH}/federatedprojects/:namespace/secrets/:name`,
-        component: FedSecretDetail,
-      },
-      {
-        path: `${PATH}/federatedprojects/:namespace/configmaps/:name`,
-        component: FedConfigMapDetail,
       },
     ],
   },

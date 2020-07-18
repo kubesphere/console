@@ -20,6 +20,7 @@ import React from 'react'
 import { observer, inject } from 'mobx-react'
 
 import { Card } from 'components/Base'
+import Placement from 'projects/components/Cards/Placement'
 
 import styles from './index.scss'
 
@@ -48,13 +49,31 @@ class ConfigMapDetail extends React.Component {
     )
   }
 
+  renderPlacement() {
+    const { name, namespace } = this.props.match.params
+    const { detail } = this.store
+    if (detail.isFedManaged) {
+      return (
+        <Placement
+          module={this.store.module}
+          name={name}
+          namespace={namespace}
+        />
+      )
+    }
+    return null
+  }
+
   render() {
     const { detail, isLoading } = this.store
 
     return (
-      <Card title={t('Config Value')} loading={isLoading}>
-        {this.renderContent(detail.data)}
-      </Card>
+      <div>
+        {this.renderPlacement()}
+        <Card title={t('Config Value')} loading={isLoading}>
+          {this.renderContent(detail.data)}
+        </Card>
+      </div>
     )
   }
 }

@@ -62,6 +62,7 @@ class ResourceStatus extends Base {
   renderContent() {
     return (
       <div>
+        {this.renderPlacement()}
         {this.renderReplicaInfo()}
         {this.renderServices()}
         {this.renderContainerPorts()}
