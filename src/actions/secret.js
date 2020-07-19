@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get } from 'lodash'
+import { get, set } from 'lodash'
 import { Modal, Notify } from 'components/Base'
 
 import CreateModal from 'components/Modals/Create'
@@ -83,6 +83,7 @@ export default {
     on({ store, detail, success, ...props }) {
       const modal = Modal.open({
         onOk: data => {
+          set(data, 'metadata.resourceVersion', detail.resourceVersion)
           store.update(detail, data).then(() => {
             Modal.close(modal)
             success && success()
