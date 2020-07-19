@@ -97,8 +97,9 @@ export default class ConfigMapDetail extends React.Component {
       action: 'edit',
       onClick: () =>
         this.trigger('configmap.edit', {
-          detail: this.store.detail.resource,
+          detail: this.store.detail,
           success: this.fetchData,
+          isFederated: true,
         }),
     },
     {

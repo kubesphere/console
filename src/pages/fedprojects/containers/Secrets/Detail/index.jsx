@@ -98,8 +98,9 @@ export default class SecretDetail extends React.Component {
       action: 'edit',
       onClick: () =>
         this.trigger('secret.edit', {
-          detail: this.store.detail.resource,
+          detail: this.store.detail,
           success: this.fetchData,
+          isFederated: true,
         }),
     },
     {

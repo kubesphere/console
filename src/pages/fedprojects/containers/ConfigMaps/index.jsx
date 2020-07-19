@@ -64,7 +64,8 @@ export default class ConfigMaps extends React.Component {
         action: 'edit',
         onClick: item =>
           trigger('configmap.edit', {
-            detail: item.resource,
+            detail: item,
+            isFederated: true,
           }),
       },
       {

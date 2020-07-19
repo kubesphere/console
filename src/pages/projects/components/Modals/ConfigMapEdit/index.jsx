@@ -125,8 +125,8 @@ export default class ConfigMapEditModal extends React.Component {
   }
 
   render() {
-    const { subRoute } = this.state
-    const { visible, isSubmitting, onCancel } = this.props
+    const { subRoute, formTemplate } = this.state
+    const { visible, isSubmitting, onCancel, isFederated } = this.props
 
     return (
       <Modal
@@ -141,7 +141,10 @@ export default class ConfigMapEditModal extends React.Component {
         disableSubmit={!isEmpty(subRoute)}
         isSubmitting={isSubmitting}
       >
-        <ConfigMapSettings formTemplate={this.state.formTemplate} />
+        <ConfigMapSettings
+          formTemplate={formTemplate}
+          isFederated={isFederated}
+        />
         {this.renderSaveBar()}
       </Modal>
     )
