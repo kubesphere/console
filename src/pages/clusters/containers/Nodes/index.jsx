@@ -20,7 +20,7 @@ import React from 'react'
 import { isEmpty, get } from 'lodash'
 import { Tooltip, Icon } from '@pitrix/lego-ui'
 
-import { cpuFormat } from 'utils'
+import { cpuFormat, memoryFormat } from 'utils'
 import { ICON_TYPES, NODE_STATUS } from 'utils/constants'
 import { getNodeStatus } from 'utils/node'
 import { getValueByUnit } from 'utils/monitoring'
@@ -371,7 +371,7 @@ export default class Nodes extends React.Component {
         <div className="tooltip-title">{t('Resource Usage')}</div>
         <p>
           {t('Memory Requests')}:{' '}
-          {getValueByUnit(
+          {memoryFormat(
             get(record, 'annotations["node.kubesphere.io/memory-requests"]'),
             'Gi'
           )}{' '}
@@ -384,7 +384,7 @@ export default class Nodes extends React.Component {
         </p>
         <p>
           {t('Memory Limits')}:{' '}
-          {getValueByUnit(
+          {memoryFormat(
             get(record, 'annotations["node.kubesphere.io/memory-limits"]'),
             'Gi'
           )}{' '}
