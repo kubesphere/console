@@ -139,10 +139,6 @@ export default class GlobalValue {
   }
 
   checkNavItem(item, callback) {
-    if (item.skipAuth) {
-      return true
-    }
-
     if (item.multiCluster && !globals.app.isMultiCluster) {
       return false
     }
@@ -160,6 +156,10 @@ export default class GlobalValue {
 
     if (item.admin && globals.user.globalrole !== 'platform-admin') {
       return false
+    }
+
+    if (item.skipAuth) {
+      return true
     }
 
     if (!item._children) {

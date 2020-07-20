@@ -128,17 +128,19 @@ export default class ProjectCreateModal extends React.Component {
   }
 
   handleNameChange = () => {
-    if (
-      this.clusterRef &&
-      this.clusterRef.current &&
-      this.clusterRef.current.state.error
-    ) {
-      if (this.formRef && this.formRef.current) {
+    if (this.clusterRef && this.clusterRef.current) {
+      if (
+        this.formRef &&
+        this.formRef.current &&
+        !isEmpty(this.formRef.current.state.errors)
+      ) {
         this.formRef.current.resetValidateResults('cluster')
       }
-      this.clusterRef.current.validate({
-        cluster: get(this.props.formTemplate, 'cluster'),
-      })
+      if (this.clusterRef.current.state.error) {
+        this.clusterRef.current.validate({
+          cluster: get(this.props.formTemplate, 'cluster'),
+        })
+      }
     }
   }
 

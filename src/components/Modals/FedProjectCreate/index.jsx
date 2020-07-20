@@ -18,7 +18,7 @@
 
 import React from 'react'
 import { observer } from 'mobx-react'
-import { get, set, uniqBy } from 'lodash'
+import { get, set, uniqBy, isEmpty } from 'lodash'
 import PropTypes from 'prop-types'
 import { Columns, Column, Select, Input } from '@pitrix/lego-ui'
 import { Modal, Form, TextArea } from 'components/Base'
@@ -140,14 +140,20 @@ export default class FedProjectCreateModal extends React.Component {
   }
 
   handleNameChange = () => {
-    if (this.clusterRef.current && this.clusterRef.current.state.error) {
+    if (this.clusterRef && this.clusterRef.current) {
       const name = 'spec.placement.clusters'
-      if (this.formRef && this.formRef.current) {
+      if (
+        this.formRef &&
+        this.formRef.current &&
+        !isEmpty(this.formRef.current.state.errors)
+      ) {
         this.formRef.current.resetValidateResults(name)
       }
-      this.clusterRef.current.validate({
-        [name]: get(this.props.formTemplate, name),
-      })
+      if (this.clusterRef.current.state.error) {
+        this.clusterRef.current.validate({
+          [name]: get(this.props.formTemplate, name),
+        })
+      }
     }
   }
 

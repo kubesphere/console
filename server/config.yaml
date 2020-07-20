@@ -233,7 +233,7 @@ client:
           title: NAV_PROJECTS
           icon: project
           tabs:
-            - { name: projects, title: Projects }
+            - { name: projects, title: Projects, skipAuth: true }
             - { name: federatedprojects, title: Multi-cluster Projects }
         - {
             name: devops,
@@ -345,7 +345,11 @@ client:
           icon: cogwheel
           children:
             - { name: base-info, title: Basic Info, skipAuth: true }
-            - { name: networkpolicies, title: Network Isolation, clusterModule: network, }
+            - {
+                name: networkpolicies,
+                title: Network Isolation,
+                clusterModule: network,
+              }
             - { name: roles, title: Project Roles }
             - { name: members, title: Project Members }
             - {
@@ -423,7 +427,8 @@ client:
 
   # preset infos
   presetUsers: [admin, sonarqube]
-  presetGlobalRoles: [platform-admin, platform-regular, workspaces-manager, users-manager]
+  presetGlobalRoles:
+    [platform-admin, platform-regular, workspaces-manager, users-manager]
   presetClusterRoles: [cluster-admin, cluster-viewer]
   presetWorkspaceRoles: [admin, regular, viewer, self-provisioner]
   presetDevOpsRoles: [admin, operator, viewer]
