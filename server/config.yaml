@@ -458,9 +458,6 @@ client:
   # show kubeconfig
   enableKubeConfig: true
 
-  # show kubeconfig
-  defaultNetworkIsolation: false
-
   # third party tools
   thirdPartyTools:
     []
