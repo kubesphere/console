@@ -169,7 +169,7 @@ export default class AppBaseEdit extends React.Component {
             rules={[
               {
                 pattern: PATTERN_URL,
-                message: t('Website format is error'),
+                message: t('Wrong website format'),
               },
             ]}
           >

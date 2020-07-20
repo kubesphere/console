@@ -52,7 +52,8 @@ export default {
     'Empty value means no limit, CPU 1 Core = 1000m',
   'Enter DevOps Project': 'Enter DevOps Project',
   'Enter Project': 'Enter Project',
-  FED_HOST_NAMESPACE_TIP: 'FED_HOST_NAMESPACE_TIP',
+  FED_HOST_NAMESPACE_TIP:
+    'Please do not manipulate resources in this project as it is related to a multi-cluster project.',
   'Gateway Info': 'Gateway Info',
   'Gateway Not Set': 'Gateway Not Set',
   'Help Information': 'Help Information',
@@ -76,7 +77,8 @@ export default {
   'Modify Members Role': 'Modify Members Role',
   'Multi-cluster Project': 'Multi-cluster Project',
   'Multi-cluster Projects': 'Multi-cluster Projects',
-  MULTI_CLUSTER_PROJECT_DELETE_TIP: 'MULTI_CLUSTER_PROJECT_DELETE_TIP',
+  MULTI_CLUSTER_PROJECT_DELETE_TIP:
+    'Deleting a multi-cluster project will also delete the same project on the host cluster.</br>Please enter the {type} name <strong>{resource}</strong> to make sure you understand the risk of the operation.',
   'Network Isolation': 'Network Isolation',
   'No Platform Manage Authorization': 'No Platform Manage Authorization',
   'Not Assigned': 'Not Assigned',
@@ -90,7 +92,8 @@ export default {
   'project members': 'project members',
   'Project Name': 'Project Name',
   'Project name exists': 'Project name exists',
-  'Project name exists on host cluster': 'Project name exists on host cluster',
+  'The project name exists on the host cluster.':
+    'The project name exists on the host cluster.',
   'Project Overview': 'Project Overview',
   'Project Placement': 'Project Placement',
   'Project Quota': 'Project Quota',

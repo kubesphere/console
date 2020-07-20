@@ -60,7 +60,7 @@ export default {
   VALUES_FILE_DESC: 'Chart 的默认值配置文件',
   CHARTS_FILE_DESC: '该目录中放置当前 Chart 依赖的其它 Chart',
   TEMPLATES_FILE_DESC:
-    '部署文件模版目录，模版填入 values.yaml 中相应值，生成最终的 Kubernetes 配置文件',
+    '部署文件模板目录，模板填入 values.yaml 中相应值，生成最终的 Kubernetes 配置文件',
   NOTES_FILE_DESC: '使用指南',
 
   'Version update info': '版本更新说明',

@@ -231,4 +231,15 @@ export default {
   FEDPROJECT_RESOURCE_TIP:
     '无法在集群管理内创建多集群项目的资源, 请到多集群项目页面内进行操作.',
   FEDPROJECT_CANNOT_DEPLOY_APP_TIP: '无法在多集群项目里部署应用.',
+
+  'The project name exists on the host cluster.': '项目名在 Host 集群上已存在',
+
+  MULTI_CLUSTER_PROJECT_DELETE_TIP:
+    '删除多集群项目同时也会删除依赖于 Host 集群上的同名项目,</br>请输入{type}名称 <strong>{resource}</strong> 确保您已了解操作所带来的风险。',
+
+  FED_HOST_NAMESPACE_TIP:
+    '该项目为多集群项目的相关资源, 请勿在此项目下操作资源',
+
+  MULTI_CLUSTER_PROJECT_CREATE_DESC:
+    '您可以创建多集群项目，让项目运行在多个集群中，为应用提供快速迭代开发的容器环境并实现高可用。',
 }

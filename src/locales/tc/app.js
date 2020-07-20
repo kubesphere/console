@@ -176,7 +176,7 @@ export default {
   'Please input category name': '請輸入分類名稱',
   ICON_DESC: '請選擇一個圖示來標示分類',
   'Please select icon': '請選擇圖示',
-  'Website format is error': '輸入的網站格式錯誤',
+  'Wrong website format': '輸入的網站格式錯誤',
 
   Screenshot: '截圖',
   'Version No': '版本號碼',

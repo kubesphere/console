@@ -175,7 +175,7 @@ export default {
   'Please input category name': '请输入分类名称',
   ICON_DESC: '请选择一个图标来标识分类',
   'Please select icon': '请选择图标',
-  'Website format is error': '输入的网站格式错误',
+  'Wrong website format': '输入的网站格式错误',
 
   Screenshot: '截图',
   'Version No': '版本号',

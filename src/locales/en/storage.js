@@ -22,7 +22,7 @@ export default {
   'Create Snapshot': 'Create Snapshot',
   'Create Storage Class': 'Create Storage Class',
   'Create Volume': 'Create Volume',
-  CREATE_VOLUME_WITH_SNAPSHOT: 'CREATE_VOLUME_WITH_SNAPSHOT',
+  CREATE_VOLUME_WITH_SNAPSHOT: 'Create volume based on snapshots',
   'Custom Provisioner': 'Custom Provisioner',
   Default: 'Default',
   'Default Storage Class': 'Default Storage Class',
@@ -54,7 +54,8 @@ export default {
   'Storage Class Settings': 'Storage Class Settings',
   'storage classes': 'storage classes',
   'Storage System': 'Storage System',
-  STORAGE_CLASS_CREATE_DESC: 'STORAGE_CLASS_CREATE_DESC',
+  STORAGE_CLASS_CREATE_DESC:
+    'The Storage Class is configured by the cluster administrator to configure storage server parameters and provide storage for cluster users by class.',
   StorageClasses: 'StorageClasses',
   storageclasses: 'storageclasses',
   'Support Volume Snapshot': 'Support Volume Snapshot',
@@ -64,10 +65,11 @@ export default {
   'Volume Count': 'Volume Count',
   'volume name exist': 'volume name exist',
   'Volume Usage': 'Volume Usage',
-  VOLUME_DESC: 'VOLUME_DESC',
-  VOLUME_SNAPSHOT_STATUS_CREATING: 'VOLUME_SNAPSHOT_STATUS_CREATING',
-  VOLUME_SNAPSHOT_STATUS_FAILED: 'VOLUME_SNAPSHOT_STATUS_FAILED',
-  VOLUME_SNAPSHOT_STATUS_READY: 'VOLUME_SNAPSHOT_STATUS_READY',
+  VOLUME_DESC:
+    'A volume is used for workloads created by users. It represents a resource object for the persistent storage of workloads.',
+  VOLUME_SNAPSHOT_STATUS_CREATING: 'Creating',
+  VOLUME_SNAPSHOT_STATUS_FAILED: 'Created unsuccessfully',
+  VOLUME_SNAPSHOT_STATUS_READY: 'Created successfully',
   volumes: 'volumes',
   VolumeSnapshots: 'VolumeSnapshots',
 
@@ -86,7 +88,7 @@ export default {
   VOLUMES_BASEINFO_DESC:
     'The volume can persist data, and its lifecycle is independent of the workload. Make sure the storage class is created before you create a volume.',
   VOLUME_CREATE_DESC:
-    'A volume is a PVC (PersistentVolumeClaim) created using dynamic volume provisioning.',
+    'A volume is used for workloads created by users. It represents a resource object for the persistent storage of workloads.',
   VOLUME_SETTINGS_DESC:
     'Fill in the capacity of the volume as needed, and the volume size and access mode must be compatible with the storage class and storage server capabilities. The access mode is usually selected as RWO.',
   VOLUME_STORAGE_CLASS_DESC:

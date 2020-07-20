@@ -99,7 +99,7 @@ export default class FedProjectCreateModal extends React.Component {
       const resp = await this.store.checkName({ name })
       if (resp.exist) {
         return callback({
-          message: t('Project name exists on host cluster'),
+          message: t('The project name exists on the host cluster.'),
           field: rule.field,
         })
       }
