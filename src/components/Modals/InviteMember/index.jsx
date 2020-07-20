@@ -77,7 +77,7 @@ export default class InviteMemberModal extends React.Component {
   fetchData = (params = {}) => {
     const { workspace, namespace, devops } = this.props
     this.userStore.fetchList({
-      name: this.state.keyword,
+      name: this.state.name,
       workspace: namespace || devops ? workspace : undefined,
       ...params,
     })
