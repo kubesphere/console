@@ -168,7 +168,7 @@ export default {
 
   POD_SETTING_TIP: '更新时容器组数量',
   MAX_UNAVAILABLE_POD_LABEL: '容器组最大不可用数量',
-  MAX_SURGE_POD_LABEL: '更新时容器组最大数量',
+  MAX_SURGE_POD_LABEL: '容器组最大超出数量',
   UPDATE_STRATEGY_DESC:
     '配置升级过程中替换容器组的策略 <a href="{link}" target="_blank">了解更多</a>',
   MAX_DAEMON_UNAVAILABLE_POD_DESC:
