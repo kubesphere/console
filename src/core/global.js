@@ -399,11 +399,14 @@ export default class GlobalValue {
   }
 
   cacheHistory(url, obj) {
-    let histories = safeParseJSON(localStorage.getItem('history-cache'), [])
+    let histories = safeParseJSON(localStorage.getItem('history-cache'), {})
+    histories = histories[globals.user.username] || []
     histories = histories.filter(item => item.url !== url)
     localStorage.setItem(
       'history-cache',
-      JSON.stringify([{ url, ...obj }, ...histories].slice(0, 8))
+      JSON.stringify({
+        [globals.user.username]: [{ url, ...obj }, ...histories].slice(0, 8),
+      })
     )
   }
 }

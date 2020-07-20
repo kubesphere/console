@@ -27,7 +27,8 @@ import styles from './index.scss'
 
 export default class History extends Component {
   get histories() {
-    return safeParseJSON(localStorage.getItem('history-cache'), [])
+    const caches = safeParseJSON(localStorage.getItem('history-cache'), {})
+    return caches[globals.user.username] || []
   }
 
   renderHistory() {
