@@ -84,7 +84,7 @@ export default {
   ACCESS_CONTROL_DESC: '對平台中的企業空間、帳號、以及角色權限進行統一管理',
   APP_STORE_MANAGEMENT_DESC:
     '對雲原生應用的上架、下架以及審核等應用全生命週期的統一管理',
-  PLATFORM_SETTINGS_DESC: '客製化平台設置，如平台基本資訊、日誌收集器等',
+  PLATFORM_SETTINGS_DESC: '客製化平台設置，如平台基本資訊、紀錄收集器等',
 
   Loading: '載入中',
   Active: '已啟用',
@@ -114,14 +114,14 @@ export default {
   pending: '等待中',
   updating: '更新中',
   'is updating': '正在更新',
-  upgrading: '升级中',
-  warning: '异常',
+  upgrading: '升級中',
+  warning: '異常',
   stopped: '已停止',
   disabled: '已停用',
-  deleted: '已删除',
+  deleted: '已刪除',
   completed: '已完成',
   unfinished: '未完成',
-  terminated: '已终止',
+  terminated: '已終止',
   healthy: '健康',
   unknown: '未知',
   failed: '失敗',
@@ -136,7 +136,7 @@ export default {
   Cordon: '停止調度',
   Uncordon: '啟動調度',
   Delete: '刪除',
-  Destroy: '銷毁',
+  Destroy: '銷毀',
   Enable: '啟用',
   Disable: '停用',
   Reset: '重置',
@@ -181,7 +181,7 @@ export default {
 
   NOT_ENABLE: '{resource}暫未啟用',
   NOT_AVAILABLE: '暫時没有可用的{resource}',
-  NO_RESOURCE: '暫时没有{resource}',
+  NO_RESOURCE: '暫時没有{resource}',
   RESOURCE_NOT_FOUND: '很抱歉，没有找到您所尋找的資源。',
   'No Available Resource': '暫無可用資源',
   'No Data': '暫無數據',
@@ -198,7 +198,7 @@ export default {
   'Display all': '顯示全部',
   'Display selected': '顯示已選',
   Display: '顯示',
-  Hidden: '隐藏',
+  Hidden: '隱藏',
   Fold: '折疊',
   Unfold: '展開',
 
@@ -261,7 +261,7 @@ export default {
   MINUTE_TIME: '{count} 分鐘',
 
   NAME_DESC:
-    '最長 63 個字元，只能包含小寫字母、數字及分隔符號("-")，且必須以小謝字母或數字開頭及結尾',
+    '最長 63 個字元，只能包含小寫字母、數字及分隔符號("-")，且必須以小寫字母或數字開頭及結尾',
   NAME_TOO_LONG: '最長 63 个字元',
 
   LONG_NAME_DESC:
@@ -422,17 +422,17 @@ export default {
   DETAIL_NOT_FOUND_DESC:
     '🙇 對不起没有找到相關資源，返回 <a href="{link}">{title}</a>',
   Toolbox: '工具箱',
-  TOOLBOX_DESC: '提供日誌、事件、審計等相關查詢工具',
+  TOOLBOX_DESC: '提供紀錄、事件、審計等相關查詢工具',
   'Analysis Tools': '分析工具',
   'Control Tools': '控制工具',
   'Third-party Tools': '第三方工具',
 
-  Logging: '日誌',
-  logging: '日誌',
+  Logging: '紀錄',
+  logging: '紀錄',
   Auditing: '審計',
   auditing: '審計',
-  'Log Search': '日誌查詢',
-  LOG_SEARCH_DESC: '針對企業空間、項目、資源等多維度的日誌查詢工具。',
+  'Log Search': '紀錄查詢',
+  LOG_SEARCH_DESC: '針對企業空間、項目、資源等多維度的紀錄查詢工具。',
   KUBECTL_DESC: '目前集群客戶端命令行工具',
   TOOLBOX_KUBECTL_DESC: '操作多集群的客戶端命令行工具',
 
@@ -551,5 +551,5 @@ export default {
 
   HOW_TO_MODIFY_PLATFORM_INFO: '如何修改平台資訊?',
   PLATFORM_INFO_DESC: '查看平台標題及描述等資訊',
-  PLATFORM_SETTINGS_SELECTOR_DESC: '客製化平台的系统配置',
+  PLATFORM_SETTINGS_SELECTOR_DESC: '客製化平台的系統配置',
 }

@@ -18,228 +18,228 @@
 
 export default {
   Deployment: '部署',
-  StatefulSet: '有状态副本集',
-  DaemonSet: '守护进程集',
-  Service: '服务',
-  LoadBalancer: '负载均衡',
-  Volume: '存储卷',
-  Terminating: '删除中',
-  'Create Project': '创建项目',
-  'Edit Project': '编辑项目',
-  Details: '详情',
-  Members: '成员',
-  'Project Roles': '项目角色',
-  'Project Role': '项目角色',
-  projects: '项目',
-  Projects: '项目',
-  'Project Overview': '项目预览',
-  'Members Management': '成员管理',
-  'Project Manager': '项目管理员',
-  'Manage Project': '项目管理',
-  'Resource Quota': '资源配额',
-  'Project Name': '项目名称',
-  'Project Members': '项目成员',
-  'project members': '项目成员',
-  'Member Name': '成员名称',
-  'Modify Member Role': '修改成员角色',
-  'Modify Members Role': '修改成员角色',
-  'Remove Members': '移除成员',
-  'Remove Member': '移除成员',
-  'Invite Member': '邀请成员',
-  'Gateway Info': '网关信息',
-  'Set Gateway': '设置网关',
-  'Edit Gateway': '编辑网关',
+  StatefulSet: '有狀態副本集',
+  DaemonSet: '守護進程集',
+  Service: '服務',
+  LoadBalancer: '負載平衡',
+  Volume: '儲存卷',
+  Terminating: '刪除中',
+  'Create Project': '創建項目',
+  'Edit Project': '編輯項目',
+  Details: '詳情',
+  Members: '成員',
+  'Project Roles': '項目角色',
+  'Project Role': '項目角色',
+  projects: '項目',
+  Projects: '項目',
+  'Project Overview': '項目預覽',
+  'Members Management': '成員管理',
+  'Project Manager': '項目管理員',
+  'Manage Project': '項目管理',
+  'Resource Quota': '資源配額',
+  'Project Name': '項目名稱',
+  'Project Members': '項目成員',
+  'project members': '項目成員',
+  'Member Name': '成員名稱',
+  'Modify Member Role': '修改成員角色',
+  'Modify Members Role': '修改成員角色',
+  'Remove Members': '移除成員',
+  'Remove Member': '移除成員',
+  'Invite Member': '邀請成員',
+  'Gateway Info': '網關資訊',
+  'Set Gateway': '設置網關',
+  'Edit Gateway': '編輯網關',
 
-  'Gateway Not Set': '网关未设置',
+  'Gateway Not Set': '網關未設置',
 
-  'Delete Project': '删除项目',
-  'Project Info': '项目信息',
-  'Project Quota': '项目配额',
-  'Quota Management': '配额管理',
+  'Delete Project': '刪除項目',
+  'Project Info': '項目資訊',
+  'Project Quota': '項目配額',
+  'Quota Management': '配額管理',
 
-  'Project Placement': '项目位置',
+  'Project Placement': '項目位置',
 
-  'Multi-cluster Project': '多集群项目',
-  'Multi-cluster Projects': '多集群项目',
+  'Multi-cluster Project': '多集群項目',
+  'Multi-cluster Projects': '多集群項目',
 
-  Opened: '已开启',
-  Closed: '已关闭',
+  Opened: '已開啟',
+  Closed: '已關閉',
 
   PROJECT_CREATE_DESC:
-    'KubeSphere 中的项目对应的是 Kubernetes 的 namespace，是对一组资源和对象的抽象集合，常用来将系统内部的对象划分为不同的项目组或用户组。',
-  PROJECT_NAME_DESC: '项目名只能包含小写字母、数字及分隔符("-")',
-  'Please input project name': '请输入项目名',
-  'Invalid project name': '项目名格式不合法',
-  'Project name exists': '项目名已存在',
+    'KubeSphere 中的項目對應的是 Kubernetes 的 namespace，是對一組資源和對象的抽象集合，常用來將系統内部的對象劃分為不同的項目組或用戶組。',
+  PROJECT_NAME_DESC: '項目名稱只能包含小寫字母、數字及分隔符號("-")',
+  'Please input project name': '請輸入項目名稱',
+  'Invalid project name': '項目名稱格式不合法',
+  'Project name exists': '項目名稱已存在',
 
   DELETE_MEMBER_TIP:
-    '确定移除成员 <strong>{name}</strong> ? 移除后该成员将无法访问本项目。',
+    '確定移除成員 <strong>{name}</strong> ? 移除後該成員將無法訪問此項目。',
 
   'DevOps Project': 'DevOps 工程',
   'DevOps Projects': 'DevOps 工程',
-  'Select Project Type': '选择项目类型',
+  'Select Project Type': '選擇項目類型',
 
-  'Edit Project Quota': '编辑项目配额',
-  'Add quota item': '添加配额项',
+  'Edit Project Quota': '編輯項目配額',
+  'Add quota item': '添加配額項目',
 
-  'Network Isolation': '网络隔离',
+  'Network Isolation': '網路隔离',
 
   deployments: '部署',
-  statefulsets: '有状态副本集',
-  daemonsets: '守护进程集',
-  jobs: '任务',
-  cronjobs: '定时任务',
-  pods: '容器组',
+  statefulsets: '有狀態副本集',
+  daemonsets: '守護進程集',
+  jobs: '任務',
+  cronjobs: '定時任務',
+  pods: '容器組',
 
   'requests.cpu': 'CPU 需求',
-  'limits.cpu': 'CPU 限额',
-  'requests.memory': '内存需求',
-  'limits.memory': '内存限额',
+  'limits.cpu': 'CPU 限額',
+  'requests.memory': '記憶體需求',
+  'limits.memory': '記憶體限額',
 
-  'Container Resource Default Request': '容器资源默认请求',
-  'Edit Resource Default Request': '编辑资源默认请求',
+  'Container Resource Default Request': '容器資源預設請求',
+  'Edit Resource Default Request': '編輯資源預設請求',
 
-  'Resource Type': '资源类型',
+  'Resource Type': '資源類型',
 
-  'Help Information': '帮助信息',
+  'Help Information': '幫助資訊',
 
-  'Enter Project': '进入项目',
-  'Enter DevOps Project': '进入工程',
-  Project_Admin: '工程管理员',
-  'No Platform Manage Authorization': '无平台管理权限',
+  'Enter Project': '進入項目',
+  'Enter DevOps Project': '進入工程',
+  Project_Admin: '工程管理員',
+  'No Platform Manage Authorization': '無平台管理權限',
 
-  'Default limit resource': '默认最大使用资源',
-  'Default request resource': '默认最小使用资源',
+  'Default limit resource': '預設最大使用資源',
+  'Default request resource': '預設最小使用資源',
 
-  'Assign Workspace': '分配企业空间',
-  'Target Workspace': '目标企业空间',
-  'Choose a workspace': '选择一个企业空间',
+  'Assign Workspace': '分配企業空間',
+  'Target Workspace': '目標企業空間',
+  'Choose a workspace': '選擇一個企業空間',
   'Not Assigned': '未分配',
   'Select a user of the workspace as the manager of the project.':
-    '选择企业空间的用户作为管理员。',
+    '選擇企業空間的使用者作為管理員。',
 
-  'Disk Log Collection': '落盘日志收集',
+  'Disk Log Collection': '落盤紀錄收集',
 
-  'Are you sure to close ?': '确认关闭？',
+  'Are you sure to close ?': '確認關閉？',
   "The project's file log collection is about to close.":
-    '项目的落盘日志收集即将关闭.',
+    '項目的落盤紀錄收集即將關閉.',
 
-  'Select the cluster to create the project.': '选择要创建项目的集群.',
+  'Select the cluster to create the project.': '選擇要創建項目的集群.',
 
-  'Project Member': '项目成员',
+  'Project Member': '項目成員',
 
   CLOSE_FILE_LOG_TIP:
-    '落盘日志收集即将关闭。 关闭后，已开启落盘日志收集的服务在容器组副本重启前将继续进行落盘日志的收集，重启后，将不再收集。</br>如果需要再次收集，请开启落盘日志收集，并重起容器组副本。',
+    '落盤紀錄收集即將關閉。 關閉後，已開啟落盤紀錄收集的服務在容器組副本重啟前將繼續進行落盤紀錄的收集，重啟後，將不再收集。</br>如果需要再次收集，請開啟落盤紀錄收集，並重起容器組副本。',
 
-  Usage: '使用情况',
+  Usage: '使用情況',
 
   PROJECTS_DESC:
-    'KubeSphere 中的项目对应的是 Kubernetes 的 namespace，是对一组资源和对象的抽象集合，常用来将系统内部的对象划分为不同的项目组或用户组。',
-  PROJECT_BASEINFO_DESC: '项目基础信息设置',
-  PROJECT_ADVANCE_DESC: '设置项目资源默认请求',
+    'KubeSphere 中的項目對應的是 Kubernetes 的 namespace，是對一組資源和對象的抽象集合，常用來將系統内部的對象劃分為不同的項目組或用戶組。',
+  PROJECT_BASEINFO_DESC: '項目基礎資訊設置',
+  PROJECT_ADVANCE_DESC: '設置項目資源預設請求',
 
-  PROJECT_TYPES_PROJECT_TITLE: '创建资源型项目',
+  PROJECT_TYPES_PROJECT_TITLE: '創建資源類型項目',
   PROJECT_TYPES_PROJECT_DESC:
-    'KubeSphere 中的项目对应的是 Kubernetes 的 namespace，是对一组资源和对象的抽象集合，可以根据不同的业务部门或者产品项目进行资源分组。',
-  PROJECT_TYPES_DEVOPS_TITLE: '创建一个 DevOps 工程',
-  PROJECT_TYPES_DEVOPS_DESC: '持续、自动地构建/测试软件项目。',
+    'KubeSphere 中的項目對應的是 Kubernetes 的 namespace，是對一組資源和對象的抽象集合，可以根據不同的業務部門或者產品項目進行資源分組。',
+  PROJECT_TYPES_DEVOPS_TITLE: '創建一個 DevOps 工程',
+  PROJECT_TYPES_DEVOPS_DESC: '持續、自動地構建/測試軟體項目。',
 
-  PROJECT_ASSIGN_DESC: '项目一旦被分配到企业空间后将不允许修改企业空间',
+  PROJECT_ASSIGN_DESC: '項目一旦被分配到企業空間後將不允許修改企業空間',
 
-  'Invite Members to the Project': '邀请成员到该项目',
-  'Invite Members to the DevOps Project': '邀请成员到该工程',
-  INVITE_MEMBER_DESC: '您可以邀请新的成员来协助您的项目',
-  INVITE_MEMBER_DESC_DEVOPS: '您可以邀请新的成员来协助您的工程',
-  INVITE_MEMBER_SEARCH_PLACEHODLER: '输入邮箱邀请项目成员',
-  INVITE_MEMBER_CHOOSE_ROLE_TIP: '请选择一个角色赋予该成员',
-  PROJECT_ADMIN_DESC: '可以指定项目内一个成员为管理员',
+  'Invite Members to the Project': '邀請成員到該項目',
+  'Invite Members to the DevOps Project': '邀請成員到該工程',
+  INVITE_MEMBER_DESC: '您可以邀請新的成員來協助您的項目',
+  INVITE_MEMBER_DESC_DEVOPS: '您可以邀請新的成員來協助您的工程',
+  INVITE_MEMBER_SEARCH_PLACEHODLER: '輸入郵箱邀請項目成員',
+  INVITE_MEMBER_CHOOSE_ROLE_TIP: '請選擇一個角色赋予該成員',
+  PROJECT_ADMIN_DESC: '可以指定項目内一個成員為管理員',
 
   PROJECT_INTERNET_ACCESS_DESC:
-    '在创建应用路由之前，需要先启用外网访问入口，即网关。这一步是创建对应的应用路由控制器，用来负责将请求转发到对应的后端服务。',
+    '在創建應用路由之前，需要先啟用外網訪問入口，即網關。這一步是創建對應的應用路由控制器，用來負責將請求轉發到對應的後端服務。',
 
-  DELETE_INTERNET_ACCESS_TITLE: '确定删除外网访问设置?',
-  DELETE_INTERNET_ACCESS_DESC: '删除后可重新绑定',
+  DELETE_INTERNET_ACCESS_TITLE: '確定刪除外網訪問設置?',
+  DELETE_INTERNET_ACCESS_DESC: '刪除後可重新綁定',
 
-  NO_RELATE_PROJECTS_TITLE: '没有找到与您相关联的项目',
+  NO_RELATE_PROJECTS_TITLE: '没有找到與您相關聯的項目',
   NO_RELATE_PROJECTS_DESC:
-    '您可以创建或者联系项目管理员将您邀请到项目中开始您的工作',
+    '您可以創建或者聯繫項目管理員將您邀請到項目中開始您的工作',
 
   DELETE_PROJECT_TIP:
-    '确定删除项目 <strong>{resource}</strong> ? 删除后将无法恢复, 项目下的资源也同时会被销毁。',
+    '確定刪除項目 <strong>{resource}</strong> ? 刪除後將無法恢復, 項目下的資源也同時會被銷毀。',
 
   'default request CPU should not be greater than default limit CPU':
-    '最低保证可以使用的 CPU 数不应大于限制使用的 CPU 数',
+    '最低保證可以使用的 CPU 數不應大於限制使用的 CPU 數',
   'default request memory should not be greater than default limit memory':
-    '最低保证可以使用的内存不应大于限制使用的内存',
+    '最低保證可以使用的記憶體不應大於限制使用的記憶體',
 
   'Empty value means no limit, CPU 1 Core = 1000m':
-    '值为空表示无限制, CPU 1核 = 1000m',
+    '值為空表示無限制, CPU 1核 = 1000m',
 
-  DEFAULT_RESOURCE_UNIT_DESC: 'CPU无单位时为核数, 1核 = 1000m',
+  DEFAULT_RESOURCE_UNIT_DESC: 'CPU無單位時為核心數, 1核 = 1000m',
   DEFAULT_RESOURCE_ALERT:
-    '创建工作负载时，如未设置工作负载的资源使用限制，将默认使用此设置。如无特殊需求，请保持此设定默认。',
+    '創建工作負載時，如未設置工作負載的資源使用限制，將預設使用此設置。如無特殊需求，請保持此設定預設。',
 
-  QUOTA_EDIT_TIP: '值为空时将不限制配额',
+  QUOTA_EDIT_TIP: '值為空時將不限制配額',
 
-  PROJECT_BASIC_INFO_DESC: '项目的基本信息涵盖了项目名称及项目的配额状态',
-  PROJECT_QUOTA_MANAGE_DESC: '管理项目的配额',
+  PROJECT_BASIC_INFO_DESC: '項目的基本資訊涵蓋了項目名稱及項目的配額狀態',
+  PROJECT_QUOTA_MANAGE_DESC: '管理項目的配額',
   PROJECT_ADVANCED_SETTINGS_DESC:
-    '对项目中的外网访问网关以及服务治理和落盘日志收集等配置进行设置',
-  PROJECT_MEMBERS_DESC: '对项目内的成员进行管理及角色分配',
-  PROJECT_ROLE_DESC: '项目角色定义了在当前项目下用户所拥有的权限',
+    '對項目中的外網訪問網關以及服務治理和落盤紀錄收集等配置進行設置',
+  PROJECT_MEMBERS_DESC: '對項目内的成員進行管理及角色分配',
+  PROJECT_ROLE_DESC: '項目角色定義了在目前項目下使用者所擁有的權限',
   COLLECTING_FILE_LOG_DESC:
-    '对容器内的落盘日志进行收集，并转发到标准输出，然后由日志收集系统统一采集。',
+    '對容器内的落盤紀錄進行收集，並轉發到標準輸出，然後由紀錄收集系統統一採集。',
 
-  HOW_TO_USE_QUOTA_Q: '如何使用配额?',
+  HOW_TO_USE_QUOTA_Q: '如何使用配額?',
   HOW_TO_USE_QUOTA_A:
-    '资源配额（Resource Quotas）是用来限制用户资源用量的一种机制，可以对 CPU、内存、容器组数量等进行配额限制。',
+    '資源配額（Resource Quotas）是用來限制使用者資源用量的一種機制，可以對 CPU、記憶體、容器組數量等進行配額限制。',
 
-  WHAT_IS_LIMIT_RANGE_Q: '什么是容器资源默认请求?',
+  WHAT_IS_LIMIT_RANGE_Q: '什麼是容器資源預設請求?',
   WHAT_IS_LIMIT_RANGE_A:
-    '容器资源默认请求 (LimitRange) 基于项目的资源管理，包括容器组和容器的保留资源、最大限额等。',
+    '容器資源預設請求 (LimitRange) 基於項目的資源管理，包括容器組和容器的保留資源、最大限額等。',
 
-  WHAT_IS_INTERNET_GATEWAY: '什么是外网访问网关?',
+  WHAT_IS_INTERNET_GATEWAY: '什麼是外網訪問網關?',
   WHAT_IS_COLLECT_FILE_LOG_A:
-    '容器所挂载的存储卷中的日志路径以 glob 方式给出，可在工作负载中配置日志路径以收集这些日志。需要管理员预先开启落盘日志收集。',
+    '容器所掛載的儲存卷中的紀錄路徑以 glob 方式給出，可在工作負載中配置紀錄路徑以收集這些紀錄。需要管理員預先開啟落盤紀錄收集。',
 
-  HOW_TO_INVITE_MEMBER_Q: '如何邀请成员？',
+  HOW_TO_INVITE_MEMBER_Q: '如何邀請成員？',
   HOW_TO_INVITE_MEMBER_A:
-    '项目管理员或者拥有成员邀请权限的用户可以邀请当前企业空间内的成员加入项目',
+    '項目管理員或者擁有成員邀請權限的使用者可以邀請目前企業空間内的成員加入項目',
 
   'How to invite other members to the current project?':
-    '邀请其他成员到当前项目中?',
-  'How to set the project gateway?': '如何设置项目网关？',
+    '邀請其他成員到目前項目中?',
+  'How to set the project gateway?': '如何設置項目網關？',
   'You can limit the number of resources. Blank means no limit.':
-    '您可以对资源的数量进行限制, 不填即不限制',
+    '您可以對資源的數量進行限制, 不填寫即不限制',
 
-  PROJECT_TYPES_Q: '项目中的服务如何通过外网访问？',
+  PROJECT_TYPES_Q: '項目中的服務如何通過外網訪問？',
   PROJECT_TYPES_A:
-    '项目网关负责创建对应的应用路由控制器，用来负责将请求转发到对应的后端服务；开启项目网关后可以将服务通过 Ingress 暴露给外网访问。',
+    '項目網關負責創建對應的應用路由控制器，用來負責將請求轉發到對應的後端服務；開啟項目網關後可以將服務通過 Ingress 暴露给外網訪問。',
 
   PROJECT_CLUSTER_SETTINGS_DESC:
-    '选择要创建项目的集群. 当选择了多个集群时, 将创建联邦项目',
-  NETWORK_ISOLATED_DESC: '设置网络隔离策略',
+    '選擇要創建項目的集群. 當選擇了多個集群時, 將創建聯邦項目',
+  NETWORK_ISOLATED_DESC: '設置網路隔離策略',
 
-  NAME_EXIST_IN_CLUSTER: '项目名在集群 {cluster} 中已存在',
+  NAME_EXIST_IN_CLUSTER: '項目名稱在集群 {cluster} 中已存在',
 
   MULTI_CLUSER_PROJECT_TIP:
-    '当前项目为多集群项目，项目将分布在不同集群中共同来构成多集群项目，您可以切换到不同集群查看项目在该集群中的设置。',
+    '目前項目為多集群項目，項目將分布在不同集群中共同來構成多集群項目，您可以切換到不同集群查看項目在該集群中的設置。',
 
   MULTI_CLUSER_RESOURCE_TIP:
-    '当前资源为多集群资源，资源将分布在不同集群中共同来构成多集群资源，您可以切换到不同集群查看资源在该集群中的设置。',
+    '目前資源為多集群資源，資源將分布在不同集群中共同來構成多集群資源，您可以切換到不同集群查看資源在該集群中的設置。',
 
   FEDPROJECT_RESOURCE_TIP:
-    '无法在集群管理内创建多集群项目的资源, 请到多集群项目页面内进行操作.',
-  FEDPROJECT_CANNOT_DEPLOY_APP_TIP: '无法在多集群项目里部署应用.',
+    '無法在集群管理内創建多集群項目的資源, 請到多集群項目頁面内進行操作.',
+  FEDPROJECT_CANNOT_DEPLOY_APP_TIP: '無法在多集群項目里部署應用.',
 
-  'The project name exists on the host cluster.': '项目名在 Host 集群上已存在',
+  'The project name exists on the host cluster.': '項目名在 Host 集群上已存在',
 
   MULTI_CLUSTER_PROJECT_DELETE_TIP:
-    '删除多集群项目同时也会删除依赖于 Host 集群上的同名项目,</br>请输入{type}名称 <strong>{resource}</strong> 确保您已了解操作所带来的风险。',
+    '刪除多集群項目同時也會刪除依賴於 Host 集群上的同名項目,</br>請輸入{type}名稱 <strong>{resource}</strong> 確保您已經了解操作所带來的風險。',
 
   FED_HOST_NAMESPACE_TIP:
-    '该项目为多集群项目的相关资源, 请勿在此项目下操作资源',
+    '該項目為多集群項目的相關資源, 請勿在此項目下操作資源',
 
   MULTI_CLUSTER_PROJECT_CREATE_DESC:
-    '您可以创建多集群项目，让项目运行在多个集群中，为应用提供快速迭代开发的容器环境并实现高可用。',
+    '您可以創建多集群項目，讓項目運行在多個集群中，為應用提供快速疊代開發的容器環境並實現高可用。',
 }

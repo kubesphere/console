@@ -95,7 +95,7 @@ export default {
   Received: '接收',
   Sented: '發送',
   'gRPC Stream Messages': 'gRPC 流式訊息',
-  'WAL Fsync': 'WAL 日誌同步時間',
+  'WAL Fsync': 'WAL 紀錄同步時間',
   'DB Fsync': '資料庫同步時間',
   'Request Latency': '請求延遲',
   'Total Average': '總平均值',
@@ -172,7 +172,7 @@ export default {
   BASE_BAR_CHART_DESC:
     '基礎柱狀圖的一個軸顯示正在比較的類别，而另一個軸代表對應的刻度值。',
   STACK_BAR_CHART_DESC:
-    '堆疊柱狀圖是柱狀圖的擴展，不同的是，柱狀圖的數據值為並行排列，堆疊柱圖則是一個個疊加起來的。它可以展示每一個分類的總量，以及該分類包含的每個小分類的大小及占比，因此非常適合處理部分與整體的關系。',
+    '堆疊柱狀圖是柱狀圖的擴展，不同的是，柱狀圖的數據值為並行排列，堆疊柱圖則是一個個疊加起來的。它可以展示每一個分類的總量，以及該分類包含的每個小分類的大小及占比，因此非常適合處理部分與整體的關係。',
   SELECT_CHART_TYPE: '選擇圖表類型',
   SELECT_CHART_TYPE_MODAL_DESC: '選擇您要添加的自定義圖表類型',
   DISPLAY_POSITION: '圖表布局位置',

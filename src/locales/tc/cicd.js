@@ -72,7 +72,7 @@ export default {
   'Add Parallel Stage': '添加並行階段',
   'Add Step': '添加步驟',
   'Pipeline Configuration': '編輯流水線',
-  'Show Logs': '查看日誌',
+  'Show Logs': '查看紀錄',
   'Code Repository': '代碼倉庫',
   'Discard Old Builds': '丢棄舊的構建',
   'Discard old branch': '丢棄舊的分支',
@@ -94,7 +94,7 @@ export default {
   'Repository Url': '倉庫 URL',
   'get token': '獲取 Token',
   'CI/CD_CREATE_DESC': `Pipeline 是一系列的插件集合，可以通過組合它們來實現持續集成和持續交付的功能。
-    Pipeline DSL 為我们提供了一個可擴展的工具集，讓我们可以將简單到複雜的邏輯通過代碼實現。`,
+    Pipeline DSL 為我們提供了一個可擴展的工具集，讓我們可以將簡單到複雜的邏輯通過代碼實現。`,
   'Create Credentials': '創建憑證',
   'Credential ID': '憑證 ID',
   username_password: '帳戶憑證',
@@ -134,8 +134,8 @@ export default {
   'No artifacts records': '没有成品紀錄',
   'Select this repo': '選擇此倉庫',
   'Scan repo success': '掃描倉庫觸發成功',
-  'Pipeline Run Logs': '流水線運行日誌',
-  'Download Logs': '下载日誌',
+  'Pipeline Run Logs': '流水線運行紀錄',
+  'Download Logs': '下载紀錄',
   'Time Used': '用時',
   'not run': '未運行',
   'Not Build': '未執行',
@@ -148,10 +148,10 @@ export default {
   'Sub-healthy': '亞健康',
   Schedule: '行程表',
   'Stop Job Successfully, Status updated later': '任務已停止，狀態稍後更新',
-  'Scan Reponsitory Logs': '掃描倉庫日誌',
+  'Scan Reponsitory Logs': '掃描倉庫紀錄',
   'Started By': '實施者',
   Rescan: '重新掃描',
-  'Scan Logs Success': '掃描日誌成功',
+  'Scan Logs Success': '掃描紀錄成功',
   'Configuration error': '配置資訊錯誤',
   'branch success': '分支成功',
   tips_Parametric_build: `參數化構建過程允許您在進行構建時傳入一個或多個參數。
@@ -317,7 +317,7 @@ export default {
   'Executes the code inside the block with a determined time out limit.':
     '使用確定的超時限制執行塊内的代碼.',
   'Timeout after no activity in logs for this block':
-    '此區塊代碼無日誌輸出後開始計算超時',
+    '此區塊代碼無紀錄輸出後開始計算超時',
   'Absolute duration': '代碼塊所用的絕對時間',
   pipeline_conditions: '條件',
   'The conditions required to implement the current phase (optional).':

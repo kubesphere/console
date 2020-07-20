@@ -46,10 +46,10 @@ export default {
   'Local Storage Capacity': '本地儲存容量',
   used: '已用',
   'Resource Usage Status': '資源使用狀態',
-  Taints: '污點',
-  taints: '污點',
-  Taint: '污點',
-  taint: '污點',
+  Taints: '汙點',
+  taints: '汙點',
+  Taint: '汙點',
+  taint: '汙點',
   Conditions: '狀態',
   Annotations: '注解',
 
@@ -68,18 +68,18 @@ export default {
   PREFER_NOSCHEDULE_OPTION: '盡量不調度 (PreferNoSchedule)',
   NOEXECUTE_OPTION: '不允許並驅逐已有容器組 (NoExecute)',
 
-  'Taint Management': '污點管理',
-  'Common Taints': '公共污點',
+  'Taint Management': '汙點管理',
+  'Common Taints': '公共汙點',
   'Node List': '主機列表',
-  'Node Taints': '主機污點',
+  'Node Taints': '主機汙點',
   TAINTS_MSG:
-    '污點表示此節點已被 key=value 污染，容器組調度不允許（PodToleratesNodeTaints 策略）或盡量不（TaintTolerationPriority 策略）調度到此節點，除非是能夠容忍（Tolerations）key=value 污點的容器組。',
+    '汙點表示此節點已被 key=value 汙染，容器組調度不允許（PodToleratesNodeTaints 策略）或盡量不（TaintTolerationPriority 策略）調度到此節點，除非是能夠容忍（Tolerations）key=value 汙點的容器組。',
   TAINTS_TIPS:
-    '如果主機中存在一個或多個影響策略为 NoSchedule 的污點，該容器組不會被調度到該主機<br>如果主機中不存在影響策略為 NoSchedule 的污點，但是存在一個或多個影響策略為 PreferNoSchedule 的污點，該容器組會盡量不調度到該主機<br>如果主機中存在一個或多個影響策略為 NoExecute 的污點，該容器組不會被調度到該主機，並且會驅逐已經調度到該主機的容器組實例',
-  NO_TAINTS_TIPS: '暫未設置污點',
-  TAINT_SELECT_TIPS: '加入公共污點',
-  TAINT_DELETE_TIPS: '刪除該污點',
-  'Add Taint': '添加污點',
+    '如果主機中存在一個或多個影響策略为 NoSchedule 的汙點，該容器組不會被調度到該主機<br>如果主機中不存在影響策略為 NoSchedule 的汙點，但是存在一個或多個影響策略為 PreferNoSchedule 的汙點，該容器組會盡量不調度到該主機<br>如果主機中存在一個或多個影響策略為 NoExecute 的汙點，該容器組不會被調度到該主機，並且會驅逐已經調度到該主機的容器組實例',
+  NO_TAINTS_TIPS: '暫未設置汙點',
+  TAINT_SELECT_TIPS: '加入公共汙點',
+  TAINT_DELETE_TIPS: '刪除該汙點',
+  'Add Taint': '添加汙點',
   'Delete All Taints': '全部刪除',
   'CPU Used': '已使用 CPU ',
   'Memory Used': '已使用記憶體',
@@ -111,9 +111,9 @@ export default {
 
   NODE_TYPES_Q: '集群節點的類型？',
   NODE_TYPES_A: '節點分為主控 (Master) 節點和工作 (Worker) 節點',
-  WHAT_IS_NODE_TAINTS_Q: '什麼是節點污點？',
+  WHAT_IS_NODE_TAINTS_Q: '什麼是節點汙點？',
   WHAT_IS_NODE_TAINTS_A:
-    '節點污點 (Taints) 可以阻止某些容器組 (Pod) 副本部署至該節點中, 與容忍度 (Tolerations) 一起工作確保容器組不會被調度到不合適的節點上',
+    '節點汙點 (Taints) 可以阻止某些容器組 (Pod) 副本部署至該節點中, 與容忍度 (Tolerations) 一起工作確保容器組不會被調度到不合適的節點上',
 
   NODE_TYPE_DESC:
     '節點類型為提供了主機節點分組功能，使用者可以通過創建合適關係的節點類型並將主機節點加入相應的分組，從而將容器組按照分組關係部署到合適的物理節點上，來提高資源的可用性，業務的連續性。',
