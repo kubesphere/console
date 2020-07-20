@@ -100,7 +100,7 @@ class BaseInfo extends React.Component {
   }
 
   get itemActions() {
-    const { routing } = this.props
+    const { routing } = this.props.rootStore
     const { detail } = this.store
     const limitRanges = this.limitRangeStore.list.data
     const actions = [
@@ -137,7 +137,8 @@ class BaseInfo extends React.Component {
           this.trigger('resource.delete', {
             detail,
             desc: t.html('DELETE_PROJECT_TIP', { resource: detail.name }),
-            success: () => routing.push('/'),
+            success: () =>
+              routing.push(`/workspaces/${this.params.workspace}/projects`),
           }),
       },
     ]

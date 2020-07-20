@@ -110,7 +110,10 @@ class BaseInfo extends React.Component {
         onClick: () =>
           this.trigger('federated.project.delete', {
             detail,
-            success: () => this.props.rootStore.routing.push('/'),
+            success: () =>
+              this.props.rootStore.routing.push(
+                `/workspaces/${this.params.workspace}/federatedprojects`
+              ),
           }),
       },
     ]
