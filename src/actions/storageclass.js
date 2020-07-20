@@ -21,12 +21,10 @@ import { Modal, Notify } from 'components/Base'
 
 import CreateModal from 'components/Modals/Create'
 import SetDefaultStorageClassModal from 'components/Modals/SetDefaultStorageClass'
-import StorageClassSnapshotModal from 'components/Modals/StorageClassSnapshot'
 import { MODULE_KIND_MAP } from 'utils/constants'
 import FORM_TEMPLATES from 'utils/form.templates'
 import formPersist from 'utils/form.persist'
 import FORM_STEPS from 'configs/steps/storageclasses'
-import VolumeSnapshotClassStore from 'stores/volumeSnapshotClasses'
 
 export default {
   'storageclass.create': {
@@ -92,45 +90,6 @@ export default {
         },
         cluster,
         modal: SetDefaultStorageClassModal,
-        store,
-        ...props,
-      })
-    },
-  },
-  'storageclass.toggle.snapshot': {
-    on({ store, detail, success, ...props }) {
-      const volumeSnapshotClassStore = new VolumeSnapshotClassStore()
-      const modal = Modal.open({
-        onOk: async () => {
-          await store.patch(detail, {
-            metadata: {
-              annotations: {
-                'storageclass.kubesphere.io/support-snapshot': detail.supportSnapshot
-                  ? 'false'
-                  : 'true',
-              },
-            },
-          })
-
-          if (detail.supportSnapshot) {
-            await volumeSnapshotClassStore.deleteSilent(detail)
-          } else {
-            await volumeSnapshotClassStore.create(
-              {
-                metadata: {
-                  name: detail.name,
-                },
-                driver: detail.provisioner,
-              },
-              detail
-            )
-          }
-
-          Modal.close(modal)
-          success && success()
-        },
-        modal: StorageClassSnapshotModal,
-        supportSnapshot: detail.supportSnapshot,
         store,
         ...props,
       })
