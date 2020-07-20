@@ -164,4 +164,6 @@ export default {
   SERVICE_PORTS_DESC: '设置容器镜像暴露的端口以及服务端口',
 
   EIP_POOL_DESC: '集群内部访问方式(DNS)',
+
+  SERVICE_SESSION_STICKY_DESC: '最小为 0，最大为 86400',
 }

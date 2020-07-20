@@ -161,4 +161,6 @@ export default {
     'Specify a workload that needs to be associated with the service.',
 
   EIP_POOL_DESC: 'Access method within the cluster (DNS)',
+
+  SERVICE_SESSION_STICKY_DESC: 'must be greater than 0 and less than 86400',
 }
