@@ -236,7 +236,7 @@ class ResourceUsage extends React.Component {
         key: 'routes',
         icon: ICON_TYPES['ingresses'],
         name: 'Routes',
-        routeName: 'routes',
+        routeName: 'ingresses',
         num: used['count/ingresses.extensions'],
         metric: 'namespace_ingresses_extensions_count',
       },
