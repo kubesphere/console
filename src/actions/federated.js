@@ -81,7 +81,7 @@ export default {
         store,
         modal: DeleteModal,
         resource: detail.name,
-        type: 'Multi-cluster Project',
+        type: t('Multi-cluster Project'),
         ...props,
       })
     },
