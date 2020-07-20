@@ -30,7 +30,6 @@ export default {
   'Delete Volume': 'Delete Volume',
   'Disable Volume Snapshot': 'Disable Volume Snapshot',
   'Effect immediately': 'Effect immediately',
-  'Enable Volume Snapshot': 'Enable Volume Snapshot',
   Expand: 'Expand',
   'Expand Volume': 'Expand Volume',
   Idle: 'Idle',

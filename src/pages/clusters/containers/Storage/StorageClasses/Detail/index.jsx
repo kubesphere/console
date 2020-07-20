@@ -92,19 +92,6 @@ export default class StorageClassDetail extends React.Component {
         }),
     },
     {
-      key: 'setSnapshot',
-      icon: 'pen',
-      text: this.store.detail.supportSnapshot
-        ? t('Disable Volume Snapshot')
-        : t('Enable Volume Snapshot'),
-      action: 'edit',
-      onClick: () =>
-        this.trigger('storageclass.toggle.snapshot', {
-          detail: toJS(this.store.detail),
-          success: this.fetchData,
-        }),
-    },
-    {
       key: 'delete',
       icon: 'trash',
       text: t('Delete'),

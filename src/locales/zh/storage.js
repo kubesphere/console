@@ -164,8 +164,6 @@ export default {
   'Create Snapshot': '创建快照',
   'Volume Clone': '存储卷克隆',
   'Support Volume Snapshot': '支持存储卷快照',
-  'Enable Volume Snapshot': '开启存储卷快照',
-  'Disable Volume Snapshot': '关闭存储卷快照',
 
   VOLUME_SNAPSHOT_STATUS_CREATING: '创建中',
   VOLUME_SNAPSHOT_STATUS_READY: '创建成功',
