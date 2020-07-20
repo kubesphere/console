@@ -84,7 +84,6 @@ export default {
   'Select Time Range': 'Select Time Range',
   Sented: 'Sented',
   'Service Component Monitoring': 'Service Component Monitoring',
-  TIME_S: 'TIME_S',
   times: 'times',
   'times/s': 'times/s',
   'Total Average': 'Total Average',
