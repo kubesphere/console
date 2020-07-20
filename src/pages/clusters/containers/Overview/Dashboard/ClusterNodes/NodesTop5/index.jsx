@@ -73,6 +73,9 @@ export default class NodesTop5 extends Component {
                 title={
                   <Link to={`/clusters/${this.cluster}/nodes/${node.node}`}>
                     {node.node}
+                    {node.role === 'master' && (
+                      <span className={styles.label}>Master</span>
+                    )}
                   </Link>
                 }
                 description={get(node, 'host_ip', '-')}
