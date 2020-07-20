@@ -235,10 +235,10 @@ export default {
   'Pod Security Context': 'Pod Security Context',
   'Pod Status': 'Pod Status',
   'Pod Status Analysis': 'Pod Status Analysis',
-  POD_REASON_FAILEDCREATE: 'POD_REASON_FAILEDCREATE',
-  POD_REASON_FAILEDDELETE: 'POD_REASON_FAILEDDELETE',
-  POD_REASON_SUCCESSFULCREATE: 'POD_REASON_SUCCESSFULCREATE',
-  POD_REASON_SUCCESSFULDELETE: 'POD_REASON_SUCCESSFULDELETE',
+  POD_REASON_FAILEDCREATE: 'Creation failed',
+  POD_REASON_FAILEDDELETE: 'Deletion failed',
+  POD_REASON_SUCCESSFULCREATE: 'Creation succeeded',
+  POD_REASON_SUCCESSFULDELETE: 'Deletion succeeded',
   PodInitializing: 'PodInitializing',
   'Pods List': 'Pods List',
   Port: 'Port',
@@ -340,22 +340,17 @@ export default {
   'What is Disk Log Collection?': 'What is Disk Log Collection?',
   'Worker Container': 'Worker Container',
   Workload: 'Workload',
-  WORKLOAD_REASON_DEPLOYMENTPAUSED: 'WORKLOAD_REASON_DEPLOYMENTPAUSED',
-  WORKLOAD_REASON_DEPLOYMENTRESUMED: 'WORKLOAD_REASON_DEPLOYMENTRESUMED',
-  WORKLOAD_REASON_FAILEDCREATE: 'WORKLOAD_REASON_FAILEDCREATE',
-  WORKLOAD_REASON_FOUNDNEWREPLICASET: 'WORKLOAD_REASON_FOUNDNEWREPLICASET',
-  WORKLOAD_REASON_MINIMUMREPLICASAVAILABLE:
-    'WORKLOAD_REASON_MINIMUMREPLICASAVAILABLE',
-  WORKLOAD_REASON_MINIMUMREPLICASUNAVAILABLE:
-    'WORKLOAD_REASON_MINIMUMREPLICASUNAVAILABLE',
-  WORKLOAD_REASON_NEWREPLICASETAVAILABLE:
-    'WORKLOAD_REASON_NEWREPLICASETAVAILABLE',
-  WORKLOAD_REASON_NEWREPLICASETCREATED: 'WORKLOAD_REASON_NEWREPLICASETCREATED',
-  WORKLOAD_REASON_PROGRESSDEADLINEEXCEEDED:
-    'WORKLOAD_REASON_PROGRESSDEADLINEEXCEEDED',
-  WORKLOAD_REASON_REPLICASETCREATEERROR:
-    'WORKLOAD_REASON_REPLICASETCREATEERROR',
-  WORKLOAD_REASON_REPLICASETUPDATED: 'WORKLOAD_REASON_REPLICASETUPDATED',
+  WORKLOAD_REASON_DEPLOYMENTPAUSED: 'Deployment paused',
+  WORKLOAD_REASON_DEPLOYMENTRESUMED: 'Deployment resumed',
+  WORKLOAD_REASON_FAILEDCREATE: 'Creation failed',
+  WORKLOAD_REASON_FOUNDNEWREPLICASET: 'New ReplicaSet found',
+  WORKLOAD_REASON_MINIMUMREPLICASAVAILABLE: 'Minimum replicas available',
+  WORKLOAD_REASON_MINIMUMREPLICASUNAVAILABLE: 'Minimum replicas unavailable',
+  WORKLOAD_REASON_NEWREPLICASETAVAILABLE: 'New ReplicaSet available',
+  WORKLOAD_REASON_NEWREPLICASETCREATED: 'New ReplicaSet created',
+  WORKLOAD_REASON_PROGRESSDEADLINEEXCEEDED: 'Process timed out',
+  WORKLOAD_REASON_REPLICASETCREATEERROR: 'New ReplicaSet creation error',
+  WORKLOAD_REASON_REPLICASETUPDATED: 'ReplicaSet updated',
   Workloads: 'Workloads',
   'You can allow Pod replicas to run on specified nodes.':
     'You can allow Pod replicas to run on specified nodes.',
@@ -425,8 +420,6 @@ export default {
     'To deploy from a private image repository, you need to <a href={link} target="_blank">create an image registry secret</a> first and then pull the image.',
 
   REPLICAS_DESC: 'The desired number of pods will be created for the {module}.',
-  VOLUME_DESC:
-    'A volume is a PVC (PersistentVolumeClaim) created using dynamic volume provisioning.',
   VOLUME_SUB_TEXT: 'Volumes used by the containers of the workload',
   EMPTYDIR_DESC: 'Temporary storage created for the workload',
   HOSTPATH_DESC:

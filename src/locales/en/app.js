@@ -139,7 +139,7 @@ export default {
   'Version No': 'Version No',
   'Very helpful when users search for apps':
     'Very helpful when users search for apps',
-  'Website format is error': 'Website format is error',
+  'Wrong website format': 'Wrong website format',
 
   FILE_UPLOAD_MAX: 'The file size cannot exceed 2M.',
 

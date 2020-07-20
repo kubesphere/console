@@ -177,7 +177,7 @@ export default {
   'Empty value means no limit, CPU 1 Core = 1000m':
     '值为空表示无限制, CPU 1核 = 1000m',
 
-  'Project name exists on host cluster': '项目名在 Host 集群上已存在.',
+  'The project name exists on the host cluster.': '项目名在 Host 集群上已存在',
 
   MULTI_CLUSTER_PROJECT_DELETE_TIP:
     '删除多集群项目同时也会删除依赖于 Host 集群上的同名项目,</br>请输入{type}名称 <strong>{resource}</strong> 确保您已了解操作所带来的风险。',
@@ -236,8 +236,8 @@ export default {
     '当前资源为多集群资源，资源将分布在不同集群中共同来构成多集群资源，您可以切换到不同集群查看资源在该集群中的设置。',
 
   FEDPROJECT_RESOURCE_TIP:
-    '无法在集群管理内创建多集群项目的资源, 请到多集群项目页面内进行操作.',
-  FEDPROJECT_CANNOT_DEPLOY_APP_TIP: '无法在多集群项目里部署应用.',
+    '无法在集群管理内创建多集群项目的资源, 请到多集群项目页面内进行操作。',
+  FEDPROJECT_CANNOT_DEPLOY_APP_TIP: '无法在多集群项目里部署应用。',
 
   FED_HOST_NAMESPACE_TIP:
     '该项目为多集群项目的相关资源, 请勿在此项目下操作资源',

@@ -118,7 +118,7 @@ export default {
     '8. Detailed README files are required, including introduction of applications, preconditions and how to customize configuration parameters <br/>',
 
   VERSION_SUBMIT_NOTE:
-    'Before submitting for review, make sure that your application has passed the following basic functions',
+    'Please make sure your app has passed the basic function tests shown below before you submit it for review.',
   VERSION_SUBMIT_DOC: 'Refer to a more comprehensive test manual',
   VERSION_NUMBER_DESC:
     'The important identification of the version. It can only contain numbers, decimal points and brackets ("[]"), and must start with a number and contain decimal points.',

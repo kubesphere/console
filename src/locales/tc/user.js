@@ -54,7 +54,7 @@ export default {
   'Unable to delete itself': '无法删除自己',
   'Login History': '登录历史',
   Time: '时间',
-  'Repeat the new password': '重复新的密码',
+  'Repeat the New Password': '重复新的密码',
 
   USER_ACTIVE: '活跃',
   USER_PENDING: '等待中',
