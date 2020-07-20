@@ -22,11 +22,7 @@ import { Columns, Column, Input, Select } from '@pitrix/lego-ui'
 import { Form, TextArea } from 'components/Base'
 import { NumberInput, SelectInput, ProjectSelect } from 'components/Inputs'
 import ToggleView from 'components/ToggleView'
-import {
-  MODULE_KIND_MAP,
-  PATTERN_LENGTH_52,
-  PATTERN_NAME,
-} from 'utils/constants'
+import { MODULE_KIND_MAP, PATTERN_NAME } from 'utils/constants'
 
 export default class BaseInfo extends React.Component {
   get formTemplate() {
@@ -95,10 +91,6 @@ export default class BaseInfo extends React.Component {
                   pattern: PATTERN_NAME,
                   message: `${t('Invalid name')}, ${t('CRONJOB_NAME_DESC')}`,
                 },
-                {
-                  pattern: PATTERN_LENGTH_52,
-                  message: t('CRONJOB_NAME_TOO_LONG'),
-                },
                 { validator: this.nameValidator },
               ]}
             >
@@ -106,6 +98,7 @@ export default class BaseInfo extends React.Component {
                 name="metadata.name"
                 onChange={this.handleNameChange}
                 autoFocus={true}
+                maxLength={52}
               />
             </Form.Item>
           </Column>

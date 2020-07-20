@@ -77,7 +77,7 @@ export default class BaseInfo extends React.Component {
                 { validator: this.nameValidator },
               ]}
             >
-              <Input name="metadata.name" />
+              <Input name="metadata.name" maxLength={253} />
             </Form.Item>
           </Column>
           <Column>

@@ -100,7 +100,7 @@ export default class BasicInfo extends React.Component {
                   },
                 ]}
               >
-                <Input name="name" maxLength={15} />
+                <Input name="name" maxLength={14} />
               </Form.Item>
             </Column>
             <Column>

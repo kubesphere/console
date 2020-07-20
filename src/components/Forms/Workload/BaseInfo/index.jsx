@@ -23,8 +23,6 @@ import { observer } from 'mobx-react'
 import { updateLabels } from 'utils'
 import {
   PATTERN_NAME,
-  PATTERN_LENGTH_63,
-  PATTERN_LENGTH_253,
   MODULE_KIND_MAP,
   APP_LABEL_MODULES,
 } from 'utils/constants'
@@ -52,19 +50,6 @@ export default class BaseInfo extends React.Component {
     return this.props.isFederated
       ? get(this.formTemplate, 'spec.template')
       : this.formTemplate
-  }
-
-  get nameLengthRules() {
-    return {
-      63: {
-        pattern: PATTERN_LENGTH_63,
-        message: t('NAME_TOO_LONG'),
-      },
-      253: {
-        pattern: PATTERN_LENGTH_253,
-        message: t('LONG_NAME_TOO_LONG'),
-      },
-    }
   }
 
   nameValidator = (rule, value, callback) => {
@@ -120,13 +105,13 @@ export default class BaseInfo extends React.Component {
                   pattern: PATTERN_NAME,
                   message: `${t('Invalid name')}, ${desc}`,
                 },
-                this.nameLengthRules[maxNameLength] || {},
                 { validator: this.nameValidator },
               ]}
             >
               <Input
                 name="metadata.name"
                 onChange={this.handleNameChange}
+                maxLength={maxNameLength}
                 autoFocus={true}
               />
             </Form.Item>

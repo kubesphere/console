@@ -24,7 +24,7 @@ import { Columns, Column, Select, Input } from '@pitrix/lego-ui'
 import { Modal, Form, TextArea } from 'components/Base'
 import { ArrayInput, ObjectInput } from 'components/Inputs'
 import ClusterTitle from 'components/Clusters/ClusterTitle'
-import { PATTERN_SERVICE_NAME, PATTERN_LENGTH_63 } from 'utils/constants'
+import { PATTERN_SERVICE_NAME } from 'utils/constants'
 
 import { computed } from 'mobx'
 import styles from './index.scss'
@@ -225,13 +225,13 @@ export default class FedProjectCreateModal extends React.Component {
                     pattern: PATTERN_SERVICE_NAME,
                     message: `${t('Invalid name')}, ${t('SERVICE_NAME_DESC')}`,
                   },
-                  { pattern: PATTERN_LENGTH_63, message: t('NAME_TOO_LONG') },
                 ]}
               >
                 <Input
                   name="metadata.name"
-                  autoFocus={true}
                   onChange={this.handleNameChange}
+                  autoFocus={true}
+                  maxLength={63}
                 />
               </Form.Item>
             </Column>

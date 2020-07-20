@@ -74,7 +74,11 @@ export default class BaseInfo extends React.Component {
                 { validator: this.nameValidator },
               ]}
             >
-              <Input name="alert.alert_name" onChange={this.handleNameChange} />
+              <Input
+                name="alert.alert_name"
+                onChange={this.handleNameChange}
+                maxLength={253}
+              />
             </Form.Item>
           </Column>
           <Column>

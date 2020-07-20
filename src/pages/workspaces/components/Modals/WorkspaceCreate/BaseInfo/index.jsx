@@ -137,7 +137,7 @@ export default class BaseInfo extends React.Component {
               { validator: this.nameValidator },
             ]}
           >
-            <Input name="metadata.name" autoFocus={true} />
+            <Input name="metadata.name" autoFocus={true} maxLength={63} />
           </Form.Item>
           <Form.Item label={t('Alias')} desc={t('ALIAS_DESC')}>
             <Input name="metadata.annotations['kubesphere.io/alias-name']" />

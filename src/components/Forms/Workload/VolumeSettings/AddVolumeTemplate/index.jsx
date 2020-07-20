@@ -204,7 +204,7 @@ export default class AddVolume extends React.Component {
                   { validator: this.nameValidator },
                 ]}
               >
-                <Input name="metadata.name" autoFocus={true} />
+                <Input name="metadata.name" autoFocus={true} maxLength={253} />
               </Form.Item>
               <VolumeFormTemplate />
               <Form.Item

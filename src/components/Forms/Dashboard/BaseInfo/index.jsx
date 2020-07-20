@@ -82,7 +82,7 @@ export default class BaseInfo extends React.Component {
                 { validator: this.nameValidator },
               ]}
             >
-              <Input name="metadata.name" autoFocus={true} />
+              <Input name="metadata.name" autoFocus={true} maxLength={63} />
             </Form.Item>
           </Column>
 

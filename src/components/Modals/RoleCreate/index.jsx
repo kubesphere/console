@@ -144,7 +144,7 @@ export default class CreateModal extends React.Component {
             { validator: this.roleNameValidator },
           ]}
         >
-          <Input name="metadata.name" />
+          <Input name="metadata.name" maxLength={63} />
         </Form.Item>
         <Form.Item
           label={t(`${t('Role Name')}(${t('Alias')})`)}

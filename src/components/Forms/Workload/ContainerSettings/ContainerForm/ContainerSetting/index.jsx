@@ -20,7 +20,7 @@ import React from 'react'
 import { get, isEmpty } from 'lodash'
 import { generateId } from 'utils'
 
-import { PATTERN_NAME, PATTERN_LENGTH_63 } from 'utils/constants'
+import { PATTERN_NAME } from 'utils/constants'
 
 import { Input, Select, Columns, Column } from '@pitrix/lego-ui'
 import { Form, Tag, Alert } from 'components/Base'
@@ -106,13 +106,13 @@ export default class ContainerSetting extends React.Component {
                     pattern: PATTERN_NAME,
                     message: `${t('Invalid name')}, ${t('NAME_DESC')}`,
                   },
-                  {
-                    pattern: PATTERN_LENGTH_63,
-                    message: t('NAME_TOO_LONG'),
-                  },
                 ]}
               >
-                <Input name="name" defaultValue={`container-${generateId()}`} />
+                <Input
+                  name="name"
+                  defaultValue={`container-${generateId()}`}
+                  maxLength={63}
+                />
               </Form.Item>
             </Column>
             <Column>

@@ -20,7 +20,7 @@ import { get, set, debounce } from 'lodash'
 import React from 'react'
 import { PropTypes } from 'prop-types'
 import { Input, Select } from '@pitrix/lego-ui'
-import { PATTERN_NAME, PATTERN_LENGTH_63 } from 'utils/constants'
+import { PATTERN_NAME } from 'utils/constants'
 import { updateFederatedAnnotations, generateId } from 'utils'
 import { Form, TextArea } from 'components/Base'
 
@@ -138,11 +138,14 @@ export default class BaseInfo extends React.Component {
                 pattern: PATTERN_NAME,
                 message: `${t('Invalid name')}, ${t('NAME_DESC')}`,
               },
-              { pattern: PATTERN_LENGTH_63, message: t('NAME_TOO_LONG') },
               { validator: this.nameValidator },
             ]}
           >
-            <Input name="metadata.name" onChange={this.handleNameChange} />
+            <Input
+              name="metadata.name"
+              onChange={this.handleNameChange}
+              maxLength={63}
+            />
           </Form.Item>
           <Form.Item
             label={t('Application Version(Optional)')}
