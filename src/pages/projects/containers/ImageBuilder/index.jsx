@@ -138,6 +138,7 @@ export default class ImageBuilders extends React.Component {
       {
         title: t('Service'),
         dataIndex: 'serviceName',
+        isHideable: true,
         width: '15%',
         render: name => {
           if (name) {
