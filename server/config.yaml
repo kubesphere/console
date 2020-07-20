@@ -194,8 +194,8 @@ client:
                 name: mail-server,
                 title: Mail Server,
                 icon: mail,
-                authKey: alerting,
-                clusterModule: alerting,
+                authKey: notification,
+                clusterModule: notification,
               }
             - {
                 name: log-collections,
