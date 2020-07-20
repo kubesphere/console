@@ -218,9 +218,8 @@ export default class Projects extends React.Component {
           itemActions={this.itemActions}
           columns={this.getColumns()}
           onCreate={this.showCreate}
-          monitorLoading={isLoadingMonitor}
+          isLoading={tableProps.isLoading || isLoadingMonitor}
           searchType="name"
-          alwaysUpdate
         />
       </ListPage>
     )

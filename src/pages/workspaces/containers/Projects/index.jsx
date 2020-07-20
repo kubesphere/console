@@ -296,9 +296,8 @@ export default class Projects extends React.Component {
           onCreate={this.showCreate}
           searchType="name"
           {...this.clusterProps}
-          monitorLoading={isLoadingMonitor}
+          isLoading={tableProps.isLoading || isLoadingMonitor}
           getCheckboxProps={this.getCheckboxProps}
-          alwaysUpdate
         />
       </ListPage>
     )
