@@ -94,7 +94,7 @@ export default class Group extends React.Component {
   }
 
   handleCheck = (e, check) => {
-    const { keepDataWhenUnCheck } = this.props
+    const { keepDataWhenUnCheck, onChange } = this.props
     this.setState({ isCheck: check }, () => {
       if (!keepDataWhenUnCheck && !check) {
         const { formData } = this.context
@@ -102,6 +102,8 @@ export default class Group extends React.Component {
           this.items.forEach(item => unset(formData, item))
         }
       }
+
+      onChange && onChange(check)
     })
   }
 

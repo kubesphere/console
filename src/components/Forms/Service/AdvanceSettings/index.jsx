@@ -17,15 +17,15 @@
  */
 
 import React from 'react'
-import { get, set } from 'lodash'
+import { get, set, unset } from 'lodash'
 import { MODULE_KIND_MAP } from 'utils/constants'
 
 import { Form } from 'components/Base'
+import { NumberInput } from 'components/Inputs'
 
 import Metadata from './Metadata'
 import NodeSchedule from './NodeSchedule'
 import InternetAccess from './InternetAccess'
-import SessionAffinity from './SessionAffinity'
 
 export default class AdvancedSettings extends React.Component {
   get namespace() {
@@ -51,13 +51,16 @@ export default class AdvancedSettings extends React.Component {
   }
 
   handleSessionAffinityChange = value => {
-    const { formTemplate, noWorkload } = this.props
-    if (!noWorkload) {
-      set(
-        formTemplate,
-        `Service.${this.fedPrefix}spec.sessionAffinity`,
-        value ? 'clusterIP' : 'None'
-      )
+    const { formTemplate } = this.props
+
+    set(
+      formTemplate,
+      `Service.${this.fedPrefix}spec.sessionAffinity`,
+      value ? 'ClientIP' : 'None'
+    )
+
+    if (!value) {
+      unset(formTemplate, `Service.${this.fedPrefix}spec.sessionAffinityConfig`)
     }
   }
 
@@ -88,12 +91,22 @@ export default class AdvancedSettings extends React.Component {
         <Form.Group
           label={t('Enable Sticky Session')}
           desc={t('The maximum session sticky time is 10800s (3 hours).')}
+          onChange={this.handleSessionAffinityChange}
           checkable
         >
-          <SessionAffinity
-            formTemplate={formTemplate}
-            isFederated={isFederated}
-          />
+          <Form.Item
+            label={t('Maximum Session Sticky Time (s)')}
+            desc={'SERVICE_SESSION_STICKY_DESC'}
+          >
+            <NumberInput
+              name={`Service.${
+                this.fedPrefix
+              }spec.sessionAffinityConfig.clientIP.timeoutSeconds`}
+              defaultValue={10800}
+              min={0}
+              max={86400}
+            />
+          </Form.Item>
         </Form.Group>
         {!noWorkload && (
           <Form.Group

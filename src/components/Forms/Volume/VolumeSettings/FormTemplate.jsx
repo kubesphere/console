@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, isNaN } from 'lodash'
+import { get, isNaN, unset } from 'lodash'
 import React from 'react'
 import { toJS } from 'mobx'
 
@@ -146,7 +146,7 @@ export default class VolumeSettings extends React.Component {
     const newStorageClass =
       storageClasses.find(item => item.name === value) || {}
 
-    this.context.formData[ACCESSMODE_KEY] = undefined
+    unset(this.context.formData, ACCESSMODE_KEY)
 
     this.setState({
       storageClass: newStorageClass,
