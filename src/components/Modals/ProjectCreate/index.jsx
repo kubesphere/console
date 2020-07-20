@@ -239,20 +239,6 @@ export default class ProjectCreateModal extends React.Component {
           </Columns>
           <Columns>
             <Column>
-              <Form.Item
-                label={t('Network Isolation')}
-                desc={t('NETWORK_ISOLATED_DESC')}
-              >
-                <Select
-                  name="metadata.annotations['kubesphere.io/network-isolate']"
-                  options={this.networkOptions}
-                  defaultValue={
-                    globals.config.defaultNetworkIsolation ? 'enabled' : ''
-                  }
-                />
-              </Form.Item>
-            </Column>
-            <Column>
               <Form.Item label={t('Description')} desc={t('DESCRIPTION_DESC')}>
                 <TextArea
                   name="metadata.annotations['kubesphere.io/description']"
@@ -260,6 +246,7 @@ export default class ProjectCreateModal extends React.Component {
                 />
               </Form.Item>
             </Column>
+            <Column />
           </Columns>
           {!hideCluster && this.renderClusters()}
         </div>
