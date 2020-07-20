@@ -20,6 +20,7 @@ import { get, cloneDeep, unset } from 'lodash'
 
 const getNamespaceTemplate = data => {
   const name = get(data, 'metadata.name')
+  const annotations = get(data, 'metadata.annotations')
   const placement = get(data, 'spec.placement')
 
   const workspace = get(data, 'metadata.labels["kubesphere.io/workspace"]')
@@ -40,6 +41,7 @@ const getNamespaceTemplate = data => {
       labels: {
         'kubesphere.io/workspace': workspace,
       },
+      annotations,
     },
     spec: { placement, template },
   }
