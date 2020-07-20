@@ -248,19 +248,12 @@ export default class Nodes extends React.Component {
           return (
             <Text
               title={
-                <Tooltip
-                  content={this.renderCPUTooltip(record)}
-                  placement="right"
-                >
-                  <div className={styles.resource}>
-                    <span>{`${Math.round(
-                      metrics.cpu_utilisation * 100
-                    )}%`}</span>
-                    {metrics.cpu_utilisation >= 0.9 && (
-                      <Icon name="exclamation" />
-                    )}
-                  </div>
-                </Tooltip>
+                <div className={styles.resource}>
+                  <span>{`${Math.round(metrics.cpu_utilisation * 100)}%`}</span>
+                  {metrics.cpu_utilisation >= 0.9 && (
+                    <Icon name="exclamation" />
+                  )}
+                </div>
               }
               description={`${metrics.cpu_used}/${metrics.cpu_total} Core`}
             />
@@ -289,19 +282,14 @@ export default class Nodes extends React.Component {
           return (
             <Text
               title={
-                <Tooltip
-                  content={this.renderMemoryTooltip(record)}
-                  placement="right"
-                >
-                  <div className={styles.resource}>
-                    <span>{`${Math.round(
-                      metrics.memory_utilisation * 100
-                    )}%`}</span>
-                    {metrics.memory_utilisation >= 0.9 && (
-                      <Icon name="exclamation" />
-                    )}
-                  </div>
-                </Tooltip>
+                <div className={styles.resource}>
+                  <span>{`${Math.round(
+                    metrics.memory_utilisation * 100
+                  )}%`}</span>
+                  {metrics.memory_utilisation >= 0.9 && (
+                    <Icon name="exclamation" />
+                  )}
+                </div>
               }
               description={`${metrics.memory_used}/${metrics.memory_total} Gi`}
             />
@@ -333,69 +321,74 @@ export default class Nodes extends React.Component {
           )
         },
       },
+      {
+        title: t('Allocated CPU'),
+        key: 'allocated_resources_cpu',
+        isHideable: true,
+        render: this.renderCPUTooltip,
+      },
+      {
+        title: t('Allocated Memory'),
+        key: 'allocated_resources_memory',
+        isHideable: true,
+        render: this.renderMemoryTooltip,
+      },
     ]
   }
 
-  renderCPUTooltip(record) {
+  renderCPUTooltip = record => {
+    const content = (
+      <p>
+        {t('Resource Limits')}:{' '}
+        {cpuFormat(get(record, 'annotations["node.kubesphere.io/cpu-limits"]'))}{' '}
+        Core (
+        {get(record, 'annotations["node.kubesphere.io/cpu-limits-fraction"]')})
+      </p>
+    )
     return (
-      <div>
-        <div className="tooltip-title">{t('Resource Usage')}</div>
-        <p>
-          {t('CPU Requests')}:{' '}
-          {cpuFormat(
+      <Tooltip content={content} placement="top">
+        <Text
+          title={`${cpuFormat(
             get(record, 'annotations["node.kubesphere.io/cpu-requests"]')
-          )}{' '}
-          Core (
-          {get(
+          )} (${get(
             record,
             'annotations["node.kubesphere.io/cpu-requests-fraction"]'
-          )}
-          )
-        </p>
-        <p>
-          {t('CPU Limits')}:{' '}
-          {cpuFormat(
-            get(record, 'annotations["node.kubesphere.io/cpu-limits"]')
-          )}{' '}
-          Core (
-          {get(record, 'annotations["node.kubesphere.io/cpu-limits-fraction"]')}
-          )
-        </p>
-      </div>
+          )})`}
+          description={t('Resource Requests')}
+        />
+      </Tooltip>
     )
   }
 
-  renderMemoryTooltip(record) {
+  renderMemoryTooltip = record => {
+    const content = (
+      <p>
+        {t('Resource Limits')}:{' '}
+        {memoryFormat(
+          get(record, 'annotations["node.kubesphere.io/memory-limits"]'),
+          'Gi'
+        )}{' '}
+        Gi (
+        {get(
+          record,
+          'annotations["node.kubesphere.io/memory-limits-fraction"]'
+        )}
+        )
+      </p>
+    )
     return (
-      <div>
-        <div className="tooltip-title">{t('Resource Usage')}</div>
-        <p>
-          {t('Memory Requests')}:{' '}
-          {memoryFormat(
+      <Tooltip content={content} placement="top">
+        <Text
+          title={`${memoryFormat(
             get(record, 'annotations["node.kubesphere.io/memory-requests"]'),
             'Gi'
-          )}{' '}
-          Gi (
-          {get(
+          )} Gi (${get(
             record,
             'annotations["node.kubesphere.io/memory-requests-fraction"]'
-          )}
-          )
-        </p>
-        <p>
-          {t('Memory Limits')}:{' '}
-          {memoryFormat(
-            get(record, 'annotations["node.kubesphere.io/memory-limits"]'),
-            'Gi'
-          )}{' '}
-          Gi (
-          {get(
-            record,
-            'annotations["node.kubesphere.io/memory-limits-fraction"]'
-          )}
-          )
-        </p>
-      </div>
+          )})`}
+          description={t('Resource Requests')}
+        />
+      </Tooltip>
     )
   }
 
@@ -431,8 +424,7 @@ export default class Nodes extends React.Component {
           itemActions={this.itemActions}
           tableActions={this.tableActions}
           columns={this.getColumns()}
-          monitorLoading={isLoadingMonitor}
-          alwaysUpdate
+          isLoading={tableProps.isLoading || isLoadingMonitor}
         />
       </ListPage>
     )

@@ -88,6 +88,8 @@ export default {
   'Add Type': '添加类型',
   'Add Node Type': '添加节点类型',
   'Type Name': '类型名称',
+  'Allocated CPU': '已分配 CPU',
+  'Allocated Memory': '已分配内存',
 
   Metadata: '元数据',
 

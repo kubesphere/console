@@ -22,6 +22,8 @@ export default {
   'Add Taint': 'Add Taint',
   'Add Type': 'Add Type',
   'All Nodes': 'All Nodes',
+  'Allocated CPU': 'Allocated CPU',
+  'Allocated Memory': 'Allocated Memory',
   Annotations: 'Annotations',
   Architecture: 'Architecture',
   'Cluster Node': 'Cluster Node',

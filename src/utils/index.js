@@ -318,9 +318,13 @@ export const memoryFormat = (memory, unit = 'Mi') => {
 
   let value = Number(trimEnd(memory.toLowerCase(), currentUnit))
 
-  if (/m$/g.test(memory)) {
-    // transfer to ki
+  if (/m$/g.test(String(memory))) {
+    // transfer m to ki
     value = Number(trimEnd(memory, 'm')) / (1000 * 1024)
+    currentUnitIndex = 0
+  } else if (/^[0-9.]*$/.test(String(memory))) {
+    // transfer bytes to ki
+    value = Number(memory) / 1024
     currentUnitIndex = 0
   }
 
