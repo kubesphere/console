@@ -89,7 +89,6 @@ export default class ConfigMaps extends React.Component {
         dataIndex: 'name',
         sorter: true,
         sortOrder: getSortOrder('name'),
-        search: true,
         render: (name, record) => (
           <Avatar
             icon={ICON_TYPES[module]}
@@ -140,6 +139,7 @@ export default class ConfigMaps extends React.Component {
           itemActions={this.itemActions}
           columns={this.getColumns()}
           onCreate={this.showCreate}
+          searchType="name"
         />
       </ListPage>
     )

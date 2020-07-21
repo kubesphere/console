@@ -155,7 +155,6 @@ export default class Projects extends React.Component {
         title: t('Status'),
         dataIndex: 'status',
         isHideable: true,
-        search: true,
         render: status => <Status type={status} name={t(status)} flicker />,
       },
       {

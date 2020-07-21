@@ -88,7 +88,6 @@ export default class Accounts extends React.Component {
     {
       title: t('Name'),
       dataIndex: 'username',
-      search: true,
       render: (name, record) => (
         <Avatar
           avatar={record.avatar_url || '/assets/default-user.svg'}

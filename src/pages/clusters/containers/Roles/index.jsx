@@ -103,7 +103,6 @@ export default class ClusterRoles extends React.Component {
       {
         title: t('Name'),
         dataIndex: 'name',
-        search: true,
         width: '25%',
         render: name => (
           <Avatar
@@ -157,6 +156,7 @@ export default class ClusterRoles extends React.Component {
           tableActions={this.tableActions}
           itemActions={this.itemActions}
           columns={this.getColumns()}
+          searchType="name"
         />
       </ListPage>
     )

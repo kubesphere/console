@@ -66,7 +66,7 @@ export default class AddressStore extends Base {
     if (addressMessage) {
       return addressMessage.address_id
     }
-    return await this.create({ address })
+    return await this.create({ cluster, address })
   }
 
   @action

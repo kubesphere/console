@@ -103,7 +103,6 @@ export default class Workspaces extends React.Component {
         dataIndex: 'name',
         sorter: true,
         sortOrder: getSortOrder('name'),
-        search: true,
         render: (name, record) => (
           <Avatar
             icon="enterprise"

@@ -222,6 +222,8 @@ export default class WorkloadTable extends React.Component {
   handleFilterInput = tags => {
     const filters = {}
     tags.forEach(n => {
+      // transfer keyword to name
+      n.filter = n.filter === 'keyword' ? 'name' : n.filter
       filters[n.filter] = n.value
     })
 
@@ -326,6 +328,7 @@ export default class WorkloadTable extends React.Component {
         tags={this.tags}
         suggestions={this.suggestions}
         onChange={this.handleFilterInput}
+        defaultKeywordLabel={t('Name')}
       />
     )
   }

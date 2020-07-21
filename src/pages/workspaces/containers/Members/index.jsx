@@ -143,7 +143,6 @@ export default class Accounts extends React.Component {
       {
         title: t('Member Name'),
         dataIndex: 'username',
-        search: true,
         width: '40%',
         render: (name, record) => (
           <Avatar

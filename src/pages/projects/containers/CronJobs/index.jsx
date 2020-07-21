@@ -175,7 +175,6 @@ export default class CronJobs extends React.Component {
         title: t('Schedule'),
         dataIndex: 'spec.schedule',
         isHideable: true,
-        search: true,
         width: '15%',
       },
       {
@@ -184,7 +183,6 @@ export default class CronJobs extends React.Component {
         sorter: true,
         sortOrder: getSortOrder('creationTimestamp'),
         isHideable: true,
-        search: true,
         width: 150,
         render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
       },
