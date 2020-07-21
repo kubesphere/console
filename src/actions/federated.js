@@ -33,7 +33,7 @@ export default {
         onOk: async data => {
           set(data, 'metadata.labels["kubesphere.io/workspace"]', workspace)
           const specClusters = uniqBy(
-            get(data, 'spec.placement.clusters', []),
+            get(data, 'spec.placement.clusters', []).filter(item => item.name),
             'name'
           )
 
