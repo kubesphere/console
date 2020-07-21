@@ -73,7 +73,7 @@ export default class ResourceCard extends React.Component {
       this.routing.push(
         workspace
           ? `/${workspace}/clusters/${cluster}/projects/${namespace}/${routeName}`
-          : `/clusters/${cluster}/${routeName}`
+          : `/clusters/${cluster}/${routeName}?namespace=${namespace}`
       )
     }
   }
