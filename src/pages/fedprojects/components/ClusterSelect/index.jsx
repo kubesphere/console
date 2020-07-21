@@ -80,11 +80,13 @@ export default class ClusterSelect extends Component {
           type="light"
         />
         <span className={styles.name}>{cluster.name}</span>
-        <Tag key={cluster.name} type={CLUSTER_GROUP_TAG_TYPE[cluster.group]}>
-          {t(`ENV_${cluster.group.toUpperCase()}`, {
-            defaultValue: cluster.group,
-          })}
-        </Tag>
+        {cluster.group && (
+          <Tag key={cluster.name} type={CLUSTER_GROUP_TAG_TYPE[cluster.group]}>
+            {t(`ENV_${cluster.group.toUpperCase()}`, {
+              defaultValue: cluster.group,
+            })}
+          </Tag>
+        )}
         {extra && extra(cluster)}
         <Icon className={styles.indicator} name="chevron-down" type="light" />
       </div>
@@ -105,11 +107,13 @@ export default class ClusterSelect extends Component {
           type="light"
         />
         <span className={styles.name}>{cluster.name}</span>
-        <Tag key={cluster.name} type={CLUSTER_GROUP_TAG_TYPE[cluster.group]}>
-          {t(`ENV_${cluster.group.toUpperCase()}`, {
-            defaultValue: cluster.group,
-          })}
-        </Tag>
+        {cluster.group && (
+          <Tag key={cluster.name} type={CLUSTER_GROUP_TAG_TYPE[cluster.group]}>
+            {t(`ENV_${cluster.group.toUpperCase()}`, {
+              defaultValue: cluster.group,
+            })}
+          </Tag>
+        )}
         {extra && extra(cluster)}
       </div>
     )
