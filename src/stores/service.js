@@ -158,17 +158,6 @@ export default class ServiceStore extends Base {
   }
 
   @action
-  update({ name, cluster, namespace, resourceVersion }, newObject) {
-    if (!has(newObject, 'metadata.resourceVersion')) {
-      set(newObject, 'metadata.resourceVersion', resourceVersion)
-    }
-
-    return this.submitting(
-      request.put(this.getDetailUrl({ name, cluster, namespace }), newObject)
-    )
-  }
-
-  @action
   async fetchWorkload({ cluster, namespace, ...params }) {
     const workloadTypes = ['deployments', 'statefulsets']
 
