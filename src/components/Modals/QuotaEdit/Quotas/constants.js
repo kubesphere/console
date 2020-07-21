@@ -32,3 +32,9 @@ export const QUOTAS_KEY_MODULE_MAP = Object.entries(QUOTAS_MAP).reduce(
   }),
   {}
 )
+
+export const FEDERATED_PROJECT_UNSOPPORT_QUOTA = [
+  'daemonsets',
+  'jobs',
+  'cronjobs',
+]

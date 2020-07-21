@@ -107,6 +107,7 @@ export default class Quotas extends React.Component {
               onModuleDelete={this.handleItemModuleDelete}
               filterModules={filterModules}
               disableSelect={item.module === 'pods'}
+              isFederated={this.props.isFederated}
             />
           </Form.Item>
         ))}
