@@ -19,39 +19,49 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { Button } from 'components/Base'
-import { Icon, Buttons, Input } from '@pitrix/lego-ui'
+import { Input } from '@pitrix/lego-ui'
+import { List, Tag } from 'components/Base'
 
 import styles from './index.scss'
 
-const Card = ({ container, onEdit, disabled }) => {
-  const handleEdit = () => onEdit(container)
+const Card = ({ type = 'worker', container, onEdit, disabled }) => {
   const handleImageChange = (e, value) => {
     container.image = value
   }
 
+  const handleEdit = () => onEdit({ type, ...container })
+
+  const extras = (
+    <div className={styles.inputs}>
+      <Input
+        defaultValue={container.image}
+        onChange={handleImageChange}
+        disabled={disabled}
+      />
+    </div>
+  )
+
+  const title =
+    type === 'init' ? (
+      <span>
+        {container.name}
+        <Tag className="margin-l8" type="warning">
+          {t('Init Container')}
+        </Tag>
+      </span>
+    ) : (
+      container.name
+    )
+
   return (
-    <li className={styles.card}>
-      <Icon name="docker" size={40} />
-      <div className={styles.text}>
-        <div className="h6">{container.name}</div>
-        <p>
-          {t('Image')}: {container.image}
-        </p>
-      </div>
-      <div className={styles.inputs}>
-        <Input
-          defaultValue={container.image}
-          onChange={handleImageChange}
-          disabled={disabled}
-        />
-      </div>
-      {!disabled && (
-        <Buttons>
-          {onEdit && <Button type="flat" icon="pen" onClick={handleEdit} />}
-        </Buttons>
-      )}
-    </li>
+    <List.Item
+      icon="docker"
+      title={title}
+      className={styles.card}
+      description={`${t('Image')}: ${container.image}`}
+      extras={extras}
+      onEdit={!disabled && handleEdit}
+    />
   )
 }
 

@@ -771,9 +771,11 @@ export default class GatewaySettingModal extends React.Component {
           {detail.byContent ? this.renderContentMatch() : this.renderTraffic()}
         </div>
       )
-    } else if (detail.type === 'Bluegreen') {
+    }
+    if (detail.type === 'Bluegreen') {
       return <div style={{ marginTop: 20 }}>{this.renderBluegreen()}</div>
-    } else if (detail.type === 'Mirror') {
+    }
+    if (detail.type === 'Mirror') {
       return <div style={{ marginTop: 20 }}>{this.renderMirror()}</div>
     }
 
