@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get } from 'lodash'
+import { get, set } from 'lodash'
 import { action, observable } from 'mobx'
 import ObjectMapper from 'utils/object.mapper'
 
@@ -203,7 +203,12 @@ export default class BaseStore {
   }
 
   @action
-  update(params, newObject) {
+  async update(params, newObject) {
+    const result = await require.get(this.getDetailUrl(params))
+    const resourceVersion = get(result, 'metadata.resourceVersion')
+    if (resourceVersion) {
+      set(newObject, 'metadata.resourceVersion', resourceVersion)
+    }
     return this.submitting(request.put(this.getDetailUrl(params), newObject))
   }
 
