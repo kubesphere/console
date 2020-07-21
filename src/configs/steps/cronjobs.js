@@ -51,7 +51,9 @@ export default [
   {
     title: 'Advanced Settings',
     icon: 'slider',
-    component: AdvanceSettings,
+    component: withProps(AdvanceSettings, {
+      prefix: 'spec.jobTemplate.spec.template.spec.',
+    }),
     required: true,
   },
 ]
