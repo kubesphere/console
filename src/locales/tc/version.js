@@ -17,109 +17,109 @@
  */
 
 export default {
-  'Submit Review': '提交审核',
-  'Cancel Review': '撤消审核',
-  'Release to Store': '发布到商店',
+  'Submit Review': '提交審核',
+  'Cancel Review': '取消審核',
+  'Release to Store': '發佈到商店',
   'View in Store': '在商店查看',
   'Suspend Version': '下架版本',
   'Activate Version': '上架版本',
-  'Delete Version': '删除版本',
-  'Suspend App': '下架应用',
-  'Activate App': '上架应用',
+  'Delete Version': '刪除版本',
+  'Suspend App': '下架應用',
+  'Activate App': '上架應用',
 
-  VERSION_DELETE_TIP: '确定要删除版本 <strong>{name}</strong> 吗? ',
-  VERSION_SUBMIT_TIP: '确定要提交版本 <strong>{name}</strong> 去审核?',
-  VERSION_CANCEL_TIP: '确定要撤消版本 <strong>{name}</strong>的审核吗 ?',
+  VERSION_DELETE_TIP: '確定要刪除版本 <strong>{name}</strong> 嗎? ',
+  VERSION_SUBMIT_TIP: '確定要提交版本 <strong>{name}</strong> 去審核?',
+  VERSION_CANCEL_TIP: '確定要取消版本 <strong>{name}</strong>的審核嗎 ?',
   VERSION_SUSPEND_TIP:
-    '版本 <strong>{name}</strong> 下架后，关联的应用将不显示该版本，你确定要下架吗？',
+    '版本 <strong>{name}</strong> 下架後，關聯的應用將不顯示該版本，你確定要下架嗎？',
   VERSION_RECOVER_TIP:
-    '版本 <strong>{name}</strong> 上架后，关联的应用将显示出该版本，你确定要上架吗？',
+    '版本 <strong>{name}</strong> 上架後，關聯的應用將顯示出該版本，你確定要上架嗎？',
   VERSION_RELEASE_TIP:
-    '版本 <strong>{name}</strong> 发布到商店后，用户可以查看并部署该应用版本，你确定要发布吗？',
+    '版本 <strong>{name}</strong> 發佈到商店後，使用者可以查看並部署該應用版本，你確定要發佈嗎？',
   APP_SUSPEND_TIP:
-    '应用<strong>{name}</strong>下架后，用户无法从商店中购买到此应用，你确定要下架该应用吗？',
+    '應用<strong>{name}</strong>下架後，使用者無法從商店中購買到此應用，你確定要下架該應用嗎？',
   APP_RECOVER_TIP:
-    '应用<strong>{name}</strong>上架后，相关的下架版本都将变成上架，你确定要上架该应用吗？',
+    '應用<strong>{name}</strong>上架後，相關的下架版本都將變成上架，你確定要上架該應用嗎？',
 
   'Version Management': '版本管理',
-  'App Information': '应用信息',
-  'Audit Records': '应用审核',
-  'App Instances': '应用实例',
-  'Deployed Instances': '部署实例',
+  'App Information': '應用資訊',
+  'Audit Records': '應用審核',
+  'App Instances': '應用實例',
+  'Deployed Instances': '部署實例',
   Versions: '版本',
 
   PACKAGE_FILE_DESC:
-    'Package.json文件，用于描述应用或版本的基本信息，包括名称版本号等',
-  CONFIG_FILE_DESC: '应用的默认值配置文件',
-  LICENSE_FILE_DESC: '文本格式的协议',
-  LOCALE_EN__FILE_DESC: '应用配置的国际化英文翻译',
-  LOCALE_ZH_FILE_DESC: '应用配置的国际化中文翻译',
-  CHART_FILE_DESC: 'Yaml文件，用于描述 Chart 的基本信息，包括名称版本等',
-  README_FILE_DESC: '应用介绍、使用说明',
-  REQUIREMENTS_FILE_DESC: '用于存放当前 Chart 依赖的其它 Chart 的说明文件',
-  VALUES_FILE_DESC: 'Chart 的默认值配置文件',
-  CHARTS_FILE_DESC: '该目录中放置当前 Chart 依赖的其它 Chart',
+    'Package.json檔案，用於描述應用或版本的基本資訊，包括名稱版本號等',
+  CONFIG_FILE_DESC: '應用的預設值配置檔案',
+  LICENSE_FILE_DESC: '文本格式的協議',
+  LOCALE_EN__FILE_DESC: '應用配置的國際化英文翻譯',
+  LOCALE_ZH_FILE_DESC: '應用配置的國際化中文翻譯',
+  CHART_FILE_DESC: 'Yaml檔案，用於描述 Chart 的基本資訊，包括名稱版本等',
+  README_FILE_DESC: '應用介绍、使用說明',
+  REQUIREMENTS_FILE_DESC: '用於存放目前 Chart 依賴的其它 Chart 的說明檔案',
+  VALUES_FILE_DESC: 'Chart 的預設值配置檔案',
+  CHARTS_FILE_DESC: '該目錄中放置目前 Chart 依賴的其它 Chart',
   TEMPLATES_FILE_DESC:
-    '部署文件模板目录，模板填入 values.yaml 中相应值，生成最终的 Kubernetes 配置文件',
+    '部署檔案範本目錄，範本填入 values.yaml 中相應值，生成最終的 Kubernetes 配置檔案',
   NOTES_FILE_DESC: '使用指南',
 
-  'Version update info': '版本更新说明',
-  'No version info': '暂无更新说明',
+  'Version update info': '版本更新說明',
+  'No version info': '暫無更新說明',
 
-  developer: '开发者',
-  isv: '应用服务商',
-  business: '商务审核者',
-  technical: '技术审核者',
-  global_admin: '超级管理员',
-  admin: '管理员',
+  developer: '開發者',
+  isv: '應用服務商',
+  business: '商務審核者',
+  technical: '技術審核者',
+  global_admin: '超級管理員',
+  admin: '管理員',
 
-  'Download Successfully': '下载成功',
+  'Download Successfully': '下載成功',
 
-  Passed: '已通过',
-  Rejected: '已拒绝',
+  Passed: '已通過',
+  Rejected: '已拒絕',
   Draft: '待提交',
-  Suspended: '已暂停',
-  Starting: '启动中',
+  Suspended: '已暫停',
+  Starting: '啟動中',
   Working: '工作中',
   Stopping: '停止中',
-  Submitted: '等待审核',
+  Submitted: '等待審核',
   Submit: '提交',
-  Review: '审核',
-  Pass: '通过',
-  Reject: '拒绝',
-  Release: '发布',
-  Developing: '开发中',
+  Review: '審核',
+  Pass: '通過',
+  Reject: '拒絕',
+  Release: '發佈',
+  Developing: '開發中',
   Published: '已上架',
   Recalled: '已下架',
   Recall: '下架',
-  Activated: '已激活',
-  'In-review': '审核中',
-  'in-review': '审核中',
-  'Pending-review': '审核中',
-  creating: '创建中',
-  deleting: '删除中',
-  ceasing: '释放中',
+  Activated: '已啟用',
+  'In-review': '審核中',
+  'in-review': '審核中',
+  'Pending-review': '審核中',
+  creating: '創建中',
+  deleting: '刪除中',
+  ceasing: '釋放中',
 
-  'Test Steps': '测试步骤',
+  'Test Steps': '測試步驟',
   VERSION_SUBMIT_TEST_STEPS:
-    '1. 所有依赖的 Chart 已经分别提交<br/>' +
-    '2. 可以成功通过静态检查 (helm lint) <br/>' +
-    '3. 可以用默认值成功启动应用 (helm install)：所有 Pod 是 running 状态，所有服务 (service) 都至少有一个 endpoint<br/>' +
-    '4. 使用的镜像没有安全漏洞 <br/>' +
-    '5. 支持升级 <br/>' +
-    '6. 支持自定义应用配置<br/>' +
+    '1. 所有依賴的 Chart 已經分别提交<br/>' +
+    '2. 可以成功通過静態檢查 (helm lint) <br/>' +
+    '3. 可以用預設值成功啟動應用 (helm install)：所有 Pod 是 running 狀態，所有服務 (service) 都至少有一個 endpoint<br/>' +
+    '4. 使用的鏡像没有安全漏洞 <br/>' +
+    '5. 支持升級 <br/>' +
+    '6. 支持自定義應用配置<br/>' +
     '7. 不要使用 Kubernetes 的 alpha 功能<br/>' +
-    '8. 需要提供详细的 README 文件，包括对应用的介绍，前置条件和如何自定义配置参数<br/>',
+    '8. 需要提供詳細的 README 檔案，包括對應用的介绍，前置條件和如何自定義配置參數<br/>',
 
   VERSION_SUBMIT_NOTE:
-    '在正式提交审核之前，请确认你的应用已经通过了以下基本功能的测试',
-  VERSION_SUBMIT_DOC: '更全面的测试手册请参看',
-  'Develop and test guide': '开发者测试指南',
+    '在正式提交審核之前，請確認你的應用已經通過了以下基本功能的測試',
+  VERSION_SUBMIT_DOC: '更全面的測試手冊請參看',
+  'Develop and test guide': '開發者測試指南',
   VERSION_NUMBER_DESC:
-    '应用版本的重要标识，只能包含数字、小数点及中括号("[]")，并且必需以数字开头并包含小数点',
+    '應用版本的重要標識，只能包含數字、小數點及中括號("[]")，並且必需以數字開頭並包含小數點',
   VERSION_NUMBER_ERROR_NOTE:
-    '版本号格式错误，只能包含数字、小数点及中括号("[]")，并且必需以数字开头并包含小数点',
-  UPDATE_LOG_DESC: '用于详细描述此次更新的具体内容',
+    '版本號格式錯誤，只能包含數字、小數點及中括號("[]")，並且必需以數字開頭並包含小數點',
+  UPDATE_LOG_DESC: '用於詳細描述此次更新的具體内容',
 
-  'Wrong version number format': '版本号的格式错误',
+  'Wrong version number format': '版本號的格式錯誤',
 }

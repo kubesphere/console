@@ -17,28 +17,27 @@
  */
 
 export default {
-  'Third-party Login': '第三方登录',
+  'Third-party Login': '第三方登錄',
 
-  'Protocol Type': '协议类型',
+  'Protocol Type': '協議類型',
 
   Configure: '配置',
-  'not configured': '暂未配置',
+  'not configured': '暫未配置',
 
-  'Current third-party login configurations': '当前第三方登录配置',
+  'Current third-party login configurations': '目前第三方登錄配置',
 
-  'Server Address': '服务端地址',
+  'Server Address': '服務端地址',
 
-  'Please input client id': '请输入 Client ID',
-  'Please input server address': '请输入服务端地址',
+  'Please input client id': '請輸入 Client ID',
+  'Please input server address': '請輸入服務端地址',
 
   THIRD_PARTY_LOGIN_DESC:
-    '当使用第三方服务的方式进行接入对接时，需用户输入相关属性信息，之后会自动创建一个与该用户关联的本地用户，便于环境的安全接入登陆。',
+    '當使用第三方服務登錄的方式進行對接時，需要用戶輸入相關屬性資訊，之後會自動創建一個與該用戶關聯的本地用戶，以便於在環境中進行安全登錄。',
 
-  THIRD_PARTY_LOGIN_Q: '支持哪些第三方登录？',
+  THIRD_PARTY_LOGIN_Q: '支持哪些第三方登錄？',
   THIRD_PARTY_LOGIN_A: '支持 LDAP, AD, OAuth 以及 Github OAuth',
 
   OAUTH_DESC:
-    'OAuth 协议为用户资源的授权提供了一个安全的、开放而又简易的标准。',
-  GITHUB_OAUTH_DESC:
-    'GitHub OAuth uses organization membership to grant access. ',
+    'OAuth 協議為用戶資源的授權提供了一個安全的、開放而又簡易的標準。',
+  GITHUB_OAUTH_DESC: 'GitHub OAuth 使用組織成員身份授予訪問權限。 ',
 }

@@ -73,7 +73,7 @@ export default {
   'ISTIO-POLICY_DESC':
     '用於向 Envoy 提供訪問策略控制，黑白名單控制，速率限制等相關策略',
   'ISTIO-SIDECAR-INJECTOR_DESC': '為配置注入的 Pod 自動注入 sidecar',
-  'ISTIO-TELEMETRY_DESC': '為 Envoy 提供了數據上報和日誌搜集服務',
+  'ISTIO-TELEMETRY_DESC': '為 Envoy 提供了數據上報和紀錄搜集服務',
   'JAEGER-COLLECTOR_DESC':
     '收集 sidecar 的數據，istio 裡面 sidecar 就是 jaeger-agent',
   'JAEGER-COLLECTOR-HEADLESS_DESC':
@@ -96,7 +96,7 @@ export default {
   'ELASTICSEARCH-LOGGING-DATA_DESC':
     '提供 Elasticsearch 數據儲存、備份、搜索等數據服務',
   'ELASTICSEARCH-LOGGING-DISCOVERY_DESC': '提供 Elasticsearch 集群管理服務',
-  'LOGSIDECAR-INJECTOR_DESC': '為指定 Pod 自動注入落盤日誌收集 Sidecar 容器',
+  'LOGSIDECAR-INJECTOR_DESC': '為指定 Pod 自動注入落盤紀錄收集 Sidecar 容器',
 
   'CONTROLLER-MANAGER-METRICS-SERVICE_DESC': '提供 S2I 控制器的監控數據',
   'KS-JENKINS_DESC': 'Jenkins master 服務，提供 DevOps 基礎功能',

@@ -157,7 +157,7 @@ export default {
   DEPLOY_APP_TIP: '您即將部署範例應用 {name}',
 
   DEPLOY_SAMPLE_NO_INTERNET_ACCESS_TIP:
-    '目前項目中没有找到已開啟應用治理的網關，因此您無法部署範例應用。請聯系您的項目管理員在【高級設置】中設置外網訪問方式',
+    '目前項目中没有找到已開啟應用治理的網關，因此您無法部署範例應用。請聯繫您的項目管理員在【高級設置】中設置外網訪問方式',
 
   PREREQUEST_FOR_USE_GRAYRELEASE_Q: '使用灰度發佈的前提條件?',
   PREREQUEST_FOR_USE_GRAYRELEASE_A:

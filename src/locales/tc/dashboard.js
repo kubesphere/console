@@ -42,7 +42,7 @@ export default {
   'Outbound Traffic': '網路流出速率',
   'Inbound Traffic': '網路流入速率',
   'Monitoring Data': '監控数據',
-  'Log Data': '日誌數據',
+  'Log Data': '紀錄數據',
 
   'Super administrator': '超級管理員',
   'Regular user': '普通使用者',
@@ -78,5 +78,5 @@ export default {
 
   USER_DASHBOARD_EMPTY_TITLE: '您暫時不属於任何企業空間',
   USER_DASHBOARD_EMPTY_DESC:
-    '您可以聯系某個企業空間的管理員邀請您加入企業空間中',
+    '您可以聯繫某個企業空間的管理員邀請您加入企業空間中',
 }

@@ -36,7 +36,7 @@ export default {
   Versions: '版本',
   None: '無',
   'Version Number': '版本號碼',
-  'Change Log': '更新日誌',
+  'Change Log': '更新紀錄',
   Contact: '聯絡方式',
   Provider: '服務商',
   'Published Date': '上架時間',

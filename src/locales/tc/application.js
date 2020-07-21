@@ -189,7 +189,7 @@ export default {
   'Services & Operations': '服務與操作',
   Tags: '標籤',
   Process: '進程',
-  Log: '日誌',
+  Log: '紀錄',
 
   POD_ISOLATION_RATIO_DESC:
     '允許容器組被隔離的最大比例。採用向上取整，若10个實例，設為13%則最多會隔離2个實例',
