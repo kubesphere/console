@@ -46,7 +46,7 @@ export default class AdvancedSettings extends React.Component {
   }
 
   render() {
-    const { formRef, store, module } = this.props
+    const { formRef, store, module, prefix } = this.props
     return (
       <Form data={this.fedFormTemplate} ref={formRef}>
         {module !== 'daemonsets' && (
@@ -57,7 +57,7 @@ export default class AdvancedSettings extends React.Component {
             checkable
           >
             <NodeSchedule
-              prefix={this.props.prefix}
+              prefix={prefix}
               namespace={this.namespace}
               formTemplate={this.fedFormTemplate}
             />
