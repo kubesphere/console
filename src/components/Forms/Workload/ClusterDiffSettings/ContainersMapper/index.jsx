@@ -58,7 +58,10 @@ export default class ContainersMapper extends Component {
     const overrides = get(formTemplate, 'spec.overrides', [])
     const override = overrides.find(item => item.clusterName === cluster)
     if (override) {
-      override.clusterOverrides = clusterOverrides
+      override.clusterOverrides = [
+        ...(override.clusterOverrides || []),
+        ...clusterOverrides,
+      ]
     } else {
       overrides.push({ clusterName: cluster, clusterOverrides })
     }
@@ -92,7 +95,10 @@ export default class ContainersMapper extends Component {
     const overrides = get(serviceTemplate, 'spec.overrides', [])
     const override = overrides.find(item => item.clusterName === cluster)
     if (override) {
-      override.clusterOverrides = clusterOverrides
+      override.clusterOverrides = [
+        ...(override.clusterOverrides || []),
+        ...clusterOverrides,
+      ]
     } else {
       overrides.push({ clusterName: cluster, clusterOverrides })
     }
