@@ -40,7 +40,6 @@ export default class CustomResources extends React.Component {
       {
         title: t('Kind'),
         dataIndex: 'kind',
-        search: true,
         render: (kind, record) => (
           <Avatar
             to={`/clusters/${cluster}/customresources/${record.name}`}

@@ -186,7 +186,6 @@ export default class Members extends React.Component {
       title: t('Member Name'),
       dataIndex: 'username',
       sorter: true,
-      search: true,
       render: (name, record) => (
         <Avatar
           avatar={record.avatar_url || '/assets/default-user.svg'}

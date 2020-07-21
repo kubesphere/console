@@ -104,7 +104,6 @@ export default class Secrets extends React.Component {
         dataIndex: 'name',
         sorter: true,
         sortOrder: getSortOrder('name'),
-        search: true,
         render: (name, record) => (
           <Avatar
             icon={ICON_TYPES[module]}
@@ -177,6 +176,7 @@ export default class Secrets extends React.Component {
           onCreate={this.showCreate}
           cluster={match.params.cluster}
           getCheckboxProps={this.getCheckboxProps}
+          searchType="name"
         />
       </ListPage>
     )

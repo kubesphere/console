@@ -72,7 +72,6 @@ export default class AlertingPolicy extends React.Component {
     {
       title: t('Name'),
       dataIndex: 'name',
-      search: true,
       render: (name, record) => (
         <Avatar
           icon="wrench"

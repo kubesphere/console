@@ -129,7 +129,6 @@ export default class Secrets extends React.Component {
         dataIndex: 'name',
         sorter: true,
         sortOrder: getSortOrder('name'),
-        search: true,
         render: name => (
           <Avatar
             icon={ICON_TYPES[module]}
@@ -186,6 +185,7 @@ export default class Secrets extends React.Component {
           tableActions={this.tableActions}
           itemActions={this.itemActions}
           columns={this.getColumns()}
+          searchType="name"
         />
       </ListPage>
     )

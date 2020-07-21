@@ -55,7 +55,6 @@ export default class CustomMonitoringDashboards extends React.Component {
         title: t('Name'),
         dataIndex: 'title',
         sortOrder: getSortOrder('name'),
-        search: true,
         render: (title, { name, _originData, description }) => (
           <Avatar
             icon={ICON_TYPES[module]}
@@ -78,7 +77,6 @@ export default class CustomMonitoringDashboards extends React.Component {
         sorter: true,
         sortOrder: getSortOrder('creationTimestamp'),
         isHideable: true,
-        search: true,
         width: 150,
         render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
       },
@@ -169,6 +167,7 @@ export default class CustomMonitoringDashboards extends React.Component {
             itemActions={this.itemActions}
             columns={this.getColumns()}
             onCreate={this.showCreateModal}
+            searchType="name"
           />
         </ListPage>
 
