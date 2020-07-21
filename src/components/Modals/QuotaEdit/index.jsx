@@ -172,7 +172,14 @@ export default class QuotaEditModal extends React.Component {
   }
 
   render() {
-    const { detail, visible, onOk, onCancel, isSubmitting } = this.props
+    const {
+      detail,
+      visible,
+      onOk,
+      onCancel,
+      isFederated,
+      isSubmitting,
+    } = this.props
 
     return (
       <Modal.Form
@@ -193,7 +200,7 @@ export default class QuotaEditModal extends React.Component {
             <ResourceLimit {...this.resourceLimitProps} />
           </Form.Item>
           <div className={styles.label}>{t('Resource Quota')}</div>
-          <Quotas data={this.state.formTemplate} />
+          <Quotas data={this.state.formTemplate} isFederated={isFederated} />
         </div>
       </Modal.Form>
     )

@@ -53,6 +53,7 @@ export default class ResourceQuota extends React.Component {
     this.trigger('project.quota.edit', {
       detail: { name: namespace, namespace, cluster: cluster.name },
       success: this.fetchData,
+      isFederated: true,
     })
   }
 
