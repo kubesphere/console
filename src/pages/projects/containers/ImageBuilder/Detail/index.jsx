@@ -19,7 +19,7 @@
 import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
-import { get } from 'lodash'
+import { get, isArray } from 'lodash'
 
 import { Loading } from '@pitrix/lego-ui'
 
@@ -132,16 +132,25 @@ export default class ImageBuilderDetail extends React.Component {
     },
   ]
 
+  pathAddCluster = (path, cluster) => {
+    const match = path.match(/(\/kapis|api|apis)(.*)/)
+    return !cluster || cluster === 'default' || !isArray(match)
+      ? path
+      : `${match[1]}/cluster/${cluster}${match[2]}`
+  }
+
   getAttrs = () => {
     const detail = toJS(this.store.detail)
+    const { cluster } = this.props.match.params
     const { spec = {} } = detail
     const isBinaryURL = get(spec, 'config.isBinaryURL', '')
     const { binaryName } = this.s2iRunStore.runDetail
     const sourceUrl = get(spec, 'config.sourceUrl', '')
     const path = get(parseUrl(sourceUrl), 'pathname', `/${sourceUrl}`)
+    const url = this.pathAddCluster(path, cluster)
     const downLoadUrl = `${window.location.protocol}/${
       window.location.host
-    }/b2i_download${path}`
+    }/b2i_download${url}`
 
     return [
       {
