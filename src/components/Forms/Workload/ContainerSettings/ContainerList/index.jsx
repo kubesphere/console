@@ -102,26 +102,33 @@ export default class ContainerList extends React.Component {
     ))
   }
 
-  render() {
+  renderAdd() {
     const {
       value,
       specTemplate: { initContainers = [] },
-      className,
     } = this.props
+
+    return (
+      <List.Add
+        type={value.length <= 0 && initContainers.length <= 0 && 'empty'}
+        onClick={this.handleAdd}
+        icon="docker"
+        title={`${t('Add ')}${t('Container Image')}`}
+        description={t(
+          'KubeSphere supports pulling images from the Image Registries and creating new images through source code (Source to Image).'
+        )}
+      />
+    )
+  }
+
+  render() {
+    const { className } = this.props
 
     return (
       <div className={classNames(styles.wrapper, className)}>
         {this.renderInitContainers()}
         {this.renderContainers()}
-        <List.Add
-          type={value.length <= 0 && initContainers.length <= 0 && 'empty'}
-          onClick={this.handleAdd}
-          icon="docker"
-          title={`${t('Add ')}${t('Container Image')}`}
-          description={t(
-            'KubeSphere supports pulling images from the Image Registries and creating new images through source code (Source to Image).'
-          )}
-        />
+        {this.renderAdd()}
       </div>
     )
   }

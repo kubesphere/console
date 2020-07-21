@@ -281,7 +281,10 @@ export default class GrayReleaseStore extends Base {
       }
 
       promises.push(
-        request.put(this.getDetailUrl({ name, namespace }), data.strategy)
+        request.put(
+          this.getDetailUrl({ name, cluster, namespace }),
+          data.strategy
+        )
       )
     }
 

@@ -6,51 +6,7 @@
 }
 
 .card {
-  position: relative;
-  padding: 15px 20px;
   padding-bottom: 55px;
-  border-radius: 4px;
-  background-color: #ffffff;
-  border: solid 1px #d8dee5;
-  transition: all $trans-speed ease-in-out;
-
-  &:hover {
-    box-shadow: 0 8px 16px 0 rgba(36, 46, 66, 0.08);
-
-    :global .buttons {
-      display: block;
-    }
-  }
-
-  & + .card {
-    margin-top: 12px;
-  }
-
-  :global .buttons {
-    display: none;
-    position: absolute;
-    top: 15px;
-    right: 12px;
-
-    & > button {
-      margin: 0;
-    }
-  }
-
-  & > svg {
-    vertical-align: middle;
-  }
-}
-
-.text {
-  display: inline-block;
-  vertical-align: middle;
-  margin-left: 20px;
-
-  :global .h6 {
-    font-size: $size-normal;
-    line-height: 1.43;
-  }
 }
 
 .inputs {
@@ -65,5 +21,25 @@
   input {
     width: 100%;
     max-width: none !important;
+  }
+}
+
+.limits {
+  right: 20px;
+  @include vertical-center;
+  @include TypographyTitleH6();
+
+  .limit {
+    :global .icon {
+      margin-right: 4px;
+    }
+
+    & + .limit {
+      margin-left: 14px;
+    }
+
+    & > span {
+      vertical-align: middle;
+    }
   }
 }
