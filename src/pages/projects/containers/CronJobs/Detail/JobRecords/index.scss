@@ -1,11 +1,7 @@
 @import '~scss/variables';
 
-.main {
-  padding: 0;
-
-  > div:first-child {
-    padding: 20px 20px 0 20px;
-  }
+.content {
+  margin: -20px;
 }
 
 .table {

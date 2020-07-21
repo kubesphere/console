@@ -26,8 +26,8 @@ import { getLocalTime } from 'utils'
 import { getJobStatus } from 'utils/status'
 import RecordStore from 'stores/workload/record'
 
-import { Icon, Table } from '@pitrix/lego-ui'
-import { Card, Status } from 'components/Base'
+import { Table } from '@pitrix/lego-ui'
+import { Button, Card, Status } from 'components/Base'
 
 import styles from './index.scss'
 
@@ -113,7 +113,7 @@ class JobRecords extends React.Component {
     },
     {
       render: record => (
-        <Icon name="refresh" clickable onClick={this.handleRerun(record)} />
+        <Button icon="refresh" type="flat" onClick={this.handleRerun(record)} />
       ),
     },
   ]

@@ -122,7 +122,11 @@ export default class WorkloadStore extends Base {
   }
 
   @action
-  rerun({ name, cluster, namespace, resourceVersion }) {
+  async rerun({ name, cluster, namespace }) {
+    const result = await request.get(
+      this.getDetailUrl({ name, cluster, namespace })
+    )
+    const resourceVersion = get(result, 'metadata.resourceVersion')
     return this.submitting(
       request.post(
         `kapis/operations.kubesphere.io/v1alpha2${this.getPath({
