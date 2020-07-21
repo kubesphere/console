@@ -138,7 +138,7 @@ export default class Detail extends React.PureComponent {
       className: styles.namecol,
     },
     {
-      thead: t('Resources'),
+      thead: t('Resource Name & Type'),
       key: 'kind',
       hidden: false,
       content: ({ involvedObject = {} }) => (

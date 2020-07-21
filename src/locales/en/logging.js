@@ -57,6 +57,7 @@ export default {
   'Refresh Rate': 'Refresh Rate',
   'Region Data': 'Region Data',
   'Release Collection': 'Release Collection',
+  'Resource Name & Type': 'Resource Name & Type',
   'Search Result': 'Search Result',
   'Search Rule': 'Search Rule',
   'Service Address': 'Service Address',

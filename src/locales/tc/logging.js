@@ -62,6 +62,8 @@ export default {
   'Fuzzy Query': '模糊匹配',
   'Log Collections': '紀錄收集',
 
+  'Resource Name & Type': '資源名稱與類型',
+
   'Search Auditing by': '通過{field}查詢審計',
   'Workspace Auditing Query Tip': '可以根據企業空間查看相關的操作審計',
   'Project Auditing Query Tip': '可以根據項目查看相關的操作審計',

@@ -454,7 +454,7 @@ export default {
   'rules desc':
     'KubeSphere可以根据您设置的规则进行操作审计的收集，点击查看如何定义规则。',
   Category: '类别',
-  Resources: '资源',
+  Resource: '资源',
   'Earliest start time': '最早发生时间',
   'Most recent start time': '最近发生时间',
   'Related resources': '关联资源',

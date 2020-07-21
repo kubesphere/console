@@ -271,7 +271,7 @@ export default {
   Reselect: 'Reselect',
   Reset: 'Reset',
   'Resource List': 'Resource List',
-  Resources: 'Resources',
+  Resource: 'Resource',
   Restart: 'Restart',
   Running: 'Running',
   running: 'running',

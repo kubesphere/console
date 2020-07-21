@@ -62,7 +62,7 @@ export default class MetadataModal extends React.Component {
           </div>
         </div>
         <div className={styles.row}>
-          <div className={styles.rowTitle}>{t('Resources')}</div>
+          <div className={styles.rowTitle}>{t('Resource')}</div>
           <div className={styles.rowDesc}>
             <span>{`[${involvedObject.kind}]`}</span>
             <span className={styles.namespace}>{involvedObject.name}</span>

@@ -455,7 +455,7 @@ export default {
   'rules desc':
     'KubeSphere可以根據您設置的規則進行操作審計的收集，點擊查看如何定義規則。',
   Category: '類别',
-  Resources: '資源',
+  Resource: '資源',
   'Earliest start time': '最早發生時間',
   'Most recent start time': '最近發生時間',
   'Related resources': '關聯資源',
