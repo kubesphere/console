@@ -179,9 +179,9 @@ export default class CronJobs extends React.Component {
       },
       {
         title: t('Created Time'),
-        dataIndex: 'creationTimestamp',
+        dataIndex: 'createTime',
         sorter: true,
-        sortOrder: getSortOrder('creationTimestamp'),
+        sortOrder: getSortOrder('createTime'),
         isHideable: true,
         width: 150,
         render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
