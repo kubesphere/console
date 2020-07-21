@@ -115,7 +115,7 @@ class RouteRulesEdit extends React.Component {
   }
 
   render() {
-    const { visible, isSubmitting } = this.props
+    const { visible, cluster, isSubmitting } = this.props
     const { subRoute, formTemplate } = this.state
 
     return (
@@ -135,6 +135,7 @@ class RouteRulesEdit extends React.Component {
             module="ingresses"
             formRef={this.form}
             formTemplate={formTemplate}
+            cluster={cluster}
           />
         </div>
       </Modal>

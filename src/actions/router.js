@@ -90,6 +90,7 @@ export default {
         },
         modal: EditRouteRulesModal,
         detail: toJS(detail._originData),
+        cluster: detail.cluster,
         store,
         ...props,
       })
