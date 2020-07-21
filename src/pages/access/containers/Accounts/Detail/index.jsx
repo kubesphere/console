@@ -127,7 +127,7 @@ export default class AccountDetail extends React.Component {
     return [
       {
         name: t('Account Role'),
-        value: detail.role,
+        value: detail.globalrole,
       },
       {
         name: t('Email'),
