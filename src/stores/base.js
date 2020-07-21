@@ -204,7 +204,7 @@ export default class BaseStore {
 
   @action
   async update(params, newObject) {
-    const result = await require.get(this.getDetailUrl(params))
+    const result = await request.get(this.getDetailUrl(params))
     const resourceVersion = get(result, 'metadata.resourceVersion')
     if (resourceVersion) {
       set(newObject, 'metadata.resourceVersion', resourceVersion)

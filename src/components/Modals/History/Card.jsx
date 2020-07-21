@@ -50,7 +50,7 @@ export default class Card extends Component {
     return (
       <Link to={data.url} onClick={onClick}>
         {data.type === 'Cluster' ? (
-          <ClusterTitle tagClass="float-right" cluster={data} noStatus />
+          <ClusterTitle cluster={data} noStatus />
         ) : (
           <Text
             icon={this.getIcon()}

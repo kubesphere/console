@@ -48,6 +48,20 @@ export default class NodeStore extends Base {
   }
 
   @action
+  async fetchDetail(params) {
+    this.isLoading = true
+
+    const result = await request.get(
+      `${this.getResourceUrl(params)}/${params.name}`
+    )
+    const detail = { ...params, ...this.mapper(result) }
+
+    this.detail = detail
+    this.isLoading = false
+    return detail
+  }
+
+  @action
   async fetchCount(params) {
     const resp = await request.get(this.getResourceUrl(params), {
       labelSelector: 'node-role.kubernetes.io/master=',
