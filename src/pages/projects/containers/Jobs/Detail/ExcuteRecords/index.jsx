@@ -17,7 +17,7 @@
  */
 
 import React from 'react'
-import { toJS } from 'mobx'
+import { toJS, reaction } from 'mobx'
 import { observer, inject } from 'mobx-react'
 
 import { getLocalTime } from 'utils'
@@ -31,7 +31,7 @@ import {
   Table,
   Pagination,
 } from '@pitrix/lego-ui'
-import { Card, Status, Search } from 'components/Base'
+import { Button, Card, Status, Search } from 'components/Base'
 
 import styles from './index.scss'
 
@@ -54,6 +54,11 @@ class ExcuteRecords extends React.Component {
     super(props)
 
     this.fetchData()
+    this.disposer = reaction(() => this.store.detail, () => this.fetchData())
+  }
+
+  componentWillUnmount() {
+    this.disposer && this.disposer()
   }
 
   fetchData = params => {
@@ -112,6 +117,10 @@ class ExcuteRecords extends React.Component {
     this.fetchData({ page })
   }
 
+  handleRefresh = () => {
+    this.fetchData()
+  }
+
   renderTableTitle = () => (
     <div className={styles.nav}>
       <Columns>
@@ -159,7 +168,13 @@ class ExcuteRecords extends React.Component {
 
   render() {
     return (
-      <Card className={styles.main} title={t('Execution Records')}>
+      <Card
+        className={styles.main}
+        title={t('Execution Records')}
+        operations={
+          <Button icon="refresh" type="flat" onClick={this.handleRefresh} />
+        }
+      >
         <div className={styles.content}>{this.renderTable()}</div>
       </Card>
     )
