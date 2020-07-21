@@ -20,7 +20,7 @@ import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import moment from 'moment-mini'
-import { get } from 'lodash'
+import { get, isEmpty } from 'lodash'
 import { Loading } from '@pitrix/lego-ui'
 
 import { ICON_TYPES } from 'utils/constants'
@@ -175,7 +175,7 @@ export default class PipelineDetail extends Base {
         action: 'edit',
         onClick: () => this.showEditModal('showEditConfig'),
       },
-      ...(detail.scmSource
+      ...(!isEmpty(detail.scmSource)
         ? [
             {
               key: 'scan',

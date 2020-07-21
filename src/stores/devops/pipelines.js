@@ -68,7 +68,7 @@ export default class PipelineStore extends BaseStore {
   activityList = {
     data: [],
     page: 1,
-    limit: 30,
+    limit: 10,
     total: 0,
     order: '',
     reverse: false,
@@ -135,13 +135,11 @@ export default class PipelineStore extends BaseStore {
     const searchWord = keyword ? `*${encodeURIComponent(keyword)}*` : ''
 
     const url = `${this.getBaseUrlV2({ cluster })}search`
-
-    filters.limit = limit || 10
-    filters.page = page || 1
-
     const result = await this.request.get(
       url,
       {
+        start: (page - 1) * TABLE_LIMIT || 0,
+        limit: TABLE_LIMIT,
         q: `type:pipeline;organization:jenkins;pipeline:${project_id}/${searchWord ||
           '*'};excludedFromFlattening:jenkins.branch.MultiBranchProject,hudson.matrix.MatrixProject&filter=${filter ||
           'no-folders'}`,
@@ -277,7 +275,6 @@ export default class PipelineStore extends BaseStore {
     const decodeName = decodeURIComponent(name)
 
     const { page } = filters
-
     if (isEmpty(this.detail)) {
       await this.fetchDetail({ cluster, name: decodeName, project_id })
     }
@@ -544,8 +541,8 @@ export default class PipelineStore extends BaseStore {
       })}${project_id}/pipelines/${decodeName}/branches/`,
       {
         filter: 'origin',
-        start: (page - 1) * 100 || 0,
-        limit: 100,
+        start: (page - 1) * TABLE_LIMIT || 0,
+        limit: TABLE_LIMIT,
       }
     )
   }
