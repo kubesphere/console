@@ -96,7 +96,7 @@ export default class AdvancedSettings extends React.Component {
         >
           <Form.Item
             label={t('Maximum Session Sticky Time (s)')}
-            desc={'SERVICE_SESSION_STICKY_DESC'}
+            desc={t('SERVICE_SESSION_STICKY_DESC')}
           >
             <NumberInput
               name={`Service.${
@@ -140,6 +140,7 @@ export default class AdvancedSettings extends React.Component {
             formTemplate={formTemplate}
             onLabelsChange={this.handleLabelsChange}
             isFederated={isFederated}
+            noWorkload={noWorkload}
           />
         </Form.Group>
       </Form>

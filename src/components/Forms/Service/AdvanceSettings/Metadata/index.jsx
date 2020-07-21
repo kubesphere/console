@@ -75,7 +75,7 @@ export default class Metadata extends React.Component {
   }
 
   render() {
-    const { kind } = this.props
+    const { kind, noWorkload } = this.props
     return (
       <>
         <Form.Item
@@ -91,15 +91,17 @@ export default class Metadata extends React.Component {
             onChange={this.handleLabelsChange}
           />
         </Form.Item>
-        <Form.Item
-          label={`${t('Annotations')} (${t('Applied to the workload')})`}
-        >
-          <PropertiesInput
-            name={`${kind}.metadata.annotations`}
-            addText={t('Add Annotation')}
-            hiddenKeys={globals.config.preservedAnnotations}
-          />
-        </Form.Item>
+        {!noWorkload && (
+          <Form.Item
+            label={`${t('Annotations')} (${t('Applied to the workload')})`}
+          >
+            <PropertiesInput
+              name={`${kind}.metadata.annotations`}
+              addText={t('Add Annotation')}
+              hiddenKeys={globals.config.preservedAnnotations}
+            />
+          </Form.Item>
+        )}
       </>
     )
   }
