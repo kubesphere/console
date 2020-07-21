@@ -24,11 +24,7 @@ import { Form, TextArea } from 'components/Base'
 import { updateLabels, updateFederatedAnnotations, generateId } from 'utils'
 import { ProjectSelect } from 'components/Inputs'
 
-import {
-  PATTERN_SERVICE_NAME,
-  PATTERN_LENGTH_63,
-  MODULE_KIND_MAP,
-} from 'utils/constants'
+import { PATTERN_SERVICE_NAME, MODULE_KIND_MAP } from 'utils/constants'
 
 import ServiceStore from 'stores/service'
 import FederatedStore from 'stores/federated'
@@ -191,7 +187,6 @@ export default class ServiceBaseInfo extends React.Component {
                   pattern: PATTERN_SERVICE_NAME,
                   message: `${t('Invalid name')}, ${t('SERVICE_NAME_DESC')}`,
                 },
-                { pattern: PATTERN_LENGTH_63, message: t('NAME_TOO_LONG') },
                 { validator: this.nameValidator },
               ]}
             >
@@ -199,6 +194,7 @@ export default class ServiceBaseInfo extends React.Component {
                 name="metadata.name"
                 onChange={this.handleNameChange}
                 autoFocus={true}
+                maxLength={63}
               />
             </Form.Item>
           </Column>

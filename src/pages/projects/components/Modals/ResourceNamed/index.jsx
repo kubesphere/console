@@ -63,7 +63,7 @@ export default class ResourceNamed extends React.Component {
           ]}
           desc={t('LONG_NAME_DESC')}
         >
-          <Input name="name" />
+          <Input name="name" maxLength={253} />
         </Form.Item>
       </Modal.Form>
     )

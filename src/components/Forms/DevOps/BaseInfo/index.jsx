@@ -44,7 +44,7 @@ export default class BaseInfo extends React.Component {
               { pattern: PATTERN_NAME, message: t('PATTERN_NAME_INVALID_TIP') },
             ]}
           >
-            <Input name="name" autoFocus={true} />
+            <Input name="name" autoFocus={true} maxLength={63} />
           </Form.Item>
           <Form.Item label={t('Description')}>
             <TextArea name="description" />

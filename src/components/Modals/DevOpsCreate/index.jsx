@@ -23,7 +23,7 @@ import PropTypes from 'prop-types'
 import { Columns, Column, Select, Input } from '@pitrix/lego-ui'
 import { Modal, Form, TextArea } from 'components/Base'
 import ClusterTitle from 'components/Clusters/ClusterTitle'
-import { PATTERN_SERVICE_NAME, PATTERN_LENGTH_63 } from 'utils/constants'
+import { PATTERN_SERVICE_NAME } from 'utils/constants'
 
 import WorkspaceStore from 'stores/workspace'
 
@@ -146,10 +146,9 @@ export default class ProjectCreateModal extends React.Component {
                     pattern: PATTERN_SERVICE_NAME,
                     message: `${t('Invalid name')}, ${t('SERVICE_NAME_DESC')}`,
                   },
-                  { pattern: PATTERN_LENGTH_63, message: t('NAME_TOO_LONG') },
                 ]}
               >
-                <Input name="metadata.name" autoFocus={true} />
+                <Input name="metadata.name" autoFocus={true} maxLength={63} />
               </Form.Item>
             </Column>
             <Column>
