@@ -17,20 +17,21 @@
  */
 
 import React from 'react'
+import { toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
-import { sortBy } from 'lodash'
+import { sortBy, get } from 'lodash'
 
 import { getCurrentRevision } from 'utils/workload'
 
 import { Input, Select } from '@pitrix/lego-ui'
 import { Modal, Form } from 'components/Base'
+import RevisionStore from 'stores/workload/revision'
 
 @observer
 export default class RollBackModal extends React.Component {
   static propTypes = {
     visible: PropTypes.bool,
-    module: PropTypes.string,
     detail: PropTypes.object,
     onOk: PropTypes.func,
     onCancel: PropTypes.func,
@@ -38,7 +39,6 @@ export default class RollBackModal extends React.Component {
 
   static defaultProps = {
     visible: false,
-    module: '',
     detail: {},
     onOk() {},
     onCancel() {},
@@ -47,7 +47,7 @@ export default class RollBackModal extends React.Component {
   constructor(props) {
     super(props)
 
-    this.revisionStore = props.store
+    this.revisionStore = new RevisionStore(props.store.module)
 
     this.form = React.createRef()
   }
@@ -58,24 +58,18 @@ export default class RollBackModal extends React.Component {
   }
 
   get curRevision() {
-    const { module, detail } = this.props
-    return getCurrentRevision(detail, this.revisions, module)
-  }
+    const { store, detail } = this.props
 
-  componentDidUpdate(prevProps) {
-    const { visible } = this.props
-    if (visible && visible !== prevProps.visible) {
-      this.fetchData(this.props)
-    }
+    return getCurrentRevision(detail, this.revisions, store.module)
   }
 
   componentDidMount() {
     if (this.props.visible) {
-      this.fetchData(this.props)
+      this.fetchData(this.props.detail)
     }
   }
 
-  fetchData = ({ detail }) => {
+  fetchData = detail => {
     this.revisionStore.fetchList(detail)
   }
 
@@ -102,15 +96,43 @@ export default class RollBackModal extends React.Component {
   }
 
   handleOk = () => {
-    const { detail, onOk } = this.props
+    const { detail, store, onOk } = this.props
     if (this.form && this.form.current) {
       const form = this.form.current
       form &&
         form.validate(() => {
           const formData = form.getData()
-          formData.namespace = detail.namespace
 
-          onOk(formData)
+          const revision = this.revisions.find(
+            item => Number(item.revision) === formData.revision
+          )
+
+          let data
+          if (store.module === 'deployments') {
+            data = [
+              {
+                op: 'replace',
+                path: '/spec/template',
+                value: toJS(get(revision, 'spec.template')),
+              },
+              {
+                op: 'replace',
+                path: '/metadata/annotations',
+                value: detail.annotations,
+              },
+            ]
+          } else {
+            data = {
+              spec: {
+                template: {
+                  $patch: 'replace',
+                  ...toJS(get(revision, 'spec.template')),
+                },
+              },
+            }
+          }
+
+          onOk(data)
         })
     }
   }

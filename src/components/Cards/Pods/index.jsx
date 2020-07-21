@@ -18,7 +18,7 @@
 
 import React from 'react'
 import { reaction } from 'mobx'
-import { inject, observer } from 'mobx-react'
+import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { isEmpty, get, throttle } from 'lodash'
@@ -36,6 +36,7 @@ import { joinSelector } from 'utils'
 import { startAutoRefresh, stopAutoRefresh } from 'utils/monitoring'
 import PodStore from 'stores/pod'
 import PodMonitorStore from 'stores/monitoring/pod'
+import WebSocketStore from 'stores/websocket'
 
 import { Panel, Search, Button } from 'components/Base'
 import PodItem from './Item'
@@ -47,7 +48,6 @@ const MetricTypes = {
   memory: 'pod_memory_usage_wo_cache',
 }
 
-@inject('rootStore')
 @observer
 export default class PodsCard extends React.Component {
   static propTypes = {
@@ -92,7 +92,7 @@ export default class PodsCard extends React.Component {
       params: this.getParams(selectCluster),
     }
 
-    this.websocket = props.rootStore.websocket
+    this.websocket = new WebSocketStore()
     this.initWebsocket()
   }
 

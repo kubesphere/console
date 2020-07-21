@@ -232,6 +232,7 @@ export default class DeploymentDetail extends React.Component {
         stores={stores}
         {...sideProps}
         routes={getRoutes(this.props.match.path)}
+        watch
       />
     )
   }

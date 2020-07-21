@@ -142,4 +142,21 @@ export default class WorkloadStore extends Base {
     const data = { spec: { suspend: !on } }
     return this.submitting(request.patch(this.getDetailUrl(params), data))
   }
+
+  @action
+  rollBack({ module, ...params }, data) {
+    return this.submitting(
+      request.patch(
+        this.getDetailUrl(params),
+        data,
+        module === 'deployments'
+          ? {
+              headers: {
+                'content-type': 'application/json-patch+json',
+              },
+            }
+          : null
+      )
+    )
+  }
 }
