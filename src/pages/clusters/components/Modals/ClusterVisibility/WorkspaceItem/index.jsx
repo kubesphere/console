@@ -44,6 +44,7 @@ export default class WorkspaceItem extends Component {
           icon="enterprise"
           title={data.name}
           description={data.description || '-'}
+          ellipsis
         />
         <Text
           className={styles.manager}

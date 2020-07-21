@@ -130,7 +130,7 @@ export default class ClusterVisibility extends React.Component {
         />
         <div className={styles.wrapper}>
           <Columns>
-            <Column>
+            <Column className="is-half">
               <div className={styles.title}>{t('Unauthorized')}</div>
               <div className={styles.content}>
                 <div className={styles.search}>
