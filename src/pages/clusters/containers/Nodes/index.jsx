@@ -350,7 +350,7 @@ export default class Nodes extends React.Component {
         <Text
           title={`${cpuFormat(
             get(record, 'annotations["node.kubesphere.io/cpu-requests"]')
-          )} (${get(
+          )} Core (${get(
             record,
             'annotations["node.kubesphere.io/cpu-requests-fraction"]'
           )})`}

@@ -20,15 +20,15 @@ import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import { get, isEmpty } from 'lodash'
-import { Loading } from '@pitrix/lego-ui'
+import { Loading, Tooltip } from '@pitrix/lego-ui'
 
-import { getDisplayName, getLocalTime } from 'utils'
+import { getDisplayName, getLocalTime, cpuFormat, memoryFormat } from 'utils'
 import { getNodeRoles, getNodeStatus } from 'utils/node'
 import { trigger } from 'utils/action'
 import NodeStore from 'stores/node'
 
 import DetailPage from 'clusters/containers/Base/Detail'
-import { Status } from 'components/Base'
+import { Status, Text } from 'components/Base'
 
 import routes from './routes'
 
@@ -160,6 +160,14 @@ export default class NodeDetail extends React.Component {
         value: nodeInfo.architecture,
       },
       {
+        name: t('Allocated CPU'),
+        value: this.renderCPUTooltip(detail),
+      },
+      {
+        name: t('Allocated Memory'),
+        value: this.renderMemoryTooltip(detail),
+      },
+      {
         name: t('Created Time'),
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
@@ -174,6 +182,62 @@ export default class NodeDetail extends React.Component {
     } else {
       this.store.cordon(detail).then(this.fetchData)
     }
+  }
+
+  renderCPUTooltip = record => {
+    const content = (
+      <p>
+        {t('Resource Limits')}:{' '}
+        {cpuFormat(get(record, 'annotations["node.kubesphere.io/cpu-limits"]'))}{' '}
+        Core (
+        {get(record, 'annotations["node.kubesphere.io/cpu-limits-fraction"]')})
+      </p>
+    )
+    return (
+      <Tooltip content={content} placement="top">
+        <Text
+          title={`${cpuFormat(
+            get(record, 'annotations["node.kubesphere.io/cpu-requests"]')
+          )} Core (${get(
+            record,
+            'annotations["node.kubesphere.io/cpu-requests-fraction"]'
+          )})`}
+          description={t('Resource Requests')}
+        />
+      </Tooltip>
+    )
+  }
+
+  renderMemoryTooltip = record => {
+    const content = (
+      <p>
+        {t('Resource Limits')}:{' '}
+        {memoryFormat(
+          get(record, 'annotations["node.kubesphere.io/memory-limits"]'),
+          'Gi'
+        )}{' '}
+        Gi (
+        {get(
+          record,
+          'annotations["node.kubesphere.io/memory-limits-fraction"]'
+        )}
+        )
+      </p>
+    )
+    return (
+      <Tooltip content={content} placement="top">
+        <Text
+          title={`${memoryFormat(
+            get(record, 'annotations["node.kubesphere.io/memory-requests"]'),
+            'Gi'
+          )} Gi (${get(
+            record,
+            'annotations["node.kubesphere.io/memory-requests-fraction"]'
+          )})`}
+          description={t('Resource Requests')}
+        />
+      </Tooltip>
+    )
   }
 
   render() {
