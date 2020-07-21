@@ -19,7 +19,6 @@
 import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
-import { has } from 'lodash'
 
 import { joinSelector } from 'utils'
 import { MODULE_KIND_MAP } from 'utils/constants'
@@ -51,23 +50,16 @@ class Events extends React.Component {
   }
 
   get kind() {
-    if (has(this.props.match.params, 'revision')) {
-      if (this.module === 'deployments') {
-        return 'ReplicaSet'
-      }
-      return 'ControllerRevision'
-    }
-
     return MODULE_KIND_MAP[this.module]
   }
 
   fetchData() {
-    const { uid, name, namespace } = this.store.detail
+    const { uid, name, namespace, _originData = {} } = this.store.detail
 
     const fields = {
       'involvedObject.name': name,
       'involvedObject.namespace': namespace,
-      'involvedObject.kind': this.kind,
+      'involvedObject.kind': _originData.kind || this.kind,
       'involvedObject.uid': uid,
     }
 
