@@ -21,6 +21,7 @@ import {
   result as _result,
   get,
   omit,
+  isEmpty,
   debounce,
   isArray,
   isUndefined,
@@ -129,7 +130,7 @@ export default class Activity extends React.Component {
   }
 
   get isMutibranch() {
-    return this.store.detail && this.store.detail.scmSource
+    return this.store.detail && !isEmpty(toJS(this.store.detail.scmSource))
   }
 
   rowKeys = record => `${record.startTime}${record.queueId}`

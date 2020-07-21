@@ -59,9 +59,8 @@ export default class Pipeline extends React.Component {
 
   get isMutiBranch() {
     const { detailStore } = this.props
-    const scmSource = toJS(detailStore).detail.scmSource
-    const length = scmSource ? Object.keys(scmSource).length : 0
-    return Boolean(length)
+    const scmSource = toJS(detailStore.detail.scmSource)
+    return !isEmpty(scmSource)
   }
 
   get sourceBranch() {
