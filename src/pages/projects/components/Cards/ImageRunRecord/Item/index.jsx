@@ -19,7 +19,7 @@
 import React from 'react'
 import classnames from 'classnames'
 import { observer } from 'mobx-react'
-import { get } from 'lodash'
+import { get, isArray } from 'lodash'
 import { Icon, Loading, Tooltip } from '@pitrix/lego-ui'
 
 import { Status, Button } from 'components/Base'
@@ -94,12 +94,20 @@ export default class ImageBuilderLastRun extends React.Component {
     e && e.stopPropagation()
   }
 
+  pathAddCluster = (path, cluster) => {
+    const match = path.match(/(\/kapis|api|apis)(.*)/)
+    return !cluster || cluster === 'default' || isArray(match)
+      ? path
+      : `${match[1]}/cluster/${cluster}${match[2]}`
+  }
+
   handleDownload = () => {
-    const { sourceUrl } = this.props.runDetail
+    const { sourceUrl, cluster } = this.props.runDetail
     const path = get(parseUrl(sourceUrl), 'pathname', `/${sourceUrl}`)
-    const downLoadUrl = `${window.location.protocol}//${
+    const url = this.pathAddCluster(path, cluster)
+    const downLoadUrl = `${window.location.protocol}/${
       window.location.host
-    }/b2i_download${path}`
+    }/b2i_download${url}`
     window.open(downLoadUrl)
   }
 
@@ -125,7 +133,13 @@ export default class ImageBuilderLastRun extends React.Component {
   }
 
   renderDetailInfo = () => {
-    const { imageName, branch, binaryName, binarySize } = this.props.runDetail
+    const {
+      imageName,
+      branch,
+      binaryName,
+      binarySize,
+      status,
+    } = this.props.runDetail
 
     if (!this.props.isB2i) {
       return (
@@ -149,7 +163,12 @@ export default class ImageBuilderLastRun extends React.Component {
           <Icon name="templet" />
           <p>{imageName}</p>
         </div>
-        <Button onClick={this.handleDownload} type="primary">
+
+        <Button
+          onClick={this.handleDownload}
+          type="primary"
+          disabled={status === 'Failed'}
+        >
           {t('Download Artifact')}
         </Button>
       </div>

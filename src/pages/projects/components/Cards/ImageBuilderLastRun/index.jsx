@@ -19,25 +19,29 @@
 import React from 'react'
 import classnames from 'classnames'
 import { Icon } from '@pitrix/lego-ui'
-import { get } from 'lodash'
+import { get, isArray } from 'lodash'
 
 import { getLanguageName, parseUrl, formatSize } from 'utils'
 
 import styles from './index.scss'
 
 export default class BuilderInfo extends React.Component {
+  pathAddCluster = (path, cluster) => {
+    const match = path.match(/(\/kapis|api|apis)(.*)/)
+    return !cluster || cluster === 'default' || isArray(match)
+      ? path
+      : `${match[1]}/cluster/${cluster}${match[2]}`
+  }
+
   renderB2i() {
-    const { className } = this.props
-    const {
-      builderImage,
-      sourceUrl,
-      binaryName,
-      binarySize,
-    } = this.props.runDetail
+    const { className, params, runDetail } = this.props
+    const { builderImage, sourceUrl, binaryName, binarySize } = runDetail
+    const { cluster } = params
     const path = get(parseUrl(sourceUrl), 'pathname', `/${sourceUrl}`)
-    const downLoadUrl = `${window.location.protocol}//${
+    const url = this.pathAddCluster(path, cluster)
+    const downLoadUrl = `${window.location.protocol}/${
       window.location.host
-    }/b2i_download${path}`
+    }/b2i_download${url}`
 
     return (
       <ul className={classnames(styles.builderContent, className)}>
