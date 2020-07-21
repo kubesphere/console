@@ -122,7 +122,7 @@ export default class ResourceStatus extends React.Component {
     return {
       icon: 'select',
       desc: '',
-      name: ` ${kind} ${t('Resources')}`,
+      name: ` ${kind} ${t('Resource')}`,
     }
   }
 

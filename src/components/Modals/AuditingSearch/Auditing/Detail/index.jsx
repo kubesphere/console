@@ -151,7 +151,7 @@ export default class Detail extends React.PureComponent {
       className: styles.reasoncol,
     },
     {
-      thead: t('Resources'),
+      thead: t('Resource Name & Type'),
       key: 'resources',
       hidden: false,
       content: ({ ObjectRef = {} }) => (

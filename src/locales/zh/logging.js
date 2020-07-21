@@ -111,6 +111,8 @@ export default {
   Activate: '激活',
   'Real-Time Data': '实时数据',
 
+  'Resource Name & Type': '资源名称与类型',
+
   TOOLBOX_SHIFT_TIPS: ' 👻 Shift + 鼠标左键 可以在新窗口中打开',
   'Hide help information': '不再显示帮助信息',
   ES_DESC: 'Elasticsearch 是分布式、RESTful 风格的搜索和分析引擎',
