@@ -288,13 +288,15 @@ class VolumeSettings extends React.Component {
     newVolumeMounts.forEach(vm => {
       const existVolume = findVolume(volumes, vm.volume)
 
-      const path = `containerLogConfigs.${vm.containerName}.${vm.name ||
-        existVolume.name}`
+      if (existVolume) {
+        const path = `containerLogConfigs.${vm.containerName}.${vm.name ||
+          existVolume.name}`
 
-      if (vm.logPath) {
-        set(logConfig, path, vm.logPath.split(','))
-      } else {
-        unset(logConfig, path)
+        if (vm.logPath) {
+          set(logConfig, path, vm.logPath.split(','))
+        } else {
+          unset(logConfig, path)
+        }
       }
     })
 
@@ -380,7 +382,7 @@ class VolumeSettings extends React.Component {
 
   handleVolumeTemplate(newVolume = {}, newVolumeMounts = []) {
     newVolumeMounts.forEach(vm => {
-      vm.name = newVolume.name
+      vm.name = newVolume.name || get(newVolume, 'metadata.name')
     })
 
     this.updateVolumeTemplate(newVolume)
