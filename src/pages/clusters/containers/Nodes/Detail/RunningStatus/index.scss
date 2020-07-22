@@ -21,6 +21,15 @@
   padding: 0;
 }
 
+.allocated {
+  display: flex;
+
+  & > div {
+    min-width: 200px;
+    margin-right: 20px;
+  }
+}
+
 .conditions {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

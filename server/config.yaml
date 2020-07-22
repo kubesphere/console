@@ -232,14 +232,16 @@ client:
         - name: projects
           title: NAV_PROJECTS
           icon: project
+          skipAuth: true
           tabs:
-            - { name: projects, title: Projects, skipAuth: true }
+            - { name: projects, title: Projects }
             - { name: federatedprojects, title: Multi-cluster Projects }
         - {
             name: devops,
             title: DevOps Projects,
             icon: strategy-group,
             ksModule: devops,
+            skipAuth: true,
           }
         - name: apps
           title: Apps Management

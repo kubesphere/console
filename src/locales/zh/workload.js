@@ -159,6 +159,7 @@ export default {
   Privileged: '特权模式',
   'Desired Replicas': '期望副本',
   'Current Replicas': '实际运行副本',
+  MinReadySeconds: '最小就绪时间 (MinReadySeconds)',
 
   REPLICAS_SCALE_NOTIFY_TITLE: '立即生效？',
   REPLICAS_SCALE_NOTIFY_CONTENT:
@@ -498,6 +499,7 @@ export default {
   LIVENESS_PROBE_DESC: '该检查方式用于检测容器是否活着。',
   READINESS_PROBE_DESC: '该检查方式用于检测容器是否准备好开始处理用户请求。',
   STARTUP_PROBE_DESC: '该检查方式用于检测容器是否启动成功。',
+  STARTUP_PROBE_TIP: '需要 kubernetes 版本 v1.18 或以上。',
 
   COLLECT_SAVED_LOG_DESC:
     '您已开启落盘日志收集，请至少添加一个存储卷并指定日志所在目录',
