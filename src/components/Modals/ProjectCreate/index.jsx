@@ -55,7 +55,7 @@ export default class ProjectCreateModal extends React.Component {
     this.workspaceStore = new WorkspaceStore()
 
     this.formRef = React.createRef()
-    this.clusterRef = React.createRef()
+    this.nameRef = React.createRef()
   }
 
   componentDidMount() {
@@ -103,7 +103,13 @@ export default class ProjectCreateModal extends React.Component {
       return callback()
     }
 
-    const { cluster } = this.props
+    const cluster =
+      this.props.cluster || get(this.props.formTemplate, 'cluster')
+
+    if (!cluster && globals.app.isMultiCluster) {
+      return callback()
+    }
+
     this.store.checkName({ name: value, cluster }).then(resp => {
       if (resp.exist) {
         return callback({ message: t('Name exists'), field: rule.field })
@@ -112,35 +118,20 @@ export default class ProjectCreateModal extends React.Component {
     })
   }
 
-  singleClusterValidator = (rule, value, callback) => {
-    const name = get(this.props.formTemplate, 'metadata.name')
-
-    if (!value || !name) {
-      return callback()
-    }
-
-    this.store.checkName({ name, cluster: value }).then(resp => {
-      if (resp.exist) {
-        return callback({ message: t('Name exists'), field: rule.field })
-      }
-      callback()
-    })
-  }
-
-  handleNameChange = () => {
-    if (this.clusterRef && this.clusterRef.current) {
+  handleClusterChange = () => {
+    if (this.nameRef && this.nameRef.current) {
+      const name = 'metadata.name'
       if (
         this.formRef &&
         this.formRef.current &&
         !isEmpty(this.formRef.current.state.errors)
       ) {
-        this.formRef.current.resetValidateResults('cluster')
+        this.formRef.current.resetValidateResults(name)
       }
-      if (this.clusterRef.current.state.error) {
-        this.clusterRef.current.validate({
-          cluster: get(this.props.formTemplate, 'cluster'),
-        })
-      }
+
+      this.nameRef.current.validate({
+        [name]: get(this.props.formTemplate, name),
+      })
     }
   }
 
@@ -159,11 +150,7 @@ export default class ProjectCreateModal extends React.Component {
         desc={t('Select the cluster to create the project.')}
       >
         <Form.Item
-          ref={this.clusterRef}
-          rules={[
-            { required: true, message: t('Please select a cluster') },
-            { validator: this.singleClusterValidator },
-          ]}
+          rules={[{ required: true, message: t('Please select a cluster') }]}
         >
           <Select
             name="cluster"
@@ -171,6 +158,7 @@ export default class ProjectCreateModal extends React.Component {
             options={this.clusters}
             valueRenderer={this.valueRenderer}
             optionRenderer={this.optionRenderer}
+            onChange={this.handleClusterChange}
           />
         </Form.Item>
       </Form.Group>
@@ -212,23 +200,17 @@ export default class ProjectCreateModal extends React.Component {
               <Form.Item
                 label={t('Name')}
                 desc={t('SERVICE_NAME_DESC')}
+                ref={this.nameRef}
                 rules={[
                   { required: true, message: t('Please input name') },
                   {
                     pattern: PATTERN_SERVICE_NAME,
                     message: `${t('Invalid name')}, ${t('SERVICE_NAME_DESC')}`,
                   },
-                  {
-                    validator: hideCluster ? this.nameValidator : null,
-                  },
+                  { validator: this.nameValidator },
                 ]}
               >
-                <Input
-                  name="metadata.name"
-                  onChange={this.handleNameChange}
-                  autoFocus={true}
-                  maxLength={63}
-                />
+                <Input name="metadata.name" autoFocus={true} maxLength={63} />
               </Form.Item>
             </Column>
             <Column>
