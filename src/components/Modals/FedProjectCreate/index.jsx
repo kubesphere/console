@@ -54,7 +54,7 @@ export default class FedProjectCreateModal extends React.Component {
     this.store = props.store
 
     this.formRef = React.createRef()
-    this.clusterRef = React.createRef()
+    this.nameRef = React.createRef()
   }
 
   get networkOptions() {
@@ -74,48 +74,32 @@ export default class FedProjectCreateModal extends React.Component {
     }))
   }
 
-  nameValidator = (rule, value, callback) => {
+  nameValidator = async (rule, value, callback) => {
     if (!value) {
       return callback()
     }
 
-    const { cluster } = this.props
-    this.store.checkName({ name: value, cluster }).then(resp => {
-      if (resp.exist) {
-        return callback({ message: t('Name exists'), field: rule.field })
-      }
-      callback()
-    })
-  }
-
-  multiClusterValidator = async (rule, value, callback) => {
-    const name = get(this.props.formTemplate, 'metadata.name')
-
-    if (!value || !name) {
-      return callback()
+    const resp = await this.store.checkName({ name: value })
+    if (resp.exist) {
+      return callback({
+        message: t('The project name exists on the host cluster.'),
+        field: rule.field,
+      })
     }
 
-    if (value.length > 0) {
-      const resp = await this.store.checkName({ name })
-      if (resp.exist) {
-        return callback({
-          message: t('The project name exists on the host cluster.'),
-          field: rule.field,
-        })
-      }
-    }
+    const clusters = get(this.props.formTemplate, 'spec.placement.clusters', [])
 
     const resps = await Promise.all([
-      ...value.map(cluster =>
-        this.store.checkName({ name, cluster: cluster.name })
+      ...clusters.map(cluster =>
+        this.store.checkName({ name: value, cluster: cluster.name })
       ),
     ])
 
     const index = resps.findIndex(item => item.exist)
 
-    if (index > -1 && value[index]) {
+    if (index > -1 && clusters[index]) {
       return callback({
-        message: t('NAME_EXIST_IN_CLUSTER', { cluster: value[index].name }),
+        message: t('NAME_EXIST_IN_CLUSTER', { cluster: clusters[index].name }),
         field: rule.field,
       })
     }
@@ -137,11 +121,9 @@ export default class FedProjectCreateModal extends React.Component {
       'spec.placement.clusters',
       uniqBy(clusters, 'name')
     )
-  }
 
-  handleNameChange = () => {
-    if (this.clusterRef && this.clusterRef.current) {
-      const name = 'spec.placement.clusters'
+    if (this.nameRef && this.nameRef.current) {
+      const name = 'metadata.name'
       if (
         this.formRef &&
         this.formRef.current &&
@@ -149,11 +131,10 @@ export default class FedProjectCreateModal extends React.Component {
       ) {
         this.formRef.current.resetValidateResults(name)
       }
-      if (this.clusterRef.current.state.error) {
-        this.clusterRef.current.validate({
-          [name]: get(this.props.formTemplate, name),
-        })
-      }
+
+      this.nameRef.current.validate({
+        [name]: get(this.props.formTemplate, name),
+      })
     }
   }
 
@@ -164,11 +145,7 @@ export default class FedProjectCreateModal extends React.Component {
         desc={t('PROJECT_CLUSTER_SETTINGS_DESC')}
       >
         <Form.Item
-          ref={this.clusterRef}
-          rules={[
-            { required: true, message: t('Please select a cluster') },
-            { validator: this.multiClusterValidator },
-          ]}
+          rules={[{ required: true, message: t('Please select a cluster') }]}
         >
           <ArrayInput
             name="spec.placement.clusters"
@@ -219,20 +196,17 @@ export default class FedProjectCreateModal extends React.Component {
               <Form.Item
                 label={t('Name')}
                 desc={t('SERVICE_NAME_DESC')}
+                ref={this.nameRef}
                 rules={[
                   { required: true, message: t('Please input name') },
                   {
                     pattern: PATTERN_SERVICE_NAME,
                     message: `${t('Invalid name')}, ${t('SERVICE_NAME_DESC')}`,
                   },
+                  { validator: this.nameValidator },
                 ]}
               >
-                <Input
-                  name="metadata.name"
-                  onChange={this.handleNameChange}
-                  autoFocus={true}
-                  maxLength={63}
-                />
+                <Input name="metadata.name" autoFocus={true} maxLength={63} />
               </Form.Item>
             </Column>
             <Column>
