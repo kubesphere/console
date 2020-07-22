@@ -68,7 +68,10 @@ export default class ContainerSetting extends React.Component {
   }
 
   valueRenderer = option => (
-    <Tag type={option.value === 'init' ? 'warning' : 'default'}>
+    <Tag
+      className={styles.type}
+      type={option.value === 'init' ? 'warning' : 'default'}
+    >
       {option.label}
     </Tag>
   )

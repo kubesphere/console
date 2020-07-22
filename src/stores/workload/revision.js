@@ -17,11 +17,11 @@
  */
 
 import { action, observable, toJS } from 'mobx'
-import { get } from 'lodash'
 
 import { joinSelector } from 'utils'
 import { getCurrentRevision } from 'utils/workload'
 import ObjectMapper from 'utils/object.mapper'
+import { MODULE_KIND_MAP } from 'utils/constants'
 
 import Base from 'stores/base'
 
@@ -57,10 +57,13 @@ export default class RevisionStore extends Base {
           })}/controllerrevisions`
     const result = await request.get(`${prefix}?labelSelector=${labelSelector}`)
 
-    let data = result.items.map(ObjectMapper.revisions)
-    if (this.module === 'deployments') {
-      data = data.filter(revision => get(revision, 'ownerName', '') === name)
-    }
+    const data = result.items
+      .map(ObjectMapper.revisions)
+      .filter(
+        revision =>
+          revision.ownerName === name &&
+          revision.ownerKind === MODULE_KIND_MAP[this.module]
+      )
 
     this.list.update({
       data,
@@ -99,49 +102,5 @@ export default class RevisionStore extends Base {
       toJS(this.list.data),
       this.module
     )
-  }
-
-  @action
-  async rollBack({ name, cluster, namespace, revision }) {
-    this.isSubmitting = true
-
-    switch (this.module) {
-      default:
-      case 'deployments': {
-        const params = {
-          kind: 'DeploymentRollback',
-          apiVersion: 'apps/v1',
-          name,
-          namespace,
-          rollbackTo: { revision },
-        }
-
-        await request.post(
-          `apis/apps/v1/${this.getPath({ cluster, namespace })}/${
-            this.module
-          }/${name}/rollback`,
-          params
-        )
-
-        break
-      }
-      case 'statefulsets':
-      case 'daemonsets': {
-        const target = await request.get(
-          this.getDetailUrl({ name, namespace, revision })
-        )
-
-        await request.patch(
-          `apis/apps/v1/${this.getPath({ cluster, namespace })}/${
-            this.module
-          }/${name}`,
-          target.data
-        )
-
-        break
-      }
-    }
-
-    this.isSubmitting = false
   }
 }

@@ -23,7 +23,7 @@ import { get, set, unset, isEmpty } from 'lodash'
 
 import { STRATEGIES, STRATEGIES_PREFIX } from 'utils/constants'
 
-import { Input, Tooltip, Icon, Columns, Column } from '@pitrix/lego-ui'
+import { Input, Columns, Column } from '@pitrix/lego-ui'
 import { Form, TypeSelect } from 'components/Base'
 import { NumberInput } from 'components/Inputs'
 
@@ -197,17 +197,6 @@ export default class UpdateStrategyForm extends React.Component {
   render() {
     const { module } = this.props
 
-    const label = (
-      <span>
-        <span className="align-middle">{t('POD_SETTING_TIP')}</span>
-        {module === 'deployments' && (
-          <Tooltip content={t('ROLLING_UPDATE_POD_TIP')}>
-            <Icon name="information" />
-          </Tooltip>
-        )}
-      </span>
-    )
-
     return (
       <>
         <Form.Item label={t('Update Strategy')}>
@@ -218,7 +207,7 @@ export default class UpdateStrategyForm extends React.Component {
             options={this.strategyOptions}
           />
         </Form.Item>
-        <Form.Group label={label} checkable keepDataWhenUnCheck>
+        <Form.Group label={t('POD_SETTING_TIP')} checkable keepDataWhenUnCheck>
           {this.isRollingUpdate && this.renderRollingUpdateParams()}
         </Form.Group>
       </>

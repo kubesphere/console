@@ -38,7 +38,6 @@ import DAEMONSETS_FORM_STEPS from 'configs/steps/daemonsets'
 import JOBS_FORM_STEPS from 'configs/steps/jobs'
 import CRONJOBS_FORM_STEPS from 'configs/steps/cronjobs'
 
-import RevisionStore from 'stores/workload/revision'
 import HPAStore from 'stores/workload/hpa'
 import ServiceStore from 'stores/service'
 
@@ -155,18 +154,16 @@ export default {
   },
   'workload.revision.rollback': {
     on({ store, detail, success, ...props }) {
-      const revisionStore = new RevisionStore(store.module)
       const modal = Modal.open({
         onOk: data => {
-          revisionStore.rollBack(data).then(() => {
+          store.rollBack({ ...detail, module: store.module }, data).then(() => {
             Modal.close(modal)
             success && success()
           })
         },
         detail,
-        module: store.module,
-        store: revisionStore,
         modal: RollBackModal,
+        store,
         ...props,
       })
     },

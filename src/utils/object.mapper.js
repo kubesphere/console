@@ -444,9 +444,6 @@ const VolumeMapper = item => {
     ),
     inUse: get(item, 'metadata.annotations["kubesphere.io/in-use"]') === 'true',
     type: 'pvc',
-    allowSnapshot:
-      get(item, 'metadata.annotations["kubesphere.io/allow-snapshot"]') ===
-      'true',
     _originData: getOriginData(item),
   }
 }

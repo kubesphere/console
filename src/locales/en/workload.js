@@ -389,7 +389,7 @@ export default {
 
   POD_SETTING_TIP: 'The number of Pods when update',
   MAX_UNAVAILABLE_POD_LABEL: 'The maximum unavailable number of Pods',
-  MAX_SURGE_POD_LABEL: 'The maximum available number of Pods',
+  MAX_SURGE_POD_LABEL: 'The maximum surge number of Pods',
   UPDATE_STRATEGY_DESC:
     'It\'s used to configure the strategy for replacing pods during the upgrade process. <a href="{link}" target="_blank">Learn more.</a>',
   MAX_DAEMON_UNAVAILABLE_POD_DESC:
