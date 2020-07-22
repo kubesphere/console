@@ -163,6 +163,7 @@ export default class DevOps extends React.Component {
       title: t('Created Time'),
       dataIndex: 'createTime',
       isHideable: true,
+      sorter: true,
       width: '20%',
       render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
     },

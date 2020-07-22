@@ -27,13 +27,13 @@ import ClusterWrapper from 'components/Clusters/ClusterWrapper'
 
 import { getDisplayName, getLocalTime } from 'utils'
 
-import FederatedStore from 'stores/federated'
+import FederatedStore from 'stores/project.federated'
 import ProjectStore from 'stores/project'
 
 @withList({
   store: new FederatedStore({ module: 'namespaces' }),
   name: 'Multi-cluster Project',
-  module: 'federatedprojects',
+  module: 'projects',
   injectStores: ['rootStore', 'workspaceStore'],
 })
 export default class Projects extends React.Component {
@@ -51,7 +51,7 @@ export default class Projects extends React.Component {
 
   get tabs() {
     return {
-      value: this.props.module,
+      value: 'federatedprojects',
       onChange: this.handleTabChange,
       options: [
         {
@@ -66,18 +66,6 @@ export default class Projects extends React.Component {
     }
   }
 
-  getData = async ({ silent, ...params } = {}) => {
-    const { store } = this.props
-    const { workspace } = this.props.match.params
-
-    silent && (store.list.silent = true)
-    await store.fetchList({
-      labelSelector: `kubesphere.io/workspace=${workspace}`,
-      ...params,
-    })
-    store.list.silent = false
-  }
-
   get workspace() {
     return this.props.match.params.workspace
   }
@@ -89,14 +77,12 @@ export default class Projects extends React.Component {
         key: 'edit',
         icon: 'pen',
         text: t('Edit'),
-        action: 'edit',
         onClick: item => trigger('resource.baseinfo.edit', { detail: item }),
       },
       {
         key: 'delete',
         icon: 'trash',
         text: t('Delete'),
-        action: 'delete',
         onClick: item =>
           trigger('federated.project.delete', {
             detail: item,
@@ -114,7 +100,6 @@ export default class Projects extends React.Component {
           key: 'delete',
           type: 'danger',
           text: t('Delete'),
-          action: 'delete',
           onClick: () =>
             trigger('federated.project.delete.batch', {
               type: t(name),
@@ -169,6 +154,7 @@ export default class Projects extends React.Component {
         title: t('Created Time'),
         dataIndex: 'createTime',
         isHideable: true,
+        sorter: true,
         width: '20%',
         render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
       },
@@ -187,12 +173,7 @@ export default class Projects extends React.Component {
     const { bannerProps, tableProps } = this.props
 
     return (
-      <ListPage
-        {...this.props}
-        getData={this.getData}
-        module="namespaces"
-        isFederated
-      >
+      <ListPage {...this.props} module="namespaces" isFederated>
         <Banner
           {...bannerProps}
           tabs={this.tabs}

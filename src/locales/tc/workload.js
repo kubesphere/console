@@ -496,6 +496,7 @@ export default {
   LIVENESS_PROBE_DESC: '该检查方式用于检测容器是否活着。',
   READINESS_PROBE_DESC: '该检查方式用于检测容器是否准备好开始处理用户请求。',
   STARTUP_PROBE_DESC: '该检查方式用于检测容器是否启动成功。',
+  STARTUP_PROBE_TIP: '需要 kubernetes 版本 v1.18 或以上。',
 
   COLLECT_SAVED_LOG_DESC:
     '您已开启落盘日志收集，请至少添加一个存储卷并指定日志所在目录',
@@ -540,6 +541,8 @@ export default {
   'How pods are assinged to nodes?': '容器组如何被调度至节点?',
   'Pod CPU Request': '容器组CPU请求',
   'Pod Memory Request': '容器组内存请求',
+
+  MinReadySeconds: '最小就绪时间 (MinReadySeconds)',
 
   POD_CONDITION_INITIALIZED: 'Initialized',
   POD_CONDITION_INITIALIZED_DESC: '所有 init 容器都已成功启动',

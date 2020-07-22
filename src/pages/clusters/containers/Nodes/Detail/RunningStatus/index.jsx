@@ -23,7 +23,9 @@ import { get, isEmpty } from 'lodash'
 
 import NodeMonitoringStore from 'stores/monitoring/node'
 
-import { Panel } from 'components/Base'
+import { cpuFormat, memoryFormat } from 'utils'
+
+import { Panel, Text } from 'components/Base'
 import MonitorTab from 'components/Cards/Monitoring/MonitorTab'
 import ConditionCard from './ConditionCard'
 import TaintCard from './TaintCard'
@@ -113,6 +115,53 @@ export default class RunningStatus extends React.Component {
     )
   }
 
+  renderAllocatedResources() {
+    const { detail } = this.store
+
+    return (
+      <Panel className={styles.allocated} title={t('Allocated Resources')}>
+        <Text
+          title={`${cpuFormat(
+            get(detail, 'annotations["node.kubesphere.io/cpu-requests"]')
+          )} Core (${get(
+            detail,
+            'annotations["node.kubesphere.io/cpu-requests-fraction"]'
+          )})`}
+          description={t('CPU Requests')}
+        />
+        <Text
+          title={`${cpuFormat(
+            get(detail, 'annotations["node.kubesphere.io/cpu-limits"]')
+          )} Core (${get(
+            detail,
+            'annotations["node.kubesphere.io/cpu-limits-fraction"]'
+          )})`}
+          description={t('CPU Limits')}
+        />
+        <Text
+          title={`${memoryFormat(
+            get(detail, 'annotations["node.kubesphere.io/memory-requests"]'),
+            'Gi'
+          )} Gi (${get(
+            detail,
+            'annotations["node.kubesphere.io/memory-requests-fraction"]'
+          )})`}
+          description={t('Memory Requests')}
+        />
+        <Text
+          title={`${memoryFormat(
+            get(detail, 'annotations["node.kubesphere.io/memory-limits"]'),
+            'Gi'
+          )} Gi (${get(
+            detail,
+            'annotations["node.kubesphere.io/memory-limits-fraction"]'
+          )})`}
+          description={t('Memory Limits')}
+        />
+      </Panel>
+    )
+  }
+
   renderConditions() {
     const { conditions } = this.store.detail
 
@@ -149,6 +198,7 @@ export default class RunningStatus extends React.Component {
     return (
       <div className={styles.main}>
         {this.renderResourceStatus()}
+        {this.renderAllocatedResources()}
         {this.renderConditions()}
         {this.renderTanits()}
       </div>

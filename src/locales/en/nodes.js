@@ -24,6 +24,7 @@ export default {
   'All Nodes': 'All Nodes',
   'Allocated CPU': 'Allocated CPU',
   'Allocated Memory': 'Allocated Memory',
+  'Allocated Resources': 'Allocated Resources',
   Annotations: 'Annotations',
   Architecture: 'Architecture',
   'Cluster Node': 'Cluster Node',

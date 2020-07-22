@@ -65,7 +65,11 @@ export default class HealthChecker extends React.Component {
             probType="readinessProbe"
           />
         </Form.Item>
-        <Form.Item className={styles.item} label={t('Container Startup Check')}>
+        <Form.Item
+          className={styles.item}
+          label={t('Container Startup Check')}
+          tip={t('STARTUP_PROBE_TIP')}
+        >
           <ProbeInput
             name={`${this.prefix}startupProbe`}
             type={t('Container Startup Check')}

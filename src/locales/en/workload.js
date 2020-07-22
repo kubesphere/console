@@ -171,6 +171,7 @@ export default {
     'min replicas number should not be greater than max replicas number',
   MinimumReplicasAvailable: 'MinimumReplicasAvailable',
   MinimumReplicasUnavailable: 'MinimumReplicasUnavailable',
+  MinReadySeconds: 'MinReadySeconds',
   Mount: 'Mount',
   'Mount ConfigMap or Secret': 'Mount ConfigMap or Secret',
   'Mount Path': 'Mount Path',
@@ -576,6 +577,8 @@ export default {
     'This check method is used to detect if the container is ready to service requests.',
   STARTUP_PROBE_DESC:
     'This check method is used to detect if the container is started successfully.',
+
+  STARTUP_PROBE_TIP: 'Requires kubernetes version v1.18 or above.',
 
   SEARCH_IMAGE_PLACEHOLDER: 'Enter keyword to search image',
 

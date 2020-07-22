@@ -90,6 +90,7 @@ export default {
   'Type Name': '类型名称',
   'Allocated CPU': '已分配 CPU',
   'Allocated Memory': '已分配内存',
+  'Allocated Resources': '已分配资源',
 
   Metadata: '元数据',
 

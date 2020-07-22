@@ -26,7 +26,7 @@ import Banner from 'components/Cards/Banner'
 import Table from 'workspaces/components/ResourceTable'
 import withList, { ListPage } from 'components/HOCs/withList'
 
-import { getDisplayName } from 'utils'
+import { getDisplayName, getLocalTime } from 'utils'
 import { getSuitableValue, getValueByUnit } from 'utils/monitoring'
 
 import ProjectStore from 'stores/project'
@@ -72,15 +72,7 @@ export default class Projects extends React.Component {
   }
 
   get showFederated() {
-    const { workspace } = this.props.match.params
-    return (
-      globals.app.isMultiCluster &&
-      globals.app.hasPermission({
-        workspace,
-        module: 'federatedprojects',
-        action: 'view',
-      })
-    )
+    return globals.app.isMultiCluster
   }
 
   @computed
@@ -237,6 +229,13 @@ export default class Projects extends React.Component {
         key: 'namespace_pod_count',
         isHideable: true,
         render: record => this.getLastValue(record, MetricTypes.pod),
+      },
+      {
+        title: t('Created Time'),
+        dataIndex: 'createTime',
+        isHideable: true,
+        sorter: true,
+        render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
       },
     ]
   }
