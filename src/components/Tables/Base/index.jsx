@@ -170,8 +170,8 @@ export default class WorkloadTable extends React.Component {
   }
 
   get showEmpty() {
-    const { data, filters } = this.props
-    return this.mounted && isEmpty(data) && isEmpty(filters)
+    const { filters, pagination } = this.props
+    return this.mounted && isEmpty(filters) && pagination.total === 0
   }
 
   handleChange = (_, filters, sorter) => {
