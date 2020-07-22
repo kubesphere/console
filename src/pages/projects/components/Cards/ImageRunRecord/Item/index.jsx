@@ -96,7 +96,7 @@ export default class ImageBuilderLastRun extends React.Component {
 
   pathAddCluster = (path, cluster) => {
     const match = path.match(/(\/kapis|api|apis)(.*)/)
-    return !cluster || cluster === 'default' || isArray(match)
+    return !cluster || cluster === 'default' || !isArray(match)
       ? path
       : `${match[1]}/cluster/${cluster}${match[2]}`
   }
@@ -105,7 +105,7 @@ export default class ImageBuilderLastRun extends React.Component {
     const { sourceUrl, cluster } = this.props.runDetail
     const path = get(parseUrl(sourceUrl), 'pathname', `/${sourceUrl}`)
     const url = this.pathAddCluster(path, cluster)
-    const downLoadUrl = `${window.location.protocol}/${
+    const downLoadUrl = `${window.location.protocol}//${
       window.location.host
     }/b2i_download${url}`
     window.open(downLoadUrl)
@@ -167,7 +167,7 @@ export default class ImageBuilderLastRun extends React.Component {
         <Button
           onClick={this.handleDownload}
           type="primary"
-          disabled={status === 'Failed'}
+          disabled={status !== 'Successful'}
         >
           {t('Download Artifact')}
         </Button>

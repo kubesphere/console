@@ -31,7 +31,6 @@ import {
   Pagination,
   Loading,
 } from '@pitrix/lego-ui'
-import { Search, Button } from 'components/Base'
 import RunItem from './Item'
 
 import styles from './index.scss'
@@ -116,34 +115,11 @@ export default class RunsCard extends React.Component {
     })
   }
 
-  handleRefresh = () => {
-    const params = this.searchValue ? { name: this.searchValue } : {}
-
-    this.fetchData(params).then(() => {
-      const { onSearch, onRefresh } = this.props
-      isEmpty(params) ? onRefresh() : onSearch(this.searchValue)
-    })
-  }
-
   handlePage = page => {
     this.fetchData({ page }).then(() => {
       this.props.onPage(page)
     })
   }
-
-  renderHeader = () => (
-    <div className={styles.header}>
-      <Search
-        className={styles.search}
-        name="search"
-        placeholder={t('Please input a keyword to filter')}
-        onSearch={this.handleSearch}
-      />
-      <div className={styles.actions}>
-        <Button type="flat" icon="refresh" onClick={this.handleRefresh} />
-      </div>
-    </div>
-  )
 
   renderContent() {
     const { data, isLoading } = this.store.list
@@ -198,11 +174,10 @@ export default class RunsCard extends React.Component {
   }
 
   render() {
-    const { className, hideHeader, hideFooter } = this.props
+    const { className, hideFooter } = this.props
 
     return (
       <div className={classnames(className, styles.content)}>
-        {!hideHeader && this.renderHeader()}
         {this.renderContent()}
         {!hideFooter && this.renderFooter()}
       </div>

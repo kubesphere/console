@@ -28,7 +28,7 @@ import styles from './index.scss'
 export default class BuilderInfo extends React.Component {
   pathAddCluster = (path, cluster) => {
     const match = path.match(/(\/kapis|api|apis)(.*)/)
-    return !cluster || cluster === 'default' || isArray(match)
+    return !cluster || cluster === 'default' || !isArray(match)
       ? path
       : `${match[1]}/cluster/${cluster}${match[2]}`
   }
@@ -39,7 +39,7 @@ export default class BuilderInfo extends React.Component {
     const { cluster } = params
     const path = get(parseUrl(sourceUrl), 'pathname', `/${sourceUrl}`)
     const url = this.pathAddCluster(path, cluster)
-    const downLoadUrl = `${window.location.protocol}/${
+    const downLoadUrl = `${window.location.protocol}//${
       window.location.host
     }/b2i_download${url}`
 
