@@ -166,7 +166,7 @@ export default class Projects extends React.Component {
       ...this.props.match.params,
       store: this.projectStore,
       clusters: this.clusters.slice(),
-      success: () => this.getData(),
+      success: () => this.props.getData(),
     })
 
   render() {
