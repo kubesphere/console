@@ -228,8 +228,7 @@ export default class S2irunStore extends Base {
       }
     }
     this.logData.isLoading = true
-    const namespace = get(logURL.match(/namespaces\/([\w-/]*)\?/), '1')
-
+    const namespace = get(logURL.match(/namespaces\/([\w-/.]*)*\?/), '1')
     if (!this.containerName) {
       const podsDetail = await request.get(
         `api/v1${this.getPath({ namespace, cluster })}`
