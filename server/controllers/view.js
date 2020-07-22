@@ -54,13 +54,13 @@ const renderView = async ctx => {
         await ctx.render('error', {
           title: clientConfig.title,
           t: ctx.t.bind(ctx),
-          message: 'Unable to access backend services',
+          message: 'Unable to access the backend services',
         })
       } else if (err.code === 'ETIMEDOUT') {
         await ctx.render('error', {
           title: clientConfig.title,
           t: ctx.t.bind(ctx),
-          message: 'Unable to access gateway',
+          message: 'Unable to access the api server',
         })
       }
     } else {

@@ -102,14 +102,14 @@ const handleLogin = async ctx => {
           Object.assign(error, {
             status: err.code,
             reason: 'Internal Server Error',
-            message: 'Unable to access backend services',
+            message: 'Unable to access the backend services',
           })
           break
         case 'ETIMEDOUT':
           Object.assign(error, {
             status: 400,
             reason: 'Internal Server Error',
-            message: 'Unable to access gateway',
+            message: 'Unable to access the api server',
           })
           break
         default:

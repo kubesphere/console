@@ -28,7 +28,12 @@ module.exports = function(app) {
     defaultLocale: clientConfig.defaultLang || 'en',
     queryField: 'lang',
     cookieField: 'lang',
-    localeAlias: { 'zh-CN': 'zh', 'en-UK': 'en', 'en-US': 'en' },
+    localeAlias: {
+      'zh-cn': 'zh',
+      'zh-tw': 'tc',
+      'en-uk': 'en',
+      'en-us': 'en',
+    },
     dirs: [root('server/locales')],
   })
 }
