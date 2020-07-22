@@ -732,7 +732,7 @@ export const PROVISIONERS = [
       {
         key: 'adminSecretNamespace',
         type: 'input',
-        defaultValue: 'default',
+        c: 'default',
         desc: 'CEPHRBD_ADMIN_SECRET_NAMESPACE_DESC',
       },
       {
