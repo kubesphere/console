@@ -480,7 +480,7 @@ export default {
 
   CONDITION_STATUS_ANALYSE: 'Conditions',
 
-  NAV_PROJECTS: 'Projects',
+  NAV_PROJECTS: 'Project Management',
   NAV_ACCOUNTS: 'Accounts',
   ALERT_WARNING: 'Warning',
 
