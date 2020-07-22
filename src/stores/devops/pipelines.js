@@ -329,7 +329,7 @@ export default class PipelineStore extends BaseStore {
     this.activityList = {
       limit,
       data: result.items || [],
-      total: result.total_count,
+      total: result.totalItems,
       page: parseInt(page, 10) || 1,
       filters: omit(filters, 'project_id'),
       isLoading: false,

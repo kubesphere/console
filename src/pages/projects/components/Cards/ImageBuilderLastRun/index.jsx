@@ -30,12 +30,18 @@ export default class BuilderInfo extends React.Component {
     const match = path.match(/(\/kapis|api|apis)(.*)/)
     return !cluster || cluster === 'default' || !isArray(match)
       ? path
-      : `${match[1]}/cluster/${cluster}${match[2]}`
+      : `${match[1]}/clusters/${cluster}${match[2]}`
   }
 
   renderB2i() {
     const { className, params, runDetail } = this.props
-    const { builderImage, sourceUrl, binaryName, binarySize } = runDetail
+    const {
+      builderImage,
+      sourceUrl,
+      binaryName,
+      binarySize,
+      status,
+    } = runDetail
     const { cluster } = params
     const path = get(parseUrl(sourceUrl), 'pathname', `/${sourceUrl}`)
     const url = this.pathAddCluster(path, cluster)
@@ -54,21 +60,20 @@ export default class BuilderInfo extends React.Component {
             <p className={styles.name}>{t('builderImage')}</p>
           </div>
         </li>
-        <li>
-          <span className={styles.icon}>
-            <Icon name="resource" size={40} />
-          </span>
-          <div className={styles.info}>
-            <p className={styles.value} title={binaryName}>
-              {binaryName}
-            </p>
-
-            <p className={styles.name}>
-              <a href={downLoadUrl} download>
+        <li className={styles.downloadContent}>
+          <a href={status !== 'Success' ? null : downLoadUrl} download>
+            <span className={styles.icon}>
+              <Icon name="resource" size={40} />
+            </span>
+            <div className={styles.info}>
+              <p className={styles.value} title={binaryName}>
+                {binaryName}
+              </p>
+              <p className={styles.name}>
                 {`${t('File Size')}: ${formatSize(binarySize)}`}
-              </a>
-            </p>
-          </div>
+              </p>
+            </div>
+          </a>
         </li>
       </ul>
     )

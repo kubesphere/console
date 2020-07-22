@@ -98,7 +98,7 @@ export default class ImageBuilderLastRun extends React.Component {
     const match = path.match(/(\/kapis|api|apis)(.*)/)
     return !cluster || cluster === 'default' || !isArray(match)
       ? path
-      : `${match[1]}/cluster/${cluster}${match[2]}`
+      : `${match[1]}/clusters/${cluster}${match[2]}`
   }
 
   handleDownload = () => {
