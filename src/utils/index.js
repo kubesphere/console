@@ -408,6 +408,9 @@ export const hasChinese = str => /.*[\u4E00-\u9FA5]+.*/.test(str)
 export const getBrowserLang = () => {
   const lang = (navigator.language || navigator.browserLanguage).toLowerCase()
 
+  if (lang === 'zh-tw') {
+    return 'tc'
+  }
   if (lang.indexOf('zh') !== -1) {
     return 'zh'
   }
