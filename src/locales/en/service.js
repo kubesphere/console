@@ -162,5 +162,5 @@ export default {
 
   EIP_POOL_DESC: 'Access method within the cluster (DNS)',
 
-  SERVICE_SESSION_STICKY_DESC: 'must be greater than 0 and less than 86400',
+  SERVICE_SESSION_STICKY_DESC: 'Must be greater than 0 and less than 86400',
 }

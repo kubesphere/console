@@ -600,7 +600,7 @@ export default {
     'Whether to expose the default port of the image?',
 
   REQUEST_EXCCED:
-    'Resource requests should not be greater than resource limits',
+    'Resource requests should not be greater than resource limits.',
 
   WORKLOAD_CONDITIONS: 'Conditions',
   WORKLOAD_CONDITION_AVAILABLE: 'Available',
@@ -657,7 +657,7 @@ export default {
     'Workload is usually the actual carrier for accessing services and is also the actual carrier for system applications such as node log collection and monitoring. Workload is also an abstract model for a group of Pods.',
 
   CONTAINER_RESOURCE_LIMIT_TIP:
-    "Pleas set the container's resource limits and requests, which will help the system to better schedule and improve stability. You can also set the default value through [Project Management] -> [Edit Resource Default Request].",
+    "Please set the container's resource limits and requests, which will help the system to better schedule and improve stability. In Project Settings, you can also set the default value (Basic Info -> Manage Project -> Edit Resource Default Request).",
 
   COMPARE_WITH: 'Comparison with the previous version {version}',
   REVISION_DESC:
