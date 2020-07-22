@@ -120,7 +120,8 @@ export default class ContainerSetting extends React.Component {
     let serviceName = get(this.props.formTemplate, 'Service.metadata.name')
 
     if (workloadName && !serviceName) {
-      serviceName = `${workloadName}-${generateId()}`
+      serviceName = `svc-${workloadName.slice(0, 54)}-${generateId(4)}`
+
       set(this.props.formTemplate, 'Service.metadata.name', serviceName)
       set(
         this.props.formTemplate,
