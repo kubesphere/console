@@ -54,7 +54,7 @@ export default class NodeStore extends Base {
     const result = await request.get(
       `${this.getResourceUrl(params)}/${params.name}`
     )
-    const detail = { ...params, ...this.mapper(result) }
+    const detail = { ...params, ...this.mapper(result), kind: 'Node' }
 
     this.detail = detail
     this.isLoading = false
