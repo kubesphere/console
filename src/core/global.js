@@ -51,13 +51,14 @@ export default class GlobalValue {
         `projectRules[${cluster}][${project}]._`,
         this.getActions({ cluster, module })
       )
-      return adapter(
-        get(
+      return adapter([
+        ...get(
           globals.user,
           `projectRules[${cluster}][${project}][${module}]`,
-          defaultActions
-        )
-      )
+          []
+        ),
+        ...defaultActions,
+      ])
     }
 
     if (devops) {
@@ -66,13 +67,14 @@ export default class GlobalValue {
         `devopsRules[${cluster}][${devops}]._`,
         []
       )
-      return adapter(
-        get(
+      return adapter([
+        ...get(
           globals.user,
           `devopsRules[${cluster}][${devops}][${module}]`,
-          defaultActions
-        )
-      )
+          []
+        ),
+        ...defaultActions,
+      ])
     }
 
     if (workspace) {
@@ -81,20 +83,18 @@ export default class GlobalValue {
         `workspaceRules[${workspace}]._`,
         []
       )
-      return adapter(
-        get(
-          globals.user,
-          `workspaceRules[${workspace}][${module}]`,
-          defaultActions
-        )
-      )
+      return adapter([
+        ...get(globals.user, `workspaceRules[${workspace}][${module}]`, []),
+        ...defaultActions,
+      ])
     }
 
     if (cluster) {
       const defaultActions = get(globals.user, `clusterRules[${cluster}]._`, [])
-      return adapter(
-        get(globals.user, `clusterRules[${cluster}][${module}]`, defaultActions)
-      )
+      return adapter([
+        ...get(globals.user, `clusterRules[${cluster}][${module}]`, []),
+        ...defaultActions,
+      ])
     }
 
     return adapter(get(globals.user, `globalRules[${module}]`, []))
