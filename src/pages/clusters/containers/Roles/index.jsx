@@ -54,6 +54,7 @@ export default class ClusterRoles extends React.Component {
         onClick: item =>
           trigger('resource.baseinfo.edit', {
             detail: item,
+            success: routing.query,
           }),
       },
       {

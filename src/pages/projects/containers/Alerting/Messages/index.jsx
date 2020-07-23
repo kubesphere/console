@@ -82,7 +82,7 @@ export default class AlertingPolicy extends React.Component {
   }
 
   get itemActions() {
-    const { trigger } = this.props
+    const { trigger, routing } = this.props
     return [
       {
         key: 'delete',
@@ -93,6 +93,7 @@ export default class AlertingPolicy extends React.Component {
           trigger('resource.delete', {
             type: t(this.name),
             detail: item,
+            success: routing.query,
           }),
       },
     ]

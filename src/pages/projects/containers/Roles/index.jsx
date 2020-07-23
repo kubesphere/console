@@ -53,6 +53,7 @@ export default class Roles extends React.Component {
         onClick: item =>
           trigger('resource.baseinfo.edit', {
             detail: item,
+            success: routing.query,
           }),
       },
       {
@@ -148,7 +149,7 @@ export default class Roles extends React.Component {
   render() {
     const { bannerProps, tableProps } = this.props
     return (
-      <ListPage {...this.props}>
+      <ListPage {...this.props} noWatch>
         <Banner
           {...bannerProps}
           tabs={this.tabs}
