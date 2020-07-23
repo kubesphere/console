@@ -177,7 +177,7 @@ export default {
   SERVICE_STATEFULSET: 'Stateful service(StatefulSet)',
 
   CONNECTION_POOL_TIP:
-    'Create a fixed number of connection objects for the application, save them in the pool for reuse. The existing pool is available for each access, and is returned to the pool after use.',
+    'A fixed number of connection objects will be created for the application and stored in the connection pool for reuse. The existing pool is available for each access, and each connection object will be returned to the pool after use.',
 
   APP_GOVERNANCE_DESC:
     'If Application Governance is enabled, the Istio-proxy container will be injected as a SideCar in each component. <a href="https://istio.io/docs/setup/kubernetes/additional-setup/sidecar-injection/" target="_blank">READ MORE</a>',
