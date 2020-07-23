@@ -129,7 +129,7 @@ export default class MemberDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('Workspace Roles'),
+          label: t('Workspace Members'),
           url: this.listUrl,
         },
       ],
