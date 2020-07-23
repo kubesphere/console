@@ -167,7 +167,7 @@ export default {
 
   'Connection pool management': '連接池管理',
   CONNECTION_POOL_TIP:
-    '為應用程序創建固定數量的連接對象，保存在池中以供重複使用。每次訪問時從池中獲取已存在，使用完畢後，返回池中。',
+    '為應用程序創建固定數量的連接對象，保存在池中以供重複使用。每次訪問時會從池中獲取已存在的連接對象，使用完畢後，連接對象將返回池中。',
   'Continuous error response (5xx) number': '連續錯誤響應(5xx)個數',
   'The number of consecutive 5xx errors in one inspection cycle':
     '在一個檢查週期内連續出现5xx錯誤的個數',
