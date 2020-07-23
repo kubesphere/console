@@ -17,95 +17,95 @@
  */
 
 export default {
-  Workspace: '企业空间',
-  Workspaces: '企业空间',
-  'Workspace Settings': '企业空间设置',
-  'Workspace Members': '企业成员',
-  'Workspace Roles': '企业角色',
-  'Workspace Role': '企业角色',
-  'Create Workspace Role': '创建企业角色',
-  'Edit Workspace Role': '编辑企业角色',
-  'Workspace Name': '企业空间名称',
-  'Workspace Logo': '企业空间 Logo',
-  'Workspace Manager': '企业空间管理员',
-  'Workspaces Manager': '企业空间管理员',
-  'Create Workspace': '创建企业空间',
+  Workspace: '企業空間',
+  Workspaces: '企業空間',
+  'Workspace Settings': '企業空間設置',
+  'Workspace Members': '企業成員',
+  'Workspace Roles': '企業角色',
+  'Workspace Role': '企業角色',
+  'Create Workspace Role': '創建企業角色',
+  'Edit Workspace Role': '編輯企業角色',
+  'Workspace Name': '企業空間名稱',
+  'Workspace Logo': '企業空間 Logo',
+  'Workspace Manager': '企業空間管理員',
+  'Workspaces Manager': '企業空間管理員',
+  'Create Workspace': '創建企業空間',
 
-  'Project Number': '项目数量',
-  'DevOps Project Number': 'DevOps 工程数量',
-  'Edit Quota': '编辑配额',
+  'Project Number': '項目數量',
+  'DevOps Project Number': 'DevOps 工程數量',
+  'Edit Quota': '編輯配額',
 
-  'View Workspace': '进入企业空间',
-  'Delete Workspace': '删除企业空间',
+  'View Workspace': '進入企業空間',
+  'Delete Workspace': '刪除企業空間',
 
-  'Workspace Info': '企业空间信息',
+  'Workspace Info': '企業空間資訊',
 
-  'Manage Organizations': '管理组织结构',
+  'Manage Organizations': '管理組織結構',
 
-  'Involved Projects': '参与项目',
-  'Created Projects': '创建的项目',
-  'Workspace name exists': '企业空间名称已存在',
-  'The current name is not applicable.': '当前名称不可用',
+  'Involved Projects': '參與項目',
+  'Created Projects': '創建的項目',
+  'Workspace name exists': '企業空間名稱已存在',
+  'The current name is not applicable.': '目前名稱不可用',
 
-  'Cluster Authorization Info': '集群授权信息',
-  'Workspace Network Isolation': '企业空间网络隔离',
+  'Cluster Authorization Info': '集群授權資訊',
+  'Workspace Network Isolation': '企業空間網路隔離',
 
-  'Cluster Info': '集群信息',
+  'Cluster Info': '集群資訊',
 
-  'No Available Cluster': '暂时没有可用集群',
+  'No Available Cluster': '暫時没有可用集群',
 
   WORKSPACE_OVERVIEW_DESC:
-    '企业空间为 KubeSphere 提供了安全隔离的、具有访问权限控制的工作平台。这里您可以看到当前企业空间内资源运行的概况。',
+    '企業空間為 KubeSphere 提供了安全隔離的、具有訪問權限控制的工作平台。这里您可以看到目前企業空間内資源運行的概況。',
 
   WORKSPACE_DESC:
-    '企业空间是一个组织您的项目和 DevOps 工程、管理资源访问权限以及在团队内部共享资源等的逻辑单元，可以作为团队工作的独立工作空间。',
+    '企業空間是一个組織您的項目和 DevOps 工程、管理資源訪問權限以及在團隊内部共享資源等的邏輯單元，可以作為團隊工作的獨立工作空間。',
 
-  WORKSPACE_SEARCH_PLACEHOLDER: '请输入企业空间名称进行查找',
+  WORKSPACE_SEARCH_PLACEHOLDER: '請輸入企業空間名稱進行查找',
 
   WORKSPACE_CREATE_DESC:
-    '企业空间是一个组织您的项目和 DevOps 工程、管理资源访问权限以及在团队内部共享资源等的逻辑单元，可以作为团队工作的独立工作空间。',
+    '企業空間是一个組織您的項目和 DevOps 工程、管理資源訪問權限以及在團隊内部共享資源等的邏輯單元，可以作為團隊工作的獨立工作空間。',
 
   WORKSPACE_NAME_DESC:
-    '请尽量保持名称简短，比如用企业名称的缩写或者大家经常的称呼，无需使用企业的完整名称或者营业执照上的注册名称。',
+    '請盡量保持名稱簡短，比如用企業名稱的縮寫或者大家經常的稱呼，無需使用企業的完整名稱或者營業執照上的註冊名稱。',
 
-  WORKSPACE_ROLE_DESC: '企业角色定义了在当前企业空间下用户所拥有的权限。',
+  WORKSPACE_ROLE_DESC: '企業角色定義了在目前企業空間下使用者所擁有的權限。',
   WORKSPACE_LOGO_PLACEHOLDER:
-    '企业标志尺寸必须小于 200px X 200px，支持 png，jpg 格式。建议从上传透明背景的 PNG 格式图片以达到最佳展示效果。',
+    '企業標誌尺寸必須小於 200px X 200px，支持 png，jpg 格式。建議從上傳透明背景的 PNG 格式圖片以達到最佳顯示效果。',
 
-  'Remove from Workspace': '从企业空间移除',
-  'Please input workspace name': '请输入企业空间名称',
+  'Remove from Workspace': '從企業空間移除',
+  'Please input workspace name': '請輸入企業空間名稱',
 
   NO_WORKSPACE_TIP:
-    '您的账号目前不属于任何企业空间，请您创建一个企业空间或者联系管理员邀请您到其企业空间内进行工作',
+    '您的帳號目前不屬於任何企業空間，請您創建一个企業空間或者聯繫管理員邀請您到其企業空間内進行工作',
 
-  SEARCH_WORKSPACE_TIP: '请输入企业名称进行查找',
+  SEARCH_WORKSPACE_TIP: '請輸入企業名稱進行查找',
 
-  'Invite members to the workspace': '邀请成员到该企业空间',
+  'Invite members to the workspace': '邀請成員到該企業空間',
   WORKSPACE_MEMBER_DESC:
-    '对企业空间内的成员进行管理及角色分配。项目可以邀请当前企业空间内的企业成员作为项目成员，协同工作。',
-  INVITE_WORKSPACE_MEMBER_DESC: '您可以邀请新的成员来您的企业空间',
-  INVITE_WORKSPACE_MEMBER_SEARCH_PLACEHODLER: '输入邮箱邀请企业空间成员',
+    '對企業空間内的成員進行管理及角色分配。項目可以邀請目前企業空間内的企業成員作為項目成員，協同工作。',
+  INVITE_WORKSPACE_MEMBER_DESC: '您可以邀請新的成員來您的企業空間',
+  INVITE_WORKSPACE_MEMBER_SEARCH_PLACEHODLER: '輸入郵箱邀請企業空間成員',
 
   DELETE_WORKSPACE_TIP:
-    '确定删除企业空间 <strong>{resource}</strong> ? 删除后将无法恢复, 企业空间下的资源也同时会被销毁。',
+    '確定刪除企業空間 <strong>{resource}</strong> ? 刪除後將無法恢復, 企業空間下的資源也同時會被銷毀。',
 
-  DELETE_WORKSPACE_DESC: '删除后将无法恢复, 企业空间下的资源也同时会被销毁。',
-  SURE_TO_DELETE_WORKSPACE: '确定删除企业空间',
+  DELETE_WORKSPACE_DESC: '刪除後將無法恢復, 企業空間下的資源也同時會被銷毀。',
+  SURE_TO_DELETE_WORKSPACE: '確定刪除企業空間',
 
-  WORKSPACE_BASE_INFO_Q1: '如何为企业空间申请更多的集群？',
+  WORKSPACE_BASE_INFO_Q1: '如何為企業空間申請更多的集群？',
   WORKSPACE_BASE_INFO_A1:
-    '集群由平台管理员以及集群管理员共同运营维护，如果您需要使用更多的集群请联系您的平台管理员，或者提交申请',
-  WORKSPACE_BASE_INFO_Q2: '如何定义网络策略?',
+    '集群由平台管理員以及集群管理員共同營運維護，如果您需要使用更多的集群請聯繫您的平台管理員，或者提交申請',
+  WORKSPACE_BASE_INFO_Q2: '如何定義網路策略?',
   WORKSPACE_BASE_INFO_A2: '',
 
-  WORKSPACE_CLUSTERS_DESC: '集群信息是企业空间对集群资源的使用情况的统计',
+  WORKSPACE_CLUSTERS_DESC: '集群資訊是企業空間對集群資源的使用情況的統計',
 
-  HOW_TO_APPLY_MORE_CLUSTER_Q: '如何为企业空间申请更多的集群？',
+  HOW_TO_APPLY_MORE_CLUSTER_Q: '如何為企業空間申請更多的集群？',
   HOW_TO_APPLY_MORE_CLUSTER_A:
-    '集群由平台管理员以及集群管理员共同运营维护，如果您需要使用更多的集群请联系您的平台管理员，或者提交申请',
+    '集群由平台管理員以及集群管理員共同營運維護，如果您需要使用更多的集群請聯繫您的平台管理員，或者提交申請',
 
   NO_PUBLIC_CLUSTER_TIP:
-    '暂无可用的公开集群, 请在企业空间创建完毕后, 向平台管理员或集群管理员申请集群的授权',
+    '暫無可用的公開集群, 請在企業空間創建完畢後, 向平台管理員或集群管理員申請集群的授權',
   WORKSPACE_NO_CLUSTER_TIP:
-    '您需要联系平台管理员或者集群管理员为企业空间授权集群的访问权限',
+    '您需要聯繫平台管理員或者集群管理員為企業空間授權集群的訪問權限',
 }
