@@ -28,6 +28,12 @@ export default class FederatedProject extends FederatedStore {
     )}/federatednamespaces`
   }
 
+  getWatchListUrl = ({ workspace, ...params }) => {
+    return `${this.apiVersion}/watch${this.getPath(params)}/federated${
+      this.module
+    }?labelSelector=kubesphere.io/workspace=${workspace}`
+  }
+
   @action
   async fetchList({ workspace, namespace, more, devops, ...params } = {}) {
     this.list.isLoading = true
