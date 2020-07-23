@@ -108,7 +108,10 @@ export default class AppRepos extends React.Component {
   handleIndex = async () => {
     await Promise.all(
       this.props.store.list.selectedRowKeys.map(async repo => {
-        const resp = await this.props.store.index({ repo_id: repo })
+        const resp = await this.props.store.index({
+          repo_id: repo,
+          workspace: this.workspace,
+        })
         const { message } = resp
 
         if (message === 'success') {

@@ -59,6 +59,7 @@ export default class App extends Component {
       names: this.store.detail.clusters.map(item => item.name).join(','),
       sortBy: 'createTime',
       ascending: true,
+      limit: -1,
     })
     this.store.detail.clusters = toJS(this.clusterStore.list.data)
 
