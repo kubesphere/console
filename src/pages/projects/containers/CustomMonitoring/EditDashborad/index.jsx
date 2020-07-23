@@ -74,6 +74,7 @@ export default class CrateDashboardModalContainer extends React.Component {
         isSaving={this.props.isSubmitting}
         onCancel={this.props.onCancel}
         onSave={this.onSave}
+        readOnly={this.props.readOnly}
       />
     )
   }

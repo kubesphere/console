@@ -75,7 +75,7 @@ export default class CreateModal extends React.Component {
       return callback()
     }
 
-    const { cluster, namespace } = this.props
+    const { workspace, cluster, namespace } = this.props
     const name = get(this.props.formTemplate, 'metadata.name')
 
     if (this.props.edit && name === value) {
@@ -83,7 +83,7 @@ export default class CreateModal extends React.Component {
     }
 
     this.props.store
-      .checkName({ name: value, cluster, namespace })
+      .checkName({ name: value, workspace, cluster, namespace })
       .then(resp => {
         if (resp.exist) {
           return callback({ message: t('Role name exists'), field: rule.field })

@@ -78,10 +78,12 @@ export default class CustomMonitoringModal extends React.Component {
               <ThemeSwitchButton />
               <TimeRangeSelect />
               <RefreshIntervalSelector />
-              <SwitchButton
-                onSaveClick={this.props.onSave}
-                isSubmitting={this.props.isSubmitting}
-              />
+              {!this.props.readOnly && (
+                <SwitchButton
+                  onSaveClick={this.props.onSave}
+                  isSubmitting={this.props.isSubmitting}
+                />
+              )}
             </>
           }
         >

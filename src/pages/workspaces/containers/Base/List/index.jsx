@@ -16,7 +16,6 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-// import { get } from 'lodash'
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
 
@@ -36,11 +35,31 @@ class WorkspaceLayout extends Component {
     return this.props.rootStore.routing
   }
 
+  get canViewOverview() {
+    return globals.app.hasPermission({
+      workspace: this.workspace,
+      module: 'projects',
+      action: 'view',
+    })
+  }
+
+  getRoutes() {
+    const { routes, path } = this.props.route
+    if (routes && !this.canViewOverview) {
+      routes.forEach(route => {
+        if (route.path === path && route.redirect) {
+          route.redirect.to = `${path}/projects`
+        }
+      })
+    }
+    return routes
+  }
+
   enterWorkspace = async workspace =>
     this.routing.push(`/workspaces/${workspace}/overview`)
 
   render() {
-    const { match, route, location } = this.props
+    const { match, location } = this.props
     const { detail } = this.props.workspaceStore
     return (
       <div className="ks-page">
@@ -57,7 +76,7 @@ class WorkspaceLayout extends Component {
             match={match}
           />
         </div>
-        <div className="ks-page-main">{renderRoutes(route.routes)}</div>
+        <div className="ks-page-main">{renderRoutes(this.getRoutes())}</div>
       </div>
     )
   }

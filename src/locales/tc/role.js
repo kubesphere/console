@@ -118,9 +118,9 @@ export default {
   'Projects Management': '項目管理',
   'Projects View': '項目查看',
   'Projects Create': '項目創建',
-  'Devops Management': 'Devops 工程管理',
-  'Devops View': 'Devops 工程查看',
-  'Devops Create': 'Devops 工程創建',
+  'DevOps Management': 'DevOps 工程管理',
+  'DevOps View': 'DevOps 工程查看',
+  'DevOps Create': 'DevOps 工程創建',
 
   PROJECTS_MANAGEMENT_DESC:
     '管理企業空間裡的所有項目，可以 創建/編輯/刪除 項目',

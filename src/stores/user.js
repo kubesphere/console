@@ -112,7 +112,7 @@ export default class UsersStore extends Base {
       () => {}
     )
 
-    const rules = {}
+    let rules = {}
     resp &&
       resp.forEach(item => {
         const rule = safeParseJSON(
@@ -147,6 +147,13 @@ export default class UsersStore extends Base {
         break
       }
       case 'workspaceroles': {
+        if (params.workspace === globals.config.systemWorkspace) {
+          set(globals.user, `workspaceRules[${params.workspace}]`, {
+            ...globals.config.systemWorkspaceRules,
+          })
+          break
+        }
+
         const parentActions = globals.app.getActions({ module: 'workspaces' })
         set(globals.user, `workspaceRules[${params.workspace}]`, {
           ...rules,
@@ -167,6 +174,11 @@ export default class UsersStore extends Base {
             ...obj,
             module: 'projects',
           })
+
+          if (params.workspace === globals.config.systemWorkspace) {
+            rules = globals.config.systemWorkspaceProjectRules
+          }
+
           set(
             globals.user,
             `projectRules[${params.cluster}][${params.namespace}]`,

@@ -66,6 +66,14 @@ export default class Policies extends React.Component {
     return get(this.projectStore, 'detail.workspace', '')
   }
 
+  get enabledActions() {
+    return globals.app.getActions({
+      module: 'project-settings',
+      ...this.params,
+      project: this.params.namespace,
+    })
+  }
+
   toggleNetworkIsolate = (flag = true) => {
     const data = {}
     set(
@@ -93,6 +101,8 @@ export default class Policies extends React.Component {
         'detail.annotations["kubesphere.io/network-isolate"]'
       ) === 'enabled'
 
+    const canEdit = this.enabledActions.includes('edit')
+
     return (
       <div>
         <Banner
@@ -110,13 +120,15 @@ export default class Policies extends React.Component {
             desc={t('NETWORK_POLICY_EMP_DESC')}
             className={styles.eplist}
             actions={
-              <Button
-                type="control"
-                loading={isSubmitting}
-                onClick={this.toggleNetworkIsolate}
-              >
-                {t('On')}
-              </Button>
+              canEdit && (
+                <Button
+                  type="control"
+                  loading={isSubmitting}
+                  onClick={this.toggleNetworkIsolate}
+                >
+                  {t('On')}
+                </Button>
+              )
             }
           />
         ) : (
@@ -125,12 +137,14 @@ export default class Policies extends React.Component {
               module={module}
               networkIsolate={networkIsolate}
               onEdit={this.handleEditNetworkIsolate}
+              canEdit={canEdit}
             />
             <RuleInfo
               module={module}
               namespace={namespace}
               cluster={cluster}
               workspace={workspace}
+              canEdit={canEdit}
             />
           </Panel>
         )}

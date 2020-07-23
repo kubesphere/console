@@ -193,13 +193,15 @@ export default class RuleInfo extends React.Component {
               )
             })}
           </div>
-          <Icon
-            name="trash"
-            changeable
-            onClick={() => {
-              this.handleDelete(get(item, 'metadata.name'))
-            }}
-          />
+          {this.props.canEdit && (
+            <Icon
+              name="trash"
+              changeable
+              onClick={() => {
+                this.handleDelete(get(item, 'metadata.name'))
+              }}
+            />
+          )}
         </div>
       ))}
     </>
@@ -233,19 +235,22 @@ export default class RuleInfo extends React.Component {
               )
             })}
           </div>
-          <Icon
-            name="trash"
-            changeable
-            onClick={() => {
-              this.handleDelete(get(item, 'metadata.name'))
-            }}
-          />
+          {this.props.canEdit && (
+            <Icon
+              name="trash"
+              changeable
+              onClick={() => {
+                this.handleDelete(get(item, 'metadata.name'))
+              }}
+            />
+          )}
         </div>
       ))}
     </>
   )
 
   renderInner() {
+    const { canEdit } = this.props
     const { list } = this.store
     const { curTab } = this.state
     const innerEgressData = []
@@ -285,9 +290,11 @@ export default class RuleInfo extends React.Component {
         <div className={classNames({ hide: curTab === 'outer' })}>
           <div className={styles.rulemenu}>
             <div>{t('NETWORK_POLICY_R1_DESC1')}</div>
-            <Button onClick={this.addAllowList} className={styles.addBtn}>
-              {t('Add Allowlist')}
-            </Button>
+            {canEdit && (
+              <Button onClick={this.addAllowList} className={styles.addBtn}>
+                {t('Add Allowlist')}
+              </Button>
+            )}
           </div>
           <div className={styles.rulebody}>
             <div
@@ -313,9 +320,11 @@ export default class RuleInfo extends React.Component {
         <div className={classNames({ hide: curTab === 'inner' })}>
           <div className={styles.rulemenu}>
             <div>{t('NETWORK_POLICY_R2_DESC1')}</div>
-            <Button onClick={this.addIpBlock} className={styles.addBtn}>
-              {t('Add Rule')}
-            </Button>
+            {canEdit && (
+              <Button onClick={this.addIpBlock} className={styles.addBtn}>
+                {t('Add Rule')}
+              </Button>
+            )}
           </div>
           <div className={styles.rulebody}>
             <div

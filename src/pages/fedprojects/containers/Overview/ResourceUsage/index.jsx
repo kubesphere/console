@@ -201,10 +201,10 @@ class ResourceUsage extends React.Component {
         metric: 'namespace_service_count',
       },
       {
-        key: 'routes',
+        key: 'ingresses',
         icon: ICON_TYPES['ingresses'],
         name: 'Routes',
-        routeName: 'routes',
+        routeName: 'ingresses',
         num: used['count/ingresses.extensions'],
         metric: 'namespace_ingresses_extensions_count',
       },

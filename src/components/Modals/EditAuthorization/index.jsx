@@ -80,7 +80,7 @@ export default class EditAuthorizationModal extends React.Component {
   }
 
   handleOk = () => {
-    this.props.onOk(this.state.roleTemplates)
+    this.props.onOk([...this.state.roleTemplates, 'role-template-view-basic'])
   }
 
   handleTabChange = e => {
