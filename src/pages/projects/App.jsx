@@ -41,7 +41,8 @@ class ProjectLayout extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.project !== prevProps.match.params.namespace) {
+    const { namespace, cluster } = prevProps.match.params
+    if (this.project !== namespace || this.cluster !== cluster) {
       this.init(this.props.match.params)
     }
   }
@@ -80,6 +81,10 @@ class ProjectLayout extends Component {
 
   get project() {
     return this.props.match.params.namespace
+  }
+
+  get cluster() {
+    return this.props.match.params.cluster
   }
 
   render() {
