@@ -418,14 +418,15 @@ client:
   systemWorkspace: system-workspace
   systemWorkspaceRules:
     devops: []
-    members: [view, create, edit, delete]
+    members: [manage]
     projects: [view, edit]
     roles: [view]
     workspaces: [view, edit]
   systemWorkspaceProjectRules:
-    alerting: [view, create, edit, delete]
-    members: [view, create, edit, delete]
-    roles: [view, create, edit, delete]
+    alerting: [manage]
+    members: [manage]
+    roles: [manage]
+    custom-monitoring: [manage]
 
   # preset infos
   presetUsers: [admin, sonarqube]
