@@ -126,8 +126,7 @@ export default {
   APP_GOVERNANCE_DESC:
     '开启应用治理后会在每个组件中以 SideCar 的方式注入 Istio-proxy 容器 <a href="https://istio.io/docs/setup/kubernetes/additional-setup/sidecar-injection/" target="_blank">了解更多</a>',
 
-  COMPONENT_VERSION_DESC:
-    '用于应用治理时区分组件版本, 最长 16 个字符，只能包含小写字母及数字',
+  COMPONENT_VERSION_DESC: '最长 16 个字符，只能包含小写字母及数字',
 
   APP_ICON_TIP: '点击上传应用图标，尺寸最大为 120px * 120px',
 

@@ -149,7 +149,9 @@ export default class GlobalValue {
 
     if (
       item.clusterModule &&
-      !this.hasClusterModule(item.cluster, item.clusterModule)
+      item.clusterModule
+        .split('|')
+        .every(cm => !this.hasClusterModule(item.cluster, cm))
     ) {
       return false
     }

@@ -202,7 +202,7 @@ client:
                 title: Log Collections,
                 icon: file,
                 authKey: logging|events|auditing,
-                clusterModule: logging,
+                clusterModule: logging|events|auditing,
               }
 
   # access control page navigations
