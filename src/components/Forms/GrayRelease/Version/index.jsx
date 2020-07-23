@@ -113,6 +113,7 @@ export default class Version extends ContainerSettings {
             name="metadata.labels.version"
             onChange={this.handleVersionChange}
             disabled={this.isEdit}
+            maxLength={16}
           />
         </Form.Item>
         <div className={styles.specify}>

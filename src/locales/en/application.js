@@ -168,7 +168,7 @@ export default {
     'It can only contain lowercase letters, numbers and hyphens("-"), and must begin and end with a lowercase letter or a number. The maximum length of characters is set to 14.',
 
   COMPONENT_VERSION_DESC:
-    'For the application of governance to distinguish between components. It can only contain lowercase letters and numbers. The maximum length of characters is set to 16.',
+    'It can only contain lowercase letters and numbers. The maximum length of characters is set to 16.',
 
   APP_WORKLOAD_TYPE_DESC:
     'Support stateless services (Deployment) and stateful services (StatefulSet)',

@@ -97,7 +97,7 @@ export default class GatewaySettingModal extends React.Component {
     const { cluster, namespace, selector } = detail || {}
 
     const url = `api/v1/watch/${
-      cluster ? `klusters/${cluster}` : ''
+      cluster ? `klusters/${cluster}/` : ''
     }namespaces/${namespace}/pods?labelSelector=${joinSelector(selector)}`
 
     if (url && namespace && selector) {
