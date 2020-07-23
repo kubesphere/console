@@ -159,7 +159,7 @@ export default class ProjectSelectModal extends React.Component {
 
   handleEnterWorkspace = () => {
     const { workspace, onChange } = this.props
-    return onChange(`/workspaces/${workspace}/overview`)
+    return onChange(`/workspaces/${workspace}`)
   }
 
   handleOnEnter = item => {

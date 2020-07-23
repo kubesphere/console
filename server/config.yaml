@@ -228,7 +228,7 @@ client:
   workspaceNavs:
     - cate: 'workspace'
       items:
-        - { name: overview, title: Overview, icon: dashboard, skipAuth: true }
+        - { name: overview, title: Overview, icon: dashboard, authKey: 'projects' }
         - name: projects
           title: NAV_PROJECTS
           icon: project

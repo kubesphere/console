@@ -44,7 +44,7 @@ class BaseInfo extends React.Component {
   }
 
   componentDidMount() {
-    this.fetchMetrics()
+    this.canViewWorkspaceProjects && this.fetchMetrics()
   }
 
   get store() {
@@ -79,6 +79,14 @@ class BaseInfo extends React.Component {
   get enabledActions() {
     return globals.app.getActions({
       module: 'workspace-settings',
+      workspace: this.workspace,
+    })
+  }
+
+  get canViewWorkspaceProjects() {
+    return globals.app.hasPermission({
+      module: 'projects',
+      action: 'view',
       workspace: this.workspace,
     })
   }
@@ -214,18 +222,20 @@ class BaseInfo extends React.Component {
             </Button>
           )}
         </div>
-        <div className={styles.content}>
-          {options
-            .filter(option => !option.hidden)
-            .map(option => (
-              <Text
-                key={option.name}
-                icon={option.icon}
-                title={option.value}
-                description={t(option.name)}
-              />
-            ))}
-        </div>
+        {this.canViewWorkspaceProjects && (
+          <div className={styles.content}>
+            {options
+              .filter(option => !option.hidden)
+              .map(option => (
+                <Text
+                  key={option.name}
+                  icon={option.icon}
+                  title={option.value}
+                  description={t(option.name)}
+                />
+              ))}
+          </div>
+        )}
       </Panel>
     )
   }

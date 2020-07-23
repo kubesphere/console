@@ -188,6 +188,7 @@ export default class CustomMonitoringDashboards extends React.Component {
             isSaving={this.props.store.isSubmitting}
             onCancel={this.hideEditModal}
             onSave={this.editDashboard}
+            readOnly={!tableProps.enabledActions.includes('edit')}
           />
         )}
       </div>
