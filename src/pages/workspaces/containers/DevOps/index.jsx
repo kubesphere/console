@@ -24,7 +24,7 @@ import Banner from 'components/Cards/Banner'
 import Table from 'workspaces/components/ResourceTable'
 import withList, { ListPage } from 'components/HOCs/withList'
 
-import { getLocalTime } from 'utils'
+import { getLocalTime, getDisplayName } from 'utils'
 
 import DevOpsStore from 'stores/devops'
 
@@ -127,7 +127,7 @@ export default class DevOps extends React.Component {
     {
       title: t('Name'),
       dataIndex: 'name',
-      width: '20%',
+      width: '35',
       render: (name, record) => {
         return (
           <Avatar
@@ -141,7 +141,7 @@ export default class DevOps extends React.Component {
                 : null
             }
             desc={record.description || '-'}
-            title={name}
+            title={getDisplayName(record)}
           />
         )
       },
@@ -150,13 +150,13 @@ export default class DevOps extends React.Component {
       title: t('ID'),
       dataIndex: 'namespace',
       isHideable: true,
-      width: '20%',
+      width: '25%',
     },
     {
       title: t('Creator'),
       dataIndex: 'creator',
       isHideable: true,
-      width: '40%',
+      width: '20%',
       render: creator => creator || '-',
     },
     {
@@ -164,7 +164,7 @@ export default class DevOps extends React.Component {
       dataIndex: 'createTime',
       isHideable: true,
       sorter: true,
-      width: '20%',
+      width: '15%',
       render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
     },
   ]

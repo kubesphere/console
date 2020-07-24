@@ -1089,11 +1089,7 @@ const FederatedMapper = resourceMapper => item => {
 }
 
 const DevOpsMapper = item => ({
-  uid: get(item, 'metadata.uid'),
-  name: get(item, 'metadata.name'),
-  creator: getResourceCreator(item),
-  description: getDescription(item),
-  createTime: get(item, 'metadata.creationTimestamp'),
+  ...getBaseInfo(item),
   workspace: get(item, 'metadata.labels["kubesphere.io/workspace"]'),
   namespace: get(item, 'status.adminNamespace'),
   _originData: getOriginData(item),
