@@ -96,6 +96,7 @@ class AppDetail extends Component {
     await this.versionStore.fetchList({
       ...params,
       app_id: this.appId,
+      noLimit: true,
     })
   }
 
@@ -124,7 +125,6 @@ class AppDetail extends Component {
       <VersionSelect
         versionStore={this.versionStore}
         selectVersion={this.state.selectAppVersion}
-        fetchVersions={this.fetchVersions}
         handleChangeVersion={this.handleChangeAppVersion}
       />
     )

@@ -91,8 +91,6 @@ export default class OPApps extends React.Component {
       {
         title: t('Name'),
         dataIndex: 'name',
-        sorter: true,
-        sortOrder: getSortOrder('name'),
         render: (name, record) => (
           <Avatar
             isApp

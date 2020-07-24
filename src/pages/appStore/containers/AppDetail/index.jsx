@@ -93,6 +93,7 @@ export default class App extends React.Component {
       .fetchList({
         app_id: this.appID,
         status: 'active',
+        noLimit: true,
       })
       .then(() => {
         const selectAppVersion = get(
@@ -102,13 +103,6 @@ export default class App extends React.Component {
         )
         this.setState({ selectAppVersion })
       })
-  }
-
-  fetchVersions = async (params = {}) => {
-    await this.versionStore.fetchList({
-      ...params,
-      app_id: this.appID,
-    })
   }
 
   handleTabChange = tab => {
@@ -202,7 +196,6 @@ export default class App extends React.Component {
               <VersionSelect
                 versionStore={this.versionStore}
                 selectVersion={this.state.selectAppVersion}
-                fetchVersions={this.fetchVersions}
                 handleChangeVersion={this.handleChangeAppVersion}
               />
               {this.renderKeywords()}

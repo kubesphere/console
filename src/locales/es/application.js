@@ -129,7 +129,6 @@ export default {
   SERVICE_PORT_NAME_DESC: 'SERVICE_PORT_NAME_DESC',
   'Services & Operations': 'Servicios y operaciones',
   'Session retention': 'Retención de la sesión',
-  'Specify an application version': 'Especificar una versión de la aplicación',
   'Success rate': 'Tasa de éxito',
   Tags: 'Etiquetas',
   'TCP - Inbound Traffic': 'TCP - Tráfico entrante',

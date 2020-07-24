@@ -123,7 +123,6 @@ export default {
   SERVICE_PORT_NAME_DESC: 'SERVICE_PORT_NAME_DESC',
   'Services & Operations': 'Services & Operations',
   'Session retention': 'Session retention',
-  'Specify an application version': 'Specify an application version',
   'Success rate': 'Success rate',
   Tags: 'Tags',
   'TCP - Inbound Traffic': 'TCP - Inbound Traffic',
@@ -165,7 +164,7 @@ export default {
   LB_RANDOM: 'RANDOM',
 
   CLUSTER_NAME_DESC:
-    'It can only contain lowercase letters, numbers and hyphens("-"), and must begin and end with a lowercase letter or a number. The maximum length of characters is set to 14.',
+    'It can only contain lowercase letters, numbers and hyphens("-"), and must begin with a lowercase letter, ending with a number or lowercase letter. The maximum length of characters is set to 14.',
 
   COMPONENT_VERSION_DESC:
     'It can only contain lowercase letters and numbers. The maximum length of characters is set to 16.',

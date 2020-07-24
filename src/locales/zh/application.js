@@ -65,7 +65,6 @@ export default {
   'Component Version': '组件版本',
 
   'Please input an application name': '请输入应用名称',
-  'Specify an application version': '指定一个应用版本',
 
   'Service components should not be empty': '服务组件不能为空',
   'Please finish the sub form first': '请完成子表单的编辑',
@@ -131,7 +130,7 @@ export default {
   APP_ICON_TIP: '点击上传应用图标，尺寸最大为 120px * 120px',
 
   CLUSTER_NAME_DESC:
-    '最长 14 个字符，只能包含小写字母、数字及分隔符("-")，且必须以小写字母或数字开头及结尾',
+    '最长 14 个字符，只能包含小写字母、数字及分隔符("-")，且必须以小写字母开头, 字母或数字结尾',
 
   SERVICE_PORT_NAME_DESC:
     '端口的名字必须遵循如下格式 <protocol>[-<suffix>]，可以是 http、http2、 grpc、 mongo、 或者 redis 作为 <protocol> ，这样才能使用 Istio 的路由功能。例如 name: http2-foo 和 name: http 都是有效的端口名称，而 name: http2foo 不是。',
