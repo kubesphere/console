@@ -57,6 +57,8 @@ client:
       value: 'zh'
     - label: 'English'
       value: 'en'
+    - label: 'Español'
+      value: 'es'
   defaultLang: 'en'
 
   # platform management navigations
