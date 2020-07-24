@@ -45,6 +45,18 @@ class QuotaManage extends React.Component {
     ]
   }
 
+  get enabledActions() {
+    return globals.app.getActions({
+      module: 'project-settings',
+      project: this.params.namespace,
+      cluster: this.params.cluster,
+    })
+  }
+
+  get canEdit() {
+    return this.enabledActions.includes('edit')
+  }
+
   getData = () => {
     this.store.fetchDetail(this.params)
   }
@@ -72,6 +84,7 @@ class QuotaManage extends React.Component {
             key={cluster.name}
             cluster={cluster}
             {...this.props.match.params}
+            canEdit={this.canEdit}
           />
         ))}
       </div>

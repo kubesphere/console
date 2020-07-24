@@ -55,6 +55,8 @@ export default class App extends Component {
       this.store.fetchDetail({ ...params, name: params.namespace }),
       this.props.rootStore.getRules({ workspace: params.workspace }),
     ])
+    await this.props.rootStore.getRules(params)
+
     await this.clusterStore.fetchList({
       names: this.store.detail.clusters.map(item => item.name).join(','),
       sortBy: 'createTime',

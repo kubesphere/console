@@ -77,12 +77,14 @@ export default class Projects extends React.Component {
         key: 'edit',
         icon: 'pen',
         text: t('Edit'),
+        action: 'edit',
         onClick: item => trigger('resource.baseinfo.edit', { detail: item }),
       },
       {
         key: 'delete',
         icon: 'trash',
         text: t('Delete'),
+        action: 'delete',
         onClick: item =>
           trigger('federated.project.delete', {
             detail: item,

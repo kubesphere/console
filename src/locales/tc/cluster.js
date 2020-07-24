@@ -183,4 +183,6 @@ export default {
     '請盡量不要在 Host 集群上創建資源，以免 Host 集群負載過高，導致多集群穩定性下降。',
   HOST_CLUSTER_VISIBILITY_WARNING:
     '請謹慎將 Host 集群授權给企業空間，Host 集群負載過高會導致多集群穩定性下降。',
+  CLUSTER_VISIBILITY_REMOVE_WARNING:
+    '移除對企業空間的授權，將刪除該企業空間在當前擴展下的所有資源。',
 }

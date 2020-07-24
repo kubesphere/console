@@ -59,7 +59,6 @@ const login = async (data, headers) => {
 }
 
 const getNewToken = async ctx => {
-  const token = ctx.cookies.get('token')
   const refreshToken = ctx.cookies.get('refreshToken')
   let newToken = {}
 
@@ -73,7 +72,7 @@ const getNewToken = async ctx => {
       grant_type: 'refresh_token',
       refresh_token: refreshToken,
     },
-    token,
+    token: refreshToken,
   })
 
   const { access_token, refresh_token, expires_in } = resp || {}

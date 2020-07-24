@@ -190,4 +190,6 @@ export default {
     '请尽量不要在 Host 集群上创建资源，以免 Host 集群负载过高，导致多集群稳定性下降。',
   HOST_CLUSTER_VISIBILITY_WARNING:
     '请谨慎将 Host 集群授权给企业空间，Host 集群负载过高会导致多集群稳定性下降。',
+  CLUSTER_VISIBILITY_REMOVE_WARNING:
+    '移除集群对企业空间的授权，将删除该企业空间在当前集群下的所有资源。',
 }

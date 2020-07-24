@@ -88,7 +88,7 @@ export default class ResourceQuota extends React.Component {
   }
 
   render() {
-    const { isFold } = this.state
+    const { isFold, canEdit } = this.state
     const { cluster } = this.props
 
     const items = this.items
@@ -98,9 +98,11 @@ export default class ResourceQuota extends React.Component {
         <div className={styles.cluster}>
           <ClusterTitle cluster={cluster} theme="light" />
         </div>
-        <div className={styles.actions}>
-          <Button onClick={this.showEdit}>{t('Edit Quota')}</Button>
-        </div>
+        {canEdit && (
+          <div className={styles.actions}>
+            <Button onClick={this.showEdit}>{t('Edit Quota')}</Button>
+          </div>
+        )}
         <div className={classNames(styles.content, { [styles.fold]: isFold })}>
           {items.map(props => (
             <QuotaItem {...props} />

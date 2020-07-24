@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, isEmpty } from 'lodash'
+import { get, isEmpty, isArray } from 'lodash'
 import React, { Component } from 'react'
 import { Modal, Text, Button } from 'components/Base'
 import { safeParseJSON } from 'utils'
@@ -38,7 +38,7 @@ export default class History extends Component {
       <div className={styles.section}>
         <div className={styles.sectionTitle}>{t('Recent Visit')}</div>
         <div className={styles.sectionContent}>
-          {isEmpty(histories) ? (
+          {isEmpty(histories) || !isArray(histories) ? (
             <div className={styles.empty}>
               <Text
                 title={t('NO_HISTORY_TITLE')}
