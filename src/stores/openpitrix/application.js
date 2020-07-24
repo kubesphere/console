@@ -77,7 +77,7 @@ export default class Application extends Base {
     workspace,
     more,
     status,
-    order,
+    sortBy: order,
     reverse,
     ...filters
   } = {}) => {

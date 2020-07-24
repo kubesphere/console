@@ -20,7 +20,7 @@ import { get, set, debounce } from 'lodash'
 import React from 'react'
 import { PropTypes } from 'prop-types'
 import { Input, Select } from '@pitrix/lego-ui'
-import { PATTERN_NAME } from 'utils/constants'
+import { PATTERN_NAME, PATTERN_SERVICE_VERSION } from 'utils/constants'
 import { updateFederatedAnnotations, generateId } from 'utils'
 import { Form, TextArea } from 'components/Base'
 
@@ -149,11 +149,18 @@ export default class BaseInfo extends React.Component {
           </Form.Item>
           <Form.Item
             label={t('Application Version(Optional)')}
-            desc={t('Specify an application version')}
+            desc={`${t('COMPONENT_VERSION_DESC')}`}
+            rules={[
+              {
+                pattern: PATTERN_SERVICE_VERSION,
+                message: t('COMPONENT_VERSION_DESC'),
+              },
+            ]}
           >
             <Input
               name="metadata.labels['app.kubernetes.io/version']"
               onChange={this.handleVersionChange}
+              maxLength={16}
             />
           </Form.Item>
           <Form.Item

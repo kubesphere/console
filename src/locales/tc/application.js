@@ -62,7 +62,6 @@ export default {
   'Component Version': '組件版本',
 
   'Please input an application name': '請輸入應用名稱',
-  'Specify an application version': '指定一个應用版本',
 
   'Service components should not be empty': '服務組件不能為空',
   'Please finish the sub form first': '請完成子表單的編輯',

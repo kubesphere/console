@@ -22,7 +22,7 @@ import { observer } from 'mobx-react'
 import { get } from 'lodash'
 import { Input, Columns, Column } from '@pitrix/lego-ui'
 import { compareVersion } from 'utils/app'
-import { PATTERN_NAME } from 'utils/constants'
+import { PATTERN_SERVICE_NAME } from 'utils/constants'
 import { Form, SearchSelect, Tag, Text, TextArea } from 'components/Base'
 
 import Placement from './Placement'
@@ -95,7 +95,7 @@ export default class BasicInfo extends React.Component {
                 rules={[
                   { required: true, message: t('Please input name') },
                   {
-                    pattern: PATTERN_NAME,
+                    pattern: PATTERN_SERVICE_NAME,
                     message: `${t('Invalid name')}, ${t('CLUSTER_NAME_DESC')}`,
                   },
                 ]}
