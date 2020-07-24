@@ -126,6 +126,8 @@ export default {
     '管理企業空間裡的所有項目，可以 創建/編輯/刪除 項目',
   PROJECTS_CREATE_DESC: '擁有創建項目的權限，項目管理員只能為創建者自己',
   PROJECTS_VIEW_DESC: '可以查看企業空間裡的所有項目',
+  FEDERATED_PROJECTS_MANAGEMENT_DESC:
+    '管理企业空间里的所有多集群项目，可以 创建/编辑/删除 多集群项目',
   DEVOPS_MANAGEMENT_DESC:
     '管理企業空間裡的所有 DevOps 工程，可以 創建/編輯/刪除 DevOps 工程',
   DEVOPS_CREATE_DESC:
