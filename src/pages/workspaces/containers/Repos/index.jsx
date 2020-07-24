@@ -165,7 +165,7 @@ export default class AppRepos extends React.Component {
           tableActions={this.tableActions}
           itemActions={this.itemActions}
           columns={this.getColumns()}
-          searchType="name"
+          searchType="keyword"
         />
       </ListPage>
     )
