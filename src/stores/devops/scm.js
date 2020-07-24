@@ -111,12 +111,9 @@ export default class SCMStore extends BaseStore {
   }
 
   @action
-  async getRepoList(
-    { activeRepoIndex, cluster } = {
-      activeRepoIndex: this.activeRepoIndex,
-      cluster,
-    }
-  ) {
+  async getRepoList({ activeRepoIndex, cluster }) {
+    activeRepoIndex =
+      activeRepoIndex !== undefined ? activeRepoIndex : this.activeRepoIndex
     this.getRepoListLoading = true
     const pageNumber =
       get(this.orgList.data[activeRepoIndex], 'repositories.nextPage') || 1

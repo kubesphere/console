@@ -88,6 +88,9 @@ export default class GitHubForm extends React.Component {
   handlePasswordConfirm = async () => {
     const { name, cluster, project_id } = this.props
     const data = this.tokenFormRef.current.getData()
+
+    if (isEmpty(data)) return false
+
     this.setState({ isLoading: true })
     this.props.store
       .putAccessToken({ token: data.token, name, cluster, project_id })

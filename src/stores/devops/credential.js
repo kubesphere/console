@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { omit, set } from 'lodash'
+import { set } from 'lodash'
 import { action, observable } from 'mobx'
 import {
   CREDENTIAL_KEY,
@@ -27,7 +27,7 @@ import {
 import FORM_TEMPLATES from 'utils/form.templates'
 import BaseStore from './base'
 
-const TABLE_LIMIT = 20
+const TABLE_LIMIT = 10
 
 export default class CredentialStore extends BaseStore {
   module = 'secrets'
@@ -84,6 +84,7 @@ export default class CredentialStore extends BaseStore {
         start: (page - 1) * TABLE_LIMIT || 0,
         limit: TABLE_LIMIT,
         type: 'credential.devops.kubesphere.io/',
+        ...filters,
       }
     )
 
@@ -100,9 +101,9 @@ export default class CredentialStore extends BaseStore {
     this.list = {
       data: dataList,
       total: result.totalItems || dataList.length || 0,
-      limit: 100,
+      limit: 10,
       page: parseInt(page, 10) || 1,
-      filters: omit(filters, 'name'),
+      filters,
       isLoading: false,
     }
 
@@ -110,7 +111,7 @@ export default class CredentialStore extends BaseStore {
   }
 
   @action
-  async handleCreate(data, { project_id, cluster }, reject) {
+  async handleCreate(data, { project_id, cluster }) {
     const devops = this.getDevops(project_id)
     const body = FORM_TEMPLATES[this.module]({
       namespace: project_id,
@@ -145,7 +146,7 @@ export default class CredentialStore extends BaseStore {
       this.getResourceUrl({ devops, cluster }),
       body,
       null,
-      reject
+      null
     )
   }
 
@@ -222,6 +223,17 @@ export default class CredentialStore extends BaseStore {
         name: credential_id,
         cluster,
       })}`
+    )
+  }
+
+  @action
+  checkName(params) {
+    return request.get(
+      this.getResourceUrl(params),
+      {},
+      {
+        headers: { 'x-check-exist': true },
+      }
     )
   }
 }

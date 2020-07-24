@@ -173,7 +173,7 @@ export default class PipelineCard extends React.Component {
                     loading={this.state.runLoading}
                     onClick={this.handleProceed(hasInputStep, node.id)}
                   >
-                    {get(hasInputStep, 'input.ok') || t('Proceed')}
+                    {t(get(hasInputStep, 'input.ok') || 'Proceed')}
                   </Button>
                   <Button
                     size="small"
