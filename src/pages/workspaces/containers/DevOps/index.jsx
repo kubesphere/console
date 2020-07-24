@@ -174,6 +174,7 @@ export default class DevOps extends React.Component {
   showCreate = () =>
     this.props.trigger('devops.create', {
       ...this.props.match.params,
+      cluster: this.workspaceStore.cluster,
       success: () => {
         setTimeout(() => {
           this.getData()

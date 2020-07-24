@@ -99,7 +99,7 @@ export default class CredentialStore extends BaseStore {
 
     this.list = {
       data: dataList,
-      total: result.total_count || result.length || 0,
+      total: result.totalItems || dataList.length || 0,
       limit: 100,
       page: parseInt(page, 10) || 1,
       filters: omit(filters, 'name'),
