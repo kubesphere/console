@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { groupBy } from 'lodash'
+import { get, groupBy } from 'lodash'
 import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
@@ -31,7 +31,11 @@ export default class AuthorizationList extends React.Component {
     const { detail, roleTemplates, isLoading } = toJS(this.props.detailStore)
 
     const templates = groupBy(
-      roleTemplates.data.filter(rt => detail.roleTemplates.includes(rt.name)),
+      roleTemplates.data.filter(
+        rt =>
+          get(rt, 'annotations["iam.kubesphere.io/module"]') &&
+          detail.roleTemplates.includes(rt.name)
+      ),
       'annotations["iam.kubesphere.io/module"]'
     )
 

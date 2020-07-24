@@ -393,14 +393,14 @@ export const getWebSocketProtocol = protocol => {
 export const getDocsUrl = module => {
   const lang = LANG_MAP[cookie('lang') || getBrowserLang()]
 
-  const { url: prefix, version } = globals.config.documents
+  const { url: prefix } = globals.config.documents
   const docUrl = get(globals.config, `resourceDocs[${module}]`, '')
 
   if (!docUrl) {
     return ''
   }
 
-  return `${prefix}/${version}/${lang}${docUrl}`
+  return `${prefix}/${lang}${docUrl}`
 }
 
 export const hasChinese = str => /.*[\u4E00-\u9FA5]+.*/.test(str)
