@@ -142,6 +142,7 @@ export default class Reviews extends Base {
       ...Base.prototype.getTableProps.call(this),
       onCreate: null,
       selectActions: [],
+      searchType: 'keyword',
     }
   }
 

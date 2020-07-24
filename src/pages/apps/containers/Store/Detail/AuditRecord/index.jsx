@@ -43,6 +43,7 @@ export default class AuditRecord extends Base {
     return {
       ...Base.prototype.getTableProps.call(this),
       selectActions: [],
+      searchType: 'keyword',
     }
   }
 
