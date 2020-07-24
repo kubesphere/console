@@ -161,6 +161,7 @@ export default class OPApps extends React.Component {
   }
 
   getTableProps() {
+    const { tableProps } = this.props
     const actions = this.canCreate
       ? [
           {
@@ -173,12 +174,16 @@ export default class OPApps extends React.Component {
       : []
 
     return {
-      actions,
-      onCreate: null,
-      selectActions: [],
+      tableActions: {
+        ...tableProps.tableActions,
+        actions,
+        onCreate: null,
+        selectActions: [],
+      },
       emptyProps: {
         desc: t('APP_DEPLOYMENT_DESC'),
       },
+      searchType: 'keyword',
     }
   }
 

@@ -52,6 +52,7 @@ export default class Store extends Base {
       ...Base.prototype.getTableProps.call(this),
       onCreate: null,
       selectActions: [],
+      searchType: 'keyword',
     }
   }
 

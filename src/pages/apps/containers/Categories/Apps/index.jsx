@@ -84,6 +84,7 @@ export default class Apps extends Base {
           onClick: this.showModal('adjustShow'),
         },
       ],
+      searchType: 'keyword',
     }
   }
 

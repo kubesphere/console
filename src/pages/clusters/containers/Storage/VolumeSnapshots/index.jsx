@@ -66,7 +66,7 @@ export default class VolumeSnapshot extends React.Component {
   }
 
   getColumns() {
-    const { getSortOrder, module } = this.props
+    const { getSortOrder, getFilteredValue, module } = this.props
     const { cluster } = this.props.match.params
 
     return [
@@ -93,6 +93,7 @@ export default class VolumeSnapshot extends React.Component {
         dataIndex: 'status',
         isHideable: true,
         filters: this.getStatus(),
+        filteredValue: getFilteredValue('status'),
         search: true,
         render: (_, record) => {
           const { errorMessage, backupStatus } = record

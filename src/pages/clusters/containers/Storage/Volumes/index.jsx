@@ -19,11 +19,12 @@
 
 import React from 'react'
 import { isEmpty } from 'lodash'
-import { getLocalTime, getDisplayName } from 'utils'
 import { withClusterList, ListPage } from 'components/HOCs/withList'
 import ResourceTable from 'clusters/components/ResourceTable'
 import VolumeStore from 'stores/volume'
+import { getLocalTime, getDisplayName } from 'utils'
 import { getVolumeStatus } from 'utils/status'
+import { VOLUME_STATUS } from 'utils/constants'
 import StatusReason from 'projects/components/StatusReason'
 
 import { Avatar, Status } from 'components/Base'
@@ -111,8 +112,15 @@ export default class Volumes extends React.Component {
     name: record.name,
   })
 
+  getStatus() {
+    return VOLUME_STATUS.map(status => ({
+      text: t(status.text),
+      value: status.value,
+    }))
+  }
+
   getColumns() {
-    const { getSortOrder } = this.props
+    const { getSortOrder, getFilteredValue } = this.props
     const { cluster } = this.props.match.params
 
     return [
@@ -140,6 +148,8 @@ export default class Volumes extends React.Component {
         dataIndex: 'status',
         isHideable: true,
         search: true,
+        filters: this.getStatus(),
+        filteredValue: getFilteredValue('status'),
         width: '14%',
         render: ({ phase }) => (
           <Status

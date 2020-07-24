@@ -136,7 +136,8 @@ export default class CRDApps extends React.Component {
     })
   }
 
-  getTableProps() {
+  get tableActions() {
+    const { tableProps } = this.props
     const actions = this.canCreate
       ? [
           {
@@ -147,15 +148,22 @@ export default class CRDApps extends React.Component {
           },
         ]
       : []
-
     return {
+      ...tableProps.tableActions,
       actions,
       onCreate: null,
       selectActions: [],
+    }
+  }
+
+  getTableProps() {
+    return {
+      tableActions: this.tableActions,
       emptyProps: {
         title: t('Composing App'),
         desc: t('COMPOSING_APP_DESC'),
       },
+      searchType: 'name',
     }
   }
 
@@ -172,7 +180,6 @@ export default class CRDApps extends React.Component {
           {...tableProps}
           {...this.getTableProps()}
           columns={this.getColumns()}
-          searchType="name"
         />
       </ListPage>
     )
