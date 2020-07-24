@@ -164,6 +164,7 @@ export default class Apps extends React.Component {
           tableActions={this.tableActions}
           itemActions={this.itemActions}
           columns={this.getColumns()}
+          searchType="keyword"
         />
       </ListPage>
     )
