@@ -101,6 +101,7 @@ module.exports = {
     'no-use-before-define': 0,
     'prefer-destructuring': 0,
     'max-classes-per-file': 0,
+    'prefer-promise-reject-errors': 0,
   },
   parserOptions: {
     ecmaFeatures: {

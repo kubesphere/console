@@ -21,6 +21,7 @@ const convert = require('koa-convert')
 const bodyParser = require('koa-bodyparser')
 
 const proxy = require('./middlewares/proxy')
+const checkToken = require('./middlewares/checkToken')
 const checkIfExist = require('./middlewares/checkIfExist')
 
 const {
@@ -58,7 +59,7 @@ router
   .use(proxy('/devops_webhook/(.*)', devopsWebhookProxy))
   .get('/captcha', renderCaptcha)
 
-  .use(checkIfExist)
+  .all('/(k)?api(s)?/(.*)', checkToken, checkIfExist)
 
   .use(proxy('/(k)?api(s)?/(.*)', k8sResourceProxy))
   .use(proxy('/b2i_download/(.*)', b2iFileProxy))

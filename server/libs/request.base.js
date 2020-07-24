@@ -19,6 +19,7 @@
 const fetch = require('node-fetch').default
 const merge = require('lodash/merge')
 const qs = require('qs')
+const { get } = require('lodash')
 
 const methods = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
 
@@ -60,8 +61,15 @@ function buildRequest(method, url, params = {}, options) {
     options
   )
 
+  const isForm =
+    get(options, 'headers[content-type]', '').indexOf(
+      'application/x-www-form-urlencoded'
+    ) !== -1
+
   if (method === 'GET') {
-    requestURL += qs.stringify(params)
+    requestURL += `?${qs.stringify(params)}`
+  } else if (isForm) {
+    request.body = qs.stringify(params)
   } else {
     request.body = JSON.stringify(params)
   }
