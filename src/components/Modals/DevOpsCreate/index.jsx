@@ -52,6 +52,8 @@ export default class ProjectCreateModal extends React.Component {
 
     this.store = props.store
     this.workspaceStore = new WorkspaceStore()
+    this.nameRef = React.createRef()
+    this.formRef = React.createRef()
   }
 
   componentDidMount() {
@@ -114,6 +116,39 @@ export default class ProjectCreateModal extends React.Component {
     </>
   )
 
+  nameValidator = (rule, value, callback) => {
+    if (!value) {
+      return callback()
+    }
+
+    const { formTemplate, workspace } = this.props
+    const cluster = get(formTemplate, 'spec.placement.cluster')
+
+    this.store.checkName({ name: value, cluster, workspace }).then(resp => {
+      if (resp.exist) {
+        return callback({ message: t('Name exists'), field: rule.field })
+      }
+      callback()
+    })
+  }
+
+  handleClusterChange = () => {
+    if (this.nameRef && this.nameRef.current) {
+      const name = 'metadata.name'
+      if (
+        this.formRef &&
+        this.formRef.current &&
+        !isEmpty(this.formRef.current.state.errors)
+      ) {
+        this.formRef.current.resetValidateResults(name)
+      }
+
+      this.nameRef.current.validate({
+        [name]: get(this.props.formTemplate, name),
+      })
+    }
+  }
+
   render() {
     const { visible, formTemplate, hideCluster, onOk, onCancel } = this.props
     return (
@@ -126,6 +161,7 @@ export default class ProjectCreateModal extends React.Component {
         visible={visible}
         closable={false}
         hideHeader
+        formRef={this.formRef}
       >
         <div className={styles.header}>
           <img src="/assets/project-create.svg" alt="" />
@@ -140,12 +176,14 @@ export default class ProjectCreateModal extends React.Component {
               <Form.Item
                 label={t('Name')}
                 desc={t('SERVICE_NAME_DESC')}
+                ref={this.nameRef}
                 rules={[
                   { required: true, message: t('Please input name') },
                   {
                     pattern: PATTERN_SERVICE_NAME,
                     message: `${t('Invalid name')}, ${t('SERVICE_NAME_DESC')}`,
                   },
+                  { validator: this.nameValidator },
                 ]}
               >
                 <Input name="metadata.name" autoFocus={true} maxLength={63} />
@@ -173,6 +211,7 @@ export default class ProjectCreateModal extends React.Component {
                     valueRenderer={this.valueRenderer}
                     optionRenderer={this.optionRenderer}
                     defaultValue={this.defaultCluster}
+                    onChange={this.handleClusterChange}
                   />
                 </Form.Item>
               </Column>
