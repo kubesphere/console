@@ -80,11 +80,13 @@ export default class ProjectCreateModal extends React.Component {
   }
 
   get defaultCluster() {
-    const clusters = this.workspaceStore.clusters.data
-      .filter(item => item.isReady)
-      .map(item => item.name)
+    const { cluster } = this.props
+    const clusters = this.clusters
+      .filter(item => !item.disabled)
+      .map(item => item.value)
+    const defaultCluster = clusters.find(value => value === cluster)
 
-    return isEmpty(clusters) ? undefined : clusters[0]
+    return defaultCluster || clusters[0]
   }
 
   fetchClusters(params) {

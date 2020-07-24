@@ -190,6 +190,8 @@ class Credential extends React.Component {
         isLoading={isLoading}
         onFetch={this.handleFetch}
         onCreate={showCreate}
+        name={t('Create Credentials')}
+        emptyProps={{ desc: t(`${this.name.toUpperCase()}_CREATE_DESC`) }}
       />
     )
   }
