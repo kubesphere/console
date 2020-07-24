@@ -115,10 +115,11 @@ export default class Secrets extends React.Component {
     }
   }
 
-  getData = () => {
+  getData = ({ ...params }) => {
     this.props.store.fetchList({
       devops: this.devops,
       cluster: this.cluster,
+      ...params,
     })
   }
 
