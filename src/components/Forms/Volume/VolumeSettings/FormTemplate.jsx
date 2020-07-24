@@ -131,7 +131,7 @@ export default class VolumeSettings extends React.Component {
       return safeParseJSON(
         get(
           storageClass,
-          'annotations["storageclass.kubesphere.io/supported_access_modes"]',
+          'annotations["storageclass.kubesphere.io/supported-access-modes"]',
           ''
         )
       )

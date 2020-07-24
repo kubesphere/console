@@ -148,7 +148,7 @@ export default class StorageClassSetting extends React.Component {
                 desc={t('ACCESS_MODES_DESC')}
               >
                 <Select
-                  name="metadata.annotations['storageclass.kubesphere.io/supported_access_modes']"
+                  name="metadata.annotations['storageclass.kubesphere.io/supported-access-modes']"
                   options={accessModesOptions}
                   defaultValue={defaultModes}
                   multi

@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, set, uniq, isArray } from 'lodash'
+import { get, set, uniq, isArray, intersection } from 'lodash'
 import { observable, action } from 'mobx'
 import { Notify } from 'components/Base'
 import { safeParseJSON } from 'utils'
@@ -142,7 +142,7 @@ export default class UsersStore extends Base {
         const parentActions = globals.app.getActions({ module: 'clusters' })
         set(globals.user, `clusterRules[${params.cluster}]`, {
           ...rules,
-          _: parentActions,
+          _: intersection(parentActions, ['view', 'manage']),
         })
         break
       }
@@ -157,7 +157,7 @@ export default class UsersStore extends Base {
         const parentActions = globals.app.getActions({ module: 'workspaces' })
         set(globals.user, `workspaceRules[${params.workspace}]`, {
           ...rules,
-          _: parentActions,
+          _: intersection(parentActions, ['view', 'manage']),
         })
         break
       }
@@ -184,7 +184,7 @@ export default class UsersStore extends Base {
             `projectRules[${params.cluster}][${params.namespace}]`,
             {
               ...rules,
-              _: parentActions,
+              _: intersection(parentActions, ['view', 'manage']),
             }
           )
         } else if (params.devops) {
@@ -198,7 +198,7 @@ export default class UsersStore extends Base {
             `devopsRules[${params.cluster}][${params.devops}]`,
             {
               ...rules,
-              _: parentActions,
+              _: intersection(parentActions, ['view', 'manage']),
             }
           )
         }

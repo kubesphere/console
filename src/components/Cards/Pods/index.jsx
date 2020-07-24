@@ -195,7 +195,7 @@ export default class PodsCard extends React.Component {
         result.labelSelector = joinSelector(selector)
     }
 
-    if (result.labelSelector && isEmpty(selector)) {
+    if (!result.labelSelector && isEmpty(selector)) {
       result = {}
     }
 

@@ -67,13 +67,13 @@ export default class StorageClassStore extends Base {
 
     const supportedAccessModes = get(
       data,
-      'metadata.annotations["storageclass.kubesphere.io/supported_access_modes"]'
+      'metadata.annotations["storageclass.kubesphere.io/supported-access-modes"]'
     )
 
     if (!isEmpty(supportedAccessModes) && isArray(supportedAccessModes)) {
       set(
         data,
-        'metadata.annotations["storageclass.kubesphere.io/supported_access_modes"]',
+        'metadata.annotations["storageclass.kubesphere.io/supported-access-modes"]',
         JSON.stringify(supportedAccessModes)
       )
     }

@@ -34,6 +34,7 @@ export default class ClusterVisibility extends React.Component {
     allWorkspaces: [],
     authedWorkspaces: [],
     isPublic: get(this.props, 'cluster.visibility') === 'public',
+    showUnAuthTip: false,
   }
 
   workspaceStore = new WorkspaceStore()
@@ -102,6 +103,7 @@ export default class ClusterVisibility extends React.Component {
       authedWorkspaces: authedWorkspaces.filter(
         item => item.name !== workspace.name
       ),
+      showUnAuthTip: true,
     }))
   }
 
@@ -111,7 +113,12 @@ export default class ClusterVisibility extends React.Component {
 
   render() {
     const { visible, onCancel } = this.props
-    const { allWorkspaces, authedWorkspaces, isPublic } = this.state
+    const {
+      allWorkspaces,
+      authedWorkspaces,
+      showUnAuthTip,
+      isPublic,
+    } = this.state
 
     return (
       <Modal
@@ -128,6 +135,13 @@ export default class ClusterVisibility extends React.Component {
           type="warning"
           message={t('HOST_CLUSTER_VISIBILITY_WARNING')}
         />
+        {showUnAuthTip && (
+          <Alert
+            className="margin-b12"
+            type="error"
+            message={t('CLUSTER_VISIBILITY_REMOVE_WARNING')}
+          />
+        )}
         <div className={styles.wrapper}>
           <Columns>
             <Column className="is-half">

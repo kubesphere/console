@@ -115,13 +115,16 @@ export default class Projects extends React.Component {
         labelSelector:
           'kubefed.io/managed!=true, kubesphere.io/kubefed-host-namespace!=true',
       })
-      await this.monitoringStore.fetchMetrics({
-        cluster,
-        ...this.props.match.params,
-        resources: store.list.data.map(item => item.name),
-        metrics: Object.values(MetricTypes),
-        last: true,
-      })
+      const resources = store.list.data.map(item => item.name)
+      if (resources.length > 0) {
+        await this.monitoringStore.fetchMetrics({
+          cluster,
+          ...this.props.match.params,
+          resources: store.list.data.map(item => item.name),
+          metrics: Object.values(MetricTypes),
+          last: true,
+        })
+      }
     }
     store.list.silent = false
   }
@@ -133,12 +136,14 @@ export default class Projects extends React.Component {
         key: 'edit',
         icon: 'pen',
         text: t('Edit'),
+        action: 'edit',
         onClick: item => trigger('resource.baseinfo.edit', { detail: item }),
       },
       {
         key: 'quotaEdit',
         icon: 'pen',
         text: t('Edit Quota'),
+        action: 'edit',
         onClick: item =>
           trigger('project.quota.edit', {
             type: t('Project'),
@@ -149,6 +154,7 @@ export default class Projects extends React.Component {
         key: 'delete',
         icon: 'trash',
         text: t('Delete'),
+        action: 'delete',
         onClick: item =>
           trigger('resource.delete', {
             type: t('Project'),

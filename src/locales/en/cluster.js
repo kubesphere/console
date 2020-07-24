@@ -169,4 +169,6 @@ export default {
     'Please try not to create resources on the host cluster to avoid excessive loads, which can lead to a decrease in the stability across clusters.',
   HOST_CLUSTER_VISIBILITY_WARNING:
     'Please be careful to authorize the host cluster to the workspace. If the load of the host cluster is too high, the stability across clusters will decrease.',
+  CLUSTER_VISIBILITY_REMOVE_WARNING:
+    'Once the authorization for the workspace to use the cluster is removed, all resources of the workspace in the current cluster will be deleted.',
 }

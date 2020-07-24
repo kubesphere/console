@@ -31,6 +31,11 @@ export default {
     on({ store, success, cluster, workspace, clusters, ...props }) {
       const modal = Modal.open({
         onOk: async data => {
+          set(
+            data,
+            'metadata.annotations["kubesphere.io/creator"]',
+            globals.user.username
+          )
           set(data, 'metadata.labels["kubesphere.io/workspace"]', workspace)
           const specClusters = uniqBy(
             get(data, 'spec.placement.clusters', []).filter(item => item.name),

@@ -351,6 +351,7 @@ client:
                 name: networkpolicies,
                 title: Network Isolation,
                 clusterModule: network,
+                authKey: 'project-settings',
               }
             - { name: roles, title: Project Roles }
             - { name: members, title: Project Members }
@@ -495,7 +496,7 @@ client:
     s2i_template: /workload/s2i-template/
     helm_specification: /developer/helm-specification/
     helm_developer_guide: /developer/helm-developer-guide/
-    custom_console: /developer/custom_console/
+    custom_console: /platform-settings/customize-basic-information/
   # devops:
   #  replace sonarqube link to customize url origin, default is useless
   # sonarqubeURL: http://139.123.123.123:8080
