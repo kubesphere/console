@@ -151,14 +151,14 @@ export default {
   CONSECUTIVE_OPTIONS: '{value} consecutive times',
 
   MAX_SEND_NOT_LIMIT: 'Not limited',
-  MAX_SEND_COUNT: 'Resend up to {count}',
+  MAX_SEND_COUNT: 'Resend up to {count} time(s)',
   REPEAT_CUSTOM_TITLE: 'Customize Repetition Rules',
   REPEAT_CUSTOM_DESC:
     'Alerting messages will be pushed repeatedly at specific intervals according to their severity. The default policy will be adopted unless you make any change to it.',
   REPEAT_INTERVAL_NOT_REPEAT: 'Not repeating',
   REPEAT_INTERVAL_MINUTE: 'Alert once every {num} minutes',
-  REPEAT_INTERVAL_HOUR: 'Alert once every {num} hour',
-  REPEAT_INTERVAL_DAY: 'Alert once every {num} days',
+  REPEAT_INTERVAL_HOUR: 'Alert once every {num} hour(s)',
+  REPEAT_INTERVAL_DAY: 'Alert once every {num} day(s)',
   REPEAT_INTERVAL_EXP: 'Incremental exponential period',
   REPEAT_RULE_EXP_TIP:
     'Periodic index increment notification: When the alert duration reaches 1, 2, 4, 8, 16, 32... times of the alert statistics period, an alert notification is sent.',

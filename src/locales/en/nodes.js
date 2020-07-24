@@ -82,7 +82,7 @@ export default {
   TAINTS_MSG:
     'If a taint with "key=value" is added to the node, it means no pod will be scheduled to this node (PodToleratesNodeTaints policy) or at least scheduling is avoided as much as possible (TaintTolerationPriority policy), unless the pod has a matching toleration with "key=value".',
   TAINTS_TIPS:
-    'If there is at least one un-ignored taint with effect NoSchedule then the system will not schedule pods onto that node. <br />If there is no un-ignored taint with effect NoSchedule but there is at least one un-ignored taint with effect PreferNoSchedule then the system will try to not schedule pods onto the node.<br />if there is at least one un-ignored taint with effect NoExecute then the pods will be evicted from the node (if it is already running on the node), and will not be scheduled onto the node (if it is not yet running on the node).',
+    'If there is at least one un-ignored taint with effect NoSchedule, then the system will not schedule pods onto that node. <br />If there is no un-ignored taint with effect NoSchedule but there is at least one un-ignored taint with effect PreferNoSchedule, then the system will try not to schedule pods onto the node.<br />if there is at least one un-ignored taint with effect NoExecute, then the pods will be evicted from the node (if it is already running on the node), and will not be scheduled onto the node (if it is not yet running on the node).',
   NO_TAINTS_TIPS: 'No taints have been set yet.',
   TAINT_SELECT_TIPS: 'Join Common Taints',
   TAINT_DELETE_TIPS: 'Delete Taint',

@@ -218,7 +218,7 @@ export default {
   APP_TEMPLATES_VIEW_DESC: 'View platform App Store',
   APP_TEMPLATES_MANAGEMENT_DESC:
     'Manage App Store at platform level and responsible for unified lifecycle management of cloud native applications including their release, removal and review',
-  PLATFORM_SETTINGS_MANAGEMENT_DESC: 'Manage platform settings.',
+  PLATFORM_SETTINGS_MANAGEMENT_DESC: 'Manage platform settings',
   ACCOUNT_ROLE_DESC:
     'Account roles define the authorization an account has in the platform.',
   ACCOUNT_ROLE_CREATE_DESC:

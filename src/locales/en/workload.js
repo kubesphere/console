@@ -384,11 +384,11 @@ export default {
 
   REPLICAS_SCALE_NOTIFY_TITLE: 'Does it take effect immediately?',
   REPLICAS_SCALE_NOTIFY_CONTENT:
-    'You are going to change the replicas of your workload to {num}. You can continue to change the number of replicas, or you can make the change take effect immediately.',
+    'You are going to change the number of replicas of your workload to {num}. You can continue to change it, or you can make the change take effect immediately.',
   REPLICAS_SCALE_NOTIFY_CONFIRM: 'Apply changes ({seconds}s)',
   REPLICAS_SCALE_NOTIFY_CANCEL: 'Discard changes',
 
-  POD_SETTING_TIP: 'The number of Pods when update',
+  POD_SETTING_TIP: 'The number of Pods when updated',
   MAX_UNAVAILABLE_POD_LABEL: 'The maximum unavailable number of Pods',
   MAX_SURGE_POD_LABEL: 'The maximum surge number of Pods',
   UPDATE_STRATEGY_DESC:
@@ -412,10 +412,10 @@ export default {
     'Partition indicates the ordinal at which the StatefulSet should be partitioned. Default value is 0.',
   STATEFULSET_PARTITION_PLACEHOLDER: 'Default value is 0',
   MIN_READY_SECONDS_DESC:
-    'Specifies the minimum number of seconds for the pods of a daemonset startup',
+    'Specifies the minimum number of seconds before a newly created Pod of DaemonSet is treated as available',
 
   IMAGE_PLACEHOLDER:
-    'Select the registry from dropdown list or enter a public registry address',
+    'Select the registry from the drop-down list or enter a public registry address',
   IMAGE_REGISTRY_PLACEHOLDER: 'Select the registry secret',
   IMAGE_DESC:
     'To deploy from a private image repository, you need to <a href={link} target="_blank">create an image registry secret</a> first and then pull the image.',
@@ -578,7 +578,7 @@ export default {
   STARTUP_PROBE_DESC:
     'This check method is used to detect if the container is started successfully.',
 
-  STARTUP_PROBE_TIP: 'Requires kubernetes version v1.18 or above.',
+  STARTUP_PROBE_TIP: 'Kubernetes version v1.18 or above required.',
 
   SEARCH_IMAGE_PLACEHOLDER: 'Enter keyword to search image',
 

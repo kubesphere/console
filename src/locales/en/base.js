@@ -414,8 +414,8 @@ export default {
     'Are you sure about destroying the {type} <strong>{resource}</strong> ?',
 
   LABEL_FORMAT_DESC:
-    'The tag has a maximum of 63 characters for key and value, key is limited to 253 characters if contains a domain name. It can only contain upper and lower case letters, numbers, hyphens ("-"), underscores (_), and dots (.), and must begin and end with a number or letters.',
-  add_: 'Add ',
+    'The maximum number of characters of the tag for key and value is 63; key is limited to 253 characters if it contains a domain name. It can only contain upper and lower case letters, numbers, hyphens ("-"), underscores (_), and dots (.), and must begin and end with a number or letter.',
+  add_: 'Add',
 
   REMOVE_MEMBER_TIP:
     'Are you sure about removing the member <strong>{resource}</strong> ?',

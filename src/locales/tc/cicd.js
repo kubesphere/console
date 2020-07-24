@@ -151,7 +151,7 @@ export default {
   'Scan Reponsitory Logs': '掃描倉庫紀錄',
   'Started By': '實施者',
   Rescan: '重新掃描',
-  'Scan Logs Success': '掃描紀錄成功',
+  'Logs Scanned Successfully': '掃描紀錄成功',
   'Configuration error': '配置資訊錯誤',
   'branch success': '分支成功',
   tips_Parametric_build: `參數化構建過程允許您在進行構建時傳入一個或多個參數。
