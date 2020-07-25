@@ -36,5 +36,5 @@ export default {
   OAUTH_DESC:
     'OAuth is an open standard that provides an easy and secure way for users to grant access to their resources.',
   GITHUB_OAUTH_DESC:
-    'GitHub OAuth uses organization membership to grant access.',
+    'GitHub OAuth grants access based on organization membership.',
 }

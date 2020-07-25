@@ -218,7 +218,7 @@ export default {
   APP_TEMPLATES_VIEW_DESC: 'View platform App Store',
   APP_TEMPLATES_MANAGEMENT_DESC:
     'Manage App Store at platform level and responsible for unified lifecycle management of cloud native applications including their release, removal and review',
-  PLATFORM_SETTINGS_MANAGEMENT_DESC: 'Manage platform settings.',
+  PLATFORM_SETTINGS_MANAGEMENT_DESC: 'Manage platform settings',
   ACCOUNT_ROLE_DESC:
     'Account roles define the authorization an account has in the platform.',
   ACCOUNT_ROLE_CREATE_DESC:
@@ -279,15 +279,15 @@ export default {
   PROJECTS_MANAGEMENT_DESC:
     'Manage all projects in the workspace, including creating/editing/deleting projects',
   PROJECTS_CREATE_DESC:
-    'Have the access to create projects and the project administrator has to be the creator',
+    'Have the authorization to create projects. The project administrator has to be the creator',
   PROJECTS_VIEW_DESC: 'View all projects in the workspace',
   FEDERATED_PROJECTS_MANAGEMENT_DESC:
-    'Manage all federated projects in the workspace, including creating/editing/deleting federated projects',
+    'Manage all multi-cluster projects in the workspace, including creating/editing/deleting multi-cluster projects',
 
   DEVOPS_MANAGEMENT_DESC:
     'Manage all DevOps projects in the workspace, including creating/editing/deleting DevOps projects',
   DEVOPS_CREATE_DESC:
-    'Have the access to create DevOps projects and the DevOps project administrator has to be the creator',
+    'Have the authorization to create DevOps projects. The DevOps project administrator has to be the creator',
   DEVOPS_VIEW_DESC: 'View all DevOps projects in the workspace',
 
   WORKSPACE_ROLES_VIEW_DESC: 'View workspace roles',

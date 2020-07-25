@@ -36,8 +36,8 @@ export default {
   'Sender Email': '寄件郵箱',
   'Platform Settings': '平台設置',
   TEST_EMAIL_TITLE: '[KubeSphere] 測試郵件',
-  TEST_EMAIL_RECIPIENT: '測試郵件接受地址',
-  TEST_EMAIL_ADDRESS_FORM_DESC: '將作為接受測試郵件的地址',
+  TEST_EMAIL_RECIPIENT: '測試郵件接收地址',
+  TEST_EMAIL_ADDRESS_FORM_DESC: '將作為接收測試郵件的地址',
 
   SENDER_MAIL: '寄件人郵箱',
   SENDER_NICKNAME: '寄件人暱稱',

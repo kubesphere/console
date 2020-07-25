@@ -118,7 +118,7 @@ export default class UserCreateModal extends Component {
           { required: true, message: t('Please input user name') },
           {
             pattern: PATTERN_NAME,
-            message: `${t('Invalid user name')}, ${t('USER_NAME_DESC')}`,
+            message: `${t('Invalid user name')}. ${t('USER_NAME_DESC')}`,
           },
           { validator: this.userNameValidator },
         ]

@@ -72,7 +72,7 @@ export default class ScanReponsitoryLogs extends React.Component {
     await this.props.handleScanRepository()
     this.props.store.getRepoScanLogs(params)
     Notify.success({
-      content: t('Scan Logs Success'),
+      content: t('Logs Scanned Successfully'),
     })
   }
 
