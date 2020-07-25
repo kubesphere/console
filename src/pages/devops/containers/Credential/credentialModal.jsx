@@ -97,9 +97,6 @@ export default class CredentialModal extends React.Component {
   type = 'username_password'
 
   @observable
-  isConflict = false
-
-  @observable
   kubeconfig = ''
 
   @observable
@@ -109,8 +106,8 @@ export default class CredentialModal extends React.Component {
   isGetConfigLoading = false
 
   @action
-  async handleCreate(data, { project_id, cluster }, reject) {
-    return await this.store.handleCreate(data, { project_id, cluster }, reject)
+  async handleCreate(data, { project_id, cluster }) {
+    return await this.store.handleCreate(data, { project_id, cluster })
   }
 
   @action
@@ -136,7 +133,6 @@ export default class CredentialModal extends React.Component {
   handleOk = () => {
     const { isEditMode, project_id, cluster } = this.props
     const formData = this.formRef.current.getData()
-    this.isConflict = false
     this.formRef.current.validate(async () => {
       this.isSubmitting = true
       this.updateFormData(formData)
@@ -148,17 +144,13 @@ export default class CredentialModal extends React.Component {
             this.isSubmitting = false
           })
       } else {
-        await this.handleCreate(formData, { project_id, cluster }, resp => {
-          if (resp.status === 409) {
-            this.isConflict = true
+        await this.handleCreate(formData, { project_id, cluster }).finally(
+          () => {
+            this.isSubmitting = false
           }
-        }).finally(() => {
-          this.isSubmitting = false
-        })
+        )
       }
-      if (!this.isConflict) {
-        this.props.onOk()
-      }
+      this.props.onOk()
     })
   }
 
@@ -175,6 +167,29 @@ export default class CredentialModal extends React.Component {
     if (!this.kubeconfig && this.type === 'kubeconfig') {
       this.fetchKubeConfig()
     }
+  }
+
+  nameValidator = (rule, value, callback) => {
+    const { project_id, cluster, isEditMode } = this.props
+    if (!value || isEditMode) {
+      return callback()
+    }
+
+    this.props.store
+      .checkName({
+        name: value,
+        devops: this.props.store.getDevops(project_id),
+        cluster,
+      })
+      .then(resp => {
+        if (resp.exist) {
+          return callback({
+            message: t('Credential ID exists'),
+            field: rule.field,
+          })
+        }
+        callback()
+      })
   }
 
   renderCredentForm = () => {
@@ -256,13 +271,9 @@ export default class CredentialModal extends React.Component {
         <Form data={this.formData} ref={this.formRef}>
           <Form.Item
             label={t('Credential ID')}
-            error={
-              this.isConflict
-                ? { message: t('This name has been used.') }
-                : null
-            }
             rules={[
-              { required: true, message: t('Please input credential name') },
+              { required: true, message: t('Please input credential') },
+              { validator: this.nameValidator },
             ]}
           >
             <Input name="id" disabled={isEditMode} />

@@ -326,73 +326,73 @@ export default {
   'You can execute shell commands or windows batch commands in the build.':
     'You can execute shell commands or windows batch commands in the build.',
 
-  'CI/CD_CREATE_DESC': `Pipeline is a collection of plugins that can be combined 
-    to achieve continuous integration and continuous delivery. 
-    Pipeline DSL provides us with an extensible set of tools that allow 
+  'CI/CD_CREATE_DESC': `Pipeline is a collection of plugins that can be combined
+    to achieve continuous integration and continuous delivery.
+    Pipeline DSL provides us with an extensible set of tools that allow
     us to implement simple to complex logic through code.`,
   username_password: 'Account Credentials',
   login_Plateform: 'Login platform',
-  CREDENTIALS_DESC: `Credential is an object that contains some sensitive data, 
+  CREDENTIALS_DESC: `Credential is an object that contains some sensitive data,
     such as username and password, SSH key and Token.
-    It is used to provide authentication for the process of pulling code, 
+    It is used to provide authentication for the process of pulling code,
     pushing/pulling images, executing SSH scripts, etc. when a pipeline is running.`,
-  tips_Parametric_build: `The parameterized build process allows 
-    you to pass in one or more parameters when you build. 
-    For example: You may have a pipeline for publishing software and you 
-    want to upload the release notes together. 
-    This can be done by adding text parameters here. 
-    Each parameter has a Name and a Value, 
-    and the value of Value depends on the parameter type. 
-    These values can be accessed in the Pipeline using params.Name or Name. 
+  tips_Parametric_build: `The parameterized build process allows
+    you to pass in one or more parameters when you build.
+    For example: You may have a pipeline for publishing software and you
+    want to upload the release notes together.
+    This can be done by adding text parameters here.
+    Each parameter has a Name and a Value,
+    and the value of Value depends on the parameter type.
+    These values can be accessed in the Pipeline using params.Name or Name.
     This means that each parameter defined here should have a unique name.
-    When parameterizing a project, the build is replaced with a parameterized build, 
-    which prompts the user to enter a value for each defined parameter. 
-    If they choose not to enter anything, 
-    the build proceeds with the default value for each parameter. 
-    If the project's build is started automatically, for example, by a timed trigger, 
+    When parameterizing a project, the build is replaced with a parameterized build,
+    which prompts the user to enter a value for each defined parameter.
+    If they choose not to enter anything,
+    the build proceeds with the default value for each parameter.
+    If the project's build is started automatically, for example, by a timed trigger,
     it will be triggered with the default value of the parameter. `,
-  tips_Authentication_token: `Enable this option if you need to 
-    trigger a build by accessing a predefined URL. 
-    A typical use of this feature is to trigger through the source code 
-    management system's hook script. 
-    You need to provide an authorization token in the form of a string so that 
+  tips_Authentication_token: `Enable this option if you need to
+    trigger a build by accessing a predefined URL.
+    A typical use of this feature is to trigger through the source code
+    management system's hook script.
+    You need to provide an authorization token in the form of a string so that
     only the person with the authorization token can trigger the remote build.`,
-  tips_disable_concurrent: `This will determine when the 
-    project's build record should be discarded. 
-    Build records include console output, archive artifacts, 
-    and other metadata related to a particular build. 
-    Keeping less builds saves disk space used by Jenkins. 
-    We provide two conditions to determine when the old build should be discarded: 
-    1. Number of days to keep the build: 
-    The build will be discarded after a certain number of days. 
-    2. Number of builds to be kept: 
-    If there are already a certain number of builds, discard the oldest build. 
-    These two conditions apply to the build at the same time, 
-    and if either one is met first, the build will be discarded.`,
-  tips_disable_concurrent_withscm: `This will determine when the branch should be discarded and all build records under the branch. 
-    The build record includes the console output,
-    Archive artifacts and other metadata related to a particular build. 
+  tips_disable_concurrent: `This will determine when the
+    project's build record should be discarded.
+    Build records include console output, archive artifacts,
+    and other metadata related to a particular build.
     Keeping less builds saves disk space used by Jenkins.
-    We provide two options to determine when the old branch should be discarded: 
-    1. Number of days to keep the branch: If the branch reaches a certain number of days, 
+    We provide two conditions to determine when the old build should be discarded:
+    1. Number of days to keep the build:
+    The build will be discarded after a certain number of days.
+    2. Number of builds to be kept:
+    If there are already a certain number of builds, discard the oldest build.
+    These two conditions apply to the build at the same time,
+    and if either one is met first, the build will be discarded.`,
+  tips_disable_concurrent_withscm: `This will determine when the branch should be discarded and all build records under the branch.
+    The build record includes the console output,
+    Archive artifacts and other metadata related to a particular build.
+    Keeping less builds saves disk space used by Jenkins.
+    We provide two options to determine when the old branch should be discarded:
+    1. Number of days to keep the branch: If the branch reaches a certain number of days,
     the branch is dropped.
-    2. Number of reserved branches: If a certain number of branches already exist, 
-    the oldest branch is discarded. 
+    2. Number of reserved branches: If a certain number of branches already exist,
+    the oldest branch is discarded.
     These two options can work on the branch at the same time.
-    If any of the limits are exceeded, 
+    If any of the limits are exceeded,
     any branches that exceed this limit will be dropped.`,
   tips_Timing_build:
     'Provides cron-like functionality to perform this project regularly',
-  tips_days_keep_withscm: `If the number of days the branch has been retained will be deleted. 
+  tips_days_keep_withscm: `If the number of days the branch has been retained will be deleted.
     (Default -1: will delete the branch that has been deleted)`,
-  tips_numbers_keep_withscm: `If the number of branches reached the number of reservations will be deleted. 
+  tips_numbers_keep_withscm: `If the number of branches reached the number of reservations will be deleted.
     (Default value -1: will delete the branches that have been deleted)`,
-  tips_timer_trigger: `This field follows the cron syntax (slightly different). 
-    Specifically, each line contains 5 fields separated by tabs or spaces. 
+  tips_timer_trigger: `This field follows the cron syntax (slightly different).
+    Specifically, each line contains 5 fields separated by tabs or spaces.
     minutes: the first few minutes of an hour (0-59)
-    hours: the first few hours of the day (0-23) 
-    the days of the month: the first few days of a month (1-31 )  
-    Month: The first few days of the first few days (0-12), the first few days of the week (0-12), 
+    hours: the first few hours of the day (0-23)
+    the days of the month: the first few days of a month (1-31 )
+    Month: The first few days of the first few days (0-12), the first few days of the week (0-12),
     0 and 7 are Sundays. `,
 
   CICDS_BASEINFO_DESC: 'Please enter the basic information of the pipeline.',
@@ -400,36 +400,36 @@ export default {
     'Configure a complex behavior policy for the pipeline (Optional).',
   CREDENTIALS_CREATE_DESC: 'Create credentials for DevOps projects',
   CHECKOUT_DESC: 'Pull code; often used to pull non-git code, such as svn.',
-  PRIVATE_IMAGE_DESC: `To deploy from a private image repository, 
+  PRIVATE_IMAGE_DESC: `To deploy from a private image repository,
     you need to create a mirrored repository and then pull the image. `,
-  AGENT_TYPE_DESC: `The agent section specifies 
-    where the entire Pipeline or a particular stage will be executed in the Jenkins environment, 
-    depending on where the agent part is placed. 
-    This part must be defined at the top level within the pipeline block, 
+  AGENT_TYPE_DESC: `The agent section specifies
+    where the entire Pipeline or a particular stage will be executed in the Jenkins environment,
+    depending on where the agent part is placed.
+    This part must be defined at the top level within the pipeline block,
     but the stage level usage is optional. `,
-  AUTHENTICATION_TOKEN_DESC: `Use the following URL to remotely trigger the build: 
-    JENKINS_URL / job / JOB_NAME / build? Token =TOKEN_NAME or /buildWithParameters? 
-    Token = TOKEN_NAME You can choose to append &cause=reason to provide the text that 
+  AUTHENTICATION_TOKEN_DESC: `Use the following URL to remotely trigger the build:
+    JENKINS_URL / job / JOB_NAME / build? Token =TOKEN_NAME or /buildWithParameters?
+    Token = TOKEN_NAME You can choose to append &cause=reason to provide the text that
     will be included in the build reason for the record. `,
   ACTIVITY_EMPTY_TIP: 'The current pipeline is not running yet',
 
   PIPELINE_NO_CONFIG:
     'The relevant configuration file was not found in the current pipeline',
-  NOT_VALID_JENKINS_FILE: `The current Jenkinsfile is not a standard declarative Jenkinsfile 
+  NOT_VALID_JENKINS_FILE: `The current Jenkinsfile is not a standard declarative Jenkinsfile
     and cannot be graphically displayed`,
-  PIPELINE_CRONJOB_CRON_DESC: `Every hour, on the hour syntax reference 
+  PIPELINE_CRONJOB_CRON_DESC: `Every hour, on the hour syntax reference
     <a href="//jenkins.io/doc/book/pipeline/syntax/#cron-syntax" target="_blank">CRON</a>`,
   WEBHOOK_DESC:
     'Push a message to this URL to trigger a reindexing of the repository. ',
-  TIME_TRIGGER_DESC: `Some types of items will automatically re-index 
-    when they receive an external push message. 
-    However, in some cases, message notifications may fail. 
-    This option will check if the index has been executed within the specified time interval, 
+  TIME_TRIGGER_DESC: `Some types of items will automatically re-index
+    when they receive an external push message.
+    However, in some cases, message notifications may fail.
+    This option will check if the index has been executed within the specified time interval,
     and if not, trigger the index. `,
 
-  KUBERNETES_DEPLOY_DESC: `Deploy resources on a Kubernetes cluster. 
-    In a continuous integration or continuous deployment environment, 
-    only those resources that need to be updated regularly should be placed in the deployment step. 
+  KUBERNETES_DEPLOY_DESC: `Deploy resources on a Kubernetes cluster.
+    In a continuous integration or continuous deployment environment,
+    only those resources that need to be updated regularly should be placed in the deployment step.
     Therefore, this step is mostly used to process the deployment of such resources.`,
   KUBERNETES_DEPLOY_DESC_MORE: `<br />
   <label>This step has the following main features:</label>
@@ -522,7 +522,7 @@ export default {
     href="https://github.com/settings/tokens/new?scopes=repo,read:user,user:email,write:repo_hook"
     target="_blank"
   >
-    Get Token 
+    Get Token
   </a>`,
 
   bitbucket_server_ACCESSTOKEN_PLACEHOLDER:
@@ -536,4 +536,5 @@ export default {
   WHEN_CHRETE_PIEPLINE_DESC:
     'When a new pipeline is created, the tasks in the specified pipeline are automatically triggered.',
   'Started By {name}': 'Started By {name}',
+  'Credential ID exists': 'Credential ID exists',
 }

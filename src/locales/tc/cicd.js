@@ -462,4 +462,5 @@ export default {
   'select a pipeline': '選擇一個流水線',
   timer: '定時器',
   'Started By {name}': '由{name}觸發掃描',
+  'Credential ID exists': '憑證 ID 已存在',
 }

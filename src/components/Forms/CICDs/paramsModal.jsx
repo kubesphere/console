@@ -97,7 +97,9 @@ export default class ParamsModal extends React.Component {
   }
 
   init = async () => {
-    const parameters = await this.getParametersFromBranch(this.branch)
+    const parameters = this.branch
+      ? await this.getParametersFromBranch(this.branch)
+      : this.props.parameters
     this.setState({
       currentBranch: this.branch,
       parameters,
@@ -114,19 +116,26 @@ export default class ParamsModal extends React.Component {
   }
 
   handleOk = () => {
-    const { branch, ...parameters } = this.formRef.current.getData()
+    const { branch, ...formParameters } = this.formRef.current.getData()
+    const { parameters } = this.state
     this.formRef.current.validate(() => {
-      const params = Object.keys(parameters).map(key => ({
-        name: key,
-        value: parameters[key],
-      }))
+      const params = isEmpty(formParameters)
+        ? parameters.map(item => ({
+            name: item.name,
+            value: '',
+          }))
+        : Object.keys(formParameters).map(key => ({
+            name: key,
+            value: parameters[key],
+          }))
+
       this.props.onOk(params, branch)
     })
   }
 
   renderParamsItem(param) {
     const type = param.type.toLowerCase().split('parameterdefinition')[0]
-
+    const defaultValue = get(param, 'defaultParameterValue.value')
     switch (type) {
       case 'string':
         return (
@@ -135,10 +144,7 @@ export default class ParamsModal extends React.Component {
             label={param.name}
             desc={param.description}
           >
-            <Input
-              defaultValue={param.defaultParameterValue.value}
-              name={param.name}
-            />
+            <Input defaultValue={defaultValue} name={param.name} />
           </Form.Item>
         )
       case 'text':
@@ -148,10 +154,7 @@ export default class ParamsModal extends React.Component {
             label={param.name}
             desc={param.description}
           >
-            <TextArea
-              defaultValue={param.defaultParameterValue.value}
-              name={param.name}
-            />
+            <TextArea defaultValue={defaultValue} name={param.name} />
           </Form.Item>
         )
       case 'boolean':
@@ -161,10 +164,7 @@ export default class ParamsModal extends React.Component {
             label={param.name}
             desc={param.description}
           >
-            <RadioGroup
-              name={param.name}
-              defaultValue={String(param.defaultParameterValue.value)}
-            >
+            <RadioGroup name={param.name} defaultValue={String(defaultValue)}>
               <Radio name={param.name} value={'true'}>
                 True
               </Radio>
@@ -199,7 +199,7 @@ export default class ParamsModal extends React.Component {
             desc={param.description}
           >
             <Input
-              defaultValue={param.defaultParameterValue.value}
+              defaultValue={defaultValue}
               type="password"
               name={param.name}
             />
@@ -212,10 +212,7 @@ export default class ParamsModal extends React.Component {
             label={param.name}
             desc={param.description}
           >
-            <Input
-              defaultValue={param.defaultParameterValue.value}
-              name={param.name}
-            />
+            <Input defaultValue={defaultValue} name={param.name} />
           </Form.Item>
         )
     }

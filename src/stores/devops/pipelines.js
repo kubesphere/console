@@ -199,7 +199,7 @@ export default class PipelineStore extends BaseStore {
   @action
   async checkPipelineName({ name, cluster, project_name }) {
     return await this.request.get(
-      `${this.getDevopsUrlV2({ cluster })}${project_name}/pipelines/${name}/`,
+      `${this.getDevOpsUrl({ cluster })}/${project_name}/pipelines/${name}`,
       {},
       {
         headers: { 'x-check-exist': true },

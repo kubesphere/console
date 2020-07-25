@@ -28,7 +28,8 @@ import EmptyTable from 'components/Cards/EmptyTable'
 import { getLocalTime } from 'utils'
 
 import Banner from 'components/Cards/Banner'
-import CICDTable from '../Pipelines/Table'
+import Table from 'components/Tables/Base'
+
 import CreateModal from './credentialModal'
 import styles from './index.scss'
 
@@ -159,14 +160,12 @@ class Credential extends React.Component {
     const { data, filters, isLoading, total, page, limit } = toJS(
       this.store.list
     )
-
-    const isEmptyList = isLoading === false && total === 0 && data.length <= 0
-
-    const omitFilters = omit(filters, 'page')
-
     const showCreate = this.enabledActions.includes('create')
       ? this.showCreate
       : null
+
+    const isEmptyList = isLoading === false && total === 0 && data.length <= 0
+    const omitFilters = omit(filters, ['page', 'limit'])
 
     if (isEmptyList) {
       return (
@@ -179,9 +178,8 @@ class Credential extends React.Component {
     }
 
     const pagination = { total, page, limit }
-
     return (
-      <CICDTable
+      <Table
         data={data}
         columns={this.getColumns()}
         filters={omitFilters}
@@ -190,8 +188,6 @@ class Credential extends React.Component {
         isLoading={isLoading}
         onFetch={this.handleFetch}
         onCreate={showCreate}
-        name={t('Create Credentials')}
-        emptyProps={{ desc: t(`${this.name.toUpperCase()}_CREATE_DESC`) }}
       />
     )
   }
@@ -205,6 +201,7 @@ class Credential extends React.Component {
         onCancel={this.hideCreate}
         project_id={project_id}
         cluster={cluster}
+        store={this.store}
       />
     )
   }

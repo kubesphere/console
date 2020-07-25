@@ -66,6 +66,7 @@ export default class RepoSelectForm extends React.Component {
 
   @observable
   source_type = 'github'
+
   @observable
   showCredential = false
 
