@@ -46,8 +46,7 @@ client:
   slackUrl: https://kubesphere.slack.com
   documents:
     url: https://kubesphere.io/docs
-    api: https://kubesphere.io/docs/v2.1/zh-CN/api-reference/api-docs/
-    version: v2.1
+    api: https://kubesphere.io/docs/api-reference/api-docs/
 
   # current support lanaguages
   supportLangs:
