@@ -150,6 +150,8 @@ const handleLogin = async ctx => {
 
 const handleLogout = async ctx => {
   ctx.cookies.set('token', null)
+  ctx.cookies.set('expire', null)
+  ctx.cookies.set('refreshToken', null)
   ctx.cookies.set('currentUser', null)
 
   const { origin = '', referer = '' } = ctx.headers
