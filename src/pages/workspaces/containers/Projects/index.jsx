@@ -119,8 +119,8 @@ export default class Projects extends React.Component {
       if (resources.length > 0) {
         await this.monitoringStore.fetchMetrics({
           cluster,
+          resources,
           ...this.props.match.params,
-          resources: store.list.data.map(item => item.name),
           metrics: Object.values(MetricTypes),
           last: true,
         })
