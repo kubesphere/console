@@ -53,7 +53,7 @@ export const getTimeRange = ({ step = '600s', times = 20 } = {}) => {
 
 export default class BaseMonitoringStore {
   @observable
-  isLoading = true
+  isLoading = false
 
   @observable
   isRefreshing = false
