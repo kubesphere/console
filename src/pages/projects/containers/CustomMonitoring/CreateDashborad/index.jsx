@@ -43,6 +43,7 @@ export default class CrateDashboardModalContainer extends React.Component {
       isEditing: true,
       name: get(config, 'metadata.name'),
       namespace: get(config, 'metadata.namespace'),
+      description: get(config, 'spec.description'),
       cluster,
       ...config.spec,
     })
