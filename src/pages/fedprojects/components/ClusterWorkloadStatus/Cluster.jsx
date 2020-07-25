@@ -47,7 +47,7 @@ export default class Cluster extends Component {
     const { workload, store } = this.props
 
     const url = store.resourceStore.getWatchUrl(workload)
-    if (url) {
+    if (workload && url) {
       this.websocket.watch(url)
       this.disposer = reaction(
         () => this.websocket.message,

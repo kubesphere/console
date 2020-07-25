@@ -57,6 +57,7 @@ class TimeRangeSelector extends Component {
   }
 
   startTimeRef = React.createRef()
+
   endTimeRef = React.createRef()
 
   componentDidMount() {
@@ -147,6 +148,7 @@ class TimeRangeSelector extends Component {
       </>
     )
   }
+
   renderCustomOpts() {
     const { timeRange, interval, intervalOpts } = this.props
     const { startTime, endTime } = timeRange
