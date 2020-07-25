@@ -1133,7 +1133,7 @@ const DashboardMapper = item => {
     datasource,
     description,
     title,
-    _originData: item,
+    _originData: getOriginData(item),
   }
 }
 

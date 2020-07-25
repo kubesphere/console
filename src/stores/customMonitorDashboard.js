@@ -16,10 +16,9 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/**
- * reuse kubesphere resouce request logic
- */
+import { action } from 'mobx'
 import Base from 'stores/base'
+import List from 'stores/federated.list'
 
 /**
  * list and request logic
@@ -27,10 +26,74 @@ import Base from 'stores/base'
 export default class CustomMonitoringDashboardStore extends Base {
   module = 'dashboards'
 
+  list = new List()
+
   getListUrl = ({ cluster, namespace }) =>
     `${this.apiVersion}${this.getPath({ cluster, namespace })}/${this.module}`
 
-  create({ cluster, namespace, name, ...spec }) {
+  @action
+  async fetchList({
+    cluster,
+    namespace,
+    page,
+    name,
+    limit,
+    more,
+    ...rest
+  } = {}) {
+    this.list.isLoading = true
+
+    page = Number(page)
+    if (!page || page === 1) {
+      this.list.continues = {}
+      page = 1
+    }
+
+    if (page > 1 && !this.list.continues[page]) {
+      page = 1
+      this.list.continues = {}
+    }
+
+    const params = rest
+
+    params.limit = limit || this.list.limit
+
+    if (this.list.continues[page]) {
+      params.continue = this.list.continues[page]
+    }
+
+    if (name) {
+      params.fieldSelector = `metadata.name=${name}`
+    }
+
+    const result = await request.get(
+      this.getListUrl({ cluster, namespace }),
+      params,
+      null,
+      () => {}
+    )
+
+    const data = result.items.map(item => ({
+      ...this.mapper(item),
+      cluster,
+    }))
+
+    this.list.continues[page + 1] = result.metadata.continue
+
+    if (page === 1) {
+      this.list.total = data.length + (result.metadata.remainingItemCount || 0)
+    }
+
+    this.list.update({
+      data: more ? [...this.list.data, ...data] : data,
+      page,
+      name,
+    })
+
+    this.list.isLoading = false
+  }
+
+  create({ cluster, namespace, name, workspace, ...spec }) {
     return super.create(
       {
         apiVersion: 'monitoring.kubesphere.io/v1alpha1',
