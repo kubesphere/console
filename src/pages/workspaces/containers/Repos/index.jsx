@@ -57,6 +57,7 @@ export default class AppRepos extends React.Component {
         onClick: item =>
           trigger('openpitrix.repo.edit', {
             detail: item,
+            workspace: this.workspace,
             success: routing.query,
           }),
       },

@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, set } from 'lodash'
+import { get, set, isEmpty } from 'lodash'
 import copy from 'fast-copy'
 import React from 'react'
 
@@ -33,9 +33,7 @@ export default class Canary extends React.Component {
     const httpData = get(this.formTemplate, this.strategyPath, [])
 
     this.state = {
-      mode: httpData.some(it => !!it.match && it.match.lenth > 0)
-        ? 'content'
-        : 'traffic',
+      mode: httpData.some(it => !isEmpty(it.match)) ? 'content' : 'traffic',
     }
 
     this.oldHttpData = copy(httpData)

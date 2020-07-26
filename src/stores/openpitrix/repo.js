@@ -56,8 +56,8 @@ export default class Repo extends Base {
   }
 
   @action
-  validate(data) {
-    return request.post(`${this.getUrl()}?validate=true`, data)
+  validate({ workspace, ...data }) {
+    return request.post(`${this.getUrl({ workspace })}?validate=true`, data)
   }
 
   @action

@@ -157,6 +157,7 @@ export default class UrlInput extends React.Component {
       .validate({
         type: this.type,
         url,
+        workspace: this.props.workspace,
         credential,
       })
       .then(res => {

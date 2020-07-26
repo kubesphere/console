@@ -40,19 +40,11 @@ export default class CookieMatch extends React.Component {
   constructor(props) {
     super(props)
 
+    const match = Object.keys(props.value)[0] || this.matchTypes[0].value
     this.state = {
-      match: Object.keys(props.value)[0] || this.matchTypes[0].value,
-      value: Object.values(props.value)[0] || '',
+      match,
+      value: props.value[match] || '',
     }
-  }
-
-  static getDerivedStateFromProps(props, state) {
-    const match = Object.keys(props.value)[0]
-    const value = Object.values(props.value)[0]
-    if (match !== state.match || value !== state.value) {
-      return { match, value }
-    }
-    return null
   }
 
   get matchTypes() {

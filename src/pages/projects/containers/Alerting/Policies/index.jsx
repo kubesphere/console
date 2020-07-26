@@ -125,6 +125,7 @@ export default class AlertingPolicy extends React.Component {
       module,
       cluster: match.params.cluster,
       namespace: match.params.namespace,
+      workspace: match.params.workspace,
       title: `${t('Add ')}${t('alerting policy')}`,
       success: getData,
     })

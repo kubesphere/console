@@ -21,7 +21,7 @@ import { isEmpty, get, set } from 'lodash'
 
 import ObjectMapper from 'utils/object.mapper'
 import NotificationAddressStore from 'stores/notification/address'
-import UserStore from 'stores/notification/user'
+import UserStore from 'stores/user'
 
 import cookie from 'utils/cookie'
 import List from 'stores/base.list'

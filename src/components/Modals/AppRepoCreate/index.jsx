@@ -89,7 +89,7 @@ export default class AddRepoModal extends Component {
   }
 
   render() {
-    const { detail, store, onOk, onCancel, ...rest } = this.props
+    const { detail, store, onOk, onCancel, workspace, ...rest } = this.props
 
     const title = detail ? 'Edit App Repository' : 'Add App Repository'
 
@@ -115,6 +115,7 @@ export default class AddRepoModal extends Component {
         </Form.Item>
         <UrlInput
           store={store}
+          workspace={workspace}
           formData={this.state.formData}
           onValidate={this.handleUrlValidate}
           isSubmitting={this.props.isSubmitting}
