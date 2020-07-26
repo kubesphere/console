@@ -463,4 +463,5 @@ export default {
   timer: '定时器',
   'Started By {name}': '由{name}触发扫描',
   'Credential ID exists': '凭证 ID 已存在',
+  'Invalid credential ID': '凭证 ID 格式不合法',
 }

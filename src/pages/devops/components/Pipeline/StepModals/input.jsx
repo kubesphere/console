@@ -18,7 +18,7 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import { debounce, uniq } from 'lodash'
+import { debounce, uniq, isEmpty } from 'lodash'
 import { action, toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import { Form, Modal } from 'components/Base'
@@ -44,23 +44,8 @@ export default class InputStep extends React.Component {
   constructor(props) {
     super(props)
     this.devopsStore = new DevopsStore()
-    this.state = { loading: false, value: '', submitter: [] }
-  }
-
-  static getDerivedStateFromProps(nextProps) {
-    if (nextProps.edittingData.type === 'input') {
-      const nextState = {}
-      nextProps.edittingData.data.forEach(param => {
-        if (param.key === 'message') {
-          nextState.value = param.value.value
-        }
-        if (param.key === 'submitter') {
-          nextState.submitter = param.value.value.split(', ')
-        }
-      })
-      return nextState
-    }
-    return null
+    const { value, submitter } = this.getDefaultData()
+    this.state = { loading: false, value, submitter }
   }
 
   handleMessageChange = e => {
@@ -70,6 +55,24 @@ export default class InputStep extends React.Component {
         (this.state.value.match(/@([\w-.]*)?/g) || []).map(str => str.slice(1))
       ),
     })
+  }
+
+  getDefaultData = () => {
+    const { edittingData } = this.props
+    let value = ''
+    let submitter = []
+
+    if (!isEmpty(edittingData) && !isEmpty(edittingData.data)) {
+      edittingData.data.forEach(param => {
+        if (param.key === 'message') {
+          value = param.value.value
+        }
+        if (param.key === 'submitter') {
+          submitter = param.value.value.split(', ')
+        }
+      })
+    }
+    return { value, submitter }
   }
 
   @action

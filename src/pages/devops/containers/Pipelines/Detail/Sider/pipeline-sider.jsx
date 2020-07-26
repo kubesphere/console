@@ -82,15 +82,6 @@ export default class PipelineDetail extends Base {
     )
   }
 
-  get updateTime() {
-    const { activityList } = this.store
-    const updateTime = get(toJS(activityList.data), '[0].startTime', '')
-    if (!updateTime) {
-      return '-'
-    }
-    return moment(updateTime).format(`${t('MMMM Do YYYY')} HH:mm`)
-  }
-
   get enabledActions() {
     const { cluster, project_id } = this.props.match.params
     const devops = this.store.getDevops(project_id)
@@ -158,6 +149,13 @@ export default class PipelineDetail extends Base {
     })
   }
 
+  getUpTime = activityList => {
+    const updateTime = get(toJS(activityList.data), '[0].startTime', '')
+    return !updateTime
+      ? '-'
+      : moment(updateTime).format(`${t('MMMM Do YYYY')} HH:mm`)
+  }
+
   getOperations = () => {
     const { detail } = toJS(this.store)
     const list = [
@@ -218,7 +216,7 @@ export default class PipelineDetail extends Base {
       },
       {
         name: t('Updated Time'),
-        value: this.updateTime,
+        value: this.getUpTime(activityList),
       },
     ]
   }
