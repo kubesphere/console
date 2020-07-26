@@ -58,6 +58,12 @@ export default class LogCollection extends React.Component {
 
   componentDidMount() {
     this.refresh()
+    const components = this.tabs.options
+      .filter(item => !item.hidden)
+      .map(item => item.value)
+    if (!components.includes(this.component)) {
+      this.handleTabChange(components[0] || 'logging')
+    }
   }
 
   componentDidUpdate(prevProps) {
