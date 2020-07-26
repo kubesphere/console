@@ -104,8 +104,8 @@ export default class PVCSnapshots extends Component {
             data.map(this.renderSnapshot, this)
           )}
         </div>
-        {page > 1 && (
-          <Level>
+        {total > limit && (
+          <Level className="margin-t12">
             <LevelLeft />
             <LevelRight>
               <Pagination
