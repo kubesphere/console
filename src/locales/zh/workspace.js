@@ -85,7 +85,7 @@ export default {
   WORKSPACE_MEMBER_DESC:
     '对企业空间内的成员进行管理及角色分配。项目可以邀请当前企业空间内的企业成员作为项目成员，协同工作。',
   INVITE_WORKSPACE_MEMBER_DESC: '您可以邀请新的成员来您的企业空间',
-  INVITE_WORKSPACE_MEMBER_SEARCH_PLACEHODLER: '输入邮箱邀请企业空间成员',
+  INVITE_WORKSPACE_MEMBER_SEARCH_PLACEHODLER: '输入用户名邀请企业空间成员',
 
   DELETE_WORKSPACE_TIP:
     '确定删除企业空间 <strong>{resource}</strong> ? 删除后将无法恢复, 企业空间下的资源也同时会被销毁。',

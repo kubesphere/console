@@ -152,7 +152,7 @@ export default {
   'Invite Members to the DevOps Project': '邀请成员到该工程',
   INVITE_MEMBER_DESC: '您可以邀请新的成员来协助您的项目',
   INVITE_MEMBER_DESC_DEVOPS: '您可以邀请新的成员来协助您的工程',
-  INVITE_MEMBER_SEARCH_PLACEHODLER: '输入邮箱邀请项目成员',
+  INVITE_MEMBER_SEARCH_PLACEHODLER: '输入用户名邀请项目成员',
   INVITE_MEMBER_CHOOSE_ROLE_TIP: '请选择一个角色赋予该成员',
   PROJECT_ADMIN_DESC: '可以指定项目内一个成员为管理员',
 

@@ -68,7 +68,7 @@ export default {
   INVITE_WORKSPACE_MEMBER_DESC:
     'You can invite new members to work in the workspace.',
   INVITE_WORKSPACE_MEMBER_SEARCH_PLACEHODLER:
-    'Enter email addresss to invite workspace members',
+    'Enter a username to invite workspace members',
 
   MEMBER_CREATE_DESC: '',
 

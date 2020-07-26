@@ -172,7 +172,7 @@ export default {
   NOTIFY_LIST_INPUT_ERRPR_TIP:
     'The input format is incorrect. Please enter the correct email address.',
   NOTIFY_LIST_INPUT_PLACEHOLDER:
-    'Please enter the email address of the member to be notified.',
+    'Please enter the username of the member to be notified.',
   NOTIFY_CURRENT_COUNT: 'Notification times: {count} in total',
   RESOURCE_SELECTOR_FORM_TIP: 'Please fill in the label selector',
   RESOURCE_NODE_FORM_TIP: 'Please select a cluster node',

@@ -147,7 +147,7 @@ export default {
   INVITE_MEMBER_DESC: 'You can invite new members to assist your project.',
   INVITE_MEMBER_DESC_DEVOPS:
     'You can invite new members to assist your DevOps project.',
-  INVITE_MEMBER_SEARCH_PLACEHODLER: 'Enter an email address to invite members',
+  INVITE_MEMBER_SEARCH_PLACEHODLER: 'Enter a username to invite members',
   INVITE_MEMBER_CHOOSE_ROLE_TIP: 'Please assign a role to this member',
   DELETE_MEMBER_TIP:
     'Are you sure about deleting the member <strong>{name}</strong>? The member cannot access this project once removed.',
