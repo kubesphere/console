@@ -21,7 +21,7 @@ import { reaction } from 'mobx'
 import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
-import { isEmpty, get, throttle } from 'lodash'
+import { isEmpty, has, get, throttle } from 'lodash'
 import {
   Icon,
   Level,
@@ -195,7 +195,7 @@ export default class PodsCard extends React.Component {
         result.labelSelector = joinSelector(selector)
     }
 
-    if (!result.labelSelector && isEmpty(selector)) {
+    if (has(result, 'labelSelector') && isEmpty(selector)) {
       result = {}
     }
 

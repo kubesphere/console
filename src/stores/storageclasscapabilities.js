@@ -29,10 +29,12 @@ export default class StorageClassCapabilityStore extends Base {
     this.isLoading = true
 
     const result = await request.get(this.getDetailUrl(params), {}, {}, reject)
-    const detail = { ...params, ...this.mapper(result) }
+    if (result) {
+      const detail = { ...params, ...this.mapper(result) }
 
-    this.detail = detail
+      this.detail = detail
+    }
+
     this.isLoading = false
-    return detail
   }
 }
