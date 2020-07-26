@@ -530,7 +530,7 @@ export default {
 
   DATA_SOURCE: '數據源',
 
-  EMPTY_WRAPPER: '未發現{resource}',
+  EMPTY_WRAPPER: '未發現 {resource}',
 
   'User Guides': '使用者指南',
   'Quick Support': '快速獲取幫助',
