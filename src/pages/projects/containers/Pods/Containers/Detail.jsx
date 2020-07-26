@@ -43,6 +43,10 @@ export default class ContainerDetail extends React.Component {
     return 'Container'
   }
 
+  get authKey() {
+    return 'pods'
+  }
+
   get listUrl() {
     const { workspace, cluster, namespace, podName } = this.props.match.params
     return `${
@@ -186,6 +190,7 @@ export default class ContainerDetail extends React.Component {
 
     const sideProps = {
       module: this.module,
+      authKey: this.authKey,
       name: getDisplayName(this.store.detail),
       desc: t('Container'),
       operations: this.getOperations(),

@@ -92,12 +92,13 @@ export default {
         },
         store,
         modal: CreateRepoModal,
+        workspace,
         ...props,
       })
     },
   },
   'openpitrix.repo.edit': {
-    on({ store, detail, success, ...props }) {
+    on({ store, detail, workspace, success, ...props }) {
       const modal = Modal.open({
         onOk: async data => {
           await store.update(data)
@@ -107,6 +108,7 @@ export default {
         store,
         detail,
         modal: CreateRepoModal,
+        workspace,
         ...props,
       })
     },

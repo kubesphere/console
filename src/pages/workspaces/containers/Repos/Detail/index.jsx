@@ -68,6 +68,10 @@ export default class RepoDetail extends React.Component {
     )
   }
 
+  get workspace() {
+    return this.props.match.params.workspace
+  }
+
   fetchData = () => {
     this.store.fetchDetail(this.props.match.params)
   }
@@ -82,6 +86,7 @@ export default class RepoDetail extends React.Component {
       onClick: () =>
         this.trigger('openpitrix.repo.edit', {
           detail: toJS(this.store.detail),
+          workspace: this.workspace,
           success: this.fetchData,
         }),
     },

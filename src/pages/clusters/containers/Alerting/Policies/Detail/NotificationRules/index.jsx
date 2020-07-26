@@ -58,7 +58,7 @@ export default class NotificationRules extends React.Component {
     return (
       <Card
         className={styles.rules}
-        title={t('Senting Rules')}
+        title={t('Sending Rules')}
         loading={this.store.isLoading}
       >
         <div className={styles.item}>

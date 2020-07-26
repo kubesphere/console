@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, cloneDeep, keyBy, groupBy, sortBy } from 'lodash'
+import { get, cloneDeep, keyBy, groupBy, sortBy, uniq } from 'lodash'
 import React from 'react'
 import classNames from 'classnames'
 import { observer } from 'mobx-react'
@@ -80,7 +80,9 @@ export default class EditAuthorizationModal extends React.Component {
   }
 
   handleOk = () => {
-    this.props.onOk([...this.state.roleTemplates, 'role-template-view-basic'])
+    this.props.onOk(
+      uniq([...this.state.roleTemplates, 'role-template-view-basic'])
+    )
   }
 
   handleTabChange = e => {

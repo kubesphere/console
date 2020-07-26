@@ -54,18 +54,6 @@ export default class HeaderMatch extends React.Component {
     this.state = getStateFromProps(props)
   }
 
-  static getDerivedStateFromProps(props, state) {
-    const nextState = getStateFromProps(props)
-    if (
-      nextState.key !== state.key ||
-      nextState.match !== state.match ||
-      nextState.value !== state.value
-    ) {
-      return nextState
-    }
-    return null
-  }
-
   get matchTypes() {
     return [
       { label: t('Exact Match'), value: 'exact' },

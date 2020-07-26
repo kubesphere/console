@@ -22,7 +22,7 @@ import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { isEmpty, debounce } from 'lodash'
 
-import UserStore from 'stores/notification/user'
+import UserStore from 'stores/user'
 
 import { Control, Icon, Input, Tooltip } from '@pitrix/lego-ui'
 
@@ -66,7 +66,7 @@ export default class EmailInput extends React.Component {
     if (value === '') {
       this.setState({ users: [] })
     } else {
-      this.fetchPrompt({ keyword: value }).then(data => {
+      this.fetchPrompt({ name: value }).then(data => {
         this.setState({ users: data })
       })
     }
@@ -115,7 +115,7 @@ export default class EmailInput extends React.Component {
   handleCheckItem = user => () => {
     this.setState({ value: '', users: [] }, () => {
       this.props.onEnter({
-        name: user.username,
+        name: user.name,
         avatar: user.avatar_url,
         address: user.email,
       })
@@ -158,7 +158,7 @@ export default class EmailInput extends React.Component {
       >
         {users.map(user => {
           const regExp = new RegExp(`(${this.state.value})`, 'g')
-          const username = String(user.username).replace(regExp, `<em>$1</em>`)
+          const username = String(user.name).replace(regExp, `<em>$1</em>`)
 
           return (
             <div

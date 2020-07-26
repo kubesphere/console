@@ -31,11 +31,12 @@ import FORM_STEPS from 'configs/steps/alerting.policy'
 
 export default {
   'alerting.policy.create': {
-    on({ store, cluster, namespace, module, success, ...props }) {
+    on({ store, cluster, namespace, workspace, module, success, ...props }) {
       const kind = MODULE_KIND_MAP[module]
       const formTemplate = {
         [kind]: FORM_TEMPLATES[module]({
           namespace,
+          workspace,
         }),
       }
 

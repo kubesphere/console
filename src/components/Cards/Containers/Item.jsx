@@ -49,6 +49,17 @@ export default class ContainerItem extends React.Component {
     showContainerLog: false,
   }
 
+  get canViewTerminal() {
+    const { cluster } = this.props
+    const { namespace } = this.props.detail
+    return globals.app.hasPermission({
+      module: 'pods',
+      project: namespace,
+      action: 'edit',
+      cluster,
+    })
+  }
+
   getLink = name => `${this.props.prefix}/containers/${name}`
 
   handleOpenTerminal = () => {
@@ -183,7 +194,7 @@ export default class ContainerItem extends React.Component {
                 />
               </Tooltip>
             )}
-            {status === 'running' && prefix && (
+            {status === 'running' && prefix && this.canViewTerminal && (
               <Tooltip content={t('Terminal')}>
                 <Icon
                   className="margin-l8"

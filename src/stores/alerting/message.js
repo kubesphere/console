@@ -20,7 +20,7 @@ import { observable, action } from 'mobx'
 import { isEmpty } from 'lodash'
 
 import ObjectMapper from 'utils/object.mapper'
-import UserStore from 'stores/notification/user'
+import UserStore from 'stores/user'
 import List from 'stores/base.list'
 
 import Base from './base'
