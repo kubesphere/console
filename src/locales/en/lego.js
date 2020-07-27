@@ -33,7 +33,7 @@ export default {
   LEGO_UI_CLEAR_ALL: 'Clear All Values',
   LEGO_UI_CLEAR_VALUE: 'Clear Current Value',
   LEGO_UI_PLEASE_SELECT: 'Please select',
-  LEGO_UI_REACH_BOTTOM: 'Reach Bottom',
+  LEGO_UI_REACH_BOTTOM: 'Bottom Reached',
   LEGO_UI_LOAD_ITEMS: 'See more',
   LEGO_UI_NO_RESULT_LOG: 'No result log',
   LEGO_UI_PER_PAGE: 'per page',
