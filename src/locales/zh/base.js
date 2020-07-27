@@ -529,7 +529,7 @@ export default {
 
   DATA_SOURCE: '数据源',
 
-  EMPTY_WRAPPER: '未发现{resource}',
+  EMPTY_WRAPPER: '未发现 {resource}',
 
   'User Guides': '用户指南',
   'Quick Support': '快速获取帮助',
