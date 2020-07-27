@@ -19,54 +19,12 @@
     padding: 10px;
 
     h3 {
-      @include TypographySymbolText($white)
+      @include TypographySymbolText($white);
     }
     picture {
       display: inline-block;
       width: 40px;
       height: 40px;
     }
-  }
-
-}
-
-.icon {
-  width: 40px;
-  height: 40px;
-  path {
-    fill: $white;
-  }
-}
-
-.singlestat {
-  // & > div {
-  //   background-image: url(/assets/single-stat-type-icon.svg);
-  // }
-  picture {
-    background-image: url(/assets/single-stat-logo.svg);
-  }
-}
-
-.line {
-  // & > div {
-  //   background-image: url(/assets/line-chart.svg);
-  // }
-}
-
-.bar {
-  picture {
-    background-image: url(/assets/bar-chart.svg);
-  }
-  picture {
-    background-image: url(/assets/bar-chart.svg);
-  }
-}
-
-.table {
-  & > div {
-    background-image: url(/assets/table-chart.svg);
-  }
-  picture {
-    background-image: url(/assets/table-chart.svg);
   }
 }

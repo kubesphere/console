@@ -84,7 +84,7 @@ export default class GraphMonitorForm extends Component {
         sidebar={
           <>
             <GraphTextInput type={this.monitor.config.lines ? 'line' : 'bar'} />
-            <FormGroupCard label={t('GRAPH_TYPES')}>
+            <FormGroupCard className="margin-t12" label={t('GRAPH_TYPES')}>
               <Form.Item>
                 <FormItemContainer name={'stack'} debounce={100}>
                   {({ onChange, value }) => (
