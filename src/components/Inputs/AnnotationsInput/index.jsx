@@ -31,7 +31,9 @@ class AutoCompleteWrapper extends React.Component {
 
   render() {
     const { onSelected, ...rest } = this.props
-    return <AutoComplete onSelected={this.handleSelect} {...rest} />
+    return (
+      <AutoComplete onSelected={this.handleSelect} maxVisible={60} {...rest} />
+    )
   }
 }
 

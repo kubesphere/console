@@ -43,7 +43,13 @@ export default class MetircQueryInput extends Component {
   }
 
   render() {
-    const { name, supportDebugButton = false, value } = this.props
+    const {
+      name,
+      supportDebugButton = false,
+      value,
+      supportMetrics,
+      onChange,
+    } = this.props
 
     return (
       <div className={styles.wrapper}>
@@ -59,12 +65,13 @@ export default class MetircQueryInput extends Component {
         <div className={styles.input}>
           <AutoComplete
             value={value}
-            onChange={this.props.onChange}
+            onChange={onChange}
             onSelected={this.onSelected}
             name={name}
             className={styles.autoComplete}
-            options={this.props.supportMetrics}
+            options={supportMetrics}
             optionRenderer={this.optionRenderer}
+            maxVisible={60}
           />
         </div>
         {supportDebugButton && (
