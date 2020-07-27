@@ -734,6 +734,13 @@
   dependencies:
     regenerator-runtime "^0.13.2"
 
+"@babel/runtime@^7.6.3":
+  version "7.10.5"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.10.5.tgz#303d8bd440ecd5a491eae6117fd3367698674c5c"
+  integrity sha512-otddXKhdNn7d0ptoFRHtMLa8LqDxLYwTjB4nYgM1yy5N6gU/MUf8zqyyLltCH3yAVitBzmwK4us+DD0l/MauAg==
+  dependencies:
+    regenerator-runtime "^0.13.4"
+
 "@babel/template@^7.1.0", "@babel/template@^7.2.2", "@babel/template@^7.4.0":
   version "7.4.0"
   resolved "https://registry.npmjs.org/@babel/template/-/template-7.4.0.tgz#12474e9c077bae585c5d835a95c0b0b790c25c8b"
@@ -1006,12 +1013,12 @@
     lodash.kebabcase "^4.1.1"
     lodash.snakecase "^4.1.1"
 
-"@pitrix/lego-locale@^0.1.8":
-  version "0.1.8"
-  resolved "https://registry.yarnpkg.com/@pitrix/lego-locale/-/lego-locale-0.1.8.tgz#25df08810f9a3a6757518aaea08b6dbd1a8c6a4c"
-  integrity sha512-eYkQdRhOHjlO1/i2qKuo+2YxYpwKHOJNCQtaHz8TG67sW02JGfrnzLKdHs506XkQQ17wN402QOouZX1GF/3tRw==
+"@pitrix/lego-locale@^0.1.9":
+  version "0.1.10"
+  resolved "https://registry.yarnpkg.com/@pitrix/lego-locale/-/lego-locale-0.1.10.tgz#9e7dd47e7d78d9f2c7495ac91cef0ce21f776001"
+  integrity sha512-P83vyTcO8wyO42imBme5eRbw42Uqwesa3+MdtO56CDzIGGseSfZ6Sa+96qZruqxbp6GIXfjm8Dkw/lttrxVivw==
   dependencies:
-    "@babel/runtime" "^7.1.2"
+    "@babel/runtime" "^7.6.3"
     console-polyfill "^0.3.0"
     cookie "^0.3.1"
     escape-html "^1.0.3"
@@ -1020,18 +1027,18 @@
     invariant "^2.2.4"
     querystring "^0.2.0"
 
-"@pitrix/lego-ui@^0.1.6-13":
-  version "0.1.6-13"
-  resolved "https://registry.yarnpkg.com/@pitrix/lego-ui/-/lego-ui-0.1.6-13.tgz#93f5a89de62299a336345a973b0ba0ef2c25d6a4"
-  integrity sha512-fLijEcCSpdKY9GykL6rmaCmXR9m6PyRq672BdV6UOewN9UOncCJJ+DY6Hjdf13ZDaRSuu/1srbWtG0NrX+Aong==
+"@pitrix/lego-ui@^0.1.7-19":
+  version "0.1.7-19"
+  resolved "https://registry.yarnpkg.com/@pitrix/lego-ui/-/lego-ui-0.1.7-19.tgz#92823de5ffcfd4315540fc9539afdbb5e7b38852"
+  integrity sha512-/Jusrwb1bw/IHUtWLLGm0BgLIq+BBbAB5MNpPv5xT3UYVIksgp9RP0w9pd+DGGORp1uS17StxGO46Cf6moJP/A==
   dependencies:
     "@babel/runtime" "^7.4.5"
-    "@pitrix/lego-locale" "^0.1.8"
+    "@pitrix/lego-locale" "^0.1.9"
     "@testing-library/react" "^8.0.4"
     bulma "^0.6.2"
     classnames "^2.2.6"
     component-classes "^1.2.6"
-    flatpickr "^4.6.1"
+    flatpickr "^4.6.3"
     fuse.js "^3.2.1"
     hoist-non-react-statics "^3.3.0"
     lodash "^4.17.15"
@@ -5083,7 +5090,7 @@ flat-cache@^2.0.1:
     rimraf "2.6.3"
     write "1.0.3"
 
-flatpickr@^4.6.1:
+flatpickr@^4.6.3:
   version "4.6.3"
   resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.6.3.tgz#15a8b76b6e34e3a072861250503a5995b9d3bc60"
   integrity sha512-007VucCkqNOMMb9ggRLNuJowwaJcyOh4sKAFcdGfahfGc7JQbf94zSzjdBq/wVyHWUEs5o3+idhFZ0wbZMRmVQ==

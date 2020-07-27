@@ -342,16 +342,6 @@ export default {
   EVENT_NORMAL: '正常',
   EVENT_WARNING: '異常',
 
-  ASCENDING_ORDER: '升序排列',
-  DESCENDING_ORDER: '降序排列',
-  OPERATE: '操作',
-  PLEASE_SELECT: '請選擇',
-  FILTER: '過濾選項',
-  CANCEL: '取消',
-  NO_RESULTS_FOUND: '暫無結果',
-  REACH_BOTTOM: '已到底部',
-  CLEAR_VALUE: '清除',
-
   'Edit Mode': '編輯模式',
   'Load More': '載入更多',
   'Please enter a name to find': '請輸入名稱進行尋找',
