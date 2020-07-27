@@ -55,7 +55,7 @@ export default {
   'No Available Cluster': '暫時没有可用集群',
 
   WORKSPACE_OVERVIEW_DESC:
-    '企業空間為 KubeSphere 提供了安全隔離的、具有訪問權限控制的工作平台。这里您可以看到目前企業空間内資源運行的概況。',
+    '企業空間為 KubeSphere 提供了安全隔離的、具有訪問權限控制的工作平台。這裡您可以看到目前企業空間内資源運行的概況。',
 
   WORKSPACE_DESC:
     '企業空間是一个組織您的項目和 DevOps 工程、管理資源訪問權限以及在團隊内部共享資源等的邏輯單元，可以作為團隊工作的獨立工作空間。',
@@ -68,7 +68,7 @@ export default {
   WORKSPACE_NAME_DESC:
     '請盡量保持名稱簡短，比如用企業名稱的縮寫或者大家經常的稱呼，無需使用企業的完整名稱或者營業執照上的註冊名稱。',
 
-  WORKSPACE_ROLE_DESC: '企業角色定義了在目前企業空間下使用者所擁有的權限。',
+  WORKSPACE_ROLE_DESC: '企業角色定義了在目前企業空間下用戶所擁有的權限。',
   WORKSPACE_LOGO_PLACEHOLDER:
     '企業標誌尺寸必須小於 200px X 200px，支持 png，jpg 格式。建議從上傳透明背景的 PNG 格式圖片以達到最佳顯示效果。',
 

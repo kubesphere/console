@@ -32,11 +32,11 @@ export default {
   'Authorization List': '權限列表',
   'Authorized Users': '授權用戶',
   'Authorization Settings': '權限設置',
-  'User Name': '使用者名稱',
+  'User Name': '用戶名稱',
   Cluster: '集群',
   Member: '成員',
 
-  'Role Identifier': '角色識別符',
+  'Role Identifier': '角色標識符',
   'Edit Authorization': '編輯權限',
 
   'Create Project Role': '創建項目角色',
@@ -57,16 +57,16 @@ export default {
   'Authorized Actions': '可執行操作',
   'No Authorization': '暫無權限規則',
   NO_AVAILABLE_ROLE: '目前項目無可用角色',
-  JOIN_PROJECT_PLACEHOLDER: '輸入使用者名稱或者郵箱邀請使用者加入到項目中',
-  ROLE_DELETE_TIP: '目前角色已有使用者綁定，請解綁後重試',
+  JOIN_PROJECT_PLACEHOLDER: '輸入用戶名稱或者郵箱邀請用戶加入到項目中',
+  ROLE_DELETE_TIP: '目前角色已有用戶綁定，請解綁後重試',
   ROLE_NO_AVAILABLE_TIP: '目前項目無可用角色',
-  ROLE_PROJECTS_JOIN_TIP: '輸入使用者名或者郵箱邀請使用者加入到項目中',
+  ROLE_PROJECTS_JOIN_TIP: '輸入用戶名或者郵箱邀請用戶加入到項目中',
   ROLE_TYPE_DESC:
     '角色類型根據權限範圍分為集群、項目兩類，目前角色的授權為該項目範圍。',
 
   DELETE_ROLE_TIP: '確定刪除角色 <strong>{resource}</strong>?',
   ROLE_USERS_TIP:
-    '目前角色有 <strong>{count}</strong> 名授權使用者，請先移除授權使用者或更改角色後再刪除。',
+    '目前角色有 <strong>{count}</strong> 名授權用戶，請先移除授權用戶或更改角色後再刪除。',
 
   'Depend on': '依賴於',
 
@@ -109,11 +109,11 @@ export default {
   'Workspace App Repos Management': '應用倉庫管理',
   WORKSPACE_APP_REPOS_VIEW_DESC: '查看應用倉庫列表',
   WORKSPACE_APP_REPOS_MANAGEMENT_DESC: '可以 創建/編輯/刪除 應用倉庫',
-  'Workspace App Templates View': '應用範本查看',
-  'Workspace App Templates Management': '應用範本管理',
-  WORKSPACE_APP_TEMPLATES_VIEW_DESC: '查看企業空間應用範本',
+  'Workspace App Templates View': '應用模板查看',
+  'Workspace App Templates Management': '應用模板管理',
+  WORKSPACE_APP_TEMPLATES_VIEW_DESC: '查看企業空間應用模板',
   WORKSPACE_APP_TEMPLATES_MANAGEMENT_DESC:
-    '上传/編輯/刪除 企業空間應用範本，上架/下架應用到平台的應用商店',
+    '上传/編輯/刪除 企業空間應用模板，上架/下架應用到平台的應用商店',
 
   'Projects Management': '項目管理',
   'Projects View': '項目查看',
@@ -127,7 +127,7 @@ export default {
   PROJECTS_CREATE_DESC: '擁有創建項目的權限，項目管理員只能為創建者自己',
   PROJECTS_VIEW_DESC: '可以查看企業空間裡的所有項目',
   FEDERATED_PROJECTS_MANAGEMENT_DESC:
-    '管理企业空间里的所有多集群项目，可以 创建/编辑/删除 多集群项目',
+    '管理企業空間裡的所有多集群項目，可以 創建/編輯/刪除 多集群項目',
   DEVOPS_MANAGEMENT_DESC:
     '管理企業空間裡的所有 DevOps 工程，可以 創建/編輯/刪除 DevOps 工程',
   DEVOPS_CREATE_DESC:
@@ -168,7 +168,7 @@ export default {
   PROJECT_MEMBERS_VIEW_DESC: '查看項目成員',
   PROJECT_MEMBERS_MANAGEMENT_DESC: '邀請/編輯/移除項目成員',
   PROJECT_SETTINGS_DESC:
-    '管理項目設置，編輯項目資訊、外網訪問、網路策略、資源配额、落盤紀錄收集配置等',
+    '管理項目設置，編輯項目資訊、外網訪問、網路策略、資源配額、落盤紀錄收集配置等',
 
   'Cluster Resources Management': '集群資源管理',
   'Project Resources Management': '項目資源管理',

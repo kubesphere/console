@@ -29,15 +29,15 @@ export default {
 
   VERSION_DELETE_TIP: '確定要刪除版本 <strong>{name}</strong> 嗎? ',
   VERSION_SUBMIT_TIP: '確定要提交版本 <strong>{name}</strong> 去審核?',
-  VERSION_CANCEL_TIP: '確定要取消版本 <strong>{name}</strong>的審核嗎 ?',
+  VERSION_CANCEL_TIP: '確定要取消版本 <strong>{name}</strong> 的審核嗎?',
   VERSION_SUSPEND_TIP:
     '版本 <strong>{name}</strong> 下架後，關聯的應用將不顯示該版本，你確定要下架嗎？',
   VERSION_RECOVER_TIP:
     '版本 <strong>{name}</strong> 上架後，關聯的應用將顯示出該版本，你確定要上架嗎？',
   VERSION_RELEASE_TIP:
-    '版本 <strong>{name}</strong> 發佈到商店後，使用者可以查看並部署該應用版本，你確定要發佈嗎？',
+    '版本 <strong>{name}</strong> 發佈到商店後，用戶可以查看並部署該應用版本，你確定要發佈嗎？',
   APP_SUSPEND_TIP:
-    '應用<strong>{name}</strong>下架後，使用者無法從商店中購買到此應用，你確定要下架該應用嗎？',
+    '應用<strong>{name}</strong>下架後，用戶無法從商店中購買到此應用，你確定要下架該應用嗎？',
   APP_RECOVER_TIP:
     '應用<strong>{name}</strong>上架後，相關的下架版本都將變成上架，你確定要上架該應用嗎？',
 
@@ -51,7 +51,7 @@ export default {
   PACKAGE_FILE_DESC:
     'Package.json檔案，用於描述應用或版本的基本資訊，包括名稱版本號等',
   CONFIG_FILE_DESC: '應用的預設值配置檔案',
-  LICENSE_FILE_DESC: '文本格式的協議',
+  LICENSE_FILE_DESC: '文本格式的協定',
   LOCALE_EN__FILE_DESC: '應用配置的國際化英文翻譯',
   LOCALE_ZH_FILE_DESC: '應用配置的國際化中文翻譯',
   CHART_FILE_DESC: 'Yaml檔案，用於描述 Chart 的基本資訊，包括名稱版本等',
@@ -60,7 +60,7 @@ export default {
   VALUES_FILE_DESC: 'Chart 的預設值配置檔案',
   CHARTS_FILE_DESC: '該目錄中放置目前 Chart 依賴的其它 Chart',
   TEMPLATES_FILE_DESC:
-    '部署檔案範本目錄，範本填入 values.yaml 中相應值，生成最終的 Kubernetes 配置檔案',
+    '部署檔案模板目錄，模板填入 values.yaml 中相應值，生成最終的 Kubernetes 配置檔案',
   NOTES_FILE_DESC: '使用指南',
 
   'Version update info': '版本更新說明',
@@ -109,7 +109,7 @@ export default {
     '5. 支持升級 <br/>' +
     '6. 支持自定義應用配置<br/>' +
     '7. 不要使用 Kubernetes 的 alpha 功能<br/>' +
-    '8. 需要提供詳細的 README 檔案，包括對應用的介绍，前置條件和如何自定義配置參數<br/>',
+    '8. 需要提供詳細的 README 檔案，包括對應用的介紹，前置條件和如何自定義配置參數<br/>',
 
   VERSION_SUBMIT_NOTE:
     '在正式提交審核之前，請確認你的應用已經通過了以下基本功能的測試',

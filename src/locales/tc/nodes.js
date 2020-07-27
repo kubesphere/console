@@ -75,7 +75,7 @@ export default {
   TAINTS_MSG:
     '汙點表示此節點已被 key=value 汙染，容器組調度不允許（PodToleratesNodeTaints 策略）或盡量不（TaintTolerationPriority 策略）調度到此節點，除非是能夠容忍（Tolerations）key=value 汙點的容器組。',
   TAINTS_TIPS:
-    '如果主機中存在一個或多個影響策略为 NoSchedule 的汙點，該容器組不會被調度到該主機<br>如果主機中不存在影響策略為 NoSchedule 的汙點，但是存在一個或多個影響策略為 PreferNoSchedule 的汙點，該容器組會盡量不調度到該主機<br>如果主機中存在一個或多個影響策略為 NoExecute 的汙點，該容器組不會被調度到該主機，並且會驅逐已經調度到該主機的容器組實例',
+    '如果主機中存在一個或多個影響策略為 NoSchedule 的汙點，該容器組不會被調度到該主機<br>如果主機中不存在影響策略為 NoSchedule 的汙點，但是存在一個或多個影響策略為 PreferNoSchedule 的汙點，該容器組會盡量不調度到該主機<br>如果主機中存在一個或多個影響策略為 NoExecute 的汙點，該容器組不會被調度到該主機，並且會驅逐已經調度到該主機的容器組實例',
   NO_TAINTS_TIPS: '暫未設置汙點',
   TAINT_SELECT_TIPS: '加入公共汙點',
   TAINT_DELETE_TIPS: '刪除該汙點',
@@ -89,10 +89,10 @@ export default {
   'Add Node Type': '添加節點類型',
   'Type Name': '類型名稱',
   'Allocated CPU': '已分配 CPU',
-  'Allocated Memory': '已分配内存',
-  'Allocated Resources': '已分配资源',
+  'Allocated Memory': '已分配記憶體',
+  'Allocated Resources': '已分配資源',
 
-  Metadata: '中繼數據',
+  Metadata: '元數據',
 
   CLUSTER_NODE_DESC:
     '集群節點提供了目前集群下節點的運行狀態，以及可以編輯刪除節點',
@@ -119,8 +119,8 @@ export default {
     '節點汙點 (Taints) 可以阻止某些容器組 (Pod) 副本部署至該節點中, 與容忍度 (Tolerations) 一起工作確保容器組不會被調度到不合適的節點上',
 
   NODE_TYPE_DESC:
-    '節點類型為提供了主機節點分組功能，使用者可以通過創建合適關係的節點類型並將主機節點加入相應的分組，從而將容器組按照分組關係部署到合適的物理節點上，來提高資源的可用性，業務的連續性。',
+    '節點類型為提供了主機節點分組功能，用戶可以通過創建合適關係的節點類型並將主機節點加入相應的分組，從而將容器組按照分組關係部署到合適的物理節點上，來提高資源的可用性，業務的連續性。',
 
   NODE_TYPE_DESCRIPTION_DEC:
-    '描述資訊在選擇節點類型時將幫助使用者更好的選擇節點類型並使用集群',
+    '描述資訊在選擇節點類型時將幫助用戶更好的選擇節點類型並使用集群',
 }

@@ -20,7 +20,7 @@ export default {
   'App Store Settings': '應用商店管理',
   'App Store': '應用商店',
   HOME_APP_STORE_DESC:
-    'KubeSphere 官方應用商店，提供部署及管理功能，使用者可以基於應用範本快速地一鍵部署應用',
+    'KubeSphere 官方應用商店，提供部署及管理功能，用戶可以基於應用模板快速地一鍵部署應用',
   'Find app': '尋找應用',
   TOTAL_CATE_COUNT: '共收錄 {total} 款應用',
   Discoveries: '發現',

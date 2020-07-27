@@ -98,9 +98,9 @@ export default {
   LOG_COLLECTION_ES_URL_TIPS:
     '預設使用系統部署的 Elasticsearch，也可以輸入外部或者單獨部署的 Elasticsearch 地址',
   LOG_COLLECTION_ES_USER_TIPS:
-    '如果您的 Elasticsearch 開啟了 X-Pack 内置的本地身份驗證功能，請設置使用者名稱和密碼。',
+    '如果您的 Elasticsearch 開啟了 X-Pack 内置的本地身份驗證功能，請設置用戶名稱和密碼。',
   LOG_COLLECTION_FLUENTD_URL_TIPS: '輸入接收紀錄的 Fluentd 的地址',
-  LOG_COLLECTION_FLUENTD_USER_TIPS: '用於身份驗證的使用者名稱',
+  LOG_COLLECTION_FLUENTD_USER_TIPS: '用於身份驗證的用戶名稱',
 
   'Refresh Interval': '刷新頻率',
   'Recently Updated': '最近刷新',
@@ -129,9 +129,9 @@ export default {
   LOG_EXPORT: '紀錄導出',
   CUSTOM_MONITORING_DASHBOARD: '自定義監控面板',
   CREATE_CUSTOM_MONITORING_DASHBOARD: '創建自定義監控面板',
-  SELECT_SUITABLE_MONITORING_TEMPLATE: '選擇適合您應用應用範本',
+  SELECT_SUITABLE_MONITORING_TEMPLATE: '選擇適合您應用應用模板',
   CUSTON_MONITORING_TEMPLATE_DESC: '監控面板將根據應用類型生成預設的面板配置',
-  SERVICE_BUILT_INTERFACE: '服務已内置監控數據抓取接口',
+  SERVICE_BUILT_INTERFACE: '服務已内置監控數據抓取介面',
   TOTAL_EVENTS_TODAY:
     '今日總共收錄了 <span class={className}> {events} </span> 條事件',
   NO_EVENTS_TODAY: '今日没有收錄的事件',

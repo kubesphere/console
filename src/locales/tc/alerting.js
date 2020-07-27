@@ -104,7 +104,7 @@ export default {
   ALERT_METRIC_NAME: '告警指標名稱',
   ALERT_COMMENT: '處理意見',
   ALERT_COMMENT_DESC:
-    '處理意見將作為告警處理的紀錄保留，但並不能作為處理告警的方法。紀錄訊息將給相關使用者查看該告警的處理情況。',
+    '處理意見將作為告警處理的紀錄保留，但並不能作為處理告警的方法。紀錄訊息將給相關用戶查看該告警的處理情況。',
   ALERTING_POLICY_CREATE_DESC: '您可以通過設置告警規則，即時發現資源的異常情況',
   'ALERTING-POLICY_BASEINFO_DESC': '設置告警策略的基礎資訊',
   'ALERTING-POLICY_MONITORING-TARGET_DESC': '選擇告警策略的監控目標',

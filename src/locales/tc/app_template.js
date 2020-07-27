@@ -23,7 +23,7 @@ export default {
 
   APP_TEMPLATE_DESCRIPTION_TITLE: '應用一鍵部署',
   APP_TEMPLATE_DESCRIPTION_ARTICLE:
-    '通過視覺化的方式在 KubeSphere 中展示並提供部署及管理功能，使用者可以基於應用範本快速地一鍵部署應用',
+    '通過視覺化的方式在 KubeSphere 中展示並提供部署及管理功能，用戶可以基於應用模板快速地一鍵部署應用',
 
   'App README': '應用介紹',
 

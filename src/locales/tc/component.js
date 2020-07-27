@@ -28,14 +28,14 @@ export default {
   'Service Details': '服務詳情',
 
   SERVICE_COMPONENTS_DESC:
-    '服務組件提供 KubeSphere、Kubernetes 和 OpenPitrix 集群内各項服務組件的健康狀態監控，可以查看目前集群的健康狀態和運行時間，能夠幫助使用者監測集群的狀況和即時定位問題。',
+    '服務組件提供 KubeSphere、Kubernetes 和 OpenPitrix 集群内各項服務組件的健康狀態監控，可以查看目前集群的健康狀態和運行時間，能夠幫助用戶監測集群的狀況和即時定位問題。',
 
-  'KS-ACCOUNT_DESC': '提供使用者、權限管理相關的 API',
+  'KS-ACCOUNT_DESC': '提供用戶、權限管理相關的 API',
   'KS-APIGATEWAY_DESC': '負責處理服務請求和處理 API 調用過程中的所有任務',
   'KS-APISERVER_DESC':
     '整個集群管理的 API 介面和集群内部各個模組之間通信的樞紐，以及集群安全控制',
   'KS-CONSOLE_DESC': '提供 KubeSphere 的控制台服務',
-  OPENLDAP_DESC: '負責集中儲存和管理使用者帳號資訊',
+  OPENLDAP_DESC: '負責集中儲存和管理用戶帳號資訊',
   REDIS_DESC: '將結構化的數據儲存在記憶體中的儲存系統',
 
   COREDNS_DESC: '為 Kubernetes 集群提供服務發現的功能',
@@ -55,7 +55,7 @@ export default {
   'OPENPITRIX-DB_DESC': 'OpenPitrix 資料庫',
   'OPENPITRIX-ETCD_DESC': '高可用鍵值儲存系統，用於共享配置、服務發現和全局鎖',
   'OPENPITRIX-IAM-SERVICE_DESC':
-    '控制哪些使用者可使用您的資源（身份驗證）以及可使用的資源和採用的方式（授權）',
+    '控制哪些用戶可使用您的資源（身份驗證）以及可使用的資源和採用的方式（授權）',
   'OPENPITRIX-JOB-MANAGER_DESC': '具體執行 OpenPitrix 應用實例生命週期 Action',
   'OPENPITRIX-MINIO_DESC': '對象儲存服務，用於儲存非結構化數據',
   'OPENPITRIX-REPO-INDEXER_DESC': '提供 OpenPitrix 的應用倉庫索引服務',
@@ -65,9 +65,9 @@ export default {
     '具體執行 OpenPitrix 應用實例生命週期 Action 子任務',
 
   'ISTIO-CITADEL_DESC':
-    '透過内建身份和憑證管理賦予强大的服務之間和最終使用者身份驗證',
+    '透過内建身份和憑證管理賦予强大的服務之間和最終用戶身份驗證',
   'ISTIO-GALLEY_DESC':
-    '代表其他的 Istio 控制平面組件，用來驗證使用者編寫的 Istio API 配置',
+    '代表其他的 Istio 控制平面組件，用來驗證用戶編寫的 Istio API 配置',
   'ISTIO-INGRESSGATEWAY_DESC': '提供外網訪問的網關',
   'ISTIO-PILOT_DESC': '為 Envoy sidecar 提供服務發現功能',
   'ISTIO-POLICY_DESC':

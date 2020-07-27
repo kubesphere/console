@@ -127,8 +127,8 @@ export default {
   PROPOSAL_FAILED: '提議失敗速率',
   PROPOSAL_PENDING: '提議待處理數',
 
-  EDIT_TEMPLATE: '編輯範本',
-  SAVE_TEMPLATE: '保存範本',
+  EDIT_TEMPLATE: '編輯模板',
+  SAVE_TEMPLATE: '保存模板',
 
   'No Refreshing': '不刷新',
 
@@ -166,7 +166,7 @@ export default {
   BASE_LINE_CHART_DESC:
     '折線圖主要用來展示數據相隨著時間推移的趨勢或變化。折線圖非常適合用於展示一個連續的二維數據，如某網站訪問人數或商品銷量價格的波動。',
   STACK_LINE_CHART_DESC:
-    '堆積面積圖是一種特殊的面積圖，可以用來比較在一個區間内的多個變量。如果有多個數據系列，並想分析每個類别的部分到整體的關系，並展現部分量對於總量的貢獻時，使用堆積面積圖是非常合適的選擇。',
+    '堆積面積圖是一種特殊的面積圖，可以用來比較在一個區間内的多個變量。如果有多個數據系列，並想分析每個類别的部分到整體的關係，並展現部分量對於總量的貢獻時，使用堆積面積圖是非常合適的選擇。',
   BAR_CHART_DESC:
     '柱狀圖是最常見的圖表類型，通過使用水平或垂直方向柱子的高度來顯示不同類别的數值。',
   BASE_BAR_CHART_DESC:
@@ -187,8 +187,8 @@ export default {
   'Custom Monitoring': '自定義監控',
   CustomMonitorDashboards: '自定義監控面板',
   CustomMonitorDashboard: '自定義監控面板',
-  CUSTOMMONITORDASHBOARD_DESC: '使用者可以根據自己需求定義應用監控面板',
-  CUSTOMMONITORDASHBOARD_CREATE_DESC: '使用者可以根據自己需求定義應用監控面板',
+  CUSTOMMONITORDASHBOARD_DESC: '用戶可以根據自己需求定義應用監控面板',
+  CUSTOMMONITORDASHBOARD_CREATE_DESC: '用戶可以根據自己需求定義應用監控面板',
 
   'Default Color': '預設配色',
   'Cool Color': '冷色調',

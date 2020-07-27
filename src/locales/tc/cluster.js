@@ -58,7 +58,7 @@ export default {
 
   'Choose a provider': '選擇服務商',
 
-  'User Projects': '使用者項目',
+  'User Projects': '用戶項目',
   'System Projects': '系統項目',
 
   'Waiting for the cluster to join': '等待集群加入',
@@ -150,7 +150,7 @@ export default {
     '集群授權可以將集群通過授權的形式指定给企業空間使用該集群',
 
   PUBLIC_CLUSTER_DESC:
-    '公開狀態的集群意味著平台内的使用者都可以使用該集群，並在集群中創建和調度資源',
+    '公開狀態的集群意味著平台内的用戶都可以使用該集群，並在集群中創建和調度資源',
 
   CLUSTER_AUTHORIZATION_DESC:
     '集群授權可以將集群通過授權的形式指定給企業空間使用該集群',
@@ -160,7 +160,7 @@ export default {
     '集群可以通過“編輯可見範圍”將集群授權給不同的企業空間使用',
   CLUSTER_VISIBILITY_Q2: '什麼是公開集群?',
   CLUSTER_VISIBILITY_A2:
-    '公開狀態的集群意味著平台内的使用者都可以使用該集群，並在集群中創建和調度資源',
+    '公開狀態的集群意味著平台内的用戶都可以使用該集群，並在集群中創建和調度資源',
 
   SELECT_CLUSTERS_DESC: '選擇企業空間下可用的集群',
 
@@ -170,9 +170,9 @@ export default {
   INPUT_KUBECONFIG: '請填寫目標集群的 KubeConfig',
 
   CLUSTER_DIRECT_IMPORT_TIP:
-    'KubeSphere 多集群控制平面通過提供的 kubeconfig 來直接連接導入集群，此種方式要求目前集群能夠通過 kubeconfig 中的 server 地址直接訪問待導入集群. </br>通常適用於:</br>1. 目前集群和待導入集群在同一内網網路中</br>2. 目前集群和待導入集群已通過vpn或穿隧協議等其它技術連通所在網路</br>3. kubeconfig 的 server 地址可以通過公網訪問',
+    'KubeSphere 多集群控制平面通過提供的 kubeconfig 來直接連接導入集群，此種方式要求目前集群能夠通過 kubeconfig 中的 server 地址直接訪問待導入集群. </br>通常適用於:</br>1. 目前集群和待導入集群在同一内網網路中</br>2. 目前集群和待導入集群已通過vpn或穿隧協定等其它技術連通所在網路</br>3. kubeconfig 的 server 地址可以通過公網訪問',
   CLUSTER_AGENT_IMPORT_TIP:
-    'KubeSphere 控制平面通過代理方式連接待導入集群，控制平面啟動一個公開的代理服務，待導入集群創建相應的客戶端組件連接代理服務，與控制平面之間建立一个反向代理。此種方式不需要待導入集群和控制平面在同一網路，也不要求待導入集群暴露集群的 apiserver 地址，但會有一定的網路性能損耗</br></br>通常適用於:</br>1. 目前集群和待導入集群不在同一網路中<br/>2. 目前集群和待導入集群無法通過vpn或穿隧協議等其它技術連通所在網路<br/>3. 對集群間網路性能損耗能容忍',
+    'KubeSphere 控制平面通過代理方式連接待導入集群，控制平面啟動一個公開的代理服務，待導入集群創建相應的客戶端組件連接代理服務，與控制平面之間建立一个反向代理。此種方式不需要待導入集群和控制平面在同一網路，也不要求待導入集群暴露集群的 apiserver 地址，但會有一定的網路性能損耗</br></br>通常適用於:</br>1. 目前集群和待導入集群不在同一網路中<br/>2. 目前集群和待導入集群無法通過vpn或穿隧協定等其它技術連通所在網路<br/>3. 對集群間網路性能損耗能容忍',
 
   HOW_TO_GET_KUBECONFIG: '如何獲取KubeConfig?',
 
