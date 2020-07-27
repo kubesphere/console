@@ -78,18 +78,19 @@ export default class WithCredentials extends React.Component {
 
   componentDidMount() {
     this.props.store.getCredentials()
+    this.initEditor()
   }
 
-  static getDerivedStateFromProps(nextProps) {
-    if (nextProps.edittingData.type === 'withCredentials') {
-      const str = get(nextProps, 'edittingData.data.value', '')
+  initEditor = () => {
+    const { edittingData } = this.props
+    if (edittingData.type === 'withCredentials') {
+      const str = get(edittingData, 'data.value', '')
       if (str) {
         const formData = groovyToJS(str)
         const credentialType = setCredentialType(str)
-        return { formData, credentialType }
+        this.setState({ formData, credentialType })
       }
     }
-    return null
   }
 
   @action
@@ -98,7 +99,11 @@ export default class WithCredentials extends React.Component {
     const selectedCredential = credentials.find(
       credential => credential.value === id
     )
-    this.state.credentialType = selectedCredential.type
+
+    this.setState({
+      credentialType: selectedCredential.type,
+      formData: { credentialsId: id },
+    })
   }
 
   handleOk = () => {
@@ -145,7 +150,7 @@ export default class WithCredentials extends React.Component {
             <Form.Item label={t('passphrase Variable')}>
               <Input name="passphraseVariable" />
             </Form.Item>
-            <Form.Item label={t('username Variable')}>
+            <Form.Item label={t('Username Variable')}>
               <Input name="usernameVariable" />
             </Form.Item>
           </React.Fragment>

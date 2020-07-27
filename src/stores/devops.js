@@ -16,9 +16,8 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { set, get, isArray } from 'lodash'
+import { set, get, isArray, omit } from 'lodash'
 import { action, observable } from 'mobx'
-import { getFilterString } from 'utils'
 
 import Base from 'stores/base'
 
@@ -69,6 +68,9 @@ export default class DevOpsStore extends Base {
   getBaseUrlV2 = params =>
     `kapis/devops.kubesphere.io/v1alpha2${this.getPath(params)}/`
 
+  getBaseUrlV3 = params =>
+    `kapis/tenant.kubesphere.io/v1alpha2${this.getPath(params)}/devops`
+
   getDevopsUrlV2 = params => `${this.getBaseUrlV2(params)}devops/`
 
   getResourceUrl = ({ workspace }) =>
@@ -98,36 +100,19 @@ export default class DevOpsStore extends Base {
   }
 
   @action
-  async fetchList({
-    workspace,
-    cluster,
-    limit,
-    page,
-    order,
-    reverse,
-    keyword,
-  } = {}) {
+  async fetchList({ workspace, cluster, more, type, ...params } = {}) {
     this.list.isLoading = true
-    const params = {}
 
     if (workspace) {
       params.labelSelector = `kubesphere.io/workspace=${workspace}`
     }
 
-    if (limit !== Infinity) {
-      params.paging = `limit=${limit || 10},page=${page || 1}`
-    }
-
-    if (keyword) {
-      params.conditions = getFilterString({ keyword })
-    }
-
-    if (order) {
-      params.orderBy = order
-    }
-
-    if (reverse) {
-      params.reverse = true
+    if (params.limit === Infinity || params.limit === -1) {
+      params.limit = -1
+      params.page = 1
+    } else {
+      params.limit = params.limit || 10
+      params.page = params.page || 1
     }
 
     const result = await request.get(
@@ -150,12 +135,10 @@ export default class DevOpsStore extends Base {
 
     this.list.update({
       data,
-      total: get(result, 'total_count') || data.length || 0,
-      limit: Number(limit) || 10,
-      page: Number(page) || 1,
-      order,
-      reverse,
-      keyword,
+      total: get(result, 'totalItems') || data.length || 0,
+      ...omit(params, 'labelSelector'),
+      limit: Number(params.limit) || 10,
+      page: Number(params.page) || 1,
       cluster: globals.app.isMultiCluster ? cluster : undefined,
       isLoading: false,
       selectedRowKeys: [],
@@ -190,6 +173,12 @@ export default class DevOpsStore extends Base {
         data,
         'metadata.annotations["kubesphere.io/description"]',
         item.description
+      )
+
+      data = set(
+        data,
+        'metadata.annotations["kubesphere.io/alias-name"]',
+        item.aliasName
       )
 
       return this.submitting(
