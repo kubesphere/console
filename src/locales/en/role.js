@@ -202,23 +202,25 @@ export default {
   CRD_MANAGEMENT_DESC: 'Manage, view, modify and delele cluster CRDs',
   COMPONENTS_MANAGEMENT_DESC: 'Manage cluster components',
   CLUSTERS_VIEW_DESC:
-    'View all clusters and cluster resources within a platform',
+    'Grant permission to view all clusters and cluster resources within a platform',
   CLUSTERS_MANAGEMENT_DESC:
-    'Create and delete clusters; manage resources in all clusters',
-  WORKSPACES_VIEW_DESC: 'View the current workspaces that users have access to',
-  ROLES_VIEW_DESC: 'View the current roles in the platform',
-  USERS_VIEW_DESC: 'View users in the current platform',
+    'Grant permission to create and delete clusters, and to manage resources in all clusters',
+  WORKSPACES_VIEW_DESC:
+    'Grant permission to view the current workspaces that users have access to',
+  ROLES_VIEW_DESC: 'Grant permission to view the current roles in the platform',
+  USERS_VIEW_DESC: 'Grant permission to view users in the current platform',
 
   WORKSPACES_MANAGEMENT_DESC:
-    'Support workspace management, including adding/deleting/editing workspaces; view all workspaces in the platform',
+    'Grant permission to manage workspaces, including adding/deleting/editing workspaces, and to view all workspaces in the platform',
   USERS_MANAGEMENT_DESC:
-    'Support account management, including adding/deleting/updating account information',
+    'Grant permission to manage accounts, including adding/deleting/updating account information',
   ROLES_MANAGEMENT_DESC:
-    'Support account role management, including adding/deleting/updating account roles',
-  APP_TEMPLATES_VIEW_DESC: 'View platform App Store',
+    'Grant permission to manage account roles, including adding/deleting/updating account roles',
+  APP_TEMPLATES_VIEW_DESC: 'Grant permission to view platform App Store',
   APP_TEMPLATES_MANAGEMENT_DESC:
-    'Manage App Store at platform level and responsible for unified lifecycle management of cloud native applications including their release, removal and review',
-  PLATFORM_SETTINGS_MANAGEMENT_DESC: 'Manage platform settings',
+    'Grant permission to manage App Store at platform level and responsible for unified lifecycle management of cloud native applications including their release, removal and review',
+  PLATFORM_SETTINGS_MANAGEMENT_DESC:
+    'Grant permission to manage platform settings',
   ACCOUNT_ROLE_DESC:
     'Account roles define the authorization an account has in the platform.',
   ACCOUNT_ROLE_CREATE_DESC:
@@ -254,54 +256,65 @@ export default {
   CLUSTER_MONITORING_VIEW_DESC:
     'View cluster physical resources and monitoring data of application resources',
   APPLICATION_WORKLOADS_VIEW_DESC:
-    'View applications, services, workloads and tasks in the project',
+    'Grant permission to view applications, services, workloads and tasks in the project',
   APPLICATION_WORKLOADS_MANAGEMENT_DESC:
-    'Create, edit and delete applications, services, workloads and tasks in the project',
-  VOLUMES_VIEW_DESC: 'View project volumes',
-  VOLUMES_MANAGEMENT_DESC: 'Create/edit/delete project volumes',
-  SECRETS_VIEW_DESC: 'View project secrets',
-  SECRETS_MANAGEMENT_DESC: 'Create/edit/delete project secrets',
+    'Grant permission to create, edit and delete applications, services, workloads and tasks in the project',
+  VOLUMES_VIEW_DESC: 'Grant permission to view project volumes',
+  VOLUMES_MANAGEMENT_DESC:
+    'Grant permission to create/edit/delete project volumes',
+  SECRETS_VIEW_DESC: 'Grant permission to view project secrets',
+  SECRETS_MANAGEMENT_DESC:
+    'Grant permission to create/edit/delete project secrets',
 
-  CUSTOM_MONITORING_DESC: 'Create and manage custom monitoring data',
+  CUSTOM_MONITORING_DESC:
+    'Grant permission to create and manage custom monitoring data',
 
-  ALERTING_POLICIES_VIEW_DESC: 'View alerting policies',
-  ALERTING_POLICIES_MANAGEMENT_DESC: 'Create/edit/delete alerting policies',
-  ALERTING_MESSAGES_VIEW_DESC: 'View alerting messages',
-  ALERTING_MESSAGES_MANAGEMENT_DESC: 'Comment/delete alerting messages',
+  ALERTING_POLICIES_VIEW_DESC: 'Grant permission to view alerting policies',
+  ALERTING_POLICIES_MANAGEMENT_DESC:
+    'Grant permission to create/edit/delete alerting policies',
+  ALERTING_MESSAGES_VIEW_DESC: 'Grant permission to view alerting messages',
+  ALERTING_MESSAGES_MANAGEMENT_DESC:
+    'Grant permission to comment/delete alerting messages',
 
-  PROJECT_ROLES_VIEW_DESC: 'View project roles',
+  PROJECT_ROLES_VIEW_DESC: 'Grant permission to view project roles',
   PROJECT_ROLES_MANAGEMENT_DESC:
-    'Create, edit and delete project roles (system preset roles cannot be deleted)',
-  PROJECT_MEMBERS_VIEW_DESC: 'View project members',
-  PROJECT_MEMBERS_MANAGEMENT_DESC: 'Invite/edit/remove project members',
+    'Grant permission to create, edit and delete project roles (system preset roles cannot be deleted)',
+  PROJECT_MEMBERS_VIEW_DESC: 'Grant permission to view project members',
+  PROJECT_MEMBERS_MANAGEMENT_DESC:
+    'Grant permission to invite/edit/remove project members',
   PROJECT_SETTINGS_DESC:
     'Manage project settings and edit project information, including Internet access, network policies, resource quota, and disk log collection and configuration',
   PROJECTS_MANAGEMENT_DESC:
-    'Manage all projects in the workspace, including creating/editing/deleting projects',
+    'Grant permission to manage all projects in the workspace, including creating/editing/deleting projects',
   PROJECTS_CREATE_DESC:
-    'Have the authorization to create projects. The project administrator has to be the creator',
-  PROJECTS_VIEW_DESC: 'View all projects in the workspace',
+    'Grant permission to create projects. The creator has to be the project administrator',
+  PROJECTS_VIEW_DESC: 'Grant permission to view all projects in the workspace',
   FEDERATED_PROJECTS_MANAGEMENT_DESC:
     'Manage all multi-cluster projects in the workspace, including creating/editing/deleting multi-cluster projects',
 
   DEVOPS_MANAGEMENT_DESC:
-    'Manage all DevOps projects in the workspace, including creating/editing/deleting DevOps projects',
+    'Grant permission to manage all DevOps projects in the workspace, including creating/editing/deleting DevOps projects',
   DEVOPS_CREATE_DESC:
-    'Have the authorization to create DevOps projects. The DevOps project administrator has to be the creator',
-  DEVOPS_VIEW_DESC: 'View all DevOps projects in the workspace',
+    'Grant permission to create DevOps projects. The creator has to be the DevOps project administrator',
+  DEVOPS_VIEW_DESC:
+    'Grant permission to view all DevOps projects in the workspace',
 
-  WORKSPACE_ROLES_VIEW_DESC: 'View workspace roles',
+  WORKSPACE_ROLES_VIEW_DESC: 'Grant permission to view workspace roles',
   WORKSPACE_ROLES_MANAGEMENT_DESC:
-    'Create, edit and delete workspace roles (system preset roles cannot be deleted)',
-  WORKSPACE_MEMBERS_VIEW_DESC: 'View workspace members',
-  WORKSPACE_MEMBERS_MANAGEMENT_DESC: 'Invite/edit/remove workspace members',
-  WORKSPACE_APP_REPOS_VIEW_DESC: 'View app repository lists',
-  WORKSPACE_APP_REPOS_MANAGEMENT_DESC: 'Create/edit/delete app repositories',
-  WORKSPACE_APP_TEMPLATES_VIEW_DESC: 'View workspace app templates',
+    'Grant permission to create, edit and delete workspace roles (system preset roles cannot be deleted)',
+  WORKSPACE_MEMBERS_VIEW_DESC: 'Grant permission to view workspace members',
+  WORKSPACE_MEMBERS_MANAGEMENT_DESC:
+    'Grant permission to invite/edit/remove workspace members',
+  WORKSPACE_APP_REPOS_VIEW_DESC:
+    'Grant permission to view app repository lists',
+  WORKSPACE_APP_REPOS_MANAGEMENT_DESC:
+    'Grant permission to create/edit/delete app repositories',
+  WORKSPACE_APP_TEMPLATES_VIEW_DESC:
+    'Grant permission to view workspace app templates',
   WORKSPACE_APP_TEMPLATES_MANAGEMENT_DESC:
-    'Upload/edit/delete workspace app templates; release/remove apps to App Store in the platform',
+    'Grant permission to upload/edit/delete workspace app templates, and to release/remove apps to/from App Store in the platform',
   WORKSPACE_SETTINGS_DESC:
-    'Manage workspace settings, edit workspace information, network policies, etc.',
+    'Grant permission to manage workspace settings, edit workspace information, network policies, etc.',
 
   ROLE_PLATFORM_ADMIN:
     'Platform administrator who can manage all resources in the platform.',
@@ -311,7 +324,7 @@ export default {
   ROLE_CLUSTER_ADMIN:
     'Allows cluster-admin access to perform any action on any resource. It gives full control over all resources in the cluster and in all namespaces.',
   ROLE_CLUSTER_VIEWER:
-    'Allows cluster-viwer to view all resources in the cluster.',
+    'Allows cluster viewer to view all resources in the cluster.',
   ROLE_USERS_MANAGER: 'User manager in the platform who manages all users.',
   ROLE_WORKSPACES_MANAGER:
     'Workspace manager in the platform who manages all workspaces in the platform.',
