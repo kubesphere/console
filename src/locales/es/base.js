@@ -436,15 +436,7 @@ export default {
   TOTAL_ITEMS: 'Total de {num} artículos',
   EVENT_NORMAL: 'Normal',
   EVENT_WARNING: 'Advertencia',
-  ASCENDING_ORDER: 'Orden ascendente',
-  DESCENDING_ORDER: 'Orden descendiente',
-  OPERATE: 'Operar',
-  PLEASE_SELECT: 'Por favor selecciona',
-  FILTER: 'Filtrar',
-  CANCEL: 'Cancelar',
-  NO_RESULTS_FOUND: 'No se han encontrado resultados',
-  REACH_BOTTOM: 'Ir al final',
-  CLEAR_VALUE: 'Borrar',
+
   QUOTA_LIMIT_TIP:
     'Esta configuración hace referencia a la gestión de los limits de los recursos de Kubernetes, que se utiliza principalmente para limitar el valor máximo de los recursos del host utilizados por cada contenedor.',
   NOT_FOUND_DESC:

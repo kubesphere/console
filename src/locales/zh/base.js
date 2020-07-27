@@ -341,16 +341,6 @@ export default {
   EVENT_NORMAL: '正常',
   EVENT_WARNING: '异常',
 
-  ASCENDING_ORDER: '升序排列',
-  DESCENDING_ORDER: '降序排列',
-  OPERATE: '操作',
-  PLEASE_SELECT: '请选择',
-  FILTER: '过滤选项',
-  CANCEL: '取消',
-  NO_RESULTS_FOUND: '暂无结果',
-  REACH_BOTTOM: '已到底部',
-  CLEAR_VALUE: '清除',
-
   'Edit Mode': '编辑模式',
   'Load More': '加载更多',
   'Please enter a name to find': '请输入名称进行查找',

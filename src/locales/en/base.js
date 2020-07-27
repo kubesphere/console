@@ -446,15 +446,6 @@ export default {
   EVENT_NORMAL: 'Normal',
   EVENT_WARNING: 'Warning',
 
-  ASCENDING_ORDER: 'Ascending Order',
-  DESCENDING_ORDER: 'Descending order',
-  OPERATE: 'Operate',
-  PLEASE_SELECT: 'Please select',
-  FILTER: 'Filter',
-  CANCEL: 'Cancel',
-  NO_RESULTS_FOUND: 'No result found',
-  REACH_BOTTOM: 'Reach bottom',
-  CLEAR_VALUE: 'Clear',
   QUOTA_LIMIT_TIP:
     'The configuration here refers to Limits in Kubernetes resource management, which is mainly used to limit the maximum value of resources used by each container.',
 
