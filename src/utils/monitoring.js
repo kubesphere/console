@@ -381,10 +381,18 @@ export const fillEmptyMetrics = (params, result) => {
           {}
         )
 
+        let startTime
+        if (curValues[0] && curValues[0][0]) {
+          startTime =
+            params.start - step + ((curValues[0][0] - params.start) % step)
+        } else {
+          startTime = params.start
+        }
+
         if (curValues.length < correctCount) {
           const newValues = []
           for (let index = 0; index < correctCount; index++) {
-            const time = format(params.start + index * step)
+            const time = format(startTime + index * step)
             newValues.push([time, curValuesMap[time] || '0'])
           }
           resultItem.values = newValues
