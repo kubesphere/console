@@ -134,7 +134,7 @@ export default {
   NOTIFY_TIME_TIP: '可以设置一个告警推送的有效时间范围',
   NOTIFY_LIST_ADD_TIP: '按下确认键或点击添加',
   NOTIFY_LIST_INPUT_ERRPR_TIP: '输入格式有误，请输入正确的邮箱地址',
-  NOTIFY_LIST_INPUT_PLACEHOLDER: '输入邮箱查找通知的成员',
+  NOTIFY_LIST_INPUT_PLACEHOLDER: '输入用户名查找通知的成员',
   NOTIFY_CURRENT_COUNT: '当前第 {count} 次通知',
   RESOURCE_SELECTOR_FORM_TIP: '请填写标签选择器',
   RESOURCE_NODE_FORM_TIP: '请选择集群节点',
