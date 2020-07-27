@@ -20,7 +20,12 @@ import React, { Component } from 'react'
 import classnames from 'classnames'
 
 import { Modal } from 'components/Base'
-import { Icon } from '@pitrix/lego-ui'
+
+import { ReactComponent as BarIcon } from 'src/assets/bar-chart.svg'
+import { ReactComponent as LineIcon } from 'src/assets/line-chart.svg'
+// import { ReactComponent as TableIcon } from 'src/assets/table-chart.svg'
+
+import positionPreviewRight from 'src/assets/new-custom-monitor-position-right.png'
 
 import FormGroupCard from '../FormGroupCard'
 import styles from './index.scss'
@@ -35,7 +40,7 @@ export default class GraphTypeSelectModal extends Component {
    */
   typeConfig = {
     line: {
-      icon: 'linechart',
+      Icon: LineIcon,
       name: t('LINE_CHART'),
       desc: [
         {
@@ -51,9 +56,10 @@ export default class GraphTypeSelectModal extends Component {
           description: t('STACK_LINE_CHART_DESC'),
         },
       ],
+      postionIMG: positionPreviewRight,
     },
     bar: {
-      icon: 'barchart',
+      Icon: BarIcon,
       name: t('BAR_CHART'),
       desc: [
         {
@@ -69,6 +75,7 @@ export default class GraphTypeSelectModal extends Component {
           description: t('STACK_BAR_CHART_DESC'),
         },
       ],
+      postionIMG: positionPreviewRight,
     },
   }
 
@@ -98,7 +105,7 @@ export default class GraphTypeSelectModal extends Component {
       >
         <div className={styles.wrapper}>
           <FormGroupCard label={t('GRAPH_TYPES')}>
-            {Object.entries(this.typeConfig).map(([key, message]) => (
+            {Object.entries(this.typeConfig).map(([key, Message]) => (
               <div
                 key={key}
                 data-type={key}
@@ -110,13 +117,8 @@ export default class GraphTypeSelectModal extends Component {
                     [styles.select]: key === type,
                   })}
                 >
-                  <Icon
-                    className={styles.icon}
-                    name={message.icon}
-                    size={40}
-                    type={key === type ? 'light' : 'dark'}
-                  />
-                  <h4>{message.name}</h4>
+                  <Message.Icon className={styles.icon} />
+                  <h4>{Message.name}</h4>
                 </div>
               </div>
             ))}
@@ -130,20 +132,7 @@ export default class GraphTypeSelectModal extends Component {
           ))}
           <FormGroupCard label={t('DISPLAY_POSITION')}>
             <div className={styles.position}>
-              <div className={styles.navs}>
-                <div />
-                <div />
-              </div>
-              <div className={styles.placeholderWrapper}>
-                <div className={styles.placeholder}>
-                  <div className="text-center">
-                    <Icon name={config.icon} size={40} />
-                    <div className="margin-t12">
-                      {t('EMPTY_CHART_PLACEHOLDER')}
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <img src={config.postionIMG} alt="right" />
             </div>
           </FormGroupCard>
         </div>
