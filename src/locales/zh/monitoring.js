@@ -175,6 +175,7 @@ export default {
     '堆叠柱状图是柱状图的扩展，不同的是，柱状图的数据值为并行排列，堆叠柱图则是一个个叠加起来的。它可以展示每一个分类的总量，以及该分类包含的每个小分类的大小及占比，因此非常适合处理部分与整体的关系。',
   SELECT_CHART_TYPE: '选择图表类型',
   SELECT_CHART_TYPE_MODAL_DESC: '选择您要添加的自定义图表类型',
+  EMPTY_CHART_PLACEHOLDER: '图表将显示在此区域',
   DISPLAY_POSITION: '图表布局位置',
   DISPLAY_FORMAT: '显示格式',
   FIELD_NAME: '字段名称',
