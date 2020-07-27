@@ -102,11 +102,6 @@ class ResourceStatus extends React.Component {
     this.store.scale({ cluster, namespace, name }, newReplicas)
   }
 
-  handlePodUpdate = () => {
-    const { cluster, namespace, name } = this.store.detail
-    this.store.fetchDetail({ cluster, namespace, name, silent: true })
-  }
-
   handleDeleteHpa = () => {
     this.store
       .patch(this.store.detail, {
@@ -206,13 +201,7 @@ class ResourceStatus extends React.Component {
   }
 
   renderPods() {
-    return (
-      <PodsCard
-        prefix={this.prefix}
-        detail={this.store.detail}
-        onUpdate={this.handlePodUpdate}
-      />
-    )
+    return <PodsCard prefix={this.prefix} detail={this.store.detail} />
   }
 
   renderContent() {
