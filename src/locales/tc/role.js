@@ -266,4 +266,6 @@ export default {
   ROLE_CREATE_TIP_TITLE: '接下來要做的事情',
   ROLE_CREATE_TIP_MESSAGE:
     '接下來您需要編輯權限，編輯好權限後帳號角色才能創建成功。',
+
+  WORKSPACE_SETTINGS_DESC: '管理企業空間設置，編輯企業空間信息、網絡策略等',
 }
