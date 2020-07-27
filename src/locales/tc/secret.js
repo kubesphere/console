@@ -54,7 +54,7 @@ export default {
   'Example: docker.io': '例：docker.io',
 
   IMAGE_REGISTRY_REQUIRED_DESC:
-    '鏡像倉庫密鑰需要至少包含倉庫地址, 使用者名稱, 密碼資訊.',
+    '鏡像倉庫密鑰需要至少包含倉庫地址, 用戶名稱, 密碼資訊.',
 
   IMAGE_REGISTRY_VALIDATE_TIP: '創建鏡像倉庫密鑰前, 請先驗證密鑰是否可用',
 

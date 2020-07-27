@@ -23,7 +23,7 @@ export default {
   'Deploy New Application': '部署新應用',
   'Deploy App': '部署應用',
   'Create Composing Application': '構建應用',
-  'App Template': '應用範本',
+  'App Template': '應用模板',
   Deploy: '部署',
   'Application Type': '應用類型',
   TOTAL_APPS: '共計 {num} 個應用',
@@ -44,11 +44,11 @@ export default {
   'Application governance is not enabled': '應用治理未啟用',
 
   'Build an app by services': '通過服務構建應用',
-  'Build an app by app template': '應用範本部署',
+  'Build an app by app template': '應用模板部署',
   'Choose existing services or create new service components to build an app':
     '選擇已有服務或者新建服務組件來構建應用',
   'Deploy applications with one-click application templates provided by Kubesphere':
-    '通過 Kubesphere 提供的應用範本一鍵部署應用',
+    '通過 Kubesphere 提供的應用模板一鍵部署應用',
   'Sample apps can help you get started with app creation and app governance':
     '示例應用可以幫助您快速入手應用創建, 以及應用治理功能',
 
@@ -116,9 +116,9 @@ export default {
   'Circuit Breaker': '熔斷器',
 
   APPLICATIONS_DESC:
-    '應用為使用者提供完整的業務功能，由一個或多個特定功能的組件組成。',
+    '應用為用戶提供完整的業務功能，由一個或多個特定功能的組件組成。',
   APP_DEPLOYMENT_DESC:
-    '輕量級、可移植、自包含的軟體封裝技術，使應用可以在幾乎任何地方以相同的方式運行。',
+    '輕量化、可移植、自包含的軟體封裝技術，使應用可以在幾乎任何地方以相同的方式運行。',
   APP_GOVERNANCE_DESC:
     '開啟應用治理後會在每個組件中以 SideCar 的方式注入 Istio-proxy 容器 <a href="https://istio.io/docs/setup/kubernetes/additional-setup/sidecar-injection/" target="_blank">了解更多</a>',
 
@@ -170,15 +170,15 @@ export default {
   'Continuous error response (5xx) number': '連續錯誤響應(5xx)個數',
   'The number of consecutive 5xx errors in one inspection cycle':
     '在一個檢查週期内連續出现5xx錯誤的個數',
-  'Inspection period (unit: s)': '檢查週期(单位: s)',
+  'Inspection period (unit: s)': '檢查週期(單位: s)',
   'The response code will be filtered in the inspection cycle.':
     '將會對檢查週期内的響應碼進行篩選',
-  'Pod isolation ratio (unit: %)': '容器組隔離比例(单位: %)',
+  'Pod isolation ratio (unit: %)': '容器組隔離比例(單位: %)',
   'Base ejection time (s)': '短隔離時間(s)',
   'Hash based on a specific HTTP header.':
     '根據 HTTP header 中的内容獲取哈希值',
   'Hash based on HTTP cookie.': '根據 HTTP cookie 中的内容獲取哈希值',
-  'Hash based on the source IP address.': '根據源 IP 獲取哈希值',
+  'Hash based on the source IP address.': '根據來源 IP 獲取哈希值',
   'Based on HTTP header': '根據 HTTP header',
   'Based on HTTP cookie': '根據 HTTP cookie',
 
@@ -192,11 +192,11 @@ export default {
   POD_ISOLATION_RATIO_DESC:
     '允許容器組被隔離的最大比例。採用向上取整，若10个實例，設為13%則最多會隔離2个實例',
   BASE_EJECTION_TIME_DESC:
-    '容器组第一次被隔离的时间，之后每次隔离时间为次数与最短隔离时间的乘积',
+    '容器組第一次被隔離的時間，之後每次隔離時間為次數與最短隔離時間的乘積',
   CIRCUIT_DESC:
     '熔斷機制是應對雪崩效應的一種微服務鏈路保護機制。當扇出鏈路的某個微服務不可用或者響應時間太長時，會進行服務的降級，進而熔斷該節點微服務的調用，快速返回錯誤的響應資訊。當檢測到該節點微服務調用響應正常後，恢復調用鏈路。',
 
-  'Please input component version': '请输入组件版本',
+  'Please input component version': '請輸入組件版本',
   'Invalid version': '版本格式不合法',
   WORKLOAD_NAME_EXIST: '工作負載 {name} 已存在',
 
@@ -221,17 +221,17 @@ export default {
     '使用應用治理需要創建自制應用並對每項服務開啟服務治理功能',
   'App store deployment': '應用商店部署',
   'From App Store': '來自應用商店',
-  'From App Templates': '來自應用範本',
+  'From App Templates': '來自應用模板',
   'From third party Helm': '來自第三方 Helm',
   FROM_APP_STORE_DESC:
     '來自KubeSphere官方應用商店，提供高質量應用和簡易的部署方式',
   FROM_APP_TEMPLATES_DESC:
-    '來自於企業空間的自制應用範本以及應用倉庫中添加的第三方Helm 應用範本',
+    '來自於企業空間的自制應用模板以及應用倉庫中添加的第三方Helm 應用模板',
   COMPOSING_APP_DESC: '通過資源編排的方式發佈服務構建應用(支持應用治理功能)',
   APP_TEMPLATES_MODAL_DESC:
-    '應用範本來自於企業空間和第三方的Helm應用範本，支持一鍵部署並可通過視覺化的方式在KubeSphere中展示並提供部署及管理的功能',
+    '應用模板來自於企業空間和第三方的Helm應用模板，支持一鍵部署並可通過視覺化的方式在KubeSphere中展示並提供部署及管理的功能',
   APP_REPOS_DESC:
-    '應用倉庫來自於第三方的 Helm Chart Repo，通過視覺化的方式在 KubeSphere 中展示並提供部署及管理功能，使用者可以基於應用倉庫中的範本快速地一鍵部署應用。',
+    '應用倉庫來自於第三方的 Helm Chart Repo，通過視覺化的方式在 KubeSphere 中展示並提供部署及管理功能，用戶可以基於應用倉庫中的模板快速地一鍵部署應用。',
   SEARCH_TIPS: '您可以根據相關條件進行過濾',
 
   'From workspace': '來自企業空間',

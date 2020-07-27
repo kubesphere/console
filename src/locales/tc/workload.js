@@ -89,7 +89,7 @@ export default {
 
   'Job Settings': '任務設置',
   'CronJob Settings': '定時任務設置',
-  'Job Template': '任務範本',
+  'Job Template': '任務模板',
 
   'Mount Volumes': '掛載儲存',
 
@@ -209,7 +209,7 @@ export default {
   Arguments: '参數',
   Argument: '参數',
   'Add argument': '添加参數',
-  Protocols: '協議',
+  Protocols: '協定',
   'Session Affinity': '會話親和性',
   'environment variables': '環境變量',
   'Add Environment Variable': '添加環境變量',
@@ -223,7 +223,7 @@ export default {
   'Add Existing Volume': '添加已有儲存卷',
   'Add Temporary Volume': '添加臨時儲存卷',
   'Add HostPath': '添加 HostPath',
-  'Add Volume Template': '添加儲存卷範本',
+  'Add Volume Template': '添加儲存卷模板',
 
   'Support EmptyDir and PersistentVolumeClaim.':
     '支持臨時儲存卷以及持久化儲存卷',
@@ -233,7 +233,7 @@ export default {
 
   'Please specify an image': '請指定鏡像',
 
-  'Please select protocol': '請選擇協議',
+  'Please select protocol': '請選擇協定',
   'Please input port': '請輸入端口',
   'Please input command': '請輸入命令',
   'Please input volume name': '請輸入儲存卷名稱',
@@ -257,7 +257,7 @@ export default {
   DEPLOYMENTS_BASEINFO_DESC:
     '您可以給部署取一個名字，以便在使用的時候容易區分。',
   DEPLOYMENT_POD_TEMPLATE_DESC:
-    '工作負載可以根據容器組範本以及您設置的副本數量，自動生成指定數量的容器組',
+    '工作負載可以根據容器組模板以及您設置的副本數量，自動生成指定數量的容器組',
   DEPLOYMENTS_VOLUME_DESC:
     '可以將同一個臨時儲存卷或持久化儲存卷掛載至部署的容器組的各個副本内。',
   DEPLOYMENT_LABEL_SETTINGS_DESC:
@@ -273,7 +273,7 @@ export default {
     '您可以給有狀態副本起一個名字，以便在使用的時候容易區分。',
   STATEFULSETS_VOLUME_TEMPLATE_DESC:
     '為有狀態副本集的每個容器組創建專屬的持久化儲存卷，並掛載至相應的容器組',
-  STATEFULSETS_ADD_VOLUME_TEMPLATE_DESC: '請添加一個儲存卷範本',
+  STATEFULSETS_ADD_VOLUME_TEMPLATE_DESC: '請添加一個儲存卷模板',
   STATEFULSETS_SERVICE_CONFIG_DESC:
     '集群不為服務生成 IP，集群内部通過服務的後端 Endpoint IP 直接訪問服務。此類型適合後端異構的服務，比如需要區分主從的服務。',
 
@@ -283,7 +283,7 @@ export default {
     '可將 HostPath，臨時儲存卷，持久化儲存卷掛載至守護進程集的容器組内。',
 
   JOBS_BASEINFO_DESC: '',
-  JOBS_POD_TEMPLATE_DESC: '指定任務中運行的容器組範本',
+  JOBS_POD_TEMPLATE_DESC: '指定任務中運行的容器組模板',
   JOBS_VOLUME_DESC: '可以將臨時儲存卷，持久化儲存卷掛載至任務的容器組内。',
   CRONJOBS_BASEINFO_DESC: '創建定時任務所需的基本資訊，需指定名稱與定時計畫',
   CRONJOBS_VOLUME_DESC:
@@ -311,8 +311,8 @@ export default {
   'Cluster Resource Status': '集群資源狀態',
   'Resource Status': '資源狀態',
   'Resource Name': '資源名稱',
-  'Config Template': '配置範本',
-  'Edit Config Template': '編輯配置範本',
+  'Config Template': '配置模板',
+  'Edit Config Template': '編輯配置模板',
   'Environment Variables': '環境變量',
   'File List': '文件列表',
   Rerun: '重新執行',
@@ -425,7 +425,7 @@ export default {
     '請指定讀寫方式及掛載路徑',
   'Please add at least one volume': '請至少添加一個儲存卷',
   'Please add at least one volume or volume template':
-    '請至少添加一個儲存卷或儲存卷範本',
+    '請至少添加一個儲存卷或儲存卷模板',
   'Please select a volume': '請選擇儲存卷',
   'Please select a configmap': '請選擇配置文件',
   'Please select a secret': '請選擇密鑰',
@@ -507,7 +507,7 @@ export default {
     '請聯繫項目管理員在 “項目設置” => "高級設置" 中開啟項目的落盤紀錄收集功能',
 
   ADD_VOLUME_TEMPLATE_DESC:
-    '添加儲存卷範本，儲存卷的生命週期將隨容器組的生命週期存在',
+    '添加儲存卷模板，儲存卷的生命週期將隨容器組的生命週期存在',
 
   CONTAINER_LOG_PATH_TIP:
     '容器紀錄相對路徑是從容器掛載路徑開始的路徑，可以 glob 方式給出，多組時以英文逗号分隔。例如當容器掛載路徑為 /data 時，容器紀錄相對路徑配置為 log/*.log，表示匹配 /data/log 目錄下所有 .log 後缀文件。<br/>若需要匹配 /data/log 目錄及其子目錄下的所有 .log 後缀文件，可將容器紀錄相對路徑配置為 log/**/*.log',
@@ -587,7 +587,7 @@ export default {
   FILL_IMAGE_DEFAULT_PORTS_DESC: '是否暴露該鏡像的預設端口？',
 
   ISTIO_PROTOCOL_TIP:
-    '為了充分利用應用治理的能力，請選擇服務實際使用的協議。例如，如果服務暴露的是 HTTP 服務，則選擇 http 協議，會生成形如 http-[name] 的端口名稱。',
+    '為了充分利用應用治理的能力，請選擇服務實際使用的協定。例如，如果服務暴露的是 HTTP 服務，則選擇 http 協定，會生成形如 http-[name] 的端口名稱。',
 
   WORKLOAD_CONDITIONS: '狀態分析(Conditions)',
   WORKLOAD_CONDITION_AVAILABLE: '可用性(Available)',
@@ -661,7 +661,7 @@ export default {
 
   COMPARE_WITH: '與上一個版本 {version} 的對比',
   REVISION_DESC:
-    '對工作負載的資源範本進行修改後會生成一個新的紀錄並重新調度 容器組（Pod）進行版本的疊代，預設保存10個最近的版本。您可以根據修改紀錄進行重新部署。',
+    '對工作負載的資源模板進行修改後會生成一個新的紀錄並重新調度 容器組（Pod）進行版本的疊代，預設保存10個最近的版本。您可以根據修改紀錄進行重新部署。',
 
   CLUSTER_CONTAINER_IMAGE_DIFF_DESC:
     '根據不同的需要在不同的集群中設置不同的容器',

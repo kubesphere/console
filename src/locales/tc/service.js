@@ -144,7 +144,7 @@ export default {
   STATEFUL_SERVICE_DESC:
     '有狀態服務用來管理有狀態應用，可以保證部署和擴容縮容的順序，提供了穩定的持久化儲存和網路標識，有序伸縮等',
   STATELESS_SERVICE_DESC:
-    '容器服務中最常用的一種服務，通過定義容器組範本來控制容器組狀態，包括滾動升級和回滾',
+    '容器服務中最常用的一種服務，通過定義容器組模板來控制容器組狀態，包括滾動升級和回滾',
   SERVICE_FROM_CODE: '通過代碼構建新的服務',
   SERVICE_FROM_ARTIFACTS: '通過成品構建新的服務',
   SERVICE_FROM_CODE_DESC:

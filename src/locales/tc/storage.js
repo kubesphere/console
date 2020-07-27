@@ -86,9 +86,9 @@ export default {
     '按照需求填寫儲存卷的容量大小，儲存卷大小和訪問模式必須與儲存類型和儲存服務端能力相適應，訪問模式通常選擇為 RWO。',
 
   VOLUME_DESC:
-    '儲存卷供用戶創建的工作負載使用，是將工作負載數據持久化的一种資源对象。',
+    '儲存卷供用戶創建的工作負載使用，是將工作負載數據持久化的一種資源對象。',
   VOLUME_CREATE_DESC:
-    '儲存卷供用戶創建的工作負載使用，是將工作負載數據持久化的一种資源对象。',
+    '儲存卷供用戶創建的工作負載使用，是將工作負載數據持久化的一種資源對象。',
   STORAGE_CLASS_DESC:
     '儲存類型 (StorageClass) 是由集群管理員配置儲存服務端參數，並按類型提供儲存給集群用戶使用。',
   STORAGE_CLASS_CREATE_DESC:
@@ -124,7 +124,7 @@ export default {
   Expand: '擴容',
 
   QINGCLOUD_CSI_DESC:
-    'QingCloud CSI 插件實現了 CSI 接口，並使容器編排平台能構使用 QingCloud 雲平台的儲存資源。實現了塊儲存插件，可以對接雲平台塊儲存資源。<a href="https://github.com/yunify/qingcloud-csi/blob/master/README.md">詳细資訊</a>',
+    'QingCloud CSI 插件實現了 CSI 介面，並使容器編排平台能構使用 QingCloud 雲平台的儲存資源。實現了塊儲存插件，可以對接雲平台塊儲存資源。<a href="https://github.com/yunify/qingcloud-csi/blob/master/README.md">詳细資訊</a>',
 
   QINGCLOUD_CSI_TYPE_DESC:
     '在青雲雲平台中，0 代表性能型硬碟，2 代表容量型硬碟，3 代表超高性能型硬碟，5 代表企業級分布式 SAN（NeonSAN）型硬碟，100 代表基礎型硬碟，200 代表企業型硬碟',

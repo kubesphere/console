@@ -39,11 +39,11 @@ export default {
   'Building Image': '構建鏡像',
   sourceUrl: '來源地址',
   SourceUrl: '來源地址',
-  builderImage: '鏡像範本',
+  builderImage: '鏡像模板',
   'Image Artifacts': '鏡像成品',
   'Code Resource': '代碼資源',
   Builder: '構建',
-  BuilderImage: '編譯範本',
+  BuilderImage: '編譯模板',
   imageName: '鏡像名稱',
   BuilderPullPolicy: '鏡像拉取策略',
   builderPullPolicy: '鏡像拉取策略',
@@ -65,7 +65,7 @@ export default {
   'Please set the container name and computing resources.':
     '對容器的名稱及容器的計算資源進行設置',
   'The health of the container will be checked regularly according to user needs.':
-    '根據使用者需要，定時檢查容器健康狀況。',
+    '根據用戶需要，定時檢查容器健康狀況。',
   'Start Command': '啟動命令',
   START_COMMAND_DESC:
     '在預設情况下，鏡像會運行預設命令，如果想運行特定命令或重寫鏡像預設值。',
@@ -77,7 +77,7 @@ export default {
   CONTAINER_ENVIROMENT_DESC: '添加容器的環境變量',
   IMAGE_PULL_POLICY_DESC: '在預設情况下，優先使用本地鏡像',
   S2I_ENVIROMENT_DESC:
-    '應用程式開發人員可以使用以下環境變量來配置此鏡像的運行時行為; 詳细的配置說明請查看 <a href={link} target="_blank">編譯範本</a>',
+    '應用程式開發人員可以使用以下環境變量來配置此鏡像的運行時行為; 詳細的配置說明請查看 <a href={link} target="_blank">編譯模板</a>',
   S2I_UPDATE_WORKLOAD: '構建成功後更新工作負載',
   S2I_UPDATA_WORKLOAD_DESC:
     '重新構建鏡像成功後，將更新相關工作負載的鏡像，同時工作負載的版本也會被更新',
@@ -87,7 +87,7 @@ export default {
     '源代碼倉庫地址(目前支持 git)並且可以指定代碼分支及在源代碼終端的相對路徑',
   S2I_RELATIVE_PATH: '代碼相對路徑(可選):',
   S2I_BUILDERNAME_DESC:
-    '選擇編輯環境，您也可以查看對應的 <a href={link} target="_blank">編譯範本</a>',
+    '選擇編輯環境，您也可以查看對應的 <a href={link} target="_blank">編譯模板</a>',
   S2I_TARGET_IMAGE_REPONSTRY_DESC:
     '需要選擇一個有推送權限的鏡像倉庫存放鏡像，如果没有可以 <a href={link} target="_blank">新建鏡像倉庫密鑰</a>',
   S2I_IMAGENAME_DESC: '鏡像名稱及 Tag，預設為代碼倉庫的項目名稱',

@@ -116,7 +116,7 @@ export default {
   'Choose a workspace': '選擇一個企業空間',
   'Not Assigned': '未分配',
   'Select a user of the workspace as the manager of the project.':
-    '選擇企業空間的使用者作為管理員。',
+    '選擇企業空間的用戶作為管理員。',
 
   'Disk Log Collection': '落盤紀錄收集',
 
@@ -186,13 +186,13 @@ export default {
   PROJECT_ADVANCED_SETTINGS_DESC:
     '對項目中的外網訪問網關以及服務治理和落盤紀錄收集等配置進行設置',
   PROJECT_MEMBERS_DESC: '對項目内的成員進行管理及角色分配',
-  PROJECT_ROLE_DESC: '項目角色定義了在目前項目下使用者所擁有的權限',
+  PROJECT_ROLE_DESC: '項目角色定義了在目前項目下用戶所擁有的權限',
   COLLECTING_FILE_LOG_DESC:
     '對容器内的落盤紀錄進行收集，並轉發到標準輸出，然後由紀錄收集系統統一採集。',
 
   HOW_TO_USE_QUOTA_Q: '如何使用配額?',
   HOW_TO_USE_QUOTA_A:
-    '資源配額（Resource Quotas）是用來限制使用者資源用量的一種機制，可以對 CPU、記憶體、容器組數量等進行配額限制。',
+    '資源配額（Resource Quotas）是用來限制用戶資源用量的一種機制，可以對 CPU、記憶體、容器組數量等進行配額限制。',
 
   WHAT_IS_LIMIT_RANGE_Q: '什麼是容器資源預設請求?',
   WHAT_IS_LIMIT_RANGE_A:
@@ -204,7 +204,7 @@ export default {
 
   HOW_TO_INVITE_MEMBER_Q: '如何邀請成員？',
   HOW_TO_INVITE_MEMBER_A:
-    '項目管理員或者擁有成員邀請權限的使用者可以邀請目前企業空間内的成員加入項目',
+    '項目管理員或者擁有成員邀請權限的用戶可以邀請目前企業空間内的成員加入項目',
 
   'How to invite other members to the current project?':
     '邀請其他成員到目前項目中?',
@@ -230,7 +230,7 @@ export default {
 
   FEDPROJECT_RESOURCE_TIP:
     '無法在集群管理内創建多集群項目的資源, 請到多集群項目頁面内進行操作.',
-  FEDPROJECT_CANNOT_DEPLOY_APP_TIP: '無法在多集群項目里部署應用.',
+  FEDPROJECT_CANNOT_DEPLOY_APP_TIP: '無法在多集群項目裡部署應用.',
 
   'The project name exists on the host cluster.': '項目名在 Host 集群上已存在',
 

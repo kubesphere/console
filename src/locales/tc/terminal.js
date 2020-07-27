@@ -18,8 +18,8 @@
 
 export default {
   'Launch kubectl': '啟動 kubectl',
-  'Copy Successfully': '復製成功',
-  Copy: '復製',
+  'Copy Successfully': '複製成功',
+  Copy: '複製',
   Disconnect: '斷開連接',
   connected: '已連接',
   disconnected: '未連接',
@@ -30,7 +30,7 @@ export default {
 
   KUBECONFIG_TIP: `
     <h2><a id="KubeConfig__0"></a>kubeconfig 配置方法</h2>
-    <p>查閱更多命令請參照 <a href="https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/" target="_blank">官方文档</a></p>
+    <p>查閱更多命令請參照 <a href="https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/" target="_blank">官方文件</a></p>
   `,
 
   KUBECTL_TIP: `

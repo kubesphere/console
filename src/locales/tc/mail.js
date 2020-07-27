@@ -24,7 +24,7 @@ export default {
   'Server Settings': '伺服器配置',
   'SMTP Server Address': 'SMTP 伺服器地址',
   'Use SSL Secure Connection': '使用 SSL 安全連接',
-  FROM_EMAIL_ADDR_DESC: '將作為郵件的寄件帳號(不填寫表示與"SMTP 使用者"值相同)',
+  FROM_EMAIL_ADDR_DESC: '將作為郵件的寄件帳號(不填寫表示與"SMTP 用戶"值相同)',
   'The sender mail account': '將作為郵件的寄件帳號',
   'Send a test email': '發送測試郵件',
   MAIL_SERVER_CONFIG_NEED_SAVE_TIP: '郵件配置成功，請保存伺服器配置',
@@ -32,7 +32,7 @@ export default {
   MAIL_SERVER_CONFIG_NEED_VERIFIED_TIP:
     '您目前的伺服器配置已發生變化，請重新發送測試郵件並保存配置，或是取消修改',
 
-  'Server Username': '伺服器使用者名稱',
+  'Server Username': '伺服器用戶名稱',
   'Sender Email': '寄件郵箱',
   'Platform Settings': '平台設置',
   TEST_EMAIL_TITLE: '[KubeSphere] 測試郵件',

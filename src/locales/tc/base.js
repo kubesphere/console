@@ -49,7 +49,7 @@ export default {
   Pods: '容器組',
   Memory: '記憶體',
   memory: '記憶體',
-  Custom: '自定議',
+  Custom: '自定義',
   Others: '其它',
 
   Platform: '平台管理',
@@ -63,7 +63,7 @@ export default {
   'As of Date': '統計截止時間',
   Workbench: '工作台',
   'Access Control': '訪問控制',
-  'App Templates': '應用範本',
+  'App Templates': '應用模板',
   'Service Components': '服務組件',
   Infrastructure: '基礎設施',
   'Basic Information': '基本資訊',
@@ -203,9 +203,9 @@ export default {
   Unfold: '展開',
 
   'Basic Info': '基本資訊',
-  'Pod Template': '容器組範本',
+  'Pod Template': '容器組模板',
   'Volume Settings': '儲存卷設置',
-  'Volume Templates': '儲存卷範本',
+  'Volume Templates': '儲存卷模板',
   'Storage Device': '儲存設備',
   'Port Settings': '端口設置',
   'Service Settings': '服務設置',
@@ -221,7 +221,7 @@ export default {
   'Official Document': '官網文件',
 
   optional: '選填',
-  Protocol: '協議',
+  Protocol: '協定',
   Certificate: '憑證',
   key: '鍵',
   value: '值',
@@ -325,7 +325,7 @@ export default {
     '資源被應用 <strong>{app}</strong> 管理, 刪除後可能影響此應用的正常使用。請輸入{type}名稱 <strong>{resource}</strong> 確保您已了解操作所带來的風險。',
   DELETE_CONFIRM_PLACEHOLDER: '請輸入{resource}',
 
-  REMOVE_USER_TIP: '確定移除使用者 <strong>{username}</strong> ? ',
+  REMOVE_USER_TIP: '確定移除用戶 <strong>{username}</strong> ? ',
 
   REMOVE_MEMBER_TIP: '確定移除成員 <strong>{resource}</strong> ?',
 
@@ -369,8 +369,8 @@ export default {
   Confirm: '確認',
   Stage: '階段',
   'Default Value': '預設值',
-  Username: '使用者名稱',
-  'Unknown User': '未知使用者',
+  Username: '用戶名稱',
+  'Unknown User': '未知用戶',
   secret_text: '秘密文本',
   domain: '域名',
   Account: '帳戶',
@@ -459,7 +459,7 @@ export default {
   'Operation Account': '操作帳號',
   'Source IP': '來源 IP',
   Subresource: '子資源',
-  'Status Code': '狀態碼',
+  'Status Code': '狀態代碼',
 
   NanoSeconds: '奈秒',
   MicroSeconds: '微秒',
@@ -493,7 +493,7 @@ export default {
   'Learn more': '了解更多',
 
   KS_DESCRIPTION:
-    'KubeSphere 是一款開源項目，在目前主流容器調度平台 Kubernetes 之上構建的企業級分佈式多租戶容器管理平台，提供簡單易用的操作界面以及引導式操作方式，在降低使用者使用容器調度平台學習成本的同時，極大降低開發、測試、維運的日常工作的複雜度。',
+    'KubeSphere 是一款開源項目，在目前主流容器調度平台 Kubernetes 之上構建的企業級分佈式多租戶容器管理平台，提供簡單易用的操作界面以及引導式操作方式，在降低用戶使用容器調度平台學習成本的同時，極大降低開發、測試、維運的日常工作的複雜度。',
 
   REPS_ADDRESS: '項目地址',
   ISSUE_FEEDBACK: '問題反饋',
@@ -522,14 +522,14 @@ export default {
 
   EMPTY_WRAPPER: '未發現 {resource}',
 
-  'User Guides': '使用者指南',
+  'User Guides': '用戶指南',
   'Quick Support': '快速獲取幫助',
   'Developer Community': '開發者社區',
   HISTORY_DESC:
     '當您在多個企業空間或者項目下進行協同工作時，瀏覽器會紀錄下您最近訪問的路徑，您可以透過 F1 / (Win + K) / (Command + K) 查看歷史紀錄，來快速切換您的訪問資源。',
-  NO_HISTORY_TITLE: '瀏覽器暫未收錄到您對集群或者企業空间等區域的訪問紀錄',
+  NO_HISTORY_TITLE: '瀏覽器暫未收錄到您對集群或者企業空間等區域的訪問紀錄',
   NO_HISTORY_DESC: '您可以嘗試對企業空間或者集群、項目等資源的訪問',
-  USER_GUIDES_DESC: '最詳盡的 KubeSphere 使用者指南文件',
+  USER_GUIDES_DESC: '最詳盡的 KubeSphere 用戶指南文件',
   DEVELOPER_DESC: '透過在開發者社區提出問題獲得幫助',
   API_DOCS_DESC: '最詳盡的 KubeSphere API 文件',
   GITHUB_ISSUES_DESC: '透過在 GitHub 提出 Issue 獲得幫助',

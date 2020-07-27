@@ -117,12 +117,12 @@ export default {
   'Deploy sample application': '部署範例應用',
   'Deploy Sample Application': '部署範例應用',
   'Port protocol is not HTTP, cannot publish policy by request content':
-    '端口協議非 HTTP, 不能發佈按内容分配的策略',
+    '端口協定非 HTTP, 不能發佈按内容分配的策略',
 
   NO_SERVICE_MESH_TIP: '未開啟應用治理的應用無法使用灰度發佈',
 
   BLUE_GREEN_DEPLOYMENT_DESC:
-    '藍綠發佈提供了一種零宕機的部署方式。在<strong>保留舊版本的同時部署新版本</strong>，將兩個版本同時在線，如果有問題可以快速處理。',
+    '藍綠發佈提供了一種零當機的部署方式。在<strong>保留舊版本的同時部署新版本</strong>，將兩個版本同時在線，如果有問題可以快速處理。',
   CANARY_RELEASES_DESC:
     '將一部分實際流量引入一個新版本進行測試，測試新版本的性能和表現，在保證系統整體穩定運行的前提下，盡早發現新版本在實際環境上的問題。',
   AB_TESTING_DESC:
