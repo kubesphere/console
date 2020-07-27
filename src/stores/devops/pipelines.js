@@ -346,18 +346,22 @@ export default class PipelineStore extends BaseStore {
   @action
   async getBranchDetail(params) {
     const { project_id, cluster, name, branch } = params
-    const result = await this.request.get(
-      `${this.getDevopsUrlV2({
-        cluster,
-      })}${project_id}/pipelines/${name}/branches/${encodeURIComponent(
-        branch
-      )}/`
-    )
-    if (result.name) {
-      this.branchDetail = result
-    }
+    try {
+      const result = await this.request.get(
+        `${this.getDevopsUrlV2({
+          cluster,
+        })}${project_id}/pipelines/${name}/branches/${encodeURIComponent(
+          branch
+        )}/`
+      )
 
-    return result
+      if (result.name) {
+        this.branchDetail = result
+      }
+      return result
+    } catch (err) {
+      return []
+    }
   }
 
   async replay(params, _runid) {
@@ -401,7 +405,7 @@ export default class PipelineStore extends BaseStore {
       branch ? `/branches/${encodeURIComponent(branch)}` : ''
     }/runs`
 
-    const params = !isEmpty(parameters) ? { parameters } : {}
+    const params = !isEmpty(parameters) ? { parameters } : { parameters: [] }
 
     return await this.request
       .post(href_temp, params)

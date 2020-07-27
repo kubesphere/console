@@ -118,17 +118,19 @@ export default class ParamsModal extends React.Component {
   handleOk = () => {
     const { branch, ...formParameters } = this.formRef.current.getData()
     const { parameters } = this.state
+
     this.formRef.current.validate(() => {
       const params = isEmpty(formParameters)
-        ? parameters.map(item => ({
-            name: item.name,
-            value: '',
-          }))
+        ? !isEmpty(parameters)
+          ? parameters.map(item => ({
+              name: item.name,
+              value: '',
+            }))
+          : null
         : Object.keys(formParameters).map(key => ({
             name: key,
-            value: parameters[key],
+            value: formParameters[key],
           }))
-
       this.props.onOk(params, branch)
     })
   }

@@ -59,11 +59,7 @@ export default class DevOps extends React.Component {
             type: t('DevOps Project'),
             resource: item.name,
             detail: item,
-            success: () => {
-              setTimeout(() => {
-                this.getData()
-              }, 500)
-            },
+            success: this.getData,
           }),
       },
     ]

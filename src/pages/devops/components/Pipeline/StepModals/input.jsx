@@ -18,7 +18,7 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import { debounce, uniq, isEmpty } from 'lodash'
+import { debounce, uniq, isEmpty, isArray } from 'lodash'
 import { action, toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import { Form, Modal } from 'components/Base'
@@ -62,7 +62,11 @@ export default class InputStep extends React.Component {
     let value = ''
     let submitter = []
 
-    if (!isEmpty(edittingData) && !isEmpty(edittingData.data)) {
+    if (
+      !isEmpty(edittingData) &&
+      !isEmpty(edittingData.data) &&
+      isArray(edittingData.data)
+    ) {
       edittingData.data.forEach(param => {
         if (param.key === 'message') {
           value = param.value.value

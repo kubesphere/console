@@ -70,7 +70,6 @@ export default class DevOpsEditModal extends React.Component {
 
   handleOk = data => {
     const { onOk } = this.props
-
     onOk(data)
   }
 
@@ -100,6 +99,9 @@ export default class DevOpsEditModal extends React.Component {
         </Form.Item>
         <Form.Item label={t('Creator')} desc={t('DEVOPS_ADMIN_DESC')}>
           <Input name="creator" disabled />
+        </Form.Item>
+        <Form.Item label={t('Alias')} desc={t('ALIAS_DESC')}>
+          <Input name="aliasName" />
         </Form.Item>
         <Form.Item label={t('Description')} desc={t('DESCRIPTION_DESC')}>
           <TextArea maxLength={256} name="description" />
