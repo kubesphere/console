@@ -26,7 +26,7 @@ import { Button, Modal, Search, RadioGroup, ScrollLoad } from 'components/Base'
 
 import WorkspaceStore from 'stores/workspace'
 import ProjectStore from 'stores/project'
-import FederatedStore from 'stores/federated'
+import FederatedStore from 'stores/project.federated'
 import DevOpsStore from 'stores/devops'
 
 import Card from './Card'
@@ -91,29 +91,21 @@ export default class ProjectSelectModal extends React.Component {
   }
 
   get types() {
-    const types = []
-    if (this.enabledActions.projects.includes('view')) {
-      types.push({
+    const types = [
+      {
         label: t('Projects'),
         value: 'projects',
-      })
-    }
+      },
+    ]
 
-    if (
-      globals.app.isMultiCluster &&
-      this.enabledActions.federatedprojects.includes('view')
-    ) {
+    if (globals.app.isMultiCluster) {
       types.push({
         label: t('Multi-cluster Projects'),
         value: 'federatedprojects',
       })
     }
 
-    // TODO: ADD CLUSTER
-    if (
-      this.enabledActions.devops.includes('view') &&
-      globals.app.hasKSModule('devops')
-    ) {
+    if (globals.app.hasKSModule('devops')) {
       types.push({
         label: t('DevOps Projects'),
         value: 'devops',
@@ -130,12 +122,17 @@ export default class ProjectSelectModal extends React.Component {
   fetchData = query => {
     const { workspace } = this.props
     const { cluster, search } = this.state
-    const params = { cluster, workspace, name: search, ...query }
+    const params = { workspace, ...query }
 
     if (this.state.type === 'federatedprojects') {
       params.labelSelector = `kubesphere.io/workspace=${workspace}`
     } else {
+      params.cluster = cluster
       params.labelSelector = 'kubefed.io/managed!=true'
+    }
+
+    if (search) {
+      params.name = search
     }
 
     this.stores[this.state.type].fetchList(params)
