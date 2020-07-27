@@ -130,9 +130,9 @@ export default class PipelineStore extends BaseStore {
   async fetchList({ devops, workspace, project_id, cluster, ...filters } = {}) {
     this.list.isLoading = true
 
-    const { page, limit, keyword, filter } = filters
+    const { page, limit, name, filter } = filters
 
-    const searchWord = keyword ? `*${encodeURIComponent(keyword)}*` : ''
+    const searchWord = name ? `*${encodeURIComponent(name)}*` : ''
 
     const url = `${this.getBaseUrlV2({ cluster })}search`
     const result = await this.request.get(
@@ -156,6 +156,7 @@ export default class PipelineStore extends BaseStore {
       limit: parseInt(limit, 10) || 10,
       page: parseInt(page, 10) || 1,
       filters: omit(filters, 'project_id'),
+      selectedRowKeys: [],
       isLoading: false,
     }
   }
@@ -194,6 +195,11 @@ export default class PipelineStore extends BaseStore {
   @action
   setPipelineConfig = detail => {
     this.pipelineConfig = detail
+  }
+
+  @action
+  setSelectRowKeys = keys => {
+    this.list.selectedRowKeys.replace(keys)
   }
 
   @action

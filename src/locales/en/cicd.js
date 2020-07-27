@@ -537,4 +537,5 @@ export default {
     'When a new pipeline is created, the tasks in the specified pipeline are automatically triggered.',
   'Started By {name}': 'Started By {name}',
   'Credential ID exists': 'Credential ID exists',
+  'Invalid credential ID': 'Invalid credential ID',
 }

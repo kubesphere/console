@@ -103,6 +103,7 @@ export default class Activity extends React.Component {
     const { params } = this.props.match
     const isMutibranch = detail.branchNames
     const hasParameters = detail.parameters && detail.parameters.length
+
     if (isMutibranch || hasParameters) {
       this.setState({ showBranchModal: true })
     } else {
@@ -327,6 +328,7 @@ export default class Activity extends React.Component {
         onCancel={this.hideBranchModal}
         visible={this.state.showBranchModal}
         branches={toJS(detail.branchNames)}
+        parameters={toJS(detail.parameters)}
         params={params || {}}
       />
     )

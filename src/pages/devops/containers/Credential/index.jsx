@@ -201,7 +201,6 @@ class Credential extends React.Component {
         onCancel={this.hideCreate}
         project_id={project_id}
         cluster={cluster}
-        store={this.store}
       />
     )
   }

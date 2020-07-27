@@ -23,6 +23,7 @@ import { toJS } from 'mobx'
 import { parse } from 'qs'
 import { get, omit } from 'lodash'
 import { Menu, Dropdown, Column, Icon } from '@pitrix/lego-ui'
+import { trigger } from 'utils/action'
 
 import { JOB_STATUS } from 'utils/constants'
 import { updatePipelineParams, updatePipelineParamsInSpec } from 'utils/devops'
@@ -55,6 +56,7 @@ const CREATE_TEMP = {
 
 @inject('rootStore', 'devopsStore')
 @observer
+@trigger
 class CICDs extends React.Component {
   constructor(props) {
     super(props)
@@ -410,18 +412,21 @@ class CICDs extends React.Component {
       title: t('WeatherScore'),
       dataIndex: 'weatherScore',
       width: '30%',
+      isHideable: true,
       render: weatherScore => <Health score={weatherScore} />,
     },
     {
       title: t('Branch'),
       dataIndex: 'totalNumberOfBranches',
       width: '25%',
+      isHideable: true,
       render: totalNumberOfBranches =>
         totalNumberOfBranches === undefined ? '-' : totalNumberOfBranches,
     },
     {
       title: t('PullRequest'),
       dataIndex: 'totalNumberOfPullRequests',
+      isHideable: true,
       render: totalNumberOfPullRequests =>
         totalNumberOfPullRequests === undefined
           ? '-'
@@ -455,9 +460,15 @@ class CICDs extends React.Component {
   )
 
   renderContent() {
-    const { data = [], filters, isLoading, total, page, limit } = toJS(
-      this.store.list
-    )
+    const {
+      data = [],
+      filters,
+      isLoading,
+      total,
+      page,
+      limit,
+      selectedRowKeys,
+    } = toJS(this.store.list)
 
     const isEmptyList = isLoading === false && total === 0
 
@@ -472,16 +483,39 @@ class CICDs extends React.Component {
     }
 
     const pagination = { total, page, limit }
+
+    const defaultTableProps = {
+      rowKey: 'name',
+      hideCustom: false,
+      onSelectRowKeys: this.store.setSelectRowKeys,
+      selectedRowKeys,
+      selectActions: [
+        {
+          key: 'delete',
+          type: 'danger',
+          text: t('Delete'),
+          action: 'delete',
+          onClick: () =>
+            this.trigger('pipeline.batch.delete', {
+              type: t('Pipeline'),
+              rowKey: 'name',
+              devops: this.devops,
+              cluster: this.cluster,
+              success: this.routing.query,
+            }),
+        },
+      ],
+    }
     return (
       <Table
         data={data}
         columns={this.getColumns()}
         filters={omitFilters}
         pagination={pagination}
-        rowKey="fullName"
         isLoading={isLoading}
         onFetch={this.handleFetch}
         onCreate={showCreate}
+        {...defaultTableProps}
       />
     )
   }

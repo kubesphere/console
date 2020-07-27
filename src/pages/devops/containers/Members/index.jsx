@@ -56,10 +56,11 @@ export default class Members extends React.Component {
       })
   }
 
-  getData = () => {
+  getData = ({ ...params }) => {
     this.props.store.fetchList({
       devops: this.devops,
       cluster: this.cluster,
+      ...params,
     })
   }
 

@@ -25,6 +25,7 @@ import { observer } from 'mobx-react'
 import { Form, Modal, TextArea } from 'components/Base'
 import { Input, Select, Loading } from '@pitrix/lego-ui'
 import CredentialStore from 'stores/devops/credential'
+import { PATTERN_SERVICE_NAME } from 'utils/constants'
 
 import styles from './index.scss'
 
@@ -133,6 +134,7 @@ export default class CredentialModal extends React.Component {
   handleOk = () => {
     const { isEditMode, project_id, cluster } = this.props
     const formData = this.formRef.current.getData()
+
     this.formRef.current.validate(async () => {
       this.isSubmitting = true
       this.updateFormData(formData)
@@ -175,10 +177,10 @@ export default class CredentialModal extends React.Component {
       return callback()
     }
 
-    this.props.store
+    this.store
       .checkName({
         name: value,
-        devops: this.props.store.getDevops(project_id),
+        devops: this.store.getDevops(project_id),
         cluster,
       })
       .then(resp => {
@@ -273,6 +275,10 @@ export default class CredentialModal extends React.Component {
             label={t('Credential ID')}
             rules={[
               { required: true, message: t('Please input credential') },
+              {
+                pattern: PATTERN_SERVICE_NAME,
+                message: `${t('Invalid credential ID')}, ${t('NAME_DESC')}`,
+              },
               { validator: this.nameValidator },
             ]}
           >
