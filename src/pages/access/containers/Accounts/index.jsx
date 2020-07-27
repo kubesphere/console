@@ -115,7 +115,7 @@ export default class Accounts extends React.Component {
     },
     {
       title: t('Last login time'),
-      dataIndex: 'last_login_time',
+      dataIndex: 'lastLoginTime',
       isHideable: true,
       width: '20%',
       render: time =>

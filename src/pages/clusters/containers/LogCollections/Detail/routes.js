@@ -35,6 +35,7 @@ export default [
     title: 'Log',
     component: Log,
     exact: true,
+    clusterModule: 'logging',
     required({ type }) {
       return type === 'es'
     },

@@ -3,3 +3,11 @@
 .table {
   margin: 0 -20px;
 }
+
+.status {
+  i,
+  span {
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
