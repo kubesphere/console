@@ -17,7 +17,7 @@
  */
 
 import React from 'react'
-import { reaction } from 'mobx'
+import { reaction, toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
@@ -34,6 +34,7 @@ import {
 
 import { joinSelector } from 'utils'
 import { startAutoRefresh, stopAutoRefresh } from 'utils/monitoring'
+import ObjectMapper from 'utils/object.mapper'
 import PodStore from 'stores/pod'
 import PodMonitorStore from 'stores/monitoring/pod'
 import WebSocketStore from 'stores/websocket'
@@ -97,7 +98,6 @@ export default class PodsCard extends React.Component {
   }
 
   initWebsocket() {
-    const { onUpdate } = this.props
     const { selectCluster, params = {} } = this.state
     const { namespace, labelSelector } = params
 
@@ -113,10 +113,16 @@ export default class PodsCard extends React.Component {
       this.disposer = reaction(
         () => this.websocket.message,
         message => {
-          if (message.object.kind === 'Pod' && message.type === 'MODIFIED') {
-            this.fetchData({ noMetrics: true, silent: true }).then(() => {
-              onUpdate && onUpdate(selectCluster)
-            })
+          if (message.object.kind === 'Pod') {
+            if (message.type === 'MODIFIED') {
+              const data = {
+                cluster: selectCluster,
+                ...ObjectMapper.pods(toJS(message.object)),
+              }
+              this.store.list.updateItem(data)
+            } else if (message.type === 'DELETED' || message.type === 'ADDED') {
+              this.fetchData({ silent: true })
+            }
           }
         }
       )
@@ -142,6 +148,7 @@ export default class PodsCard extends React.Component {
         },
         () => {
           this.fetchData()
+          this.initWebsocket()
         }
       )
     }

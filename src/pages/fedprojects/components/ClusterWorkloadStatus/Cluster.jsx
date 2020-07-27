@@ -19,6 +19,7 @@
 import React, { Component } from 'react'
 import { reaction } from 'mobx'
 import { observer } from 'mobx-react'
+import { get, debounce } from 'lodash'
 
 import { Icon } from '@pitrix/lego-ui'
 import ClusterTitle from 'components/Clusters/ClusterTitle'
@@ -34,13 +35,24 @@ import styles from './index.scss'
 export default class Cluster extends Component {
   websocket = new WebSocketStore()
 
+  state = {
+    replicas: get(this.props, 'workload.podNums', 0),
+  }
+
+  componentDidUpdate(prevProps) {
+    if (get(this.props.workload, 'name') !== get(prevProps.workload, 'name')) {
+      this.setState({ replicas: get(this.props, 'workload.podNums', 0) })
+      this.unInitWebsocket()
+      this.initWebsocket()
+    }
+  }
+
   componentDidMount() {
     this.initWebsocket()
   }
 
   componentWillUnmount() {
-    this.disposer && this.disposer()
-    this.websocket.close()
+    this.unInitWebsocket()
   }
 
   initWebsocket() {
@@ -60,26 +72,37 @@ export default class Cluster extends Component {
     }
   }
 
-  triggerReplicasChange = async num => {
-    const { cluster, onReplicasChange } = this.props
-    await onReplicasChange(cluster.name, num)
+  unInitWebsocket() {
+    this.disposer && this.disposer()
+    this.websocket.close()
   }
 
-  handleAdd = () => {
-    const { podNums } = this.props.workload
+  triggerReplicasChange = debounce(async () => {
+    const { cluster, onReplicasChange } = this.props
+    await onReplicasChange(cluster.name, this.state.replicas)
+  }, 1000)
 
-    this.triggerReplicasChange(podNums + 1)
+  handleAdd = () => {
+    this.setState(
+      ({ replicas }) => ({
+        replicas: replicas + 1,
+      }),
+      this.triggerReplicasChange
+    )
   }
 
   handleSubStract = () => {
-    const { podNums } = this.props.workload
-
-    this.triggerReplicasChange(Math.max(podNums - 1, 0))
+    this.setState(
+      ({ replicas }) => ({
+        replicas: Math.max(replicas - 1, 0),
+      }),
+      this.triggerReplicasChange
+    )
   }
 
   render() {
     const { cluster, workload = {}, store } = this.props
-
+    const { replicas } = this.state
     const { podNums = 0, readyPodNums = 0 } = workload
     const unReadyNums = podNums - readyPodNums
     const { status, reason } = getWorkloadStatus(
@@ -92,7 +115,7 @@ export default class Cluster extends Component {
         <ClusterTitle cluster={cluster} tagClass="float-right" theme="light" />
         <div className={styles.bottom}>
           <div className={styles.replicas}>
-            <span>{readyPodNums}</span> / <span>{podNums}</span>&nbsp;
+            <span>{readyPodNums}</span> / <span>{replicas}</span>&nbsp;
             {reason && <StatusReason status={status} data={workload} />}
           </div>
           <div className={styles.pods}>

@@ -78,19 +78,8 @@ export default class ResourceStatus extends React.Component {
     this.routerStore.getGateway(params)
   }
 
-  handlePodUpdate = () => {
-    const { cluster, namespace, name } = this.workloadStore.detail
-    this.workloadStore.fetchDetail({ cluster, namespace, name, silent: true })
-  }
-
   renderPods() {
-    return (
-      <PodsCard
-        prefix={this.prefix}
-        detail={this.store.detail}
-        onUpdate={this.handlePodUpdate}
-      />
-    )
+    return <PodsCard prefix={this.prefix} detail={this.store.detail} />
   }
 
   renderExternal() {
