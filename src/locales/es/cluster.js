@@ -157,4 +157,7 @@ export default {
     'Por favor, intenta no crear recursos en el clúster huésped (host) para evitar cargas excesivas, lo que podría llevar a disminuir la estabilidad en todos los clústers.',
   HOST_CLUSTER_VISIBILITY_WARNING:
     'Por favor, ten cuidado al autorizar el clúster huésped (host) en el espcaio de trabajo. Si la carga del clúster es demasiado alta, la estabilidad disminuirá en todos los clústers.',
+  REMOVE_WORKSPACE_CONFIRM_TITLE: 'Are you sure to remove authorization?',
+  REMOVE_WORKSPACE_CONFIRM_DESC:
+    'Are you sure to remove the authorization to the workspace(s) {resource}? Once the authorization for the workspace to use the cluster is removed, all resources of the workspace in the current cluster will be deleted.',
 }

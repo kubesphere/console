@@ -171,4 +171,8 @@ export default {
     'Please be careful to authorize the host cluster to the workspace. If the load of the host cluster is too high, the stability across clusters will decrease.',
   CLUSTER_VISIBILITY_REMOVE_WARNING:
     'Once the authorization for the workspace to use the cluster is removed, all resources of the workspace in the current cluster will be deleted.',
+
+  REMOVE_WORKSPACE_CONFIRM_TITLE: 'Are you sure to remove authorization?',
+  REMOVE_WORKSPACE_CONFIRM_DESC:
+    'Are you sure to remove the authorization to the workspace(s) {resource}? Once the authorization for the workspace to use the cluster is removed, all resources of the workspace in the current cluster will be deleted.',
 }

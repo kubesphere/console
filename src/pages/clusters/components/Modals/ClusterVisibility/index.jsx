@@ -22,6 +22,7 @@ import { get, keyBy } from 'lodash'
 import { Columns, Column, Toggle, Tooltip, Icon } from '@pitrix/lego-ui'
 
 import { Alert, Modal, Search } from 'components/Base'
+import DeleteModal from 'components/Modals/Delete'
 
 import WorkspaceStore from 'stores/workspace'
 
@@ -33,8 +34,11 @@ export default class ClusterVisibility extends React.Component {
   state = {
     allWorkspaces: [],
     authedWorkspaces: [],
+    addWorkspaces: [],
+    deleteWorkspaces: [],
     isPublic: get(this.props, 'cluster.visibility') === 'public',
     showUnAuthTip: false,
+    showConfirm: false,
   }
 
   workspaceStore = new WorkspaceStore()
@@ -47,8 +51,7 @@ export default class ClusterVisibility extends React.Component {
   }
 
   handleOk = () => {
-    const { onOk } = this.props
-    const { allWorkspaces, authedWorkspaces, isPublic } = this.state
+    const { allWorkspaces, authedWorkspaces } = this.state
     const savedAuthWorkspaces = toJS(this.authedWorkspaceStore.list.data)
 
     const allWorkspacesMap = keyBy(allWorkspaces, 'name')
@@ -63,7 +66,23 @@ export default class ClusterVisibility extends React.Component {
       .filter(workspace => !authedWorkspacesMap[workspace.name])
       .map(workspace => allWorkspacesMap[workspace.name])
 
+    this.setState({ addWorkspaces, deleteWorkspaces }, () => {
+      if (this.state.deleteWorkspaces.length > 0) {
+        this.setState({ showConfirm: true })
+      } else {
+        this.handleConfirm()
+      }
+    })
+  }
+
+  handleConfirm = () => {
+    const { onOk } = this.props
+    const { addWorkspaces, deleteWorkspaces, isPublic } = this.state
     onOk({ public: isPublic, addWorkspaces, deleteWorkspaces })
+  }
+
+  hideConfirm = () => {
+    this.setState({ showConfirm: false })
   }
 
   handleSearch = name => {
@@ -118,7 +137,11 @@ export default class ClusterVisibility extends React.Component {
       authedWorkspaces,
       showUnAuthTip,
       isPublic,
+      showConfirm,
+      deleteWorkspaces,
     } = this.state
+
+    const resource = deleteWorkspaces.map(item => item.name).join(', ')
 
     return (
       <Modal
@@ -200,6 +223,14 @@ export default class ClusterVisibility extends React.Component {
             </Column>
           </Columns>
         </div>
+        <DeleteModal
+          visible={showConfirm}
+          onOk={this.handleConfirm}
+          onCancel={this.hideConfirm}
+          resource={resource}
+          title={t('REMOVE_WORKSPACE_CONFIRM_TITLE')}
+          desc={t.html('REMOVE_WORKSPACE_CONFIRM_DESC', { resource })}
+        />
       </Modal>
     )
   }
