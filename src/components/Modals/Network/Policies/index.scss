@@ -40,6 +40,10 @@
   & > :last-child {
     width: 80px;
   }
+  &_desc {
+    margin-top: 4px;
+    color: $dark-color01;
+  }
 }
 .rulerow {
   display: flex;
@@ -64,6 +68,7 @@
   border: 1px solid $danger !important;
 }
 .errColor {
+  margin-top: 4px;
   color: $danger;
 }
 .addBtn {
