@@ -85,9 +85,7 @@ export default class DevOpsStore extends Base {
 
   getWatchListUrl = ({ workspace, ...params }) => {
     if (workspace) {
-      return `${this.apiVersion}/watch/${
-        this.module
-      }?labelSelector=kubesphere.io/workspace=${workspace}`
+      return `${this.apiVersion}/watch/${this.module}?labelSelector=kubesphere.io/workspace=${workspace}`
     }
     return `${this.apiVersion}/watch${this.getPath(params)}/devopsprojects`
   }
@@ -100,23 +98,18 @@ export default class DevOpsStore extends Base {
   }
 
   @action
-  async fetchList({ workspace, cluster, more, type, ...params } = {}) {
+  async fetchList({ workspace, cluster, ...params } = {}) {
     this.list.isLoading = true
-
-    if (workspace) {
-      params.labelSelector = `kubesphere.io/workspace=${workspace}`
-    }
 
     if (params.limit === Infinity || params.limit === -1) {
       params.limit = -1
       params.page = 1
     } else {
       params.limit = params.limit || 10
-      params.page = params.page || 1
     }
 
     const result = await request.get(
-      this.getDevOpsUrl({ cluster, workspace }),
+      this.getBaseUrlV3({ cluster, workspace }),
       params,
       null,
       () => {}
@@ -136,12 +129,12 @@ export default class DevOpsStore extends Base {
     this.list.update({
       data,
       total: get(result, 'totalItems') || data.length || 0,
-      ...omit(params, 'labelSelector'),
       limit: Number(params.limit) || 10,
       page: Number(params.page) || 1,
       cluster: globals.app.isMultiCluster ? cluster : undefined,
       isLoading: false,
       selectedRowKeys: [],
+      ...omit(params, ['limit', 'page']),
     })
   }
 
