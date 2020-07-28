@@ -44,10 +44,7 @@ export default class TableMonitorForm extends Component {
   render() {
     return (
       <EditMonitorFormLayou
-        preview={
-          <div />
-          // <SingleStatGraph data={128} description={this.monitor.config.title} />
-        }
+        preview={<div />}
         sidebar={<GraphTextInput type={'table'} />}
         main={
           <>

@@ -137,6 +137,7 @@ export default {
   SINGLE_GRAPH_TYPE_NAME: '基礎圖',
   STACKED_GRAPH_TYPE: '堆疊圖',
   STACKED_GRAPH_TYPE_DESC: '適用於各大類總量及分量之間的對比顯示',
+  CHART_TYPES: '圖表類型',
   GRAPH_TYPES: '圖例類型',
   ADD_MONITOR_ITEM: '添加監控項',
   ADD_MONITOR_ROW: '添加監控組',

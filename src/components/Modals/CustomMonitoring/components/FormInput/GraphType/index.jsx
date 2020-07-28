@@ -17,12 +17,8 @@
  */
 
 import React from 'react'
-import classnames from 'classnames'
 
-import { ReactComponent as BarIcon } from 'src/assets/bar-chart.svg'
-import { ReactComponent as TextIcon } from 'src/assets/single-stat-logo.svg'
-import { ReactComponent as LineIcon } from 'src/assets/line-chart.svg'
-import { ReactComponent as TableIcon } from 'src/assets/table-chart.svg'
+import { Icon } from '@pitrix/lego-ui'
 
 import styles from './index.scss'
 
@@ -30,28 +26,28 @@ export default function GraphType({ type }) {
   const map = {
     singlestat: {
       i18n: t('SINGLE_STATE_CHART'),
-      Icon: TextIcon,
+      icon: 'text',
     },
     line: {
       i18n: t('LINE_CHART'),
-      Icon: LineIcon,
+      icon: 'linechart',
     },
     bar: {
       i18n: t('BAR_CHART'),
-      Icon: BarIcon,
+      icon: 'barchart',
     },
     table: {
       i18n: t('TABLE'),
-      Icon: TableIcon,
+      icon: 'table-chart',
     },
   }
-  const Icon = map[type].Icon
+  const icon = map[type].icon
   const title = map[type].i18n
   return (
-    <div className={classnames(styles.wrapper, styles[type])}>
-      <header>{t('GRAPH_TYPES')}</header>
+    <div className={styles.wrapper}>
+      <header>{t('CHART_TYPES')}</header>
       <div>
-        <Icon className={styles.icon} />
+        <Icon name={icon} type="light" size={40} />
         <h3>{title}</h3>
       </div>
     </div>

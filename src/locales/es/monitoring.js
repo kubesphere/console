@@ -139,7 +139,7 @@ export default {
   ADD_MONITOR_ROW: 'Agregar grupo de monitorización',
   SELECT_CHART_TYPE: 'Selecciona un tipo de gráfico',
   SELECT_CHART_TYPE_MODAL_DESC: 'Selecciona un tipo de gráfico personalizado',
-  GRAPH_TYPES: 'Tipos de gráfico',
+  CHART_TYPES: 'Tipos de gráfico',
   LINE_CHART: 'Gráfico de línea',
   BAR_CHART: 'Gráfico de barras',
   SINGLE_STATE_CHART: 'Texto en tiempo real',
