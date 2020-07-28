@@ -63,11 +63,7 @@ export default class ImageBuilderLastRun extends React.Component {
       return
     }
 
-    if (globals.app.hasClusterModule(cluster, 'logging')) {
-      await this.store.fetchPodsLogs(logURL, cluster)
-    } else {
-      await this.store.getLog(logURL, cluster)
-    }
+    await this.store.getLog(logURL, cluster)
 
     this.handleScrollToBottom()
     if (logData.hasMore) {
