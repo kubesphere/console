@@ -311,9 +311,9 @@ export default {
     'Administrador de la plataforma que puede administrar todos los recursos en la plataforma.',
   ROLE_PLATFORM_REGULAR:
     'Usuario normal en la plataforma que no tiene acceso a ningún recurso antes de unirse al espacio de trabajo o clúster.',
-  ROLE_USER_MANAGER:
+  ROLE_USERS_MANAGER:
     'Administrador de usuarios en la plataforma que administra a todos los usuarios.',
-  ROLE_WORKSPACE_MANAGER:
+  ROLE_WORKSPACES_MANAGER:
     'Administrador del espacio de trabajo en la plataforma que administra todos los espacios de trabajo en la plataforma.',
   ROLE_CLUSTER_ADMIN:
     'Permite el acceso de administrador de clúster para realizar cualquier acción en cualquier recurso. Le da control total sobre todos los recursos en el clúster y en todos los espacios de nombres.',

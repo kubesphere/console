@@ -239,13 +239,13 @@ export default {
   ROLE_PLATFORM_ADMIN: '平台管理員，可以管理平台内的所有資源。',
   ROLE_PLATFORM_REGULAR:
     '平台普通用戶，在被邀請加入企業空間或集群之前没有任何資源操作權限。',
-  ROLE_USER_MANAGER: '平台用戶管理員，管理平台所有用戶。',
+  ROLE_USERS_MANAGER: '平台用戶管理員，管理平台所有用戶。',
 
   ROLE_CLUSTER_ADMIN: '集群管理員，可以管理集群中所有的資源。',
   ROLE_CLUSTER_VIEWER: '集群觀察者，可以查看集群下所有的資源。',
 
   ROLE_WORKSPACE_ADMIN: '企業空間管理員，可以管理企業空間下所有的資源。',
-  ROLE_WORKSPACE_MANAGER: '平台企業空間管理員，管理平台所有企業空間。',
+  ROLE_WORKSPACES_MANAGER: '平台企業空間管理員，管理平台所有企業空間。',
   ROLE_WORKSPACE_REGULAR: '企業空間普通成員，無法創建 DevOps 工程和項目。',
   ROLE_WORKSPACE_VIEWER: '企業空間的觀察者，可以查看企業空間下所有的資源資訊。',
   ROLE_WORKSPACE_SELF_PROVISIONER:
