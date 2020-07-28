@@ -20,6 +20,7 @@ import { getIndexRoute } from 'utils/router.config'
 
 import Events from 'core/containers/Base/Detail/Events'
 import EnvVariables from 'core/containers/Base/Detail/EnvVariables'
+import Metadata from 'core/containers/Base/Detail/Metadata'
 import RevisionControl from 'projects/containers/Deployments/Detail/RevisionControl'
 import Monitoring from 'projects/containers/Deployments/Detail/Monitoring'
 import ResourceStatus from './ResourceStatus'
@@ -35,6 +36,12 @@ export default path => [
     path: `${path}/revision-control`,
     title: 'Revision Records',
     component: RevisionControl,
+    exact: true,
+  },
+  {
+    path: `${path}/metadata`,
+    title: 'Metadata',
+    component: Metadata,
     exact: true,
   },
   {

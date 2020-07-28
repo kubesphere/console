@@ -18,9 +18,9 @@
 
 import { getIndexRoute } from 'utils/router.config'
 
+import Metadata from 'core/containers/Base/Detail/Metadata'
 import RunningStatus from './RunningStatus'
 import Pods from './Pods'
-import Metadata from './Metadata'
 import Monitoring from './Monitoring'
 import Events from './Events'
 
