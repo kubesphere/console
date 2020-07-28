@@ -135,8 +135,8 @@ export default class AccountDetail extends React.Component {
       },
       {
         name: t('Last Login Time'),
-        value: detail.last_login_time
-          ? getLocalTime(detail.last_login_time).format(`YYYY-MM-DD HH:mm:ss`)
+        value: detail.lastLoginTime
+          ? getLocalTime(detail.lastLoginTime).format(`YYYY-MM-DD HH:mm:ss`)
           : t('Not logged in yet'),
       },
     ]

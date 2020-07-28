@@ -66,7 +66,7 @@ export default class AuthorizedUsers extends React.Component {
     },
     {
       title: t('Last Login Time'),
-      dataIndex: 'last_login_time',
+      dataIndex: 'lastLoginTime',
       width: '33%',
       render: login_time => (
         <p>

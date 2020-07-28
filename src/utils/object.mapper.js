@@ -71,6 +71,7 @@ const getBaseInfo = item => ({
 const DefaultMapper = item => ({
   ...getBaseInfo(item),
   namespace: get(item, 'metadata.namespace'),
+  spec: get(item, 'spec'),
   _originData: getOriginData(item),
 })
 
@@ -133,6 +134,7 @@ const UserMapper = item => ({
   ),
   status: get(item, 'status.state', 'Pending'),
   conditions: get(item, 'status.conditions', []),
+  lastLoginTime: get(item, 'status.lastTransitionTime'),
   _originData: getOriginData(item),
 })
 

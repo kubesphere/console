@@ -216,7 +216,7 @@ export default class Members extends React.Component {
     },
     {
       title: t('Last Login Time'),
-      dataIndex: 'last_login_time',
+      dataIndex: 'lastLoginTime',
       isHideable: true,
       width: 150,
       render: login_time => (
