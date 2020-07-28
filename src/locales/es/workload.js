@@ -655,7 +655,7 @@ export default {
   REPLICAS_AVAILABLE: 'Disponibles',
   REPLICAS_EXPECTED: 'Esperadas',
   SYNC_HOST_TIMEZONE_DESC:
-    'The time zone of the container will be consistent with that of the host after synchronization.',
+    'El timezone del contenedor será consistente con el del host después de la sincronización.',
   HOST_PATH_WARNING:
-    'A HostPath volume mounts a file or directory from the host node’s filesystem into your Pod. This is not something that most Pods will need, but it offers a powerful escape hatch for some applications.',
+    'Un volumen de tipo HostPath montará un fichero o directorio del sistema de ficheros del nodo host en tu Pod. La mayoría de Pods no lo necesitarán, pero puede resultar muy útil para algunas aplicaciones.',
 }

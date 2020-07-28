@@ -344,7 +344,7 @@ export default {
   ROLE_DEVOPS_OPERATOR:
     'Usuario normal en un proyecto DevOps, que puede crear credenciales para las pipelines en el proyecto DevOps.',
   WORKSPACE_SETTINGS_DESC:
-    'Grant permission to manage workspace settings, edit workspace information, network policies, etc.',
+    'Concede permiso para gestionar el workspace: cambiar los parámetros, editar la información, network policies, etc.',
   FEDERATED_PROJECTS_MANAGEMENT_DESC:
-    'Manage all multi-cluster projects in the workspace, including creating/editing/deleting multi-cluster projects',
+    'Gestiona todos los proyectos multi-cluster en el workspace, incluyendo crear/editar/borrar proyectos multi-cluster',
 }

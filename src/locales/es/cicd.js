@@ -486,5 +486,5 @@ export default {
   WHEN_CHRETE_PIEPLINE_DESC:
     'Cuando se crea una nueva pipeline, las tareas en la pipeline especificada se activan automáticamente.',
   'Started By {name}': 'Comenzado por {name}',
-  'Credential ID exists': 'Credential ID exists',
+  'Credential ID exists': 'El ID de credencial ya existe',
 }
