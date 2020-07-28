@@ -21,7 +21,7 @@ import { set } from 'lodash'
 import { reaction } from 'mobx'
 import { observer } from 'mobx-react'
 import { Loading } from '@pitrix/lego-ui'
-import { CodeEditor, Switch } from 'components/Base'
+import { Alert, CodeEditor, Switch } from 'components/Base'
 import { safeParseJSON } from 'utils'
 import { getValueObj, getValue } from 'utils/yaml'
 
@@ -33,6 +33,7 @@ import styles from './index.scss'
 export default class Services extends React.Component {
   state = {
     valuesYaml: '',
+    valuesJSON: {},
     valuesSchema: undefined,
     loadingFile: true,
     isCodeMode: false,
@@ -73,12 +74,13 @@ export default class Services extends React.Component {
 
   updateFormData = () => {
     const { formData } = this.props
+    const { isCodeMode, valuesYaml, valuesJSON } = this.state
 
     set(
       formData,
       'conf',
       getValue({
-        ...getValueObj(this.state.valuesYaml),
+        ...(isCodeMode ? getValueObj(valuesYaml) : valuesJSON),
         Name: formData.name || '',
         Description: formData.desc || '',
         Workspace: formData.workspace,
@@ -87,21 +89,14 @@ export default class Services extends React.Component {
   }
 
   handleModeChange = () => {
-    const { isCodeMode, valuesYaml } = this.state
-    if (isCodeMode) {
-      this.setState({
-        valuesJSON: getValueObj(valuesYaml),
-        isCodeMode: !isCodeMode,
-      })
-    } else {
-      this.setState({
-        isCodeMode: !isCodeMode,
-      })
-    }
+    const { isCodeMode } = this.state
+    this.setState({
+      isCodeMode: !isCodeMode,
+    })
   }
 
   handleValueChange = value => {
-    this.setState({ valueJSON: value, valuesYaml: getValue(value) })
+    this.setState({ valueJSON: value })
   }
 
   handleYamlChange = value => {
@@ -155,6 +150,13 @@ export default class Services extends React.Component {
             />
           )}
         </div>
+        {valuesSchema && (
+          <Alert
+            className="margin-b12"
+            type="warning"
+            message={t('HELM_APP_SCHEMA_FORM_TIP')}
+          />
+        )}
         {showCodeEditor ? this.renderYamlEdit() : this.renderSchemaForm()}
       </div>
     )
