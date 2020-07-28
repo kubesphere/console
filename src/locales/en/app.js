@@ -252,4 +252,7 @@ export default {
   APP_ICON_NOTE: 'JPG or PNG within 96px * 96px',
 
   MISS_FILE_NOTE: 'The file {file} not found',
+
+  HELM_APP_SCHEMA_FORM_TIP:
+    'The app configuration can be displayed in a form. You can modify the default app configuration through either the form or YAML editor. Note: app data stored in different patterns are independent of each other.',
 }

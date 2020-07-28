@@ -220,4 +220,7 @@ export default {
   'Please select a workspace': '請選擇企業空間',
   'Please select a cluster': '請選擇集群',
   'Please select a project': '請選擇項目',
+
+  HELM_APP_SCHEMA_FORM_TIP:
+    '此应用支持表单模式，可选择通过表单或 YAML 编辑器来修改默认应用配置。注意：不同模式之间数据独立。',
 }
