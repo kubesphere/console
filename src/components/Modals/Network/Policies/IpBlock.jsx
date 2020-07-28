@@ -84,37 +84,48 @@ export default class NetworkPoliciesIpBlockModal extends React.Component {
     this.setState(portRules)
   }
 
-  validFormData = () => {
-    const { specType, cidr, portRules } = this.state
+  validCIDR = evt => {
+    const cidr = { ...this.state.cidr }
     const { ip, mask } = cidr
-    cidr.ip.valid = PATTERN_IP.test(ip.value)
-    cidr.mask.valid = PATTERN_IP_MASK.test(mask.value)
-    let validated = cidr.ip.valid && cidr.mask.valid
-    let choSpecType = specType
-    const isValidPort = function(v) {
-      return v !== '' && /^(?![0])(\d{0,5})$/.test(v) && v < 65536
-    }
-    if (specType === '') {
-      validated = false
-      choSpecType = false
-    }
-    if (validated) {
-      portRules.forEach(rule => {
-        rule.port.valid =
-          isEmpty(rule.port.value) || isValidPort(rule.port.value)
-        if (!rule.port.valid) {
-          validated = false
-        }
-      })
-    }
-    this.setState({
-      cidr,
-      portRules,
-      specType: choSpecType,
-    })
 
+    if (!evt || ip.value !== '') {
+      ip.valid = PATTERN_IP.test(ip.value)
+    }
+    if (!evt || mask.value !== '') {
+      mask.valid = PATTERN_IP_MASK.test(mask.value)
+    }
+    this.setState({ cidr })
+    return !!ip.valid && !!mask.valid
+  }
+
+  isValidPort = function(v) {
+    return v !== '' && /^(?![0])(\d{0,5})$/.test(v) && v < 65536
+  }
+
+  validPort = () => {
+    const portRules = this.state.portRules.slice()
+    let validated = true
+    portRules.forEach(rule => {
+      rule.port.valid =
+        isEmpty(rule.port.value) || this.isValidPort(rule.port.value)
+      if (!rule.port.valid) {
+        validated = false
+      }
+    })
+    this.setState({ portRules })
     return validated
   }
+
+  validSpecType = () => {
+    const { specType } = this.state
+    if (specType === '') {
+      this.setState({ specType: false })
+    }
+    return specType !== ''
+  }
+
+  validFormData = () =>
+    this.validSpecType() && this.validCIDR() && this.validPort()
 
   handleSave = () => {
     const { specType, cidr, portRules } = this.state
@@ -143,6 +154,7 @@ export default class NetworkPoliciesIpBlockModal extends React.Component {
   render() {
     const { ...rest } = this.props
     const { specType, protocols, portRules, cidr } = this.state
+    let portInvalid = false
 
     return (
       <Modal.Form
@@ -182,60 +194,88 @@ export default class NetworkPoliciesIpBlockModal extends React.Component {
             </RadioButton>
           </RadioGroup>
         </Form.Item>
-        <Form.Item label="CIDR:" desc={t('NETWORK_POLICY_D_DESC2')}>
-          <div className={styles.cidr}>
-            <Input
-              name="cidr-ip"
-              className={cidr.ip.valid === false ? styles.error : ''}
-              defaultValue={cidr.ip.value}
-              placeholder="eg: 10.0.0.0"
-              onChange={(e, v) => this.setCIDR({ ip: { value: v } })}
-            />
-            <span>/</span>
-            <Input
-              name="cidr-mask"
-              className={cidr.mask.valid === false ? styles.error : ''}
-              defaultValue={cidr.mask.value}
-              placeholder="24"
-              onChange={(e, v) => this.setCIDR({ mask: { value: v } })}
-            />
-          </div>
+        <Form.Item label="CIDR:">
+          <>
+            <div className={styles.cidr}>
+              <Input
+                name="cidr-ip"
+                className={cidr.ip.valid === false ? styles.error : ''}
+                defaultValue={cidr.ip.value}
+                placeholder="eg: 10.0.0.0"
+                onChange={(e, v) => this.setCIDR({ ip: { value: v } })}
+                onBlur={this.validCIDR}
+              />
+              <span>/</span>
+              <Input
+                name="cidr-mask"
+                className={cidr.mask.valid === false ? styles.error : ''}
+                defaultValue={cidr.mask.value}
+                placeholder="24"
+                onChange={(e, v) => this.setCIDR({ mask: { value: v } })}
+                onBlur={this.validCIDR}
+              />
+            </div>
+            <div
+              className={
+                styles[
+                  cidr.ip.valid === false || cidr.mask.valid === false
+                    ? 'errColor'
+                    : 'cidr_desc'
+                ]
+              }
+            >
+              {cidr.ip.valid === false || cidr.mask.valid === false
+                ? t('NETWORK_POLICY_MODAL_CIDRERR')
+                : t('NETWORK_POLICY_D_DESC2')}
+            </div>
+          </>
         </Form.Item>
         <div className={styles.title}>{`${t('Port')}:`}</div>
-        {portRules.map(({ port, protocol }, idx) => (
-          <div className={styles.rulerow} key={`${idx}`}>
-            <div>
-              <Select
-                name="proto"
-                value={protocol}
-                options={protocols}
-                onChange={v => this.modifyRule(idx, { protocol: v })}
-              />
-              <Form.Item>
-                <Input
-                  placeholder={`${t('Port')} eg: 80`}
-                  className={port.valid === false ? styles.error : ''}
-                  value={port.value}
-                  onChange={v => this.modifyRule(idx, { port: { value: v } })}
+        {portRules.map(({ port, protocol }, idx) => {
+          if (port.valid === false) {
+            portInvalid = true
+          }
+          return (
+            <div className={styles.rulerow} key={`${idx}`}>
+              <div>
+                <Select
+                  name="proto"
+                  value={protocol}
+                  options={protocols}
+                  onChange={v => this.modifyRule(idx, { protocol: v })}
                 />
-              </Form.Item>
+                <Form.Item>
+                  <Input
+                    placeholder={`${t('Port')} eg: 80`}
+                    className={port.valid === false ? styles.error : ''}
+                    value={port.value}
+                    onBlur={this.validPort}
+                    onChange={v => this.modifyRule(idx, { port: { value: v } })}
+                  />
+                </Form.Item>
+              </div>
+              <div>
+                <Icon
+                  changeable
+                  clickable
+                  name="trash"
+                  onClick={() => {
+                    this.delPortRule(idx)
+                  }}
+                />
+              </div>
             </div>
-            <div>
-              <Icon
-                changeable
-                clickable
-                name="trash"
-                onClick={() => {
-                  this.delPortRule(idx)
-                }}
-              />
-            </div>
-          </div>
-        ))}
+          )
+        })}
 
         <div className={styles.addBtn}>
           <Button onClick={this.addPortRule}>{t('Add Rule')}</Button>
         </div>
+        {portInvalid && (
+          <div className={styles.errColor}>
+            {t('NETWORK_POLICY_MODAL_PORTERR')}
+          </div>
+        )}
       </Modal.Form>
     )
   }
