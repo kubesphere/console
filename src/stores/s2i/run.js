@@ -181,22 +181,25 @@ export default class S2irunStore extends Base {
         hasMore: true,
       }
     }
-
     let url = parseUrl(logURL).pathname.slice(1)
 
-    const ulrList =
-      url.indexOf('namespaces') >= 0 ? url.split(/\/namespaces\/([\w]+)\//) : []
+    const namespaces = get(url.match(/\/namespaces\/([\w-/.]*)\/pods\//), '1')
+    const pods = get(url.match(/\/pods\/([\w-/.]*)/), '1')
 
-    url =
-      ulrList.length > 2
-        ? `${ulrList[0]}${this.getPath({ namespace: ulrList[1], cluster })}/${
-            ulrList[2]
-          }`
-        : url
+    url = `kapis/tenant.kubesphere.io/v1alpha2${this.getPath({
+      cluster,
+    })}/logs`
 
-    const result = await request.get(
-      `${url}?size=300&from=${this.logData.start}&sort=asc`
-    )
+    const result = await request.get(url, {
+      namespaces,
+      pods,
+      container: this.containerName,
+      timestamps: true,
+      tailLines: 1000,
+      size: 300,
+      from: this.logData.start,
+      sort: 'asc',
+    })
 
     const logRecords = get(result, 'query.records', [])
     const total = get(result, 'query.total', [])

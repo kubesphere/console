@@ -85,7 +85,9 @@ export default class DevOpsStore extends Base {
 
   getWatchListUrl = ({ workspace, ...params }) => {
     if (workspace) {
-      return `${this.apiVersion}/watch/${this.module}?labelSelector=kubesphere.io/workspace=${workspace}`
+      return `${this.apiVersion}/watch/${
+        this.module
+      }?labelSelector=kubesphere.io/workspace=${workspace}`
     }
     return `${this.apiVersion}/watch${this.getPath(params)}/devopsprojects`
   }
@@ -98,7 +100,7 @@ export default class DevOpsStore extends Base {
   }
 
   @action
-  async fetchList({ workspace, cluster, ...params } = {}) {
+  async fetchList({ workspace, cluster, more, ...params } = {}) {
     this.list.isLoading = true
 
     if (params.limit === Infinity || params.limit === -1) {
@@ -127,7 +129,7 @@ export default class DevOpsStore extends Base {
     }))
 
     this.list.update({
-      data,
+      data: more ? [...this.list.data, ...data] : data,
       total: get(result, 'totalItems') || data.length || 0,
       limit: Number(params.limit) || 10,
       page: Number(params.page) || 1,
