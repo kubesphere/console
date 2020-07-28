@@ -394,7 +394,7 @@ export default {
   to: '至',
   Download: '下载',
   Aborted: '已取消',
-  Paused: '暂停',
+  Paused: '已暂停',
   'This param is required': '此参数不能为空',
   Images: '镜像',
   filename: '文件名',
