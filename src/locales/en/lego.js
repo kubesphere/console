@@ -87,5 +87,5 @@ export default {
   LEGO_UI_RANGE_SEPARATOR: ' to ',
   LEGO_UI_SCROLL_TO_INCREMENT: 'Scroll to increment',
   LEGO_UI_CLICK_TO_TOGGLE: 'Click to toggle',
-  LEGO_UI_YEAR: 'Yr',
+  LEGO_UI_YEAR: '',
 }
