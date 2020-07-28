@@ -301,6 +301,7 @@ export default {
   'Set Mount Path': 'Set Mount Path',
   'Set Node Scheduling Policy': 'Set Node Scheduling Policy',
   'Specify Replicas Number': 'Specify Replicas Number',
+  'Sync Host Timezone': 'Sync Host Timezone',
   startingDeadlineSeconds: 'startingDeadlineSeconds',
   'startingDeadlineSeconds(s)': 'startingDeadlineSeconds(s)',
   'Startup Probe': 'Startup Probe',
@@ -675,4 +676,9 @@ export default {
   POD_SCALE_DESC: 'The number of Pod instances that can be scaled',
   REPLICAS_AVAILABLE: 'Available',
   REPLICAS_EXPECTED: 'Expected',
+
+  SYNC_HOST_TIMEZONE_DESC:
+    'The time zone of the container will be consistent with that of the host after synchronization.',
+  HOST_PATH_WARNING:
+    'A HostPath volume mounts a file or directory from the host node’s filesystem into your Pod. This is not something that most Pods will need, but it offers a powerful escape hatch for some applications.',
 }

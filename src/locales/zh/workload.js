@@ -545,6 +545,8 @@ export default {
   'Pod CPU Request': '容器组CPU请求',
   'Pod Memory Request': '容器组内存请求',
 
+  'Sync Host Timezone': '同步主机时区',
+
   POD_CONDITION_INITIALIZED: 'Initialized',
   POD_CONDITION_INITIALIZED_DESC: '所有 init 容器都已成功启动',
   POD_CONDITION_READY: '开始运行(Ready)',
@@ -622,6 +624,10 @@ export default {
   SuccessfulCreate: '创建成功',
   FailedDelete: '删除失败',
   SuccessfulDelete: '删除成功',
+
+  SYNC_HOST_TIMEZONE_DESC: '时区与主机同步后，容器内的时区将与主机节点一致。',
+  HOST_PATH_WARNING:
+    'HostPath 将主机的文件系统挂载到Pod中，它使一些应用程序能逃出对其做出的隔离限制，请谨慎使用。',
 
   'Use Default Ports': '使用默认端口',
 

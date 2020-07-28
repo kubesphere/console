@@ -194,6 +194,31 @@ export default class ContainerSetting extends React.Component {
     })
   }
 
+  updateTimeZone = mergedContainers => {
+    let volumes = get(this.fedFormTemplate, `${this.prefix}spec.volumes`, [])
+    const hasLocalTime = mergedContainers.some(container =>
+      (container.volumeMounts || []).some(
+        vm => vm.mountPath === '/etc/localtime'
+      )
+    )
+
+    if (hasLocalTime) {
+      volumes.push({
+        hostPath: { path: '/etc/localtime', type: '' },
+        name: 'host-time',
+      })
+    } else {
+      volumes = volumes.filter(
+        volume =>
+          volume.name === 'host-time' &&
+          volume.hostPath &&
+          volume.hostPath === '/etc/localtime'
+      )
+    }
+
+    set(this.fedFormTemplate, `${this.prefix}spec.volumes`, volumes)
+  }
+
   updatePullSecrets = () => {
     const pullSecrets = {}
     const containerSecretMap = {}
@@ -348,6 +373,8 @@ export default class ContainerSetting extends React.Component {
       `${this.prefix}spec.initContainers`,
       _initContainers
     )
+
+    this.updateTimeZone(mergedContainers)
 
     // update image pull secrets
     this.updatePullSecrets()

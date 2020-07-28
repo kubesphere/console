@@ -190,7 +190,7 @@ export default class AddVolume extends React.Component {
   }
 
   render() {
-    const { className, module, contentClassName } = this.props
+    const { className, contentClassName } = this.props
     return (
       <div className={classNames(styles.wrapper, className)}>
         <div className="h6">
@@ -209,9 +209,7 @@ export default class AddVolume extends React.Component {
           >
             <RadioButton value="exist">{t('Existing Volume')}</RadioButton>
             <RadioButton value="temp">{t('Temporary Volume')}</RadioButton>
-            {module === 'daemonsets' && (
-              <RadioButton value="host">{t('HostPath')}</RadioButton>
-            )}
+            <RadioButton value="host">{t('HostPath')}</RadioButton>
           </RadioGroup>
           {this.renderContent()}
         </div>
