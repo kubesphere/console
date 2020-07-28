@@ -674,7 +674,7 @@ export default {
   REPLICAS_AVAILABLE: '實際副本',
   REPLICAS_EXPECTED: '期望副本',
 
-  SYNC_HOST_TIMEZONE_DESC: '时区与主机同步后，容器内的时区将与主机节点一致。',
+  SYNC_HOST_TIMEZONE_DESC: '時區與主機同步後，容器内的時區將與主機節點一致。',
   HOST_PATH_WARNING:
-    'HostPath 将主机的文件系统挂载到Pod中，它使一些应用程序能逃出对其做出的隔离限制，请谨慎使用。',
+    'HostPath 將主機的文件系統掛載到Pod中，它使一些應用程式能逃出對其做出的隔離限制，請謹慎使用。',
 }
