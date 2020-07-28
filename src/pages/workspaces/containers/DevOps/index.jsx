@@ -17,7 +17,7 @@
  */
 
 import React from 'react'
-import { computed } from 'mobx'
+import { computed, toJS } from 'mobx'
 
 import { Avatar } from 'components/Base'
 import Banner from 'components/Cards/Banner'
@@ -54,13 +54,17 @@ export default class DevOps extends React.Component {
         icon: 'trash',
         text: t('Delete'),
         action: 'delete',
-        onClick: item =>
+        onClick: item => {
           trigger('resource.delete', {
             type: t('DevOps Project'),
             resource: item.name,
             detail: item,
-            success: this.getData,
-          }),
+            success: () => {
+              this.props.store.setDeleteList(item.name)
+              this.getData()
+            },
+          })
+        },
       },
     ]
   }
@@ -178,8 +182,34 @@ export default class DevOps extends React.Component {
       },
     })
 
+  get tableActions() {
+    const { store, tableProps, trigger } = this.props
+    return {
+      ...tableProps.tableActions,
+      selectActions: [
+        {
+          key: 'delete',
+          type: 'danger',
+          text: t('Delete'),
+          action: 'delete',
+          onClick: () => {
+            trigger('resource.batch.delete', {
+              type: t(tableProps.name),
+              rowKey: tableProps.rowKey,
+              success: () => {
+                store.setDeleteList(toJS(store.list.selectedRowKeys))
+                this.getData()
+              },
+            })
+          },
+        },
+      ],
+    }
+  }
+
   render() {
     const { bannerProps, tableProps } = this.props
+
     return (
       <ListPage {...this.props} getData={this.getData} noWatch>
         <Banner
@@ -190,6 +220,7 @@ export default class DevOps extends React.Component {
         <Table
           {...tableProps}
           itemActions={this.itemActions}
+          tableActions={this.tableActions}
           columns={this.getColumns()}
           onCreate={this.showCreate}
           searchType="name"

@@ -16,8 +16,8 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { set, get, isArray, omit } from 'lodash'
-import { action, observable } from 'mobx'
+import { set, get, isArray, omit, isEmpty } from 'lodash'
+import { action, observable, toJS } from 'mobx'
 
 import Base from 'stores/base'
 
@@ -50,6 +50,9 @@ export default class DevOpsStore extends Base {
 
   @observable
   devops = ''
+
+  @observable
+  deleteList = []
 
   getPath({ cluster, namespace, workspace } = {}) {
     let path = ''
@@ -123,14 +126,30 @@ export default class DevOpsStore extends Base {
 
     this.devopsListData = items
 
-    const data = items.map(item => ({
+    let data = items.map(item => ({
       cluster,
       ...this.mapper(item),
     }))
 
+    let total = get(result, 'totalItems', 0)
+
+    if (!isEmpty(toJS(this.deleteList)) && !isEmpty(data)) {
+      const deleteList = toJS(this.deleteList)
+      data = data.filter(item => {
+        const index = deleteList.findIndex(value => value === item.name)
+        if (index > -1) {
+          deleteList.splice(index, 1)
+          total--
+          return false
+        }
+        return true
+      })
+      this.deleteList = deleteList
+    }
+
     this.list.update({
       data: more ? [...this.list.data, ...data] : data,
-      total: get(result, 'totalItems') || data.length || 0,
+      total,
       limit: Number(params.limit) || 10,
       page: Number(params.page) || 1,
       cluster: globals.app.isMultiCluster ? cluster : undefined,
@@ -258,5 +277,14 @@ export default class DevOpsStore extends Base {
   @action
   setSelectRowKeys(key, selectedRowKeys) {
     this[key] && this[key].selectedRowKeys.replace(selectedRowKeys)
+  }
+
+  @action
+  setDeleteList(param) {
+    if (isArray(param)) {
+      this.deleteList = [...this.deleteList, ...param]
+    } else {
+      this.deleteList.push(param)
+    }
   }
 }
