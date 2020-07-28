@@ -31,6 +31,7 @@ import ImagePullPolicy from './ImagePullPolicy'
 import HealthChecker from './HealthChecker'
 import ContainerSetting from './ContainerSetting'
 import SecurityContext from './SecurityContext'
+import SyncTimeZone from './SyncTimeZone'
 
 import styles from './index.scss'
 
@@ -194,6 +195,7 @@ export default class ContaineForm extends React.Component {
           <Commands />
           <Environments configMaps={configMaps} secrets={secrets} />
           <SecurityContext />
+          <SyncTimeZone data={formData} />
         </Form>
       </div>
     )

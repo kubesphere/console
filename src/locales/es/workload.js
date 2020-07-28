@@ -654,4 +654,8 @@ export default {
   POD_SCALE_DESC: 'El número de instancias de Pod que se pueden escalar',
   REPLICAS_AVAILABLE: 'Disponibles',
   REPLICAS_EXPECTED: 'Esperadas',
+  SYNC_HOST_TIMEZONE_DESC:
+    'The time zone of the container will be consistent with that of the host after synchronization.',
+  HOST_PATH_WARNING:
+    'A HostPath volume mounts a file or directory from the host node’s filesystem into your Pod. This is not something that most Pods will need, but it offers a powerful escape hatch for some applications.',
 }
