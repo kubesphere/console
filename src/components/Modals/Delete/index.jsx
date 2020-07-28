@@ -89,6 +89,7 @@ export default class DeleteModal extends React.Component {
         bodyClassName={styles.modalBody}
         visible={visible}
         isSubmitting={isSubmitting}
+        onCancel={onCancel}
         hideHeader
         hideFooter
       >
