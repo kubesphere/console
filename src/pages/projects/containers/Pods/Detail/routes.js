@@ -20,6 +20,7 @@ import { getIndexRoute } from 'utils/router.config'
 
 import Events from 'core/containers/Base/Detail/Events'
 import EnvVariables from 'core/containers/Base/Detail/EnvVariables'
+import Metadata from 'core/containers/Base/Detail/Metadata'
 import ResourceStatus from './ResourceStatus'
 import ScheduleInfo from './ScheduleInfo'
 import Monitoring from './Monitoring'
@@ -35,6 +36,12 @@ export default path => [
     path: `${path}/schedule`,
     title: 'Scheduling Info',
     component: ScheduleInfo,
+  },
+  {
+    path: `${path}/metadata`,
+    title: 'Metadata',
+    component: Metadata,
+    exact: true,
   },
   {
     path: `${path}/monitors`,

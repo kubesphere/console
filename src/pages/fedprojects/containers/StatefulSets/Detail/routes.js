@@ -19,6 +19,7 @@
 import { getIndexRoute } from 'utils/router.config'
 
 import Events from 'core/containers/Base/Detail/Events'
+import Metadata from 'core/containers/Base/Detail/Metadata'
 import Monitoring from 'fedprojects/containers/Deployments/Detail/Monitoring'
 import ResourceStatus from './ResourceStatus'
 
@@ -27,6 +28,12 @@ export default path => [
     path: `${path}/resource-status`,
     title: 'Resource Status',
     component: ResourceStatus,
+    exact: true,
+  },
+  {
+    path: `${path}/metadata`,
+    title: 'Metadata',
+    component: Metadata,
     exact: true,
   },
   {
