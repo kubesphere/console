@@ -47,7 +47,7 @@ export const S2I_STATUS_DESC = {
 }
 
 export const CRONJOB_STATUS = [
-  { text: 'Pause', value: 'pause' },
+  { text: 'Paused', value: 'paused' },
   { text: 'Running', value: 'running' },
 ]
 

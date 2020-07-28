@@ -102,6 +102,7 @@
   &.terminated,
   &.completed,
   &.minor,
+  &.paused,
   &.suspended {
     background-color: rgba(134, 146, 157, 0.1);
     &::before {
