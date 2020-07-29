@@ -68,7 +68,7 @@ export default {
   USER_DISABLED: 'Deshabilitado',
   USER_NAME_DESC:
     'El nombre de usuario solo puedes contener letras minúsculas y números.',
-  EMAIL_DESC: 'El responsable del proyecto puede utilizar la dirección de correo electrónico para agregarlo como miembro del proyecto.',
+  EMAIL_DESC: 'El correo electrónico se utiliza para iniciar sesión.',
   USER_SETTING_EMAIL_DESC:
     'El correo electrónico se utiliza para iniciar sesión.',
   PASSWORD_DESC:

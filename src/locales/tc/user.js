@@ -34,7 +34,7 @@ export default {
   'Password Setting': '密碼設置',
   Email: '郵箱',
   USER_AVATAR_TIP: '頭像尺寸必須小於 120px X 120px，支持 png，jpg 格式。',
-  EMAIL_DESC: '郵箱地址可以方便項目管理員及時的添加您為項目成員',
+  EMAIL_DESC: '郵箱可作為登錄帳號',
   USER_NAME_DESC: '用戶名稱只能包含小寫字母及數字',
   USER_SETTING_EMAIL_DESC: '郵箱可作為登錄帳號',
   PASSWORD_DESC: '密碼必須包含數字和大小寫字母，長度至少為 6 位',

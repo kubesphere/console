@@ -68,8 +68,7 @@ export default {
   USER_PENDING: 'Pending',
   USER_DISABLED: 'Disabled',
   USER_NAME_DESC: 'Username can only contain lowercase letters and numbers.',
-  EMAIL_DESC:
-    'The email address can be used by the project manager to add you as a project member.',
+  EMAIL_DESC: 'The email address is used for login.',
   USER_SETTING_EMAIL_DESC: 'Email is used for login.',
   PASSWORD_DESC:
     'Password must contain numbers and letters, and must be at least 6 characters in length.',
