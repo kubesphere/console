@@ -19,6 +19,7 @@
 import React from 'react'
 import classnames from 'classnames'
 import { Tabs, Icon } from '@pitrix/lego-ui'
+import { getLocalTime } from 'utils'
 
 import Metadata from './Metadata'
 
@@ -90,11 +91,11 @@ export default class MetadataModal extends React.Component {
         </div>
         <div className={styles.row}>
           <div className={styles.rowTitle}>{t('Earliest start time')}</div>
-          <div className={styles.rowDesc}>{firstTimestamp}</div>
+          <div className={styles.rowDesc}>{getLocalTime(firstTimestamp)}</div>
         </div>
         <div className={styles.row}>
           <div className={styles.rowTitle}>{t('Most recent start time')}</div>
-          <div className={styles.rowDesc}>{lastTimestamp}</div>
+          <div className={styles.rowDesc}>{getLocalTime(lastTimestamp)}</div>
         </div>
       </div>
     )
