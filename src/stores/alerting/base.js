@@ -125,7 +125,11 @@ export default class AlertStoreBase extends Base {
     const result = await request.get(this.getDetailUrl(params))
     const data = this.mapper(get(result, `[${this.itemsKey}][0]`) || {})
 
-    this.detail = { cluster: params.cluster, ...data }
+    this.detail = {
+      cluster: params.cluster,
+      namespace: params.namespace,
+      ...data,
+    }
     this.isLoading = false
 
     return data

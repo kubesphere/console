@@ -32,8 +32,6 @@ import ConfigMaps from '../containers/ConfigMaps'
 import Secrets from '../containers/Secrets'
 import QuotaManage from '../containers/QuotaManage'
 import AdvancedSettings from '../containers/AdvancedSettings'
-import AlertingPolicies from '../containers/Alerting/Policies'
-import AlertingMessages from '../containers/Alerting/Messages'
 
 import getDetailPath from './detail'
 
@@ -73,16 +71,6 @@ export default [
       { path: `${PATH}/secrets`, component: Secrets, exact: true },
       { path: `${PATH}/quota`, component: QuotaManage, exact: true },
       { path: `${PATH}/advanced`, component: AdvancedSettings, exact: true },
-      {
-        path: `${PATH}/alert-policies`,
-        component: AlertingPolicies,
-        exact: true,
-      },
-      {
-        path: `${PATH}/alert-messages`,
-        component: AlertingMessages,
-        exact: true,
-      },
       getIndexRoute({
         path: `${PATH}/workloads`,
         to: `${PATH}/deployments`,

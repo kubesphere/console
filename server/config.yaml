@@ -333,13 +333,11 @@ client:
             - {
                 name: alert-messages,
                 title: Alerting Message,
-                authKey: alerting,
                 clusterModule: alerting,
               }
             - {
                 name: alert-policies,
                 title: Alerting Policy,
-                authKey: alerting,
                 clusterModule: alerting,
               }
             - { name: custom-monitoring, title: Custom Monitoring }

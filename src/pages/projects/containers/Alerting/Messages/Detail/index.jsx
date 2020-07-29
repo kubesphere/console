@@ -45,11 +45,7 @@ export default class AlertPolicyDetail extends React.Component {
   }
 
   get module() {
-    return 'alerting'
-  }
-
-  get name() {
-    return 'alerting policy'
+    return 'alert-messages'
   }
 
   get listUrl() {
@@ -74,7 +70,7 @@ export default class AlertPolicyDetail extends React.Component {
       key: 'comment',
       type: 'default',
       text: t('ALERT_COMMENT'),
-      action: 'record',
+      action: 'edit',
       onClick: () =>
         this.trigger('alerting.message.comment', {
           detail: this.store.detail,

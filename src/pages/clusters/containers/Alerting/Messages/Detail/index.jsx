@@ -35,7 +35,7 @@ import routes from './routes'
 @inject('rootStore')
 @observer
 @trigger
-export default class AlertPolicyDetail extends React.Component {
+export default class AlertMessageDetail extends React.Component {
   store = new AlertMessageStore('node')
 
   policyStore = new AlertPolicyStore('node')
@@ -45,11 +45,11 @@ export default class AlertPolicyDetail extends React.Component {
   }
 
   get module() {
-    return 'alerting'
+    return 'alert-messages'
   }
 
   get name() {
-    return 'alerting policy'
+    return 'alerting message'
   }
 
   get listUrl() {
@@ -74,7 +74,7 @@ export default class AlertPolicyDetail extends React.Component {
       key: 'comment',
       type: 'default',
       text: t('ALERT_COMMENT'),
-      action: 'record',
+      action: 'edit',
       onClick: () =>
         this.trigger('alerting.message.comment', {
           detail: this.store.detail,
