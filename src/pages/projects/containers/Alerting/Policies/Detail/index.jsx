@@ -41,7 +41,7 @@ export default class AlertPolicyDetail extends React.Component {
   }
 
   get module() {
-    return 'alerting'
+    return 'alert-policies'
   }
 
   get name() {
@@ -137,7 +137,7 @@ export default class AlertPolicyDetail extends React.Component {
     const sideProps = {
       module: this.module,
       name: getDisplayName(this.store.detail),
-      desc: this.store.detail.description,
+      desc: this.store.detail.desc,
       operations: this.getOperations(),
       attrs: this.getAttrs(),
       breadcrumbs: [

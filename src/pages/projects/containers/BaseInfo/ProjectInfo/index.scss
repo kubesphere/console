@@ -3,13 +3,17 @@
 
 .wrapper {
   padding: 12px 0;
+
+  &.single {
+    padding: 20px 8px;
+  }
 }
 
 .header {
   position: relative;
   display: flex;
   justify-content: flex-start;
-  padding: 0 12px 12px;
+  padding: 0 12px;
 
   .item {
     flex: 1;
@@ -31,6 +35,7 @@
 .content {
   display: flex;
   justify-content: flex-start;
+  margin-top: 12px;
   padding: 20px 40px;
   background-color: $lightest;
 }

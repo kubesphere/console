@@ -52,8 +52,8 @@ class BaseInfo extends React.Component {
   }
 
   componentDidMount() {
-    this.memberStore.fetchList(this.params)
-    this.roleStore.fetchList(this.params)
+    this.canViewMembers && this.memberStore.fetchList(this.params)
+    this.canViewRoles && this.roleStore.fetchList(this.params)
     this.quotaStore.fetch(this.params)
     this.limitRangeStore.fetchListByK8s(this.params)
   }
@@ -90,6 +90,24 @@ class BaseInfo extends React.Component {
   get enabledActions() {
     return globals.app.getActions({
       module: 'project-settings',
+      ...this.params,
+      project: this.params.namespace,
+    })
+  }
+
+  get canViewRoles() {
+    return globals.app.hasPermission({
+      module: 'roles',
+      actions: 'view',
+      ...this.params,
+      project: this.params.namespace,
+    })
+  }
+
+  get canViewMembers() {
+    return globals.app.hasPermission({
+      module: 'members',
+      actions: 'view',
       ...this.params,
       project: this.params.namespace,
     })
@@ -205,6 +223,7 @@ class BaseInfo extends React.Component {
           workspace={this.workspace}
           actions={this.enabledItemActions}
           onMenuClick={this.handleMoreMenuClick}
+          showDetail={this.canViewMembers && this.canViewRoles}
         />
         <DefaultResource detail={limitRange} />
         <ResourceQuota detail={quota} />

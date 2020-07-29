@@ -803,7 +803,7 @@ const AlertMapper = item => {
     id: get(item, 'alert_id'),
     addressListId: get(item, 'nf_address_list_id'),
     name: get(item, 'alert_name'),
-    displayName: get(item, 'policy_name'),
+    aliasName: get(item, 'policy_name'),
     desc: get(item, 'policy_description'),
     rulesCount: get(item, 'rules_count') || 0,
     alertStatus,

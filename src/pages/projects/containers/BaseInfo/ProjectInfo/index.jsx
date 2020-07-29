@@ -50,9 +50,13 @@ export default class ProjectInfo extends React.Component {
       memberCount,
       roleCount,
       actions,
+      showDetail,
     } = this.props
     return (
-      <Panel className={styles.wrapper} title={t('Project Info')}>
+      <Panel
+        className={classNames(styles.wrapper, { [styles.single]: !showDetail })}
+        title={t('Project Info')}
+      >
         <div className={styles.header}>
           <Icon name="project" size={40} />
           <div className={styles.item}>
@@ -88,29 +92,31 @@ export default class ProjectInfo extends React.Component {
             </div>
           )}
         </div>
-        <div className={styles.content}>
-          <div className={styles.contentItem}>
-            <Icon name="appcenter" size={40} />
-            <div className={styles.item}>
-              <div>{serviceCount}</div>
-              <p>{t('Services')}</p>
+        {showDetail && (
+          <div className={styles.content}>
+            <div className={styles.contentItem}>
+              <Icon name="appcenter" size={40} />
+              <div className={styles.item}>
+                <div>{serviceCount}</div>
+                <p>{t('Services')}</p>
+              </div>
+            </div>
+            <div className={styles.contentItem}>
+              <Icon name="role" size={40} />
+              <div className={styles.item}>
+                <div>{roleCount}</div>
+                <p>{t('Project Roles')}</p>
+              </div>
+            </div>
+            <div className={styles.contentItem}>
+              <Icon name="group" size={40} />
+              <div className={styles.item}>
+                <div>{memberCount}</div>
+                <p>{t('Project Members')}</p>
+              </div>
             </div>
           </div>
-          <div className={styles.contentItem}>
-            <Icon name="role" size={40} />
-            <div className={styles.item}>
-              <div>{roleCount}</div>
-              <p>{t('Project Roles')}</p>
-            </div>
-          </div>
-          <div className={styles.contentItem}>
-            <Icon name="group" size={40} />
-            <div className={styles.item}>
-              <div>{memberCount}</div>
-              <p>{t('Project Members')}</p>
-            </div>
-          </div>
-        </div>
+        )}
       </Panel>
     )
   }

@@ -24,8 +24,6 @@ import RouteDetail from '../containers/Routes/Detail'
 import VolumeDetail from '../containers/Volumes/Detail'
 import SecretDetail from '../containers/Secrets/Detail'
 import ConfigMapDetail from '../containers/ConfigMaps/Detail'
-import AlertPoliciesDetail from '../containers/Alerting/Policies/Detail'
-import AlertMessagesDetail from '../containers/Alerting/Messages/Detail'
 
 export default PATH => [
   {
@@ -59,13 +57,5 @@ export default PATH => [
   {
     path: `${PATH}/applications/:name`,
     component: AppDetail,
-  },
-  {
-    path: `${PATH}/alert-policies/:name`,
-    component: AlertPoliciesDetail,
-  },
-  {
-    path: `${PATH}/alert-messages/:id`,
-    component: AlertMessagesDetail,
   },
 ]

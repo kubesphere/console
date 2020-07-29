@@ -510,7 +510,7 @@ const FORM_TEMPLATES = {
   storageclasses: getStorageClassTemplate,
   project: getProjectTemplate,
   limitRange: getLimitRangeTemplate,
-  'alerting-policy': getAlertPolicyTemplate,
+  'alert-policies': getAlertPolicyTemplate,
   applications: getApplicationTemplate,
   strategies: getStrategyTemplate,
   strategyPolicy: getStrategyPolicyTemplate,

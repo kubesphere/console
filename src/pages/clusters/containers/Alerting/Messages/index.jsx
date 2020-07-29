@@ -32,9 +32,8 @@ import MessageStore from 'stores/alerting/message'
 
 @withList({
   store: new MessageStore('node'),
-  module: 'alert-message',
+  module: 'alert-messages',
   name: 'Alerting Message',
-  authKey: 'alerting',
 })
 export default class AlertingPolicy extends React.Component {
   state = {

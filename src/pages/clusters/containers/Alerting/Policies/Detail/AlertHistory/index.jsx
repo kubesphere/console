@@ -60,14 +60,24 @@ export default class AlertHistory extends React.Component {
     return this.props.match.params
   }
 
+  get workspace() {
+    return this.params.workspace
+  }
+
   get namespace() {
     return this.params.namespace
   }
 
+  get cluster() {
+    return this.params.cluster
+  }
+
   get prefix() {
-    return this.namespace
-      ? `/projects/${this.namespace}/alert-message/all`
-      : '/monitoring/alert-message/all'
+    return this.workspace
+      ? `/${this.workspace}/clusters/${this.cluster}/projects/${
+          this.namespace
+        }/alert-messages`
+      : `/clusters/${this.cluster}/alert-messages`
   }
 
   @computed
