@@ -34,7 +34,7 @@ export default {
   'Password Setting': '密码设置',
   Email: '邮箱',
   USER_AVATAR_TIP: '头像尺寸必须小于 120px X 120px，支持 png，jpg 格式。',
-  EMAIL_DESC: '邮箱地址可以方便项目管理员及时的添加您为项目成员',
+  EMAIL_DESC: '邮箱可作为登录账号',
   USER_NAME_DESC: '用户名只能包含小写字母及数字',
   USER_SETTING_EMAIL_DESC: '邮箱可作为登录账号',
   PASSWORD_DESC: '密码必须包含数字和大小写字母，长度至少为 6 位',
