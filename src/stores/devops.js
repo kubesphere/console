@@ -84,12 +84,9 @@ export default class DevOpsStore extends Base {
     `${this.getDevOpsUrl({ cluster, workspace })}/${devops}`
 
   getWatchListUrl = ({ workspace, ...params }) => {
-    if (workspace) {
-      return `${this.apiVersion}/watch/${
-        this.module
-      }?labelSelector=kubesphere.io/workspace=${workspace}`
-    }
-    return `${this.apiVersion}/watch${this.getPath(params)}/devopsprojects`
+    return `apis/devops.kubesphere.io/v1alpha3/watch${this.getPath(
+      params
+    )}/devopsprojects?labelSelector=kubesphere.io/workspace=${workspace}`
   }
 
   getWatchUrl = (params = {}) =>
@@ -130,12 +127,12 @@ export default class DevOpsStore extends Base {
 
     this.list.update({
       data: more ? [...this.list.data, ...data] : data,
-      total: get(result, 'totalItems') || data.length || 0,
+      total: result.totalItems || data.length || 0,
       limit: Number(params.limit) || 10,
       page: Number(params.page) || 1,
       cluster: globals.app.isMultiCluster ? cluster : undefined,
       isLoading: false,
-      selectedRowKeys: [],
+      ...(this.list.silent ? {} : { selectedRowKeys: [] }),
       ...omit(params, ['limit', 'page']),
     })
   }
@@ -256,7 +253,7 @@ export default class DevOpsStore extends Base {
   }
 
   @action
-  setSelectRowKeys(key, selectedRowKeys) {
-    this[key] && this[key].selectedRowKeys.replace(selectedRowKeys)
+  setSelectRowKeys = selectedRowKeys => {
+    this.list.selectedRowKeys = selectedRowKeys
   }
 }

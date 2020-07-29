@@ -253,6 +253,7 @@ export const MODULE_KIND_MAP = {
   dashboards: 'Dashboard',
   applications: 'Application',
   users: 'User',
+  devops: 'DevOpsProject',
 }
 
 export const QUOTAS_MAP = {

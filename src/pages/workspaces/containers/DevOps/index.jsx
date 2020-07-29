@@ -19,7 +19,7 @@
 import React from 'react'
 import { computed } from 'mobx'
 
-import { Avatar } from 'components/Base'
+import { Avatar, Status } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import Table from 'workspaces/components/ResourceTable'
 import withList, { ListPage } from 'components/HOCs/withList'
@@ -46,21 +46,20 @@ export default class DevOps extends React.Component {
         icon: 'pen',
         text: t('Edit'),
         action: 'edit',
-        onClick: item =>
-          trigger('devops.edit', { detail: item, success: this.getData }),
+        onClick: item => trigger('devops.edit', { detail: item }),
       },
       {
         key: 'delete',
         icon: 'trash',
         text: t('Delete'),
         action: 'delete',
-        onClick: item =>
+        onClick: item => {
           trigger('resource.delete', {
             type: t('DevOps Project'),
             resource: item.name,
             detail: item,
-            success: this.getData,
-          }),
+          })
+        },
       },
     ]
   }
@@ -101,6 +100,27 @@ export default class DevOps extends React.Component {
     }
   }
 
+  get tableActions() {
+    const { tableProps, trigger } = this.props
+    return {
+      ...tableProps.tableActions,
+      selectActions: [
+        {
+          key: 'delete',
+          type: 'danger',
+          text: t('Delete'),
+          action: 'delete',
+          onClick: () => {
+            trigger('resource.batch.delete', {
+              type: t(tableProps.name),
+              rowKey: tableProps.rowKey,
+            })
+          },
+        },
+      ],
+    }
+  }
+
   handleClusterChange = cluster => {
     this.workspaceStore.selectCluster(cluster)
     this.getData()
@@ -127,20 +147,31 @@ export default class DevOps extends React.Component {
       dataIndex: 'name',
       width: '35',
       render: (name, record) => {
+        const isTerminating = record.status === 'Terminating'
+        const titleNode = (
+          <>
+            <span>{getDisplayName(record)}</span>
+            {isTerminating ? (
+              <Status type={record.status} name={t(record.status)} flicker />
+            ) : null}
+          </>
+        )
         return (
-          <Avatar
-            icon="strategy-group"
-            iconSize={40}
-            to={
-              record.namespace && record.cluster
-                ? `/${this.workspace}/clusters/${record.cluster}/devops/${
-                    record.namespace
-                  }`
-                : null
-            }
-            desc={record.description || '-'}
-            title={getDisplayName(record)}
-          />
+          <>
+            <Avatar
+              icon="strategy-group"
+              iconSize={40}
+              to={
+                record.namespace && record.cluster && !isTerminating
+                  ? `/${this.workspace}/clusters/${record.cluster}/devops/${
+                      record.namespace
+                    }`
+                  : null
+              }
+              desc={record.description || '-'}
+              title={titleNode}
+            />
+          </>
         )
       },
     },
@@ -172,16 +203,27 @@ export default class DevOps extends React.Component {
       ...this.props.match.params,
       cluster: this.workspaceStore.cluster,
       success: () => {
-        setTimeout(() => {
-          this.getData()
-        }, 500)
+        this.getData({ silent: true })
       },
     })
 
+  getCheckboxProps = record => ({
+    disabled: record.status === 'Terminating',
+    name: record.name,
+  })
+
   render() {
-    const { bannerProps, tableProps } = this.props
+    const { bannerProps, tableProps, match } = this.props
+    const matchParams = {
+      ...match,
+      params: {
+        ...match.params,
+        cluster: this.workspaceStore.cluster,
+      },
+    }
+
     return (
-      <ListPage {...this.props} getData={this.getData} noWatch>
+      <ListPage {...this.props} getData={this.getData} match={matchParams}>
         <Banner
           {...bannerProps}
           description={t('DEVOPS_DESCRIPTION')}
@@ -190,10 +232,13 @@ export default class DevOps extends React.Component {
         <Table
           {...tableProps}
           itemActions={this.itemActions}
+          tableActions={this.tableActions}
           columns={this.getColumns()}
           onCreate={this.showCreate}
           searchType="name"
+          isLoading={tableProps.isLoading}
           {...this.clusterProps}
+          getCheckboxProps={this.getCheckboxProps}
         />
       </ListPage>
     )

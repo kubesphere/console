@@ -1094,6 +1094,7 @@ const DevOpsMapper = item => ({
   ...getBaseInfo(item),
   workspace: get(item, 'metadata.labels["kubesphere.io/workspace"]'),
   namespace: get(item, 'status.adminNamespace'),
+  status: get(item, 'status.phase', 'Running'),
   _originData: getOriginData(item),
 })
 
