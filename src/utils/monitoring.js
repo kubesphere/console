@@ -180,7 +180,7 @@ export const getValueByUnit = (num, unit) => {
 
 export const getFormatTime = (ms, showDay) =>
   getLocalTime(Number(ms))
-    .format(showDay ? 'MM-DD HH:mm' : 'HH:mm')
+    .format(showDay ? 'MM-DD HH:mm' : 'HH:mm:ss')
     .replace(/:00$/g, '')
 
 export const getChartData = ({
