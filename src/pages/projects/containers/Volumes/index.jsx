@@ -138,11 +138,12 @@ export default class Volumes extends React.Component {
         filters: this.getStatus(),
         filteredValue: getFilteredValue('status'),
         width: '14%',
-        render: ({ phase }) => (
+        render: (_, { phase }) => (
           <Status
             type={phase}
             className={styles.status}
             name={t(`VOLUME_STATUS_${phase.toUpperCase()}`)}
+            flicker
           />
         ),
       },
