@@ -62,23 +62,23 @@ export default class ClusterWorkloadStatus extends Component {
   }
 
   render() {
-    const { store, detail, resources, clusters } = this.props
+    const { store, resources, clusters, clustersDetail } = this.props
 
-    if (!detail || !detail.clusters) {
+    if (!clusters) {
       return null
     }
 
     return (
       <Panel title={t('Instance Status')}>
         <div className={styles.wrapper}>
-          {detail.clusters.map(cluster => {
-            if (!clusters[cluster.name]) {
+          {clusters.map(cluster => {
+            if (!clustersDetail[cluster.name]) {
               return null
             }
             return (
               <Cluster
                 key={cluster.name}
-                cluster={clusters[cluster.name]}
+                cluster={clustersDetail[cluster.name]}
                 workload={resources[cluster.name]}
                 onReplicasChange={this.handleReplicasChange}
                 onEdit={this.handleEdit}
