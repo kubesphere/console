@@ -183,7 +183,7 @@ export default class ContainerItem extends React.Component {
             ) : (
               <span className={styles.noLink}>{detail.name}</span>
             )}
-            {!isCreating && (
+            {prefix && !isCreating && (
               <Tooltip content={t('Container Logs')}>
                 <Icon
                   className="margin-l8"

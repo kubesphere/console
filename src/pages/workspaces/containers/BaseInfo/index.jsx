@@ -300,9 +300,11 @@ class BaseInfo extends React.Component {
           const clusterTemp =
             get(workspace, `clusterTemplates[${cluster.name}]`) || {}
           const networkIsolation =
-            get(clusterTemp, 'spec.networkIsolation') ||
-            workspace.networkIsolation ||
-            false
+            get(
+              clusterTemp,
+              'spec.networkIsolation',
+              workspace.networkIsolation
+            ) || false
 
           return (
             <div className={styles.item} key={cluster.name}>

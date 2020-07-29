@@ -279,6 +279,7 @@ export default class VolumeDetail extends React.Component {
       module: this.module,
       authKey: this.authKey,
       name: getDisplayName(this.store.detail),
+      desc: this.store.detail.description,
       attrs: this.getAttrs(),
       operations: this.isFedManaged ? [] : this.getOperations(),
       icon: 'storage',
