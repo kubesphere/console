@@ -64,6 +64,6 @@ export default {
 
   CIDR_DESC: '将根据流量的方向',
   NETWORK_POLICY_MODAL_DIRECT: '请选择规则方向',
-  NETWORK_POLICY_MODAL_CIDRERR: '请正确填写CIDR信息',
+  NETWORK_POLICY_MODAL_CIDRERR: '请正确填写 CIDR 信息',
   NETWORK_POLICY_MODAL_PORTERR: '请正确填写端口',
 }

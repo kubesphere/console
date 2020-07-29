@@ -53,7 +53,8 @@ export default {
   NETWORK_POLICY_R1_DESC1:
     'Selecciona un proyecto o servicio específico como miembro de la lista de permisos para que estos recursos puedan acceder al proyecto actual.',
   NETWORK_POLICY_R2_TITLE: 'Dirección IP externa del clúster',
-  NETWORK_POLICY_R2_DESC: 'Permitir acceso para rango de IPs (CIDR) externo al clúster',
+  NETWORK_POLICY_R2_DESC:
+    'Permitir acceso para rango de IPs (CIDR) externo al clúster',
   NETWORK_POLICY_R2_DESC1:
     'Selecciona un rango específico de IPs (CIDR) como origen de entrada o destino de salida.',
   NETWORK_POLICY_D_DESC:
@@ -66,4 +67,6 @@ export default {
     'La política de red está configurada para permitir el aislamiento de la red dentro del mismo clúster, es decir, la capacidad de construir un cortafuegos entre ciertas instancias (pods).',
   CIDR_DESC: 'Basado en la dirección del tráfico',
   NETWORK_POLICY_MODAL_DIRECT: 'Por favor, selecciona la dirección de la regla',
+  NETWORK_POLICY_MODAL_CIDRERR: 'Please fill in the CIDR information correctly',
+  NETWORK_POLICY_MODAL_PORTERR: 'Please fill in the port correctly',
 }
