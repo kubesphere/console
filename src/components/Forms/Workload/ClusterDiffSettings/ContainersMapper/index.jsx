@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, set, cloneDeep, isEmpty } from 'lodash'
+import { get, set, cloneDeep, isEmpty, uniqBy } from 'lodash'
 import React, { Component } from 'react'
 import classNames from 'classnames'
 
@@ -58,10 +58,10 @@ export default class ContainersMapper extends Component {
     const overrides = get(formTemplate, 'spec.overrides', [])
     const override = overrides.find(item => item.clusterName === cluster)
     if (override) {
-      override.clusterOverrides = [
-        ...(override.clusterOverrides || []),
-        ...clusterOverrides,
-      ]
+      override.clusterOverrides = uniqBy(
+        [...clusterOverrides, ...(override.clusterOverrides || [])],
+        'path'
+      )
     } else {
       overrides.push({ clusterName: cluster, clusterOverrides })
     }
@@ -95,10 +95,10 @@ export default class ContainersMapper extends Component {
     const overrides = get(serviceTemplate, 'spec.overrides', [])
     const override = overrides.find(item => item.clusterName === cluster)
     if (override) {
-      override.clusterOverrides = [
-        ...(override.clusterOverrides || []),
-        ...clusterOverrides,
-      ]
+      override.clusterOverrides = uniqBy(
+        [...clusterOverrides, ...(override.clusterOverrides || [])],
+        'path'
+      )
     } else {
       overrides.push({ clusterName: cluster, clusterOverrides })
     }

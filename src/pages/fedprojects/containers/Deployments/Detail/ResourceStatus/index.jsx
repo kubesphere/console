@@ -49,8 +49,11 @@ class ResourceStatus extends React.Component {
   }
 
   renderReplicaInfo() {
-    const { detail, resources, isResourcesLoading } = this.store
-    const clusters = keyBy(this.props.projectStore.detail.clusters, 'name')
+    const { detail = {}, resources, isResourcesLoading } = this.store
+    const clustersDetail = keyBy(
+      this.props.projectStore.detail.clusters,
+      'name'
+    )
 
     return (
       <ClusterWorkloadStatus
@@ -58,7 +61,8 @@ class ResourceStatus extends React.Component {
         store={this.store}
         detail={detail}
         resources={resources}
-        clusters={clusters}
+        clustersDetail={clustersDetail}
+        clusters={detail.clusters}
         isLoading={isResourcesLoading}
       />
     )
