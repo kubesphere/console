@@ -134,7 +134,7 @@ const UserMapper = item => ({
   ),
   status: get(item, 'status.state', 'Pending'),
   conditions: get(item, 'status.conditions', []),
-  lastLoginTime: get(item, 'status.lastTransitionTime'),
+  lastLoginTime: get(item, 'status.lastLoginTime'),
   _originData: getOriginData(item),
 })
 
