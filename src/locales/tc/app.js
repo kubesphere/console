@@ -222,5 +222,5 @@ export default {
   'Please select a project': '請選擇項目',
 
   HELM_APP_SCHEMA_FORM_TIP:
-    '此应用支持表单模式，可选择通过表单或 YAML 编辑器来修改默认应用配置。注意：不同模式之间数据独立。',
+    '此應用支持表單模式，可選擇通過表單或 YAML 編輯器來修改預設應用配置。注意：不同模式之間數據獨立。',
 }
