@@ -82,6 +82,18 @@ export default class OPAppDetail extends React.Component {
         }),
     },
     {
+      key: 'edit',
+      icon: 'pen',
+      text: t('Version Upgrade'),
+      action: 'edit',
+      onClick: () =>
+        this.trigger('openpitrix.app.upgrade', {
+          type: t(this.name),
+          detail: toJS(this.store.detail),
+          success: this.fetchData,
+        }),
+    },
+    {
       key: 'destroy',
       type: 'danger',
       icon: 'trash',
