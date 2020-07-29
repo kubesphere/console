@@ -164,6 +164,7 @@ export default {
     'One axis of the base bar chart features the categories being compared, while the other axis represents the value of each.',
   STACK_BAR_CHART_DESC:
     'A stacked bar chart is an extension of bar charts. A standard bar chart compares individual data points with each other while in a stacked bar chart, parts of the data are adjacent or stacked. It can be used to present the total amount of a category as well as its sub-amounts (proportion). Therefore, it is very helpful for examining part-to-whole relations.',
+  EMPTY_CHART_PLACEHOLDER: 'The chart will display here.',
   DISPLAY_FORMAT: 'Display Format',
   FIELD_NAME: 'Field Name',
   COLUMN_NAME: 'Column Name',
