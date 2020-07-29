@@ -36,6 +36,7 @@ import styles from './index.scss'
 @withClusterList({
   store: new VolumeStore(),
   module: 'persistentvolumeclaims',
+  authKey: 'volumes',
   name: 'Volume',
   rowKey: 'uid',
 })

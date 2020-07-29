@@ -36,6 +36,7 @@ import styles from './index.scss'
 @withProjectList({
   store: new VolumeStore(),
   module: 'persistentvolumeclaims',
+  authKey: 'volumes',
   name: 'Volume',
   rowKey: 'uid',
 })

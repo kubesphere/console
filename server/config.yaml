@@ -142,7 +142,7 @@ client:
           icon: database
           children:
             - { name: volumes, title: Volumes }
-            - { name: volume-snapshots, title: Snapshots }
+            - { name: volume-snapshots, title: Snapshots, authKey: volumes }
             - { name: storageclasses, title: Storage Classes }
         - name: monitoring-alerting
           title: Monitoring & Alerting
@@ -306,7 +306,7 @@ client:
           icon: database
           children:
             - { name: volumes, title: Volumes }
-            - { name: volume-snapshots, title: Snapshots }
+            - { name: volume-snapshots, title: Snapshots, authKey: volumes }
         - name: config
           title: Configuration Center
           icon: hammer
