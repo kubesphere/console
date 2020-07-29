@@ -145,17 +145,8 @@ export default class DevOps extends React.Component {
     {
       title: t('Name'),
       dataIndex: 'name',
-      width: '35',
       render: (name, record) => {
         const isTerminating = record.status === 'Terminating'
-        const titleNode = (
-          <>
-            <span>{getDisplayName(record)}</span>
-            {isTerminating ? (
-              <Status type={record.status} name={t(record.status)} flicker />
-            ) : null}
-          </>
-        )
         return (
           <>
             <Avatar
@@ -169,7 +160,7 @@ export default class DevOps extends React.Component {
                   : null
               }
               desc={record.description || '-'}
-              title={titleNode}
+              title={getDisplayName(record)}
             />
           </>
         )
@@ -179,13 +170,17 @@ export default class DevOps extends React.Component {
       title: t('ID'),
       dataIndex: 'namespace',
       isHideable: true,
-      width: '25%',
+    },
+    {
+      title: t('Status'),
+      dataIndex: 'status',
+      isHideable: true,
+      render: status => <Status type={status} name={t(status)} flicker />,
     },
     {
       title: t('Creator'),
       dataIndex: 'creator',
       isHideable: true,
-      width: '20%',
       render: creator => creator || '-',
     },
     {
@@ -193,7 +188,6 @@ export default class DevOps extends React.Component {
       dataIndex: 'createTime',
       isHideable: true,
       sorter: true,
-      width: '15%',
       render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
     },
   ]

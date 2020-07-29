@@ -1090,13 +1090,18 @@ const FederatedMapper = resourceMapper => item => {
   }
 }
 
-const DevOpsMapper = item => ({
-  ...getBaseInfo(item),
-  workspace: get(item, 'metadata.labels["kubesphere.io/workspace"]'),
-  namespace: get(item, 'status.adminNamespace'),
-  status: get(item, 'status.phase', 'Running'),
-  _originData: getOriginData(item),
-})
+const DevOpsMapper = item => {
+  const phase = get(item, 'status.phase')
+  const deletionTimestamp = get(item, 'metadata.deletionTimestamp')
+
+  return {
+    ...getBaseInfo(item),
+    workspace: get(item, 'metadata.labels["kubesphere.io/workspace"]'),
+    namespace: get(item, 'status.adminNamespace'),
+    status: deletionTimestamp ? 'Terminating' : phase || 'Active',
+    _originData: getOriginData(item),
+  }
+}
 
 const PipelinesMapper = item => ({
   ...getBaseInfo(item),
