@@ -191,4 +191,5 @@ export default {
   THRESHOLD_FILL: 'Configuraciones de umbral',
   THRESHOLD_FILL_DESC:
     'Puedes establecer un umbral y el estilo se puedes cambiar automáticamente una vez que se supera el umbral.',
+  EMPTY_CHART_PLACEHOLDER: 'The chart will display here.',
 }
