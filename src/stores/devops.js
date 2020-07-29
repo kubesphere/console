@@ -16,8 +16,8 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { set, get, isArray, omit, isEmpty } from 'lodash'
-import { action, observable, toJS } from 'mobx'
+import { set, get, isArray, omit } from 'lodash'
+import { action, observable } from 'mobx'
 
 import Base from 'stores/base'
 
@@ -50,9 +50,6 @@ export default class DevOpsStore extends Base {
 
   @observable
   devops = ''
-
-  @observable
-  deleteList = []
 
   getPath({ cluster, namespace, workspace } = {}) {
     let path = ''
@@ -87,12 +84,9 @@ export default class DevOpsStore extends Base {
     `${this.getDevOpsUrl({ cluster, workspace })}/${devops}`
 
   getWatchListUrl = ({ workspace, ...params }) => {
-    if (workspace) {
-      return `${this.apiVersion}/watch/${
-        this.module
-      }?labelSelector=kubesphere.io/workspace=${workspace}`
-    }
-    return `${this.apiVersion}/watch${this.getPath(params)}/devopsprojects`
+    return `apis/devops.kubesphere.io/v1alpha3/watch${this.getPath(
+      params
+    )}/devopsprojects?labelSelector=kubesphere.io/workspace=${workspace}`
   }
 
   getWatchUrl = (params = {}) =>
@@ -126,35 +120,19 @@ export default class DevOpsStore extends Base {
 
     this.devopsListData = items
 
-    let data = items.map(item => ({
+    const data = items.map(item => ({
       cluster,
       ...this.mapper(item),
     }))
 
-    let total = get(result, 'totalItems', 0)
-
-    if (!isEmpty(toJS(this.deleteList)) && !isEmpty(data)) {
-      const deleteList = toJS(this.deleteList)
-      data = data.filter(item => {
-        const index = deleteList.findIndex(value => value === item.name)
-        if (index > -1) {
-          deleteList.splice(index, 1)
-          total--
-          return false
-        }
-        return true
-      })
-      this.deleteList = deleteList
-    }
-
     this.list.update({
       data: more ? [...this.list.data, ...data] : data,
-      total,
+      total: result.totalItems || data.length || 0,
       limit: Number(params.limit) || 10,
       page: Number(params.page) || 1,
       cluster: globals.app.isMultiCluster ? cluster : undefined,
       isLoading: false,
-      selectedRowKeys: [],
+      ...(this.list.silent ? {} : { selectedRowKeys: [] }),
       ...omit(params, ['limit', 'page']),
     })
   }
@@ -275,16 +253,7 @@ export default class DevOpsStore extends Base {
   }
 
   @action
-  setSelectRowKeys(key, selectedRowKeys) {
-    this[key] && this[key].selectedRowKeys.replace(selectedRowKeys)
-  }
-
-  @action
-  setDeleteList(param) {
-    if (isArray(param)) {
-      this.deleteList = [...this.deleteList, ...param]
-    } else {
-      this.deleteList.push(param)
-    }
+  setSelectRowKeys = selectedRowKeys => {
+    this.list.selectedRowKeys = selectedRowKeys
   }
 }
