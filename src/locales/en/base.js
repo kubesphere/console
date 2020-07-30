@@ -292,6 +292,7 @@ export default {
   'Service Settings': 'Service Settings',
   'Session timeout or this account is logged in elsewhere, please login again':
     'Session timeout or this account is logged in elsewhere, please login again',
+  Set: 'Set',
   Setting: 'Setting',
   Settings: 'Settings',
   Size: 'Size',

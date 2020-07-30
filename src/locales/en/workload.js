@@ -490,7 +490,7 @@ export default {
   CRONJOBS_VOLUME_DESC:
     'You can mount a temporary volumes, or persistent volumes to a Pod of the cronjob.',
   CRONJOB_CRON_DESC:
-    'It runs a job periodically on a given time-based schedule. Please see <a href="//en.wikipedia.org/wiki/Cron" target="_blank">CRON</a> for grammar reference.',
+    'It runs a job periodically on a given time-based schedule. Please see <a href="//en.wikipedia.org/wiki/Cron" target="_blank">CRON</a> for grammar reference. By default, Kubernetes adopts UTC. Please adjust scheduled plans based on the time zone.',
 
   START_DEADLINE_SECONDS_DESC:
     'An optional deadline in seconds for starting the job if it misses its scheduled time for any reason. ',

@@ -1,0 +1,12 @@
+.wrapper {
+  display: flex;
+  margin: 12px 0;
+  .text {
+    flex: 1;
+  }
+
+  button {
+    margin-top: 4px;
+    height: 32px;
+  }
+}

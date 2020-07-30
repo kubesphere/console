@@ -59,6 +59,9 @@ export default {
   'Project Quota': '项目配额',
   'Quota Management': '配额管理',
 
+  'Project Quota Not Set': '项目配额未设置',
+  'Resource Default Request Not Set': '容器资源默认请求未设置',
+
   'Project Placement': '项目位置',
 
   'Multi-cluster Project': '多集群项目',

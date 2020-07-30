@@ -53,7 +53,6 @@ export default class AdvancedSettings extends React.Component {
           <Form.Group
             label={t('Set Node Scheduling Policy')}
             desc={t('You can allow Pod replicas to run on specified nodes.')}
-            keepDataWhenUnCheck
             checkable
           >
             <NodeSchedule
