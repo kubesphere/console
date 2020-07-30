@@ -188,7 +188,11 @@ export default class ProjectCreateModal extends React.Component {
                   { validator: this.nameValidator },
                 ]}
               >
-                <Input name="metadata.name" autoFocus={true} maxLength={63} />
+                <Input
+                  name="metadata.generateName"
+                  autoFocus={true}
+                  maxLength={63}
+                />
               </Form.Item>
             </Column>
             <Column>

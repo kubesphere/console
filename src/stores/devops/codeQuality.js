@@ -29,18 +29,18 @@ export default class CodeQualityStore extends BaseStore {
   isLoading = true
 
   @action
-  fetchDetail = async ({ project_id, branch, name, cluster }) => {
+  fetchDetail = async ({ devops, branch, name, cluster }) => {
     let url = ''
     if (branch) {
       url = `${this.getDevopsUrlV2({
         cluster,
-      })}${project_id}/pipelines/${name}/branches/${encodeURIComponent(
+      })}${devops}/pipelines/${name}/branches/${encodeURIComponent(
         branch
       )}/sonarstatus `
     } else {
       url = `${this.getDevopsUrlV2({
         cluster,
-      })}${project_id}/pipelines/${name}/sonarstatus`
+      })}${devops}/pipelines/${name}/sonarstatus`
     }
     this.isLoading = true
     const result = await this.request

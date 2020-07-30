@@ -36,7 +36,7 @@ export default class PipelineRunStore extends BaseStore {
   detail = {}
 
   @observable
-  project_id = ''
+  devops = ''
 
   @observable
   commitsList = {
@@ -83,7 +83,7 @@ export default class PipelineRunStore extends BaseStore {
     name,
     branch,
     runid,
-    project_id,
+    devops,
     workspace,
     cluster,
     ...filters
@@ -94,7 +94,7 @@ export default class PipelineRunStore extends BaseStore {
 
     this.commitsList.isLoading = true
     const result = await this.request.get(
-      `${this.getDevopsUrlV2({ cluster })}${project_id}/pipelines/${name}${
+      `${this.getDevopsUrlV2({ cluster })}${devops}/pipelines/${name}${
         branch ? `/branches/${encodeURIComponent(branch)}` : ''
       }/runs/${runid}/`,
       {
@@ -106,7 +106,7 @@ export default class PipelineRunStore extends BaseStore {
       limit: TABLE_LIMIT,
       total: result.changeSet ? result.changeSet.length : 0,
       page: parseInt(page, 10) || 1,
-      filters: omit(filters, 'project_id'),
+      filters: omit(filters, 'devops'),
       isLoading: false,
       selectedRowKeys: [],
     }
@@ -114,7 +114,7 @@ export default class PipelineRunStore extends BaseStore {
 
   @action
   async getArtifacts({
-    project_id,
+    devops,
     name,
     branch,
     runid,
@@ -128,7 +128,7 @@ export default class PipelineRunStore extends BaseStore {
 
     this.artifactsList.isLoading = true
     const result = await this.request.get(
-      `${this.getDevopsUrlV2({ cluster })}${project_id}/pipelines/${name}${
+      `${this.getDevopsUrlV2({ cluster })}${devops}/pipelines/${name}${
         branch ? `/branches/${encodeURIComponent(branch)}` : ''
       }/runs/${runid}/artifacts/`,
       {
@@ -141,19 +141,19 @@ export default class PipelineRunStore extends BaseStore {
       total: result.length,
       limit: 100,
       page: parseInt(page, 10) || 1,
-      filters: omit(filters, 'project_id'),
+      filters: omit(filters, 'devops'),
       isLoading: false,
       selectedRowKeys: [],
     }
   }
 
   @action
-  async getNodesStatus({ project_id, name, branch, runid, cluster }) {
+  async getNodesStatus({ devops, name, branch, runid, cluster }) {
     name = decodeURIComponent(name)
 
     this.getNodesStatusLoading = true
     const result = await this.request.get(
-      `${this.getDevopsUrlV2({ cluster })}${project_id}/pipelines/${name}${
+      `${this.getDevopsUrlV2({ cluster })}${devops}/pipelines/${name}${
         branch ? `/branches/${encodeURIComponent(branch)}` : ''
       }/runs/${runid}/nodesdetail/?limit=10000`
     )
@@ -185,18 +185,18 @@ export default class PipelineRunStore extends BaseStore {
     }
 
     if (!result.length || !hasStep) {
-      this.getRunStatusLogs({ project_id, name, branch, runid, cluster })
+      this.getRunStatusLogs({ devops, name, branch, runid, cluster })
     }
     this.getNodesStatusLoading = false
   }
 
   @action
   async getRunDetail(params) {
-    const { project_id, name, branch, runid, cluster } = params
+    const { devops, name, branch, runid, cluster } = params
     const result = await this.request.get(
       `${this.getDevopsUrlV2({
         cluster,
-      })}${project_id}/pipelines/${decodeURIComponent(name)}${
+      })}${devops}/pipelines/${decodeURIComponent(name)}${
         branch ? `/branches/${encodeURIComponent(branch)}` : ''
       }/runs/${runid}/`,
       null,
@@ -214,30 +214,30 @@ export default class PipelineRunStore extends BaseStore {
   }
 
   async replay(params, _runid) {
-    const { project_id, name, branch, runid, cluster } = params
+    const { devops, name, branch, runid, cluster } = params
     return await this.request.post(
       `${this.getDevopsUrlV2({
         cluster,
-      })}${project_id}/pipelines/${decodeURIComponent(name)}${
+      })}${devops}/pipelines/${decodeURIComponent(name)}${
         branch ? `/branches/${encodeURIComponent(branch)}` : ''
       }/runs/${_runid || runid}/replay`
     )
   }
 
   @action
-  async getRunStatusLogs({ project_id, name, branch, runid, cluster }) {
+  async getRunStatusLogs({ devops, name, branch, runid, cluster }) {
     // TODO: use response headers offset
     const result = await this.request.get(
-      `${this.getDevopsUrlV2({ cluster })}${project_id}/pipelines/${name}${
+      `${this.getDevopsUrlV2({ cluster })}${devops}/pipelines/${name}${
         branch ? `/branches/${encodeURIComponent(branch)}` : ''
       }/runs/${runid}/log/?start=0`
     )
     this.runDetailLogs = result
   }
 
-  async handleDownloadLogs({ project_id, name, branch, runid, cluster }) {
+  async handleDownloadLogs({ devops, name, branch, runid, cluster }) {
     name = decodeURIComponent(name)
-    await this.getRunStatusLogs({ project_id, name, branch, runid, cluster })
+    await this.getRunStatusLogs({ devops, name, branch, runid, cluster })
     this.saveAsFile(this.runDetailLogs, 'log.txt')
   }
 
@@ -248,7 +248,7 @@ export default class PipelineRunStore extends BaseStore {
 
   async handleProceed({
     parameters,
-    project_id,
+    devops,
     name,
     runid,
     nodeId,
@@ -258,7 +258,7 @@ export default class PipelineRunStore extends BaseStore {
     inputId,
   }) {
     return await this.request.post(
-      `${this.getDevopsUrlV2({ cluster })}${project_id}/pipelines/${name}/${
+      `${this.getDevopsUrlV2({ cluster })}${devops}/pipelines/${name}/${
         branch ? `branches/${encodeURIComponent(branch)}/` : ''
       }runs/${runid}/nodes/${nodeId}/steps/${stepId}/`,
       {
@@ -278,7 +278,7 @@ export default class PipelineRunStore extends BaseStore {
   }
 
   async handleBreak({
-    project_id,
+    devops,
     name,
     runid,
     nodeId,
@@ -288,7 +288,7 @@ export default class PipelineRunStore extends BaseStore {
     cluster,
   }) {
     return await this.request.post(
-      `${this.getDevopsUrlV2({ cluster })}${project_id}/pipelines/${name}/${
+      `${this.getDevopsUrlV2({ cluster })}${devops}/pipelines/${name}/${
         branch ? `branches/${encodeURIComponent(branch)}/` : ''
       }runs/${runid}/nodes/${nodeId}/steps/${stepId}/`,
       {

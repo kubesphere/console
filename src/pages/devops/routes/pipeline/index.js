@@ -33,7 +33,7 @@ import {
 import branchRoutes from './branch'
 import runRoutes from './run'
 
-const PATH = '/:workspace/clusters/:cluster/devops/:project_id/pipelines/:name'
+const PATH = '/:workspace/clusters/:cluster/devops/:devops/pipelines/:name'
 
 const ROUTES = [
   { name: 'pipeline', title: 'Pipeline', component: Pipeline },
@@ -54,7 +54,7 @@ export default [
       breadcrumbs: [
         {
           label: 'Pipeline List',
-          url: '/:workspace/clusters/:cluster/devops/:project_id/pipelines',
+          url: '/:workspace/clusters/:cluster/devops/:devops/pipelines',
         },
       ],
     }),

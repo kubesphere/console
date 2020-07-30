@@ -64,7 +64,7 @@ class CICDs extends React.Component {
     this.store = new PipelineStore()
 
     this.formTemplate = {
-      project_name: this.props.devopsStore.devops,
+      project_name: this.props.devopsStore.devopsName,
       cluster: this.cluster,
       enable_timer_trigger: true,
       enable_discarder: true,
@@ -114,27 +114,27 @@ class CICDs extends React.Component {
     return FORM_STEPS
   }
 
-  get project_id() {
-    return this.props.devopsStore.project_id
+  get devops() {
+    return this.props.match.params.devops
   }
 
-  get devops() {
-    return this.store.getDevops(this.project_id)
+  get devopsName() {
+    return this.props.devopsStore.devopsName
   }
 
   getData(params) {
     this.store.fetchList({
-      project_id: this.project_id,
       devops: this.devops,
+      devopsName: this.devopsName,
       ...this.props.match.params,
       ...params,
     })
   }
 
   handleRunBranch = async (parameters, branch) => {
-    const { project_id } = this.props.match.params
+    const { devops } = this.props.match.params
     const { name } = this.state.selectPipeline
-    await this.store.runBranch({ project_id, name, branch, parameters })
+    await this.store.runBranch({ devops, name, branch, parameters })
     this.props.rootStore.routing.push(
       `${this.prefix}/${encodeURIComponent(this.state.selectPipeline.name)}/${
         branch ? `branch/${branch}/` : ''
@@ -152,7 +152,7 @@ class CICDs extends React.Component {
       const { params } = this.props.match
 
       await this.store.runBranch({
-        project_id: params.project_id,
+        devops: params.devops,
         name: record.name,
       })
 
@@ -258,7 +258,7 @@ class CICDs extends React.Component {
   showEditConfig = async name => {
     await this.store.fetchDetail({ cluster: this.cluster, name })
     const formData = this.store.getPipeLineConfig()
-    formData.project_id = this.project_id
+    formData.devops = this.devops
 
     this.setState({
       showEditConfig: true,
@@ -300,7 +300,7 @@ class CICDs extends React.Component {
 
   handleCreate = async data => {
     updatePipelineParams(data)
-    updatePipelineParamsInSpec(data, this.project_id)
+    updatePipelineParamsInSpec(data, this.devops)
     this.setState({ isSubmitting: true })
 
     const result = await this.store
@@ -335,20 +335,20 @@ class CICDs extends React.Component {
       this.props.rootStore.routing.push(
         `${this.prefix}/${encodeURIComponent(result.metadata.name)}/`
       )
-      const { project_id } = params
+      const { devops } = params
       localStorage.removeItem(
-        `${globals.user.username}-${project_id}-${this.pipeline}`
+        `${globals.user.username}-${devops}-${this.pipeline}`
       )
     }
   }
 
   handleEditConfig = async data => {
     updatePipelineParams(data, true)
-    updatePipelineParamsInSpec(data, this.project_id)
+    updatePipelineParamsInSpec(data, this.devops)
 
     await this.store.updatePipeline({
       data,
-      project_id: this.project_id,
+      devops: this.devops,
       cluster: this.cluster,
     })
 
@@ -388,7 +388,7 @@ class CICDs extends React.Component {
             <Link
               className="item-name"
               to={`/${this.workspace}/clusters/${this.cluster}/devops/${
-                this.project_id
+                this.devops
               }/pipelines/${encodeURIComponent(record.name)}/activity`}
             >
               {name}
@@ -399,7 +399,7 @@ class CICDs extends React.Component {
           <Link
             className="item-name"
             to={`/${this.workspace}/clusters/${this.cluster}/devops/${
-              this.project_id
+              this.devops
             }/pipelines/${encodeURIComponent(record.name)}`}
           >
             {name}
@@ -543,7 +543,7 @@ class CICDs extends React.Component {
           onOk={this.handleCreate}
           onCancel={this.hideCreate}
           isSubmitting={this.state.isSubmitting}
-          project_id={this.project_id}
+          devops={this.devops}
           cluster={this.cluster}
           noCodeEdit
         />

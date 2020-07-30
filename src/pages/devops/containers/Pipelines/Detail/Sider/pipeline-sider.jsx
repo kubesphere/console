@@ -53,8 +53,8 @@ export default class PipelineDetail extends Base {
     this.sonarqubeStore = new CodeQualityStore()
     this.devopsStore = new DevopsStore()
 
-    const { project_id } = this.props.match.params
-    this.store.setProjectId(project_id)
+    const { devops } = this.props.match.params
+    this.store.setDevops(devops)
 
     this.state = {
       showEditConfig: false,
@@ -83,8 +83,7 @@ export default class PipelineDetail extends Base {
   }
 
   get enabledActions() {
-    const { cluster, project_id } = this.props.match.params
-    const devops = this.store.getDevops(project_id)
+    const { cluster, devops } = this.props.match.params
 
     return globals.app.getActions({
       module: 'pipelines',
@@ -112,7 +111,7 @@ export default class PipelineDetail extends Base {
     await this.props.rootStore.getRules({
       cluster: params.cluster,
       workspace: params.workspace,
-      devops: this.store.getDevops(params.project_id),
+      devops: params.devops,
     })
 
     if (!result) {
@@ -200,11 +199,12 @@ export default class PipelineDetail extends Base {
   }
 
   getAttrs = () => {
-    const { activityList, project_id } = this.store
+    const { activityList } = this.store
+    const { devopsName } = this.devopsStore
     return [
       {
         name: t('DevOps Project'),
-        value: project_id,
+        value: devopsName,
       },
       {
         name: t('Status'),
@@ -226,7 +226,7 @@ export default class PipelineDetail extends Base {
 
     const pipeLineConfig = await this.store.getPipeLineConfig()
 
-    pipeLineConfig.project_id = params.project_id
+    pipeLineConfig.devops = params.devops
     this.setState({ [type]: true, formTemplate: pipeLineConfig })
   }
 
@@ -247,7 +247,7 @@ export default class PipelineDetail extends Base {
     const { detail } = this.store
 
     await this.store.scanRepository({
-      project_id: params.project_id,
+      devops: params.devops,
       name: detail.name,
       cluster: params.cluster,
     })
@@ -262,11 +262,11 @@ export default class PipelineDetail extends Base {
   }
 
   handleEdit = async data => {
-    const { project_id, cluster } = this.props.match.params
+    const { devops, cluster } = this.props.match.params
     updatePipelineParams(data, true)
-    updatePipelineParamsInSpec(data, project_id)
+    updatePipelineParamsInSpec(data, devops)
 
-    await this.store.updatePipeline({ data, project_id, cluster })
+    await this.store.updatePipeline({ data, devops, cluster })
 
     this.setState({ showEditBaseInfo: false, showEditConfig: false }, () => {
       this.fetchData()
@@ -282,14 +282,13 @@ export default class PipelineDetail extends Base {
   }
 
   handleDelete = () => {
-    const { project_id, cluster, workspace } = this.props.match.params
+    const { devops, cluster, workspace } = this.props.match.params
     const { detail } = this.store
     this.setState({ deleteLoading: true })
-    const devops = this.store.getDevops(project_id)
     this.store.deletePipeline(detail.name, devops, cluster).then(() => {
       this.hideDeleteModal()
       this.routing.push(
-        `/${workspace}/clusters/${cluster}/devops/${project_id}/pipelines`
+        `/${workspace}/clusters/${cluster}/devops/${devops}/pipelines`
       )
     })
   }

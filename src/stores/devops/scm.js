@@ -154,7 +154,7 @@ export default class SCMStore extends BaseStore {
     }
   }
 
-  async putAccessToken({ token, cluster, project_id }) {
+  async putAccessToken({ token, cluster, devops }) {
     const result = await this.verifyAccessForRepo({
       accessToken: token,
       scmType: 'github',
@@ -180,7 +180,7 @@ export default class SCMStore extends BaseStore {
       )
 
       if (!hasCredential) {
-        this.createCredential(data, { project_id, cluster })
+        this.createCredential(data, { devops, cluster })
       }
 
       this.getOrganizationList(
@@ -191,7 +191,7 @@ export default class SCMStore extends BaseStore {
     }
   }
 
-  async verifyAccessForRepo({ scmType, cluster, project_id, ...rest }) {
+  async verifyAccessForRepo({ scmType, cluster, devops, ...rest }) {
     return await this.request.post(
       `${this.getBaseUrlV2({ cluster })}scms/${scmType}/verify/`,
       rest,
@@ -200,19 +200,19 @@ export default class SCMStore extends BaseStore {
     )
   }
 
-  async createCredential(data, { project_id, cluster }, rejected) {
+  async createCredential(data, { devops, cluster }, rejected) {
     return this.credentialStore.handleCreate(
       data,
-      { project_id, cluster },
+      { devops, cluster },
       rejected
     )
   }
 
   @action
-  getCredential = async ({ project_id, cluster }) => {
+  getCredential = async ({ devops, cluster }) => {
     this.credentials.loading = true
     const result = await this.credentialStore.fetchList({
-      project_id,
+      devops,
       cluster,
     })
 
@@ -231,7 +231,7 @@ export default class SCMStore extends BaseStore {
     password,
     apiUrl,
     cluster,
-    project_id,
+    devops,
   }) => {
     this.creatBitBucketServersError = {}
     this.tokenFormData = { username, password, apiUrl }
@@ -284,7 +284,7 @@ export default class SCMStore extends BaseStore {
       )
 
       if (!hasCredential) {
-        this.createCredential(data, { project_id, cluster })
+        this.createCredential(data, { devops, cluster })
       }
 
       this.getOrganizationList(

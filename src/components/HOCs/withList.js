@@ -84,7 +84,7 @@ export default function withList(options) {
           module: this.authKey,
           ...this.props.match.params,
           project: this.props.match.params.namespace,
-          devops: this.props.match.params.project_id,
+          devops: this.props.match.params.devops,
         })
       }
 

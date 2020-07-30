@@ -136,9 +136,9 @@ export default class Store extends BaseStore {
   }
 
   handleSetInLocalStorage() {
-    const { project_id, name } = this.params
+    const { devops, name } = this.params
     this.prevData = localStorage.setItem(
-      `${globals.user.username}-${project_id}-${name}`,
+      `${globals.user.username}-${devops}-${name}`,
       JSON.stringify(toJS(this.jsonData))
     )
   }
@@ -321,7 +321,7 @@ export default class Store extends BaseStore {
   getCredentials = async () => {
     this.isCredentialLoading = true
     const result = await this.credentialStore.fetchList({
-      project_id: this.params.project_id,
+      devops: this.params.devops,
       cluster: this.params.cluster,
     })
 

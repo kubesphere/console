@@ -29,9 +29,9 @@ import {
 } from '../../containers/Pipelines/Detail'
 
 const PATH =
-  '/:workspace/clusters/:cluster/devops/:project_id/pipelines/:name/branch/:branch/run/:runid'
+  '/:workspace/clusters/:cluster/devops/:devops/pipelines/:name/branch/:branch/run/:runid'
 const PATH_NO_BRANCH =
-  '/:workspace/clusters/:cluster/devops/:project_id/pipelines/:name/run/:runid'
+  '/:workspace/clusters/:cluster/devops/:devops/pipelines/:name/run/:runid'
 
 const ROUTES = [
   { name: 'task-status', title: 'TaskStatus', component: TaskStatus },
@@ -48,17 +48,17 @@ export default [
       breadcrumbs: [
         {
           label: 'Pipeline List',
-          url: '/:workspace/clusters/:cluster/devops/:project_id/pipelines',
+          url: '/:workspace/clusters/:cluster/devops/:devops/pipelines',
         },
         {
           label: 'Branch',
           url:
-            '/:workspace/clusters/:cluster/devops/:project_id/pipelines/:name/branch',
+            '/:workspace/clusters/:cluster/devops/:devops/pipelines/:name/branch',
         },
         {
           label: 'Activity',
           url:
-            '/:workspace/clusters/:cluster/devops/:project_id/pipelines/:name/branch/:branch/activity',
+            '/:workspace/clusters/:cluster/devops/:devops/pipelines/:name/branch/:branch/activity',
         },
       ],
     }),
@@ -72,12 +72,12 @@ export default [
       breadcrumbs: [
         {
           label: 'Pipeline List',
-          url: '/:workspace/clusters/:cluster/devops/:project_id/pipelines',
+          url: '/:workspace/clusters/:cluster/devops/:devops/pipelines',
         },
         {
           label: 'Activity',
           url:
-            '/:workspace/clusters/:cluster/devops/:project_id/pipelines/:name/activity',
+            '/:workspace/clusters/:cluster/devops/:devops/pipelines/:name/activity',
         },
       ],
     }),

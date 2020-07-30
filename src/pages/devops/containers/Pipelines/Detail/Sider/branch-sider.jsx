@@ -54,8 +54,8 @@ class BranchSider extends Base {
   }
 
   get listUrl() {
-    const { workspace, project_id } = this.props.match.params
-    return `/${workspace}/clusters/:cluster/devops/${project_id}/pipelines`
+    const { workspace, devops } = this.props.match.params
+    return `/${workspace}/clusters/:cluster/devops/${devops}/pipelines`
   }
 
   get name() {
@@ -78,8 +78,7 @@ class BranchSider extends Base {
   }
 
   get enabledActions() {
-    const { cluster, project_id } = this.props.match.params
-    const devops = this.store.getDevops(project_id)
+    const { cluster, devops } = this.props.match.params
 
     return globals.app.getActions({
       module: 'pipelines',
@@ -101,13 +100,13 @@ class BranchSider extends Base {
     await this.props.rootStore.getRules({
       cluster: params.cluster,
       workspace: params.workspace,
-      devops: this.store.getDevops(params.project_id),
+      devops: params.devops,
     })
   }
 
   fetchData = () => {
     const { params } = this.props.match
-    this.store.setProjectId(params.project_id)
+    this.store.setDevops(params.devops)
     this.store.getBranchDetail(params)
     this.store.fetchDetail(params)
     this.getSonarqube()
@@ -209,11 +208,11 @@ class BranchSider extends Base {
 
   handleRunBranch = async parameters => {
     const { params } = this.props.match
-    const { branch, project_id } = this.props.match.params
+    const { branch, devops } = this.props.match.params
     const { detail } = this.store
 
     await this.store.runBranch({
-      project_id,
+      devops,
       branch,
       name: detail.name,
       parameters,

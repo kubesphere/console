@@ -65,8 +65,8 @@ export default class PipelineModal extends React.Component {
 
   handleCancel = () => {
     this.hideConfim()
-    const { project_id, name } = this.props.params
-    localStorage.removeItem(`${globals.user.username}-${project_id}-${name}`)
+    const { devops, name } = this.props.params
+    localStorage.removeItem(`${globals.user.username}-${devops}-${name}`)
     this.props.onCancel()
   }
 

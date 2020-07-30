@@ -70,7 +70,7 @@ class DetailLayout extends Component {
       rootStore.register('project', projectStore)
     }
 
-    if (params.project_id && !rootStore.devops) {
+    if (params.devops && !rootStore.devops) {
       const devopsStore = new DevOpsStore()
       rootStore.register('devops', devopsStore)
     }

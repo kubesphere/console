@@ -42,8 +42,7 @@ export default class Branch extends React.Component {
   }
 
   get enabledActions() {
-    const { cluster, project_id } = this.props.match.params
-    const devops = this.store.getDevops(project_id)
+    const { cluster, devops } = this.props.match.params
 
     return globals.app.getActions({
       module: 'pipelines',
@@ -82,7 +81,7 @@ export default class Branch extends React.Component {
     const { detail } = this.props.detailStore
 
     await this.props.detailStore.scanRepository({
-      project_id: params.project_id,
+      devops: params.devops,
       cluster: params.cluster,
       name: detail.name,
     })
