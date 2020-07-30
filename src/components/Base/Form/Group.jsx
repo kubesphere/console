@@ -95,16 +95,15 @@ export default class Group extends React.Component {
 
   handleCheck = (e, check) => {
     const { keepDataWhenUnCheck, onChange } = this.props
-    this.setState({ isCheck: check }, () => {
-      if (!keepDataWhenUnCheck && !check) {
-        const { formData } = this.context
-        if (formData && this.items.size > 0) {
-          this.items.forEach(item => unset(formData, item))
-        }
+    if (!keepDataWhenUnCheck && !check) {
+      const { formData } = this.context
+      if (formData && this.items.size > 0) {
+        this.items.forEach(item => unset(formData, item))
       }
+    }
 
-      onChange && onChange(check)
-    })
+    onChange && onChange(check)
+    this.setState({ isCheck: check })
   }
 
   render() {
