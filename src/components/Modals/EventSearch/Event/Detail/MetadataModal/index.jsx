@@ -91,11 +91,15 @@ export default class MetadataModal extends React.Component {
         </div>
         <div className={styles.row}>
           <div className={styles.rowTitle}>{t('Earliest start time')}</div>
-          <div className={styles.rowDesc}>{getLocalTime(firstTimestamp)}</div>
+          <div className={styles.rowDesc}>
+            {getLocalTime(firstTimestamp).format(`YYYY-MM-DD HH:mm:ss`)}
+          </div>
         </div>
         <div className={styles.row}>
           <div className={styles.rowTitle}>{t('Most recent start time')}</div>
-          <div className={styles.rowDesc}>{getLocalTime(lastTimestamp)}</div>
+          <div className={styles.rowDesc}>
+            {getLocalTime(lastTimestamp).format(`YYYY-MM-DD HH:mm:ss`)}
+          </div>
         </div>
       </div>
     )
