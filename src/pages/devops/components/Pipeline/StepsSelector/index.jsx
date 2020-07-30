@@ -250,6 +250,7 @@ export default class StepsEditor extends React.Component {
         />
         <InputStep
           devops={devops}
+          cluster={cluster}
           visible={this.state.isShowinput}
           edittingData={edittingData}
           onAddStep={this.handleAddStep('input')}

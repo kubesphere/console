@@ -132,16 +132,16 @@ class RunSider extends Base {
   @action
   rePlay = async () => {
     const { params } = this.props.match
+
     const result = await this.store.replay(params)
-    if (params.branch) {
-      this.routing.push(
-        `/${params.workspace}/clusters/${params.cluster}/devops/${
-          params.devops
-        }/pipelines/${params.name}${
-          params.branch ? `/branch/${params.branch}` : ''
-        }/activity`
-      )
-    }
+    this.routing.push(
+      `/${params.workspace}/clusters/${params.cluster}/devops/${
+        params.devops
+      }/pipelines/${params.name}${
+        params.branch ? `/branch/${params.branch}` : ''
+      }/activity`
+    )
+
     if (result.id) {
       this.store.runDetail = result
     }

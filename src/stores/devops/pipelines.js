@@ -230,7 +230,7 @@ export default class PipelineStore extends BaseStore {
     if (jenkinsfile) {
       const result = await this.request.post(
         `${this.getBaseUrlV2({ cluster })}tojson`,
-        { jenkinsfile: toJS(this.jenkinsfile) },
+        { jenkinsfile },
         FORM_HEAR
       )
       return result.data

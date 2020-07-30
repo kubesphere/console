@@ -39,6 +39,7 @@ export default class Pipeline extends React.Component {
 
   @observable
   parameters = []
+
   @observable
   showParamsModal = false
 
