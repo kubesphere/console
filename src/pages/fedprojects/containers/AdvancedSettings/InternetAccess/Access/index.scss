@@ -75,6 +75,10 @@
   display: flex;
   align-items: center;
 
+  .desc {
+    flex: 1;
+  }
+
   & > button {
     margin-left: 12px;
   }

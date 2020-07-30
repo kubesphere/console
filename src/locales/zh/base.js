@@ -232,6 +232,7 @@ export default {
   Add: '添加',
   'Add ': '添加',
   'Edit ': '编辑',
+  Set: '设置',
   New: '新建',
   Yes: '是',
   true: '是',

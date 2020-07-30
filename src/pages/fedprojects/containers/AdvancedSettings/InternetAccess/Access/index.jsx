@@ -144,6 +144,7 @@ class InternetAccess extends React.Component {
             <ClusterTitle cluster={cluster} theme="light" />
           </div>
           <Text
+            className={styles.desc}
             title={t('Gateway Not Set')}
             description={t('PROJECT_INTERNET_ACCESS_DESC')}
           />

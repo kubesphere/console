@@ -54,7 +54,8 @@ export default {
     'El valor vacío significa que no hay límite, 1 Core de CPU = 1000m',
   'Enter DevOps Project': 'Introduce el proyecto DevOps',
   'Enter Project': 'Entrar al proyecto',
-  FED_HOST_NAMESPACE_TIP: 'Por favor, no manipules los recursos de este proyecto puesto que pertence a un proyecto multicluster',
+  FED_HOST_NAMESPACE_TIP:
+    'Por favor, no manipules los recursos de este proyecto puesto que pertence a un proyecto multicluster',
   'Gateway Info': 'Información de puerta de enlace',
   'Gateway Not Set': 'Puerta de enlace no establecida',
   'Help Information': 'Información de ayuda',
@@ -78,7 +79,8 @@ export default {
   'Modify Members Role': 'Modificar rol de miembros',
   'Multi-cluster Project': 'Proyecto de clúster múltiple',
   'Multi-cluster Projects': 'Proyectos de clústeres múltiples',
-  MULTI_CLUSTER_PROJECT_DELETE_TIP: 'Borrar un proyecto multi-cluster borra también el mismo proyecto en el host de cluster.</br>Por favor, introduce el nombre {type} <strong>{resource}</strong> para estar seguro de que entiendes el riesgo de esta operación.',
+  MULTI_CLUSTER_PROJECT_DELETE_TIP:
+    'Borrar un proyecto multi-cluster borra también el mismo proyecto en el host de cluster.</br>Por favor, introduce el nombre {type} <strong>{resource}</strong> para estar seguro de que entiendes el riesgo de esta operación.',
   'Network Isolation': 'Aislamiento de red',
   'No Platform Manage Authorization':
     'Sin autorización de gestión de plataforma',

@@ -26,6 +26,8 @@ import Applications from './Applications'
 import ResourceUsage from './ResourceUsage'
 import UsageRanking from './UsageRanking'
 import Help from './Help'
+import Quota from './Quota'
+import LimitRange from './LimitRange'
 
 @inject('rootStore', 'projectStore')
 @observer
@@ -42,6 +44,14 @@ export default class Overview extends React.Component {
     return this.props.projectStore
   }
 
+  get enabledActions() {
+    return globals.app.getActions({
+      module: 'project-settings',
+      ...this.props.match.params,
+      project: this.namespace,
+    })
+  }
+
   render() {
     const { detail } = this.project
     return (
@@ -50,6 +60,12 @@ export default class Overview extends React.Component {
         <Columns>
           <Column className="is-8">
             <BaseInfo className="margin-b12" detail={detail} />
+            {this.enabledActions.includes('edit') && (
+              <>
+                <Quota match={this.props.match} />
+                <LimitRange match={this.props.match} />
+              </>
+            )}
             {globals.app.enableAppStore && (
               <Applications className="margin-b12" match={this.props.match} />
             )}

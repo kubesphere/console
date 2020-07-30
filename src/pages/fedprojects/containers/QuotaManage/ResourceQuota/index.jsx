@@ -88,8 +88,8 @@ export default class ResourceQuota extends React.Component {
   }
 
   render() {
-    const { isFold, canEdit } = this.state
-    const { cluster } = this.props
+    const { isFold } = this.state
+    const { cluster, canEdit } = this.props
 
     const items = this.items
 
