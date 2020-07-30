@@ -226,8 +226,9 @@ export default {
   ACCOUNT_ROLE_CREATE_DESC:
     'Account roles define the authorization an account has in the platform.',
   PIPELINES_MANAGEMENT_DESC:
-    'Manage DevOps project pipeline, including creating, editing and deleting',
-  PIPELINES_VIEW_DESC: 'View DevOps project pipeline and download artifacts',
+    'Grant permission to manage DevOps project pipelines, including creating, editing and deleting pipelines',
+  PIPELINES_VIEW_DESC:
+    'Grant permission to view DevOps project pipelines and download artifacts',
   CREDENTIALS_MANAGEMENT_DESC:
     'Manage project credentials, including creating, editing and deleting',
   CREDENTIALS_VIEW_DESC: 'View and use credentials',
@@ -237,7 +238,7 @@ export default {
   DEVOPS_MEMBERS_VIEW_DESC: 'View DevOps project members',
   DEVOPS_MEMBERS_MANAGEMENT_DESC: 'Invite/edit/remove DevOps project members',
   DEVOPS_SETTINGS_DESC:
-    'Manage DevOps project settings and edit DevOps project information',
+    'Grant permission to manage DevOps project settings and edit DevOps project information',
 
   CLUSTER_MEMBERS_MANAGEMENT_DESC: 'Invite/edit/remove cluster members',
   CLUSTER_MEMBERS_VIEW_DESC: 'View cluster members',
@@ -283,7 +284,7 @@ export default {
   PROJECT_MEMBERS_MANAGEMENT_DESC:
     'Grant permission to invite/edit/remove project members',
   PROJECT_SETTINGS_DESC:
-    'Manage project settings and edit project information, including Internet access, network policies, resource quota, and disk log collection and configuration',
+    'Grant permission to manage project settings and edit project information, including Internet access, network policies, resource quota, and disk log collection and configuration',
   PROJECTS_MANAGEMENT_DESC:
     'Grant permission to manage all projects in the workspace, including creating/editing/deleting projects',
   PROJECTS_CREATE_DESC:
