@@ -209,8 +209,8 @@ export default {
   'Pipelines Management': '流水線管理',
   'Pipelines View': '流水線查看',
   PIPELINES_MANAGEMENT_DESC:
-    '管理 DevOps 工程流水線，包含 創建/編輯/刪除 等操作.',
-  PIPELINES_VIEW_DESC: '查看 DevOps 工程流水線，下載成品等.',
+    '授予管理 DevOps 工程流水線的權限，包含 創建/編輯/刪除 等操作.',
+  PIPELINES_VIEW_DESC: '授予查看 DevOps 工程流水線的權限，下載成品等.',
   'Credentials Management': '憑證管理',
   'Credentials View': '憑證查看',
   CREDENTIALS_MANAGEMENT_DESC:
