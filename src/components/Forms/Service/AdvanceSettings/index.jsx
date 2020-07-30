@@ -59,7 +59,15 @@ export default class AdvancedSettings extends React.Component {
       value ? 'ClientIP' : 'None'
     )
 
-    if (!value) {
+    if (value) {
+      set(
+        formTemplate,
+        `Service.${
+          this.fedPrefix
+        }spec.sessionAffinityConfig.clientIP.timeoutSeconds`,
+        10800
+      )
+    } else {
       unset(formTemplate, `Service.${this.fedPrefix}spec.sessionAffinityConfig`)
     }
   }
@@ -102,7 +110,6 @@ export default class AdvancedSettings extends React.Component {
               name={`Service.${
                 this.fedPrefix
               }spec.sessionAffinityConfig.clientIP.timeoutSeconds`}
-              defaultValue={10800}
               min={0}
               max={86400}
             />
@@ -112,7 +119,6 @@ export default class AdvancedSettings extends React.Component {
           <Form.Group
             label={t('Set Node Scheduling Policy')}
             desc={t('You can allow Pod replicas to run on specified nodes.')}
-            keepDataWhenUnCheck
             checkable
           >
             <NodeSchedule
