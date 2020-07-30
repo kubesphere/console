@@ -45,7 +45,19 @@ class ResourceStatus extends React.Component {
     return storageClassName === 'csi-qingcloud' && inUse
   }
 
+  get canViewPods() {
+    return globals.app.hasPermission({
+      ...this.props.match.params,
+      module: 'pods',
+      action: 'view',
+    })
+  }
+
   get prefix() {
+    if (!this.canViewPods) {
+      return null
+    }
+
     const { workspace, cluster } = this.props.match.params
     return `${workspace ? `/${workspace}` : ''}/clusters/${cluster}`
   }
