@@ -185,7 +185,7 @@ export default {
     '請謹慎將 Host 集群授權给企業空間，Host 集群負載過高會導致多集群穩定性下降。',
   CLUSTER_VISIBILITY_REMOVE_WARNING:
     '移除對企業空間的授權，將刪除該企業空間在當前擴展下的所有資源。',
-  REMOVE_WORKSPACE_CONFIRM_TITLE: '确定移除授权？',
+  REMOVE_WORKSPACE_CONFIRM_TITLE: '確定移除授權？',
   REMOVE_WORKSPACE_CONFIRM_DESC:
-    '确定移除对企业空间 {resource} 的授权？移除集群对企业空间的授权，将删除该企业空间在当前集群下的所有资源！',
+    '確定移除對企業空間 {resource} 的授權？移除集群對企業空間的授權，將刪除該企業空間在目前集群下的所有資源！',
 }

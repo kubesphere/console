@@ -64,7 +64,7 @@ export default {
   NETWORK_POLICY_D_OP2: 'Ingress(入口)',
 
   CIDR_DESC: '將根據流量的方向',
-  NETWORK_POLICY_MODAL_DIRECT: '请选择规则方向',
-  NETWORK_POLICY_MODAL_CIDRERR: '请正确填写 CIDR 信息',
-  NETWORK_POLICY_MODAL_PORTERR: '请正确填写端口',
+  NETWORK_POLICY_MODAL_DIRECT: '請選擇規則方向',
+  NETWORK_POLICY_MODAL_CIDRERR: '請正確填寫 CIDR 資訊',
+  NETWORK_POLICY_MODAL_PORTERR: '請正確填寫端口',
 }

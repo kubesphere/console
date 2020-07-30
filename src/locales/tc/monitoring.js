@@ -195,5 +195,5 @@ export default {
   'Cool Color': '冷色調',
   'Warm Color': '暖色調',
 
-  EMPTY_CHART_PLACEHOLDER: '图表将显示在此区域',
+  EMPTY_CHART_PLACEHOLDER: '圖表將顯示在此區域',
 }
