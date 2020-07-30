@@ -46,10 +46,10 @@ export default class DevOpsStore extends Base {
   devopsListData = []
 
   @observable
-  project_id = ''
+  devops = ''
 
   @observable
-  devops = ''
+  devopsName = ''
 
   getPath({ cluster, namespace, workspace } = {}) {
     let path = ''
@@ -92,8 +92,8 @@ export default class DevOpsStore extends Base {
   getWatchUrl = (params = {}) =>
     `${this.getWatchListUrl(params)}/${params.name}`
 
-  getDevops(project_id) {
-    return project_id.slice(0, -5)
+  getDevops(devops) {
+    return devops.slice(0, -5)
   }
 
   @action
@@ -148,7 +148,7 @@ export default class DevOpsStore extends Base {
   }
 
   @action
-  update({ cluster, workspace, name }, item, isBaseInfoEditor = false) {
+  update({ cluster, workspace, devops }, item, isBaseInfoEditor = false) {
     let data = null
     if (isBaseInfoEditor) {
       data = this.itemDetail
@@ -175,7 +175,7 @@ export default class DevOpsStore extends Base {
 
       return this.submitting(
         request.put(
-          `${this.getDevOpsDetailUrl({ cluster, workspace, devops: name })}`,
+          `${this.getDevOpsDetailUrl({ cluster, workspace, devops })}`,
           data,
           {
             headers: {
@@ -188,26 +188,26 @@ export default class DevOpsStore extends Base {
   }
 
   @action
-  delete({ name, cluster, workspace }) {
+  delete({ devops, cluster, workspace }) {
     return this.submitting(
       request.delete(
-        `${this.getDevOpsDetailUrl({ workspace, cluster, devops: name })}`
+        `${this.getDevOpsDetailUrl({ workspace, cluster, devops })}`
       )
     )
   }
 
   @action
   batchDelete(rowKeys, params) {
-    const { workspace, cluster, name } = params
+    const { workspace, cluster, devops } = params
     return this.submitting(
       Promise.all(
-        rowKeys.map(project_id =>
+        rowKeys.map(devopsName =>
           request.delete(
             `${this.getDevOpsDetailUrl({
               workspace,
               cluster,
-              devops: name,
-            })}/${project_id}`
+              devops: this.list.find(value => value.name === devopsName).devops,
+            })}/${devops}`
           )
         )
       )
@@ -215,8 +215,7 @@ export default class DevOpsStore extends Base {
   }
 
   @action
-  async fetchDetail({ cluster, project_id, workspace }) {
-    const devops = this.getDevops(project_id)
+  async fetchDetail({ cluster, devops, workspace }) {
     const detail = await request.get(
       this.getDevOpsDetailUrl({ workspace, cluster, devops }),
       null,
@@ -230,17 +229,17 @@ export default class DevOpsStore extends Base {
 
     this.itemDetail = detail
     const data = { cluster, ...this.mapper(detail) }
-    this.devops = data.name
-    this.project_id = data.namespace
+    this.devopsName = data.name
+    this.devops = data.devops
     data.workspace = data.workspace || workspace
     this.data = data
   }
 
   @action
-  async fetchRoles({ cluster, project_id }) {
+  async fetchRoles({ cluster, devops }) {
     this.roles.isLoading = true
     const result = await request.get(
-      `${this.getListUrl({ cluster })}/${project_id}/defaultroles`
+      `${this.getListUrl({ cluster })}/${devops}/defaultroles`
     )
     if (isArray(result)) {
       this.roles.data = result.map(role => {

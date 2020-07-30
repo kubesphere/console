@@ -53,8 +53,8 @@ class CredentialDetail extends Base {
   }
 
   get listUrl() {
-    const { workspace, project_id, cluster } = this.props.match.params
-    return `/${workspace}/clusters/${cluster}/devops/${project_id}/credentials`
+    const { workspace, devops, cluster } = this.props.match.params
+    return `/${workspace}/clusters/${cluster}/devops/${devops}/credentials`
   }
 
   init() {
@@ -81,7 +81,7 @@ class CredentialDetail extends Base {
     await this.props.rootStore.getRules({
       cluster: params.cluster,
       workspace: params.workspace,
-      devops: this.store.getDevops(params.project_id),
+      devops: params.devops,
     })
   }
 
@@ -140,19 +140,18 @@ class CredentialDetail extends Base {
   }
 
   handleDelete = () => {
-    const { project_id, workspace, cluster } = this.props.match.params
+    const { devops, workspace, cluster } = this.props.match.params
     const { detail } = this.store
 
     this.store.delete(detail.id).then(() => {
       this.routing.push(
-        `/${workspace}/clusters/${cluster}/devops/${project_id}/${this.module}`
+        `/${workspace}/clusters/${cluster}/devops/${devops}/${this.module}`
       )
     })
   }
 
   get enabledActions() {
-    const { cluster, project_id } = this.props.match.params
-    const devops = this.store.getDevops(project_id)
+    const { cluster, devops } = this.props.match.params
 
     return globals.app.getActions({
       module: 'credentials',
@@ -181,7 +180,7 @@ class CredentialDetail extends Base {
 
   renderExtraModals() {
     const { showEdit } = this.state
-    const { project_id, cluster } = this.props.match.params
+    const { devops, cluster } = this.props.match.params
 
     return (
       <div>
@@ -192,7 +191,7 @@ class CredentialDetail extends Base {
           cluster={cluster}
           onOk={this.handleEdit}
           onCancel={this.hideEditModal}
-          project_id={project_id}
+          devops={devops}
           isEditMode
         />
       </div>

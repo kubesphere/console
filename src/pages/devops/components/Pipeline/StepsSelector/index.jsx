@@ -172,7 +172,7 @@ export default class StepsEditor extends React.Component {
   }
 
   renderStepsModal = () => {
-    const { project_id, cluster } = this.props.store.params
+    const { devops, cluster } = this.props.store.params
     const { edittingData, isAddingStep } = this.props.store
 
     if (isAddingStep === 'condition') {
@@ -249,7 +249,7 @@ export default class StepsEditor extends React.Component {
           store={this.props.store}
         />
         <InputStep
-          project_id={project_id}
+          devops={devops}
           visible={this.state.isShowinput}
           edittingData={edittingData}
           onAddStep={this.handleAddStep('input')}
@@ -281,7 +281,7 @@ export default class StepsEditor extends React.Component {
           visible={this.state.showCredential}
           onOk={this.hideCreateCredential}
           onCancel={this.hideCreateCredential}
-          project_id={project_id}
+          devops={devops}
           cluster={cluster}
           credentialType={this.state.isShowkubernetesDeploy ? 'kubeconfig' : ''}
         />

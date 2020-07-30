@@ -1096,6 +1096,8 @@ const DevOpsMapper = item => {
 
   return {
     ...getBaseInfo(item),
+    name: get(item, 'metadata.generateName'),
+    devops: get(item, 'metadata.name'),
     workspace: get(item, 'metadata.labels["kubesphere.io/workspace"]'),
     namespace: get(item, 'status.adminNamespace'),
     status: deletionTimestamp ? 'Terminating' : phase || 'Active',

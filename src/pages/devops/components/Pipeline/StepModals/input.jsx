@@ -93,7 +93,7 @@ export default class InputStep extends React.Component {
   getUsers = () => {
     this.setState({ loading: true })
     this.devopsStore
-      .fetchMembers({ project_id: this.props.project_id })
+      .fetchMembers({ devops: this.props.devops })
       .then(result => {
         this.setState({ loading: false })
 

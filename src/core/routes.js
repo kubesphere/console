@@ -68,7 +68,7 @@ export default [
         component: Projects,
       },
       {
-        path: '/:workspace/clusters/:cluster/devops/:project_id',
+        path: '/:workspace/clusters/:cluster/devops/:devops',
         component: DevOps,
       },
       {

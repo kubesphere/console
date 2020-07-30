@@ -74,7 +74,7 @@ export const updatePipelineParams = (data, isEditor = false) => {
   }
 }
 
-export const updatePipelineParamsInSpec = (data, project_id) => {
+export const updatePipelineParamsInSpec = (data, devops) => {
   if (data.multi_branch_pipeline) {
     data = set(data, 'metadata.name', data.multi_branch_pipeline.name)
     delete data.multi_branch_pipeline.metadata
@@ -103,7 +103,7 @@ export const updatePipelineParamsInSpec = (data, project_id) => {
   delete data.desc
   delete data.description
 
-  data = set(data, 'metadata.namespace', project_id)
+  data = set(data, 'metadata.namespace', devops)
 }
 
 export const groovyToJS = str => {

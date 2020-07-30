@@ -70,8 +70,7 @@ export default class Activity extends React.Component {
   }
 
   get enabledActions() {
-    const { project_id } = this.props.match.params
-    const devops = this.store.getDevops(project_id)
+    const { devops } = this.props.match.params
     return globals.app.getActions({
       module: 'pipelines',
       cluster: this.props.match.params.cluster,
@@ -139,7 +138,7 @@ export default class Activity extends React.Component {
   handleReplay = record => async () => {
     const { params } = this.props.match
 
-    const url = `devops/${params.project_id}/pipelines/${
+    const url = `devops/${params.devops}/pipelines/${
       params.name
     }${this.getActivityDetailLinks(record)}`
 
@@ -155,7 +154,7 @@ export default class Activity extends React.Component {
     const { detail } = this.props.detailStore
 
     await this.props.detailStore.scanRepository({
-      project_id: params.project_id,
+      devops: params.devops,
       name: detail.name,
       cluster: params.cluster,
     })
@@ -168,7 +167,7 @@ export default class Activity extends React.Component {
   handleStop = record => async () => {
     const { params } = this.props.match
 
-    const url = `devops/${params.project_id}/pipelines/${
+    const url = `devops/${params.devops}/pipelines/${
       params.name
     }${this.getActivityDetailLinks(record)}`
     await this.props.detailStore.handleActivityStop({

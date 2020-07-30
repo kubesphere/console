@@ -107,8 +107,8 @@ export default class CredentialModal extends React.Component {
   isGetConfigLoading = false
 
   @action
-  async handleCreate(data, { project_id, cluster }) {
-    return await this.store.handleCreate(data, { project_id, cluster })
+  async handleCreate(data, { devops, cluster }) {
+    return await this.store.handleCreate(data, { devops, cluster })
   }
 
   @action
@@ -132,7 +132,7 @@ export default class CredentialModal extends React.Component {
 
   @action
   handleOk = () => {
-    const { isEditMode, project_id, cluster } = this.props
+    const { isEditMode, devops, cluster } = this.props
     const formData = this.formRef.current.getData()
 
     this.formRef.current.validate(async () => {
@@ -141,16 +141,14 @@ export default class CredentialModal extends React.Component {
 
       if (isEditMode) {
         await this.store
-          .updateCredential(formData, { project_id, cluster })
+          .updateCredential(formData, { devops, cluster })
           .finally(() => {
             this.isSubmitting = false
           })
       } else {
-        await this.handleCreate(formData, { project_id, cluster }).finally(
-          () => {
-            this.isSubmitting = false
-          }
-        )
+        await this.handleCreate(formData, { devops, cluster }).finally(() => {
+          this.isSubmitting = false
+        })
       }
       this.props.onOk()
     })
@@ -172,7 +170,7 @@ export default class CredentialModal extends React.Component {
   }
 
   nameValidator = (rule, value, callback) => {
-    const { project_id, cluster, isEditMode } = this.props
+    const { devops, cluster, isEditMode } = this.props
     if (!value || isEditMode) {
       return callback()
     }
@@ -180,7 +178,7 @@ export default class CredentialModal extends React.Component {
     this.store
       .checkName({
         name: value,
-        devops: this.store.getDevops(project_id),
+        devops,
         cluster,
       })
       .then(resp => {

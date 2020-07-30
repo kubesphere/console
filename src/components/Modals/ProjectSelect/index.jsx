@@ -278,7 +278,7 @@ export default class ProjectSelectModal extends React.Component {
           >
             {data.map(item => (
               <Card
-                key={item.uid || item.project_id}
+                key={item.uid || item.devops}
                 data={item}
                 type={type}
                 onEnter={this.handleOnEnter}

@@ -145,7 +145,7 @@ export default class BaseInfoModal extends React.Component {
         >
           <RepoSelectForm
             sourceData={detail.multi_branch_pipeline}
-            project_id={detail.project_id}
+            devops={detail.devops}
             cluster={detail.cluster}
             name={name}
             onSave={this.handleRepoChange}

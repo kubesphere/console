@@ -68,8 +68,8 @@ export default class Pullrequest extends React.Component {
   }
 
   get prefix() {
-    const { workspace, project_id, name, cluster } = this.props.match.params
-    return `/${workspace}/clusters/${cluster}/devops/${project_id}/pipelines/${name}`
+    const { workspace, devops, name, cluster } = this.props.match.params
+    return `/${workspace}/clusters/${cluster}/devops/${devops}/pipelines/${name}`
   }
 
   getFilteredValue = dataIndex => this.store.list.filters[dataIndex]

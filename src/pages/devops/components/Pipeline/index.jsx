@@ -50,9 +50,9 @@ export default class Pipeline extends React.Component {
     if (props.isEditMode) {
       this.store = new Store()
       this.store.params = props.params
-      const { project_id, name } = props.params
+      const { devops, name } = props.params
       this.prevData = JSON.parse(
-        localStorage.getItem(`${globals.user.username}-${project_id}-${name}`)
+        localStorage.getItem(`${globals.user.username}-${devops}-${name}`)
       )
       if (isEmpty(props.jsonData)) {
         this.store.setData(this.prevData || CREATE_TEMP)
@@ -90,17 +90,17 @@ export default class Pipeline extends React.Component {
 
   @action
   handleContinue = () => {
-    const { project_id, name } = this.props.params
+    const { devops, name } = this.props.params
     this.setState({ showConfirmPrevdata: false })
     this.store.setData(this.prevData)
-    localStorage.removeItem(`${globals.user.username}-${project_id}-${name}`)
+    localStorage.removeItem(`${globals.user.username}-${devops}-${name}`)
   }
 
   @action
   handleDiscard = () => {
-    const { project_id, name } = this.props.params
+    const { devops, name } = this.props.params
     this.setState({ showConfirmPrevdata: false })
-    localStorage.removeItem(`${globals.user.username}-${project_id}-${name}`)
+    localStorage.removeItem(`${globals.user.username}-${devops}-${name}`)
   }
 
   render() {

@@ -73,8 +73,7 @@ export default class CredentialStore extends BaseStore {
   }
 
   @action
-  async fetchList({ project_id, cluster, ...filters } = {}) {
-    const devops = this.getDevops(project_id)
+  async fetchList({ devops, cluster, ...filters } = {}) {
     this.list.isLoading = true
     const { page } = filters
 
@@ -111,10 +110,9 @@ export default class CredentialStore extends BaseStore {
   }
 
   @action
-  async handleCreate(data, { project_id, cluster }) {
-    const devops = this.getDevops(project_id)
+  async handleCreate(data, { devops, cluster }) {
     const body = FORM_TEMPLATES[this.module]({
-      namespace: project_id,
+      namespace: devops,
     })
 
     const typeDate = data[data.type]
@@ -152,8 +150,7 @@ export default class CredentialStore extends BaseStore {
 
   @action
   async fetchDetail() {
-    const { project_id, credential_id, cluster } = this.params
-    const devops = this.getDevops(project_id)
+    const { devops, credential_id, cluster } = this.params
     const result = await this.request.get(
       `${this.getResourceUrl({
         devops,
@@ -176,17 +173,17 @@ export default class CredentialStore extends BaseStore {
 
   @action
   async getUsageDetail() {
-    const { project_id, credential_id, cluster } = this.params
+    const { devops, credential_id, cluster } = this.params
 
     return await this.request.get(
       `${this.getDevopsUrlV2({
         cluster,
-      })}${project_id}/credentials/${credential_id}/usage`
+      })}${devops}/credentials/${credential_id}/usage`
     )
   }
 
   @action
-  async updateCredential(credential, { project_id, cluster }) {
+  async updateCredential(credential, { devops, cluster }) {
     const data = credential[credential.type]
     const des = credential.description
     const origin = credential._originData
@@ -200,8 +197,6 @@ export default class CredentialStore extends BaseStore {
     set(origin, 'data', data)
     set(origin, 'metadata.annotations["kubesphere.io/description"]', des)
 
-    const devops = this.getDevops(project_id)
-
     return await this.request.put(
       `${this.getResourceUrl({
         devops,
@@ -214,8 +209,7 @@ export default class CredentialStore extends BaseStore {
 
   @action
   async delete(credential_id) {
-    const { project_id, cluster } = this.params
-    const devops = this.getDevops(project_id)
+    const { devops, cluster } = this.params
 
     return await this.request.delete(
       `${this.getResourceUrl({

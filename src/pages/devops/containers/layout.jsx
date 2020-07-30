@@ -40,8 +40,7 @@ class DevOpsLayout extends Component {
 
   componentDidUpdate(prevProps) {
     if (
-      prevProps.match.params.project_id !==
-        this.props.match.params.project_id ||
+      prevProps.match.params.devops !== this.props.match.params.devops ||
       prevProps.match.params.cluster !== this.props.match.params.cluster
     ) {
       this.init(this.props.match.params)
@@ -64,13 +63,13 @@ class DevOpsLayout extends Component {
 
     await this.props.rootStore.getRules({
       cluster: params.cluster,
-      devops: this.store.data.name,
+      devops: this.store.data.devops,
       workspace: params.workspace,
     })
 
     globals.app.cacheHistory(this.props.match.url, {
       type: 'DevOps',
-      name: this.store.data.name,
+      name: this.store.data.devops,
       description: this.store.data.description,
     })
 
@@ -82,7 +81,7 @@ class DevOpsLayout extends Component {
   }
 
   get devops() {
-    return this.store.data.name
+    return this.store.data.devops
   }
 
   get routing() {

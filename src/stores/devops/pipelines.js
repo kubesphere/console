@@ -121,13 +121,13 @@ export default class PipelineStore extends BaseStore {
   jenkinsfile = ''
 
   @observable
-  project_id = ''
-
-  @observable
   devops = ''
 
+  @observable
+  devopsName = ''
+
   @action
-  async fetchList({ devops, workspace, project_id, cluster, ...filters } = {}) {
+  async fetchList({ devops, workspace, devopsName, cluster, ...filters } = {}) {
     this.list.isLoading = true
 
     const { page, limit, name, filter } = filters
@@ -140,50 +140,41 @@ export default class PipelineStore extends BaseStore {
       {
         start: (page - 1) * TABLE_LIMIT || 0,
         limit: TABLE_LIMIT,
-        q: `type:pipeline;organization:jenkins;pipeline:${project_id}/${searchWord ||
+        q: `type:pipeline;organization:jenkins;pipeline:${devops}/${searchWord ||
           '*'};excludedFromFlattening:jenkins.branch.MultiBranchProject,hudson.matrix.MatrixProject&filter=${filter ||
           'no-folders'}`,
       },
       { params: { ...filters } }
     )
 
-    this.setProjectId(project_id)
-    this.devops = devops
+    this.setDevops(devops)
+    this.devopsName = devopsName
 
     this.list = {
       data: result.items || [],
       total: result.total_count,
       limit: parseInt(limit, 10) || 10,
       page: parseInt(page, 10) || 1,
-      filters: omit(filters, 'project_id'),
+      filters: omit(filters, 'devops'),
       selectedRowKeys: [],
       isLoading: false,
     }
   }
 
   @action
-  async fetchDetail({ cluster, name, isSilent, project_id }) {
+  async fetchDetail({ cluster, name, isSilent, devops }) {
     if (!isSilent) {
       this.isLoading = true
     }
 
     const result = await this.request.get(
-      `${this.getDevopsUrlV2({ cluster })}${project_id ||
-        this.project_id}/pipelines/${decodeURIComponent(name)}/`
+      `${this.getDevopsUrlV2({
+        cluster,
+      })}${devops || this.devops}/pipelines/${decodeURIComponent(name)}/`
     )
 
-    const devopsName = get(result, 'fullDisplayName')
-
-    if (devopsName !== '') {
-      try {
-        this.devops = devopsName.split('/')[0].slice(0, -5)
-      } catch {}
-    }
-
     const resultKub = await this.request.get(
-      `${this.getDevOpsDetailUrl({ devops: this.devops, cluster })}/${
-        this.module
-      }/${name}`
+      `${this.getDevOpsDetailUrl({ devops, cluster })}/${this.module}/${name}`
     )
 
     this.setPipelineConfig(resultKub)
@@ -214,12 +205,12 @@ export default class PipelineStore extends BaseStore {
   }
 
   @action
-  async getJenkinsFile({ cluster, name, project_id }) {
+  async getJenkinsFile({ cluster, name, devops }) {
     this.pipelineJsonData.isLoading = true
     const decodeName = decodeURIComponent(name)
 
     if (isEmpty(this.detail)) {
-      await this.fetchDetail({ cluster, name: decodeName, project_id })
+      await this.fetchDetail({ cluster, name: decodeName, devops })
     }
 
     this.jenkinsfile = get(this.pipelineConfig, 'spec.pipeline.jenkinsfile', '')
@@ -247,18 +238,18 @@ export default class PipelineStore extends BaseStore {
   }
 
   @action
-  async getPullRequest({ name, project_id, workspace, cluster, ...filters }) {
+  async getPullRequest({ name, devops, workspace, cluster, ...filters }) {
     const decodeName = decodeURIComponent(name)
 
     const { page } = filters
 
     if (isEmpty(this.detail)) {
-      await this.fetchDetail({ name: decodeName, project_id })
+      await this.fetchDetail({ name: decodeName, devops })
     }
     const result = await this.request.get(
       `${this.getDevopsUrlV2({
         cluster,
-      })}${project_id}/pipelines/${name}/branches/`,
+      })}${devops}/pipelines/${name}/branches/`,
       {
         filter: 'pull-requests',
         start: (page - 1) * TABLE_LIMIT || 0,
@@ -270,25 +261,25 @@ export default class PipelineStore extends BaseStore {
       total: this.detail.totalNumberOfPullRequests,
       limit: TABLE_LIMIT,
       page: parseInt(page, 10) || 1,
-      filters: omit(filters, 'project_id'),
+      filters: omit(filters, 'devops'),
       isLoading: false,
       selectedRowKeys: [],
     }
   }
 
   @action
-  async getBranches({ cluster, project_id, name, branch, ...filters }) {
+  async getBranches({ cluster, devops, name, branch, ...filters }) {
     const decodeName = decodeURIComponent(name)
 
     const { page } = filters
     if (isEmpty(this.detail)) {
-      await this.fetchDetail({ cluster, name: decodeName, project_id })
+      await this.fetchDetail({ cluster, name: decodeName, devops })
     }
 
     const result = await this.request.get(
       `${this.getDevopsUrlV2({
         cluster,
-      })}${project_id}/pipelines/${name}/branches/`,
+      })}${devops}/pipelines/${name}/branches/`,
       {
         filter: 'origin',
         start: (page - 1) * TABLE_LIMIT || 0,
@@ -302,26 +293,26 @@ export default class PipelineStore extends BaseStore {
       limit: TABLE_LIMIT,
       total: this.detail.totalNumberOfBranches,
       page: parseInt(page, 10) || 1,
-      filters: omit(filters, 'project_id'),
+      filters: omit(filters, 'devops'),
       isLoading: false,
       selectedRowKeys: [],
     }
   }
 
   @action
-  async getActivities({ name, branch, project_id, cluster, ...filters }) {
+  async getActivities({ name, branch, devops, cluster, ...filters }) {
     name = decodeURIComponent(name)
 
     const { page } = filters
     const { limit = 10 } = this.activityList
 
     if (isEmpty(this.detail)) {
-      await this.fetchDetail({ cluster, name, project_id })
+      await this.fetchDetail({ cluster, name, devops })
     }
     let result = await this.request.get(
       `${this.getDevopsUrlV2({
         cluster,
-      })}${project_id}/pipelines/${name}/runs/`,
+      })}${devops}/pipelines/${name}/runs/`,
       {
         start: (page - 1) * limit || 0,
         limit,
@@ -337,7 +328,7 @@ export default class PipelineStore extends BaseStore {
       data: result.items || [],
       total: result.totalItems,
       page: parseInt(page, 10) || 1,
-      filters: omit(filters, 'project_id'),
+      filters: omit(filters, 'devops'),
       isLoading: false,
       selectedRowKeys: [],
     }
@@ -345,14 +336,12 @@ export default class PipelineStore extends BaseStore {
 
   @action
   async getBranchDetail(params) {
-    const { project_id, cluster, name, branch } = params
+    const { devops, cluster, name, branch } = params
     try {
       const result = await this.request.get(
         `${this.getDevopsUrlV2({
           cluster,
-        })}${project_id}/pipelines/${name}/branches/${encodeURIComponent(
-          branch
-        )}/`
+        })}${devops}/pipelines/${name}/branches/${encodeURIComponent(branch)}/`
       )
 
       if (result.name) {
@@ -365,20 +354,20 @@ export default class PipelineStore extends BaseStore {
   }
 
   async replay(params, _runid) {
-    const { project_id, name, branch, runid, cluster } = params
+    const { devops, name, branch, runid, cluster } = params
     return await this.request.post(
       `${this.getDevopsUrlV2({
         cluster,
-      })}${project_id}/pipelines/${decodeURIComponent(name)}${
+      })}${devops}/pipelines/${decodeURIComponent(name)}${
         branch ? `/branches/${encodeURIComponent(branch)}` : ''
       }/runs/${_runid || runid}/replay`
     )
   }
 
   async stop(params, _runid) {
-    const { project_id, name, branch, runid, cluster } = params
+    const { devops, name, branch, runid, cluster } = params
     return await this.request.post(
-      `${this.getDevopsUrlV2({ cluster })}${project_id}/pipelines/${name}${
+      `${this.getDevopsUrlV2({ cluster })}${devops}/pipelines/${name}${
         branch ? `/branches/${encodeURIComponent(branch)}` : ''
       }/runs/${_runid || runid}/replay/`
     )
@@ -398,10 +387,10 @@ export default class PipelineStore extends BaseStore {
     )
   }
 
-  async runBranch({ cluster, project_id, name, branch, parameters }) {
+  async runBranch({ cluster, devops, name, branch, parameters }) {
     const href_temp = `${this.getDevopsUrlV2({
       cluster,
-    })}${project_id}/pipelines/${name}${
+    })}${devops}/pipelines/${name}${
       branch ? `/branches/${encodeURIComponent(branch)}` : ''
     }/runs`
 
@@ -413,7 +402,7 @@ export default class PipelineStore extends BaseStore {
       .then(() => {
         // pipeline parameters not updated immediately
         setTimeout(() => {
-          this.fetchDetail({ cluster, project_id, name, isSilent: true })
+          this.fetchDetail({ cluster, devops, name, isSilent: true })
         }, 1000)
       })
   }
@@ -436,8 +425,8 @@ export default class PipelineStore extends BaseStore {
   }
 
   @action
-  setProjectId(project_id) {
-    this.project_id = project_id
+  setDevops(devops) {
+    this.devops = devops
   }
 
   @action
@@ -454,10 +443,9 @@ export default class PipelineStore extends BaseStore {
   }
 
   @action
-  async updatePipeline({ cluster, data, project_id }) {
+  async updatePipeline({ cluster, data, devops }) {
     data.kind = 'Pipeline'
     data.apiVersion = 'devops.kubesphere.io/v1alpha3'
-    const devops = this.getDevops(project_id)
     const url = `${this.getDevOpsDetailUrl({
       devops,
       cluster,
@@ -475,7 +463,7 @@ export default class PipelineStore extends BaseStore {
 
     return this.updatePipeline({
       data,
-      project_id: params.project_id,
+      devops: params.devops,
       cluster: params.cluster,
     })
   }
@@ -491,7 +479,7 @@ export default class PipelineStore extends BaseStore {
   }
 
   @action
-  async scanRepository({ project_id, name, cluster }) {
+  async scanRepository({ devops, name, cluster }) {
     if (globals.user.crumb === undefined) {
       await this.getCrumb({ cluster })
     }
@@ -502,8 +490,8 @@ export default class PipelineStore extends BaseStore {
 
     return await this.request.defaults({
       method: 'POST',
-      url: `${this.getDevopsUrlV2({ cluster })}${project_id ||
-        this.project_id}/pipelines/${name || this.detail.name}/scan`,
+      url: `${this.getDevopsUrlV2({ cluster })}${devops ||
+        this.devops}/pipelines/${name || this.detail.name}/scan`,
       options,
       handler: resp =>
         resp.text().then(() => {
@@ -514,11 +502,11 @@ export default class PipelineStore extends BaseStore {
     })
   }
 
-  async getRepoScanLogs({ project_id, name, cluster }) {
+  async getRepoScanLogs({ devops, name, cluster }) {
     const logs = await this.request.get(
       `${this.getDevopsUrlV2({
         cluster,
-      })}${project_id}/pipelines/${name}/consolelog`
+      })}${devops}/pipelines/${name}/consolelog`
     )
     this.reponsitorylog = logs
   }
@@ -529,11 +517,11 @@ export default class PipelineStore extends BaseStore {
     )
   }
 
-  async checkScriptCompile({ project_id, pipeline, value, cluster }) {
+  async checkScriptCompile({ devops, pipeline, value, cluster }) {
     return await this.request.post(
       `${this.getDevopsUrlV2({
         cluster,
-      })}${project_id}/pipelines/${pipeline}/checkScriptCompile`,
+      })}${devops}/pipelines/${pipeline}/checkScriptCompile`,
       {
         value,
       },
@@ -541,14 +529,14 @@ export default class PipelineStore extends BaseStore {
     )
   }
 
-  async getBranchLists({ project_id, name, workspace, cluster, ...filters }) {
+  async getBranchLists({ devops, name, workspace, cluster, ...filters }) {
     const decodeName = decodeURIComponent(name)
     const { page } = filters
 
     return await this.request.get(
       `${this.getDevopsUrlV2({
         cluster,
-      })}${project_id}/pipelines/${decodeName}/branches/`,
+      })}${devops}/pipelines/${decodeName}/branches/`,
       {
         filter: 'origin',
         start: (page - 1) * TABLE_LIMIT || 0,
