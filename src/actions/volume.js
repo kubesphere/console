@@ -99,6 +99,7 @@ export default {
         },
         title: t('Volume Clone'),
         modal: NameModal,
+        store,
         ...props,
       })
     },
@@ -113,6 +114,7 @@ export default {
         },
         title: t('Create Snapshot'),
         modal: NameModal,
+        store,
         ...props,
       })
     },
@@ -126,6 +128,7 @@ export default {
           Notify.success({ content: `${t('Updated Successfully')}!` })
         },
         modal: ExpandModal,
+        store,
         ...props,
       })
     },

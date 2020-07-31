@@ -42,6 +42,7 @@ export default {
           })
         },
         formTemplate: FORM_TEMPLATES[module]({ namespace }),
+        store,
         ...props,
       })
     },
@@ -63,6 +64,7 @@ export default {
           })
         },
         formTemplate: FORM_TEMPLATES[module]({ namespace }),
+        store,
         ...props,
       })
     },
@@ -80,6 +82,7 @@ export default {
           })
         },
         resource: ruleName,
+        store,
         ...props,
       })
     },
@@ -89,13 +92,13 @@ export default {
       const { cluster } = props
       const modal = Modal.open({
         modal: AddByYamlModal,
-        store,
         onOk: async data => {
           const namespace = get(data, 'metadata.namespace')
           await store.create(data, { namespace, cluster })
           Modal.close(modal)
           success && success()
         },
+        store,
         ...props,
       })
     },
