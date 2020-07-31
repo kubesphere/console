@@ -417,7 +417,7 @@ export default {
   REMOVE_MEMBER_TIP:
     '¿Estás seguro de que deseas eliminar el miembro <strong>{resource}</strong> ?',
   ALIAS_DESC:
-    'El alias puede estar compuesto de cualquier carácter para ayudar a distinguir mejor los recursos.',
+    'El alias puede estar compuesto de cualquier carácter para ayudar a distinguir mejor los recursos. La longitud máxima de carácteres se establece en 63.',
   NOT_ENABLE: '{feature} no está habilitado',
   NOT_AVAILABLE: '{resource} no disponible',
   NO_RESOURCE: 'No se encuentra {resource}',
