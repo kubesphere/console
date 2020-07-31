@@ -31,6 +31,7 @@ import SnapshotStore from 'stores/volumeSnapshot'
 import StorageClassStore from 'stores/storageClass'
 
 import { safeParseJSON } from 'utils'
+import { ACCESS_MODES } from 'utils/constants'
 
 import styles from './index.scss'
 
@@ -136,11 +137,14 @@ export default class SanpshotForm extends Component {
             <Form.Item
               className="margin-t12"
               label={t('Access Mode')}
-              rules={[{ required: true }]}
+              rules={[{ required: true, message: t('This param is required') }]}
             >
               <AccessModes
                 name={ACCESSMODE_KEY}
-                defaultValue={get(supportedAccessModes, '[0]', '')}
+                defaultValue={
+                  get(supportedAccessModes, '[0]') ||
+                  Object.keys(ACCESS_MODES)[0]
+                }
                 supportedAccessModes={supportedAccessModes}
               />
             </Form.Item>

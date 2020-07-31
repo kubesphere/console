@@ -65,6 +65,8 @@ export default {
   'Volume Clone': 'Clon del volumen',
   'Volume Count': 'Recuento de volumen',
   'volume name exist': 'nombre de volumen existe',
+  'volume size must be greater than zero':
+    'volume size must be greater than zero',
   'Volume Usage': 'Uso de volumen',
   VOLUME_DESC: 'VOLUME_DESC',
   VOLUME_SNAPSHOT_STATUS_CREATING: 'VOLUME_SNAPSHOT_STATUS_CREATING',
