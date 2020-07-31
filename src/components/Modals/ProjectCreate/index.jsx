@@ -156,6 +156,7 @@ export default class ProjectCreateModal extends React.Component {
             name="cluster"
             className={styles.cluster}
             options={this.clusters}
+            defaultValue={this.props.defaultCluster}
             valueRenderer={this.valueRenderer}
             optionRenderer={this.optionRenderer}
             onChange={this.handleClusterChange}
