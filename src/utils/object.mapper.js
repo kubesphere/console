@@ -43,6 +43,7 @@ import { getServiceType } from 'utils/service'
 import { getNodeRoles } from 'utils/node'
 import { getPodStatusAndRestartCount } from 'utils/status'
 import { FED_ACTIVE_STATUS } from 'utils/constants'
+import moment from 'moment-mini'
 
 const getOriginData = item =>
   omit(item, [
@@ -397,16 +398,25 @@ const PodsMapper = item => ({
   _originData: getOriginData(item),
 })
 
-const EventsMapper = item => ({
-  ...getBaseInfo(item),
-  type: get(item, 'type'),
-  reason: get(item, 'reason'),
-  message: get(item, 'message'),
-  startTime: get(item, 'firstTimestamp') || get(item, 'creationTimestamp'),
-  endTime: get(item, 'lastTimestamp'),
-  source: get(item, 'source.component'),
-  _originData: getOriginData(item),
-})
+const EventsMapper = item => {
+  const now = Date.now()
+  const age =
+    item.count > 1
+      ? `${moment(item.lastTimestamp).to(now, true)} (x${
+          item.count
+        } over ${moment(item.firstTimestamp).to(now, true)})`
+      : moment(item.firstTimestamp).to(now, true)
+
+  return {
+    ...getBaseInfo(item),
+    age,
+    type: get(item, 'type'),
+    reason: get(item, 'reason'),
+    message: get(item, 'message'),
+    from: get(item, 'source.component'),
+    _originData: getOriginData(item),
+  }
+}
 
 const getVolumePhase = item => {
   const phase = get(item, 'status.phase')
