@@ -108,6 +108,7 @@ export default {
           resource: detail.name,
         }),
         resource: detail.name,
+        store,
         ...props,
       })
     },
@@ -132,6 +133,7 @@ export default {
           resource: usernames,
         }),
         resource: usernames,
+        store,
         ...props,
       })
     },

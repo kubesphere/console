@@ -74,6 +74,7 @@ export default {
           resource: detail.name,
         }),
         modal: DeleteModal,
+        store,
         ...props,
       })
     },
