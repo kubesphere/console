@@ -20,12 +20,30 @@ import React from 'react'
 import { get } from 'lodash'
 import { Columns, Column, Input } from '@pitrix/lego-ui'
 import { Form, TextArea } from 'components/Base'
-import { MODULE_KIND_MAP } from 'utils/constants'
+import { MODULE_KIND_MAP, PATTERN_NAME } from 'utils/constants'
 
 export default class BaseInfo extends React.Component {
   get formTemplate() {
     const { formTemplate, module } = this.props
     return get(formTemplate, MODULE_KIND_MAP[module], formTemplate)
+  }
+
+  nameValidator = (rule, value, callback) => {
+    if (!value) {
+      return callback()
+    }
+
+    this.props.store
+      .checkName({
+        name: value,
+        cluster: this.props.cluster,
+      })
+      .then(resp => {
+        if (resp.exist) {
+          return callback({ message: t('Name exists'), field: rule.field })
+        }
+        callback()
+      })
   }
 
   render() {
@@ -38,10 +56,17 @@ export default class BaseInfo extends React.Component {
             <Column>
               <Form.Item
                 label={t('Name')}
-                desc={t('Storage Class Name')}
-                rules={[{ required: true, message: t('Please input name') }]}
+                desc={t('NAME_DESC')}
+                rules={[
+                  { required: true, message: t('Please input name') },
+                  {
+                    pattern: PATTERN_NAME,
+                    message: `${t('Invalid name')}, ${t('NAME_DESC')}`,
+                  },
+                  { validator: this.nameValidator },
+                ]}
               >
-                <Input name="metadata.name" autoFocus={true} />
+                <Input name="metadata.name" autoFocus={true} maxLength={63} />
               </Form.Item>
             </Column>
             <Column>
