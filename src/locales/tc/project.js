@@ -242,4 +242,7 @@ export default {
 
   MULTI_CLUSTER_PROJECT_CREATE_DESC:
     '您可以創建多集群項目，讓項目運行在多個集群中，為應用提供快速疊代開發的容器環境並實現高可用。',
+
+  'Project Quota Not Set': '项目配额未设置',
+  'Resource Default Request Not Set': '容器资源默认请求未设置',
 }
