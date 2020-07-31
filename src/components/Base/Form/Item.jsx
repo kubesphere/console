@@ -120,9 +120,11 @@ export default class FormItem extends React.Component {
   }
 
   validate = debounce(data => {
-    this.schema.validate(data, { firstFields: true }, errors => {
-      this.setState({ error: errors ? errors[0] : null })
-    })
+    if (this.schema) {
+      this.schema.validate(data, { firstFields: true }, errors => {
+        this.setState({ error: errors ? errors[0] : null })
+      })
+    }
   }, 200)
 
   getValue = (name, { value: propsValue, defaultValue }) => {

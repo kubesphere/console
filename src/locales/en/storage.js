@@ -64,6 +64,8 @@ export default {
   'Volume Clone': 'Volume Clone',
   'Volume Count': 'Volume Count',
   'volume name exist': 'volume name exist',
+  'volume size must be greater than zero':
+    'volume size must be greater than zero',
   'Volume Usage': 'Volume Usage',
   VOLUME_DESC:
     'A volume is used for workloads created by users. It represents a resource object for the persistent storage of workloads.',

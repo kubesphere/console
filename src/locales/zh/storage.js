@@ -78,6 +78,8 @@ export default {
   Parameters: '参数',
   'Effect immediately': '立即生效',
 
+  'volume size must be greater than zero': '存储卷容量必须大于 0',
+
   STORAGECLASSES_BASEINFO_DESC:
     '存储类型记录管理员所提供的某类存储的配置信息，创建特定类型的存储卷之前必须已配置相应的存储类型。',
   VOLUMES_BASEINFO_DESC:
