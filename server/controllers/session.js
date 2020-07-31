@@ -40,11 +40,7 @@ const handleLogin = async ctx => {
     ctx.session.errorCount = 0
   }
 
-  if (
-    isEmpty(params) ||
-    !params.username ||
-    !(params.password || params.encrypt)
-  ) {
+  if (isEmpty(params) || !params.username || !params.encrypt) {
     Object.assign(error, {
       status: 400,
       reason: 'Invalid Login Params',
@@ -66,10 +62,7 @@ const handleLogin = async ctx => {
 
   if (isEmpty(error)) {
     try {
-      if (params.encrypt) {
-        params.password = decryptPassword(params.encrypt, ctx.session.salt)
-        delete params.encrypt
-      }
+      params.password = decryptPassword(params.encrypt, ctx.session.salt)
 
       user = await login(params, { 'x-client-ip': ctx.request.ip })
       if (!user) {
