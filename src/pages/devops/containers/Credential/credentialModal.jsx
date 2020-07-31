@@ -25,7 +25,7 @@ import { observer } from 'mobx-react'
 import { Form, Modal, TextArea } from 'components/Base'
 import { Input, Select, Loading } from '@pitrix/lego-ui'
 import CredentialStore from 'stores/devops/credential'
-import { PATTERN_SERVICE_NAME } from 'utils/constants'
+import { PATTERN_NAME } from 'utils/constants'
 
 import styles from './index.scss'
 
@@ -274,7 +274,7 @@ export default class CredentialModal extends React.Component {
             rules={[
               { required: true, message: t('Please input credential') },
               {
-                pattern: PATTERN_SERVICE_NAME,
+                pattern: PATTERN_NAME,
                 message: `${t('Invalid credential ID')}, ${t('NAME_DESC')}`,
               },
               { validator: this.nameValidator },

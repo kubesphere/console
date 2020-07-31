@@ -20,7 +20,7 @@ import React from 'react'
 import { Columns, Column, Input, TextArea } from '@pitrix/lego-ui'
 import { Form } from 'components/Base'
 import Title from 'components/Forms/Base/Title'
-import { PATTERN_PIPELINE_NAME } from 'utils/constants'
+import { PATTERN_NAME } from 'utils/constants'
 
 import RepoSelect from '../RepoSelect'
 import RepoSelectForm from '../RepoSelect/subForm'
@@ -124,8 +124,8 @@ export default class BaseInfo extends React.Component {
                 rules={[
                   { required: true, message: t('Please input pipeline name') },
                   {
-                    pattern: PATTERN_PIPELINE_NAME,
-                    message: t('PATTERN_PIPELINE_NAME_VALID_NAME_TIP'),
+                    pattern: PATTERN_NAME,
+                    message: `${t('Invalid name')}, ${t('NAME_DESC')}`,
                   },
                   { validator: this.validator },
                 ]}

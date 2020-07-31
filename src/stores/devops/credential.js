@@ -62,8 +62,6 @@ export default class CredentialStore extends BaseStore {
     return API_VERSIONS.devops
   }
 
-  gettype = type => `credential.devops.kubesphere.io/${type}`
-
   getResourceUrl = (params = {}) => {
     const path = `${this.apiVersion}${this.getPath(params)}/devops/${
       params.devops
@@ -73,17 +71,14 @@ export default class CredentialStore extends BaseStore {
   }
 
   @action
-  async fetchList({ devops, cluster, ...filters } = {}) {
+  async fetchList({ devops, cluster, page, ...filters } = {}) {
     this.list.isLoading = true
-    const { page } = filters
 
     const result = await this.request.get(
       this.getResourceUrl({ devops, cluster }),
       {
-        start: (page - 1) * TABLE_LIMIT || 0,
-        limit: TABLE_LIMIT,
-        type: 'credential.devops.kubesphere.io/',
-        ...filters,
+        paging: `limit=${TABLE_LIMIT},page=${page}`,
+        conditions: `keyword=${filters.name}`,
       }
     )
 

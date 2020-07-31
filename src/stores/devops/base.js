@@ -22,7 +22,6 @@ import BaseStore from '../devops'
 export default class Base extends BaseStore {
   catchRequestError(method = 'get', ...rest) {
     return request[method](...rest).catch(error => {
-      window.onunhandledrejection(error)
       return Promise.reject(error)
     })
   }
