@@ -16,6 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { orderBy } from 'lodash'
 import { action, observable } from 'mobx'
 
 import ObjectMapper from 'utils/object.mapper'
@@ -42,7 +43,7 @@ export default class EventsStore {
     )
 
     this.list = {
-      data: result.items.map(ObjectMapper.events),
+      data: orderBy(result.items.map(ObjectMapper.events), 'lastTimestamp'),
       total: result.items.length,
       isLoading: false,
     }

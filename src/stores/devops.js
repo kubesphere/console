@@ -255,4 +255,50 @@ export default class DevOpsStore extends Base {
   setSelectRowKeys = selectedRowKeys => {
     this.list.selectedRowKeys = selectedRowKeys
   }
+
+  @action
+  async fetchListByUser({
+    cluster,
+    workspace,
+    namespace,
+    username,
+    type,
+    ...params
+  } = {}) {
+    this.list.isLoading = true
+
+    if (!params.sortBy && params.ascending === undefined) {
+      params.sortBy = 'createTime'
+    }
+
+    if (params.limit === Infinity || params.limit === -1) {
+      params.limit = -1
+      params.page = 1
+    }
+
+    params.limit = params.limit || 10
+
+    const result = await request.get(
+      `kapis/tenant.kubesphere.io/v1alpha2/workspaces/${workspace}${this.getPath(
+        { cluster, namespace }
+      )}/workspacemembers/${username}/devops`,
+      params
+    )
+    const data = get(result, 'items', []).map(item => ({
+      cluster,
+      ...this.mapper(item),
+    }))
+
+    this.list.update({
+      data,
+      total: result.totalItems || 0,
+      ...params,
+      cluster: globals.app.isMultiCluster ? cluster : undefined,
+      limit: Number(params.limit) || 10,
+      page: Number(params.page) || 1,
+      isLoading: false,
+    })
+
+    return data
+  }
 }

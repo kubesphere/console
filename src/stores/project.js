@@ -16,31 +16,13 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, isEmpty, unset, omit } from 'lodash'
+import { get, omit } from 'lodash'
 import { action, observable } from 'mobx'
 import { LIST_DEFAULT_ORDER } from 'utils/constants'
 import ObjectMapper from 'utils/object.mapper'
 
 import Base from './base'
 import List from './base.list'
-
-const formatLimitRange = (limitRange = {}) => {
-  const cpuLimit = get(limitRange, 'spec.limits[0].default.cpu')
-  const cpuRequest = get(limitRange, 'spec.limits[0].defaultRequest.cpu')
-  const memoryLimit = get(limitRange, 'spec.limits[0].default.memory')
-  const memoryRequest = get(limitRange, 'spec.limits[0].defaultRequest.memory')
-
-  !cpuLimit && unset(limitRange, 'spec.limits[0].default.cpu')
-  !cpuRequest && unset(limitRange, 'spec.limits[0].defaultRequest.cpu')
-  !memoryLimit && unset(limitRange, 'spec.limits[0].default.memory')
-  !memoryRequest && unset(limitRange, 'spec.limits[0].defaultRequest.memory')
-
-  if (!cpuLimit && !cpuRequest && !memoryLimit && !memoryRequest) {
-    return {}
-  }
-
-  return limitRange
-}
 
 const withTypeSelectParams = (params, type) => {
   if (type === 'system') {
@@ -187,25 +169,48 @@ export default class ProjectStore extends Base {
   }
 
   @action
-  createLimitRange(params, data) {
-    const limitRange = formatLimitRange(data)
+  async fetchListByUser({
+    cluster,
+    workspace,
+    namespace,
+    username,
+    type,
+    ...params
+  } = {}) {
+    this.list.isLoading = true
 
-    if (isEmpty(limitRange)) {
-      return
+    if (!params.sortBy && params.ascending === undefined) {
+      params.sortBy = LIST_DEFAULT_ORDER[this.module] || 'createTime'
     }
 
-    return this.submitting(
-      request.post(`api/v1${this.getPath(params)}/limitranges`, limitRange)
-    )
-  }
+    if (params.limit === Infinity || params.limit === -1) {
+      params.limit = -1
+      params.page = 1
+    }
 
-  @action
-  updateLimitRange(params, data) {
-    return this.submitting(
-      request.put(
-        `api/v1${this.getPath(params)}/limitranges/${params.name}`,
-        formatLimitRange(data)
-      )
+    params.limit = params.limit || 10
+
+    const result = await request.get(
+      `kapis/tenant.kubesphere.io/v1alpha2/workspaces/${workspace}${this.getPath(
+        { cluster, namespace }
+      )}/workspacemembers/${username}/namespaces`,
+      withTypeSelectParams(params, type)
     )
+    const data = get(result, 'items', []).map(item => ({
+      cluster,
+      ...this.mapper(item),
+    }))
+
+    this.list.update({
+      data,
+      total: result.totalItems || 0,
+      ...omit(params, 'labelSelector'),
+      cluster: globals.app.isMultiCluster ? cluster : undefined,
+      limit: Number(params.limit) || 10,
+      page: Number(params.page) || 1,
+      isLoading: false,
+    })
+
+    return data
   }
 }

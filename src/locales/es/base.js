@@ -517,4 +517,7 @@ export default {
   API_DOCS_DESC: 'La documentación más completa de la API de KubeSphere.',
   GITHUB_ISSUES_DESC:
     'Puedes plantear un problema en GitHub para obtener ayuda.',
+
+  EVENT_AGE: 'Age',
+  EVENT_FROM: 'From',
 }

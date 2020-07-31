@@ -543,4 +543,7 @@ export default {
   HOW_TO_MODIFY_PLATFORM_INFO: '如何修改平台資訊?',
   PLATFORM_INFO_DESC: '查看平台標題及描述等資訊',
   PLATFORM_SETTINGS_SELECTOR_DESC: '客製化平台的系統配置',
+
+  EVENT_AGE: '发生时间',
+  EVENT_FROM: '来源',
 }

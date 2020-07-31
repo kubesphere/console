@@ -43,11 +43,11 @@ class Events extends React.Component {
       dataIndex: 'reason',
     },
     {
-      title: t('Age'),
+      title: t('EVENT_AGE'),
       dataIndex: 'age',
     },
     {
-      title: t('From'),
+      title: t('EVENT_FROM'),
       dataIndex: 'from',
     },
     {
