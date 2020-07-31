@@ -172,7 +172,7 @@ export const capitalize = string =>
 export const getQueryString = params =>
   Object.keys(params)
     .filter(key => params[key])
-    .map(key => `${key}=${params[key]}`)
+    .map(key => `${key}=${encodeURIComponent(params[key])}`)
     .join('&')
 
 export const getFilterString = (
