@@ -220,4 +220,7 @@ export default {
     'El recurso multi-clúster actual se ejecuta en distintos clústers. Puedes saltar entre clústers para comprobar los parámetros de este recurso en cada uno de ellos.',
   MULTI_CLUSTER_PROJECT_CREATE_DESC:
     'Un proyecto multi-clúster se ejecuta sobre distintos clústers a la vez, lo que ayuda a que puedas construir un entorno de contenedores para una rápida iteración de aplicaciones y conseguir alta disponibilidad.',
+
+  'Project Quota Not Set': 'Project Quota Not Set',
+  'Resource Default Request Not Set': 'Resource Default Request Not Set',
 }

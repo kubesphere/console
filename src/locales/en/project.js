@@ -99,6 +99,8 @@ export default {
   'Project Quota': 'Project Quota',
   'Project Role': 'Project Role',
   'Project Roles': 'Project Roles',
+  'Project Quota Not Set': 'Project Quota Not Set',
+  'Resource Default Request Not Set': 'Resource Default Request Not Set',
   Project_Admin: 'Project_Admin',
   Projects: 'Projects',
   projects: 'projects',
@@ -180,7 +182,7 @@ export default {
 
   HOW_TO_USE_QUOTA_Q: 'How to use quotas?',
   HOW_TO_USE_QUOTA_A:
-    "Resource Quotas are a mechanism used to limit user's resources usage. You can limit the number of CPUs, memory, and pod replicas.",
+    "Resource Quotas are a mechanism used to limit user's resources usage. You can limit the number of CPUs, memories, and pod replicas.",
 
   WHAT_IS_LIMIT_RANGE_Q: 'What is the container resource default request?',
   WHAT_IS_LIMIT_RANGE_A:

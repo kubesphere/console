@@ -499,7 +499,7 @@ export default {
   CRONJOBS_VOLUME_DESC:
     'Puede montar volúmenes temporales o volúmenes persistentes en un Pod del cronjob.',
   CRONJOB_CRON_DESC:
-    'Ejecuta un trabajo periódicamente en un horario determinado. Consulte <a href="//en.wikipedia.org/wiki/Cron" target="_blank">CRON</a> para referencia gramatical.',
+    'Ejecuta un trabajo periódicamente en un horario determinado. Consulte <a href="//en.wikipedia.org/wiki/Cron" target="_blank">CRON</a> para referencia gramatical. By default, Kubernetes adopts UTC. Please adjust scheduled plans based on the time zone.',
   START_DEADLINE_SECONDS_DESC:
     'Una fecha límite opcional en segundos para comenzar el trabajo si se pierde el tiempo programado por cualquier motivo.',
   VOLUME_EMPTY_TIP: 'No hay volúmenes creados',
