@@ -7,7 +7,7 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title><%- title %></title>
+    <title><%= title %></title>
     <link rel="icon" href="/assets/favicon.ico" type="image/x-icon" />
     <link
       href="/assets/fonts/Roboto/stylesheet.css"
@@ -25,21 +25,21 @@
       <img src="/assets/logo.svg" alt="" />
     </a>
     <div class="login">
-      <div class="login-form <%- error ? 'login-form-error' : '' %>">
-        <div class="login-header"><%- t('Please Log In') %></div>
+      <div class="login-form <%= error ? 'login-form-error' : '' %>">
+        <div class="login-header"><%= t('Please Log In') %></div>
         <div class="login-divider"></div>
         <% if (oauthServers) { %> <% oauthServers.forEach(function(server) { %>
-        <div class="login-oauth" data-url="<%- server.url %>">
-          <span><%- t('Log In with %s', server.title) %></span>
+        <div class="login-oauth" data-url="<%= server.url %>">
+          <span><%= t('Log In with %s', server.title) %></span>
         </div>
         <% }) %> <% } %> <% if (error) { %>
         <div class="login-error">
-          <span><%- t(error.message) %></span>
+          <span><%= t(error.message) %></span>
         </div>
         <% } %>
-        <form action="<%- loginPath %>" method="post">
+        <form action="<%= loginPath %>" method="post">
           <div class="login-form-item">
-            <label for="username"><%- t('Username or Email') %>:</label>
+            <label for="username"><%= t('Username or Email') %>:</label>
             <input
               type="text"
               id="username"
@@ -50,7 +50,7 @@
             />
           </div>
           <div class="login-form-item">
-            <label for="password"><%- t('Password') %>:</label>
+            <label for="password"><%= t('Password') %>:</label>
             <div style="position: relative">
               <input
                 type="password"
@@ -66,19 +66,19 @@
           </div>
           <% if (errorCount > 2) { %>
           <div class="login-form-item">
-            <label for="captcha"><%- t('Captcha')%>:</label>
+            <label for="captcha"><%= t('Captcha')%>:</label>
             <div class="captcha-wrapper">
               <img
                 id="captcha_img"
-                src="/captcha?<%- new Date().getTime() %>"
+                src="/captcha?<%= new Date().getTime() %>"
                 alt=""
               />
-              <a id="refresh_captcha"><%- t('Reload Captcha') %></a>
+              <a id="refresh_captcha"><%= t('Reload Captcha') %></a>
               <input
                 type="text"
                 id="captcha"
                 name="captcha"
-                placeholder="<%- t('Captcha') %>"
+                placeholder="<%= t('Captcha') %>"
                 required
               />
             </div>
@@ -86,7 +86,7 @@
           <% } %>
           <div class="submit">
             <button type="submit">
-              <span><%- t('Log In') %></span>
+              <span><%= t('Log In') %></span>
               <svg>
                 <use xlink:href="#loading" />
               </svg>
@@ -97,7 +97,7 @@
     </div>
     <script>
       ;(function() {
-        var salt = '<%- salt %>'
+        var salt = '<%= salt %>'
 
         var $errorForm = document.querySelector('.login-form-error')
         var $password = document.querySelector('#password')
