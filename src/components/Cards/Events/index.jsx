@@ -19,8 +19,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { getLocalTime } from 'utils'
-
 import { Table } from '@pitrix/lego-ui'
 import { Panel, Status } from 'components/Base'
 
@@ -34,25 +32,23 @@ class Events extends React.Component {
 
   getColumns = () => [
     {
-      title: t('Reason'),
-      dataIndex: 'reason',
-      width: '24%',
-      render: (reason, record) => (
-        <div>
-          <p>{reason}</p>
-          <p className="text-second">
-            {getLocalTime(record.startTime).format(`YYYY-MM-DD HH:mm:ss`)}
-          </p>
-        </div>
-      ),
-    },
-    {
-      title: t('Status'),
+      title: t('Type'),
       dataIndex: 'type',
-      width: '16%',
       render: type => (
         <Status type={type} name={t(`EVENT_${type.toUpperCase()}`)} />
       ),
+    },
+    {
+      title: t('Reason'),
+      dataIndex: 'reason',
+    },
+    {
+      title: t('Age'),
+      dataIndex: 'age',
+    },
+    {
+      title: t('From'),
+      dataIndex: 'from',
     },
     {
       title: t('Message'),
