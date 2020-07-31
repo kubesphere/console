@@ -45,6 +45,7 @@
               id="username"
               name="username"
               placeholder="User@example.com"
+              autofocus
               required
             />
           </div>
@@ -54,7 +55,6 @@
               <input
                 type="password"
                 id="password"
-                name="password"
                 placeholder="Password"
                 required
               />
@@ -85,7 +85,7 @@
           </div>
           <% } %>
           <div class="submit">
-            <button type="submit" disabled>
+            <button type="submit">
               <span><%- t('Log In') %></span>
               <svg>
                 <use xlink:href="#loading" />
@@ -99,7 +99,6 @@
       ;(function() {
         var salt = '<%- salt %>'
 
-        var $form = document.querySelector('.login-form')
         var $errorForm = document.querySelector('.login-form-error')
         var $password = document.querySelector('#password')
         var $encryptPassword = document.querySelector('#encrypt')
@@ -118,22 +117,11 @@
         ready(init)
 
         function init() {
-          $form && $form.addEventListener('input', formHandler)
           $errorForm && $errorForm.addEventListener('keydown', errorFormHandler)
           $passwordShowTrigger.addEventListener('click', passwordHandler)
           $submitBtn.addEventListener('click', submitHandler)
           $refresh_captcha &&
             $refresh_captcha.addEventListener('click', refreshCaptha)
-
-          if (isFirefox) {
-            if ($submitBtn && $submitBtn.disabled) {
-              $submitBtn.disabled = false
-            }
-          } else {
-            detectAutoFill()
-          }
-
-          $username.focus()
 
           Array.prototype.forEach.call($oauthBtns, function(el) {
             el.addEventListener('click', handleOAuthLogin)
@@ -157,43 +145,11 @@
           }
         }
 
-        function detectAutoFill() {
-          const AUTOFILLED = 'is-autofilled'
-          const onAutoFillStart = el => el.classList.add(AUTOFILLED)
-          const onAutoFillCancel = el => el.classList.remove(AUTOFILLED)
-          const onAnimationStart = ({ target, animationName }) => {
-            switch (animationName) {
-              case 'onAutoFillStart':
-                return onAutoFillStart(target)
-              case 'onAutoFillCancel':
-                return onAutoFillCancel(target)
-            }
-          }
-
-          document
-            .querySelector('input')
-            .addEventListener('animationstart', animationStartHandle)
-        }
-
-        function animationStartHandle() {
-          if ($submitBtn && $submitBtn.disabled) {
-            $submitBtn.disabled = false
-          }
-
-          document
-            .querySelector('input')
-            .removeEventListener('animationstart', animationStartHandle)
-        }
-
         function errorFormHandler() {
           if ($username.value && $password.value) {
             $errorForm.removeEventListener('keydown', errorFormHandler)
             $errorForm.classList.remove('login-form-error')
           }
-        }
-
-        function formHandler() {
-          checkSubmitValid()
         }
 
         function passwordHandler() {
@@ -203,26 +159,6 @@
           } else {
             $password.type = 'password'
             $passwordIcon.setAttribute('xlink:href', '#eye')
-          }
-        }
-
-        function checkSubmitValid() {
-          if (
-            $submitBtn &&
-            $submitBtn.disabled &&
-            $username.value &&
-            $password.value &&
-            (!$captcha || $captcha.value)
-          ) {
-            $submitBtn.disabled = false
-          } else if (
-            $submitBtn &&
-            !$submitBtn.disabled &&
-            (!$username.value ||
-              !$password.value ||
-              ($captcha && !$captcha.value))
-          ) {
-            $submitBtn.disabled = true
           }
         }
 
@@ -257,7 +193,6 @@
           ) {
             $submitBtn.classList.add('loading')
             $encryptPassword.value = encrypt($password.value)
-            $password.setAttribute('form', 'deniedform')
             setTimeout(function() {
               $submitBtn.disabled = true
             }, 0)
