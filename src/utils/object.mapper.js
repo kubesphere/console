@@ -414,6 +414,7 @@ const EventsMapper = item => {
     reason: get(item, 'reason'),
     message: get(item, 'message'),
     from: get(item, 'source.component'),
+    lastTimestamp: item.lastTimestamp,
     _originData: getOriginData(item),
   }
 }

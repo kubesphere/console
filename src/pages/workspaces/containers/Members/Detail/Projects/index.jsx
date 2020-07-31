@@ -17,7 +17,7 @@
  */
 
 import React from 'react'
-import { toJS, computed, get } from 'mobx'
+import { toJS, computed } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import { getLocalTime, getDisplayName } from 'utils'
 
@@ -40,40 +40,22 @@ export default class MemberProjects extends React.Component {
         limit: -1,
       })
       .then(() => {
-        this.projectStore.fetchList({
-          workspace: this.workspace,
-          cluster: this.cluster,
-        })
+        this.getData()
       })
   }
 
+  @computed
   get clusters() {
     return this.workspaceStore.clusters.data.map(item => ({
       label: item.name,
       value: item.name,
+      disabled: !item.isReady,
+      cluster: item,
     }))
   }
 
   get workspaceStore() {
     return this.props.workspaceStore
-  }
-
-  @computed
-  get cluster() {
-    return this.hostCluster
-  }
-
-  @computed
-  get hostCluster() {
-    if (this.clusters.length < 1) {
-      return ''
-    }
-
-    return get(
-      this.workspaceStore.clusters.data.find(cluster => cluster.isHost) ||
-        this.workspaceStore.clusters.data[0],
-      'name'
-    )
   }
 
   get workspace() {
@@ -97,6 +79,29 @@ export default class MemberProjects extends React.Component {
     },
   ]
 
+  get clusterProps() {
+    return {
+      clusters: this.clusters,
+      cluster: this.workspaceStore.cluster,
+      onClusterChange: this.handleClusterChange,
+      showClusterSelect: globals.app.isMultiCluster,
+    }
+  }
+
+  getData = (params = {}) => {
+    this.projectStore.fetchListByUser({
+      workspace: this.workspace,
+      cluster: this.workspaceStore.cluster,
+      username: this.props.detailStore.detail.name,
+      ...params,
+    })
+  }
+
+  handleClusterChange = cluster => {
+    this.workspaceStore.selectCluster(cluster)
+    this.getData()
+  }
+
   render() {
     const { data, isLoading } = toJS(this.projectStore.list)
 
@@ -105,13 +110,13 @@ export default class MemberProjects extends React.Component {
         <Table
           className={styles.table}
           data={data}
+          columns={this.getColumns()}
+          isLoading={isLoading || this.workspaceStore.clusters.isLoading}
+          onFetch={this.getData}
+          {...this.clusterProps}
+          name="Projects"
           hideSearch
           hideCustom
-          columns={this.getColumns()}
-          loading={isLoading}
-          cluster={this.cluster}
-          clusters={this.clusters}
-          name="Projects"
         />
       </Card>
     )

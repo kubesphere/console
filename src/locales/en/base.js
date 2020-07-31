@@ -520,6 +520,9 @@ export default {
   EVENT_SEARCH_DESC:
     'A multi-dimensional event search tool for workspaces, projects and resources.',
 
+  EVENT_AGE: 'Age',
+  EVENT_FROM: 'From',
+
   PLATFORM_INFO_DESC: 'View platform title, description and other information',
   HOW_TO_MODIFY_PLATFORM_INFO: 'How to modify platform info?',
   PLATFORM_SETTINGS_SELECTOR_DESC: 'Customized Platform Settings',
