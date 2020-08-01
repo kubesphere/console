@@ -64,7 +64,7 @@ class TrafficManangement extends React.Component {
   }
 
   getData() {
-    const { selector } = this.store.detail.resource
+    const { selector } = this.store.detail
     const { namespace } = this.props.match.params
     const { cluster } = this.state
 

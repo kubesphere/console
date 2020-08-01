@@ -20,14 +20,17 @@ import {
   get,
   set,
   has,
+  merge,
   pick,
   isEmpty,
   omit,
+  omitBy,
   uniqBy,
   find,
   keyBy,
   includes,
   cloneDeep,
+  isUndefined,
 } from 'lodash'
 import {
   safeParseJSON,
@@ -1067,6 +1070,7 @@ const ClusterMapper = item => {
 }
 
 const FederatedMapper = resourceMapper => item => {
+  const baseInfo = getBaseInfo(item)
   const overrides = get(item, 'spec.overrides', [])
   const template = get(item, 'spec.template', {})
   const clusters = get(item, 'spec.placement.clusters', [])
@@ -1082,14 +1086,19 @@ const FederatedMapper = resourceMapper => item => {
     }
   })
 
+  const resourceInfo = omitBy(
+    resourceMapper(merge(template, { metadata: item.metadata })),
+    isUndefined
+  )
+
   return {
-    ...getBaseInfo(item),
+    ...resourceInfo,
+    ...baseInfo,
     overrides,
     template,
     clusters,
     clusterTemplates,
     isFedManaged: true,
-    resource: resourceMapper(template),
     namespace: get(item, 'metadata.namespace'),
     labels: get(item, 'metadata.labels', {}),
     annotations: get(item, 'metadata.annotations', {}),

@@ -18,7 +18,6 @@
 
 import React from 'react'
 import { observer, inject } from 'mobx-react'
-import { get } from 'lodash'
 
 import { Card } from 'components/Base'
 
@@ -54,7 +53,7 @@ class ConfigMapDetail extends React.Component {
 
     return (
       <Card title={t('Config Value')} loading={isLoading}>
-        {this.renderContent(get(detail, 'resource.data'))}
+        {this.renderContent(detail.data)}
       </Card>
     )
   }

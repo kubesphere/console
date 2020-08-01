@@ -34,6 +34,7 @@ class Events extends React.Component {
     {
       title: t('Type'),
       dataIndex: 'type',
+      width: '10%',
       render: type => (
         <Status type={type} name={t(`EVENT_${type.toUpperCase()}`)} />
       ),
@@ -41,14 +42,17 @@ class Events extends React.Component {
     {
       title: t('Reason'),
       dataIndex: 'reason',
+      width: '16%',
     },
     {
       title: t('EVENT_AGE'),
       dataIndex: 'age',
+      width: '16%',
     },
     {
       title: t('EVENT_FROM'),
       dataIndex: 'from',
+      width: '18%',
     },
     {
       title: t('Message'),

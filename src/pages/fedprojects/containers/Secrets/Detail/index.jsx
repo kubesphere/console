@@ -19,7 +19,7 @@
 import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
-import { get, isEmpty } from 'lodash'
+import { isEmpty } from 'lodash'
 import { Loading } from '@pitrix/lego-ui'
 
 import { getDisplayName, getLocalTime } from 'utils'
@@ -126,7 +126,7 @@ export default class SecretDetail extends React.Component {
       return
     }
 
-    const secretType = get(detail, 'resource.type')
+    const secretType = detail.type
 
     return [
       {

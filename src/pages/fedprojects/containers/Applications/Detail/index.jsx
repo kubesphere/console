@@ -85,7 +85,7 @@ export default class AppDetail extends React.Component {
       onClick: () =>
         this.trigger('crd.app.addcomponent', {
           isFederated: true,
-          detail: toJS(this.store.detail.resource),
+          detail: toJS(this.store.detail),
           projectDetail: this.props.projectStore.detail,
           success: this.fetchData,
           ...this.props.match.params,
@@ -127,7 +127,7 @@ export default class AppDetail extends React.Component {
       },
       {
         name: t('Version'),
-        value: get(detail, 'resource.version'),
+        value: detail.version,
       },
       {
         name: t('Created Time'),

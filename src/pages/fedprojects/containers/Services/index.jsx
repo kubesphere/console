@@ -141,7 +141,7 @@ export default class Services extends React.Component {
                 ? t(`SERVICE_TYPE_${serviceType.toUpperCase()}`)
                 : t('Custom Creation')
             }
-            description={record.resource.type || '-'}
+            description={record.type || '-'}
           />
         ),
       },
