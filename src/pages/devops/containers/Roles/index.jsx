@@ -162,6 +162,7 @@ export default class Secrets extends React.Component {
     this.props.trigger('role.create', {
       module: 'devopsroles',
       devops: this.devops,
+      namespace: this.devops,
       cluster: this.cluster,
       roleTemplates: toJS(this.props.store.roleTemplates.data),
       success: this.getData,
