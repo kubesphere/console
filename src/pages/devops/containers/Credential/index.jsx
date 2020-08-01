@@ -118,7 +118,7 @@ class Credential extends React.Component {
 
   handleCreate = () => {
     this.setState({ showCreate: false, showEdit: true })
-    this.handleFetch()
+    this.getData()
   }
 
   getColumns = () => [
@@ -149,10 +149,10 @@ class Credential extends React.Component {
     },
     {
       title: t('Created Time'),
-      dataIndex: 'create_time',
+      dataIndex: 'createTime',
       width: 20,
-      render: create_time =>
-        getLocalTime(create_time).format(`YYYY-MM-DD HH:mm:ss`),
+      render: createTime =>
+        getLocalTime(createTime).format(`YYYY-MM-DD HH:mm:ss`),
     },
   ]
 

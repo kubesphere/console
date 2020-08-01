@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { set } from 'lodash'
+import { set, get, isEmpty, isObject } from 'lodash'
 import { action, observable } from 'mobx'
 import {
   CREDENTIAL_KEY,
@@ -71,14 +71,20 @@ export default class CredentialStore extends BaseStore {
   }
 
   @action
-  async fetchList({ devops, cluster, page, ...filters } = {}) {
+  async fetchList({ devops, cluster, ...filters } = {}) {
     this.list.isLoading = true
+
+    if (filters.limit === Infinity || filters.limit === -1) {
+      filters.limit = -1
+      filters.page = 1
+    } else {
+      filters.limit = filters.limit || 10
+    }
 
     const result = await this.request.get(
       this.getResourceUrl({ devops, cluster }),
       {
-        paging: `limit=${TABLE_LIMIT},page=${page}`,
-        conditions: `keyword=${filters.name}`,
+        ...filters,
       }
     )
 
@@ -95,9 +101,9 @@ export default class CredentialStore extends BaseStore {
     this.list = {
       data: dataList,
       total: result.totalItems || dataList.length || 0,
-      limit: 10,
-      page: parseInt(page, 10) || 1,
       filters,
+      limit: Number(filters.limit) || TABLE_LIMIT,
+      page: Number(filters.page) || 1,
       isLoading: false,
     }
 
@@ -110,19 +116,21 @@ export default class CredentialStore extends BaseStore {
       namespace: devops,
     })
 
-    const typeDate = data[data.type]
-    set(body, 'metadata.labels.app', typeDate.id)
+    const typeDate = get(data, data.type, {})
+    const id = typeDate.id || data.id
+
+    set(body, 'metadata.labels.app', id)
     set(
       body,
       'metadata.annotations["kubesphere.io/description"]',
       data.description
     )
-    set(body, 'metadata.name', typeDate.id)
+    set(body, 'metadata.name', id)
 
     delete data.description
-    delete typeDate.id
+    typeDate.id ? delete typeDate.id : null
 
-    if (typeDate) {
+    if (!isEmpty(typeDate) && isObject(typeDate)) {
       Object.keys(typeDate).forEach(key => {
         if (typeDate[key]) {
           typeDate[key] = btoa(typeDate[key])

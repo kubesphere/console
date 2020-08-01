@@ -27,6 +27,7 @@ import CredentialStore from './credential'
 export default class SCMStore extends BaseStore {
   constructor(props) {
     super(props)
+
     this.verifyAccessErrorHandle = {
       github: (resp, error) => {
         if (resp.status === 428) {
@@ -41,12 +42,14 @@ export default class SCMStore extends BaseStore {
       'bitbucket-server': (resp, error) => {
         if (!isEmpty(get(error, 'message'))) {
           // set each field error message
-          this.creatBitBucketServersError = safeParseJSON(error.message, {
-            errors: [],
-          }).errors.reduce((prev, errorItem) => {
-            prev[errorItem.field] = errorItem
-            return prev
-          }, {})
+          try {
+            this.creatBitBucketServersError = safeParseJSON(error.message, {
+              errors: [],
+            }).errors.reduce((prev, errorItem) => {
+              prev[errorItem.field] = errorItem
+              return prev
+            }, {})
+          } catch (err) {}
         } else if (resp.status === 428) {
           this.creatBitBucketServersError = {
             password: {
@@ -57,11 +60,14 @@ export default class SCMStore extends BaseStore {
         } else {
           this.creatBitBucketServersError = { all: error.message }
         }
+
         if (window.onunhandledrejection) {
           window.onunhandledrejection(error)
         }
+        return Promise.reject(error)
       },
     }
+
     this.credentialStore = new CredentialStore()
   }
 
@@ -246,6 +252,7 @@ export default class SCMStore extends BaseStore {
     this.bitbucketCredentialId = `bitbucket-${username}-${md5(
       apiUrl + username + password
     ).slice(0, 6)}`
+
     const result = await this.request.post(
       `${this.getBaseUrlV2({ cluster })}scms/bitbucket-server/servers`,
       {
@@ -258,6 +265,7 @@ export default class SCMStore extends BaseStore {
     if (!result || !result.id) {
       return
     }
+
     const verifyResult = await this.verifyAccessForRepo({
       apiUrl,
       userName: username,
