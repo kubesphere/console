@@ -24,6 +24,7 @@ import { MODULE_KIND_MAP } from 'utils/constants'
 import ConfigMapStore from 'stores/configmap'
 import SecretStore from 'stores/secret'
 import LimitRangeStore from 'stores/limitrange'
+import FederatedStore from 'stores/federated'
 
 import { Form } from 'components/Base'
 import PodAffinity from './PodAffinity'
@@ -54,6 +55,21 @@ export default class ContainerSetting extends React.Component {
     this.secretStore = new SecretStore()
     this.limitRangeStore = new LimitRangeStore()
     this.imageRegistryStore = new SecretStore()
+
+    if (props.isFederated) {
+      this.configMapStore = new FederatedStore({
+        module: this.configMapStore.module,
+      })
+      this.secretStore = new FederatedStore({
+        module: this.secretStore.module,
+      })
+      this.limitRangeStore = new FederatedStore({
+        module: this.limitRangeStore.module,
+      })
+      this.imageRegistryStore = new FederatedStore({
+        module: this.imageRegistryStore.module,
+      })
+    }
 
     this.handleContainer = this.handleContainer.bind(this)
   }
@@ -144,24 +160,27 @@ export default class ContainerSetting extends React.Component {
   getReplicas = () => get(this.fedFormTemplate, `spec.replicas`) || 1
 
   fetchData() {
-    const { cluster, projectDetail, isFederated } = this.props
+    const { cluster, isFederated } = this.props
 
     const params = {
-      cluster: cluster || get(projectDetail, 'clusters[0].name'),
+      cluster,
       namespace: get(this.formTemplate, 'metadata.namespace'),
-    }
-    if (isFederated) {
-      params.labelSelector = 'kubefed.io/managed=true'
     }
 
     Promise.all([
       this.configMapStore.fetchListByK8s(params),
       this.secretStore.fetchListByK8s(params),
       this.limitRangeStore.fetchListByK8s(params),
-      this.imageRegistryStore.fetchListByK8s({
-        ...params,
-        fieldSelector: `type=kubernetes.io/dockerconfigjson`,
-      }),
+      isFederated
+        ? this.imageRegistryStore.fetchList({
+            ...params,
+            limit: -1,
+            type: `kubernetes.io/dockerconfigjson`,
+          })
+        : this.imageRegistryStore.fetchListByK8s({
+            ...params,
+            fieldSelector: `type=kubernetes.io/dockerconfigjson`,
+          }),
     ]).then(([configMaps, secrets, limitRanges, imageRegistries]) => {
       this.setState({
         configMaps,

@@ -160,7 +160,7 @@ export default class SecretDetail extends React.Component {
     const { detail = {} } = this.store
     return (
       <Card title={t('Secret')} operations={this.renderOperations()}>
-        {this.renderContent(detail.resource)}
+        {this.renderContent(detail)}
       </Card>
     )
   }

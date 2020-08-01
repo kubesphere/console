@@ -27,6 +27,7 @@ import { generateId, getDisplayName } from 'utils'
 
 import ConfigMapStore from 'stores/configmap'
 import SecretStore from 'stores/secret'
+import FederatedStore from 'stores/federated'
 
 import styles from './index.scss'
 
@@ -81,6 +82,15 @@ export default class MountConfig extends React.Component {
 
     this.configMapStore = new ConfigMapStore()
     this.secretStore = new SecretStore()
+
+    if (props.isFederated) {
+      this.configMapStore = new FederatedStore({
+        module: this.configMapStore.module,
+      })
+      this.secretStore = new FederatedStore({
+        module: this.secretStore.module,
+      })
+    }
   }
 
   componentDidMount() {
@@ -92,14 +102,11 @@ export default class MountConfig extends React.Component {
   }
 
   fetchData() {
-    const { cluster, namespace, projectDetail, isFederated } = this.props
+    const { cluster, namespace } = this.props
 
     const params = {
       namespace,
-      cluster: cluster || get(projectDetail, 'clusters[0].name'),
-    }
-    if (isFederated) {
-      params.labelSelector = 'kubefed.io/managed=true'
+      cluster,
     }
 
     Promise.all([

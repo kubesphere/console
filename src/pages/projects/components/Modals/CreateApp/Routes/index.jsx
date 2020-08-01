@@ -33,13 +33,7 @@ export default class Routes extends React.Component {
     super(props)
 
     this.mapper = this.props.isFederated
-      ? item => {
-          const result = ObjectMapper.federated(ObjectMapper.services)(item)
-          return {
-            ...result,
-            ports: result.resource.ports,
-          }
-        }
+      ? ObjectMapper.federated(ObjectMapper.services)
       : ObjectMapper.services
 
     this.serviceStore = new ServiceStore()

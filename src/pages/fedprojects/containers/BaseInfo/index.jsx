@@ -35,7 +35,7 @@ class BaseInfo extends React.Component {
   limitRangeStore = new FederatedStore({ module: 'limitranges' })
 
   componentDidMount() {
-    this.limitRangeStore.fetchList(this.params)
+    this.limitRangeStore.fetchListByK8s(this.params)
   }
 
   get store() {
@@ -99,7 +99,7 @@ class BaseInfo extends React.Component {
             detail: limitRanges[0],
             isFederated: true,
             projectDetail: this.store.detail,
-            success: () => this.limitRangeStore.fetchList(this.params),
+            success: () => this.limitRangeStore.fetchListByK8s(this.params),
           }),
       },
       {
@@ -137,7 +137,7 @@ class BaseInfo extends React.Component {
   render() {
     const detail = toJS(this.store.detail)
 
-    const limitRange = get(this.limitRangeStore, 'list.data[0].resource')
+    const limitRange = get(this.limitRangeStore, 'list.data[0]')
 
     return (
       <div>

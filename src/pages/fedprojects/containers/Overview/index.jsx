@@ -24,6 +24,7 @@ import { get } from 'lodash'
 import BaseInfo from './BaseInfo'
 import ResourceUsage from './ResourceUsage'
 import UsageRanking from './UsageRanking'
+import LimitRange from './LimitRange'
 import Help from './Help'
 
 @inject('rootStore', 'projectStore')
@@ -60,6 +61,14 @@ export default class Overview extends React.Component {
     this.setState({ cluster })
   }
 
+  get enabledActions() {
+    return globals.app.getActions({
+      module: 'project-settings',
+      ...this.props.match.params,
+      project: this.namespace,
+    })
+  }
+
   render() {
     const { detail } = this.project
 
@@ -79,6 +88,9 @@ export default class Overview extends React.Component {
               detail={detail}
               workspace={this.workspace}
             />
+            {this.enabledActions.includes('edit') && (
+              <LimitRange match={this.props.match} />
+            )}
             <ResourceUsage match={this.props.match} {...clusterProps} />
           </Column>
           <Column className="is-4">

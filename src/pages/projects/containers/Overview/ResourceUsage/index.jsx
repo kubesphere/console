@@ -47,7 +47,6 @@ const APP_RESOURCE_METRIC_TYPES = [
   'namespace_secret_count',
   'namespace_configmap_count',
   'namespace_ingresses_extensions_count',
-  'namespace_s2ibuilder_count',
 ]
 
 const PHYSICAL_RESOURCE_METRIC_TYPES = [
@@ -186,17 +185,6 @@ class ResourceUsage extends React.Component {
         num: used['count/daemonsets.apps'],
         warnNum: status.daemonsets,
         metric: 'namespace_daemonset_count',
-      },
-      {
-        key: 's2ibuilders',
-        icon: ICON_TYPES['s2ibuilders'],
-        name: 'Image Builders',
-        routeName: 's2ibuilders',
-        num: used['count/s2ibuilders.devops.kubesphere.io'],
-        metric: 'namespace_s2ibuilder_count',
-        disabled:
-          !globals.app.hasClusterModule(this.cluster, 'devops') ||
-          !this.props.match.params.workspace,
       },
       {
         key: 'jobs',

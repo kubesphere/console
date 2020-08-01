@@ -66,7 +66,7 @@ export default class ServiceCard extends React.Component {
               {name}
             </Link>
           }
-          description={get(service, 'resource.type')}
+          description={service.type}
         />
       </div>
     )

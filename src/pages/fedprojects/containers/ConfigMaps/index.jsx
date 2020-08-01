@@ -107,7 +107,7 @@ export default class ConfigMaps extends React.Component {
       },
       {
         title: t('Config Field'),
-        dataIndex: 'resource.data',
+        dataIndex: 'data',
         isHideable: true,
         width: '33%',
         render: data => Object.keys(data).join(','),

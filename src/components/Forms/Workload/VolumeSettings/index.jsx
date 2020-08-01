@@ -56,6 +56,7 @@ class VolumeSettings extends React.Component {
       this.projectStore = new FederatedStore({
         module: this.projectStore.module,
       })
+      this.store = new FederatedStore({ module: this.store.module })
     }
 
     this.store.fetchList({
@@ -84,9 +85,7 @@ class VolumeSettings extends React.Component {
   }
 
   get cluster() {
-    return (
-      this.props.cluster || get(this.props.projectDetail, 'clusters[0].name')
-    )
+    return this.props.cluster
   }
 
   get namespace() {

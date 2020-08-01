@@ -295,7 +295,7 @@ export class ListPage extends React.Component {
               }
               this.store.list.updateItem(data)
             } else if (message.type === 'DELETED' || message.type === 'ADDED') {
-              _getData(isFederated ? { page: 1 } : {})
+              _getData()
             }
           }
         }

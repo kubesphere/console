@@ -16,14 +16,14 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { keyBy, findKey } from 'lodash'
+import { get, keyBy, findKey } from 'lodash'
 import { action, observable } from 'mobx'
 import { withDryRun } from 'utils'
 import ObjectMapper from 'utils/object.mapper'
 import { MODULE_KIND_MAP } from 'utils/constants'
 
 import Base from 'stores/base'
-import List from 'stores/federated.list'
+import List from 'stores/base.list'
 
 export default class FederatedStore extends Base {
   list = new List()
@@ -69,41 +69,34 @@ export default class FederatedStore extends Base {
   getWatchUrl = (params = {}) =>
     `${this.getWatchListUrl(params)}/${params.name}`
 
+  getResourceUrl = (params = {}) =>
+    `kapis/resources.kubesphere.io/v1alpha3${this.getPath(params)}/federated${
+      this.module
+    }`
+
   @action
-  async fetchList({ namespace, page, name, limit, more, ...rest } = {}) {
+  async fetchList({ workspace, namespace, more, ...params } = {}) {
     this.list.isLoading = true
 
-    page = Number(page)
-    if (!page || page === 1) {
-      this.list.continues = {}
-      page = 1
+    if (!params.sortBy && params.ascending === undefined) {
+      params.sortBy = 'createTime'
     }
 
-    if (page > 1 && !this.list.continues[page]) {
-      page = 1
-      this.list.continues = {}
+    if (params.limit === Infinity || params.limit === -1) {
+      params.limit = -1
+      params.page = 1
     }
 
-    const params = rest
-
-    params.limit = limit || this.list.limit
-
-    if (this.list.continues[page]) {
-      params.continue = this.list.continues[page]
-    }
-
-    if (name) {
-      params.fieldSelector = `metadata.name=${name}`
-    }
+    params.limit = params.limit || 10
 
     const result = await request.get(
-      this.getListUrl({ namespace }),
-      params,
-      null,
-      () => {}
+      this.getResourceUrl({ namespace }),
+      this.getFilterParams(params)
     )
 
-    const data = result.items.map(ObjectMapper.federated(this.mapper))
+    const data = get(result, 'items', []).map(
+      ObjectMapper.federated(this.mapper)
+    )
 
     if (this.resourceStore.getResourceUrl) {
       const clusterNamesMap = {}
@@ -143,19 +136,45 @@ export default class FederatedStore extends Base {
       })
     }
 
-    this.list.continues[page + 1] = result.metadata.continue
-
-    if (page === 1) {
-      this.list.total = data.length + (result.metadata.remainingItemCount || 0)
-    }
-
     this.list.update({
       data: more ? [...this.list.data, ...data] : data,
-      page,
-      name,
+      total: result.totalItems || 0,
+      ...params,
+      limit: Number(params.limit) || 10,
+      page: Number(params.page) || 1,
+      isLoading: false,
+      ...(this.list.silent ? {} : { selectedRowKeys: [] }),
     })
 
-    this.list.isLoading = false
+    return data
+  }
+
+  @action
+  async fetchListByK8s({ namespace, module, ...rest } = {}) {
+    this.list.isLoading = true
+
+    if (module) {
+      this.module = module
+    }
+
+    const params = rest
+
+    const result = await request.get(
+      this.getListUrl({ namespace, module }),
+      params
+    )
+    const data = result.items.map(item => ({
+      module: module || this.module,
+      ...ObjectMapper.federated(this.mapper)(item),
+    }))
+
+    this.list.update({
+      data,
+      total: result.items.length,
+      isLoading: false,
+    })
+
+    return data
   }
 
   @action

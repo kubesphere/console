@@ -32,7 +32,7 @@ export default class AppIngresses extends React.Component {
 
   render() {
     const { workspace } = this.props.match.params
-    const { clusters, resource, namespace } = this.store.detail
+    const { clusters, namespace } = this.store.detail
 
     return clusters.map(cluster => (
       <Ingresses
@@ -40,7 +40,7 @@ export default class AppIngresses extends React.Component {
         cluster={cluster.name}
         namespace={namespace}
         workspace={workspace}
-        detail={resource}
+        detail={this.store.detail}
       />
     ))
   }

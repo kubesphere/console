@@ -101,7 +101,7 @@ export default class CRDApps extends React.Component {
       },
       {
         title: t('Version'),
-        dataIndex: 'resource.version',
+        dataIndex: 'version',
         isHideable: true,
         width: '20%',
       },

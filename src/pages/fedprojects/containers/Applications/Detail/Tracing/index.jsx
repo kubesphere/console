@@ -90,7 +90,7 @@ export default class Tracing extends React.Component {
   }
 
   getData() {
-    const { selector, namespace } = this.detailStore.detail.resource
+    const { selector, namespace } = this.detailStore.detail
     const { cluster } = this.state
 
     if (!cluster || !get(cluster, 'configz.servicemesh')) {

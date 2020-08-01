@@ -45,8 +45,10 @@ class RouteRules extends React.Component {
     this.routerStore = new RouterStore()
 
     if (props.isFederated) {
-      this.secretStore = new FederatedStore(this.secretStore)
-      this.serviceStore = new FederatedStore(this.serviceStore)
+      this.secretStore = new FederatedStore({ module: this.secretStore.module })
+      this.serviceStore = new FederatedStore({
+        module: this.serviceStore.module,
+      })
     }
   }
 
@@ -54,12 +56,12 @@ class RouteRules extends React.Component {
     this.secretStore.fetchList({
       namespace: this.namespace,
       cluster: this.cluster,
-      limit: 9999,
+      limit: -1,
     })
     this.serviceStore.fetchList({
       namespace: this.namespace,
       cluster: this.cluster,
-      limit: 9999,
+      limit: -1,
     })
     !this.props.isFederated &&
       this.routerStore
@@ -91,10 +93,7 @@ class RouteRules extends React.Component {
 
   @computed
   get services() {
-    return this.serviceStore.list.data.map(item => ({
-      ...item,
-      ports: item.resource ? item.resource.ports : item.ports,
-    }))
+    return this.serviceStore.list.data
   }
 
   showRule = (data = {}) => {

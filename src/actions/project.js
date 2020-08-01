@@ -110,10 +110,6 @@ export default {
       projectDetail,
       ...props
     }) {
-      if (isFederated && detail) {
-        detail.limit = get(detail, 'resource.limit')
-      }
-
       const modal = Modal.open({
         onOk: async data => {
           if (isEmpty(detail)) {

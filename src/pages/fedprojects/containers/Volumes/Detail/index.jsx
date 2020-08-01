@@ -17,7 +17,7 @@
  */
 
 import React from 'react'
-import { isEmpty, get } from 'lodash'
+import { isEmpty } from 'lodash'
 import { observer, inject } from 'mobx-react'
 import { Loading } from '@pitrix/lego-ui'
 
@@ -115,12 +115,18 @@ export default class VolumeDetail extends React.Component {
 
   getAttrs = () => {
     const { detail = {} } = this.store
-    const { createTime, creator, resource, namespace } = detail
+
     if (isEmpty(detail)) return null
 
-    const storageClassName =
-      resource.storageClassName ||
-      get(resource, "annotations['volume.beta.kubernetes.io/storage-class']")
+    const {
+      createTime,
+      creator,
+      namespace,
+      capacity,
+      accessMode,
+      storageClassName,
+      annotations = {},
+    } = detail
 
     return [
       {
@@ -129,23 +135,22 @@ export default class VolumeDetail extends React.Component {
       },
       {
         name: t('Capacity'),
-        value: resource.capacity,
+        value: capacity,
       },
       {
         name: t('Access Mode'),
-        value: resource.accessMode,
+        value: accessMode,
       },
       {
         name: t('Storage Class'),
-        value: storageClassName,
+        value:
+          storageClassName ||
+          annotations['volume.beta.kubernetes.io/storage-class'],
       },
       {
         name: t('Provisioner'),
-        value: get(
-          resource,
-          "annotations['volume.beta.kubernetes.io/storage-provisioner']",
-          '-'
-        ),
+        value:
+          annotations['volume.beta.kubernetes.io/storage-provisioner'] || '-',
       },
       {
         name: t('Create Time'),
