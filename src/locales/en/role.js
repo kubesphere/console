@@ -31,6 +31,10 @@ export default {
   'Authorization Settings': 'Authorization Settings',
   'Authorized Actions': 'Authorized Actions',
   'Authorized Users': 'Authorized Users',
+  'ConfigMaps Management': 'ConfigMaps Management',
+  'ConfigMaps View': 'ConfigMaps View',
+  'Custom Monitoring View': 'Custom Monitoring View',
+  'Custom Monitoring Management': 'Custom Monitoring Management',
   Cluster: 'Cluster',
   'Cluster Members Management': 'Cluster Members Management',
   'Cluster Members View': 'Cluster Members View',
@@ -252,7 +256,7 @@ export default {
   STORAGECLASSES_VIEW_DESC: 'View all storage classes in the cluster',
   STORAGECLASSES_MANAGEMENT_DESC:
     'Create/edit/delete storage classes and set the default storage class',
-  VOLUME_SNAPSHOTS_VIEW_DESC: 'View all volume snapshots in the cluster',
+  VOLUME_SNAPSHOTS_VIEW_DESC: 'View all volume snapshots',
   VOLUME_SNAPSHOTS_MANAGEMENT_DESC: 'Create/edit/delete volume snapshots',
   CLUSTER_MONITORING_VIEW_DESC:
     'View cluster physical resources and monitoring data of application resources',
@@ -266,8 +270,13 @@ export default {
   SECRETS_VIEW_DESC: 'Grant permission to view project secrets',
   SECRETS_MANAGEMENT_DESC:
     'Grant permission to create/edit/delete project secrets',
+  CONFIGMAPS_VIEW_DESC: 'Grant permission to view project configmaps',
+  CONFIGMAPS_MANAGEMENT_DESC:
+    'Grant permission to create/edit/delete project configmaps',
 
-  CUSTOM_MONITORING_DESC:
+  CUSTOM_MONITORING_VIEW_DESC:
+    'Grant permission to view custom monitoring data',
+  CUSTOM_MONITORING_MANAGEMENT_DESC:
     'Grant permission to create and manage custom monitoring data',
 
   ALERTING_POLICIES_VIEW_DESC: 'Grant permission to view alerting policies',

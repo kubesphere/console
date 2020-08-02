@@ -115,6 +115,8 @@ export default {
     'Versión basada en el ratio de tráfico: de acuerdo con la regla de configuración del ratio de tráfico, la proporción especificada de tráfico se dividirá de la versión original a la versión en Grayscale Release.',
   GRAY_RELEASE_DESC:
     'Grayscale Release es un método muy potente para desplegar el software en producción. Proporciona un método de despliegue para la una transición suave de las aplicaciones a medida que se actualizan y se implementan.',
+  GRAYSCALE_RELEASE_DESC:
+    'Grayscale Release es un método muy potente para desplegar el software en producción. Proporciona un método de despliegue para la una transición suave de las aplicaciones a medida que se actualizan y se implementan.',
   GRAY_RELEASE_BY_CONTENT_TIP:
     'Despliegue basado en el contenido de solicitud: de acuerdo con la regla de configuración del contenido de la solicitud, solo el tráfico que cumpla ciertas condiciones en el contenido solicitado se dividirá en versiones en Grayscale Release. Esta política solo es válida para el acceso directo al servicio del portal.',
   MIRROR_POLICY_DESC:

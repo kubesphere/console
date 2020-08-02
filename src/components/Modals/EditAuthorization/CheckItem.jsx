@@ -21,29 +21,47 @@ import React, { Component } from 'react'
 import { Checkbox } from '@pitrix/lego-ui'
 import { Text, Tag } from 'components/Base'
 
+import { isEmpty } from 'lodash'
 import styles from './index.scss'
 
 export default class CheckItem extends Component {
   handleCheck = () => {
-    const { roleTemplates, roleTemplatesMap, data, onChange } = this.props
+    const { roleTemplates, data, onChange } = this.props
 
     let newTemplates = [...roleTemplates]
     if (newTemplates.includes(data.name)) {
-      if (
-        !newTemplates.some(
-          item =>
-            roleTemplatesMap[item] &&
-            roleTemplatesMap[item].dependencies &&
-            roleTemplatesMap[item].dependencies.includes(data.name)
-        )
-      ) {
-        newTemplates = newTemplates.filter(item => item !== data.name)
-      }
+      newTemplates = newTemplates.filter(item => item !== data.name)
     } else {
-      newTemplates.push(data.name, ...data.dependencies)
+      newTemplates.push(data.name)
     }
 
-    onChange(newTemplates)
+    onChange([...newTemplates, ...this.getDependencies(newTemplates)])
+  }
+
+  getDependencies = names => {
+    const { roleTemplatesMap } = this.props
+    const dependencies = []
+
+    if (isEmpty(names)) {
+      return dependencies
+    }
+
+    names.forEach(name => {
+      const template = roleTemplatesMap[name]
+      if (template.dependencies) {
+        template.dependencies.forEach(dep => {
+          if (!names.includes(dep) && !dependencies.includes(dep)) {
+            dependencies.push(dep)
+          }
+        })
+      }
+    })
+
+    if (dependencies.length > 0) {
+      dependencies.push(...this.getDependencies(dependencies))
+    }
+
+    return dependencies
   }
 
   handleCheckboxClick = e => e.stopPropagation()

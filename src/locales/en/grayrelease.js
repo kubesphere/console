@@ -119,6 +119,8 @@ export default {
 
   GRAY_RELEASE_DESC:
     'Grayscale release represents an important means of software product update in the production environment. It provides a release method for the smooth transition of software applications as they are updated and deployed.',
+  GRAYSCALE_RELEASE_DESC:
+    'Grayscale release represents an important means of software product update in the production environment. It provides a release method for the smooth transition of software applications as they are updated and deployed.',
   GRAY_RELEASE_BY_CONTENT_TIP:
     'Release based on request content: According to the request content configuration rule, only traffic that meets certain conditions in the requested content will be split into grayscale versions. This policy is only valid for direct access to the portal service.',
 
