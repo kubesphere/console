@@ -73,7 +73,7 @@ export default class BaseInfo extends React.Component {
       .checkPipelineName({
         name: value,
         cluster: this.props.cluster,
-        project_name: this.props.formTemplate.project_name,
+        devops: this.props.devops,
       })
       .then(resp => {
         if (resp.exist) {

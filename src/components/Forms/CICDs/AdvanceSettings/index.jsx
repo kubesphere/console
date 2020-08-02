@@ -94,10 +94,10 @@ export default class AdvanceSettings extends React.Component {
   }
 
   componentDidMount() {
-    const { project_name, cluster } = this.props.formTemplate
-
+    const { project_name, cluster, devops } = this.props.formTemplate
     this.pipelineStore.fetchList({
-      project_name,
+      devopsName: project_name,
+      devops,
       cluster,
       filter: 'no-multi-branch-job',
     })
@@ -152,7 +152,7 @@ export default class AdvanceSettings extends React.Component {
   }
 
   handleScrollToBottom = () => {
-    const { project_name, cluster } = this.props.formTemplate
+    const { project_name, cluster, devops } = this.props.formTemplate
     const { total, page, limit } = this.pipelineStore.list
 
     if (total <= limit * page) {
@@ -160,8 +160,9 @@ export default class AdvanceSettings extends React.Component {
     }
 
     this.pipelineStore.fetchList({
-      project_name,
+      devopsName: project_name,
       cluster,
+      devops,
       filter: 'no-multi-branch-job',
       page: page + 1,
     })

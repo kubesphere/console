@@ -29,6 +29,10 @@ import styles from './index.scss'
 
 @observer
 export default class BitBucketForm extends GitHubForm {
+  state = {
+    isLoading: false,
+  }
+
   get scmType() {
     return 'bitbucket_server'
   }

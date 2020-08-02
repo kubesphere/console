@@ -66,6 +66,7 @@ class CICDs extends React.Component {
     this.formTemplate = {
       project_name: this.props.devopsStore.devopsName,
       cluster: this.cluster,
+      devops: this.devops,
       enable_timer_trigger: true,
       enable_discarder: true,
     }
@@ -256,7 +257,12 @@ class CICDs extends React.Component {
   }
 
   showEditConfig = async name => {
-    await this.store.fetchDetail({ cluster: this.cluster, name })
+    await this.store.fetchDetail({
+      cluster: this.cluster,
+      name,
+      devops: this.devops,
+    })
+
     const formData = this.store.getPipeLineConfig()
     formData.devops = this.devops
 

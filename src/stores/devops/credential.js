@@ -81,6 +81,8 @@ export default class CredentialStore extends BaseStore {
       filters.limit = filters.limit || 10
     }
 
+    filters.sortBy = filters.sortBy || 'createTime'
+
     const result = await this.request.get(
       this.getResourceUrl({ devops, cluster }),
       {
