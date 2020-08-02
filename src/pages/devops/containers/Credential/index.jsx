@@ -165,7 +165,7 @@ class Credential extends React.Component {
       : null
 
     const isEmptyList = isLoading === false && total === 0 && data.length <= 0
-    const omitFilters = omit(filters, ['page', 'limit'])
+    const omitFilters = omit(filters, ['page', 'limit', 'sortBy'])
 
     if (isEmptyList) {
       return (

@@ -114,6 +114,7 @@ export default class EditPipelineConfig extends React.Component {
           type="edit"
           formRef={this.formRef}
           formTemplate={this.state.formTemplate}
+          devops={this.props.devops}
         />
       </Modal>
     )
