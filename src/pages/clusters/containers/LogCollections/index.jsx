@@ -72,6 +72,13 @@ export default class LogCollection extends React.Component {
     }
   }
 
+  get enabledActions() {
+    return globals.app.getActions({
+      module: 'cluster-settings',
+      cluster: this.props.match.params.cluster,
+    })
+  }
+
   refresh = () => {
     this.store.fetch({
       labelSelector: `logging.kubesphere.io/component=${this.component}`,
@@ -132,6 +139,10 @@ export default class LogCollection extends React.Component {
   }
 
   renderCreateButton() {
+    if (!this.enabledActions.includes('create')) {
+      return null
+    }
+
     return (
       <Button
         type="control"

@@ -63,6 +63,13 @@ class MailServerConfig extends React.Component {
     return this.tipMap[this.state.formStatus] || {}
   }
 
+  get enabledActions() {
+    return globals.app.getActions({
+      module: 'cluster-settings',
+      cluster: this.props.match.params.cluster,
+    })
+  }
+
   componentDidMount() {
     this.fetchConfig()
   }
@@ -159,6 +166,10 @@ class MailServerConfig extends React.Component {
   }
 
   renderCreateButton() {
+    if (!this.enabledActions.includes('create')) {
+      return null
+    }
+
     return (
       <Button type="control" onClick={this.toggleSettingForm}>
         {t('Settings')}
@@ -183,6 +194,7 @@ class MailServerConfig extends React.Component {
           isVerifying={this.store.verifying}
           isSubmitting={this.store.isSubmitting}
           disableSubmit={this.state.formStatus !== 'needSaved'}
+          readOnly={!this.enabledActions.includes('edit')}
         />
       </div>
     )

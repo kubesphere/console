@@ -186,7 +186,7 @@ client:
             - {
                 name: visibility,
                 title: Cluster Visibility,
-                authKey: 'cluster-settings',
+                authKey: cluster-settings,
                 multiCluster: true,
               }
             # - { name: members, title: Cluster Members }
@@ -195,14 +195,14 @@ client:
                 name: mail-server,
                 title: Mail Server,
                 icon: mail,
-                authKey: notification,
+                authKey: cluster-settings,
                 clusterModule: notification,
               }
             - {
                 name: log-collections,
                 title: Log Collections,
                 icon: file,
-                authKey: logging|events|auditing,
+                authKey: cluster-settings,
                 clusterModule: logging|events|auditing,
               }
 

@@ -49,6 +49,13 @@ export default class Overview extends React.Component {
     return this.cluster.detail.visibility === 'public'
   }
 
+  get enabledActions() {
+    return globals.app.getActions({
+      module: 'cluster-settings',
+      cluster: this.props.match.params.cluster,
+    })
+  }
+
   get tips() {
     return [
       {
@@ -179,11 +186,12 @@ export default class Overview extends React.Component {
               }
               description={t('Cluster Visibility')}
             />
-            {globals.app.isMultiCluster && (
-              <Button onClick={this.editVisibility}>
-                {t('Edit Visibility')}
-              </Button>
-            )}
+            {globals.app.isMultiCluster &&
+              this.enabledActions.includes('edit') && (
+                <Button onClick={this.editVisibility}>
+                  {t('Edit Visibility')}
+                </Button>
+              )}
           </div>
           {this.renderVisibility()}
         </Panel>

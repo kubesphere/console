@@ -46,6 +46,12 @@ export default class MailServerForm extends Component {
     this.props.onValidate(this.props.data)
   }
 
+  get inputProps() {
+    return {
+      readOnly: this.props.readOnly,
+    }
+  }
+
   render() {
     return (
       <Form
@@ -114,7 +120,11 @@ export default class MailServerForm extends Component {
     return (
       <>
         <Item className={styles.url} label={t('SMTP Server Address')}>
-          <UrlInput portName="port" hostName="email_host" />
+          <UrlInput
+            portName="port"
+            hostName="email_host"
+            {...this.inputProps}
+          />
         </Item>
 
         <Item>
@@ -122,6 +132,7 @@ export default class MailServerForm extends Component {
             className={styles.sslCheckbox}
             name="ssl_enable"
             onChange={this.props.onSSLChange}
+            disabled={this.props.readOnly}
           >
             {t('Use SSL Secure Connection')}
           </Checkbox>
@@ -129,24 +140,29 @@ export default class MailServerForm extends Component {
 
         <div className={styles.row}>
           <Item label={`SMTP ${t('User')}`}>
-            <Input name="email" />
+            <Input name="email" {...this.inputProps} />
           </Item>
           <Item label={`SMTP ${t('Password')}`}>
             <Input
               name="password"
               autoComplete="new-password"
               type="password"
+              {...this.inputProps}
             />
           </Item>
         </div>
 
         <div className={styles.row}>
           <Item label={t('SENDER_MAIL')} desc={t('FROM_EMAIL_ADDR_DESC')}>
-            <Input name="from_email_addr" placeholder={'mail@yunify.com'} />
+            <Input
+              name="from_email_addr"
+              placeholder={'mail@yunify.com'}
+              {...this.inputProps}
+            />
           </Item>
 
           <Item label={t('SENDER_NICKNAME')}>
-            <Input name="display_sender" />
+            <Input name="display_sender" {...this.inputProps} />
           </Item>
         </div>
 
@@ -158,12 +174,14 @@ export default class MailServerForm extends Component {
             <Input
               placeholder={'youraccount@mail.com'}
               name="test_email_recipient"
+              {...this.inputProps}
             />
           </Item>
           <Button
             className={styles.validateButton}
             onClick={this.onValidateBtnClick}
             loading={this.props.isVerifying}
+            disabled={this.props.readOnly}
           >
             {t('Send a test email')}
           </Button>
@@ -173,6 +191,10 @@ export default class MailServerForm extends Component {
   }
 
   renderFooterBtns() {
+    if (this.props.readOnly) {
+      return null
+    }
+
     return (
       <>
         <Button onClick={this.props.onCancel}>{t('Cancel')}</Button>
