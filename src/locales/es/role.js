@@ -31,6 +31,8 @@ export default {
   'Authorization Settings': 'Configuración de autorización',
   'Authorized Actions': 'Acciones autorizadas',
   'Authorized Users': 'Usuarios autorizados',
+  'Custom Monitoring View': 'Custom Monitoring View',
+  'Custom Monitoring Management': 'Custom Monitoring Management',
   Cluster: 'Clúster',
   'Cluster Members Management': 'Gestión de miembros del clúster',
   'Cluster Members View': 'Vista de miembros del clúster',
@@ -42,6 +44,8 @@ export default {
   'Clusters Management': 'Gestión de clusters',
   'Clusters View': 'Vista de grupos',
   'Components Management': 'Gestión de componentes',
+  'ConfigMaps Management': 'ConfigMaps Management',
+  'ConfigMaps View': 'ConfigMaps View',
   'CRD Management': 'Gestión de CRD',
   'Create Account Role': 'Crear rol de cuenta',
   'Create Cluster Role': 'Crear rol de clúster',
@@ -268,8 +272,15 @@ export default {
   VOLUMES_MANAGEMENT_DESC: 'Crear / editar / eliminar volúmenes de proyecto',
   SECRETS_VIEW_DESC: 'Ver secretos del proyecto',
   SECRETS_MANAGEMENT_DESC: 'Crear / editar / eliminar secretos del proyecto',
-  CUSTOM_MONITORING_DESC:
-    'Crear y administrar datos de monitorización personalizados.',
+  CONFIGMAPS_VIEW_DESC: 'Grant permission to view project configmaps',
+  CONFIGMAPS_MANAGEMENT_DESC:
+    'Grant permission to create/edit/delete project configmaps',
+
+  CUSTOM_MONITORING_VIEW_DESC:
+    'Grant permission to view custom monitoring data',
+  CUSTOM_MONITORING_MANAGEMENT_DESC:
+    'Grant permission to create and manage custom monitoring data',
+
   ALERTING_POLICIES_VIEW_DESC: 'Ver políticas de alertas',
   ALERTING_POLICIES_MANAGEMENT_DESC:
     'Crear / editar / eliminar políticas de alertas',

@@ -66,12 +66,12 @@ export const ROLE_MODULES = {
       icon: 'appcenter',
     },
     {
-      name: 'Volumes Management',
+      name: 'Storage Management',
       icon: 'storage',
     },
     {
-      name: 'Secrets Management',
-      icon: 'key',
+      name: 'Configuration Center',
+      icon: 'hammer',
     },
     {
       name: 'Monitoring & Alerting',
