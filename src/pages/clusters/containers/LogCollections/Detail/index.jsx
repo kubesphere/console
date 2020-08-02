@@ -152,14 +152,6 @@ export default class LogCollectionDetail extends React.Component {
       ],
     }
 
-    return (
-      <DetailPage
-        stores={stores}
-        routes={routes.filter(
-          route => !route.required || route.required(this.store.detail)
-        )}
-        {...sideProps}
-      />
-    )
+    return <DetailPage stores={stores} routes={routes} {...sideProps} />
   }
 }

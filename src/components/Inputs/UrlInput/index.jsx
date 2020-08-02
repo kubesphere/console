@@ -33,7 +33,7 @@ export default class UrlInput extends React.Component {
   }
 
   render() {
-    const { className } = this.props
+    const { className, readOnly } = this.props
     return (
       <Columns className={classnames(styles.columns, className)}>
         <Column className="is-7">
@@ -43,6 +43,7 @@ export default class UrlInput extends React.Component {
             <Input
               name={this.props.hostName}
               placeholder={`${t('eg.')}192.168.1.10`}
+              readOnly={readOnly}
             />
           </Form.Item>
         </Column>
@@ -56,6 +57,7 @@ export default class UrlInput extends React.Component {
               name={this.props.portName}
               onChange={this.onPortChange}
               defaultValue={this.props.defaultPort}
+              readOnly={readOnly}
               integer
             />
           </Form.Item>

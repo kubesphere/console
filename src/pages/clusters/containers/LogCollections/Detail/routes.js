@@ -19,7 +19,6 @@
 import { getIndexRoute } from 'utils/router.config'
 
 import ResourceStatus from './Configuration'
-import Log from './Log'
 
 const PATH = '/clusters/:cluster/log-collections/:component/:name'
 
@@ -29,16 +28,6 @@ export default [
     title: 'Resource Status',
     component: ResourceStatus,
     exact: true,
-  },
-  {
-    path: `${PATH}/log`,
-    title: 'Log',
-    component: Log,
-    exact: true,
-    clusterModule: 'logging',
-    required({ type }) {
-      return type === 'es'
-    },
   },
   getIndexRoute({ path: PATH, to: `${PATH}/resource-status`, exact: true }),
 ]
