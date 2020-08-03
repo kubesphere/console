@@ -30,6 +30,22 @@ import styles from './index.scss'
 
 @inject('rootStore')
 class Dashboard extends React.Component {
+  constructor(props) {
+    super(props)
+
+    if (globals.user.globalrole === 'user-manager') {
+      return this.routing.push(`/access/accounts`)
+    }
+
+    if (globals.app.getActions({ module: 'workspaces' }).includes('create')) {
+      return this.routing.push(`/access/workspaces`)
+    }
+
+    if (!isEmpty(globals.user.workspaces)) {
+      return this.routing.push(`/workspaces/${this.workspace}`)
+    }
+  }
+
   get routing() {
     return this.props.rootStore.routing
   }
@@ -82,18 +98,6 @@ class Dashboard extends React.Component {
   renderContent() {
     if (globals.app.isPlatformAdmin) {
       return <AdminDashboard />
-    }
-
-    if (globals.user.globalrole === 'user-manager') {
-      return this.routing.push(`/access/accounts`)
-    }
-
-    if (globals.app.getActions({ module: 'workspaces' }).includes('create')) {
-      return this.routing.push(`/access/workspaces`)
-    }
-
-    if (!isEmpty(globals.user.workspaces)) {
-      return this.routing.push(`/workspaces/${this.workspace}`)
     }
 
     return (

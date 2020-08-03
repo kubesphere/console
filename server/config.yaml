@@ -280,7 +280,7 @@ client:
   projectNavs:
     - cate: 'project'
       items:
-        - { name: overview, title: Overview, icon: dashboard, skipAuth: true }
+        - { name: overview, title: Overview, icon: dashboard, authKey: 'services' }
         - name: app-workloads
           title: Application Workloads
           icon: appcenter

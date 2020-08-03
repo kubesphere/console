@@ -203,7 +203,7 @@ class BaseInfo extends React.Component {
     const roleCount = this.roleStore.list.total
     const memberCount = this.memberStore.list.total
     const serviceCount = get(this.quotaStore, 'data.used["count/services"]', 0)
-    const limitRange = get(this.limitRangeStore, 'list.data[0]')
+    const limitRange = toJS(this.limitRangeStore.list.data)[0]
     const quota = toJS(this.quotaStore.data)
 
     return (

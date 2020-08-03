@@ -177,6 +177,8 @@ export default class GlobalValue {
         return this.checkNavItem(child, callback)
       })
 
+      delete item._children
+
       return item.children.length > 0
     }
 
