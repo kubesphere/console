@@ -59,7 +59,7 @@ export default {
   Idle: '闲置',
   'In Use': '已使用',
 
-  'volume name exist': '存储卷名称已使用',
+  'The volume name exists': '存储卷名称已使用',
 
   'Used Capacity': '已分配存储',
   'Avail Capacity': '剩余存储',
@@ -76,9 +76,9 @@ export default {
 
   'Custom Provisioner': '自定义供应者',
   Parameters: '参数',
-  'Effect immediately': '立即生效',
+  'Apply immediately': '立即生效',
 
-  'volume size must be greater than zero': '存储卷容量必须大于 0',
+  'The volume size must be greater than zero': '存储卷容量必须大于 0',
 
   STORAGECLASSES_BASEINFO_DESC:
     '存储类型记录管理员所提供的某类存储的配置信息，创建特定类型的存储卷之前必须已配置相应的存储类型。',

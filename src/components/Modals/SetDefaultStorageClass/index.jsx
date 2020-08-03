@@ -46,7 +46,7 @@ export default class SetDefaultStorageClassModal extends React.Component {
         onOk={onOk}
         onCancel={onCancel}
         visible={visible}
-        okText={t('Effect immediately')}
+        okText={t('Apply immediately')}
         cancelText={t('Cancel')}
         isSubmitting={isSubmitting}
         hideHeader

@@ -434,8 +434,6 @@ export default {
   IMAGE_DESC:
     'Para implementar desde un repositorio de imágenes privado, primero debe <a href={link} target="_blank">crear un secreto de registro de imágenes</a> y luego extraer la imagen.',
   REPLICAS_DESC: 'Se creará el número deseado de pods para el {módulo}.',
-  VOLUME_DESC:
-    'Un volumen es un PVC (PersistentVolumeClaim) creado mediante el aprovisionamiento dinámico de volumen.',
   VOLUME_SUB_TEXT:
     'Volúmenes utilizados por los contenedores de la carga de trabajo.',
   EMPTYDIR_DESC: 'Almacenamiento temporal creado para la carga de trabajo.',
