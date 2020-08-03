@@ -21,7 +21,6 @@ import { get } from 'lodash'
 import { parse } from 'qs'
 import { toJS } from 'mobx'
 import { inject, observer } from 'mobx-react'
-import { Link } from 'react-router-dom'
 import moment from 'moment-mini'
 import { Tabs, Columns, Column, Loading } from '@pitrix/lego-ui'
 
@@ -124,6 +123,15 @@ export default class App extends React.Component {
     this.setState({ selectAppVersion: version })
   }
 
+  handleDeploy = () => {
+    const link = `${this.props.match.url}/deploy${location.search}`
+    if (!globals.user) {
+      location.href = `/login?referer=${link}`
+    } else {
+      this.routing.push(link)
+    }
+  }
+
   renderAppFilePreview() {
     const { selectAppVersion } = this.state
 
@@ -153,11 +161,9 @@ export default class App extends React.Component {
   renderDeployButton() {
     return (
       <div className={styles.deployButton}>
-        <Link to={`${this.props.match.url}/deploy${location.search}`}>
-          <Button type="control" noShadow>
-            {t('Deploy')}
-          </Button>
-        </Link>
+        <Button onClick={this.handleDeploy} type="control" noShadow>
+          {t('Deploy')}
+        </Button>
       </div>
     )
   }
