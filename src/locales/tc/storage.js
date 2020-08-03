@@ -59,7 +59,7 @@ export default {
   Idle: '閒置',
   'In Use': '已使用',
 
-  'volume name exist': '儲存卷名稱已使用',
+  'The volume name exists': '儲存卷名稱已使用',
 
   'Used Capacity': '已分配儲存容量',
   'Avail Capacity': '剩餘儲存容量',
@@ -76,9 +76,9 @@ export default {
 
   'Custom Provisioner': '自定義供應者',
   Parameters: '參數',
-  'Effect immediately': '立即生效',
+  'Apply immediately': '立即生效',
 
-  'volume size must be greater than zero': '儲存卷容量必須大於 0',
+  'The volume size must be greater than zero': '儲存卷容量必須大於 0',
 
   STORAGECLASSES_BASEINFO_DESC:
     '儲存類型記錄管理員所提供的某類儲存的配置資訊，創建特定類型的儲存卷之前必須已配置相應的儲存類型。',

@@ -29,7 +29,7 @@ export default {
   'Default Volume': 'Default Volume',
   'Delete Volume': 'Delete Volume',
   'Disable Volume Snapshot': 'Disable Volume Snapshot',
-  'Effect immediately': 'Effect immediately',
+  'Apply immediately': 'Apply immediately',
   Expand: 'Expand',
   'Expand Volume': 'Expand Volume',
   Idle: 'Idle',
@@ -63,9 +63,9 @@ export default {
   'Used Capacity': 'Used Capacity',
   'Volume Clone': 'Volume Clone',
   'Volume Count': 'Volume Count',
-  'volume name exist': 'volume name exist',
-  'volume size must be greater than zero':
-    'volume size must be greater than zero',
+  'The volume name exists': 'The volume name exists',
+  'The volume size must be greater than zero':
+    'The volume size must be greater than zero',
   'Volume Usage': 'Volume Usage',
   VOLUME_DESC:
     'A volume is used for workloads created by users. It represents a resource object for the persistent storage of workloads.',

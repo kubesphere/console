@@ -157,7 +157,7 @@ export default class VolumeSettings extends React.Component {
   sizeValidator = (rule, value, callback) => {
     if (parseInt(value, 10) <= 0) {
       return callback({
-        message: t('volume size must be greater than zero'),
+        message: t('The volume size must be greater than zero'),
         field: rule.field,
       })
     }

@@ -90,7 +90,7 @@ export default class AddHostPath extends React.Component {
     const { currentName, checkVolumeNameExist } = this.props
 
     if (checkVolumeNameExist(value) && currentName !== value) {
-      callback({ message: t('volume name exist'), field: rule.field })
+      callback({ message: t('The volume name exists'), field: rule.field })
     } else {
       callback()
     }
