@@ -289,7 +289,7 @@ export default {
   CRONJOBS_VOLUME_DESC:
     '可以將臨時儲存卷，持久化儲存卷掛載至定時任務的容器組内。',
   CRONJOB_CRON_DESC:
-    '按照給定的時間計畫運行工作。語法参照 <a href="//en.wikipedia.org/wiki/Cron" target="_blank">CRON</a>。Kubernetes 默认使用 UTC 时间, 请注意根据时区调整定时计划。',
+    '按照給定的時間計畫運行工作。語法参照 <a href="//en.wikipedia.org/wiki/Cron" target="_blank">CRON</a>。Kubernetes 預設使用 UTC 時間, 請注意根據時區調整定時計畫。',
 
   MOUNT_VOLUME_DESC:
     '持久化儲存卷請選擇支持多節點讀寫模式 (ROX 或者 RWX) 的儲存卷，否則可能因容器組不在同一節點導致容器組更新失敗。如果您選擇了單節點讀寫 (RWO) 模式的儲存卷您也可以通過節點選擇將容器組安排在同一節點上來避免因儲存卷訪問模式造成的更新錯誤。',
