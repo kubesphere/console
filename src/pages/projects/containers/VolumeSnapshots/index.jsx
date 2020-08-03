@@ -36,7 +36,6 @@ import styles from './index.scss'
   store: new SnapshotStore(),
   module: 'volume-snapshots',
   name: 'VolumeSnapshot',
-  authKey: 'volumes',
 })
 export default class VolumeSnapshot extends React.Component {
   getStatus() {
