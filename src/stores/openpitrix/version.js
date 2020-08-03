@@ -25,7 +25,7 @@ import Base from './base'
 export default class Version extends Base {
   resourceName = 'versions'
 
-  sortKey = 'create_time'
+  sortKey = 'sequence'
 
   defaultStatus = DEFAULT_QUERY_STATUS
 

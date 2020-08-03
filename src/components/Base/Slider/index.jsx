@@ -19,6 +19,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
+import { isUndefined } from 'lodash'
 import {
   Slider as BaseSlider,
   Field,
@@ -67,6 +68,11 @@ export default class Slider extends React.Component {
     onChange(`${value}${unit}`)
   }
 
+  get showSlider() {
+    const { min, max } = this.props
+    return !isUndefined(max) && !isUndefined(min)
+  }
+
   render() {
     const {
       className,
@@ -88,20 +94,22 @@ export default class Slider extends React.Component {
 
     return (
       <Field className={classNames(styles.field, className)}>
-        <Control className={styles.slider}>
-          <BaseSlider
-            value={formatValue}
-            defaultValue={formatDefaultValue}
-            max={max}
-            min={min}
-            marks={marks}
-            step={step}
-            handleStyle={handleStyle}
-            railStyle={railStyle}
-            trackStyle={trackStyle}
-            onChange={this.handleChange}
-          />
-        </Control>
+        {this.showSlider && (
+          <Control className={styles.slider}>
+            <BaseSlider
+              value={formatValue}
+              defaultValue={formatDefaultValue}
+              max={max}
+              min={min}
+              marks={marks}
+              step={step}
+              handleStyle={handleStyle}
+              railStyle={railStyle}
+              trackStyle={trackStyle}
+              onChange={this.handleChange}
+            />
+          </Control>
+        )}
         <Control className={classNames({ [styles.withUnit]: unit })}>
           <InputNumber
             min={min}
