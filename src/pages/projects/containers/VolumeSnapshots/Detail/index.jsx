@@ -50,10 +50,6 @@ export default class VolumeSnapshotDetail extends React.Component {
     return 'volume-snapshots'
   }
 
-  get authKey() {
-    return 'volumes'
-  }
-
   get listUrl() {
     const { workspace, cluster, namespace } = this.props.match.params
     if (workspace) {
@@ -175,7 +171,6 @@ export default class VolumeSnapshotDetail extends React.Component {
 
     const sideProps = {
       module: this.module,
-      authKey: this.authKey,
       name: getDisplayName(this.store.detail),
       operations: this.getOperations(),
       attrs: this.getAttrs(),
