@@ -200,7 +200,7 @@ export default class Viewer extends React.Component {
 
     const podsLabels = this.renderDetailLabels(record, 'specPodSelector')
     const namespaceLabels = this.renderDetailLabels(record, 'namespaceSelector')
-    const destPodLabels = this.renderDetailLabels(get(record, 'podSelector'))
+    const destPodLabels = this.renderDetailLabels(record, 'podSelector')
 
     const ports = get(record, 'ports', [])
       .map(port => `${port.protocol}: ${port.port}`)
@@ -229,16 +229,24 @@ export default class Viewer extends React.Component {
           <label>
             {ipExpect && 'all IPs in '} subnet '{ipBlockLabel}'{' '}
           </label>
+        ) : isEmpty(destPodLabels) && isEmpty(namespaceLabels) ? (
+          'all pods in the same namespace '
         ) : (
           <label>
-            {!isEmpty(namespaceLabels) && (
-              <span>
-                all pods in the namespace with the label {namespaceLabels}{' '}
-              </span>
-            )}
             {!isEmpty(destPodLabels) && (
               <span>
-                pods in the same namespace with the label {destPodLabels}{' '}
+                {isEmpty(namespaceLabels)
+                  ? 'pods in the same namespace '
+                  : 'pods '}{' '}
+                with labels {destPodLabels}{' '}
+              </span>
+            )}
+            {!isEmpty(namespaceLabels) && (
+              <span>
+                {isEmpty(destPodLabels)
+                  ? 'all pods in the namespace '
+                  : 'in namespaces '}
+                with the labels {namespaceLabels}{' '}
               </span>
             )}
           </label>

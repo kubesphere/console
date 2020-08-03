@@ -40,7 +40,7 @@ import styles from './index.scss'
 export default class NetworkPoliciesModal extends React.Component {
   @observable tabName = 'projects'
 
-  @observable specType = 'egress'
+  @observable specType = ''
 
   @observable specNameSpaces = []
 
@@ -53,6 +53,7 @@ export default class NetworkPoliciesModal extends React.Component {
     this.projectStore = props.projectStore
     this.serviceStore = new ServiceStore()
     this.specCurNameSpace = props.namespace
+    this.psRef = React.createRef()
   }
 
   componentDidMount() {
@@ -88,7 +89,7 @@ export default class NetworkPoliciesModal extends React.Component {
   }
 
   handleNameSpaceChecked = (item, checked) => {
-    const { specNameSpaces } = this
+    const { specNameSpaces, tabName } = this
     const hasIt = specNameSpaces.filter(ns => ns.name === item.name).length > 0
     if (checked && !hasIt) {
       specNameSpaces.push({ name: item.name })
@@ -96,10 +97,12 @@ export default class NetworkPoliciesModal extends React.Component {
     } else if (!checked && hasIt) {
       this.specNameSpaces = specNameSpaces.filter(el => el.name !== item.name)
     }
+
+    this.psRef.current.handleValueChange('type', null, tabName)
   }
 
   handleServiceChange = (item, checked) => {
-    const { specCurNameSpace, specServices } = this
+    const { specCurNameSpace, specServices, tabName } = this
     const hasIt =
       specServices.filter(
         ns => ns.name === item.name && ns.namespace === specCurNameSpace
@@ -116,6 +119,7 @@ export default class NetworkPoliciesModal extends React.Component {
         el => !(el.name === item.name && el.namespace === specCurNameSpace)
       )
     }
+    this.psRef.current.handleValueChange('type', null, tabName)
   }
 
   handleSave = () => {
@@ -131,6 +135,21 @@ export default class NetworkPoliciesModal extends React.Component {
       set(formTemplate, 'metadata.name', `policy-${direction}-${generateId()}`)
     }
     this.props.onOk(formTemplate)
+  }
+
+  psValidator = (rule, value, callback) => {
+    const { tabName, specNameSpaces, specServices } = this
+    const rules =
+      tabName === 'projects'
+        ? specNameSpaces.map(ns => ({ namespace: ns }))
+        : specServices.map(s => ({ service: s }))
+    if (rules.length === 0) {
+      callback({
+        message: t('NETWORK_POLICY_MODAL_EMPTP'),
+      })
+    } else {
+      callback()
+    }
   }
 
   render() {
@@ -156,6 +175,9 @@ export default class NetworkPoliciesModal extends React.Component {
         <Form.Item
           label={`${t('Direction')}:`}
           desc={t('NETWORK_POLICY_D_DESC')}
+          rules={[
+            { required: true, message: t('NETWORK_POLICY_MODAL_EMPDIR') },
+          ]}
         >
           <RadioGroup
             size="large"
@@ -177,7 +199,11 @@ export default class NetworkPoliciesModal extends React.Component {
           </RadioGroup>
         </Form.Item>
 
-        <Form.Item label={`${t('Type')}:`}>
+        <Form.Item
+          label={`${t('Type')}:`}
+          rules={[{ validator: this.psValidator }]}
+          ref={this.psRef}
+        >
           <RadioGroup
             name="type"
             wrapClassName="radio-default"
@@ -185,6 +211,7 @@ export default class NetworkPoliciesModal extends React.Component {
             defaultValue={tabName}
             onChange={this.handleTabChange}
             size="small"
+            rules={[{ required: true }]}
           >
             <RadioButton value="projects">{t('Project')}</RadioButton>
             <RadioButton value="services">{t('Service')}</RadioButton>
