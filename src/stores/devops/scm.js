@@ -30,41 +30,53 @@ export default class SCMStore extends BaseStore {
 
     this.verifyAccessErrorHandle = {
       github: (resp, error) => {
-        if (resp.status === 428) {
-          this.isAccessTokenWrong = true
-          this.orgList.isLoading = false
-          return
-        }
-        if (window.onunhandledrejection) {
-          window.onunhandledrejection(error)
+        if (!isEmpty(get(error, 'message'))) {
+          const err = safeParseJSON(error.message)
+          if (err.code === 428) {
+            this.isAccessTokenWrong = true
+            this.orgList.isLoading = false
+            return
+          }
+          if (window.onunhandledrejection) {
+            err.status = error.status
+            err.reason = error.reason
+            window.onunhandledrejection(err)
+          }
+          return Promise.reject(error)
         }
       },
       'bitbucket-server': (resp, error) => {
         if (!isEmpty(get(error, 'message'))) {
-          // set each field error message
-          try {
-            this.creatBitBucketServersError = safeParseJSON(error.message, {
-              errors: [],
-            }).errors.reduce((prev, errorItem) => {
-              prev[errorItem.field] = errorItem
-              return prev
-            }, {})
-          } catch (err) {}
-        } else if (resp.status === 428) {
-          this.creatBitBucketServersError = {
-            password: {
-              message: t('Wrong username or password, please try again'),
-            },
-          }
-          return
-        } else {
-          this.creatBitBucketServersError = { all: error.message }
-        }
+          const err = safeParseJSON(error.message)
 
-        if (window.onunhandledrejection) {
-          window.onunhandledrejection(error)
+          if (err.code === 428) {
+            this.creatBitBucketServersError = {
+              password: {
+                message: t('Wrong username or password, please try again'),
+              },
+            }
+            return
+          }
+          if (isArray(err.errors) && !isEmpty(err.errors)) {
+            this.creatBitBucketServersError = err.errors.reduce(
+              (prev, errorItem) => {
+                prev[errorItem.field] = errorItem.message
+                return prev
+              },
+              {}
+            )
+            return
+          }
+
+          this.creatBitBucketServersError = { all: err.message }
+
+          if (window.onunhandledrejection) {
+            err.status = error.status
+            err.reason = error.reason
+            window.onunhandledrejection(err)
+          }
+          return Promise.reject(error)
         }
-        return Promise.reject(error)
       },
     }
 
@@ -249,6 +261,7 @@ export default class SCMStore extends BaseStore {
       }
       return
     }
+
     this.bitbucketCredentialId = `bitbucket-${username}-${md5(
       apiUrl + username + password
     ).slice(0, 6)}`
@@ -262,6 +275,7 @@ export default class SCMStore extends BaseStore {
       null,
       this.verifyAccessErrorHandle['bitbucket-server']
     )
+
     if (!result || !result.id) {
       return
     }
@@ -273,6 +287,7 @@ export default class SCMStore extends BaseStore {
       scmType: 'bitbucket-server',
       cluster,
     })
+
     if (verifyResult && verifyResult.credentialId) {
       this.orgList.isLoading = false
 

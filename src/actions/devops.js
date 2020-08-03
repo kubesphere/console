@@ -27,10 +27,11 @@ export default {
       const modal = Modal.open({
         onOk: data => {
           const cluster = get(data, 'spec.placement.cluster')
+
           store.create(data, { cluster, workspace }).then(() => {
             Modal.close(modal)
             Notify.success({ content: `${t('Created Successfully')}!` })
-            success && success()
+            success && success(cluster)
           })
         },
         formTemplate: {},

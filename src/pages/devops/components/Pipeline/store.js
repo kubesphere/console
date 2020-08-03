@@ -46,8 +46,8 @@ const formatPipeLineJson = json => {
     return stage
   })
 
-  if (isObject(json.parameters) && isEmpty(json.parameters)) {
-    delete json.parameters
+  if (isObject(json.pipeline.parameters) && isEmpty(json.pipeline.parameters)) {
+    delete json.pipeline.parameters
   }
 
   return json

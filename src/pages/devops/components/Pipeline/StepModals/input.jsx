@@ -51,9 +51,15 @@ export default class InputStep extends React.Component {
   handleMessageChange = e => {
     this.setState({
       value: e.target.value,
-      submitter: uniq(
-        (this.state.value.match(/@([\w-.]*)?/g) || []).map(str => str.slice(1))
-      ),
+    })
+  }
+
+  handleMessageSubmitter = () => {
+    const submitter = uniq(
+      (this.state.value.match(/@([\w-.]*)?/g) || []).map(str => str.slice(1))
+    )
+    this.setState({
+      submitter,
     })
   }
 
@@ -165,6 +171,7 @@ export default class InputStep extends React.Component {
             <MentionsInput
               value={this.state.value}
               onChange={this.handleMessageChange}
+              onBlur={this.handleMessageSubmitter}
               placeholder={t('Can @somebody to help review')}
               markup="@__id__ "
               displayTransform={id => `@${id}`}

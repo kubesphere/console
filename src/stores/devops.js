@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { set, get, isArray, omit } from 'lodash'
+import { set, get, isArray, omit, cloneDeep } from 'lodash'
 import { action, observable } from 'mobx'
 
 import Base from 'stores/base'
@@ -148,29 +148,21 @@ export default class DevOpsStore extends Base {
   }
 
   @action
-  update({ cluster, workspace, devops }, item, isBaseInfoEditor = false) {
-    let data = null
-    if (isBaseInfoEditor) {
-      data = this.itemDetail
-    } else {
-      const result = this.devopsListData.filter(
-        v => v.metadata.uid === item.uid
-      )
-
-      data = result.length > 0 ? result[0] : null
-    }
+  async update({ cluster, workspace, devops }, newData) {
+    await this.fetchDetail({ cluster, workspace, devops })
+    const data = cloneDeep(this.itemDetail)
 
     if (data) {
-      data = set(
+      set(
         data,
         'metadata.annotations["kubesphere.io/description"]',
-        item.description
+        newData.description
       )
 
-      data = set(
+      set(
         data,
         'metadata.annotations["kubesphere.io/alias-name"]',
-        item.aliasName
+        newData.aliasName
       )
 
       return this.submitting(

@@ -136,7 +136,7 @@ export default class ProjectCreateModal extends React.Component {
 
   handleClusterChange = () => {
     if (this.nameRef && this.nameRef.current) {
-      const name = 'metadata.name'
+      const name = 'metadata.generateName'
       if (
         this.formRef &&
         this.formRef.current &&
