@@ -68,6 +68,8 @@ export default class BaseMonitoringStore {
 
   data = {}
 
+  resourceName = 'resource_name'
+
   constructor(filters = {}) {
     Object.keys(filters).forEach(key => set(this, key, filters[key]))
   }
@@ -168,12 +170,13 @@ export default class BaseMonitoringStore {
     const newResult = [...originResult]
 
     currentResult.forEach((record, index) => {
-      const resourceName = get(record, 'metric.resource_name')
+      const resourceName = get(record, `metric.${this.resourceName}`)
       let recordData = null
 
       if (resourceName) {
         const originRecord = newResult.find(
-          _record => get(_record, 'metric.resource_name') === resourceName
+          _record =>
+            get(_record, `metric.${this.resourceName}`) === resourceName
         )
 
         if (isEmpty(originRecord)) {

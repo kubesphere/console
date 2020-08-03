@@ -22,7 +22,6 @@ import classNames from 'classnames'
 
 import Store from 'stores/rank/node'
 import { Button } from 'components/Base'
-import Select from 'clusters/components/Cards/Monitoring/UsageRank/select'
 
 import {
   Pagination,
@@ -31,6 +30,7 @@ import {
   LevelRight,
   Icon,
   Loading,
+  Select,
 } from '@pitrix/lego-ui'
 
 import Table from 'components/Cards/RankTable/NodeTable'
@@ -48,6 +48,13 @@ class NodeRanking extends React.Component {
 
   get cluster() {
     return this.props.match.params.cluster
+  }
+
+  get options() {
+    return this.store.sort_metric_options.map(option => ({
+      value: option,
+      label: t(`Sort By ${option}`),
+    }))
   }
 
   download = () => {
@@ -80,8 +87,11 @@ class NodeRanking extends React.Component {
         )}
       >
         <div className={styles.toolbar_filter}>
-          <Select store={this.store} />
-
+          <Select
+            value={this.store.sort_metric}
+            onChange={this.store.changeSortMetric}
+            options={this.options}
+          />
           <span className={styles.sort_button}>
             <Icon
               name={

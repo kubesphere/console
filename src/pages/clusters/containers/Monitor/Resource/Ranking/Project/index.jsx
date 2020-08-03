@@ -20,12 +20,8 @@ import React from 'react'
 import { observer } from 'mobx-react'
 import classNames from 'classnames'
 
-import Store from 'stores/rank/project'
-import SortMetricSelect from 'clusters/components/Cards/Monitoring/UsageRank/select'
-
-import { Button } from 'components/Base'
-
 import {
+  Select,
   Pagination,
   Level,
   LevelLeft,
@@ -33,6 +29,10 @@ import {
   Icon,
   Loading,
 } from '@pitrix/lego-ui'
+
+import Store from 'stores/rank/project'
+
+import { Button } from 'components/Base'
 
 import Table from './Table'
 
@@ -48,6 +48,13 @@ class Ranking extends React.Component {
       sort_type: 'desc',
       cluster: props.cluster,
     })
+  }
+
+  get options() {
+    return this.store.sort_metric_options.map(option => ({
+      value: option,
+      label: t(`Sort By ${option}`),
+    }))
   }
 
   download = () => {
@@ -77,7 +84,11 @@ class Ranking extends React.Component {
         )}
       >
         <div className={styles.toolbar_filter}>
-          <SortMetricSelect store={this.store} />
+          <Select
+            value={this.store.sort_metric}
+            onChange={this.store.changeSortMetric}
+            options={this.options}
+          />
           <span className={styles.sort_button}>
             <Icon
               name={

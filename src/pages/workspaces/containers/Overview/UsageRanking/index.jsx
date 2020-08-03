@@ -34,7 +34,6 @@ import {
 } from '@pitrix/lego-ui'
 import { Button } from 'components/Base'
 import EmptyList from 'components/Cards/EmptyList'
-import SortMetricSelect from 'clusters/components/Cards/Monitoring/UsageRank/select'
 import Table from 'clusters/containers/Monitor/Resource/Ranking/Project/Table'
 import StatusReason from 'clusters/components/StatusReason'
 
@@ -64,6 +63,13 @@ class Ranking extends React.Component {
       value: cluster.name,
       disabled: !cluster.isReady,
       cluster,
+    }))
+  }
+
+  get options() {
+    return this.store.sort_metric_options.map(option => ({
+      value: option,
+      label: t(`Sort By ${option}`),
     }))
   }
 
@@ -136,7 +142,11 @@ class Ranking extends React.Component {
             valueRenderer={this.valueRenderer}
             optionRenderer={this.optionRenderer}
           />
-          <SortMetricSelect store={this.store} />
+          <Select
+            value={this.store.sort_metric}
+            onChange={this.store.changeSortMetric}
+            options={this.options}
+          />
           <span className={styles.sort_button}>
             <Icon
               name={

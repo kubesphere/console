@@ -41,7 +41,7 @@ export default class Charts extends React.Component {
     data: [],
   }
 
-  getItemName = item => get(item, 'metric.resource_name', '-')
+  getItemName = item => get(item, 'metric.pod', '-')
 
   render() {
     const { loading, config, data } = this.props

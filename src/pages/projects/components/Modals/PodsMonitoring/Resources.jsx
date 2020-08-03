@@ -77,7 +77,7 @@ export default class Resources extends React.Component {
     return data.filter(item => checked.includes(this.getItemName(item)))
   }
 
-  getItemName = item => get(item, 'metric.resource_name', '-')
+  getItemName = item => get(item, 'metric.pod', '-')
 
   getCurrentValue = item => {
     const { type, unitType } = this.props.config

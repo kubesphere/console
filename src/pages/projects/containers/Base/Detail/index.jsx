@@ -22,9 +22,9 @@ import { withRouter } from 'react-router-dom'
 import { Component as Base } from 'core/containers/Base/Detail/Page'
 import { MODULE_KIND_MAP } from 'utils/constants'
 
+@withRouter
 @inject('rootStore')
 @observer
-@withRouter
 export default class DetailPage extends Base {
   componentDidMount() {
     this.props.watch && this.initWebsocket()
