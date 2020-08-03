@@ -21,12 +21,10 @@ import { toJS } from 'mobx'
 import { inject, observer } from 'mobx-react'
 import { get, isEmpty } from 'lodash'
 import { Link } from 'react-router-dom'
-import { Icon } from '@pitrix/lego-ui'
+import { Icon, Select } from '@pitrix/lego-ui'
 import { Panel } from 'components/Base'
 import { getValueByUnit, getSuitableUnit } from 'utils/monitoring'
 import Store from 'stores/rank/workload'
-
-import Select from 'clusters/components/Cards/Monitoring/UsageRank/select'
 
 import styles from './index.scss'
 
@@ -51,6 +49,13 @@ class UsageRanking extends React.Component {
 
   componentDidMount() {
     this.store.fetchAll()
+  }
+
+  get options() {
+    return this.store.sort_metric_options.map(option => ({
+      value: option,
+      label: t(`Sort By ${option}`),
+    }))
   }
 
   getWorkloadLink(node) {
@@ -79,7 +84,12 @@ class UsageRanking extends React.Component {
     return (
       <div className={styles.header}>
         <div className={styles.title}>{t('Resource Name')}</div>
-        <Select className={styles.select} store={this.store} />
+        <Select
+          className={styles.select}
+          value={this.store.sort_metric}
+          onChange={this.store.changeSortMetric}
+          options={this.options}
+        />
       </div>
     )
   }

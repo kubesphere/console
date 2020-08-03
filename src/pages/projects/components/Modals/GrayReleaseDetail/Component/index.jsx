@@ -98,12 +98,7 @@ export default class Component extends React.Component {
               Object.entries(MetricTypes).forEach(([key, value]) => {
                 const records = get(monitorData, `${value}.data.result`) || []
                 metrics[key] = records.find(
-                  item =>
-                    get(
-                      item,
-                      'metric.resource_name',
-                      get(item, 'metric.pod')
-                    ) === pod.name
+                  item => get(item, 'metric.pod') === pod.name
                 )
               })
               return { ...pod, metrics }

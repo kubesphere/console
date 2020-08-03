@@ -22,6 +22,8 @@ import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 import { isEmpty, get } from 'lodash'
 
+import PodMonitorStore from 'stores/monitoring/pod'
+
 import ControllerModal from 'components/Modals/Monitoring/Controller'
 import ResourcesList from './Resources'
 import ChartsList from './Charts'
@@ -36,6 +38,10 @@ export default class MultipleDataModal extends React.Component {
     limit: PropTypes.number,
     config: PropTypes.object,
     onCancel: PropTypes.func,
+    module: PropTypes.string,
+    name: PropTypes.string,
+    namespace: PropTypes.string,
+    cluster: PropTypes.string,
   }
 
   static defaultProps = {
@@ -43,6 +49,10 @@ export default class MultipleDataModal extends React.Component {
     defaultChecked: 5,
     limit: 10,
     config: {},
+    module: 'deployments',
+    name: '',
+    namespace: '',
+    cluster: '',
     onCancel() {},
   }
 
@@ -64,7 +74,7 @@ export default class MultipleDataModal extends React.Component {
   }
 
   get name() {
-    return 'Resources'
+    return 'Pods'
   }
 
   get metrics() {
@@ -75,19 +85,30 @@ export default class MultipleDataModal extends React.Component {
     return this.props.config.metricType
   }
 
+  get resourceParams() {
+    const { module, cluster, namespace, name } = this.props
+
+    return {
+      cluster,
+      namespace,
+      workloadKind: module,
+      workloadName: name,
+    }
+  }
+
   get resources() {
-    return toJS(get(this.resourceStore, 'list', {}))
+    return toJS(get(this.resourceStore, 'sort', {}))
   }
 
   get resourcesData() {
-    return get(this.resources, 'data', [])
+    return get(this.resources, `data[${this.metricType}].data.result`, [])
   }
 
   get monitorsData() {
-    return []
+    return get(this.monitorStore, `data[${this.metricType}].data.result`, [])
   }
 
-  getItemName = item => get(item, 'metric.resource_name', '-')
+  getItemName = item => get(item, 'metric.pod', '-')
 
   componentDidMount() {
     when(
@@ -104,13 +125,30 @@ export default class MultipleDataModal extends React.Component {
   }
 
   init() {
-    this.resourceStore = {}
-    this.monitorStore = {}
+    const store = new PodMonitorStore()
+    this.resourceStore = store
+    this.monitorStore = store
   }
 
-  fetchResources = async () => {}
+  fetchResources = async params => {
+    await this.resourceStore.fetchSortedMetrics({
+      metrics: [this.metricType],
+      limit: 20,
+      ...this.resourceParams,
+      ...params,
+    })
+  }
 
-  fetchMonitorings = async () => {}
+  fetchMonitorings = async params => {
+    const { checked } = this.state
+
+    await this.monitorStore.fetchMetrics({
+      resources: checked,
+      metrics: [this.metricType],
+      ...this.resourceParams,
+      ...params,
+    })
+  }
 
   fetchData = async (params = {}) => {
     this.params = params

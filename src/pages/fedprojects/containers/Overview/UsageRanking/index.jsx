@@ -27,8 +27,6 @@ import { Panel } from 'components/Base'
 import { getValueByUnit, getSuitableUnit } from 'utils/monitoring'
 import Store from 'stores/rank/workload'
 
-import RankSelect from 'clusters/components/Cards/Monitoring/UsageRank/select'
-
 import styles from './index.scss'
 
 const UNITS = {
@@ -65,6 +63,13 @@ class UsageRanking extends React.Component {
     }
   }
 
+  get options() {
+    return this.store.sort_metric_options.map(option => ({
+      value: option,
+      label: t(`Sort By ${option}`),
+    }))
+  }
+
   getWorkloadLink(node) {
     const { owner_kind } = node
 
@@ -98,7 +103,12 @@ class UsageRanking extends React.Component {
           onChange={onClusterChange}
           valueRenderer={this.clusterRenderer}
         />
-        <RankSelect className={styles.select} store={this.store} />
+        <Select
+          className={styles.select}
+          value={this.store.sort_metric}
+          onChange={this.store.changeSortMetric}
+          options={this.options}
+        />
       </div>
     )
   }

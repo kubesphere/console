@@ -46,7 +46,7 @@ export default class ComponentMonitoring extends Base {
     const newResult = [...originResult]
 
     currentResult.forEach((record, index) => {
-      const name = get(record, 'metric.resource_name')
+      const name = get(record, 'metric.__name__')
       let recordData = null
 
       if (name) {
@@ -66,7 +66,7 @@ export default class ComponentMonitoring extends Base {
             return get(_record, 'metric.result') === result
           }
 
-          return get(_record, 'metric.resource_name') === name
+          return get(_record, 'metric.__name__') === name
         })
 
         if (isEmpty(originRecord)) {

@@ -17,7 +17,6 @@
  */
 
 import React from 'react'
-import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import classnames from 'classnames'
 import { isEmpty, get } from 'lodash'
@@ -29,7 +28,7 @@ import PodMonitorStore from 'stores/monitoring/pod'
 import { Alert } from '@pitrix/lego-ui'
 import { MultiArea } from 'components/Charts'
 import { Controller as MonitoringController } from 'components/Cards/Monitoring'
-import { PodsMonitoring } from 'components/Modals/Monitoring/Multiple'
+import PodsMonitoring from 'projects/components/Modals/PodsMonitoring'
 
 import styles from './index.scss'
 
@@ -86,12 +85,8 @@ export default class Monitorings extends React.Component {
   }
 
   get isMore() {
-    const data =
-      get(
-        toJS(this.resourceStore.sort),
-        `data[${MetricTypes.cpu_usage}].data.result`
-      ) || []
-    return data.length > 5
+    const { podNums, status } = this.store.detail
+    return (podNums || status.numberAvailable) > 5
   }
 
   fetchData = (params = {}) => {
@@ -101,7 +96,7 @@ export default class Monitorings extends React.Component {
         .fetchSortedMetrics({
           ...this.resourceParams,
           metrics: [MetricTypes.cpu_usage],
-          limit: 6,
+          limit: 5,
         })
         .then(data => {
           const result = get(data[MetricTypes.cpu_usage], 'data.result') || []
@@ -221,7 +216,7 @@ export default class Monitorings extends React.Component {
 
   renderModal() {
     const { showMultipleModal, selectItem } = this.state
-    const { name, namespace } = this.store.detail
+    const { name, cluster, namespace } = this.store.detail
 
     return (
       <div>
@@ -229,6 +224,7 @@ export default class Monitorings extends React.Component {
           visible={showMultipleModal}
           module={this.monitoringModule}
           name={name}
+          cluster={cluster}
           namespace={namespace}
           config={selectItem}
           onCancel={this.hideMultipleModal}

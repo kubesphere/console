@@ -29,7 +29,7 @@ import PodMonitorStore from 'stores/monitoring/pod'
 import { Alert } from '@pitrix/lego-ui'
 import { MultiArea } from 'components/Charts'
 import { Controller as MonitoringController } from 'components/Cards/Monitoring'
-import { PodsMonitoring } from 'components/Modals/Monitoring/Multiple'
+import PodsMonitoring from 'projects/components/Modals/PodsMonitoring'
 
 import styles from './index.scss'
 

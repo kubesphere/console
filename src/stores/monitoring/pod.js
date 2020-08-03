@@ -33,6 +33,8 @@ export default class PodMonitor extends Base {
     isLoading: false,
   }
 
+  resourceName = 'pod'
+
   getApi = ({ nodeName, namespace, workloadKind, workloadName, pod }) => {
     let path = `/namespaces/${namespace}`
 
