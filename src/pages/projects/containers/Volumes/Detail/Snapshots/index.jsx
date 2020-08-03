@@ -32,17 +32,22 @@ export default class PVCSnapshots extends Component {
   store = new VolumeSnapshotStore()
 
   componentDidMount() {
+    this.fetchData()
+  }
+
+  fetchData = params => {
     const { detailStore } = this.props
     const { cluster, namespace, name } = detailStore.detail
     this.store.fetchList({
       cluster,
       namespace,
       persistentVolumeClaimName: name,
+      ...params,
     })
   }
 
   handlePagination = page => {
-    this.store.fetchList({ page })
+    this.fetchData({ page })
   }
 
   renderSnapshot(snapshot) {
