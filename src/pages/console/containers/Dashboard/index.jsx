@@ -33,16 +33,18 @@ class Dashboard extends React.Component {
   constructor(props) {
     super(props)
 
-    if (globals.user.globalrole === 'user-manager') {
-      return this.routing.push(`/access/accounts`)
-    }
+    if (!globals.app.isPlatformAdmin) {
+      if (globals.user.globalrole === 'user-manager') {
+        return this.routing.push(`/access/accounts`)
+      }
 
-    if (globals.app.getActions({ module: 'workspaces' }).includes('create')) {
-      return this.routing.push(`/access/workspaces`)
-    }
+      if (globals.app.getActions({ module: 'workspaces' }).includes('create')) {
+        return this.routing.push(`/access/workspaces`)
+      }
 
-    if (!isEmpty(globals.user.workspaces)) {
-      return this.routing.push(`/workspaces/${this.workspace}`)
+      if (!isEmpty(globals.user.workspaces)) {
+        return this.routing.push(`/workspaces/${this.workspace}`)
+      }
     }
   }
 
