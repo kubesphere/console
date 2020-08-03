@@ -49,7 +49,7 @@ export default class BitBucketForm extends GitHubForm {
     const { cluster, devops } = this.props
     const data = this.tokenFormRef.current.getData()
     this.setState({ isLoading: true })
-    this.props.store
+    await this.props.store
       .creatBitBucketServers({ cluster, devops, ...data })
       .finally(() => {
         this.setState({ isLoading: false })
