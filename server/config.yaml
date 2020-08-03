@@ -305,7 +305,7 @@ client:
           icon: database
           children:
             - { name: volumes, title: Volumes }
-            - { name: volume-snapshots, title: Snapshots, authKey: volumes }
+            - { name: volume-snapshots, title: Snapshots }
         - name: config
           title: Configuration Center
           icon: hammer

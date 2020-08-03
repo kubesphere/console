@@ -30,7 +30,9 @@ const k8sResourceProxy = {
   events: {
     proxyReq(proxyReq, req) {
       // Set authorization
-      proxyReq.setHeader('Authorization', `Bearer ${req.token}`)
+      if (req.token) {
+        proxyReq.setHeader('Authorization', `Bearer ${req.token}`)
+      }
 
       NEED_OMIT_HEADERS.forEach(key => proxyReq.removeHeader(key))
     },
