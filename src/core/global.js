@@ -156,10 +156,6 @@ export default class GlobalValue {
       return false
     }
 
-    if (item.admin && globals.user.globalrole !== 'platform-admin') {
-      return false
-    }
-
     if (item.skipAuth) {
       return true
     }

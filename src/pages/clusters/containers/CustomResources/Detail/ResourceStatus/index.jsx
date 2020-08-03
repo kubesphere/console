@@ -55,23 +55,39 @@ export default class ResourceStatus extends React.Component {
   }
 
   get enabledActions() {
-    return ['edit', 'delete']
+    return globals.app.getActions({
+      module: 'customresourcedefinitions',
+      cluster: this.props.match.params.cluster,
+    })
   }
 
   get itemActions() {
     return [
-      {
-        key: 'editYaml',
-        icon: 'pen',
-        text: t('Edit YAML'),
-        action: 'edit',
-        onClick: item =>
-          this.trigger('resource.yaml.edit', {
-            detail: item,
-            yaml: item._originData,
-            success: this.getData,
-          }),
-      },
+      this.enabledActions.includes('edit')
+        ? {
+            key: 'editYaml',
+            icon: 'pen',
+            text: t('Edit YAML'),
+            action: 'edit',
+            onClick: item =>
+              this.trigger('resource.yaml.edit', {
+                detail: item,
+                yaml: item._originData,
+                success: this.getData,
+              }),
+          }
+        : {
+            key: 'viewYaml',
+            icon: 'eye',
+            text: t('View YAML'),
+            action: 'view',
+            onClick: item =>
+              this.trigger('resource.yaml.edit', {
+                detail: item,
+                yaml: item._originData,
+                readOnly: true,
+              }),
+          },
       {
         key: 'delete',
         icon: 'trash',
