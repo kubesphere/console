@@ -1,12 +1,46 @@
-.baseInfo {
-  display: flex;
-  justify-items: flex-start;
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.wrapper {
+  padding: 12px 0;
+
+  &.single {
+    padding: 20px 8px;
+  }
 }
 
-.info {
-  width: 400px;
+.header {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  padding: 0 12px;
 
-  & + .info {
-    margin-left: 12px;
+  .item {
+    flex: 1;
   }
+}
+
+.item {
+  margin-left: 12px;
+
+  & > div {
+    @include TypographyTitleH6($dark-color07);
+  }
+
+  & > p {
+    @include TypographyParagraph($dark-color01);
+  }
+}
+
+.content {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 12px;
+  padding: 20px 40px;
+  background-color: $lightest;
+}
+
+.contentItem {
+  display: flex;
+  min-width: 200px;
 }

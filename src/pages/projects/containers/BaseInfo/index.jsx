@@ -98,7 +98,7 @@ class BaseInfo extends React.Component {
   get canViewRoles() {
     return globals.app.hasPermission({
       module: 'roles',
-      actions: 'view',
+      action: 'view',
       ...this.params,
       project: this.params.namespace,
     })
@@ -107,7 +107,7 @@ class BaseInfo extends React.Component {
   get canViewMembers() {
     return globals.app.hasPermission({
       module: 'members',
-      actions: 'view',
+      action: 'view',
       ...this.params,
       project: this.params.namespace,
     })
