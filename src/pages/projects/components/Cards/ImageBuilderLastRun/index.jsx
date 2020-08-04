@@ -48,7 +48,6 @@ export default class BuilderInfo extends React.Component {
     const downLoadUrl = `${window.location.protocol}//${
       window.location.host
     }/b2i_download${url}`
-
     return (
       <ul className={classnames(styles.builderContent, className)}>
         <li>
@@ -56,7 +55,9 @@ export default class BuilderInfo extends React.Component {
             <Icon name={getLanguageName(builderImage)} size={40} />
           </span>
           <div className={styles.info}>
-            <p className={styles.value}>{builderImage}</p>
+            <p className={styles.value} title={builderImage}>
+              {builderImage}
+            </p>
             <p className={styles.name}>{t('builderImage')}</p>
           </div>
         </li>
@@ -100,7 +101,9 @@ export default class BuilderInfo extends React.Component {
             }}
           />
           <div className={styles.info}>
-            <p className={styles.value}>{builderImage}</p>
+            <p className={styles.value} title={builderImage}>
+              {builderImage}
+            </p>
             <p className={styles.name}>{t('builderImage')}</p>
           </div>
         </li>
@@ -109,7 +112,9 @@ export default class BuilderInfo extends React.Component {
             <Icon name="resource" size={40} />
           </span>
           <div className={styles.info}>
-            <p className={styles.value}>{sourceUrl}</p>
+            <p className={styles.value} title={sourceUrl}>
+              {sourceUrl}
+            </p>
             <p className={styles.name}>{t('sourceUrl')}</p>
           </div>
         </li>

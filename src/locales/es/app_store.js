@@ -42,7 +42,8 @@ export default {
   Uncategorized: 'Sin categorizar',
   'Version Number': 'Número de versión',
   Versions: 'Versiones',
+  VERSION_LIST_DES: 'Only display the last 10 versions',
   TOTAL_CATE_COUNT: '{total} Aplicaciones en total',
-  HOME_APP_STORE_DESC: 'La App Store oficial de KubeSphere proporciona características de despliegue y administración que permiten a los usuarios desplegar aplicaciones rápidamente con un solo click en base a plantillas de aplicaciones.',
-
+  HOME_APP_STORE_DESC:
+    'La App Store oficial de KubeSphere proporciona características de despliegue y administración que permiten a los usuarios desplegar aplicaciones rápidamente con un solo click en base a plantillas de aplicaciones.',
 }
