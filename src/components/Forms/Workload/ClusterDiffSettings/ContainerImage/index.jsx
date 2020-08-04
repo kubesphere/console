@@ -17,21 +17,16 @@
  */
 
 import React, { Component } from 'react'
-import { omit, get } from 'lodash'
+import { get, omit } from 'lodash'
 
-import { Icon, Dropdown } from '@pitrix/lego-ui'
 import { observer } from 'mobx-react'
-
-import { Form } from 'components/Base'
-import Confirm from 'components/Forms/Base/Confirm'
 
 import SecretStore from 'stores/secret'
 import QuotaStore from 'stores/quota'
 import LimitRangeStore from 'stores/limitrange'
 
+import EditForm from '../EditForm'
 import ContainerSetting from '../../ContainerSettings/ContainerForm/ContainerSetting'
-
-import styles from './index.scss'
 
 @observer
 export default class ContainerImages extends Component {
@@ -46,8 +41,6 @@ export default class ContainerImages extends Component {
   limitRangeStore = new LimitRangeStore()
 
   imageRegistryStore = new SecretStore()
-
-  formRef = React.createRef()
 
   componentDidMount() {
     this.fetchData()
@@ -73,76 +66,31 @@ export default class ContainerImages extends Component {
     })
   }
 
-  handleSubmit = () => {
+  handleSubmit = data => {
     const { index, containerType, onEdit } = this.props
-    const form = this.formRef.current
-
-    form &&
-      form.validate(() => {
-        onEdit({ index, containerType, data: omit(form.getData(), 'type') })
-      })
+    onEdit({ index, containerType, data: omit(data, 'type') })
   }
 
-  handleCancel = () => {
-    const { showEdit } = this.props
-
-    showEdit('')
-  }
-
-  handleClick = () => {
-    const { container, showEdit } = this.props
-    showEdit(container.name)
-  }
-
-  renderContent() {
+  render() {
     const { cluster, namespace, container, containerType } = this.props
     const { quota, limitRanges, imageRegistries } = this.state
 
     return (
-      <div className={styles.form}>
-        <Form ref={this.formRef} type="inner" data={container}>
-          <ContainerSetting
-            className={styles.formContent}
-            data={container}
-            cluster={cluster}
-            namespace={namespace}
-            quota={quota}
-            limitRanges={limitRanges}
-            imageRegistries={imageRegistries}
-            defaultContainerType={containerType}
-          />
-        </Form>
-        <Confirm
-          className={styles.confirm}
-          onOk={this.handleSubmit}
-          onCancel={this.handleCancel}
-        />
-      </div>
-    )
-  }
-
-  render() {
-    const { container, selected, isEdit } = this.props
-
-    return (
-      <Dropdown
-        visible={isEdit}
-        placement="bottom"
-        closeAfterClick={false}
-        onOpen={this.handleClick}
-        content={this.renderContent()}
-        always={isEdit}
+      <EditForm
+        {...this.props}
+        title={<span>{`${t('Image')}: ${container.image}`}</span>}
+        onOk={this.handleSubmit}
       >
-        <div>
-          <span>{`${t('Image')}: ${container.image}`}</span>
-          {selected && (
-            <span className={styles.modify}>
-              <span>{t('Edit')}</span>
-              <Icon type="light" size={20} name="chevron-down" />
-            </span>
-          )}
-        </div>
-      </Dropdown>
+        <ContainerSetting
+          data={container}
+          cluster={cluster}
+          namespace={namespace}
+          quota={quota}
+          limitRanges={limitRanges}
+          imageRegistries={imageRegistries}
+          defaultContainerType={containerType}
+        />
+      </EditForm>
     )
   }
 }

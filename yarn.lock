@@ -1013,7 +1013,7 @@
     lodash.kebabcase "^4.1.1"
     lodash.snakecase "^4.1.1"
 
-"@pitrix/lego-locale@^0.1.9":
+"@pitrix/lego-locale@^0.1.10":
   version "0.1.10"
   resolved "https://registry.yarnpkg.com/@pitrix/lego-locale/-/lego-locale-0.1.10.tgz#9e7dd47e7d78d9f2c7495ac91cef0ce21f776001"
   integrity sha512-P83vyTcO8wyO42imBme5eRbw42Uqwesa3+MdtO56CDzIGGseSfZ6Sa+96qZruqxbp6GIXfjm8Dkw/lttrxVivw==
@@ -1027,13 +1027,13 @@
     invariant "^2.2.4"
     querystring "^0.2.0"
 
-"@pitrix/lego-ui@^0.1.7-19":
-  version "0.1.7-19"
-  resolved "https://registry.yarnpkg.com/@pitrix/lego-ui/-/lego-ui-0.1.7-19.tgz#92823de5ffcfd4315540fc9539afdbb5e7b38852"
-  integrity sha512-/Jusrwb1bw/IHUtWLLGm0BgLIq+BBbAB5MNpPv5xT3UYVIksgp9RP0w9pd+DGGORp1uS17StxGO46Cf6moJP/A==
+"@pitrix/lego-ui@^0.1.7-27":
+  version "0.1.7-27"
+  resolved "https://registry.yarnpkg.com/@pitrix/lego-ui/-/lego-ui-0.1.7-27.tgz#6e15cf716a9fcfbff0496d3a71bb2ecb7baa0736"
+  integrity sha512-pbeH8O07zwRak4vUQbPIQm9ufuOm7t46XNACwToacTCbuMhoo0Yx1skxQln026hJuDpBRzBl/ZhPjdjrfcr/RA==
   dependencies:
     "@babel/runtime" "^7.4.5"
-    "@pitrix/lego-locale" "^0.1.9"
+    "@pitrix/lego-locale" "^0.1.10"
     "@testing-library/react" "^8.0.4"
     bulma "^0.6.2"
     classnames "^2.2.6"

@@ -17,20 +17,13 @@
  */
 
 import React, { Component } from 'react'
-import { omit } from 'lodash'
-
-import { Icon, Dropdown } from '@pitrix/lego-ui'
 import { observer } from 'mobx-react'
-
-import { Form } from 'components/Base'
-import Confirm from 'components/Forms/Base/Confirm'
 
 import ConfigMapStore from 'stores/configmap'
 import SecretStore from 'stores/secret'
 
+import EditForm from '../EditForm'
 import Environments from '../../ContainerSettings/ContainerForm/Environments'
-
-import styles from './index.scss'
 
 @observer
 export default class ContainerImages extends Component {
@@ -42,8 +35,6 @@ export default class ContainerImages extends Component {
   configMapStore = new ConfigMapStore()
 
   secretStore = new SecretStore()
-
-  formRef = React.createRef()
 
   componentDidMount() {
     this.fetchData()
@@ -63,75 +54,29 @@ export default class ContainerImages extends Component {
     })
   }
 
-  handleSubmit = () => {
+  handleSubmit = data => {
     const { index, onEdit } = this.props
-    const form = this.formRef.current
-
-    form &&
-      form.validate(() => {
-        onEdit({ index, data: omit(form.getData(), 'type') })
-      })
-  }
-
-  handleCancel = () => {
-    const { showEdit } = this.props
-
-    showEdit('')
-  }
-
-  handleClick = () => {
-    const { container, showEdit } = this.props
-    showEdit(container.name)
-  }
-
-  renderContent() {
-    const { container } = this.props
-    const { configMaps, secrets } = this.state
-
-    return (
-      <div className={styles.form}>
-        <Form ref={this.formRef} type="inner" data={container}>
-          <div className={styles.formContent}>
-            <Environments
-              configMaps={configMaps}
-              secrets={secrets}
-              checkable={false}
-            />
-          </div>
-        </Form>
-        <Confirm
-          className={styles.confirm}
-          onOk={this.handleSubmit}
-          onCancel={this.handleCancel}
-        />
-      </div>
-    )
+    onEdit({ index, data })
   }
 
   render() {
-    const { container, selected, isEdit } = this.props
+    const { container } = this.props
+    const { configMaps, secrets } = this.state
+
+    const title = (
+      <span>{`${t('Environment Variables')}: ${(container.env || [])
+        .map(item => item.name)
+        .join(', ') || t('None')}`}</span>
+    )
 
     return (
-      <Dropdown
-        visible={isEdit}
-        placement="bottom"
-        closeAfterClick={false}
-        onOpen={this.handleClick}
-        content={this.renderContent()}
-        always={isEdit}
-      >
-        <div>
-          <span>{`${t('Environment Variables')}: ${(container.env || [])
-            .map(item => item.name)
-            .join(', ') || t('None')}`}</span>
-          {selected && (
-            <span className={styles.modify}>
-              <span>{t('Edit')}</span>
-              <Icon type="light" size={20} name="chevron-down" />
-            </span>
-          )}
-        </div>
-      </Dropdown>
+      <EditForm {...this.props} title={title} onOk={this.handleSubmit}>
+        <Environments
+          configMaps={configMaps}
+          secrets={secrets}
+          checkable={false}
+        />
+      </EditForm>
     )
   }
 }

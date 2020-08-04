@@ -7,7 +7,7 @@
     "@babel/polyfill": "^7.7.0",
     "@hot-loader/react-dom": "^16.11.0",
     "@pitrix/babel-plugin-lego-imports": "^0.0.7",
-    "@pitrix/lego-ui": "^0.1.7-19",
+    "@pitrix/lego-ui": "^0.1.7-27",
     "ace-builds": "^1.4.7",
     "async-validator": "^1.8.5",
     "classnames": "^2.2.5",

@@ -19,98 +19,43 @@
 import React, { Component } from 'react'
 import { pick } from 'lodash'
 
-import { Icon, Dropdown } from '@pitrix/lego-ui'
-import { Form } from 'components/Base'
-import Confirm from 'components/Forms/Base/Confirm'
-
+import EditForm from '../EditForm'
 import Ports from '../../ContainerSettings/ContainerForm/Ports'
 
 import styles from './index.scss'
 
 export default class ContainerPorts extends Component {
-  formRef = React.createRef()
-
-  handleSubmit = () => {
+  handleSubmit = data => {
     const { index, containerType, onEdit } = this.props
-    const form = this.formRef.current
-
-    form &&
-      form.validate(() => {
-        onEdit({ index, containerType, data: pick(form.getData(), ['ports']) })
-      })
-  }
-
-  handleCancel = () => {
-    const { showEdit } = this.props
-
-    showEdit('')
-  }
-
-  handleClick = () => {
-    const { container, showEdit } = this.props
-    showEdit(container.name)
-  }
-
-  renderContent() {
-    const { withService, container, containerType } = this.props
-    return (
-      <div className={styles.form}>
-        <Form ref={this.formRef} type="inner" data={container}>
-          <Ports
-            className={styles.formContent}
-            withService={containerType !== 'init' ? withService : false}
-          />
-        </Form>
-        <Confirm
-          className={styles.confirm}
-          onOk={this.handleSubmit}
-          onCancel={this.handleCancel}
-        />
-      </div>
-    )
+    onEdit({ index, containerType, data: pick(data, ['ports']) })
   }
 
   render() {
-    const {
-      container,
-      selected,
-      containerType,
-      withService,
-      isEdit,
-    } = this.props
+    const { container, containerType, withService } = this.props
 
     const showServicePort = containerType !== 'init' ? withService : false
 
-    return (
-      <Dropdown
-        visible={isEdit}
-        placement="bottom"
-        closeAfterClick={false}
-        onOpen={this.handleClick}
-        content={this.renderContent()}
-        always={isEdit}
-      >
-        <div>
-          <div>{`${t('Image')}: ${container.image}`}</div>
-          {container.ports &&
-            container.ports.map((port, index) => (
-              <div key={index} className={styles.port}>
-                <span>{`${t('Protocol')}: ${port.protocol}`}</span>
-                <span>{`${t('Name')}: ${port.name}`}</span>
-                <span>{`${t('Container Port')}: ${port.containerPort}`}</span>
-                {showServicePort && (
-                  <span>{`${t('Service Port')}: ${port.servicePort}`}</span>
-                )}
-              </div>
-            ))}
-          {selected && (
-            <div className={styles.modify}>
-              <span>{t('Edit')}</span>
-              <Icon type="light" size={20} name="chevron-down" />
+    const title = (
+      <>
+        <div>{`${t('Image')}: ${container.image}`}</div>
+        {container.ports &&
+          container.ports.map((port, index) => (
+            <div key={index} className={styles.port}>
+              <span>{`${t('Protocol')}: ${port.protocol}`}</span>
+              <span>{`${t('Name')}: ${port.name}`}</span>
+              <span>{`${t('Container Port')}: ${port.containerPort}`}</span>
+              {showServicePort && (
+                <span>{`${t('Service Port')}: ${port.servicePort}`}</span>
+              )}
             </div>
-          )}
-        </div>
-      </Dropdown>
+          ))}
+      </>
+    )
+
+    return (
+      <EditForm {...this.props} title={title} onOk={this.handleSubmit}>
+        <Ports withService={containerType !== 'init' ? withService : false} />
+      </EditForm>
     )
   }
 }
