@@ -119,12 +119,12 @@ class AlertDetail extends React.Component {
 
   @computed
   get monitoringConfig() {
-    const { isLoading } = this.monitorStore
+    const { isLoading, resourceName } = this.monitorStore
     const { metricName, condition_type, thresholds, unit } = this.store.detail
     const title = this.metricLabel
     const data = get(this.metrics, `${metricName}.data.result`) || []
     const legend = data.map((record, index) =>
-      get(record, 'metric.resource_name', `${this.resourceType}_${index}`)
+      get(record, `metric.${resourceName}`, `${this.resourceType}_${index}`)
     )
 
     return {
