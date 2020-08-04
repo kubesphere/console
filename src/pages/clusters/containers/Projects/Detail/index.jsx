@@ -63,22 +63,7 @@ export default class ProjectDetail extends React.Component {
   }
 
   getOperations = () => {
-    const { workspace, cluster, name, isFedManaged } = this.store.detail
-
-    let url = `/${workspace}/clusters/${cluster}/projects/${name}`
-    if (isFedManaged) {
-      url = `/${workspace}/federatedprojects/${name}`
-    }
-
     return [
-      {
-        key: 'enter',
-        text: t('Enter the project'),
-        action: 'view',
-        type: 'control',
-        show: globals.app.workspaces.includes(workspace),
-        onClick: () => this.routing.push(url),
-      },
       {
         key: 'edit',
         icon: 'pen',

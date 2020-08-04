@@ -172,6 +172,7 @@ const getWorkspaces = async token => {
   const resp = await send_gateway_request({
     method: 'GET',
     url: '/kapis/tenant.kubesphere.io/v1alpha2/workspaces',
+    params: { limit: 10 },
     token,
   })
 
