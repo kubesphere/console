@@ -126,4 +126,14 @@ export default {
     'Centro de actualización de Jenkins que proporciona paquetes de instalación para complementos de Jenkins',
   'WEBHOOK-SERVER-SERVICE_DESC':
     'Proporciona valores predeterminados y valida el webhook para s2i',
+
+  MYSQL_DESC:
+    'An open-source database management system that allows users to manage relational databases. Data in these databases are structured or organized in the form of tables or columns, instead of being stored in one big storeroom',
+  ETCD_DESC:
+    'A reliable distributed data store that persistently stores the cluster configuration',
+  TOWER_DESC: 'A tool for network connection between clusters through an agent',
+  'KUBE-SCHEDULER-SVC_DESC':
+    'The scheduler of Kubernetes that attaches the Pod to an appropriate node',
+  'KUBE-CONTROLLER-MANAGER-SVC_DESC':
+    'A daemon that embeds the core control loops shipped with Kubernetes',
 }
