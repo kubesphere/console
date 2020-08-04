@@ -46,7 +46,12 @@ const Card = ({ type = 'worker', container, onDelete, onEdit, readOnly }) => {
 
   let extras
   if (isEmpty(limits) && isEmpty(requests)) {
-    extras = <div className={styles.limits}>{t('No resource limits')}</div>
+    extras = (
+      <div className={styles.limits}>
+        <Icon name="exclamation" />
+        <span>&nbsp;{t('No resource limits')}</span>
+      </div>
+    )
   } else {
     extras = (
       <div className={styles.limits}>

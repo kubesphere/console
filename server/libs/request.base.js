@@ -18,6 +18,7 @@
 
 const fetch = require('node-fetch').default
 const merge = require('lodash/merge')
+const isEmpty = require('lodash/isEmpty')
 const qs = require('qs')
 const { get } = require('lodash')
 
@@ -67,7 +68,9 @@ function buildRequest(method, url, params = {}, options) {
     ) !== -1
 
   if (method === 'GET') {
-    requestURL += `?${qs.stringify(params)}`
+    if (!isEmpty(params)) {
+      requestURL += `?${qs.stringify(params)}`
+    }
   } else if (isForm) {
     request.body = qs.stringify(params)
   } else {

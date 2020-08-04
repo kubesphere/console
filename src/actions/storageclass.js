@@ -71,6 +71,7 @@ export default {
                 metadata: {
                   annotations: {
                     'storageclass.kubernetes.io/is-default-class': 'false',
+                    'storageclass.beta.kubernetes.io/is-default-class': 'false',
                   },
                 },
               }
@@ -81,6 +82,7 @@ export default {
             metadata: {
               annotations: {
                 'storageclass.kubernetes.io/is-default-class': 'true',
+                'storageclass.beta.kubernetes.io/is-default-class': 'true',
               },
             },
           })

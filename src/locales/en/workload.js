@@ -193,6 +193,7 @@ export default {
     'No related resources found with the current workload(s)',
   'No related resources': 'No related resources',
   'No Request': 'No Request',
+  'No resource limits': 'No resource limits',
   'Node IP': 'Node IP',
   'Node Name': 'Node Name',
   'Node Scheduling Info': 'Node Scheduling Info',
