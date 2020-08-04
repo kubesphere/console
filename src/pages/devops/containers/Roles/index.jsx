@@ -100,6 +100,9 @@ export default class Secrets extends React.Component {
           trigger('role.delete', {
             detail: item,
             type: t(this.name),
+            namespace: this.devops,
+            cluster: this.cluster,
+            workspace: this.props.match.params.workspace,
             success: routing.query,
           }),
       },
