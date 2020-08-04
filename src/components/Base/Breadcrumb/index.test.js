@@ -18,7 +18,6 @@
 
 import React from 'react'
 import { mount } from 'enzyme'
-import styles from 'identity-obj-proxy'
 import { MemoryRouter as Router } from 'react-router-dom'
 
 import Breadcrumb from './index'
@@ -54,7 +53,6 @@ it('renders correctly', () => {
       '/projects/kubesphere-system/deployments/ks-console/resource-status',
     breadcrumbs,
     routes,
-    goBack: jest.fn(),
   }
 
   const wrapper = mount(
@@ -62,16 +60,8 @@ it('renders correctly', () => {
       <Breadcrumb {...props} />
     </Router>
   )
-  expect(wrapper.find('div > a').first()).toHaveClassName(styles.back)
   expect(wrapper.find('a[href="/projects/kubesphere-system"]')).toHaveLength(1)
   expect(
     wrapper.find('a[href="/projects/kubesphere-system/deployments"]')
   ).toHaveLength(1)
-
-  wrapper
-    .find('div > a')
-    .first()
-    .simulate('click')
-
-  expect(props.goBack).toHaveBeenCalled()
 })
