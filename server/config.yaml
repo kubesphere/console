@@ -135,6 +135,7 @@ client:
             name: customresources,
             title: Custom Resources,
             icon: select,
+            admin: true,
           }
         - name: storage
           title: Storage Management

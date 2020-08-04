@@ -470,11 +470,11 @@ const StorageClassMapper = item => ({
   default:
     get(
       item,
-      'metadata.annotations["storageclass.kubernetes.io/is-default-class"]',
-      get(
-        item,
-        'metadata.annotations["storageclass.beta.kubernetes.io/is-default-class"]'
-      )
+      'metadata.annotations["storageclass.kubernetes.io/is-default-class"]'
+    ) === 'true' ||
+    get(
+      item,
+      'metadata.annotations["storageclass.beta.kubernetes.io/is-default-class"]'
     ) === 'true',
   parameters: get(item, 'parameters'),
   provisioner: get(item, 'provisioner'),

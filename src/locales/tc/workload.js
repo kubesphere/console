@@ -87,6 +87,8 @@ export default {
   'Resource requests left quota': '資源預留剩餘配額',
   'Resource limits left quota': '資源限制剩餘配額',
 
+  'No resource limits': '無資源限制',
+
   'Job Settings': '任務設置',
   'CronJob Settings': '定時任務設置',
   'Job Template': '任務模板',

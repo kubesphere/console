@@ -32,6 +32,10 @@ class ProjectLayout extends Component {
     const nav = get(navs, '[0].items[0]', {})
     const name = get(nav.children, '[0].name') || nav.name
 
+    if (!name) {
+      return []
+    }
+
     if (routes) {
       routes.forEach(route => {
         if (route.path === path && route.redirect) {

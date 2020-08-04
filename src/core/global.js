@@ -156,6 +156,10 @@ export default class GlobalValue {
       return false
     }
 
+    if (item.admin && !globals.app.isPlatformAdmin) {
+      return false
+    }
+
     if (item.skipAuth) {
       return true
     }

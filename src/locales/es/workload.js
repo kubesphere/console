@@ -194,6 +194,7 @@ export default {
     'No se encontraron recursos relacionados con las cargas de trabajo actuales',
   'No related resources': 'No hay recursos relacionados.',
   'No Request': 'Ninguna solicitud',
+  'No resource limits': 'No resource limits',
   'Node IP': 'IP de nodo',
   'Node Name': 'Nombre del nodo',
   'Node Scheduling Info': 'Información de programación de nodos',
