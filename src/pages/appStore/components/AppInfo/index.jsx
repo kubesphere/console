@@ -97,7 +97,9 @@ export default class AppInfo extends React.PureComponent {
           <ImageSlider images={this.filterImages(screenshots)} />
         </div>
         <div>
-          <h3 className={styles.title}>{t('Versions')}</h3>
+          <h3 className={styles.title}>
+            {t('Versions')} ({t('VERSION_LIST_DES')})
+          </h3>
           {this.renderVersionTable()}
         </div>
       </div>

@@ -1,7 +1,7 @@
 @import "~scss/variables";
 
 .appInfo {
-  > div {
+  >div {
     margin-bottom: 32px;
 
     .title {
@@ -10,6 +10,11 @@
       font-weight: bold;
       color: $dark-color07;
       margin-bottom: 12px;
+
+      span {
+        font-weight: normal;
+        font-size: 12px;
+      }
     }
   }
 }
@@ -41,14 +46,16 @@
   }
 
   td {
-    > .name {
+    >.name {
       color: $dark-color07;
       font-weight: bold;
     }
-    > .date {
+
+    >.date {
       color: $dark-color01;
     }
-    > .desc {
+
+    >.desc {
       color: $dark-color07;
     }
   }

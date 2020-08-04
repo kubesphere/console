@@ -42,7 +42,7 @@ export default {
   Uncategorized: 'Uncategorized',
   'Version Number': 'Version Number',
   Versions: 'Versions',
-
+  VERSION_LIST_DES: 'Only display the last 10 versions',
   TOTAL_CATE_COUNT: '{total} Apps in Total',
   HOME_APP_STORE_DESC:
     'The official App Store of KubeSphere provides deployment and management features that allow users to quickly deploy apps with one click based on app templates.',

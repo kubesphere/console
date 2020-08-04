@@ -34,6 +34,7 @@ export default {
   Introduction: '介紹',
   Screenshots: '截圖',
   Versions: '版本',
+  VERSION_LIST_DES: '只顯示 10 個最新的版本',
   None: '無',
   'Version Number': '版本號碼',
   'Change Log': '更新紀錄',

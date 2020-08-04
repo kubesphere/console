@@ -92,7 +92,6 @@ export default class App extends React.Component {
       .fetchList({
         app_id: this.appID,
         status: 'active',
-        noLimit: true,
       })
       .then(() => {
         const selectAppVersion = get(
