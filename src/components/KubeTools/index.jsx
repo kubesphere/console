@@ -101,7 +101,7 @@ export default class KubeTools extends React.Component {
             link: '/kubectl',
             title: 'Kubectl',
             description: t('TOOLBOX_KUBECTL_DESC'),
-            hidden: globals.user.globalrole !== 'platform-admin',
+            hidden: !globals.app.isPlatformAdmin,
             action: 'toolbox.kubectl',
           },
         ],
