@@ -74,13 +74,13 @@ export default class Services extends React.Component {
 
   updateFormData = () => {
     const { formData } = this.props
-    const { isCodeMode, valuesYaml, valuesJSON } = this.state
+    const { isCodeMode, valuesYaml, valuesJSON, valuesSchema } = this.state
 
     set(
       formData,
       'conf',
       getValue({
-        ...(isCodeMode ? getValueObj(valuesYaml) : valuesJSON),
+        ...(isCodeMode || !valuesSchema ? getValueObj(valuesYaml) : valuesJSON),
         Name: formData.name || '',
         Description: formData.desc || '',
         Workspace: formData.workspace,
