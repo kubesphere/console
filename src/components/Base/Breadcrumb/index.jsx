@@ -19,11 +19,9 @@
 import { isEmpty } from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
-import classNames from 'classnames'
 import { Link } from 'react-router-dom'
 import isEqual from 'react-fast-compare'
 import pathToRegexp from 'path-to-regexp'
-import { ReactComponent as BackIcon } from 'src/assets/back.svg'
 
 import styles from './index.scss'
 
@@ -33,7 +31,6 @@ export default class Breadcrumb extends React.Component {
     routes: PropTypes.array,
     params: PropTypes.object,
     pathname: PropTypes.string,
-    goBack: PropTypes.func,
   }
 
   static defaultProps = {
@@ -41,7 +38,6 @@ export default class Breadcrumb extends React.Component {
     routes: [],
     params: {},
     pathname: '',
-    goBack() {},
   }
 
   shouldComponentUpdate(nextProps) {
@@ -55,7 +51,6 @@ export default class Breadcrumb extends React.Component {
 
   getCurrentPath() {
     const { pathname, routes } = this.props
-
     return routes
       .filter(item => item.name)
       .find(item => !isEmpty(pathToRegexp(item.path).exec(pathname)))
@@ -70,6 +65,7 @@ export default class Breadcrumb extends React.Component {
     const { breadcrumbs } = this.props
 
     const links = []
+
     breadcrumbs.forEach((item, index) => {
       const label = this.compile(item.label)
 
@@ -108,16 +104,6 @@ export default class Breadcrumb extends React.Component {
       )
     }
 
-    return (
-      <div className={styles.breadcrumb}>
-        <a
-          className={classNames('custom-icon', styles.back)}
-          onClick={this.props.goBack}
-        >
-          <BackIcon />
-        </a>
-        {links}
-      </div>
-    )
+    return <div className={styles.breadcrumb}>{links}</div>
   }
 }

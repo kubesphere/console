@@ -33,6 +33,7 @@ class CredentialDetail extends Base {
     showEdit: false,
     showYamlEdit: false,
     deleteModule: false,
+    isLoading: true,
   }
 
   get name() {
@@ -83,6 +84,7 @@ class CredentialDetail extends Base {
       workspace: params.workspace,
       devops: params.devops,
     })
+    this.setState({ isLoading: false })
   }
 
   getOperations = () => [
@@ -162,6 +164,7 @@ class CredentialDetail extends Base {
 
   renderSider() {
     const { detail } = this.store
+    const { isLoading } = this.state
     const operations = this.getOperations().filter(item =>
       this.enabledActions.includes(item.action)
     )
@@ -173,6 +176,7 @@ class CredentialDetail extends Base {
         desc={get(detail, 'description')}
         operations={operations}
         labels={detail.labels}
+        isLoading={isLoading}
         attrs={this.getAttrs()}
       />
     )

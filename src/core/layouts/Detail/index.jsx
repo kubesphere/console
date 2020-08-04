@@ -16,7 +16,6 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get } from 'lodash'
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
 import PropTypes from 'prop-types'
@@ -81,18 +80,6 @@ class DetailLayout extends Component {
     }
   }
 
-  goBack = () => {
-    const routing = this.props.rootStore.routing
-
-    const listUrl = get(this.detailRef, 'current.wrappedInstance.listUrl')
-
-    if (listUrl) {
-      return routing.push(listUrl)
-    }
-
-    return routing.go(-1)
-  }
-
   render() {
     const { component, rootStore, breadcrumbs, ...rest } = this.props
     const DetailComponent = component
@@ -114,7 +101,6 @@ class DetailLayout extends Component {
             pathname={rest.location.pathname}
             breadcrumbs={breadcrumbs}
             routes={rest.route.routes}
-            goBack={this.goBack}
           />
         </LayoutHeader>
         <DetailComponent {...commonProps} ref={this.detailRef} />

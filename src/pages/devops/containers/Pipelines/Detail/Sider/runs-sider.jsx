@@ -42,7 +42,9 @@ class RunSider extends Base {
     this.state = {
       showEdit: false,
       showYamlEdit: false,
+      isLoading: true,
     }
+
     this.refreshTimer = setInterval(this.refreshHandler, 4000)
     this.init()
   }
@@ -66,6 +68,10 @@ class RunSider extends Base {
       cluster: params.cluster,
       workspace: params.workspace,
       devops: params.devops,
+    })
+
+    this.setState({
+      isLoading: false,
     })
   }
 
@@ -232,7 +238,7 @@ class RunSider extends Base {
     const {
       runDetail: { id, annotations, labels },
     } = this.store
-
+    const { isLoading } = this.state
     const operations = this.getOperations().filter(item =>
       this.enabledActions.includes(item.action)
     )
@@ -244,6 +250,7 @@ class RunSider extends Base {
         desc={get(annotations, 'desc')}
         operations={operations}
         labels={labels}
+        isLoading={isLoading}
         attrs={this.getAttrs()}
       />
     )
