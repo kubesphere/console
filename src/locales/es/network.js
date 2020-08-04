@@ -69,4 +69,6 @@ export default {
   NETWORK_POLICY_MODAL_DIRECT: 'Por favor, selecciona la dirección de la regla',
   NETWORK_POLICY_MODAL_CIDRERR: 'Please fill in the CIDR information correctly',
   NETWORK_POLICY_MODAL_PORTERR: 'Please fill in the port correctly',
+  NETWORK_POLICY_MODAL_EMPDIR: 'The direction is required',
+  NETWORK_POLICY_MODAL_EMPTP: 'The project or service is required',
 }
