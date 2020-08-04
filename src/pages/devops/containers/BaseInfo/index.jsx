@@ -18,14 +18,17 @@
 
 import { isEmpty } from 'lodash'
 import React from 'react'
+import { Link } from 'react-router-dom'
+import classNames from 'classnames'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import { Icon, Dropdown, Menu } from '@pitrix/lego-ui'
-import { Card, Button, Notify } from 'components/Base'
+import { Panel, Button, Notify } from 'components/Base'
 import DeleteModal from 'components/Modals/Delete'
-import Info from 'components/Cards/Info'
 import Banner from 'components/Cards/Banner'
 import EditModal from 'devops/components/Modals/DevOpsEdit'
+
+import { getDisplayName, getLocalTime } from 'utils'
 
 import UserStore from 'stores/user'
 import RoleStore from 'stores/role'
@@ -44,15 +47,17 @@ class BaseInfo extends React.Component {
   memberStore = new UserStore()
 
   componentDidMount() {
-    this.memberStore.fetchList({
-      devops: this.devops,
-      cluster: this.cluster,
-    })
+    if (this.canViewMembers && this.canViewRoles) {
+      this.memberStore.fetchList({
+        devops: this.devops,
+        cluster: this.cluster,
+      })
 
-    this.roleStore.fetchList({
-      devops: this.devops,
-      cluster: this.cluster,
-    })
+      this.roleStore.fetchList({
+        devops: this.devops,
+        cluster: this.cluster,
+      })
+    }
   }
 
   get routing() {
@@ -82,6 +87,24 @@ class BaseInfo extends React.Component {
   get enabledActions() {
     return globals.app.getActions({
       module: 'devops-settings',
+      cluster: this.cluster,
+      devops: this.devops,
+    })
+  }
+
+  get canViewRoles() {
+    return globals.app.hasPermission({
+      module: 'roles',
+      action: 'view',
+      cluster: this.cluster,
+      devops: this.devops,
+    })
+  }
+
+  get canViewMembers() {
+    return globals.app.hasPermission({
+      module: 'members',
+      action: 'view',
       cluster: this.cluster,
       devops: this.devops,
     })
@@ -176,58 +199,67 @@ class BaseInfo extends React.Component {
     )
   }
 
-  renderOperations() {
-    if (isEmpty(this.enabledItemActions)) {
-      return null
-    }
-
-    return (
-      <Dropdown
-        content={this.renderMoreMenu()}
-        trigger="click"
-        placement="bottomRight"
-      >
-        <Button icon="more" type="flat" />
-      </Dropdown>
-    )
-  }
-
   renderBaseInfo() {
+    const detail = this.store.data
     const roleCount = this.roleStore.list.total
     const memberCount = this.memberStore.list.total
 
     return (
-      <div className="margin-t12">
-        <Card title={t('Basic Info')} operations={this.renderOperations()}>
-          <div className={styles.baseInfo}>
-            <Info
-              className={styles.info}
-              image="/assets/default-workspace.svg"
-              title={this.workspace}
-              desc={t('Workspace')}
-              url={`/workspaces/${this.workspace}/overview`}
-            />
-            <Info
-              className={styles.info}
-              icon="group"
-              title={memberCount}
-              desc={t('Members')}
-              url={`/${this.workspace}/clusters/${this.cluster}/devops/${
-                this.devops
-              }/members`}
-            />
-            <Info
-              className={styles.info}
-              icon="role"
-              title={roleCount}
-              desc={t('Project Roles')}
-              url={`/${this.workspace}/clusters/${this.cluster}/devops/${
-                this.devops
-              }/roles`}
-            />
+      <Panel className={styles.wrapper} title={t('Basic Info')}>
+        <div className={styles.header}>
+          <Icon name="strategy-group" size={40} />
+          <div className={styles.item}>
+            <div>{getDisplayName(detail)}</div>
+            <p>{t('DevOps Project')}</p>
           </div>
-        </Card>
-      </div>
+          <div className={styles.item}>
+            <div>
+              <Link to={`/workspaces/${this.workspace}`}>{this.workspace}</Link>
+            </div>
+            <p>{t('Workspace')}</p>
+          </div>
+          <div className={styles.item}>
+            <div>{detail.creator || '-'}</div>
+            <p>{t('Creator')}</p>
+          </div>
+          <div className={styles.item}>
+            <div>
+              {getLocalTime(detail.createTime).format(`YYYY-MM-DD HH:mm:ss`)}
+            </div>
+            <p>{t('Created Time')}</p>
+          </div>
+          {!isEmpty(this.enabledItemActions) && (
+            <div className={classNames(styles.item, 'text-right')}>
+              <Dropdown
+                className="dropdown-default"
+                content={this.renderMoreMenu()}
+                trigger="click"
+                placement="bottomRight"
+              >
+                <Button>{t('DEVOPS_PROJECT_MANAGEMENT')}</Button>
+              </Dropdown>
+            </div>
+          )}
+        </div>
+        {this.canViewRoles && this.canViewMembers && (
+          <div className={styles.content}>
+            <div className={styles.contentItem}>
+              <Icon name="role" size={40} />
+              <div className={styles.item}>
+                <div>{roleCount}</div>
+                <p>{t('DEVOPS_PROJECT_ROLES')}</p>
+              </div>
+            </div>
+            <div className={styles.contentItem}>
+              <Icon name="group" size={40} />
+              <div className={styles.item}>
+                <div>{memberCount}</div>
+                <p>{t('DEVOPS_PROJECT_MEMBERS')}</p>
+              </div>
+            </div>
+          </div>
+        )}
+      </Panel>
     )
   }
 
