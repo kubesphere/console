@@ -95,7 +95,7 @@ export default class OPApps extends React.Component {
           <Avatar
             isApp
             to={`${this.prefix}/${record.cluster_id}`}
-            avatar={record.app.icon}
+            avatar={get(record, 'app.icon')}
             iconLetter={name}
             iconSize={40}
             title={name}
@@ -121,7 +121,7 @@ export default class OPApps extends React.Component {
         isHideable: true,
         width: '16%',
         render: (name, record) => (
-          <Link to={`/apps/${record.version.app_id}`}>{name}</Link>
+          <Link to={`/apps/${get(record, 'version.app_id')}`}>{name}</Link>
         ),
       },
       {
