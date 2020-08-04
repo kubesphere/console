@@ -6,8 +6,9 @@
 }
 
 .formContent {
-  max-height: 320px;
+  height: 320px;
   border: solid 1px $dark-color01;
+  border-radius: 2px;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
   overflow: auto;
@@ -16,6 +17,10 @@
     .form-group-header {
       display: none;
     }
+  }
+
+  & > div {
+    border: none;
   }
 }
 
@@ -27,6 +32,7 @@
 
 .confirm {
   bottom: -23px;
+  border-radius: 2px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
