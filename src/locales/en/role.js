@@ -261,9 +261,9 @@ export default {
   CLUSTER_MONITORING_VIEW_DESC:
     'View cluster physical resources and monitoring data of application resources',
   APPLICATION_WORKLOADS_VIEW_DESC:
-    'Grant permission to view applications, services, workloads and tasks in the project',
+    'Grant permission to view applications, services, workloads, tasks, grayscale releases and image builders in the project',
   APPLICATION_WORKLOADS_MANAGEMENT_DESC:
-    'Grant permission to create, edit and delete applications, services, workloads and tasks in the project',
+    'Grant permission to create, edit and delete applications, services, workloads, tasks, grayscale releases and image builders in the project',
   VOLUMES_VIEW_DESC: 'Grant permission to view project volumes',
   VOLUMES_MANAGEMENT_DESC:
     'Grant permission to create/edit/delete project volumes',

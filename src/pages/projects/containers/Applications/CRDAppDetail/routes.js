@@ -40,7 +40,6 @@ export default [
     clusterModule: 'servicemesh',
     exact: true,
   },
-
   {
     path: `${PATH}/grayrelease`,
     title: 'Grayscale Release',
