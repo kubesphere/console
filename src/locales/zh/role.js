@@ -140,9 +140,9 @@ export default {
   'Application Workloads View': '应用负载查看',
   'Application Workloads Management': '应用负载管理',
   APPLICATION_WORKLOADS_VIEW_DESC:
-    '查看项目里的应用，服务，工作负载，任务等资源',
+    '查看项目里的应用，服务，工作负载，任务，灰度发布，构建镜像等资源',
   APPLICATION_WORKLOADS_MANAGEMENT_DESC:
-    '创建/编辑/删除/项目里的应用，服务，工作负载，任务等资源',
+    '创建/编辑/删除/项目里的应用，服务，工作负载，任务，灰度发布，构建镜像等资源',
   'Volumes View': '存储卷查看',
   'Volumes Management': '存储卷管理',
   VOLUMES_VIEW_DESC: '查看项目里的存储卷',

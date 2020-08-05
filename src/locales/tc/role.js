@@ -137,9 +137,9 @@ export default {
   'Application Workloads View': '應用負載查看',
   'Application Workloads Management': '應用負載管理',
   APPLICATION_WORKLOADS_VIEW_DESC:
-    '查看項目裡的應用，服務，工作負載，任務等資源',
+    '查看項目裡的應用，服務，工作負載，任務，灰度发布，构建镜像等資源',
   APPLICATION_WORKLOADS_MANAGEMENT_DESC:
-    '創建/編輯/刪除/項目裡的應用，服務，工作負載，任務等資源',
+    '創建/編輯/刪除/項目裡的應用，服務，工作負載，任務，灰度发布，构建镜像等資源',
   'Volumes View': '儲存卷查看',
   'Volumes Management': '儲存卷管理',
   VOLUMES_VIEW_DESC: '查看項目裡的儲存卷',

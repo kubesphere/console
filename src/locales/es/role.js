@@ -265,9 +265,9 @@ export default {
   CLUSTER_MONITORING_VIEW_DESC:
     'Ver los recursos físicos del clúster y los datos de monitorización de los recursos de la aplicación.',
   APPLICATION_WORKLOADS_VIEW_DESC:
-    'Ver aplicaciones, servicios, workload y tareas en el proyecto.',
+    'Grant permission to view applications, services, workloads, tasks, grayscale releases and image builders in the project',
   APPLICATION_WORKLOADS_MANAGEMENT_DESC:
-    'Crear, editar y eliminar aplicaciones, servicios, workload y tareas en el proyecto.',
+    'Grant permission to create, edit and delete applications, services, workloads, tasks, grayscale releases and image builders in the project',
   VOLUMES_VIEW_DESC: 'Ver volúmenes de proyectos',
   VOLUMES_MANAGEMENT_DESC: 'Crear / editar / eliminar volúmenes de proyecto',
   SECRETS_VIEW_DESC: 'Ver secretos del proyecto',

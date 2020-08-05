@@ -39,7 +39,6 @@ export default [
     component: AppTemplate,
     exact: true,
   },
-
   {
     path: `${PATH}/env`,
     title: 'Environment Variables',
