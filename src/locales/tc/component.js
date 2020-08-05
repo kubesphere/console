@@ -108,12 +108,12 @@ export default {
     'Jenkins 更新中心，提供 Jenkins 插件的安裝包',
   'WEBHOOK-SERVER-SERVICE_DESC': '為 S2I 提供預設值和驗證 webhook',
 
-  ETCD_DESC: '一个可靠的分布式数据存储，能持久化存储集群配置',
+  ETCD_DESC: '一個可靠的分布式資料儲存，能夠持久化儲存集群配置',
   MYSQL_DESC:
-    '一个开源的数据库管理系统，让用户能够管理关系型数据库。关系数据库将数据保存在不同的表中，而不是将所有数据放在一个大仓库内',
-  TOWER_DESC: '一个可以在集群间通过代理方式创建网络连接的工具',
+    '一個開源的資料庫管理系統，讓用戶能夠管理關係型資料庫。關係資料庫將數據保存在不同的表中，而不是將所有數據放在一個大倉庫内',
+  TOWER_DESC: '一個可以在集群間通過代理方式創建網路連接的工具',
   'KUBE-SCHEDULER-SVC_DESC':
-    'Kubernetes 的调度器，将 Pod 调度到合适的 Node 节点上去',
+    'Kubernetes 的調度器，將 Pod 調度到合適的 Node 節點上去',
   'KUBE-CONTROLLER-MANAGER-SVC_DESC':
-    '由一系列的控制器组成，处理集群中常规任务的后台线程',
+    '由一系列的控制器組成，處理集群中常規任務的背景執行緒',
 }

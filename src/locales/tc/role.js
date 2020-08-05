@@ -36,8 +36,9 @@ export default {
   Cluster: '集群',
   Member: '成員',
 
-  'Role Identifier': '角色標識符',
+  'Role Identifier': '角色識別碼',
   'Edit Authorization': '編輯權限',
+  WORKSPACE_ROLE_NAME_TIP: '請設置一個唯一識別碼作為角色名稱。',
 
   'Create Project Role': '創建項目角色',
   'Edit Project Role': '編輯項目角色',
