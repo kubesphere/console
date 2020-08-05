@@ -316,9 +316,11 @@ class CICDs extends React.Component {
         cluster: this.cluster,
       })
       .finally(() => {
-        this.setState({ isSubmitting: false, showCreate: false }, () => {
-          this.getData()
-        })
+        setTimeout(() => {
+          this.setState({ isSubmitting: false, showCreate: false }, () => {
+            this.getData()
+          })
+        }, 1000)
       })
 
     if (!result) {
@@ -369,11 +371,10 @@ class CICDs extends React.Component {
     await this.store
       .deletePipeline(name, this.devops, this.cluster)
       .finally(() => {
-        this.setState({ isSubmitting: false })
+        this.setState({ isSubmitting: false, showDelete: false }, () => {
+          this.handleFetch()
+        })
       })
-
-    this.setState({ showDelete: false })
-    this.handleFetch()
   }
 
   getStatus() {
@@ -507,7 +508,11 @@ class CICDs extends React.Component {
               rowKey: 'name',
               devops: this.devops,
               cluster: this.cluster,
-              success: this.routing.query,
+              success: () => {
+                setTimeout(() => {
+                  this.handleFetch()
+                }, 1000)
+              },
             }),
         },
       ],
