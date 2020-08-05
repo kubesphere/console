@@ -107,4 +107,13 @@ export default {
   'UC-JENKINS-UPDATE-CENTER_DESC':
     'Jenkins 更新中心，提供 Jenkins 插件的安装包',
   'WEBHOOK-SERVER-SERVICE_DESC': '为 S2I 提供默认值和验证 webhook',
+
+  ETCD_DESC: '一个可靠的分布式数据存储，能持久化存储集群配置',
+  MYSQL_DESC:
+    '一个开源的数据库管理系统，让用户能够管理关系型数据库。关系数据库将数据保存在不同的表中，而不是将所有数据放在一个大仓库内',
+  TOWER_DESC: '一个可以在集群间通过代理方式创建网络连接的工具',
+  'KUBE-SCHEDULER-SVC_DESC':
+    'Kubernetes 的调度器，将 Pod 调度到合适的 Node 节点上去',
+  'KUBE-CONTROLLER-MANAGER-SVC_DESC':
+    '由一系列的控制器组成，处理集群中常规任务的后台线程',
 }

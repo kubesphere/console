@@ -44,7 +44,7 @@ export default {
   'KUBE-CONTROLLER-MANAGER_DESC':
     'A daemon that embeds the core control loops shipped with Kubernetes',
   'KUBE-SCHEDULER_DESC':
-    'The scheduler of Kubernetes that attaches the Pod to the appropriate node',
+    'The scheduler of Kubernetes that attaches the Pod to an appropriate node',
   'METRICS-SERVER_DESC':
     'Collect metrics from the Summary API, exposed by Kubelet on each node',
   'TILLER-DEPLOY_DESC':
@@ -113,7 +113,8 @@ export default {
   'ELASTICSEARCH-LOGGING-DISCOVERY_DESC':
     'Provides Elasticsearch cluster management services',
 
-  'LOGSIDECAR-INJECTOR_DESC': '为指定 Pod 自动注入落盘日志收集 Sidecar 容器',
+  'LOGSIDECAR-INJECTOR_DESC':
+    'Injects a sidecar container in a Pod for disk log collection',
 
   'CONTROLLER-MANAGER-METRICS-SERVICE_DESC':
     'Provides monitoring data for the s2i controller',
@@ -129,4 +130,14 @@ export default {
     'Jenkins update center that provides installation packages for Jenkins plugins',
   'WEBHOOK-SERVER-SERVICE_DESC':
     'Provides default values and validate webhook for s2i',
+
+  MYSQL_DESC:
+    'An open-source database management system that allows users to manage relational databases. Data in these databases are structured or organized in the form of tables or columns, instead of being stored in one big storeroom',
+  ETCD_DESC:
+    'A reliable distributed data store that persistently stores the cluster configuration',
+  TOWER_DESC: 'A tool for network connection between clusters through an agent',
+  'KUBE-SCHEDULER-SVC_DESC':
+    'The scheduler of Kubernetes that attaches the Pod to an appropriate node',
+  'KUBE-CONTROLLER-MANAGER-SVC_DESC':
+    'A daemon that embeds the core control loops shipped with Kubernetes',
 }
