@@ -30,8 +30,7 @@ export default {
   'Involved Projects': 'Proyectos involucrados',
   'Manage Organizations': 'Administrar organizaciones',
   'No Available Cluster': 'Clúster no disponible',
-  'Please input workspace name':
-    'Introduce el nombre del espacio de trabajo',
+  'Please input workspace name': 'Introduce el nombre del espacio de trabajo',
   'Project Number': 'Número de proyecto',
   'Remove from Workspace': 'Eliminar del espacio de trabajo',
   'The current name is not applicable.': 'El nombre actual no es aplicable.',

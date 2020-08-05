@@ -35,7 +35,8 @@ export default {
   'Sort By namespace_net_bytes_received': 'Ordenar por tráfico entrante',
   'Sort By namespace_net_bytes_transmitted': 'Ordenar por tráfico saliente',
   'Sort By workspace_memory_usage': 'Ordenar por uso de memoria (con cache)',
-  'Sort By workspace_memory_usage_wo_cache': 'Ordenar por uso de memoria (sin cache)',
+  'Sort By workspace_memory_usage_wo_cache':
+    'Ordenar por uso de memoria (sin cache)',
   'Sort By workspace_pod_count': 'Ordenar por número de Pods',
   'Sort By workspace_cpu_usage': 'Ordenar por uso de CPU',
   'Sort By workspace_net_bytes_transmitted': 'Ordenar por tráfico saliente',
@@ -44,5 +45,4 @@ export default {
   'Sort By workload_memory_usage_wo_cache': 'Ordenar por uso de memoria',
   'Sort By workload_net_bytes_transmitted': 'Ordenar por tráfico saliente',
   'Sort By workload_net_bytes_received': 'Ordenar por tráfico entrante',
-
 }
