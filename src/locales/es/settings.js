@@ -29,7 +29,8 @@ export default {
   'Third-party Login': 'Inicio de sesión de terceros',
   THIRD_PARTY_LOGIN_DESC:
     'Cuando se utiliza un servicio de terceros para iniciar sesión, los usuarios deben ingresar la información requerida. Después de eso, se creará un usuario local que está asociado con el usuario para el acceso seguro en el entorno.',
-  THIRD_PARTY_LOGIN_Q: '¿Qué servicios de terceros son compatibles para iniciar sesión?',
+  THIRD_PARTY_LOGIN_Q:
+    '¿Qué servicios de terceros son compatibles para iniciar sesión?',
   THIRD_PARTY_LOGIN_A: 'LDAP, AD, OAuth y Github OAuth son compatibles.',
   OAUTH_DESC:
     'OAuth es un estándar abierto que proporciona una forma fácil y segura para que los usuarios otorguen acceso a sus recursos.',
