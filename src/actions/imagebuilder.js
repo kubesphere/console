@@ -76,7 +76,6 @@ export default {
         onOk: data => {
           const environment = filterImageEnv(data, v => !isEmpty(v))
           set(data, 'spec.config.environment', environment)
-
           store.updateBuilder(data, detail).then(() => {
             Modal.close(modal)
             success && success()
@@ -85,6 +84,7 @@ export default {
         detail: toJS(detail._originData),
         modal: RerunModal,
         cluster: detail.cluster,
+        namespace: detail.namespace,
         store,
         ...props,
       })

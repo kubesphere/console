@@ -101,7 +101,7 @@ export default class DevOpsEditModal extends React.Component {
           <Input name="creator" disabled />
         </Form.Item>
         <Form.Item label={t('Alias')} desc={t('ALIAS_DESC')}>
-          <Input name="aliasName" />
+          <Input name="aliasName" maxLength={63} />
         </Form.Item>
         <Form.Item label={t('Description')} desc={t('DESCRIPTION_DESC')}>
           <TextArea maxLength={256} name="description" />

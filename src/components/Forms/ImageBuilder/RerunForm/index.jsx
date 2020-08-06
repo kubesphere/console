@@ -94,7 +94,14 @@ export default class RerunForm extends React.Component {
   }
 
   render() {
-    const { visible, isSubmitting, onCancel, cluster, detail } = this.props
+    const {
+      visible,
+      isSubmitting,
+      onCancel,
+      cluster,
+      detail,
+      namespace,
+    } = this.props
     const isB2i = get(detail, 'spec.config.isBinaryURL')
 
     return (
@@ -115,6 +122,7 @@ export default class RerunForm extends React.Component {
             formTemplate={detail}
             formRef={this.content}
             cluster={cluster}
+            namespace={namespace}
             mode="edit"
           />
         ) : (
@@ -122,6 +130,7 @@ export default class RerunForm extends React.Component {
             formTemplate={detail}
             formRef={this.content}
             cluster={cluster}
+            namespace={namespace}
             mode="edit"
           />
         )}

@@ -83,7 +83,7 @@ export default class BaseInfo extends React.Component {
           </Column>
           <Column>
             <Form.Item label={t('Alias')} desc={t('ALIAS_DESC')}>
-              <Input name="policy.policy_name" />
+              <Input name="policy.policy_name" maxLength={63} />
             </Form.Item>
           </Column>
         </Columns>
