@@ -266,8 +266,13 @@ class BaseInfo extends React.Component {
 
   renderNetwork() {
     const workspace = this.store.detail
-    if (!globals.app.isMultiCluster && globals.app.hasKSModule('network')) {
+    if (!globals.app.isMultiCluster) {
+      if (!globals.app.hasKSModule('network')) {
+        return null
+      }
+
       const networkIsolation = workspace.networkIsolation || false
+
       return (
         <Panel className={styles.network} title={t('Network Policy')}>
           <div className={styles.item}>
