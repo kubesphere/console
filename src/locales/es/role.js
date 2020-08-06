@@ -77,7 +77,7 @@ export default {
   'Network Policies Management': 'Gestión de políticas de red',
   'Network Policies View': 'Vista de políticas de red',
   'No Authorization': 'Sin autorización',
-  'Nodes Management': 'Gestión de nodos',
+  'Nodes Management': 'Nodos',
   'Nodes View': 'Vista de nodos',
   'Pipelines Management': 'Gestión de pipelines',
   'Pipelines View': 'Vista de pipelines',

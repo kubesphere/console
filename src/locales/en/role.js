@@ -77,7 +77,7 @@ export default {
   'Network Policies Management': 'Network Policies Management',
   'Network Policies View': 'Network Policies View',
   'No Authorization': 'No Authorization',
-  'Nodes Management': 'Nodes Management',
+  'Nodes Management': 'Nodes',
   'Nodes View': 'Nodes View',
   'Pipelines Management': 'Pipelines Management',
   'Pipelines View': 'Pipelines View',
