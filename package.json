@@ -37,7 +37,7 @@
     "koa-router": "^7.3.0",
     "koa-session2": "^2.2.6",
     "koa-static": "^4.0.2",
-    "lodash": "^4.17.13",
+    "lodash": "^4.17.19",
     "markdown-it": "^8.4.1",
     "memoizee": "^0.4.14",
     "mobx": "^4.15.4",
