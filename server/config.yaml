@@ -317,7 +317,7 @@ client:
             name: grayrelease,
             title: Grayscale Release,
             icon: bird,
-            authKey: applications,
+            authKey: grayscale-release,
             clusterModule: servicemesh,
           }
         - {

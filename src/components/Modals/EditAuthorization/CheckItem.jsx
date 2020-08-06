@@ -17,11 +17,11 @@
  */
 
 import React, { Component } from 'react'
+import { get, isEmpty } from 'lodash'
 
 import { Checkbox } from '@pitrix/lego-ui'
 import { Text, Tag } from 'components/Base'
 
-import { isEmpty } from 'lodash'
 import styles from './index.scss'
 
 export default class CheckItem extends Component {
@@ -68,6 +68,7 @@ export default class CheckItem extends Component {
 
   render() {
     const { roleTemplates, roleTemplatesMap, data } = this.props
+
     return (
       <div className={styles.checkItem} onClick={this.handleCheck}>
         <Checkbox
@@ -85,7 +86,7 @@ export default class CheckItem extends Component {
             {t('Depend on')}:{' '}
             {data.dependencies.map(item => (
               <Tag className={styles.tag} type="info" key={item}>
-                {t(roleTemplatesMap[item].aliasName)}
+                {t(get(roleTemplatesMap, `[${item}].aliasName`))}
               </Tag>
             ))}
           </div>

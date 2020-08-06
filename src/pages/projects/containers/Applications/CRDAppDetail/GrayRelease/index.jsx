@@ -53,6 +53,17 @@ class GrayRelease extends Base {
     }
   }
 
+  get canCreate() {
+    const { cluster, workspace, namespace: project } = this.props.match.params
+    return globals.app.hasPermission({
+      cluster,
+      workspace,
+      project,
+      module: 'grayscale-release',
+      action: 'create',
+    })
+  }
+
   getData() {
     const { selector } = toJS(this.detailStore.detail)
     const params = {
@@ -86,9 +97,11 @@ class GrayRelease extends Base {
             <Link
               to={`/${workspace}/clusters/${cluster}/projects/${namespace}/grayrelease/cates`}
             >
-              <Button type="control">
-                {t('Create Grayscale Release Job')}
-              </Button>
+              {this.canCreate && (
+                <Button type="control">
+                  {t('Create Grayscale Release Job')}
+                </Button>
+              )}
             </Link>
           </Column>
         </Columns>
