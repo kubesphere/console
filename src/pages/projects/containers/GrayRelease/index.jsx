@@ -51,38 +51,6 @@ class GrayRelease extends React.Component {
     return this.props.rootStore.routing
   }
 
-  get canDeployComposingApp() {
-    const { workspace, cluster, namespace: project } = this.props.match.params
-    const canCreateDeployment = globals.app
-      .getActions({
-        workspace,
-        cluster,
-        project,
-        module: 'deployments',
-      })
-      .includes('create')
-
-    const canCreateService = globals.app
-      .getActions({
-        workspace,
-        cluster,
-        project,
-        module: 'services',
-      })
-      .includes('create')
-
-    const canCreateApp = globals.app
-      .getActions({
-        workspace,
-        cluster,
-        project,
-        module: 'applications',
-      })
-      .includes('edit')
-
-    return canCreateApp && canCreateDeployment && canCreateService
-  }
-
   hideDeployAppModal = () => {
     this.setState({ showDeployApp: false, sampleApp: '' })
   }

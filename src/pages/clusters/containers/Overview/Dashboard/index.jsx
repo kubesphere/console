@@ -59,14 +59,14 @@ export default class Dashboard extends React.Component {
             )}
             <ServiceComponents cluster={match.params.cluster} />
             <ResourcesUsage cluster={match.params.cluster} />
-            <Tools cluster={match.params.cluster} />
+            {globals.app.isPlatformAdmin && (
+              <Tools cluster={match.params.cluster} />
+            )}
           </Column>
-          {globals.app.isPlatformAdmin && (
-            <Column className="is-narrow is-4">
-              <KubernetesStatus cluster={match.params.cluster} />
-              <ClusterNodes cluster={match.params.cluster} />
-            </Column>
-          )}
+          <Column className="is-narrow is-4">
+            <KubernetesStatus cluster={match.params.cluster} />
+            <ClusterNodes cluster={match.params.cluster} />
+          </Column>
         </Columns>
       </div>
     )

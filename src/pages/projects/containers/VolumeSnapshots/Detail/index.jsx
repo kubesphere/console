@@ -64,17 +64,29 @@ export default class VolumeSnapshotDetail extends React.Component {
     this.store.fetchDetail(this.props.match.params)
   }
 
+  showApply = () => {
+    const { cluster, namespace } = this.props.match.params
+    return globals.app.hasPermission({
+      module: 'volumes',
+      action: 'create',
+      project: namespace,
+      cluster,
+    })
+  }
+
   getOperations = () => [
     {
       key: 'apply',
       icon: 'storage',
       text: t('Apply'),
-      action: 'create',
+      show: this.showApply() && this.store.detail.backupStatus === 'success',
       onClick: () => {
+        const { cluster, namespace } = this.props.match.params
         this.trigger('volume.create', {
           fromSnapshot: true,
           module: 'persistentvolumeclaims',
-          namespace: this.props.match.params.namespace,
+          cluster,
+          namespace,
           store: new VolumeStore(),
           noCodeEdit: true,
           extendformTemplate: {

@@ -75,9 +75,13 @@ export default class Categories extends React.Component {
 
   get canCreate() {
     const { cluster, workspace, namespace: project } = this.props.match.params
-    return globals.app
-      .getActions({ cluster, workspace, project, module: 'applications' })
-      .includes('edit')
+    return globals.app.hasPermission({
+      cluster,
+      workspace,
+      project,
+      module: 'grayscale-release',
+      action: 'create',
+    })
   }
 
   get serviceMeshEnable() {
