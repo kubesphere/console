@@ -271,9 +271,9 @@ export default {
   LABEL_FORMAT_DESC:
     '标签的 key 和 value 最长 63 个字符，key 如果包含域名, 则最长 253 字符。只能包含大小写字母、数字, 分隔符("-")，下划线(_)及点(.)，且必须以数字或大小写开头和结尾',
   DESCRIPTION_DESC: '描述信息不超过 256 个字符',
-  PROJECT_DESC: '将根据项目进行资源进行分组, 可以按项目对资源进行查看管理',
+  PROJECT_DESC: '将根据项目资源进行分组, 可以按项目对资源进行查看管理',
   'MULTI-CLUSTER_PROJECT_CREATE_DESC':
-    '将根据项目进行资源进行分组, 可以按项目对资源进行查看管理',
+    '将根据项目资源进行分组, 可以按项目对资源进行查看管理',
   Description: '描述信息',
 
   'Please input name': '请输入名称',
