@@ -62,7 +62,7 @@ export default {
   completed: 'completed',
   Completed: 'Completed',
   Configuration: 'Configuration',
-  'Configuration Center': 'Configuration Center',
+  Configurations: 'Configurations',
   Confirm: 'Confirm',
   Container: 'Container',
   Containers: 'Containers',
@@ -288,7 +288,7 @@ export default {
   'Select All': 'Select All',
   'Select Key': 'Select Key',
   Service: 'Service',
-  'Service Components': 'Service Components',
+  Components: 'Components',
   'Service Settings': 'Service Settings',
   'Session timeout or this account is logged in elsewhere, please login again':
     'Session timeout or this account is logged in elsewhere, please login again',
@@ -472,7 +472,7 @@ export default {
 
   CONDITION_STATUS_ANALYSE: 'Conditions',
 
-  NAV_PROJECTS: 'Project Management',
+  NAV_PROJECTS: 'Projects',
   NAV_ACCOUNTS: 'Accounts',
   ALERT_WARNING: 'Warning',
 

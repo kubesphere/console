@@ -64,11 +64,11 @@ export default {
   Workbench: '工作台',
   'Access Control': '訪問控制',
   'App Templates': '應用模板',
-  'Service Components': '服務組件',
+  Components: '服務組件',
   Infrastructure: '基礎設施',
   'Basic Information': '基本資訊',
   'Monitoring & Alerting': '監控告警',
-  'Configuration Center': '配置中心',
+  Configurations: '配置中心',
   'Project Settings': '項目設置',
   'Grayscale Release': '灰度發佈',
 

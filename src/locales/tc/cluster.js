@@ -27,11 +27,11 @@ export default {
 
   'Cluster Name': '集群名稱',
   'Cluster Management': '集群管理',
-  'Nodes Management': '節點管理',
+  Nodes: '節點管理',
   'Node Types': '節點類型',
-  'Network Management': '網路管理',
-  'Custom Resources': '自定義資源 CRD',
-  'Storage Management': '儲存管理',
+  Network: '網路管理',
+  CRDs: '自定義資源 CRD',
+  Storage: '儲存管理',
   'Cluster Settings': '集群設置',
   Snapshots: '儲存卷快照',
   'IP Ranges': 'IP 地址範圍',
@@ -188,4 +188,9 @@ export default {
   REMOVE_WORKSPACE_CONFIRM_TITLE: '確定移除授權？',
   REMOVE_WORKSPACE_CONFIRM_DESC:
     '確定移除對企業空間 {resource} 的授權？移除集群對企業空間的授權，將刪除該企業空間在目前集群下的所有資源！',
+
+  'Host Cluster': 'Host 集群',
+  'Host Clusters': 'Host 集群',
+  'Member Cluster': '成员集群',
+  'Member Clusters': '成员集群',
 }

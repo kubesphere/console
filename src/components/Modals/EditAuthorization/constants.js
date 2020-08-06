@@ -66,11 +66,11 @@ export const ROLE_MODULES = {
       icon: 'appcenter',
     },
     {
-      name: 'Storage Management',
+      name: 'Storage',
       icon: 'storage',
     },
     {
-      name: 'Configuration Center',
+      name: 'Configurations',
       icon: 'hammer',
     },
     {
@@ -110,11 +110,11 @@ export const ROLE_MODULES = {
       icon: 'project',
     },
     {
-      name: 'Network Management',
+      name: 'Network',
       icon: 'earth',
     },
     {
-      name: 'Storage Management',
+      name: 'Storage',
       icon: 'database',
     },
     {

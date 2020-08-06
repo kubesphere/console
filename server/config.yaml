@@ -91,11 +91,11 @@ client:
           skipAuth: true
           showInDisable: true
         - name: nodes
-          title: Nodes Management
+          title: Nodes
           icon: nodes
           children:
             - { name: nodes, title: Cluster Nodes }
-        - { name: components, title: Service Components, icon: components }
+        - { name: components, title: Components, icon: components }
         - { name: projects, title: NAV_PROJECTS, icon: project }
         - name: app-workloads
           title: Application Workloads
@@ -116,13 +116,13 @@ client:
             - { name: services, title: Services }
             - { name: ingresses, title: Routes }
         - name: config
-          title: Configuration Center
+          title: Configurations
           icon: hammer
           children:
             - { name: secrets, title: Secrets }
             - { name: configmaps, title: ConfigMaps }
         - name: network
-          title: Network Management
+          title: Network
           icon: earth
           children:
             - {
@@ -133,12 +133,12 @@ client:
         # Contains dangerous operations, only available for platform-admin.
         - {
             name: customresources,
-            title: Custom Resources,
+            title: CRDs,
             icon: select,
             admin: true,
           }
         - name: storage
-          title: Storage Management
+          title: Storage
           icon: database
           children:
             - { name: volumes, title: Volumes }
@@ -302,13 +302,13 @@ client:
             - { name: ingresses, title: Routes }
             - { name: pods, title: Pods }
         - name: storage
-          title: Storage Management
+          title: Storage
           icon: database
           children:
             - { name: volumes, title: Volumes }
             - { name: volume-snapshots, title: Snapshots }
         - name: config
-          title: Configuration Center
+          title: Configurations
           icon: hammer
           children:
             - { name: secrets, title: Secrets }
@@ -378,7 +378,7 @@ client:
             - { name: ingresses, title: Routes }
         - { name: volumes, title: Volumes, icon: storage }
         - name: config
-          title: Configuration Center
+          title: Configurations
           icon: hammer
           children:
             - { name: secrets, title: Secrets }

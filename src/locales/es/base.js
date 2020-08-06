@@ -62,7 +62,7 @@ export default {
   completed: 'finalizado',
   Completed: 'Finalizado',
   Configuration: 'Configuración',
-  'Configuration Center': 'Centro de configuración',
+  Configurations: 'Centro de configuración',
   Confirm: 'Confirmar',
   Container: 'Contenedor',
   Containers: 'Contenedores',
@@ -289,7 +289,7 @@ export default {
   'Select All': 'Seleccionar todo',
   'Select Key': 'Seleccionar clave',
   Service: 'Servicio',
-  'Service Components': 'Componentes de servicio',
+  Components: 'Componentes',
   'Service Settings': 'Configuraciones de servicio',
   'Session timeout or this account is logged in elsewhere, please login again':
     'Timeout de sesión o se ha iniciado sesión con esta cuenta en otro lugar, vuelve a iniciar sesión',
