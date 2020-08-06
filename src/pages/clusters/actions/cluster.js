@@ -46,31 +46,30 @@ export default {
           )
 
           const requests = []
-          if (data.public === false) {
-            if (data.addWorkspaces) {
-              data.addWorkspaces.forEach(item => {
-                const formData = {}
-                const clusters = item.clusters || []
-                set(
-                  formData,
-                  'spec.placement.clusters',
-                  uniqBy([...clusters, { name: cluster.name }], 'name')
-                )
-                requests.push(workspaceStore.patch(item, formData))
-              })
-            }
-            if (data.deleteWorkspaces) {
-              data.deleteWorkspaces.forEach(item => {
-                const formData = {}
-                const clusters = item.clusters || []
-                set(
-                  formData,
-                  'spec.placement.clusters',
-                  clusters.filter(({ name }) => name !== cluster.name)
-                )
-                requests.push(workspaceStore.patch(item, formData))
-              })
-            }
+
+          if (data.addWorkspaces) {
+            data.addWorkspaces.forEach(item => {
+              const formData = {}
+              const clusters = item.clusters || []
+              set(
+                formData,
+                'spec.placement.clusters',
+                uniqBy([...clusters, { name: cluster.name }], 'name')
+              )
+              requests.push(workspaceStore.patch(item, formData))
+            })
+          }
+          if (data.deleteWorkspaces) {
+            data.deleteWorkspaces.forEach(item => {
+              const formData = {}
+              const clusters = item.clusters || []
+              set(
+                formData,
+                'spec.placement.clusters',
+                clusters.filter(({ name }) => name !== cluster.name)
+              )
+              requests.push(workspaceStore.patch(item, formData))
+            })
           }
 
           await Promise.all(requests)

@@ -20,7 +20,7 @@ import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import Banner from 'components/Cards/Banner'
-import { Alert, Avatar, Button, Panel, Text } from 'components/Base'
+import { Avatar, Button, Panel, Text } from 'components/Base'
 import Table from 'components/Tables/Base'
 import { getLocalTime, getDisplayName } from 'utils'
 import { trigger } from 'utils/action'
@@ -36,9 +36,7 @@ export default class Overview extends React.Component {
   workspaceStore = new WorkspaceStore()
 
   componentDidMount() {
-    if (!this.isClusterPublicVisible) {
-      this.getData()
-    }
+    this.getData()
   }
 
   get cluster() {
@@ -80,9 +78,8 @@ export default class Overview extends React.Component {
   afterEdit = async () => {
     const { cluster } = this.props.match.params
     await this.cluster.fetchDetail({ name: cluster })
-    if (!this.isClusterPublicVisible) {
-      this.getData()
-    }
+
+    this.getData()
   }
 
   getColumns() {
@@ -121,16 +118,6 @@ export default class Overview extends React.Component {
     })
 
   renderVisibility() {
-    if (this.isClusterPublicVisible) {
-      return (
-        <Alert
-          className="margin-t12"
-          title={t('The current cluster is public')}
-          message={t('PUBLIC_CLUSTER_DESC')}
-        />
-      )
-    }
-
     const {
       data,
       total,

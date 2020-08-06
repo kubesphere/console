@@ -211,9 +211,7 @@ export default class ClusterVisibility extends React.Component {
                       key={item.name}
                       data={item}
                       type="authed"
-                      disabled={
-                        isPublic || globals.config.systemWorkspace === item.name
-                      }
+                      disabled={globals.config.systemWorkspace === item.name}
                       onClick={this.handleWorkspaceUnAuth}
                     />
                   ))}
