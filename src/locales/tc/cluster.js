@@ -188,4 +188,9 @@ export default {
   REMOVE_WORKSPACE_CONFIRM_TITLE: '確定移除授權？',
   REMOVE_WORKSPACE_CONFIRM_DESC:
     '確定移除對企業空間 {resource} 的授權？移除集群對企業空間的授權，將刪除該企業空間在目前集群下的所有資源！',
+
+  'Host Cluster': 'Host 集群',
+  'Host Clusters': 'Host 集群',
+  'Member Cluster': '成员集群',
+  'Member Clusters': '成员集群',
 }
