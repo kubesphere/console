@@ -169,7 +169,7 @@
     "rimraf": "^2.6.2",
     "sass-loader": "^7.1.0",
     "speed-measure-webpack-plugin": "^1.2.3",
-    "standard-version": "^7.1.0",
+    "standard-version": "^8.0.1",
     "style-loader": "^0.23.1",
     "url-loader": "0.5.9",
     "webpack": "^4.41.4",
