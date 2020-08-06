@@ -257,7 +257,7 @@ export default {
 
   START_UPLOAD: 'Subir',
 
-  APP_ICON_NOTE: 'JPG o PNG menor o igual a 200px * 200px',
+  APP_ICON_NOTE: 'JPG o PNG menor o igual a 96px * 96px',
 
   MISS_FILE_NOTE: 'No se encuentra el fichero {file}',
 

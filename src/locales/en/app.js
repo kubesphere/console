@@ -169,8 +169,8 @@ export default {
 
   APP_DETAIL_DESC: 'Very helpful when searching applications',
 
-  APP_ICON_FORMAT: 'Format: png Background Transparency Best',
-  APP_ICON_SIZE: 'Graphic size: 96px*96*px',
+  APP_ICON_FORMAT: 'Format: png; transparent background preferred',
+  APP_ICON_SIZE: 'Image size: 96px*96px',
 
   APP_STORE_DESC: 'Manage applications of the store.',
 
@@ -249,7 +249,7 @@ export default {
 
   START_UPLOAD: 'Upload',
 
-  APP_ICON_NOTE: 'JPG or PNG within 96px * 96px',
+  APP_ICON_NOTE: 'JPG or PNG within 96px*96px',
 
   MISS_FILE_NOTE: 'The file {file} not found',
 
