@@ -19,6 +19,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Input, Select, Columns, Column } from '@pitrix/lego-ui'
+import { cloneDeep } from 'lodash'
 import { Form } from 'components/Base'
 import { getBrowserLang } from 'utils'
 import cookie from 'utils/cookie'
@@ -30,8 +31,26 @@ export default class BaseInfo extends React.Component {
     registerUpdate: PropTypes.func,
   }
 
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      formData: this.getInitialData(),
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.formData !== this.props.formData) {
+      this.setState({ formData: this.getInitialData() })
+    }
+  }
+
   get name() {
     return 'basicInfo'
+  }
+
+  getInitialData() {
+    return cloneDeep(this.props.formData)
   }
 
   resetData = () => {
@@ -45,11 +64,15 @@ export default class BaseInfo extends React.Component {
   }
 
   render() {
-    const { formRef, formData } = this.props
+    const { formRef } = this.props
     return (
       <div className={styles.wrapper}>
         <div className="h4">{t('Basic Info')}</div>
-        <Form data={formData} ref={formRef} onChange={this.handleFormChange}>
+        <Form
+          ref={formRef}
+          data={this.state.formData}
+          onChange={this.handleFormChange}
+        >
           <Columns>
             <Column>
               <Form.Item label={t('User Name')}>
