@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { isEmpty } from 'lodash'
+import { isEmpty, trim } from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
@@ -75,7 +75,7 @@ export default class Search extends React.Component {
     if (e.keyCode === 13) {
       const { value } = this.state
       if (!isEmpty(value)) {
-        this.props.onSearch(this.state.value)
+        this.props.onSearch(trim(this.state.value))
       }
     }
   }
