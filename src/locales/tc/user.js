@@ -57,6 +57,7 @@ export default {
   'Repeat the New Password': '重復新的密碼',
 
   USER_ACTIVE: '活躍',
+  USER_AUTHLIMITEXCEEDED: '限制登录',
   USER_PENDING: '等待中',
   USER_DISABLED: '已禁用',
   USER_DESC:
