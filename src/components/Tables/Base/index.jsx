@@ -21,7 +21,7 @@ import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import isEqual from 'react-fast-compare'
 import { toJS } from 'mobx'
-import { get, find, isUndefined, isEmpty } from 'lodash'
+import { get, find, isUndefined, isEmpty, trim } from 'lodash'
 import {
   Icon,
   Table,
@@ -224,7 +224,7 @@ export default class WorkloadTable extends React.Component {
     tags.forEach(n => {
       // transfer keyword to name
       n.filter = n.filter === 'keyword' ? 'name' : n.filter
-      filters[n.filter] = n.value
+      filters[n.filter] = trim(n.value)
     })
 
     if (!isEqual(filters, this.props.filters)) {
