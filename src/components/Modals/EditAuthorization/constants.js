@@ -92,6 +92,10 @@ export const ROLE_MODULES = {
       icon: 'application',
     },
     {
+      name: 'Credentials Management',
+      icon: 'key',
+    },
+    {
       name: 'Access Control',
       icon: 'human',
     },
