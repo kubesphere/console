@@ -67,6 +67,7 @@ export default class StorageClasses extends React.Component {
             icon={ICON_TYPES[this.module]}
             to={`${prefix}/${name}`}
             title={getDisplayName(record)}
+            desc={record.description}
           />
         ),
       },

@@ -70,6 +70,16 @@ export default class BaseInfo extends React.Component {
               </Form.Item>
             </Column>
             <Column>
+              <Form.Item label={t('Alias')} desc={t('ALIAS_DESC')}>
+                <Input
+                  name="metadata.annotations['kubesphere.io/alias-name']"
+                  maxLength={63}
+                />
+              </Form.Item>
+            </Column>
+          </Columns>
+          <Columns>
+            <Column>
               <Form.Item label={t('Description')} desc={t('DESCRIPTION_DESC')}>
                 <TextArea
                   name="metadata.annotations['kubesphere.io/description']"
