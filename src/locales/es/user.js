@@ -64,6 +64,7 @@ export default {
     'Su contraseña debe cumplir con los siguientes requisitos',
   user_active: 'Activo',
   USER_ACTIVE: 'Activo',
+  USER_AUTHLIMITEXCEEDED: 'Login Restricted',
   USER_PENDING: 'Pendiente',
   USER_DISABLED: 'Deshabilitado',
   USER_NAME_DESC:

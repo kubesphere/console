@@ -65,6 +65,7 @@ export default {
 
   user_active: 'Active',
   USER_ACTIVE: 'Active',
+  USER_AUTHLIMITEXCEEDED: 'Login Restricted',
   USER_PENDING: 'Pending',
   USER_DISABLED: 'Disabled',
   USER_NAME_DESC: 'Username can only contain lowercase letters and numbers.',
