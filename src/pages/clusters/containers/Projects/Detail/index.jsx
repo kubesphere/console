@@ -99,6 +99,7 @@ export default class ProjectDetail extends React.Component {
           this.trigger('resource.delete', {
             type: t(this.name),
             detail: this.store.detail,
+            success: () => this.routing.push(this.listUrl),
           }),
       },
     ]
