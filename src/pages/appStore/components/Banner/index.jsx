@@ -30,6 +30,7 @@ export default class Banner extends React.PureComponent {
     className: PropTypes.string,
     children: PropTypes.node,
   }
+
   get isAppsPage() {
     return location.pathname === '/apps'
   }

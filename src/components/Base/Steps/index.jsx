@@ -51,7 +51,8 @@ export default class Steps extends React.Component {
     const { current } = this.props
     if (index === current) {
       return 'current'
-    } else if (index < current) {
+    }
+    if (index < current) {
       return 'finished'
     }
 

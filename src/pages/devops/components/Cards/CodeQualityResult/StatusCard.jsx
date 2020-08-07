@@ -30,6 +30,7 @@ export default class CodeStatusCard extends React.PureComponent {
     value: 0,
     url: '',
   }
+
   render() {
     const { hasIcon, title, value, resultClass, unit, url } = this.props
     const classContent = CLASSLISTS[parseInt(resultClass, 10) - 1]

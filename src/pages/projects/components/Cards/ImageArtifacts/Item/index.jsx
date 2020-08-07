@@ -33,6 +33,7 @@ export default class ImageRunRecords extends React.Component {
       content: t('Copy Successfully'),
     })
   }
+
   render() {
     const {
       imageName,

@@ -19,7 +19,7 @@ import React from 'react'
 import { isFunction } from 'lodash'
 import { Icon } from '@pitrix/lego-ui'
 import { toJS } from 'mobx'
-import TableColumnStyleModal from '../../../components/TableColumnStyleModal'
+import TableColumnStyleModal from '../../TableColumnStyleModal'
 
 import styles from './index.scss'
 

@@ -20,7 +20,7 @@ import { pick } from 'lodash'
 import { Modal, Form } from 'components/Base'
 import { Select, Columns, Column } from '@pitrix/lego-ui'
 import NumberInput from 'components/Inputs/NumberInput'
-import ColorSelector from '../../components/FormInput/ColorSelector'
+import ColorSelector from '../FormInput/ColorSelector'
 
 import styles from './index.scss'
 

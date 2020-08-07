@@ -76,7 +76,8 @@ export default class ScrollLoad extends React.Component {
         loading: false,
         loadMore: isRemainingData(props),
       }
-    } else if (props.loading !== state.loading) {
+    }
+    if (props.loading !== state.loading) {
       return {
         loading: props.loading,
       }

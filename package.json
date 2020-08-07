@@ -88,7 +88,7 @@
     "test:e2e": "cypress run",
     "serve": "NODE_ENV=production node server/server.js",
     "lego": "webpack -p --config scripts/webpack.lego.js",
-    "lint": "eslint ./src",
+    "lint": "eslint src/**/*.jsx src/**/*.js",
     "postinstall": "rimraf .cache-loader",
     "prebuild": "rimraf dist",
     "release": "standard-version"

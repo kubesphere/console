@@ -34,6 +34,7 @@ export default class TextPreview extends React.Component {
     hideToolbar: PropTypes.bool,
     hideOverlayBtns: PropTypes.bool,
   }
+
   static defaultProps = {
     files: {},
     type: 'selectFiles',
