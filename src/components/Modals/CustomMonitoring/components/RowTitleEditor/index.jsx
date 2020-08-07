@@ -42,6 +42,7 @@ export default class RowTitleEditor extends React.Component {
   onBlur = () => {
     this.setState({ editing: false })
   }
+
   onKeyUp = e => {
     const isEnter = e.keyCode === 13
     isEnter && this.setState({ editing: false })

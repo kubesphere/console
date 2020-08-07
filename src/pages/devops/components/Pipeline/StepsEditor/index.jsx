@@ -57,6 +57,7 @@ export default class StepsEditor extends React.Component {
 
   @observable
   zIndex = ''
+
   @observable
   isEditMode = false
 

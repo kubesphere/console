@@ -12,7 +12,7 @@ export default class Metadata extends React.Component {
   }
 
   onCollapsed(item) {
-    const data = Object.assign({}, item, { collapsed: !item.collapsed })
+    const data = { ...item, collapsed: !item.collapsed }
     this.setState({ data })
   }
 

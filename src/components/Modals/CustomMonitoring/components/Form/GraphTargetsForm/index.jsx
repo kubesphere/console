@@ -22,7 +22,7 @@ import { Form } from 'components/Base'
 import { Input, Select } from '@pitrix/lego-ui'
 
 import CustomMonitorMetircQueryInput from '../../MetircQueryInput'
-import FormItemContainer from '../../Form/ItemContianer'
+import FormItemContainer from '../ItemContianer'
 import Field from '../Field'
 
 import styles from './index.scss'

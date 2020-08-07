@@ -73,8 +73,10 @@ export default class KubernetesDeploy extends React.Component {
 
   @observable
   dockerCredentials = [{ key: 'default' }]
+
   @observable
   isShowAdvenced = false
+
   @observable
   isShowDetail = false
 

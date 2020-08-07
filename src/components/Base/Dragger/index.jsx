@@ -117,10 +117,13 @@ export default class Dragger extends React.Component {
 
   @observable
   scale = 1
+
   @observable
   translateX = 30
+
   @observable
   translateY = 60
+
   @observable
   isFullscreen = false
 
@@ -168,22 +171,19 @@ export default class Dragger extends React.Component {
       const contentWidth = this.content.clientWidth * this.scale
       const contentHeight = this.content.clientHeight * this.scale
 
-      if (clientX < this.translateX) {
-        this.translateX = this.translateX
-      } else if (clientX > this.translateX + contentWidth) {
+      if (clientX > this.translateX + contentWidth) {
         this.translateX =
           -(deltaScale * this.content.clientWidth) + this.translateX
-      } else {
+      } else if (clientX >= this.translateX) {
         this.translateX =
           -(deltaScale * (clientX - this.translateX)) / this.scale +
           this.translateX
       }
-      if (clientY < this.translateY) {
-        this.translateY = this.translateY
-      } else if (clientY > this.translateY + contentHeight) {
+
+      if (clientY > this.translateY + contentHeight) {
         this.translateY =
           -(deltaScale * this.content.clientHeight) + this.translateY
-      } else {
+      } else if (clientY >= this.translateY) {
         this.translateY =
           (-deltaScale * (clientY - this.translateY)) / this.scale +
           this.translateY

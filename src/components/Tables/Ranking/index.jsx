@@ -39,11 +39,10 @@ export const THEME = {
 export default class RankingTable extends React.Component {
   get columns() {
     const sort_metric = get(this, 'props.store.sort_metric', '')
-    return this.props.columns.map(column =>
-      Object.assign({}, column, {
-        className: column.sort_metric === sort_metric ? styles.rankCol : '',
-      })
-    )
+    return this.props.columns.map(column => ({
+      ...column,
+      className: column.sort_metric === sort_metric ? styles.rankCol : '',
+    }))
   }
 
   render() {

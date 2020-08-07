@@ -45,6 +45,7 @@ export default class Card extends React.PureComponent {
 
     onSelect(component, !value)
   }
+
   renderActions() {
     const { value, component, loading } = this.props
 

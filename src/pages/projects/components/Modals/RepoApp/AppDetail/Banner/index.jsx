@@ -30,6 +30,7 @@ class Banner extends PureComponent {
     icon: PropTypes.string,
     onClickBack: PropTypes.func,
   }
+
   handleClickBack = () => {
     this.props.onClickBack ? this.props.onClickBack() : history.back()
   }

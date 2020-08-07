@@ -67,6 +67,7 @@ export default class PipelineLog extends React.Component {
 
   @observable
   activeNodeIndex = [0, 0] // lineindex, colunmIndex
+
   @observable
   refreshFlag = true
 

@@ -26,6 +26,7 @@ export default class TrafficCard extends React.Component {
   static propTypes = {
     metrics: PropTypes.array,
   }
+
   static defaultProps = {
     metrics: [],
   }
