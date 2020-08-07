@@ -403,6 +403,9 @@ const PodsMapper = item => ({
 
 const EventsMapper = item => {
   const now = Date.now()
+
+  item.lastTimestamp = item.lastTimestamp || now
+
   const age =
     item.count > 1
       ? `${moment(item.lastTimestamp).to(now, true)} (x${
@@ -1072,7 +1075,7 @@ const ClusterMapper = item => {
 const FederatedMapper = resourceMapper => item => {
   const baseInfo = getBaseInfo(item)
   const overrides = get(item, 'spec.overrides', [])
-  const template = get(item, 'spec.template', {})
+  const template = cloneDeep(get(item, 'spec.template', {}))
   const clusters = get(item, 'spec.placement.clusters', [])
   const overrideClusterMap = keyBy(overrides, 'clusterName')
   const clusterTemplates = {}
