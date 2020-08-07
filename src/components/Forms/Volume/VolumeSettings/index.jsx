@@ -74,14 +74,12 @@ export default class VolumeSettings extends React.Component {
   }
 
   handeChange = method => {
-    this.setState({ method })
-
-    /**
-     * reset the form data, make it easy to dev
-     */
-    set(this.fedFormTemplate, 'spec.accessModes', [])
-    set(this.fedFormTemplate, 'dataSource', {})
-    set(this.fedFormTemplate, 'spec.resources.requests.storage', '0Gi')
+    if (method !== this.state.method) {
+      set(this.fedFormTemplate, 'spec.accessModes', [])
+      set(this.fedFormTemplate, 'dataSource', {})
+      set(this.fedFormTemplate, 'spec.resources.requests.storage', '0Gi')
+      this.setState({ method })
+    }
   }
 
   render() {
