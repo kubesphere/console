@@ -26,7 +26,7 @@ $toolbar-height: 52px;
           display: inline-block;
           position: relative;
           z-index: 11;
-          width: $apps-content-width;
+          max-width: $apps-content-width;
           margin: 0 auto;
           display: block;
           padding: 0 20px;
