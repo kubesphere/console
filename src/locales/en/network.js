@@ -32,7 +32,7 @@ export default {
   NETWORK_POLICY_DESC:
     'The Network policy configuration allows network isolation within the same cluster, which means firewalls can be set up between certain instances (Pods).',
   NETWORK_ISOLATION_DESC:
-    'By configuring network isolation to control traffic among Pods within the same cluster and traffic from outside, applications are isolated and security is enhanced.',
+    'By configuring network isolation to control traffic among Pods within the same cluster and traffic from outside, users can isolate applications with security enhanced.',
   NETWORK_POLICY_Q: 'How to use a network policy better?',
   NETWORK_ISOLATION_Q: 'How to use network isolation better?',
   NETWORK_POLICY_A:
