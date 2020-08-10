@@ -19,6 +19,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { toJS } from 'mobx'
+import { observer } from 'mobx-react'
 import { get, set, pick, debounce, cloneDeep } from 'lodash'
 import { Columns, Column } from '@pitrix/lego-ui'
 import { Modal } from 'components/Base'
@@ -32,6 +33,7 @@ import FileStore from 'stores/openpitrix/file'
 
 import styles from './index.scss'
 
+@observer
 export default class AppEdit extends Component {
   static propTypes = {
     store: PropTypes.object,
