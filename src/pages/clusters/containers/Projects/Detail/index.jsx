@@ -58,6 +58,10 @@ export default class ProjectDetail extends React.Component {
     return this.props.rootStore.routing
   }
 
+  get isFedManaged() {
+    return this.store.detail.isFedManaged
+  }
+
   fetchData = () => {
     this.store.fetchDetail(this.props.match.params)
   }
