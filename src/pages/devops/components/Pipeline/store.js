@@ -334,6 +334,7 @@ export default class Store extends BaseStore {
     const result = await this.credentialStore.fetchList({
       devops: this.params.devops,
       cluster: this.params.cluster,
+      limit: -1,
     })
 
     this.credentials = result.map(credential => ({

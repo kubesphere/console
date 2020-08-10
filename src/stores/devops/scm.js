@@ -232,6 +232,7 @@ export default class SCMStore extends BaseStore {
     const result = await this.credentialStore.fetchList({
       devops,
       cluster,
+      limit: -1,
     })
 
     this.credentials.data = result.map(credential => ({
