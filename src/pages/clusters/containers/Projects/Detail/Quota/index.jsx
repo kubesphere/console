@@ -17,28 +17,23 @@
  */
 
 import React from 'react'
+import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 
-import ProjectQuota from 'components/Cards/ProjectQuota'
-import LimitRange from 'components/Cards/LimitRange'
+import DefaultResource from 'projects/containers/BaseInfo/DefaultResource'
+import ResourceQuota from 'projects/containers/BaseInfo/ResourceQuota'
 
-@inject('detailStore')
+@inject('quotaStore', 'limitRangeStore')
 @observer
 export default class Quota extends React.Component {
-  store = this.props.detailStore
-
   render() {
-    const { cluster } = this.props.match.params
-    const { name: namespace } = this.store.detail
-    const isLoading = this.store.isLoading
+    const limitRange = toJS(this.props.limitRangeStore.list.data)[0]
+    const quota = toJS(this.props.quotaStore.data)
 
     return (
       <>
-        <LimitRange cluster={cluster} namespace={isLoading ? '' : namespace} />
-        <ProjectQuota
-          cluster={cluster}
-          namespace={isLoading ? '' : namespace}
-        />
+        <DefaultResource detail={limitRange} />
+        <ResourceQuota detail={quota} />
       </>
     )
   }

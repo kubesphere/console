@@ -19,12 +19,14 @@
 import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
-import { isEmpty } from 'lodash'
+import { get, isEmpty } from 'lodash'
 import { Loading } from '@pitrix/lego-ui'
 
 import { getDisplayName, getLocalTime } from 'utils'
 import { trigger } from 'utils/action'
 import ProjectStore from 'stores/project'
+import QuotaStore from 'stores/quota'
+import LimitRangeStore from 'stores/limitrange'
 
 import DetailPage from 'clusters/containers/Base/Detail'
 import { Status } from 'components/Base'
@@ -37,8 +39,15 @@ import routes from './routes'
 export default class ProjectDetail extends React.Component {
   store = new ProjectStore()
 
+  quotaStore = new QuotaStore()
+
+  limitRangeStore = new LimitRangeStore()
+
   componentDidMount() {
     this.fetchData()
+
+    this.quotaStore.fetch(this.params)
+    this.limitRangeStore.fetchListByK8s(this.params)
   }
 
   get module() {
@@ -62,11 +71,16 @@ export default class ProjectDetail extends React.Component {
     return this.store.detail.isFedManaged
   }
 
+  get params() {
+    return get(this.props.match, 'params', {})
+  }
+
   fetchData = () => {
     this.store.fetchDetail(this.props.match.params)
   }
 
   getOperations = () => {
+    const limitRanges = this.limitRangeStore.list.data
     return [
       {
         key: 'edit',
@@ -90,7 +104,20 @@ export default class ProjectDetail extends React.Component {
           this.trigger('project.quota.edit', {
             type: t(this.name),
             detail: toJS(this.store.detail),
-            success: this.fetchData,
+            success: () => this.quotaStore.fetch(this.params),
+          }),
+      },
+      {
+        key: 'edit-default-resource',
+        icon: 'pen',
+        action: 'edit',
+        text: t('Edit Resource Default Request'),
+        onClick: () =>
+          this.trigger('project.default.resource', {
+            ...this.props.match.params,
+            store: this.limitRangeStore,
+            detail: limitRanges[0],
+            success: () => this.limitRangeStore.fetchListByK8s(this.params),
           }),
       },
       {
@@ -142,7 +169,11 @@ export default class ProjectDetail extends React.Component {
   }
 
   render() {
-    const stores = { detailStore: this.store }
+    const stores = {
+      detailStore: this.store,
+      quotaStore: this.quotaStore,
+      limitRangeStore: this.limitRangeStore,
+    }
 
     if (this.store.isLoading && !this.store.detail.name) {
       return <Loading className="ks-page-loading" />
