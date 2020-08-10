@@ -83,8 +83,22 @@ export default class File extends Base {
         readerResult.indexOf(',') + 1,
         readerResult.length
       )
-
       await handleFun(base64Str)
+    })
+  }
+
+  @action
+  validateImageSize = async base64Str => {
+    const image = new Image()
+    image.src = base64Str
+    return new Promise(resolve => {
+      image.addEventListener('load', async () => {
+        let result = true
+        if (image.width > 96 || image.height > 96) {
+          result = false
+        }
+        resolve(result)
+      })
     })
   }
 

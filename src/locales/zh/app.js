@@ -156,6 +156,7 @@ export default {
   FILE_FORMAT_SCREENSHOTS: '截图格式支持 png 和 jpg',
   FILE_MAX_PACKAGE: '配置包大小不能超过 2M',
   FILE_MAX_ICON: '图标大小不能超过 20KB',
+  FILE_MAX_SIZE_ICON: '图标尺寸大小不能超过 96px',
   FILE_MAX_SCREENSHOTS: '截图大小不能超过 2M',
   UPLOAD_PACKAGE_OK_NOTE: '请上传配置包或上传的配置包不正确',
   'Delete picture': '删除图片',

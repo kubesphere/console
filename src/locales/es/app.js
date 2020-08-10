@@ -245,6 +245,7 @@ export default {
     'Los formatos de captura de pantalla soportados son png y jpg',
   FILE_MAX_PACKAGE: 'El tamaño del paquete de configuración no debe exceder 2M',
   FILE_MAX_ICON: 'El tamaño del icono no debe exceder 20KB',
+  FILE_MAX_SIZE_ICON: 'Icon size should not exceed 96px',
   FILE_MAX_SCREENSHOTS: 'El tamaño de la imagen no debe exceder 2M',
 
   UPLOAD_PACKAGE_OK_NOTE:
