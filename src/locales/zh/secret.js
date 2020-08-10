@@ -25,7 +25,7 @@ export default {
   'Edit Secret': '编辑密钥',
   'Secret Settings': '密钥设置',
   'Private Key': '私钥',
-  'Image Repository Secret': '镜像仓库密钥',
+  'Image Registry Secret': '镜像仓库密钥',
   'Please input credential': '请输入凭证',
   'Please input private key': '请输入私钥',
   'Please input data': '请输入数据',
@@ -54,7 +54,7 @@ export default {
   'Example: docker.io': '例：docker.io',
 
   IMAGE_REGISTRY_REQUIRED_DESC:
-    '镜像仓库密钥需要至少包含仓库地址, 用户名, 密码信息.',
+    '镜像仓库密钥需要至少包含仓库地址、用户名和密码信息',
 
   IMAGE_REGISTRY_VALIDATE_TIP: '创建镜像仓库密钥前, 请先验证密钥是否可用',
 
