@@ -131,10 +131,9 @@ export default class RoleDetail extends React.Component {
         text: t('Delete'),
         action: 'manage',
         onClick: () =>
-          this.trigger('resource.delete', {
-            store: this.store,
-            type: t('App Templates'),
+          this.trigger('openpitrix.template.delete', {
             detail,
+            versions: this.versionStore.list.data,
             success: () => this.routing.push(this.listUrl),
           }),
       },

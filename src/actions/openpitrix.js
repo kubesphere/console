@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-
+import React from 'react'
 import { Modal, Notify } from 'components/Base'
 
 import RepoAppModal from 'projects/components/Modals/RepoApp'
@@ -195,6 +195,35 @@ export default {
         },
         store,
         modal: TemplateDeployModal,
+        ...props,
+      })
+    },
+  },
+  'openpitrix.template.delete': {
+    on({ store, detail, versions, success, ...props }) {
+      const type = t('App Templates')
+      const resource = detail.name
+      let desc = t.html('DELETE_CONFIRM_TIP', { type, resource })
+      if (versions.length) {
+        desc = (
+          <span>
+            {desc}
+            <span>{t('DELETE_APP_TEMPLATE_TIP')}</span>
+          </span>
+        )
+      }
+      const modal = Modal.open({
+        onOk: async () => {
+          await store.delete(detail)
+          Modal.close(modal)
+          Notify.success({ content: `${t('Deleted Successfully')}!` })
+          success && success()
+        },
+        store,
+        desc,
+        type,
+        resource,
+        modal: DeleteModal,
         ...props,
       })
     },
