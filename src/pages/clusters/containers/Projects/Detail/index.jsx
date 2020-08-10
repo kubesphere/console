@@ -86,6 +86,7 @@ export default class ProjectDetail extends React.Component {
           this.trigger('project.quota.edit', {
             type: t(this.name),
             detail: toJS(this.store.detail),
+            success: this.fetchData,
           }),
       },
       {
