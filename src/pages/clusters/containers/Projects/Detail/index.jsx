@@ -147,7 +147,7 @@ export default class ProjectDetail extends React.Component {
       module: this.module,
       name: getDisplayName(this.store.detail),
       desc: this.store.detail.description,
-      operations: this.getOperations(),
+      operations: this.isFedManaged ? [] : this.getOperations(),
       attrs: this.getAttrs(),
       breadcrumbs: [
         {

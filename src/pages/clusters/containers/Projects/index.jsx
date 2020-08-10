@@ -44,6 +44,8 @@ const MetricTypes = {
 export default class Projects extends React.Component {
   monitoringStore = new ProjectMonitorStore()
 
+  showAction = record => !record.isFedManaged
+
   get itemActions() {
     const { trigger, routing } = this.props
     return [
@@ -52,6 +54,7 @@ export default class Projects extends React.Component {
         icon: 'pen',
         text: t('Edit'),
         action: 'edit',
+        show: this.showAction,
         onClick: item =>
           trigger('resource.baseinfo.edit', {
             detail: item,
@@ -63,7 +66,7 @@ export default class Projects extends React.Component {
         icon: 'restart',
         text: t('Assign Workspace'),
         action: 'manage',
-        show: record => !record.workspace,
+        show: record => !record.workspace && this.showAction(record),
         onClick: item =>
           trigger('project.assignworkspace', {
             detail: item,
@@ -75,7 +78,9 @@ export default class Projects extends React.Component {
         icon: 'trash',
         text: t('Delete'),
         action: 'delete',
-        show: record => record.workspace !== globals.config.systemWorkspace,
+        show: record =>
+          record.workspace !== globals.config.systemWorkspace &&
+          this.showAction(record),
         onClick: item =>
           trigger('resource.delete', {
             type: t(this.name),
