@@ -19,7 +19,7 @@
 import React from 'react'
 import { PropTypes } from 'prop-types'
 import { Input, Select, TextArea } from '@pitrix/lego-ui'
-import { find } from 'lodash'
+import { find, last } from 'lodash'
 
 import { Form, Upload, Image, Button } from 'components/Base'
 import { PATTERN_URL } from 'utils/constants'
@@ -60,18 +60,34 @@ export default class AppBaseEdit extends React.Component {
   }
 
   checkPackage = async file => {
-    const { checkFile, handleFileByBase64Str } = this.props.fileStore
+    const {
+      checkFile,
+      handleFileByBase64Str,
+      validateImageSize,
+    } = this.props.fileStore
     const result = checkFile(file, 'icon')
     if (result) {
       this.setState({ error: result, base64Str: '' })
     } else {
-      await handleFileByBase64Str(file, base64Str => {
-        this.setState({
-          base64Str,
-          error: '',
-        })
-        this.handleAppChange(base64Str, 'icon')
-        this.props.store.uploadIcon(base64Str)
+      const fileType = last(file.name.toLocaleLowerCase().split('.'))
+      await handleFileByBase64Str(file, async base64Str => {
+        const type = fileType === 'svg' ? 'svg+xml' : fileType
+        const base64Show = `data:image/${type};base64,${base64Str}`
+        const imagesResult = await validateImageSize(base64Show)
+
+        if (!imagesResult) {
+          this.setState({
+            error: t('FILE_MAX_SIZE_ICON'),
+            base64Str: '',
+          })
+        } else {
+          this.handleAppChange(base64Str, 'icon')
+          this.props.store.uploadIcon(base64Str)
+          this.setState({
+            error: '',
+            base64Str,
+          })
+        }
       })
     }
     return Promise.reject()

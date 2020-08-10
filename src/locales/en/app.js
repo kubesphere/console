@@ -238,6 +238,7 @@ export default {
   FILE_FORMAT_SCREENSHOTS: 'Screen format supports png and jpg',
   FILE_MAX_PACKAGE: 'Configuration package size should not exceed 2M',
   FILE_MAX_ICON: 'Icon size should not exceed 20KB',
+  FILE_MAX_SIZE_ICON: 'Icon size should not exceed 96px',
   FILE_MAX_SCREENSHOTS: 'Image size should not exceed 2M',
 
   UPLOAD_PACKAGE_OK_NOTE:

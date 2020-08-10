@@ -53,27 +53,43 @@ export default class HelmUpload extends Component {
     this.uploadRef.onClick()
   }
 
-  setShowBase64 = (base64Str, fileType) => {
-    const type = fileType === 'svg' ? 'svg+xml' : fileType
+  setShowBase64 = ({ base64Str, base64Show }) => {
     this.setState({
       base64Str,
-      base64Show: `data:image/${type};base64,${base64Str}`,
+      base64Show,
       error: '',
     })
     this.props.uploadIcon(base64Str)
   }
 
   checkPackage = async file => {
-    const { checkFile, handleFileByBase64Str } = this.fileStore
+    const {
+      checkFile,
+      handleFileByBase64Str,
+      validateImageSize,
+    } = this.fileStore
     const result = checkFile(file, 'icon')
     if (result) {
       this.setState({ error: result, base64Str: '', base64Show: '' })
       this.props.uploadIcon('')
     } else {
       const fileType = last(file.name.toLocaleLowerCase().split('.'))
-      await handleFileByBase64Str(file, base64Str =>
-        this.setShowBase64(base64Str, fileType)
-      )
+      await handleFileByBase64Str(file, async base64Str => {
+        const type = fileType === 'svg' ? 'svg+xml' : fileType
+        const base64Show = `data:image/${type};base64,${base64Str}`
+        const imagesResult = await validateImageSize(base64Show)
+
+        if (!imagesResult) {
+          this.setState({
+            error: t('FILE_MAX_SIZE_ICON'),
+            base64Str: '',
+            base64Show: '',
+          })
+          this.props.uploadIcon('')
+        } else {
+          this.setShowBase64({ base64Str, base64Show })
+        }
+      })
     }
     return Promise.reject()
   }
