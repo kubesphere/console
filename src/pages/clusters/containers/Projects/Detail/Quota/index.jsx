@@ -30,10 +30,15 @@ export default class Quota extends React.Component {
   render() {
     const { cluster } = this.props.match.params
     const { name: namespace } = this.store.detail
+    const isLoading = this.store.isLoading
+
     return (
       <>
-        <LimitRange cluster={cluster} namespace={namespace} />
-        <ProjectQuota cluster={cluster} namespace={namespace} />
+        <LimitRange cluster={cluster} namespace={isLoading ? '' : namespace} />
+        <ProjectQuota
+          cluster={cluster}
+          namespace={isLoading ? '' : namespace}
+        />
       </>
     )
   }
