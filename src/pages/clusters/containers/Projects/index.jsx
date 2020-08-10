@@ -17,7 +17,7 @@
  */
 
 import React from 'react'
-import { get } from 'lodash'
+import { get, omit } from 'lodash'
 
 import { Avatar, Status } from 'components/Base'
 import Banner from 'components/Cards/Banner'
@@ -57,7 +57,7 @@ export default class Projects extends React.Component {
         show: this.showAction,
         onClick: item =>
           trigger('resource.baseinfo.edit', {
-            detail: item,
+            detail: omit(item, 'workspace'),
             success: routing.query,
           }),
       },
@@ -85,7 +85,7 @@ export default class Projects extends React.Component {
           trigger('resource.delete', {
             type: t(this.name),
             resource: item.name,
-            detail: item,
+            detail: omit(item, 'workspace'),
             success: routing.query,
           }),
       },
