@@ -46,7 +46,7 @@ export default class AdvancedSettings extends React.Component {
   }
 
   render() {
-    const { formRef, store, module, prefix } = this.props
+    const { formRef, store, module, prefix, isFederated } = this.props
     return (
       <Form data={this.fedFormTemplate} ref={formRef}>
         {module !== 'daemonsets' && (
@@ -75,7 +75,8 @@ export default class AdvancedSettings extends React.Component {
             module={module}
             cluster={this.cluster}
             namespace={this.namespace}
-            formTemplate={this.fedFormTemplate}
+            formTemplate={this.formTemplate}
+            isFederated={isFederated}
           />
         </Form.Group>
       </Form>

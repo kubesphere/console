@@ -71,9 +71,16 @@ export default class ClusterStore extends Base {
     let result
     if (!globals.app.isMultiCluster) {
       result = { items: [DEFAULT_CLUSTER] }
-    } else {
+    } else if (
+      globals.app.hasPermission({ module: 'clusters', action: 'view' })
+    ) {
       result = await request.get(
         this.getResourceUrl({ cluster, workspace, namespace }),
+        params
+      )
+    } else {
+      result = await request.get(
+        this.getTenantUrl({ cluster, workspace, namespace }),
         params
       )
     }
