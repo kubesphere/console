@@ -19,7 +19,7 @@
 import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
-import { get, isEmpty } from 'lodash'
+import { get, isEmpty, omit } from 'lodash'
 import { Loading } from '@pitrix/lego-ui'
 
 import { getDisplayName, getLocalTime } from 'utils'
@@ -80,6 +80,8 @@ export default class ProjectDetail extends React.Component {
   }
 
   getOperations = () => {
+    const type = t(this.name)
+    const detail = toJS(this.store.detail)
     const limitRanges = this.limitRangeStore.list.data
     return [
       {
@@ -90,8 +92,8 @@ export default class ProjectDetail extends React.Component {
         type: 'control',
         onClick: () =>
           this.trigger('resource.baseinfo.edit', {
-            type: t(this.name),
-            detail: toJS(this.store.detail),
+            type,
+            detail: omit(detail, 'workspace'),
             success: this.fetchData,
           }),
       },
@@ -102,8 +104,8 @@ export default class ProjectDetail extends React.Component {
         action: 'edit',
         onClick: () =>
           this.trigger('project.quota.edit', {
-            type: t(this.name),
-            detail: toJS(this.store.detail),
+            type,
+            detail,
             success: () => this.quotaStore.fetch(this.params),
           }),
       },
@@ -129,8 +131,8 @@ export default class ProjectDetail extends React.Component {
         show: this.store.detail.workspace !== globals.config.systemWorkspace,
         onClick: () =>
           this.trigger('resource.delete', {
-            type: t(this.name),
-            detail: this.store.detail,
+            type,
+            detail: omit(detail, 'workspace'),
             success: () => this.routing.push(this.listUrl),
           }),
       },
