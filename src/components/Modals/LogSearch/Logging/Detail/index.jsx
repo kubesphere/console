@@ -111,12 +111,12 @@ export default class DetailModal extends React.Component {
     })
 
     this.logs.unshift(...logs)
-    this.scrollToTop()
+    this.scrollToBottom()
   }
 
-  scrollToTop() {
+  scrollToBottom() {
     const logWindow = this.logWindow.current
-    logWindow.scrollTop = 0
+    logWindow.scrollTop = logWindow.scrollHeight
   }
 
   stopPolling = () => {
@@ -325,7 +325,7 @@ export default class DetailModal extends React.Component {
   renderTerminal() {
     return (
       <div className={styles.logWindow}>
-        {this.logs.map(({ time, log }) => (
+        {this.logs.reverse().map(({ time, log }) => (
           <p key={`${time}${log}`}>
             <span className={styles.logTime}>
               {moment(time).format('YYYY-MM-DD HH:mm:ss')}:{' '}

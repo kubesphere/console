@@ -66,7 +66,6 @@ export default class Detail extends React.PureComponent {
     }))
 
     this.store = new EventSearchStore({ size: 50 })
-    this.tableRef = React.createRef()
   }
 
   get defaultDuration() {
@@ -185,10 +184,12 @@ export default class Detail extends React.PureComponent {
   }
 
   @action
-  onTableScrollEnd = () => {
-    const { from, size, total } = this.store
-    if (total > from + size) {
-      this.loadMoreLogs()
+  onTableScrollEnd = ({ clientHeight, scrollHeight, scrollTop }) => {
+    if (Math.ceil(clientHeight + scrollTop) >= scrollHeight) {
+      const { from, size, total } = this.store
+      if (total > from + size) {
+        this.loadMoreLogs()
+      }
     }
   }
 
@@ -461,17 +462,13 @@ export default class Detail extends React.PureComponent {
   }
 
   renderTable = () => {
-    const trKeyGetter = (tr, index) => index
     return (
       <div className={styles.table}>
         <Table
-          onScrollEnd={this.onTableScrollEnd}
-          trCLassName={styles.tr}
+          onScroll={this.onTableScrollEnd}
           onTrClick={this.openDetailsModal}
-          trKeyGetter={trKeyGetter}
           cols={this.tableCols}
           data={this.logs}
-          tableRef={this.tableRef}
           body={styles.body}
         />
       </div>
