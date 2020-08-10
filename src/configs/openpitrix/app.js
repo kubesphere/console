@@ -91,7 +91,7 @@ export const UPLOAD_CHECK_RULES = {
 }
 
 export const UPLOAD_FILE_TYPES = {
-  package: 'application/x-gzip',
+  package: 'application/x-gzip,application/x-tar',
   icon: 'image/png,image/jpg,image/jpeg',
   screenshot: 'image/png,image/jpg,image/jpeg',
 }
