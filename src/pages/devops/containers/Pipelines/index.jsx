@@ -22,12 +22,14 @@ import { Link } from 'react-router-dom'
 import { toJS } from 'mobx'
 import { parse } from 'qs'
 import { get, omit } from 'lodash'
+import { Button } from 'components/Base'
+
 import { Menu, Dropdown, Column, Icon } from '@pitrix/lego-ui'
 import { trigger } from 'utils/action'
 
 import { JOB_STATUS } from 'utils/constants'
 import { updatePipelineParams, updatePipelineParamsInSpec } from 'utils/devops'
-import { Button } from 'components/Base'
+
 import Health from 'projects/components/Health'
 import EmptyTable from 'components/Cards/EmptyTable'
 import DeleteModal from 'components/Modals/Delete'
@@ -265,6 +267,7 @@ class CICDs extends React.Component {
 
     const formData = this.store.getPipeLineConfig()
     formData.devops = this.devops
+    formData.cluster = this.cluster
 
     this.setState({
       showEditConfig: true,
@@ -390,25 +393,13 @@ class CICDs extends React.Component {
       dataIndex: 'name',
       width: '20%',
       render: (name, record) => {
-        if (record.numberOfFailingBranches !== undefined) {
-          return (
-            <Link
-              className="item-name"
-              to={`/${this.workspace}/clusters/${this.cluster}/devops/${
-                this.devops
-              }/pipelines/${encodeURIComponent(record.name)}/activity`}
-            >
-              {name}
-            </Link>
-          )
-        }
+        const url = `/${this.workspace}/clusters/${this.cluster}/devops/${
+          this.devops
+        }/pipelines/${encodeURIComponent(record.name)}${
+          record.numberOfFailingBranches !== undefined ? '/activity' : ''
+        }`
         return (
-          <Link
-            className="item-name"
-            to={`/${this.workspace}/clusters/${this.cluster}/devops/${
-              this.devops
-            }/pipelines/${encodeURIComponent(record.name)}`}
-          >
+          <Link className="item-name" to={url}>
             {name}
           </Link>
         )

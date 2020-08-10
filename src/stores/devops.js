@@ -109,9 +109,7 @@ export default class DevOpsStore extends Base {
 
     const result = await request.get(
       this.getBaseUrlV3({ cluster, workspace }),
-      params,
-      null,
-      () => {}
+      params
     )
 
     const items = Array.isArray(get(result, 'items'))
