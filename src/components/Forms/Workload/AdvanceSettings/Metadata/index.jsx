@@ -16,16 +16,36 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { debounce, isEmpty, isUndefined } from 'lodash'
+import { debounce, get, isEmpty, isUndefined, set } from 'lodash'
 import React from 'react'
 import { Form } from 'components/Base'
 import { PropertiesInput } from 'components/Inputs'
-import { isValidLabel, updateLabels } from 'utils'
+import { isValidLabel, updateLabels, updateFederatedAnnotations } from 'utils'
 
 export default class Metadata extends React.Component {
+  get formTemplate() {
+    return this.props.formTemplate
+  }
+
+  get fedFormTemplate() {
+    return this.props.isFederated
+      ? get(this.formTemplate, 'spec.template')
+      : this.formTemplate
+  }
+
   handleLabelsChange = debounce(value => {
-    const { module, formTemplate } = this.props
-    updateLabels(formTemplate, module, value)
+    const { module, isFederated } = this.props
+    updateLabels(this.fedFormTemplate, module, value)
+    if (isFederated) {
+      set(this.formTemplate, 'metadata.labels', value)
+    }
+  }, 200)
+
+  handleAnnotationsChange = debounce(value => {
+    if (this.props.isFederated) {
+      set(this.formTemplate, 'metadata.annotations', value)
+      updateFederatedAnnotations(this.formTemplate)
+    }
   }, 200)
 
   labelsValidator = (rule, value, callback) => {
@@ -66,6 +86,7 @@ export default class Metadata extends React.Component {
             name="metadata.annotations"
             addText={t('Add Annotation')}
             hiddenKeys={globals.config.preservedAnnotations}
+            onChange={this.handleAnnotationsChange}
           />
         </Form.Item>
       </>
