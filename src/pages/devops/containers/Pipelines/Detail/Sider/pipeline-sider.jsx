@@ -20,7 +20,7 @@ import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import moment from 'moment-mini'
-import { get, isEmpty } from 'lodash'
+import { get, isEmpty, has } from 'lodash'
 import { Loading } from '@pitrix/lego-ui'
 
 import { ICON_TYPES } from 'utils/constants'
@@ -124,6 +124,16 @@ export default class PipelineDetail extends Base {
     } else {
       this.sonarqubeStore.fetchDetail(params)
     }
+
+    this.getPipeLineConfig()
+  }
+
+  getPipeLineConfig = async () => {
+    const { params } = this.props.match
+    const pipeLineConfig = await this.store.getPipeLineConfig()
+    pipeLineConfig.devops = params.devops
+    pipeLineConfig.cluster = params.cluster
+    this.setState({ formTemplate: pipeLineConfig })
   }
 
   getSonarqube = () => {
@@ -222,12 +232,8 @@ export default class PipelineDetail extends Base {
   }
 
   showEditModal = async type => {
-    const { params } = this.props.match
-
-    const pipeLineConfig = await this.store.getPipeLineConfig()
-
-    pipeLineConfig.devops = params.devops
-    this.setState({ [type]: true, formTemplate: pipeLineConfig })
+    this.getPipeLineConfig()
+    this.setState({ [type]: true })
   }
 
   hideEditModal = () => {
@@ -306,9 +312,14 @@ export default class PipelineDetail extends Base {
 
   renderSider() {
     const { detail } = toJS(this.store)
+    const { formTemplate } = this.state
     const operations = this.getOperations().filter(item =>
       this.enabledActions.includes(item.action)
     )
+    const keyPath = has(formTemplate, 'pipeline')
+      ? 'pipeline.description'
+      : 'multi_branch_pipeline.description'
+    const desc = get(formTemplate, keyPath, '-')
 
     return (
       <BaseInfo
@@ -318,6 +329,7 @@ export default class PipelineDetail extends Base {
         operations={operations}
         labels={detail.labels}
         attrs={this.getAttrs()}
+        desc={desc}
       />
     )
   }
@@ -333,7 +345,6 @@ export default class PipelineDetail extends Base {
       showEditConfig,
       deleteLoading,
     } = this.state
-
     return (
       <div>
         <BaseInfoModal

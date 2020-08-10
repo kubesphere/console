@@ -130,10 +130,10 @@ export default class BaseInfo extends React.Component {
                   { validator: this.validator },
                 ]}
               >
-                <Input name="name" />
+                <Input name="name" maxLength={63} />
               </Form.Item>
-              <Form.Item label={t('Description')}>
-                <TextArea name="desc" />
+              <Form.Item label={t('Description')} desc={t('DESCRIPTION_DESC')}>
+                <TextArea name="desc" maxLength={256} />
               </Form.Item>
             </Column>
             <Column>

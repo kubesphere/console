@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { omit, isArray, get, set, isEmpty } from 'lodash'
+import { omit, isArray, get, set, isEmpty, cloneDeep } from 'lodash'
 import { saveAs } from 'file-saver'
 import { action, observable, toJS } from 'mobx'
 import BaseStore from './base'
@@ -414,7 +414,7 @@ export default class PipelineStore extends BaseStore {
 
   @action
   getPipeLineConfig() {
-    let detail = JSON.parse(JSON.stringify(this.pipelineConfig))
+    let detail = cloneDeep(this.pipelineConfig)
     detail = { ...toJS(detail.spec), ...toJS(detail) }
 
     delete detail.spec
