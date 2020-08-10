@@ -25,8 +25,9 @@ export default {
   'Edit Data': 'Edit Data',
   'Edit Secret': 'Edit Secret',
   'Example: docker.io': 'Example: docker.io',
-  'Image Repository Secret': 'Image Repository Secret',
-  IMAGE_REGISTRY_REQUIRED_DESC: 'IMAGE_REGISTRY_REQUIRED_DESC',
+  'Image Registry Secret': 'Image Registry Secret',
+  IMAGE_REGISTRY_REQUIRED_DESC:
+    'The image registry secret must at least include the registry address, username and password.',
   'Please input credential': 'Please input credential',
   'Please input data': 'Please input data',
   'Please input private key': 'Please input private key',
@@ -52,7 +53,7 @@ export default {
     'Chinese characters cannot be included in the secret.',
 
   IMAGE_REGISTRY_VALIDATE_TIP:
-    'Before creating image registry secret, please verify that if it is validate.',
+    'Before you create the image registry secret, please verify if it is valid.',
 
   'DATA-KEY': 'Key',
   'DATA-VALUE': 'Value',
