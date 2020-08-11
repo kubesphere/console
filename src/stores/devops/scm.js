@@ -227,19 +227,12 @@ export default class SCMStore extends BaseStore {
   }
 
   @action
-  getCredential = async ({ devops, cluster }) => {
+  getCredentials = async params => {
     this.credentials.loading = true
-    const result = await this.credentialStore.fetchList({
-      devops,
-      cluster,
+    await this.credentialStore.fetchList({
+      ...params,
     })
-
-    this.credentials.data = result.map(credential => ({
-      label: credential.name,
-      value: credential.name,
-      type: credential.type,
-    }))
-    this.credentials.loading = false
+    this.credentials = this.credentialStore.list
     window.pipelineCredentials = toJS(this.credentials) // cache in gloable varibles
   }
 

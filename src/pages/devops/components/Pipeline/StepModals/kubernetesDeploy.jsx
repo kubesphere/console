@@ -21,7 +21,7 @@ import PropTypes from 'prop-types'
 
 import { observable, action } from 'mobx'
 import { observer } from 'mobx-react'
-import { Form, Modal, Checkbox } from 'components/Base'
+import { Form, Modal, Checkbox, SearchSelect, Tag } from 'components/Base'
 import { Input, Select, Icon, Columns, Column } from '@pitrix/lego-ui'
 
 import styles from './index.scss'
@@ -217,9 +217,42 @@ export default class KubernetesDeploy extends React.Component {
     )
   }
 
+  getCredentialsListData = params => {
+    return this.props.store.getCredentials(params)
+  }
+
+  getCredentialsList = () => {
+    return [
+      ...this.props.store.credentialsList.data.map(credential => ({
+        label: credential.name,
+        value: credential.name,
+        type: credential.type,
+        disabled: !this.props.store.isKubeconfigCredentials(credential.type),
+      })),
+    ]
+  }
+
+  optionRender = ({ label, type, disabled }) => (
+    <span style={{ display: 'flex', alignItem: 'center' }}>
+      {label}&nbsp;&nbsp;
+      <Tag type={disabled ? '' : 'warning'}>
+        {type === 'ssh' ? 'SSH' : t(type)}
+      </Tag>
+    </span>
+  )
+
+  optionRender = ({ label, type, disabled }) => (
+    <span style={{ display: 'flex', alignItem: 'center' }}>
+      {label}&nbsp;&nbsp;
+      <Tag type={disabled ? '' : 'warning'}>
+        {type === 'ssh' ? 'SSH' : t(type)}
+      </Tag>
+    </span>
+  )
+
   render() {
     const { visible, onCancel } = this.props
-    const { kubeconfigCredentials } = this.props.store
+    const { credentialsList } = this.props.store
 
     return (
       <Modal
@@ -258,7 +291,17 @@ export default class KubernetesDeploy extends React.Component {
               </p>
             }
           >
-            <Select name="kubeconfigId" options={kubeconfigCredentials} />
+            <SearchSelect
+              name="kubeconfigId"
+              options={this.getCredentialsList()}
+              page={credentialsList.page}
+              total={credentialsList.total}
+              currentLength={credentialsList.data.length}
+              isLoading={credentialsList.isLoading}
+              onFetch={this.getCredentialsListData}
+              optionRenderer={this.optionRender}
+              valueRenderer={this.optionRender}
+            />
           </Form.Item>
           <Form.Item label={t('Config File Path')}>
             <Input name="configs" />

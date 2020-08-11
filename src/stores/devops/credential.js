@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { set, get, isEmpty, isObject } from 'lodash'
+import { set, get, isEmpty, isObject, unset } from 'lodash'
 import { action, observable } from 'mobx'
 import {
   CREDENTIAL_KEY,
@@ -81,6 +81,9 @@ export default class CredentialStore extends BaseStore {
       filters.limit = filters.limit || 10
     }
 
+    const more = filters.more || false
+    unset(filters, 'more')
+
     filters.sortBy = filters.sortBy || 'createTime'
 
     const result = await this.request.get(
@@ -100,14 +103,14 @@ export default class CredentialStore extends BaseStore {
       return v
     })
 
-    this.list = {
-      data: dataList,
+    this.list.update({
+      data: more ? [...this.list.data, ...dataList] : dataList,
       total: result.totalItems || dataList.length || 0,
       filters,
       limit: Number(filters.limit) || TABLE_LIMIT,
       page: Number(filters.page) || 1,
       isLoading: false,
-    }
+    })
 
     return dataList
   }

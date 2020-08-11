@@ -517,6 +517,7 @@ class CICDs extends React.Component {
         isLoading={isLoading}
         onFetch={this.handleFetch}
         onCreate={showCreate}
+        searchType="name"
         {...defaultTableProps}
       />
     )
