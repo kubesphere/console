@@ -98,7 +98,7 @@ export default {
   'Create Credentials': '創建憑證',
   'Credential ID': '憑證 ID',
   username_password: '帳戶憑證',
-  login_Plateform: '登錄平台',
+  login_Plateform: '登入平台',
   'Script Path': '腳本路徑',
   Webhook: 'webhook 推送',
   'Discover Branches': '發現分支',

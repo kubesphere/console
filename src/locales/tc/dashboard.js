@@ -19,7 +19,7 @@
 export default {
   Dashboard: '首頁',
   dashboard: '首頁',
-  'Last login time': '最近登錄',
+  'Last login time': '最近登入',
   'involved project': '参與項目',
   'create project': '創建項目',
   'Project Top3': '項目 Top3',
