@@ -44,12 +44,14 @@ export default class ProjectSelect extends Component {
     const { defaultValue } = this.props
     const { data } = this.projectStore.list
 
-    const result = data.map(item => ({
-      label: item.name,
-      value: item.name,
-      disabled: item.isFedManaged,
-      isFedManaged: item.isFedManaged,
-    }))
+    const result = data
+      .filter(item => item.status !== 'Terminating')
+      .map(item => ({
+        label: item.name,
+        value: item.name,
+        disabled: item.isFedManaged,
+        isFedManaged: item.isFedManaged,
+      }))
 
     if (defaultValue && !data.find(item => item.name === defaultValue)) {
       result.unshift({
