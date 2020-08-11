@@ -199,7 +199,9 @@ export default class LogSearchModal extends React.Component {
   async refreshQuery() {
     this.queryStore.from = 0
     const query = this.getQueryParams()
-    this.logs = await this.fetchQuery({ ...query, ...this.duration })
+    const result = await this.fetchQuery({ ...query, ...this.duration })
+    this.logs = result.reverse()
+    this.scrollTo(this.logs.length)
   }
 
   @action
@@ -227,9 +229,9 @@ export default class LogSearchModal extends React.Component {
   }
 
   @action
-  onTableScrollEnd = () => {
+  onTableScrollTop = ({ scrollTop }) => {
     const { from, size, total } = this.queryStore
-    if (total > from + size) {
+    if (scrollTop === 0 && total > from + size) {
       this.loadMoreLogs()
     }
   }
@@ -242,7 +244,8 @@ export default class LogSearchModal extends React.Component {
       ...this.queryStore.preParams,
       ...{ from },
     })
-    this.logs.push(...newLogs)
+    this.logs = [...newLogs.reverse(), ...this.logs]
+    this.scrollTo(newLogs.length)
   }
 
   getNextStepLevel(interval) {
@@ -331,13 +334,13 @@ export default class LogSearchModal extends React.Component {
       end_time: Date.now(),
     }
     const logs = await this.fetchQuery({ ...query, ...duration })
-    this.logs.push(...logs)
-    this.scrollToBottom()
+    this.logs.push(...logs.reverse())
+    this.scrollTo(this.logs.length)
   }
 
-  scrollToBottom() {
+  scrollTo(index) {
     const tableRef = this.tableRef.current
-    tableRef.scrollTop = tableRef.scrollHeight
+    tableRef.scrollToRow(index)
   }
 
   @action
@@ -503,15 +506,11 @@ export default class LogSearchModal extends React.Component {
   }
 
   renderTable() {
-    const trKeyGetter = (tr, index) => index
-
     return (
       <div className={styles.table}>
         <Table
-          onScrollEnd={this.onTableScrollEnd}
-          trCLassName={styles.tr}
+          onScroll={this.onTableScrollTop}
           onTrClick={this.selectLog}
-          trKeyGetter={trKeyGetter}
           cols={this.tableCols}
           data={this.logs}
           tableRef={this.tableRef}
