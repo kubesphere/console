@@ -18,12 +18,14 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import { toJS } from 'mobx'
-import { Form, Modal } from 'components/Base'
-import { Input, Select } from '@pitrix/lego-ui'
+import { observer } from 'mobx-react'
+
+import { Form, Modal, SearchSelect, Tag } from 'components/Base'
+import { Input } from '@pitrix/lego-ui'
 
 import styles from './index.scss'
 
+@observer
 export default class Git extends React.Component {
   static propTypes = {
     name: PropTypes.string,
@@ -85,9 +87,33 @@ export default class Git extends React.Component {
     })
   }
 
+  getCredentialsListData = params => {
+    return this.props.store.getCredentials(params)
+  }
+
+  getCredentialsList = () => {
+    return [
+      ...this.props.store.credentialsList.data.map(credential => ({
+        label: credential.name,
+        value: credential.name,
+        type: credential.type,
+        disabled: false,
+      })),
+    ]
+  }
+
+  optionRender = ({ label, type, disabled }) => (
+    <span style={{ display: 'flex', alignItem: 'center' }}>
+      {label}&nbsp;&nbsp;
+      <Tag type={disabled ? '' : 'warning'}>
+        {type === 'ssh' ? 'SSH' : t(type)}
+      </Tag>
+    </span>
+  )
+
   render() {
     const { visible, onCancel } = this.props
-    const { credentials } = this.props.store
+    const { credentialsList } = this.props.store
 
     return (
       <Modal
@@ -120,7 +146,17 @@ export default class Git extends React.Component {
               </p>
             }
           >
-            <Select name="credentialsId" options={toJS(credentials)} />
+            <SearchSelect
+              name="credentialsId"
+              options={this.getCredentialsList()}
+              page={credentialsList.page}
+              total={credentialsList.total}
+              currentLength={credentialsList.data.length}
+              isLoading={credentialsList.isLoading}
+              onFetch={this.getCredentialsListData}
+              optionRenderer={this.optionRender}
+              valueRenderer={this.optionRender}
+            />
           </Form.Item>
           <Form.Item label={t('Branch')}>
             <Input name="branch" />

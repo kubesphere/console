@@ -91,20 +91,6 @@ export default class Store extends BaseStore {
     return this.stages[this.activeLineIndex].parallel[this.activeColunmIndex]
   }
 
-  @computed
-  get passWordCredentials() {
-    return this.credentials.filter(
-      credential => credential.type === 'username_password'
-    )
-  }
-
-  @computed
-  get kubeconfigCredentials() {
-    return this.credentials.filter(
-      credential => credential.type === 'kubeconfig'
-    )
-  }
-
   @observable
   jsonData = {}
 
@@ -124,7 +110,7 @@ export default class Store extends BaseStore {
   params = {}
 
   @observable
-  credentials = []
+  credentialsList = { data: [] }
 
   handleAddBranch(lineIndex) {
     if (this.jsonData.json.pipeline.stages[lineIndex].parallel) {
@@ -191,6 +177,14 @@ export default class Store extends BaseStore {
   @action
   setEdittingData(data) {
     this.edittingData = data
+  }
+
+  isPassWordCredentials(type) {
+    return type === 'username_password'
+  }
+
+  isKubeconfigCredentials(type) {
+    return type === 'kubeconfig'
   }
 
   @action
@@ -329,20 +323,13 @@ export default class Store extends BaseStore {
   }
 
   @action
-  getCredentials = async () => {
-    this.isCredentialLoading = true
-    const result = await this.credentialStore.fetchList({
+  getCredentials = async params => {
+    await this.credentialStore.fetchList({
       devops: this.params.devops,
       cluster: this.params.cluster,
-      limit: -1,
+      ...params,
     })
-
-    this.credentials = result.map(credential => ({
-      label: credential.name,
-      value: credential.name,
-      type: credential.type,
-    }))
-    this.isCredentialLoading = false
+    this.credentialsList = this.credentialStore.list
   }
 
   @action

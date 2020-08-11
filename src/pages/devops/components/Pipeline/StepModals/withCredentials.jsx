@@ -20,10 +20,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { get } from 'lodash'
 
-import { action, toJS } from 'mobx'
+import { action } from 'mobx'
 import { observer } from 'mobx-react'
-import { Form, Modal } from 'components/Base'
-import { Input, Select } from '@pitrix/lego-ui'
+import { Form, Modal, SearchSelect, Tag } from 'components/Base'
+import { Input } from '@pitrix/lego-ui'
 import { groovyToJS } from 'utils/devops'
 
 import styles from './index.scss'
@@ -95,13 +95,15 @@ export default class WithCredentials extends React.Component {
 
   @action
   handleCredentialChange = id => {
-    const { credentials } = this.props.store
-    const selectedCredential = credentials.find(
+    const credentialsList = this.getCredentialsList()
+    const selectedCredential = credentialsList.find(
       credential => credential.value === id
     )
 
+    const credentialType = get(selectedCredential, 'type', 'username_password')
+
     this.setState({
-      credentialType: selectedCredential.type,
+      credentialType,
       formData: { credentialsId: id },
     })
   }
@@ -166,9 +168,34 @@ export default class WithCredentials extends React.Component {
     }
   }
 
+  getCredentialsListData = params => {
+    return this.props.store.getCredentials(params)
+  }
+
+  getCredentialsList = () => {
+    return [
+      ...this.props.store.credentialsList.data.map(credential => ({
+        label: credential.name,
+        value: credential.name,
+        type: credential.type,
+        disabled: false,
+      })),
+    ]
+  }
+
+  optionRender = ({ label, type, disabled }) => (
+    <span style={{ display: 'flex', alignItem: 'center' }}>
+      {label}&nbsp;&nbsp;
+      <Tag type={disabled ? '' : 'warning'}>
+        {type === 'ssh' ? 'SSH' : t(type)}
+      </Tag>
+    </span>
+  )
+
   render() {
     const { visible, onCancel } = this.props
-    const { credentials } = this.props.store
+    const { credentialsList } = this.props.store
+
     return (
       <Modal
         width={680}
@@ -195,10 +222,17 @@ export default class WithCredentials extends React.Component {
               </p>
             }
           >
-            <Select
+            <SearchSelect
               name="credentialsId"
-              options={toJS(credentials)}
+              options={this.getCredentialsList()}
+              page={credentialsList.page}
+              total={credentialsList.total}
+              currentLength={credentialsList.data.length}
+              isLoading={credentialsList.isLoading}
+              onFetch={this.getCredentialsListData}
               onChange={this.handleCredentialChange}
+              optionRenderer={this.optionRender}
+              valueRenderer={this.optionRender}
             />
           </Form.Item>
           {this.renderParams()}

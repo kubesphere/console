@@ -17,14 +17,37 @@
  */
 
 import React from 'react'
-import { toJS } from 'mobx'
 import { observer } from 'mobx-react'
-import { Input, Select } from '@pitrix/lego-ui'
-import { Form } from 'components/Base'
+import { Input } from '@pitrix/lego-ui'
+import { Form, SearchSelect, Tag } from 'components/Base'
 import styles from './index.scss'
 
 @observer
 export default class GitForm extends React.Component {
+  getCredentialsListData = params => {
+    const { devops, cluster } = this.props
+    return this.props.store.getCredentials({ devops, cluster, ...params })
+  }
+
+  getCredentialsList = () => {
+    return [
+      ...this.props.store.credentials.data.map(credential => ({
+        label: credential.name,
+        value: credential.name,
+        type: credential.type,
+      })),
+    ]
+  }
+
+  optionRender = ({ label, type, disabled }) => (
+    <span style={{ display: 'flex', alignItem: 'center' }}>
+      {label}&nbsp;&nbsp;
+      <Tag type={disabled ? '' : 'warning'}>
+        {type === 'ssh' ? 'SSH' : t(type)}
+      </Tag>
+    </span>
+  )
+
   render() {
     const { formData, credentials } = this.props.store
     const { formRef } = this.props
@@ -41,7 +64,7 @@ export default class GitForm extends React.Component {
             <Input name="git_source.url" />
           </Form.Item>
           <Form.Item
-            label={t('Certificate')}
+            label={t('Credential')}
             desc={
               <p>
                 {t('ADD_NEW_CREDENTIAL_DESC')}
@@ -54,10 +77,16 @@ export default class GitForm extends React.Component {
               </p>
             }
           >
-            <Select
-              loading={credentials.isLoading}
+            <SearchSelect
               name="git_source.credential_id"
-              options={toJS(credentials.data)}
+              options={this.getCredentialsList()}
+              page={credentials.page}
+              total={credentials.total}
+              currentLength={credentials.data.length}
+              isLoading={credentials.isLoading}
+              onFetch={this.getCredentialsListData}
+              optionRenderer={this.optionRender}
+              valueRenderer={this.optionRender}
             />
           </Form.Item>
         </Form>
