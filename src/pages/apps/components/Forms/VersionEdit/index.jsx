@@ -51,7 +51,7 @@ export default class VersionEdit extends React.Component {
           label={t('Version Number')}
           desc={t('VERSION_NUMBER_DESC')}
           rules={[
-            { required: true, message: t('Please version number') },
+            { required: true, message: t('Please input version number') },
             {
               pattern: PATTERN_VERSION_NO,
               message: t('VERSION_NUMBER_ERROR_NOTE'),
