@@ -191,6 +191,6 @@ export default {
 
   'Host Cluster': 'Host 集群',
   'Host Clusters': 'Host 集群',
-  'Member Cluster': '成员集群',
-  'Member Clusters': '成员集群',
+  'Member Cluster': '成員集群',
+  'Member Clusters': '成員集群',
 }

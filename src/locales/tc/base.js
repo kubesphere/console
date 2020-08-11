@@ -272,9 +272,9 @@ export default {
   LABEL_FORMAT_DESC:
     '標籤的 key 和 value 最長 63 個字元，key 如果包含域名, 則最長 253 字元。只能包含大小寫字母、數字, 分隔符號("-")，下底線(_)及小數點(.)，且必須以數字或大小寫開頭和結尾',
   DESCRIPTION_DESC: '描述資訊不超過 256 個字元',
-  PROJECT_DESC: '將根據項目進行資源進行分組, 可以按項目對資源進行查看管理',
+  PROJECT_DESC: '將根據項目資源進行分組, 可以按項目對資源進行查看管理',
   'MULTI-CLUSTER_PROJECT_CREATE_DESC':
-    '將根據項目進行資源進行分組, 可以按項目對資源進行查看管理',
+    '將根據項目資源進行分組, 可以按項目對資源進行查看管理',
   Description: '描述資訊',
 
   'Please input name': '請輸入名稱',
@@ -508,7 +508,7 @@ export default {
   NAV_ACCOUNTS: '帳戶管理',
 
   'Session timeout or this account is logged in elsewhere, please login again':
-    '會話超時或此帳戶在其它地方登錄，請重新登錄',
+    '會話超時或此帳戶在其它地方登入，請重新登入',
 
   ALERT_WARNING: '請注意',
 

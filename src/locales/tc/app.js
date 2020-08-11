@@ -182,7 +182,7 @@ export default {
   Screenshot: '截圖',
   'Version No': '版本號碼',
   'Deploy now': '立即部署',
-  'Deploy after login': '登錄後部署',
+  'Deploy after login': '登入後部署',
   'Provider No': '服務商編號',
   'Evaluation stars': '綜合評價',
   'Business introduction': '業務介紹',
@@ -225,5 +225,5 @@ export default {
   HELM_APP_SCHEMA_FORM_TIP:
     '此應用支持表單模式，可選擇通過表單或 YAML 編輯器來修改預設應用配置。注意：不同模式之間數據獨立。',
 
-  DELETE_APP_TEMPLATE_TIP: '删除应用模板前，需要先删除所有版本。',
+  DELETE_APP_TEMPLATE_TIP: '刪除應用模板前，需要先刪除所有版本。',
 }
