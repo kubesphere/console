@@ -106,6 +106,7 @@ export default {
   s2i: '代码构建镜像',
   b2i: '制品构建镜像',
   'Log is loading...': '日志正在加载',
+  'Log module is not installed': '日志模块未安装',
   'Build Environment': '构建环境',
   'File Uploaded Successfully': '上传文件成功',
   'Upload Percent': '上传进度',

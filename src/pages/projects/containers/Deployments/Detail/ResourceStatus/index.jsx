@@ -135,13 +135,13 @@ class ResourceStatus extends React.Component {
     const { cluster, namespace } = this.props.match.params
     const { detail } = this.store
 
-    if (isEmpty(detail.builderNames)) {
+    if (isEmpty(toJS(detail.builderNames))) {
       return null
     }
 
     return (
       <S2iBuilderCard
-        builderNames={detail.builderNames}
+        builderNames={toJS(detail.builderNames)}
         cluster={cluster}
         namespace={namespace}
         className={styles.deployment_codeResource}
