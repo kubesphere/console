@@ -222,16 +222,16 @@ export default class ContainerSetting extends React.Component {
     )
 
     if (hasLocalTime) {
-      volumes.push({
-        hostPath: { path: '/etc/localtime', type: '' },
-        name: 'host-time',
-      })
+      if (volumes.every(item => item.name !== 'host-time')) {
+        volumes.push({
+          hostPath: { path: '/etc/localtime', type: '' },
+          name: 'host-time',
+        })
+      }
     } else {
       volumes = volumes.filter(
         volume =>
-          volume.name === 'host-time' &&
-          volume.hostPath &&
-          volume.hostPath === '/etc/localtime'
+          !(volume.name === 'host-time' && volume.hostPath === '/etc/localtime')
       )
     }
 
