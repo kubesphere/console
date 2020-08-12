@@ -111,7 +111,12 @@ export default class UploadInfo extends Component {
     if (type === 'MODIFY_VERSION' && status === 'success') {
       uploadPackage(
         type,
-        { version_id: versionId, base64Str: result.base64Str },
+        {
+          version_id: versionId,
+          app_id: appId,
+          name: result.version_name,
+          base64Str: result.base64Str,
+        },
         onOk
       )
       this.setState({ status: 'init' })

@@ -90,6 +90,7 @@ export default {
   'Platform App Store Management': 'Platform App Store Management',
   'Please input category name': 'Please input category name',
   'Please input reject reason': 'Please input reject reason',
+  'Please input version number': 'Please input version number',
   'Please select a cluster': 'Please select a cluster',
   'Please select a project': 'Please select a project',
   'Please select a project to deploy': 'Please select a project to deploy',

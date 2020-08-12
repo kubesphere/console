@@ -174,6 +174,7 @@ export default {
   'Category Name': '分类名称',
   CATEGORY_NAME_DESC: '建议不超过8个字符，最多能输入20个字符',
   'Please input category name': '请输入分类名称',
+  'Please input version number': '请输入版本号',
   ICON_DESC: '请选择一个图标来标识分类',
   'Please select icon': '请选择图标',
   'Wrong website format': '输入的网站格式错误',

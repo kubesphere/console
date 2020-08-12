@@ -95,6 +95,7 @@ export default {
   'Reject Reason': '拒絕原因',
   REJECT_REASON_DESC: '請填寫拒絕審核的原因',
   'Please input reject reason': '請填寫拒絕原因',
+  'Please input version number': '请输入版本号',
   APP_CATEGORIES_DESC: '對已上架的應用分類管理',
   AUDIT_RECORD_CREATE_DESC: '暫無相關的審核紀錄數據',
 
