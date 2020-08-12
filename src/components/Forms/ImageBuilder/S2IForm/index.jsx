@@ -273,7 +273,7 @@ export default class S2IForm extends React.Component {
                 desc={
                   this.state.repoNeedSecret
                     ? t('S2I_SECRET_DESC')
-                    : t('Current code repository does not require a key')
+                    : t('The current code repository does not require a key.')
                 }
               >
                 <Select
