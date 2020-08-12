@@ -20,7 +20,7 @@ import React from 'react'
 import { get } from 'lodash'
 import { Loading, Select } from '@pitrix/lego-ui'
 
-import { Card } from 'components/Base'
+import { Panel } from 'components/Base'
 import BuilderStore from 'stores/s2i/builder'
 import RunStore from 'stores/s2i/run'
 import MAPPER from 'utils/object.mapper'
@@ -49,6 +49,10 @@ export default class S2IBuilder extends React.Component {
 
   static defaultProps = {
     builderNames: [],
+  }
+
+  get cluster() {
+    return this.props.cluster
   }
 
   componentDidMount() {
@@ -87,11 +91,12 @@ export default class S2IBuilder extends React.Component {
 
   getBuilderDetail = async builderName => {
     const { namespace } = this.props
-
     const result = await this.builderStore.fetchDetail({
+      cluster: this.cluster,
       name: builderName,
       namespace,
     })
+
     if (get(result, '_originData.reason', '') === 'NotFound') {
       this.setState({ notFound: true })
       return
@@ -125,6 +130,7 @@ export default class S2IBuilder extends React.Component {
     clearTimeout(this.refreshTimer)
 
     const result = await this.builderStore.rerun({
+      cluster: this.cluster,
       newTag,
       name: currentBuilderName,
       namespace,
@@ -201,7 +207,10 @@ export default class S2IBuilder extends React.Component {
     }
 
     return (
-      <Card title={t('Building Image')} operations={this.renderBuilderSelect()}>
+      <Panel
+        title={t('Building Image')}
+        operations={this.renderBuilderSelect()}
+      >
         <BuilderInfo config={config} className={className} />
         {this.renderLog()}
         <RerunModal
@@ -210,7 +219,7 @@ export default class S2IBuilder extends React.Component {
           onOk={this.handleRerun}
           onCancel={this.hideRerun}
         />
-      </Card>
+      </Panel>
     )
   }
 }

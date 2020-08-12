@@ -36,7 +36,7 @@ export default class Health extends React.Component {
       )
     }
 
-    if (score <= 10) {
+    if (score <= 30) {
       return (
         <span>
           <span className={classNames(styles.icon, styles.error, className)} />
@@ -44,7 +44,7 @@ export default class Health extends React.Component {
         </span>
       )
     }
-    if (score > 50 && score <= 90) {
+    if (score > 30 && score <= 80) {
       return (
         <span>
           <span
