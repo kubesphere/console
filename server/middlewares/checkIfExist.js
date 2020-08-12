@@ -55,9 +55,7 @@ module.exports = async (ctx, next) => {
 
       ctx.body = { exist: true }
     } catch (error) {
-      if (error.code === 404) {
-        ctx.body = { exist: false }
-      }
+      ctx.body = { exist: false }
     }
   } else {
     return await next()
