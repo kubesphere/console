@@ -709,7 +709,7 @@ export const PROVISIONERS = [
   },
   {
     label: 'Ceph RBD',
-    value: 'kubernetes.io/rbd',
+    value: 'ceph.com/rbd',
     icon: 'ceph',
     access_modes: ['ReadWriteOnce', 'ReadOnlyMany'],
     params: [
