@@ -657,4 +657,8 @@ export default {
     'El timezone del contenedor será consistente con el del host después de la sincronización.',
   HOST_PATH_WARNING:
     'Un volumen de tipo HostPath montará un fichero o directorio del sistema de ficheros del nodo host en tu Pod. La mayoría de Pods no lo necesitarán, pero puede resultar muy útil para algunas aplicaciones.',
+
+  DEPLOY_PLACEMENT_TIP_TITLE: 'What is Deployment Location?',
+  DEPLOY_PLACEMENT_TIP_VALUE:
+    'You can deploy Pods on different clusters and define the number of replicas deployed. The Federation Controller Manager schedules Pods on different clusters in a unified way and synchronizes status.',
 }
