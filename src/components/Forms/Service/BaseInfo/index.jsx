@@ -119,16 +119,18 @@ export default class ServiceBaseInfo extends React.Component {
       )
     }
 
-    set(
-      formTemplate.Service,
-      'metadata.annotations["kubesphere.io/workloadName"]',
-      workloadName
-    )
-    set(
-      formTemplate.Service,
-      'metadata.annotations["kubesphere.io/workloadModule"]',
-      module
-    )
+    if (this.props.isFederated) {
+      set(
+        formTemplate.Service,
+        'metadata.annotations["kubesphere.io/workloadName"]',
+        workloadName
+      )
+      set(
+        formTemplate.Service,
+        'metadata.annotations["kubesphere.io/workloadModule"]',
+        module
+      )
+    }
   }
 
   nameValidator = (rule, value, callback) => {
@@ -183,11 +185,14 @@ export default class ServiceBaseInfo extends React.Component {
     const workloadName = `${serviceName}-${value}`
     const { formTemplate } = this.props
     set(formTemplate[this.workloadKind], 'metadata.name', workloadName)
-    set(
-      formTemplate.Service,
-      'metadata.annotations["kubesphere.io/workloadName"]',
-      workloadName
-    )
+
+    if (this.props.isFederated) {
+      set(
+        formTemplate.Service,
+        'metadata.annotations["kubesphere.io/workloadName"]',
+        workloadName
+      )
+    }
   }
 
   render() {
