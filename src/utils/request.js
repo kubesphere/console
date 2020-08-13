@@ -199,8 +199,10 @@ function handleResponse(response, reject) {
     // some errors are the string-json in devops
     const errBody = safeParseJSON(text)
     if (isObject(errBody) && !isEmpty(errBody)) {
-      error.status = errBody.code
+      error.status = response.status
+      error.code = errBody.code
       error.message = errBody.message
+      error.errors = errBody.errors
     }
 
     if (typeof reject === 'function') {

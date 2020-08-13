@@ -118,7 +118,7 @@ export default class AddressStore extends Base {
       `${this.getMailServiceV2URL(cluster)}/validation`,
       params,
       {},
-      error => {
+      (resp, error) => {
         window.onunhandledrejection(error)
         return {
           is_succ: false,

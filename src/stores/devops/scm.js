@@ -18,7 +18,7 @@
 
 import { action, observable, toJS } from 'mobx'
 import { isArray, get, isEmpty, set } from 'lodash'
-import { parseUrl, safeParseJSON, getQueryString, generateId } from 'utils'
+import { parseUrl, getQueryString, generateId } from 'utils'
 import { CREDENTIAL_DISPLAY_KEY } from 'utils/constants'
 
 import BaseStore from 'stores/devops/base'
@@ -30,58 +30,43 @@ export default class SCMStore extends BaseStore {
 
     this.verifyAccessErrorHandle = {
       github: (resp, error) => {
-        if (!isEmpty(get(error, 'message'))) {
-          const err = safeParseJSON(error.message)
-          if (err.code === 428) {
-            this.isAccessTokenWrong = true
-            this.orgList.isLoading = false
-            return
-          }
-          if (window.onunhandledrejection) {
-            err.status = error.status
-            err.reason = error.reason
-            window.onunhandledrejection(err)
-          }
-          return Promise.reject(error)
+        if (error.code === 428) {
+          this.isAccessTokenWrong = true
+          this.orgList.isLoading = false
+          return
         }
+        if (window.onunhandledrejection) {
+          window.onunhandledrejection(error)
+        }
+        return Promise.reject(error)
       },
       'bitbucket-server': (resp, error) => {
-        if (!isEmpty(get(error, 'message'))) {
-          const err = safeParseJSON(error.message)
-
-          if (err.code === 428) {
-            this.creatBitBucketServersError = {
-              password: {
-                message: t('Wrong username or password, please try again'),
-              },
-            }
-            return
+        if (error.code === 428) {
+          this.creatBitBucketServersError = {
+            password: {
+              message: t('Wrong username or password, please try again'),
+            },
           }
-
-          if (isArray(err.errors) && !isEmpty(err.errors)) {
-            this.creatBitBucketServersError = err.errors.reduce(
-              (prev, errorItem) => {
-                prev[errorItem.field] = { message: errorItem.message }
-                return prev
-              },
-              {}
-            )
-            return
-          }
-
-          this.creatBitBucketServersError = { all: err.message }
-
-          if (window.onunhandledrejection) {
-            err.status = error.status
-            err.reason = error.reason
-            window.onunhandledrejection(err)
-          }
-          return Promise.reject(error)
+          return
         }
+
+        if (isArray(error.errors) && !isEmpty(error.errors)) {
+          this.creatBitBucketServersError = error.errors.reduce(
+            (prev, errorItem) => {
+              prev[errorItem.field] = { message: errorItem.message }
+              return prev
+            },
+            {}
+          )
+          return
+        }
+
+        this.creatBitBucketServersError = { all: error.message }
 
         if (window.onunhandledrejection) {
-          window.onunhandledrejection(resp)
+          window.onunhandledrejection(error)
         }
+
         return Promise.reject(error)
       },
     }
@@ -210,7 +195,7 @@ export default class SCMStore extends BaseStore {
     })
 
     if (result && result.credentialId) {
-      this.githubCredentialId = `github-${token.slice(0, 6)}`
+      this.githubCredentialId = `github-${token.slice(0, 6)}-${generateId(5)}`
 
       const data = {
         id: this.githubCredentialId,
@@ -357,6 +342,7 @@ export default class SCMStore extends BaseStore {
     this.githubCredentialId = ''
     this.formData = {}
     this.tokenFormData = {}
+    this.creatBitBucketServersError = {}
   }
 
   @action
