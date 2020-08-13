@@ -19,7 +19,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
-import { get, isEmpty, isEqual, remove } from 'lodash'
+import { isEmpty, isEqual, remove } from 'lodash'
 
 import { COLORS_MAP } from 'utils/constants'
 
@@ -185,15 +185,7 @@ export default class PercentArea extends React.Component {
               strokeDasharray="2 3"
               vertical={false}
             />
-            <XAxis
-              dataKey={xKey}
-              axisLine={false}
-              tickLine={false}
-              tickFormatter={value => {
-                const times = value.split(' ')
-                return get(times, '[1]') || get(times, '[0]') || ''
-              }}
-            />
+            <XAxis dataKey={xKey} axisLine={false} tickLine={false} />
             <YAxis
               width={45}
               axisLine={false}
