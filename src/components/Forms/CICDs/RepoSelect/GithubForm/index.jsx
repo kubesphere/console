@@ -20,7 +20,7 @@ import React from 'react'
 import classNames from 'classnames'
 import { action } from 'mobx'
 import { observer } from 'mobx-react'
-import { get, isEmpty } from 'lodash'
+import { get, isEmpty, isArray } from 'lodash'
 import { Input, Icon, Loading } from '@pitrix/lego-ui'
 import { Form, Button } from 'components/Base'
 import { REPO_KEY_MAP } from 'utils/constants'
@@ -48,7 +48,7 @@ export default class GitHubForm extends React.Component {
 
     const repoList = get(orgList.data, `[${repoIndex}].repositories.items`, [])
 
-    if (!repoList.length) {
+    if (!isArray(repoList) || isEmpty(repoList)) {
       this.props.store.getRepoList({
         activeRepoIndex: parseInt(repoIndex, 10),
         cluster: this.props.cluster,
@@ -207,7 +207,14 @@ export default class GitHubForm extends React.Component {
               ? repoList.map((repo, index) => (
                   <div className={styles.repo} key={repo.name}>
                     <div className={styles.icon}>
-                      <Icon name={this.scmType} size={40} />
+                      <Icon
+                        name={
+                          this.scmType === 'bitbucket_server'
+                            ? 'bitbucket'
+                            : this.scmType
+                        }
+                        size={40}
+                      />
                     </div>
                     <div className={styles.info}>
                       <div className={styles.name}>{repo.name}</div>

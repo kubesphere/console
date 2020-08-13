@@ -169,10 +169,13 @@ export const getLocalTime = time => {
 export const capitalize = string =>
   string.charAt(0).toUpperCase() + string.slice(1).toLowerCase()
 
-export const getQueryString = params =>
+export const getQueryString = (params, hasEncode = true) =>
   Object.keys(params)
     .filter(key => params[key])
-    .map(key => `${key}=${encodeURIComponent(params[key])}`)
+    .map(
+      key =>
+        `${key}=${hasEncode ? encodeURIComponent(params[key]) : params[key]}`
+    )
     .join('&')
 
 export const getFilterString = (

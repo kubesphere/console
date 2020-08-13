@@ -263,6 +263,7 @@ export default class Store extends BaseStore {
           this.jenkinsFile = result.data.jenkinsfile
           return result
         }
+
         if (result && get(result, 'data.result') === 'failure') {
           result.data.errors.forEach(error => {
             if (!error.location) {
@@ -274,10 +275,26 @@ export default class Store extends BaseStore {
               })
               return
             }
+
             const loacationArr = error.location.join('.').split('.branches')
-            // can't find location
             const errorObj = get(this.jsonData.json, loacationArr[0])
+
             if (errorObj && !isEmpty(errorObj)) {
+              const errorStepIndex =
+                error.location.indexOf('steps') !== -1
+                  ? parseInt(
+                      error.location[error.location.indexOf('steps') + 1],
+                      10
+                    )
+                  : undefined
+              if (errorStepIndex !== undefined) {
+                set(this.jsonData.json, loacationArr[0], {
+                  ...toJS(get(this.jsonData.json, loacationArr[0])),
+                  error: { error: error.error, index: errorStepIndex },
+                })
+                return
+              }
+
               Message.error({ content: error.error })
               Notify.error({
                 title: t('pipeline syntax error'),

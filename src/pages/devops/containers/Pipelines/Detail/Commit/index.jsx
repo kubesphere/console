@@ -71,31 +71,32 @@ export default class Branch extends React.Component {
       title: t('commit'),
       dataIndex: 'commitId',
       width: '20%',
-      render: (commitId, record) => (
-        <a href={record.url} target="_blank">
-          {commitId && commitId.slice(0, 6)}
-        </a>
-      ),
+      render: (commitId, record) => {
+        return (
+          <a href={record.url} target="_blank">
+            {commitId && commitId.slice(0, 6)}
+          </a>
+        )
+      },
     },
     {
       title: t('author'),
       dataIndex: 'author',
       width: '20%',
-      render: author => author.fullName || '-',
+      render: author => author || '-',
     },
     {
       title: t('message'),
-      dataIndex: 'msg',
+      dataIndex: 'title',
       width: '40%',
-      render: msg => msg,
     },
     {
       title: t('Updated Time'),
-      dataIndex: 'timestamp',
+      dataIndex: 'startTime',
       isHideable: true,
       width: '15%',
-      render: timestamp =>
-        getLocalTime(timestamp).format('YYYY-MM-DD HH:mm:ss'),
+      render: startTime =>
+        getLocalTime(startTime).format('YYYY-MM-DD HH:mm:ss'),
     },
   ]
 
