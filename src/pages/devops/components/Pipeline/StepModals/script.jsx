@@ -52,7 +52,7 @@ export default class Shell extends React.Component {
   }
 
   handleChange = value => {
-    this.newValue = value
+    this.newValue = value || `""`
   }
 
   handleOk = () => {
@@ -69,7 +69,7 @@ export default class Shell extends React.Component {
 
   render() {
     const { visible, onCancel } = this.props
-
+    const { value } = this.state
     return (
       <Modal
         width={680}
@@ -84,7 +84,7 @@ export default class Shell extends React.Component {
           className={styles.CodeEditor}
           name="script"
           mode="yaml"
-          value={this.value}
+          value={value}
           onChange={this.handleChange}
         />
       </Modal>

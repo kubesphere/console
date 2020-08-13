@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { omit, isArray } from 'lodash'
+import { omit, isArray, get } from 'lodash'
 import { saveAs } from 'file-saver'
 import { action, observable, toJS } from 'mobx'
 import { Message } from '@pitrix/lego-ui'
@@ -101,10 +101,22 @@ export default class PipelineRunStore extends BaseStore {
         start: (page - 1) * TABLE_LIMIT || 0,
       }
     )
+    const data = []
+    if (result.pullRequest) {
+      const commitBody = {
+        commitId: get(result, 'commitId'),
+        startTime: get(result, 'startTime'),
+        url: get(result, 'pullRequest.url'),
+        author: get(result, 'pullRequest.author'),
+        title: get(result, 'pullRequest.title'),
+      }
+      data.push(commitBody)
+    }
+
     this.commitsList = {
-      data: result.changeSet || [],
+      data,
       limit: TABLE_LIMIT,
-      total: result.changeSet ? result.changeSet.length : 0,
+      total: data.length,
       page: parseInt(page, 10) || 1,
       filters: omit(filters, 'devops'),
       isLoading: false,

@@ -60,14 +60,29 @@ export default class valueSelect extends React.Component {
     )
   }
 
+  getIconName = source_type => {
+    let iconName = ''
+    switch (source_type) {
+      case 'single_svn':
+        iconName = 'svn'
+        break
+      case 'bitbucket_server':
+        'bitbucket-server'
+        iconName = 'bitbucket'
+        break
+      default:
+        iconName = source_type
+    }
+    return iconName
+  }
+
   render() {
     const { value } = this.props
     if (isEmpty(value)) {
       return this.renderEmpty()
     }
     const data = get(value, `${REPO_KEY_MAP[value.source_type]}`, {})
-    const iconName =
-      value.source_type === 'single_svn' ? 'svn' : value.source_type
+    const iconName = this.getIconName(value.source_type)
 
     return (
       <div className={styles.wrapper}>
