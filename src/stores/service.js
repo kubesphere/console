@@ -158,7 +158,10 @@ export default class ServiceStore extends Base {
   }
 
   @action
-  async fetchWorkload({ cluster, namespace, ...params }) {
+  async fetchWorkloads({ cluster, namespace, ...params }) {
+    this.workloads.isLoading = true
+    this.workloads.data.clear()
+
     const workloadTypes = ['deployments', 'statefulsets']
 
     const [deployments, statefulsets] = await Promise.all(
@@ -171,35 +174,6 @@ export default class ServiceStore extends Base {
     )
 
     const workloads = { deployments, statefulsets }
-
-    let workload = {}
-    workloadTypes.forEach(type => {
-      if (workloads[type] && !isEmpty(workloads[type].items)) {
-        const item = workloads[type].items[0]
-        workload = { ...ObjectMapper[type](item), type }
-      }
-    })
-
-    this.workload = workload
-  }
-
-  @action
-  async fetchWorkloads({ cluster, namespace, ...params }) {
-    this.workloads.isLoading = true
-    this.workloads.data.clear()
-
-    const workloadTypes = ['deployments', 'daemonsets', 'statefulsets']
-
-    const [deployments, daemonsets, statefulsets] = await Promise.all(
-      workloadTypes.map(type =>
-        request.get(
-          `apis/apps/v1${this.getPath({ cluster, namespace })}/${type}`,
-          params
-        )
-      )
-    )
-
-    const workloads = { deployments, daemonsets, statefulsets }
 
     workloadTypes.forEach(type => {
       if (workloads[type] && !isEmpty(workloads[type].items)) {

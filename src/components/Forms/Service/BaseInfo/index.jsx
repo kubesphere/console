@@ -119,7 +119,7 @@ export default class ServiceBaseInfo extends React.Component {
       )
     }
 
-    if (this.props.isFederated) {
+    if (isFederated) {
       set(
         formTemplate.Service,
         'metadata.annotations["kubesphere.io/workloadName"]',
@@ -183,10 +183,9 @@ export default class ServiceBaseInfo extends React.Component {
   handleVersionChange = value => {
     const serviceName = get(this.formTemplate, 'metadata.name')
     const workloadName = `${serviceName}-${value}`
-    const { formTemplate } = this.props
+    const { formTemplate, isFederated } = this.props
     set(formTemplate[this.workloadKind], 'metadata.name', workloadName)
-
-    if (this.props.isFederated) {
+    if (isFederated) {
       set(
         formTemplate.Service,
         'metadata.annotations["kubesphere.io/workloadName"]',

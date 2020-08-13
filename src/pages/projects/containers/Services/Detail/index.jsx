@@ -69,13 +69,7 @@ export default class ServiceDetail extends React.Component {
 
   fetchData = () => {
     const { params } = this.props.match
-    this.store.fetchDetail(params).then(() => {
-      const { selector } = this.store.detail
-      const labelSelector = joinSelector(selector)
-      if (!isEmpty(labelSelector)) {
-        this.store.fetchWorkload({ ...params, labelSelector })
-      }
-    })
+    this.store.fetchDetail(params)
     this.store.fetchEndpoints(params)
   }
 
