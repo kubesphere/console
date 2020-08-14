@@ -62,7 +62,7 @@ export default class ClusterWorkloadStatus extends Component {
   }
 
   render() {
-    const { store, resources, clusters, clustersDetail } = this.props
+    const { store, resources, clusters, clustersDetail, canEdit } = this.props
 
     if (!clusters) {
       return null
@@ -80,8 +80,7 @@ export default class ClusterWorkloadStatus extends Component {
                 key={cluster.name}
                 cluster={clustersDetail[cluster.name]}
                 workload={resources[cluster.name]}
-                onReplicasChange={this.handleReplicasChange}
-                onEdit={this.handleEdit}
+                onReplicasChange={canEdit ? this.handleReplicasChange : null}
                 store={store}
               />
             )

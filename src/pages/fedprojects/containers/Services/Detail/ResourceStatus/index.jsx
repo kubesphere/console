@@ -59,6 +59,13 @@ export default class ResourceStatus extends React.Component {
     this.fetchData()
   }
 
+  get enabledActions() {
+    return globals.app.getActions({
+      module: this.store.module,
+      project: this.props.match.params.namespace,
+    })
+  }
+
   get prefix() {
     const { workspace } = this.props.match.params
     return workspace ? `/${workspace}` : ''
@@ -95,6 +102,7 @@ export default class ResourceStatus extends React.Component {
         clusters={clusters}
         clustersDetail={clustersDetail}
         isLoading={isResourcesLoading}
+        canEdit={this.enabledActions.includes('edit')}
       />
     )
   }
