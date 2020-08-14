@@ -67,6 +67,7 @@ export default {
   'The volume name exists': 'nombre de volumen existe',
   'The volume size must be greater than zero':
     'The volume size must be greater than zero',
+  'Volume Template Settings': 'Volume Template Settings',
   'Volume Usage': 'Uso de volumen',
   VOLUME_DESC:
     'A volume is used for workloads created by users. It represents a resource object for the persistent storage of workloads.',
@@ -187,4 +188,6 @@ export default {
   VOLUMESNAPSHOT_CREATE_DESC:
     'Un snapshot de volumen se refiere a una snapshot de un volumen en un punto de tiempo particular. Se puede utilizar para crear nuevos volúmenes (preestablecer los datos del snapshot) o restaurar un volumen existente a su estado anterior (que se muestra en los snapshots).',
   WHAT_IS_VOLUME_SNAPSHOTS: '¿Qué son los snapshots de volumenes?',
+
+  CLUSTER_VOLUME_DIFF_DESC: 'Specify different storage class for each clusters',
 }

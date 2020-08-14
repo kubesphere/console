@@ -184,4 +184,6 @@ export default {
   CREATE_VOLUME_BY_STORAGECLASS: '通過儲存類型',
   CREATE_VOLUME_BY_SNAPSHOT: '通過儲存卷快照創建',
   SELECT_SNAPSHOT_TO_CREATE_VOLUME: '選擇已有的儲存卷快照並行創建',
+
+  CLUSTER_VOLUME_DIFF_DESC: '可针对不同集群，选择不同的存储类型',
 }

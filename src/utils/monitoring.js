@@ -366,7 +366,7 @@ export const fillEmptyMetrics = (params, result) => {
 
   const format = num => String(num).replace(/\..*$/, '')
   const step = Math.floor((params.end - params.start) / params.times)
-  const correctCount = params.times
+  const correctCount = params.times + 1
 
   Object.values(result).forEach(item => {
     const _result = get(item, 'data.result')

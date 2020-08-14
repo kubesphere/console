@@ -25,7 +25,7 @@ import Confirm from 'components/Forms/Base/Confirm'
 
 import styles from './index.scss'
 
-export default class EditForm extends Component {
+export default class ContainerImages extends Component {
   formRef = React.createRef()
 
   get modifiers() {
@@ -43,14 +43,11 @@ export default class EditForm extends Component {
   }
 
   handleCancel = () => {
-    const { showEdit } = this.props
-
-    showEdit('')
+    this.props.hideEdit()
   }
 
-  handleClick = () => {
-    const { formData, showEdit } = this.props
-    showEdit(formData)
+  handleOpen = () => {
+    this.props.showEdit()
   }
 
   renderContent() {
@@ -78,7 +75,7 @@ export default class EditForm extends Component {
         visible={isEdit}
         placement="bottom"
         closeAfterClick={false}
-        onOpen={this.handleClick}
+        onOpen={this.handleOpen}
         content={this.renderContent()}
         modifiers={this.modifiers}
         always={isEdit}

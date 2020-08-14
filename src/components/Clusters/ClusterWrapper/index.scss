@@ -10,18 +10,12 @@
 .tags {
   & > span {
     height: auto;
+    margin-right: 4px;
 
     & > span {
       display: inline-block;
       vertical-align: middle;
-
-      & + span {
-        margin-left: 4px;
-      }
-    }
-
-    & + span {
-      margin-left: 4px;
+      margin-right: 4px;
     }
   }
 

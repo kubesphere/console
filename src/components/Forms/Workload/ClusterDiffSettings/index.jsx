@@ -27,6 +27,8 @@ import ContainersMapper from './ContainersMapper'
 import ContainerImage from './ContainerImage'
 import ContainerPorts from './ContainerPorts'
 import Environments from './Environments'
+import VolumesMapper from './VolumesMapper'
+import VolumeTemplate from './VolumeTemplate'
 
 export default class AdvancedSettings extends React.Component {
   get namespace() {
@@ -40,6 +42,13 @@ export default class AdvancedSettings extends React.Component {
 
   get clusters() {
     return get(this.formTemplate, 'spec.placement.clusters', [])
+  }
+
+  get showVolumeTemplate() {
+    return (
+      this.props.module === 'statefulsets' &&
+      get(this.formTemplate, 'spec.template.spec.volumeClaimTemplates')
+    )
   }
 
   render() {
@@ -64,6 +73,25 @@ export default class AdvancedSettings extends React.Component {
             )}
           </ClustersMapper>
         </Form.Group>
+        {this.showVolumeTemplate && (
+          <Form.Group
+            label={t('Volume Template Settings')}
+            desc={t('CLUSTER_VOLUME_DIFF_DESC')}
+            checkable
+          >
+            <ClustersMapper
+              clusters={this.clusters}
+              clustersDetail={clustersDetail}
+              namespace={this.namespace}
+            >
+              {props => (
+                <VolumesMapper formTemplate={this.formTemplate} {...props}>
+                  {volumeProps => <VolumeTemplate {...volumeProps} />}
+                </VolumesMapper>
+              )}
+            </ClustersMapper>
+          </Form.Group>
+        )}
         <Form.Group
           label={t('Service Settings')}
           desc={t('CLUSTER_SERVICE_DIFF_DESC')}

@@ -26,7 +26,13 @@ import { List } from 'components/Base'
 
 import styles from './index.scss'
 
-const Card = ({ volume, prefix }) => {
+const Card = ({ volume, match, isMultiProject }) => {
+  const { workspace, cluster, namespace } = match.params
+
+  const prefix = `${
+    workspace ? `/${workspace}` : ''
+  }/clusters/${cluster}/projects/${namespace}`
+
   let icon = 'storage'
   let description
   let details
@@ -44,7 +50,9 @@ const Card = ({ volume, prefix }) => {
     const configmap = get(volume, 'configMap.name', '-')
     details = [
       {
-        title: (
+        title: isMultiProject ? (
+          configmap
+        ) : (
           <Link to={`${prefix}/configmaps/${configmap}`}>{configmap}</Link>
         ),
         description: t('ConfigMap'),
@@ -56,7 +64,11 @@ const Card = ({ volume, prefix }) => {
     const secret = get(volume, 'secret.secretName', '-')
     details = [
       {
-        title: <Link to={`${prefix}/secrets/${secret}`}>{secret}</Link>,
+        title: isMultiProject ? (
+          secret
+        ) : (
+          <Link to={`${prefix}/secrets/${secret}`}>{secret}</Link>
+        ),
         description: t('Secret'),
       },
     ]
@@ -69,7 +81,11 @@ const Card = ({ volume, prefix }) => {
     const volumeName = get(volume, 'persistentVolumeClaim.claimName', '-')
     details = [
       {
-        title: <Link to={`${prefix}/volumes/${volumeName}`}>{volumeName}</Link>,
+        title: isMultiProject ? (
+          volumeName
+        ) : (
+          <Link to={`${prefix}/volumes/${volumeName}`}>{volumeName}</Link>
+        ),
         description: t('Volume'),
       },
       {

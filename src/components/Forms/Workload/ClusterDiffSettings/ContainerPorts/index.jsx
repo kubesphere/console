@@ -31,15 +31,15 @@ export default class ContainerPorts extends Component {
   }
 
   render() {
-    const { container, containerType, withService } = this.props
+    const { formData, containerType, withService } = this.props
 
     const showServicePort = containerType !== 'init' ? withService : false
 
     const title = (
       <>
-        <div>{`${t('Image')}: ${container.image}`}</div>
-        {container.ports &&
-          container.ports.map((port, index) => (
+        <div>{`${t('Image')}: ${formData.image}`}</div>
+        {formData.ports &&
+          formData.ports.map((port, index) => (
             <div key={index} className={styles.port}>
               <span>{`${t('Protocol')}: ${port.protocol}`}</span>
               <span>{`${t('Name')}: ${port.name}`}</span>
