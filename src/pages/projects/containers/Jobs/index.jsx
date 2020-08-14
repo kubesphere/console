@@ -147,7 +147,7 @@ export default class Jobs extends React.Component {
         render: (status, record) => <JobStatus data={record} module={module} />,
       },
       {
-        title: t('Last Executed Time'),
+        title: t('Updated Time'),
         dataIndex: 'updateTime',
         sorter: true,
         sortOrder: getSortOrder('updateTime'),

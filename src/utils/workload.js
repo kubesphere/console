@@ -179,6 +179,24 @@ export const getWorkloadUpdateTime = item => {
   return lastTime
 }
 
+export const getJobUpdateTime = item => {
+  const status = get(item, 'status', {})
+
+  const conditions = status.conditions || []
+
+  if (isEmpty(conditions)) return get(item, 'metadata.creationTimestamp')
+
+  let lastTime = new Date(
+    get(conditions, '[0].lastTransitionTime', 0)
+  ).valueOf()
+  conditions.forEach(({ lastTransitionTime }) => {
+    const value = new Date(lastTransitionTime).valueOf()
+    value > lastTime && (lastTime = value)
+  })
+
+  return lastTime
+}
+
 export const getCurrentRevision = (
   workloadDetail,
   revisions,
