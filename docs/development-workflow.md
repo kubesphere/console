@@ -65,7 +65,7 @@ $ git add <file>
 $ git commit -a
 ```
 
-### 6 Push to your folk
+### 6 Push to your fork
 
 When ready to review (or just to establish an offsite backup or your work), push your branch to your fork on github.com:
 
