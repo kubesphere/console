@@ -22,6 +22,7 @@ import { Modal, Notify } from 'components/Base'
 import CreateModal from 'components/Modals/Create'
 import NameModal from 'projects/components/Modals/ResourceNamed'
 import ExpandModal from 'projects/components/Modals/ExpandVolume'
+import ClusterDiffSettings from 'components/Forms/Volume/ClusterDiffSettings'
 
 import { MODULE_KIND_MAP } from 'utils/constants'
 import FORM_TEMPLATES from 'utils/form.templates'
@@ -61,6 +62,16 @@ export default {
         })
       }
 
+      const steps = [...FORM_STEPS]
+
+      if (isFederated) {
+        steps.push({
+          title: 'Diff Settings',
+          icon: 'blue-green-deployment',
+          component: ClusterDiffSettings,
+        })
+      }
+
       const modal = Modal.open({
         onOk: async newObject => {
           const data = get(newObject, kind)
@@ -82,7 +93,7 @@ export default {
         name: kind,
         formTemplate,
         isFederated,
-        steps: fromSnapshot ? APPLY_SNAPSHOT_FORM_STEPS : FORM_STEPS,
+        steps: fromSnapshot ? APPLY_SNAPSHOT_FORM_STEPS : steps,
         modal: CreateModal,
         store,
         ...props,

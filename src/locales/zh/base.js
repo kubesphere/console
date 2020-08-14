@@ -205,6 +205,7 @@ export default {
   'Pod Template': '容器组模板',
   'Volume Settings': '存储卷设置',
   'Volume Templates': '存储卷模板',
+  'Volume Template Settings': '存储卷模板设置',
   'Storage Device': '存储设备',
   'Port Settings': '端口设置',
   'Service Settings': '服务设置',

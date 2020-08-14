@@ -22,16 +22,16 @@ import classNames from 'classnames'
 
 import styles from './index.scss'
 
-export default class ContainersMapper extends Component {
+export default class VolumesMapper extends Component {
   state = {
-    editContainer: '',
+    editVolumeTemplate: '',
   }
 
-  showEdit = container => {
+  showEdit = volumeTemplate => {
     const { onSelect, cluster } = this.props
     this.setState(
       {
-        editContainer: container.name,
+        editVolumeTemplate: get(volumeTemplate, 'metadata.name'),
       },
       () => {
         onSelect(cluster)
@@ -39,11 +39,9 @@ export default class ContainersMapper extends Component {
     )
   }
 
-  handleEdit = ({ index, containerType, data }) => {
-    const { cluster, withService, formTemplate } = this.props
-    const prefix = `spec.template.spec.${
-      containerType === 'init' ? 'init_containers' : 'containers'
-    }.${index}`
+  handleEdit = ({ index, data }) => {
+    const { cluster, formTemplate } = this.props
+    const prefix = `spec.volumeClaimTemplates.${index}`
     const clusterOverrides = []
     Object.keys(data).forEach(key => {
       const path = `${prefix}.${key}`
@@ -68,93 +66,54 @@ export default class ContainersMapper extends Component {
 
     set(formTemplate, 'spec.overrides', overrides)
 
-    if (withService && data.ports) {
-      this.updateService(data)
-    }
-
-    this.setState({ editContainer: '' })
+    this.setState({ editVolumeTemplate: '' })
   }
 
-  updateService = data => {
-    const { cluster, serviceTemplate } = this.props
-
-    const servicePorts = []
-    data.ports.forEach(port => {
-      if (port.servicePort) {
-        servicePorts.push({
-          name: port.name,
-          protocol: port.protocol,
-          port: port.servicePort,
-          targetPort: port.containerPort,
-        })
-      }
-    })
-
-    const clusterOverrides = [{ path: '/spec/ports', value: servicePorts }]
-
-    const overrides = get(serviceTemplate, 'spec.overrides', [])
-    const override = overrides.find(item => item.clusterName === cluster)
-    if (override) {
-      override.clusterOverrides = uniqBy(
-        [...clusterOverrides, ...(override.clusterOverrides || [])],
-        'path'
-      )
-    } else {
-      overrides.push({ clusterName: cluster, clusterOverrides })
-    }
-
-    set(serviceTemplate, 'spec.overrides', overrides)
-  }
-
-  getContainer({ index, container, containerType }) {
+  getVolumeTemplate({ index, vt }) {
     const { cluster, formTemplate } = this.props
     const override =
       get(formTemplate, 'spec.overrides', []).find(
         item => item.clusterName === cluster
       ) || {}
 
-    const containerTemplate = cloneDeep(container)
+    const volumeTemplate = cloneDeep(vt)
 
-    const prefix = `/spec/template/spec/${
-      containerType === 'init' ? 'init_containers' : 'containers'
-    }/${index}/`
+    const prefix = `/spec/volumeClaimTemplates/${index}/`
 
     if (override && !isEmpty(override.clusterOverrides)) {
       override.clusterOverrides.forEach(item => {
         if (item.path.startsWith(prefix)) {
           const subPath = item.path.replace(prefix, '').replace(/\//g, '.')
-          set(containerTemplate, subPath, item.value)
+          set(volumeTemplate, subPath, item.value)
         }
       })
     }
 
-    return containerTemplate
+    return volumeTemplate
   }
 
-  renderContainer = (container, index, containerType) => {
+  renderVolumeTemplates = (vt, index) => {
     const { children, selected } = this.props
-    const { editContainer } = this.state
+    const { editVolumeTemplate } = this.state
 
-    const containerTemplate = this.getContainer({
-      container,
+    const volumeTemplate = this.getVolumeTemplate({
+      vt,
       index,
-      containerType,
     })
+
+    const name = get(vt, 'metadata.name')
 
     return (
       <div
-        key={container.name}
-        className={classNames(styles.wrapper, {
-          [styles.selected]: selected,
-        })}
+        key={name}
+        className={classNames(styles.wrapper, { [styles.selected]: selected })}
       >
         {children({
           ...this.props,
           index,
           key: index,
-          containerType: 'worker',
-          formData: containerTemplate,
-          isEdit: editContainer === container.name,
+          formData: volumeTemplate,
+          isEdit: editVolumeTemplate === name,
           showEdit: this.showEdit,
           onEdit: this.handleEdit,
         })}
@@ -165,26 +124,8 @@ export default class ContainersMapper extends Component {
   render() {
     const { formTemplate } = this.props
 
-    const containers = get(
-      formTemplate,
-      'spec.template.spec.template.spec.containers',
-      []
-    )
-    const initContainers = get(
-      formTemplate,
-      'spec.template.spec.template.spec.init_containers',
-      []
-    )
+    const vts = get(formTemplate, 'spec.template.spec.volumeClaimTemplates', [])
 
-    return (
-      <>
-        {containers.map((container, index) =>
-          this.renderContainer(container, index, 'worker')
-        )}
-        {initContainers.map((container, index) =>
-          this.renderContainer(container, index, 'init')
-        )}
-      </>
-    )
+    return vts.map((vt, index) => this.renderVolumeTemplates(vt, index))
   }
 }

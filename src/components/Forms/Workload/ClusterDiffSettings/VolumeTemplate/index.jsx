@@ -16,24 +16,34 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import { Form } from 'components/Base'
-import { PropertiesInput } from 'components/Inputs'
+import React, { Component } from 'react'
+import { get, pick } from 'lodash'
 
-export default class Metadata extends React.Component {
+import VolumeSettings from 'components/Forms/Volume/VolumeSettings/FormTemplate'
+import EditForm from '../EditForm'
+
+export default class VolumeSettingsDiff extends Component {
+  handleSubmit = data => {
+    const { index, onEdit } = this.props
+    onEdit({ index, data: pick(data, ['spec']) })
+  }
+
   render() {
+    const { cluster, namespace, formData } = this.props
+
     return (
-      <>
-        <Form.Item label={t('Labels')}>
-          <PropertiesInput name="metadata.labels" addText={t('Add Label')} />
-        </Form.Item>
-        <Form.Item label={t('Annotations')}>
-          <PropertiesInput
-            name="metadata.annotations"
-            addText={t('Add Annotation')}
-          />
-        </Form.Item>
-      </>
+      <EditForm
+        {...this.props}
+        title={`${t('Storage Class')}: ${get(
+          formData,
+          'spec.storageClassName'
+        )}`}
+        onOk={this.handleSubmit}
+      >
+        <div className="padding-12">
+          <VolumeSettings cluster={cluster} namespace={namespace} />
+        </div>
+      </EditForm>
     )
   }
 }

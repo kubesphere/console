@@ -19,12 +19,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { isEmpty } from 'lodash'
+import { inject } from 'mobx-react'
 
 import { Panel } from 'components/Base'
 import VolumeItem from './Item'
 
 import styles from './index.scss'
 
+@inject('projectStore')
 export default class VolumesCard extends React.Component {
   static propTypes = {
     className: PropTypes.string,
@@ -38,6 +40,10 @@ export default class VolumesCard extends React.Component {
     volumes: [],
     containers: [],
     loading: true,
+  }
+
+  get isMultiProject() {
+    return this.props.projectStore.detail.isFedManaged
   }
 
   getVolumeMounts = volume => {
@@ -61,13 +67,20 @@ export default class VolumesCard extends React.Component {
   }
 
   renderContent() {
-    const { volumes, prefix } = this.props
+    const { volumes, match } = this.props
 
     if (isEmpty(volumes)) return null
 
     return volumes.map((item, index) => {
       item.volumeMounts = this.getVolumeMounts(item)
-      return <VolumeItem key={index} volume={item} prefix={prefix} />
+      return (
+        <VolumeItem
+          key={index}
+          volume={item}
+          match={match}
+          isMultiProject={this.isMultiProject}
+        />
+      )
     })
   }
 

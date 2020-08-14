@@ -72,17 +72,17 @@ export default class ContainerImages extends Component {
   }
 
   render() {
-    const { cluster, namespace, container, containerType } = this.props
+    const { cluster, namespace, formData, containerType } = this.props
     const { quota, limitRanges, imageRegistries } = this.state
 
     return (
       <EditForm
         {...this.props}
-        title={<span>{`${t('Image')}: ${container.image}`}</span>}
+        title={<span>{`${t('Image')}: ${formData.image}`}</span>}
         onOk={this.handleSubmit}
       >
         <ContainerSetting
-          data={container}
+          data={formData}
           cluster={cluster}
           namespace={namespace}
           quota={quota}

@@ -33,7 +33,6 @@ class ContainersResourceStatus extends React.Component {
   renderVolumes() {
     const containers = [toJS(this.store.detail)]
     const volumes = toJS(this.store.volumes)
-    const { workspace, cluster, namespace } = this.props.match.params
 
     return (
       <VolumesCard
@@ -41,9 +40,7 @@ class ContainersResourceStatus extends React.Component {
         volumes={volumes}
         containers={containers}
         loading={this.store.isLoading}
-        prefix={`/${
-          workspace ? `/${workspace}` : ''
-        }/clusters/${cluster}/projects/${namespace}`}
+        match={this.props.match}
       />
     )
   }
