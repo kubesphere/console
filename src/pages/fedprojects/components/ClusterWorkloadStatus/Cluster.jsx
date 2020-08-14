@@ -101,7 +101,7 @@ export default class Cluster extends Component {
   }
 
   render() {
-    const { cluster, workload = {}, store } = this.props
+    const { cluster, workload = {}, store, onReplicasChange } = this.props
     const { replicas } = this.state
     const { podNums = 0, readyPodNums = 0 } = workload
     const unReadyNums = podNums - readyPodNums
@@ -151,22 +151,24 @@ export default class Cluster extends Component {
               />
             )}
           </div>
-          <div className={styles.control}>
-            <Icon
-              name="add"
-              type="light"
-              size={24}
-              clickable
-              onClick={this.handleAdd}
-            />
-            <Icon
-              name="substract"
-              type="light"
-              size={24}
-              clickable
-              onClick={this.handleSubStract}
-            />
-          </div>
+          {onReplicasChange && (
+            <div className={styles.control}>
+              <Icon
+                name="add"
+                type="light"
+                size={24}
+                clickable
+                onClick={this.handleAdd}
+              />
+              <Icon
+                name="substract"
+                type="light"
+                size={24}
+                clickable
+                onClick={this.handleSubStract}
+              />
+            </div>
+          )}
         </div>
       </div>
     )

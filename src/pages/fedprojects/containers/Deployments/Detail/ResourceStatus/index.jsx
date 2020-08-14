@@ -64,6 +64,7 @@ class ResourceStatus extends React.Component {
         clustersDetail={clustersDetail}
         clusters={detail.clusters}
         isLoading={isResourcesLoading}
+        canEdit={this.enabledActions.includes('edit')}
       />
     )
   }
