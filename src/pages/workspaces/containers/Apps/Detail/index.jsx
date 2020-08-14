@@ -81,7 +81,7 @@ export default class RoleDetail extends React.Component {
   }
 
   getOperations = () => {
-    const { detail } = this.store
+    const detail = toJS(this.store.detail)
     return [
       {
         key: 'editApp',
@@ -105,7 +105,7 @@ export default class RoleDetail extends React.Component {
         onClick: () =>
           this.trigger('openpitrix.template.deploy', {
             ...this.props.match.params,
-            app: toJS(detail),
+            app: detail,
           }),
       },
       {

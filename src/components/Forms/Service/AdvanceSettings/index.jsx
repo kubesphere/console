@@ -17,7 +17,7 @@
  */
 
 import React from 'react'
-import { get, set, unset } from 'lodash'
+import { get, set, omit, unset } from 'lodash'
 import { MODULE_KIND_MAP } from 'utils/constants'
 
 import { Form } from 'components/Base'
@@ -44,7 +44,11 @@ export default class AdvancedSettings extends React.Component {
   handleLabelsChange = labels => {
     const { formTemplate, noWorkload } = this.props
     if (!noWorkload) {
-      set(formTemplate, `Service.${this.fedPrefix}spec.selector`, labels)
+      set(
+        formTemplate,
+        `Service.${this.fedPrefix}spec.selector`,
+        omit(labels, 'version')
+      )
       set(formTemplate, `Service.${this.fedPrefix}metadata.labels`, labels)
       set(formTemplate, `Service.metadata.labels`, labels)
     }

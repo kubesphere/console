@@ -21,7 +21,6 @@ import moment from 'moment-mini'
 import classnames from 'classnames'
 import { observer } from 'mobx-react'
 import { observable, action } from 'mobx'
-import { Link } from 'react-router-dom'
 import stripAnsi from 'strip-ansi'
 
 import LogStore from 'stores/logging/query'
@@ -47,7 +46,6 @@ export default class DetailModal extends React.Component {
       namespaces: namespace,
       containers: container,
       size: 100,
-      log_query: log,
       startTime: timestamp - 1000,
       endTime: timestamp + 1000,
     })
@@ -55,6 +53,7 @@ export default class DetailModal extends React.Component {
     this.state = {
       pollingFrequency: 5000,
       polling: false,
+      query: log,
     }
   }
 
@@ -68,17 +67,16 @@ export default class DetailModal extends React.Component {
   @observable
   logs = []
 
-  @action
   changeSearchLog = e => {
-    this.logStore.log_query = e.target.value
+    this.setState({ query: e.target.value })
   }
 
-  @action
-  queryLog = () => {
-    this.refreshLogs()
+  queryLog = e => {
+    if (e.keyCode === 13) {
+      this.refreshLogs()
+    }
   }
 
-  @action
   togglePolling = () => {
     const { polling } = this.state
     polling ? this.stopPolling() : this.startPolling()
@@ -140,14 +138,10 @@ export default class DetailModal extends React.Component {
     const nScrollTop = target.scrollTop
     const nDivHight = target.clientHeight
     if (nScrollTop + nDivHight >= nScrollHight) {
-      this.onScrollEnd()
-    }
-  }
-
-  onScrollEnd() {
-    const { from, size, total } = this.logStore
-    if (total > from + size) {
-      this.loadMoreLogs()
+      const { from, size, total } = this.logStore
+      if (total > from + size) {
+        this.loadMoreLogs()
+      }
     }
   }
 
@@ -164,22 +158,28 @@ export default class DetailModal extends React.Component {
   }
 
   componentDidMount() {
-    this.refreshLogs()
+    this.initialFetch()
   }
 
   componentWillUnmount() {
     this.stopPolling()
   }
 
-  @action
   clearQuery = () => {
-    this.logStore.log_query = ''
-    this.refreshLogs()
+    this.setState({ query: '' }, () => {
+      this.refreshLogs()
+    })
+  }
+
+  @action
+  async initialFetch() {
+    this.logs = await this.fetchLogs()
   }
 
   @action
   async refreshLogs() {
     this.logStore.from = 0
+    this.logStore.log_query = this.state.query
     this.setState({
       polling: false,
     })
@@ -207,7 +207,7 @@ export default class DetailModal extends React.Component {
           </div>
         </div>
         <div className={styles.article}>
-          {this.renderSummery()}
+          {this.renderSummary()}
           {this.renderLog()}
         </div>
       </div>
@@ -309,15 +309,17 @@ export default class DetailModal extends React.Component {
         <input
           type="text"
           onKeyUp={this.queryLog}
-          value={this.logStore.log_query}
+          value={this.state.query}
           onChange={this.changeSearchLog}
         />
-        <Icon
-          className={styles.clearQuery}
-          name="close"
-          type="light"
-          onClick={this.clearQuery}
-        />
+        {this.state.query && (
+          <Icon
+            className={styles.clearQuery}
+            name="close"
+            type="light"
+            onClick={this.clearQuery}
+          />
+        )}
       </div>
     )
   }
@@ -338,8 +340,8 @@ export default class DetailModal extends React.Component {
   }
 
   renderHighLightLog(log) {
-    const { log_query } = this.logStore
-    const logQuery = log_query.trim()
+    const { query } = this.state
+    const logQuery = query.trim()
     const matchIndex = log.toUpperCase().indexOf(logQuery.toUpperCase())
     if (!logQuery || matchIndex === -1) {
       return <span className={styles.queryLog}>{stripAnsi(log)}</span>
@@ -361,17 +363,7 @@ export default class DetailModal extends React.Component {
     )
   }
 
-  renderLink(link, children) {
-    return link ? (
-      <Link to={link} onClick={this.closeModal}>
-        {children}
-      </Link>
-    ) : (
-      <span className={styles.disableLink}>{children}</span>
-    )
-  }
-
-  renderSummery() {
+  renderSummary() {
     const { detailState } = this.props
     return (
       <div className={styles.summery}>

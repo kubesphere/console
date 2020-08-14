@@ -682,4 +682,8 @@ export default {
     'The time zone of the container will be consistent with that of the host after synchronization.',
   HOST_PATH_WARNING:
     'A HostPath volume mounts a file or directory from the host node’s filesystem into your Pod. This is not something that most Pods will need, but it offers a powerful escape hatch for some applications.',
+
+  DEPLOY_PLACEMENT_TIP_TITLE: 'What is Deployment Location?',
+  DEPLOY_PLACEMENT_TIP_VALUE:
+    'You can deploy Pods on different clusters and define the number of replicas deployed. The Federation Controller Manager schedules Pods on different clusters in a unified way and synchronizes status.',
 }

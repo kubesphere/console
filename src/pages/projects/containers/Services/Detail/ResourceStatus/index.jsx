@@ -17,10 +17,9 @@
  */
 
 import React from 'react'
-import { reaction, toJS } from 'mobx'
+import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 
-import WorkloadStore from 'stores/workload'
 import RouterStore from 'stores/router'
 
 import { Panel, Text } from 'components/Base'
@@ -39,18 +38,11 @@ export default class ResourceStatus extends React.Component {
 
     this.store = props.detailStore
 
-    const workloadModule = this.store.workload.type
-    this.workloadStore = new WorkloadStore(workloadModule)
     this.routerStore = new RouterStore()
-
-    this.disposer = reaction(
-      () => this.store.workload,
-      () => this.fetchDetail()
-    )
   }
 
   componentDidMount() {
-    this.fetchDetail()
+    this.fetchRouter()
   }
 
   componentWillUnmount() {
@@ -63,18 +55,8 @@ export default class ResourceStatus extends React.Component {
     return `${workspace ? `/${workspace}` : ''}/clusters/${cluster}`
   }
 
-  fetchDetail = async () => {
+  fetchRouter = async () => {
     const { params } = this.props.match
-    const { name, type } = this.store.workload
-
-    if (type && name) {
-      this.workloadStore.setModule(type)
-      const result = await this.workloadStore.checkName({ ...params, name })
-      if (result.exist) {
-        await this.workloadStore.fetchDetail({ ...params, name })
-      }
-    }
-
     this.routerStore.getGateway(params)
   }
 

@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { concat, get, set, unset, isEmpty, omitBy, has } from 'lodash'
+import { concat, get, set, unset, isEmpty, omit, omitBy, has } from 'lodash'
 import React from 'react'
 import { safeParseJSON, generateId } from 'utils'
 import { MODULE_KIND_MAP } from 'utils/constants'
@@ -222,16 +222,16 @@ export default class ContainerSetting extends React.Component {
     )
 
     if (hasLocalTime) {
-      volumes.push({
-        hostPath: { path: '/etc/localtime', type: '' },
-        name: 'host-time',
-      })
+      if (volumes.every(item => item.name !== 'host-time')) {
+        volumes.push({
+          hostPath: { path: '/etc/localtime', type: '' },
+          name: 'host-time',
+        })
+      }
     } else {
       volumes = volumes.filter(
         volume =>
-          volume.name === 'host-time' &&
-          volume.hostPath &&
-          volume.hostPath === '/etc/localtime'
+          !(volume.name === 'host-time' && volume.hostPath === '/etc/localtime')
       )
     }
 
@@ -324,7 +324,11 @@ export default class ContainerSetting extends React.Component {
     )
 
     set(serviceTemplate, 'metadata.labels', labels)
-    set(serviceTemplate, `${serivcePrefix}spec.selector`, podLabels)
+    set(
+      serviceTemplate,
+      `${serivcePrefix}spec.selector`,
+      omit(podLabels, 'version')
+    )
 
     const placement = get(this.formTemplate, 'spec.placement')
     if (placement) {
@@ -440,10 +444,8 @@ export default class ContainerSetting extends React.Component {
   renderDeployPlacementTip() {
     return (
       <div>
-        <div className="tooltip-title">
-          {t('What is Deployment Location ?')}
-        </div>
-        <p>{t('DEPLOY_PLACEMENT_TIP')}</p>
+        <div className="tooltip-title">{t('DEPLOY_PLACEMENT_TIP_TITLE')}</div>
+        <p>{t('DEPLOY_PLACEMENT_TIP_VALUE')}</p>
       </div>
     )
   }

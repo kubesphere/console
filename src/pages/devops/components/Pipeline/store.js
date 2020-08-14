@@ -91,20 +91,6 @@ export default class Store extends BaseStore {
     return this.stages[this.activeLineIndex].parallel[this.activeColunmIndex]
   }
 
-  @computed
-  get passWordCredentials() {
-    return this.credentials.filter(
-      credential => credential.type === 'username_password'
-    )
-  }
-
-  @computed
-  get kubeconfigCredentials() {
-    return this.credentials.filter(
-      credential => credential.type === 'kubeconfig'
-    )
-  }
-
   @observable
   jsonData = {}
 
@@ -124,7 +110,7 @@ export default class Store extends BaseStore {
   params = {}
 
   @observable
-  credentials = []
+  credentialsList = { data: [] }
 
   handleAddBranch(lineIndex) {
     if (this.jsonData.json.pipeline.stages[lineIndex].parallel) {
@@ -191,6 +177,14 @@ export default class Store extends BaseStore {
   @action
   setEdittingData(data) {
     this.edittingData = data
+  }
+
+  isPassWordCredentials(type) {
+    return type === 'username_password'
+  }
+
+  isKubeconfigCredentials(type) {
+    return type === 'kubeconfig'
   }
 
   @action
@@ -269,6 +263,7 @@ export default class Store extends BaseStore {
           this.jenkinsFile = result.data.jenkinsfile
           return result
         }
+
         if (result && get(result, 'data.result') === 'failure') {
           result.data.errors.forEach(error => {
             if (!error.location) {
@@ -280,10 +275,26 @@ export default class Store extends BaseStore {
               })
               return
             }
+
             const loacationArr = error.location.join('.').split('.branches')
-            // can't find location
             const errorObj = get(this.jsonData.json, loacationArr[0])
+
             if (errorObj && !isEmpty(errorObj)) {
+              const errorStepIndex =
+                error.location.indexOf('steps') !== -1
+                  ? parseInt(
+                      error.location[error.location.indexOf('steps') + 1],
+                      10
+                    )
+                  : undefined
+              if (errorStepIndex !== undefined) {
+                set(this.jsonData.json, loacationArr[0], {
+                  ...toJS(get(this.jsonData.json, loacationArr[0])),
+                  error: { error: error.error, index: errorStepIndex },
+                })
+                return
+              }
+
               Message.error({ content: error.error })
               Notify.error({
                 title: t('pipeline syntax error'),
@@ -329,19 +340,13 @@ export default class Store extends BaseStore {
   }
 
   @action
-  getCredentials = async () => {
-    this.isCredentialLoading = true
-    const result = await this.credentialStore.fetchList({
+  getCredentials = async params => {
+    await this.credentialStore.fetchList({
       devops: this.params.devops,
       cluster: this.params.cluster,
+      ...params,
     })
-
-    this.credentials = result.map(credential => ({
-      label: credential.name,
-      value: credential.name,
-      type: credential.type,
-    }))
-    this.isCredentialLoading = false
+    this.credentialsList = this.credentialStore.list
   }
 
   @action

@@ -77,13 +77,15 @@ export default class Placment extends Component {
 
   @computed
   get namespaces() {
-    return this.projectStore.list.data.map(item => ({
-      label: item.name,
-      value: item.name,
-      opRuntime: item.opRuntime,
-      disabled: item.isFedManaged,
-      isFedManaged: item.isFedManaged,
-    }))
+    return this.projectStore.list.data
+      .filter(item => item.status !== 'Terminating')
+      .map(item => ({
+        label: item.name,
+        value: item.name,
+        opRuntime: item.opRuntime,
+        disabled: item.isFedManaged,
+        isFedManaged: item.isFedManaged,
+      }))
   }
 
   async init() {

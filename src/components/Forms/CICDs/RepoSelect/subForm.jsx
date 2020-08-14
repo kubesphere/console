@@ -77,7 +77,7 @@ export default class RepoSelectForm extends React.Component {
 
     registerSubRoute && registerSubRoute(this.handleSubmit, onCancel)
 
-    this.store.getCredential({ devops, cluster })
+    this.store.getCredentials({ devops, cluster })
     this.store.name = name
 
     if (!isEmpty(sourceData)) {
@@ -106,7 +106,7 @@ export default class RepoSelectForm extends React.Component {
 
   hideCreateCredential = async () => {
     const { devops, cluster } = this.props
-    await this.store.getCredential({ devops, cluster })
+    await this.store.getCredentials({ devops, cluster })
     this.showCredential = false
   }
 
@@ -238,6 +238,7 @@ export default class RepoSelectForm extends React.Component {
         formRef={this.formRef}
         handleSubmit={this.handleSubmit}
         devops={devops}
+        cluster={cluster}
         showCredential={this.showCreateCredential}
       />
     )

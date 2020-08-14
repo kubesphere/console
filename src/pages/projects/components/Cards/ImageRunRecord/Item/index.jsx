@@ -33,6 +33,7 @@ export default class ImageBuilderLastRun extends React.Component {
     super(props)
     this.state = {
       showLog: false,
+      noModuleMsg: null,
     }
     this.LogContent = React.createRef()
     this.store = props.store
@@ -40,12 +41,25 @@ export default class ImageBuilderLastRun extends React.Component {
 
   componentWillUnmount() {
     clearTimeout(this.refreshTimer)
+    this.setState({
+      noModuleMsg: null,
+    })
   }
 
   toggleShowLog = () => {
     const { showLog } = this.state
     if (!showLog) {
-      this.getLog()
+      if (globals.app.hasKSModule('logging')) {
+        this.getLog()
+        this.setState({
+          noModuleMsg: null,
+        })
+      } else {
+        this.store.logData.isLoading = false
+        this.setState({
+          noModuleMsg: t('Log module is not installed'),
+        })
+      }
     } else {
       clearTimeout(this.refreshTimer)
     }
@@ -109,6 +123,8 @@ export default class ImageBuilderLastRun extends React.Component {
 
   renderLog = () => {
     const { log, isLoading } = this.store.logData
+    const { noModuleMsg } = this.state
+
     if (!this.state.showLog) {
       return null
     }
@@ -123,7 +139,9 @@ export default class ImageBuilderLastRun extends React.Component {
 
     return (
       <div className={styles.logContent} onClick={this.stopPropagation}>
-        <pre ref={this.LogContent}>{log || t('Log is loading...')}</pre>
+        <pre ref={this.LogContent}>
+          {noModuleMsg || log || t('Log is loading...')}
+        </pre>
       </div>
     )
   }

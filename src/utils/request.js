@@ -16,14 +16,11 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-require('whatwg-fetch')
-const get = require('lodash/get')
-const set = require('lodash/set')
-const merge = require('lodash/merge')
-const isEmpty = require('lodash/isEmpty')
-const qs = require('qs')
-const { getClusterUrl } = require('./index')
-const cookie = require('./cookie').default
+import 'whatwg-fetch'
+import qs from 'qs'
+import { isObject, get, set, merge, isEmpty } from 'lodash'
+import { getClusterUrl, safeParseJSON } from './index'
+import cookie from './cookie'
 
 const methods = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
 
@@ -165,7 +162,6 @@ function handleResponse(response, reject) {
   }
 
   const contentType = response.headers.get('content-type')
-
   if (contentType && contentType.includes('json')) {
     return response.json().then(data => {
       if (response.status === 401) {
@@ -198,6 +194,15 @@ function handleResponse(response, reject) {
       status: response.status,
       reason: response.statusText,
       message: text,
+    }
+
+    // some errors are the string-json in devops
+    const errBody = safeParseJSON(text)
+    if (isObject(errBody) && !isEmpty(errBody)) {
+      error.status = response.status
+      error.code = errBody.code
+      error.message = errBody.message
+      error.errors = errBody.errors
     }
 
     if (typeof reject === 'function') {

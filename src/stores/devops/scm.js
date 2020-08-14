@@ -18,9 +18,9 @@
 
 import { action, observable, toJS } from 'mobx'
 import { isArray, get, isEmpty, set } from 'lodash'
-import { parseUrl, safeParseJSON, getQueryString } from 'utils'
+import { parseUrl, getQueryString, generateId } from 'utils'
 import { CREDENTIAL_DISPLAY_KEY } from 'utils/constants'
-import md5 from 'utils/md5'
+
 import BaseStore from 'stores/devops/base'
 import CredentialStore from './credential'
 
@@ -30,53 +30,44 @@ export default class SCMStore extends BaseStore {
 
     this.verifyAccessErrorHandle = {
       github: (resp, error) => {
-        if (!isEmpty(get(error, 'message'))) {
-          const err = safeParseJSON(error.message)
-          if (err.code === 428) {
-            this.isAccessTokenWrong = true
-            this.orgList.isLoading = false
-            return
-          }
-          if (window.onunhandledrejection) {
-            err.status = error.status
-            err.reason = error.reason
-            window.onunhandledrejection(err)
-          }
-          return Promise.reject(error)
+        if (error.code === 428) {
+          this.isAccessTokenWrong = true
+          this.orgList.isLoading = false
+          return
         }
+        if (window.onunhandledrejection) {
+          window.onunhandledrejection(error)
+        }
+        return Promise.reject(error)
       },
       'bitbucket-server': (resp, error) => {
-        if (!isEmpty(get(error, 'message'))) {
-          const err = safeParseJSON(error.message)
-
-          if (err.code === 428) {
-            this.creatBitBucketServersError = {
-              password: {
-                message: t('Wrong username or password, please try again'),
-              },
-            }
-            return
+        if (error.code === 428) {
+          this.creatBitBucketServersError = {
+            password: {
+              message: t('Wrong username or password, please try again'),
+            },
           }
-          if (isArray(err.errors) && !isEmpty(err.errors)) {
-            this.creatBitBucketServersError = err.errors.reduce(
-              (prev, errorItem) => {
-                prev[errorItem.field] = errorItem.message
-                return prev
-              },
-              {}
-            )
-            return
-          }
-
-          this.creatBitBucketServersError = { all: err.message }
-
-          if (window.onunhandledrejection) {
-            err.status = error.status
-            err.reason = error.reason
-            window.onunhandledrejection(err)
-          }
-          return Promise.reject(error)
+          return
         }
+
+        if (isArray(error.errors) && !isEmpty(error.errors)) {
+          this.creatBitBucketServersError = error.errors.reduce(
+            (prev, errorItem) => {
+              prev[errorItem.field] = { message: errorItem.message }
+              return prev
+            },
+            {}
+          )
+          return
+        }
+
+        this.creatBitBucketServersError = { all: error.message }
+
+        if (window.onunhandledrejection) {
+          window.onunhandledrejection(error)
+        }
+
+        return Promise.reject(error)
       },
     }
 
@@ -115,11 +106,14 @@ export default class SCMStore extends BaseStore {
     this.orgList.isLoading = true
     this.scmType = scmType
     this.orgParams = params
+
     const result = await this.request.get(
       `${this.getBaseUrlV2({ cluster })}scms/${scmType ||
-        'github'}/organizations/?${getQueryString(params)}`
+        'github'}/organizations/?${getQueryString(params, false)}`
     )
+
     isArray(result) ? (this.orgList.data = result) : null
+
     this.orgList.isLoading = false
   }
 
@@ -132,23 +126,44 @@ export default class SCMStore extends BaseStore {
   async getRepoList({ activeRepoIndex, cluster }) {
     activeRepoIndex =
       activeRepoIndex !== undefined ? activeRepoIndex : this.activeRepoIndex
+
     this.getRepoListLoading = true
+
+    const scmType = this.scmType || 'github'
     const pageNumber =
       get(this.orgList.data[activeRepoIndex], 'repositories.nextPage') || 1
+
     const organizationName =
       this.orgList.data[activeRepoIndex].key ||
       this.orgList.data[activeRepoIndex].name
 
     const result = await this.request.get(
-      `${this.getBaseUrlV2({ cluster })}scms/${this.scmType ||
-        'github'}/organizations/${organizationName}/repositories/?${getQueryString(
+      `${this.getBaseUrlV2({
+        cluster,
+      })}scms/${scmType}/organizations/${
+        scmType === 'bitbucket-server'
+          ? `~${organizationName}`
+          : organizationName
+      }/repositories/?${getQueryString(
         {
           ...this.orgParams,
           pageNumber,
           pageSize: 20,
+        },
+        false
+      )}`,
+      {},
+      null,
+      (res, err) => {
+        this.getRepoListLoading = false
+        set(this.orgList, `data[${activeRepoIndex}].repositories.item`, [])
+        if (window.onunhandledrejection) {
+          window.onunhandledrejection(err)
         }
-      )}`
+        return Promise.reject(err)
+      }
     )
+
     if (result.repositories) {
       const currentRepository = get(
         this.orgList,
@@ -168,8 +183,8 @@ export default class SCMStore extends BaseStore {
           result.repositories
         )
       }
-      this.getRepoListLoading = false
     }
+    this.getRepoListLoading = false
   }
 
   async putAccessToken({ token, cluster, devops }) {
@@ -180,7 +195,7 @@ export default class SCMStore extends BaseStore {
     })
 
     if (result && result.credentialId) {
-      this.githubCredentialId = `github-${token.slice(0, 6)}`
+      this.githubCredentialId = `github-${token.slice(0, 6)}-${generateId(5)}`
 
       const data = {
         id: this.githubCredentialId,
@@ -227,19 +242,12 @@ export default class SCMStore extends BaseStore {
   }
 
   @action
-  getCredential = async ({ devops, cluster }) => {
+  getCredentials = async params => {
     this.credentials.loading = true
-    const result = await this.credentialStore.fetchList({
-      devops,
-      cluster,
+    await this.credentialStore.fetchList({
+      ...params,
     })
-
-    this.credentials.data = result.map(credential => ({
-      label: credential.name,
-      value: credential.name,
-      type: credential.type,
-    }))
-    this.credentials.loading = false
+    this.credentials = this.credentialStore.list
     window.pipelineCredentials = toJS(this.credentials) // cache in gloable varibles
   }
 
@@ -262,9 +270,7 @@ export default class SCMStore extends BaseStore {
       return
     }
 
-    this.bitbucketCredentialId = `bitbucket-${username}-${md5(
-      apiUrl + username + password
-    ).slice(0, 6)}`
+    this.bitbucketCredentialId = `bitbucket-${username}-${generateId(5)}`
 
     const result = await this.request.post(
       `${this.getBaseUrlV2({ cluster })}scms/bitbucket-server/servers`,
@@ -335,6 +341,8 @@ export default class SCMStore extends BaseStore {
     this.activeRepoIndex = ''
     this.githubCredentialId = ''
     this.formData = {}
+    this.tokenFormData = {}
+    this.creatBitBucketServersError = {}
   }
 
   @action

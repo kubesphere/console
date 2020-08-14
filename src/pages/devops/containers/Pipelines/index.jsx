@@ -155,6 +155,7 @@ class CICDs extends React.Component {
       const { params } = this.props.match
 
       await this.store.runBranch({
+        cluster: params.cluster,
         devops: params.devops,
         name: record.name,
       })
@@ -517,6 +518,7 @@ class CICDs extends React.Component {
         isLoading={isLoading}
         onFetch={this.handleFetch}
         onCreate={showCreate}
+        searchType="name"
         {...defaultTableProps}
       />
     )

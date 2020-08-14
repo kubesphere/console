@@ -38,6 +38,7 @@ export default class Log extends React.Component {
     this.state = {
       showLog: true,
       isContainerPending: false,
+      noModuleMsg: null,
     }
     this.store = new RunStore()
     this.refreshTimer = null
@@ -45,10 +46,18 @@ export default class Log extends React.Component {
   }
 
   componentDidMount() {
-    this.getLog()
+    if (globals.app.hasKSModule('logging')) {
+      this.getLog()
+    } else {
+      this.store.logData.isLoading = false
+      this.setState({
+        noModuleMsg: t('Log module is not installed'),
+      })
+    }
   }
 
   componentWillUnmount() {
+    this.setState({ noModuleMsg: null })
     clearTimeout(this.refreshTimer)
   }
 
@@ -70,15 +79,8 @@ export default class Log extends React.Component {
       this.refreshTimer = setTimeout(this.getLog, 4000)
       return
     }
-    if (globals.app.hasKSModule('logging')) {
-      await this.store.getLog(logURL, cluster)
-    } else {
-      await this.store.fetchPodsLogs(logURL, cluster).catch(error => {
-        if (error === 'container not ready') {
-          this.setState({ isContainerPending: true })
-        }
-      })
-    }
+    await this.store.getLog(logURL, cluster)
+
     this.handleScrollToBottom()
     if (logData.hasMore) {
       this.getLog()
@@ -160,7 +162,7 @@ export default class Log extends React.Component {
   renderLog() {
     const { log } = this.store.logData
     const { runState } = this.props
-
+    const { noModuleMsg } = this.state
     if (!log) {
       if (runState === 'Running' || runState === 'Unknown') {
         return (
@@ -171,7 +173,11 @@ export default class Log extends React.Component {
       }
       return <p className={styles.noneLogDesc}>{t('No log records')}</p>
     }
-    return <pre ref={this.LogContent}>{log}</pre>
+    return (
+      <pre ref={this.LogContent}>
+        {noModuleMsg || log || t('Log is loading...')}
+      </pre>
+    )
   }
 
   render() {

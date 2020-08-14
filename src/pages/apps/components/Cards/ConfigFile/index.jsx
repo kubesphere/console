@@ -31,14 +31,14 @@ import styles from './index.scss'
 @observer
 export default class ConfigFile extends React.Component {
   static propTypes = {
-    detail: PropTypes.object,
     appId: PropTypes.string,
+    versionId: PropTypes.string,
     appName: PropTypes.string,
   }
 
   static defaultProps = {
-    detail: {},
     appId: '',
+    versionId: '',
     appName: '',
   }
 
@@ -49,26 +49,46 @@ export default class ConfigFile extends React.Component {
     this.fileStore = new FileStore()
   }
 
+  componentDidMount() {
+    this.fetchData()
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.versionId !== this.props.versionId) {
+      this.fetchData()
+    }
+  }
+
+  fetchData = () => {
+    const { appId, versionId } = this.props
+
+    if (appId && versionId) {
+      this.store.fetchDetail({
+        app_id: appId,
+        version_id: versionId,
+      })
+    }
+  }
+
   getPackageName = () => {
-    const { detail, appName } = this.props
-    const packageName = detail.package_name
+    const { appName } = this.props
+    const { package_name: packageName, name = '' } = this.store.detail
 
     if (!packageName || packageName.startsWith('att-')) {
-      return `${appName}-${detail.name}`
+      return `${appName}-${name}`
     }
 
     return packageName
   }
 
-  modifyPackage = params => {
-    this.store.update(params).then(() => {
-      Notify.success({ content: `${t('Modify Successfully')}!` })
-      this.forceUpdate()
-    })
+  modifyPackage = async params => {
+    await this.store.update(params)
+    Notify.success({ content: `${t('Modify Successfully')}!` })
+    await this.fetchData()
   }
 
   renderUpdate() {
-    const { detail } = this.props
+    const { detail } = this.store
 
     if (!detail.description) {
       return (
@@ -87,7 +107,7 @@ export default class ConfigFile extends React.Component {
   }
 
   render() {
-    const { detail } = this.props
+    const { detail } = this.store
 
     return (
       <div className={styles.main}>

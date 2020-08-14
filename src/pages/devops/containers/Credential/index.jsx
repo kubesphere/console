@@ -24,7 +24,6 @@ import { parse } from 'qs'
 import { omit } from 'lodash'
 
 import CredentialStore from 'stores/devops/credential'
-import EmptyTable from 'components/Cards/EmptyTable'
 import { getLocalTime } from 'utils'
 
 import Banner from 'components/Cards/Banner'
@@ -164,18 +163,7 @@ class Credential extends React.Component {
       ? this.showCreate
       : null
 
-    const isEmptyList = isLoading === false && total === 0 && data.length <= 0
     const omitFilters = omit(filters, ['page', 'limit', 'sortBy'])
-
-    if (isEmptyList) {
-      return (
-        <EmptyTable
-          desc={t(`${this.name.toUpperCase()}_CREATE_DESC`)}
-          onCreate={showCreate}
-          createText={t('Create Credentials')}
-        />
-      )
-    }
 
     const pagination = { total, page, limit }
     return (
@@ -188,6 +176,7 @@ class Credential extends React.Component {
         isLoading={isLoading}
         onFetch={this.handleFetch}
         onCreate={showCreate}
+        searchType="name"
       />
     )
   }

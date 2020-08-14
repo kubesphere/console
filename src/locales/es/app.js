@@ -91,6 +91,7 @@ export default {
     'Gestión de la tienda de aplicaciones de la plataforma',
   'Please input category name': 'Introduce el nombre de categría, por favor',
   'Please input reject reason': 'Introduce un motivo de rechazo, por favor',
+  'Please input version number': 'Please input version number',
   'Please select a cluster': 'Selecciona un cluster, por favor',
   'Please select a project': 'Selecciona un proyecto, por favor',
   'Please select a project to deploy':
