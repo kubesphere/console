@@ -61,7 +61,8 @@ export default {
   'Jobs Records': 'Jobs Records',
   'Last build environment': 'Last build environment',
   'Last Message': 'Last Message',
-  'Log module is not installed': 'Log module is not installed',
+  'The logging module is not installed.':
+    'The logging module is not installed.',
   'Log is loading...': 'Log is loading...',
   'New Image Tag': 'New Image Tag',
   'New Tag': 'New Tag',

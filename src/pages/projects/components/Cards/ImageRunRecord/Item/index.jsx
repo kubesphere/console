@@ -57,7 +57,7 @@ export default class ImageBuilderLastRun extends React.Component {
       } else {
         this.store.logData.isLoading = false
         this.setState({
-          noModuleMsg: t('Log module is not installed'),
+          noModuleMsg: t('The logging module is not installed.'),
         })
       }
     } else {

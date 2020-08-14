@@ -197,5 +197,6 @@ export default {
     'A volume snapshot refers to a snapshot of a volume at a particular time point. It can be used to create new volumes (preset the snapshot data) or restore an existing volume to its previous status (displayed in snapshots).',
   WHAT_IS_VOLUME_SNAPSHOTS: 'What are volume snapshots?',
 
-  CLUSTER_VOLUME_DIFF_DESC: 'Specify different storage class for each clusters',
+  CLUSTER_VOLUME_DIFF_DESC:
+    'You can specify different storage classes for different clusters.',
 }

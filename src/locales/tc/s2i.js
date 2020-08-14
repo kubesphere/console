@@ -106,7 +106,7 @@ export default {
   s2i: '代碼構建鏡像',
   b2i: '成品構建鏡像',
   'Log is loading...': '紀錄正在載入',
-  'Log module is not installed': '日誌模塊未安裝',
+  'The logging module is not installed.': '日誌模塊未安裝',
   'Build Environment': '構建環境',
   'File Uploaded Successfully': '上傳檔案成功',
   'Upload Percent': '上傳進度',

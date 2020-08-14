@@ -61,7 +61,8 @@ export default {
   'Jobs Records': 'Registros de trabajos',
   'Last build environment': 'Último entorno de compilación',
   'Last Message': 'Ultimo mensaje',
-  'Log module is not installed': 'Log module is not installed',
+  'The logging module is not installed.':
+    'The logging module is not installed.',
   'Log is loading...': 'El registro se está cargando ...',
   'New Image Tag': 'Nuevo tag de imagen',
   'New Tag': 'Nuevo tag',
