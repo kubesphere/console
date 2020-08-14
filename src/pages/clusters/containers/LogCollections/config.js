@@ -38,22 +38,6 @@ export default {
     get description() {
       return t('ES_DESC')
     },
-    validator(callback) {
-      const formData = this._formData || {}
-      const { HTTP_User, HTTP_Password } = formData
-      if (HTTP_User && !HTTP_Password) {
-        this.setState({
-          errors: [
-            {
-              message: t('Please input password'),
-              field: 'HTTP_Password',
-            },
-          ],
-        })
-      } else {
-        callback()
-      }
-    },
   },
   kafka: {
     ICON: KaFkaICON,

@@ -22,6 +22,12 @@
   right: 12px;
 }
 
+.pane {
+  border-radius: $border-radius;
+  box-shadow: $card-shadow;
+  background-color: $white;
+}
+
 .item {
   display: flex;
   padding: 20px;

@@ -32,6 +32,7 @@ export default {
   'Exact Query': 'Exact Query',
   'Fuzzy Query': 'Fuzzy Query',
   'Hide help information': 'Hide help information',
+  'Index Prefix': 'Index Prefix',
   Keyword: 'Keyword',
   'Log Collections': 'Log Collections',
   'Log Collector': 'Log Collector',
@@ -85,7 +86,6 @@ export default {
     'The system will collect the stdout and stderr logs from each container and send them to one or more target services.',
   LOG_COLLECTION_ENABLE_TIPS:
     'The new status takes about 1 minute to take effect.',
-  LOG_COLLECTION_FLUENTD_USER_TIPS: 'Username for authentication',
   LOG_COLLECTION_FLUENTD_URL_TIPS:
     'Enter the address of the Fluentd that receives the log.',
   EMPTY_LOG_COLLECTIONS:
@@ -96,8 +96,8 @@ export default {
 
   LOG_COLLECTION_ES_URL_TIPS:
     'The built-in Elasticsearch service is used by default. You can change it to use an Elasticsearch service deployed by your own either within or out of the cluster.',
-  LOG_COLLECTION_ES_USER_TIPS:
-    'If your elasticsearch has the built-in local authentication feature in x-pack, set a username and password.',
+  LOG_COLLECTION_ES_INDEX_TIPS:
+    'The indexes are built with prefix and the date, for example: {prefix}-2020.01.01',
   'Search Log by': 'Search Log by {field}',
   'KeyWord Log Query Tip':
     'Please enter the keyword to find the log. You can also find the error log by keywords such as “Error”, “Fail”, “Fatal”, “Exception” and “Warning”.',

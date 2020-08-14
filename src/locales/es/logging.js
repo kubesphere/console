@@ -32,6 +32,7 @@ export default {
   'Exact Query': 'Consulta exacta',
   'Fuzzy Query': 'Consulta difusa',
   'Hide help information': 'Ocultar información de ayuda',
+  'Index Prefix': 'Index Prefix',
   Keyword: 'Palabra clave',
   'Log Collections': 'Colecciones de logs',
   'Log Collector': 'Colector de logs',
@@ -86,7 +87,6 @@ export default {
     'El sistema recopilará los registros stdout y stderr de cada contenedor y los enviará a uno o más servicios de destino.',
   LOG_COLLECTION_ENABLE_TIPS:
     'El nuevo estado tarda aproximadamente 1 minuto en surtir efecto.',
-  LOG_COLLECTION_FLUENTD_USER_TIPS: 'Nombre de usuario para autenticación',
   LOG_COLLECTION_FLUENTD_URL_TIPS:
     'Introduce la dirección del Fluentd que recibe los logs.',
   EMPTY_LOG_COLLECTIONS:
@@ -96,8 +96,8 @@ export default {
   URL_SYNTAX_ERROR: 'Error de sintaxis de URL',
   LOG_COLLECTION_ES_URL_TIPS:
     'El servicio incorporado Elasticsearch se usa de manera predeterminada. Puedes cambiarlo para usar un servicio Elasticsearch implementado por tí mismo dentro o fuera del clúster.',
-  LOG_COLLECTION_ES_USER_TIPS:
-    'Si su elasticsearch tiene la función de autenticación local incorporada en x-pack, configura un nombre de usuario y contraseña.',
+  LOG_COLLECTION_ES_INDEX_TIPS:
+    'The indexes are built with prefix and the date, for example: {prefix}-2020.01.01',
   'Search Log by': 'Buscar logs por {field}',
   'KeyWord Log Query Tip':
     'Introduce la palabra clave para encontrar el log. También puedes encontrar el log de errores por palabras clave como "Error", "Fail", "Fatal", "Exception" y "Warning".',
