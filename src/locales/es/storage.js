@@ -189,5 +189,6 @@ export default {
     'Un snapshot de volumen se refiere a una snapshot de un volumen en un punto de tiempo particular. Se puede utilizar para crear nuevos volúmenes (preestablecer los datos del snapshot) o restaurar un volumen existente a su estado anterior (que se muestra en los snapshots).',
   WHAT_IS_VOLUME_SNAPSHOTS: '¿Qué son los snapshots de volumenes?',
 
-  CLUSTER_VOLUME_DIFF_DESC: 'Specify different storage class for each clusters',
+  CLUSTER_VOLUME_DIFF_DESC:
+    'You can specify different storage classes for different clusters.',
 }
