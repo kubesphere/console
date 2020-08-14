@@ -95,10 +95,9 @@ export default {
   'Please input path': '请输入地址',
   LOG_COLLECTION_ES_URL_TIPS:
     '默认使用系统部署的 Elasticsearch，也可以输入外部或者单独部署的 Elasticsearch 地址',
-  LOG_COLLECTION_ES_USER_TIPS:
-    '如果您的 Elasticsearch 开启了 X-Pack 内置的本地身份验证功能，请设置用户名和密码。',
+  LOG_COLLECTION_ES_INDEX_TIPS:
+    '默认按日期分类建立索引，例：索引前缀-2020.01.01',
   LOG_COLLECTION_FLUENTD_URL_TIPS: '输入接收日志的 Fluentd 的地址',
-  LOG_COLLECTION_FLUENTD_USER_TIPS: '用于身份验证的用户名',
 
   'Refresh Interval': '刷新频率',
   'Recently Updated': '最近刷新',
@@ -110,6 +109,7 @@ export default {
   'Log Collector': '日志接收者',
   Activate: '激活',
   'Real-Time Data': '实时数据',
+  'Index Prefix': '索引前缀',
 
   'Resource Name & Type': '资源名称与类型',
 

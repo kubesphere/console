@@ -30,33 +30,21 @@ import styles from './index.scss'
 export default class Configuration extends React.Component {
   render() {
     const detail = get(this.props.detailStore, 'detail', {})
-    const { HTTP_User, HTTP_Password, type, address } = detail
+    const { address, config = {} } = detail
 
     return (
       <Panel>
         <Attributes className={styles.attributes}>
           <Attributes.Item
             className={styles.item}
-            key="address"
             name={t('Address')}
             value={address}
           />
-          {type === 'es' && (
-            <div>
-              <Attributes.Item
-                className={styles.item}
-                key="user"
-                name={t('Username')}
-                value={HTTP_User}
-              />
-              <Attributes.Item
-                key="password"
-                name={t('Password')}
-                value={HTTP_Password}
-                className={styles.item}
-              />
-            </div>
-          )}
+          <Attributes.Item
+            className={styles.item}
+            name={t('Index Prefix')}
+            value={config.logstashPrefix}
+          />
         </Attributes>
       </Panel>
     )

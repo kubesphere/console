@@ -16,12 +16,13 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import React from 'react'
+import { cloneDeep } from 'lodash'
 import { Modal, Notify } from 'components/Base'
 import EnableForm from 'components/Forms/LoggingCollection/Status'
 import ESForm from 'src/components/Forms/Elasticsearch/Settings'
 import KafkaForm from 'src/components/Forms/KafkaForm/Settings'
 import FluentdForm from 'src/components/Forms/Fluentd/Settings'
-import React from 'react'
 
 export default {
   'log.collection.active.switch': {
@@ -58,7 +59,7 @@ export default {
       }
       const { type } = store.detail
       const EditForm = EditFormMap[type] || null
-      const data = store.detail.config
+      const data = cloneDeep(store.detail.config)
 
       const modal = Modal.open({
         onOk: async params => {

@@ -20,12 +20,9 @@ import Base from 'stores/base'
 
 const collectionDefaultSetting = {
   es: {
-    Logstash_Format: 'On',
-    Replace_Dots: 'on',
-    Retry_Limit: 'False',
-    Type: 'flb_type',
-    Time_Key: '@timestamp',
-    Logstash_Prefix: 'logstash',
+    logstashFormat: true,
+    timeKey: '@timestamp',
+    logstashPrefix: 'ks-logstash-log',
   },
 }
 
