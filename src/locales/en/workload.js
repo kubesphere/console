@@ -151,7 +151,6 @@ export default {
     'KubeSphere supports pulling images from the Image Registries and creating new images through source code (Source to Image).',
   'Labels cannot be empty': 'Labels cannot be empty',
   'Labels exists': 'Labels exists',
-  'Last Executed Time': 'Last Executed Time',
   layers: 'layers',
   'Liveness Probe': 'Liveness Probe',
   Log: 'Log',

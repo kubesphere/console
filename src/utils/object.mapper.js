@@ -41,7 +41,7 @@ import {
   getResourceCreator,
   replaceToLocalOrigin,
 } from 'utils'
-import { getWorkloadUpdateTime } from 'utils/workload'
+import { getWorkloadUpdateTime, getJobUpdateTime } from 'utils/workload'
 import { getServiceType } from 'utils/service'
 import { getNodeRoles } from 'utils/node'
 import { getPodStatusAndRestartCount } from 'utils/status'
@@ -224,7 +224,7 @@ const JobMapper = item => ({
   namespace: get(item, 'metadata.namespace'),
   annotations: get(item, 'metadata.annotations'),
   status: get(item, 'status'),
-  updateTime: get(item, 'status.startTime'),
+  updateTime: getJobUpdateTime(item),
   spec: get(item, 'spec', {}),
   selector: get(item, 'spec.selector.matchLabels'),
   containers: get(item, 'spec.template.spec.containers'),

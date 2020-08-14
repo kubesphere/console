@@ -356,8 +356,6 @@ export default {
   Redeploy: '重新部署',
   'Redeploy Successfully': '重新部署成功',
 
-  'Last Executed Time': '上次執行時間',
-
   REDEPLOY_CONFIRM_DESC:
     '您即將重新部署工作負載 {resource} ({type}) , 容器組將根據更新策略進行重新部署，您的業務可能會被暫時中斷。',
 

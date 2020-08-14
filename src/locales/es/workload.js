@@ -153,7 +153,6 @@ export default {
     'KubeSphere admite la extracción de imágenes de los Registros de imágenes y la creación de nuevas imágenes a través del código fuente (Fuente a imagen).',
   'Labels cannot be empty': 'Las etiquetas no pueden estar vacías',
   'Labels exists': 'Existen etiquetas',
-  'Last Executed Time': 'Última hora ejecutada',
   layers: 'capas',
   'Liveness Probe': 'Sonda de estado',
   Log: 'Iniciar sesión',
