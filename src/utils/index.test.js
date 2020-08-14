@@ -53,7 +53,6 @@ import {
   getLanguageName,
   parseUrl,
   replaceToLocalOrigin,
-  getLocalTime,
 } from './index'
 
 it('formatSize', () => {
@@ -130,15 +129,6 @@ it('to', async () => {
   })
   const data2 = await to(prom2)
   expect(data2).toStrictEqual([])
-})
-
-it('getLocalTime', () => {
-  expect(getLocalTime('Thu, 19 Dec 2019 03:51:35 GMT').toString()).toBe(
-    'Thu Dec 19 2019 11:51:35 GMT+0800'
-  )
-  expect(getLocalTime('2014-06-01 12:00:00 +0000 UTC').toString()).toBe(
-    'Sun Jun 01 2014 20:00:00 GMT+0800'
-  )
 })
 
 it('capitalize', () => {
