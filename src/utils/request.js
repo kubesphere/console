@@ -230,6 +230,7 @@ function formatError(response, data) {
 
   return result
 }
+
 function formatTextError(response, text) {
   let error = {
     status: response.status,
@@ -238,6 +239,7 @@ function formatTextError(response, text) {
   }
 
   const errorBody = safeParseJSON(text)
+
   if (isObject(errorBody) && !isEmpty(errorBody)) {
     error = {
       ...error,
@@ -246,5 +248,6 @@ function formatTextError(response, text) {
       errors: errorBody.errors,
     }
   }
+
   return error
 }
