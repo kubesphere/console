@@ -98,7 +98,7 @@ export default {
   LOG_COLLECTION_ES_URL_TIPS:
     '預設使用系統部署的 Elasticsearch，也可以輸入外部或者單獨部署的 Elasticsearch 地址',
   LOG_COLLECTION_ES_INDEX_TIPS:
-    '默认按日期分类建立索引，例：索引前缀-2020.01.01',
+    '預設按照日期分類建立索引，例：索引前綴-2020.01.01',
   LOG_COLLECTION_FLUENTD_URL_TIPS: '輸入接收紀錄的 Fluentd 的地址',
 
   'Refresh Interval': '刷新頻率',

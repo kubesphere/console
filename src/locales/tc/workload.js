@@ -678,7 +678,7 @@ export default {
   HOST_PATH_WARNING:
     'HostPath 將主機的文件系統掛載到Pod中，它使一些應用程式能逃出對其做出的隔離限制，請謹慎使用。',
 
-  DEPLOY_PLACEMENT_TIP_TITLE: '什么是部署位置？',
+  DEPLOY_PLACEMENT_TIP_TITLE: '什麼是部署位置？',
   DEPLOY_PLACEMENT_TIP_VALUE:
-    '可以将容器组部署在不同集群中，并对集群中部署的副本数量进行定义。不同集群中的容器组将由联邦集群控制器(Federation Controller Manager)进行统一的调度及状态同步。',
+    '可以將容器組部署在不同集群中，並對集群中部署的副本數量進行定義。不同集群中的容器組將由聯邦集群控制器(Federation Controller Manager)進行統一的調度及狀態同步。',
 }
