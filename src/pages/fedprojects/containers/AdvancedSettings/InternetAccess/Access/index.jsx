@@ -127,7 +127,7 @@ class InternetAccess extends React.Component {
     let ip = '-'
 
     if (isEmpty(gateway.externalIPs)) {
-      ip = gateway.loadBalancerIngress
+      ip = gateway.loadBalancerIngresses.join(', ')
     } else {
       ip = gateway.externalIPs.join(', ')
     }
@@ -199,7 +199,7 @@ class InternetAccess extends React.Component {
             {gateway.type === 'NodePort' ? (
               <>
                 <Text
-                  title={gateway.loadBalancerIngress || '-'}
+                  title={gateway.loadBalancerIngress.join('; ') || '-'}
                   description={t('Gateway Address')}
                 />
                 <Text

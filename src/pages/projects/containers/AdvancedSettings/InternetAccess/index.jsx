@@ -119,16 +119,16 @@ class InternetAccess extends React.Component {
       return '-'
     }
 
-    return gateway.ports.map(port => `${port.name}:${port.nodePort}`).join(', ')
+    return gateway.ports.map(port => `${port.name}:${port.nodePort}`).join('; ')
   }
 
   getExternalIP(gateway) {
     let ip = '-'
 
     if (isEmpty(gateway.externalIPs)) {
-      ip = gateway.loadBalancerIngress
+      ip = gateway.loadBalancerIngress.join('; ')
     } else {
-      ip = gateway.externalIPs.join(', ')
+      ip = gateway.externalIPs.join('; ')
     }
 
     return ip || '-'
@@ -196,7 +196,7 @@ class InternetAccess extends React.Component {
           {gateway.type === 'NodePort' ? (
             <>
               <div className={styles.item}>
-                <div>{gateway.loadBalancerIngress || '-'}</div>
+                <div>{gateway.loadBalancerIngress.join('; ') || '-'}</div>
                 <p>{t('Gateway Address')}</p>
               </div>
               <div className={styles.item}>

@@ -54,7 +54,9 @@ export default class ServiceItem extends React.Component {
 
     const { type, clusterIP, loadBalancerIngress, externalName } = detail
     const content =
-      type === 'Virtual IP' ? clusterIP : loadBalancerIngress || externalName
+      type === 'Virtual IP'
+        ? clusterIP
+        : loadBalancerIngress.join(';') || externalName
 
     return (
       <div className={classnames(styles.item, className)}>

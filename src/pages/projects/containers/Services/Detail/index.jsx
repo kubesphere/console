@@ -146,9 +146,9 @@ export default class ServiceDetail extends React.Component {
     if (detail.type === 'ExternalName') {
       externalIP = detail.externalName
     } else if (detail.specType === 'LoadBalancer') {
-      externalIP = detail.loadBalancerIngress
+      externalIP = detail.loadBalancerIngress.join('\r\n')
     } else if (detail.externalIPs) {
-      externalIP = detail.externalIPs.join(', ')
+      externalIP = detail.externalIPs.join('\r\n')
     }
 
     const serviceType = get(detail, 'annotations["kubesphere.io/serviceType"]')

@@ -153,8 +153,8 @@ export default class ServiceDeployAppModal extends React.Component {
         formData.ingress,
         'spec.rules[0].host',
         gateway.isHostName
-          ? gateway.loadBalancerIngress
-          : `productpage.${namespace}.${gateway.loadBalancerIngress}.nip.io`
+          ? gateway.defaultIngress
+          : `productpage.${namespace}.${gateway.defaultIngress}.nip.io`
       )
 
       this.setState({ formData })

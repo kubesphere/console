@@ -23,6 +23,7 @@ import { Avatar, Text } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import { withClusterList, ListPage } from 'components/HOCs/withList'
 import ResourceTable from 'clusters/components/ResourceTable'
+import ServiceAccess from 'projects/components/ServiceAccess'
 
 import { getLocalTime, getDisplayName } from 'utils'
 import { ICON_TYPES, SERVICE_TYPES } from 'utils/constants'
@@ -162,30 +163,7 @@ export default class Services extends React.Component {
         dataIndex: 'specType',
         isHideable: true,
         width: '20%',
-        render: (type, record) => {
-          if (type === 'ClusterIP') {
-            return '-'
-          }
-
-          if (type === 'NodePort') {
-            return (
-              <Text
-                description={type}
-                title={record.ports
-                  .filter(port => port.nodePort)
-                  .map(port => `${port.port}:${port.nodePort}/${port.protocol}`)
-                  .join(';')}
-              />
-            )
-          }
-
-          return (
-            <Text
-              description={type}
-              title={record.loadBalancerIngress || record.externalName}
-            />
-          )
-        },
+        render: (_, record) => <ServiceAccess data={record} />,
       },
       {
         title: t('Created Time'),
