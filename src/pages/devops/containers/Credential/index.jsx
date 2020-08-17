@@ -177,6 +177,8 @@ class Credential extends React.Component {
         onFetch={this.handleFetch}
         onCreate={showCreate}
         searchType="name"
+        module={this.module}
+        name={this.name}
       />
     )
   }
