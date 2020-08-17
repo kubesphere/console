@@ -132,13 +132,7 @@ export default class Routers extends React.Component {
         dataIndex: 'loadBalancerIngress',
         isHideable: true,
         width: '22%',
-        render: loadBalancerIngress => (
-          <div>
-            {loadBalancerIngress.map((item, index) => (
-              <p key={index}>{item.ip || item.hostname}</p>
-            ))}
-          </div>
-        ),
+        render: loadBalancerIngress => loadBalancerIngress.join('; '),
       },
       {
         title: t('Project'),

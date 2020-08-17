@@ -32,8 +32,8 @@
       display: block;
       margin-left: 111px;
       color: $text-color;
-
       @include break-all;
+      white-space: pre-wrap;
     }
   }
 }

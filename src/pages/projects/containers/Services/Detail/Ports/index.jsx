@@ -69,11 +69,9 @@ export default class Ports extends Component {
                     </Tooltip>
                   </div>
                 </div>
-                {gateway.loadBalancerIngress && (
+                {gateway.defaultIngress && (
                   <a
-                    href={`http://${gateway.loadBalancerIngress}:${
-                      port.nodePort
-                    }`}
+                    href={`http://${gateway.defaultIngress}:${port.nodePort}`}
                     target="_blank"
                   >
                     <Button className={styles.access} noShadow>

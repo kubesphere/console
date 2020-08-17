@@ -42,16 +42,16 @@ export default class Item extends React.Component {
       return '-'
     }
 
-    return gateway.ports.map(port => `${port.name}:${port.nodePort}`).join(', ')
+    return gateway.ports.map(port => `${port.name}:${port.nodePort}`).join('; ')
   }
 
   getExternalIP(gateway) {
     let ip = '-'
 
     if (isEmpty(gateway.externalIPs)) {
-      ip = gateway.loadBalancerIngress
+      ip = gateway.loadBalancerIngress.join('; ')
     } else {
-      ip = gateway.externalIPs.join(', ')
+      ip = gateway.externalIPs.join('; ')
     }
 
     return ip || '-'

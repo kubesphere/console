@@ -519,9 +519,9 @@ const ServiceMapper = item => {
     sessionAffinity: get(item, 'spec.sessionAffinity'),
     externalIPs: get(item, 'spec.externalIPs', []),
     externalName: get(item, 'spec.externalName'),
-    loadBalancerIngress:
-      get(item, 'status.loadBalancer.ingress[0].ip') ||
-      get(item, 'status.loadBalancer.ingress[0].hostname'),
+    loadBalancerIngress: get(item, 'status.loadBalancer.ingress', []).map(
+      lb => lb.ip || lb.hostname
+    ),
     app: get(item, 'metadata.labels["app.kubernetes.io/name"]'),
     _originData: getOriginData(item),
   }
@@ -629,31 +629,37 @@ const IngressMapper = item => ({
   annotations: get(item, 'metadata.annotations', {}),
   rules: get(item, 'spec.rules', []),
   tls: get(item, 'spec.tls', []),
-  loadBalancerIngress: get(item, 'status.loadBalancer.ingress', []),
+  loadBalancerIngress: get(item, 'status.loadBalancer.ingress', []).map(
+    lb => lb.ip || lb.hostname
+  ),
   app: get(item, 'metadata.labels["app.kubernetes.io/name"]'),
   _originData: getOriginData(item),
 })
 
-const GatewayMapper = item => ({
-  uid: get(item, 'metadata.uid'),
-  namespace: get(item, 'metadata.labels.project'), // it's not metadata.namespace
-  annotations: omit(
-    get(item, 'metadata.annotations', {}),
-    'servicemesh.kubesphere.io/enabled'
-  ),
-  createTime: get(item, 'metadata.creationTimestamp', {}),
-  type: get(item, 'spec.type'),
-  externalIPs: get(item, 'spec.externalIPs', []),
-  ports: get(item, 'spec.ports', []),
-  loadBalancerIngress:
-    get(item, 'status.loadBalancer.ingress[0].ip') ||
-    get(item, 'status.loadBalancer.ingress[0].hostname'),
-  isHostName: !!get(item, 'status.loadBalancer.ingress[0].hostname'),
-  serviceMeshEnable:
-    get(item, 'metadata.annotations["servicemesh.kubesphere.io/enabled"]') ===
-    'true',
-  _originData: getOriginData(item),
-})
+const GatewayMapper = item => {
+  const loadBalancerIngress = get(item, 'status.loadBalancer.ingress', [])
+  return {
+    uid: get(item, 'metadata.uid'),
+    namespace: get(item, 'metadata.labels.project'), // it's not metadata.namespace
+    annotations: omit(
+      get(item, 'metadata.annotations', {}),
+      'servicemesh.kubesphere.io/enabled'
+    ),
+    createTime: get(item, 'metadata.creationTimestamp', {}),
+    type: get(item, 'spec.type'),
+    externalIPs: get(item, 'spec.externalIPs', []),
+    ports: get(item, 'spec.ports', []),
+    loadBalancerIngress: loadBalancerIngress.map(lb => lb.ip || lb.hostname),
+    defaultIngress:
+      get(loadBalancerIngress, '[0].ip') ||
+      get(loadBalancerIngress, '[0].hostname'),
+    isHostName: !!get(loadBalancerIngress, '[0].hostname'),
+    serviceMeshEnable:
+      get(item, 'metadata.annotations["servicemesh.kubesphere.io/enabled"]') ===
+      'true',
+    _originData: getOriginData(item),
+  }
+}
 
 const ConfigmapMapper = item => ({
   ...getBaseInfo(item),

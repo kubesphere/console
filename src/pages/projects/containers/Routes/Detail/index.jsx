@@ -139,15 +139,6 @@ export default class RouteDetail extends React.Component {
       return
     }
 
-    const { loadBalancerIngress = [] } = detail
-
-    let ips = []
-    loadBalancerIngress.forEach(item => {
-      item.ip && ips.push(item.ip)
-      item.hostname && ips.push(item.hostname)
-    })
-    ips = ips.map((ip, index) => <p key={index}>{ip}</p>)
-
     return [
       {
         name: t('Cluster'),
@@ -163,7 +154,7 @@ export default class RouteDetail extends React.Component {
       },
       {
         name: t('Gateway Address'),
-        value: ips,
+        value: detail.loadBalancerIngress.join('\r\n'),
       },
       {
         name: t('Created Time'),

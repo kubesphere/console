@@ -108,8 +108,8 @@ export default class RuleForm extends React.Component {
     const { gateway } = this.props
     const service = get(data, 'http.paths[0].backend.serviceName')
     const _host = gateway.isHostName
-      ? gateway.loadBalancerIngress
-      : `${service}.${namespace}.${gateway.loadBalancerIngress}.nip.io`
+      ? gateway.defaultIngress
+      : `${service}.${namespace}.${gateway.defaultIngress}.nip.io`
     const namespace = gateway.namespace
 
     return host === _host ? 'auto' : 'specify'
@@ -164,8 +164,8 @@ export default class RuleForm extends React.Component {
             ...data,
             protocol: 'http',
             host: gateway.isHostName
-              ? gateway.loadBalancerIngress
-              : `${service}.${namespace}.${gateway.loadBalancerIngress}.nip.io`,
+              ? gateway.defaultIngress
+              : `${service}.${namespace}.${gateway.defaultIngress}.nip.io`,
           })
         } else {
           onSave(data)
