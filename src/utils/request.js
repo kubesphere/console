@@ -190,24 +190,12 @@ function handleResponse(response, reject) {
   }
 
   return response.text().then(text => {
-    const error = {
-      status: response.status,
-      reason: response.statusText,
-      message: text,
-    }
-
-    // some errors are the string-json in devops
-    const errBody = safeParseJSON(text)
-    if (isObject(errBody) && !isEmpty(errBody)) {
-      error.status = response.status
-      error.code = errBody.code
-      error.message = errBody.message
-      error.errors = errBody.errors
-    }
+    const error = formatTextError(response, text)
 
     if (typeof reject === 'function') {
       return reject(response, error)
     }
+
     if (window.onunhandledrejection) {
       window.onunhandledrejection(error)
     }
@@ -241,4 +229,25 @@ function formatError(response, data) {
   result.message = data.message || data.Error || JSON.stringify(data.details)
 
   return result
+}
+
+function formatTextError(response, text) {
+  let error = {
+    status: response.status,
+    reason: response.statusText,
+    message: text,
+  }
+
+  const errorBody = safeParseJSON(text)
+
+  if (isObject(errorBody) && !isEmpty(errorBody)) {
+    error = {
+      ...error,
+      code: errorBody.code,
+      message: errorBody.message,
+      errors: errorBody.errors,
+    }
+  }
+
+  return error
 }
