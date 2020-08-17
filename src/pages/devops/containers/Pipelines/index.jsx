@@ -135,9 +135,9 @@ class CICDs extends React.Component {
   }
 
   handleRunBranch = async (parameters, branch) => {
-    const { devops } = this.props.match.params
+    const { devops, cluster } = this.props.match.params
     const { name } = this.state.selectPipeline
-    await this.store.runBranch({ devops, name, branch, parameters })
+    await this.store.runBranch({ devops, name, branch, parameters, cluster })
     this.props.rootStore.routing.push(
       `${this.prefix}/${encodeURIComponent(this.state.selectPipeline.name)}/${
         branch ? `branch/${branch}/` : ''

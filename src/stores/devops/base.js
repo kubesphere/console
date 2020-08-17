@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { set } from 'lodash'
+import { set, get } from 'lodash'
 import BaseStore from '../devops'
 
 export default class Base extends BaseStore {
@@ -51,7 +51,8 @@ export default class Base extends BaseStore {
     if (!options) {
       options = {}
     }
-    if (globals.user.crumb === undefined) {
+    const crumb = get(globals, 'user.crumb', '')
+    if (!crumb) {
       const match = url.match(/(clusters|klusters)\/([^/]*)\//)
       if (match && match.length === 3) {
         const cluster = match[2]

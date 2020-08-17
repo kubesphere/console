@@ -208,12 +208,12 @@ class BranchSider extends Base {
 
   handleRunBranch = async parameters => {
     const { params } = this.props.match
-    const { branch, devops } = this.props.match.params
+    const { branch, devops, cluster } = this.props.match.params
     const { detail } = this.store
-
     await this.store.runBranch({
       devops,
       branch,
+      cluster,
       name: detail.name,
       parameters,
     })

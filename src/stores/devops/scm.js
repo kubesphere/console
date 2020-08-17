@@ -30,18 +30,23 @@ export default class SCMStore extends BaseStore {
 
     this.verifyAccessErrorHandle = {
       github: (resp, error) => {
+        const errorBody = error.headers ? resp : error
         if (error.code === 428) {
           this.isAccessTokenWrong = true
           this.orgList.isLoading = false
           return
         }
+
         if (window.onunhandledrejection) {
-          window.onunhandledrejection(error)
+          window.onunhandledrejection(errorBody)
         }
-        return Promise.reject(error)
+
+        return Promise.reject(errorBody)
       },
       'bitbucket-server': (resp, error) => {
-        if (error.code === 428) {
+        const errorBody = error.headers ? resp : error
+
+        if (errorBody.code === 428) {
           this.creatBitBucketServersError = {
             password: {
               message: t('Wrong username or password, please try again'),
@@ -50,8 +55,8 @@ export default class SCMStore extends BaseStore {
           return
         }
 
-        if (isArray(error.errors) && !isEmpty(error.errors)) {
-          this.creatBitBucketServersError = error.errors.reduce(
+        if (isArray(errorBody.errors) && !isEmpty(errorBody.errors)) {
+          this.creatBitBucketServersError = errorBody.errors.reduce(
             (prev, errorItem) => {
               prev[errorItem.field] = { message: errorItem.message }
               return prev
@@ -61,13 +66,13 @@ export default class SCMStore extends BaseStore {
           return
         }
 
-        this.creatBitBucketServersError = { all: error.message }
+        this.creatBitBucketServersError = { all: errorBody.message }
 
         if (window.onunhandledrejection) {
-          window.onunhandledrejection(error)
+          window.onunhandledrejection(errorBody)
         }
 
-        return Promise.reject(error)
+        return Promise.reject(errorBody)
       },
     }
 
