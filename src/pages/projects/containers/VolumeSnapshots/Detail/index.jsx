@@ -23,7 +23,7 @@ import { Loading, Tooltip, Icon } from '@pitrix/lego-ui'
 
 import VolumeStore from 'stores/volume'
 import { Status } from 'components/Base'
-import { getDisplayName } from 'utils'
+import { getDisplayName, getLocalTime } from 'utils'
 import { trigger } from 'utils/action'
 import { toJS } from 'mobx'
 import VolumeSnapshotStore from 'stores/volumeSnapshot'
@@ -165,7 +165,7 @@ export default class VolumeSnapshotDetail extends React.Component {
       },
       {
         name: t('Create Time'),
-        value: createTime,
+        value: getLocalTime(createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
     ]
   }

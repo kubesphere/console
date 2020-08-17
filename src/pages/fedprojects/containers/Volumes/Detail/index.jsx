@@ -21,7 +21,7 @@ import { isEmpty } from 'lodash'
 import { observer, inject } from 'mobx-react'
 import { Loading } from '@pitrix/lego-ui'
 
-import { getDisplayName } from 'utils'
+import { getDisplayName, getLocalTime } from 'utils'
 import { trigger } from 'utils/action'
 import { toJS } from 'mobx'
 import Volume from 'stores/volume'
@@ -154,7 +154,7 @@ export default class VolumeDetail extends React.Component {
       },
       {
         name: t('Create Time'),
-        value: createTime,
+        value: getLocalTime(createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
         name: t('Creator'),
