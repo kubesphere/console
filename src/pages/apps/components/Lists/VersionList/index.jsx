@@ -107,6 +107,7 @@ export default class VersionList extends React.Component {
       app_id: appId,
       workspace,
       status,
+      order: 'create_time',
       ...params,
     })
   }

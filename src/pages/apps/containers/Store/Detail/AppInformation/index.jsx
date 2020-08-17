@@ -36,6 +36,7 @@ export default class AppInformation extends React.Component {
     if (versions.length === 0) {
       this.props.versionStore.fetchList({
         app_id: appId,
+        order: 'create_time',
       })
     }
   }
