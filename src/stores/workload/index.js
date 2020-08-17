@@ -43,9 +43,7 @@ export default class WorkloadStore extends Base {
     } else {
       const kind = MODULE_KIND_MAP[this.module]
 
-      if (has(data, kind)) {
-        requests.push(this.getWorkloadRequest(data[kind], params))
-      }
+      requests.push(this.getWorkloadRequest(data[kind], params))
 
       if (has(data, 'Service')) {
         requests.push(this.getServiceRequest(data['Service'], params))
