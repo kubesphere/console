@@ -290,7 +290,7 @@ export default class AdvanceSettings extends React.Component {
         <Form.Item>
           <Checkbox
             name={`${this.scmPrefix}.git_clone_option.shallow`}
-            defaultValue={true}
+            defaultValue={false}
           >
             {t('Whether to open shallow clone')}
           </Checkbox>
