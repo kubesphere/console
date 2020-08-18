@@ -25,6 +25,14 @@ import { CLUSTER_QUERY_STATUS } from 'configs/openpitrix/app'
 
 import Base from './base'
 
+const dataFormatter = data => {
+  return {
+    ...data,
+    ...data.cluster,
+    status: data.status === 'pending' ? 'failed' : data.status,
+  }
+}
+
 export default class Application extends Base {
   resourceName = 'applications'
 
@@ -116,14 +124,11 @@ export default class Application extends Base {
       params
     )
 
-    const data = (result.items || []).map(
-      ({ cluster: clusterDetail, ...item }) => ({
-        ...clusterDetail,
-        ...item,
-        workspace,
-        cluster,
-      })
-    )
+    const data = (result.items || []).map(item => ({
+      ...dataFormatter(item),
+      workspace,
+      cluster,
+    }))
 
     Object.assign(this.list, {
       data: more ? [...this.list.data, ...data] : data,
@@ -165,8 +170,7 @@ export default class Application extends Base {
     } catch (err) {}
 
     this.detail = {
-      ...result,
-      ...result.cluster,
+      ...dataFormatter(result),
       workspace,
       cluster,
     }
