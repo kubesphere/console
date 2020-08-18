@@ -18,7 +18,6 @@
 
 import React, { Component } from 'react'
 import { Icon, Tooltip } from '@pitrix/lego-ui'
-import { Button } from 'components/Base'
 
 import { isEmpty } from 'lodash'
 
@@ -26,7 +25,7 @@ import styles from './index.scss'
 
 export default class Ports extends Component {
   render() {
-    const { detail, gateway } = this.props
+    const { detail } = this.props
 
     if (isEmpty(detail.ports)) {
       return null
@@ -69,16 +68,6 @@ export default class Ports extends Component {
                     </Tooltip>
                   </div>
                 </div>
-                {gateway.defaultIngress && (
-                  <a
-                    href={`http://${gateway.defaultIngress}:${port.nodePort}`}
-                    target="_blank"
-                  >
-                    <Button className={styles.access} noShadow>
-                      {t('Click to visit')}
-                    </Button>
-                  </a>
-                )}
               </>
             )}
           </div>
