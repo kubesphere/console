@@ -18,7 +18,6 @@
 
 import React from 'react'
 import { observer, inject } from 'mobx-react'
-import { computed } from 'mobx'
 import { get } from 'lodash'
 
 import PodsCard from 'components/Cards/Pods'
@@ -37,12 +36,6 @@ class ResourceStatus extends React.Component {
 
   get module() {
     return this.props.module
-  }
-
-  @computed
-  get shouldMonitoringShow() {
-    const { storageClassName, inUse } = this.store.detail
-    return storageClassName === 'csi-qingcloud' && inUse
   }
 
   get canViewPods() {
@@ -98,9 +91,7 @@ class ResourceStatus extends React.Component {
     return (
       <div className={styles.main}>
         {this.renderPlacement()}
-        {this.shouldMonitoringShow && (
-          <UsageCard title={t('Volume')} store={this.monitor} />
-        )}
+        <UsageCard title={t('Volume')} store={this.monitor} />
         <PodsCard
           title={t('Mounted Pods')}
           detail={detail}
