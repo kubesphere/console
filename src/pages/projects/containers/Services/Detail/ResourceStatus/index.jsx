@@ -20,8 +20,6 @@ import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 
-import RouterStore from 'stores/router'
-
 import { Panel, Text } from 'components/Base'
 import PodsCard from 'components/Cards/Pods'
 import Placement from 'projects/components/Cards/Placement'
@@ -33,17 +31,7 @@ import styles from './index.scss'
 @inject('detailStore')
 @observer
 export default class ResourceStatus extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.store = props.detailStore
-
-    this.routerStore = new RouterStore()
-  }
-
-  componentDidMount() {
-    this.fetchRouter()
-  }
+  store = this.props.detailStore
 
   componentWillUnmount() {
     this.disposer && this.disposer()
@@ -53,11 +41,6 @@ export default class ResourceStatus extends React.Component {
     const { workspace, cluster } = this.props.match.params
 
     return `${workspace ? `/${workspace}` : ''}/clusters/${cluster}`
-  }
-
-  fetchRouter = async () => {
-    const { params } = this.props.match
-    this.routerStore.getGateway(params)
   }
 
   renderPods() {
@@ -91,11 +74,10 @@ export default class ResourceStatus extends React.Component {
 
   renderPorts() {
     const detail = toJS(this.store.detail)
-    const gateway = this.routerStore.gateway.data
 
     return (
       <Panel title={t('Service Ports')}>
-        <Ports detail={detail} gateway={gateway} />
+        <Ports detail={detail} />
       </Panel>
     )
   }
