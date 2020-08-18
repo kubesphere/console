@@ -100,7 +100,7 @@ export default class Dragger extends React.Component {
       e.stopPropagation()
       return
     }
-    this.props.onClick()
+    this.props.onClick(e)
   }
 
   fullScreenFlagChange = () => {
