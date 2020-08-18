@@ -22,9 +22,8 @@ import { Link } from 'react-router-dom'
 import { toJS } from 'mobx'
 import { parse } from 'qs'
 import { get, omit } from 'lodash'
-import { Button } from 'components/Base'
 
-import { Menu, Dropdown, Column, Icon } from '@pitrix/lego-ui'
+import { Column } from '@pitrix/lego-ui'
 import { trigger } from 'utils/action'
 
 import { JOB_STATUS } from 'utils/constants'
@@ -37,7 +36,7 @@ import CreateModal from 'components/Modals/Create'
 import ParamsModal from 'components/Forms/CICDs/paramsModal'
 import Banner from 'components/Cards/Banner'
 import PipelineStore from 'stores/devops/pipelines'
-import Table from 'components/Tables/Base'
+import Table from 'components/Tables/List'
 
 import FORM_STEPS from 'configs/steps/pipelines'
 
@@ -166,33 +165,6 @@ class CICDs extends React.Component {
     }
   }
 
-  handleMoreMenuClick = record => (e, key) => {
-    switch (key) {
-      case 'edit':
-        this.showEditConfig(record.name)
-        break
-      case 'delete':
-        this.setState({ showDelete: true, selectPipeline: record })
-        break
-      case 'activity':
-        this.props.rootStore.routing.push(
-          `${this.prefix}/${encodeURIComponent(record.name)}/activity`
-        )
-        break
-      case 'run':
-        this.setState({ selectPipeline: record }, () => {
-          this.handleRun(record)
-        })
-        break
-      default:
-        break
-    }
-  }
-
-  handleFetch = (params, refresh) => {
-    this.routing.query(params, refresh)
-  }
-
   get cluster() {
     return this.props.match.params.cluster
   }
@@ -227,24 +199,40 @@ class CICDs extends React.Component {
         icon: 'triangle-right',
         text: t('Run'),
         action: 'edit',
+        onClick: record => {
+          this.setState({ selectPipeline: record }, () => {
+            this.handleRun(record)
+          })
+        },
       },
       {
         key: 'activity',
         icon: 'calendar',
         text: t('Activity'),
         action: 'view',
+        onClick: record => {
+          this.props.rootStore.routing.push(
+            `${this.prefix}/${encodeURIComponent(record.name)}/activity`
+          )
+        },
       },
       {
         key: 'edit',
         icon: 'pen',
         text: t('Edit'),
         action: 'edit',
+        onClick: record => {
+          this.showEditConfig(record.name)
+        },
       },
       {
         key: 'delete',
         icon: 'trash',
         text: t('Delete'),
         action: 'delete',
+        onClick: record => {
+          this.setState({ showDelete: true, selectPipeline: record })
+        },
       },
     ]
   }
@@ -253,6 +241,10 @@ class CICDs extends React.Component {
     return this.itemActions.filter(
       item => !item.action || this.enabledActions.includes(item.action)
     )
+  }
+
+  handleFetch = (params, refresh) => {
+    this.routing.query(params, refresh)
   }
 
   showCreate = () => {
@@ -432,31 +424,7 @@ class CICDs extends React.Component {
           : totalNumberOfPullRequests,
       width: '20%',
     },
-    {
-      key: 'more',
-      width: '20%',
-      render: record =>
-        this.enabledItemActions.length > 0 && (
-          <Dropdown
-            content={this.renderMoreMenu(record)}
-            trigger="click"
-            placement="bottomRight"
-          >
-            <Button icon="more" type="flat" />
-          </Dropdown>
-        ),
-    },
   ]
-
-  renderMoreMenu = record => (
-    <Menu onClick={this.handleMoreMenuClick(record)}>
-      {this.enabledItemActions.map(action => (
-        <Menu.MenuItem key={action.key}>
-          <Icon name={action.icon} /> {action.text}
-        </Menu.MenuItem>
-      ))}
-    </Menu>
-  )
 
   renderContent() {
     const {
@@ -509,6 +477,7 @@ class CICDs extends React.Component {
         },
       ],
     }
+
     return (
       <Table
         data={data}
@@ -519,7 +488,9 @@ class CICDs extends React.Component {
         onFetch={this.handleFetch}
         onCreate={showCreate}
         searchType="name"
-        {...defaultTableProps}
+        tableActions={defaultTableProps}
+        itemActions={this.itemActions}
+        enabledActions={this.enabledActions}
       />
     )
   }
