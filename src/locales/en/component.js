@@ -103,7 +103,7 @@ export default {
   'PROMETHEUS-K8S_DESC':
     'Provides monitoring data for nodes, workloads, and API objects',
   'PROMETHEUS-K8S-SYSTEM_DESC':
-    'Provides monitoring data for Kubernetes components such as etcd, coredns, kube-apiserver, kube-scheduler, kube-controller-manager',
+    'Provides monitoring data for Kubernetes components such as etcd, coredns, kube-apiserver, kube-scheduler and kube-controller-manager',
   'PROMETHEUS-OPERATED_DESC':
     'The service for all Prometheus instances only for internal use by Prometheus Operator',
   'PROMETHEUS-OPERATOR_DESC': 'Operator for managing Prometheus instances',
@@ -140,4 +140,30 @@ export default {
     'The scheduler of Kubernetes that attaches the Pod to an appropriate node',
   'KUBE-CONTROLLER-MANAGER-SVC_DESC':
     'A daemon that embeds the core control loops shipped with Kubernetes',
+
+  'S2IOPERATOR-METRICS-SERVICE_DESC':
+    'The s2i monitoring service component that provides basic monitoring data',
+  MINIO_DESC:
+    'An open source high performance object storage server, which is useful to store massive unstructured data',
+  'ALERTMANAGER-OPERATED_DESC':
+    'The Alertmanager service that provides Alertmanager integrations, such as Prometheus',
+  'ALERTMANAGER-MAIN_DESC': 'The Alertmanager Web UI service',
+  'NOTIFICATION-MANAGER-SVC_DESC':
+    'The Notification Manager service that provides the interface to send notifications, such as emails, WeChat and Slack messages',
+  'NOTIFICATION-MANAGER-CONTROLLER-METRICS_DESC':
+    'A component that provides internal monitoring data services of Notification Manager Controller',
+  HYPERPITRIX_DESC:
+    'A component that provides the App Store service for Helm-based applications and lifecycle management of apps',
+  'JAEGER-OPERATOR-METRICS_DESC':
+    'A component that provides the monitoring metrics of Operator',
+  'LOGSIDECAR-INJECTOR-ADMISSION_DESC':
+    'A component that automatically injects sidecar containers for a specific pod for disk log collection',
+  'KS-EVENTS-ADMISSION_DESC':
+    'A component that provides webhook authentication for Events rule management',
+  'KS-EVENTS-RULER_DESC':
+    'The Events rule engine service that provides filtering and alerting features',
+  'KS-CONTROLLER-MANAGER_DESC':
+    'A backend component that implements business logic. For example, it creates authorizations when a workspace is created and generates istio configurations for service strategies',
+  'KUBE-AUDITING-WEBHOOK-SVC_DESC':
+    'A component used for auditing logs in terms of collection, comparison, persistence and alert',
 }
