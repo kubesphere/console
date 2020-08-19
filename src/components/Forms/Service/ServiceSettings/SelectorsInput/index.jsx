@@ -103,7 +103,6 @@ export default class SelectorsInput extends React.Component {
   handleWorkloadSelect = labels => {
     const { onChange } = this.props
     onChange && onChange(labels)
-    this.setState({ selectLabels: labels })
   }
 
   handleCancel = () => {
@@ -192,10 +191,7 @@ export default class SelectorsInput extends React.Component {
     return (
       <div className={styles.wrapper}>
         {this.renderRelatedTips()}
-        <PropertiesInput
-          {...this.props}
-          controlledValue={this.state.selectLabels}
-        />
+        <PropertiesInput {...this.props} controlled />
         <Popper
           className={styles.popper}
           trigger="click"

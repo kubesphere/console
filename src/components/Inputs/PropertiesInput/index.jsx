@@ -19,7 +19,6 @@
 import { isEmpty, has } from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
-import isEqual from 'react-fast-compare'
 import classnames from 'classnames'
 import { Button } from 'components/Base'
 
@@ -33,6 +32,7 @@ export default class PropertiesInput extends React.Component {
     value: PropTypes.object,
     hiddenKeys: PropTypes.arrayOf(PropTypes.string),
     readOnlyKeys: PropTypes.arrayOf(PropTypes.string),
+    controlled: PropTypes.bool,
     onChange: PropTypes.func,
     onError: PropTypes.func,
   }
@@ -42,6 +42,7 @@ export default class PropertiesInput extends React.Component {
     value: {},
     hiddenKeys: [],
     readOnlyKeys: [],
+    controlled: false,
     onChange() {},
   }
 
@@ -55,19 +56,17 @@ export default class PropertiesInput extends React.Component {
     }
   }
 
-  static getDerivedStateFromProps(props, state) {
-    if (props.controlledValue && !isEqual(props.value, state.propsValue)) {
-      return {
-        propsValue: props.value,
-        ...PropertiesInput.getValues(props),
-      }
+  componentDidUpdate(prevProps) {
+    if (this.props.controlled && this.props.value !== prevProps.value) {
+      this.setState({
+        propsValue: this.props.value,
+        ...PropertiesInput.getValues(this.props),
+      })
     }
-
-    return null
   }
 
   static getValues(props) {
-    const propsValue = props.controlledValue || props.value || {}
+    const propsValue = props.value || {}
     const hiddenValues = []
     const readOnlyValues = []
     const arrayValues = []
