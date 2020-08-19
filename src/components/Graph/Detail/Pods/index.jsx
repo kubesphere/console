@@ -17,6 +17,7 @@
  */
 
 import React from 'react'
+import { withRouter } from 'react-router'
 import { isEmpty } from 'lodash'
 import { toJS } from 'mobx'
 import { Icon } from '@pitrix/lego-ui'
@@ -28,6 +29,7 @@ import Item from './Item'
 
 import styles from './index.scss'
 
+@withRouter
 export default class Pods extends React.Component {
   constructor(props) {
     super(props)
@@ -102,7 +104,7 @@ export default class Pods extends React.Component {
             <div className={styles.pods}>
               {pods[workload.data.version] &&
                 pods[workload.data.version].map(pod => (
-                  <Item key={pod.uid} data={pod} />
+                  <Item key={pod.uid} data={pod} match={this.props.match} />
                 ))}
             </div>
           </div>
