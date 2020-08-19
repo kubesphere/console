@@ -45,8 +45,8 @@ client:
   reposUrl: https://github.com/kubesphere/kubesphere
   slackUrl: https://kubesphere.slack.com
   documents:
-    url: https://kubesphere.io/docs
-    api: https://kubesphere.io/docs/api-reference/api-docs/
+    url: https://kubesphere-v3.netlify.app/docs
+    api: https://kubesphere-v3.netlify.app/docs/api-reference/api-docs/
 
   # current support lanaguages
   supportLangs:
@@ -470,32 +470,43 @@ client:
 
   # docs url for resources
   resourceDocs:
-    applications: /application/app-template/
-    composingapps: /application/composing-svc/
-    deployments: /workload/deployments/
-    statefulsets: /workload/statefulsets/
-    daemonsets: /workload/daemonsets/
-    jobs: /workload/jobs/
-    cronjobs: /workload/cronjobs/
-    volumes: /storage/volume/
-    storageclasses: /infrastructure/storageclass/
-    services: /ingress-service/services/
-    grayrelease: /ingress-service/grayscale/
-    ingresses: /ingress-service/ingress/
-    secrets: /configuration/secrets/
-    imageregistry: /configuration/image-registry/
-    configmaps: /configuration/configmaps/
-    internet: /project-setting/project-gateway/
-    nodes: /infrastructure/nodes/
-    cicds: /devops/pipeline/
-    cridentials: /devops/credential/
-    project_base_info: /project-setting/project-quota/
-    project_roles: /project-setting/project-roles/
-    project_members: /project-setting/project-members/
-    s2i_template: /workload/s2i-template/
-    helm_specification: /developer/helm-specification/
-    helm_developer_guide: /developer/helm-developer-guide/
-    custom_console: /platform-settings/customize-basic-information/
+    # Project User Guide
+    applications: /project-user-guide/application-workloads/app-template/
+    composingapps: /project-user-guide/application-workloads/composing-app/
+    deployments: /project-user-guide/application-workloads/deployments/
+    statefulsets: /project-user-guide/application-workloads/statefulsets/
+    daemonsets: /project-user-guide/application-workloads/daemonsets/
+    jobs: /project-user-guide/application-workloads/jobs/
+    cronjobs: /project-user-guide/application-workloads/cronjobs/
+    services: /project-user-guide/application-workloads/services/
+    ingresses: /project-user-guide/application-workloads/ingress/
+    s2i_template: /project-user-guide/application-workloads/s2i-template/
+    volumes: /project-user-guide/storage/volume/
+    secrets: /project-user-guide/configuration/secrets/
+    configmaps: /project-user-guide/configuration/configmaps/
+    imageregistry: /project-user-guide/configuration/image-registry/
+    grayrelease: /project-user-guide/grayscale/overview/
+
+    # Project Administration
+    internet: /project-administration/project-gateway/
+    project_base_info: /project-administration/project-quota/
+    project_roles: /project-administration/project-roles/
+    project_members: /project-administration/project-members/
+
+    # Cluster Administrator Guide
+    nodes: /cluster-administration/nodes/
+    storageclasses: /cluster-administration/storageclass/
+
+    # DevOps User Guide
+    cicds: /devops-user-guide/introduction/pipeline/
+    cridentials: /devops-user-guide/introduction/credential/
+
+    # Developer Guide
+    helm_specification: /application-store/app-developer-guide/helm-specification/
+    helm_developer_guide: /application-store/app-developer-guide/helm-developer-guide/
+
+    # Custom Console
+    custom_console: /cluster-administration/platform-settings/customize-basic-information/
   # devops:
   #  replace sonarqube link to customize url origin, default is useless
   # sonarqubeURL: http://139.123.123.123:8080
