@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, set, unset, isEmpty } from 'lodash'
+import { get, set, unset, isEmpty, isString } from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
 import { toJS } from 'mobx'
@@ -170,6 +170,17 @@ export default class PolicyForm extends React.Component {
       const { cluster, namespace } = toJS(this.props.store.detail)
       this.store.create(data, { cluster, namespace }).then(callback)
     }
+  }
+
+  sessionValidator = (rule, value, callback) => {
+    if (
+      isEmpty(value) ||
+      Object.values(value).some(item => isString(item) && !item)
+    ) {
+      return callback({ message: t('Please input value'), field: rule.field })
+    }
+
+    callback()
   }
 
   renderLB() {
@@ -423,7 +434,10 @@ export default class PolicyForm extends React.Component {
   renderSessionOptions() {
     return (
       <div className="margin-t12">
-        <Form.Item label={t('Method')}>
+        <Form.Item
+          label={t('Method')}
+          rules={[{ validator: this.sessionValidator }]}
+        >
           <SessionRetention
             name="spec.template.spec.trafficPolicy.loadBalancer.consistentHash"
             protocol={this.props.protocol}

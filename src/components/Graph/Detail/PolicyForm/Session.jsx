@@ -89,6 +89,8 @@ export default class Session extends React.Component {
     this.setState({ type, value: '' }, () => {
       if (type === 'useSourceIp') {
         this.triggerChange({ [type]: true })
+      } else {
+        this.triggerChange({ [type]: '' })
       }
     })
   }
