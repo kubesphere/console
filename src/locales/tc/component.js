@@ -117,23 +117,23 @@ export default {
   'KUBE-CONTROLLER-MANAGER-SVC_DESC':
     '由一系列的控制器組成，處理集群中常規任務的背景執行緒',
 
-  'S2IOPERATOR-METRICS-SERVICE_DESC': 'S2I 监控服务组件，提供基础监控数据',
-  MINIO_DESC: '一个高性能的开源对象存储服务器，适合存储大容量非结构化的数据',
+  'S2IOPERATOR-METRICS-SERVICE_DESC': 'S2I 監控服務組件，提供基礎監控數據',
+  MINIO_DESC: '一個高性能的開源對象儲存伺服器，適合儲存大容量非結構化的數據',
   'ALERTMANAGER-OPERATED_DESC':
-    'Alertmanager 服务，用于 Prometheus 等与 Alertmanager 集成',
-  'ALERTMANAGER-MAIN_DESC': 'Alertmanager Web UI 服务',
+    'Alertmanager 服務，用於 Prometheus 等與 Alertmanager 集成',
+  'ALERTMANAGER-MAIN_DESC': 'Alertmanager Web UI 服務',
   'NOTIFICATION-MANAGER-SVC_DESC':
-    'Notification Manager 服务，提供发送邮件、微信、Slack 等通知的接口',
+    'Notification Manager 服務，提供發送郵件、微信、Slack 等通知的接口',
   'NOTIFICATION-MANAGER-CONTROLLER-METRICS_DESC':
-    '提供 Notification Manager Controller 内部监控数据的服务',
+    '提供 Notification Manager Controller 内部監控數據的服務',
   HYPERPITRIX_DESC:
-    '针对基于 Helm 的应用程序提供应用商店服务，管理应用生命周期',
-  'JAEGER-OPERATOR-METRICS_DESC': '提供 operator 的监控 metrics',
+    '針對基於 Helm 的應用程式提供應用商店服務，管理應用生命週期',
+  'JAEGER-OPERATOR-METRICS_DESC': '提供 operator 的監控 metrics',
   'LOGSIDECAR-INJECTOR-ADMISSION_DESC':
-    '为指定 Pod 自动注入落盘日志收集 Sidecar 容器',
-  'KS-EVENTS-ADMISSION_DESC': '为 Events 规则管理提供验证 webhook',
-  'KS-EVENTS-RULER_DESC': 'Events 规则引擎服务，提供 Events 过滤和告警功能',
+    '為指定 Pod 自動注入落盤紀錄收集 Sidecar 容器',
+  'KS-EVENTS-ADMISSION_DESC': '為 Events 規則管理提供驗證 webhook',
+  'KS-EVENTS-RULER_DESC': 'Events 規則引擎服務，提供 Events 過濾和告警功能',
   'KS-CONTROLLER-MANAGER_DESC':
-    '实现业务逻辑，例如创建企业空间时，为其创建对应的权限；创建服务策略时，生成对应的 Istio 配置等',
-  'KUBE-AUDITING-WEBHOOK-SVC_DESC': '负责审计日志的收集、比对、持久化和告警',
+    '實現業務邏輯，例如創建企業空間時，為其創建對應的權限；創建服務策略時，生成對應的 Istio 配置等',
+  'KUBE-AUDITING-WEBHOOK-SVC_DESC': '負責審計紀錄的收集、比對、持久化和告警',
 }
