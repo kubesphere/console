@@ -74,9 +74,9 @@ export default class Components extends Component {
   getExternalIP(gateway) {
     let ip = '-'
 
-    if (isEmpty(gateway.externalIPs)) {
+    if (!isEmpty(gateway.loadBalancerIngress)) {
       ip = gateway.loadBalancerIngress.join('; ')
-    } else {
+    } else if (!isEmpty(gateway.externalIPs)) {
       ip = gateway.externalIPs.join('; ')
     }
 
