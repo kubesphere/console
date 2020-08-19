@@ -54,7 +54,7 @@ export default class ClusterStore extends Base {
     `kapis/tenant.kubesphere.io/v1alpha2${this.getPath(params)}/${this.module}`
 
   @action
-  async fetchList({ cluster, workspace, namespace, more, ...params } = {}) {
+  async fetchList({ from, more, ...params } = {}) {
     this.list.isLoading = true
 
     if (!params.sortBy && params.ascending === undefined) {
@@ -72,23 +72,15 @@ export default class ClusterStore extends Base {
     if (!globals.app.isMultiCluster) {
       result = { items: [DEFAULT_CLUSTER] }
     } else if (
+      from === 'resource' ||
       globals.app.hasPermission({ module: 'clusters', action: 'view' })
     ) {
-      result = await request.get(
-        this.getResourceUrl({ cluster, workspace, namespace }),
-        params
-      )
+      result = await request.get(this.getResourceUrl({}), params)
     } else {
-      result = await request.get(
-        this.getTenantUrl({ cluster, workspace, namespace }),
-        params
-      )
+      result = await request.get(this.getTenantUrl({}), params)
     }
 
-    const data = get(result, 'items', []).map(item => ({
-      cluster,
-      ...this.mapper(item),
-    }))
+    const data = get(result, 'items', []).map(this.mapper)
 
     this.list.update({
       data: more ? [...this.list.data, ...data] : data,
