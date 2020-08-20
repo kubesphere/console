@@ -25,10 +25,15 @@ export default class StorageClassCapabilityStore extends Base {
   }
 
   @action
-  async fetchDetail(params, filter, options, reject) {
+  async fetchDetail(params) {
     this.isLoading = true
 
-    const result = await request.get(this.getDetailUrl(params), {}, {}, reject)
+    const result = await request.get(
+      this.getDetailUrl(params),
+      {},
+      {},
+      () => {}
+    )
     if (result) {
       const detail = { ...params, ...this.mapper(result) }
 
