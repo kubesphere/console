@@ -119,6 +119,7 @@ export default {
         modal: EditServiceModal,
         detail: toJS(detail._originData),
         type: detail.type,
+        cluster: detail.cluster,
         store,
         ...props,
       })

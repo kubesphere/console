@@ -54,7 +54,7 @@ export default class SelectorsInput extends React.Component {
   }
 
   fetchRelatedWorkloads = debounce(props => {
-    const { value, namespace } = props
+    const { value, cluster, namespace } = props
 
     if (
       isEmpty(value) ||
@@ -77,16 +77,19 @@ export default class SelectorsInput extends React.Component {
 
     Promise.all([
       this.store.fetchListByK8s({
+        cluster,
         namespace,
         labelSelector,
         module: 'deployments',
       }),
       this.store.fetchListByK8s({
+        cluster,
         namespace,
         labelSelector,
         module: 'daemonsets',
       }),
       this.store.fetchListByK8s({
+        cluster,
         namespace,
         labelSelector,
         module: 'statefulsets',

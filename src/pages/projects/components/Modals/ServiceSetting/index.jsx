@@ -80,11 +80,13 @@ export default class ServiceSettingModal extends React.Component {
   }
 
   renderServiceSettings() {
+    const { cluster } = this.props
     return (
       <ServiceSettings
         formRef={this.formRef}
         formTemplate={this.state.formTemplate}
         onCancel={this.resetState}
+        cluster={cluster}
       />
     )
   }
