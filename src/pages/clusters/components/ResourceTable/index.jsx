@@ -56,9 +56,10 @@ class ResourceTable extends BaseTable {
   }
 
   fetchProjects = (params = {}) => {
-    const { cluster } = this.props
-    return this.props.clusterStore.fetchProjects({
+    const { cluster, clusterStore } = this.props
+    return clusterStore.fetchProjects({
       cluster,
+      ...clusterStore.projects.filters,
       ...params,
     })
   }

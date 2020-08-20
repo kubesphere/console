@@ -22,7 +22,7 @@ import { Columns, Column } from '@pitrix/lego-ui'
 
 import styles from './index.scss'
 
-const Chart = ({ data }) => (
+const TaintCard = ({ data }) => (
   <div className={styles.card}>
     <Columns>
       <Column>
@@ -44,4 +44,4 @@ const Chart = ({ data }) => (
   </div>
 )
 
-export default Chart
+export default TaintCard
