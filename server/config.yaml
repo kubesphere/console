@@ -45,8 +45,8 @@ client:
   reposUrl: https://github.com/kubesphere/kubesphere
   slackUrl: https://kubesphere.slack.com
   documents:
-    url: https://kubesphere-v3.netlify.app/docs
-    api: https://kubesphere-v3.netlify.app/docs/api-reference/api-docs/
+    url: https://v3-0.docs.kubesphere.io/docs
+    api: https://v3-0.docs.kubesphere.io/docs/api-reference/api-docs/
 
   # current support lanaguages
   supportLangs:
