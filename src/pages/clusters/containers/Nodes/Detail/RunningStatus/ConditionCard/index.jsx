@@ -25,7 +25,11 @@ import { Text } from 'components/Base'
 
 import styles from './index.scss'
 
-const Chart = ({ data }) => {
+const ConditionCard = ({ data }) => {
+  if (!NODE_CONDITION_ICONS[data.type]) {
+    return null
+  }
+
   const statusType = getConditionsStatus(data)
 
   const content = (
@@ -69,4 +73,4 @@ const Chart = ({ data }) => {
   )
 }
 
-export default Chart
+export default ConditionCard
