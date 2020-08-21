@@ -31,9 +31,7 @@ import {
 import generate from 'nanoid/generate'
 import moment from 'moment-mini'
 
-import cookie from 'utils/cookie'
-
-import { PATTERN_LABEL, LANG_MAP, MODULE_KIND_MAP } from './constants'
+import { PATTERN_LABEL, MODULE_KIND_MAP } from './constants'
 
 /**
  * format size, output the value with unit
@@ -394,8 +392,6 @@ export const getWebSocketProtocol = protocol => {
 }
 
 export const getDocsUrl = module => {
-  const lang = LANG_MAP[cookie('lang') || getBrowserLang()]
-
   const { url: prefix } = globals.config.documents
   const docUrl = get(globals.config, `resourceDocs[${module}]`, '')
 
@@ -403,7 +399,7 @@ export const getDocsUrl = module => {
     return ''
   }
 
-  return `${prefix}/${lang}${docUrl}`
+  return `${prefix}${docUrl}`
 }
 
 export const hasChinese = str => /.*[\u4E00-\u9FA5]+.*/.test(str)
