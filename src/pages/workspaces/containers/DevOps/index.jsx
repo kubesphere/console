@@ -32,7 +32,7 @@ import DevOpsStore from 'stores/devops'
   store: new DevOpsStore(),
   name: 'DevOps Project',
   module: 'devops',
-  rowKey: 'name',
+  rowKey: 'namespace',
   injectStores: ['rootStore', 'workspaceStore'],
 })
 export default class DevOps extends React.Component {
