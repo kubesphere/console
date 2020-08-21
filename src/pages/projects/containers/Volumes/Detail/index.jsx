@@ -33,8 +33,6 @@ import DetailPage from 'projects/containers/Base/Detail'
 
 import getRoutes from './routes'
 
-function noop() {}
-
 @inject('rootStore')
 @observer
 @trigger
@@ -91,15 +89,10 @@ export default class VolumeDetail extends React.Component {
       name: storageClassName,
     })
 
-    await this.storageclasscapabilities.fetchDetail(
-      {
-        cluster,
-        name: storageClassName,
-      },
-      {},
-      {},
-      noop
-    )
+    await this.storageclasscapabilities.fetchDetail({
+      cluster,
+      name: storageClassName,
+    })
   }
 
   getOperations = () => [

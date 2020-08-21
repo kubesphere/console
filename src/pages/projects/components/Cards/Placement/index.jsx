@@ -42,8 +42,13 @@ export default class Placement extends Component {
 
   render() {
     const { module, name, namespace } = this.props
-    const { clusters = [] } = this.fedStore.detail
+    const { clusters } = this.fedStore.detail
     const clusterMap = keyBy(this.clusterStore.list.data, 'name')
+
+    if (!clusters) {
+      return null
+    }
+
     return (
       <Panel title={t('Project Placement')}>
         <Alert
