@@ -111,7 +111,7 @@ export default class DevOps extends React.Component {
           text: t('Delete'),
           action: 'delete',
           onClick: () => {
-            trigger('resource.batch.delete', {
+            trigger('devops.batch.delete', {
               type: t(tableProps.name),
               rowKey: tableProps.rowKey,
             })

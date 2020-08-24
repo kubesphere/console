@@ -20,6 +20,7 @@ import { get } from 'lodash'
 import { Modal, Notify } from 'components/Base'
 import DevOpsCreateModal from 'components/Modals/DevOpsCreate'
 import EditModal from 'components/Modals/DevOpsEdit'
+import DeleteModal from 'components/Modals/Delete'
 
 export default {
   'devops.create': {
@@ -55,6 +56,37 @@ export default {
         },
         modal: EditModal,
         detail,
+        store,
+        ...props,
+      })
+    },
+  },
+  'devops.batch.delete': {
+    on({ store, success, rowKey, ...props }) {
+      const { data, selectedRowKeys } = store.list
+      const selectNames = data
+        .filter(item => selectedRowKeys.includes(item[rowKey]))
+        .map(item => item.name)
+
+      const modal = Modal.open({
+        onOk: async () => {
+          const reqs = []
+
+          data.forEach(item => {
+            if (selectedRowKeys.includes(item[rowKey])) {
+              reqs.push(store.delete(item))
+            }
+          })
+
+          await Promise.all(reqs)
+
+          Modal.close(modal)
+          Notify.success({ content: `${t('Deleted Successfully')}!` })
+          store.setSelectRowKeys([])
+          success && success()
+        },
+        resource: selectNames.join(', '),
+        modal: DeleteModal,
         store,
         ...props,
       })
