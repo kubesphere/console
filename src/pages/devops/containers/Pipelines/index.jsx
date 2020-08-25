@@ -570,6 +570,7 @@ class CICDs extends React.Component {
           branches={
             this.state.selectPipeline && this.state.selectPipeline.branchNames
           }
+          parameters={this.state.selectPipeline.parameters}
           params={{
             ...params,
             name: get(this.state.selectPipeline, 'name', ''),
