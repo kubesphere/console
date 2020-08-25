@@ -507,6 +507,9 @@ client:
 
     # Custom Console
     custom_console: /cluster-administration/platform-settings/customize-basic-information/
+
+    # Kube Config
+    kube_config: /multicluster-management/enable-multicluster/retrieve-kubeconfig/
   # devops:
   #  replace sonarqube link to customize url origin, default is useless
   # sonarqubeURL: http://139.123.123.123:8080

@@ -19,6 +19,7 @@
 import React from 'react'
 import { Icon, Select } from '@pitrix/lego-ui'
 import { Form, Text, CodeEditor } from 'components/Base'
+import { getDocsUrl } from 'utils'
 
 import SubTitle from '../SubTitle'
 import styles from './index.scss'
@@ -81,8 +82,12 @@ export default class BaseInfo extends React.Component {
               <div className={styles.editorTitle}>
                 <Icon name="kubernetes" size={20} />
                 <span>{t('INPUT_KUBECONFIG')}</span>
-                <a className={styles.link} href="" target="_blank">
-                  {t.html('HOW_TO_GET_KUBECONFIG')}
+                <a
+                  className={styles.link}
+                  href={getDocsUrl('kube_config')}
+                  target="_blank"
+                >
+                  {t('HOW_TO_GET_KUBECONFIG')}
                 </a>
               </div>
               <Form.Item
