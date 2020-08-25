@@ -43,7 +43,9 @@ export default class DiffYaml extends Component {
   }
 
   getDiffHtml([oldData, newData], options = {}) {
-    const diffStr = createPatch('yaml', oldData, newData)
+    const diffStr = createPatch('yaml', oldData, newData, '', '', {
+      context: -1,
+    })
     const diffJson = parse(diffStr)
     return html(diffJson, {
       drawFileList: false,
