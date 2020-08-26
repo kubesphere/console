@@ -131,7 +131,7 @@ export default class Volumes extends React.Component {
           searchType="name"
           keyword={filters.name}
           filters={filters}
-          placeholder={t('Please input a name to find')}
+          placeholder={t('Search by name')}
           pagination={pagination}
           isLoading={isLoading}
           onFetch={this.handleFetch}

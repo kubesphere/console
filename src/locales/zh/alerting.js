@@ -60,7 +60,7 @@ export default {
   'Recent Alert Time': '最近告警',
   'Please add at least one rule': '请至少添加一个告警规则',
   'Please input the threshold': '请输入阈值',
-  'Please input a monitoring target to find': '请输入监控目标名称进行查找',
+  'Search by monitoring target': '请输入监控目标名称进行查找',
   critical: '危险',
   Critical: '危险',
   'Critical Alert': '危险告警',

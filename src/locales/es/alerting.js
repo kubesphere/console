@@ -82,7 +82,7 @@ export default {
   'Notification Rules': 'Reglas de Notificación',
   Period: 'Período',
   'Please add at least one rule': 'Por favor, añade al menos una regla',
-  'Please input a monitoring target to find':
+  'Search by monitoring target':
     'Por favor, introduce un objetivo de monitorización a encontrar',
   'Please input the threshold': 'Por favor, introduce el umbral',
   'pod abnormal ratio': 'Relación anormal pod',

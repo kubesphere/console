@@ -105,7 +105,7 @@ export default class AlertingPolicy extends React.Component {
         ...tableProps.tableActions,
         selectActions: [],
       },
-      placeholder: t('Please input a monitoring target to find'),
+      placeholder: t('Search by monitoring target'),
       searchType: 'keyword',
       emptyProps: {
         desc: t('ALERT_MESSAGE_DESC'),

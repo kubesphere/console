@@ -284,8 +284,8 @@ export default {
   'Please select version': '请选择版本',
   'Please input password': '请输入密码',
   'Please input a keyword to filter': '请输入关键字过滤',
-  'Please input a keyword to find': '请输入关键字进行查找',
-  'Please input a name to find': '请输入名称进行查找',
+  'Search by keyword': '请输入关键字进行查找',
+  'Search by name': '请输入名称进行查找',
   'Name exists': '名称已存在',
   'Duplicate keys': '无法添加重复的 key',
   'Empty keys': '无法添加空的 key',
@@ -345,7 +345,6 @@ export default {
 
   'Edit Mode': '编辑模式',
   'Load More': '加载更多',
-  'Please enter a name to find': '请输入名称进行查找',
   'All Repositories': '全部仓库',
 
   'Version Info': '版本信息',

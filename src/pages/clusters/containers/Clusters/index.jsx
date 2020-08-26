@@ -198,7 +198,7 @@ class Clusters extends React.Component {
         <Search
           className={styles.search}
           onSearch={this.handleSearch}
-          placeholder={t('Please input a keyword to find')}
+          placeholder={t('Search by keyword')}
         />
         <Button
           type="flat"

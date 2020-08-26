@@ -82,8 +82,7 @@ export default {
   'Notification Rules': 'Notification Rules',
   Period: 'Period',
   'Please add at least one rule': 'Please add at least one rule',
-  'Please input a monitoring target to find':
-    'Please input a monitoring target to find',
+  'Search by monitoring target': 'Search by monitoring target',
   'Please input the threshold': 'Please input the threshold',
   'pod abnormal ratio': 'pod abnormal ratio',
   'pod utilization rate': 'pod utilization rate',

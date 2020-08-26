@@ -246,7 +246,7 @@ export default class ProjectSelectModal extends React.Component {
                     [styles.withSelect]: showClusterSelect,
                   })}
                   value={this.state.search}
-                  placeholder={t('Please enter a name to find')}
+                  placeholder={t('Search by name')}
                   onSearch={this.handleSearch}
                 />
               </div>

@@ -308,7 +308,7 @@ class LogCollectionDetailContainers extends Component {
         <Icon className={styles.icon} type="light" name="magnifier" />
         <input
           className={styles.input}
-          placeholder={t('Please input a keyword to find')}
+          placeholder={t('Search by keyword')}
           onChange={this.onKeyWordChange}
           value={this.store.log_query}
           type="text"
