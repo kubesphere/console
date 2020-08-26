@@ -186,4 +186,7 @@ export default {
   SELECT_SNAPSHOT_TO_CREATE_VOLUME: '选择已有的存储卷快照进行创建',
 
   CLUSTER_VOLUME_DIFF_DESC: '可针对不同集群，选择不同的存储类型',
+
+  VOLUME_MONITORING_TIP:
+    'Kubernetes 采集的是存储卷的设备用量数据，未挂载的存储卷暂时采集不到，并且对于如 OpenEBS/Local PV、NFS 等路径型存储卷通常与实际用量有一定出入。详见<a href="https://github.com/kubesphere/kubesphere/issues/2921" target="_blank">存储卷监控数据分析</a>。',
 }
