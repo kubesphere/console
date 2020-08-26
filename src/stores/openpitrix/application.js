@@ -26,10 +26,11 @@ import { CLUSTER_QUERY_STATUS } from 'configs/openpitrix/app'
 import Base from './base'
 
 const dataFormatter = data => {
+  const status = get(data, 'cluster.status')
   return {
     ...data,
     ...data.cluster,
-    status: data.status === 'pending' ? 'failed' : data.status,
+    status: status === 'pending' ? 'failed' : status,
   }
 }
 

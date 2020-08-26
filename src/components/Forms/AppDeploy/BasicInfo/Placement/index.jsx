@@ -156,10 +156,13 @@ export default class Placment extends Component {
 
   handleWorkspaceChange = () => {
     this.fetchClusters()
+    set(this.state.formData, 'cluster', '')
+    set(this.state.formData, 'namespace', '')
   }
 
   handleClusterChange = () => {
     this.fetchNamespaces()
+    set(this.state.formData, 'namespace', '')
   }
 
   handleSubmit = () => {
