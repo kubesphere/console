@@ -309,8 +309,7 @@ export default class WorkloadTable extends React.Component {
     }
 
     if (searchType) {
-      const placeholder =
-        this.props.placeholder || t('Please input a keyword to find')
+      const placeholder = this.props.placeholder || t('Search by keyword')
 
       return (
         <Search

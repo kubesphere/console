@@ -285,8 +285,8 @@ export default {
   'Please select version': '請選擇版本',
   'Please input password': '請輸入密碼',
   'Please input a keyword to filter': '請輸入關鍵字過濾',
-  'Please input a keyword to find': '請輸入關鍵字進行尋找',
-  'Please input a name to find': '請輸入名稱進行尋找',
+  'Search by keyword': '請輸入關鍵字進行尋找',
+  'Search by name': '請輸入名稱進行尋找',
   'Name exists': '名稱已存在',
   'Duplicate keys': '無法添加重復的 key',
   'Empty keys': '無法添加空的 key',
@@ -346,7 +346,6 @@ export default {
 
   'Edit Mode': '編輯模式',
   'Load More': '載入更多',
-  'Please enter a name to find': '請輸入名稱進行尋找',
   'All Repositories': '全部倉庫',
 
   'Version Info': '版本資訊',

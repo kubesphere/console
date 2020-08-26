@@ -97,7 +97,7 @@ export default class WorkspaceSelectModal extends React.Component {
             <Column>
               <Search
                 value={keyword}
-                placeholder={t('Please enter a name to find')}
+                placeholder={t('Search by name')}
                 onSearch={this.handleSearch}
               />
             </Column>

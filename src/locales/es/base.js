@@ -232,11 +232,10 @@ export default {
   'Platform URL': 'URL de plataforma',
   'Platform Version': 'Versión de plataforma',
   'Platform-level Access Control': 'Control de acceso a nivel de plataforma',
-  'Please enter a name to find': 'Introduce un nombre para buscar',
   'Please input a keyword to filter':
     'Introduce una palabra clave para filtrar',
-  'Please input a keyword to find': 'Introduce una palabra clave para buscar',
-  'Please input a name to find': 'Introduce un nombre para buscar',
+  'Search by keyword': 'Introduce una palabra clave para buscar',
+  'Search by name': 'Introduce un nombre para buscar',
   'Please input name': 'Introduce el nombre',
   'Please input password': 'Introduce la contraseña',
   'Please input value': 'Introduce el valor',
