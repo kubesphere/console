@@ -121,7 +121,7 @@ export default class ParamsModal extends React.Component {
 
     this.formRef.current.validate(() => {
       const params = isEmpty(formParameters)
-        ? !isEmpty(parameters)
+        ? !isEmpty(parameters) && Array.isArray(parameters)
           ? parameters.map(item => ({
               name: item.name,
               value: '',
@@ -176,23 +176,34 @@ export default class ParamsModal extends React.Component {
             </RadioGroup>
           </Form.Item>
         )
-      case 'choice':
+      case 'choice': {
+        const choicesOption = get(param, 'choices', [])
+        const defaultChoicesValue = get(
+          param,
+          'defaultParameterValue.value',
+          ''
+        )
         return (
           <Form.Item
             key={param.name}
             label={param.name}
             desc={param.description}
           >
-            <Select
-              name={param.name}
-              options={param.choices.map(choice => ({
-                label: choice,
-                value: choice,
-              }))}
-              defaultValue={param.choices[0]}
-            />
+            {!isEmpty(choicesOption) ? (
+              <Select
+                name={param.name}
+                options={choicesOption.map(choice => ({
+                  label: choice,
+                  value: choice,
+                }))}
+                defaultValue={defaultChoicesValue || choicesOption[0]}
+              />
+            ) : (
+              <Input name={param.name} defaultValue={defaultChoicesValue} />
+            )}
           </Form.Item>
         )
+      }
       case 'password':
         return (
           <Form.Item
