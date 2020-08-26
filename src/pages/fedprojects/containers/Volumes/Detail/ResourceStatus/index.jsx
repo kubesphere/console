@@ -20,6 +20,7 @@ import React from 'react'
 import { observer, inject } from 'mobx-react'
 
 import { keyBy } from 'lodash'
+import { Alert } from 'components/Base'
 import UsageCard from './UsageCard'
 
 import styles from './index.scss'
@@ -40,6 +41,11 @@ class ResourceStatus extends React.Component {
 
     return (
       <div className={styles.main}>
+        <Alert
+          type="warning"
+          className="margin-b12"
+          message={t.html('VOLUME_MONITORING_TIP')}
+        />
         {clusters.map(cluster => (
           <UsageCard
             key={cluster.name}

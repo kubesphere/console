@@ -32,7 +32,7 @@ import {
 import VolumeStatus from 'projects/components/Charts/VolumeUsage'
 import CustomTooltip from 'components/Charts/Custom/Tooltip'
 import { Loading } from '@pitrix/lego-ui'
-import { Card } from 'components/Base'
+import { Panel, Alert } from 'components/Base'
 import { SimpleArea } from 'components/Charts'
 
 import styles from './index.scss'
@@ -82,14 +82,19 @@ export default class UsageCard extends Component {
     const { isLoading, isRefreshing } = store
 
     return (
-      <Card title={title}>
+      <Panel title={title}>
         <Loading spinning={isLoading}>
           <div data-refreshing={isRefreshing}>
+            <Alert
+              type="warning"
+              className="margin-b12"
+              message={t.html('VOLUME_MONITORING_TIP')}
+            />
             {this.renderStatus()}
             {this.renderMonitor()}
           </div>
         </Loading>
-      </Card>
+      </Panel>
     )
   }
 

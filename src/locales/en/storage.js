@@ -199,4 +199,7 @@ export default {
 
   CLUSTER_VOLUME_DIFF_DESC:
     'You can specify different storage classes for different clusters.',
+
+  VOLUME_MONITORING_TIP:
+    'Kubernetes collects volume usage data, excluding data from unmounted volumes. For path-based volumes such as OpenEBS/Local PV and NFS, the data collected may be different from the actual amount. For detailed information, see <a href="https://github.com/kubesphere/kubesphere/issues/2921" target="_blank">volume monitoring data analysis</a>.',
 }
