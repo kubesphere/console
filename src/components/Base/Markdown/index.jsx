@@ -39,7 +39,7 @@ class Markdown extends React.Component {
     super(props)
 
     this.iframeLoaded = false
-    this.md = new MarkdownIt(props.options)
+    this.md = new MarkdownIt({ html: true, linkify: true, ...props.options })
     this.state = {
       loading: true,
     }
