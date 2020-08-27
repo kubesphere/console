@@ -79,12 +79,7 @@ export default class TaintInput extends React.Component {
       return value.every(checkItemValid)
     }
 
-    return (
-      isEmpty(errorKeys) &&
-      value.every(
-        item => !isEmpty(item) && Object.values(item).every(_value => _value)
-      )
-    )
+    return isEmpty(errorKeys) && value.every(item => !isEmpty(item))
   }
 
   handleAdd = () => {
