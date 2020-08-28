@@ -270,8 +270,10 @@ export default class DetailModal extends React.Component {
       endTime: end_time,
       namespaces,
     } = this.logStore
+    const { cluster } = this.props.searchInputState
 
     const link = this.logStore.exportLinkFactory({
+      cluster,
       namespaces,
       pods: pod,
       containers: container,

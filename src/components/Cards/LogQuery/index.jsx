@@ -227,10 +227,11 @@ class LogCollectionDetailContainers extends Component {
       : this.state
 
     const { containers: container, pods: pod } = this.store
-    const { namespaces: namespace } = this.store.pathParams
+    const { cluster, namespaces: namespace } = this.store.pathParams
 
     const link = this.store.exportLinkFactory({
       pod,
+      cluster,
       namespace,
       container,
       start_time,
