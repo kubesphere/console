@@ -38,17 +38,9 @@ export default class LoggingStore {
     return 'kapis/logging.kubesphere.io/v1alpha2'
   }
 
-  get apiPath() {
-    return this.clusterLogAPI
-  }
-
-  get clusterLogAPI() {
-    return 'kapis/tenant.kubesphere.io/v1alpha2/logs'
-  }
-
   getApiPath(cluster) {
     return cluster
-      ? `kapis/klusters/${cluster}/tenant.kubesphere.io/v1alpha2/logs`
+      ? `kapis/clusters/${cluster}/tenant.kubesphere.io/v1alpha2/logs`
       : 'kapis/tenant.kubesphere.io/v1alpha2/logs'
   }
 

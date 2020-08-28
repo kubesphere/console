@@ -20,6 +20,7 @@ import { observable, action, computed } from 'mobx'
 import { assign, get } from 'lodash'
 import { stringify } from 'qs'
 import stripAnsi from 'strip-ansi'
+import { getClusterUrl } from 'utils'
 
 import LoggingStore from './index'
 
@@ -119,8 +120,8 @@ export default class LoggingQuery extends LoggingStore {
     }))
   }
 
-  exportLinkFactory({ start_time, end_time, ...rest }) {
-    const api = this.clusterLogAPI
+  exportLinkFactory({ cluster, start_time, end_time, ...rest }) {
+    const api = getClusterUrl(this.getApiPath(cluster))
 
     return `/${api}?${stringify({
       sort: 'asc',
