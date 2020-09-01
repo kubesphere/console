@@ -998,6 +998,13 @@ export const CREDENTIAL_KEY = {
   kubeconfig: 'kubeconfig',
 }
 
+export const CREDENTIAL_TYPE_LIST = [
+  'credential.devops.kubesphere.io/basic-auth',
+  'credential.devops.kubesphere.io/ssh-auth',
+  'credential.devops.kubesphere.io/secret-text',
+  'credential.devops.kubesphere.io/kubeconfig',
+]
+
 export const CREDENTIAL_DISPLAY_KEY = {
   'basic-auth': 'username_password',
   'ssh-auth': 'ssh',

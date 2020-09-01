@@ -22,6 +22,7 @@ import {
   CREDENTIAL_KEY,
   CREDENTIAL_DISPLAY_KEY,
   API_VERSIONS,
+  CREDENTIAL_TYPE_LIST,
 } from 'utils/constants'
 
 import FORM_TEMPLATES from 'utils/form.templates'
@@ -93,8 +94,8 @@ export default class CredentialStore extends BaseStore {
       }
     )
 
-    result.items = result.items.filter(
-      v => v.type.indexOf('credential.devops.kubesphere.io') === 0
+    result.items = result.items.filter(v =>
+      CREDENTIAL_TYPE_LIST.includes(v.type)
     )
 
     const dataList = result.items.map(v => {
