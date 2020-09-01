@@ -124,7 +124,7 @@ describe('The Deployment Detail Page', function() {
     cy.route('DELETE', /\/deployments/).as('deleteDeployment')
     cy.route('GET', /\/pods/).as('getPods')
     cy.route('GET', /\/replicasets/).as('getReplicasets')
-    cy.route('GET', /\/monitoring.kubesphere.io/).as('getMetrics')
+    cy.route('GET', /\/monitoring\.kubesphere\.io/).as('getMetrics')
     cy.route('GET', /\/events/).as('getEvents')
     cy.route('POST', /\/rollback/).as('rollback')
     cy.route('GET', /\/rules/).as('getRules')

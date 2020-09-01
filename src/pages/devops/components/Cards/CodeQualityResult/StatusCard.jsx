@@ -46,7 +46,7 @@ export default class CodeStatusCard extends React.PureComponent {
         </p>
         <p className={styles.value}>
           {url ? (
-            <a href={url} target="_blank">
+            <a href={url} target="_blank" rel="noreferrer noopener">
               <span>{value}</span>
             </a>
           ) : (

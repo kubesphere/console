@@ -122,7 +122,7 @@ export default class Banner extends React.Component {
               {docUrl && (
                 <span className={styles.more}>
                   <Icon name="documentation" size={20} />
-                  <a href={docUrl} target="_blank">
+                  <a href={docUrl} target="_blank" rel="noreferrer noopener">
                     {t('Learn more')}
                   </a>
                 </span>

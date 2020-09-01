@@ -94,7 +94,7 @@ export default class CredentialStore extends BaseStore {
     )
 
     result.items = result.items.filter(
-      v => v.type.indexOf('credential.devops.kubesphere.io') > -1
+      v => v.type.indexOf('credential.devops.kubesphere.io') === 0
     )
 
     const dataList = result.items.map(v => {

@@ -63,28 +63,44 @@ export default class History extends Component {
         <div className={styles.sectionTitle}>{t('Quick Support')}</div>
         <div className={styles.sectionContent}>
           <div className={styles.links}>
-            <a href={get(globals.config, 'documents.url', '')} target="_blank">
+            <a
+              href={get(globals.config, 'documents.url', '')}
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               <Text
                 icon="documentation"
                 title={t('User Guides')}
                 description={t('USER_GUIDES_DESC')}
               />
             </a>
-            <a href={get(globals.config, 'slackUrl', '')} target="_blank">
+            <a
+              href={get(globals.config, 'slackUrl', '')}
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               <Text
                 icon="loudspeaker"
                 title={t('Developer Community')}
                 description={t('DEVELOPER_DESC')}
               />
             </a>
-            <a href={get(globals.config, 'documents.api', '')} target="_blank">
+            <a
+              href={get(globals.config, 'documents.api', '')}
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               <Text
                 icon="api"
                 title={t('API Documents')}
                 description={t('API_DOCS_DESC')}
               />
             </a>
-            <a href={get(globals.config, 'issueUrl', '')} target="_blank">
+            <a
+              href={get(globals.config, 'issueUrl', '')}
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               <Text
                 icon="github"
                 title={t('Github Issues')}

@@ -90,6 +90,7 @@ export default class Artifacts extends React.Component {
           href={this.getDownloadUrl(record.url)}
           target="_blank"
           download={true}
+          rel="noreferrer noopener"
         >
           {path}
         </a>
@@ -110,6 +111,7 @@ export default class Artifacts extends React.Component {
           href={this.getDownloadUrl(record.url)}
           target="_blank"
           download={true}
+          rel="noreferrer noopener"
         >
           <Icon name="download" />
         </a>

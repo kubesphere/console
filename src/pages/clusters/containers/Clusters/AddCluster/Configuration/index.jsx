@@ -86,6 +86,7 @@ export default class BaseInfo extends React.Component {
                   className={styles.link}
                   href={getDocsUrl('kube_config')}
                   target="_blank"
+                  rel="noreferrer noopener"
                 >
                   {t('HOW_TO_GET_KUBECONFIG')}
                 </a>

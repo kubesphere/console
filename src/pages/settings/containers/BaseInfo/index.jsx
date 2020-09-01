@@ -53,7 +53,11 @@ export default class BaseInfo extends Component {
               title={location.host}
               description={t('Platform URL')}
             />
-            <a href={`${getDocsUrl('custom_console')}`} target="_blank">
+            <a
+              href={`${getDocsUrl('custom_console')}`}
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               {t('HOW_TO_MODIFY_PLATFORM_INFO')}
             </a>
           </div>

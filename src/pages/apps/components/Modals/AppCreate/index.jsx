@@ -66,7 +66,11 @@ export default class AppCreate extends Component {
             </Button>
             <div className={styles.note}>
               💁‍♂️ {t('APP_CREATE_GUIDE')}
-              <a href={getDocsUrl('helm_specification')} target="_blank">
+              <a
+                href={getDocsUrl('helm_specification')}
+                target="_blank"
+                rel="noreferrer noopener"
+              >
                 《{t('HELM_DEVELOP_GUIDE')}》
               </a>
             </div>

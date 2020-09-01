@@ -43,6 +43,7 @@ class Issue extends React.PureComponent {
         key={issue.line}
         href={`${origin}/project/issues?id=${issue.project}&open=${issue.key}`}
         target="_blank"
+        rel="noreferrer noopener"
       >
         <div
           className={classNames(

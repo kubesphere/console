@@ -58,7 +58,11 @@ export default class TestSteps extends React.Component {
         </div>
         <p>
           {t('VERSION_SUBMIT_DOC')}
-          <a href={getDocsUrl('helm_developer_guide')} target="_blank">
+          <a
+            href={getDocsUrl('helm_developer_guide')}
+            target="_blank"
+            rel="noreferrer noopener"
+          >
             《{t('Develop and test guide')}》
           </a>
         </p>
