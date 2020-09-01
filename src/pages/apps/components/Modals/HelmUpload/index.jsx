@@ -164,7 +164,11 @@ export default class HelmUpload extends Component {
         </div>
         <div className={styles.note}>
           💁‍♂️ {t('APP_CREATE_GUIDE')}
-          <a href={OPENPITRIX_LINKS.helm_developer_guide} target="_blank">
+          <a
+            href={OPENPITRIX_LINKS.helm_developer_guide}
+            target="_blank"
+            rel="noreferrer noopener"
+          >
             《{t('HELM_DEVELOP_GUIDE')}》
           </a>
         </div>

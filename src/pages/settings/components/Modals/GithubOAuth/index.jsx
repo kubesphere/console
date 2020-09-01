@@ -86,6 +86,7 @@ export default class GithubOAuthModal extends React.Component {
                 <a
                   href="https://github.com/settings/applications/new"
                   target="_blank"
+                  rel="noreferrer noopener"
                 >
                   {t('How to obtain a Github client ID ?')}
                 </a>

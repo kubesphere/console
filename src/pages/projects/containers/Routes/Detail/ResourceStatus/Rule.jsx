@@ -88,7 +88,11 @@ const Card = ({ gateway, rule, tls = {}, prefix }) => {
               </span>
             </Column>
             <Column>
-              <a href={`${protocol}://${host}${path.path}`} target="_blank">
+              <a
+                href={`${protocol}://${host}${path.path}`}
+                target="_blank"
+                rel="noreferrer noopener"
+              >
                 <Button className={styles.access} noShadow>
                   {t('Click to visit')}
                 </Button>

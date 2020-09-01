@@ -34,12 +34,20 @@ export default class Help extends React.Component {
           {t('Help Information')}
         </div>
         <div className={styles.tip}>
-          <a href={getDocsUrl('project_members')} target="_blank">
+          <a
+            href={getDocsUrl('project_members')}
+            target="_blank"
+            rel="noreferrer noopener"
+          >
             💁 {t('How to invite other members to the current project?')}
           </a>
         </div>
         <div className={styles.tip}>
-          <a href={getDocsUrl('internet')} target="_blank">
+          <a
+            href={getDocsUrl('internet')}
+            target="_blank"
+            rel="noreferrer noopener"
+          >
             💁 {t('How to set the project gateway?')}
           </a>
         </div>

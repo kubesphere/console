@@ -73,6 +73,7 @@ export default class Ports extends Component {
                   <a
                     href={`http://${gateway.defaultIngress}:${port.nodePort}`}
                     target="_blank"
+                    rel="noreferrer noopener"
                   >
                     <Button className={styles.access} noShadow>
                       {t('Click to visit')}

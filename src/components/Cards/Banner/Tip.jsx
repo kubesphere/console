@@ -81,7 +81,7 @@ export default class Tip extends React.Component {
         <div className={styles.operations} onClick={this.stopPropagation}>
           {operation}
           {more && (
-            <a href={more} target="_blank">
+            <a href={more} target="_blank" rel="noreferrer noopener">
               <Button>{t('Learn more')}</Button>
             </a>
           )}

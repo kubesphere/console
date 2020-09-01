@@ -73,7 +73,7 @@ export default class Branch extends React.Component {
       width: '20%',
       render: (commitId, record) => {
         return (
-          <a href={record.url} target="_blank">
+          <a href={record.url} target="_blank" rel="noreferrer noopener">
             {commitId && commitId.slice(0, 6)}
           </a>
         )

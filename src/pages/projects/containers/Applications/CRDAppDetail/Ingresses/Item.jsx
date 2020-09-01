@@ -74,7 +74,11 @@ const Card = ({ detail, gateway, prefix }) => {
                   {path.path}
                 </strong>
               </span>
-              <a href={`${host}${path.path}`} target="_blank">
+              <a
+                href={`${host}${path.path}`}
+                target="_blank"
+                rel="noreferrer noopener"
+              >
                 <Button className={styles.access} noShadow>
                   {t('Click to visit')}
                 </Button>
