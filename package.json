@@ -19,7 +19,7 @@
     "for-editor": "^0.3.4",
     "fuse.js": "^3.3.0",
     "history": "^4.7.2",
-    "http-proxy": "^1.17.0",
+    "http-proxy": "^1.18.1",
     "i18next": "^11.3.3",
     "ioredis": "^3.2.2",
     "ioredis-timeout": "^1.4.1",
