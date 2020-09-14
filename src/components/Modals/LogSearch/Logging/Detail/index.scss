@@ -15,7 +15,7 @@ $titleHeight: 30px;
       cursor: pointer;
       span {
         vertical-align: super;
-        font-size: 14px;
+        font-size: 12px;
         padding: 0 4px;
       }
     }
@@ -74,7 +74,13 @@ $titleHeight: 30px;
           margin-left: 9px;
           text-align: center;
           line-height: 29px;
-          cursor: pointer;
+
+          & > a {
+            display: block;
+            width: 100%;
+            height: 100%;
+          }
+
           &:hover {
             background-color: #d8dee5;
           }
