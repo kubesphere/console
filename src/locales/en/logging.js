@@ -18,7 +18,7 @@
 
 export default {
   Activate: 'Activate',
-  'Add Log Collector': 'Add Log Collector',
+  'Add Log Receiver': 'Add Log Receiver',
   'Add Service Address': 'Add Service Address',
   Address: 'Address',
   'Auditing statistics': 'Auditing statistics',
@@ -26,7 +26,7 @@ export default {
   'Change Status': 'Change Status',
   Collecting: 'Collecting',
   'Current Statistics Start Time': 'Current Statistics Start Time',
-  'Delete Log Collector': 'Delete Log Collector',
+  'Delete Log Receiver': 'Delete Log Receiver',
   'Display Content': 'Display Content',
   'Event statistics': 'Event statistics',
   'Exact Query': 'Exact Query',
@@ -35,7 +35,7 @@ export default {
   'Index Prefix': 'Index Prefix',
   Keyword: 'Keyword',
   'Log Collections': 'Log Collections',
-  'Log Collector': 'Log Collector',
+  'Log Receiver': 'Log Receiver',
   'Log Management': 'Log Management',
   'Log Query': 'Log Query',
   'Log Start Time': 'Log Start Time',
@@ -78,7 +78,7 @@ export default {
   KAFKA_DESC: 'Kafka is a popular open-source stream-processing platform.',
   FLUENTD_DESC:
     'Fluentd is an open source data collector for unified logging layer.',
-  TOTAL_COLLECTIONS: 'Total {num} log collectors',
+  TOTAL_COLLECTIONS: 'Total {num} receivers',
   TOOLBOX_SHIFT_TIPS:
     ' 👻 You can open the page in a new window with "SHIFT + LEFT CLICK".',
 
@@ -91,7 +91,7 @@ export default {
   EMPTY_LOG_COLLECTIONS:
     'The log collector is not set up temporarily. You can add a log collector to export the log to the external log collector.',
   LOG_COLLECTION_TIPS:
-    'Only one log collector can be added for each type. If there is one already added, you are only allowed to edit it.',
+    'Only one log receiver can be added for each type. If there is one already added, you are only allowed to edit it.',
   URL_SYNTAX_ERROR: 'URL syntax error',
 
   LOG_COLLECTION_ES_URL_TIPS:
@@ -169,7 +169,7 @@ export default {
     'A total of <span class={className}> {auditing} </span> auditing logs were collected today.',
   NO_AUDITING_TODAY: 'Auditing logs not found today',
 
-  LOGGING_LOG_COLLECTOR: 'Log Collector',
-  EVENTS_LOG_COLLECTOR: 'Events Log Collector',
-  AUDITING_LOG_COLLECTOR: 'Auditing Log Collector',
+  LOGGING_LOG_COLLECTOR: 'Log Receiver',
+  EVENTS_LOG_COLLECTOR: 'Events Log Receiver',
+  AUDITING_LOG_COLLECTOR: 'Auditing Log Receiver',
 }
