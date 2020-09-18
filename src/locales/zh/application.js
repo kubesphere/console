@@ -27,7 +27,7 @@ export default {
   Deploy: '部署',
   'Application Type': '应用类型',
   TOTAL_APPS: '共计 {num} 个应用',
-  TOTAL_COLLECTIONS: '共计 {num} 个接受者',
+  TOTAL_COLLECTIONS: '共计 {num} 个接收者',
   Upgrade: '升级',
   Rollback: '回滚',
 
