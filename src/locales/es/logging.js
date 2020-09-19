@@ -18,7 +18,7 @@
 
 export default {
   Activate: 'Activar',
-  'Add Log Collector': 'Añadir el colector de logs',
+  'Add Log Receiver': 'Add Log Receiver',
   'Add Service Address': 'Agregar dirección de servicio',
   Address: 'Dirección',
   'Auditing statistics': 'Estadísticas de auditoría',
@@ -26,7 +26,7 @@ export default {
   'Change Status': 'Cambiar Estado',
   Collecting: 'Recolectar',
   'Current Statistics Start Time': 'Hora actual de inicio de estadísticas',
-  'Delete Log Collector': 'Eliminar el colector de logs',
+  'Delete Log Receiver': 'Delete Log Receiver',
   'Display Content': 'Mostrar el contenido',
   'Event statistics': 'Estadísticas de eventos',
   'Exact Query': 'Consulta exacta',
@@ -35,7 +35,7 @@ export default {
   'Index Prefix': 'Index Prefix',
   Keyword: 'Palabra clave',
   'Log Collections': 'Colecciones de logs',
-  'Log Collector': 'Colector de logs',
+  'Log Receiver': 'Log Receiver',
   'Log Management': 'Gestión de logs',
   'Log Query': 'Consulta de logs',
   'Log Start Time': 'Hora de inicio del log',
@@ -80,7 +80,7 @@ export default {
     'Kafka es una popular plataforma de procesamiento de flujo de código abierto.',
   FLUENTD_DESC:
     'Fluentd es un recopilador de datos de código abierto para la capa de registro unificada.',
-  TOTAL_COLLECTIONS: 'Total de {num} recolectores de registros',
+  TOTAL_COLLECTIONS: 'Total {num} receivers',
   TOOLBOX_SHIFT_TIPS:
     '👻 Puedes abrir la página en una nueva ventana con "MAYÚS + CLIC IZQUIERDO".',
   LOG_COLLECTION_DESC:
@@ -92,7 +92,7 @@ export default {
   EMPTY_LOG_COLLECTIONS:
     'El recopilador de logs no está configurado temporalmente. Puedes agregar un recopilador de logs para exportar el registro al recopilador de logs externo.',
   LOG_COLLECTION_TIPS:
-    'Solo se puedes agregar un recopilador de logs para cada tipo. Si ya hay uno agregado, solo puedes editarlo.',
+    'Only one log receiver can be added for each type. Si ya hay uno agregado, solo puedes editarlo.',
   URL_SYNTAX_ERROR: 'Error de sintaxis de URL',
   LOG_COLLECTION_ES_URL_TIPS:
     'El servicio incorporado Elasticsearch se usa de manera predeterminada. Puedes cambiarlo para usar un servicio Elasticsearch implementado por tí mismo dentro o fuera del clúster.',
@@ -168,7 +168,7 @@ export default {
   TOTAL_AUDITING_TODAY:
     'Hoy se han recopilado un total de <span class={className}>{auditing}</span> registros de auditoría.',
   NO_AUDITING_TODAY: 'Registros de auditoría no encontrados hoy',
-  LOGGING_LOG_COLLECTOR: 'Colector de logs',
-  EVENTS_LOG_COLLECTOR: 'Recopilador de registro de eventos',
-  AUDITING_LOG_COLLECTOR: 'Colector de logs de auditoría',
+  LOGGING_LOG_COLLECTOR: 'Log Receiver',
+  EVENTS_LOG_COLLECTOR: 'Events Log Receiver',
+  AUDITING_LOG_COLLECTOR: 'Auditing Log Receiver',
 }

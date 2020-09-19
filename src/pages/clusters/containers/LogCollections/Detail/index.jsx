@@ -97,7 +97,7 @@ export default class LogCollectionDetail extends React.Component {
     },
     {
       key: 'delete',
-      text: t('Delete Log Collector'),
+      text: t('Delete Log Receiver'),
       icon: 'trash',
       action: 'delete',
       type: 'danger',

@@ -149,7 +149,7 @@ export default class LogCollection extends React.Component {
         disabled={this.store.list.isLoading}
         onClick={this.showCreateModal}
       >
-        {t('Add Log Collector')}
+        {t('Add Log Receiver')}
       </Button>
     )
   }

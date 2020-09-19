@@ -82,7 +82,7 @@ export default {
 
   LOG_COLLECTION_DESC:
     '系統將收集每個容器的標準輸出和標準錯誤輸出紀錄，並將其發送到一個或多個目標服務',
-  'Add Log Collector': '添加紀錄接收者',
+  'Add Log Receiver': '添加紀錄接收者',
   EMPTY_LOG_COLLECTIONS:
     '暫時没有設置紀錄收集器，您可以添加紀錄收集器將紀錄導出到外埠的紀錄收集工具中',
   LOG_COLLECTION_TIPS:
@@ -107,8 +107,8 @@ export default {
   Collecting: '收集中',
   'Change Status': '更改狀態',
   'Release Collection': '釋放收集',
-  'Delete Log Collector': '刪除紀錄接收者',
-  'Log Collector': '紀錄接收者',
+  'Delete Log Receiver': '刪除紀錄接收者',
+  'Log Receiver': '紀錄接收者',
   Activate: '啟用',
   'Real-Time Data': '實時數據',
   'Index Prefix': '索引前缀',
