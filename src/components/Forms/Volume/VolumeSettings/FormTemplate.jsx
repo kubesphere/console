@@ -191,7 +191,6 @@ export default class VolumeSettings extends React.Component {
             onFetch={this.updateStorageClass}
           />
         </Form.Item>
-
         <Form.Item
           label={t('Access Mode')}
           rules={[{ required: true, message: t('This param is required') }]}

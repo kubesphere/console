@@ -17,7 +17,7 @@
  */
 
 import React from 'react'
-import { get, set } from 'lodash'
+import { get, set, unset } from 'lodash'
 import { MODULE_KIND_MAP } from 'utils/constants'
 import { Form, TypeSelect } from 'components/Base'
 
@@ -65,6 +65,7 @@ export default class VolumeSettings extends React.Component {
 
   handeChange = fromSnapshot => {
     if (fromSnapshot !== this.state.fromSnapshot) {
+      unset(this.fedFormTemplate, 'spec.storageClassName')
       set(this.fedFormTemplate, 'spec.accessModes', [])
       set(this.fedFormTemplate, 'spec.dataSource', {})
       set(this.fedFormTemplate, 'spec.resources.requests.storage', '0Gi')
