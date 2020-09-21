@@ -35,8 +35,6 @@ import { ACCESS_MODES } from 'utils/constants'
 
 import styles from './index.scss'
 
-const ACCESSMODE_KEY = 'spec.accessModes[0]'
-
 @observer
 export default class SanpshotForm extends Component {
   snapshotStore = new SnapshotStore()
@@ -54,7 +52,7 @@ export default class SanpshotForm extends Component {
   }
 
   get storageClassName() {
-    return get(this.context.formData, 'storageClassName')
+    return get(this.context.formData, 'spec.storageClassName')
   }
 
   get supportedAccessModes() {
@@ -100,11 +98,15 @@ export default class SanpshotForm extends Component {
     )
     set(
       this.context.formData,
-      'storageClassName',
+      'spec.storageClassName',
       selectSnapshot.snapshotClassName
     )
-    set(this.context.formData, 'dataSource.kind', 'VolumeSnapshot')
-    set(this.context.formData, 'dataSource.apiGroup', 'snapshot.storage.k8s.io')
+    set(this.context.formData, 'spec.dataSource.kind', 'VolumeSnapshot')
+    set(
+      this.context.formData,
+      'spec.dataSource.apiGroup',
+      'snapshot.storage.k8s.io'
+    )
 
     this.fetchStorageClassDetail()
   }
@@ -123,7 +125,7 @@ export default class SanpshotForm extends Component {
         >
           <SnapshotSelect
             className={styles.snapshots}
-            name={'dataSource.name'}
+            name={'spec.dataSource.name'}
             snapshots={toJS(snapshots)}
             total={total}
             page={page}
@@ -140,7 +142,7 @@ export default class SanpshotForm extends Component {
               rules={[{ required: true, message: t('This param is required') }]}
             >
               <AccessModes
-                name={ACCESSMODE_KEY}
+                name="spec.accessModes[0]"
                 defaultValue={
                   get(supportedAccessModes, '[0]') ||
                   Object.keys(ACCESS_MODES)[0]
