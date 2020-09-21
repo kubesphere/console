@@ -124,17 +124,18 @@ export default class ProjectStore extends Base {
   }
 
   @action
-  async fetchDetail({ cluster, workspace, namespace }) {
+  async fetchDetail({ cluster, workspace, namespace }, reject) {
     this.isLoading = true
     const detail = await request.get(
       this.getDetailUrl({ cluster, workspace, name: namespace }),
       null,
       null,
-      res => {
-        if (res.reason === 'NotFound' || res.reason === 'Forbidden') {
-          global.navigateTo('/404')
-        }
-      }
+      reject ||
+        (res => {
+          if (res.reason === 'NotFound' || res.reason === 'Forbidden') {
+            global.navigateTo('/404')
+          }
+        })
     )
 
     this.detail = { cluster, ...this.mapper(detail) }
