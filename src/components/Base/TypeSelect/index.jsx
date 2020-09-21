@@ -51,6 +51,12 @@ export default class TypeSelect extends React.Component {
     this.optionsRef = React.createRef()
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.value !== prevState.value) {
+      this.setState({ value: this.props.value })
+    }
+  }
+
   componentWillUnmount() {
     document.removeEventListener('click', this.handleDOMClick)
   }
@@ -162,12 +168,11 @@ export default class TypeSelect extends React.Component {
   }
 
   renderControl() {
-    const { value, defaultValue, placeholder, options, disabled } = this.props
-
-    const _value = value || defaultValue
+    const { placeholder, options, disabled } = this.props
+    const { value } = this.state
 
     const option =
-      options.find(item => isEqual(item.value, _value)) || placeholder || {}
+      options.find(item => isEqual(item.value, value)) || placeholder || {}
 
     return (
       <div
