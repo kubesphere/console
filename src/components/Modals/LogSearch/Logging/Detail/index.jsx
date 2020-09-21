@@ -80,6 +80,11 @@ export default class DetailModal extends React.Component {
     const { cluster } = this.props.searchInputState
     const { pods } = this.logStore
     const { workspace } = this.projectStore.detail
+
+    if (!workspace) {
+      return ''
+    }
+
     return `/${workspace}/clusters/${cluster}/projects/${namespace}/pods/${pods}`
   }
 
@@ -89,6 +94,11 @@ export default class DetailModal extends React.Component {
     const { cluster } = this.props.searchInputState
     const { pods, containers } = this.logStore
     const { workspace } = this.projectStore.detail
+
+    if (!workspace) {
+      return ''
+    }
+
     return `/${workspace}/clusters/${cluster}/projects/${namespace}/pods/${pods}/containers/${containers}`
   }
 
@@ -260,7 +270,11 @@ export default class DetailModal extends React.Component {
 
   fetchProject() {
     const { namespace } = this.props.detailState
-    this.projectStore.fetchDetail({ name: namespace, namespace })
+    const { cluster } = this.props.searchInputState
+    this.projectStore.fetchDetail(
+      { name: namespace, namespace, cluster },
+      () => {}
+    )
   }
 
   fetchPods() {
