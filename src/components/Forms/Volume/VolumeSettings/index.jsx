@@ -27,7 +27,7 @@ import SnapshotForm from './SnapshotForm'
 const CREATE_TYPE_OPTIONS = [
   {
     icon: 'snapshot',
-    value: 'snapshot',
+    value: true,
     get label() {
       return t('CREATE_VOLUME_BY_SNAPSHOT')
     },
@@ -37,7 +37,7 @@ const CREATE_TYPE_OPTIONS = [
   },
   {
     icon: 'database',
-    value: 'storageclass',
+    value: false,
     get label() {
       return t('CREATE_VOLUME_BY_STORAGECLASS')
     },
@@ -46,16 +46,6 @@ const CREATE_TYPE_OPTIONS = [
     },
   },
 ]
-
-const CREATE_WAY = {
-  SNAPSHOT: 'snapshot',
-  NORMAL: 'storageclass',
-}
-const DEFAULT_CREATE_WAY = CREATE_WAY.NORMAL
-/**
- * use for save the temporary message
- */
-const CREATE_TYPE_NAME = 'create_way'
 
 export default class VolumeSettings extends React.Component {
   get formTemplate() {
@@ -70,35 +60,34 @@ export default class VolumeSettings extends React.Component {
   }
 
   state = {
-    method: this.formTemplate[CREATE_TYPE_NAME] || DEFAULT_CREATE_WAY,
+    fromSnapshot: !!get(this.formTemplate, 'spec.dataSource.name'),
   }
 
-  handeChange = method => {
-    if (method !== this.state.method) {
+  handeChange = fromSnapshot => {
+    if (fromSnapshot !== this.state.fromSnapshot) {
       set(this.fedFormTemplate, 'spec.accessModes', [])
-      set(this.fedFormTemplate, 'dataSource', {})
+      set(this.fedFormTemplate, 'spec.dataSource', {})
       set(this.fedFormTemplate, 'spec.resources.requests.storage', '0Gi')
-      this.setState({ method })
+      this.setState({ fromSnapshot })
     }
   }
 
   render() {
     const { formRef, isFederated, cluster } = this.props
-    const { method } = this.state
+    const { fromSnapshot } = this.state
 
     return (
       <Form data={this.fedFormTemplate} ref={formRef}>
         {!isFederated && (
           <Form.Item label={t('Method')}>
             <TypeSelect
-              name={CREATE_TYPE_NAME}
-              defaultValue={DEFAULT_CREATE_WAY}
+              value={fromSnapshot}
               options={CREATE_TYPE_OPTIONS}
               onChange={this.handeChange}
             />
           </Form.Item>
         )}
-        {method === CREATE_WAY.SNAPSHOT ? (
+        {fromSnapshot ? (
           <SnapshotForm
             namespace={get(this.formTemplate, 'metadata.namespace')}
             cluster={cluster}
