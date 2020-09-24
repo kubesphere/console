@@ -67,12 +67,21 @@ export default class SanpshotForm extends Component {
 
   fetchSnapshots = (params = { limit: 10 }) => {
     const { namespace, cluster } = this.props
-    this.snapshotStore.fetchList({
-      ...params,
-      namespace,
-      cluster,
-      status: 'ready',
-    })
+    this.snapshotStore
+      .fetchList({
+        ...params,
+        namespace,
+        cluster,
+        status: 'ready',
+      })
+      .then(() => {
+        const { data } = this.snapshotStore.list
+        const name = get(data, '[0].name')
+        if (name) {
+          set(this.context.formData, 'spec.dataSource.name', name)
+          this.handeSnapshotChange(name)
+        }
+      })
   }
 
   fetchStorageClassDetail = () => {
@@ -125,7 +134,7 @@ export default class SanpshotForm extends Component {
         >
           <SnapshotSelect
             className={styles.snapshots}
-            name={'spec.dataSource.name'}
+            name="spec.dataSource.name"
             snapshots={toJS(snapshots)}
             total={total}
             page={page}
