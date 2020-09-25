@@ -109,7 +109,7 @@ export default {
 
   'Two Versions': '两个版本',
   'Traffic Rules': '流量规则',
-  'Offline this version': '下线此版本',
+  'Version offline': '下线此版本',
   'Take over all traffic': '接管所有流量',
   'Forward by traffic ratio': '按流量比例下发',
   'Forward by request content': '按请求内容下发',
@@ -122,7 +122,7 @@ export default {
   NO_SERVICE_MESH_TIP: '未开启应用治理的应用无法使用灰度发布',
 
   BLUE_GREEN_DEPLOYMENT_DESC:
-    '蓝绿发布提供了一种零宕机的部署方式。在<strong>保留旧版本的同时部署新版本</strong>，将两个版本同时在线，如果有问题可以快速处理。',
+    '蓝绿发布提供了一种零宕机的部署方式，在<strong>保留旧版本的同时部署新版本</strong>。两个版本中总有一个版本处于在线状态接收所有流量，另一个版本则保持待机，如果有问题可以快速处理。',
   CANARY_RELEASES_DESC:
     '将一部分实际流量引入一个新版本进行测试，测试新版本的性能和表现，在保证系统整体稳定运行的前提下，尽早发现新版本在实际环境上的问题。',
   AB_TESTING_DESC:

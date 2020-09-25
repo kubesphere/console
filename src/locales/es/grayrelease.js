@@ -52,7 +52,7 @@ export default {
     'El tráfico reflejado solo recibe tráfico, no hay servicio',
   'No workload found': 'No se encontró carga de trabajo',
   'Not online': 'Fuera de linea',
-  'Offline this version': 'Desconectado esta versión',
+  'Version offline': 'Desconectado esta versión',
   'Operating System': 'Sistema operativo',
   'Please input grayscale release version':
     'Introduce la versión Grayscale Release',
@@ -92,7 +92,7 @@ export default {
   'Version Off': 'Versión desactivada',
   GRAY_RELEASE_CATEGORIES: 'Categorías',
   BLUE_GREEN_DEPLOYMENT_DESC:
-    'La release blue-green proporciona un despliegue sin downtime, lo que significa que la nueva versión se puede desplegar junto a la antigua. Eso permite que ambas versiones se ejecuten al mismo tiempo. Si hay un problema con la ejecución, podrás volver rápidamente a la versión anterior.',
+    'The blue-green release provides a zero downtime deployment, which means the new version can be deployed with the old one preserved. At any time, only one of the versions is active serving all the traffic, while the other one remains idle. If there is a problem with running, you can quickly roll back to the old version.',
   CANARY_RELEASES_DESC:
     'Este método trae parte del tráfico real a una nueva versión para probar su rendimiento y confiabilidad. Puedes ayudar a detectar posibles problemas en el entorno real sin afectar la estabilidad general del sistema.',
   TRAFFIC_MIRROR_DESC:
