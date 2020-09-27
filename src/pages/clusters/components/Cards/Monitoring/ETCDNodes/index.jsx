@@ -23,7 +23,7 @@ import { isEmpty, get } from 'lodash'
 
 import ComponentMonitorStore from 'stores/monitoring/component'
 
-import { Loading } from '@pitrix/lego-ui'
+import { Loading } from '@kube-design/components'
 import { Empty } from 'components/Base'
 import Item from './item'
 

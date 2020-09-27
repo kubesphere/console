@@ -20,7 +20,7 @@ import React from 'react'
 import { observer, inject } from 'mobx-react'
 import { Component as Base } from 'projects/containers/Deployments/Detail/ResourceStatus'
 import PodsCard from 'components/Cards/Pods'
-import { Loading } from '@pitrix/lego-ui'
+import { Loading } from '@kube-design/components'
 
 @inject('detailStore', 's2iRunStore')
 @observer

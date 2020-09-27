@@ -18,8 +18,7 @@
 
 import React from 'react'
 
-import { Input, Select } from '@pitrix/lego-ui'
-import { Button } from 'components/Base'
+import { Button, Input, Select } from '@kube-design/components'
 import { QUOTAS_MAP } from 'utils/constants'
 
 import {

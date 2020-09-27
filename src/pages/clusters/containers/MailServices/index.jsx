@@ -22,8 +22,8 @@ import classnames from 'classnames'
 import { isEmpty } from 'lodash'
 import { toJS } from 'mobx'
 
-import { Loading, Icon } from '@pitrix/lego-ui'
-import { Button, Banner, Notify } from 'components/Base'
+import { Button, Icon, Loading, Notify } from '@kube-design/components'
+import { Banner } from 'components/Base'
 import MailServersForm from 'components/Forms/MailServerForm'
 
 import Store from 'stores/notification/mailService'

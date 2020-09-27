@@ -18,7 +18,7 @@
 
 import React from 'react'
 import { get, set, isEmpty } from 'lodash'
-import { Form } from 'components/Base'
+import { Form } from '@kube-design/components'
 
 import VersionSelect from './VersionSelect'
 

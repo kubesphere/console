@@ -21,7 +21,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 
-import { Input } from '@pitrix/lego-ui'
+import { Input } from '@kube-design/components'
 
 import styles from './index.scss'
 

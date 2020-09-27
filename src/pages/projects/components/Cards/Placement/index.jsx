@@ -20,7 +20,8 @@ import React, { Component } from 'react'
 import { observer } from 'mobx-react'
 import { Link } from 'react-router-dom'
 import { keyBy } from 'lodash'
-import { Panel, Alert } from 'components/Base'
+import { Alert } from '@kube-design/components'
+import { Panel } from 'components/Base'
 import ClusterTitle from 'components/Clusters/ClusterTitle'
 
 import ClusterStore from 'stores/cluster'
@@ -66,9 +67,7 @@ export default class Placement extends Component {
               <Link
                 key={cluster.name}
                 className={styles.cluster}
-                to={`/clusters/${
-                  cluster.name
-                }/projects/${namespace}/${module}/${name}`}
+                to={`/clusters/${cluster.name}/projects/${namespace}/${module}/${name}`}
               >
                 <ClusterTitle
                   cluster={clusterMap[cluster.name]}

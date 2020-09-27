@@ -20,8 +20,7 @@ import { isEmpty } from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import { Icon } from '@pitrix/lego-ui'
-import { Button } from 'components/Base'
+import { Button, Icon } from '@kube-design/components'
 
 import styles from './index.scss'
 
@@ -79,9 +78,7 @@ const Card = ({ detail, gateway, prefix }) => {
                 target="_blank"
                 rel="noreferrer noopener"
               >
-                <Button className={styles.access} noShadow>
-                  {t('Click to visit')}
-                </Button>
+                <Button className={styles.access}>{t('Click to visit')}</Button>
               </a>
             </li>
           ))

@@ -19,11 +19,19 @@
 import React from 'react'
 import { computed } from 'mobx'
 import { observer } from 'mobx-react'
-import { get } from 'lodash'
-import { Input, Columns, Column } from '@pitrix/lego-ui'
+import { get, pick } from 'lodash'
+import {
+  Column,
+  Columns,
+  Form,
+  Input,
+  Select,
+  Tag,
+  TextArea,
+} from '@kube-design/components'
 import { compareVersion } from 'utils/app'
 import { PATTERN_SERVICE_NAME } from 'utils/constants'
-import { Form, SearchSelect, Tag, Text, TextArea } from 'components/Base'
+import { Text } from 'components/Base'
 
 import Placement from './Placement'
 
@@ -110,19 +118,23 @@ export default class BasicInfo extends React.Component {
                   { required: true, message: t('Please select version') },
                 ]}
               >
-                <SearchSelect
+                <Select
                   name="version_id"
                   options={this.sortedVersions}
                   placeholder={t('Please select version')}
-                  page={versionStore.list.page}
-                  total={versionStore.list.total}
-                  currentLength={versionStore.list.data.length}
+                  pagination={pick(versionStore.list, [
+                    'page',
+                    'limit',
+                    'total',
+                  ])}
                   isLoading={versionStore.list.isLoading}
                   onFetch={this.fetchVersions}
                   onChange={this.handleVersionChange}
                   optionRenderer={this.versionOptionRender}
                   valueRenderer={this.versionOptionRender}
                   disabled={!!versionId}
+                  searchable
+                  clearable
                 />
               </Form.Item>
             </Column>

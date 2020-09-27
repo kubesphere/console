@@ -18,10 +18,10 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Icon } from '@pitrix/lego-ui'
+import { Icon, Button, Notify } from '@kube-design/components'
 import { observer } from 'mobx-react'
 import { get } from 'lodash'
-import { Modal, Button, Notify } from 'components/Base'
+import { Modal } from 'components/Base'
 
 import styles from './scanModal.scss'
 

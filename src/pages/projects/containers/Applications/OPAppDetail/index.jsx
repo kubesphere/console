@@ -20,7 +20,7 @@ import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import { get, isEmpty } from 'lodash'
-import { Loading } from '@pitrix/lego-ui'
+import { Loading } from '@kube-design/components'
 
 import { getDisplayName, getLocalTime } from 'utils'
 import { trigger } from 'utils/action'
@@ -54,9 +54,7 @@ export default class OPAppDetail extends React.Component {
   get listUrl() {
     const { cluster, workspace, namespace } = this.props.match.params
 
-    return `/${workspace}/clusters/${cluster}/projects/${namespace}/${
-      this.module
-    }/template`
+    return `/${workspace}/clusters/${cluster}/projects/${namespace}/${this.module}/template`
   }
 
   get routing() {

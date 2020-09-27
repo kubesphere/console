@@ -55,6 +55,7 @@
 }
 
 .option {
+  display: block;
   position: relative;
   width: 100%;
   @include ellipsis;

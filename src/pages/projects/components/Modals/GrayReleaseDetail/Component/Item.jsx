@@ -19,7 +19,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { get } from 'lodash'
-import { Icon } from '@pitrix/lego-ui'
+import { Icon } from '@kube-design/components'
 import { Indicator } from 'components/Base'
 import { getSuitableValue } from 'utils/monitoring'
 

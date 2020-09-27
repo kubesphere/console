@@ -18,7 +18,7 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Icon, Tooltip } from '@pitrix/lego-ui'
+import { Icon, Tooltip } from '@kube-design/components'
 import { PieChart } from 'components/Charts'
 
 import styles from './index.scss'

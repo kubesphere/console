@@ -18,8 +18,8 @@
 
 import React from 'react'
 import { get, set } from 'lodash'
-import { Form, TypeSelect } from 'components/Base'
-import { Loading } from '@pitrix/lego-ui'
+import { TypeSelect } from 'components/Base'
+import { Form, Loading } from '@kube-design/components'
 
 import cookie from 'utils/cookie'
 

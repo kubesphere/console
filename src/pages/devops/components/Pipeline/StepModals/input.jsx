@@ -21,9 +21,9 @@ import PropTypes from 'prop-types'
 import { debounce, uniq, isEmpty, isArray } from 'lodash'
 import { action, toJS } from 'mobx'
 import { observer } from 'mobx-react'
-import { Form, Modal } from 'components/Base'
-import { Mention, Alert } from '@pitrix/lego-ui'
-import MentionsInput from '@pitrix/lego-ui/lib/components/Mention/MentionsInput'
+import { Mention, MentionsInput } from 'react-mentions'
+import { Alert, Form } from '@kube-design/components'
+import { Modal } from 'components/Base'
 
 import UserStore from 'stores/user'
 

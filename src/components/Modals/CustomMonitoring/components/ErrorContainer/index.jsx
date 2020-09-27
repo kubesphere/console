@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 import React from 'react'
-import { Tooltip } from '@pitrix/lego-ui'
+import { Tooltip } from '@kube-design/components'
 import styles from './index.scss'
 
 export default function ErrorContainer({ errorMessage, children }) {

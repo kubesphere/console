@@ -18,7 +18,7 @@
 
 import React from 'react'
 import { get, set, omit } from 'lodash'
-import { Form } from 'components/Base'
+import { Form } from '@kube-design/components'
 import CardSelect from 'components/Inputs/CardSelect'
 import { MODULE_KIND_MAP, PROVISIONERS } from 'utils/constants'
 

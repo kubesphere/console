@@ -20,7 +20,7 @@ import React from 'react'
 import { observer, inject } from 'mobx-react'
 import { isEmpty } from 'lodash'
 
-import { Icon } from '@pitrix/lego-ui'
+import { Icon } from '@kube-design/components'
 import { Card } from 'components/Base'
 
 import styles from './index.scss'

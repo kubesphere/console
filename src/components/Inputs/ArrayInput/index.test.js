@@ -19,7 +19,7 @@
 import React from 'react'
 import { mount } from 'enzyme'
 
-import { Input } from '@pitrix/lego-ui'
+import { Input } from '@kube-design/components'
 import ArrayInput from './index'
 
 it('renders correctly', () => {

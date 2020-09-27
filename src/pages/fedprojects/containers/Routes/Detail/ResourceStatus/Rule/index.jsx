@@ -19,8 +19,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import { Icon, Columns, Column, Tooltip } from '@pitrix/lego-ui'
-import { Button, Text } from 'components/Base'
+import { Button, Icon, Columns, Column, Tooltip } from '@kube-design/components'
+import { Text } from 'components/Base'
 
 import styles from './index.scss'
 
@@ -92,9 +92,7 @@ const Card = ({ gateway, rule, tls = {}, prefix }) => {
                 target="_blank"
                 rel="noreferrer noopener"
               >
-                <Button className={styles.access} noShadow>
-                  {t('Click to visit')}
-                </Button>
+                <Button className={styles.access}>{t('Click to visit')}</Button>
               </a>
             </Column>
           </Columns>

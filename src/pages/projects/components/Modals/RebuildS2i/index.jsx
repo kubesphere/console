@@ -19,8 +19,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { get } from 'lodash'
-import { Input, RadioGroup, Columns, Column } from '@pitrix/lego-ui'
-import { Modal, Form, Checkbox, Empty } from 'components/Base'
+import {
+  Checkbox,
+  Column,
+  Columns,
+  Form,
+  Input,
+  RadioGroup,
+} from '@kube-design/components'
+import { Empty, Modal } from 'components/Base'
 import BuilderStore from 'stores/s2i/builder'
 import RadioItem from './item'
 import styles from './index.scss'

@@ -18,8 +18,8 @@
 
 import React, { Component } from 'react'
 import { observer } from 'mobx-react'
-import { Icon, Tooltip } from '@pitrix/lego-ui'
-import { SearchSelect } from 'components/Base'
+import { pick } from 'lodash'
+import { Icon, Select, Tooltip } from '@kube-design/components'
 import ProjectStore from 'stores/project'
 
 import styles from './index.scss'
@@ -64,7 +64,7 @@ export default class ProjectSelect extends Component {
   }
 
   optionRenderer = option => (
-    <span className={styles.option}>
+    <div className={styles.option}>
       {option.isFedManaged ? (
         <img className={styles.indicator} src="/assets/cluster.svg" />
       ) : (
@@ -76,7 +76,7 @@ export default class ProjectSelect extends Component {
           <Icon className={styles.tip} name="question" />
         </Tooltip>
       )}
-    </span>
+    </div>
   )
 
   render() {
@@ -87,15 +87,15 @@ export default class ProjectSelect extends Component {
     }
 
     return (
-      <SearchSelect
+      <Select
         options={this.getProjects()}
-        page={this.projectStore.list.page}
-        total={this.projectStore.list.total}
-        currentLength={this.projectStore.list.data.length}
+        pagination={pick(this.projectStore.list, ['page', 'limit', 'total'])}
         isLoading={this.projectStore.list.isLoading}
         valueRenderer={this.optionRenderer}
         optionRenderer={this.optionRenderer}
         onFetch={this.fetchProjects}
+        searchable
+        clearable
         {...rest}
       />
     )

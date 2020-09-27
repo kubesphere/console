@@ -19,7 +19,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { get } from 'lodash'
-import { Icon, Tooltip } from '@pitrix/lego-ui'
+import { Icon, Tooltip } from '@kube-design/components'
 import { PieChart } from 'components/Charts'
 import { getSuitableValue } from 'utils/monitoring'
 

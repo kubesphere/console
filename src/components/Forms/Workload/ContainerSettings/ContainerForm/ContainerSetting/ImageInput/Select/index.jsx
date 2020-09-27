@@ -21,7 +21,7 @@ import PropTypes from 'prop-types'
 import { debounce, isEmpty, isUndefined } from 'lodash'
 import isEqual from 'react-fast-compare'
 import classNames from 'classnames'
-import { Icon, Dropdown } from '@pitrix/lego-ui'
+import { Icon, Dropdown } from '@kube-design/components'
 
 import styles from './index.scss'
 

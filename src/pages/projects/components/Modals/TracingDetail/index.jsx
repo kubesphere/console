@@ -19,7 +19,7 @@
 import { isEmpty } from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Icon, Columns, Column } from '@pitrix/lego-ui'
+import { Icon, Columns, Column } from '@kube-design/components'
 import isEqual from 'react-fast-compare'
 import { Modal } from 'components/Base'
 import { getLocalTime } from 'utils'

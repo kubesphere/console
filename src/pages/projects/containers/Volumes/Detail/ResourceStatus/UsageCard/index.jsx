@@ -31,8 +31,8 @@ import {
 
 import VolumeStatus from 'projects/components/Charts/VolumeUsage'
 import CustomTooltip from 'components/Charts/Custom/Tooltip'
-import { Loading } from '@pitrix/lego-ui'
-import { Panel, Alert } from 'components/Base'
+import { Alert, Loading } from '@kube-design/components'
+import { Panel } from 'components/Base'
 import { SimpleArea } from 'components/Charts'
 
 import styles from './index.scss'

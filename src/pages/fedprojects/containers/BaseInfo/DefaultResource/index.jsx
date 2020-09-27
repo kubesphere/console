@@ -19,7 +19,7 @@
 import { get } from 'lodash'
 import React from 'react'
 
-import { Icon } from '@pitrix/lego-ui'
+import { Icon } from '@kube-design/components'
 import { Panel } from 'components/Base'
 
 import { cpuFormat, memoryFormat } from 'utils'

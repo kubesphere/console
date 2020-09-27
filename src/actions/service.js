@@ -18,7 +18,8 @@
 
 import { get, isEmpty, set } from 'lodash'
 import { toJS } from 'mobx'
-import { Modal, Notify } from 'components/Base'
+import { Notify } from '@kube-design/components'
+import { Modal } from 'components/Base'
 
 import CreateModal from 'components/Modals/Create'
 import CreateServiceModal from 'projects/components/Modals/ServiceCreate'

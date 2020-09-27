@@ -17,30 +17,16 @@
  */
 
 import React from 'react'
-import { AutoComplete } from '@pitrix/lego-ui'
+import { AutoComplete } from '@kube-design/components'
 import { PropertiesInput } from 'components/Inputs'
 import { INGRESS_ANNOTATIONS } from 'utils/constants'
 
 import styles from './index.scss'
 
-class AutoCompleteWrapper extends React.Component {
-  handleSelect = option => {
-    const { onChange } = this.props
-    onChange(option)
-  }
-
-  render() {
-    const { onSelected, ...rest } = this.props
-    return (
-      <AutoComplete onSelected={this.handleSelect} maxVisible={60} {...rest} />
-    )
-  }
-}
-
 export default class AnnotationsInput extends React.Component {
   itemProps = {
     keyProps: {
-      component: AutoCompleteWrapper,
+      component: AutoComplete,
       className: styles.dropdown,
       options: INGRESS_ANNOTATIONS,
     },

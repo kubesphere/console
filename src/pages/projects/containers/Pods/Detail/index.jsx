@@ -19,7 +19,7 @@
 import React from 'react'
 import { get, isEmpty } from 'lodash'
 import { observer, inject } from 'mobx-react'
-import { Loading } from '@pitrix/lego-ui'
+import { Loading } from '@kube-design/components'
 
 import { getDisplayName, getLocalTime } from 'utils'
 import { trigger } from 'utils/action'
@@ -61,9 +61,7 @@ export default class PodDetail extends React.Component {
     }
 
     if (workspace) {
-      return `/${workspace}/clusters/${cluster}/projects/${namespace}/${
-        this.module
-      }`
+      return `/${workspace}/clusters/${cluster}/projects/${namespace}/${this.module}`
     }
     return `/clusters/${cluster}/${this.module}`
   }

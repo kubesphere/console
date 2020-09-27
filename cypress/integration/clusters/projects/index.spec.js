@@ -95,7 +95,7 @@ describe('The Projects Page', function() {
 
     // clear search
     {
-      cy.get('.icon-clickable > .qicon').click()
+      cy.get('.icon-clickable > .kubed-icon').click()
 
       cy.wait('@getNamespaces')
 
@@ -128,7 +128,7 @@ describe('The Projects Page', function() {
     // assign workspace
     {
       cy.get(
-        `[data-row-key="${formData.metadata.name}"] button .qicon-more`
+        `[data-row-key="${formData.metadata.name}"] button .kubed-icon-more`
       ).click()
       cy.get(
         `[data-row-key="${
@@ -175,7 +175,7 @@ describe('The Projects Page', function() {
     {
       cy.visit(`/projects?keyword=${formData.metadata.name}`)
       cy.get(
-        `[data-row-key="${formData.metadata.name}"] button .qicon-more`
+        `[data-row-key="${formData.metadata.name}"] button .kubed-icon-more`
       ).click()
       cy.get(
         `[data-row-key="${formData.metadata.name}"] [data-test="table-item-delete"]`

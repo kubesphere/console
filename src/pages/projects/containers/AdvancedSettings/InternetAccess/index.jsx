@@ -22,8 +22,8 @@ import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import classNames from 'classnames'
 
-import { Dropdown, Menu, Icon } from '@pitrix/lego-ui'
-import { Button, Panel } from 'components/Base'
+import { Button, Dropdown, Menu, Icon } from '@kube-design/components'
+import { Panel } from 'components/Base'
 import GatewaySettingModal from 'projects/components/Modals/GatewaySetting'
 import DeleteModal from 'components/Modals/Delete'
 import RouterStore from 'stores/router'
@@ -223,7 +223,7 @@ class InternetAccess extends React.Component {
           {this.canEdit && (
             <div className={classNames(styles.item, 'text-right')}>
               <Dropdown
-                className="dropdown-default"
+                theme="dark"
                 content={this.renderMoreMenu()}
                 trigger="click"
                 placement="bottomRight"

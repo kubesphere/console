@@ -23,8 +23,7 @@ import { observer, inject } from 'mobx-react'
 import { parse } from 'qs'
 import { joinSelector } from 'utils'
 
-import { Select } from '@pitrix/lego-ui'
-import { Button } from 'components/Base'
+import { Button, Select } from '@kube-design/components'
 import TracingCard from 'projects/components/Cards/Tracing'
 import TracingDetail from 'projects/components/Modals/TracingDetail'
 

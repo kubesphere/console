@@ -47,9 +47,7 @@ module.exports = smp.wrap({
     rules: [
       ...baseConfig.moduleRules,
       {
-        test: /\.scss$/,
-        exclude: /lego.theme.scss/,
-        include: root('src'),
+        test: /\.s[ac]ss$/i,
         loader: [
           MiniCssExtractPlugin.loader,
           { loader: 'cache-loader' },
@@ -65,7 +63,7 @@ module.exports = smp.wrap({
             loader: 'postcss-loader',
             options: baseConfig.postCssOptions,
           },
-          { loader: 'fast-sass-loader' },
+          { loader: 'sass-loader' },
         ],
       },
       {
@@ -111,11 +109,6 @@ module.exports = smp.wrap({
           name: 'vendor',
           priority: 10,
         },
-        lego: {
-          test: /[\\/]node_modules[\\/]@pitrix[\\/].*.jsx?$/,
-          name: 'lego',
-          priority: 20,
-        },
         common: {
           name: 'common',
           minChunks: 2,
@@ -131,7 +124,6 @@ module.exports = smp.wrap({
     ...baseConfig.plugins,
     new ChunkRenamePlugin({
       vendor: '[name].js',
-      lego: '[name].js',
     }),
     new CopyPlugin([{ from: root('src/assets'), to: root('dist/assets') }]),
     new MiniCssExtractPlugin({

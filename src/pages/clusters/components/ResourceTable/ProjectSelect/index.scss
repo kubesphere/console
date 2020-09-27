@@ -5,8 +5,9 @@
   width: 200px;
   margin-right: 12px;
 
-  :global .select-placeholder {
-    @include TypographySymbolText;
+  input::placeholder {
+    color: $text-color;
+    font-weight: bold;
   }
 }
 

@@ -19,7 +19,7 @@
 import React from 'react'
 import { observer, inject } from 'mobx-react'
 
-import { Notify } from 'components/Base'
+import { Notify } from '@kube-design/components'
 import Base from 'core/containers/Base/List'
 
 import AppStore from 'stores/openpitrix/store'

@@ -21,8 +21,8 @@ import classNames from 'classnames'
 import { action } from 'mobx'
 import { observer } from 'mobx-react'
 import { get, isEmpty, isArray } from 'lodash'
-import { Input, Icon, Loading } from '@pitrix/lego-ui'
-import { Form, Button } from 'components/Base'
+import { Form, Button, Input, Icon, Loading } from '@kube-design/components'
+
 import { REPO_KEY_MAP } from 'utils/constants'
 
 import styles from './index.scss'

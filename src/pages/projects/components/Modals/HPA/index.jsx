@@ -22,8 +22,8 @@ import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 import { set, merge } from 'lodash'
 
-import { Input, Alert, Loading } from '@pitrix/lego-ui'
-import { Modal, Form } from 'components/Base'
+import { Alert, Form, Input, Loading } from '@kube-design/components'
+import { Modal } from 'components/Base'
 import { NumberInput } from 'components/Inputs'
 
 import styles from './index.scss'

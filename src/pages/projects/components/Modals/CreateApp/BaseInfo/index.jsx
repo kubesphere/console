@@ -19,10 +19,9 @@
 import { get, set, debounce } from 'lodash'
 import React from 'react'
 import { PropTypes } from 'prop-types'
-import { Input, Select } from '@pitrix/lego-ui'
+import { Form, Input, Select, TextArea } from '@kube-design/components'
 import { PATTERN_NAME, PATTERN_SERVICE_VERSION } from 'utils/constants'
 import { updateFederatedAnnotations, generateId } from 'utils'
-import { Form, TextArea } from 'components/Base'
 
 import styles from './index.scss'
 

@@ -18,7 +18,7 @@
 
 import { get, set, isUndefined } from 'lodash'
 import React from 'react'
-import { Form } from 'components/Base'
+import { Form } from '@kube-design/components'
 import { TrafficSlider } from 'components/Inputs'
 
 import styles from './index.scss'

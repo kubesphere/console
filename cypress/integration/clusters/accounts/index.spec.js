@@ -126,7 +126,7 @@ describe('The Accounts Page', function() {
 
     // edit
     {
-      cy.get(`[data-row-key="${account.name}"] button .qicon-more`).click()
+      cy.get(`[data-row-key="${account.name}"] button .kubed-icon-more`).click()
       cy.get(`[data-row-key="${account.name}"] [data-test="table-item-edit"]`).click()
 
       cy.get('#email')
@@ -143,7 +143,7 @@ describe('The Accounts Page', function() {
 
     // delete
     {
-      cy.get(`[data-row-key="${account.name}"] button .qicon-more`).click()
+      cy.get(`[data-row-key="${account.name}"] button .kubed-icon-more`).click()
       cy.get(`[data-row-key="${account.name}"] [data-test="table-item-delete"]`).click()
 
       cy.get('input[name="confirm"]').type(account.name)
@@ -158,7 +158,7 @@ describe('The Accounts Page', function() {
 
     // clear search
     {
-      cy.get('.icon-clickable > .qicon').click()
+      cy.get('.icon-clickable > .kubed-icon').click()
 
       cy.wait('@getAccounts')
 

@@ -20,7 +20,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { get, set, isEmpty, isUndefined } from 'lodash'
-import { Columns, Column } from '@pitrix/lego-ui'
+import { Columns, Column } from '@kube-design/components'
 import { List } from 'components/Base'
 import { isNotPersistentVolume } from 'utils/volume'
 

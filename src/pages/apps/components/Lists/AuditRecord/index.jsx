@@ -21,7 +21,7 @@ import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { isEmpty } from 'lodash'
-import { Loading } from '@pitrix/lego-ui'
+import { Loading } from '@kube-design/components'
 
 import VersionStatus from 'apps/components/VersionStatus'
 import AuditStore from 'stores/openpitrix/audit'

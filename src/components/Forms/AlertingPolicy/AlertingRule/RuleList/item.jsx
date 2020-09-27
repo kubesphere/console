@@ -23,8 +23,7 @@ import { get } from 'lodash'
 import { RESOURCE_METRICS_CONFIG } from 'configs/alerting/metrics'
 import { SEVERITY_LEVEL } from 'configs/alerting/metrics/rule.config'
 
-import { Icon, Buttons } from '@pitrix/lego-ui'
-import { Button } from 'components/Base'
+import { Icon, Button } from '@kube-design/components'
 
 import styles from './index.scss'
 
@@ -92,10 +91,10 @@ export default class RuleItem extends React.Component {
             </div>
           </div>
         </div>
-        <Buttons className={styles.buttons}>
+        <div className={styles.buttons}>
           <Button type="flat" icon="trash" onClick={this.handleDelete} />
           <Button type="flat" icon="pen" onClick={this.handleEdit} />
-        </Buttons>
+        </div>
       </div>
     )
   }

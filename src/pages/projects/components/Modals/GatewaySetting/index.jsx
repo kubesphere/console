@@ -19,8 +19,15 @@
 import { set, isEmpty, pick } from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
-import { RadioButton, RadioGroup, Alert, Toggle } from '@pitrix/lego-ui'
-import { Modal, Form, Button } from 'components/Base'
+import {
+  Form,
+  Button,
+  RadioButton,
+  RadioGroup,
+  Alert,
+  Toggle,
+} from '@kube-design/components'
+import { Modal } from 'components/Base'
 import { PropertiesInput } from 'components/Inputs'
 import Title from 'components/Forms/Base/Title'
 
@@ -135,7 +142,7 @@ export default class GatewaySettingModal extends React.Component {
                 <Form.Item label={t('Access Method')} className={styles.types}>
                   <RadioGroup
                     name="type"
-                    wrapClassName="radio-default"
+                    mode="button"
                     buttonWidth={155}
                     defaultValue={type}
                     onChange={this.handleTypeChange}
@@ -148,9 +155,7 @@ export default class GatewaySettingModal extends React.Component {
                 <Alert
                   className="margin-t12"
                   type="info"
-                  description={t(
-                    `INGRESS_CONTROLLER_${type.toUpperCase()}_DESC`
-                  )}
+                  message={t(`INGRESS_CONTROLLER_${type.toUpperCase()}_DESC`)}
                 />
                 {globals.app.hasClusterModule(cluster, 'servicemesh') && (
                   <>

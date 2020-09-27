@@ -18,7 +18,7 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Loading } from '@pitrix/lego-ui'
+import { Loading } from '@kube-design/components'
 import classnames from 'classnames'
 import noop from 'lodash/noop'
 import { Link } from 'react-router-dom'

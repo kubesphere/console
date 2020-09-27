@@ -21,7 +21,7 @@ import PropTypes from 'prop-types'
 import { isEmpty, isString } from 'lodash'
 import { Link } from 'react-router-dom'
 
-import { Icon } from '@pitrix/lego-ui'
+import { Icon } from '@kube-design/components'
 import BtnGroup from './BtnGroup'
 import Label from './Label'
 import Attributes from './Attributes'
@@ -53,12 +53,10 @@ class BaseInfo extends React.Component {
 
     const br = breadcrumbs[0]
     return (
-      <div className={styles.breadcrumbs}>
-        <Link to={br.url}>
-          <Icon name="chevron-left" size={20} />
-          {br.label}
-        </Link>
-      </div>
+      <Link to={br.url} className={styles.breadcrumbs}>
+        <Icon name="chevron-left" size={20} />
+        {br.label}
+      </Link>
     )
   }
 

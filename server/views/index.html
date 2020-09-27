@@ -1,9 +1,7 @@
 <% var bundlePrefix = isDev ? '//' + hostname + ':8001' : '/dist' %>
 <% var mainJS = bundlePrefix + '/main.js' %>
 <% var vendorJS = bundlePrefix + '/vendor.js' %>
-<% var legoJS =  bundlePrefix + '/lego.js' %>
 <% var mainCSS = '/dist/main.css' %>
-<% var legoCSS = '/dist/lego.css' %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +12,6 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title><%- title %></title>
   <link rel="icon" href="/assets/favicon.ico" type="image/x-icon" />
-  <link href="<%- legoCSS + '?v=' + version(legoCSS) %>" rel="stylesheet" media="all" />
   <% if (!isDev) { %>
   <link href="<%- mainCSS + '?v=' + version(mainCSS) %>" rel="stylesheet" media="all" />
   <% } %>
@@ -31,7 +28,6 @@
   </script>
 
   <script type="text/javascript" src="<%- vendorJS + '?v=' + version(vendorJS) %>"></script>
-  <script type="text/javascript" src="<%- legoJS + '?v=' + version(legoJS) %>"></script>
   <script type="text/javascript" src="<%- mainJS + '?v=' + version(mainJS) %>"></script>
 </body>
 

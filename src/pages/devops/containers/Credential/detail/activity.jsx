@@ -22,7 +22,7 @@ import { observer } from 'mobx-react'
 import { get } from 'lodash'
 import { toJS } from 'mobx'
 import PropTypes from 'prop-types'
-import { Table } from '@pitrix/lego-ui'
+import { Table } from '@kube-design/components'
 import { Card } from 'components/Base'
 
 import styles from './index.scss'

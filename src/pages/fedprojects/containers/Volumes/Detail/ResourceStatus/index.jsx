@@ -20,7 +20,7 @@ import React from 'react'
 import { observer, inject } from 'mobx-react'
 
 import { keyBy } from 'lodash'
-import { Alert } from 'components/Base'
+import { Alert } from '@kube-design/components'
 import UsageCard from './UsageCard'
 
 import styles from './index.scss'

@@ -22,9 +22,16 @@ import { parse } from 'qs'
 import { toJS } from 'mobx'
 import { inject, observer } from 'mobx-react'
 import moment from 'moment-mini'
-import { Tabs, Columns, Column, Loading } from '@pitrix/lego-ui'
+import {
+  Button,
+  Tabs,
+  Tag,
+  Columns,
+  Column,
+  Loading,
+} from '@kube-design/components'
+import { TypeSelect } from 'components/Base'
 
-import { Button } from 'components/Base'
 import VersionStore from 'stores/openpitrix/version'
 import AppStore from 'stores/openpitrix/app'
 
@@ -32,7 +39,6 @@ import Banner from 'appStore/components/Banner'
 import AppInfo from 'appStore/components/AppInfo'
 import AppPreview from 'appStore/components/AppPreview'
 import AppBase from 'appStore/components/AppBase'
-import VersionSelect from 'apps/components/VersionSelect'
 
 import styles from './index.scss'
 
@@ -70,7 +76,7 @@ export default class App extends React.Component {
     const versions = this.versionStore.list.data
     return versions.map(({ version_id, name, create_time }) => ({
       label: name,
-      time: moment(create_time).format(t('YYYY-MM-DD')),
+      description: moment(create_time).format(t('YYYY-MM-DD')),
       value: version_id,
     }))
   }
@@ -147,12 +153,16 @@ export default class App extends React.Component {
 
     return (
       <div className={styles.keywords}>
-        <h3>{t('Keywords')}</h3>
-        <p>
+        <div className="h6 margin-b12">{t('Keywords')}</div>
+        <div>
           {keywords.length === 0
             ? t('None')
-            : keywords.map((v, idx) => <label key={idx}>{v}</label>)}
-        </p>
+            : keywords.map((v, idx) => (
+                <Tag key={idx} type="secondary">
+                  {v}
+                </Tag>
+              ))}
+        </div>
       </div>
     )
   }
@@ -160,7 +170,7 @@ export default class App extends React.Component {
   renderDeployButton() {
     return (
       <div className={styles.deployButton}>
-        <Button onClick={this.handleDeploy} type="control" noShadow>
+        <Button onClick={this.handleDeploy} type="control">
           {t('Deploy')}
         </Button>
       </div>
@@ -178,7 +188,7 @@ export default class App extends React.Component {
 
     return (
       <Tabs
-        className="tabs-app"
+        className="tabs-new"
         activeName={tab}
         onChange={this.handleTabChange}
       >
@@ -198,10 +208,11 @@ export default class App extends React.Component {
           <Columns>
             <Column className="is-8">{this.renderAppFilePreview()}</Column>
             <Column>
-              <VersionSelect
-                versionStore={this.versionStore}
-                selectVersion={this.state.selectAppVersion}
-                handleChangeVersion={this.handleChangeAppVersion}
+              <div className="h6 margin-b12">{t('Versions')}</div>
+              <TypeSelect
+                value={this.state.selectAppVersion}
+                options={this.versionOptions}
+                onChange={this.handleChangeAppVersion}
               />
               {this.renderKeywords()}
             </Column>

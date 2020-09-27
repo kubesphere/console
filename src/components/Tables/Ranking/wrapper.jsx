@@ -24,7 +24,7 @@ import {
   LevelLeft,
   LevelRight,
   Pagination,
-} from '@pitrix/lego-ui'
+} from '@kube-design/components'
 import { inject, observer } from 'mobx-react'
 
 const TableWrapper = (Table, setting = { pagination: true }) => {
@@ -56,9 +56,9 @@ const TableWrapper = (Table, setting = { pagination: true }) => {
             <LevelLeft />
             <LevelRight>
               <Pagination
-                current={page}
-                total={total * limit}
-                pageSize={limit}
+                page={page}
+                total={total}
+                limit={limit}
                 onChange={this.store.changePagination}
               />
             </LevelRight>

@@ -21,7 +21,7 @@ import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { get } from 'lodash'
 
-import { Icon, Radio } from '@pitrix/lego-ui'
+import { Icon, Radio } from '@kube-design/components'
 
 import styles from './index.scss'
 

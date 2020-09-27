@@ -17,7 +17,7 @@
  */
 
 import React, { Component } from 'react'
-import { Icon, Tooltip } from '@pitrix/lego-ui'
+import { Icon, Tooltip } from '@kube-design/components'
 
 import { isEmpty } from 'lodash'
 

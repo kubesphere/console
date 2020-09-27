@@ -18,10 +18,10 @@
 
 import React from 'react'
 import { PropTypes } from 'prop-types'
-import { Input, Select, TextArea } from '@pitrix/lego-ui'
+import { Input, Select, TextArea, Button, Form } from '@kube-design/components'
 import { find, last } from 'lodash'
 
-import { Form, Upload, Image, Button } from 'components/Base'
+import { Upload, Image } from 'components/Base'
 import { PATTERN_URL } from 'utils/constants'
 import { UPLOAD_FILE_TYPES } from 'configs/openpitrix/app'
 

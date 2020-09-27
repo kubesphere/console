@@ -18,7 +18,7 @@
 
 import React from 'react'
 import { observer, inject } from 'mobx-react'
-import { Columns, Column } from '@pitrix/lego-ui'
+import { Columns, Column } from '@kube-design/components'
 import { get } from 'lodash'
 
 import BaseInfo from './BaseInfo'

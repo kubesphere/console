@@ -90,7 +90,7 @@
   .content {
     display: table;
     table-layout: fixed;
-    width: 100%;
+    width: calc(100% - 52px);
     line-height: 20px;
 
     dl {

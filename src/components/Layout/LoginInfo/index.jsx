@@ -20,7 +20,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { inject, observer } from 'mobx-react'
 import classnames from 'classnames'
-import { Dropdown, Menu, Icon } from '@pitrix/lego-ui'
+import { Dropdown, Menu, Icon } from '@kube-design/components'
 
 import AboutModal from 'components/Modals/About'
 import { trigger } from 'utils/action'

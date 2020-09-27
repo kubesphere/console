@@ -18,7 +18,7 @@
 
 import React from 'react'
 import { isEmpty, get } from 'lodash'
-import { Tooltip, Icon } from '@pitrix/lego-ui'
+import { Tooltip, Icon } from '@kube-design/components'
 
 import { cpuFormat, memoryFormat } from 'utils'
 import { ICON_TYPES, NODE_STATUS } from 'utils/constants'
@@ -146,7 +146,6 @@ export default class Nodes extends React.Component {
 
   getRecordMetrics = (record, configs) => {
     const metrics = {}
-
     configs.forEach(cfg => {
       metrics[cfg.type] = parseFloat(
         this.getLastValue(record, MetricTypes[cfg.type], cfg.unit)

@@ -17,7 +17,8 @@
  */
 
 import { toJS } from 'mobx'
-import { Modal, Notify } from 'components/Base'
+import { Notify } from '@kube-design/components'
+import { Modal } from 'components/Base'
 
 import InviteMemberModal from 'components/Modals/InviteMember'
 import ModifyMemberModal from 'components/Modals/ModifyMember'

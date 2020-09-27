@@ -19,7 +19,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { Loading } from '@pitrix/lego-ui'
+import { Loading } from '@kube-design/components'
 
 import Card from '../Card'
 

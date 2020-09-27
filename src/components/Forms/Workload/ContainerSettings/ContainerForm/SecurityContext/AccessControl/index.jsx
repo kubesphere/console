@@ -17,7 +17,8 @@
  */
 
 import React from 'react'
-import { Form, CheckableText } from 'components/Base'
+import { Form } from '@kube-design/components'
+import { CheckableText } from 'components/Base'
 
 import styles from './index.scss'
 

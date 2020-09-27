@@ -19,7 +19,13 @@
 import React, { Component } from 'react'
 import { Card } from 'components/Base'
 import { observer, inject } from 'mobx-react'
-import { Icon, Pagination, LevelRight, Level, LevelLeft } from '@pitrix/lego-ui'
+import {
+  Icon,
+  Pagination,
+  LevelRight,
+  Level,
+  LevelLeft,
+} from '@kube-design/components'
 import VolumeSnapshotStore from 'stores/volumeSnapshot'
 import { Link } from 'react-router-dom'
 import moment from 'moment-mini'
@@ -114,9 +120,9 @@ export default class PVCSnapshots extends Component {
             <LevelLeft />
             <LevelRight>
               <Pagination
-                current={page}
+                page={page}
                 total={total}
-                pageSize={limit}
+                limit={limit}
                 onChange={this.handlePagination}
               />
             </LevelRight>

@@ -20,8 +20,8 @@ import React from 'react'
 import { action, toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import { isEmpty, get } from 'lodash'
-import { Input } from '@pitrix/lego-ui'
-import { Form, Button } from 'components/Base'
+import { Form, Button, Input } from '@kube-design/components'
+
 import { REPO_KEY_MAP } from 'utils/constants'
 
 import GitHubForm from '../GithubForm'

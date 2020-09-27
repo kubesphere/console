@@ -20,7 +20,7 @@ import React from 'react'
 import classNames from 'classnames'
 import { observer } from 'mobx-react'
 import { isObservableArray } from 'mobx'
-import { Icon } from '@pitrix/lego-ui'
+import { Icon } from '@kube-design/components'
 import { get, without, isEmpty } from 'lodash'
 
 import { renderStepArgs } from './detail'

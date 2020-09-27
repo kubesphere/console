@@ -18,8 +18,8 @@
 
 import React from 'react'
 import { observer, inject } from 'mobx-react'
-import { Icon } from '@pitrix/lego-ui'
-import { Button, Card } from 'components/Base'
+import { Button, Icon } from '@kube-design/components'
+import { Card } from 'components/Base'
 
 import { safeBtoa } from 'utils/base64'
 import styles from './index.scss'

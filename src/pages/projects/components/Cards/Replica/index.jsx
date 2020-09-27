@@ -21,7 +21,7 @@ import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { get } from 'lodash'
 
-import { Alert } from '@pitrix/lego-ui'
+import { Alert } from '@kube-design/components'
 import { Panel } from 'components/Base'
 import ReplicaStatus from './Status'
 

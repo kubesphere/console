@@ -19,13 +19,12 @@
 import React from 'react'
 import { get } from 'lodash'
 import { inject, observer } from 'mobx-react'
-import { Columns, Column, Loading } from '@pitrix/lego-ui'
+import { Button, Columns, Column, Loading } from '@kube-design/components'
 
 import VersionStore from 'stores/openpitrix/version'
 import AppStore from 'stores/openpitrix/app'
 import AppFileStore from 'stores/openpitrix/file'
 
-import { Button } from 'components/Base'
 import BasicInfo from 'components/Forms/AppDeploy/BasicInfo'
 import AppConfig from 'components/Forms/AppDeploy/AppConfig'
 import Banner from 'appStore/components/Banner'

@@ -19,7 +19,8 @@
 import React, { Component } from 'react'
 import { get } from 'lodash'
 
-import { TypeSelect, Form } from 'components/Base'
+import { Form } from '@kube-design/components'
+import { TypeSelect } from 'components/Base'
 
 export default class PodAffinity extends Component {
   get replicasPolicyOptions() {

@@ -19,7 +19,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import { Icon } from '@pitrix/lego-ui'
+import { Icon } from '@kube-design/components'
 import { capitalize } from 'lodash'
 
 import { transferVersionStatus } from 'utils/app'

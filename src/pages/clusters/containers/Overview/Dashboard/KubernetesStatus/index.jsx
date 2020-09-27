@@ -18,7 +18,7 @@
 import React, { Component } from 'react'
 import { get } from 'lodash'
 import { observer } from 'mobx-react'
-import { Loading } from '@pitrix/lego-ui'
+import { Loading } from '@kube-design/components'
 import { Panel, Text } from 'components/Base'
 
 import { getValueByUnit } from 'utils/monitoring'

@@ -23,7 +23,7 @@ import { get } from 'lodash'
 
 import { getSuitableUnit, getValueByUnit } from 'utils/monitoring'
 
-import { Icon, Checkbox } from '@pitrix/lego-ui'
+import { Icon, Checkbox } from '@kube-design/components'
 import { Bar } from 'components/Base'
 import styles from './index.scss'
 

@@ -19,8 +19,16 @@
 import { get, isEmpty, set } from 'lodash'
 import React from 'react'
 import { observer } from 'mobx-react'
-import { Tooltip, Icon, Columns, Column, Input, Select } from '@pitrix/lego-ui'
-import { Form, Checkbox } from 'components/Base'
+import {
+  Checkbox,
+  Column,
+  Columns,
+  Form,
+  Icon,
+  Input,
+  Select,
+  Tooltip,
+} from '@kube-design/components'
 import Title from 'components/Forms/Base/Title'
 import { NumberInput } from 'components/Inputs'
 import { getLocalTime } from 'utils'
@@ -71,17 +79,11 @@ export default class AdvanceSettings extends React.Component {
 
     switch (this.sourceType) {
       case 'bitbucket_server':
-        return `${window.location.protocol}//${
-          window.location.host
-        }/devops_webhook/git/?url=${bitbucket_url}`
+        return `${window.location.protocol}//${window.location.host}/devops_webhook/git/?url=${bitbucket_url}`
       case 'github':
-        return `${window.location.protocol}//${
-          window.location.host
-        }/devops_webhook/${this.sourceType}/`
+        return `${window.location.protocol}//${window.location.host}/devops_webhook/${this.sourceType}/`
       default:
-        return `${window.location.protocol}//${
-          window.location.host
-        }/devops_webhook/git/?url=${url}`
+        return `${window.location.protocol}//${window.location.host}/devops_webhook/git/?url=${url}`
     }
   }
 
@@ -414,9 +416,7 @@ export default class AdvanceSettings extends React.Component {
                   desc={t('WHEN_CHRETE_PIEPLINE_DESC')}
                 >
                   <Select
-                    name={`${
-                      this.prefix
-                    }.multibranch_job_trigger.create_action_job_to_trigger`}
+                    name={`${this.prefix}.multibranch_job_trigger.create_action_job_to_trigger`}
                     isLoading={isLoading}
                     isLoadingAtBottom
                     onMenuScrollToBottom={this.handleScrollToBottom}
@@ -431,9 +431,7 @@ export default class AdvanceSettings extends React.Component {
                   desc={t('WHEN_DELETE_PIEPLINE_DESC')}
                 >
                   <Select
-                    name={`${
-                      this.prefix
-                    }.multibranch_job_trigger.delete_action_job_to_trigger`}
+                    name={`${this.prefix}.multibranch_job_trigger.delete_action_job_to_trigger`}
                     isLoading={isLoading}
                     isLoadingAtBottom
                     onMenuScrollToBottom={this.handleScrollToBottom}

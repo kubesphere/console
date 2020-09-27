@@ -17,9 +17,8 @@
  */
 
 import React from 'react'
-import { Icon, Progress } from '@pitrix/lego-ui'
+import { Icon, Notify, Progress } from '@kube-design/components'
 import Upload from 'components/Base/Upload'
-import Notify from 'components/Base/Notify'
 import { isNumber, get, set } from 'lodash'
 import classnames from 'classnames'
 import { formatSize } from 'utils'

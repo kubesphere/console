@@ -20,7 +20,7 @@ import React from 'react'
 import { isEmpty } from 'lodash'
 
 import { getLocalTime } from 'utils'
-import { Icon } from '@pitrix/lego-ui'
+import { Icon } from '@kube-design/components'
 import { inject } from 'mobx-react'
 
 import EmptyList from 'components/Cards/EmptyList'

@@ -22,7 +22,7 @@ import { get } from 'lodash'
 import { renderRoutes, getIndexRoute } from 'utils/router.config'
 
 import { Nav } from 'components/Layout'
-import { Icon } from '@pitrix/lego-ui'
+import { Icon } from '@kube-design/components'
 
 import styles from './layout.scss'
 

@@ -20,7 +20,7 @@ import { get } from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { Input, Select } from '@pitrix/lego-ui'
+import { Input, Select } from '@kube-design/components'
 import BoolSelect from 'components/Inputs/BoolSelect'
 
 import ObjectInput from '../ObjectInput'

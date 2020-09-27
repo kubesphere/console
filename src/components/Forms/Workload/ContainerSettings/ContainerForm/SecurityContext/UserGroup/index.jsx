@@ -17,8 +17,8 @@
  */
 
 import React from 'react'
-import { Columns, Column } from '@pitrix/lego-ui'
-import { Form, CheckableText } from 'components/Base'
+import { Column, Columns, Form } from '@kube-design/components'
+import { CheckableText } from 'components/Base'
 import { NumberInput } from 'components/Inputs'
 
 import styles from './index.scss'

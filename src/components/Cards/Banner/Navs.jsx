@@ -19,7 +19,7 @@
 import React from 'react'
 import { withRouter } from 'react-router'
 
-import { RadioGroup } from 'components/Base'
+import RadioGroup from './RadioGroup'
 
 import styles from './index.scss'
 

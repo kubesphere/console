@@ -21,7 +21,7 @@ import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import { parse } from 'qs'
 import { omit } from 'lodash'
-import { Icon } from '@pitrix/lego-ui'
+import { Icon } from '@kube-design/components'
 import { formatSize } from 'utils'
 
 import EmptyCard from '../../EmptyCard'
@@ -73,9 +73,7 @@ export default class Artifacts extends React.Component {
     const { params } = this.props.match
     return params.cluster === 'default' || !params.cluster
       ? `/kapis/devops.kubesphere.io/v1alpha2/jenkins${url}`
-      : `/kapis/clusters/${
-          params.cluster
-        }/devops.kubesphere.io/v1alpha2/jenkins${url}`
+      : `/kapis/clusters/${params.cluster}/devops.kubesphere.io/v1alpha2/jenkins${url}`
   }
 
   getFilteredValue = dataIndex => this.store.list.filters[dataIndex]

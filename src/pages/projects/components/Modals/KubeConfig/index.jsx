@@ -20,9 +20,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { saveAs } from 'file-saver'
 
-import { Icon } from '@pitrix/lego-ui'
+import { Button, Icon, Notify } from '@kube-design/components'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
-import { Button, Modal, CodeEditor, Notify } from 'components/Base'
+import { Modal, CodeEditor } from 'components/Base'
 
 import styles from './index.scss'
 

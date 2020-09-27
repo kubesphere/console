@@ -23,7 +23,7 @@ import { action, observable, computed } from 'mobx'
 import { observer } from 'mobx-react'
 import { get } from 'lodash'
 
-import { Icon } from '@pitrix/lego-ui'
+import { Icon } from '@kube-design/components'
 import DefaultRange from 'components/Cards/Monitoring/Controller/TimeSelector/Range/Default'
 import CustomRange from 'components/Cards/Monitoring/Controller/TimeSelector/Range/Custom'
 import {
@@ -329,7 +329,7 @@ export default class SearchBar extends React.Component {
               {options.imgUrl ? (
                 <img height="100%" src={options.imgUrl} />
               ) : (
-                <Icon name={options.icon} size="20" />
+                <Icon name={options.icon} />
               )}
             </span>
             <span>{options.text}</span>
@@ -342,7 +342,7 @@ export default class SearchBar extends React.Component {
             key={'_time'}
           >
             <span className={styles.icon}>
-              <Icon name="clock" size="20" />
+              <Icon name="clock" />
             </span>
             <span>{t('Time Range')}</span>
           </div>

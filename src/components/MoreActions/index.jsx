@@ -20,8 +20,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { isEmpty } from 'lodash'
 
-import { Icon, Dropdown, Menu } from '@pitrix/lego-ui'
-import { Button } from 'components/Base'
+import { Button, Icon, Dropdown, Menu } from '@kube-design/components'
 
 export default class BtnGroup extends Component {
   static propTypes = {
@@ -66,7 +65,7 @@ export default class BtnGroup extends Component {
     const content = this.renderMoreOptions()
 
     return content ? (
-      <Dropdown className="dropdown-default" content={content}>
+      <Dropdown theme="dark" content={content}>
         <Button className={className} type="flat" icon="more" />
       </Dropdown>
     ) : null

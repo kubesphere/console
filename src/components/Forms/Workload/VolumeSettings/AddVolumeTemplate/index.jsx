@@ -22,8 +22,7 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
 import { observer } from 'mobx-react'
-import { Input } from '@pitrix/lego-ui'
-import { Form } from 'components/Base'
+import { Form, Input } from '@kube-design/components'
 import { MountInput } from 'components/Inputs'
 
 import { PATTERN_NAME } from 'utils/constants'

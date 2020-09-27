@@ -33,7 +33,6 @@ export default class AceEditorWrapper extends React.Component {
         width="auto"
         height="100%"
         tabSize={2}
-        debounceChangePeriod={200}
         editorProps={{ $blockScrolling: true }}
         showPrintMargin={false}
         wrapEnabled

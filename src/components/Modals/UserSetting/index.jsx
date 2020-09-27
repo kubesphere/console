@@ -21,8 +21,8 @@ import React from 'react'
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
 
-import { Icon, Tooltip } from '@pitrix/lego-ui'
-import { Modal, Button } from 'components/Base'
+import { Button, Icon, Tooltip } from '@kube-design/components'
+import { Modal } from 'components/Base'
 import Confirm from 'components/Forms/Base/Confirm'
 
 import UserStore from 'stores/user'

@@ -18,8 +18,7 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Alert } from '@pitrix/lego-ui'
-import { Form } from 'components/Base'
+import { Alert, Form } from '@kube-design/components'
 import { InputPassword } from 'components/Inputs'
 import { PATTERN_PASSWORD } from 'utils/constants'
 

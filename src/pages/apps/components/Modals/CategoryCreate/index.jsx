@@ -19,10 +19,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
-import { Input, Icon } from '@pitrix/lego-ui'
+import { Form, Icon, Input } from '@kube-design/components'
 import { isEqual } from 'lodash'
 
-import { Modal, Form } from 'components/Base'
+import { Modal } from 'components/Base'
 import { CATEGORY_ICONS } from 'configs/openpitrix/app'
 
 import styles from './index.scss'

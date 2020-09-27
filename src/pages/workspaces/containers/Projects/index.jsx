@@ -19,7 +19,7 @@
 import React from 'react'
 import { computed } from 'mobx'
 import { get } from 'lodash'
-import { Tooltip, Icon } from '@pitrix/lego-ui'
+import { Tooltip, Icon } from '@kube-design/components'
 
 import { Avatar, Status } from 'components/Base'
 import Banner from 'components/Cards/Banner'
@@ -191,9 +191,7 @@ export default class Projects extends React.Component {
             to={
               record.status === 'Terminating' || record.isFedHostNamespace
                 ? null
-                : `/${this.workspace}/clusters/${
-                    record.cluster
-                  }/projects/${name}`
+                : `/${this.workspace}/clusters/${record.cluster}/projects/${name}`
             }
             icon="project"
             iconSize={40}

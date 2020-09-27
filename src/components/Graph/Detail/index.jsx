@@ -20,7 +20,7 @@ import { get } from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import { Icon, Collapse } from '@pitrix/lego-ui'
+import { Icon, Collapse } from '@kube-design/components'
 
 import Monitors from './Monitors'
 import PolicyForm from './PolicyForm'

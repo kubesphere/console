@@ -19,11 +19,11 @@
 import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
-import { Columns, Column, Icon, Loading } from '@pitrix/lego-ui'
+import { Column, Columns, Icon, Loading, Notify } from '@kube-design/components'
 import { get } from 'lodash'
 import classnames from 'classnames'
 
-import { Banner, Card, Notify } from 'components/Base'
+import { Banner, Card } from 'components/Base'
 import DeleteModal from 'components/Modals/Delete'
 import CreateModal from 'apps/components/Modals/CategoryCreate'
 import CategoryStore from 'stores/openpitrix/category'

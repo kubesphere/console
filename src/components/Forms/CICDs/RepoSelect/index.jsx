@@ -20,8 +20,8 @@ import { isEmpty, get } from 'lodash'
 import React from 'react'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
-import { Icon } from '@pitrix/lego-ui'
-import { Button } from 'components/Base'
+import { Button, Icon } from '@kube-design/components'
+
 import { REPO_KEY_MAP } from 'utils/constants'
 
 import styles from './index.scss'
@@ -97,9 +97,7 @@ export default class valueSelect extends React.Component {
             <div className={styles.desc}>{data.description || '-'}</div>
           </div>
           <div className={styles.action}>
-            <Button onClick={this.props.onClick} noShadow>
-              {t('Reselect')}
-            </Button>
+            <Button onClick={this.props.onClick}>{t('Reselect')}</Button>
             {this.props.handleDeleteSource ? (
               <span
                 onClick={this.handleDeleteSource}

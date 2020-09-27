@@ -20,7 +20,8 @@ import React, { Component } from 'react'
 import { range } from 'lodash'
 import PropTypes from 'prop-types'
 
-import { Alert, Slider, Modal, Form } from 'components/Base'
+import { Alert, Slider, Form } from '@kube-design/components'
+import { Modal } from 'components/Base'
 
 import styles from './index.scss'
 

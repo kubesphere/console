@@ -24,8 +24,8 @@ import { sortBy, get } from 'lodash'
 
 import { getCurrentRevision } from 'utils/workload'
 
-import { Input, Select } from '@pitrix/lego-ui'
-import { Modal, Form } from 'components/Base'
+import { Form, Input, Select } from '@kube-design/components'
+import { Modal } from 'components/Base'
 import RevisionStore from 'stores/workload/revision'
 
 @observer

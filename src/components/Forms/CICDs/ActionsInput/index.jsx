@@ -19,8 +19,8 @@
 import { has, omit } from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Menu, Dropdown, Icon } from '@pitrix/lego-ui'
-import { Button } from 'components/Base'
+import { Button, Menu, Dropdown, Icon } from '@kube-design/components'
+
 import { PIPELINE_ACTION_TYPES } from 'utils/constants'
 import Item from './Item'
 
@@ -91,7 +91,7 @@ export default class ActionsInput extends React.Component {
       <div className={styles.wrapper}>
         <div className={styles.header}>
           <Dropdown
-            className="dropdown-default"
+            theme="dark"
             content={this.renderMoreMenu()}
             trigger="click"
             placement="bottomRight"

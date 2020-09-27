@@ -21,7 +21,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 
-import { Button } from 'components/Base'
+import { Button } from '@kube-design/components'
 import Item from './Item'
 
 import styles from './index.scss'

@@ -1,4 +1,5 @@
 @import '~scss/variables';
+@import '~scss/mixins';
 
 .panel_p {
   background-color: $light-color01;
@@ -11,12 +12,14 @@
   min-height: 100px;
   overflow-y: auto;
   background-color: #fff;
-  :global {
-    .list-body {
-      > div[class='list-item'] {
-        padding-top: 8px;
-        padding-bottom: 7px;
-      }
+  border-radius: $border-radius;
+  border: 1px solid $border-color;
+
+  & > li {
+    padding: 8px 12px;
+
+    & + li {
+      border-top: 1px solid $border-color;
     }
   }
 }
@@ -86,32 +89,29 @@
 }
 .dirCheck {
   :global {
-    div.control {
-      margin-right: 15px !important;
-      > label.radio-button {
-        transition: all 0.3s ease-in-out;
-        font-size: 12px;
-        font-weight: 700;
-        color: $dark-color01;
-        &:hover {
-          border-color: $dark-color01;
-          box-shadow: 0 4px 8px 0 rgba(36, 46, 66, 0.2) !important;
-        }
-        &.radio-button-wrapper-checked {
-          color: $dark-color07;
-          border-color: $dark-color01;
-          box-shadow: 0 4px 8px 0 rgba(36, 46, 66, 0.2) !important;
-        }
-        border-radius: 5px !important;
-        padding: 0 15px;
-        height: 60px;
-        .label-value {
-          width: 82px;
-          > span.icon {
-            margin-left: 0;
-            margin-right: 0;
-          }
-        }
+    label.radio-button {
+      @include TypographySymbolText();
+      height: auto;
+      padding: 15px;
+      border-radius: $border-radius;
+      border: 1px solid $border-color;
+      margin-right: 4px;
+      transition: all $trans-speed ease;
+
+      &:hover,
+      &.checked {
+        border-color: $dark-color01;
+        background-color: $white;
+        color: $text-color;
+      }
+
+      &.checked {
+        box-shadow: 0 4px 8px 0 rgba(36, 46, 66, 0.2);
+      }
+
+      span.label-value {
+        width: 82px;
+        height: auto;
       }
     }
   }

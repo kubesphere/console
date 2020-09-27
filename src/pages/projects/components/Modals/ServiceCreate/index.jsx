@@ -17,7 +17,7 @@
  */
 
 import React from 'react'
-import { Icon } from '@pitrix/lego-ui'
+import { Icon } from '@kube-design/components'
 import { set } from 'lodash'
 
 import { Modal } from 'components/Base'

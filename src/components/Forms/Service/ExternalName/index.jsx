@@ -18,8 +18,7 @@
 
 import { get, set } from 'lodash'
 import React from 'react'
-import { Input } from '@pitrix/lego-ui'
-import { Form } from 'components/Base'
+import { Form, Input } from '@kube-design/components'
 import { MODULE_KIND_MAP } from 'utils/constants'
 
 export default class ServiceSettings extends React.Component {

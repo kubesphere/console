@@ -19,7 +19,7 @@ import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react'
 import { computed } from 'mobx'
 
-import { Form, Button } from 'components/Base'
+import { Form, Button } from '@kube-design/components'
 import { NumberInput } from 'components/Inputs'
 
 import CustomArrayInput from 'components/Inputs/CustomArrayInput'

@@ -21,7 +21,7 @@ import PropTypes from 'prop-types'
 import { toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import { get, set, pick, debounce, cloneDeep } from 'lodash'
-import { Columns, Column } from '@pitrix/lego-ui'
+import { Columns, Column } from '@kube-design/components'
 import { Modal } from 'components/Base'
 
 import AppBaseEdit from 'apps/components/Forms/AppBaseEdit'

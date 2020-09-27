@@ -20,13 +20,12 @@ import React, { Component } from 'react'
 import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 import { get } from 'lodash'
+import moment from 'moment-mini'
 
-import { Columns, Column } from '@pitrix/lego-ui'
+import { Button, RadioGroup, Columns, Column } from '@kube-design/components'
 
-import { Button, RadioGroup } from 'components/Base'
 import AppPreview from 'appStore/components/AppPreview'
 import AppBase from 'appStore/components/AppBase'
-import VersionSelect from 'apps/components/VersionSelect'
 
 import AppStore from 'stores/openpitrix/app'
 import VersionStore from 'stores/openpitrix/version'
@@ -92,6 +91,15 @@ class AppDetail extends Component {
     ]
   }
 
+  get versionOptions() {
+    const versions = this.versionStore.list.data
+    return versions.map(({ version_id, name, create_time }) => ({
+      label: name,
+      description: moment(create_time).format(t('YYYY-MM-DD')),
+      value: version_id,
+    }))
+  }
+
   fetchVersions = async (params = {}) => {
     await this.versionStore.fetchList({
       ...params,
@@ -122,11 +130,14 @@ class AppDetail extends Component {
 
   renderVersionList() {
     return (
-      <VersionSelect
-        versionStore={this.versionStore}
-        selectVersion={this.state.selectAppVersion}
-        handleChangeVersion={this.handleChangeAppVersion}
-      />
+      <>
+        <div className="h6 margin-b12">{t('Versions')}</div>
+        <TypeSelect
+          value={this.state.selectAppVersion}
+          options={this.versionOptions}
+          onChange={this.handleChangeAppVersion}
+        />
+      </>
     )
   }
 
@@ -149,7 +160,7 @@ class AppDetail extends Component {
             options={this.tabs}
             onChange={this.handleTabChange}
           />
-          <Button type="control" onClick={this.showDeploy} noShadow>
+          <Button type="control" onClick={this.showDeploy}>
             {t('Deploy')}
           </Button>
         </div>

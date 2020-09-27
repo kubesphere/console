@@ -17,7 +17,8 @@
  */
 
 import { set, cloneDeep } from 'lodash'
-import { Modal, Notify } from 'components/Base'
+import { Notify } from '@kube-design/components'
+import { Modal } from 'components/Base'
 
 import CreateModal from 'components/Modals/RoleCreate'
 import RoleEditModal from 'components/Modals/EditAuthorization'

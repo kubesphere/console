@@ -23,8 +23,7 @@ import { isUndefined, isNaN, isObject, get, set } from 'lodash'
 
 import { cacheFunc } from 'utils'
 
-import { Icon, Select, Input } from '@pitrix/lego-ui'
-import { Slider } from 'components/Base'
+import { Icon, Input, Select, Slider } from '@kube-design/components'
 import { NumberInput } from 'components/Inputs'
 
 import styles from './index.scss'

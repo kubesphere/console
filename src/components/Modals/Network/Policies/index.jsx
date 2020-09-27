@@ -21,18 +21,18 @@ import { inject, observer } from 'mobx-react'
 import { set } from 'lodash'
 import { observable, toJS } from 'mobx'
 import classNames from 'classnames'
-import { Modal, Form, Panel } from 'components/Base'
-import ServiceStore from 'stores/service'
-import { generateId } from 'utils'
-
 import {
+  Form,
   RadioGroup,
   RadioButton,
   Select,
-  List,
   Checkbox,
   Icon,
-} from '@pitrix/lego-ui'
+} from '@kube-design/components'
+import { Modal, Panel } from 'components/Base'
+import ServiceStore from 'stores/service'
+import { generateId } from 'utils'
+
 import styles from './index.scss'
 
 @inject('projectStore')
@@ -180,7 +180,6 @@ export default class NetworkPoliciesModal extends React.Component {
           ]}
         >
           <RadioGroup
-            size="large"
             name="direction"
             defaultValue={specType}
             wrapClassName={styles.dirCheck}
@@ -198,7 +197,6 @@ export default class NetworkPoliciesModal extends React.Component {
             </RadioButton>
           </RadioGroup>
         </Form.Item>
-
         <Form.Item
           label={`${t('Type')}:`}
           rules={[{ validator: this.psValidator }]}
@@ -206,7 +204,7 @@ export default class NetworkPoliciesModal extends React.Component {
         >
           <RadioGroup
             name="type"
-            wrapClassName="radio-default"
+            mode="button"
             buttonWidth={155}
             defaultValue={tabName}
             onChange={this.handleTabChange}
@@ -223,23 +221,24 @@ export default class NetworkPoliciesModal extends React.Component {
             styles.panel_p
           )}
         >
-          <List
-            className={styles.list}
-            itemRenderer={item => (
-              <Checkbox
-                value={item.name}
-                checked={
-                  specNameSpaces.filter(ns => ns.name === item.name).length > 0
-                }
-                onChange={(e, checked) => {
-                  this.handleNameSpaceChecked(item, checked)
-                }}
-              >
-                {item.name}
-              </Checkbox>
-            )}
-            items={projectList.data.map(item => item)}
-          />
+          <ul className={styles.list}>
+            {projectList.data.map(item => (
+              <li key={item.name}>
+                <Checkbox
+                  value={item.name}
+                  checked={
+                    specNameSpaces.filter(ns => ns.name === item.name).length >
+                    0
+                  }
+                  onChange={checked => {
+                    this.handleNameSpaceChecked(item, checked)
+                  }}
+                >
+                  {item.name}
+                </Checkbox>
+              </li>
+            ))}
+          </ul>
         </Panel>
         <Panel
           className={classNames(
@@ -258,27 +257,27 @@ export default class NetworkPoliciesModal extends React.Component {
             />
           </div>
           <div className={styles.sbody}>
-            <List
-              className={styles.list}
-              itemRenderer={item => (
-                <Checkbox
-                  value={item.name}
-                  checked={
-                    specServices.filter(
-                      el =>
-                        el.name === item.name &&
-                        el.namespace === specCurNameSpace
-                    ).length > 0
-                  }
-                  onChange={(e, checked) => {
-                    this.handleServiceChange(item, checked)
-                  }}
-                >
-                  {item.name}
-                </Checkbox>
-              )}
-              items={serviceList.data.map(item => item)}
-            />
+            <ul className={styles.list}>
+              {serviceList.data.map(item => (
+                <li key={item.name}>
+                  <Checkbox
+                    value={item.name}
+                    checked={
+                      specServices.filter(
+                        el =>
+                          el.name === item.name &&
+                          el.namespace === specCurNameSpace
+                      ).length > 0
+                    }
+                    onChange={checked => {
+                      this.handleServiceChange(item, checked)
+                    }}
+                  >
+                    {item.name}
+                  </Checkbox>
+                </li>
+              ))}
+            </ul>
           </div>
         </Panel>
       </Modal.Form>

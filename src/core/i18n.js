@@ -17,7 +17,7 @@
  */
 
 import moment from 'moment-mini'
-import { locale } from '@pitrix/lego-ui'
+import { locale } from '@kube-design/components'
 import get from 'lodash/get'
 import cookie from 'utils/cookie'
 import { lazy, getBrowserLang } from 'utils'

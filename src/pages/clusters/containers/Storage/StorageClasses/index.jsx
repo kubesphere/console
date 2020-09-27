@@ -19,7 +19,8 @@
 import React from 'react'
 import { get, includes } from 'lodash'
 
-import { Avatar, Notify } from 'components/Base'
+import { Notify } from '@kube-design/components'
+import { Avatar } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import Table from 'components/Tables/List'
 import withList, { ListPage } from 'components/HOCs/withList'

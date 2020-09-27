@@ -23,7 +23,7 @@ import { isEmpty, get } from 'lodash'
 
 import { getLocalTime } from 'utils'
 
-import { Icon, Table } from '@pitrix/lego-ui'
+import { Icon, Table } from '@kube-design/components'
 import { Card } from 'components/Base'
 
 import styles from './index.scss'

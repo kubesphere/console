@@ -19,7 +19,7 @@
 import React, { Component } from 'react'
 import classNames from 'classnames'
 import { debounce } from 'lodash'
-import { Checkbox, Icon } from '@pitrix/lego-ui'
+import { Checkbox, Icon } from '@kube-design/components'
 
 import styles from './index.scss'
 

@@ -19,7 +19,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { isEmpty } from 'lodash'
-import { Columns, Column } from '@pitrix/lego-ui'
+import { Columns, Column } from '@kube-design/components'
 import { Card } from 'components/Base'
 
 import styles from './index.scss'

@@ -22,7 +22,7 @@ import { get } from 'lodash'
 import { observer, inject } from 'mobx-react'
 import OutputStore from 'stores/logging/collection/output'
 import DetailPage from 'clusters/containers/Base/Detail'
-import { Loading } from '@pitrix/lego-ui'
+import { Loading } from '@kube-design/components'
 import collectionConfig from '../config'
 
 import routes from './routes'

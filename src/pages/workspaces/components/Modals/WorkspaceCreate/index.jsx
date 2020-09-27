@@ -19,8 +19,8 @@
 import { cloneDeep } from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Icon } from '@pitrix/lego-ui'
-import { Modal, Button } from 'components/Base'
+import { Button, Icon } from '@kube-design/components'
+import { Modal } from 'components/Base'
 import FORM_TEMPLATES from 'utils/form.templates'
 
 import RouterStore from 'stores/router'

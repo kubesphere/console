@@ -18,7 +18,8 @@
 
 import React from 'react'
 import { cloneDeep } from 'lodash'
-import { Modal, Notify } from 'components/Base'
+import { Notify } from '@kube-design/components'
+import { Modal } from 'components/Base'
 import EnableForm from 'components/Forms/LoggingCollection/Status'
 import ESForm from 'src/components/Forms/Elasticsearch/Settings'
 import KafkaForm from 'src/components/Forms/KafkaForm/Settings'

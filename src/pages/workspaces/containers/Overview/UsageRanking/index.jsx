@@ -24,6 +24,7 @@ import { get } from 'lodash'
 import Store from 'stores/rank/project'
 
 import {
+  Button,
   Select,
   Pagination,
   Level,
@@ -31,8 +32,7 @@ import {
   LevelRight,
   Icon,
   Loading,
-} from '@pitrix/lego-ui'
-import { Button } from 'components/Base'
+} from '@kube-design/components'
 import EmptyList from 'components/Cards/EmptyList'
 import Table from 'clusters/containers/Monitor/Resource/Ranking/Project/Table'
 import StatusReason from 'clusters/components/StatusReason'
@@ -192,9 +192,9 @@ class Ranking extends React.Component {
           <LevelLeft />
           <LevelRight>
             <Pagination
-              current={page}
-              total={total * limit}
-              pageSize={limit}
+              page={page}
+              total={total}
+              limit={limit}
               onChange={this.store.changePagination}
             />
           </LevelRight>

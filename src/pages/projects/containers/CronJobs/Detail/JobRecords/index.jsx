@@ -26,8 +26,8 @@ import { getLocalTime } from 'utils'
 import { getJobStatus } from 'utils/status'
 import RecordStore from 'stores/workload/record'
 
-import { Table } from '@pitrix/lego-ui'
-import { Button, Card, Status } from 'components/Base'
+import { Button, Table } from '@kube-design/components'
+import { Card, Status } from 'components/Base'
 
 import styles from './index.scss'
 

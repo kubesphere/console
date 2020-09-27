@@ -16,12 +16,11 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { debounce } from 'lodash'
+import { pick } from 'lodash'
 import React from 'react'
 import { observer } from 'mobx-react'
-import { Input, Select } from '@pitrix/lego-ui'
+import { Input, Select, Form, TextArea } from '@kube-design/components'
 import { PATTERN_NAME } from 'utils/constants'
-import { Form, TextArea } from 'components/Base'
 import UserStore from 'stores/user'
 
 import styles from './index.scss'
@@ -32,10 +31,17 @@ export default class BaseInfo extends React.Component {
     super(props)
 
     this.userStore = new UserStore()
-    this.userStore.fetchList()
+
+    this.fetchUsers()
   }
 
-  getUsers() {
+  fetchUsers = params => {
+    return this.userStore.fetchList({
+      ...params,
+    })
+  }
+
+  get users() {
     const manger = globals.user.username
     const users = this.userStore.list.data.map(user => ({
       label: user.username,
@@ -75,42 +81,6 @@ export default class BaseInfo extends React.Component {
     })
   }
 
-  handleScrollToBottom = () => {
-    if (
-      !this.scrolling &&
-      this.userStore.list.total > this.userStore.list.data.length
-    ) {
-      this.scrolling = true
-      this.userStore
-        .fetchList({
-          more: true,
-          page: this.userStore.list.page + 1,
-        })
-        .then(() => {
-          this.scrolling = false
-        })
-    }
-  }
-
-  handleInputChange = debounce(value => {
-    // Workaround for search in select, should be fixed after lego-ui upgrade
-    if (!value && this._select) {
-      this._select = false
-      return
-    }
-
-    this._search = true
-    this.userStore.fetchList({ name: value })
-  }, 300)
-
-  handleChange = value => {
-    this._select = true
-    if (!value && this._search) {
-      this.userStore.fetchList()
-      this._search = false
-    }
-  }
-
   render() {
     const { formRef, formTemplate } = this.props
 
@@ -122,7 +92,6 @@ export default class BaseInfo extends React.Component {
         </div>
         <Form data={formTemplate} ref={formRef}>
           <Form.Item
-            controlClassName={styles.nameWrapper}
             label={t('Workspace Name')}
             desc={t('NAME_DESC')}
             rules={[
@@ -148,27 +117,16 @@ export default class BaseInfo extends React.Component {
           <Form.Item label={t('Workspace Manager')}>
             <Select
               name="spec.template.spec.manager"
-              searchable
-              options={this.getUsers()}
+              options={this.users}
+              pagination={pick(this.userStore.list, ['page', 'limit', 'total'])}
+              isLoading={this.userStore.list.isLoading}
+              onFetch={this.fetchUsers}
               defaultValue={globals.user.username}
               onChange={this.handleChange}
-              onInputChange={this.handleInputChange}
-              onBlurResetsInput={false}
-              onCloseResetsInput={false}
-              openOnClick={true}
-              isLoadingAtBottom
-              isLoading={this.userStore.list.isLoading}
-              bottomTextVisible={
-                this.userStore.list.total === this.userStore.list.data.length
-              }
-              onMenuScrollToBottom={this.handleScrollToBottom}
+              searchable
             />
           </Form.Item>
-          <Form.Item
-            controlClassName={styles.textarea}
-            label={t('Description')}
-            desc={t('DESCRIPTION_DESC')}
-          >
+          <Form.Item label={t('Description')} desc={t('DESCRIPTION_DESC')}>
             <TextArea
               name="metadata.annotations['kubesphere.io/description']"
               maxLength={256}

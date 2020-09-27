@@ -18,7 +18,7 @@
 
 import React from 'react'
 import { isEmpty } from 'lodash'
-import { InputPassword, Icon, Dropdown } from '@pitrix/lego-ui'
+import { InputPassword, Icon, Dropdown } from '@kube-design/components'
 import classNames from 'classnames'
 import { PATTERN_PASSWORD } from 'utils/constants'
 

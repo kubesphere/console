@@ -18,8 +18,7 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Icon, Tooltip } from '@pitrix/lego-ui'
-import { Tag } from 'components/Base'
+import { Icon, Tag, Tooltip } from '@kube-design/components'
 import SelectModal from 'components/Modals/ProjectSelect'
 
 import styles from './index.scss'

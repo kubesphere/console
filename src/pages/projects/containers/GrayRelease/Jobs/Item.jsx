@@ -19,7 +19,7 @@
 import { get } from 'lodash'
 import React from 'react'
 import isEqual from 'react-fast-compare'
-import { Icon } from '@pitrix/lego-ui'
+import { Icon } from '@kube-design/components'
 import { getMetricData } from 'utils/service'
 import { GRAY_RELEASE_CATEGORIES } from 'utils/constants'
 

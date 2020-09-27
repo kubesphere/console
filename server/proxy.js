@@ -77,15 +77,9 @@ const b2iFileProxy = {
         }
         const proxy = http.get(proxyRes.headers.location, res => {
           client_res.writeHead(res.statusCode, res.headers)
-          res.pipe(
-            client_res,
-            { end: true }
-          )
+          res.pipe(client_res, { end: true })
         })
-        client_res.pipe(
-          proxy,
-          { end: true }
-        )
+        client_res.pipe(proxy, { end: true })
       })
     },
   },

@@ -20,7 +20,7 @@ import { isEmpty } from 'lodash'
 import React from 'react'
 import { when, toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
-import { Tabs } from '@pitrix/lego-ui'
+import { Tabs } from '@kube-design/components'
 
 import AppVersionStore from 'stores/openpitrix/version'
 import AppFileStore from 'stores/openpitrix/file'
@@ -50,7 +50,10 @@ export default class AppTemplate extends React.Component {
     this.appVersionStore = new AppVersionStore()
     this.appFileStore = new AppFileStore()
 
-    when(() => !isEmpty(this.store.detail), () => this.getData())
+    when(
+      () => !isEmpty(this.store.detail),
+      () => this.getData()
+    )
   }
 
   get workspace() {
@@ -137,11 +140,7 @@ export default class AppTemplate extends React.Component {
     const { tab } = this.state
     return (
       <Card title={t('App Description')} className={styles.wrapper}>
-        <Tabs
-          className="tabs-default"
-          activeName={tab}
-          onChange={this.handleTabChange}
-        >
+        <Tabs type="button" activeName={tab} onChange={this.handleTabChange}>
           <TabPanel label={t('App Description')} name="readme">
             {this.renderReadme()}
           </TabPanel>

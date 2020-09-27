@@ -19,8 +19,16 @@
 import React from 'react'
 import { inject, observer } from 'mobx-react'
 import { set, isEmpty } from 'lodash'
-import { Select, Input, Icon, RadioGroup, RadioButton } from '@pitrix/lego-ui'
-import { Modal, Button, Form } from 'components/Base'
+import {
+  Button,
+  Form,
+  Select,
+  Input,
+  Icon,
+  RadioGroup,
+  RadioButton,
+} from '@kube-design/components'
+import { Modal } from 'components/Base'
 import ServiceStore from 'stores/service'
 import { generateId } from 'utils'
 import { PATTERN_IP, PATTERN_IP_MASK } from 'utils/constants'

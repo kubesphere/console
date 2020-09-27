@@ -17,8 +17,8 @@
  */
 
 import React from 'react'
-import { get } from 'lodash'
-import { Form, SearchSelect } from 'components/Base'
+import { get, pick } from 'lodash'
+import { Form, Select } from '@kube-design/components'
 import { MODULE_KIND_MAP } from 'utils/constants'
 import ProjectStore from 'stores/project'
 import VolumeStore from 'stores/volume'
@@ -95,16 +95,16 @@ export default class Source extends React.Component {
             label={t('Project')}
             rules={[{ required: true, message: t('This param is required') }]}
           >
-            <SearchSelect
+            <Select
               name={'metadata.namespace'}
               defaultValue={defaultValue}
-              page={namespaces.page}
-              total={namespaces.total}
+              pagination={pick(namespaces, ['page', 'limit', 'total'])}
               isLoading={namespaces.isLoading}
               options={this.namespaceOpts}
-              currentLength={namespaces.data.length}
               onChange={this.handleNamespaceChange}
               onFetch={this.updateNamespace}
+              searchable
+              clearable
             />
           </Form.Item>
 
@@ -112,16 +112,16 @@ export default class Source extends React.Component {
             label={t('Volume')}
             rules={[{ required: true, message: t('This param is required') }]}
           >
-            <SearchSelect
+            <Select
               name={'spec.source.name'}
               defaultValue={defaultVolume}
-              page={volumes.page}
-              total={volumes.total}
+              pagination={pick(volumes, ['page', 'limit', 'total'])}
               isLoading={volumes.isLoading}
               options={this.volumesOpts}
-              currentLength={volumes.data.length}
               onChange={this.handleVolumeChange}
               onFetch={this.updateStorageClass}
+              searchable
+              clearable
             />
           </Form.Item>
 

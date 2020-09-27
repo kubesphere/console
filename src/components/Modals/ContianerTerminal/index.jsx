@@ -20,7 +20,7 @@ import React from 'react'
 import { observer } from 'mobx-react'
 import classnames from 'classnames'
 import { isEmpty, get } from 'lodash'
-import { Loading } from '@pitrix/lego-ui'
+import { Loading } from '@kube-design/components'
 
 import PodStore from 'stores/pod'
 import TerminalStore from 'stores/terminal'

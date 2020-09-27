@@ -20,7 +20,7 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 
-import { Tooltip, Icon } from '@pitrix/lego-ui'
+import { Tooltip, Icon } from '@kube-design/components'
 
 import styles from './index.scss'
 

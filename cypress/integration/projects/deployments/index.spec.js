@@ -77,7 +77,7 @@ describe('The Deployments Page', function() {
 
       cy.visit('/projects/e2e-test/deployments')
       cy.wait('@getDeployments')
-      cy.get('.qicon-loading').should('not.exist')
+      cy.get('.kubed-icon-loading').should('not.exist')
     }
 
     function test_create() {
@@ -133,7 +133,7 @@ describe('The Deployments Page', function() {
       cy.get('.autosuggest-input > input').type(`${formData.name}{enter}`)
 
       cy.wait('@getDeployments')
-      cy.get('.qicon-loading').should('not.exist')
+      cy.get('.kubed-icon-loading').should('not.exist')
       cy.get(`[data-row-key="${formData.name}"]`)
       cy.url().should('include', `name=${formData.name}`)
 
@@ -147,7 +147,7 @@ describe('The Deployments Page', function() {
         .click()
       cy.get('.autosuggest-input > input').type(`redis{enter}`)
       cy.wait('@getDeployments')
-      cy.get('.qicon-loading').should('not.exist')
+      cy.get('.kubed-icon-loading').should('not.exist')
       cy.get(`[data-row-key="${formData.name}"]`)
       cy.url().should('include', `app=${formData.name}`)
 
@@ -155,14 +155,14 @@ describe('The Deployments Page', function() {
     }
 
     function clearSearch() {
-      cy.get('.table-filter-bar > .icon > .qicon-close').click()
+      cy.get('.table-filter-bar > .icon > .kubed-icon-close').click()
       cy.wait('@getDeployments')
-      cy.get('.qicon-loading').should('not.exist')
+      cy.get('.kubed-icon-loading').should('not.exist')
       cy.url().should('not.include', `name=${formData.name}`)
     }
 
     function test_editBaseInfo() {
-      cy.get(`[data-row-key="${formData.name}"] button .qicon-more`).click()
+      cy.get(`[data-row-key="${formData.name}"] button .kubed-icon-more`).click()
       cy.get(
         `[data-row-key="${formData.name}"] [data-test="table-item-edit"]`
       ).click()
@@ -179,13 +179,13 @@ describe('The Deployments Page', function() {
     }
 
     function test_editYaml() {
-      cy.get(`[data-row-key="${formData.name}"] button .qicon-more`).click()
+      cy.get(`[data-row-key="${formData.name}"] button .kubed-icon-more`).click()
       cy.get(
         `[data-row-key="${formData.name}"] [data-test="table-item-editYaml"]`
       ).click()
 
       cy.wait(1000)
-      cy.get('.qicon-loading').should('not.exist')
+      cy.get('.kubed-icon-loading').should('not.exist')
 
       cy.get('[data-test="modal-ok"]').click()
 
@@ -194,7 +194,7 @@ describe('The Deployments Page', function() {
     }
 
     function test_redeploy() {
-      cy.get(`[data-row-key="${formData.name}"] button .qicon-more`).click()
+      cy.get(`[data-row-key="${formData.name}"] button .kubed-icon-more`).click()
       cy.get(
         `[data-row-key="${formData.name}"] [data-test="table-item-redeploy"]`
       ).click()
@@ -206,7 +206,7 @@ describe('The Deployments Page', function() {
     }
 
     function test_deleteItem() {
-      cy.get(`[data-row-key="${formData.name}"] button .qicon-more`).click()
+      cy.get(`[data-row-key="${formData.name}"] button .kubed-icon-more`).click()
       cy.get(
         `[data-row-key="${formData.name}"] [data-test="table-item-delete"]`
       ).click()

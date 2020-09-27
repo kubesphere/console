@@ -19,8 +19,14 @@
 import React, { Component } from 'react'
 
 import { get } from 'lodash'
-import { Form, Button } from 'components/Base'
-import { Select, Columns, Input, Column } from '@pitrix/lego-ui'
+import {
+  Form,
+  Button,
+  Select,
+  Columns,
+  Input,
+  Column,
+} from '@kube-design/components'
 import { NumberInput } from 'components/Inputs'
 import { unitTransformMap } from 'utils/monitoring'
 import CustomArrayInput from 'components/Inputs/CustomArrayInput'

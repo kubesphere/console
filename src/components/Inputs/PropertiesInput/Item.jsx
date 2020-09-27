@@ -17,8 +17,8 @@
  */
 
 import React from 'react'
-import { Input } from '@pitrix/lego-ui'
-import { Button } from 'components/Base'
+import { Button, Input } from '@kube-design/components'
+
 import ObjectInput from '../ObjectInput'
 import styles from './index.scss'
 

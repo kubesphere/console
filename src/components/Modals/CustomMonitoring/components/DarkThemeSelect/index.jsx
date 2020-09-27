@@ -17,7 +17,7 @@
  */
 import React from 'react'
 
-import { Select } from '@pitrix/lego-ui'
+import { Select } from '@kube-design/components'
 
 import styles from './index.scss'
 

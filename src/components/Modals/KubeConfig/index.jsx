@@ -23,7 +23,7 @@ import classnames from 'classnames'
 import { saveAs } from 'file-saver'
 import fullScreen from 'components/Modals/FullscreenModal'
 import UserTip from 'components/Cards/Tips'
-import { Icon } from '@pitrix/lego-ui'
+import { Icon } from '@kube-design/components'
 import { CodeEditor } from 'components/Base'
 
 import TerminalStore from 'stores/terminal'

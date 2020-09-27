@@ -18,7 +18,7 @@
 
 import React from 'react'
 import { isUndefined } from 'lodash'
-import { Icon } from '@pitrix/lego-ui'
+import { Icon } from '@kube-design/components'
 import { Bar } from 'components/Base'
 
 import { cpuFormat, memoryFormat } from 'utils'

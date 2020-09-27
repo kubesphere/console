@@ -43,7 +43,7 @@ export default class ClusterStore extends Base {
   module = 'clusters'
 
   @observable
-  project = ''
+  project = undefined
 
   projects = new List()
 

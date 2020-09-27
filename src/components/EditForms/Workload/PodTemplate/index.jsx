@@ -18,7 +18,7 @@
 
 import React from 'react'
 
-import { Form } from 'components/Base'
+import { Form } from '@kube-design/components'
 import Base from 'components/Forms/Workload/ContainerSettings'
 
 export default class PodTemplate extends Base {

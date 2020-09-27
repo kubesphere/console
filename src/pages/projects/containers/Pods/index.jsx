@@ -18,7 +18,7 @@
 
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Icon } from '@pitrix/lego-ui'
+import { Icon } from '@kube-design/components'
 
 import { Indicator } from 'components/Base'
 import Banner from 'components/Cards/Banner'

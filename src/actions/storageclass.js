@@ -17,7 +17,8 @@
  */
 
 import { get } from 'lodash'
-import { Modal, Notify } from 'components/Base'
+import { Notify } from '@kube-design/components'
+import { Modal } from 'components/Base'
 
 import CreateModal from 'components/Modals/Create'
 import SetDefaultStorageClassModal from 'components/Modals/SetDefaultStorageClass'

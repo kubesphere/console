@@ -19,8 +19,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { Icon, Select, Input, Tooltip, Control, Popper } from '@pitrix/lego-ui'
-import { Button } from 'components/Base'
+import {
+  Button,
+  Icon,
+  Select,
+  Input,
+  Tooltip,
+  Popper,
+} from '@kube-design/components'
 
 import { isEmpty } from 'lodash'
 
@@ -142,7 +148,7 @@ export default class Item extends React.Component {
         </div>
         <div className={styles.formContent}>
           <div className={styles.subPath}>
-            <Control className={`has-icons-left has-icons-right`}>
+            <div className={`control has-icons-left has-icons-right`}>
               <Icon className="is-left" name="textfield" size={20} />
               <Input
                 name="subPath"
@@ -150,7 +156,7 @@ export default class Item extends React.Component {
                 placeholder={t('sub path')}
                 onChange={this.handleSubPathChange}
               />
-            </Control>
+            </div>
           </div>
         </div>
         <div className={styles.formFooter}>
@@ -235,8 +241,8 @@ export default class Item extends React.Component {
           options={this.getMountOptions()}
           onChange={this.handleSelectChange}
         />
-        <Control
-          className={`has-icons-left has-icons-right ${styles.mountPath}`}
+        <div
+          className={`control has-icons-left has-icons-right ${styles.mountPath}`}
         >
           <Icon className="is-left" name="mgmt-node" size={20} />
           <Input
@@ -249,11 +255,11 @@ export default class Item extends React.Component {
             onChange={this.handleMountPathChange}
           />
           {this.renderSubPath()}
-        </Control>
+        </div>
         {collectSavedLog === 'true' && value.readOnly === 'false' && (
           <>
-            <Control
-              className={`has-icons-left has-icons-right ${styles.logPath}`}
+            <div
+              className={`control has-icons-left has-icons-right ${styles.logPath}`}
             >
               <Icon className="is-left" name="log" size={20} />
               <Input
@@ -263,7 +269,7 @@ export default class Item extends React.Component {
                 placeholder={t('container log relative path')}
                 onChange={this.handleLogPathChange}
               />
-            </Control>
+            </div>
             <Tooltip content={this.renderLogPathTip()}>
               <Icon className={styles.icon} name="question" size={20} />
             </Tooltip>

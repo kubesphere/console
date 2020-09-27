@@ -11,7 +11,7 @@
     font-weight: $font-bold;
 
     :global {
-      .label-value {
+      label.checkbox span.label-value {
         font-weight: $font-bold;
       }
     }

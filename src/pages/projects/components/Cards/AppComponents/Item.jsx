@@ -22,7 +22,7 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import classnames from 'classnames'
 
-import { Icon } from '@pitrix/lego-ui'
+import { Icon } from '@kube-design/components'
 
 import styles from './index.scss'
 

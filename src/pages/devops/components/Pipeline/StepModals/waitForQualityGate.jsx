@@ -20,8 +20,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { observer } from 'mobx-react'
-import { Select } from '@pitrix/lego-ui'
-import { Form, Modal, Alert } from 'components/Base'
+import { Alert, Form, Select } from '@kube-design/components'
+import { Modal } from 'components/Base'
 
 import styles from './index.scss'
 

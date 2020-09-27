@@ -18,7 +18,7 @@
 
 import React from 'react'
 import classnames from 'classnames'
-import { Tabs, Icon } from '@pitrix/lego-ui'
+import { Tabs, Icon } from '@kube-design/components'
 import { getLocalTime } from 'utils'
 
 import Metadata from './Metadata'

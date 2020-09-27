@@ -29,8 +29,9 @@ import {
   RadioGroup,
   Select,
   Input,
-} from '@pitrix/lego-ui'
-import { Form } from 'components/Base'
+  Form,
+} from '@kube-design/components'
+
 import { NumberInput, StringInput, ObjectInput } from 'components/Inputs'
 import Confirm from 'components/Forms/Base/Confirm'
 
@@ -200,7 +201,7 @@ export default class ProbeForm extends React.Component {
       <div className={classNames(styles.wrapper, className)}>
         <div className={classNames(styles.radioGroup, 'probe-radio-group')}>
           <RadioGroup
-            wrapClassName="radio-default"
+            mode="button"
             buttonWidth={150}
             value={checkerType}
             onChange={this.handleTypeChange}

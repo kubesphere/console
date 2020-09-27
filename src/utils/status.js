@@ -37,7 +37,8 @@ export const getDeployStatus = ({
 
   if (
     spec.replicas === 0 &&
-    (!isUndefined(status.readyReplicas) && status.readyReplicas !== 0)
+    !isUndefined(status.readyReplicas) &&
+    status.readyReplicas !== 0
   ) {
     return 'Updating'
   }
@@ -55,7 +56,8 @@ export const getDeployStatus = ({
 export const getStatefulSetStatus = ({ spec = {}, status = {} }) => {
   if (
     spec.replicas === 0 &&
-    (!isUndefined(status.readyReplicas) && status.readyReplicas !== 0)
+    !isUndefined(status.readyReplicas) &&
+    status.readyReplicas !== 0
   ) {
     return 'Updating'
   }

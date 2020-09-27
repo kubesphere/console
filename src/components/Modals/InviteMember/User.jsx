@@ -19,8 +19,8 @@
 import { get } from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Dropdown, Menu } from '@pitrix/lego-ui'
-import { Avatar, Button } from 'components/Base'
+import { Button, Dropdown, Menu } from '@kube-design/components'
+import { Avatar } from 'components/Base'
 import styles from './index.scss'
 
 export default class UserItem extends React.Component {

@@ -23,7 +23,7 @@ import classnames from 'classnames'
 import { getLocalTime } from 'utils'
 import { formatRelativeDate } from 'utils/tracing'
 
-import { Icon } from '@pitrix/lego-ui'
+import { Icon } from '@kube-design/components'
 
 import styles from './index.scss'
 

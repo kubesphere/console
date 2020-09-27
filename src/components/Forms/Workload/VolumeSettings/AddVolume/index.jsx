@@ -21,7 +21,7 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { isEmpty } from 'lodash'
 
-import { RadioGroup, RadioButton } from '@pitrix/lego-ui'
+import { RadioGroup, RadioButton } from '@kube-design/components'
 import { ReactComponent as BackIcon } from 'src/assets/back.svg'
 
 import ObjectMapeer from 'utils/object.mapper'
@@ -202,7 +202,7 @@ export default class AddVolume extends React.Component {
         <div className={classNames(styles.contentWrapper, contentClassName)}>
           <div className={styles.title}>{t('Volume Source')}</div>
           <RadioGroup
-            wrapClassName="radio-default"
+            mode="button"
             value={this.state.type}
             onChange={this.handleTypeChange}
             size="small"

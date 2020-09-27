@@ -22,8 +22,8 @@ import PropTypes from 'prop-types'
 import { computed } from 'mobx'
 import { observer } from 'mobx-react'
 
-import { Input, Select } from '@pitrix/lego-ui'
-import { Modal, Form, TextArea } from 'components/Base'
+import { Form, Input, Select, TextArea } from '@kube-design/components'
+import { Modal } from 'components/Base'
 import { InputPassword } from 'components/Inputs'
 import { isSystemRole } from 'utils'
 import { PATTERN_NAME, PATTERN_PASSWORD } from 'utils/constants'
@@ -160,7 +160,11 @@ export default class UserCreateModal extends Component {
           />
         </Form.Item>
         <Form.Item label={t('Email')} desc={t('EMAIL_DESC')} rules={emailRules}>
-          <Input name="spec.email" placeholder="User@example.com" />
+          <Input
+            name="spec.email"
+            placeholder="User@example.com"
+            autoComplete="nope"
+          />
         </Form.Item>
         <Form.Item label={t('Role')} desc={t('ROLE_DESC')}>
           <Select
@@ -185,7 +189,7 @@ export default class UserCreateModal extends Component {
             <InputPassword
               name="spec.password"
               placeholder={t('Please input password')}
-              autoComplete="new-password"
+              autoComplete="nope"
               withStrength
             />
           </Form.Item>

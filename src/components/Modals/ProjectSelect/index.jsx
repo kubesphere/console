@@ -21,8 +21,14 @@ import React from 'react'
 import classNames from 'classnames'
 import { toJS } from 'mobx'
 import { inject, observer } from 'mobx-react'
-import { Columns, Column } from '@pitrix/lego-ui'
-import { Button, Modal, Search, RadioGroup, ScrollLoad } from 'components/Base'
+import {
+  Button,
+  RadioGroup,
+  InputSearch,
+  Columns,
+  Column,
+} from '@kube-design/components'
+import { Modal, ScrollLoad } from 'components/Base'
 
 import WorkspaceStore from 'stores/workspace'
 import ProjectStore from 'stores/project'
@@ -226,6 +232,7 @@ export default class ProjectSelectModal extends React.Component {
           <Columns className="is-variable is-1">
             <Column className="is-narrow">
               <RadioGroup
+                mode="button"
                 value={type}
                 options={this.types}
                 onChange={this.handleTypeChange}
@@ -241,7 +248,7 @@ export default class ProjectSelectModal extends React.Component {
                     onChange={this.handleClusterChange}
                   />
                 )}
-                <Search
+                <InputSearch
                   className={classNames(styles.search, {
                     [styles.withSelect]: showClusterSelect,
                   })}

@@ -17,7 +17,7 @@
  */
 
 import React from 'react'
-import { Columns, Column } from '@pitrix/lego-ui'
+import { Columns, Column } from '@kube-design/components'
 import { Text } from 'components/Base'
 import { getLocalTime } from 'utils'
 

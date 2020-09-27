@@ -19,7 +19,7 @@
 import { omit, isArray, get } from 'lodash'
 import { saveAs } from 'file-saver'
 import { action, observable, toJS } from 'mobx'
-import { Message } from '@pitrix/lego-ui'
+import { Message } from '@kube-design/components'
 
 import BaseStore from './base'
 import PipelineStore from './pipelines'

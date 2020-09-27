@@ -20,8 +20,7 @@ import { get, set, uniq, isEmpty } from 'lodash'
 import React from 'react'
 import { toJS, computed } from 'mobx'
 import { observer } from 'mobx-react'
-import { Alert } from '@pitrix/lego-ui'
-import { Form } from 'components/Base'
+import { Alert, Form } from '@kube-design/components'
 import { MODULE_KIND_MAP } from 'utils/constants'
 import SecretStore from 'stores/secret'
 import ServiceStore from 'stores/service'
@@ -267,7 +266,7 @@ class RouteRules extends React.Component {
         {noGateway && (
           <Alert
             className="margin-b12"
-            description={t.html('NO_INTERNET_ACCESS_TIP')}
+            message={t.html('NO_INTERNET_ACCESS_TIP')}
             type="warning"
           />
         )}

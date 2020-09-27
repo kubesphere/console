@@ -17,7 +17,8 @@
  */
 
 import { get, isEmpty } from 'lodash'
-import { Modal, Notify } from 'components/Base'
+import { Notify } from '@kube-design/components'
+import { Modal } from 'components/Base'
 import NetworkPoliciesModal from 'components/Modals/Network/Policies'
 import NetworkPoliciesIpBlockModal from 'components/Modals/Network/Policies/IpBlock'
 import AddByYamlModal from 'components/Modals/Network/Policies/AddByYaml'

@@ -19,8 +19,7 @@
 import React from 'react'
 import { get, set, isEmpty } from 'lodash'
 import classnames from 'classnames'
-import { Icon, Loading } from '@pitrix/lego-ui'
-import { Search } from 'components/Base'
+import { Icon, InputSearch, Loading } from '@kube-design/components'
 import Select from './Select'
 import Input from './Input'
 
@@ -188,7 +187,7 @@ export default class DropdownContent extends React.Component {
       ref={this.dropContentRef}
     >
       <div className={styles.header}>
-        <Search
+        <InputSearch
           className={styles.search}
           onSearch={this.handleSearch}
           placeholder={t('SEARCH_IMAGE_PLACEHOLDER')}

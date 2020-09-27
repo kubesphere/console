@@ -22,8 +22,7 @@ import { observer } from 'mobx-react'
 
 import { PATTERN_NAME, MODULE_KIND_MAP } from 'utils/constants'
 
-import { Columns, Column, Input } from '@pitrix/lego-ui'
-import { Form, TextArea } from 'components/Base'
+import { Column, Columns, Form, Input, TextArea } from '@kube-design/components'
 
 @observer
 export default class BaseInfo extends React.Component {

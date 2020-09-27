@@ -18,7 +18,8 @@
 
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { Text, Tag } from 'components/Base'
+import { Tag } from '@kube-design/components'
+import { Text } from 'components/Base'
 import ClusterTitle from 'components/Clusters/ClusterTitle'
 
 import styles from './index.scss'

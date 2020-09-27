@@ -17,8 +17,8 @@
  */
 
 import React from 'react'
-import { Modal, Form } from 'components/Base'
-import { Input, TextArea } from '@pitrix/lego-ui'
+import { Modal } from 'components/Base'
+import { Form, Input, TextArea } from '@kube-design/components'
 
 export default class AddNodeTypeModal extends React.Component {
   render() {

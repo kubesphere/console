@@ -19,7 +19,7 @@
 import React from 'react'
 import { keyBy } from 'lodash'
 import { observer, inject } from 'mobx-react'
-import { Loading } from '@pitrix/lego-ui'
+import { Loading } from '@kube-design/components'
 
 import Item from './Item'
 

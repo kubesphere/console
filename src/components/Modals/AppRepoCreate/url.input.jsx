@@ -25,8 +25,13 @@ import { isEmpty, get, set, trim } from 'lodash'
 
 import { checkRepoInvalidReason } from 'utils/app'
 
-import { Input, Select, Tooltip, Loading } from '@pitrix/lego-ui'
-import { Button } from 'components/Base'
+import {
+  Button,
+  Input,
+  Select,
+  Tooltip,
+  Loading,
+} from '@kube-design/components'
 
 import styles from './index.scss'
 

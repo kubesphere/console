@@ -105,7 +105,7 @@ describe('The Workspaces Page', function() {
 
     // clear search
     {
-      cy.get('.icon-clickable > .qicon').click()
+      cy.get('.icon-clickable > .kubed-icon').click()
 
       cy.wait('@getWorkspaces')
 

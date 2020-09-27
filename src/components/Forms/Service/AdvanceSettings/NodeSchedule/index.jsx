@@ -17,7 +17,7 @@
  */
 
 import React from 'react'
-import { Form } from 'components/Base'
+import { Form } from '@kube-design/components'
 import { PropertiesInput } from 'components/Inputs'
 
 export default class NodeSchedule extends React.Component {

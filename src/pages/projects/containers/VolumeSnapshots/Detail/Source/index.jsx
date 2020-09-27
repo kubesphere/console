@@ -18,7 +18,7 @@
 
 import React, { Component } from 'react'
 import { Panel } from 'components/Base'
-import { Icon } from '@pitrix/lego-ui'
+import { Icon } from '@kube-design/components'
 import { inject } from 'mobx-react'
 
 import styles from './index.scss'

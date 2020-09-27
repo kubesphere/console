@@ -19,7 +19,7 @@
 import React from 'react'
 import { get } from 'lodash'
 import { ReactSortable } from 'react-sortablejs'
-import { Icon, Loading } from '@pitrix/lego-ui'
+import { Icon, Loading } from '@kube-design/components'
 import classNames from 'classnames'
 
 import ErrorContainer from '../ErrorContainer'

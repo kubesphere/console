@@ -20,8 +20,15 @@ import React from 'react'
 import { observer } from 'mobx-react'
 import { get, set, uniqBy, isEmpty } from 'lodash'
 import PropTypes from 'prop-types'
-import { Columns, Column, Select, Input } from '@pitrix/lego-ui'
-import { Modal, Form, TextArea } from 'components/Base'
+import {
+  Column,
+  Columns,
+  Form,
+  Input,
+  Select,
+  TextArea,
+} from '@kube-design/components'
+import { Modal } from 'components/Base'
 import { ArrayInput, ObjectInput } from 'components/Inputs'
 import ClusterTitle from 'components/Clusters/ClusterTitle'
 import { PATTERN_SERVICE_NAME } from 'utils/constants'

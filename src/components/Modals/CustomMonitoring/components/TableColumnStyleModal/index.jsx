@@ -17,8 +17,8 @@
  */
 import React from 'react'
 import { pick } from 'lodash'
-import { Modal, Form } from 'components/Base'
-import { Select, Columns, Column } from '@pitrix/lego-ui'
+import { Modal } from 'components/Base'
+import { Column, Columns, Form, Select } from '@kube-design/components'
 import NumberInput from 'components/Inputs/NumberInput'
 import ColorSelector from '../FormInput/ColorSelector'
 

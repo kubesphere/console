@@ -16,14 +16,14 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, isNaN, unset } from 'lodash'
+import { get, isNaN, unset, pick } from 'lodash'
 import React from 'react'
 import { toJS } from 'mobx'
 
 import { PropTypes } from 'prop-types'
 import { safeParseJSON } from 'utils'
 import { ACCESS_MODES } from 'utils/constants'
-import { Form, Slider, SearchSelect } from 'components/Base'
+import { Form, Slider, Select } from '@kube-design/components'
 import { AccessModes } from 'components/Inputs'
 
 import StorageClassStore from 'stores/storageClass'
@@ -179,16 +179,16 @@ export default class VolumeSettings extends React.Component {
           desc={t('VOLUME_STORAGE_CLASS_DESC')}
           rules={[{ required: true, message: t('This param is required') }]}
         >
-          <SearchSelect
+          <Select
             name={STORAGE_CLASSES_KEY}
             defaultValue={storageClass.name}
-            page={storageClassesList.page}
-            total={storageClassesList.total}
+            pagination={pick(storageClassesList, ['page', 'limit', 'total'])}
             isLoading={storageClassesList.isLoading}
             onChange={this.handleStorageClassChange}
             options={storageClasses}
-            currentLength={storageClassesList.data.length}
             onFetch={this.updateStorageClass}
+            searchable
+            clearable
           />
         </Form.Item>
         <Form.Item
@@ -211,6 +211,7 @@ export default class VolumeSettings extends React.Component {
           <Slider
             name="spec.resources.requests.storage"
             {...this.getSliderProps(storageClass)}
+            withInput
           />
         </Form.Item>
       </>

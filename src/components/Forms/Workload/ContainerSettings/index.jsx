@@ -26,7 +26,7 @@ import SecretStore from 'stores/secret'
 import LimitRangeStore from 'stores/limitrange'
 import FederatedStore from 'stores/federated'
 
-import { Form } from 'components/Base'
+import { Form } from '@kube-design/components'
 import PodAffinity from './PodAffinity'
 import ReplicasControl from './ReplicasControl'
 import ClusterReplicasControl from './ClusterReplicasControl'
@@ -102,9 +102,7 @@ export default class ContainerSetting extends React.Component {
   }
 
   get containerSecretPath() {
-    return `${
-      this.prefix
-    }metadata.annotations["kubesphere.io/containerSecrets"]`
+    return `${this.prefix}metadata.annotations["kubesphere.io/containerSecrets"]`
   }
 
   checkPullSecret() {

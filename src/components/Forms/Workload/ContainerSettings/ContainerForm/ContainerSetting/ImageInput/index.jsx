@@ -21,12 +21,11 @@ import PropTypes from 'prop-types'
 import { get, set, throttle, isObject, isEmpty } from 'lodash'
 import classnames from 'classnames'
 import moment from 'moment-mini'
-import { Icon, Loading } from '@pitrix/lego-ui'
+import { Form, Button, Icon, Loading } from '@kube-design/components'
 
 import { getDocsUrl, formatSize } from 'utils'
 
 import { PATTERN_IMAGE, PATTERN_IMAGE_TAG } from 'utils/constants'
-import { Form, Button } from 'components/Base'
 
 import ContainerStore from 'stores/container'
 

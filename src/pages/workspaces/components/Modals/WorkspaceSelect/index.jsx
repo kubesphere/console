@@ -20,8 +20,8 @@ import React from 'react'
 import { get } from 'lodash'
 import { toJS, computed } from 'mobx'
 import { inject, observer } from 'mobx-react'
-import { Columns, Column } from '@pitrix/lego-ui'
-import { Button, Modal, Search, ScrollLoad } from 'components/Base'
+import { Button, InputSearch, Columns, Column } from '@kube-design/components'
+import { Modal, ScrollLoad } from 'components/Base'
 import WorkspaceStore from 'stores/workspace'
 import ClusterStore from 'stores/cluster'
 
@@ -95,7 +95,7 @@ export default class WorkspaceSelectModal extends React.Component {
         <div className={styles.bar}>
           <Columns>
             <Column>
-              <Search
+              <InputSearch
                 value={keyword}
                 placeholder={t('Search by name')}
                 onSearch={this.handleSearch}

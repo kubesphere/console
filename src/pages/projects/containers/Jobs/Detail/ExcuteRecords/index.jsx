@@ -23,15 +23,17 @@ import { observer, inject } from 'mobx-react'
 import { getLocalTime } from 'utils'
 
 import {
+  Button,
   Columns,
   Column,
   Level,
   LevelLeft,
   LevelRight,
   Table,
+  InputSearch,
   Pagination,
-} from '@pitrix/lego-ui'
-import { Button, Card, Status, Search } from 'components/Base'
+} from '@kube-design/components'
+import { Card, Status } from 'components/Base'
 
 import styles from './index.scss'
 
@@ -54,7 +56,10 @@ class ExcuteRecords extends React.Component {
     super(props)
 
     this.fetchData()
-    this.disposer = reaction(() => this.store.detail, () => this.fetchData())
+    this.disposer = reaction(
+      () => this.store.detail,
+      () => this.fetchData()
+    )
   }
 
   componentWillUnmount() {
@@ -125,7 +130,7 @@ class ExcuteRecords extends React.Component {
     <div className={styles.nav}>
       <Columns>
         <Column>
-          <Search
+          <InputSearch
             name="search"
             placeholder={t('Please input a keyword to filter')}
             onSearch={this.handleSearch}
@@ -143,9 +148,9 @@ class ExcuteRecords extends React.Component {
         <LevelLeft>{t('TOTAL_ITEMS', { num: total })}</LevelLeft>
         <LevelRight>
           <Pagination
-            current={page}
+            page={page}
             total={total}
-            pageSize={limit}
+            limit={limit}
             onChange={this.handlePagination}
           />
         </LevelRight>

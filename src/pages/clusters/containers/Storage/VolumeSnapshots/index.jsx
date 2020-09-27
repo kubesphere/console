@@ -28,7 +28,7 @@ import { getLocalTime } from 'utils'
 import { Avatar, Status } from 'components/Base'
 
 import Banner from 'components/Cards/Banner'
-import { Icon, Tooltip } from '@pitrix/lego-ui'
+import { Icon, Tooltip } from '@kube-design/components'
 
 import styles from './index.scss'
 
@@ -80,9 +80,7 @@ export default class VolumeSnapshot extends React.Component {
           <Avatar
             icon={'snapshot'}
             iconSize={40}
-            to={`/clusters/${cluster}/projects/${
-              record.namespace
-            }/${module}/${name}`}
+            to={`/clusters/${cluster}/projects/${record.namespace}/${module}/${name}`}
             title={name}
             desc={record.snapshotClassName}
           />

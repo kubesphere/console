@@ -18,8 +18,7 @@
 
 import React, { Component } from 'react'
 
-import { Form } from 'components/Base'
-import { Input, Select } from '@pitrix/lego-ui'
+import { Form, Input, Select } from '@kube-design/components'
 
 import CustomMonitorMetircQueryInput from '../../MetircQueryInput'
 import FormItemContainer from '../ItemContianer'

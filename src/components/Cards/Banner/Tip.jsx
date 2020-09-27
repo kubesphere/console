@@ -18,9 +18,8 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Icon } from '@pitrix/lego-ui'
+import { Button, Icon } from '@kube-design/components'
 import classnames from 'classnames'
-import { Button } from 'components/Base'
 
 import styles from './index.scss'
 

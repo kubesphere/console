@@ -2,6 +2,7 @@
 @import '~scss/mixins';
 
 .reason {
+  display: inline-block;
   @include ellipsis;
 
   & > span {

@@ -19,7 +19,7 @@
 import React from 'react'
 import classnames from 'classnames'
 
-import { Button } from 'components/Base'
+import { Button } from '@kube-design/components'
 
 import styles from './index.scss'
 

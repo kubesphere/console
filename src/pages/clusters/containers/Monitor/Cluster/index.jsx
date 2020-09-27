@@ -18,7 +18,7 @@
 
 import React from 'react'
 import { observer, inject } from 'mobx-react'
-import { Loading } from '@pitrix/lego-ui'
+import { Loading } from '@kube-design/components'
 
 import Banner from 'components/Cards/Banner'
 import { renderRoutes } from 'utils/router.config'

@@ -134,7 +134,7 @@ describe('The Deployment Detail Page', function() {
     cy.visit(`/projects/e2e-test/deployments/${formData.metadata.name}`)
 
     cy.wait('@getDeployment')
-    cy.get('.qicon-loading').should('not.exist')
+    cy.get('.kubed-icon-loading').should('not.exist')
 
     cy.get('[data-test="detail-title"]').contains(formData.metadata.name)
     cy.get('[data-test="detail-labels"]').contains('app')
@@ -152,7 +152,7 @@ describe('The Deployment Detail Page', function() {
       cy.visit(`/projects/e2e-test/deployments/${formData.metadata.name}`)
       cy.wait('@getDeployment')
       cy.wait('@getRules')
-      cy.get('.qicon-loading').should('not.exist')
+      cy.get('.kubed-icon-loading').should('not.exist')
     }
 
     function test_edit() {
@@ -186,7 +186,7 @@ describe('The Deployment Detail Page', function() {
       cy.get('[data-test="detail-editYaml"]').click()
 
       cy.wait(1000)
-      cy.get('.qicon-loading').should('not.exist')
+      cy.get('.kubed-icon-loading').should('not.exist')
 
       cy.get('[data-test="modal-ok"]').click()
 
@@ -201,7 +201,7 @@ describe('The Deployment Detail Page', function() {
     )
     cy.wait('@getDeployment')
     cy.wait('@getRules')
-    cy.get('.qicon-loading').should('not.exist')
+    cy.get('.kubed-icon-loading').should('not.exist')
 
     // check ports
     cy.get('[data-test="panel-ports"]').contains('6379')
@@ -224,7 +224,7 @@ describe('The Deployment Detail Page', function() {
 
     // scale replicas
     cy.get(
-      '.src-pages-projects-components-Cards-Replica-Status-index__scale .qicon-chevron-down'
+      '.src-pages-projects-components-Cards-Replica-Status-index__scale .kubed-icon-chevron-down'
     ).click()
     cy.get('.src-components-Base-NotifyConfirm-index__wrapper')
       .contains('Apply changes')
@@ -234,13 +234,13 @@ describe('The Deployment Detail Page', function() {
     cy.wait('@getPods')
 
     cy.get(
-      '.src-pages-projects-components-Cards-Replica-Status-index__scale .qicon-chevron-up'
+      '.src-pages-projects-components-Cards-Replica-Status-index__scale .kubed-icon-chevron-up'
     ).click()
     cy.get(
-      '.src-pages-projects-components-Cards-Replica-Status-index__scale .qicon-chevron-up'
+      '.src-pages-projects-components-Cards-Replica-Status-index__scale .kubed-icon-chevron-up'
     ).click()
     cy.get(
-      '.src-pages-projects-components-Cards-Replica-Status-index__scale .qicon-chevron-up'
+      '.src-pages-projects-components-Cards-Replica-Status-index__scale .kubed-icon-chevron-up'
     ).click()
     cy.get('.src-components-Base-NotifyConfirm-index__wrapper')
       .contains('Apply changes')
@@ -259,11 +259,11 @@ describe('The Deployment Detail Page', function() {
     cy.wait('@getDeployment')
     cy.wait('@getRules')
     cy.wait('@getReplicasets')
-    cy.get('.qicon-loading').should('not.exist')
+    cy.get('.kubed-icon-loading').should('not.exist')
 
     cy.get('[data-revision]')
       .first()
-      .find('.qicon-eye')
+      .find('.kubed-icon-eye')
       .click()
     cy.get('.ReactModal__Overlay').contains('View YAML')
 
@@ -281,7 +281,7 @@ describe('The Deployment Detail Page', function() {
     )
     cy.wait('@getDeployment')
     cy.wait('@getReplicasets')
-    cy.get('.qicon-loading').should('not.exist')
+    cy.get('.kubed-icon-loading').should('not.exist')
 
     cy.get('[data-test="detail-more"]').click()
     cy.get('[data-test="detail-rollBack"]').click()
@@ -302,20 +302,20 @@ describe('The Deployment Detail Page', function() {
     )
     cy.wait('@getDeployment')
     cy.wait('@getMetrics')
-    cy.get('.qicon-loading').should('not.exist')
+    cy.get('.kubed-icon-loading').should('not.exist')
   })
 
   it('detail page enviroment', function() {
     cy.visit(`/projects/e2e-test/deployments/${formData.metadata.name}/envs`)
     cy.wait('@getDeployment')
-    cy.get('.qicon-loading').should('not.exist')
+    cy.get('.kubed-icon-loading').should('not.exist')
   })
 
   it('detail page events', function() {
     cy.visit(`/projects/e2e-test/deployments/${formData.metadata.name}/events`)
     cy.wait('@getDeployment')
     cy.wait('@getEvents')
-    cy.get('.qicon-loading').should('not.exist')
+    cy.get('.kubed-icon-loading').should('not.exist')
 
     cy.contains('ScalingReplicaSet')
   })
@@ -326,7 +326,7 @@ describe('The Deployment Detail Page', function() {
     )
     cy.wait('@getDeployment')
     cy.wait('@getRules')
-    cy.get('.qicon-loading').should('not.exist')
+    cy.get('.kubed-icon-loading').should('not.exist')
 
     cy.get('[data-test="detail-more"]').click()
     cy.get('[data-test="detail-editConfigTemplate"]').click()
@@ -339,7 +339,7 @@ describe('The Deployment Detail Page', function() {
     )
     cy.wait('@getDeployment')
     cy.wait('@getRules')
-    cy.get('.qicon-loading').should('not.exist')
+    cy.get('.kubed-icon-loading').should('not.exist')
 
     cy.get('[data-test="detail-more"]').click()
     cy.get('[data-test="detail-editHpa"]').click()

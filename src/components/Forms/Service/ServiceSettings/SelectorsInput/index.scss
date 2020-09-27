@@ -19,6 +19,10 @@
   margin-left: 12px !important;
 
   :global {
+    .popper-content {
+      padding: 0;
+    }
+
     .popper-arrow {
       border-bottom-color: $light-color04 !important;
       border-left-color: $light-color04 !important;

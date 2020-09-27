@@ -21,7 +21,7 @@ import React, { Component } from 'react'
 import { keyBy, isEmpty } from 'lodash'
 import { inject, observer } from 'mobx-react'
 import { joinSelector } from 'utils'
-import { Loading } from '@pitrix/lego-ui'
+import { Loading } from '@kube-design/components'
 import { Panel, Text } from 'components/Base'
 import ClusterTitle from 'components/Clusters/ClusterTitle'
 

@@ -16,13 +16,12 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { Select } from '@pitrix/lego-ui'
 import React, { Component } from 'react'
 import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 import { get, noop } from 'lodash'
+import { Button, InputSearch, Select } from '@kube-design/components'
 
-import { Button, Search } from 'components/Base'
 import AppList from 'appStore/components/AppList'
 
 import AppStore from 'stores/openpitrix/app'
@@ -167,7 +166,7 @@ class Apps extends Component {
           options={this.repoSelectOptions}
           value={this.selectedRepo}
         />
-        <Search
+        <InputSearch
           onSearch={this.handleSearch}
           className={styles.search}
           placeholder={t('SEARCH_TIPS')}

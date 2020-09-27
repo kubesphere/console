@@ -18,7 +18,7 @@
 import React from 'react'
 import { observer, inject } from 'mobx-react'
 import { translateTimeAlias } from 'utils/time'
-import { Icon } from '@pitrix/lego-ui'
+import { Icon } from '@kube-design/components'
 
 import Select from '../components/DarkThemeSelect'
 

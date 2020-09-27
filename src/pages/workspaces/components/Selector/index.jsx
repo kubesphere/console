@@ -19,7 +19,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import { Icon, Tooltip } from '@pitrix/lego-ui'
+import { Icon, Tooltip } from '@kube-design/components'
 
 import SelectModal from 'workspaces/components/Modals/WorkspaceSelect'
 

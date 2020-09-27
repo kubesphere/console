@@ -19,7 +19,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { isEmpty } from 'lodash'
-import { Icon } from '@pitrix/lego-ui'
+import { Icon } from '@kube-design/components'
 import classnames from 'classnames'
 
 import { getDocsUrl } from 'utils'

@@ -18,9 +18,8 @@
 
 import React, { Component } from 'react'
 
-import { Icon, Dropdown } from '@pitrix/lego-ui'
+import { Dropdown, Form, Icon } from '@kube-design/components'
 
-import { Form } from 'components/Base'
 import Confirm from 'components/Forms/Base/Confirm'
 
 import styles from './index.scss'

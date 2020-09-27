@@ -20,7 +20,7 @@ import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 
-import { Table } from '@pitrix/lego-ui'
+import { Table } from '@kube-design/components'
 import { Panel, Status } from 'components/Base'
 import { getLocalTime } from 'utils'
 

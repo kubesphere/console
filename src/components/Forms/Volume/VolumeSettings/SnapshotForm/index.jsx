@@ -18,12 +18,12 @@
 
 import React, { Component } from 'react'
 import { get, set } from 'lodash'
-import { Form, ScrollLoad } from 'components/Base'
+import { ScrollLoad } from 'components/Base'
 import { toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import { AccessModes } from 'components/Inputs'
 import classNames from 'classnames'
-import { Icon, Loading } from '@pitrix/lego-ui'
+import { Form, Icon, Loading } from '@kube-design/components'
 import PropTypes from 'prop-types'
 
 import SnapshotStore from 'stores/volumeSnapshot'
@@ -130,7 +130,7 @@ export default class SanpshotForm extends Component {
         <Form.Item
           label={t('Volume Snapshot')}
           rules={[{ required: true, message: t('This param is required') }]}
-          controlClassName={styles.snapshotContainer}
+          className={styles.snapshotContainer}
         >
           <SnapshotSelect
             className={styles.snapshots}

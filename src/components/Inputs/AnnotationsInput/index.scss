@@ -1,39 +1,6 @@
 @import '~scss/variables';
 
 .dropdown {
-  :global {
-    .autocomplete-selector {
-      padding: 8px;
-      border: none;
-      border-radius: $border-radius;
-      box-shadow: 0 4px 16px 0 rgba(39, 50, 71, 0.28);
-      background-color: #ffffff;
-      width: auto;
-      min-width: 100%;
-      z-index: 1000;
-
-      > li {
-        padding: 8px 27px 8px 24px;
-        border-radius: 20px;
-
-        &.active,
-        &:hover {
-          background-color: #f5f7f8;
-        }
-
-        > a {
-          font-family: $font-family-id;
-          font-weight: $font-bold;
-          line-height: 1.67;
-          color: #485b7f;
-          white-space: nowrap;
-
-          .highlight {
-            font-weight: $font-bold;
-            color: $primary;
-          }
-        }
-      }
-    }
-  }
+  width: 100%;
+  max-width: 455px;
 }

@@ -20,7 +20,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { observer } from 'mobx-react'
 
-import { Modal, Form } from 'components/Base'
+import { Form } from '@kube-design/components'
+import { Modal } from 'components/Base'
 import { AnnotationsInput } from 'components/Inputs'
 
 import styles from './index.scss'

@@ -22,7 +22,7 @@ import { get, isEmpty } from 'lodash'
 
 import { getAreaChartOps } from 'utils/monitoring'
 
-import { Loading } from '@pitrix/lego-ui'
+import { Loading } from '@kube-design/components'
 import { Empty } from 'components/Base'
 import { SimpleArea } from 'components/Charts'
 

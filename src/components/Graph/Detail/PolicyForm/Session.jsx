@@ -19,7 +19,7 @@
 import { debounce } from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Select, Input } from '@pitrix/lego-ui'
+import { Select, Input } from '@kube-design/components'
 
 const parseCookie = str => {
   let status = true

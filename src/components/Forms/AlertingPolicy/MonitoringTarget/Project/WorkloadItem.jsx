@@ -26,7 +26,7 @@ import { ICON_TYPES } from 'utils/constants'
 import { getWorkloadStatus } from 'utils/status'
 import { getWorkloadReplicaCount } from 'utils/workload'
 
-import { Icon, Checkbox } from '@pitrix/lego-ui'
+import { Icon, Checkbox } from '@kube-design/components'
 
 import styles from './index.scss'
 

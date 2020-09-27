@@ -18,7 +18,7 @@
 
 import React from 'react'
 
-import { Icon } from '@pitrix/lego-ui'
+import { Icon } from '@kube-design/components'
 
 import PieChart from 'components/Charts/Pie/PieChart'
 

@@ -22,8 +22,7 @@ import classnames from 'classnames'
 import { get, set, debounce } from 'lodash'
 import isEqual from 'react-fast-compare'
 
-import { Icon, Input, Columns, Column } from '@pitrix/lego-ui'
-import { Alert } from 'components/Base'
+import { Icon, Input, Columns, Column, Alert } from '@kube-design/components'
 
 import { cpuFormat, memoryFormat } from 'utils'
 

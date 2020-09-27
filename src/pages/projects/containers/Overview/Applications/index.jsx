@@ -21,7 +21,7 @@ import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import { Link } from 'react-router-dom'
 import { get, isEmpty } from 'lodash'
-import { Columns, Column } from '@pitrix/lego-ui'
+import { Columns, Column } from '@kube-design/components'
 
 import { Panel, Image } from 'components/Base'
 import ApplicationStore from 'stores/openpitrix/application'

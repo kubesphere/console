@@ -24,13 +24,11 @@ import ProjectStore from 'stores/project'
 import DevOpsStore from 'stores/devops'
 import WorkspaceStore from 'stores/workspace'
 
-import { Layout, Loading } from '@pitrix/lego-ui'
+import { Loading } from '@kube-design/components'
 
 import { Breadcrumb } from 'components/Base'
 
 import styles from './index.scss'
-
-const { LayoutHeader } = Layout
 
 @inject('rootStore')
 @observer
@@ -94,17 +92,17 @@ class DetailLayout extends Component {
     }
 
     return (
-      <Layout className={styles.wrapper}>
-        <LayoutHeader className={styles.header}>
+      <div className={styles.wrapper}>
+        <div className={styles.header}>
           <Breadcrumb
             params={rest.match.params}
             pathname={rest.location.pathname}
             breadcrumbs={breadcrumbs}
             routes={rest.route.routes}
           />
-        </LayoutHeader>
+        </div>
         <DetailComponent {...commonProps} ref={this.detailRef} />
-      </Layout>
+      </div>
     )
   }
 }

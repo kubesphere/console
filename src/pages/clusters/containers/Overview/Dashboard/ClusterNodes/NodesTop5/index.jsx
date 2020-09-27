@@ -20,8 +20,8 @@ import { get } from 'lodash'
 import React, { Component } from 'react'
 import { observer } from 'mobx-react'
 import { Link } from 'react-router-dom'
-import { Icon, Select } from '@pitrix/lego-ui'
-import { Button, Text } from 'components/Base'
+import { Button, Icon, Select } from '@kube-design/components'
+import { Text } from 'components/Base'
 
 import NodeStore from 'stores/rank/node'
 

@@ -18,8 +18,7 @@
 
 import { get, omit, isEmpty } from 'lodash'
 import React from 'react'
-import { Columns, Column, Input, Select } from '@pitrix/lego-ui'
-import { Form } from 'components/Base'
+import { Column, Columns, Form, Input, Select } from '@kube-design/components'
 import { PropertiesInput } from 'components/Inputs'
 import { MODULE_KIND_MAP, PROVISIONERS, ACCESS_MODES } from 'utils/constants'
 

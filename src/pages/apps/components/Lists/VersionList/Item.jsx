@@ -21,10 +21,9 @@ import { toJS } from 'mobx'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { inject } from 'mobx-react'
-import { Icon, Tabs } from '@pitrix/lego-ui'
+import { Button, Notify, Icon, Tabs } from '@kube-design/components'
 import { capitalize } from 'lodash'
 
-import { Button, Notify } from 'components/Base'
 import DeleteModal from 'components/Modals/Delete'
 import Confirm from 'apps/components/Confirm'
 import VersionStatus from 'apps/components/VersionStatus'
@@ -250,11 +249,7 @@ export default class VersionItem extends React.PureComponent {
 
     return (
       <div className={styles.itemExtra}>
-        <Tabs
-          className="tabs-new"
-          activeName={tab}
-          onChange={this.handleTabChange}
-        >
+        <Tabs type="button" activeName={tab} onChange={this.handleTabChange}>
           <TabPanel label={t('Chart Files')} name="configFile">
             <ConfigFile
               appId={detail.app_id}

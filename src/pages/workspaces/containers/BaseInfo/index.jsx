@@ -20,8 +20,8 @@ import React from 'react'
 import { get, isEmpty, set } from 'lodash'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
-import { Checkbox } from '@pitrix/lego-ui'
-import { Text, Panel, Alert, Button, Switch } from 'components/Base'
+import { Alert, Button, Checkbox } from '@kube-design/components'
+import { Text, Panel, Switch } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import EditBasicInfoModal from 'workspaces/components/Modals/EditBasicInfo'
 import ClusterTitle from 'components/Clusters/ClusterTitle'
@@ -162,7 +162,7 @@ class BaseInfo extends React.Component {
     this.store.patch(detail, obj).then(() => this.fetchDetail())
   }
 
-  handleDeleteCheckboxChange = (e, checked) => {
+  handleDeleteCheckboxChange = checked => {
     this.setState({ confirm: checked })
   }
 

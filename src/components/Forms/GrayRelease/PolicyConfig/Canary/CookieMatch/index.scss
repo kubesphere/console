@@ -1,10 +1,13 @@
 .match {
+  display: flex;
+
   :global {
     .select {
-      min-width: 180px;
+      width: 180px;
+      margin-right: 12px;
     }
     .input {
-      min-width: 431px;
+      width: 431px;
     }
   }
 }

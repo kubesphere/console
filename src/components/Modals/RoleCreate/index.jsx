@@ -20,9 +20,9 @@ import { get, set } from 'lodash'
 import React from 'react'
 import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
-import { Input } from '@pitrix/lego-ui'
+import { Input, Form, Alert, TextArea } from '@kube-design/components'
 
-import { Modal, Form, Alert, TextArea } from 'components/Base'
+import { Modal } from 'components/Base'
 import EditAuthorization from 'components/Modals/EditAuthorization'
 
 import { PATTERN_NAME } from 'utils/constants'

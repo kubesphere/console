@@ -19,7 +19,7 @@
 import React from 'react'
 import { isEmpty, get } from 'lodash'
 import { observer, inject } from 'mobx-react'
-import { Loading } from '@pitrix/lego-ui'
+import { Loading } from '@kube-design/components'
 
 import { Status } from 'components/Base'
 import { getDisplayName, getLocalTime } from 'utils'
@@ -68,9 +68,7 @@ export default class VolumeDetail extends React.Component {
         return `/${workspace}/federatedprojects/${namespace}/${this.module}`
       }
 
-      return `/${workspace}/clusters/${cluster}/projects/${namespace}/${
-        this.module
-      }`
+      return `/${workspace}/clusters/${cluster}/projects/${namespace}/${this.module}`
     }
     return `/clusters/${cluster}/${this.module}`
   }

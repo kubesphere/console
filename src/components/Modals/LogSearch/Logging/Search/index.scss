@@ -21,21 +21,17 @@ $logCountColor: #329dce;
       border-left: solid 2px #d8dee5;
       border-radius: 0;
     }
-    .clusterSelect,
-    .queryModeSelect {
+    .select {
       width: 120px;
       line-height: 40px;
-      .queryModeOptions * {
-        border: none;
-        :global {
-          .option-selected-area {
-            display: none;
-          }
-        }
-      }
-
       :global {
-        .select-menu-outer {
+        .select-control {
+          height: 40px;
+          border: none;
+          box-shadow: none !important;
+        }
+
+        .select-options {
           width: auto !important;
           min-width: 130px;
         }
@@ -81,6 +77,7 @@ $logCountColor: #329dce;
         border: none;
         background: transparent;
         box-shadow: none;
+        height: 40px;
         &:hover {
           background: transparent;
         }

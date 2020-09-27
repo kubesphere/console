@@ -21,8 +21,8 @@ import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { omit } from 'lodash'
 
-import { Icon } from '@pitrix/lego-ui'
-import { Button } from 'components/Base'
+import { Button, Icon } from '@kube-design/components'
+
 import DefaultRange from './Range/Default'
 import CustomRange from './Range/Custom'
 

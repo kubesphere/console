@@ -21,8 +21,7 @@ import React from 'react'
 import { getLocalTime } from 'utils'
 import { getMonitoringRuleInfo } from 'utils/alerting'
 
-import { Icon, Columns, Column, Tooltip } from '@pitrix/lego-ui'
-import { Button } from 'components/Base'
+import { Button, Icon, Columns, Column, Tooltip } from '@kube-design/components'
 
 import styles from './index.scss'
 

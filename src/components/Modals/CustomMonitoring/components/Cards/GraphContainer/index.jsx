@@ -18,7 +18,7 @@
 
 import React from 'react'
 
-import { Icon, Tooltip } from '@pitrix/lego-ui'
+import { Icon, Tooltip } from '@kube-design/components'
 
 import styles from './index.scss'
 

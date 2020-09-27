@@ -19,9 +19,8 @@
 import { isEmpty, debounce } from 'lodash'
 import React from 'react'
 import isEqual from 'react-fast-compare'
-import { Alert, Tooltip, Popper } from '@pitrix/lego-ui'
+import { Alert, Button, Tooltip, Popper } from '@kube-design/components'
 
-import { Button } from 'components/Base'
 import { PropertiesInput } from 'components/Inputs'
 import WorkloadStore from 'stores/workload'
 import { joinSelector, isValidLabel } from 'utils'

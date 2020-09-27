@@ -55,6 +55,7 @@ pre {
   font-size: $body-size;
   color: $text-color;
   font-family: $font-family;
+  overflow: auto;
   -webkit-font-smoothing: unset;
 }
 

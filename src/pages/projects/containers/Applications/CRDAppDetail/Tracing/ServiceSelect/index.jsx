@@ -19,7 +19,7 @@
 import { isEmpty } from 'lodash'
 import React from 'react'
 import { PropTypes } from 'prop-types'
-import { Icon, Dropdown } from '@pitrix/lego-ui'
+import { Icon, Dropdown } from '@kube-design/components'
 import isEqual from 'react-fast-compare'
 
 import Item from './Item'

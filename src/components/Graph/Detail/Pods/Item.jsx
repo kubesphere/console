@@ -19,7 +19,7 @@
 import React from 'react'
 import classnames from 'classnames'
 import { get } from 'lodash'
-import { Icon } from '@pitrix/lego-ui'
+import { Icon } from '@kube-design/components'
 import { Link } from 'react-router-dom'
 import { getLocalTime } from 'utils'
 
@@ -49,9 +49,7 @@ export default class Item extends React.Component {
         </div>
         <div className={styles.text}>
           <Link
-            to={`/${workspace}/clusters/${cluster}/projects/${namespace}/pods/${
-              data.name
-            }`}
+            to={`/${workspace}/clusters/${cluster}/projects/${namespace}/pods/${data.name}`}
           >
             <strong onClick={this.handleLinkClick}>{data.name}</strong>
           </Link>

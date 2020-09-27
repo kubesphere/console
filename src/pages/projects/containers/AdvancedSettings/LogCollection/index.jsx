@@ -21,8 +21,8 @@ import classNames from 'classnames'
 import { get } from 'lodash'
 
 import { observer } from 'mobx-react'
-import { Icon } from '@pitrix/lego-ui'
-import { Switch, Panel, Alert, Modal } from 'components/Base'
+import { Alert, Icon } from '@kube-design/components'
+import { Switch, Panel, Modal } from 'components/Base'
 
 import styles from './index.scss'
 

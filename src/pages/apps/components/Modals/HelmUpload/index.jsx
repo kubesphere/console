@@ -19,9 +19,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
-import { Icon } from '@pitrix/lego-ui'
+import { Icon, Notify } from '@kube-design/components'
 
-import { Modal, Notify } from 'components/Base'
+import { Modal } from 'components/Base'
 import UploadInfo from 'apps/components/Cards/UploadInfo'
 import CreateInfo from 'apps/components/Cards/CreateInfo'
 import { OPENPITRIX_LINKS } from 'configs/openpitrix/app'

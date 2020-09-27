@@ -22,8 +22,15 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { toJS, reaction } from 'mobx'
 import { inject, observer } from 'mobx-react'
-import { Loading, Columns, Column, Alert, Icon } from '@pitrix/lego-ui'
-import { Button, Modal, NotifyConfirm } from 'components/Base'
+import {
+  Button,
+  Loading,
+  Columns,
+  Column,
+  Alert,
+  Icon,
+} from '@kube-design/components'
+import { Modal, NotifyConfirm } from 'components/Base'
 import { TrafficSlider } from 'components/Inputs'
 
 import GrayReleaseStore from 'stores/grayrelease'
@@ -426,9 +433,7 @@ export default class GatewaySettingModal extends React.Component {
             {t('Grayscale Release Strategy')}: <strong>{t(cate.title)}</strong>
           </p>
         </div>
-        <Button noShadow onClick={this.handleOffline}>
-          {t('Job offline')}
-        </Button>
+        <Button onClick={this.handleOffline}>{t('Job offline')}</Button>
       </div>
     )
   }
@@ -690,9 +695,7 @@ export default class GatewaySettingModal extends React.Component {
                 </div>
                 <p>{t('Has taken over all traffic')}</p>
                 <div>
-                  <Button noShadow onClick={this.handleRecover}>
-                    {t('Recover')}
-                  </Button>
+                  <Button onClick={this.handleRecover}>{t('Recover')}</Button>
                 </div>
               </div>
             </div>

@@ -20,8 +20,7 @@ import { get } from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { Buttons, Icon, Columns, Column } from '@pitrix/lego-ui'
-import { Button, Tag } from 'components/Base'
+import { Button, Tag, Icon, Columns, Column } from '@kube-design/components'
 import { CLUSTER_PROVIDER_ICON, CLUSTER_GROUP_TAG_TYPE } from 'utils/constants'
 
 import styles from './index.scss'
@@ -98,10 +97,10 @@ const Item = ({ rule, tls = {}, onDelete, onEdit }) => {
           </div>
         ))}
       </div>
-      <Buttons>
+      <div className="buttons">
         <Button type="flat" icon="trash" onClick={handleDelete} />
         <Button type="flat" icon="pen" onClick={handleEdit} />
-      </Buttons>
+      </div>
     </div>
   )
 }

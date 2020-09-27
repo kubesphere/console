@@ -17,7 +17,7 @@
  */
 
 import React, { Component } from 'react'
-import { Button } from 'components/Base'
+import { Button } from '@kube-design/components'
 import Banner from 'components/Cards/Banner'
 import { trigger } from 'utils/action'
 import { inject, observer } from 'mobx-react'

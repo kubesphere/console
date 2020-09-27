@@ -22,13 +22,14 @@ import classNames from 'classnames'
 import { observer } from 'mobx-react'
 import { reaction } from 'mobx'
 import { get } from 'lodash'
+import { Button } from '@kube-design/components'
 import {
   addFullScreenChangeEvents,
   removeFullScreenChangeEvents,
   enterFullScreen,
 } from 'utils/dom'
 
-import { Modal, Button } from 'components/Base'
+import { Modal } from 'components/Base'
 import Status from 'devops/components/Status'
 import { getPipelineStatus } from 'utils/status'
 import PipelineContent from 'devops/components/PipelineStatus'

@@ -22,7 +22,7 @@ import classNames from 'classnames'
 import { set } from 'lodash'
 import { observer } from 'mobx-react'
 import { observable, computed, action, reaction, toJS } from 'mobx'
-import { Icon, Slider } from '@pitrix/lego-ui'
+import { Icon, Slider } from '@kube-design/components'
 
 import {
   enterFullScreen,

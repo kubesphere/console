@@ -30,7 +30,7 @@ import {
   LevelRight,
   Pagination,
   Loading,
-} from '@pitrix/lego-ui'
+} from '@kube-design/components'
 import RunItem from './Item'
 
 import styles from './index.scss'
@@ -163,9 +163,9 @@ export default class RunsCard extends React.Component {
         <LevelLeft>{t('TOTAL_ITEMS', { num: total })}</LevelLeft>
         <LevelRight>
           <Pagination
-            current={page}
+            page={page}
             total={total}
-            pageSize={limit}
+            limit={limit}
             onChange={this.handlePage}
           />
         </LevelRight>

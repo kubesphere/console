@@ -82,7 +82,7 @@ export default class DefaultResourceEditModal extends React.Component {
     const { visible, onCancel, isSubmitting } = this.props
     return (
       <Modal
-        width={691}
+        width={791}
         title={t('Container Resource Default Request')}
         icon="firewall"
         onOk={this.handleOk}

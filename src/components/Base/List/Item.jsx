@@ -18,8 +18,9 @@
 
 import React from 'react'
 import classNames from 'classnames'
-import { Buttons, Icon } from '@pitrix/lego-ui'
-import { Button, Indicator } from 'components/Base'
+import { Icon, Button } from '@kube-design/components'
+
+import { Indicator } from 'components/Base'
 
 import styles from './index.scss'
 
@@ -84,10 +85,10 @@ export default class Item extends React.Component {
         </div>
         {extras}
         {operations || (
-          <Buttons>
+          <div className="buttons">
             {onDelete && <Button type="flat" icon="trash" onClick={onDelete} />}
             {onEdit && <Button type="flat" icon="pen" onClick={onEdit} />}
-          </Buttons>
+          </div>
         )}
       </div>
     )

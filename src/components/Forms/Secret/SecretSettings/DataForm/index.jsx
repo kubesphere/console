@@ -19,8 +19,7 @@
 import React from 'react'
 import { trim } from 'lodash'
 import PropTypes from 'prop-types'
-import { Input, TextArea } from '@pitrix/lego-ui'
-import { Form } from 'components/Base'
+import { Form, Input, TextArea } from '@kube-design/components'
 import { ReactComponent as BackIcon } from 'src/assets/back.svg'
 import { safeAtob } from 'utils/base64'
 
@@ -100,7 +99,7 @@ export default class SecretDataForm extends React.Component {
               <Input name="key" placeholder="key" />
             </Form.Item>
             <Form.Item label={t('DATA-VALUE')}>
-              <TextArea name="value" placeholder="value" rows={4} resize />
+              <TextArea name="value" placeholder="value" rows={4} autoResize />
             </Form.Item>
           </Form>
         </div>

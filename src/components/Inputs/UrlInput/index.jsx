@@ -19,9 +19,8 @@
 import React from 'react'
 import classnames from 'classnames'
 
-import { Input, Column, Columns } from '@pitrix/lego-ui'
+import { Column, Columns, Form, Input } from '@kube-design/components'
 import { NumberInput } from 'components/Inputs'
-import { Form } from 'components/Base'
 
 import styles from './index.scss'
 

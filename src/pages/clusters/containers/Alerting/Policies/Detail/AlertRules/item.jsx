@@ -24,7 +24,7 @@ import { get } from 'lodash'
 import { ALL_METRICS_CONFIG } from 'configs/alerting/metrics'
 import { SEVERITY_LEVEL } from 'configs/alerting/metrics/rule.config'
 
-import { Icon } from '@pitrix/lego-ui'
+import { Icon } from '@kube-design/components'
 
 import styles from './index.scss'
 

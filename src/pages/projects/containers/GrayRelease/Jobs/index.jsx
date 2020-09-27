@@ -18,10 +18,9 @@
 
 import { isEmpty } from 'lodash'
 import React from 'react'
-import { Loading } from '@pitrix/lego-ui'
+import { Button, Notify, Loading } from '@kube-design/components'
 import { observer, inject } from 'mobx-react'
 
-import { Button, Notify } from 'components/Base'
 import EmptyList from 'components/Cards/EmptyList'
 import GrayReleaseDetail from 'projects/components/Modals/GrayReleaseDetail'
 import GrayReleaseStore from 'stores/grayrelease'

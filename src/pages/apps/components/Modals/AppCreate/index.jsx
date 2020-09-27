@@ -20,7 +20,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 
-import { Modal, Button } from 'components/Base'
+import { Button } from '@kube-design/components'
+import { Modal } from 'components/Base'
 import ToggleView from 'apps/components/ToggleView'
 import { getDocsUrl } from 'utils'
 

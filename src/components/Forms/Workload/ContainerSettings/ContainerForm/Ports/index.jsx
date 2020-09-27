@@ -19,7 +19,7 @@
 import React from 'react'
 
 import { PATTERN_PORT_NAME } from 'utils/constants'
-import { Form } from 'components/Base'
+import { Form } from '@kube-design/components'
 import {
   ContainerPort,
   ContainerServicePort,

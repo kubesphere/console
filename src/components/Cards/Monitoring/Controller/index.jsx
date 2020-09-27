@@ -23,8 +23,8 @@ import { get, isEmpty, isArray, flatten } from 'lodash'
 
 import { startAutoRefresh, stopAutoRefresh } from 'utils/monitoring'
 
-import { Icon, Loading, Select } from '@pitrix/lego-ui'
-import { Card, Button } from 'components/Base'
+import { Button, Icon, Loading, Select } from '@kube-design/components'
+import { Card } from 'components/Base'
 import TimeSelector from './TimeSelector'
 
 import styles from './index.scss'
@@ -181,9 +181,13 @@ export default class MonitoringController extends React.Component {
     if (!enableAutoRefresh) return null
 
     return (
-      <Button className={styles.button} onClick={this.handleAutoRefresh}>
-        <Icon type="light" name={autoRefresh ? 'pause' : 'start'} size={20} />
-      </Button>
+      <Button
+        className={styles.button}
+        type="control"
+        icon={autoRefresh ? 'pause' : 'start'}
+        iconType="light"
+        onClick={this.handleAutoRefresh}
+      ></Button>
     )
   }
 
@@ -219,9 +223,13 @@ export default class MonitoringController extends React.Component {
           onToggle={this.handleToggle}
         />
         {this.renderAutoRefresh()}
-        <Button className={styles.button} onClick={this.handleRefresh}>
-          <Icon type="light" name="refresh" size={20} />
-        </Button>
+        <Button
+          className={styles.button}
+          type="control"
+          icon="refresh"
+          iconType="light"
+          onClick={this.handleRefresh}
+        ></Button>
         {this.renderCustomActions()}
       </div>
     )

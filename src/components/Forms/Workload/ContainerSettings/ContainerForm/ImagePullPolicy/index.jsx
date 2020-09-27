@@ -17,7 +17,8 @@
  */
 
 import React from 'react'
-import { Form, TypeSelect } from 'components/Base'
+import { Form } from '@kube-design/components'
+import { TypeSelect } from 'components/Base'
 
 export default class ImagePullPolicy extends React.Component {
   static defaultProps = {

@@ -17,14 +17,13 @@
  */
 
 import React from 'react'
-import { Icon, Input } from '@pitrix/lego-ui'
+import { Form, Icon, Input, Tag, TextArea } from '@kube-design/components'
 import {
   PATTERN_NAME,
   CLUSTER_GROUP_TAG_TYPE,
   CLUSTER_PROVIDERS,
   CLUSTER_PRESET_GROUPS,
 } from 'utils/constants'
-import { Form, Tag, TextArea } from 'components/Base'
 import { SelectInput } from 'components/Inputs'
 
 import SubTitle from '../SubTitle'

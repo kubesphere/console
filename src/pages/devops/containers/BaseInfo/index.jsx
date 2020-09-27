@@ -22,8 +22,8 @@ import { Link } from 'react-router-dom'
 import classNames from 'classnames'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
-import { Icon, Dropdown, Menu } from '@pitrix/lego-ui'
-import { Panel, Button, Notify } from 'components/Base'
+import { Icon, Button, Notify, Dropdown, Menu } from '@kube-design/components'
+import { Panel } from 'components/Base'
 import DeleteModal from 'components/Modals/Delete'
 import Banner from 'components/Cards/Banner'
 import EditModal from 'devops/components/Modals/DevOpsEdit'
@@ -231,7 +231,7 @@ class BaseInfo extends React.Component {
           {!isEmpty(this.enabledItemActions) && (
             <div className={classNames(styles.item, 'text-right')}>
               <Dropdown
-                className="dropdown-default"
+                theme="dark"
                 content={this.renderMoreMenu()}
                 trigger="click"
                 placement="bottomRight"

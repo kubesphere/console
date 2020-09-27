@@ -56,15 +56,6 @@ module.exports = {
         },
       },
     ],
-    [
-      '@pitrix/babel-plugin-lego-imports',
-      {
-        '@pitrix/lego-ui': {
-          transform: 'defaultRule',
-          preventFullImport: true,
-        },
-      },
-    ],
     'recharts',
   ],
   env: {

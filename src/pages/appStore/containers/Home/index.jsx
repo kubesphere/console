@@ -21,9 +21,14 @@ import classnames from 'classnames'
 import { observer, inject } from 'mobx-react'
 import qs from 'qs'
 
-import { Level, LevelLeft, LevelRight, Icon } from '@pitrix/lego-ui'
+import {
+  Level,
+  LevelLeft,
+  LevelRight,
+  InputSearch,
+  Icon,
+} from '@kube-design/components'
 
-import { Search } from 'components/Base'
 import { getScrollTop } from 'utils/dom'
 import PublishedAppStore from 'stores/openpitrix/store'
 import CategoryStore from 'stores/openpitrix/category'
@@ -146,7 +151,7 @@ export default class Home extends React.Component {
             {t(`TOTAL_CATE_COUNT`, { total })}
           </LevelLeft>
           <LevelRight>
-            <Search
+            <InputSearch
               onSearch={this.handleSearch}
               value={keyword}
               className={styles.search}

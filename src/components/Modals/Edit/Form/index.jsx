@@ -21,8 +21,8 @@ import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { isEmpty, get } from 'lodash'
 
-import { Icon } from '@pitrix/lego-ui'
-import { Button } from 'components/Base'
+import { Button, Icon } from '@kube-design/components'
+
 import Confirm from 'components/Forms/Base/Confirm'
 
 import EnhanceWrapper from './wrapper'

@@ -20,8 +20,9 @@ import React from 'react'
 import { set } from 'lodash'
 import { reaction } from 'mobx'
 import { observer } from 'mobx-react'
-import { Loading } from '@pitrix/lego-ui'
-import { Alert, CodeEditor, Switch } from 'components/Base'
+import { Loading, Alert } from '@kube-design/components'
+
+import { CodeEditor, Switch } from 'components/Base'
 import { safeParseJSON } from 'utils'
 import { getValueObj, getValue } from 'utils/yaml'
 

@@ -21,7 +21,7 @@ import { reaction } from 'mobx'
 import { observer } from 'mobx-react'
 import { get, debounce } from 'lodash'
 
-import { Icon } from '@pitrix/lego-ui'
+import { Icon } from '@kube-design/components'
 import ClusterTitle from 'components/Clusters/ClusterTitle'
 import StatusReason from 'projects/components/StatusReason'
 

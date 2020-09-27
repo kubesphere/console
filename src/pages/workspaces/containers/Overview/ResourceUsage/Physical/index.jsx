@@ -20,7 +20,7 @@ import { observer, inject } from 'mobx-react'
 import { get } from 'lodash'
 import React from 'react'
 
-import { Select } from '@pitrix/lego-ui'
+import { Select } from '@kube-design/components'
 import WorkspaceMonitorStore from 'stores/monitoring/workspace'
 
 import { Component as Base } from 'clusters/containers/Monitor/Resource/Usage/Physical'

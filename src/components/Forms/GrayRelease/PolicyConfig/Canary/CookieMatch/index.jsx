@@ -20,7 +20,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { debounce } from 'lodash'
 
-import { Select, Input, Group } from '@pitrix/lego-ui'
+import { Select, Input } from '@kube-design/components'
 
 import styles from './index.scss'
 
@@ -81,7 +81,7 @@ export default class CookieMatch extends React.Component {
     const { match, value } = this.state
 
     return (
-      <Group className={styles.match}>
+      <div className={styles.match}>
         <Select
           value={match}
           options={this.matchTypes}
@@ -92,7 +92,7 @@ export default class CookieMatch extends React.Component {
           placeholder={this.props.placeholder || 'key=value'}
           onChange={this.handleValueChange}
         />
-      </Group>
+      </div>
     )
   }
 }

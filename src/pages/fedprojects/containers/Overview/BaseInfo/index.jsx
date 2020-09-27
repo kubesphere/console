@@ -19,7 +19,7 @@
 import React from 'react'
 import classNames from 'classnames'
 import { Link } from 'react-router-dom'
-import { Icon } from '@pitrix/lego-ui'
+import { Icon } from '@kube-design/components'
 import { Text } from 'components/Base'
 import { getDisplayName } from 'utils'
 

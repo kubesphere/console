@@ -19,7 +19,7 @@
 import moment from 'moment-mini'
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Icon, Columns, Column } from '@pitrix/lego-ui'
+import { Icon, Columns, Column } from '@kube-design/components'
 import { Status } from 'components/Base'
 import { getComponentStatus } from 'utils/status'
 

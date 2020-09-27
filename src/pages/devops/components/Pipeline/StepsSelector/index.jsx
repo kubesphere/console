@@ -18,7 +18,7 @@
 
 import React from 'react'
 import classNames from 'classnames'
-import { Icon } from '@pitrix/lego-ui'
+import { Icon } from '@kube-design/components'
 import { observable, action } from 'mobx'
 import { observer } from 'mobx-react'
 import { ReactComponent as BackIcon } from 'src/assets/back.svg'

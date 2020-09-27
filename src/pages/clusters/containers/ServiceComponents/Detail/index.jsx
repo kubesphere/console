@@ -18,7 +18,7 @@
 
 import React from 'react'
 import { observer, inject } from 'mobx-react'
-import { Loading } from '@pitrix/lego-ui'
+import { Loading } from '@kube-design/components'
 
 import { getLocalTime, getDisplayName } from 'utils'
 import { getComponentStatus } from 'utils/status'

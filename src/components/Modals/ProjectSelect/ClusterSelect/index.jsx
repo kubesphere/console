@@ -18,7 +18,7 @@
 
 import React, { Component } from 'react'
 import classNames from 'classnames'
-import { Dropdown, Menu, Icon } from '@pitrix/lego-ui'
+import { Dropdown, Menu, Icon } from '@kube-design/components'
 
 import styles from './index.scss'
 
@@ -51,7 +51,7 @@ export default class ClusterSelect extends Component {
 
   render() {
     return (
-      <Dropdown className="dropdown-default" content={this.renderOptions()}>
+      <Dropdown theme="dark" content={this.renderOptions()}>
         {this.renderControl()}
       </Dropdown>
     )

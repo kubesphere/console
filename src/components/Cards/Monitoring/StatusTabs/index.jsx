@@ -24,7 +24,7 @@ import { isEmpty, isFunction } from 'lodash'
 import { cacheFunc } from 'utils'
 import { startAutoRefresh, stopAutoRefresh } from 'utils/monitoring'
 
-import { Loading } from '@pitrix/lego-ui'
+import { Loading } from '@kube-design/components'
 import { Card, Empty } from 'components/Base'
 
 import styles from './index.scss'

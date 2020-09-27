@@ -19,9 +19,10 @@
 import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
-import Banner from 'components/Cards/Banner'
-import { Avatar, Button, Panel, Text } from 'components/Base'
+import { Button } from '@kube-design/components'
+import { Avatar, Panel, Text } from 'components/Base'
 import Table from 'components/Tables/Base'
+import Banner from 'components/Cards/Banner'
 import { getLocalTime, getDisplayName } from 'utils'
 import { trigger } from 'utils/action'
 

@@ -20,8 +20,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { toJS } from 'mobx'
 import { observer } from 'mobx-react'
-
-import { Modal, Search, ScrollLoad } from 'components/Base'
+import { InputSearch } from '@kube-design/components'
+import { Modal, ScrollLoad } from 'components/Base'
 
 import UserStore from 'stores/user'
 
@@ -134,7 +134,7 @@ export default class InviteMemberModal extends React.Component {
             <p>{desc || t('INVITE_MEMBER_DESC')}</p>
           </div>
           <div className={styles.content}>
-            <Search
+            <InputSearch
               placeholder={
                 searchPlaceholder || t('INVITE_MEMBER_SEARCH_PLACEHODLER')
               }

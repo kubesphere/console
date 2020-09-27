@@ -29,8 +29,9 @@ import {
   Input,
   Alert,
   DatePicker,
-} from '@pitrix/lego-ui'
-import { Form } from 'components/Base'
+  Form,
+} from '@kube-design/components'
+
 import NotificationList from './NotificationList'
 import RepeatRule from './RepeatRule'
 

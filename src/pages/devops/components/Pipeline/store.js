@@ -18,8 +18,7 @@
 
 import { action, observable, computed, toJS } from 'mobx'
 import { get, set, unset, isObject, isEmpty } from 'lodash'
-import { Message } from '@pitrix/lego-ui'
-import Notify from 'components/Base/Notify'
+import { Notify, Message } from '@kube-design/components'
 
 import CredentialStore from 'stores/devops/credential'
 import BaseStore from 'stores/devops/base'

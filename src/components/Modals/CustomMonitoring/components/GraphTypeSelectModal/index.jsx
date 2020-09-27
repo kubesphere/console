@@ -20,7 +20,7 @@ import React, { Component } from 'react'
 import classnames from 'classnames'
 
 import { Modal } from 'components/Base'
-import { Icon } from '@pitrix/lego-ui'
+import { Icon } from '@kube-design/components'
 
 import FormGroupCard from '../FormGroupCard'
 import styles from './index.scss'

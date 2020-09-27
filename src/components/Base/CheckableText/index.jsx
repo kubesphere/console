@@ -18,7 +18,7 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Toggle } from '@pitrix/lego-ui'
+import { Toggle } from '@kube-design/components'
 import Text from '../Text'
 
 import styles from './index.scss'

@@ -18,7 +18,7 @@
 
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Icon } from '@pitrix/lego-ui'
+import { Icon } from '@kube-design/components'
 
 import { Indicator } from 'components/Base'
 import Banner from 'components/Cards/Banner'
@@ -150,9 +150,7 @@ export default class Pods extends React.Component {
         <div>
           <Link
             className={styles.title}
-            to={`/clusters/${cluster}/projects/${
-              record.namespace
-            }/${module}/${name}`}
+            to={`/clusters/${cluster}/projects/${record.namespace}/${module}/${name}`}
           >
             {name}
           </Link>

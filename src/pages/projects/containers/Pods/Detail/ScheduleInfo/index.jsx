@@ -20,7 +20,7 @@ import React from 'react'
 import { when } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import { get } from 'lodash'
-import { Icon, Tooltip } from '@pitrix/lego-ui'
+import { Icon, Tooltip } from '@kube-design/components'
 
 import { getLocalTime, memoryFormat, cpuFormat } from 'utils'
 import { Panel, Text } from 'components/Base'

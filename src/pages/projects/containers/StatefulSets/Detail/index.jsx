@@ -20,7 +20,7 @@ import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import { isEmpty } from 'lodash'
-import { Loading } from '@pitrix/lego-ui'
+import { Loading } from '@kube-design/components'
 
 import { getDisplayName, getLocalTime } from 'utils'
 import { trigger } from 'utils/action'
@@ -55,9 +55,7 @@ export default class StatefulSetDetail extends React.Component {
   get listUrl() {
     const { workspace, cluster, namespace } = this.props.match.params
     if (workspace) {
-      return `/${workspace}/clusters/${cluster}/projects/${namespace}/${
-        this.module
-      }`
+      return `/${workspace}/clusters/${cluster}/projects/${namespace}/${this.module}`
     }
     return `/clusters/${cluster}/${this.module}`
   }

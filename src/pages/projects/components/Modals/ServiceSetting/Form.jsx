@@ -20,7 +20,8 @@ import React from 'react'
 
 import Base from 'components/Forms/Service/ServiceSettings'
 
-import { Form, TypeSelect } from 'components/Base'
+import { Form } from '@kube-design/components'
+import { TypeSelect } from 'components/Base'
 
 export default class ServiceSettingsForm extends Base {
   renderTypeSelect() {

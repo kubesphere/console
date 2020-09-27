@@ -19,7 +19,8 @@
 import { get, set, unset, isEmpty } from 'lodash'
 import React from 'react'
 
-import { Form, TypeSelect } from 'components/Base'
+import { Form } from '@kube-design/components'
+import { TypeSelect } from 'components/Base'
 import { ArrayInput, ServicePort } from 'components/Inputs'
 
 import { isValidLabel } from 'utils'
