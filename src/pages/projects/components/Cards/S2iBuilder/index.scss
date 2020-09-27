@@ -64,19 +64,19 @@
 
 .running {
   animation: rotate 2s linear infinite;
-  background-image: url('/assets/cicd-running.svg');
+  background-image: url('/assets/pipeline-running.svg');
 }
 
 .failed {
-  background-image: url('/assets/cicd-error.svg');
+  background-image: url('/assets/pipeline-error.svg');
 }
 
 .unknow {
-  background-image: url('/assets/cicd-nostatus.svg');
+  background-image: url('/assets/pipeline-nostatus.svg');
 }
 
 .successful {
-  background-image: url('/assets/cicd-success.svg');
+  background-image: url('/assets/pipeline-success.svg');
   background-color: $green;
 }
 

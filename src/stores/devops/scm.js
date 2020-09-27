@@ -356,7 +356,7 @@ export default class SCMStore extends BaseStore {
       `${this.getDevopsUrlV2({ cluster })}${devops}/checkCron`,
       {
         cron: script,
-        pipelineName: pipeline,
+        name: pipeline,
       }
     )
 }

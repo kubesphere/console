@@ -67,7 +67,7 @@ export const updatePipelineParams = (data, isEditor = false) => {
 
   if (!isEditor) {
     for (const key in rest) {
-      if (key !== 'project_name') {
+      if (key !== 'devopsName') {
         delete data[key]
       }
     }

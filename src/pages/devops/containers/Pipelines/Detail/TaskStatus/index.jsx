@@ -19,7 +19,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import { observer } from 'mobx-react'
+import { observer, inject } from 'mobx-react'
 import { reaction } from 'mobx'
 import { get } from 'lodash'
 import { Button } from '@kube-design/components'
@@ -37,9 +37,9 @@ import PipelineContent from 'devops/components/PipelineStatus'
 import PipelineLog from '../PipelineLogDialog'
 import style from './index.scss'
 
-// @inject('devopsStore')
+@inject('rootStore', 'detailStore')
 @observer
-export default class Pipeline extends React.Component {
+export default class TaskStatus extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -48,10 +48,7 @@ export default class Pipeline extends React.Component {
       showErrorLog: false,
     }
     this.store = props.detailStore || {}
-    this.updateReaction = reaction(
-      () => this.props.detailStore.runDetail,
-      this.handleFetch
-    )
+    this.updateReaction = reaction(() => this.store.runDetail, this.handleFetch)
   }
 
   get enabledActions() {
@@ -65,14 +62,14 @@ export default class Pipeline extends React.Component {
   }
 
   get hasRuning() {
-    const { runDetail } = this.props.detailStore
+    const { runDetail } = this.store
     const state = get(runDetail, 'state')
 
     return state && state !== 'FINISHED' && state !== 'PAUSED'
   }
 
   get isQueued() {
-    const { runDetail } = this.props.detailStore
+    const { runDetail } = this.store
     const state = get(runDetail, 'state', '')
 
     return state === 'QUEUED'
@@ -104,7 +101,7 @@ export default class Pipeline extends React.Component {
 
   handleFetch = () => {
     const { params } = this.props.match
-    const { runDetail } = this.props.detailStore
+    const { runDetail } = this.store
     if (get(runDetail, 'state') === 'QUEUED') {
       return
     }
@@ -136,14 +133,14 @@ export default class Pipeline extends React.Component {
   handleDownloadLogs = () => {
     const { params } = this.props.match
 
-    this.props.detailStore.handleDownloadLogs(params)
+    this.store.handleDownloadLogs(params)
   }
 
   handleProceed = async (_params, callBack) => {
     try {
       const { params } = this.props.match
       await this.store.handleProceed({ ..._params, ...params })
-      await this.props.detailStore.getRunDetail(params)
+      await this.store.getRunDetail(params)
     } finally {
       callBack && callBack()
     }
@@ -153,7 +150,7 @@ export default class Pipeline extends React.Component {
     try {
       const { params } = this.props.match
       await this.store.handleBreak({ ..._params, ...params })
-      await this.props.detailStore.getRunDetail(params)
+      await this.store.getRunDetail(params)
     } finally {
       callBack && callBack()
     }

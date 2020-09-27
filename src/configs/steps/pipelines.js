@@ -16,14 +16,14 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import CICDsBaseInfo from 'components/Forms/CICDs/BaseInfo'
-import CICDsAdvanceSettings from 'components/Forms/CICDs/AdvanceSettings'
+import BaseInfo from 'components/Forms/Pipelines/BaseInfo'
+import AdvanceSettings from 'components/Forms/Pipelines/AdvanceSettings'
 
 export default [
-  { title: 'Basic Info', component: CICDsBaseInfo, required: true },
+  { title: 'Basic Info', component: BaseInfo, required: true },
   {
     title: 'Advanced Settings',
-    component: CICDsAdvanceSettings,
+    component: AdvanceSettings,
     required: true,
   },
 ]

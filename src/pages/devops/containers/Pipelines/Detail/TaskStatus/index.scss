@@ -65,7 +65,7 @@
   animation: rotate 2s linear infinite;
   background-size: 40px;
   background-repeat: no-repeat;
-  background-image: url('/assets/cicd-running.svg');
+  background-image: url('/assets/pipeline-running.svg');
 }
 
 .QueuedIcon {
@@ -75,7 +75,7 @@
   background-size: 40px;
   animation: breath 2s linear infinite;
   background-repeat: no-repeat;
-  background-image: url('/assets/cicd-queued.svg');
+  background-image: url('/assets/pipeline-queued.svg');
 }
 
 .card {

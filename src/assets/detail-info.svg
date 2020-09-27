@@ -6,8 +6,8 @@
     <defs>
         <path d="M8,0 L346,0 C350.418278,-8.11624501e-16 354,3.581722 354,8 L354,230 L0,230 L0,8 C-5.41083001e-16,3.581722 3.581722,8.11624501e-16 8,0 Z" id="path-1"></path>
     </defs>
-    <g id="CICD" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="CICD/details/status/Artifacts" transform="translate(-20.000000, -120.000000)">
+    <g id="PIPELINE" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="PIPELINE/details/status/Artifacts" transform="translate(-20.000000, -120.000000)">
             <g id="Group-4" transform="translate(20.000000, 120.000000)">
                 <mask id="mask-2" fill="white">
                     <use xlink:href="#path-1"></use>

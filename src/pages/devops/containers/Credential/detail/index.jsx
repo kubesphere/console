@@ -18,17 +18,17 @@
 
 import React from 'react'
 import { observer, inject } from 'mobx-react'
-import { get } from 'lodash'
 
-import { getLocalTime } from 'utils'
-import { ICON_TYPES } from 'utils/constants'
 import CredentialStore from 'stores/devops/credential'
-import DevopsStore from 'stores/devops'
-import Base from 'core/containers/Base/Detail'
-import BaseInfo from 'core/containers/Base/Detail/BaseInfo'
-import CreateModal from '../credentialModal'
+import DetailPage from 'devops/containers/Base/Detail'
+import { trigger } from 'utils/action'
 
-class CredentialDetail extends Base {
+import routes from './routes'
+
+@inject('rootStore', 'devopsStore')
+@observer
+@trigger
+export default class CredentialDetail extends React.Component {
   state = {
     showEdit: false,
     showYamlEdit: false,
@@ -36,21 +36,8 @@ class CredentialDetail extends Base {
     isLoading: true,
   }
 
-  get name() {
-    return 'Credential'
-  }
-
-  get authKey() {
+  get module() {
     return 'credentials'
-  }
-
-  get updateTime() {
-    const { detail } = this.store
-    const updateTime = get(detail, 'createTime', '')
-    if (!updateTime) {
-      return '-'
-    }
-    return getLocalTime(updateTime).format('YYYY-MM-DD HH:mm:ss')
   }
 
   get listUrl() {
@@ -58,33 +45,28 @@ class CredentialDetail extends Base {
     return `/${workspace}/clusters/${cluster}/devops/${devops}/credentials`
   }
 
-  init() {
-    this.store = new CredentialStore(this.module)
-    this.devopsStore = new DevopsStore()
+  get devops() {
+    return this.props.match.params.devops
+  }
+
+  get cluster() {
+    return this.props.match.params.cluster
+  }
+
+  get routing() {
+    return this.props.rootStore.routing
+  }
+
+  store = new CredentialStore(this.module)
+
+  componentDidMount() {
+    this.fetchData()
   }
 
   fetchData = () => {
     const { params } = this.props.match
     this.store.setParams(params)
     this.store.fetchDetail(params).catch(this.catch)
-    this.getRole()
-  }
-
-  getRole = async () => {
-    const { params } = this.props.match
-    await Promise.all([
-      this.devopsStore.fetchDetail(params),
-      this.props.rootStore.getRules({
-        workspace: params.workspace,
-      }),
-    ])
-
-    await this.props.rootStore.getRules({
-      cluster: params.cluster,
-      workspace: params.workspace,
-      devops: params.devops,
-    })
-    this.setState({ isLoading: false })
   }
 
   getOperations = () => [
@@ -93,14 +75,38 @@ class CredentialDetail extends Base {
       type: 'control',
       text: t('EDIT'),
       action: 'edit',
-      onClick: this.showEditModal,
+      onClick: () => {
+        this.trigger('devops.credential.edit', {
+          title: t('Edit Credential'),
+          formTemplate: this.store.detail,
+          cluster: this.cluster,
+          devops: this.devops,
+          isEditMode: true,
+          success: () => {
+            this.store.fetchDetail()
+          },
+        })
+      },
     },
     {
       key: 'delete',
       type: 'danger',
       text: t('Delete'),
       action: 'delete',
-      onClick: this.showModal('deleteModule'),
+      onClick: () => {
+        this.trigger('resource.delete', {
+          type: t('Credentials'),
+          detail: this.store.detail,
+          success: () => {
+            const { devops, workspace, cluster } = this.props.match.params
+            this.routing.push(
+              `/${workspace}/clusters/${cluster}/devops/${devops}/${
+                this.module
+              }`
+            )
+          },
+        })
+      },
     },
   ]
 
@@ -123,85 +129,25 @@ class CredentialDetail extends Base {
     ]
   }
 
-  showEditModal = async () => {
+  render() {
     const { detail } = this.store
+    const stores = { detailStore: this.store }
 
-    this.setState({
-      showEdit: true,
-      formTemplate: detail,
-    })
-  }
+    const sideProps = {
+      module: this.module,
+      name: detail.id,
+      labels: detail.labels,
+      desc: detail.description,
+      operations: this.getOperations(),
+      attrs: this.getAttrs(),
+      breadcrumbs: [
+        {
+          label: t('Credentials'),
+          url: this.listUrl,
+        },
+      ],
+    }
 
-  hideEditModal = () => {
-    this.setState({ showEdit: false })
-  }
-
-  handleEdit = () => {
-    this.setState({ showEdit: false })
-    this.store.fetchDetail()
-  }
-
-  handleDelete = () => {
-    const { devops, workspace, cluster } = this.props.match.params
-    const { detail } = this.store
-
-    this.store.delete(detail.id).then(() => {
-      this.routing.push(
-        `/${workspace}/clusters/${cluster}/devops/${devops}/${this.module}`
-      )
-    })
-  }
-
-  get enabledActions() {
-    const { cluster, devops } = this.props.match.params
-
-    return globals.app.getActions({
-      module: 'credentials',
-      cluster,
-      devops,
-    })
-  }
-
-  renderSider() {
-    const { detail } = this.store
-    const { isLoading } = this.state
-    const operations = this.getOperations().filter(item =>
-      this.enabledActions.includes(item.action)
-    )
-
-    return (
-      <BaseInfo
-        icon={ICON_TYPES[this.module]}
-        name={detail.id || ''}
-        desc={get(detail, 'description')}
-        operations={operations}
-        labels={detail.labels}
-        isLoading={isLoading}
-        attrs={this.getAttrs()}
-      />
-    )
-  }
-
-  renderExtraModals() {
-    const { showEdit } = this.state
-    const { devops, cluster } = this.props.match.params
-
-    return (
-      <div>
-        <CreateModal
-          title={t('Edit Credential')}
-          formTemplate={this.state.formTemplate}
-          visible={showEdit}
-          cluster={cluster}
-          onOk={this.handleEdit}
-          onCancel={this.hideEditModal}
-          devops={devops}
-          isEditMode
-        />
-      </div>
-    )
+    return <DetailPage routes={routes} {...sideProps} stores={stores} />
   }
 }
-
-export default inject('rootStore')(observer(CredentialDetail))
-export const Component = CredentialDetail

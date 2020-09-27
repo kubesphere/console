@@ -229,6 +229,7 @@ export const ICON_TYPES = {
   network: 'eip-group',
   networkpolicies: 'firewall',
   namespacenetworkpolicies: 'firewall',
+  pipelines: 'blockchain',
 }
 
 export const MODULE_KIND_MAP = {
@@ -254,6 +255,7 @@ export const MODULE_KIND_MAP = {
   applications: 'Application',
   users: 'User',
   devops: 'DevOpsProject',
+  pipelines: 'Pipelines',
 }
 
 export const QUOTAS_MAP = {

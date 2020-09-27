@@ -218,6 +218,10 @@ export function withClusterList(options) {
   return withList({ injectStores: ['rootStore', 'clusterStore'], ...options })
 }
 
+export function withDevOpsList(options) {
+  return withList({ injectStores: ['rootStore', 'devopsStore'], ...options })
+}
+
 export class ListPage extends React.Component {
   get store() {
     return this.props.store

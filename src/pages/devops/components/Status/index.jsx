@@ -43,7 +43,7 @@ export default class Status extends PureComponent {
       <span>
         <span
           className={classNames(
-            'cicd_status_icon',
+            'pipeline_status_icon',
             styles[type.toLowerCase()],
             className
           )}

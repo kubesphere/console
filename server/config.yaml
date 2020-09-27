@@ -229,7 +229,12 @@ client:
   workspaceNavs:
     - cate: 'workspace'
       items:
-        - { name: overview, title: Overview, icon: dashboard, authKey: 'projects' }
+        - {
+            name: overview,
+            title: Overview,
+            icon: dashboard,
+            authKey: 'projects',
+          }
         - name: projects
           title: NAV_PROJECTS
           icon: project
@@ -281,7 +286,12 @@ client:
   projectNavs:
     - cate: 'project'
       items:
-        - { name: overview, title: Overview, icon: dashboard, authKey: 'services' }
+        - {
+            name: overview,
+            title: Overview,
+            icon: dashboard,
+            authKey: 'services',
+          }
         - name: app-workloads
           title: Application Workloads
           icon: appcenter
@@ -498,7 +508,7 @@ client:
     storageclasses: /cluster-administration/storageclass/
 
     # DevOps User Guide
-    cicds: /devops-user-guide/introduction/pipeline/
+    pipelines: /devops-user-guide/introduction/pipeline/
     cridentials: /devops-user-guide/introduction/credential/
 
     # Developer Guide

@@ -30,12 +30,10 @@ const FORM_HEAR = {
 }
 
 export default class PipelineStore extends BaseStore {
-  constructor(props) {
-    super(props)
-    this.pipelineConfig = {}
-  }
-
   module = 'pipelines'
+
+  @observable
+  pipelineConfig = {}
 
   @observable
   originalList = []
@@ -106,7 +104,7 @@ export default class PipelineStore extends BaseStore {
   notFound = false
 
   @observable
-  reponsitorylog = ''
+  repositoryLog = ''
 
   @observable
   pipelineJsonData = {
@@ -256,6 +254,10 @@ export default class PipelineStore extends BaseStore {
         limit: TABLE_LIMIT,
       }
     )
+    result.forEach(item => {
+      item.id = item.latestRun.endTime
+    })
+
     this.pullRequestList = {
       data: result || [],
       total: this.detail.totalNumberOfPullRequests,
@@ -353,23 +355,23 @@ export default class PipelineStore extends BaseStore {
     }
   }
 
-  async replay(params, _runid) {
-    const { devops, name, branch, runid, cluster } = params
+  async replay(params, _runId) {
+    const { devops, name, branch, runId, cluster } = params
     return await this.request.post(
       `${this.getDevopsUrlV2({
         cluster,
       })}${devops}/pipelines/${decodeURIComponent(name)}${
         branch ? `/branches/${encodeURIComponent(branch)}` : ''
-      }/runs/${_runid || runid}/replay`
+      }/runs/${_runId || runId}/replay`
     )
   }
 
-  async stop(params, _runid) {
-    const { devops, name, branch, runid, cluster } = params
+  async stop(params, _runId) {
+    const { devops, name, branch, runId, cluster } = params
     return await this.request.post(
       `${this.getDevopsUrlV2({ cluster })}${devops}/pipelines/${name}${
         branch ? `/branches/${encodeURIComponent(branch)}` : ''
-      }/runs/${_runid || runid}/replay/`
+      }/runs/${_runId || runId}/replay/`
     )
   }
 
@@ -414,7 +416,7 @@ export default class PipelineStore extends BaseStore {
 
   @action
   getPipeLineConfig() {
-    let detail = cloneDeep(this.pipelineConfig)
+    let detail = cloneDeep(toJS(this.pipelineConfig))
     detail = { ...toJS(detail.spec), ...toJS(detail) }
 
     delete detail.spec
@@ -469,7 +471,7 @@ export default class PipelineStore extends BaseStore {
   }
 
   @action
-  async deletePipeline(name, devops, cluster) {
+  async delete({ name, devops, cluster }) {
     const url = `${this.getDevOpsDetailUrl({
       devops,
       cluster,
@@ -508,7 +510,7 @@ export default class PipelineStore extends BaseStore {
         cluster,
       })}${devops}/pipelines/${name}/consolelog`
     )
-    this.reponsitorylog = logs
+    this.repositoryLog = logs
   }
 
   async checkCron(value) {

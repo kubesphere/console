@@ -87,7 +87,7 @@ export default class Store extends BaseStore {
     if (!this.stages[this.activeLineIndex].parallel) {
       return this.stages[this.activeLineIndex]
     }
-    return this.stages[this.activeLineIndex].parallel[this.activeColunmIndex]
+    return this.stages[this.activeLineIndex].parallel[this.activeColumnIndex]
   }
 
   @observable
@@ -97,7 +97,7 @@ export default class Store extends BaseStore {
   activeLineIndex = ''
 
   @observable
-  activeColunmIndex = ''
+  activeColumnIndex = ''
 
   @observable
   isAddingStep = false
@@ -141,28 +141,28 @@ export default class Store extends BaseStore {
   }
 
   @action
-  insertColunm(index) {
+  insertColumn(index) {
     this.jsonData.json.pipeline.stages.splice(index, 0, this.newStage)
   }
 
   @action
-  setFocus(lineIndex, colunmIndex) {
+  setFocus(lineIndex, columnIndex) {
     if (this.activeLineIndex !== '') {
-      this.setActive(this.activeLineIndex, this.activeColunmIndex, undefined)
+      this.setActive(this.activeLineIndex, this.activeColumnIndex, undefined)
     }
     this.activeLineIndex = lineIndex
-    this.activeColunmIndex = colunmIndex
-    this.setActive(lineIndex, colunmIndex, true)
+    this.activeColumnIndex = columnIndex
+    this.setActive(lineIndex, columnIndex, true)
   }
 
   @action
-  setActive(lineIndex, colunmIndex, value) {
+  setActive(lineIndex, columnIndex, value) {
     if (
       this.jsonData.json.pipeline.stages[lineIndex] &&
       this.jsonData.json.pipeline.stages[lineIndex].parallel
     ) {
-      this.jsonData.json.pipeline.stages[lineIndex].parallel[colunmIndex] = {
-        ...this.jsonData.json.pipeline.stages[lineIndex].parallel[colunmIndex],
+      this.jsonData.json.pipeline.stages[lineIndex].parallel[columnIndex] = {
+        ...this.jsonData.json.pipeline.stages[lineIndex].parallel[columnIndex],
         ...{ isActive: value },
       }
     } else {
@@ -189,10 +189,10 @@ export default class Store extends BaseStore {
   @action
   clearFocus() {
     if (this.activeLineIndex !== '') {
-      this.setActive(this.activeLineIndex, this.activeColunmIndex, undefined)
+      this.setActive(this.activeLineIndex, this.activeColumnIndex, undefined)
     }
     this.activeLineIndex = ''
-    this.activeColunmIndex = ''
+    this.activeColumnIndex = ''
     this.edittingData = {}
     this.isAddingStep = false
   }
@@ -212,20 +212,20 @@ export default class Store extends BaseStore {
       ) {
         this.jsonData.json.pipeline.stages[
           this.activeLineIndex
-        ].parallel.splice(this.activeColunmIndex, 1)
+        ].parallel.splice(this.activeColumnIndex, 1)
         this.jsonData.json.pipeline.stages[
           this.activeLineIndex
         ] = this.jsonData.json.pipeline.stages[this.activeLineIndex].parallel[0]
       } else {
         this.jsonData.json.pipeline.stages[
           this.activeLineIndex
-        ].parallel.splice(this.activeColunmIndex, 1)
+        ].parallel.splice(this.activeColumnIndex, 1)
       }
     } else {
       this.jsonData.json.pipeline.stages.splice(this.activeLineIndex, 1)
     }
     this.activeLineIndex = ''
-    this.activeColunmIndex = ''
+    this.activeColumnIndex = ''
     this.handleSetInLocalStorage()
   }
 
@@ -233,7 +233,7 @@ export default class Store extends BaseStore {
   setValue(stage) {
     if (this.jsonData.json.pipeline.stages[this.activeLineIndex].parallel) {
       this.jsonData.json.pipeline.stages[this.activeLineIndex].parallel.splice(
-        this.activeColunmIndex,
+        this.activeColumnIndex,
         1,
         stage
       )

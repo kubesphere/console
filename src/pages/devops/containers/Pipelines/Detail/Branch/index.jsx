@@ -29,17 +29,15 @@ import { getPipelineStatus } from 'utils/status'
 import Health from 'projects/components/Health'
 import { ReactComponent as ForkIcon } from 'src/assets/fork.svg'
 
-import Table from '../../Table'
-import EmptyCard from '../../EmptyCard'
+import Table from 'components/Tables/List'
+import EmptyCard from 'devops/components/Cards/EmptyCard'
 
-@inject('rootStore')
+@inject('rootStore', 'detailStore')
 @observer
 export default class Branch extends React.Component {
-  constructor(props) {
-    super(props)
-    this.store = props.detailStore || {}
-    this.name = 'branch'
-  }
+  name = 'branch'
+
+  store = this.props.detailStore || {}
 
   get enabledActions() {
     const { cluster, devops } = this.props.match.params
@@ -147,7 +145,7 @@ export default class Branch extends React.Component {
 
     const isEmptyList = isLoading === false && total === 0
 
-    const omitFilters = omit(filters, 'page')
+    const omitFilters = omit(filters, 'page', 'workspace')
     const runnable = this.enabledActions.includes('edit')
 
     if (isEmptyList && !filters.page) {
@@ -166,13 +164,14 @@ export default class Branch extends React.Component {
 
     return (
       <Table
+        rowkey="name"
         data={data}
         columns={this.getColumns()}
         filters={omitFilters}
         pagination={pagination}
         isLoading={isLoading}
         onFetch={this.handleFetch}
-        disableSearch
+        hideSearch
       />
     )
   }

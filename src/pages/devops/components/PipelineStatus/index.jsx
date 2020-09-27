@@ -20,15 +20,16 @@ import React from 'react'
 import { observer } from 'mobx-react'
 import { isEmpty } from 'lodash'
 import { observable, action, toJS } from 'mobx'
-import ParamsModal from 'components/Forms/CICDs/paramsModal'
+
 import PropTypes from 'prop-types'
 import { Dragger } from 'components/Base'
+import ParamsFormModal from 'components/Forms/Pipelines/ParamsFormModal'
 
 import PipelineNodes from './nodesRender'
 import style from './index.scss'
 
 @observer
-export default class Pipeline extends React.Component {
+export default class PipelineStatus extends React.Component {
   constructor(props) {
     super(props)
     this.draggerCref = React.createRef()
@@ -64,7 +65,10 @@ export default class Pipeline extends React.Component {
 
   @action
   handleProceed = async (parameters, cb) => {
-    await this.context.onProceed({ parameters, ...this.elseParams }, cb)
+    await this.context.onProceed(
+      { parameters, ...this.elseParams },
+      typeof cb === 'function' ? cb : undefined
+    )
     this.showParamsModal = false
   }
 
@@ -101,7 +105,7 @@ export default class Pipeline extends React.Component {
             onBreak={this.context.onBreak}
           />
         </Dragger>
-        <ParamsModal
+        <ParamsFormModal
           visible={this.showParamsModal}
           parameters={toJS(this.parameters)}
           onCancel={this.hideProceedModal}

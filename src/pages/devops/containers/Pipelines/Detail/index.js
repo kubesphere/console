@@ -16,7 +16,6 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-// cicds
 export { default as Branch } from './Branch'
 export { default as Pipeline } from './PipeLine'
 export { default as PullRequest } from './PullRequest'

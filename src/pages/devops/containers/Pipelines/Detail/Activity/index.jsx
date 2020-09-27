@@ -21,10 +21,10 @@ import {
   result as _result,
   get,
   omit,
-  isEmpty,
   debounce,
   isArray,
   isUndefined,
+  isEmpty,
 } from 'lodash'
 import { Link } from 'react-router-dom'
 import { toJS } from 'mobx'
@@ -40,26 +40,23 @@ import {
 
 import { getLocalTime, formatUsedTime } from 'utils'
 
-import BranchSelectModal from 'components/Forms/CICDs/paramsModal'
 import Status from 'devops/components/Status'
 import { getPipelineStatus } from 'utils/status'
 import { ReactComponent as ForkIcon } from 'src/assets/fork.svg'
 
-import Table from '../../Table'
-import EmptyCard from '../../EmptyCard'
+import { trigger } from 'utils/action'
+import Table from 'components/Tables/List'
+import EmptyCard from 'devops/components/Cards/EmptyCard'
+
 import styles from './index.scss'
 
-@inject('rootStore')
+@inject('rootStore', 'detailStore')
 @observer
+@trigger
 export default class Activity extends React.Component {
-  constructor(props) {
-    super(props)
-    this.name = 'Activity'
-    this.store = props.detailStore || {}
-    this.state = {
-      showBranchModal: false,
-    }
-  }
+  name = 'Activity'
+
+  store = this.props.detailStore || {}
 
   componentDidMount() {
     this.unsubscribe = this.routing.history.subscribe(location => {
@@ -75,10 +72,10 @@ export default class Activity extends React.Component {
   }
 
   get enabledActions() {
-    const { devops } = this.props.match.params
+    const { devops, cluster } = this.props.match.params
     return globals.app.getActions({
       module: 'pipelines',
-      cluster: this.props.match.params.cluster,
+      cluster,
       devops,
     })
   }
@@ -94,34 +91,30 @@ export default class Activity extends React.Component {
     })
   }
 
-  hideBranchModal = () => {
-    this.setState({ showBranchModal: false })
-  }
-
   handleFetch = (params, refresh) => {
     this.routing.query(params, refresh)
   }
 
-  handleRun = debounce(async () => {
+  handleRunning = debounce(async () => {
     const { detail } = this.store
     const { params } = this.props.match
-    const isMutibranch = detail.branchNames
+    const isMultibranch = detail.branchNames
     const hasParameters = detail.parameters && detail.parameters.length
 
-    if (isMutibranch || hasParameters) {
-      this.setState({ showBranchModal: true })
+    if (isMultibranch || hasParameters) {
+      this.trigger('pipeline.params', {
+        devops: params.devops,
+        cluster: params.cluster,
+        params,
+        branches: toJS(detail.branchNames),
+        parameters: toJS(detail.parameters),
+        success: this.handleFetch,
+      })
     } else {
       await this.props.detailStore.runBranch(params)
       this.handleFetch()
     }
   }, 500)
-
-  handleRunBranch = async (parameters, branch) => {
-    const { params } = this.props.match
-    await this.props.detailStore.runBranch({ branch, parameters, ...params })
-    this.handleFetch()
-    this.setState({ showBranchModal: false })
-  }
 
   get prefix() {
     const { url } = this.props.match
@@ -133,12 +126,6 @@ export default class Activity extends React.Component {
   get routing() {
     return this.props.rootStore.routing
   }
-
-  get isMutibranch() {
-    return this.store.detail && !isEmpty(toJS(this.store.detail.scmSource))
-  }
-
-  rowKeys = record => `${record.startTime}${record.queueId}`
 
   handleReplay = record => async () => {
     const { params } = this.props.match
@@ -163,7 +150,9 @@ export default class Activity extends React.Component {
       name: detail.name,
       cluster: params.cluster,
     })
+
     this.store.fetchDetail(params)
+
     Notify.success({
       content: t('Scan repo success'),
     })
@@ -175,6 +164,7 @@ export default class Activity extends React.Component {
     const url = `devops/${params.devops}/pipelines/${
       params.name
     }${this.getActivityDetailLinks(record)}`
+
     await this.props.detailStore.handleActivityStop({
       url,
       cluster: params.cluster,
@@ -186,8 +176,6 @@ export default class Activity extends React.Component {
 
     this.handleFetch()
   }
-
-  getFilteredValue = dataIndex => this.store.list.filters[dataIndex]
 
   getActivityDetailLinks = record => {
     const matchArray = get(record, '_links.self.href', '').match(
@@ -310,40 +298,22 @@ export default class Activity extends React.Component {
     },
   ]
 
-  getRowKey = record => record.enQueueTime
-
   getActions = () => [
     {
       type: 'control',
       key: 'run',
       text: t('Run'),
       action: 'edit',
-      onClick: this.handleRun,
+      onClick: this.handleRunning,
     },
   ]
-
-  renderModals = () => {
-    const { detail } = this.store
-    const { params } = this.props.match
-
-    return (
-      <BranchSelectModal
-        onOk={this.handleRunBranch}
-        onCancel={this.hideBranchModal}
-        visible={this.state.showBranchModal}
-        branches={toJS(detail.branchNames)}
-        parameters={toJS(detail.parameters)}
-        params={params || {}}
-      />
-    )
-  }
 
   renderFooter = () => {
     const { detail, activityList } = this.store
     const { total, limit } = activityList
+    const isMultibranch = detail.branchNames
 
-    const isMutibranch = detail.branchNames
-    if (!isMutibranch || this.isAtBranchDetailPage) {
+    if (!isMultibranch || this.isAtBranchDetailPage) {
       return null
     }
 
@@ -366,66 +336,53 @@ export default class Activity extends React.Component {
   }
 
   render() {
-    const { activityList, detail } = this.store
+    const { activityList } = this.store
     const { data, isLoading, total, page, limit, filters } = activityList
-    const isMutibranch = detail.branchNames
+    const omitFilters = omit(filters, 'page', 'workspace')
+    const pagination = { total, page, limit }
     const isEmptyList = isLoading === false && data.length === 0
 
-    const omitFilters = omit(filters, 'page')
-
-    const runnable = this.enabledActions.includes('edit')
-
     if (isEmptyList && !filters.page) {
-      if (isMutibranch && !detail.branchNames.length) {
+      const { detail } = this.store
+      const runnable = this.enabledActions.includes('edit')
+      const isMultibranch = detail.branchNames
+
+      if (isMultibranch && !isEmpty(isMultibranch)) {
         return (
-          <React.Fragment>
-            <EmptyCard desc={t('Pipeline config file not found')}>
-              {runnable && (
-                <Button type="control" onClick={this.handleScanRepository}>
-                  {t('Scan Repository')}
-                </Button>
-              )}
-            </EmptyCard>
-            {this.renderModals()}
-          </React.Fragment>
-        )
-      }
-      return (
-        <React.Fragment>
-          <EmptyCard desc={t('ACTIVITY_EMPTY_TIP')}>
+          <EmptyCard desc={t('Pipeline config file not found')}>
             {runnable && (
-              <Button type="control" onClick={this.handleRun}>
-                {t('Run Pipeline')}
+              <Button type="control" onClick={this.handleScanRepository}>
+                {t('Scan Repository')}
               </Button>
             )}
           </EmptyCard>
-          {this.renderModals()}
-        </React.Fragment>
+        )
+      }
+      return (
+        <EmptyCard desc={t('ACTIVITY_EMPTY_TIP')}>
+          {runnable && (
+            <Button type="control" onClick={this.handleRunning}>
+              {t('Run Pipeline')}
+            </Button>
+          )}
+        </EmptyCard>
       )
     }
 
-    const pagination = { total, page, limit }
-
-    const actions = this.getActions().filter(item =>
-      this.enabledActions.includes(item.action)
-    )
-
     return (
-      <React.Fragment>
-        <Table
-          data={toJS(data)}
-          columns={this.getColumns()}
-          rowKey={this.rowKeys}
-          filters={omitFilters}
-          pagination={pagination}
-          isLoading={isLoading}
-          onFetch={this.handleFetch}
-          actions={actions}
-          footer={this.renderFooter()}
-          disableSearch
-        />
-        {this.renderModals()}
-      </React.Fragment>
+      <Table
+        data={toJS(data)}
+        columns={this.getColumns()}
+        rowKey="startTime"
+        filters={omitFilters}
+        pagination={pagination}
+        isLoading={isLoading}
+        onFetch={this.handleFetch}
+        actions={this.getActions()}
+        footer={this.renderFooter()}
+        hideSearch
+        enabledActions={this.enabledActions}
+      />
     )
   }
 }
