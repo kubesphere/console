@@ -78,9 +78,9 @@ export default {
   resumed: '已恢復',
   Resumed: '已恢復',
   sent_success: '發送成功',
-  'Sented Successfully': '發送成功',
+  'Sent Successfully': '發送成功',
   sent_failed: '發送失敗',
-  'Sented Failed': '發送失敗',
+  'Sent Unsuccessfully': '發送失敗',
   commented: '已處理',
   Commented: '已處理',
 
