@@ -22,7 +22,7 @@ import { Columns, Column } from '@pitrix/lego-ui'
 import { inject, observer } from 'mobx-react'
 import { Button, Form } from 'components/Base'
 import { ReactComponent as BackIcon } from 'src/assets/back.svg'
-
+import { safeBtoa } from 'utils/base64'
 import ClusterStore from 'stores/cluster'
 
 import BaseInfo from './BaseInfo'
@@ -72,7 +72,7 @@ export default class AddCluster extends React.Component {
       unset(postData, 'spec.connection.kubeconfig')
     } else {
       const config = get(postData, 'spec.connection.kubeconfig', '')
-      set(postData, 'spec.connection.kubeconfig', btoa(config))
+      set(postData, 'spec.connection.kubeconfig', safeBtoa(config))
       await this.store.validate(postData)
     }
 

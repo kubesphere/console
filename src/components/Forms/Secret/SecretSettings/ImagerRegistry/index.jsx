@@ -25,6 +25,7 @@ import { Button, Alert } from 'components/Base'
 import { SchemeInput } from 'components/Inputs'
 
 import { safeParseJSON } from 'utils'
+import { safeBtoa } from 'utils/base64'
 
 import SecretStore from 'stores/secret'
 
@@ -65,7 +66,7 @@ export default class ImageRegistry extends Component {
               username,
               password,
               email,
-              auth: btoa(`${username}:${password}`),
+              auth: safeBtoa(`${username}:${password}`),
             },
           },
         })

@@ -22,7 +22,7 @@ import PropTypes from 'prop-types'
 import { Input, TextArea } from '@pitrix/lego-ui'
 import { Form } from 'components/Base'
 import { ReactComponent as BackIcon } from 'src/assets/back.svg'
-import { safeAtob } from 'utils'
+import { safeAtob } from 'utils/base64'
 
 import styles from './index.scss'
 

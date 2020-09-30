@@ -18,7 +18,7 @@
 
 import { capitalize } from 'lodash'
 
-import { safeAtob } from 'utils'
+import { safeAtob } from 'utils/base64'
 import cookie from 'utils/cookie'
 import { STATUS_TRANSFER_MAP } from 'configs/openpitrix/version'
 import { saveAs } from 'file-saver'

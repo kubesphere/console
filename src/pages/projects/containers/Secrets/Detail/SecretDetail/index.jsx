@@ -21,6 +21,7 @@ import { observer, inject } from 'mobx-react'
 import { Icon } from '@pitrix/lego-ui'
 import { Button, Card } from 'components/Base'
 import Placement from 'projects/components/Cards/Placement'
+import { safeBtoa } from 'utils/base64'
 
 import styles from './index.scss'
 
@@ -40,7 +41,7 @@ export default class SecretDetail extends React.Component {
 
   convert = value => {
     const { showSecret } = this.state
-    return showSecret ? value : btoa(value)
+    return showSecret ? value : safeBtoa(value)
   }
 
   changeSecretState = () => {

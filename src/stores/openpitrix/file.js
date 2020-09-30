@@ -18,7 +18,7 @@
 
 import { action, observable } from 'mobx'
 import { keys } from 'lodash'
-import { Base64 } from 'js-base64'
+import { safeAtob } from 'utils/base64'
 
 import { downloadFileFromBase64 } from 'utils/app'
 import { UPLOAD_CHECK_RULES } from 'configs/openpitrix/app'
@@ -50,7 +50,7 @@ export default class File extends Base {
     if (result) {
       const files = result.files || {}
       Object.keys(files).forEach(name => {
-        files[name] = Base64.decode(files[name])
+        files[name] = safeAtob(files[name])
       })
 
       this.files = files

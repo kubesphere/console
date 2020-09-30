@@ -34,13 +34,14 @@ import {
 } from 'lodash'
 import {
   safeParseJSON,
-  safeAtob,
   generateId,
   getDescription,
   getAliasName,
   getResourceCreator,
   replaceToLocalOrigin,
 } from 'utils'
+
+import { safeAtob } from 'utils/base64'
 import { getWorkloadUpdateTime, getJobUpdateTime } from 'utils/workload'
 import { getServiceType } from 'utils/service'
 import { getNodeRoles } from 'utils/node'

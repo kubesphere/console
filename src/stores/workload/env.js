@@ -18,7 +18,7 @@
 
 import { action, observable } from 'mobx'
 import { get } from 'lodash'
-import { safeAtob } from 'utils'
+import { safeAtob } from 'utils/base64'
 
 export default class EnvStore {
   @observable
