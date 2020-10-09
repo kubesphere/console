@@ -52,7 +52,7 @@ export default {
     'Mirrored traffic is only receiving traffic, no service',
   'No workload found': 'No workload found',
   'Not online': 'Not online',
-  'Offline this version': 'Offline this version',
+  'Version offline': 'Version offline',
   'Operating System': 'Operating System',
   'Please input grayscale release version':
     'Please input grayscale release version',
@@ -94,7 +94,7 @@ export default {
   GRAY_RELEASE_CATEGORIES: 'Categories',
 
   BLUE_GREEN_DEPLOYMENT_DESC:
-    'The blue-green release provides a zero downtime deployment, which means the new version can be deployed with the old one preserved. It enables both versions to run at the same time. If there is a problem with running, you can quickly roll back to the old version.',
+    'The blue-green release provides a zero downtime deployment, which means the new version can be deployed with the old one preserved. At any time, only one of the versions is active serving all the traffic, while the other one remains idle. If there is a problem with running, you can quickly roll back to the old version.',
   CANARY_RELEASES_DESC:
     'This method brings part of the actual traffic into a new version to test its performance and reliability. It can help detect potential problems in the actual environment while not affecting the overall system stability.',
   TRAFFIC_MIRROR_DESC:

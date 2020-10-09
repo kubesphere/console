@@ -80,7 +80,7 @@ export default class VersionSelect extends React.Component {
                 noShadow
                 onClick={this.handleOffline}
               >
-                {t('Offline this version')}
+                {t('Version offline')}
               </Button>
             )}
           </li>
