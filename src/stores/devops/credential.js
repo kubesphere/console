@@ -18,6 +18,7 @@
 
 import { set, get, isEmpty, isObject, unset } from 'lodash'
 import { action, observable } from 'mobx'
+import { safeBtoa } from 'utils/base64'
 import {
   CREDENTIAL_KEY,
   CREDENTIAL_DISPLAY_KEY,
@@ -139,7 +140,7 @@ export default class CredentialStore extends BaseStore {
     if (!isEmpty(typeDate) && isObject(typeDate)) {
       Object.keys(typeDate).forEach(key => {
         if (typeDate[key]) {
-          typeDate[key] = btoa(typeDate[key])
+          typeDate[key] = safeBtoa(typeDate[key])
         }
       })
     }
@@ -199,7 +200,7 @@ export default class CredentialStore extends BaseStore {
 
     if (JSON.stringify(data) !== '{}' && typeof data === 'object') {
       Object.keys(data).forEach(key => {
-        data[key] = btoa(data[key])
+        data[key] = safeBtoa(data[key])
       })
     }
 

@@ -19,7 +19,7 @@
 import React from 'react'
 import { omit } from 'lodash'
 import { List } from 'components/Base'
-import { safeAtob } from 'utils'
+import { safeAtob } from 'utils/base64'
 
 import styles from './index.scss'
 

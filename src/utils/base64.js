@@ -15,25 +15,17 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
+import { Base64 } from 'js-base64'
 
-import { get } from 'lodash'
-import React, { Component } from 'react'
-import { safeAtob, safeBtoa } from 'utils/base64'
-
-export default class Base64Wrapper extends Component {
-  handleChange = e => {
-    const value = get(e, 'target.value', e)
-    const { onChange } = this.props
-    return onChange(safeBtoa(value))
+export const safeAtob = str => {
+  if (typeof str !== 'string') {
+    return ''
   }
-
-  render() {
-    const { name, children, value } = this.props
-    const node = React.cloneElement(children, {
-      name,
-      value: safeAtob(value || ''),
-      onChange: this.handleChange,
-    })
-    return node
+  return Base64.decode(str)
+}
+export const safeBtoa = str => {
+  if (typeof str !== 'string') {
+    return ''
   }
+  return Base64.encode(str)
 }

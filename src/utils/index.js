@@ -132,14 +132,6 @@ export const safeParseJSON = (json, defaultValue) => {
   return result
 }
 
-export const safeAtob = str => {
-  let result = ''
-  try {
-    result = atob(str)
-  } catch (e) {}
-  return result
-}
-
 export const isSystemRole = role => /^system:/.test(role)
 
 /**
