@@ -226,6 +226,7 @@ const JobMapper = item => ({
   annotations: get(item, 'metadata.annotations'),
   status: get(item, 'status'),
   updateTime: getJobUpdateTime(item),
+  startTime: get(item, 'status.startTime'),
   spec: get(item, 'spec', {}),
   selector: get(item, 'spec.selector.matchLabels'),
   containers: get(item, 'spec.template.spec.containers'),
@@ -343,6 +344,11 @@ const NodeMapper = item => ({
   nodeInfo: get(item, 'status.nodeInfo'),
   spec: get(item, 'spec'),
   unschedulable: get(item, 'spec.unschedulable'),
+  importStatus: get(
+    item,
+    'metadata.labels["kubekey.kubesphere.io/import-status"]',
+    'success'
+  ),
   taints: get(item, 'spec.taints', []),
   ip:
     (get(item, 'status.addresses', []).find(a => a.type === 'InternalIP') || {})
@@ -1063,6 +1069,7 @@ const ClusterMapper = item => {
       get(item, 'metadata.labels', {}),
       'cluster-role.kubesphere.io/host'
     ),
+    kkName: get(item, 'metadata.labels["kubekey.kubesphere.io/name"]', ''),
     nodeCount: get(item, 'status.nodeCount'),
     kubernetesVersion: get(item, 'status.kubernetesVersion'),
     labels: get(item, 'metadata.labels'),
@@ -1075,6 +1082,15 @@ const ClusterMapper = item => {
       'metadata.labels["cluster.kubesphere.io/visibility"]'
     ),
     connectionType: get(item, 'spec.connection.type'),
+    _originData: getOriginData(item),
+  }
+}
+
+const KKClusterMapper = item => {
+  return {
+    ...getBaseInfo(item),
+    status: get(item, 'status', {}),
+    labels: get(item, 'metadata.labels'),
     _originData: getOriginData(item),
   }
 }
@@ -1242,6 +1258,7 @@ export default {
   volumesnapshots: VolumeSnapshotMapper,
   users: UserMapper,
   clusters: ClusterMapper,
+  kkclusters: KKClusterMapper,
   federated: FederatedMapper,
   outputs: LogOutPutMapper,
   devops: DevOpsMapper,

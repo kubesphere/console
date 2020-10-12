@@ -27,12 +27,13 @@ import { getValueByUnit } from 'utils/monitoring'
 import NodeStore from 'stores/node'
 import NodeMonitoringStore from 'stores/monitoring/node'
 
-import withList, { ListPage } from 'components/HOCs/withList'
+import { withClusterList, ListPage } from 'components/HOCs/withList'
 
 import { Avatar, Status, Panel, Text } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import Table from 'components/Tables/List'
 
+import { toJS } from 'mobx'
 import styles from './index.scss'
 
 const MetricTypes = {
@@ -46,7 +47,7 @@ const MetricTypes = {
   pod_total: 'node_pod_quota',
 }
 
-@withList({
+@withClusterList({
   store: new NodeStore(),
   name: 'Cluster Node',
   module: 'nodes',
@@ -78,14 +79,15 @@ export default class Nodes extends React.Component {
   }
 
   get itemActions() {
-    const { store, routing } = this.props
+    const { store, clusterStore, routing, trigger } = this.props
     return [
       {
         key: 'uncordon',
         icon: 'start',
         text: t('Uncordon'),
         action: 'edit',
-        show: item => this.getUnschedulable(item),
+        show: item =>
+          item.importStatus === 'success' && this.getUnschedulable(item),
         onClick: item => store.uncordon(item).then(routing.query),
       },
       {
@@ -93,17 +95,54 @@ export default class Nodes extends React.Component {
         icon: 'stop',
         text: t('Cordon'),
         action: 'edit',
-        show: item => !this.getUnschedulable(item),
+        show: item =>
+          item.importStatus === 'success' && !this.getUnschedulable(item),
         onClick: item => store.cordon(item).then(routing.query),
+      },
+      {
+        key: 'logs',
+        icon: 'eye',
+        text: t('Show Logs'),
+        action: 'edit',
+        show: item => item.importStatus !== 'success',
+        onClick: () =>
+          trigger('node.add.log', { detail: toJS(clusterStore.detail) }),
+      },
+      {
+        key: 'delete',
+        icon: 'trash',
+        text: t('Delete'),
+        action: 'delete',
+        show: item => item.importStatus === 'failed',
+        onClick: item =>
+          trigger('resource.delete', {
+            type: t('Node'),
+            detail: item,
+            success: routing.query,
+          }),
       },
     ]
   }
 
   get tableActions() {
-    const { trigger, routing, tableProps } = this.props
+    const { trigger, routing, clusterStore, tableProps } = this.props
+    const actions = []
+    if (clusterStore.detail.kkName) {
+      actions.push({
+        key: 'add',
+        type: 'control',
+        text: t('Add Node'),
+        action: 'create',
+        onClick: () =>
+          trigger('node.add', {
+            kkName: clusterStore.detail.kkName || 'ddd',
+          }),
+      })
+    }
+
     return {
       ...tableProps.tableActions,
-      actions: [],
+      actions,
       selectActions: [
         {
           key: 'taint',
@@ -186,7 +225,7 @@ export default class Nodes extends React.Component {
           <Avatar
             icon={ICON_TYPES[module]}
             iconSize={40}
-            to={`${prefix}/${name}`}
+            to={record.importStatus !== 'success' ? null : `${prefix}/${name}`}
             title={name}
             desc={record.ip}
           />
@@ -209,7 +248,7 @@ export default class Nodes extends React.Component {
                 type={status}
                 name={t(`NODE_STATUS_${status.toUpperCase()}`)}
               />
-              {!isEmpty(taints) && (
+              {!isEmpty(taints) && record.importStatus === 'success' && (
                 <Tooltip content={this.renderTaintsTip(taints)}>
                   <span className={styles.taints}>{taints.length}</span>
                 </Tooltip>

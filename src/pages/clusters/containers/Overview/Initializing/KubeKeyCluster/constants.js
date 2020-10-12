@@ -16,15 +16,11 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-
-import styles from './index.scss'
-
-export default function SubTitle({ className, title, description }) {
-  return (
-    <div className={`${styles.text} ${className}`}>
-      <div>{title}</div>
-      <p>{description}</p>
-    </div>
-  )
-}
+export const CLUSTER_CREATING_STEPS = [
+  'Init Nodes',
+  'Pull Images',
+  'Init etcd Cluster',
+  'Init Control Plane',
+  'Join Nodes',
+  'Install Addons',
+]

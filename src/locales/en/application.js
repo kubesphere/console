@@ -43,7 +43,6 @@ export default {
   'Application Route': 'Application Route',
   'Application Type': 'Application Type',
   'Application Version(Optional)': 'Application Version(Optional)',
-  APPLICATION_YAML_DESC: 'APPLICATION_YAML_DESC',
   Applications: 'Applications',
   'Base ejection time (s)': 'Base ejection time (s)',
   'Based on HTTP cookie': 'Based on HTTP cookie',

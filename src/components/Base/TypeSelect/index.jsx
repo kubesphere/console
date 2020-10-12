@@ -138,7 +138,7 @@ export default class TypeSelect extends React.Component {
         <Icon
           className={styles.leftIcon}
           name={option.icon}
-          size={32}
+          size={40}
           type="dark"
         />
       )

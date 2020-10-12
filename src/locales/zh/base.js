@@ -545,4 +545,6 @@ export default {
 
   EVENT_AGE: '发生时间',
   EVENT_FROM: '来源',
+
+  CREATE_BY_YAML_DESC: '通过 YAML 定义您要创建的资源',
 }

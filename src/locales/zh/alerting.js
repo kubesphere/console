@@ -18,6 +18,7 @@
 
 export default {
   Alerting: '告警',
+  Notification: '通知',
   Message: '消息',
   receiver: '通知人',
   Receiver: '通知人',

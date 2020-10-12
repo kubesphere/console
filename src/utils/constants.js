@@ -209,6 +209,7 @@ export const ICON_TYPES = {
   components: 'components',
   accounts: 'human',
   workspaces: 'enterprise',
+  clusters: 'cluster',
   pods: 'pod',
   containers: 'container',
   'limits.cpu': 'cpu',
@@ -251,6 +252,7 @@ export const MODULE_KIND_MAP = {
   volumesnapshots: 'VolumeSnapshot',
   namespaces: 'Namespace',
   workspaces: 'WorkspaceTemplate',
+  clusters: 'Cluster',
   dashboards: 'Dashboard',
   applications: 'Application',
   users: 'User',
@@ -896,6 +898,12 @@ export const COMPONENT_ICON_MAP = {
   devops: 'jenkins',
   logging: 'record',
   monitoring: 'monitor',
+  alerting: 'loudspeaker',
+  auditing: 'login-servers',
+  events: 'thunder',
+  notification: 'mail',
+  servicemesh: 'istio',
+  metrics_server: 'monitor',
 }
 
 export const CLUSTER_PROVIDER_ICON = {
@@ -1032,3 +1040,8 @@ export const APP_LABEL_MODULES = [
   'cronjobs',
   'services',
 ]
+
+export const NODE_ROLE_TAG_TYPE = {
+  master: 'secondary',
+  worker: 'default',
+}

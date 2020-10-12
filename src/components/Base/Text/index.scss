@@ -7,6 +7,7 @@
 }
 
 .text {
+  flex: 1;
   & > div {
     @include TypographyTitleH6($dark-color07);
   }

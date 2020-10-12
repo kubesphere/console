@@ -63,6 +63,8 @@ export default {
   NODE_STATUS_UNSCHEDULABLE: '无法调度',
   NODE_STATUS_RUNNING: '运行中',
   NODE_STATUS_WARNING: '异常中',
+  NODE_STATUS_PENDING: '创建中',
+  NODE_STATUS_FAILED: '创建失败',
 
   NOSCHEDULE_OPTION: '不允许调度 (NoSchedule)',
   PREFER_NOSCHEDULE_OPTION: '尽量不调度 (PreferNoSchedule)',

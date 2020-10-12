@@ -108,6 +108,51 @@ export default {
 
   'Enter the project': '进入项目',
 
+  'How to Add': '添加方式',
+
+  'New Cluster': '新建集群',
+
+  'Import Cluster': '导入集群',
+
+  'Cluster Basic Info': '集群基本信息',
+
+  'Node Settings': '节点设置',
+
+  'Please add at least one cluster node': '请至少添加一个集群节点',
+  "Please specify the node's roles": '请指定节点的角色',
+  'Please input the ip address': '请输入 IP 地址',
+
+  'Add node to the cluster': '添加节点到集群中',
+
+  'Node Internal IP Address': '节点内网 IP 地址',
+  'SSH Port': 'SSH 端口',
+  'SSH IP Address': 'SSH IP 地址',
+  'Username & Password': '用户名密码',
+  'SSH Secret': 'SSH 密钥',
+  'SSH Authentication Mode': 'SSH 鉴权方式',
+  'Kubernetes Cluster Settings': 'Kubernetes 集群配置',
+  'Network Plugin': '网络插件',
+  'Max Pods': '节点最大容器组数量',
+  'Pods CIDR': '容器组 CIDR',
+  'Service CIDR': '服务 CIDR',
+  'Default Storage Plugin': '默认存储插件',
+  'Private Registry Configuration': '私有仓库配置',
+  'etcd Backup': 'etcd 备份',
+
+  'etcd Backup Dir': 'etcd 备份地址',
+  'etcd Backup Period': 'etcd 备份地址',
+  'Keep Backup Number': '保留的备份数',
+
+  'KubeSphere Settings': 'KubeSphere 设置',
+
+  'Invalid ip address': 'IP 地址不合法',
+
+  'Cluster Creation Progress': '集群创建进度',
+
+  'Current Progress': '当前进度',
+
+  'Log Info': '日志信息',
+
   NO_CLUSTER_TIP: '请添加至少 1 个集群',
   NO_CLUSTER_TIP_DESC:
     '集群是一组运行着 Kubernetes 的节点 (物理或者虚拟机)，Kubesphere 的功能也依托于集群中的节点来运行',
@@ -119,8 +164,6 @@ export default {
   VISIBILITY_PUBLIC: '公开',
 
   MULTI_CLUSTER: '多集群',
-
-  IMPORT_CLUSTER_DESC: '导入已有的 Kubernetes 集群',
 
   CLUSTER_SETTINGS_DESC: '定义集群配置信息',
   CLUSTER_TAG: '标识',
@@ -196,4 +239,63 @@ export default {
   REMOVE_WORKSPACE_CONFIRM_TITLE: '确定移除授权？',
   REMOVE_WORKSPACE_CONFIRM_DESC:
     '确定移除对企业空间 {resource} 的授权？移除集群对企业空间的授权，将删除该企业空间在当前集群下的所有资源！',
+
+  SELECT_ADD_CLUSTER_METHOD: '选择添加集群的方式',
+  SELECT_ADD_CLUSTER_METHOD_DESC: '支持添加新集群和导入已存在集群',
+
+  NEW_CLUSTER_DESC: '添加新的 Kubernetes 集群',
+  IMPORT_CLUSTER_DESC: '导入已有的 Kubernetes 集群',
+  CLUSTER_NODE_SETTINGS_DESC: '添加集群需要的节点',
+  CLUSTER_NODE_INTERNAL_IP_DESC: '集群内各节点间可以互相访问的内网 IP 地址',
+  NODE_ROLE_DESC:
+    '集群角色中，master 节点数量需要为 1 或 3，woker 节点数量至少为 1',
+  SSH_IP_ADDRESS_DESC: 'SSH IP 地址请填入当前 Host 集群可以访问到的 IP 地址',
+  SSH_AUTH_MODE_DESC: '支持用户名密码以及 SSH 密钥',
+  SSH_ACCOUNT_DESC: '默认以 root 用户登录',
+  SSH_PASSWORD_DESC: '登录节点时需要的密码',
+  SSH_SECRET_PLACEHOLDER: 'Ctrl + v 将密钥粘贴于此',
+
+  K8S_CLUSTER_SETTINGS_DESC: '对即将新建的 Kubernetes 集群进行初始化配置',
+
+  CLUSTER_MAX_PODS_DESC: '可以在此 Kubelet 上运行的 pod 的数量. 默认为 110.',
+
+  K8S_NETWORK_PLUGIN_CALICO:
+    'Calico 是一个纯3层的网络方案，无缝集成 IaaS 云架构，能够提供的 VM、容器、裸机之间的IP通信',
+  K8S_NETWORK_PLUGIN_FLANNEL:
+    'Flannel 可以让集群中的不同节点主机创建的 Docker 容器都具有全集群唯一的虚拟IP地址',
+  K8S_NETWORK_PLUGIN_CILIUM: '基于 eBPF 的网络，具有安全性和可观察性',
+
+  KUBE_PODS_CIDR_DESC:
+    '在节点上运行的 Pod 从节点的 Pod CIDR 范围分配 IP 地址。',
+  KUBE_SERVICE_CIDR_DESC: '分配给服务的 IP 地址范围',
+
+  CLUSTER_COMPONENTS_DESC: '对集群的服务组件进行定制',
+
+  CLUSTER_ADVANCED_SETTINGS_DESC: '可以根据需要配置您所需要的服务',
+  CLUSTER_PRIVATE_REGISTRY_DESC:
+    '给集群配置私有镜像仓库，当开始构建集群时会通过此镜像仓库拉取所需的全部镜像。',
+
+  CLUSTER_CONTROLPLANE_ENDPOINT: '授权集群访问地址',
+  CLUSTER_CONTROLPLANE_ENDPOINT_DESC:
+    '通过授权的集群访问地址与集群直接通信，为集群生成 kubeconfig 来访问集群。',
+  CLUSTER_ETCD_BACKUP_DESC: '对 etcd 进行定期备份设置',
+  CLUSTER_ETCD_BACKUP_DIR_DESC: '在 etcd 主机上存储 etcd 备份文件的位置。',
+  CLUSTER_ETCD_BACKUP_PERIOD_DESC: '运行 etcd 备份任务的时间，单位为分钟。',
+  CLUSTER_ETCD_BACKUP_NUMBER_DESC: '要保留多少个备份副本。',
+  CLUSTER_KUBESPHERE_SETTINGS_DESC: '针对 KubeSphere 的一些定制化设置',
+
+  CLUSTER_CREATING: '集群正在创建中',
+  CLUSTER_CREATING_TIP:
+    '当前集群正在创建，暂时没有可用的节点，所以集群为不可以用状态',
+
+  CLUSTER_INIT_NODES: '初始化节点',
+  CLUSTER_PULL_IMAGES: '拉取镜像',
+  CLUSTER_INIT_ETCD_CLUSTER: '初始化 etcd 集群',
+  CLUSTER_INIT_CONTROL_PLANE: '初始化控制平面',
+  CLUSTER_JOIN_NODES: '添加节点',
+  CLUSTER_INSTALL_ADDONS: '安装插件',
+  FETCHING_LOGS: `正在获取日志...`,
+
+  MASTER_NODE_COUNT_TIP: 'Master 节点数量需要为 1 或 3',
+  WORKER_NODE_COUNT_TIP: 'Worker 节点数量至少为1',
 }

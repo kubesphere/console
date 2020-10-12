@@ -89,7 +89,6 @@ function buildRequest(method, url, params = {}, options) {
 function handleResponse(response) {
   const redirect = response.redirected
   if (redirect) {
-    window.location.replace(response.url)
     return Promise.reject()
   }
 

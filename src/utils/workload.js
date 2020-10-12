@@ -92,9 +92,7 @@ export const getHpaFormattedData = (formData = {}) => {
 
 export const getWorkloadVolumes = async (detail, setDetail = false) => {
   const prefix = detail.cluster
-    ? `api/v1/klusters/${detail.cluster}/namespaces/${
-        detail.namespace
-      }/persistentvolumeclaims`
+    ? `api/v1/klusters/${detail.cluster}/namespaces/${detail.namespace}/persistentvolumeclaims`
     : `api/v1/namespaces/${detail.namespace}/persistentvolumeclaims`
   let specVolumes = []
   if (!isEmpty(detail.volumes)) {

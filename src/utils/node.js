@@ -78,7 +78,11 @@ export const getConditionsStatus = record => {
   return 'Running'
 }
 
-export const getNodeStatus = ({ status = {}, spec = {} }) => {
+export const getNodeStatus = ({ status = {}, spec = {}, importStatus }) => {
+  if (importStatus && importStatus !== 'success') {
+    return importStatus
+  }
+
   const conditions = status.conditions || []
   let health = true
 

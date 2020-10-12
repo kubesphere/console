@@ -18,6 +18,7 @@
 .title {
   display: flex;
   align-items: center;
+  position: relative;
   padding: 8px;
 
   :global .spin {
@@ -44,9 +45,13 @@
   }
 }
 
-
 .copy {
   position: absolute;
   top: 17px;
+  right: 12px;
+}
+
+.action {
+  @include vertical-center;
   right: 12px;
 }

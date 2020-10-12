@@ -18,6 +18,7 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
+import classNames from 'classnames'
 import { Link } from 'react-router-dom'
 import { Icon } from '@kube-design/components'
 
@@ -33,10 +34,15 @@ export default class NavItem extends React.Component {
   }
 
   render() {
-    const { data, onClick } = this.props
+    const { data, onClick, isHover, onHover } = this.props
     return (
-      <Link to={`/${data.name}`} onClick={onClick}>
-        <div className={styles.nav}>
+      <Link
+        to={`/${data.name}`}
+        data-name={data.name}
+        onClick={onClick}
+        onMouseOver={onHover}
+      >
+        <div className={classNames(styles.nav, { [styles.active]: isHover })}>
           <div className={styles.icon}>
             <Icon name={data.icon} size={60} type="light" />
           </div>

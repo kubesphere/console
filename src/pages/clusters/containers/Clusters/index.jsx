@@ -29,11 +29,13 @@ import Banner from 'components/Cards/Banner'
 import EmptyList from 'components/Cards/EmptyList'
 import ClusterCard from 'clusters/components/Cards/Cluster'
 import ClusterStore from 'stores/cluster'
+import { trigger } from 'utils/action'
 
 import styles from './index.scss'
 
 @inject('rootStore')
 @observer
+@trigger
 class Clusters extends React.Component {
   constructor(props) {
     super(props)
@@ -78,7 +80,10 @@ class Clusters extends React.Component {
   }
 
   showAddCluster = () => {
-    this.routing.push('/clusters/add')
+    this.trigger('cluster.add', {
+      module: 'clusters',
+      success: this.routing.push,
+    })
   }
 
   handlePagination = page => {

@@ -207,8 +207,6 @@ export default {
     '根據應用中服務類型的不同設置不同類型的服務組件，支持無狀態服務和有狀態服務',
   APPLICATION_BASEINFO_DESC: 'ˇ對應用的名稱描述資訊等基本的資訊定義',
 
-  APPLICATION_YAML_DESC: '通過 YAML 定義您要創建的應用',
-
   HOW_TO_USE_APPLICATION_GOVE_Q: '如何使用應用治理?',
   HOW_TO_USE_APPLICATION_GOVE_A:
     '使用應用治理需要創建自制應用並對每項服務開啟服務治理功能',
