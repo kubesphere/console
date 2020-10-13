@@ -46,7 +46,7 @@
     "moment-mini": "^2.19.4",
     "nanoid": "^1.0.2",
     "node-cache": "^4.1.1",
-    "node-fetch": "^2.3.0",
+    "node-fetch": "^2.6.1",
     "path-to-regexp": "^2.2.1",
     "promise-polyfill": "^7.0.0",
     "prop-types": "^15.6.0",
