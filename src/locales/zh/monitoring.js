@@ -93,7 +93,7 @@ export default {
   'DB Size': '库大小',
   'Client Traffic': '客户端流量',
   Received: '接收',
-  Sented: '发送',
+  Sent: '发送',
   'gRPC Stream Messages': 'gRPC 流式消息',
   'WAL Fsync': 'WAL 日志同步时间',
   'DB Fsync': '库同步时间',

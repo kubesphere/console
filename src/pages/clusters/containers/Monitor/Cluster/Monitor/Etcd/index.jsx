@@ -87,7 +87,7 @@ class EtcdMonitorings extends React.Component {
       type: 'area',
       title: 'Client Traffic',
       unitType: 'traffic',
-      legend: ['Received', 'Sented'],
+      legend: ['Received', 'Sent'],
       data: [
         get(
           this.metrics,
@@ -100,7 +100,7 @@ class EtcdMonitorings extends React.Component {
       type: 'area',
       title: 'gRPC Stream Messages',
       unit: 'times/s',
-      legend: ['Received', 'Sented'],
+      legend: ['Received', 'Sent'],
       data: [
         get(this.metrics, `${MetricTypes.grpc_received_rate}.data.result[0]`),
         get(this.metrics, `${MetricTypes.grpc_sent_rate}.data.result[0]`),

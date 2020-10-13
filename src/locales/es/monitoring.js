@@ -83,7 +83,7 @@ export default {
   'Scheduling Latency': 'Programación de latencia',
   second: 'segundo',
   'Select Time Range': 'Seleccionar rango de tiempo',
-  Sented: 'Enviado',
+  Sent: 'Enviado',
   'Service Component Monitoring': 'Servicio de Monitorización de Componentes',
   times: 'veces',
   'times/s': 'veces/s',

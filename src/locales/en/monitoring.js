@@ -82,7 +82,7 @@ export default {
   'Scheduling Latency': 'Scheduling Latency',
   second: 'second',
   'Select Time Range': 'Select Time Range',
-  Sented: 'Sented',
+  Sent: 'Sent',
   'Service Component Monitoring': 'Service Component Monitoring',
   times: 'times',
   'times/s': 'times/s',

@@ -161,7 +161,7 @@ export default class ETCDStatusTab extends React.Component {
           type: 'area',
           title: 'Client Traffic',
           unitType: 'traffic',
-          legend: ['Received', 'Sented'],
+          legend: ['Received', 'Sent'],
           data: [
             get(metrics, `${MetricTypes.client_received_bytes}.data.result[0]`),
             get(metrics, `${MetricTypes.client_sent_bytes}.data.result[0]`),

@@ -93,7 +93,7 @@ export default {
   'DB Size': '資料庫大小',
   'Client Traffic': '客戶端流量',
   Received: '接收',
-  Sented: '發送',
+  Sent: '發送',
   'gRPC Stream Messages': 'gRPC 流式訊息',
   'WAL Fsync': 'WAL 紀錄同步時間',
   'DB Fsync': '資料庫同步時間',
