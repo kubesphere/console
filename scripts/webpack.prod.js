@@ -48,6 +48,7 @@ module.exports = smp.wrap({
       ...baseConfig.moduleRules,
       {
         test: /\.s[ac]ss$/i,
+        include: root('src'),
         loader: [
           MiniCssExtractPlugin.loader,
           { loader: 'cache-loader' },
@@ -64,6 +65,15 @@ module.exports = smp.wrap({
             options: baseConfig.postCssOptions,
           },
           { loader: 'sass-loader' },
+        ],
+      },
+      {
+        test: /\.s[ac]ss$/i,
+        include: root('node_modules'),
+        use: [
+          'style-loader',
+          'css-loader',
+          'sass-loader',
         ],
       },
       {

@@ -161,7 +161,13 @@ export default class InputStep extends React.Component {
         closable={false}
         title={t('input')}
       >
-        <Alert type="info" className={styles.info} message={t('INPUT_DESC')} />
+        <Alert
+          type="info"
+          icon="information"
+          className={styles.info}
+          message={t('INPUT_DESC')}
+        />
+
         <Form data={this.formData} ref={this.formRef}>
           <Form.Item
             label={t('Message')}
@@ -169,18 +175,19 @@ export default class InputStep extends React.Component {
             rules={[{ required: true, message: t('This param is required') }]}
           >
             <MentionsInput
+              className="mention-input"
               value={this.state.value}
               onChange={this.handleMessageChange}
               onBlur={this.handleMessageSubmitter}
               placeholder={t('Can @somebody to help review')}
-              markup="@__id__ "
-              displayTransform={id => `@${id}`}
             >
               <Mention
                 data={this.fetchUsers}
                 loading={this.state.loading}
                 type="user"
                 appendSpaceOnAdd
+                displayTransform={id => `@${id}`}
+                markup="@__id__ "
               />
             </MentionsInput>
           </Form.Item>

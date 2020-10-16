@@ -22,7 +22,7 @@ import classNames from 'classnames'
 import { set } from 'lodash'
 import { observer } from 'mobx-react'
 import { observable, computed, action, reaction, toJS } from 'mobx'
-import { Icon, Slider } from '@kube-design/components'
+import { Icon } from '@kube-design/components'
 
 import {
   enterFullScreen,
@@ -333,26 +333,15 @@ export default class Dragger extends React.Component {
               />
             </div>
           ) : null}
+
           <div className={style.control} onClick={this.handleZoomOut}>
             <Icon name="add" clickable />
           </div>
-          <div className={style['slider-wrapper']}>
-            <Slider
-              value={this.scale * 100}
-              className="zoom-slider"
-              step={1}
-              max={100}
-              min={20}
-              onChange={this.handleChangeScale}
-              vertical
-            />
-          </div>
+
           <div className={style.control} onClick={this.handleZoomIn}>
             <Icon name="substract" clickable />
           </div>
-          <div className={style.control} onClick={this.handleNormalSize}>
-            <span className={style.normalSize}>1:1</span>
-          </div>
+
           {onRefresh && (
             <div className={style.control} onClick={onRefresh}>
               <Icon name="refresh" clickable />
