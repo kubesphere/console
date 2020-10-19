@@ -19,7 +19,7 @@
 import React from 'react'
 import { get, set } from 'lodash'
 import { MODULE_KIND_MAP } from 'utils/constants'
-import { Form } from 'components/Base'
+import { Form } from '@kube-design/components'
 
 import DataList from './DataList'
 import DataForm from './DataForm'

@@ -18,7 +18,7 @@
 
 import React from 'react'
 import classnames from 'classnames'
-import { Icon } from '@pitrix/lego-ui'
+import { Icon } from '@kube-design/components'
 
 import { getLanguageName } from 'utils'
 

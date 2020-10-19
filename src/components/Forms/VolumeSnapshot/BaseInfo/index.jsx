@@ -18,8 +18,7 @@
 
 import React from 'react'
 import { get } from 'lodash'
-import { Columns, Column, Input } from '@pitrix/lego-ui'
-import { Form, TextArea } from 'components/Base'
+import { Column, Columns, Form, Input, TextArea } from '@kube-design/components'
 import { MODULE_KIND_MAP } from 'utils/constants'
 
 export default class BaseInfo extends React.Component {

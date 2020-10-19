@@ -18,8 +18,7 @@
 
 import { get } from 'lodash'
 import React from 'react'
-import { Icon, Columns, Column } from '@pitrix/lego-ui'
-import { Button } from 'components/Base'
+import { Button, Icon, Columns, Column } from '@kube-design/components'
 import { getLocalTime } from 'utils'
 
 import styles from './index.scss'

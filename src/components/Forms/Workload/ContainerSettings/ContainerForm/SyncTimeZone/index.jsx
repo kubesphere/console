@@ -18,7 +18,7 @@
 
 import React from 'react'
 import { get, set } from 'lodash'
-import { Checkbox } from '@pitrix/lego-ui'
+import { Checkbox } from '@kube-design/components'
 
 import styles from './index.scss'
 

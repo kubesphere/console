@@ -21,8 +21,7 @@ import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { isEmpty, get } from 'lodash'
 
-import { Buttons, Icon } from '@pitrix/lego-ui'
-import { Button } from 'components/Base'
+import { Button, Icon } from '@kube-design/components'
 
 import ProbeForm from '../ProbeForm'
 
@@ -173,10 +172,10 @@ export default class ProbeInput extends React.Component {
           </div>
           {this.renderProbeInfo()}
         </div>
-        <Buttons>
+        <div className="buttons">
           <Button type="flat" icon="trash" onClick={this.handleDelete} />
           <Button type="flat" icon="pen" onClick={this.showForm} />
-        </Buttons>
+        </div>
       </div>
     )
   }

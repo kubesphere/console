@@ -40,8 +40,7 @@ const config = {
     rules: [
       ...baseConfig.moduleRules,
       {
-        test: /\.scss$/,
-        exclude: /lego.theme.scss/,
+        test: /\.s[ac]ss$/i,
         include: root('src'),
         use: [
           'style-loader',
@@ -55,8 +54,17 @@ const config = {
             },
           },
           {
-            loader: 'fast-sass-loader',
+            loader: 'sass-loader',
           },
+        ],
+      },
+      {
+        test: /\.s[ac]ss$/i,
+        include: root('node_modules'),
+        use: [
+          'style-loader',
+          'css-loader',
+          'sass-loader',
         ],
       },
       {
@@ -97,11 +105,6 @@ const config = {
           test: /[\\/]node_modules[\\/](?!(ace-builds|react-ace|xterm)).*.jsx?$/,
           name: 'vendor',
           priority: 10,
-        },
-        lego: {
-          test: /[\\/]node_modules[\\/]@pitrix[\\/].*.jsx?$/,
-          name: 'lego',
-          priority: 20,
         },
         common: {
           name: 'common',

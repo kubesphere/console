@@ -19,8 +19,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import { Columns, Column, Icon } from '@pitrix/lego-ui'
-import { Upload, Notify } from 'components/Base'
+import { Column, Columns, Icon, Notify } from '@kube-design/components'
+import { Upload } from 'components/Base'
 
 import styles from './index.scss'
 

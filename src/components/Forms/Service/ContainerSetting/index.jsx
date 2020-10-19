@@ -24,7 +24,7 @@ import { MODULE_KIND_MAP } from 'utils/constants'
 import ConfigMapStore from 'stores/configmap'
 import SecretStore from 'stores/secret'
 
-import { Form } from 'components/Base'
+import { Form } from '@kube-design/components'
 import ReplicasControl from 'components/Forms/Workload/ContainerSettings/ReplicasControl'
 import UpdateStrategy from 'components/Forms/Workload/ContainerSettings/UpdateStrategy'
 
@@ -78,9 +78,7 @@ export default class ContainerSetting extends React.Component {
   }
 
   get containerSecretPath() {
-    return `${
-      this.prefix
-    }metadata.annotations["kubesphere.io/containerSecrets"]`
+    return `${this.prefix}metadata.annotations["kubesphere.io/containerSecrets"]`
   }
 
   checkPullSecret() {

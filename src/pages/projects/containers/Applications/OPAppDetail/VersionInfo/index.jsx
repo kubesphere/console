@@ -18,7 +18,7 @@
 
 import React from 'react'
 
-import { Button } from 'components/Base'
+import { Button } from '@kube-design/components'
 
 import styles from './index.scss'
 
@@ -33,7 +33,7 @@ const Item = ({ data, onUpgrade, currentVersion }) => {
       )}
       {currentVersion.version_id !== data.version_id && (
         <div className={styles.operations}>
-          <Button onClick={handleUpgrade} noShadow>
+          <Button onClick={handleUpgrade}>
             {currentVersion.create_time < data.create_time
               ? t('Upgrade')
               : t('Rollback')}
@@ -58,9 +58,7 @@ export default class VersionInfo extends React.Component {
     const currentVersion =
       data.find(item => item.version_id === detail.version_id) || {}
 
-    const urlPrefix = `/apps/${
-      detail.app_id
-    }?workspace=${workspace}&cluster=${cluster}&namespace=${namespace}`
+    const urlPrefix = `/apps/${detail.app_id}?workspace=${workspace}&cluster=${cluster}&namespace=${namespace}`
 
     return (
       <ul>

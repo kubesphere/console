@@ -23,7 +23,7 @@ import { saveAs } from 'file-saver'
 import { get, isEmpty } from 'lodash'
 
 import ReactFileReader from 'react-file-reader'
-import { Icon } from '@pitrix/lego-ui'
+import { Icon } from '@kube-design/components'
 import { CodeEditor } from 'components/Base'
 
 import { getValue, getAllYAMLValue } from 'utils/yaml'

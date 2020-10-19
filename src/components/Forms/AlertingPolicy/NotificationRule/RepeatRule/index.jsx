@@ -23,8 +23,7 @@ import { get, set } from 'lodash'
 
 import { SEVERITY_LEVEL } from 'configs/alerting/metrics/rule.config'
 
-import { Icon, Select } from '@pitrix/lego-ui'
-import { Form } from 'components/Base'
+import { Form, Icon, Select } from '@kube-design/components'
 
 import styles from './index.scss'
 

@@ -19,7 +19,8 @@ import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react'
 import { computed } from 'mobx'
 
-import { Form, TypeSelect } from 'components/Base'
+import { Form } from '@kube-design/components'
+import { TypeSelect } from 'components/Base'
 import { MONITOR_GRAPH_COLORS } from 'utils/constants'
 
 import EditMonitorFormLayou from '../components/EditMonitorFormLayout'

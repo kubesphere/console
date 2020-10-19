@@ -27,7 +27,7 @@ import AutoSizer from 'react-virtualized/dist/es/AutoSizer/AutoSizer'
 import CellMeasurerCache from 'react-virtualized/dist/es/CellMeasurer/CellMeasurerCache'
 import CellMeasurer from 'react-virtualized/dist/es/CellMeasurer/CellMeasurer'
 
-import { Icon, Dropdown } from '@pitrix/lego-ui'
+import { Icon, Dropdown } from '@kube-design/components'
 import styles from './index.scss'
 
 @observer

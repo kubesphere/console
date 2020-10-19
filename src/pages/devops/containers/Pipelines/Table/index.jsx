@@ -17,14 +17,9 @@
  */
 
 import React from 'react'
-import {
-  Table as BaseTable,
-  Level,
-  LevelRight,
-  LevelItem,
-} from '@pitrix/lego-ui'
-import { Button } from 'components/Base'
+import { Button, Level, LevelRight, LevelItem } from '@kube-design/components'
 import Table from 'components/Tables/Base'
+import FilterInput from 'components/Tables/Base/FilterInput'
 
 import styles from 'components/Tables/Base/index.scss'
 
@@ -87,7 +82,7 @@ export default class CICDTable extends Table {
     <Level>
       <LevelItem>
         {this.props.disableSearch ? null : (
-          <BaseTable.FilterInput
+          <FilterInput
             placeholder={t('Enter query conditions to filter')}
             tags={this.tags}
             suggestions={this.suggestions}

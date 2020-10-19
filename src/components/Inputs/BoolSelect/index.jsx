@@ -17,7 +17,7 @@
  */
 
 import React from 'react'
-import { Select } from '@pitrix/lego-ui'
+import { Select } from '@kube-design/components'
 
 const BOOLEAN_OPTIONS = [
   { label: 'true', value: 'true' },

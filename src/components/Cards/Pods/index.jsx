@@ -23,6 +23,7 @@ import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { isEmpty, has, get, throttle } from 'lodash'
 import {
+  Button,
   Icon,
   Level,
   LevelLeft,
@@ -30,7 +31,8 @@ import {
   Pagination,
   Loading,
   Select,
-} from '@pitrix/lego-ui'
+  InputSearch,
+} from '@kube-design/components'
 
 import { joinSelector } from 'utils'
 import { startAutoRefresh, stopAutoRefresh } from 'utils/monitoring'
@@ -39,7 +41,7 @@ import PodStore from 'stores/pod'
 import PodMonitorStore from 'stores/monitoring/pod'
 import WebSocketStore from 'stores/websocket'
 
-import { Panel, Search, Button } from 'components/Base'
+import { Panel } from 'components/Base'
 import PodItem from './Item'
 
 import styles from './index.scss'
@@ -324,7 +326,7 @@ export default class PodsCard extends React.Component {
             onChange={this.handleClusterChange}
           />
         )}
-        <Search
+        <InputSearch
           className={styles.search}
           name="search"
           placeholder={t('Please input a keyword to filter')}
@@ -369,18 +371,14 @@ export default class PodsCard extends React.Component {
   }
 
   renderFooter = () => {
-    const { total, page, limit } = this.getPagination()
+    const pagination = this.getPagination()
+    const { total } = pagination
 
     return (
       <Level className={styles.footer}>
         <LevelLeft>{t('TOTAL_ITEMS', { num: total })}</LevelLeft>
         <LevelRight>
-          <Pagination
-            current={page}
-            total={total}
-            pageSize={limit}
-            onChange={this.handlePage}
-          />
+          <Pagination {...pagination} onChange={this.handlePage} />
         </LevelRight>
       </Level>
     )

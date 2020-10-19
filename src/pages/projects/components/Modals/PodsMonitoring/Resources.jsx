@@ -25,8 +25,8 @@ import { cacheFunc } from 'utils'
 import { ICON_TYPES } from 'utils/constants'
 import { getSuitableValue } from 'utils/monitoring'
 
-import { Icon, Checkbox, Loading } from '@pitrix/lego-ui'
-import { Empty, Notify } from 'components/Base'
+import { Checkbox, Icon, Loading, Notify } from '@kube-design/components'
+import { Empty } from 'components/Base'
 
 import styles from './index.scss'
 
@@ -116,7 +116,7 @@ export default class Resources extends React.Component {
     }
   }
 
-  toggleChecked = (e, checked) => {
+  toggleChecked = checked => {
     this.setState({ showChecked: checked })
   }
 

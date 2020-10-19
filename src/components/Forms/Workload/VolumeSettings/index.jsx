@@ -20,12 +20,12 @@ import { get, set, unset, isUndefined, isEmpty } from 'lodash'
 import React from 'react'
 import { toJS } from 'mobx'
 import { observer } from 'mobx-react'
-import { Toggle, Tooltip, Icon } from '@pitrix/lego-ui'
+import { Toggle, Tooltip, Icon, Alert, Form } from '@kube-design/components'
 
 import { generateId, safeParseJSON } from 'utils'
 import { MODULE_KIND_MAP } from 'utils/constants'
 import { findVolume, isNotPersistentVolume } from 'utils/volume'
-import { Alert, Form } from 'components/Base'
+
 import VolumeStore from 'stores/volume'
 import FederatedStore from 'stores/federated'
 import ProjectStore from 'stores/project'
@@ -99,9 +99,7 @@ class VolumeSettings extends React.Component {
   }
 
   get logPathPrefix() {
-    return `${
-      this.prefix
-    }metadata.annotations["logging.kubesphere.io/logsidecar-config"]`
+    return `${this.prefix}metadata.annotations["logging.kubesphere.io/logsidecar-config"]`
   }
 
   get projectEnableCollectingFileLog() {

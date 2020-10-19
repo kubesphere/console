@@ -18,8 +18,10 @@
 
 import { get, set } from 'lodash'
 import React from 'react'
-import { Input, Select } from '@pitrix/lego-ui'
+import { Input, Select } from '@kube-design/components'
 import { ObjectInput, SelectInput } from 'components/Inputs'
+
+import styles from './index.scss'
 
 export default class RulePath extends React.Component {
   static defaultProps = {
@@ -87,6 +89,7 @@ export default class RulePath extends React.Component {
           onChange={this.handleServiceChange}
         />
         <SelectInput
+          className={styles.input}
           name="backend.servicePort"
           placeholder={t('port')}
           options={this.ports}

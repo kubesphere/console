@@ -21,7 +21,8 @@ import { observer, inject } from 'mobx-react'
 
 import { get, find, capitalize, values } from 'lodash'
 
-import { Status, Notify } from 'components/Base'
+import { Notify } from '@kube-design/components'
+import { Status } from 'components/Base'
 import Base from 'core/containers/Base/List'
 import Banner from 'components/Cards/Banner'
 import Avatar from 'apps/components/Avatar'

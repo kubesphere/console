@@ -19,9 +19,17 @@
 import React from 'react'
 import { toJS } from 'mobx'
 import { get, keyBy } from 'lodash'
-import { Columns, Column, Toggle, Tooltip, Icon } from '@pitrix/lego-ui'
+import {
+  Alert,
+  Columns,
+  Column,
+  Toggle,
+  Tooltip,
+  Icon,
+  InputSearch,
+} from '@kube-design/components'
 
-import { Alert, Modal, Search } from 'components/Base'
+import { Modal } from 'components/Base'
 import DeleteModal from 'components/Modals/Delete'
 
 import WorkspaceStore from 'stores/workspace'
@@ -171,7 +179,7 @@ export default class ClusterVisibility extends React.Component {
               <div className={styles.title}>{t('Unauthorized')}</div>
               <div className={styles.content}>
                 <div className={styles.search}>
-                  <Search
+                  <InputSearch
                     name="name"
                     onSearch={this.handleSearch}
                     placeholder={t('SEARCH_TIPS')}

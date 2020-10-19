@@ -27,7 +27,7 @@ import { ALERT_MESSAGE_STATUS } from 'utils/constants'
 import { getAlertMessageDesc } from 'utils/alerting'
 import AlertMessageStore from 'stores/alerting/message'
 
-import { Loading } from '@pitrix/lego-ui'
+import { Loading } from '@kube-design/components'
 import { Card, Avatar, Status, Empty } from 'components/Base'
 import BaseTable from 'components/Tables/Base'
 
@@ -74,9 +74,7 @@ export default class AlertHistory extends React.Component {
 
   get prefix() {
     return this.workspace
-      ? `/${this.workspace}/clusters/${this.cluster}/projects/${
-          this.namespace
-        }/alert-messages`
+      ? `/${this.workspace}/clusters/${this.cluster}/projects/${this.namespace}/alert-messages`
       : `/clusters/${this.cluster}/alert-messages`
   }
 

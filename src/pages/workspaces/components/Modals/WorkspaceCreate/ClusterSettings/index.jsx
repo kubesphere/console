@@ -18,7 +18,7 @@
 
 import React from 'react'
 
-import { Form } from 'components/Base'
+import { Form } from '@kube-design/components'
 import ClusterSelect from './ClusterSelect'
 
 import styles from './index.scss'

@@ -18,8 +18,8 @@
 
 import React from 'react'
 import { observer } from 'mobx-react'
-import { Input } from '@pitrix/lego-ui'
-import { Form, SearchSelect, Tag } from 'components/Base'
+import { pick } from 'lodash'
+import { Form, Input, Select, Tag } from '@kube-design/components'
 import styles from './index.scss'
 
 @observer
@@ -77,16 +77,16 @@ export default class GitForm extends React.Component {
               </p>
             }
           >
-            <SearchSelect
+            <Select
               name="git_source.credential_id"
               options={this.getCredentialsList()}
-              page={credentials.page}
-              total={credentials.total}
-              currentLength={credentials.data.length}
+              pagination={pick(credentials, ['page', 'limit', 'total'])}
               isLoading={credentials.isLoading}
               onFetch={this.getCredentialsListData}
               optionRenderer={this.optionRender}
               valueRenderer={this.optionRender}
+              searchable
+              clearable
             />
           </Form.Item>
         </Form>

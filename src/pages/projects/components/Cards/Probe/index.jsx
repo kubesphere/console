@@ -18,7 +18,8 @@
 
 import React from 'react'
 
-import { Tag, List, Panel } from 'components/Base'
+import { Tag } from '@kube-design/components'
+import { List, Panel } from 'components/Base'
 
 import styles from './index.scss'
 

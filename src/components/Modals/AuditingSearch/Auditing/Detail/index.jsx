@@ -17,7 +17,7 @@
  */
 
 import React, { Fragment } from 'react'
-import { Select, Icon, Tooltip } from '@pitrix/lego-ui'
+import { Select, Icon, Tooltip } from '@kube-design/components'
 import { min } from 'lodash'
 import moment from 'moment-mini'
 import classnames from 'classnames'

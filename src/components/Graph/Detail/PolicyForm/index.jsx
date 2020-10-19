@@ -22,9 +22,17 @@ import PropTypes from 'prop-types'
 import { toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import copy from 'fast-copy'
-import { RadioGroup, RadioButton, Select, Alert, Toggle } from '@pitrix/lego-ui'
+import {
+  Button,
+  Notify,
+  Form,
+  RadioGroup,
+  RadioButton,
+  Select,
+  Alert,
+  Toggle,
+} from '@kube-design/components'
 
-import { Button, Notify, Form } from 'components/Base'
 import { NumberInput } from 'components/Inputs'
 
 import { joinSelector } from 'utils'
@@ -190,7 +198,7 @@ export default class PolicyForm extends React.Component {
       <>
         <div className={styles.title}>{t('Load balance algorithm')}</div>
         <RadioGroup
-          wrapClassName="radio-default margin-t12"
+          wrapClassName="radio-group-button margin-t12"
           buttonWidth={148}
           value={mode}
           onChange={this.handleModeChange}
@@ -424,7 +432,7 @@ export default class PolicyForm extends React.Component {
         </Form.Item>
         <Alert
           className={styles.alert}
-          description={t.html('LB_ALG_DESC')}
+          message={t.html('LB_ALG_DESC')}
           type="info"
         />
       </div>

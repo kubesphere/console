@@ -19,8 +19,7 @@
 import { get, set } from 'lodash'
 import React from 'react'
 import { observer } from 'mobx-react'
-import { Columns, Column, Input } from '@pitrix/lego-ui'
-import { Form, TextArea } from 'components/Base'
+import { Column, Columns, Form, Input, TextArea } from '@kube-design/components'
 import { updateLabels } from 'utils'
 import { ProjectSelect } from 'components/Inputs'
 

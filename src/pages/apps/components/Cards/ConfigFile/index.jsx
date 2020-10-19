@@ -20,7 +20,7 @@ import React from 'react'
 import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 
-import { Notify } from 'components/Base'
+import { Notify } from '@kube-design/components'
 import UploadInfo from 'apps/components/Cards/UploadInfo'
 import VersionStore from 'stores/openpitrix/version'
 import FileStore from 'stores/openpitrix/file'

@@ -22,7 +22,7 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
 import { ReactComponent as BackIcon } from 'src/assets/back.svg'
-import { Form } from 'components/Base'
+import { Form } from '@kube-design/components'
 
 import Ports from './Ports'
 import Commands from './Commands'

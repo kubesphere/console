@@ -25,8 +25,14 @@ import { isEmpty, get, remove } from 'lodash'
 
 import TargetResourceStore from 'stores/alerting/resource'
 
-import { RadioButton, RadioGroup, Input, Select } from '@pitrix/lego-ui'
-import { Form, ScrollLoad } from 'components/Base'
+import {
+  Form,
+  Input,
+  RadioButton,
+  RadioGroup,
+  Select,
+} from '@kube-design/components'
+import { ScrollLoad } from 'components/Base'
 import { ArrayInput, ObjectInput } from 'components/Inputs'
 import NodeItem from './NodeItem'
 import ServiceComponentItem from './SCItem'
@@ -310,7 +316,7 @@ export default class ClusterTarget extends React.Component {
       <div className={styles.wrapper}>
         <div className={styles.title}>
           <RadioGroup
-            wrapClassName="radio-default"
+            mode="button"
             buttonWidth={155}
             value={type}
             onChange={this.handleTypeChange}

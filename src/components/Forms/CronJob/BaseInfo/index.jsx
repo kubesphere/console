@@ -18,8 +18,14 @@
 
 import { get, set, debounce } from 'lodash'
 import React from 'react'
-import { Columns, Column, Input, Select } from '@pitrix/lego-ui'
-import { Form, TextArea } from 'components/Base'
+import {
+  Column,
+  Columns,
+  Form,
+  Input,
+  Select,
+  TextArea,
+} from '@kube-design/components'
 import { NumberInput, SelectInput, ProjectSelect } from 'components/Inputs'
 import ToggleView from 'components/ToggleView'
 import { MODULE_KIND_MAP, PATTERN_NAME } from 'utils/constants'

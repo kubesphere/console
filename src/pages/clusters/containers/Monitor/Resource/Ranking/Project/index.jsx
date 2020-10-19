@@ -21,6 +21,7 @@ import { observer } from 'mobx-react'
 import classNames from 'classnames'
 
 import {
+  Button,
   Select,
   Pagination,
   Level,
@@ -28,11 +29,9 @@ import {
   LevelRight,
   Icon,
   Loading,
-} from '@pitrix/lego-ui'
+} from '@kube-design/components'
 
 import Store from 'stores/rank/project'
-
-import { Button } from 'components/Base'
 
 import Table from './Table'
 
@@ -130,9 +129,9 @@ class Ranking extends React.Component {
           <LevelLeft />
           <LevelRight>
             <Pagination
-              current={page}
-              total={total * limit}
-              pageSize={limit}
+              page={page}
+              total={total}
+              limit={limit}
               onChange={this.store.changePagination}
             />
           </LevelRight>

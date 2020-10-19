@@ -17,7 +17,8 @@
  */
 
 import { get } from 'lodash'
-import { Modal, Notify } from 'components/Base'
+import { Notify } from '@kube-design/components'
+import { Modal } from 'components/Base'
 import DevOpsCreateModal from 'components/Modals/DevOpsCreate'
 import EditModal from 'components/Modals/DevOpsEdit'
 import DeleteModal from 'components/Modals/Delete'

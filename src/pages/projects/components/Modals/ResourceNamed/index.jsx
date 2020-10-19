@@ -20,8 +20,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { PATTERN_NAME } from 'utils/constants'
-import { Input } from '@pitrix/lego-ui'
-import { Modal, Form } from 'components/Base'
+import { Form, Input } from '@kube-design/components'
+import { Modal } from 'components/Base'
 
 export default class ResourceNamed extends React.Component {
   static propTypes = {

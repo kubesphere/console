@@ -22,7 +22,7 @@ import PropTypes from 'prop-types'
 
 import { getDisplayName } from 'utils'
 
-import { Input, Select } from '@pitrix/lego-ui'
+import { Input, Select } from '@kube-design/components'
 
 import ObjectInput from '../ObjectInput'
 

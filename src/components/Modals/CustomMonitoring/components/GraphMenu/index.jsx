@@ -19,7 +19,7 @@
 import React from 'react'
 
 import { isObject } from 'lodash'
-import { Icon } from '@pitrix/lego-ui'
+import { Icon } from '@kube-design/components'
 
 import styles from './index.scss'
 

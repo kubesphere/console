@@ -17,26 +17,22 @@
  */
 
 import React from 'react'
-import classnames from 'classnames'
+import { Form } from '@kube-design/components'
 
 import { UrlInput } from 'components/Inputs'
 
-import fromStyles from 'src/components/Base/Form/index.scss'
 import styles from './index.scss'
 
 export default class BaseInfo extends React.Component {
   render() {
     return (
       <div className={styles.fromGroup}>
-        <div className={classnames(styles.path, fromStyles.item)}>
-          <label className={fromStyles.label}>{t('Service Address')}:</label>
-          <div className={styles.columns}>
-            <UrlInput hostName={'host'} portName={'port'} defaultPort={24224} />
-          </div>
-          <div className={classnames(fromStyles.desc, styles.desc)}>
-            {t('LOG_COLLECTION_FLUENTD_URL_TIPS')}
-          </div>
-        </div>
+        <Form.Item
+          label={t('Service Address')}
+          desc={t('LOG_COLLECTION_FLUENTD_URL_TIPS')}
+        >
+          <UrlInput hostName={'host'} portName={'port'} defaultPort={24224} />
+        </Form.Item>
       </div>
     )
   }

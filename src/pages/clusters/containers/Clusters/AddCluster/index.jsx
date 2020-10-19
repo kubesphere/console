@@ -18,9 +18,8 @@
 
 import React from 'react'
 import { get, set, unset, cloneDeep } from 'lodash'
-import { Columns, Column } from '@pitrix/lego-ui'
+import { Button, Form, Columns, Column } from '@kube-design/components'
 import { inject, observer } from 'mobx-react'
-import { Button, Form } from 'components/Base'
 import { ReactComponent as BackIcon } from 'src/assets/back.svg'
 import { safeBtoa } from 'utils/base64'
 import ClusterStore from 'stores/cluster'

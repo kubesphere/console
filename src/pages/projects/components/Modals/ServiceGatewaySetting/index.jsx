@@ -19,8 +19,8 @@
 import { get, set, unset, merge, omit, cloneDeep } from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Select } from '@pitrix/lego-ui'
-import { Modal, Form } from 'components/Base'
+import { Form, Select } from '@kube-design/components'
+import { Modal } from 'components/Base'
 import { PropertiesInput } from 'components/Inputs'
 import Title from 'components/Forms/Base/Title'
 

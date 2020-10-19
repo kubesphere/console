@@ -19,7 +19,7 @@
 import { get, isEmpty } from 'lodash'
 import React from 'react'
 
-import { Tooltip, Icon } from '@pitrix/lego-ui'
+import { Tooltip, Icon } from '@kube-design/components'
 
 import { Status } from 'components/Base'
 import { S2I_STATUS_DESC } from 'utils/constants'

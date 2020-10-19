@@ -17,7 +17,8 @@
  */
 
 import { set, uniqBy } from 'lodash'
-import { Modal, Notify } from 'components/Base'
+import { Notify } from '@kube-design/components'
+import { Modal } from 'components/Base'
 import ClusterVisibility from 'clusters/components/Modals/ClusterVisibility'
 
 import WorkspaceStore from 'stores/workspace'

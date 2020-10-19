@@ -1,5 +1,5 @@
 import React from 'react'
-import { Tabs, Icon } from '@pitrix/lego-ui'
+import { Tabs, Icon } from '@kube-design/components'
 
 import Metadata from './Metadata'
 

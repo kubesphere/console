@@ -20,7 +20,7 @@ import React from 'react'
 import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
-import { Icon } from '@pitrix/lego-ui'
+import { Icon } from '@kube-design/components'
 import { get } from 'lodash'
 
 import { Image, Upload } from 'components/Base'

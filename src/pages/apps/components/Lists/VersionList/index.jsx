@@ -27,9 +27,12 @@ import {
   LevelRight,
   Pagination,
   Loading,
-} from '@pitrix/lego-ui'
+  InputSearch,
+  Button,
+  Notify,
+} from '@kube-design/components'
 
-import { Card, Search, Button, Notify } from 'components/Base'
+import { Card } from 'components/Base'
 import HelmUploadModal from 'apps/components/Modals/HelmUpload'
 
 import { STORE_QUERY_STATUS } from 'configs/openpitrix/app'
@@ -157,7 +160,7 @@ export default class VersionList extends React.Component {
 
     return (
       <div className={styles.header}>
-        <Search
+        <InputSearch
           className={styles.search}
           name="search"
           placeholder={t('Please input a keyword to filter')}
@@ -214,9 +217,9 @@ export default class VersionList extends React.Component {
         <LevelLeft>{t('TOTAL_ITEMS', { num: total })}</LevelLeft>
         <LevelRight>
           <Pagination
-            current={page}
+            page={page}
             total={total}
-            pageSize={limit}
+            limit={limit}
             onChange={this.handlePage}
           />
         </LevelRight>

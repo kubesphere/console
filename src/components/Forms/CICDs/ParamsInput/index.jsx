@@ -19,8 +19,8 @@
 import { isEmpty, isArray, get, set } from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Menu, Dropdown, Icon } from '@pitrix/lego-ui'
-import { Button } from 'components/Base'
+import { Button, Menu, Dropdown, Icon } from '@kube-design/components'
+
 import { PIPELINE_PARAMS_TYPES } from 'utils/constants'
 import Item from './Item'
 
@@ -45,7 +45,11 @@ export default class ParamsInput extends React.Component {
 
   handleDelete = index => {
     const { formTemplate, name } = this.props
-    set(formTemplate, name, this.value.filter((_, _index) => _index !== index))
+    set(
+      formTemplate,
+      name,
+      this.value.filter((_, _index) => _index !== index)
+    )
     this.forceUpdate()
   }
 
@@ -76,7 +80,7 @@ export default class ParamsInput extends React.Component {
       <div className={styles.wrapper}>
         <div className={styles.header}>
           <Dropdown
-            className="dropdown-default"
+            theme="dark"
             content={this.renderMoreMenu()}
             trigger="click"
             placement="bottomRight"

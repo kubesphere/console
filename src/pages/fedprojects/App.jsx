@@ -20,7 +20,7 @@ import { set } from 'lodash'
 import { toJS } from 'mobx'
 import { inject, observer, Provider } from 'mobx-react'
 
-import { Loading } from '@pitrix/lego-ui'
+import { Loading } from '@kube-design/components'
 
 import { renderRoutes } from 'utils/router.config'
 

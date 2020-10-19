@@ -18,8 +18,7 @@
 
 import React from 'react'
 
-import { Icon } from '@pitrix/lego-ui'
-import { Form } from 'components/Base'
+import { Form, Icon } from '@kube-design/components'
 
 import styles from './index.scss'
 

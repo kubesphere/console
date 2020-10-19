@@ -18,9 +18,9 @@
 
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Select } from '@pitrix/lego-ui'
+import { Form, Select } from '@kube-design/components'
 
-import { Modal, Form } from 'components/Base'
+import { Modal } from 'components/Base'
 
 import styles from './index.scss'
 

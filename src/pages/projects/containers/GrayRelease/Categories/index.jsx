@@ -18,8 +18,7 @@
 
 import React from 'react'
 import { observer, inject } from 'mobx-react'
-import { Icon } from '@pitrix/lego-ui'
-import { Button, Notify } from 'components/Base'
+import { Button, Notify, Icon } from '@kube-design/components'
 import CreateModal from 'components/Modals/Create'
 import { GRAY_RELEASE_CATEGORIES } from 'utils/constants'
 import FORM_TEMPLATE from 'utils/form.templates'
@@ -142,7 +141,6 @@ export default class Categories extends React.Component {
                     data-type={item.type}
                     onClick={this.showCreate}
                     disabled={!this.serviceMeshEnable}
-                    noShadow
                   >
                     {t('Create Job')}
                   </Button>

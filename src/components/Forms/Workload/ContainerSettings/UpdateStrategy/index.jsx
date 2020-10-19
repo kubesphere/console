@@ -23,8 +23,8 @@ import { get, set, unset, isEmpty } from 'lodash'
 
 import { STRATEGIES, STRATEGIES_PREFIX } from 'utils/constants'
 
-import { Input, Columns, Column } from '@pitrix/lego-ui'
-import { Form, TypeSelect } from 'components/Base'
+import { Form, Input, Columns, Column } from '@kube-design/components'
+import { TypeSelect } from 'components/Base'
 import { NumberInput } from 'components/Inputs'
 
 import styles from './index.scss'

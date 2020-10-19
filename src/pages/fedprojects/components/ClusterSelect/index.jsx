@@ -18,8 +18,8 @@
 
 import React, { Component } from 'react'
 
-import { Icon } from '@pitrix/lego-ui'
-import { Panel, Tag } from 'components/Base'
+import { Icon, Tag } from '@kube-design/components'
+import { Panel } from 'components/Base'
 import { CLUSTER_PROVIDER_ICON, CLUSTER_GROUP_TAG_TYPE } from 'utils/constants'
 
 import styles from './index.scss'

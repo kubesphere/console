@@ -21,8 +21,7 @@ import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { isEmpty } from 'lodash'
 
-import { Icon, Dropdown, Menu } from '@pitrix/lego-ui'
-import { Button } from 'components/Base'
+import { Button, Icon, Dropdown, Menu } from '@kube-design/components'
 
 import styles from './index.scss'
 
@@ -51,7 +50,7 @@ export default class BtnGroup extends Component {
         {...rest}
         data-test={`detail-${rest.key}`}
       >
-        <span className={styles.buttonText}>{text}</span>
+        {text}
       </Button>
     )
   }
@@ -71,10 +70,7 @@ export default class BtnGroup extends Component {
       <div>
         {this.renderBtn(options[0])}
         {content && (
-          <Dropdown
-            className={classnames(styles.dropdown, 'dropdown-default')}
-            content={content}
-          >
+          <Dropdown theme="dark" content={content}>
             <Button className={styles.more} data-test="detail-more">
               {t('MORE')} <Icon name="caret-down" />{' '}
             </Button>

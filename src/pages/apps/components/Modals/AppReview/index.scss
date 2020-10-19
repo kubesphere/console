@@ -7,7 +7,7 @@
 
   &.hideFooter {
     :global {
-      .tabs-new {
+      .tabs-button {
         margin-bottom: 0;
       }
     }
@@ -27,7 +27,7 @@
       background-color: $card-bg-color;
     }
 
-    .tabs-new {
+    .tabs-button {
       margin-bottom: 80px;
     }
 

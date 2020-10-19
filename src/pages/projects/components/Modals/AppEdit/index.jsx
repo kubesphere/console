@@ -19,8 +19,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { Input } from '@pitrix/lego-ui'
-import { Modal, Form, TextArea } from 'components/Base'
+import { Form, Input, TextArea } from '@kube-design/components'
+import { Modal } from 'components/Base'
 
 export default class AppEditModal extends React.Component {
   static propTypes = {

@@ -20,9 +20,15 @@ import { get } from 'lodash'
 import React from 'react'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
-import { Select, Input, Alert, RadioButton, RadioGroup } from '@pitrix/lego-ui'
+import {
+  Alert,
+  Form,
+  Input,
+  RadioButton,
+  RadioGroup,
+  Select,
+} from '@kube-design/components'
 
-import { Form } from 'components/Base'
 import { ArrayInput, RulePath } from 'components/Inputs'
 
 import { ReactComponent as BackIcon } from 'src/assets/back.svg'
@@ -257,7 +263,7 @@ export default class RuleForm extends React.Component {
               {!isFederated && (
                 <Form.Item label={t('Mode')}>
                   <RadioGroup
-                    wrapClassName="radio-default"
+                    mode="button"
                     buttonWidth={155}
                     value={type}
                     onChange={this.handleModeChange}
@@ -272,7 +278,7 @@ export default class RuleForm extends React.Component {
               )}
               <Alert
                 className="margin-t12 margin-b12"
-                description={t.html(`RULE_SETTING_MODE_${type.toUpperCase()}`)}
+                message={t.html(`RULE_SETTING_MODE_${type.toUpperCase()}`)}
                 type="info"
               />
               {this.renderForm()}

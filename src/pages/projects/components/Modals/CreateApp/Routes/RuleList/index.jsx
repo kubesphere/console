@@ -19,7 +19,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { get, isEmpty, keyBy } from 'lodash'
-import { Alert } from '@pitrix/lego-ui'
+import { Alert } from '@kube-design/components'
 import { Text } from 'components/Base'
 import ObjectMapper from 'utils/object.mapper'
 
@@ -98,7 +98,7 @@ export default class RuleList extends React.Component {
         {isEmpty(gateway) && !isFederated && (
           <Alert
             className="margin-b12"
-            description={t.html('NO_INTERNET_ACCESS_TIP')}
+            message={t.html('NO_INTERNET_ACCESS_TIP')}
             type="warning"
           />
         )}

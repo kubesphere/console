@@ -19,14 +19,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { set, debounce } from 'lodash'
-import { Columns, Column, Addons } from '@pitrix/lego-ui'
+import { Button, Columns, Column } from '@kube-design/components'
 
-import { Button } from 'components/Base'
 import { NumberInput } from 'components/Inputs'
 
 import styles from './index.scss'
 
-export default class ReplicasContorl extends React.Component {
+export default class ReplicasControl extends React.Component {
   static propTypes = {
     template: PropTypes.object,
   }
@@ -73,11 +72,11 @@ export default class ReplicasContorl extends React.Component {
     return (
       <div className={styles.replicas}>
         <div className="margin-b8">{t('Pod Replicas')}</div>
-        <Addons>
+        <div className="flexbox">
           <Button type="flat" icon="substract" onClick={this.handleSubStract} />
           <NumberInput value={replicas} onChange={this.handleChange} />
           <Button type="flat" icon="add" onClick={this.handleAdd} />
-        </Addons>
+        </div>
       </div>
     )
   }

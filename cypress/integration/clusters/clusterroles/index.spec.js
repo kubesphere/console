@@ -126,7 +126,7 @@ describe('The Cluster Roles Page', function() {
 
     // edit
     {
-      cy.get(`[data-row-key="${formData.name}"] button .qicon-more`).click()
+      cy.get(`[data-row-key="${formData.name}"] button .kubed-icon-more`).click()
       cy.get(`[data-row-key="${formData.name}"] [data-test="table-item-edit"]`).click()
 
       cy.get('[name="metadata.annotations[\'kubesphere\.io\/description\']"]')
@@ -150,7 +150,7 @@ describe('The Cluster Roles Page', function() {
 
     // delete
     {
-      cy.get(`[data-row-key="${formData.name}"] button .qicon-more`).click()
+      cy.get(`[data-row-key="${formData.name}"] button .kubed-icon-more`).click()
       cy.get(`[data-row-key="${formData.name}"] [data-test="table-item-delete"]`).click()
 
       cy.get('[data-test="modal-ok"]').click()
@@ -164,7 +164,7 @@ describe('The Cluster Roles Page', function() {
 
     // clear search
     {
-      cy.get('.icon-clickable > .qicon').click()
+      cy.get('.icon-clickable > .kubed-icon').click()
 
       cy.wait('@getRoles')
 

@@ -20,8 +20,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 
-import { DatePicker, Select } from '@pitrix/lego-ui'
-import { Button, Form, Notify } from 'components/Base'
+import {
+  Button,
+  Form,
+  Notify,
+  DatePicker,
+  Select,
+} from '@kube-design/components'
 
 import { getMinutes, getTimeOptions } from '../utils'
 

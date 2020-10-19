@@ -27,8 +27,7 @@ import { getSuitableValue, getAreaChartOps } from 'utils/monitoring'
 import ProjectStore from 'stores/project'
 import ClusterMonitorStore from 'stores/monitoring/cluster'
 
-import { Icon, Select, Table } from '@pitrix/lego-ui'
-import { Form, Button } from 'components/Base'
+import { Form, Button, Icon, Select, Table } from '@kube-design/components'
 import { SimpleArea } from 'components/Charts'
 import ControllerModal from 'components/Modals/Monitoring/Controller'
 

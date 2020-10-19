@@ -18,7 +18,7 @@
 
 import React, { Component } from 'react'
 import { observer } from 'mobx-react'
-import { Loading } from '@pitrix/lego-ui'
+import { Loading } from '@kube-design/components'
 import { get } from 'lodash'
 
 import {

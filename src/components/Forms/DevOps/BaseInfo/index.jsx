@@ -17,8 +17,7 @@
  */
 
 import React from 'react'
-import { Input, TextArea } from '@pitrix/lego-ui'
-import { Form } from 'components/Base'
+import { Form, Input, TextArea } from '@kube-design/components'
 import Title from 'components/Forms/Base/Title'
 import { PATTERN_NAME } from 'utils/constants'
 

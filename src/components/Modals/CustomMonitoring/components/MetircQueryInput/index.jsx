@@ -19,27 +19,14 @@
 import React, { Component } from 'react'
 import { get } from 'lodash'
 import classnames from 'classnames'
-import { AutoComplete, Dropdown, Icon } from '@pitrix/lego-ui'
+import { AutoComplete, Dropdown, Icon } from '@kube-design/components'
 
 import styles from './index.scss'
 
 export default class MetircQueryInput extends Component {
-  optionRenderer({ desc }, matchNode) {
-    return (
-      <div>
-        {matchNode}
-        {desc && <p className={styles.description}>{desc}</p>}
-      </div>
-    )
-  }
-
   onDropdownClick = e => {
     const metric = get(e, 'currentTarget.dataset.metric')
     this.props.onChange(metric)
-  }
-
-  onSelected = ({ value }) => {
-    this.props.onChange(value)
   }
 
   render() {
@@ -64,14 +51,11 @@ export default class MetircQueryInput extends Component {
 
         <div className={styles.input}>
           <AutoComplete
+            name={name}
             value={value}
             onChange={onChange}
-            onSelected={this.onSelected}
-            name={name}
             className={styles.autoComplete}
             options={supportMetrics}
-            optionRenderer={this.optionRenderer}
-            maxVisible={60}
           />
         </div>
         {supportDebugButton && (

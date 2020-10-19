@@ -18,7 +18,7 @@
 
 import React from 'react'
 
-import { Tooltip, Icon } from '@pitrix/lego-ui'
+import { Tooltip, Icon } from '@kube-design/components'
 import { Avatar } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import withList, { ListPage } from 'components/HOCs/withList'

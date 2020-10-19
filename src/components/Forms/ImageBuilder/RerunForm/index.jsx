@@ -19,7 +19,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { get, set } from 'lodash'
-import { Modal, Form, Checkbox } from 'components/Base'
+import { Checkbox, Form } from '@kube-design/components'
+import { Modal } from 'components/Base'
 
 import S2iForm from '../S2IForm'
 import B2iForm from '../B2IForm'

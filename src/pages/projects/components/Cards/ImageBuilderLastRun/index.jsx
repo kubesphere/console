@@ -18,7 +18,7 @@
 
 import React from 'react'
 import classnames from 'classnames'
-import { Icon } from '@pitrix/lego-ui'
+import { Icon } from '@kube-design/components'
 import { get, isArray } from 'lodash'
 
 import { getLanguageName, parseUrl, formatSize } from 'utils'
@@ -45,9 +45,7 @@ export default class BuilderInfo extends React.Component {
     const { cluster } = params
     const path = get(parseUrl(sourceUrl), 'pathname', `/${sourceUrl}`)
     const url = this.pathAddCluster(path, cluster)
-    const downLoadUrl = `${window.location.protocol}//${
-      window.location.host
-    }/b2i_download${url}`
+    const downLoadUrl = `${window.location.protocol}//${window.location.host}/b2i_download${url}`
     return (
       <ul className={classnames(styles.builderContent, className)}>
         <li>

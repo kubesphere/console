@@ -19,7 +19,7 @@
 import React from 'react'
 import { isEmpty, get } from 'lodash'
 import { observer, inject } from 'mobx-react'
-import { Loading, Tooltip, Icon } from '@pitrix/lego-ui'
+import { Loading, Tooltip, Icon } from '@kube-design/components'
 
 import VolumeStore from 'stores/volume'
 import { Status } from 'components/Base'
@@ -53,9 +53,7 @@ export default class VolumeSnapshotDetail extends React.Component {
   get listUrl() {
     const { workspace, cluster, namespace } = this.props.match.params
     if (workspace) {
-      return `/${workspace}/clusters/${cluster}/projects/${namespace}/${
-        this.module
-      }`
+      return `/${workspace}/clusters/${cluster}/projects/${namespace}/${this.module}`
     }
     return `/clusters/${cluster}/${this.module}`
   }

@@ -965,7 +965,7 @@ export const CLUSTER_PRESET_GROUPS = [
 
 export const CLUSTER_GROUP_TAG_TYPE = {
   production: 'warning',
-  development: 'secondary',
+  development: 'default',
   testing: 'info',
   demo: 'primary',
 }

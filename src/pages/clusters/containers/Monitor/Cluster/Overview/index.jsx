@@ -24,7 +24,7 @@ import { get } from 'lodash'
 
 import ComponentMonitoringStore from 'stores/monitoring/component'
 
-import { Columns, Column, Loading, Icon } from '@pitrix/lego-ui'
+import { Columns, Column, Loading, Icon } from '@kube-design/components'
 import { Card } from 'components/Base'
 import { StatusCircle } from 'components/Cards/Monitoring'
 import {

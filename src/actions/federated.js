@@ -17,7 +17,8 @@
  */
 
 import { get, set, unset, cloneDeep, uniqBy } from 'lodash'
-import { Modal, Notify } from 'components/Base'
+import { Notify } from '@kube-design/components'
+import { Modal } from 'components/Base'
 import FedProjectCreateModal from 'components/Modals/FedProjectCreate'
 import DeleteModal from 'components/Modals/Delete'
 import FORM_TEMPLATES from 'utils/form.templates'

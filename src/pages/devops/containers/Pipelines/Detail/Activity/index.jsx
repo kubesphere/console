@@ -30,12 +30,17 @@ import { Link } from 'react-router-dom'
 import { toJS } from 'mobx'
 import { parse } from 'qs'
 import { observer, inject } from 'mobx-react'
-import { Level, LevelLeft, LevelRight } from '@pitrix/lego-ui'
+import {
+  Button,
+  Notify,
+  Level,
+  LevelLeft,
+  LevelRight,
+} from '@kube-design/components'
 
 import { getLocalTime, formatUsedTime } from 'utils'
 
 import BranchSelectModal from 'components/Forms/CICDs/paramsModal'
-import { Button, Notify } from 'components/Base'
 import Status from 'devops/components/Status'
 import { getPipelineStatus } from 'utils/status'
 import { ReactComponent as ForkIcon } from 'src/assets/fork.svg'

@@ -17,8 +17,7 @@
  */
 
 import React, { Component } from 'react'
-import { Form } from 'components/Base'
-import { Select } from '@pitrix/lego-ui'
+import { Form, Select } from '@kube-design/components'
 
 import styles from './index.scss'
 

@@ -20,7 +20,7 @@ import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 
-import { Table, Pagination } from '@pitrix/lego-ui'
+import { Table, Pagination } from '@kube-design/components'
 import { Card, Indicator } from 'components/Base'
 import { getLocalTime } from 'utils'
 
@@ -93,9 +93,9 @@ export default class LoginHistory extends React.Component {
         {total > limit && (
           <div className="margin-t12 text-right">
             <Pagination
-              current={page}
+              page={page}
               total={total}
-              pageSize={limit}
+              limit={limit}
               onChange={this.handlePagination}
             />
           </div>

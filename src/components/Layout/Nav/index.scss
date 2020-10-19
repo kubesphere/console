@@ -32,7 +32,7 @@
             vertical-align: text-bottom;
           }
 
-          .qicon-chevron-down {
+          .kubed-icon-chevron-down {
             margin-top: 4px;
             transition: all $trans-speed ease-in-out;
           }
@@ -54,7 +54,7 @@
         & > a {
           color: $primary;
 
-          :global .qicon {
+          :global .kubed-icon {
             color: #00aa72;
             fill: #90e0c5;
           }
@@ -66,7 +66,7 @@
         }
 
         .title {
-          :global .qicon-chevron-down {
+          :global .kubed-icon-chevron-down {
             transform: rotate(-180deg);
           }
         }
@@ -92,14 +92,14 @@
             cursor: not-allowed;
           }
 
-          :global .qicon {
+          :global .kubed-icon {
             color: #324558;
             fill: #b6c2cd;
           }
         }
 
         .title {
-          :global .qicon-chevron-down {
+          :global .kubed-icon-chevron-down {
             transform: none;
           }
         }

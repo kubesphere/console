@@ -18,7 +18,7 @@
 
 import React from 'react'
 import classNames from 'classnames'
-import { Icon } from '@pitrix/lego-ui'
+import { Icon } from '@kube-design/components'
 import { action } from 'mobx'
 import { observer } from 'mobx-react'
 import Status from 'devops/components/Status'

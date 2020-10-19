@@ -17,7 +17,8 @@
  */
 
 import { get, set } from 'lodash'
-import { Modal, Notify } from 'components/Base'
+import { Notify } from '@kube-design/components'
+import { Modal } from 'components/Base'
 
 import CreateModal from 'components/Modals/Create'
 import SecretEditModal from 'projects/components/Modals/SecretEdit'

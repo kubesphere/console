@@ -17,8 +17,7 @@
  */
 
 import React from 'react'
-import { Icon, Input } from '@pitrix/lego-ui'
-import { Form } from 'components/Base'
+import { Form, Icon, Input } from '@kube-design/components'
 import FormItemContainer from 'components/Modals/CustomMonitoring/components/Form/ItemContianer'
 import Field from 'components/Modals/CustomMonitoring/components/Form/Field'
 import TableColumnStyle from '../../TableColumnStyle'

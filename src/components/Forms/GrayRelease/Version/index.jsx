@@ -20,8 +20,7 @@ import { get, set, debounce } from 'lodash'
 import React from 'react'
 import { observer } from 'mobx-react'
 
-import { Columns, Column, Input } from '@pitrix/lego-ui'
-import { Form } from 'components/Base'
+import { Column, Columns, Form, Input } from '@kube-design/components'
 import { ReplicasInput } from 'components/Inputs'
 import ContainerSettings from 'components/Forms/Workload/ContainerSettings'
 

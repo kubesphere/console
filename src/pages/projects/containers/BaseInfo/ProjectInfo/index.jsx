@@ -21,9 +21,9 @@ import { get, isEmpty } from 'lodash'
 import { Link } from 'react-router-dom'
 import classNames from 'classnames'
 
-import { Icon, Menu, Dropdown } from '@pitrix/lego-ui'
+import { Button, Icon, Menu, Dropdown } from '@kube-design/components'
 import { getLocalTime, getDisplayName } from 'utils'
-import { Button, Panel } from 'components/Base'
+import { Panel } from 'components/Base'
 
 import styles from './index.scss'
 
@@ -82,7 +82,7 @@ export default class ProjectInfo extends React.Component {
           {!isEmpty(actions) && (
             <div className={classNames(styles.item, 'text-right')}>
               <Dropdown
-                className="dropdown-default"
+                theme="dark"
                 content={this.renderMoreMenu()}
                 trigger="click"
                 placement="bottomRight"

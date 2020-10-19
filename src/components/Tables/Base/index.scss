@@ -4,19 +4,28 @@
 .table {
   border-radius: $border-radius;
   box-shadow: $base-shadow;
+  background-color: $white;
   overflow: hidden;
+
+  :global {
+    .table-body {
+      padding: 0 12px 12px;
+    }
+  }
 }
 
 .button {
   min-width: 96px;
 }
 
-.selectTitle {
-  padding: 2px;
-}
-
 .cancelSelect {
   color: #fff;
+  &:hover {
+    background-color: $dark-color06;
+  }
+  &:active {
+    background-color: $dark-color05;
+  }
 }
 
 .create {
@@ -33,9 +42,8 @@
   opacity: 0.6;
 }
 
-.keyword {
+.search {
   width: 100%;
-  padding: 2px 0;
   margin-right: 12px;
 }
 

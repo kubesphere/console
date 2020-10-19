@@ -5,7 +5,7 @@
   padding: 12px;
   display: flex;
   cursor: pointer;
-  
+
   & + .snapshot {
     margin-top: 10px;
   }
@@ -30,11 +30,15 @@
 }
 
 .snapshotContainer {
-  height: 190px;
+  :global {
+    .form-item-control {
+      height: 190px;
+    }
+  }
 }
 
 .snapshots {
   padding: 10px;
-  border-radius: 4px;;
+  border-radius: 4px;
   background: $light-color01;
 }

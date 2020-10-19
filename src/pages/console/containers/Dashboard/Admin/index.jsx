@@ -19,7 +19,7 @@
 import React from 'react'
 import { inject, observer } from 'mobx-react'
 import { get } from 'lodash'
-import { Loading } from '@pitrix/lego-ui'
+import { Loading } from '@kube-design/components'
 import { Panel, Text } from 'components/Base'
 
 import PlatformMonitorStore from 'stores/monitoring/platform'

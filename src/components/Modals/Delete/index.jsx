@@ -19,8 +19,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { Icon, Input } from '@pitrix/lego-ui'
-import { Button, Modal } from 'components/Base'
+import { Button, Icon, Input } from '@kube-design/components'
+import { Modal } from 'components/Base'
 
 import styles from './index.scss'
 

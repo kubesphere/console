@@ -18,7 +18,7 @@
 
 import { isUndefined } from 'lodash'
 import React from 'react'
-import { Slider } from '@pitrix/lego-ui'
+import { Slider } from '@kube-design/components'
 
 import styles from './index.scss'
 

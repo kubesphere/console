@@ -20,8 +20,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { get, isEmpty } from 'lodash'
 
-import { Icon } from '@pitrix/lego-ui'
-import { Button } from 'components/Base'
+import { Button, Icon } from '@kube-design/components'
 
 import styles from './index.scss'
 

@@ -22,7 +22,7 @@ import { computed, action, observable } from 'mobx'
 import classnames from 'classnames'
 import moment from 'moment-mini'
 
-import { Icon } from '@pitrix/lego-ui'
+import { Icon } from '@kube-design/components'
 import CustomRange from 'components/Cards/Monitoring/Controller/TimeSelector/Range/Custom'
 import RecentTimeSelect from 'components/Cards/Monitoring/Controller/TimeSelector/Range/Default'
 import { getTimeLabel } from 'components/Cards/Monitoring/Controller/TimeSelector/utils'

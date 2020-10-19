@@ -17,7 +17,8 @@
  */
 
 import { get, set, omitBy, isEmpty } from 'lodash'
-import { Modal, Notify } from 'components/Base'
+import { Notify } from '@kube-design/components'
+import { Modal } from 'components/Base'
 import QuotaEditModal from 'components/Modals/QuotaEdit'
 import ProjectCreateModal from 'components/Modals/ProjectCreate'
 import AssignWorkspaceModal from 'components/Modals/AssignWorkspace'

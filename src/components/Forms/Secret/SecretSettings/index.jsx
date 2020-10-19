@@ -18,8 +18,7 @@
 
 import { get, set, isUndefined } from 'lodash'
 import React from 'react'
-import { Input, InputPassword, TextArea } from '@pitrix/lego-ui'
-import { Form } from 'components/Base'
+import { Form, Input, InputPassword, TextArea } from '@kube-design/components'
 import { CustomSelect } from 'components/Inputs'
 
 import { hasChinese } from 'utils'

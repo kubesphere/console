@@ -20,7 +20,8 @@ import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
 import { get } from 'lodash'
 
-import { Button, Text, Panel } from 'components/Base'
+import { Button } from '@kube-design/components'
+import { Text, Panel } from 'components/Base'
 import LimitRangeStore from 'stores/limitrange'
 import { trigger } from 'utils/action'
 

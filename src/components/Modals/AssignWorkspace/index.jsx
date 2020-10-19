@@ -19,8 +19,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { observer } from 'mobx-react'
+import { pick } from 'lodash'
 
-import { Alert, Modal, Form, SearchSelect } from 'components/Base'
+import { Alert, Form, Select } from '@kube-design/components'
+import { Modal } from 'components/Base'
 
 import WorkspaceStore from 'stores/workspace'
 import UserStore from 'stores/user'
@@ -104,15 +106,19 @@ export default class AssignWorkspaceModal extends Component {
           message={t('PROJECT_ASSIGN_DESC')}
         />
         <Form.Item label={t('Target Workspace')} desc={t('Choose a workspace')}>
-          <SearchSelect
+          <Select
             name="metadata.labels['kubesphere.io/workspace']"
             onChange={this.handleWorkspaceChange}
             options={this.getWorkspaces()}
-            page={this.workspaceStore.list.page}
-            total={this.workspaceStore.list.total}
-            currentLength={this.workspaceStore.list.data.length}
+            pagination={pick(this.workspaceStore.list, [
+              'page',
+              'total',
+              'limit',
+            ])}
             isLoading={this.workspaceStore.list.isLoading}
             onFetch={this.fetchWorkspaces}
+            searchable
+            clearable
           />
         </Form.Item>
         <Form.Item
@@ -121,14 +127,14 @@ export default class AssignWorkspaceModal extends Component {
             'Select a user of the workspace as the manager of the project.'
           )}
         >
-          <SearchSelect
+          <Select
             name="metadata.annotations['kubesphere.io/creator']"
             options={this.getUsers()}
-            page={this.memberStore.list.page}
-            total={this.memberStore.list.total}
-            currentLength={this.memberStore.list.data.length}
-            isLoading={this.workspaceStore.list.isLoading}
+            pagination={pick(this.memberStore.list, ['page', 'total', 'limit'])}
+            isLoading={this.memberStore.list.isLoading}
             onFetch={this.fetchMembers}
+            searchable
+            clearable
           />
         </Form.Item>
       </Modal.Form>

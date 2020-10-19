@@ -18,7 +18,7 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Select, Icon } from '@pitrix/lego-ui'
+import { Select, Icon } from '@kube-design/components'
 import { saveAs } from 'file-saver'
 import yaml from 'js-yaml/dist/js-yaml'
 

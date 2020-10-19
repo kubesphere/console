@@ -26,7 +26,7 @@ import { cacheFunc } from 'utils'
 import { getAreaChartOps } from 'utils/monitoring'
 import PodMonitorStore from 'stores/monitoring/pod'
 
-import { Alert } from '@pitrix/lego-ui'
+import { Alert } from '@kube-design/components'
 import { MultiArea } from 'components/Charts'
 import { Controller as MonitoringController } from 'components/Cards/Monitoring'
 import PodsMonitoring from 'projects/components/Modals/PodsMonitoring'
@@ -190,9 +190,7 @@ export default class Monitorings extends React.Component {
         isEmpty={isEmpty(this.metrics)}
         isFederated
       >
-        {isMore && (
-          <Alert description={t('MONITORING_ALERT_DESC')} type="info" />
-        )}
+        {isMore && <Alert message={t('MONITORING_ALERT_DESC')} type="info" />}
         {configs.map(item => {
           item.data = get(this.metrics, `${item.metricType}.data.result`) || []
           item.legend = item.data.map((record, index) =>

@@ -18,7 +18,7 @@
 
 import { get, isEmpty, unset } from 'lodash'
 import React from 'react'
-import { Form } from 'components/Base'
+import { Form } from '@kube-design/components'
 
 import { GRAY_RELEASE_CANARY_CONTENT } from 'utils/constants'
 import CookieMatch from '../CookieMatch'

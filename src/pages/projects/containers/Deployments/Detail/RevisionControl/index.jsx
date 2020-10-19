@@ -27,7 +27,8 @@ import { getValue } from 'utils/yaml'
 import { getCurrentRevision } from 'utils/workload'
 import RevisionStore from 'stores/workload/revision'
 
-import { Text, TypeSelect, Alert, Panel, Tag } from 'components/Base'
+import { Alert, Tag } from '@kube-design/components'
+import { Text, TypeSelect, Panel } from 'components/Base'
 import DiffYaml from 'components/DiffYaml'
 
 import styles from './index.scss'

@@ -18,7 +18,7 @@
 
 import { debounce } from 'lodash'
 import React from 'react'
-import { Input, Select, Icon, Tooltip } from '@pitrix/lego-ui'
+import { Input, Select, Icon, Tooltip } from '@kube-design/components'
 import { NumberInput, AddonsInput } from 'components/Inputs'
 import { PROTOCOLS } from 'utils/constants'
 

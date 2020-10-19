@@ -21,7 +21,8 @@ import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { isEmpty } from 'lodash'
 
-import { Modal, Form } from 'components/Base'
+import { Form } from '@kube-design/components'
+import { Modal } from 'components/Base'
 import { PropertiesInput } from 'components/Inputs'
 
 import styles from './index.scss'

@@ -20,7 +20,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { debounce, pick } from 'lodash'
 
-import { Select, Input, Group } from '@pitrix/lego-ui'
+import { Select, Input } from '@kube-design/components'
 
 import styles from './index.scss'
 
@@ -89,7 +89,7 @@ export default class HeaderMatch extends React.Component {
   render() {
     const { match, key, value } = this.state
     return (
-      <Group className={styles.match}>
+      <div className={styles.match}>
         <Select
           value={match}
           defaultValue="exact"
@@ -102,7 +102,7 @@ export default class HeaderMatch extends React.Component {
           placeholder="value"
           onChange={this.handleValueChange}
         />
-      </Group>
+      </div>
     )
   }
 }

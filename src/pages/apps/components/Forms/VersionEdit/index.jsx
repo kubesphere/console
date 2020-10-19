@@ -19,9 +19,8 @@
 import React from 'react'
 import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
-import { Input, TextArea } from '@pitrix/lego-ui'
+import { Form, Input, TextArea } from '@kube-design/components'
 
-import { Form } from 'components/Base'
 import { PATTERN_VERSION_NO } from 'utils/constants'
 
 import styles from './index.scss'

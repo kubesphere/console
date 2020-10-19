@@ -21,7 +21,8 @@ import PropTypes from 'prop-types'
 
 import { observable } from 'mobx'
 import { observer } from 'mobx-react'
-import { Form, Modal, Checkbox } from 'components/Base'
+import { Checkbox, Form } from '@kube-design/components'
+import { Modal } from 'components/Base'
 
 import styles from './index.scss'
 

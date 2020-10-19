@@ -26,7 +26,7 @@ import memoizee from 'memoizee'
 import LogQueryStore from 'stores/logging/query'
 import HistogramStore from 'stores/logging/histogram'
 
-import { Icon, Select, Tooltip } from '@pitrix/lego-ui'
+import { Icon, Select, Tooltip } from '@kube-design/components'
 import Table from 'components/Tables/Visible'
 import stripAnsi from 'strip-ansi'
 import { markAll, esMark, mark } from 'utils/log'
@@ -389,15 +389,13 @@ export default class LogSearchModal extends React.Component {
     return (
       <div className={styles.searchBar}>
         {globals.app.isMultiCluster && (
-          <span className={styles.clusterSelect}>
-            <Select
-              value={this.props.searchInputState.cluster}
-              onChange={this.changeClusterChange}
-              className={styles.queryModeOptions}
-              valueRenderer={this.clusterRenderer}
-              options={this.props.clustersOpts}
-            />
-          </span>
+          <Select
+            value={this.props.searchInputState.cluster}
+            onChange={this.changeClusterChange}
+            className={styles.select}
+            valueRenderer={this.clusterRenderer}
+            options={this.props.clustersOpts}
+          />
         )}
         <SearchInput
           className={styles.searchInput}
@@ -426,14 +424,12 @@ export default class LogSearchModal extends React.Component {
             },
           }}
         />
-        <span className={styles.queryModeSelect}>
-          <Select
-            value={this.props.searchInputState.queryMode}
-            onChange={this.changeQueryMode}
-            className={styles.queryModeOptions}
-            options={this.queryModeOptions}
-          />
-        </span>
+        <Select
+          className={styles.select}
+          value={this.props.searchInputState.queryMode}
+          onChange={this.changeQueryMode}
+          options={this.queryModeOptions}
+        />
       </div>
     )
   }

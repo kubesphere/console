@@ -19,7 +19,7 @@
 import { get } from 'lodash'
 import React from 'react'
 
-import { Tooltip, Icon } from '@pitrix/lego-ui'
+import { Tooltip, Icon } from '@kube-design/components'
 import styles from './index.scss'
 
 const isSuccess = (type, condition) => {

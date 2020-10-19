@@ -19,7 +19,7 @@
 import React, { Component } from 'react'
 import { observer } from 'mobx-react'
 import { get } from 'lodash'
-import { Icon, Loading } from '@pitrix/lego-ui'
+import { Icon, Loading } from '@kube-design/components'
 import {
   Radar,
   RadarChart,

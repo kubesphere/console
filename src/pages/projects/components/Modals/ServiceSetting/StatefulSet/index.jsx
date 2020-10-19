@@ -24,7 +24,7 @@ import { set } from 'lodash'
 import { SERVICE_TYPES } from 'utils/constants'
 import ServiceStore from 'stores/service'
 
-import { Loading } from '@pitrix/lego-ui'
+import { Loading } from '@kube-design/components'
 import { Modal } from 'components/Base'
 import ServiceForm from './Form'
 

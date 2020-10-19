@@ -23,7 +23,7 @@ import { toJS } from 'mobx'
 import { parse } from 'qs'
 import { get, omit } from 'lodash'
 
-import { Column } from '@pitrix/lego-ui'
+import { Column } from '@kube-design/components'
 import { trigger } from 'utils/action'
 
 import { JOB_STATUS } from 'utils/constants'

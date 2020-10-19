@@ -23,7 +23,7 @@ import { getValueByUnit, getSuitableUnit } from 'utils/monitoring'
 
 import { get } from 'lodash'
 
-import { Icon } from '@pitrix/lego-ui'
+import { Icon } from '@kube-design/components'
 import { Empty } from 'components/Base'
 import Link from 'components/Link'
 import Table from 'components/Tables/Ranking'

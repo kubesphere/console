@@ -18,9 +18,16 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Input, TextArea, RadioGroup, Radio, Select } from '@pitrix/lego-ui'
+import {
+  Form,
+  Input,
+  Radio,
+  RadioGroup,
+  Select,
+  TextArea,
+} from '@kube-design/components'
 import { observer } from 'mobx-react'
-import { Modal, Form } from 'components/Base'
+import { Modal } from 'components/Base'
 import { isString, get, isEmpty } from 'lodash'
 import PipelineStore from 'stores/devops/pipelines'
 

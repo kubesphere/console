@@ -20,8 +20,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import copy from 'fast-copy'
 
-import { Icon, Input } from '@pitrix/lego-ui'
-import { Form, Modal, Tag, TextArea } from 'components/Base'
+import { Form, Icon, Input, Tag, TextArea } from '@kube-design/components'
+import { Modal } from 'components/Base'
 import { SelectInput } from 'components/Inputs'
 
 import {

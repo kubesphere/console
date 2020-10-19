@@ -18,7 +18,8 @@
 
 import { get, isEmpty, isArray } from 'lodash'
 import React, { Component } from 'react'
-import { Modal, Text, Button } from 'components/Base'
+import { Button } from '@kube-design/components'
+import { Modal, Text } from 'components/Base'
 import { safeParseJSON } from 'utils'
 
 import Card from './Card'

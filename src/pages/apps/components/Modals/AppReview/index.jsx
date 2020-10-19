@@ -20,11 +20,11 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { observer } from 'mobx-react'
 import classnames from 'classnames'
-import { Tabs } from '@pitrix/lego-ui'
+import { Button, Tabs } from '@kube-design/components'
 import { get } from 'lodash'
 import { toJS } from 'mobx'
 
-import { Modal, Button, Image } from 'components/Base'
+import { Modal, Image } from 'components/Base'
 import BaseInfo from 'apps/components/Cards/BaseInfo'
 import AppReadme from 'apps/components/Cards/AppReadme'
 import TextPreview from 'apps/components/TextPreview'
@@ -196,11 +196,7 @@ export default class AppReview extends Component {
         rightScreen
         hideFooter
       >
-        <Tabs
-          className="tabs-new"
-          activeName={tab}
-          onChange={this.handleTabChange}
-        >
+        <Tabs type="button" activeName={tab} onChange={this.handleTabChange}>
           <TabPanel label={t('App Info')} name="appInfo">
             {this.renderBaseInfo()}
           </TabPanel>

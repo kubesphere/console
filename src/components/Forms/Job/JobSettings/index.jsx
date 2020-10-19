@@ -18,8 +18,7 @@
 
 import React from 'react'
 import { get } from 'lodash'
-import { Columns, Column } from '@pitrix/lego-ui'
-import { Form } from 'components/Base'
+import { Column, Columns, Form } from '@kube-design/components'
 import { NumberInput } from 'components/Inputs'
 import { MODULE_KIND_MAP } from 'utils/constants'
 

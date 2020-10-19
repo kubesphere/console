@@ -21,7 +21,7 @@ import { action, toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import moment from 'moment-mini'
 import classnames from 'classnames'
-import { Icon, Loading, Select } from '@pitrix/lego-ui'
+import { Icon, Loading, Select } from '@kube-design/components'
 
 import SearchInput from 'components/Modals/LogSearch/Logging/SearchInput'
 import TimeBar from 'components/Charts/Bar/TimeBar'

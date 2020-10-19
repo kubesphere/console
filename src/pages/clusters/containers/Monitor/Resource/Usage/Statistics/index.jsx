@@ -24,7 +24,7 @@ import { get } from 'lodash'
 import { ICON_TYPES } from 'utils/constants'
 import ClusterMonitoringStore from 'stores/monitoring/cluster'
 
-import { Columns, Column, Loading } from '@pitrix/lego-ui'
+import { Columns, Column, Loading } from '@kube-design/components'
 import { Card } from 'components/Base'
 import Info from 'components/Cards/Info'
 

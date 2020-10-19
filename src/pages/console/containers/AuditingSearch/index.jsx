@@ -1,5 +1,5 @@
 import React from 'react'
-import { Icon } from '@pitrix/lego-ui'
+import { Icon } from '@kube-design/components'
 import { observer, inject } from 'mobx-react'
 import AuditingSearch from 'components/Modals/AuditingSearch'
 

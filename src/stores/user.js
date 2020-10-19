@@ -18,7 +18,7 @@
 
 import { get, set, uniq, isArray, intersection } from 'lodash'
 import { observable, action } from 'mobx'
-import { Notify } from 'components/Base'
+import { Notify } from '@kube-design/components'
 import { safeParseJSON } from 'utils'
 import ObjectMapper from 'utils/object.mapper'
 import cookie from 'utils/cookie'

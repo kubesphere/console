@@ -205,7 +205,6 @@
   border-top: 0;
   box-shadow: 0 4px 8px 0 rgba(36, 46, 66, 0.2);
   border-radius: 0 0 4px 4px;
-  animation: slideInUp $trans-speed;
   z-index: 1;
 
   .containers > div {
@@ -235,14 +234,4 @@
 .cluster {
   width: 260px;
   margin-right: 12px;
-}
-
-@keyframes slideInUp {
-  from {
-    transform: translate3d(0, 86%, 0);
-  }
-
-  to {
-    transform: translate3d(0, 100%, 0);
-  }
 }

@@ -20,7 +20,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
-import { Icon, Dropdown, Loading, Menu } from '@pitrix/lego-ui'
+import { Icon, Dropdown, Loading, Menu } from '@kube-design/components'
 
 import styles from './index.scss'
 
@@ -125,10 +125,7 @@ export default class Selector extends React.Component {
 
     return (
       <div ref={this.contentRef}>
-        <Dropdown
-          className={classNames('dropdown-default', styles.dropdown)}
-          content={this.renderList()}
-        >
+        <Dropdown theme="dark" content={this.renderList()}>
           <div
             className={classNames(styles.titleWrapper, {
               [styles.multi]: this.isMulti,

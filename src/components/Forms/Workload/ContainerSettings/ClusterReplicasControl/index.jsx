@@ -24,7 +24,7 @@ import Placement from './Placement'
 
 import styles from './index.scss'
 
-export default class ReplicasContorl extends React.Component {
+export default class ReplicasControl extends React.Component {
   static propTypes = {
     template: PropTypes.object,
     value: PropTypes.array,

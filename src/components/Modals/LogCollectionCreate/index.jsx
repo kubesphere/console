@@ -21,7 +21,8 @@ import PropTypes from 'prop-types'
 import { get } from 'lodash'
 import classnames from 'classnames'
 
-import { Modal, Alert } from 'components/Base'
+import { Alert } from '@kube-design/components'
+import { Modal } from 'components/Base'
 import widthBack from 'components/Modals/WithBack'
 
 import collectionConfig from './config'

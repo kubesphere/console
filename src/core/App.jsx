@@ -26,6 +26,7 @@ import { Provider } from 'mobx-react'
 
 import RootStore from 'stores/root'
 
+import '@kube-design/components/esm/styles/index.scss'
 import 'scss/main.scss'
 
 import routes from './routes'

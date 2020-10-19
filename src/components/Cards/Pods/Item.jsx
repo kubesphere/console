@@ -25,7 +25,7 @@ import { isEmpty, get } from 'lodash'
 import { getLocalTime } from 'utils'
 import { getAreaChartOps } from 'utils/monitoring'
 
-import { Icon, Tooltip } from '@pitrix/lego-ui'
+import { Icon, Tooltip } from '@kube-design/components'
 import { Indicator } from 'components/Base'
 import { TinyArea } from 'components/Charts'
 import ContainerItem from 'components/Cards/Containers/Item'
@@ -111,9 +111,7 @@ export default class PodItem extends React.PureComponent {
 
   getLink = () => {
     const { detail } = this.props
-    return `${this.props.prefix}/projects/${detail.namespace}/pods/${
-      detail.name
-    }`
+    return `${this.props.prefix}/projects/${detail.namespace}/pods/${detail.name}`
   }
 
   getMonitoringCfgs = metrics => [

@@ -17,7 +17,7 @@
  */
 
 import React from 'react'
-import { Form } from 'components/Base'
+import { Form } from '@kube-design/components'
 import StringInput from 'components/Inputs/StringInput'
 
 import styles from './index.scss'

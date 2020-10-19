@@ -20,7 +20,7 @@ import React from 'react'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import { get } from 'lodash'
-import { Button } from 'components/Base'
+import { Button } from '@kube-design/components'
 import { getPipelineStatus } from 'utils/status'
 import Status from 'devops/components/Status'
 

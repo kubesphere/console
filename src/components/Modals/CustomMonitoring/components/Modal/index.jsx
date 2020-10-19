@@ -17,7 +17,8 @@
  */
 
 import React from 'react'
-import { Modal, Button } from 'components/Base'
+import { Button } from '@kube-design/components'
+import { Modal } from 'components/Base'
 import classNames from 'classnames'
 
 import styles from './index.scss'

@@ -17,8 +17,7 @@
  */
 
 import React, { Component } from 'react'
-import { Icon, Tooltip } from '@pitrix/lego-ui'
-import { Button } from 'components/Base'
+import { Button, Icon, Tooltip } from '@kube-design/components'
 
 import { isEmpty } from 'lodash'
 
@@ -75,7 +74,7 @@ export default class Ports extends Component {
                     target="_blank"
                     rel="noreferrer noopener"
                   >
-                    <Button className={styles.access} noShadow>
+                    <Button className={styles.access}>
                       {t('Click to visit')}
                     </Button>
                   </a>

@@ -19,8 +19,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { map, get, set, every, has, debounce, isEmpty } from 'lodash'
-import { TextArea, InputNumber, Input, Toggle } from '@pitrix/lego-ui'
-import { Form, Slider, Text } from 'components/Base'
+import { Form, Input, Slider, TextArea, Toggle } from '@kube-design/components'
+import { Text } from 'components/Base'
+import { NumberInput } from 'components/Inputs'
 
 import styles from './index.scss'
 
@@ -79,6 +80,7 @@ export default class SchemaForm extends React.Component {
               unit={propObj.sliderUnit}
               marks={this.generateMarks(propObj.sliderMin, propObj.sliderMax)}
               {...attrs}
+              withInput
             />
           )
         } else if (propObj.render === 'textArea') {
@@ -88,7 +90,7 @@ export default class SchemaForm extends React.Component {
         }
         break
       case 'integer':
-        content = <InputNumber {...attrs} min={0} />
+        content = <NumberInput {...attrs} min={0} integer />
         break
       case 'boolean':
         content = (

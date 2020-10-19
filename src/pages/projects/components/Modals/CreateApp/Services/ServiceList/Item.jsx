@@ -19,8 +19,7 @@
 import { get, keyBy, isEmpty, findKey } from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Buttons, Icon } from '@pitrix/lego-ui'
-import { Button, Tag } from 'components/Base'
+import { Button, Tag, Icon } from '@kube-design/components'
 import {
   CLUSTER_PROVIDER_ICON,
   CLUSTER_GROUP_TAG_TYPE,
@@ -142,10 +141,10 @@ export default class Item extends React.Component {
             />
           </div>
         )}
-        <Buttons>
+        <div className="buttons">
           <Button type="flat" icon="trash" onClick={this.handleDelete} />
           <Button type="flat" icon="pen" onClick={this.handleEdit} />
-        </Buttons>
+        </div>
       </div>
     )
   }

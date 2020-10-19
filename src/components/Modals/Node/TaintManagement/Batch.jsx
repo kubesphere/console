@@ -22,7 +22,7 @@ import { isEmpty, set, intersectionBy, unionBy, remove, debounce } from 'lodash'
 
 import { cacheFunc } from 'utils'
 
-import { Alert } from '@pitrix/lego-ui'
+import { Alert } from '@kube-design/components'
 import { Modal } from 'components/Base'
 import TaintInput from './TaintInput'
 

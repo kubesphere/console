@@ -26,7 +26,7 @@ import {
   PolarAngleAxis,
   PolarRadiusAxis,
 } from 'recharts'
-import { Loading } from '@pitrix/lego-ui'
+import { Loading } from '@kube-design/components'
 import { Panel } from 'components/Base'
 
 import { getLastMonitoringData } from 'utils/monitoring'

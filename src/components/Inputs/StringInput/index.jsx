@@ -19,7 +19,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { trim, isString, isArray } from 'lodash'
-import { TextArea } from '@pitrix/lego-ui'
+import { TextArea } from '@kube-design/components'
 
 const defaultStringify = value => (isArray(value) ? value.join(',') : '')
 const defaultParser = value =>

@@ -18,7 +18,7 @@
 
 import { isEmpty } from 'lodash'
 import React from 'react'
-import { Icon, RadioGroup, RadioButton } from '@pitrix/lego-ui'
+import { Icon, RadioGroup, RadioButton } from '@kube-design/components'
 import { Label } from 'components/Base'
 import { formatDuration } from 'utils/tracing'
 
@@ -137,7 +137,7 @@ export default class SpanDetail extends React.Component {
         <div className={styles.content}>
           <div className={styles.contentHeader}>
             <RadioGroup
-              wrapClassName="radio-default"
+              mode="button"
               buttonWidth={155}
               value={type}
               onChange={this.handleTypeChange}

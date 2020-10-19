@@ -18,7 +18,7 @@
 
 import React from 'react'
 import { get } from 'lodash'
-import { Loading, Select } from '@pitrix/lego-ui'
+import { Loading, Select } from '@kube-design/components'
 
 import { Panel } from 'components/Base'
 import BuilderStore from 'stores/s2i/builder'

@@ -27,7 +27,12 @@ import { startAutoRefresh, stopAutoRefresh } from 'utils/monitoring'
 import DashboardStore from 'stores/dashboard'
 import ProjectMonitorStore from 'stores/monitoring/project'
 
-import { Select, Loading, RadioGroup, RadioButton } from '@pitrix/lego-ui'
+import {
+  Select,
+  Loading,
+  RadioGroup,
+  RadioButton,
+} from '@kube-design/components'
 import { Panel } from 'components/Base'
 
 import AppResourceItem from './AppResourceItem'
@@ -286,7 +291,7 @@ class ResourceUsage extends React.Component {
     return (
       <div className={styles.header}>
         <RadioGroup
-          wrapClassName="radio-default"
+          mode="button"
           value={this.state.resourceType}
           onChange={this.handleResouceTypeChange}
           size="small"

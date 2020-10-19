@@ -19,7 +19,7 @@ import React, { Component } from 'react'
 import { inject, observer, Provider } from 'mobx-react'
 
 import { toJS } from 'mobx'
-import { Loading } from '@pitrix/lego-ui'
+import { Loading } from '@kube-design/components'
 
 import { renderRoutes } from 'utils/router.config'
 

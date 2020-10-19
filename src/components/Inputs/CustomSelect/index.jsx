@@ -17,7 +17,7 @@
  */
 
 import React from 'react'
-import { Input, Select, Icon } from '@pitrix/lego-ui'
+import { Input, Select, Icon } from '@kube-design/components'
 import { NumberInput } from 'components/Inputs'
 
 import styles from './index.scss'

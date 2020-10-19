@@ -23,8 +23,7 @@ import { Link } from 'react-router-dom'
 import isEqual from 'react-fast-compare'
 import { get, isEmpty, isFunction } from 'lodash'
 import { toJS } from 'mobx'
-import { Menu, Icon, Dropdown, Tooltip } from '@pitrix/lego-ui'
-import { Button } from 'components/Base'
+import { Button, Menu, Icon, Dropdown, Tooltip } from '@kube-design/components'
 
 import PodMonitoringStore from 'stores/monitoring/pod'
 
@@ -170,9 +169,7 @@ export default class Component extends React.Component {
           <div className={styles.title}>
             <div className="h6">
               <Link
-                to={`${this.prefix}/${workloadType}/${data.name}-${
-                  data.version
-                }`}
+                to={`${this.prefix}/${workloadType}/${data.name}-${data.version}`}
               >
                 {data.name}
               </Link>
@@ -211,7 +208,7 @@ export default class Component extends React.Component {
           {!hideDropDown && (
             <div className={styles.right}>
               <Dropdown
-                className="dropdown-default"
+                theme="dark"
                 content={this.renderMoreMenu()}
                 trigger="click"
                 placement="bottomRight"

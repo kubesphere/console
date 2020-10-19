@@ -20,9 +20,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { observer } from 'mobx-react'
 import { get } from 'lodash'
-import { Loading } from '@pitrix/lego-ui'
+import { Button, Loading } from '@kube-design/components'
 
-import { Modal, Button } from 'components/Base'
+import { Modal } from 'components/Base'
 
 import BasicInfo from 'components/Forms/AppDeploy/BasicInfo'
 import AppConfig from 'components/Forms/AppDeploy/AppConfig'

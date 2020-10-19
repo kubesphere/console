@@ -18,8 +18,7 @@
 
 import React from 'react'
 import { observer } from 'mobx-react'
-import { Select } from '@pitrix/lego-ui'
-import { Form } from 'components/Base'
+import { Form, Select } from '@kube-design/components'
 import Base from 'components/Forms/Workload/ContainerSettings'
 
 @observer

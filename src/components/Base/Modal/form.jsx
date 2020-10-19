@@ -19,10 +19,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
-
+import { Button, Form } from '@kube-design/components'
 import Modal from './modal'
-import Form from '../Form'
-import Button from '../Button'
 
 import styles from './index.scss'
 

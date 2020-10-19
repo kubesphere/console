@@ -23,7 +23,8 @@ import { observable, action } from 'mobx'
 import { isEmpty } from 'lodash'
 
 import Draggable from 'react-draggable'
-import { Button, Text, List } from 'components/Base'
+import { Button } from '@kube-design/components'
+import { Text, List } from 'components/Base'
 import { trigger } from 'utils/action'
 import { createCenterWindowOpt } from 'utils/dom'
 

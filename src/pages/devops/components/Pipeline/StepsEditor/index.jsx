@@ -21,8 +21,7 @@ import React from 'react'
 import classNames from 'classnames'
 import { observable, action, toJS } from 'mobx'
 import { observer } from 'mobx-react'
-import { Input, Icon, Sortable } from '@pitrix/lego-ui'
-import { Form, Button } from 'components/Base'
+import { Form, Button, Input, Icon } from '@kube-design/components'
 import { PIPELINE_TASKS } from 'src/utils/constants'
 
 import { renderStepArgs } from '../Card/detail'
@@ -284,18 +283,7 @@ export default class StepsEditor extends React.Component {
             <Icon name="wrench" clickable />
           </span>
         )}
-        <div className={cardStyles.content__title}>
-          <span
-            className={classNames(
-              `pipelineCard__item__drag-${zIndex}`,
-              styles.pipelineCard__item__drag
-            )}
-            style={{ cursor: '-webkit-grab' }}
-          >
-            <Icon name="drag-handle" color={{ primary: '#41b1ea' }} />
-          </span>
-          {t(step.name)}
-        </div>
+        <div className={cardStyles.content__title}>{t(step.name)}</div>
         {renderStepArgs(step)}
         {this.renderSteps(step.children, [...zIndex, index], listType)}
         {step.name in nestingSteps ? (
@@ -312,19 +300,7 @@ export default class StepsEditor extends React.Component {
 
   renderSteps = (steps, zIndex, listType) => {
     if (steps && steps.length) {
-      return (
-        <Sortable
-          tag="div"
-          options={{
-            handle: `.pipelineCard__item__drag-${zIndex}`,
-            draggable: `.pipelineCard__item-${zIndex}`,
-            animation: 150,
-          }}
-          onChange={this.handleSortSteps(zIndex)}
-        >
-          {this.renderLists(steps, zIndex, listType)}
-        </Sortable>
-      )
+      return this.renderLists(steps, zIndex, listType)
     }
   }
 

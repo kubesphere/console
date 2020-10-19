@@ -23,13 +23,14 @@ import { observer } from 'mobx-react'
 import { observable, computed, action } from 'mobx'
 import stripAnsi from 'strip-ansi'
 import { get } from 'lodash'
-import { Icon, Select, Tooltip } from '@pitrix/lego-ui'
+import { Icon, Select, Tooltip } from '@kube-design/components'
 
 import PodStore from 'stores/pod'
 import ProjectStore from 'stores/project'
 import LogStore from 'stores/logging/query'
 
 import { ReactComponent as BackIcon } from 'src/assets/back.svg'
+
 import DurationSelect from './DurationSelect'
 
 import styles from './index.scss'

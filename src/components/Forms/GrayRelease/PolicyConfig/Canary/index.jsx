@@ -20,7 +20,7 @@ import { get, set, isEmpty } from 'lodash'
 import copy from 'fast-copy'
 import React from 'react'
 
-import { Icon, RadioButton, RadioGroup, Tooltip } from '@pitrix/lego-ui'
+import { Icon, RadioButton, RadioGroup, Tooltip } from '@kube-design/components'
 
 import ByTraffic from './ByTraffic'
 import ByContent from './ByContent'
@@ -135,7 +135,7 @@ export default class Canary extends React.Component {
       <div className={styles.wrapper}>
         <div className={styles.bar}>
           <RadioGroup
-            wrapClassName="radio-default"
+            mode="button"
             value={this.state.mode}
             onChange={this.handleModeChange}
             size="small"

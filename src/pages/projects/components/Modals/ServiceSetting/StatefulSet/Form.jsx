@@ -20,8 +20,8 @@ import React from 'react'
 import { get } from 'lodash'
 
 import Base from 'components/Forms/Service/ServiceSettings'
-import { Input } from '@pitrix/lego-ui'
-import { Form, TypeSelect, Label } from 'components/Base'
+import { Form, Input } from '@kube-design/components'
+import { Label, TypeSelect } from 'components/Base'
 
 import styles from './index.scss'
 

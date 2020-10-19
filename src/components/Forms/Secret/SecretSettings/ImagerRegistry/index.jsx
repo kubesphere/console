@@ -20,8 +20,14 @@ import { get, debounce } from 'lodash'
 import React, { Component } from 'react'
 import { observer } from 'mobx-react'
 
-import { Columns, Column, Input, InputPassword } from '@pitrix/lego-ui'
-import { Button, Alert } from 'components/Base'
+import {
+  Columns,
+  Column,
+  Input,
+  InputPassword,
+  Button,
+  Alert,
+} from '@kube-design/components'
 import { SchemeInput } from 'components/Inputs'
 
 import { safeParseJSON } from 'utils'

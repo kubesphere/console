@@ -16,7 +16,6 @@
       padding-top: 12px;
       padding-bottom: 12px;
       border-bottom: solid 1px #d8dee5;
-      box-shadow: 0 1px 0 0 #d8dee5, 0 -1px 0 0 #d8dee5;
     }
     .pane__pagination {
       background-color: $lightest;
@@ -45,6 +44,7 @@
     }
     .toolbar_filter {
       float: left;
+      display: flex;
     }
     .sort_button {
       display: inline-block;

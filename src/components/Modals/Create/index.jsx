@@ -19,7 +19,8 @@
 import { get, isFunction, cloneDeep, isArray } from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Modal, Switch, Notify } from 'components/Base'
+import { Notify } from '@kube-design/components'
+import { Modal, Switch } from 'components/Base'
 import Form from './Form'
 import Code from './Code'
 

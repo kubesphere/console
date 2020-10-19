@@ -18,7 +18,7 @@
 
 import { isArray } from 'lodash'
 import React from 'react'
-import { RadioGroup } from '@pitrix/lego-ui'
+import { RadioGroup } from '@kube-design/components'
 import { ACCESS_MODES } from 'utils/constants'
 
 import styles from './index.scss'

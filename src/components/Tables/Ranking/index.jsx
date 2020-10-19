@@ -18,7 +18,7 @@
 
 import React from 'react'
 import { observer, inject } from 'mobx-react'
-import { Table } from '@pitrix/lego-ui'
+import { Table } from '@kube-design/components'
 import classNames from 'classnames'
 import { get } from 'lodash'
 

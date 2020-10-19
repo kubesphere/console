@@ -27,9 +27,11 @@ import {
   LevelRight,
   Pagination,
   Loading,
-} from '@pitrix/lego-ui'
+  InputSearch,
+  Button,
+} from '@kube-design/components'
 
-import { Card, Search, Button } from 'components/Base'
+import { Card } from 'components/Base'
 
 import InstanceStore from 'stores/openpitrix/instance'
 import InstanceItem from './Item'
@@ -112,7 +114,7 @@ export default class InstanceList extends React.Component {
 
   renderHeader = () => (
     <div className={styles.header}>
-      <Search
+      <InputSearch
         className={styles.search}
         name="search"
         placeholder={t('Please input a keyword to filter')}
@@ -159,9 +161,9 @@ export default class InstanceList extends React.Component {
         <LevelLeft>{t('TOTAL_ITEMS', { num: total })}</LevelLeft>
         <LevelRight>
           <Pagination
-            current={page}
+            page={page}
             total={total}
-            pageSize={limit}
+            limit={limit}
             onChange={this.handlePage}
           />
         </LevelRight>

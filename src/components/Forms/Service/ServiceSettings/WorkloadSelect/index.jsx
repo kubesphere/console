@@ -20,8 +20,8 @@ import React from 'react'
 import { toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import { get } from 'lodash'
-import { RadioButton, RadioGroup } from '@pitrix/lego-ui'
-import { Button, Alert, ScrollLoad } from 'components/Base'
+import { Button, Alert, RadioButton, RadioGroup } from '@kube-design/components'
+import { ScrollLoad } from 'components/Base'
 
 import WorkloadStore from 'stores/workload'
 import WorkloadItem from './Item'
@@ -83,7 +83,7 @@ export default class WorkloadSelect extends React.Component {
             hideIcon
           />
           <RadioGroup
-            wrapClassName="radio-default"
+            mode="button"
             buttonWidth={120}
             value={type}
             onChange={this.handleTypeChange}

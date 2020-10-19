@@ -21,7 +21,7 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { get } from 'lodash'
 import { Card } from 'components/Base'
-import { Icon } from '@pitrix/lego-ui'
+import { Icon } from '@kube-design/components'
 import { parseUrl } from 'utils'
 
 import StatusCard from './StatusCard'
@@ -105,9 +105,7 @@ class CodeQualityResult extends React.Component {
           title={t('Lines of Code')}
           value={totalCode}
           unit={totalCodeUnit}
-          url={`${
-            this.sonarqubeOrigin
-          }/component_measures?id=${key}&metric=ncloc`}
+          url={`${this.sonarqubeOrigin}/component_measures?id=${key}&metric=ncloc`}
         />
         <StatusCard
           hasIcon
@@ -115,9 +113,7 @@ class CodeQualityResult extends React.Component {
           value={bugs}
           unit={t('个')}
           resultClass={bugRating}
-          url={`${
-            this.sonarqubeOrigin
-          }/project/issues?id=${key}&resolved=false&types=BUG`}
+          url={`${this.sonarqubeOrigin}/project/issues?id=${key}&resolved=false&types=BUG`}
         />
         <StatusCard
           hasIcon
@@ -125,27 +121,21 @@ class CodeQualityResult extends React.Component {
           value={vulnerabilities}
           unit={t('个')}
           resultClass={securityRating}
-          url={`${
-            this.sonarqubeOrigin
-          }/project/issues?id=${key}&resolved=false&types=VULNERABILITY`}
+          url={`${this.sonarqubeOrigin}/project/issues?id=${key}&resolved=false&types=VULNERABILITY`}
         />
         <StatusCard
           hasIcon
           title={t('CodeSmells')}
           value={codeSmells}
           unit={t('Line')}
-          url={`${
-            this.sonarqubeOrigin
-          }/project/issues?id=${key}&resolved=false&types=CODE_SMELL`}
+          url={`${this.sonarqubeOrigin}/project/issues?id=${key}&resolved=false&types=CODE_SMELL`}
         />
         <StatusCard
           hasIcon
           title={t('Coverage')}
           value={coverage}
           unit={'%'}
-          url={`${
-            this.sonarqubeOrigin
-          }/component_measures?id=${key}&metric=coverage`}
+          url={`${this.sonarqubeOrigin}/component_measures?id=${key}&metric=coverage`}
         />
       </div>
     )

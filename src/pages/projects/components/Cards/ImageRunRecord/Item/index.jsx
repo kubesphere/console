@@ -20,9 +20,9 @@ import React from 'react'
 import classnames from 'classnames'
 import { observer } from 'mobx-react'
 import { get, isArray } from 'lodash'
-import { Icon, Loading, Tooltip } from '@pitrix/lego-ui'
+import { Button, Icon, Loading, Tooltip } from '@kube-design/components'
 
-import { Status, Button } from 'components/Base'
+import { Status } from 'components/Base'
 import { getLocalTime, parseUrl, formatSize } from 'utils'
 
 import styles from './index.scss'
@@ -115,9 +115,7 @@ export default class ImageBuilderLastRun extends React.Component {
     const { sourceUrl, cluster } = this.props.runDetail
     const path = get(parseUrl(sourceUrl), 'pathname', `/${sourceUrl}`)
     const url = this.pathAddCluster(path, cluster)
-    const downLoadUrl = `${window.location.protocol}//${
-      window.location.host
-    }/b2i_download${url}`
+    const downLoadUrl = `${window.location.protocol}//${window.location.host}/b2i_download${url}`
     window.open(downLoadUrl)
   }
 

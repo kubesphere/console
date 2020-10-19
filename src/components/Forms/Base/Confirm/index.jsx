@@ -19,7 +19,7 @@
 import React from 'react'
 import classNames from 'classnames'
 
-import { Icon } from '@pitrix/lego-ui'
+import { Icon } from '@kube-design/components'
 
 import styles from './index.scss'
 

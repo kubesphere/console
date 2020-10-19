@@ -21,7 +21,9 @@ import { observer } from 'mobx-react'
 import { pick } from 'lodash'
 import PropTypes from 'prop-types'
 
-import { Modal, Button } from 'components/Base'
+import { Button } from '@kube-design/components'
+
+import { Modal } from 'components/Base'
 import { WORKSPACE_REPO_ID } from 'configs/openpitrix/app'
 
 import Apps from './Apps'

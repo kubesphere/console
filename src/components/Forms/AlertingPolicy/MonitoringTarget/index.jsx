@@ -25,7 +25,7 @@ import { isEmpty, get, set } from 'lodash'
 import { MODULE_KIND_MAP } from 'utils/constants'
 import TypesStore from 'stores/alerting/types'
 
-import { Form, Alert } from 'components/Base'
+import { Form, Alert } from '@kube-design/components'
 import Project from './Project'
 import Cluster from './Cluster'
 

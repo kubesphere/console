@@ -24,7 +24,7 @@ import { isEmpty, get } from 'lodash'
 import { getAreaChartOps } from 'utils/monitoring'
 import WorkspaceMonitorStore from 'stores/monitoring/workspace'
 
-import { Loading } from '@pitrix/lego-ui'
+import { Loading } from '@kube-design/components'
 import { Card } from 'components/Base'
 import { SimpleArea } from 'components/Charts'
 

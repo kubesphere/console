@@ -18,7 +18,8 @@
 
 import { isEmpty, forEach } from 'lodash'
 import { toJS } from 'mobx'
-import { Modal, Notify } from 'components/Base'
+import { Notify } from '@kube-design/components'
+import { Modal } from 'components/Base'
 import AddNodeModal from 'clusters/components/Modals/AddNode'
 import AddNodeTypeModal from 'clusters/components/Modals/AddNodeType'
 import ObjectEditModal from 'components/Modals/ObjectEdit'

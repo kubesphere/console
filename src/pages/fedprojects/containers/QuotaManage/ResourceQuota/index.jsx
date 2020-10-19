@@ -21,9 +21,10 @@ import { observer, inject } from 'mobx-react'
 import classNames from 'classnames'
 
 import { get } from 'lodash'
+import { Button } from '@kube-design/components'
 
 import { QUOTAS_MAP } from 'utils/constants'
-import { Button, Panel } from 'components/Base'
+import { Panel } from 'components/Base'
 import ClusterTitle from 'components/Clusters/ClusterTitle'
 import { trigger } from 'utils/action'
 import QuotaStore from 'stores/quota'

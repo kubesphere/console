@@ -19,14 +19,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {
+  Button,
+  Form,
   Columns,
   Column,
   Input,
   TextArea,
   RadioGroup,
   Radio,
-} from '@pitrix/lego-ui'
-import { Button, Form } from 'components/Base'
+} from '@kube-design/components'
+
 import { PIPELINE_PARAMS_TYPES } from 'utils/constants'
 
 import styles from './index.scss'

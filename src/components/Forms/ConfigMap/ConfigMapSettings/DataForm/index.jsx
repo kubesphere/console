@@ -19,8 +19,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { trim } from 'lodash'
-import { Input } from '@pitrix/lego-ui'
-import { Form, TextArea } from 'components/Base'
+import { Form, Input, TextArea } from '@kube-design/components'
 import { ReactComponent as BackIcon } from 'src/assets/back.svg'
 
 import styles from './index.scss'
@@ -111,11 +110,10 @@ export default class SecretDataForm extends React.Component {
             >
               <TextArea
                 maxHeight={430}
-                autoResize
-                resize
                 name="value"
                 placeholder="value"
                 rows={4}
+                autoResize
               />
             </Form.Item>
           </Form>

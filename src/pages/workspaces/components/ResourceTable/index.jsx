@@ -19,65 +19,26 @@
 import React from 'react'
 import { isEmpty } from 'lodash'
 
-import {
-  Dropdown,
-  Buttons,
-  Level,
-  LevelItem,
-  LevelLeft,
-  LevelRight,
-} from '@pitrix/lego-ui'
-import { Button } from 'components/Base'
 import BaseTable from 'components/Tables/Base'
 import EmptyList from 'components/Cards/EmptyList'
 import withTableActions from 'components/HOCs/withTableActions'
 
 import ClusterSelect from './ClusterSelect'
 
-class ResourceTable extends BaseTable {
-  renderNormalTitle() {
-    const {
-      hideCustom,
-      showClusterSelect,
-      clusters,
-      cluster,
-      onClusterChange,
-    } = this.props
+class ResourceTable extends React.Component {
+  renderCustomFilter() {
+    const { showClusterSelect, clusters, cluster, onClusterChange } = this.props
+
+    if (!showClusterSelect) {
+      return null
+    }
 
     return (
-      <Level>
-        {showClusterSelect && (
-          <LevelLeft>
-            <LevelItem>
-              <ClusterSelect
-                clusters={clusters}
-                cluster={cluster}
-                onChange={onClusterChange}
-              />
-            </LevelItem>
-          </LevelLeft>
-        )}
-        <LevelItem>{this.renderSearch()}</LevelItem>
-        <LevelRight>
-          <Buttons>
-            <Button
-              type="flat"
-              icon="refresh"
-              onClick={this.handleRefresh}
-              data-test="table-refresh"
-            />
-            {!hideCustom && (
-              <Dropdown
-                content={this.renderColumnsMenu()}
-                placement="bottomRight"
-              >
-                <Button type="flat" icon="cogwheel" data-test="table-columns" />
-              </Dropdown>
-            )}
-            {this.renderActions()}
-          </Buttons>
-        </LevelRight>
-      </Level>
+      <ClusterSelect
+        clusters={clusters}
+        cluster={cluster}
+        onChange={onClusterChange}
+      />
     )
   }
 
@@ -93,7 +54,9 @@ class ResourceTable extends BaseTable {
       )
     }
 
-    return BaseTable.prototype.render.call(this)
+    return (
+      <BaseTable customFilter={this.renderCustomFilter()} {...this.props} />
+    )
   }
 }
 

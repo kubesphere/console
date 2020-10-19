@@ -20,8 +20,7 @@ import React from 'react'
 import { observer } from 'mobx-react'
 import { isEmpty, isFunction } from 'lodash'
 
-import { Menu, Icon, Dropdown } from '@pitrix/lego-ui'
-import { Button } from 'components/Base'
+import { Button, Menu, Icon, Dropdown } from '@kube-design/components'
 
 function withTableActions(WrappedComponent) {
   class TableWrapper extends React.Component {

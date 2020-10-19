@@ -20,7 +20,7 @@ import React from 'react'
 import { get, set, omit, unset } from 'lodash'
 import { MODULE_KIND_MAP } from 'utils/constants'
 
-import { Form } from 'components/Base'
+import { Form } from '@kube-design/components'
 import { NumberInput } from 'components/Inputs'
 
 import Metadata from './Metadata'
@@ -66,9 +66,7 @@ export default class AdvancedSettings extends React.Component {
     if (value) {
       set(
         formTemplate,
-        `Service.${
-          this.fedPrefix
-        }spec.sessionAffinityConfig.clientIP.timeoutSeconds`,
+        `Service.${this.fedPrefix}spec.sessionAffinityConfig.clientIP.timeoutSeconds`,
         10800
       )
     } else {
@@ -111,9 +109,7 @@ export default class AdvancedSettings extends React.Component {
             desc={t('SERVICE_SESSION_STICKY_DESC')}
           >
             <NumberInput
-              name={`Service.${
-                this.fedPrefix
-              }spec.sessionAffinityConfig.clientIP.timeoutSeconds`}
+              name={`Service.${this.fedPrefix}spec.sessionAffinityConfig.clientIP.timeoutSeconds`}
               min={0}
               max={86400}
             />

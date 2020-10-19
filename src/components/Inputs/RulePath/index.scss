@@ -1,11 +1,9 @@
 @import '~scss/variables';
 
-.wrapper {
-  display: flex;
-
-  .item {
-    & + .item {
-      margin-left: 12px;
+.input {
+  :global {
+    .dropdown .menu {
+      width: 180px;
     }
   }
 }

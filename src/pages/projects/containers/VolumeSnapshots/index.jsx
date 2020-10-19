@@ -28,7 +28,7 @@ import { getLocalTime } from 'utils'
 import { Avatar, Status } from 'components/Base'
 
 import Banner from 'components/Cards/Banner'
-import { Icon, Tooltip } from '@pitrix/lego-ui'
+import { Icon, Tooltip } from '@kube-design/components'
 
 import styles from './index.scss'
 

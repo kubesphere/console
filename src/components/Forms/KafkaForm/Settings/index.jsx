@@ -17,8 +17,7 @@
  */
 
 import React from 'react'
-import { Form } from 'components/Base'
-import { Input } from '@pitrix/lego-ui'
+import { Form, Input } from '@kube-design/components'
 import Brokers from 'src/components/Forms/KafkaForm/Settings/BrokersInput'
 
 export default class BaseInfo extends React.Component {

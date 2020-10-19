@@ -24,8 +24,8 @@ import { saveAs } from 'file-saver'
 import { get, isEmpty } from 'lodash'
 
 import { PATTERN_UTC_TIME } from 'utils/constants'
-import { Loading, Icon, Tooltip } from '@pitrix/lego-ui'
-import { Card, Notify, Empty } from 'components/Base'
+import { Icon, Loading, Notify, Tooltip } from '@kube-design/components'
+import { Card, Empty } from 'components/Base'
 import ContainerStore from 'stores/container'
 
 import styles from './index.scss'

@@ -27,8 +27,7 @@ import {
   APP_LABEL_MODULES,
 } from 'utils/constants'
 
-import { Columns, Column, Input } from '@pitrix/lego-ui'
-import { Form, TextArea } from 'components/Base'
+import { Form, Columns, Column, Input, TextArea } from '@kube-design/components'
 import { ProjectSelect } from 'components/Inputs'
 
 @observer

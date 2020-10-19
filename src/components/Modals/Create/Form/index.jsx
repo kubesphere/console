@@ -20,7 +20,8 @@ import { get, throttle, isEmpty } from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { Button, Steps } from 'components/Base'
+import { Button } from '@kube-design/components'
+import { Steps } from 'components/Base'
 import Confirm from 'components/Forms/Base/Confirm'
 
 import styles from './index.scss'

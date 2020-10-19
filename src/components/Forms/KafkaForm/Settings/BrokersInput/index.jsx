@@ -19,7 +19,7 @@
 import React from 'react'
 import { get } from 'lodash'
 import { ObjectInput, ArrayInput, NumberInput } from 'components/Inputs'
-import { Input } from '@pitrix/lego-ui'
+import { Input } from '@kube-design/components'
 
 import styles from './index.scss'
 

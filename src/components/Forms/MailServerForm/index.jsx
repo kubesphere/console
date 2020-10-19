@@ -19,9 +19,8 @@
 import React, { Component } from 'react'
 import classnames from 'classnames'
 
-import { Input } from '@pitrix/lego-ui'
+import { Form, Button, Checkbox, Alert, Input } from '@kube-design/components'
 import { UrlInput } from 'components/Inputs'
-import { Form, Button, Checkbox, Alert } from 'components/Base'
 
 import styles from './index.scss'
 

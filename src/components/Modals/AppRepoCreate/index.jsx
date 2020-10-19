@@ -19,8 +19,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import { Input } from '@pitrix/lego-ui'
-import { Modal, Form, TextArea } from 'components/Base'
+import { Form, Input, TextArea } from '@kube-design/components'
+import { Modal } from 'components/Base'
 import UrlInput from './url.input'
 
 import styles from './index.scss'

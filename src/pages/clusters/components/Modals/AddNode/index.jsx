@@ -17,7 +17,7 @@
  */
 
 import React from 'react'
-import { CheckboxGroup } from '@pitrix/lego-ui'
+import { CheckboxGroup } from '@kube-design/components'
 import { Modal, Text } from 'components/Base'
 
 import styles from './index.scss'

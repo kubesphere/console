@@ -21,7 +21,7 @@ import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import { get, isArray } from 'lodash'
 
-import { Loading } from '@pitrix/lego-ui'
+import { Loading } from '@kube-design/components'
 
 import { getDisplayName, getLocalTime, parseUrl } from 'utils'
 import { trigger } from 'utils/action'
@@ -148,9 +148,7 @@ export default class ImageBuilderDetail extends React.Component {
     const sourceUrl = get(spec, 'config.sourceUrl', '')
     const path = get(parseUrl(sourceUrl), 'pathname', `/${sourceUrl}`)
     const url = this.pathAddCluster(path, cluster)
-    const downLoadUrl = `${window.location.protocol}//${
-      window.location.host
-    }/b2i_download${url}`
+    const downLoadUrl = `${window.location.protocol}//${window.location.host}/b2i_download${url}`
 
     return [
       {

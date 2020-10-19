@@ -19,7 +19,7 @@
 import React, { lazy, Suspense, PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
-import { Loading } from '@pitrix/lego-ui'
+import { Loading } from '@kube-design/components'
 
 import { getValue } from 'utils/yaml'
 
@@ -53,22 +53,16 @@ class CodeEditor extends PureComponent {
     }
   }
 
-  static getDerivedStateFromProps(props, state) {
-    const { value } = props
-
-    if (value !== state.originValue) {
-      return {
-        value: getValue(value),
-        originValue: value,
-      }
+  componentDidUpdate(prevProps, prevState) {
+    const { value } = this.props
+    if (prevState.originValue !== value) {
+      this.setState({ value: getValue(value), originValue: value })
     }
-
-    return null
   }
 
   handleChange = value => {
     const { onChange } = this.props
-    this.setState({ value }, () => onChange(value))
+    this.setState({ value, originValue: value }, () => onChange(value))
   }
 
   render() {

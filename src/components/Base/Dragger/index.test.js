@@ -57,7 +57,7 @@ it('scale correctly', () => {
     .then(() => wrapper.update())
     .then(() => {
       wrapper
-        .find('.qicon-substract')
+        .find('.kubed-icon-substract')
         .first()
         .simulate('click')
       const content = wrapper.find('.main_content').first()

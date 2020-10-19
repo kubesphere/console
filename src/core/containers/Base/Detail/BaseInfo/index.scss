@@ -79,9 +79,11 @@
   margin-bottom: 12px;
   border-radius: 12px;
   background-color: #ffffff;
-  
-  & > a {
-    @include TypographySymbolText;
+  @include TypographySymbolText;
+
+  span {
+    display: inline-block;
+    vertical-align: middle;
   }
 
   :global .icon {

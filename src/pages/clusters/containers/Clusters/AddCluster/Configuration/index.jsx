@@ -17,8 +17,8 @@
  */
 
 import React from 'react'
-import { Icon, Select } from '@pitrix/lego-ui'
-import { Form, Text, CodeEditor } from 'components/Base'
+import { Form, Icon, Select } from '@kube-design/components'
+import { CodeEditor, Text } from 'components/Base'
 import { getDocsUrl } from 'utils'
 
 import SubTitle from '../SubTitle'

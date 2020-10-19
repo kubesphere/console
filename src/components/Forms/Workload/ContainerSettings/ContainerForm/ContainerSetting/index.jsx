@@ -22,8 +22,15 @@ import { generateId } from 'utils'
 
 import { PATTERN_NAME } from 'utils/constants'
 
-import { Input, Select, Columns, Column } from '@pitrix/lego-ui'
-import { Form, Tag, Alert } from 'components/Base'
+import {
+  Form,
+  Tag,
+  Alert,
+  Input,
+  Select,
+  Columns,
+  Column,
+} from '@kube-design/components'
 import { ResourceLimit } from 'components/Inputs'
 import ToggleView from 'components/ToggleView'
 

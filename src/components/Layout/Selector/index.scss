@@ -66,32 +66,6 @@
   cursor: pointer;
 }
 
-.dropdown {
-  background-color: #242e42;
-
-  :global {
-    .dropdown-content {
-      max-height: 300px;
-      overflow-y: auto;
-      overflow-x: hidden;
-    }
-
-    .menu {
-      padding: 12px;
-    }
-
-    .menu-item {
-      padding: 6px 20px 6px 14px;
-
-      img {
-        width: 16px;
-        height: 16px;
-        margin-right: 10px;
-      }
-    }
-  }
-}
-
 .bottom {
   position: relative;
   text-align: center;

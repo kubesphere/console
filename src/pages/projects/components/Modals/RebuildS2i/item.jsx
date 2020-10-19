@@ -19,7 +19,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { Radio } from '@pitrix/lego-ui'
+import { Radio } from '@kube-design/components'
 
 import styles from './index.scss'
 

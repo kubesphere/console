@@ -20,8 +20,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
-import { Icon } from '@pitrix/lego-ui'
-import { Button } from 'components/Base'
+import { Button, Icon } from '@kube-design/components'
 
 import styles from './index.scss'
 
@@ -77,7 +76,6 @@ export default class VersionSelect extends React.Component {
               <Button
                 className={styles.button}
                 data-version={option.name}
-                noShadow
                 onClick={this.handleOffline}
               >
                 {t('Version offline')}

@@ -20,9 +20,8 @@ import React from 'react'
 import { observer } from 'mobx-react'
 import { getLocalTime, formatSize } from 'utils'
 
-import { Icon } from '@pitrix/lego-ui'
+import { Icon, Notify } from '@kube-design/components'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
-import Notify from 'components/Base/Notify'
 
 import styles from './index.scss'
 

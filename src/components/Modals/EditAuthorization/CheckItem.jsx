@@ -19,8 +19,8 @@
 import React, { Component } from 'react'
 import { get, isEmpty } from 'lodash'
 
-import { Checkbox } from '@pitrix/lego-ui'
-import { Text, Tag } from 'components/Base'
+import { Checkbox, Tag } from '@kube-design/components'
+import { Text } from 'components/Base'
 
 import styles from './index.scss'
 

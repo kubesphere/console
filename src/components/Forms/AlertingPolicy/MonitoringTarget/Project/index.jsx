@@ -32,8 +32,10 @@ import {
   Select,
   Tooltip,
   Icon,
-} from '@pitrix/lego-ui'
-import { Form, ScrollLoad } from 'components/Base'
+  Form,
+} from '@kube-design/components'
+
+import { ScrollLoad } from 'components/Base'
 import { ArrayInput, ObjectInput } from 'components/Inputs'
 import WorkloadItem from './WorkloadItem'
 
@@ -274,7 +276,7 @@ export default class ResourceTarget extends React.Component {
       <div className={styles.wrapper}>
         <div className={styles.title}>
           <RadioGroup
-            wrapClassName="radio-default"
+            mode="button"
             buttonWidth={155}
             value={type}
             onChange={this.handleTypeChange}

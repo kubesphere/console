@@ -19,8 +19,16 @@
 import { get, isEmpty } from 'lodash'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import { Form, Button, Notify } from 'components/Base'
-import { Dropdown, Icon, DatePicker, Select, Tooltip } from '@pitrix/lego-ui'
+import {
+  Form,
+  Button,
+  Notify,
+  Dropdown,
+  Icon,
+  DatePicker,
+  Select,
+  Tooltip,
+} from '@kube-design/components'
 import moment from 'moment-mini'
 
 import styles from './index.scss'

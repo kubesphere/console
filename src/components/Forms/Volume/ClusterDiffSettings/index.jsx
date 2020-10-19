@@ -20,7 +20,7 @@ import React from 'react'
 import { get, keyBy } from 'lodash'
 import { MODULE_KIND_MAP } from 'utils/constants'
 
-import { Form } from 'components/Base'
+import { Form } from '@kube-design/components'
 
 import ClustersMapper from 'components/Forms/Workload/ClusterDiffSettings/ClustersMapper'
 import VolumeSettings from './VolumeSettings'

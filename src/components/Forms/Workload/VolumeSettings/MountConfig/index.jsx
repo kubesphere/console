@@ -19,8 +19,14 @@
 import { get, set, keyBy, isEmpty } from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Input, Select, RadioGroup, RadioButton } from '@pitrix/lego-ui'
-import { TypeSelect, Form } from 'components/Base'
+import {
+  Form,
+  Input,
+  RadioButton,
+  RadioGroup,
+  Select,
+} from '@kube-design/components'
+import { TypeSelect } from 'components/Base'
 import { ArrayInput, ObjectInput, MountInput } from 'components/Inputs'
 import { ReactComponent as BackIcon } from 'src/assets/back.svg'
 import { generateId, getDisplayName } from 'utils'
@@ -349,7 +355,7 @@ export default class MountConfig extends React.Component {
         <div className={styles.contentWrapper}>
           <div className={styles.title}>{t('Type')}</div>
           <RadioGroup
-            wrapClassName="radio-default"
+            mode="button"
             value={type}
             onChange={this.handleTypeChange}
             size="small"

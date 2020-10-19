@@ -19,8 +19,12 @@
 import { isEmpty } from 'lodash'
 import React from 'react'
 import { observer, inject } from 'mobx-react'
-import { Loading, Pagination } from '@pitrix/lego-ui'
-import { Button, Search } from 'components/Base'
+import {
+  Button,
+  Loading,
+  Pagination,
+  InputSearch,
+} from '@kube-design/components'
 import Banner from 'components/Cards/Banner'
 import EmptyList from 'components/Cards/EmptyList'
 import ClusterCard from 'clusters/components/Cards/Cluster'
@@ -180,9 +184,9 @@ class Clusters extends React.Component {
             ))}
             <div className="text-right margin-t12">
               <Pagination
-                current={page}
+                page={page}
                 total={total}
-                pageSize={limit}
+                limit={limit}
                 onChange={this.handlePagination}
               />
             </div>
@@ -195,10 +199,10 @@ class Clusters extends React.Component {
   renderSearch() {
     return (
       <div className={styles.searchPanel}>
-        <Search
+        <InputSearch
           className={styles.search}
           onSearch={this.handleSearch}
-          placeholder={t('Search by keyword')}
+          placeholder={t('Search by name')}
         />
         <Button
           type="flat"

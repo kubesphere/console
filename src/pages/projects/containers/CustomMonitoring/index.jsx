@@ -18,7 +18,8 @@
 
 import React from 'react'
 
-import { Avatar, Notify } from 'components/Base'
+import { Notify } from '@kube-design/components'
+import { Avatar } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import withList, { ListPage } from 'components/HOCs/withList'
 import Table from 'components/Tables/List'

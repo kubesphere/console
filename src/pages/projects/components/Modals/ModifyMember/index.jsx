@@ -21,8 +21,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { observer } from 'mobx-react'
 
-import { Select } from '@pitrix/lego-ui'
-import { Modal, Form } from 'components/Base'
+import { Form, Select } from '@kube-design/components'
+import { Modal } from 'components/Base'
 
 import User from './User'
 

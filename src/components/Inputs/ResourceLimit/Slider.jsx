@@ -20,7 +20,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import isEqual from 'react-fast-compare'
 
-import { Tooltip } from '@pitrix/lego-ui'
+import { Tooltip } from '@kube-design/components'
 
 import styles from './index.scss'
 

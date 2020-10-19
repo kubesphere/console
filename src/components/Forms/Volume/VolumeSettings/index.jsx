@@ -19,7 +19,8 @@
 import React from 'react'
 import { get, set, unset } from 'lodash'
 import { MODULE_KIND_MAP } from 'utils/constants'
-import { Form, TypeSelect } from 'components/Base'
+import { Form } from '@kube-design/components'
+import { TypeSelect } from 'components/Base'
 
 import FormTemplate from './FormTemplate'
 import SnapshotForm from './SnapshotForm'

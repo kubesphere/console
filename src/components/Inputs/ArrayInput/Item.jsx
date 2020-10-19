@@ -18,7 +18,7 @@
 
 import React from 'react'
 
-import { Button } from 'components/Base'
+import { Button } from '@kube-design/components'
 
 import styles from './index.scss'
 

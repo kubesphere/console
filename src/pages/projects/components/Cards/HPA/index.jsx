@@ -24,8 +24,8 @@ import { isUndefined } from 'lodash'
 
 import HpaStore from 'stores/workload/hpa'
 
-import { Icon, Dropdown, Menu } from '@pitrix/lego-ui'
-import { Button, Card, Notify } from 'components/Base'
+import { Button, Icon, Dropdown, Menu, Notify } from '@kube-design/components'
+import { Card } from 'components/Base'
 
 import { getSuitableUnit, getValueByUnit } from 'utils/monitoring'
 
@@ -141,10 +141,7 @@ export default class HPACard extends React.Component {
     )
 
     return (
-      <Dropdown
-        className={classnames(styles.dropdown, 'dropdown-default')}
-        content={contenet}
-      >
+      <Dropdown theme="dark" content={contenet}>
         <Button type="ghost" icon="more" />
       </Dropdown>
     )

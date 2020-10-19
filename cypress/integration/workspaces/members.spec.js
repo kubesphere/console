@@ -89,7 +89,7 @@ describe('The Workspace Overview Page', function() {
       cy.get('[data-test="search"] input').type(`${testUser}{enter}`)
       cy.wait('@getUsers')
 
-      cy.get('[data-test="search"] .qicon-close').click()
+      cy.get('[data-test="search"] .kubed-icon-close').click()
       cy.wait('@getUsers')
 
       cy.get(`[data-user="${testUser}"] button`).click()
@@ -105,7 +105,7 @@ describe('The Workspace Overview Page', function() {
 
     // modify role
     {
-      cy.get(`[data-row-key="${testUser}"] button .qicon-more`).click()
+      cy.get(`[data-row-key="${testUser}"] button .kubed-icon-more`).click()
       cy.get(
         `[data-row-key="${testUser}"] [data-test="table-item-modify"]`
       ).click()
@@ -123,7 +123,7 @@ describe('The Workspace Overview Page', function() {
 
     // delete member
     {
-      cy.get(`[data-row-key="${testUser}"] button .qicon-more`).click()
+      cy.get(`[data-row-key="${testUser}"] button .kubed-icon-more`).click()
       cy.get(
         `[data-row-key="${testUser}"] [data-test="table-item-delete"]`
       ).click()

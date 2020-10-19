@@ -3,6 +3,7 @@
 .table {
   border: 1px solid $light-color06;
   border-radius: 3px;
+  overflow: hidden;
   :global {
     table {
       padding: 0;

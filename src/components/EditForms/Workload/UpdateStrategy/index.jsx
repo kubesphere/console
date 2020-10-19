@@ -18,7 +18,7 @@
 
 import React from 'react'
 
-import { Form } from 'components/Base'
+import { Form } from '@kube-design/components'
 import UpdateStrategyForm from 'components/Forms/Workload/ContainerSettings/UpdateStrategy'
 
 export default class UpdateStrategy extends React.Component {

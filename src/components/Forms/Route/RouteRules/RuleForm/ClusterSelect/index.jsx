@@ -19,7 +19,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import { Icon, Checkbox, CheckboxGroup } from '@pitrix/lego-ui'
+import { Icon, Checkbox, CheckboxGroup } from '@kube-design/components'
 import { CLUSTER_PROVIDER_ICON } from 'utils/constants'
 
 import styles from './index.scss'

@@ -19,8 +19,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { Alert } from '@pitrix/lego-ui'
-import { Form, Modal } from 'components/Base'
+import { Alert, Form } from '@kube-design/components'
+import { Modal } from 'components/Base'
 import TaintInput from './TaintInput'
 
 import styles from './index.scss'

@@ -103,7 +103,8 @@ export default class MemberProjects extends React.Component {
   }
 
   render() {
-    const { data, isLoading } = toJS(this.projectStore.list)
+    const { data, page, limit, total, isLoading } = toJS(this.projectStore.list)
+    const pagination = { page, limit, total }
 
     return (
       <Card title={t('Projects')}>
@@ -113,6 +114,7 @@ export default class MemberProjects extends React.Component {
           columns={this.getColumns()}
           isLoading={isLoading || this.workspaceStore.clusters.isLoading}
           onFetch={this.getData}
+          pagination={pagination}
           {...this.clusterProps}
           name="Projects"
           hideSearch

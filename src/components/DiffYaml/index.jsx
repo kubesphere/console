@@ -19,7 +19,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import isEqual from 'react-fast-compare'
-import { Icon } from '@pitrix/lego-ui'
+import { Icon } from '@kube-design/components'
 
 import { createPatch } from 'diff'
 import { parse, html } from 'diff2html'

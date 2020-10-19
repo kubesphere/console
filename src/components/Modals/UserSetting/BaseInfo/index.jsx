@@ -18,9 +18,8 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Input, Select, Columns, Column } from '@pitrix/lego-ui'
+import { Column, Columns, Form, Input, Select } from '@kube-design/components'
 import { cloneDeep } from 'lodash'
-import { Form } from 'components/Base'
 import { getBrowserLang } from 'utils'
 import cookie from 'utils/cookie'
 

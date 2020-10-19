@@ -24,7 +24,7 @@ import { isEmpty, debounce } from 'lodash'
 
 import UserStore from 'stores/user'
 
-import { Control, Icon, Input, Tooltip } from '@pitrix/lego-ui'
+import { Icon, Input, Tooltip } from '@kube-design/components'
 
 import styles from './index.scss'
 
@@ -190,9 +190,10 @@ export default class EmailInput extends React.Component {
 
     return (
       <div className={styles.emailInput}>
-        <Control
+        <div
           className={classnames(
             styles.input,
+            'control',
             'has-icons-left',
             'has-icons-right',
             {
@@ -210,7 +211,7 @@ export default class EmailInput extends React.Component {
             onPressEnter={this.handleEnter}
           />
           {isExistValue && this.renderRightIcon()}
-        </Control>
+        </div>
         {isExistValue && this.renderInputPrompt()}
       </div>
     )

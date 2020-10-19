@@ -23,8 +23,8 @@ import { isEmpty } from 'lodash'
 
 import AlertingPolicyStore from 'stores/alerting/policy'
 
-import { Input, RadioGroup, RadioButton } from '@pitrix/lego-ui'
-import { Modal, Form } from 'components/Base'
+import { Form, Input, RadioButton, RadioGroup } from '@kube-design/components'
+import { Modal } from 'components/Base'
 
 import styles from './index.scss'
 

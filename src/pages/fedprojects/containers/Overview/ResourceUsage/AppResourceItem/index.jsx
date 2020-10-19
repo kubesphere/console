@@ -22,7 +22,7 @@ import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { isFunction } from 'lodash'
 
-import { Icon, Tooltip } from '@pitrix/lego-ui'
+import { Icon, Tooltip } from '@kube-design/components'
 import { getAreaChartOps } from 'utils/monitoring'
 
 import TinyArea from '../TinyArea'

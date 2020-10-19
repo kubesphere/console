@@ -17,7 +17,7 @@
  */
 
 import React, { Component } from 'react'
-import { Select } from '@pitrix/lego-ui'
+import { Select } from '@kube-design/components'
 import StatusReason from 'clusters/components/StatusReason'
 
 import styles from './index.scss'

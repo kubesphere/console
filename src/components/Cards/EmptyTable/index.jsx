@@ -20,8 +20,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 
-import { Columns, Column } from '@pitrix/lego-ui'
-import { Button } from 'components/Base'
+import { Button, Columns, Column } from '@kube-design/components'
 
 import styles from './index.scss'
 

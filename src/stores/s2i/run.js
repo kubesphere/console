@@ -17,7 +17,7 @@
  */
 
 import { action, observable } from 'mobx'
-import { Notify } from '@pitrix/lego-ui'
+import { Notify } from '@kube-design/components'
 import ObjectMapper from 'utils/object.mapper'
 import { isArray, get } from 'lodash'
 import { getFilterString, parseUrl } from 'utils'

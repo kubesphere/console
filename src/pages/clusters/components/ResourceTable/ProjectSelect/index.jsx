@@ -18,8 +18,8 @@
 
 import React, { Component } from 'react'
 import { observer } from 'mobx-react'
-import { Icon } from '@pitrix/lego-ui'
-import { SearchSelect } from 'components/Base'
+import { pick } from 'lodash'
+import { Icon, Select } from '@kube-design/components'
 
 import styles from './index.scss'
 
@@ -47,22 +47,24 @@ export default class ProjectSelect extends Component {
   )
 
   render() {
-    const { namespace = '', list, onChange, onFetch } = this.props
+    const { namespace, list, onChange, onFetch } = this.props
+
+    const pagination = pick(list, ['page', 'total', 'limit'])
 
     return (
-      <SearchSelect
+      <Select
         className={styles.select}
         value={namespace}
         onChange={onChange}
         options={this.getProjects()}
-        page={list.page}
-        total={list.total}
-        currentLength={list.data.length}
+        placeholder={t('All Projects')}
+        pagination={pagination}
         isLoading={list.isLoading}
         valueRenderer={this.optionRenderer}
         optionRenderer={this.optionRenderer}
         onFetch={onFetch}
-        placeholder={t('All Projects')}
+        searchable
+        clearable
       />
     )
   }

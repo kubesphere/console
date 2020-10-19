@@ -11,11 +11,15 @@
 .slider {
   height: 30px;
   padding: 0;
+  margin-bottom: 0;
 
   :global {
-    .slider-handle {
-      position: relative;
+    .slider-handler {
       z-index: 1;
+      height: 30px;
+      border-radius: 0;
+      border: none;
+      box-shadow: none;
 
       &::before,
       &::after {
@@ -35,6 +39,10 @@
         width: 2px;
         height: 24px;
       }
+    }
+
+    .slider-track {
+      top: 0;
     }
   }
 }

@@ -17,7 +17,7 @@
  */
 
 import React from 'react'
-import { Icon } from '@pitrix/lego-ui'
+import { Icon } from '@kube-design/components'
 import classNames from 'classnames'
 import { ICON_TYPES } from 'utils/constants'
 import styles from './index.scss'

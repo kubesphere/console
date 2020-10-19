@@ -55,5 +55,5 @@ it('renders icon correctly', () => {
   )
   expect(wrapper).toIncludeText(props.title)
   expect(wrapper).toIncludeText(props.desc)
-  expect(wrapper.find('.qicon-refresh')).toHaveLength(1)
+  expect(wrapper.find('.kubed-icon-refresh')).toHaveLength(1)
 })

@@ -17,7 +17,7 @@
  */
 import React from 'react'
 import { isFunction } from 'lodash'
-import { Icon } from '@pitrix/lego-ui'
+import { Icon } from '@kube-design/components'
 import { toJS } from 'mobx'
 import TableColumnStyleModal from '../../TableColumnStyleModal'
 

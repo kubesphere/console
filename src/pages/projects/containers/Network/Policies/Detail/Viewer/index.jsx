@@ -19,7 +19,7 @@
 import React from 'react'
 import { toJS } from 'mobx'
 import { inject, observer } from 'mobx-react'
-import { Table } from '@pitrix/lego-ui'
+import { Table } from '@kube-design/components'
 import { get, toPairs, isEmpty } from 'lodash'
 import { Panel } from 'components/Base'
 import styles from './index.scss'
@@ -97,10 +97,6 @@ export default class Viewer extends React.Component {
                       {port.protocol}: {port.port}
                     </div>
                   )),
-          },
-          {
-            title: '',
-            className: styles.expand,
           },
         ],
       },
@@ -277,8 +273,6 @@ export default class Viewer extends React.Component {
           dataSource={dataSource}
           className={styles.table}
           columns={this.columns}
-          expandIconColumnIndex={6}
-          expandIconAsCell={false}
           expandedRowRender={record => (
             <div className={styles.detail}>
               {this.renderPolicyDetail(record)}

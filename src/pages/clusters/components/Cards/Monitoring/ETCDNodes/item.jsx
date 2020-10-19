@@ -21,7 +21,7 @@ import { Link } from 'react-router-dom'
 
 import { ICON_TYPES } from 'utils/constants'
 
-import { Icon } from '@pitrix/lego-ui'
+import { Icon } from '@kube-design/components'
 import { Status } from 'components/Base'
 
 import styles from './index.scss'

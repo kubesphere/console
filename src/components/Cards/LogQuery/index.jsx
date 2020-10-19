@@ -24,7 +24,7 @@ import stripAnsi from 'strip-ansi'
 import classnames from 'classnames'
 
 import CustomRange from 'components/Cards/Monitoring/Controller/TimeSelector/Range/Custom'
-import { Select, Icon, Tooltip } from '@pitrix/lego-ui'
+import { Select, Icon, Tooltip } from '@kube-design/components'
 import { Card } from 'components/Base'
 
 import { dateI18n, getLastTimeRange } from './utils'

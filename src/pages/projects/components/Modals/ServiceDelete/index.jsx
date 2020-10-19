@@ -20,11 +20,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { get, flatten, isArray, isEmpty, uniqBy } from 'lodash'
-import { Icon, Checkbox } from '@pitrix/lego-ui'
+import { Button, Icon, Checkbox } from '@kube-design/components'
 
 import { joinSelector, getDisplayName } from 'utils'
 import { ICON_TYPES, MODULE_KIND_MAP } from 'utils/constants'
-import { Button, Modal } from 'components/Base'
+import { Modal } from 'components/Base'
 import EmptyList from 'components/Cards/EmptyList'
 
 import WorkloadStore from 'stores/workload'

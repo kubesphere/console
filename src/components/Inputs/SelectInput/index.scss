@@ -12,13 +12,8 @@
   }
 
   :global {
-    .dropdown.dropdown-default .menu {
+    .dropdown .menu {
       width: 455px;
-      padding: 8px 0;
-
-      .menu-item {
-        border-radius: 0;
-      }
     }
   }
 

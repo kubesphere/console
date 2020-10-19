@@ -18,7 +18,7 @@
 
 import { isEmpty, get } from 'lodash'
 import { action } from 'mobx'
-import { Notify } from 'components/Base'
+import { Notify } from '@kube-design/components'
 import { LIST_DEFAULT_ORDER } from 'utils/constants'
 
 import Base from 'stores/base'

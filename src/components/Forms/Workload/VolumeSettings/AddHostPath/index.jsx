@@ -19,9 +19,8 @@
 import { keyBy, isEmpty } from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Input } from '@pitrix/lego-ui'
+import { Input, Form, Alert } from '@kube-design/components'
 import { PATTERN_NAME } from 'utils/constants'
-import { Form, Alert } from 'components/Base'
 import { MountInput } from 'components/Inputs'
 
 import styles from './index.scss'

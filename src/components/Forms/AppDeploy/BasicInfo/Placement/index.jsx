@@ -19,7 +19,7 @@
 import React, { Component } from 'react'
 import { computed } from 'mobx'
 import { observer } from 'mobx-react'
-import { get, set } from 'lodash'
+import { get, set, pick } from 'lodash'
 import classNames from 'classnames'
 import {
   Icon,
@@ -28,8 +28,10 @@ import {
   Select,
   Tooltip,
   Loading,
-} from '@pitrix/lego-ui'
-import { Text, Form, SearchSelect } from 'components/Base'
+  Form,
+} from '@kube-design/components'
+
+import { Text } from 'components/Base'
 import Confirm from 'components/Forms/Base/Confirm'
 import StatusReason from 'clusters/components/StatusReason'
 import WorkspaceStore from 'stores/workspace'
@@ -268,17 +270,21 @@ export default class Placment extends Component {
                   { required: true, message: t('Please select a project') },
                 ]}
               >
-                <SearchSelect
+                <Select
                   name="namespace"
                   placeholder={t('Please select a project')}
                   options={this.namespaces}
-                  page={this.projectStore.list.page}
-                  total={this.projectStore.list.total}
+                  pagination={pick(this.projectStore.list, [
+                    'page',
+                    'limit',
+                    'total',
+                  ])}
                   isLoading={this.projectStore.list.isLoading}
-                  currentLength={this.projectStore.list.data.length}
                   onFetch={this.fetchNamespaces}
                   valueRenderer={this.projectOptionRenderer}
                   optionRenderer={this.projectOptionRenderer}
+                  searchable
+                  clearable
                 />
               </Form.Item>
             </Column>

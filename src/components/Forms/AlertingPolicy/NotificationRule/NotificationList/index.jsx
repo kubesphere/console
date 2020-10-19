@@ -23,8 +23,8 @@ import { isEmpty, get, set, uniqBy } from 'lodash'
 
 import NotificationAddressStore from 'stores/notification/address'
 
-import { Loading } from '@pitrix/lego-ui'
-import { Button, Empty, Form } from 'components/Base'
+import { Button, Form, Loading } from '@kube-design/components'
+import { Empty } from 'components/Base'
 import EmailInput from './EmailInput'
 
 import styles from './index.scss'

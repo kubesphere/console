@@ -19,9 +19,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
-import { Icon, Loading } from '@pitrix/lego-ui'
+import { Icon, Button, Notify, Loading } from '@kube-design/components'
 
-import { Upload, Button, Notify } from 'components/Base'
+import { Upload } from 'components/Base'
 import { UPLOAD_STATUS_WORD, UPLOAD_FILE_TYPES } from 'configs/openpitrix/app'
 import { getLocalTime } from 'utils'
 

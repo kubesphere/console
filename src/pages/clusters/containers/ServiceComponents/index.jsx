@@ -19,7 +19,7 @@
 import React from 'react'
 import { observer, inject } from 'mobx-react'
 import { isEmpty } from 'lodash'
-import { RadioGroup, RadioButton, Tag, Loading } from '@pitrix/lego-ui'
+import { RadioGroup, RadioButton, Tag, Loading } from '@kube-design/components'
 import Banner from 'components/Cards/Banner'
 import { parse } from 'qs'
 
@@ -127,10 +127,9 @@ export default class ServiceComponents extends React.Component {
     return (
       <div className="inline-block">
         <RadioGroup
-          wrapClassName="radio-default"
+          mode="button"
           value={this.state.type}
           onChange={this.handleTypeChange}
-          size="small"
         >
           {this.configs
             .filter(item => !item.disabled)

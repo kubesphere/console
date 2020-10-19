@@ -91,7 +91,7 @@ describe('The App Repositories Page', function() {
 
     // edit
     {
-      cy.get(`[data-row-key="${rowKey}"] button .qicon-more`).click()
+      cy.get(`[data-row-key="${rowKey}"] button .kubed-icon-more`).click()
 
       cy.get(`[data-row-key="${rowKey}" [data-test="table-item-edit"]`).click()
 
@@ -114,7 +114,7 @@ describe('The App Repositories Page', function() {
 
     // clear search
     {
-      cy.get('.icon-clickable > .qicon').click()
+      cy.get('.icon-clickable > .kubed-icon').click()
 
       cy.wait('@getRepos')
     }
@@ -122,7 +122,7 @@ describe('The App Repositories Page', function() {
 
     // index
     {
-      cy.get(`[data-row-key="${rowKey}"]  button .qicon-more`).click()
+      cy.get(`[data-row-key="${rowKey}"]  button .kubed-icon-more`).click()
 
       cy.get(
         `[data-row-key="${rowKey}" [data-test="table-item-index"]`
@@ -131,7 +131,7 @@ describe('The App Repositories Page', function() {
 
     // delete
     {
-      cy.get(`[data-row-key="${rowKey}"]  button .qicon-more`).click()
+      cy.get(`[data-row-key="${rowKey}"]  button .kubed-icon-more`).click()
 
       cy.get(
         `[data-row-key="${rowKey}" [data-test="table-item-delete"]`

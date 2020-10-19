@@ -19,7 +19,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { Icon } from '@pitrix/lego-ui'
+import { Icon } from '@kube-design/components'
 import { Modal } from 'components/Base'
 
 import styles from './index.scss'

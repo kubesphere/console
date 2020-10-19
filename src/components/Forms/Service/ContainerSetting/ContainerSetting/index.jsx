@@ -23,8 +23,7 @@ import { generateId, cpuFormat, memoryFormat } from 'utils'
 
 import { PATTERN_NAME } from 'utils/constants'
 
-import { Input } from '@pitrix/lego-ui'
-import { Form, Alert } from 'components/Base'
+import { Input, Form, Alert } from '@kube-design/components'
 import { ResourceLimit } from 'components/Inputs'
 import ToggleView from 'components/ToggleView'
 

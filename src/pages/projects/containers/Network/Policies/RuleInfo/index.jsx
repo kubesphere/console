@@ -21,9 +21,8 @@ import { inject, observer } from 'mobx-react'
 import { toJS } from 'mobx'
 import { get, isEmpty } from 'lodash'
 import classNames from 'classnames'
-import { Icon } from '@pitrix/lego-ui'
+import { Button, Icon } from '@kube-design/components'
 
-import { Button } from 'components/Base'
 import { trigger } from 'utils/action'
 import ServiceStore from 'stores/service'
 import NetWorkStore from 'stores/network'
@@ -291,7 +290,7 @@ export default class RuleInfo extends React.Component {
           <div className={styles.rulemenu}>
             <div>{t('NETWORK_POLICY_R1_DESC1')}</div>
             {canEdit && (
-              <Button onClick={this.addAllowList} className={styles.addBtn}>
+              <Button type="control" onClick={this.addAllowList}>
                 {t('Add Allowlist')}
               </Button>
             )}
@@ -321,7 +320,7 @@ export default class RuleInfo extends React.Component {
           <div className={styles.rulemenu}>
             <div>{t('NETWORK_POLICY_R2_DESC1')}</div>
             {canEdit && (
-              <Button onClick={this.addIpBlock} className={styles.addBtn}>
+              <Button type="control" onClick={this.addIpBlock}>
                 {t('Add Rule')}
               </Button>
             )}

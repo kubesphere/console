@@ -20,7 +20,7 @@ import React from 'react'
 import { get } from 'lodash'
 import { MODULE_KIND_MAP } from 'utils/constants'
 
-import { Form } from 'components/Base'
+import { Form } from '@kube-design/components'
 
 import Metadata from './Metadata'
 import NodeSchedule from './NodeSchedule'

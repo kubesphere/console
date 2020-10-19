@@ -20,7 +20,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import isEqual from 'react-fast-compare'
-import { Loading } from '@pitrix/lego-ui'
+import { Loading } from '@kube-design/components'
 
 import { findParent } from 'utils/dom'
 import { Dragger } from 'components/Base'

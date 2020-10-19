@@ -18,8 +18,7 @@
 
 import React from 'react'
 import { get, set, isEmpty } from 'lodash'
-import { Alert } from '@pitrix/lego-ui'
-import { Form } from 'components/Base'
+import { Alert, Form } from '@kube-design/components'
 
 export default class Mirror extends React.Component {
   componentDidMount() {

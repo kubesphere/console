@@ -24,7 +24,7 @@ import { get, capitalize } from 'lodash'
 import { ALL_METRICS_CONFIG } from 'configs/alerting/metrics'
 import AlertPolicyStore from 'stores/alerting/policy'
 
-import { Icon } from '@pitrix/lego-ui'
+import { Icon } from '@kube-design/components'
 import { Card } from 'components/Base'
 
 import styles from './index.scss'

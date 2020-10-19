@@ -19,8 +19,7 @@
 import React from 'react'
 import { get, set } from 'lodash'
 import classnames from 'classnames'
-import { Input, Select, Alert } from '@pitrix/lego-ui'
-import { Form } from 'components/Base'
+import { Alert, Form, Input, Select } from '@kube-design/components'
 import { getDisplayName, getDocsUrl } from 'utils'
 import SecretStore from 'stores/secret'
 import BuilderStore from 'stores/s2i/builder'
@@ -218,9 +217,7 @@ export default class S2IForm extends React.Component {
               rules={[{ required: true, message: t('This param is required') }]}
             >
               <Select
-                name={`${
-                  this.prefix
-                }spec.config.pushAuthentication.secretRef.name`}
+                name={`${this.prefix}spec.config.pushAuthentication.secretRef.name`}
                 options={this.state.imageSecretOptions}
                 onChange={this.handleImageSecretChange}
               />

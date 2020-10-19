@@ -19,7 +19,7 @@
 import React, { Component } from 'react'
 import { observer } from 'mobx-react'
 import { Link } from 'react-router-dom'
-import { Icon } from '@pitrix/lego-ui'
+import { Icon } from '@kube-design/components'
 import { Panel } from 'components/Base'
 import { COMPONENT_ICON_MAP } from 'utils/constants'
 

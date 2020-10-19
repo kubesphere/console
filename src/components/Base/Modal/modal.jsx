@@ -24,9 +24,9 @@ import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 
-import { Icon } from '@pitrix/lego-ui'
+import { Button, Icon } from '@kube-design/components'
 import { Image } from 'components/Base'
-import Button from '../Button'
+
 import styles from './index.scss'
 
 ReactModal.defaultStyles.overlay = {

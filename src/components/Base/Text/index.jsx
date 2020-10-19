@@ -17,7 +17,7 @@
  */
 
 import React from 'react'
-import { Icon } from '@pitrix/lego-ui'
+import { Icon } from '@kube-design/components'
 import { isUndefined } from 'lodash'
 import classNames from 'classnames'
 

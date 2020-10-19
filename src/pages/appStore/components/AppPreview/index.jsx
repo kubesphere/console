@@ -20,7 +20,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { toJS, computed } from 'mobx'
 import { observer } from 'mobx-react'
-import { Tabs, Loading } from '@pitrix/lego-ui'
+import { Tabs, Loading } from '@kube-design/components'
 import { isEmpty } from 'lodash'
 
 import AppFileStore from 'stores/openpitrix/file'
@@ -127,11 +127,7 @@ export default class AppPreview extends React.Component {
     }
 
     return (
-      <Tabs
-        className="tabs-new"
-        activeName={tab}
-        onChange={this.handleTabChange}
-      >
+      <Tabs type="button" activeName={tab} onChange={this.handleTabChange}>
         <TabPanel label={t('App Description')} name="versionInfo">
           <div className={styles.wrapper}>{this.renderReadMe()}</div>
         </TabPanel>

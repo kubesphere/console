@@ -19,8 +19,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { get, debounce, set } from 'lodash'
-import { Columns, Column, Select } from '@pitrix/lego-ui'
-import { Button, Form } from 'components/Base'
+import { Button, Form, Columns, Column, Select } from '@kube-design/components'
+
 import { PIPELINE_ACTION_TYPES } from 'utils/constants'
 
 import styles from './index.scss'

@@ -17,8 +17,7 @@
  */
 
 import React from 'react'
-import { Loading } from '@pitrix/lego-ui'
-import { Button } from 'components/Base'
+import { Button, Loading } from '@kube-design/components'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import { get, isEmpty, debounce } from 'lodash'

@@ -18,8 +18,7 @@
 
 import { get, set, unset } from 'lodash'
 import React from 'react'
-import { Select } from '@pitrix/lego-ui'
-import { Form } from 'components/Base'
+import { Form, Select } from '@kube-design/components'
 import { PropertiesInput } from 'components/Inputs'
 import { updateFederatedAnnotations } from 'utils'
 

@@ -24,8 +24,7 @@ import { isEmpty, get, set, includes } from 'lodash'
 import { RESOURCE_METRICS_CONFIG } from 'configs/alerting/metrics'
 import { ReactComponent as BackIcon } from 'src/assets/back.svg'
 
-import { Columns, Column, Input } from '@pitrix/lego-ui'
-import { Form } from 'components/Base'
+import { Column, Columns, Form, Input } from '@kube-design/components'
 import RuleInput from './RuleInput'
 
 import styles from './index.scss'

@@ -19,12 +19,10 @@
 import React, { Suspense } from 'react'
 import ReactDOM from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
-import { Loading, LocaleProvider } from '@pitrix/lego-ui'
+import { LocaleProvider, Loading, Notify } from '@kube-design/components'
 
 import { isAppsPage } from 'utils'
 import request from 'utils/request'
-
-import Notify from 'components/Base/Notify'
 
 import App from './App'
 import GlobalValue from './global'

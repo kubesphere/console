@@ -17,8 +17,8 @@
  */
 
 import React from 'react'
-import { Input, Select } from '@pitrix/lego-ui'
-import { Form, SearchSelect, Tag } from 'components/Base'
+import { pick } from 'lodash'
+import { Form, Input, Select, Tag } from '@kube-design/components'
 import { observer } from 'mobx-react'
 
 import styles from './index.scss'
@@ -98,16 +98,16 @@ export default class SvnForm extends React.Component {
             }
             rules={[{ required: true, message: t('This param is required') }]}
           >
-            <SearchSelect
+            <Select
               name="svn_source.credential_id"
               options={this.getCredentialsList()}
-              page={credentials.page}
-              total={credentials.total}
-              currentLength={credentials.data.length}
+              pagination={pick(credentials, ['page', 'limit', 'total'])}
               isLoading={credentials.isLoading}
               onFetch={this.getCredentialsListData}
               optionRenderer={this.optionRender}
               valueRenderer={this.optionRender}
+              searchable
+              clearable
             />
           </Form.Item>
           {this.state.type !== 'single_svn' ? (

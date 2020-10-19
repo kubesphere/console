@@ -22,7 +22,7 @@ import { observer, inject } from 'mobx-react'
 import moment from 'moment-mini'
 import { get } from 'lodash'
 
-import { Loading } from '@pitrix/lego-ui'
+import { Loading } from '@kube-design/components'
 import Base from 'core/containers/Base/Detail'
 import BaseInfo from 'core/containers/Base/Detail/BaseInfo'
 import BranchSelectModal from 'components/Forms/CICDs/paramsModal'

@@ -19,7 +19,7 @@
 import React from 'react'
 import { get, unset } from 'lodash'
 
-import { Button, Form } from 'components/Base'
+import { Button, Form } from '@kube-design/components'
 import { QUOTAS_MAP } from 'utils/constants'
 
 import QuotaItem from './Item'

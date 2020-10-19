@@ -18,7 +18,7 @@
 
 import React from 'react'
 import { observer } from 'mobx-react'
-import { Select, Icon } from '@pitrix/lego-ui'
+import { Select, Icon } from '@kube-design/components'
 import { extendObservable, action, computed } from 'mobx'
 import { saveAs } from 'file-saver'
 import classnames from 'classnames'

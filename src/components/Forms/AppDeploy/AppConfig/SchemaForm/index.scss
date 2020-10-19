@@ -14,12 +14,6 @@
   }
 }
 
-.slider {
-  margin-right: 15px;
-  margin-top: 20px;
-  width: 350px;
-}
-
 .title {
   margin-bottom: 12px;
   @include TypographyTitleH6;
@@ -33,7 +27,7 @@
   display: flex;
   align-items: flex-start;
 
-  :global .lego-toggles {
+  :global .toggle {
     margin-right: 8px;
     margin-top: 2px;
   }

@@ -19,12 +19,11 @@
 import { isEmpty } from 'lodash'
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Columns, Column } from '@pitrix/lego-ui'
+import { Button, Columns, Column } from '@kube-design/components'
 import { toJS, when } from 'mobx'
 import { observer, inject } from 'mobx-react'
 
 import { joinSelector } from 'utils'
-import { Button } from 'components/Base'
 import EmptyList from 'components/Cards/EmptyList'
 import { Component as Base } from 'projects/containers/GrayRelease/Jobs'
 

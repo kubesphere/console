@@ -20,7 +20,7 @@ import React from 'react'
 import { observer } from 'mobx-react'
 import { isFunction } from 'lodash'
 import classnames from 'classnames'
-import { Icon, Loading, Tooltip } from '@pitrix/lego-ui'
+import { Icon, Loading, Tooltip } from '@kube-design/components'
 import { Empty } from 'components/Base'
 import RunStore from 'stores/s2i/run'
 

@@ -22,16 +22,10 @@
   display: flex;
 
   .button {
-    padding: 6px;
+    padding: 5px 10px;
     margin-left: 12px;
-    line-height: 20px;
-    border: none;
     border-radius: 4px;
-    background-color: $dark;
-
-    &:hover {
-      background-color: $dark !important;
-    }
+    box-shadow: none;
   }
 }
 

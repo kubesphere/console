@@ -17,8 +17,9 @@
  */
 
 import React from 'react'
+import classNames from 'classnames'
 import PropTypes from 'prop-types'
-import { Dropdown, Menu, Input, Icon } from '@pitrix/lego-ui'
+import { Dropdown, Menu, Input, Icon } from '@kube-design/components'
 
 import styles from './index.scss'
 
@@ -71,9 +72,9 @@ export default class SelectInput extends React.Component {
   }
 
   render() {
-    const { options, optionRenderer, ...rest } = this.props
+    const { options, optionRenderer, className, ...rest } = this.props
     return (
-      <div className={styles.wrapper}>
+      <div className={classNames(styles.wrapper, className)}>
         <Input {...rest} />
         <Icon
           className={styles.caret}
@@ -83,7 +84,7 @@ export default class SelectInput extends React.Component {
         />
         <Dropdown
           visible={this.state.showOptions}
-          className="dropdown-default"
+          theme="dark"
           content={this.renderOptions()}
           placement="bottomRight"
           onClose={this.hideOptions}

@@ -18,7 +18,7 @@
 
 import React from 'react'
 import classNames from 'classnames'
-import { Icon, Columns, Column } from '@pitrix/lego-ui'
+import { Icon, Columns, Column } from '@kube-design/components'
 import { isErrorSpan, formatDuration } from 'utils/tracing'
 
 import styles from './index.scss'

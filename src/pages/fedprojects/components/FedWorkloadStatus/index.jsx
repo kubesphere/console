@@ -18,8 +18,7 @@
 
 import { get, keyBy } from 'lodash'
 import React, { Component } from 'react'
-import { Icon } from '@pitrix/lego-ui'
-import { Tag } from 'components/Base'
+import { Icon, Tag } from '@kube-design/components'
 import StatusReason from 'projects/components/StatusReason'
 import { CLUSTER_PROVIDER_ICON, CLUSTER_GROUP_TAG_TYPE } from 'utils/constants'
 import { getWorkloadStatus } from 'utils/status'

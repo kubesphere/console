@@ -21,7 +21,7 @@ import React, { Component } from 'react'
 import { renderRoutes } from 'utils/router.config'
 
 import { Nav } from 'components/Layout'
-import { Icon } from '@pitrix/lego-ui'
+import { Icon } from '@kube-design/components'
 
 import styles from './layout.scss'
 

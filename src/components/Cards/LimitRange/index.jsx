@@ -20,7 +20,7 @@ import { get } from 'lodash'
 import React from 'react'
 import { observer } from 'mobx-react'
 
-import { Icon } from '@pitrix/lego-ui'
+import { Icon } from '@kube-design/components'
 import { Panel } from 'components/Base'
 
 import { cpuFormat, memoryFormat } from 'utils'

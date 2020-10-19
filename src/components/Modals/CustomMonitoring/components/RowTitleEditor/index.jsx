@@ -17,7 +17,7 @@
  */
 
 import React from 'react'
-import { Icon } from '@pitrix/lego-ui'
+import { Icon } from '@kube-design/components'
 
 import styles from './index.scss'
 

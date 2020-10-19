@@ -17,7 +17,7 @@
  */
 
 import React from 'react'
-import { Alert, Form } from 'components/Base'
+import { Alert, Form } from '@kube-design/components'
 
 import UserGroup from '../ContainerForm/SecurityContext/UserGroup'
 import SELinuxOptions from '../ContainerForm/SecurityContext/SELinuxOptions'

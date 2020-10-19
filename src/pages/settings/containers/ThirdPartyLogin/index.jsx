@@ -18,7 +18,8 @@
 
 import React, { Component } from 'react'
 
-import { Button, Panel, Text } from 'components/Base'
+import { Button } from '@kube-design/components'
+import { Panel, Text } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import OAuthModal from 'settings/components/Modals/OAuth'
 import GithubOAuthModal from 'settings/components/Modals/GithubOAuth'

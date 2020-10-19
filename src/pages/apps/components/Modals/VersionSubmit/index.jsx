@@ -20,7 +20,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { set, debounce, pick } from 'lodash'
 
-import { Modal, Steps, Button } from 'components/Base'
+import { Button } from '@kube-design/components'
+import { Modal, Steps } from 'components/Base'
 import steps from './steps'
 
 import styles from './index.scss'

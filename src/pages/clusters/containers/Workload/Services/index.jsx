@@ -125,9 +125,7 @@ export default class Services extends React.Component {
             title={getDisplayName(record)}
             desc={record.description || '-'}
             isMultiCluster={record.isFedManaged}
-            to={`/clusters/${cluster}/projects/${
-              record.namespace
-            }/${module}/${name}`}
+            to={`/clusters/${cluster}/projects/${record.namespace}/${module}/${name}`}
           />
         ),
       },
@@ -147,16 +145,18 @@ export default class Services extends React.Component {
         dataIndex: 'annotations["kubesphere.io/serviceType"]',
         isHideable: true,
         width: '16%',
-        render: (serviceType, record) => (
-          <Text
-            title={
-              serviceType
-                ? t(`SERVICE_TYPE_${serviceType.toUpperCase()}`)
-                : t('Custom Creation')
-            }
-            description={record.type || '-'}
-          />
-        ),
+        render: (serviceType, record) => {
+          return (
+            <Text
+              title={
+                serviceType
+                  ? t(`SERVICE_TYPE_${serviceType.toUpperCase()}`)
+                  : t('Custom Creation')
+              }
+              description={record.type || '-'}
+            />
+          )
+        },
       },
       {
         title: t('Internet Access'),

@@ -18,10 +18,10 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-
+import { pick } from 'lodash'
 import { observer } from 'mobx-react'
-import { Form, Modal, SearchSelect, Tag } from 'components/Base'
-import { Input } from '@pitrix/lego-ui'
+import { Form, Input, Select, Tag } from '@kube-design/components'
+import { Modal } from 'components/Base'
 import { groovyToJS } from 'utils/devops'
 
 import styles from './index.scss'
@@ -144,16 +144,16 @@ export default class Checkout extends React.Component {
               </p>
             }
           >
-            <SearchSelect
+            <Select
               name="credentialsId"
               options={this.getCredentialsList()}
-              page={credentialsList.page}
-              total={credentialsList.total}
-              currentLength={credentialsList.data.length}
+              pagination={pick(credentialsList, ['page', 'limit', 'total'])}
               isLoading={credentialsList.isLoading}
               onFetch={this.getCredentialsListData}
               optionRenderer={this.optionRender}
               valueRenderer={this.optionRender}
+              searchable
+              clearable
             />
           </Form.Item>
           <Form.Item

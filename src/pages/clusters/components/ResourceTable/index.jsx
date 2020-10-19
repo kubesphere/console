@@ -21,24 +21,14 @@ import { observer, inject } from 'mobx-react'
 import { isEmpty } from 'lodash'
 import { parse } from 'qs'
 
-import {
-  Dropdown,
-  Buttons,
-  Level,
-  LevelItem,
-  LevelLeft,
-  LevelRight,
-} from '@pitrix/lego-ui'
-import { Button } from 'components/Base'
 import BaseTable from 'components/Tables/Base'
 import withTableActions from 'components/HOCs/withTableActions'
 import ProjectSelect from './ProjectSelect'
 
-class ResourceTable extends BaseTable {
+class ResourceTable extends React.Component {
   routing = this.props.rootStore.routing
 
   componentDidMount() {
-    super.componentDidMount()
     const params = parse(location.search.slice(1))
     if (
       params.namespace &&
@@ -69,47 +59,32 @@ class ResourceTable extends BaseTable {
     this.props.onFetch({}, true)
   }
 
-  renderNormalTitle() {
-    const { hideCustom, module, cluster, clusterStore } = this.props
+  renderCustomFilter() {
+    const { module, cluster, clusterStore } = this.props
     return (
-      <Level>
-        <LevelLeft>
-          <LevelItem>
-            <ProjectSelect
-              module={module}
-              cluster={cluster}
-              list={clusterStore.projects}
-              namespace={clusterStore.project}
-              onFetch={this.fetchProjects}
-              onChange={this.handleClusterChange}
-            />
-          </LevelItem>
-        </LevelLeft>
-        <LevelItem>{this.renderSearch()}</LevelItem>
-        <LevelRight>
-          <Buttons>
-            <Button
-              type="flat"
-              icon="refresh"
-              onClick={this.handleRefresh}
-              data-test="table-refresh"
-            />
-            {!hideCustom && (
-              <Dropdown
-                content={this.renderColumnsMenu()}
-                placement="bottomRight"
-              >
-                <Button type="flat" icon="cogwheel" data-test="table-columns" />
-              </Dropdown>
-            )}
-            {this.renderActions()}
-          </Buttons>
-        </LevelRight>
-      </Level>
+      <ProjectSelect
+        module={module}
+        cluster={cluster}
+        list={clusterStore.projects}
+        namespace={clusterStore.project}
+        onFetch={this.fetchProjects}
+        onChange={this.handleClusterChange}
+      />
+    )
+  }
+
+  render() {
+    return (
+      <BaseTable
+        customFilter={this.renderCustomFilter()}
+        showEmpty={this.showEmpty}
+        {...this.props}
+      />
     )
   }
 }
 
-export default inject('rootStore', 'clusterStore')(
-  observer(withTableActions(ResourceTable))
-)
+export default inject(
+  'rootStore',
+  'clusterStore'
+)(observer(withTableActions(ResourceTable)))

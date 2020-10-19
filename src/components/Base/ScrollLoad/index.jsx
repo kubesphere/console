@@ -21,7 +21,7 @@ import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { isEmpty, get, throttle } from 'lodash'
 
-import { Loading } from '@pitrix/lego-ui'
+import { Loading } from '@kube-design/components'
 import { Empty } from 'components/Base'
 
 import styles from './index.scss'

@@ -19,8 +19,8 @@
 import { get } from 'lodash'
 import React from 'react'
 import { observer, inject } from 'mobx-react'
-import { Checkbox } from '@pitrix/lego-ui'
-import { Button, Alert, Panel, Text } from 'components/Base'
+import { Checkbox, Button, Alert } from '@kube-design/components'
+import { Panel, Text } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import EditBasicInfoModal from 'clusters/components/Modals/EditBasicInfo'
 import { trigger } from 'utils/action'
@@ -132,7 +132,7 @@ export default class Overview extends React.Component {
     })
   }
 
-  handleChange = (e, checked) => {
+  handleChange = checked => {
     this.setState({ confirm: checked })
   }
 

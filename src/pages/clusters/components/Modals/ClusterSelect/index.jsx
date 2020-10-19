@@ -20,8 +20,8 @@ import React from 'react'
 import { get } from 'lodash'
 import { toJS } from 'mobx'
 import { observer } from 'mobx-react'
-import { Columns, Column } from '@pitrix/lego-ui'
-import { Button, Modal, Search, ScrollLoad } from 'components/Base'
+import { Button, InputSearch, Columns, Column } from '@kube-design/components'
+import { Modal, ScrollLoad } from 'components/Base'
 import ClusterStore from 'stores/cluster'
 import Card from './Card'
 
@@ -72,7 +72,7 @@ export default class ClusterSelectModal extends React.Component {
         <div className={styles.bar}>
           <Columns>
             <Column>
-              <Search
+              <InputSearch
                 value={keyword}
                 placeholder={t('Search by name')}
                 onSearch={this.handleSearch}

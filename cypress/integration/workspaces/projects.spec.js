@@ -70,7 +70,7 @@ describe('The Workspace Projects Page', function() {
     cy.route('DELETE', /\/namespaces/).as('deleteNamespace')
 
     cy.wait('@getNamespaces')
-    cy.get('.qicon-loading').should('not.exist')
+    cy.get('.kubed-icon-loading').should('not.exist')
 
     // create
     {
@@ -100,7 +100,7 @@ describe('The Workspace Projects Page', function() {
 
     // edit
     {
-      cy.get(`[data-row-key="${formData.name}"] button .qicon-more`).click()
+      cy.get(`[data-row-key="${formData.name}"] button .kubed-icon-more`).click()
       cy.get(
         `[data-row-key="${formData.name}"] [data-test="table-item-edit"]`
       ).click()
@@ -117,7 +117,7 @@ describe('The Workspace Projects Page', function() {
 
     // clear search
     {
-      cy.get('[data-test="search"] .qicon-close').click()
+      cy.get('[data-test="search"] .kubed-icon-close').click()
 
       cy.wait('@getNamespaces')
 
@@ -128,7 +128,7 @@ describe('The Workspace Projects Page', function() {
 
     // delete
     {
-      cy.get(`[data-row-key="${formData.name}"] button .qicon-more`).click()
+      cy.get(`[data-row-key="${formData.name}"] button .kubed-icon-more`).click()
       cy.get(
         `[data-row-key="${formData.name}"] [data-test="table-item-delete"]`
       ).click()

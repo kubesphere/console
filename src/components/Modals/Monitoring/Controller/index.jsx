@@ -20,8 +20,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { Controller as Base } from 'components/Cards/Monitoring'
-import { Icon, Loading } from '@pitrix/lego-ui'
-import { Modal, Button } from 'components/Base'
+import { Button, Icon, Loading } from '@kube-design/components'
+import { Modal } from 'components/Base'
 
 import styles from './index.scss'
 
