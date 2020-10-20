@@ -105,6 +105,7 @@ export default class Pipeline extends React.Component {
 
   render() {
     const { isEditMode, className, isSubmitting } = this.props
+
     return (
       <div className={classNames(style.content, 'pipeline-content', className)}>
         <Dragger

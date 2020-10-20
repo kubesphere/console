@@ -24,32 +24,24 @@ import { parse } from 'qs'
 import { omit } from 'lodash'
 
 import CredentialStore from 'stores/devops/credential'
+import { trigger } from 'utils/action'
+
 import { getLocalTime } from 'utils'
 
 import Banner from 'components/Cards/Banner'
 import Table from 'components/Tables/Base'
 
-import CreateModal from './credentialModal'
 import styles from './index.scss'
 
 @inject('rootStore', 'devopsStore')
 @observer
+@trigger
 class Credential extends React.Component {
   constructor(props) {
     super(props)
 
     this.store = new CredentialStore()
-
     this.formTemplate = {}
-
-    this.state = {
-      showCreate: false,
-      showEdit: false,
-      showDelete: false,
-      showBranchModal: false,
-      configFormData: {},
-      selectPipeline: {},
-    }
   }
 
   componentDidMount() {
@@ -103,21 +95,15 @@ class Credential extends React.Component {
     return 'Credentials'
   }
 
-  showCreate = () => {
-    this.setState({ showCreate: true })
-  }
-
-  hideCreate = () => {
-    this.setState({ showCreate: false })
-  }
-
-  hideDelete = () => {
-    this.setState({ showDelete: false })
-  }
-
   handleCreate = () => {
-    this.setState({ showCreate: false, showEdit: true })
-    this.getData()
+    const { devops, cluster } = this.props.match.params
+    this.trigger('devops.credential.create', {
+      devops,
+      cluster,
+      success: () => {
+        this.getData()
+      },
+    })
   }
 
   getColumns = () => [
@@ -160,11 +146,10 @@ class Credential extends React.Component {
       this.store.list
     )
     const showCreate = this.enabledActions.includes('create')
-      ? this.showCreate
+      ? this.handleCreate
       : null
 
     const omitFilters = omit(filters, ['page', 'limit', 'sortBy'])
-
     const pagination = { total, page, limit }
     return (
       <Table
@@ -183,19 +168,6 @@ class Credential extends React.Component {
     )
   }
 
-  renderModals() {
-    const { devops, cluster } = this.props.match.params
-    return (
-      <CreateModal
-        visible={this.state.showCreate}
-        onOk={this.handleCreate}
-        onCancel={this.hideCreate}
-        devops={devops}
-        cluster={cluster}
-      />
-    )
-  }
-
   render() {
     return (
       <div className={styles.wrapper}>
@@ -206,7 +178,6 @@ class Credential extends React.Component {
           module={this.module}
         />
         {this.renderContent()}
-        {this.renderModals()}
       </div>
     )
   }

@@ -142,7 +142,7 @@ export default class PipelineLog extends React.Component {
       <LogItem
         key={step.id}
         step={step}
-        nodeid={this.activeStage.id}
+        nodeId={this.activeStage.id}
         params={params}
         refreshFlag={this.refreshFlag}
       />
@@ -154,25 +154,23 @@ export default class PipelineLog extends React.Component {
     const _nodes = toJS(nodes)
 
     return (
-      <React.Fragment>
-        <div className={styles.container}>
-          <div className={styles.left}>
-            {_nodes.map((stage, index) => this.renderLeftTab(stage, index))}
-          </div>
-          <div className={styles.right}>
-            <div className={styles.header}>
-              <span>{`${t('Time Used')} ${formatUsedTime(
-                this.activeStage.durationInMillis
-              )}`}</span>
-              <Button onClick={this.handleDownloadLogs}>
-                {t('Download Logs')}
-              </Button>
-              <Button onClick={this.handleRefresh}>{t('Refresh')}</Button>
-            </div>
-            <div className={styles.logContainer}>{this.renderLogContent()}</div>
-          </div>
+      <div className={styles.container}>
+        <div className={styles.left}>
+          {_nodes.map((stage, index) => this.renderLeftTab(stage, index))}
         </div>
-      </React.Fragment>
+        <div className={styles.right}>
+          <div className={styles.header}>
+            <span>{`${t('Time Used')} ${formatUsedTime(
+              this.activeStage.durationInMillis
+            )}`}</span>
+            <Button onClick={this.handleDownloadLogs}>
+              {t('Download Logs')}
+            </Button>
+            <Button onClick={this.handleRefresh}>{t('Refresh')}</Button>
+          </div>
+          <div className={styles.logContainer}>{this.renderLogContent()}</div>
+        </div>
+      </div>
     )
   }
 }

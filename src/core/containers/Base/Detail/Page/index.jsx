@@ -117,7 +117,7 @@ class DetailPage extends React.Component {
   }
 
   render() {
-    const { stores, ...sideProps } = this.props
+    const { stores, nav, ...sideProps } = this.props
     const { routes } = this.state
 
     return (
@@ -131,7 +131,7 @@ class DetailPage extends React.Component {
             />
           </div>
           <div className={styles.content}>
-            {this.renderNav(routes)}
+            {nav || this.renderNav(routes)}
             {renderRoutes(routes)}
           </div>
         </>

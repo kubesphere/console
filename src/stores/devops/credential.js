@@ -218,13 +218,13 @@ export default class CredentialStore extends BaseStore {
   }
 
   @action
-  async delete(credential_id) {
+  async delete({ id }) {
     const { devops, cluster } = this.params
 
     return await this.request.delete(
       `${this.getResourceUrl({
         devops,
-        name: credential_id,
+        name: id,
         cluster,
       })}`
     )

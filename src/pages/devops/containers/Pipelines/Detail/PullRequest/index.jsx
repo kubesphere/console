@@ -23,20 +23,18 @@ import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import { parse } from 'qs'
 import { getLocalTime } from 'utils'
-import EmptyTable from 'components/Cards/EmptyTable'
 import Status from 'devops/components/Status'
 import { getPipelineStatus } from 'utils/status'
 
-import Table from '../../Table'
+import Table from 'components/Tables/List'
+import EmptyCard from 'devops/components/Cards/EmptyCard'
 
-@inject('rootStore')
+@inject('rootStore', 'detailStore')
 @observer
 export default class Pullrequest extends React.Component {
-  constructor(props) {
-    super(props)
-    this.store = props.detailStore || {}
-    this.name = 'PullRequest'
-  }
+  name = 'PullRequest'
+
+  store = this.props.detailStore || {}
 
   componentDidMount() {
     const { params } = this.props.match
@@ -77,7 +75,6 @@ export default class Pullrequest extends React.Component {
   getColumns = () => [
     {
       title: t('Status'),
-      isHideable: true,
       width: '12%',
       render: record => (
         <Status {...getPipelineStatus(get(record, 'latestRun', {}))} />
@@ -109,7 +106,6 @@ export default class Pullrequest extends React.Component {
     {
       title: t('Time'),
       dataIndex: 'latestRun',
-      isHideable: true,
       width: '15%',
       render: latestRun =>
         getLocalTime(latestRun.startTime).format('YYYY-MM-DD HH:mm:ss'),
@@ -124,10 +120,10 @@ export default class Pullrequest extends React.Component {
 
     const isEmptyList = isLoading === false && total === 0
 
-    const omitFilters = omit(filters, 'page')
+    const omitFilters = omit(filters, 'page', 'workspace')
 
     if (isEmptyList && !filters.page) {
-      return <EmptyTable name={this.name} onCreate={this.showCreate} />
+      return <EmptyCard name={this.name} />
     }
 
     const pagination = { total, page, limit }
@@ -136,12 +132,12 @@ export default class Pullrequest extends React.Component {
       <Table
         data={toJS(data)}
         columns={this.getColumns()}
-        rowKey="displayName"
+        rowKey="latestRun"
         filters={omitFilters}
         pagination={pagination}
         isLoading={isLoading}
         onFetch={this.handleFetch}
-        disableSearch
+        hideSearch
       />
     )
   }

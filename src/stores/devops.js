@@ -42,6 +42,8 @@ export default class DevOpsStore extends Base {
   @observable
   data = {}
 
+  detail = {}
+
   @observable
   devopsListData = []
 
@@ -206,7 +208,7 @@ export default class DevOpsStore extends Base {
 
   @action
   async fetchDetail({ cluster, devops, workspace }) {
-    const detail = await request.get(
+    const result = await request.get(
       this.getDevOpsDetailUrl({ workspace, cluster, devops }),
       null,
       null,
@@ -217,12 +219,13 @@ export default class DevOpsStore extends Base {
       }
     )
 
-    this.itemDetail = detail
-    const data = { cluster, ...this.mapper(detail) }
+    this.itemDetail = result
+    const data = { cluster, ...this.mapper(result) }
     this.devopsName = data.name
     this.devops = data.devops
     data.workspace = data.workspace || workspace
     this.data = data
+    this.detail = data
   }
 
   @action

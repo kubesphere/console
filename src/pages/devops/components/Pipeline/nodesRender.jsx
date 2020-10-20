@@ -46,12 +46,12 @@ export default class PipelineNodes extends React.Component {
     this.props.store.handleAddBranch(index)
   }
 
-  onInsertColunm = index => {
-    this.props.store.insertColunm(index)
+  onInsertColumn = index => {
+    this.props.store.insertColumn(index)
   }
 
-  handleFocus = index => colunmIndex => {
-    this.props.store.setFocus(index, colunmIndex)
+  handleFocus = index => columnIndex => {
+    this.props.store.setFocus(index, columnIndex)
   }
 
   @action
@@ -72,7 +72,7 @@ export default class PipelineNodes extends React.Component {
     if (!stages.length && isEditMode) {
       return (
         <Edges
-          onInsertColunm={this.onInsertColunm}
+          onInsertColumn={this.onInsertColumn}
           isEditMode={isEditMode}
           index={-1}
           heights={[]}
@@ -82,7 +82,7 @@ export default class PipelineNodes extends React.Component {
     return (
       <React.Fragment>
         <Edges
-          onInsertColunm={this.onInsertColunm}
+          onInsertColumn={this.onInsertColumn}
           isEditMode={isEditMode}
           index={-1}
           heights={this.sumHeights}
@@ -99,7 +99,7 @@ export default class PipelineNodes extends React.Component {
               onFocus={this.handleFocus(index)}
             />
             <Edges
-              onInsertColunm={this.onInsertColunm}
+              onInsertColumn={this.onInsertColumn}
               isEditMode={isEditMode}
               index={index}
               heights={this.sumHeights}

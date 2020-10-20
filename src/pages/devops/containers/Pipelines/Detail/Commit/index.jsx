@@ -23,16 +23,18 @@ import { observer, inject } from 'mobx-react'
 import { parse } from 'qs'
 import { getLocalTime } from 'utils'
 
-import EmptyCard from '../../EmptyCard'
-import Table from '../../Table'
+import Table from 'components/Tables/List'
+import EmptyCard from 'devops/components/Cards/EmptyCard'
 
-@inject('rootStore')
+@inject('rootStore', 'detailStore')
 @observer
 export default class Branch extends React.Component {
-  constructor(props) {
-    super(props)
-    this.name = 'Commit'
-    this.store = props.detailStore || {}
+  store = this.props.detailStore || {}
+
+  name = 'Commit'
+
+  get routing() {
+    return this.props.rootStore.routing
   }
 
   componentDidMount() {
@@ -58,10 +60,6 @@ export default class Branch extends React.Component {
 
   handleFetch = (params, refresh) => {
     this.routing.query(params, refresh)
-  }
-
-  get routing() {
-    return this.props.rootStore.routing
   }
 
   getFilteredValue = dataIndex => this.store.list.filters[dataIndex]
@@ -130,7 +128,7 @@ export default class Branch extends React.Component {
         isLoading={isLoading}
         selectedRowKeys={selectedRowKeys}
         onFetch={this.handleFetch}
-        disableSearch
+        hideSearch
       />
     )
   }

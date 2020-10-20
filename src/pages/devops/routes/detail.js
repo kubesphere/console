@@ -17,12 +17,22 @@
  */
 
 import RoleDetail from '../containers/Roles/Detail'
+import CredentialDetail from '../containers/Credential/detail'
+import PipelineDetail from '../containers/Pipelines/Detail/layout'
 
-const PATH = '/:workspace/clusters/:cluster/devops/:namespace'
+const PATH = '/:workspace/clusters/:cluster/devops'
 
 export default [
   {
-    path: `${PATH}/roles/:name`,
+    path: `${PATH}/:devops/pipelines/:name`,
+    component: PipelineDetail,
+  },
+  {
+    path: `${PATH}/:devops/credentials/:credential_id`,
+    component: CredentialDetail,
+  },
+  {
+    path: `${PATH}/:namespace/roles/:name`,
     component: RoleDetail,
   },
 ]

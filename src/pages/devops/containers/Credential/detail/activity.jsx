@@ -18,7 +18,7 @@
 
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { observer } from 'mobx-react'
+import { inject, observer } from 'mobx-react'
 import { get } from 'lodash'
 import { toJS } from 'mobx'
 import PropTypes from 'prop-types'
@@ -27,6 +27,7 @@ import { Card } from 'components/Base'
 
 import styles from './index.scss'
 
+@inject('detailStore')
 @observer
 class Events extends React.Component {
   static propTypes = {

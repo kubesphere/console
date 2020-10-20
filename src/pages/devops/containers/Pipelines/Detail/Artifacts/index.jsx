@@ -24,16 +24,22 @@ import { omit } from 'lodash'
 import { Icon } from '@kube-design/components'
 import { formatSize } from 'utils'
 
-import EmptyCard from '../../EmptyCard'
-import Table from '../../Table'
+import Table from 'components/Tables/List'
+import EmptyCard from 'devops/components/Cards/EmptyCard'
 
-@inject('rootStore')
+@inject('rootStore', 'detailStore')
 @observer
 export default class Artifacts extends React.Component {
-  constructor(props) {
-    super(props)
-    this.name = 'Artifacts'
-    this.store = props.detailStore || {}
+  name = 'Artifacts'
+
+  store = this.props.detailStore || {}
+
+  get routing() {
+    return this.props.rootStore.routing
+  }
+
+  get prefix() {
+    return this.props.match.url
   }
 
   componentDidMount() {
@@ -61,19 +67,13 @@ export default class Artifacts extends React.Component {
     this.routing.query(params, refresh)
   }
 
-  get routing() {
-    return this.props.rootStore.routing
-  }
-
-  get prefix() {
-    return this.props.match.url
-  }
-
   getDownloadUrl = url => {
     const { params } = this.props.match
     return params.cluster === 'default' || !params.cluster
       ? `/kapis/devops.kubesphere.io/v1alpha2/jenkins${url}`
-      : `/kapis/clusters/${params.cluster}/devops.kubesphere.io/v1alpha2/jenkins${url}`
+      : `/kapis/clusters/${
+          params.cluster
+        }/devops.kubesphere.io/v1alpha2/jenkins${url}`
   }
 
   getFilteredValue = dataIndex => this.store.list.filters[dataIndex]
@@ -121,10 +121,8 @@ export default class Artifacts extends React.Component {
     const { data, filters, isLoading, total, page, limit } = toJS(
       this.store.artifactsList
     )
-
     const isEmptyList = isLoading === false && total === 0
-
-    const omitFilters = omit(filters, 'page')
+    const omitFilters = omit(filters, 'page', 'workspace')
 
     if (isEmptyList && !filters.page) {
       return <EmptyCard desc={t('No artifacts records')} />
@@ -141,7 +139,7 @@ export default class Artifacts extends React.Component {
         pagination={pagination}
         isLoading={isLoading}
         onFetch={this.handleFetch}
-        disableSearch
+        hideSearch
       />
     )
   }

@@ -15,65 +15,20 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import React, { Component } from 'react'
 import { inject, observer, Provider } from 'mobx-react'
 import { Loading } from '@kube-design/components'
 
 import { renderRoutes } from 'utils/router.config'
-import { Nav } from 'components/Layout'
-import Selector from 'projects/components/Selector'
 
 import DevOpsStore from 'stores/devops'
 
-import styles from './layout.scss'
-
 @inject('rootStore')
 @observer
-class DevOpsLayout extends Component {
+export default class Layout extends Component {
   constructor(props) {
     super(props)
-
     this.store = new DevOpsStore()
-    this.init(props.match.params)
-  }
-
-  componentDidUpdate(prevProps) {
-    if (
-      prevProps.match.params.devops !== this.props.match.params.devops ||
-      prevProps.match.params.cluster !== this.props.match.params.cluster
-    ) {
-      this.init(this.props.match.params)
-    }
-  }
-
-  get workspace() {
-    return this.props.match.params.workspace
-  }
-
-  async init(params) {
-    this.store.initializing = true
-
-    await Promise.all([
-      this.store.fetchDetail(params),
-      this.props.rootStore.getRules({
-        workspace: params.workspace,
-      }),
-    ])
-
-    await this.props.rootStore.getRules({
-      cluster: params.cluster,
-      devops: this.store.data.devops,
-      workspace: params.workspace,
-    })
-
-    globals.app.cacheHistory(this.props.match.url, {
-      type: 'DevOps',
-      name: this.store.data.devops,
-      description: this.store.data.description,
-    })
-
-    this.store.initializing = false
   }
 
   get cluster() {
@@ -81,51 +36,65 @@ class DevOpsLayout extends Component {
   }
 
   get devops() {
-    return this.store.data.devops
+    return this.props.match.params.devops
+  }
+
+  get workspace() {
+    return this.props.match.params.workspace
   }
 
   get routing() {
     return this.props.rootStore.routing
   }
 
-  handleChange = url => this.routing.push(url)
+  componentDidMount() {
+    this.init()
+  }
 
-  render() {
-    const { match, route, location } = this.props
-    const { initializing, data } = this.store
+  componentDidUpdate(prevProps) {
+    if (
+      prevProps.match.params.cluster !== this.cluster ||
+      prevProps.match.params.devops !== this.devops
+    ) {
+      this.init()
+    }
+  }
 
-    if (initializing) {
-      return <Loading className={styles.loading} />
+  async init() {
+    this.store.initializing = true
+    const params = {
+      cluster: this.cluster,
+      devops: this.devops,
+      workspace: this.workspace,
     }
 
+    await Promise.all([
+      this.store.fetchDetail(params),
+      this.props.rootStore.getRules({
+        workspace: this.workspace,
+      }),
+    ])
+
+    await this.props.rootStore.getRules(params)
+
+    globals.app.cacheHistory(this.props.match.url, {
+      type: 'DevOps',
+      name: this.devops,
+      description: this.store.data.description,
+    })
+
+    this.store.initializing = false
+  }
+
+  render() {
+    const { initializing } = this.store
+    if (initializing) {
+      return <Loading className="ks-page-loading" />
+    }
     return (
       <Provider devopsStore={this.store}>
-        <>
-          <div className="ks-page-side">
-            <Selector
-              type="devops"
-              title={t('DevOps Project')}
-              detail={data}
-              onChange={this.handleChange}
-              workspace={this.workspace}
-              cluster={this.cluster}
-            />
-            <Nav
-              className="ks-page-nav"
-              navs={globals.app.getDevOpsNavs({
-                devops: this.devops,
-                cluster: this.cluster,
-                workspace: this.workspace,
-              })}
-              location={location}
-              match={match}
-            />
-          </div>
-          <div className="ks-page-main">{renderRoutes(route.routes)}</div>
-        </>
+        {renderRoutes(this.props.route.routes)}
       </Provider>
     )
   }
 }
-
-export default DevOpsLayout

@@ -34,8 +34,8 @@ export default class PipelineEdges extends React.Component {
     )
   }
 
-  onInsertColunm = index => () => {
-    this.props.onInsertColunm(index)
+  onInsertColumn = index => () => {
+    this.props.onInsertColumn(index)
   }
 
   getRightLinePath(height) {
@@ -74,7 +74,7 @@ export default class PipelineEdges extends React.Component {
           strokeDasharray="3,3"
           fill="white"
           strokeWidth={STROKEWIDTH}
-          onClick={this.onInsertColunm(index + 1)}
+          onClick={this.onInsertColumn(index + 1)}
         />
         <line
           x1={EDGES_LENGTH - 5}
@@ -229,13 +229,13 @@ export default class PipelineEdges extends React.Component {
     const { heights, index, posision, isEditMode } = this.props
 
     if (!isEditMode && index === heights.length - 1) {
-      return <div className={style.connects__colunm} />
+      return <div className={style.connects__column} />
     }
 
     return (
       <React.Fragment>
         <div
-          className={style.connects__colunm}
+          className={style.connects__column}
           style={{ height: `${this.getMaxHeight() + 40}px` }}
         >
           {this.renderEdges()}
