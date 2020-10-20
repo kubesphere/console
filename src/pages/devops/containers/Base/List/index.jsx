@@ -18,7 +18,7 @@
 
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
-import { Loading } from '@pitrix/lego-ui'
+import { Loading } from '@kube-design/components'
 
 import { renderRoutes } from 'utils/router.config'
 import { Nav } from 'components/Layout'

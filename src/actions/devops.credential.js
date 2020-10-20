@@ -16,8 +16,8 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { Modal, Notify } from 'components/Base'
-
+import { Modal } from 'components/Base'
+import { Notify } from '@kube-design/components'
 import CredentialCreateModal from 'components/Modals/CredentialCreate'
 
 export default {

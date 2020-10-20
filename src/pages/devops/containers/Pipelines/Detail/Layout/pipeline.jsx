@@ -23,7 +23,7 @@ import { observer, inject } from 'mobx-react'
 import moment from 'moment-mini'
 import { get, isEmpty, has } from 'lodash'
 
-import Notify from 'components/Base/Notify'
+import { Notify } from '@kube-design/components'
 import Status from 'devops/components/Status'
 import CodeQualityStore from 'stores/devops/codeQuality'
 import DetailPage from 'devops/containers/Base/Detail'
