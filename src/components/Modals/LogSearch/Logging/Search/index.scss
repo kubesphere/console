@@ -61,16 +61,23 @@ $logCountColor: #329dce;
   justify-content: space-between;
   padding: 0 20px;
   .frequencyOpts {
-    vertical-align: middle;
+    margin-left: 4px;
+
+    & > span {
+      display: inline-block;
+      vertical-align: middle;
+    }
   }
   .frequencyOptions {
+    display: inline-block;
+    vertical-align: middle;
     width: 100px;
     :global {
-      .select-menu-outer {
+      .select-options {
         line-height: 30px;
         font-size: 10px;
       }
-      .select-value-label {
+      .select-value {
         color: #fff !important;
       }
       .select-control {
@@ -87,7 +94,7 @@ $logCountColor: #329dce;
 }
 
 .chartContainer {
-  margin: 8px 0;
+  margin-bottom: 12px;
   border-radius: 4px;
   box-shadow: 0 4px 8px 0 rgba(36, 46, 66, 0.06);
   background-color: #ffffff;

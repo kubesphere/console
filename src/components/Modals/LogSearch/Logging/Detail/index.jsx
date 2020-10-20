@@ -291,12 +291,6 @@ export default class DetailModal extends React.Component {
   render() {
     return (
       <div className={styles.container}>
-        <div className={styles.header}>
-          <div className={styles.pre} onClick={this.pre}>
-            <BackIcon width={16} height={22} />
-            <span>{t('Back to previous')}</span>
-          </div>
-        </div>
         <div className={styles.article}>
           {this.renderSummary()}
           {this.renderLog()}
@@ -470,6 +464,12 @@ export default class DetailModal extends React.Component {
     const { detailState } = this.props
     return (
       <div className={styles.summery}>
+        <div className={styles.header}>
+          <div className={styles.pre} onClick={this.pre}>
+            <BackIcon width={16} height={22} />
+            <span>{t('Back to previous')}</span>
+          </div>
+        </div>
         <h3>{t('Region Data')}</h3>
         <div className={styles.dataList}>
           <div>

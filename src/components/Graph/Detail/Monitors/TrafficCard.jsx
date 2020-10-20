@@ -44,7 +44,7 @@ export default class TrafficCard extends React.Component {
             </div>
             <p>
               <Icon name={metric.icon} />
-              {metric.title}
+              {t(metric.title)}
             </p>
           </div>
         ))}

@@ -30,22 +30,23 @@ $chartContainerPadding: 8px;
       border-left: solid 2px $light-color04;
       border-radius: 0;
     }
-    .clusterSelect,
-    .queryModeSelect {
+    .select {
       width: 120px;
       line-height: 40px;
-      .queryModeOptions * {
-        border: none;
-        :global {
-          .option-selected-area {
-            display: none;
-          }
+      :global {
+        .select-control {
+          height: 40px;
+          border: none;
+          box-shadow: none !important;
+        }
+        .select-options {
+          width: auto !important;
+          min-width: 130px;
         }
       }
     }
   }
 }
-
 
 .searchResult {
   position: relative;
@@ -69,23 +70,30 @@ $chartContainerPadding: 8px;
   justify-content: space-between;
   padding: 0 20px;
   .frequencyOpts {
-    vertical-align: middle;
+    margin-left: 4px;
+
+    & > span {
+      display: inline-block;
+      vertical-align: middle;
+    }
   }
   .frequencyOptions {
+    display: inline-block;
+    vertical-align: middle;
     width: 100px;
     :global {
-      .select-menu-outer {
+      .select-options {
         line-height: 30px;
         font-size: 10px;
       }
-      .select-value-label {
-        color: $white !important;
+      .select-value {
+        color: #fff !important;
       }
       .select-control {
         border: none;
         background: transparent;
         box-shadow: none;
-        height: 32px;
+        height: 40px;
         &:hover {
           background: transparent;
         }
@@ -95,7 +103,7 @@ $chartContainerPadding: 8px;
 }
 
 .chartContainer {
-  margin: 8px 0;
+  margin-bottom: 12px;
   border-radius: 4px;
   box-shadow: $base-shadow;
   background-color: $white;
@@ -150,7 +158,10 @@ $chartContainerPadding: 8px;
 }
 
 .visibleHeight {
-  height: calc(100% - 64px - #{$toolbarHeight} - #{$size-medium} - #{$chartContainerPadding} - #{$chartHeight});
+  height: calc(
+    100% - 64px - #{$toolbarHeight} - #{$size-medium} - #{$chartContainerPadding} -
+      #{$chartHeight}
+  );
 }
 
 .table {
@@ -196,7 +207,7 @@ $chartContainerPadding: 8px;
     background-color: $light-color04;
     border-radius: 1px;
   }
-  
+
   .name {
     display: inline-block;
     margin-left: 5px;
@@ -208,7 +219,7 @@ $chartContainerPadding: 8px;
     flex: unset;
     line-height: 20px;
   }
-  
+
   .subresourcecol {
     width: 100px;
     margin: auto;

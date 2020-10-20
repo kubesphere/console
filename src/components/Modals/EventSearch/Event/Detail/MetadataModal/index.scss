@@ -2,38 +2,35 @@
 
 .tabs {
   height: 100%;
+  border: none;
+  border-radius: 4px;
+  overflow: hidden;
 
-  :global(.tabs) {
-    min-width: 48px;
-  }
+  :global {
+    .tabs {
+      min-width: 48px;
+      ul {
+        border-right-style: none !important;
 
-  ul {
-    border-right-style: none !important;
+        & > li {
+          border: none;
+          min-width: unset !important;
+        }
 
-    li {
-      padding: 8px !important;
-      margin: 0 !important;
-      border: 1px solid #d5dee7 !important;
-      transform: translate(-1px, -1px);
+        &.is-active {
+          border-right: none !important;
+          z-index: 1;
+          background-color: $white;
+        }
+      }
     }
 
-    :global(li.is-active) {
-      border-right: none !important;
-      z-index: 1;
-      background-color: $white;
+    .tab-content {
+      width: 446px;
+      overflow-y: auto !important;
+      padding: 10px 0 0 10px;
+      transform: translateX(-2px);
     }
-
-    li:last-child {
-      transform: translate(-1px, -2px) !important;
-    }
-  }
-
-  :global(.tab-content) {
-    width: 446px;
-    overflow-y: auto !important;
-    padding: 10px 0 0 10px;
-    border-left: 1px solid #d5dee7;
-    transform: translateX(-2px);
   }
 
   .content {
@@ -44,14 +41,14 @@
       line-height: 20px;
       height: 20px;
     }
-  
+
     .center {
       margin: 10px;
-    
+
       .row {
         display: flex;
         margin-bottom: 10px;
-    
+
         .rowTitle {
           font-size: 12px;
           color: $dark-color01;
@@ -59,7 +56,7 @@
           height: 20px;
           width: 110px;
         }
-    
+
         .rowDesc {
           font-size: 12px;
           font-weight: 600;
@@ -76,25 +73,22 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    height: 88px;
     margin: 10px auto;
     background-color: $light-color01;
     border-radius: 4px;
     padding: 15px;
-  
+
     .reason {
       font-size: 12px;
       font-weight: 600;
       color: $dark-color07;
       line-height: 20px;
-      height: 20px;
     }
-  
+
     .message {
       font-size: 12px;
       color: $dark-color07;
       line-height: 20px;
-      height: 20px;
     }
   }
 }
@@ -116,5 +110,5 @@
 
 .warning {
   color: $white;
-  background-color: #F5A623;
+  background-color: #f5a623;
 }

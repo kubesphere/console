@@ -1,14 +1,5 @@
-// column
-.columns {
-  &.is-variable {
-    &.is-1_1 {
-      --columnGap: 6px;
-    }
-  }
-}
-
 .input-password {
-  width: 455px;
+  width: 455px !important;
 }
 
 // recharts
@@ -92,14 +83,6 @@
       }
     }
   }
-}
-
-.textarea:not([rows]) {
-  min-height: 64px;
-}
-
-.columns:not(:last-child) {
-  margin-bottom: 0;
 }
 
 .radio-group-button {

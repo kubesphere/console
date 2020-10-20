@@ -17,10 +17,12 @@
  */
 
 import moment from 'moment-mini'
-import { locale } from '@kube-design/components'
+import { LocaleProvider } from '@kube-design/components'
 import get from 'lodash/get'
 import cookie from 'utils/cookie'
 import { lazy, getBrowserLang } from 'utils'
+
+const { locale } = LocaleProvider
 
 const getLocales = {
   tc: lazy(() => import(/* webpackChunkName: "locales-tc" */ `../locales/tc`)),

@@ -19,7 +19,7 @@
 import { omit, isArray, get } from 'lodash'
 import { saveAs } from 'file-saver'
 import { action, observable, toJS } from 'mobx'
-import { Message } from '@kube-design/components'
+import { Notify } from '@kube-design/components'
 
 import BaseStore from './base'
 import PipelineStore from './pipelines'
@@ -287,7 +287,7 @@ export default class PipelineRunStore extends BaseStore {
       null,
       resp => {
         if (resp.status === 400) {
-          Message.error({
+          Notify.error({
             content: t("Sorry, you don't have the permission to do this."),
           })
           return true
