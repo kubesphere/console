@@ -352,15 +352,13 @@ export default class Detail extends React.PureComponent {
     return (
       <div className={styles.searchBar}>
         {globals.app.isMultiCluster && (
-          <span className={styles.clusterSelect}>
-            <Select
-              value={searchInputState.cluster}
-              onChange={this.changeClusterChange}
-              className={styles.queryModeOptions}
-              valueRenderer={this.clusterRenderer}
-              options={clustersOpts}
-            />
-          </span>
+          <Select
+            value={searchInputState.cluster}
+            onChange={this.changeClusterChange}
+            className={styles.select}
+            valueRenderer={this.clusterRenderer}
+            options={clustersOpts}
+          />
         )}
         <SearchInput
           className={styles.searchInput}
@@ -369,14 +367,12 @@ export default class Detail extends React.PureComponent {
           params={searchInputState}
           dropDownItems={dropDownItems}
         />
-        <span className={styles.queryModeSelect}>
-          <Select
-            value={searchInputState.queryMode}
-            onChange={this.changeQueryMode}
-            className={styles.queryModeOptions}
-            options={queryModeOptions}
-          />
-        </span>
+        <Select
+          value={searchInputState.queryMode}
+          onChange={this.changeQueryMode}
+          className={styles.select}
+          options={queryModeOptions}
+        />
       </div>
     )
   }

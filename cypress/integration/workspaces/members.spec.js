@@ -111,7 +111,7 @@ describe('The Workspace Overview Page', function() {
       ).click()
 
       cy.get('.select-control').click()
-      cy.get('.select-menu-outer')
+      cy.get('.select-options')
         .contains('workspace-viewer')
         .click()
 

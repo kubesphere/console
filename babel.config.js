@@ -16,6 +16,9 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+const getBabelPluginImportConfig = require('@kube-design/components/babel.plugin.import')
+const modularImportComponents = ['import', getBabelPluginImportConfig()]
+
 module.exports = {
   presets: [
     [
@@ -59,8 +62,10 @@ module.exports = {
     'recharts',
   ],
   env: {
+    development: { plugins: [modularImportComponents] },
     production: {
       plugins: [
+        modularImportComponents,
         [
           'transform-react-remove-prop-types',
           {

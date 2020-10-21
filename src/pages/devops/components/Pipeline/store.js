@@ -18,7 +18,7 @@
 
 import { action, observable, computed, toJS } from 'mobx'
 import { get, set, unset, isObject, isEmpty } from 'lodash'
-import { Notify, Message } from '@kube-design/components'
+import { Notify } from '@kube-design/components'
 
 import CredentialStore from 'stores/devops/credential'
 import BaseStore from 'stores/devops/base'
@@ -294,7 +294,6 @@ export default class Store extends BaseStore {
                 return
               }
 
-              Message.error({ content: error.error })
               Notify.error({
                 title: t('pipeline syntax error'),
                 content: t(error.error),
