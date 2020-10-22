@@ -183,6 +183,8 @@ export default class PipelineRunStore extends BaseStore {
         stage.causeOfBlockage = this.runDetail.causeOfBlockage
         if (stage.type === 'STAGE') {
           if (result[index + 1] && result[index + 1].type === 'PARALLEL') {
+            const arr = []
+            _arr.push(arr)
             return _arr
           }
           _arr.push(stage)
