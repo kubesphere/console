@@ -71,7 +71,7 @@ module.exports = smp.wrap({
         test: /\.s[ac]ss$/i,
         include: root('node_modules'),
         use: [
-          'style-loader',
+          MiniCssExtractPlugin.loader,
           'css-loader',
           'sass-loader',
         ],
