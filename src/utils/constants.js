@@ -346,8 +346,8 @@ export const PIPELINE_PARAMS_TYPES = {
 
 export const PIPELINE_ACTION_TYPES = {
   discover_branches: 'Discover Branches',
-  discover_pr_from_origin: 'Discover PR form Origin',
-  discover_pr_from_forks: 'Discover PR form Forks',
+  discover_pr_from_origin: 'Discover PR from Origin',
+  discover_pr_from_forks: 'Discover PR from Forks',
 }
 
 export const TIMETRIGGERINTERVALS = [
