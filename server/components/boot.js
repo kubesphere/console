@@ -57,7 +57,7 @@ module.exports = function(app) {
   if (global.MODE_DEV) {
     app.use(async (ctx, next) => {
       if (
-        /(\.hot-update\.)|(\.(ttf|otf|eot|woff2?)(\?.+)?$)|(\.js$)/.test(
+        /(\.hot-update\.)|(\.(ico|ttf|otf|eot|woff2?)(\?.+)?$)|(\.js(.map)?$)/.test(
           ctx.url
         )
       ) {
