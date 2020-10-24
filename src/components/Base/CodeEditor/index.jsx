@@ -53,16 +53,22 @@ class CodeEditor extends PureComponent {
     }
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    const { value } = this.props
-    if (prevState.originValue !== value) {
-      this.setState({ value: getValue(value), originValue: value })
+  static getDerivedStateFromProps(props, state) {
+    const { value } = props
+
+    if (value !== state.originValue) {
+      return {
+        value: getValue(value),
+        originValue: value,
+      }
     }
+
+    return null
   }
 
   handleChange = value => {
     const { onChange } = this.props
-    this.setState({ value, originValue: value }, () => onChange(value))
+    this.setState({ value }, () => onChange(value))
   }
 
   render() {
