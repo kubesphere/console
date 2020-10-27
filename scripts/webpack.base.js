@@ -20,6 +20,7 @@ const { resolve } = require('path')
 const autoprefixer = require('autoprefixer')
 const HappyPack = require('happypack')
 const WebpackBar = require('webpackbar')
+const WebpackAssetsManifest = require('webpack-assets-manifest')
 
 const root = path => resolve(__dirname, `../${path}`)
 
@@ -30,7 +31,7 @@ module.exports = {
   moduleRules: [
     {
       test: /\.jsx?$/,
-      include: [root('src'), root('common')],
+      include: root('src'),
       use: 'happypack/loader?id=jsx',
     },
     {
@@ -56,21 +57,16 @@ module.exports = {
     extensions: ['.js', '.jsx', '.scss'],
     symlinks: false,
     modules: [root('src'), root('src/pages'), 'node_modules'],
-    alias: {
-      src: root('src'),
-      scss: root('src/scss'),
-      core: root('src/core'),
-      configs: root('src/configs'),
-      components: root('src/components'),
-      layouts: root('src/layouts'),
-      stores: root('src/stores'),
-      utils: root('src/utils'),
-    },
   },
   plugins: [
     new HappyPack({
       id: 'jsx',
       loaders: ['babel-loader?cacheDirectory'],
+    }),
+    new WebpackAssetsManifest({
+      entrypoints: true,
+      writeToDisk: true,
+      output: '../dist/manifest.json',
     }),
     new WebpackBar(),
   ],

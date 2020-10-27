@@ -18,7 +18,6 @@
 
 import React, { Suspense } from 'react'
 import ReactDOM from 'react-dom'
-import { AppContainer } from 'react-hot-loader'
 import { LocaleProvider, Loading, Notify } from '@kube-design/components'
 
 import { isAppsPage } from 'utils'
@@ -59,13 +58,11 @@ globals.app = new GlobalValue()
 const render = async component => {
   const { locales } = await i18n.init()
   ReactDOM.render(
-    <AppContainer>
-      <Suspense fallback={<Loading className="ks-page-loading" />}>
-        <LocaleProvider locales={locales} localeKey="lang" ignoreWarnings>
-          {component}
-        </LocaleProvider>
-      </Suspense>
-    </AppContainer>,
+    <Suspense fallback={<Loading className="ks-page-loading" />}>
+      <LocaleProvider locales={locales} localeKey="lang" ignoreWarnings>
+        {component}
+      </LocaleProvider>
+    </Suspense>,
     document.getElementById('root')
   )
 }

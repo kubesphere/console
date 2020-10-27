@@ -22,7 +22,7 @@ import PropTypes from 'prop-types'
 import { isEmpty, get, set, includes } from 'lodash'
 
 import { RESOURCE_METRICS_CONFIG } from 'configs/alerting/metrics'
-import { ReactComponent as BackIcon } from 'src/assets/back.svg'
+import { ReactComponent as BackIcon } from 'assets/back.svg'
 
 import { Column, Columns, Form, Input } from '@kube-design/components'
 import RuleInput from './RuleInput'

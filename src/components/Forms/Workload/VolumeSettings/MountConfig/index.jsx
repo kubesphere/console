@@ -28,7 +28,7 @@ import {
 } from '@kube-design/components'
 import { TypeSelect } from 'components/Base'
 import { ArrayInput, ObjectInput, MountInput } from 'components/Inputs'
-import { ReactComponent as BackIcon } from 'src/assets/back.svg'
+import { ReactComponent as BackIcon } from 'assets/back.svg'
 import { generateId, getDisplayName } from 'utils'
 
 import ConfigMapStore from 'stores/configmap'

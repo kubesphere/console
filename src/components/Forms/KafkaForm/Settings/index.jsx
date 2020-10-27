@@ -18,7 +18,7 @@
 
 import React from 'react'
 import { Form, Input } from '@kube-design/components'
-import Brokers from 'src/components/Forms/KafkaForm/Settings/BrokersInput'
+import Brokers from 'components/Forms/KafkaForm/Settings/BrokersInput'
 
 export default class BaseInfo extends React.Component {
   addressValidator = (rule, value, callback) => {

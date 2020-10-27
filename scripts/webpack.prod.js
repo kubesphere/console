@@ -38,7 +38,7 @@ module.exports = smp.wrap({
   mode: 'production',
   entry: baseConfig.entry,
   output: {
-    filename: '[name].js',
+    filename: '[name].[chunkhash].js',
     path: root('dist/'),
     publicPath: '/dist/',
     chunkFilename: '[name].[chunkhash].js',
@@ -128,16 +128,16 @@ module.exports = smp.wrap({
     },
   },
   resolve: merge({}, baseConfig.resolve, {
-    alias: { 'lodash': root('node_modules/lodash') }
+    alias: { lodash: root('node_modules/lodash') },
   }),
   plugins: [
     ...baseConfig.plugins,
     new ChunkRenamePlugin({
-      vendor: '[name].js',
+      vendor: '[name].[chunkhash].js',
     }),
     new CopyPlugin([{ from: root('src/assets'), to: root('dist/assets') }]),
     new MiniCssExtractPlugin({
-      filename: '[name].css',
+      filename: '[name].[chunkhash].css',
       chunkFilename: '[name].[chunkhash].css',
     }),
     new OptimizeCssAssetsPlugin({

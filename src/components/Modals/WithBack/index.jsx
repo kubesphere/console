@@ -18,7 +18,7 @@
 
 import React from 'react'
 
-import { ReactComponent as BackIcon } from 'src/assets/back.svg'
+import { ReactComponent as BackIcon } from 'assets/back.svg'
 import styles from './index.scss'
 
 export default function withBack(WrappedComponent) {

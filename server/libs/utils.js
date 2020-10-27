@@ -17,14 +17,14 @@
  */
 
 const fs = require('fs')
-const crypto = require('crypto')
 const yaml = require('js-yaml/dist/js-yaml')
 const NodeCache = require('node-cache')
+const get = require('lodash/get')
 const merge = require('lodash/merge')
 const isEmpty = require('lodash/isEmpty')
 const pathToRegex = require('path-to-regexp')
 
-const STATIC_VERSION_CACHE_KEY = 'STATIC_VERSION_CACHE_KEY'
+const MANIFEST_CACHE_KEY = 'MANIFEST_CACHE_KEY'
 
 const root = dir => `${global.APP_ROOT}/${dir}`.replace(/(\/+)/g, '/')
 
@@ -81,43 +81,6 @@ const getServerConfig = key => {
 }
 
 const getCache = () => cache
-
-const formatRules = rules =>
-  (rules || []).reduce(
-    (prev, cur) => ({
-      ...prev,
-      [cur.name]: cur.actions,
-    }),
-    {}
-  )
-
-const checkSum = (data, algorithm, encoding) =>
-  crypto
-    .createHash(algorithm || 'md5')
-    .update(data, 'utf8')
-    .digest(encoding || 'hex')
-
-const getFileVersion = filename => {
-  if (global.MODE_DEV) {
-    return ''
-  }
-
-  let versionCache = cache.get(STATIC_VERSION_CACHE_KEY)
-  if (!versionCache) {
-    versionCache = {}
-    cache.set(STATIC_VERSION_CACHE_KEY, versionCache)
-  }
-
-  if (!versionCache[filename]) {
-    const data = fs.readFileSync(root(filename))
-    const version = checkSum(data)
-    versionCache[filename] = version
-
-    cache.set(STATIC_VERSION_CACHE_KEY, versionCache)
-  }
-
-  return versionCache[filename] || ''
-}
 
 const isValidReferer = path =>
   !isEmpty(path) && path !== '/' && path.indexOf('/login') === -1
@@ -187,14 +150,28 @@ const safeParseJSON = (json, defaultValue) => {
   return result
 }
 
+const getManifest = () => {
+  let manifestCache = cache.get(MANIFEST_CACHE_KEY)
+
+  if (!manifestCache) {
+    let data = {}
+    try {
+      const dataStream = fs.readFileSync(root('dist/manifest.json'))
+      data = safeParseJSON(dataStream.toString(), {})
+    } catch (error) {}
+    manifestCache = get(data, 'entrypoints.main')
+    cache.set(MANIFEST_CACHE_KEY, manifestCache)
+  }
+
+  return manifestCache
+}
+
 module.exports = {
   root,
   loadYaml,
   getCache,
+  getManifest,
   getServerConfig,
-  formatRules,
-  checkSum,
-  getFileVersion,
   isValidReferer,
   isAppsRoute,
   decryptPassword,

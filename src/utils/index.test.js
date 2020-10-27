@@ -40,7 +40,6 @@ import {
   cpuFormat,
   memoryFormat,
   cacheFunc,
-  formatRules,
   getWebSocketProtocol,
   hasChinese,
   getResourceCreator,
@@ -331,14 +330,6 @@ it('get metadata info', () => {
   expect(getDisplayName(data3)).toBe('redis-xxx(redis)')
   expect(getDisplayName(data4)).toBe('redis-xxx')
   expect(getDisplayName(data5)).toBe('redis-xxx')
-})
-
-it('formatRules', () => {
-  const rules = [{ name: 'deployments', actions: ['create', 'get', 'delete'] }]
-  expect(formatRules(rules)).toStrictEqual({
-    deployments: ['create', 'get', 'delete'],
-  })
-  expect(formatRules()).toStrictEqual({})
 })
 
 it('getWebSocketProtocol', () => {

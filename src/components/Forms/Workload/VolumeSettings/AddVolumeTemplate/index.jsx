@@ -26,7 +26,7 @@ import { Form, Input } from '@kube-design/components'
 import { MountInput } from 'components/Inputs'
 
 import { PATTERN_NAME } from 'utils/constants'
-import { ReactComponent as BackIcon } from 'src/assets/back.svg'
+import { ReactComponent as BackIcon } from 'assets/back.svg'
 
 import VolumeFormTemplate from 'components/Forms/Volume/VolumeSettings/FormTemplate'
 

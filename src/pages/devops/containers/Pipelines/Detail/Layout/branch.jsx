@@ -22,7 +22,7 @@ import { observer, inject } from 'mobx-react'
 import moment from 'moment-mini'
 import { get } from 'lodash'
 
-import { ReactComponent as ForkIcon } from 'src/assets/fork.svg'
+import { ReactComponent as ForkIcon } from 'assets/fork.svg'
 import Status from 'devops/components/Status'
 import CodeQualityStore from 'stores/devops/codeQuality'
 import DetailPage from 'devops/containers/Base/Detail'

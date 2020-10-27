@@ -17,6 +17,7 @@
  */
 
 const { resolve } = require('path')
+const merge = require('lodash/merge')
 const webpack = require('webpack')
 const CopyPlugin = require('copy-webpack-plugin')
 const SpeedMeasurePlugin = require('speed-measure-webpack-plugin')
@@ -37,7 +38,7 @@ module.exports = smp.wrap({
   mode: 'production',
   entry: baseConfig.entry,
   output: {
-    filename: '[name].js',
+    filename: '[name].[chunkhash].js',
     path: root('dist/'),
     publicPath: '/dist/',
     chunkFilename: '[name].[chunkhash].js',
@@ -46,8 +47,7 @@ module.exports = smp.wrap({
     rules: [
       ...baseConfig.moduleRules,
       {
-        test: /\.scss$/,
-        exclude: /lego.theme.scss/,
+        test: /\.s[ac]ss$/i,
         include: root('src'),
         loader: [
           MiniCssExtractPlugin.loader,
@@ -65,7 +65,17 @@ module.exports = smp.wrap({
             loader: 'postcss-loader',
             options: baseConfig.postCssOptions,
           },
-          { loader: 'fast-sass-loader' },
+          { loader: 'sass-loader' },
+        ],
+      },
+      {
+        test: /\.s[ac]ss$/i,
+        include: root('node_modules'),
+        use: [
+          MiniCssExtractPlugin.loader,
+          'cache-loader',
+          'css-loader',
+          'sass-loader',
         ],
       },
       {
@@ -111,11 +121,6 @@ module.exports = smp.wrap({
           name: 'vendor',
           priority: 10,
         },
-        lego: {
-          test: /[\\/]node_modules[\\/]@pitrix[\\/].*.jsx?$/,
-          name: 'lego',
-          priority: 20,
-        },
         common: {
           name: 'common',
           minChunks: 2,
@@ -124,16 +129,17 @@ module.exports = smp.wrap({
       },
     },
   },
-  resolve: baseConfig.resolve,
+  resolve: merge({}, baseConfig.resolve, {
+    alias: { lodash: root('node_modules/lodash') },
+  }),
   plugins: [
     ...baseConfig.plugins,
     new ChunkRenamePlugin({
-      vendor: '[name].js',
-      lego: '[name].js',
+      vendor: '[name].[chunkhash].js',
     }),
     new CopyPlugin([{ from: root('src/assets'), to: root('dist/assets') }]),
     new MiniCssExtractPlugin({
-      filename: '[name].css',
+      filename: '[name].[chunkhash].css',
       chunkFilename: '[name].[chunkhash].css',
     }),
     new OptimizeCssAssetsPlugin({

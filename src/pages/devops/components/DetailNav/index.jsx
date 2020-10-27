@@ -24,7 +24,7 @@ import { NavLink } from 'react-router-dom'
 import { Columns, Column } from '@kube-design/components'
 
 import Health from 'projects/components/Health'
-import { ReactComponent as ForkIcon } from 'src/assets/fork.svg'
+import { ReactComponent as ForkIcon } from 'assets/fork.svg'
 
 import styles from './index.scss'
 

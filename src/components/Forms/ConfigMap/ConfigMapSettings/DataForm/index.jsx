@@ -20,7 +20,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { trim } from 'lodash'
 import { Form, Input, TextArea } from '@kube-design/components'
-import { ReactComponent as BackIcon } from 'src/assets/back.svg'
+import { ReactComponent as BackIcon } from 'assets/back.svg'
 
 import styles from './index.scss'
 

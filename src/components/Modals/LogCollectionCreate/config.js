@@ -17,9 +17,9 @@
  */
 
 import { get } from 'lodash'
-import { ReactComponent as ESICON } from 'src/assets/es.svg'
-import { ReactComponent as KaFkaICON } from 'src/assets/kafka.svg'
-import { ReactComponent as FluentdICON } from 'src/assets/fluentd.svg'
+import { ReactComponent as ESICON } from 'assets/es.svg'
+import { ReactComponent as KaFkaICON } from 'assets/kafka.svg'
+import { ReactComponent as FluentdICON } from 'assets/fluentd.svg'
 
 import ESForm from 'components/Forms/Elasticsearch/Settings'
 import KafkaForm from 'components/Forms/KafkaForm/Settings'

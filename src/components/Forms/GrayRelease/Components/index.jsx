@@ -25,8 +25,8 @@ import { Form, Icon, Select, Tooltip } from '@kube-design/components'
 import { joinSelector, mergeLabels } from 'utils'
 import { MODULE_KIND_MAP } from 'utils/constants'
 import FORM_TEMPLATES from 'utils/form.templates'
-import ApplicationStore from 'src/stores/application/crd'
-import ServiceStore from 'src/stores/service'
+import ApplicationStore from 'stores/application/crd'
+import ServiceStore from 'stores/service'
 
 import SelectComponent from './SelectComponent'
 

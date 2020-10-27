@@ -21,9 +21,9 @@ import { cloneDeep } from 'lodash'
 import { Notify } from '@kube-design/components'
 import { Modal } from 'components/Base'
 import EnableForm from 'components/Forms/LoggingCollection/Status'
-import ESForm from 'src/components/Forms/Elasticsearch/Settings'
-import KafkaForm from 'src/components/Forms/KafkaForm/Settings'
-import FluentdForm from 'src/components/Forms/Fluentd/Settings'
+import ESForm from 'components/Forms/Elasticsearch/Settings'
+import KafkaForm from 'components/Forms/KafkaForm/Settings'
+import FluentdForm from 'components/Forms/Fluentd/Settings'
 
 export default {
   'log.collection.active.switch': {

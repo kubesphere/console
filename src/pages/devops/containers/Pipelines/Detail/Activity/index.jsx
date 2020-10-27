@@ -42,7 +42,7 @@ import { getLocalTime, formatUsedTime } from 'utils'
 
 import Status from 'devops/components/Status'
 import { getPipelineStatus } from 'utils/status'
-import { ReactComponent as ForkIcon } from 'src/assets/fork.svg'
+import { ReactComponent as ForkIcon } from 'assets/fork.svg'
 
 import { trigger } from 'utils/action'
 import Table from 'components/Tables/List'
