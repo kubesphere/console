@@ -33,7 +33,7 @@ const methods = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
  * @param reject
  * @returns {Function}
  */
-module.exports = methods.reduce(
+export default methods.reduce(
   (prev, method) => ({
     ...prev,
     [method.toLowerCase()]: (url, params = {}, options, reject) =>

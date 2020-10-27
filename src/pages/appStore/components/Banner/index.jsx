@@ -20,7 +20,7 @@ import React from 'react'
 import { isObject } from 'lodash'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
-import { ReactComponent as BackIcon } from 'src/assets/back.svg'
+import { ReactComponent as BackIcon } from 'assets/back.svg'
 import { Image } from 'components/Base'
 
 import styles from './index.scss'

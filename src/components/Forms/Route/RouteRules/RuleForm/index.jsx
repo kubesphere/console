@@ -31,7 +31,7 @@ import {
 
 import { ArrayInput, RulePath } from 'components/Inputs'
 
-import { ReactComponent as BackIcon } from 'src/assets/back.svg'
+import { ReactComponent as BackIcon } from 'assets/back.svg'
 
 import { PATTERN_HOST } from 'utils/constants'
 

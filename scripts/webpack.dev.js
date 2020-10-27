@@ -17,9 +17,9 @@
  */
 
 const { resolve } = require('path')
-const merge = require('lodash/merge')
 const webpack = require('webpack')
 const WebpackNotifier = require('webpack-notifier')
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const baseConfig = require('./webpack.base')
 
 const root = path => resolve(__dirname, `../${path}`)
@@ -27,7 +27,7 @@ const root = path => resolve(__dirname, `../${path}`)
 const config = {
   mode: 'development',
   entry: {
-    main: ['react-hot-loader/patch', './src/core/index.js'],
+    main: ['webpack-hot-middleware/client', './src/core/index.js'],
   },
   output: {
     filename: '[name].js',
@@ -61,11 +61,7 @@ const config = {
       {
         test: /\.s[ac]ss$/i,
         include: root('node_modules'),
-        use: [
-          'style-loader',
-          'css-loader',
-          'sass-loader',
-        ],
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
         test: /\.css$/,
@@ -114,19 +110,18 @@ const config = {
       },
     },
   },
-  resolve: merge({}, baseConfig.resolve, {
-    alias: { 'react-dom': '@hot-loader/react-dom' },
-  }),
+  resolve: baseConfig.resolve,
   plugins: [
     ...baseConfig.plugins,
-    new webpack.NamedModulesPlugin(),
+    new HardSourceWebpackPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
     new webpack.WatchIgnorePlugin([
       root('server'),
       root('build'),
       root('dist'),
     ]),
     new WebpackNotifier({
-      title: `Kubesphere console`,
+      title: `KubeSphere Console`,
       alwaysNotify: true,
       excludeWarnings: true,
     }),
@@ -135,18 +130,6 @@ const config = {
       'process.env.NODE_ENV': JSON.stringify('development'),
     }),
   ],
-  devServer: {
-    publicPath: '/',
-    compress: true,
-    noInfo: false,
-    quiet: false,
-    hot: true,
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-    },
-    host: '0.0.0.0',
-    port: 8001,
-  },
 }
 
 module.exports = config

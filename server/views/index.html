@@ -1,34 +1,34 @@
-<% var bundlePrefix = isDev ? '//' + hostname + ':8001' : '/dist' %>
-<% var mainJS = bundlePrefix + '/main.js' %>
-<% var vendorJS = bundlePrefix + '/vendor.js' %>
-<% var mainCSS = '/dist/main.css' %>
-
+<% var bundlePrefix = isDev ? '' : '/dist' %>
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title><%- title %></title>
-  <link rel="icon" href="/assets/favicon.ico" type="image/x-icon" />
-  <% if (!isDev) { %>
-  <link href="<%- mainCSS + '?v=' + version(mainCSS) %>" rel="stylesheet" media="all" />
-  <% } %>
-</head>
-
-<body>
-  <div id="root"></div>
-  <script type="text/javascript">
-    window.globals = {
-      config: <%- config %>,
-      ksConfig: <%- ksConfig %>,
-      user: <%- user || "null" %>
-    }
-  </script>
-
-  <script type="text/javascript" src="<%- vendorJS + '?v=' + version(vendorJS) %>"></script>
-  <script type="text/javascript" src="<%- mainJS + '?v=' + version(mainJS) %>"></script>
-</body>
-
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title><%= title %></title>
+    <link rel="icon" href="/assets/favicon.ico" type="image/x-icon" />
+    <% if (manifest && manifest.css && manifest.css.length > 0) { %>
+      <% manifest.css.forEach(function(item){ %>
+        <link href="<%= bundlePrefix %>/<%= item %>" rel="stylesheet" media="all" />
+      <% }) %>
+    <% } %>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/javascript">
+      window.globals = {
+        config: <%- config %>,
+        ksConfig: <%- ksConfig %>,
+        user: <%- user || "null" %>
+      }
+    </script>
+    <% if (manifest && manifest.js && manifest.js.length > 0) { %>
+      <% manifest.js.forEach(function(item){ %>
+        <script type="text/javascript" src="<%= bundlePrefix %>/<%= item %>"></script>
+      <% }) %>
+    <% } %>
+  </body>
 </html>

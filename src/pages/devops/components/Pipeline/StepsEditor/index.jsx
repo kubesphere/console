@@ -22,7 +22,7 @@ import classNames from 'classnames'
 import { observable, action, toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import { Form, Button, Input, Icon } from '@kube-design/components'
-import { PIPELINE_TASKS } from 'src/utils/constants'
+import { PIPELINE_TASKS } from 'utils/constants'
 
 import { renderStepArgs } from '../Card/detail'
 import StepsSelector from '../StepsSelector'

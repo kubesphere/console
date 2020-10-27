@@ -24,7 +24,7 @@ import classnames from 'classnames'
 import { formatSize } from 'utils'
 import { B2I_SUPPORTED_TYPES } from 'utils/constants'
 
-import BuilderStore from 'src/stores/s2i/builder'
+import BuilderStore from 'stores/s2i/builder'
 import styles from './index.scss'
 
 const headers = {

@@ -41,7 +41,11 @@ module.exports = {
   optimization: {
     minimize: false,
   },
-  externals: { hiredis: 'hiredis' }, // Need this to avoid error when working with Express
+  externals: {
+    hiredis: 'hiredis',
+    webpack: 'webpack',
+    'koa-webpack-middleware': 'koa-webpack-middleware',
+  }, // Need this to avoid error when working with Express
   module: {
     rules: [
       {

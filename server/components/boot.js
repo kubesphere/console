@@ -55,17 +55,12 @@ module.exports = function(app) {
   }
 
   if (global.MODE_DEV) {
-    app.use(async (ctx, next) => {
-      if (
-        /(\.hot-update\.)|(\.(ico|ttf|otf|eot|woff2?)(\?.+)?$)|(\.js(.map)?$)/.test(
-          ctx.url
-        )
-      ) {
-        ctx.redirect(`http://${ctx.hostname}:8001${ctx.url}`)
-      } else {
-        await next()
-      }
-    })
+    const webpack = require('webpack')
+    const { devMiddleware, hotMiddleware } = require('koa-webpack-middleware')
+    const config = require(root('scripts/webpack.dev'))
+    const compiler = webpack(config)
+    app.use(devMiddleware(compiler, { stats: { colors: true } }))
+    app.use(hotMiddleware(compiler, {}))
   }
 
   render(app, {

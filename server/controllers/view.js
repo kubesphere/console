@@ -22,7 +22,7 @@ const { getCurrentUser, getOAuthInfo } = require('../services/session')
 
 const {
   getServerConfig,
-  getFileVersion,
+  getManifest,
   isValidReferer,
 } = require('../libs/utils')
 
@@ -30,6 +30,7 @@ const { client: clientConfig } = getServerConfig()
 
 const renderView = async ctx => {
   try {
+    const manifest = getManifest()
     const { user, config, ksConfig } = await getCurrentUser(ctx)
 
     await ctx.render('index', {
@@ -38,8 +39,7 @@ const renderView = async ctx => {
       config: JSON.stringify(config),
       ksConfig: JSON.stringify(ksConfig),
       user: JSON.stringify(user),
-      version: getFileVersion,
-      hostname: ctx.hostname,
+      manifest,
     })
   } catch (err) {
     ctx.app.emit('error', err)

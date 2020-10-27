@@ -29,7 +29,7 @@ import PodStore from 'stores/pod'
 import ProjectStore from 'stores/project'
 import LogStore from 'stores/logging/query'
 
-import { ReactComponent as BackIcon } from 'src/assets/back.svg'
+import { ReactComponent as BackIcon } from 'assets/back.svg'
 
 import DurationSelect from './DurationSelect'
 

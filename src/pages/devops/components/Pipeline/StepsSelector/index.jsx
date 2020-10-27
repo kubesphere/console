@@ -21,9 +21,9 @@ import classNames from 'classnames'
 import { Icon } from '@kube-design/components'
 import { observable, action } from 'mobx'
 import { observer } from 'mobx-react'
-import { ReactComponent as BackIcon } from 'src/assets/back.svg'
+import { ReactComponent as BackIcon } from 'assets/back.svg'
 import CredentialModal from 'components/Modals/CredentialCreate'
-import { PIPELINE_TASKS, PIPELINE_CONDITIONS } from 'src/utils/constants'
+import { PIPELINE_TASKS, PIPELINE_CONDITIONS } from 'utils/constants'
 
 import {
   Echo,

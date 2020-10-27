@@ -367,15 +367,6 @@ export const getDisplayName = item => {
   return `${item.name}${item.aliasName ? `(${item.aliasName})` : ''}`
 }
 
-export const formatRules = rules =>
-  (rules || []).reduce(
-    (prev, cur) => ({
-      ...prev,
-      [cur.name]: cur.actions,
-    }),
-    {}
-  )
-
 export const getWebSocketProtocol = protocol => {
   if (protocol.startsWith('https')) {
     return 'wss'

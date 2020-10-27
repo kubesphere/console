@@ -31,7 +31,9 @@ import 'scss/main.scss'
 
 import routes from './routes'
 
-const getActions = lazy(() => import('src/actions'))
+const getActions = lazy(() =>
+  import(/* webpackChunkName: "actions" */ 'actions')
+)
 
 class App extends Component {
   constructor(props) {

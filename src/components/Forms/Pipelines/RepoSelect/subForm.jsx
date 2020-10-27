@@ -25,7 +25,7 @@ import { get, isEmpty, omitBy } from 'lodash'
 import { Icon } from '@kube-design/components'
 import SCMStore from 'stores/devops/scm'
 import { REPO_TYPES, REPO_KEY_MAP } from 'utils/constants'
-import { ReactComponent as BackIcon } from 'src/assets/back.svg'
+import { ReactComponent as BackIcon } from 'assets/back.svg'
 
 import CredentialModal from 'components/Modals/CredentialCreate'
 

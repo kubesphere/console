@@ -17,13 +17,13 @@
  */
 
 import { get } from 'lodash'
-import { ReactComponent as ESICON } from 'src/assets/es.svg'
-import { ReactComponent as KaFkaICON } from 'src/assets/kafka.svg'
-import { ReactComponent as FluentdICON } from 'src/assets/fluentd.svg'
+import { ReactComponent as ESICON } from 'assets/es.svg'
+import { ReactComponent as KaFkaICON } from 'assets/kafka.svg'
+import { ReactComponent as FluentdICON } from 'assets/fluentd.svg'
 
-import ESForm from 'src/components/Forms/Elasticsearch/Settings'
-import KafkaForm from 'src/components/Forms/KafkaForm/Settings'
-import FluentdForm from 'src/components/Forms/Fluentd/Settings'
+import ESForm from 'components/Forms/Elasticsearch/Settings'
+import KafkaForm from 'components/Forms/KafkaForm/Settings'
+import FluentdForm from 'components/Forms/Fluentd/Settings'
 
 const kafkaPathGetter = collection => get(collection, 'Brokers')
 const pathGetter = collection =>
