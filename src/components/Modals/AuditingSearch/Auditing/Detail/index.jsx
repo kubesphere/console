@@ -18,7 +18,7 @@
 
 import React, { Fragment } from 'react'
 import { Select, Icon, Tooltip } from '@pitrix/lego-ui'
-import { min } from 'lodash'
+import { get, min } from 'lodash'
 import moment from 'moment-mini'
 import classnames from 'classnames'
 import { observer } from 'mobx-react'
@@ -125,7 +125,10 @@ export default class Detail extends React.PureComponent {
       thead: t('Status Code'),
       key: 'Status Code',
       hidden: false,
-      content: ({ ResponseStatus: { code } = {} }) => httpcodes[code],
+      content: ({ ResponseStatus }) => {
+        const code = get(ResponseStatus, 'code')
+        return code ? httpcodes[code] : ''
+      },
       className: styles.statuscol,
     },
     {
@@ -139,14 +142,14 @@ export default class Detail extends React.PureComponent {
       thead: t('Project'),
       key: 'Project',
       hidden: false,
-      content: ({ ObjectRef: { Namespace } = {} }) => Namespace,
+      content: ({ ObjectRef }) => get(ObjectRef, 'Namespace'),
       className: styles.namespacecol,
     },
     {
       thead: t('Reason'),
       key: 'reason',
       hidden: true,
-      content: ({ ResponseStatus: { reason } = {} }) => reason,
+      content: ({ ResponseStatus }) => get(ResponseStatus, 'reason'),
       className: styles.reasoncol,
     },
     {
@@ -165,14 +168,14 @@ export default class Detail extends React.PureComponent {
       thead: t('Subresource'),
       key: 'Subresource',
       hidden: true,
-      content: ({ ObjectRef: { Subresource } = {} }) => Subresource,
+      content: ({ ObjectRef }) => get(ObjectRef, 'Subresource'),
       className: styles.subresourcecol,
     },
     {
       thead: t('Operation Account'),
       key: 'Operation Account',
       hidden: false,
-      content: ({ User: { Username } = {} }) => Username,
+      content: ({ User }) => get(User, 'Username'),
       className: styles.usernamecol,
     },
     {
