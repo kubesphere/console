@@ -67,14 +67,6 @@ const getServerConfig = key => {
       }
     }
 
-    if (global.ARGV.server) {
-      merge(config, { server: global.ARGV.server })
-    }
-
-    if (global.ARGV.client) {
-      merge(config, { client: global.ARGV.client })
-    }
-
     cache.set(server_conf_key, config)
   }
   return key ? config[key] : config

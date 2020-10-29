@@ -28,13 +28,13 @@ module.exports = {
         useBuiltIns: 'entry',
         targets: ['> 5%', 'ie 9'],
         modules: 'commonjs',
+        exclude: ['proposal-dynamic-import'],
       },
     ],
     '@babel/preset-react',
   ],
   plugins: [
     '@babel/plugin-transform-runtime',
-    '@babel/plugin-syntax-dynamic-import',
     [
       '@babel/plugin-proposal-decorators',
       {
