@@ -16,30 +16,18 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-const argv = require('yargs').argv
-const semver = require('semver')
-
-// check runtime
-if (semver.lt(process.version, '7.6.0')) {
-  console.error('Node Version should be greater than 7.6.0')
-  process.exit(-1)
-}
-
-global.ARGV = argv || {}
-global.MODE_DEV = process.env.NODE_ENV === 'development'
-
 const Koa = require('koa')
 const path = require('path')
-
-global.APP_ROOT = path.resolve(__dirname, '../')
-
-const { getServerConfig } = require('./libs/utils')
 
 Koa.prototype.apply = function(module, ...rest) {
   module(this, ...rest)
   return this
 }
 
+global.MODE_DEV = process.env.NODE_ENV === 'development'
+global.APP_ROOT = path.resolve(__dirname, '../')
+
+const { getServerConfig } = require('./libs/utils')
 const boot = require('./components/boot')
 const locale = require('./components/locale')
 const logging = require('./components/logging')

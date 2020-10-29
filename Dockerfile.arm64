@@ -1,4 +1,4 @@
-FROM arm64v8/node:10.18-alpine
+FROM arm64v8/node:12.18-alpine
 RUN adduser -D -g kubesphere -u 1002 kubesphere && \
     mkdir -p /opt/kubesphere/console && \
     chown -R kubesphere:kubesphere /opt/kubesphere/console

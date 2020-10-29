@@ -26,8 +26,8 @@ Features Map:
 Make sure the following software is installed and added to the \$PATH variable:
 
 - A KubeSphere cluster ([Installation](https://github.com/kubesphere/kubesphere#installation))
-- Node.js 10.16+ ([installation with nvm](https://github.com/creationix/nvm#usage))
-- Yarn 1.19.1+
+- Node.js 12.18+ ([installation with nvm](https://github.com/creationix/nvm#usage))
+- Yarn 1.22.4+
 
 Install yarn with npm:
 

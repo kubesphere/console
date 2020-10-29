@@ -1,7 +1,7 @@
 version: '3'
 services:
   dev:
-    image: node:10-alpine
+    image: node:12-alpine
     volumes:
       - nodemodules:/opt/kubesphere/console/node_modules
       - .:/opt/kubesphere/console
@@ -9,7 +9,6 @@ services:
     command: yarn start
     ports:
       - 8000:8000
-      - 8001:8001
 
 volumes:
   nodemodules:
