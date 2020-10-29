@@ -127,7 +127,7 @@ class InternetAccess extends React.Component {
     let ip = '-'
 
     if (isEmpty(gateway.externalIPs)) {
-      ip = gateway.loadBalancerIngresses.join(', ')
+      ip = gateway.loadBalancerIngress.join(', ')
     } else {
       ip = gateway.externalIPs.join(', ')
     }
