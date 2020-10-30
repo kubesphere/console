@@ -52,7 +52,11 @@ export default class Components extends React.Component {
 
   componentDidMount() {
     this.appStore
-      .fetchList({ namespace: this.namespace, cluster: this.props.cluster })
+      .fetchList({
+        namespace: this.namespace,
+        cluster: this.props.cluster,
+        limit: -1,
+      })
       .then(() => {
         const data = toJS(this.appStore.list.data)
         const app = data.find(item => item.serviceMeshEnable) || {}
