@@ -105,6 +105,7 @@
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
     "@babel/runtime": "^7.1.2",
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.4.2",
     "@svgr/webpack": "^2.2.1",
     "autoprefixer": "7.1.2",
     "babel-eslint": "^10.1.0",
@@ -153,6 +154,7 @@
     "postcss-remove-google-fonts": "^1.1.0",
     "prettier": "^1.14.2",
     "progress-bar-webpack-plugin": "^1.11.0",
+    "react-refresh": "^0.9.0",
     "rimraf": "^2.6.2",
     "sass-loader": "^7.1.0",
     "speed-measure-webpack-plugin": "^1.2.3",
@@ -164,7 +166,6 @@
     "webpack-bundle-analyzer": "^3.0.3",
     "webpack-chunk-rename-plugin": "^1.0.3",
     "webpack-cli": "^3.1.2",
-    "webpack-notifier": "^1.8.0",
     "webpackbar": "^2.6.3"
   },
   "engines": {

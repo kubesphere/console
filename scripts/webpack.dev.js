@@ -18,8 +18,8 @@
 
 const { resolve } = require('path')
 const webpack = require('webpack')
-const WebpackNotifier = require('webpack-notifier')
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const baseConfig = require('./webpack.base')
 
 const root = path => resolve(__dirname, `../${path}`)
@@ -35,7 +35,7 @@ const config = {
     publicPath: '/',
     pathinfo: false,
   },
-  devtool: 'cheap-module-source-map',
+  devtool: 'cheap-module-eval-source-map',
   module: {
     rules: [
       ...baseConfig.moduleRules,
@@ -86,16 +86,10 @@ const config = {
     ],
   },
   optimization: {
-    flagIncludedChunks: true,
-    occurrenceOrder: true,
     usedExports: true,
-    sideEffects: true,
-    concatenateModules: true,
     splitChunks: {
-      chunks: 'all',
+      chunks: 'async',
       minChunks: 1,
-      maxAsyncRequests: 5,
-      maxInitialRequests: 5,
       cacheGroups: {
         vendors: {
           test: /[\\/]node_modules[\\/](?!(ace-builds|react-ace|xterm)).*.jsx?$/,
@@ -115,16 +109,12 @@ const config = {
     ...baseConfig.plugins,
     new HardSourceWebpackPlugin(),
     new webpack.HotModuleReplacementPlugin(),
+    new ReactRefreshWebpackPlugin(),
     new webpack.WatchIgnorePlugin([
       root('server'),
       root('build'),
       root('dist'),
     ]),
-    new WebpackNotifier({
-      title: `KubeSphere Console`,
-      alwaysNotify: true,
-      excludeWarnings: true,
-    }),
     new webpack.DefinePlugin({
       'process.env.BROWSER': true,
       'process.env.NODE_ENV': JSON.stringify('development'),
