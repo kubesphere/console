@@ -19,23 +19,30 @@
 import React from 'react'
 import classNames from 'classnames'
 import { observer, inject } from 'mobx-react'
-import { observable, action } from 'mobx'
 import { isEmpty } from 'lodash'
 
 import Draggable from 'react-draggable'
 import { Button } from '@kube-design/components'
 import { Text, List } from 'components/Base'
+import { safeParseJSON } from 'utils'
 import { trigger } from 'utils/action'
 import { createCenterWindowOpt } from 'utils/dom'
 
 import styles from './index.scss'
 
+const KS_TOOLBOX_POS_KEY = 'ks-toolbox-pos'
+
 @inject('rootStore')
 @observer
 @trigger
 export default class KubeTools extends React.Component {
-  @observable
-  showTools = 0
+  state = {
+    showTools: 0,
+    defaultPosition: safeParseJSON(localStorage.getItem(KS_TOOLBOX_POS_KEY), {
+      x: 0,
+      y: 0,
+    }),
+  }
 
   getWindowOpts() {
     return createCenterWindowOpt({
@@ -145,21 +152,26 @@ export default class KubeTools extends React.Component {
     window.open(data.link, '_blank')
   }
 
-  @action
-  onMouseEnter = () => {
-    this.showTools = 1
+  handleStop = (e, data) => {
+    localStorage.setItem(
+      KS_TOOLBOX_POS_KEY,
+      JSON.stringify({ x: 0, y: data.y })
+    )
   }
 
-  @action
+  onMouseEnter = () => {
+    this.setState({ showTools: 1 })
+  }
+
   onMouseLeave = () => {
-    this.showTools = -1
+    this.setState({ showTools: -1 })
   }
 
   renderTools() {
     return (
       <div
         className={classNames(styles.tools, {
-          [styles.showTools]: this.showTools === 1,
+          [styles.showTools]: this.state.showTools === 1,
         })}
       >
         <div className={styles.toolsWrapper}>
@@ -229,7 +241,11 @@ export default class KubeTools extends React.Component {
     }
 
     return (
-      <Draggable axis="y">
+      <Draggable
+        axis="y"
+        defaultPosition={this.state.defaultPosition}
+        onStop={this.handleStop}
+      >
         <div className={styles.trigger} onMouseLeave={this.onMouseLeave}>
           <Button
             className={styles.button}
