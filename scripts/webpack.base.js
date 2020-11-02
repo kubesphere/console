@@ -24,6 +24,8 @@ const WebpackAssetsManifest = require('webpack-assets-manifest')
 
 const root = path => resolve(__dirname, `../${path}`)
 
+const isDev = process.env.NODE_ENV === 'development'
+
 module.exports = {
   entry: {
     main: './src/core/index.js',
@@ -61,7 +63,15 @@ module.exports = {
   plugins: [
     new HappyPack({
       id: 'jsx',
-      loaders: ['babel-loader?cacheDirectory'],
+      loaders: [
+        {
+          loader: 'babel-loader',
+          options: {
+            cacheDirectory: true,
+            plugins: isDev ? [require.resolve('react-refresh/babel')] : [],
+          },
+        },
+      ],
     }),
     new WebpackAssetsManifest({
       entrypoints: true,
