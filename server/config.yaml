@@ -23,7 +23,7 @@ server:
 
   # kubesphere console session params, not login session
   sessionKey: 'kubesphere:sess'
-  sessionTimeout: 7200000 # unit: millisecond
+  sessionTimeout: 3600000 # unit: millisecond
 
   # backend service gateway server
   apiServer:
