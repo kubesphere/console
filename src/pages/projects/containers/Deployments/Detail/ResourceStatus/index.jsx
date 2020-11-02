@@ -19,7 +19,7 @@
 import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
-import { isEmpty, get, flatten, uniqBy } from 'lodash'
+import { isEmpty, flatten, uniqBy } from 'lodash'
 
 import HpaStore from 'stores/workload/hpa'
 
@@ -68,9 +68,7 @@ class ResourceStatus extends React.Component {
 
   get enableScaleReplica() {
     return (
-      this.enabledActions.includes('edit') &&
-      !get(this.hpaStore.detail, 'name') &&
-      !this.store.detail.isFedManaged
+      this.enabledActions.includes('edit') && !this.store.detail.isFedManaged
     )
   }
 
