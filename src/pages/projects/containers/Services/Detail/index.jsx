@@ -194,6 +194,10 @@ export default class ServiceDetail extends React.Component {
         value: joinSelector(detail.selector),
       },
       {
+        name: t('DNS'),
+        value: this.renderDNS(),
+      },
+      {
         name: t('Endpoint'),
         value: this.renderEndpoints(),
       },
