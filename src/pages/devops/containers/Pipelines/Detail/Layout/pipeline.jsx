@@ -93,6 +93,7 @@ export default class PipelineDetailLayout extends React.Component {
 
     pipeLineConfig.devops = params.devops
     pipeLineConfig.cluster = params.cluster
+    pipeLineConfig.devopsName = this.props.devopsStore.devopsName
 
     this.setState({ formTemplate: pipeLineConfig })
   }

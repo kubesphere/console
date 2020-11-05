@@ -111,7 +111,7 @@ class CodeQualityResult extends React.Component {
           hasIcon
           title={t('Bug')}
           value={bugs}
-          unit={t('个')}
+          unit={t('NUM_UNIT')}
           resultClass={bugRating}
           url={`${this.sonarqubeOrigin}/project/issues?id=${key}&resolved=false&types=BUG`}
         />
@@ -119,7 +119,7 @@ class CodeQualityResult extends React.Component {
           hasIcon
           title={t('Code Vulnerability')}
           value={vulnerabilities}
-          unit={t('个')}
+          unit={t('NUM_UNIT')}
           resultClass={securityRating}
           url={`${this.sonarqubeOrigin}/project/issues?id=${key}&resolved=false&types=VULNERABILITY`}
         />

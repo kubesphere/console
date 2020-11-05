@@ -99,7 +99,6 @@ export default class AdvanceSettings extends React.Component {
 
   componentDidMount() {
     const { devopsName, cluster, devops } = this.props.formTemplate
-
     this.pipelineStore.fetchList({
       devopsName,
       devops,
@@ -120,15 +119,10 @@ export default class AdvanceSettings extends React.Component {
     }
   }
 
-  checkCronScript = async () => {
+  checkCronScript = async (rule, value, callback) => {
     const { formTemplate, type } = this.props
     const { devopsName, name, cluster } = formTemplate
-    const script = get(formTemplate, `${this.prefix}.timer_trigger.cron`, '')
-
-    if (!script || this.script === script) {
-      return
-    }
-    this.script = script
+    const script = value
 
     const result = await this.scmStore.checkCronScript({
       devops: devopsName,
@@ -138,7 +132,8 @@ export default class AdvanceSettings extends React.Component {
     })
 
     if (result.result === 'error') {
-      this.setState({ cronMessage: { error: result.message } })
+      this.setState({ cronMessage: { error: result.message } }, () => {})
+      callback(result.message)
       return
     }
 
@@ -151,8 +146,8 @@ export default class AdvanceSettings extends React.Component {
           `${t('MMMM Do YYYY')} HH:mm:ss`
         ),
       })
-
       this.setState({ cronMessage: { message } })
+      callback()
     }
   }
 
@@ -228,17 +223,12 @@ export default class AdvanceSettings extends React.Component {
                     t.html('PIPELINE_CRONJOB_CRON_DESC')
                   }
                   tip={t('tips_timer_trigger')}
-                  error={
-                    this.state.cronMessage.error
-                      ? { message: this.state.cronMessage.error }
-                      : null
-                  }
+                  rules={[{ validator: this.checkCronScript }]}
                 >
                   <Input
                     name={`${this.prefix}.timer_trigger.cron`}
                     placeholder="Every hour, on the hour"
                     onChange={this.removeCronError}
-                    onBlur={this.checkCronScript}
                   />
                 </Form.Item>
               </Column>
