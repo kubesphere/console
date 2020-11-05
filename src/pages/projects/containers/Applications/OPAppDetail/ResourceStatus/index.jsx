@@ -16,13 +16,15 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { isEmpty, flatten } from 'lodash'
+import { isEmpty } from 'lodash'
 import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
-import Workloads from 'projects/components/Cards/Workloads'
+import RouterStore from 'stores/router'
+import { joinSelector } from 'utils'
 import Services from 'projects/components/Cards/Services'
-import Ingresses from '../../CRDAppDetail/Ingresses'
+import Ingresses from 'projects/components/Cards/Ingresses'
+import ServiceMonitors from 'projects/components/Cards/ServiceMonitors'
 
 import styles from './index.scss'
 
@@ -34,6 +36,29 @@ export default class ResourceStatus extends React.Component {
 
     this.store = props.detailStore
     this.module = props.module
+
+    this.routerStore = new RouterStore()
+
+    this.getData()
+  }
+
+  getData() {
+    const detail = toJS(this.store.detail)
+    const { cluster, namespace } = this.props.match.params
+
+    const params = {
+      cluster,
+      namespace,
+      labelSelector: joinSelector({
+        app: detail.name,
+        release: detail.name,
+        'app.kubernetes.io/managed-by': 'Helm',
+      }),
+    }
+
+    this.store.fetchComponents(params)
+
+    this.routerStore.getGateway({ cluster, namespace })
   }
 
   get prefix() {
@@ -43,18 +68,9 @@ export default class ResourceStatus extends React.Component {
 
   render() {
     const { detail, isLoading } = toJS(this.store)
-
-    let workloads = []
-    if (!isEmpty(detail.workloads)) {
-      workloads = flatten(
-        Object.keys(detail.workloads).map(key =>
-          detail.workloads[key].map(item => ({
-            ...item,
-            type: key,
-          }))
-        )
-      )
-    }
+    const components = toJS(this.store.components.data)
+    const serviceMonitors = toJS(this.store.serviceMonitorStore.list.data)
+    const gateway = toJS(this.routerStore.gateway.data)
 
     return (
       <div className={styles.main}>
@@ -62,22 +78,20 @@ export default class ResourceStatus extends React.Component {
           <Ingresses
             data={detail.ingresses}
             loading={isLoading}
+            gateway={gateway}
             prefix={`${this.prefix}/ingresses`}
           />
         )}
-        {!isEmpty(detail.services) && (
-          <Services
-            className="margin-t12"
-            data={detail.services}
-            loading={isLoading}
-            prefix={`${this.prefix}/services`}
-          />
-        )}
-        <Workloads
+        <Services
           className="margin-t12"
-          data={workloads}
-          loading={isLoading}
-          prefix={this.prefix}
+          data={components}
+          loading={this.store.components.isLoading}
+          prefix={`${this.prefix}/services`}
+        />
+        <ServiceMonitors
+          className="margin-t12"
+          data={serviceMonitors}
+          loading={this.store.components.isLoading}
         />
       </div>
     )

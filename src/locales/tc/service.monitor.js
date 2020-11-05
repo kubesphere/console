@@ -16,35 +16,23 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
+export default {
+  'Application Monitoring Exporter': '应用监控导出器',
+  'Target Service': '目标服务',
+  'Exporter Service Ports': '导出服务端口',
+  'Scrap Interval(min)': '采集间隔(分钟)',
+  'View Monitor': '查看监控',
+  'Monitoring Exporter': '监控导出器',
 
-import { Text } from 'components/Base'
+  'Choose Authentication Method': '选择鉴权方式',
+  'Port connection authentication': '端口连接鉴权',
+  'No Auth': '无需认证',
 
-export default function ServiceAccess({ data }) {
-  if (data.specType === 'ClusterIP') {
-    return <Text description={data.specType} title={data.clusterIP} />
-  }
+  'Create a new secret': '创建新密钥',
+  'refresh secrets': '刷新密钥',
 
-  if (data.specType === 'NodePort') {
-    return (
-      <Text
-        description={data.specType}
-        title={data.ports
-          .filter(port => port.nodePort)
-          .map(port => `${port.port}:${port.nodePort}/${port.protocol}`)
-          .join(';')}
-      />
-    )
-  }
+  NO_AUTH_TIP: '接口可直接连接，无需鉴权',
 
-  if (data.specType === 'LoadBalancer') {
-    return (
-      <Text
-        description={data.specType}
-        title={data.loadBalancerIngress.join('; ')}
-      />
-    )
-  }
-
-  return <Text description={data.specType} title={data.externalName} />
+  SCRAP_INTERVAL_DESC: '监控数据采集间隔，默认为 1 分钟',
+  SCRAP_TIMEOUT_DESC: '超时，默认值 10 秒',
 }

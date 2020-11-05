@@ -80,6 +80,18 @@ export default class OPAppDetail extends React.Component {
         }),
     },
     {
+      key: 'serviceMonitor',
+      icon: 'linechart',
+      text: t('Application Monitoring Exporter'),
+      action: 'edit',
+      onClick: () =>
+        this.trigger('app.service.monitor', {
+          detail: toJS(this.store.detail),
+          success: this.fetchData,
+          ...this.props.match.params,
+        }),
+    },
+    {
       key: 'destroy',
       type: 'danger',
       icon: 'trash',

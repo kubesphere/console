@@ -16,13 +16,15 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { isArray } from 'lodash'
+import { get } from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import classnames from 'classnames'
 
-import { Icon } from '@kube-design/components'
+import { Tooltip, Icon } from '@kube-design/components'
+import { Text } from 'components/Base'
+import ServiceAccess from 'projects/components/ServiceAccess'
 
 import styles from './index.scss'
 
@@ -45,38 +47,37 @@ export default class ServiceItem extends React.Component {
       return null
     }
 
-    let ports = detail.ports
-    if (isArray(ports)) {
-      ports = ports
-        .map(item => `${item.port}:${item.targetPort}/${item.protocol}`)
-        .join(';')
-    }
-
-    const { type, clusterIP, loadBalancerIngress, externalName } = detail
-    const content =
-      type === 'Virtual IP'
-        ? clusterIP
-        : loadBalancerIngress.join(';') || externalName
+    const serviceMonitor = get(detail, 'monitor.name')
 
     return (
       <div className={classnames(styles.item, className)}>
-        <div className={styles.icon}>
-          <Icon name="network-router" size={40} />
-        </div>
-        <div className={styles.name}>
-          <Link to={`${prefix}/${detail.name}`}>{detail.name}</Link>
-          <p>
-            {t(type)}: {content || '-'}
-          </p>
-        </div>
-        <div className={styles.status}>
-          <p>
-            <span>{t('Port')}</span>: {ports}
-          </p>
-          <p>
-            <span>{t('IP')}</span>: {detail.virtualIp || '-'}
-          </p>
-        </div>
+        <Text
+          icon="network-router"
+          title={
+            <>
+              <Link to={`${prefix}/${detail.name}`}>{detail.name}</Link>
+              {serviceMonitor && (
+                <Tooltip
+                  content={`${t('Monitoring Exporter')}: ${serviceMonitor}`}
+                >
+                  <Icon className="margin-l8" name="monitor" size={20} />
+                </Tooltip>
+              )}
+            </>
+          }
+          description={t(detail.type)}
+        />
+        <Text title={detail.podNums} description={t('Replicas')} />
+        <Text
+          title={
+            get(detail, 'annotations["servicemesh.kubesphere.io/enabled"]') ===
+            'true'
+              ? t('On')
+              : t('Off')
+          }
+          description={t('Application Governance')}
+        />
+        <ServiceAccess data={detail} />
       </div>
     )
   }

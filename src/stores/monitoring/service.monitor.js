@@ -16,35 +16,12 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
+import Base from 'stores/base'
 
-import { Text } from 'components/Base'
+export default class ServiceMonitorStore extends Base {
+  module = 'servicemonitors'
 
-export default function ServiceAccess({ data }) {
-  if (data.specType === 'ClusterIP') {
-    return <Text description={data.specType} title={data.clusterIP} />
+  get apiVersion() {
+    return 'apis/monitoring.coreos.com/v1'
   }
-
-  if (data.specType === 'NodePort') {
-    return (
-      <Text
-        description={data.specType}
-        title={data.ports
-          .filter(port => port.nodePort)
-          .map(port => `${port.port}:${port.nodePort}/${port.protocol}`)
-          .join(';')}
-      />
-    )
-  }
-
-  if (data.specType === 'LoadBalancer') {
-    return (
-      <Text
-        description={data.specType}
-        title={data.loadBalancerIngress.join('; ')}
-      />
-    )
-  }
-
-  return <Text description={data.specType} title={data.externalName} />
 }

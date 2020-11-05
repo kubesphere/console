@@ -58,7 +58,6 @@ export default {
         steps: NEW_CLUSTER,
         modal: CreateModal,
         store,
-        isSubmitting: store.isSubmitting || store.kubekey.isSubmitting,
         ...props,
       })
     },

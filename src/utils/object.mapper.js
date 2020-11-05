@@ -1215,6 +1215,13 @@ const StorageclasscapabilitiesMapper = item => {
   }
 }
 
+const ServiceMonitorMapper = item => ({
+  ...getBaseInfo(item),
+  namespace: get(item, 'metadata.namespace'),
+  interval: get(item, 'spec.endpoints[0].interval'),
+  _originData: getOriginData(item),
+})
+
 export default {
   deployments: WorkLoadMapper,
   daemonsets: WorkLoadMapper,
@@ -1268,5 +1275,6 @@ export default {
   networkpolicies: NetworkPoliciesMapper,
   namespacenetworkpolicies: NetworkPoliciesMapper,
   storageclasscapabilities: StorageclasscapabilitiesMapper,
+  servicemonitors: ServiceMonitorMapper,
   default: DefaultMapper,
 }

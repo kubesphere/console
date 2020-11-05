@@ -9,6 +9,7 @@
 
 .item {
   display: flex;
+  position: relative;
   padding: 12px;
   margin-bottom: 8px;
   background-color: $white;
@@ -23,7 +24,12 @@
     margin-right: 12px;
     min-width: 20%;
     &:first-child {
-      flex: 1;
+      min-width: 30%;
     }
   }
+}
+
+.monitor {
+  @include vertical-center;
+  right: 12px;
 }

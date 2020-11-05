@@ -24,8 +24,7 @@ import { TIME_MICROSECOND_MAP, MODULE_KIND_MAP } from 'utils/constants'
 import { transformTraces } from 'utils/tracing'
 
 import ServiceStore from 'stores/service'
-import RouterStore from 'stores/router'
-import GrayReleaseStore from 'stores/grayrelease'
+import ServiceMonitorStore from 'stores/monitoring/service.monitor'
 import PodStore from 'stores/pod'
 
 import Base from 'stores/base'
@@ -35,8 +34,7 @@ export default class ApplicationStore extends Base {
     super(module)
 
     this.serviceStore = new ServiceStore()
-    this.routerStore = new RouterStore()
-    this.grayReleaseStore = new GrayReleaseStore()
+    this.serviceMonitorStore = new ServiceMonitorStore()
     this.podStore = new PodStore()
   }
 
@@ -84,16 +82,17 @@ export default class ApplicationStore extends Base {
 
     await Promise.all([
       this.serviceStore.fetchListByK8s(params),
+      this.serviceMonitorStore.fetchListByK8s(params),
       this.podStore.fetchListByK8s(params),
-      this.grayReleaseStore.fetchList(params),
     ])
 
     const services = this.serviceStore.list.data
+    const serviceMonitors = this.serviceMonitorStore.list.data
     const pods = this.podStore.list.data
-    const grayReleases = this.grayReleaseStore.list.data
 
     if (services) {
       const componentNameMap = keyBy(services, 'name')
+      const serviceMonitorNameMap = keyBy(serviceMonitors, 'name')
       if (pods) {
         pods.forEach(item => {
           const service = item.labels.app
@@ -104,17 +103,10 @@ export default class ApplicationStore extends Base {
           }
         })
       }
-      if (grayReleases) {
-        grayReleases.forEach(item => {
-          const service = item.labels.app
-          if (service && componentNameMap[service]) {
-            componentNameMap[service].grayRelease = {
-              newVersion: item.newVersion,
-              oldVersion: item.oldVersion,
-            }
-          }
-        })
-      }
+
+      services.forEach(service => {
+        service.monitor = serviceMonitorNameMap[service.name]
+      })
 
       this.components.data = services
       this.components.total = services.length

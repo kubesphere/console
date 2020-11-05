@@ -1,0 +1,74 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.value {
+  position: relative;
+  height: 32px;
+  padding: 5px 12px;
+  margin-left: 12px;
+  background-color: $white;
+  border: solid 1px $light-color08;
+  border-radius: $border-radius;
+  transition: all $trans-speed ease-in-out;
+  cursor: pointer;
+
+  &:hover {
+    border-color: $dark-color01;
+  }
+
+  &.active {
+    border-color: $primary;
+  }
+}
+
+.text {
+  padding-left: 24px;
+  @include TypographySymbolText;
+}
+
+.prefix {
+  @include vertical-center;
+  left: 12px;
+}
+
+.close {
+  @include vertical-center;
+  right: 6px;
+  z-index: 999;
+}
+
+.dropdown {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  z-index: 9999;
+  box-shadow: 0 4px 8px 0 rgba(36, 46, 66, 0.16);
+  border-radius: $border-radius;
+  overflow: hidden;
+}
+
+.form {
+  padding: 12px;
+  background-color: $white;
+
+  .formContent {
+    padding-bottom: 20px;
+  }
+}
+
+.footer {
+  background-color: $card-bg-color;
+  padding: 8px 12px;
+  text-align: right;
+}
+
+.secrets {
+  a {
+    color: $blue-color03;
+  }
+}

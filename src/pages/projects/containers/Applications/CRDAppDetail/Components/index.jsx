@@ -23,9 +23,9 @@ import { inject, observer } from 'mobx-react'
 import { joinSelector } from 'utils'
 import RouterStore from 'stores/router'
 
-import AppComponents from 'projects/components/Cards/AppComponents'
-
-import Ingresses from '../Ingresses'
+import Services from 'projects/components/Cards/Services'
+import Ingresses from 'projects/components/Cards/Ingresses'
+import ServiceMonitors from 'projects/components/Cards/ServiceMonitors'
 
 import styles from './index.scss'
 
@@ -36,8 +36,8 @@ class Components extends React.Component {
     super(props)
 
     this.store = props.detailStore
-    this.routerStore = new RouterStore()
     this.module = props.module
+    this.routerStore = new RouterStore()
 
     this.getData()
   }
@@ -54,7 +54,7 @@ class Components extends React.Component {
       }
 
       this.store.fetchComponents(params)
-      this.store.routerStore.fetchListByK8s(params)
+      this.routerStore.fetchListByK8s(params)
     }
 
     this.routerStore.getGateway({ cluster, namespace })
@@ -66,8 +66,9 @@ class Components extends React.Component {
   }
 
   render() {
-    const routes = toJS(this.store.routerStore.list.data)
+    const routes = toJS(this.routerStore.list.data)
     const components = toJS(this.store.components.data)
+    const serviceMonitors = toJS(this.store.serviceMonitorStore.list.data)
     const gateway = toJS(this.routerStore.gateway.data)
 
     return (
@@ -76,15 +77,20 @@ class Components extends React.Component {
           <Ingresses
             data={routes}
             gateway={gateway}
-            loading={this.store.routerStore.list.isLoading}
+            loading={this.routerStore.list.isLoading}
             prefix={`${this.prefix}/ingresses`}
           />
         )}
-        <AppComponents
+        <Services
           className="margin-t12"
           data={components}
           loading={this.store.components.isLoading}
           prefix={`${this.prefix}/services`}
+        />
+        <ServiceMonitors
+          className="margin-t12"
+          data={serviceMonitors}
+          loading={this.store.components.isLoading}
         />
       </div>
     )

@@ -29,14 +29,12 @@ export default class MetircQueryInput extends Component {
     this.props.onChange(metric)
   }
 
+  get options() {
+    return this.props.supportMetrics.map(item => item.value)
+  }
+
   render() {
-    const {
-      name,
-      supportDebugButton = false,
-      value,
-      supportMetrics,
-      onChange,
-    } = this.props
+    const { name, supportDebugButton = false, value, onChange } = this.props
 
     return (
       <div className={styles.wrapper}>
@@ -55,7 +53,7 @@ export default class MetircQueryInput extends Component {
             value={value}
             onChange={onChange}
             className={styles.autoComplete}
-            options={supportMetrics}
+            options={this.options}
           />
         </div>
         {supportDebugButton && (

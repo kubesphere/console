@@ -19,46 +19,41 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { isEmpty } from 'lodash'
-
-import { Card } from 'components/Base'
+import { Panel } from 'components/Base'
 import Item from './Item'
 
-export default class AppComponentsCard extends React.Component {
+export default class Routes extends React.Component {
   static propTypes = {
     className: PropTypes.string,
     prefix: PropTypes.string,
+    title: PropTypes.string,
     data: PropTypes.array,
-    isLoading: PropTypes.bool,
+    loading: PropTypes.bool,
   }
 
   static defaultProps = {
     prefix: '',
     data: [],
-    isLoading: false,
+    loading: true,
   }
 
   renderContent() {
-    const { data, prefix } = this.props
+    const { gateway, data, prefix } = this.props
 
     if (isEmpty(data)) return null
 
     return data.map(item => (
-      <Item key={item.uid} prefix={prefix} detail={item} />
+      <Item key={item.name} prefix={prefix} detail={item} gateway={gateway} />
     ))
   }
 
   render() {
     const { className, loading } = this.props
-
+    const title = this.props.title || t('Routes')
     return (
-      <Card
-        className={className}
-        title={t('Services')}
-        loading={loading}
-        empty={t('NOT_AVAILABLE', { resource: t('Service') })}
-      >
+      <Panel className={className} title={title} loading={loading}>
         {this.renderContent()}
-      </Card>
+      </Panel>
     )
   }
 }

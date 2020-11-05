@@ -19,11 +19,19 @@
 import React from 'react'
 import classNames from 'classnames'
 
+import { Loading } from '@kube-design/components'
+
 import styles from './index.scss'
 
 export default class Panel extends React.Component {
   render() {
-    const { className, title, children, extras } = this.props
+    const { className, title, loading = false, children, extras } = this.props
+    const empty = (
+      <div className={styles.empty}>
+        {t('NOT_AVAILABLE', { resource: title })}
+      </div>
+    )
+
     return (
       <div
         className={styles.wrapper}
@@ -37,8 +45,14 @@ export default class Panel extends React.Component {
         }`}
       >
         {title && <div className={styles.title}>{title}</div>}
-        <div className={classNames(styles.panel, className)}>{children}</div>
-        {extras}
+        <Loading spinning={loading}>
+          <>
+            <div className={classNames(styles.panel, className)}>
+              {children || empty}
+            </div>
+            {extras}
+          </>
+        </Loading>
       </div>
     )
   }

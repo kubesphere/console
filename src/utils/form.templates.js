@@ -491,6 +491,16 @@ const getDashboardTemplate = ({ namespace }) => ({
   spec: {},
 })
 
+const getServiceMonitorTemplate = ({ name, namespace }) => ({
+  apiVersion: 'monitoring.coreos.com/v1',
+  kind: 'ServiceMonitor',
+  metadata: {
+    name,
+    namespace,
+  },
+  spec: {},
+})
+
 const FORM_TEMPLATES = {
   deployments: getDeploymentTemplate,
   daemonsets: getDaemonSetTemplate,
@@ -521,6 +531,7 @@ const FORM_TEMPLATES = {
   namespacenetworkpolicies: getNameSpaceNetworkPoliciesTemplate,
   dashboards: getDashboardTemplate,
   federated: getFederatedTemplate,
+  servicemonitors: getServiceMonitorTemplate,
 }
 
 export default FORM_TEMPLATES

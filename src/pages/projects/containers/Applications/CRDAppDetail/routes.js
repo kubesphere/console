@@ -18,7 +18,7 @@
 
 import { getIndexRoute } from 'utils/router.config'
 
-import AppComponents from './AppComponents'
+import Components from './Components'
 import TrafficManangement from './TrafficManangement'
 import GrayRelease from './GrayRelease'
 import Tracing from './Tracing'
@@ -30,7 +30,7 @@ export default [
   {
     path: `${PATH}/components`,
     title: 'Application Components',
-    component: AppComponents,
+    component: Components,
     exact: true,
   },
   {

@@ -2,7 +2,7 @@
 @import '~scss/mixins';
 
 .card {
-  padding: 20px;
+  padding: 12px;
   border-radius: 4px;
   background-color: $lightest;
 
@@ -17,7 +17,7 @@
   margin-bottom: 12px;
 
   .text {
-    margin-left: 20px;
+    margin-left: 12px;
     & > a {
       font-family: $font-family-id;
       font-size: $size-normal;
@@ -34,17 +34,12 @@
 .rules {
   & > li {
     position: relative;
-    padding: 12px 20px;
+    padding: 11px 20px;
     border-radius: 22px;
     background-color: $bg-color;
     border: solid 1px $border-color;
-
-    strong {
-      font-family: $font-family-id;
-      font-size: $size-normal;
-      font-weight: $font-bold;
-      line-height: 20px;
-    }
+    font-family: $font-family-id;
+    line-height: 20px;
 
     & + li {
       margin-top: 8px;

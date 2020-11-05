@@ -49,7 +49,6 @@ export default class GraphMonitorForm extends Component {
   get supportMetrics() {
     return this.props.monitoringStore.targetsMetadata.map(metadata => ({
       value: metadata.metric,
-      label: metadata.metric,
       desc: metadata.help,
       type: metadata.type,
     }))
