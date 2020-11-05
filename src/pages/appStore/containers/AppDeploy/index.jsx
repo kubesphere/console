@@ -126,11 +126,13 @@ export default class App extends React.Component {
     form &&
       form.validate(() => {
         const { cluster, workspace, namespace, ...rest } = this.state.formData
-        this.appStore.deploy(rest, { cluster, namespace }).then(() => {
-          this.routing.push(
-            `/${workspace}/clusters/${cluster}/projects/${namespace}/applications/template`
-          )
-        })
+        this.appStore
+          .deploy(rest, { cluster, namespace, workspace })
+          .then(() => {
+            this.routing.push(
+              `/${workspace}/clusters/${cluster}/projects/${namespace}/applications/template`
+            )
+          })
       })
   }
 
