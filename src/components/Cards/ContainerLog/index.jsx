@@ -17,7 +17,6 @@
  */
 
 import React from 'react'
-import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { observer } from 'mobx-react'
 import { saveAs } from 'file-saver'
@@ -27,33 +26,26 @@ import { PATTERN_UTC_TIME } from 'utils/constants'
 import { Icon, Loading, Notify, Tooltip } from '@kube-design/components'
 import { Card, Empty } from 'components/Base'
 import ContainerStore from 'stores/container'
+import PodStore from 'stores/pod'
 
 import styles from './index.scss'
 
 @observer
 export default class ContainerLog extends React.Component {
-  static propTypes = {
-    title: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.node,
-      PropTypes.element,
-    ]),
-    store: PropTypes.object,
-  }
-
   constructor(props) {
     super(props)
 
     this.state = {
       loadingPrev: false,
       loadingNext: false,
-      isRealtime: false,
       isDownloading: false,
+      isRealtime: !!props.isRealtime,
     }
 
     this.tailLines = 1000
 
     this.store = new ContainerStore()
+    this.podStore = new PodStore()
 
     this.ref = React.createRef()
   }
@@ -62,28 +54,42 @@ export default class ContainerLog extends React.Component {
     this.getData({}, this.scrollToBottom)
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.podName && this.props.podName !== prevProps.podName) {
+      this.getData({}, this.scrollToBottom)
+    }
+  }
+
   componentWillUnmount() {
     this.store.stopWatchLogs()
   }
 
-  getData(params, callback) {
+  async getData(params, callback) {
     const { cluster, namespace, podName, containerName } = this.props
 
     this.store.stopWatchLogs()
 
-    return this.store.watchLogs(
-      {
-        cluster,
-        namespace,
-        podName,
-        container: containerName,
-        tailLines: this.tailLines,
-        timestamps: true,
-        follow: this.state.isRealtime,
-        ...params,
-      },
-      callback
-    )
+    const result = await this.podStore.checkName({
+      cluster,
+      namespace,
+      name: podName,
+    })
+
+    if (result.exist) {
+      this.store.watchLogs(
+        {
+          cluster,
+          namespace,
+          podName,
+          container: containerName,
+          tailLines: this.tailLines,
+          timestamps: true,
+          follow: this.state.isRealtime,
+          ...params,
+        },
+        callback
+      )
+    }
   }
 
   scrollToBottom = () => {

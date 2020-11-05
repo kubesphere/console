@@ -19,8 +19,8 @@
 import moment from 'moment-mini'
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Icon, Columns, Column } from '@kube-design/components'
-import { Status } from 'components/Base'
+import { Columns, Column } from '@kube-design/components'
+import { Status, Text } from 'components/Base'
 import { getComponentStatus } from 'utils/status'
 
 import styles from './index.scss'
@@ -34,46 +34,38 @@ const Card = ({ cluster, component = {} }) => {
   return (
     <div className={styles.card} data-test="service-component">
       <Columns>
-        <Column className="is-narrow">
-          <Icon name="components" size={32} />
-        </Column>
-        <Column className="is-4">
-          <div className="h6">
-            <Link to={`/clusters/${cluster}/components/${namespace}/${name}`}>
-              {name}
-            </Link>
-            {descText !== descKey ? <p>{descText}</p> : null}
-          </div>
-        </Column>
-        <Column className="is-2">
-          <div>
-            <p>
-              <Status type={status} name={t(status)} />
-            </p>
-            <p>{t('Status')}</p>
-          </div>
+        <Column>
+          <Text
+            icon="components"
+            title={
+              <Link to={`/clusters/${cluster}/components/${namespace}/${name}`}>
+                {name}
+              </Link>
+            }
+            description={descText !== descKey ? <p>{descText}</p> : null}
+          />
         </Column>
         <Column className="is-2">
-          <div>
-            <p>
-              <strong>
-                {component.healthyBackends} / {component.totalBackends}
-              </strong>
-            </p>
-            <p>{t('Replicas Number')}</p>
-          </div>
+          <Text
+            title={<Status type={status} name={t(status)} />}
+            description={t('Status')}
+          />
         </Column>
         <Column className="is-2">
-          <div>
-            <p>
-              <strong>
-                {component.startedAt
-                  ? moment(component.startedAt).toNow(true)
-                  : '-'}
-              </strong>
-            </p>
-            <p>{t('Running Time')}</p>
-          </div>
+          <Text
+            title={`${component.healthyBackends} / ${component.totalBackends}`}
+            description={t('Replicas Number')}
+          />
+        </Column>
+        <Column className="is-2">
+          <Text
+            title={
+              component.startedAt
+                ? moment(component.startedAt).toNow(true)
+                : '-'
+            }
+            description={t('Running Time')}
+          />
         </Column>
       </Columns>
     </div>

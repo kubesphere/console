@@ -111,6 +111,7 @@ const config = {
     new webpack.HotModuleReplacementPlugin(),
     new ReactRefreshWebpackPlugin(),
     new webpack.WatchIgnorePlugin([
+      root('node_modules'),
       root('server'),
       root('build'),
       root('dist'),

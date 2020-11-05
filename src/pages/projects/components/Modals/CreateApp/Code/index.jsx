@@ -69,7 +69,7 @@ export default class CodeMode extends React.Component {
       <div className={styles.wrapper}>
         <div className={styles.step}>
           <div>{t('Edit Mode')}</div>
-          <p>{t('APPLICATION_YAML_DESC')}</p>
+          <p>{t('CREATE_BY_YAML_DESC')}</p>
         </div>
         <div className={styles.codeWrapper}>
           <div className={styles.pane}>

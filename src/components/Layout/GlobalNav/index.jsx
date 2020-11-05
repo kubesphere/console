@@ -18,6 +18,7 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
+import { get } from 'lodash'
 
 import { Icon } from '@kube-design/components'
 import { Modal } from 'components/Base'
@@ -39,8 +40,17 @@ class GlobalNav extends React.Component {
     onCancel() {},
   }
 
+  state = {
+    hoverNav: get(this.props, 'navs[0].name', ''),
+  }
+
+  handleHover = e => {
+    this.setState({ hoverNav: e.currentTarget.dataset.name })
+  }
+
   render() {
     const { visible, navs, onCancel } = this.props
+    const { hoverNav } = this.state
 
     return (
       <Modal
@@ -55,7 +65,12 @@ class GlobalNav extends React.Component {
         <div>
           <div className={styles.navs} onClick={onCancel}>
             {navs.map(nav => (
-              <NavItem key={nav.name} data={nav} />
+              <NavItem
+                key={nav.name}
+                data={nav}
+                isHover={hoverNav === nav.name}
+                onHover={this.handleHover}
+              />
             ))}
           </div>
           <Icon

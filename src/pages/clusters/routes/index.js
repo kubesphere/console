@@ -22,7 +22,6 @@ import ClusterLayout from '../containers/layout'
 import ListLayout from '../containers/Base/List'
 
 import Clusters from '../containers/Clusters'
-import AddCluster from '../containers/Clusters/AddCluster'
 import Overview from '../containers/Overview'
 import StorageClasses from '../containers/Storage/StorageClasses'
 import VolumeSnapshots from '../containers/Storage/VolumeSnapshots'
@@ -73,7 +72,6 @@ export default [
         },
     exact: true,
   },
-  { path: '/clusters/add', component: AddCluster, exact: true },
   {
     path: PATH,
     component: ClusterLayout,

@@ -16,21 +16,47 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { isEmpty, forEach } from 'lodash'
+import { get, set, isEmpty, forEach } from 'lodash'
 import { toJS } from 'mobx'
 import { Notify } from '@kube-design/components'
 import { Modal } from 'components/Base'
-import AddNodeModal from 'clusters/components/Modals/AddNode'
+import AddNodeModal from 'components/Forms/Cluster/NodeList/AddNode'
 import AddNodeTypeModal from 'clusters/components/Modals/AddNodeType'
+import NodeLogModal from 'clusters/components/Modals/NodeLog'
 import ObjectEditModal from 'components/Modals/ObjectEdit'
 import TaintManageModal from 'components/Modals/Node/TaintManagement'
 import TaintManagementModal from 'components/Modals/Node/TaintManagement/Batch'
+import KubeKeyClusterStore from 'stores/cluster/kubekey'
 
 export default {
   'node.add': {
-    on() {
-      Modal.open({
+    on({ kkName, success, ...props }) {
+      const store = new KubeKeyClusterStore()
+      const modal = Modal.open({
         modal: AddNodeModal,
+        onOk: async newNode => {
+          await store.fetchDetail({ name: kkName })
+          const template = toJS(store.detail._originData)
+
+          const hosts = get(template, 'spec.hosts', [])
+          const roleGroups = get(template, 'spec.roleGroups', {})
+
+          newNode.roles.forEach(role => {
+            roleGroups[role] = roleGroups[role] || []
+            roleGroups[role].push(newNode.name)
+          })
+
+          set(template, 'spec.hosts', [...hosts, newNode])
+          set(template, 'spec.roleGroups', roleGroups)
+
+          await store.update({ name: kkName }, template).then(() => {
+            Modal.close(modal)
+            success && success()
+          })
+        },
+        store,
+        addAfterCreate: true,
+        ...props,
       })
     },
   },
@@ -38,6 +64,14 @@ export default {
     on() {
       Modal.open({
         modal: AddNodeTypeModal,
+      })
+    },
+  },
+  'node.add.log': {
+    on({ detail }) {
+      Modal.open({
+        modal: NodeLogModal,
+        detail,
       })
     },
   },

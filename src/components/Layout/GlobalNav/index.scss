@@ -42,7 +42,7 @@
   padding-top: calc(50vh - 160px);
   overflow: hidden;
 
-  &:hover {
+  &.active {
     background-color: $blue-color03;
 
     .bottomIcon {

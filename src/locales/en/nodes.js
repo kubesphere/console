@@ -90,6 +90,8 @@ export default {
   NODE_STATUS_UNSCHEDULABLE: 'Unschedulable',
   NODE_STATUS_RUNNING: 'Running',
   NODE_STATUS_WARNING: 'Warning',
+  NODE_STATUS_PENDING: 'Creating',
+  NODE_STATUS_FAILED: 'Failed',
 
   CLUSTER_NODE_DESC:
     'This module manages cluster nodes and shows the running status of them. You can edit or delete nodes here.',

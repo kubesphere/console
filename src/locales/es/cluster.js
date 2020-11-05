@@ -84,6 +84,35 @@ export default {
   Validating: 'Validar',
   'Validation failed': 'Validación fallida',
   'Waiting for the cluster to join': 'Esperando a que el clúster se añada',
+  'How to Add': 'How to Add',
+  'New Cluster': 'New Cluster',
+  'Import Cluster': 'Import Cluster',
+  'Cluster Basic Info': 'Cluster Basic Info',
+  'Node Settings': 'Node Settings',
+  'Please add at least one cluster node':
+    'Please add at least one cluster node',
+  "Please specify the node's roles": "Please specify the node's roles",
+  'Please input the ip address': 'Please input the ip address',
+  'Add node to the cluster': 'Add node to the cluster',
+  'Node Internal IP Address': 'Node Internal IP Address',
+  'SSH Port': 'SSH Port',
+  'SSH IP Address': 'SSH IP Address',
+  'Username & Password': 'Username & Password',
+  'SSH Secret': 'SSH Secret',
+  'SSH Authentication Mode': 'SSH Authentication Mode',
+  'Kubernetes Cluster Settings': 'Kubernetes Cluster Settings',
+  'Network Plugin': 'Network Plugin',
+  'Max Pods': 'Max Pods',
+  'Pods CIDR': 'Pods CIDR',
+  'Service CIDR': 'Service CIDR',
+  'Default Storage Plugin': 'Default Storage Plugin',
+  'Private Registry Configuration': 'Private Registry Configuration',
+  'etcd Backup': 'etcd Backup',
+  'etcd Backup Dir': 'etcd Backup Dir',
+  'etcd Backup Period': 'etcd Backup Period',
+  'Keep Backup Number': 'Keep Backup Number',
+  'KubeSphere Settings': 'KubeSphere Settings',
+  'Invalid ip address': 'Invalid ip address',
   NO_CLUSTER_TIP: 'Agregue al menos un clúster.',
   NO_CLUSTER_TIP_DESC:
     'Un clúster es un grupo de nodos (máquinas físicas o virtuales) que ejecutan Kubernetes, y la función de Kubesphere también depende de los nodos en el clúster.',
@@ -160,4 +189,70 @@ export default {
   REMOVE_WORKSPACE_CONFIRM_TITLE: 'Are you sure to remove authorization?',
   REMOVE_WORKSPACE_CONFIRM_DESC:
     'Are you sure to remove the authorization to the workspace(s) {resource}? Once the authorization for the workspace to use the cluster is removed, all resources of the workspace in the current cluster will be deleted.',
+
+  SELECT_ADD_CLUSTER_METHOD: 'Choose how to add a cluster',
+  SELECT_ADD_CLUSTER_METHOD_DESC:
+    'Support for adding new clusters and importing existing clusters.',
+
+  NEW_CLUSTER_DESC: 'add a new Kubernetes cluster',
+  CLUSTER_NODE_SETTINGS_DESC: 'add the nodes for the cluster',
+  CLUSTER_NODE_INTERNAL_IP_DESC:
+    'Intranet IP addresses that can be accessed between nodes in the cluster.',
+  NODE_ROLE_DESC:
+    'The number of master nodes needs to be 1 or 3, and the number of woker nodes must be at least 1.',
+  SSH_IP_ADDRESS_DESC:
+    'Please fill in the IP address that the current Host cluster can access.',
+  SSH_AUTH_MODE_DESC: 'Support username password and SSH key',
+  SSH_ACCOUNT_DESC: 'Log in as root user by default',
+  SSH_PASSWORD_DESC: 'Password required to log in to the node',
+  SSH_SECRET_PLACEHOLDER: 'Paste the key here',
+
+  K8S_CLUSTER_SETTINGS_DESC: 'Initially configure the new Kubernetes cluster.',
+
+  CLUSTER_MAX_PODS_DESC:
+    'maxPods is the number of pods that can run on this Kubelet. [Default: 110].',
+
+  K8S_NETWORK_PLUGIN_CALICO:
+    'Calico is a pure 3-layer network solution that seamlessly integrates the IaaS cloud architecture and can provide IP communication between VMs, containers, and bare metal.',
+  K8S_NETWORK_PLUGIN_FLANNEL:
+    'Flannel allows Docker containers created by different node hosts in the cluster to have a unique virtual IP address in the entire cluster',
+  K8S_NETWORK_PLUGIN_CILIUM:
+    'eBPF-based Networking, Security, and Observability.',
+
+  KUBE_PODS_CIDR_DESC:
+    "The Pod running on the node allocates IP addresses from the node's Pod CIDR range.F",
+  KUBE_SERVICE_CIDR_DESC: 'IP address range assigned to the service.',
+
+  CLUSTER_COMPONENTS_DESC: 'Customize the service components of the cluster.',
+
+  CLUSTER_ADVANCED_SETTINGS_DESC:
+    'You can configure the services you need according to your needs.',
+  CLUSTER_PRIVATE_REGISTRY_DESC:
+    'Configure a private registry for the cluster. The cluster will use this registry to pull all the required mirrors.',
+
+  CLUSTER_CONTROLPLANE_ENDPOINT: 'Cluster Access EndPoint',
+  CLUSTER_CONTROLPLANE_ENDPOINT_DESC:
+    'Directly communicate with the cluster through the authorized cluster access address, and generate kubeconfig for the cluster to access the cluster.',
+  CLUSTER_ETCD_BACKUP_DESC: 'Make regular backup settings for etcd',
+  CLUSTER_ETCD_BACKUP_DIR_DESC:
+    'The location to store etcd backups files on etcd host machines.',
+  CLUSTER_ETCD_BACKUP_PERIOD_DESC:
+    'Period of running backup etcd job, the unit is minutes.',
+  CLUSTER_ETCD_BACKUP_NUMBER_DESC: 'How many backup replicas to keep.',
+  CLUSTER_KUBESPHERE_SETTINGS_DESC: 'Customized settings for KubeSphere',
+
+  CLUSTER_CREATING: 'Cluster is being created',
+  CLUSTER_CREATING_TIP:
+    'The current cluster is being created, and there are no nodes available for the time being.',
+
+  CLUSTER_INIT_NODES: 'Init Nodes',
+  CLUSTER_PULL_IMAGES: 'Pull Images',
+  CLUSTER_INIT_ETCD_CLUSTER: 'Init etcd Cluster',
+  CLUSTER_INIT_CONTROL_PLANE: 'Init Control Plane',
+  CLUSTER_JOIN_NODES: 'Join Nodes',
+  CLUSTER_INSTALL_ADDONS: 'Install Addons',
+  FETCHING_LOGS: `Fetching logs...`,
+
+  MASTER_NODE_COUNT_TIP: 'The number of Master nodes needs to be 1 or 3',
+  WORKER_NODE_COUNT_TIP: 'The number of Worker nodes is at least 1',
 }

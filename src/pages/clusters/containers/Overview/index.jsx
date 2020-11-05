@@ -33,7 +33,7 @@ export default class Overview extends React.Component {
     const { isReady } = this.cluster.detail
 
     if (!isReady) {
-      return <Initializing store={this.cluster} />
+      return <Initializing store={this.cluster} match={this.props.match} />
     }
 
     return <Dashboard match={this.props.match} />

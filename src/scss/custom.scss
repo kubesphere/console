@@ -1,5 +1,6 @@
 .input-password {
-  width: 455px !important;
+  width: 100% !important;
+  max-width: 455px;
 }
 
 // recharts
@@ -190,4 +191,8 @@
   .icon.is-right {
     right: 12px;
   }
+}
+
+.form-group {
+  background-color: #fff;
 }
