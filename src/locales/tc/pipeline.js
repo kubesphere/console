@@ -464,4 +464,12 @@ export default {
   'Started By {name}': '由{name}觸發掃描',
   'Credential ID exists': '憑證 ID 已存在',
   'Invalid credential ID': '憑證 ID 格式不合法',
+  CI: '持續集成 (CI)',
+  CI_DESC:
+    '持續集成（CI）是在源代碼變更後自動檢測、拉取、構建和（在大多數情況下）進行單元測試的過程。 ',
+  CICD: '持續集成&交付 (CI/CD)',
+  CICD_DESC:
+    '持續部署（CD）是指能夠自動提供持續交付管道中發布版本給最終用戶使用的想法。根據用戶的安裝方式，在雲環境中自動部署、app 升級（如手機上的應用程序）、更新網站或只更新可用版本列表。 ',
+  CUSTOM_PIPELIEN: '自定義流水線',
+  CUSTOM_PIPELIEN_DESC: '您可以選擇您需要的任務自定義流水線的工作內容',
 }

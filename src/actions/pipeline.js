@@ -202,7 +202,7 @@ export default {
     },
   },
   'pipeline.pipeline': {
-    on({ store, success, jsonData, params, projectName, ...props }) {
+    on({ store, rootStore, success, jsonData, params, ...props }) {
       const modal = Modal.open({
         onOk: async jenkinsFile => {
           await store.updateJenkinsFile(jenkinsFile, params)
@@ -213,7 +213,7 @@ export default {
         modal: PipelineModal,
         jsonData,
         params,
-        projectName,
+        store,
         ...props,
       })
     },

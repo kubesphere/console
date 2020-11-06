@@ -22,6 +22,9 @@ import PropTypes from 'prop-types'
 import { Modal } from 'components/Base'
 import ConfimModal from 'components/Modals/Delete'
 import PipelineContent from 'devops/components/Pipeline'
+import classnames from 'classnames'
+import { isEmpty } from 'lodash'
+import PipelineTemplate from 'devops/components/Pipeline/PipelineTemplate'
 
 import styles from './index.scss'
 
@@ -52,6 +55,7 @@ export default class PipelineModal extends React.Component {
 
     this.state = {
       isshowComfim: false,
+      createPipelineType: !isEmpty(this.props.jsonData) ? 'custom' : undefined,
     }
   }
 
@@ -70,8 +74,14 @@ export default class PipelineModal extends React.Component {
     this.props.onCancel()
   }
 
-  renderForms() {
+  renderPipelineContent() {
     const { jsonData, params, isSubmitting } = this.props
+    const { createPipelineType } = this.state
+
+    if (!createPipelineType) {
+      return <PipelineTemplate />
+    }
+
     return (
       <PipelineContent
         className={styles.content}
@@ -87,22 +97,37 @@ export default class PipelineModal extends React.Component {
 
   render() {
     const { visible } = this.props
+    const { createPipelineType } = this.state
+    const isPipelineModal = !isEmpty(createPipelineType)
+
+    const modalProps = {
+      hideHeader: isPipelineModal,
+      closable: !isPipelineModal,
+      title: t('Create Pipeline'),
+      imageIcon: '/assets/pipeline/pipeline-icon-dark.svg',
+      description: 'Build, test and deploy with Pipelines',
+    }
 
     return (
       <React.Fragment>
         <Modal
-          width={Math.max(this.CLIENT_WIDTH - 40, 1200)}
-          bodyClassName={styles.body}
+          width={
+            !createPipelineType
+              ? '1400px'
+              : Math.max(this.CLIENT_WIDTH - 40, 1200)
+          }
+          bodyClassName={classnames(styles.body, {
+            [styles.templeHeight]: !createPipelineType,
+          })}
           visible={visible}
           closable={false}
           maskClosable={false}
           onOk={this.props.onOk}
           onCancel={this.showConfirm}
-          hideHeader
           hideFooter
+          {...modalProps}
         >
-          <div className={styles.title}>{t('Pipeline Configuration')}</div>
-          {this.renderForms()}
+          {this.renderPipelineContent()}
         </Modal>
         <ConfimModal
           visible={this.state.isshowComfim}

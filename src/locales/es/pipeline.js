@@ -488,4 +488,13 @@ export default {
   'Started By {name}': 'Comenzado por {name}',
   'Credential ID exists': 'El ID de credencial ya existe',
   'Invalid credential ID': 'Invalid credential ID',
+  CI: 'Continuous Integration (CI)',
+  CI_DESC:
+    'Continuous integration (CI) is the process of automatically detecting, pulling, building, and (in most cases) unit testing after source code changes.',
+  CICD: 'Continuous Integration & Delivery (CI/CD)',
+  CICD_DESC:
+    "Continuous deployment (CD) refers to the idea of automatically providing the release version in the continuous delivery pipeline to end users. According to the user's installation method, automatic deployment in the cloud environment, app upgrades (such as apps on mobile phones), website updates, or only the list of available versions.",
+  CUSTOM_PIPELIEN: 'Custom Pipeline',
+  CUSTOM_PIPELIEN_DESC:
+    'You can select the tasks you need to customize the work content of the pipeline',
 }
