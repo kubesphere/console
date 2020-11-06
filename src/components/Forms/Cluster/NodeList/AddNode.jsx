@@ -17,7 +17,7 @@
  */
 
 import React, { Component } from 'react'
-import { get } from 'lodash'
+import { cloneDeep, get } from 'lodash'
 import classNames from 'classnames'
 import {
   Form,
@@ -37,7 +37,14 @@ import styles from './index.scss'
 
 export default class AddNode extends Component {
   state = {
+    formData: cloneDeep(this.props.data || {}),
     authMode: get(this.props.data, 'privateKey') ? 'secret' : 'password',
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.visible !== prevProps.visible) {
+      this.setState({ formData: cloneDeep(this.props.data || {}) })
+    }
   }
 
   get authModes() {
@@ -96,8 +103,8 @@ export default class AddNode extends Component {
   }
 
   render() {
-    const { visible, onOk, onCancel, data, addAfterCreate } = this.props
-    const { authMode } = this.state
+    const { visible, onOk, onCancel, addAfterCreate } = this.props
+    const { authMode, formData } = this.state
 
     const defaultRoles = addAfterCreate ? ['worker'] : undefined
 
@@ -106,7 +113,7 @@ export default class AddNode extends Component {
         icon="add"
         title={t('Add Node')}
         width={600}
-        data={data}
+        data={formData}
         visible={visible}
         onOk={onOk}
         onCancel={onCancel}

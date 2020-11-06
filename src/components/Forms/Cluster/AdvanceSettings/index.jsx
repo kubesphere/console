@@ -80,7 +80,7 @@ export default class ClusterSettings extends React.Component {
                 name="spec.controlPlaneEndpoint.port"
                 integer
                 min={0}
-                min={65535}
+                max={65535}
               />
             </Form.Item>
           </Form.Group>

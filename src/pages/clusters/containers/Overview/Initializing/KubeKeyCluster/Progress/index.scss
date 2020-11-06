@@ -17,6 +17,12 @@
 .title {
   margin-bottom: 12px;
   @include TypographySymbolText($dark-color07);
+
+  :global {
+    .icon {
+      margin-top: -2px;
+    }
+  }
 }
 
 .progress {
