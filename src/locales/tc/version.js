@@ -17,7 +17,7 @@
  */
 
 export default {
-  'Submit Review': '提交審核',
+  'Submit for Review': '提交審核',
   'Cancel Review': '取消審核',
   'Release to Store': '發佈到商店',
   'View in Store': '在商店查看',
@@ -114,7 +114,7 @@ export default {
   VERSION_SUBMIT_NOTE:
     '在正式提交審核之前，請確認你的應用已經通過了以下基本功能的測試',
   VERSION_SUBMIT_DOC: '更全面的測試手冊請參看',
-  'Develop and test guide': '開發者測試指南',
+  'Develop and test guide': '《開發者測試指南》',
   VERSION_NUMBER_DESC:
     '應用版本的重要標識，只能包含數字、小數點及中括號("[]")，並且必需以數字開頭並包含小數點',
   VERSION_NUMBER_ERROR_NOTE:

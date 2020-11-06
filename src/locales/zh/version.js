@@ -17,7 +17,7 @@
  */
 
 export default {
-  'Submit Review': '提交审核',
+  'Submit for Review': '提交审核',
   'Cancel Review': '撤消审核',
   'Release to Store': '发布到商店',
   'View in Store': '在商店查看',
@@ -114,7 +114,7 @@ export default {
   VERSION_SUBMIT_NOTE:
     '在正式提交审核之前，请确认你的应用已经通过了以下基本功能的测试',
   VERSION_SUBMIT_DOC: '更全面的测试手册请参看',
-  'Develop and test guide': '开发者测试指南',
+  'Develop and test guide': '《开发者测试指南》',
   VERSION_NUMBER_DESC:
     '应用版本的重要标识，只能包含数字、小数点及中括号("[]")，并且必需以数字开头并包含小数点',
   VERSION_NUMBER_ERROR_NOTE:

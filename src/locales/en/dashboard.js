@@ -74,7 +74,7 @@ export default {
   USAGE_RATE: 'Usage',
   NO_PROJECT: 'No available projects have been found.',
   NO_POD_MONITOR_DATA: 'No pods monitoring data',
-  RESOURCE_WARNING_TIPS: 'There are {warnNum} {tipName} display abnormally.',
+  RESOURCE_WARNING_TIPS: '{warnNum} abnormal {tipName} in total.',
   CPU_AVERAGE_LOAD: 'Load Average',
 
   USER_DASHBOARD_EMPTY_TITLE: 'You do not belong to any workspaces currently.',

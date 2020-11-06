@@ -178,7 +178,7 @@ export default class CreateModal extends React.Component {
     return (
       <Modal
         width={960}
-        title={t('Submit Review')}
+        title={t('Submit for Review')}
         description={t('SUBMIT_REVIEW_DESC')}
         icon={'templet'}
         bodyClassName={styles.body}
