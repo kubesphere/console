@@ -51,6 +51,7 @@ export default class ClusterSettings extends React.Component {
       item => item.value === storagePlugin
     )
     if (
+      storage &&
       storage.template &&
       isEmpty(get(props.formTemplate, 'spec.addons[0]'))
     ) {
@@ -83,7 +84,8 @@ export default class ClusterSettings extends React.Component {
   get networkPlugins() {
     return get(
       this.props.store.kubekey,
-      'parameters.kubernetes.supportedCNIs'
+      'parameters.kubernetes.supportedCNIs',
+      []
     ).map(plugin => ({
       label: plugin.title,
       value: plugin.name,
@@ -95,7 +97,7 @@ export default class ClusterSettings extends React.Component {
 
   @computed
   get storagePlugins() {
-    return get(this.props.store.kubekey, 'parameters.storagePlugins').map(
+    return get(this.props.store.kubekey, 'parameters.storagePlugins', []).map(
       plugin => ({
         label: plugin.title,
         value: plugin.name,
@@ -133,9 +135,12 @@ export default class ClusterSettings extends React.Component {
     const storage = this.storagePlugins.find(
       item => item.value === storagePlugin
     )
-    storage.template = storage.template || {}
-    set(this.props.formTemplate, 'spec.addons[0]', toJS(storage.template))
-    this.setState({ storageParams: get(storage, 'params', []) })
+
+    if (storage) {
+      storage.template = storage.template || {}
+      set(this.props.formTemplate, 'spec.addons[0]', toJS(storage.template))
+      this.setState({ storageParams: get(storage, 'params', []) })
+    }
   }
 
   render() {

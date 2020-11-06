@@ -19,7 +19,7 @@
 import React, { Component } from 'react'
 import { get } from 'lodash'
 import classNames from 'classnames'
-import { Icon } from '@kube-design/components'
+import { Tooltip, Icon } from '@kube-design/components'
 import { CLUSTER_CREATING_STEPS } from '../constants'
 
 import styles from './index.scss'
@@ -27,16 +27,12 @@ import styles from './index.scss'
 export default class Progress extends Component {
   getBarLength(conditions) {
     if (conditions.length === 0) {
-      return '30px'
-    }
-
-    if (conditions.length === CLUSTER_CREATING_STEPS.length) {
-      return 'calc(100% + 1px)'
+      return '20px'
     }
 
     const len = conditions.length - 1
-
-    return `calc(${len * 20}% - ${len * 24}px + 80px)`
+    const lastStepComplete = conditions[len].status
+    return `calc(${len * 20}% - ${len * 24 - (lastStepComplete ? 80 : 60)}px)`
   }
 
   render() {
@@ -44,7 +40,12 @@ export default class Progress extends Component {
     return (
       <div className={styles.wrapper}>
         <div className={styles.card}>
-          <div className={styles.title}>{t('Cluster Creation Progress')}</div>
+          <div className={styles.title}>
+            {t('Cluster Creation Progress')}&nbsp;
+            <Tooltip content={t('CLUSTER_CREATION_PROGRESS_TIP')}>
+              <Icon name="question" />
+            </Tooltip>
+          </div>
           <div className={styles.progress}>
             <div className={styles.bar}>
               <div

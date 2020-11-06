@@ -255,4 +255,7 @@ export default {
 
   MASTER_NODE_COUNT_TIP: 'The number of Master nodes needs to be 1 or 3',
   WORKER_NODE_COUNT_TIP: 'The number of Worker nodes is at least 1',
+
+  CLUSTER_CREATION_PROGRESS_TIP:
+    'According to the size of the created cluster and the difference in network connection, it takes about 30 to 60 minutes to create the entire cluster. ',
 }

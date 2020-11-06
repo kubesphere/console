@@ -295,4 +295,7 @@ export default {
 
   MASTER_NODE_COUNT_TIP: 'Master 节点数量需要为 1 或 3',
   WORKER_NODE_COUNT_TIP: 'Worker 节点数量至少为1',
+
+  CLUSTER_CREATION_PROGRESS_TIP:
+    '根据所创建的集群规模和网络连接的不同，创建完成整个集群大概需要 30 ~ 60 分钟。',
 }

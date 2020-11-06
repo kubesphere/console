@@ -41,7 +41,10 @@ export default class KubeKeyClusterStore extends Base {
   @action
   async fetchParameters() {
     const result = await request.get(
-      `api/v1/namespaces/kubekey-system/configmaps/kubekey-parameters`
+      `api/v1/namespaces/kubekey-system/configmaps/kubekey-parameters`,
+      {},
+      {},
+      () => {}
     )
     this.parameters = safeParseJSON(
       get(result, "data['parameters.json']", ''),
