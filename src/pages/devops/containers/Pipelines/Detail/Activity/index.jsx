@@ -340,9 +340,9 @@ export default class Activity extends React.Component {
     const { data, isLoading, total, page, limit, filters } = activityList
     const omitFilters = omit(filters, 'page', 'workspace')
     const pagination = { total, page, limit }
-    const isEmptyList = isLoading === false && data.length === 0
+    const isEmptyList = total === 0
 
-    if (isEmptyList && !filters.page) {
+    if (isEmptyList) {
       const { detail } = this.store
       const runnable = this.enabledActions.includes('edit')
       const isMultibranch = detail.branchNames
