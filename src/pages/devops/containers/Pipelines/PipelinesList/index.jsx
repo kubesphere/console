@@ -19,7 +19,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { toJS } from 'mobx'
-import { parse } from 'qs'
 import { cloneDeep, get, omit } from 'lodash'
 
 import Health from 'projects/components/Health'
@@ -42,7 +41,7 @@ export default class PipelinesList extends React.Component {
     super(props)
 
     this.formTemplate = {
-      devopsName: this.props.devopsStore.devopsName,
+      devopsName: this.devopsName,
       cluster: this.cluster,
       devops: this.devops,
       enable_timer_trigger: true,
@@ -50,26 +49,13 @@ export default class PipelinesList extends React.Component {
     }
   }
 
-  componentDidMount() {
-    this.unsubscribe = this.routing.history.subscribe(location => {
-      if (location.pathname === this.props.match.url) {
-        const params = parse(location.search.slice(1))
-        this.getData(params)
-      }
-    })
-  }
-
   componentWillReceiveProps(nextProps) {
     const { params } = this.props.match
     const { params: nextParams } = nextProps.match
 
-    if (params.devopsName !== nextParams.devopsName) {
+    if (params.devops !== nextParams.devops) {
       this.getData(nextParams)
     }
-  }
-
-  componentWillUnmount() {
-    this.unsubscribe && this.unsubscribe()
   }
 
   get enabledActions() {
@@ -138,6 +124,15 @@ export default class PipelinesList extends React.Component {
         action: 'edit',
         onClick: record => {
           this.handleAdvanceEdit(record.name)
+        },
+      },
+      {
+        key: 'copy',
+        icon: 'copy',
+        text: t('Copy Pipeline'),
+        action: 'edit',
+        onClick: record => {
+          this.handleCopy(record.name)
         },
       },
       {
@@ -229,7 +224,22 @@ export default class PipelinesList extends React.Component {
     })
   }
 
-  handleAdvanceEdit = async name => {
+  handleCopy = async name => {
+    const { trigger } = this.props
+    const formData = await this.getCRDDetail(name)
+
+    trigger('pipeline.copy', {
+      title: t('Copy Pipeline'),
+      formTemplate: formData,
+      devops: this.devops,
+      cluster: this.cluster,
+      success: () => {
+        this.getData()
+      },
+    })
+  }
+
+  getCRDDetail = async name => {
     await this.props.store.fetchDetail({
       cluster: this.cluster,
       name,
@@ -239,7 +249,13 @@ export default class PipelinesList extends React.Component {
     const formData = cloneDeep(this.props.store.getPipeLineConfig())
     formData.devops = this.devops
     formData.cluster = this.cluster
-    formData.devopsName = this.props.devopsStore.devopsName
+    formData.devopsName = this.devopsName
+
+    return formData
+  }
+
+  handleAdvanceEdit = async name => {
+    const formData = await this.getCRDDetail(name)
 
     this.props.trigger('pipeline.advance.edit', {
       title: t('Edit Pipeline'),

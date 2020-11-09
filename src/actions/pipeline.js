@@ -23,6 +23,8 @@ import CreateModal from 'components/Modals/Create'
 import AdvanceEditorModal from 'components/Modals/Pipelines/AdvanceEdit'
 import ParamsFormModal from 'components/Forms/Pipelines/ParamsFormModal'
 import BaseInfoModal from 'components/Modals/Pipelines/Base'
+import CopyModal from 'components/Modals/Pipelines/Copy'
+
 import ScanRepositoryLogs from 'components/Modals/Pipelines/ScanRepositoryLogs'
 import PipelineModal from 'components/Modals/Pipelines/PipelineEdit'
 
@@ -214,6 +216,43 @@ export default {
         jsonData,
         params,
         store,
+        ...props,
+      })
+    },
+  },
+  'pipeline.copy': {
+    on({ store, cluster, devops, success, formTemplate, ...props }) {
+      const modal = Modal.open({
+        onOk: async data => {
+          updatePipelineParams(data, true)
+          updatePipelineParamsInSpec(data, devops)
+
+          Object.keys(data).forEach(key => {
+            if (key === 'metadata' && data[key]) {
+              Object.keys(data[key]).forEach(_key => {
+                if (_key !== 'name' && _key !== 'namespace') {
+                  delete data[key][_key]
+                }
+              })
+            }
+          })
+
+          await store.createPipeline({
+            data,
+            devops,
+            cluster,
+          })
+
+          Modal.close(modal)
+          Notify.success({ content: `${t('Created Successfully')}!` })
+          success && success()
+        },
+        store,
+        cluster,
+        devops,
+        success,
+        formTemplate,
+        modal: CopyModal,
         ...props,
       })
     },

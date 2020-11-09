@@ -497,4 +497,5 @@ export default {
   CUSTOM_PIPELIEN: 'Custom Pipeline',
   CUSTOM_PIPELIEN_DESC:
     'You can select the tasks you need to customize the work content of the pipeline',
+  'Copy Pipeline': 'Copiar pipeline',
 }
