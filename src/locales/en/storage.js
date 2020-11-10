@@ -74,7 +74,7 @@ export default {
   VOLUME_SNAPSHOT_STATUS_FAILED: 'Created unsuccessfully',
   VOLUME_SNAPSHOT_STATUS_READY: 'Created successfully',
   volumes: 'volumes',
-  VolumeSnapshots: 'VolumeSnapshots',
+  VolumeSnapshots: 'Volume Snapshots',
 
   'Storage Classs': 'Storage Classes',
   ACCESS_MODE_RWO: 'Single node read-write',

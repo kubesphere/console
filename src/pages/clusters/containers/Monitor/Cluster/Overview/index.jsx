@@ -227,7 +227,7 @@ class Overview extends React.Component {
       },
       {
         type: 'scheduler',
-        name: t('K8S Scheduler'),
+        name: t('K8s Scheduler'),
       },
       {
         type: 'node',
