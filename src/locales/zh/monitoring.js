@@ -56,7 +56,7 @@ export default {
   'Abnormal Pods': '异常容器组',
 
   'Controller Manager': '管理控制中心',
-  'K8S Scheduler': 'K8s 调度器',
+  'K8s Scheduler': 'K8s 调度器',
   Scheduler: '调度器',
   Node: '节点',
 

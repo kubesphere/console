@@ -51,7 +51,7 @@ export default {
   'gRPC Stream Messages': 'Mensajes de stream de gRPC',
   'Historical Monitoring': 'Datos de monitorización históricos',
   'inode Utilization': 'Utilización de inode',
-  'K8S Scheduler': 'Scheduler K8S',
+  'K8s Scheduler': 'Scheduler K8s',
   Monitoring: 'Monitorización',
   'Monitoring Center': 'Centro de monitorización',
   ms: 'ms',

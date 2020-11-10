@@ -459,7 +459,7 @@ export const replaceToLocalOrigin = url => {
 }
 
 /**
- * send the k8s requests with dry run
+ * send the K8s requests with dry run
  * @param {Object[]} requests - the requests need dry run.
  * @param {string} requests[].url - the url of a request
  * @param {Object} requests[].data - the data of a request
