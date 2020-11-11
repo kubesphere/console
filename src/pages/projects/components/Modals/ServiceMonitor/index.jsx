@@ -87,7 +87,10 @@ export default class ServiceMonitor extends Component {
       item => item.name === this.state.selectServiceName
     )
     set(data, 'spec.selector.matchLabels', selectService.labels)
-    set(data, 'metadata.labels', selectService.labels)
+    set(data, 'metadata.labels', {
+      ...(selectService.labels || {}),
+      'app.kubernetes.io/vendor': 'kubesphere',
+    })
 
     onOk(data)
   }
