@@ -26,3 +26,8 @@
   font-weight: $font-bold;
   color: $light-color07;
 }
+
+.loading {
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
