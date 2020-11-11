@@ -20,21 +20,22 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { isEmpty } from 'lodash'
 
-import { Card } from 'components/Base'
+import { Panel } from 'components/Base'
 import Item from './Item'
+import styles from './index.scss'
 
-export default class ServicesCard extends React.Component {
+export default class AppComponentsCard extends React.Component {
   static propTypes = {
     className: PropTypes.string,
     prefix: PropTypes.string,
     data: PropTypes.array,
-    isLoading: PropTypes.bool,
+    loading: PropTypes.bool,
   }
 
   static defaultProps = {
     prefix: '',
     data: [],
-    isLoading: false,
+    loading: false,
   }
 
   renderContent() {
@@ -42,23 +43,22 @@ export default class ServicesCard extends React.Component {
 
     if (isEmpty(data)) return null
 
-    return data.map(item => (
-      <Item key={`${item.type}-${item.name}`} prefix={prefix} detail={item} />
-    ))
+    return (
+      <div className={styles.content}>
+        {data.map(item => (
+          <Item key={item.uid} prefix={prefix} detail={item} />
+        ))}
+      </div>
+    )
   }
 
   render() {
     const { className, loading } = this.props
 
     return (
-      <Card
-        className={className}
-        title={t('Services')}
-        loading={loading}
-        empty={t('NOT_AVAILABLE', { resource: t('Service') })}
-      >
+      <Panel className={className} title={t('Services')} loading={loading}>
         {this.renderContent()}
-      </Card>
+      </Panel>
     )
   }
 }

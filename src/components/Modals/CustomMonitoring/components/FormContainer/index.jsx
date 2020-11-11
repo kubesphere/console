@@ -18,7 +18,7 @@
 
 import React from 'react'
 
-import { Form, Icon } from '@kube-design/components'
+import { Form, Button } from '@kube-design/components'
 
 import styles from './index.scss'
 
@@ -32,14 +32,18 @@ export default function FormContainer({
     <Form className={styles.wrapper} data={formData} onSubmit={onSubmit}>
       <div className={styles.form}>{children}</div>
       <div className={styles.formFooter}>
-        <span onClick={onCancel}>
-          <Icon name={'close'} type="light" />
-        </span>
-        <span>
-          <button className={styles.button} type={'submit'}>
-            <Icon name={'check'} type="light" />
-          </button>
-        </span>
+        <Button
+          type="control"
+          icon="close"
+          iconType="light"
+          onClick={onCancel}
+        />
+        <Button
+          type="control"
+          icon="check"
+          iconType="light"
+          htmlType="submit"
+        />
       </div>
     </Form>
   )

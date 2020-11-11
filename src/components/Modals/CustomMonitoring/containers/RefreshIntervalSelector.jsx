@@ -24,15 +24,6 @@ import Select from '../components/DarkThemeSelect'
 
 import { refreshInterval as refreshOpts } from '../options'
 
-function generateOptions(opts) {
-  return opts.map(interval => ({
-    label: interval
-      ? `${t('Interval')} ${translateTimeAlias(interval)}`
-      : t('No Refreshing'),
-    value: interval,
-  }))
-}
-
 @inject('monitoringStore')
 @observer
 class RefreshIntervalSelector extends React.Component {
@@ -40,7 +31,12 @@ class RefreshIntervalSelector extends React.Component {
     this.props.monitoringStore.changeRefreshInterval(value)
   }
 
-  options = generateOptions(refreshOpts)
+  options = refreshOpts.map(interval => ({
+    label: interval
+      ? `${t('Interval')} ${translateTimeAlias(interval)}`
+      : t('No Refreshing'),
+    value: interval,
+  }))
 
   render() {
     const { monitoringStore } = this.props

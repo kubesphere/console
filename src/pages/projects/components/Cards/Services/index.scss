@@ -1,53 +1,29 @@
 @import '~scss/variables';
 @import '~scss/mixins';
 
+.content {
+  padding: 12px;
+  border-radius: 4px;
+  background-color: $card-bg-color;
+}
+
 .item {
-  padding: 20px 24px;
+  display: flex;
+  padding: 12px;
   margin-bottom: 8px;
-  line-height: 20px;
-  background-color: $th-bg-color;
+  background-color: $white;
+  border: solid 1px $border-color;
   border-radius: 4px;
 
   &:last-child {
     margin-bottom: 0;
   }
-}
 
-.icon {
-  display: inline-block;
-  vertical-align: middle;
-}
-
-.name {
-  display: inline-block;
-  vertical-align: middle;
-  width: 278px;
-  margin-left: 20px;
-  border-right: 1px dashed #d8dee5; 
-
-  & > p {
-    color: $second-text-color;
-  }
-
-  & > a {
-    font-family: $font-family-id;
-    font-size: $size-normal;
-    font-weight: $font-bold;
-    line-height: 1.43;
-    color: $title-color;
-
-    &:hover {
-      color: $primary;
+  & > div {
+    margin-right: 12px;
+    min-width: 20%;
+    &:first-child {
+      flex: 1;
     }
-  }
-}
-
-.status {
-  display: inline-block;
-  vertical-align: middle;
-  margin-left: 20px;
-
-  span {
-    color: #5f708a;
   }
 }

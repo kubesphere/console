@@ -7,7 +7,13 @@
   margin: 10px;
   cursor: pointer;
   padding: 0 10px;
+  transition: all $trans-speed ease-in-out;
+
   & > span {
     margin-right: 10px;
+  }
+
+  &:hover {
+    background-color: $bg-color;
   }
 }

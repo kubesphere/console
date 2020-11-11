@@ -16,74 +16,59 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 import React from 'react'
-import { get, isArray } from 'lodash'
+import { get } from 'lodash'
 import CustomMonitoringModal from 'components/Modals/CustomMonitoring'
 import CustomMonitoringTemplate from 'stores/monitoring/custom/template'
-import tempalteSettings from 'stores/monitoring/custom/template.json'
 import CreateModal from 'components/Modals/Create'
 import FORM_STEPS from 'configs/steps/dashborads'
-import { MODULE_KIND_MAP } from 'utils/constants'
-import FORM_TEMPLATES from 'utils/form.templates'
 
-export default class CrateDashboardModalContainer extends React.Component {
+export default class CreateDashboardModalContainer extends React.Component {
   state = {
     finishBasis: false,
   }
 
-  onSave = async () => {
-    this.props.onSave(this.store.toJS())
+  handleOk = async () => {
+    this.props.onOk(this.store.toJS())
   }
 
   handleBasicConfirm = params => {
-    const { cluster } = this.props
-    const kind = MODULE_KIND_MAP[this.props.store.module]
-    const config = isArray(params) ? params[0] : params[kind]
+    const { cluster, namespace } = this.props
 
     this.store = new CustomMonitoringTemplate({
-      isEditing: true,
-      name: get(config, 'metadata.name'),
-      namespace: get(config, 'metadata.namespace'),
-      description: get(config, 'spec.description'),
       cluster,
-      ...config.spec,
+      namespace,
+      formTemplate: params,
+      name: get(params, 'metadata.name'),
+      description: get(
+        params,
+        'metadata.annotations["kubesphere.io/description"]'
+      ),
+      isEditing: true,
     })
 
     this.setState({ finishBasis: true })
   }
 
-  tempalteSettingsOpts = Object.entries(tempalteSettings)
-    .map(([key, configs]) => ({
-      value: key,
-      image: configs.logo,
-      label: configs.name,
-      description: configs.description,
-    }))
-    .concat({
-      value: '-',
-      image: '/assets/prometheus.svg',
-      label: t('Custom'),
-      description: t('SERVICE_BUILT_INTERFACE'),
-    })
-
   render() {
     const { finishBasis } = this.state
-    const { cluster, namespace, store } = this.props
+    const {
+      cluster,
+      namespace,
+      formTemplate,
+      isSubmitting,
+      onCancel,
+      store,
+    } = this.props
     const { module } = store
-    const kind = MODULE_KIND_MAP[module]
-    const formTemplate = {
-      [kind]: FORM_TEMPLATES[module]({
-        namespace,
-      }),
-    }
 
     if (finishBasis) {
       return (
         <CustomMonitoringModal
           store={this.store}
           cluster={cluster}
-          isSaving={this.props.isSubmitting}
-          onCancel={this.props.onCancel}
-          onSave={this.onSave}
+          onOk={this.handleOk}
+          onCancel={onCancel}
+          isSubmitting={isSubmitting}
         />
       )
     }
@@ -97,9 +82,10 @@ export default class CrateDashboardModalContainer extends React.Component {
         namespace={namespace}
         formTemplate={formTemplate}
         steps={FORM_STEPS}
-        store={this.props.store}
+        store={store}
         onOk={this.handleBasicConfirm}
-        onCancel={this.props.onCancel}
+        onCancel={onCancel}
+        okBtnText={t('Next')}
       />
     )
   }

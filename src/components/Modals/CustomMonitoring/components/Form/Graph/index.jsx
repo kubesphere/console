@@ -54,7 +54,7 @@ export default class SingleStatDataForm extends Component {
           <Form.Item>
             <Columns>
               <Column>
-                <Form.Item rules={[{ required: true }]}>
+                <Form.Item>
                   <FormItemContainer name={'title'}>
                     {({ onChange, value }) => (
                       <Field label={t('GRAPH_NAME')}>

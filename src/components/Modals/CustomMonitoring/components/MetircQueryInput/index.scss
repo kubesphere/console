@@ -8,6 +8,12 @@
   line-height: 24px;
   padding: 0 4px;
   align-items: center;
+
+  :global {
+    input.input:not([readonly]):not([disabled]):focus {
+      box-shadow: none;
+    }
+  }
 }
 
 .btn {
@@ -26,7 +32,7 @@
 }
 
 .input {
-  flex: 1
+  flex: 1;
 }
 
 .debug {
@@ -40,10 +46,15 @@
   color: $white;
   max-height: 300px;
   overflow: auto;
-  p {
-    @include TypographyParagraph($light-color02);
-    line-height: 30px;
-    padding:0 10px;
+
+  .text {
+    padding: 4px 12px;
+    cursor: pointer;
+
+    & > div > div {
+      color: $white;
+    }
+
     &:hover {
       background: $dark-color05;
     }
@@ -51,39 +62,13 @@
 }
 
 .autoComplete {
-
-  li {
-    &:hover {
-      background-color: $dark-color06 !important;
-    }
-  }
-
-  :global {    
-    .autocomplete-selector {
-      background: $dark-color07;
-    
-      .active {
-        background-color: $dark-color06 !important;
-      }
-
-      .autocomplete-option {
-        @include TypographyParagraph($light-color02);
-
-        color: $white !important;
-      }
-    
-      .highlight {
-        color: $yellow-color02 !important;
-      }
-    }
-
+  :global {
     .input {
       max-width: inherit;
       width: 100%;
       border: none;
     }
   }
-
 }
 
 .description {

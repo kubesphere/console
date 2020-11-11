@@ -1,0 +1,23 @@
+@import '~scss/variables';
+
+.wrapper {
+  border-radius: $border-radius;
+  background-color: $card-bg-color;
+  padding: 12px;
+  min-height: 600px;
+}
+
+.timeout {
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: $border-radius;
+  border: 1px solid $border-color;
+  background-color: $white;
+}
+
+.endpoints {
+  border-radius: $border-radius;
+  border: 1px solid $border-color;
+  background-color: $white;
+  padding: 12px;
+}

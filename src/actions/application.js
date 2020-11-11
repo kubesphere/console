@@ -16,14 +16,18 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { set } from 'lodash'
+import { get, set } from 'lodash'
 import { Notify } from '@kube-design/components'
 import { Modal } from 'components/Base'
 import { mergeLabels, updateFederatedAnnotations } from 'utils'
+import FORM_TEMPLATES from 'utils/form.templates'
 
 import DeployAppModal from 'projects/components/Modals/DeployApp'
 import CreateAppModal from 'projects/components/Modals/CreateApp'
 import CreateServiceModal from 'projects/components/Modals/ServiceCreate/InApp'
+import ServiceMonitorModal from 'projects/components/Modals/ServiceMonitor'
+
+import ServiceMonitorStore from 'stores/monitoring/service.monitor'
 
 export default {
   'app.deploy': {
@@ -107,6 +111,41 @@ export default {
         cluster,
         namespace,
         modal: CreateServiceModal,
+        ...props,
+      })
+    },
+  },
+  'app.service.monitor': {
+    on({ store, cluster, namespace, success, ...props }) {
+      const serviceMonitorStore = new ServiceMonitorStore()
+      const formTemplate = FORM_TEMPLATES.servicemonitors({
+        name: get(store, 'components.data[0].name'),
+        namespace,
+      })
+      const modal = Modal.open({
+        onOk: async data => {
+          const name = get(data, 'metadata.name')
+          const result = await serviceMonitorStore.checkName({
+            name,
+            cluster,
+            namespace,
+          })
+
+          if (!result.exist) {
+            await serviceMonitorStore.create(data, { cluster, namespace })
+          } else {
+            await serviceMonitorStore.update({ name, cluster, namespace }, data)
+          }
+
+          Modal.close(modal)
+          success && success()
+        },
+        cluster,
+        namespace,
+        formTemplate,
+        appStore: store,
+        store: serviceMonitorStore,
+        modal: ServiceMonitorModal,
         ...props,
       })
     },

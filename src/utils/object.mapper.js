@@ -1169,29 +1169,13 @@ const CRDMapper = item => {
   }
 }
 
-const DashboardMapper = item => {
-  const { metadata = {}, spec = {} } = item
-
-  /**
-   * name - uniqueName
-   */
-  const { creationTimestamp, name, namespace } = metadata
-
-  /**
-   * title - nickname
-   */
-  const { datasource, description, title } = spec
-
-  return {
-    creationTimestamp,
-    name,
-    namespace,
-    datasource,
-    description,
-    title,
-    _originData: getOriginData(item),
-  }
-}
+const DashboardMapper = item => ({
+  ...getBaseInfo(item),
+  namespace: get(item, 'metadata.namespace'),
+  title: get(item, 'spec.title'),
+  datasource: get(item, 'spec.datasource'),
+  _originData: getOriginData(item),
+})
 
 const NetworkPoliciesMapper = item => ({
   ...getBaseInfo(item),
@@ -1214,6 +1198,13 @@ const StorageclasscapabilitiesMapper = item => {
     ),
   }
 }
+
+const ServiceMonitorMapper = item => ({
+  ...getBaseInfo(item),
+  namespace: get(item, 'metadata.namespace'),
+  interval: get(item, 'spec.endpoints[0].interval'),
+  _originData: getOriginData(item),
+})
 
 export default {
   deployments: WorkLoadMapper,
@@ -1268,5 +1259,6 @@ export default {
   networkpolicies: NetworkPoliciesMapper,
   namespacenetworkpolicies: NetworkPoliciesMapper,
   storageclasscapabilities: StorageclasscapabilitiesMapper,
+  servicemonitors: ServiceMonitorMapper,
   default: DefaultMapper,
 }

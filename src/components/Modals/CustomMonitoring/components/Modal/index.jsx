@@ -42,9 +42,6 @@ export default function CustomMonitoringModal({
       className={classNames(styles.wrapper, className)}
       headerClassName={styles.header}
       bodyClassName={styles.body}
-      /**
-       * make opertaions in one div
-       */
       closable={false}
       operations={
         <div className={styles.operations}>
@@ -55,7 +52,6 @@ export default function CustomMonitoringModal({
             type="control"
             onClick={onCancel}
             className={styles.close}
-            data-test="modal-close"
           />
         </div>
       }

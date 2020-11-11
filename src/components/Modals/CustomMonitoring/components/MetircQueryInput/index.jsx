@@ -20,6 +20,7 @@ import React, { Component } from 'react'
 import { get } from 'lodash'
 import classnames from 'classnames'
 import { AutoComplete, Dropdown, Icon } from '@kube-design/components'
+import { Text } from 'components/Base'
 
 import styles from './index.scss'
 
@@ -29,14 +30,12 @@ export default class MetircQueryInput extends Component {
     this.props.onChange(metric)
   }
 
+  get options() {
+    return this.props.supportMetrics.map(item => item.value)
+  }
+
   render() {
-    const {
-      name,
-      supportDebugButton = false,
-      value,
-      supportMetrics,
-      onChange,
-    } = this.props
+    const { name, supportDebugButton = false, value, onChange } = this.props
 
     return (
       <div className={styles.wrapper}>
@@ -48,14 +47,13 @@ export default class MetircQueryInput extends Component {
             </span>
           </Dropdown>
         </div>
-
         <div className={styles.input}>
           <AutoComplete
             name={name}
             value={value}
             onChange={onChange}
             className={styles.autoComplete}
-            options={supportMetrics}
+            options={this.options}
           />
         </div>
         {supportDebugButton && (
@@ -75,13 +73,17 @@ export default class MetircQueryInput extends Component {
     return (
       <div className={styles.dropdownContent}>
         {this.props.supportMetrics.map(metric => (
-          <p
+          <div
             data-metric={metric.value}
             onClick={this.onDropdownClick}
             key={metric.value}
           >
-            {metric.value}
-          </p>
+            <Text
+              className={styles.text}
+              title={metric.value}
+              description={metric.desc}
+            />
+          </div>
         ))}
       </div>
     )

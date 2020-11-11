@@ -19,14 +19,14 @@ import React from 'react'
 import CustomMonitoringModal from 'components/Modals/CustomMonitoring'
 import CustomMonitoringTemplate from 'stores/monitoring/custom/template'
 
-export default class CrateDashboardModalContainer extends React.Component {
+export default class EditDashboardModalContainer extends React.Component {
   constructor(props) {
     super(props)
 
     /**
      * store custom monitor data make it ease to change and test
      */
-    const { metadata = {}, spec = {} } = this.props.data
+    const { metadata = {}, spec = {} } = props.data
     const {
       title,
       description,
@@ -51,30 +51,26 @@ export default class CrateDashboardModalContainer extends React.Component {
       templatings,
       time,
       name,
+      formTemplate: props.data,
     })
   }
 
-  onSave = async () => {
-    const { metadata = {} } = this.props.data
-    const { resourceVersion } = metadata
-
+  handleOk = async () => {
     const params = this.store.toJS()
-    await this.props.onSave({
-      ...params,
-      resourceVersion,
-    })
+    await this.props.onOk(params)
     this.store.switchEditingMode(false)
   }
 
   render() {
+    const { cluster, readOnly, isSubmitting, onCancel } = this.props
     return (
       <CustomMonitoringModal
         store={this.store}
-        cluster={this.props.cluster}
-        isSaving={this.props.isSubmitting}
-        onCancel={this.props.onCancel}
-        onSave={this.onSave}
-        readOnly={this.props.readOnly}
+        cluster={cluster}
+        readOnly={readOnly}
+        isSubmitting={isSubmitting}
+        onCancel={onCancel}
+        onOk={this.handleOk}
       />
     )
   }

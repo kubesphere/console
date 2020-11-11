@@ -1,0 +1,20 @@
+@import '~scss/variables';
+
+.wrapper {
+  position: relative;
+  display: flex;
+  border-radius: 4px;
+  border: 1px solid $light-color03;
+  padding: 4px;
+  background-color: $card-bg-color;
+
+  :global {
+    .select + .select {
+      margin-left: 12px;
+    }
+
+    .select-icon {
+      width: auto;
+    }
+  }
+}

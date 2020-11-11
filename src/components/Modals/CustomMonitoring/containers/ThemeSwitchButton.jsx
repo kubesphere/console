@@ -24,7 +24,7 @@ function ThemeSwitchButton({ modalStore }) {
     modalStore.changeTheme()
   }
 
-  return <Button type={'control'} icon="theme" onClick={changeTheme} />
+  return <Button type="control" icon="theme" onClick={changeTheme} />
 }
 
 export default inject('modalStore')(ThemeSwitchButton)

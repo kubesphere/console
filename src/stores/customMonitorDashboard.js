@@ -20,9 +20,6 @@ import { action } from 'mobx'
 import Base from 'stores/base'
 import List from 'stores/federated.list'
 
-/**
- * list and request logic
- */
 export default class CustomMonitoringDashboardStore extends Base {
   module = 'dashboards'
 
@@ -91,36 +88,5 @@ export default class CustomMonitoringDashboardStore extends Base {
     })
 
     this.list.isLoading = false
-  }
-
-  create({ cluster, namespace, name, workspace, ...spec }) {
-    return super.create(
-      {
-        apiVersion: 'monitoring.kubesphere.io/v1alpha1',
-        kind: 'Dashboard',
-        metadata: {
-          name,
-          namespace,
-        },
-        spec,
-      },
-      { cluster, namespace }
-    )
-  }
-
-  edit({ cluster, namespace, name, resourceVersion, ...spec }) {
-    return this.update(
-      { cluster, namespace, name },
-      {
-        apiVersion: 'monitoring.kubesphere.io/v1alpha1',
-        kind: 'Dashboard',
-        metadata: {
-          name,
-          namespace,
-          resourceVersion,
-        },
-        spec,
-      }
-    )
   }
 }

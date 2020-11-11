@@ -22,7 +22,7 @@ import { Text } from 'components/Base'
 
 export default function ServiceAccess({ data }) {
   if (data.specType === 'ClusterIP') {
-    return '-'
+    return <Text description={data.specType} title={data.clusterIP} />
   }
 
   if (data.specType === 'NodePort') {

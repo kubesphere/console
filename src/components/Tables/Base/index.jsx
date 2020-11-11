@@ -188,13 +188,6 @@ export default class WorkloadTable extends React.Component {
   }
 
   handleFilterInput = filters => {
-    // const filters = {}
-    // tags.forEach(n => {
-    //   // transfer keyword to name
-    //   n.filter = n.filter === 'keyword' ? 'name' : n.filter
-    //   filters[n.filter] = trim(n.value)
-    // })
-
     if (!isEqual(filters, this.props.filters)) {
       this.props.onFetch(filters, true)
     }

@@ -20,7 +20,7 @@ import React, { Component } from 'react'
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import { Icon, Dropdown, Button } from '@kube-design/components'
-import { includes, remove, get, isUndefined } from 'lodash'
+import { includes, remove, get, isUndefined, isEmpty } from 'lodash'
 
 import styles from './index.scss'
 
@@ -97,6 +97,10 @@ class CustomColumns extends Component {
   }
 
   render() {
+    if (isEmpty(this.hideableColumns)) {
+      return null
+    }
+
     return (
       <Dropdown content={this.renderContent()} placement="bottomRight">
         <Button type="flat" icon="cogwheel" data-test="table-columns" />

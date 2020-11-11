@@ -18,47 +18,39 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import { isEmpty } from 'lodash'
-import { Card } from 'components/Base'
-import Item from './Item'
 
-export default class Routes extends React.Component {
+import { Button } from '@kube-design/components'
+import { Text } from 'components/Base'
+
+import styles from './index.scss'
+
+export default class Item extends React.Component {
   static propTypes = {
-    className: PropTypes.string,
-    prefix: PropTypes.string,
-    title: PropTypes.string,
-    data: PropTypes.array,
-    loading: PropTypes.bool,
+    detail: PropTypes.object,
   }
 
   static defaultProps = {
-    prefix: '',
-    data: [],
-    loading: true,
-  }
-
-  renderContent() {
-    const { gateway, data, prefix } = this.props
-
-    if (isEmpty(data)) return null
-
-    return data.map(item => (
-      <Item key={item.name} prefix={prefix} detail={item} gateway={gateway} />
-    ))
+    detail: {},
   }
 
   render() {
-    const { className, loading } = this.props
-    const title = this.props.title || t('Routes')
+    const { detail } = this.props
+
+    if (!detail) {
+      return null
+    }
+
     return (
-      <Card
-        className={className}
-        title={title}
-        loading={loading}
-        empty={t('NOT_AVAILABLE', { resource: t('Routes') })}
-      >
-        {this.renderContent()}
-      </Card>
+      <div className={styles.item}>
+        <Text
+          icon="monitor"
+          title={detail.name}
+          description={t('Monitoring Exporter')}
+        />
+        <Text title={detail.name} description={t('Target Service')} />
+        <Text title={detail.interval} description={t('Scrap Interval(min)')} />
+        <Button className={styles.monitor}>{t('View Monitor')}</Button>
+      </div>
     )
   }
 }

@@ -16,12 +16,16 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, isEmpty } from 'lodash'
+import { get, keyBy, isEmpty } from 'lodash'
 import { observable, action } from 'mobx'
 
 import { getFilterString } from 'utils'
 import ObjectMapper from 'utils/object.mapper'
 import { CLUSTER_QUERY_STATUS } from 'configs/openpitrix/app'
+
+import ServiceStore from 'stores/service'
+import ServiceMonitorStore from 'stores/monitoring/service.monitor'
+import PodStore from 'stores/pod'
 
 import Base from './base'
 
@@ -38,6 +42,19 @@ export default class Application extends Base {
   resourceName = 'applications'
 
   defaultStatus = CLUSTER_QUERY_STATUS
+
+  serviceStore = new ServiceStore()
+
+  serviceMonitorStore = new ServiceMonitorStore()
+
+  podStore = new PodStore()
+
+  @observable
+  components = {
+    data: [],
+    total: 0,
+    isLoading: true,
+  }
 
   get baseUrl() {
     return 'kapis/openpitrix.io/v1'
@@ -177,6 +194,45 @@ export default class Application extends Base {
     }
 
     this.isLoading = false
+  }
+
+  @action
+  async fetchComponents(params) {
+    this.components.isLoading = true
+
+    await Promise.all([
+      this.serviceStore.fetchListByK8s(params),
+      this.serviceMonitorStore.fetchListByK8s(params),
+      this.podStore.fetchListByK8s(params),
+    ])
+
+    const services = this.serviceStore.list.data
+    const serviceMonitors = this.serviceMonitorStore.list.data
+    const pods = this.podStore.list.data
+
+    if (services) {
+      const componentNameMap = keyBy(services, 'name')
+      const serviceMonitorNameMap = keyBy(serviceMonitors, 'name')
+      if (pods) {
+        pods.forEach(item => {
+          const service = item.labels.app
+          if (service && componentNameMap[service]) {
+            componentNameMap[service].podNums =
+              componentNameMap[service].podNums || 0
+            componentNameMap[service].podNums += 1
+          }
+        })
+      }
+
+      services.forEach(service => {
+        service.monitor = serviceMonitorNameMap[service.name]
+      })
+
+      this.components.data = services
+      this.components.total = services.length
+    }
+
+    this.components.isLoading = false
   }
 
   @action
