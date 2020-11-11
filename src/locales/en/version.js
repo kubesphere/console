@@ -55,7 +55,7 @@ export default {
   Starting: 'Starting',
   Stopping: 'Stopping',
   Submit: 'Submit',
-  'Submit Review': 'Submit Review',
+  'Submit for Review': 'Submit for Review',
   Submitted: 'Submitted',
   'Suspend App': 'Suspend App',
   'Suspend Version': 'Suspend Version',
@@ -119,7 +119,7 @@ export default {
 
   VERSION_SUBMIT_NOTE:
     'Please make sure your app has passed the basic function tests shown below before you submit it for review.',
-  VERSION_SUBMIT_DOC: 'Refer to a more comprehensive test manual',
+  VERSION_SUBMIT_DOC: 'For a more comprehensive test manual, see ',
   VERSION_NUMBER_DESC:
     'The important identification of the version. It can only contain numbers, decimal points and brackets ("[]"), and must start with a number and contain decimal points.',
   VERSION_NUMBER_ERROR_NOTE:

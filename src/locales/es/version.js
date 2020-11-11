@@ -55,7 +55,7 @@ export default {
   Starting: 'Empezando',
   Stopping: 'Parando',
   Submit: 'Enviar',
-  'Submit Review': 'Enviar revisión',
+  'Submit for Review': 'Enviar revisión',
   Submitted: 'Enviada',
   'Suspend App': 'Suspender aplicación',
   'Suspend Version': 'Suspender versión',

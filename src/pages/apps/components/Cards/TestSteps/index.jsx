@@ -63,7 +63,7 @@ export default class TestSteps extends React.Component {
             target="_blank"
             rel="noreferrer noopener"
           >
-            《{t('Develop and test guide')}》
+            {t('Develop and test guide')}
           </a>
         </p>
       </div>
