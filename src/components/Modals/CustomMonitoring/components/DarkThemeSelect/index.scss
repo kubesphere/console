@@ -5,12 +5,37 @@
 
   :global {
     .select-control {
-      background: $dark-color07 !important;
+      background-color: $text-color;
       border: solid 1px $dark-color06;
+      border-color: $dark-color06 !important;
+      box-shadow: none !important;
+      transition: all $trans-speed ease-in-out;
+
+      &:hover {
+        background-color: $dark-color06;
+      }
     }
 
     .select-value {
-      color: $white !important;
+      color: $white;
+    }
+
+    .kubed-icon-dark {
+      color: rgba(255, 255, 255, 0.9);
+      fill: rgba(255, 255, 255, 0.4);
+    }
+
+    .select-options {
+      background-color: $white;
+      
+      .select-option {
+        color: $text-color;
+
+        &:hover,
+        &.select-option-active {
+          background-color: $light-color02;
+        }
+      }
     }
   }
 }

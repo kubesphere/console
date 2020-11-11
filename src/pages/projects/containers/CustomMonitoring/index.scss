@@ -1,9 +1,10 @@
 @import '~scss/variables';
 
-.link {
-  color: $black;
+.title {
   cursor: pointer;
+  transition: all $trans-speed ease;
+
   &:hover {
-    color: $green-color03;
+    color: $primary;
   }
 }

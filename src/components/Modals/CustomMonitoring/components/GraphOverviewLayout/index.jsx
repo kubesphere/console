@@ -17,17 +17,12 @@
  */
 
 import React from 'react'
-import classnames from 'classnames'
 
 import styles from './index.scss'
 
-export default function GraphOverviewLayout({
-  hidden,
-  graphList,
-  graphRowList,
-}) {
+export default function GraphOverviewLayout({ graphList, graphRowList }) {
   return (
-    <div className={classnames(styles.wrapper, { [styles.hidden]: hidden })}>
+    <div className={styles.wrapper}>
       <div className={styles.graphs}>{graphList}</div>
       <div className={styles.row}>{graphRowList}</div>
     </div>

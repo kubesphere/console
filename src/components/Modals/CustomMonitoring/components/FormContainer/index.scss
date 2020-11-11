@@ -19,16 +19,14 @@
     text-align: right;
     line-height: 32px;
     padding: 0 12px;
-    & > span {
-      width: 56px;
-      display: inline-block;
-      text-align: center;
-      cursor: pointer;
-    }
-  }
 
-  .button {
-    background: transparent;
-    border: none;
+    button {
+      border-radius: 0;
+
+      &:hover {
+        background-color: $dark-color08;
+        border-color: $dark-color08;
+      }
+    }
   }
 }

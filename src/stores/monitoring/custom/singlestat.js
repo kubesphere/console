@@ -49,7 +49,7 @@ export default class SinglestatMonitor extends Base {
     }
 
     if (metricsLength === 0) {
-      return 'No Date'
+      return 'No Data'
     }
 
     /**

@@ -45,14 +45,12 @@ export default class Panel extends React.Component {
         }`}
       >
         {title && <div className={styles.title}>{title}</div>}
-        <Loading spinning={loading}>
-          <>
-            <div className={classNames(styles.panel, className)}>
-              {children || empty}
-            </div>
-            {extras}
-          </>
-        </Loading>
+        <div className={classNames(styles.panel, className)}>
+          <Loading spinning={loading}>
+            <>{children || empty}</>
+          </Loading>
+        </div>
+        {extras}
       </div>
     )
   }

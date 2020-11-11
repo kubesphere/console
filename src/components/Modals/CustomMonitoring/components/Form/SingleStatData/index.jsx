@@ -67,7 +67,6 @@ export default class SingleStatDataForm extends Component {
               )}
             </FormItemContainer>
           </Form.Item>
-
           <Form.Item>
             <FormItemContainer name={'decimals'} defaultValue={0}>
               {({ onChange, value }) => (

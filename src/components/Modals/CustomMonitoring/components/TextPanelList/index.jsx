@@ -17,7 +17,6 @@
  */
 
 import React from 'react'
-import { get } from 'lodash'
 import { ReactSortable } from 'react-sortablejs'
 import { Icon, Loading } from '@kube-design/components'
 import classNames from 'classnames'
@@ -36,16 +35,6 @@ export default function TextPanelList({
   onSort,
   monitors,
 }) {
-  function handleEdit(e) {
-    const index = get(e, 'currentTarget.dataset.index')
-    onEdit(index)
-  }
-
-  function handleDelete(e) {
-    const index = get(e, 'currentTarget.dataset.index')
-    onDelete(index)
-  }
-
   return (
     <div>
       <ReactSortable
@@ -66,17 +55,24 @@ export default function TextPanelList({
                 <div className={styles.innner}>
                   {isEditing && (
                     <div className={styles.tools}>
-                      <span data-index={index} onClick={handleEdit}>
-                        <Icon name={'pen'} size={22} />
-                      </span>
-                      <span data-index={index} onClick={handleDelete}>
-                        <Icon name={'trash'} size={22} />
-                      </span>
+                      <Icon
+                        name={'pen'}
+                        size={20}
+                        type="light"
+                        clickable
+                        onClick={() => onEdit(index)}
+                      />
+                      <Icon
+                        name={'trash'}
+                        size={20}
+                        type="light"
+                        clickable
+                        onClick={() => onDelete(index)}
+                      />
                     </div>
                   )}
-
                   <div className={styles.content}>
-                    <h3>{value}</h3>
+                    <h6>{value}</h6>
                     <p>{title}</p>
                     {isLoading && (
                       <span className={styles.loadingTip}>
@@ -93,7 +89,7 @@ export default function TextPanelList({
       {isEditing && (
         <div className={styles.wrapper}>
           <div onClick={onAdd} className={styles.addButton}>
-            <Icon name={'add'} size={22} />
+            <Icon name={'add'} size={20} type="light" />
           </div>
         </div>
       )}

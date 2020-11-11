@@ -70,26 +70,11 @@ export default class GraphOverview extends Component {
     })
   }
 
-  componentDidUpdate() {
-    if (this.props.hidden) {
-      this.allMonitors.forEach(monitor => {
-        monitor.stopMonitoring()
-        monitor.clearMonitorMetrics()
-      })
-    } else {
-      this.allMonitors.forEach(monitor =>
-        monitor.monitoring(this.monitoringStore)
-      )
-    }
-  }
-
   render() {
     const { isEditing } = this.props.monitoringStore
-    const { hidden } = this.props
 
     return (
       <GraphOverviewLayout
-        hidden={hidden}
         graphList={
           <GraphList
             rows={[

@@ -18,12 +18,11 @@
 
 import React from 'react'
 import { observer } from 'mobx-react'
-import { get } from 'lodash'
+import { get, set } from 'lodash'
 import { Column, Columns, Form, Input, TextArea } from '@kube-design/components'
-import { PATTERN_NAME, MODULE_KIND_MAP } from 'utils/constants'
 import CardSelect from 'components/Inputs/CardSelect'
-import tempalteSettings from 'stores/monitoring/custom/template.json'
-import ItemContianer from 'components/Modals/CustomMonitoring/components/Form/ItemContianer'
+import { PATTERN_NAME, MODULE_KIND_MAP } from 'utils/constants'
+import templateSettings from 'stores/monitoring/custom/template.json'
 
 import styles from './index.scss'
 
@@ -34,7 +33,7 @@ export default class BaseInfo extends React.Component {
     return get(formTemplate, MODULE_KIND_MAP[module], formTemplate)
   }
 
-  tempalteSettingsOpts = Object.entries(tempalteSettings).map(
+  templateSettingsOpts = Object.entries(templateSettings).map(
     ([key, configs]) => ({
       value: key,
       image: configs.logo,
@@ -62,6 +61,10 @@ export default class BaseInfo extends React.Component {
       })
   }
 
+  handleTemplateChange = key => {
+    set(this.formTemplate, 'spec', get(templateSettings, `${key}.settings`, {}))
+  }
+
   render() {
     const { formRef } = this.props
 
@@ -84,10 +87,12 @@ export default class BaseInfo extends React.Component {
               <Input name="metadata.name" autoFocus={true} maxLength={63} />
             </Form.Item>
           </Column>
-
           <Column>
             <Form.Item label={t('Description')} desc={t('DESCRIPTION_DESC')}>
-              <TextArea name="spec.description" maxLength={256} />
+              <TextArea
+                name="metaddata.annotations['kubesphere.io/description']"
+                maxLength={256}
+              />
             </Form.Item>
           </Column>
         </Columns>
@@ -99,18 +104,12 @@ export default class BaseInfo extends React.Component {
             </div>
           }
         >
-          <ItemContianer name={'spec'}>
-            {({ value, onChange }) => (
-              <CardSelect
-                value={value.title}
-                className={styles.templateList}
-                onChange={key =>
-                  onChange((tempalteSettings[key] || {}).settings)
-                }
-                options={this.tempalteSettingsOpts}
-              />
-            )}
-          </ItemContianer>
+          <CardSelect
+            name="spec.title"
+            className={styles.templateList}
+            options={this.templateSettingsOpts}
+            onChange={this.handleTemplateChange}
+          />
         </Form.Item>
       </Form>
     )

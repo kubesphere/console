@@ -29,7 +29,11 @@ export default function TitleInput({ title, isEditing, onChange, theme }) {
       })}
     >
       {isEditing ? (
-        <Input onChange={onChange} value={title} />
+        <Input
+          onChange={onChange}
+          value={title}
+          placeholder={t('Dashboard Title')}
+        />
       ) : (
         <span
           className={classnames(styles.title, {

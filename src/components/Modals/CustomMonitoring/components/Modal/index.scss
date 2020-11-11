@@ -36,12 +36,10 @@
     max-height: inherit;
   }
 
-  button {
-    border-radius: 4px;
-  }
-
   .close {
     padding: 3px;
+    margin: 0;
+    border-radius: 4px;
     :global {
       .icon {
         width: 24px;

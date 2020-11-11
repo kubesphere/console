@@ -10,13 +10,13 @@
     position: relative;
     width: 49%;
     height: 64px;
-    border-radius: 3px;
+    border-radius: 4px;
     margin-bottom: 8px;
   }
 
   .content {
     position: relative;
-    h3 {
+    h6 {
       @include TypographyTitleH6(inherit);
       white-space: nowrap;
       text-overflow: ellipsis;
@@ -38,10 +38,13 @@
   }
 
   .editting {
-    border: dashed 1px $dark-color02;
+    border: dashed 1px $dark-color06;
+    transition: all $trans-speed ease-in-out;
     cursor: grab;
-    
+
     &:hover {
+      background-color: $dark-color06;
+      border-color: $dark-color02;
       .content {
         filter: blur(1px);
       }
@@ -59,27 +62,40 @@
 
       justify-content: center;
       align-items: center;
-      
-      svg {
-        cursor: pointer;
+
+      span + span {
+        margin-left: 12px;
       }
 
+      :global {
+        .icon-clickable:hover,
+        .icon-clickable:active {
+          background-color: $light-color08;
+        }
+      }
     }
 
     &:hover {
       .tools {
         display: flex;
-      }  
+      }
     }
-
   }
 
   .addButton {
-    border: dashed 1px $dark-color02;
+    border: dashed 1px $dark-color06;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    transition: all $trans-speed ease-in-out;
+
+    &:hover {
+      background-color: $dark-color06;
+      border-color: $dark-color02;
+      .content {
+        filter: blur(1px);
+      }
+    }
   }
 }
-

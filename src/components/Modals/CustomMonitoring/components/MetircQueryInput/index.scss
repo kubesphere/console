@@ -8,6 +8,12 @@
   line-height: 24px;
   padding: 0 4px;
   align-items: center;
+
+  :global {
+    input.input:not([readonly]):not([disabled]):focus {
+      box-shadow: none;
+    }
+  }
 }
 
 .btn {
@@ -40,10 +46,15 @@
   color: $white;
   max-height: 300px;
   overflow: auto;
-  p {
-    @include TypographyParagraph($light-color02);
-    line-height: 30px;
-    padding: 0 10px;
+
+  .text {
+    padding: 4px 12px;
+    cursor: pointer;
+
+    & > div > div {
+      color: $white;
+    }
+
     &:hover {
       background: $dark-color05;
     }

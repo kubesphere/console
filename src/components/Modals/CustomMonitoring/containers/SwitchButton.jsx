@@ -34,13 +34,19 @@ export default class SwitchModeButton extends React.Component {
       <SquareButton
         type="danger"
         icon="pen"
+        iconType="light"
         onClick={this.props.onSaveClick}
         text={t('Save')}
       >
         {t('SAVE_TEMPLATE')}
       </SquareButton>
     ) : (
-      <SquareButton type="control" icon="pen" onClick={this.handleEditClick}>
+      <SquareButton
+        type="control"
+        icon="pen"
+        iconType="light"
+        onClick={this.handleEditClick}
+      >
         {t('EDIT_TEMPLATE')}
       </SquareButton>
     )
