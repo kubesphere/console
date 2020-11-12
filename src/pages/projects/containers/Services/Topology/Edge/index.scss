@@ -1,0 +1,13 @@
+@import '~scss/variables';
+
+.wrapper {
+  & > path {
+    stroke-width: 1;
+    fill: none;
+    stroke: $dark-color05;
+  }
+
+  marker {
+    fill: $dark-color05;
+  }
+}
