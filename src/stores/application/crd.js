@@ -133,15 +133,15 @@ export default class ApplicationStore extends Base {
       request.get(this.getHealthUrl({ cluster, namespace, type: 'workload' })),
     ])
 
-    const serviceNames =
+    const serviceAppLabels =
       serviceResult && serviceResult.items
-        ? serviceResult.items.map(item => get(item, 'metadata.name'))
+        ? serviceResult.items.map(item => get(item, 'metadata.labels.app'))
         : []
 
     if (result && result.elements) {
       const nodes = []
       result.elements.nodes.forEach(node => {
-        if (serviceNames.includes(node.data.app)) {
+        if (serviceAppLabels.includes(node.data.app)) {
           nodes.push(node)
         }
 
@@ -155,7 +155,7 @@ export default class ApplicationStore extends Base {
     }
 
     if (appHealth && serviceHealth && workloadHealth) {
-      this.graph.health = serviceNames.reduce(
+      this.graph.health = serviceAppLabels.reduce(
         (prev, cur) => ({
           ...prev,
           [cur]: {
