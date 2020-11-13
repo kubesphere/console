@@ -138,6 +138,11 @@ export default class ApplicationStore extends Base {
         ? serviceResult.items.map(item => get(item, 'metadata.labels.app'))
         : []
 
+    const serviceNames =
+      serviceResult && serviceResult.items
+        ? serviceResult.items.map(item => get(item, 'metadata.name'))
+        : []
+
     if (result && result.elements) {
       const nodes = []
       result.elements.nodes.forEach(node => {
@@ -155,7 +160,7 @@ export default class ApplicationStore extends Base {
     }
 
     if (appHealth && serviceHealth && workloadHealth) {
-      this.graph.health = serviceAppLabels.reduce(
+      this.graph.health = serviceNames.reduce(
         (prev, cur) => ({
           ...prev,
           [cur]: {
