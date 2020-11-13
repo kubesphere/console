@@ -17,43 +17,75 @@
  */
 
 import React, { Component } from 'react'
-import { get } from 'lodash'
+import { map, groupBy, sortBy } from 'lodash'
+import { computed } from 'mobx'
+import { observer } from 'mobx-react'
 import classnames from 'classnames'
-import { AutoComplete, Dropdown, Icon } from '@kube-design/components'
-import { Text } from 'components/Base'
+import { Icon } from '@kube-design/components'
+import Cascader from 'components/Base/Cascader'
+
+import PromQLInput from '../PromQLInput'
 
 import styles from './index.scss'
 
+@observer
 export default class MetircQueryInput extends Component {
-  onDropdownClick = e => {
-    const metric = get(e, 'currentTarget.dataset.metric')
-    this.props.onChange(metric)
+  @computed
+  get groupedMetrics() {
+    const ruleRegex = /:\w+:/
+    let metrics = [...this.props.supportMetrics]
+    metrics = metrics.filter(metric => !ruleRegex.test(metric.value))
+    metrics = groupBy(metrics, metric => metric.value.split('_')[0])
+    metrics = map(metrics, (metricsForPrefix, prefix) => {
+      const prefixIsMetric =
+        metricsForPrefix.length === 1 && metricsForPrefix[0] === prefix
+      const children = prefixIsMetric
+        ? []
+        : metricsForPrefix.map(item => ({
+            label: item.value,
+            value: item.value,
+            desc: item.desc,
+          }))
+
+      return {
+        children: sortBy(children, 'label'),
+        label: prefix,
+        value: prefix,
+      }
+    })
+    return sortBy(metrics, 'label')
   }
 
-  get options() {
-    return this.props.supportMetrics.map(item => item.value)
+  handleMetricSelect = value => {
+    this.props.onChange(value)
   }
 
   render() {
-    const { name, supportDebugButton = false, value, onChange } = this.props
+    const {
+      name,
+      supportDebugButton = false,
+      value,
+      onChange,
+      supportMetrics,
+    } = this.props
 
     return (
       <div className={styles.wrapper}>
-        <div className={styles.dropdown}>
-          <Dropdown content={this.renderDropDown()}>
-            <span className={classnames(styles.dropdownBtn, styles.btn)}>
-              {t('MONITOR_METRICS')}
-              <Icon type="light" name={'caret-down'} />
-            </span>
-          </Dropdown>
-        </div>
+        <Cascader
+          options={this.groupedMetrics}
+          onSelect={this.handleMetricSelect}
+        >
+          <span className={styles.trigger}>
+            {t('MONITOR_METRICS')}
+            <Icon type="light" name={'caret-down'} />
+          </span>
+        </Cascader>
         <div className={styles.input}>
-          <AutoComplete
+          <PromQLInput
             name={name}
             value={value}
             onChange={onChange}
-            className={styles.autoComplete}
-            options={this.options}
+            metrics={supportMetrics}
           />
         </div>
         {supportDebugButton && (
@@ -65,26 +97,6 @@ export default class MetircQueryInput extends Component {
             <span>{t('DEBUGB_DATA')}</span>
           </div>
         )}
-      </div>
-    )
-  }
-
-  renderDropDown() {
-    return (
-      <div className={styles.dropdownContent}>
-        {this.props.supportMetrics.map(metric => (
-          <div
-            data-metric={metric.value}
-            onClick={this.onDropdownClick}
-            key={metric.value}
-          >
-            <Text
-              className={styles.text}
-              title={metric.value}
-              description={metric.desc}
-            />
-          </div>
-        ))}
       </div>
     )
   }
