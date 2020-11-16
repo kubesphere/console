@@ -347,6 +347,25 @@ export default class PipelinesList extends React.Component {
       selectedRowKeys,
       selectActions: [
         {
+          key: 'run',
+          type: 'primary',
+          text: t('Brach Run'),
+          action: 'delete',
+          onClick: () => {
+            this.props.trigger('pipeline.batch.run', {
+              type: t('Pipeline'),
+              rowKey: 'name',
+              devops: this.devops,
+              cluster: this.cluster,
+              success: () => {
+                setTimeout(() => {
+                  this.handleFetch()
+                }, 1000)
+              },
+            })
+          },
+        },
+        {
           key: 'delete',
           type: 'danger',
           text: t('Delete'),

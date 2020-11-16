@@ -473,4 +473,8 @@ export default {
   CUSTOM_PIPELIEN: '自定義流水線',
   CUSTOM_PIPELIEN_DESC: '您可以選擇您需要的任務自定義流水線的工作內容',
   'Copy Pipeline': '複製流水線',
+  'Brach Run': '批量運行',
+  'Brach Run Start': '批量運行開始',
+  'Brach Run Success': '批量運行完成',
+  'Brach Run Fail': '批量運行失敗',
 }

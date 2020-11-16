@@ -549,4 +549,8 @@ export default {
   CUSTOM_PIPELIEN_DESC:
     'You can select the tasks you need to customize the work content of the pipeline',
   'Copy Pipeline': 'Copy Pipeline',
+  'Brach Run': 'Batch Run',
+  'Brach Run Start': 'Brach Run Start',
+  'Brach Run Success': 'Batch Run Completed',
+  'Brach Run Fail': 'Batch Run Failed',
 }

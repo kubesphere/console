@@ -31,6 +31,21 @@ import PipelineModal from 'components/Modals/Pipelines/PipelineEdit'
 import FORM_STEPS from 'configs/steps/pipelines'
 import { updatePipelineParams, updatePipelineParamsInSpec } from 'utils/devops'
 import JenkinsEdit from 'devops/components/Modals/JenkinsEdit'
+import { get, isEmpty } from 'lodash'
+
+function handleParams(param) {
+  const type = param.type.toLowerCase().split('parameterdefinition')[0]
+  const value = get(param, 'defaultParameterValue.value')
+  const name = param.name
+  const choicesOption = get(param, 'choices', [])
+
+  switch (type) {
+    case 'choice':
+      return { name, value: value || choicesOption[0] }
+    default:
+      return { name, value }
+  }
+}
 
 export default {
   'pipeline.create': {
@@ -101,6 +116,60 @@ export default {
         store,
         ...props,
       })
+    },
+  },
+  'pipeline.batch.run': {
+    async on({ store, success, rowKey, devops, cluster }) {
+      const { data, selectedRowKeys } = toJS(store.list)
+
+      Notify.success({ content: `${t('Brach Run Start')}!` })
+
+      const selectNames = data
+        .filter(item => selectedRowKeys.includes(item[rowKey]))
+        .map(item => item.name)
+
+      const reqlist = []
+
+      data.forEach(async item => {
+        if (selectNames.includes(item.name)) {
+          let parameters = item.parameters
+          const branchs = item.branchNames
+          const branchName = get(branchs, '[0]', '')
+
+          if (branchs && !isEmpty(branchs)) {
+            const branchData = await store.getBranchDetail({
+              branch: branchName,
+              name: item.name,
+              devops,
+              cluster,
+            })
+
+            parameters = branchData.parameters || undefined
+          }
+
+          if (!isEmpty(parameters)) {
+            parameters = parameters.map(param => {
+              return handleParams(param)
+            })
+          }
+
+          reqlist.push(
+            store.runBranch({
+              name: item.name,
+              devops,
+              cluster,
+              branch: branchName,
+              parameters,
+            })
+          )
+        }
+      })
+
+      await Promise.all(reqlist)
+
+      Notify.success({ content: `${t('Brach Run Success')}!` })
+      store.setSelectRowKeys([])
+      success && success()
     },
   },
   'pipeline.edit': {
