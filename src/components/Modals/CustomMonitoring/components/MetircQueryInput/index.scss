@@ -16,19 +16,14 @@
   }
 }
 
-.btn {
+.trigger {
   border-radius: 2px;
   color: $white;
   padding: 0 10px;
   display: inline-block;
   cursor: pointer;
   height: 24px;
-}
-
-.dropdown {
-  .dropdownBtn {
-    background: $dark-color07;
-  }
+  background: $dark-color07;
 }
 
 .input {
@@ -40,37 +35,3 @@
   vertical-align: center;
 }
 
-.dropdownContent {
-  background: $dark-color07;
-  border-radius: 4px;
-  color: $white;
-  max-height: 300px;
-  overflow: auto;
-
-  .text {
-    padding: 4px 12px;
-    cursor: pointer;
-
-    & > div > div {
-      color: $white;
-    }
-
-    &:hover {
-      background: $dark-color05;
-    }
-  }
-}
-
-.autoComplete {
-  :global {
-    .input {
-      max-width: inherit;
-      width: 100%;
-      border: none;
-    }
-  }
-}
-
-.description {
-  color: $dark-color01;
-}

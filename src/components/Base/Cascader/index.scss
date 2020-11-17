@@ -1,0 +1,47 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.wrapper {
+  background-color: $text-color;
+
+  :global {
+    .popper-content {
+      padding: 4px 0;
+      min-width: 200px;
+      max-width: 400px;
+      max-height: 300px;
+      overflow-y: auto;
+
+      .popper[x-placement^="right"] {
+        margin-left: -4px;
+      }
+    }
+  }
+}
+
+.item {
+  position: relative;
+  padding: 6px 8px;
+  @include TypographySymbolText($white);
+  cursor: pointer;
+
+  &:hover {
+    background-color: $dark-color06;
+
+    .children {
+      display: block;
+    }
+  }
+
+  &.hasChildren {
+    cursor: default;
+
+    :global {
+      .icon {
+        opacity: 1;
+        @include vertical-center;
+        right: 4px;
+      }
+    }
+  }
+}

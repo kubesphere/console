@@ -1,0 +1,41 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.wrapper {
+  min-height: 100px;
+  max-height: 232px;
+  overflow: auto;
+}
+
+.group {
+  margin-bottom: 12px;
+
+  &Title {
+    padding: 8px;
+    user-select: none;
+    @include TypographySymbolText($dark-color01)
+  }
+
+  .item {
+    padding: 4px 12px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $dark-color06;
+    }
+
+    :global {
+      .highlight {
+        color: $primary;
+        font-weight: $font-bold;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  :global {
+    .is-focus {
+      background-color: $dark-color06;
+    }
+  }
+}
