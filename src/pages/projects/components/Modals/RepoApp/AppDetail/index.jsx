@@ -24,6 +24,7 @@ import moment from 'moment-mini'
 
 import { Button, RadioGroup, Columns, Column } from '@kube-design/components'
 
+import { TypeSelect } from 'components/Base'
 import AppPreview from 'appStore/components/AppPreview'
 import AppBase from 'appStore/components/AppBase'
 
