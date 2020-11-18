@@ -1,7 +1,7 @@
 version: '2'
 services:
   base:
-    image: node:12-alpine
+    image: node:12.18-alpine
     volumes:
       - nodemodules:/opt/kubesphere/console/node_modules
       - .:/opt/kubesphere/console

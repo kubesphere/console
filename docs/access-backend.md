@@ -23,7 +23,7 @@ server:
     wsUrl: ws://node_ip:30881
 ```
 
-See more details in [KubeSphere API Guide](https://kubesphere.io/docs/v2.1/zh-CN/api-reference/api-guide/).
+See more details in [KubeSphere API Guide](https://v2-1.docs.kubesphere.io/docs/api-reference/api-guide/).
 
 ## 2. Access the services within the KubeSphere cluster
 

@@ -21,7 +21,6 @@ install node_modules, and compile lego-ui components.
 
 ```bash
 make install
-make yarn-lego
 ```
 
 ## Start KubeSphere Console for development
