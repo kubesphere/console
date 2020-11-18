@@ -99,6 +99,7 @@ export default class PipelineRunStore extends BaseStore {
       }/runs/${runId}/`,
       {
         start: (page - 1) * TABLE_LIMIT || 0,
+        limit: TABLE_LIMIT,
       }
     )
     const data = []
@@ -144,14 +145,14 @@ export default class PipelineRunStore extends BaseStore {
       }/runs/${runId}/artifacts/`,
       {
         start: (page - 1) * TABLE_LIMIT || 0,
-        limit: 100,
+        limit: TABLE_LIMIT,
       }
     )
 
     this.artifactsList = {
       data: result || [],
       total: result.length,
-      limit: 100,
+      limit: TABLE_LIMIT,
       page: parseInt(page, 10) || 1,
       filters: omit(filters, 'devops'),
       isLoading: false,
