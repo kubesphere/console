@@ -103,6 +103,7 @@ export default {
   Discard: 'Descarte',
   'Discard old branch': 'Descartar ramas anteriores',
   'Discard Old Builds': 'Descartar builds antiguas',
+  'Discover Tag Branches': 'Descubrir Tag ramas',
   'Discover Branches': 'Descubrir ramas',
   'Discover branches from repoitory': 'Descubrir ramas desde el repositorio',
   'Discover PR from Forks': 'Descubrir PR desde Forks',
@@ -110,6 +111,8 @@ export default {
   'Discover pull requests from forks': 'Descubrir las PR desde forks',
   'Discover pull requests from origin': 'Descubrir las PR desde origin',
   'Display All': 'Mostrar todo',
+  'Enable Discover Tag Branches': 'Habilitar descoberta de ramo de tag',
+  'Disable Discover Tag Branches': 'Desativar a descoberta do ramo tag',
   'Docker Container Registry Credentials':
     'credenciales de Docker Container Registry',
   'Docker Registry URL': 'URL del Docker Registry',

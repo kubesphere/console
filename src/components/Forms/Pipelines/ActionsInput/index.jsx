@@ -57,18 +57,30 @@ export default class ActionsInput extends React.Component {
       return
     }
 
-    if (key === 'discover_branches') {
-      onChange({ ...value, discover_branches: 1 })
-    } else if (key === 'discover_pr_from_origin') {
-      onChange({ ...value, discover_pr_from_origin: 1 })
-    } else if (key === 'discover_pr_from_forks') {
-      onChange({
-        ...value,
-        discover_pr_from_forks: {
-          strategy: 1,
-          trust: 0,
-        },
-      })
+    switch (key) {
+      case 'discover_branches':
+        onChange({ ...value, discover_branches: 1 })
+        break
+      case 'discover_pr_from_origin':
+        onChange({ ...value, discover_pr_from_origin: 1 })
+        break
+      case 'discover_pr_from_forks':
+        onChange({
+          ...value,
+          discover_pr_from_forks: {
+            strategy: 1,
+            trust: 0,
+          },
+        })
+        break
+      case 'discover_tag':
+        onChange({
+          ...value,
+          discover_tag: true,
+        })
+        break
+      default:
+        break
     }
   }
 

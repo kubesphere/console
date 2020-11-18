@@ -102,6 +102,7 @@ export default {
   Discard: 'Discard',
   'Discard old branch': 'Discard old branch',
   'Discard Old Builds': 'Discard Old Builds',
+  'Discover Tag Branches': 'Discover Tag Branches',
   'Discover Branches': 'Discover Branches',
   'Discover branches from repoitory': 'Discover branches from repoitory',
   'Discover PR from Forks': 'Discover PR from Forks',
@@ -109,6 +110,8 @@ export default {
   'Discover pull requests from forks': 'Discover pull requests from forks',
   'Discover pull requests from origin': 'Discover pull requests from origin',
   'Display All': 'Display All',
+  'Enable Discover Tag Branches': 'Enable discovery of Tag branch',
+  'Disable Discover Tag Branches': 'Disable the discovery of the Tag branch',
   'Docker Container Registry Credentials':
     'Docker Container Registry Credentials',
   'Docker Registry URL': 'Docker Registry URL',

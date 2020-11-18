@@ -77,10 +77,37 @@ export default class Item extends React.Component {
         content = this.renderPrForkFormItems()
         break
       default:
+        content = this.renderTagBranchesFormItems()
         break
     }
 
     return content
+  }
+
+  renderTagBranchesFormItems() {
+    const { value } = this.props
+
+    return (
+      <div>
+        <Form.Item label={t('Strategy')}>
+          <Select
+            name="discover_tag"
+            defaultValue={value.discover_tag}
+            onChange={this.handleChange('discover_tag')}
+            options={[
+              {
+                label: t('Enable Discover Tag Branches'),
+                value: true,
+              },
+              {
+                label: t('Disable Discover Tag Branches'),
+                value: false,
+              },
+            ]}
+          />
+        </Form.Item>
+      </div>
+    )
   }
 
   renderBranchesFormItems() {
