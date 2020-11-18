@@ -56,7 +56,6 @@ Follow [the guide](/docs/access-backend.md) to configure the backend services.
 ### Start KubeSphere Console for development
 
 ```sh
-yarn lego
 yarn start
 ```
 
