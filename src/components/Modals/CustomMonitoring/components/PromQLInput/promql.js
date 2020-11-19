@@ -88,5 +88,33 @@ export const PUNCTUATION_MAP = {
   "'": "'",
 }
 
+export const OPERATORS = ['(', '[', '{', '"', "'", '""', "''", '=']
+
 export const highlightPromql = text =>
   Prism.highlight(text, Prism.languages.promql, 'promql')
+
+export const getTokenContext = (parent, current) => {
+  const nodes = []
+  let node = current
+  while (node.parentNode && parent !== node.parentNode) {
+    nodes.push(node.parentNode)
+    node = node.parentNode
+  }
+
+  const tokenType = nodes
+    .reverse()
+    .map(item => (item.className ? item.className.split(' ')[1] || '' : ''))
+    .join('.')
+
+  const context = {}
+  if (tokenType.indexOf('context-labels') > -1) {
+    const text = nodes[0].textContent.replace('{', '')
+    if (text.indexOf('=') > -1) {
+      const [label, value] = text.split('=')
+      context.label = label || ''
+      context.value = value || ''
+    }
+  }
+
+  return { type: tokenType, ...context }
+}

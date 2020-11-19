@@ -17,17 +17,24 @@
  */
 
 import React, { Component } from 'react'
+import { toJS } from 'mobx'
+import { observer } from 'mobx-react'
+import LabelStore from 'stores/monitoring/custom/labelsets'
 
 import Suggestions from './Suggestions'
 import {
   highlightPromql,
   setCaretPosition,
   getCaretCharacterOffsetWithin,
+  getTokenContext,
   PUNCTUATION_MAP,
+  OPERATORS,
 } from './promql'
+import History from './history'
 
 import styles from './index.scss'
 
+@observer
 export default class PromQLInput extends Component {
   state = {
     value: this.props.value,
@@ -38,10 +45,31 @@ export default class PromQLInput extends Component {
 
   wrapper = React.createRef()
 
+  labelStore = new LabelStore()
+
+  valueHistory = new History()
+
+  cursorHistory = new History()
+
+  get keydownHandler() {
+    return {
+      219: this.handleLabelSearch,
+    }
+  }
+
+  get keyupHandler() {
+    return {
+      37: this.handleCursorChange,
+      39: this.handleCursorChange,
+    }
+  }
+
   componentDidMount() {
     if (this.editor.current) {
       const { value } = this.state
       this.editor.current.addEventListener('input', this.handleInput)
+      this.editor.current.addEventListener('keydown', this.handleKeyDown)
+      this.editor.current.addEventListener('keyup', this.handleKeyUp)
       this.handleValueUpdateFromProps(value)
     }
     document.addEventListener('click', this.handleDOMClick)
@@ -59,15 +87,24 @@ export default class PromQLInput extends Component {
   componentWillUnmount() {
     if (this.editor.current) {
       this.editor.current.removeEventListener('input', this.handleInput)
+      this.editor.current.removeEventListener('keydown', this.handleKeyDown)
+      this.editor.current.removeEventListener('keyup', this.handleKeyUp)
     }
 
     document.removeEventListener('click', this.handleDOMClick)
   }
 
+  triggerChange = value => {
+    const { onChange } = this.props
+    this.valueHistory.push(value)
+    this.cursorHistory.push(this.state.position)
+    onChange(value)
+  }
+
   handleValueUpdateFromProps = value => {
     const editor = this.editor.current
     editor.innerHTML = highlightPromql(value)
-    setCaretPosition(editor, editor.innerText.length)
+    setCaretPosition(editor, this.state.position)
   }
 
   handleInput = e => {
@@ -84,30 +121,89 @@ export default class PromQLInput extends Component {
     editor.innerHTML = highlightPromql(text)
     setCaretPosition(editor, position)
 
-    const { onChange } = this.props
+    const { startContainer } = window.getSelection().getRangeAt(0)
+    const focusValue = startContainer.textContent
+    const tokenContext = getTokenContext(this.editor.current, startContainer)
 
-    const sel = window.getSelection()
-    const focusValue = sel.getRangeAt(0).startContainer.textContent
-    this.setState({ value: text, focusValue, position, visible: true }, () =>
-      onChange(text)
+    this.setState(
+      { value: text, focusValue, position, tokenContext, visible: true },
+      () => this.triggerChange(text)
     )
+  }
+
+  handleKeyDown = e => {
+    if (this.keydownHandler[e.keyCode]) {
+      this.keydownHandler[e.keyCode](e)
+    }
+
+    if (e.metaKey && e.keyCode === 90) {
+      e.stopPropagation()
+      e.preventDefault()
+      e.shiftKey ? this.handleRedo() : this.handleUndo()
+    }
+  }
+
+  handleKeyUp = e => {
+    if (this.keyupHandler[e.keyCode]) {
+      this.keyupHandler[e.keyCode](e)
+    }
+  }
+
+  handleRedo = () => {
+    const value = this.valueHistory.redo()
+    const position = this.cursorHistory.redo()
+    this.setState({ position }, () => {
+      this.props.onChange(value)
+    })
+  }
+
+  handleUndo = () => {
+    const value = this.valueHistory.undo()
+    const position = this.cursorHistory.undo()
+    this.setState({ position }, () => {
+      this.props.onChange(value)
+    })
+  }
+
+  handleCursorChange = e => {
+    const editor = e.target
+    const position = getCaretCharacterOffsetWithin(editor)
+    const { startContainer } = window.getSelection().getRangeAt(0)
+    const focusValue = startContainer.textContent
+    const tokenContext = getTokenContext(this.editor.current, startContainer)
+    this.setState({ focusValue, position, tokenContext, visible: true })
+  }
+
+  handleLabelSearch = () => {
+    const { focusValue } = this.state
+    if (focusValue) {
+      const { cluster, namespace, timeRange } = this.props
+      this.labelStore.fetchLabelSets({
+        cluster,
+        namespace,
+        metric: focusValue,
+        ...timeRange,
+      })
+    }
   }
 
   handleSuggestionSelect = sug => {
     const { value, focusValue, position } = this.state
-    const { onChange } = this.props
-    const posOffset = PUNCTUATION_MAP[focusValue] ? 0 : focusValue.length
+    const posOffset = OPERATORS.includes(focusValue) ? 0 : focusValue.length
     const start = value.substring(0, position - posOffset)
     const end = value.substring(position)
     const newValue = start + sug + end
-    this.setState({ visible: false, value: newValue }, () => {
-      onChange(newValue)
-      if (this.editor.current) {
-        const editor = this.editor.current
-        editor.innerHTML = highlightPromql(newValue)
-        setCaretPosition(editor, position + sug.length - posOffset)
+    this.setState(
+      { visible: false, value: newValue, focusValue: newValue },
+      () => {
+        this.triggerChange(newValue)
+        if (this.editor.current) {
+          const editor = this.editor.current
+          editor.innerHTML = highlightPromql(newValue)
+          setCaretPosition(editor, position + sug.length - posOffset)
+        }
       }
-    })
+    )
   }
 
   handleDOMClick = e => {
@@ -118,10 +214,18 @@ export default class PromQLInput extends Component {
     ) {
       this.setState({ visible: false })
     }
+
+    if (
+      this.editor &&
+      this.editor.current &&
+      this.editor.current.contains(e.target)
+    ) {
+      this.handleCursorChange(e)
+    }
   }
 
   render() {
-    const { visible, focusValue } = this.state
+    const { visible, focusValue, tokenContext } = this.state
     const { metrics } = this.props
     return (
       <div className={styles.wrapper} ref={this.wrapper}>
@@ -138,6 +242,8 @@ export default class PromQLInput extends Component {
             className={styles.suggestions}
             value={focusValue}
             metrics={metrics}
+            tokenContext={tokenContext}
+            labelsets={toJS(this.labelStore.labelsets)}
             onSelect={this.handleSuggestionSelect}
           />
         )}
