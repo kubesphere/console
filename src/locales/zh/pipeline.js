@@ -480,4 +480,5 @@ export default {
   'Brach Run Start': '批量运行开始',
   'Brach Run Success': '批量运行完成',
   'Brach Run Fail': '批量运行失败',
+  'Run Start': '运行开始',
 }

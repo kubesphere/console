@@ -17,7 +17,7 @@
  */
 
 import { action, observable, computed, toJS } from 'mobx'
-import { get, set, unset, isObject, isEmpty } from 'lodash'
+import { get, set, unset, isObject, isEmpty, isArray } from 'lodash'
 import { Notify } from '@kube-design/components'
 
 import CredentialStore from 'stores/devops/credential'
@@ -47,6 +47,21 @@ const formatPipeLineJson = json => {
 
   if (isObject(json.pipeline.parameters) && isEmpty(json.pipeline.parameters)) {
     delete json.pipeline.parameters
+  } else {
+    const parameters = get(json, 'pipeline.parameters.parameters', [])
+    if (!isEmpty(parameters) && isArray(parameters)) {
+      parameters.forEach(item => {
+        const args = get(item, 'arguments', [])
+        if (!isEmpty(parameters) && isArray(args)) {
+          args.forEach(arg => {
+            const value = get(arg, 'value.value')
+            if (!value && arg.key) {
+              set(arg, 'value.value', '')
+            }
+          })
+        }
+      })
+    }
   }
 
   return json

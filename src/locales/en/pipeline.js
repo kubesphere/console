@@ -556,4 +556,5 @@ export default {
   'Brach Run Start': 'Brach Run Start',
   'Brach Run Success': 'Batch Run Completed',
   'Brach Run Fail': 'Batch Run Failed',
+  'Run Start': 'Start Running',
 }

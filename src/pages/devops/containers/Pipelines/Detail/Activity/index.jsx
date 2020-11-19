@@ -100,6 +100,7 @@ export default class Activity extends React.Component {
     const { params } = this.props.match
     const isMultibranch = detail.branchNames
     const hasParameters = detail.parameters && detail.parameters.length
+    Notify.success({ content: `${t('Run Start')}!` })
 
     if (isMultibranch || hasParameters) {
       this.trigger('pipeline.params', {

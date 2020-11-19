@@ -20,9 +20,11 @@ import React from 'react'
 import classnames from 'classnames'
 import cookie from 'utils/cookie'
 
+import { Loading } from '@kube-design/components'
 import styles from './index.scss'
+import { TEMPLATE_CONFIG } from './templePipeline'
 
-const PipelineTemplate = () => {
+const PipelineTemplate = ({ setJsonData, templateLoading }) => {
   const lang = cookie('lang') === 'zh' ? 'zh' : 'en'
 
   const CARD_CONFIG = [
@@ -46,16 +48,20 @@ const PipelineTemplate = () => {
     },
   ]
 
-  const getTemple = () => {}
+  const getTemple = type => {
+    setJsonData(type, TEMPLATE_CONFIG[type])
+  }
 
   return (
     <div className={styles.container}>
       <h3 className={styles.title}>选择流水线模板</h3>
-      <div className={styles.template}>
-        {CARD_CONFIG.map(data => (
-          <Card key={data.type} {...data} getTemple={getTemple} />
-        ))}
-      </div>
+      <Loading spinning={templateLoading}>
+        <div className={styles.template}>
+          {CARD_CONFIG.map(data => (
+            <Card key={data.type} {...data} getTemple={getTemple} />
+          ))}
+        </div>
+      </Loading>
     </div>
   )
 }

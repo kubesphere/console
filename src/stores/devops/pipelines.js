@@ -29,6 +29,19 @@ const FORM_HEAR = {
   },
 }
 
+const handleEnvironmentData = jenkinsFile => {
+  const env = jenkinsFile.match(
+    /environment\s\{\s+(([\w-?_?]+\s?)=?\s?'?([\w-?.?]+)+'?\s+)+\}/gm
+  )
+  // const params = env[0].match(/([\w-?_?]+)\s?=?\s?'?([\w-?.?]+)+'?/gm)
+  // params.shift()
+  // const envParams = params.map(item => {
+  //   const [key, value] = item.split('=')
+  //   return { [key.trim()]: value.trim().replace(/'/g, '') }
+  // })
+  return env
+}
+
 export default class PipelineStore extends BaseStore {
   module = 'pipelines'
 
@@ -123,6 +136,9 @@ export default class PipelineStore extends BaseStore {
 
   @observable
   devopsName = ''
+
+  @observable
+  jenkinsEnvData = ''
 
   @action
   async fetchList({ devops, workspace, devopsName, cluster, ...filters } = {}) {
@@ -226,6 +242,8 @@ export default class PipelineStore extends BaseStore {
   @action
   async convertJenkinsFileToJson(jenkinsfile, cluster) {
     if (jenkinsfile) {
+      this.jenkinsEnvData = handleEnvironmentData(jenkinsfile)
+
       const result = await this.request.post(
         `${this.getBaseUrlV2({ cluster })}tojson`,
         { jenkinsfile },
