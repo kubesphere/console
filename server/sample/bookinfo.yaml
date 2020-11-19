@@ -77,7 +77,6 @@ spec:
             - name: http-web
               protocol: TCP
               containerPort: 9080
-              servicePort: 9080
       serviceAccount: default
   strategy:
     type: RollingUpdate
@@ -156,7 +155,6 @@ spec:
             - name: http-web
               protocol: TCP
               containerPort: 9080
-              servicePort: 9080
       serviceAccount: default
   strategy:
     type: RollingUpdate
@@ -235,7 +233,6 @@ spec:
             - name: http-web
               protocol: TCP
               containerPort: 9080
-              servicePort: 9080
       serviceAccount: default
   strategy:
     type: RollingUpdate
@@ -314,7 +311,6 @@ spec:
             - name: http-web
               protocol: TCP
               containerPort: 9080
-              servicePort: 9080
       serviceAccount: default
   strategy:
     type: RollingUpdate
