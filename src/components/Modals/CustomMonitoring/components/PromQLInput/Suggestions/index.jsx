@@ -19,6 +19,7 @@
 import { isEmpty } from 'lodash'
 import React, { Component } from 'react'
 import classNames from 'classnames'
+import isEqual from 'react-fast-compare'
 
 import { RATE_RANGES, FUNCTIONS } from '../grammar'
 
@@ -42,9 +43,34 @@ const searchRateRanges = value => {
   return []
 }
 
+const searchLabels = (labelsets = {}, value, tokenType) => {
+  if (tokenType.label) {
+    const values = labelsets[tokenType.label] || []
+    if (value === '=') {
+      return values.map(key => ({ value: `"${key}"` }))
+    }
+    if (value === '""' || value === "''") {
+      return values.map(key => ({ value: key }))
+    }
+    return values
+      .filter(val => val.indexOf(value) >= 0)
+      .map(val => ({ value: val }))
+  }
+
+  const keys = Object.keys(labelsets)
+  if (value === '{') {
+    return keys.map(key => ({ value: key }))
+  }
+
+  return keys
+    .filter(key => key.indexOf(value) >= 0)
+    .map(key => ({ value: key }))
+}
+
 export default class Suggestions extends Component {
   state = {
     focusIndex: 0,
+    labels: [],
     functions: [],
     metrics: [],
     rateRanges: [],
@@ -67,7 +93,12 @@ export default class Suggestions extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.value !== this.props.value) {
+    if (
+      prevProps.value !== this.props.value ||
+      !isEqual(prevProps.tokenContext, this.props.tokenContext) ||
+      !isEqual(prevProps.metrics, this.props.metrics) ||
+      !isEqual(prevProps.labelsets, this.props.labelsets)
+    ) {
       this.getSuggestions()
     }
   }
@@ -77,17 +108,19 @@ export default class Suggestions extends Component {
   }
 
   handleArrowDown = () => {
-    this.setState(({ focusIndex, functions, metrics, rateRanges }) => {
-      const totalLength = functions.length + metrics.length + rateRanges.length
+    this.setState(({ focusIndex, labels, functions, metrics, rateRanges }) => {
+      const totalLength =
+        labels.length + functions.length + metrics.length + rateRanges.length
       return {
-        focusIndex: focusIndex > totalLength - 1 ? 0 : focusIndex + 1,
+        focusIndex: focusIndex >= totalLength - 1 ? 0 : focusIndex + 1,
       }
     }, this.scrollToFocus)
   }
 
   handleArrowUp = () => {
-    this.setState(({ focusIndex, functions, metrics, rateRanges }) => {
-      const totalLength = functions.length + metrics.length + rateRanges.length
+    this.setState(({ focusIndex, labels, functions, metrics, rateRanges }) => {
+      const totalLength =
+        labels.length + functions.length + metrics.length + rateRanges.length
       return {
         focusIndex: focusIndex <= 0 ? totalLength - 1 : focusIndex - 1,
       }
@@ -96,8 +129,10 @@ export default class Suggestions extends Component {
 
   handleEnter = () => {
     const { onSelect } = this.props
-    const { focusIndex, functions, metrics, rateRanges } = this.state
-    const item = [...functions, ...metrics, ...rateRanges][focusIndex]
+    const { focusIndex, functions, metrics, rateRanges, labels } = this.state
+    const item = [...labels, ...functions, ...metrics, ...rateRanges][
+      focusIndex
+    ]
     item && onSelect(item.value || item.label)
   }
 
@@ -130,12 +165,22 @@ export default class Suggestions extends Component {
   }
 
   getSuggestions() {
-    const { value } = this.props
-    const functions = searchFunctions(value)
-    const metrics = searchMetrics(this.props.metrics, value)
-    const rateRanges = searchRateRanges(value)
+    const { value, metrics: _metrics, labelsets, tokenContext } = this.props
 
-    this.setState({ functions, metrics, rateRanges })
+    let functions = []
+    let metrics = []
+    let rateRanges = []
+    let labels = []
+
+    if (tokenContext && tokenContext.type.indexOf('context-labels') > -1) {
+      labels = searchLabels(labelsets, value, tokenContext)
+    } else {
+      functions = searchFunctions(value)
+      metrics = searchMetrics(_metrics, value)
+      rateRanges = searchRateRanges(value)
+    }
+
+    this.setState({ functions, metrics, rateRanges, labels })
   }
 
   renderList(data, title) {
@@ -166,14 +211,20 @@ export default class Suggestions extends Component {
 
   render() {
     const { className } = this.props
-    const { functions, metrics, rateRanges } = this.state
+    const { functions, metrics, rateRanges, labels } = this.state
 
-    if (isEmpty(functions) && isEmpty(metrics) && isEmpty(rateRanges)) {
+    if (
+      isEmpty(functions) &&
+      isEmpty(metrics) &&
+      isEmpty(rateRanges) &&
+      isEmpty(labels)
+    ) {
       return null
     }
 
     return (
       <div className={classNames(styles.wrapper, className)} ref={this.wrapper}>
+        {this.renderList(labels, 'Labels')}
         {this.renderList(functions, 'Functions')}
         {this.renderList(rateRanges, 'Rate Ranges')}
         {this.renderList(metrics, 'Metrics')}
