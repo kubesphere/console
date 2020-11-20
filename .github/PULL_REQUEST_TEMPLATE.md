@@ -3,12 +3,12 @@
 >
 > /kind api-change
 > /kind bug
+> /kind optimize
 > /kind cleanup
 > /kind design
 > /kind documentation
 > /kind failing-test
 > /kind feature
-> /kind flake
 
 **What this PR does / why we need it**:
 
