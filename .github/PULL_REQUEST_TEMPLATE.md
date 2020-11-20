@@ -3,7 +3,7 @@
 >
 > /kind api-change
 > /kind bug
-> /kind optimize
+> /kind optimization
 > /kind cleanup
 > /kind design
 > /kind documentation
