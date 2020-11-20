@@ -98,7 +98,7 @@ export default class ImageSearch extends Component {
   }
 
   getImageDetail = async ({ image, secret, ...rest }) => {
-    const { namespace, cluster } = this.props
+    const { namespace, imageRegistries } = this.props
     if (!image || this.isUnMounted) {
       return
     }
@@ -106,6 +106,9 @@ export default class ImageSearch extends Component {
     this.image = image
 
     this.setState({ isLoading: true })
+
+    const secretDetail = imageRegistries.find(item => item.value === secret)
+    const cluster = get(secretDetail, 'cluster')
 
     const result = await this.store.getImageDetail({
       cluster,
