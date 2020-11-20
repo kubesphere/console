@@ -11,7 +11,7 @@
   flex-shrink: 0;
 
   :global {
-    .checkbox {
+    label.checkbox .label-value {
       @include TypographySymbolText;
     }
   }
@@ -21,7 +21,7 @@
     color: #fff;
 
     :global {
-      .checkbox {
+      label.checkbox .label-value {
         color: #fff;
       }
     }

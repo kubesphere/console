@@ -105,9 +105,7 @@ export default class Services extends React.Component {
 
     set(
       formData.workload,
-      `spec.template.${
-        this.fedPrefix
-      }metadata.annotations["sidecar.istio.io/inject"]`,
+      `spec.template.${this.fedPrefix}metadata.annotations["sidecar.istio.io/inject"]`,
       String(isGovernance)
     )
 
