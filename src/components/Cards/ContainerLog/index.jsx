@@ -22,6 +22,7 @@ import classNames from 'classnames'
 import { observer } from 'mobx-react'
 import { saveAs } from 'file-saver'
 import { get, isEmpty } from 'lodash'
+import AnsiUp from 'ansi_up'
 
 import { PATTERN_UTC_TIME } from 'utils/constants'
 import { Loading, Icon, Tooltip } from '@pitrix/lego-ui'
@@ -29,6 +30,8 @@ import { Card, Notify, Empty } from 'components/Base'
 import ContainerStore from 'stores/container'
 
 import styles from './index.scss'
+
+const converter = new AnsiUp()
 
 @observer
 export default class ContainerLog extends React.Component {
@@ -227,7 +230,14 @@ export default class ContainerLog extends React.Component {
           const match = text.match(PATTERN_UTC_TIME)
           const key = match ? match[0] : index
           const content = match ? text.replace(match[0], '') : text
-          return <p key={key} dangerouslySetInnerHTML={{ __html: content }} />
+          return (
+            <p
+              key={key}
+              dangerouslySetInnerHTML={{
+                __html: converter.ansi_to_html(content),
+              }}
+            />
+          )
         })}
         <div className={styles.loading}>
           <Loading spinning={loadingNext} size="small" />

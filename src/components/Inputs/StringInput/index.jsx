@@ -56,7 +56,7 @@ export default class StringInput extends React.Component {
     }
   }
 
-  handleChange = (e, value) => {
+  handleChange = value => {
     const { onChange, parser } = this.props
 
     this.setState({ value })
