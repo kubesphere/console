@@ -94,11 +94,22 @@ export default class PipelineModal extends React.Component {
         jenkins,
         params.cluster
       )
-
+      store.setEnvironmentData(jenkins)
       this.setState({ jsonData: jenkinsFile, templateLoading: false })
     }
 
     this.setState({ createPipelineType: true })
+  }
+
+  setEnvInJsonData = jenkins => {
+    const { store } = this.props
+    let _jenkinsFile = jenkins
+
+    if (store.jenkinsEnvData) {
+      _jenkinsFile = `${_jenkinsFile.slice(0, -1)}  ${store.jenkinsEnvData}\n }`
+    }
+
+    this.props.onOk(_jenkinsFile)
   }
 
   renderPipelineContent() {
@@ -120,7 +131,7 @@ export default class PipelineModal extends React.Component {
         isEditMode
         params={params}
         jsonData={jsonData}
-        onOk={this.props.onOk}
+        onOk={this.setEnvInJsonData}
         onCancel={this.showConfirm}
         isSubmitting={isSubmitting}
       />

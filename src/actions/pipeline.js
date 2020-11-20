@@ -39,12 +39,16 @@ function handleParams(param) {
   const name = param.name
   const choicesOption = get(param, 'choices', [])
 
+  let _params = {}
   switch (type) {
     case 'choice':
-      return { name, value: value || choicesOption[0] }
+      _params = { name, value: value || choicesOption[0] }
+      break
     default:
-      return { name, value }
+      _params = { name, value }
+      break
   }
+  return _params
 }
 
 export default {
