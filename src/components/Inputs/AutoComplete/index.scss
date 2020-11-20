@@ -1,0 +1,23 @@
+@import '~scss/variables';
+
+.wrapper {
+  :global {
+    .dropdown {
+      .menu {
+        width: 455px;
+        background-color: $dark;
+        padding: 0;
+      }
+
+      .menu-item {
+        border-radius: 0;
+        color: #fff;
+        padding: 6px 12px;
+
+        &:hover {
+          background-color: $dark-color06;
+        }
+      }
+    }
+  }
+}

@@ -19,7 +19,7 @@
 import { get, set, isUndefined } from 'lodash'
 import React from 'react'
 import { Form, Input, InputPassword, TextArea } from '@kube-design/components'
-import { CustomSelect } from 'components/Inputs'
+import { AutoComplete } from 'components/Inputs'
 
 import { hasChinese } from 'utils'
 import { MODULE_KIND_MAP } from 'utils/constants'
@@ -252,7 +252,7 @@ export default class SecretSettings extends React.Component {
 
   render() {
     const { formRef, mode } = this.props
-    const { state } = this.state
+    const { state, type } = this.state
 
     if (state === 'data') {
       return this.renderDataForm()
@@ -262,11 +262,11 @@ export default class SecretSettings extends React.Component {
       <Form data={this.fedFormTemplate} ref={formRef}>
         {mode !== 'edit' ? (
           <Form.Item label={t('Type')} desc={t('SECRET_TYPE_DESC')}>
-            <CustomSelect
+            <AutoComplete
               name="type"
-              options={this.getTypeOptions()}
+              value={type}
               onChange={this.handleTypeChange}
-              placeholder={t('Please Select')}
+              options={this.getTypeOptions()}
             />
           </Form.Item>
         ) : (
