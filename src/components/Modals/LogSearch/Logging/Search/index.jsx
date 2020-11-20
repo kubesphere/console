@@ -22,19 +22,21 @@ import { observable, action, toJS } from 'mobx'
 import moment from 'moment-mini'
 import { min, isString, includes } from 'lodash'
 import memoizee from 'memoizee'
+import AnsiUp from 'ansi_up'
 
 import LogQueryStore from 'stores/logging/query'
 import HistogramStore from 'stores/logging/histogram'
 
 import { Icon, Select, Tooltip } from '@kube-design/components'
 import Table from 'components/Tables/Visible'
-import stripAnsi from 'strip-ansi'
 import { markAll, esMark, mark } from 'utils/log'
 
 import TimeBar from 'components/Charts/Bar/TimeBar'
 import SearchInput from '../SearchInput'
 
 import styles from './index.scss'
+
+const converter = new AnsiUp()
 
 const DefaultRealTimeConfig = {
   duration: 600,
@@ -107,7 +109,7 @@ export default class LogSearchModal extends React.Component {
       thead: t('Log'),
       key: 'log',
       className: styles.logItem,
-      content: this.renderHightLightMatchTd({
+      content: this.renderHightLightMatchLogTd({
         resKey: 'log',
         searchKey: ['log_query'],
         handler: esMark,
@@ -278,7 +280,7 @@ export default class LogSearchModal extends React.Component {
 
   renderHightLightMatchTd({ resKey, searchKey, handler = mark }) {
     return data => {
-      const queryResult = stripAnsi(data[resKey] || '')
+      const queryResult = data[resKey] || ''
 
       const querys = this.props.searchInputState.query
         .filter(({ key, value }) => value && includes(searchKey, key))
@@ -298,6 +300,34 @@ export default class LogSearchModal extends React.Component {
             )
           )}
         </span>
+      )
+    }
+  }
+
+  renderHightLightMatchLogTd({ resKey, searchKey, handler = mark }) {
+    return data => {
+      const queryResult = converter.ansi_to_html(data[resKey] || '')
+
+      const querys = this.props.searchInputState.query
+        .filter(({ key, value }) => value && includes(searchKey, key))
+        .map(({ value }) => value)
+
+      const markedResult = this.markMemoizee(queryResult, querys, handler)
+
+      return (
+        <span
+          dangerouslySetInnerHTML={{
+            __html: markedResult.map((log, index) =>
+              isString(log) ? (
+                log
+              ) : (
+                <span key={index} className={styles.hightLightMatch}>
+                  {log.hightLighted}
+                </span>
+              )
+            ),
+          }}
+        />
       )
     }
   }

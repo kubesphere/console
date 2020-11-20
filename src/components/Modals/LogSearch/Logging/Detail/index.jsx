@@ -21,7 +21,7 @@ import moment from 'moment-mini'
 import classnames from 'classnames'
 import { observer } from 'mobx-react'
 import { observable, computed, action } from 'mobx'
-import stripAnsi from 'strip-ansi'
+import AnsiUp from 'ansi_up'
 import { get } from 'lodash'
 import { Icon, Select, Tooltip } from '@kube-design/components'
 
@@ -34,6 +34,8 @@ import { ReactComponent as BackIcon } from 'assets/back.svg'
 import DurationSelect from './DurationSelect'
 
 import styles from './index.scss'
+
+const converter = new AnsiUp()
 
 @observer
 export default class DetailModal extends React.Component {
@@ -431,21 +433,37 @@ export default class DetailModal extends React.Component {
     const logQuery = query.trim()
     const matchIndex = log.toUpperCase().indexOf(logQuery.toUpperCase())
     if (!logQuery || matchIndex === -1) {
-      return <span className={styles.queryLog}>{stripAnsi(log)}</span>
+      return (
+        <span
+          className={styles.queryLog}
+          dangerouslySetInnerHTML={{ __html: converter.ansi_to_html(log) }}
+        />
+      )
     }
-
-    const preString = log.slice(0, matchIndex)
-    const highlightLog = (
-      <span className={styles.hightLight}>
-        {stripAnsi(log.slice(matchIndex, matchIndex + logQuery.length))}
-      </span>
-    )
-    const lastString = log.slice(matchIndex + logQuery.length)
     return (
       <span className={styles.queryLog}>
-        {stripAnsi(preString)}
-        {highlightLog}
-        {stripAnsi(lastString)}
+        <span
+          dangerouslySetInnerHTML={{
+            __html: converter.ansi_to_html(log.slice(0, matchIndex)),
+          }}
+        />
+        {
+          <span
+            className={styles.hightLight}
+            dangerouslySetInnerHTML={{
+              __html: converter.ansi_to_html(
+                log.slice(matchIndex, matchIndex + logQuery.length)
+              ),
+            }}
+          />
+        }
+        <span
+          dangerouslySetInnerHTML={{
+            __html: converter.ansi_to_html(
+              log.slice(matchIndex + logQuery.length)
+            ),
+          }}
+        />
       </span>
     )
   }
