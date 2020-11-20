@@ -23,12 +23,33 @@ import CreateModal from 'components/Modals/Create'
 import AdvanceEditorModal from 'components/Modals/Pipelines/AdvanceEdit'
 import ParamsFormModal from 'components/Forms/Pipelines/ParamsFormModal'
 import BaseInfoModal from 'components/Modals/Pipelines/Base'
+import CopyModal from 'components/Modals/Pipelines/Copy'
+
 import ScanRepositoryLogs from 'components/Modals/Pipelines/ScanRepositoryLogs'
 import PipelineModal from 'components/Modals/Pipelines/PipelineEdit'
 
 import FORM_STEPS from 'configs/steps/pipelines'
 import { updatePipelineParams, updatePipelineParamsInSpec } from 'utils/devops'
 import JenkinsEdit from 'devops/components/Modals/JenkinsEdit'
+import { get, isEmpty } from 'lodash'
+
+function handleParams(param) {
+  const type = param.type.toLowerCase().split('parameterdefinition')[0]
+  const value = get(param, 'defaultParameterValue.value')
+  const name = param.name
+  const choicesOption = get(param, 'choices', [])
+
+  let _params = {}
+  switch (type) {
+    case 'choice':
+      _params = { name, value: value || choicesOption[0] }
+      break
+    default:
+      _params = { name, value }
+      break
+  }
+  return _params
+}
 
 export default {
   'pipeline.create': {
@@ -99,6 +120,60 @@ export default {
         store,
         ...props,
       })
+    },
+  },
+  'pipeline.batch.run': {
+    async on({ store, success, rowKey, devops, cluster }) {
+      const { data, selectedRowKeys } = toJS(store.list)
+
+      Notify.success({ content: `${t('Brach Run Start')}!` })
+
+      const selectNames = data
+        .filter(item => selectedRowKeys.includes(item[rowKey]))
+        .map(item => item.name)
+
+      const reqlist = []
+
+      data.forEach(async item => {
+        if (selectNames.includes(item.name)) {
+          let parameters = item.parameters
+          const branchs = item.branchNames
+          const branchName = get(branchs, '[0]', '')
+
+          if (branchs && !isEmpty(branchs)) {
+            const branchData = await store.getBranchDetail({
+              branch: branchName,
+              name: item.name,
+              devops,
+              cluster,
+            })
+
+            parameters = branchData.parameters || undefined
+          }
+
+          if (!isEmpty(parameters)) {
+            parameters = parameters.map(param => {
+              return handleParams(param)
+            })
+          }
+
+          reqlist.push(
+            store.runBranch({
+              name: item.name,
+              devops,
+              cluster,
+              branch: branchName,
+              parameters,
+            })
+          )
+        }
+      })
+
+      await Promise.all(reqlist)
+
+      Notify.success({ content: `${t('Brach Run Success')}!` })
+      store.setSelectRowKeys([])
+      success && success()
     },
   },
   'pipeline.edit': {
@@ -202,7 +277,7 @@ export default {
     },
   },
   'pipeline.pipeline': {
-    on({ store, success, jsonData, params, projectName, ...props }) {
+    on({ store, rootStore, success, jsonData, params, ...props }) {
       const modal = Modal.open({
         onOk: async jenkinsFile => {
           await store.updateJenkinsFile(jenkinsFile, params)
@@ -213,7 +288,44 @@ export default {
         modal: PipelineModal,
         jsonData,
         params,
-        projectName,
+        store,
+        ...props,
+      })
+    },
+  },
+  'pipeline.copy': {
+    on({ store, cluster, devops, success, formTemplate, ...props }) {
+      const modal = Modal.open({
+        onOk: async data => {
+          updatePipelineParams(data, true)
+          updatePipelineParamsInSpec(data, devops)
+
+          Object.keys(data).forEach(key => {
+            if (key === 'metadata' && data[key]) {
+              Object.keys(data[key]).forEach(_key => {
+                if (_key !== 'name' && _key !== 'namespace') {
+                  delete data[key][_key]
+                }
+              })
+            }
+          })
+
+          await store.createPipeline({
+            data,
+            devops,
+            cluster,
+          })
+
+          Modal.close(modal)
+          Notify.success({ content: `${t('Created Successfully')}!` })
+          success && success()
+        },
+        store,
+        cluster,
+        devops,
+        success,
+        formTemplate,
+        modal: CopyModal,
         ...props,
       })
     },

@@ -124,6 +124,9 @@ export default class PipelineStore extends BaseStore {
   @observable
   devopsName = ''
 
+  @observable
+  jenkinsEnvData = ''
+
   @action
   async fetchList({ devops, workspace, devopsName, cluster, ...filters } = {}) {
     this.list.isLoading = true
@@ -217,6 +220,7 @@ export default class PipelineStore extends BaseStore {
       cluster
     )
 
+    this.setEnvironmentData(toJS(this.jenkinsfile))
     this.pipelineJsonData = {
       pipelineJson: json,
       isLoading: false,
@@ -448,6 +452,7 @@ export default class PipelineStore extends BaseStore {
   async updatePipeline({ cluster, data, devops }) {
     data.kind = 'Pipeline'
     data.apiVersion = 'devops.kubesphere.io/v1alpha3'
+
     const url = `${this.getDevOpsDetailUrl({
       devops,
       cluster,
@@ -458,10 +463,19 @@ export default class PipelineStore extends BaseStore {
     return result
   }
 
+  @action setEnvironmentData = jenkinsFile => {
+    const env = jenkinsFile.match(
+      /environment\s?\{(\s+([\w]+(-|_)?)+\s?=\s?'?([\w](-|.)?[\w])+'?\s+)+\}/gm
+    )
+    this.jenkinsEnvData = env ? env[0] : ''
+  }
+
   @action
   updateJenkinsFile(jenkinsFile, params) {
-    const data = JSON.parse(JSON.stringify(this.pipelineConfig))
+    const data = cloneDeep(toJS(this.pipelineConfig))
     set(data, 'spec.pipeline.jenkinsfile', jenkinsFile)
+
+    this.jenkinsEnvData = ''
 
     return this.updatePipeline({
       data,

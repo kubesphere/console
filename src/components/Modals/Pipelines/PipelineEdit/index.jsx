@@ -20,8 +20,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { Modal } from 'components/Base'
-import ConfimModal from 'components/Modals/Delete'
+import ConfirmModal from 'components/Modals/Delete'
 import PipelineContent from 'devops/components/Pipeline'
+import classnames from 'classnames'
+import { isEmpty } from 'lodash'
+import PipelineTemplate from 'devops/components/Pipeline/PipelineTemplate'
 
 import styles from './index.scss'
 
@@ -51,34 +54,84 @@ export default class PipelineModal extends React.Component {
     this.CLIENT_WIDTH = document.body.clientWidth
 
     this.state = {
-      isshowComfim: false,
+      isshowComfirm: false,
+      createPipelineType: !isEmpty(this.props.jsonData) ? 'custom' : undefined,
+      jsonData: this.props.jsonData,
+      templateLoading: false,
     }
   }
 
-  hideConfim = () => {
-    this.setState({ isshowComfim: false })
+  hideConfirm = () => {
+    this.setState({ isshowComfirm: false })
   }
 
   showConfirm = () => {
-    this.setState({ isshowComfim: true })
+    this.setState({ isshowComfirm: true })
   }
 
   handleCancel = () => {
-    this.hideConfim()
+    this.hideConfirm()
     const { devops, name } = this.props.params
     localStorage.removeItem(`${globals.user.username}-${devops}-${name}`)
     this.props.onCancel()
   }
 
-  renderForms() {
-    const { jsonData, params, isSubmitting } = this.props
+  setTempleJsonData = async (type, jenkins) => {
+    if (type !== 'custom') {
+      const { store, params } = this.props
+      const { devops, name, cluster } = params
+
+      this.setState({ templateLoading: true })
+
+      await store.checkScriptCompile({
+        devops,
+        pipeline: name,
+        value: jenkins,
+        cluster,
+      })
+
+      const jenkinsFile = await store.convertJenkinsFileToJson(
+        jenkins,
+        params.cluster
+      )
+      store.setEnvironmentData(jenkins)
+      this.setState({ jsonData: jenkinsFile, templateLoading: false })
+    }
+
+    this.setState({ createPipelineType: true })
+  }
+
+  setEnvInJsonData = jenkins => {
+    const { store } = this.props
+    let _jenkinsFile = jenkins
+
+    if (store.jenkinsEnvData) {
+      _jenkinsFile = `${_jenkinsFile.slice(0, -1)}  ${store.jenkinsEnvData}\n }`
+    }
+
+    this.props.onOk(_jenkinsFile)
+  }
+
+  renderPipelineContent() {
+    const { params, isSubmitting } = this.props
+    const { createPipelineType, templateLoading, jsonData } = this.state
+
+    if (!createPipelineType) {
+      return (
+        <PipelineTemplate
+          templateLoading={templateLoading}
+          setJsonData={this.setTempleJsonData}
+        />
+      )
+    }
+
     return (
       <PipelineContent
         className={styles.content}
         isEditMode
         params={params}
         jsonData={jsonData}
-        onOk={this.props.onOk}
+        onOk={this.setEnvInJsonData}
         onCancel={this.showConfirm}
         isSubmitting={isSubmitting}
       />
@@ -87,26 +140,41 @@ export default class PipelineModal extends React.Component {
 
   render() {
     const { visible } = this.props
+    const { createPipelineType } = this.state
+    const isPipelineModal = !isEmpty(createPipelineType)
+
+    const modalProps = {
+      hideHeader: isPipelineModal,
+      closable: !isPipelineModal,
+      title: t('Create Pipeline'),
+      imageIcon: '/assets/pipeline/pipeline-icon-dark.svg',
+      description: 'Build, test and deploy with Pipelines',
+    }
 
     return (
       <React.Fragment>
         <Modal
-          width={Math.max(this.CLIENT_WIDTH - 40, 1200)}
-          bodyClassName={styles.body}
+          width={
+            !createPipelineType
+              ? '1400px'
+              : Math.max(this.CLIENT_WIDTH - 40, 1200)
+          }
+          bodyClassName={classnames(styles.body, {
+            [styles.templeHeight]: !createPipelineType,
+          })}
           visible={visible}
           closable={false}
           maskClosable={false}
           onOk={this.props.onOk}
           onCancel={this.showConfirm}
-          hideHeader
           hideFooter
+          {...modalProps}
         >
-          <div className={styles.title}>{t('Pipeline Configuration')}</div>
-          {this.renderForms()}
+          {this.renderPipelineContent()}
         </Modal>
-        <ConfimModal
-          visible={this.state.isshowComfim}
-          onCancel={this.hideConfim}
+        <ConfirmModal
+          visible={this.state.isshowComfirm}
+          onCancel={this.hideConfirm}
           onOk={this.handleCancel}
           title={t('Close')}
           desc={t('Are you sure to close this pipeline Editor ?')}

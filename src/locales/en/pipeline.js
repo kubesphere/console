@@ -102,6 +102,7 @@ export default {
   Discard: 'Discard',
   'Discard old branch': 'Discard old branch',
   'Discard Old Builds': 'Discard Old Builds',
+  'Discover Tag Branches': 'Discover Tag Branches',
   'Discover Branches': 'Discover Branches',
   'Discover branches from repoitory': 'Discover branches from repoitory',
   'Discover PR from Forks': 'Discover PR from Forks',
@@ -109,6 +110,8 @@ export default {
   'Discover pull requests from forks': 'Discover pull requests from forks',
   'Discover pull requests from origin': 'Discover pull requests from origin',
   'Display All': 'Display All',
+  'Enable Discover Tag Branches': 'Enable discovery of Tag branch',
+  'Disable Discover Tag Branches': 'Disable the discovery of the Tag branch',
   'Docker Container Registry Credentials':
     'Docker Container Registry Credentials',
   'Docker Registry URL': 'Docker Registry URL',
@@ -539,4 +542,19 @@ export default {
   'Started By {name}': 'Started By {name}',
   'Credential ID exists': 'Credential ID exists',
   'Invalid credential ID': 'Invalid credential ID',
+  CI: 'Continuous Integration (CI)',
+  CI_DESC:
+    'Continuous integration (CI) is the process of automatically detecting, pulling, building, and (in most cases) unit testing after source code changes.',
+  CICD: 'Continuous Integration & Delivery (CI/CD)',
+  CICD_DESC:
+    "Continuous deployment (CD) refers to the idea of automatically providing the release version in the continuous delivery pipeline to end users. According to the user's installation method, automatic deployment in the cloud environment, app upgrades (such as apps on mobile phones), website updates, or only the list of available versions.",
+  CUSTOM_PIPELIEN: 'Custom Pipeline',
+  CUSTOM_PIPELIEN_DESC:
+    'You can select the tasks you need to customize the work content of the pipeline',
+  'Copy Pipeline': 'Copy Pipeline',
+  'Brach Run': 'Batch Run',
+  'Brach Run Start': 'Brach Run Start',
+  'Brach Run Success': 'Batch Run Completed',
+  'Brach Run Fail': 'Batch Run Failed',
+  'Run Start': 'Start Running',
 }
