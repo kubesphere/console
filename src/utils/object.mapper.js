@@ -805,6 +805,19 @@ const StrategyMapper = item => {
     props.governor = props.oldVersion
   }
 
+  props.hosts = get(item, 'spec.template.spec.hosts[0]')
+
+  props.oldWorkloadName = get(
+    item,
+    'metadata.annotations["servicemesh.kubesphere.io/oldWorkloadName"]',
+    `${props.hosts}-${props.oldVersion}`
+  )
+  props.newWorkloadName = get(
+    item,
+    'metadata.annotations["servicemesh.kubesphere.io/newWorkloadName"]',
+    `${props.hosts}-${props.newVersion}`
+  )
+
   return {
     ...props,
     ...getBaseInfo(item),
@@ -812,7 +825,6 @@ const StrategyMapper = item => {
     labels: get(item, 'metadata.labels', {}),
     annotations: get(item, 'metadata.annotations', {}),
     selector: get(item, 'spec.selector.matchLabels'),
-    hosts: get(item, 'spec.template.spec.hosts[0]'),
     status: get(item, 'spec.assemblyPhase'),
     _originData: getOriginData(item),
   }

@@ -353,21 +353,22 @@ export default class GatewaySettingModal extends React.Component {
   handleOffline = () => {
     const {
       type,
-      hosts,
       cluster,
       namespace,
       governor,
       oldVersion,
-      newVersion,
+      oldWorkloadName,
+      newWorkloadName,
     } = toJS(this.store.detail)
 
     if (governor) {
       const { onDelete } = this.props
-      const version = governor === oldVersion ? newVersion : oldVersion
+      const workloadName =
+        governor === oldVersion ? newWorkloadName : oldWorkloadName
 
-      if (version) {
+      if (workloadName) {
         this.workloadStore.delete({
-          name: `${hosts}-${version}`,
+          name: workloadName,
           cluster,
           namespace,
         })
@@ -378,10 +379,9 @@ export default class GatewaySettingModal extends React.Component {
 
     if (type === 'Mirror') {
       const { onDelete } = this.props
-      const version = newVersion
-      if (version) {
+      if (newWorkloadName) {
         this.workloadStore.delete({
-          name: `${hosts}-${version}`,
+          name: newWorkloadName,
           cluster,
           namespace,
         })

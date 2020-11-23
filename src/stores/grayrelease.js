@@ -63,7 +63,7 @@ export default class GrayReleaseStore extends Base {
 
   @action
   fetchMetrics(
-    { cluster, namespace, hosts, newVersion, oldVersion, protocol },
+    { cluster, namespace, newWorkloadName, oldWorkloadName, protocol },
     options = {}
   ) {
     const queryTime = Math.floor(new Date().getTime() / 1000)
@@ -94,14 +94,14 @@ export default class GrayReleaseStore extends Base {
         `kapis/servicemesh.kubesphere.io/v1alpha2${this.getPath({
           cluster,
           namespace,
-        })}/workloads/${hosts}-${newVersion}/metrics`,
+        })}/workloads/${newWorkloadName}/metrics`,
         metricsParams
       ),
       request.get(
         `kapis/servicemesh.kubesphere.io/v1alpha2${this.getPath({
           cluster,
           namespace,
-        })}/workloads/${hosts}-${oldVersion}/metrics`,
+        })}/workloads/${oldWorkloadName}/metrics`,
         metricsParams
       ),
     ])
@@ -109,7 +109,7 @@ export default class GrayReleaseStore extends Base {
 
   @action
   fetchHealth(
-    { cluster, namespace, hosts, newVersion, oldVersion },
+    { cluster, namespace, newWorkloadName, oldWorkloadName },
     options = {}
   ) {
     const healthParams = {
@@ -122,14 +122,14 @@ export default class GrayReleaseStore extends Base {
         `kapis/servicemesh.kubesphere.io/v1alpha2${this.getPath({
           cluster,
           namespace,
-        })}/workloads/${hosts}-${newVersion}/health`,
+        })}/workloads/${newWorkloadName}/health`,
         healthParams
       ),
       request.get(
         `kapis/servicemesh.kubesphere.io/v1alpha2${this.getPath({
           cluster,
           namespace,
-        })}/workloads/${hosts}-${oldVersion}/health`,
+        })}/workloads/${oldWorkloadName}/health`,
         healthParams
       ),
     ])
@@ -216,7 +216,7 @@ export default class GrayReleaseStore extends Base {
 
   @action
   update(
-    { name, cluster, namespace, hosts, newVersion, resourceVersion },
+    { name, cluster, namespace, newWorkloadName, newVersion, resourceVersion },
     data
   ) {
     const promises = []
@@ -244,7 +244,7 @@ export default class GrayReleaseStore extends Base {
             `apis/apps/v1${this.getPath({
               cluster,
               namespace,
-            })}/${module}/${hosts}-${newVersion}`
+            })}/${module}/${newWorkloadName}`
           ),
           request.post(
             `apis/apps/v1${this.getPath({ cluster, namespace })}/${module}`,

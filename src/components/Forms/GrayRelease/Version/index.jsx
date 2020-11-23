@@ -85,8 +85,14 @@ export default class Version extends ContainerSettings {
   handleVersionChange = debounce(value => {
     const componentName = get(this.formTemplate, 'metadata.labels.app', '')
 
-    set(this.formTemplate, 'metadata.name', `${componentName}-${value}`)
+    const name = `${componentName}-${value}`
+    set(this.formTemplate, 'metadata.name', name)
     mergeLabels(this.formTemplate, { version: value })
+    set(
+      this.props.formTemplate,
+      'strategy.metadata.annotations["servicemesh.kubesphere.io/newWorkloadName"]',
+      name
+    )
   }, 200)
 
   renderReplicasControl() {
@@ -131,6 +137,7 @@ export default class Version extends ContainerSettings {
       <Column>
         <Form.Item rules={[{ validator: this.containersValidator }]}>
           <ContainerList
+            className={styles.containers}
             name={`${this.prefix}spec.containers`}
             onShow={this.showContainer}
             onDelete={this.handleDelete}
