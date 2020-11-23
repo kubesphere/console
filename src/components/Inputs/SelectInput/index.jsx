@@ -19,7 +19,8 @@
 import React from 'react'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
-import { Dropdown, Menu, Input, Icon } from '@kube-design/components'
+import { get } from 'lodash'
+import { Dropdown, Menu, Input } from '@kube-design/components'
 
 import styles from './index.scss'
 
@@ -37,24 +38,56 @@ export default class SelectInput extends React.Component {
     options: [],
   }
 
-  state = {
-    showOptions: false,
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      value: this.getOptionsForValue(this.props.value),
+      showOptions: false,
+    }
   }
 
-  toggleOptions = () => {
-    this.setState(({ showOptions }) => ({
-      showOptions: !showOptions,
-    }))
+  showOptions = () => {
+    this.setState({ showOptions: true })
   }
 
   hideOptions = () => {
-    this.setState({
-      showOptions: false,
-    })
+    this.setState({ showOptions: false })
   }
 
   handleOptionsClick = (e, key) => {
-    this.props.onChange(key)
+    this.setState(
+      { value: this.getOptionsForValue(key), showOptions: false },
+      () => {
+        this.props.onChange(key)
+      }
+    )
+  }
+
+  getOptionsForValue = value => {
+    const { options } = this.props
+    return (
+      get(
+        options.find(item => item.value === value),
+        'label'
+      ) || value
+    )
+  }
+
+  getOptionsForLabel = label => {
+    const { options } = this.props
+    return (
+      get(
+        options.find(item => item.label === label),
+        'value'
+      ) || label
+    )
+  }
+
+  handleChange = (e, value) => {
+    this.setState({ value, showOptions: false }, () => {
+      this.props.onChange(value)
+    })
   }
 
   renderOptions() {
@@ -73,23 +106,22 @@ export default class SelectInput extends React.Component {
 
   render() {
     const { options, optionRenderer, className, ...rest } = this.props
+    const { showOptions, value } = this.state
     return (
       <div className={classNames(styles.wrapper, className)}>
-        <Input {...rest} />
-        <Icon
-          className={styles.caret}
-          name="caret-down"
-          clickable
-          onClick={this.toggleOptions}
-        />
         <Dropdown
-          visible={this.state.showOptions}
           theme="dark"
+          visible={showOptions}
           content={this.renderOptions()}
           placement="bottomRight"
-          onClose={this.hideOptions}
+          closeAfterClick={false}
         >
-          <div className={styles.trigger} />
+          <Input
+            {...rest}
+            value={value}
+            onChange={this.handleChange}
+            onClick={this.showOptions}
+          />
         </Dropdown>
       </div>
     )
