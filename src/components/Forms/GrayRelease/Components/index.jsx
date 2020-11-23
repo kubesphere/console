@@ -183,8 +183,14 @@ export default class Components extends React.Component {
 
       set(this.formTemplate, 'metadata.labels.app', value)
       set(this.formTemplate, 'spec.selector.matchLabels.app', value)
+      set(this.formTemplate, 'spec.template.spec', { hosts: [value] })
       set(this.formTemplate, 'spec.principal', version)
       set(this.formTemplate, 'spec.protocol', protocol)
+      set(
+        this.formTemplate,
+        'metadata.annotations["servicemesh.kubesphere.io/oldWorkloadName"]',
+        workload.name
+      )
       set(
         this.formTemplate,
         'metadata.annotations["servicemesh.kubesphere.io/workloadType"]',
@@ -195,7 +201,6 @@ export default class Components extends React.Component {
         'metadata.annotations["servicemesh.kubesphere.io/workloadReplicas"]',
         String(workload.podNums)
       )
-      set(this.formTemplate, 'spec.template.spec', { hosts: [value] })
 
       this.props.formTemplate.workload = {
         apiVersion: template.apiVersion,

@@ -8,21 +8,6 @@
 .header {
   background-color: $bg-color;
   border-bottom: none;
-
-  :global {
-    .icon {
-      width: 32px !important;
-      height: 32px !important;
-      padding: 6px;
-      border-radius: 4px;
-      background-color: #242e42;
-
-      .kubed-icon {
-        color: rgba(255, 255, 255, 0.9);
-        fill: rgba(255, 255, 255, 0.4);
-      }
-    }
-  }
 }
 
 .body {
