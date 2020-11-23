@@ -18,8 +18,8 @@
 
 const { resolve } = require('path')
 const webpack = require('webpack')
-const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
-const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin')
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
 const baseConfig = require('./webpack.base')
 
 const root = path => resolve(__dirname, `../${path}`)
@@ -109,7 +109,7 @@ const config = {
     ...baseConfig.plugins,
     new HardSourceWebpackPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new ReactRefreshWebpackPlugin(),
+    new ReactRefreshWebpackPlugin({ overlay: false }),
     new webpack.WatchIgnorePlugin([
       root('node_modules'),
       root('server'),
