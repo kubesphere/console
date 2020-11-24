@@ -77,7 +77,7 @@ export default {
   'Please input workspace name': '请输入企业空间名称',
 
   NO_WORKSPACE_TIP:
-    '您的账号目前不属于任何企业空间，请您创建一个企业空间或者联系管理员邀请您到其企业空间内进行工作',
+    '您的帐户目前不属于任何企业空间，请您创建一个企业空间或者联系管理员邀请您到其企业空间内进行工作',
 
   SEARCH_WORKSPACE_TIP: '请输入企业名称进行查找',
 

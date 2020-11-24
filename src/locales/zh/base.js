@@ -81,7 +81,7 @@ export default {
 
   CLUSTERS_MANAGE_DESC:
     '对多集群以及每个集群的基础资源、服务组件和应用资源等的统一管理',
-  ACCESS_CONTROL_DESC: '对平台中的企业空间、账号、以及角色权限进行统一管理',
+  ACCESS_CONTROL_DESC: '对平台中的企业空间、帐户、以及角色权限进行统一管理',
   APP_STORE_MANAGEMENT_DESC:
     '对云原生应用的上架、下架以及审核等应用全生命周期的统一管理',
   PLATFORM_SETTINGS_DESC: '定制化平台设置，如平台基本信息等',
@@ -373,7 +373,7 @@ export default {
   'Unknown User': '未知用户',
   secret_text: '秘密文本',
   domain: '域名',
-  Account: '账户',
+  Account: '帐户',
   Strategy: '策略',
   secret: '密钥',
   Contributors: '贡献者',
@@ -456,7 +456,7 @@ export default {
   AUDITING_OPERATING_DESC:
     '针对企业空间、项目、资源等多维度的操作审计查询工具。',
   verb: '操作行为',
-  'Operation Account': '操作账号',
+  'Operation Account': '操作帐户',
   'Source IP': '来源 IP',
   Subresource: '子资源',
   'Status Code': '状态码',
@@ -504,10 +504,10 @@ export default {
   CONDITION_STATUS_ANALYSE: '状态分析(Conditions)',
 
   NAV_PROJECTS: '项目管理',
-  NAV_ACCOUNTS: '账户管理',
+  NAV_ACCOUNTS: '帐户管理',
 
   'Session timeout or this account is logged in elsewhere, please login again':
-    '会话超时或此账户在其它地方登录，请重新登录',
+    '会话超时或此帐户在其它地方登录，请重新登录',
 
   ALERT_WARNING: '请注意',
 

@@ -97,7 +97,7 @@ export default {
     Pipeline DSL 为我们提供了一个可扩展的工具集，让我们可以将简单到复杂的逻辑通过代码实现。`,
   'Create Credentials': '创建凭证',
   'Credential ID': '凭证 ID',
-  username_password: '账户凭证',
+  username_password: '帐户凭证',
   login_Plateform: '登录平台',
   'Script Path': '脚本路径',
   Webhook: 'webhook 推送',
@@ -446,7 +446,7 @@ export default {
   >
     获取 Token
   </a>`,
-  bitbucket_server_ACCESSTOKEN_PLACEHOLDER: '请输入 BitBucket 账号信息',
+  bitbucket_server_ACCESSTOKEN_PLACEHOLDER: '请输入 BitBucket 帐户信息',
   github_ACCESSTOKEN_PLACEHOLDER: '请输入 GitHub access token',
   'url is invalid': 'url 不合法',
   'pipeline syntax error': '流水线语法错误',
