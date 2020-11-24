@@ -35,7 +35,7 @@ export default {
   'KS-APISERVER_DESC':
     '整个集群管理的 API 接口和集群内部各个模块之间通信的枢纽，以及集群安全控制',
   'KS-CONSOLE_DESC': '提供 KubeSphere 的控制台服务',
-  OPENLDAP_DESC: '负责集中存储和管理用户账号信息',
+  OPENLDAP_DESC: '负责集中存储和管理用户的帐户信息',
   REDIS_DESC: '将结构化的数据存储在内存中的存储系统',
 
   COREDNS_DESC: '为 Kubernetes 集群提供服务发现的功能',

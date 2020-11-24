@@ -21,8 +21,8 @@ export default {
   Roles: '角色',
   Role: '角色',
   'Role Management': '角色管理',
-  'Account Role': '账户角色',
-  'Account Roles': '账户角色',
+  'Account Role': '帐户角色',
+  'Account Roles': '帐户角色',
   Terminating: '删除中',
   'Create Role': '创建角色',
   'Edit Role': '编辑角色',
@@ -42,8 +42,8 @@ export default {
 
   'Create Project Role': '创建项目角色',
   'Edit Project Role': '编辑项目角色',
-  'Create Account Role': '创建账户角色',
-  'Edit Account Role': '编辑账户角色',
+  'Create Account Role': '创建帐户角色',
+  'Edit Account Role': '编辑帐户角色',
   'Create Cluster Role': '创建集群角色',
   'Edit Cluster Role': '编辑集群角色',
 
@@ -76,12 +76,12 @@ export default {
   CLUSTERS_MANAGEMENT_DESC: '创建删除集群，管理所有集群下的资源',
   'Clusters View': '集群查看',
   CLUSTERS_VIEW_DESC: '查看平台中所有的集群及集群下所有的资源',
-  'Users Management': '账户管理',
-  USERS_MANAGEMENT_DESC: '支持账户的管理，包括添加/删除/更新账户信息',
-  'Users View': '账户查看',
+  'Users Management': '帐户管理',
+  USERS_MANAGEMENT_DESC: '支持帐户的管理，包括添加/删除/更新帐户信息',
+  'Users View': '帐户查看',
   USERS_VIEW_DESC: '可以查看当前平台有哪些用户',
   'Roles Management': '角色管理',
-  ROLES_MANAGEMENT_DESC: '支持账户角色的管理，包括添加/删除/更新账户角色',
+  ROLES_MANAGEMENT_DESC: '支持帐户角色的管理，包括添加/删除/更新帐户角色',
   'Roles View': '角色查看',
   ROLES_VIEW_DESC: '可以查看当前平台有哪些角色',
   'Workspaces Management': '企业空间管理',
@@ -270,10 +270,10 @@ export default {
     'DevOps 工程普通成员，可以在 DevOps 工程下创建流水线凭证等。',
   ROLE_DEVOPS_VIEWER: 'DevOps 工程观察者，可以查看 DevOps 工程下所有的资源。',
 
-  ACCOUNT_ROLE_DESC: '账号角色可以定义平台内的账号拥有的权限',
-  ACCOUNT_ROLE_CREATE_DESC: '账号角色可以定义平台内的账号拥有的权限',
+  ACCOUNT_ROLE_DESC: '帐户角色可以定义平台内的帐户拥有的权限',
+  ACCOUNT_ROLE_CREATE_DESC: '帐户角色可以定义平台内的帐户拥有的权限',
 
   ROLE_CREATE_TIP_TITLE: '接下来要做的事情',
   ROLE_CREATE_TIP_MESSAGE:
-    '接下来您需要编辑权限，编辑好权限后账号角色才能创建成功。',
+    '接下来您需要编辑权限，编辑好权限后帐户角色才能创建成功。',
 }

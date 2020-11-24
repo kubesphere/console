@@ -20,7 +20,7 @@ export default {
   users: '用户',
   Users: '用户',
   User: '用户',
-  Accounts: '账号',
+  Accounts: '帐户',
   'User Management': '用户管理',
   'Authorized Projects': '授权项目',
   'Create User': '创建用户',
@@ -34,9 +34,9 @@ export default {
   'Password Setting': '密码设置',
   Email: '邮箱',
   USER_AVATAR_TIP: '头像尺寸必须小于 120px X 120px，支持 png，jpg 格式。',
-  EMAIL_DESC: '邮箱可作为登录账号',
+  EMAIL_DESC: '邮箱可作为登录帐户',
   USER_NAME_DESC: '用户名只能包含小写字母及数字',
-  USER_SETTING_EMAIL_DESC: '邮箱可作为登录账号',
+  USER_SETTING_EMAIL_DESC: '邮箱可作为登录帐户',
   PASSWORD_DESC: '密码必须包含数字和大小写字母，长度至少为 6 位',
   ROLE_DESC:
     '角色类型根据权限范围分为集群和项目两类，当前角色的授权范围为整个集群.',
@@ -61,9 +61,9 @@ export default {
   USER_PENDING: '等待中',
   USER_DISABLED: '已禁用',
   USER_DESC:
-    '系统管理员用此功能模块管理账号，如创建、更新、读取、删除账号等，同时还能关联每个账号的角色；用户用账号名称或邮件地址登录 KubeSphere 平台。',
+    '系统管理员用此功能模块管理帐户，如创建、更新、读取、删除帐户等，同时还能关联每个帐户的角色；用户用帐户名称或邮件地址登录 KubeSphere 平台。',
   USER_CREATE_DESC:
-    '系统管理员用此功能模块管理账号，如创建、更新、读取、删除账号等，同时还能关联每个账号的角色；用户用账号名称或邮件地址登录 KubeSphere 平台。',
+    '系统管理员用此功能模块管理帐户，如创建、更新、读取、删除帐户等，同时还能关联每个帐户的角色；用户用帐户名称或邮件地址登录 KubeSphere 平台。',
   CLUSTER_ROLE_DESC: '集群角色定义了在集群范围内授权用户的访问权限。',
   ROLE_BASEINFO_DESC: '',
   ROLE_AUTHORIZATION_DESC: '',
