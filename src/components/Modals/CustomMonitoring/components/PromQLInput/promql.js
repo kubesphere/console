@@ -108,7 +108,7 @@ export const getTokenContext = (parent, current) => {
 
   const context = {}
   if (tokenType.indexOf('context-labels') > -1) {
-    const text = nodes[0].textContent.replace('{', '')
+    const text = nodes[0].textContent.replace(/{/g, '')
     if (text.indexOf('=') > -1) {
       const [label, value] = text.split('=')
       context.label = label || ''
