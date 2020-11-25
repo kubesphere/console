@@ -27,7 +27,7 @@ export default class TerminalStore {
     const { cluster, namespace, pod, container, shell = 'sh' } = this.kubectl
     return `kapis/terminal.kubesphere.io/v1alpha2${this.getClusterPath({
       cluster,
-    })}/namespaces/${namespace}/pods/${pod}?container=${container}&shell=${shell}`
+    })}/namespaces/${namespace}/pods/${pod}/exec?container=${container}&shell=${shell}`
   }
 
   @observable
