@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { debounce } from 'lodash'
+import { debounce, isUndefined } from 'lodash'
 import React from 'react'
 import { Input, Select, Icon, Tooltip } from '@kube-design/components'
 import { NumberInput, AddonsInput } from 'components/Inputs'
@@ -29,7 +29,7 @@ const DEFAULT_PROTOCOL = 'HTTP'
 const getStateFromProps = props => {
   let protocol = DEFAULT_PROTOCOL
   const { name, containerPort } = props.value
-  if (name) {
+  if (!isUndefined(name)) {
     const matchs = name.match(/^(\w+)-(.*)/)
     if (matchs) {
       protocol = (matchs[1] || DEFAULT_PROTOCOL).toUpperCase()
@@ -37,7 +37,7 @@ const getStateFromProps = props => {
   }
 
   return {
-    name: name || `${protocol.toLowerCase()}-`,
+    name: !isUndefined(name) ? name : `${protocol.toLowerCase()}-`,
     protocol: PROTOCOLS.some(item => item.value === protocol)
       ? protocol
       : props.value.protocol,
