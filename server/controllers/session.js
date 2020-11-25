@@ -179,7 +179,7 @@ const handleOAuthLogin = async ctx => {
   ctx.cookies.set('token', user.token)
   ctx.cookies.set('currentUser', user.username)
 
-  ctx.body = `<script>self.close();</script>`
+  ctx.redirect('/')
 }
 
 module.exports = {

@@ -208,21 +208,7 @@
         }
 
         function handleOAuthLogin(e) {
-          var url = e.currentTarget.dataset.url
-          var left = screen.width / 2 - 200
-          var windowObj = window.open(
-            url,
-            'Authorize application',
-            'width=400, height=600, scrollbars=1, resizable=1, top=100, left=' +
-              left
-          )
-
-          var loop = setInterval(function() {
-            if (windowObj != null && windowObj.closed) {
-              clearInterval(loop)
-              window.location.href = '/'
-            }
-          }, 800)
+          window.location.href = e.currentTarget.dataset.url
         }
       })()
     </script>
