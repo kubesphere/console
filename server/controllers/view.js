@@ -42,7 +42,6 @@ const renderView = async ctx => {
       manifest,
     })
   } catch (err) {
-    ctx.app.emit('error', err)
     if (err) {
       if (err.code === 401 || err.status === 401) {
         if (isValidReferer(ctx.path)) {
@@ -62,6 +61,8 @@ const renderView = async ctx => {
           t: ctx.t.bind(ctx),
           message: 'Unable to access the api server',
         })
+      } else {
+        ctx.app.emit('error', err)
       }
     } else {
       await ctx.render('error', {
