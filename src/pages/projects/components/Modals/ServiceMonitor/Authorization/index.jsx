@@ -209,7 +209,11 @@ export default class Authorization extends Component {
                 className="margin-b12"
                 message={
                   <div className={styles.secrets}>
-                    <a href={this.secretLink} target="_blank">
+                    <a
+                      href={this.secretLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       {t('Create a new secret')}
                     </a>{' '}
                     or{' '}
