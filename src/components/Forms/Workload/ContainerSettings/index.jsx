@@ -336,9 +336,9 @@ export default class ContainerSetting extends React.Component {
     }
 
     if (module === 'statefulsets') {
-      set(serviceTemplate, `${serivcePrefix}clusterIP`, 'None')
+      set(serviceTemplate, `${serivcePrefix}spec.clusterIP`, 'None')
     } else {
-      unset(serviceTemplate, `${serivcePrefix}clusterIP`)
+      unset(serviceTemplate, `${serivcePrefix}spec.clusterIP`)
     }
   }
 
