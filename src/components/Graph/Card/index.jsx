@@ -65,8 +65,11 @@ export default class Card extends React.PureComponent {
         </p>
         <p>
           <Icon name="pod" size={16} />{' '}
-          {get(health, 'workloadStatus.available')} /{' '}
-          {get(health, 'workloadStatus.replicas')}
+          {get(health, 'workloadStatus.available') ||
+            get(health, 'workloadStatus.availableReplicas')}{' '}
+          /{' '}
+          {get(health, 'workloadStatus.replicas') ||
+            get(health, 'workloadStatus.desiredReplicas')}
         </p>
       </div>
     )
@@ -90,8 +93,8 @@ export default class Card extends React.PureComponent {
         </p>
         <p>
           <Icon name="pod" size={16} />{' '}
-          {get(health, 'workloadStatus.available')} /{' '}
-          {get(health, 'workloadStatus.replicas')}
+          {get(health, 'workloadStatus.availableReplicas')} /{' '}
+          {get(health, 'workloadStatus.desiredReplicas')}
         </p>
       </div>
     )

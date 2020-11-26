@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, isEmpty } from 'lodash'
+import { get, has } from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
 import isEqual from 'react-fast-compare'
@@ -104,7 +104,7 @@ export default class Monitors extends React.Component {
     }
   }
 
-  get requestMetrics() {
+  get requestInMetrics() {
     const { detail } = this.props
     if (!detail) {
       return []
@@ -118,6 +118,36 @@ export default class Monitors extends React.Component {
     )
     const request_error_count = get(
       metrics,
+      'metrics.request_error_count.matrix[0].values',
+      []
+    )
+    const request_success_count = request_count.map((item, index) =>
+      getSuccessCount(item, request_error_count[index])
+    )
+
+    return getAreaChartOps({
+      title: 'traffic',
+      legend: ['Success', 'All'],
+      areaColors: ['#329dce', '#d8dee5'],
+      data: [{ values: request_success_count }, { values: request_count }],
+      unit: 'RPS',
+    })
+  }
+
+  get requestOutMetrics() {
+    const { detail } = this.props
+    if (!detail) {
+      return []
+    }
+
+    const { outMetrics } = this.state
+    const request_count = get(
+      outMetrics,
+      'metrics.request_count.matrix[0].values',
+      []
+    )
+    const request_error_count = get(
+      outMetrics,
       'metrics.request_error_count.matrix[0].values',
       []
     )
@@ -182,45 +212,128 @@ export default class Monitors extends React.Component {
     })
   }
 
-  get trafficMetrics() {
+  get trafficInMetrics() {
     const { detail } = this.props
     if (!detail) {
       return []
     }
 
-    const health = detail.health
-    const service = detail.nodes.find(item => item.data.nodeType === 'service')
-    const errorRatio = get(health, 'requests.errorRatio')
-    const request_count = get(service, 'data.traffic[0].rates.httpIn', 0)
+    const { metrics } = this.state
+    const request_count = getMetricData(
+      get(metrics, 'metrics.request_count.matrix[0].values', []),
+      NaN
+    )
+    const request_error_count = getMetricData(
+      get(metrics, 'metrics.request_error_count.matrix[0].values', []),
+      0
+    )
     const request_success_rate =
-      errorRatio === -1 ? NaN : (100 - errorRatio).toFixed(2)
+      request_count > 0
+        ? ((request_count - request_error_count) * 100) / request_count
+        : NaN
 
-    const request_duration =
-      getMetricData(
+    let request_duration
+    if (has(metrics, 'histograms.request_duration_millis')) {
+      request_duration = getMetricData(
         get(
-          this.state.metrics,
-          'histograms.request_duration["0.95"].matrix[0].values',
+          metrics,
+          'histograms.request_duration_millis["avg"].matrix[0].values',
           []
         ),
         NaN
-      ) * 1000
+      )
+    } else {
+      request_duration =
+        getMetricData(
+          get(
+            metrics,
+            'histograms.request_duration["avg"].matrix[0].values',
+            []
+          ),
+          NaN
+        ) * 1000
+    }
 
     return [
       {
         title: 'Traffic',
-        data: request_count,
+        data: request_count.toFixed(2),
         unit: 'RPS',
         icon: 'changing-over',
       },
       {
         title: 'Success rate',
-        data: request_success_rate,
+        data: request_success_rate.toFixed(2),
         icon: 'check',
         unit: '%',
       },
       {
         title: 'Duration',
-        data: request_duration,
+        data: request_duration.toFixed(2),
+        icon: 'timed-task',
+        unit: 'ms',
+      },
+    ]
+  }
+
+  get trafficOutMetrics() {
+    const { detail } = this.props
+    if (!detail) {
+      return []
+    }
+
+    const { outMetrics } = this.state
+    const request_count = getMetricData(
+      get(outMetrics, 'metrics.request_count.matrix[0].values', []),
+      NaN
+    )
+    const request_error_count = getMetricData(
+      get(outMetrics, 'metrics.request_error_count.matrix[0].values', []),
+      0
+    )
+    const request_success_rate =
+      request_count > 0
+        ? ((request_count - request_error_count) * 100) / request_count
+        : NaN
+
+    let request_duration
+    if (has(outMetrics, 'histograms.request_duration_millis')) {
+      request_duration = getMetricData(
+        get(
+          outMetrics,
+          'histograms.request_duration_millis["avg"].matrix[0].values',
+          []
+        ),
+        NaN
+      )
+    } else {
+      request_duration =
+        getMetricData(
+          get(
+            outMetrics,
+            'histograms.request_duration["avg"].matrix[0].values',
+            []
+          ),
+          NaN
+        ) * 1000
+    }
+
+    return [
+      {
+        title: 'Traffic',
+        data: request_count.toFixed(2),
+        unit: 'RPS',
+        icon: 'changing-over',
+      },
+      {
+        title: 'Success rate',
+        data: request_success_rate.toFixed(2),
+        icon: 'check',
+        unit: '%',
+      },
+      {
+        title: 'Duration',
+        data: request_duration.toFixed(2),
         icon: 'timed-task',
         unit: 'ms',
       },
@@ -229,23 +342,18 @@ export default class Monitors extends React.Component {
 
   render() {
     const { protocol } = this.props
-    const inMetrics = this.tcpInMetrics
-    const outMetrics = this.tcpOutMetrics
 
     if (protocol === 'http') {
       return (
         <>
-          <div className={styles.title}>
-            {t('Traffic (requests per second)')}
-          </div>
-          <TrafficCard metrics={this.trafficMetrics} />
-          <Chart {...this.requestMetrics} height={100} />
-          {!isEmpty(outMetrics) && (
-            <>
-              <div className={styles.title}>{t('TCP - Outbound Traffic')}</div>
-              <Chart {...outMetrics} height={100} />
-            </>
-          )}
+          <div className={styles.title}>{t('HTTP - Inbound Traffic')}</div>
+          <TrafficCard metrics={this.trafficInMetrics} />
+          <div className="margin-b8" />
+          <Chart {...this.requestInMetrics} height={150} />
+          <div className={styles.title}>{t('HTTP - Outbound Traffic')}</div>
+          <TrafficCard metrics={this.trafficOutMetrics} />
+          <div className="margin-b8" />
+          <Chart {...this.requestOutMetrics} height={150} />
         </>
       )
     }
@@ -254,9 +362,9 @@ export default class Monitors extends React.Component {
       return (
         <>
           <div className={styles.title}>{t('TCP - Inbound Traffic')}</div>
-          <Chart {...inMetrics} height={100} />
+          <Chart {...this.tcpInMetrics} height={150} />
           <div className={styles.title}>{t('TCP - Outbound Traffic')}</div>
-          <Chart {...outMetrics} height={100} />
+          <Chart {...this.tcpOutMetrics} height={150} />
         </>
       )
     }

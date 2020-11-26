@@ -18,7 +18,7 @@
 
 import React from 'react'
 import isEqual from 'react-fast-compare'
-import { get } from 'lodash'
+import { get, has } from 'lodash'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { Columns, Column } from '@kube-design/components'
@@ -104,18 +104,36 @@ export default class Monitor extends React.Component {
         getSuccessRate(item, request_error_count[1][index])
       ),
     ]
-    const request_duration = [
-      get(
-        newMetrics,
-        'histograms.request_duration["0.95"].matrix[0].values',
-        []
-      ).map(([time, value]) => [time, parseFloat(value)]),
-      get(
-        oldMetrics,
-        'histograms.request_duration["0.95"].matrix[0].values',
-        []
-      ).map(([time, value]) => [time, parseFloat(value)]),
-    ]
+
+    let request_duration = []
+    if (has(newMetrics, 'histograms.request_duration_millis')) {
+      request_duration = [
+        get(
+          newMetrics,
+          'histograms.request_duration_millis["avg"].matrix[0].values',
+          []
+        ).map(([time, value]) => [time, parseFloat(value) / 1000]),
+        get(
+          oldMetrics,
+          'histograms.request_duration_millis["avg"].matrix[0].values',
+          []
+        ).map(([time, value]) => [time, parseFloat(value) / 1000]),
+      ]
+    } else {
+      request_duration = [
+        get(
+          newMetrics,
+          'histograms.request_duration["avg"].matrix[0].values',
+          []
+        ).map(([time, value]) => [time, parseFloat(value)]),
+        get(
+          oldMetrics,
+          'histograms.request_duration["avg"].matrix[0].values',
+          []
+        ).map(([time, value]) => [time, parseFloat(value)]),
+      ]
+    }
+
     return [
       {
         type: 'traffic-in',
@@ -138,7 +156,6 @@ export default class Monitor extends React.Component {
         legendData: [detail.newVersion, detail.oldVersion],
         data: request_duration,
         unit: 'ms',
-        tip: t('95% requests duration'),
       },
     ]
   }

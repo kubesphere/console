@@ -17,7 +17,6 @@
  */
 
 export default {
-  '95% requests duration': '95% requests duration',
   'A/B Testing': 'A/B Testing',
   'Allocate all traffic proportionally to grayscale release components':
     'Allocate all traffic proportionally to grayscale release components',

@@ -52,17 +52,13 @@ export default class App extends React.Component {
     }
 
     const groupedNodes = groupBy(data.nodes, item => {
-      if (item.data.isGroup === 'app') {
-        return 'group'
-      }
-
       return item.data.nodeType === 'unknown' ? 'app' : item.data.nodeType
     })
 
-    const isGroup = get(groupedNodes, 'group.length') > 0
+    const isGroup = get(groupedNodes, 'service.length') > 0
     const workloadStatuses = get(data, 'health.workloadStatuses', [])
     const podNums = workloadStatuses.reduce(
-      (prev, cur) => prev + cur.replicas,
+      (prev, cur) => prev + (cur.replicas || cur.availableReplicas || 0),
       0
     )
     const workloadsHealth = get(data, 'health.workloads', {})

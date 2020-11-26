@@ -79,7 +79,6 @@ export default class GrayReleaseStore extends Base {
         'tcp_sent',
         'tcp_received',
       ],
-      'quantiles[]': [0.95],
       direction: 'inbound',
       reporter: 'destination',
       ...options,

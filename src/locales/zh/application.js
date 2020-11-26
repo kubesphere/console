@@ -85,6 +85,8 @@ export default {
   'Traffic Monitoring': '流量监测',
 
   'Traffic (requests per second)': '流量(每秒请求)',
+  'HTTP - Inbound Traffic': 'HTTP - 入站流量',
+  'HTTP - Outbound Traffic': 'HTTP - 出站流量',
   'TCP - Inbound Traffic': 'TCP - 入站流量',
   'TCP - Outbound Traffic': 'TCP - 出站流量',
 
