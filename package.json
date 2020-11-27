@@ -4,6 +4,7 @@
   "private": true,
   "license": "AGPL-3.0",
   "dependencies": {
+    "@babel/polyfill": "^7.12.1",
     "@kube-design/components": "^1.1.5",
     "ace-builds": "^1.4.7",
     "ansi_up": "^4.0.4",

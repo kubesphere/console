@@ -27,6 +27,8 @@ import App from './App'
 import GlobalValue from './global'
 import i18n from './i18n'
 
+require('@babel/polyfill')
+
 // request error handler
 window.onunhandledrejection = function(e) {
   if (e && (e.status === 'Failure' || e.status >= 400)) {
