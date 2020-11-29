@@ -135,7 +135,7 @@ export default class StorageClassSetting extends React.Component {
               </Form.Item>
             </Column>
             <Column>
-              <Form.Item label={t('Reclaiming Policy')}>
+              <Form.Item label={t('Reclaim Policy')}>
                 <Input name="reclaimPolicy" disabled />
               </Form.Item>
             </Column>

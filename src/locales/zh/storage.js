@@ -45,7 +45,7 @@ export default {
   Mounted: '已挂载',
   'Not Mounted': '未挂载',
   Scalable: '可扩容性',
-  'Reclaiming Policy': '回收机制',
+  'Reclaim Policy': '回收机制',
   DELETE_STORAGE_TIP: '如果存储卷正在被挂载时，待工作负载被删除时一同删除。',
   SRORAGE_SETTING_DESC:
     'ReadWriteOnce：单个节点读写。<br/>ReadOnlyMany：多节点只读。<br/>ReadWriteMany：多节点读写。<br/>挂载时只能使用一种模式。',
