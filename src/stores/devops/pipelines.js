@@ -465,7 +465,7 @@ export default class PipelineStore extends BaseStore {
 
   @action setEnvironmentData = jenkinsFile => {
     const env = jenkinsFile.match(
-      /environment\s?\{(\s+([\w]+(-|_)?)+\s?=\s?'?([\w](-|.)?[\w])+'?\s+)+\}/gm
+      /environment\s?\{[\s+\w+\s?=\s?'?\w+-?.?'?\s+]+\}/gm
     )
     this.jenkinsEnvData = env ? env[0] : ''
   }
