@@ -1,0 +1,116 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.logo {
+  position: absolute;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.logo img {
+  width: 180px;
+  height: 40px;
+}
+
+.login {
+  position: relative;
+  width: 320px;
+  margin: 140px auto 40px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: $base-shadow;
+  box-sizing: border-box;
+
+  :global {
+    .form-item-label {
+      @include TypographySymbolText;
+    }
+
+    input.input {
+      height: 36px;
+    }
+  }
+}
+
+.header {
+  position: relative;
+  font-weight: 600;
+  font-size: 12px;
+  color: $text-color;
+  line-height: 20px;
+  text-align: center;
+}
+
+.divider {
+  width: 100%;
+  height: 0;
+  margin-top: 12px;
+  margin-bottom: 20px;
+  opacity: 0.6;
+  border-bottom: 1px solid;
+  border-image-source: radial-gradient(circle at 50% 0, #abb4be, #ffffff 100%);
+  border-image-slice: 1;
+}
+
+.footer {
+  margin-top: 24px;
+  button[type='submit'] {
+    width: 100%;
+  }
+}
+
+.oauth {
+  padding: 6px;
+  border-radius: 2px;
+  background-color: #eff4f9;
+  color: #36435c;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 20px;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    background-color: #d8dee5;
+  }
+
+  &:active {
+    background-color: #d1d7df;
+  }
+
+  & + .oauth {
+    margin-top: 8px;
+  }
+
+  & + form {
+    padding-top: 20px;
+  }
+}
+
+.captcha {
+  display: flex;
+  position: relative;
+
+  img {
+    height: 40px;
+    padding: 0 0 4px 2px;
+    margin-right: 14px;
+    box-sizing: border-box;
+    user-select: none;
+  }
+
+  input {
+    flex: 1;
+  }
+
+  a {
+    position: absolute;
+    top: -24px;
+    right: 0;
+    color: $primary;
+  }
+}

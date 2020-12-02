@@ -19,6 +19,8 @@
 import { lazy } from 'react'
 
 import BaseLayout from 'core/layouts/Base'
+import Login from 'core/containers/Login'
+import OAuthRegister from 'core/containers/OAuthRegister'
 
 const Console = lazy(() =>
   import(/* webpackChunkName: "console" */ 'console/App.jsx')
@@ -27,10 +29,10 @@ const Clusters = lazy(() =>
   import(/* webpackChunkName: "clusters" */ 'clusters/App.jsx')
 )
 const AccessControl = lazy(() =>
-  import(/* webpackChunkName: "clusters" */ 'access/App.jsx')
+  import(/* webpackChunkName: "access" */ 'access/App.jsx')
 )
 const Settings = lazy(() =>
-  import(/* webpackChunkName: "clusters" */ 'settings/App.jsx')
+  import(/* webpackChunkName: "settings" */ 'settings/App.jsx')
 )
 const Workspaces = lazy(() =>
   import(/* webpackChunkName: "workspaces" */ 'workspaces/App.jsx')
@@ -52,6 +54,8 @@ const AppStore = lazy(() =>
 )
 
 export default [
+  { path: `/login`, component: Login, exact: true },
+  { path: `/oauth/register`, component: OAuthRegister, exact: true },
   {
     component: BaseLayout,
     routes: [

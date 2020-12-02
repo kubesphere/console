@@ -19,11 +19,7 @@
   <body>
     <div id="root"></div>
     <script type="text/javascript">
-      window.globals = {
-        config: <%- config %>,
-        ksConfig: <%- ksConfig %>,
-        user: <%- user || "null" %>
-      }
+      window.globals = JSON.parse(`<%- globals %>`)
     </script>
     <% if (manifest && manifest.js && manifest.js.length > 0) { %>
       <% manifest.js.forEach(function(item){ %>

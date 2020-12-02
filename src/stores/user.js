@@ -283,4 +283,9 @@ export default class UsersStore extends Base {
       isLoading: false,
     })
   }
+
+  @action
+  async oAuthRegister(data) {
+    return this.submitting(request.post(`oauth/register`, data))
+  }
 }

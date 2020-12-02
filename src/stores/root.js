@@ -37,6 +37,9 @@ export default class RootStore {
   @observable
   actions = {}
 
+  @observable
+  oauthServers = []
+
   constructor() {
     this.websocket = new WebSocketStore()
 
@@ -90,9 +93,8 @@ export default class RootStore {
     this.actions[id] && this.actions[id].on(...rest)
   }
 
-  @action
-  async login(params) {
-    return await request.post('login', params)
+  login(params) {
+    return request.post('login', params)
   }
 
   @action
