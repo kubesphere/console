@@ -140,6 +140,12 @@ const handleLogin = async ctx => {
   ctx.cookies.set('refreshToken', user.refreshToken)
   ctx.cookies.set('referer', null)
 
+  if (user.groups && user.groups.includes('pre-registration')) {
+    ctx.cookies.set('defaultUser', user.username)
+    ctx.cookies.set('defaultEmail', user.email)
+    return ctx.redirect('/login/confirm')
+  }
+
   if (lastToken) {
     const { username } = jwtDecode(lastToken)
     if (username && username !== user.username) {
@@ -189,15 +195,15 @@ const handleOAuthLogin = async ctx => {
   ctx.cookies.set('refreshToken', user.refreshToken)
 
   if (user.groups && user.groups.includes('pre-registration')) {
-    ctx.cookies.set('oAuthUser', user.username)
-    ctx.cookies.set('oAuthEmail', user.email)
-    ctx.redirect('/oauth/register')
-  } else {
-    ctx.redirect('/')
+    ctx.cookies.set('defaultUser', user.username)
+    ctx.cookies.set('defaultEmail', user.email)
+    return ctx.redirect('/login/confirm')
   }
+
+  ctx.redirect('/')
 }
 
-const handleOAuthRegister = async ctx => {
+const handleLoginConfirm = async ctx => {
   const token = ctx.cookies.get('token')
   const params = ctx.request.body
 
@@ -209,8 +215,8 @@ const handleOAuthRegister = async ctx => {
     ctx.cookies.set('expire', data.expire)
     ctx.cookies.set('refreshToken', data.refreshToken)
 
-    ctx.cookies.set('oAuthUser', null)
-    ctx.cookies.set('oAuthEmail', null)
+    ctx.cookies.set('defaultUser', null)
+    ctx.cookies.set('defaultEmail', null)
     ctx.redirect('/')
   }
 }
@@ -219,5 +225,5 @@ module.exports = {
   handleLogin,
   handleLogout,
   handleOAuthLogin,
-  handleOAuthRegister,
+  handleLoginConfirm,
 }

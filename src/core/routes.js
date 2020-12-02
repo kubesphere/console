@@ -20,7 +20,7 @@ import { lazy } from 'react'
 
 import BaseLayout from 'core/layouts/Base'
 import Login from 'core/containers/Login'
-import OAuthRegister from 'core/containers/OAuthRegister'
+import LoginConfirm from 'core/containers/LoginConfirm'
 
 const Console = lazy(() =>
   import(/* webpackChunkName: "console" */ 'console/App.jsx')
@@ -55,7 +55,7 @@ const AppStore = lazy(() =>
 
 export default [
   { path: `/login`, component: Login, exact: true },
-  { path: `/oauth/register`, component: OAuthRegister, exact: true },
+  { path: `/login/confirm`, component: LoginConfirm, exact: true },
   {
     component: BaseLayout,
     routes: [

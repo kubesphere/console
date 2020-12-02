@@ -39,8 +39,8 @@ const renderView = async ctx => {
     ])
 
     await renderIndex(ctx, { ksConfig, user })
-  } catch (error) {
-    const err = error || {}
+  } catch (err) {
+    ctx.app.emit('error', err)
     if (err) {
       if (err.code === 401 || err.code === 403 || err.status === 401) {
         if (isValidReferer(ctx.path)) {
@@ -83,11 +83,11 @@ const renderLogin = async ctx => {
   })
 }
 
-const renderOAuthRegister = async ctx => {
+const renderLoginConfirm = async ctx => {
   await renderIndex(ctx, {
     user: {
-      username: ctx.cookies.get('oAuthUser'),
-      email: ctx.cookies.get('oAuthEmail'),
+      username: ctx.cookies.get('defaultUser'),
+      email: ctx.cookies.get('defaultEmail'),
     },
   })
 }
@@ -126,5 +126,5 @@ module.exports = {
   renderLogin,
   renderMarkdown,
   renderCaptcha,
-  renderOAuthRegister,
+  renderLoginConfirm,
 }

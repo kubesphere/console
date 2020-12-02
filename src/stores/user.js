@@ -285,7 +285,7 @@ export default class UsersStore extends Base {
   }
 
   @action
-  async oAuthRegister(data) {
-    return this.submitting(request.post(`oauth/register`, data))
+  async confirm(data) {
+    return await this.submitting(request.post(`login/confirm`, data))
   }
 }

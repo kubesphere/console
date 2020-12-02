@@ -36,13 +36,13 @@ const {
   handleLogin,
   handleLogout,
   handleOAuthLogin,
-  handleOAuthRegister,
+  handleLoginConfirm,
 } = require('./controllers/session')
 
 const {
   renderView,
   renderLogin,
-  renderOAuthRegister,
+  renderLoginConfirm,
   renderMarkdown,
   renderCaptcha,
 } = require('./controllers/view')
@@ -70,14 +70,14 @@ router
 
   // session
   .post('/login', parseBody, handleLogin)
-  .post('/logout', handleLogout)
   .get('/login', renderLogin)
+  .post('/login/confirm', parseBody, handleLoginConfirm)
+  .get('/login/confirm', renderLoginConfirm)
+  .post('/logout', handleLogout)
   .get('/captcha', renderCaptcha)
 
   // oauth
   .get('/oauth/redirect', handleOAuthLogin)
-  .get('/oauth/register', renderOAuthRegister)
-  .post('/oauth/register', parseBody, handleOAuthRegister)
 
   // page entry
   .all('*', renderView)
