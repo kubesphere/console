@@ -24,9 +24,7 @@ const jwtDecode = require('jwt-decode')
 
 const { send_gateway_request } = require('../libs/request')
 
-const { getServerConfig, isAppsRoute, safeParseJSON } = require('../libs/utils')
-
-const { client: clientConfig } = getServerConfig()
+const { isAppsRoute, safeParseJSON } = require('../libs/utils')
 
 const login = async (data, headers) => {
   const resp = await send_gateway_request({
@@ -100,9 +98,19 @@ const oAuthLogin = async params => {
     throw new Error(resp.message)
   }
 
-  const { username } = jwtDecode(resp.access_token)
+  const { access_token, refresh_token, expires_in } = resp || {}
 
-  return { username, token: resp.access_token }
+  const { username, extra, groups } = jwtDecode(access_token)
+  const email = get(extra, 'email[0]')
+
+  return {
+    username,
+    email,
+    token: access_token,
+    groups,
+    refreshToken: refresh_token,
+    expire: new Date().getTime() + Number(expires_in) * 1000,
+  }
 }
 
 const getUserGlobalRules = async (username, token) => {
@@ -136,8 +144,10 @@ const getUserGlobalRules = async (username, token) => {
   return rules
 }
 
-const getUserDetail = async (username, token) => {
+const getUserDetail = async token => {
   let user = {}
+
+  const { username } = jwtDecode(token)
 
   const resp = await send_gateway_request({
     method: 'GET',
@@ -200,31 +210,20 @@ const getKSConfig = async token => {
 
 const getCurrentUser = async ctx => {
   const token = ctx.cookies.get('token')
-  const username = ctx.cookies.get('currentUser')
 
-  if (!username || !token) {
+  if (!token) {
     if (isAppsRoute(ctx.path)) {
-      const ksConfig = await getKSConfig()
-      return {
-        user: null,
-        config: clientConfig,
-        ksConfig,
-      }
+      return null
     }
     ctx.throw(401, 'Not Login')
   }
 
-  const [userDetail, workspaces, ksConfig] = await Promise.all([
-    getUserDetail(username, token),
+  const [userDetail, workspaces] = await Promise.all([
+    getUserDetail(token),
     getWorkspaces(token),
-    getKSConfig(token),
   ])
 
-  return {
-    config: clientConfig,
-    user: { ...userDetail, workspaces },
-    ksConfig,
-  }
+  return { ...userDetail, workspaces }
 }
 
 const getOAuthInfo = async () => {
@@ -272,10 +271,30 @@ const getOAuthInfo = async () => {
   return servers
 }
 
+const createUser = (params, token) => {
+  return send_gateway_request({
+    method: 'POST',
+    url: '/kapis/iam.kubesphere.io/v1alpha2/users',
+    params: {
+      apiVersion: 'iam.kubesphere.io/v1alpha2',
+      kind: 'User',
+      metadata: {
+        name: params.username,
+      },
+      spec: {
+        email: params.email,
+      },
+    },
+    token,
+  })
+}
+
 module.exports = {
   login,
   oAuthLogin,
   getCurrentUser,
   getOAuthInfo,
   getNewToken,
+  getKSConfig,
+  createUser,
 }

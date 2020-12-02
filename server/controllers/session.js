@@ -18,9 +18,13 @@
 
 const isEmpty = require('lodash/isEmpty')
 const SvgCaptchaFactory = require('svg-captcha')
-
-const { login, oAuthLogin } = require('../services/session')
-const { renderLogin } = require('./view')
+const jwtDecode = require('jwt-decode')
+const {
+  login,
+  oAuthLogin,
+  getNewToken,
+  createUser,
+} = require('../services/session')
 const {
   isValidReferer,
   isAppsRoute,
@@ -62,7 +66,7 @@ const handleLogin = async ctx => {
 
   if (isEmpty(error)) {
     try {
-      params.password = decryptPassword(params.encrypt, ctx.session.salt)
+      params.password = decryptPassword(params.encrypt, 'kubesphere')
 
       user = await login(params, { 'x-client-ip': ctx.request.ip })
       if (!user) {
@@ -121,21 +125,26 @@ const handleLogin = async ctx => {
       noise: 1,
     })
 
-    ctx.request.error = error
-    return await renderLogin(ctx)
+    ctx.body = {
+      ...error,
+      errorCount: ctx.session.errorCount,
+    }
+    return
   }
 
-  const lastUser = ctx.cookies.get('currentUser')
+  const lastToken = ctx.cookies.get('token')
 
   ctx.session = {}
   ctx.cookies.set('token', user.token)
   ctx.cookies.set('expire', user.expire)
   ctx.cookies.set('refreshToken', user.refreshToken)
-  ctx.cookies.set('currentUser', user.username, { httpOnly: false })
   ctx.cookies.set('referer', null)
 
-  if (lastUser && lastUser !== user.username) {
-    return ctx.redirect('/')
+  if (lastToken) {
+    const { username } = jwtDecode(lastToken)
+    if (username && username !== user.username) {
+      return ctx.redirect('/')
+    }
   }
 
   ctx.redirect(isValidReferer(referer) ? referer : '/')
@@ -145,7 +154,6 @@ const handleLogout = async ctx => {
   ctx.cookies.set('token', null)
   ctx.cookies.set('expire', null)
   ctx.cookies.set('refreshToken', null)
-  ctx.cookies.set('currentUser', null)
 
   const { origin = '', referer = '' } = ctx.headers
   const refererPath = referer.replace(origin, '')
@@ -172,18 +180,44 @@ const handleOAuthLogin = async ctx => {
   }
 
   if (!isEmpty(error) || !user) {
-    ctx.body = error.message
+    ctx.body = error
     return
   }
 
   ctx.cookies.set('token', user.token)
-  ctx.cookies.set('currentUser', user.username)
+  ctx.cookies.set('expire', user.expire)
+  ctx.cookies.set('refreshToken', user.refreshToken)
 
-  ctx.redirect('/')
+  if (user.groups && user.groups.includes('pre-registration')) {
+    ctx.cookies.set('oAuthUser', user.username)
+    ctx.cookies.set('oAuthEmail', user.email)
+    ctx.redirect('/oauth/register')
+  } else {
+    ctx.redirect('/')
+  }
+}
+
+const handleOAuthRegister = async ctx => {
+  const token = ctx.cookies.get('token')
+  const params = ctx.request.body
+
+  await createUser(params, token)
+
+  const data = await getNewToken(ctx)
+  if (data.token) {
+    ctx.cookies.set('token', data.token)
+    ctx.cookies.set('expire', data.expire)
+    ctx.cookies.set('refreshToken', data.refreshToken)
+
+    ctx.cookies.set('oAuthUser', null)
+    ctx.cookies.set('oAuthEmail', null)
+    ctx.redirect('/')
+  }
 }
 
 module.exports = {
   handleLogin,
   handleLogout,
   handleOAuthLogin,
+  handleOAuthRegister,
 }

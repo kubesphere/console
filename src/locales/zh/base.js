@@ -176,7 +176,6 @@ export default {
 
   Unit: '单位',
   NUM_UNIT: '个',
-  Password: '密码',
 
   NOT_ENABLE: '{resource}暂未启用',
   NOT_AVAILABLE: '暂时没有可用的{resource}',

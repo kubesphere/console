@@ -20,7 +20,6 @@ import 'whatwg-fetch'
 import qs from 'qs'
 import { isObject, get, set, merge, isEmpty } from 'lodash'
 import { getClusterUrl, safeParseJSON } from './index'
-import cookie from './cookie'
 
 const methods = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
 
@@ -102,15 +101,6 @@ function buildRequest({
 
   if (typeof handler === 'function') {
     responseHandler = handler
-  }
-
-  if (
-    cookie('currentUser') &&
-    globals.user &&
-    globals.user.username !== cookie('currentUser')
-  ) {
-    location.href = '/'
-    return
   }
 
   return fetch(getClusterUrl(requestURL), request).then(resp =>
