@@ -27,10 +27,9 @@ import styles from './index.scss'
 
 @inject('rootStore')
 @observer
-export default class OAuthRegister extends Component {
+export default class LoginConfirm extends Component {
   state = {
     formData: {},
-    isSubmmiting: false,
   }
 
   store = new UserStore()
@@ -62,7 +61,7 @@ export default class OAuthRegister extends Component {
   }
 
   handleSubmit = data => {
-    this.store.oAuthRegister(data)
+    this.store.confirm(data)
   }
 
   render() {
