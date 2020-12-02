@@ -125,7 +125,7 @@ export default class StorageClassDetail extends React.Component {
         value: detail.allowVolumeExpansion ? t('True') : t('False'),
       },
       {
-        name: t('Reclaiming Policy'),
+        name: t('Reclaim Policy'),
         value: detail.reclaimPolicy,
       },
       {

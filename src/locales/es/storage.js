@@ -45,7 +45,7 @@ export default {
   'Parameters (key-value pairs)': 'Parámetros (pares clave-valor)',
   PersistentVolumeClaim: 'PersistentVolumeClaim',
   PersistentVolumes: 'PersistentVolumes',
-  'Reclaiming Policy': 'Política de reclamación',
+  'Reclaim Policy': 'Política de reclamación',
   Scalable: 'Escalable',
   'Set as default storage class':
     'Establecer como clase de almacenamiento predeterminada',

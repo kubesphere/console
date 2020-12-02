@@ -44,7 +44,7 @@ export default {
   'Parameters (key-value pairs)': 'Parameters (key-value pairs)',
   PersistentVolumeClaim: 'PersistentVolumeClaim',
   PersistentVolumes: 'PersistentVolumes',
-  'Reclaiming Policy': 'Reclaiming Policy',
+  'Reclaim Policy': 'Reclaim Policy',
   Scalable: 'Scalable',
   'Set as default storage class': 'Set as default storage class',
   'Snapshot Message': 'Snapshot Message',
@@ -188,9 +188,9 @@ export default {
   DEPENDENT_STORAGE_CLASS_DELETE_TIPS:
     'Please check if the storage class is being used by other resources. If there is any resource dependent on the storage class, you need to disable the resource first.',
 
-  CREATE_VOLUME_BY_STORAGECLASS: 'Create Volume by Storageclass',
-  CREATE_VOLUME_BY_SNAPSHOT: 'Create Volume by Snapshot',
-  SELECT_SNAPSHOT_TO_CREATE_VOLUME: 'Select snapshot to create volume.',
+  CREATE_VOLUME_BY_STORAGECLASS: 'Create a volume by StorageClass',
+  CREATE_VOLUME_BY_SNAPSHOT: 'Create a volume by VolumeSnapshot',
+  SELECT_SNAPSHOT_TO_CREATE_VOLUME: 'Select a snapshot to create a volume.',
   VOLUMESNAPSHOT_DESC:
     'A volume snapshot refers to a snapshot of a volume at a particular time point. It can be used to create new volumes (preset the snapshot data) or restore an existing volume to its previous status (displayed in snapshots).',
   VOLUMESNAPSHOT_CREATE_DESC:
