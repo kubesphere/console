@@ -125,6 +125,17 @@ export default class ContainerStore {
     this.watchHandler && this.watchHandler.abort()
   }
 
+  async checkPreviousLog({ cluster, namespace, podName, ...params }) {
+    const result = await request.get(
+      `${this.getDetailUrl({ cluster, namespace, podName })}/log`,
+      params,
+      {},
+      () => {}
+    )
+
+    return !!result
+  }
+
   @action
   async fetchAllLogs({ cluster, namespace, podName, ...params }) {
     return await request.get(
