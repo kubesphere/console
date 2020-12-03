@@ -34,6 +34,12 @@ export default {
             return
           }
 
+          set(
+            data,
+            'metadata.annotations["iam.kubesphere.io/uninitialized"]',
+            'true'
+          )
+
           await store.create(data)
 
           Modal.close(modal)

@@ -151,6 +151,10 @@ const getUserDetail = async token => {
       email: get(resp, 'spec.email'),
       lang: get(resp, 'spec.lang'),
       username: get(resp, 'metadata.name'),
+      initialized: !get(
+        resp,
+        'metadata.annotations["iam.kubesphere.io/uninitialized"]'
+      ),
       globalrole: get(
         resp,
         'metadata.annotations["iam.kubesphere.io/globalrole"]'
