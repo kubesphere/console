@@ -45,4 +45,14 @@ export default {
   'Please input password': 'Please input password',
   'Please input captch': 'Please input captch',
   'Please confirm your account info': 'Please confirm your account info',
+
+  'Please reset your password': 'Please reset your password',
+
+  'Modify Later': 'Modify Later',
+
+  'Your password must meet the following requirements':
+    'Your password must meet the following requirements',
+
+  CONFIRM_PASSWORD_TIP:
+    'Since you are logging in for the first time, please reset your password.',
 }
