@@ -146,10 +146,6 @@ const handleLogin = async ctx => {
     return ctx.redirect('/login/confirm')
   }
 
-  if (!user.initialized) {
-    return ctx.redirect('/password/confirm')
-  }
-
   if (lastToken) {
     const { username } = jwtDecode(lastToken)
     if (username && username !== user.username) {
