@@ -38,6 +38,10 @@ const renderView = async ctx => {
       getKSConfig(),
     ])
 
+    if (!user.initialized) {
+      return ctx.redirect('/password/confirm')
+    }
+
     await renderIndex(ctx, { ksConfig, user })
   } catch (err) {
     ctx.app.emit('error', err)
