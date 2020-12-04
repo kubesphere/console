@@ -255,7 +255,7 @@ class Uploader extends React.Component {
               type="coloured"
             />
             <p className={styles.title}>
-              {t('Click to select the artifact file to upload')}
+              {t('Click to upload an artifact')}
             </p>
             <p className={styles.desc}>
               {t(`${this.filesType.toUpperCase() || 'B2I_DEFAULT'}_DESC`)}

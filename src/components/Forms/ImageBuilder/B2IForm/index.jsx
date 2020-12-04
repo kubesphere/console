@@ -165,7 +165,7 @@ export default class S2IForm extends React.Component {
     return (
       <Form ref={formRef} data={formTemplate}>
         <Form.Item
-          label={t('Upload Artifacts')}
+          label={t('Upload Artifact')}
           rules={[
             { required: true, message: t('The file has not been uploaded.') },
           ]}

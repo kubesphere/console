@@ -35,7 +35,7 @@ export default {
   'Building Log': 'Registro de construcción',
   'building logs': 'registros de construcción',
   'Choose a Language': 'Elige un idioma',
-  'Click to select the artifact file to upload':
+  'Click to upload an artifact':
     'Haz clic para seleccionar el archivo de artefacto a subir',
   'Code Resource': 'Recurso de código',
   'Code URL': 'URL de código',
@@ -58,7 +58,7 @@ export default {
   imageName: 'imageName',
   ImageName: 'ImageName',
   'is Failed': 'falló',
-  'Jobs Records': 'Registros de trabajos',
+  'Job Records': 'Registros de trabajos',
   'Last build environment': 'Último entorno de compilación',
   'Last Message': 'Ultimo mensaje',
   'The logging module is not installed.':
@@ -98,7 +98,7 @@ export default {
   'The file has not been uploaded.': 'El archivo no se ha subido.',
   'The health of the container will be checked regularly according to user needs.':
     'La salud del contenedor se verificará periódicamente de acuerdo con las necesidades del usuario.',
-  'Upload Artifacts': 'Subir artefactos',
+  'Upload Artifact': 'Subir artefactos',
   'Upload file failed': 'Error al cargar el archivo',
   'Upload Percent': 'Porcentaje de subida',
   SORT_BY: 'ordenado por { name }',

@@ -35,7 +35,7 @@ export default {
   'Private Key': 'Private Key',
   'Registry Address': 'Registry Address',
   'Registry verification failed': 'Registry verification failed',
-  'Registry verification success': 'Registry verification success',
+  'Registry verification succeeded': 'Registry verification succeeded',
   Secret: 'Secret',
   'Secret Name': 'Secret Name',
   'Secret Settings': 'Secret Settings',

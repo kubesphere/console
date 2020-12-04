@@ -49,7 +49,7 @@ class BuildRecords extends React.Component {
             params={params}
           />
         </div>
-        <div className={styles.title}>{t('Jobs Records')}</div>
+        <div className={styles.title}>{t('Job Records')}</div>
         <div className={styles.card}>
           <RunRecords isB2i={this.isB2i} params={params} />
         </div>
