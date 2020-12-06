@@ -36,7 +36,7 @@ export default {
   'Private Key': 'Clave privada',
   'Registry Address': 'Dirección de registro',
   'Registry verification failed': 'La verificación del registro falló',
-  'Registry verification success': 'Verificación de registro exitosa',
+  'Registry verification succeeded': 'Verificación de registro exitosa',
   Secret: 'Secreto',
   'Secret Name': 'Nombre del secreto',
   'Secret Settings': 'Configuraciones secretas',

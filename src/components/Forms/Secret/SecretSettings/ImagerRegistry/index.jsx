@@ -180,7 +180,7 @@ export default class ImageRegistry extends Component {
             <Alert
               type="info"
               icon="success"
-              message={t('Registry verification success')}
+              message={t('Registry verification succeeded')}
             />
           ) : reason ? (
             <Alert

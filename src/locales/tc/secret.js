@@ -41,7 +41,7 @@ export default {
 
   'Registry Address': '倉庫地址',
   'Registry verification failed': '鏡像倉庫校驗失敗',
-  'Registry verification success': '鏡像倉庫校驗通過',
+  'Registry verification succeeded': '鏡像倉庫校驗通過',
   'Account Password Secret': '帳號密碼密鑰',
 
   Data: '數據',

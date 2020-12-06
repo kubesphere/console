@@ -164,7 +164,7 @@ export default class ImageBuilderLastRun extends React.Component {
 
     const content = (
       <div className={styles.artifactContent}>
-        <p className={styles.title}>{'制品文件'}</p>
+        <p className={styles.title}>{'Artifact files'}</p>
         <div className={styles.info}>
           <Icon name="file" />
           <p>
