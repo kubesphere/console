@@ -35,11 +35,13 @@ const handleLoginResp = (resp = {}) => {
 
   const { username, extra, groups } = jwtDecode(access_token)
   const email = get(extra, 'email[0]')
+  const initialized = get(extra, 'uninitialized[0]') !== 'true'
 
   return {
     username,
     email,
     groups,
+    initialized,
     token: access_token,
     refreshToken: refresh_token,
     expire: new Date().getTime() + Number(expires_in) * 1000,
@@ -151,10 +153,6 @@ const getUserDetail = async token => {
       email: get(resp, 'spec.email'),
       lang: get(resp, 'spec.lang'),
       username: get(resp, 'metadata.name'),
-      initialized: !get(
-        resp,
-        'metadata.annotations["iam.kubesphere.io/uninitialized"]'
-      ),
       globalrole: get(
         resp,
         'metadata.annotations["iam.kubesphere.io/globalrole"]'
