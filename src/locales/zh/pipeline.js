@@ -481,4 +481,6 @@ export default {
   'Brach Run Success': '批量运行完成',
   'Brach Run Fail': '批量运行失败',
   'Run Start': '运行开始',
+  'Gitlab Server': 'Gitlab 服务',
+  'Gitlab Owner': '项目所属组',
 }

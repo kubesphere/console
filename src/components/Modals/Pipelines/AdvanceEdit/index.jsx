@@ -69,6 +69,7 @@ export default class EditPipelineConfig extends React.Component {
         get(scmData, `svn_source.${param}`) ||
         get(scmData, `git_source.${param}`) ||
         get(scmData, `github_source.${param}`) ||
+        get(scmData, `gitlab_source.${param}`) ||
         get(scmData, `bitbucket_server_source.${param}`) ||
         get(scmData, 'multibranch_job_trigger')
 
