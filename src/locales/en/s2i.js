@@ -35,8 +35,7 @@ export default {
   'Building Log': 'Building Log',
   'building logs': 'building logs',
   'Choose a Language': 'Choose a Language',
-  'Click to upload an artifact':
-    'Click to upload an artifact',
+  'Click to upload an artifact': 'Click to upload an artifact',
   'Code Resource': 'Code Resource',
   'Code URL': 'Code URL',
   'Container Settings': 'Container Settings',
@@ -157,4 +156,8 @@ export default {
   WRONG_FILE_EXTENSION_NAME:
     'The selected file type does not match, please select the {type} type',
   PROBE_COMMAND_DESC: 'Please use commas to separate multiple commands.',
+  'Secret Code': 'Secret Code',
+  SECRET_CODE_RULE_DESC:
+    'It can only contain upper and lower case letters, numbers.',
+  'Remote Trigger Link': 'Remote Trigger Link',
 }

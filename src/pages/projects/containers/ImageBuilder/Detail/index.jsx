@@ -21,7 +21,7 @@ import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import { get, isArray } from 'lodash'
 
-import { Loading } from '@kube-design/components'
+import { Loading, Notify, Icon } from '@kube-design/components'
 
 import { getDisplayName, getLocalTime, parseUrl } from 'utils'
 import { trigger } from 'utils/action'
@@ -31,6 +31,7 @@ import ResourceStore from 'stores/workload/resource'
 
 import DetailPage from 'projects/containers/Base/Detail'
 
+import { CopyToClipboard } from 'react-copy-to-clipboard'
 import getRoutes from './routes'
 
 @inject('rootStore')
@@ -79,6 +80,12 @@ export default class ImageBuilderDetail extends React.Component {
     await this.s2iRunStore.fetchJobDetail({
       ...this.params,
       name: get(runDetail, '_originData.status.kubernetesJobName', ''),
+    })
+  }
+
+  handleCopy = () => {
+    Notify.success({
+      content: t('Copy Successfully'),
     })
   }
 
@@ -149,6 +156,13 @@ export default class ImageBuilderDetail extends React.Component {
     const path = get(parseUrl(sourceUrl), 'pathname', `/${sourceUrl}`)
     const url = this.pathAddCluster(path, cluster)
     const downLoadUrl = `${window.location.protocol}//${window.location.host}/b2i_download${url}`
+    const triggerLink = `http://s2ioperator-trigger-service.kubesphere-devops-system.svc/s2itrigger/v1alpha1/general/namespaces/${
+      detail.namespace
+    }/s2ibuilders/${detail.name}/?secretCode=${get(
+      detail,
+      'spec.config.secretCode',
+      ''
+    )}`
 
     return [
       {
@@ -183,6 +197,17 @@ export default class ImageBuilderDetail extends React.Component {
           </a>
         ) : (
           sourceUrl
+        ),
+      },
+      {
+        name: t('Remote Trigger Link'),
+        value: (
+          <>
+            <span>{triggerLink}</span>
+            <CopyToClipboard text={triggerLink} onCopy={this.handleCopy}>
+              <Icon name="copy" changeable />
+            </CopyToClipboard>
+          </>
         ),
       },
       {
