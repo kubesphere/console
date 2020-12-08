@@ -22,21 +22,13 @@ import { Input } from '@kube-design/components'
 import styles from './index.scss'
 
 export default class Captcha extends Component {
-  state = {
-    captchId: Date.now(),
-  }
-
-  reloadCaptha = () => {
-    this.setState({ captchId: Date.now() })
-  }
-
   render() {
-    const { captchaId } = this.state
+    const { captchaId, onReloadCaptcha } = this.props
     return (
       <div className={styles.captcha}>
-        <img src={`/captcha?${captchaId}`} alt="" />
+        <img src={`/captcha?refresh=${captchaId}`} alt="" />
         <Input {...this.props} placeholder={t('Captcha')} />
-        <a onClick={this.reloadCaptha}>{t('Reload Captcha')}</a>
+        <a onClick={onReloadCaptcha}>{t('Reload Captcha')}</a>
       </div>
     )
   }

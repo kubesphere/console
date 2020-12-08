@@ -26,7 +26,7 @@ import {
   InputPassword,
 } from '@kube-design/components'
 
-import { get } from 'lodash'
+import { get, set } from 'lodash'
 
 import Captcha from './Captcha'
 
@@ -60,6 +60,7 @@ export default class Login extends Component {
     formData: {},
     isSubmmiting: false,
     errorCount: get(globals, 'errorCount', 0),
+    captchaId: Date.now(),
   }
 
   handleOAuthLogin = e => {
@@ -67,26 +68,39 @@ export default class Login extends Component {
   }
 
   handleSubmit = data => {
-    const { username, password } = data
+    const { username, password, ...rest } = data
     this.setState({ isSubmmiting: true })
     this.props.rootStore
       .login({
         username,
         encrypt: encrypt('kubesphere', password),
+        ...rest,
       })
       .then(resp => {
         this.setState({ isSubmmiting: false })
         if (resp.status !== 200) {
+          set(this.state.formData, 'captcha', '')
           this.setState({
             errorMessage: resp.message,
             errorCount: resp.errorCount,
+            captchaId: Date.now(),
           })
         }
       })
   }
 
+  handleReloadCaptha = () => {
+    this.setState({ captchaId: Date.now() })
+  }
+
   render() {
-    const { formData, isSubmmiting, errorMessage, errorCount } = this.state
+    const {
+      formData,
+      isSubmmiting,
+      errorMessage,
+      errorCount,
+      captchaId,
+    } = this.state
     return (
       <div>
         <a href="/" className={styles.logo}>
@@ -135,7 +149,11 @@ export default class Login extends Component {
                 label={t('Captcha')}
                 rules={[{ required: true, message: t('Please input captch') }]}
               >
-                <Captcha name="captcha" />
+                <Captcha
+                  name="captcha"
+                  captchaId={captchaId}
+                  onReloadCaptcha={this.handleReloadCaptha}
+                />
               </Form.Item>
             )}
             <div className={styles.footer}>
