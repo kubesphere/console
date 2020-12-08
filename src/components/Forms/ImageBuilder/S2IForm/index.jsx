@@ -189,7 +189,24 @@ export default class S2IForm extends React.Component {
 
   renderAdvancedSetting() {
     return (
-      <React.Fragment>
+      <>
+        <div className={styles.margin_b_10}>
+          <Form.Item
+            label={t('Secret Code')}
+            rules={[
+              {
+                pattern: /[a-zA-Z0-9]+/,
+                message: `${t('SECRET_CODE_RULE_DESC')}`,
+              },
+            ]}
+          >
+            <Input
+              name={`${this.prefix}spec.config.secretCode`}
+              defaultValue=""
+            />
+          </Form.Item>
+        </div>
+
         <div className={styles.margin_b_10}>
           <Form.Item
             label={t('S2I_RELATIVE_PATH')}
@@ -216,7 +233,7 @@ export default class S2IForm extends React.Component {
             options={this.state.environment}
           />
         </Form.Item>
-      </React.Fragment>
+      </>
     )
   }
 

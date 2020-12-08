@@ -142,4 +142,7 @@ export default {
   'Repo reading failed': '讀取倉庫失敗',
   'exec: "git": executable file not found in $PATH': '目前 URL 未發現代碼倉庫',
   WRONG_FILE_EXTENSION_NAME: '選擇的檔案類型不符合，請選擇 {type} 類型',
+  'Secret Code': '觸發令牌',
+  SECRET_CODE_RULE_DESC: '只能包含大小寫字母、數字',
+  'Remote Trigger Link': '遠程觸發鏈接',
 }

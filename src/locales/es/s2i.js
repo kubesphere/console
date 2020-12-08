@@ -159,4 +159,8 @@ export default {
   WRONG_FILE_EXTENSION_NAME:
     'El tipo de archivo seleccionado no coincide, selecciona el tipo {type}',
   PROBE_COMMAND_DESC: 'Utiliza comas para separar múltiples comandos.',
+  'Secret Code': 'Secret Code',
+  SECRET_CODE_RULE_DESC:
+    'It can only contain upper and lower case letters, numbers.',
+  'Remote Trigger Link': 'Remote Trigger Link',
 }

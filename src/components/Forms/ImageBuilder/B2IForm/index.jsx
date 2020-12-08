@@ -143,6 +143,21 @@ export default class S2IForm extends React.Component {
   renderAdvancedSetting() {
     return (
       <React.Fragment>
+        <Form.Item
+          label={t('Secret Code')}
+          rules={[
+            {
+              pattern: /[a-zA-Z0-9]+/,
+              message: `${t('SECRET_CODE_RULE_DESC')}`,
+            },
+          ]}
+        >
+          <Input
+            name={`${this.prefix}spec.config.secretCode`}
+            defaultValue=""
+          />
+        </Form.Item>
+
         <Alert
           className={styles.environment_info}
           message={t.html('S2I_ENVIROMENT_DESC', {
