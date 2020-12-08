@@ -21,6 +21,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { Button, Icon } from '@kube-design/components'
+import { getDisplayName } from 'utils'
 
 import styles from './index.scss'
 
@@ -42,13 +43,14 @@ const Card = ({ detail, gateway, prefix }) => {
   }
 
   const tls = detail.tls[0] || {}
+  const detailName = getDisplayName(detail)
 
   return (
     <div className={styles.card}>
       <div className={styles.content}>
         <Icon name="loadbalancer" size={40} />
         <div className={styles.text}>
-          <Link to={`${prefix}/${detail.name}`}>{detail.name}</Link>
+          <Link to={`${prefix}/${detail.name}`}>{detailName}</Link>
           <p>hostname: {detail.rules.map(rule => rule.host).join(', ')}</p>
         </div>
       </div>
