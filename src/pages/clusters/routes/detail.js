@@ -43,6 +43,7 @@ import RoleDetail from '../containers/Roles/Detail'
 import AlertPolicyDetail from '../containers/Alerting/Policies/Detail'
 import AlertMessageDetail from '../containers/Alerting/Messages/Detail'
 import LogCollectionDetail from '../containers/LogCollections/Detail'
+import IPPoolDetail from '../containers/Network/IPPools/Detail'
 
 const PATH = '/clusters/:cluster'
 
@@ -78,6 +79,10 @@ export default [
   {
     path: `${PATH}/storageclasses/:name`,
     component: StorageClassDetail,
+  },
+  {
+    path: `${PATH}/ippools/:name`,
+    component: IPPoolDetail,
   },
   {
     path: `${PATH}/projects/:namespace`,

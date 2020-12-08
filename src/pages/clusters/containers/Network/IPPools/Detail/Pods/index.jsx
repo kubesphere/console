@@ -16,10 +16,23 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import Base from './base'
+import React from 'react'
+import { observer, inject } from 'mobx-react'
+import PodsCard from 'components/Cards/Pods'
 
-export default class Network extends Base {
-  constructor(module = 'namespacenetworkpolicies') {
-    super(module)
+@inject('detailStore')
+@observer
+export default class Pods extends React.Component {
+  store = this.props.detailStore
+
+  render() {
+    const { cluster } = this.props.match.params
+    return (
+      <PodsCard
+        detail={this.store.detail}
+        limit={6}
+        prefix={`/clusters/${cluster}`}
+      />
+    )
   }
 }

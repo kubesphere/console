@@ -25,25 +25,13 @@ import { Form } from '@kube-design/components'
 import Metadata from './Metadata'
 
 export default class AdvancedSettings extends React.Component {
-  get prefix() {
-    return this.props.prefix || 'spec.template.spec.'
-  }
-
-  get cluster() {
-    return this.props.cluster
-  }
-
-  get namespace() {
-    return get(this.formTemplate, 'metadata.namespace')
-  }
-
   get formTemplate() {
     const { formTemplate, module } = this.props
     return get(formTemplate, MODULE_KIND_MAP[module], formTemplate)
   }
 
   render() {
-    const { store, formRef } = this.props
+    const { formRef } = this.props
     return (
       <Form data={this.formTemplate} ref={formRef}>
         <Form.Group
@@ -54,13 +42,7 @@ export default class AdvancedSettings extends React.Component {
           keepDataWhenUnCheck
           checkable
         >
-          <Metadata
-            store={store}
-            prefix={this.prefix}
-            cluster={this.cluster}
-            namespace={this.namespace}
-            formTemplate={this.formTemplate}
-          />
+          <Metadata />
         </Form.Group>
       </Form>
     )

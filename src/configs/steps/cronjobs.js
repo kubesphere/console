@@ -52,7 +52,7 @@ export default [
     title: 'Advanced Settings',
     icon: 'slider',
     component: withProps(AdvanceSettings, {
-      prefix: 'spec.jobTemplate.spec.template.spec.',
+      prefix: 'spec.jobTemplate.spec.template.',
     }),
     required: true,
   },

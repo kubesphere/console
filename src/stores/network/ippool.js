@@ -16,23 +16,8 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import { Form } from '@kube-design/components'
-import { PropertiesInput } from 'components/Inputs'
+import Base from 'stores/base'
 
-export default class NodeSchedule extends React.Component {
-  get prefix() {
-    return this.props.prefix || 'spec.template.'
-  }
-
-  render() {
-    return (
-      <Form.Item>
-        <PropertiesInput
-          name={`${this.prefix}spec.nodeSelector`}
-          addText={t('Add Node Selector')}
-        />
-      </Form.Item>
-    )
-  }
+export default class IPPool extends Base {
+  module = 'ippools'
 }

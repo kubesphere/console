@@ -17,62 +17,64 @@
  */
 
 import React from 'react'
-import { Link } from 'react-router-dom'
-
-import { Avatar } from 'components/Base'
+import { get } from 'lodash'
+import { Avatar, Text } from 'components/Base'
 import Banner from 'components/Cards/Banner'
-import { withClusterList, ListPage } from 'components/HOCs/withList'
-import ResourceTable from 'clusters/components/ResourceTable'
+import withList, { ListPage } from 'components/HOCs/withList'
+import Table from 'components/Tables/List'
 
-import { getLocalTime, getDisplayName } from 'utils'
-import { ICON_TYPES, SECRET_TYPES } from 'utils/constants'
+import { getDisplayName } from 'utils'
+import { ICON_TYPES } from 'utils/constants'
 
-import SecretStore from 'stores/secret'
+import IPPoolStore from 'stores/network/ippool'
 
-@withClusterList({
-  store: new SecretStore(),
-  module: 'secrets',
-  name: 'Secret',
-  rowKey: 'uid',
+@withList({
+  store: new IPPoolStore(),
+  module: 'ippools',
+  name: 'IP Pool',
 })
-export default class Secrets extends React.Component {
-  showAction = record => !record.isFedManaged
+export default class IPPools extends React.Component {
+  get tips() {
+    return [
+      {
+        title: t('IPPOOL_USAGE_Q'),
+        description: t('IPPOOL_USAGE_A'),
+      },
+    ]
+  }
 
   get itemActions() {
-    const { trigger, getData } = this.props
+    const { trigger } = this.props
     return [
       {
         key: 'edit',
         icon: 'pen',
         text: t('Edit'),
         action: 'edit',
-        show: this.showAction,
         onClick: item =>
           trigger('resource.baseinfo.edit', {
             detail: item,
           }),
       },
       {
-        key: 'editYaml',
-        icon: 'pen',
-        text: t('Edit YAML'),
-        action: 'edit',
-        show: this.showAction,
+        key: 'viewYaml',
+        icon: 'eye',
+        text: t('View YAML'),
+        action: 'view',
         onClick: item =>
           trigger('resource.yaml.edit', {
             detail: item,
+            readOnly: true,
           }),
       },
       {
-        key: 'editSecret',
-        icon: 'pen',
-        text: t('Edit Secret'),
+        key: 'modify',
+        icon: 'enterprise',
+        text: t('Assign Workspace'),
         action: 'edit',
-        show: this.showAction,
         onClick: item =>
-          trigger('secret.edit', {
+          trigger('network.ipool.assignworkspace', {
             detail: item,
-            success: getData,
           }),
       },
       {
@@ -80,7 +82,6 @@ export default class Secrets extends React.Component {
         icon: 'trash',
         text: t('Delete'),
         action: 'delete',
-        show: this.showAction,
         onClick: item =>
           trigger('resource.delete', {
             type: t(this.name),
@@ -90,14 +91,8 @@ export default class Secrets extends React.Component {
     ]
   }
 
-  getCheckboxProps = record => ({
-    disabled: record.isFedManaged,
-    name: record.name,
-  })
-
   getColumns = () => {
     const { getSortOrder, module } = this.props
-    const { cluster } = this.props.match.params
     return [
       {
         title: t('Name'),
@@ -111,52 +106,41 @@ export default class Secrets extends React.Component {
             title={getDisplayName(record)}
             desc={record.description || '-'}
             to={`${this.props.match.url}/${name}`}
-            isMultiCluster={record.isFedManaged}
           />
         ),
       },
       {
-        title: t('Project'),
-        dataIndex: 'namespace',
-        isHideable: true,
-        width: '16%',
-        render: namespace => (
-          <Link to={`/clusters/${cluster}/projects/${namespace}`}>
-            {namespace}
-          </Link>
-        ),
+        title: t('IP/Mask'),
+        dataIndex: 'cidr',
       },
       {
-        title: t('Type'),
-        dataIndex: 'type',
-        isHideable: true,
-        width: '20%',
-        render: type => (SECRET_TYPES[type] ? t(SECRET_TYPES[type]) : type),
+        title: t('Used IP'),
+        dataIndex: 'status',
+        render: status => {
+          const capacity = get(status, 'capacity', 0)
+          const unallocated = get(status, 'unallocated', 0)
+
+          return (
+            <Text
+              title={capacity - unallocated}
+              description={`${t('Total')}: ${capacity}`}
+            />
+          )
+        },
       },
       {
-        title: t('Config Number'),
-        dataIndex: 'data',
-        isHideable: true,
-        width: '16%',
-        render: data => Object.keys(data).length,
-      },
-      {
-        title: t('Created Time'),
-        dataIndex: 'createTime',
-        sorter: true,
-        sortOrder: getSortOrder('createTime'),
-        isHideable: true,
-        width: 150,
-        render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
+        title: t('Workspace'),
+        dataIndex: 'workspace',
+        render: (workspace, record) =>
+          record.isDefault ? t('All') : workspace || t('Not Assigned'),
       },
     ]
   }
 
   showCreate = () => {
     const { match, module } = this.props
-    return this.props.trigger('secret.create', {
+    return this.props.trigger('network.ippool.add', {
       module,
-      namespace: match.params.namespace,
       cluster: match.params.cluster,
     })
   }
@@ -165,8 +149,8 @@ export default class Secrets extends React.Component {
     const { match, bannerProps, tableProps } = this.props
     return (
       <ListPage {...this.props}>
-        <Banner {...bannerProps} />
-        <ResourceTable
+        <Banner {...bannerProps} tips={this.tips} />
+        <Table
           {...tableProps}
           itemActions={this.itemActions}
           columns={this.getColumns()}

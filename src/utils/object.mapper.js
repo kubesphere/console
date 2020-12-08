@@ -1196,6 +1196,23 @@ const NetworkPoliciesMapper = item => ({
   key: `${get(item, 'metadata.namespace')}-${get(item, 'metadata.name')}`,
 })
 
+const IPPoolsMapper = item => {
+  const baseInfo = getBaseInfo(item)
+  return {
+    ...baseInfo,
+    cidr: get(item, 'spec.cidr'),
+    status: get(item, 'status', {}),
+    workspace: get(item, 'metadata.labels["kubesphere.io/workspace"]', ''),
+    isDefault: !isUndefined(
+      get(item, 'metadata.labels["ippool.network.kubesphere.io/default"]')
+    ),
+    selector: {
+      'ippool.network.kubesphere.io/name': baseInfo.name,
+    },
+    _originData: getOriginData(item),
+  }
+}
+
 const StorageclasscapabilitiesMapper = item => {
   const { metadata, spec } = item
   const volumeFeature = get(spec, 'features.volume')
@@ -1270,6 +1287,7 @@ export default {
   pipelines: PipelinesMapper,
   networkpolicies: NetworkPoliciesMapper,
   namespacenetworkpolicies: NetworkPoliciesMapper,
+  ippools: IPPoolsMapper,
   storageclasscapabilities: StorageclasscapabilitiesMapper,
   servicemonitors: ServiceMonitorMapper,
   default: DefaultMapper,

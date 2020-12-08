@@ -50,6 +50,7 @@ import Visibility from '../containers/Visibility'
 import KubeCtl from '../containers/KubeCtl'
 import KubeConfig from '../containers/KubeConfig'
 import NetworkPolicies from '../containers/Network/Policies'
+import IPPools from '../containers/Network/IPPools'
 import AlertMessages from '../containers/Alerting/Messages'
 import AlertPolicies from '../containers/Alerting/Policies'
 import MailServer from '../containers/MailServices'
@@ -227,6 +228,11 @@ export default [
           {
             path: `${PATH}/networkpolicies`,
             component: NetworkPolicies,
+            exact: true,
+          },
+          {
+            path: `${PATH}/ippools`,
+            component: IPPools,
             exact: true,
           },
           {

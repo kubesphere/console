@@ -130,6 +130,11 @@ client:
                 title: Network Policies,
                 clusterModule: network,
               }
+            - {
+                name: ippools,
+                title: IP Pools,
+                clusterModule: network,
+              }
         # Contains dangerous operations, only available for platform-admin.
         - {
             name: customresources,

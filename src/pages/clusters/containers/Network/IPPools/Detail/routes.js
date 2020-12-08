@@ -16,23 +16,20 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import { Form } from '@kube-design/components'
-import { PropertiesInput } from 'components/Inputs'
+import { getIndexRoute } from 'utils/router.config'
 
-export default class NodeSchedule extends React.Component {
-  get prefix() {
-    return this.props.prefix || 'spec.template.'
-  }
+import Workspaces from './Workspaces'
+import Pods from './Pods'
 
-  render() {
-    return (
-      <Form.Item>
-        <PropertiesInput
-          name={`${this.prefix}spec.nodeSelector`}
-          addText={t('Add Node Selector')}
-        />
-      </Form.Item>
-    )
-  }
-}
+const PATH = '/clusters/:cluster/ippools/:name'
+
+export default [
+  {
+    path: `${PATH}/workspaces`,
+    title: 'Workspaces',
+    component: Workspaces,
+    exact: true,
+  },
+  { path: `${PATH}/pods`, title: 'Pods', component: Pods, exact: true },
+  getIndexRoute({ path: PATH, to: `${PATH}/workspaces`, exact: true }),
+]

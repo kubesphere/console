@@ -22,6 +22,8 @@ import { Modal } from 'components/Base'
 import NetworkPoliciesModal from 'components/Modals/Network/Policies'
 import NetworkPoliciesIpBlockModal from 'components/Modals/Network/Policies/IpBlock'
 import AddByYamlModal from 'components/Modals/Network/Policies/AddByYaml'
+import CreateIPPoolModal from 'components/Modals/Network/IPPoolsCreate'
+import IPPoolWorkspaceModal from 'components/Modals/Network/IPPoolWorkspace'
 import DeleteModal from 'components/Modals/Delete'
 import FORM_TEMPLATES from 'utils/form.templates'
 
@@ -100,6 +102,55 @@ export default {
           success && success()
         },
         store,
+        ...props,
+      })
+    },
+  },
+  'network.ippool.add': {
+    on({ store, success, ...props }) {
+      const { cluster } = props
+      const modal = Modal.open({
+        modal: CreateIPPoolModal,
+        onOk: async data => {
+          const { cidrs } = data
+          const reqs = []
+
+          cidrs.forEach(item => {
+            reqs.push(
+              store.create(
+                {
+                  apiVersion: 'network.kubesphere.io/v1alpha1',
+                  kind: 'IPPool',
+                  metadata: {
+                    name: item.name,
+                    annotations: { 'kubesphere.io/description': item.desc },
+                  },
+                  spec: { type: 'calico', cidr: item.cidr },
+                },
+                { cluster }
+              )
+            )
+          })
+          await Promise.all(reqs)
+          Modal.close(modal)
+          success && success()
+        },
+        store,
+        ...props,
+      })
+    },
+  },
+  'network.ipool.assignworkspace': {
+    on({ store, success, detail, ...props }) {
+      const modal = Modal.open({
+        modal: IPPoolWorkspaceModal,
+        onOk: async data => {
+          await store.patch(detail, data)
+          Modal.close(modal)
+          success && success()
+        },
+        store,
+        detail,
         ...props,
       })
     },

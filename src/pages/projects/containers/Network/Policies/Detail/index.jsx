@@ -19,7 +19,7 @@
 import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
-import NetWorkStore from 'stores/network'
+import NetWorkPolicyStore from 'stores/network/policy'
 import { isEmpty } from 'lodash'
 import { Loading } from '@kube-design/components'
 
@@ -37,7 +37,7 @@ export default class NetworkpoliciesDetail extends React.Component {
 
   module = 'networkpolicies'
 
-  store = new NetWorkStore(this.module)
+  store = new NetWorkPolicyStore(this.module)
 
   componentDidMount() {
     this.fetchData()
