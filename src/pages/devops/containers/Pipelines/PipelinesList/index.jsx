@@ -44,7 +44,7 @@ export default class PipelinesList extends React.Component {
       devopsName: this.devopsName,
       cluster: this.cluster,
       devops: this.devops,
-      enable_timer_trigger: true,
+      enable_timer_trigger: false,
       enable_discarder: true,
     }
   }
