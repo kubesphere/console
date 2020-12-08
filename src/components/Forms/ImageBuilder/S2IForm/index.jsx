@@ -195,7 +195,7 @@ export default class S2IForm extends React.Component {
             label={t('Secret Code')}
             rules={[
               {
-                pattern: /[a-zA-Z0-9]+/,
+                pattern: /^[a-zA-Z0-9]+$/,
                 message: `${t('SECRET_CODE_RULE_DESC')}`,
               },
             ]}
