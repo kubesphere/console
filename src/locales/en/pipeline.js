@@ -557,4 +557,6 @@ export default {
   'Brach Run Success': 'Batch Run Completed',
   'Brach Run Fail': 'Batch Run Failed',
   'Run Start': 'Start Running',
+  'Gitlab Server': 'Gitlab Server',
+  'Gitlab Owner': 'Owner',
 }

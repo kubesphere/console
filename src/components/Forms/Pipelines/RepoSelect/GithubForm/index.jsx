@@ -75,6 +75,7 @@ export default class GitHubForm extends React.Component {
         discover_branches: 1,
         discover_pr_from_forks: { strategy: 2, trust: 2 },
         discover_pr_from_origin: 2,
+        discover_tag: true,
       },
       description: get(
         orgList.data,

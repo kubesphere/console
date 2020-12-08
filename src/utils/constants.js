@@ -328,6 +328,7 @@ export const REPO_TYPES = [
   { name: 'Git', value: 'git', icon: 'git' },
   { name: 'SVN', value: 'svn', icon: 'svn' },
   { name: 'Bitbucket Server', value: 'bitbucket_server', icon: 'bitbucket' },
+  { name: 'GitLab', value: 'gitlab', icon: 'gitlab' },
 ]
 
 export const REPO_KEY_MAP = {
@@ -336,6 +337,7 @@ export const REPO_KEY_MAP = {
   single_svn: 'single_svn_source',
   github: 'github_source',
   bitbucket_server: 'bitbucket_server_source',
+  gitlab: 'gitlab_source',
 }
 
 export const PIPELINE_PARAMS_TYPES = {
