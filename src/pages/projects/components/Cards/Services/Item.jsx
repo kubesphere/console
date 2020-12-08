@@ -25,6 +25,7 @@ import classnames from 'classnames'
 import { Tooltip, Icon } from '@kube-design/components'
 import { Text } from 'components/Base'
 import ServiceAccess from 'projects/components/ServiceAccess'
+import { getDisplayName } from 'utils'
 
 import styles from './index.scss'
 
@@ -48,6 +49,7 @@ export default class ServiceItem extends React.Component {
     }
 
     const serviceMonitor = get(detail, 'monitor.name')
+    const detailName = getDisplayName(detail)
 
     return (
       <div className={classnames(styles.item, className)}>
@@ -55,7 +57,7 @@ export default class ServiceItem extends React.Component {
           icon="network-router"
           title={
             <>
-              <Link to={`${prefix}/${detail.name}`}>{detail.name}</Link>
+              <Link to={`${prefix}/${detail.name}`}>{detailName}</Link>
               {serviceMonitor && (
                 <Tooltip
                   content={`${t('Monitoring Exporter')}: ${serviceMonitor}`}

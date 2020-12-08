@@ -22,7 +22,7 @@ import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 import { List } from 'components/Base'
-import { getLocalTime } from 'utils'
+import { getLocalTime, getDisplayName } from 'utils'
 import { getWorkloadStatus } from 'utils/status'
 import { ICON_TYPES, S2I_STATUS_DESC } from 'utils/constants'
 import StatusReason from 'projects/components/StatusReason'
@@ -88,6 +88,7 @@ export default class WorkloadItem extends React.Component {
     }
 
     const { status, reason } = this.getStatus(detail)
+    const detailName = getDisplayName(detail)
 
     const details = [
       {
@@ -121,7 +122,7 @@ export default class WorkloadItem extends React.Component {
         className={styles.item}
         title={
           <Link to={`${prefix}/${detail.type}/${detail.name}`}>
-            {detail.name}
+            {detailName}
           </Link>
         }
         description={this.getDescription(reason, status, detail)}
