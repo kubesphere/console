@@ -90,7 +90,6 @@ export default {
   'Request duration': '请求延迟',
 
   'Traffic of last five minutes': '最近五分钟流量',
-  '95% requests duration': '95% 的请求延迟',
 
   'Unfinished grayscale release jobs exist': ' 存在未完成的灰度任务',
   'Unsupported workload type': '不支持该工作负载类型',

@@ -18,7 +18,6 @@
 
 import { isEmpty } from 'lodash'
 import React from 'react'
-import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import { Button, Loading } from '@kube-design/components'
 import EmptyList from 'components/Cards/EmptyList'
@@ -56,17 +55,14 @@ class TrafficManangement extends React.Component {
   }
 
   getData() {
-    const { selector } = toJS(this.store.detail)
-    const { cluster, namespace } = this.props.match.params
+    const { cluster, namespace, name } = this.props.match.params
 
-    if (selector) {
-      this.setState({ isGraphLoading: true })
-      this.store.fetchGraph({ cluster, namespace, selector }).then(() => {
-        if (!this.unmount) {
-          this.setState({ isGraphLoading: false })
-        }
-      })
-    }
+    this.setState({ isGraphLoading: true })
+    this.store.fetchGraph({ cluster, namespace, app: name }).then(() => {
+      if (!this.unmount) {
+        this.setState({ isGraphLoading: false })
+      }
+    })
   }
 
   handleRefresh = () => {

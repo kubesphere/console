@@ -157,7 +157,6 @@
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "postcss-flexbugs-fixes": "3.2.0",
     "postcss-loader": "^3.0.0",
-    "postcss-remove-google-fonts": "^1.1.0",
     "prettier": "^1.14.2",
     "progress-bar-webpack-plugin": "^1.11.0",
     "react-refresh": "^0.9.0",

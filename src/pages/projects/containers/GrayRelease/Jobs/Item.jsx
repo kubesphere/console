@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get } from 'lodash'
+import { get, has } from 'lodash'
 import React from 'react'
 import isEqual from 'react-fast-compare'
 import { Icon } from '@kube-design/components'
@@ -116,24 +116,47 @@ export default class Item extends React.Component {
           )
         : NaN,
     ]
-    const request_duration = [
-      getMetricData(
-        get(
-          newMetrics,
-          'histograms.request_duration["0.95"].matrix[0].values',
-          []
+
+    let request_duration = []
+    if (has(newMetrics, 'histograms.request_duration_millis')) {
+      request_duration = [
+        getMetricData(
+          get(
+            newMetrics,
+            'histograms.request_duration_millis["avg"].matrix[0].values',
+            []
+          ),
+          NaN
         ),
-        NaN
-      ) * 1000,
-      getMetricData(
-        get(
-          oldMetrics,
-          'histograms.request_duration["0.95"].matrix[0].values',
-          []
+        getMetricData(
+          get(
+            oldMetrics,
+            'histograms.request_duration_millis["avg"].matrix[0].values',
+            []
+          ),
+          NaN
         ),
-        NaN
-      ) * 1000,
-    ]
+      ]
+    } else {
+      request_duration = [
+        getMetricData(
+          get(
+            newMetrics,
+            'histograms.request_duration["avg"].matrix[0].values',
+            []
+          ),
+          NaN
+        ) * 1000,
+        getMetricData(
+          get(
+            oldMetrics,
+            'histograms.request_duration["avg"].matrix[0].values',
+            []
+          ),
+          NaN
+        ) * 1000,
+      ]
+    }
 
     return [
       {
@@ -160,7 +183,6 @@ export default class Item extends React.Component {
         data: request_duration,
         icon: 'timed-task',
         unit: 'ms',
-        tip: t('95% requests duration'),
       },
     ]
   }
@@ -268,16 +290,26 @@ export default class Item extends React.Component {
               {data.newVersion}
               &nbsp;
               <span>
-                ({t('Replicas')}: {get(newHealth, 'workloadStatus.available')}/
-                {get(newHealth, 'workloadStatus.replicas')})
+                ({t('Replicas')}:{' '}
+                {get(newHealth, 'workloadStatus.available') ||
+                  get(newHealth, 'workloadStatus.availableReplicas')}
+                /
+                {get(newHealth, 'workloadStatus.replicas') ||
+                  get(newHealth, 'workloadStatus.desiredReplicas')}
+                )
               </span>
             </p>
             <p className={styles.tag}>
               {data.oldVersion}
               &nbsp;
               <span>
-                ({t('Replicas')}: {get(oldHealth, 'workloadStatus.available')}/
-                {get(oldHealth, 'workloadStatus.replicas')})
+                ({t('Replicas')}:{' '}
+                {get(oldHealth, 'workloadStatus.available') ||
+                  get(oldHealth, 'workloadStatus.availableReplicas')}
+                /
+                {get(oldHealth, 'workloadStatus.replicas') ||
+                  get(oldHealth, 'workloadStatus.desiredReplicas')}
+                )
               </span>
             </p>
           </div>

@@ -733,6 +733,19 @@ const getApplicationStatus = item => {
   return 'Updating'
 }
 
+const getApplicationServices = item => {
+  return get(item, 'status.components', [])
+    .filter(com => com.kind === 'Service')
+    .map(com => com.name)
+}
+
+const getApplicationWorkloads = item => {
+  const workloadKinds = ['Deployment', 'StatefulSet']
+  return get(item, 'status.components', [])
+    .filter(com => workloadKinds.includes(com.kind))
+    .map(com => com.name)
+}
+
 const ApplicationMapper = item => ({
   ...getBaseInfo(item),
   namespace: get(item, 'metadata.namespace'),
@@ -745,6 +758,8 @@ const ApplicationMapper = item => ({
     get(item, 'metadata.annotations["servicemesh.kubesphere.io/enabled"]') ===
     'true',
   status: getApplicationStatus(item),
+  services: getApplicationServices(item),
+  workloads: getApplicationWorkloads(item),
   _originData: getOriginData(item),
 })
 
