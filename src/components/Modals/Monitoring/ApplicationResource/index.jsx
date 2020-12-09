@@ -126,7 +126,7 @@ export default class ResourceMonitorModal extends React.Component {
     }
   }
 
-  fetchNamespaces(params = {}) {
+  fetchNamespaces = (params = {}) => {
     const { cluster } = this.state
 
     if (cluster) {
@@ -154,18 +154,6 @@ export default class ResourceMonitorModal extends React.Component {
 
   handleNamespaceChange = namespace => {
     this.setState({ namespace })
-  }
-
-  hanldeNamespaceScrollBottom = () => {
-    if (
-      !this.projectStore.list.isLoading &&
-      this.projectStore.list.data.length < this.projectStore.list.total
-    ) {
-      this.fetchNamespaces({
-        page: this.projectStore.list.page + 1,
-        more: true,
-      })
-    }
   }
 
   handleSubmit = () => {
@@ -209,6 +197,9 @@ export default class ResourceMonitorModal extends React.Component {
       ...this.state,
     }
 
+    const { total, page, limit } = this.projectStore.list
+    const pagination = { total, page, limit }
+
     return (
       <Form className={styles.form} ref={this.formRef} data={formData}>
         {this.props.workspace && (
@@ -230,15 +221,14 @@ export default class ResourceMonitorModal extends React.Component {
             placeholder={t('Please select project')}
             defaultValue={namespace}
             options={this.namespaces}
+            onFetch={this.fetchNamespaces}
             onChange={this.handleNamespaceChange}
-            onBlurResetsInput={false}
-            onCloseResetsInput={false}
-            openOnClick={true}
-            isLoadingAtBottom
             valueRenderer={this.projectOptionRenderer}
             optionRenderer={this.projectOptionRenderer}
             isLoading={this.projectStore.list.isLoading}
-            onMenuScrollToBottom={this.hanldeNamespaceScrollBottom}
+            pagination={pagination}
+            searchable
+            clearable
           />
         </Form.Item>
         <Form.Item>
@@ -309,6 +299,7 @@ export default class ResourceMonitorModal extends React.Component {
             dataSource={records}
             scroll={{ y: 200 }}
             expandIconAsCell={false}
+            rowKey="time"
           />
         </div>
       </div>
