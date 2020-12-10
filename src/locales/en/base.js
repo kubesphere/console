@@ -85,7 +85,7 @@ export default {
   deleted: 'deleted',
   Deleted: 'Deleted',
   'Deleted Successfully': 'Deleted Successfully',
-  description: 'description',
+  description: 'Description',
   Description: 'Description',
   Deselect: 'Deselect',
   Destroy: 'Destroy',

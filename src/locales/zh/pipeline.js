@@ -92,6 +92,7 @@ export default {
   'Wrong Token': 'Token 错误',
   'Select Code Repository': '选择代码仓库',
   'Repository Url': '仓库 URL',
+  'Repository Name': '仓库名称',
   'get token': '获取 Token',
   PIPELINE_DESC: `Pipeline 是一系列的插件集合，可以通过组合它们来实现持续集成和持续交付的功能。
     Pipeline DSL 为我们提供了一个可扩展的工具集，让我们可以将简单到复杂的逻辑通过代码实现。`,
