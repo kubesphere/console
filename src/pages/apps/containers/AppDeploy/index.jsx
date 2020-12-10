@@ -27,7 +27,7 @@ import AppFileStore from 'stores/openpitrix/file'
 
 import BasicInfo from 'components/Forms/AppDeploy/BasicInfo'
 import AppConfig from 'components/Forms/AppDeploy/AppConfig'
-import Banner from 'appStore/components/Banner'
+import Banner from 'apps/components/Banner'
 import { generateId } from 'utils'
 import { parse } from 'qs'
 
@@ -41,7 +41,7 @@ export default class App extends React.Component {
   constructor(props) {
     super(props)
 
-    this.appID = this.props.match.params.appID
+    this.appId = this.props.match.params.appId
     this.appStore = new AppStore()
     this.versionStore = new VersionStore()
     this.fileStore = new AppFileStore()
@@ -52,7 +52,7 @@ export default class App extends React.Component {
     this.state = {
       currentStep: 0,
       formData: {
-        app_id: this.appID,
+        app_id: this.appId,
         workspace,
         cluster,
         namespace,
@@ -100,8 +100,8 @@ export default class App extends React.Component {
 
   async getData() {
     await Promise.all([
-      this.appStore.fetchDetail({ app_id: this.appID }),
-      this.versionStore.fetchList({ app_id: this.appID, status: 'active' }),
+      this.appStore.fetchDetail({ app_id: this.appId }),
+      this.versionStore.fetchList({ app_id: this.appId, status: 'active' }),
     ])
 
     const selectAppVersion = get(
@@ -138,7 +138,7 @@ export default class App extends React.Component {
 
   handlePrev = () => {
     if (this.state.currentStep <= 0) {
-      this.routing.push(`/apps/${this.appID}`)
+      this.routing.push(`/apps/${this.appId}`)
     } else {
       this.setState(({ currentStep }) => ({
         currentStep: Math.max(0, currentStep - 1),
@@ -172,7 +172,7 @@ export default class App extends React.Component {
       fromStore: true,
       versionStore: this.versionStore,
       fileStore: this.fileStore,
-      appID: this.appID,
+      appId: this.appId,
     }
 
     if (step.isForm) {

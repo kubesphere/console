@@ -227,4 +227,8 @@ export default {
     '此應用支持表單模式，可選擇通過表單或 YAML 編輯器來修改預設應用配置。注意：不同模式之間數據獨立。',
 
   DELETE_APP_TEMPLATE_TIP: '刪除應用模板前，需要先刪除所有版本。',
+
+  UNPROCESSED_APP_REVIEW: '未处理的应用审核',
+  PROCESSED_APP_REVIEW: '已处理的应用审核',
+  ALL_APP_REVIEW: '应用审核',
 }

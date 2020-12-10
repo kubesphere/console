@@ -19,7 +19,7 @@
 import { reaction, toJS } from 'mobx'
 import { inject, observer } from 'mobx-react'
 import { withRouter } from 'react-router-dom'
-import { Component as Base } from 'core/containers/Base/Detail/Page'
+import { Component as Base } from 'core/containers/Base/Detail'
 import { MODULE_KIND_MAP } from 'utils/constants'
 
 @withRouter

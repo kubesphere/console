@@ -24,7 +24,7 @@ import { Loading } from '@kube-design/components'
 
 import { trigger } from 'utils/action'
 
-import DetailPage from 'core/containers/Base/Detail/Page'
+import DetailPage from 'core/containers/Base/Detail'
 import { Image } from 'components/Base'
 
 import AppStore from 'stores/openpitrix/app'

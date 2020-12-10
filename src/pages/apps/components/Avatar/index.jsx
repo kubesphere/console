@@ -20,7 +20,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { Link } from 'react-router-dom'
-import { Icon } from '@kube-design/components'
 
 import { Image } from 'components/Base'
 
@@ -29,100 +28,40 @@ import styles from './index.scss'
 export default class Avatar extends React.Component {
   static propTypes = {
     avatar: PropTypes.string,
-    avatarType: PropTypes.string,
     avatarClass: PropTypes.string,
-    icon: PropTypes.string,
     iconLetter: PropTypes.string,
     iconSize: PropTypes.number,
     title: PropTypes.string,
     desc: PropTypes.string,
-    isApp: PropTypes.bool,
     to: PropTypes.string,
     onClick: PropTypes.func,
   }
 
   static defaultProps = {
-    avatarType: 'image',
     iconSize: 20,
-    isApp: false,
     onClick: null,
   }
 
   renderImage() {
-    const {
-      avatar,
-      isApp,
-      iconLetter,
-      iconSize,
-      avatarType,
-      avatarClass,
-    } = this.props
-    const isAvatarIcon = avatarType === 'icon'
-
-    if (isApp) {
-      return (
-        <label className={classNames(styles.image, avatarClass)}>
-          <Image src={avatar} iconLetter={iconLetter} iconSize={iconSize} />
-        </label>
-      )
-    }
+    const { avatar, iconLetter, iconSize, avatarClass } = this.props
 
     return (
-      <img
-        className={classNames(
-          styles.image,
-          {
-            [styles.avatarIcon]: isAvatarIcon,
-          },
-          avatarClass
-        )}
-        src={avatar || '/assets/default-user.svg'}
-        alt=""
-      />
+      <label className={classNames(styles.image, avatarClass)}>
+        <Image src={avatar} iconLetter={iconLetter} iconSize={iconSize} />
+      </label>
     )
   }
 
   render() {
-    const {
-      avatar,
-      avatarType,
-      icon,
-      iconSize,
-      title,
-      desc,
-      isApp,
-      to,
-      onClick,
-      className,
-    } = this.props
+    const { title, desc, to, onClick, className } = this.props
 
     const titleComponent = to ? <Link to={to}>{title}</Link> : title
 
-    const isAvatarIcon = avatarType === 'icon'
-
     return (
-      <div
-        className={classNames(
-          styles.wrapper,
-          {
-            [styles.appWrapper]: isApp,
-          },
-          className
-        )}
-      >
-        {avatar || isApp
-          ? this.renderImage()
-          : icon && (
-              <Icon className={styles.icon} name={icon} size={iconSize} />
-            )}
+      <div className={classNames(styles.wrapper, className)}>
+        {this.renderImage()}
         <div
-          className={classNames(
-            styles.title,
-            {
-              [styles.isIcon]: icon || isAvatarIcon,
-            },
-            'avatar-title'
-          )}
+          className={classNames(styles.title, styles.isIcon, 'avatar-title')}
         >
           <div>
             <strong
@@ -132,7 +71,7 @@ export default class Avatar extends React.Component {
               {titleComponent}
             </strong>
           </div>
-          <div className={styles.desc} title={isApp ? desc : ''}>
+          <div className={styles.desc} title={desc}>
             {desc}
           </div>
         </div>

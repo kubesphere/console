@@ -1,15 +1,14 @@
 @import '~scss/variables';
 
-.main {
-  position: relative;
-}
-
 .sider {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 354px;
-  min-width: 354px;
+  position: fixed;
+  top: 88px;
+  left: 20px;
+  width: 364px;
+  min-width: 360px;
+  padding-right: 16px;
+  height: calc(100vh - 100px);
+  overflow: auto;
 
   @media screen and (max-width: 1280px) {
     width: 300px;
@@ -18,10 +17,11 @@
 }
 
 .content {
-  padding-left: 374px;
+  padding: 20px;
+  padding-left: 394px;
 
   @media screen and (max-width: 1280px) {
-    padding-left: 320px;
+    padding-left: 340px;
   }
 }
 
@@ -46,7 +46,7 @@
     text-align: center;
     transition: all $trans-speed;
 
-    &:first-child{
+    &:first-child {
       margin: 0 6px 0 0;
     }
 
@@ -61,9 +61,4 @@
       }
     }
   }
-}
-
-.loading {
-  text-align: center;
-  padding: 30px 0;
 }

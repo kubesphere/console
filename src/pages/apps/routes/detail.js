@@ -16,10 +16,11 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { renderRoutes } from 'utils/router.config'
+import AppDetail from '../containers/StoreManage/Detail'
 
-import routes from './routes'
-
-const App = () => renderRoutes(routes)
-
-export default App
+export default [
+  {
+    path: `/apps-manage/store/:appId`,
+    component: AppDetail,
+  },
+]

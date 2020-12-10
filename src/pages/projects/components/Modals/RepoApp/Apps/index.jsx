@@ -22,7 +22,7 @@ import PropTypes from 'prop-types'
 import { get, noop } from 'lodash'
 import { Button, InputSearch, Select } from '@kube-design/components'
 
-import AppList from 'appStore/components/AppList'
+import AppList from 'apps/components/AppList'
 
 import AppStore from 'stores/openpitrix/app'
 import RepoStore from 'stores/openpitrix/repo'

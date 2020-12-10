@@ -268,4 +268,8 @@ export default {
 
   DELETE_APP_TEMPLATE_TIP:
     'Before deleting an application template, you need to delete all versions.',
+
+  UNPROCESSED_APP_REVIEW: 'Unprocessed App Review',
+  PROCESSED_APP_REVIEW: 'Processed App Review',
+  ALL_APP_REVIEW: 'App Review',
 }

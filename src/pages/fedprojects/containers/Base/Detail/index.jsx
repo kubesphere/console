@@ -18,7 +18,7 @@
 
 import { inject } from 'mobx-react'
 import { withRouter } from 'react-router-dom'
-import { Component as Base } from 'core/containers/Base/Detail/Page'
+import { Component as Base } from 'core/containers/Base/Detail'
 
 @withRouter
 @inject('rootStore', 'projectStore')

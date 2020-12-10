@@ -22,7 +22,7 @@ import { toJS } from 'mobx'
 import { get } from 'lodash'
 
 import { Card } from 'components/Base'
-import AppInfo from 'appStore/components/AppInfo'
+import AppInfo from 'apps/components/AppInfo'
 
 import styles from './index.scss'
 
