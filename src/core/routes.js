@@ -47,12 +47,7 @@ const FederatedProjects = lazy(() =>
 const DevOps = lazy(() =>
   import(/* webpackChunkName: "devops" */ 'devops/App.jsx')
 )
-const ManageApp = lazy(() =>
-  import(/* webpackChunkName: "apps" */ 'apps/App.jsx')
-)
-const AppStore = lazy(() =>
-  import(/* webpackChunkName: "app_store" */ 'appStore/App.jsx')
-)
+const App = lazy(() => import(/* webpackChunkName: "apps" */ 'apps/App.jsx'))
 
 export default [
   { path: `/login`, component: Login, exact: true },
@@ -87,11 +82,11 @@ export default [
       },
       {
         path: '/apps',
-        component: AppStore,
+        component: App,
       },
       {
         path: '/apps-manage',
-        component: ManageApp,
+        component: App,
       },
       {
         path: '/settings',

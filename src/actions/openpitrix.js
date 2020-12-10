@@ -16,6 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 import React from 'react'
+import { capitalize } from 'lodash'
 import { Notify } from '@kube-design/components'
 import { Modal } from 'components/Base'
 
@@ -27,6 +28,13 @@ import TemplateCreateModal from 'apps/components/Modals/AppCreate'
 import TemplateUploadModal from 'apps/components/Modals/HelmUpload'
 import TemplateEditModal from 'apps/components/Modals/AppEdit'
 import TemplateDeployModal from 'apps/components/Modals/AppDeploy'
+import ConfirmModal from 'apps/components/Modals/Confirm'
+import AppReviewModal from 'apps/components/Modals/AppReview'
+import RejectModal from 'apps/components/Modals/ReviewReject'
+import CategoryCreateModal from 'apps/components/Modals/CategoryCreate'
+import AdjustCategoryModal from 'apps/components/Modals/CategoryAdjust'
+
+import { HANDLE_TYPE_TO_SHOW } from 'configs/openpitrix/version'
 
 export default {
   'openpitrix.app.create': {
@@ -225,6 +233,132 @@ export default {
         type,
         resource,
         modal: DeleteModal,
+        ...props,
+      })
+    },
+  },
+  'openpitrix.template.action': {
+    on({ store, detail, handleType, success, ...props }) {
+      const modal = Modal.open({
+        onOk: async () => {
+          await store.handle({ action: handleType, app_id: detail.app_id })
+          const type = HANDLE_TYPE_TO_SHOW[handleType] || handleType
+          Modal.close(modal)
+          Notify.success({
+            content: `${t(`${capitalize(type)} Successfully`)}!`,
+          })
+          success && success()
+        },
+        content: t.html(`APP_${(handleType || 'suspend').toUpperCase()}_TIP`, {
+          name: detail.name,
+        }),
+        modal: ConfirmModal,
+        store,
+        ...props,
+      })
+    },
+  },
+  'openpitrix.template.review': {
+    on({ store, detail, type, success, ...props }) {
+      const modal = Modal.open({
+        onOk: async () => {
+          const { app_id, version_id } = detail
+          await store.handle({ app_id, version_id, action: 'pass' })
+          Modal.close(modal)
+          Notify.success(t('Pass Successfully'))
+          success && success()
+        },
+        icon: 'safe-notice',
+        title: t('Review Content'),
+        description: t('REVIEW_CONTENT_DESC'),
+        canHandle: type === 'unprocessed',
+        modal: AppReviewModal,
+        store,
+        ...props,
+      })
+    },
+  },
+  'openpitrix.template.reject': {
+    on({ store, detail, type, success, ...props }) {
+      const modal = Modal.open({
+        onOk: async params => {
+          const { app_id, version_id } = detail
+          await store.handle({
+            app_id,
+            version_id,
+            action: 'reject',
+            ...params,
+          })
+          Modal.close(modal)
+          Notify.success(t('Reject Successfully'))
+          success && success()
+        },
+        icon: 'safe-notice',
+        title: t('Reject Reason'),
+        description: t('REJECT_REASON_DESC'),
+        canHandle: type === 'unprocessed',
+        versionId: detail.version_id || '',
+        modal: RejectModal,
+        store,
+        ...props,
+      })
+    },
+  },
+  'openpitrix.category.edit': {
+    on({ store, detail, names, success, ...props }) {
+      const modal = Modal.open({
+        onOk: async params => {
+          let content
+          if (detail.category_id) {
+            await store.update(params)
+            content = `${t('Modify Successfully')}!`
+          } else {
+            await store.create(params)
+            content = `${t('Created Successfully')}!`
+          }
+          Modal.close(modal)
+          Notify.success({ content })
+          success && success()
+        },
+        title: t('Category'),
+        icon: 'tag',
+        detail,
+        categoryNames: names,
+        modal: CategoryCreateModal,
+        store,
+        ...props,
+      })
+    },
+  },
+  'openpitrix.category.delete': {
+    on({ store, detail, success, ...props }) {
+      const modal = Modal.open({
+        onOk: async () => {
+          await store.delete(detail)
+          Modal.close(modal)
+          Notify.success({ content: `${t('Delete Successfully')}!` })
+          success && success()
+        },
+        desc: t('DELETE_CATEGORY_DESC', { name: detail.name }),
+        modal: DeleteModal,
+        store,
+        ...props,
+      })
+    },
+  },
+  'openpitrix.category.ajust': {
+    on({ store, success, ...props }) {
+      const modal = Modal.open({
+        onOk: async params => {
+          await store.adjustCategory(params)
+          Modal.close(modal)
+          Notify.success({ content: `${t('Adjust Successfully')}!` })
+          success && success()
+        },
+        title: t('Adjust App Category'),
+        icon: 'tag',
+        modal: AdjustCategoryModal,
+        store,
         ...props,
       })
     },

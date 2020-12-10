@@ -26,7 +26,7 @@ import { getLocalTime } from 'utils'
 import { trigger } from 'utils/action'
 import AppRepoStore from 'stores/openpitrix/repo'
 
-import DetailPage from 'core/containers/Base/Detail/Page'
+import DetailPage from 'core/containers/Base/Detail'
 
 import routes from './routes'
 

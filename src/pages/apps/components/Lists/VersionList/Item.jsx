@@ -25,7 +25,7 @@ import { Button, Notify, Icon, Tabs } from '@kube-design/components'
 import { capitalize } from 'lodash'
 
 import DeleteModal from 'components/Modals/Delete'
-import Confirm from 'apps/components/Confirm'
+import Confirm from 'apps/components/Modals/Confirm'
 import VersionStatus from 'apps/components/VersionStatus'
 import ConfigFile from 'apps/components/Cards/ConfigFile'
 import AuditRecord from 'apps/components/Lists/AuditRecord'

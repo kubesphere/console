@@ -17,18 +17,14 @@
  */
 
 import React from 'react'
-import { observer, inject } from 'mobx-react'
 
 import { get, find, capitalize, values } from 'lodash'
 
-import { Notify } from '@kube-design/components'
 import { Status } from 'components/Base'
-import Base from 'core/containers/Base/List'
+import Table from 'components/Tables/List'
+import withList, { ListPage } from 'components/HOCs/withList'
 import Banner from 'components/Cards/Banner'
 import Avatar from 'apps/components/Avatar'
-import EmptyTable from 'components/Cards/EmptyTable'
-import AppReviewModal from 'apps/components/Modals/AppReview'
-import RejectModal from 'apps/components/Modals/ReviewReject'
 
 import ReviewStore from 'stores/openpitrix/review'
 import { REVIEW_QUERY_STATUS } from 'configs/openpitrix/app'
@@ -37,43 +33,20 @@ import { transferReviewStatus } from 'utils/app'
 
 import styles from './index.scss'
 
-@inject('rootStore')
-@observer
-export default class Reviews extends Base {
-  state = {
-    type: this.props.match.params.type,
-  }
-
-  init() {
-    this.store = new ReviewStore()
-  }
-
-  get name() {
-    return 'App Reviews'
-  }
-
-  get canHandle() {
-    return this.state.type === 'unprocessed'
-  }
-
-  get authKey() {
-    return 'apps'
-  }
-
-  get itemActions() {
-    return [
-      {
-        key: 'handle',
-        icon: 'eye',
-        text: t(this.canHandle ? 'Review' : 'View'),
-        onClick: this.showAppReview,
-      },
-    ]
+@withList({
+  store: new ReviewStore(),
+  module: 'apps',
+  name: 'App Reviews',
+  rowKey: 'app_id',
+})
+export default class Reviews extends React.Component {
+  get type() {
+    return this.props.match.params.type
   }
 
   get tabs() {
     return {
-      value: this.state.type,
+      value: this.type,
       onChange: this.handleTabChange,
       options: [
         {
@@ -92,62 +65,57 @@ export default class Reviews extends Base {
     }
   }
 
+  handleTabChange = value => {
+    this.props.routing.push(`/apps-manage/reviews/${value}`)
+  }
+
   getData = async params => {
-    const queryStatus = REVIEW_QUERY_STATUS[this.state.type]
-    await this.store.fetchReviewList({
+    const queryStatus = REVIEW_QUERY_STATUS[this.type]
+    await this.props.store.fetchReviewList({
       status: queryStatus,
       queryApp: true,
       ...params,
     })
   }
 
-  getAppIcon = appId =>
-    (find(this.store.list.apps, { app_id: appId }) || {}).icon
-
-  getAppISV = appId => (find(this.store.list.apps, { app_id: appId }) || {}).isv
-
-  showReviewModal = detail => () => {
-    this.setState(() => ({
-      selectItem: detail,
-    }))
-    this.showModal('appReview')()
+  get itemActions() {
+    return [
+      {
+        key: 'handle',
+        icon: 'eye',
+        text: t(this.type === 'unprocessed' ? 'Review' : 'View'),
+        onClick: this.showReview,
+      },
+    ]
   }
 
-  showAppReview = () => {
-    this.showModal('appReview')()
-  }
-
-  handlePass = () => {
-    const { app_id, version_id } = this.state.selectItem
-    this.store.handle({ app_id, version_id, action: 'pass' }).then(() => {
-      this.hideModal('appReview')()
-      Notify.success(t('Pass Successfully'))
-      this.getData()
+  showReview = item =>
+    this.props.trigger('openpitrix.template.review', {
+      detail: item,
+      type: this.type,
+      success: this.getData,
+      onReject: () =>
+        this.props.trigger('openpitrix.template.review', {
+          detail: item,
+          type: this.type,
+          success: this.getData,
+        }),
     })
-  }
 
-  handleReject = params => {
-    const { app_id, version_id } = this.state.selectItem
-    this.store
-      .handle({ app_id, version_id, action: 'reject', ...params })
-      .then(() => {
-        this.hideModal('appReview')()
-        this.hideModal('reviewReject')()
-        Notify.success(t('Reject Successfully'))
-        this.getData()
-      })
-  }
+  getAppIcon = appId =>
+    (find(this.props.store.list.apps, { app_id: appId }) || {}).icon
 
-  getTableProps() {
+  getAppISV = appId =>
+    (find(this.props.store.list.apps, { app_id: appId }) || {}).isv
+
+  get tableActions() {
+    const { tableProps } = this.props
     return {
-      ...Base.prototype.getTableProps.call(this),
+      ...tableProps.tableActions,
       onCreate: null,
       selectActions: [],
-      searchType: 'keyword',
     }
   }
-
-  getOperator = phase => get(values(phase), '[0].operator', '-')
 
   getColumns = () => [
     {
@@ -156,14 +124,13 @@ export default class Reviews extends Base {
       width: '30%',
       render: (review_id, item) => (
         <Avatar
-          isApp
           avatarClass={styles.appIcon}
           avatar={this.getAppIcon(item.app_id)}
           iconLetter={item.app_name}
           iconSize={40}
           title={item.app_name}
           desc={item.version_name || '-'}
-          onClick={this.showReviewModal(item)}
+          onClick={() => this.showReview(item)}
         />
       ),
     },
@@ -186,7 +153,7 @@ export default class Reviews extends Base {
       dataIndex: 'phase',
       isHideable: true,
       width: '10%',
-      render: phase => this.getOperator(phase),
+      render: phase => get(values(phase), '[0].operator', '-'),
     },
     {
       title: t('Review Status'),
@@ -208,66 +175,37 @@ export default class Reviews extends Base {
       width: '15%',
       render: time => getLocalTime(time).fromNow(),
     },
-    {
-      key: 'more',
-      render: this.renderMore,
-    },
   ]
 
-  handleTabChange = value => {
-    this.routing.push(`/apps-manage/reviews/${value}`)
-    this.setState({ type: value }, () => {
-      this.getData()
-    })
+  get emptyProps() {
+    return {
+      icon: 'safe-notice',
+      title: t('EMPTY_WRAPPER', {
+        resource: t(`${this.type.toUpperCase()}_APP_REVIEW`),
+      }),
+    }
   }
 
-  renderEmpty() {
+  render() {
+    const { bannerProps, tableProps } = this.props
     return (
-      <EmptyTable name={this.name} onCreate={null} {...this.getEmptyProps()} />
-    )
-  }
-
-  renderHeader() {
-    return (
-      <Banner
-        className="margin-b12"
-        icon="safe-notice"
-        title={t(this.name)}
-        description={t('APP_REVIEW_DESC')}
-        module={this.module}
-        tips={this.tips}
-        tabs={this.tabs}
-      />
-    )
-  }
-
-  renderExtraModals() {
-    const { appReview, reviewReject, selectItem } = this.state
-
-    return (
-      <div>
-        <AppReviewModal
-          title={t('Review Content')}
-          description={t('REVIEW_CONTENT_DESC')}
-          icon={'safe-notice'}
-          visible={appReview}
-          canHandle={this.canHandle}
-          detail={selectItem}
-          onOk={this.handlePass}
-          onCancel={this.hideModal('appReview')}
-          onReject={this.showModal('reviewReject')}
+      <ListPage {...this.props} getData={this.getData} noWatch>
+        <Banner
+          {...bannerProps}
+          tabs={this.tabs}
+          icon="safe-notice"
+          title={t('App Reviews')}
+          description={t('APP_REVIEW_DESC')}
         />
-        <RejectModal
-          title={t('Reject Reason')}
-          description={t('REJECT_REASON_DESC')}
-          icon={'safe-notice'}
-          visible={reviewReject}
-          canHandle={this.canHandle}
-          versionId={get(selectItem, 'version_id', '')}
-          onOk={this.handleReject}
-          onCancel={this.hideModal('reviewReject')}
+        <Table
+          {...tableProps}
+          tableActions={this.tableActions}
+          itemActions={this.itemActions}
+          emptyProps={this.emptyProps}
+          columns={this.getColumns()}
+          searchType="keyword"
         />
-      </div>
+      </ListPage>
     )
   }
 }

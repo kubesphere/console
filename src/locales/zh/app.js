@@ -36,6 +36,7 @@ export default {
   'App Store Management': '应用商店管理',
   'Certified Provider': '已认证服务商',
 
+  Apps: '应用',
   'App Info': '应用信息',
   'Base Info': '基本信息',
   'App Details': '应用详情',
@@ -226,4 +227,8 @@ export default {
     '此应用支持表单模式，可选择通过表单或 YAML 编辑器来修改默认应用配置。注意：不同模式之间数据独立。',
 
   DELETE_APP_TEMPLATE_TIP: '删除应用模板前，需要先删除所有版本。',
+
+  UNPROCESSED_APP_REVIEW: '未处理的应用审核',
+  PROCESSED_APP_REVIEW: '已处理的应用审核',
+  ALL_APP_REVIEW: '应用审核',
 }

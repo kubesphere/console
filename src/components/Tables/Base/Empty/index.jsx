@@ -43,7 +43,7 @@ export default class EmptyTable extends React.PureComponent {
   }
 
   render() {
-    const { module, icon, name, desc, action, className } = this.props
+    const { module, icon, title, name, desc, action, className } = this.props
     const _desc = !isUndefined(desc)
       ? desc
       : t.html(
@@ -61,7 +61,7 @@ export default class EmptyTable extends React.PureComponent {
           <Icon name={_icon} size={48} />
         </div>
         <div className={styles.title}>
-          {t('EMPTY_WRAPPER', { resource: t(name) })}
+          {title || t('EMPTY_WRAPPER', { resource: t(name) })}
         </div>
         <p className={styles.desc}>{_desc}</p>
         {action && <div className={styles.actions}>{action}</div>}

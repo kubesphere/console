@@ -1,0 +1,83 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.categories {
+  min-height: 300px;
+  padding: 4px 0 20px;
+  color: $text-color;
+
+  .title {
+    display: flex;
+    margin-bottom: 12px;
+    padding: 0 16px 0 20px;
+    line-height: 44px;
+    font-weight: bold;
+    background-color: $card-bg-color;
+
+    label {
+      width: 50%;
+
+      &.add {
+        text-align: right;
+        svg {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  ul {
+    padding: 0 12px;
+
+    li {
+      padding: 6px 8px;
+      line-height: 20px;
+      cursor: pointer;
+
+      &:hover,
+      &.active {
+        background-color: $bg-color;
+      }
+
+      &.hasAction {
+        &:hover {
+          .number {
+            display: none;
+          }
+
+          .actions {
+            display: inline-block;
+          }
+        }
+      }
+
+      .icon {
+        margin-right: 8px;
+      }
+
+      .dot {
+        display: inline-block;
+        margin: 0 12px 0 4px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: $dark;
+      }
+
+      .number {
+        float: right;
+      }
+
+      .actions {
+        display: none;
+        float: right;
+        :global {
+          .icon {
+            margin-left: 8px;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}

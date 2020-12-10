@@ -17,9 +17,9 @@
  */
 
 import React from 'react'
-import { observer, inject } from 'mobx-react'
 
-import Base from 'core/containers/Base/List'
+import Table from 'components/Tables/List'
+import withList, { ListPage } from 'components/HOCs/withList'
 import VersionStatus from 'apps/components/VersionStatus'
 
 import AuditStore from 'stores/openpitrix/audit'
@@ -27,23 +27,24 @@ import { getLocalTime } from 'utils'
 
 import styles from './index.scss'
 
-@inject('rootStore')
-@observer
-export default class AuditRecord extends Base {
-  init() {
-    this.store = new AuditStore()
-  }
-
-  getData(params) {
+@withList({
+  store: new AuditStore(),
+  module: 'apps',
+  name: 'Audits',
+  rowKey: 'status_time',
+})
+export default class AuditRecord extends React.Component {
+  getData = params => {
     const { appId } = this.props.match.params
-    this.store.fetchList({ app_id: appId, ...params })
+    this.props.store.fetchList({ app_id: appId, ...params })
   }
 
-  getTableProps() {
+  get tableActions() {
+    const { tableProps } = this.props
     return {
-      ...Base.prototype.getTableProps.call(this),
+      ...tableProps.tableActions,
+      onCreate: null,
       selectActions: [],
-      searchType: 'keyword',
     }
   }
 
@@ -82,16 +83,19 @@ export default class AuditRecord extends Base {
     },
   ]
 
-  renderTitle() {
-    return <div className={styles.title}>{t('Audit Records')}</div>
-  }
-
   render() {
+    const { tableProps } = this.props
     return (
-      <div className={styles.wrapper}>
-        {this.renderTitle()}
-        {this.renderTable()}
-      </div>
+      <ListPage {...this.props} getData={this.getData} noWatch>
+        <div className={styles.title}>{t('Audit Records')}</div>
+        <Table
+          {...tableProps}
+          tableActions={this.tableActions}
+          itemActions={[]}
+          columns={this.getColumns()}
+          hideSearch
+        />
+      </ListPage>
     )
   }
 }

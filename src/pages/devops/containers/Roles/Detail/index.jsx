@@ -26,7 +26,7 @@ import { getDisplayName, getLocalTime } from 'utils'
 import { trigger } from 'utils/action'
 import RoleStore from 'stores/role'
 
-import DetailPage from 'core/containers/Base/Detail/Page'
+import DetailPage from 'core/containers/Base/Detail'
 
 import getRoutes from './routes'
 

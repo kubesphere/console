@@ -35,10 +35,10 @@ import { TypeSelect } from 'components/Base'
 import VersionStore from 'stores/openpitrix/version'
 import AppStore from 'stores/openpitrix/app'
 
-import Banner from 'appStore/components/Banner'
-import AppInfo from 'appStore/components/AppInfo'
-import AppPreview from 'appStore/components/AppPreview'
-import AppBase from 'appStore/components/AppBase'
+import Banner from 'apps/components/Banner'
+import AppInfo from 'apps/components/AppInfo'
+import AppPreview from 'apps/components/AppPreview'
+import AppBase from 'apps/components/AppBase'
 
 import styles from './index.scss'
 
@@ -59,7 +59,7 @@ export default class App extends React.Component {
       showDeploy: false,
     }
 
-    this.appID = this.props.match.params.appID
+    this.appId = this.props.match.params.appId
     this.appStore = new AppStore()
     this.versionStore = new VersionStore()
   }
@@ -92,11 +92,11 @@ export default class App extends React.Component {
   }
 
   getData() {
-    this.appStore.fetchDetail({ app_id: this.appID })
+    this.appStore.fetchDetail({ app_id: this.appId })
 
     this.versionStore
       .fetchList({
-        app_id: this.appID,
+        app_id: this.appId,
         status: 'active',
       })
       .then(() => {
@@ -140,7 +140,7 @@ export default class App extends React.Component {
   renderAppFilePreview() {
     const { selectAppVersion } = this.state
 
-    return <AppPreview versionId={selectAppVersion} appId={this.appID} />
+    return <AppPreview versionId={selectAppVersion} appId={this.appId} />
   }
 
   renderKeywords() {

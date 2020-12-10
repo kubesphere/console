@@ -167,7 +167,7 @@ export default class AppDeploy extends React.Component {
       versionId,
       versionStore: this.versionStore,
       fileStore: this.fileStore,
-      appID: app.app_id,
+      appId: app.app_id,
     }
 
     if (step.isForm) {

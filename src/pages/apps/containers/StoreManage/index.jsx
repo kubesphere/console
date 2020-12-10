@@ -17,42 +17,35 @@
  */
 
 import React from 'react'
-import { observer, inject } from 'mobx-react'
 import { capitalize } from 'lodash'
 
-import { Status, Banner } from 'components/Base'
-import Base from 'core/containers/Base/List'
+import Table from 'components/Tables/List'
+import withList, { ListPage } from 'components/HOCs/withList'
+import { Status } from 'components/Base'
+import Banner from 'components/Cards/Banner'
 import Avatar from 'apps/components/Avatar'
 import { getLocalTime } from 'utils'
 
 import { getAppCategoryNames, transferAppStatus } from 'utils/app'
 import AppStore from 'stores/openpitrix/store'
 
-@inject('rootStore')
-@observer
-export default class Store extends Base {
-  init() {
-    this.store = new AppStore()
+@withList({
+  store: new AppStore(),
+  module: 'apps',
+  name: 'Apps',
+  rowKey: 'app_id',
+})
+export default class Store extends React.Component {
+  get itemActions() {
+    return []
   }
 
-  get authKey() {
-    return 'apps'
-  }
-
-  get name() {
-    return 'Apps'
-  }
-
-  get rowKey() {
-    return 'app_id'
-  }
-
-  getTableProps() {
+  get tableActions() {
+    const { tableProps } = this.props
     return {
-      ...Base.prototype.getTableProps.call(this),
+      ...tableProps.tableActions,
       onCreate: null,
       selectActions: [],
-      searchType: 'keyword',
     }
   }
 
@@ -63,7 +56,6 @@ export default class Store extends Base {
       width: '30%',
       render: (name, app) => (
         <Avatar
-          isApp
           to={`/apps-manage/store/${app.app_id}`}
           avatar={app.icon}
           iconLetter={name}
@@ -110,14 +102,23 @@ export default class Store extends Base {
     },
   ]
 
-  renderHeader() {
+  render() {
+    const { bannerProps, tableProps } = this.props
     return (
-      <Banner
-        type="white"
-        icon="appcenter"
-        name={t('App Store')}
-        desc={t('APP_STORE_DESC')}
-      />
+      <ListPage {...this.props} noWatch>
+        <Banner
+          {...bannerProps}
+          title={t('App Store')}
+          description={t('APP_STORE_DESC')}
+        />
+        <Table
+          {...tableProps}
+          tableActions={this.tableActions}
+          itemActions={this.itemActions}
+          columns={this.getColumns()}
+          searchType="keyword"
+        />
+      </ListPage>
     )
   }
 }

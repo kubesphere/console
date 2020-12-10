@@ -19,12 +19,18 @@
 import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
-import { isEmpty } from 'lodash'
+import { get, capitalize } from 'lodash'
 import { Loading } from '@kube-design/components'
 
 import { getLocalTime, getDisplayName } from 'utils'
 import { trigger } from 'utils/action'
-import RoleStore from 'stores/role'
+import {
+  getVersionTypesName,
+  getAppCategoryNames,
+  transferAppStatus,
+} from 'utils/app'
+import AppStore from 'stores/openpitrix/app'
+import VersionStore from 'stores/openpitrix/version'
 
 import DetailPage from 'core/containers/Base/Detail'
 
@@ -33,12 +39,14 @@ import routes from './routes'
 @inject('rootStore')
 @observer
 @trigger
-export default class RoleDetail extends React.Component {
-  store = new RoleStore('globalroles')
+export default class AppDetail extends React.Component {
+  store = new AppStore()
+
+  versionStore = new VersionStore()
 
   componentDidMount() {
     this.fetchData()
-    this.store.fetchRoleTemplates(this.props.match.params)
+    this.store.isAdmin = true
   }
 
   get module() {
@@ -46,95 +54,95 @@ export default class RoleDetail extends React.Component {
   }
 
   get authKey() {
-    return 'roles'
+    return 'apps'
   }
 
   get name() {
-    return 'Account Role'
+    return 'App'
   }
 
   get listUrl() {
-    return '/access/roles'
+    return '/apps-manage/store'
   }
 
   get routing() {
     return this.props.rootStore.routing
   }
 
-  get showEdit() {
-    const { name } = this.props.match.params
-    return !globals.config.presetGlobalRoles.includes(name)
-  }
-
   fetchData = () => {
     this.store.fetchDetail(this.props.match.params)
   }
 
-  getOperations = () => [
-    {
-      key: 'edit',
-      icon: 'pen',
-      text: t('Edit Info'),
-      action: 'edit',
-      show: this.showEdit,
-      onClick: () =>
-        this.trigger('resource.baseinfo.edit', {
-          type: t(this.name),
-          detail: toJS(this.store.detail),
-          success: this.fetchData,
-        }),
-    },
-    {
-      key: 'editRole',
-      icon: 'pen',
-      text: t('Edit Authorization'),
-      action: 'edit',
-      show: this.showEdit,
-      onClick: () =>
-        this.trigger('role.edit', {
-          module: this.module,
-          detail: toJS(this.store.detail),
-          roleTemplates: toJS(this.store.roleTemplates.data),
-          success: this.fetchData,
-        }),
-    },
-    {
-      key: 'delete',
-      icon: 'trash',
-      text: t('Delete'),
-      action: 'delete',
-      type: 'danger',
-      show: this.showEdit,
-      onClick: () =>
-        this.trigger('role.delete', {
-          type: t(this.name),
-          detail: toJS(this.store.detail),
-          success: () => this.routing.push(this.listUrl),
-        }),
-    },
-  ]
+  getOperations = () => {
+    const { detail } = this.store
 
-  getAttrs = () => {
-    const detail = toJS(this.store.detail)
-
-    if (isEmpty(detail)) {
-      return
+    if (detail.status === 'active') {
+      return [
+        {
+          key: 'suspend',
+          type: 'control',
+          icon: 'sort-descending',
+          text: t('Suspend App'),
+          onClick: () =>
+            this.trigger('openpitrix.template.action', {
+              detail,
+              handleType: 'suspend',
+              success: this.fetchData,
+            }),
+        },
+      ]
     }
 
     return [
       {
-        name: t('Created Time'),
-        value: getLocalTime(detail.createTime).format(`YYYY-MM-DD HH:mm:ss`),
+        key: 'recover',
+        type: 'control',
+        icon: 'sort-ascending',
+        text: t('Activate App'),
+        onClick: () =>
+          this.trigger('openpitrix.template.action', {
+            detail,
+            handleType: 'recover',
+            success: this.fetchData,
+          }),
+      },
+    ]
+  }
+
+  getAttrs = () => {
+    const detail = toJS(this.store.detail)
+    const createTime = get(detail, 'create_time', new Date())
+
+    return [
+      {
+        name: t('App Number'),
+        value: detail.app_id,
       },
       {
-        name: t('Creator'),
-        value: detail.creator,
+        name: t('Status'),
+        value: t(capitalize(transferAppStatus(detail.status))),
+      },
+      {
+        name: t('Category'),
+        value: getAppCategoryNames(get(detail, 'category_set', [])),
+      },
+      {
+        name: t('App Version Types'),
+        value: getVersionTypesName(get(detail, 'app_version_types', '')),
+      },
+      {
+        name: t('App Provider'),
+        value: get(detail, 'isv', '-'),
+      },
+      {
+        name: t('Created Time'),
+        value: getLocalTime(createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
     ]
   }
 
   render() {
-    const stores = { detailStore: this.store }
+    const stores = { detailStore: this.store, versionStore: this.versionStore }
 
     if (this.store.isLoading && !this.store.detail.name) {
       return <Loading className="ks-page-loading" />
@@ -149,7 +157,7 @@ export default class RoleDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('Account Roles'),
+          label: t('App Store'),
           url: this.listUrl,
         },
       ],

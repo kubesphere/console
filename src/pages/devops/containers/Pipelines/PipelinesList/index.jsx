@@ -21,12 +21,13 @@ import { Link } from 'react-router-dom'
 import { toJS } from 'mobx'
 import { cloneDeep, get, omit } from 'lodash'
 
-import Health from 'projects/components/Health'
-import EmptyTable from 'components/Cards/EmptyTable'
+import { Button } from '@kube-design/components'
 
 import Banner from 'components/Cards/Banner'
 import PipelineStore from 'stores/devops/pipelines'
 import Table from 'components/Tables/List'
+import Empty from 'components/Tables/Base/Empty'
+import Health from 'devops/components/Health'
 
 import { withDevOpsList, ListPage } from 'components/HOCs/withList'
 
@@ -334,7 +335,16 @@ export default class PipelinesList extends React.Component {
 
     if (isEmptyList && Object.keys(omitFilters).length <= 0) {
       return (
-        <EmptyTable desc={t('PIPELINE_CREATE_DESC')} onCreate={showCreate} />
+        <Empty
+          name="Pipeline"
+          action={
+            showCreate ? (
+              <Button onClick={showCreate} type="control">
+                {t('Create')}
+              </Button>
+            ) : null
+          }
+        />
       )
     }
 
