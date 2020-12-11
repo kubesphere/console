@@ -240,6 +240,7 @@ export default {
   remote: 'remoto',
   'Remote Repository URL': 'URL de repositorio remoto',
   'Repository Url': 'URL del repositorio',
+  'Repository Name': 'Nombre del repositorio',
   Rescan: 'Reescanear',
   Review: 'revisión',
   Run: 'ejecutar',

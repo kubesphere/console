@@ -30,13 +30,13 @@ export default class GitLabForm extends React.Component {
       <div className={styles.card}>
         <Form data={formData} ref={formRef}>
           <Form.Item label={t('Gitlab Server')}>
-            <Input name="gitlab_source.serverName" />
+            <Input name="gitlab_source.server_name" />
           </Form.Item>
           <Form.Item label={t('Gitlab Owner')}>
-            <Input name="gitlab_source.own" />
+            <Input name="gitlab_source.owner" />
           </Form.Item>
-          <Form.Item label={t('Repository Url')}>
-            <Input name="gitlab_source.repository" />
+          <Form.Item label={t('Repository Name')}>
+            <Input name="gitlab_source.repo" />
           </Form.Item>
         </Form>
       </div>
