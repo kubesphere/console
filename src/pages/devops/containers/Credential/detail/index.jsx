@@ -100,9 +100,7 @@ export default class CredentialDetail extends React.Component {
           success: () => {
             const { devops, workspace, cluster } = this.props.match.params
             this.routing.push(
-              `/${workspace}/clusters/${cluster}/devops/${devops}/${
-                this.module
-              }`
+              `/${workspace}/clusters/${cluster}/devops/${devops}/${this.module}`
             )
           },
         })
@@ -119,11 +117,11 @@ export default class CredentialDetail extends React.Component {
         value: t(detail.type),
       },
       {
-        name: t('description'),
+        name: t('Description'),
         value: detail.description,
       },
       {
-        name: t('domain'),
+        name: t('Domain'),
         value: usage.domain,
       },
     ]

@@ -99,6 +99,7 @@ export default {
   'Display selected': 'Visualizar seleccionado',
   'Do HH:mm': 'HH:mm',
   domain: 'dominio',
+  Domain: 'Dominio',
   Download: 'Descargar',
   Downstream: 'Downstream',
   Drain: 'Drenar',

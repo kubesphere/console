@@ -374,6 +374,7 @@ export default {
   'Unknown User': '未知用戶',
   secret_text: '秘密文本',
   domain: '域名',
+  Domain: '域名',
   Account: '帳戶',
   Strategy: '策略',
   secret: '密鑰',

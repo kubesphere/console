@@ -169,7 +169,7 @@ export default class BaseInfoModal extends React.Component {
           <Form.Item label={t('Name')} desc={t('')}>
             <Input name="name" defaultValue={name} disabled />
           </Form.Item>
-          <Form.Item label={t('description')} desc={t('')}>
+          <Form.Item label={t('Description')} desc={t('')}>
             <TextArea name="description" defaultValue={description} />
           </Form.Item>
           {formTemplate.multi_branch_pipeline ? (
