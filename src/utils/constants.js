@@ -231,6 +231,7 @@ export const ICON_TYPES = {
   networkpolicies: 'firewall',
   namespacenetworkpolicies: 'firewall',
   pipelines: 'blockchain',
+  ippools: 'eip-group',
 }
 
 export const MODULE_KIND_MAP = {
@@ -258,6 +259,7 @@ export const MODULE_KIND_MAP = {
   users: 'User',
   devops: 'DevOpsProject',
   pipelines: 'Pipelines',
+  ippools: 'IPPool',
 }
 
 export const QUOTAS_MAP = {
@@ -845,6 +847,7 @@ export const API_VERSIONS = {
   dashboards: 'apis/monitoring.kubesphere.io/v1alpha1',
   namespacenetworkpolicies: 'apis/network.kubesphere.io/v1alpha1',
   networkpolicies: 'apis/networking.k8s.io/v1',
+  ippools: 'apis/network.kubesphere.io/v1alpha1',
   storageclasscapabilities: 'apis/storage.kubesphere.io/v1alpha1',
 }
 

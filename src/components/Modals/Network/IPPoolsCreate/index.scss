@@ -1,0 +1,18 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.item {
+  position: relative;
+  padding: 6px 17px;
+  border-radius: 60px;
+  background-color: $bg-color;
+  border: solid 1px $border-color;
+
+  & + .item {
+    margin-top: 4px;
+  }
+
+  & > input {
+    max-width: none !important;
+  }
+}

@@ -25,7 +25,7 @@ import { Button, Icon } from '@kube-design/components'
 
 import { trigger } from 'utils/action'
 import ServiceStore from 'stores/service'
-import NetWorkStore from 'stores/network'
+import NetWorkPolicyStore from 'stores/network/policy'
 import styles from './index.scss'
 
 @inject('rootStore')
@@ -35,7 +35,7 @@ import styles from './index.scss'
 export default class RuleInfo extends React.Component {
   constructor(props) {
     super(props)
-    this.store = new NetWorkStore(props.module)
+    this.store = new NetWorkPolicyStore(props.module)
     this.projectStore = props.projectStore
     this.serviceStore = new ServiceStore()
     this.state = {

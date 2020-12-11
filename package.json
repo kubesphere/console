@@ -44,6 +44,7 @@
     "mobx-react-router": "^4.1.0",
     "moment-mini": "^2.19.4",
     "nanoid": "^1.0.2",
+    "netmask": "^1.0.6",
     "node-cache": "^4.1.1",
     "node-fetch": "^2.6.1",
     "path-to-regexp": "^2.2.1",

@@ -197,6 +197,7 @@ export default class PodsCard extends React.Component {
         result.namespace = name
         break
       case 'Service':
+      case 'IPPool':
         result.labelSelector = joinSelector(selector)
         break
       default:
@@ -386,7 +387,7 @@ export default class PodsCard extends React.Component {
 
   render() {
     const { className, title, hideHeader, hideFooter, noWrapper } = this.props
-    const { data, isLoading } = this.store.list
+    const { data } = this.store.list
 
     if (noWrapper) {
       return this.renderContent()
@@ -398,7 +399,6 @@ export default class PodsCard extends React.Component {
         title={t(title)}
         empty={t('NOT_AVAILABLE', { resource: t('Pod') })}
         isEmpty={isEmpty(data)}
-        loading={isLoading}
       >
         {!hideHeader && this.renderHeader()}
         {this.renderContent()}

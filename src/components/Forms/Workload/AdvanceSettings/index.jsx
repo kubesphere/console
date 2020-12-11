@@ -24,12 +24,9 @@ import { Form } from '@kube-design/components'
 
 import Metadata from './Metadata'
 import NodeSchedule from './NodeSchedule'
+import PodIPRange from './PodIPRange'
 
 export default class AdvancedSettings extends React.Component {
-  get cluster() {
-    return this.props.cluster
-  }
-
   get namespace() {
     return get(this.formTemplate, 'metadata.namespace')
   }
@@ -46,9 +43,16 @@ export default class AdvancedSettings extends React.Component {
   }
 
   render() {
-    const { formRef, store, module, prefix, isFederated } = this.props
+    const { formRef, store, module, cluster, prefix, isFederated } = this.props
     return (
       <Form data={this.fedFormTemplate} ref={formRef}>
+        {globals.app.hasClusterModule(cluster, 'network') && !isFederated && (
+          <PodIPRange
+            prefix={prefix}
+            cluster={cluster}
+            namespace={this.namespace}
+          />
+        )}
         {module !== 'daemonsets' && (
           <Form.Group
             label={t('Set Node Scheduling Policy')}
@@ -73,7 +77,7 @@ export default class AdvancedSettings extends React.Component {
           <Metadata
             store={store}
             module={module}
-            cluster={this.cluster}
+            cluster={cluster}
             namespace={this.namespace}
             formTemplate={this.formTemplate}
             isFederated={isFederated}

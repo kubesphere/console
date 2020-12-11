@@ -22,6 +22,7 @@ import { MODULE_KIND_MAP } from 'utils/constants'
 
 import { Form } from '@kube-design/components'
 import { NumberInput } from 'components/Inputs'
+import PodIPRange from 'components/Forms/Workload/AdvanceSettings/PodIPRange'
 
 import Metadata from './Metadata'
 import NodeSchedule from './NodeSchedule'
@@ -86,6 +87,11 @@ export default class AdvancedSettings extends React.Component {
     } = this.props
     return (
       <Form data={formTemplate} ref={formRef}>
+        {!noWorkload &&
+          !isFederated &&
+          globals.app.hasClusterModule(cluster, 'network') && (
+            <PodIPRange cluster={cluster} namespace={this.namespace} />
+          )}
         {(noWorkload || module !== 'statefulsets') && (
           <Form.Group
             label={t('Internet Access')}

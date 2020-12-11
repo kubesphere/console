@@ -36,7 +36,7 @@ export default class PodMonitor extends Base {
   resourceName = 'pod'
 
   getApi = ({ nodeName, namespace, workloadKind, workloadName, pod }) => {
-    let path = `/namespaces/${namespace}`
+    let path = namespace ? `/namespaces/${namespace}` : '/'
 
     if (workloadKind && workloadName) {
       path = `${path}/workloads/${workloadKind}/${workloadName}`
