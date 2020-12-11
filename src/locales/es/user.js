@@ -73,7 +73,7 @@ export default {
   USER_SETTING_EMAIL_DESC:
     'El correo electrónico se utiliza para iniciar sesión.',
   PASSWORD_DESC:
-    'La contraseña debe contener números y letras, y debe tener al menos 6 caracteres de longitud.',
+    'La contraseña debe contener números y letras y debe tener entre 6 y 64 caracteres.',
   ROLE_DESC:
     'Los tipos de roles se clasifican en clúster y proyecto. La función de tipo de clúster se utiliza para administrar el clúster.',
   USER_DESC:

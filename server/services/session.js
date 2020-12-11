@@ -36,11 +36,13 @@ const handleLoginResp = (resp = {}) => {
   const { username, extra, groups } = jwtDecode(access_token)
   const email = get(extra, 'email[0]')
   const initialized = get(extra, 'uninitialized[0]') !== 'true'
+  const extraname = get(extra, 'username[0]') || get(extra, 'uid[0]')
 
   return {
     username,
     email,
     groups,
+    extraname,
     initialized,
     token: access_token,
     refreshToken: refresh_token,
