@@ -72,7 +72,7 @@ export default {
   EMAIL_DESC: 'The email address is used for login.',
   USER_SETTING_EMAIL_DESC: 'Email is used for login.',
   PASSWORD_DESC:
-    'Password must contain numbers and letters, and must be at least 6 characters in length.',
+    'Password must contain numbers and letters, and must be 6~64 characters in length.',
   ROLE_DESC:
     'The role types are classified into cluster and project. The role of cluster type is used for managing the cluster.',
   USER_DESC:

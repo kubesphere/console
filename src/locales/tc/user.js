@@ -37,7 +37,7 @@ export default {
   EMAIL_DESC: '郵箱可作為登入帳號',
   USER_NAME_DESC: '用戶名稱只能包含小寫字母及數字',
   USER_SETTING_EMAIL_DESC: '郵箱可作為登入帳號',
-  PASSWORD_DESC: '密碼必須包含數字和大小寫字母，長度至少為 6 位',
+  PASSWORD_DESC: '密碼必須包含數字和大小寫字母，長度為 6~64 位',
   ROLE_DESC:
     '角色類型根據權限範圍分為集群和項目兩類，目前角色的授權範圍為整個集群.',
   'New Password': '新的密碼',
