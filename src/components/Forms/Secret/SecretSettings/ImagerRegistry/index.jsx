@@ -118,17 +118,38 @@ export default class ImageRegistry extends Component {
     this.setState({ password: e.target.value }, this.triggerChange)
   }
 
+  renderTip() {
+    const { errorMsg, validate, reason } = this.state
+
+    if (errorMsg) {
+      return <Alert className="margin-t12" type="error" message={errorMsg} />
+    }
+
+    if (validate) {
+      return (
+        <Alert
+          type="info"
+          icon="success"
+          message={t('Registry verification succeeded')}
+        />
+      )
+    }
+
+    if (reason) {
+      return (
+        <Alert
+          type="error"
+          title={t('Registry verification failed')}
+          message={reason}
+        />
+      )
+    }
+
+    return <Alert type="warning" message={t('IMAGE_REGISTRY_VALIDATE_TIP')} />
+  }
+
   render() {
-    const {
-      url,
-      username,
-      password,
-      email,
-      errorMsg,
-      isValidating,
-      validate,
-      reason,
-    } = this.state
+    const { url, username, password, email, isValidating } = this.state
     return (
       <div>
         <input name="username" className="hidden-input" type="text" disabled />
@@ -166,40 +187,21 @@ export default class ImageRegistry extends Component {
           </Column>
           <Column>
             <Wrapper label={t('Password')} required>
-              <InputPassword
-                type="password"
-                value={password}
-                onChange={this.handlePasswordChange}
-                autoComplete="new-password"
-              />
+              <div className={styles.password}>
+                <InputPassword
+                  type="password"
+                  value={password}
+                  onChange={this.handlePasswordChange}
+                  autoComplete="new-password"
+                />
+                <Button onClick={this.handleValidate} loading={isValidating}>
+                  {t('Validate')}
+                </Button>
+              </div>
             </Wrapper>
           </Column>
         </Columns>
-        <div className={styles.tip}>
-          {validate ? (
-            <Alert
-              type="info"
-              icon="success"
-              message={t('Registry verification succeeded')}
-            />
-          ) : reason ? (
-            <Alert
-              type="error"
-              title={t('Registry verification failed')}
-              message={reason}
-            />
-          ) : (
-            <Alert type="warning" message={t('IMAGE_REGISTRY_VALIDATE_TIP')} />
-          )}
-          {!validate && (
-            <Button onClick={this.handleValidate} loading={isValidating}>
-              {t('Validate')}
-            </Button>
-          )}
-        </div>
-        {errorMsg && (
-          <Alert className="margin-t12" type="error" message={errorMsg} />
-        )}
+        <div className={styles.tip}>{this.renderTip()}</div>
       </div>
     )
   }
