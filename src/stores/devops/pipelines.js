@@ -142,8 +142,8 @@ export default class PipelineStore extends BaseStore {
         start: (page - 1) * TABLE_LIMIT || 0,
         limit: TABLE_LIMIT,
         q: `type:pipeline;organization:jenkins;pipeline:${devops}/${searchWord ||
-          '*'};excludedFromFlattening:jenkins.branch.MultiBranchProject,hudson.matrix.MatrixProject&filter=${filter ||
-          'no-folders'}`,
+          '*'};excludedFromFlattening:jenkins.branch.MultiBranchProject,hudson.matrix.MatrixProject`,
+        filter: `${filter || 'no-folders'}`,
       },
       { params: { ...filters } }
     )
