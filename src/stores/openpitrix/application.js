@@ -160,6 +160,7 @@ export default class Application extends Base {
     })
 
     this.list.isLoading = false
+    return data
   }
 
   @action

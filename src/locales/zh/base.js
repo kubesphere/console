@@ -547,4 +547,6 @@ export default {
   EVENT_FROM: '来源',
 
   CREATE_BY_YAML_DESC: '通过 YAML 定义您要创建的资源',
+  Bill: '资源消费统计',
+  BILLING_OPERATING_DESC: '查看消费情况',
 }

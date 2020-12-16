@@ -9,6 +9,9 @@
   max-height: calc(100vh - 30px);
   bottom: 0;
   overflow-y: auto;
+  & > div {
+    height: 100%;
+  }
 }
 
 .container {

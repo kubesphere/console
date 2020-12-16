@@ -99,6 +99,14 @@ export default class KubeTools extends React.Component {
               !globals.app.hasKSModule('auditing'),
             action: 'toolbox.auditingsearch',
           },
+          {
+            icon: 'wallet',
+            title: t('Bill'),
+            description: t('BILLING_OPERATING_DESC'),
+            link: '/bill',
+            hidden: false,
+            action: 'toolbox.bill',
+          },
         ],
       },
       {

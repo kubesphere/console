@@ -546,4 +546,6 @@ export default {
   GITHUB_ISSUES_DESC: 'Raise an issue in GitHub to get help.',
 
   CREATE_BY_YAML_DESC: 'Define the resources you want to create through YAML.',
+  Bill: 'Metering and Billing',
+  BILLING_OPERATING_DESC: 'Check Consumption',
 }

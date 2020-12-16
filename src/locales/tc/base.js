@@ -547,4 +547,7 @@ export default {
 
   EVENT_AGE: '發生時間',
   EVENT_FROM: '來源',
+
+  Bill: '資源消費統計',
+  BILLING_OPERATING_DESC: '查看消费情况',
 }

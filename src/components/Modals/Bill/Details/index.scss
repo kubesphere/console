@@ -1,0 +1,250 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+:global {
+  .flatpickr-time {
+    padding: 4px 12px !important;
+    height: auto !important;
+  }
+
+  .flatpickr-innerContainer {
+    border-bottom: 1px solid #c6d1dc !important;
+  }
+}
+
+.billDetail {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  overflow: hidden;
+
+  .padding0 {
+    padding-bottom: 0 !important;
+  }
+
+  .leftContent {
+    width: 480px;
+    height: 100%;
+    padding: 40px 20px 120px;
+    position: relative;
+    background-color: $light-color02;
+
+    .crumbContainer {
+      min-height: 20px;
+      padding-top: 12px;
+      margin-bottom: 20px;
+      display: flex;
+
+      button {
+        width: 20px;
+        height: 20px;
+        padding: 0;
+        background-color: $light-color04;
+        border: none;
+        border-radius: 4px;
+
+        & + button {
+          margin-left: 4px;
+        }
+
+        & > span {
+          width: 20px;
+        }
+      }
+
+      .crumb {
+        display: flex;
+        margin-left: 10px;
+        font-weight: $font-bold;
+        color: $dark-color06;
+        flex-wrap: wrap;
+
+        & > div {
+          display: flex;
+        }
+
+        .crumbTitle {
+          max-width: 80px;
+          margin-left: 3px;
+          cursor: default;
+          @include ellipsis;
+        }
+      }
+    }
+
+    .side {
+      width: 100%;
+      height: calc(100% - 60px);
+      overflow-y: auto;
+    }
+
+    .usageCard {
+      width: 100%;
+      height: 80px;
+      background: #f9fbfd;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+
+      .meterCard {
+        height: 100%;
+        padding: 20px 20px 0;
+        margin-bottom: 0;
+        background: none;
+        box-shadow: 0 -4px 4px rgba(36, 46, 66, 0.1);
+
+        ul li {
+          flex: 1 1 auto;
+        }
+      }
+    }
+  }
+
+  .rightContent {
+    width: calc(100% - 480px);
+    height: 100%;
+    padding: 66px 20px 33px 40px;
+    background: white;
+
+    :global {
+      .spin-nested-loading {
+        width: 100%;
+        height: 100%;
+
+        .spin-container {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+
+    .title {
+      height: 32px;
+      margin-bottom: 20px;
+      padding-right: 20px;
+      display: flex;
+
+      h2 {
+        font-size: 24px;
+        font-weight: $font-bold;
+        flex: 5 1 auto;
+      }
+
+      .clusterSelect {
+        width: 105px;
+        margin-right: 10px;
+      }
+    }
+
+    .content {
+      width: 100%;
+      height: calc(100% - 65px);
+      padding-right: 20px;
+      overflow-y: auto;
+      overflow-x: hidden;
+
+      .toothbg {
+        width: 100%;
+        min-height: 198px;
+        border: 1px solid $light-color08;
+        border-radius: 3px;
+        border-bottom: none;
+        position: relative;
+
+        &::after {
+          content: '';
+          height: 5px;
+          display: block;
+          background-size: 10px 7px;
+          background-repeat: repeat-x;
+          background-image: linear-gradient(
+              135deg,
+              transparent 50%,
+              $light-color08 60%,
+              transparent 70%
+            ),
+            linear-gradient(
+              45deg,
+              transparent 30%,
+              $light-color08 40%,
+              transparent 50%
+            );
+          position: absolute;
+          bottom: -2px;
+          left: -1px;
+          right: -1px;
+        }
+      }
+
+      .subTitle {
+        font-size: 20px;
+        margin-bottom: 12px;
+        color: $dark-color07;
+        font-weight: $font-bold;
+      }
+
+      .info {
+        height: 40px;
+        margin-bottom: 12px;
+        position: relative;
+      }
+
+      .chartContainer {
+        height: 294px;
+        margin-bottom: 12px;
+        border: 1px solid $light-color04;
+
+        :global {
+          .spin-nested-loading {
+            width: 100%;
+            height: 100%;
+          }
+
+          .spin-container {
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+.childrenResourceContainer {
+  width: 100%;
+  height: 400px;
+
+  :global {
+    .spin-nested-loading {
+      width: 100%;
+      height: 100%;
+    }
+
+    .spin-container {
+      width: 100%;
+      height: 100%;
+      background: $light-color02;
+      padding: 12px;
+      display: flex;
+    }
+  }
+
+  .childrenlistContainer {
+    flex: 1 1 auto;
+
+    .childrenList {
+      margin-top: 18px;
+    }
+  }
+
+  .constomChartContainer {
+    width: 500px;
+    height: 100%;
+    flex: 2 1 auto;
+    background: url('/assets/pipelineBg.svg');
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 5px;
+  }
+}
