@@ -250,6 +250,7 @@ export default class RepoSelectForm extends React.Component {
           handleSubmit={this.handleSubmit}
           cluster={cluster}
           devops={devops}
+          showCredential={this.showCreateCredential}
         />
       )
     }
