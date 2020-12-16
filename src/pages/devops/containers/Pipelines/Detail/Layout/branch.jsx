@@ -151,7 +151,10 @@ export default class BranchDetailLayout extends React.Component {
   }
 
   render() {
-    const stores = { detailStore: this.store }
+    const stores = {
+      detailStore: this.store,
+      sonarqubeStore: this.sonarqubeStore,
+    }
     const { params } = this.props.match
     const { branch } = params
 
