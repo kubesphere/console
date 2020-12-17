@@ -21,7 +21,7 @@ import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 
 import moment from 'moment-mini'
-import { get, isEmpty, has } from 'lodash'
+import { get, isEmpty, has, isArray } from 'lodash'
 
 import { Notify } from '@kube-design/components'
 import Status from 'devops/components/Status'
@@ -99,7 +99,9 @@ export default class PipelineDetailLayout extends React.Component {
   }
 
   setBranchNames = (branchNames, params) => {
-    isEmpty(branchNames) ? (params.branch = 'master') : null
+    isArray(branchNames) && !isEmpty(branchNames)
+      ? (params.branch = branchNames[0])
+      : null
   }
 
   getSonarqube = () => {
@@ -240,7 +242,10 @@ export default class PipelineDetailLayout extends React.Component {
   }
 
   render() {
-    const stores = { detailStore: this.store }
+    const stores = {
+      detailStore: this.store,
+      sonarqubeStore: this.sonarqubeStore,
+    }
     const operations = this.getOperations().filter(item =>
       this.enabledActions.includes(item.action)
     )

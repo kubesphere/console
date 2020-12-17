@@ -22,11 +22,11 @@ import { observer, inject } from 'mobx-react'
 import CodeQualityResult from 'devops/components/Cards/CodeQualityResult'
 import CodeQualityIssues from 'devops/components/Cards/CodeQualityIssues'
 
-@inject('rootStore')
+@inject('rootStore', 'sonarqubeStore')
 @observer
 export default class CodeQuality extends React.Component {
   componentDidMount() {
-    const { detail, isLoading } = this.props.sonarqubeStore
+    const { detail = {}, isLoading } = this.props.sonarqubeStore
 
     if (!detail.totalStatus && !isLoading) {
       this.props.rootStore.routing.push('./activity')
@@ -40,7 +40,7 @@ export default class CodeQuality extends React.Component {
   }
 
   renderIssues = () => {
-    const { detail, isLoading } = this.props.sonarqubeStore
+    const { detail = {}, isLoading } = this.props.sonarqubeStore
 
     return (
       <CodeQualityIssues

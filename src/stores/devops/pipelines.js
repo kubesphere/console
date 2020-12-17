@@ -153,7 +153,7 @@ export default class PipelineStore extends BaseStore {
 
     this.list = {
       data: result.items || [],
-      total: result.total_count,
+      total: result.total_count || 0,
       limit: parseInt(limit, 10) || 10,
       page: parseInt(page, 10) || 1,
       filters: omit(filters, 'devops'),
@@ -264,7 +264,7 @@ export default class PipelineStore extends BaseStore {
 
     this.pullRequestList = {
       data: result || [],
-      total: this.detail.totalNumberOfPullRequests,
+      total: this.detail.totalNumberOfPullRequests || 0,
       limit: TABLE_LIMIT,
       page: parseInt(page, 10) || 1,
       filters: omit(filters, 'devops'),
@@ -297,7 +297,7 @@ export default class PipelineStore extends BaseStore {
     this.branchList = {
       data: result || [],
       limit: TABLE_LIMIT,
-      total: this.detail.totalNumberOfBranches,
+      total: this.detail.totalNumberOfBranches || 0,
       page: parseInt(page, 10) || 1,
       filters: omit(filters, 'devops'),
       isLoading: false,
@@ -332,7 +332,7 @@ export default class PipelineStore extends BaseStore {
     this.activityList = {
       limit,
       data: result.items || [],
-      total: result.totalItems,
+      total: result.totalItems || 0,
       page: parseInt(page, 10) || 1,
       filters: omit(filters, 'devops'),
       isLoading: false,
