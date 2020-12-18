@@ -135,6 +135,11 @@ client:
                 title: IP Pools,
                 clusterModule: network,
               }
+            - {
+                name: subnets,
+                title: Subnets,
+                clusterModule: kubeovn,
+              }
         # Contains dangerous operations, only available for platform-admin.
         - {
             name: customresources,

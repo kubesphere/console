@@ -1250,6 +1250,46 @@ const ServiceMonitorMapper = item => ({
   _originData: getOriginData(item),
 })
 
+const SubnetsMapper = item => {
+  return {
+    ...getBaseInfo(item),
+    _originData: getOriginData(item),
+
+    namespaces: get(item, 'spec.namespaces', []),
+    protocol: get(item, 'spec.protocol'),
+    cidr: get(item, 'spec.cidrBlock'),
+    gateway: get(item, 'spec.gateway'),
+    gatewayNode: get(item, 'spec.gatewayNode'),
+    gatewayType: get(item, 'spec.gatewayType'),
+    natOutgoing: get(item, 'spec.natOutgoing'),
+    availableIPs: get(item, 'status.availableIPs'),
+    usingIPs: get(item, 'status.usingIPs'),
+    default: get(item, 'spec.default', false),
+    labels: get(item, 'metadata.labels', {}),
+    spec: get(item, 'spec', {}),
+    annotations: get(item, 'metadata.annotations', {}),
+    key: `${get(item, 'metadata.name')}`,
+  }
+}
+
+const IpsMapper = item => {
+  return {
+    ...getBaseInfo(item),
+    _originData: getOriginData(item),
+
+    namespace: get(item, 'spec.namespace', ''),
+    protocol: get(item, 'spec.protocol'),
+    ipAddress: get(item, 'spec.ipAddress'),
+    macAddress: get(item, 'spec.macAddress'),
+    nodeName: get(item, 'spec.nodeName'),
+    podName: get(item, 'spec.podName'),
+    labels: get(item, 'metadata.labels', {}),
+    spec: get(item, 'spec', {}),
+    annotations: get(item, 'metadata.annotations', {}),
+    key: `${get(item, 'metadata.name')}`,
+  }
+}
+
 export default {
   deployments: WorkLoadMapper,
   daemonsets: WorkLoadMapper,
@@ -1306,4 +1346,6 @@ export default {
   storageclasscapabilities: StorageclasscapabilitiesMapper,
   servicemonitors: ServiceMonitorMapper,
   default: DefaultMapper,
+  subnets: SubnetsMapper,
+  ips: IpsMapper,
 }

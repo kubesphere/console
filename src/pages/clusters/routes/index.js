@@ -51,6 +51,7 @@ import KubeCtl from '../containers/KubeCtl'
 import KubeConfig from '../containers/KubeConfig'
 import NetworkPolicies from '../containers/Network/Policies'
 import IPPools from '../containers/Network/IPPools'
+import Subnets from '../containers/Network/Subnets'
 import AlertMessages from '../containers/Alerting/Messages'
 import AlertPolicies from '../containers/Alerting/Policies'
 import MailServer from '../containers/MailServices'
@@ -233,7 +234,10 @@ export default [
           {
             path: `${PATH}/ippools`,
             component: IPPools,
-            exact: true,
+          },
+          {
+            path: `${PATH}/subnets`,
+            component: Subnets,
           },
           {
             path: `${PATH}/mail-server`,

@@ -501,6 +501,17 @@ const getServiceMonitorTemplate = ({ name, namespace }) => ({
   spec: {},
 })
 
+const getSubnetsTemplate = () => ({
+  apiVersion: 'kubeovn.io/v1',
+  kind: 'Subnet',
+  metadata: {
+    name: '',
+  },
+  spec: {
+    cidrBlock: '',
+  },
+})
+
 const FORM_TEMPLATES = {
   deployments: getDeploymentTemplate,
   daemonsets: getDaemonSetTemplate,
@@ -532,6 +543,7 @@ const FORM_TEMPLATES = {
   dashboards: getDashboardTemplate,
   federated: getFederatedTemplate,
   servicemonitors: getServiceMonitorTemplate,
+  subnets: getSubnetsTemplate,
 }
 
 export default FORM_TEMPLATES

@@ -260,6 +260,7 @@ export const MODULE_KIND_MAP = {
   devops: 'DevOpsProject',
   pipelines: 'Pipelines',
   ippools: 'IPPool',
+  subnets: 'Subnet',
 }
 
 export const QUOTAS_MAP = {
@@ -849,6 +850,7 @@ export const API_VERSIONS = {
   networkpolicies: 'apis/networking.k8s.io/v1',
   ippools: 'apis/network.kubesphere.io/v1alpha1',
   storageclasscapabilities: 'apis/storage.kubesphere.io/v1alpha1',
+  subnets: 'apis/kubeovn.io/v1',
 }
 
 export const MONITOR_GRAPH_COLORS = [

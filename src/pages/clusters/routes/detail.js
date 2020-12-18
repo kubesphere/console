@@ -37,6 +37,8 @@ import NodeDetail from '../containers/Nodes/Detail'
 import ProjectDetail from '../containers/Projects/Detail'
 import StorageClassDetail from '../containers/Storage/StorageClasses/Detail'
 
+import SubnetDetail from '../containers/Network/Subnets/Detail'
+
 import ComponentDetail from '../containers/ServiceComponents/Detail'
 import CustomResourceDetail from '../containers/CustomResources/Detail'
 import RoleDetail from '../containers/Roles/Detail'
@@ -83,6 +85,10 @@ export default [
   {
     path: `${PATH}/ippools/:name`,
     component: IPPoolDetail,
+  },
+  {
+    path: `${PATH}/subnets/:name`,
+    component: SubnetDetail,
   },
   {
     path: `${PATH}/projects/:namespace`,
