@@ -154,7 +154,7 @@ export default class PodItem extends React.PureComponent {
 
   handleExpandExtra = () => {
     const { detail, onExpand } = this.props
-    onExpand(detail.name)
+    onExpand(detail.uid)
   }
 
   handleLinkClick = () => {

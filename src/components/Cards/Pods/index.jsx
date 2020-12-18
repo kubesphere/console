@@ -288,9 +288,9 @@ export default class PodsCard extends React.Component {
     })
   }
 
-  handleExpand = name => {
+  handleExpand = uid => {
     this.setState(({ expandItem }) => ({
-      expandItem: expandItem === name ? '' : name,
+      expandItem: expandItem === uid ? '' : uid,
     }))
   }
 
@@ -352,7 +352,7 @@ export default class PodsCard extends React.Component {
         ) : (
           data.map(pod => (
             <PodItem
-              key={pod.name}
+              key={pod.uid}
               prefix={
                 isFederated ? `${prefix}/clusters/${selectCluster}` : prefix
               }
@@ -360,7 +360,7 @@ export default class PodsCard extends React.Component {
               metrics={this.getPodMetrics(pod)}
               loading={this.monitorStore.isLoading}
               refreshing={this.monitorStore.isRefreshing}
-              isExpand={this.state.expandItem === pod.name}
+              isExpand={this.state.expandItem === pod.uid}
               onExpand={this.handleExpand}
             />
           ))
