@@ -207,7 +207,7 @@ export default class GlobalValue {
     if (!this._cache_['globalNavs']) {
       const navs = []
 
-      globals.config.globalNavs.forEach(nav => {
+      cloneDeep(globals.config.globalNavs).forEach(nav => {
         if (this.checkNavItem(nav, params => this.hasPermission(params))) {
           navs.push(nav)
         }
@@ -227,7 +227,7 @@ export default class GlobalValue {
     if (!this._cache_[`cluster_${cluster}_navs`]) {
       const navs = []
 
-      globals.config.clusterNavs.forEach(nav => {
+      cloneDeep(globals.config.clusterNavs).forEach(nav => {
         const filteredItems = nav.items.filter(item => {
           item.cluster = cluster
           return this.checkNavItem(item, params =>
@@ -249,7 +249,7 @@ export default class GlobalValue {
     if (!this._cache_['accessNavs']) {
       const navs = []
 
-      globals.config.accessNavs.forEach(nav => {
+      cloneDeep(globals.config.accessNavs).forEach(nav => {
         const filteredItems = nav.items.filter(item =>
           this.checkNavItem(item, params => this.hasPermission(params))
         )
@@ -276,7 +276,7 @@ export default class GlobalValue {
     if (!this._cache_[`workspace_${workspace}_navs`]) {
       const navs = []
 
-      globals.config.workspaceNavs.forEach(nav => {
+      cloneDeep(globals.config.workspaceNavs).forEach(nav => {
         const filteredItems = nav.items.filter(item =>
           this.checkNavItem(item, params =>
             this.hasPermission({ ...params, workspace })
@@ -288,7 +288,7 @@ export default class GlobalValue {
         }
       })
 
-      this._cache_[`workspace_${workspace}_navs`] = cloneDeep(navs)
+      this._cache_[`workspace_${workspace}_navs`] = navs
     }
 
     return this._cache_[`workspace_${workspace}_navs`]
@@ -306,7 +306,7 @@ export default class GlobalValue {
     if (!this._cache_[`project_${cluster}_${project}_navs`]) {
       const navs = []
 
-      globals.config.projectNavs.forEach(nav => {
+      cloneDeep(globals.config.projectNavs).forEach(nav => {
         const filteredItems = nav.items.filter(item => {
           item.cluster = cluster
           return this.checkNavItem(item, params =>
@@ -337,7 +337,7 @@ export default class GlobalValue {
     if (!this._cache_[`devops_${cluster}_${devops}_navs`]) {
       const navs = []
 
-      globals.config.devopsNavs.forEach(nav => {
+      cloneDeep(globals.config.devopsNavs).forEach(nav => {
         const filteredItems = nav.items.filter(item => {
           item.cluster = cluster
           return this.checkNavItem(item, params =>
@@ -360,7 +360,7 @@ export default class GlobalValue {
     if (!this._cache_['platformSettingsNavs']) {
       const navs = []
 
-      globals.config.platformSettingsNavs.forEach(nav => {
+      cloneDeep(globals.config.platformSettingsNavs).forEach(nav => {
         const filteredItems = nav.items.filter(item =>
           this.checkNavItem(item, params => this.hasPermission({ ...params }))
         )
