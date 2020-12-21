@@ -148,6 +148,9 @@ export default class RepoSelectForm extends React.Component {
             gitlab_source: {
               ...formData.gitlab_source,
               discover_branches: 1,
+              discover_pr_from_forks: { strategy: 2, trust: 2 },
+              discover_pr_from_origin: 2,
+              discover_tag: true,
             },
           })
         }
@@ -158,7 +161,6 @@ export default class RepoSelectForm extends React.Component {
             [REPO_KEY_MAP[type]]: {
               ...formData.svn_source,
               remote: get(formData, 'svn_source.remote', '').trim(),
-              discover_branches: true,
             },
           })
         }

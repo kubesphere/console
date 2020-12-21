@@ -21,8 +21,6 @@ import PropTypes from 'prop-types'
 import { get, debounce, set } from 'lodash'
 import { Button, Form, Columns, Column, Select } from '@kube-design/components'
 
-import { PIPELINE_ACTION_TYPES } from 'utils/constants'
-
 import styles from './index.scss'
 
 export default class Item extends React.Component {
@@ -233,15 +231,14 @@ export default class Item extends React.Component {
   }
 
   render() {
-    const { value, onDelete } = this.props
-
+    const { value, onDelete, menuData } = this.props
     const type = Object.keys(value)[0]
 
     return (
       <div className={styles.itemWrapper}>
         <div className={styles.itemTitle}>
           <p>
-            <strong>{t(PIPELINE_ACTION_TYPES[type])}</strong>
+            <strong>{t(menuData[type])}</strong>
           </p>
           <Button
             className={styles.delete}

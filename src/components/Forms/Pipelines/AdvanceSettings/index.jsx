@@ -359,11 +359,14 @@ export default class AdvanceSettings extends React.Component {
 
     return (
       <div>
-        {source_type === 'github' ? (
+        {source_type !== 'git' && source_type !== 'svn' ? (
           <React.Fragment>
             <div className="h6">{t('Behavioral strategy')}</div>
             <Form.Item>
-              <ActionsInput name="multi_branch_pipeline.github_source" />
+              <ActionsInput
+                sourceType={source_type}
+                name={`multi_branch_pipeline.${source_type}_source`}
+              />
             </Form.Item>
           </React.Fragment>
         ) : null}
