@@ -23,6 +23,7 @@ import ListLayout from '../containers/Base/List'
 import BaseInfo from '../containers/BaseInfo'
 import Roles from '../containers/Roles'
 import Members from '../containers/Members'
+import Groups from '../containers/Groups'
 import Projects from '../containers/Projects'
 import FedProjects from '../containers/FedProjects'
 import DevOps from '../containers/DevOps'
@@ -79,6 +80,11 @@ export default [
       {
         path: `${PATH}/members`,
         component: Members,
+        exact: true,
+      },
+      {
+        path: `${PATH}/groups`,
+        component: Groups,
         exact: true,
       },
       getIndexRoute({ path: PATH, to: `${PATH}/overview`, exact: true }),

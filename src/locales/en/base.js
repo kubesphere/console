@@ -30,6 +30,7 @@ export default {
   'Add parameter': 'Add parameter',
   'Add Task': 'Add Task',
   'Advanced Settings': 'Advanced Settings',
+  'Added Successfully': 'Added Successfully',
   Agent: 'Agent',
   Alias: 'Alias',
   All: 'All',
@@ -419,6 +420,9 @@ export default {
 
   REMOVE_MEMBER_TIP:
     'Are you sure about removing the member <strong>{resource}</strong> ?',
+
+  REMOVE_GROUP_TIP:
+    'Are you sure about removing the group <strong>{resource}</strong> ?',
 
   ALIAS_DESC:
     'Alias can be composed of any character to help you better distinguish resources. The maximum length of characters is set to 63.',

@@ -127,6 +127,8 @@ export default {
   'Workspace Roles View': 'Workspace Roles View',
   'Workspaces Management': 'Workspaces Management',
   'Workspaces View': 'Workspaces View',
+  'Workspace Groups Management': 'Workspace Groups Management',
+  'Workspace Groups View': 'Workspace Groups View',
 
   NO_AVAILABLE_ROLE: 'No roles are available for the current project.',
 
@@ -309,6 +311,10 @@ export default {
   DEVOPS_VIEW_DESC:
     'Grant permission to view all DevOps projects in the workspace',
 
+  WORKSPACE_GROUPS_VIEW_DESC:
+    'Grant permission to view enterprise organization structure and members',
+  WORKSPACE_GROUPS_MANAGEMENT_DESC:
+    'manage the organizational structure of the enterprise, invite / remove members of the organization, and authorize the organization ',
   WORKSPACE_ROLES_VIEW_DESC: 'Grant permission to view workspace roles',
   WORKSPACE_ROLES_MANAGEMENT_DESC:
     'Grant permission to create, edit and delete workspace roles (system preset roles cannot be deleted)',

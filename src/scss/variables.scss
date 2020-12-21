@@ -188,3 +188,10 @@ $icon-status-error: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3d
 $kube-tools-z-index: 1999;
 $kube-pop-up-window-z-index: $kube-tools-z-index + 1;
 
+// tree
+$tree-node-height: 32px;
+$tree-border-radius: 2px;
+$tree-text-color: $dark-color07;
+$tree-node-hover-bg: $light-color02;
+$tree-node-selected-bg: $dark-color07;
+$tree-switch-hover-color: $light-color06;

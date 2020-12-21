@@ -260,6 +260,7 @@ export const MODULE_KIND_MAP = {
   devops: 'DevOpsProject',
   pipelines: 'Pipelines',
   ippools: 'IPPool',
+  groups: 'Group',
 }
 
 export const QUOTAS_MAP = {

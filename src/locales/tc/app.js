@@ -222,6 +222,9 @@ export default {
   'Please select a workspace': '請選擇企業空間',
   'Please select a cluster': '請選擇集群',
   'Please select a project': '請選擇項目',
+  'Please select a project role': '請選擇項目角色',
+  'Please select a DevOps project': '請選擇 DevOps 工程',
+  'Please select a DevOps project role': '請選擇工程角色',
 
   HELM_APP_SCHEMA_FORM_TIP:
     '此應用支持表單模式，可選擇通過表單或 YAML 編輯器來修改預設應用配置。注意：不同模式之間數據獨立。',

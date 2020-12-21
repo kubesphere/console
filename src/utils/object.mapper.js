@@ -137,6 +137,7 @@ const UserMapper = item => ({
     'metadata.annotations["iam.kubesphere.io/role-binding"]',
     ''
   ),
+  groups: get(item, 'spec.groups', []),
   status: get(item, 'status.state', 'Pending'),
   conditions: get(item, 'status.conditions', []),
   lastLoginTime: get(item, 'status.lastLoginTime'),

@@ -30,6 +30,8 @@ export default {
   'Workspace Manager': '企业空间管理员',
   'Workspaces Manager': '企业空间管理员',
   'Create Workspace': '创建企业空间',
+  'Workspace Groups': '企业组织',
+  'Maintenance organization': '维护组织结构',
 
   'Project Number': '项目数量',
   'DevOps Project Number': 'DevOps 工程数量',
@@ -54,6 +56,9 @@ export default {
 
   'No Available Cluster': '暂时没有可用集群',
   'Network module is not installed': '网络模块未安装',
+
+  'All members': '全部成员',
+  Assigned: '已分配',
 
   WORKSPACE_OVERVIEW_DESC:
     '企业空间为 KubeSphere 提供了安全隔离的、具有访问权限控制的工作平台。这里您可以看到当前企业空间内资源运行的概况。',
@@ -109,4 +114,10 @@ export default {
     '暂无可用的公开集群, 请在企业空间创建完毕后, 向平台管理员或集群管理员申请集群的授权',
   WORKSPACE_NO_CLUSTER_TIP:
     '您需要联系平台管理员或者集群管理员为企业空间授权集群的访问权限',
+
+  WORKSPACE_GROUP_DESC:
+    '组织可以以用户组或者部门的形式授予项目以及 Devops 工程权限',
+  WORKSPACE_GROUP_EMPTY_DESC:
+    '暂时没有可用的组织机构，请先维护组织机构后添加成员',
+  WORKSPACE_GROUP_USER_EMPTY_DESC: '暂时没有可分配的成员',
 }

@@ -278,6 +278,7 @@ client:
             - { name: base-info, title: Basic Info, skipAuth: true }
             - { name: roles, title: Workspace Roles }
             - { name: members, title: Workspace Members }
+            - { name: groups, title: Workspace Groups }
 
   # apps manage page navigations
   manageAppNavs:

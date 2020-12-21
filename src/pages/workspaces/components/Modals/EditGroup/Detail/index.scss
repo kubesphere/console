@@ -1,0 +1,20 @@
+@import '~scss/variables';
+
+.detailWrapper {
+  margin-left: 20px;
+  flex: 1;
+}
+
+
+.breadcrumbs {
+  font-size: $size-normal;
+  color: $text-color;
+  font-weight: 500;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+
+  .separator {
+    padding: 0px 8px;
+  }
+}

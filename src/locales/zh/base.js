@@ -329,11 +329,14 @@ export default {
 
   REMOVE_MEMBER_TIP: '确定移除成员 <strong>{resource}</strong> ?',
 
+  REMOVE_GROUP_TIP: '确定移除组织 <strong>{resource}</strong> ?',
+
   DESTROY_TITLE: '确认销毁?',
   DESTROY_TIP: '确定销毁{type} <strong>{resource}</strong> ?',
 
   'Error Tips': '错误提示',
 
+  'Added Successfully': '添加成功',
   'Created Successfully': '创建成功',
   'Updated Successfully': '更新成功',
   'Deleted Successfully': '删除成功',

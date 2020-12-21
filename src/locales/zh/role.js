@@ -97,6 +97,11 @@ export default {
   'Platform Settings Management': '平台设置管理',
   PLATFORM_SETTINGS_MANAGEMENT_DESC: '管理平台设置',
 
+  'Workspace Groups Management': '企业组织管理',
+  WORKSPACE_GROUPS_MANAGEMENT_DESC:
+    '管理企业组织架构，邀请/移除组织成员，为组织授权',
+  'Workspace Groups View': '企业组织查看',
+  WORKSPACE_GROUPS_VIEW_DESC: '查看企业组织架构及成员',
   'Workspace Roles View': '角色查看',
   'Workspace Roles Management': '角色管理',
   WORKSPACE_ROLES_VIEW_DESC: '查看企业空间角色',
