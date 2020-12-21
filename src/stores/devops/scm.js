@@ -117,7 +117,9 @@ export default class SCMStore extends BaseStore {
         'github'}/organizations/?${getQueryString(params, false)}`
     )
 
-    isArray(result) ? (this.orgList.data = result) : null
+    if (isArray(result)) {
+      this.orgList.data = result
+    }
 
     this.orgList.isLoading = false
   }
@@ -129,18 +131,22 @@ export default class SCMStore extends BaseStore {
 
   @action
   async getRepoList({ activeRepoIndex, cluster }) {
-    activeRepoIndex =
-      activeRepoIndex !== undefined ? activeRepoIndex : this.activeRepoIndex
-
-    this.getRepoListLoading = true
+    const _activeRepoIndex =
+      activeRepoIndex !== undefined
+        ? activeRepoIndex
+        : this.activeRepoIndex === ''
+        ? 0
+        : this.activeRepoIndex
 
     const scmType = this.scmType || 'github'
     const pageNumber =
-      get(this.orgList.data[activeRepoIndex], 'repositories.nextPage') || 1
+      get(this.orgList.data[_activeRepoIndex], 'repositories.nextPage') || 1
 
     const organizationName =
-      this.orgList.data[activeRepoIndex].key ||
-      this.orgList.data[activeRepoIndex].name
+      this.orgList.data[_activeRepoIndex].key ||
+      this.orgList.data[_activeRepoIndex].name
+
+    this.getRepoListLoading = true
 
     const result = await this.request.get(
       `${this.getBaseUrlV2({
@@ -161,7 +167,7 @@ export default class SCMStore extends BaseStore {
       null,
       (res, err) => {
         this.getRepoListLoading = false
-        set(this.orgList, `data[${activeRepoIndex}].repositories.item`, [])
+        set(this.orgList, `data[${_activeRepoIndex}].repositories.item`, [])
         if (window.onunhandledrejection) {
           window.onunhandledrejection(err)
         }
@@ -172,7 +178,7 @@ export default class SCMStore extends BaseStore {
     if (result.repositories) {
       const currentRepository = get(
         this.orgList,
-        `data[${activeRepoIndex}].repositories`,
+        `data[${_activeRepoIndex}].repositories`,
         {}
       )
       // insert new repolist in current orglist
@@ -184,7 +190,7 @@ export default class SCMStore extends BaseStore {
       } else {
         set(
           this.orgList,
-          `data[${activeRepoIndex}].repositories`,
+          `data[${_activeRepoIndex}].repositories`,
           result.repositories
         )
       }

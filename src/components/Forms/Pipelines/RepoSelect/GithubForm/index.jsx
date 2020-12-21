@@ -93,7 +93,8 @@ export default class GitHubForm extends React.Component {
     if (isEmpty(data)) return false
 
     this.setState({ isLoading: true })
-    this.props.store
+
+    await this.props.store
       .putAccessToken({ token: data.token, name, cluster, devops })
       .finally(() => {
         this.setState({ isLoading: false })
@@ -139,13 +140,61 @@ export default class GitHubForm extends React.Component {
     )
   }
 
+  renderRepoList(orgList, activeRepoIndex) {
+    return (
+      !isEmpty(orgList.data) &&
+      orgList.data.map((repo, index) => (
+        <div
+          key={repo.name}
+          className={classNames(styles.repo, {
+            [styles['repo-active']]: activeRepoIndex === index,
+          })}
+          data-repo-index={index}
+          onClick={this.handleActiveRepoChange}
+        >
+          <div className={styles.avatar}>
+            <img src={repo.avatar} alt={repo.name} />
+          </div>
+          <div className={styles.name}>{repo.name}</div>
+        </div>
+      ))
+    )
+  }
+
+  renderOrgList(repoList) {
+    return (
+      !isEmpty(repoList.items) &&
+      repoList.items.map((repo, index) => (
+        <div className={styles.repo} key={repo.name}>
+          <div className={styles.icon}>
+            <Icon
+              name={
+                this.scmType === 'bitbucket_server' ? 'bitbucket' : this.scmType
+              }
+              size={40}
+            />
+          </div>
+          <div className={styles.info}>
+            <div className={styles.name}>{repo.name}</div>
+            <div className={styles.desc}>{repo.description}</div>
+          </div>
+          <div
+            className={styles.action}
+            onClick={this.handleSubmit}
+            data-repo-index={index}
+          >
+            <Button type="control">{t('Select this repo')}</Button>
+          </div>
+        </div>
+      ))
+    )
+  }
+
   render() {
     const { orgList, activeRepoIndex, getRepoListLoading } = this.props.store
-    const repoList = get(
-      orgList.data,
-      `${activeRepoIndex}.repositories.items`,
-      []
-    )
+
+    const repoList = get(orgList.data, `${activeRepoIndex}.repositories`, [])
+
     const hasNextPage = get(
       orgList.data,
       `${activeRepoIndex}.repositories.nextPage`
@@ -175,72 +224,23 @@ export default class GitHubForm extends React.Component {
     return (
       <div className={styles.tabContent}>
         <div className={styles.orgList}>
-          {orgList.isLoading ? (
-            <Loading>
-              <div className={styles.orgList} />
-            </Loading>
-          ) : null}
-          {!orgList.isLoading
-            ? orgList.data.map((repo, index) => (
-                <div
-                  key={repo.name}
-                  className={classNames(styles.repo, {
-                    [styles['repo-active']]: activeRepoIndex === index,
-                  })}
-                  data-repo-index={index}
-                  onClick={this.handleActiveRepoChange}
-                >
-                  <div className={styles.avatar}>
-                    <img src={repo.avatar} alt={repo.name} />
-                  </div>
-                  <div className={styles.name}>{repo.name}</div>
-                </div>
-              ))
-            : null}
-        </div>
-        {getRepoListLoading ? (
-          <Loading>
-            <div className={styles.repoList} />
+          <Loading spinning={orgList.isLoading}>
+            <>{this.renderRepoList(orgList, activeRepoIndex)}</>
           </Loading>
-        ) : (
-          <div className={styles.repoList}>
-            {repoList.length
-              ? repoList.map((repo, index) => (
-                  <div className={styles.repo} key={repo.name}>
-                    <div className={styles.icon}>
-                      <Icon
-                        name={
-                          this.scmType === 'bitbucket_server'
-                            ? 'bitbucket'
-                            : this.scmType
-                        }
-                        size={40}
-                      />
-                    </div>
-                    <div className={styles.info}>
-                      <div className={styles.name}>{repo.name}</div>
-                      <div className={styles.desc}>{repo.description}</div>
-                    </div>
-                    <div
-                      className={styles.action}
-                      onClick={this.handleSubmit}
-                      data-repo-index={index}
-                    >
-                      <Button type="control">{t('Select this repo')}</Button>
-                    </div>
-                  </div>
-                ))
-              : null}
-            {hasNextPage ? (
-              <div
-                className={classNames(styles.repo, styles.loadMore)}
-                onClick={this.handleGetRepoList}
-              >
-                {t('Load more')}
-              </div>
-            ) : null}
-          </div>
-        )}
+        </div>
+        <div className={styles.repoList}>
+          <Loading spinning={getRepoListLoading}>
+            <>{this.renderOrgList(repoList, getRepoListLoading)}</>
+          </Loading>
+          {hasNextPage ? (
+            <div
+              className={classNames(styles.repo, styles.loadMore)}
+              onClick={this.handleGetRepoList}
+            >
+              {t('Load more')}
+            </div>
+          ) : null}
+        </div>
       </div>
     )
   }
