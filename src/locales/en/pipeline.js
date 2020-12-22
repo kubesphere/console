@@ -34,6 +34,8 @@ export default {
   archiveArtifacts: 'archiveArtifacts',
   'Are you sure to close this pipeline Editor ?':
     'Are you sure to close this pipeline Editor ?',
+  'Are you sure to close this jenkinsfile Editor ?':
+    'Are you sure to close this jenkinsfile Editor ?',
   artifacts: 'artifacts',
   Artifacts: 'Artifacts',
   'Authentication Token': 'Authentication Token',

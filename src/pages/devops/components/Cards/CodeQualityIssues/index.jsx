@@ -96,7 +96,12 @@ class CodeQualityIssues extends React.Component {
     const hasTitle =
       index === 0 || issue.component !== issues[index - 1].component
     return (
-      <Issue hasTitle={hasTitle} issue={issue} origin={this.sonarqubeOrigin} />
+      <Issue
+        key={index}
+        hasTitle={hasTitle}
+        issue={issue}
+        origin={this.sonarqubeOrigin}
+      />
     )
   }
 

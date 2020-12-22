@@ -144,6 +144,11 @@ export default class PipelineCard extends React.Component {
           </div>
         )
       }
+
+      const authorityUser = get(hasInputStep, 'input.message')
+      const user = get(globals, 'user.username')
+      const hasAuthority = authorityUser.indexOf(user) > -1
+
       return (
         <div
           className={classNames(
@@ -172,6 +177,7 @@ export default class PipelineCard extends React.Component {
                     type="primary"
                     loading={this.state.runLoading}
                     onClick={this.handleProceed(hasInputStep, node.id)}
+                    disabled={!hasAuthority}
                   >
                     {t(get(hasInputStep, 'input.ok') || 'Proceed')}
                   </Button>
@@ -180,6 +186,7 @@ export default class PipelineCard extends React.Component {
                     type="danger"
                     loading={this.state.runLoading}
                     onClick={this.handleBreak(hasInputStep, node.id)}
+                    disabled={!hasAuthority}
                   >
                     {t('Break')}
                   </Button>

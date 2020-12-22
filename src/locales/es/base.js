@@ -284,7 +284,7 @@ export default {
   'Search tips': 'Consejos de búsqueda',
   Seconds: 'Segundos',
   secret: 'secret',
-  secret_text: 'texto_secreto',
+  secret_text: 'texto secreto',
   Select: 'Seleccionar',
   'Select All': 'Seleccionar todo',
   'Select Key': 'Seleccionar clave',

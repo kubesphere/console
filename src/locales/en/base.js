@@ -282,7 +282,7 @@ export default {
   'Search tips': 'Search tips',
   Seconds: 'Seconds',
   secret: 'secret',
-  secret_text: 'secret_text',
+  secret_text: 'Secret Text',
   Select: 'Select',
   'Select All': 'Select All',
   'Select Key': 'Select Key',

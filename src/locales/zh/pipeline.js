@@ -277,6 +277,8 @@ export default {
   TIME_TRIGGER_DESC: `某些类型的项目会在收到外部推送消息会自动重新索引。但在某些情况下，消息通知可能失败。
     这个选项将检查指定时间间隔内是否执行了索引，如果没有则触发索引。`,
   'Are you sure to close this pipeline Editor ?': '确定关闭流水线编辑？',
+  'Are you sure to close this jenkinsfile Editor ?':
+    '确定关闭 jenkinsfile 编辑？',
   KUBERNETES_DEPLOY_DESC: `在 kubernetes 集群中进行部署，在持续集成/持续部署的环境当中，
     只有那些需要定期更新的资源才应该放到部署步骤当中，所以此步骤大多数时间都在处理部署这类资源.`,
   KUBERNETES_DEPLOY_DESC_MORE: `<br />
