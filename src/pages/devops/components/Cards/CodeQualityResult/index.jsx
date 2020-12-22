@@ -29,12 +29,13 @@ import styles from './index.scss'
 
 class CodeQualityResult extends React.Component {
   static propTypes = {
-    data: PropTypes.object,
+    detail: PropTypes.object,
     loading: PropTypes.bool,
   }
 
   get sonarqubeOrigin() {
-    const { sonarqubeDashboardUrl } = this.props.data
+    const { sonarqubeDashboardUrl } = this.props.detail
+
     return (
       get(globals, 'config.devops.sonarqubeURL') ||
       parseUrl(sonarqubeDashboardUrl).origin
@@ -42,7 +43,7 @@ class CodeQualityResult extends React.Component {
   }
 
   goToSonarqube = () => {
-    const { sonarqubeDashboardUrl } = this.props.data
+    const { sonarqubeDashboardUrl } = this.props.detail
     const customUrl = get(globals, 'config.devops.sonarqubeURL')
     if (customUrl) {
       const parsedUrlObj = parseUrl(sonarqubeDashboardUrl)
@@ -57,7 +58,7 @@ class CodeQualityResult extends React.Component {
   }
 
   renderTotalResult = () => {
-    const { totalStatus } = this.props.data
+    const { totalStatus } = this.props.detail
     const isPassed = totalStatus !== 'ERROR'
     return (
       <div
@@ -82,7 +83,7 @@ class CodeQualityResult extends React.Component {
   }
 
   renderOtherResults = () => {
-    const { data } = this.props
+    const { detail } = this.props
     const {
       bugRating,
       bugs,
@@ -91,13 +92,13 @@ class CodeQualityResult extends React.Component {
       codeSmells,
       coverage,
       key,
-    } = data
+    } = detail
 
     const totalCode =
-      data.totalCode > 1000
-        ? parseFloat(data.totalCode / 1000).toFixed(2)
-        : data.totalCode
-    const totalCodeUnit = data.totalCode > 1000 ? 'K' : ''
+      detail.totalCode > 1000
+        ? parseFloat(detail.totalCode / 1000).toFixed(2)
+        : detail.totalCode
+    const totalCodeUnit = detail.totalCode > 1000 ? 'K' : ''
 
     return (
       <div className={styles.otherCards}>

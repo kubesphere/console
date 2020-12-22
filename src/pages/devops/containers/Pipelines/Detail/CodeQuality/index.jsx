@@ -36,7 +36,7 @@ export default class CodeQuality extends React.Component {
   renderResult = () => {
     const { detail = {}, isLoading } = this.props.sonarqubeStore
 
-    return <CodeQualityResult data={detail} loading={isLoading} />
+    return <CodeQualityResult detail={detail} loading={isLoading} />
   }
 
   renderIssues = () => {
