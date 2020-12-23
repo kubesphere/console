@@ -63,11 +63,6 @@ const updateS2iServiceParams = data => {
     ''
   )
   set(serviceData, 'spec.template.spec.imagePullSecrets[0].name', pullSecret)
-  set(
-    serviceData,
-    'spec.template.metadata.annotations["kubesphere.io/containerSecrets"]',
-    `{"${containerName}": "${pullSecret}"}`
-  )
   set(data, 'S2i.metadata.annotations.serviceName', serviceName)
   data.S2i.metadata.name = builderName
   set(serviceData, 'metadata.labels.s2ibuilder', builderName)

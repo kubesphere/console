@@ -18,7 +18,6 @@
 
 import { get, set, unset, isEmpty, omitBy, has } from 'lodash'
 import React from 'react'
-import { safeParseJSON } from 'utils'
 import { MODULE_KIND_MAP } from 'utils/constants'
 
 import ConfigMapStore from 'stores/configmap'
@@ -52,7 +51,6 @@ export default class ContainerSetting extends React.Component {
     const { formRef } = this.props
 
     this.fetchData()
-    this.checkPullSecret()
     if (this.props.withService) {
       this.initService(this.formTemplate)
     }
@@ -75,29 +73,6 @@ export default class ContainerSetting extends React.Component {
   get formTemplate() {
     const { formTemplate, module } = this.props
     return get(formTemplate, MODULE_KIND_MAP[module], formTemplate)
-  }
-
-  get containerSecretPath() {
-    return `${this.prefix}metadata.annotations["kubesphere.io/containerSecrets"]`
-  }
-
-  checkPullSecret() {
-    const containers = get(
-      this.formTemplate,
-      `${this.prefix}spec.containers`,
-      []
-    )
-    const containerSecretMap = safeParseJSON(
-      get(this.formTemplate, this.containerSecretPath, '')
-    )
-
-    if (!isEmpty(containerSecretMap)) {
-      containers.forEach(container => {
-        if (containerSecretMap[container.name]) {
-          container.pullSecret = containerSecretMap[container.name]
-        }
-      })
-    }
   }
 
   initService() {
@@ -131,30 +106,23 @@ export default class ContainerSetting extends React.Component {
 
   updatePullSecrets = formData => {
     const pullSecrets = {}
-    const containerSecretMap = {}
 
-    const containerSecretPath = this.containerSecretPath
     const imagePullSecretsPath = `${this.prefix}spec.imagePullSecrets`
 
     const containers = get(formData, `${this.prefix}spec.containers`, [])
     containers.forEach(container => {
       if (container.pullSecret) {
         pullSecrets[container.pullSecret] = ''
-        containerSecretMap[container.name] = container.pullSecret
       }
     })
 
-    if (!isEmpty(pullSecrets)) {
-      set(
-        formData,
-        imagePullSecretsPath,
-        Object.keys(pullSecrets).map(key => ({ name: key }))
-      )
-      set(formData, containerSecretPath, JSON.stringify(containerSecretMap))
-    } else {
-      set(formData, imagePullSecretsPath, null)
-      set(formData, containerSecretPath, null)
-    }
+    set(
+      formData,
+      imagePullSecretsPath,
+      !isEmpty(pullSecrets)
+        ? Object.keys(pullSecrets).map(key => ({ name: key }))
+        : null
+    )
   }
 
   updateService = formData => {
@@ -202,6 +170,7 @@ export default class ContainerSetting extends React.Component {
 
     // update image pull secrets
     this.updatePullSecrets(this.formTemplate)
+
     if (this.props.withService) {
       this.updateService(this.formTemplate)
     }
