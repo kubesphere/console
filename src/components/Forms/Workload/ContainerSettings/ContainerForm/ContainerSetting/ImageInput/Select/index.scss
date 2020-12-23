@@ -28,7 +28,7 @@
 .options {
   padding: 4px 0px;
   width: 240px;
-  height: 88px;
+  max-height: 104px;
   border-radius: 4px;
   box-shadow: 0 4px 8px 0 rgba(36, 46, 66, 0.2);
   background-color: $dark-color07;
@@ -79,6 +79,7 @@
   padding: 6px 12px;
   height: 32px;
   user-select: none;
+  line-height: 20px;
   @include ellipsis;
 
   &.selected {

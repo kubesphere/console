@@ -517,4 +517,29 @@ export const getClusterUrl = url => {
   return requestURL.replace(/\/\/+/, '/')
 }
 
+export const parseDockerImage = url => {
+  const match = url.match(
+    /^(?:([^/]+)\/)?(?:([^/]+)\/)?([^@:/]+)(?:[@:](.+))?$/
+  )
+
+  if (!match) return {}
+
+  let registry = match[1]
+  let namespace = match[2]
+  const repository = match[3]
+  const tag = match[4]
+
+  if (!namespace && registry && !/[:.]/.test(registry)) {
+    namespace = registry
+    registry = null
+  }
+
+  return {
+    registry: registry || null,
+    namespace: namespace || null,
+    repository,
+    tag: tag || null,
+  }
+}
+
 export const lazy = ctor => () => ctor()

@@ -18,7 +18,7 @@
 
 import React from 'react'
 import { get, isEmpty } from 'lodash'
-import { generateId } from 'utils'
+import { generateId, parseDockerImage } from 'utils'
 
 import { PATTERN_NAME } from 'utils/constants'
 
@@ -71,6 +71,19 @@ export default class ContainerSetting extends React.Component {
     })
   }
 
+  getFormTemplate(data, imageRegistries) {
+    if (data && data.image && !data.pullSecret) {
+      const { registry } = parseDockerImage(data.image)
+      if (registry) {
+        const reg = imageRegistries.find(({ url }) => url.endsWith(registry))
+        if (reg) {
+          data.pullSecret = reg.value
+        }
+      }
+    }
+    return data
+  }
+
   valueRenderer = option => (
     <Tag
       className={styles.type}
@@ -82,14 +95,16 @@ export default class ContainerSetting extends React.Component {
 
   renderImageForm = () => {
     const { data, namespace } = this.props
+    const imageRegistries = this.imageRegistries
+    const formTemplate = this.getFormTemplate(data, imageRegistries)
 
     return (
       <ImageInput
         className={styles.imageSearch}
         name="image"
         namespace={namespace}
-        formTemplate={data}
-        imageRegistries={this.imageRegistries}
+        formTemplate={formTemplate}
+        imageRegistries={imageRegistries}
       />
     )
   }

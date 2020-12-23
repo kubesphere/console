@@ -18,7 +18,7 @@
 
 import { concat, get, set, unset, isEmpty, omit, omitBy, has } from 'lodash'
 import React from 'react'
-import { safeParseJSON, generateId } from 'utils'
+import { generateId } from 'utils'
 import { MODULE_KIND_MAP } from 'utils/constants'
 
 import ConfigMapStore from 'stores/configmap'
@@ -76,7 +76,6 @@ export default class ContainerSetting extends React.Component {
 
   componentDidMount() {
     this.fetchData()
-    this.checkPullSecret()
     if (this.props.withService) {
       this.initService(this.formTemplate)
     }
@@ -99,36 +98,6 @@ export default class ContainerSetting extends React.Component {
     return this.props.isFederated
       ? get(this.formTemplate, 'spec.template')
       : this.formTemplate
-  }
-
-  get containerSecretPath() {
-    return `${
-      this.prefix
-    }metadata.annotations["kubesphere.io/containerSecrets"]`
-  }
-
-  checkPullSecret() {
-    const containers = get(
-      this.fedFormTemplate,
-      `${this.prefix}spec.containers`,
-      []
-    )
-    const initContainers = get(
-      this.fedFormTemplate,
-      `${this.prefix}spec.initContainers`,
-      []
-    )
-    const containerSecretMap = safeParseJSON(
-      get(this.formTemplate, this.containerSecretPath, '')
-    )
-
-    if (!isEmpty(containerSecretMap)) {
-      concat(containers, initContainers).forEach(container => {
-        if (containerSecretMap[container.name]) {
-          container.pullSecret = containerSecretMap[container.name]
-        }
-      })
-    }
   }
 
   initService() {
@@ -240,9 +209,6 @@ export default class ContainerSetting extends React.Component {
 
   updatePullSecrets = () => {
     const pullSecrets = {}
-    const containerSecretMap = {}
-
-    const containerSecretPath = this.containerSecretPath
     const imagePullSecretsPath = `${this.prefix}spec.imagePullSecrets`
 
     const containers = get(
@@ -258,26 +224,16 @@ export default class ContainerSetting extends React.Component {
     concat(containers, initContainers).forEach(container => {
       if (container.pullSecret) {
         pullSecrets[container.pullSecret] = ''
-        containerSecretMap[container.name] = container.pullSecret
-        delete container.pullSecret
       }
     })
 
-    if (!isEmpty(pullSecrets)) {
-      set(
-        this.fedFormTemplate,
-        imagePullSecretsPath,
-        Object.keys(pullSecrets).map(key => ({ name: key }))
-      )
-      set(
-        this.formTemplate,
-        containerSecretPath,
-        JSON.stringify(containerSecretMap)
-      )
-    } else {
-      set(this.fedFormTemplate, imagePullSecretsPath, null)
-      set(this.formTemplate, containerSecretPath, null)
-    }
+    set(
+      this.fedFormTemplate,
+      imagePullSecretsPath,
+      !isEmpty(pullSecrets)
+        ? Object.keys(pullSecrets).map(key => ({ name: key }))
+        : null
+    )
   }
 
   updateService = () => {
