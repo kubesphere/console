@@ -50,10 +50,13 @@ export default class Pipeline extends React.Component {
     if (props.isEditMode) {
       this.store = new Store()
       this.store.params = props.params
-      const { devops, name } = props.params
+      const { devops, name, cluster } = props.params
       this.prevData = JSON.parse(
         localStorage.getItem(`${globals.user.username}-${devops}-${name}`)
       )
+
+      this.store.fetchLabel({ cluster, devops })
+
       if (isEmpty(props.jsonData)) {
         this.store.setData(this.prevData || CREATE_TEMP)
       } else {
