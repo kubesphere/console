@@ -67,10 +67,11 @@ class Monitorings extends React.Component {
   }
 
   fetchData = params => {
-    const { name } = this.store.detail
+    const { name, role = [] } = this.store.detail
     this.monitorStore.fetchMetrics({
       resources: [name],
       metrics: Object.values(MetricTypes),
+      fillZero: !role.includes('edge'),
       ...params,
     })
   }
