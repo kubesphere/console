@@ -1,0 +1,52 @@
+name: NightlyBuild
+
+on:
+  schedule:
+    # This is a UTC time
+    - cron: "0 16 * * *"
+  # Keep it only for test purpose, comment it once everything is ok
+  workflow_dispatch:
+
+env:
+  IMAGE_NAME: ks-console
+  DOCKERHUB_REPO: kubespheredev
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.18.x]
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Install Dependencies
+      run: yarn
+
+    - name: Build
+      run: yarn build
+
+    - name: Test
+      run: yarn test
+
+    - name: Build image
+      run: docker build . --file Dockerfile --tag $DOCKERHUB_REPO/$IMAGE_NAME
+
+    - name: Push image
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      run: |
+        echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+
+        tag=nightly-$(date '+%Y%m%d')
+
+        docker tag $DOCKERHUB_REPO/$IMAGE_NAME $DOCKERHUB_REPO/$IMAGE_NAME:${tag}
+        docker push $DOCKERHUB_REPO/$IMAGE_NAME:${tag}
