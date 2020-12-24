@@ -58,12 +58,13 @@ export default class RunningStatus extends React.Component {
   }
 
   fetchData() {
-    const { name } = this.store.detail
+    const { name, role = [] } = this.store.detail
 
     this.monitoringStore.fetchMetrics({
       resources: [name],
       metrics: METRIC_TYPES,
       step: '180s',
+      fillZero: !role.includes('edge'),
     })
   }
 
