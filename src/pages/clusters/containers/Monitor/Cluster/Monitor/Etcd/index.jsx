@@ -197,6 +197,7 @@ class EtcdMonitorings extends React.Component {
   render() {
     const { isLoading, isRefreshing } = this.monitorStore
     const configs = this.getMonitoringCfgs()
+    const cluster = this.props.match.params.cluster
 
     return (
       <MonitoringController
@@ -211,7 +212,7 @@ class EtcdMonitorings extends React.Component {
         <div className={styles.content}>
           <div className={styles.box}>
             <div className={styles.status}>
-              <ETCDNodes />
+              <ETCDNodes cluster={cluster} />
             </div>
           </div>
           {configs.map(item => this.renderChart(item))}
