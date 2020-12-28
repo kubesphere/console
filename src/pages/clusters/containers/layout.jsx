@@ -49,16 +49,12 @@ export default class App extends Component {
 
     if (params.cluster) {
       await Promise.all([
-        this.store.fetchDetail({
-          name: params.cluster,
-        }),
+        this.store.fetchDetail({ name: params.cluster }),
         this.props.rootStore.getRules({ cluster: params.cluster }),
       ])
 
       if (this.store.detail.isReady) {
-        await this.store.fetchProjects({
-          cluster: params.cluster,
-        })
+        await this.store.fetchProjects({ cluster: params.cluster })
       }
 
       set(globals, `clusterConfig.${params.cluster}`, this.store.detail.configz)

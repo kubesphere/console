@@ -167,6 +167,7 @@ function handleResponse(response, reject) {
       if (typeof reject === 'function') {
         return reject(error, response)
       }
+
       if (window.onunhandledrejection) {
         window.onunhandledrejection(error)
       }
