@@ -124,6 +124,9 @@ export default class Store extends BaseStore {
   params = {}
 
   @observable
+  labelDataList = []
+
+  @observable
   credentialsList = { data: [] }
 
   handleAddBranch(lineIndex) {
@@ -365,5 +368,22 @@ export default class Store extends BaseStore {
   @action
   async handleConfirm() {
     await this.convertJsonToJenkinsFile()
+  }
+
+  @action
+  async fetchLabel({ devops }) {
+    const url = `${this.getDevopsUrlV2()}${devops}/jenkins/labelsdashboard/labelsData`
+    const result = await this.request.get(url, {}, {}, () => {
+      this.labelDataList = []
+    })
+
+    if (result.status === 'ok' && isArray(result.data)) {
+      const labelDataList = result.data.map(item => {
+        return { label: item.label, value: item.label }
+      })
+      this.labelDataList = labelDataList
+    } else {
+      this.labelDataList = []
+    }
   }
 }

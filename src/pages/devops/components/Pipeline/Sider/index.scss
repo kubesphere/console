@@ -28,6 +28,7 @@
   line-height: 20px;
   color: #242e42;
   margin: 12px 0px;
+
   span {
     font-size: 12px;
     font-weight: normal;
@@ -53,13 +54,15 @@
   margin-bottom: 12px;
   height: calc(100% - 80px);
   overflow: auto;
-  input {
+
+  .name_input {
     width: 100%;
     height: 32px;
     padding-left: 8px;
     border-radius: 4px;
     background-color: #ffffff;
     border: solid 1px #c1c9d1;
+
     &::placeholder {
       color: $light-color08;
       line-height: 20px;

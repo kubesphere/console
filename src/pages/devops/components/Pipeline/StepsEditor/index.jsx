@@ -16,13 +16,14 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, set } from 'lodash'
+import { get, isEmpty, set } from 'lodash'
 import React from 'react'
 import classNames from 'classnames'
-import { observable, action, toJS } from 'mobx'
+import { observable, action, toJS, computed } from 'mobx'
 import { observer } from 'mobx-react'
-import { Form, Button, Input, Icon } from '@kube-design/components'
+import { Form, Button, Input, Icon, Select } from '@kube-design/components'
 import { PIPELINE_TASKS } from 'utils/constants'
+import YamlEditor from '../StepModals/kubernetesYaml'
 
 import { renderStepArgs } from '../Card/detail'
 import StepsSelector from '../StepsSelector'
@@ -44,6 +45,13 @@ const isEditable = function(name) {
   return PIPELINE_TASKS.All.includes(name) || name === 'sh'
 }
 
+const AgentType = [
+  { label: 'Any', value: 'any' },
+  { label: 'node', value: 'node' },
+  { label: 'kubernetes', value: 'kubernetes' },
+  { label: 'none', value: 'none' },
+]
+
 @observer
 export default class StepsEditor extends React.Component {
   static defaultProps = {
@@ -60,12 +68,27 @@ export default class StepsEditor extends React.Component {
   @observable
   isEditMode = false
 
+  @observable
+  formData = {}
+
+  @observable
+  showYaml = false
+
   get steps() {
     return get(this.props.activeStage, 'branches[0].steps', [])
   }
 
+  get labelDataList() {
+    return get(this.props.store, 'labelDataList', [])
+  }
+
   get hasNestStage() {
     return !!this.props.activeStage.stages
+  }
+
+  @computed
+  get agentType() {
+    return get(this.props.activeStage, 'agent.type', 'none')
   }
 
   static getDerivedStateFromProps(nextProps) {
@@ -76,6 +99,96 @@ export default class StepsEditor extends React.Component {
   handleChangeName = value => {
     this.props.activeStage.name = value
     this.handleSetValue()
+  }
+
+  @action
+  handleSetYaml = value => {
+    this.formData.yaml = value
+    this.showYaml = false
+  }
+
+  @action
+  hideYamlEditor = () => {
+    this.showYaml = false
+  }
+
+  @action
+  showEditor = () => {
+    this.showYaml = true
+  }
+
+  componentDidMount() {
+    const args = toJS(get(this.props.activeStage, 'agent.arguments', []))
+
+    this.formData = args.reduce((data, arg) => {
+      data[arg.key] = arg.value.value
+      return data
+    }, {})
+  }
+
+  getAgentArguments() {
+    const _arguments = Object.keys(this.formData).map(key => ({
+      key,
+      value: { isLiteral: true, value: this.formData[key] },
+    }))
+
+    set(
+      this.props.activeStage,
+      'agent.arguments',
+      isEmpty(_arguments) ? undefined : _arguments
+    )
+  }
+
+  renderAgentForms = () => {
+    const labelDefaultValue = get(this.labelDataList, '0.value', '')
+    switch (this.agentType) {
+      case 'node':
+        return (
+          <Form data={this.formData} ref={this.formRef}>
+            <Form.Item
+              label={t('label')}
+              desc={t(
+                'The label on which to run the Pipeline or individual stage'
+              )}
+            >
+              <Select
+                name="label"
+                options={toJS(this.labelDataList)}
+                defaultValue={labelDefaultValue}
+              />
+            </Form.Item>
+          </Form>
+        )
+      case 'kubernetes':
+        return (
+          <Form data={this.formData} ref={this.formRef}>
+            <Form.Item label={t('label')} desc={t('')}>
+              <Input name="label" defaultValue="default" />
+            </Form.Item>
+            <Form.Item
+              label={t('yaml')}
+              desc={
+                <span className={styles.clickable} onClick={this.showEditor}>
+                  {t('show yaml editor')}
+                </span>
+              }
+            >
+              <Input name="yaml" />
+            </Form.Item>
+            <Form.Item label={t('defaultContainer')} desc={t('')}>
+              <Input name="defaultContainer" />
+            </Form.Item>
+          </Form>
+        )
+      default:
+        return null
+    }
+  }
+
+  @action
+  handleAgentTypeChange = type => {
+    this.formData = {}
+    set(this.props.activeStage, 'agent.type', type)
   }
 
   handleDelete = () => {
@@ -256,6 +369,7 @@ export default class StepsEditor extends React.Component {
   }
 
   cancelFocus = () => {
+    this.getAgentArguments()
     this.props.store.clearFocus()
   }
 
@@ -333,10 +447,21 @@ export default class StepsEditor extends React.Component {
         <div className={styles.form}>
           <Form.Item label={t('Name')}>
             <Input
+              className={styles.name_input}
               value={this.props.activeStage.name || ''}
               onChange={this.handleChangeName}
             />
           </Form.Item>
+          <div className={styles.title}>{t('Agent')}</div>
+          <Form.Item desc={t('AGENT_TYPE_DESC')} label={t('Type')}>
+            <Select
+              options={AgentType}
+              defaultValue="none"
+              value={this.agentType}
+              onChange={this.handleAgentTypeChange}
+            />
+          </Form.Item>
+          {this.renderAgentForms()}
           <div className={styles.title}>
             {t('pipeline_conditions')}
             <span>
@@ -382,6 +507,12 @@ export default class StepsEditor extends React.Component {
             onAddNoInputTask={this.addNoInputTask}
           />
         ) : null}
+        <YamlEditor
+          value={this.formData.yaml}
+          visible={this.showYaml}
+          onCancel={this.hideYamlEditor}
+          onOk={this.handleSetYaml}
+        />
       </div>
     )
   }
