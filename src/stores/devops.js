@@ -109,10 +109,10 @@ export default class DevOpsStore extends Base {
       params.limit = params.limit || 10
     }
 
-    const result = await request.get(
-      this.getBaseUrlV3({ cluster, workspace }),
-      params
-    )
+    const result =
+      (await request
+        .get(this.getBaseUrlV3({ cluster, workspace }), params)
+        .catch(() => {})) || {}
 
     const items = Array.isArray(get(result, 'items'))
       ? get(result, 'items')

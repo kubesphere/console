@@ -100,10 +100,14 @@ export default class ProjectStore extends Base {
 
     params.limit = params.limit || 10
 
-    const result = await request.get(
-      this.getResourceUrl({ cluster, workspace, namespace }),
-      withTypeSelectParams(params, type)
-    )
+    const result =
+      (await request
+        .get(
+          this.getResourceUrl({ cluster, workspace, namespace }),
+          withTypeSelectParams(params, type)
+        )
+        .catch(() => {})) || {}
+
     const data = get(result, 'items', []).map(item => ({
       cluster,
       ...this.mapper(item),
