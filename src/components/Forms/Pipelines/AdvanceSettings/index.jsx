@@ -105,7 +105,7 @@ export default class AdvanceSettings extends React.Component {
       devopsName,
       devops,
       cluster,
-      filter: 'no-multi-branch-job',
+      filter: 'no-folders',
     })
   }
 
@@ -165,7 +165,7 @@ export default class AdvanceSettings extends React.Component {
       devopsName,
       cluster,
       devops,
-      filter: 'no-multi-branch-job',
+      filter: 'no-folders',
       page: page + 1,
     })
   }
