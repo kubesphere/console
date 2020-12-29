@@ -19,7 +19,7 @@
 import { get, isEmpty, set } from 'lodash'
 import React from 'react'
 import classNames from 'classnames'
-import { observable, action, toJS, computed } from 'mobx'
+import { observable, action, toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import { Form, Button, Input, Icon, Select } from '@kube-design/components'
 import { PIPELINE_TASKS } from 'utils/constants'
@@ -86,7 +86,6 @@ export default class StepsEditor extends React.Component {
     return !!this.props.activeStage.stages
   }
 
-  @computed
   get agentType() {
     return get(this.props.activeStage, 'agent.type', 'none')
   }
@@ -140,7 +139,9 @@ export default class StepsEditor extends React.Component {
   }
 
   renderAgentForms = () => {
-    const labelDefaultValue = get(this.labelDataList, '0.value', '')
+    const labelDataList = toJS(this.labelDataList)
+    const labelDefaultValue = get(labelDataList, '0.value', '')
+
     switch (this.agentType) {
       case 'node':
         return (
@@ -153,7 +154,7 @@ export default class StepsEditor extends React.Component {
             >
               <Select
                 name="label"
-                options={toJS(this.labelDataList)}
+                options={labelDataList}
                 defaultValue={labelDefaultValue}
               />
             </Form.Item>

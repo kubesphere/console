@@ -80,9 +80,10 @@ export default class BranchDetailLayout extends React.Component {
   }
 
   getSonarqube = () => {
-    const { params } = this.props.match
-
-    this.sonarqubeStore.fetchDetail(params)
+    if (get(globals, 'config.devops.sonarqubeURL')) {
+      const { params } = this.props.match
+      this.sonarqubeStore.fetchDetail(params)
+    }
   }
 
   getOperations = () => [

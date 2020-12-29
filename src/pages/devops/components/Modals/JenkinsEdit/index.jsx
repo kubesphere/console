@@ -24,6 +24,7 @@ import CodeEditor from 'components/Base/CodeEditor'
 import PipelineStore from 'stores/devops/pipelines'
 import ConfirmModal from 'components/Modals/Delete'
 
+import { isEqual } from 'lodash'
 import styles from './index.scss'
 
 export default class JenkinsEdit extends React.Component {
@@ -57,7 +58,13 @@ export default class JenkinsEdit extends React.Component {
   }
 
   showConfirm = () => {
-    this.setState({ isshowComfirm: true })
+    const { defaultValue } = this.props
+    const { value } = this.state
+    if (!isEqual(defaultValue, value)) {
+      this.setState({ isshowComfirm: true })
+    } else {
+      this.props.onCancel()
+    }
   }
 
   hideConfirm = () => {
