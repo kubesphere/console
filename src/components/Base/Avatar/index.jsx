@@ -36,6 +36,14 @@ export default class Avatar extends React.Component {
     iconSize: 20,
   }
 
+  getAvatarImage(avatar) {
+    if (avatar.indexOf('http://') === 0 || avatar.indexOf('https://') === 0) {
+      return avatar
+    }
+    avatar = `/kapis/openpitrix.io/v1//attachments/${avatar}?filename=raw`
+    return avatar
+  }
+
   renderClusterTip() {
     return (
       <div>
@@ -69,7 +77,7 @@ export default class Avatar extends React.Component {
         {avatar ? (
           <img
             className={styles.image}
-            src={avatar || '/assets/default-user.svg'}
+            src={this.getAvatarImage(avatar) || '/assets/default-user.svg'}
             alt=""
           />
         ) : (

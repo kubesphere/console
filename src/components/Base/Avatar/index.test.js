@@ -24,7 +24,7 @@ import Avatar from './index'
 
 it('renders correctly', () => {
   const props = {
-    avatar: '/assets/default-user.svg',
+    avatar: 'att-33LJE4LtjaGRSIPVqhd0lSF95c7Hpx-GP2vo5JKzBQ1',
     title: 'Test',
     desc: 'test',
     to: '/test',
@@ -37,7 +37,10 @@ it('renders correctly', () => {
   )
   expect(wrapper).toIncludeText(props.title)
   expect(wrapper).toIncludeText(props.desc)
-  expect(wrapper.find('img')).toHaveProp('src', props.avatar)
+  expect(wrapper.find('img')).toHaveProp(
+    'src',
+    `/kapis/openpitrix.io/v1//attachments/${props.avatar}?filename=raw`
+  )
 })
 
 it('renders icon correctly', () => {

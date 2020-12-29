@@ -19,7 +19,7 @@
 import React from 'react'
 import { get } from 'lodash'
 import { Link } from 'react-router-dom'
-import { Avatar, Status } from 'components/Base'
+import { Status, Avatar } from 'components/Base'
 import { withProjectList, ListPage } from 'components/HOCs/withList'
 import Table from 'components/Tables/List'
 
@@ -38,9 +38,7 @@ export default class OPApps extends React.Component {
 
   get prefix() {
     const { workspace, cluster, namespace } = this.props.match.params
-    return `/${workspace}/clusters/${cluster}/projects/${namespace}/applications/${
-      this.type
-    }`
+    return `/${workspace}/clusters/${cluster}/projects/${namespace}/applications/${this.type}`
   }
 
   get canCreate() {
