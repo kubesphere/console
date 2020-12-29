@@ -67,6 +67,7 @@ const generateGraph = apps => {
           id: edge.data.id,
           out: app.edges.out,
           name: app.name,
+          targetName: targetApp.name,
         })
         edgeIdMap[edge.data.id] = edge
       }
@@ -89,12 +90,16 @@ const generateGraph = apps => {
   g.edges().forEach(e => {
     const position = g.edge(e)
     const nodePos = g.node(position.name)
+    const targetNodePos = g.node(position.targetName)
     const edge = edgeIdMap[position.id]
     const out = position.out.filter(
       item => item.data.target === edge.data.target
     )
 
-    // workaround for edges position
+    const workloadHeight = 220
+    const xOffset = -20
+    const yOffset = 36
+
     let pointLength = position.points.length
     if (pointLength > 0) {
       if (pointLength === 3) {
@@ -103,9 +108,21 @@ const generateGraph = apps => {
       }
 
       if (nodePos.isGateway) {
-        position.points[0].x = nodePos.x + nodePos.width - 137
-        position.points[0].y = nodePos.y + nodePos.height / 2 - 130
-        _edges.push({ ...edge, position })
+        _edges.push({
+          ...edge,
+          position: {
+            points: [
+              {
+                x: nodePos.x + nodePos.width + xOffset,
+                y: nodePos.y + nodePos.height / 2 + yOffset,
+              },
+              {
+                x: targetNodePos.x,
+                y: targetNodePos.y + targetNodePos.height / 2 + yOffset,
+              },
+            ],
+          },
+        })
       } else {
         const workloadIds = groupedApps[position.name].workloads.map(
           item => item.data.id
@@ -116,12 +133,13 @@ const generateGraph = apps => {
           const pos = {
             points: [
               {
-                x: position.points[0].x - 12,
-                y: nodePos.y + index * 220,
+                x: nodePos.x + nodePos.width,
+                y: nodePos.y + (index + 0.5) * workloadHeight + yOffset,
               },
               {
-                x: position.points[pointLength - 1].x,
-                y: position.points[pointLength - 1].y + index * 30,
+                x: targetNodePos.x,
+                y:
+                  targetNodePos.y + targetNodePos.height / 2 + (index + 1) * 30,
               },
             ],
           }
