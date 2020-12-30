@@ -75,10 +75,10 @@ export default class ActionsInput extends React.Component {
           },
         })
         break
-      case 'discover_tag':
+      case 'discover_tags':
         onChange({
           ...value,
-          discover_tag: true,
+          discover_tags: true,
         })
         break
       default:
@@ -98,11 +98,13 @@ export default class ActionsInput extends React.Component {
   }
 
   renderMoreMenu() {
+    const { value } = this.props
+    const valueKey = Object.keys(value)
     return (
       <Menu onClick={this.handleMoreMenuClick}>
         {!isEmpty(this.menuData) &&
           Object.keys(this.menuData).map(key => (
-            <Menu.MenuItem key={key}>
+            <Menu.MenuItem key={key} disabled={valueKey.includes(key)}>
               <Icon name="ticket" /> {t(this.menuData[key])}
             </Menu.MenuItem>
           ))}

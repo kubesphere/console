@@ -89,9 +89,9 @@ export default class Item extends React.Component {
       <div>
         <Form.Item label={t('Strategy')}>
           <Select
-            name="discover_tag"
-            defaultValue={value.discover_tag}
-            onChange={this.handleChange('discover_tag')}
+            name="discover_tags"
+            defaultValue={value.discover_tags}
+            onChange={this.handleChange('discover_tags')}
             options={[
               {
                 label: t('Enable Discover Tag Branches'),
