@@ -73,7 +73,7 @@ export default class PipelineDetailLayout extends React.Component {
 
     this.setBranchNames(toJS(detail.branchNames), params)
     this.getPipeLineConfig()
-    this.sonarqubeStore.fetchDetail(params)
+    this.getSonarqube()
   }
 
   fetchData = async () => {
@@ -84,7 +84,7 @@ export default class PipelineDetailLayout extends React.Component {
 
     this.setBranchNames(toJS(detail.branchNames), params)
     this.getPipeLineConfig()
-    this.sonarqubeStore.fetchDetail(params)
+    this.getSonarqube()
   }
 
   getPipeLineConfig = async () => {
@@ -105,8 +105,10 @@ export default class PipelineDetailLayout extends React.Component {
   }
 
   getSonarqube = () => {
-    const { params } = this.props.match
-    this.sonarqubeStore.fetchDetail(params)
+    if (get(globals, 'config.devops.sonarqubeURL')) {
+      const { params } = this.props.match
+      this.sonarqubeStore.fetchDetail(params)
+    }
   }
 
   getUpTime = activityList => {

@@ -119,7 +119,9 @@ export default class Sider extends React.Component {
   }
 
   renderAgentForms = () => {
-    const labelDefaultValue = get(this.labelDataList, '0.value', '')
+    const labelDataList = toJS(this.labelDataList)
+    const labelDefaultValue = get(labelDataList, '0.value', '')
+
     switch (this.agentType) {
       case 'node':
         return (
@@ -132,7 +134,7 @@ export default class Sider extends React.Component {
             >
               <Select
                 name="label"
-                options={toJS(this.labelDataList)}
+                options={labelDataList}
                 defaultValue={labelDefaultValue}
               />
             </Form.Item>

@@ -377,7 +377,7 @@ export default class Store extends BaseStore {
       this.labelDataList = []
     })
 
-    if (result.status === 'ok' && isArray(result.data)) {
+    if (result && result.status === 'ok' && isArray(result.data)) {
       const labelDataList = result.data.map(item => {
         return { label: item.label, value: item.label }
       })
