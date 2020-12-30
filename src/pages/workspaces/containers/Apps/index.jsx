@@ -21,7 +21,8 @@ import { capitalize } from 'lodash'
 
 import { Button } from '@kube-design/components'
 
-import { Avatar, Status } from 'components/Base'
+import { Status } from 'components/Base'
+import Avatar from 'apps/components/Avatar'
 import Banner from 'components/Cards/Banner'
 import Table from 'components/Tables/List'
 import withList, { ListPage } from 'components/HOCs/withList'

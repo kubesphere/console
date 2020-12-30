@@ -19,7 +19,8 @@
 import React from 'react'
 import { get } from 'lodash'
 
-import { Status, Avatar } from 'components/Base'
+import { Status } from 'components/Base'
+import Avatar from 'apps/components/Avatar'
 import { withProjectList, ListPage } from 'components/HOCs/withList'
 import Table from 'components/Tables/List'
 
