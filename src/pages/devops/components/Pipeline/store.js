@@ -82,6 +82,7 @@ export default class Store extends BaseStore {
           steps: [],
         },
       ],
+      agent: { type: 'none' },
       name: `stage-${generateId(5)}`,
     }
   }
