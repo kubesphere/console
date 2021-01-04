@@ -18,7 +18,7 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import { isEmpty } from 'lodash'
+import { get, cloneDeep, isEmpty } from 'lodash'
 import { Modal } from 'components/Base'
 
 import RouteRulesForm from 'components/Forms/Route/RouteRules'
@@ -61,20 +61,36 @@ class RouteRulesEdit extends React.Component {
 
     this.state = {
       subRoute: {},
-      formTemplate: {
-        Ingress: props.detail,
-      },
+      formTemplate: this.getFormTemplate(props.detail),
     }
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.detail !== prevProps.detail) {
       this.setState({
-        formTemplate: {
-          Ingress: this.props.detail,
-        },
+        formTemplate: this.getFormTemplateI(this.props.detail),
       })
     }
+  }
+
+  getFormTemplate(detail) {
+    const formTemplate = cloneDeep(detail)
+    const tls = get(formTemplate, 'spec.tls', [])
+    const rules = get(formTemplate, 'spec.rules', [])
+    if (tls.length > 0 && rules.length > 0) {
+      rules.forEach(rule => {
+        const tlsItem = tls.find(
+          item => item.hosts && item.hosts.includes(rule.host)
+        )
+        if (tlsItem) {
+          rule.protocol = 'https'
+          rule.secretName = tlsItem.secretName
+        } else {
+          rule.protocol = 'http'
+        }
+      })
+    }
+    return { Ingress: formTemplate }
   }
 
   registerSubRoute = (onSave, onCancel) => {

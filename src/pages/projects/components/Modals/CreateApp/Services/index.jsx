@@ -32,7 +32,6 @@ export default class Services extends React.Component {
 
   state = {
     components: omit(this.props.formData, ['application', 'ingress']) || {},
-    componentsError: '',
     editData: {},
     showAdd: false,
   }
@@ -51,12 +50,6 @@ export default class Services extends React.Component {
   }
 
   validate(callback) {
-    if (Object.keys(this.state.components).length <= 0) {
-      return this.setState({
-        componentsError: t('Service components should not be empty'),
-      })
-    }
-
     callback && callback()
   }
 
@@ -159,7 +152,6 @@ export default class Services extends React.Component {
     this.setState(
       ({ components }) => ({
         components: { ...components, [key]: data },
-        componentsError: '',
       }),
       () => {
         this.props.formData[key] = data
@@ -184,7 +176,7 @@ export default class Services extends React.Component {
 
   render() {
     const { cluster, namespace, isFederated, projectDetail } = this.props
-    const { components, showAdd, editData, componentsError } = this.state
+    const { components, showAdd, editData } = this.state
 
     return (
       <div className={styles.wrapper}>
@@ -195,7 +187,6 @@ export default class Services extends React.Component {
         <div className={styles.title}>{t('Application Components')}</div>
         <div className={styles.components}>
           <ServiceList
-            error={componentsError}
             data={components}
             clusters={projectDetail.clusters}
             onAdd={this.showAdd}

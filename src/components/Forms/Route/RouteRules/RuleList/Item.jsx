@@ -20,64 +20,54 @@ import { get } from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { Button, Tag, Icon, Columns, Column } from '@kube-design/components'
+import { Button, Columns, Column } from '@kube-design/components'
+import { Text } from 'components/Base'
 
-import { CLUSTER_PROVIDER_ICON, CLUSTER_GROUP_TAG_TYPE } from 'utils/constants'
+import ClusterWrapper from 'components/Clusters/ClusterWrapper'
 
 import styles from './index.scss'
 
-const Item = ({ rule, tls = {}, onDelete, onEdit }) => {
-  const protocol = tls.hosts && tls.hosts.includes(rule.host) ? 'https' : 'http'
+const Item = ({ index, rule, tls = [], projectDetail, onDelete, onEdit }) => {
+  const tlsItem = tls.find(item => item.hosts && item.hosts.includes(rule.host))
+  const protocol = tlsItem ? 'https' : 'http'
 
-  const handleDelete = () => onDelete(rule)
+  const handleDelete = () => onDelete(index)
 
-  const handleEdit = () => {
-    if (protocol === 'https') {
-      onEdit({ ...rule, protocol: 'https', secretName: tls.secretName })
-    } else {
-      onEdit({ ...rule, protocol: 'http' })
-    }
-  }
+  const handleEdit = () => onEdit(index)
+
+  const clusters = rule.clusters.map(item => ({ name: item }))
 
   return (
     <div className={styles.item}>
-      <div className={styles.icon}>
-        <Icon name="earth" size={40} />
-      </div>
       <div className={styles.texts}>
-        <div className={styles.text}>
-          <div className={styles.title}>{rule.host}</div>
-          <div className={styles.description}>
-            <span>
-              {t('Protocol')}: {protocol}
-            </span>
-            {protocol === 'https' && (
+        <Text
+          icon="earth"
+          title={rule.host}
+          description={
+            <div className={styles.description}>
               <span>
-                {t('Certificate')}: {tls.secretName}
+                {t('Protocol')}: {protocol}
               </span>
-            )}
-          </div>
-        </div>
-      </div>
-      {rule.cluster && (
-        <div className={styles.clusters}>
-          <div className={styles.text}>
-            <div className={styles.title}>
-              <Tag type={CLUSTER_GROUP_TAG_TYPE[rule.cluster.group]}>
-                <Icon
-                  name={
-                    CLUSTER_PROVIDER_ICON[rule.cluster.provider] || 'kubernetes'
-                  }
-                  type="light"
-                  size={20}
-                />
-                <span>{rule.cluster.name}</span>
-              </Tag>
+              {protocol === 'https' && (
+                <span>
+                  {t('Certificate')}: {tlsItem.secretName}
+                </span>
+              )}
             </div>
-            <div className={styles.description}>{t('Deployment Location')}</div>
-          </div>
-        </div>
-      )}
+          }
+        />
+        {rule.clusters && (
+          <Text
+            title={
+              <ClusterWrapper
+                clusters={clusters}
+                clustersDetail={projectDetail.clusters}
+              />
+            }
+            description={t('Deployment Location')}
+          />
+        )}
+      </div>
       <div className={styles.paths}>
         {rule.http.paths.map(path => (
           <div key={path.path} className={styles.path}>

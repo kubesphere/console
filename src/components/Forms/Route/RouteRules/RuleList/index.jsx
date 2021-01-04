@@ -16,12 +16,11 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, set, isEmpty, keyBy } from 'lodash'
+import { get } from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
 
 import { Text } from 'components/Base'
-import ObjectMapper from 'utils/object.mapper'
 
 import Item from './Item'
 
@@ -31,14 +30,14 @@ export default class RuleList extends React.Component {
   static propTypes = {
     name: PropTypes.string,
     value: PropTypes.array,
-    onChange: PropTypes.func,
+    onDelete: PropTypes.func,
     onShow: PropTypes.func,
   }
 
   static defaultProps = {
     name: '',
     value: [],
-    onChange() {},
+    onDelete() {},
     onShow() {},
   }
 
@@ -46,90 +45,27 @@ export default class RuleList extends React.Component {
     formData: PropTypes.object,
   }
 
-  handleAdd = () => {
-    this.props.onShow()
-  }
-
-  handleEdit = data => {
-    this.props.onShow(data)
-  }
-
-  handleDelete = rule => {
-    const { value, onChange, isFederated } = this.props
-    const { host } = rule
-
-    if (isFederated) {
-      return this.handleFederatedDelete(rule)
-    }
-
-    onChange(value.filter(item => item.host !== host))
-
-    const tls = get(this.context.formData, 'spec.tls[0]')
-
-    if (!tls) {
-      return
-    }
-
-    if (isEmpty(tls.hosts)) {
-      set(this.context.formData, 'spec.tls', [])
-    } else {
-      tls.hosts = tls.hosts.filter(item => item !== host)
-      set(this.context.formData, 'spec.tls[0]', tls)
-    }
-  }
-
-  handleFederatedDelete = rule => {
-    const { value, onChange } = this.props
-    const formTemplate = this.context.formData
-    const overrides = get(formTemplate, 'spec.overrides', [])
-    const override = overrides.find(
-      item => item.clusterName === rule.cluster.name
-    )
-    override.clusterOverrides = override.clusterOverrides.filter(
-      item => !['/spec/rules', '/spec/tls'].includes(item.path)
-    )
-    onChange(value)
-  }
-
   renderContent() {
-    const { value, isFederated } = this.props
+    const { value, onShow, onDelete, projectDetail } = this.props
 
-    let rules = [...value]
-    let tls = get(this.context.formData, 'spec.tls[0]')
-
-    if (isFederated) {
-      const { projectDetail } = this.props
-      const clusters = keyBy(projectDetail.clusters, 'name')
-      const result = ObjectMapper.federated(ObjectMapper.ingresses)(
-        this.context.formData
-      )
-      if (result && result.clusterTemplates) {
-        rules = Object.keys(result.clusterTemplates).map(cluster => ({
-          ...get(result.clusterTemplates[cluster], 'spec.rules[0]', {}),
-          cluster: clusters[cluster],
-        }))
-
-        tls = Object.keys(result.clusterTemplates).map(cluster => ({
-          ...get(result.clusterTemplates[cluster], 'spec.tls[0]', {}),
-          cluster: clusters[cluster],
-        }))
-      }
-    }
+    const tls = get(this.context.formData, 'spec.tls', [])
 
     return (
       <ul>
-        {rules
-          .filter(item => item.host)
+        {value
+          .filter(item => item && item.host)
           .map((item, index) => (
             <Item
               rule={item}
               tls={tls}
               key={index}
-              onEdit={this.handleEdit}
-              onDelete={this.handleDelete}
+              index={index}
+              onEdit={onShow}
+              onDelete={onDelete}
+              projectDetail={projectDetail}
             />
           ))}
-        <div className={styles.add} onClick={this.handleAdd}>
+        <div className={styles.add} onClick={onShow}>
           <Text
             title={t('Add Route Rule')}
             description={t('Please add at least one routing rule.')}

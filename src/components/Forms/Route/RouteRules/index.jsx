@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, set, uniq, isEmpty } from 'lodash'
+import { get, set, isEmpty } from 'lodash'
 import React from 'react'
 import { toJS, computed } from 'mobx'
 import { observer } from 'mobx-react'
@@ -36,7 +36,7 @@ class RouteRules extends React.Component {
 
     this.state = {
       showRule: false,
-      selectRule: {},
+      selectRuleIndex: -1,
     }
 
     this.secretStore = new SecretStore()
@@ -82,6 +82,12 @@ class RouteRules extends React.Component {
     return get(formTemplate, MODULE_KIND_MAP[module], formTemplate)
   }
 
+  get fedFormTemplate() {
+    return this.props.isFederated
+      ? get(this.formTemplate, 'spec.template')
+      : this.formTemplate
+  }
+
   get cluster() {
     return this.props.cluster
   }
@@ -95,135 +101,101 @@ class RouteRules extends React.Component {
     return this.serviceStore.list.data
   }
 
-  showRule = (data = {}) => {
-    this.setState({
-      showRule: true,
-      selectRule: { ...data, _host: data.host },
-    })
+  showRule = index => {
+    this.setState({ showRule: true, selectRuleIndex: index })
   }
 
   hideRule = () => {
-    this.setState({
-      showRule: false,
-      selectRule: {},
-    })
+    this.setState({ showRule: false, selectRuleIndex: -1 })
   }
 
   handleRule = data => {
-    const { protocol, secretName, _host, ...newRule } = data
+    const { isFederated } = this.props
+    const { selectRuleIndex } = this.state
+    const template = this.fedFormTemplate
 
-    if (this.props.isFederated) {
-      return this.handleFederatedRule(data)
-    }
+    const rules = get(template, 'spec.rules', [])
 
-    const host = _host || newRule.host
-
-    const rules = get(this.formTemplate, 'spec.rules')
-
-    const existRule = rules.find(rule => rule.host === host)
-
-    let newRules = []
-    if (existRule) {
-      newRules = rules.map(rule => (rule.host === host ? newRule : rule))
+    if (selectRuleIndex >= 0) {
+      rules[selectRuleIndex] = data
     } else {
-      newRules = [...rules, newRule]
+      rules.push(data)
     }
 
-    set(this.formTemplate, 'spec.rules', newRules)
+    set(template, 'spec.rules', rules)
 
-    const tls = get(this.formTemplate, 'spec.tls[0]', {})
-    if (tls.hosts && tls.hosts.includes(host)) {
-      if (protocol === 'http') {
-        tls.hosts = tls.hosts.filter(item => item !== host)
-        if (isEmpty(tls.hosts)) {
-          set(this.formTemplate, 'spec.tls', [])
-        } else {
-          set(this.formTemplate, 'spec.tl[0]', tls)
-        }
-      } else if (protocol === 'https') {
-        tls.secretName = secretName
-        set(this.formTemplate, 'spec.tls[0]', tls)
-      }
-    } else if (protocol === 'https') {
-      tls.secretName = secretName
-      tls.hosts = uniq([...(tls.hosts || []), host])
+    this.updateTLS(template)
 
-      set(this.formTemplate, 'spec.tls[0]', tls)
-    }
+    isFederated && this.updateOverrides()
 
     this.hideRule()
   }
 
-  handleFederatedRule = data => {
-    const { protocol, secretName, _host, clusters, ...newRule } = data
+  handleDelete = index => {
+    const { isFederated } = this.props
+    const template = this.fedFormTemplate
 
-    const overrides = get(this.formTemplate, 'spec.overrides', [])
+    const rules = get(template, 'spec.rules', [])
+
+    rules.splice(index, 1)
+
+    set(template, 'spec.rules', rules)
+
+    this.updateTLS(template)
+
+    isFederated && this.updateOverrides()
+
+    this.hideRule()
+  }
+
+  updateTLS(formTemplate) {
+    const rules = get(formTemplate, 'spec.rules', [])
+    const tls = rules
+      .filter(item => item.protocol === 'https' && item.secretName)
+      .reduce((prev, cur) => {
+        const { secretName, host, clusters } = cur
+        const item = prev.find(_item => _item.secretName === secretName)
+        if (item) {
+          item.hosts = item.hosts || []
+          if (item.hosts.indexOf(host) === -1) {
+            item.hosts.push(host)
+          }
+        } else {
+          prev.push({ hosts: [host], secretName, clusters })
+        }
+
+        return prev
+      }, [])
+
+    set(formTemplate, 'spec.tls', tls)
+  }
+
+  updateOverrides() {
+    const overrides = []
+    const rules = get(this.fedFormTemplate, 'spec.rules', [])
+    const tls = get(this.fedFormTemplate, 'spec.tls', [])
+    const clusters = get(this.props.projectDetail, 'clusters', [])
 
     clusters.forEach(cluster => {
-      let override = overrides.find(item => item.clusterName === cluster)
-      if (!override) {
-        override = {
-          clusterName: cluster,
-          clusterOverrides: [],
-        }
-        overrides.push(override)
-      }
-
-      override.clusterOverrides = override.clusterOverrides || []
-
-      let rulesCod = override.clusterOverrides.find(
-        item => item.path === '/spec/rules'
-      )
-      if (!rulesCod) {
-        rulesCod = {
-          path: '/spec/rules',
-          value: [],
-        }
-        override.clusterOverrides.push(rulesCod)
-      }
-      rulesCod.value = [newRule]
-
-      if (protocol === 'https') {
-        const tls = [{ secretName, hosts: [newRule.host] }]
-        let tlsCod = override.clusterOverrides.find(
-          item => item.path === '/spec/tls'
-        )
-        if (!tlsCod) {
-          tlsCod = {
+      overrides.push({
+        clusterName: cluster.name,
+        clusterOverrides: [
+          {
+            path: '/spec/rules',
+            value: rules.filter(rule => rule.clusters.includes(cluster.name)),
+          },
+          {
             path: '/spec/tls',
-            value: [],
-          }
-          override.clusterOverrides.push(tlsCod)
-        }
-        tlsCod.value = tls
-      } else {
-        override.clusterOverrides = override.clusterOverrides.filter(
-          cod => cod.path !== '/spec/tls'
-        )
-      }
+            value: tls.filter(item => item.clusters.includes(cluster.name)),
+          },
+        ],
+      })
     })
 
     set(this.formTemplate, 'spec.overrides', overrides)
-    this.hideRule()
   }
 
   rulesValidator = (_, value, callback) => {
-    const { isFederated } = this.props
-    const { data, isLoading } = toJS(this.routerStore.gateway)
-    const noGateway = isEmpty(data) && !isLoading
-
-    if (isFederated) {
-      const overrides = JSON.stringify(get(this.formTemplate, 'spec.overrides'))
-      if (overrides.indexOf('/spec/rules') === -1) {
-        return callback({ message: t('Please add at least one routing rule.') })
-      }
-      return callback()
-    }
-
-    if (noGateway) {
-      return callback({ message: t('UNABLE_CREATE_ROUTE_TIP') })
-    }
-
     if (isEmpty(value)) {
       return callback({ message: t('Please add at least one routing rule.') })
     }
@@ -231,17 +203,20 @@ class RouteRules extends React.Component {
     callback()
   }
 
-  renderRuleForm(data) {
+  renderRuleForm(index) {
     const { isFederated, projectDetail } = this.props
+    const services = toJS(this.services)
     const { data: secrets } = toJS(this.secretStore.list)
     const { data: gateway } = toJS(this.routerStore.gateway)
+
+    const data = get(this.fedFormTemplate, `spec.rules[${index}]`, {})
 
     return (
       <RuleForm
         data={data}
         gateway={gateway}
         secrets={secrets}
-        services={this.services}
+        services={services}
         isFederated={isFederated}
         projectDetail={projectDetail}
         onSave={this.handleRule}
@@ -252,17 +227,17 @@ class RouteRules extends React.Component {
 
   render() {
     const { formRef, isFederated, projectDetail } = this.props
-    const { showRule, selectRule } = this.state
+    const { showRule, selectRuleIndex } = this.state
     const { data, isLoading } = toJS(this.routerStore.gateway)
 
     if (showRule) {
-      return this.renderRuleForm(selectRule)
+      return this.renderRuleForm(selectRuleIndex)
     }
 
     const noGateway = isEmpty(data) && !isLoading
 
     return (
-      <Form data={this.formTemplate} ref={formRef}>
+      <Form data={this.fedFormTemplate} ref={formRef}>
         {noGateway && (
           <Alert
             className="margin-b12"
@@ -274,6 +249,7 @@ class RouteRules extends React.Component {
           <RuleList
             name="spec.rules"
             onShow={this.showRule}
+            onDelete={this.handleDelete}
             disabled={noGateway}
             isFederated={isFederated}
             projectDetail={projectDetail}

@@ -34,7 +34,7 @@ import { ArrayInput, RulePath } from 'components/Inputs'
 
 import { PATTERN_HOST } from 'utils/constants'
 
-import ClusterSelect from './ClusterSelect'
+import ClusterSelect from 'components/Forms/Route/RouteRules/RuleForm/ClusterSelect'
 
 export default class RuleForm extends React.Component {
   static propTypes = {

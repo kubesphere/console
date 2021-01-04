@@ -28,7 +28,7 @@ export default class IngressCard extends Component {
   render() {
     const { prefix, gateway, detail } = this.props
 
-    const tls = detail.tls[0] || {}
+    const tls = detail.tls || []
 
     if (isEmpty(detail.rules)) {
       return null

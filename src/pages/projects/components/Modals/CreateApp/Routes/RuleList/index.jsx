@@ -18,12 +18,11 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import { get, isEmpty, keyBy } from 'lodash'
+import { get, isEmpty } from 'lodash'
 import { Alert } from '@kube-design/components'
-import { Text } from 'components/Base'
-import ObjectMapper from 'utils/object.mapper'
 
-import Item from './Item'
+import { Text } from 'components/Base'
+import Item from 'components/Forms/Route/RouteRules/RuleList/Item'
 
 import styles from './index.scss'
 
@@ -45,26 +44,17 @@ export default class RuleList extends React.Component {
   }
 
   renderContent() {
-    const { data, onAdd, onDelete, isFederated, gateway } = this.props
-    let rules = get(data, 'spec.rules', [])
-    let tls = get(data, 'spec.tls[0]', {})
+    const {
+      data,
+      onAdd,
+      onDelete,
+      isFederated,
+      gateway,
+      projectDetail,
+    } = this.props
 
-    if (isFederated) {
-      const { projectDetail } = this.props
-      const clusters = keyBy(projectDetail.clusters, 'name')
-      const result = ObjectMapper.federated(ObjectMapper.ingresses)(data)
-      if (result && result.clusterTemplates) {
-        rules = Object.keys(result.clusterTemplates).map(cluster => ({
-          ...get(result.clusterTemplates[cluster], 'spec.rules[0]', {}),
-          cluster: clusters[cluster],
-        }))
-
-        tls = Object.keys(result.clusterTemplates).map(cluster => ({
-          ...get(result.clusterTemplates[cluster], 'spec.tls[0]', {}),
-          cluster: clusters[cluster],
-        }))
-      }
-    }
+    const rules = get(data, 'spec.rules', [])
+    const tls = get(data, 'spec.tls', [])
 
     return (
       <ul>
@@ -75,8 +65,10 @@ export default class RuleList extends React.Component {
               key={`${rule.host}-${index}`}
               rule={rule}
               tls={tls}
+              index={index}
               onEdit={onAdd}
               onDelete={onDelete}
+              projectDetail={projectDetail}
             />
           ))}
         {(!isEmpty(gateway) || isFederated) && (

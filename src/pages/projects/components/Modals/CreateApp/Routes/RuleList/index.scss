@@ -68,6 +68,10 @@
   .description {
     @include ellipsis;
     @include TypographyParagraph($dark-color01);
+
+    span + span {
+      margin-left: 12px;
+    }
   }
 }
 

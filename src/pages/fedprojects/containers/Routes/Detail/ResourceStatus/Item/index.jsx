@@ -60,11 +60,12 @@ export default class Item extends React.Component {
   renderRules() {
     const { workspace, namespace, detail } = this.props
     const gateway = toJS(this.store.gateway.data)
+
     if (!detail || isEmpty(detail.rules)) {
       return t('No Data')
     }
 
-    const tls = detail.tls[0] || {}
+    const tls = detail.tls || []
 
     return (
       <div className={styles.rules}>
