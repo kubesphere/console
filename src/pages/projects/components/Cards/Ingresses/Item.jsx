@@ -42,7 +42,7 @@ const Card = ({ detail, gateway, prefix }) => {
     return null
   }
 
-  const tls = detail.tls[0] || {}
+  const tls = detail.tls || []
   const detailName = getDisplayName(detail)
 
   return (

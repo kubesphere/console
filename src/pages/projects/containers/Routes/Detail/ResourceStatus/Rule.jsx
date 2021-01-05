@@ -23,8 +23,9 @@ import { Button, Icon, Columns, Column, Tooltip } from '@kube-design/components'
 
 import styles from './index.scss'
 
-const Card = ({ gateway, rule, tls = {}, prefix }) => {
-  const protocol = tls.hosts && tls.hosts.includes(rule.host) ? 'https' : 'http'
+const Card = ({ gateway, rule, tls = [], prefix }) => {
+  const tlsItem = tls.find(item => item.hosts && item.hosts.includes(rule.host))
+  const protocol = tlsItem ? 'https' : 'http'
 
   let host = rule.host
   if (gateway && gateway.ports && gateway.type === 'NodePort') {
@@ -50,7 +51,7 @@ const Card = ({ gateway, rule, tls = {}, prefix }) => {
             </span>
             {protocol === 'https' && (
               <span>
-                {t('Certificate')}: {tls.secretName}
+                {t('Certificate')}: {tlsItem.secretName}
               </span>
             )}
             <span className={styles.tip}>

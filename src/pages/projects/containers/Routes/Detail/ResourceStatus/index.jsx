@@ -20,7 +20,7 @@ import { isEmpty } from 'lodash'
 import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
-import { Card } from 'components/Base'
+import { Panel } from 'components/Base'
 import Placement from 'projects/components/Cards/Placement'
 
 import Rule from './Rule'
@@ -57,7 +57,7 @@ class ResourceStatus extends React.Component {
     const detail = toJS(this.store.detail)
     const gateway = toJS(this.store.gateway.data)
 
-    const tls = detail.tls[0] || {}
+    const tls = detail.tls || []
 
     if (isEmpty(detail.rules)) {
       return null
@@ -66,7 +66,7 @@ class ResourceStatus extends React.Component {
     const { workspace, cluster, namespace } = this.props.match.params
 
     return (
-      <Card title={t('Rules')}>
+      <Panel title={t('Rules')}>
         {detail.rules.map(rule => (
           <Rule
             key={rule.host}
@@ -78,7 +78,7 @@ class ResourceStatus extends React.Component {
             }/clusters/${cluster}/projects/${namespace}`}
           />
         ))}
-      </Card>
+      </Panel>
     )
   }
 

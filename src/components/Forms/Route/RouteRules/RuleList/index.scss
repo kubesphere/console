@@ -10,7 +10,6 @@
 .item {
   position: relative;
   padding: 11px 12px;
-  padding-left: 64px;
   margin-bottom: 8px;
   border-radius: 4px;
   background-color: $white;
@@ -47,33 +46,21 @@
   }
 }
 
-.icon {
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  top: 12px;
-  left: 12px;
-}
-
 .texts {
   display: flex;
-}
 
-.text {
-  min-width: 160px;
-  padding-right: 20px;
-
-  &:first-of-type {
+  & > div:first-of-type {
     min-width: 200px;
   }
 
-  .title {
-    @include TypographyTitleH6($dark-color07);
+  & > div + div {
+    margin-left: 12px;
   }
+}
 
-  .description {
-    @include ellipsis;
-    @include TypographyParagraph($dark-color01);
+.description {
+  span + span {
+    margin-left: 12px;
   }
 }
 
@@ -108,7 +95,7 @@
 }
 
 .paths {
-  margin: 12px 0 0 -52px;
+  margin-top: 12px;
 }
 
 .path {

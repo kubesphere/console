@@ -29,9 +29,9 @@ export default class Steps extends Component {
         {steps.map((step, index) => (
           <div key={step.title}>
             {current >= index ? (
-              <Icon name="success" type="coloured" size={12} />
+              <Icon name="success" type="coloured" size={14} />
             ) : (
-              <Icon name="dot" type="light" size={12} />
+              <Icon name="dot" type="light" size={14} />
             )}
             <span>{t(step.title)}</span>
           </div>

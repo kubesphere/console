@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, set, unset, isFunction } from 'lodash'
+import { get, set, isFunction } from 'lodash'
 import React from 'react'
 import { toJS } from 'mobx'
 import PropTypes from 'prop-types'
@@ -64,7 +64,7 @@ export default class ServiceDeployAppModal extends React.Component {
         }),
       }),
       isCodeMode: false,
-      isGovernance: this.serviceMeshEnable ? 'true' : 'false',
+      isGovernance: false,
     }
 
     this.formRef = React.createRef()
@@ -109,11 +109,7 @@ export default class ServiceDeployAppModal extends React.Component {
       return true
     }
 
-    const { cluster } = this.props
-    return (
-      globals.app.hasClusterModule(cluster, 'servicemesh') &&
-      get(this.routerStore, 'gateway.data.serviceMeshEnable')
-    )
+    return globals.app.hasClusterModule(this.props.cluster, 'servicemesh')
   }
 
   get steps() {
@@ -166,9 +162,6 @@ export default class ServiceDeployAppModal extends React.Component {
     const formData = {}
     resources.forEach(item => {
       set(item, 'metadata.namespace', namespace)
-      if (!this.serviceMeshEnable) {
-        unset(item, 'metadata.annotations["servicemesh.kubesphere.io/enabled"]')
-      }
 
       if (item.kind.indexOf('Application') !== -1) {
         formData.application = item
@@ -189,10 +182,13 @@ export default class ServiceDeployAppModal extends React.Component {
     const { cluster, namespace } = this.props
     await this.routerStore.getGateway({ cluster, namespace })
     const gateway = toJS(this.routerStore.gateway.data)
-    this.setState({
-      gateway,
-      isGovernance: this.serviceMeshEnable ? 'true' : 'false',
-    })
+    const isGovernance = this.serviceMeshEnable && gateway.serviceMeshEnable
+    set(
+      this.state.formData.application,
+      'metadata.annotations["servicemesh.kubesphere.io/enabled"]',
+      String(isGovernance)
+    )
+    this.setState({ gateway, isGovernance })
   }
 
   handleOk = () => {
@@ -270,23 +266,22 @@ export default class ServiceDeployAppModal extends React.Component {
   handleGovernanceChange = value => {
     const { isFederated } = this.props
     const { application, ingress, ...components } = this.state.formData
-    this.setState({ isGovernance: value })
-    const valueStr = String(value)
+    this.setState({ isGovernance: value === 'true' })
     Object.values(components).forEach(component => {
       set(
         component.workload,
         'metadata.annotations["servicemesh.kubesphere.io/enabled"]',
-        valueStr
+        value
       )
       set(
         component.service,
         'metadata.annotations["servicemesh.kubesphere.io/enabled"]',
-        valueStr
+        value
       )
       set(
         component.workload,
         'spec.template.metadata.annotations["sidecar.istio.io/inject"]',
-        valueStr
+        value
       )
       if (isFederated) {
         updateFederatedAnnotations(component.workload)
