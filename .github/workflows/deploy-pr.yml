@@ -79,37 +79,15 @@ jobs:
           issue_id: ${{ github.event.issue.number }}
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-      
-      - name: test
-        run: |
-          env
 
-      - name: create deployment
-        id: create_deployment
-        uses: octokit/request-action@v2.x
+      - name: Start deployment
+        uses: bobheadxi/deployments@v0.4.2
+        id: deployment
         with:
-          route: POST /repos/:repository/deployments
-          repository: ${{ github.repository }}
-          ref: master
-          environment: dev
-          required_contexts: "[]"
-          auto_merge: false
-        env:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-
-      - name: set deployment status to in progress
-        id: start_deployment
-        uses: octokit/request-action@v2.x
-        with:
-          route: POST /repos/:repository/deployments/:deployment/statuses
-          repository: ${{ github.repository }}
-          deployment: ${{ fromJson(steps.create_deployment.outputs.data).id }}
-          environment: dev
-          log_url: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
-          state: in_progress
-          mediaType: '{"previews": ["flash", "ant-man"]}'
-        env:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          step: start
+          token: ${{ secrets.GITHUB_TOKEN }}
+          env: ${{ env.GITHUB_HEAD_REF_SLUG_URL }}
+          ref: ${{ github.head_ref }}
 
       - name: executing remote ssh commands
         id: deploy_console
@@ -131,32 +109,11 @@ jobs:
         run: |
           echo "::set-output name=SERVICE_PORT::$(sshpass  -p "${{ secrets.QING_PASSWORD }}" ssh -o StrictHostKeyChecking=no root@${{ secrets.QING_EIP }} "kubectl -n kubesphere-system get svc ${{ env.SERVICE_NAME }} -o json | jq .spec.ports[].nodePort")"
 
-      - name: set deployment status to success
-        id: successful_deployment
-        uses: octokit/request-action@v2.x
+      - name: Update deployment status
+        uses: bobheadxi/deployments@v0.4.2
+        if: always()
         with:
-          route: POST /repos/:repository/deployments/:deployment/statuses
-          repository: ${{ github.repository }}
-          deployment: ${{ fromJson(steps.create_deployment.outputs.data).id }}
-          environment: dev
-          environment_url: http://${{ secrets.QING_EIP }}:${{ steps.set_port.outputs.SERVICE_PORT }}/
-          log_url: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
-          mediaType: '{"previews": ["ant-man"]}'
-          state: success
-        env:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-
-      - name: set deployment status to failure
-        id: failed_deployment
-        uses: octokit/request-action@v2.x
-        if: failure()
-        with:
-          route: POST /repos/:repository/deployments/:deployment/statuses
-          repository: ${{ github.repository }}
-          deployment: ${{ fromJson(steps.create_deployment.outputs.data).id }}
-          environment: dev
-          log_url: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
-          mediaType: '{"previews": ["ant-man"]}'
-          state: failure
-        env:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          step: finish
+          token: ${{ secrets.GITHUB_TOKEN }}
+          status: ${{ job.status }}
+          deployment_id: ${{ steps.deployment.outputs.deployment_id }}
