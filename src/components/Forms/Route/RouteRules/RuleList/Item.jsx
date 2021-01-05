@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get } from 'lodash'
+import { get, isArray } from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
 
@@ -35,7 +35,8 @@ const Item = ({ index, rule, tls = [], projectDetail, onDelete, onEdit }) => {
 
   const handleEdit = () => onEdit(index)
 
-  const clusters = rule.clusters.map(item => ({ name: item }))
+  const clusters =
+    isArray(rule.clusters) && rule.clusters.map(item => ({ name: item }))
 
   return (
     <div className={styles.item}>
@@ -56,7 +57,7 @@ const Item = ({ index, rule, tls = [], projectDetail, onDelete, onEdit }) => {
             </div>
           }
         />
-        {rule.clusters && (
+        {isArray(clusters) && (
           <Text
             title={
               <ClusterWrapper
