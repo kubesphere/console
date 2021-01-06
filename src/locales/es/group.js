@@ -32,4 +32,5 @@ export default {
   'Binding Devops project role': 'Rol del proyecto Binding Devops',
   'Add DevOps project': 'Agregar proyecto DevOps',
   'Please add role': 'Añadir papel',
+  'Assigned user group': 'Grupo de usuarios asignado',
 }

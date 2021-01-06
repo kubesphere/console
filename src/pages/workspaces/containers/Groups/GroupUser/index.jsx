@@ -194,10 +194,11 @@ export default class GroupUser extends Component {
         {data.map(item => (
           <User
             key={`${type}-${item.name}`}
+            type={type}
             user={item}
             group={group}
+            groupStore={this.groupStore}
             enabledActions={enabledActions}
-            showDelete={type === 'ingroup'}
             selected={selectedKeys.includes(item.name)}
             onSelect={() => this.handleSelect(item)}
             onDelete={() => this.handleDelete(item)}

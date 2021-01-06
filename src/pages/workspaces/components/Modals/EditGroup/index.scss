@@ -2,7 +2,7 @@
 
 .modalBody {
   padding: 20px 12px;
-  height: 500px;
+  height: calc(100vh - 200px);
 
   .content {
     padding: 12px;

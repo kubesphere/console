@@ -31,4 +31,5 @@ export default {
   'Binding DevOps project role': '綁定 DevOps 工程角色',
   'Add DevOps project': '添加 DevOps 工程',
   'Please add role': '請添加角色',
+  'Assigned user group': '已分配用戶組',
 }
