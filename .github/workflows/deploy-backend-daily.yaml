@@ -1,0 +1,24 @@
+name: Deploy-Backend-Daily
+
+on:
+  schedule:
+    - cron: "0 16 * * *"
+  workflow_dispatch:
+
+jobs:
+
+  update:
+    name: Update Backend Service
+    runs-on: ubuntu-latest
+    steps:
+    - name: executing remote ssh commands
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.QING_EIP }}
+        username: root
+        password: ${{ secrets.QING_PASSWORD }}
+        port: 22
+        script: |
+          kubectl -n kubesphere-system rollout restart deploy ks-apiserver
+          kubectl -n kubesphere-system rollout restart deploy ks-controller-manager
+          kubectl -n kubesphere-system rollout restart deploy ks-console

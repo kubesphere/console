@@ -1,0 +1,44 @@
+name: Deploy-PullRequestClose
+
+on:
+  issue_comment:
+    types: [created]
+
+env:
+  SERVICE_NAME: ks-console-actions-pr-${{ github.event.issue.number }}
+
+jobs:
+  delete-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: acknowledge deployment request to commenter
+        id: check
+        uses: khan/pull-request-comment-trigger@master
+        with:
+          trigger: "/clear"
+          reaction: rocket
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+    outputs:
+      triggered: ${{ steps.check.outputs.triggered }}
+  
+  delete-workload:
+    if: needs.delete-check.outputs.triggered == 'true'
+    runs-on: ubuntu-latest
+    needs: delete-check
+    steps:
+      - name: executing remote ssh commands
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.QING_EIP }}
+          username: root
+          password: ${{ secrets.QING_PASSWORD }}
+          port: 22
+          script: |
+            kubectl -n kubesphere-system delete deploy,svc ${{ env.SERVICE_NAME }} || exit 0
+      - name: Create comment
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            Congratulations! Deployment cleaned.
