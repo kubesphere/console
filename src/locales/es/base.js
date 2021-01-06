@@ -30,6 +30,7 @@ export default {
   'Add parameter': 'Agregar parámetro',
   'Add Task': 'Agregar tarea',
   'Advanced Settings': 'Ajustes avanzados',
+  'Added Successfully': 'Añadir éxito',
   Agent: 'Agente',
   Alias: 'Alias',
   All: 'Todos',
@@ -416,6 +417,8 @@ export default {
   add_: 'Añadir',
   REMOVE_MEMBER_TIP:
     '¿Estás seguro de que deseas eliminar el miembro <strong>{resource}</strong> ?',
+  REMOVE_GROUP_TIP:
+    '¿Seguro que quieres eliminar el grupo? <strong>{resource}</strong> ?',
   ALIAS_DESC:
     'El alias puede estar compuesto de cualquier carácter para ayudar a distinguir mejor los recursos. La longitud máxima de carácteres se establece en 63.',
   NOT_ENABLE: '{feature} no está habilitado',

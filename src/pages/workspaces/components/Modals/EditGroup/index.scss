@@ -1,0 +1,19 @@
+@import '~scss/variables';
+
+.modalBody {
+  padding: 20px 12px;
+  height: calc(100vh - 200px);
+
+  .content {
+    padding: 12px;
+    background-color: $card-bg-color;
+    border-radius: $border-radius;
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+  }
+}
+
+.modalFooter {
+  padding: 12px 20px;
+}

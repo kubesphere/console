@@ -305,6 +305,10 @@ export default {
     'Autorización para crear proyectos DevOps. El creador será el administrador del proyecto DevOps',
   DEVOPS_VIEW_DESC:
     'Ver todos los proyectos de DevOps en el espacio de trabajo',
+  WORKSPACE_GROUPS_VIEW_DESC:
+    'Conceder permiso para ver la estructura y los miembros de la organización empresarial',
+  WORKSPACE_GROUPS_MANAGEMENT_DESC:
+    'administrar la estructura organizacional de la empresa, invitar / remover miembros de la organización y autorizar la organización',
   WORKSPACE_ROLES_VIEW_DESC: 'Ver roles del espacio de trabajo',
   WORKSPACE_ROLES_MANAGEMENT_DESC:
     'Crear, editar y eliminar roles del espacio de trabajo (los roles preestablecidos del sistema no se pueden eliminar)',

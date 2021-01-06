@@ -1,0 +1,34 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.wrapper {
+    border-radius: $border-radius;
+    background-color: #ffffff;
+    box-shadow: $base-shadow;
+}
+
+.contentHeader {
+    padding: 10px 24px;
+    background-color: $card-bg-color;
+    box-shadow: 0 1px 0 0 #eff4f9;
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
+    color: #fff;
+    &.hasSelected {
+        background-color: $dark;
+    }
+}
+.content {
+    padding: 12px;
+}
+.container {
+    background-color: $card-bg-color;
+    border-radius: $border-radius;
+    padding: 12px;
+    height: calc(100vh - 300px);
+    min-height: 560px;
+    display: flex;
+}
+
+
+

@@ -22,11 +22,12 @@ import { Button } from '@kube-design/components'
 
 import styles from './index.scss'
 
-const Item = ({ component, index, value, onChange, onDelete }) => {
+const Item = ({ component, index, value, arrayValue, onChange, onDelete }) => {
   const childNode = React.cloneElement(component, {
     ...component.props,
     index,
     value,
+    arrayValue,
     onChange,
   })
 

@@ -93,6 +93,10 @@ export default {
   'Please input reject reason': 'Introduce un motivo de rechazo, por favor',
   'Please input version number': 'Please input version number',
   'Please select a cluster': 'Selecciona un cluster, por favor',
+  'Please select a DevOps project': 'Seleccione el proyecto devops',
+  'Please select a DevOps project role':
+    'Por favor, seleccione el proyecto devops',
+  'Please select a project role': 'Selecciona un proyecto, por favor',
   'Please select a project': 'Selecciona un proyecto, por favor',
   'Please select a project to deploy':
     'Selecciona un proyecto para desplegar, por favor',

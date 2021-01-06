@@ -102,4 +102,10 @@ export default {
   SURE_TO_DELETE_WORKSPACE: 'Sure to delete the workspace',
   DELETE_WORKSPACE_TIP:
     'Are you sure to delete the workspace <strong>{resource}</strong> ? You will not be able to recover it, and the resources under the workspace will also be deleted.',
+
+  WORKSPACE_GROUP_DESC:
+    'Workspace group can grant project and Devops engineering permissions in the form of user groups or departments.',
+  WORKSPACE_GROUP_EMPTY_DESC:
+    'There is no organization available for the time being, please maintain the organization first and then add members',
+  WORKSPACE_GROUP_USER_EMPTY_DESC: 'There are currently no assignable members',
 }

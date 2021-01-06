@@ -137,6 +137,7 @@ const UserMapper = item => ({
     'metadata.annotations["iam.kubesphere.io/role-binding"]',
     ''
   ),
+  groups: get(item, 'spec.groups', []),
   status: get(item, 'status.state', 'Pending'),
   conditions: get(item, 'status.conditions', []),
   lastLoginTime: get(item, 'status.lastLoginTime'),
@@ -1250,6 +1251,17 @@ const ServiceMonitorMapper = item => ({
   _originData: getOriginData(item),
 })
 
+const GroupsMapper = item => ({
+  ...getBaseInfo(item),
+  key: get(item, 'metadata.name'),
+  title: get(item, 'metadata.generateName'),
+  group_id: get(item, 'metadata.name'),
+  group_name: get(item, 'metadata.generateName'),
+  alias_name: get(item, 'metadata.annotations["kubesphere.io/alias-name"]'),
+  parent_id: get(item, 'metadata.labels["iam.kubesphere.io/group-parent"]'),
+  _originData: getOriginData(item),
+})
+
 export default {
   deployments: WorkLoadMapper,
   daemonsets: WorkLoadMapper,
@@ -1305,5 +1317,6 @@ export default {
   ippools: IPPoolsMapper,
   storageclasscapabilities: StorageclasscapabilitiesMapper,
   servicemonitors: ServiceMonitorMapper,
+  groups: GroupsMapper,
   default: DefaultMapper,
 }

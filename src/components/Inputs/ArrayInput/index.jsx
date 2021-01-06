@@ -105,6 +105,7 @@ export default class ArrayInput extends React.Component {
         key={index}
         index={index}
         value={item || this.getDefaultValue()}
+        arrayValue={value}
         component={children}
         onChange={this.handleChange.bind(this, index)}
         onDelete={this.handleDelete.bind(this, index)}
