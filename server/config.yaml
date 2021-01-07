@@ -121,6 +121,7 @@ client:
           children:
             - { name: secrets, title: Secrets }
             - { name: configmaps, title: ConfigMaps }
+            - { name: serviceaccounts, title: ServiceAccounts }
         - name: network
           title: Network Management
           icon: earth
@@ -330,6 +331,7 @@ client:
           children:
             - { name: secrets, title: Secrets }
             - { name: configmaps, title: ConfigMaps }
+            - { name: serviceaccounts, title: ServiceAccounts }
         - {
             name: grayrelease,
             title: Grayscale Release,
@@ -501,6 +503,7 @@ client:
     volumes: /project-user-guide/storage/volume/
     secrets: /project-user-guide/configuration/secrets/
     configmaps: /project-user-guide/configuration/configmaps/
+    serviceaccounts: /project-user-guide/configuration/serviceaccounts/
     imageregistry: /project-user-guide/configuration/image-registry/
     grayrelease: /project-user-guide/grayscale/overview/
 

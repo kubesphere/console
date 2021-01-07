@@ -25,6 +25,7 @@ import ServiceDetail from 'projects/containers/Services/Detail'
 import RouteDetail from 'projects/containers/Routes/Detail'
 import SecretDetail from 'projects/containers/Secrets/Detail'
 import ConfigMapDetail from 'projects/containers/ConfigMaps/Detail'
+import ServiceAccountDetail from 'projects/containers/ServiceAccounts/Detail'
 import PodDetail from 'projects/containers/Pods/Detail'
 import ContainerDetail from 'projects/containers/Pods/Containers/Detail'
 import NetworkPoliciesDetail from 'projects/containers/Network/Policies/Detail'
@@ -123,6 +124,10 @@ export default [
       {
         path: `${PATH}/projects/:namespace/configmaps/:name`,
         component: ConfigMapDetail,
+      },
+      {
+        path: `${PATH}/projects/:namespace/serviceaccounts/:name`,
+        component: ServiceAccountDetail,
       },
       {
         path: `${PATH}/projects/:namespace/pods/:podName/containers/:containerName`,

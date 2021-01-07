@@ -678,6 +678,16 @@ const ConfigmapMapper = item => ({
   _originData: getOriginData(item),
 })
 
+const ServiceAccountMapper = item => ({
+  ...getBaseInfo(item),
+  namespace: get(item, 'metadata.namespace'),
+  labels: get(item, 'metadata.labels', {}),
+  annotations: get(item, 'metadata.annotations', {}),
+  role: get(item, 'metadata.annotations["iam.kubesphere.io/role"]'),
+  secrets: get(item, 'secrets', []),
+  _originData: getOriginData(item),
+})
+
 const secretDataParser = data => {
   if (data.type === 'kubernetes.io/basic-auth') {
     return Object.entries(get(data, 'data', {})).reduce(
@@ -1290,6 +1300,7 @@ export default {
   rolebinds: RoleBindMapper,
   gateway: GatewayMapper,
   configmaps: ConfigmapMapper,
+  serviceaccounts: ServiceAccountMapper,
   secrets: SecretMapper,
   limitranges: LimitRangeMapper,
   applications: ApplicationMapper,
