@@ -47,6 +47,17 @@ export default class CustomMonitoringTemplate {
    */
   @observable time = { from: 'now', to: 'now' }
 
+  getPath({ cluster, namespace } = {}) {
+    let path = ''
+    if (cluster) {
+      path += `/klusters/${cluster}`
+    }
+    if (namespace) {
+      path += `/namespaces/${namespace}`
+    }
+    return path
+  }
+
   /**
    * refresh timestamp convenient for use
    */
@@ -330,9 +341,10 @@ export default class CustomMonitoringTemplate {
 
   async fetchMetadata() {
     const { data: targetsMetadata } = (await request.get(
-      `kapis/monitoring.kubesphere.io/v1alpha3${
-        this.cluster ? `/klusters/${this.cluster}` : ''
-      }/namespaces/${this.namespace}/targets/metadata`
+      `kapis/monitoring.kubesphere.io/v1alpha3${this.getPath({
+        cluster: this.cluster,
+        namespace: this.namespace,
+      })}/targets/metadata`
     )) || { data: [] }
     this.targetsMetadata = targetsMetadata || []
   }

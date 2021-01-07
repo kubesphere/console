@@ -201,9 +201,10 @@ export default class PanelMonitor {
 
     const response =
       (await request.get(
-        `${this.apiVersion}${
-          cluster ? `/klusters/${cluster}` : ''
-        }/namespaces/${namespace}/targets/query`,
+        `${this.apiVersion}${this.getPath({
+          cluster,
+          namespace,
+        })}/targets/query`,
         {
           expr,
           step,

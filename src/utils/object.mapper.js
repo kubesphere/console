@@ -1310,6 +1310,7 @@ export default {
   outputs: LogOutPutMapper,
   devops: DevOpsMapper,
   dashboards: DashboardMapper,
+  clusterdashboards: DashboardMapper,
   customresourcedefinitions: CRDMapper,
   pipelines: PipelinesMapper,
   networkpolicies: NetworkPoliciesMapper,

@@ -491,6 +491,13 @@ const getDashboardTemplate = ({ namespace }) => ({
   spec: {},
 })
 
+const getClusterDashboardTemplate = () => ({
+  apiVersion: 'monitoring.kubesphere.io/v1alpha1',
+  kind: 'ClusterDashboard',
+  metadata: {},
+  spec: {},
+})
+
 const getServiceMonitorTemplate = ({ name, namespace }) => ({
   apiVersion: 'monitoring.coreos.com/v1',
   kind: 'ServiceMonitor',
@@ -562,6 +569,7 @@ const FORM_TEMPLATES = {
   'volume-snapshots': getVolumeSnapshotTemplate,
   namespacenetworkpolicies: getNameSpaceNetworkPoliciesTemplate,
   dashboards: getDashboardTemplate,
+  clusterdashboards: getClusterDashboardTemplate,
   federated: getFederatedTemplate,
   servicemonitors: getServiceMonitorTemplate,
   workspacerolebinding: getWorkspaceRoleBindingTemplate,
