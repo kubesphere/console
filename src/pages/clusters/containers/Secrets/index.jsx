@@ -110,7 +110,7 @@ export default class Secrets extends React.Component {
             iconSize={40}
             title={getDisplayName(record)}
             desc={record.description || '-'}
-            to={`${this.props.match.url}/${name}`}
+            to={`/clusters/${cluster}/projects/${record.namespace}/${module}/${name}`}
             isMultiCluster={record.isFedManaged}
           />
         ),
