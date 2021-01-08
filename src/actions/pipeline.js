@@ -126,7 +126,7 @@ export default {
     async on({ store, success, rowKey, devops, cluster }) {
       const { data, selectedRowKeys } = toJS(store.list)
 
-      Notify.success({ content: `${t('Brach Run Start')}!` })
+      Notify.success({ content: `${t('Batch Run Start')}!` })
 
       const selectNames = data
         .filter(item => selectedRowKeys.includes(item[rowKey]))
@@ -171,7 +171,7 @@ export default {
 
       await Promise.all(reqlist)
 
-      Notify.success({ content: `${t('Brach Run Success')}!` })
+      Notify.success({ content: `${t('Batch Run Success')}!` })
       store.setSelectRowKeys([])
       success && success()
     },

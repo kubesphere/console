@@ -359,7 +359,7 @@ export default class PipelinesList extends React.Component {
         {
           key: 'run',
           type: 'primary',
-          text: t('Brach Run'),
+          text: t('Run'),
           action: 'delete',
           onClick: () => {
             this.props.trigger('pipeline.batch.run', {

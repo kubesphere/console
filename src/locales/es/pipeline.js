@@ -504,10 +504,9 @@ export default {
   CUSTOM_PIPELIEN_DESC:
     'You can select the tasks you need to customize the work content of the pipeline',
   'Copy Pipeline': 'Copiar pipeline',
-  'Brach Run': 'Batch Run',
-  'Brach Run Start': 'Brach Run Start',
-  'Brach Run Success': 'Batch Run Completed',
-  'Brach Run Fail': 'Batch Run Failed',
+  'Batch Run Start': 'Batch Run Start',
+  'Batch Run Success': 'Batch Run Completed',
+  'Batch Run Fail': 'Batch Run Failed',
   'Run Start': 'Start Running',
   'Gitlab Server': 'Gitlab Server',
   'Gitlab Owner': 'Owner',
