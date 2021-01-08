@@ -19,7 +19,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { Button } from '@kube-design/components'
 import { Text } from 'components/Base'
 
 import styles from './index.scss'
@@ -49,7 +48,6 @@ export default class Item extends React.Component {
         />
         <Text title={detail.name} description={t('Target Service')} />
         <Text title={detail.interval} description={t('Scrap Interval(min)')} />
-        <Button className={styles.monitor}>{t('View Monitor')}</Button>
       </div>
     )
   }
