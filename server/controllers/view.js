@@ -16,7 +16,6 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-const SvgCaptchaFactory = require('svg-captcha')
 const {
   getCurrentUser,
   getKSConfig,
@@ -79,7 +78,6 @@ const renderLogin = async ctx => {
 
   await renderIndex(ctx, {
     oauthServers: oauthServers || [],
-    errorCount: ctx.session.errorCount,
   })
 }
 
@@ -107,24 +105,9 @@ const renderMarkdown = async ctx => {
   await ctx.render('blank_markdown')
 }
 
-const renderCaptcha = async ctx => {
-  if (ctx.query.refresh) {
-    ctx.session.captcha = SvgCaptchaFactory.create({
-      size: 5,
-      noise: 1,
-    })
-  }
-
-  ctx.type = 'svg'
-  ctx.status = 200
-
-  ctx.body = ctx.session.captcha.data
-}
-
 module.exports = {
   renderView,
   renderLogin,
   renderMarkdown,
-  renderCaptcha,
   renderLoginConfirm,
 }

@@ -17,7 +17,6 @@
  */
 
 const isEmpty = require('lodash/isEmpty')
-const SvgCaptchaFactory = require('svg-captcha')
 const jwtDecode = require('jwt-decode')
 const {
   login,
@@ -40,28 +39,12 @@ const handleLogin = async ctx => {
   const error = {}
   let user = null
 
-  if (!ctx.session.errorCount) {
-    ctx.session.errorCount = 0
-  }
-
   if (isEmpty(params) || !params.username || !params.encrypt) {
     Object.assign(error, {
       status: 400,
       reason: 'Invalid Login Params',
       message: 'invalid login params',
     })
-  } else if (ctx.session.errorCount > 2) {
-    if (
-      !ctx.session.captcha ||
-      (params.captcha || '').toLowerCase() !==
-        ctx.session.captcha.text.toLowerCase()
-    ) {
-      Object.assign(error, {
-        status: 400,
-        reason: 'Captcha Not Match',
-        message: 'Please input the correct captcha',
-      })
-    }
   }
 
   if (isEmpty(error)) {
@@ -81,7 +64,6 @@ const handleLogin = async ctx => {
 
       switch (err.code) {
         case 401:
-          ctx.session.errorCount += 1
           Object.assign(error, {
             status: err.code,
             reason: 'User Not Match',
@@ -120,21 +102,12 @@ const handleLogin = async ctx => {
   }
 
   if (!isEmpty(error) || !user) {
-    ctx.session.captcha = SvgCaptchaFactory.create({
-      size: 5,
-      noise: 1,
-    })
-
-    ctx.body = {
-      ...error,
-      errorCount: ctx.session.errorCount,
-    }
+    ctx.body = error
     return
   }
 
   const lastToken = ctx.cookies.get('token')
 
-  ctx.session = {}
   ctx.cookies.set('token', user.token)
   ctx.cookies.set('expire', user.expire)
   ctx.cookies.set('refreshToken', user.refreshToken)

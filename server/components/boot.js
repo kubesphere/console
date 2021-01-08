@@ -20,23 +20,12 @@ const compress = require('koa-compress')
 const mount = require('koa-mount')
 const render = require('koa-ejs')
 const serve = require('koa-static')
-const session = require('koa-session2')
 
-const Store = require('../store')
 const { getServerConfig, root } = require('../libs/utils')
 
 const serverConfig = getServerConfig().server
 
 module.exports = function(app) {
-  app.use(
-    session({
-      store: !global.MODE_DEV && serverConfig.redis ? new Store() : undefined,
-      key: serverConfig.sessionKey,
-      maxAge: serverConfig.sessionTimeout,
-      signed: true,
-    })
-  )
-
   // compress middleware
   app.use(
     compress({

@@ -44,7 +44,6 @@ const {
   renderLogin,
   renderLoginConfirm,
   renderMarkdown,
-  renderCaptcha,
 } = require('./controllers/view')
 
 const parseBody = convert(
@@ -74,7 +73,6 @@ router
   .post('/login/confirm', parseBody, handleLoginConfirm)
   .get('/login/confirm', renderLoginConfirm)
   .post('/logout', handleLogout)
-  .get('/captcha', renderCaptcha)
 
   // oauth
   .get('/oauth/redirect', handleOAuthLogin)

@@ -18,7 +18,6 @@
 
 const { resolve } = require('path')
 const webpack = require('webpack')
-const CopyPlugin = require('copy-webpack-plugin')
 
 const root = path => resolve(__dirname, `../${path}`)
 
@@ -64,8 +63,5 @@ module.exports = {
       'process.env.BROWSER': false,
       'process.env.NODE_ENV': JSON.stringify('production'),
     }),
-    new CopyPlugin([
-      { from: root('node_modules/svg-captcha/fonts'), to: root('dist/fonts') },
-    ]),
   ],
 }
