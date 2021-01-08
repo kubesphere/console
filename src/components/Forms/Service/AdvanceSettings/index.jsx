@@ -89,7 +89,7 @@ export default class AdvancedSettings extends React.Component {
       <Form data={formTemplate} ref={formRef}>
         {!noWorkload &&
           !isFederated &&
-          globals.app.hasClusterModule(cluster, 'network') && (
+          globals.app.hasClusterModule(cluster, 'network.ippool') && (
             <PodIPRange cluster={cluster} namespace={this.namespace} />
           )}
         {(noWorkload || module !== 'statefulsets') && (

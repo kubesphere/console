@@ -133,7 +133,7 @@ client:
             - {
                 name: ippools,
                 title: IP Pools,
-                clusterModule: network,
+                clusterModule: 'network.ippool',
               }
         # Contains dangerous operations, only available for platform-admin.
         - {
