@@ -95,6 +95,7 @@ export default class CRDAppDetail extends React.Component {
       onClick: () =>
         this.trigger('crd.app.addcomponent', {
           success: this.fetchData,
+          detail: toJS(this.store.detail),
           ...this.props.match.params,
         }),
     },
