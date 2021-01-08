@@ -46,13 +46,14 @@ export default class AdvancedSettings extends React.Component {
     const { formRef, store, module, cluster, prefix, isFederated } = this.props
     return (
       <Form data={this.fedFormTemplate} ref={formRef}>
-        {globals.app.hasClusterModule(cluster, 'network') && !isFederated && (
-          <PodIPRange
-            prefix={prefix}
-            cluster={cluster}
-            namespace={this.namespace}
-          />
-        )}
+        {globals.app.hasClusterModule(cluster, 'network.ippool') &&
+          !isFederated && (
+            <PodIPRange
+              prefix={prefix}
+              cluster={cluster}
+              namespace={this.namespace}
+            />
+          )}
         {module !== 'daemonsets' && (
           <Form.Group
             label={t('Set Node Scheduling Policy')}
