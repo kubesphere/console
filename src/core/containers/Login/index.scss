@@ -90,27 +90,3 @@
     padding-top: 20px;
   }
 }
-
-.captcha {
-  display: flex;
-  position: relative;
-
-  img {
-    height: 40px;
-    padding: 0 0 4px 2px;
-    margin-right: 14px;
-    box-sizing: border-box;
-    user-select: none;
-  }
-
-  input {
-    flex: 1;
-  }
-
-  a {
-    position: absolute;
-    top: -24px;
-    right: 0;
-    color: $primary;
-  }
-}
