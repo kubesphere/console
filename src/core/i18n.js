@@ -20,19 +20,11 @@ import moment from 'moment-mini'
 import { LocaleProvider } from '@kube-design/components'
 import get from 'lodash/get'
 import cookie from 'utils/cookie'
-import { lazy, getBrowserLang } from 'utils'
+import { getBrowserLang } from 'utils'
 
 const { locale } = LocaleProvider
 
-const getLocales = {
-  tc: lazy(() => import(/* webpackChunkName: "locales-tc" */ `../locales/tc`)),
-  zh: lazy(() => import(/* webpackChunkName: "locales-zh" */ `../locales/zh`)),
-  en: lazy(() => import(/* webpackChunkName: "locales-en" */ `../locales/en`)),
-  es: lazy(() => import(/* webpackChunkName: "locales-es" */ `../locales/es`)),
-}
-
 const init = async () => {
-  const supportLangs = globals.config.supportLangs.map(item => item.value)
   const userLang = get(globals.user, 'lang') || getBrowserLang()
   if (userLang && cookie('lang') !== userLang) {
     cookie('lang', userLang)
@@ -59,17 +51,8 @@ const init = async () => {
     })
   }
 
-  const locales = {}
-
-  await Promise.all(
-    supportLangs.map(async item => {
-      const modules = await getLocales[item]()
-      locales[item] = Object.assign(
-        {},
-        ...modules.default.map(_item => _item.default)
-      )
-    })
-  )
+  const data = await request.get(`dist/locale-${userLang}.json`)
+  const locales = { [userLang]: data }
 
   return { locales }
 }
