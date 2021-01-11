@@ -57,6 +57,17 @@ export default class PanelMonitor {
     return this.config.targets || []
   }
 
+  getPath({ cluster, namespace } = {}) {
+    let path = ''
+    if (cluster) {
+      path += `/klusters/${cluster}`
+    }
+    if (namespace) {
+      path += `/namespaces/${namespace}`
+    }
+    return path
+  }
+
   get id() {
     return this.config.id
   }

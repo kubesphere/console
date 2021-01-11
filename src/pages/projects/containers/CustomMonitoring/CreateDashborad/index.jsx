@@ -33,7 +33,6 @@ export default class CreateDashboardModalContainer extends React.Component {
 
   handleBasicConfirm = params => {
     const { cluster, namespace } = this.props
-
     this.store = new CustomMonitoringTemplate({
       cluster,
       namespace,
@@ -44,6 +43,7 @@ export default class CreateDashboardModalContainer extends React.Component {
         'metadata.annotations["kubesphere.io/description"]'
       ),
       isEditing: true,
+      ...params.spec,
     })
 
     this.setState({ finishBasis: true })

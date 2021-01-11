@@ -104,7 +104,10 @@ export default class PromQLInput extends Component {
   handleValueUpdateFromProps = value => {
     const editor = this.editor.current
     editor.innerHTML = highlightPromql(value)
-    setCaretPosition(editor, this.state.position)
+    const { position } = this.state
+    if (position) {
+      setCaretPosition(editor, position)
+    }
   }
 
   handleInput = e => {
@@ -122,9 +125,9 @@ export default class PromQLInput extends Component {
     setCaretPosition(editor, position)
 
     const { startContainer } = window.getSelection().getRangeAt(0)
+
     const focusValue = startContainer.textContent
     const tokenContext = getTokenContext(this.editor.current, startContainer)
-
     this.setState(
       { value: text, focusValue, position, tokenContext, visible: true },
       () => this.triggerChange(text)
@@ -165,8 +168,8 @@ export default class PromQLInput extends Component {
     })
   }
 
-  handleCursorChange = e => {
-    const editor = e.target
+  handleCursorChange = () => {
+    const editor = this.editor.current
     const position = getCaretCharacterOffsetWithin(editor)
     const { startContainer } = window.getSelection().getRangeAt(0)
     const focusValue = startContainer.textContent
@@ -189,18 +192,40 @@ export default class PromQLInput extends Component {
 
   handleSuggestionSelect = sug => {
     const { value, focusValue, position } = this.state
-    const posOffset = OPERATORS.includes(focusValue) ? 0 : focusValue.length
-    const start = value.substring(0, position - posOffset)
-    const end = value.substring(position)
+
+    let focusStart = 0
+    let focusLength = focusValue.length
+    if (OPERATORS.includes(focusValue)) {
+      focusStart = position
+      focusLength = 0
+    } else {
+      for (let i = position - 1; i >= 0; i--) {
+        if (OPERATORS.includes(value[i]) || value[i] === '') {
+          focusStart = i + 1
+          break
+        }
+      }
+    }
+    const start = value.substring(0, focusStart)
+    const end = value.substring(focusStart + focusLength)
     const newValue = start + sug + end
+    const newPosition = focusStart + sug.length
     this.setState(
-      { visible: false, value: newValue, focusValue: newValue },
+      {
+        visible: false,
+        value: newValue,
+        focusValue: sug,
+        position: newPosition,
+      },
       () => {
         this.triggerChange(newValue)
+        if (value[newPosition] === '{') {
+          this.handleLabelSearch()
+        }
         if (this.editor.current) {
           const editor = this.editor.current
           editor.innerHTML = highlightPromql(newValue)
-          setCaretPosition(editor, position + sug.length - posOffset)
+          setCaretPosition(editor, newPosition)
         }
       }
     )
@@ -220,7 +245,7 @@ export default class PromQLInput extends Component {
       this.editor.current &&
       this.editor.current.contains(e.target)
     ) {
-      this.handleCursorChange(e)
+      this.handleCursorChange()
     }
   }
 
