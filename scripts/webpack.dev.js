@@ -31,7 +31,7 @@ const config = {
   },
   output: {
     filename: '[name].js',
-    path: root('build/'),
+    path: root('dist/'),
     publicPath: '/',
     pathinfo: false,
   },

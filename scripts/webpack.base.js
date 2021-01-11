@@ -21,6 +21,7 @@ const autoprefixer = require('autoprefixer')
 const HappyPack = require('happypack')
 const WebpackBar = require('webpackbar')
 const WebpackAssetsManifest = require('webpack-assets-manifest')
+const LocalePlugin = require('./locale-plugin')
 
 const root = path => resolve(__dirname, `../${path}`)
 
@@ -77,6 +78,9 @@ module.exports = {
       entrypoints: true,
       writeToDisk: true,
       output: '../dist/manifest.json',
+    }),
+    new LocalePlugin({
+      locales: '../locales',
     }),
     new WebpackBar(),
   ],
