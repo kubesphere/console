@@ -75,6 +75,7 @@ export default class Events extends React.Component {
           dataSource={toJS(data)}
           columns={this.getColumns()}
           loading={isLoading}
+          rowKey={'create_time'}
         />
       </Panel>
     )

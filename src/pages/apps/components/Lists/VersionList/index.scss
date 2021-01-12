@@ -1,56 +1,42 @@
 @import '~scss/variables';
 @import '~scss/mixins';
-.wrapper {
-  .title {
-    margin-bottom: 8px;
-    line-height: 20px;
-    font-weight: bold;
-    color: $head-color;
-  }
-}
 
 .main {
-  &.table {
-    padding: 12px;
+  padding: 12px;
 
-    .inner {
-      background-color: $bg-color;
+  .inner {
+    background-color: $bg-color;
+  }
+
+  .header {
+    display: flex;
+    height: 56px;
+    padding: 12px;
+    border-bottom: 0 none;
+
+    .search {
+      width: 100%;
     }
 
-    .header {
-      display: flex;
-      height: 56px;
-      padding: 12px;
-      border-bottom: 0 none;
+    .actions {
+      flex: 1 0 auto;
 
-      .search {
-        width: 100%;
-      }
-
-      .actions {
-        flex: 1 0 auto;
-
-        :global {
-          button {
-            margin-left: 12px;
-
-            &:hover {
-              background-color: $bg-color;
-            }
-          }
+      :global {
+        button {
+          margin-left: 12px;
         }
       }
     }
+  }
 
-    .body {
-      min-height: 80px;
-      padding: 12px;
-    }
+  .body {
+    min-height: 80px;
+    padding: 12px;
+  }
 
-    .footer {
-      margin: 0 -12px;
-      padding: 10px 24px;
-    }
+  .footer {
+    margin: 0 -12px;
+    padding: 10px 24px;
   }
 }
 
@@ -175,6 +161,12 @@
   .itemExtra {
     display: block;
   }
+}
+
+.instances {
+  box-shadow: none;
+  padding: 0;
+  margin-bottom: -24px;
 }
 
 .loading {

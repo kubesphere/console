@@ -95,6 +95,7 @@ module.exports = {
   Warning: '異常',
   Draining: '疏散中',
   Pending: '等待中',
+  Upgrading: '升级中',
   Stopped: '已停止',
   Disabled: '已停用',
   'Not Enabled': '未啟用',
@@ -332,9 +333,6 @@ module.exports = {
   REMOVE_MEMBER_TIP: '確定移除成員 <strong>{resource}</strong> ？',
 
   REMOVE_GROUP_TIP: '確定移除組織 <strong>{resource}</strong> ？',
-
-  DESTROY_TITLE: '確認銷毀？',
-  DESTROY_TIP: '確定銷毀 {type} <strong>{resource}</strong> ？',
 
   'Error Tips': '錯誤提示',
 

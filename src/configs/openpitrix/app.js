@@ -24,12 +24,12 @@ export const MAX_LIMIT = 200
 export const STORE_APP_LIMIT = 12
 
 export const REVIEW_QUERY_STATUS = {
-  all: 'submitted|admin-rejected|admin-passed',
-  processed: 'admin-rejected|admin-passed',
+  all: 'active|rejected|passed|submitted',
+  processed: 'active|rejected|passed',
   unprocessed: 'submitted',
 }
 
-export const CLUSTER_QUERY_STATUS = 'active|stopped|pending|suspended'
+export const CLUSTER_QUERY_STATUS = 'creating|active|failed|deleting|upgrading'
 
 export const UPLOAD_STATUS_WORD = {
   init: 'UPLOAD_SUPPORT_FORMAT',
@@ -95,7 +95,5 @@ export const UPLOAD_FILE_TYPES = {
   icon: 'image/png,image/jpg,image/jpeg',
   screenshot: 'image/png,image/jpg,image/jpeg',
 }
-
-export const WORKSPACE_REPO_ID = 'repo-helm'
 
 export const SCREENSHOTS_LIMIT = 6

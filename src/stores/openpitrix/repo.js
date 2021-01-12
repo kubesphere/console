@@ -34,14 +34,14 @@ export default class Repo extends Base {
     let prefix = this.baseUrl
 
     if (workspace) {
-      prefix += `workspaces/${workspace}/`
+      prefix += `/workspaces/${workspace}`
     }
 
     if (repo_id) {
-      return `${prefix}repos/${repo_id}/${name || ''}`
+      return `${prefix}/repos/${repo_id}/${name || ''}`
     }
 
-    return `${prefix}repos`
+    return `${prefix}/repos`
   }
 
   @action

@@ -31,7 +31,7 @@ import SchemaForm from './SchemaForm'
 import styles from './index.scss'
 
 @observer
-export default class Services extends React.Component {
+export default class AppConfig extends React.Component {
   state = {
     valuesYaml: '',
     valuesJSON: {},
@@ -80,12 +80,9 @@ export default class Services extends React.Component {
     set(
       formData,
       'conf',
-      getValue({
-        ...(isCodeMode || !valuesSchema ? getValueObj(valuesYaml) : valuesJSON),
-        Name: formData.name || '',
-        Description: formData.desc || '',
-        Workspace: formData.workspace,
-      })
+      getValue(
+        isCodeMode || !valuesSchema ? getValueObj(valuesYaml) : valuesJSON
+      )
     )
   }
 

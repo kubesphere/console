@@ -24,7 +24,6 @@ import PropTypes from 'prop-types'
 import { Button } from '@kube-design/components'
 
 import { Modal } from 'components/Base'
-import { WORKSPACE_REPO_ID } from 'configs/openpitrix/app'
 
 import Apps from './Apps'
 import AppDetail from './AppDetail'
@@ -56,7 +55,7 @@ class RepoApp extends Component {
     }
   }
 
-  setViewType = (type = 'appList', selectRepo = WORKSPACE_REPO_ID) => {
+  setViewType = (type = 'appList', selectRepo) => {
     this.setState({ selectRepo, viewType: type })
   }
 
@@ -70,7 +69,7 @@ class RepoApp extends Component {
   handleDeploy = (params = {}) => {
     this.props.trigger('openpitrix.template.deploy', {
       ...params,
-      ...pick(this.props, ['cluster', 'workspace', 'runtime_id', 'namespace']),
+      ...pick(this.props, ['cluster', 'workspace', 'namespace']),
       success: () => this.props.onOk(),
     })
   }

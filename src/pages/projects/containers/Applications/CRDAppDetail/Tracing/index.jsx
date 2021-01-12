@@ -98,8 +98,8 @@ export default class Tracing extends React.Component {
         labelSelector: joinSelector(selector),
       }
 
-      this.detailStore.serviceStore.fetchListByK8s(params).then(() => {
-        const components = toJS(this.detailStore.serviceStore.list.data)
+      this.serviceStore.fetchListByK8s(params).then(() => {
+        const components = toJS(this.serviceStore.list.data)
         if (components.length > 0) {
           this.setState({ serviceName: components[0].name }, () =>
             this.fetchTracing()
@@ -190,7 +190,7 @@ export default class Tracing extends React.Component {
 
   renderTracing() {
     const { tracing, isTracingLoading } = this.detailStore
-    const { isLoading, data } = this.detailStore.serviceStore.list
+    const { isLoading, data } = this.serviceStore.list
 
     if (!isLoading && isEmpty(data)) {
       return null

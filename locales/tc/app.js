@@ -40,6 +40,8 @@ module.exports = {
   'Base Info': '基本資訊',
   'App Details': '應用詳情',
   'App Config': '應用配置',
+  'Current App Config': '当前应用配置',
+  'New App Config': '新的应用配置',
   Introduction: '使用說明',
   'Terms of service': '服務條款',
   'Config File': '配置文件',

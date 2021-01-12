@@ -101,7 +101,6 @@ export default class Apps extends React.Component {
     {
       title: t('Name'),
       dataIndex: 'app_id',
-      width: '27%',
       render: (app_id, app) => {
         const avatar = this.getAvatar(app.icon)
         return (
@@ -131,20 +130,13 @@ export default class Apps extends React.Component {
       title: t('Latest Version'),
       dataIndex: 'latest_app_version.name',
       isHideable: true,
-      width: '15%',
-    },
-    {
-      title: t('Deployed Instances'),
-      dataIndex: 'cluster_total',
-      isHideable: true,
-      width: '15%',
-      render: total => total || 0,
+      width: '20%',
     },
     {
       title: t('Updated Time'),
       dataIndex: 'update_time',
       isHideable: true,
-      width: '20%',
+      width: '120',
       render: (time, item) => getLocalTime(time || item.status_time).fromNow(),
     },
   ]

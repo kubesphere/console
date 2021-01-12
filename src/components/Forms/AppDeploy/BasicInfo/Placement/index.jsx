@@ -84,7 +84,6 @@ export default class Placment extends Component {
       .map(item => ({
         label: item.name,
         value: item.name,
-        opRuntime: item.opRuntime,
         disabled: item.isFedManaged,
         isFedManaged: item.isFedManaged,
       }))
@@ -112,11 +111,6 @@ export default class Placment extends Component {
       const firstValidNamepsace =
         this.namespaces.find(item => !item.disabled) || {}
       set(this.state.formData, 'namespace', firstValidNamepsace.value || '')
-      set(
-        this.state.formData,
-        'runtime_id',
-        firstValidNamepsace.opRuntime || ''
-      )
     }
 
     Object.assign(this.props.formData, this.state.formData)
@@ -171,15 +165,8 @@ export default class Placment extends Component {
     const form = this.formRef.current
     form &&
       form.validate(() => {
-        const namespace = this.state.formData.namespace
-        const runtime_id = (
-          this.projectStore.list.data.find(item => item.name === namespace) ||
-          {}
-        ).opRuntime
-
         Object.assign(this.props.formData, {
           ...this.state.formData,
-          runtime_id,
         })
         this.hideForm()
       })

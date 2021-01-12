@@ -18,7 +18,7 @@
 
 import { action, observable } from 'mobx'
 
-import { STORE_QUERY_STATUS, WORKSPACE_REPO_ID } from 'configs/openpitrix/app'
+import { STORE_QUERY_STATUS } from 'configs/openpitrix/app'
 import Base from 'stores/openpitrix/base'
 
 export default class Store extends Base {
@@ -29,7 +29,7 @@ export default class Store extends Base {
   @observable
   allApps = []
 
-  defaultRepo = WORKSPACE_REPO_ID
+  defaultRepo = 'repo-helm'
 
   @action
   adjustCategory = async params =>

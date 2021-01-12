@@ -53,27 +53,41 @@ export default class Base {
   isSubmitting = false
 
   get baseUrl() {
-    return 'kapis/openpitrix.io/v1/'
+    return 'kapis/openpitrix.io/v1'
+  }
+
+  getPath({ workspace, cluster, namespace }) {
+    let path = ''
+    if (workspace) {
+      path += `/workspaces/${workspace}`
+    }
+    if (cluster) {
+      path += `/clusters/${cluster}`
+    }
+    if (namespace) {
+      path += `/namespaces/${namespace}`
+    }
+    return path
   }
 
   getUrl = ({ workspace, app_id, version_id, name } = {}) => {
     let prefix = this.baseUrl
 
     if (workspace) {
-      prefix += `workspaces/${workspace}/`
+      prefix += `/workspaces/${workspace}`
     }
 
     if (version_id) {
       const suffix = this.resourceName === 'versions' ? '' : this.resourceName
-      return `${prefix}apps/${app_id}/versions/${version_id}/${name || suffix}`
+      return `${prefix}/apps/${app_id}/versions/${version_id}/${name || suffix}`
     }
 
     if (app_id) {
       const suffix = this.resourceName === 'apps' ? '' : this.resourceName
-      return `${prefix}apps/${app_id}/${name || suffix}`
+      return `${prefix}/apps/${app_id}/${name || suffix}`
     }
 
-    return `${prefix}${name || this.resourceName}`
+    return `${prefix}/${name || this.resourceName}`
   }
 
   @action

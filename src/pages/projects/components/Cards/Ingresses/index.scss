@@ -51,3 +51,13 @@
     }
   }
 }
+
+.empty {
+  padding: 20px;
+  color: $light-color08;
+  font-size: $size-medium;
+  font-weight: 600;
+  line-height: 1.5;
+  background-color: $th-bg-color;
+  border-radius: 4px;
+}

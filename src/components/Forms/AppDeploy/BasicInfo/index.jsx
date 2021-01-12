@@ -90,7 +90,7 @@ export default class BasicInfo extends React.Component {
   }
 
   render() {
-    const { formData, formRef, namespace, versionId, versionStore } = this.props
+    const { formData, formRef, namespace, versionStore } = this.props
     return (
       <div className={styles.wrapper}>
         <Form data={formData} ref={formRef}>
@@ -132,9 +132,6 @@ export default class BasicInfo extends React.Component {
                   onChange={this.handleVersionChange}
                   optionRenderer={this.versionOptionRender}
                   valueRenderer={this.versionOptionRender}
-                  disabled={!!versionId}
-                  searchable
-                  clearable
                 />
               </Form.Item>
             </Column>

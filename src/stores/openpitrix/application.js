@@ -16,25 +16,36 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, keyBy, isEmpty } from 'lodash'
+import { get, isEmpty } from 'lodash'
 import { observable, action } from 'mobx'
 
 import { getFilterString } from 'utils'
-import ObjectMapper from 'utils/object.mapper'
 import { CLUSTER_QUERY_STATUS } from 'configs/openpitrix/app'
 
 import ServiceStore from 'stores/service'
-import ServiceMonitorStore from 'stores/monitoring/service.monitor'
 import PodStore from 'stores/pod'
 
 import Base from './base'
+
+const STATUSES = {
+  creating: 'Creating',
+  active: 'Running',
+  failed: 'Failed',
+  deleting: 'Deleting',
+  upgrading: 'Upgrading',
+}
 
 const dataFormatter = data => {
   const status = get(data, 'cluster.status')
   return {
     ...data,
     ...data.cluster,
-    status: status === 'pending' ? 'failed' : status,
+    selector: {
+      'app.kubernetes.io/instance': data.cluster.name,
+      'app.kubernetes.io/name': data.app.name,
+      'app.kubernetes.io/managed-by': 'Helm',
+    },
+    status: STATUSES[status],
   }
 }
 
@@ -45,8 +56,6 @@ export default class Application extends Base {
 
   serviceStore = new ServiceStore()
 
-  serviceMonitorStore = new ServiceMonitorStore()
-
   podStore = new PodStore()
 
   @observable
@@ -54,24 +63,6 @@ export default class Application extends Base {
     data: [],
     total: 0,
     isLoading: true,
-  }
-
-  get baseUrl() {
-    return 'kapis/openpitrix.io/v1'
-  }
-
-  getPath({ workspace, cluster, namespace }) {
-    let path = ''
-    if (workspace) {
-      path += `/workspaces/${workspace}`
-    }
-    if (cluster) {
-      path += `/clusters/${cluster}`
-    }
-    if (namespace) {
-      path += `/namespaces/${namespace}`
-    }
-    return path
   }
 
   getUrl = ({ workspace, namespace, cluster, cluster_id } = {}) => {
@@ -115,7 +106,6 @@ export default class Application extends Base {
 
     if (!order && reverse === undefined) {
       order = 'status_time'
-      reverse = true
     }
 
     if (!isEmpty(filters)) {
@@ -170,69 +160,14 @@ export default class Application extends Base {
       this.getUrl({ workspace, namespace, cluster, cluster_id })
     )
 
-    if (result.services) {
-      result.services = result.services.map(ObjectMapper.services)
-    }
-
-    if (result.workloads) {
-      Object.keys(result.workloads).forEach(key => {
-        if (ObjectMapper[key]) {
-          result.workloads[key] = result.workloads[key].map(ObjectMapper[key])
-        }
-      })
-    }
-
-    try {
-      const clusterData = get(result, 'cluster.env', '')
-      this.env.data = JSON.parse(clusterData)
-    } catch (err) {}
-
     this.detail = {
       ...dataFormatter(result),
       workspace,
+      namespace,
       cluster,
     }
 
     this.isLoading = false
-  }
-
-  @action
-  async fetchComponents(params) {
-    this.components.isLoading = true
-
-    await Promise.all([
-      this.serviceStore.fetchListByK8s(params),
-      this.serviceMonitorStore.fetchListByK8s(params),
-      this.podStore.fetchListByK8s(params),
-    ])
-
-    const services = this.serviceStore.list.data
-    const serviceMonitors = this.serviceMonitorStore.list.data
-    const pods = this.podStore.list.data
-
-    if (services) {
-      const componentNameMap = keyBy(services, 'name')
-      const serviceMonitorNameMap = keyBy(serviceMonitors, 'name')
-      if (pods) {
-        pods.forEach(item => {
-          const service = item.labels.app
-          if (service && componentNameMap[service]) {
-            componentNameMap[service].podNums =
-              componentNameMap[service].podNums || 0
-            componentNameMap[service].podNums += 1
-          }
-        })
-      }
-
-      services.forEach(service => {
-        service.monitor = serviceMonitorNameMap[service.name]
-      })
-
-      this.components.data = services
-      this.components.total = services.length
-    }
-
-    this.components.isLoading = false
   }
 
   @action

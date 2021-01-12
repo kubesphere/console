@@ -73,7 +73,7 @@ export default class AppInfo extends React.PureComponent {
                 </p>
               </td>
               <td>
-                <pre className={styles.desc}>{description || '-'}</pre>
+                <p className={styles.desc}>{description || '-'}</p>
               </td>
             </tr>
           ))}

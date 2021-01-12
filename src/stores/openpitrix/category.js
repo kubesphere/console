@@ -25,10 +25,10 @@ export default class Category extends Base {
 
   getUrl = ({ category_id } = {}) => {
     if (category_id) {
-      return `${this.baseUrl}${this.resourceName}/${category_id}`
+      return `${this.baseUrl}/${this.resourceName}/${category_id}`
     }
 
-    return `${this.baseUrl}${this.resourceName}`
+    return `${this.baseUrl}/${this.resourceName}`
   }
 
   @action

@@ -110,9 +110,6 @@ export default class AddRepoModal extends Component {
         >
           <Input name="name" autoFocus={true} />
         </Form.Item>
-        <Form.Item label={t('Type')}>
-          <Input name="repoType" defaultValue="Helm" disabled />
-        </Form.Item>
         <UrlInput
           store={store}
           workspace={workspace}

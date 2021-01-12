@@ -21,7 +21,8 @@ import { Notify } from '@kube-design/components'
 import { Modal } from 'components/Base'
 
 import RepoAppModal from 'projects/components/Modals/RepoApp'
-import AppEditModal from 'components/Modals/EditBasicInfo'
+import AppEditModal from 'projects/components/Modals/AppEdit'
+import AppTemplateEditModal from 'projects/components/Modals/AppTemplateEdit'
 import DeleteModal from 'components/Modals/Delete'
 import CreateRepoModal from 'components/Modals/AppRepoCreate'
 import TemplateCreateModal from 'apps/components/Modals/AppCreate'
@@ -68,22 +69,19 @@ export default {
       })
     },
   },
-  'openpitrix.app.destroy': {
+  'openpitrix.app.template.edit': {
     on({ store, detail, success, ...props }) {
       const modal = Modal.open({
-        onOk: () => {
-          store.destroy(detail.cluster).then(() => {
+        onOk: data => {
+          store.upgrade(data, detail).then(() => {
             Modal.close(modal)
+            Notify.success({ content: `${t('Updated Successfully')}!` })
             success && success()
           })
         },
-        title: t('DESTROY_TITLE'),
-        desc: t.html('DESTROY_TIP', {
-          type: t('Application'),
-          resource: detail.name,
-        }),
-        modal: DeleteModal,
         store,
+        detail,
+        modal: AppTemplateEditModal,
         ...props,
       })
     },
@@ -273,6 +271,7 @@ export default {
         description: t('REVIEW_CONTENT_DESC'),
         canHandle: type === 'unprocessed',
         modal: AppReviewModal,
+        detail,
         store,
         ...props,
       })

@@ -16,47 +16,27 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { isEmpty } from 'lodash'
 import React from 'react'
-import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 
-import { Card } from 'components/Base'
-import { flattenObject } from 'utils'
+import { Panel, CodeEditor } from 'components/Base'
 
 import styles from './index.scss'
 
 @inject('rootStore', 'detailStore')
 @observer
-export default class EnvVariables extends React.Component {
+export default class AppConfig extends React.Component {
   get store() {
     return this.props.detailStore
   }
 
   render() {
-    const { data, isLoading } = toJS(this.store.env)
-
-    if (isEmpty(data)) {
-      return null
-    }
-
-    const flattenData = Object.entries(flattenObject(data)).filter(
-      ([key]) => key !== 'Description' && key !== 'Name'
-    )
+    const { isLoading, detail } = this.store
 
     return (
-      <Card title={t('Environment Variables')} loading={isLoading}>
-        <ul className={styles.values}>
-          {flattenData.map(([key, value]) => (
-            <li key={key}>
-              <span className={styles.title}>{key}</span>
-              <span>
-                {isEmpty(value) ? JSON.stringify(value) : String(value)}
-              </span>
-            </li>
-          ))}
-        </ul>
-      </Card>
+      <Panel title={t('App Config')} loading={isLoading}>
+        <CodeEditor className={styles.yaml} value={detail.env || ''} />
+      </Panel>
     )
   }
 }

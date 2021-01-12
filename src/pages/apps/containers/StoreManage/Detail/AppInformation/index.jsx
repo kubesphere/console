@@ -21,10 +21,8 @@ import { observer, inject } from 'mobx-react'
 import { toJS } from 'mobx'
 import { get } from 'lodash'
 
-import { Card } from 'components/Base'
+import { Panel } from 'components/Base'
 import AppInfo from 'apps/components/AppInfo'
-
-import styles from './index.scss'
 
 @inject('detailStore', 'versionStore')
 @observer
@@ -45,16 +43,9 @@ export default class AppInformation extends React.Component {
     const versions = get(this.props.versionStore, 'list.data', [])
 
     return (
-      <div>
-        <h3 className={styles.title}>{t('App Information')}</h3>
-        <Card>
-          <AppInfo
-            className={styles.appInfo}
-            app={app}
-            versions={toJS(versions)}
-          />
-        </Card>
-      </div>
+      <Panel title={t('App Information')}>
+        <AppInfo app={app} versions={toJS(versions)} />
+      </Panel>
     )
   }
 }

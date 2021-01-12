@@ -16,8 +16,8 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { isEmpty } from 'lodash'
 import React from 'react'
+import { isEmpty } from 'lodash'
 import { when, toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import { Tabs } from '@kube-design/components'
@@ -28,13 +28,12 @@ import AppFileStore from 'stores/openpitrix/file'
 import { Card } from 'components/Base'
 import Markdown from 'components/Base/Markdown'
 import TextPreview from 'components/TextPreview'
-import VersionInfo from '../VersionInfo'
 
 import styles from './index.scss'
 
 const { TabPanel } = Tabs
 
-@inject('rootStore', 'detailStore')
+@inject('detailStore')
 @observer
 export default class AppTemplate extends React.Component {
   constructor(props) {
@@ -45,7 +44,6 @@ export default class AppTemplate extends React.Component {
     }
 
     this.store = props.detailStore
-    this.module = props.module
 
     this.appVersionStore = new AppVersionStore()
     this.appFileStore = new AppFileStore()
@@ -54,10 +52,6 @@ export default class AppTemplate extends React.Component {
       () => !isEmpty(this.store.detail),
       () => this.getData()
     )
-  }
-
-  get workspace() {
-    return this.props.match.params.workspace
   }
 
   getData() {
@@ -75,29 +69,6 @@ export default class AppTemplate extends React.Component {
   handleTabChange = tab => {
     this.setState({ tab })
   }
-
-  handleUpgrade = async version_id => {
-    const {
-      detail: { cluster_id, name, app_id, env },
-    } = toJS(this.store)
-    const { workspace, namespace, cluster } = this.props.match.params
-    await this.store.upgrade(
-      {
-        app_id,
-        cluster_id,
-        name,
-        version_id,
-        conf: env,
-      },
-      { workspace, namespace, cluster, cluster_id }
-    )
-
-    this.props.rootStore.routing.push(
-      `/${workspace}/clusters/${cluster}/projects/${namespace}/applications/template`
-    )
-  }
-
-  handleRollback = () => {}
 
   renderReadme() {
     const files = this.appFileStore.files
@@ -117,25 +88,6 @@ export default class AppTemplate extends React.Component {
     return <TextPreview files={files} />
   }
 
-  renderVersionInfo() {
-    const { detail } = toJS(this.store)
-    const { cluster, workspace, namespace } = this.props.match.params
-    const { data, isLoading } = toJS(this.appVersionStore.list)
-
-    return (
-      <VersionInfo
-        data={data}
-        loading={isLoading}
-        detail={detail}
-        cluster={cluster}
-        workspace={workspace}
-        namespace={namespace}
-        onUpgrade={this.handleUpgrade}
-        onRollback={this.handleRollback}
-      />
-    )
-  }
-
   render() {
     const { tab } = this.state
     return (
@@ -146,9 +98,6 @@ export default class AppTemplate extends React.Component {
           </TabPanel>
           <TabPanel label={t('Configuration Files')} name="settings">
             {this.renderSettings()}
-          </TabPanel>
-          <TabPanel label={t('Version Info')} name="version">
-            {this.renderVersionInfo()}
           </TabPanel>
         </Tabs>
       </Card>

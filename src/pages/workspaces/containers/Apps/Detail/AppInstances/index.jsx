@@ -19,18 +19,18 @@
 import React from 'react'
 import { inject } from 'mobx-react'
 
-import VersionList from 'apps/components/Lists/VersionList'
+import InstanceList from 'apps/components/Lists/InstanceList'
 
-@inject('detailStore', 'versionStore')
-export default class VersionManage extends React.Component {
+@inject('workspaceStore')
+export default class AppInstances extends React.Component {
   render() {
-    const { detailStore, versionStore, match } = this.props
-
+    const { workspaceStore } = this.props
+    const { appId, workspace } = this.props.match.params
     return (
-      <VersionList
-        appStore={detailStore}
-        versionStore={versionStore}
-        match={match}
+      <InstanceList
+        appId={appId}
+        workspace={workspace}
+        clusters={workspaceStore.clusters.data}
       />
     )
   }

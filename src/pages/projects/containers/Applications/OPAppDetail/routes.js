@@ -20,7 +20,7 @@ import { getIndexRoute } from 'utils/router.config'
 
 import ResourceStatus from './ResourceStatus'
 import AppTemplate from './AppTemplate'
-import EnvVariables from './EnvVariables'
+import AppConfig from './AppConfig'
 
 const PATH =
   '/:workspace/clusters/:cluster/projects/:namespace/applications/template/:id'
@@ -40,9 +40,9 @@ export default [
     exact: true,
   },
   {
-    path: `${PATH}/env`,
-    title: 'Environment Variables',
-    component: EnvVariables,
+    path: `${PATH}/config`,
+    title: 'App Config',
+    component: AppConfig,
     exact: true,
   },
   getIndexRoute({ path: PATH, to: `${PATH}/resource-status`, exact: true }),

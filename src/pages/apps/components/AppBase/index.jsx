@@ -45,10 +45,6 @@ export default class AppBase extends React.PureComponent {
         <dl>
           <dt>{t('Category')}:</dt>
           <dd>{getAppCategoryNames(get(app, 'category_set', []))}</dd>
-          <dt>
-            {t('Provider')}({t('Workspace')}):
-          </dt>
-          <dd>{app.isv || '-'}</dd>
           <dt>{t('Homepage')}:</dt>
           <dd>{app.home || '-'} </dd>
           <dt>{t('Published Date')}:</dt>

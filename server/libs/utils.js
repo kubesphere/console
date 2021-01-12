@@ -22,7 +22,6 @@ const NodeCache = require('node-cache')
 const get = require('lodash/get')
 const merge = require('lodash/merge')
 const isEmpty = require('lodash/isEmpty')
-const pathToRegex = require('path-to-regexp')
 
 const MANIFEST_CACHE_KEY = 'MANIFEST_CACHE_KEY'
 
@@ -82,8 +81,7 @@ const isValidReferer = path =>
  * @param path  koa ctx.path
  */
 const isAppsRoute = path => {
-  const regex = pathToRegex('/apps/app-(.*)')
-  return path === '/apps' || regex.exec(path)
+  return path === '/apps' || /\/apps\/?(app-([-0-9a-z]*)\/?)?$/.exec(path)
 }
 
 /**

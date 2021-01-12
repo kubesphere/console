@@ -28,6 +28,8 @@ module.exports = {
   'App Categories': 'Categorias de Aplicación',
   'App Category': 'Categoria de Aplicación',
   'App Config': 'Configuración de Aplicación',
+  'Current App Config': 'Current App Config',
+  'New App Config': 'New App Config',
   'App Deploy': 'Despliegue de Aplicación',
   'App Description': 'Descripción de Aplicación',
   'App Details': 'Detalles de Aplicación',
@@ -45,8 +47,7 @@ module.exports = {
   'App Version': 'Versión de Aplicación',
   'App Version Types': 'Tipos de Versión de Aplicación',
   'Application Name': 'Nombre de Application',
-  'Application Number / Rejection Reason':
-    'Número de Aplicación / Motivo de Rechazo',
+  'Rejection Reason': 'Motivo de Rechazo',
   'Application Version': 'Versión de Aplicación',
   'Apps Management': 'Gestión de Alicaciones',
   'Base Info': 'Info Base',

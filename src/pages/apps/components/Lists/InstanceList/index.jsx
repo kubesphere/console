@@ -17,77 +17,52 @@
  */
 
 import React from 'react'
+import classNames from 'classnames'
 import { observer } from 'mobx-react'
-import PropTypes from 'prop-types'
-import classnames from 'classnames'
-import { isEmpty } from 'lodash'
+import { get, isEmpty } from 'lodash'
 import {
   Level,
   LevelLeft,
   LevelRight,
-  Pagination,
   Loading,
+  Pagination,
   InputSearch,
   Button,
 } from '@kube-design/components'
 
-import { Card } from 'components/Base'
-
-import InstanceStore from 'stores/openpitrix/instance'
+import { Panel } from 'components/Base'
+import ClusterSelect from 'workspaces/components/ResourceTable/ClusterSelect'
+import ApplicationStore from 'stores/openpitrix/application'
 import InstanceItem from './Item'
 
 import styles from './index.scss'
 
 @observer
 export default class InstanceList extends React.Component {
-  static propTypes = {
-    title: PropTypes.string,
-    appId: PropTypes.string,
-    versionId: PropTypes.string,
-    hideHeader: PropTypes.bool,
-    hideFooter: PropTypes.bool,
-    onSearch: PropTypes.func,
-    onRefresh: PropTypes.func,
-    onPage: PropTypes.func,
-  }
-
-  static defaultProps = {
-    title: '',
-    appId: '',
-    versionId: '',
-    hideHeader: false,
-    hideFooter: false,
-    onSearch() {},
-    onRefresh() {},
-    onPage() {},
-  }
-
   constructor(props) {
     super(props)
 
     this.state = {
       uploadModal: false,
+      cluster: get(props, 'clusters[0].name', ''),
     }
 
-    this.store = new InstanceStore()
+    this.store = new ApplicationStore()
   }
 
   componentDidMount() {
     this.fetchData()
   }
 
-  get isTable() {
-    const { hideHeader, hideFooter } = this.props
-    return !hideHeader || !hideFooter
-  }
-
   fetchData = (params = {}) => {
-    const { appId, versionId } = this.props
+    const { appId, versionId, workspace } = this.props
+    const { cluster } = this.state
 
     this.store.fetchList({
       app_id: appId,
       version_id: versionId,
-      noLimit: true,
+      workspace,
+      cluster,
       ...params,
     })
   }
@@ -112,8 +87,38 @@ export default class InstanceList extends React.Component {
     this.fetchData({ page })
   }
 
+  handleClusterChange = cluster => {
+    this.setState({ cluster }, () => {
+      this.fetchData()
+    })
+  }
+
+  renderClusters() {
+    const { clusters } = this.props
+
+    if (isEmpty(clusters)) {
+      return null
+    }
+
+    const options = clusters.map(item => ({
+      label: item.name,
+      value: item.name,
+      disabled: !item.isReady,
+      cluster: item,
+    }))
+
+    return (
+      <ClusterSelect
+        clusters={options}
+        cluster={this.state.cluster}
+        onChange={this.handleClusterChange}
+      />
+    )
+  }
+
   renderHeader = () => (
     <div className={styles.header}>
+      {this.renderClusters()}
       <InputSearch
         className={styles.search}
         name="search"
@@ -127,29 +132,27 @@ export default class InstanceList extends React.Component {
   )
 
   renderContent() {
+    const { versionId } = this.props
     const { data, isLoading } = this.store.list
 
-    const content = (
+    if (isLoading) {
+      return <Loading className={styles.loading} />
+    }
+
+    return (
       <div className={styles.body}>
         {isEmpty(data) ? (
           <div className={styles.empty}>{t('RESOURCE_NOT_FOUND')}</div>
         ) : (
           data.map(item => (
             <InstanceItem
-              key={item.cluster.cluster_id}
+              key={item.name}
               detail={item}
-              store={this.store}
-              showVersion={!this.props.versionId}
+              showVersion={!versionId}
             />
           ))
         )}
       </div>
-    )
-
-    return this.isTable ? (
-      <Loading spinning={isLoading}>{content}</Loading>
-    ) : (
-      content
     )
   }
 
@@ -173,28 +176,18 @@ export default class InstanceList extends React.Component {
 
   render() {
     const { className, title, hideHeader, hideFooter } = this.props
-    const { data, isLoading } = this.store.list
-    const isTable = this.isTable
 
     return (
-      <div className={styles.wrapper}>
-        <div className={styles.title}>{t(title)}</div>
-        <Card
-          className={classnames(styles.main, className, {
-            [styles.table]: isTable,
-            [styles.versionBg]: hideHeader,
-          })}
-          empty={t('NOT_AVAILABLE', { resource: t('Version') })}
-          isEmpty={!isTable && !hideHeader && isEmpty(data)}
-          loading={!isTable && isLoading}
-        >
-          <div className={styles.inner}>
-            {!hideHeader && this.renderHeader()}
-            {this.renderContent()}
-            {!hideFooter && this.renderFooter()}
-          </div>
-        </Card>
-      </div>
+      <Panel
+        className={classNames(styles.main, className)}
+        title={title || t('App Instances')}
+      >
+        <div className={styles.inner}>
+          {!hideHeader && this.renderHeader()}
+          {this.renderContent()}
+          {!hideFooter && this.renderFooter()}
+        </div>
+      </Panel>
     )
   }
 }

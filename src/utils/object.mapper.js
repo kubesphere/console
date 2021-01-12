@@ -150,7 +150,6 @@ const NamespaceMapper = item => ({
   annotations: get(item, 'metadata.annotations', {}),
   workspace: get(item, 'metadata.labels["kubesphere.io/workspace"]', ''),
   status: get(item, 'status.phase'),
-  opRuntime: get(item, 'metadata.annotations.openpitrix_runtime'),
   isFedHostNamespace:
     get(item, 'metadata.labels["kubesphere.io/kubefed-host-namespace"]') ===
     'true',
@@ -737,7 +736,7 @@ const getApplicationStatus = item => {
       return 'Error'
     }
     if (condition.type === 'Ready' && condition.status === 'True') {
-      return 'Ready'
+      return 'Running'
     }
   }
 

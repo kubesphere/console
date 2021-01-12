@@ -186,7 +186,7 @@ export default {
     on({ store, cluster, namespace, success, ...props }) {
       const serviceMonitorStore = new ServiceMonitorStore()
       const formTemplate = FORM_TEMPLATES.servicemonitors({
-        name: get(store, 'components.data[0].name'),
+        name: '',
         namespace,
       })
       const modal = Modal.open({
@@ -212,7 +212,7 @@ export default {
         cluster,
         namespace,
         formTemplate,
-        appStore: store,
+        app: store.detail,
         store: serviceMonitorStore,
         modal: ServiceMonitorModal,
         ...props,

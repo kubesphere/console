@@ -69,11 +69,11 @@ export default class AuditRecord extends React.Component {
       width: '15%',
     },
     {
-      title: t('Application Number / Rejection Reason'),
-      dataIndex: 'review_id',
+      title: t('Rejection Reason'),
+      key: 'reject',
       isHideable: true,
       width: '40%',
-      render: (reviewId, item) => item.message || reviewId || '-',
+      render: (reviewId, item) => item.message || '-',
     },
     {
       title: t('Operator'),

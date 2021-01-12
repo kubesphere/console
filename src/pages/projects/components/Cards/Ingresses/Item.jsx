@@ -50,7 +50,7 @@ const Card = ({ detail, gateway, prefix }) => {
       <div className={styles.content}>
         <Icon name="loadbalancer" size={40} />
         <div className={styles.text}>
-          <Link to={`${prefix}/${detail.name}`}>{detailName}</Link>
+          <Link to={`${prefix}/ingresses/${detail.name}`}>{detailName}</Link>
           <p>hostname: {detail.rules.map(rule => rule.host).join(', ')}</p>
         </div>
       </div>
