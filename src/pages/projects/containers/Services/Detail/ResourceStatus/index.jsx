@@ -22,6 +22,7 @@ import { observer, inject } from 'mobx-react'
 
 import { Panel, Text } from 'components/Base'
 import PodsCard from 'components/Cards/Pods'
+import WorkloadsCard from 'projects/components/Cards/Workloads'
 import Placement from 'projects/components/Cards/Placement'
 
 import Ports from '../Ports'
@@ -82,6 +83,21 @@ export default class ResourceStatus extends React.Component {
     )
   }
 
+  renderWorkloads() {
+    const detail = toJS(this.store.detail)
+    const { cluster, namespace } = detail
+
+    return (
+      <WorkloadsCard
+        selector={detail.selector}
+        cluster={cluster}
+        namespace={namespace}
+        prefix={this.prefix}
+        module={`${detail.workloadType.toLowerCase()}s`}
+      />
+    )
+  }
+
   renderContent() {
     const { detail } = this.store
 
@@ -93,6 +109,7 @@ export default class ResourceStatus extends React.Component {
       <div>
         {this.renderPlacement()}
         {this.renderPorts()}
+        {this.renderWorkloads()}
         {this.renderPods()}
       </div>
     )

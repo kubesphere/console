@@ -25,6 +25,7 @@ import classnames from 'classnames'
 import { Tooltip, Icon } from '@kube-design/components'
 import { Text } from 'components/Base'
 import ServiceAccess from 'projects/components/ServiceAccess'
+import WorkloadStatus from 'projects/components/WorkloadStatus'
 import { getDisplayName } from 'utils'
 
 import styles from './index.scss'
@@ -69,7 +70,19 @@ export default class ServiceItem extends React.Component {
           }
           description={t(detail.type)}
         />
-        <Text title={detail.podNums} description={t('Replicas')} />
+        <Text
+          title={
+            detail.workload ? (
+              <WorkloadStatus
+                data={detail.workload}
+                module={`${detail.workloadType.toLowerCase()}s`}
+              />
+            ) : (
+              '-'
+            )
+          }
+          description={t('Resource Status')}
+        />
         <Text
           title={
             get(detail, 'annotations["servicemesh.kubesphere.io/enabled"]') ===

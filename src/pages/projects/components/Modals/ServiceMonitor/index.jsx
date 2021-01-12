@@ -17,7 +17,8 @@
  */
 
 import React, { Component } from 'react'
-import { get, set } from 'lodash'
+import { cloneDeep, get, set, unset } from 'lodash'
+import { toJS } from 'mobx'
 import { Form, Columns, Column } from '@kube-design/components'
 import { Modal, TypeSelect } from 'components/Base'
 import { ArrayInput, NumberInput } from 'components/Inputs'
@@ -35,7 +36,7 @@ export default class ServiceMonitor extends Component {
   secretStore = new SecretStore()
 
   state = {
-    selectServiceName: get(this.props.formTemplate, 'metadata.name'),
+    formTemplate: {},
   }
 
   get services() {
@@ -64,17 +65,26 @@ export default class ServiceMonitor extends Component {
   componentDidMount() {
     const { cluster, namespace } = this.props
     this.secretStore.fetchListByK8s({ cluster, namespace })
+    this.handleServiceChange(get(this.props.formTemplate, 'metadata.name'))
   }
 
   handleServiceChange = name => {
-    this.setState(() => {
-      set(this.props.formTemplate, 'spec.endpoints', this.defaultEndpoints)
-      return { selectServiceName: name }
-    })
+    const serviceMontor = this.store.serviceMonitorStore.list.data.find(
+      item => item.name === name
+    )
+    if (serviceMontor && serviceMontor._originData) {
+      this.setState({ formTemplate: toJS(serviceMontor._originData) })
+    } else {
+      const formTemplate = cloneDeep(this.props.formTemplate)
+      set(formTemplate, 'metadata.name', name)
+      unset(formTemplate, 'spec.endpoints')
+      this.setState({ formTemplate })
+    }
   }
 
   handleOk = data => {
     const { onOk } = this.props
+    const name = get(data, 'metadata.name')
     const interval = get(data, 'spec.interval')
     const scrapeTimeout = get(data, 'spec.scrapeTimeout')
     const endpoints = get(data, 'spec.endpoints', [])
@@ -84,7 +94,7 @@ export default class ServiceMonitor extends Component {
     })
 
     const selectService = this.store.components.data.find(
-      item => item.name === this.state.selectServiceName
+      item => item.name === name
     )
     set(data, 'spec.selector.matchLabels', selectService.labels)
     set(data, 'metadata.labels', {
@@ -96,16 +106,11 @@ export default class ServiceMonitor extends Component {
   }
 
   render() {
-    const {
-      visible,
-      workspace,
-      formTemplate,
-      isSubmitting,
-      onCancel,
-    } = this.props
+    const { visible, workspace, isSubmitting, onCancel } = this.props
+    const { formTemplate } = this.state
     const { cluster, namespace } = this.store.detail
     const selectService = this.store.components.data.find(
-      item => item.name === this.state.selectServiceName
+      item => item.name === get(formTemplate, 'metadata.name')
     )
 
     return (
