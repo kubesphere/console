@@ -55,6 +55,7 @@ import AlertMessages from '../containers/Alerting/Messages'
 import AlertPolicies from '../containers/Alerting/Policies'
 import MailServer from '../containers/MailServices'
 import LogCollections from '../containers/LogCollections'
+import CustomMonitoring from '../containers/CustomMonitoring'
 
 import detail from './detail'
 
@@ -243,6 +244,11 @@ export default [
           {
             path: `${PATH}/log-collections/:component`,
             component: LogCollections,
+          },
+          {
+            path: `${PATH}/custom-monitoring`,
+            component: CustomMonitoring,
+            exact: true,
           },
           getIndexRoute({ path: PATH, to: `${PATH}/overview`, exact: true }),
           getIndexRoute({

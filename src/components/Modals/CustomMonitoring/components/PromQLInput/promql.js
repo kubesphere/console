@@ -16,6 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { get } from 'lodash'
 import Prism from 'prismjs'
 import grammar from './grammar'
 import 'prismjs/themes/prism.css'
@@ -88,7 +89,7 @@ export const PUNCTUATION_MAP = {
   "'": "'",
 }
 
-export const OPERATORS = ['(', '[', '{', '"', "'", '""', "''", '=']
+export const OPERATORS = ['(', '[', '{', '"', "'", '""', "''", '=', ',']
 
 export const highlightPromql = text =>
   Prism.highlight(text, Prism.languages.promql, 'promql')
@@ -107,12 +108,24 @@ export const getTokenContext = (parent, current) => {
     .join('.')
 
   const context = {}
-  if (tokenType.indexOf('context-labels') > -1) {
-    const text = nodes[0].textContent.replace(/{/g, '')
-    if (text.indexOf('=') > -1) {
-      const [label, value] = text.split('=')
-      context.label = label || ''
-      context.value = value || ''
+  const parentNodeType = current.parentNode.className
+  if (parentNodeType.indexOf('label-key') > -1) {
+    context.label = ''
+  } else if (parentNodeType.indexOf('label-value') > -1) {
+    context.label = get(
+      current,
+      'parentNode.previousSibling.previousSibling.textContent',
+      ''
+    )
+    context.value = ''
+  } else if (parentNodeType.indexOf('context-labels') > -1) {
+    if (!current.previousSibling) {
+      context.label = ''
+    } else if (current.previousSibling.className.indexOf('label-key') > -1) {
+      context.label = current.previousSibling.textContent.replace(/{,/g, '')
+      context.value = ''
+    } else if (current.previousSibling.className.indexOf('label-value') > -1) {
+      context.label = current.textContent.replace(/{,/g, '')
     }
   }
 

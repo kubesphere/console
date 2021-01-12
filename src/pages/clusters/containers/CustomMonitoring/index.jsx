@@ -24,12 +24,12 @@ import Table from 'components/Tables/List'
 
 import { getLocalTime, getDisplayName } from 'utils'
 
-import Dashboard from 'stores/dashboard'
+import MonitoringDashboard from 'stores/clusterdashboard'
 
 import styles from './index.scss'
 
 @withList({
-  store: new Dashboard(),
+  store: new MonitoringDashboard(),
   module: 'clusterdashboards',
   authKey: 'custom-monitoring',
   name: 'CustomMonitorDashboard',
@@ -106,7 +106,7 @@ export default class CustomMonitoringDashboards extends React.Component {
   showCreate = () => {
     this.props.trigger('custom.monitoring.create', {
       ...this.props.match.params,
-      module: 'dashboards',
+      module: 'clusterdashboards',
     })
   }
 

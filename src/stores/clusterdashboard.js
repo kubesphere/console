@@ -20,8 +20,8 @@ import { action } from 'mobx'
 import Base from 'stores/base'
 import List from 'stores/federated.list'
 
-export default class CustomMonitoringDashboardStore extends Base {
-  module = 'dashboards'
+export default class DashboardStore extends Base {
+  module = 'clusterdashboards'
 
   list = new List()
 

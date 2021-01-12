@@ -20,6 +20,7 @@ import { isEmpty } from 'lodash'
 import React, { Component } from 'react'
 import classNames from 'classnames'
 import isEqual from 'react-fast-compare'
+import Fuse from 'fuse.js'
 
 import { RATE_RANGES, FUNCTIONS } from '../grammar'
 
@@ -31,10 +32,6 @@ const searchFunctions = value => {
   return FUNCTIONS.filter(func => func.label.indexOf(value) >= 0)
 }
 
-const searchMetrics = (metrics, value) => {
-  return metrics.filter(metric => metric.value.indexOf(value) >= 0)
-}
-
 const searchRateRanges = value => {
   if (value === '[') {
     return RATE_RANGES
@@ -44,6 +41,11 @@ const searchRateRanges = value => {
 }
 
 const searchLabels = (labelsets = {}, value, tokenType) => {
+  const keys = Object.keys(labelsets)
+  if (value === '{' || value === ',') {
+    return keys.map(key => ({ value: key }))
+  }
+
   if (tokenType.label) {
     const values = labelsets[tokenType.label] || []
     if (value === '=') {
@@ -53,13 +55,9 @@ const searchLabels = (labelsets = {}, value, tokenType) => {
       return values.map(key => ({ value: key }))
     }
     return values
+      .map(key => `"${key}"`)
       .filter(val => val.indexOf(value) >= 0)
       .map(val => ({ value: val }))
-  }
-
-  const keys = Object.keys(labelsets)
-  if (value === '{') {
-    return keys.map(key => ({ value: key }))
   }
 
   return keys
@@ -88,6 +86,7 @@ export default class Suggestions extends Component {
   }
 
   componentDidMount() {
+    this.fuse = new Fuse(this.props.metrics.map(item => item.value))
     this.getSuggestions()
     document.addEventListener('keydown', this.handleKeyDown)
   }
@@ -96,9 +95,13 @@ export default class Suggestions extends Component {
     if (
       prevProps.value !== this.props.value ||
       !isEqual(prevProps.tokenContext, this.props.tokenContext) ||
-      !isEqual(prevProps.metrics, this.props.metrics) ||
       !isEqual(prevProps.labelsets, this.props.labelsets)
     ) {
+      this.getSuggestions()
+    }
+
+    if (!isEqual(prevProps.metrics, this.props.metrics)) {
+      this.fuse = new Fuse(this.props.metrics.map(item => item.value))
       this.getSuggestions()
     }
   }
@@ -164,8 +167,14 @@ export default class Suggestions extends Component {
     }
   }
 
+  searchMetrics = value => {
+    return this.fuse.search(value, { limit: 50 }).map(item => ({
+      value: item.item,
+    }))
+  }
+
   getSuggestions() {
-    const { value, metrics: _metrics, labelsets, tokenContext } = this.props
+    const { value, labelsets, tokenContext } = this.props
 
     let functions = []
     let metrics = []
@@ -176,7 +185,7 @@ export default class Suggestions extends Component {
       labels = searchLabels(labelsets, value, tokenContext)
     } else {
       functions = searchFunctions(value)
-      metrics = searchMetrics(_metrics, value)
+      metrics = this.searchMetrics(value)
       rateRanges = searchRateRanges(value)
     }
 

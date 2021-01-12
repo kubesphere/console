@@ -57,6 +57,17 @@ export default class PanelMonitor {
     return this.config.targets || []
   }
 
+  getPath({ cluster, namespace } = {}) {
+    let path = ''
+    if (cluster) {
+      path += `/klusters/${cluster}`
+    }
+    if (namespace) {
+      path += `/namespaces/${namespace}`
+    }
+    return path
+  }
+
   get id() {
     return this.config.id
   }
@@ -201,9 +212,10 @@ export default class PanelMonitor {
 
     const response =
       (await request.get(
-        `${this.apiVersion}${
-          cluster ? `/klusters/${cluster}` : ''
-        }/namespaces/${namespace}/targets/query`,
+        `${this.apiVersion}${this.getPath({
+          cluster,
+          namespace,
+        })}/targets/query`,
         {
           expr,
           step,

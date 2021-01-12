@@ -24,7 +24,7 @@ import { toJS } from 'mobx'
 
 import { ICON_TYPES } from 'utils/constants'
 import { startAutoRefresh, stopAutoRefresh } from 'utils/monitoring'
-import DashboardStore from 'stores/dashboard'
+import OverviewStore from 'stores/overview'
 import ProjectMonitorStore from 'stores/monitoring/project'
 
 import {
@@ -71,7 +71,7 @@ class ResourceUsage extends React.Component {
       range: 43200,
     }
 
-    this.dashboardStore = new DashboardStore()
+    this.overviewStore = new OverviewStore()
     this.appResourceMonitorStore = new ProjectMonitorStore()
     this.physicalResourceMonitorStore = new ProjectMonitorStore()
 
@@ -122,7 +122,7 @@ class ResourceUsage extends React.Component {
 
   fetchData = (params = {}) => {
     this.fetchMetrics()
-    this.dashboardStore.fetchResourceStatus({
+    this.overviewStore.fetchResourceStatus({
       ...params,
       ...this.props.match.params,
       cluster: this.props.cluster,
@@ -157,7 +157,7 @@ class ResourceUsage extends React.Component {
   }
 
   getResourceData = () => {
-    const { quota = {}, status = {} } = toJS(this.dashboardStore.resource)
+    const { quota = {}, status = {} } = toJS(this.overviewStore.resource)
     const used = quota.used || {}
 
     return [
@@ -231,7 +231,7 @@ class ResourceUsage extends React.Component {
   clusterRenderer = option => `${t('Cluster')}: ${option.value}`
 
   renderApplicationResource() {
-    const { isLoading } = toJS(this.dashboardStore.resource)
+    const { isLoading } = toJS(this.overviewStore.resource)
     const {
       data: metrics,
       isLoading: isMetricsLoading,

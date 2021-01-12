@@ -177,6 +177,7 @@ client:
                 icon: hammer,
                 clusterModule: 'alerting',
               }
+            - { name: custom-monitoring, title: Custom Monitoring }
         - name: cluster-settings
           title: Cluster Settings
           icon: cogwheel
