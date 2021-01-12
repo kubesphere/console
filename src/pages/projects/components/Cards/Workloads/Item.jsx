@@ -22,10 +22,11 @@ import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 import { List } from 'components/Base'
-import { getLocalTime, getDisplayName } from 'utils'
-import { getWorkloadStatus } from 'utils/status'
-import { ICON_TYPES, S2I_STATUS_DESC } from 'utils/constants'
 import StatusReason from 'projects/components/StatusReason'
+import WorkloadStatus from 'projects/components/WorkloadStatus'
+import { getLocalTime, getDisplayName } from 'utils'
+import { ICON_TYPES } from 'utils/constants'
+import { getWorkloadStatus } from 'utils/status'
 
 import styles from './index.scss'
 
@@ -41,31 +42,8 @@ export default class WorkloadItem extends React.Component {
     detail: {},
   }
 
-  getStatus = detail => getWorkloadStatus(detail, detail.type)
-
-  getTotal = detail => {
-    let num
-    if (detail.type === 'deployments') {
-      num = detail.podNums || detail.desire || 0
-    } else if (detail.type === 'statefulsets') {
-      num = detail.podNums || detail.desire || 0
-    }
-
-    return num
-  }
-
-  getReady = detail => {
-    let num
-    if (detail.type === 'deployments') {
-      num = detail.availablePodNums || detail.available || 0
-    } else if (detail.type === 'statefulsets') {
-      num = detail.readyPodNums || detail.available || 0
-    }
-
-    return num
-  }
-
-  getDescription(reason, status, detail) {
+  getDescription(detail, module) {
+    const { status, reason } = getWorkloadStatus(detail, module)
     if (reason) {
       return <StatusReason status={status} reason={t(reason)} data={detail} />
     }
@@ -78,27 +56,16 @@ export default class WorkloadItem extends React.Component {
     return `${t('Created at')} ${getLocalTime(createTime).fromNow()}`
   }
 
-  renderExtra() {}
-
   render() {
-    const { detail, prefix } = this.props
+    const { detail, prefix, module } = this.props
 
     if (!detail) {
       return null
     }
 
-    const { status, reason } = this.getStatus(detail)
-    const detailName = getDisplayName(detail)
-
     const details = [
       {
-        title: detail.hasS2i ? (
-          <span>{t(S2I_STATUS_DESC[status])}</span>
-        ) : (
-          <span>
-            {t(status)}&nbsp;({this.getReady(detail)}/{this.getTotal(detail)})
-          </span>
-        ),
+        title: <WorkloadStatus data={detail} module={module} />,
         description: t('Status'),
       },
     ]
@@ -117,16 +84,14 @@ export default class WorkloadItem extends React.Component {
 
     return (
       <List.Item
-        icon={ICON_TYPES[detail.type]}
-        status={status}
+        icon={ICON_TYPES[module]}
         className={styles.item}
         title={
           <Link to={`${prefix}/${detail.type}/${detail.name}`}>
-            {detailName}
+            {getDisplayName(detail)}
           </Link>
         }
-        description={this.getDescription(reason, status, detail)}
-        extra={this.renderExtra()}
+        description={this.getDescription(detail, module)}
         details={details}
       />
     )

@@ -24,8 +24,8 @@ import { TIME_MICROSECOND_MAP, MODULE_KIND_MAP } from 'utils/constants'
 import { transformTraces } from 'utils/tracing'
 
 import ServiceStore from 'stores/service'
+import WorkloadStore from 'stores/workload'
 import ServiceMonitorStore from 'stores/monitoring/service.monitor'
-import PodStore from 'stores/pod'
 
 import Base from 'stores/base'
 
@@ -56,7 +56,6 @@ export default class ApplicationStore extends Base {
 
     this.serviceStore = new ServiceStore()
     this.serviceMonitorStore = new ServiceMonitorStore()
-    this.podStore = new PodStore()
   }
 
   @observable
@@ -101,32 +100,31 @@ export default class ApplicationStore extends Base {
   async fetchComponents(params) {
     this.components.isLoading = true
 
+    const deployStore = new WorkloadStore('deployments')
+    const stsStore = new WorkloadStore('statefulsets')
+
     await Promise.all([
       this.serviceStore.fetchListByK8s(params),
       this.serviceMonitorStore.fetchListByK8s(params),
-      this.podStore.fetchListByK8s(params),
+      deployStore.fetchListByK8s(params),
+      stsStore.fetchListByK8s(params),
     ])
 
     const services = this.serviceStore.list.data
+    const workloads = {
+      Deployment: deployStore.list.data,
+      StatefulSet: stsStore.list.data,
+    }
     const serviceMonitors = this.serviceMonitorStore.list.data
-    const pods = this.podStore.list.data
 
     if (services) {
-      const componentNameMap = keyBy(services, 'name')
       const serviceMonitorNameMap = keyBy(serviceMonitors, 'name')
-      if (pods) {
-        pods.forEach(item => {
-          const service = item.labels.app
-          if (service && componentNameMap[service]) {
-            componentNameMap[service].podNums =
-              componentNameMap[service].podNums || 0
-            componentNameMap[service].podNums += 1
-          }
-        })
-      }
 
       services.forEach(service => {
         service.monitor = serviceMonitorNameMap[service.name]
+        service.workload = workloads[service.workloadType].find(
+          item => get(item, 'labels.app') === service.name
+        )
       })
 
       this.components.data = services

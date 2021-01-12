@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, set } from 'lodash'
+import { get, set, isEmpty } from 'lodash'
 import { Notify } from '@kube-design/components'
 import { Modal } from 'components/Base'
 import { mergeLabels, updateFederatedAnnotations } from 'utils'
@@ -133,6 +133,8 @@ export default {
 
           if (!result.exist) {
             await serviceMonitorStore.create(data, { cluster, namespace })
+          } else if (isEmpty(get(data, 'spec.endpoints'))) {
+            await serviceMonitorStore.delete({ name, cluster, namespace })
           } else {
             await serviceMonitorStore.update({ name, cluster, namespace }, data)
           }

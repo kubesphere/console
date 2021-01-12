@@ -20,28 +20,47 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { isEmpty } from 'lodash'
+import { observer } from 'mobx-react'
+
+import WorkloadStore from 'stores/workload'
 
 import { Panel, List } from 'components/Base'
+import { joinSelector } from 'utils'
 import Item from './Item'
 
 import styles from './index.scss'
 
+@observer
 export default class WorkloadsCard extends React.Component {
   static propTypes = {
     className: PropTypes.string,
     prefix: PropTypes.string,
-    data: PropTypes.array,
-    isLoading: PropTypes.bool,
+    selector: PropTypes.object,
+    module: PropTypes.string,
   }
 
   static defaultProps = {
     prefix: '',
-    data: [],
-    isLoading: false,
+    selector: {},
+    module: 'deployments',
+  }
+
+  store = new WorkloadStore(this.props.module)
+
+  componentDidMount() {
+    const { selector, cluster, namespace } = this.props
+    if (!isEmpty(selector)) {
+      this.store.fetchListByK8s({
+        cluster,
+        namespace,
+        labelSelector: joinSelector(selector),
+      })
+    }
   }
 
   renderContent() {
-    const { data, isLoading, prefix } = this.props
+    const { prefix, module } = this.props
+    const { data, isLoading } = this.store.list
 
     if (isEmpty(data) && !isLoading) {
       return (
@@ -58,6 +77,7 @@ export default class WorkloadsCard extends React.Component {
             key={`${workload.type}-${workload.name}`}
             prefix={prefix}
             detail={workload}
+            module={module}
           />
         ))}
       </List>
