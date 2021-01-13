@@ -20,11 +20,44 @@ import React from 'react'
 import { observer } from 'mobx-react'
 import { Form, Input, Select, Tag } from '@kube-design/components'
 
-import { pick } from 'lodash'
+import { pick, get } from 'lodash'
 import styles from './index.scss'
 
 @observer
 export default class GitLabForm extends React.Component {
+  state = {
+    serverList: [],
+    projectList: [],
+  }
+
+  async componentDidMount() {
+    const { devops, cluster } = this.props
+
+    const serverList = await this.props.store.fetchGitLabServerList({
+      devops,
+      cluster,
+    })
+    this.setState({
+      serverList,
+    })
+  }
+
+  getGitLabOwner = async e => {
+    const owner = e.target.value
+    const { devops, cluster } = this.props
+    const { formData } = this.props.store
+    const server = get(formData, 'gitlab_source.server_name', '')
+
+    const projectList = await this.props.store.fetchGitLabProjectList({
+      devops,
+      cluster,
+      owner,
+      server,
+    })
+
+    this.setState({ projectList })
+  }
+
   getCredentialsListData = params => {
     const { devops, cluster } = this.props
     return this.props.store.getCredentials({ devops, cluster, ...params })
@@ -52,17 +85,22 @@ export default class GitLabForm extends React.Component {
   render() {
     const { formData, credentials } = this.props.store
     const { formRef } = this.props
+    const { serverList, projectList } = this.state
+
     return (
       <div className={styles.card}>
         <Form data={formData} ref={formRef}>
-          <Form.Item label={t('Gitlab Server')}>
-            <Input name="gitlab_source.server_name" />
+          <Form.Item
+            label={t('Gitlab Server')}
+            rules={[{ required: true, message: t('This param is required') }]}
+          >
+            <Select name="gitlab_source.server_name" options={serverList} />
           </Form.Item>
           <Form.Item label={t('Gitlab Owner')}>
-            <Input name="gitlab_source.owner" />
+            <Input name="gitlab_source.owner" onBlur={this.getGitLabOwner} />
           </Form.Item>
           <Form.Item label={t('Repository Name')}>
-            <Input name="gitlab_source.repo" />
+            <Select name="gitlab_source.repo" options={projectList} />
           </Form.Item>
           <Form.Item
             label={t('Credential')}

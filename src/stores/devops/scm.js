@@ -365,4 +365,50 @@ export default class SCMStore extends BaseStore {
         name: pipeline,
       }
     )
+
+  @action
+  fetchGitLabServerList = async ({ cluster, devops }) => {
+    const url = `${this.getDevopsUrlV2({
+      cluster,
+    })}${devops}/jenkins/gitlab/serverList`
+
+    const result = await this.request.get(url, {}, {}, () => {
+      return []
+    })
+
+    let serverList = []
+
+    if (result.status === 'ok' && isArray(result.data)) {
+      serverList =
+        !isEmpty(result.data) &&
+        result.data.map(item => {
+          return { label: item.name, value: item.name }
+        })
+    }
+
+    return serverList
+  }
+
+  @action
+  fetchGitLabProjectList = async ({ cluster, devops, server, owner }) => {
+    const url = `${this.getDevopsUrlV2({
+      cluster,
+    })}${devops}/jenkins/gitlab/projectList`
+
+    let projectList = []
+
+    const result = await this.request.get(url, { server, owner }, {}, () => {
+      return []
+    })
+
+    if (result.status === 'ok' && isArray(result.data)) {
+      projectList =
+        !isEmpty(result.data) &&
+        result.data.map(item => {
+          return { label: item, value: item }
+        })
+    }
+
+    return projectList
+  }
 }
