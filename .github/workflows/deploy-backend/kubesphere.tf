@@ -24,6 +24,7 @@ resource "qingcloud_instance" "init"{
   login_passwd = "${var.password}"
   security_group_id ="${qingcloud_security_group.basic.id}"
   eip_id = "${var.eip_id}"
+  os_disk_size = "100"
 }
 
 resource "null_resource" "install_kubesphere" {
