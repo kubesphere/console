@@ -21,13 +21,12 @@ import { getWebSocketProtocol } from 'utils'
 
 const readyStates = ['connecting', 'open', 'closing', 'closed']
 const defaultOptions = {
-  reopenLimit: 3,
+  reopenLimit: 5,
   onopen() {},
   onmessage() {},
   onclose() {},
   onerror() {},
 }
-let reopenCount = 0
 
 export default class SocketClient {
   static composeEndpoint = (socketUrl, suffix = '') => {
@@ -45,6 +44,7 @@ export default class SocketClient {
     if (!this.endpoint) {
       throw Error(`invalid websocket endpoint: ${this.endpoint}`)
     }
+    this.reopenCount = 0
     this.setUp()
   }
 
@@ -91,9 +91,9 @@ export default class SocketClient {
 
     this.client.onclose = ev => {
       // if socket will close, try to keep alive
-      if (!this.immediately && reopenCount < this.options.reopenLimit) {
-        setTimeout(this.setUp.bind(this), 1000)
-        reopenCount++
+      if (!this.immediately && this.reopenCount < this.options.reopenLimit) {
+        setTimeout(this.setUp.bind(this), 1000 * 2 ** this.reopenCount)
+        this.reopenCount++
       }
 
       onclose && onclose(ev)
