@@ -63,7 +63,7 @@ module.exports = {
     'To use QingCloud LoadBalancer as a service gateway, please deploy the QingCloud Cloud Controller Manager plugin first.',
 
   NO_INTERNET_ACCESS_TIP:
-    'The gateway address is not found in the current project, so you cannot set the application route. Please contact your project administrator to turn it on in <strong>Internet Access</strong>.',
+    'The gateway address is not found in the current project, so you cannot use auto-generated mode. Please contact your project administrator to turn it on in <strong>Internet Access</strong>.',
   UNABLE_CREATE_ROUTE_TIP:
     'The available gateway address is not found in the current project so the application route cannot be created.',
 

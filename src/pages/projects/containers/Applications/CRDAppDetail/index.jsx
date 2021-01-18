@@ -90,10 +90,22 @@ export default class CRDAppDetail extends React.Component {
     {
       key: 'addComponent',
       icon: 'add',
-      text: t('Add Component'),
+      text: t('Add Service'),
       action: 'edit',
       onClick: () =>
-        this.trigger('crd.app.addcomponent', {
+        this.trigger('crd.app.addservice', {
+          success: this.fetchComponents,
+          detail: toJS(this.store.detail),
+          ...this.props.match.params,
+        }),
+    },
+    {
+      key: 'addRoute',
+      icon: 'add',
+      text: t('Add Route'),
+      action: 'edit',
+      onClick: () =>
+        this.trigger('crd.app.addroute', {
           success: this.fetchData,
           detail: toJS(this.store.detail),
           ...this.props.match.params,

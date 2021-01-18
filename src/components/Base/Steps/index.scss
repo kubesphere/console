@@ -60,13 +60,5 @@
   .text {
     display: inline-block;
     vertical-align: middle;
-
-    & > div {
-      @include TypographyTitleH6($dark-color07);
-    }
-
-    & > p {
-      @include TypographyParagraph($dark-color01);
-    }
   }
 }

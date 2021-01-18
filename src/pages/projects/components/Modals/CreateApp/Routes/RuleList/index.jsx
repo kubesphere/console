@@ -18,8 +18,7 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import { get, isEmpty } from 'lodash'
-import { Alert } from '@kube-design/components'
+import { get } from 'lodash'
 
 import { Text } from 'components/Base'
 import Item from 'components/Forms/Route/RouteRules/RuleList/Item'
@@ -44,14 +43,7 @@ export default class RuleList extends React.Component {
   }
 
   renderContent() {
-    const {
-      data,
-      onAdd,
-      onDelete,
-      isFederated,
-      gateway,
-      projectDetail,
-    } = this.props
+    const { data, onAdd, onDelete, projectDetail } = this.props
 
     const rules = get(data, 'spec.rules', [])
     const tls = get(data, 'spec.tls', [])
@@ -71,29 +63,20 @@ export default class RuleList extends React.Component {
               projectDetail={projectDetail}
             />
           ))}
-        {(!isEmpty(gateway) || isFederated) && (
-          <div className={styles.add} onClick={this.handleAdd}>
-            <Text
-              title={t('Add Route Rule')}
-              description={t('Add Internet access rule for the application')}
-            />
-          </div>
-        )}
+        <div className={styles.add} onClick={this.handleAdd}>
+          <Text
+            title={t('Add Route Rule')}
+            description={t('Add Internet access rule for the application')}
+          />
+        </div>
       </ul>
     )
   }
 
   render() {
-    const { gateway, isFederated, error } = this.props
+    const { error } = this.props
     return (
       <div className={styles.wrapper}>
-        {isEmpty(gateway) && !isFederated && (
-          <Alert
-            className="margin-b12"
-            message={t.html('NO_INTERNET_ACCESS_TIP')}
-            type="warning"
-          />
-        )}
         {this.renderContent()}
         {error && <p className={styles.error}>{error}</p>}
       </div>

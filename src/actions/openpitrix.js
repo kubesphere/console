@@ -21,7 +21,7 @@ import { Notify } from '@kube-design/components'
 import { Modal } from 'components/Base'
 
 import RepoAppModal from 'projects/components/Modals/RepoApp'
-import AppEditModal from 'projects/components/Modals/AppEdit'
+import AppEditModal from 'components/Modals/EditBasicInfo'
 import DeleteModal from 'components/Modals/Delete'
 import CreateRepoModal from 'components/Modals/AppRepoCreate'
 import TemplateCreateModal from 'apps/components/Modals/AppCreate'

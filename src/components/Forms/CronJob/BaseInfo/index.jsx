@@ -26,7 +26,7 @@ import {
   Select,
   TextArea,
 } from '@kube-design/components'
-import { NumberInput, SelectInput, ProjectSelect } from 'components/Inputs'
+import { NumberInput, ProjectSelect } from 'components/Inputs'
 import ToggleView from 'components/ToggleView'
 import { MODULE_KIND_MAP, PATTERN_NAME } from 'utils/constants'
 
@@ -143,9 +143,10 @@ export default class BaseInfo extends React.Component {
                 { required: true, message: t('Please input a schedule.') },
               ]}
             >
-              <SelectInput
+              <Select
                 name="spec.schedule"
                 options={this.getCronOptions()}
+                searchable
               />
             </Form.Item>
           </Column>

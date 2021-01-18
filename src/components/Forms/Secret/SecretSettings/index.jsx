@@ -18,8 +18,13 @@
 
 import { get, set, isUndefined } from 'lodash'
 import React from 'react'
-import { Form, Input, InputPassword, TextArea } from '@kube-design/components'
-import { CustomSelect } from 'components/Inputs'
+import {
+  Form,
+  Input,
+  InputPassword,
+  Select,
+  TextArea,
+} from '@kube-design/components'
 
 import { hasChinese } from 'utils'
 import { MODULE_KIND_MAP } from 'utils/constants'
@@ -250,8 +255,10 @@ export default class SecretSettings extends React.Component {
     return content
   }
 
+  valueRenderer = option => `${option.value} (${option.label})`
+
   render() {
-    const { formRef, mode } = this.props
+    const { formRef } = this.props
     const { state } = this.state
 
     if (state === 'data') {
@@ -260,20 +267,17 @@ export default class SecretSettings extends React.Component {
 
     return (
       <Form data={this.fedFormTemplate} ref={formRef}>
-        {mode !== 'edit' ? (
-          <Form.Item label={t('Type')} desc={t('SECRET_TYPE_DESC')}>
-            <CustomSelect
-              name="type"
-              options={this.getTypeOptions()}
-              onChange={this.handleTypeChange}
-              placeholder={t('Please Select')}
-            />
-          </Form.Item>
-        ) : (
-          <Form.Item label={t('Type')}>
-            <Input name="type" disabled />
-          </Form.Item>
-        )}
+        <Form.Item label={t('Type')} desc={t('SECRET_TYPE_DESC')}>
+          <Select
+            name="type"
+            options={this.getTypeOptions()}
+            valueRenderer={this.valueRenderer}
+            optionRenderer={this.valueRenderer}
+            onChange={this.handleTypeChange}
+            placeholder={t('Please Select')}
+            searchable
+          />
+        </Form.Item>
         {this.renderContent()}
       </Form>
     )

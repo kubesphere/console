@@ -33,12 +33,12 @@ it('renders correctly', () => {
   }
 
   const wrapper = mount(<Modal {...props}>Checkbox</Modal>)
-  expect(wrapper.find(`.${styles.title} .${styles.text} > div`)).toHaveText(
-    props.title
-  )
-  expect(wrapper.find(`.${styles.title} .${styles.text} > p`)).toHaveText(
-    props.description
-  )
+  expect(
+    wrapper.find(`.${styles.title} .${styles.text} > div`).first()
+  ).toHaveText(props.title)
+  expect(
+    wrapper.find(`.${styles.title} .${styles.text} > div`).last()
+  ).toHaveText(props.description)
   expect(wrapper.find(`.${styles.body}`)).toHaveText('Checkbox')
 
   wrapper

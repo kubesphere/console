@@ -22,7 +22,7 @@ import React from 'react'
 import { mergeLabels, updateFederatedAnnotations } from 'utils'
 import ServiceStore from 'stores/service'
 
-import CreateServiceModal from 'projects/components/Modals/ServiceCreate/InApp'
+import CreateAppServiceModal from 'projects/components/Modals/CreateAppService'
 import ServiceList from './ServiceList'
 
 import styles from './index.scss'
@@ -193,7 +193,7 @@ export default class Services extends React.Component {
             onDelete={this.handleDelete}
           />
         </div>
-        <CreateServiceModal
+        <CreateAppServiceModal
           cluster={cluster}
           namespace={namespace}
           detail={editData}

@@ -47,7 +47,7 @@ export default class Text extends React.PureComponent {
         {icon && <Icon className={styles.icon} name={icon} size={40} />}
         <div className={styles.text}>
           <div>{isUndefined(title) || title === '' ? '-' : title}</div>
-          <p>{description}</p>
+          <div>{description}</div>
         </div>
         {extra}
       </div>
