@@ -18,14 +18,20 @@
 
 import React from 'react'
 import { get } from 'lodash'
-import { Icon, Input, Form, Tag, TextArea } from '@kube-design/components'
+import {
+  Icon,
+  Input,
+  Form,
+  Tag,
+  Select,
+  TextArea,
+} from '@kube-design/components'
 import {
   PATTERN_NAME,
   CLUSTER_GROUP_TAG_TYPE,
   CLUSTER_PROVIDERS,
   CLUSTER_PRESET_GROUPS,
 } from 'utils/constants'
-import { SelectInput } from 'components/Inputs'
 
 import Title from '../Title'
 import SubTitle from '../SubTitle'
@@ -53,7 +59,7 @@ export default class BaseInfo extends React.Component {
 
   providerOptionRenderer = option => (
     <>
-      <Icon name={option.icon} type="light" size={20} />
+      <Icon className="margin-r8" name={option.icon} type="light" size={20} />
       {option.label}
     </>
   )
@@ -133,19 +139,21 @@ export default class BaseInfo extends React.Component {
             <Input name="metadata.name" maxLength={63} />
           </Form.Item>
           <Form.Item label={t('CLUSTER_TAG')} desc={t('CLUSTER_TAG_DESC')}>
-            <SelectInput
+            <Select
               name="metadata.labels['cluster.kubesphere.io/group']"
               options={CLUSTER_PRESET_GROUPS}
               placeholder={t('Please select or input a tag')}
               optionRenderer={this.groupOptionRenderer}
+              searchable
             />
           </Form.Item>
           <Form.Item label={t('Provider')} desc={t('CLUSTER_PROVIDER_DESC')}>
-            <SelectInput
+            <Select
               name="spec.provider"
               options={CLUSTER_PROVIDERS}
               placeholder={t('Please select or input a provider')}
               optionRenderer={this.providerOptionRenderer}
+              searchable
             />
           </Form.Item>
           <Form.Item label={t('Description')} desc={t('DESCRIPTION_DESC')}>

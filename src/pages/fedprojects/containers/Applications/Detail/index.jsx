@@ -83,7 +83,7 @@ export default class AppDetail extends React.Component {
       text: t('Add Component'),
       action: 'edit',
       onClick: () =>
-        this.trigger('crd.app.addcomponent', {
+        this.trigger('crd.app.addservice', {
           isFederated: true,
           detail: toJS(this.store.detail),
           projectDetail: this.props.projectStore.detail,

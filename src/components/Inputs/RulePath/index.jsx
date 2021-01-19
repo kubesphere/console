@@ -16,10 +16,10 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, set } from 'lodash'
+import { get, set, isNumber } from 'lodash'
 import React from 'react'
 import { Input, Select } from '@kube-design/components'
-import { ObjectInput, SelectInput } from 'components/Inputs'
+import { ObjectInput } from 'components/Inputs'
 
 import styles from './index.scss'
 
@@ -29,9 +29,14 @@ export default class RulePath extends React.Component {
     onChange() {},
   }
 
-  state = {
-    service: '',
-    defaultService: get(this.props, 'value.backend.serviceName'),
+  constructor(props) {
+    super(props)
+
+    const defaultService = get(this.props, 'value.backend.serviceName')
+    this.state = {
+      service: defaultService,
+      defaultService,
+    }
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -65,8 +70,7 @@ export default class RulePath extends React.Component {
     const { onChange } = this.props
 
     const servicePort = get(value, 'backend.servicePort')
-
-    if (!isNaN(Number(servicePort))) {
+    if (isNumber(servicePort)) {
       set(value, 'backend.servicePort', Number(servicePort))
     }
 
@@ -88,11 +92,12 @@ export default class RulePath extends React.Component {
           options={this.services}
           onChange={this.handleServiceChange}
         />
-        <SelectInput
+        <Select
           className={styles.input}
           name="backend.servicePort"
           placeholder={t('port')}
           options={this.ports}
+          searchable
         />
       </ObjectInput>
     )

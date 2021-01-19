@@ -97,21 +97,6 @@
     }
   }
 
-  .text {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    justify-content: center;
-
-    & > div {
-      @include TypographyTitleH6($dark-color07);
-    }
-
-    & > p {
-      @include TypographyParagraph($dark-color01);
-    }
-  }
-
   .close {
     position: absolute;
     top: 50%;

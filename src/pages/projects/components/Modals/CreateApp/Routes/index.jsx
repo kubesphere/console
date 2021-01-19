@@ -18,6 +18,7 @@
 
 import { get, set, omit } from 'lodash'
 import React from 'react'
+import { toJS } from 'mobx'
 
 import SecretStore from 'stores/secret'
 import FederatedStore from 'stores/federated'
@@ -230,7 +231,7 @@ export default class Routes extends React.Component {
 
     const selectRule = get(ingress, `spec.rules[${selectRuleIndex}]`, {})
 
-    const secrets = this.secretStore.list.data
+    const secrets = toJS(this.secretStore.list.data)
 
     return (
       <div className={styles.wrapper}>

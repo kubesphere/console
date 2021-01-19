@@ -25,7 +25,7 @@ import PropTypes from 'prop-types'
 import classnames from 'classnames'
 
 import { Button, Icon } from '@kube-design/components'
-import { Image } from 'components/Base'
+import { Image, Text } from 'components/Base'
 
 import styles from './index.scss'
 
@@ -141,10 +141,7 @@ export default class Modal extends React.Component {
         ) : (
           icon && <Icon name={icon} size={size} />
         )}
-        <div className={styles.text}>
-          <div>{title}</div>
-          {description && <p>{description}</p>}
-        </div>
+        <Text title={title} description={description} />
       </div>
     )
   }

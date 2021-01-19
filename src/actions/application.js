@@ -21,12 +21,17 @@ import { Notify } from '@kube-design/components'
 import { Modal } from 'components/Base'
 import { mergeLabels, updateFederatedAnnotations } from 'utils'
 import FORM_TEMPLATES from 'utils/form.templates'
+import { MODULE_KIND_MAP } from 'utils/constants'
 
+import ROUTER_FORM_STEPS from 'configs/steps/ingresses'
+
+import CreateModal from 'components/Modals/Create'
 import DeployAppModal from 'projects/components/Modals/DeployApp'
 import CreateAppModal from 'projects/components/Modals/CreateApp'
-import CreateServiceModal from 'projects/components/Modals/ServiceCreate/InApp'
+import CreateAppServiceModal from 'projects/components/Modals/CreateAppService'
 import ServiceMonitorModal from 'projects/components/Modals/ServiceMonitor'
 
+import RouterStore from 'stores/router'
 import ServiceMonitorStore from 'stores/monitoring/service.monitor'
 
 export default {
@@ -59,7 +64,7 @@ export default {
       })
     },
   },
-  'crd.app.addcomponent': {
+  'crd.app.addservice': {
     on({ store, detail, cluster, namespace, success, ...props }) {
       const modal = Modal.open({
         onOk: async data => {
@@ -110,8 +115,70 @@ export default {
         store,
         cluster,
         namespace,
-        modal: CreateServiceModal,
+        modal: CreateAppServiceModal,
         ...props,
+      })
+    },
+  },
+  'crd.app.addroute': {
+    on({ store, detail, cluster, namespace, success, ...props }) {
+      const routerStore = new RouterStore()
+      const module = routerStore.module
+      const kind = MODULE_KIND_MAP[module]
+      const formTemplate = {
+        [kind]: FORM_TEMPLATES[module]({
+          namespace,
+        }),
+      }
+
+      const modal = Modal.open({
+        onOk: async data => {
+          const labels = detail.selector
+          const serviceMeshEnable = detail.serviceMeshEnable
+
+          const _data = data.Ingress || data
+
+          mergeLabels(_data, labels)
+
+          if (serviceMeshEnable) {
+            const template = props.isFederated
+              ? get(_data, 'spec.template')
+              : _data
+
+            const serviceName = get(
+              template,
+              'spec.rules[0].http.paths[0].backend.serviceName'
+            )
+            if (serviceName) {
+              set(
+                template,
+                'metadata.annotations["nginx.ingress.kubernetes.io/upstream-vhost"]',
+                `${serviceName}.${namespace}.svc.cluster.local`
+              )
+            }
+          }
+
+          if (props.isFederated) {
+            updateFederatedAnnotations(_data)
+          }
+
+          await routerStore.create(_data, { cluster, namespace })
+
+          Modal.close(modal)
+          Notify.success({ content: `${t('Add Route Successfully')}!` })
+          success && success()
+        },
+        cluster,
+        namespace,
+        formTemplate,
+        module,
+        store: routerStore,
+        steps: ROUTER_FORM_STEPS,
+        modal: CreateModal,
+        okBtnText: t('Add'),
+        selector: detail.selector,
+        ...props,
+        name: 'Route',
       })
     },
   },

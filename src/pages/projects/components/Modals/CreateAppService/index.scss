@@ -1,0 +1,72 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.body {
+  padding: 0;
+  min-height: 500px;
+}
+
+.header {
+  position: relative;
+  padding: 50px 72px 50px 318px;
+  background-color: $card-bg-color;
+
+  & > p {
+    color: $second-text-color;
+  }
+
+  & > img {
+    position: absolute;
+    top: 20px;
+    left: 0;
+  }
+}
+
+.groups {
+  padding: 40px;
+}
+
+.group {
+  .title {
+    margin-bottom: 12px;
+    & > div {
+      @include TypographyTitleH6($dark-color07);
+    }
+
+    & > p {
+      @include TypographyParagraph($dark-color01);
+    }
+  }
+
+  & > ul {
+    & > li {
+      display: inline-block;
+      width: 134px;
+      height: 100px;
+      padding: 14px;
+      border-radius: 4px;
+      border: 1px solid $border-color;
+      cursor: pointer;
+      transition: all $trans-speed ease-in-out;
+
+      & > div {
+        @include TypographyTitleH6($dark-color07);
+        margin-top: 4px;
+        text-align: center;
+      }
+
+      &:hover {
+        border-color: $border-hover-color;
+        box-shadow: 0 4px 8px 0 rgba(36, 46, 66, 0.2);
+      }
+
+      & + li {
+        margin-left: 12px;
+      }
+    }
+  }
+
+  & + .group {
+    margin-top: 20px;
+  }
+}

@@ -182,7 +182,7 @@ export default class ServiceDeployAppModal extends React.Component {
     const { cluster, namespace } = this.props
     await this.routerStore.getGateway({ cluster, namespace })
     const gateway = toJS(this.routerStore.gateway.data)
-    const isGovernance = this.serviceMeshEnable && gateway.serviceMeshEnable
+    const isGovernance = !!(this.serviceMeshEnable && gateway.serviceMeshEnable)
     set(
       this.state.formData.application,
       'metadata.annotations["servicemesh.kubesphere.io/enabled"]',

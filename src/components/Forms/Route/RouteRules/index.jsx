@@ -20,7 +20,8 @@ import { get, set, isEmpty } from 'lodash'
 import React from 'react'
 import { toJS, computed } from 'mobx'
 import { observer } from 'mobx-react'
-import { Alert, Form } from '@kube-design/components'
+import { Form } from '@kube-design/components'
+import { joinSelector } from 'utils'
 import { MODULE_KIND_MAP } from 'utils/constants'
 import SecretStore from 'stores/secret'
 import ServiceStore from 'stores/service'
@@ -61,6 +62,7 @@ class RouteRules extends React.Component {
       namespace: this.namespace,
       cluster: this.cluster,
       limit: -1,
+      labelSelector: joinSelector(this.props.selector),
     })
     !this.props.isFederated &&
       this.routerStore
@@ -238,13 +240,6 @@ class RouteRules extends React.Component {
 
     return (
       <Form data={this.fedFormTemplate} ref={formRef}>
-        {noGateway && (
-          <Alert
-            className="margin-b12"
-            message={t.html('NO_INTERNET_ACCESS_TIP')}
-            type="warning"
-          />
-        )}
         <Form.Item rules={[{ validator: this.rulesValidator }]}>
           <RuleList
             name="spec.rules"

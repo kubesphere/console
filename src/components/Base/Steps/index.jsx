@@ -21,6 +21,8 @@ import PropTypes from 'prop-types'
 
 import { Icon } from '@kube-design/components'
 
+import { Text } from 'components/Base'
+
 import styles from './index.scss'
 
 const STATES = {
@@ -34,10 +36,11 @@ const Step = ({ step, state }) => (
     <div className={styles.icon}>
       <Icon name={step.icon || 'appcenter'} size={40} />
     </div>
-    <div className={styles.text}>
-      <div>{t(step.title)}</div>
-      <p>{t(STATES[state])}</p>
-    </div>
+    <Text
+      className={styles.text}
+      title={t(step.title)}
+      description={t(STATES[state])}
+    />
   </li>
 )
 

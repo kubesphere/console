@@ -59,7 +59,7 @@ module.exports = {
   INGRESS_CONTROLLER_LOADBALANCER_DESC:
     'Para usar un LoadBalancer de QingCloud como gateway, primero implementa el complemento QingCloud Cloud Controller Manager.',
   NO_INTERNET_ACCESS_TIP:
-    'La dirección de gateway no se encuentra en el proyecto actual, por lo que no puede establecer la ruta de la aplicación. Ponte en contacto con el administrador de tu proyecto para activarlo en <strong>Acceso a Internet</strong> .',
+    'La dirección de gateway no se encuentra en el proyecto actual, por lo que no puede usar el modo generado automáticamente. Ponte en contacto con el administrador de tu proyecto para activarlo en <strong>Acceso a Internet</strong> .',
   UNABLE_CREATE_ROUTE_TIP:
     'No se puede crear la ruta de la aplicación puesto que la dirección de gateway disponible no se encuentra en el proyecto actual.',
   GATEWAY_APPLICATION_GOVERNANCE_TIP:

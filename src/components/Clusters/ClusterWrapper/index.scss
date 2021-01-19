@@ -1,12 +1,6 @@
 @import '~scss/variables';
 @import '~scss/mixins';
 
-.wrapper {
-  & > p {
-    @include TypographyParagraph($dark-color01);
-  }
-}
-
 .tags {
   :global {
     .tag {

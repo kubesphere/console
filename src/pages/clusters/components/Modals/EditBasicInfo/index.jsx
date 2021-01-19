@@ -20,9 +20,15 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import copy from 'fast-copy'
 
-import { Form, Icon, Input, Tag, TextArea } from '@kube-design/components'
+import {
+  Form,
+  Icon,
+  Input,
+  Select,
+  Tag,
+  TextArea,
+} from '@kube-design/components'
 import { Modal } from 'components/Base'
-import { SelectInput } from 'components/Inputs'
 
 import {
   CLUSTER_GROUP_TAG_TYPE,
@@ -96,14 +102,14 @@ export default class EditBasicInfoModal extends React.Component {
           <Input name="metadata.name" disabled />
         </Form.Item>
         <Form.Item label={t('CLUSTER_TAG')} desc={t('CLUSTER_TAG_DESC')}>
-          <SelectInput
+          <Select
             name="metadata.labels['cluster.kubesphere.io/group']"
             options={CLUSTER_PRESET_GROUPS}
             optionRenderer={this.groupOptionRenderer}
           />
         </Form.Item>
         <Form.Item label={t('Provider')} desc={t('CLUSTER_PROVIDER_DESC')}>
-          <SelectInput
+          <Select
             name="spec.provider"
             options={CLUSTER_PROVIDERS}
             optionRenderer={this.providerOptionRenderer}

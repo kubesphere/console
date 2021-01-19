@@ -56,6 +56,7 @@ module.exports = {
     '示例应用可以帮助您快速入手应用创建, 以及应用治理功能',
 
   'Add Service': '添加服务',
+  'Add Route': '添加应用路由',
   'Add Component': '添加组件',
   'Edit Component': '编辑组件',
   'Add New Component': '添加新组件',
@@ -168,6 +169,7 @@ module.exports = {
   'Deploy sample app Bookinfo': '部署示例应用 Bookinfo',
   'Please save the current form first': '请先保存当前表单',
   'Add Component Successfully': '添加组件成功',
+  'Add Route Successfully': '添加应用路由成功',
 
   'Connection pool management': '连接池管理',
   CONNECTION_POOL_TIP:
