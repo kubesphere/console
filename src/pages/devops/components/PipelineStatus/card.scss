@@ -11,6 +11,7 @@
   .pipelineCard__title {
     background-color: #ca2621;
   }
+
   .pipelineCard__content {
     border: 1px solid #ca2621;
   }
@@ -19,6 +20,7 @@
 .pipelineCard--queue {
   .pipelineCard__title {
     background-color: #6b7b95;
+
     &::before {
       content: '';
       display: inline-block;
@@ -38,11 +40,14 @@
   .pipelineCard__title {
     background-color: #f5a623;
   }
+
   .content__title__paused {
     color: #f5a623;
   }
+
   button {
-    margin: 10px;
+    min-width: 60px;
+    margin: 10px 10px 0 0;
   }
 }
 
@@ -84,6 +89,7 @@
   .content__title {
     font-weight: 500;
   }
+
   .content__detail {
     color: #242e42;
   }
@@ -91,9 +97,11 @@
 
 .content__status {
   color: $green;
+
   span {
     vertical-align: middle;
   }
+
   :global {
     .pipeline_status_icon {
       width: 12px;

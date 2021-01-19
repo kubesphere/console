@@ -66,14 +66,14 @@ export default class PipelineLog extends React.Component {
   }
 
   @observable
-  activeNodeIndex = [0, 0] // lineindex, colunmIndex
+  activeNodeIndex = [0, 0] // lineindex, columnIndex
 
   @observable
   refreshFlag = true
 
   @action
-  updateActiveTabs = (lineindex, colunmIndex) => () => {
-    this.activeNodeIndex = [lineindex, colunmIndex]
+  updateActiveTabs = (lineindex, columnIndex) => () => {
+    this.activeNodeIndex = [lineindex, columnIndex]
   }
 
   @action

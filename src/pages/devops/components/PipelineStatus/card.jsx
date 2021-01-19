@@ -145,9 +145,7 @@ export default class PipelineCard extends React.Component {
         )
       }
 
-      const authorityUser = get(hasInputStep, 'input.message')
-      const user = get(globals, 'user.username')
-      const hasAuthority = authorityUser.indexOf(user) > -1
+      const hasAuthority = get(hasInputStep, 'aprovable')
 
       return (
         <div
@@ -274,16 +272,16 @@ export default class PipelineCard extends React.Component {
     if (Array.isArray(nodes)) {
       return (
         <div className={style.pipeline_column}>
-          {nodes.map((node, columeIndex) => (
+          {nodes.map((node, columnIndex) => (
             <div
               key={JSON.stringify(node)}
               ref={dom => {
-                columeIndex
-                  ? (this.domTree[columeIndex] = dom)
+                columnIndex
+                  ? (this.domTree[columnIndex] = dom)
                   : (this.domTree = [dom])
               }}
             >
-              {this.renderCard(node, columeIndex)}
+              {this.renderCard(node, columnIndex)}
             </div>
           ))}
         </div>

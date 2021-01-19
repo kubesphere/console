@@ -58,17 +58,14 @@ export default class Activity extends React.Component {
 
   store = this.props.detailStore || {}
 
+  refreshTimer = setInterval(() => this.refreshHandler(), 4000)
+
   componentDidMount() {
-    this.unsubscribe = this.routing.history.subscribe(location => {
-      if (location.pathname === this.props.match.url) {
-        const query = parse(location.search.slice(1))
-        this.getData({ ...query })
-      }
-    })
+    this.getData()
   }
 
   componentWillUnmount() {
-    this.unsubscribe && this.unsubscribe()
+    clearInterval(this.refreshTimer)
   }
 
   get enabledActions() {
@@ -80,15 +77,39 @@ export default class Activity extends React.Component {
     })
   }
 
+  get isRuning() {
+    const data = get(toJS(this.store), 'activityList.data', [])
+    const runingData = data.filter(
+      item => item.state !== 'FINISHED' && item.state !== 'PAUSED'
+    )
+    return !isEmpty(runingData)
+  }
+
   get isAtBranchDetailPage() {
     return this.props.match.params.branch
   }
 
-  getData(params) {
-    this.store.getActivities({
-      ...this.props.match.params,
-      ...params,
+  getData = () => {
+    const { params } = this.props.match
+
+    this.routing.history.subscribe(location => {
+      if (location.pathname === this.props.match.url) {
+        const query = parse(location.search.slice(1))
+        this.store.getActivities({
+          ...params,
+          ...query,
+        })
+      }
     })
+  }
+
+  refreshHandler = () => {
+    if (this.isRuning) {
+      this.getData()
+    } else {
+      clearInterval(this.refreshTimer)
+      this.refreshTimer = null
+    }
   }
 
   handleFetch = (params, refresh) => {
@@ -370,11 +391,13 @@ export default class Activity extends React.Component {
       )
     }
 
+    const rowKey = get(data[0], 'time') ? 'time' : 'endTime'
+
     return (
       <Table
         data={toJS(data)}
         columns={this.getColumns()}
-        rowKey="startTime"
+        rowKey={rowKey}
         filters={omitFilters}
         pagination={pagination}
         isLoading={isLoading}

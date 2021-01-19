@@ -101,7 +101,7 @@ export default class Branch extends React.Component {
     {
       title: t('Name'),
       dataIndex: 'name',
-      width: '19%',
+      width: '30%',
       render: name => (
         <Link className="item-name" to={`${this.prefix}/${name}/activity`}>
           <ForkIcon style={{ width: '20px', height: '20px' }} />{' '}
@@ -112,7 +112,7 @@ export default class Branch extends React.Component {
     {
       title: t('Status'),
       dataIndex: 'status',
-      width: '10%',
+      width: '20%',
       render: (status, record) => (
         <Status {...getPipelineStatus(get(record, 'latestRun', {}))} />
       ),
@@ -132,7 +132,7 @@ export default class Branch extends React.Component {
     {
       title: t('Updated Time'),
       dataIndex: 'updateTime',
-      width: '15%',
+      width: '20%',
       render: (updateTime, record) =>
         getLocalTime(record.latestRun.startTime).format('YYYY-MM-DD HH:mm:ss'),
     },
@@ -164,7 +164,7 @@ export default class Branch extends React.Component {
 
     return (
       <Table
-        rowkey="name"
+        rowkey="displayName"
         data={data}
         columns={this.getColumns()}
         filters={omitFilters}
