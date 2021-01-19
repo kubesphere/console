@@ -29,7 +29,7 @@ import {
   Select,
   Tooltip,
 } from '@kube-design/components'
-import Title from 'components/Forms/Base/Title'
+
 import { NumberInput } from 'components/Inputs'
 import { getLocalTime } from 'utils'
 import { TIMETRIGGERINTERVALS, REPO_KEY_MAP } from 'utils/constants'
@@ -123,11 +123,11 @@ export default class AdvanceSettings extends React.Component {
 
   checkCronScript = async (rule, value, callback) => {
     const { formTemplate, type } = this.props
-    const { devopsName, name, cluster } = formTemplate
+    const { name, cluster, devops } = formTemplate
     const script = value
 
     const result = await this.scmStore.checkCronScript({
-      devops: devopsName,
+      devops,
       script,
       cluster,
       pipeline: type === 'create' ? undefined : name,
@@ -537,10 +537,6 @@ export default class AdvanceSettings extends React.Component {
     const multi_branch_pipeline = get(formTemplate, 'multi_branch_pipeline')
     return (
       <div className={styles.advance}>
-        <Title
-          title={t('Advanced Settings')}
-          desc={t('PIPELINE_ADVANCE_SETTINGS_DESC')}
-        />
         <Form data={formTemplate} ref={formRef}>
           <div className="h6">
             {isEmpty(multi_branch_pipeline)

@@ -119,7 +119,7 @@ export default class Artifacts extends React.Component {
     const { data, filters, isLoading, total, page, limit } = toJS(
       this.store.artifactsList
     )
-    const isEmptyList = isLoading === false && total === 0
+    const isEmptyList = total === 0
     const omitFilters = omit(filters, 'page', 'workspace')
 
     if (isEmptyList && !filters.page) {

@@ -372,7 +372,7 @@ export default class SCMStore extends BaseStore {
       cluster,
     })}${devops}/jenkins/gitlab/serverList`
 
-    const result = await this.request.get(url, {}, {}, () => {
+    const result = await this.request.post(url, {}, {}, () => {
       return []
     })
 
@@ -397,7 +397,7 @@ export default class SCMStore extends BaseStore {
 
     let projectList = []
 
-    const result = await this.request.get(url, { server, owner }, {}, () => {
+    const result = await this.request.post(url, { server, owner }, {}, () => {
       return []
     })
 

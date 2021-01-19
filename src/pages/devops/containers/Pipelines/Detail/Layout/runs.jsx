@@ -42,7 +42,7 @@ export default class RunDetailLayout extends React.Component {
     isLoading: true,
   }
 
-  refreshTimer = setInterval(this.refreshHandler, 4000)
+  refreshTimer = setInterval(() => this.refreshHandler(), 4000)
 
   get listUrl() {
     const { workspace, devops, cluster } = this.props.match.params

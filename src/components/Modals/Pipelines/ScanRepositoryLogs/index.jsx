@@ -20,7 +20,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Icon, Button, Notify } from '@kube-design/components'
 import { observer } from 'mobx-react'
-import { get } from 'lodash'
+import { get, isEmpty } from 'lodash'
 import { Modal } from 'components/Base'
 
 import styles from './index.scss'
@@ -35,6 +35,9 @@ export default class ScanRepositoryLogs extends React.Component {
   constructor(props) {
     super(props)
     this.formRef = React.createRef()
+    this.refresh = setInterval(() => {
+      this.refreshHandler()
+    }, 4000)
   }
 
   static defaultProps = {
@@ -56,6 +59,30 @@ export default class ScanRepositoryLogs extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    clearInterval(this.refresh)
+  }
+
+  refreshHandler = () => {
+    const { repositoryLog } = this.props.store
+    const arr = repositoryLog.split('\n')
+    let isDone = false
+
+    for (let i = arr.length - 1; i >= 0; i--) {
+      if (!isEmpty(arr[i]) && arr[i].indexOf('Finished') > -1) {
+        isDone = true
+        return
+      }
+    }
+    if (isDone) {
+      clearInterval(this.refresh)
+      this.refresh = null
+    } else {
+      const { params } = this.props
+      this.props.store.getRepoScanLogs(params)
+    }
+  }
+
   get startBy() {
     const { repositoryLog } = this.props.store
     const arr = repositoryLog.split('\n')
@@ -63,19 +90,23 @@ export default class ScanRepositoryLogs extends React.Component {
     const parser = firstLine.match(/^Started by (user )?(.*)?/) || []
     const isUser = parser[1]
     const name = parser[2]
+
     if (firstLine && isUser) {
       return `${t('Started By')}: ${name}`
     }
+
     if (firstLine && !isUser) {
       return t('Started By {name}', { name: t(name) })
     }
+
     return `${t('Started By')}: -`
   }
 
   handleFetch = async () => {
     const { params } = this.props
     await this.props.handleScanRepository()
-    this.props.store.getRepoScanLogs(params)
+    await this.props.store.getRepoScanLogs(params)
+
     Notify.success({
       content: t('Logs Scanned Successfully'),
     })
