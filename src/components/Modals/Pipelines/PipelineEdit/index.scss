@@ -1,5 +1,11 @@
 @import '~scss/variables';
 
+.header {
+  div > label {
+    margin-right: 12px;
+  }
+}
+
 .body {
   height: calc(100vh - 58px);
   max-height: none;

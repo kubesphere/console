@@ -148,7 +148,7 @@ export default class PipelineModal extends React.Component {
       closable: !isPipelineModal,
       title: t('Create Pipeline'),
       imageIcon: '/assets/pipeline/pipeline-icon-dark.svg',
-      description: 'Build, test and deploy with Pipelines',
+      description: t('CREATE_PIPELINE_DESC'),
     }
 
     return (
@@ -162,6 +162,7 @@ export default class PipelineModal extends React.Component {
           bodyClassName={classnames(styles.body, {
             [styles.templeHeight]: !createPipelineType,
           })}
+          headerClassName={styles.header}
           visible={visible}
           closable={false}
           maskClosable={false}

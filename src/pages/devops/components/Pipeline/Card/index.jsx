@@ -17,21 +17,47 @@
  */
 
 import React from 'react'
-import classNames from 'classnames'
-import { observer } from 'mobx-react'
-import { isObservableArray } from 'mobx'
-import { Icon } from '@kube-design/components'
-import { get, without, isEmpty } from 'lodash'
+import { isObservableArray, toJS } from 'mobx'
 
+import { Icon } from '@kube-design/components'
+import classNames from 'classnames'
+
+import { get, without, isEmpty, isEqual, cloneDeep } from 'lodash'
 import { renderStepArgs } from './detail'
+
 import style from './index.scss'
 
-@observer
+const taskIcon = {
+  echo: 'loudspeaker',
+  mail: 'mail',
+  shell: 'terminal',
+  sh: 'terminal',
+  container: 'terminal',
+  checkout: 'network-router',
+  git: 'network-router',
+  withCredentials: 'key',
+  kubernetesDeploy: 'kubernetes',
+  branch: 'network-router',
+  timeout: 'clock',
+  withSonarQubeEnv: 'network',
+}
+
 export default class PipelineCard extends React.Component {
   constructor(props) {
     super(props)
     this.domTree = []
     this.heights = []
+    this.nodes = toJS(this.props.nodes)
+  }
+
+  shouldComponentUpdate(nextProps) {
+    const nextNodes = toJS(nextProps.nodes)
+    if (!isEqual(nextNodes, this.nodes)) {
+      this.nodes = cloneDeep(nextNodes)
+      return true
+    }
+
+    return false
   }
 
   componentDidMount() {
@@ -69,9 +95,8 @@ export default class PipelineCard extends React.Component {
   renderAddBranchCard() {
     return (
       <div className={style.addBranchCard} onClick={this.props.onAddBranch}>
-        <Icon name="add" />
-        &nbsp;
-        {t('Add Parallel Stage')}
+        <Icon size={16} name="add" />
+        <span>{t('Add Parallel Stage')}</span>
       </div>
     )
   }
@@ -100,22 +125,34 @@ export default class PipelineCard extends React.Component {
 
   renderSteps = (children, error) => {
     if (children && children.length) {
-      return children.map((step, index) => (
-        <div
-          key={JSON.stringify(step) + index}
-          className={style.pipelineCard__item}
-        >
+      return children.map((step, index) => {
+        return (
           <div
-            className={classNames(style.content__title, {
-              [style.content__title__error]: error && error.index === index,
-            })}
+            key={JSON.stringify(step) + index}
+            className={style.pipelineCard__item}
           >
-            {t(step.name)}
+            <div
+              className={classNames(
+                style.content__title,
+                style.content__title__noDetail,
+                {
+                  [style.content__title__error]: error && error.index === index,
+                }
+              )}
+            >
+              <Icon size={20} name={taskIcon[step.name] || 'cdn'} />
+              <span className={style.content__title__text}>{t(step.name)}</span>
+            </div>
+            {step.name === 'sh' || step.name === 'script' ? (
+              <div className={style.content__text}>
+                {renderStepArgs(toJS(step))}
+              </div>
+            ) : null}
+
+            {this.renderSteps(step.children)}
           </div>
-          {renderStepArgs(step)}
-          {this.renderSteps(step.children)}
-        </div>
-      ))
+        )
+      })
     }
   }
 
@@ -134,6 +171,7 @@ export default class PipelineCard extends React.Component {
 
   renderCard(node, columnIndex) {
     const { isEditMode } = this.props
+
     return (
       <div
         className={classNames(style.pipelineCard, {
@@ -172,14 +210,17 @@ export default class PipelineCard extends React.Component {
               t('Configuration error')}
           </div>
         ) : null}
+
         {this.renderConditions(node, node.conditionError)}
+
         {node.stages
           ? this.renderNestStages(node.stages)
           : this.renderSteps(get(node, 'branches[0].steps'), node.error)}
+
         {isEditMode && !hasNestStage ? (
           <div className={style.addSteps} onClick={this.handleAddStep}>
-            <Icon name="add" /> &nbsp;
-            {t('Add Step')}
+            <Icon size={16} name="add" />
+            <span>{t('Add Step')}</span>
           </div>
         ) : null}
       </>
@@ -206,6 +247,7 @@ export default class PipelineCard extends React.Component {
         </div>
       )
     }
+
     return (
       <div className={style.pipeline_column} data-card="card">
         <div

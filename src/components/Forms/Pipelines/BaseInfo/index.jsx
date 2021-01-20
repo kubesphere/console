@@ -18,7 +18,6 @@
 
 import React from 'react'
 import { Column, Columns, Form, Input, TextArea } from '@kube-design/components'
-import Title from 'components/Forms/Base/Title'
 import { PATTERN_NAME } from 'utils/constants'
 
 import RepoSelect from '../RepoSelect'
@@ -100,62 +99,56 @@ export default class BaseInfo extends React.Component {
   }
 
   render() {
-    const { module, formRef, formTemplate } = this.props
+    const { formRef, formTemplate } = this.props
     const { showSelectRepo } = this.state
     if (showSelectRepo) {
       return this.renderRepoSelectForm()
     }
 
     return (
-      <div>
-        <Title
-          title={t('Basic Info')}
-          desc={t(`${module.toUpperCase()}_BASEINFO_DESC`)}
-        />
-        <Form ref={formRef} data={formTemplate}>
-          <Columns>
-            <Column>
-              <Form.Item
-                label={t('Name')}
-                desc={t(
-                  'The name of the pipeline. Pipelines in the same project must have different names.'
-                )}
-                rules={[
-                  { required: true, message: t('Please input pipeline name') },
-                  {
-                    pattern: PATTERN_NAME,
-                    message: `${t('Invalid name')}, ${t('NAME_DESC')}`,
-                  },
-                  { validator: this.validator },
-                ]}
-              >
-                <Input name="name" maxLength={63} />
-              </Form.Item>
-              <Form.Item label={t('Description')} desc={t('DESCRIPTION_DESC')}>
-                <TextArea name="desc" maxLength={256} />
-              </Form.Item>
-            </Column>
-            <Column>
-              <Form.Item label={t('Project')} desc={t('PROJECT_DESC')}>
-                <Input name="devopsName" disabled />
-              </Form.Item>
-            </Column>
-          </Columns>
-          <Columns>
-            <Column>
-              <Form.Item label={`${t('Code Repository')}(${t('Optional')})`}>
-                <RepoSelect
-                  name="multi_branch_pipeline"
-                  ref={this.scmRef}
-                  onClick={this.showSelectRepo}
-                  handleDeleteSource={this.handleDeleteSource}
-                  devops={this.props.devops}
-                />
-              </Form.Item>
-            </Column>
-          </Columns>
-        </Form>
-      </div>
+      <Form ref={formRef} data={formTemplate}>
+        <Columns>
+          <Column>
+            <Form.Item
+              label={t('Name')}
+              desc={t(
+                'The name of the pipeline. Pipelines in the same project must have different names.'
+              )}
+              rules={[
+                { required: true, message: t('Please input pipeline name') },
+                {
+                  pattern: PATTERN_NAME,
+                  message: `${t('Invalid name')}, ${t('NAME_DESC')}`,
+                },
+                { validator: this.validator },
+              ]}
+            >
+              <Input name="name" maxLength={63} />
+            </Form.Item>
+            <Form.Item label={t('Description')} desc={t('DESCRIPTION_DESC')}>
+              <TextArea name="desc" maxLength={256} />
+            </Form.Item>
+          </Column>
+          <Column>
+            <Form.Item label={t('Project')} desc={t('PROJECT_DESC')}>
+              <Input name="devopsName" disabled />
+            </Form.Item>
+          </Column>
+        </Columns>
+        <Columns>
+          <Column>
+            <Form.Item label={`${t('Code Repository')}(${t('Optional')})`}>
+              <RepoSelect
+                name="multi_branch_pipeline"
+                ref={this.scmRef}
+                onClick={this.showSelectRepo}
+                handleDeleteSource={this.handleDeleteSource}
+                devops={this.props.devops}
+              />
+            </Form.Item>
+          </Column>
+        </Columns>
+      </Form>
     )
   }
 }

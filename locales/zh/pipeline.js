@@ -485,4 +485,6 @@ module.exports = {
   'Run Start': '运行开始',
   'Gitlab Server': 'Gitlab 服务',
   'Gitlab Owner': '项目所属组',
+  CREATE_PIPELINE_DESC: '使用流水线进行构建，测试和部署',
+  'Choose a pipeline template': '选择流水线模板',
 }
