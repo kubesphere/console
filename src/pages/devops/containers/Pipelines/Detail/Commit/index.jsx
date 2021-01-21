@@ -78,8 +78,8 @@ export default class Branch extends React.Component {
       },
     },
     {
-      title: t('author'),
-      dataIndex: 'author',
+      title: t('Author'),
+      dataIndex: 'Author',
       width: '20%',
       render: author => author || '-',
     },

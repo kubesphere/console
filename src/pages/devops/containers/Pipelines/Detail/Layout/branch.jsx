@@ -17,20 +17,22 @@
  */
 
 import React from 'react'
+import { Notify } from '@kube-design/components'
+
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import moment from 'moment-mini'
-import { get } from 'lodash'
+import { get, debounce } from 'lodash'
 
-import { ReactComponent as ForkIcon } from 'assets/fork.svg'
 import Status from 'devops/components/Status'
 import CodeQualityStore from 'stores/devops/codeQuality'
 import DetailPage from 'devops/containers/Base/Detail'
+import Nav from 'devops/components/DetailNav'
 
+import { ReactComponent as ForkIcon } from 'assets/fork.svg'
 import { getPipelineStatus } from 'utils/status'
 import { trigger } from 'utils/action'
 
-import Nav from 'devops/components/DetailNav'
 import './index.scss'
 
 @inject('rootStore', 'devopsStore', 'pipelineStore')
@@ -41,6 +43,10 @@ export default class BranchDetailLayout extends React.Component {
 
   get store() {
     return this.props.pipelineStore
+  }
+
+  get routing() {
+    return this.props.rootStore.routing
   }
 
   get createTime() {
@@ -120,7 +126,7 @@ export default class BranchDetailLayout extends React.Component {
     ]
   }
 
-  handleRun = async () => {
+  handleRun = debounce(async () => {
     const { branchDetail } = this.store
     const { params } = this.props.match
     const isMultibranch = branchDetail.branchNames
@@ -129,15 +135,25 @@ export default class BranchDetailLayout extends React.Component {
 
     if (isMultibranch || hasParameters) {
       this.trigger('pipeline.params', {
-        devops: this.devops,
-        cluster: this.cluster,
+        devops: params.devops,
+        cluster: params.cluster,
         params,
-        success: this.fetchData,
+        branches: [toJS(branchDetail.name)],
+        parameters: toJS(branchDetail.parameters),
+        success: () => {
+          Notify.success({ content: `${t('Run Start')}!` })
+          this.handleFetch()
+        },
       })
     } else {
+      Notify.success({ content: `${t('Run Start')}!` })
       await this.store.runBranch(params)
-      this.store.getActivities(params)
+      this.handleFetch()
     }
+  }, 500)
+
+  handleFetch = (params, refresh) => {
+    this.routing.query(params, refresh)
   }
 
   renderNav = () => {

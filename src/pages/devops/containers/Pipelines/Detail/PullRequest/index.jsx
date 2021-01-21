@@ -25,6 +25,7 @@ import { parse } from 'qs'
 import { getLocalTime } from 'utils'
 import Status from 'devops/components/Status'
 import { getPipelineStatus } from 'utils/status'
+import Health from 'devops/components/Health'
 
 import Table from 'components/Tables/List'
 import EmptyCard from 'devops/components/Cards/EmptyCard'
@@ -75,7 +76,7 @@ export default class Pullrequest extends React.Component {
   getColumns = () => [
     {
       title: t('Status'),
-      width: '12%',
+      width: '15%',
       render: record => (
         <Status {...getPipelineStatus(get(record, 'latestRun', {}))} />
       ),
@@ -83,7 +84,7 @@ export default class Pullrequest extends React.Component {
     {
       title: t('Name'),
       dataIndex: 'displayName',
-      width: '19%',
+      width: '15%',
       render: displayName => (
         <Link
           className="item-name"
@@ -94,19 +95,25 @@ export default class Pullrequest extends React.Component {
       ),
     },
     {
+      title: t('WeatherScore'),
+      dataIndex: 'weatherScore',
+      width: '15%',
+      render: weatherScore => <Health score={weatherScore} />,
+    },
+    {
       title: t('Last Message'),
-      width: '25%',
+      width: '20%',
       render: record => get(record, 'pullRequest.title', ''),
     },
     {
-      title: t('author'),
+      title: t('Author'),
       width: '15%',
       render: record => get(record, 'pullRequest.author', ''),
     },
     {
       title: t('Time'),
       dataIndex: 'latestRun',
-      width: '15%',
+      width: '20%',
       render: latestRun =>
         getLocalTime(latestRun.startTime).format('YYYY-MM-DD HH:mm:ss'),
     },
@@ -118,7 +125,7 @@ export default class Pullrequest extends React.Component {
     const { pullRequestList } = this.store
     const { data, isLoading, total, page, limit, filters } = pullRequestList
 
-    const isEmptyList = isLoading === false && total === 0
+    const isEmptyList = isLoading === false && total === 0 && data.length > 0
 
     const omitFilters = omit(filters, 'page', 'workspace')
 
@@ -132,7 +139,7 @@ export default class Pullrequest extends React.Component {
       <Table
         data={toJS(data)}
         columns={this.getColumns()}
-        rowKey="latestRun"
+        rowKey="id"
         filters={omitFilters}
         pagination={pagination}
         isLoading={isLoading}

@@ -99,17 +99,6 @@ export default class Branch extends React.Component {
 
   getColumns = () => [
     {
-      title: t('Name'),
-      dataIndex: 'name',
-      width: '30%',
-      render: name => (
-        <Link className="item-name" to={`${this.prefix}/${name}/activity`}>
-          <ForkIcon style={{ width: '20px', height: '20px' }} />{' '}
-          {decodeURIComponent(name)}
-        </Link>
-      ),
-    },
-    {
       title: t('Status'),
       dataIndex: 'status',
       width: '20%',
@@ -118,15 +107,26 @@ export default class Branch extends React.Component {
       ),
     },
     {
+      title: t('Name'),
+      dataIndex: 'name',
+      width: '20%',
+      render: name => (
+        <Link className="item-name" to={`${this.prefix}/${name}/activity`}>
+          <ForkIcon style={{ width: '20px', height: '20px' }} />{' '}
+          {decodeURIComponent(name)}
+        </Link>
+      ),
+    },
+    {
       title: t('WeatherScore'),
       dataIndex: 'weatherScore',
-      width: '15%',
+      width: '20%',
       render: weatherScore => <Health score={weatherScore} />,
     },
     {
       title: t('Last Message'),
       dataIndex: 'latestRun',
-      width: '15%',
+      width: '20%',
       render: latestRun => result(latestRun, 'causes[0].shortDescription', ''),
     },
     {
@@ -164,7 +164,7 @@ export default class Branch extends React.Component {
 
     return (
       <Table
-        rowkey="displayName"
+        rowKey="displayName"
         data={data}
         columns={this.getColumns()}
         filters={omitFilters}
