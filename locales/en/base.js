@@ -45,7 +45,7 @@ module.exports = {
   auditing: 'auditing',
   Auditing: 'Auditing',
   'Auditing Operating': 'Auditing Operating',
-  author: 'author',
+  Author: 'Author',
   'Back To List': 'Back To List',
   'Basic Info': 'Basic Info',
   'Basic Information': 'Basic Information',

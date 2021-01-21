@@ -60,14 +60,6 @@ export default class Activity extends React.Component {
 
   refreshTimer = setInterval(() => this.refreshHandler(), 4000)
 
-  componentDidMount() {
-    this.getData()
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.refreshTimer)
-  }
-
   get enabledActions() {
     const { devops, cluster } = this.props.match.params
     return globals.app.getActions({
@@ -89,10 +81,21 @@ export default class Activity extends React.Component {
     return this.props.match.params.branch
   }
 
-  getData = () => {
+  get prefix() {
+    const { url } = this.props.match
+    const _arr = url.split('/')
+    _arr.pop()
+    return _arr.join('/')
+  }
+
+  get routing() {
+    return this.props.rootStore.routing
+  }
+
+  componentDidMount() {
     const { params } = this.props.match
 
-    this.routing.history.subscribe(location => {
+    this.unsubscribe = this.routing.history.subscribe(location => {
       if (location.pathname === this.props.match.url) {
         const query = parse(location.search.slice(1))
         this.store.getActivities({
@@ -100,6 +103,28 @@ export default class Activity extends React.Component {
           ...query,
         })
       }
+    })
+  }
+
+  componentDidUpdate() {
+    if (this.refreshTimer === null && this.isRuning) {
+      clearInterval(this.refreshTimer)
+      this.refreshTimer = setInterval(() => this.refreshHandler(), 4000)
+    }
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.refreshTimer)
+    this.unsubscribe && this.unsubscribe()
+  }
+
+  getData = () => {
+    const { params } = this.props.match
+    const query = parse(location.search.slice(1))
+
+    this.store.getActivities({
+      ...params,
+      ...query,
     })
   }
 
@@ -112,16 +137,11 @@ export default class Activity extends React.Component {
     }
   }
 
-  handleFetch = (params, refresh) => {
-    this.routing.query(params, refresh)
-  }
-
   handleRunning = debounce(async () => {
     const { detail } = this.store
     const { params } = this.props.match
     const isMultibranch = detail.branchNames
     const hasParameters = detail.parameters && detail.parameters.length
-    Notify.success({ content: `${t('Run Start')}!` })
 
     if (isMultibranch || hasParameters) {
       this.trigger('pipeline.params', {
@@ -130,23 +150,20 @@ export default class Activity extends React.Component {
         params,
         branches: toJS(detail.branchNames),
         parameters: toJS(detail.parameters),
-        success: this.handleFetch,
+        success: () => {
+          Notify.success({ content: `${t('Run Start')}!` })
+          this.handleFetch()
+        },
       })
     } else {
+      Notify.success({ content: `${t('Run Start')}!` })
       await this.props.detailStore.runBranch(params)
       this.handleFetch()
     }
   }, 500)
 
-  get prefix() {
-    const { url } = this.props.match
-    const _arr = url.split('/')
-    _arr.pop()
-    return _arr.join('/')
-  }
-
-  get routing() {
-    return this.props.rootStore.routing
+  handleFetch = (params, refresh) => {
+    this.routing.query(params, refresh)
   }
 
   handleReplay = record => async () => {
@@ -160,6 +177,8 @@ export default class Activity extends React.Component {
       url,
       cluster: params.cluster,
     })
+
+    Notify.success({ content: `${t('Run Start')}!` })
     this.handleFetch()
   }
 
@@ -178,6 +197,8 @@ export default class Activity extends React.Component {
     Notify.success({
       content: t('Scan repo success'),
     })
+
+    this.handleFetch()
   }
 
   handleStop = record => async () => {
