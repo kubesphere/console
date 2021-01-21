@@ -55,33 +55,29 @@
   display: inline-block;
   position: relative;
   top: 18px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding: 0 20px 0;
   height: 32px;
   max-width: 100%;
-
   font-size: 12px;
-  font-weight: 500;
+  font-weight: bolder;
   line-height: 32px;
   color: #ffffff;
-
   border-radius: 16px;
   background-color: #242e42;
-
-  @include ellipsis;
 }
 
 .pipelineCard__content {
-  padding: 22px 12px 20px;
+  padding: 22px 12px 12px;
   text-align: left;
-  border-radius: $border-radius;
+  border-radius: 8px;
   background-color: #ffffff;
   box-shadow: 0 4px 8px 0 rgba(36, 46, 66, 0.06);
 }
 
 .pipelineCard__item {
-  padding: 8px 12px;
+  padding: 8px;
   margin-bottom: 8px;
+  min-height: 56px;
   line-height: 20px;
   border-radius: 4px;
   background-color: $lightest;
@@ -126,7 +122,6 @@
 
 .pipeline_column {
   display: inline-block;
-  // width: 300px;
   margin: 0 10px;
 
   vertical-align: top;

@@ -59,7 +59,11 @@ export default class Pipeline extends React.Component {
       store: this.store,
       jsonData: toJS(pipelineJsonData.pipelineJson),
       params,
-      success: this.handleRefresh,
+      success: () => {
+        const { devops, name } = params
+        localStorage.removeItem(`${globals.user.username}-${devops}-${name}`)
+        this.handleRefresh()
+      },
     })
   }
 

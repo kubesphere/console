@@ -17,7 +17,7 @@
  */
 
 import React from 'react'
-import { observable, action, computed } from 'mobx'
+import { observable, action, computed, toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import Card from './Card'
 import Edges from './Edges'
@@ -93,7 +93,7 @@ export default class PipelineNodes extends React.Component {
               onAddBranch={this.handleAddBranch(index)}
               onAddStep={this.onAddStep}
               isEditMode={isEditMode}
-              nodes={stage}
+              nodes={toJS(stage)}
               index={index}
               setHeight={this.setHeight(index)}
               onFocus={this.handleFocus(index)}

@@ -42,7 +42,7 @@ export default class PipelineEdges extends React.Component {
     if (!height) {
       return `M ${EDGES_LENGTH} ${POINT_R} H ${2 * EDGES_LENGTH - POINT_R}`
     }
-    height += POINT_R
+    height += POINT_R - 10
     return `M${EDGES_LENGTH} ${POINT_R}  V ${height -
       CURVE_R} Q ${EDGES_LENGTH}, ${height} ${EDGES_LENGTH +
       CURVE_R}, ${height} H ${2 * EDGES_LENGTH - POINT_R}`
@@ -52,7 +52,7 @@ export default class PipelineEdges extends React.Component {
     if (!height) {
       return `M${POINT_R} ${POINT_R} H ${EDGES_LENGTH}`
     }
-    height += POINT_R
+    height += POINT_R - 10
     return `M${POINT_R} ${height} H ${EDGES_LENGTH -
       CURVE_R} Q ${EDGES_LENGTH},${height} ${EDGES_LENGTH},${height -
       CURVE_R} V ${POINT_R}`
@@ -236,7 +236,7 @@ export default class PipelineEdges extends React.Component {
       <React.Fragment>
         <div
           className={style.connects__column}
-          style={{ height: `${this.getMaxHeight() + 40}px` }}
+          style={{ height: `${this.getMaxHeight() + 32}px` }}
         >
           {this.renderEdges()}
           {isEditMode && !index && posision === 'Right'

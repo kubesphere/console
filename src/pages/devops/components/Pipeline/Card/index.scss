@@ -12,19 +12,15 @@
   display: inline-block;
   position: relative;
   top: 18px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding: 0 20px 0;
   height: 32px;
   max-width: 100%;
-
   font-size: 12px;
-  font-weight: 500;
+  font-weight: bolder;
   line-height: 32px;
   color: #ffffff;
-
   border-radius: 16px;
   background-color: #242e42;
-
   @include ellipsis;
 }
 
@@ -33,12 +29,16 @@
 }
 
 .pipelineCard__content {
-  padding: 22px 12px 20px;
+  padding: 22px 12px 12px;
   text-align: left;
-  border-radius: $border-radius;
   background-color: #ffffff;
-  box-shadow: 0 4px 8px 0 rgba(36, 46, 66, 0.06);
+  border-radius: 8px;
   border: 1px solid transparent;
+  box-shadow: 0 4px 8px 0 rgba(36, 46, 66, 0.06);
+
+  & > .pipelineCard__item:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .pipelineCard-error {
@@ -51,27 +51,64 @@
 }
 
 .pipelineCard-active {
-  border: 1px solid $green;
-  box-shadow: 0 6px 16px 0 rgba(33, 43, 54, 0.2);
+  border: 1px solid #6b7b95;
+  box-shadow: 0 4px 8px 0 rgba(36, 46, 66, 0.2);
 }
 
 .pipelineCard__item {
-  padding: 4px 12px;
-  margin-bottom: 8px;
+  padding: 8px;
   line-height: 20px;
   border-radius: 4px;
-  border: 4px solid white;
+  margin-bottom: 8px;
   background-color: $lightest;
-
   @include break-all;
 
-  .content__title {
-    font-weight: 500;
-    color: #329dce;
+  & > .pipelineCard__item {
+    margin-bottom: 8px;
+    border-radius: 0;
+    border-bottom: 1px dashed #ccd3db;
   }
+
+  & > .pipelineCard__item:last-child {
+    padding-bottom: 0;
+    margin-bottom: 0;
+    border-bottom: none;
+  }
+
+  .content__title {
+    font-weight: bolder;
+    color: #329dce;
+    margin-bottom: 5px;
+  }
+
   .content__title__error {
     color: #ca2621;
   }
+
+  .content__title__noDetail {
+    line-height: 40px;
+    margin-bottom: 0 !important;
+
+    .content__title__text {
+      color: #000;
+    }
+
+    :global {
+      .icon {
+        margin-top: -2px;
+        margin-right: 8px;
+      }
+    }
+  }
+
+  .content__text {
+    color: #242e42;
+
+    & > div {
+      @include ellipsis;
+    }
+  }
+
   .content__detail {
     color: #242e42;
   }
@@ -79,7 +116,6 @@
 
 .pipeline_column {
   display: inline-block;
-  // width: 300px;
   margin: 0 10px;
 
   vertical-align: top;
@@ -89,39 +125,47 @@
   width: 100%;
   height: 32px;
   border-radius: 4px;
-  padding: 5px;
+  padding: 5px 5px 5px 10px;
+  font-weight: bolder;
   background-color: #ffffff;
-  border: dashed 1px #d8dee5;
+  border: 1px dashed #ccd3db;
   user-select: none;
   cursor: pointer;
 
-  span {
-    margin-top: -2px;
+  :global {
+    .icon {
+      margin-top: -2px;
+      margin-right: 8px;
+    }
   }
 
   &:hover {
     background-color: $bg-color;
-    border: dashed 1px #329dce;
+    border: 1px dashed #329dce;
     border-color: #51a6d3;
   }
 }
 
 .addBranchCard {
-  padding-left: 12px;
-  margin-top: 15px;
+  margin-top: 12px;
+  padding: 5px 5px 5px 22px;
   height: 32px;
-  line-height: 32px;
-  color: #5f708a;
+  color: $dark-color06;
+  font-weight: bolder;
+  background-color: transparent;
   border-radius: 4px;
-  background-color: #ffffff;
-  border: dashed 1px #d8dee5;
+  border: 1px dashed #ccd3db;
   user-select: none;
-  .icon {
-    vertical-align: middle;
-    margin-right: 8px;
+
+  :global {
+    .icon {
+      margin-top: -2px;
+      margin-right: 8px;
+    }
   }
+
   &:hover {
-    border: dashed 1px #329dce;
+    border: 1px dashed #329dce;
     background-color: $bg-color;
   }
 }
@@ -145,6 +189,7 @@
     height: 100%;
     background-color: #329dce;
   }
+
   .nestsStage_detail {
     background: white;
     width: 100%;

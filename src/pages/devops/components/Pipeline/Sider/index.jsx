@@ -196,7 +196,9 @@ export default class Sider extends React.Component {
           </div>
         </div>
         {activeStage ? (
-          <StepsEditor activeStage={activeStage} store={this.props.store} />
+          <div className={styles.content}>
+            <StepsEditor activeStage={activeStage} store={this.props.store} />
+          </div>
         ) : null}
         <YamlEditor
           value={this.formData.yaml}

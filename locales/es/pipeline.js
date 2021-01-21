@@ -510,4 +510,6 @@ module.exports = {
   'Run Start': 'Start Running',
   'Gitlab Server': 'Gitlab Server',
   'Gitlab Owner': 'Owner',
+  CREATE_PIPELINE_DESC: 'Build, test and deploy with Pipelines',
+  'Choose a pipeline template': 'Choose a pipeline template',
 }
