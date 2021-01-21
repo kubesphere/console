@@ -122,12 +122,12 @@ export default [
       { path: `${PATH}/members`, component: Members, exact: true },
       { path: `${PATH}/advanced`, component: AdvancedSettings, exact: true },
       {
-        path: `${PATH}/alert-policies`,
+        path: `${PATH}/alert-rules`,
         component: AlertingPolicies,
         exact: true,
       },
       {
-        path: `${PATH}/alert-messages`,
+        path: `${PATH}/alerts`,
         component: AlertingMessages,
         exact: true,
       },

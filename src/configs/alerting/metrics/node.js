@@ -25,87 +25,87 @@ import {
 } from './rule.config'
 
 export default {
-  node_pod_abnormal_ratio: {
+  'node:pod_abnormal:ratio{$1}': {
     label: 'pod abnormal ratio',
     prefixIcon: 'pod',
     ruleConfig: PERCENT_RULE_CONFIG,
   },
-  node_pod_utilisation: {
+  'node:pod_utilisation:ratio{$1}': {
     label: 'pod utilization rate',
     prefixIcon: 'pod',
     ruleConfig: PERCENT_RULE_CONFIG,
   },
-  node_cpu_utilisation: {
+  'node:node_cpu_utilisation:avg1m{$1}': {
     label: 'cpu utilization rate',
     prefixIcon: 'cpu',
     ruleConfig: PERCENT_RULE_CONFIG,
   },
-  node_load1: {
+  'node:load1:ratio{$1}': {
     label: 'load1',
     prefixIcon: 'cpu',
     ruleConfig: BASE_RULE_CONFIG,
   },
-  node_load5: {
+  'node:load5:ratio{$1}': {
     label: 'load5',
     prefixIcon: 'cpu',
     ruleConfig: BASE_RULE_CONFIG,
   },
-  node_load15: {
+  'node:load15:ratio{$1}': {
     label: 'load15',
     prefixIcon: 'cpu',
     ruleConfig: BASE_RULE_CONFIG,
   },
-  node_memory_available: {
+  'node:node_memory_bytes_available:sum{$1}': {
     label: 'memory available',
     prefixIcon: 'memory',
     ruleConfig: DISK_RULE_CONFIG,
   },
-  node_memory_utilisation: {
+  'node:node_memory_utilisation:{$1}': {
     label: 'memory utilization rate',
     prefixIcon: 'memory',
     ruleConfig: PERCENT_RULE_CONFIG,
   },
-  node_disk_size_available: {
+  'node:disk_space_available:{$1}': {
     label: 'disk space available',
     prefixIcon: 'storage',
     ruleConfig: DISK_RULE_CONFIG,
   },
-  node_disk_size_utilisation: {
+  'node:disk_space_utilization:ratio{$1}': {
     label: 'local disk space utilization rate',
     prefixIcon: 'storage',
     ruleConfig: PERCENT_RULE_CONFIG,
   },
-  node_disk_inode_utilisation: {
+  'node:disk_inode_utilization:ratio{$1}': {
     label: 'inode utilization rate',
     prefixIcon: 'storage',
     ruleConfig: PERCENT_RULE_CONFIG,
   },
-  node_disk_read_iops: {
+  'node:data_volume_iops_reads:sum{$1}': {
     label: 'disk read iops',
     prefixIcon: 'storage',
     ruleConfig: BASE_RULE_CONFIG,
   },
-  node_disk_write_iops: {
+  'node:data_volume_iops_writes:sum{$1}': {
     label: 'disk write iops',
     prefixIcon: 'storage',
     ruleConfig: BASE_RULE_CONFIG,
   },
-  node_disk_read_throughput: {
+  'node:data_volume_throughput_bytes_read:sum{$1}': {
     label: 'disk read throughput',
     prefixIcon: 'storage',
     ruleConfig: THROUGHPUT_RULE_CONFIG,
   },
-  node_disk_write_throughput: {
+  'node:data_volume_throughput_bytes_written:sum{$1}': {
     label: 'disk write throughput',
     prefixIcon: 'storage',
     ruleConfig: THROUGHPUT_RULE_CONFIG,
   },
-  node_net_bytes_transmitted: {
+  'node:node_net_bytes_transmitted:sum_irate{$1}': {
     label: 'network data transmitting rate',
     prefixIcon: 'network',
     ruleConfig: BANDWIDTH_RULE_CONFIG,
   },
-  node_net_bytes_received: {
+  'node:node_net_bytes_received:sum_irate{$1}': {
     label: 'network data receiving rate',
     prefixIcon: 'network',
     ruleConfig: BANDWIDTH_RULE_CONFIG,

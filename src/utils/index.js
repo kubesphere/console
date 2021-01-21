@@ -71,6 +71,34 @@ export const formatUsedTime = ms => {
   return `${parseFloat(ms / 3600000).toFixed(2)} h`
 }
 
+export const formatDuration = (str, targetUnit = 's') => {
+  const units = ['d', 'h', 'm', 's', 'ms']
+  const unitConvertor = [24, 60, 60, 1000, 1]
+  const [, value, unit] = str.match(/^([0-9.]*)(.*)$/)
+
+  if (isUndefined(value) || isUndefined(unit)) {
+    return str
+  }
+
+  let sourceIndex = units.indexOf(unit)
+  const targetIndex = units.indexOf(targetUnit)
+
+  let targetValue = parseFloat(value)
+  if (sourceIndex < targetIndex) {
+    while (sourceIndex !== targetIndex) {
+      targetValue *= unitConvertor[sourceIndex]
+      sourceIndex++
+    }
+  } else {
+    while (sourceIndex !== targetIndex) {
+      sourceIndex--
+      targetValue /= unitConvertor[sourceIndex]
+    }
+  }
+
+  return targetValue
+}
+
 /**
  * Flatten object. transfer {a:{b:{c:1}}} to {'a.b.c':1}
  * @param {Object} obj

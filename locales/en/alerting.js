@@ -108,6 +108,7 @@ module.exports = {
   Triggered: 'Triggered',
   triggered: 'triggered',
   'triggered alerting messages': 'triggered alerting messages',
+  'Unavailable replicas ratio': 'Unavailable replicas ratio',
   'Unavailable daemonset replicas ratio':
     'Unavailable daemonset replicas ratio',
   'Unavailable deployment replicas ratio':
@@ -145,8 +146,7 @@ module.exports = {
   'ALERTING-POLICY_NOTIFICATION-RULE_DESC': 'Set notification rules',
   TOTAL_POLICIES: 'Total {num} alerting policies',
 
-  PERIOD_OPTIONS:
-    '{value, plural, =1 {1 minute/period} other {# minutes/period}}',
+  PERIOD_OPTIONS: '{value, plural, =1 {1 minute} other {# minutes}}',
   CONSECUTIVE_OPTIONS: '{value} consecutive times',
 
   MAX_SEND_NOT_LIMIT: 'Not limited',

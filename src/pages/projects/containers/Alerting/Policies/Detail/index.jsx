@@ -20,28 +20,31 @@ import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import { get, isEmpty } from 'lodash'
-import { Loading } from '@kube-design/components'
+import { Loading, Tag } from '@kube-design/components'
+
+import { Status } from 'components/Base'
 
 import { getDisplayName, getLocalTime } from 'utils'
 import { trigger } from 'utils/action'
+import { SEVERITY_LEVEL } from 'configs/alerting/metrics/rule.config'
 import AlertingPolicyStore from 'stores/alerting/policy'
 
-import DetailPage from 'projects/containers/Base/Detail'
+import DetailPage from 'clusters/containers/Base/Detail'
 
-import routes from './routes'
+import getRoutes from './routes'
 
 @inject('rootStore')
 @observer
 @trigger
 export default class AlertPolicyDetail extends React.Component {
-  store = new AlertingPolicyStore('workload')
+  store = new AlertingPolicyStore()
 
   componentDidMount() {
     this.fetchData()
   }
 
   get module() {
-    return 'alert-policies'
+    return 'alert-rules'
   }
 
   get name() {
@@ -49,8 +52,10 @@ export default class AlertPolicyDetail extends React.Component {
   }
 
   get listUrl() {
-    const { workspace, cluster, namespace } = this.props.match.params
-    return `/${workspace}/clusters/${cluster}/projects/${namespace}/alert-policies`
+    const { cluster, namespace, workspace } = this.props.match.params
+    return `${workspace ? `/${workspace}` : ''}/clusters/${cluster}${
+      namespace ? `/projects/${namespace}` : ''
+    }/alert-rules`
   }
 
   get routing() {
@@ -68,24 +73,15 @@ export default class AlertPolicyDetail extends React.Component {
     {
       key: 'edit',
       icon: 'pen',
-      text: t('Edit Info'),
+      text: t('Edit'),
       type: 'control',
       action: 'edit',
       onClick: () =>
-        this.trigger('alerting.policy.edit', {
-          type: t(this.name),
-          detail: toJS(this.store.ksFormatDetail),
-          success: this.fetchData,
-        }),
-    },
-    {
-      key: 'changeStatus',
-      icon: 'pen',
-      text: t('Change Status'),
-      action: 'edit',
-      onClick: () =>
-        this.trigger('alerting.status.edit', {
-          detail: this.store.detail,
+        this.trigger('alerting.policy.create', {
+          detail: toJS(this.store.detail),
+          module: this.store.module,
+          cluster: this.props.match.params.cluster,
+          title: `${t('Edit ')}${t('alerting policy')}`,
           success: this.fetchData,
         }),
     },
@@ -110,19 +106,32 @@ export default class AlertPolicyDetail extends React.Component {
     if (isEmpty(detail)) {
       return
     }
+    const severity = get(detail, 'labels.severity')
+    const level = SEVERITY_LEVEL.find(item => item.value === severity)
 
     return [
       {
         name: t('Status'),
-        value: detail.disabled ? t('disabled') : t('active'),
+        value: (
+          <Status
+            type={detail.state}
+            name={t(`ALERT_RULE_${detail.state.toUpperCase()}`, {
+              defaultValue: detail.state,
+            })}
+          />
+        ),
+      },
+      {
+        name: t('Alerting Type'),
+        value: level ? (
+          <Tag type={level.type}>{t(level.label)}</Tag>
+        ) : (
+          <Tag>{severity}</Tag>
+        ),
       },
       {
         name: t('Created Time'),
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
-      },
-      {
-        name: t('Creator'),
-        value: get(detail, 'creator', t('unknown')),
       },
     ]
   }
@@ -137,7 +146,7 @@ export default class AlertPolicyDetail extends React.Component {
     const sideProps = {
       module: this.module,
       name: getDisplayName(this.store.detail),
-      desc: this.store.detail.desc,
+      desc: this.store.detail.description,
       operations: this.getOperations(),
       attrs: this.getAttrs(),
       breadcrumbs: [
@@ -148,6 +157,12 @@ export default class AlertPolicyDetail extends React.Component {
       ],
     }
 
-    return <DetailPage stores={stores} routes={routes} {...sideProps} />
+    return (
+      <DetailPage
+        stores={stores}
+        routes={getRoutes(this.props.match.path)}
+        {...sideProps}
+      />
+    )
   }
 }

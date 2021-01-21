@@ -29,7 +29,7 @@ export default function GrafanaTargetInput({
   onUpClick,
   onDownClick,
   onDelete,
-  supportMetrics,
+  ...rest
 }) {
   return (
     <div className={styles.wrapper}>
@@ -81,7 +81,7 @@ export default function GrafanaTargetInput({
                 <CustomMonitorMetircQueryInput
                   value={value}
                   onChange={onChange}
-                  supportMetrics={supportMetrics}
+                  {...rest}
                 />
               )}
             </FormItemContainer>

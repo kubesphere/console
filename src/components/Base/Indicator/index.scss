@@ -64,6 +64,7 @@
   &.terminating,
   &.released,
   &.unfinished,
+  &.firing,
   &.major,
   &.deleting,
   &.in-review {
@@ -103,6 +104,7 @@
   &.completed,
   &.minor,
   &.paused,
+  &.inactive,
   &.suspended {
     background-color: rgba(134, 146, 157, 0.1);
     &::before {

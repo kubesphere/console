@@ -52,6 +52,7 @@ import {
   getLanguageName,
   parseUrl,
   replaceToLocalOrigin,
+  formatDuration,
 } from './index'
 
 it('formatSize', () => {
@@ -429,4 +430,11 @@ it('isAppsPage', () => {
   expect(isAppsPage('/apps')).toBe(true)
   expect(isAppsPage('/apps/app-ix7aus9')).toBe(true)
   expect(isAppsPage('/app')).toBe(false)
+})
+
+it('formatDuration', () => {
+  expect(formatDuration('6m')).toBe(360)
+  expect(formatDuration('1h')).toBe(3600)
+  expect(formatDuration('1.5d')).toBe(129600)
+  expect(formatDuration('6m', 'h')).toBe(0.1)
 })

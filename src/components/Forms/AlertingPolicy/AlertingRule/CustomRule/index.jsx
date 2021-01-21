@@ -16,26 +16,31 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { getIndexRoute } from 'utils/router.config'
+import React, { Component } from 'react'
+import { observer } from 'mobx-react'
+import { computed } from 'mobx'
 
-import AlertingRules from './AlertRules'
-import AlertingHistory from './AlertHistory'
+import MetircQueryInput from 'components/Modals/CustomMonitoring/components/MetircQueryInput'
 
-const PATH =
-  '/:workspace/clusters/:cluster/namespaces/:namespace/alert-rules/:name'
+@observer
+export default class CustomRule extends Component {
+  componentDidMount() {
+    const { cluster, namespace } = this.props
+    this.props.store.fetchMetadata({ cluster, namespace })
+  }
 
-export default (path = PATH) => [
-  {
-    path: `${path}/alert-rules`,
-    title: 'Alerting Rules',
-    component: AlertingRules,
-    exact: true,
-  },
-  {
-    path: `${path}/alert-history`,
-    title: 'Alerting History',
-    component: AlertingHistory,
-    exact: true,
-  },
-  getIndexRoute({ path, to: `${path}/alert-rules`, exact: true }),
-]
+  @computed
+  get supportMetrics() {
+    return this.props.store.targetsMetadata.map(metadata => ({
+      value: metadata.metric,
+      desc: metadata.help,
+      type: metadata.type,
+    }))
+  }
+
+  render() {
+    return (
+      <MetircQueryInput {...this.props} supportMetrics={this.supportMetrics} />
+    )
+  }
+}

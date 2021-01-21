@@ -17,7 +17,7 @@
 
 import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react'
-import { computed } from 'mobx'
+import { computed, toJS } from 'mobx'
 
 import { Form } from '@kube-design/components'
 import { TypeSelect } from 'components/Base'
@@ -33,7 +33,7 @@ import ErrorContainer from '../components/ErrorContainer'
 import FormGroupCard from '../components/FormGroupCard'
 import GraphForm from '../components/Form/Graph'
 
-@inject('monitoringStore')
+@inject('monitoringStore', 'labelStore')
 @observer
 export default class GraphMonitorForm extends Component {
   @computed
@@ -58,11 +58,26 @@ export default class GraphMonitorForm extends Component {
     return this.monitor.timeRange
   }
 
+  handleLabelSearch = metric => {
+    const { cluster, namespace } = this.props.monitoringStore
+    const { from, to } = this.props.monitoringStore.getTimeRange()
+
+    this.props.labelStore.fetchLabelSets({
+      cluster,
+      namespace,
+      metric,
+      start: Math.floor(from.valueOf() / 1000),
+      end: Math.floor(to.valueOf() / 1000),
+    })
+  }
+
   render() {
     const { title, lines, bars, stack, description } = this.monitor.config
     const { errorMessage } = this.monitor
 
     const legends = this.monitor.legends
+
+    const labelsets = toJS(this.props.labelStore.labelsets)
 
     return (
       <EditMonitorFormLayou
@@ -133,7 +148,13 @@ export default class GraphMonitorForm extends Component {
             </FormGroupCard>
           </>
         }
-        main={<GraphForm supportMetrics={this.supportMetrics} />}
+        main={
+          <GraphForm
+            supportMetrics={this.supportMetrics}
+            labelsets={labelsets}
+            onLabelSearch={this.handleLabelSearch}
+          />
+        }
       />
     )
   }

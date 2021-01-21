@@ -16,26 +16,19 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { getIndexRoute } from 'utils/router.config'
+import React from 'react'
 
-import AlertingRules from './AlertRules'
-import AlertingHistory from './AlertHistory'
+import WorkloadSelect from './WorkloadSelect'
+import NodeSelect from './NodeSelect'
 
-const PATH =
-  '/:workspace/clusters/:cluster/namespaces/:namespace/alert-rules/:name'
+export default class MonitoringTarget extends React.Component {
+  render() {
+    const { namespace } = this.props
 
-export default (path = PATH) => [
-  {
-    path: `${path}/alert-rules`,
-    title: 'Alerting Rules',
-    component: AlertingRules,
-    exact: true,
-  },
-  {
-    path: `${path}/alert-history`,
-    title: 'Alerting History',
-    component: AlertingHistory,
-    exact: true,
-  },
-  getIndexRoute({ path, to: `${path}/alert-rules`, exact: true }),
-]
+    return namespace ? (
+      <WorkloadSelect {...this.props} />
+    ) : (
+      <NodeSelect {...this.props} />
+    )
+  }
+}

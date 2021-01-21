@@ -1,0 +1,39 @@
+@import '~scss/variables';
+
+.inputs {
+  display: flex;
+  align-items: center;
+  padding: 6px 17px;
+  border-radius: 60px;
+  background-color: $bg-color;
+  border: solid 1px $border-color;
+
+  & > div {
+    width: 100%;
+
+    & + div,
+    & + input {
+      margin-left: 12px;
+    }
+  }
+}
+
+.optionLabel {
+  display: flex;
+  align-items: center;
+
+  :global .icon {
+    margin-right: 8px;
+  }
+}
+
+.slider {
+  align-items: center;
+  width: 100%;
+
+  :global {
+    .slider {
+      margin-top: 2px;
+    }
+  }
+}

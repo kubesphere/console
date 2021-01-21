@@ -17,58 +17,34 @@
  */
 
 import React from 'react'
-import { capitalize } from 'lodash'
+import { capitalize, get } from 'lodash'
+import { Link } from 'react-router-dom'
 
-import { Avatar, Status } from 'components/Base'
+import { Tag } from '@kube-design/components'
+
+import { Text } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import withList, { ListPage } from 'components/HOCs/withList'
 
 import Table from 'components/Tables/List'
 
 import { getLocalTime } from 'utils'
-import { getAlertMessageDesc } from 'utils/alerting'
+
+import { SEVERITY_LEVEL } from 'configs/alerting/metrics/rule.config'
 
 import MessageStore from 'stores/alerting/message'
 
 @withList({
-  store: new MessageStore('workload'),
-  module: 'alert-messages',
+  store: new MessageStore(),
+  module: 'alerts',
   name: 'Alerting Message',
 })
 export default class AlertingPolicy extends React.Component {
-  state = {
-    type: 'unresolved',
-  }
-
-  handleTabChange = type => {
-    this.setState({ type }, () => {
-      this.getData()
-    })
-  }
-
   getData = params => {
     this.props.store.fetchList({
-      status: this.state.type === 'all' ? 'resumed,triggered' : 'triggered',
       ...this.props.match.params,
       ...params,
     })
-  }
-
-  get tabs() {
-    return {
-      value: this.state.type,
-      onChange: this.handleTabChange,
-      options: [
-        {
-          value: 'unresolved',
-          label: t('Unresolved'),
-        },
-        {
-          value: 'all',
-          label: t('All'),
-        },
-      ],
-    }
   }
 
   get tips() {
@@ -98,6 +74,13 @@ export default class AlertingPolicy extends React.Component {
     ]
   }
 
+  getRuleLink(ruleName) {
+    const { cluster, namespace, workspace } = this.props.match.params
+    return `${workspace ? `/${workspace}` : ''}/clusters/${cluster}${
+      namespace ? `/projects/${namespace}` : ''
+    }/alert-rules/${ruleName}`
+  }
+
   getTableProps() {
     const { tableProps } = this.props
     return {
@@ -113,11 +96,6 @@ export default class AlertingPolicy extends React.Component {
     }
   }
 
-  getLevel = severity => {
-    const str = capitalize(severity)
-    return <Status type={str} name={t(str)} />
-  }
-
   getResourceType = type => {
     const str = capitalize(type)
     return t('ALERT_TYPE', { type: t(str) })
@@ -126,28 +104,36 @@ export default class AlertingPolicy extends React.Component {
   getColumns = () => [
     {
       title: t('Alerting Message'),
-      dataIndex: 'id',
+      dataIndex: 'value',
       width: '30%',
-      render: (id, record) => (
-        <Avatar
+      render: (value, record) => (
+        <Text
           icon="loudspeaker"
-          title={getAlertMessageDesc(record)}
-          to={`${this.props.match.url}/${id}`}
+          title={get(record, 'annotations.summary')}
+          description={get(record, 'annotations.message', '-')}
         />
       ),
     },
     {
       title: t('Level'),
-      dataIndex: 'severity',
+      dataIndex: 'labels.severity',
       width: '15%',
-      render: severity => this.getLevel(severity),
+      render: severity => {
+        const level = SEVERITY_LEVEL.find(item => item.value === severity)
+        if (level) {
+          return <Tag type={level.type}>{t(level.label)}</Tag>
+        }
+        return <Tag>{severity}</Tag>
+      },
     },
     {
-      title: t('Type'),
-      dataIndex: 'resourceType',
+      title: t('Alerting Policy'),
+      dataIndex: 'ruleName',
       isHideable: true,
       width: '20%',
-      render: type => this.getResourceType(type),
+      render: ruleName => (
+        <Link to={this.getRuleLink(ruleName)}>{ruleName}</Link>
+      ),
     },
     {
       title: t('Time'),
@@ -164,7 +150,6 @@ export default class AlertingPolicy extends React.Component {
         <Banner
           {...bannerProps}
           tips={this.tips}
-          tabs={this.tabs}
           icon="loudspeaker"
           title={t('Alerting Messages')}
           description={t('ALERT_MESSAGE_DESC')}
@@ -172,6 +157,7 @@ export default class AlertingPolicy extends React.Component {
         <Table
           {...tableProps}
           {...this.getTableProps()}
+          rowKey="value"
           itemActions={this.itemActions}
           columns={this.getColumns()}
           onCreate={this.showCreate}

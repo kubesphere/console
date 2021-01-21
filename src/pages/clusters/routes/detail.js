@@ -30,6 +30,7 @@ import ContainerDetail from 'projects/containers/Pods/Containers/Detail'
 import NetworkPoliciesDetail from 'projects/containers/Network/Policies/Detail'
 import Volume from 'projects/containers/Volumes/Detail'
 import VolumeSnapshotsDetail from 'projects/containers/VolumeSnapshots/Detail'
+import AlertPolicyDetail from 'projects/containers/Alerting/Policies/Detail'
 
 import ProjectLayout from '../layouts/Project'
 
@@ -40,8 +41,6 @@ import StorageClassDetail from '../containers/Storage/StorageClasses/Detail'
 import ComponentDetail from '../containers/ServiceComponents/Detail'
 import CustomResourceDetail from '../containers/CustomResources/Detail'
 import RoleDetail from '../containers/Roles/Detail'
-import AlertPolicyDetail from '../containers/Alerting/Policies/Detail'
-import AlertMessageDetail from '../containers/Alerting/Messages/Detail'
 import LogCollectionDetail from '../containers/LogCollections/Detail'
 import IPPoolDetail from '../containers/Network/IPPools/Detail'
 
@@ -61,12 +60,8 @@ export default [
     component: RoleDetail,
   },
   {
-    path: `${PATH}/alert-policies/:name`,
+    path: `${PATH}/alert-rules/:name`,
     component: AlertPolicyDetail,
-  },
-  {
-    path: `${PATH}/alert-messages/:id`,
-    component: AlertMessageDetail,
   },
   {
     path: `${PATH}/log-collections/:component/:name`,

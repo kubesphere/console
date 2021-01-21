@@ -18,6 +18,9 @@
 
 import { getIndexRoute } from 'utils/router.config'
 
+import AlertMessages from 'projects/containers/Alerting/Messages'
+import AlertPolicies from 'projects/containers/Alerting/Policies'
+
 import ClusterLayout from '../containers/layout'
 import ListLayout from '../containers/Base/List'
 
@@ -51,8 +54,6 @@ import KubeCtl from '../containers/KubeCtl'
 import KubeConfig from '../containers/KubeConfig'
 import NetworkPolicies from '../containers/Network/Policies'
 import IPPools from '../containers/Network/IPPools'
-import AlertMessages from '../containers/Alerting/Messages'
-import AlertPolicies from '../containers/Alerting/Policies'
 import MailServer from '../containers/MailServices'
 import LogCollections from '../containers/LogCollections'
 import CustomMonitoring from '../containers/CustomMonitoring'
@@ -190,11 +191,11 @@ export default [
             component: ResourceMonitor,
           },
           {
-            path: `${PATH}/alert-messages`,
+            path: `${PATH}/alerts`,
             component: AlertMessages,
           },
           {
-            path: `${PATH}/alert-policies`,
+            path: `${PATH}/alert-rules`,
             component: AlertPolicies,
           },
           {

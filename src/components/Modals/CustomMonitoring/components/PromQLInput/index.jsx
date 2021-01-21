@@ -17,9 +17,6 @@
  */
 
 import React, { Component } from 'react'
-import { toJS } from 'mobx'
-import { observer } from 'mobx-react'
-import LabelStore from 'stores/monitoring/custom/labelsets'
 
 import Suggestions from './Suggestions'
 import {
@@ -34,8 +31,11 @@ import History from './history'
 
 import styles from './index.scss'
 
-@observer
 export default class PromQLInput extends Component {
+  static defaultProps = {
+    value: '',
+  }
+
   state = {
     value: this.props.value,
     visible: false,
@@ -44,8 +44,6 @@ export default class PromQLInput extends Component {
   editor = React.createRef()
 
   wrapper = React.createRef()
-
-  labelStore = new LabelStore()
 
   valueHistory = new History()
 
@@ -179,14 +177,9 @@ export default class PromQLInput extends Component {
 
   handleLabelSearch = () => {
     const { focusValue } = this.state
-    if (focusValue) {
-      const { cluster, namespace, timeRange } = this.props
-      this.labelStore.fetchLabelSets({
-        cluster,
-        namespace,
-        metric: focusValue,
-        ...timeRange,
-      })
+    const { onLabelSearch } = this.props
+    if (focusValue && onLabelSearch) {
+      onLabelSearch(focusValue)
     }
   }
 
@@ -251,7 +244,7 @@ export default class PromQLInput extends Component {
 
   render() {
     const { visible, focusValue, tokenContext } = this.state
-    const { metrics } = this.props
+    const { metrics, labelsets } = this.props
     return (
       <div className={styles.wrapper} ref={this.wrapper}>
         <pre>
@@ -268,7 +261,7 @@ export default class PromQLInput extends Component {
             value={focusValue}
             metrics={metrics}
             tokenContext={tokenContext}
-            labelsets={toJS(this.labelStore.labelsets)}
+            labelsets={labelsets}
             onSelect={this.handleSuggestionSelect}
           />
         )}

@@ -1,5 +1,19 @@
 @import '~scss/variables';
 
-.alert {
-  margin: 10px 0;
+.title {
+  margin-bottom: 4px;
+}
+
+.content {
+  margin-top: 12px ;
+  padding: 12px;
+  background-color: $card-bg-color;
+  border-radius: $border-radius;
+
+  &Wrapper {
+    padding: 12px;
+    background-color: #fff;
+    border: 1px solid $border-color;
+    border-radius: $border-radius;
+  }
 }

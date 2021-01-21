@@ -18,7 +18,7 @@
 
 import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react'
-import { computed } from 'mobx'
+import { computed, toJS } from 'mobx'
 import { get } from 'lodash'
 import EditMonitorFormLayou from '../components/EditMonitorFormLayout'
 import { GraphTextInput } from '../components/FormInput'
@@ -27,7 +27,7 @@ import FormGroupCard from '../components/FormGroupCard'
 import SingleStatDataForm from '../components/Form/SingleStatData'
 import ErrorContainer from '../components/ErrorContainer'
 
-@inject('monitoringStore')
+@inject('monitoringStore', 'labelStore')
 @observer
 export default class TextMonitorForm extends Component {
   @computed
@@ -53,9 +53,23 @@ export default class TextMonitorForm extends Component {
     this.props.monitoringStore.fetchMetadata()
   }
 
+  handleLabelSearch = metric => {
+    const { cluster, namespace } = this.props.monitoringStore
+    const { from, to } = this.props.monitoringStore.getTimeRange()
+
+    this.props.labelStore.fetchLabelSets({
+      cluster,
+      namespace,
+      metric,
+      start: Math.floor(from.valueOf() / 1000),
+      end: Math.floor(to.valueOf() / 1000),
+    })
+  }
+
   render() {
     const singleState = this.stat
     const title = get(this.monitor, 'config.title', '')
+    const labelsets = toJS(this.props.labelStore.labelsets)
 
     return (
       <EditMonitorFormLayou
@@ -67,7 +81,11 @@ export default class TextMonitorForm extends Component {
         sidebar={<GraphTextInput type="singlestat" />}
         main={
           <FormGroupCard label={t('Data')}>
-            <SingleStatDataForm supportMetrics={this.supportMetrics} />
+            <SingleStatDataForm
+              supportMetrics={this.supportMetrics}
+              labelsets={labelsets}
+              onLabelSearch={this.handleLabelSearch}
+            />
           </FormGroupCard>
         }
       />

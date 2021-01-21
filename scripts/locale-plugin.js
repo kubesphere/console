@@ -24,6 +24,7 @@ class LocalePlugin {
     this.options = {
       ...options,
     }
+    this._caches = {}
   }
 
   apply(compiler) {
@@ -33,23 +34,36 @@ class LocalePlugin {
         if (this.options.locales) {
           const dir = fs.readdirSync(path.join(__dirname, this.options.locales))
           dir.forEach(lang => {
+            let hasChange = false
             const files = fs.readdirSync(
               path.join(__dirname, this.options.locales, lang)
             )
             let data = {}
             files.forEach(file => {
-              const filedata = require(path.join(
+              const key = `${lang}/file`
+              const filepath = path.join(
                 __dirname,
                 this.options.locales,
                 lang,
                 file
-              ))
+              )
+              const fileinfo = fs.statSync(filepath)
+              let filedata
+              if (!this._caches[key] || this._caches[key].mtime !== fileinfo.mtime) {
+                hasChange = true
+                filedata = require(filepath)
+                this._caches[key] = {mtime: fileinfo.mtime, filedata}
+              } else {
+                filedata = this._caches[key].filedata
+              }
               data = { ...data, ...filedata }
             })
             if (!fs.existsSync(compiler.outputPath)) {
               fs.mkdirSync(compiler.outputPath)
             }
-            fs.writeFileSync(path.join(compiler.outputPath, `locale-${lang}.json`), JSON.stringify(data))
+            if (hasChange) {
+              fs.writeFileSync(path.join(compiler.outputPath, `locale-${lang}.json`), JSON.stringify(data))
+            }
           })
         }
         resolve()

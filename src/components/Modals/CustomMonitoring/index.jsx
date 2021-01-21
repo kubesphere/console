@@ -19,6 +19,8 @@
 import React from 'react'
 import { Provider, observer } from 'mobx-react'
 
+import LabelStore from 'stores/monitoring/custom/labelsets'
+
 /**
  * All containers dependent CustomMonitoringStore and modalStore
  */
@@ -52,6 +54,8 @@ export default class CustomMonitoringModal extends React.Component {
    */
   modalStore = new ModalStore()
 
+  labelStore = new LabelStore()
+
   subForm = React.createRef()
 
   handleSave = data => {
@@ -72,7 +76,11 @@ export default class CustomMonitoringModal extends React.Component {
     const shouldMonitorDeatilShow = hasSelectedMonitor && isEditing
 
     return (
-      <Provider monitoringStore={this.store} modalStore={this.modalStore}>
+      <Provider
+        monitoringStore={this.store}
+        labelStore={this.labelStore}
+        modalStore={this.modalStore}
+      >
         <Modal
           theme={this.modalStore.theme}
           onCancel={onCancel}

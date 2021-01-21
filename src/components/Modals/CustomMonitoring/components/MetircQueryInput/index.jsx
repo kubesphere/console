@@ -19,7 +19,7 @@
 import React, { Component } from 'react'
 import { map, groupBy, sortBy } from 'lodash'
 import { computed } from 'mobx'
-import { inject, observer } from 'mobx-react'
+import { observer } from 'mobx-react'
 import classnames from 'classnames'
 import { Icon } from '@kube-design/components'
 import Cascader from 'components/Base/Cascader'
@@ -28,7 +28,6 @@ import PromQLInput from '../PromQLInput'
 
 import styles from './index.scss'
 
-@inject('monitoringStore')
 @observer
 export default class MetircQueryInput extends Component {
   @computed
@@ -64,18 +63,13 @@ export default class MetircQueryInput extends Component {
   render() {
     const {
       name,
-      supportDebugButton = false,
       value,
       onChange,
+      labelsets,
+      onLabelSearch,
       supportMetrics,
+      supportDebugButton = false,
     } = this.props
-    const { cluster, namespace } = this.props.monitoringStore
-    const { from, to } = this.props.monitoringStore.getTimeRange()
-
-    const timeRange = {
-      start: Math.floor(from.valueOf() / 1000),
-      end: Math.floor(to.valueOf() / 1000),
-    }
 
     return (
       <div className={styles.wrapper}>
@@ -92,11 +86,10 @@ export default class MetircQueryInput extends Component {
           <PromQLInput
             name={name}
             value={value}
-            cluster={cluster}
-            namespace={namespace}
-            metrics={supportMetrics}
-            timeRange={timeRange}
             onChange={onChange}
+            metrics={supportMetrics}
+            labelsets={labelsets}
+            onLabelSearch={onLabelSearch}
           />
         </div>
         {supportDebugButton && (
