@@ -41,6 +41,7 @@ export default class LogItem extends React.Component {
 
   componentDidMount() {
     this.timer = setInterval(this.handleRefresh, 4000)
+    this.handleExpandByFail()
   }
 
   componentDidUpdate(prevProps) {
@@ -55,6 +56,13 @@ export default class LogItem extends React.Component {
 
   componentWillUnmount() {
     clearInterval(this.timer)
+  }
+
+  handleExpandByFail = () => {
+    const step = this.props.step
+    if (step && step.result !== 'SUCCESS') {
+      this.toggleExpand()
+    }
   }
 
   handleRefresh = () => {

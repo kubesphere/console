@@ -180,13 +180,15 @@ export default class TaskStatus extends React.Component {
     </div>
   )
 
-  renderQueuedCard = () => (
+  renderQueuedCard = runDetail => (
     <div className={style.card}>
       <div>
         <span className={classNames(style.QueuedIcon, style.icon)} />
       </div>
       <div className={style.title}>{t('PIPELINE_QUEUED_TITLE')}</div>
-      <div className={style.desc}>{t('PIPELINE_QUEUED_DESC')}</div>
+      <div className={style.desc}>
+        {get(runDetail, 'causeOfBlockage') || t('PIPELINE_QUEUED_DESC')}
+      </div>
     </div>
   )
 
@@ -196,7 +198,7 @@ export default class TaskStatus extends React.Component {
 
     if (nodesStatus.length === 0) {
       if (this.isQueued) {
-        return this.renderQueuedCard()
+        return this.renderQueuedCard(runDetail)
       }
       if (this.hasRuning && !showErrorLog) {
         return this.renderLoadingCard()

@@ -46,8 +46,9 @@ export default class PipelineLog extends React.Component {
     )
   }
 
-  componentDidMount() {
-    this.getPipelineIndexLog()
+  async componentDidMount() {
+    await this.getPipelineIndexLog()
+    this.handleExpandErrorStep()
   }
 
   @computed
@@ -77,13 +78,26 @@ export default class PipelineLog extends React.Component {
   }
 
   @action
-  getPipelineIndexLog() {
+  async getPipelineIndexLog() {
     const { params } = this.props
-    this.store.getRunStatusLogs(params)
+    await this.store.getRunStatusLogs(params)
   }
 
   handleDownloadLogs = () => {
     this.props.handleDownloadLogs()
+  }
+
+  handleExpandErrorStep = () => {
+    const nodes = toJS(this.props.nodes)
+    const errorNodeIdex = nodes.findIndex(item => item.result !== 'SUCCESS')
+
+    if (errorNodeIdex > -1) {
+      const subStepIdex = nodes[errorNodeIdex].steps.findIndex(
+        item => item.result !== 'SUCCESS'
+      )
+
+      this.activeNodeIndex = [errorNodeIdex, subStepIdex]
+    }
   }
 
   handleRefresh = throttle(() => {
