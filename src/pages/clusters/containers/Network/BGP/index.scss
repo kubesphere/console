@@ -1,0 +1,12 @@
+.configWrapper {
+  position: relative;
+  display: flex;
+  >div {
+    min-width: 220px;
+  }
+  .action {
+    position: absolute;
+    top: 4px;
+    right: 6px;
+  }
+}

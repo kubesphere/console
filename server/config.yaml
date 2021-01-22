@@ -136,6 +136,16 @@ client:
                 title: IP Pools,
                 clusterModule: 'network.ippool',
               }
+            - {
+                name: bgp,
+                title: BGP,
+                clusterModule: network,
+              }
+            - {
+                name: eips,
+                title: EIPs,
+                clusterModule: network,
+              }
         # Contains dangerous operations, only available for platform-admin.
         - {
             name: customresources,

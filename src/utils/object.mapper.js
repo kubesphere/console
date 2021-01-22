@@ -1239,6 +1239,42 @@ const IPPoolsMapper = item => {
   }
 }
 
+const BGPConfMapper = item => {
+  const baseInfo = getBaseInfo(item)
+  return {
+    ...baseInfo,
+    as: get(item, 'spec.as'),
+    routerId: get(item, 'spec.routerId'),
+    listenPort: get(item, 'spec.listenPort'),
+    _originData: getOriginData(item),
+  }
+}
+
+const BGPpeersMapper = item => {
+  const baseInfo = getBaseInfo(item)
+  return {
+    ...baseInfo,
+    peerAs: get(item, 'spec.conf.peerAs'),
+    neighborAddress: get(item, 'spec.conf.neighborAddress'),
+    _originData: getOriginData(item),
+  }
+}
+
+const EipsMapper = item => {
+  const baseInfo = getBaseInfo(item)
+  return {
+    ...baseInfo,
+    protocol: get(item, 'spec.protocol', 'bgp'),
+    address: get(item, 'spec.address'),
+    interface: get(item, 'spec.interface'),
+    disable: get(item, 'spec.disable', false),
+    importStatus: get(item, 'spec.disable') ? 'disabled' : 'active',
+    status: get(item, 'status', {}),
+    spec: get(item, 'spec'),
+    _originData: getOriginData(item),
+  }
+}
+
 const StorageclasscapabilitiesMapper = item => {
   const { metadata, spec } = item
   const volumeFeature = get(spec, 'features.volume')
@@ -1335,6 +1371,9 @@ export default {
   networkpolicies: NetworkPoliciesMapper,
   namespacenetworkpolicies: NetworkPoliciesMapper,
   ippools: IPPoolsMapper,
+  bgpConf: BGPConfMapper,
+  bgppeers: BGPpeersMapper,
+  eips: EipsMapper,
   storageclasscapabilities: StorageclasscapabilitiesMapper,
   servicemonitors: ServiceMonitorMapper,
   groups: GroupsMapper,

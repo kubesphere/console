@@ -16,16 +16,20 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, isEmpty } from 'lodash'
+import { get, set, isEmpty } from 'lodash'
 import { Notify } from '@kube-design/components'
 import { Modal } from 'components/Base'
+import CreateModal from 'components/Modals/Create'
 import NetworkPoliciesModal from 'components/Modals/Network/Policies'
 import NetworkPoliciesIpBlockModal from 'components/Modals/Network/Policies/IpBlock'
 import AddByYamlModal from 'components/Modals/Network/Policies/AddByYaml'
 import CreateIPPoolModal from 'components/Modals/Network/IPPoolsCreate'
 import IPPoolWorkspaceModal from 'components/Modals/Network/IPPoolWorkspace'
+import EditBGPConfModal from 'components/Modals/Network/BGPConfEdit'
+import CreateEIPModal from 'components/Modals/Network/EIPCreate'
 import DeleteModal from 'components/Modals/Delete'
 import FORM_TEMPLATES from 'utils/form.templates'
+import FORM_STEPS from 'configs/steps/network'
 
 export default {
   'network.policies.add': {
@@ -151,6 +155,62 @@ export default {
         },
         store,
         detail,
+        ...props,
+      })
+    },
+  },
+  'network.bgp.peer.add': {
+    on({ store, module, success, ...props }) {
+      const modal = Modal.open({
+        onOk: data => {
+          const peerAs = get(data, 'spec.conf.peerAs')
+          set(data, 'spec.conf.peerAs', Number(peerAs))
+          store.create(data).then(() => {
+            Modal.close(modal)
+            Notify.success({ content: `${t('Created Successfully')}!` })
+            success && success()
+          })
+        },
+        formTemplate: FORM_TEMPLATES[module](),
+        modal: CreateModal,
+        steps: FORM_STEPS.bgppeer,
+        store,
+        ...props,
+      })
+    },
+  },
+  'network.bgp.conf.edit': {
+    on({ store, detail, cluster, success, ...props }) {
+      const modal = Modal.open({
+        onOk: data => {
+          const as = get(data, 'spec.as')
+          set(data, 'spec.as', Number(as))
+          store.updateBGPConf({ cluster }, data).then(() => {
+            Modal.close(modal)
+            Notify.success({ content: `${t('Updated Successfully')}!` })
+            success && success()
+          })
+        },
+        detail: detail._originData,
+        modal: EditBGPConfModal,
+        store,
+        ...props,
+      })
+    },
+  },
+  'network.eip.create': {
+    on({ store, module, success, ...props }) {
+      const modal = Modal.open({
+        onOk: data => {
+          store.create(data).then(() => {
+            Modal.close(modal)
+            Notify.success({ content: `${t('Created Successfully')}!` })
+            success && success()
+          })
+        },
+        formTemplate: FORM_TEMPLATES[module](),
+        modal: CreateEIPModal,
+        store,
         ...props,
       })
     },
