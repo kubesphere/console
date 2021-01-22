@@ -133,8 +133,9 @@ export default class BaseStore {
       this.getResourceUrl({ cluster, workspace, namespace, devops }),
       this.getFilterParams(params)
     )
-    const data = get(result, 'items', []).map(item => ({
+    const data = (get(result, 'items') || []).map(item => ({
       cluster,
+      namespace,
       ...this.mapper(item),
     }))
 

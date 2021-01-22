@@ -16,98 +16,78 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { observable, action } from 'mobx'
-import { isEmpty } from 'lodash'
+import { get } from 'lodash'
+import { action } from 'mobx'
 
-import ObjectMapper from 'utils/object.mapper'
-import UserStore from 'stores/user'
-import List from 'stores/base.list'
+import { LIST_DEFAULT_ORDER } from 'utils/constants'
 
-import Base from './base'
+import Base from 'stores/base'
 
-export default class MessageStore extends Base {
-  module = 'history'
-
-  comments = new List()
-
-  userStore = new UserStore()
-
-  @observable
-  notifications = {
-    data: {},
-    total: 0,
-    isLoading: true,
+export default class AlertStore extends Base {
+  get apiVersion() {
+    return 'kapis/alerting.kubesphere.io/v2alpha1/'
   }
 
-  get mapper() {
-    return ObjectMapper['alertmessage']
+  getPath({ cluster, namespace, ruleName } = {}) {
+    let path = ''
+    if (cluster) {
+      path += `/klusters/${cluster}`
+    }
+    if (namespace) {
+      path += `/namespaces/${namespace}`
+    }
+    if (ruleName) {
+      path += `/rules/${ruleName}`
+    }
+    return path
   }
 
-  getDetailUrl = ({ id, ...params }) =>
-    `${this.getListUrl(params)}?${this.module}_ids=${id}`
+  module = 'alerts'
 
-  getCommentUrl = (params = {}) =>
-    `${this.apiVersion}${this.getPath(params)}/comment`
+  getResourceUrl = this.getListUrl
 
   @action
-  async fetchNotifications({
-    ruleId,
-    resourceName,
-    status,
-    recent = false,
-    ...rest
-  }) {
-    this.notifications.isLoading = true
+  async fetchList({
+    cluster,
+    workspace,
+    namespace,
+    more,
+    ruleName,
+    ...params
+  } = {}) {
+    this.list.isLoading = true
 
-    const params = {
-      rule_ids: ruleId,
-      resource_names: resourceName,
-      recent,
-      reverse: true,
-      sort_key: 't1.create_time',
-      ...rest,
+    if (!params.sortBy && params.ascending === undefined) {
+      params.sortBy = LIST_DEFAULT_ORDER[this.module] || 'createTime'
     }
 
-    if (!isEmpty(status)) {
-      params.events = status
+    if (params.limit === Infinity || params.limit === -1) {
+      params.limit = -1
+      params.page = 1
     }
 
-    const result = await request.get(this.getListUrl(rest), params)
-    const data = (result[this.itemsKey] || []).map(this.mapper)
+    params.limit = params.limit || 10
 
-    this.notifications = {
-      data,
-      total: result.total || 0,
+    const result = await request.get(
+      this.getResourceUrl({ cluster, workspace, namespace, ruleName }),
+      this.getFilterParams(params)
+    )
+    const data = (get(result, 'items') || []).map(item => ({
+      cluster,
+      namespace,
+      ...this.mapper(item),
+    }))
+
+    this.list.update({
+      data: more ? [...this.list.data, ...data] : data,
+      total: result.totalItems || result.total_count || data.length || 0,
+      ...params,
+      limit: Number(params.limit) || 10,
+      page: Number(params.page) || 1,
       isLoading: false,
-    }
-  }
-
-  @action
-  async fetchComments({ cluster, id }) {
-    this.comments.isLoading = true
-
-    const params = {
-      history_ids: id,
-    }
-    const result = await request.get(this.getCommentUrl({ cluster }), params)
-    const results = result.comment_set || []
-
-    this.comments.update({
-      data: results,
-      isLoading: false,
+      ...(this.list.silent ? {} : { selectedRowKeys: [] }),
     })
-  }
 
-  @action
-  createComment(params, data) {
-    return this.submitting(request.post(this.getCommentUrl(params), data))
-  }
-
-  fetchList(params) {
-    const defaultParams = {
-      sort_key: 't1.create_time',
-      reverse: true,
-    }
-    super.fetchList({ ...defaultParams, ...params })
+    return data
   }
 }

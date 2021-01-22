@@ -86,7 +86,7 @@ export default class SingleStatDataForm extends Component {
           <Form.Item>
             <CustomMonitorMetircQueryInput
               name={'targets[0].expr'}
-              supportMetrics={this.props.supportMetrics}
+              {...this.props}
             />
           </Form.Item>
         </div>

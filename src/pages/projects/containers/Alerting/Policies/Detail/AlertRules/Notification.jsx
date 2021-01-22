@@ -16,26 +16,22 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { getIndexRoute } from 'utils/router.config'
+import React, { Component } from 'react'
 
-import AlertingRules from './AlertRules'
-import AlertingHistory from './AlertHistory'
+import styles from './index.scss'
 
-const PATH =
-  '/:workspace/clusters/:cluster/namespaces/:namespace/alert-rules/:name'
-
-export default (path = PATH) => [
-  {
-    path: `${path}/alert-rules`,
-    title: 'Alerting Rules',
-    component: AlertingRules,
-    exact: true,
-  },
-  {
-    path: `${path}/alert-history`,
-    title: 'Alerting History',
-    component: AlertingHistory,
-    exact: true,
-  },
-  getIndexRoute({ path, to: `${path}/alert-rules`, exact: true }),
-]
+export default class Nofiticaction extends Component {
+  render() {
+    const { summary, message } = this.props
+    return (
+      <div className={styles.notify}>
+        <div className={styles.title}>
+          {t('Summary')}: {summary}
+        </div>
+        <div className={styles.content}>
+          {t('Message')}: {message}
+        </div>
+      </div>
+    )
+  }
+}

@@ -16,62 +16,46 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get } from 'lodash'
-
 import { ALL_METRICS_CONFIG } from 'configs/alerting/metrics'
 
-/**
- * Get monitoring rule info from metrics
- * @param {Array} metrics
- */
-export const getMonitoringRuleInfo = (metrics = []) => {
-  const result = {}
+export const getQuery = ({ kind, rule, resources }) => {
+  let query = ''
+  const { _metricType: metric, thresholds, condition_type } = rule
 
-  metrics.forEach(metric => {
-    const config = ALL_METRICS_CONFIG[metric]
-
-    if (config) {
-      const icon = config.prefixIcon
-      const item = result[icon]
-      if (item) {
-        item.push(config.label)
-      } else {
-        result[icon] = [config.label]
-      }
-    }
-  })
-
-  return result
-}
-
-export const getAlertMessageDesc = ({
-  resourceName,
-  metricName,
-  condition_type,
-  thresholds,
-  unit,
-} = {}) => {
-  const metricLabel = get(ALL_METRICS_CONFIG[metricName], 'label') || ''
-
-  return resourceName
-    ? `${resourceName} ${t(metricLabel)} ${condition_type} ${thresholds}${unit}`
-    : '-'
-}
-
-export const compareByCondition = (first = 0, second = 0, condition = '>') => {
-  const _first = Number(first) || 0
-  const _second = Number(second) || 0
-
-  switch (condition) {
-    case '>':
-      return _first > _second
-    case '>=':
-      return _first >= _second
-    case '<':
-      return _first < _second
-    case '<=':
-      return _first <= _second
+  switch (kind) {
+    case 'Node':
+      query = metric.replace(
+        '$1',
+        `node=${resources.length > 1 ? '~' : ''}"${resources.join('|')}"`
+      )
+      break
+    case 'Deployment':
+    case 'StatefulSet':
+    case 'DaemonSet':
+      query = metric
+        .replace(
+          '$1',
+          `workload=${resources.length > 1 ? '~' : ''}"${resources
+            .map(resource => `${kind}:${resource}`)
+            .join('|')}"`
+        )
+        .replace('$2', kind.toLowerCase())
+      break
+    case 'Pod':
+      break
     default:
-      return false
   }
+
+  let thresholdValue = thresholds
+  const metricLabel = ALL_METRICS_CONFIG[metric]
+  const tresholdLabel = metricLabel.ruleConfig.find(
+    item => item.name === 'thresholds'
+  )
+  if (tresholdLabel && tresholdLabel.converter) {
+    thresholdValue = tresholdLabel.converter(thresholds)
+  }
+
+  query += ` ${condition_type} ${thresholdValue}`
+
+  return query
 }

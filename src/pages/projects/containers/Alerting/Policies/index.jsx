@@ -17,22 +17,23 @@
  */
 
 import React from 'react'
+import { get } from 'lodash'
 
-import { Tooltip, Icon } from '@kube-design/components'
-import { Avatar } from 'components/Base'
+import { Tag } from '@kube-design/components'
+import { Avatar, Status } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import withList, { ListPage } from 'components/HOCs/withList'
 
 import Table from 'components/Tables/List'
 
 import { getLocalTime, getDisplayName } from 'utils'
-import { getMonitoringRuleInfo } from 'utils/alerting'
+import { SEVERITY_LEVEL } from 'configs/alerting/metrics/rule.config'
 
 import PolicyStore from 'stores/alerting/policy'
 
 @withList({
-  store: new PolicyStore('workload'),
-  module: 'alert-policies',
+  store: new PolicyStore(),
+  module: 'rules',
   name: 'Alerting Policy',
 })
 export default class AlertingPolicy extends React.Component {
@@ -50,8 +51,23 @@ export default class AlertingPolicy extends React.Component {
   }
 
   get itemActions() {
-    const { trigger, routing } = this.props
+    const { trigger, routing, match, getData, module } = this.props
     return [
+      {
+        key: 'edit',
+        icon: 'pen',
+        text: t('Edit'),
+        action: 'edit',
+        onClick: item =>
+          trigger('alerting.policy.create', {
+            detail: item,
+            module,
+            cluster: match.params.cluster,
+            namespace: match.params.namespace,
+            title: `${t('Edit ')}${t('alerting policy')}`,
+            success: getData,
+          }),
+      },
       {
         key: 'delete',
         icon: 'trash',
@@ -71,7 +87,6 @@ export default class AlertingPolicy extends React.Component {
     {
       title: t('Name'),
       dataIndex: 'name',
-      search: true,
       render: (name, record) => (
         <Avatar
           icon="wrench"
@@ -82,39 +97,41 @@ export default class AlertingPolicy extends React.Component {
       ),
     },
     {
-      title: t('Monitoring Rules'),
-      dataIndex: 'metrics',
+      title: t('Status'),
+      dataIndex: 'state',
       isHideable: true,
-      width: '24%',
-      render: metrics => {
-        const monitorRule = getMonitoringRuleInfo(metrics)
-        return (
-          <div>
-            {Object.entries(monitorRule).map(([key, value]) => (
-              <Tooltip
-                key={key}
-                content={
-                  <div>
-                    {value.map(item => (
-                      <p key={item}>{t(item)}</p>
-                    ))}
-                  </div>
-                }
-              >
-                <Icon name={key} size={24} />
-              </Tooltip>
-            ))}
-          </div>
-        )
+      width: '16%',
+      render: state => (
+        <Status
+          type={state}
+          name={t(`ALERT_RULE_${state.toUpperCase()}`, {
+            defaultValue: state,
+          })}
+        />
+      ),
+    },
+    {
+      title: t('Alerting Type'),
+      dataIndex: 'labels.severity',
+      isHideable: true,
+      width: '16%',
+      render: severity => {
+        const level = SEVERITY_LEVEL.find(item => item.value === severity)
+        if (level) {
+          return <Tag type={level.type}>{t(level.label)}</Tag>
+        }
+        return <Tag>{severity}</Tag>
       },
     },
     {
       title: t('Recent Alert Time'),
-      dataIndex: 'recentAlertTime',
+      dataIndex: 'alerts',
       isHideable: true,
-      width: '24%',
-      render: time =>
-        time ? getLocalTime(time).format('YYYY-MM-DD HH:mm:ss') : '-',
+      width: '16%',
+      render: (alerts = []) => {
+        const time = get(alerts, `${alerts.length - 1}.activeAt`)
+        return time ? getLocalTime(time).format('YYYY-MM-DD HH:mm:ss') : '-'
+      },
     },
   ]
 
@@ -124,7 +141,6 @@ export default class AlertingPolicy extends React.Component {
       module,
       cluster: match.params.cluster,
       namespace: match.params.namespace,
-      workspace: match.params.workspace,
       title: `${t('Add ')}${t('alerting policy')}`,
       success: getData,
     })
@@ -142,7 +158,7 @@ export default class AlertingPolicy extends React.Component {
         />
         <Table
           {...tableProps}
-          searchType="keyword"
+          searchType="name"
           itemActions={this.itemActions}
           columns={this.getColumns()}
           onCreate={this.showCreate}

@@ -17,17 +17,11 @@
  */
 
 import BaseInfo from 'components/Forms/AlertingPolicy/BaseInfo'
-import MonitoringTarget from 'components/Forms/AlertingPolicy/MonitoringTarget'
 import AlertingRule from 'components/Forms/AlertingPolicy/AlertingRule'
 import NotificationRule from 'components/Forms/AlertingPolicy/NotificationRule'
 
 export default [
   { title: 'Basic Info', component: BaseInfo, required: true },
-  {
-    title: 'Monitoring Target',
-    component: MonitoringTarget,
-    required: true,
-  },
   {
     title: 'Alerting Rule',
     component: AlertingRule,

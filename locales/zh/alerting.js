@@ -20,6 +20,7 @@ module.exports = {
   Alerting: '告警',
   Notification: '通知',
   Message: '消息',
+  Summary: '标题',
   receiver: '通知人',
   Receiver: '通知人',
   'Alerting Detail': '告警详情',
@@ -38,6 +39,7 @@ module.exports = {
   'Alerting Status': '告警状态',
   'Alerting Type': '告警类型',
   'Alerting Time': '告警时间',
+  'Alerting Duration': '告警持续时间',
   'Recovery Time': '恢复时间',
   'Notification Rule': '通知规则',
   'Notification Rules': '通知规则',
@@ -96,6 +98,14 @@ module.exports = {
   Condition: '条件',
   Threshold: '阈值',
 
+  'Rule Templates': '规则模版',
+  'Custom Rule': '自定义规则',
+  'Rule Expression': '告警规则表达式',
+
+  'Please input the rule expression': '请输入告警规则表达式',
+
+  'Notify Content': '通知内容',
+
   ALERT_TYPE: '{type}告警',
   ALERT_POLICY_TYPE: '{type}告警策略',
   ALERT_POLICY_DESC: '设置告警规则',
@@ -113,7 +123,7 @@ module.exports = {
   'ALERTING-POLICY_NOTIFICATION-RULE_DESC': '设置通知规则',
   TOTAL_POLICIES: '共计 {num} 个告警策略',
 
-  PERIOD_OPTIONS: '{value} 分钟/周期',
+  PERIOD_OPTIONS: '{value} 分钟',
   CONSECUTIVE_OPTIONS: '连续 {value} 次',
 
   MAX_SEND_NOT_LIMIT: '不限制',
@@ -170,6 +180,7 @@ module.exports = {
   'memory utilisation (including cache)': '内存使用率(包含缓存)',
   'memory usage (including cache)': '内存用量(包含缓存)',
   'memory usage': '内存用量',
+  'Unavailable replicas ratio': '副本不可用率',
   'Unavailable deployment replicas ratio': '部署副本不可用率',
   'Unavailable daemonset replicas ratio': '守护进程集副本不可用率',
   'Unavailable statefulset replicas ratio': '有状态副本集副本不可用率',
@@ -187,4 +198,9 @@ module.exports = {
 
   RULE_NAME_DESC:
     '规则名可以由任意字符组成，帮助您更好的区分资源，并支持中文名称',
+
+  ALERTING_DURATION: '监控目标满足告警条件的时间达到告警持续时间后，将触发告警',
+  ALERT_RULE_INACTIVE: '未触发',
+  ALERT_RULE_PENDING: '待触发',
+  ALERT_RULE_FIRING: '触发中',
 }

@@ -20,19 +20,56 @@ import React from 'react'
 import { get } from 'lodash'
 import { observer } from 'mobx-react'
 
-import { PATTERN_NAME, MODULE_KIND_MAP } from 'utils/constants'
+import { PATTERN_NAME } from 'utils/constants'
 
-import { Column, Columns, Form, Input, TextArea } from '@kube-design/components'
+import { SEVERITY_LEVEL } from 'configs/alerting/metrics/rule.config'
+
+import {
+  Column,
+  Columns,
+  Form,
+  Input,
+  Select,
+  TextArea,
+} from '@kube-design/components'
 
 @observer
 export default class BaseInfo extends React.Component {
   get namespace() {
-    return get(this.formTemplate, 'resource_filter.namespace')
+    return get(this.props.formTemplate, 'namespace')
   }
 
-  get formTemplate() {
-    const { formTemplate, module } = this.props
-    return get(formTemplate, MODULE_KIND_MAP[module], formTemplate)
+  get durationOptions() {
+    return [
+      {
+        label: t('PERIOD_OPTIONS', { value: 1 }),
+        value: '1m',
+      },
+      {
+        label: t('PERIOD_OPTIONS', { value: 5 }),
+        value: '5m',
+      },
+      {
+        label: t('PERIOD_OPTIONS', { value: 15 }),
+        value: '15m',
+      },
+      {
+        label: t('PERIOD_OPTIONS', { value: 30 }),
+        value: '30m',
+      },
+      {
+        label: t('PERIOD_OPTIONS', { value: 60 }),
+        value: '60m',
+      },
+    ]
+  }
+
+  get severities() {
+    return SEVERITY_LEVEL.map(item => ({
+      label: t(item.label),
+      value: item.value,
+      level: item,
+    }))
   }
 
   nameValidator = (rule, value, callback) => {
@@ -55,41 +92,60 @@ export default class BaseInfo extends React.Component {
   }
 
   render() {
-    const { formRef } = this.props
+    const { isEdit, formRef, formTemplate } = this.props
+    const rules = isEdit
+      ? []
+      : [
+          { required: true, message: t('Please input name') },
+          {
+            pattern: PATTERN_NAME,
+            message: `${t('Invalid name')}, ${t('LONG_NAME_DESC')}`,
+          },
+          { validator: this.nameValidator },
+        ]
 
     return (
-      <Form data={this.formTemplate} ref={formRef}>
+      <Form data={formTemplate} ref={formRef}>
         <Columns>
           <Column>
             <Form.Item
               label={t('Name')}
               desc={t('LONG_NAME_DESC')}
-              rules={[
-                { required: true, message: t('Please input name') },
-                {
-                  pattern: PATTERN_NAME,
-                  message: `${t('Invalid name')}, ${t('LONG_NAME_DESC')}`,
-                },
-                { validator: this.nameValidator },
-              ]}
+              rules={rules}
             >
               <Input
-                name="alert.alert_name"
+                name="name"
                 onChange={this.handleNameChange}
                 maxLength={253}
+                readOnly={isEdit}
               />
             </Form.Item>
           </Column>
           <Column>
             <Form.Item label={t('Alias')} desc={t('ALIAS_DESC')}>
-              <Input name="policy.policy_name" maxLength={63} />
+              <Input name="annotations.aliasName" maxLength={63} />
+            </Form.Item>
+          </Column>
+        </Columns>
+        <Columns>
+          <Column>
+            <Form.Item
+              label={t('Alerting Duration')}
+              desc={t('ALERTING_DURATION')}
+            >
+              <Select name="duration" options={this.durationOptions} />
+            </Form.Item>
+          </Column>
+          <Column>
+            <Form.Item label={t('Alerting Type')}>
+              <Select name="labels.severity" options={this.severities} />
             </Form.Item>
           </Column>
         </Columns>
         <Columns>
           <Column>
             <Form.Item label={t('Description')} desc={t('DESCRIPTION_DESC')}>
-              <TextArea name="policy.policy_description" maxLength={256} />
+              <TextArea name="annotations.description" maxLength={256} />
             </Form.Item>
           </Column>
         </Columns>

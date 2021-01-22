@@ -112,7 +112,7 @@ module.exports = {
   'ALERTING-POLICY_NOTIFICATION-RULE_DESC': '設置通知規則',
   TOTAL_POLICIES: '共計 {num} 個告警策略',
 
-  PERIOD_OPTIONS: '{value} 分鐘/週期',
+  PERIOD_OPTIONS: '{value} 分鐘',
   CONSECUTIVE_OPTIONS: '連續 {value} 次',
 
   MAX_SEND_NOT_LIMIT: '不限制',
@@ -169,6 +169,7 @@ module.exports = {
   'memory utilisation (including cache)': '記憶體使用率(包含快取)',
   'memory usage (including cache)': '記憶體使用量(包含快取)',
   'memory usage': '記憶體使用量',
+  'Unavailable replicas ratio': '副本不可用率',
   'Unavailable deployment replicas ratio': '部署副本不可用率',
   'Unavailable daemonset replicas ratio': '守護進程集副本不可用率',
   'Unavailable statefulset replicas ratio': '有狀態集副本不可用率',

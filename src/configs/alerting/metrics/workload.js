@@ -30,47 +30,34 @@ const BANDWIDTH_RULE_CONFIG = getBaseRuleConfig({
 })
 
 export default {
-  workload_cpu_usage: {
+  'namespace:workload_cpu_usage:sum{$1}': {
     label: 'cpu usage',
     prefixIcon: 'cpu',
     ruleConfig: CPU_RULE_CONFIG,
   },
-  workload_memory_usage: {
+  'namespace:workload_memory_usage:sum{$1}': {
     label: 'memory usage (including cache)',
     prefixIcon: 'memory',
     ruleConfig: MEMORY_RULE_CONFIG,
   },
-  workload_memory_usage_wo_cache: {
+  'namespace:workload_memory_usage_wo_cache:sum{$1}': {
     label: 'memory usage',
     prefixIcon: 'memory',
     ruleConfig: MEMORY_RULE_CONFIG,
   },
-  workload_net_bytes_transmitted: {
+  'namespace:workload_net_bytes_transmitted:sum_irate{$1}': {
     label: 'network data transmitting rate',
     prefixIcon: 'network',
     ruleConfig: BANDWIDTH_RULE_CONFIG,
   },
-  workload_net_bytes_received: {
+  'namespace:workload_net_bytes_received:sum_irate{$1}': {
     label: 'network data receiving rate',
     prefixIcon: 'network',
     ruleConfig: BANDWIDTH_RULE_CONFIG,
   },
-  workload_deployment_unavailable_replicas_ratio: {
-    kind: 'deployment',
-    label: 'Unavailable deployment replicas ratio',
+  'namespace:$2_unavailable_replicas:ratio{$1}': {
+    label: 'Unavailable replicas ratio',
     prefixIcon: 'backup',
-    ruleConfig: PERCENT_RULE_CONFIG,
-  },
-  workload_daemonset_unavailable_replicas_ratio: {
-    kind: 'daemonset',
-    label: 'Unavailable daemonset replicas ratio',
-    prefixIcon: 'deamon-set',
-    ruleConfig: PERCENT_RULE_CONFIG,
-  },
-  workload_statefulset_unavailable_replicas_ratio: {
-    kind: 'statefulset',
-    label: 'Unavailable statefulset replicas ratio',
-    prefixIcon: 'stateful-set',
     ruleConfig: PERCENT_RULE_CONFIG,
   },
 }

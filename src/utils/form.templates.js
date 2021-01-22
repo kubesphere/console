@@ -362,6 +362,20 @@ const getAlertPolicyTemplate = ({ workspace, namespace } = {}) => ({
   },
 })
 
+const getCustomAlertPolicyTemplate = ({ namespace } = {}) => ({
+  name: '',
+  namespace,
+  query: '',
+  duration: '5m',
+  labels: {
+    severity: 'info',
+  },
+  annotations: {
+    summary: '',
+    message: '',
+  },
+})
+
 const getApplicationTemplate = ({ namespace }) => ({
   apiVersion: 'app.k8s.io/v1beta1',
   kind: 'Application',
@@ -560,6 +574,7 @@ const FORM_TEMPLATES = {
   project: getProjectTemplate,
   limitRange: getLimitRangeTemplate,
   'alert-policies': getAlertPolicyTemplate,
+  rules: getCustomAlertPolicyTemplate,
   applications: getApplicationTemplate,
   strategies: getStrategyTemplate,
   strategyPolicy: getStrategyPolicyTemplate,

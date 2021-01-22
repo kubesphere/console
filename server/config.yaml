@@ -166,13 +166,13 @@ client:
                 authKey: monitoring,
               }
             - {
-                name: alert-messages,
+                name: alerts,
                 title: Alerting Messages,
                 icon: loudspeaker,
                 clusterModule: 'alerting',
               }
             - {
-                name: alert-policies,
+                name: alert-rules,
                 title: Alerting Policies,
                 icon: hammer,
                 clusterModule: 'alerting',
@@ -348,14 +348,16 @@ client:
           icon: monitor
           children:
             - {
-                name: alert-messages,
-                title: Alerting Message,
-                clusterModule: alerting,
+                name: alerts,
+                title: Alerting Messages,
+                icon: loudspeaker,
+                clusterModule: 'alerting',
               }
             - {
-                name: alert-policies,
-                title: Alerting Policy,
-                clusterModule: alerting,
+                name: alert-rules,
+                title: Alerting Policies,
+                icon: hammer,
+                clusterModule: 'alerting',
               }
             - { name: custom-monitoring, title: Custom Monitoring }
         - name: settings

@@ -34,7 +34,6 @@ import OPAppDetail from '../containers/Applications/OPAppDetail'
 import RoleDetail from '../containers/Roles/Detail'
 import ImageBuilderDetail from '../containers/ImageBuilder/Detail'
 import AlertPoliciesDetail from '../containers/Alerting/Policies/Detail'
-import AlertMessagesDetail from '../containers/Alerting/Messages/Detail'
 
 export default PATH => [
   {
@@ -106,11 +105,7 @@ export default PATH => [
     component: ImageBuilderDetail,
   },
   {
-    path: `${PATH}/alert-policies/:name`,
+    path: `${PATH}/alert-rules/:name`,
     component: AlertPoliciesDetail,
-  },
-  {
-    path: `${PATH}/alert-messages/:id`,
-    component: AlertMessagesDetail,
   },
 ]

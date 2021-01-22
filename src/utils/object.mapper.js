@@ -1262,6 +1262,14 @@ const GroupsMapper = item => ({
   _originData: getOriginData(item),
 })
 
+const AlertingRuleMapper = item => ({
+  ...item,
+  aliasName: get(item, 'annotations.aliasName'),
+  description: get(item, 'annotations.description'),
+  resources: safeParseJSON(get(item, 'annotations.resources'), []),
+  rules: safeParseJSON(get(item, 'annotations.rules'), []),
+})
+
 export default {
   deployments: WorkLoadMapper,
   daemonsets: WorkLoadMapper,
@@ -1320,4 +1328,5 @@ export default {
   servicemonitors: ServiceMonitorMapper,
   groups: GroupsMapper,
   default: DefaultMapper,
+  rules: AlertingRuleMapper,
 }
