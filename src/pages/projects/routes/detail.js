@@ -29,6 +29,7 @@ import VolumeDetail from '../containers/Volumes/Detail'
 import VolumeSnapshotDetail from '../containers/VolumeSnapshots/Detail'
 import SecretDetail from '../containers/Secrets/Detail'
 import ConfigMapDetail from '../containers/ConfigMaps/Detail'
+import ServiceAccountDetail from '../containers/ServiceAccounts/Detail'
 import CRDAppDetail from '../containers/Applications/CRDAppDetail'
 import OPAppDetail from '../containers/Applications/OPAppDetail'
 import RoleDetail from '../containers/Roles/Detail'
@@ -87,6 +88,10 @@ export default PATH => [
   {
     path: `${PATH}/configmaps/:name`,
     component: ConfigMapDetail,
+  },
+  {
+    path: `${PATH}/serviceAccounts/:name`,
+    component: ServiceAccountDetail,
   },
   {
     path: `${PATH}/applications/composing/:name`,

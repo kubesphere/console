@@ -37,6 +37,7 @@ import Volumes from '../containers/Volumes'
 import VolumeSnapshots from '../containers/VolumeSnapshots'
 import BaseInfo from '../containers/BaseInfo'
 import ConfigMaps from '../containers/ConfigMaps'
+import ServiceAccounts from '../containers/ServiceAccounts'
 import Secrets from '../containers/Secrets'
 import Roles from '../containers/Roles'
 import Members from '../containers/Members'
@@ -117,6 +118,11 @@ export default [
         exact: true,
       },
       { path: `${PATH}/configmaps`, component: ConfigMaps, exact: true },
+      {
+        path: `${PATH}/serviceaccounts`,
+        component: ServiceAccounts,
+        exact: true,
+      },
       { path: `${PATH}/secrets`, component: Secrets, exact: true },
       { path: `${PATH}/roles`, component: Roles, exact: true },
       { path: `${PATH}/members`, component: Members, exact: true },

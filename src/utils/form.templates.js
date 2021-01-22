@@ -211,6 +211,15 @@ const getConfigmapTemplate = ({ namespace }) => ({
   },
 })
 
+const getServiceAccountTemplate = ({ namespace }) => ({
+  apiVersion: 'v1',
+  kind: 'ServiceAccount',
+  metadata: {
+    namespace,
+    labels: {},
+  },
+})
+
 const getSecretTemplate = ({ namespace }) => ({
   apiVersion: 'v1',
   kind: 'Secret',
@@ -563,6 +572,7 @@ const FORM_TEMPLATES = {
   services: getServiceTemplate,
   ingresses: getIngressTemplate,
   configmaps: getConfigmapTemplate,
+  serviceaccounts: getServiceAccountTemplate,
   secrets: getSecretTemplate,
   hpa: getHorizontalPodAutoscalerTemplate,
   roles: getRoleTemplate,
