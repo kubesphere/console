@@ -169,7 +169,7 @@ export default class HelmUpload extends Component {
             target="_blank"
             rel="noreferrer noopener"
           >
-            《{t('HELM_DEVELOP_GUIDE')}》
+            {t('HELM_DEVELOP_GUIDE')}
           </a>
         </div>
       </div>
