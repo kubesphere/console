@@ -33,12 +33,18 @@ module.exports = {
   'Workspace Groups': '企業組織',
   'Maintenance organization': '維護組織結構',
 
+  projects: '项目',
+  devops: 'DevOps 工程',
+
   'Project Number': '項目數量',
   'DevOps Project Number': 'DevOps 工程數量',
   'Edit Quota': '編輯配額',
 
   'View Workspace': '進入企業空間',
   'Delete Workspace': '刪除企業空間',
+
+  'Workspace Quota': '企业空间配额',
+  'Edit Workspace Quota': '企业空间配额',
 
   'Workspace Info': '企業空間資訊',
 

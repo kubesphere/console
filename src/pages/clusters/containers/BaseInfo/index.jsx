@@ -23,6 +23,7 @@ import { Checkbox, Button, Alert } from '@kube-design/components'
 import { Panel, Text } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import EditBasicInfoModal from 'clusters/components/Modals/EditBasicInfo'
+import { getDisplayName } from 'utils'
 import { trigger } from 'utils/action'
 import { CLUSTER_PROVIDER_ICON } from 'utils/constants'
 
@@ -144,7 +145,7 @@ export default class Overview extends React.Component {
   }
 
   render() {
-    const { name, provider, kubernetesVersion } = this.store.detail
+    const { provider, kubernetesVersion } = this.store.detail
 
     const options = this.getResourceOptions()
 
@@ -161,7 +162,7 @@ export default class Overview extends React.Component {
           <div className={styles.header}>
             <Text
               icon={CLUSTER_PROVIDER_ICON[provider] || 'kubernetes'}
-              title={name}
+              title={getDisplayName(this.store.detail)}
               description={t('Cluster')}
             />
             {provider && <Text title={provider} description={t('Provider')} />}

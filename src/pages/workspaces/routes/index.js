@@ -21,6 +21,7 @@ import { getIndexRoute } from 'utils/router.config'
 import ListLayout from '../containers/Base/List'
 
 import BaseInfo from '../containers/BaseInfo'
+import QuotaManage from '../containers/QuotaManage'
 import Roles from '../containers/Roles'
 import Members from '../containers/Members'
 import Groups from '../containers/Groups'
@@ -70,6 +71,11 @@ export default [
       {
         path: `${PATH}/repos`,
         component: Repos,
+        exact: true,
+      },
+      {
+        path: `${PATH}/quota`,
+        component: QuotaManage,
         exact: true,
       },
       {

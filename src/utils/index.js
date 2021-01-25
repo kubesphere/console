@@ -311,14 +311,16 @@ export const cpuFormat = (cpu, unit = 'Core') => {
   }
 
   const units = ['m', 'Core', 'k', 'M', 'G']
-  const currentUnit = cpu.slice(-1)
+  const currentUnit = String(cpu).slice(-1)
   // if no unit, unit = 'Core'
   const currentUnitIndex =
     units.indexOf(currentUnit) > -1 ? units.indexOf(currentUnit) : 1
   const targetUnitIndex = units.indexOf(unit)
 
   let value =
-    currentUnitIndex === 1 ? Number(cpu) : Number(trimEnd(cpu, currentUnit))
+    currentUnitIndex === 1
+      ? Number(cpu)
+      : Number(trimEnd(String(cpu), currentUnit))
 
   value *= 1000 ** (currentUnitIndex - targetUnitIndex)
 
@@ -331,17 +333,19 @@ export const memoryFormat = (memory, unit = 'Mi') => {
   }
 
   const units = ['ki', 'mi', 'gi', 'ti']
-  const currentUnit = memory.toLowerCase().slice(-2)
+  const currentUnit = String(memory)
+    .toLowerCase()
+    .slice(-2)
 
   let currentUnitIndex =
     units.indexOf(currentUnit) > -1 ? units.indexOf(currentUnit) : 1
   const targetUnitIndex = units.indexOf(unit.toLowerCase())
 
-  let value = Number(trimEnd(memory.toLowerCase(), currentUnit))
+  let value = Number(trimEnd(String(memory).toLowerCase(), currentUnit))
 
   if (/m$/g.test(String(memory))) {
     // transfer m to ki
-    value = Number(trimEnd(memory, 'm')) / (1000 * 1024)
+    value = Number(trimEnd(String(memory), 'm')) / (1000 * 1024)
     currentUnitIndex = 0
   } else if (/^[0-9.]*$/.test(String(memory))) {
     // transfer bytes to ki
@@ -349,7 +353,7 @@ export const memoryFormat = (memory, unit = 'Mi') => {
     currentUnitIndex = 0
   }
 
-  value *= 1000 ** (currentUnitIndex - targetUnitIndex)
+  value *= 1024 ** (currentUnitIndex - targetUnitIndex)
 
   if (String(value).indexOf('.') > -1) {
     value = Number(value.toFixed(3))

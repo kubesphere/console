@@ -33,9 +33,15 @@ module.exports = {
   'Workspace Groups': '企业组织',
   'Maintenance organization': '维护组织结构',
 
+  projects: '项目',
+  devops: 'DevOps 工程',
+
   'Project Number': '项目数量',
   'DevOps Project Number': 'DevOps 工程数量',
   'Edit Quota': '编辑配额',
+
+  'Workspace Quota': '企业空间配额',
+  'Edit Workspace Quota': '企业空间配额',
 
   'View Workspace': '进入企业空间',
   'Delete Workspace': '删除企业空间',
@@ -120,4 +126,6 @@ module.exports = {
   WORKSPACE_GROUP_EMPTY_DESC:
     '暂时没有可用的组织机构，请先维护组织机构后添加成员',
   WORKSPACE_GROUP_USER_EMPTY_DESC: '暂时没有可分配的成员',
+  WORKSPACE_QUOTA_MANAGE_DESC:
+    '管理企业空间配额，企业空间下的所有项目 / DevOps 工程将共享这些配额',
 }

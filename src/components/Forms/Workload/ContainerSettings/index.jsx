@@ -20,11 +20,15 @@ import { concat, get, set, unset, isEmpty, omit, omitBy, has } from 'lodash'
 import React from 'react'
 import { generateId } from 'utils'
 import { MODULE_KIND_MAP } from 'utils/constants'
+import { getLeftQuota } from 'utils/workload'
 
 import ConfigMapStore from 'stores/configmap'
 import SecretStore from 'stores/secret'
 import LimitRangeStore from 'stores/limitrange'
 import FederatedStore from 'stores/federated'
+import QuotaStore from 'stores/quota'
+import WorkspaceQuotaStore from 'stores/workspace.quota'
+import ProjectStore from 'stores/project'
 
 import { Form } from '@kube-design/components'
 import AffinityForm from 'components/Forms/Workload/ContainerSettings/Affinity'
@@ -47,6 +51,7 @@ export default class ContainerSetting extends React.Component {
       limitRange: {},
       imageRegistries: [],
       replicas: this.getReplicas(),
+      leftQuota: {},
     }
 
     this.module = props.module
@@ -55,6 +60,9 @@ export default class ContainerSetting extends React.Component {
     this.secretStore = new SecretStore()
     this.limitRangeStore = new LimitRangeStore()
     this.imageRegistryStore = new SecretStore()
+    this.quotaStore = new QuotaStore()
+    this.workspaceQuotaStore = new WorkspaceQuotaStore()
+    this.projectStore = new ProjectStore()
 
     if (props.isFederated) {
       this.configMapStore = new FederatedStore({
@@ -76,6 +84,7 @@ export default class ContainerSetting extends React.Component {
 
   componentDidMount() {
     this.fetchData()
+    this.fetchQuota()
     if (this.props.withService) {
       this.initService(this.formTemplate)
     }
@@ -158,6 +167,32 @@ export default class ContainerSetting extends React.Component {
         imageRegistries,
       })
     })
+  }
+
+  fetchQuota() {
+    const { cluster, projectDetail } = this.props
+    const { workspace, name } = projectDetail || {}
+
+    if (workspace && name) {
+      Promise.all([
+        this.quotaStore.fetch({
+          cluster,
+          namespace: name,
+        }),
+        this.workspaceQuotaStore.fetchDetail({
+          name: workspace,
+          workspace,
+          cluster,
+        }),
+      ]).then(() => {
+        this.setState({
+          leftQuota: getLeftQuota(
+            get(this.workspaceQuotaStore.detail, 'status.total'),
+            this.quotaStore.data
+          ),
+        })
+      })
+    }
   }
 
   handleReplicaChange = value => {
@@ -455,6 +490,8 @@ export default class ContainerSetting extends React.Component {
           onShow={this.showContainer}
           onDelete={this.handleDelete}
           specTemplate={specTemplate}
+          leftQuota={this.state.leftQuota}
+          projectDetail={this.props.projectDetail}
         />
       </Form.Item>
     )
