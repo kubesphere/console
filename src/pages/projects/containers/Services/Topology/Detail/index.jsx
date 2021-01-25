@@ -19,7 +19,7 @@
 import React, { Component } from 'react'
 import { toJS } from 'mobx'
 import { observer } from 'mobx-react'
-import { Icon, Loading } from '@kube-design/components'
+import { Icon } from '@kube-design/components'
 
 import BaseInfo from './BaseInfo'
 import Connections from './Connections'
@@ -66,27 +66,23 @@ export default class ServiceDetail extends Component {
 
     return (
       <div className={styles.wrapper}>
-        <Loading spinning={this.props.store.isLoading}>
-          <>
-            <div className={styles.header}>
-              <div className={styles.title}>{node.label}</div>
-              <Icon
-                className={styles.close}
-                name="close"
-                type="light"
-                size={20}
-                clickable
-                onClick={onClose}
-              />
-            </div>
-            <div className={styles.content}>
-              <BaseInfo detail={node} />
-              <Connections detail={node} jumpTo={this.handleJump} />
-              <Childrens detail={node} jumpTo={this.handleJump} />
-              <Tables detail={node} />
-            </div>
-          </>
-        </Loading>
+        <div className={styles.header}>
+          <div className={styles.title}>{node.label}</div>
+          <Icon
+            className={styles.close}
+            name="close"
+            type="light"
+            size={20}
+            clickable
+            onClick={onClose}
+          />
+        </div>
+        <div className={styles.content}>
+          <BaseInfo detail={node} />
+          <Connections detail={node} jumpTo={this.handleJump} />
+          <Childrens detail={node} />
+          <Tables detail={node} />
+        </div>
       </div>
     )
   }
