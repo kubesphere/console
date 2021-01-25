@@ -23,15 +23,12 @@ import Table from '../Table'
 
 export default class Childrens extends Component {
   getColumns(child) {
-    const { jumpTo } = this.props
     return [
       {
         id: 'label',
         label: child.label,
         defaultSort: false,
-        render: (label, record) => (
-          <a onClick={() => jumpTo(record)}>{label}</a>
-        ),
+        render: label => <strong>{label}</strong>,
       },
       ...child.columns,
     ]

@@ -46,6 +46,11 @@ export default class Services extends React.Component {
   }
 
   get tabs() {
+    const { cluster } = this.props.match.params
+    if (!globals.app.hasClusterModule(cluster, 'network.topology')) {
+      return {}
+    }
+
     return {
       value: this.state.type,
       onChange: this.handleTabChange,
