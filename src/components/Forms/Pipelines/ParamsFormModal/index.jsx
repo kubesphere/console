@@ -72,20 +72,28 @@ export default class ParamsFormModal extends React.Component {
     let _options = Array.isArray(branches)
       ? branches.map(branch => ({
           label: decodeURIComponent(branch),
-          value: decodeURIComponent(branch),
+          value: branch,
         }))
       : []
 
     if (params && params.branch) {
-      _options = [{ label: params.branch, value: params.branch }]
+      _options = [
+        { label: decodeURIComponent(params.branch), value: params.branch },
+      ]
     }
 
     const options = _options.sort((a, b) => {
-      if (isString(a.value) && a.value.toLowerCase() === 'master') {
+      if (
+        isString(a.value) &&
+        ['master', 'main'].includes(a.value.toLowerCase())
+      ) {
         return -1
       }
 
-      if (isString(b.value) && b.value.toLowerCase() === 'master') {
+      if (
+        isString(b.value) &&
+        ['master', 'main'].includes(b.value.toLowerCase())
+      ) {
         return 1
       }
 
