@@ -97,7 +97,12 @@ export default class HPACard extends React.Component {
           isUndefined(memoryTargetValue) || memoryTargetValue === ''
             ? t('None')
             : memoryTargetValue,
-        current: this.getValue(memoryCurrentValue, 'memory'),
+        current: this.getValue(
+          memoryCurrentValue.endsWith('m')
+            ? parseInt(memoryCurrentValue, 10) / 1000
+            : memoryCurrentValue,
+          'memory'
+        ),
       },
     ]
   }
