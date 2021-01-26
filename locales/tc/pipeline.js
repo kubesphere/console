@@ -486,5 +486,6 @@ module.exports = {
   'Gitlab Server': 'Gitlab 服務',
   'Gitlab Owner': '項目所屬組',
   CREATE_PIPELINE_DESC: '使用流水線進行構建，測試和部署',
-  'Choose a pipeline template': '選擇流水線模板1',
+  'Choose a pipeline template': '選擇流水線模板',
+  BATCH_RUN_DESC: '多分支不支持批量運行',
 }

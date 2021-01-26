@@ -99,9 +99,6 @@ export default class GitLabForm extends React.Component {
           <Form.Item label={t('Gitlab Owner')}>
             <Input name="gitlab_source.owner" onBlur={this.getGitLabOwner} />
           </Form.Item>
-          <Form.Item label={t('Repository Name')}>
-            <Select name="gitlab_source.repo" options={projectList} />
-          </Form.Item>
           <Form.Item
             label={t('Credential')}
             desc={
@@ -127,6 +124,9 @@ export default class GitLabForm extends React.Component {
               searchable
               clearable
             />
+          </Form.Item>
+          <Form.Item label={t('Repository Name')}>
+            <Select name="gitlab_source.repo" options={projectList} />
           </Form.Item>
         </Form>
       </div>

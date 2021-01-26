@@ -487,4 +487,5 @@ module.exports = {
   'Gitlab Owner': '项目所属组',
   CREATE_PIPELINE_DESC: '使用流水线进行构建，测试和部署',
   'Choose a pipeline template': '选择流水线模板',
+  BATCH_RUN_DESC: '多分支不支持批量运行',
 }
