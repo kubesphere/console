@@ -32,7 +32,7 @@ import EIPStore from 'stores/network/eip'
 @withList({
   store: new EIPStore(),
   module: 'eips',
-  name: 'EIP',
+  name: 'EIPs Management',
 })
 export default class EIPs extends React.Component {
   get itemActions() {

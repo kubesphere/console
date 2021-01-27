@@ -17,6 +17,14 @@
  */
 
 module.exports = {
+  'EIPs Management': 'EIP Management',
+  'EIPs Managements': 'EIP Management',
   'Create EIP': 'Create EIP',
   Interface: 'Interface',
+
+  'Please input ip address': 'Please input ip address',
+  'Please input interface': 'Please input interface',
+
+  EIPS_MANAGEMENT_DESC:
+    'EIP is a set of IP addresses that can be used by LoadBalance Service. They can be directly used to access the Service outside the cluster, instead of using NodePort. ',
 }

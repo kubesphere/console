@@ -183,8 +183,6 @@ export default {
     on({ store, detail, cluster, success, ...props }) {
       const modal = Modal.open({
         onOk: data => {
-          const as = get(data, 'spec.as')
-          set(data, 'spec.as', Number(as))
           store.updateBGPConf({ cluster }, data).then(() => {
             Modal.close(modal)
             Notify.success({ content: `${t('Updated Successfully')}!` })

@@ -34,20 +34,13 @@ import styles from './index.scss'
 @withList({
   store: new BGPStore(),
   module: 'bgppeers',
-  name: 'BGP',
+  name: 'BGP Configuration',
 })
 export default class BGP extends React.Component {
   constructor(props) {
     super(props)
     this.store = this.props.store
     this.fetchBGPConf()
-  }
-
-  get enabledActions() {
-    return globals.app.getActions({
-      module: 'bgppeers',
-      cluster: this.props.match.params.cluster,
-    })
   }
 
   get itemActions() {
@@ -90,7 +83,7 @@ export default class BGP extends React.Component {
   }
 
   getColumns = () => {
-    const { getSortOrder } = this.props
+    const { module, getSortOrder } = this.props
     return [
       {
         title: t('Name'),
@@ -102,7 +95,7 @@ export default class BGP extends React.Component {
             icon={ICON_TYPES[module]}
             iconSize={40}
             title={getDisplayName(record)}
-            desc={record.desc}
+            desc={record.desc || '-'}
           />
         ),
       },
@@ -111,10 +104,12 @@ export default class BGP extends React.Component {
         dataIndex: 'peerAs',
         sorter: true,
         sortOrder: getSortOrder('peerAs'),
+        isHideable: true,
       },
       {
         title: t('IP Address'),
         dataIndex: 'neighborAddress',
+        isHideable: true,
       },
       {
         title: t('Created Time'),
@@ -135,7 +130,6 @@ export default class BGP extends React.Component {
   showEdit = () => {
     const { trigger, module } = this.props
     trigger('network.bgp.conf.edit', {
-      title: t('Edit BGP Config'),
       module,
       detail: this.store.bgpConf,
       success: this.fetchBGPConf,
@@ -154,29 +148,29 @@ export default class BGP extends React.Component {
   render() {
     const { bannerProps, tableProps } = this.props
     const { as, routerId, listenPort } = this.store.bgpConf
-    const actions = this.enabledActions
 
     return (
       <ListPage {...this.props}>
         <Banner {...bannerProps} tips={this.tips} />
-        <Panel title={t('BGP Config')}>
+        <Panel>
           <div className={styles.configWrapper}>
-            <Text icon="network-router" title={as} description={t('As')} />
-            <Text title={routerId} description={t('Router Id')} />
+            <Text icon="network-router" title={as} description={t('ASN')} />
+            <Text title={routerId} description={t('Router ID')} />
             <Text title={listenPort} description={t('Listen Port')} />
-            {actions.includes('edit') && (
-              <Button className={styles.action} onClick={this.showEdit}>
-                {t('Edit Config')}
-              </Button>
-            )}
+            <Button className={styles.action} onClick={this.showEdit}>
+              {t('Edit Config')}
+            </Button>
           </div>
         </Panel>
-        <Table
-          {...tableProps}
-          onCreate={this.showCreate}
-          columns={this.getColumns()}
-          itemActions={this.itemActions}
-        />
+        <Panel title={t('BGP Peers')}>
+          <Table
+            {...tableProps}
+            onCreate={this.showCreate}
+            columns={this.getColumns()}
+            itemActions={this.itemActions}
+            searchType="name"
+          />
+        </Panel>
       </ListPage>
     )
   }

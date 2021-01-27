@@ -19,8 +19,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { observer, inject } from 'mobx-react'
-import { computed } from 'mobx'
-import { get } from 'lodash'
+import { toJS } from 'mobx'
 
 import { getLocalTime } from 'utils'
 import ServiceStore from 'stores/service'
@@ -39,33 +38,32 @@ export default class Services extends React.Component {
     this.fetchServices()
   }
 
-  @computed
-  get services() {
-    return this.serviceStore.list.data.filter(item =>
-      get(item, 'metadata.annotations["eip.porter.kubesphere.io/v1alpha2"]')
-    )
-  }
-
   get cluster() {
     return this.props.match.parmas
   }
 
   fetchServices = () => {
-    this.serviceStore.fetchList({ cluster: this.cluster })
+    const { name } = this.props.match.params
+    this.serviceStore.fetchList({
+      cluster: this.cluster,
+      label: `eip.porter.kubesphere.io/v1alpha2=${name}`,
+    })
   }
 
   render() {
+    const { data = [] } = toJS(this.serviceStore.list)
+
     return (
       <Card
         className={styles.serviceWrapper}
         title={t('Services')}
         empty={t('NOT_AVAILABLE', { resource: t('Service') })}
-        isEmpty={this.services.length === 0}
+        isEmpty={data.length === 0}
       >
         <div className={styles.wrapper}>
-          {this.services.map(item => {
+          {data.map(item => {
             return (
-              <div className={styles.item}>
+              <div className={styles.item} key={item.name}>
                 <Text
                   icon="appcenter"
                   title={

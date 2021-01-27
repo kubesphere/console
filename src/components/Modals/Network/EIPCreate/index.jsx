@@ -19,12 +19,11 @@
 import React from 'react'
 import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
-import { Input, Form, TextArea } from '@kube-design/components'
+import { Input, Form, TextArea, Select } from '@kube-design/components'
 
 import { Modal } from 'components/Base'
 
-import { PATTERN_NAME } from 'utils/constants'
-import Select from '@kube-design/components/lib/components/Select'
+import { PATTERN_NAME, PATTERN_IP } from 'utils/constants'
 
 @observer
 export default class CreateModal extends React.Component {
@@ -121,7 +120,13 @@ export default class CreateModal extends React.Component {
         </Form.Item>
         <Form.Item
           label={t('IP Address')}
-          rules={[{ required: true, message: t('Please input ip address') }]}
+          rules={[
+            { required: true, message: t('Please input ip address') },
+            {
+              pattern: PATTERN_IP,
+              message: t('Invalid ip address'),
+            },
+          ]}
         >
           <Input name="spec.address" />
         </Form.Item>
@@ -134,7 +139,10 @@ export default class CreateModal extends React.Component {
           />
         </Form.Item>
         {protocol === 'layer2' && (
-          <Form.Item label={t('Interface')}>
+          <Form.Item
+            label={t('Interface')}
+            rules={[{ required: true, message: t('Please input interface') }]}
+          >
             <Input name="spec.interface" />
           </Form.Item>
         )}

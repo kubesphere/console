@@ -20,6 +20,8 @@ import React from 'react'
 import { observer } from 'mobx-react'
 import { Input, Form, Columns, Column, TextArea } from '@kube-design/components'
 
+import { NumberInput } from 'components/Inputs'
+
 import { PATTERN_NAME, PATTERN_IP } from 'utils/constants'
 
 @observer
@@ -85,17 +87,28 @@ export default class CreateModal extends React.Component {
         <Columns>
           <Column>
             <Form.Item
-              label={t('Peer As')}
-              rules={[{ required: true, message: t('Please input peer as') }]}
+              label={t('Neighbor ASN')}
+              desc={t('ASN_DESC')}
+              rules={[
+                { required: true, message: t('Please input Neighbor ASN') },
+              ]}
             >
-              <Input name="spec.conf.peerAs" />
+              <NumberInput
+                name="spec.conf.peerAs"
+                min={0}
+                max={65535}
+                integer
+              />
             </Form.Item>
           </Column>
           <Column>
             <Form.Item
-              label={t('Neighbor Address')}
+              label={t('Neighbor IP Address')}
               rules={[
-                { required: true, message: t('Please input neighbor address') },
+                {
+                  required: true,
+                  message: t('Please input neighbor ip address'),
+                },
                 {
                   pattern: PATTERN_IP,
                   message: t('Invalid ip address'),

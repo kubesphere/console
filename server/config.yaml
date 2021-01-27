@@ -138,12 +138,12 @@ client:
               }
             - {
                 name: bgp,
-                title: BGP,
+                title: BGP Configuration,
                 clusterModule: network,
               }
             - {
                 name: eips,
-                title: EIPs,
+                title: EIPs Management,
                 clusterModule: network,
               }
         # Contains dangerous operations, only available for platform-admin.

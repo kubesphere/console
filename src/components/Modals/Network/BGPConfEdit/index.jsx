@@ -19,10 +19,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import copy from 'fast-copy'
+import { isUndefined, isFunction, get } from 'lodash'
 import { Form, Input } from '@kube-design/components'
 
-import { Modal } from 'components/Base'
+import { Modal, Switch } from 'components/Base'
+import { NumberInput } from 'components/Inputs'
+import EditMode from 'components/EditMode'
+
 import { PATTERN_IP } from 'utils/constants'
+
+import styles from './index.scss'
 
 export default class EditBPGConfModal extends React.Component {
   static propTypes = {
@@ -43,50 +49,101 @@ export default class EditBPGConfModal extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      isCodeMode: false,
       formData: copy(props.detail),
+    }
+    this.editor = React.createRef()
+  }
+
+  handleOk = () => {
+    const { isCodeMode, formData } = this.state
+    const { onOk, onCancel } = this.props
+    const value = this.editor.current.getData()
+    const data = isCodeMode ? value : formData
+    if (isUndefined(data)) {
+      onCancel()
+    } else {
+      onOk(data)
     }
   }
 
-  handleOk = data => {
-    const { onOk } = this.props
-    onOk(data)
+  handleModeChange = () => {
+    this.setState(({ isCodeMode, formData }) => {
+      const newState = { formData, isCodeMode: !isCodeMode }
+      if (isCodeMode && isFunction(get(this, 'editor.current.getData'))) {
+        newState.formData = this.editor.current.getData()
+      }
+      return newState
+    })
+  }
+
+  renderOperations() {
+    const { isCodeMode } = this.state
+
+    return (
+      <Switch
+        className={styles.switch}
+        text={t('Edit Mode')}
+        onChange={this.handleModeChange}
+        checked={isCodeMode}
+      />
+    )
+  }
+
+  renderForm() {
+    return (
+      <Form data={this.state.formData}>
+        <Form.Item
+          label={t('ASN')}
+          desc={t('ASN_DESC')}
+          rules={[{ required: true, message: t('Please input ASN') }]}
+        >
+          <NumberInput name="spec.as" integer />
+        </Form.Item>
+        <Form.Item
+          label={t('Router ID')}
+          rules={[
+            { required: true, message: t('Please input router id') },
+            {
+              pattern: PATTERN_IP,
+              message: t('Invalid router id'),
+            },
+          ]}
+        >
+          <Input name="spec.routerId" />
+        </Form.Item>
+        <Form.Item
+          label={t('Listen Port')}
+          rules={[{ required: true, message: t('Please input listen port') }]}
+        >
+          <NumberInput name="spec.listenPort" min={0} max={65535} integer />
+        </Form.Item>
+      </Form>
+    )
+  }
+
+  renderCodeEditor() {
+    return <EditMode ref={this.editor} value={this.state.formData} />
   }
 
   render() {
     const { visible, isSubmitting, onCancel } = this.props
-    const { formData } = this.state
+    const { isCodeMode } = this.state
 
     return (
-      <Modal.Form
-        data={formData}
-        width={691}
-        title={t('Edit BGP Config')}
+      <Modal
+        width={960}
+        title={t('Edit BGP Global Config')}
         icon="network-router"
+        operations={this.renderOperations()}
         onOk={this.handleOk}
         okText={t('Update')}
         onCancel={onCancel}
         visible={visible}
         isSubmitting={isSubmitting}
       >
-        <Form.Item label={t('BGP Name')} desc={t('NAME_DESC')}>
-          <Input name="metadata.name" disabled />
-        </Form.Item>
-        <Form.Item label={t('ASN')} desc={t('ASN_DESC')}>
-          <Input name="spec.as" />
-        </Form.Item>
-        <Form.Item
-          label={t('Router IP Address')}
-          rules={[
-            { required: true, message: t('Please input router ip address') },
-            {
-              pattern: PATTERN_IP,
-              message: t('Invalid router ip address'),
-            },
-          ]}
-        >
-          <Input name="spec.routerId" />
-        </Form.Item>
-      </Modal.Form>
+        {!isCodeMode ? this.renderForm() : this.renderCodeEditor()}
+      </Modal>
     )
   }
 }

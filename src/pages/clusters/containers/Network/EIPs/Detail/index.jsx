@@ -63,7 +63,6 @@ export default class EIPDetail extends React.Component {
   getOperations = () => {
     const type = t(this.name)
     const detail = toJS(this.store.detail)
-    const { disable } = this.store.detail
 
     return [
       {
@@ -92,8 +91,8 @@ export default class EIPDetail extends React.Component {
       },
       {
         key: 'disable',
-        icon: !disable ? 'stop' : 'start',
-        text: !disable ? t('Disable') : t('Enable'),
+        icon: !detail.disable ? 'stop' : 'start',
+        text: !detail.disable ? t('Disable') : t('Enable'),
         action: 'edit',
         onClick: this.handleSwitch,
       },
