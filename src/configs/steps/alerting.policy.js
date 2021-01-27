@@ -28,7 +28,7 @@ export default [
     required: true,
   },
   {
-    title: 'Notification Rule',
+    title: 'Notification Settings',
     component: NotificationRule,
     required: true,
   },

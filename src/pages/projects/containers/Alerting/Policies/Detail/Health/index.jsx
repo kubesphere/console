@@ -16,23 +16,27 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { getIndexRoute } from 'utils/router.config'
+import React, { Component } from 'react'
+import { get } from 'lodash'
+import { Tooltip, Icon } from '@kube-design/components'
+import { Status } from 'components/Base'
 
-import AlertingRules from './AlertRules'
-import AlertingMessages from './AlertMessages'
-
-export default path => [
-  {
-    path: `${path}/rules`,
-    title: 'Alerting Rules',
-    component: AlertingRules,
-    exact: true,
-  },
-  {
-    path: `${path}/messages`,
-    title: 'Alerting Messages',
-    component: AlertingMessages,
-    exact: true,
-  },
-  getIndexRoute({ path, to: `${path}/rules`, exact: true }),
-]
+export default class Health extends Component {
+  render() {
+    const { health } = this.props.detail
+    const message = get(this.props.detail, 'lastError.description')
+    return (
+      <div>
+        <Status
+          type={health}
+          name={t(`ALERT_RULE_HEALTH_${health.toUpperCase()}`)}
+        />
+        {health === 'err' && message && (
+          <Tooltip content={message}>
+            <Icon name="question" />
+          </Tooltip>
+        )}
+      </div>
+    )
+  }
+}

@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { cloneDeep, set } from 'lodash'
+import { cloneDeep, set, unset } from 'lodash'
 import { Notify } from '@kube-design/components'
 import { Modal } from 'components/Base'
 
@@ -32,8 +32,9 @@ export default {
   'alerting.policy.create': {
     on({ store, cluster, namespace, module, success, detail, ...props }) {
       const kind = MODULE_KIND_MAP[module]
-      const formTemplate =
-        cloneDeep(detail) || FORM_TEMPLATES[module]({ namespace })
+      const formTemplate = detail
+        ? cloneDeep(detail)
+        : FORM_TEMPLATES[module]({ namespace })
 
       const modal = Modal.open({
         onOk: async data => {
@@ -42,19 +43,25 @@ export default {
           }
 
           const {
+            ruleType = 'template',
             resources,
             rules,
             namespace: ns,
             kind: resourceKind = 'Node',
             ...params
           } = data
-          if (resources && rules) {
+
+          if (ruleType === 'template') {
             params.query = rules
               .map(rule => getQuery({ kind: resourceKind, rule, resources }))
               .join(' or ')
             set(params, 'annotations.kind', resourceKind)
             set(params, 'annotations.resources', JSON.stringify(resources))
             set(params, 'annotations.rules', JSON.stringify(rules))
+          } else {
+            unset(params, 'annotations.kind')
+            unset(params, 'annotations.resources')
+            unset(params, 'annotations.rules')
           }
 
           if (detail) {

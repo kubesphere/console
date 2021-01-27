@@ -20,10 +20,6 @@ import React from 'react'
 import { get } from 'lodash'
 import { observer } from 'mobx-react'
 
-import { PATTERN_NAME } from 'utils/constants'
-
-import { SEVERITY_LEVEL } from 'configs/alerting/metrics/rule.config'
-
 import {
   Column,
   Columns,
@@ -32,6 +28,12 @@ import {
   Select,
   TextArea,
 } from '@kube-design/components'
+
+import { PATTERN_NAME } from 'utils/constants'
+
+import { SEVERITY_LEVEL } from 'configs/alerting/metrics/rule.config'
+
+import { UnitWrapper } from 'components/Inputs'
 
 @observer
 export default class BaseInfo extends React.Component {
@@ -42,24 +44,24 @@ export default class BaseInfo extends React.Component {
   get durationOptions() {
     return [
       {
-        label: t('PERIOD_OPTIONS', { value: 1 }),
-        value: '1m',
+        label: 1,
+        value: 1,
       },
       {
-        label: t('PERIOD_OPTIONS', { value: 5 }),
-        value: '5m',
+        label: 5,
+        value: 5,
       },
       {
-        label: t('PERIOD_OPTIONS', { value: 15 }),
-        value: '15m',
+        label: 15,
+        value: 15,
       },
       {
-        label: t('PERIOD_OPTIONS', { value: 30 }),
-        value: '30m',
+        label: 30,
+        value: 30,
       },
       {
-        label: t('PERIOD_OPTIONS', { value: 60 }),
-        value: '60m',
+        label: 60,
+        value: 60,
       },
     ]
   }
@@ -130,10 +132,12 @@ export default class BaseInfo extends React.Component {
         <Columns>
           <Column>
             <Form.Item
-              label={t('Alerting Duration')}
+              label={`${t('Alerting Duration')}(${t('Minutes')})`}
               desc={t('ALERTING_DURATION')}
             >
-              <Select name="duration" options={this.durationOptions} />
+              <UnitWrapper name="duration" unit="m">
+                <Select options={this.durationOptions} searchable />
+              </UnitWrapper>
             </Form.Item>
           </Column>
           <Column>

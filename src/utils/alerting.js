@@ -59,3 +59,50 @@ export const getQuery = ({ kind, rule, resources }) => {
 
   return query
 }
+
+export const getAlertingResource = (labels = {}) => {
+  if (labels.node) {
+    return {
+      module: 'nodes',
+      name: labels.node,
+    }
+  }
+
+  if (labels.namespace) {
+    if (labels.pod) {
+      return {
+        module: 'pods',
+        name: labels.pod,
+        namespace: labels.namespace,
+      }
+    }
+
+    if (labels.deployment) {
+      return {
+        module: 'deployments',
+        name: labels.deployment,
+        namespace: labels.namespace,
+      }
+    }
+
+    if (labels.statefulset) {
+      return {
+        module: 'statefulsets',
+        name: labels.statefulset,
+        namespace: labels.namespace,
+      }
+    }
+
+    if (labels.daemonset) {
+      return {
+        module: 'daemonsets',
+        name: labels.daemonset,
+        namespace: labels.namespace,
+      }
+    }
+  }
+
+  return {}
+}
+
+export const ALERTING_STATUS = ['inactive', 'pending', 'firing']

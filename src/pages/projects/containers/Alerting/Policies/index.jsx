@@ -27,6 +27,7 @@ import withList, { ListPage } from 'components/HOCs/withList'
 import Table from 'components/Tables/List'
 
 import { getLocalTime, getDisplayName } from 'utils'
+import { ALERTING_STATUS } from 'utils/alerting'
 import { SEVERITY_LEVEL } from 'configs/alerting/metrics/rule.config'
 
 import PolicyStore from 'stores/alerting/policy'
@@ -37,6 +38,52 @@ import PolicyStore from 'stores/alerting/policy'
   name: 'Alerting Policy',
 })
 export default class AlertingPolicy extends React.Component {
+  state = {
+    type: location.search.indexOf('type=builtin') > 0 ? 'builtin' : 'custom',
+  }
+
+  componentDidMount() {
+    const { cluster, namespace } = this.props.match.params
+    !namespace && this.props.store.fetchCount({ cluster })
+  }
+
+  get tabs() {
+    return {
+      value: this.state.type,
+      onChange: this.handleTabChange,
+      options: [
+        {
+          value: 'custom',
+          label: t('Custom Policies'),
+          count: this.props.store.ruleCount,
+        },
+        {
+          value: 'builtin',
+          label: t('Built-In Policies'),
+          count: this.props.store.builtinRuleCount,
+        },
+      ],
+    }
+  }
+
+  handleTabChange = type => {
+    this.setState({ type }, () => {
+      this.getData()
+    })
+  }
+
+  getData = async ({ silent, ...params } = {}) => {
+    const store = this.props.store
+
+    silent && (store.list.silent = true)
+    await store.fetchList({
+      ...this.props.match.params,
+      ...params,
+      type: this.state.type,
+    })
+    store.list.silent = false
+  }
+
   get tips() {
     return [
       {
@@ -83,57 +130,85 @@ export default class AlertingPolicy extends React.Component {
     ]
   }
 
-  getColumns = () => [
-    {
-      title: t('Name'),
-      dataIndex: 'name',
-      render: (name, record) => (
-        <Avatar
-          icon="wrench"
-          title={getDisplayName(record)}
-          desc={record.desc}
-          to={`${this.props.match.url}/${name}`}
-        />
-      ),
-    },
-    {
-      title: t('Status'),
-      dataIndex: 'state',
-      isHideable: true,
-      width: '16%',
-      render: state => (
-        <Status
-          type={state}
-          name={t(`ALERT_RULE_${state.toUpperCase()}`, {
-            defaultValue: state,
-          })}
-        />
-      ),
-    },
-    {
-      title: t('Alerting Type'),
-      dataIndex: 'labels.severity',
-      isHideable: true,
-      width: '16%',
-      render: severity => {
-        const level = SEVERITY_LEVEL.find(item => item.value === severity)
-        if (level) {
-          return <Tag type={level.type}>{t(level.label)}</Tag>
-        }
-        return <Tag>{severity}</Tag>
+  getStatus() {
+    return ALERTING_STATUS.map(status => ({
+      text: t(`ALERT_RULE_${status.toUpperCase()}`),
+      value: status,
+    }))
+  }
+
+  getAlertingTypes() {
+    return SEVERITY_LEVEL.map(level => ({
+      text: t(level.label),
+      value: level.value,
+    }))
+  }
+
+  getColumns = () => {
+    const { getFilteredValue } = this.props
+    return [
+      {
+        title: t('Name'),
+        dataIndex: 'name',
+        search: true,
+        render: (name, record) => (
+          <Avatar
+            icon="wrench"
+            title={getDisplayName(record)}
+            desc={record.desc}
+            to={
+              this.state.type === 'builtin'
+                ? `${this.props.match.url}/builtin/${record.id}`
+                : `${this.props.match.url}/${name}`
+            }
+          />
+        ),
       },
-    },
-    {
-      title: t('Recent Alert Time'),
-      dataIndex: 'alerts',
-      isHideable: true,
-      width: '16%',
-      render: (alerts = []) => {
-        const time = get(alerts, `${alerts.length - 1}.activeAt`)
-        return time ? getLocalTime(time).format('YYYY-MM-DD HH:mm:ss') : '-'
+      {
+        title: t('Alerting Status'),
+        dataIndex: 'state',
+        filters: this.getStatus(),
+        filteredValue: getFilteredValue('state'),
+        isHideable: true,
+        search: true,
+        width: '16%',
+        render: state => (
+          <Status
+            type={state}
+            name={t(`ALERT_RULE_${state.toUpperCase()}`, {
+              defaultValue: state,
+            })}
+          />
+        ),
       },
-    },
-  ]
+      {
+        title: t('Alerting Type'),
+        dataIndex: 'labels.severity',
+        filters: this.getAlertingTypes(),
+        filteredValue: getFilteredValue('labels.severity'),
+        isHideable: true,
+        search: true,
+        width: '16%',
+        render: severity => {
+          const level = SEVERITY_LEVEL.find(item => item.value === severity)
+          if (level) {
+            return <Tag type={level.type}>{t(level.label)}</Tag>
+          }
+          return <Tag>{severity}</Tag>
+        },
+      },
+      {
+        title: t('Recent Alert Time'),
+        dataIndex: 'alerts',
+        isHideable: true,
+        width: '16%',
+        render: (alerts = []) => {
+          const time = get(alerts, `${alerts.length - 1}.activeAt`)
+          return time ? getLocalTime(time).format('YYYY-MM-DD HH:mm:ss') : '-'
+        },
+      },
+    ]
+  }
 
   showCreate = () => {
     const { match, getData, module } = this.props
@@ -147,21 +222,34 @@ export default class AlertingPolicy extends React.Component {
   }
 
   render() {
-    const { bannerProps, tableProps } = this.props
+    const { bannerProps, tableProps, match } = this.props
+    const { namespace } = match.params
+
+    let rowKey = 'name'
+    let itemActions = this.itemActions
+    let onCreate = this.showCreate
+    if (this.state.type === 'builtin') {
+      tableProps.selectActions = []
+      itemActions = []
+      onCreate = null
+      rowKey = 'id'
+    }
+
     return (
-      <ListPage {...this.props} noWatch>
+      <ListPage {...this.props} getData={this.getData} noWatch>
         <Banner
           {...bannerProps}
           tips={this.tips}
+          tabs={namespace ? {} : this.tabs}
           title={t('Alerting Policies')}
           description={t('ALERT_POLICY_DESC')}
         />
         <Table
           {...tableProps}
-          searchType="name"
-          itemActions={this.itemActions}
+          rowKey={rowKey}
+          itemActions={itemActions}
           columns={this.getColumns()}
-          onCreate={this.showCreate}
+          onCreate={onCreate}
         />
       </ListPage>
     )

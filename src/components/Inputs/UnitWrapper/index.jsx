@@ -16,23 +16,28 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { getIndexRoute } from 'utils/router.config'
+import React, { Component } from 'react'
+import { isUndefined, trimEnd } from 'lodash'
 
-import AlertingRules from './AlertRules'
-import AlertingMessages from './AlertMessages'
+export default class UnitWrapper extends Component {
+  handleChange = value => {
+    const { unit, onChange } = this.props
+    onChange(isUndefined(value) ? value : `${value}${unit}`)
+  }
 
-export default path => [
-  {
-    path: `${path}/rules`,
-    title: 'Alerting Rules',
-    component: AlertingRules,
-    exact: true,
-  },
-  {
-    path: `${path}/messages`,
-    title: 'Alerting Messages',
-    component: AlertingMessages,
-    exact: true,
-  },
-  getIndexRoute({ path, to: `${path}/rules`, exact: true }),
-]
+  render() {
+    const { value, unit, children, ...rest } = this.props
+
+    let formatValue = value
+    if (unit) {
+      formatValue = trimEnd(value, unit)
+    }
+
+    return React.cloneElement(children, {
+      ...rest,
+      ...children.props,
+      value: formatValue,
+      onChange: this.handleChange,
+    })
+  }
+}

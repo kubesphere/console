@@ -63,12 +63,6 @@ export const NODE_STATUS = [
   { text: 'NODE_STATUS_WARNING', value: 'warning' },
 ]
 
-export const ALERT_MESSAGE_STATUS = [
-  { text: 'All', value: 'resumed,triggered' },
-  { text: 'Resumed', value: 'resumed' },
-  { text: 'Triggered', value: 'triggered' },
-]
-
 export const ACCESS_MODES = {
   ReadWriteOnce: 'RWO',
   ReadOnlyMany: 'ROX',

@@ -19,7 +19,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
-import { isEmpty, isEqual, remove } from 'lodash'
+import { isEmpty, remove } from 'lodash'
 
 import { COLORS_MAP } from 'utils/constants'
 
@@ -37,6 +37,7 @@ import {
 import CustomLegend from 'components/Charts/Custom/Legend'
 import CustomTooltip from 'components/Charts/Custom/Tooltip'
 import { getActiveSeries } from 'components/Charts/utils'
+import { getSuitableValue } from 'utils/monitoring'
 
 import styles from './index.scss'
 
@@ -64,6 +65,8 @@ export default class MultiArea extends React.Component {
     xKey: PropTypes.string,
     unit: PropTypes.string,
     data: PropTypes.array,
+    maxSeries: PropTypes.number,
+    maxActiveSeries: PropTypes.number,
     areaColors: PropTypes.array,
     renderTitle: PropTypes.func,
     renderTooltip: PropTypes.func,
@@ -76,6 +79,8 @@ export default class MultiArea extends React.Component {
     height: 220,
     title: 'Title',
     xKey: 'time',
+    maxSeries: 50,
+    maxActiveSeries: 6,
     unit: '',
     areaColors: AreaColors,
     data: [],
@@ -86,20 +91,19 @@ export default class MultiArea extends React.Component {
 
     const series = getActiveSeries(props)
     this.state = {
-      series,
-      activeSeries: series,
+      series: series.slice(0, props.maxSeries),
+      activeSeries: series.slice(0, props.maxActiveSeries),
     }
   }
 
-  static getDerivedStateFromProps(props, state) {
-    const series = getActiveSeries(props)
-    if (!isEqual(series, state.series)) {
-      return {
-        series,
-        activeSeries: series,
-      }
+  componentDidUpdate(prevProps) {
+    if (prevProps.data.length !== this.props.data.length) {
+      const series = getActiveSeries(this.props)
+      this.setState({
+        series: series.slice(0, this.props.maxSeries),
+        activeSeries: series.slice(0, this.props.maxActiveSeries),
+      })
     }
-    return null
   }
 
   handleLegendClick = (e, key) => {
@@ -138,12 +142,7 @@ export default class MultiArea extends React.Component {
   renderLegend() {
     return (
       <Legend
-        wrapperStyle={{
-          left: '10%',
-          right: '10%',
-          width: '80%',
-          zIndex: 100,
-        }}
+        wrapperStyle={{ zIndex: 100, left: 24 }}
         content={
           <CustomLegend
             className={styles.legend}
@@ -209,17 +208,16 @@ export default class MultiArea extends React.Component {
             />
             <XAxis dataKey={xKey} axisLine={false} tickLine={false} />
             <YAxis
-              width={45}
+              width={60}
               axisLine={false}
               tickLine={false}
               tickFormatter={value => {
                 if (value <= 0) return ''
-                if (value > 100000) return `${Math.round(value / 1000)}k`
-                return value
+                return getSuitableValue(value, 'number')
               }}
             />
             <Tooltip
-              wrapperStyle={{ zIndex: 101 }}
+              wrapperStyle={{ zIndex: 101, pointerEvents: 'auto' }}
               cursor={{
                 stroke: COLORS_MAP[theme === 'dark' ? 'lightest' : 'dark'],
                 strokeDasharray: '3,2',

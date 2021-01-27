@@ -40,6 +40,7 @@
   &.bound,
   &.available,
   &.healthy,
+  &.ok,
   &.passed {
     background-color: rgba(85, 188, 138, 0.1);
     box-shadow: 0 8px 16px 0 rgba(85, 188, 138, 0.36);

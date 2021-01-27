@@ -1272,13 +1272,18 @@ const GroupsMapper = item => ({
   _originData: getOriginData(item),
 })
 
-const AlertingRuleMapper = item => ({
-  ...item,
-  aliasName: get(item, 'annotations.aliasName'),
-  description: get(item, 'annotations.description'),
-  resources: safeParseJSON(get(item, 'annotations.resources'), []),
-  rules: safeParseJSON(get(item, 'annotations.rules'), []),
-})
+const AlertingRuleMapper = item => {
+  const resources = safeParseJSON(get(item, 'annotations.resources'), [])
+  const rules = safeParseJSON(get(item, 'annotations.rules'), [])
+  return {
+    ...item,
+    aliasName: get(item, 'annotations.aliasName'),
+    description: get(item, 'annotations.description'),
+    resources,
+    rules,
+    ruleType: !isEmpty(resources) ? 'template' : 'custom',
+  }
+}
 
 export default {
   deployments: WorkLoadMapper,

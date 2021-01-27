@@ -17,7 +17,7 @@
  */
 
 import React from 'react'
-import { get, set } from 'lodash'
+import { get, isEmpty, set } from 'lodash'
 
 import { Form, Input, TextArea } from '@kube-design/components'
 
@@ -31,16 +31,19 @@ export default class NotificationRule extends React.Component {
 
     const { formTemplate } = this.props
     const { kind = 'Node', resources, rules } = formTemplate
+    if (!isEmpty(resources) && !isEmpty(rules)) {
+      const summary = `${t(kind)} ${resources.join(', ')} ${rules
+        .map(item => {
+          const { _metricType, condition_type, thresholds, unit } = item || {}
+          const metricConfig = get(ALL_METRICS_CONFIG, _metricType) || {}
+          return `${t(
+            metricConfig.label
+          )} ${condition_type} ${thresholds}${unit}`
+        })
+        .join(` ${t('or')} `)}`
 
-    const summary = `${t(kind)} ${resources.join(', ')} ${rules
-      .map(item => {
-        const { _metricType, condition_type, thresholds, unit } = item || {}
-        const metricConfig = get(ALL_METRICS_CONFIG, _metricType) || {}
-        return `${t(metricConfig.label)} ${condition_type} ${thresholds}${unit}`
-      })
-      .join(` ${t('or')} `)}`
-
-    set(formTemplate, 'annotations.summary', summary)
+      set(formTemplate, 'annotations.summary', summary)
+    }
   }
 
   render() {
