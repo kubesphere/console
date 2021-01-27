@@ -77,11 +77,12 @@ export default class DevopsSelect extends Component {
       .filter(item =>
         arrayValue.every(
           arrv =>
-            arrv.cluster !== this.state.cluster || arrv.namespace !== item.name
+            arrv.cluster !== this.state.cluster ||
+            arrv.namespace !== item.devops
         )
       )
       .map(item => ({
-        label: item.name,
+        label: item.devops,
         value: item.devops,
         item,
       }))

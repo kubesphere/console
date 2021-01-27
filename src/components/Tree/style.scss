@@ -8,9 +8,8 @@
     position: inherit;
     list-style: none;
     padding: 0;
-    outline: 0;
+    outline: 0; 
     margin: 0;
-    white-space: nowrap;
     z-index: auto;
   }
 
@@ -21,9 +20,7 @@
 
   .treeNodeWrap {
     color: $tree-text-color;
-    height: $tree-node-height;
     display: flex;
-    align-items: center;
     &.disabled {
       .treeContent{
         opacity: .5;
@@ -33,12 +30,11 @@
   }
 
   .treeContent {
-    width: 100%;
-    height: $tree-node-height;
-    padding: 0px 8px;
+    flex:1;
+    word-break: break-all;
+    padding: 6px 8px;
     border-radius: $tree-border-radius;
     display: flex;
-    align-items: center;
     cursor: pointer;
 
     &:hover {
@@ -55,7 +51,7 @@
     width: 20px;
     height: 20px;
     border-radius: $tree-border-radius;
-    margin: 0px 4px;
+    margin: 6px 4px;
     display: flex;
     align-items: center;
     justify-content: center;

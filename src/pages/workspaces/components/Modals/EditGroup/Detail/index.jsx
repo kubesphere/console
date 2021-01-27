@@ -22,9 +22,10 @@ import { observer } from 'mobx-react'
 import { get, set, cloneDeep, uniq, flatten } from 'lodash'
 
 import { Notify } from '@kube-design/components'
-import DeleteModal from 'components/Modals/Delete'
+import DeleteModal from 'components/Modals/GroupDelete'
 
 import { safeParseJSON } from 'utils'
+import { getBreadCrumbData } from 'utils/group'
 
 import Form from './Form'
 import Card from './Card'
@@ -58,7 +59,6 @@ export default class Detail extends Component {
 
     this.state = {
       treeNode: this.getTreeNode(props),
-      treeNodeId: props.treeNodeId,
       mode: 'create',
       formTemplate: cloneDeep(this.initialFormTemplate),
       showConfirm: false,
@@ -67,13 +67,12 @@ export default class Detail extends Component {
     }
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps) {
     if (
-      this.props.treeNodeId !== prevState.treeNodeId ||
+      this.props.treeNodeId !== prevProps.treeNodeId ||
       this.props.rowTreeData !== prevProps.rowTreeData
     ) {
       this.setState({
-        treeNodeId: this.props.treeNodeId,
         treeNode: this.getTreeNode(this.props),
       })
     }
@@ -118,7 +117,6 @@ export default class Detail extends Component {
     this.setState({
       showConfirm: true,
       resource: item,
-      deleteKeys: [item.group_id],
     })
   }
 
@@ -165,9 +163,8 @@ export default class Detail extends Component {
     this.setState({
       mode: 'edit',
       formTemplate: formData,
-      treeNode: node,
-      treeNodeId: node.group_id,
     })
+    this.props.onChange(node.group_id)
     this.props.toggleForm()
   }
 
@@ -185,24 +182,24 @@ export default class Detail extends Component {
   }
 
   handleCancel = () => {
+    const { onChange, toggleForm, onCancel } = this.props
     const treeNode = this.getTreeNode(this.props)
     if (!this.isEmptyTreeNode(treeNode)) {
-      this.setState({ treeNode })
-      this.props.toggleForm()
+      onChange(this.props.groupId)
+      toggleForm()
     } else {
-      this.props.onCancel()
+      onCancel()
     }
   }
 
   renderBreadcrumbs() {
-    const { showForm } = this.props
-    const {
-      mode,
-      treeNode: { path = [] },
-    } = this.state
-    let breadcrumbs = path
+    const { showForm, treeNodeId } = this.props
+    const { mode } = this.state
+    let breadcrumbs = getBreadCrumbData(treeNodeId, this.props.rowTreeData).map(
+      item => item.group_name
+    )
     if (showForm && mode === 'create') {
-      breadcrumbs = [...path, t('Add new department')]
+      breadcrumbs = [...breadcrumbs, t('Add new department')]
     }
 
     return (
@@ -226,7 +223,7 @@ export default class Detail extends Component {
       formTemplate,
       mode,
       showConfirm,
-      resource: { group_name },
+      resource,
       treeNode,
       deleteKeys,
     } = this.state
@@ -257,11 +254,7 @@ export default class Detail extends Component {
           visible={showConfirm}
           onOk={this.handleConfirm}
           onCancel={this.hideConfirm}
-          resource={group_name}
-          title={t('Sure to remove')}
-          desc={t.html('REMOVE_GROUP_TIP', {
-            resource: group_name,
-          })}
+          detail={resource}
         />
       </div>
     )
