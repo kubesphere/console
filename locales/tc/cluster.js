@@ -105,53 +105,53 @@ module.exports = {
 
   'New Cluster': '新建集群',
 
-  'Import Cluster': '导入集群',
+  'Import Cluster': '導入集群',
 
   'Cluster Basic Info': '集群基本信息',
 
-  'Node Settings': '节点设置',
+  'Node Settings': '節點設置',
 
-  'Please add at least one cluster node': '请至少添加一个集群节点',
-  "Please specify the node's roles": '请指定节点的角色',
-  'Please input the ip address': '请输入 IP 地址',
+  'Please add at least one cluster node': '請至少添加一個集群節點',
+  "Please specify the node's roles": '請指定節點的角色',
+  'Please input the ip address': '請輸入 IP 地址',
 
-  'Add node to the cluster': '添加节点到集群中',
+  'Add node to the cluster': '添加節點到集群中',
 
-  'Node Internal IP Address': '节点内网 IP 地址',
+  'Node Internal IP Address': '節點內網 IP 地址',
   'SSH Port': 'SSH 端口',
   'SSH IP Address': 'SSH IP 地址',
-  'Username & Password': '用户名密码',
-  'SSH Secret': 'SSH 密钥',
-  'SSH Authentication Mode': 'SSH 鉴权方式',
+  'Username & Password': '用戶名密碼',
+  'SSH Secret': 'SSH 密鑰',
+  'SSH Authentication Mode': 'SSH 認證方式',
   'Kubernetes Cluster Settings': 'Kubernetes 集群配置',
-  'Network Plugin': '网络插件',
-  'Max Pods': '节点最大容器组数量',
-  'Pods CIDR': '容器组 CIDR',
-  'Service CIDR': '服务 CIDR',
-  'Default Storage Plugin': '默认存储插件',
-  'Private Registry Configuration': '私有仓库配置',
-  'etcd Backup': 'etcd 备份',
+  'Network Plugin': '網路外掛',
+  'Max Pods': '節點最大容器组數量',
+  'Pods CIDR': '容器組 CIDR',
+  'Service CIDR': '服務 CIDR',
+  'Default Storage Plugin': '默認儲存外掛',
+  'Private Registry Configuration': '私有倉庫配置',
+  'etcd Backup': 'etcd 備份',
 
-  'etcd Backup Dir': 'etcd 备份地址',
-  'etcd Backup Period': 'etcd 备份地址',
-  'Keep Backup Number': '保留的备份数',
+  'etcd Backup Dir': 'etcd 備份地址',
+  'etcd Backup Period': 'etcd 備份地址',
+  'Keep Backup Number': '保留的備份數量',
 
-  'KubeSphere Settings': 'KubeSphere 设置',
+  'KubeSphere Settings': 'KubeSphere 設置',
 
   'Invalid ip address': 'IP 地址不合法',
 
-  'Cluster Creation Progress': '集群创建进度',
+  'Cluster Creation Progress': '集群創建進度',
 
-  'Current Progress': '当前进度',
+  'Current Progress': '當前進度',
 
-  'Log Info': '日志信息',
+  'Log Info': '日誌資訊',
 
   NO_CLUSTER_TIP: '請添加至少 1 個集群',
   NO_CLUSTER_TIP_DESC:
     '集群是一組運行著 Kubernetes 的節點（物理或者虛擬機）, Kubesphere 的功能也依靠於集群中的節點來運行',
-  ADD_NEW_CLUSTER_DESC: '添加新的Kubernetes集群',
+  ADD_NEW_CLUSTER_DESC: '添加新的 Kubernetes 集群',
   CHOOSE_PROVIDER_DESC:
-    'KubeSphere提供了在主流服務商中快速部署Kubernetes集群的方案',
+    'KubeSphere 提供了在主流服務商中快速部署 Kubernetes 集群的方案',
 
   VISIBILITY_PART: '部分可見',
   VISIBILITY_PUBLIC: '公開',
@@ -171,7 +171,7 @@ module.exports = {
     '暫時没有可用的節點，集群為不可以用狀態，您可以添加以下配置文件以啟用該集群',
 
   CLUSTER_AGENT_TIP_1:
-    '請在通過SSH在目標集群中創建一個名稱為 agent.yaml 的文件',
+    '請在通過 SSH 在目標集群中創建一個名稱為 agent.yaml 的文件',
   CLUSTER_AGENT_TIP_1_DESC: '例如 <span class="code">vi agent.yaml</span>',
   CLUSTER_AGENT_TIP_2: '複製以下配置文件至 agent.yaml 中',
   CLUSTER_AGENT_TIP_2_DESC: '該代理文件可以將目標集群與平台進行連接',
@@ -183,7 +183,7 @@ module.exports = {
   CLUSTER_BASE_INFO_DESC: '目前集群基礎資訊總覽',
 
   UNBIND_CLUSTER_DESC:
-    '解綁集群後，KubeSphere將無法再對該集群進行管理。 解綁後，該集群内的Kubernetes資源不會被刪除。',
+    '解綁集群後，KubeSphere 將無法再對該集群進行管理。 解綁後，該集群内的 Kubernetes 資源不會被刪除。',
   SURE_TO_UNBIND_CLUSTER: '我確定要執行解綁集群的操作',
 
   'Invite members to the cluster': '邀請成員到該集群',
@@ -210,17 +210,17 @@ module.exports = {
   CLUSTER_API_SERVER_TITLE: '待加入集群的 Kubesphere API Server',
   CLUSTER_API_SERVER_DESC: '需要添加待加入集群的 KubeSphere API Server 地址',
 
-  INPUT_KUBECONFIG: '請填寫目標集群的 KubeConfig',
+  INPUT_KUBECONFIG: '請填寫目標集群的 kubeConfig',
 
   CLUSTER_DIRECT_IMPORT_TIP:
     'KubeSphere 多集群控制平面通過提供的 kubeconfig 來直接連接導入集群，此種方式要求目前集群能夠通過 kubeconfig 中的 server 地址直接訪問待導入集群. </br>通常適用於:</br>1. 目前集群和待導入集群在同一内網網路中</br>2. 目前集群和待導入集群已通過vpn或穿隧協定等其它技術連通所在網路</br>3. kubeconfig 的 server 地址可以通過公網訪問',
   CLUSTER_AGENT_IMPORT_TIP:
     'KubeSphere 控制平面通過代理方式連接待導入集群，控制平面啟動一個公開的代理服務，待導入集群創建相應的客戶端組件連接代理服務，與控制平面之間建立一个反向代理。此種方式不需要待導入集群和控制平面在同一網路，也不要求待導入集群暴露集群的 apiserver 地址，但會有一定的網路性能損耗</br></br>通常適用於:</br>1. 目前集群和待導入集群不在同一網路中<br/>2. 目前集群和待導入集群無法通過vpn或穿隧協定等其它技術連通所在網路<br/>3. 對集群間網路性能損耗能容忍',
 
-  HOW_TO_GET_KUBECONFIG: '如何獲取KubeConfig?',
+  HOW_TO_GET_KUBECONFIG: '如何獲取 kubeconfig ？',
 
   CLUSTER_AGENT_TITLE: '請根據集群中提供的代理連接設置加入集群',
-  CLUSTER_AGENT_DESC: '需要在集群中設置下相應的代理Agent',
+  CLUSTER_AGENT_DESC: '需要在集群中設置下相應的代理 Agent',
 
   SELECT_HOST_CLUSTER_WARNING:
     '請盡量不要在 Host 集群上創建資源，以免 Host 集群負載過高，導致多集群穩定性下降。',
@@ -237,65 +237,65 @@ module.exports = {
   'Member Cluster': '成員集群',
   'Member Clusters': '成員集群',
 
-  SELECT_ADD_CLUSTER_METHOD: '选择添加集群的方式',
-  SELECT_ADD_CLUSTER_METHOD_DESC: '支持添加新集群和导入已存在集群',
+  SELECT_ADD_CLUSTER_METHOD: '選擇添加集群的方式',
+  SELECT_ADD_CLUSTER_METHOD_DESC: '支持添加新集群和導入已存在集群',
 
   NEW_CLUSTER_DESC: '添加新的 Kubernetes 集群',
   IMPORT_CLUSTER_DESC: '導入已有的 Kubernetes 集群',
-  CLUSTER_NODE_SETTINGS_DESC: '添加集群需要的节点',
-  CLUSTER_NODE_INTERNAL_IP_DESC: '集群内各节点间可以互相访问的内网 IP 地址',
+  CLUSTER_NODE_SETTINGS_DESC: '添加集群需要的節點',
+  CLUSTER_NODE_INTERNAL_IP_DESC: '集群内各節點間可以互相訪問的內網 IP 地址',
   NODE_ROLE_DESC:
-    '集群角色中，master 节点数量需要为 1 或 3，woker 节点数量至少为 1',
-  SSH_IP_ADDRESS_DESC: 'SSH IP 地址请填入当前 Host 集群可以访问到的 IP 地址',
-  SSH_AUTH_MODE_DESC: '支持用户名密码以及 SSH 密钥',
-  SSH_ACCOUNT_DESC: '默认以 root 用户登录',
-  SSH_PASSWORD_DESC: '登录节点时需要的密码',
-  SSH_SECRET_PLACEHOLDER: 'Ctrl + v 将密钥粘贴于此',
+    '集群角色中，master 節點數量需要為 1 或 3，woker 節點數量至少為 1',
+  SSH_IP_ADDRESS_DESC: 'SSH IP 地址請填入當前 Host 集群可以訪問到的 IP 地址',
+  SSH_AUTH_MODE_DESC: '支持用戶名密碼以及 SSH 密鑰',
+  SSH_ACCOUNT_DESC: '默認以 root 用戶登入',
+  SSH_PASSWORD_DESC: '登入節點時需要的密碼',
+  SSH_SECRET_PLACEHOLDER: 'Ctrl + v 將密鑰黏貼與此處',
 
-  K8S_CLUSTER_SETTINGS_DESC: '对即将新建的 Kubernetes 集群进行初始化配置',
+  K8S_CLUSTER_SETTINGS_DESC: '對即將新建的 Kubernetes 集群進行初始化配置 ',
 
-  CLUSTER_MAX_PODS_DESC: '可以在此 Kubelet 上运行的 pod 的数量. 默认为 110.',
+  CLUSTER_MAX_PODS_DESC: '可以在此 kubelet 上運行的 pod 的數量. 默認為 110.',
 
   K8S_NETWORK_PLUGIN_CALICO:
-    'Calico 是一个纯3层的网络方案，无缝集成 IaaS 云架构，能够提供的 VM、容器、裸机之间的IP通信',
+    'Calico 是一個純三層的網路方案，無縫集成 IaaS 雲架構，能夠提供的 VM、容器、裸機之間的 IP 通信',
   K8S_NETWORK_PLUGIN_FLANNEL:
-    'Flannel 可以让集群中的不同节点主机创建的 Docker 容器都具有全集群唯一的虚拟IP地址',
+    'Flannel 可以讓集群中的不同節點主機創建的 Docker 容器都具有全集群唯一的虛擬 IP 地址',
   K8S_NETWORK_PLUGIN_CILIUM: '基于 eBPF 的网络，具有安全性和可观察性',
 
   KUBE_PODS_CIDR_DESC:
-    '在节点上运行的 Pod 从节点的 Pod CIDR 范围分配 IP 地址。',
-  KUBE_SERVICE_CIDR_DESC: '分配给服务的 IP 地址范围',
+    '在節點上運行的 Pod 從節點的 Pod CIDR 範圍分配 IP 地址。',
+  KUBE_SERVICE_CIDR_DESC: '分配给服務的 IP 地址範圍',
 
-  CLUSTER_COMPONENTS_DESC: '对集群的服务组件进行定制',
+  CLUSTER_COMPONENTS_DESC: '對集群的服務組建進行訂製',
 
-  CLUSTER_ADVANCED_SETTINGS_DESC: '可以根据需要配置您所需要的服务',
+  CLUSTER_ADVANCED_SETTINGS_DESC: '可以根據需要配置您所需要的服務',
   CLUSTER_PRIVATE_REGISTRY_DESC:
-    '给集群配置私有镜像仓库，当开始构建集群时会通过此镜像仓库拉取所需的全部镜像。',
+    '給集群配置私有鏡像倉庫，當開始建構集群時會通過此鏡像倉庫拉取所需的全部鏡像。',
 
-  CLUSTER_CONTROLPLANE_ENDPOINT: '授权集群访问地址',
+  CLUSTER_CONTROLPLANE_ENDPOINT: '授權集群訪問地址',
   CLUSTER_CONTROLPLANE_ENDPOINT_DESC:
-    '通过授权的集群访问地址与集群直接通信，为集群生成 kubeconfig 来访问集群。',
-  CLUSTER_ETCD_BACKUP_DESC: '对 etcd 进行定期备份设置',
-  CLUSTER_ETCD_BACKUP_DIR_DESC: '在 etcd 主机上存储 etcd 备份文件的位置。',
-  CLUSTER_ETCD_BACKUP_PERIOD_DESC: '运行 etcd 备份任务的时间，单位为分钟。',
-  CLUSTER_ETCD_BACKUP_NUMBER_DESC: '要保留多少个备份副本。',
-  CLUSTER_KUBESPHERE_SETTINGS_DESC: '针对 KubeSphere 的一些定制化设置',
+    '通過授權的集群訪問地址與集群直接通信，為集群生成 kubeconfig 來訪問集群。',
+  CLUSTER_ETCD_BACKUP_DESC: '對 etcd 進行定期備份設置',
+  CLUSTER_ETCD_BACKUP_DIR_DESC: '在 etcd 主機上儲存 etcd 備份文件的位置。',
+  CLUSTER_ETCD_BACKUP_PERIOD_DESC: '運行 etcd 備份任務的時間，單位為分鐘。',
+  CLUSTER_ETCD_BACKUP_NUMBER_DESC: '要保留多少個備份副本。',
+  CLUSTER_KUBESPHERE_SETTINGS_DESC: '針對 KubeSphere 的一些定制化設置',
 
-  CLUSTER_CREATING: '集群正在创建中',
+  CLUSTER_CREATING: '集群正在創建中',
   CLUSTER_CREATING_TIP:
-    '当前集群正在创建，暂时没有可用的节点，所以集群为不可以用状态',
+    '當前集群正在創建，暫時沒有可用的節點，所以集群為不可以用狀態',
 
-  CLUSTER_INIT_NODES: '初始化节点',
-  CLUSTER_PULL_IMAGES: '拉取镜像',
+  CLUSTER_INIT_NODES: '初始化節點',
+  CLUSTER_PULL_IMAGES: '拉取鏡像',
   CLUSTER_INIT_ETCD_CLUSTER: '初始化 etcd 集群',
   CLUSTER_INIT_CONTROL_PLANE: '初始化控制平面',
-  CLUSTER_JOIN_NODES: '添加节点',
+  CLUSTER_JOIN_NODES: '添加節點',
   CLUSTER_INSTALL_ADDONS: '安装插件',
-  FETCHING_LOGS: `正在获取日志...`,
+  FETCHING_LOGS: `正在獲取日誌...`,
 
-  MASTER_NODE_COUNT_TIP: 'Master 节点数量需要为 1 或 3',
-  WORKER_NODE_COUNT_TIP: 'Worker 节点数量至少为1',
+  MASTER_NODE_COUNT_TIP: 'Master 節點數量需要為 1 或 3',
+  WORKER_NODE_COUNT_TIP: 'Worker 節點數量至少為 1',
 
   CLUSTER_CREATION_PROGRESS_TIP:
-    '根据所创建的集群规模和网络连接的不同，创建完成整个集群大概需要 30 ~ 60 分钟。',
+    '根據所創建的的集群規模和網路連接的不同，創建完整整個集群大概需要 30 ~ 60 分鐘。',
 }

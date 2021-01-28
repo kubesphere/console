@@ -127,7 +127,7 @@ module.exports = {
   APP_ICON_TIP: '點擊上傳應用圖示，尺寸最大為 120px * 120px',
 
   CLUSTER_NAME_DESC:
-    '最長 14 个字元，只能包含小寫字母、數字及分隔符號("-")，且必須以小寫字母或數字開頭及結尾',
+    '最長 14 個字元，只能包含小寫字母、數字及分隔符號("-")，且必須以小寫字母或數字開頭及結尾',
 
   SERVICE_PORT_NAME_DESC:
     '端口的名字必須遵循如下格式 <protocol>[-<suffix>]，可以是 http、http2、 grpc、 mongo、 或者 redis 作為 <protocol> ，這樣才能使用 Istio 的路由功能。例如 name: http2-foo 和 name: http 都是有效的端口名稱，而 name: http2foo 不是。',
@@ -190,7 +190,7 @@ module.exports = {
   Log: '紀錄',
 
   POD_ISOLATION_RATIO_DESC:
-    '允許容器組被隔離的最大比例。採用向上取整，若10个實例，設為13%則最多會隔離2个實例',
+    '允許容器組被隔離的最大比例。採用向上取整，若10个實例，設為13% 則最多會隔離2个實例',
   BASE_EJECTION_TIME_DESC:
     '容器組第一次被隔離的時間，之後每次隔離時間為次數與最短隔離時間的乘積',
   CIRCUIT_DESC:
@@ -201,7 +201,7 @@ module.exports = {
   WORKLOAD_NAME_EXIST: '工作負載 {name} 已存在',
 
   APPLICATION_TYPE_DESC:
-    'KubeSphere 支持來自於應用商店和應用倉庫的應用部署(基於 Helm)，同樣也支持自制應用 (Application CRD)。',
+    'KubeSphere 支持來自於應用商店和應用倉庫的應用部署(基於 Helm)，同樣也支持自制應用(Application CRD)。',
 
   APPLICATION_SERVICE_DESC:
     '根據應用中服務類型的不同設置不同類型的服務組件，支持無狀態服務和有狀態服務',
@@ -213,7 +213,7 @@ module.exports = {
 
   'App Types': '應用的類型',
   TIP_APP_TYPE:
-    'KubeSphere 支持來自於應用商店和應用倉庫的應用部署(基於 Helm)，同样也支持自制應用 (Application CRD)。',
+    'KubeSphere 支持來自於應用商店和應用倉庫的應用部署(基於 Helm)，同样也支持自制應用(Application CRD)。',
   'How to use Application Governance': '如何使用應用治理',
   TIP_APP_GOVERNANCE:
     '使用應用治理需要創建自制應用並對每項服務開啟服務治理功能',
@@ -224,10 +224,10 @@ module.exports = {
   FROM_APP_STORE_DESC:
     '來自KubeSphere官方應用商店，提供高質量應用和簡易的部署方式',
   FROM_APP_TEMPLATES_DESC:
-    '來自於企業空間的自制應用模板以及應用倉庫中添加的第三方Helm 應用模板',
+    '來自於企業空間的自制應用模板以及應用倉庫中添加的第三方 Helm 應用模板',
   COMPOSING_APP_DESC: '通過資源編排的方式發佈服務構建應用(支持應用治理功能)',
   APP_TEMPLATES_MODAL_DESC:
-    '應用模板來自於企業空間和第三方的Helm應用模板，支持一鍵部署並可通過視覺化的方式在KubeSphere中展示並提供部署及管理的功能',
+    '應用模板來自於企業空間和第三方的 Helm 應用模板，支持一鍵部署並可通過視覺化的方式 在KubeSphere 中展示並提供部署及管理的功能',
   APP_REPOS_DESC:
     '應用倉庫來自於第三方的 Helm Chart Repo，通過視覺化的方式在 KubeSphere 中展示並提供部署及管理功能，用戶可以基於應用倉庫中的模板快速地一鍵部署應用。',
   SEARCH_TIPS: '您可以根據相關條件進行過濾',
