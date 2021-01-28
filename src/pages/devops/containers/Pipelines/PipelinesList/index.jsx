@@ -19,9 +19,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { toJS } from 'mobx'
-import { cloneDeep, get, omit } from 'lodash'
+import { cloneDeep, get, isEmpty, omit } from 'lodash'
 
-import { Button } from '@kube-design/components'
+import { Button, Notify } from '@kube-design/components'
 
 import Banner from 'components/Cards/Banner'
 import PipelineStore from 'stores/devops/pipelines'
@@ -315,6 +315,34 @@ export default class PipelinesList extends React.Component {
     },
   ]
 
+  handleMultiBatchRun = () => {
+    const { selectedRowKeys, data } = toJS(this.props.store.list)
+
+    const multiData = selectedRowKeys.filter(item => {
+      const multi = data.find(_item => _item.name === item)
+      return multi.totalNumberOfBranches
+    })
+
+    const isMulti = !isEmpty(multiData)
+
+    if (isMulti) {
+      Notify.error(t('BATCH_RUN_DESC'))
+      return false
+    }
+
+    this.props.trigger('pipeline.batch.run', {
+      type: t('Pipeline'),
+      rowKey: 'name',
+      devops: this.devops,
+      cluster: this.cluster,
+      success: () => {
+        setTimeout(() => {
+          this.handleFetch()
+        }, 1000)
+      },
+    })
+  }
+
   renderContent() {
     const {
       data = [],
@@ -361,19 +389,7 @@ export default class PipelinesList extends React.Component {
           type: 'primary',
           text: t('Run'),
           action: 'delete',
-          onClick: () => {
-            this.props.trigger('pipeline.batch.run', {
-              type: t('Pipeline'),
-              rowKey: 'name',
-              devops: this.devops,
-              cluster: this.cluster,
-              success: () => {
-                setTimeout(() => {
-                  this.handleFetch()
-                }, 1000)
-              },
-            })
-          },
+          onClick: this.handleMultiBatchRun,
         },
         {
           key: 'delete',
