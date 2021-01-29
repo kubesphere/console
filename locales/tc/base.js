@@ -179,9 +179,9 @@ module.exports = {
   NUM_UNIT: '個',
   Password: '密碼',
 
-  NOT_ENABLE: '{resource}暫未啟用',
-  NOT_AVAILABLE: '暫時没有可用的{resource}',
-  NO_RESOURCE: '暫時没有{resource}',
+  NOT_ENABLE: '{resource} 暫未啟用',
+  NOT_AVAILABLE: '暫時没有可用的 {resource}',
+  NO_RESOURCE: '暫時没有 {resource}',
   RESOURCE_NOT_FOUND: '很抱歉，没有找到您所尋找的資源。',
   'No Available Resource': '暫無可用資源',
   'No Data': '暫無數據',
@@ -271,11 +271,11 @@ module.exports = {
   LONG_NAME_TOO_LONG: '最長 253 個字元',
   ALIAS_DESC: '别名可以由任意字元组成，幫助您更好的區分資源，最長 63 個字元。',
   LABEL_FORMAT_DESC:
-    '標籤的 key 和 value 最長 63 個字元，key 如果包含域名, 則最長 253 字元。只能包含大小寫字母、數字, 分隔符號("-")，下底線(_)及小數點(.)，且必須以數字或大小寫開頭和結尾',
+    '標籤的 key 和 value 最長 63 個字元，key 如果包含域名，則最長 253 字元。只能包含大小寫字母、數字，分隔符號("-")，下底線(_)及小數點(.)，且必須以數字或大小寫開頭和結尾',
   DESCRIPTION_DESC: '描述資訊不超過 256 個字元',
-  PROJECT_DESC: '將根據項目資源進行分組, 可以按項目對資源進行查看管理',
+  PROJECT_DESC: '將根據項目資源進行分組，可以按項目對資源進行查看管理',
   'MULTI-CLUSTER_PROJECT_CREATE_DESC':
-    '將根據項目資源進行分組, 可以按項目對資源進行查看管理',
+    '將根據項目資源進行分組，可以按項目對資源進行查看管理',
   Description: '描述資訊',
 
   'Please input name': '請輸入名稱',
@@ -318,23 +318,23 @@ module.exports = {
 
   'Enter query conditions to filter': '輸入查詢條件進行過濾',
 
-  DELETE_TITLE: '{type}刪除確認?',
+  DELETE_TITLE: '{type} 刪除確認？',
   DELETE_TIP:
-    '確定刪除{type} <strong>{resource}</strong> ? {type}刪除後將無法恢復。',
+    '確定刪除 {type} <strong>{resource}</strong> ？ {type} 刪除後將無法恢復。',
   DELETE_CONFIRM_TIP:
-    '請輸入{type}名稱 <strong>{resource}</strong> 確保您已了解操作所带來的風險。',
+    '請輸入 {type} 名稱 <strong>{resource}</strong> 確保您已了解操作所帶來的風險。',
   DELETE_APP_RESOURCE_TIP:
-    '資源被應用 <strong>{app}</strong> 管理, 刪除後可能影響此應用的正常使用。請輸入{type}名稱 <strong>{resource}</strong> 確保您已了解操作所带來的風險。',
-  DELETE_CONFIRM_PLACEHOLDER: '請輸入{resource}',
+    '資源被應用 <strong>{app}</strong> 管理, 刪除後可能影響此應用的正常使用。請輸入 {type }名稱 <strong>{resource}</strong> 確保您已了解操作所帶來的風險。',
+  DELETE_CONFIRM_PLACEHOLDER: '請輸入 {resource}',
 
-  REMOVE_USER_TIP: '確定移除用戶 <strong>{username}</strong> ? ',
+  REMOVE_USER_TIP: '確定移除用戶 <strong>{username}</strong> ？',
 
-  REMOVE_MEMBER_TIP: '確定移除成員 <strong>{resource}</strong> ?',
+  REMOVE_MEMBER_TIP: '確定移除成員 <strong>{resource}</strong> ？',
 
-  REMOVE_GROUP_TIP: '確定移除組織 <strong>{resource}</strong> ?',
+  REMOVE_GROUP_TIP: '確定移除組織 <strong>{resource}</strong> ？',
 
-  DESTROY_TITLE: '確認銷毀?',
-  DESTROY_TIP: '確定銷毀{type} <strong>{resource}</strong> ?',
+  DESTROY_TITLE: '確認銷毀？',
+  DESTROY_TIP: '確定銷毀 {type} <strong>{resource}</strong> ？',
 
   'Error Tips': '錯誤提示',
 
@@ -483,7 +483,7 @@ module.exports = {
   'Not running yet': '未運行',
   successful: '成功',
   Tag: '標籤',
-  PATTERN_NAME_INVALID_TIP: '名稱不合法 （僅支持小寫字母、數字、底線）',
+  PATTERN_NAME_INVALID_TIP: '名稱不合法（僅支持小寫字母、數字、底線）',
   'No resources matching the filter have been found yet':
     '暫時没有找到符合過濾條件的資源',
   'You can try to': '您可以嘗試',
@@ -506,7 +506,7 @@ module.exports = {
   CODE_CONTRIBUTE: '貢獻代碼',
   GITHUB_STAR: '點亮Star',
 
-  CONDITION_STATUS_ANALYSE: '狀態分析(Conditions)',
+  CONDITION_STATUS_ANALYSE: '狀態分析 (Conditions)',
 
   NAV_PROJECTS: '項目管理',
   NAV_ACCOUNTS: '帳戶管理',
