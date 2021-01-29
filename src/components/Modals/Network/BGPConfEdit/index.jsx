@@ -58,8 +58,10 @@ export default class EditBPGConfModal extends React.Component {
   handleOk = () => {
     const { isCodeMode, formData } = this.state
     const { onOk, onCancel } = this.props
-    const value = this.editor.current.getData()
-    const data = isCodeMode ? value : formData
+    let data = formData
+    if (isCodeMode) {
+      data = this.editor.current.getData()
+    }
     if (isUndefined(data)) {
       onCancel()
     } else {

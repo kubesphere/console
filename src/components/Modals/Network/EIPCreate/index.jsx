@@ -19,6 +19,7 @@
 import React from 'react'
 import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
+import { set } from 'lodash'
 import { Input, Form, TextArea, Select } from '@kube-design/components'
 
 import { Modal } from 'components/Base'
@@ -78,8 +79,17 @@ export default class CreateModal extends React.Component {
       })
   }
 
+  handleOk = data => {
+    const { formTemplate, onOk } = this.props
+    const { protocol } = this.state
+    if (protocol === 'layer2') {
+      set(formTemplate, 'spec.address', `${data.startIP}-${data.endIP}`)
+    }
+    onOk(data)
+  }
+
   render() {
-    const { title, visible, onOk, onCancel, formTemplate } = this.props
+    const { title, visible, onCancel, formTemplate } = this.props
     const { protocol } = this.state
 
     return (
@@ -89,7 +99,7 @@ export default class CreateModal extends React.Component {
         icon="eip"
         data={formTemplate}
         onCancel={onCancel}
-        onOk={onOk}
+        onOk={this.handleOk}
         visible={visible}
       >
         <Form.Item
@@ -118,18 +128,6 @@ export default class CreateModal extends React.Component {
             maxLength={256}
           />
         </Form.Item>
-        <Form.Item
-          label={t('IP Address')}
-          rules={[
-            { required: true, message: t('Please input ip address') },
-            {
-              pattern: PATTERN_IP,
-              message: t('Invalid ip address'),
-            },
-          ]}
-        >
-          <Input name="spec.address" />
-        </Form.Item>
         <Form.Item label={t('Protocol')}>
           <Select
             name="spec.protocol"
@@ -138,13 +136,47 @@ export default class CreateModal extends React.Component {
             onChange={this.handleProtocolChange}
           />
         </Form.Item>
-        {protocol === 'layer2' && (
+        {protocol === 'bgp' && (
           <Form.Item
-            label={t('Interface')}
-            rules={[{ required: true, message: t('Please input interface') }]}
+            label={t('IP Address')}
+            rules={[{ required: true, message: t('Please input ip address') }]}
           >
-            <Input name="spec.interface" />
+            <Input name="spec.address" />
           </Form.Item>
+        )}
+        {protocol === 'layer2' && (
+          <>
+            <Form.Item
+              label={t('Start IP address')}
+              rules={[
+                { required: true, message: t('Please input ip address') },
+                {
+                  pattern: PATTERN_IP,
+                  message: t('Invalid ip address'),
+                },
+              ]}
+            >
+              <Input name="startIP" />
+            </Form.Item>
+            <Form.Item
+              label={t('End IP address')}
+              rules={[
+                { required: true, message: t('Please input ip address') },
+                {
+                  pattern: PATTERN_IP,
+                  message: t('Invalid ip address'),
+                },
+              ]}
+            >
+              <Input name="endIP" />
+            </Form.Item>
+            <Form.Item
+              label={t('Interface')}
+              rules={[{ required: true, message: t('Please input interface') }]}
+            >
+              <Input name="spec.interface" />
+            </Form.Item>
+          </>
         )}
       </Modal.Form>
     )

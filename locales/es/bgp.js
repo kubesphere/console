@@ -32,6 +32,7 @@ module.exports = {
   'Please input router id': 'Ingrese la identificación del enrutador',
   'Invalid router id': 'ID de enrutador ilegal',
   'Please input listen port': 'Introduzca el puerto de escucha',
+  'Edit BGP Peer': 'Editar par BGP',
 
   BGP_CONFIG_DESC:
     'BGP es un protocolo de enrutamiento dinámico basado en el protocolo TCP, que se utiliza principalmente para intercambiar información de enrutamiento e información de accesibilidad de la red entre diferentes dominios autónomos. Antes de usar BGP para sincronizar rutas, debe configurar el Número de sistema autónomo (ASN) y la ID del enrutador que usa el clúster, y agregar vecinos BGP. Al mismo tiempo, también debe agregar vecinos BGP del nodo del clúster en el enrutador. ',

@@ -19,6 +19,7 @@
 import { getIndexRoute } from 'utils/router.config'
 
 import Services from './Services'
+import Events from './Events'
 
 const PATH = '/clusters/:cluster/eips/:name'
 
@@ -27,6 +28,12 @@ export default [
     path: `${PATH}/services`,
     title: 'Services',
     component: Services,
+    exact: true,
+  },
+  {
+    path: `${PATH}/events`,
+    title: 'Events',
+    component: Events,
     exact: true,
   },
   getIndexRoute({ path: PATH, to: `${PATH}/services`, exact: true }),

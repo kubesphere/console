@@ -52,9 +52,8 @@ export default class BGP extends React.Component {
         text: t('Edit'),
         action: 'edit',
         onClick: item =>
-          trigger('resource.baseinfo.edit', {
+          trigger('network.bgp.peer.edit', {
             detail: item,
-            success: routing.query,
           }),
       },
       {

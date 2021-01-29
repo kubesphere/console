@@ -32,6 +32,7 @@ module.exports = {
   'Please input router id': '請輸入路由 ID',
   'Invalid router id': '非法 路由 ID',
   'Please input listen port': '請輸入監聽端口',
+  'Edit BGP Peer': '編輯 BGP 鄰居',
 
   BGP_CONFIG_DESC:
     'BGP是壹種基於 TCP 協議的動態路由協議，主要應用於不同自治域間交換路由信息和網絡可達信息。在使用 BGP 同步路由之前， 您需要配置集群所使用的 ASN（Autonomous System Number）和路由器 ID， 並添加 BGP 鄰居， 同時也需要您在路由器上添加集群節點 BGP 鄰居。',

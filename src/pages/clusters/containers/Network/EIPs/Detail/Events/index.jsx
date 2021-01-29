@@ -16,18 +16,25 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-module.exports = {
-  'EIPs Management': 'Gestión de EIP',
-  'EIPs Managements': 'Gestión de EIP',
-  'Create EIP': 'Crear EIP',
-  Interface: 'Interfaz',
-  'Start IP address': 'Dirección IP de inicio',
-  'End IP address': 'Dirección IP final',
+import { inject, observer } from 'mobx-react'
+import { joinSelector } from 'utils'
+import { Component as Base } from 'core/containers/Base/Detail/Events'
 
-  'Please input ip address': 'Ingrese la dirección IP',
-  'Please input interface': 'Introduzca la interfaz',
-  'Please select a eip': 'Por favor seleccione un eip',
+@inject('detailStore')
+@observer
+export default class Events extends Base {
+  fetchData() {
+    const { name, uid } = this.store.detail
 
-  EIPS_MANAGEMENT_DESC:
-    'EIP es un conjunto de direcciones IP que puede usar LoadBalance Service. Pueden usarse directamente para acceder al Servicio fuera del clúster, en lugar de usar NodePort.',
+    const fields = {
+      'involvedObject.name': name,
+      'involvedObject.kind': this.kind,
+      'involvedObject.uid': uid,
+    }
+
+    this.eventStore.fetchList({
+      cluster: this.cluster,
+      fieldSelector: joinSelector(fields),
+    })
+  }
 }

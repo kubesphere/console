@@ -21,9 +21,12 @@ module.exports = {
   'EIPs Managements': 'EIP 管理',
   'Create EIP': '創建 EIP',
   Interface: '網卡',
+  'Start IP address': '起始 IP 地址',
+  'End IP address': '結束 IP 地址',
 
   'Please input ip address': '請輸入 IP 地址',
   'Please input interface': '請輸入網卡',
+  'Please select a eip': '請選擇 EIP',
 
   EIPS_MANAGEMENT_DESC:
     'EIP 是壹組可以被 LoadBalance Service 使用的 IP 地址，它們可以直接用於在集群外部訪問 Service，而不用通過 NodePort 方式。',

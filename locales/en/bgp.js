@@ -32,6 +32,7 @@ module.exports = {
   'Please input router id': 'Please input router id',
   'Invalid router id': 'Illegal router id',
   'Please input listen port': 'Please input listen port',
+  'Edit BGP Peer': 'Edit BGP Peer',
 
   BGP_CONFIG_DESC:
     'BGP is a dynamic routing protocol based on the TCP protocol, which is mainly used to exchange routing information and network reachability information between different autonomous domains. Before using BGP to synchronize routes, you need to configure the Autonomous System Number (ASN) and router ID used by the cluster, and Add BGP Peers. At the same time, you also need to add cluster node BGP Peers on the router. ',
