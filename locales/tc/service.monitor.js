@@ -17,22 +17,22 @@
  */
 
 module.exports = {
-  'Application Monitoring Exporter': '应用监控导出器',
-  'Target Service': '目标服务',
-  'Exporter Service Ports': '导出服务端口',
-  'Scrap Interval(min)': '采集间隔(分钟)',
-  'View Monitor': '查看监控',
-  'Monitoring Exporter': '监控导出器',
+  'Application Monitoring Exporter': '應用監控導出器',
+  'Target Service': '目標服務',
+  'Exporter Service Ports': '導出服務端口',
+  'Scrap Interval(min)': '採集間隔(分鐘)',
+  'View Monitor': '查看監控',
+  'Monitoring Exporter': '監控導出器',
 
-  'Choose Authentication Method': '选择鉴权方式',
-  'Port connection authentication': '端口连接鉴权',
-  'No Auth': '无需认证',
+  'Choose Authentication Method': '選擇授權方式',
+  'Port connection authentication': '端口連接授權',
+  'No Auth': '無須認證',
 
-  'Create a new secret': '创建新密钥',
-  'refresh secrets': '刷新密钥',
+  'Create a new secret': '建創新密鑰',
+  'refresh secrets': '刷新密鑰',
 
-  NO_AUTH_TIP: '接口可直接连接，无需鉴权',
+  NO_AUTH_TIP: '接口可直接連接，無須授權',
 
-  SCRAP_INTERVAL_DESC: '监控数据采集间隔，默认为 1 分钟',
-  SCRAP_TIMEOUT_DESC: '超时，默认值 10 秒',
+  SCRAP_INTERVAL_DESC: '監控數據採集區間隔，默認為 1 分鐘',
+  SCRAP_TIMEOUT_DESC: '超時，默認值 10 秒',
 }
