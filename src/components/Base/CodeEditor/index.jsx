@@ -21,8 +21,6 @@ import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { Loading } from '@kube-design/components'
 
-import { getValue } from 'utils/yaml'
-
 import styles from './index.scss'
 
 const AceEditor = lazy(() =>
@@ -31,7 +29,12 @@ const AceEditor = lazy(() =>
 
 class CodeEditor extends PureComponent {
   static propTypes = {
-    value: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+    value: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.object,
+      PropTypes.arrayOf(PropTypes.string),
+      PropTypes.arrayOf(PropTypes.object),
+    ]),
     mode: PropTypes.string,
     options: PropTypes.object,
     onChange: PropTypes.func,
@@ -44,44 +47,17 @@ class CodeEditor extends PureComponent {
     onChange() {},
   }
 
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      value: getValue(props.value),
-      originValue: props.value,
-    }
-  }
-
-  static getDerivedStateFromProps(props, state) {
-    const { value } = props
-
-    if (value !== state.originValue) {
-      return {
-        value: getValue(value),
-        originValue: value,
-      }
-    }
-
-    return null
-  }
-
-  handleChange = value => {
-    const { onChange } = this.props
-    this.setState({ value }, () => onChange(value))
-  }
-
   render() {
-    const { className, mode, options } = this.props
+    const { className, mode, options, value, onChange } = this.props
 
     return (
       <Suspense fallback={<Loading className="ks-page-loading" />}>
         <AceEditor
           {...options}
           className={classnames(styles.editor, className)}
-          value={this.state.value}
+          value={value}
           mode={mode}
-          onChange={this.handleChange}
+          onChange={onChange}
         />
       </Suspense>
     )
