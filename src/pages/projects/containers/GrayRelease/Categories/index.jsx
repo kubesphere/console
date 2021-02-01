@@ -83,14 +83,6 @@ export default class Categories extends React.Component {
     })
   }
 
-  get serviceMeshEnable() {
-    const { cluster } = this.props.match.params
-    return (
-      globals.app.hasClusterModule(cluster, 'servicemesh') &&
-      this.routerStore.gateway.data.serviceMeshEnable
-    )
-  }
-
   showCreate = e => {
     this.setState({
       showCreateModal: true,
@@ -140,7 +132,6 @@ export default class Categories extends React.Component {
                     type="control"
                     data-type={item.type}
                     onClick={this.showCreate}
-                    disabled={!this.serviceMeshEnable}
                   >
                     {t('Create Job')}
                   </Button>

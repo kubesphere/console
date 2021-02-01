@@ -43,13 +43,6 @@
   }
 }
 
-.componentName {
-  margin-top: 8px;
-  font-family: $font-family-id;
-  font-weight: $font-bold;
-  line-height: 1.67;
-}
-
 .gatewayName {
   font-family: $font-family-id;
   font-weight: $font-bold;
@@ -60,8 +53,9 @@
   }
 }
 
-.version {
+.workload {
   display: inline-block;
+  margin-top: 12px;
   padding: 2px 8px 2px 2px;
   border-radius: 3px;
   background-color: $bg-color;
