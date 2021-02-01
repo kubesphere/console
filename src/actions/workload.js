@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get } from 'lodash'
+import { get, isEmpty } from 'lodash'
 import { toJS } from 'mobx'
 import { withProps } from 'utils'
 import { Notify } from '@kube-design/components'
@@ -95,6 +95,11 @@ export default {
 
           if (!data) {
             return
+          }
+
+          const customMode = get(data, 'spec.template.spec.customMode', {})
+          if (!isEmpty(customMode)) {
+            delete data.spec.template.spec.customMode
           }
 
           if (kind) {
@@ -208,6 +213,11 @@ export default {
     on({ store, detail, success, ...props }) {
       const modal = Modal.open({
         onOk: data => {
+          const customMode = get(data, 'spec.template.spec.customMode', {})
+          if (!isEmpty(customMode)) {
+            delete data.spec.template.spec.customMode
+          }
+
           store.update(detail, data).then(() => {
             Modal.close(modal)
             success && success()
