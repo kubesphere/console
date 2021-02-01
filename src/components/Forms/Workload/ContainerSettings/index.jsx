@@ -27,7 +27,7 @@ import LimitRangeStore from 'stores/limitrange'
 import FederatedStore from 'stores/federated'
 
 import { Form } from '@kube-design/components'
-import PodAffinity from './PodAffinity'
+import AffinityForm from 'components/Forms/Workload/ContainerSettings/Affinity'
 import ReplicasControl from './ReplicasControl'
 import ClusterReplicasControl from './ClusterReplicasControl'
 import UpdateStrategy from './UpdateStrategy'
@@ -478,9 +478,17 @@ export default class ContainerSetting extends React.Component {
   }
 
   renderPodAffinity() {
+    const { cluster, namespace } = this.props
     return (
       <div className="margin-b12">
-        <PodAffinity module={this.module} template={this.fedFormTemplate} />
+        <AffinityForm
+          initial
+          data={this.fedFormTemplate}
+          module={this.module}
+          cluster={cluster}
+          namespace={namespace}
+          checkable={true}
+        />
       </div>
     )
   }

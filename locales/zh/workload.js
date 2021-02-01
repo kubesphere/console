@@ -77,6 +77,9 @@ module.exports = {
   'HTTP Request': 'HTTP 请求',
   'Diff Settings': '差异化配置',
   'Deployment Mode': '部署模式',
+  'Custom Deployment Mode': '自定义部署模式',
+  'Add Deployment Mode': '添加部署模式',
+  DEPLOYMENT_MODE_DESC: '您可以为容器组调度指定规则',
   'Instance Status': '实例状态',
 
   'No Request': '不预留',
@@ -216,6 +219,11 @@ module.exports = {
   Argument: '参数',
   'Add argument': '添加参数',
   Protocols: '协议',
+  'Hard Affinity': '硬',
+  'Soft Affinity': '软',
+  Affinity: '亲和性',
+  AntiAffinity: '反亲和性',
+  'Please complete the policy': '请填写完整策略',
   'Session Affinity': '会话亲和性',
   'environment variables': '环境变量',
   'Add Environment Variable': '添加环境变量',
@@ -526,7 +534,11 @@ module.exports = {
   SEARCH_IMAGE_PLACEHOLDER: '输入关键字查找镜像',
 
   'Pod Default Deployment': '容器组默认部署',
+  'Pod Soft Decentralized Deployment': '容器组软分散部署',
+  'Pod Hard Decentralized Deployment': '容器组硬分散部署',
   'Pod Decentralized Deployment': '容器组分散部署',
+  'Pod Soft Aggregation Deployment': '容器组软聚合部署',
+  'Pod Hard Aggregation Deployment': '容器组硬聚合部署',
   'Pod Aggregation Deployment': '容器组聚合部署',
   'Pod replicas will be deployed on different nodes as much as possible.':
     '容器组副本将会尽量分散在不同的节点中',
