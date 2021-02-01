@@ -18,12 +18,14 @@
 
 import React from 'react'
 import { withRouter } from 'react-router'
-import { isEmpty } from 'lodash'
+import { Link } from 'react-router-dom'
+import { get } from 'lodash'
 import { toJS } from 'mobx'
 import { Icon } from '@kube-design/components'
 import isEqual from 'react-fast-compare'
 import { joinSelector } from 'utils'
 import PodStore from 'stores/pod'
+import WorkloadStore from 'stores/workload'
 
 import Item from './Item'
 
@@ -35,78 +37,95 @@ export default class Pods extends React.Component {
     super(props)
 
     this.podStore = new PodStore()
+    this.workloadStore = new WorkloadStore('deployments')
 
     this.state = {
-      pods: {},
+      workloads: [],
     }
+  }
 
+  componentDidMount() {
     this.getData()
   }
 
   componentDidUpdate(prevProps) {
     if (!isEqual(prevProps.detail, this.props.detail)) {
-      this.getData(this.props)
+      this.getData()
     }
   }
 
-  getData(props) {
-    const { detail, store } = props || this.props
+  async getData() {
+    const { detail, store } = this.props
     if (detail && detail.name) {
-      this.podStore
-        .fetchListByK8s({
-          namespace: store.detail.namespace,
-          cluster: store.detail.cluster,
+      const { namespace, cluster } = store.detail
+      const workloadNames = detail.nodes
+        .filter(node => node.data.workload)
+        .map(item => item.data.workload)
+      await Promise.all([
+        this.workloadStore.fetchList({
+          namespace,
+          cluster,
+          names: workloadNames.join(','),
+        }),
+        this.podStore.fetchListByK8s({
+          namespace,
+          cluster,
           labelSelector: joinSelector({
             ...store.detail.selector,
             app: detail.name,
           }),
-        })
-        .then(() => {
-          const pods = toJS(this.podStore.list.data)
-          const podVersionMap = {}
-          pods.forEach(pod => {
-            if (pod.labels && pod.labels.version) {
-              podVersionMap[pod.labels.version] =
-                podVersionMap[pod.labels.version] || []
-              podVersionMap[pod.labels.version].push(pod)
-            }
-          })
-          this.setState({ pods: podVersionMap })
-        })
+        }),
+      ])
+
+      const workloads = toJS(this.workloadStore.list.data)
+      const pods = toJS(this.podStore.list.data)
+
+      workloads.forEach(workload => {
+        if (workload.labels && workload.labels.version) {
+          workload.pods = pods.filter(
+            item =>
+              item.labels &&
+              item.labels.version === workload.labels.version &&
+              item.labels.app === workload.labels.app
+          )
+        }
+      })
+      this.setState({ workloads })
     }
   }
 
   render() {
-    const { detail } = this.props
-    const { pods } = this.state
-
-    if (isEmpty(detail.nodes)) {
-      return null
-    }
-
-    const workloads = detail.nodes.filter(node => node.data.workload) || []
+    const { workloads } = this.state
+    const { workspace, cluster, namespace } = this.props.match.params
 
     return (
       <div className={styles.wrapper}>
         {workloads.map(workload => (
-          <div className={styles.item} key={workload.data.id}>
+          <div className={styles.item} key={workload.uid}>
             <div className={styles.title}>
               <Icon name="backup" size={32} />
               <div className={styles.text}>
                 <p>
-                  <strong>{workload.data.workload}</strong>
+                  <strong>
+                    <Link
+                      to={`/${workspace}/clusters/${cluster}/projects/${namespace}/deployments/${workload.name}`}
+                    >
+                      {workload.name}
+                    </Link>
+                  </strong>
                 </p>
                 <div className={styles.version}>
-                  <span>version</span> {workload.data.version}
+                  <span>version</span> {get(workload, 'labels.version')}
                 </div>
               </div>
             </div>
-            <div className={styles.pods}>
-              {pods[workload.data.version] &&
-                pods[workload.data.version].map(pod => (
+            {workload.pods && (
+              <div className={styles.pods}>
+                {workload.pods.map(pod => (
                   <Item key={pod.uid} data={pod} match={this.props.match} />
                 ))}
-            </div>
+              </div>
+            )}
           </div>
         ))}
       </div>

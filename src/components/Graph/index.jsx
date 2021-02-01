@@ -153,7 +153,7 @@ export default class Graph extends React.Component {
           onClick={this.handleWrapperClick}
           initialScale={0.6}
           onFullScreen={this.toggleFullScreen}
-          controlStyle={{ right: selectedType ? 350 : 20 }}
+          controlStyle={{ right: selectedType ? 420 : 20 }}
           onRefresh={this.handleRefresh}
         >
           <div className={styles.graphContent}>

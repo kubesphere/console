@@ -1,0 +1,25 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.value {
+  position: relative;
+  display: inline-block;
+  padding: 1px 20px 1px 4px;
+  background-color: $dark-color07;
+  border-radius: 4px;  
+
+  .label {
+    display: block;
+    @include ellipsis;
+    @include TypographySymbolText(#fff);
+  }
+}
+
+.options {
+  padding: 0 !important;
+}
+
+.rightIcon {
+  @include vertical-center;
+  right: 4px;
+}

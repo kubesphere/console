@@ -9,6 +9,13 @@
   }
 }
 
+.workloads {
+  display: inline-block;
+  vertical-align: bottom;
+  max-width: none;
+  width: auto;
+}
+
 .trafficCard {
   display: flex;
   justify-content: space-between;
