@@ -467,7 +467,7 @@ class VolumeSettings extends React.Component {
       <AddVolumeTemplate
         volume={this.selectVolume}
         containers={containers}
-        namepsace={namespace}
+        namespace={namespace}
         onSave={this.handleVolumeTemplate}
         onCancel={this.resetState}
         checkVolumeNameExist={this.checkVolumeNameExist}

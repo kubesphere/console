@@ -176,6 +176,7 @@ export default class AddVolume extends React.Component {
       className,
       contentClassName,
       collectSavedLog,
+      namespace,
     } = this.props
     const { formData } = this.state
 
@@ -205,7 +206,7 @@ export default class AddVolume extends React.Component {
               >
                 <Input name="metadata.name" autoFocus={true} maxLength={253} />
               </Form.Item>
-              <VolumeFormTemplate />
+              <VolumeFormTemplate namespace={namespace} />
               <Form.Item
                 label={t('Mount Path')}
                 rules={[{ validator: this.mountValidator }]}
