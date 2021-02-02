@@ -139,11 +139,11 @@ export default class AffinityForm extends React.Component {
   get policys() {
     return [
       {
-        label: t('Affinity'),
+        label: t('Deploy with the Target'),
         value: 'podAffinity',
       },
       {
-        label: t('AntiAffinity'),
+        label: t('Deploy away from the Target'),
         value: 'podAntiAffinity',
       },
     ]
@@ -152,11 +152,11 @@ export default class AffinityForm extends React.Component {
   get types() {
     return [
       {
-        label: t('Soft Affinity'),
+        label: t('Match as much as possible'),
         value: 'preferredDuringSchedulingIgnoredDuringExecution',
       },
       {
-        label: t('Hard Affinity'),
+        label: t('Must match'),
         value: 'requiredDuringSchedulingIgnoredDuringExecution',
       },
     ]
@@ -297,7 +297,7 @@ export default class AffinityForm extends React.Component {
 
     return (
       <>
-        <Form.Item label={t('Deployment Mode')}>
+        <Form.Item label={t('Custom Deployment Mode')}>
           <TypeSelect
             name="spec.template.spec.affinity"
             options={options}
@@ -308,7 +308,7 @@ export default class AffinityForm extends React.Component {
         {(isEmpty(mode) ||
           !options.some(item => isEqual(item.value, affinity))) && (
           <Form.Item
-            label={t('Custom Deployment Mode')}
+            label={t('CUSTOM_DEPLOYMENT_MODE')}
             rules={[{ validator: this.modeValidator, checkOnSubmit: true }]}
           >
             <ArrayInput

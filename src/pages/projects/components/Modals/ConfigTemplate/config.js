@@ -43,8 +43,8 @@ export default {
     },
     {
       icon: 'group',
-      name: 'affinity',
-      title: 'Affinity',
+      name: 'deploymentMode',
+      title: 'Deployment Mode',
       component: Affinity,
     },
   ],
