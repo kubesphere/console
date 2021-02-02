@@ -56,6 +56,12 @@
         border-radius: 50%;
         align-items: center;
         opacity: 1;
+        padding-right: 20px;
+        flex: 1;
+    }
+
+    .text {
+        flex: 2;
     }
 }
 

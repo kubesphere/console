@@ -57,3 +57,13 @@ export const flattenTreeData = treeData => {
 
   return treeMap
 }
+
+export const getBreadCrumbData = (id, rowtreeData) => {
+  const data = []
+  let currentNode = rowtreeData[id]
+  while (currentNode) {
+    data.unshift(currentNode)
+    currentNode = rowtreeData[currentNode.parent_id]
+  }
+  return data
+}
