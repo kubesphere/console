@@ -379,7 +379,6 @@ export default class PipelinesList extends React.Component {
     const pagination = { total, page, limit }
 
     const defaultTableProps = {
-      rowKey: 'name',
       hideCustom: false,
       onSelectRowKeys: this.props.store.setSelectRowKeys,
       selectedRowKeys,
@@ -414,6 +413,7 @@ export default class PipelinesList extends React.Component {
 
     return (
       <Table
+        rowKey="name"
         data={data}
         columns={this.getColumns()}
         filters={omitFilters}
