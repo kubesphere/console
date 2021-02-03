@@ -93,6 +93,7 @@ module.exports = {
   'Current Utilization': 'Utilización actual',
   'Deployment Location': 'Ubicación de despliegue',
   'Deployment Mode': 'Modo de despliegue',
+  DEPLOYMENT_MODE_DESC: 'You can specify rules for pod scheduling',
   DeploymentPaused: 'Despliegue Pausado',
   DeploymentResumed: 'Despliegue Reanudado',
   'Desired number of nodes scheduled': 'Número deseado de nodos programado',
