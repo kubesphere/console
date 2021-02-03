@@ -3,6 +3,8 @@
 .detailWrapper {
   margin-left: 20px;
   flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 
@@ -13,12 +15,9 @@
   margin-bottom: 20px;
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
 
   .separator {
     padding: 0px 8px;
-  }
-  li:last-child{
-    flex: 1;
-    word-break: break-all;
   }
 }

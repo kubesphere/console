@@ -56,12 +56,14 @@
         border-radius: 50%;
         align-items: center;
         opacity: 1;
-        padding-right: 20px;
         flex: 1;
     }
 
     .text {
-        flex: 2;
+        flex: 1;
+        word-break: break-all;
+        margin-left: 20px;
+        margin-right: 10px;
     }
 }
 

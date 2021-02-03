@@ -37,7 +37,7 @@ export default class GroupTree extends Component {
   }
 
   renderTree = () => {
-    const { treeData, onSelect } = this.props
+    const { treeData, onSelect, group } = this.props
     const data = set(cloneDeep(treeData)[0], 'disabled', true)
     const defaultKey = get(treeData[0].children[0], 'key', 'root')
 
@@ -47,6 +47,7 @@ export default class GroupTree extends Component {
         defaultExpandedKeys={[defaultKey]}
         defaultSelectedKeys={[defaultKey]}
         treeData={data}
+        selectedKeys={[group]}
         onSelect={onSelect}
       />
     )
