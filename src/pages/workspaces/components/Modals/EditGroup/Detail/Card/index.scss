@@ -1,10 +1,10 @@
 @import '~scss/variables';
 
 .cardWrapper {
+  flex: 1;
   background-color: #fff;
   padding: 10px 12px;
   border-radius: $border-radius;
-  height: calc(100% - 44px);
   overflow: hidden;
   overflow-y: auto;
 }

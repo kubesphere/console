@@ -61,7 +61,7 @@ export default class Groups extends React.Component {
   }
 
   componentDidMount() {
-    this.fetchGroup()
+    this.fetchGroup(true)
     this.initWebsocket()
   }
 
@@ -89,12 +89,11 @@ export default class Groups extends React.Component {
       this.disposer = reaction(
         () => this.websocket.message,
         message => {
-          if (
-            message.type === 'MODIFIED' ||
-            message.type === 'ADDED' ||
-            message.type === 'DELETED'
-          ) {
+          if (message.type === 'MODIFIED' || message.type === 'ADDED') {
             _getData()
+          }
+          if (message.type === 'DELETED') {
+            _getData(true)
           }
         }
       )
@@ -104,20 +103,13 @@ export default class Groups extends React.Component {
   fetchGroup = refresh => {
     const { workspace } = this.props.match.params
     this.store.fetchGroup({ workspace }).then(() => {
-      if (!this.unmount) {
-        if (refresh) {
-          this.setState(prev => ({
-            refreshFlag: !prev.refreshFlag,
-          }))
-        } else {
-          const { treeData } = this.store
-          if (!this.state.group) {
-            this.setState({
-              group: get(treeData[0], 'children[0].key', ''),
-              groupTitle: get(treeData[0], 'children[0].group_name', ''),
-            })
-          }
-        }
+      if (!this.unmount && refresh) {
+        const { treeData } = this.store
+        this.setState(prev => ({
+          refreshFlag: !prev.refrseshFlag,
+          group: get(treeData[0], 'children[0].key', ''),
+          groupTitle: get(treeData[0], 'children[0].group_name', ''),
+        }))
       }
     })
   }
@@ -248,6 +240,7 @@ export default class Groups extends React.Component {
             <div className={styles.container}>
               <GroupTree
                 treeData={treeData}
+                group={group}
                 total={total}
                 isLoading={isLoading}
                 onSelect={this.handleSelectTree}
