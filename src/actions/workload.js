@@ -217,7 +217,6 @@ export default {
           if (!isEmpty(customMode)) {
             delete data.spec.template.spec.customMode
           }
-
           store.update(detail, data).then(() => {
             Modal.close(modal)
             success && success()

@@ -17,4 +17,8 @@
   .separator {
     padding: 0px 8px;
   }
+  li:last-child{
+    flex: 1;
+    word-break: break-all;
+  }
 }

@@ -297,7 +297,7 @@ export default class AffinityForm extends React.Component {
 
     return (
       <>
-        <Form.Item label={t('Custom Deployment Mode')}>
+        <Form.Item>
           <TypeSelect
             name="spec.template.spec.affinity"
             options={options}
@@ -308,7 +308,7 @@ export default class AffinityForm extends React.Component {
         {(isEmpty(mode) ||
           !options.some(item => isEqual(item.value, affinity))) && (
           <Form.Item
-            label={t('CUSTOM_DEPLOYMENT_MODE')}
+            label={t('Custom Deployment Mode')}
             rules={[{ validator: this.modeValidator, checkOnSubmit: true }]}
           >
             <ArrayInput

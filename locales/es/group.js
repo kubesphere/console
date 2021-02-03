@@ -33,4 +33,9 @@ module.exports = {
   'Add DevOps project': 'Agregar proyecto DevOps',
   'Please add role': 'Añadir papel',
   'Assigned user group': 'Grupo de usuarios asignado',
+
+  DELETE_GROUP_TIP:
+    '¿Está seguro de que desea eliminar el subdepartamento <strong> {recurso} </strong>?',
+  GROUP_USERS_TIP:
+    'Hay <strong> {count} </strong> usuarios autorizados en el departamento actual. Elimine los usuarios autorizados antes de eliminar. ',
 }

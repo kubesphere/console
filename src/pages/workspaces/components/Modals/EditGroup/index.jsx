@@ -75,6 +75,12 @@ export default class EditGroupModal extends React.Component {
     })
   }
 
+  handleTreeNodeIdChange = id => {
+    this.setState({
+      treeNodeId: id,
+    })
+  }
+
   render() {
     const { visible, title, onCancel, treeData } = this.props
     const { showForm, groupId, treeNodeId } = this.state
@@ -100,6 +106,7 @@ export default class EditGroupModal extends React.Component {
             {...this.props}
             showForm={showForm}
             toggleForm={this.toggleForm}
+            onChange={this.handleTreeNodeIdChange}
             groupId={groupId}
             treeNodeId={treeNodeId}
           />
