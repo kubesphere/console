@@ -22,6 +22,7 @@ import { parseUrl, getQueryString, generateId } from 'utils'
 import { CREDENTIAL_DISPLAY_KEY } from 'utils/constants'
 
 import BaseStore from 'stores/devops/base'
+import qs from 'qs'
 import CredentialStore from './credential'
 
 export default class SCMStore extends BaseStore {
@@ -391,15 +392,17 @@ export default class SCMStore extends BaseStore {
 
   @action
   fetchGitLabProjectList = async ({ cluster, devops, server, owner }) => {
-    const url = `${this.getDevopsUrlV2({
+    let url = `${this.getDevopsUrlV2({
       cluster,
     })}${devops}/jenkins/gitlab/projectList`
 
-    let projectList = []
+    url += `?${qs.stringify({ server, owner })}`
 
-    const result = await this.request.post(url, { server, owner }, {}, () => {
+    const result = await this.request.post(url, {}, {}, () => {
       return []
     })
+
+    let projectList = []
 
     if (result.status === 'ok' && isArray(result.data)) {
       projectList =

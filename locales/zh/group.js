@@ -32,4 +32,8 @@ module.exports = {
   'Add DevOps project': '添加 DevOps 工程',
   'Please add role': '请添加角色',
   'Assigned user group': '已分配用户组',
+
+  DELETE_GROUP_TIP: '确定删除子部门 <strong>{resource}</strong>?',
+  GROUP_USERS_TIP:
+    '当前部门有 <strong>{count}</strong> 名授权用户，请先移除授权用户再删除。',
 }
