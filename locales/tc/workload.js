@@ -76,6 +76,9 @@ module.exports = {
   'HTTP Request': 'HTTP 請求',
   'Diff Settings': '差異化配置',
   'Deployment Mode': '部署模式',
+  'Custom Deployment Mode': '自定義部署模式',
+  'Add Deployment Mode': '添加部署模式',
+  DEPLOYMENT_MODE_DESC: '您可以为容器組調度指定規則',
   'Instance Status': '實例狀態',
 
   'No Request': '不預留',
@@ -212,6 +215,11 @@ module.exports = {
   Argument: '参數',
   'Add argument': '添加参數',
   Protocols: '協定',
+  'Must match': '必須滿足',
+  'Match as much as possible': '盡可能滿足',
+  'Deploy with the Target': '與目標部署到壹起',
+  'Deploy away from the Target': '遠離目標部署',
+  'Please complete the policy': '請填寫完整策略',
   'Session Affinity': '會話親和性',
   'environment variables': '環境變量',
   'Add Environment Variable': '添加環境變量',
@@ -523,7 +531,11 @@ module.exports = {
 
   'Pod Default Deployment': '容器組預設部署',
   'Pod Decentralized Deployment': '容器組分散部署',
+  'Pod Soft Decentralized Deployment': '容器組軟分散部署',
+  'Pod Hard Decentralized Deployment': '容器組硬分散部署',
   'Pod Aggregation Deployment': '容器組聚合部署',
+  'Pod Soft Aggregation Deployment': '容器組軟聚合部署',
+  'Pod Hard Aggregation Deployment': '容器組硬聚合部署',
   'Pod replicas will be deployed on different nodes as much as possible.':
     '容器組副本將會盡量分散在不同的節點中',
   'Pod replicas will be deployed on the same node as much as possible.':
