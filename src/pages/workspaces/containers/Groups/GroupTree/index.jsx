@@ -23,7 +23,7 @@ import { set, get, cloneDeep } from 'lodash'
 
 import { Loading } from '@kube-design/components'
 
-import Tree from 'components/Tree/index'
+import Tree from 'components/Tree'
 
 import styles from './index.scss'
 
@@ -61,14 +61,16 @@ export default class GroupTree extends Component {
     const { isLoading, total } = this.props
 
     return (
-      <div className={styles.treeWrapper}>
-        {isLoading && (
-          <div className={styles.loading}>
-            <Loading spinning={isLoading} />
-          </div>
-        )}
-        {total > 0 && this.renderTree()}
-        {total === 0 && !isLoading && this.renderPlaceHolder()}
+      <div className={styles.wrapper}>
+        <div className={styles.treeWrapper}>
+          {isLoading && (
+            <div className={styles.loading}>
+              <Loading spinning={isLoading} />
+            </div>
+          )}
+          {total > 0 && this.renderTree()}
+          {total === 0 && !isLoading && this.renderPlaceHolder()}
+        </div>
       </div>
     )
   }

@@ -1,10 +1,12 @@
 @import '~scss/variables';
 
 .tree {
+  display: inline-block;
   position: relative;
   padding: 0;
 
   li.treeNode {
+    display: inline-block;
     position: inherit;
     list-style: none;
     padding: 0;
@@ -20,7 +22,7 @@
 
   .treeNodeWrap {
     color: $tree-text-color;
-    display: flex;
+    display: inline-flex;
     &.disabled {
       .treeContent{
         opacity: .5;
@@ -31,11 +33,11 @@
 
   .treeContent {
     flex:1;
-    word-break: break-all;
     padding: 6px 8px;
     border-radius: $tree-border-radius;
     display: flex;
     cursor: pointer;
+    white-space: nowrap;
 
     &:hover {
       background-color: $tree-node-hover-bg;
