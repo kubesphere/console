@@ -42,20 +42,39 @@ export default class GitLabForm extends React.Component {
     })
   }
 
-  getGitLabOwner = async e => {
+  getProjectListByOwner = async e => {
     const owner = e.target.value
     const { devops, cluster } = this.props
     const { formData } = this.props.store
-    const server = get(formData, 'gitlab_source.server_name', '')
+    const server = get(formData, 'gitlab_source.server_name')
 
-    const projectList = await this.props.store.fetchGitLabProjectList({
-      devops,
-      cluster,
-      owner,
-      server,
-    })
+    if (server) {
+      const projectList = await this.props.store.fetchGitLabProjectList({
+        devops,
+        cluster,
+        owner,
+        server,
+      })
 
-    this.setState({ projectList })
+      this.setState({ projectList })
+    }
+  }
+
+  getProjectListByServerName = async server => {
+    const { formData } = this.props.store
+    const { devops, cluster } = this.props
+    const owner = get(formData, 'gitlab_source.owner')
+
+    if (owner) {
+      const projectList = await this.props.store.fetchGitLabProjectList({
+        devops,
+        cluster,
+        owner,
+        server,
+      })
+
+      this.setState({ projectList })
+    }
   }
 
   getCredentialsListData = params => {
@@ -91,13 +110,23 @@ export default class GitLabForm extends React.Component {
       <div className={styles.card}>
         <Form data={formData} ref={formRef}>
           <Form.Item
-            label={t('Gitlab Server')}
+            label={t('GitLab Server')}
             rules={[{ required: true, message: t('This param is required') }]}
           >
-            <Select name="gitlab_source.server_name" options={serverList} />
+            <Select
+              name="gitlab_source.server_name"
+              options={serverList}
+              onChange={this.getProjectListByServerName}
+            />
           </Form.Item>
-          <Form.Item label={t('Gitlab Owner')}>
-            <Input name="gitlab_source.owner" onBlur={this.getGitLabOwner} />
+          <Form.Item
+            label={t('GitLab Owner')}
+            rules={[{ required: true, message: t('This param is required') }]}
+          >
+            <Input
+              name="gitlab_source.owner"
+              onBlur={this.getProjectListByOwner}
+            />
           </Form.Item>
           <Form.Item
             label={t('Credential')}
@@ -125,7 +154,10 @@ export default class GitLabForm extends React.Component {
               clearable
             />
           </Form.Item>
-          <Form.Item label={t('Repository Name')}>
+          <Form.Item
+            label={t('Repository Name')}
+            rules={[{ required: true, message: t('This param is required') }]}
+          >
             <Select name="gitlab_source.repo" options={projectList} />
           </Form.Item>
         </Form>

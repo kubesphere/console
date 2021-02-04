@@ -380,11 +380,9 @@ export default class SCMStore extends BaseStore {
     let serverList = []
 
     if (result.status === 'ok' && isArray(result.data)) {
-      serverList =
-        !isEmpty(result.data) &&
-        result.data.map(item => {
-          return { label: item.name, value: item.name }
-        })
+      serverList = result.data.map(item => {
+        return { label: item.name, value: item.name }
+      })
     }
 
     return serverList
@@ -405,11 +403,9 @@ export default class SCMStore extends BaseStore {
     let projectList = []
 
     if (result.status === 'ok' && isArray(result.data)) {
-      projectList =
-        !isEmpty(result.data) &&
-        result.data.map(item => {
-          return { label: item, value: item }
-        })
+      projectList = result.data.map(item => {
+        return { label: item, value: item }
+      })
     }
 
     return projectList
