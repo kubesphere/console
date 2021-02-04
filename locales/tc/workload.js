@@ -531,7 +531,11 @@ module.exports = {
 
   'Pod Default Deployment': '容器組預設部署',
   'Pod Decentralized Deployment': '容器組分散部署',
+  'Pod Soft Decentralized Deployment': '容器組軟分散部署',
+  'Pod Hard Decentralized Deployment': '容器組硬分散部署',
   'Pod Aggregation Deployment': '容器組聚合部署',
+  'Pod Soft Aggregation Deployment': '容器組軟聚合部署',
+  'Pod Hard Aggregation Deployment': '容器組硬聚合部署',
   'Pod replicas will be deployed on different nodes as much as possible.':
     '容器組副本將會盡量分散在不同的節點中',
   'Pod replicas will be deployed on the same node as much as possible.':
