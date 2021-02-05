@@ -105,7 +105,7 @@ export default class Routes extends React.Component {
     const namespace = get(formData, 'application.metadata.namespace')
 
     if (isGovernance) {
-      const template = get(ingress, isFederated ? 'spec.template' : '')
+      const template = isFederated ? get(ingress, 'spec.template') : ingress
       const serviceName = get(
         template,
         'spec.rules[0].http.paths[0].backend.serviceName'
@@ -123,7 +123,8 @@ export default class Routes extends React.Component {
   handleAdd = data => {
     const { isFederated } = this.props
     const { ingress, selectRuleIndex } = this.state
-    const template = get(ingress, isFederated ? 'spec.template' : '')
+
+    const template = isFederated ? get(ingress, 'spec.template') : ingress
 
     const rules = get(template, 'spec.rules', [])
 
@@ -147,7 +148,7 @@ export default class Routes extends React.Component {
   handleDelete = index => {
     const { isFederated } = this.props
     const { ingress } = this.state
-    const template = get(ingress, isFederated ? 'spec.template' : '')
+    const template = isFederated ? get(ingress, 'spec.template') : ingress
 
     const rules = get(template, 'spec.rules', [])
 
@@ -190,7 +191,7 @@ export default class Routes extends React.Component {
     const overrides = []
     const { isFederated, projectDetail } = this.props
     const { ingress } = this.state
-    const template = get(ingress, isFederated ? 'spec.template' : '')
+    const template = isFederated ? get(ingress, 'spec.template') : ingress
     const annotations = get(template, 'metadata.annotations', [])
     const rules = get(template, 'spec.rules', [])
     const tls = get(template, 'spec.tls', [])
