@@ -50,6 +50,7 @@ export default class Groups extends React.Component {
     this.store = new GroupStore()
     this.userStore = new UserStore()
     this.websocket = new WebsocketStore()
+    this.silentLoading = false
 
     this.state = {
       group: '',
@@ -89,6 +90,8 @@ export default class Groups extends React.Component {
       this.disposer = reaction(
         () => this.websocket.message,
         message => {
+          this.silentLoading = true
+
           if (message.type === 'MODIFIED' || message.type === 'ADDED') {
             _getData()
           }
@@ -242,7 +245,7 @@ export default class Groups extends React.Component {
                 treeData={treeData}
                 group={group}
                 total={total}
-                isLoading={isLoading}
+                isLoading={this.silentLoading ? false : isLoading}
                 onSelect={this.handleSelectTree}
               />
               <GroupUser

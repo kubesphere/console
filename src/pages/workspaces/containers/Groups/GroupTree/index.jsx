@@ -42,14 +42,16 @@ export default class GroupTree extends Component {
     const defaultKey = get(treeData[0].children[0], 'key', 'root')
 
     return (
-      <Tree
-        showLine
-        defaultExpandedKeys={[defaultKey]}
-        defaultSelectedKeys={[defaultKey]}
-        treeData={data}
-        selectedKeys={[group]}
-        onSelect={onSelect}
-      />
+      <div className={styles.treeWrapper}>
+        <Tree
+          showLine
+          defaultExpandedKeys={[defaultKey]}
+          defaultSelectedKeys={[defaultKey]}
+          treeData={data}
+          selectedKeys={[group]}
+          onSelect={onSelect}
+        />
+      </div>
     )
   }
 
@@ -62,15 +64,13 @@ export default class GroupTree extends Component {
 
     return (
       <div className={styles.wrapper}>
-        <div className={styles.treeWrapper}>
-          {isLoading && (
-            <div className={styles.loading}>
-              <Loading spinning={isLoading} />
-            </div>
-          )}
-          {total > 0 && this.renderTree()}
-          {total === 0 && !isLoading && this.renderPlaceHolder()}
-        </div>
+        {isLoading && (
+          <div className={styles.loading}>
+            <Loading spinning={isLoading} />
+          </div>
+        )}
+        {total === 0 && !isLoading && this.renderPlaceHolder()}
+        {total > 0 && this.renderTree()}
       </div>
     )
   }
