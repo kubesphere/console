@@ -57,3 +57,11 @@
 .ace_editor.ace-chaos .ace_line .ace_fold {
   height: auto;
 }
+
+.ace_search {
+  background-color: #f9fbfd;
+}
+
+.ace_search.right {
+  right: 12px;
+}
