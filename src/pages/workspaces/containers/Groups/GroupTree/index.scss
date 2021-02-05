@@ -8,15 +8,15 @@
   border-radius: $border-radius;
   border: 1px solid $border-color;
   overflow: auto;
-  overflow-y: auto;
-}
 
-.treeWrapper {
-  display: inline-block;
-  padding: 20px;
   .empty,
   .loading {
     @include middle;
     height: 100%;
   }
+}
+
+.treeWrapper {
+  display: inline-block;
+  padding: 20px;
 }

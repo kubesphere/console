@@ -32,19 +32,21 @@ export default class Department extends React.Component {
     const { treeData, groupId, onSelect } = this.props
 
     return (
-      <div className={styles.treeWrapper}>
-        {treeData[0].children.length > 0 ? (
-          <Tree
-            className={styles.tree}
-            showLine
-            defaultExpandedKeys={[groupId || 'root']}
-            defaultSelectedKeys={[groupId || 'root']}
-            onSelect={onSelect}
-            treeData={treeData}
-          />
-        ) : (
-          <p>{t('NO_DEPARTMENT_TIP')}</p>
-        )}
+      <div className={styles.wrapper}>
+        <div className={styles.treeWrapper}>
+          {treeData[0].children.length > 0 ? (
+            <Tree
+              className={styles.tree}
+              showLine
+              defaultExpandedKeys={[groupId || 'root']}
+              defaultSelectedKeys={[groupId || 'root']}
+              onSelect={onSelect}
+              treeData={treeData}
+            />
+          ) : (
+            <p>{t('NO_DEPARTMENT_TIP')}</p>
+          )}
+        </div>
       </div>
     )
   }

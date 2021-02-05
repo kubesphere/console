@@ -1,19 +1,15 @@
 @import '~scss/variables';
-@import '~scss/mixins';
 
-.treeWrapper {
+.wrapper {
   width: 30%;
   min-width: 356px;
-  overflow: hidden;
-  overflow-y: auto;
   background-color: #fff;
   border-radius: $border-radius;
   border: 1px solid $border-color;
-  padding: 26px 32px;
+  overflow: auto;
+}
 
-  .empty,
-  .loading {
-    @include middle;
-    height: 100%;
-  }
+.treeWrapper {
+  display: inline-block;
+  padding: 20px;
 }
