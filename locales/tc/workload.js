@@ -693,4 +693,6 @@ module.exports = {
   DEPLOY_PLACEMENT_TIP_TITLE: '什麼是部署位置？',
   DEPLOY_PLACEMENT_TIP_VALUE:
     '可以將容器組部署在不同集群中，並對集群中部署的副本數量進行定義。不同集群中的容器組將由聯邦集群控制器(Federation Controller Manager)進行統一的調度及狀態同步。',
+  IGNORE_CERT_DESC: '發現證書錯誤，是否忽略證書驗證並再次',
+  IGNORE_CERT_WARN_DESC: '忽略驗證證書，可能會導致帳戶密碼被欺騙。',
 }

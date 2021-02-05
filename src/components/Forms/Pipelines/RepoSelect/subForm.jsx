@@ -109,10 +109,11 @@ export default class RepoSelectForm extends React.Component {
     this.showCredential = false
   }
 
-  handleCreateCredential = async data => {
+  handleCreateCredential = async (data, callback) => {
     const { devops, cluster } = this.props
     await this.store.createCredential(data, { devops, cluster })
     await this.store.getCredentials({ devops, cluster })
+    callback()
     this.hideCreateCredential()
   }
 

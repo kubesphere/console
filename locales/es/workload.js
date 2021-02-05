@@ -661,4 +661,8 @@ module.exports = {
   DEPLOY_PLACEMENT_TIP_TITLE: 'What is Deployment Location?',
   DEPLOY_PLACEMENT_TIP_VALUE:
     'You can deploy Pods on different clusters and define the number of replicas deployed. The Federation Controller Manager schedules Pods on different clusters in a unified way and synchronizes status.',
+  IGNORE_CERT_DESC:
+    'A certificate error was found, do you want to ignore the certificate verification',
+  IGNORE_CERT_WARN_DESC:
+    'Ignoring the verification certificate may cause the account password to be disclosed. ',
 }
