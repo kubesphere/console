@@ -45,8 +45,8 @@ const PIPELINE_ROUTES = [
   { name: 'pipeline', title: 'Pipeline', component: Pipeline },
   { name: 'code-quality', title: 'Code Quality', component: CodeQuality },
   { name: 'activity', title: 'Activity', component: Activity },
-  { name: 'branch', title: 'Branch', component: Branch },
-  { name: 'pull-request', title: 'PullRequest', component: PullRequest },
+  { name: 'branch', title: 'Branches', component: Branch },
+  { name: 'pull-request', title: 'Pull Requestes', component: PullRequest },
 ]
 
 const PIPELINE_BRANCH_ROUTES = [

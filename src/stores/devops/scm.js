@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { action, observable, toJS } from 'mobx'
+import { action, observable } from 'mobx'
 import { isArray, get, isEmpty, set } from 'lodash'
 import { parseUrl, getQueryString, generateId } from 'utils'
 import { CREDENTIAL_DISPLAY_KEY } from 'utils/constants'
@@ -260,7 +260,7 @@ export default class SCMStore extends BaseStore {
       ...params,
     })
     this.credentials = this.credentialStore.list
-    window.pipelineCredentials = toJS(this.credentials) // cache in gloable varibles
+    this.credentials.loading = false
   }
 
   @action

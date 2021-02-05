@@ -106,9 +106,14 @@ export default class RepoSelectForm extends React.Component {
   }
 
   hideCreateCredential = async () => {
-    const { devops, cluster } = this.props
-    await this.store.getCredentials({ devops, cluster })
     this.showCredential = false
+  }
+
+  handleCreateCredential = async data => {
+    const { devops, cluster } = this.props
+    await this.store.createCredential(data, { devops, cluster })
+    await this.store.getCredentials({ devops, cluster })
+    this.hideCreateCredential()
   }
 
   handleGoBack = () => {
@@ -286,7 +291,7 @@ export default class RepoSelectForm extends React.Component {
         </div>
         <CredentialModal
           visible={this.showCredential}
-          onOk={this.hideCreateCredential}
+          onOk={this.handleCreateCredential}
           onCancel={this.hideCreateCredential}
           devops={devops}
           cluster={cluster}
