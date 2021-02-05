@@ -44,7 +44,7 @@ module.exports = {
   'Behavioral strategy': 'Behavioral strategy',
   blocker: 'blocker',
   Branch: 'Branch',
-  branch: 'branch',
+  Branches: 'Branches',
   'Branch Count': 'Branch Count',
   'Branch Excluded': 'Branch Excluded',
   'Branch Included': 'Branch Included',

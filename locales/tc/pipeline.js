@@ -201,7 +201,7 @@ module.exports = {
   Break: '終止',
   Proceed: '繼續',
   'credential Id': '憑證 ID',
-  branch: '分支',
+  Branches: '分支',
   'Clean when aborted': '清理失敗不影響運行',
   'Not fail build': '失敗不影響運行',
   submitter: '審核者',
