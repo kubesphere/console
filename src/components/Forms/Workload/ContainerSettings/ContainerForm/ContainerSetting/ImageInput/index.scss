@@ -203,6 +203,19 @@
   .desc {
     height: 20px;
     @include TypographyParagraph($dark-color01);
+
+    .textConfirm {
+      padding: 2px;
+      margin: 0 2px;
+      border-radius: 2px;
+      color: $green;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $green;
+        color: #fff;
+      }
+    }
   }
 }
 

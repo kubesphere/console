@@ -165,11 +165,11 @@ export default class ContainerStore {
       })}/registry/blob`,
       params,
       null,
-      e => e
+      (e, data) => data
     )
 
     if (get(result, 'status', 'succeeded') !== 'succeeded') {
-      return { status: 'failed' }
+      return { status: 'failed', message: result.message }
     }
 
     return ObjectMapper.imageBlob(result)

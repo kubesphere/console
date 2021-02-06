@@ -21,7 +21,7 @@ import PropTypes from 'prop-types'
 import { get, set, throttle, isObject, isEmpty } from 'lodash'
 import classnames from 'classnames'
 import moment from 'moment-mini'
-import { Form, Button, Icon, Loading } from '@kube-design/components'
+import { Form, Button, Icon, Loading, Tooltip } from '@kube-design/components'
 
 import { getDocsUrl, formatSize } from 'utils'
 
@@ -94,10 +94,16 @@ export default class ImageSearch extends Component {
     if (this.image && image === this.image) {
       return
     }
-    this.getImageDetail({ image, secret, logo, short_description })
+
+    this.ImageDetail = { image, secret, logo, short_description }
+    this.getImageDetail(this.ImageDetail)
   }
 
-  getImageDetail = async ({ image, secret, ...rest }) => {
+  getImageDetailNoCert = () => {
+    this.getImageDetail({ ...this.ImageDetail, insecure: true })
+  }
+
+  getImageDetail = async ({ image, secret, insecure, ...rest }) => {
     const { namespace, imageRegistries } = this.props
     if (!image || this.isUnMounted) {
       return
@@ -115,6 +121,7 @@ export default class ImageSearch extends Component {
       namespace,
       image,
       secret,
+      insecure,
     })
 
     const selectedImage = { ...result, ...rest, image }
@@ -146,6 +153,10 @@ export default class ImageSearch extends Component {
     }
   }
 
+  renderWaringText = () => {
+    return <p>{t('IGNORE_CERT_WARN_DESC')}</p>
+  }
+
   renderSelectedContent = () => {
     if (this.state.isLoading) {
       return (
@@ -156,7 +167,34 @@ export default class ImageSearch extends Component {
     }
 
     if (isObject(this.selectedImage)) {
-      if (this.selectedImage.status === 'failed') {
+      const { message, status } = this.selectedImage
+
+      if (status === 'failed') {
+        if (message.includes('x509')) {
+          return (
+            <div
+              className={classnames(
+                styles.selectedContent,
+                styles.emptyContent
+              )}
+            >
+              <Icon name="docker" className={styles.icon} />
+              <p className={styles.desc}>
+                {t('IGNORE_CERT_DESC')}
+                <Tooltip content={this.renderWaringText}>
+                  <span
+                    className={styles.textConfirm}
+                    onClick={this.getImageDetailNoCert}
+                  >
+                    {t('to try again')}
+                  </span>
+                </Tooltip>
+                <span>?</span>
+              </p>
+            </div>
+          )
+        }
+
         return (
           <div
             className={classnames(styles.selectedContent, styles.emptyContent)}
@@ -171,7 +209,6 @@ export default class ImageSearch extends Component {
         image,
         size,
         layers,
-        message,
         createTime,
         exposedPorts = [],
         registry,
