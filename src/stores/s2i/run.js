@@ -183,8 +183,8 @@ export default class S2irunStore extends Base {
     }
     let url = parseUrl(logURL).pathname.slice(1)
 
-    const namespaces = get(url.match(/\/namespaces\/([\w-/.]*)\/pods\//), '1')
-    const pods = get(url.match(/\/pods\/([\w-/.]*)/), '1')
+    const namespaces = get(url.match(/\/namespaces\/(.*)\/pods\//), '1')
+    const pods = get(url.match(/\/pods\/(.*)/), '1')
 
     url = `kapis/tenant.kubesphere.io/v1alpha2${this.getPath({
       cluster,
