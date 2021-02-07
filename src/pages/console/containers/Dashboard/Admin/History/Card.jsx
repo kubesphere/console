@@ -68,6 +68,7 @@ export default class Card extends Component {
     }
 
     if (
+      globals.app.isMultiCluster &&
       ['Project', 'DevOps'].includes(data.type) &&
       data.cluster &&
       data.cluster.name
