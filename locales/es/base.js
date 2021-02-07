@@ -508,8 +508,6 @@ module.exports = {
     'Una herramienta de búsqueda de auditoría multidimensional para espacios de trabajo, proyectos y recursos.',
   FILE_OVERSIZED_TIP: '¡El archivo cargado debe ser inferior a 2M!',
   MULTI_CLUSTER_TIP: 'El recurso se implementa en varios grupos.',
-  HISTORY_DESC:
-    'Cuando trabajes en múltiples áreas de trabajo o proyectos, tu navegador web registrará la última ruta que visitaste. Puedes verificar tu historial con F1, Win + K o Command + K, que te ayudará a cambiar rápidamente entre los recursos a los que accedes.',
   NO_HISTORY_TITLE:
     'Tu navegador web no ha registrado ningún historial de acceso a clústeres o espacios de trabajo.',
   NO_HISTORY_DESC:

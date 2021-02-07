@@ -72,9 +72,9 @@ export default class App extends Component {
     await this.props.rootStore.getRules(params)
 
     globals.app.cacheHistory(this.props.match.url, {
-      type: 'Project',
+      type: 'Multi-cluster Project',
       name: this.store.detail.name,
-      description: this.store.detail.description,
+      aliasName: this.store.detail.aliasName,
       isFedManaged: true,
     })
 

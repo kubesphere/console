@@ -16,12 +16,14 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 import React, { Component } from 'react'
+import { pick } from 'lodash'
 import { inject, observer, Provider } from 'mobx-react'
 import { Loading } from '@kube-design/components'
 
 import { renderRoutes } from 'utils/router.config'
 
 import DevOpsStore from 'stores/devops'
+import ClusterStore from 'stores/cluster'
 
 @inject('rootStore')
 @observer
@@ -29,6 +31,7 @@ export default class Layout extends Component {
   constructor(props) {
     super(props)
     this.store = new DevOpsStore()
+    this.clusterStore = new ClusterStore()
   }
 
   get cluster() {
@@ -70,6 +73,7 @@ export default class Layout extends Component {
 
     await Promise.all([
       this.store.fetchDetail(params),
+      this.clusterStore.fetchDetail({ name: params.cluster }),
       this.props.rootStore.getRules({
         workspace: this.workspace,
       }),
@@ -80,7 +84,13 @@ export default class Layout extends Component {
     globals.app.cacheHistory(this.props.match.url, {
       type: 'DevOps',
       name: this.devops,
-      description: this.store.data.description,
+      aliasName: this.store.data.aliasName,
+      cluster: pick(this.clusterStore.detail, [
+        'name',
+        'aliasName',
+        'group',
+        'provider',
+      ]),
     })
 
     this.store.initializing = false

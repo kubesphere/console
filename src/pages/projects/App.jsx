@@ -19,7 +19,7 @@
 import React, { Component } from 'react'
 import { inject, observer, Provider } from 'mobx-react'
 import { Loading } from '@kube-design/components'
-import { set } from 'lodash'
+import { set, pick } from 'lodash'
 
 import { renderRoutes } from 'utils/router.config'
 
@@ -72,8 +72,13 @@ class ProjectLayout extends Component {
 
     globals.app.cacheHistory(this.props.match.url, {
       type: 'Project',
-      name: this.store.detail.name,
-      description: this.store.detail.description,
+      ...pick(this.store.detail, ['name', 'aliasName']),
+      cluster: pick(this.clusterStore.detail, [
+        'name',
+        'aliasName',
+        'group',
+        'provider',
+      ]),
     })
 
     this.store.initializing = false

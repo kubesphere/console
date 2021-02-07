@@ -1,0 +1,57 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.empty {
+  padding: 12px;
+  border-radius: 3px;
+  border: dashed 1px $border-color;
+  background-color: #ffffff;
+}
+
+.histories {
+  margin-bottom: -12px;
+
+  & > a {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    width: calc(20% - 11px);
+    margin-bottom: 12px;
+    margin-right: 12px;
+    padding: 11px 12px;
+    border-radius: 3px;
+    background-color: $card-bg-color;
+    transition: all $trans-speed ease-in-out;
+
+    &:nth-child(5n + 5) {
+      margin-right: 0;
+    }
+
+    .tagWrapper {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+    }
+
+    &:hover {
+      .text {
+        & > div > div {
+          color: $primary;
+        }
+
+        :global .kubed-icon {
+          color: #00aa72;
+          fill: #90e0c5;
+        }
+      }
+    }
+  }
+}
+
+.indicator {
+  position: absolute;
+  top: 32px;
+  left: 32px;
+  background-color: #fff;
+  border-radius: 50%;
+}

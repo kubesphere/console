@@ -56,18 +56,6 @@ export default class KubeTools extends React.Component {
   get toolList() {
     return [
       {
-        group: 'History',
-        data: [
-          {
-            key: 'history',
-            icon: 'clock',
-            title: t('History'),
-            description: t('HISTORY_DESC'),
-            onClick: this.props.rootStore.toggleHistory,
-          },
-        ],
-      },
-      {
         group: 'Analysis Tools',
         data: [
           {
