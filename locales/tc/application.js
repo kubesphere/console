@@ -86,7 +86,7 @@ module.exports = {
   'TCP - Outbound Traffic': 'TCP - 出站流量',
 
   'Connection timeout': '連接超時時間',
-  'TCP connection timeout.': 'TCP連接超時時間。',
+  'TCP connection timeout.': 'TCP 連接超時時間。',
   'Maximum requests': '最大請求數',
   'Maximum pending requests': '最大等待請求數(等待列隊的長度)',
   'Max request retries': '最大請求重試次數',
@@ -97,7 +97,7 @@ module.exports = {
     '對後端連接中最大的請求數量若設為1則會禁止 keep alive 特性。',
   'Max number of connections': '最大連接數',
   'The maximum number of HTTP1 or TCP connections to the target host.':
-    '到目標主機HTTP1或TCP連接的最大數量。',
+    '到目標主機 HTTP1 或 TCP 連接的最大數量。',
   'Load balance algorithm': '負載平衡算法',
   'Session retention': '會話保持',
 
@@ -190,7 +190,7 @@ module.exports = {
   Log: '紀錄',
 
   POD_ISOLATION_RATIO_DESC:
-    '允許容器組被隔離的最大比例。採用向上取整，若10个實例，設為13% 則最多會隔離2个實例',
+    '允許容器組被隔離的最大比例。採用向上取整，若 10 個實例，設為 13% 則最多會隔離 2 個實例',
   BASE_EJECTION_TIME_DESC:
     '容器組第一次被隔離的時間，之後每次隔離時間為次數與最短隔離時間的乘積',
   CIRCUIT_DESC:
@@ -207,7 +207,7 @@ module.exports = {
     '根據應用中服務類型的不同設置不同類型的服務組件，支持無狀態服務和有狀態服務',
   APPLICATION_BASEINFO_DESC: 'ˇ對應用的名稱描述資訊等基本的資訊定義',
 
-  HOW_TO_USE_APPLICATION_GOVE_Q: '如何使用應用治理?',
+  HOW_TO_USE_APPLICATION_GOVE_Q: '如何使用應用治理？',
   HOW_TO_USE_APPLICATION_GOVE_A:
     '使用應用治理需要創建自制應用並對每項服務開啟服務治理功能',
 
@@ -227,7 +227,7 @@ module.exports = {
     '來自於企業空間的自制應用模板以及應用倉庫中添加的第三方 Helm 應用模板',
   COMPOSING_APP_DESC: '通過資源編排的方式發佈服務構建應用(支持應用治理功能)',
   APP_TEMPLATES_MODAL_DESC:
-    '應用模板來自於企業空間和第三方的 Helm 應用模板，支持一鍵部署並可通過視覺化的方式 在KubeSphere 中展示並提供部署及管理的功能',
+    '應用模板來自於企業空間和第三方的 Helm 應用模板，支持一鍵部署並可通過視覺化的方式在 KubeSphere 中展示並提供部署及管理的功能',
   APP_REPOS_DESC:
     '應用倉庫來自於第三方的 Helm Chart Repo，通過視覺化的方式在 KubeSphere 中展示並提供部署及管理功能，用戶可以基於應用倉庫中的模板快速地一鍵部署應用。',
   SEARCH_TIPS: '您可以根據相關條件進行過濾',
@@ -236,13 +236,13 @@ module.exports = {
   'Add stateful or stateless services': '添加有狀態服務或無狀態服務',
   'Add Internet access rule for the application': '為應用添加外網訪問規則',
 
-  INTERNET_ACCESS_DESC: '可以設置應用的外網訪問規則(Ingress)',
+  INTERNET_ACCESS_DESC: '可以設置應用的外網訪問規則 (Ingress)',
 
   'Microservice enabled': '微服務已啟用',
   'Microservice not enabled': '微服務未啟用',
 
   TRAFFIC_MANAGEMENT_NO_MICROSERVICE_TIP:
-    '流量治理依賴於微服務模組, 目前集群未啟用微服務模組',
+    '流量治理依賴於微服務模組，目前集群未啟用微服務模組',
   TRACING_NO_MICROSERVICE_TIP:
-    'Tracing 依賴於微服務模組, 目前集群未啟用微服務模組',
+    'Tracing 依賴於微服務模組，目前集群未啟用微服務模組',
 }

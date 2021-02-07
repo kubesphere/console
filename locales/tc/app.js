@@ -55,9 +55,9 @@ module.exports = {
   APP_ABSTRACTION_DESC: '對應用的概括性介紹',
   APP_DETAIL_DESC: '在用戶搜索應用時會非常有幫助',
   'Upload Icon': '上傳圖標',
-  APP_ICON_NOTE: '96px*96px 以内 JPG 或者 PNG',
+  APP_ICON_NOTE: '96px * 96px 以内 JPG 或者 PNG',
   APP_ICON_FORMAT: '格式: PNG 背景透明最佳',
-  APP_ICON_SIZE: '圖形大小: 96px*96px',
+  APP_ICON_SIZE: '圖形大小: 96px * 96px',
   'Start edit': '開始編輯',
   File: '檔案',
   'Platform App Store Management': '平台級應用商店管理',
@@ -113,7 +113,7 @@ module.exports = {
   APP_TEMPLATES_DESC:
     'KubeSphere 提供全生命週期的應用管理，可以上傳或者創建新的應用模板，並且快速部署它們，也可以通過應用商店進行發佈應用。',
   UPLOAD_HELM_TITLE: '上傳 Helm 配置文件',
-  UPLOAD_HELM_DESC: '上傳已有的 Helm  Chart ',
+  UPLOAD_HELM_DESC: '上傳已有的 Helm Chart ',
   'Edit App Informatio': '編輯應用資訊',
   EDIT_APP_DESC: '對應用的基本資訊進行設置',
   'App Number': '應用編號',
@@ -174,7 +174,7 @@ module.exports = {
   'Edit App Information': '編輯應用資訊',
   Uncategorized: '未分類',
   'Category Name': '分類名稱',
-  CATEGORY_NAME_DESC: '建議不超過8個字元，最多能輸入20個字元',
+  CATEGORY_NAME_DESC: '建議不超過 8 個字元，最多能輸入 20 個字元',
   'Please input category name': '請輸入分類名稱',
   ICON_DESC: '請選擇一個圖示來標示分類',
   'Please select icon': '請選擇圖示',
@@ -216,7 +216,7 @@ module.exports = {
 
   APP_CATE_UNCATEGORIZED: '未分類',
 
-  MISS_FILE_NOTE: '文件{file}没有找到',
+  MISS_FILE_NOTE: '文件 {file} 没有找到',
 
   'Please select a project to deploy': '請選擇項目部署',
   'Please select a workspace': '請選擇企業空間',
@@ -231,7 +231,7 @@ module.exports = {
 
   DELETE_APP_TEMPLATE_TIP: '刪除應用模板前，需要先刪除所有版本。',
 
-  UNPROCESSED_APP_REVIEW: '未处理的应用审核',
-  PROCESSED_APP_REVIEW: '已处理的应用审核',
-  ALL_APP_REVIEW: '应用审核',
+  UNPROCESSED_APP_REVIEW: '未處理的應用審核',
+  PROCESSED_APP_REVIEW: '已處理的應用審核',
+  ALL_APP_REVIEW: '應用審核',
 }

@@ -95,8 +95,8 @@ module.exports = {
   Condition: '條件',
   Threshold: '臨界值',
 
-  ALERT_TYPE: '{type}告警',
-  ALERT_POLICY_TYPE: '{type}告警策略',
+  ALERT_TYPE: ' {type} 告警',
+  ALERT_POLICY_TYPE: ' {type} 告警策略',
   ALERT_POLICY_DESC: '設置告警規則',
   ALERT_MESSAGE_DESC:
     '告警訊息紀錄了在工作負載級别的告警策略中，所有已發出的滿足告警規則的告警訊息。',
@@ -116,7 +116,7 @@ module.exports = {
   CONSECUTIVE_OPTIONS: '連續 {value} 次',
 
   MAX_SEND_NOT_LIMIT: '不限制',
-  MAX_SEND_COUNT: '最多重發{count}次',
+  MAX_SEND_COUNT: '最多重發 {count} 次',
   REPEAT_CUSTOM_TITLE: '自定義重復規則',
   REPEAT_CUSTOM_DESC:
     '告警規則將根據危險程度進行重復推送，如果未進行修改將會按照預設策略運行',
@@ -174,12 +174,12 @@ module.exports = {
   'Unavailable daemonset replicas ratio': '守護進程集副本不可用率',
   'Unavailable statefulset replicas ratio': '有狀態集副本不可用率',
 
-  REQUESTS_FOR_TRIGGER_AN_ALARM_Q: '觸發告警訊息的前提條件?',
+  REQUESTS_FOR_TRIGGER_AN_ALARM_Q: '觸發告警訊息的前提條件？',
   REQUESTS_FOR_TRIGGER_AN_ALARM_A:
     '需要對資源設置告警策略，當資源某項指標達到了告警策略的臨界值後即會觸發並推送訊息。',
-  REQUESTS_FOR_PUSH_AN_ALARM_Q: '告警策略訊息推送的前提條件?',
+  REQUESTS_FOR_PUSH_AN_ALARM_Q: '告警策略訊息推送的前提條件？',
   REQUESTS_FOR_PUSH_AN_ALARM_A: '需要平台管理員設置郵件伺服器。',
-  HOW_TO_SUPRESS_AN_ALARM_Q: '如何對告警訊息進行抑制?',
+  HOW_TO_SUPRESS_AN_ALARM_Q: '如何對告警訊息進行抑制？',
   HOW_TO_SUPRESS_AN_ALARM_A:
     '可以對每條告警策略進行多級别的設置，每个級别對應不同的告警週期及重復週期',
 
