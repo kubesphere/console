@@ -530,8 +530,6 @@ module.exports = {
   'User Guides': '用戶指南',
   'Quick Support': '快速獲取幫助',
   'Developer Community': '開發者社區',
-  HISTORY_DESC:
-    '當您在多個企業空間或者項目下進行協同工作時，瀏覽器會紀錄下您最近訪問的路徑，您可以透過 F1 / (Win + K) / (Command + K) 查看歷史紀錄，來快速切換您的訪問資源。',
   NO_HISTORY_TITLE: '瀏覽器暫未收錄到您對集群或者企業空間等區域的訪問紀錄',
   NO_HISTORY_DESC: '您可以嘗試對企業空間或者集群、項目等資源的訪問',
   USER_GUIDES_DESC: '最詳盡的 KubeSphere 用戶指南文件',

@@ -18,7 +18,7 @@
 
 import React, { Component } from 'react'
 import { inject, observer, Provider } from 'mobx-react'
-import { get, set } from 'lodash'
+import { get, set, pick } from 'lodash'
 import { Loading } from '@kube-design/components'
 
 import { renderRoutes } from 'utils/router.config'
@@ -63,8 +63,7 @@ class WorkspaceLayout extends Component {
 
     globals.app.cacheHistory(this.props.match.url, {
       type: 'Workspace',
-      name: this.store.detail.name,
-      description: this.store.detail.description,
+      ...pick(this.store.detail, ['name', 'aliasName']),
     })
 
     this.store.initializing = false

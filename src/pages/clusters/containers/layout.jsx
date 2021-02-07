@@ -61,12 +61,7 @@ export default class App extends Component {
 
       globals.app.cacheHistory(this.props.match.url, {
         type: 'Cluster',
-        ...pick(this.store.detail, [
-          'name',
-          'group',
-          'description',
-          'provider',
-        ]),
+        ...pick(this.store.detail, ['name', 'aliasName', 'group', 'isHost']),
       })
     }
 
