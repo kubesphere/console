@@ -216,7 +216,7 @@ export default class SCMStore extends BaseStore {
         [CREDENTIAL_DISPLAY_KEY['basic-auth']]: {
           id: this.githubCredentialId,
           password: token,
-          login: 'github',
+          username: 'github',
         },
       }
 
