@@ -188,7 +188,7 @@ export default class Secret extends React.Component {
               onClick={this.handleDownload}
             />
           </div>
-          <CodeEditor value={this.kubeconfig} options={options} />
+          <CodeEditor value={getValue(this.kubeconfig)} options={options} />
         </div>
       </div>
     )
