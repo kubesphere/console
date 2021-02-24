@@ -148,11 +148,7 @@ export default class Canary extends React.Component {
             </RadioButton>
           </RadioGroup>
           {this.protocol && (
-            <Tooltip
-              content={t(
-                'Port protocol is not HTTP, cannot publish policy by request content'
-              )}
-            >
+            <Tooltip content={t('POLICY_REQUEST_CONTENT_TIP')}>
               <Icon className={styles.tip} name="question" />
             </Tooltip>
           )}
