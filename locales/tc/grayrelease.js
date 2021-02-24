@@ -115,8 +115,8 @@ module.exports = {
 
   'Deploy sample application': '部署範例應用',
   'Deploy Sample Application': '部署範例應用',
-  'Port protocol is not HTTP, cannot publish policy by request content':
-    '端口協定非 HTTP, 不能發佈按内容分配的策略',
+  POLICY_REQUEST_CONTENT_TIP:
+    '端口協定非 HTTP, HTTP2 或 gRPC, 不能發佈按内容分配的策略',
 
   NO_SERVICE_MESH_TIP: '未開啟應用治理的應用無法使用灰度發佈',
 
