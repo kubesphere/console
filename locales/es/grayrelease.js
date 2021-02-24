@@ -58,7 +58,7 @@ module.exports = {
   'Please select a grayscale release component':
     'Selecciona un componente Grayscale Release',
   'Policy Config': 'Configuración de política',
-  'Port protocol is not HTTP, cannot publish policy by request content':
+  POLICY_REQUEST_CONTENT_TIP:
     'El protocolo de puerto no es HTTP, no se puede publicar la política por el contenido de la solicitud',
   'Prefix Match': 'Coincidencia de prefijo',
   'Real-time traffic distribution': 'Distribución de tráfico en tiempo real.',
