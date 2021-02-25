@@ -79,7 +79,7 @@ export default class Branch extends React.Component {
     },
     {
       title: t('Author'),
-      dataIndex: 'Author',
+      dataIndex: 'author',
       width: '20%',
       render: author => author || '-',
     },
@@ -122,6 +122,7 @@ export default class Branch extends React.Component {
     return (
       <Table
         data={data}
+        rowKey="commitId"
         columns={this.getColumns()}
         filters={omitFilters}
         pagination={pagination}

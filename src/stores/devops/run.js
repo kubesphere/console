@@ -103,7 +103,18 @@ export default class PipelineRunStore extends BaseStore {
       }
     )
     const data = []
-    if (result.pullRequest) {
+
+    if (result.changeSet && isArray(result.changeSet)) {
+      const changeSet = result.changeSet[0]
+      const commitBody = {
+        commitId: get(changeSet, 'commitId'),
+        startTime: get(result, 'startTime'),
+        url: get(changeSet, 'url'),
+        author: get(changeSet, 'author.fullName'),
+        title: get(changeSet, 'msg'),
+      }
+      data.push(commitBody)
+    } else if (result.pullRequest) {
       const commitBody = {
         commitId: get(result, 'commitId'),
         startTime: get(result, 'startTime'),

@@ -392,7 +392,7 @@ module.exports = {
   platform: '平台',
   Reselect: '重新選擇',
   body: '内容',
-  author: '作者',
+  Author: '作者',
   Size: '大小',
   password: '密碼',
   None: '無',
