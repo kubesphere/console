@@ -183,6 +183,8 @@ module.exports = {
   'Multi-cluster Deployment': 'Multi-cluster Deployment',
   Name: 'Name',
   name: 'name',
+  'Name validation failed':
+    'Avoid creating name with prefix kube-, since it is reserved for Kubernetes system namespaces',
   'Name exists': 'Name exists',
   NanoSeconds: 'NanoSeconds',
   New: 'New',
