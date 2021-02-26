@@ -19,12 +19,13 @@
 import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
-import { get } from 'lodash'
+import { get, isEmpty } from 'lodash'
 
 import { Panel } from 'components/Base'
 import Notification from './Notification'
 import Monitoring from './Monitoring'
 import RuleItem from './RuleItem'
+import Query from './Query'
 
 @inject('detailStore')
 @observer
@@ -49,20 +50,27 @@ export default class AlertRules extends React.Component {
     const resources = toJS(detail.resources)
     return (
       <>
-        <Panel title={t('Alerting Rules')}>
-          {detail.rules.map((item, index) => (
-            <RuleItem
-              key={index}
-              data={item}
-              resources={resources}
-              kind={kind || 'Node'}
-            />
-          ))}
-        </Panel>
+        {!isEmpty(detail.rules) && (
+          <Panel title={t('Alerting Rules')}>
+            {detail.rules.map((item, index) => (
+              <RuleItem
+                key={index}
+                data={item}
+                resources={resources}
+                kind={kind || 'Node'}
+              />
+            ))}
+          </Panel>
+        )}
+        {detail.query && (
+          <Panel title={t('Rule Expression')}>
+            <Query query={detail.query} />
+          </Panel>
+        )}
         <Panel title={t('Monitoring')}>
           <Monitoring detail={detail} store={this.store} />
         </Panel>
-        <Panel title={t('Notification Rules')}>
+        <Panel title={t('Notification Settings')}>
           <Notification summary={summary} message={message} />
         </Panel>
       </>

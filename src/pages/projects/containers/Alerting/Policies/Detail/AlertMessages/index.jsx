@@ -19,9 +19,12 @@
 import React from 'react'
 import { observer } from 'mobx-react'
 import { get, capitalize, isEmpty } from 'lodash'
+import { Link } from 'react-router-dom'
 import { Tag } from '@kube-design/components'
 
 import { getLocalTime } from 'utils'
+import { MODULE_KIND_MAP } from 'utils/constants'
+import { getAlertingResource } from 'utils/alerting'
 import AlertMessageStore from 'stores/alerting/message'
 import { Panel, Text } from 'components/Base'
 import BaseTable from 'components/Tables/Base'
@@ -38,6 +41,12 @@ export default class AlertHistory extends React.Component {
     this.store = new AlertMessageStore()
   }
 
+  get type() {
+    return this.props.match.url.indexOf('alert-rules/builtin') > 0
+      ? 'builtin'
+      : ''
+  }
+
   componentDidMount() {
     this.fetchData()
   }
@@ -49,6 +58,7 @@ export default class AlertHistory extends React.Component {
       cluster,
       namespace,
       ruleName: name,
+      type: this.type,
     }
     this.store.fetchList(data)
   }
@@ -58,11 +68,23 @@ export default class AlertHistory extends React.Component {
     return t('ALERT_TYPE', { type: t(str) })
   }
 
+  getPrefix({ cluster, namespace } = {}) {
+    const {
+      cluster: _cluster,
+      namespace: _namespace,
+      workspace,
+    } = this.props.match.params
+    cluster = cluster || _cluster
+    namespace = namespace || _namespace
+    return `${workspace ? `/${workspace}` : ''}/clusters/${cluster}${
+      namespace ? `/projects/${namespace}` : ''
+    }`
+  }
+
   getColumns = () => [
     {
       title: t('Alerting Message'),
       dataIndex: 'value',
-      width: '30%',
       render: (value, record) => (
         <Text
           icon="loudspeaker"
@@ -84,9 +106,28 @@ export default class AlertHistory extends React.Component {
       },
     },
     {
+      title: t('Alerting Resource'),
+      dataIndex: 'labels',
+      isHideable: true,
+      width: '20%',
+      render: labels => {
+        const { module, name, namespace } = getAlertingResource(labels)
+        if (!module) {
+          return '-'
+        }
+
+        return (
+          <Link to={`${this.getPrefix({ namespace })}/${module}/${name}`}>
+            {t(MODULE_KIND_MAP[module])}: {name}
+          </Link>
+        )
+      },
+    },
+    {
       title: t('Time'),
       dataIndex: 'createTime',
       isHideable: true,
+      width: 200,
       render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
     },
   ]
@@ -95,8 +136,8 @@ export default class AlertHistory extends React.Component {
     const { data, isLoading, filters } = this.store.list
 
     return (
-      <Panel title={t('Alerting History')}>
-        {!isLoading && isEmpty(data) ? (
+      <Panel title={t('Alerting History')} loading={isLoading}>
+        {isEmpty(data) ? (
           <div>{t('No Data')}</div>
         ) : (
           <BaseTable
@@ -106,7 +147,6 @@ export default class AlertHistory extends React.Component {
             name="Alerting Message"
             rowKey="value"
             columns={this.getColumns()}
-            loading={isLoading}
             selectedRowKeys={[]}
             selectActions={[]}
             hideHeader

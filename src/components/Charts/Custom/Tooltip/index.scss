@@ -33,8 +33,9 @@
 .item {
   display: flex;
   align-items: center;
-  flex-wrap: nowrap;
-  height: 20px;
+  max-width: '100%';
+  color: $white !important;
+  word-break: break-all;
 
   i {
     width: 6px;
@@ -43,15 +44,5 @@
     border-radius: 50%;
     background: $lightest;
     overflow: hidden;
-  }
-
-  label {
-    margin-right: 3px;
-    white-space: nowrap;
-  }
-
-  p {
-    white-space: nowrap;
-    color: $white !important;
   }
 }

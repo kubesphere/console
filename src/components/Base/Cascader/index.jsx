@@ -17,52 +17,77 @@
  */
 
 import React, { Component } from 'react'
-import { isEmpty } from 'lodash'
-import { Popper } from '@kube-design/components'
-import Item from './Item'
+
+import Options from './Options'
 
 import styles from './index.scss'
 
 export default class Cascader extends Component {
-  popper = React.createRef()
+  static defaultProps = {
+    options: [],
+    children: '',
+    onSelect() {},
+  }
+
+  state = {
+    isOpen: false,
+  }
+
+  ref = React.createRef()
+
+  componentDidMount() {
+    document.addEventListener('click', this.handleDOMClick)
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('click', this.handleDOMClick)
+  }
+
+  handleDOMClick = e => {
+    if (this.ref && !this.ref.current.contains(e.target)) {
+      this.setState({ isOpen: false })
+    }
+  }
 
   handleSelect = data => {
     this.props.onSelect(data)
-    this.popper.current && this.popper.current.hidePopper()
+    this.setState({ isOpen: false })
   }
 
-  renderOptions() {
-    const { options } = this.props
-    return (
-      <div className={styles.options}>
-        {options.map(item => (
-          <Item key={item.value} data={item} onSelect={this.handleSelect} />
-        ))}
-      </div>
-    )
+  triggerOpen = () => {
+    this.setState(({ isOpen }) => ({
+      isOpen: !isOpen,
+    }))
+  }
+
+  getOptionsStyle() {
+    const style = {}
+    if (this.ref && this.ref.current) {
+      const triggerStyle = this.ref.current.getBoundingClientRect()
+      style.top = triggerStyle.top + triggerStyle.height + 8
+      style.left = triggerStyle.left
+    }
+    return style
   }
 
   render() {
-    const {
-      children,
-      options,
-      popperProps = { trigger: 'click', placement: 'bottomLeft' },
-    } = this.props
-
-    if (isEmpty(options)) {
-      return children
-    }
+    const { children, options } = this.props
+    const { isOpen } = this.state
 
     return (
-      <Popper
-        ref={this.popper}
-        className={styles.wrapper}
-        content={this.renderOptions()}
-        {...popperProps}
-        showArrow={false}
-      >
-        {children}
-      </Popper>
+      <div className={styles.wrapper} ref={this.ref}>
+        <div className={styles.trigger} onClick={this.triggerOpen}>
+          {children}
+        </div>
+        {isOpen && (
+          <Options
+            style={this.getOptionsStyle()}
+            options={options}
+            level={0}
+            onSelect={this.handleSelect}
+          />
+        )}
+      </div>
     )
   }
 }

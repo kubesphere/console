@@ -17,24 +17,33 @@
  */
 
 import { get } from 'lodash'
-import { action } from 'mobx'
+import { action, observable } from 'mobx'
 
 import { LIST_DEFAULT_ORDER } from 'utils/constants'
 
 import Base from 'stores/base'
 
 export default class AlertStore extends Base {
+  @observable
+  ruleCount = 0
+
+  @observable
+  builtinRuleCount = 0
+
   get apiVersion() {
     return 'kapis/alerting.kubesphere.io/v2alpha1/'
   }
 
-  getPath({ cluster, namespace, ruleName } = {}) {
+  getPath({ cluster, namespace, ruleName, type } = {}) {
     let path = ''
     if (cluster) {
       path += `/klusters/${cluster}`
     }
     if (namespace) {
       path += `/namespaces/${namespace}`
+    }
+    if (type === 'builtin') {
+      path += `/${type}`
     }
     if (ruleName) {
       path += `/rules/${ruleName}`
@@ -46,6 +55,15 @@ export default class AlertStore extends Base {
 
   getResourceUrl = this.getListUrl
 
+  getFilterParams = params => {
+    const result = { ...params }
+    if (result['labels.severity']) {
+      result.label_filters = `severity=${result['labels.severity']}`
+      delete result['labels.severity']
+    }
+    return result
+  }
+
   @action
   async fetchList({
     cluster,
@@ -53,6 +71,7 @@ export default class AlertStore extends Base {
     namespace,
     more,
     ruleName,
+    type,
     ...params
   } = {}) {
     this.list.isLoading = true
@@ -69,18 +88,27 @@ export default class AlertStore extends Base {
     params.limit = params.limit || 10
 
     const result = await request.get(
-      this.getResourceUrl({ cluster, workspace, namespace, ruleName }),
+      this.getResourceUrl({ cluster, workspace, namespace, ruleName, type }),
       this.getFilterParams(params)
     )
-    const data = (get(result, 'items') || []).map(item => ({
+    const data = (get(result, 'items') || []).map((item, index) => ({
       cluster,
       namespace,
+      id: index,
       ...this.mapper(item),
     }))
 
+    const total = result.total
+
+    if (type === 'builtin') {
+      this.builtinRuleCount = total
+    } else {
+      this.ruleCount = total
+    }
+
     this.list.update({
       data: more ? [...this.list.data, ...data] : data,
-      total: result.totalItems || result.total_count || data.length || 0,
+      total,
       ...params,
       limit: Number(params.limit) || 10,
       page: Number(params.page) || 1,
@@ -89,5 +117,21 @@ export default class AlertStore extends Base {
     })
 
     return data
+  }
+
+  @action
+  async fetchCount({ cluster, namespace }) {
+    const result = await Promise.all([
+      request.get(this.getResourceUrl({ cluster, namespace }), {
+        page: 1,
+        limit: 1,
+      }),
+      request.get(
+        this.getResourceUrl({ cluster, namespace, type: 'builtin' }),
+        { page: 1, limit: 1 }
+      ),
+    ])
+    this.ruleCount = get(result, '0.total', 0)
+    this.builtinRuleCount = get(result, '1.total', 0)
   }
 }

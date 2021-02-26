@@ -19,37 +19,18 @@
 import React from 'react'
 import { get, isEmpty, isNaN } from 'lodash'
 
-import { compareByCondition } from 'utils/alerting'
-
 import styles from './index.scss'
 
 const CustomToolTip = (props = {}) => {
   if (!props.active) return null
 
-  const { renderLabel, payload, usageData, totalData, alert = {} } = props
+  const { renderLabel, payload, usageData, totalData } = props
   const data = payload || []
   const timeStr = props.label
   const unit = get(data, '[0].unit') || ''
   const unitText = unit === 'default' ? '' : unit === '%' ? '%' : ` ${t(unit)}`
 
-  let labelContent = renderLabel ? renderLabel(props) : timeStr
-  if (!isEmpty(alert)) {
-    const { label, condition, value } = alert
-
-    if (data.some(item => compareByCondition(item.value, value, condition))) {
-      labelContent = (
-        <div>
-          <p>
-            <img src="/assets/error.svg" />
-            {`${t('Alert Occurred')} ${t(
-              label
-            )} ${condition} ${value}${unitText}`}
-          </p>
-          <p>{timeStr}</p>
-        </div>
-      )
-    }
-  }
+  const labelContent = renderLabel ? renderLabel(props) : timeStr
 
   return (
     <div className={styles.tooltip}>
@@ -65,21 +46,24 @@ const CustomToolTip = (props = {}) => {
           let ratio = ''
           if (!isEmpty(usageData) && !isEmpty(totalData)) {
             const usage =
-              get(usageData.find(_item => _item.time === timeStr), name) || 0
+              get(
+                usageData.find(_item => _item.time === timeStr),
+                name
+              ) || 0
             const total =
-              get(totalData.find(_item => _item.time === timeStr), name) || 0
+              get(
+                totalData.find(_item => _item.time === timeStr),
+                name
+              ) || 0
             ratio = <span>{` (${usage}/${total})`}</span>
           }
 
           return (
             <div key={dataKey} className={styles.item}>
               <i style={{ background: color }} />
-              <label>{t(name)}:</label>
-              <p>
-                {value}
-                {unitText}
-                {ratio}
-              </p>
+              {t(name)}:{value}
+              {unitText}
+              {ratio}
             </div>
           )
         })}

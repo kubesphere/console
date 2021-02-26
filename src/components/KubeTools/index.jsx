@@ -143,7 +143,7 @@ export default class KubeTools extends React.Component {
   handleStop = (e, data) => {
     localStorage.setItem(
       KS_TOOLBOX_POS_KEY,
-      JSON.stringify({ x: 0, y: data.y })
+      JSON.stringify({ x: 0, y: Math.max(Math.min(data.y, 0), -900) })
     )
   }
 

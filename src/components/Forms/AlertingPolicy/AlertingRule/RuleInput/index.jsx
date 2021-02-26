@@ -105,9 +105,7 @@ export default class RuleInput extends React.Component {
 
   handleMetricTypeChange = type => {
     this.setState({ metricType: type }, () => {
-      this.props.onChange({
-        _metricType: type,
-      })
+      this.props.onChange({ _metricType: type })
     })
   }
 
@@ -146,7 +144,7 @@ export default class RuleInput extends React.Component {
     } = config
 
     if (isUndefined(value[name]) || isNaN(value[name])) {
-      const val = defaultValue || get(options[0], 'value', rest.value || '')
+      const val = get(options[0], 'value', rest.value || '')
       set(value, name, val)
     }
 

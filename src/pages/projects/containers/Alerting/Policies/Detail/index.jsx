@@ -31,6 +31,8 @@ import AlertingPolicyStore from 'stores/alerting/policy'
 
 import DetailPage from 'clusters/containers/Base/Detail'
 
+import Health from './Health'
+
 import getRoutes from './routes'
 
 @inject('rootStore')
@@ -51,11 +53,18 @@ export default class AlertPolicyDetail extends React.Component {
     return 'alerting policy'
   }
 
+  get type() {
+    return this.props.match.url.indexOf('alert-rules/builtin') > 0
+      ? 'builtin'
+      : ''
+  }
+
   get listUrl() {
     const { cluster, namespace, workspace } = this.props.match.params
+    const type = this.type
     return `${workspace ? `/${workspace}` : ''}/clusters/${cluster}${
       namespace ? `/projects/${namespace}` : ''
-    }/alert-rules`
+    }/alert-rules${type ? `?type=${type}` : ''}`
   }
 
   get routing() {
@@ -65,7 +74,13 @@ export default class AlertPolicyDetail extends React.Component {
   fetchData = params => {
     const { cluster, namespace, name } = this.props.match.params
     if (this.store.fetchDetail) {
-      this.store.fetchDetail({ cluster, namespace, name, ...params })
+      this.store.fetchDetail({
+        cluster,
+        namespace,
+        name,
+        type: this.type,
+        ...params,
+      })
     }
   }
 
@@ -108,6 +123,8 @@ export default class AlertPolicyDetail extends React.Component {
     }
     const severity = get(detail, 'labels.severity')
     const level = SEVERITY_LEVEL.find(item => item.value === severity)
+    const alerts = get(detail, 'alerts', [])
+    const time = get(alerts, `${alerts.length - 1}.activeAt`)
 
     return [
       {
@@ -130,8 +147,16 @@ export default class AlertPolicyDetail extends React.Component {
         ),
       },
       {
-        name: t('Created Time'),
-        value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
+        name: t('Health Status'),
+        value: <Health detail={detail} />,
+      },
+      {
+        name: t('Alerting Duration'),
+        value: detail.duration,
+      },
+      {
+        name: t('Recent Alert Time'),
+        value: time ? getLocalTime(time).format('YYYY-MM-DD HH:mm:ss') : '-',
       },
     ]
   }
@@ -147,7 +172,7 @@ export default class AlertPolicyDetail extends React.Component {
       module: this.module,
       name: getDisplayName(this.store.detail),
       desc: this.store.detail.description,
-      operations: this.getOperations(),
+      operations: this.type === 'builtin' ? [] : this.getOperations(),
       attrs: this.getAttrs(),
       breadcrumbs: [
         {

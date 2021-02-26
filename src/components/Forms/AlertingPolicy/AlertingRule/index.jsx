@@ -17,18 +17,20 @@
  */
 
 import React from 'react'
-import { get, unset } from 'lodash'
+import { get } from 'lodash'
 import { Form, RadioGroup, RadioButton } from '@kube-design/components'
 
 import MonitoringTarget from './MonitoringTarget'
 import RuleInput from './RuleInput'
 import CustomRule from './CustomRule'
+import QueryMonitor from './QueryMonitor'
 
 import styles from './index.scss'
 
 export default class AlertingRule extends React.Component {
   state = {
-    type: 'template',
+    query: get(this.props.formTemplate, 'query'),
+    ruleType: get(this.props.formTemplate, 'ruleType', 'template'),
   }
 
   get namespace() {
@@ -39,14 +41,14 @@ export default class AlertingRule extends React.Component {
     return this.namespace ? 'workload' : 'node'
   }
 
-  handleTypeChange = type => {
-    if (type === 'template') {
-      unset(this.props.formTemplate, 'query')
-    } else {
-      unset(this.props.formTemplate, 'rules')
-      unset(this.props.formTemplate, 'resources')
-    }
-    this.setState({ type })
+  handleTypeChange = ruleType => {
+    this.setState({ ruleType }, () => {
+      this.props.formTemplate.ruleType = ruleType
+    })
+  }
+
+  handleQueryChange = query => {
+    this.setState({ query })
   }
 
   checkItemValid = item => typeof item.thresholds !== 'undefined'
@@ -69,26 +71,37 @@ export default class AlertingRule extends React.Component {
   }
 
   renderCustomRule() {
-    const { cluster, namespace } = this.props
+    const { cluster, namespace, store, formTemplate } = this.props
     return (
-      <Form.Item
-        label={t('Rule Expression')}
-        rules={[
-          { required: true, message: t('Please input the rule expression') },
-        ]}
-      >
-        <CustomRule
-          name="query"
-          store={this.props.store}
-          cluster={cluster}
-          namespace={namespace}
-        />
-      </Form.Item>
+      <>
+        <Form.Item
+          label={t('Rule Expression')}
+          desc={t.html('ALERT_RULE_EXPRESSION_DESC')}
+          rules={[
+            { required: true, message: t('Please input the rule expression') },
+          ]}
+        >
+          <CustomRule
+            name="query"
+            store={store}
+            cluster={cluster}
+            namespace={namespace}
+            onChange={this.handleQueryChange}
+          />
+        </Form.Item>
+        <div className="margin-t12">
+          <QueryMonitor
+            query={this.state.query}
+            duration={formTemplate.duration}
+            store={store}
+          />
+        </div>
+      </>
     )
   }
 
   render() {
-    const { type } = this.state
+    const { ruleType } = this.state
     const { formRef, formTemplate } = this.props
 
     return (
@@ -96,7 +109,7 @@ export default class AlertingRule extends React.Component {
         <RadioGroup
           mode="button"
           buttonWidth={155}
-          value={type}
+          value={ruleType}
           onChange={this.handleTypeChange}
         >
           <RadioButton value="template">{t('Rule Templates')}</RadioButton>
@@ -104,7 +117,7 @@ export default class AlertingRule extends React.Component {
         </RadioGroup>
         <div className={styles.content}>
           <div className={styles.contentWrapper}>
-            {type === 'template'
+            {ruleType === 'template'
               ? this.renderTemplates()
               : this.renderCustomRule()}
           </div>

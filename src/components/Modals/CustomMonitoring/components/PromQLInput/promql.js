@@ -68,7 +68,7 @@ export const setCaretPosition = function(element, position) {
   let offset = position
   let index = 0
   while (offset > 0) {
-    offset -= childNodes[index].length
+    offset -= get(childNodes, `[${index}].length`, 0)
     index++
   }
 

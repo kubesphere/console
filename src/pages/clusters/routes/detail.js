@@ -61,7 +61,7 @@ export default [
     component: RoleDetail,
   },
   {
-    path: `${PATH}/alert-rules/:name`,
+    path: [`${PATH}/alert-rules/builtin/:name`, `${PATH}/alert-rules/:name`],
     component: AlertPolicyDetail,
   },
   {

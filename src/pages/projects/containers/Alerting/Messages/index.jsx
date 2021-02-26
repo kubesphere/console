@@ -29,6 +29,8 @@ import withList, { ListPage } from 'components/HOCs/withList'
 import Table from 'components/Tables/List'
 
 import { getLocalTime } from 'utils'
+import { MODULE_KIND_MAP } from 'utils/constants'
+import { getAlertingResource } from 'utils/alerting'
 
 import { SEVERITY_LEVEL } from 'configs/alerting/metrics/rule.config'
 
@@ -40,10 +42,37 @@ import MessageStore from 'stores/alerting/message'
   name: 'Alerting Message',
 })
 export default class AlertingPolicy extends React.Component {
-  getData = params => {
-    this.props.store.fetchList({
-      ...this.props.match.params,
-      ...params,
+  state = {
+    type: location.search.indexOf('type=builtin') > 0 ? 'builtin' : 'custom',
+  }
+
+  componentDidMount() {
+    const { cluster, namespace } = this.props.match.params
+    !namespace && this.props.store.fetchCount({ cluster })
+  }
+
+  get tabs() {
+    return {
+      value: this.state.type,
+      onChange: this.handleTabChange,
+      options: [
+        {
+          value: 'custom',
+          label: t('Custom Policies'),
+          count: this.props.store.ruleCount,
+        },
+        {
+          value: 'builtin',
+          label: t('Built-In Policies'),
+          count: this.props.store.builtinRuleCount,
+        },
+      ],
+    }
+  }
+
+  handleTabChange = type => {
+    this.setState({ type }, () => {
+      this.getData()
     })
   }
 
@@ -56,29 +85,25 @@ export default class AlertingPolicy extends React.Component {
     ]
   }
 
-  get itemActions() {
-    const { trigger, routing } = this.props
-    return [
-      {
-        key: 'delete',
-        icon: 'trash',
-        text: t('Delete'),
-        action: 'delete',
-        onClick: item =>
-          trigger('resource.delete', {
-            type: t(this.name),
-            detail: item,
-            success: routing.query,
-          }),
-      },
-    ]
+  getData = params => {
+    this.props.store.fetchList({
+      ...this.props.match.params,
+      ...params,
+      type: this.state.type,
+    })
   }
 
-  getRuleLink(ruleName) {
-    const { cluster, namespace, workspace } = this.props.match.params
+  getPrefix({ cluster, namespace } = {}) {
+    const {
+      cluster: _cluster,
+      namespace: _namespace,
+      workspace,
+    } = this.props.match.params
+    cluster = cluster || _cluster
+    namespace = namespace || _namespace
     return `${workspace ? `/${workspace}` : ''}/clusters/${cluster}${
       namespace ? `/projects/${namespace}` : ''
-    }/alert-rules/${ruleName}`
+    }`
   }
 
   getTableProps() {
@@ -88,8 +113,6 @@ export default class AlertingPolicy extends React.Component {
         ...tableProps.tableActions,
         selectActions: [],
       },
-      placeholder: t('Search by monitoring target'),
-      searchType: 'keyword',
       emptyProps: {
         desc: t('ALERT_MESSAGE_DESC'),
       },
@@ -101,55 +124,97 @@ export default class AlertingPolicy extends React.Component {
     return t('ALERT_TYPE', { type: t(str) })
   }
 
-  getColumns = () => [
-    {
-      title: t('Alerting Message'),
-      dataIndex: 'value',
-      width: '30%',
-      render: (value, record) => (
-        <Text
-          icon="loudspeaker"
-          title={get(record, 'annotations.summary')}
-          description={get(record, 'annotations.message', '-')}
-        />
-      ),
-    },
-    {
-      title: t('Level'),
-      dataIndex: 'labels.severity',
-      width: '15%',
-      render: severity => {
-        const level = SEVERITY_LEVEL.find(item => item.value === severity)
-        if (level) {
-          return <Tag type={level.type}>{t(level.label)}</Tag>
-        }
-        return <Tag>{severity}</Tag>
+  getAlertingTypes() {
+    return SEVERITY_LEVEL.map(level => ({
+      text: t(level.label),
+      value: level.value,
+    }))
+  }
+
+  getColumns = () => {
+    const { getFilteredValue } = this.props
+    return [
+      {
+        title: t('Alerting Message'),
+        dataIndex: 'value',
+        width: '30%',
+        render: (value, record) => (
+          <Text
+            icon="loudspeaker"
+            title={get(record, 'annotations.summary')}
+            description={get(record, 'annotations.message', '-')}
+          />
+        ),
       },
-    },
-    {
-      title: t('Alerting Policy'),
-      dataIndex: 'ruleName',
-      isHideable: true,
-      width: '20%',
-      render: ruleName => (
-        <Link to={this.getRuleLink(ruleName)}>{ruleName}</Link>
-      ),
-    },
-    {
-      title: t('Time'),
-      dataIndex: 'createTime',
-      isHideable: true,
-      render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
-    },
-  ]
+      {
+        title: t('Alerting Type'),
+        dataIndex: 'labels.severity',
+        filters: this.getAlertingTypes(),
+        filteredValue: getFilteredValue('labels.severity'),
+        isHideable: true,
+        search: true,
+        width: '15%',
+        render: severity => {
+          const level = SEVERITY_LEVEL.find(item => item.value === severity)
+          if (level) {
+            return <Tag type={level.type}>{t(level.label)}</Tag>
+          }
+          return <Tag>{severity}</Tag>
+        },
+      },
+      {
+        title: t('Alerting Policy'),
+        dataIndex: 'ruleName',
+        isHideable: true,
+        width: '20%',
+        render: (ruleName, record) => (
+          <Link
+            to={
+              this.state.type === 'builtin'
+                ? `${this.getPrefix()}/alert-rules/builtin/${record.ruleId}`
+                : `${this.getPrefix()}/alert-rules/${ruleName}`
+            }
+          >
+            {ruleName}
+          </Link>
+        ),
+      },
+      {
+        title: t('Alerting Resource'),
+        dataIndex: 'labels',
+        isHideable: true,
+        width: '20%',
+        render: labels => {
+          const { module, name, namespace } = getAlertingResource(labels)
+          if (!module) {
+            return '-'
+          }
+
+          return (
+            <Link to={`${this.getPrefix({ namespace })}/${module}/${name}`}>
+              {t(MODULE_KIND_MAP[module])}: {name}
+            </Link>
+          )
+        },
+      },
+      {
+        title: t('Time'),
+        dataIndex: 'activeAt',
+        isHideable: true,
+        render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
+      },
+    ]
+  }
 
   render() {
-    const { bannerProps, tableProps } = this.props
+    const { match, bannerProps, tableProps } = this.props
+    const { namespace } = match.params
     return (
       <ListPage {...this.props} getData={this.getData} noWatch>
         <Banner
           {...bannerProps}
           tips={this.tips}
+          tabs={namespace ? {} : this.tabs}
           icon="loudspeaker"
           title={t('Alerting Messages')}
           description={t('ALERT_MESSAGE_DESC')}
@@ -157,8 +222,8 @@ export default class AlertingPolicy extends React.Component {
         <Table
           {...tableProps}
           {...this.getTableProps()}
-          rowKey="value"
-          itemActions={this.itemActions}
+          rowKey="id"
+          itemActions={[]}
           columns={this.getColumns()}
           onCreate={this.showCreate}
         />

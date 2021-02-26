@@ -18,6 +18,8 @@
 
 module.exports = {
   'Cluster Node': '集群节点',
+  'Cluster Nodes': '集群节点',
+  'Node Role': '节点角色',
   'Master Node': 'Master 节点',
   'Worker Node': '工作节点',
   'Add Node': '添加节点',

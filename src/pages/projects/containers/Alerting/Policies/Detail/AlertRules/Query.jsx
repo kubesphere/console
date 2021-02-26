@@ -16,23 +16,29 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { getIndexRoute } from 'utils/router.config'
+import React, { Component } from 'react'
+import { highlightPromql } from 'components/Modals/CustomMonitoring/components/PromQLInput/promql'
+import styles from './index.scss'
 
-import AlertingRules from './AlertRules'
-import AlertingMessages from './AlertMessages'
+export default class Query extends Component {
+  state = {
+    html: highlightPromql(this.props.query),
+  }
 
-export default path => [
-  {
-    path: `${path}/rules`,
-    title: 'Alerting Rules',
-    component: AlertingRules,
-    exact: true,
-  },
-  {
-    path: `${path}/messages`,
-    title: 'Alerting Messages',
-    component: AlertingMessages,
-    exact: true,
-  },
-  getIndexRoute({ path, to: `${path}/rules`, exact: true }),
-]
+  componentDidUpdate(prevProps) {
+    if (prevProps.query !== this.props.query) {
+      this.setState({ html: highlightPromql(this.props.query) })
+    }
+  }
+
+  render() {
+    return (
+      <div
+        className={styles.query}
+        dangerouslySetInnerHTML={{
+          __html: this.state.html,
+        }}
+      />
+    )
+  }
+}

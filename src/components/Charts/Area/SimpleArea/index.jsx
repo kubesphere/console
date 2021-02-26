@@ -69,7 +69,6 @@ export default class SimpleArea extends React.Component {
     areaColors: PropTypes.array,
     renderTitle: PropTypes.func,
     renderTooltip: PropTypes.func,
-    alert: PropTypes.object,
   }
 
   static defaultProps = {
@@ -82,7 +81,6 @@ export default class SimpleArea extends React.Component {
     bgColor: COLORS_MAP['lightest'],
     areaColors: AreaColors,
     data: [],
-    alert: {},
   }
 
   constructor(props) {
@@ -130,13 +128,13 @@ export default class SimpleArea extends React.Component {
   }
 
   renderCustomTooltip() {
-    const { renderTooltip, alert } = this.props
+    const { renderTooltip } = this.props
 
     if (renderTooltip) {
       return renderTooltip()
     }
 
-    return <CustomTooltip alert={alert} />
+    return <CustomTooltip />
   }
 
   renderLegend() {

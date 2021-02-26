@@ -4,18 +4,17 @@
 .wrapper {
   background-color: $text-color;
 
-  :global {
-    .popper-content {
-      padding: 4px 0;
-      min-width: 200px;
-      max-width: 400px;
-      max-height: 300px;
-      overflow-y: auto;
-
-      .popper[x-placement^="right"] {
-        margin-left: -4px;
-      }
-    }
+  .options {
+    position: fixed;
+    padding: 4px 0;
+    min-width: 200px;
+    max-width: 400px;
+    max-height: 252px;
+    border-radius: $border-radius;
+    background-color: $text-color;
+    box-shadow: 0 4px 16px 0 rgba(39,50,71,.28);
+    overflow-y: auto;
+    z-index: 200;
   }
 }
 
@@ -25,17 +24,12 @@
   @include TypographySymbolText($white);
   cursor: pointer;
 
+  &.isOpen,
   &:hover {
     background-color: $dark-color06;
-
-    .children {
-      display: block;
-    }
   }
 
   &.hasChildren {
-    cursor: default;
-
     :global {
       .icon {
         opacity: 1;
