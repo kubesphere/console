@@ -17,15 +17,7 @@
  */
 
 import React from 'react'
-import {
-  result as _result,
-  get,
-  omit,
-  debounce,
-  isArray,
-  isUndefined,
-  isEmpty,
-} from 'lodash'
+import { get, omit, debounce, isArray, isUndefined, isEmpty } from 'lodash'
 import { Link } from 'react-router-dom'
 import { toJS } from 'mobx'
 import { parse } from 'qs'
@@ -299,7 +291,7 @@ export default class Activity extends React.Component {
       title: t('Last Message'),
       dataIndex: 'causes',
       width: '25%',
-      render: causes => _result(causes, '[0].shortDescription', ''),
+      render: causes => get(causes, '[0].shortDescription', ''),
     },
     {
       title: t('Duration'),
