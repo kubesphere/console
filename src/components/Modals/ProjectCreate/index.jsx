@@ -110,6 +110,13 @@ export default class ProjectCreateModal extends React.Component {
       return callback()
     }
 
+    if (value.indexOf('kube-') === 0) {
+      return callback({
+        message: t('Name validation failed'),
+        field: rule.field,
+      })
+    }
+
     const cluster =
       this.props.cluster || get(this.props.formTemplate, 'cluster')
 

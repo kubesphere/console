@@ -287,6 +287,8 @@ module.exports = {
   'Please input a keyword to filter': '請輸入關鍵字過濾',
   'Search by keyword': '請輸入關鍵字進行尋找',
   'Search by name': '請輸入名稱進行尋找',
+  'Name validation failed':
+    '避免使用前綴為 kube- 的名稱，因為它是為 Kubernetes 系統命名空間保留的',
   'Name exists': '名稱已存在',
   'Duplicate keys': '無法添加重復的 key',
   'Empty keys': '無法添加空的 key',
