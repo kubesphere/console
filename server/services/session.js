@@ -99,10 +99,11 @@ const getNewToken = async ctx => {
   return newToken
 }
 
-const oAuthLogin = async params => {
+const oAuthLogin = async ({ oauthName, ...params }) => {
   const resp = await send_gateway_request({
     method: 'GET',
-    url: `/oauth/callback/${params.state}?code=${params.code}`,
+    url: `/oauth/callback/${oauthName}`,
+    params,
   })
 
   return handleLoginResp(resp)

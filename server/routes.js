@@ -75,7 +75,7 @@ router
   .post('/logout', handleLogout)
 
   // oauth
-  .get('/oauth/redirect', handleOAuthLogin)
+  .get('/oauth/redirect/:name', handleOAuthLogin)
 
   // page entry
   .all('*', renderView)
