@@ -31,6 +31,11 @@ export default class WorkspaceItem extends Component {
 
   render() {
     const { data, type, disabled } = this.props
+
+    if (data.name === globals.config.systemWorkspace) {
+      return null
+    }
+
     return (
       <div
         className={classNames(styles.wrapper, { [styles.disabled]: disabled })}
