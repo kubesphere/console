@@ -39,9 +39,7 @@ export default class OPApps extends React.Component {
 
   get prefix() {
     const { workspace, cluster, namespace } = this.props.match.params
-    return `/${workspace}/clusters/${cluster}/projects/${namespace}/applications/${
-      this.type
-    }`
+    return `/${workspace}/clusters/${cluster}/projects/${namespace}/applications/${this.type}`
   }
 
   get canCreate() {
@@ -153,7 +151,6 @@ export default class OPApps extends React.Component {
       namespace: match.params.namespace,
       cluster: match.params.cluster,
       workspace: get(projectStore, 'detail.workspace'),
-      runtime_id: get(projectStore, 'detail.opRuntime'),
       routing: this.props.rootStore.routing,
       trigger,
     })

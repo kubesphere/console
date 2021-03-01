@@ -131,14 +131,14 @@ class AppDetail extends Component {
 
   renderVersionList() {
     return (
-      <>
+      <div className="margin-b12">
         <div className="h6 margin-b12">{t('Versions')}</div>
         <TypeSelect
           value={this.state.selectAppVersion}
           options={this.versionOptions}
           onChange={this.handleChangeAppVersion}
         />
-      </>
+      </div>
     )
   }
 
@@ -157,6 +157,7 @@ class AppDetail extends Component {
         />
         <div className={styles.bar}>
           <RadioGroup
+            mode="button"
             value={tab}
             options={this.tabs}
             onChange={this.handleTabChange}
@@ -167,14 +168,14 @@ class AppDetail extends Component {
         </div>
         <div className={styles.content}>
           <Columns>
-            <Column className="is-9">
+            <Column>
               <AppPreview
                 appId={this.appId}
                 versionId={selectAppVersion}
                 currentTab={tab}
               />
             </Column>
-            <Column>
+            <Column className="is-narrow">
               {this.renderVersionList()}
               <AppBase app={detail} />
             </Column>

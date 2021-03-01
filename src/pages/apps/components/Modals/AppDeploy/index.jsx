@@ -45,7 +45,6 @@ export default class AppDeploy extends React.Component {
     cluster: PropTypes.string,
     workspace: PropTypes.string,
     namespace: PropTypes.string,
-    runtime_id: PropTypes.string,
     versionId: PropTypes.string,
     onOk: PropTypes.func,
     onCancel: PropTypes.func,
@@ -68,7 +67,6 @@ export default class AppDeploy extends React.Component {
         name: `${props.app.name.slice(0, 7)}-${generateId()}`,
         version_id: props.versionId,
         namespace: props.namespace,
-        runtime_id: props.runtime_id,
         cluster: props.cluster,
         workspace: props.workspace,
       },
@@ -113,7 +111,10 @@ export default class AppDeploy extends React.Component {
         },
       })
     }
-    await this.fileStore.fetch({ version_id: this.state.formData.version_id })
+    await this.fileStore.fetch({
+      app_id: this.props.app.app_id,
+      version_id: this.state.formData.version_id,
+    })
     this.setState({ intializing: false })
   }
 

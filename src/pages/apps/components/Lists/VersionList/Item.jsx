@@ -65,7 +65,7 @@ export default class VersionItem extends React.PureComponent {
   }
 
   static defaultProps = {
-    isAdmin: true,
+    isAdmin: false,
     appDetail: {},
     detail: {},
     params: {},
@@ -244,7 +244,7 @@ export default class VersionItem extends React.PureComponent {
   }
 
   renderExtraContent() {
-    const { detail, appDetail } = this.props
+    const { detail, appDetail, clusters } = this.props
     const { tab } = this.state
 
     return (
@@ -262,10 +262,12 @@ export default class VersionItem extends React.PureComponent {
           </TabPanel>
           <TabPanel label={t('Deployed Instances')} name="deployInstances">
             <InstanceList
+              title={t('Deployed Instances')}
+              className={styles.instances}
               appId={appDetail.app_id}
               versionId={detail.version_id}
-              hideHeader
-              hideFooter
+              workspace={appDetail.workspace}
+              clusters={clusters}
             />
           </TabPanel>
         </Tabs>

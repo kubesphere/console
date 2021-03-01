@@ -41,19 +41,23 @@ export const transferVersionStatus = status => {
 }
 
 export const transferReviewStatus = status => {
-  if (status === 'submitted') {
-    return 'pending-review'
+  let transStatus
+  switch (status) {
+    case 'submitted':
+      transStatus = 'pending-review'
+      break
+    case 'passed':
+    case 'rejected':
+      transStatus = 'status'
+      break
+    case 'active':
+      transStatus = 'passed'
+      break
+    default:
+      transStatus = 'in-review'
   }
 
-  if (status === 'admin-passed') {
-    return 'passed'
-  }
-
-  if (status.endsWith('-rejected')) {
-    return 'rejected'
-  }
-
-  return 'in-review'
+  return transStatus
 }
 
 export const getVersionTypesName = typeStr => {

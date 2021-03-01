@@ -1,66 +1,26 @@
 @import '~scss/variables';
 @import '~scss/mixins';
-.wrapper {
-  .title {
-    margin-bottom: 8px;
-    line-height: 20px;
-    font-weight: bold;
-    color: $head-color;
-  }
-}
 
 .main {
-  &.table {
-    padding: 12px;
+  .header {
+    display: flex;
+    margin-bottom: 12px;
 
-    .header {
-      display: flex;
-      height: 56px;
-      padding: 12px;
-      border-bottom: 0 none;
+    .search {
+      flex: 1;
+    }
 
-      .search {
-        width: 100%;
-      }
-
-      .actions {
-        flex: 1 0 auto;
-
-        :global {
-          button {
-            margin-left: 12px;
-
-            &:hover {
-              background-color: $bg-color;
-            }
-          }
+    .actions {
+      :global {
+        button {
+          margin-left: 12px;
         }
       }
     }
-
-    .body {
-      min-height: 80px;
-      padding: 12px;
-    }
-
-    .footer {
-      padding: 8px 12px;
-      border-radius: 0 0 8px 8px;
-      background-color: $th-bg-color;
-      box-shadow: 0 -1px 0 0 $light-color03;
-    }
   }
 
-  &.versionBg {
-    margin: 0;
-    padding: 12px;
-    min-height: 60px;
-    background-color: $card-bg-color;
-    box-shadow: none;
-
-    &:hover {
-      box-shadow: none;
-    }
+  .footer {
+    margin-top: 12px;
   }
 }
 
@@ -84,27 +44,6 @@
     background-color: $card-bg-color;
     a {
       color: $green;
-    }
-  }
-
-  .iconOuter {
-    position: relative;
-    margin-right: 12px;
-
-    .icon {
-      display: inline-block;
-      width: 40px;
-      height: 40px;
-      padding: 4px;
-      line-height: 32px;
-      background-color: $bg-color;
-      border-radius: 50%;
-    }
-
-    .status {
-      position: absolute;
-      right: -10px;
-      bottom: -8px;
     }
   }
 

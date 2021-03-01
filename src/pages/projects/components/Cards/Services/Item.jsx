@@ -25,7 +25,6 @@ import classnames from 'classnames'
 import { Tooltip, Icon } from '@kube-design/components'
 import { Text } from 'components/Base'
 import ServiceAccess from 'projects/components/ServiceAccess'
-import WorkloadStatus from 'projects/components/WorkloadStatus'
 import { getDisplayName } from 'utils'
 
 import styles from './index.scss'
@@ -58,7 +57,7 @@ export default class ServiceItem extends React.Component {
           icon="network-router"
           title={
             <>
-              <Link to={`${prefix}/${detail.name}`}>{detailName}</Link>
+              <Link to={`${prefix}/services/${detail.name}`}>{detailName}</Link>
               {serviceMonitor && (
                 <Tooltip
                   content={`${t('Monitoring Exporter')}: ${serviceMonitor}`}
@@ -69,19 +68,6 @@ export default class ServiceItem extends React.Component {
             </>
           }
           description={t(detail.type)}
-        />
-        <Text
-          title={
-            detail.workload ? (
-              <WorkloadStatus
-                data={detail.workload}
-                module={`${detail.workloadType.toLowerCase()}s`}
-              />
-            ) : (
-              '-'
-            )
-          }
-          description={t('Resource Status')}
         />
         <Text
           title={

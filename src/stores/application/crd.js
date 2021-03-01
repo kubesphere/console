@@ -16,16 +16,12 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, set, has, keyBy, findKey } from 'lodash'
+import { get, set, has, findKey } from 'lodash'
 import { observable, action } from 'mobx'
 
 import { generateId, withDryRun } from 'utils'
 import { TIME_MICROSECOND_MAP, MODULE_KIND_MAP } from 'utils/constants'
 import { transformTraces } from 'utils/tracing'
-
-import ServiceStore from 'stores/service'
-import WorkloadStore from 'stores/workload'
-import ServiceMonitorStore from 'stores/monitoring/service.monitor'
 
 import Base from 'stores/base'
 
@@ -53,16 +49,6 @@ const healthProcess = health => {
 export default class ApplicationStore extends Base {
   constructor(module = 'applications') {
     super(module)
-
-    this.serviceStore = new ServiceStore()
-    this.serviceMonitorStore = new ServiceMonitorStore()
-  }
-
-  @observable
-  components = {
-    data: [],
-    total: 0,
-    isLoading: true,
   }
 
   @observable
@@ -95,44 +81,6 @@ export default class ApplicationStore extends Base {
       cluster,
       namespace,
     })}/health?rateInterval=60s&type=${type}`
-
-  @action
-  async fetchComponents(params) {
-    this.components.isLoading = true
-
-    const deployStore = new WorkloadStore('deployments')
-    const stsStore = new WorkloadStore('statefulsets')
-
-    await Promise.all([
-      this.serviceStore.fetchListByK8s(params),
-      this.serviceMonitorStore.fetchListByK8s(params),
-      deployStore.fetchListByK8s(params),
-      stsStore.fetchListByK8s(params),
-    ])
-
-    const services = this.serviceStore.list.data
-    const workloads = {
-      Deployment: deployStore.list.data,
-      StatefulSet: stsStore.list.data,
-    }
-    const serviceMonitors = this.serviceMonitorStore.list.data
-
-    if (services) {
-      const serviceMonitorNameMap = keyBy(serviceMonitors, 'name')
-
-      services.forEach(service => {
-        service.monitor = serviceMonitorNameMap[service.name]
-        service.workload = workloads[service.workloadType].find(
-          item => get(item, 'labels.app') === service.name
-        )
-      })
-
-      this.components.data = services
-      this.components.total = services.length
-    }
-
-    this.components.isLoading = false
-  }
 
   @action
   async fetchGraph({ cluster, namespace, app } = {}) {

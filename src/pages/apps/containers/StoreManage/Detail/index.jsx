@@ -22,6 +22,7 @@ import { observer, inject } from 'mobx-react'
 import { get, capitalize } from 'lodash'
 import { Loading } from '@kube-design/components'
 
+import { Image } from 'components/Base'
 import { getLocalTime, getDisplayName } from 'utils'
 import { trigger } from 'utils/action'
 import {
@@ -35,6 +36,8 @@ import VersionStore from 'stores/openpitrix/version'
 import DetailPage from 'core/containers/Base/Detail'
 
 import routes from './routes'
+
+import styles from './index.scss'
 
 @inject('rootStore')
 @observer
@@ -148,7 +151,16 @@ export default class AppDetail extends React.Component {
       return <Loading className="ks-page-loading" />
     }
 
+    const { detail } = this.store
+
+    const icon = (
+      <label className={styles.icon}>
+        <Image iconLetter={detail.name} src={detail.icon} alt="" />
+      </label>
+    )
+
     const sideProps = {
+      icon,
       module: this.module,
       authKey: this.authKey,
       name: getDisplayName(this.store.detail),

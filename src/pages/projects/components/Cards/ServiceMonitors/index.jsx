@@ -18,27 +18,44 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
+import { observer } from 'mobx-react'
 import { isEmpty } from 'lodash'
 import { Panel } from 'components/Base'
+
+import ServiceMonitorStore from 'stores/monitoring/service.monitor'
+
+import { joinSelector } from 'utils'
 
 import Item from './Item'
 
 import styles from './index.scss'
 
+@observer
 export default class ServiceMonitors extends React.Component {
   static propTypes = {
     className: PropTypes.string,
-    data: PropTypes.array,
-    loading: PropTypes.bool,
+    selector: PropTypes.object,
   }
 
-  static defaultProps = {
-    data: [],
-    loading: false,
+  store = new ServiceMonitorStore()
+
+  componentDidMount() {
+    this.getData()
+  }
+
+  getData = () => {
+    const { selector, cluster, namespace } = this.props
+    if (!isEmpty(selector)) {
+      this.store.fetchListByK8s({
+        cluster,
+        namespace,
+        labelSelector: joinSelector(selector),
+      })
+    }
   }
 
   renderContent() {
-    const { data } = this.props
+    const { data } = this.store.list
 
     if (isEmpty(data)) return null
 
@@ -52,14 +69,17 @@ export default class ServiceMonitors extends React.Component {
   }
 
   render() {
-    const { className, loading } = this.props
+    const { className } = this.props
+
+    const content = this.renderContent()
+
+    if (!content) {
+      return null
+    }
+
     return (
-      <Panel
-        className={className}
-        title={t('Application Monitoring Exporter')}
-        loading={loading}
-      >
-        {this.renderContent()}
+      <Panel className={className} title={t('Application Monitoring Exporter')}>
+        {content}
       </Panel>
     )
   }

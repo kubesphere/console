@@ -18,62 +18,61 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import { observer } from 'mobx-react'
 import { isEmpty } from 'lodash'
+import { observer } from 'mobx-react'
+
+import VolumeStore from 'stores/volume'
+
 import { Panel } from 'components/Base'
 
 import { joinSelector } from 'utils'
 
-import RouteStore from 'stores/router'
+import VolumeItem from './Item'
 
-import Item from './Item'
+import styles from './index.scss'
 
 @observer
-export default class Routes extends React.Component {
+export default class VolumesCard extends React.Component {
   static propTypes = {
     className: PropTypes.string,
-    prefix: PropTypes.string,
-    selector: PropTypes.object,
     title: PropTypes.string,
+    selector: PropTypes.object,
   }
 
   static defaultProps = {
-    prefix: '',
+    className: '',
   }
 
-  store = new RouteStore()
+  store = new VolumeStore()
 
   componentDidMount() {
     this.getData()
   }
 
   getData = () => {
-    const { cluster, namespace, selector } = this.props
-
+    const { selector, cluster, namespace } = this.props
     if (!isEmpty(selector)) {
-      const params = {
+      this.store.fetchListByK8s({
         cluster,
         namespace,
         labelSelector: joinSelector(selector),
-      }
-
-      this.store.getGateway({ cluster, namespace })
-      this.store.fetchListByK8s(params)
+      })
     }
   }
 
   renderContent() {
     const { prefix } = this.props
     const { data } = this.store.list
-    const gateway = this.store.gateway.data
 
-    if (isEmpty(data)) {
-      return null
-    }
+    if (isEmpty(data)) return null
 
-    return data.map(item => (
-      <Item key={item.name} prefix={prefix} detail={item} gateway={gateway} />
-    ))
+    return (
+      <div className={styles.content}>
+        {data.map((item, index) => (
+          <VolumeItem key={index} volume={item} prefix={prefix} />
+        ))}
+      </div>
+    )
   }
 
   render() {
@@ -86,7 +85,7 @@ export default class Routes extends React.Component {
     }
 
     return (
-      <Panel className={className} title={title || t('Routes')}>
+      <Panel className={className} title={title || t('Volumes')}>
         {content}
       </Panel>
     )

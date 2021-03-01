@@ -16,22 +16,23 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { CLUSTER_QUERY_STATUS } from 'configs/openpitrix/app'
+import React from 'react'
+import { inject } from 'mobx-react'
 
-import Base from './base'
+import VersionList from 'apps/components/Lists/VersionList'
 
-export default class Instance extends Base {
-  resourceName = 'applications'
+@inject('detailStore', 'versionStore', 'workspaceStore')
+export default class VersionManage extends React.Component {
+  render() {
+    const { detailStore, versionStore, workspaceStore, match } = this.props
 
-  defaultStatus = CLUSTER_QUERY_STATUS
-
-  getUrl = ({ workspace, name } = {}) => {
-    let prefix = this.baseUrl
-
-    if (workspace) {
-      prefix += `workspaces/${workspace}/`
-    }
-
-    return `${prefix}${name || this.resourceName}`
+    return (
+      <VersionList
+        appStore={detailStore}
+        versionStore={versionStore}
+        clusters={workspaceStore.clusters.data}
+        match={match}
+      />
+    )
   }
 }

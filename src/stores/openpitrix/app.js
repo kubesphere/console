@@ -20,7 +20,7 @@ import { action, observable } from 'mobx'
 import { get } from 'lodash'
 
 import { DEFAULT_QUERY_STATUS, SCREENSHOTS_LIMIT } from 'configs/openpitrix/app'
-import Base from 'stores/openpitrix/base'
+import Base from './base'
 
 export default class App extends Base {
   defaultStatus = DEFAULT_QUERY_STATUS
@@ -73,7 +73,11 @@ export default class App extends Base {
     if (namespace) {
       await this.submitting(
         request.post(
-          `${this.baseUrl}/workspaces/${workspace}/clusters/${cluster}/namespaces/${namespace}/applications`,
+          `${this.baseUrl}${this.getPath({
+            workspace,
+            namespace,
+            cluster,
+          })}/applications`,
           params
         )
       )

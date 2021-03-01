@@ -62,10 +62,7 @@ export default class AuditRecord extends React.Component {
         <li>
           <VersionStatus type={item.status} name={item.status} />
         </li>
-        <li>
-          {t(item.operator_type)}:&nbsp;
-          {item.operator}
-        </li>
+        <li>{item.operator}</li>
         <li>{item.message || item.review_id || '-'}</li>
         <li className={styles.time}>
           {getLocalTime(item.status_time).format('YYYY-MM-DD HH:mm:ss')}

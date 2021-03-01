@@ -28,6 +28,8 @@ module.exports = {
   'App Categories': 'App Categories',
   'App Category': 'App Category',
   'App Config': 'App Config',
+  'Current App Config': 'Current App Config',
+  'New App Config': 'New App Config',
   'App Deploy': 'App Deploy',
   'App Description': 'App Description',
   'App Details': 'App Details',
@@ -45,8 +47,7 @@ module.exports = {
   'App Version': 'App Version',
   'App Version Types': 'App Version Types',
   'Application Name': 'Application Name',
-  'Application Number / Rejection Reason':
-    'Application Number / Rejection Reason',
+  'Rejection Reason': 'Rejection Reason',
   'Application Version': 'Application Version',
   'Apps Management': 'Apps Management',
   'Base Info': 'Base Info',

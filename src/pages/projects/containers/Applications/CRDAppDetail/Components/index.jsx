@@ -16,48 +16,24 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { isEmpty } from 'lodash'
 import React from 'react'
-import { toJS } from 'mobx'
-import { inject, observer } from 'mobx-react'
-import { joinSelector } from 'utils'
-import RouterStore from 'stores/router'
-
+import { observer, inject } from 'mobx-react'
 import Services from 'projects/components/Cards/Services'
+import Workloads from 'projects/components/Cards/Workloads'
 import Ingresses from 'projects/components/Cards/Ingresses'
+import Volumes from 'projects/components/Cards/Volumes'
 import ServiceMonitors from 'projects/components/Cards/ServiceMonitors'
 
 import styles from './index.scss'
 
 @inject('detailStore')
 @observer
-class Components extends React.Component {
+export default class ResourceStatus extends React.Component {
   constructor(props) {
     super(props)
 
     this.store = props.detailStore
     this.module = props.module
-    this.routerStore = new RouterStore()
-
-    this.getData()
-  }
-
-  getData() {
-    const { selector } = toJS(this.store.detail)
-    const { cluster, namespace } = this.props.match.params
-
-    if (selector) {
-      const params = {
-        cluster,
-        namespace,
-        labelSelector: joinSelector(selector),
-      }
-
-      this.store.fetchComponents(params)
-      this.routerStore.fetchListByK8s(params)
-    }
-
-    this.routerStore.getGateway({ cluster, namespace })
   }
 
   get prefix() {
@@ -66,35 +42,40 @@ class Components extends React.Component {
   }
 
   render() {
-    const routes = toJS(this.routerStore.list.data)
-    const components = toJS(this.store.components.data)
-    const serviceMonitors = toJS(this.store.serviceMonitorStore.list.data)
-    const gateway = toJS(this.routerStore.gateway.data)
+    const { cluster, namespace, selector } = this.store.detail
 
     return (
       <div className={styles.main}>
-        {!isEmpty(routes) && (
-          <Ingresses
-            data={routes}
-            gateway={gateway}
-            loading={this.routerStore.list.isLoading}
-            prefix={`${this.prefix}/ingresses`}
-          />
-        )}
+        <Ingresses
+          selector={selector}
+          cluster={cluster}
+          namespace={namespace}
+          prefix={this.prefix}
+        />
         <Services
-          className="margin-t12"
-          data={components}
-          loading={this.store.components.isLoading}
-          prefix={`${this.prefix}/services`}
+          selector={selector}
+          cluster={cluster}
+          namespace={namespace}
+          prefix={this.prefix}
+        />
+        <Workloads
+          selector={selector}
+          cluster={cluster}
+          namespace={namespace}
+          prefix={this.prefix}
+        />
+        <Volumes
+          selector={selector}
+          cluster={cluster}
+          namespace={namespace}
+          prefix={this.prefix}
         />
         <ServiceMonitors
-          className="margin-t12"
-          data={serviceMonitors}
-          loading={this.store.components.isLoading}
+          selector={selector}
+          cluster={cluster}
+          namespace={namespace}
         />
       </div>
     )
   }
 }
-
-export default Components

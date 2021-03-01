@@ -33,7 +33,7 @@ import routes from './routes'
 
 import styles from './index.scss'
 
-@inject('rootStore')
+@inject('rootStore', 'projectStore')
 @observer
 @trigger
 export default class OPAppDetail extends React.Component {
@@ -80,26 +80,25 @@ export default class OPAppDetail extends React.Component {
         }),
     },
     {
+      key: 'editTemplate',
+      icon: 'pen',
+      text: t('EDIT_TEMPLATE'),
+      action: 'edit',
+      onClick: () =>
+        this.trigger('openpitrix.app.template.edit', {
+          ...this.props.match.params,
+          detail: toJS(this.store.detail),
+          success: this.fetchData,
+        }),
+    },
+    {
       key: 'serviceMonitor',
       icon: 'linechart',
       text: t('Application Monitoring Exporter'),
       action: 'edit',
       onClick: () =>
         this.trigger('app.service.monitor', {
-          detail: toJS(this.store.detail),
-          success: this.fetchData,
           ...this.props.match.params,
-        }),
-    },
-    {
-      key: 'destroy',
-      type: 'danger',
-      icon: 'trash',
-      text: t('Destroy'),
-      action: 'delete',
-      show: this.store.detail.status === 'deleted',
-      onClick: () =>
-        this.trigger('openpitrix.app.destroy', {
           detail: toJS(this.store.detail),
           success: this.fetchData,
         }),
@@ -158,7 +157,7 @@ export default class OPAppDetail extends React.Component {
       },
       {
         name: t('Creator'),
-        value: detail.creator,
+        value: detail.owner,
       },
     ]
   }

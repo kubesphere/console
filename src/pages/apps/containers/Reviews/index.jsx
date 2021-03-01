@@ -37,7 +37,7 @@ import styles from './index.scss'
   store: new ReviewStore(),
   module: 'apps',
   name: 'App Reviews',
-  rowKey: 'app_id',
+  rowKey: 'version_id',
 })
 export default class Reviews extends React.Component {
   get type() {
@@ -160,13 +160,16 @@ export default class Reviews extends React.Component {
       dataIndex: 'status',
       isHideable: true,
       width: '15%',
-      render: status => (
-        <Status
-          className={styles.status}
-          type={transferReviewStatus(status)}
-          name={t(capitalize(transferReviewStatus(status)))}
-        />
-      ),
+      render: status => {
+        const transStatus = transferReviewStatus(status)
+        return (
+          <Status
+            className={styles.status}
+            type={transStatus}
+            name={t(capitalize(transStatus))}
+          />
+        )
+      },
     },
     {
       title: t('Updated Time'),

@@ -356,6 +356,7 @@ module.exports = {
   'Updated Time': 'Updated Time',
   updating: 'updating',
   Updating: 'Updating',
+  Upgrading: 'Upgrading',
   Upstream: 'Upstream',
   Used: 'Used',
   'User Guides': 'User Guides',
@@ -411,10 +412,6 @@ module.exports = {
   DELETE_RESOURCE_TITLE: 'Warning',
   DELETE_RESOURCE_TIP:
     'Are you sure about deleting the resource <strong>{resource}</strong> ? The resource cannot be recovered after it is deleted.',
-
-  DESTROY_TITLE: 'Sure to destroy ?',
-  DESTROY_TIP:
-    'Are you sure about destroying the {type} <strong>{resource}</strong> ?',
 
   LABEL_FORMAT_DESC:
     'The maximum number of characters of the tag for key and value is 63; key is limited to 253 characters if it contains a domain name. It can only contain upper and lower case letters, numbers, hyphens ("-"), underscores (_), and dots (.), and must begin and end with a number or letter.',

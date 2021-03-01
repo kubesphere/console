@@ -1,14 +1,31 @@
 @import '~scss/variables';
 @import '~scss/mixins';
 
-.list {
+.content {
   padding: 12px;
-  border-radius: $border-radius;
+  border-radius: 4px;
   background-color: $card-bg-color;
 }
 
 .item {
-  box-shadow: none !important;
+  display: flex;
+  padding: 12px;
+  margin-bottom: 8px;
+  background-color: $white;
+  border: solid 1px $border-color;
+  border-radius: 4px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  & > div {
+    margin-right: 12px;
+    min-width: 20%;
+    &:first-child {
+      min-width: 35%;
+    }
+  }
 }
 
 .empty {

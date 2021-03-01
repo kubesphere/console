@@ -21,7 +21,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
-import { List } from 'components/Base'
+import { Text } from 'components/Base'
 import StatusReason from 'projects/components/StatusReason'
 import WorkloadStatus from 'projects/components/WorkloadStatus'
 import { getLocalTime, getDisplayName } from 'utils'
@@ -42,8 +42,8 @@ export default class WorkloadItem extends React.Component {
     detail: {},
   }
 
-  getDescription(detail, module) {
-    const { status, reason } = getWorkloadStatus(detail, module)
+  getDescription(detail) {
+    const { status, reason } = getWorkloadStatus(detail, detail.module)
     if (reason) {
       return <StatusReason status={status} reason={t(reason)} data={detail} />
     }
@@ -57,43 +57,34 @@ export default class WorkloadItem extends React.Component {
   }
 
   render() {
-    const { detail, prefix, module } = this.props
+    const { detail, prefix } = this.props
 
     if (!detail) {
       return null
     }
-
-    const details = [
-      {
-        title: <WorkloadStatus data={detail} module={module} />,
-        description: t('Status'),
-      },
-    ]
 
     const version = get(
       detail,
       'annotations["deployment.kubernetes.io/revision"]'
     )
 
-    if (version) {
-      details.push({
-        title: `#${version}`,
-        description: t('Version'),
-      })
-    }
-
     return (
-      <List.Item
-        icon={ICON_TYPES[module]}
-        className={styles.item}
-        title={
-          <Link to={`${prefix}/${detail.type}/${detail.name}`}>
-            {getDisplayName(detail)}
-          </Link>
-        }
-        description={this.getDescription(detail, module)}
-        details={details}
-      />
+      <div className={styles.item}>
+        <Text
+          icon={ICON_TYPES[detail.module]}
+          title={
+            <Link to={`${prefix}/${detail.module}/${detail.name}`}>
+              {getDisplayName(detail)}
+            </Link>
+          }
+          description={this.getDescription(detail)}
+        />
+        <Text
+          title={<WorkloadStatus data={detail} module={detail.module} />}
+          description={t('Status')}
+        />
+        <Text title={`#${version}`} description={t('Version')} />
+      </div>
     )
   }
 }

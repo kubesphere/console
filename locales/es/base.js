@@ -358,6 +358,7 @@ module.exports = {
   'Updated Time': 'Tiempo de actualización',
   updating: 'actualización',
   Updating: 'Actualización',
+  Upgrading: 'Upgrading',
   Upstream: 'Upstream',
   Used: 'En uso',
   'User Guides': 'Guías de usuario',
@@ -411,9 +412,6 @@ module.exports = {
   DELETE_RESOURCE_TITLE: 'Advertencia',
   DELETE_RESOURCE_TIP:
     '¿Está seguro de eliminar el recurso <strong>{resource}</strong> ? El recurso no se podrá recuperar después de eliminarlo.',
-  DESTROY_TITLE: '¿Seguro que deseas destruirlo?',
-  DESTROY_TIP:
-    '¿Estás seguro de que deseas destruir el {type} <strong>{resource}</strong> ?',
   LABEL_FORMAT_DESC:
     'La label tiene un máximo de 63 carácteres para clave y valor, la clave está limitada a 253 carácteres si contiene un nombre de dominio. Solo puedes contener letras mayúsculas y minúsculas, números, guiones ("-"), guiones bajos (_) y puntos (.), Y debe comenzar y terminar con un número o letras.',
   add_: 'Añadir',

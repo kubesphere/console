@@ -22,8 +22,9 @@ import { observer, inject } from 'mobx-react'
 import { get, isEmpty } from 'lodash'
 import { Loading } from '@kube-design/components'
 
-import { getDisplayName, getLocalTime, joinSelector } from 'utils'
+import { getDisplayName, getLocalTime } from 'utils'
 import { trigger } from 'utils/action'
+
 import AppStore from 'stores/application/crd'
 
 import DetailPage from 'projects/containers/Base/Detail'
@@ -61,17 +62,6 @@ export default class CRDAppDetail extends React.Component {
   fetchData = () => {
     const { params } = this.props.match
     this.store.fetchDetail(params)
-  }
-
-  fetchComponents = () => {
-    const { selector } = this.store.detail
-    const { cluster, namespace } = this.props.match.params
-    const params = {
-      cluster,
-      namespace,
-      labelSelector: joinSelector(selector),
-    }
-    this.store.fetchComponents(params)
   }
 
   getOperations = () => [
@@ -119,7 +109,6 @@ export default class CRDAppDetail extends React.Component {
       onClick: () =>
         this.trigger('app.service.monitor', {
           detail: toJS(this.store.detail),
-          success: this.fetchComponents,
           ...this.props.match.params,
         }),
     },
