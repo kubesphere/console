@@ -19,7 +19,7 @@
 import { get, isEmpty } from 'lodash'
 import { observable, action } from 'mobx'
 
-import { getFilterString } from 'utils'
+import { getFilterString, joinSelector } from 'utils'
 import { CLUSTER_QUERY_STATUS } from 'configs/openpitrix/app'
 
 import ServiceStore from 'stores/service'
@@ -64,6 +64,14 @@ export default class Application extends Base {
     total: 0,
     isLoading: true,
   }
+
+  getWatchListUrl = ({ cluster, namespace } = {}) =>
+    `apis/application.kubesphere.io/v1alpha1/watch/helmreleases?labelSelector=${joinSelector(
+      {
+        'kubesphere.io/cluster': cluster,
+        'kubesphere.io/namespace': namespace,
+      }
+    )}`
 
   getUrl = ({ workspace, namespace, cluster, cluster_id } = {}) => {
     const url = `${this.baseUrl}${this.getPath({
