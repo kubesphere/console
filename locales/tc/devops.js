@@ -64,7 +64,7 @@ module.exports = {
 
   DEVOPS_TIP_TYPE_Q: '流水線 (Pipeline) 支持哪些代碼倉庫類別？',
   DEVOPS_TIP_TYPE_A:
-    '流水線支持 Git、GitHub、SVN、以及 Bitbucket Server 代碼倉庫.',
+    '流水線支持 Git、GitHub、Gitlab、SVN、以及 Bitbucket Server 代碼倉庫.',
 
   NO_DEVOPS_INSTALL: '未安裝 DevOps',
 }

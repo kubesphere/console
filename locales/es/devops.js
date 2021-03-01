@@ -56,6 +56,6 @@ module.exports = {
   DEVOPS_TIP_TYPE_Q:
     '¿Qué repositorios de código son compatibles con Pipeline?',
   DEVOPS_TIP_TYPE_A:
-    'Pipeline admite repositorios de código Git, GitHub, SVN y Bitbucket Server.',
+    'Pipeline admite repositorios de código Git, GitHub, Gitlab, SVN y Bitbucket Server.',
   NO_DEVOPS_INSTALL: 'DevOps no instalado',
 }
