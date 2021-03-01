@@ -381,8 +381,9 @@ export default class Activity extends React.Component {
       const { detail } = this.store
       const runnable = this.enabledActions.includes('edit')
       const isMultibranch = detail.branchNames
+      const isBranchInRoute = get(this.props, 'match.params.branch')
 
-      if (isMultibranch && !isEmpty(isMultibranch)) {
+      if (isMultibranch && !isEmpty(isMultibranch) && !isBranchInRoute) {
         return (
           <EmptyCard desc={t('Pipeline config file not found')}>
             {runnable && (
