@@ -198,13 +198,13 @@ client:
               }
             # - { name: members, title: Cluster Members }
             # - { name: roles, title: Cluster Roles }
-            - {
-                name: mail-server,
-                title: Mail Server,
-                icon: mail,
-                authKey: cluster-settings,
-                clusterModule: notification,
-              }
+            # - {
+            #     name: mail-server,
+            #     title: Mail Server,
+            #     icon: mail,
+            #     authKey: cluster-settings,
+            #     clusterModule: notification,
+            #   }
             - {
                 name: log-collections,
                 title: Log Collections,
@@ -231,6 +231,82 @@ client:
             icon: home,
             authKey: platform-settings,
           }
+        - name: notification-management
+          title: Notification Management
+          icon: bell
+          children:
+            - name: mail
+              title: Mail
+              authKey: platform-settings
+              children:
+                - {
+                  name: email-configs,
+                  title: Mail Server,
+                  authKey: platform-settings,
+                }
+                - {
+                  name: email-receivers,
+                  title: Receiver Management,
+                  authKey: platform-settings,
+                }
+            - name: ding
+              title: DingTalk
+              authKey: platform-settings
+              children:
+                - {
+                  name: dingtalk-configs,
+                  title: DingTalk Server Settings,
+                  authKey: platform-settings,
+                }
+                - {
+                  name: dingtalk-receivers,
+                  title: DingTalk Receiver Management,
+                  authKey: platform-settings,
+                }
+            - name: wecom
+              title: WeCom
+              authKey: platform-settings
+              children:
+                - {
+                  name: wecom-configs,
+                  title: WeCom Server Settings,
+                  authKey: platform-settings,
+                }
+                - {
+                  name: wecom-receivers,
+                  title: WeCom Receiver Management,
+                  authKey: platform-settings,
+                }
+            - name: slack
+              title: Slack
+              authKey: platform-settings
+              children:
+                - {
+                  name: slack-configs,
+                  title: Slack Server Settings,
+                  authKey: platform-settings,
+                }
+                - {
+                  name: slack-receivers,
+                  title: Channel,
+                  authKey: platform-settings,
+                }
+            - name: webhook
+              title: Webhook
+              authKey: platform-settings
+              children:
+                - {
+                  name: webhook-configs,
+                  title: Webhook Settings,
+                  authKey: platform-settings,
+                }
+            # - name: secrets
+            #   title: secrets
+            #   authKey: platform-settings
+              
+           
+         
+              
 
   # workspace page navigations
   workspaceNavs:

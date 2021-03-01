@@ -17,15 +17,18 @@
  */
 
 module.exports = {
+  'Notification Management': 'Notification Management',
   'Mail Server': 'Mail Server',
   'Platform Settings': 'Platform Settings',
   'Send a test email': 'Send a test email',
   'Sender Email': 'Sender Email',
-  'Server Settings': 'Server Settings',
+  'Mail Server Settings': 'Mail Server Settings',
   'Server Username': 'Server Username',
   'SMTP Server Address': 'SMTP Server Address',
   'The sender mail account': 'The sender mail account',
   'Use SSL Secure Connection': 'Use SSL Secure Connection',
+
+  'Please input SMTP user': 'Please input SMTP user',
 
   MAIL_SERVER_DESC:
     'This module provides email delivery services with custom settings.',
@@ -38,11 +41,24 @@ module.exports = {
   SENDER_NICKNAME: 'Sender Nickname',
   FROM_EMAIL_ADDR_DESC:
     'The sender email account (Blank means it is the same as the "SMTP User" value)',
+  RECEIVER_MAIL: 'Receiver email',
 
   MAIL_SERVER_CONFIG_NEED_SAVE_TIP:
     'The email configuration has been set successfully, please save the server configuration.',
+  MAIL_SERVER_CONFIG_CHANGE_NEED_SAVE_TIP:
+    'Your current email configuration has changed, please save the server configuration or cancel the modification',
   MAIL_SERVER_CONFIG_INVALID_TIP:
     'The current email configuration is not available.',
   MAIL_SERVER_CONFIG_NEED_VERIFIED_TIP:
     'The current email configuration has changed, please resend a test email and save the configuration. Or you can also discard your modification.',
+
+  'Receiver Management': 'Receiver Management',
+  'Mail Receiver Management': 'Mail Receiver Management',
+  'Mail Receiver Settings': 'Mail Receiver Settings',
+  'Add Email': 'Add Email',
+
+  MAIL_RECEIVER_MANAGEMENT_DESC:
+    'This module provide mail receiver management for platform mail',
+  MAIL_RECEIVER_CONFIG_CHANGE_NEED_SAVE_TIP:
+    'Your current mail receiver settings have changed, please save the server configuration, or cancel the modification',
 }

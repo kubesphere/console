@@ -258,7 +258,7 @@ export default class SecretSettings extends React.Component {
   valueRenderer = option => `${option.value} (${option.label})`
 
   render() {
-    const { formRef } = this.props
+    const { formRef, disableSecretType } = this.props
     const { state } = this.state
 
     if (state === 'data') {
@@ -267,17 +267,19 @@ export default class SecretSettings extends React.Component {
 
     return (
       <Form data={this.fedFormTemplate} ref={formRef}>
-        <Form.Item label={t('Type')} desc={t('SECRET_TYPE_DESC')}>
-          <Select
-            name="type"
-            options={this.getTypeOptions()}
-            valueRenderer={this.valueRenderer}
-            optionRenderer={this.valueRenderer}
-            onChange={this.handleTypeChange}
-            placeholder={t('Please Select')}
-            searchable
-          />
-        </Form.Item>
+        {!disableSecretType && (
+          <Form.Item label={t('Type')} desc={t('SECRET_TYPE_DESC')}>
+            <Select
+              name="type"
+              options={this.getTypeOptions()}
+              valueRenderer={this.valueRenderer}
+              optionRenderer={this.valueRenderer}
+              onChange={this.handleTypeChange}
+              placeholder={t('Please Select')}
+              searchable
+            />
+          </Form.Item>
+        )}
         {this.renderContent()}
       </Form>
     )

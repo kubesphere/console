@@ -17,11 +17,13 @@
  */
 
 module.exports = {
+  'Notification Management': 'Gestión de notificaciones',
+  Mail: 'Correo',
   'Mail Server': 'Servidor de correo',
   'Platform Settings': 'Configuración de la plataforma',
   'Send a test email': 'Enviar un correo electrónico de prueba',
   'Sender Email': 'Correo electrónico del remitente',
-  'Server Settings': 'Configuración del servidor',
+  'Mail Server Settings': 'Configuración del servidor',
   'Server Username': 'Nombre de usuario del servidor',
   'SMTP Server Address': 'Dirección del servidor SMTP',
   'The sender mail account': 'La cuenta de correo del remitente',
@@ -36,12 +38,27 @@ module.exports = {
     'La dirección de prueba para recibir correos electrónicos',
   SENDER_MAIL: 'Dirección de correo electrónico del remitente',
   SENDER_NICKNAME: 'Apodo del remitente',
+  RECEIVER_MAIL: 'Correo electrónico del destinatario',
   FROM_EMAIL_ADDR_DESC:
     'La cuenta de correo electrónico del remitente (en blanco significa que es lo mismo que el valor "Usuario SMTP")',
   MAIL_SERVER_CONFIG_NEED_SAVE_TIP:
     'La configuración del correo electrónico se ha realizado correctamente, guarda la configuración del servidor.',
+  MAIL_SERVER_CONFIG_CHANGE_NEED_SAVE_TIP:
+    'Su configuración de correo electrónico actual ha cambiado, guarde la configuración del servidor o cancele la modificación',
   MAIL_SERVER_CONFIG_INVALID_TIP:
     'La actual configuración de correo electrónico no está disponible.',
   MAIL_SERVER_CONFIG_NEED_VERIFIED_TIP:
     'La actual configuración del correo electrónico ha cambiado. Vuelve a enviar un correo electrónico de prueba y guarda la configuración. O también puedes descartar su modificación.',
+
+  'Please input SMTP user': 'Please enter SMTP user',
+
+  'Receiver Management': 'Gestión del receptor',
+  'Mail Receiver Management': 'Gestión del receptor',
+  'Mail Receiver Settings': 'Configuración del receptor',
+  'Add Email': 'Agregar correo electrónico',
+
+  MAIL_RECEIVER_MANAGEMENT_DESC:
+    'Este módulo proporciona administración de destinatarios para mensajes de plataforma',
+  MAIL_RECEIVER_CONFIG_CHANGE_NEED_SAVE_TIP:
+    'La configuración actual del destinatario de correo ha cambiado, guarde la configuración del servidor o cancele la modificación',
 }

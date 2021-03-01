@@ -279,6 +279,7 @@ module.exports = {
 
   'Please input name': '请输入名称',
   'Please input value': '请输入值',
+  'Please input key': '请输入 key',
   'Please select workspace': '请选择企业空间',
   'Please select project': '请选择项目',
   'Please select version': '请选择版本',

@@ -1,23 +1,24 @@
 @import '~scss/variables';
 
-.subNav {
-  & > p {
+.nav {
+  &>p {
     color: #79879c;
     margin-bottom: 12px;
   }
 
-  & > ul {
+  &>.menu {
     margin-bottom: 20px;
 
-    & > li {
+    &>.subMenu,
+    &>.menuItem {
       border-radius: 18px;
       border: solid 1px transparent;
       transition: all $trans-speed ease-in-out;
 
-      & > a,
-      .title {
+      &>.title,
+      &>a {
         display: block;
-        padding: 7px 12px;
+        padding: 9px 12px;
         color: #4a5974;
         font-weight: 500;
         cursor: pointer;
@@ -25,154 +26,143 @@
         @media (max-width: 1366px) {
           padding: 7px 0;
         }
+      }
 
-        :global {
-          .icon {
-            margin-right: 8px;
-            vertical-align: text-bottom;
-          }
-
-          .kubed-icon-chevron-down {
-            margin-top: 4px;
-            transition: all $trans-speed ease-in-out;
-          }
-        }
-
-        .devopsIcon {
-          width: 16px;
-          height: 16px;
-          padding: 2px;
+      :global {
+        .icon {
           margin-right: 8px;
           vertical-align: text-bottom;
         }
+
+        .kubed-icon-chevron-down {
+          margin-top: 4px;
+          transition: all $trans-speed ease-in-out;
+        }
       }
+    }
+
+    .menuItem {
 
       &.select,
-      &.childSelect,
       &:hover,
       &:active {
-        & > a {
+        &>a {
           color: $primary;
-
-          :global .kubed-icon {
-            color: #00aa72;
-            fill: #90e0c5;
-          }
-
-          .devopsIcon {
-            color: #00aa72;
-            fill: #90e0c5;
-          }
-        }
-
-        .title {
-          :global .kubed-icon-chevron-down {
-            transform: rotate(-180deg);
-          }
-        }
-
-        .innerNav > li {
-          height: 20px;
-          margin-top: 8px;
-          opacity: 1;
-          transition: height $trans-speed ease-in-out,
-            margin-top $trans-speed ease-in-out,
-            opacity $trans-speed ease-in-out 0.1s;
         }
       }
-
+    
       &.disabled {
         opacity: 0.7;
-
+    
         &.select,
         &:hover,
         &:active {
-          & > a {
+          &>a {
             color: #4a5974;
             cursor: not-allowed;
           }
-
-          :global .kubed-icon {
-            color: #324558;
-            fill: #b6c2cd;
-          }
         }
+      }
+    }
+  }
+}
 
-        .title {
-          :global .kubed-icon-chevron-down {
+
+
+.subMenu {
+
+  &.select,
+  &:hover,
+  &:active {
+    &>.title {
+      :global {
+        .kubed-icon-chevron-down {
+          transform: rotate(-180deg);
+        }
+      }
+    }
+    &>.innerNav {
+      &>.subMenu {
+        height: auto;
+        opacity: 1;
+      }
+
+      &>.menuItem {
+        height: 28px;
+        line-height: 28px;
+        opacity: 1;
+      }
+    }
+  }
+
+  &.disabled {
+    opacity: 0.7;
+
+    &.select,
+    &:hover,
+    &:active {
+      &>.title {
+        color: #4a5974;
+        cursor: not-allowed;
+        :global {
+          .kubed-icon-chevron-down {
             transform: none;
           }
         }
-
-        .innerNav > li {
-          height: 0;
-          opacity: 0;
-          margin: 0;
-          overflow: hidden;
-        }
       }
-
-      & + li {
-        margin-top: 4px;
+      &>.innerNav{
+        display: none;
       }
     }
   }
 }
 
 .innerNav {
-  margin-bottom: 4px;
-  padding-left: 38px;
+  padding-left: 40px;
 
   @media (max-width: 1366px) {
-    padding-left: 26px;
+    padding-left: 29px;
+    &>.title {
+      padding-right: 0;
+    }
   }
 
-  & > li {
+  :global {
+    .icon {
+      display: none;
+    }
+  }
+
+  &>.subMenu {
     height: 0;
     opacity: 0;
-    overflow: hidden;
-    transition: height $trans-speed ease-in-out 0.1s,
-      margin-top $trans-speed ease-in-out 0.1s, opacity $trans-speed ease-in-out;
 
-    & > a {
-      color: #4a5974;
+    &>.title {
+      padding: 4px 12px 4px 0;
+      cursor: pointer;
     }
 
-    &.select,
-    &:hover,
-    &:active {
-      & > a {
-        color: $primary;
+    @media (max-width: 1366px) {
+      &>.title {
+        padding-right: 0;
       }
     }
 
-    &.disabled {
-      opacity: 0.7 !important;
-
-      &.select,
-      &:hover,
-      &:active {
-        & > a {
-          color: #4a5974;
-          cursor: not-allowed;
-        }
-      }
+    &>.innerNav {
+      padding-left: 20px;
     }
   }
-}
 
-.back {
-  margin: 20px 0;
-  padding: 8px 12px;
-  & > a > svg {
-    width: 16px;
-    height: 16px;
-    margin-right: 8px;
-    vertical-align: text-top;
+  .menuItem {
+    height: 0px;
+    opacity: 0;
+    overflow: hidden;
+    transition: height .3s ease-in-out, opacity .3s ease-in-out .1s;
   }
 }
 
 .rightIcon {
   float: right;
   margin-right: 0 !important;
+  display: inline-flex !important;
 }

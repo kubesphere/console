@@ -563,6 +563,103 @@ const getRolebindingTemplate = ({ name, role }) => ({
   },
 })
 
+const getGlobalSecretTemplate = ({ name }) => ({
+  apiVersion: 'v1',
+  kind: 'Secret',
+  metadata: {
+    name,
+  },
+  type: 'Opaque',
+})
+
+const getEmailConfigTemplate = ({ name }) => ({
+  apiVersion: 'notification.kubesphere.io/v2alpha1',
+  kind: 'EmailConfig',
+  metadata: {
+    name,
+  },
+  spec: {},
+})
+
+const getEmailReceiverTemplate = ({ name }) => ({
+  apiVersion: 'notification.kubesphere.io/v2alpha1',
+  kind: 'EmailReceiver',
+  metadata: {
+    name,
+  },
+  spec: {},
+})
+const getDingTalkConfigTemplate = ({ name }) => ({
+  apiVersion: 'notification.kubesphere.io/v2alpha1',
+  kind: 'DingTalkConfig',
+  metadata: {
+    name,
+  },
+  spec: {},
+})
+const getDingTalkReceiverTemplate = ({ name }) => ({
+  apiVersion: 'notification.kubesphere.io/v2alpha1',
+  kind: 'DingTalkReceiver',
+  metadata: {
+    name,
+  },
+  spec: {},
+})
+
+const getWechatConfigTemplate = ({ name }) => ({
+  apiVersion: 'notification.kubesphere.io/v2alpha1',
+  kind: 'WechatConfig',
+  metadata: {
+    name,
+  },
+  spec: {},
+})
+
+const getWechatReceiverTemplate = ({ name }) => ({
+  apiVersion: 'notification.kubesphere.io/v2alpha1',
+  kind: 'WechatReceiver',
+  metadata: {
+    name,
+  },
+  spec: {},
+})
+
+const getSlackConfigTemplate = ({ name }) => ({
+  apiVersion: 'notification.kubesphere.io/v2alpha1',
+  kind: 'SlackConfig',
+  metadata: {
+    name,
+  },
+  spec: {},
+})
+
+const getSlackReceiverTemplate = ({ name }) => ({
+  apiVersion: 'notification.kubesphere.io/v2alpha1',
+  kind: 'SlackReceiver',
+  metadata: {
+    name,
+  },
+  spec: {},
+})
+
+const getWebhookConfigTemplate = ({ name }) => ({
+  apiVersion: 'notification.kubesphere.io/v2alpha1',
+  kind: 'WebhookConfig',
+  metadata: {
+    name,
+  },
+  spec: {},
+})
+
+const getWebhookReceiverTemplate = ({ name }) => ({
+  apiVersion: 'notification.kubesphere.io/v2alpha1',
+  kind: 'WebhookReceiver',
+  metadata: {
+    name,
+  },
+  spec: {},
+})
+
 const FORM_TEMPLATES = {
   deployments: getDeploymentTemplate,
   daemonsets: getDaemonSetTemplate,
@@ -599,6 +696,17 @@ const FORM_TEMPLATES = {
   servicemonitors: getServiceMonitorTemplate,
   workspacerolebinding: getWorkspaceRoleBindingTemplate,
   rolebinding: getRolebindingTemplate,
+  globalsecret: getGlobalSecretTemplate,
+  emailconfigs: getEmailConfigTemplate,
+  emailreceivers: getEmailReceiverTemplate,
+  dingtalkconfigs: getDingTalkConfigTemplate,
+  dingtalkreceivers: getDingTalkReceiverTemplate,
+  wechatconfigs: getWechatConfigTemplate,
+  wechatreceivers: getWechatReceiverTemplate,
+  slackconfigs: getSlackConfigTemplate,
+  slackreceivers: getSlackReceiverTemplate,
+  webhookconfigs: getWebhookConfigTemplate,
+  webhookreceivers: getWebhookReceiverTemplate,
 }
 
 export default FORM_TEMPLATES

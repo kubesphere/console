@@ -281,6 +281,7 @@ module.exports = {
 
   'Please input name': '請輸入名稱',
   'Please input value': '請輸入值',
+  'Please input key': '請輸入 key',
   'Please select workspace': '請選擇企業空間',
   'Please select project': '請選擇項目',
   'Please select version': '請選擇版本',

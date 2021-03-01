@@ -243,6 +243,7 @@ module.exports = {
   'Please input name': 'Introduce el nombre',
   'Please input password': 'Introduce la contraseña',
   'Please input value': 'Introduce el valor',
+  'Please input key': 'Introduzca la clave',
   'Please select project': 'Selecciona un proyecto',
   'Please select version': 'Selecciona una versión',
   'Please select workspace': 'Selecciona un espacio de trabajo',

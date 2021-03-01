@@ -49,59 +49,50 @@ export default class NavItem extends React.Component {
     return current.startsWith(item.name)
   }
 
-  render() {
-    const { item, prefix, disabled, onClick } = this.props
-
-    if (item.children) {
+  renderNavItems = menuList => {
+    const { prefix, disabled, onClick } = this.props
+    return menuList.map(item => {
+      if (!item.children) {
+        return (
+          <li
+            key={item.name}
+            className={classnames(styles.menuItem, {
+              [styles.select]: this.checkSelect(item),
+              [styles.disabled]: disabled && !item.showInDisable,
+            })}
+          >
+            <Link
+              to={`${prefix}/${item.name}`}
+              onClick={onClick}
+              disabled={disabled && !item.showInDisable}
+            >
+              {item.icon && <Icon name={item.icon} />} {t(item.title)}
+            </Link>
+          </li>
+        )
+      }
       return (
         <li
-          className={classnames({
-            [styles.childSelect]: item.open || this.checkSelect(item),
+          key={item.name}
+          className={classnames(styles.subMenu, {
+            [styles.select]: this.checkSelect(item),
             [styles.disabled]: disabled && !item.showInDisable,
           })}
         >
           <div className={styles.title}>
-            <Icon name={item.icon} /> {t(item.title)}
+            {item.icon && <Icon name={item.icon} />} {t(item.title)}
             <Icon name="chevron-down" className={styles.rightIcon} />
           </div>
           <ul className={styles.innerNav}>
-            {item.children.map(child => (
-              <li
-                key={child.name}
-                className={classnames({
-                  [styles.select]: this.checkSelect(child),
-                  [styles.disabled]: disabled && !child.showInDisable,
-                })}
-              >
-                <Link
-                  to={`${prefix}/${child.name}`}
-                  disabled={disabled && !child.showInDisable}
-                >
-                  {t(child.title)}
-                </Link>
-              </li>
-            ))}
+            {this.renderNavItems(item.children)}
           </ul>
         </li>
       )
-    }
+    })
+  }
 
-    return (
-      <li
-        key={item.name}
-        className={classnames({
-          [styles.select]: this.checkSelect(item),
-          [styles.disabled]: disabled && !item.showInDisable,
-        })}
-      >
-        <Link
-          to={`${prefix}/${item.name}`}
-          onClick={onClick}
-          disabled={disabled && !item.showInDisable}
-        >
-          <Icon name={item.icon} /> {t(item.title)}
-        </Link>
-      </li>
-    )
+  render() {
+    const { menuList } = this.props
+    return this.renderNavItems(menuList)
   }
 }

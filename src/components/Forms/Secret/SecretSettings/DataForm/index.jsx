@@ -17,11 +17,12 @@
  */
 
 import React from 'react'
-import { trim } from 'lodash'
+import { trim, isUndefined } from 'lodash'
 import PropTypes from 'prop-types'
 import { Form, Input, TextArea } from '@kube-design/components'
 import { ReactComponent as BackIcon } from 'assets/back.svg'
 import { safeAtob } from 'utils/base64'
+import { hasChinese } from 'utils'
 
 import styles from './index.scss'
 
@@ -70,6 +71,22 @@ export default class SecretDataForm extends React.Component {
     }
   }
 
+  dataValidator = (rule, value, callback) => {
+    if (isUndefined(value)) {
+      return callback()
+    }
+
+    if (
+      Object.entries(value).some(
+        ([key, _value]) => hasChinese(key) || hasChinese(_value)
+      )
+    ) {
+      return callback({ message: t('SECRET_NO_CHINESE_CODE_DESC') })
+    }
+
+    callback()
+  }
+
   handleSubmit = callback => {
     const { onOk } = this.props
     const form = this.formRef && this.formRef.current
@@ -95,10 +112,26 @@ export default class SecretDataForm extends React.Component {
         </div>
         <div className={styles.formWrapper}>
           <Form data={this.state.formData} ref={this.formRef}>
-            <Form.Item label={t('DATA-KEY')}>
+            <Form.Item
+              label={t('DATA-KEY')}
+              rules={[
+                { required: true, message: t('Please input key') },
+                {
+                  validator: this.dataValidator,
+                },
+              ]}
+            >
               <Input name="key" placeholder="key" />
             </Form.Item>
-            <Form.Item label={t('DATA-VALUE')}>
+            <Form.Item
+              label={t('DATA-VALUE')}
+              rules={[
+                { required: true, message: t('Please input value') },
+                {
+                  validator: this.dataValidator,
+                },
+              ]}
+            >
               <TextArea name="value" placeholder="value" rows={4} autoResize />
             </Form.Item>
           </Form>

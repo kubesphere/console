@@ -67,19 +67,16 @@ class Nav extends React.Component {
     return (
       <div ref={innerRef} className={className}>
         {navs.map(nav => (
-          <div key={nav.cate} className={styles.subNav}>
+          <div key={nav.cate} className={styles.nav}>
             {nav.title && <p>{t(nav.title)}</p>}
-            <ul>
-              {nav.items.map(item => (
-                <NavItem
-                  key={item.name}
-                  item={item}
-                  prefix={prefix}
-                  current={this.currentPath}
-                  onClick={onItemClick}
-                  disabled={disabled}
-                />
-              ))}
+            <ul className={styles.menu}>
+              <NavItem
+                menuList={nav.items}
+                prefix={prefix}
+                current={this.currentPath}
+                onClick={onItemClick}
+                disabled={disabled}
+              />
             </ul>
           </div>
         ))}

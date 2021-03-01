@@ -22,6 +22,18 @@ import { getIndexRoute } from 'utils/router.config'
 import Layout from '../containers/layout'
 import BaseInfo from '../containers/BaseInfo'
 import ThirdPartyLogin from '../containers/ThirdPartyLogin'
+import EmailConfigs from '../containers/EmailConfigs'
+import EmailReceivers from '../containers/EmailReceivers'
+import WeComConfigs from '../containers/WeComConfigs'
+import WeComReceivers from '../containers/WeComReceivers'
+import WebhookConfigs from '../containers/WebhookConfigs'
+import SlackConfigs from '../containers/SlackConfigs'
+import SlackReceivers from '../containers/SlackReceivers'
+import DingTalkConfigs from '../containers/DingTalkConfigs'
+import DingTalkReceivers from '../containers/DingTalkReceivers'
+import Secrets from '../containers/Secrets'
+
+import getDetailPath from './detail'
 
 const PATH = '/settings'
 
@@ -29,6 +41,7 @@ const navs = globals.app.getPlatformSettingsNavs()
 const indexRoute = get(navs, '[0].items[0].name', 'nodes')
 
 export default [
+  ...getDetailPath(PATH),
   {
     path: PATH,
     component: Layout,
@@ -36,6 +49,46 @@ export default [
       {
         path: `${PATH}/base-info`,
         component: BaseInfo,
+      },
+      {
+        path: `${PATH}/email-configs`,
+        component: EmailConfigs,
+      },
+      {
+        path: `${PATH}/email-receivers`,
+        component: EmailReceivers,
+      },
+      {
+        path: `${PATH}/wecom-configs`,
+        component: WeComConfigs,
+      },
+      {
+        path: `${PATH}/wecom-receivers`,
+        component: WeComReceivers,
+      },
+      {
+        path: `${PATH}/webhook-configs`,
+        component: WebhookConfigs,
+      },
+      {
+        path: `${PATH}/slack-configs`,
+        component: SlackConfigs,
+      },
+      {
+        path: `${PATH}/slack-receivers`,
+        component: SlackReceivers,
+      },
+      {
+        path: `${PATH}/dingtalk-configs`,
+        component: DingTalkConfigs,
+      },
+      {
+        path: `${PATH}/dingtalk-receivers`,
+        component: DingTalkReceivers,
+      },
+      {
+        path: `${PATH}/Secrets`,
+        component: Secrets,
       },
       {
         path: `${PATH}/third-login`,

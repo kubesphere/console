@@ -123,7 +123,13 @@ export default class SecretEditModal extends React.Component {
 
   render() {
     const { subRoute, formTemplate } = this.state
-    const { visible, isSubmitting, onCancel, isFederated } = this.props
+    const {
+      visible,
+      isSubmitting,
+      onCancel,
+      isFederated,
+      disableSecretType,
+    } = this.props
 
     return (
       <Modal
@@ -142,6 +148,7 @@ export default class SecretEditModal extends React.Component {
           formTemplate={formTemplate}
           isFederated={isFederated}
           mode="edit"
+          disableSecretType={disableSecretType}
         />
         {this.renderSaveBar()}
       </Modal>

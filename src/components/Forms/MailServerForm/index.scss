@@ -40,35 +40,6 @@
   }
 }
 
-.protocol {
-  line-height: 32px;
-  border-radius: 18px;
-  padding: 1px;
-  border: solid 1px #d8dee5;
-  background-color: $bg-color;
-  display: inline-block;
-  margin-bottom: 12px;
-  @at-root {
-    .protocolOption {
-      text-align: center;
-      color: #79879c;
-      font-size: 12px;
-      padding-left: 60px;
-      padding-right: 60px;
-      display: inline-block;
-      cursor: pointer;
-    }
-    .protocolSelected {
-      border-radius: 16px;
-      background-color: #36435c;
-      color: #fff;
-    }
-    .protocolDisabled {
-      cursor: not-allowed;
-    }
-  }
-}
-
 .url {
   max-width: 370px;
 }
@@ -79,12 +50,4 @@
 
 .tips {
   margin-bottom: 12px;
-}
-
-.validateButton {
-  margin-top: 25px;
-}
-
-.sslCheckbox {
-  margin-bottom: 10px;
 }

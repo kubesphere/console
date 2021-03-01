@@ -101,7 +101,7 @@ module.exports = {
   username_password: '帐户凭证',
   login_Plateform: '登录平台',
   'Script Path': '脚本路径',
-  Webhook: 'webhook 推送',
+  'Webhook Push': 'webhook 推送',
   'Discover Tag Branches': '发现 Tag 分支',
   'Discover Branches': '发现分支',
   'Discover PR from Origin': '从原仓库中发现 PR',

@@ -21,7 +21,7 @@ import { Notify } from '@kube-design/components'
 import { Modal } from 'components/Base'
 
 import CreateModal from 'components/Modals/Create'
-import SecretEditModal from 'projects/components/Modals/SecretEdit'
+import SecretEditModal from 'components/Modals/SecretEdit'
 import { MODULE_KIND_MAP } from 'utils/constants'
 import FORM_TEMPLATES from 'utils/form.templates'
 import formPersist from 'utils/form.persist'

@@ -1,0 +1,55 @@
+@import '~scss/variables';
+
+.formBody {
+  border-radius: 4px;
+  background-color: $lightest;
+  padding: 12px;
+  margin-bottom: 12px;
+}
+
+.formAttrs {
+  border-radius: $border-radius;
+  box-shadow: 0 4px 8px 0 rgba(36, 46, 66, 0.06);
+  background-color: #ffffff;
+  border: solid 1px $light-color03;
+  padding: 12px;
+
+  :global {
+    .form-item {
+      margin-bottom: 8px;
+    }
+  }
+
+  label {
+    font-weight: bold;
+    margin-bottom: 10px;
+    height: 30px;
+    line-height: 30px;
+  }
+}
+
+.operationWrapper {
+  position: relative;
+
+  .buttonWrapper {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 24px;
+  }
+}
+
+.tokenWrapper {
+  padding: 12px 20px;
+  border-radius: 22px;
+  background-color: #eff4f9;
+  border: 1px solid #ccd3db;
+}
+
+.footer {
+  text-align: right;
+}
+
+.tips {
+  margin-bottom: 12px;
+}
