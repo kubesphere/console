@@ -17,7 +17,8 @@
  */
 
 import React from 'react'
-import { get } from 'lodash'
+import { parse } from 'qs'
+import { debounce, get } from 'lodash'
 import { Link } from 'react-router-dom'
 import { Status } from 'components/Base'
 import Avatar from 'apps/components/Avatar'
@@ -56,7 +57,7 @@ export default class OPApps extends React.Component {
   }
 
   get itemActions() {
-    const { routing, trigger } = this.props
+    const { trigger } = this.props
     return [
       {
         key: 'edit',
@@ -66,7 +67,6 @@ export default class OPApps extends React.Component {
         onClick: item =>
           trigger('openpitrix.app.edit', {
             detail: item,
-            success: routing.query,
           }),
       },
       {
@@ -78,7 +78,6 @@ export default class OPApps extends React.Component {
           trigger('resource.delete', {
             type: t(this.name),
             detail: item,
-            success: routing.query,
           }),
       },
     ]
@@ -183,10 +182,27 @@ export default class OPApps extends React.Component {
     }
   }
 
+  handleFetch = debounce(query => {
+    const { store, getData } = this.props
+    if (store.list.isLoading) {
+      return
+    }
+    const params = parse(location.search.slice(1))
+    return getData({ ...params, ...query, silent: true })
+  }, 1000)
+
+  handleWatch = message => {
+    if (message.object.kind === 'HelmRelease') {
+      if (['MODIFIED', 'DELETED', 'ADDED'].includes(message.type)) {
+        this.handleFetch()
+      }
+    }
+  }
+
   render() {
     const { bannerProps, tableProps, match } = this.props
     return (
-      <ListPage {...this.props}>
+      <ListPage {...this.props} onMessage={this.handleWatch}>
         <Banner {...bannerProps} match={match} type={this.type} />
         <Table
           {...tableProps}
