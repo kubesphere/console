@@ -18,7 +18,7 @@
 
 import React, { Component } from 'react'
 import { observer } from 'mobx-react'
-import { get } from 'lodash'
+import { get, isEmpty } from 'lodash'
 import { Form } from '@kube-design/components'
 import { TypeSelect } from 'components/Base'
 import IPPoolStore from 'stores/network/ippool'
@@ -37,14 +37,9 @@ export default class PodIPRange extends Component {
   }
 
   get options() {
-    return [
-      {
-        label: t('Base Network'),
-        value: '',
-        icon: 'eip-group',
-        description: t('DEFAULT_NETWORK_DESC'),
-      },
-      ...this.store.list.data.map(item => ({
+    return this.store.list.data
+      .filter(item => get(item, 'status.unallocated', 0))
+      .map(item => ({
         label: item.name,
         value: JSON.stringify([item.name]),
         icon: 'eip-group',
@@ -52,24 +47,29 @@ export default class PodIPRange extends Component {
         details: [
           {
             label: item.cidr,
-            description: t('IP/Mask'),
+            description: t('IP/Mask Bit'),
           },
           {
-            label: get(item, 'status.unallocated', 0),
+            label: get(item, 'status.unallocated'),
             description: t('Available Number'),
           },
         ],
-      })),
-    ]
+      }))
   }
 
   render() {
+    const options = this.options
+
+    if (isEmpty(options)) {
+      return null
+    }
+
     return (
       <Form.Item label={t('Pod IP Range')}>
         <TypeSelect
           name={`${this.prefix}metadata.annotations["cni.projectcalico.org/ipv4pools"]`}
-          options={this.options}
-          defaultValue=""
+          options={options}
+          defaultValue={options[0].value}
         />
       </Form.Item>
     )

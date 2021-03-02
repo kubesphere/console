@@ -49,7 +49,6 @@ module.exports = {
   Import: 'Importar',
   'Import Kubernetes Cluster': 'Importar clúster de Kubernetes',
   'Invite members to the cluster': 'Invitar miembros al clúster',
-  'IP Ranges': 'Rangos de IP',
   'Kubernetes Settings': 'Configuraciones de Kubernetes',
   'Kubernetes Status': 'Estado de Kubernetes',
   'Kubernetes Version': 'Versión de Kubernetes',
