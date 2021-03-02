@@ -59,6 +59,8 @@ module.exports = {
   'Invalid port': '无效端口',
   'Not Associate': '不关联',
 
+  Auto: '自动',
+
   'Custom Creation': '自定义创建',
   'Specify Workloads': '指定工作负载',
   'Create service by specifying workloads': '指定工作负载创建服务',

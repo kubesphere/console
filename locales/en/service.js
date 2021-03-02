@@ -23,6 +23,7 @@ module.exports = {
   'Add Route Rule': 'Add Route Rule',
   'Add Selector': 'Add Selector',
   'Associated Application': 'Associated Application',
+  Auto: 'Auto',
   'Automatically assign Service IP': 'Automatically assign Service IP',
   'Commonly included tags in the current workloads':
     'Commonly included tags in the current workloads',

@@ -61,7 +61,6 @@ class LocalePlugin {
             if (!fs.existsSync(compiler.outputPath)) {
               fs.mkdirSync(compiler.outputPath)
             }
-            console.log(hasChange);
             if (hasChange) {
               fs.writeFileSync(path.join(compiler.outputPath, `locale-${lang}.json`), JSON.stringify(data))
             }
