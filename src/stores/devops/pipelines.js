@@ -248,6 +248,7 @@ export default class PipelineStore extends BaseStore {
     if (isEmpty(this.detail)) {
       await this.fetchDetail({ name: decodeName, devops })
     }
+
     const result = await this.request.get(
       `${this.getDevopsUrlV2({
         cluster,
@@ -315,6 +316,7 @@ export default class PipelineStore extends BaseStore {
     if (isEmpty(this.detail)) {
       await this.fetchDetail({ cluster, name, devops })
     }
+
     let result = await this.request.get(
       `${this.getDevopsUrlV2({
         cluster,

@@ -21,7 +21,7 @@ import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 
 import moment from 'moment-mini'
-import { get, isEmpty, has, isArray } from 'lodash'
+import { get, isEmpty, has, isArray, last } from 'lodash'
 
 import { Notify } from '@kube-design/components'
 import Status from 'devops/components/Status'
@@ -111,7 +111,8 @@ export default class PipelineDetailLayout extends React.Component {
     }
   }
 
-  getUpTime = activityList => {
+  getUpTime = () => {
+    const { activityList } = this.store
     const updateTime = get(toJS(activityList.data), '[0].startTime', '')
     return !updateTime
       ? '-'
@@ -194,9 +195,21 @@ export default class PipelineDetailLayout extends React.Component {
     ]
   }
 
+  getCurrentState = () => {
+    const { activityList, branchList, pullRequestList } = this.store
+    const currentState = {
+      activity: get(toJS(activityList), 'data[0]', {}),
+      branch: get(toJS(branchList), 'data[0].latestRun', {}),
+      'pull-request': get(toJS(pullRequestList), 'data[0].latestRun', {}),
+    }
+
+    const currentLocation = last(this.props.location.pathname.split('/'))
+    return currentState[currentLocation] || currentState.activity
+  }
+
   getAttrs = () => {
-    const { activityList } = this.store
     const { devopsName } = this.props.devopsStore
+
     return [
       {
         name: t('DevOps Project'),
@@ -204,15 +217,11 @@ export default class PipelineDetailLayout extends React.Component {
       },
       {
         name: t('Status'),
-        value: (
-          <Status
-            {...getPipelineStatus(get(toJS(activityList.data), '[0]', {}))}
-          />
-        ),
+        value: <Status {...getPipelineStatus(this.getCurrentState())} />,
       },
       {
         name: t('Updated Time'),
-        value: this.getUpTime(activityList),
+        value: this.getUpTime(),
       },
     ]
   }
