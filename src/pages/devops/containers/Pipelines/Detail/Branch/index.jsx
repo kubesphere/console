@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { result, get, omit } from 'lodash'
+import { result, get, omit, isEmpty } from 'lodash'
 import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
@@ -39,6 +39,8 @@ export default class Branch extends React.Component {
 
   store = this.props.detailStore || {}
 
+  refreshTimer = setInterval(() => this.refreshHandler(), 4000)
+
   get enabledActions() {
     const { cluster, devops } = this.props.match.params
 
@@ -49,24 +51,57 @@ export default class Branch extends React.Component {
     })
   }
 
+  get isRuning() {
+    const data = get(toJS(this.store), 'branchList.data', [])
+    const runingData = data.filter(item => {
+      const state = get(item, 'latestRun.state')
+      return state && state !== 'FINISHED' && state !== 'PAUSED'
+    })
+    return !isEmpty(runingData)
+  }
+
   componentDidMount() {
     const { params } = this.props.match
 
     this.unsubscribe = this.routing.history.subscribe(location => {
       if (location.pathname === this.props.match.url) {
         const query = parse(location.search.slice(1))
-        this.getData({ ...params, ...query })
+        this.store.getBranches({
+          ...params,
+          ...query,
+        })
       }
     })
   }
 
+  refreshHandler = () => {
+    if (this.isRuning) {
+      this.getData()
+    } else {
+      clearInterval(this.refreshTimer)
+      this.refreshTimer = null
+    }
+  }
+
+  componentDidUpdate() {
+    if (this.refreshTimer === null && this.isRuning) {
+      clearInterval(this.refreshTimer)
+      this.refreshTimer = setInterval(() => this.refreshHandler(), 4000)
+    }
+  }
+
   componentWillUnmount() {
+    clearInterval(this.refreshTimer)
     this.unsubscribe && this.unsubscribe()
   }
 
-  getData(params) {
+  getData() {
+    const { params } = this.props.match
+    const query = parse(location.search.slice(1))
+
     this.store.getBranches({
       ...params,
+      ...query,
     })
   }
 
@@ -144,9 +179,9 @@ export default class Branch extends React.Component {
     )
 
     const isEmptyList = isLoading === false && total === 0
-
     const omitFilters = omit(filters, 'page', 'workspace')
     const runnable = this.enabledActions.includes('edit')
+    const pagination = { total, page, limit }
 
     if (isEmptyList && !filters.page) {
       return (
@@ -159,8 +194,6 @@ export default class Branch extends React.Component {
         </EmptyCard>
       )
     }
-
-    const pagination = { total, page, limit }
 
     return (
       <Table

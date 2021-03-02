@@ -18,7 +18,7 @@
 
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { get, omit } from 'lodash'
+import { get, omit, isEmpty } from 'lodash'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import { parse } from 'qs'
@@ -37,24 +37,59 @@ export default class Pullrequest extends React.Component {
 
   store = this.props.detailStore || {}
 
+  refreshTimer = setInterval(() => this.refreshHandler(), 4000)
+
+  get isRuning() {
+    const data = get(toJS(this.store), 'pullRequestList.data', [])
+    const runingData = data.filter(item => {
+      const state = get(item, 'latestRun.state')
+      return state && state !== 'FINISHED' && state !== 'PAUSED'
+    })
+    return !isEmpty(runingData)
+  }
+
   componentDidMount() {
     const { params } = this.props.match
 
     this.unsubscribe = this.routing.history.subscribe(location => {
       if (location.pathname === this.props.match.url) {
         const query = parse(location.search.slice(1))
-        this.getData({ ...params, ...query })
+        this.store.getPullRequest({
+          ...params,
+          ...query,
+        })
       }
     })
   }
 
+  refreshHandler = () => {
+    if (this.isRuning) {
+      this.getData()
+    } else {
+      clearInterval(this.refreshTimer)
+      this.refreshTimer = null
+    }
+  }
+
+  componentDidUpdate() {
+    if (this.refreshTimer === null && this.isRuning) {
+      clearInterval(this.refreshTimer)
+      this.refreshTimer = setInterval(() => this.refreshHandler(), 4000)
+    }
+  }
+
   componentWillUnmount() {
+    clearInterval(this.refreshTimer)
     this.unsubscribe && this.unsubscribe()
   }
 
-  getData(params) {
+  getData() {
+    const { params } = this.props.match
+    const query = parse(location.search.slice(1))
+
     this.store.getPullRequest({
       ...params,
+      ...query,
     })
   }
 
@@ -124,22 +159,19 @@ export default class Pullrequest extends React.Component {
   render() {
     const { pullRequestList } = this.store
     const { data, isLoading, total, page, limit, filters } = pullRequestList
-
     const isEmptyList = isLoading === false && total === 0 && data.length > 0
-
+    const pagination = { total, page, limit }
     const omitFilters = omit(filters, 'page', 'workspace')
 
     if (isEmptyList && !filters.page) {
       return <EmptyCard name={this.name} />
     }
 
-    const pagination = { total, page, limit }
-
     return (
       <Table
         data={toJS(data)}
         columns={this.getColumns()}
-        rowKey="id"
+        rowKey="displayName"
         filters={omitFilters}
         pagination={pagination}
         isLoading={isLoading}
