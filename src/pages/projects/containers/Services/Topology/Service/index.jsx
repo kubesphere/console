@@ -69,7 +69,9 @@ export default class Service extends Component {
                 <Icon name={SHAPE_ICONS[data.shape]} size={40} />
               </div>
               <div className={styles.text}>
-                <div className={styles.title}>{label}</div>
+                <div className={styles.title} title={label}>
+                  {label}
+                </div>
                 <div className={styles.description}>{labelMinor}</div>
               </div>
             </div>

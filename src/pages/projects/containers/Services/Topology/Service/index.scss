@@ -5,6 +5,19 @@
     fill: none;
     stroke: none;
   }
+
+  &:hover {
+    foreignObject {
+      width: 300px;
+    }
+
+    .service {
+      display: inline-block;
+      width: auto;
+      min-width: 150px;
+      max-width: 300px;
+    }
+  }
 }
 
 .service {

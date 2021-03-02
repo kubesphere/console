@@ -24,6 +24,7 @@ module.exports = {
   'Add Route Rule': 'Agregar regla de ruta',
   'Add Selector': 'Agregar selector',
   'Associated Application': 'Solicitud asociada',
+  Auto: 'Auto',
   'Automatically assign Service IP':
     'Asigna automáticamente una IP de servicio',
   'Commonly included tags in the current workloads':

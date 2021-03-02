@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { sortBy } from 'lodash'
+import { sortBy, isEmpty } from 'lodash'
 import React, { Component } from 'react'
 import { Icon } from '@kube-design/components'
 import { getSuitableValue } from 'utils/monitoring'
@@ -67,6 +67,10 @@ export default class Table extends Component {
   }
 
   getValue(data) {
+    if (isEmpty(data)) {
+      return ''
+    }
+
     if (data.format === 'percent') {
       return `${data.value}%`
     }

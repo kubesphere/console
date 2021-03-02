@@ -56,6 +56,8 @@ module.exports = {
   'Specify Workload': '指定工作負載',
   'Add Selector': '添加選擇器',
 
+  Auto: '自动',
+
   'Invalid port': '無效端口',
   'Not Associate': '不關聯',
 

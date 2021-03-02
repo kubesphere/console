@@ -37,7 +37,7 @@ import styles from './index.scss'
 @observer
 export default class Topology extends Component {
   state = {
-    type: 'auto',
+    type: 'pause',
     selectService: null,
     fullscreen: false,
   }
@@ -46,11 +46,6 @@ export default class Topology extends Component {
 
   componentDidMount() {
     this.fetchData()
-    startAutoRefresh(this, {
-      method: 'fetchData',
-      leading: false,
-      interval: 10000,
-    })
 
     this.svg = select('#canvas').call(
       zoom()
