@@ -17,48 +17,48 @@
  */
 
 module.exports = {
-  'Pod IP Pool': '容器组 IP 地址范围',
-  'Pod IP Pools': '容器组 IP 地址范围',
+  'Pod IP Pool': '容器組 IP 地址範圍',
+  'Pod IP Pools': '容器組 IP 地址範圍',
 
-  'Create Pod IP Pool': '创建容器组 IP 地址范围',
+  'Create Pod IP Pool': '創建容器組 IP 地址範圍',
 
-  'IP/Mask Bit': 'IP/掩码位',
+  'IP/Mask Bit': 'IP / 掩碼位',
   'Used IP': '已用 IP',
 
-  Mask: '掩码',
-  'Mask Bit': '掩码位',
-  Network: '网络',
+  Mask: '掩碼',
+  'Mask Bit': '掩碼位',
+  Network: '網路',
 
-  'First Available': '第一个可用',
-  'Last Available': '最后可用',
-  'Available Number': '可用数量',
+  'First Available': '第一個可用',
+  'Last Available': '最後可用',
+  'Available Number': '可用數量',
 
-  'Pod IP Range': '容器组 IP 地址范围',
+  'Pod IP Range': '容器組 IP 地址範圍',
 
-  'Number of Creations': '创建数量',
-  'Pod IP Pools to be created': '即将创建的容器组 IP 地址范围',
-  'Set to be globally available': '设为全局可用',
+  'Number of Creations': '創建數量',
+  'Pod IP Pools to be created': '即將創建的容器組 IP 地址範圍',
+  'Set to be globally available': '設為全局可用',
 
-  'Please input the ip address': '请输入 IP 地址',
-  'Please input the mask bit': '请输入掩码位',
-  'Please input the ip/mask bit': '请输入 IP 地址/掩码位',
+  'Please input the ip address': '請輸入 IP 地址',
+  'Please input the mask bit': '請輸入掩碼位',
+  'Please input the ip/mask bit': '請輸入 IP 地址 / 掩碼位',
 
   'Please input the number of Pod IP Pools to be created':
-    '请输入需要创建的容器组 IP 地址范围数量',
+    '請輸入需要創建的容器組 IP 地址範圍數量',
 
-  POD_IP_POOL_DESC: '集群内容器组 IP 地址范围',
+  POD_IP_POOL_DESC: '集群内容器組 IP 地址範圍',
   IP_POOL_CREATE_COUNT_DESC:
-    '可以同时创建多个容器组 IP 地址范围，数量范围为 1～10',
-  IPPOOL_USAGE_Q: '如何利用 IP 地址范围规划容器组网络？',
+    '可以同時創建多個容器組 IP 地址範圍，數量範圍為 1～10',
+  IPPOOL_USAGE_Q: '如何利用 IP 地址範圍規劃容器組網路？',
   IPPOOL_USAGE_A:
-    'IP 地址范围用于规划Pod网络地址空间， 每个 IP 地址范围之间地址空间不能重叠。创建工作负载时，可选择特定的 IP 地址范围，这样创建出的容器组将从该 IP 地址范围中分配 IP。',
+    'IP 地址範圍用於規劃 Pod 網路地址空間，每個 IP 地址範圍之間地址空間不能。創建工作負載時，可選擇特定的 IP 地址範圍，這樣創建出的容器組將從該 IP 地址範圍中分配 IP。',
 
   IPPOOL_ASSIGN_WORKSPACE_DESC:
-    'IP 地址范围分配给企业空间之后才能被企业空间使用。',
+    'IP 地址範圍分配给企業空間之後才能被企業空間使用。',
   IPPOOL_ASSIGN_WORKSPACE_ALLOCATED_WARNING:
-    'IP 地址范围已被使用，无法分配给某一个具体的企业空间',
+    'IP 地址範圍已被使用，無法分配给某一個具体的企業空間',
   IPPOOL_ASSIGN_WORKSPACE_CHANGE_WARNING:
-    'IP 地址范围已被使用, 且已指定具体的企业空间，无法更改目标企业空间',
+    'IP 地址範圍已被使用，且已指定具体的企業空間，無法更改目標企業空間',
 
-  IPPOOL_WORKSPACE_EMPTY_TIP: '暂无企业空间使用此 IP 地址范围',
+  IPPOOL_WORKSPACE_EMPTY_TIP: '暫無企業空間使用此 IP 地址範圍',
 }
