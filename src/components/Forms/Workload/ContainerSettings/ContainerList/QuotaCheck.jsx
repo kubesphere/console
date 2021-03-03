@@ -178,7 +178,7 @@ export default class QuotaCheck extends Component {
 
     const overcost = Object.values(checkResult).some(item => item.overcost)
     const type = overcost ? 'error' : 'info'
-    const title = overcost ? t('当前资源占用已超过剩余配额') : t('Left Quota')
+    const title = overcost ? t('QUOTA_OVERCOST_TIP') : t('Left Quota')
 
     const message = overcost
       ? this.renderOverCostMessage(checkResult)
