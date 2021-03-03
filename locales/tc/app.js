@@ -18,9 +18,9 @@
 
 module.exports = {
   APP_TEMPLATE_DESC:
-    'KubeSphere 提供全生命週期的應用管理，可以上傳或者創建新的應用模板，并且快速部署它們，也可以通過應用商店進行發佈應用。',
+    'KubeSphere 提供全生命週期的應用管理，可以上傳或者創建新的應用模板，並且快速部署它們，也可以通過應用商店進行發佈應用。',
   APP_TEMPLATE_CREATE_DESC:
-    'KubeSphere 提供全生命週期的應用管理，可以上傳或者創建新的應用模板，并且快速部署它們，也可以通過應用商店進行發佈應用。',
+    'KubeSphere 提供全生命週期的應用管理，可以上傳或者創建新的應用模板，並且快速部署它們，也可以通過應用商店進行發佈應用。',
   DEVELOP_APP_TITLE: '開發應用模板',
   DEVELOP_APP_DESC:
     '您可以上傳 Helm Chart 或者使用 KubeSphere 提供的資源編排工具進行應用模板的開發',
@@ -40,8 +40,8 @@ module.exports = {
   'Base Info': '基本資訊',
   'App Details': '應用詳情',
   'App Config': '應用配置',
-  'Current App Config': '当前应用配置',
-  'New App Config': '新的应用配置',
+  'Current App Config': '當前應用配置',
+  'New App Config': '新的應用配置',
   Introduction: '使用說明',
   'Terms of service': '服務條款',
   'Config File': '配置文件',
@@ -69,7 +69,7 @@ module.exports = {
   Provider: '服務商',
   'Latest Version': '最新版本',
   'App Category': '應用分類',
-  'Release / Suspended Time': '上架(下架)時間',
+  'Release / Suspended Time': '上架 (下架) 時間',
 
   'App Review': '應用審核',
   'App Reviews': '應用審核',
@@ -108,8 +108,8 @@ module.exports = {
   ADJUST_CATEGORY_DESC: '應用分類將決定該應用在應用商店中的分類',
   'Change Category': '調整分類',
   DELETE_CATEGORY_WARNING:
-    '該分類綁定了<strong>{total}</strong>個應用，請先將這些應用調整到其它分類後才能刪除',
-  DELETE_CATEGORY_DESC: '你確定要刪除分類【{name}】嗎?',
+    '該分類綁定了 <strong>{total}</strong> 個應用，請先將這些應用調整到其它分類後才能刪除',
+  DELETE_CATEGORY_DESC: '你確定要刪除分類 【{name}】 嗎？',
   'Adjust Successfully': '調整成功',
 
   APP_TEMPLATES_DESC:
@@ -200,7 +200,7 @@ module.exports = {
   'Very helpful when users search for apps': '在用戶搜索應用時會非常有幫助',
   Icon: '圖示',
   'Format png/svg background transparency is the best':
-    '格式: png/svg 背景透明最佳',
+    '格式： png/svg 背景透明最佳',
   CHOOSE_APP_CATEGORY_DESC: '選擇適合的應用分類，便於用戶更快發現你的應用',
   'Service Provider Website': '服務商網站',
   "Service provider's official website address": '服務商的官方網站地址',
