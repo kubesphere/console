@@ -24,6 +24,8 @@ export const getMinutes = timeStr => {
 
   switch (unit) {
     default:
+    case 's':
+      return value / 60
     case 'm':
       return value
     case 'h':

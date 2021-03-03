@@ -86,7 +86,7 @@ export const BASE_RULE_CONFIG = getBaseRuleConfig()
 
 export const PERCENT_RULE_CONFIG = getBaseRuleConfig({
   thresholds: {
-    min: 1,
+    min: 0,
     max: 100,
     unit: '%',
     converter: value => value / 100,
@@ -96,18 +96,21 @@ export const PERCENT_RULE_CONFIG = getBaseRuleConfig({
 export const CPU_RULE_CONFIG = getBaseRuleConfig({
   thresholds: {
     unit: 'core',
+    min: 0,
   },
 })
 
 export const MEMORY_RULE_CONFIG = getBaseRuleConfig({
   thresholds: {
     unit: 'Mi',
+    min: 0,
   },
 })
 
 export const DISK_RULE_CONFIG = getBaseRuleConfig({
   thresholds: {
     unit: 'GB',
+    min: 0,
     converter: value => value * 1000 ** 3,
   },
 })
@@ -115,6 +118,7 @@ export const DISK_RULE_CONFIG = getBaseRuleConfig({
 export const THROUGHPUT_RULE_CONFIG = getBaseRuleConfig({
   thresholds: {
     unit: 'KB/s',
+    min: 0,
     converter: value => value * 1000,
   },
 })
@@ -122,6 +126,7 @@ export const THROUGHPUT_RULE_CONFIG = getBaseRuleConfig({
 export const BANDWIDTH_RULE_CONFIG = getBaseRuleConfig({
   thresholds: {
     unit: 'Mbps',
+    min: 0,
     converter: value => value * (1024 ** 2 / 8),
   },
 })

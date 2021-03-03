@@ -109,6 +109,7 @@ module.exports = {
     'Alerting messages are generated based on the monitoring metrics and the workload alert policies in the current project. They can help users detect problems and respond in time.',
 
   RESOURCE_NODE_FORM_TIP: 'Please select cluster nodes',
+  RESOURCE_WORKLOAD_FORM_TIP: 'Please select workloads',
 
   REQUESTS_FOR_TRIGGER_AN_ALARM_Q:
     'Prerequisites for triggering an alerting message?',

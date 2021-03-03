@@ -17,18 +17,20 @@
  */
 
 import React, { Component } from 'react'
-import { computed } from 'mobx'
-import { observer } from 'mobx-react'
 import { pick, get } from 'lodash'
 import { Select, Form } from '@kube-design/components'
 
 import WorkloadStore from 'stores/workload'
 
-@observer
 export default class WorkloadSelect extends Component {
   store = new WorkloadStore(
-    this.kindModules[get(this.props.value, 'kind', '')] || 'deployments'
+    this.kindModules[get(this.props.formTemplate, 'kind', '')] || 'deployments'
   )
+
+  state = {
+    workloads: [],
+    isLoading: false,
+  }
 
   componentDidMount() {
     this.fetchData()
@@ -36,19 +38,22 @@ export default class WorkloadSelect extends Component {
 
   fetchData = params => {
     const { cluster, namespace } = this.props
-    this.store.fetchList({
-      cluster,
-      namespace,
-      ...params,
-    })
-  }
-
-  @computed
-  get workloads() {
-    return this.store.list.data.map(item => ({
-      label: item.name,
-      value: item.name,
-    }))
+    this.setState({ isLoading: true })
+    this.store
+      .fetchList({
+        cluster,
+        namespace,
+        ...params,
+      })
+      .then(() => {
+        this.setState({
+          workloads: this.store.list.data.map(item => ({
+            label: item.name,
+            value: item.name,
+          })),
+          isLoading: false,
+        })
+      })
   }
 
   get kindModules() {
@@ -99,9 +104,9 @@ export default class WorkloadSelect extends Component {
         >
           <Select
             name="resources"
-            options={this.workloads}
+            options={this.state.workloads}
             pagination={pagination}
-            isLoading={this.store.list.isLoading}
+            isLoading={this.state.isLoading}
             onFetch={this.fetchData}
             searchable
             multi

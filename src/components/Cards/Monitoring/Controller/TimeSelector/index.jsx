@@ -111,7 +111,6 @@ export default class TimeSelector extends React.PureComponent {
 
   renderContent() {
     const { step, times } = this.state
-
     return (
       <div className={styles.content}>
         <DefaultRange

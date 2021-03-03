@@ -19,7 +19,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
-import { isUndefined, isNaN, isObject, get, set } from 'lodash'
+import { isUndefined, isNaN, isObject, get, set, cloneDeep } from 'lodash'
 
 import { cacheFunc } from 'utils'
 
@@ -33,14 +33,12 @@ import styles from './index.scss'
 export default class RuleInput extends React.Component {
   static propTypes = {
     metricConfig: PropTypes.array,
-    errorItems: PropTypes.array,
     value: PropTypes.object,
     onChange: PropTypes.func,
   }
 
   static defaultProps = {
     metricConfig: [],
-    errorItems: [],
     value: {},
     onChange() {},
   }
@@ -57,7 +55,7 @@ export default class RuleInput extends React.Component {
 
   get resourceMetricsConfig() {
     const { resourceType } = this.props
-    return RESOURCE_METRICS_CONFIG[resourceType || 'node'] || {}
+    return cloneDeep(RESOURCE_METRICS_CONFIG[resourceType || 'node']) || {}
   }
 
   get metricConfig() {
@@ -132,27 +130,25 @@ export default class RuleInput extends React.Component {
     )
 
   renderConfigItem = (config = {}) => {
-    const { errorItems, value } = this.props
+    const { value } = this.props
     const {
       type,
       name,
       placeholder,
-      defaultValue,
+      value: _value,
       options = [],
       converter,
       ...rest
     } = config
 
     if (isUndefined(value[name]) || isNaN(value[name])) {
-      const val = get(options[0], 'value', rest.value || '')
+      const val = get(options[0], 'value', _value || '')
       set(value, name, val)
     }
 
     const baseProps = {
       key: name,
-      className: classnames(styles[name], {
-        [styles.errorItem]: errorItems.includes(name),
-      }),
+      className: styles[name],
       name,
       placeholder: t(placeholder),
       value: value[name],

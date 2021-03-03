@@ -102,10 +102,6 @@ export default class PromQLInput extends Component {
   handleValueUpdateFromProps = value => {
     const editor = this.editor.current
     editor.innerHTML = highlightPromql(value)
-    const { position } = this.state
-    if (position) {
-      setCaretPosition(editor, position)
-    }
   }
 
   handleInput = e => {
