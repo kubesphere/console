@@ -34,7 +34,6 @@ module.exports = {
   'Storage Management': '儲存管理',
   'Cluster Settings': '集群設置',
   Snapshots: '儲存卷快照',
-  'IP Ranges': 'IP 地址範圍',
   'Network Policies': '網路策略',
   'Network Topology': '網路拓撲',
   'Cluster Visibility': '集群能見度',

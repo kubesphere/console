@@ -27,7 +27,7 @@ import { Modal } from 'components/Base'
 
 import WorkspaceStore from 'stores/workspace'
 
-const ALL_WORKSPACE = '$$all$$'
+const ALL_WORKSPACE = ''
 
 @observer
 export default class IPPoolWorkspaceModal extends Component {
@@ -105,11 +105,7 @@ export default class IPPoolWorkspaceModal extends Component {
   handleSubmit = data => {
     const { onOk } = this.props
     const formData = {}
-    const workspace = get(
-      data,
-      "metadata.labels['kubesphere.io/workspace']",
-      ''
-    )
+    const workspace = get(data, "metadata.labels['kubesphere.io/workspace']")
     if (workspace === ALL_WORKSPACE) {
       set(formData, "metadata.labels['kubesphere.io/workspace']", null)
       set(

@@ -40,7 +40,7 @@ class LocalePlugin {
             )
             let data = {}
             files.forEach(file => {
-              const key = `${lang}/file`
+              const key = `${lang}/${file}`
               const filepath = path.join(
                 __dirname,
                 this.options.locales,
@@ -49,10 +49,11 @@ class LocalePlugin {
               )
               const fileinfo = fs.statSync(filepath)
               let filedata
-              if (!this._caches[key] || this._caches[key].mtime !== fileinfo.mtime) {
+              if (!this._caches[key] || this._caches[key].mtime !== fileinfo.mtime.getTime()) {
                 hasChange = true
+                delete require.cache[path.resolve(filepath)];
                 filedata = require(filepath)
-                this._caches[key] = {mtime: fileinfo.mtime, filedata}
+                this._caches[key] = {mtime: fileinfo.mtime.getTime(), filedata}
               } else {
                 filedata = this._caches[key].filedata
               }

@@ -45,7 +45,7 @@ export default class IPPoolDetail extends React.Component {
   }
 
   get name() {
-    return 'IP Pool'
+    return 'Pod IP Pool'
   }
 
   get listUrl() {
@@ -130,7 +130,7 @@ export default class IPPoolDetail extends React.Component {
 
     return [
       {
-        name: t('IP/Mask'),
+        name: t('IP/Mask Bit'),
         value: detail.cidr,
       },
       {

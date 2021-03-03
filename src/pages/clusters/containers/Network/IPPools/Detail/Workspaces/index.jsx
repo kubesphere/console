@@ -41,7 +41,10 @@ export default class Workspaces extends React.Component {
     const { detail } = this.store
     const workspaces = get(detail, 'status.workspaces', {})
 
-    this.workspaceStore.fetchList({ names: Object.keys(workspaces).join(',') })
+    this.workspaceStore.fetchList({
+      names: Object.keys(workspaces).join(','),
+      limit: -1,
+    })
   }
 
   @computed

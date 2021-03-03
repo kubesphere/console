@@ -20,10 +20,10 @@
 
   & > div {
     margin-right: 20px;
-    min-width: 140px;
+    min-width: 20%;
 
     &:first-of-type {
-      min-width: 300px;
+      flex: 1;
     }
   }
 }

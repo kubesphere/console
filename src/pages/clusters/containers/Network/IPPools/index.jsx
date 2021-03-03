@@ -31,7 +31,7 @@ import IPPoolStore from 'stores/network/ippool'
 @withList({
   store: new IPPoolStore(),
   module: 'ippools',
-  name: 'IP Pool',
+  name: 'Pod IP Pool',
 })
 export default class IPPools extends React.Component {
   get tips() {
@@ -110,7 +110,7 @@ export default class IPPools extends React.Component {
         ),
       },
       {
-        title: t('IP/Mask'),
+        title: t('IP/Mask Bit'),
         dataIndex: 'cidr',
       },
       {

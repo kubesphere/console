@@ -93,10 +93,11 @@ export default class YamlEditModal extends React.Component {
   render() {
     const { readOnly, visible, onCancel, isSubmitting } = this.props
     const title = readOnly ? t('View YAML') : t('Edit YAML')
+    const icon = readOnly ? 'eye' : 'pen'
 
     return (
       <Modal
-        icon="pen"
+        icon={icon}
         title={title}
         bodyClassName={classNames({
           [styles.readOnly]: readOnly,
