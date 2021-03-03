@@ -71,6 +71,7 @@ export default class MultiArea extends React.Component {
     renderTitle: PropTypes.func,
     renderTooltip: PropTypes.func,
     renderArea: PropTypes.func,
+    id: PropTypes.string,
   }
 
   static defaultProps = {
@@ -84,6 +85,7 @@ export default class MultiArea extends React.Component {
     unit: '',
     areaColors: AreaColors,
     data: [],
+    id: '',
   }
 
   constructor(props) {
@@ -97,7 +99,10 @@ export default class MultiArea extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.data.length !== this.props.data.length) {
+    if (
+      prevProps.data.length !== this.props.data.length ||
+      prevProps.id !== this.props.id
+    ) {
       const series = getActiveSeries(this.props)
       this.setState({
         series: series.slice(0, this.props.maxSeries),

@@ -66,12 +66,13 @@ export default {
 
           if (detail) {
             await store.update(detail, params)
+            Notify.success({ content: `${t('Updated Successfully')}!` })
           } else {
             await store.create(params, { cluster, namespace })
+            Notify.success({ content: `${t('Created Successfully')}!` })
           }
 
           Modal.close(modal)
-          Notify.success({ content: `${t('Created Successfully')}!` })
           success && success()
           formPersist.delete(`${module}_create_form`)
         },

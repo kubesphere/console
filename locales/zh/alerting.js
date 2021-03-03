@@ -105,6 +105,7 @@ module.exports = {
   'Unavailable statefulset replicas ratio': '有状态副本集副本不可用率',
 
   RESOURCE_NODE_FORM_TIP: '请选择集群节点',
+  RESOURCE_WORKLOAD_FORM_TIP: '请选择工作负载',
 
   REQUESTS_FOR_TRIGGER_AN_ALARM_Q: '触发告警消息的前提条件?',
   REQUESTS_FOR_TRIGGER_AN_ALARM_A:

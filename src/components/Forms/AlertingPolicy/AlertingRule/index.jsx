@@ -17,7 +17,7 @@
  */
 
 import React from 'react'
-import { get } from 'lodash'
+import { get, isEmpty } from 'lodash'
 import { Form, RadioGroup, RadioButton } from '@kube-design/components'
 
 import MonitoringTarget from './MonitoringTarget'
@@ -51,17 +51,35 @@ export default class AlertingRule extends React.Component {
     this.setState({ query })
   }
 
-  checkItemValid = item => typeof item.thresholds !== 'undefined'
+  ruleValidator = (rule, value, callback) => {
+    if (!value) {
+      return callback()
+    }
+
+    if (isEmpty(value.thresholds)) {
+      return callback({
+        message: t('Please add at least one rule'),
+        field: rule.field,
+      })
+    }
+
+    callback()
+  }
 
   renderTemplates() {
-    const { cluster } = this.props
+    const { cluster, formTemplate } = this.props
     return (
       <div>
-        <MonitoringTarget namespace={this.namespace} cluster={cluster} />
+        <MonitoringTarget
+          namespace={this.namespace}
+          cluster={cluster}
+          formTemplate={formTemplate}
+        />
         <Form.Item
           label={t('Alerting Rules')}
           rules={[
             { required: true, message: t('Please add at least one rule') },
+            { validator: this.ruleValidator },
           ]}
         >
           <RuleInput name="rules[0]" resourceType={this.resourceType} />

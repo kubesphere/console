@@ -25,6 +25,7 @@ import { getAreaChartOps } from 'utils/monitoring'
 export default class Monitoring extends Component {
   state = {
     metrics: [],
+    id: '',
   }
 
   componentDidMount() {
@@ -49,11 +50,11 @@ export default class Monitoring extends Component {
       step: '30s',
       ...params,
     })
-    this.setState({ metrics: result })
+    this.setState({ metrics: result, id: query })
   }
 
   render() {
-    const { metrics } = this.state
+    const { id, metrics } = this.state
     const options = getAreaChartOps({
       height: 400,
       title: t('Alerting Monitoring'),
@@ -62,6 +63,6 @@ export default class Monitoring extends Component {
         item.metric ? JSON.stringify(omit(item.metric, '__name__')) : ''
       ),
     })
-    return <Chart {...options} />
+    return <Chart {...options} id={id} />
   }
 }
