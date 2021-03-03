@@ -343,6 +343,14 @@ module.exports = {
   'What is Disk Log Collection?': 'What is Disk Log Collection?',
   'Worker Container': 'Worker Container',
   Workload: 'Workload',
+
+  'Not Limited': 'Not Limited',
+  Cost: 'Cost',
+  'Project Left Quota': 'Project Left Quota',
+  'Workspace Left Quota': 'Workspace Left Quota',
+  QUOTA_OVERCOST_TIP:
+    'The current resource usage has exceeded the remaining quota',
+
   WORKLOAD_REASON_DEPLOYMENTPAUSED: 'Deployment paused',
   WORKLOAD_REASON_DEPLOYMENTRESUMED: 'Deployment resumed',
   WORKLOAD_REASON_FAILEDCREATE: 'Creation failed',

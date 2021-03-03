@@ -348,6 +348,14 @@ module.exports = {
     '¿Qué es la recopilación de registro de disco?',
   'Worker Container': 'Contenedor de trabajo',
   Workload: 'Carga de trabajo',
+
+  'Not Limited': 'Not Limited',
+  Cost: 'Cost',
+  'Project Left Quota': 'Project Left Quota',
+  'Workspace Left Quota': 'Workspace Left Quota',
+  QUOTA_OVERCOST_TIP:
+    'The current resource usage has exceeded the remaining quota',
+
   WORKLOAD_REASON_DEPLOYMENTPAUSED: 'WORKLOAD_REASON_DEPLOYMENTPAUSED',
   WORKLOAD_REASON_DEPLOYMENTRESUMED: 'WORKLOAD_REASON_DEPLOYMENTRESUMED',
   WORKLOAD_REASON_FAILEDCREATE: 'WORKLOAD_REASON_FAILEDCREATE',
