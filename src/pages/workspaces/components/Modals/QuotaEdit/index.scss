@@ -1,0 +1,20 @@
+@import '~scss/variables';
+
+.body {
+  padding: 12px;
+  min-height: 400px;
+}
+
+.quotaItem {
+  padding: 12px;
+  border-radius: 2px;
+  background-color: $lightest;
+
+  input {
+    width: 398px;
+  }
+}
+
+.label {
+  margin-top: 12px;
+}

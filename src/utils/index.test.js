@@ -269,7 +269,7 @@ it('cpuFormat', () => {
 it('memoryFormat', () => {
   expect(memoryFormat(undefined)).toBe(undefined)
   expect(memoryFormat(null)).toBe(null)
-  expect(memoryFormat('2Gi')).toBe(2000)
+  expect(memoryFormat('2Gi')).toBe(2048)
   expect(memoryFormat('2Gi', 'Gi')).toBe(2)
   expect(memoryFormat('1981289121m', 'ki')).toBe(1934.853)
 })

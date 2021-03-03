@@ -52,6 +52,10 @@ module.exports = {
   'All members': 'Todos los miembros',
   Assigned: 'Asignado',
 
+  projects: 'Projects',
+  devops: 'DevOps Projects',
+  'Workspace Quota': 'Workspace Quota',
+  'Edit Workspace Quota': 'Edit Workspace Quota',
   Workspaces: 'Espacios de trabajo',
   'Workspaces Manager': 'Gestor de espacios de trabajo',
   WORKSPACE_OVERVIEW_DESC:

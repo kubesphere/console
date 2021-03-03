@@ -23,6 +23,7 @@ import PropTypes from 'prop-types'
 import { List } from 'components/Base'
 
 import Card from './Card'
+import QuotaCheck from './QuotaCheck'
 
 import styles from './index.scss'
 
@@ -70,6 +71,22 @@ export default class ContainerList extends React.Component {
     }
 
     onDelete && onDelete(container.name)
+  }
+
+  renderQuotaCheck() {
+    const { value } = this.props
+    const {
+      specTemplate: { initContainers = [] },
+      leftQuota,
+    } = this.props
+    return (
+      <QuotaCheck
+        className="margin-b12"
+        containers={value}
+        initContainers={initContainers}
+        leftQuota={leftQuota}
+      />
+    )
   }
 
   renderContainers() {
@@ -122,10 +139,11 @@ export default class ContainerList extends React.Component {
   }
 
   render() {
-    const { className } = this.props
+    const { className, projectDetail } = this.props
 
     return (
       <div className={classNames(styles.wrapper, className)}>
+        {projectDetail && this.renderQuotaCheck()}
         {this.renderInitContainers()}
         {this.renderContainers()}
         {this.renderAdd()}

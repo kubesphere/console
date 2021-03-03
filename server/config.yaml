@@ -278,6 +278,7 @@ client:
           icon: cogwheel
           children:
             - { name: base-info, title: Basic Info, skipAuth: true }
+            - { name: quota, title: Quota Management }
             - { name: roles, title: Workspace Roles }
             - { name: members, title: Workspace Members }
             - { name: groups, title: Workspace Groups }

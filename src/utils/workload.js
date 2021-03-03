@@ -16,9 +16,9 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, isEmpty, set, merge } from 'lodash'
+import { get, isEmpty, set, merge, isUndefined } from 'lodash'
 
-import { to } from 'utils'
+import { to, cpuFormat, memoryFormat } from 'utils'
 import { getVolumeType } from 'utils/volume'
 import ObjectMapper from 'utils/object.mapper'
 
@@ -247,6 +247,115 @@ export const getWorkloadReplicaCount = (record, module) => {
       result.total = get(record, 'status.desiredNumberScheduled', 0)
       break
   }
+
+  return result
+}
+
+export const getLeftQuota = (wsQuota, nsQuota) => {
+  const keys = [
+    'limits.cpu',
+    'limits.memory',
+    'requests.cpu',
+    'requests.memory',
+  ]
+
+  function getLeft(quota, key) {
+    let left
+    const total = get(quota, `hard["${key}"]`)
+    const used = get(quota, `used["${key}"]`, '0')
+    if (total) {
+      if (key.endsWith('cpu')) {
+        left = cpuFormat(total) - cpuFormat(used)
+      } else if (key.endsWith('memory')) {
+        left = memoryFormat(total) - memoryFormat(used)
+      }
+    }
+
+    return left
+  }
+
+  return {
+    workspace: keys.reduce(
+      (prev, key) => ({ ...prev, [key]: getLeft(wsQuota, key) }),
+      {}
+    ),
+    namespace: keys.reduce(
+      (prev, key) => ({ ...prev, [key]: getLeft(nsQuota, key) }),
+      {}
+    ),
+  }
+}
+
+export const getContainersResources = (containers, initContainers) => {
+  const keys = [
+    'limits.cpu',
+    'limits.memory',
+    'requests.cpu',
+    'requests.memory',
+  ]
+
+  const resources = {}
+  keys.forEach(key => {
+    let initResource = 0
+    let resource = 0
+
+    let formatter = v => v
+    if (key.endsWith('cpu')) {
+      formatter = cpuFormat
+    } else if (key.endsWith('memory')) {
+      formatter = memoryFormat
+    }
+
+    // get the max init container request
+    initContainers.forEach(item => {
+      const value = formatter(get(item, `resources.${key}`))
+      if (isUndefined(value) || value === null) {
+        initResource = Infinity
+      } else if (initResource !== Infinity) {
+        initResource = Math.max(value, initResource)
+      }
+    })
+
+    // sum all the containers' request
+    containers.forEach(item => {
+      const value = formatter(get(item, `resources.${key}`))
+      if (isUndefined(value) || value === null) {
+        resource = Infinity
+      } else if (resource !== Infinity) {
+        resource += value
+      }
+    })
+
+    resources[key] = Math.max(initResource, resource)
+  })
+
+  return resources
+}
+
+export const compareQuotaAndResources = (leftQuota, resources) => {
+  const result = {}
+  const keys = Object.keys(resources)
+  keys.forEach(key => {
+    const cost = resources[key]
+    let unit = ''
+    const workspaceQuota = get(leftQuota, `workspace["${key}"]`, Infinity)
+    const namespaceQuota = get(leftQuota, `namespace["${key}"]`, Infinity)
+
+    if (key.endsWith('cpu')) {
+      unit = 'Core'
+    } else if (key.endsWith('memory')) {
+      unit = 'Mi'
+    }
+
+    result[key] = {
+      cost: cost === Infinity ? undefined : `${cost}${unit}`,
+      namespaceQuota:
+        namespaceQuota === Infinity ? undefined : `${namespaceQuota}${unit}`,
+      workspaceQuota:
+        workspaceQuota === Infinity ? undefined : `${workspaceQuota}${unit}`,
+      overcost: cost > workspaceQuota || cost > namespaceQuota,
+    }
+  })
 
   return result
 }

@@ -48,6 +48,10 @@ module.exports = {
   'Workspace Settings': 'Workspace Settings',
   Workspaces: 'Workspaces',
   'Workspaces Manager': 'Workspaces Manager',
+  projects: 'Projects',
+  devops: 'DevOps Projects',
+  'Workspace Quota': 'Workspace Quota',
+  'Edit Workspace Quota': 'Edit Workspace Quota',
 
   WORKSPACE_OVERVIEW_DESC:
     'Workspace provides KubeSphere with a secure, isolated and accessible platform. Here you can see the resource running status in the current workspace.',

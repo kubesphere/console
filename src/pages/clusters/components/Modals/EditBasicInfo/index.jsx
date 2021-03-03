@@ -17,6 +17,7 @@
  */
 
 import React from 'react'
+import { get } from 'lodash'
 import PropTypes from 'prop-types'
 import copy from 'fast-copy'
 
@@ -54,9 +55,37 @@ export default class EditBasicInfoModal extends React.Component {
 
   constructor(props) {
     super(props)
+
     this.state = {
+      region: get(
+        props.detail,
+        'metadata.labels["topology.kubernetes.io/region"]',
+        ''
+      ),
       formData: copy(props.detail),
     }
+  }
+
+  get regions() {
+    return get(globals.config, 'regionZones', []).map(item => ({
+      label: item.alias,
+      value: item.name,
+    }))
+  }
+
+  get zones() {
+    const region = get(globals.config, 'regionZones', []).find(
+      item => item.name === this.state.region
+    )
+
+    if (region && region.zones) {
+      return region.zones.map(item => ({
+        label: item.alias,
+        value: item.name,
+      }))
+    }
+
+    return []
   }
 
   groupOptionRenderer = option => (
@@ -79,6 +108,10 @@ export default class EditBasicInfoModal extends React.Component {
   handleOk = data => {
     const { onOk } = this.props
     onOk(data)
+  }
+
+  handleRegionSelect = region => {
+    this.setState({ region })
   }
 
   render() {
@@ -113,6 +146,21 @@ export default class EditBasicInfoModal extends React.Component {
             name="spec.provider"
             options={CLUSTER_PROVIDERS}
             optionRenderer={this.providerOptionRenderer}
+          />
+        </Form.Item>
+        <Form.Item label={t('CLUSTER_REGION')}>
+          <Select
+            name="metadata.labels['topology.kubernetes.io/region']"
+            options={this.regions}
+            placeholder={t('Please select a region')}
+            onChange={this.handleRegionSelect}
+          />
+        </Form.Item>
+        <Form.Item label={t('CLUSTER_ZONE')}>
+          <Select
+            name="metadata.labels['topology.kubernetes.io/zone']"
+            options={this.zones}
+            placeholder={t('Please select a zone')}
           />
         </Form.Item>
         <Form.Item label={t('Description')} desc={t('DESCRIPTION_DESC')}>
