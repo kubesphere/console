@@ -57,15 +57,14 @@ export default {
             cluster: detail.cluster,
           }
 
-          const spec = get(data, 'spec.hard', {})
-          data.spec = { hard: omitBy(spec, isEmpty) }
+          const spec = get(data, 'spec.quota.hard', {})
           const resp = await quotaStore.checkName(params)
 
           const template = {
             apiVersion: 'quota.kubesphere.io/v1alpha2',
             kind: 'ResourceQuota',
             metadata: { ...params, name: detail.name },
-            spec: { quota: data.spec },
+            spec: { quota: { hard: omitBy(spec, isEmpty) } },
           }
 
           if (resp.exist) {
