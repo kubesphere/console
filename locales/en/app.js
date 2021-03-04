@@ -159,9 +159,9 @@ module.exports = {
   DEVELOP_APP_DESC:
     'You can upload Helm Chart or use the resource orchestration tool provided by KubeSphere to develop app templates.',
 
-  HOW_PUBLISH_APP_TITLE: 'How to publish applications to App Store?',
+  HOW_PUBLISH_APP_TITLE: 'How to publish applications to the App Store?',
   HOW_PUBLISH_APP_DESC:
-    'KubeSphere currently supports uploading Helm Charts through app templates within the workspace, where you can submit your template for review. Once the template is approved, you can publish it to App Store.',
+    'KubeSphere currently supports uploading Helm Charts through app templates within the workspace, where you can submit your template for review. Once the template is approved, you can publish it to the App Store.',
 
   HOW_APP_DEPLOY_TITLE: 'How to deploy and test applications',
 

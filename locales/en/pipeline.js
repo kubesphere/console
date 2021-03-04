@@ -332,15 +332,15 @@ module.exports = {
   'You can execute shell commands or windows batch commands in the build.':
     'You can execute shell commands or windows batch commands in the build.',
 
-  PIPELINE_DESC: `Pipeline is a collection of plugins that can be combined
+  PIPELINE_DESC: `A pipeline is a collection of plugins that can be combined
     to achieve continuous integration and continuous delivery.
     Pipeline DSL provides us with an extensible set of tools that allow
     us to implement simple to complex logic through code.`,
   username_password: 'Account Credentials',
   login_Plateform: 'Login platform',
-  CREDENTIALS_DESC: `Credential is an object that contains some sensitive data,
+  CREDENTIALS_DESC: `Credentials are objects that contain some sensitive data,
     such as username and password, SSH key and Token.
-    It is used to provide authentication for the process of pulling code,
+    They are used to provide authentication for pulling code,
     pushing/pulling images, executing SSH scripts, etc. when a pipeline is running.`,
   tips_Parametric_build: `The parameterized build process allows
     you to pass in one or more parameters when you build.

@@ -46,10 +46,10 @@ module.exports = {
   'Please input the number of Pod IP Pools to be created':
     'Please input the number of Pod IP Pools to be created',
 
-  POD_IP_POOL_DESC: 'Pod ip pools of the cluster',
+  POD_IP_POOL_DESC: 'Pod IP pools of the cluster',
   IP_POOL_CREATE_COUNT_DESC:
-    'Multiple pod ip pools can be created at the same time, the number range is 1～10',
-  IPPOOL_USAGE_Q: 'How to manage a pod network using Pod IP Pool?',
+    'Multiple Pod IP pools can be created at the same time. The range is 1～10.',
+  IPPOOL_USAGE_Q: 'How to manage a Pod network using the Pod IP Pool?',
   IPPOOL_USAGE_A:
     'The Pod IP Pool is used to manage the Pod network address space, and the address space between each Pod IP Pool cannot overlap. When creating a workload, you can select a specific Pod IP Pool, so that the created pods will be assigned IPs from this Pod IP Pool.',
 

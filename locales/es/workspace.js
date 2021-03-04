@@ -109,4 +109,6 @@ module.exports = {
   WORKSPACE_GROUP_EMPTY_DESC:
     'No hay una organización disponible por el momento, primero mantenga la organización y luego agregue miembros',
   WORKSPACE_GROUP_USER_EMPTY_DESC: 'Actualmente no hay miembros asignables',
+  WORKSPACE_QUOTA_MANAGE_DESC:
+    'Manage workspace quotas which are shared by all projects and DevOps projects in a workspace.',
 }

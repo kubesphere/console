@@ -17,11 +17,11 @@
  */
 
 module.exports = {
-  ServiceAccounts: 'Cuentas de servicio',
-  ServiceAccount: 'Cuentas de servicio',
-  'Edit Service Account': 'Editar cuenta de servicio',
-  'Modify Service Account Role': 'Modificar el rol de la cuenta de servicio',
-  'Secret Detail': 'Detalle secreto',
+  ServiceAccounts: 'ServiceAccounts',
+  ServiceAccount: 'Service Account',
+  'Edit Service Account': 'Edit Service Account',
+  'Modify Service Account Role': 'Modify Service Account Role',
+  'Secret Detail': 'Secret Detail',
   SERVICEACCOUNT_DESC:
-    'La cuenta de servicio proporciona una identidad para los procesos que se ejecutan en un pod que se puede usar para acceder al servidor de API',
+    'Service Account provides an identity for processes that run in a Pod that can be used to access the API server',
 }

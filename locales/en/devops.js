@@ -50,7 +50,7 @@ module.exports = {
     'You can create or contact the project manager to invite you to the DevOps project to start your work.',
 
   DEVOPS_PROJECT_CREDENTIALS_DESC:
-    'Credential is an object that contains some sensitive data, such as username and password, SSH key and Token. It is used to provide authentication for the process of pulling code, pushing/pulling images, executing SSH scripts, etc. when a pipeline is running.',
+    'Credentials are objects that contain some sensitive data, such as username and password, SSH key and Token. They are used to provide authentication for pulling code, pushing/pulling images, executing SSH scripts, etc. when a pipeline is running.',
 
   DEVOPS_PROJECT_ROLES_DESC:
     'The project roles defines the permissions that users have under the current DevOps project.',
