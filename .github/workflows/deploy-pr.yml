@@ -98,6 +98,7 @@ jobs:
       - name: set SERVICE_PORT
         id: set_port
         run: |
+          sudo apt-get install -y sshpass
           echo "::set-output name=SERVICE_PORT::$(sshpass  -p "${{ secrets.QING_PASSWORD }}" ssh -o StrictHostKeyChecking=no root@${{ secrets.QING_EIP }} "kubectl -n kubesphere-system get svc ${{ env.SERVICE_NAME }} -o json | jq .spec.ports[].nodePort")"
 
       - name: Create comment
