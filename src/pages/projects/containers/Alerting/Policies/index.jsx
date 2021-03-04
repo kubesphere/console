@@ -198,7 +198,7 @@ export default class AlertingPolicy extends React.Component {
         },
       },
       {
-        title: t('Recent Alert Time'),
+        title: t('Alert Active Time'),
         dataIndex: 'alerts',
         isHideable: true,
         width: '16%',

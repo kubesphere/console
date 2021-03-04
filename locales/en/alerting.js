@@ -73,7 +73,7 @@ module.exports = {
   'Please input the threshold': 'Please input the threshold',
   'pod abnormal ratio': 'pod abnormal ratio',
   'pod utilization rate': 'pod utilization rate',
-  'Recent Alert Time': 'Recent Alert Time',
+  'Alert Active Time': 'Alert Active Time',
   'Recent Notification': 'Recent Notification',
   'Recovery Time': 'Recovery Time',
   Rule: 'Rule',

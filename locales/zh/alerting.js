@@ -46,7 +46,7 @@ module.exports = {
   'Edit Rule': '编辑规则',
   'Rule Name': '规则名称',
   'View Details': '查看详情',
-  'Recent Alert Time': '最近告警',
+  'Alert Active Time': '告警激活时间',
   'Please add at least one rule': '请至少添加一个告警规则',
   'Please input the threshold': '请输入阈值',
   critical: '危险',

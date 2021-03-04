@@ -73,7 +73,7 @@ module.exports = {
   'Please input the threshold': 'Por favor, introduce el umbral',
   'pod abnormal ratio': 'Relación anormal pod',
   'pod utilization rate': 'ratio de utilización de pod',
-  'Recent Alert Time': 'Hora de Alerta reciente',
+  'Alert Active Time': 'Hora de Alerta reciente',
   'Recent Notification': 'Notificación reciente',
   'Recovery Time': 'Tiempo de Recuperación',
   'Repeat Rule': 'Regla de Repetición',
