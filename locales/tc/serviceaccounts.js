@@ -17,11 +17,11 @@
  */
 
 module.exports = {
-  ServiceAccounts: '服務賬戶',
-  ServiceAccount: '服務賬戶',
-  'Edit Service Account': '編輯服務賬戶',
+  ServiceAccounts: '服務帳戶',
+  ServiceAccount: '服務帳戶',
+  'Edit Service Account': '編輯服務帳戶',
   'Modify Service Account Role': '修改服務帳戶角色',
   'Secret Detail': '密鑰詳情',
   SERVICEACCOUNT_DESC:
-    '服務賬戶（Service Account）為 Pod 中運行的進程提供了壹個標識，用於訪問 API server',
+    '服務帳戶（Service Account）為 Pod 中運行的進程提供了壹個標識，用於訪問 API Server。',
 }
