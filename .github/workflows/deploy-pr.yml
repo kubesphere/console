@@ -106,5 +106,5 @@ jobs:
         with:
           issue-number: ${{ github.event.issue.number }}
           body: |
-            Congratulations! Deployment succeeded. This is the [preview link](http://${{ secrets.QING_EIP }}:${{ steps.set_port.outputs.SERVICE_PORT }}/) .
+            Congratulations! The image of this pr is kubespheredev/${{ env.IMAGE_NAME }}. Deployment succeeded. This is the [preview link](http://${{ secrets.QING_EIP }}:${{ steps.set_port.outputs.SERVICE_PORT }}/) .
           reactions: heart, hooray, laugh
