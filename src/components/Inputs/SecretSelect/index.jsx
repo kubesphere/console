@@ -73,12 +73,13 @@ export default class EnvironmentInputItem extends React.Component {
   }
 
   render() {
-    const { name } = this.props
+    const { name, value = {} } = this.props
     return (
       <div className={styles.wrapper}>
         <Select
           name="name"
           key={`${name}.name`}
+          value={value.name}
           prefixIcon={`${t('Secret')}: `}
           options={this.getResourceOptions()}
           onChange={this.handleNameChange}
@@ -86,6 +87,7 @@ export default class EnvironmentInputItem extends React.Component {
         <Select
           name="key"
           key={`${name}.key`}
+          value={value.key}
           prefixIcon={`${t('Key')}: `}
           options={this.getKeysOptions()}
           onChange={this.handleKeyChange}

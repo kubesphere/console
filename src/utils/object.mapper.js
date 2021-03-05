@@ -1256,7 +1256,7 @@ const StorageclasscapabilitiesMapper = item => {
 const ServiceMonitorMapper = item => ({
   ...getBaseInfo(item),
   namespace: get(item, 'metadata.namespace'),
-  interval: get(item, 'spec.endpoints[0].interval'),
+  endpoints: get(item, 'spec.endpoints', []),
   _originData: getOriginData(item),
 })
 

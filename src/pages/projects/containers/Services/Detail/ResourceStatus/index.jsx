@@ -23,13 +23,14 @@ import { observer, inject } from 'mobx-react'
 import { Panel, Text } from 'components/Base'
 import PodsCard from 'components/Cards/Pods'
 import WorkloadsCard from 'projects/components/Cards/Workloads'
+import ServiceMonitors from 'projects/components/Cards/ServiceMonitors'
 import Placement from 'projects/components/Cards/Placement'
 
 import Ports from '../Ports'
 
 import styles from './index.scss'
 
-@inject('detailStore')
+@inject('detailStore', 'serviceMonitorStore')
 @observer
 export default class ResourceStatus extends React.Component {
   store = this.props.detailStore
@@ -84,16 +85,28 @@ export default class ResourceStatus extends React.Component {
   }
 
   renderWorkloads() {
-    const detail = toJS(this.store.detail)
-    const { cluster, namespace } = detail
+    const { cluster, namespace, selector, workloadType } = this.store.detail
 
     return (
       <WorkloadsCard
-        selector={detail.selector}
+        selector={selector}
         cluster={cluster}
         namespace={namespace}
         prefix={this.prefix}
-        module={`${detail.workloadType.toLowerCase()}s`}
+        module={`${workloadType.toLowerCase()}s`}
+      />
+    )
+  }
+
+  renderServiceMonitors() {
+    const store = this.props.serviceMonitorStore
+    const { cluster, namespace, selector } = this.store.detail
+    return (
+      <ServiceMonitors
+        selector={selector}
+        cluster={cluster}
+        namespace={namespace}
+        store={store}
       />
     )
   }
@@ -109,6 +122,7 @@ export default class ResourceStatus extends React.Component {
       <div>
         {this.renderPlacement()}
         {this.renderPorts()}
+        {this.renderServiceMonitors()}
         {this.renderWorkloads()}
         {this.renderPods()}
       </div>

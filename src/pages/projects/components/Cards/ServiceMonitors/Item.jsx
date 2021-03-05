@@ -46,8 +46,11 @@ export default class Item extends React.Component {
           title={detail.name}
           description={t('Monitoring Exporter')}
         />
-        <Text title={detail.name} description={t('Target Service')} />
+
+        <Text title={detail.port} description={t('Port')} />
+        <Text title={detail.path} description={t('Path')} />
         <Text title={detail.interval} description={t('Scrap Interval(min)')} />
+        <Text title={detail.scrapeTimeout} description={t('Timeout(s)')} />
       </div>
     )
   }

@@ -22,7 +22,6 @@ import Services from 'projects/components/Cards/Services'
 import Workloads from 'projects/components/Cards/Workloads'
 import Ingresses from 'projects/components/Cards/Ingresses'
 import Volumes from 'projects/components/Cards/Volumes'
-import ServiceMonitors from 'projects/components/Cards/ServiceMonitors'
 
 @inject('detailStore')
 @observer
@@ -67,11 +66,6 @@ export default class ResourceStatus extends React.Component {
           cluster={cluster}
           namespace={namespace}
           prefix={this.prefix}
-        />
-        <ServiceMonitors
-          selector={selector}
-          cluster={cluster}
-          namespace={namespace}
         />
       </>
     )
