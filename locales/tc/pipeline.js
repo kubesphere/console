@@ -488,4 +488,5 @@ module.exports = {
   CREATE_PIPELINE_DESC: '使用流水線進行構建，測試和部署',
   'Choose a pipeline template': '選擇流水線模板',
   BATCH_RUN_DESC: '多分支不支持批量運行',
+  'Sync Status': '同步狀態',
 }
