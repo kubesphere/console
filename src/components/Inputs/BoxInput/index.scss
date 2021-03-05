@@ -1,0 +1,43 @@
+.inputWrapper {
+  display: flex;
+}
+
+.selectWrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.selectInput {
+  padding-left: 132px !important;
+}
+
+.select {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  width: 120px;
+  height: 22px;
+  margin-left: 4px;
+
+  :global {
+    .select-control {
+      height: 22px;
+      background: #242e42;
+    }
+
+    .select-value {
+      color: #fff;
+    }
+
+    .kubed-icon-dark {
+      color: #fff;
+    }
+  }
+}
+
+.title {
+  font-weight: 600;
+  margin-bottom: 4px;
+}

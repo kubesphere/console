@@ -1,0 +1,57 @@
+@import '~scss/variables';
+
+.formBody {
+  .row {
+    margin-bottom: 12px;
+  }
+
+  .title {
+    display: flex;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+
+  .item {
+    padding: 12px;
+    border: solid 1px $light-color03;
+    border-radius: 4px;
+  }
+
+  .isHorizon {
+    display: flex;
+
+    :global {
+      .form-item-label {
+        margin-bottom: 0;
+        margin-right: 8px;
+      }
+    }
+  }
+
+  :global {
+    .form-item-label {
+      font-weight: 600;
+    }
+  }
+
+  .urlInput {
+    max-width: 479px;
+  }
+}
+
+.wrapper {
+  max-width: 455px;
+}
+
+.listWrapper {
+  padding: 12px 0;
+}
+
+.tips {
+  margin-bottom: 12px;
+}
+
+.footer {
+  text-align: right;
+}

@@ -563,6 +563,37 @@ const getRolebindingTemplate = ({ name, role }) => ({
   },
 })
 
+const getGlobalSecretTemplate = ({ name }) => ({
+  apiVersion: 'v1',
+  kind: 'Secret',
+  metadata: {
+    name,
+  },
+  type: 'Opaque',
+})
+
+const getNotificationConfigTemplate = ({ name }) => ({
+  apiVersion: 'notification.kubesphere.io/v2beta1',
+  kind: 'Config',
+  metadata: {
+    name,
+  },
+  spec: {},
+})
+
+const getNotificationReceiverTemplate = ({ name, type }) => ({
+  apiVersion: 'notification.kubesphere.io/v2beta1',
+  kind: 'Receiver',
+  metadata: {
+    name,
+  },
+  spec: {
+    [type]: {
+      enabled: true,
+    },
+  },
+})
+
 const FORM_TEMPLATES = {
   deployments: getDeploymentTemplate,
   daemonsets: getDaemonSetTemplate,
@@ -599,6 +630,9 @@ const FORM_TEMPLATES = {
   servicemonitors: getServiceMonitorTemplate,
   workspacerolebinding: getWorkspaceRoleBindingTemplate,
   rolebinding: getRolebindingTemplate,
+  globalsecret: getGlobalSecretTemplate,
+  notificationconfigs: getNotificationConfigTemplate,
+  notificationreceivers: getNotificationReceiverTemplate,
 }
 
 export default FORM_TEMPLATES

@@ -303,7 +303,7 @@ export default class AdvanceSettings extends React.Component {
             {t('Whether to open shallow clone')}
           </Checkbox>
         </Form.Item>
-        <div className="h6">{t('Webhook')}</div>
+        <div className="h6">{t('Webhook Push')}</div>
         <Form.Item label={t('Push message to')} tip={t('WEBHOOK_DESC')}>
           <Input value={this.webhookUrl} disabled />
         </Form.Item>
