@@ -17,7 +17,7 @@
  */
 
 module.exports = {
-  'Application Monitoring Exporter': 'Application Monitoring Exporter',
+  'Service Monitoring Exporter': 'Service Monitoring Exporter',
   'Target Service': 'Target Service',
   'Exporter Service Ports': 'Exporter Service Ports',
   'Scrap Interval(min)': 'Scrap Interval(min)',

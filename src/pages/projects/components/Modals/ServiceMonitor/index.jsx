@@ -17,15 +17,14 @@
  */
 
 import React, { Component } from 'react'
-import { cloneDeep, get, set, unset } from 'lodash'
+import { cloneDeep, get, set } from 'lodash'
 import { toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import { Form, Columns, Column } from '@kube-design/components'
-import { Modal, TypeSelect } from 'components/Base'
+import { Modal } from 'components/Base'
 import { ArrayInput, NumberInput } from 'components/Inputs'
-import { getDisplayName, joinSelector } from 'utils'
+import { joinSelector } from 'utils'
 
-import ServiceStore from 'stores/service'
 import SecretStore from 'stores/secret'
 
 import Endpoint from './Endpoint'
@@ -36,23 +35,10 @@ import styles from './index.scss'
 export default class ServiceMonitor extends Component {
   store = this.props.store
 
-  serviceStore = new ServiceStore()
-
   secretStore = new SecretStore()
 
   state = {
-    formTemplate: {},
-  }
-
-  get services() {
-    return this.serviceStore.list.data.map(item => ({
-      icon: 'appcenter',
-      value: item.name,
-      label: getDisplayName(item),
-      description: item.serviceType
-        ? t(`SERVICE_TYPE_${item.serviceType.toUpperCase()}`)
-        : t('Custom Creation'),
-    }))
+    formTemplate: cloneDeep(this.props.formTemplate),
   }
 
   get defaultEndpoints() {
@@ -60,47 +46,49 @@ export default class ServiceMonitor extends Component {
       {
         scheme: 'http',
         path: '/metrics',
-        auth: {
-          type: '',
-        },
+        authType: '',
       },
     ]
   }
 
   componentDidMount() {
-    const { cluster, namespace, app } = this.props
+    const { cluster, namespace, detail } = this.props
 
-    const params = {
-      cluster,
-      namespace,
-      labelSelector: joinSelector(app.selector),
-    }
+    this.store
+      .fetchListByK8s({
+        cluster,
+        namespace,
+        labelSelector: joinSelector(detail.selector),
+      })
+      .then(() => this.updateFormTemplate())
 
     this.secretStore.fetchListByK8s({ cluster, namespace })
-
-    Promise.all([
-      this.store.fetchListByK8s(params),
-      this.serviceStore.fetchListByK8s(params),
-    ]).then(() => {
-      this.handleServiceChange(get(this.serviceStore.list.data, '[0].name'))
-    })
   }
 
-  handleServiceChange = name => {
-    const serviceMontor = this.store.list.data.find(item => item.name === name)
-    if (serviceMontor && serviceMontor._originData) {
-      this.setState({ formTemplate: toJS(serviceMontor._originData) })
-    } else {
-      const formTemplate = cloneDeep(this.props.formTemplate)
-      set(formTemplate, 'metadata.name', name)
-      unset(formTemplate, 'spec.endpoints')
+  updateFormTemplate = () => {
+    const { detail } = this.props
+    if (this.store.list.data.length > 0) {
+      const serviceMontor =
+        this.store.list.data.find(item => item.name === detail.name) ||
+        this.store.list.data[0]
+      const formTemplate = toJS(serviceMontor._originData)
+      get(formTemplate, 'spec.endpoints', []).forEach(ep => {
+        if (ep.tlsConfig) {
+          ep.authType = 'tlsConfig'
+        } else if (ep.bearerTokenSecret) {
+          ep.authType = 'bearerTokenSecret'
+        } else if (ep.basicAuth) {
+          ep.authType = 'basicAuth'
+        } else {
+          ep.authType = ''
+        }
+      })
       this.setState({ formTemplate })
     }
   }
 
   handleOk = data => {
-    const { onOk } = this.props
-    const name = get(data, 'metadata.name')
+    const { onOk, detail } = this.props
     const interval = get(data, 'spec.interval')
     const scrapeTimeout = get(data, 'spec.scrapeTimeout')
     const endpoints = get(data, 'spec.endpoints', [])
@@ -109,36 +97,33 @@ export default class ServiceMonitor extends Component {
       ed.scrapeTimeout = scrapeTimeout
     })
 
-    const selectService = this.serviceStore.list.data.find(
-      item => item.name === name
-    )
-    set(data, 'spec.selector.matchLabels', selectService.labels)
+    set(data, 'spec.selector.matchLabels', detail.labels)
     set(data, 'metadata.labels', {
-      ...(selectService.labels || {}),
+      ...(detail.labels || {}),
       'app.kubernetes.io/vendor': 'kubesphere',
     })
 
     onOk(data)
   }
 
+  checkItemValid = item => item.port && item.path && item.scheme
+
   render() {
     const {
       visible,
       workspace,
+      namespace,
+      cluster,
+      detail,
       isSubmitting,
       onCancel,
-      cluster,
-      namespace,
     } = this.props
     const { formTemplate } = this.state
-    const selectService = this.serviceStore.list.data.find(
-      item => item.name === get(formTemplate, 'metadata.name')
-    )
 
     return (
       <Modal.Form
         icon="linechart"
-        title={t('Application Monitoring Exporter')}
+        title={t('Service Monitoring Exporter')}
         width={960}
         data={formTemplate}
         visible={visible}
@@ -147,21 +132,17 @@ export default class ServiceMonitor extends Component {
         isSubmitting={isSubmitting}
       >
         <div className={styles.wrapper}>
-          <Form.Item label={t('Target Service')}>
-            <TypeSelect
-              name="metadata.name"
-              options={this.services}
-              onChange={this.handleServiceChange}
-            />
-          </Form.Item>
           <Form.Item label={t('Exporter Service Ports')}>
             <ArrayInput
               className={styles.endpoints}
               name="spec.endpoints"
               defaultValue={this.defaultEndpoints}
+              checkItemValid={this.checkItemValid}
+              itemType="object"
+              addText={t('Add')}
             >
               <Endpoint
-                detail={selectService}
+                detail={detail}
                 secretStore={this.secretStore}
                 cluster={cluster}
                 namespace={namespace}

@@ -18,7 +18,7 @@
 
 import React, { Component } from 'react'
 import { observer } from 'mobx-react'
-import { get, unset, pick } from 'lodash'
+import { unset } from 'lodash'
 import {
   Alert,
   Icon,
@@ -37,7 +37,7 @@ import styles from './index.scss'
 export default class Authorization extends Component {
   state = {
     showForm: false,
-    authType: get(this.props, 'value.type', ''),
+    authType: this.props.value || '',
   }
 
   formRef = React.createRef()
@@ -60,6 +60,12 @@ export default class Authorization extends Component {
     return `/${workspace}/clusters/${cluster}/projects/${namespace}/secrets`
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.value && this.props.value !== prevState.authType) {
+      this.setState({ authType: this.props.value || '' })
+    }
+  }
+
   refreshSecrets = () => {
     const { cluster, namespace } = this.props
     this.props.secretStore.fetchListByK8s({ cluster, namespace })
@@ -76,14 +82,6 @@ export default class Authorization extends Component {
   }
 
   handleTypeChange = value => {
-    const types = this.authTypes.map(item => item.value)
-
-    types.forEach(_type => {
-      if (_type && _type !== value) {
-        unset(this.props.value, _type)
-      }
-    })
-
     this.setState({ authType: value })
   }
 
@@ -91,20 +89,12 @@ export default class Authorization extends Component {
     const form = this.formRef.current
     form &&
       form.validate(() => {
-        const data = form.getData()
-        const { onChange, value } = this.props
-
-        onChange({
-          ...data,
-          ...pick(value, [
-            'port',
-            'path',
-            'scheme',
-            'params',
-            'interval',
-            'scrapeTimeout',
-          ]),
-        })
+        const { authType } = this.state
+        const { value: oldType, formData, onChange } = this.props
+        if (oldType && oldType !== authType) {
+          unset(formData, oldType)
+        }
+        onChange(authType)
         this.hideForm()
       })
   }
@@ -183,7 +173,8 @@ export default class Authorization extends Component {
   }
 
   renderForm() {
-    const { value = {} } = this.props
+    const { formData } = this.props
+    const { authType } = this.state
     return (
       <>
         <div className={styles.form}>
@@ -192,18 +183,16 @@ export default class Authorization extends Component {
             title={t('Choose Authentication Method')}
             description={t('Port connection authentication')}
           />
-          <Form type="inner" data={value} ref={this.formRef}>
-            <div className="margin-b12">
-              <Form.Item>
-                <RadioGroup
-                  options={this.authTypes}
-                  mode="button"
-                  name="type"
-                  onChange={this.handleTypeChange}
-                />
-              </Form.Item>
-            </div>
-            {value.type && (
+          <div className="margin-b12">
+            <RadioGroup
+              mode="button"
+              value={authType}
+              options={this.authTypes}
+              onChange={this.handleTypeChange}
+            />
+          </div>
+          <Form type="inner" data={formData} ref={this.formRef}>
+            {authType && (
               <Alert
                 type="default"
                 className="margin-b12"
@@ -231,10 +220,8 @@ export default class Authorization extends Component {
   }
 
   render() {
-    const { value = {} } = this.props
-    const option =
-      this.authTypes.find(item => item.value === value.type) ||
-      this.authTypes[0]
+    const { value = '' } = this.props
+    const option = this.authTypes.find(item => item.value === value)
     return (
       <div className={styles.wrapper}>
         <div className={styles.value} onClick={this.toggleForm}>

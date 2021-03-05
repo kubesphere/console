@@ -26,6 +26,7 @@ import { getDisplayName, joinSelector, getLocalTime } from 'utils'
 import { trigger } from 'utils/action'
 import { SERVICE_TYPES } from 'utils/constants'
 import ServiceStore from 'stores/service'
+import ServiceMonitorStore from 'stores/monitoring/service.monitor'
 
 import DetailPage from 'projects/containers/Base/Detail'
 
@@ -36,6 +37,8 @@ import getRoutes from './routes'
 @trigger
 export default class ServiceDetail extends React.Component {
   store = new ServiceStore()
+
+  serviceMonitorStore = new ServiceMonitorStore()
 
   componentDidMount() {
     this.fetchData()
@@ -69,6 +72,17 @@ export default class ServiceDetail extends React.Component {
     const { params } = this.props.match
     this.store.fetchDetail(params)
     this.store.fetchEndpoints(params)
+  }
+
+  fetchServiceMonitors = () => {
+    const { selector, cluster, namespace } = this.store.detail
+    if (!isEmpty(selector)) {
+      this.serviceMonitorStore.fetchListByK8s({
+        cluster,
+        namespace,
+        labelSelector: joinSelector(selector),
+      })
+    }
   }
 
   getOperations = () => [
@@ -105,6 +119,18 @@ export default class ServiceDetail extends React.Component {
         this.trigger('service.gateway.edit', {
           detail: this.store.detail,
           success: this.fetchData,
+        }),
+    },
+    {
+      key: 'serviceMonitor',
+      icon: 'linechart',
+      text: t('Service Monitoring Exporter'),
+      action: 'edit',
+      onClick: () =>
+        this.trigger('service.monitor.edit', {
+          ...this.props.match.params,
+          detail: this.store.detail,
+          success: this.fetchServiceMonitors,
         }),
     },
     {
@@ -264,7 +290,10 @@ export default class ServiceDetail extends React.Component {
   }
 
   render() {
-    const stores = { detailStore: this.store }
+    const stores = {
+      detailStore: this.store,
+      serviceMonitorStore: this.serviceMonitorStore,
+    }
 
     if (this.store.isLoading && !this.store.detail.name) {
       return <Loading className="ks-page-loading" />

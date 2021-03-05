@@ -17,7 +17,7 @@
  */
 
 module.exports = {
-  'Application Monitoring Exporter': '应用监控导出器',
+  'Service Monitoring Exporter': '服务监控导出器',
   'Target Service': '目标服务',
   'Exporter Service Ports': '导出服务端口',
   'Scrap Interval(min)': '采集间隔(分钟)',

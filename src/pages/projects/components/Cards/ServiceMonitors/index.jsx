@@ -37,7 +37,15 @@ export default class ServiceMonitors extends React.Component {
     selector: PropTypes.object,
   }
 
-  store = new ServiceMonitorStore()
+  constructor(props) {
+    super(props)
+
+    if (props.store) {
+      this.store = props.store
+    } else {
+      this.store = new ServiceMonitorStore()
+    }
+  }
 
   componentDidMount() {
     this.getData()
@@ -59,9 +67,19 @@ export default class ServiceMonitors extends React.Component {
 
     if (isEmpty(data)) return null
 
+    const endpoints = data.reduce((prev, cur) => {
+      return [
+        ...prev,
+        ...cur.endpoints.map(ep => ({
+          ...ep,
+          name: cur.name,
+        })),
+      ]
+    }, [])
+
     return (
       <div className={styles.content}>
-        {data.map(item => (
+        {endpoints.map(item => (
           <Item key={item.name} detail={item} />
         ))}
       </div>
@@ -78,7 +96,12 @@ export default class ServiceMonitors extends React.Component {
     }
 
     return (
-      <Panel className={className} title={t('Application Monitoring Exporter')}>
+      <Panel
+        className={className}
+        title={`${t('Service Monitoring Exporter')} (${t(
+          'Exporter Service Ports'
+        )})`}
+      >
         {content}
       </Panel>
     )

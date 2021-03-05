@@ -102,17 +102,6 @@ export default class CRDAppDetail extends React.Component {
         }),
     },
     {
-      key: 'serviceMonitor',
-      icon: 'linechart',
-      text: t('Application Monitoring Exporter'),
-      action: 'edit',
-      onClick: () =>
-        this.trigger('app.service.monitor', {
-          detail: toJS(this.store.detail),
-          ...this.props.match.params,
-        }),
-    },
-    {
       key: 'delete',
       icon: 'trash',
       text: t('Delete'),

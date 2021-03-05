@@ -17,7 +17,7 @@
  */
 
 import React, { Component } from 'react'
-import { get } from 'lodash'
+import { get, omit } from 'lodash'
 import { Select, Input, Icon } from '@kube-design/components'
 import { ObjectInput } from 'components/Inputs'
 import Authorization from '../Authorization'
@@ -59,7 +59,11 @@ export default class Endpoints extends Component {
           options={this.ports}
         />
         <Input name="path" defaultValue="/metrics" />
-        <Authorization {...this.props} name="auth" />
+        <Authorization
+          name="authType"
+          formData={this.props.value}
+          {...omit(this.props, ['value', 'onChange'])}
+        />
       </ObjectInput>
     )
   }
