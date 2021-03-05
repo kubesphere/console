@@ -210,7 +210,7 @@ export const getChartData = ({
         }, {})
       }
 
-      if (key && valueMap[time]) {
+      if (key !== undefined && key !== null && valueMap[time]) {
         valueMap[time][key] =
           value === '-1'
             ? null
