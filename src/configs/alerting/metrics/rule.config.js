@@ -104,6 +104,7 @@ export const MEMORY_RULE_CONFIG = getBaseRuleConfig({
   thresholds: {
     unit: 'Mi',
     min: 0,
+    converter: value => value * 1024 ** 2,
   },
 })
 
