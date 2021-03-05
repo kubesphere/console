@@ -33,7 +33,7 @@ module.exports = {
   'Workspace Groups': '企業組織',
   'Maintenance organization': '維護組織結構',
 
-  projects: '项目',
+  projects: '項目',
   devops: 'DevOps 工程',
 
   'Project Number': '項目數量',
@@ -43,8 +43,8 @@ module.exports = {
   'View Workspace': '進入企業空間',
   'Delete Workspace': '刪除企業空間',
 
-  'Workspace Quota': '企业空间配额',
-  'Edit Workspace Quota': '企业空间配额',
+  'Workspace Quota': '企業空間配額',
+  'Edit Workspace Quota': '企業空間配額',
 
   'Workspace Info': '企業空間資訊',
 
@@ -81,7 +81,7 @@ module.exports = {
 
   WORKSPACE_ROLE_DESC: '企業角色定義了在目前企業空間下用戶所擁有的權限。',
   WORKSPACE_LOGO_PLACEHOLDER:
-    '企業標誌尺寸必須小於 200px X 200px，支持 png，jpg 格式。建議從上傳透明背景的 PNG 格式圖片以達到最佳顯示效果。',
+    '企業標誌尺寸必須小於 200px X 200px，支持 png、jpg 格式。建議從上傳透明背景的 png 格式圖片以達到最佳顯示效果。',
 
   'Remove from Workspace': '從企業空間移除',
   'Please input workspace name': '請輸入企業空間名稱',
@@ -98,25 +98,25 @@ module.exports = {
   INVITE_WORKSPACE_MEMBER_SEARCH_PLACEHODLER: '輸入郵箱邀請企業空間成員',
 
   DELETE_WORKSPACE_TIP:
-    '確定刪除企業空間 <strong>{resource}</strong> ? 刪除後將無法恢復, 企業空間下的資源也同時會被銷毀。',
+    '確定刪除企業空間 <strong> {resource} </strong> ？ 刪除後將無法恢復，企業空間下的資源也同時會被銷毀。',
 
-  DELETE_WORKSPACE_DESC: '刪除後將無法恢復, 企業空間下的資源也同時會被銷毀。',
+  DELETE_WORKSPACE_DESC: '刪除後將無法恢復，企業空間下的資源也同時會被銷毀。',
   SURE_TO_DELETE_WORKSPACE: '確定刪除企業空間',
 
   WORKSPACE_BASE_INFO_Q1: '如何為企業空間申請更多的集群？',
   WORKSPACE_BASE_INFO_A1:
-    '集群由平台管理員以及集群管理員共同營運維護，如果您需要使用更多的集群請聯繫您的平台管理員，或者提交申請',
-  WORKSPACE_BASE_INFO_Q2: '如何定義網路策略?',
+    '集群由平台管理員以及集群管理員共同營運維護，如果您需要使用更多的集群請聯繫您的平台管理員，或者提交申請。',
+  WORKSPACE_BASE_INFO_Q2: '如何定義網路策略？',
   WORKSPACE_BASE_INFO_A2: '',
 
   WORKSPACE_CLUSTERS_DESC: '集群資訊是企業空間對集群資源的使用情況的統計',
 
   HOW_TO_APPLY_MORE_CLUSTER_Q: '如何為企業空間申請更多的集群？',
   HOW_TO_APPLY_MORE_CLUSTER_A:
-    '集群由平台管理員以及集群管理員共同營運維護，如果您需要使用更多的集群請聯繫您的平台管理員，或者提交申請',
+    '集群由平台管理員以及集群管理員共同營運維護，如果您需要使用更多的集群請聯繫您的平台管理員，或者提交申請。',
 
   NO_PUBLIC_CLUSTER_TIP:
-    '暫無可用的公開集群, 請在企業空間創建完畢後, 向平台管理員或集群管理員申請集群的授權',
+    '暫無可用的公開集群，請在企業空間創建完畢後，向平台管理員或集群管理員申請集群的授權。',
   WORKSPACE_NO_CLUSTER_TIP:
     '您需要聯繫平台管理員或者集群管理員為企業空間授權集群的訪問權限',
 
