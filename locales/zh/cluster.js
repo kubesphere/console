@@ -60,6 +60,8 @@ module.exports = {
 
   'Go back': '返回上一步',
 
+  Provider: '服务商',
+
   'Choose a provider': '选择服务商',
 
   'User Projects': '用户项目',

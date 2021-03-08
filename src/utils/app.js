@@ -48,7 +48,7 @@ export const transferReviewStatus = status => {
       break
     case 'passed':
     case 'rejected':
-      transStatus = 'status'
+      transStatus = status
       break
     case 'active':
       transStatus = 'passed'

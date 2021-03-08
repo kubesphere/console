@@ -125,12 +125,5 @@ module.exports = {
     'Antes de enviar para su revisión, asegúrate de que su aplicación haya pasado ' +
     'las pruebas básicas mostradas abajo',
   VERSION_SUBMIT_DOC: 'Consulte un manual de prueba más completo',
-  VERSION_NUMBER_DESC:
-    'La identificación importante de la versión. Solo puede contener números, ' +
-    'puntos decimales y corchetes ("[]"), y debe comenzar con un número ' +
-    'y contener puntos decimales.',
-  VERSION_NUMBER_ERROR_NOTE:
-    'Formato de número de versión incorrecto. Solo puede contener números, puntos decimales ' +
-    'y corchetes ("[]"), y debe comenzar con un número y contener puntos decimales.',
   UPDATE_LOG_DESC: 'Se usa para describir los detalles de esta actualización.',
 }

@@ -34,7 +34,6 @@ module.exports = {
 
   'Apps Management': '应用管理',
   'App Store Management': '应用商店管理',
-  'Certified Provider': '已认证服务商',
 
   Apps: '应用',
   'App Info': '应用信息',
@@ -67,15 +66,14 @@ module.exports = {
 
   'App Store': '应用商店',
   APP_STORE_DESC: '对已上架、已下架的应用进行管理',
-  Provider: '服务商',
   'Latest Version': '最新版本',
   'App Category': '应用分类',
   'Release / Suspended Time': '上架(下架)时间',
 
   'App Review': '应用审核',
   'App Reviews': '应用审核',
-  APP_REVIEW_DESC: '对服务商的认证及应用上架提供审核功能',
-  APP_REVIEWS_CREATE_DESC: '对服务商的认证及应用上架提供审核功能',
+  APP_REVIEW_DESC: '对应用上架提供审核功能',
+  APP_REVIEWS_CREATE_DESC: '对应用上架提供审核功能',
   Unprocessed: '待处理',
   Processed: '已处理',
   'Review Object': '审核对象',
@@ -119,7 +117,6 @@ module.exports = {
   EDIT_APP_DESC: '对应用的基本信息进行设置',
   'App Number': '应用编号',
   'App Version Types': '交付类型',
-  'App Provider': '应用服务商',
   'Create Time': '创建时间',
   'Add Version': '添加版本',
   'New Version': '添加版本',
@@ -186,7 +183,6 @@ module.exports = {
   'Version No': '版本号',
   'Deploy now': '立即部署',
   'Deploy after login': '登录后部署',
-  'Provider No': '服务商编号',
   'Evaluation stars': '综合评价',
   'Business introduction': '业务介绍',
   'Company website': '公司官网',
