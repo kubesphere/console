@@ -513,4 +513,5 @@ module.exports = {
   CREATE_PIPELINE_DESC: 'Build, test and deploy with Pipelines',
   'Choose a pipeline template': 'Choose a pipeline template',
   BATCH_RUN_DESC: 'Multi-branch does not support batch operation',
+  'Sync Status': 'Sync Status',
 }
