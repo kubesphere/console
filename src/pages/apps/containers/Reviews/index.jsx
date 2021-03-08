@@ -18,7 +18,7 @@
 
 import React from 'react'
 
-import { get, find, capitalize, values } from 'lodash'
+import { find, capitalize } from 'lodash'
 
 import { Status } from 'components/Base'
 import Table from 'components/Tables/List'
@@ -95,7 +95,7 @@ export default class Reviews extends React.Component {
       type: this.type,
       success: this.getData,
       onReject: () =>
-        this.props.trigger('openpitrix.template.review', {
+        this.props.trigger('openpitrix.template.reject', {
           detail: item,
           type: this.type,
           success: this.getData,
@@ -150,10 +150,9 @@ export default class Reviews extends React.Component {
     },
     {
       title: t('Operator'),
-      dataIndex: 'phase',
+      dataIndex: 'reviewer',
       isHideable: true,
       width: '10%',
-      render: phase => get(values(phase), '[0].operator', '-'),
     },
     {
       title: t('Review Status'),

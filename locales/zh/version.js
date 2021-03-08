@@ -115,10 +115,6 @@ module.exports = {
     '在正式提交审核之前，请确认你的应用已经通过了以下基本功能的测试',
   VERSION_SUBMIT_DOC: '更全面的测试手册请参看',
   'Develop and test guide': '《开发者测试指南》',
-  VERSION_NUMBER_DESC:
-    '应用版本的重要标识，只能包含数字、小数点及中括号("[]")，并且必需以数字开头并包含小数点',
-  VERSION_NUMBER_ERROR_NOTE:
-    '版本号格式错误，只能包含数字、小数点及中括号("[]")，并且必需以数字开头并包含小数点',
   UPDATE_LOG_DESC: '用于详细描述此次更新的具体内容',
 
   'Wrong version number format': '版本号的格式错误',

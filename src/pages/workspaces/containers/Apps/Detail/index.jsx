@@ -162,7 +162,7 @@ export default class RoleDetail extends React.Component {
         value: getVersionTypesName(get(detail, 'app_version_types', '')),
       },
       {
-        name: t('App Provider'),
+        name: t('Workspace'),
         value: get(detail, 'isv', '-'),
       },
       {

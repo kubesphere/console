@@ -21,8 +21,6 @@ import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 import { Form, Input, TextArea } from '@kube-design/components'
 
-import { PATTERN_VERSION_NO } from 'utils/constants'
-
 import styles from './index.scss'
 
 @observer
@@ -48,13 +46,8 @@ export default class VersionEdit extends React.Component {
       <Form data={formData} ref={formRef} className={styles.editForm}>
         <Form.Item
           label={t('Version Number')}
-          desc={t('VERSION_NUMBER_DESC')}
           rules={[
             { required: true, message: t('Please input version number') },
-            {
-              pattern: PATTERN_VERSION_NO,
-              message: t('VERSION_NUMBER_ERROR_NOTE'),
-            },
           ]}
         >
           <Input

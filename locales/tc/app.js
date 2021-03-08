@@ -34,7 +34,6 @@ module.exports = {
 
   'Apps Management': '應用管理',
   'App Store Management': '應用商店管理',
-  'Certified Provider': '已認證服務商',
 
   'App Info': '應用資訊',
   'Base Info': '基本資訊',
@@ -73,8 +72,8 @@ module.exports = {
 
   'App Review': '應用審核',
   'App Reviews': '應用審核',
-  APP_REVIEW_DESC: '對服務商的認證及應用上架提供審核功能',
-  APP_REVIEWS_CREATE_DESC: '對服務商的認證及應用上架提供審核功能',
+  APP_REVIEW_DESC: '對應用上架提供審核功能',
+  APP_REVIEWS_CREATE_DESC: '對應用上架提供審核功能',
   Unprocessed: '待處理',
   Processed: '已處理',
   'Review Object': '審核對象',
@@ -120,7 +119,6 @@ module.exports = {
   EDIT_APP_DESC: '對應用的基本資訊進行設置',
   'App Number': '應用編號',
   'App Version Types': '交付類型',
-  'App Provider': '應用服務商',
   'Create Time': '創建時間',
   'Add Version': '添加版本',
   'New Version': '添加版本',
@@ -186,7 +184,6 @@ module.exports = {
   'Version No': '版本號碼',
   'Deploy now': '立即部署',
   'Deploy after login': '登入後部署',
-  'Provider No': '服務商編號',
   'Evaluation stars': '綜合評價',
   'Business introduction': '業務介紹',
   'Company website': '公司官網',

@@ -39,7 +39,6 @@ module.exports = {
   'Version Number': '版本号',
   'Change Log': '更新日志',
   Contact: '联系方式',
-  Provider: '服务商',
   'Published Date': '上架时间',
   'App Id': '应用编号',
   'App Readme': '应用描述',

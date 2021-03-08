@@ -257,7 +257,7 @@ export default {
     },
   },
   'openpitrix.template.review': {
-    on({ store, detail, type, success, ...props }) {
+    on({ store, detail, type, success, onReject, ...props }) {
       const modal = Modal.open({
         onOk: async () => {
           const { app_id, version_id } = detail
@@ -265,6 +265,10 @@ export default {
           Modal.close(modal)
           Notify.success(t('Pass Successfully'))
           success && success()
+        },
+        onReject: () => {
+          Modal.close(modal)
+          onReject()
         },
         icon: 'safe-notice',
         title: t('Review Content'),

@@ -75,7 +75,7 @@ export default class Store extends React.Component {
       ),
     },
     {
-      title: t('Provider'),
+      title: t('Workspace'),
       dataIndex: 'isv',
       isHideable: true,
       width: '10%',
