@@ -20,7 +20,7 @@ module.exports = {
   Alerting: '告警',
   Notification: '通知',
   Message: '訊息',
-  Summary: '標题',
+  Summary: '標題',
   'Alerting Detail': '告警詳情',
   'Alerting Message': '告警訊息',
   'Alerting Messages': '告警訊息',

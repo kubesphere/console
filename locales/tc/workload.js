@@ -217,9 +217,9 @@ module.exports = {
   'CPU(m)': 'CPU(m)',
   Commands: '命令',
   'Add command': '添加命令',
-  Arguments: '参數',
-  Argument: '参數',
-  'Add argument': '添加参數',
+  Arguments: '參數',
+  Argument: '參數',
+  'Add argument': '添加參數',
   Protocols: '協定',
   'Must match': '必須滿足',
   'Match as much as possible': '盡可能滿足',
@@ -305,7 +305,7 @@ module.exports = {
   CRONJOBS_VOLUME_DESC:
     '可以將臨時儲存卷，持久化儲存卷掛載至定時任務的容器組内。',
   CRONJOB_CRON_DESC:
-    '按照給定的時間計畫運行工作。語法参照 <a href="//en.wikipedia.org/wiki/Cron" target="_blank">CRON</a>。Kubernetes 預設使用 UTC 時間, 請注意根據時區調整定時計畫。',
+    '按照給定的時間計畫運行工作。語法參照 <a href="//en.wikipedia.org/wiki/Cron" target="_blank">CRON</a>。Kubernetes 預設使用 UTC 時間, 請注意根據時區調整定時計畫。',
 
   MOUNT_VOLUME_DESC:
     '持久化儲存卷請選擇支持多節點讀寫模式 (ROX 或者 RWX) 的儲存卷，否則可能因容器組不在同一節點導致容器組更新失敗。如果您選擇了單節點讀寫 (RWO) 模式的儲存卷您也可以通過節點選擇將容器組安排在同一節點上來避免因儲存卷訪問模式造成的更新錯誤。',
@@ -658,7 +658,7 @@ module.exports = {
   CONTAINER_SECURITY_CTX_DESC:
     'Security Context的目的是限制不可信容器的行為，保護系統和其他容器不受其影響。',
   POD_SECURITY_CONTEXT_DESC:
-    '容器組 Security Context 可以為容器組内的容器提供預設的用戶和用戶組設置以及 seLinuxOptions 的参數設置，如果容器中已經對這些参數進行了定義，則優先以容器中的設置為準。',
+    '容器組 Security Context 可以為容器組内的容器提供預設的用戶和用戶組設置以及 seLinuxOptions 的參數設置，如果容器中已經對這些參數進行了定義，則優先以容器中的設置為準。',
   ACCESS_CONTROL_PRIVILEGED: '以特權模式運行(Privileged)',
   ACCESS_CONTROL_PRIVILEGED_DESC:
     '此時容器中的進程本質上等價於宿主節點上的 root 用戶。',

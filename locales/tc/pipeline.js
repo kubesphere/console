@@ -23,7 +23,7 @@ module.exports = {
   'User types that can trigger builds': '可以觸發構建的用戶類型',
   'If you check this option, you cannot run multiple builds concurrently.':
     '如果勾選此選項，則不能同時運行多個 build.',
-  'Parametric Build': '参數化構建',
+  'Parametric Build': '參數化構建',
   'Build Trigger': '構建觸發器',
   'Scheduled Build': '定時構建',
   'Trigger a Remote Build (for example, using a script)':
