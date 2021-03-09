@@ -20,7 +20,7 @@ module.exports = {
   Dashboard: '首頁',
   dashboard: '首頁',
   'Last login time': '最近登入',
-  'involved project': '参與項目',
+  'involved project': '參與項目',
   'create project': '創建項目',
   'Project Top3': '項目 Top3',
   'KubeSphere Running Status': 'KubeSphere 運行狀態',
@@ -74,7 +74,7 @@ module.exports = {
   USAGE_RATE: '使用率',
   NO_PROJECT: '暫時没有找到可用項目',
   NO_POD_MONITOR_DATA: '暫時没有容器組監控數據',
-  RESOURCE_WARNING_TIPS: '有 {warnNum} 個{tipName}狀態異常',
+  RESOURCE_WARNING_TIPS: '有 {warnNum} 個 {tipName} 狀態異常',
 
   USER_DASHBOARD_EMPTY_TITLE: '您暫時不屬於任何企業空間',
   USER_DASHBOARD_EMPTY_DESC:

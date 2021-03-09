@@ -353,10 +353,10 @@ module.exports = {
 
   'Version Info': '版本資訊',
   Homepage: '首頁',
-  'Params Configuration': '参數配置',
-  'Add parameter': '添加参數',
-  'Add Param': '添加参數',
-  'No parameters': '暫無参數',
+  'Params Configuration': '參數配置',
+  'Add parameter': '添加參數',
+  'Add Param': '添加參數',
+  'No parameters': '暫無參數',
   'Back To List': '返回列表',
   List: '列表',
   'Time Range': '時間範圍',
@@ -401,7 +401,7 @@ module.exports = {
   Download: '下載',
   Aborted: '已取消',
   Paused: '已暫停',
-  'This param is required': '此参數不能為空',
+  'This param is required': '此參數不能為空',
   Images: '鏡像',
   filename: '文件名稱',
   NODES: '節點',
@@ -502,7 +502,7 @@ module.exports = {
 
   REPS_ADDRESS: '項目地址',
   ISSUE_FEEDBACK: '問題反饋',
-  PART_IN_DISCUSSION: '参與討論',
+  PART_IN_DISCUSSION: '參與討論',
   CODE_CONTRIBUTE: '貢獻代碼',
   GITHUB_STAR: '點亮Star',
 
