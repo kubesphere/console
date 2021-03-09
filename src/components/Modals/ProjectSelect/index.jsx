@@ -148,7 +148,7 @@ export default class ProjectSelectModal extends React.Component {
     this.setState({ search: name }, this.fetchData)
   }
 
-  handleRefresh = () => this.fetchData
+  handleRefresh = () => this.fetchData()
 
   handleTypeChange = type => {
     if (this.state.type !== type) {

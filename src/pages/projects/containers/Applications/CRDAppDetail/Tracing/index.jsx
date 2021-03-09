@@ -26,6 +26,8 @@ import { Button, Icon, Select } from '@kube-design/components'
 import TracingCard from 'projects/components/Cards/Tracing'
 import TracingDetail from 'projects/components/Modals/TracingDetail'
 
+import ServiceStore from 'stores/service'
+
 import styles from './index.scss'
 
 @inject('detailStore')
@@ -35,6 +37,8 @@ export default class Tracing extends React.Component {
     super(props)
 
     this.detailStore = props.detailStore
+
+    this.serviceStore = new ServiceStore()
 
     this.state = {
       showDetailModal: false,
@@ -82,7 +86,7 @@ export default class Tracing extends React.Component {
   }
 
   get services() {
-    return this.detailStore.serviceStore.list.data.map(item => ({
+    return this.serviceStore.list.data.map(item => ({
       label: item.name,
       value: item.name,
       type: item.type,
