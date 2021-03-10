@@ -50,9 +50,44 @@ const renderTerminal = async ctx => {
       getCurrentUser(ctx),
       getKSConfig(),
     ])
+<<<<<<< HEAD
     await renderTerminalPage(ctx, { ksConfig, user })
   } catch (err) {
     renderViewErr(ctx, err)
+=======
+
+    await renderTerminalPage(ctx, { ksConfig, user })
+  } catch (err) {
+    ctx.app.emit('error', err)
+    if (err) {
+      if (err.code === 401 || err.code === 403 || err.status === 401) {
+        if (isValidReferer(ctx.path)) {
+          ctx.redirect(`/login?referer=${ctx.path}`)
+        } else {
+          ctx.redirect('/login')
+        }
+      } else if (err.code === 502) {
+        await ctx.render('error', {
+          title: clientConfig.title,
+          t: ctx.t.bind(ctx),
+          message: 'Unable to access the backend services',
+        })
+      } else if (err.code === 'ETIMEDOUT') {
+        await ctx.render('error', {
+          title: clientConfig.title,
+          t: ctx.t.bind(ctx),
+          message: 'Unable to access the api server',
+        })
+      } else {
+        ctx.app.emit('error', err)
+      }
+    } else {
+      await ctx.render('error', {
+        title: clientConfig.title,
+        t: ctx.t.bind(ctx),
+      })
+    }
+>>>>>>> 1bfc6894... update:   add terminal Entery
   }
 }
 const renderLogin = async ctx => {

@@ -27,7 +27,10 @@ const root = path => resolve(__dirname, `../${path}`)
 
 const config = {
   mode: 'development',
-  entry: baseConfig.entry,
+  entry: {
+    main: ['webpack-hot-middleware/client', './src/core/index.js'],
+    terminalEntry: ['webpack-hot-middleware/client', './src/core/terminal.js'],
+  },
   output: {
     filename: '[name].js',
     path: root('dist/'),
