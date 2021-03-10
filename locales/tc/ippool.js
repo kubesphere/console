@@ -35,13 +35,13 @@ module.exports = {
 
   'Pod IP Range': '容器組 IP 地址範圍',
 
-  'Number of Creations': '創建數量',
+  'Number of Creation': '創建數量',
   'Pod IP Pools to be created': '即將創建的容器組 IP 地址範圍',
   'Set to be globally available': '設為全局可用',
 
-  'Please input the ip address': '請輸入 IP 地址',
+  'Please input the IP address': '請輸入 IP 地址',
   'Please input the mask bit': '請輸入掩碼位',
-  'Please input the ip/mask bit': '請輸入 IP 地址 / 掩碼位',
+  'Please input the IP/mask bit': '請輸入 IP 地址 / 掩碼位',
 
   'Please input the number of Pod IP Pools to be created':
     '請輸入需要創建的容器組 IP 地址範圍數量',

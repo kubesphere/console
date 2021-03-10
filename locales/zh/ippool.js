@@ -35,13 +35,13 @@ module.exports = {
 
   'Pod IP Range': '容器组 IP 地址范围',
 
-  'Number of Creations': '创建数量',
+  'Number of Creation': '创建数量',
   'Pod IP Pools to be created': '即将创建的容器组 IP 地址范围',
   'Set to be globally available': '设为全局可用',
 
-  'Please input the ip address': '请输入 IP 地址',
+  'Please input the IP address': '请输入 IP 地址',
   'Please input the mask bit': '请输入掩码位',
-  'Please input the ip/mask bit': '请输入 IP 地址/掩码位',
+  'Please input the IP/mask bit': '请输入 IP 地址/掩码位',
 
   'Please input the number of Pod IP Pools to be created':
     '请输入需要创建的容器组 IP 地址范围数量',
@@ -51,14 +51,14 @@ module.exports = {
     '可以同时创建多个容器组 IP 地址范围，数量范围为 1～10',
   IPPOOL_USAGE_Q: '如何利用 IP 地址范围规划容器组网络？',
   IPPOOL_USAGE_A:
-    'IP 地址范围用于规划 Pod 网络地址空间， 每个 IP 地址范围之间地址空间不能重叠。创建工作负载时，可选择特定的 IP 地址范围，这样创建出的容器组将从该 IP 地址范围中分配 IP。',
+    'IP 地址范围用于规划 Pod 网络地址空间，每个 IP 地址范围之间地址空间不能重叠。创建工作负载时，可选择特定的 IP 地址范围，这样创建出的容器组将从该 IP 地址范围中分配 IP。',
 
   IPPOOL_ASSIGN_WORKSPACE_DESC:
     'IP 地址范围分配给企业空间之后才能被企业空间使用。',
   IPPOOL_ASSIGN_WORKSPACE_ALLOCATED_WARNING:
     'IP 地址范围已被使用，无法分配给某一个具体的企业空间',
   IPPOOL_ASSIGN_WORKSPACE_CHANGE_WARNING:
-    'IP 地址范围已被使用, 且已指定具体的企业空间，无法更改目标企业空间',
+    'IP 地址范围已被使用，且已指定具体的企业空间，无法更改目标企业空间',
 
   IPPOOL_WORKSPACE_EMPTY_TIP: '暂无企业空间使用此 IP 地址范围',
 }

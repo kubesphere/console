@@ -73,14 +73,14 @@ export default class CreateIPPoolModal extends Component {
   validator = (rule, value, callback) => {
     if (!value) {
       return callback({
-        message: t('Please input the ip/mask bit'),
+        message: t('Please input the IP/mask bit'),
         field: rule.field,
       })
     }
 
     if (!value.cidr) {
       return callback({
-        message: t('Please input the ip/mask bit'),
+        message: t('Please input the IP/mask bit'),
         field: rule.field,
       })
     }
@@ -108,10 +108,10 @@ export default class CreateIPPoolModal extends Component {
         <Form.Item
           label={t('IP Address')}
           rules={[
-            { required: true, message: t('Please input the ip address') },
+            { required: true, message: t('Please input the IP address') },
             {
               pattern: PATTERN_IP,
-              message: t('Invalid ip address'),
+              message: t('Invalid IP address'),
             },
           ]}
         >
@@ -131,7 +131,7 @@ export default class CreateIPPoolModal extends Component {
           />
         </Form.Item>
         <Form.Item
-          label={t('Number of Creations')}
+          label={t('Number of Creation')}
           desc={t('IP_POOL_CREATE_COUNT_DESC')}
           rules={[
             {

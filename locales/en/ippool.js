@@ -35,30 +35,30 @@ module.exports = {
 
   'Pod IP Range': 'Pod IP Range',
 
-  'Number of Creations': 'Number of Creations',
+  'Number of Creation': 'Number of Creation',
   'Pod IP Pools to be created': 'Pod IP Pools to be created',
   'Set to be globally available': 'Set to be globally available',
 
-  'Please input the ip address': 'Please input the ip address',
+  'Please input the IP address': 'Please input the IP address',
   'Please input the mask bit': 'Please input the mask bit',
-  'Please input the ip/mask bit': 'Please input the ip/mask bit',
+  'Please input the IP/mask bit': 'Please input the IP/mask bit',
 
   'Please input the number of Pod IP Pools to be created':
     'Please input the number of Pod IP Pools to be created',
 
-  POD_IP_POOL_DESC: 'Pod IP pools of the cluster',
+  POD_IP_POOL_DESC: 'Pod IP Pools of the cluster.',
   IP_POOL_CREATE_COUNT_DESC:
-    'Multiple Pod IP pools can be created at the same time. The range is 1～10.',
-  IPPOOL_USAGE_Q: 'How to manage a Pod network using the Pod IP Pool?',
+    'Up to 10 Pod IP Pools can be created at the same time.',
+  IPPOOL_USAGE_Q: 'How to manage a Pod network using a Pod IP Pool?',
   IPPOOL_USAGE_A:
-    'The Pod IP Pool is used to manage the Pod network address space, and the address space between each Pod IP Pool cannot overlap. When creating a workload, you can select a specific Pod IP Pool, so that the created pods will be assigned IPs from this Pod IP Pool.',
+    'A Pod IP Pool is used to manage the Pod network address space, and the address space between each Pod IP Pool cannot overlap. When creating a workload, you can select a specific Pod IP Pool, so that created Pods will be assigned IPs from this Pod IP Pool.',
 
   IPPOOL_ASSIGN_WORKSPACE_DESC:
-    'The Pod IP Pool can be used by the workspace after being assigned to the workspace.',
+    'The Pod IP Pool can be used by a workspace after assigned to it.',
   IPPOOL_ASSIGN_WORKSPACE_ALLOCATED_WARNING:
-    'The Pod IP Pool has been used and cannot be assigned to a specific workspace',
+    'The Pod IP Pool has been used and cannot be assigned to a specific workspace.',
   IPPOOL_ASSIGN_WORKSPACE_CHANGE_WARNING:
-    'The Pod IP Pool has been used, and a specific workspace has been designated, the target workspace cannot be changed',
+    'The Pod IP Pool has been used with a specific workspace assigned. The target workspace cannot be changed.',
 
-  IPPOOL_WORKSPACE_EMPTY_TIP: 'No workspace currently uses this Pod IP Pool',
+  IPPOOL_WORKSPACE_EMPTY_TIP: 'No workspace is using this Pod IP Pool.',
 }

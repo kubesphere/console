@@ -112,7 +112,7 @@ module.exports = {
 
   'Please add at least one cluster node': '請至少添加一個集群節點',
   "Please specify the node's roles": '請指定節點的角色',
-  'Please input the ip address': '請輸入 IP 地址',
+  'Please input the IP address': '請輸入 IP 地址',
 
   'Add node to the cluster': '添加節點到集群中',
 
@@ -137,7 +137,7 @@ module.exports = {
 
   'KubeSphere Settings': 'KubeSphere 設置',
 
-  'Invalid ip address': 'IP 地址不合法',
+  'Invalid IP address': 'IP 地址不合法',
 
   'Cluster Creation Progress': '集群創建進度',
 
