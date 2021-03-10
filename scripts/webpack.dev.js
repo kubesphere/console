@@ -21,15 +21,13 @@ const webpack = require('webpack')
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin')
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
 const baseConfig = require('./webpack.base')
+const localeConfig = require('./webpack.locale')
 
 const root = path => resolve(__dirname, `../${path}`)
 
 const config = {
   mode: 'development',
-  entry: {
-    main: ['webpack-hot-middleware/client', './src/core/index.js'],
-    terminalEntry: ['webpack-hot-middleware/client', './src/core/terminal.js'],
-  },
+  entry: baseConfig.entry,
   output: {
     filename: '[name].js',
     path: root('dist/'),
@@ -122,6 +120,18 @@ const config = {
       'process.env.NODE_ENV': JSON.stringify('development'),
     }),
   ],
+  devServer: {
+    publicPath: '/',
+    compress: true,
+    noInfo: false,
+    quiet: false,
+    hot: true,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    },
+    host: '0.0.0.0',
+    port: 8001,
+  },
 }
 
-module.exports = config
+module.exports = [config, localeConfig]

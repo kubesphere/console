@@ -15,33 +15,41 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 const fs = require('fs')
-const path = require('path')
-const RawSource = require('webpack-sources/lib/RawSource')
+const { resolve } = require('path')
+const WebpackAssetsManifest = require('webpack-assets-manifest')
+const LocalePlugin = require('./locale-plugin')
+
+const root = path => resolve(__dirname, `../${path}`)
 
 const isDev = process.env.NODE_ENV === 'development'
 
-class LocalePlugin {
-  apply(compiler) {
-    compiler.hooks.emit.tap('LocalePlugin', compilation => {
-      const assets = compilation.getAssets()
-      assets.forEach(asset => {
-        let content = asset.source.source()
-        const obj = eval(content)
-        if (obj.default) {
-          content = JSON.stringify(
-            obj.default.reduce((prev, cur) => ({ ...prev, ...cur }), {})
-          )
-        }
-        compilation.updateAsset(asset.name, new RawSource(content))
+const langs = fs.readdirSync(root('locales'))
+const entries = langs.reduce(
+  (prev, cur) => ({
+    ...prev,
+    [`locale-${cur}`]: `./locales/${cur}/index.js`,
+  }),
+  {}
+)
 
-        if (isDev) {
-          fs.writeFileSync(path.join(compiler.outputPath, asset.name), content)
-        }
-      })
-    })
-  }
+const filename = isDev ? '[name].json' : '[name].[chunkhash].json'
+
+module.exports = {
+  mode: isDev ? 'development' : 'production',
+  target: 'node',
+  entry: entries,
+  output: {
+    filename,
+    path: root('dist/'),
+    publicPath: '/dist/',
+  },
+  plugins: [
+    new LocalePlugin({ output: '../dist' }),
+    new WebpackAssetsManifest({
+      entrypoints: true,
+      writeToDisk: true,
+      output: '../dist/manifest.locale.json',
+    }),
+  ],
 }
-
-module.exports = LocalePlugin

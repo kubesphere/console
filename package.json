@@ -5,7 +5,7 @@
   "license": "AGPL-3.0",
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
-    "@kube-design/components": "^1.1.12",
+    "@kube-design/components": "^1.1.13",
     "ace-builds": "^1.4.7",
     "ansi_up": "^4.0.4",
     "async-validator": "^1.8.5",
@@ -71,8 +71,10 @@
     "xterm": "3.8.1"
   },
   "scripts": {
-    "start": "cross-env NODE_ENV=development nodemon -w ./server -e js,yaml server/server.js",
+    "start": "concurrently -k --raw 'yarn dev:client' 'yarn dev:server'",
     "build": "yarn build:client && yarn build:server",
+    "dev:client": "cross-env NODE_ENV=development webpack-dev-server --config scripts/webpack.dev.js -w",
+    "dev:server": "cross-env NODE_ENV=development nodemon -w ./common -w ./server -e js,yaml server/server.js",
     "build:client": "webpack -p --config scripts/webpack.prod.js --display errors-only",
     "build:server": "webpack -p --config scripts/webpack.server.js --display errors-only",
     "build:e2e": "webpack -p --config scripts/webpack.e2e.js --display errors-only",
@@ -108,7 +110,7 @@
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
     "@babel/runtime": "^7.1.2",
-    "@pmmmwh/react-refresh-webpack-plugin": "^0.4.2",
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.4.3",
     "@svgr/webpack": "^2.2.1",
     "autoprefixer": "7.1.2",
     "babel-eslint": "^10.1.0",
@@ -120,6 +122,7 @@
     "babel-plugin-transform-imports": "^1.5.1",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.5",
     "cache-loader": "^2.0.1",
+    "concurrently": "^6.0.0",
     "copy-webpack-plugin": "^5.1.1",
     "cross-env": "^5.2.0",
     "css-loader": "^1.0.1",
@@ -146,7 +149,6 @@
     "jest": "^24.9.0",
     "jest-enzyme": "^7.1.2",
     "jsdom": "^13.1.0",
-    "koa-webpack-middleware": "^1.0.7",
     "lint-staged": "^7.2.2",
     "mini-css-extract-plugin": "^0.7.0",
     "node-sass": "^4.13.1",
@@ -168,6 +170,7 @@
     "webpack-bundle-analyzer": "^3.0.3",
     "webpack-chunk-rename-plugin": "^1.0.3",
     "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.11.2",
     "webpackbar": "^2.6.3"
   },
   "engines": {
