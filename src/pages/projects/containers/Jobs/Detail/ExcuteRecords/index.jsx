@@ -132,7 +132,7 @@ class ExcuteRecords extends React.Component {
         <Column>
           <InputSearch
             name="search"
-            placeholder={t('Please input a keyword to filter')}
+            placeholder={t('Filter by keyword')}
             onSearch={this.handleSearch}
           />
         </Column>

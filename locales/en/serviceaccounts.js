@@ -23,5 +23,5 @@ module.exports = {
   'Modify Service Account Role': 'Modify Service Account Role',
   'Secret Detail': 'Secret Detail',
   SERVICEACCOUNT_DESC:
-    'Service Account provides an identity for processes that run in a Pod that can be used to access the API server',
+    'A Service Account provides an identity for processes that run in a Pod that can be used to access the API server.',
 }

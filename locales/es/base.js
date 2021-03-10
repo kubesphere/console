@@ -117,7 +117,7 @@ module.exports = {
   Enable: 'Habilitar',
   Enabled: 'Habilitado',
   'End Time': 'Hora de finalización',
-  'Enter query conditions to filter': 'Introduce las condiciones para filtrar',
+  'Search with filters': 'Introduce las condiciones para filtrar',
   'Error Tips': 'Consejos de error',
   event: 'evento',
   'Event metadata': 'Metadatos de eventos',
@@ -236,8 +236,7 @@ module.exports = {
   'Platform URL': 'URL de plataforma',
   'Platform Version': 'Versión de plataforma',
   'Platform-level Access Control': 'Control de acceso a nivel de plataforma',
-  'Please input a keyword to filter':
-    'Introduce una palabra clave para filtrar',
+  'Filter by keyword': 'Introduce una palabra clave para filtrar',
   'Search by keyword': 'Introduce una palabra clave para buscar',
   'Search by name': 'Introduce un nombre para buscar',
   'Please input name': 'Introduce el nombre',

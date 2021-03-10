@@ -91,7 +91,7 @@ module.exports = {
   'Please add at least one cluster node':
     'Please add at least one cluster node',
   "Please specify the node's roles": "Please specify the node's roles",
-  'Please input the ip address': 'Please input the ip address',
+  'Please input the IP address': 'Please input the IP address',
   'Add node to the cluster': 'Add node to the cluster',
   'Node Internal IP Address': 'Node Internal IP Address',
   'SSH Port': 'SSH Port',
@@ -111,7 +111,7 @@ module.exports = {
   'etcd Backup Period': 'etcd Backup Period',
   'Keep Backup Number': 'Keep Backup Number',
   'KubeSphere Settings': 'KubeSphere Settings',
-  'Invalid ip address': 'Invalid ip address',
+  'Invalid IP address': 'Invalid IP address',
   NO_CLUSTER_TIP: 'Agregue al menos un clúster.',
   NO_CLUSTER_TIP_DESC:
     'Un clúster es un grupo de nodos (máquinas físicas o virtuales) que ejecutan Kubernetes, y la función de Kubesphere también depende de los nodos en el clúster.',

@@ -330,7 +330,7 @@ export default class PodsCard extends React.Component {
         <InputSearch
           className={styles.search}
           name="search"
-          placeholder={t('Please input a keyword to filter')}
+          placeholder={t('Filter by keyword')}
           onSearch={this.handleSearch}
         />
         <div className={styles.actions}>

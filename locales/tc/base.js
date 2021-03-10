@@ -285,7 +285,7 @@ module.exports = {
   'Please select project': '請選擇項目',
   'Please select version': '請選擇版本',
   'Please input password': '請輸入密碼',
-  'Please input a keyword to filter': '請輸入關鍵字過濾',
+  'Filter by keyword': '請輸入關鍵字過濾',
   'Search by keyword': '請輸入關鍵字進行尋找',
   'Search by name': '請輸入名稱進行尋找',
   'Name validation failed':
@@ -319,7 +319,7 @@ module.exports = {
 
   TOTAL_ITEMS: '共 {num} 個項目',
 
-  'Enter query conditions to filter': '輸入查詢條件進行過濾',
+  'Search with filters': '輸入查詢條件進行過濾',
 
   DELETE_TITLE: '{type} 刪除確認？',
   DELETE_TIP:

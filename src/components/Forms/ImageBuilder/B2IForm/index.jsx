@@ -225,7 +225,7 @@ export default class S2IForm extends React.Component {
           </div>
           <div className="is-half">
             <Form.Item
-              label={t('Target image repository')}
+              label={t('Target Image Repository')}
               desc={t.html('S2I_TARGET_IMAGE_REPONSTRY_DESC', {
                 link: getDocsUrl('secrets'),
               })}

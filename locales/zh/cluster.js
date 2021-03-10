@@ -44,8 +44,8 @@ module.exports = {
 
   'Host Cluster': 'Host 集群',
   'Host Clusters': 'Host 集群',
-  'Member Cluster': '成员集群',
-  'Member Clusters': '成员集群',
+  'Member Cluster': 'Member 集群',
+  'Member Clusters': 'Member 集群',
 
   'Kubernetes Version': 'Kubernetes 版本',
 
@@ -121,7 +121,7 @@ module.exports = {
 
   'Please add at least one cluster node': '请至少添加一个集群节点',
   "Please specify the node's roles": '请指定节点的角色',
-  'Please input the ip address': '请输入 IP 地址',
+  'Please input the IP address': '请输入 IP 地址',
 
   'Add node to the cluster': '添加节点到集群中',
 
@@ -146,7 +146,7 @@ module.exports = {
 
   'KubeSphere Settings': 'KubeSphere 设置',
 
-  'Invalid ip address': 'IP 地址不合法',
+  'Invalid IP address': 'IP 地址不合法',
 
   'Cluster Creation Progress': '集群创建进度',
 

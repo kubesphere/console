@@ -226,7 +226,7 @@ export default class FilterInput extends Component {
       <Input
         type="text"
         innerRef={this.input}
-        placeholder={t('Enter query conditions to filter')}
+        placeholder={t('Search with filters')}
         onChange={this.handleChange}
         onKeyUp={this.handleKeyUp}
         value={value || ''}

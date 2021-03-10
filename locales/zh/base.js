@@ -283,7 +283,7 @@ module.exports = {
   'Please select project': '请选择项目',
   'Please select version': '请选择版本',
   'Please input password': '请输入密码',
-  'Please input a keyword to filter': '请输入关键字过滤',
+  'Filter by keyword': '请输入关键字过滤',
   'Search by keyword': '请输入关键字进行查找',
   'Search by name': '请输入名称进行查找',
   'Name validation failed':
@@ -317,7 +317,7 @@ module.exports = {
 
   TOTAL_ITEMS: '共 {num} 个条目',
 
-  'Enter query conditions to filter': '输入查询条件进行过滤',
+  'Search with filters': '输入查询条件进行过滤',
 
   DELETE_TITLE: '{type}删除确认?',
   DELETE_TIP:
