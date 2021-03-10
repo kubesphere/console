@@ -118,7 +118,9 @@ export default class Branch extends React.Component {
       cluster: params.cluster,
       name: detail.name,
     })
+
     this.store.fetchDetail(params)
+
     Notify.success({
       content: t('Scan repo success'),
     })
