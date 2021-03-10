@@ -381,9 +381,9 @@ module.exports = {
   DAEMONSET_CREATE_DESC:
     'A DaemonSet ensures that all (or some) Nodes run a copy of a Pod. Typically, a DaemonSet is used to running a logs collection, monitoring daemon or other system management applications.',
   JOB_DESC:
-    'A Job is used to execute one-time tasks. A job creates one or more pods and ensures that a specified number of them successfully terminate.',
+    'A Job is used to execute one-time tasks. A Job creates one or more pods and ensures that a specified number of them successfully terminate.',
   JOB_CREATE_DESC:
-    'A Job is used to execute one-time tasks. A job creates one or more pods and ensures that a specified number of them successfully terminate.',
+    'A Job is used to execute one-time tasks. A Job creates one or more pods and ensures that a specified number of them successfully terminate.',
   CRONJOB_DESC:
     'A CronJob creates Jobs on a time-based schedule. For example, it runs a job periodically on a given schedule or only runs a job once on a given time.',
   CRONJOB_CREATE_DESC:

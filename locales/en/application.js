@@ -24,7 +24,7 @@ module.exports = {
     'Add Internet access rule for the application',
   'Add New Component': 'Add New Component',
   'Add Service': 'Add Service',
-  'Add stateful or stateless services': 'Add stateful or stateless services',
+  'Add stateful or stateless services': 'Add stateful or stateless Services',
   'App Description': 'App Description',
   'App store deployment': 'App store deployment',
   'App Template': 'App Template',
@@ -152,7 +152,7 @@ module.exports = {
   TOTAL_APPS: 'Total {num} applications',
 
   APPLICATIONS_DESC:
-    'An application provides users with comprehensive business functions in one package. App templates in KubeSphere are built on the Helm packaging specification. They are delivered through a unified public or private Helm repository. An application is composed of one or more Kubernetes objects including workloads, services and ingress.',
+    'An application provides users with comprehensive business functions in one package. App templates in KubeSphere are built on the Helm packaging specification. They are delivered through a unified public or private Helm repository. An application is composed of one or more Kubernetes objects including Workloads, Services and Ingress.',
   APP_DEPLOYMENT_DESC:
     'Lightweight, portable and self-contained software packaging technology enables applications to run in almost any place in the same way.',
 
@@ -169,10 +169,10 @@ module.exports = {
     'It can only contain lowercase letters and numbers. The maximum length of characters is set to 16.',
 
   APP_WORKLOAD_TYPE_DESC:
-    'Support stateless services (Deployment) and stateful services (StatefulSet)',
+    'Support stateless Services (Deployment) and stateful Services (StatefulSet)',
 
-  SERVICE_DEPLOYMENT: 'Stateless service(Deployment)',
-  SERVICE_STATEFULSET: 'Stateful service(StatefulSet)',
+  SERVICE_DEPLOYMENT: 'Stateless Service(Deployment)',
+  SERVICE_STATEFULSET: 'Stateful Service(StatefulSet)',
 
   CONNECTION_POOL_TIP:
     'A fixed number of connection objects will be created for the application and stored in the connection pool for reuse. The existing pool is available for each access, and each connection object will be returned to the pool after use.',
@@ -199,14 +199,14 @@ module.exports = {
 
   HOW_TO_USE_APPLICATION_GOVE_Q: 'How to use Application Governance?',
   HOW_TO_USE_APPLICATION_GOVE_A:
-    'Please create a composing app and enable service governance for each service before you use Application Governance.',
+    'Please create a composing app and enable service governance for each Service before you use Application Governance.',
 
   FROM_APP_STORE_DESC:
     'From the official App Store of KubeSphere with high-quality applications and easy deployments.',
   FROM_APP_TEMPLATES_DESC:
     'From the app templates of workspace and the third-party Helm app templates of App Repository.',
   COMPOSING_APP_DESC:
-    'You can publish services to build applications through resource orchestration (Application Governance supported).',
+    'You can publish Services to build applications through resource orchestration (Application Governance supported).',
   APP_TEMPLATES_MODAL_DESC:
     'The app template comes from the workspace and the third-party Helm app templates. It supports one click deployment and can be visualized in KubeSphere to show and provide deployments and management functions.',
 
@@ -227,7 +227,7 @@ module.exports = {
     'Tracing depends on the microservices module. The current cluster has not enabled the microservices module.',
 
   APPLICATION_SERVICE_DESC:
-    'You can set different service components based on the service type in an application. Stateful and stateless services are both supported.',
+    'You can set different service components based on the Service type in an application. Stateful and stateless Services are both supported.',
 
   INTERNET_ACCESS_DESC:
     "You can set the application's Internet access rules (Ingress).",

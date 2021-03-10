@@ -97,7 +97,7 @@ module.exports = {
   SERVICE_DESC:
     'A Service is an abstraction that defines a logical collection of Pods and a strategy for accessing them.',
   SERVICE_CREATE_DESC:
-    'A Service is an abstraction that defines a logical collection of Pods and a strategy for accessing them. You can select the service type or how a service is created. KubeSphere supports both stateful and stateless services and services can be created through codes or artifacts.',
+    'A Service is an abstraction that defines a logical collection of Pods and a strategy for accessing them. You can select the Service type or how a Service is created. KubeSphere supports both stateful and stateless Services and Services can be created through codes or artifacts.',
 
   SERVICES_BASEINFO_DESC:
     'The name and description of the service need to be provided to create the service. The service name cannot be the same as the existing service name under the same project.',
@@ -128,12 +128,12 @@ module.exports = {
   SERVICE_TYPE: 'You can create a stateless service or a stateful service.',
   SERVICE_TYPES_Q: 'Service Types',
   SERVICE_TYPES_A:
-    'The service is divided into a stateless service (Virtual Service + Depolyment) and a stateful service (Headless Service + Statefulset). In a stateless service, replicas can share one volume, and a stateful service needs to have its own independent volume.',
+    'The Service is divided into a stateless Service (Virtual Service + Depolyment) and a stateful Service (Headless Service + Statefulset). In a stateless Service, replicas can share one volume, and a stateful Service needs to have its own independent volume.',
 
   SCENARIOS_FOR_SERVICES_Q:
     'What are the application scenarios for stateless services and stateful services?',
   SCENARIOS_FOR_SERVICES_A:
-    'Stateless services are useful for scenarios where persistent data is not stored locally and multiple instances respond to uniform requests (Nginx, Tomcat, etc.). Stateful services are helpful when it comes to data storage, multithreading or queues (MySQL database, Kafka, Zookeeper, etc.).',
+    'Stateless Services are useful for scenarios where persistent data is not stored locally and multiple instances respond to uniform requests (Nginx, Tomcat, etc.). Stateful Services are helpful when it comes to data storage, multithreading or queues (MySQL database, Kafka, Zookeeper, etc.).',
   SERVICE_SIMPLE_DESC: 'Create a service from an existing pods group',
   DELETE_SERVICE_DESC:
     'You are about to delete the service(s) {resource}. Please confirm whether to delete the associated resource?',
