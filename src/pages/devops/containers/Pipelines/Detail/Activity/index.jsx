@@ -333,15 +333,18 @@ export default class Activity extends React.Component {
     },
   ]
 
-  getActions = () => [
-    {
-      type: 'control',
-      key: 'run',
-      text: t('Run'),
-      action: 'edit',
-      onClick: this.handleRunning,
-    },
-  ]
+  getActions = () =>
+    this.isAtBranchDetailPage
+      ? null
+      : [
+          {
+            type: 'control',
+            key: 'run',
+            text: t('Run'),
+            action: 'edit',
+            onClick: this.handleRunning,
+          },
+        ]
 
   renderFooter = () => {
     const { detail, activityList } = this.store

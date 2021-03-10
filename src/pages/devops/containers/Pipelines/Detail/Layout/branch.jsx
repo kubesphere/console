@@ -49,6 +49,10 @@ export default class BranchDetailLayout extends React.Component {
     return this.props.rootStore.routing
   }
 
+  get isAtBranchDetailPage() {
+    return this.props.match.params.branch
+  }
+
   get createTime() {
     return moment(this.store.detail.createTime).format(
       `${t('MMMM Do YYYY')} HH:mm`
@@ -138,7 +142,7 @@ export default class BranchDetailLayout extends React.Component {
         devops: params.devops,
         cluster: params.cluster,
         params,
-        branches: [toJS(branchDetail.name)],
+        branches: this.isAtBranchDetailPage ? null : [toJS(branchDetail.name)],
         parameters: toJS(branchDetail.parameters),
         success: () => {
           Notify.success({ content: `${t('Run Start')}!` })
