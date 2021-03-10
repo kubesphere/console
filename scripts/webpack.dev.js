@@ -28,6 +28,7 @@ const config = {
   mode: 'development',
   entry: {
     main: ['webpack-hot-middleware/client', './src/core/index.js'],
+    terminalEntry: ['webpack-hot-middleware/client', './src/core/terminal.js'],
   },
   output: {
     filename: '[name].js',

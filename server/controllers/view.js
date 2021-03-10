@@ -71,6 +71,46 @@ const renderView = async ctx => {
   }
 }
 
+const renderTerminal = async ctx => {
+  try {
+    const [user, ksConfig] = await Promise.all([
+      getCurrentUser(ctx),
+      getKSConfig(),
+    ])
+
+    await renderTerminalPage(ctx, { ksConfig, user })
+  } catch (err) {
+    ctx.app.emit('error', err)
+    if (err) {
+      if (err.code === 401 || err.code === 403 || err.status === 401) {
+        if (isValidReferer(ctx.path)) {
+          ctx.redirect(`/login?referer=${ctx.path}`)
+        } else {
+          ctx.redirect('/login')
+        }
+      } else if (err.code === 502) {
+        await ctx.render('error', {
+          title: clientConfig.title,
+          t: ctx.t.bind(ctx),
+          message: 'Unable to access the backend services',
+        })
+      } else if (err.code === 'ETIMEDOUT') {
+        await ctx.render('error', {
+          title: clientConfig.title,
+          t: ctx.t.bind(ctx),
+          message: 'Unable to access the api server',
+        })
+      } else {
+        ctx.app.emit('error', err)
+      }
+    } else {
+      await ctx.render('error', {
+        title: clientConfig.title,
+        t: ctx.t.bind(ctx),
+      })
+    }
+  }
+}
 const renderLogin = async ctx => {
   ctx.cookies.set('referer', ctx.query.referer)
 
@@ -100,13 +140,23 @@ const renderIndex = async (ctx, params) => {
     globals: JSON.stringify({ config: clientConfig, ...params }),
   })
 }
+const renderTerminalPage = async (ctx, params) => {
+  const manifest = getManifest()
 
+  await ctx.render('terminal', {
+    isDev: global.MODE_DEV,
+    title: clientConfig.title,
+    manifest,
+    globals: JSON.stringify({ config: clientConfig, ...params }),
+  })
+}
 const renderMarkdown = async ctx => {
   await ctx.render('blank_markdown')
 }
 
 module.exports = {
   renderView,
+  renderTerminal,
   renderLogin,
   renderMarkdown,
   renderLoginConfirm,

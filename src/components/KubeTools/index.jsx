@@ -127,7 +127,7 @@ export default class KubeTools extends React.Component {
     const data = e.currentTarget.dataset
 
     if (e.shiftKey || !data.action) {
-      return window.open(data.link, data.title, this.getWindowOpts())
+      return window.open('/terminal', data.title, this.getWindowOpts())
     }
 
     this.trigger(data.action, {})
