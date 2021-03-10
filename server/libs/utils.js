@@ -22,8 +22,10 @@ const NodeCache = require('node-cache')
 const get = require('lodash/get')
 const merge = require('lodash/merge')
 const isEmpty = require('lodash/isEmpty')
+const pick = require('lodash/pick')
 
 const MANIFEST_CACHE_KEY = 'MANIFEST_CACHE_KEY'
+const LOCALE_MANIFEST_CACHE_KEY = 'LOCALE_MANIFEST_CACHE_KEY'
 
 const root = dir => `${global.APP_ROOT}/${dir}`.replace(/(\/+)/g, '/')
 
@@ -156,11 +158,31 @@ const getManifest = () => {
   return manifestCache
 }
 
+const getLocaleManifest = () => {
+  let manifestCache = cache.get(LOCALE_MANIFEST_CACHE_KEY)
+
+  if (!manifestCache) {
+    let data = {}
+    try {
+      const dataStream = fs.readFileSync(root('dist/manifest.locale.json'))
+      data = safeParseJSON(dataStream.toString(), {})
+    } catch (error) {}
+    manifestCache = pick(
+      data,
+      Object.keys(data).filter(key => key.startsWith('locale-'))
+    )
+    cache.set(LOCALE_MANIFEST_CACHE_KEY, manifestCache)
+  }
+
+  return manifestCache
+}
+
 module.exports = {
   root,
   loadYaml,
   getCache,
   getManifest,
+  getLocaleManifest,
   getServerConfig,
   isValidReferer,
   isAppsRoute,

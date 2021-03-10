@@ -51,8 +51,12 @@ const init = async () => {
     })
   }
 
-  const data = await request.get(`dist/locale-${userLang}.json`)
-  const locales = { [userLang]: data }
+  const locales = {}
+  const localePath = globals.localeManifest[`locale-${userLang}.json`]
+  if (userLang && localePath) {
+    const data = await request.get(`dist/${localePath}`)
+    locales[userLang] = data
+  }
 
   return { locales }
 }
