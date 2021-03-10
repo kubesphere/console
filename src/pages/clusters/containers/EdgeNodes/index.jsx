@@ -24,12 +24,12 @@ import { cpuFormat, memoryFormat } from 'utils'
 import { ICON_TYPES, NODE_STATUS } from 'utils/constants'
 import { getNodeStatus } from 'utils/node'
 import { getValueByUnit } from 'utils/monitoring'
-import NodeStore from 'stores/node'
+import EdgeNodeStore from 'stores/edgenode'
 import NodeMonitoringStore from 'stores/monitoring/node'
 
 import { withClusterList, ListPage } from 'components/HOCs/withList'
 
-import { Avatar, Status, Panel, Text } from 'components/Base'
+import { Avatar, Status, Text } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import Table from 'components/Tables/List'
 
@@ -48,34 +48,17 @@ const MetricTypes = {
 }
 
 @withClusterList({
-  store: new NodeStore(),
-  name: 'Cluster Node',
-  module: 'nodes',
+  store: new EdgeNodeStore(),
+  name: 'Edge Node',
+  module: 'edgenodes',
 })
-export default class Nodes extends React.Component {
+export default class EdgeNodes extends React.Component {
   store = this.props.store
 
   monitoringStore = new NodeMonitoringStore({ cluster: this.cluster })
 
-  componentDidMount() {
-    this.store.fetchCount(this.props.match.params)
-  }
-
   get cluster() {
     return this.props.match.params.cluster
-  }
-
-  get tips() {
-    return [
-      {
-        title: t('NODE_TYPES_Q'),
-        description: t('NODE_TYPES_A'),
-      },
-      {
-        title: t('WHAT_IS_NODE_TAINTS_Q'),
-        description: t('WHAT_IS_NODE_TAINTS_A'),
-      },
-    ]
   }
 
   get itemActions() {
@@ -125,20 +108,20 @@ export default class Nodes extends React.Component {
   }
 
   get tableActions() {
-    const { trigger, routing, clusterStore, tableProps } = this.props
+    const { trigger, routing, tableProps } = this.props
     const actions = []
-    if (clusterStore.detail.kkName) {
-      actions.push({
-        key: 'add',
-        type: 'control',
-        text: t('Add Node'),
-        action: 'create',
-        onClick: () =>
-          trigger('node.add', {
-            kkName: clusterStore.detail.kkName || 'ddd',
-          }),
-      })
-    }
+
+    actions.push({
+      key: 'add',
+      type: 'control',
+      text: t('Add Node'),
+      action: 'create',
+      onClick: () =>
+        trigger('node.edge.add', {
+          cluster: this.cluster,
+          store: this.store,
+        }),
+    })
 
     return {
       ...tableProps.tableActions,
@@ -158,10 +141,20 @@ export default class Nodes extends React.Component {
     }
   }
 
+  get tips() {
+    return [
+      {
+        title: t('WHAT_IS_NODE_TAINTS_Q'),
+        description: t('WHAT_IS_NODE_TAINTS_A'),
+      },
+    ]
+  }
+
   getData = async params => {
     await this.store.fetchList({
       ...params,
       ...this.props.match.params,
+      type: 'edgenode',
     })
 
     await this.monitoringStore.fetchMetrics({
@@ -434,23 +427,13 @@ export default class Nodes extends React.Component {
     )
   }
 
-  renderOverview() {
-    const { masterCount, masterWorkerCount, list } = this.store
-    const totalCount = list.total
-    const workerCount = Math.max(
-      Number(totalCount) - Number(masterCount) + Number(masterWorkerCount),
-      0
-    )
-
-    return (
-      <Panel className="margin-b12">
-        <div className={styles.overview}>
-          <Text icon="nodes" title={totalCount} description={t('Node Count')} />
-          <Text title={masterCount} description={t('Master Node')} />
-          <Text title={workerCount} description={t('Worker Node')} />
-        </div>
-      </Panel>
-    )
+  showCreate = () => {
+    const { query, match, module } = this.props
+    return this.props.trigger('workload.create', {
+      module,
+      namespace: query.namespace,
+      cluster: match.params.cluster,
+    })
   }
 
   render() {
@@ -460,9 +443,9 @@ export default class Nodes extends React.Component {
     return (
       <ListPage {...this.props} getData={this.getData} noWatch>
         <Banner {...bannerProps} tips={this.tips} />
-        {this.renderOverview()}
         <Table
           {...tableProps}
+          onCreate={this.showCreate}
           itemActions={this.itemActions}
           tableActions={this.tableActions}
           columns={this.getColumns()}

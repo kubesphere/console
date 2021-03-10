@@ -27,6 +27,7 @@ import ObjectEditModal from 'components/Modals/ObjectEdit'
 import TaintManageModal from 'components/Modals/Node/TaintManagement'
 import TaintManagementModal from 'components/Modals/Node/TaintManagement/Batch'
 import KubeKeyClusterStore from 'stores/cluster/kubekey'
+import AddEdgeNode from 'components/Forms/Cluster/EdgeNode/AddNode'
 
 export default {
   'node.add': {
@@ -136,6 +137,20 @@ export default {
         nodes: selectedNodes,
         modal: TaintManagementModal,
         store,
+      })
+    },
+  },
+  'node.edge.add': {
+    on({ cluster, store, ...props }) {
+      const modal = Modal.open({
+        onOk: () => {
+          Modal.close(modal)
+        },
+        title: t('Add Edge Node'),
+        modal: AddEdgeNode,
+        cluster,
+        store,
+        ...props,
       })
     },
   },

@@ -98,8 +98,6 @@ class ScheduleInfo extends React.Component {
         memory: 0,
       }
     )
-
-    // this.nodeStore.fetchDetail({ name: detail.node })
   }
 
   renderNodeScheduleTip() {

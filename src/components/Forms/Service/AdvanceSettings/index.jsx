@@ -133,6 +133,7 @@ export default class AdvancedSettings extends React.Component {
           >
             <NodeSchedule
               kind={this.kind}
+              cluster={cluster}
               namespace={this.namespace}
               formTemplate={formTemplate}
               isFederated={isFederated}

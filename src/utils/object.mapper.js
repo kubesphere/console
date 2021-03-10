@@ -1296,6 +1296,7 @@ export default {
   revisions: RevisionMapper,
   horizontalpodautoscalers: HpaMapper,
   nodes: NodeMapper,
+  edgenodes: NodeMapper,
   registries: RegistryMapper,
   pods: PodsMapper,
   events: EventsMapper,

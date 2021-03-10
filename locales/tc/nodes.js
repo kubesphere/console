@@ -18,6 +18,8 @@
 
 module.exports = {
   'Cluster Node': '集群節點',
+  'Edge Node': '邊緣節點',
+  'Edge Nodes': '邊緣節點',
   'Master Node': 'Master 節點',
   'Worker Node': '工作節點',
   'Add Node': '添加節點',
@@ -98,7 +100,10 @@ module.exports = {
     '集群節點提供了目前集群下節點的運行狀態，以及可以編輯刪除節點',
   CLUSTER_NODE_CREATE_DESC:
     '集群節點提供了目前集群下節點的運行狀態，以及可以編輯刪除節點',
-
+  EDGE_NODE_DESC:
+    '邊緣節點提供了目前集群下節點的運行狀態，以及可以編輯刪除節點',
+  EDGE_NODE_CREATE_DESC:
+    '邊緣節點提供了目前集群下節點的運行狀態，以及可以編輯刪除節點',
   NODE_NETWORKUNAVAILABLE: '網路配置(NetworkUnavailable)',
   NODE_NETWORKUNAVAILABLE_DESC: '檢查節點上的網路配置是否正確',
   NODE_OUTOFDISK: '硬碟可用空間(OutOfDisk)',
@@ -123,4 +128,8 @@ module.exports = {
 
   NODE_TYPE_DESCRIPTION_DEC:
     '描述資訊在選擇節點類型時將幫助用戶更好的選擇節點類型並使用集群',
+  ADD_EDGE_COMMAND: '將命令複製到命令行中進行創建邊緣節點',
+  IN_USE_Node_IP: '節點 IP {ip} 已被使用',
+  IN_USE_Node_NAME: '節點名稱 {name} 已被使用',
+  'Add Edge Node': '添加邊緣節點',
 }

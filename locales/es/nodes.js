@@ -27,6 +27,8 @@ module.exports = {
   Annotations: 'Anotaciones',
   Architecture: 'Arquitectura',
   'Cluster Node': 'Nodo de clúster',
+  'Edge Node': 'Nó de Borda',
+  'Edge Nodes': 'Nó de Borda',
   'Common Taints': 'Taints Comunes',
   Conditions: 'Condiciones',
   ContainerRuntimeVersion: 'ContainerRuntimeVersion',
@@ -91,6 +93,11 @@ module.exports = {
   CLUSTER_NODE_CREATE_DESC:
     'Este módulo gestiona los nodos del clúster y muestra el estado de ejecución de ellos. Puedes editar o eliminar nodos aquí.',
   NODE_NETWORKUNAVAILABLE: 'Red no disponible',
+  EDGE_NODE_DESC:
+    'Este módulo gestiona los nodos del borda y muestra el estado de ejecución de ellos. Puedes editar o eliminar nodos aquí.',
+  EDGE_NODE_CREATE_DESC:
+    'Este módulo gestiona los nodos del borda y muestra el estado de ejecución de ellos. Puedes editar o eliminar nodos aquí.',
+
   NODE_NETWORKUNAVAILABLE_DESC:
     'Compruebe si la configuración de red en el nodo está disponible',
   NODE_OUTOFDISK: 'OutOfDisk',
@@ -127,4 +134,9 @@ module.exports = {
     'Los tipos de nodos ayudan a los usuarios a dividir los nodos en diferentes grupos. Los usuarios pueden agregar el nodo de alojamiento a un grupo correspondiente creando nodos de diferentes tipos que estén conectados adecuadamente entre sí. De esta forma, los Pods pueden desplegarse en los nodos físicos apropiados según el grupo. La disponibilidad de recursos y la continuidad del negocio también se pueden mejorar.',
   NODE_TYPE_DESCRIPTION_DEC:
     'La descripción ayudará a los usuarios a seleccionar tipos de nodos y usar el clúster.',
+  ADD_EDGE_COMMAND:
+    'Copy the command to the command line to create an edge node',
+  IN_USE_Node_IP: 'Node IP {ip} in use',
+  IN_USE_Node_NAME: 'Node name {name} in use',
+  'Add Edge Node': 'Add Edge Node',
 }

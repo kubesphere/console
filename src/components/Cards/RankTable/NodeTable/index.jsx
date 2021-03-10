@@ -58,22 +58,25 @@ export default class NodeUsageRank extends React.Component {
     },
     {
       title: t('NODES'),
-      render: node => (
-        <div>
-          <h3>
-            <Link
-              to={`/clusters/${this.props.cluster}/nodes/${node.node}`}
-              auth={this.canViewNode}
-            >
-              {node.node}
-            </Link>
-            {node.role === 'master' && (
-              <span className={styles.label}>Master</span>
-            )}
-          </h3>
-          <p>{get(node, 'host_ip', '-')}</p>
-        </div>
-      ),
+      render: node => {
+        const link = node.role.includes('edge')
+          ? `/clusters/${this.props.cluster}/edgenodes/${node.node}`
+          : `/clusters/${this.props.cluster}/nodes/${node.node}`
+
+        return (
+          <div>
+            <h3>
+              <Link to={link} auth={this.canViewNode}>
+                {node.node}
+              </Link>
+              {node.role === 'master' && (
+                <span className={styles.label}>Master</span>
+              )}
+            </h3>
+            <p>{get(node, 'host_ip', '-')}</p>
+          </div>
+        )
+      },
     },
     {
       key: 'cpu',
@@ -170,6 +173,7 @@ export default class NodeUsageRank extends React.Component {
   render() {
     const { theme, store } = this.props
     const { data } = this.props.store
+
     return (
       <Table
         theme={theme}

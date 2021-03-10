@@ -75,6 +75,7 @@ module.exports = {
   services: 'services',
   'Simple Service': 'Simple Service',
   'Specify Workload': 'Specify Workload',
+  'Specify Node': 'Specify Node',
   'Specify Workloads': 'Specify Workloads',
   'Stateful Service': 'Stateful Service',
   'Stateless Service': 'Stateless Service',
@@ -160,6 +161,9 @@ module.exports = {
     'Set the port to expose the container image and the service port.',
   SPECIFY_WORKLOAD_DESC:
     'Specify a workload that needs to be associated with the service.',
+
+  SPECIFY_NODE_DESC:
+    'Specify a node that needs to be associated with the service.',
 
   EIP_POOL_DESC: 'Access method within the cluster (DNS)',
 

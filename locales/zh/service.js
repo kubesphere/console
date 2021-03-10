@@ -54,6 +54,7 @@ module.exports = {
   'Please input service name': '请输入服务名称',
   'Please input ExternalName': '请输入 ExternalName',
   'Specify Workload': '指定工作负载',
+  'Specify Node': '指定节点',
   'Add Selector': '添加选择器',
 
   'Invalid port': '无效端口',
@@ -135,6 +136,8 @@ module.exports = {
 
   SPECIFY_WORKLOAD_DESC:
     '指定工作负载可以将工作负载所创建的容器组副本的 Label 作为预填充内容',
+
+  SPECIFY_NODE_DESC: '指定节点可以将节点的 Label 作为预填充内容',
 
   SERVICE_TYPES_Q: '服务的类型',
   SERVICE_TYPES_A:

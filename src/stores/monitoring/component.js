@@ -103,9 +103,7 @@ export default class ComponentMonitoring extends Base {
   async requestHealthMetrics() {
     const path =
       this.cluster && globals.app.isMultiCluster
-        ? `kapis/clusters/${
-            this.cluster
-          }/resources.kubesphere.io/v1alpha2/componenthealth`
+        ? `kapis/clusters/${this.cluster}/resources.kubesphere.io/v1alpha2/componenthealth`
         : 'kapis/resources.kubesphere.io/v1alpha2/componenthealth'
     const result = await to(request.get(path))
 

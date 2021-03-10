@@ -1,0 +1,29 @@
+@import '~scss/variables';
+
+.errorMessage {
+  color: $red-color03;
+}
+
+.linkContainer {
+  max-width: 455px;
+}
+
+.link {
+  background: $bg-color;
+  word-break: break-all;
+  border: 1px solid $border-color;
+  box-shadow: $base-shadow;
+  padding: 5px;
+}
+
+.column {
+  display: flex;
+  margin-top: 12px;
+
+  & > div:first-child {
+    flex: 2 1 auto;
+  }
+  & > div:first-child + button {
+    align-self: center;
+  }
+}

@@ -191,6 +191,7 @@ export const ICON_TYPES = {
   persistentvolumeclaims: 'storage',
   storageclasses: 'database',
   nodes: 'nodes',
+  edgenodes: 'nodes',
   devops: 'strategy-group',
   projects: 'project',
   namespaces: 'project',

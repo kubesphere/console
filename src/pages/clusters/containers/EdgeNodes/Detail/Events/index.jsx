@@ -16,24 +16,24 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import { Form } from '@kube-design/components'
-import SelectorsInput from './SelectorsInput'
+import { inject, observer } from 'mobx-react'
+import { joinSelector } from 'utils'
+import { Component as Base } from 'core/containers/Base/Detail/Events'
 
-export default class NodeSchedule extends React.Component {
-  get prefix() {
-    return this.props.prefix || 'spec.template.'
-  }
+@inject('detailStore')
+@observer
+export default class Events extends Base {
+  fetchData() {
+    const { name } = this.store.detail
 
-  render() {
-    return (
-      <Form.Item>
-        <SelectorsInput
-          name={`${this.prefix}spec.nodeSelector`}
-          addText={t('Add Node Selector')}
-          {...this.props}
-        />
-      </Form.Item>
-    )
+    const fields = {
+      'involvedObject.name': name,
+      'involvedObject.kind': this.kind,
+    }
+
+    this.eventStore.fetchList({
+      cluster: this.cluster,
+      fieldSelector: joinSelector(fields),
+    })
   }
 }

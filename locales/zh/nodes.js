@@ -20,6 +20,8 @@ module.exports = {
   'Cluster Node': '集群节点',
   'Cluster Nodes': '集群节点',
   'Node Role': '节点角色',
+  'Edge Node': '边缘节点',
+  'Edge Nodes': '边缘节点',
   'Master Node': 'Master 节点',
   'Worker Node': '工作节点',
   'Add Node': '添加节点',
@@ -102,6 +104,10 @@ module.exports = {
     '集群节点提供了当前集群下节点的运行状态，以及可以编辑删除节点',
   CLUSTER_NODE_CREATE_DESC:
     '集群节点提供了当前集群下节点的运行状态，以及可以编辑删除节点',
+  EDGE_NODE_DESC:
+    '边缘节点提供了当前集群下节点的运行状态，以及可以编辑删除节点',
+  EDGE_NODE_CREATE_DESC:
+    '边缘节点提供了当前集群下节点的运行状态，以及可以编辑删除节点',
 
   NODE_NETWORKUNAVAILABLE: '网络配置(NetworkUnavailable)',
   NODE_NETWORKUNAVAILABLE_DESC: '检查节点上的网络配置是否正确',
@@ -127,4 +133,8 @@ module.exports = {
 
   NODE_TYPE_DESCRIPTION_DEC:
     '描述信息在选择节点类型时将帮助用户更好的选择节点类型并使用集群',
+  ADD_EDGE_COMMAND: '将命令复制到命令行中进行创建边缘节点',
+  IN_USE_Node_IP: '节点 IP {ip} 已被使用',
+  IN_USE_Node_NAME: '节点名称 {name} 已被使用',
+  'Add Edge Node': '添加边缘节点',
 }

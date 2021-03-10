@@ -54,6 +54,7 @@ module.exports = {
   'Please input service name': '請輸入服務名稱',
   'Please input ExternalName': '請輸入 ExternalName',
   'Specify Workload': '指定工作負載',
+  'Specify Node': '指定節點',
   'Add Selector': '添加選擇器',
 
   Auto: '自动',
@@ -135,6 +136,8 @@ module.exports = {
 
   SPECIFY_WORKLOAD_DESC:
     '指定工作負載可以將工作負載所創建的容器組副本的 Label 作為預填充内容',
+
+  SPECIFY_NODE_DESC: '指定節點可以將節點的 Label 作為預填充內容',
 
   SERVICE_TYPES_Q: '服務的類型',
   SERVICE_TYPES_A:

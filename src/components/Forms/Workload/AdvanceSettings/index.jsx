@@ -62,6 +62,7 @@ export default class AdvancedSettings extends React.Component {
           >
             <NodeSchedule
               prefix={prefix}
+              cluster={cluster}
               namespace={this.namespace}
               formTemplate={this.fedFormTemplate}
             />

@@ -1,0 +1,38 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.charts {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -6px;
+
+  & > div {
+    width: 50%;
+    padding: 6px;
+
+    @media (min-width: 1366px) {
+      flex: 1;
+      width: auto;
+    }
+  }
+}
+
+.resources {
+  padding: 0;
+}
+
+.allocated {
+  display: flex;
+
+  & > div {
+    min-width: 200px;
+    margin-right: 20px;
+  }
+}
+
+.conditions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 12px;
+  grid-row-gap: 12px;
+}

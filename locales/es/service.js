@@ -77,6 +77,7 @@ module.exports = {
   services: 'servicios',
   'Simple Service': 'Servicio simple',
   'Specify Workload': 'Especificar carga de trabajo',
+  'Specify Node': 'Especificar nó',
   'Specify Workloads': 'Especificar cargas de trabajo',
   'Stateful Service': 'Stateful Service',
   'Stateless Service': 'Stateless Service',
@@ -155,5 +156,8 @@ module.exports = {
     'Configure el puerto para exponer la imagen del contenedor y el puerto de servicio.',
   SPECIFY_WORKLOAD_DESC:
     'Especifique una carga de trabajo que debe asociarse con el servicio.',
+
+  SPECIFY_NODE_DESC: 'Especifique um nó que precisa ser associado ao serviço.',
+
   EIP_POOL_DESC: 'Método de acceso dentro del clúster (DNS)',
 }

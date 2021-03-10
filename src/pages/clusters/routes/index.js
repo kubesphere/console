@@ -30,6 +30,7 @@ import StorageClasses from '../containers/Storage/StorageClasses'
 import VolumeSnapshots from '../containers/Storage/VolumeSnapshots'
 import Volumes from '../containers/Storage/Volumes'
 import Nodes from '../containers/Nodes'
+import EdgeNodes from '../containers/EdgeNodes/index'
 import ServiceComponents from '../containers/ServiceComponents'
 import Projects from '../containers/Projects'
 import CustomResources from '../containers/CustomResources'
@@ -105,8 +106,14 @@ export default [
             component: Nodes,
           },
           {
+            path: `${PATH}/edgenodes`,
+            component: EdgeNodes,
+            exact: true,
+          },
+          {
             path: `${PATH}/components`,
             component: ServiceComponents,
+            exact: true,
           },
           {
             path: `${PATH}/projects`,
@@ -268,6 +275,7 @@ export default [
             to: `${PATH}/log-collections/logging`,
             exact: true,
           }),
+          getIndexRoute({ path: '*', to: '/404', exact: true }),
         ],
       },
     ],
