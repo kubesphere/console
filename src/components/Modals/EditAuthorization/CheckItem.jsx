@@ -19,18 +19,31 @@
 import React, { Component } from 'react'
 import { get, isEmpty } from 'lodash'
 
-import { Checkbox, Tag } from '@kube-design/components'
+import { Checkbox, Tag, Notify } from '@kube-design/components'
 import { Text } from 'components/Base'
 
 import styles from './index.scss'
 
 export default class CheckItem extends Component {
   handleCheck = () => {
-    const { roleTemplates, data, onChange } = this.props
+    const { roleTemplates, roleTemplatesMap, data, onChange } = this.props
 
     let newTemplates = [...roleTemplates]
     if (newTemplates.includes(data.name)) {
-      newTemplates = newTemplates.filter(item => item !== data.name)
+      const relateTemplates = newTemplates.filter(
+        template => this.getDependencies([template]).length > 0
+      )
+      if (relateTemplates.length === 0) {
+        newTemplates = newTemplates.filter(item => item !== data.name)
+      } else {
+        Notify.warning(
+          t('RULE_RELATED_WITH', {
+            resource: relateTemplates
+              .map(rt => t(get(roleTemplatesMap, `[${rt}].aliasName`)))
+              .join(', '),
+          })
+        )
+      }
     } else {
       newTemplates.push(data.name)
     }

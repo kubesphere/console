@@ -128,7 +128,7 @@ export default class PasswordConfirm extends Component {
                 <div>
                   <Icon
                     name="success"
-                    type={password.length > 6 ? 'coloured' : 'dark'}
+                    type={password.length >= 6 ? 'coloured' : 'dark'}
                   />
                   {t('Password length is at least 6 characters')}
                 </div>

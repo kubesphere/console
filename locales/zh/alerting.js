@@ -78,6 +78,8 @@ module.exports = {
   ALERT_MESSAGE_DESC:
     '告警消息记录了在工作负载级别的告警策略中，所有已发出的满足告警规则的告警信息。',
 
+  ALERTING_POLICY_CREATE_DESC: '您可以通过设置告警规则，即时发现资源的异常情况',
+
   load1: 'CPU 1分钟平均负载',
   load5: 'CPU 5分钟平均负载',
   load15: 'CPU 15分钟平均负载',

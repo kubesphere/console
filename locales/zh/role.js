@@ -281,4 +281,6 @@ module.exports = {
   ROLE_CREATE_TIP_TITLE: '接下来要做的事情',
   ROLE_CREATE_TIP_MESSAGE:
     '接下来您需要编辑权限，编辑好权限后帐户角色才能创建成功。',
+
+  RULE_RELATED_WITH: '当前权限被 {resource} 依赖，无法移除',
 }

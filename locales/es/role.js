@@ -362,4 +362,7 @@ module.exports = {
     'Concede permiso para gestionar el workspace: cambiar los parámetros, editar la información, network policies, etc.',
   FEDERATED_PROJECTS_MANAGEMENT_DESC:
     'Gestiona todos los proyectos multi-cluster en el workspace, incluyendo crear/editar/borrar proyectos multi-cluster',
+
+  RULE_RELATED_WITH:
+    'La regla actual depende de {resource} y no se puede eliminar',
 }

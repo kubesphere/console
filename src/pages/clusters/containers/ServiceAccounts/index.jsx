@@ -168,7 +168,6 @@ export default class ServiceAccounts extends React.Component {
         <Banner {...bannerProps} />
         <ResourceTable
           {...tableProps}
-          rowKey="key"
           columns={this.getColumns()}
           itemActions={this.itemActions}
           cluster={match.params.cluster}
