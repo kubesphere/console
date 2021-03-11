@@ -252,7 +252,7 @@ export const MODULE_KIND_MAP = {
   workspaces: 'WorkspaceTemplate',
   clusters: 'Cluster',
   dashboards: 'Dashboard',
-  clusterdashboards: 'Dashboard',
+  clusterdashboards: 'ClusterDashboard',
   applications: 'Application',
   users: 'User',
   devops: 'DevOpsProject',

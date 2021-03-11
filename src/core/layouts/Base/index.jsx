@@ -54,7 +54,6 @@ class BaseLayout extends Component {
 
   componentDidMount() {
     document.addEventListener('scroll', this.handleScroll)
-    document.addEventListener('keydown', this.handleKeyDown)
   }
 
   componentDidUpdate(prevProps) {
@@ -71,15 +70,6 @@ class BaseLayout extends Component {
 
   componentWillUnmount() {
     document.removeEventListener('scroll', this.throttleScroll)
-    document.removeEventListener('keydown', this.handleKeyDown)
-  }
-
-  handleKeyDown = e => {
-    if (e.code === 'F1' || (e.keyCode === 75 && e.metaKey)) {
-      e.stopPropagation()
-      e.preventDefault()
-      this.props.rootStore.toggleHistory()
-    }
   }
 
   handleScroll = () => {
