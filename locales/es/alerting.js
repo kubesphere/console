@@ -108,6 +108,9 @@ module.exports = {
   ALERT_MESSAGE_DESC:
     'Los mensajes de alerta se generan en función de las métricas de monitorización y de las políticas de alerta de carga de trabajo en el proyecto actual. Pueden ayudar a los usuarios a detectar problemas y responder a tiempo.',
 
+  ALERTING_POLICY_CREATE_DESC:
+    'Puede encontrar condiciones anormales de los recursos al instante estableciendo políticas de alerta',
+
   RESOURCE_NODE_FORM_TIP: 'Please select cluster nodes',
   RESOURCE_WORKLOAD_FORM_TIP: 'Please select workloads',
 

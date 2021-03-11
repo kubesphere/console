@@ -28,20 +28,26 @@ class LocalePlugin {
       const assets = compilation.getAssets()
       assets.forEach(asset => {
         let content = asset.source.source()
-        const obj = eval(content)
-        if (obj.default) {
-          content = JSON.stringify(
-            obj.default.reduce((prev, cur) => ({ ...prev, ...cur }), {})
-          )
-        }
-        compilation.updateAsset(asset.name, new RawSource(content))
-
-        if (isDev) {
-          if (!fs.existsSync(compiler.outputPath)) {
-            fs.mkdirSync(compiler.outputPath)
+        try {
+          const obj = eval(content)
+          if (obj.default) {
+            content = JSON.stringify(
+              obj.default.reduce((prev, cur) => ({ ...prev, ...cur }), {})
+            )
           }
-          fs.writeFileSync(path.join(compiler.outputPath, asset.name), content)
-        }
+
+          if (isDev) {
+            if (!fs.existsSync(compiler.outputPath)) {
+              fs.mkdirSync(compiler.outputPath)
+            }
+            fs.writeFileSync(
+              path.join(compiler.outputPath, asset.name),
+              content
+            )
+          }
+        } catch (error) {}
+
+        compilation.updateAsset(asset.name, new RawSource(content))
       })
     })
   }

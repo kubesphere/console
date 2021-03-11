@@ -373,4 +373,7 @@ module.exports = {
     'Normal member in a DevOps project who can create pipeline credentials in the DevOps project.',
 
   NO_AUTHORIZED_USERS: 'Currently there is no authorized user for this role.',
+
+  RULE_RELATED_WITH:
+    'Current rule is dependent on {resource} and cannot be removed',
 }

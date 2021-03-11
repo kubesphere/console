@@ -281,5 +281,7 @@ module.exports = {
   ROLE_CREATE_TIP_MESSAGE:
     '接下來您需要編輯權限，編輯好權限後帳號角色才能創建成功。',
 
+  RULE_RELATED_WITH: '當前權限被 {resource} 依賴，無法移除',
+
   WORKSPACE_SETTINGS_DESC: '管理企業空間設置，編輯企業空間信息、網絡策略等',
 }
