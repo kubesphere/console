@@ -24,4 +24,7 @@ module.exports = {
   'Secret Detail': 'Detalle secreto',
   SERVICEACCOUNT_DESC:
     'La cuenta de servicio proporciona una identidad para los procesos que se ejecutan en un pod que se puede usar para acceder al servidor de API',
+
+  'Invalid configuration file format':
+    'Formato de archivo de configuración no válido',
 }

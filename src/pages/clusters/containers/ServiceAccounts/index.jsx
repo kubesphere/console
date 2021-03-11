@@ -142,7 +142,7 @@ export default class ServiceAccounts extends React.Component {
       },
       {
         title: t('Created Time'),
-        dataIndex: 'ceateTime',
+        dataIndex: 'createTime',
         sorter: true,
         sortOrder: getSortOrder('createTime'),
         isHideable: true,
