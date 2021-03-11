@@ -154,10 +154,6 @@ export default class ServiceAccountDetail extends React.Component {
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
-        name: t('Updated Time'),
-        value: getLocalTime(detail.updateTime).format('YYYY-MM-DD HH:mm:ss'),
-      },
-      {
         name: t('Creator'),
         value: detail.creator,
       },

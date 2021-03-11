@@ -41,6 +41,7 @@ export default {
           const data = get(newObject, kind)
 
           if (!data) {
+            Notify.error({ content: t('Invalid configuration file format') })
             return
           }
 
@@ -74,6 +75,7 @@ export default {
         onOk: data => {
           store.patch(detail, data).then(() => {
             Modal.close(modal)
+            Notify.success({ content: `${t('Updated Successfully')}!` })
             success && success()
           })
         },
@@ -91,6 +93,7 @@ export default {
         onOk: data => {
           store.patch(detail, data).then(() => {
             Modal.close(modal)
+            Notify.success({ content: `${t('Updated Successfully')}!` })
             success && success()
           })
         },
