@@ -41,12 +41,17 @@ module.exports = function(app) {
   }
 
   if (global.MODE_DEV) {
-    const webpack = require('webpack')
-    const { devMiddleware, hotMiddleware } = require('koa-webpack-middleware')
-    const config = require(root('scripts/webpack.dev'))
-    const compiler = webpack(config)
-    app.use(devMiddleware(compiler, { stats: { colors: true } }))
-    app.use(hotMiddleware(compiler, {}))
+    app.use(async (ctx, next) => {
+      if (
+        /(\.hot-update\.)|(\.(ttf|otf|eot|woff2?)(\?.+)?$)|(\.js$)/.test(
+          ctx.url
+        )
+      ) {
+        ctx.redirect(`http://${ctx.hostname}:8001${ctx.url}`)
+      } else {
+        await next()
+      }
+    })
   }
 
   render(app, {

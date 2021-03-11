@@ -31,10 +31,11 @@ const ChunkRenamePlugin = require('webpack-chunk-rename-plugin')
 const root = path => resolve(__dirname, `../${path}`)
 
 const baseConfig = require('./webpack.base')
+const localeConfig = require('./webpack.locale')
 
 const smp = new SpeedMeasurePlugin()
 
-module.exports = smp.wrap({
+const config = smp.wrap({
   mode: 'production',
   entry: baseConfig.entry,
   output: {
@@ -157,3 +158,6 @@ module.exports = smp.wrap({
     new BundleAnalyzerPlugin({ analyzerMode: 'static' }),
   ],
 })
+
+
+module.exports = [config, localeConfig]

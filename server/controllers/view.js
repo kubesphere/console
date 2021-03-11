@@ -25,6 +25,7 @@ const {
 const {
   getServerConfig,
   getManifest,
+  getLocaleManifest,
   isValidReferer,
 } = require('../libs/utils')
 
@@ -92,12 +93,18 @@ const renderLoginConfirm = async ctx => {
 
 const renderIndex = async (ctx, params) => {
   const manifest = getManifest()
+  const localeManifest = getLocaleManifest()
 
   await ctx.render('index', {
+    manifest,
     isDev: global.MODE_DEV,
     title: clientConfig.title,
-    manifest,
-    globals: JSON.stringify({ config: clientConfig, ...params }),
+    hostname: ctx.hostname,
+    globals: JSON.stringify({
+      config: clientConfig,
+      localeManifest,
+      ...params,
+    }),
   })
 }
 
