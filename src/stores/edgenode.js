@@ -16,24 +16,25 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React from 'react'
-import { Form } from '@kube-design/components'
-import SelectorsInput from './SelectorsInput'
+import NodeStore from './node'
 
-export default class NodeSchedule extends React.Component {
-  get prefix() {
-    return this.props.prefix || 'spec.template.'
-  }
+export default class EdgeNodeStore extends NodeStore {
+  module = 'edgenodes'
 
-  render() {
-    return (
-      <Form.Item>
-        <SelectorsInput
-          name={`${this.prefix}spec.nodeSelector`}
-          addText={t('Add Node Selector')}
-          {...this.props}
-        />
-      </Form.Item>
+  getResourceUrl = (params = {}) =>
+    `kapis/resources.kubesphere.io/v1alpha3${this.getPath(params)}/nodes`
+
+  createEdgeNode = async ({ cluster, name, ip }) => {
+    const url = `kapis/clusters/${cluster}/kubeedge.kubesphere.io/v1alpha1/nodes/join`
+
+    const result = await request.get(
+      url,
+      { node_name: name, node_ip: ip },
+      {},
+      resp => {
+        return resp
+      }
     )
+    return result
   }
 }

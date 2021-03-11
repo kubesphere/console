@@ -17,23 +17,22 @@
  */
 
 import React from 'react'
-import { Form } from '@kube-design/components'
-import SelectorsInput from './SelectorsInput'
+import { observer, inject } from 'mobx-react'
+import PodsCard from 'components/Cards/Pods'
 
-export default class NodeSchedule extends React.Component {
-  get prefix() {
-    return this.props.prefix || 'spec.template.'
-  }
+@inject('detailStore')
+@observer
+export default class Pods extends React.Component {
+  store = this.props.detailStore
 
   render() {
+    const { cluster } = this.props.match.params
     return (
-      <Form.Item>
-        <SelectorsInput
-          name={`${this.prefix}spec.nodeSelector`}
-          addText={t('Add Node Selector')}
-          {...this.props}
-        />
-      </Form.Item>
+      <PodsCard
+        detail={this.store.detail}
+        limit={6}
+        prefix={`/clusters/${cluster}`}
+      />
     )
   }
 }

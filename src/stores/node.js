@@ -20,6 +20,9 @@ import { action, observable } from 'mobx'
 
 import { getNodeRoles } from 'utils/node'
 
+import { get, omit } from 'lodash'
+import { LIST_DEFAULT_ORDER } from 'utils/constants'
+
 import Base from './base'
 
 export default class NodeStore extends Base {
@@ -37,14 +40,69 @@ export default class NodeStore extends Base {
 
   module = 'nodes'
 
-  getFilterParams = params => {
-    const result = { ...params }
-    if (result.role) {
-      result.labelSelector = result.labelSelector || ''
-      result.labelSelector += `node-role.kubernetes.io/${result.role}=`
-      delete result.role
+  withTypeSelectParams = (params, type) => {
+    if (type === 'node') {
+      params.labelSelector = params.labelSelector
+        ? ',!node-role.kubernetes.io/edge'
+        : '!node-role.kubernetes.io/edge'
+    } else if (type === 'edgenode') {
+      params.labelSelector = params.labelSelector
+        ? ',node-role.kubernetes.io/edge='
+        : 'node-role.kubernetes.io/edge='
     }
-    return result
+
+    if (params.role) {
+      params.labelSelector += `,node-role.kubernetes.io/${params.role}=`
+    }
+
+    return params
+  }
+
+  @action
+  async fetchList({
+    cluster,
+    workspace,
+    namespace,
+    more,
+    devops,
+    type = 'node',
+    ...params
+  } = {}) {
+    this.list.isLoading = true
+
+    if (!params.sortBy && params.ascending === undefined) {
+      params.sortBy = LIST_DEFAULT_ORDER[this.module] || 'createTime'
+    }
+
+    if (params.limit === Infinity || params.limit === -1) {
+      params.limit = -1
+      params.page = 1
+    }
+
+    params.limit = params.limit || 10
+
+    const result = await request.get(
+      this.getResourceUrl({ cluster, workspace, namespace, devops }),
+      this.withTypeSelectParams(params, type)
+    )
+
+    const data = (get(result, 'items') || []).map(item => ({
+      cluster,
+      namespace,
+      ...this.mapper(item),
+    }))
+
+    this.list.update({
+      data: more ? [...this.list.data, ...data] : data,
+      total: result.totalItems || result.total_count || data.length || 0,
+      ...omit(params, 'labelSelector'),
+      limit: Number(params.limit) || 10,
+      page: Number(params.page) || 1,
+      isLoading: false,
+      ...(this.list.silent ? {} : { selectedRowKeys: [] }),
+    })
+
+    return data
   }
 
   @action

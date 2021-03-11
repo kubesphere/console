@@ -1,0 +1,41 @@
+@import '~scss/variables';
+
+.taints {
+  display: inline-block;
+  min-width: 20px;
+  height: 20px;
+  margin-left: 8px;
+  padding: 0 6px;
+  line-height: 20px;
+  border-radius: 2px;
+  box-shadow: 0 4px 8px 0 rgba(36, 46, 66, 0.2);
+  background-color: $dark-color08;
+  text-align: center;
+  font-weight: bold;
+  color: $white;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: none;
+  }
+}
+
+.overview {
+  display: flex;
+
+  & > div {
+    min-width: 220px;
+  }
+}
+
+.resource {
+  & > span {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  :global .kubed-icon-dark {
+    color: #fff;
+    fill: #ea4641;
+  }
+}

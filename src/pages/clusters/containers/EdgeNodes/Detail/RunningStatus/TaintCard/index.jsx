@@ -17,23 +17,31 @@
  */
 
 import React from 'react'
-import { Form } from '@kube-design/components'
-import SelectorsInput from './SelectorsInput'
 
-export default class NodeSchedule extends React.Component {
-  get prefix() {
-    return this.props.prefix || 'spec.template.'
-  }
+import { Columns, Column } from '@kube-design/components'
 
-  render() {
-    return (
-      <Form.Item>
-        <SelectorsInput
-          name={`${this.prefix}spec.nodeSelector`}
-          addText={t('Add Node Selector')}
-          {...this.props}
-        />
-      </Form.Item>
-    )
-  }
-}
+import styles from './index.scss'
+
+const TaintCard = ({ data }) => (
+  <div className={styles.card}>
+    <Columns>
+      <Column>
+        <p>
+          <span>key: </span> {data.key}
+        </p>
+      </Column>
+      <Column>
+        <p>
+          <span>value: </span> {data.value}
+        </p>
+      </Column>
+      <Column>
+        <p>
+          <span>effect: </span> {data.effect}
+        </p>
+      </Column>
+    </Columns>
+  </div>
+)
+
+export default TaintCard

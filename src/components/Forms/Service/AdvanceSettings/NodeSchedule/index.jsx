@@ -18,7 +18,7 @@
 
 import React from 'react'
 import { Form } from '@kube-design/components'
-import { PropertiesInput } from 'components/Inputs'
+import SelectorsInput from './SelectorsInput'
 
 export default class NodeSchedule extends React.Component {
   get prefix() {
@@ -30,9 +30,10 @@ export default class NodeSchedule extends React.Component {
   render() {
     return (
       <Form.Item>
-        <PropertiesInput
+        <SelectorsInput
           name={`${this.prefix}nodeSelector`}
           addText={t('Add Node Selector')}
+          {...this.props}
         />
       </Form.Item>
     )

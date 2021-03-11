@@ -36,6 +36,8 @@ import AlertPolicyDetail from 'projects/containers/Alerting/Policies/Detail'
 import ProjectLayout from '../layouts/Project'
 
 import NodeDetail from '../containers/Nodes/Detail'
+import EdgeNodeDetail from '../containers/EdgeNodes/Detail'
+
 import ProjectDetail from '../containers/Projects/Detail'
 import StorageClassDetail from '../containers/Storage/StorageClasses/Detail'
 
@@ -51,6 +53,10 @@ export default [
   {
     path: `${PATH}/nodes/:node`,
     component: NodeDetail,
+  },
+  {
+    path: `${PATH}/edgenodes/:node`,
+    component: EdgeNodeDetail,
   },
   {
     path: `${PATH}/customresources/:name`,

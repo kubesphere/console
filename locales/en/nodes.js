@@ -28,6 +28,8 @@ module.exports = {
   Annotations: 'Annotations',
   Architecture: 'Architecture',
   'Cluster Node': 'Cluster Node',
+  'Edge Node': 'Edge Node',
+  'Edge Nodes': 'Edge Node',
   'Common Taints': 'Common Taints',
   Conditions: 'Conditions',
   ContainerRuntimeVersion: 'ContainerRuntimeVersion',
@@ -97,7 +99,10 @@ module.exports = {
     'This module manages cluster nodes and shows the running status of them. You can edit or delete nodes here.',
   CLUSTER_NODE_CREATE_DESC:
     'This module manages cluster nodes and shows the running status of them. You can edit or delete nodes here.',
-
+  EDGE_NODE_DESC:
+    'This module manages edge nodes and shows the running status of them. You can edit or delete nodes here.',
+  EDGE_NODE_CREATE_DESC:
+    'This module manages edge nodes and shows the running status of them. You can edit or delete nodes here.',
   NODE_NETWORKUNAVAILABLE: 'NetworkUnavailable',
   NODE_NETWORKUNAVAILABLE_DESC:
     'Check if the network configuration on the node is available',
@@ -137,4 +142,9 @@ module.exports = {
     'Node types help users to divide nodes into different groups. Users can add the hosting node to a corresponding group by creating nodes of different types that are properly connected with each other. In this way, Pods can be deployed to appropriate physical nodes based on the group. Resource availability and business continuity can also be improved.',
   NODE_TYPE_DESCRIPTION_DEC:
     'The description will help users to select nodes types and use the cluster.',
+  ADD_EDGE_COMMAND:
+    'Copy the command to the command line to create an edge node',
+  IN_USE_Node_IP: 'Node IP {ip} in use',
+  IN_USE_Node_NAME: 'Node name {name} in use',
+  'Add Edge Node': 'Add Edge Node',
 }

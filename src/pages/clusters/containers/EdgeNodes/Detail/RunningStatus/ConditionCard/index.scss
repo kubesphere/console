@@ -1,0 +1,30 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.card {
+  display: inline-flex;
+  padding: 12px;
+  border-radius: 4px;
+  background-color: $light-color01;
+
+  .icon {
+    position: relative;
+    margin-right: 12px;
+  }
+}
+
+.check,
+.substract {
+  position: absolute;
+  top: 28px;
+  right: 0;
+  border-radius: 50%;
+}
+
+.check {
+  background-color: $primary;
+}
+
+.substract {
+  background-color: $yellow;
+}
