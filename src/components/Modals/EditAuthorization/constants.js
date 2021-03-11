@@ -29,7 +29,7 @@ export const ROLE_MODULES = {
     {
       name: 'Apps Management',
       icon: 'openpitrix',
-      hide: !globals.app.hasKSModule('openpitrix'),
+      hide: !globals.app.enableAppStore,
     },
     {
       name: 'Platform Settings',

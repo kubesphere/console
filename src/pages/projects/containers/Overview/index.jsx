@@ -66,7 +66,7 @@ export default class Overview extends React.Component {
                 <LimitRange match={this.props.match} />
               </>
             )}
-            {globals.app.enableAppStore && (
+            {globals.app.hasKSModule('openpitrix') && (
               <Applications className="margin-b12" match={this.props.match} />
             )}
             <ResourceUsage match={this.props.match} />

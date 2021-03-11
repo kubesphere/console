@@ -47,7 +47,7 @@ export default class PlatformStatus extends Component {
         icon: 'appcenter',
         name: 'App Templates',
         link: '/apps',
-        hide: !globals.app.hasKSModule('openpitrix'),
+        hide: !globals.app.enableAppStore,
         metric: 'kubesphere_app_template_count',
       },
     ]
