@@ -30,7 +30,7 @@ import styles from './index.scss'
 
 @withList({
   store: new Dashboard(),
-  module: 'clusterdashboards',
+  module: 'dashboards',
   authKey: 'custom-monitoring',
   name: 'CustomMonitorDashboard',
 })
@@ -56,7 +56,7 @@ export default class CustomMonitoringDashboards extends React.Component {
       },
       {
         title: t('Created Time'),
-        dataIndex: 'creationTimestamp',
+        dataIndex: 'createTime',
         width: 150,
         render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
       },
@@ -64,7 +64,7 @@ export default class CustomMonitoringDashboards extends React.Component {
   }
 
   get itemActions() {
-    const { name, trigger, routing } = this.props
+    const { name, trigger } = this.props
     return [
       {
         key: 'edit',
@@ -74,7 +74,6 @@ export default class CustomMonitoringDashboards extends React.Component {
         onClick: item =>
           trigger('resource.baseinfo.edit', {
             detail: item,
-            success: routing.query,
           }),
       },
       {
@@ -85,7 +84,6 @@ export default class CustomMonitoringDashboards extends React.Component {
         onClick: item =>
           trigger('resource.yaml.edit', {
             detail: item,
-            success: routing.query,
           }),
       },
       {
@@ -97,7 +95,6 @@ export default class CustomMonitoringDashboards extends React.Component {
           trigger('resource.delete', {
             type: t(name),
             detail: item,
-            success: () => this.getData({ page: 1 }),
           }),
       },
     ]
