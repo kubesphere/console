@@ -37,6 +37,9 @@ class LocalePlugin {
         compilation.updateAsset(asset.name, new RawSource(content))
 
         if (isDev) {
+          if (!fs.existsSync(compiler.outputPath)) {
+            fs.mkdirSync(compiler.outputPath)
+          }
           fs.writeFileSync(path.join(compiler.outputPath, asset.name), content)
         }
       })
