@@ -44,6 +44,7 @@ module.exports = {
   'App Store': 'App Store',
   'App Store Management': 'App Store Management',
   'App Version': 'App Version',
+  'Current App Version': 'Current App Version',
   'App Version Types': 'App Version Types',
   'Application Name': 'Application Name',
   'Rejection Reason': 'Rejection Reason',
