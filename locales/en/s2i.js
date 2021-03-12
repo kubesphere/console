@@ -130,7 +130,7 @@ module.exports = {
   S2I_SECRET_DESC:
     'If it is a private code repository, choose the code repository key.',
   S2I_IMAGE_REPONSITRY_DESC:
-    'The source code repository address (currently supports git). You can specify code branches and relative paths in the source code terminal.',
+    'The source code repository address (currently supports git). You can specify the code branch and relative path in the source code terminal.',
   S2I_RELATIVE_PATH: 'Code Relative Path (Optional):',
   S2I_IMAGENAME_DESC:
     'Image name and tag, which defaults to the project name of the code repository.',

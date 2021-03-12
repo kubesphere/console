@@ -31,7 +31,7 @@ module.exports = {
   'Workspaces Manager': '企业空间管理员',
   'Create Workspace': '创建企业空间',
   'Workspace Groups': '企业组织',
-  'Maintenance organization': '维护组织结构',
+  'Maintain Organization': '维护组织结构',
 
   projects: '项目',
   devops: 'DevOps 工程',

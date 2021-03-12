@@ -121,7 +121,7 @@ module.exports = {
 
   'Please input the rule expression': '请输入告警規則表達式',
 
-  'Notify Content': '通知内容',
+  'Notification Content': '通知内容',
 
   'Custom Policies': '自定義策略',
   'Built-In Policies': '内置策略',

@@ -263,7 +263,7 @@ module.exports = {
   secretNamespace: 'secretNamespace',
   'select a pipeline': 'selecciona una pipeline',
   'Select Code Repository': 'Seleccionar repositorio de código',
-  'Select this repo': 'Selecciona este repositorio',
+  'Select This Repository': 'Selecciona este repositorio',
   Sender: 'Remitente',
   sh: 'sh',
   'Shell commands can be executed in the container':

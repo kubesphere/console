@@ -17,22 +17,22 @@
  */
 
 module.exports = {
-  'Add members to': 'Añadir un comentario <strong>{group}<strong>',
-  'Department name': 'Nombre de Departamento',
+  'Add the member to': 'Añadir un comentario <strong>{group}<strong>',
+  'Department Name': 'Nombre de Departamento',
   principal: 'persona a cargo',
-  'Add new department': 'Agregar nuevo departamento',
-  'Add new sub department': 'Añadir una nueva subcategoría',
+  'Add New Department': 'Agregar nuevo departamento',
+  'Add New Subdepartment': 'Añadir una nueva subcategoría',
   NO_DEPARTMENT_TIP:
     'No hay departamento en este momento, por favor cree a la derecha',
   'Workspace role': 'rol del espacio de trabajo',
   WORKSPACE_ROLE_DESC: 'Asignar roles a todo el grupo de usuarios',
-  'Binding project role': 'Rol de proyecto vinculantes',
-  'Add project': 'Agregar proyecto',
+  'Bind Project Role': 'Rol de proyecto vinculantes',
+  'Add Project': 'Agregar proyecto',
   'project roles': 'roles de proyecto',
-  'Binding Devops project role': 'Rol del proyecto Binding Devops',
-  'Add DevOps project': 'Agregar proyecto DevOps',
+  'Bind DevOps Project Role': 'Rol del proyecto Binding Devops',
+  'Add DevOps Project': 'Agregar proyecto DevOps',
   'Please add role': 'Añadir papel',
-  'Assigned user group': 'Grupo de usuarios asignado',
+  'User Group Assigned': 'Grupo de usuarios asignado',
 
   DELETE_GROUP_TIP:
     '¿Está seguro de que desea eliminar el subdepartamento <strong> {recurso} </strong>?',

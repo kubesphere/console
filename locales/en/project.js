@@ -81,7 +81,7 @@ module.exports = {
     'Deleting a multi-cluster project will also delete the same project on the host cluster.</br>Please enter the {type} name <strong>{resource}</strong> to make sure you understand the risk of the operation.',
   'Network Isolation': 'Network Isolation',
   'No Platform Manage Authorization': 'No Platform Manage Authorization',
-  'Not Assigned': 'Not Assigned',
+  'Not Assigned': 'Unassigned',
   Opened: 'Opened',
   'Please input project name': 'Please input project name',
   pods: 'pods',

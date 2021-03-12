@@ -80,11 +80,11 @@ module.exports = {
 
   LOG_COLLECTION_DESC:
     '系统将收集每个容器的标准输出和标准错误输出日志，并将其发送到一个或多个目标服务',
-  'Add Log Receiver': '添加日志接收者',
+  'Add Log Receiver': '添加日志接收器',
   EMPTY_LOG_COLLECTIONS:
     '暂时没有设置日志收集器，您可以添加日志收集器将日志导出到外埠的日志收集工具中',
   LOG_COLLECTION_TIPS:
-    '每种类型的日志接收者只能添加一个，如果已存在则只能修改，不可以再添加',
+    '每种类型的日志接收器只能添加一个，如果已存在则只能修改，不可以再添加',
 
   Address: '地址',
   'Service Address': '服务地址',
@@ -105,8 +105,8 @@ module.exports = {
   Collecting: '收集中',
   'Change Status': '更改状态',
   'Release Collection': '释放收集',
-  'Delete Log Receiver': '删除日志接收者',
-  'Log Receiver': '日志接收者',
+  'Delete Log Receiver': '删除日志接收器',
+  'Log Receiver': '日志接收器',
   Activate: '激活',
   'Real-Time Data': '实时数据',
   'Index Prefix': '索引前缀',
@@ -140,7 +140,7 @@ module.exports = {
   'No cluster with auditing module enabled': '暂无启用审计模块的集群',
   'No cluster with logging module enabled': '暂无启用日志模块的集群',
 
-  LOGGING_LOG_COLLECTOR: '日志接收者',
-  EVENTS_LOG_COLLECTOR: '事件日志接收者',
-  AUDITING_LOG_COLLECTOR: '审计日志接收者',
+  LOGGING_LOG_COLLECTOR: '日志接收器',
+  EVENTS_LOG_COLLECTOR: '事件日志接收器',
+  AUDITING_LOG_COLLECTOR: '审计日志接收器',
 }

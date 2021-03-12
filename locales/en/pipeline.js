@@ -257,7 +257,7 @@ module.exports = {
   secretNamespace: 'secretNamespace',
   'select a pipeline': 'select a pipeline',
   'Select Code Repository': 'Select Code Repository',
-  'Select this repo': 'Select this repo',
+  'Select This Repository': 'Select This Repository',
   Sender: 'Sender',
   sh: 'sh',
   'Shell commands can be executed in the container':

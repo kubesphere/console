@@ -54,12 +54,12 @@ module.exports = {
   'Edit Workspace Quota': 'Edit Workspace Quota',
 
   WORKSPACE_OVERVIEW_DESC:
-    'Workspace provides KubeSphere with a secure, isolated and accessible platform. Here you can see the resource running status in the current workspace.',
+    'A workspace provides KubeSphere with a secure, isolated and accessible platform. Here you can see the resource running status in the current workspace.',
   WORKSPACE_DESC:
-    'Workspace is a logical unit to organize your workload projects / Kubernetes namespaces, DevOps projects, manage resource access and share information within your team. It is an isolated working place for your team.',
+    'A workspace is a logical unit to organize your projects (Kubernetes namespaces) and DevOps projects, manage resource access, and share information within your team. It is an isolated working place for your team.',
   WORKSPACE_SEARCH_PLACEHOLDER: 'Please enter your workspace name to find it',
   WORKSPACE_CREATE_DESC:
-    'Workspace is a logical unit to organize your projects and DevOps projects. Resource access and shared team resources can be managed here. It can serve as an independent workspace for your team.',
+    'A workspace is a logical unit to organize your projects and DevOps projects. Resource access and shared team resources can be managed here. It can serve as an independent workspace for your team.',
   WORKSPACE_NAME_DESC:
     'Please keep your workspace name short, such as the abbreviation of your company name.',
   WORKSPACE_LOGO_PLACEHOLDER:
@@ -77,12 +77,12 @@ module.exports = {
   MEMBER_CREATE_DESC: '',
 
   WORKSPACE_ROLE_DESC:
-    "Workspace role determines the role's authorizations in the current workspace.",
+    "A workspace role determines a user's authorization in the current workspace.",
 
   SEARCH_WORKSPACE_TIP: 'Please enter the workspace name to search',
 
   NO_PUBLIC_CLUSTER_TIP:
-    'There are no public clusters available, please apply for cluster authorization from the platform administrator or cluster administrator after workspace is created',
+    'There are no public clusters available. Please apply for cluster authorization from the platform administrator or cluster administrator after the workspace is created.',
 
   WORKSPACE_NO_CLUSTER_TIP:
     'You need to contact the platform administrator or cluster administrator to authorize the access rights of the cluster for the workspace.',
@@ -108,10 +108,10 @@ module.exports = {
     'Are you sure to delete the workspace <strong>{resource}</strong> ? You will not be able to recover it, and the resources under the workspace will also be deleted.',
 
   WORKSPACE_GROUP_DESC:
-    'Workspace group can grant project and Devops engineering permissions in the form of user groups or departments.',
+    'Project roles and DevOps roles can be assigned to members in a user group or department of an organization.',
   WORKSPACE_GROUP_EMPTY_DESC:
-    'There is no organization available for the time being, please maintain the organization first and then add members',
-  WORKSPACE_GROUP_USER_EMPTY_DESC: 'There are currently no assignable members',
+    'No available organization currently. Please maintain the organization first and then add members.',
+  WORKSPACE_GROUP_USER_EMPTY_DESC: 'There are currently no assignable members.',
   WORKSPACE_QUOTA_MANAGE_DESC:
     'Manage workspace quotas which are shared by all projects and DevOps projects in a workspace.',
 }

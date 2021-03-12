@@ -199,7 +199,7 @@ export default class Detail extends Component {
       item => item.group_name
     )
     if (showForm && mode === 'create') {
-      breadcrumbs = [...breadcrumbs, t('Add new department')]
+      breadcrumbs = [...breadcrumbs, t('Add New Department')]
     }
 
     return (
