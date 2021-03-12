@@ -16,10 +16,20 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { API_VERSIONS } from 'utils/constants'
 import NodeStore from './node'
 
 export default class EdgeNodeStore extends NodeStore {
   module = 'edgenodes'
+
+  get apiVersion() {
+    return API_VERSIONS['nodes'] || ''
+  }
+
+  getListUrl = (params = {}) =>
+    `${this.apiVersion}${this.getPath(params)}/nodes${
+      params.dryRun ? '?dryRun=All' : ''
+    }`
 
   getResourceUrl = (params = {}) =>
     `kapis/resources.kubesphere.io/v1alpha3${this.getPath(params)}/nodes`
