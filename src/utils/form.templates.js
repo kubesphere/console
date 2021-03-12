@@ -505,6 +505,22 @@ const getNameSpaceNetworkPoliciesTemplate = ({ namespace }) => ({
   spec: {},
 })
 
+const getBGPPeersTemplate = () => ({
+  apiVersion: 'network.kubesphere.io/v1alpha2',
+  kind: 'BgpPeer',
+  metadata: {},
+  spec: {
+    conf: {},
+  },
+})
+
+const getEIPsTemplate = () => ({
+  apiVersion: 'network.kubesphere.io/v1alpha2',
+  kind: 'Eip',
+  metadata: {},
+  spec: {},
+})
+
 const getDashboardTemplate = ({ namespace }) => ({
   apiVersion: 'monitoring.kubesphere.io/v1alpha1',
   kind: 'Dashboard',
@@ -593,6 +609,8 @@ const FORM_TEMPLATES = {
   b2iBuilders: getBinaryTemplate,
   'volume-snapshots': getVolumeSnapshotTemplate,
   namespacenetworkpolicies: getNameSpaceNetworkPoliciesTemplate,
+  bgppeers: getBGPPeersTemplate,
+  eips: getEIPsTemplate,
   dashboards: getDashboardTemplate,
   clusterdashboards: getClusterDashboardTemplate,
   federated: getFederatedTemplate,

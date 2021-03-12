@@ -137,6 +137,16 @@ client:
                 title: Pod IP Pools,
                 clusterModule: "network.ippool",
               }
+            - {
+                name: bgp,
+                title: BGP Configuration,
+                clusterModule: network,
+              }
+            - {
+                name: eips,
+                title: EIPs Management,
+                clusterModule: network,
+              }
         # Contains dangerous operations, only available for platform-admin.
         - {
             name: customresources,

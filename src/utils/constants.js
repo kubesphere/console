@@ -51,6 +51,11 @@ export const CRONJOB_STATUS = [
   { text: 'Running', value: 'running' },
 ]
 
+export const EIP_STATUS = [
+  { text: 'Active', value: 'active' },
+  { text: 'Disable', value: 'disabled' },
+]
+
 export const VOLUME_STATUS = [
   { text: 'VOLUME_STATUS_BOUND', value: 'bound' },
   { text: 'VOLUME_STATUS_LOST', value: 'lost' },
@@ -228,6 +233,8 @@ export const ICON_TYPES = {
   namespacenetworkpolicies: 'firewall',
   pipelines: 'blockchain',
   ippools: 'eip-group',
+  bgppeers: 'network-router',
+  eips: 'eip',
 }
 
 export const MODULE_KIND_MAP = {
@@ -257,6 +264,8 @@ export const MODULE_KIND_MAP = {
   users: 'User',
   devops: 'DevOpsProject',
   pipelines: 'Pipelines',
+  bgppeers: 'BgpPeer',
+  eips: 'Eip',
   ippools: 'IPPool',
   groups: 'Group',
 }
@@ -867,6 +876,8 @@ export const API_VERSIONS = {
   namespacenetworkpolicies: 'apis/network.kubesphere.io/v1alpha1',
   networkpolicies: 'apis/networking.k8s.io/v1',
   ippools: 'apis/network.kubesphere.io/v1alpha1',
+  bgppeers: 'apis/network.kubesphere.io/v1alpha2',
+  eips: 'apis/network.kubesphere.io/v1alpha2',
   storageclasscapabilities: 'apis/storage.kubesphere.io/v1alpha1',
 }
 

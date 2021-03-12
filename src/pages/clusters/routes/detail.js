@@ -46,6 +46,7 @@ import CustomResourceDetail from '../containers/CustomResources/Detail'
 import RoleDetail from '../containers/Roles/Detail'
 import LogCollectionDetail from '../containers/LogCollections/Detail'
 import IPPoolDetail from '../containers/Network/IPPools/Detail'
+import EIPDetail from '../containers/Network/EIPs/Detail'
 
 const PATH = '/clusters/:cluster'
 
@@ -85,6 +86,10 @@ export default [
   {
     path: `${PATH}/ippools/:name`,
     component: IPPoolDetail,
+  },
+  {
+    path: `${PATH}/eips/:name`,
+    component: EIPDetail,
   },
   {
     path: `${PATH}/projects/:namespace`,
