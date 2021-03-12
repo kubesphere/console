@@ -46,7 +46,7 @@ export default class OPApps extends React.Component {
   get canCreate() {
     const { cluster, namespace } = this.props.match.params
     return (
-      globals.app.enableAppStore &&
+      globals.app.hasKSModule('openpitrix') &&
       globals.app.hasPermission({
         cluster,
         project: namespace,

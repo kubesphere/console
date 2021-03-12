@@ -377,7 +377,7 @@ export default class GlobalValue {
   }
 
   get enableAppStore() {
-    return this.hasKSModule('openpitrix')
+    return this.hasKSModule('openpitrix.appstore')
   }
 
   get isPlatformAdmin() {

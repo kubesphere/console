@@ -114,7 +114,7 @@ export default class AppBanner extends Component {
       <Banner
         {...this.props}
         description={t('APPLICATIONS_DESC')}
-        tabs={!globals.app.enableAppStore ? undefined : this.tabs}
+        tabs={!globals.app.hasKSModule('openpitrix') ? undefined : this.tabs}
         tips={this.tips}
       />
     )

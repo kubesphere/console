@@ -75,7 +75,7 @@ client:
       icon: openpitrix
       authKey: app-templates
       authAction: manage
-      ksModule: openpitrix
+      ksModule: openpitrix.appstore
     - name: settings
       title: Platform Settings
       icon: cogwheel
@@ -266,7 +266,7 @@ client:
                 title: App Templates,
                 icon: appcenter,
                 authKey: app-templates,
-                ksModule: openpitrix,
+                ksModule: openpitrix.appstore,
               }
             - {
                 name: repos,

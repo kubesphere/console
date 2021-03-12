@@ -159,5 +159,5 @@ export default [
 ]
 
 function getDefaultAppType() {
-  return globals.app.enableAppStore ? 'template' : 'composing'
+  return globals.app.hasKSModule('openpitrix') ? 'template' : 'composing'
 }
