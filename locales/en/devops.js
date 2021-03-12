@@ -63,9 +63,9 @@ module.exports = {
   DEVOPS_TIP_GITOPS_A:
     'You can start using GitOps by creating a pipeline that is associated with the code repository and deploying steps with Kubernetes.',
 
-  DEVOPS_TIP_TYPE_Q: 'Which code repositories are supported by the Pipeline?',
+  DEVOPS_TIP_TYPE_Q: 'Which code repositories are supported by pipelines?',
   DEVOPS_TIP_TYPE_A:
-    'The pipeline supports code repositories of Git, GitHub, Gitlab, SVN, and Bitbucket Server.',
+    'Pipelines support code repositories of Git, GitHub, Gitlab, SVN, and Bitbucket Server.',
 
   NO_DEVOPS_INSTALL: 'DevOps not installed',
 }

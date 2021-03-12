@@ -94,7 +94,7 @@ module.exports = {
 
   'Please input the rule expression': 'Please input the rule expression',
 
-  'Notify Content': 'Notify Content',
+  'Notification Content': 'Notification Content',
 
   'Custom Policies': 'Custom Policies',
   'Built-In Policies': 'Built-In Policies',

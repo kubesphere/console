@@ -81,7 +81,7 @@ export default class GroupCard extends React.Component {
         {this.renderContent()}
         <div className={styles.empty} onClick={onAdd}>
           <span className={styles.icon}></span>
-          <span>{t('Add new sub department')}</span>
+          <span>{t('Add New Subdepartment')}</span>
         </div>
       </div>
     )

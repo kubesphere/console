@@ -68,7 +68,7 @@ module.exports = {
 
   'Please input the rule expression': '请输入告警规则表达式',
 
-  'Notify Content': '通知内容',
+  'Notification Content': '通知内容',
 
   'Custom Policies': '自定义策略',
   'Built-In Policies': '内置策略',

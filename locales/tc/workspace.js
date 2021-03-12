@@ -31,7 +31,7 @@ module.exports = {
   'Workspaces Manager': '企業空間管理員',
   'Create Workspace': '創建企業空間',
   'Workspace Groups': '企業組織',
-  'Maintenance organization': '維護組織結構',
+  'Maintain Organization': '維護組織結構',
 
   projects: '項目',
   devops: 'DevOps 工程',
@@ -127,5 +127,4 @@ module.exports = {
   WORKSPACE_GROUP_USER_EMPTY_DESC: '暫時沒有可分配的成員',
   WORKSPACE_QUOTA_MANAGE_DESC:
     '管理企業空間配額，企業空間下的所有項目 / DevOps 工程將共享這些配額',
-     
 }

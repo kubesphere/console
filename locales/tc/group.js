@@ -17,21 +17,21 @@
  */
 
 module.exports = {
-  'Add members to': '添加成員到 <strong>{group}<strong>',
-  'Department name': '部門名稱',
+  'Add the member to': '添加成員到 <strong>{group}<strong>',
+  'Department Name': '部門名稱',
   principal: '負責人',
-  'Add new department': '添加新的部門',
-  'Add new sub department': '添加新的子部門',
+  'Add New Department': '添加新的部門',
+  'Add New Subdepartment': '添加新的子部門',
   NO_DEPARTMENT_TIP: '暫時沒有部門，請在右側創建',
   'workspace role': '企業空間角色',
   WORKSPACE_ROLE_DESC: '將角色賦予給整個用戶組',
-  'Binding project role': '綁定項目角色',
-  'Add project': '添加項目',
+  'Bind Project Role': '綁定項目角色',
+  'Add Project': '添加項目',
   'project roles': '項目角色',
-  'Binding DevOps project role': '綁定 DevOps 工程角色',
-  'Add DevOps project': '添加 DevOps 工程',
+  'Bind DevOps Project Role': '綁定 DevOps 工程角色',
+  'Add DevOps Project': '添加 DevOps 工程',
   'Please add role': '請添加角色',
-  'Assigned user group': '已分配用戶組',
+  'User Group Assigned': '已分配用戶組',
 
   DELETE_GROUP_TIP: '確定刪除子部門 <strong>{resource}</strong>?',
   GROUP_USERS_TIP:

@@ -47,7 +47,7 @@ module.exports = {
   'Workspace Roles': 'Roles del espacio de trabajo',
   'Workspace Settings': 'Configuración del espacio de trabajo',
   'Workspace Groups': 'Grupos de espacios de trabajo',
-  'Maintenance organization': 'Mantener la estructura organizativa',
+  'Maintain Organization': 'Mantener la estructura organizativa',
 
   'All members': 'Todos los miembros',
   Assigned: 'Asignado',
@@ -105,7 +105,7 @@ module.exports = {
     '¿Estás seguro de eliminar el espacio de trabajo <strong>{resource}</strong> ? No podrás recuperarlo, y los recursos en el espacio de trabajo también se eliminarán.',
 
   WORKSPACE_GROUP_DESC:
-    'Las organizaciones pueden otorgar permisos de ingeniería de proyectos y Devops en forma de grupos de usuarios o departamentos.',
+    'Project roles and DevOps roles can be assigned to members in a user group or department of an organization.',
   WORKSPACE_GROUP_EMPTY_DESC:
     'No hay una organización disponible por el momento, primero mantenga la organización y luego agregue miembros',
   WORKSPACE_GROUP_USER_EMPTY_DESC: 'Actualmente no hay miembros asignables',

@@ -17,25 +17,25 @@
  */
 
 module.exports = {
-  'Add members to': 'Add members to <strong>{group}</strong>',
-  'Department name': 'Department name',
+  'Add the member to': 'Add the member to <strong>{group}</strong>',
+  'Department Name': 'Department Name',
   principal: 'principal',
-  'Add new department': 'Add new department',
-  'Add new sub department': 'Add new sub department',
+  'Add New Department': 'Add New Department',
+  'Add New Subdepartment': 'Add New Subdepartment',
   NO_DEPARTMENT_TIP:
-    'There is no department at the moment, please create on the right',
-  'Workspace role': 'workspace role',
+    'No available department at the moment. Please create one on the right.',
+  'Workspace role': 'Workspace Role',
   WORKSPACE_ROLE_DESC: 'Assign roles to the entire user group',
-  'Binding project role': 'Binding project role',
-  'Add project': 'Add project',
+  'Bind Project Role': 'Bind Project Role',
+  'Add Project': 'Add Project',
   'project roles': 'project roles',
-  'Binding Devops project role': 'Binding Devops project role',
-  'Add DevOps project': 'Add DevOps project',
+  'Bind DevOps Project Role': 'Bind DevOps Project Role',
+  'Add DevOps Project': 'Add DevOps Project',
   'Please add role': 'Please add role',
-  'Assigned user group': 'Assigned user group',
+  'User Group Assigned': 'User Group Assigned',
 
   DELETE_GROUP_TIP:
-    'Are you sure you want to delete the sub-department <strong>{resource}</strong>?',
+    'Are you sure you want to delete the subdepartment <strong>{resource}</strong>?',
   GROUP_USERS_TIP:
     'There are <strong>{count}</strong> authorized users in the current department. Please remove the authorized users before deleting.',
 }

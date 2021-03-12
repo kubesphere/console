@@ -51,7 +51,7 @@ export default class NotificationRule extends React.Component {
 
     return (
       <Form className={styles.wrapper} data={formTemplate} ref={formRef}>
-        <div className={styles.title}>{t('Notify Content')}</div>
+        <div className={styles.title}>{t('Notification Content')}</div>
         <div className={styles.content}>
           <div className={styles.contentWrapper}>
             <Form.Item label={t('Summary')}>

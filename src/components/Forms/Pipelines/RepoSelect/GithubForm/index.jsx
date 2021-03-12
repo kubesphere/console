@@ -183,7 +183,7 @@ export default class GitHubForm extends React.Component {
             onClick={this.handleSubmit}
             data-repo-index={index}
           >
-            <Button type="control">{t('Select this repo')}</Button>
+            <Button type="control">{t('Select This Repository')}</Button>
           </div>
         </div>
       ))

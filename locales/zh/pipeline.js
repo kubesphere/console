@@ -136,7 +136,7 @@ module.exports = {
     用于在 Pipeline 运行时, 为拉取代码、push/pull 镜像、SSH 执行脚本等过程提供认证`,
   'Credential Id': '凭证 ID',
   'No artifacts records': '没有制品记录',
-  'Select this repo': '选择此仓库',
+  'Select This Repository': '选择此仓库',
   'Scan repo success': '扫描仓库触发成功',
   'Pipeline Run Logs': '流水线运行日志',
   'Download Logs': '下载日志',

@@ -424,7 +424,7 @@ module.exports = {
     'Are you sure about removing the group <strong>{resource}</strong> ?',
 
   ALIAS_DESC:
-    'Alias can be composed of any character to help you better distinguish resources. The maximum length of characters is set to 63.',
+    'An alias can be composed of any character to help you better distinguish resources. The maximum length of characters is set to 63.',
 
   NOT_ENABLE: '{resource} is not enabled',
   NOT_AVAILABLE: 'No available {resource}',

@@ -150,7 +150,7 @@ export default class GroupForm extends React.Component {
       <div className={styles.formWrapper}>
         <Form data={formTemplate} className={styles.form} ref={this.formRef}>
           <Form.Item
-            label={t('Department name')}
+            label={t('Department Name')}
             desc={t('NAME_DESC')}
             rules={[
               { required: true, message: t('Please input name') },
@@ -170,7 +170,7 @@ export default class GroupForm extends React.Component {
             />
           </Form.Item>
           <Form.Item
-            label={t(`${t('Department name')}(${t('Alias')})`)}
+            label={t(`${t('Department Name')}(${t('Alias')})`)}
             desc={t('ALIAS_DESC')}
           >
             <Input
@@ -189,14 +189,14 @@ export default class GroupForm extends React.Component {
               onChange={this.handleRolesChange}
             />
           </Form.Item>
-          <Form.Group label={t('Binding project role')}>
+          <Form.Group label={t('Bind Project Role')}>
             <Form.Item
               rules={[{ validator: this.rolesValidator, checkOnSubmit: true }]}
             >
               <ArrayInput
                 name="metadata.annotations['kubesphere.io/project-roles']"
                 itemType="object"
-                addText={t('Add project')}
+                addText={t('Add Project')}
                 checkItemValid={this.checkItemValid}
               >
                 <ProjectSelect
@@ -208,7 +208,7 @@ export default class GroupForm extends React.Component {
             </Form.Item>
           </Form.Group>
           {globals.app.hasKSModule('devops') && (
-            <Form.Group label={t('Binding DevOps project role')}>
+            <Form.Group label={t('Bind DevOps Project Role')}>
               <Form.Item
                 rules={[
                   { validator: this.rolesValidator, checkOnSubmit: true },
@@ -217,7 +217,7 @@ export default class GroupForm extends React.Component {
                 <ArrayInput
                   name="metadata.annotations['kubesphere.io/devops-roles']"
                   itemType="object"
-                  addText={t('Add DevOps project')}
+                  addText={t('Add DevOps Project')}
                   checkItemValid={this.checkItemValid}
                 >
                   <DevopsSelect
