@@ -37,7 +37,8 @@ class TerminalApp extends Component {
         podName: pathSplit[7],
       },
     }
-    if (pathSplit.length > 2) {
+
+    if (pathSplit.length > 3) {
       return <Modal onCancel={this.pageClose} match={match} title="terminal" />
     }
     return <KubeModal onCancel={this.pageClose} title="kubectl" />
