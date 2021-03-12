@@ -20,7 +20,6 @@ import React, { Suspense } from 'react'
 import ReactDOM from 'react-dom'
 import { LocaleProvider, Loading, Notify } from '@kube-design/components'
 
-import { isAppsPage } from 'utils'
 import request from 'utils/request'
 
 import TerminalApp from 'pages/terminal'
@@ -34,20 +33,7 @@ require('@babel/polyfill')
 // request error handler
 window.onunhandledrejection = function(e) {
   if (e && (e.status === 'Failure' || e.status >= 400)) {
-    if (e.status === 401 || e.reason === 'Unauthorized') {
-      // session timeout handler, except app store page.
-      if (!isAppsPage()) {
-        /* eslint-disable no-alert */
-        location.href = `/login?referer=${location.pathname}`
-        window.alert(
-          t(
-            'Session timeout or this account is logged in elsewhere, please login again'
-          )
-        )
-      }
-    } else if (globals.config.enableErrorNotify && (e.reason || e.message)) {
-      Notify.error({ title: e.reason, content: t(e.message), duration: 6000 })
-    }
+    Notify.error({ title: e.reason, content: t(e.message), duration: 6000 })
   }
 }
 

@@ -22,7 +22,6 @@ import KubeCtl from '../containers/KubeCtl'
 import LogQuery from '../containers/LogQuery'
 import EventSearch from '../containers/EventSearch'
 import AuditingSearch from '../containers/AuditingSearch'
-import ContainerTerminal from '../containers/ContainerTerminal'
 
 export default [
   { path: '/404', component: NotFound, exact: true },
@@ -31,11 +30,6 @@ export default [
   { path: `/logquery`, exact: true, component: LogQuery },
   { path: '/eventsearch', exact: true, component: EventSearch },
   { path: '/auditingsearch', exact: true, component: AuditingSearch },
-  {
-    path:
-      '/terminal/cluster/:cluster/projects/:namespace/pods/:podName/containers/:containerName',
-    component: ContainerTerminal,
-  },
   {
     path: '/',
     redirect: { from: '/', to: '/dashboard', exact: true },

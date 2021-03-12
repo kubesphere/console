@@ -43,6 +43,7 @@ const renderView = async ctx => {
     renderViewErr(ctx, err)
   }
 }
+
 const renderTerminal = async ctx => {
   try {
     const [user, ksConfig] = await Promise.all([
