@@ -22,7 +22,14 @@ import { computed } from 'mobx'
 import { observer } from 'mobx-react'
 import { get, set, pick } from 'lodash'
 
-import { Select, Tag, Columns, Column, Loading } from '@kube-design/components'
+import {
+  Input,
+  Select,
+  Tag,
+  Columns,
+  Column,
+  Loading,
+} from '@kube-design/components'
 
 import { CodeEditor, Modal } from 'components/Base'
 
@@ -166,6 +173,7 @@ export default class AppDeploy extends React.Component {
   render() {
     const { detail } = this.props
     const { valuesYaml, conf, loadingFile } = this.state
+
     return (
       <Modal
         title={`${t('Edit')} ${detail.name}`}
@@ -174,22 +182,14 @@ export default class AppDeploy extends React.Component {
         width={1280}
         okText={t('Update')}
       >
-        <div className={styles.label}>{t('App Version')}</div>
-        <Select
-          name="version_id"
-          className="margin-b12"
-          value={this.state.formData.version_id}
-          options={this.sortedVersions}
-          placeholder={t('Please select version')}
-          pagination={pick(this.versionStore.list, ['page', 'limit', 'total'])}
-          isLoading={this.versionStore.list.isLoading}
-          onFetch={this.fetchVersions}
-          onChange={this.handleVersionChange}
-          optionRenderer={this.versionOptionRender}
-          valueRenderer={this.versionOptionRender}
-        />
         <Columns>
           <Column>
+            <div className={styles.label}>{t('Current App Version')}</div>
+            <Input
+              className="margin-b12"
+              value={detail.version.name}
+              readOnly
+            />
             <div className={styles.label}>{`${t('Current App Config')} (${t(
               'ReadOnly'
             )})`}</div>
@@ -203,6 +203,24 @@ export default class AppDeploy extends React.Component {
             </Loading>
           </Column>
           <Column>
+            <div className={styles.label}>{t('App Version')}</div>
+            <Select
+              name="version_id"
+              className="margin-b12"
+              value={this.state.formData.version_id}
+              options={this.sortedVersions}
+              placeholder={t('Please select version')}
+              pagination={pick(this.versionStore.list, [
+                'page',
+                'limit',
+                'total',
+              ])}
+              isLoading={this.versionStore.list.isLoading}
+              onFetch={this.fetchVersions}
+              onChange={this.handleVersionChange}
+              optionRenderer={this.versionOptionRender}
+              valueRenderer={this.versionOptionRender}
+            />
             <div className={styles.label}>{t('New App Config')}</div>
             <Loading spinning={loadingFile}>
               <CodeEditor

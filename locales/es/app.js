@@ -44,6 +44,7 @@ module.exports = {
   'App Store': 'Tienda Aplicaciones',
   'App Store Management': 'Gestión de la Tienda de Aplicacines',
   'App Version': 'Versión de Aplicación',
+  'Current App Version': 'Versión actual de la aplicación',
   'App Version Types': 'Tipos de Versión de Aplicación',
   'Application Name': 'Nombre de Application',
   'Rejection Reason': 'Motivo de Rechazo',

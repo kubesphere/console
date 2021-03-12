@@ -91,6 +91,7 @@ module.exports = {
   REVIEWS_CREATE_DESC: '暂时没有相关的应用审核数据',
 
   'App Version': '应用版本',
+  'Current App Version': '当前应用版本',
   'Service Provider': '服务提供商',
   'App Introduction': '应用介绍',
   'Reject Reason': '拒绝原因',

@@ -91,6 +91,7 @@ module.exports = {
   REVIEWS_CREATE_DESC: '暫時没有相關的應用審核數據',
 
   'App Version': '應用版本',
+  'Current App Version': '當前應用版本',
   'Service Provider': '服務提供商',
   'App Introduction': '應用介紹',
   'Reject Reason': '拒絕原因',
