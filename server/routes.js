@@ -41,6 +41,7 @@ const {
 
 const {
   renderView,
+  renderTerminal,
   renderLogin,
   renderLoginConfirm,
   renderMarkdown,
@@ -77,6 +78,8 @@ router
   // oauth
   .get('/oauth/redirect/:name', handleOAuthLogin)
 
+  // terminal
+  .get('/terminal*', renderTerminal)
   // page entry
   .all('*', renderView)
 

@@ -29,6 +29,7 @@ const isDev = process.env.NODE_ENV === 'development'
 module.exports = {
   entry: {
     main: './src/core/index.js',
+    terminalEntry:'./src/core/terminal.js'
   },
   moduleRules: [
     {
