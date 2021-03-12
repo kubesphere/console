@@ -1,6 +1,7 @@
 @import '~scss/variables';
 
 .operations {
+  display: flex;
   :global {
     .select, .input {
       width: 188px;

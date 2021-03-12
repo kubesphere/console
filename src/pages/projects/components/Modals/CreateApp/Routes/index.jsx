@@ -230,7 +230,9 @@ export default class Routes extends React.Component {
     } = this.props
     const { showAdd, ingress, services, selectRuleIndex } = this.state
 
-    const selectRule = get(ingress, `spec.rules[${selectRuleIndex}]`, {})
+    const template = isFederated ? get(ingress, 'spec.template') : ingress
+
+    const selectRule = get(template, `spec.rules[${selectRuleIndex}]`, {})
 
     const secrets = toJS(this.secretStore.list.data)
 
@@ -243,7 +245,7 @@ export default class Routes extends React.Component {
         <div className={styles.title}>{t('Route Rules')}</div>
         <div className={styles.rules}>
           <RuleList
-            data={ingress}
+            data={template}
             gateway={gateway}
             isFederated={isFederated}
             projectDetail={projectDetail}

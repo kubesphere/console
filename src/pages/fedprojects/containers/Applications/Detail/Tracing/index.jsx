@@ -30,7 +30,7 @@ import TracingCard from 'projects/components/Cards/Tracing'
 import TracingDetail from 'projects/components/Modals/TracingDetail'
 import ClusterSelect from 'fedprojects/components/ClusterSelect'
 
-import ServiceSelect from './ServiceSelect'
+import ServiceStore from 'stores/service'
 
 import styles from './index.scss'
 
@@ -42,6 +42,8 @@ export default class Tracing extends React.Component {
 
     this.detailStore = props.detailStore
     this.resourceStore = this.detailStore.resourceStore
+
+    this.serviceStore = new ServiceStore()
 
     const query = parse(location.search.slice(1))
 
@@ -89,6 +91,14 @@ export default class Tracing extends React.Component {
     ]
   }
 
+  get services() {
+    return this.serviceStore.list.data.map(item => ({
+      label: item.name,
+      value: item.name,
+      type: item.type,
+    }))
+  }
+
   getData() {
     const { selector, namespace } = this.detailStore.detail
     const { cluster } = this.state
@@ -104,8 +114,8 @@ export default class Tracing extends React.Component {
         labelSelector: joinSelector(selector),
       }
 
-      this.resourceStore.serviceStore.fetchListByK8s(params).then(() => {
-        const components = toJS(this.resourceStore.serviceStore.list.data)
+      this.serviceStore.fetchListByK8s(params).then(() => {
+        const components = toJS(this.serviceStore.list.data)
         if (components.length > 0) {
           this.setState({ serviceName: components[0].name }, () =>
             this.fetchTracing()
@@ -174,10 +184,23 @@ export default class Tracing extends React.Component {
     )
   }
 
+  serviceRenderer = option => (
+    <span>
+      {t('Service')}: {option.label}
+    </span>
+  )
+
   renderOperations() {
     const { query } = this.state
     return (
       <div className={styles.operations}>
+        <Select
+          options={this.services}
+          value={this.state.serviceName}
+          prefixIcon={<Icon name="appcenter" />}
+          onChange={this.handleServiceChange}
+          valueRenderer={this.serviceRenderer}
+        />
         <Select
           value={query.lookback}
           options={this.lookbackOptions}
@@ -196,7 +219,7 @@ export default class Tracing extends React.Component {
   renderTracing() {
     const { cluster } = this.state
     const { tracing, isTracingLoading } = this.resourceStore
-    const { isLoading, data } = this.resourceStore.serviceStore.list
+    const { isLoading, data } = this.serviceStore.list
 
     if (!cluster || !get(cluster, 'configz.servicemesh')) {
       return (
@@ -252,7 +275,6 @@ export default class Tracing extends React.Component {
 
   render() {
     const { clusters } = this.props.projectStore.detail
-    const { isLoading, data } = this.resourceStore.serviceStore.list
     return (
       <div>
         <ClusterSelect
@@ -260,12 +282,6 @@ export default class Tracing extends React.Component {
           options={clusters}
           onChange={this.handleClusterChange}
           extra={this.renderMicroServiceTip}
-        />
-        <ServiceSelect
-          defaultService={this.state.defaultService}
-          options={toJS(data)}
-          isLoading={isLoading}
-          onChange={this.handleServiceChange}
         />
         {this.renderTracing()}
         <TracingDetail
