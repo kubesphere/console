@@ -91,7 +91,7 @@ module.exports = {
   'Current Utilization': 'Current Utilization',
   'Deployment Location': 'Deployment Location',
   'Deployment Mode': 'Deployment Mode',
-  DEPLOYMENT_MODE_DESC: 'You can specify rules for pod scheduling',
+  DEPLOYMENT_MODE_DESC: 'You can specify rules for Pod scheduling',
   DeploymentPaused: 'DeploymentPaused',
   DeploymentResumed: 'DeploymentResumed',
   'Desired number of nodes scheduled': 'Desired number of nodes scheduled',
@@ -179,7 +179,7 @@ module.exports = {
   'Mount point': 'Mount point',
   'Mount Temporary Volume': 'Mount Temporary Volume',
   'Mount the configmap or secret to the specified directory.':
-    'Mount the configmap or secret to the specified directory.',
+    'Mount the ConfigMap or Secret to the specified directory.',
   'Mount Volume': 'Mount Volume',
   'Mount Volumes': 'Mount Volumes',
   mounted: 'mounted',
@@ -381,13 +381,13 @@ module.exports = {
   DAEMONSET_CREATE_DESC:
     'A DaemonSet ensures that all (or some) Nodes run a copy of a Pod. Typically, a DaemonSet is used to running a logs collection, monitoring daemon or other system management applications.',
   JOB_DESC:
-    'A Job is used to execute one-time tasks. A Job creates one or more pods and ensures that a specified number of them successfully terminate.',
+    'A Job is used to execute one-time tasks. A Job creates one or more Pods and ensures that a specified number of them successfully terminate.',
   JOB_CREATE_DESC:
-    'A Job is used to execute one-time tasks. A Job creates one or more pods and ensures that a specified number of them successfully terminate.',
+    'A Job is used to execute one-time tasks. A Job creates one or more Pods and ensures that a specified number of them successfully terminate.',
   CRONJOB_DESC:
-    'A CronJob creates Jobs on a time-based schedule. For example, it runs a job periodically on a given schedule or only runs a job once on a given time.',
+    'A CronJob creates Jobs on a time-based schedule. For example, it runs a Job periodically on a given schedule or only runs a Job once on a given time.',
   CRONJOB_CREATE_DESC:
-    'A CronJob creates Jobs on a time-based schedule. For example, it runs a job periodically on a given schedule or only runs a job once on a given time.',
+    'A CronJob creates Jobs on a time-based schedule. For example, it runs a Job periodically on a given schedule or only runs a Job once on a given time.',
   CRONJOB_NAME_DESC:
     'It can only contain lowercase letters, numbers and hyphens("-"), and must begin and end with a lowercase letter or a number. The maximum length of characters is set to 52.',
   CRONJOB_NAME_TOO_LONG: 'The maximum length of characters is set to 52.',
@@ -406,9 +406,9 @@ module.exports = {
   MAX_DAEMON_UNAVAILABLE_POD_DESC:
     'The maximum number of DaemonSet pods that can be unavailable during the update.',
   MAX_DEPLOY_UNAVAILABLE_POD_DESC:
-    'The maximum number of pods that can be unavailable during the update.',
+    'The maximum number of Pods that can be unavailable during the update.',
   MAX_SURGE_POD_DESC:
-    'The maximum number of pods that can be scheduled above the desired number of pods.',
+    'The maximum number of Pods that can be scheduled above the desired number of Pods.',
   ROLLING_UPDATE_POD_TIP:
     'It limits the minimum and maximum available quantities based on the current replicas when it is in rolling update. The minimum number of replicas cannot exceed the current number of replicas, and the maximum number of Pods cannot exceed 2 times the current replicas.',
   ONDELETE_ALERT_TIP:
@@ -477,16 +477,16 @@ module.exports = {
 
   JOB_BACK_OFF_LIMIT_LABEL: 'Back off Limit',
   JOB_BACK_OFF_LIMIT_DESC:
-    'It specifies the number of retries before marking this job failed. It defaults to 6.',
+    'It specifies the number of retries before marking this Job failed. It defaults to 6.',
   JOB_PARALLELISM_LABEL: 'Parallelism',
   JOB_PARALLELISM_DESC:
-    'It specifies the maximum desired number of pods the job should run at any given time.',
+    'It specifies the maximum desired number of Pods the Job should run at any given time.',
   JOB_COMPLETION_LABEL: 'Completions',
   JOB_COMPLETION_DESC:
-    'It specifies the desired number of successfully finished pods the job should be run with.',
+    'It specifies the desired number of successfully finished Pods the Job should be run with.',
   JOB_ACTIVE_DL_SECONDS_LABEL: 'Active Deadline Seconds',
   JOB_ACTIVE_DL_SECONDS:
-    'It specifies the duration in seconds relative to the startTime that the job may be active before the system tries to terminate it; value must be positive integer.',
+    'It specifies the duration in seconds relative to the startTime that the Job may be active before the system tries to terminate it; value must be positive integer.',
 
   RESTART_POLICY_TIP:
     'RestartPolicy can only specify Never or OnFailure, when the job is not completed:<br/>* If RestartPolicy specifies Never, the job creates a new Pod when the Pod fails, and the failed Pod does not disappear.<br/>* If RestartPolicy specifies OnFailure, the job will internally restart the container when the Pod fails, instead of creating a new Pod.',
@@ -526,7 +526,7 @@ module.exports = {
   REPLICAS_PLACEHOLDER: 'Default: 1',
 
   ADD_VOLUME_TEMPLATE_DESC:
-    'The life cycle of the volume will be the same as that of the pod.',
+    'The life cycle of the volume will be the same as that of the Pod.',
 
   EDIT: 'Edit',
   MORE: 'More',
@@ -646,7 +646,7 @@ module.exports = {
     'A security context defines privilege and access control settings for a Pod or Container.',
 
   POD_SECURITY_CONTEXT_DESC:
-    'Pod Security Context can provide default user and user group settings and seLinuxOptions parameter settings for containers in the pod. If these parameters have been defined in the container, the settings in the container take precedence.',
+    'Pod Security Context can provide default user and user group settings and seLinuxOptions parameter settings for containers in the Pod. If these parameters have been defined in the container, the settings in the container take precedence.',
 
   ACCESS_CONTROL_PRIVILEGED: 'Privileged',
   ACCESS_CONTROL_PRIVILEGED_DESC:

@@ -411,7 +411,7 @@ module.exports = {
     you need to create a mirrored repository and then pull the image. `,
   AGENT_TYPE_DESC: `The agent section specifies
     where the entire Pipeline or a particular stage will be executed in the Jenkins environment,
-    depending on where the agent part is placed.
+    depending on where the Agent part is placed.
     This part must be defined at the top level within the pipeline block,
     but the stage level usage is optional. `,
   AUTHENTICATION_TOKEN_DESC: `Use the following URL to remotely trigger the build:
