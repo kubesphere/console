@@ -94,7 +94,7 @@ export default class KubeTools extends React.Component {
         data: [
           {
             icon: 'terminal',
-            link: '/kubectl',
+            link: '/terminal/kubectl',
             title: 'Kubectl',
             description: t('TOOLBOX_KUBECTL_DESC'),
             hidden: !globals.app.isPlatformAdmin,
@@ -127,7 +127,7 @@ export default class KubeTools extends React.Component {
     const data = e.currentTarget.dataset
 
     if (e.shiftKey || !data.action) {
-      return window.open('/terminal', data.title, this.getWindowOpts())
+      return window.open(data.link, data.title, this.getWindowOpts())
     }
 
     this.trigger(data.action, {})
