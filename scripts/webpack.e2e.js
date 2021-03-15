@@ -116,18 +116,6 @@ const config = smp.wrap({
       minChunks: 1,
       maxAsyncRequests: 5,
       maxInitialRequests: 5,
-      cacheGroups: {
-        vendors: {
-          test: /[\\/]node_modules[\\/](?!(ace-builds|react-ace|xterm)).*.jsx?$/,
-          name: 'vendor',
-          priority: 10,
-        },
-        common: {
-          name: 'common',
-          minChunks: 2,
-          minSize: 30000,
-        },
-      },
     },
   },
   resolve: merge({}, baseConfig.resolve, {

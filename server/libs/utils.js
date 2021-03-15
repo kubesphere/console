@@ -24,7 +24,7 @@ const merge = require('lodash/merge')
 const isEmpty = require('lodash/isEmpty')
 const pick = require('lodash/pick')
 
-const MANIFEST_CACHE_KEY = 'MANIFEST_CACHE_KEY'
+const MANIFEST_CACHE_KEY_PREFIX = 'MANIFEST_CACHE_KEY_'
 const LOCALE_MANIFEST_CACHE_KEY = 'LOCALE_MANIFEST_CACHE_KEY'
 
 const root = dir => `${global.APP_ROOT}/${dir}`.replace(/(\/+)/g, '/')
@@ -142,8 +142,8 @@ const safeParseJSON = (json, defaultValue) => {
   return result
 }
 
-const getManifest = () => {
-  let manifestCache = cache.get(MANIFEST_CACHE_KEY)
+const getManifest = entry => {
+  let manifestCache = cache.get(`${MANIFEST_CACHE_KEY_PREFIX}${entry}`)
 
   if (!manifestCache) {
     let data = {}
@@ -151,8 +151,8 @@ const getManifest = () => {
       const dataStream = fs.readFileSync(root('dist/manifest.json'))
       data = safeParseJSON(dataStream.toString(), {})
     } catch (error) {}
-    manifestCache = get(data, 'entrypoints.main')
-    cache.set(MANIFEST_CACHE_KEY, manifestCache)
+    manifestCache = get(data, `entrypoints.${entry}`)
+    cache.set(`${MANIFEST_CACHE_KEY_PREFIX}${entry}`, manifestCache)
   }
 
   return manifestCache

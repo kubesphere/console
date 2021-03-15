@@ -44,30 +44,6 @@ const renderView = async ctx => {
   }
 }
 
-const renderTerminal = async ctx => {
-  try {
-    const [user, ksConfig] = await Promise.all([
-      getCurrentUser(ctx),
-      getKSConfig(),
-    ])
-    const localeManifest = getLocaleManifest()
-
-    await ctx.render('terminal', {
-      isDev: global.MODE_DEV,
-      title: clientConfig.title,
-      hostname: ctx.hostname,
-      globals: JSON.stringify({
-        config: clientConfig,
-        localeManifest,
-        user,
-        ksConfig,
-      }),
-    })
-  } catch (err) {
-    renderViewErr(ctx, err)
-  }
-}
-
 const renderLogin = async ctx => {
   ctx.cookies.set('referer', ctx.query.referer)
 
@@ -88,7 +64,7 @@ const renderLoginConfirm = async ctx => {
 }
 
 const renderIndex = async (ctx, params) => {
-  const manifest = getManifest()
+  const manifest = getManifest('main')
   const localeManifest = getLocaleManifest()
 
   await ctx.render('index', {
@@ -104,9 +80,35 @@ const renderIndex = async (ctx, params) => {
   })
 }
 
+const renderTerminal = async ctx => {
+  try {
+    const manifest = getManifest('terminalEntry')
+    const [user, ksConfig] = await Promise.all([
+      getCurrentUser(ctx),
+      getKSConfig(),
+    ])
+    const localeManifest = getLocaleManifest()
+
+    await ctx.render('terminal', {
+      manifest,
+      isDev: global.MODE_DEV,
+      title: clientConfig.title,
+      hostname: ctx.hostname,
+      globals: JSON.stringify({
+        localeManifest,
+        user,
+        ksConfig,
+      }),
+    })
+  } catch (err) {
+    renderViewErr(ctx, err)
+  }
+}
+
 const renderMarkdown = async ctx => {
   await ctx.render('blank_markdown')
 }
+
 const renderViewErr = async (ctx, err) => {
   ctx.app.emit('error', err)
   if (err) {
@@ -138,6 +140,7 @@ const renderViewErr = async (ctx, err) => {
     })
   }
 }
+
 module.exports = {
   renderView,
   renderTerminal,
