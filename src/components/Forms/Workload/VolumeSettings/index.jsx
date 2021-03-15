@@ -455,6 +455,7 @@ class VolumeSettings extends React.Component {
   }
 
   renderVolumeTemplate() {
+    const { cluster } = this.props
     const { collectSavedLog } = this.state
     const containers = get(
       this.fedFormTemplate,
@@ -467,6 +468,7 @@ class VolumeSettings extends React.Component {
       <AddVolumeTemplate
         volume={this.selectVolume}
         containers={containers}
+        cluster={cluster}
         namespace={namespace}
         onSave={this.handleVolumeTemplate}
         onCancel={this.resetState}

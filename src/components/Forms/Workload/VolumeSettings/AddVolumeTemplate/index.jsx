@@ -39,6 +39,7 @@ export default class AddVolume extends React.Component {
   static propTypes = {
     containers: PropTypes.array,
     volume: PropTypes.object,
+    cluster: PropTypes.string,
     namespace: PropTypes.string,
     onSave: PropTypes.func,
     onCancel: PropTypes.func,
@@ -48,6 +49,7 @@ export default class AddVolume extends React.Component {
   static defaultProps = {
     volume: {},
     containers: [],
+    cluster: '',
     namespace: '',
     onSave() {},
     onCancel() {},
@@ -153,20 +155,22 @@ export default class AddVolume extends React.Component {
       return callback()
     }
 
-    const { volume, namespace, checkVolumeNameExist } = this.props
+    const { volume, cluster, namespace, checkVolumeNameExist } = this.props
 
     if (checkVolumeNameExist(value) && volume.metadata.name !== value) {
       callback({ message: t('The volume name exists'), field: rule.field })
     } else {
-      this.volumeStore.checkName({ name: value, namespace }).then(resp => {
-        if (resp.exist) {
-          return callback({
-            message: t('The volume name exists'),
-            field: rule.field,
-          })
-        }
-        callback()
-      })
+      this.volumeStore
+        .checkName({ name: value, cluster, namespace })
+        .then(resp => {
+          if (resp.exist) {
+            return callback({
+              message: t('The volume name exists'),
+              field: rule.field,
+            })
+          }
+          callback()
+        })
     }
   }
 
@@ -176,6 +180,7 @@ export default class AddVolume extends React.Component {
       className,
       contentClassName,
       collectSavedLog,
+      cluster,
       namespace,
     } = this.props
     const { formData } = this.state
@@ -206,7 +211,7 @@ export default class AddVolume extends React.Component {
               >
                 <Input name="metadata.name" autoFocus={true} maxLength={253} />
               </Form.Item>
-              <VolumeFormTemplate namespace={namespace} />
+              <VolumeFormTemplate cluster={cluster} namespace={namespace} />
               <Form.Item
                 label={t('Mount Path')}
                 rules={[{ validator: this.mountValidator }]}
