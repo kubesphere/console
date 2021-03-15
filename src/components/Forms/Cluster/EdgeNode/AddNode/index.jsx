@@ -17,7 +17,7 @@
  */
 
 import React, { Component } from 'react'
-
+import { clone } from 'lodash'
 import { Form, Input, Notify, Button } from '@kube-design/components'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 
@@ -25,18 +25,18 @@ import { generateId } from 'utils'
 import { PATTERN_IP, PATTERN_NAME } from 'utils/constants'
 
 import { Modal } from 'components/Base'
-import { clone } from 'lodash'
 import styles from './index.scss'
 
 const ERROR_MESSAGE = {
-  name: name => t('name', { name }),
-  IP: ip => t('name', { ip }),
+  name: name => t('IN_USE_Node_NAME', { name }),
+  IP: ip => t('IN_USE_Node_IP', { ip }),
 }
 
 export default class AddEdgeModal extends Component {
   state = {
     link: '',
     loading: false,
+    showLink: false,
     formData: clone(this.props.formTemplate || {}),
   }
 
@@ -45,47 +45,51 @@ export default class AddEdgeModal extends Component {
   store = this.props.store
 
   validator = type => (rule, value, callback) => {
+    const key = type.toLocaleLowerCase()
+
     if (!value) {
       return callback()
     }
 
     const { cluster } = this.props
 
-    this.store
-      .createEdgeNode({ cluster, ...this.state.formData })
-      .then(result => {
-        if (result.status === 'Failure') {
-          const isIpError = result.message.indexOf(type) > -1
-          if (isIpError) {
-            callback({
-              field: rule.field,
-              message: ERROR_MESSAGE.type(value),
-            })
+    if (rule.field === key) {
+      this.store
+        .createEdgeNode({ cluster, ...this.state.formData })
+        .then(result => {
+          if (result.status === 'Failure') {
+            const isIpError = result.message.indexOf(`${type}`) > -1
+            isIpError
+              ? callback({
+                  field: rule.field,
+                  message: ERROR_MESSAGE[type](value),
+                })
+              : callback()
           } else {
             callback()
           }
-        } else {
-          callback()
-        }
-      })
+        })
+    }
   }
 
   handleLink = async () => {
     const { cluster } = this.props
     const form = this.formRef.current
-    this.setState({ loading: true })
 
     form &&
-      form.validate(async () => {
-        const result = await this.store.createEdgeNode({
-          cluster,
-          ...this.state.formData,
-        })
-
-        if (result.status !== 'Failure') {
-          this.setState({ link: result.data })
-        }
-        this.setState({ loading: false })
+      form.validate(() => {
+        this.setState({ loading: true })
+        this.store
+          .createEdgeNode({
+            cluster,
+            ...this.state.formData,
+          })
+          .then(result => {
+            if (result.status !== 'Failure') {
+              this.setState({ link: result.data, showLink: true })
+            }
+            this.setState({ loading: false })
+          })
       })
   }
 
@@ -97,14 +101,14 @@ export default class AddEdgeModal extends Component {
 
   emptyLink = () => {
     if (this.state.link) {
-      this.setState({ link: '' })
+      this.setState({ link: '', showLink: false })
     }
   }
 
   renderLink = () => {
-    const { link } = this.state
+    const { showLink, link } = this.state
 
-    return this.state.link ? (
+    return showLink ? (
       <div className={styles.column}>
         <Form.Item label={t('Add Command')} desc={t('ADD_EDGE_COMMAND')}>
           <div className={styles.linkContainer}>
@@ -159,11 +163,11 @@ export default class AddEdgeModal extends Component {
               rules={[
                 {
                   required: true,
-                  message: t('Please input the ip address'),
+                  message: t('Please input the IP address'),
                 },
                 {
                   pattern: PATTERN_IP,
-                  message: t('Invalid ip address'),
+                  message: t('Invalid IP address'),
                 },
                 { validator: this.validator('IP') },
               ]}

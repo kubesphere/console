@@ -35,7 +35,9 @@ export default class EdgeNodeStore extends NodeStore {
     `kapis/resources.kubesphere.io/v1alpha3${this.getPath(params)}/nodes`
 
   createEdgeNode = async ({ cluster, name, ip }) => {
-    const url = `kapis/clusters/${cluster}/kubeedge.kubesphere.io/v1alpha1/nodes/join`
+    const url = `kapis/kubeedge.kubesphere.io/v1alpha1/${this.getPath({
+      cluster,
+    })}/nodes/join`
 
     const result = await request.get(
       url,
