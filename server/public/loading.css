@@ -1,0 +1,21 @@
+html {
+  background-color: #eff4f9;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.loadBox {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pageLoading {
+  height: 32px;
+  animation: loading 1.2s linear infinite;
+}

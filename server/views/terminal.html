@@ -10,6 +10,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title><%= title %></title>
     <link rel="icon" href="/assets/favicon.ico" type="image/x-icon" />
+    <style>
+      <%- include('../public/loading.css') %>
+    </style>
     <% if (manifest && manifest.css && manifest.css.length > 0) { %>
       <% manifest.css.forEach(function(item){ %>
         <link href="<%= bundlePrefix %>/<%= item %>" rel="stylesheet" media="all" />
@@ -17,7 +20,9 @@
     <% } %>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <%- include('./components/loading.html')  %>
+    </div>
     <script type="text/javascript">
       window.globals = JSON.parse(`<%- globals %>`)
     </script>
