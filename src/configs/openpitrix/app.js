@@ -24,8 +24,8 @@ export const MAX_LIMIT = 200
 export const STORE_APP_LIMIT = 12
 
 export const REVIEW_QUERY_STATUS = {
-  all: 'active|rejected|passed|submitted',
-  processed: 'active|rejected|passed',
+  all: 'active|rejected|passed|submitted|suspended',
+  processed: 'active|rejected|passed|suspended',
   unprocessed: 'submitted',
 }
 

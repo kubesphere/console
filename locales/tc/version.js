@@ -98,7 +98,6 @@ module.exports = {
   'Pending-review': '審核中',
   creating: '創建中',
   deleting: '刪除中',
-  ceasing: '釋放中',
 
   'Test Steps': '測試步驟',
   VERSION_SUBMIT_TEST_STEPS:

@@ -26,7 +26,6 @@ module.exports = {
   'Audit Records': 'Registros de auditoria',
   business: 'negocio',
   'Cancel Review': 'Cancelar revisión',
-  ceasing: 'cesar',
   creating: 'creando',
   'Delete Version': 'Eliminar versión',
   deleting: 'borrando',
