@@ -19,10 +19,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { observer } from 'mobx-react'
-import { get, set, cloneDeep, uniq, flatten } from 'lodash'
+import { get, set, cloneDeep, uniq, flatten, isEmpty } from 'lodash'
 
 import { Notify } from '@kube-design/components'
-import DeleteModal from 'components/Modals/GroupDelete'
+import DeleteModal from 'components/Modals/Delete'
 
 import { safeParseJSON } from 'utils'
 import { getBreadCrumbData } from 'utils/group'
@@ -223,11 +223,14 @@ export default class Detail extends Component {
       formTemplate,
       mode,
       showConfirm,
-      resource,
+      resource: { group_name, children },
       treeNode,
       deleteKeys,
     } = this.state
     const { groupId, showForm } = this.props
+    const desc = !isEmpty(children)
+      ? t.html('DELETE_PARENT_GROUP_TIP', { group_name })
+      : t.html('DELETE_GROUP_TIP', { group_name })
 
     return (
       <div className={styles.detailWrapper}>
@@ -254,7 +257,8 @@ export default class Detail extends Component {
           visible={showConfirm}
           onOk={this.handleConfirm}
           onCancel={this.hideConfirm}
-          detail={resource}
+          resource={group_name}
+          desc={desc}
         />
       </div>
     )
