@@ -149,9 +149,7 @@ export default class VolumeSettings extends React.Component {
 
     unset(this.context.formData, ACCESSMODE_KEY)
 
-    this.setState({
-      storageClass: newStorageClass,
-    })
+    this.setState({ storageClass: newStorageClass })
   }
 
   sizeValidator = (rule, value, callback) => {
