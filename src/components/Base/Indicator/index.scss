@@ -41,7 +41,8 @@
   &.available,
   &.healthy,
   &.ok,
-  &.passed {
+  &.passed,
+  &.published {
     background-color: rgba(85, 188, 138, 0.1);
     box-shadow: 0 8px 16px 0 rgba(85, 188, 138, 0.36);
 
@@ -87,8 +88,7 @@
   &.unschedulable,
   &.failed,
   &.critical,
-  &.rejected,
-  &.ceasing {
+  &.rejected {
     background-color: rgba(202, 38, 33, 0.1);
     box-shadow: 0 8px 16px 0 rgba(202, 38, 33, 0.2);
     &::before {

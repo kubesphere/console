@@ -92,12 +92,14 @@ export default class DeployAppModal extends React.Component {
         </div>
 
         <div className={styles.footer}>
-          <Item
-            icon="templet"
-            title={t('From App Store')}
-            desc={t('FROM_APP_STORE_DESC')}
-            onEnter={this.handleAppTemplate}
-          />
+          {globals.app.enableAppStore && (
+            <Item
+              icon="templet"
+              title={t('From App Store')}
+              desc={t('FROM_APP_STORE_DESC')}
+              onEnter={this.handleAppTemplate}
+            />
+          )}
           <Item
             icon="catalog"
             title={t('From App Templates')}

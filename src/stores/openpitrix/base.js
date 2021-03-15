@@ -61,7 +61,7 @@ export default class Base {
     if (workspace) {
       path += `/workspaces/${workspace}`
     }
-    if (cluster) {
+    if (globals.app.isMultiCluster && cluster) {
       path += `/clusters/${cluster}`
     }
     if (namespace) {

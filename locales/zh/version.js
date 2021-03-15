@@ -78,10 +78,7 @@ module.exports = {
   Passed: '已通过',
   Rejected: '已拒绝',
   Draft: '待提交',
-  Suspended: '已暂停',
-  Starting: '启动中',
-  Working: '工作中',
-  Stopping: '停止中',
+  Suspended: '已下架',
   Submitted: '等待审核',
   Submit: '提交',
   Review: '审核',
@@ -90,7 +87,6 @@ module.exports = {
   Release: '发布',
   Developing: '开发中',
   Published: '已上架',
-  Recalled: '已下架',
   Recall: '下架',
   Activated: '已激活',
   'In-review': '审核中',
@@ -98,7 +94,6 @@ module.exports = {
   'Pending-review': '审核中',
   creating: '创建中',
   deleting: '删除中',
-  ceasing: '释放中',
 
   'Test Steps': '测试步骤',
   VERSION_SUBMIT_TEST_STEPS:

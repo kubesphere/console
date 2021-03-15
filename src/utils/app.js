@@ -47,11 +47,12 @@ export const transferReviewStatus = status => {
       transStatus = 'pending-review'
       break
     case 'passed':
+    case 'suspended':
     case 'rejected':
       transStatus = status
       break
     case 'active':
-      transStatus = 'passed'
+      transStatus = 'published'
       break
     default:
       transStatus = 'in-review'
