@@ -32,6 +32,7 @@ export default class NavItem extends React.Component {
     current: PropTypes.string,
     prefix: PropTypes.string,
     onClick: PropTypes.func,
+    onOpen: PropTypes.func,
     disabled: PropTypes.bool,
   }
 
@@ -49,38 +50,48 @@ export default class NavItem extends React.Component {
     return current.startsWith(item.name)
   }
 
+  handleOpen = () => {
+    const { onOpen, item } = this.props
+    onOpen(item.name)
+  }
+
   render() {
-    const { item, prefix, disabled, onClick } = this.props
+    const { item, prefix, disabled, onClick, isOpen } = this.props
 
     if (item.children) {
       return (
         <li
           className={classnames({
-            [styles.childSelect]: item.open || this.checkSelect(item),
+            [styles.childSelect]: this.checkSelect(item),
+            [styles.open]: item.open || isOpen,
             [styles.disabled]: disabled && !item.showInDisable,
           })}
         >
-          <div className={styles.title}>
+          <div className={styles.title} onClick={this.handleOpen}>
             <Icon name={item.icon} /> {t(item.title)}
-            <Icon name="chevron-down" className={styles.rightIcon} />
+            {!item.open && (
+              <Icon name="chevron-down" className={styles.rightIcon} />
+            )}
           </div>
           <ul className={styles.innerNav}>
-            {item.children.map(child => (
-              <li
-                key={child.name}
-                className={classnames({
-                  [styles.select]: this.checkSelect(child),
-                  [styles.disabled]: disabled && !child.showInDisable,
-                })}
-              >
-                <Link
-                  to={`${prefix}/${child.name}`}
-                  disabled={disabled && !child.showInDisable}
+            {item.children.map(child => {
+              return (
+                <li
+                  key={child.name}
+                  className={classnames({
+                    [styles.select]: this.checkSelect(child),
+                    [styles.disabled]: disabled && !child.showInDisable,
+                  })}
                 >
-                  {t(child.title)}
-                </Link>
-              </li>
-            ))}
+                  <Link
+                    to={`${prefix}/${child.name}`}
+                    disabled={disabled && !child.showInDisable}
+                  >
+                    {t(child.title)}
+                  </Link>
+                </li>
+              )
+            })}
           </ul>
         </li>
       )

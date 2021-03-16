@@ -1,5 +1,7 @@
 @import '~scss/variables';
 
+$trans-speed: 0.2s;
+
 .subNav {
   & > p {
     color: #79879c;
@@ -37,29 +39,14 @@
             transition: all $trans-speed ease-in-out;
           }
         }
-
-        .devopsIcon {
-          width: 16px;
-          height: 16px;
-          padding: 2px;
-          margin-right: 8px;
-          vertical-align: text-bottom;
-        }
       }
 
       &.select,
-      &.childSelect,
-      &:hover,
-      &:active {
+      &.open {
         & > a {
           color: $primary;
 
           :global .kubed-icon {
-            color: #00aa72;
-            fill: #90e0c5;
-          }
-
-          .devopsIcon {
             color: #00aa72;
             fill: #90e0c5;
           }
@@ -81,12 +68,18 @@
         }
       }
 
+      &.childSelect .title {
+        color: $primary;
+        :global .kubed-icon {
+          color: #00aa72;
+          fill: #90e0c5;
+        }
+      }
+
       &.disabled {
         opacity: 0.7;
 
-        &.select,
-        &:hover,
-        &:active {
+        &.select {
           & > a {
             color: #4a5974;
             cursor: not-allowed;
@@ -135,6 +128,7 @@
       margin-top $trans-speed ease-in-out 0.1s, opacity $trans-speed ease-in-out;
 
     & > a {
+      display: block;
       color: #4a5974;
     }
 
