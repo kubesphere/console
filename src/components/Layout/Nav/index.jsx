@@ -42,6 +42,14 @@ class Nav extends React.Component {
     onItemClick() {},
   }
 
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      openedNav: this.getOpenedNav(),
+    }
+  }
+
   get currentPath() {
     const {
       location: { pathname },
@@ -50,6 +58,39 @@ class Nav extends React.Component {
 
     const length = trimEnd(url, '/').length
     return pathname.slice(length + 1)
+  }
+
+  getOpenedNav() {
+    let name = ''
+    const { navs } = this.props
+    const current = this.currentPath
+    navs.forEach(nav => {
+      nav.items.forEach(item => {
+        if (
+          item.children &&
+          item.children.some(child => {
+            if (child.name === current) {
+              return true
+            }
+            if (child.tabs) {
+              return child.tabs.some(tab => tab.name === current)
+            }
+
+            return false
+          })
+        ) {
+          name = item.name
+        }
+      })
+    })
+
+    return name
+  }
+
+  handleItemOpen = name => {
+    this.setState(({ openedNav }) => ({
+      openedNav: openedNav === name ? '' : name,
+    }))
   }
 
   render() {
@@ -62,6 +103,8 @@ class Nav extends React.Component {
       disabled,
     } = this.props
 
+    const { openedNav } = this.state
+    const current = this.currentPath
     const prefix = trimEnd(match.url, '/')
 
     return (
@@ -75,8 +118,10 @@ class Nav extends React.Component {
                   key={item.name}
                   item={item}
                   prefix={prefix}
-                  current={this.currentPath}
+                  current={current}
                   onClick={onItemClick}
+                  isOpen={item.name === openedNav}
+                  onOpen={this.handleItemOpen}
                   disabled={disabled}
                 />
               ))}
