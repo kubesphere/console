@@ -17,7 +17,7 @@
  */
 
 import React, { Component } from 'react'
-import { pick, get } from 'lodash'
+import { pick, get, set } from 'lodash'
 import { Select, Form } from '@kube-design/components'
 
 import WorkloadStore from 'stores/workload'
@@ -84,6 +84,7 @@ export default class WorkloadSelect extends Component {
   handleKindChange = kind => {
     this.store.setModule(this.kindModules[kind])
     this.fetchData()
+    set(this.props.formTemplate, 'resources', [])
   }
 
   render() {

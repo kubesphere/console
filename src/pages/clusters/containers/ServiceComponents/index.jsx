@@ -75,12 +75,6 @@ export default class ServiceComponents extends React.Component {
       icon: '/assets/kubernetes.svg',
     },
     {
-      type: 'openpitrix',
-      title: 'OpenPitrix',
-      icon: '/assets/openpitrix.svg',
-      disabled: !globals.app.hasClusterModule(this.cluster, 'openpitrix'),
-    },
-    {
       type: 'istio',
       title: 'Istio',
       icon: '/assets/istio.svg',
