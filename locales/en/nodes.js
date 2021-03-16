@@ -136,7 +136,7 @@ module.exports = {
   NODE_TYPES_A: 'The nodes are divided into master nodes and worker nodes.',
   WHAT_IS_NODE_TAINTS_Q: 'What are node taints?',
   WHAT_IS_NODE_TAINTS_A:
-    'Taints allow a node to repel a set of pods. Taints and tolerations work together to ensure that pods are not scheduled onto inappropriate nodes.',
+    'Taints allow a node to repel a set of Pods. Taints and tolerations work together to ensure that Pods are not scheduled onto inappropriate nodes.',
 
   NODE_TYPE_DESC:
     'Node types help users to divide nodes into different groups. Users can add the hosting node to a corresponding group by creating nodes of different types that are properly connected with each other. In this way, Pods can be deployed to appropriate physical nodes based on the group. Resource availability and business continuity can also be improved.',

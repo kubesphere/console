@@ -18,7 +18,7 @@
 
 module.exports = {
   'Add App Repository': 'Agregar repositorio de aplicaciones',
-  'Add Repo': 'Agregar repositorio',
+  'Add Repository': 'Agregar repositorio',
   'App Repos': 'Repositorios de aplicaciones',
   'App Repository': 'Repositorio de aplicaciones',
   'App Repository Name': 'Nombre del repositorio de aplicaciones',

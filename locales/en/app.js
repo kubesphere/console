@@ -49,7 +49,7 @@ module.exports = {
   'Application Name': 'Application Name',
   'Rejection Reason': 'Rejection Reason',
   'Application Version': 'Application Version',
-  'Apps Management': 'Apps Management',
+  'Apps Management': 'App Management',
   'Base Info': 'Base Info',
   'Business introduction': 'Business introduction',
   'Cancel Successfully': 'Cancel Successfully',
@@ -164,7 +164,7 @@ module.exports = {
   HOW_APP_DEPLOY_TITLE: 'How to deploy and test applications',
 
   APPS_CREATE_DESC:
-    'KubeSphere provides lifecycle management of app templates. You can upload or create new app templates and test them quickly. In addition, you can publish your app templates to App Store so that other users can purchase and deploy them.',
+    'KubeSphere provides lifecycle management of app templates. You can upload or create new app templates and test them quickly. In addition, you can publish your app templates to the App Store so that other users can deploy them.',
 
   APP_NAME_DESC: 'Important Identification of Applications',
 

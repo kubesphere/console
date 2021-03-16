@@ -62,7 +62,7 @@ module.exports = {
   'The volume name exists': '存储卷名称已使用',
 
   'Used Capacity': '已分配存储',
-  'Avail Capacity': '剩余存储',
+  'Available Capacity': '剩余存储',
 
   PersistentVolumes: '持久化存储卷',
 
@@ -164,7 +164,7 @@ module.exports = {
   CREATE_VOLUME_WITH_SNAPSHOT: '基于快照创建存储卷',
 
   'Create Snapshot': '创建快照',
-  'Volume Clone': '存储卷克隆',
+  'Clone Volume': '存储卷克隆',
   'Support Volume Snapshot': '支持存储卷快照',
 
   VOLUME_SNAPSHOT_STATUS_CREATING: '创建中',

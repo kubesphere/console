@@ -18,7 +18,7 @@
 
 module.exports = {
   'Allow Volume Expansion': 'Allow Volume Expansion',
-  'Avail Capacity': 'Avail Capacity',
+  'Available Capacity': 'Available Capacity',
   'Create Snapshot': 'Create Snapshot',
   'Create Storage Class': 'Create Storage Class',
   'Create Volume': 'Create Volume',
@@ -48,7 +48,7 @@ module.exports = {
   Scalable: 'Scalable',
   'Set as default storage class': 'Set as default storage class',
   'Snapshot Message': 'Snapshot Message',
-  'Snapshots Message': 'Snapshots Message',
+  'Snapshots Message': 'Snapshot Message',
   'Storage Class': 'Storage Class',
   'Storage Class Name': 'Storage Class Name',
   'Storage Class Settings': 'Storage Class Settings',
@@ -61,7 +61,7 @@ module.exports = {
   'Support Volume Snapshot': 'Support Volume Snapshot',
   'Supported Access Mode': 'Supported Access Mode',
   'Used Capacity': 'Used Capacity',
-  'Volume Clone': 'Volume Clone',
+  'Clone Volume': 'Clone Volume',
   'Volume Count': 'Volume Count',
   'The volume name exists': 'The volume name exists',
   'The volume size must be greater than zero':
@@ -133,7 +133,7 @@ module.exports = {
     'A local volume is a mounted local storage device, such as a disk, partition, or directory.',
   CHOOSE_STORAGE_SYSTEM_TIP: 'Choose the Storage System You Need',
   PROVISIONER_DEPENDENCE_DESC:
-    'The storage system needs to deploy corresponding storage plugins so as to provide services.',
+    'You need to deploy the corresponding storage plugin for a storage system first so that it can provide services.',
 
   VOLUME_EXPAND_TIPS:
     'The current PVC has been mounted to the work load, so the expansion will lead to the workload restart, and a new version. Business may be a brief interruption. ',

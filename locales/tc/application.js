@@ -234,7 +234,7 @@ module.exports = {
 
   'From workspace': '來自企業空間',
   'Add stateful or stateless services': '添加有狀態服務或無狀態服務',
-  'Add Internet access rule for the application': '為應用添加外網訪問規則',
+  'Add an Internet access rule for the application': '為應用添加外網訪問規則',
 
   INTERNET_ACCESS_DESC: '可以設置應用的外網訪問規則 (Ingress)',
 

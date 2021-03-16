@@ -364,5 +364,5 @@ module.exports = {
     'Gestiona todos los proyectos multi-cluster en el workspace, incluyendo crear/editar/borrar proyectos multi-cluster',
 
   RULE_RELATED_WITH:
-    'La regla actual depende de {resource} y no se puede eliminar',
+    'The current permission cannot be removed as {resource} is dependent on it.',
 }

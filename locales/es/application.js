@@ -20,7 +20,7 @@ module.exports = {
   'According to the HTTP header': 'De acuerdo con el encabezado HTTP',
   'Add Component': 'Agregar componente',
   'Add Component Successfully': 'Componente añadido con éxito',
-  'Add Internet access rule for the application':
+  'Add an Internet access rule for the application':
     'Agregar regla de acceso a Internet para la aplicación',
   'Add New Component': 'Agregar nuevo componente',
   'Add Service': 'Agregar servicio',
@@ -29,7 +29,8 @@ module.exports = {
   'App store deployment': 'Despliegue desde la tienda de aplicaciones',
   'App Template': 'Plantilla de la aplicación',
   'App Types': 'Tipos de aplicaciones',
-  APP_ICON_TIP: 'APP_ICON_TIP',
+  APP_ICON_TIP:
+    'Click to upload the app icon with a maximum size of 120px * 120px.',
   application: 'aplicación',
   'Application Component': 'Componente de aplicación',
   'Application Components': 'Componentes de la aplicación',

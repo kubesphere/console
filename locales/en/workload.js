@@ -367,7 +367,7 @@ module.exports = {
     'You can allow Pod replicas to run on specified nodes.',
 
   WORKLOAD_DESC:
-    'The workload is usually the actual carrier for accessing the service, and is also the actual running carrier for system applications such as node log collection and monitoring. Workload is an abstract model for a group of Pods.',
+    'A workload is usually the actual carrier for accessing the service, and is also the actual running carrier for system applications such as node log collection and monitoring. A workload is an abstract model for a group of Pods.',
   DEPLOYMENT_DESC:
     'Deployment provides fine-grained management of common applications in KubeSphere. Deployment configuration describes the desired state of specific components of an application as Pod templates.',
   DEPLOYMENT_CREATE_DESC:
@@ -667,7 +667,7 @@ module.exports = {
     'The GID to run the entrypoint of the container process. Uses runtime default if unset.',
 
   WORKLOAD_CREATE_DESC:
-    'Workload is usually the actual carrier for accessing services and is also the actual carrier for system applications such as node log collection and monitoring. Workload is also an abstract model for a group of Pods.',
+    'A workload is usually the actual carrier for accessing services and is also the actual carrier for system applications such as node log collection and monitoring. Workload is also an abstract model for a group of Pods.',
 
   CONTAINER_RESOURCE_LIMIT_TIP:
     "Please set the container's resource limits and requests, which will help the system to better schedule and improve stability. In Project Settings, you can also set the default value (Basic Info -> Manage Project -> Edit Resource Default Request).",

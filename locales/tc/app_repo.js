@@ -50,7 +50,7 @@ module.exports = {
     '請輸入 Access key ID 和 Secret access key',
 
   'App Repos': '應用倉庫',
-  'Add Repo': '添加倉庫',
+  'Add Repository': '添加倉庫',
   'Index Repo': '同步倉庫',
 
   HOW_TO_USE_APP_REPO_Q: '如何使用應用倉庫？',

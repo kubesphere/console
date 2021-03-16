@@ -109,7 +109,7 @@ export default {
           Modal.close(modal)
           Notify.success({ content: `${t('Created Successfully')}!` })
         },
-        title: t('Volume Clone'),
+        title: t('Clone Volume'),
         modal: NameModal,
         store,
         ...props,

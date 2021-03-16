@@ -120,7 +120,7 @@ export default class VolumeDetail extends React.Component {
     {
       key: 'clone',
       type: 'control',
-      text: t('Volume Clone'),
+      text: t('Clone Volume'),
       icon: 'copy',
       action: 'create',
       disabled: !get(
