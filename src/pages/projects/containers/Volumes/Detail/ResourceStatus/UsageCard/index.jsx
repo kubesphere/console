@@ -129,7 +129,7 @@ export default class UsageCard extends Component {
             {available.count}
             <small>{available.unit}</small>
           </h3>
-          <p>{t('Avail Capacity')}</p>
+          <p>{t('Available Capacity')}</p>
         </div>
         <div className={styles.description}>
           <h3>

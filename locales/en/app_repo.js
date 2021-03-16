@@ -18,8 +18,8 @@
 
 module.exports = {
   'Add App Repository': 'Add App Repository',
-  'Add Repo': 'Add Repo',
-  'App Repos': 'App Repos',
+  'Add Repository': 'Add Repository',
+  'App Repos': 'App Repositories',
   'App Repository': 'App Repository',
   'App Repository Name': 'App Repository Name',
   'Edit App Repository': 'Edit App Repository',
@@ -54,5 +54,5 @@ module.exports = {
 
   HOW_TO_USE_APP_REPO_Q: 'How to use an app repository?',
   HOW_TO_USE_APP_REPO_A:
-    'The added app repository can be seen in the workspace projects. By entering Application => Deploy applications => App repository, you can find all the applications in the current repository and deploy them.',
+    'The added app repository can be seen in workspace projects. By entering Application => Deploy applications => App repository, you can find all the applications in the current repository and deploy them.',
 }

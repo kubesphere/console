@@ -18,7 +18,7 @@
 
 module.exports = {
   'Allow Volume Expansion': 'Permitir expansión de volumen',
-  'Avail Capacity': 'Capacidad disponible',
+  'Available Capacity': 'Capacidad disponible',
   'Create Snapshot': 'Crear snapshot',
   'Create Storage Class': 'Crear clase de almacenamiento',
   'Create Volume': 'Crear volumen',
@@ -62,7 +62,7 @@ module.exports = {
   'Support Volume Snapshot': 'Soporta snapshot de volumen',
   'Supported Access Mode': 'Modo de acceso admitido',
   'Used Capacity': 'Capacidad utilizada',
-  'Volume Clone': 'Clon del volumen',
+  'Clone Volume': 'Clon del volumen',
   'Volume Count': 'Recuento de volumen',
   'The volume name exists': 'nombre de volumen existe',
   'The volume size must be greater than zero':

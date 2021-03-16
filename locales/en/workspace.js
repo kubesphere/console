@@ -38,7 +38,7 @@ module.exports = {
   Workspace: 'Workspace',
   'Workspace Info': 'Workspace Info',
   'Workspace Logo': 'Workspace Logo',
-  'Workspace Manager': 'Workspace Manager',
+  'Workspace Manager': 'Workspace Administrator',
   'Workspace Members': 'Workspace Members',
   'Workspace Name': 'Workspace Name',
   'Workspace name exists': 'Workspace name exists',

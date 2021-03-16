@@ -297,4 +297,7 @@ module.exports = {
 
   CLUSTER_CREATION_PROGRESS_TIP:
     '根據所創建的的集群規模和網路連接的不同，創建完整整個集群大概需要 30 ~ 60 分鐘。',
+
+  CLUSTER_REGION: '集群地区',
+  CLUSTER_ZONE: '集群区域',
 }
