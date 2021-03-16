@@ -143,7 +143,8 @@ export default class CreateIPPoolModal extends Component {
           ]}
         >
           <NumberInput
-            value={count}
+            name="count"
+            defaultValue={count}
             integer
             min={1}
             max={10}

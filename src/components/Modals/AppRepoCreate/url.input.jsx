@@ -99,8 +99,8 @@ export default class UrlInput extends React.Component {
 
   getCredential(formData) {
     const credential = {
-      access_key_id: '',
-      secret_access_key: '',
+      accessKeyID: '',
+      secretAccessKey: '',
     }
 
     if (formData.credential) {
@@ -193,11 +193,9 @@ export default class UrlInput extends React.Component {
     }
 
     if (this.type === 's3') {
-      const { access_key_id, secret_access_key } = this.credential
+      const { accessKeyID, secretAccessKey } = this.credential
       return (
-        !isEmpty(this.url) &&
-        !isEmpty(access_key_id) &&
-        !isEmpty(secret_access_key)
+        !isEmpty(this.url) && !isEmpty(accessKeyID) && !isEmpty(secretAccessKey)
       )
     }
 
@@ -295,16 +293,16 @@ export default class UrlInput extends React.Component {
         <div className={styles.accessItem}>
           <label className={styles.label}>{t('Access Key ID')}:</label>
           <Input
-            name="access_key_id"
-            value={this.credential.access_key_id}
+            name="accessKeyID"
+            value={this.credential.accessKeyID}
             onChange={this.handleAccessInputChange}
           />
         </div>
         <div className={styles.accessItem}>
           <label className={styles.label}>{t('Secret Access Key')}:</label>
           <Input
-            name="secret_access_key"
-            value={this.credential.secret_access_key}
+            name="secretAccessKey"
+            value={this.credential.secretAccessKey}
             onChange={this.handleAccessInputChange}
           />
         </div>
