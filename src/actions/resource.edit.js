@@ -17,6 +17,7 @@
  */
 
 import { toJS } from 'mobx'
+import { Notify } from '@kube-design/components'
 import { Modal } from 'components/Base'
 import EditBasicInfoModal from 'components/Modals/EditBasicInfo'
 import EditYamlModal from 'components/Modals/EditYaml'
@@ -29,6 +30,7 @@ export default {
         onOk: data => {
           store.patch(detail, data).then(() => {
             Modal.close(modal)
+            Notify.success({ content: `${t('Updated Successfully')}!` })
             success && success()
           })
         },
@@ -45,6 +47,7 @@ export default {
         onOk: async data => {
           set(data, 'metadata.resourceVersion', detail.resourceVersion)
           await store.update(detail, data)
+          Notify.success({ content: `${t('Updated Successfully')}!` })
           Modal.close(modal)
           success && success()
         },
