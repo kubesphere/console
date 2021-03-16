@@ -1,5 +1,10 @@
 .editor {
   height: 100%;
+  :global {
+    .ace_editor {
+      min-height: 100%;
+    }
+  }
 }
 
 .readOnly {

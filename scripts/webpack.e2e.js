@@ -26,8 +26,6 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
   .BundleAnalyzerPlugin
 
-const ChunkRenamePlugin = require('webpack-chunk-rename-plugin')
-
 const root = path => resolve(__dirname, `../${path}`)
 
 const baseConfig = require('./webpack.base')
@@ -42,7 +40,7 @@ const config = smp.wrap({
     filename: '[name].[chunkhash].js',
     path: root('dist/'),
     publicPath: '/dist/',
-    chunkFilename: '[name].[chunkhash].js',
+    chunkFilename: '[chunkhash].js',
   },
   module: {
     rules: [
@@ -123,13 +121,10 @@ const config = smp.wrap({
   }),
   plugins: [
     ...baseConfig.plugins,
-    new ChunkRenamePlugin({
-      vendor: '[name].[chunkhash].js',
-    }),
     new CopyPlugin([{ from: root('src/assets'), to: root('dist/assets') }]),
     new MiniCssExtractPlugin({
       filename: '[name].[chunkhash].css',
-      chunkFilename: '[name].[chunkhash].css',
+      chunkFilename: '[chunkhash].css',
     }),
     new OptimizeCssAssetsPlugin({
       assetNameRegExp: /\.css$/g,

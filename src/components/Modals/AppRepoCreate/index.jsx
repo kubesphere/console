@@ -60,10 +60,19 @@ export default class AddRepoModal extends Component {
   }
 
   getFormData = detail => {
+    let type = 'https'
+
+    if (detail && detail.url) {
+      const matches = detail.url.match(/^(.*):\/\//)
+      if (matches[1]) {
+        type = matches[1]
+      }
+    }
+
     const data = {
+      type,
       name: '',
       repoType: 'Helm',
-      type: 'https',
       visibility: 'public',
       credential: '{}',
       providers: ['kubernetes'],

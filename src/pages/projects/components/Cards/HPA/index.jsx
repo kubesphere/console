@@ -98,7 +98,7 @@ export default class HPACard extends React.Component {
             ? t('None')
             : memoryTargetValue,
         current: this.getValue(
-          memoryCurrentValue.endsWith('m')
+          String(memoryCurrentValue).endsWith('m')
             ? parseInt(memoryCurrentValue, 10) / 1000
             : memoryCurrentValue,
           'memory'

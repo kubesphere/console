@@ -87,6 +87,7 @@ module.exports = {
   Release: '发布',
   Developing: '开发中',
   Published: '已上架',
+  Recalled: '已下架',
   Recall: '下架',
   Activated: '已激活',
   'In-review': '审核中',
