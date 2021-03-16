@@ -7,6 +7,16 @@ body {
   margin: 0;
 }
 
+@keyframes loading {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .loadBox {
   width: 100vw;
   height: 100vh;
