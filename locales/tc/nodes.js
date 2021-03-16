@@ -132,4 +132,5 @@ module.exports = {
   IN_USE_Node_IP: '節點 IP {ip} 已被使用',
   IN_USE_Node_NAME: '節點名稱 {name} 已被使用',
   'Add Edge Node': '添加邊緣節點',
+  "Please input the node's name": '請輸入節點名稱',
 }
