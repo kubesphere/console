@@ -69,13 +69,7 @@
   border-radius: 2px;
   border: solid 1px $border-color;
   background-color: $white;
-  cursor: pointer;
   transition: all $trans-speed ease-in-out;
-
-  &:hover {
-    box-shadow: 0 4px 8px 0 rgba(36, 46, 66, 0.2);
-    border: solid 1px $dark-color01;
-  }
 
   :global {
     .checkbox {

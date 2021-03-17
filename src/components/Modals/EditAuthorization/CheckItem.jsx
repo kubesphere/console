@@ -31,7 +31,8 @@ export default class CheckItem extends Component {
     let newTemplates = [...roleTemplates]
     if (newTemplates.includes(data.name)) {
       const relateTemplates = newTemplates.filter(
-        template => this.getDependencies([template]).length > 0
+        template =>
+          template !== data.name && this.getDependencies([template]).length > 0
       )
       if (relateTemplates.length === 0) {
         newTemplates = newTemplates.filter(item => item !== data.name)
@@ -77,19 +78,18 @@ export default class CheckItem extends Component {
     return dependencies
   }
 
-  handleCheckboxClick = e => e.stopPropagation()
-
   render() {
     const { roleTemplates, roleTemplatesMap, data } = this.props
 
     return (
-      <div className={styles.checkItem} onClick={this.handleCheck}>
+      <div className={styles.checkItem}>
         <Checkbox
           checked={roleTemplates.includes(data.name)}
-          onClick={this.handleCheckboxClick}
+          onClick={this.handleCheck}
         />
         <Text
           title={t(data.aliasName)}
+          onClick={this.handleCheck}
           description={t(
             `${data.aliasName.toUpperCase().replace(/\s+/g, '_')}_DESC`
           )}
