@@ -197,11 +197,11 @@ export default class ResourceLimit extends React.Component {
     let memoryError = ''
     const { requests, limits } = state
 
-    if (Number(requests.cpu) > Number(limits.cpu)) {
+    if (limits.cpu && Number(requests.cpu) > Number(limits.cpu)) {
       cpuError = 'RequestExceed'
     }
 
-    if (Number(requests.memory) > Number(limits.memory)) {
+    if (limits.memory && Number(requests.memory) > Number(limits.memory)) {
       memoryError = 'RequestExceed'
     }
 
