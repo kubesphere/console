@@ -54,14 +54,16 @@ export default class CreateIPPoolModal extends Component {
     const { ip, mask, count, formData } = this.state
     const cidrs = []
     if (PATTERN_IP.test(ip) && mask && count > 0) {
-      cidrs.push({ cidr: `${ip}/${mask}` })
       if (count > 1) {
         let index = 0
         let block = new Netmask(`${ip}/${mask}`)
         while (index < count - 1) {
           index += 1
           block = block.next()
-          cidrs.push({ cidr: block.toString() })
+          const cidr = block.toString()
+          if (cidrs.every(item => item.cidr !== cidr)) {
+            cidrs.push({ cidr })
+          }
         }
       }
     }

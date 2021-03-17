@@ -175,7 +175,7 @@ export default class IPPoolDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('IP Pools'),
+          label: t('Pod IP Pools'),
           url: this.listUrl,
         },
       ],

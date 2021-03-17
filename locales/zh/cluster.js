@@ -268,7 +268,7 @@ module.exports = {
 
   KUBE_PODS_CIDR_DESC:
     '在节点上运行的 Pod 从节点的 Pod CIDR 范围分配 IP 地址。',
-  KUBE_SERVICE_CIDR_DESC: '分配给服务的 IP 地址范围',
+  KUBE_SERVICE_CIDR_DESC: '分配给服务的 IP 池',
 
   CLUSTER_COMPONENTS_DESC: '对集群的服务组件进行定制',
 
