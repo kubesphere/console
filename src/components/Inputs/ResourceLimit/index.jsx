@@ -35,11 +35,13 @@ export default class ResourceLimit extends React.Component {
     value: PropTypes.object,
     defaultValue: PropTypes.object,
     onChange: PropTypes.func,
+    onError: PropTypes.func,
   }
 
   static defaultProps = {
     value: {},
     onChange() {},
+    onError() {},
     cpuProps: {},
     memoryProps: {},
   }
@@ -209,7 +211,7 @@ export default class ResourceLimit extends React.Component {
   }
 
   triggerChange = debounce(() => {
-    const { onChange } = this.props
+    const { onChange, onError } = this.props
     const { requests, limits, cpuError, memoryError } = this.state
     const { unit: memoryUnit } = this.getMemoryProps()
     let { unit: cpuUnit } = this.getCPUProps()
@@ -217,7 +219,7 @@ export default class ResourceLimit extends React.Component {
     cpuUnit = cpuUnit === 'Core' ? '' : cpuUnit
 
     if (cpuError || memoryError) {
-      return
+      return onError(cpuError || memoryError)
     }
 
     const result = {}
