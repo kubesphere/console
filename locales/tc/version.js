@@ -63,7 +63,7 @@ module.exports = {
     '部署檔案模板目錄，模板填入 values.yaml 中相應值，生成最終的 Kubernetes 配置檔案',
   NOTES_FILE_DESC: '使用指南',
 
-  'Version update info': '版本更新說明',
+  'Version Update Info': '版本更新說明',
   'No version info': '暫無更新說明',
 
   developer: '開發者',

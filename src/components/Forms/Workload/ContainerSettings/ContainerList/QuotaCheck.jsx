@@ -64,13 +64,13 @@ export default class QuotaCheck extends Component {
               <span>
                 CPU{t('Cost')}
                 {get(result, '["requests.cpu"].cost', t('Not Limited'))}(
-                {t('Project Left Quota')}:
+                {t('Project Remaining Quota')}:
                 {get(
                   result,
                   '["requests.cpu"].namespaceQuota',
                   t('No Request')
                 )}
-                ,{t('Workspace Left Quota')}:
+                ,{t('Workspace Remaining Quota')}:
                 {get(
                   result,
                   '["requests.cpu"].workspaceQuota',
@@ -84,13 +84,13 @@ export default class QuotaCheck extends Component {
                 {t('Memory')}
                 {t('Cost')}
                 {get(result, '["requests.memory"].cost', t('Not Limited'))}(
-                {t('Project Left Quota')}:
+                {t('Project Remaining Quota')}:
                 {get(
                   result,
                   '["requests.memory"].namespaceQuota',
                   t('No Request')
                 )}
-                ;{t('Workspace Left Quota')}:
+                ;{t('Workspace Remaining Quota')}:
                 {get(
                   result,
                   '["requests.memory"].workspaceQuota',
@@ -108,9 +108,9 @@ export default class QuotaCheck extends Component {
               <span>
                 CPU{t('Cost')}
                 {get(result, '["limits.cpu"].cost', t('Not Limited'))}(
-                {t('Project Left Quota')}:
+                {t('Project Remaining Quota')}:
                 {get(result, '["limits.cpu"].namespaceQuota', t('No Limit'))},
-                {t('Workspace Left Quota')}:
+                {t('Workspace Remaining Quota')}:
                 {get(result, '["limits.cpu"].workspaceQuota', t('No Limit'))})
               </span>
             )}
@@ -119,9 +119,9 @@ export default class QuotaCheck extends Component {
                 {t('Memory')}
                 {t('Cost')}
                 {get(result, '["limits.memory"].cost', t('Not Limited'))}(
-                {t('Project Left Quota')}:
+                {t('Project Remaining Quota')}:
                 {get(result, '["limits.memory"].namespaceQuota', t('No Limit'))}
-                ;{t('Workspace Left Quota')}:
+                ;{t('Workspace Remaining Quota')}:
                 {get(result, '["limits.memory"].workspaceQuota', t('No Limit'))}
                 )
               </span>
@@ -137,30 +137,30 @@ export default class QuotaCheck extends Component {
       <>
         <div className={styles.message}>
           <span>
-            {t('Resource Requests')}: CPU ({t('Project Left Quota')}:
+            {t('Resource Requests')}: CPU ({t('Project Remaining Quota')}:
             {get(result, '["requests.cpu"].namespaceQuota', t('No Request'))},
-            {t('Workspace Left Quota')}:
+            {t('Workspace Remaining Quota')}:
             {get(result, '["requests.cpu"].workspaceQuota', t('No Request'))});
           </span>
           <span>
-            {t('Memory')} ({t('Project Left Quota')}:
+            {t('Memory')} ({t('Project Remaining Quota')}:
             {get(result, '["requests.memory"].namespaceQuota', t('No Request'))}
-            ;{t('Workspace Left Quota')}:
+            ;{t('Workspace Remaining Quota')}:
             {get(result, '["requests.memory"].workspaceQuota', t('No Request'))}
             ).
           </span>
         </div>
         <div className={styles.message}>
           <span>
-            {t('Resource Limits')}: CPU ({t('Project Left Quota')}:
+            {t('Resource Limits')}: CPU ({t('Project Remaining Quota')}:
             {get(result, '["limits.cpu"].namespaceQuota', t('No Limit'))},
-            {t('Workspace Left Quota')}:
+            {t('Workspace Remaining Quota')}:
             {get(result, '["limits.cpu"].workspaceQuota', t('No Limit'))});
           </span>
           <span>
-            {t('Memory')} ({t('Project Left Quota')}:
+            {t('Memory')} ({t('Project Remaining Quota')}:
             {get(result, '["limits.memory"].namespaceQuota', t('No Limit'))};
-            {t('Workspace Left Quota')}:
+            {t('Workspace Remaining Quota')}:
             {get(result, '["limits.memory"].workspaceQuota', t('No Limit'))}).
           </span>
         </div>
@@ -178,7 +178,7 @@ export default class QuotaCheck extends Component {
 
     const overcost = Object.values(checkResult).some(item => item.overcost)
     const type = overcost ? 'error' : 'info'
-    const title = overcost ? t('QUOTA_OVERCOST_TIP') : t('Left Quota')
+    const title = overcost ? t('QUOTA_OVERCOST_TIP') : t('Remaining Quota')
 
     const message = overcost
       ? this.renderOverCostMessage(checkResult)

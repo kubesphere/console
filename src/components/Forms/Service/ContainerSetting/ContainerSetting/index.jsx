@@ -120,7 +120,8 @@ export default class ContainerSetting extends React.Component {
 
     const message = (
       <div className={styles.message}>
-        {t('Left Quota')}:&nbsp;&nbsp;&nbsp;&nbsp;[{t('Resource Request')}: CPU{' '}
+        {t('Remaining Quota')}:&nbsp;&nbsp;&nbsp;&nbsp;[{t('Resource Request')}:
+        CPU{' '}
         {cpuRequestLeft ? `${cpuFormat(cpuRequestLeft)} Core` : t('No Limit')},{' '}
         {t('Memory')}{' '}
         {memoryRequestLeft

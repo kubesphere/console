@@ -266,7 +266,7 @@ class Overview extends React.Component {
 
     return (
       <Loading spinning={isLoading}>
-        <Card className={styles.components} title={t('Components Status')}>
+        <Card className={styles.components} title={t('Component Status')}>
           <div className={styles.wrapper}>
             {this.renderServiceComponents()}
             {this.renderCoreComponents()}

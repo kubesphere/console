@@ -157,7 +157,7 @@ module.exports = {
   'Last Updated Time': 'Última hora actualizada',
   'Latest Version': 'Última versión',
   'Learn more': 'Aprende más',
-  'Left Quota': 'Cuota restante',
+  'Remaining Quota': 'Cuota restante',
   level: 'nivel',
   Level: 'Nivel',
   List: 'Lista',

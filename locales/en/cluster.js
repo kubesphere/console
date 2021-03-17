@@ -211,7 +211,7 @@ module.exports = {
   NEW_CLUSTER_DESC: 'add a new Kubernetes cluster',
   CLUSTER_NODE_SETTINGS_DESC: 'add the nodes for the cluster',
   CLUSTER_NODE_INTERNAL_IP_DESC:
-    'Intranet IP addresses that can be accessed between nodes in the cluster.',
+    'The internal IP address for the connection between cluster nodes.',
   NODE_ROLE_DESC:
     'The number of master nodes needs to be 1 or 3, and the number of woker nodes must be at least 1.',
   SSH_IP_ADDRESS_DESC:

@@ -62,7 +62,7 @@ module.exports = {
   technical: 'technical',
   'Test Steps': 'Test Steps',
   'Version Management': 'Version Management',
-  'Version update info': 'Version update info',
+  'Version Update Info': 'Version Update Info',
   Versions: 'Versions',
   'View in Store': 'View in Store',
   Working: 'Working',

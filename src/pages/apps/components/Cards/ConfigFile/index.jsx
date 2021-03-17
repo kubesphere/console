@@ -100,7 +100,7 @@ export default class ConfigFile extends React.Component {
 
     return (
       <div className={styles.updateInfo}>
-        <div className={styles.title}>{t('Version update info')}</div>
+        <div className={styles.title}>{t('Version Update Info')}</div>
         <pre>{detail.description}</pre>
       </div>
     )

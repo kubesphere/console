@@ -47,7 +47,7 @@ module.exports = {
   'Projects Count': '項目數量',
   'Cluster Resources Usage': '集群資源使用情況',
   'Cluster Node Status': '集群節點狀態',
-  'Components Status': '組件狀態',
+  'Component Status': '組件狀態',
   'Running Status': '運行狀態',
   'Disk Usage': '硬碟使用量',
   'Disk Capacity': '硬碟容量',
