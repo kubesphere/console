@@ -99,6 +99,7 @@ export default class IPPools extends React.Component {
         dataIndex: 'name',
         sorter: true,
         sortOrder: getSortOrder('name'),
+        width: '40%',
         render: (name, record) => (
           <Avatar
             icon={ICON_TYPES[module]}
