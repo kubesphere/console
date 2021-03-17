@@ -47,6 +47,7 @@ export default class DefaultResourceEditModal extends React.Component {
 
     this.state = {
       data: get(props.detail, 'limit', {}),
+      error: '',
     }
   }
 
@@ -78,8 +79,11 @@ export default class DefaultResourceEditModal extends React.Component {
     onOk(this.state.data)
   }
 
+  handleError = error => this.setState({ error })
+
   render() {
     const { visible, onCancel, isSubmitting } = this.props
+    const { error } = this.state
     return (
       <Modal
         width={791}
@@ -89,10 +93,12 @@ export default class DefaultResourceEditModal extends React.Component {
         onCancel={onCancel}
         visible={visible}
         isSubmitting={isSubmitting}
+        disableSubmit={!!error}
       >
         <ResourceLimit
           defaultValue={this.resourceLimit}
           onChange={this.handleChange}
+          onError={this.handleError}
         />
       </Modal>
     )

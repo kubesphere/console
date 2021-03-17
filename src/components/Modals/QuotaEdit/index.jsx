@@ -56,6 +56,7 @@ export default class QuotaEditModal extends React.Component {
 
     this.state = {
       formTemplate: {},
+      error: '',
     }
   }
 
@@ -168,6 +169,9 @@ export default class QuotaEditModal extends React.Component {
           get(value, 'requests.memory', null)
         )
       },
+      onError: error => {
+        this.setState({ error })
+      },
     }
   }
 
@@ -181,6 +185,8 @@ export default class QuotaEditModal extends React.Component {
       isSubmitting,
     } = this.props
 
+    const { error } = this.state
+
     return (
       <Modal.Form
         width={960}
@@ -191,6 +197,7 @@ export default class QuotaEditModal extends React.Component {
         onCancel={onCancel}
         visible={visible}
         isSubmitting={isSubmitting}
+        disableOk={!!error}
       >
         <div className={styles.body}>
           <Form.Item label={t('Project Name')}>
