@@ -596,8 +596,8 @@ module.exports = {
   ContainerNotReady: '容器没有準備就緒',
   ContainerCreating: '容器創建中',
   PodInitializing: '容器組初始化中',
-  DockerDaemonNotReady: 'Docker 还没有完全啟動',
-  NetworkPluginNotReady: '網路插件还没有完全啟動',
+  DockerDaemonNotReady: 'Docker 還没有完全啟動',
+  NetworkPluginNotReady: '網路插件還没有完全啟動',
   POD_DESC:
     '容器組 (Pod) 是 Kubernetes 應用程式的基本執行單元，是您創建或部署的 Kubernetes 對象模型中最小和最簡單的單元。',
   POD_CREATE_DESC:
