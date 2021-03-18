@@ -237,11 +237,13 @@ const getOAuthInfo = async () => {
   if (resp && !isEmpty(resp.identityProviders)) {
     resp.identityProviders.forEach(item => {
       if (item && item.provider) {
-        const title = item.name
-
+        let url
+        let params = {}
         const authURL = get(item, 'provider.endpoint.authURL')
-        if (item.provider.clientID && authURL) {
-          const params = {
+
+        if (authURL) {
+          url = authURL
+          params = {
             state: item.name,
             client_id: item.provider.clientID,
             response_type: 'code',
@@ -254,15 +256,19 @@ const getOAuthInfo = async () => {
           if (item.provider.scopes && item.provider.scopes.length > 0) {
             params.scope = item.provider.scopes.join(' ')
           }
+        } else if (item.provider.casServerURL) {
+          params = { service: item.provider.redirectURL }
+          url = item.provider.casServerURL
+        }
 
-          const url = `${authURL}?${Object.keys(params)
+        if (url) {
+          url = `${url}?${Object.keys(params)
             .map(
               key =>
                 `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`
             )
             .join('&')}`
-
-          servers.push({ title, url })
+          servers.push({ title: item.name, url })
         }
       }
     })
