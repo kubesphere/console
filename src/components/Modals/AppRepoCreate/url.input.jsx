@@ -252,7 +252,7 @@ export default class UrlInput extends React.Component {
   renderField() {
     return (
       <div className={styles.field}>
-        <label className={styles.label}>{t('URL')}:</label>
+        <label className={styles.label}>{t('URL')}</label>
         <div className={styles.fieldInput}>
           <Select
             className={styles.protocol}
@@ -266,7 +266,7 @@ export default class UrlInput extends React.Component {
             name="url"
             value={this.url}
             validateStatus={this.validateStatus}
-            placeholder="eg. https://github.com/mycompany/myca…"
+            placeholder="https://github.com/mycompany/myca…"
             onChange={this.handleUrlChange}
           />
           {this.renderValidateStatus()}
