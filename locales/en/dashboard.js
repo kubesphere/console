@@ -17,7 +17,7 @@
  */
 
 module.exports = {
-  'App Repositories': 'App Repositories',
+  'App Repositories': 'Application Repositories',
   'Cluster Status': 'Cluster Status',
   'CPU Load Average': 'CPU Load Average',
   'CPU Usage': 'CPU Usage',

@@ -21,7 +21,7 @@ module.exports = {
   About: 'About',
   'Access Control': 'Access Control',
   Account: 'Account',
-  active: 'active',
+  active: 'Active',
   Active: 'Active',
   Activity: 'Activity',
   Add: 'Add',
@@ -78,7 +78,7 @@ module.exports = {
   Creator: 'Creator',
   Current: 'Current',
   Custom: 'Custom',
-  'Custom Columns': 'Custom Columns',
+  'Custom Columns': 'Customize Columns',
   'Data Sources': 'Data Sources',
   Days: 'Days',
   'Default Value': 'Default Value',
@@ -444,7 +444,7 @@ module.exports = {
   MINUTE_AGO: '{count, plural, =1 {1 minute} other {# minutes}} ago',
   MINUTE_TIME: '{count, plural, =1 {1 minute} other {# minutes}}',
 
-  TOTAL_ITEMS: 'Total {num} items',
+  TOTAL_ITEMS: 'Total: {num}',
 
   EVENT_NORMAL: 'Normal',
   EVENT_WARNING: 'Warning',
