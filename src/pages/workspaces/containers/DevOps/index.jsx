@@ -39,7 +39,7 @@ export default class DevOps extends React.Component {
   workspaceStore = this.props.workspaceStore
 
   get itemActions() {
-    const { trigger } = this.props
+    const { trigger, name } = this.props
     return [
       {
         key: 'edit',
@@ -55,7 +55,7 @@ export default class DevOps extends React.Component {
         action: 'delete',
         onClick: item => {
           trigger('resource.delete', {
-            type: t('DevOps Project'),
+            type: t(name),
             resource: item.name,
             detail: item,
           })

@@ -62,7 +62,7 @@ export default class Jobs extends React.Component {
   }
 
   get itemActions() {
-    const { trigger, store } = this.props
+    const { trigger, name, store } = this.props
     return [
       {
         key: 'edit',
@@ -88,7 +88,7 @@ export default class Jobs extends React.Component {
         action: 'delete',
         onClick: item =>
           trigger('resource.delete', {
-            type: t(this.name),
+            type: t(name),
             detail: item,
           }),
       },
@@ -130,9 +130,7 @@ export default class Jobs extends React.Component {
             title={getDisplayName(record)}
             desc={this.getItemDesc(record)}
             isMultiCluster={record.isFedManaged}
-            to={`/clusters/${cluster}/projects/${
-              record.namespace
-            }/${module}/${name}`}
+            to={`/clusters/${cluster}/projects/${record.namespace}/${module}/${name}`}
           />
         ),
       },

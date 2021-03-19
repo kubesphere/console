@@ -47,7 +47,7 @@ export default class Projects extends React.Component {
   showAction = record => !record.isFedManaged
 
   get itemActions() {
-    const { trigger, routing } = this.props
+    const { trigger, routing, name } = this.props
     return [
       {
         key: 'edit',
@@ -83,7 +83,7 @@ export default class Projects extends React.Component {
           this.showAction(record),
         onClick: item =>
           trigger('resource.delete', {
-            type: t(this.name),
+            type: t(name),
             resource: item.name,
             detail: omit(item, 'workspace'),
             success: routing.query,

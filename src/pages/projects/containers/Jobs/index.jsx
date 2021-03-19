@@ -64,7 +64,7 @@ export default class Jobs extends React.Component {
   }
 
   get itemActions() {
-    const { trigger, store } = this.props
+    const { trigger, store, name } = this.props
     return [
       {
         key: 'edit',
@@ -91,7 +91,7 @@ export default class Jobs extends React.Component {
         type: 'danger',
         onClick: item =>
           trigger('resource.delete', {
-            type: t(this.name),
+            type: t(name),
             detail: item,
           }),
       },

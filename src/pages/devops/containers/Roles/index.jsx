@@ -61,7 +61,7 @@ export default class Secrets extends React.Component {
   }
 
   get itemActions() {
-    const { routing, trigger, store } = this.props
+    const { routing, trigger, store, name } = this.props
 
     return [
       {
@@ -99,7 +99,7 @@ export default class Secrets extends React.Component {
         onClick: item =>
           trigger('role.delete', {
             detail: item,
-            type: t(this.name),
+            type: t(name),
             namespace: this.devops,
             cluster: this.cluster,
             workspace: this.props.match.params.workspace,

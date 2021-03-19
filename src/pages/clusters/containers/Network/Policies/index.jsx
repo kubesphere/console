@@ -60,7 +60,7 @@ export default class NetworkPolicies extends React.Component {
   }
 
   get itemActions() {
-    const { trigger, routing } = this.props
+    const { trigger, routing, name } = this.props
     return [
       {
         key: 'edit',
@@ -91,7 +91,7 @@ export default class NetworkPolicies extends React.Component {
         action: 'delete',
         onClick: item =>
           trigger('resource.delete', {
-            type: t(this.name),
+            type: t(name),
             detail: item,
             success: routing.query,
           }),

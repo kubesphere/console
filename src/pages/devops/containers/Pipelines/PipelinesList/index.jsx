@@ -126,7 +126,7 @@ export default class PipelinesList extends React.Component {
   }
 
   get itemActions() {
-    const { trigger } = this.props
+    const { trigger, name } = this.props
 
     return [
       {
@@ -174,7 +174,7 @@ export default class PipelinesList extends React.Component {
         action: 'delete',
         onClick: record => {
           trigger('resource.delete', {
-            type: t('User'),
+            type: t(name),
             resource: record.name,
             detail: {
               name: record.name,

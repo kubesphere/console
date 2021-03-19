@@ -68,7 +68,8 @@ module.exports = {
   USER_AUTHLIMITEXCEEDED: 'Login Restricted',
   USER_PENDING: 'Pending',
   USER_DISABLED: 'Disabled',
-  USER_NAME_DESC: 'Username can only contain lowercase letters and numbers.',
+  USER_NAME_DESC:
+    'It can only contain lowercase letters, numbers and hyphens("-"), and must begin and end with a lowercase letter or a number. The maximum length of characters is set to 63.',
   EMAIL_DESC: 'The email address is used for login.',
   USER_SETTING_EMAIL_DESC: 'Email is used for login.',
   PASSWORD_DESC:

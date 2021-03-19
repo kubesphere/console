@@ -68,7 +68,7 @@ export default class StatefulSets extends React.Component {
   showAction = record => !record.isFedManaged
 
   get itemActions() {
-    const { module, trigger } = this.props
+    const { module, trigger, name } = this.props
     return [
       {
         key: 'edit',
@@ -112,7 +112,7 @@ export default class StatefulSets extends React.Component {
         show: this.showAction,
         onClick: item =>
           trigger('resource.delete', {
-            type: t(this.name),
+            type: t(name),
             detail: item,
           }),
       },

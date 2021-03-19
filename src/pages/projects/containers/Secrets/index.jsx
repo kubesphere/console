@@ -35,7 +35,7 @@ import SecretStore from 'stores/secret'
 })
 export default class Secrets extends React.Component {
   get itemActions() {
-    const { getData, trigger } = this.props
+    const { getData, trigger, name } = this.props
     return [
       {
         key: 'edit',
@@ -75,7 +75,7 @@ export default class Secrets extends React.Component {
         action: 'delete',
         onClick: item =>
           trigger('resource.delete', {
-            type: t(this.name),
+            type: t(name),
             detail: item,
           }),
       },

@@ -44,7 +44,7 @@ export default class Pods extends React.Component {
   }
 
   get itemActions() {
-    const { getData, trigger } = this.props
+    const { getData, trigger, name } = this.props
     return [
       {
         key: 'viewYaml',
@@ -64,7 +64,7 @@ export default class Pods extends React.Component {
         action: 'delete',
         onClick: item =>
           trigger('resource.delete', {
-            type: t(this.name),
+            type: t(name),
             detail: item,
             success: getData,
           }),

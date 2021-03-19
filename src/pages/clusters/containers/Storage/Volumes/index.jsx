@@ -57,7 +57,7 @@ export default class Volumes extends React.Component {
   showAction = record => !record.isFedManaged
 
   get itemActions() {
-    const { trigger } = this.props
+    const { trigger, name } = this.props
 
     return [
       {
@@ -90,7 +90,7 @@ export default class Volumes extends React.Component {
         show: this.showAction,
         onClick: item =>
           trigger('resource.delete', {
-            type: t(this.name),
+            type: t(name),
             detail: item,
           }),
       },
@@ -135,9 +135,7 @@ export default class Volumes extends React.Component {
           <Avatar
             icon={'storage'}
             iconSize={40}
-            to={`/clusters/${cluster}/projects/${
-              record.namespace
-            }/volumes/${name}`}
+            to={`/clusters/${cluster}/projects/${record.namespace}/volumes/${name}`}
             isMultiCluster={record.isFedManaged}
             desc={this.getItemDesc(record)}
             title={getDisplayName(record)}

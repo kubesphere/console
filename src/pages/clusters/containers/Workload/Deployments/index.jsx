@@ -68,7 +68,7 @@ export default class Deployments extends React.Component {
   showAction = record => !record.isFedManaged
 
   get itemActions() {
-    const { module, trigger } = this.props
+    const { module, name, trigger } = this.props
     return [
       {
         key: 'edit',
@@ -112,7 +112,7 @@ export default class Deployments extends React.Component {
         show: this.showAction,
         onClick: item =>
           trigger('resource.delete', {
-            type: t(this.name),
+            type: t(name),
             detail: item,
           }),
       },

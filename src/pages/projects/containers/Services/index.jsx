@@ -81,7 +81,7 @@ export default class Services extends React.Component {
   }
 
   get itemActions() {
-    const { trigger } = this.props
+    const { trigger, name } = this.props
     return [
       {
         key: 'edit',
@@ -131,7 +131,7 @@ export default class Services extends React.Component {
         action: 'delete',
         onClick: item =>
           trigger('service.delete', {
-            type: t(this.name),
+            type: t(name),
             detail: item,
           }),
       },

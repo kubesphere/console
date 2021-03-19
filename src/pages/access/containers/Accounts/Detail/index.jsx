@@ -109,7 +109,7 @@ export default class AccountDetail extends React.Component {
       show: this.showEdit,
       onClick: () =>
         this.trigger('resource.delete', {
-          type: t(this.name),
+          type: t(this.props.name),
           resource: this.store.detail.username,
           detail: toJS(this.store.detail),
           success: () => this.routing.push(this.listUrl),
