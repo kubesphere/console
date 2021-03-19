@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, isEmpty, set } from 'lodash'
+import { get, isEmpty, set, unset } from 'lodash'
 import copy from 'fast-copy'
 import React from 'react'
 import { toJS } from 'mobx'
@@ -131,6 +131,8 @@ export default class Components extends React.Component {
       const services = toJS(this.serviceStore.list.data)
       const workloads = toJS(this.serviceStore.workloads.data)
       const strategies = toJS(this.store.list.data)
+
+      unset(this.formTemplate, 'spec.hosts')
 
       this.setState({
         components: services.map(item => {
