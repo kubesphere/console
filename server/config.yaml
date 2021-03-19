@@ -202,13 +202,6 @@ client:
             # - { name: members, title: Cluster Members }
             # - { name: roles, title: Cluster Roles }
             - {
-                name: mail-server,
-                title: Mail Server,
-                icon: mail,
-                authKey: cluster-settings,
-                clusterModule: notification,
-              }
-            - {
                 name: log-collections,
                 title: Log Collections,
                 icon: file,
@@ -234,6 +227,35 @@ client:
             icon: home,
             authKey: platform-settings,
           }
+        - name: notification-management
+          title: Notification Management
+          icon: bell
+          children:
+            - {
+                name: mail,
+                title: Mail,
+                authKey: platform-settings,
+              }
+            - {
+                name: dingtalk,
+                title: DingTalk,
+                authKey: platform-settings,
+              }
+            - {
+                name: wecom,
+                title: WeCom,
+                authKey: platform-settings,
+              }
+            - {
+                name: slack,
+                title: Slack,
+                authKey: platform-settings,
+              }
+            - {
+                name: webhook,
+                title: Webhook,
+                authKey: platform-settings,
+              }
 
   # workspace page navigations
   workspaceNavs:

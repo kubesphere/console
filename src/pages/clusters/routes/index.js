@@ -56,7 +56,6 @@ import KubeCtl from '../containers/KubeCtl'
 import KubeConfig from '../containers/KubeConfig'
 import NetworkPolicies from '../containers/Network/Policies'
 import IPPools from '../containers/Network/IPPools'
-import MailServer from '../containers/MailServices'
 import LogCollections from '../containers/LogCollections'
 import CustomMonitoring from '../containers/CustomMonitoring'
 
@@ -248,11 +247,6 @@ export default [
           {
             path: `${PATH}/ippools`,
             component: IPPools,
-            exact: true,
-          },
-          {
-            path: `${PATH}/mail-server`,
-            component: MailServer,
             exact: true,
           },
           {

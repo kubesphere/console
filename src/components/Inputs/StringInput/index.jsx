@@ -56,7 +56,13 @@ export default class StringInput extends React.Component {
     }
   }
 
-  handleChange = (e, value) => {
+  componentDidUpdate(prevProps) {
+    if (prevProps.value !== this.props.value && this.props.value) {
+      this.setState({ value: this.props.stringify(this.props.value) })
+    }
+  }
+
+  handleChange = value => {
     const { onChange, parser } = this.props
 
     this.setState({ value })

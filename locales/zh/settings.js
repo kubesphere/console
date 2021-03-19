@@ -17,6 +17,8 @@
  */
 
 module.exports = {
+  'Platform Settings': '平台设置',
+
   'Third-party Login': '第三方登录',
 
   'Protocol Type': '协议类型',
