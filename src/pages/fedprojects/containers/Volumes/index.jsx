@@ -56,7 +56,7 @@ export default class Volumes extends React.Component {
   }
 
   get itemActions() {
-    const { trigger } = this.props
+    const { trigger, name } = this.props
 
     return [
       {
@@ -86,7 +86,7 @@ export default class Volumes extends React.Component {
         action: 'delete',
         onClick: item =>
           trigger('resource.delete', {
-            type: t(this.name),
+            type: t(name),
             detail: item,
           }),
       },

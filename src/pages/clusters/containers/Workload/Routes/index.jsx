@@ -39,7 +39,7 @@ export default class Routers extends React.Component {
   showAction = record => !record.isFedManaged
 
   get itemActions() {
-    const { trigger } = this.props
+    const { trigger, name } = this.props
     return [
       {
         key: 'edit',
@@ -93,7 +93,7 @@ export default class Routers extends React.Component {
         show: this.showAction,
         onClick: item =>
           trigger('resource.delete', {
-            type: t(this.name),
+            type: t(name),
             detail: item,
           }),
       },
@@ -121,9 +121,7 @@ export default class Routers extends React.Component {
             iconSize={40}
             title={getDisplayName(record)}
             isMultiCluster={record.isFedManaged}
-            to={`/clusters/${cluster}/projects/${
-              record.namespace
-            }/${module}/${name}`}
+            to={`/clusters/${cluster}/projects/${record.namespace}/${module}/${name}`}
           />
         ),
       },

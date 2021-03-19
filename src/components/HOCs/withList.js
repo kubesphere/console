@@ -186,6 +186,7 @@ export default function withList(options) {
       render() {
         return (
           <ObserverComponent
+            name={this.name}
             module={this.module}
             store={this.store}
             prefix={this.prefix}

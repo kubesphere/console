@@ -116,6 +116,7 @@ export default class LoginConfirm extends Component {
                 name="username"
                 placeholder="User@example.com"
                 defaultValue={get(globals, 'user.username')}
+                maxLength={32}
               />
             </Form.Item>
             <div className={styles.footer}>

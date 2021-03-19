@@ -41,7 +41,7 @@ export default class Accounts extends React.Component {
   }
 
   get itemActions() {
-    const { trigger, getData, routing } = this.props
+    const { name, trigger, getData, routing } = this.props
     return [
       {
         key: 'edit',
@@ -63,7 +63,7 @@ export default class Accounts extends React.Component {
         show: this.showAction,
         onClick: item =>
           trigger('resource.delete', {
-            type: t('User'),
+            type: t(name),
             resource: item.username,
             detail: item,
             success: routing.query,

@@ -40,7 +40,7 @@ export default class Services extends React.Component {
   showAction = record => !record.isFedManaged
 
   get itemActions() {
-    const { trigger } = this.props
+    const { trigger, name } = this.props
     return [
       {
         key: 'edit',
@@ -95,7 +95,7 @@ export default class Services extends React.Component {
         show: this.showAction,
         onClick: item =>
           trigger('resource.delete', {
-            type: t(this.name),
+            type: t(name),
             detail: item,
           }),
       },

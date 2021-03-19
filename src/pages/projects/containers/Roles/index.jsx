@@ -41,7 +41,7 @@ export default class Roles extends React.Component {
   showAction = record => !globals.config.presetRoles.includes(record.name)
 
   get itemActions() {
-    const { routing, trigger, store } = this.props
+    const { routing, trigger, store, name } = this.props
 
     return [
       {
@@ -78,7 +78,7 @@ export default class Roles extends React.Component {
         onClick: item =>
           trigger('role.delete', {
             detail: item,
-            type: t(this.name),
+            type: t(name),
             cluster: this.props.match.params.cluster,
             namespace: this.props.match.params.namespace,
             success: routing.query,

@@ -49,7 +49,7 @@ export default class Routers extends React.Component {
   }
 
   get itemActions() {
-    const { trigger } = this.props
+    const { trigger, name } = this.props
     return [
       {
         key: 'edit',
@@ -78,7 +78,7 @@ export default class Routers extends React.Component {
         action: 'delete',
         onClick: item =>
           trigger('resource.delete', {
-            type: t(this.name),
+            type: t(name),
             detail: item,
           }),
       },

@@ -65,7 +65,7 @@ export default class DaemonSets extends React.Component {
   }
 
   get itemActions() {
-    const { module, trigger } = this.props
+    const { module, name, trigger } = this.props
     return [
       {
         key: 'edit',
@@ -105,7 +105,7 @@ export default class DaemonSets extends React.Component {
         action: 'delete',
         onClick: item =>
           trigger('resource.delete', {
-            type: t(this.name),
+            type: t(name),
             detail: item,
           }),
       },

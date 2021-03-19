@@ -64,7 +64,7 @@ export default class StatefulSets extends React.Component {
   }
 
   get itemActions() {
-    const { trigger } = this.props
+    const { trigger, name } = this.props
     return [
       {
         key: 'edit',
@@ -93,7 +93,7 @@ export default class StatefulSets extends React.Component {
         action: 'delete',
         onClick: item =>
           trigger('workload.delete', {
-            type: t(this.name),
+            type: t(name),
             detail: item,
             isFederated: true,
           }),

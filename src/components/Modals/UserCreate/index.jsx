@@ -157,6 +157,7 @@ export default class UserCreateModal extends Component {
             autoComplete="nope"
             disabled={!!detail}
             autoFocus={true}
+            maxLength={32}
           />
         </Form.Item>
         <Form.Item label={t('Email')} desc={t('EMAIL_DESC')} rules={emailRules}>

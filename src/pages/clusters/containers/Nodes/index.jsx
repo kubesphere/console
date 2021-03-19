@@ -79,7 +79,7 @@ export default class Nodes extends React.Component {
   }
 
   get itemActions() {
-    const { store, clusterStore, routing, trigger } = this.props
+    const { store, clusterStore, routing, trigger, name } = this.props
     return [
       {
         key: 'uncordon',
@@ -116,7 +116,7 @@ export default class Nodes extends React.Component {
         show: item => item.importStatus === 'failed',
         onClick: item =>
           trigger('resource.delete', {
-            type: t('Node'),
+            type: t(name),
             detail: item,
             success: routing.query,
           }),
