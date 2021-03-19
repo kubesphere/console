@@ -89,7 +89,7 @@ module.exports = {
   S2I_BUILDERNAME_DESC:
     '選擇編輯環境，您也可以查看對應的 <a href={link} target="_blank">編譯模板</a>',
   S2I_TARGET_IMAGE_REPONSTRY_DESC:
-    '需要選擇一個有推送權限的鏡像倉庫存放鏡像，如果没有可以 <a href={link} target="_blank">新建鏡像倉庫密鑰</a>',
+    '需要選擇一個有推送權限的鏡像倉庫存放鏡像，如果沒有可以 <a href={link} target="_blank">新建鏡像倉庫密鑰</a>',
   S2I_IMAGENAME_DESC: '鏡像名稱及 Tag，預設為代碼倉庫的項目名稱',
   'Target Image Repository': '目標鏡像倉庫',
   'Rebuilt successfully; the image status will be refreshed soon.':

@@ -88,7 +88,7 @@ module.exports = {
   REVIEW_CONTENT_DESC:
     '以下資訊必須真實準確，關鍵的操作說明需要描述詳情，對於條款中的權利與義務需要描述清楚。',
   SUBMIT_REVIEW_DESC: '提交應用至應用商店，審核通過後將出現在應用商店中',
-  REVIEWS_CREATE_DESC: '暫時没有相關的應用審核數據',
+  REVIEWS_CREATE_DESC: '暫時沒有相關的應用審核數據',
 
   'App Version': '應用版本',
   'Current App Version': '當前應用版本',
@@ -208,7 +208,7 @@ module.exports = {
   'Instance Name': '實例名稱',
   'Index Successfully': '同步成功',
 
-  NO_DEPLOY_RUNTIME_NOTE: '項目中没有可用的部署運行環境',
+  NO_DEPLOY_RUNTIME_NOTE: '項目中沒有可用的部署運行環境',
 
   'Upload icon': '上傳圖示',
 
@@ -216,7 +216,7 @@ module.exports = {
 
   APP_CATE_UNCATEGORIZED: '未分類',
 
-  MISS_FILE_NOTE: '文件 {file} 没有找到',
+  MISS_FILE_NOTE: '文件 {file} 沒有找到',
 
   'Please select a project to deploy': '請選擇項目部署',
   'Please select a workspace': '請選擇企業空間',

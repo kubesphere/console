@@ -246,13 +246,13 @@ module.exports = {
   'Default user role which allows a user to manage resources within the projects created by the user himself or invited by others. It does not allow the user to manage unauthorized resources in the cluster.':
     '預設用戶角色，僅允許對自己創建或受邀加入的項目中的資源進行管理，無權操作集群範圍内其他資源。',
 
-  NO_AUTHORIZED_USERS: '目前没有用戶被授權此角色',
+  NO_AUTHORIZED_USERS: '目前沒有用戶被授權此角色',
 
   'Unable to delete preset role': '無法刪除預設角色',
 
   ROLE_PLATFORM_ADMIN: '平台管理員，可以管理平台内的所有資源。',
   ROLE_PLATFORM_REGULAR:
-    '平台普通用戶，在被邀請加入企業空間或集群之前没有任何資源操作權限。',
+    '平台普通用戶，在被邀請加入企業空間或集群之前沒有任何資源操作權限。',
   ROLE_USERS_MANAGER: '平台用戶管理員，管理平台所有用戶。',
 
   ROLE_CLUSTER_ADMIN: '集群管理員，可以管理集群中所有的資源。',

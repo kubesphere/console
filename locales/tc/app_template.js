@@ -27,9 +27,9 @@ module.exports = {
 
   'App README': '應用介紹',
 
-  'The app has no documentation.': '該應用没有說明文件',
-  'The version has no documentation.': '該版本没有說明文件',
-  'The app has no chart file.': '該應用没有配置文件',
+  'The app has no documentation.': '該應用沒有說明文件',
+  'The version has no documentation.': '該版本沒有說明文件',
+  'The app has no chart file.': '該應用沒有配置文件',
 
   TOTAL_APP_REPOS: '共計 {num} 個應用倉庫',
 

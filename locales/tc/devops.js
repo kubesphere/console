@@ -43,12 +43,12 @@ module.exports = {
 
   DEVOPS_ADMIN_DESC: '可以指定工程内一個成員為管理員',
 
-  NO_RELATE_DEVOPS_TITLE: '没有找到與您相關聯的 DevOps 工程',
+  NO_RELATE_DEVOPS_TITLE: '沒有找到與您相關聯的 DevOps 工程',
   NO_RELATE_DEVOPS_DESC:
     '您可以創建或者聯繫項目管理員將您邀請到 DevOps 工程中開始您的工作',
 
   DEVOPS_PROJECT_CREDENTIALS_DESC:
-    '憑證是包含了一些敏感數據的對象，如用戶名密碼，SSH 密鑰和 Token 等, 用於在 Pipeline 運行时, 為拉取代碼、push/pull 鏡像、SSH 執行腳本等過程提供認證',
+    '憑證是包含了一些敏感數據的對象，如用戶名密碼，SSH 密鑰和 Token 等，用於在 Pipeline 運行時，為拉取代碼、push/pull 鏡像、SSH 執行腳本等過程提供認證',
 
   DEVOPS_PROJECT_ROLES_DESC:
     '成員角色定義了在目前 DevOps 工程下用戶所擁有的權限。',

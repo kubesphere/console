@@ -104,7 +104,7 @@ module.exports = {
     '1. 所有依賴的 Chart 已經分别提交<br/>' +
     '2. 可以成功通過静態檢查 (helm lint) <br/>' +
     '3. 可以用預設值成功啟動應用 (helm install)：所有 Pod 是 running 狀態，所有服務 (service) 都至少有一個 endpoint<br/>' +
-    '4. 使用的鏡像没有安全漏洞 <br/>' +
+    '4. 使用的鏡像沒有安全漏洞 <br/>' +
     '5. 支持升級 <br/>' +
     '6. 支持自定義應用配置<br/>' +
     '7. 不要使用 Kubernetes 的 alpha 功能<br/>' +
