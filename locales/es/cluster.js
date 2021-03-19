@@ -86,7 +86,7 @@ module.exports = {
   'How to Add': 'How to Add',
   'New Cluster': 'New Cluster',
   'Import Cluster': 'Import Cluster',
-  'Cluster Basic Info': 'Cluster Basic Info',
+  'Cluster Basic Info': 'Cluster Basic Information',
   'Node Settings': 'Node Settings',
   'Please add at least one cluster node':
     'Please add at least one cluster node',

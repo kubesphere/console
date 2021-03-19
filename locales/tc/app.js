@@ -59,7 +59,7 @@ module.exports = {
   APP_ICON_NOTE: '96px * 96px 以内 JPG 或者 PNG',
   APP_ICON_FORMAT: '格式: PNG 背景透明最佳',
   APP_ICON_SIZE: '圖形大小: 96px * 96px',
-  'Start edit': '開始編輯',
+  'Start editing': '開始編輯',
   File: '檔案',
   'Platform App Store Management': '平台級應用商店管理',
 

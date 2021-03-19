@@ -32,7 +32,7 @@ module.exports = {
     '您当前的邮件设置已发生变化，请保存配置，或者取消修改',
 
   'Please input SMTP user': '请输入 SMTP 用户',
-  'Please input a email to add': '请输入要添加的邮箱',
+  'Please enter an email address': '请输入要添加的邮箱',
   'This email has existed': '此邮箱已存在',
   'Invalid email': '邮箱格式不合法',
   'Add up to 50 mail': '最多添加 50 个邮箱',

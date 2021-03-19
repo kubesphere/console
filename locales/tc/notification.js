@@ -32,7 +32,7 @@ module.exports = {
     '您當前的郵件設置已發生變化，請保存配置，或者取消修改',
 
   'Please input SMTP user': '請輸入 SMTP 用戶',
-  'Please input a email to add': '請輸入要添加的郵箱',
+  'Please enter an email address': '請輸入要添加的郵箱',
   'This email has existed': '此郵箱已存在',
   'Invalid email': '郵箱格式不合法',
   'Add up to 50 mail': '最多添加 50 個郵箱',

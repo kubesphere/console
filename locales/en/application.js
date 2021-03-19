@@ -39,12 +39,12 @@ module.exports = {
   'Application Governance': 'Application Governance',
   'Application governance is not enabled':
     'Application governance is not enabled',
-  'Application Icon': 'Application Icon',
-  'Application Name': 'Application Name',
-  'Application Route': 'Application Route',
-  'Application Type': 'Application Type',
+  'Application Icon': 'App Icon',
+  'Application Name': 'App Name',
+  'Application Route': 'App Route',
+  'Application Type': 'App Type',
   'Application Version(Optional)': 'Application Version(Optional)',
-  Applications: 'Applications',
+  Applications: 'Apps',
   'Base ejection time (s)': 'Base ejection time (s)',
   'Based on HTTP cookie': 'Based on HTTP cookie',
   'Based on HTTP header': 'Based on HTTP header',
@@ -58,19 +58,19 @@ module.exports = {
   'Cluster Select': 'Cluster Select',
   'Cluster Selection': 'Cluster Selection',
   'Component Version': 'Component Version',
-  'Composing App': 'Composing App',
+  'Composing App': 'Composing Apps',
   'Connection pool management': 'Connection pool management',
   'Connection timeout': 'Connection timeout',
   'Continuous error response (5xx) number':
     'Continuous error response (5xx) number',
-  'Create Application by Service': 'Create Application by Service',
-  'Create Composing Application': 'Create Composing Application',
+  'Create Application by Service': 'Create App by Service',
+  'Create Composing Application': 'Create Composing App',
   'Current Version': 'Current Version',
   Deploy: 'Deploy',
   'Deploy App': 'Deploy App',
   'Deploy applications with one-click application templates provided by Kubesphere':
     'Deploy applications with one-click application templates provided by Kubesphere',
-  'Deploy New Application': 'Deploy New Application',
+  'Deploy New Application': 'Deploy New App',
   'Deploy sample app Bookinfo': 'Deploy sample app Bookinfo',
   'Deployed Applications': 'Deployed Applications',
   'Edit Component': 'Edit Component',
@@ -83,7 +83,7 @@ module.exports = {
   'Hash based on HTTP cookie.': 'Hash based on HTTP cookie.',
   'Hash based on the source IP address.':
     'Hash based on the source IP address.',
-  'How to use Application Governance': 'How to use Application Governance',
+  'How to use Application Governance': 'How do I use Application Governance?',
   'If the maximum number of requests in the backend connection is set to 1, the keep alive feature is disabled.':
     'If the maximum number of requests in the backend connection is set to 1, the keep alive feature is disabled.',
   'If you need to access applications by application route, add routing rules':
@@ -153,7 +153,7 @@ module.exports = {
   TOTAL_APPS: 'Total {num} applications',
 
   APPLICATIONS_DESC:
-    'An application provides users with comprehensive business functions in one package. App templates in KubeSphere are built on the Helm packaging specification. They are delivered through a unified public or private Helm repository. An application is composed of one or more Kubernetes objects including Workloads, Services and Ingress.',
+    'An app provides users with comprehensive business functions in one package. App templates in KubeSphere are built on the Helm packaging specification. They are delivered through a unified public or private Helm repository. An app is composed of one or more Kubernetes objects including Workloads, Services and Ingress.',
   APP_DEPLOYMENT_DESC:
     'Lightweight, portable and self-contained software packaging technology enables applications to run in almost any place in the same way.',
 
@@ -196,9 +196,9 @@ module.exports = {
   WORKLOAD_NAME_EXIST: 'Workload {name} exists',
 
   APPLICATION_TYPE_DESC:
-    'KubeSphere supports application deployments (based on Helm) from the App Store, as well as Application CRD.',
+    'You can deploy apps from the App Store or Helm-based app repositories. Composing apps (app CRDs) are also supported.',
 
-  HOW_TO_USE_APPLICATION_GOVE_Q: 'How to use Application Governance?',
+  HOW_TO_USE_APPLICATION_GOVE_Q: 'How do I use Application Governance?',
   HOW_TO_USE_APPLICATION_GOVE_A:
     'Please create a composing app and enable service governance for each Service before you use Application Governance.',
 
@@ -212,15 +212,14 @@ module.exports = {
     'The app template comes from the workspace and the third-party Helm app templates. It supports one click deployment and can be visualized in KubeSphere to show and provide deployments and management functions.',
 
   TIP_APP_TYPE:
-    'KubeSphere supports application deployment (based on Helm) from app stores and app repositories, as well as home-made applications (Application CRD).',
+    'You can deploy apps from the App Store or Helm-based app repositories. Composing apps (app CRDs) are also supported.',
   TIP_APP_GOVERNANCE:
     'Using App Governance requires creating a homebrew app and turning on service governance for each service',
   APP_REPOS_DESC:
     'The app repository comes from a third-party Helm Chart Repo, which visually displays and provides deployment and management capabilities in KubeSphere. Users can quickly deploy applications with one click based on templates in the app repository.',
   SEARCH_TIPS: 'You can filter based on relevant conditions',
 
-  APPLICATION_BASEINFO_DESC:
-    'Basic application information (such as name description)',
+  APPLICATION_BASEINFO_DESC: 'Basic app information (such as name description)',
 
   TRAFFIC_MANAGEMENT_NO_MICROSERVICE_TIP:
     'Traffic governance depends on the microservices module. The current cluster has not enabled the microservices module.',
@@ -231,5 +230,5 @@ module.exports = {
     'You can set different service components based on the Service type in an application. Stateful and stateless Services are both supported.',
 
   INTERNET_ACCESS_DESC:
-    "You can set the application's Internet access rules (Ingress).",
+    "You can set the app's Internet access rules (Ingress).",
 }

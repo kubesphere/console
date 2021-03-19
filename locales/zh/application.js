@@ -233,7 +233,7 @@ module.exports = {
     '来自于企业空间的自制应用模板以及应用仓库中添加的第三方Helm 应用模板',
   COMPOSING_APP_DESC: '通过资源编排的方式发布服务构建应用(支持应用治理功能)',
   APP_TEMPLATES_MODAL_DESC:
-    '应用模板来自于企业空间和第三方的Helm应用模板，支持一键部署并可通过可视化的方式在KubeSphere中展示并提供部署及管理的功能',
+    '应用模板来自于企业空间和第三方的 Helm 应用模板，支持一键部署并可通过可视化的方式在 KubeSphere 中展示并提供部署及管理的功能',
   APP_REPOS_DESC:
     '应用仓库来自于第三方的 Helm Chart Repo，通过可视化的方式在 KubeSphere 中展示并提供部署及管理功能，用户可以基于应用仓库中的模板快速地一键部署应用。',
   SEARCH_TIPS: '您可以根据相关条件进行过滤',

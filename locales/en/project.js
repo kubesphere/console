@@ -180,7 +180,7 @@ module.exports = {
   QUOTA_EDIT_TIP:
     'If the value is empty, the resource quota will not be limited.',
 
-  HOW_TO_USE_QUOTA_Q: 'How to use quotas?',
+  HOW_TO_USE_QUOTA_Q: 'How do I use quotas?',
   HOW_TO_USE_QUOTA_A:
     "Resource Quotas are a mechanism used to limit user's resources usage. You can limit the number of CPUs, memories, and Pod replicas.",
 

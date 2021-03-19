@@ -101,7 +101,7 @@ export default class AppBanner extends Component {
         description: t('HOW_TO_USE_APPLICATION_GOVE_A'),
         operation: this.canDeployComposingApp ? (
           <Button onClick={this.showDeploySampleApp}>
-            {t('Deploy Sample Application')}
+            {t('Deploy Sample App')}
           </Button>
         ) : null,
         closable: false,

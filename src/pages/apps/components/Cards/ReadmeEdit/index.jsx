@@ -76,7 +76,7 @@ export default class ReadmeEdit extends React.Component {
           <Editor
             value={readme}
             onChange={this.handleChange}
-            placeholder={`${t('Start edit')}...`}
+            placeholder={`${t('Start editing')}...`}
             toolbar={toolbar}
           />
         </div>
