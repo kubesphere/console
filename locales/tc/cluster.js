@@ -127,7 +127,7 @@ module.exports = {
   'Max Pods': '節點最大容器组數量',
   'Pods CIDR': '容器組 CIDR',
   'Service CIDR': '服務 CIDR',
-  'Default Storage Plugin': '默認儲存外掛',
+  'Default Storage Plugin': '預設儲存外掛',
   'Private Registry Configuration': '私有倉庫配置',
   'etcd Backup': 'etcd 備份',
 
@@ -143,7 +143,7 @@ module.exports = {
 
   'Current Progress': '當前進度',
 
-  'Log Info': '日誌資訊',
+  'Log Info': '紀錄資訊',
 
   NO_CLUSTER_TIP: '請添加至少 1 個集群',
   NO_CLUSTER_TIP_DESC:
@@ -247,25 +247,25 @@ module.exports = {
     '集群角色中，master 節點數量需要為 1 或 3，woker 節點數量至少為 1',
   SSH_IP_ADDRESS_DESC: 'SSH IP 地址請填入當前 Host 集群可以訪問到的 IP 地址',
   SSH_AUTH_MODE_DESC: '支持用戶名密碼以及 SSH 密鑰',
-  SSH_ACCOUNT_DESC: '默認以 root 用戶登入',
+  SSH_ACCOUNT_DESC: '預設以 root 用戶登入',
   SSH_PASSWORD_DESC: '登入節點時需要的密碼',
-  SSH_SECRET_PLACEHOLDER: 'Ctrl + v 將密鑰黏貼與此處',
+  SSH_SECRET_PLACEHOLDER: 'Ctrl + v 將密鑰貼上此處',
 
   K8S_CLUSTER_SETTINGS_DESC: '對即將新建的 Kubernetes 集群進行初始化配置 ',
 
-  CLUSTER_MAX_PODS_DESC: '可以在此 kubelet 上運行的 pod 的數量. 默認為 110.',
+  CLUSTER_MAX_PODS_DESC: '可以在此 kubelet 上運行的 pod 的數量. 預設為 110.',
 
   K8S_NETWORK_PLUGIN_CALICO:
-    'Calico 是一個純三層的網路方案，無縫集成 IaaS 雲架構，能夠提供的 VM、容器、裸機之間的 IP 通信',
+    'Calico 是一個純三層的網路方案，無縫集成 IaaS 雲架構，能夠提供的 VM、容器、實體機之間的 IP 通信',
   K8S_NETWORK_PLUGIN_FLANNEL:
     'Flannel 可以讓集群中的不同節點主機創建的 Docker 容器都具有全集群唯一的虛擬 IP 地址',
-  K8S_NETWORK_PLUGIN_CILIUM: '基于 eBPF 的网络，具有安全性和可观察性',
+  K8S_NETWORK_PLUGIN_CILIUM: '基於 eBPF 的網路，具有安全性和可觀察性',
 
   KUBE_PODS_CIDR_DESC:
     '在節點上運行的 Pod 從節點的 Pod CIDR 範圍分配 IP 地址。',
-  KUBE_SERVICE_CIDR_DESC: '分配给服務的 IP 地址範圍',
+  KUBE_SERVICE_CIDR_DESC: '分配給服務的 IP 池',
 
-  CLUSTER_COMPONENTS_DESC: '對集群的服務組建進行訂製',
+  CLUSTER_COMPONENTS_DESC: '對集群的服務組件進行訂製',
 
   CLUSTER_ADVANCED_SETTINGS_DESC: '可以根據需要配置您所需要的服務',
   CLUSTER_PRIVATE_REGISTRY_DESC:
@@ -278,7 +278,7 @@ module.exports = {
   CLUSTER_ETCD_BACKUP_DIR_DESC: '在 etcd 主機上儲存 etcd 備份文件的位置。',
   CLUSTER_ETCD_BACKUP_PERIOD_DESC: '運行 etcd 備份任務的時間，單位為分鐘。',
   CLUSTER_ETCD_BACKUP_NUMBER_DESC: '要保留多少個備份副本。',
-  CLUSTER_KUBESPHERE_SETTINGS_DESC: '針對 KubeSphere 的一些定制化設置',
+  CLUSTER_KUBESPHERE_SETTINGS_DESC: '針對 KubeSphere 的一些客制化設置',
 
   CLUSTER_CREATING: '集群正在創建中',
   CLUSTER_CREATING_TIP:
@@ -289,8 +289,8 @@ module.exports = {
   CLUSTER_INIT_ETCD_CLUSTER: '初始化 etcd 集群',
   CLUSTER_INIT_CONTROL_PLANE: '初始化控制平面',
   CLUSTER_JOIN_NODES: '添加節點',
-  CLUSTER_INSTALL_ADDONS: '安装插件',
-  FETCHING_LOGS: `正在獲取日誌...`,
+  CLUSTER_INSTALL_ADDONS: '安裝插件',
+  FETCHING_LOGS: `正在獲取紀錄...`,
 
   MASTER_NODE_COUNT_TIP: 'Master 節點數量需要為 1 或 3',
   WORKER_NODE_COUNT_TIP: 'Worker 節點數量至少為 1',
@@ -298,6 +298,6 @@ module.exports = {
   CLUSTER_CREATION_PROGRESS_TIP:
     '根據所創建的的集群規模和網路連接的不同，創建完整整個集群大概需要 30 ~ 60 分鐘。',
 
-  CLUSTER_REGION: '集群地区',
-  CLUSTER_ZONE: '集群区域',
+  CLUSTER_REGION: '集群地區',
+  CLUSTER_ZONE: '集群區域',
 }

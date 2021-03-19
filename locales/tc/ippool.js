@@ -22,11 +22,11 @@ module.exports = {
 
   'Create Pod IP Pool': '創建容器組 IP 地址範圍',
 
-  'IP/Mask Bit': 'IP / 掩碼位',
+  'IP/Mask Bit': 'IP / 遮罩位元',
   'Used IP': '已用 IP',
 
-  Mask: '掩碼',
-  'Mask Bit': '掩碼位',
+  Mask: '遮罩',
+  'Mask Bit': '遮罩位元',
   Network: '網路',
 
   'First Available': '第一個可用',
@@ -40,8 +40,8 @@ module.exports = {
   'Set to be globally available': '設為全局可用',
 
   'Please input the IP address': '請輸入 IP 地址',
-  'Please input the mask bit': '請輸入掩碼位',
-  'Please input the IP/mask bit': '請輸入 IP 地址 / 掩碼位',
+  'Please input the mask bit': '請輸入遮罩位元',
+  'Please input the IP/mask bit': '請輸入 IP 地址 / 遮罩位元',
 
   'Please input the number of Pod IP Pools to be created':
     '請輸入需要創建的容器組 IP 地址範圍數量',
@@ -56,9 +56,9 @@ module.exports = {
   IPPOOL_ASSIGN_WORKSPACE_DESC:
     'IP 地址範圍分配给企業空間之後才能被企業空間使用。',
   IPPOOL_ASSIGN_WORKSPACE_ALLOCATED_WARNING:
-    'IP 地址範圍已被使用，無法分配给某一個具体的企業空間',
+    'IP 地址範圍已被使用，無法分配给某一個具體的企業空間',
   IPPOOL_ASSIGN_WORKSPACE_CHANGE_WARNING:
-    'IP 地址範圍已被使用，且已指定具体的企業空間，無法更改目標企業空間',
+    'IP 地址範圍已被使用，且已指定具體的企業空間，無法更改目標企業空間',
 
   IPPOOL_WORKSPACE_EMPTY_TIP: '暫無企業空間使用此 IP 地址範圍',
 }
