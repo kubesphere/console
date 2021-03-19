@@ -273,6 +273,7 @@ export default class AdvanceSettings extends React.Component {
 
   renderGitOptions() {
     const { formTemplate } = this.props
+
     return (
       <>
         <div className="h6">{t('Git Clone Options')}</div>
@@ -296,9 +297,15 @@ export default class AdvanceSettings extends React.Component {
         </Columns>
         <Form.Item>
           <Checkbox
-            checked={formTemplate[`${this.scmPrefix}.git_clone_option.shallow`]}
+            checked={get(
+              formTemplate,
+              `${this.scmPrefix}.git_clone_option.shallow`,
+              false
+            )}
             name={`${this.scmPrefix}.git_clone_option.shallow`}
-            defaultValue={false}
+            onChange={this.handleChange(
+              `${this.scmPrefix}.git_clone_option.shallow`
+            )}
           >
             {t('Whether to open shallow clone')}
           </Checkbox>

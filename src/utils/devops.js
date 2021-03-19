@@ -34,9 +34,8 @@ const deleteUnenableAttrs = data => {
 export const updatePipelineParams = (data, isEditor = false) => {
   const { multi_branch_pipeline, pipeline, type, ...rest } = data
 
-  if (!rest.description && rest.desc) {
-    rest.description = rest.desc
-    delete rest.desc
+  if (isEditor && !rest.description) {
+    rest.description = ''
   }
 
   const param = cloneDeep(rest)
@@ -56,7 +55,7 @@ export const updatePipelineParams = (data, isEditor = false) => {
     deleteUnenableAttrs(data.multi_branch_pipeline)
   }
 
-  if (data.pipeline) {
+  if (pipeline) {
     !isEditor
       ? Object.assign(data.pipeline, rest)
       : Object.assign(data.pipeline, param)
@@ -100,7 +99,6 @@ export const updatePipelineParamsInSpec = (data, devops) => {
   }
 
   delete data.type
-  delete data.desc
   delete data.description
 
   data = set(data, 'metadata.namespace', devops)

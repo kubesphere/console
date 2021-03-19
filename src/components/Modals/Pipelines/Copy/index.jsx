@@ -107,7 +107,7 @@ export default class BaseInfoModal extends React.Component {
             <Input name="name" maxLength={63} />
           </Form.Item>
           <Form.Item label={t('Description')} desc={t('DESCRIPTION_DESC')}>
-            <TextArea name="desc" maxLength={256} />
+            <TextArea name="description" maxLength={256} />
           </Form.Item>
         </Form>
       </Modal>
