@@ -33,7 +33,7 @@ module.exports = {
     'Su configuración de correo actual ha cambiado, guarde la configuración o cancele la modificación',
 
   'Please input SMTP user': 'Por favor ingrese el usuario SMTP',
-  'Please input a email to add': 'Ingrese un correo electrónico para agregar',
+  'Please enter an email address': 'Ingrese un correo electrónico para agregar',
   'This email has existed': 'Este correo electrónico ha existido',
   'Invalid email': 'Email inválido',
   'Add up to 50 mail': 'Agregar hasta 50 correos',

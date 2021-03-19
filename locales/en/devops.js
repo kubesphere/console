@@ -19,7 +19,7 @@
 module.exports = {
   'Create DevOps Project': 'Create DevOps Project',
   'Delete DevOps Project': 'Delete DevOps Project',
-  'DevOps Basic Info': 'DevOps Basic Info',
+  'DevOps Basic Info': 'DevOps Basic Information',
   'DevOps Credentials': 'DevOps Credentials',
   'DevOps Member': 'DevOps Member',
   'DevOps Members': 'DevOps Members',

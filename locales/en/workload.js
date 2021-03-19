@@ -670,7 +670,7 @@ module.exports = {
     'A workload is usually the actual carrier for accessing services and is also the actual carrier for system applications such as node log collection and monitoring. Workload is also an abstract model for a group of Pods.',
 
   CONTAINER_RESOURCE_LIMIT_TIP:
-    "Please set the container's resource limits and requests, which will help the system to better schedule and improve stability. In Project Settings, you can also set the default value (Basic Info -> Manage Project -> Edit Resource Default Request).",
+    "Please set the container's resource limits and requests, which will help the system to better schedule and improve stability. In Project Settings, you can also set the default value (Basic Information -> Manage Project -> Edit Resource Default Request).",
 
   COMPARE_WITH: 'Comparison with the previous version {version}',
   REVISION_DESC:

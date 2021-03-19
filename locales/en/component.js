@@ -68,9 +68,9 @@ module.exports = {
   'OPENPITRIX-MINIO_DESC':
     'Provides object storage services for storing unstructured data',
   'OPENPITRIX-REPO-INDEXER_DESC':
-    "Provides OpenPitrix's Application Repository Indexing Service",
+    "Provides OpenPitrix's App Repository Indexing Service",
   'OPENPITRIX-REPO-MANAGER_DESC':
-    "Provides OpenPitrix's Application Repository Management",
+    "Provides OpenPitrix's App Repository Management",
   'OPENPITRIX-RUNTIME-MANAGER_DESC':
     'Provides cloud runtime management in the platform',
   'OPENPITRIX-TASK-MANAGER_DESC':

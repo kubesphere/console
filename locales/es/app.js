@@ -124,7 +124,7 @@ module.exports = {
   "Service provider's official website address":
     'Dirección del Sitio Web Oficial del Proveedor de Servicio',
   'Start Create': 'Empezar a crear',
-  'Start edit': 'Empezar a editar',
+  'Start editing': 'Empezar a editar',
   'Submit Successfully': 'Enviado Satisfactoriamente',
   Submitter: 'Remitente',
   'Suspend Successfully': 'Suspendido Satisfactoriamente',

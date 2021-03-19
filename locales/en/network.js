@@ -30,11 +30,11 @@ module.exports = {
 
   'Network Policys': 'Network Policies',
   NETWORK_POLICY_DESC:
-    'The Network policy configuration allows network isolation within the same cluster, which means firewalls can be set up between certain instances (Pods).',
+    'The network policy configuration allows network isolation within the same cluster, which means firewalls can be set up between certain instances (Pods).',
   NETWORK_ISOLATION_DESC:
     'By configuring network isolation to control traffic among Pods within the same cluster and traffic from outside, users can isolate applications with security enhanced.',
-  NETWORK_POLICY_Q: 'How to use a network policy better?',
-  NETWORK_ISOLATION_Q: 'How to use network isolation better?',
+  NETWORK_POLICY_Q: 'How do I use a network policy better?',
+  NETWORK_ISOLATION_Q: 'How do I use network isolation better?',
   NETWORK_POLICY_A:
     'We have compiled several common application scenarios based on the actual scenarios, and you can refer to the documentation for more information.',
   NETWORK_POLICY_Q1: 'Requirement to implement a network policy',

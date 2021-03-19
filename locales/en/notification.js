@@ -22,7 +22,7 @@ module.exports = {
   'Receiver Settings': 'Receiver Settings',
   'Receive Notification': 'Receive Notification',
 
-  Mail: 'Mail',
+  Mail: 'Email',
   'SMTP Server Address': 'SMTP Server Address',
   'Use SSL Secure Connection': 'Use SSL Secure Connection',
 
@@ -33,7 +33,7 @@ module.exports = {
     'Your current mail settings have changed, please save the configuration or cancel the modification',
 
   'Please input SMTP user': 'Please input SMTP user',
-  'Please input a email to add': 'Please input a email to add',
+  'Please enter an email address': 'Please enter an email address',
   'This email has existed': 'This email has existed',
   'Invalid email': 'Invalid email',
   'Add up to 50 mail': 'Add up to 50 mail',

@@ -27,7 +27,7 @@ module.exports = {
   'Create Job': 'Crear job',
   'Custom Header': 'Cabecera personalizada',
   'Deploy sample application': 'Implementar aplicación de demo',
-  'Deploy Sample Application': 'Implementar aplicación de demo',
+  'Deploy Sample App': 'Implementar aplicación de demo',
   'Edit Grayscale Release Job': 'Editar job de Grayscale Release',
   'Exact Match': 'Coincidencia exacta',
   'Forward by request content': 'Reenviar por contenido de solicitud',

@@ -17,12 +17,12 @@
  */
 
 module.exports = {
-  'Add App Repository': 'Add Application Repository',
+  'Add App Repository': 'Add App Repository',
   'Add Repository': 'Add',
-  'App Repos': 'Application Repositories',
-  'App Repository': 'Application Repository',
+  'App Repos': 'App Repositories',
+  'App Repository': 'App Repository',
   'App Repository Name': 'Name',
-  'Edit App Repository': 'Edit Application Repository',
+  'Edit App Repository': 'Edit App Repository',
   'HTTP access denied': 'HTTP access denied.',
   'Index Repo': 'Index Repository',
   'Invalid format of credential': 'Invalid credential format.',
@@ -44,15 +44,15 @@ module.exports = {
   'Unrecognized URL': 'Unrecognized URL.',
   Validate: 'Validate',
 
-  'App Repositorys': 'Application Repositories',
+  'App Repositorys': 'App Repositories',
   APP_REPO_URL_DESC:
-    'The URL needs to be validated before adding or editing an application repository.',
+    'The URL needs to be validated before adding or editing an app repository.',
   APP_REPOSITORY_CREATE_DESC:
-    'You can add third-party repositories that contain Helm-based Kubernetes applications.',
+    'You can add third-party repositories that contain Helm-based Kubernetes apps.',
   APP_REPO_DESC:
-    'You can add third-party repositories that contain Helm-based Kubernetes applications.',
+    'You can add third-party repositories that contain Helm-based Kubernetes apps.',
 
-  HOW_TO_USE_APP_REPO_Q: 'How do I install applications in a repository?',
+  HOW_TO_USE_APP_REPO_Q: 'How do I install apps in a repository?',
   HOW_TO_USE_APP_REPO_A:
-    'To install applications in a repository, go to a project, choose Application Workloads > Applications > Deploy New Application > From App Templates, and choose the app repository from the drop-down list.',
+    'To install apps in a repository, go to a project, choose Application Workloads > Applications > Deploy New Application > From App Templates, and choose the app repository from the drop-down list.',
 }

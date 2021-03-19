@@ -68,7 +68,7 @@ export default class Item extends React.Component {
     return (
       <div className={styles.wrapper}>
         <BoxInput
-          placeholder={t('Please input a email to add')}
+          placeholder={t('Please enter an email address')}
           onAdd={this.handleAdd}
         />
         {!isEmpty(value) && (

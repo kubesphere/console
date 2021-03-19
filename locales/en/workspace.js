@@ -17,8 +17,8 @@
  */
 
 module.exports = {
-  'Cluster Authorization Info': 'Cluster Authorization Info',
-  'Cluster Info': 'Cluster Info',
+  'Cluster Authorization Info': 'Cluster Authorization Information',
+  'Cluster Info': 'Cluster Information',
   'Create Workspace': 'Create Workspace',
   'Create Workspace Role': 'Create Workspace Role',
   'Created Projects': 'Created Projects',

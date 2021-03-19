@@ -38,7 +38,7 @@ module.exports = {
   'Analysis Tools': 'Analysis Tools',
   'API Documents': 'API Documents',
   'App Templates': 'App Templates',
-  Application: 'Application',
+  Application: 'App',
   'Application Workloads': 'Application Workloads',
   Apply: 'Apply',
   'As of Date': 'As of Date',
@@ -47,7 +47,7 @@ module.exports = {
   'Auditing Operating': 'Auditing Operating',
   Author: 'Author',
   'Back To List': 'Back To List',
-  'Basic Info': 'Basic Info',
+  'Basic Info': 'Basic Information',
   'Basic Information': 'Basic Information',
   body: 'body',
   Cancel: 'Cancel',
@@ -229,7 +229,7 @@ module.exports = {
   Platform: 'Platform',
   platform: 'platform',
   'Platform Description': 'Platform Description',
-  'Platform Info': 'Platform Info',
+  'Platform Info': 'Platform Information',
   'Platform Running Status': 'Platform Running Status',
   'Platform Title': 'Platform Title',
   'Platform URL': 'Platform URL',
@@ -526,7 +526,7 @@ module.exports = {
   EVENT_FROM: 'From',
 
   PLATFORM_INFO_DESC: 'View platform title, description and other information',
-  HOW_TO_MODIFY_PLATFORM_INFO: 'How to modify platform info?',
+  HOW_TO_MODIFY_PLATFORM_INFO: 'How to modify platform information?',
   PLATFORM_SETTINGS_SELECTOR_DESC: 'Customized Platform Settings',
 
   AUDITING_OPERATING_DESC:
