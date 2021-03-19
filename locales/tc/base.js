@@ -315,7 +315,7 @@ module.exports = {
 
   'No Limit': '無限制',
   Quota: '配額',
-  'Left Quota': '剩餘配額',
+  'Remaining Quota': '剩餘配額',
 
   TOTAL_ITEMS: '共 {num} 個項目',
 

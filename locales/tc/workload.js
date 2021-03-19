@@ -86,15 +86,15 @@ module.exports = {
 
   'Not Limited': '未限制',
   Cost: '占用',
-  'Project Left Quota': '項目剩餘配額',
-  'Workspace Left Quota': '企業空間剩餘配額',
+  'Project Remaining Quota': '項目剩餘配額',
+  'Workspace Remaining Quota': '企業空間剩餘配額',
   QUOTA_OVERCOST_TIP: '目前資源占用已超過剩餘配額',
 
   'Resource Request': '資源預留',
   'Resource Limit': '資源限制',
 
-  'Resource requests left quota': '資源預留剩餘配額',
-  'Resource limits left quota': '資源限制剩餘配額',
+  'Resource requests remaining quota': '資源預留剩餘配額',
+  'Resource limits remaining quota': '資源限制剩餘配額',
 
   'No resource limits': '無資源限制',
 

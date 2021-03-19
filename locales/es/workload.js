@@ -279,11 +279,11 @@ module.exports = {
   'Resource Info': 'Información de recursos',
   'Resource Limit': 'Límite de recursos',
   'Resource Limits': 'Límites de recursos',
-  'Resource limits left quota': 'Límite de recursos, cuota restante',
+  'Resource limits remaining quota': 'Límite de recursos, cuota restante',
   'Resource Name': 'Nombre del recurso',
   'Resource Request': 'Solicitud de recursos',
   'Resource Requests': 'Solicitudes de recursos',
-  'Resource requests left quota': 'Solicitudes de recursos dejaron cuota',
+  'Resource requests remaining quota': 'Solicitudes de recursos dejaron cuota',
   'Resource Status': 'Estado del recurso',
   'Restart Count': 'Reiniciar contadores',
   'Restart Policy': 'Política de reinicio',
@@ -351,8 +351,8 @@ module.exports = {
 
   'Not Limited': 'Not Limited',
   Cost: 'Cost',
-  'Project Left Quota': 'Project Left Quota',
-  'Workspace Left Quota': 'Workspace Left Quota',
+  'Project Remaining Quota': 'Project Remaining Quota',
+  'Workspace Remaining Quota': 'Workspace Remaining Quota',
   QUOTA_OVERCOST_TIP:
     'The current resource usage has exceeded the remaining quota',
 

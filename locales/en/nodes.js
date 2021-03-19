@@ -29,7 +29,7 @@ module.exports = {
   Architecture: 'Architecture',
   'Cluster Node': 'Cluster Node',
   'Edge Node': 'Edge Node',
-  'Edge Nodes': 'Edge Node',
+  'Edge Nodes': 'Edge Nodes',
   'Common Taints': 'Common Taints',
   Conditions: 'Conditions',
   ContainerRuntimeVersion: 'ContainerRuntimeVersion',
@@ -147,5 +147,5 @@ module.exports = {
   IN_USE_Node_IP: 'Node IP {ip} in use',
   IN_USE_Node_NAME: 'Node name {name} in use',
   'Add Edge Node': 'Add Edge Node',
-  "Please input the node's name": "Please input the node's name",
+  "Please input the node's name": 'Please input the node name',
 }

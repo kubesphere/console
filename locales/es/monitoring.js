@@ -33,7 +33,7 @@ module.exports = {
   'Cluster Resources Usage': 'Uso de recursos del clúster',
   'Cluster Status': 'Estado del clúster',
   'Cluster Status Monitoring': 'Monitorización de estado del clúster',
-  'Components Status': 'Estado de los componentes',
+  'Component Status': 'Estado de los componentes',
   'Controller Manager': 'Manager de controlador',
   'Cool Color': 'Colores fríos',
   'Custom Monitoring': 'Monitorización personalizada',

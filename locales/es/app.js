@@ -129,7 +129,7 @@ module.exports = {
   Submitter: 'Remitente',
   'Suspend Successfully': 'Suspendido Satisfactoriamente',
   'Terms of service': 'Términos de Servicio',
-  'Test Deploy': 'Probar Despliegue',
+  'Test Deployment': 'Probar Despliegue',
   'Time of entry': 'Momento de Entrada',
   Uncategorized: 'Sin Categorizar',
   Unprocessed: 'Sin Procesar',

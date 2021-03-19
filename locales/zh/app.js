@@ -122,7 +122,7 @@ module.exports = {
   'Add Version': '添加版本',
   'New Version': '添加版本',
   'App Deploy': '应用部署',
-  'Test Deploy': '测试部署',
+  'Test Deployment': '测试部署',
   'Modify Successfully': '修改成功',
   'Add Version Successfully': '添加版本成功',
   'Submit Successfully': '提交成功',
