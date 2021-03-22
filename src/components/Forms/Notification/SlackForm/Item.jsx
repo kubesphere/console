@@ -59,7 +59,7 @@ export default class Item extends React.Component {
     return (
       <div className={styles.wrapper}>
         <BoxInput
-          placeholder={t('Please input a channel to add')}
+          placeholder={t('Please enter a channel')}
           onAdd={this.handleAdd}
         />
         {value.length > 0 && (

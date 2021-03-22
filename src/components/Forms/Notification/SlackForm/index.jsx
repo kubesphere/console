@@ -91,7 +91,7 @@ export default class SlackForm extends Component {
             <Form.Item
               label={t('Slack Token')}
               rules={[
-                { required: true, message: t('Please input slack token') },
+                { required: true, message: t('Please enter the Slack token') },
               ]}
             >
               <Input name="secret.data.token" />
@@ -103,7 +103,10 @@ export default class SlackForm extends Component {
           <div className={styles.item}>
             <Form.Item
               rules={[
-                { required: true, message: t('Please add receiver channel') },
+                {
+                  required: true,
+                  message: t('Please add the receiver channel'),
+                },
               ]}
             >
               <Item name="receiver.spec.slack.channels" />

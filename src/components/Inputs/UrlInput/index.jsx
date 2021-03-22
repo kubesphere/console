@@ -37,7 +37,7 @@ export default class UrlInput extends React.Component {
       <Columns className={classnames(styles.columns, className)}>
         <Column className="is-7">
           <Form.Item
-            rules={[{ required: true, message: t('Please input path') }]}
+            rules={[{ required: true, message: t('Please enter the address') }]}
           >
             <Input
               name={this.props.hostName}

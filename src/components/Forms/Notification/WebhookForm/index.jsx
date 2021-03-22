@@ -121,11 +121,11 @@ export default class WebhookReceiverForm extends Component {
               <Input name="receiver.spec.webhook.url" />
             </Form.Item>
             <Form.Item
-              label={t('Verify Type')}
+              label={t('Verification Type')}
               rules={[
                 {
                   required: true,
-                  message: t('Please select Verify type'),
+                  message: t('Please select a verification type'),
                 },
               ]}
             >

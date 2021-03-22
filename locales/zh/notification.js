@@ -31,12 +31,12 @@ module.exports = {
   MAIL_SETTINGS_CHANGE_NEED_SAVE_TIP:
     '您当前的邮件设置已发生变化，请保存配置，或者取消修改',
 
-  'Please input SMTP user': '请输入 SMTP 用户',
+  'Please enter the SMTP username': '请输入 SMTP 用户',
   'Please enter an email address': '请输入要添加的邮箱',
-  'This email has existed': '此邮箱已存在',
+  'This email address has existed': '此邮箱已存在',
   'Invalid email': '邮箱格式不合法',
-  'Add up to 50 mail': '最多添加 50 个邮箱',
-  'Please add receiver email': '请添加接收邮箱',
+  '50 email addresses at most': '最多添加 50 个邮箱',
+  'Please add the receiver email address': '请添加接收邮箱',
 
   DingTalk: '钉钉',
   'Conversation Settings': '会话设置',
@@ -46,10 +46,10 @@ module.exports = {
   keywords: '关键字',
   'Keywords Set': '已设置关键字',
 
-  'Please input a conversation ID to add': '请输入要添加的会话 ID',
-  'Please input a keywords to add': '请输入要添加的关键字',
+  'Please enter a conversation ID': '请输入要添加的会话 ID',
+  'Please enter a keyword': '请输入要添加的关键字',
   'This conversation ID has existed': '此会话 ID 已存在',
-  'This keywords has existed': '此关键字已存在',
+  'This keyword has existed': '此关键字已存在',
 
   DINGTALK_DESC: '可以通过钉钉接收平台的通知，需要配置钉钉发送服务器。',
   DINGTALK_KEYWORDS_DESC: 'ChatBot 的自定义关键字, 如需多个请以 "," 分隔',
@@ -57,17 +57,17 @@ module.exports = {
     '您当前的钉钉设置已发生变化，请保存设置，或者取消修改',
 
   WeCom: '企业微信',
-  'Wechat Api Corp Id': '企业 ID',
-  'Wechat Api Agent Id': '企业应用 ID',
-  'Wechat Api Secret': '企业应用凭证',
+  'WeChat API Corp ID': '企业 ID',
+  'WeChat API Agent ID': '企业应用 ID',
+  'WeChat API Secret': '企业应用凭证',
   Department: '部门',
   'User Set': '已设置用户',
   'Department Set': '已设置部门',
   'Tag Set': '已设置标签',
 
-  'Please input wechat api corp id': '请输入企业 ID',
-  'Please input wechat api agent id': '请输入企业应用 ID',
-  'Please input wechat api secret': '请输入企业应用凭证',
+  'Please enter the WeChat API Corp ID': '请输入企业 ID',
+  'Please enter the WeChat API Agent ID': '请输入企业应用 ID',
+  'Please enter the WeChat API Secret': '请输入企业应用凭证',
   'This toUser has existed': '此用户已存在',
   'This toParty has existed': '此部门已存在',
   'This toTag has existed': '此标签已存在',
@@ -80,10 +80,10 @@ module.exports = {
   'Channel Settings': '接收频道设置',
   'Channel Set': '已设置频道',
 
-  'Please input slack token': '请输入 slack token',
-  'Please input a channel to add': '请输入要添加的频道',
+  'Please enter the Slack token': '请输入 slack token',
+  'Please enter a channel': '请输入要添加的频道',
   'This channel has existed': '此频道已存在',
-  'Please add receiver channel': '请添加接收频道',
+  'Please add the receiver channel': '请添加接收频道',
 
   SLACK_DESC: '可以通过 slack 接收平台的通知，需要配置 slack 发送服务器。',
   SLACK_SETTINGS_CHANGE_NEED_SAVE_TIP:
@@ -95,8 +95,9 @@ module.exports = {
   'Root CA': '根证书',
   'Client Certificate Cert': '客户端证书 Cert',
   'Client Certificate Key': '客户端证书 Key',
-  'Verify Type': '验证类型',
+  'Verification Type': '验证类型',
   'Skip TLS Certification': '跳过 TLS 认证',
+  'Please select a verification type': '请选择验证类型',
 
   WEBHOOK_SETTING_DESC:
     '可以通过 webhook 接收平台的通知，需要配置 webhook 发送服务器。',

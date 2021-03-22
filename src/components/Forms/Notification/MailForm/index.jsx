@@ -109,7 +109,12 @@ export default class MailForm extends Component {
             </Form.Item>
             <Form.Item
               label={`SMTP ${t('User')}`}
-              rules={[{ required: true, message: t('Please input SMTP user') }]}
+              rules={[
+                {
+                  required: true,
+                  message: t('Please enter the SMTP username'),
+                },
+              ]}
             >
               <Input
                 name="config.spec.email.authUsername"
@@ -145,7 +150,10 @@ export default class MailForm extends Component {
           <div className={styles.item}>
             <Form.Item
               rules={[
-                { required: true, message: t('Please add receiver email') },
+                {
+                  required: true,
+                  message: t('Please add the receiver email address'),
+                },
               ]}
             >
               <Item name='receiver.metadata.annotations["kubesphere.io/receiver-mail"]' />

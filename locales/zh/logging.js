@@ -92,7 +92,7 @@ module.exports = {
   'Please input service address': '请输入服务地址',
 
   URL_SYNTAX_ERROR: 'URL 语法错误',
-  'Please input path': '请输入地址',
+  'Please enter the address': '请输入地址',
   LOG_COLLECTION_ES_URL_TIPS:
     '默认使用系统部署的 Elasticsearch，也可以输入外部或者单独部署的 Elasticsearch 地址',
   LOG_COLLECTION_ES_INDEX_TIPS:

@@ -96,7 +96,7 @@ export default class DingTalkForm extends Component {
             <BoxInput
               className={styles.itemWrapper}
               title={t('Conversation ID')}
-              placeholder={t('Please input a conversation ID to add')}
+              placeholder={t('Please enter a conversation ID')}
               onAdd={value =>
                 onAdd(
                   value,
@@ -119,7 +119,7 @@ export default class DingTalkForm extends Component {
             <BoxInput
               className={styles.itemWrapper}
               title={t('Keywords')}
-              placeholder={t('Please input a keywords to add')}
+              placeholder={t('Please enter a keyword')}
               onAdd={value =>
                 onAdd(
                   value,
