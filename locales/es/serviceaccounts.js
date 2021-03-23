@@ -27,4 +27,7 @@ module.exports = {
 
   'Invalid configuration file format':
     'Formato de archivo de configuración no válido',
+
+  SERVICEACCOUNT_KUBECONFIG_DESC:
+    'método de configuración kubeconfig, consulte <a href="https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/" target="_black"> documentos oficiales </ a > Después de la descarga, modifique la dirección del servicio a la dirección externa de la API de Kubernetes',
 }
