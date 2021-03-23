@@ -117,6 +117,8 @@ export default class DingTalk extends React.Component {
 
     set(config, 'spec.dingtalk.conversation.appkey.key', 'appkey')
     set(config, 'spec.dingtalk.conversation.appkey.name', SECRET_NAME)
+    set(config, 'spec.dingtalk.conversation.appsecret.key', 'appsecret')
+    set(config, 'spec.dingtalk.conversation.appsecret.name', SECRET_NAME)
 
     set(receiver, 'spec.dingtalk.chatbot.webhook.key', 'webhook')
     set(receiver, 'spec.dingtalk.chatbot.webhook.name', SECRET_NAME)
@@ -143,16 +145,10 @@ export default class DingTalk extends React.Component {
     Notify.success({ content: message, duration: 1000 })
   }
 
-  onAdd = (value, key, id) => {
+  onAdd = (value, key) => {
     const { formData } = this.state
     const data = get(formData, key, [])
-    if (data.includes(value)) {
-      Notify.error({
-        content: t(`This ${id} has existed`),
-        duration: 1000,
-      })
-      return
-    }
+
     set(formData, key, [...data, value])
     this.setState({ formData, showTip: true })
   }

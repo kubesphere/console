@@ -589,7 +589,7 @@ const getNotificationReceiverTemplate = ({ name, type }) => ({
   },
   spec: {
     [type]: {
-      enabled: true,
+      enabled: false,
     },
   },
 })

@@ -18,7 +18,15 @@
 
 import React, { Component } from 'react'
 import { get } from 'lodash'
-import { Form, Button, Input, Alert, Tag, Icon } from '@kube-design/components'
+import {
+  Form,
+  Button,
+  Input,
+  Alert,
+  Tag,
+  Icon,
+  Notify,
+} from '@kube-design/components'
 import { List, ToggleField } from 'components/Base'
 import { BoxInput } from 'components/Inputs'
 
@@ -26,6 +34,54 @@ import styles from './index.scss'
 
 export default class DingTalkForm extends Component {
   formRef = React.createRef()
+
+  validateCid = value => {
+    const data = get(
+      this.props.data,
+      'receiver.spec.dingtalk.conversation.chatids',
+      []
+    )
+    if (!value) {
+      Notify.error({
+        content: t('Please enter a conversation ID'),
+        durantion: 1000,
+      })
+      return
+    }
+    if (data.includes(value)) {
+      Notify.error({
+        content: t(`This conversation ID has existed`),
+        duration: 1000,
+      })
+      return
+    }
+
+    return true
+  }
+
+  validateKeywords = value => {
+    const data = get(
+      this.props.data,
+      'receiver.spec.dingtalk.chatbot.keywords',
+      []
+    )
+    if (!value) {
+      Notify.error({
+        content: t('Please enter a keyword'),
+        durantion: 1000,
+      })
+      return
+    }
+    if (data.includes(value)) {
+      Notify.error({
+        content: t(`This keyword has existed`),
+        duration: 1000,
+      })
+      return
+    }
+
+    return true
+  }
 
   handleSubmit = () => {
     const form = this.formRef.current
@@ -97,12 +153,9 @@ export default class DingTalkForm extends Component {
               className={styles.itemWrapper}
               title={t('Conversation ID')}
               placeholder={t('Please enter a conversation ID')}
+              validate={this.validateCid}
               onAdd={value =>
-                onAdd(
-                  value,
-                  'receiver.spec.dingtalk.conversation.chatids',
-                  'conversation ID'
-                )
+                onAdd(value, 'receiver.spec.dingtalk.conversation.chatids')
               }
             />
             {this.renderList()}
@@ -120,12 +173,9 @@ export default class DingTalkForm extends Component {
               className={styles.itemWrapper}
               title={t('Keywords')}
               placeholder={t('Please enter a keyword')}
+              validate={this.validateKeywords}
               onAdd={value =>
-                onAdd(
-                  value,
-                  'receiver.spec.dingtalk.chatbot.keywords',
-                  'keywords'
-                )
+                onAdd(value, 'receiver.spec.dingtalk.chatbot.keywords')
               }
             />
             {this.renderKeywords()}
@@ -155,7 +205,6 @@ export default class DingTalkForm extends Component {
             <List.Item
               key={item}
               title={item}
-              description={item.globalrole || '-'}
               onDelete={() =>
                 onDelete(item, 'receiver.spec.dingtalk.conversation.chatids')
               }

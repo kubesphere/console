@@ -18,7 +18,7 @@
 
 import React, { Component } from 'react'
 import { get } from 'lodash'
-import { Form, Button, Input, Alert } from '@kube-design/components'
+import { Form, Button, Input, Alert, Notify } from '@kube-design/components'
 import { ToggleField } from 'components/Base'
 import { BoxInput } from 'components/Inputs'
 
@@ -49,6 +49,23 @@ export default class WeComForm extends Component {
   }
 
   formRef = React.createRef()
+
+  validate = value => {
+    const { type } = this.state
+    const data = get(this.props.data, `receiver.spec.wechat.${type}`, [])
+    if (!value) {
+      Notify.error({ content: t(`Please enter a ${type}`), duration: 1000 })
+      return
+    }
+    if (data.includes(value)) {
+      Notify.error({
+        content: t(`This ${type} has existed`),
+        duration: 1000,
+      })
+      return
+    }
+    return true
+  }
 
   handleSubmit = () => {
     const form = this.formRef.current
@@ -167,6 +184,7 @@ export default class WeComForm extends Component {
               options={this.options}
               onSelectChange={this.handleTypeChange}
               onAdd={this.handleAdd}
+              validate={this.validate}
             />
             <Item
               title={t('User Set')}
