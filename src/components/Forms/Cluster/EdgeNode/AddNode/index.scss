@@ -26,4 +26,18 @@
   & > div:first-child + button {
     align-self: center;
   }
+
+  .infoIcon {
+    margin-top: -2px;
+  }
+
+  .installInfo {
+    a {
+      color: $green-color03;
+      margin-left: 5px;
+      &:hover {
+        color: $green-color01;
+      }
+    }
+  }
 }
