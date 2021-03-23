@@ -168,7 +168,10 @@ export default class Secret extends React.Component {
     return (
       <div className={styles.configWrapper}>
         <div className={styles.title}>
-          <div className="h6">{t('KubConfig')}</div>
+          <div className="h6">{t('KubeConfig')}</div>
+          <p className="text-desc">
+            {t.html('SERVICEACCOUNT_KUBECONFIG_DESC')}
+          </p>
         </div>
         <div className={styles.codeEditor}>
           <div className={styles.ops}>

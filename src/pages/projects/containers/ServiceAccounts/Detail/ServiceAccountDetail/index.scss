@@ -1,7 +1,7 @@
 @import '~scss/variables';
 
 .secretWrapper {
-  .title{
+  .title {
     display: flex;
     justify-content: space-between;
     margin-bottom: 12px;
@@ -47,11 +47,18 @@
 }
 
 .configWrapper {
-  .title{
+  .title {
+    display: block;
     margin-bottom: 12px;
+
+    a {
+      color: $blue-color04;
+    }
   }
-  .codeEditor{
+
+  .codeEditor {
     position: relative;
+
     .ops {
       position: absolute;
       top: 8px;
@@ -63,6 +70,7 @@
       color: $white;
       background-color: $dark-color06;
     }
+
     :global {
       .icon {
         opacity: 0.6;
@@ -74,9 +82,9 @@
         }
       }
     }
+
     .split {
       margin: 0 8px;
     }
   }
 }
-
