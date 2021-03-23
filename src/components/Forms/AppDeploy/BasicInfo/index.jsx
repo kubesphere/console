@@ -139,7 +139,7 @@ export default class BasicInfo extends React.Component {
           <Columns>
             <Column>
               <Form.Item label={t('Description')} desc={t('DESCRIPTION_DESC')}>
-                <TextArea name="desc" maxLength={256} />
+                <TextArea name="description" maxLength={256} />
               </Form.Item>
             </Column>
             <Column />

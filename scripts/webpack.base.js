@@ -38,15 +38,9 @@ module.exports = {
       use: 'happypack/loader?id=jsx',
     },
     {
-      test: /\.jsx?$/,
-      include: root('node_modules'),
-      use: 'cache-loader',
-    },
-    {
       test: /\.svg$/,
       issuer: { test: /\.jsx?$/ },
       use: [
-        { loader: 'cache-loader' },
         { loader: '@svgr/webpack', options: { icon: true } },
       ],
     },
