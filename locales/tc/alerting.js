@@ -50,15 +50,10 @@ module.exports = {
   'Alert Active Time': '告警激活时间',
   'Please add at least one rule': '請至少添加一個告警規則',
   'Please input the threshold': '請輸入臨界值',
-  critical: '危險',
-  Critical: '危險',
+
   'Critical Alert': '危險告警',
-  major: '重要',
-  Major: '重要',
-  'Major Alert': '重要告警',
-  minor: '一般',
-  Minor: '一般',
-  'Minor Alert': '一般告警',
+  'Error Alert': '重要告警',
+  'Warning Alert': '一般告警',
 
   Condition: '條件',
   Threshold: '臨界值',

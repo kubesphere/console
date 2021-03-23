@@ -47,24 +47,24 @@ export const SEVERITY_LEVEL = [
     value: 'critical',
   },
   {
-    type: 'warning',
+    type: 'error',
     prefixIcon: 'information',
     color: {
       primary: '#fae7e5',
       secondary: '#f5a623',
     },
-    label: 'Major Alert',
-    value: 'warning',
+    label: 'Error Alert',
+    value: 'error',
   },
   {
-    type: 'info',
+    type: 'warning',
     prefixIcon: 'information',
     color: {
       primary: '#fae7e5',
       secondary: '#79879c',
     },
-    label: 'Minor Alert',
-    value: 'info',
+    label: 'Warning Alert',
+    value: 'warning',
   },
 ]
 
