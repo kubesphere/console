@@ -400,14 +400,14 @@ module.exports = {
   'MULTI-CLUSTER_PROJECT_CREATE_DESC':
     'Projects will be grouped by their resources, which you can view and manage by project.',
 
-  DELETE_TITLE: 'Sure to delete {type}?',
+  DELETE_TITLE: 'Delete {type}',
   DELETE_TIP:
     'Are you sure about deleting {type} <strong>{resource}</strong> ? {type} cannot be recovered after it is deleted.',
   DELETE_CONFIRM_TIP:
-    'Please enter the {type} name <strong>{resource}</strong> to make sure you understand the risks associated with the operation.',
+    'Please enter the {typeLower} name <strong>{resource}</strong> to make sure you understand the risks associated with this operation.',
   DELETE_APP_RESOURCE_TIP:
     'Resource is managed by <strong>{app}</strong>, which may affect the normal use of this app if the resource is deleted. Please enter the {type} name <strong>{resource}</strong> to make sure you understand the risks associated with the operation.',
-  DELETE_CONFIRM_PLACEHOLDER: 'Please enter {resource}',
+  DELETE_CONFIRM_PLACEHOLDER: 'Please enter {resource}.',
 
   DELETE_RESOURCE_TITLE: 'Warning',
   DELETE_RESOURCE_TIP:
