@@ -191,7 +191,6 @@ export default class Monitorings extends React.Component {
           )
 
           const config = getAreaChartOps(item)
-
           if (isEmpty(config.data)) return null
 
           return (

@@ -1,0 +1,76 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+.tableContainer {
+  margin-bottom: 20px;
+
+  .tooltipContent {
+    width: 220px;
+    line-height: 20px;
+
+    h3 {
+      color: #fff;
+    }
+
+    p {
+      color: $dark-color01;
+    }
+  }
+
+  .question {
+    span {
+      margin-top: -4px;
+      margin-left: 5px;
+    }
+  }
+
+  :global {
+    .table-body {
+      padding: 0;
+    }
+
+    .table {
+      border: 1px solid $light-color04;
+      box-shadow: none;
+
+      table {
+        padding: 0;
+
+        tr {
+          th {
+            height: 40px;
+            padding: 0 16px;
+            border: none;
+            line-height: 40px;
+            color: $dark-color06;
+          }
+
+          td {
+            height: 40px;
+            padding: 0 16px;
+            border-top: 1px solid $light-color04;
+          }
+        }
+      }
+
+      tbody {
+        tr {
+          &:nth-child(odd) {
+            background-color: $light-color01;
+          }
+
+          & > td:nth-child(1) {
+            span {
+              width: 6px;
+              height: 6px;
+              display: inline-block;
+              border-radius: 50%;
+              margin-right: 8px;
+              vertical-align: middle;
+            }
+          }
+        }
+      }
+    }
+  }
+}

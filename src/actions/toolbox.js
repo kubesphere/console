@@ -24,6 +24,7 @@ import EventModal from 'components/Modals/EventSearch'
 import AuditingModal from 'components/Modals/AuditingSearch'
 import KubeCtlModal from 'components/Modals/KubeCtl'
 import KubeConfigModal from 'components/Modals/KubeConfig'
+import BillModal from 'components/Modals/Bill'
 
 export default {
   'toolbox.logquery': {
@@ -110,6 +111,33 @@ export default {
         },
         modal: KubeConfigModal,
         title: t('kubeconfig'),
+        ...props,
+      })
+    },
+  },
+  'toolbox.bill': {
+    on({ store, ...props }) {
+      const modal = Modal.open({
+        onOk: () => {
+          Modal.close(modal)
+        },
+        modal: BillModal,
+        store,
+        title: (
+          <div>
+            <Icon size={20} name="wallet" style={{ marginRight: 7 }} />{' '}
+            <span
+              style={{
+                fontSize: 12,
+                fontWeight: 600,
+                lineHeight: '20px',
+                height: '20px',
+              }}
+            >
+              {t('Bill')}
+            </span>
+          </div>
+        ),
         ...props,
       })
     },

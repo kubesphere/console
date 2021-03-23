@@ -1,0 +1,76 @@
+@import '~scss/variables';
+@import '~scss/mixins';
+
+:global {
+  .custom-tooltip {
+    padding: 8px 12px;
+
+    font-size: $size-small;
+    line-height: 1.67;
+    border-radius: 4px;
+    background-color: rgba(36, 46, 66, 0.8);
+    box-shadow: 0 6px 12px 0 rgba(2, 5, 8, 0.08),
+      0 1px 2px 0 rgba(2, 5, 8, 0.08);
+    z-index: 100;
+  }
+
+  .label {
+    color: $white;
+    display: flex;
+    flex: 1 1 auto;
+
+    & > i {
+      width: 6px;
+      height: 6px;
+      margin-right: 7px;
+      border-radius: 50%;
+      background: $lightest;
+      overflow: hidden;
+      align-self: center;
+    }
+
+    & > span {
+      font-weight: bolder;
+      margin-right: 7px;
+    }
+  }
+
+  .chart__center__text {
+    width: 200px;
+    @include ellipsis;
+  }
+}
+
+.resourceList {
+  width: 300px;
+  height: 328px;
+  overflow-y: auto;
+  position: absolute;
+  top: 40px;
+
+  ul {
+    li {
+      margin-bottom: 10px;
+      height: 40px;
+      display: flex;
+      line-height: 40px;
+
+      & > i {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 5px;
+        align-self: center;
+      }
+
+      .info {
+        margin: 0 12px;
+        & > div > div:first-child {
+          width: 120px;
+          @include ellipsis;
+        }
+      }
+    }
+  }
+}

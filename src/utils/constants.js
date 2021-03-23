@@ -228,6 +228,7 @@ export const ICON_TYPES = {
   namespacenetworkpolicies: 'firewall',
   pipelines: 'blockchain',
   ippools: 'eip-group',
+  cluster: 'cluster',
 }
 
 export const MODULE_KIND_MAP = {
@@ -868,6 +869,7 @@ export const API_VERSIONS = {
   networkpolicies: 'apis/networking.k8s.io/v1',
   ippools: 'apis/network.kubesphere.io/v1alpha1',
   storageclasscapabilities: 'apis/storage.kubesphere.io/v1alpha1',
+  meter: 'kapis/metering.kubesphere.io/v1alpha1',
 }
 
 export const MONITOR_GRAPH_COLORS = [

@@ -1,0 +1,99 @@
+@import '~scss/variables';
+
+.billCard {
+  width: 440px;
+  height: 56px;
+  padding: 0 12px 0 20px;
+  margin-bottom: 4px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+
+  &:hover {
+    cursor: pointer;
+    background: $light-color03;
+  }
+
+  :global {
+    label.checkbox {
+      &::before {
+        width: 12px;
+        height: 12px;
+      }
+
+      .checked::after {
+        left: 5px;
+        top: 2px;
+      }
+    }
+  }
+
+  .checkContainer {
+    margin-right: 16px;
+  }
+
+  .info {
+    width: 90%;
+    display: flex;
+    align-items: center;
+
+    .title {
+      position: relative;
+
+      .indicator {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        z-index: 2;
+      }
+    }
+
+    .desc {
+      margin-left: 12px;
+    }
+
+    .tagContainer {
+      margin-left: 12px;
+
+      & > span {
+        margin-right: 5px;
+
+        & > span {
+          margin-top: -2px;
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+
+  .symbol:hover {
+    & > span {
+      transition: all 0.3s ease;
+      transform: rotate(90deg);
+    }
+  }
+}
+
+.selected {
+  background: $dark-color07;
+
+  .desc {
+    div {
+      color: #fff;
+    }
+  }
+
+  &:hover {
+    cursor: pointer;
+    background: $dark-color07;
+  }
+}
+
+.noHover {
+  &:hover {
+    cursor: initial;
+    background: none;
+  }
+}
