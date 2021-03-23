@@ -53,8 +53,7 @@ const config = smp.wrap({
           {
             loader: 'css-loader',
             options: {
-              importLoaders: 1,
-              localIdentName: '[folder]__[local]--[hash:base64:5]',
+              importLoaders: 2,
               modules: true,
             },
           },
@@ -70,21 +69,22 @@ const config = smp.wrap({
         include: root('node_modules'),
         use: [
           MiniCssExtractPlugin.loader,
-          'css-loader',
-          'sass-loader',
-        ],
-      },
-      {
-        test: /\.css$/,
-        loader: [
-          MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
             options: {
               importLoaders: 2,
             },
           },
+          {
+            loader: 'postcss-loader',
+            options: baseConfig.postCssOptions,
+          },
+          'sass-loader',
         ],
+      },
+      {
+        test: /\.css$/,
+        loader: [MiniCssExtractPlugin.loader, 'css-loader'],
       },
       {
         test: /\.(ttf|otf|eot|woff2?)(\?.+)?$/,

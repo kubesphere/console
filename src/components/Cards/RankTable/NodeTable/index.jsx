@@ -59,7 +59,7 @@ export default class NodeUsageRank extends React.Component {
     {
       title: t('NODES'),
       render: node => {
-        const link = node.role.includes('edge')
+        const link = get(node, 'role', []).includes('edge')
           ? `/clusters/${this.props.cluster}/edgenodes/${node.node}`
           : `/clusters/${this.props.cluster}/nodes/${node.node}`
 

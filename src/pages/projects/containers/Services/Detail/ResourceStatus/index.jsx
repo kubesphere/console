@@ -92,7 +92,7 @@ export default class ResourceStatus extends React.Component {
         selector={selector}
         cluster={cluster}
         namespace={namespace}
-        prefix={this.prefix}
+        prefix={`${this.prefix}/projects/${namespace}`}
         module={`${workloadType.toLowerCase()}s`}
       />
     )

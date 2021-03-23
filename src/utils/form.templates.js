@@ -377,7 +377,7 @@ const getCustomAlertPolicyTemplate = ({ namespace } = {}) => ({
   query: '',
   duration: '5m',
   labels: {
-    severity: 'info',
+    severity: 'warning',
   },
   annotations: {
     summary: '',

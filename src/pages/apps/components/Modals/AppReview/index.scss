@@ -14,26 +14,28 @@
   }
 
   :global {
-    .tabs {
-      position: fixed;
-      right: 0;
-      top: 144px;
-      z-index: 5;
-      padding: 8px 20px;
-      max-width: 1070px;
-      min-width: 800px;
-      width: 80%;
-      border-bottom: 1px solid $border-color;
-      background-color: $card-bg-color;
-    }
+    .tabs-container {
+      .tabs {
+        position: fixed;
+        right: 0;
+        top: 144px;
+        z-index: 5;
+        padding: 8px 20px;
+        max-width: 1070px;
+        min-width: 800px;
+        width: 80%;
+        border-bottom: 1px solid $border-color;
+        background-color: $card-bg-color;
+      }
 
-    .tabs-button {
-      margin-bottom: 80px;
-    }
+      .tabs-button {
+        margin-bottom: 80px;
+      }
 
-    .tab-content{
-      margin-top: 48px;
-      padding: 0;
+      .tab-content {
+        margin-top: 48px;
+        padding: 0;
+      }
     }
   }
 }
