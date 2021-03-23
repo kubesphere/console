@@ -32,12 +32,12 @@ module.exports = {
   MAIL_SETTINGS_CHANGE_NEED_SAVE_TIP:
     'Su configuración de correo actual ha cambiado, guarde la configuración o cancele la modificación',
 
-  'Please input SMTP user': 'Por favor ingrese el usuario SMTP',
+  'Please enter the SMTP username': 'Por favor ingrese el usuario SMTP',
   'Please enter an email address': 'Ingrese un correo electrónico para agregar',
-  'This email has existed': 'Este correo electrónico ha existido',
+  'This email address has existed': 'Este correo electrónico ha existido',
   'Invalid email': 'Email inválido',
-  'Add up to 50 mail': 'Agregar hasta 50 correos',
-  'Please add receiver email':
+  '50 email addresses at most': 'Agregar hasta 50 correos',
+  'Please add the receiver email address':
     'Por favor, agregue el correo electrónico del destinatario',
 
   DingTalk: 'DingTalk',
@@ -48,11 +48,11 @@ module.exports = {
   keywords: 'palabras clave',
   'Keywords Set': 'Conjunto de palabras clave',
 
-  'Please input a conversation ID to add':
+  'Please enter a conversation ID':
     'Ingrese un ID de conversación para agregar',
-  'Please input a keywords to add': 'Ingrese una palabra clave para agregar',
+  'Please enter a keyword': 'Ingrese una palabra clave para agregar',
   'This conversation ID has existed': 'Este ID de conversación ha existido',
-  'This keywords has existed': 'Esta palabra clave ha existido',
+  'This keyword has existed': 'Esta palabra clave ha existido',
 
   DINGTALK_DESC:
     'Puede recibir notificaciones de la plataforma a través de Dingding y debe configurar el servidor de envío de Dingding.',
@@ -62,18 +62,18 @@ module.exports = {
     'Su configuración actual de Dingding ha sido cambiada, guarde la configuración o cancele la modificación',
 
   WeCom: 'WeCom',
-  'Wechat Api Corp Id': 'ID de Wechat Api Corp',
-  'Wechat Api Agent Id': 'ID de agente de Wechat Api',
-  'Wechat Api Secret': 'El secreto de Wechat Api',
+  'WeChat API Corp ID': 'ID de Wechat Api Corp',
+  'WeChat API Agent ID': 'ID de agente de Wechat Api',
+  'WeChat API Secret': 'El secreto de Wechat Api',
   Department: 'Departamento',
   'User Set': 'Conjunto de usuario',
   'Department Set': 'Conjunto de departamentos',
   'Tag Set': 'Conjunto de etiquetas',
 
-  'Please input wechat api corp id': 'Por favor ingrese wechat api corp id',
-  'Please input wechat api agent id':
+  'Please enter the WeChat API Corp ID': 'Por favor ingrese wechat api corp id',
+  'Please enter the WeChat API Agent ID':
     'Por favor ingrese la identificación del agente de wechat api',
-  'Please input wechat api secret': 'Por favor ingrese wechat api secreto',
+  'Please enter the WeChat API Secret': 'Por favor ingrese wechat api secreto',
   'This toUser has existed': 'Este usuario ha existido',
   'This toParty has existed': 'Este toParty ha existido',
   'This toTag has existed': 'Este toTag ha existido',
@@ -87,10 +87,10 @@ module.exports = {
   'Channel Settings': 'Configuración de canal',
   'Channel Set': 'Conjunto de canales',
 
-  'Please input slack token': 'Ingrese el token de holgura',
-  'Please input a channel to add': 'Ingrese un canal para agregar',
+  'Please enter the Slack token': 'Ingrese el token de holgura',
+  'Please enter a channel': 'Ingrese un canal para agregar',
   'This channel has existed': 'Este canal ha existido',
-  'Please add receiver channel': 'Por favor, agregue un canal receptor',
+  'Please add the receiver channel': 'Por favor, agregue un canal receptor',
 
   SLACK_DESC:
     'Puede recibir notificaciones de la plataforma a través de Slack y debe configurar el servidor de envío de Slack.',
@@ -103,8 +103,9 @@ module.exports = {
   'Root CA': 'CA raíz',
   'Client Certificate Cert': 'Certificado de certificado de cliente',
   'Client Certificate Key': 'Clave de certificado de cliente',
-  'Verify Type': 'Verificar tipo',
+  'Verification Type': 'Verificar tipo',
   'Skip TLS Certification': 'Omitir la certificación TLS',
+  'Please select a verification type': 'Please select a verification type',
 
   WEBHOOK_SETTING_DESC:
     'Puede recibir notificaciones de la plataforma a través de webhook y debe configurar el servidor de envío de webhook.',

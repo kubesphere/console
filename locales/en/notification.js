@@ -20,92 +20,94 @@ module.exports = {
   'Notification Management': 'Notification Management',
   'Server Settings': 'Server Settings',
   'Receiver Settings': 'Receiver Settings',
-  'Receive Notification': 'Receive Notification',
+  'Receive Notification': 'Receive Notifications',
 
   Mail: 'Email',
   'SMTP Server Address': 'SMTP Server Address',
   'Use SSL Secure Connection': 'Use SSL Secure Connection',
 
   MAIL_DESC:
-    'You can receive notifications from the platform by mail, and you need to configure the mail sending server.',
-  SENDER_MAIL: 'Sender mail',
+    'You can receive email notifications from the platform after configuring the outgoing mail server.',
+  SENDER_MAIL: 'Sender Email Address',
   MAIL_SETTINGS_CHANGE_NEED_SAVE_TIP:
-    'Your current mail settings have changed, please save the configuration or cancel the modification',
+    'Your current email settings have changed. Please save the settings or cancel the changes.',
 
-  'Please input SMTP user': 'Please input SMTP user',
+  'Please enter the SMTP username': 'Please enter the SMTP username',
   'Please enter an email address': 'Please enter an email address',
-  'This email has existed': 'This email has existed',
-  'Invalid email': 'Invalid email',
-  'Add up to 50 mail': 'Add up to 50 mail',
-  'Please add receiver email': 'Please add receiver email',
+  'This email address has existed': 'This email address has existed',
+  'Invalid email': 'Invalid email address',
+  '50 email addresses at most': '50 email addresses at most',
+  'Please add the receiver email address':
+    'Please add the receiver email address',
 
   DingTalk: 'DingTalk',
   'Conversation Settings': 'Conversation Settings',
   'Conversation ID': 'Conversation ID',
   'DingTalk Chatbot': 'DingTalk Chatbot',
   'Webhook URL': 'Webhook URL',
-  keywords: 'keywords',
-  'Keywords Set': 'Keywords Set',
+  keywords: 'Keywords',
+  'Keywords Set': 'Keyword List',
 
-  'Please input a conversation ID to add':
-    'Please input a conversation ID to add',
-  'Please input a keywords to add': 'Please input a keywords to add',
+  'Please enter a conversation ID': 'Please enter a conversation ID',
+  'Please enter a keyword': 'Please enter a keyword',
   'This conversation ID has existed': 'This conversation ID has existed',
-  'This keywords has existed': 'This keywords has existed',
+  'This keyword has existed': 'This keyword has existed',
 
   DINGTALK_DESC:
-    'You can receive notifications from the platform through Dingding, and you need to configure the Dingding sending server.',
+    'You can receive DingTalk notifications from the platform after configuring the DingTalk server.',
   DINGTALK_KEYWORDS_DESC:
-    'Custom keywords of ChatBot, if you need more than one, please separate them with ","',
+    'Separate multiple customized Chatbot keywords with commas.',
   DINGTALK_SETTINGS_CHANGE_NEED_SAVE_TIP:
-    'Your current Dingding settings have been changed, please save the settings or cancel the modification',
+    'Your current DingTalk settings have changed. Please save the settings or cancel the changes.',
 
   WeCom: 'WeCom',
-  'Wechat Api Corp Id': 'Wechat Api Corp Id',
-  'Wechat Api Agent Id': 'Wechat Api Agent Id',
-  'Wechat Api Secret': 'Wechat Api Secret',
+  'WeChat API Corp ID': 'WeChat API Corp ID',
+  'WeChat API Agent ID': 'WeChat API Agent ID',
+  'WeChat API Secret': 'WeChat API Secret',
   Department: 'Department',
-  'User Set': 'User Set',
-  'Department Set': 'Department Set',
-  'Tag Set': 'Tag Set',
+  'User Set': 'User List',
+  'Department Set': 'Department List',
+  'Tag Set': 'Tag List',
 
-  'Please input wechat api corp id': 'Please input wechat api corp id',
-  'Please input wechat api agent id': 'Please input wechat api agent id',
-  'Please input wechat api secret': 'Please input wechat api secret',
+  'Please enter the WeChat API Corp ID': 'Please enter the WeChat API Corp ID',
+  'Please enter the WeChat API Agent ID':
+    'Please enter the WeChat API Agent ID',
+  'Please enter the WeChat API Secret': 'Please enter the WeChat API Secret',
   'This toUser has existed': 'This toUser has existed',
   'This toParty has existed': 'This toParty has existed',
   'This toTag has existed': 'This toTag has existed',
 
   WECOM_DESC:
-    'You can receive notifications from the platform through Enterprise WeChat, and you need to configure the enterprise WeChat sending server.',
+    'You can receive WeCom notifications from the platform after configuring the WeCom server.',
   WECOM_SETTINGS_CHANGE_NEED_SAVE_TIP:
-    'Your current corporate WeChat settings have changed, please save the settings or cancel the modification',
+    'Your current WeCom settings have changed. Please save the settings or cancel the changes.',
 
   Channel: 'Channel',
   'Channel Settings': 'Channel Settings',
-  'Channel Set': 'Channel Set',
+  'Channel Set': 'Channel List',
 
-  'Please input slack token': 'Please input slack token',
-  'Please input a channel to add': 'Please input a channel to add',
+  'Please enter the Slack token': 'Please enter the Slack token',
+  'Please enter a channel': 'Please enter a channel',
   'This channel has existed': 'This channel has existed',
-  'Please add receiver channel': 'Please add receiver channel',
+  'Please add the receiver channel': 'Please add the receiver channel',
 
   SLACK_DESC:
-    'You can receive platform notifications through slack, and you need to configure the slack sending server.',
+    'You can receive Slack notifications from the platform after configuring the Slack server.',
   SLACK_SETTINGS_CHANGE_NEED_SAVE_TIP:
-    'Your current slack settings have changed, please save the settings or cancel the modification',
+    'Your current Slack settings have changed. Please save the settings or cancel the changes.',
 
   'Webhook Settings': 'Webhook Settings',
-  'Webhook Url': 'Webhook Url',
+  'Webhook Url': 'Webhook URL',
   'Server Name': 'Server Name',
   'Root CA': 'Root CA',
   'Client Certificate Cert': 'Client Certificate Cert',
   'Client Certificate Key': 'Client Certificate Key',
-  'Verify Type': 'Verify Type',
+  'Verification Type': 'Verification Type',
   'Skip TLS Certification': 'Skip TLS Certification',
+  'Please select a verification type': 'Please select a verification type',
 
   WEBHOOK_SETTING_DESC:
-    'You can receive platform notifications via webhook, and you need to configure the webhook sending server.',
+    'You can receive platform notifications through webhooks after configuring the webhook server.',
   WEBHOOK_SETTINGS_CHANGE_NEED_SAVE_TIP:
-    'Your current webhook settings have changed, please save the settings or cancel the modification',
+    'Your current webhook settings have changed. Please save the settings or cancel the changes.',
 }

@@ -125,33 +125,33 @@ export default class WeComForm extends Component {
           <div className={styles.title}>{t('Server Settings')}</div>
           <div className={styles.item}>
             <Form.Item
-              label={t('Wechat Api Corp Id')}
+              label={t('WeChat API Corp ID')}
               rules={[
                 {
                   required: true,
-                  message: t('Please input wechat api corp id'),
+                  message: t('Please enter the WeChat API Corp ID'),
                 },
               ]}
             >
               <Input name="config.spec.wechat.wechatApiCorpId" />
             </Form.Item>
             <Form.Item
-              label={t('Wechat Api Agent Id')}
+              label={t('WeChat API Agent ID')}
               rules={[
                 {
                   required: true,
-                  message: t('Please input wechat api agent id'),
+                  message: t('Please enter the WeChat API Agent ID'),
                 },
               ]}
             >
               <Input name="config.spec.wechat.wechatApiAgentId" />
             </Form.Item>
             <Form.Item
-              label={t('Wechat Api Secret')}
+              label={t('WeChat API Secret')}
               rules={[
                 {
                   required: true,
-                  message: t('Please input wechat api secret'),
+                  message: t('Please enter the WeChat API Secret'),
                 },
               ]}
             >

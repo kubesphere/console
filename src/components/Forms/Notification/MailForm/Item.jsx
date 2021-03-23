@@ -43,12 +43,15 @@ export default class Item extends React.Component {
   handleAdd = async email => {
     const { value, onChange } = this.props
     if (value.length > 50) {
-      Notify.error({ content: t('Add up to 50 mail'), duration: 1000 })
+      Notify.error({ content: t('50 email addresses at most'), duration: 1000 })
       return
     }
 
     if (value.some(item => item.email === email)) {
-      Notify.error({ content: t('This email has existed'), duration: 1000 })
+      Notify.error({
+        content: t('This email address has existed'),
+        duration: 1000,
+      })
       return
     }
     const results = await this.userStore.fetchList({ email })

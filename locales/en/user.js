@@ -44,7 +44,7 @@ module.exports = {
   'Password Setting': 'Password Settings',
   'Password Strength': 'Password Strength',
   'Please input current password': 'Please input current password',
-  'Please input email': 'Please input email',
+  'Please input email': 'Please enter the email',
   'Please input user name': 'Please input user name',
   'Please repeat the new password': 'Please repeat the new password',
   'Please select role': 'Please select role',
