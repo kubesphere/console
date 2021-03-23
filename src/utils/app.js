@@ -18,10 +18,8 @@
 
 import { capitalize } from 'lodash'
 
-import { safeAtob } from 'utils/base64'
 import cookie from 'utils/cookie'
 import { STATUS_TRANSFER_MAP } from 'configs/openpitrix/version'
-import { saveAs } from 'file-saver'
 
 export const transferAppStatus = status => {
   if (cookie('lang') === 'zh') {
@@ -84,19 +82,10 @@ export const getAppCategoryNames = categories => {
 }
 
 export const downloadFileFromBase64 = (base64Str = '', fileName) => {
-  // Convert the Base64 string back to text.
-  const byteString = safeAtob(base64Str)
-
-  // Convert that text into a byte array.
-  const ab = new ArrayBuffer(byteString.length)
-  const ia = new Uint8Array(ab)
-  for (let i = 0; i < byteString.length; i++) {
-    ia[i] = byteString.charCodeAt(i)
-  }
-
-  const blob = new Blob([ia], { type: 'application/tar+gzip' })
-
-  saveAs(blob, `${fileName}.tgz`)
+  const a = document.createElement('a')
+  a.href = `data:application/tar+gzip;base64,${base64Str}`
+  a.download = `${fileName}.tgz`
+  a.click()
 }
 
 export const compareVersion = (v1, v2) => {

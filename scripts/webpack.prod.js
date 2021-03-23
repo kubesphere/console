@@ -50,7 +50,6 @@ const config = smp.wrap({
         include: root('src'),
         loader: [
           MiniCssExtractPlugin.loader,
-          { loader: 'cache-loader' },
           {
             loader: 'css-loader',
             options: {
@@ -79,7 +78,6 @@ const config = smp.wrap({
         test: /\.css$/,
         loader: [
           MiniCssExtractPlugin.loader,
-          { loader: 'cache-loader' },
           {
             loader: 'css-loader',
             options: {

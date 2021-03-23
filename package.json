@@ -82,7 +82,7 @@
     "test:e2e": "cypress run",
     "serve": "NODE_ENV=production node server/server.js",
     "lint": "eslint src/**/*.jsx src/**/*.js",
-    "postinstall": "rimraf .cache-loader node_modules/.cache",
+    "postinstall": "rimraf node_modules/.cache",
     "prebuild": "rimraf dist",
     "release": "standard-version"
   },
