@@ -35,7 +35,7 @@ module.exports = {
   'Specify the location of the Jenkinsfile in the source code repository':
     '指定 Jenkinsfile 在源代碼倉庫的位置',
   'Scan Repo Trigger': '掃描 Repo Trigger',
-  'If not, scan regularly': '如果没有掃描觸發，則定期掃描',
+  'If not, scan regularly': '如果沒有掃描觸發，則定期掃描',
   'Scan interval': '掃描時間間隔',
   'Push message to': '推送訊息到',
   'Build Settings': '構建設置',
@@ -135,7 +135,7 @@ module.exports = {
   CREDENTIALS_DESC: `憑證是包含了一些敏感數據的對象，如用戶名密碼，SSH 密鑰和 Token 等,
     用於在 Pipeline 運行時, 為拉取代碼、push/pull 鏡像、SSH 執行腳本等過程提供認證`,
   'Credential Id': '憑證 ID',
-  'No artifacts records': '没有成品紀錄',
+  'No artifacts records': '沒有成品紀錄',
   'Select This Repository': '選擇此倉庫',
   'Scan repo success': '掃描倉庫觸發成功',
   'Pipeline Run Logs': '流水線運行紀錄',
@@ -147,7 +147,7 @@ module.exports = {
   commit: '提交',
   'Please input images name': '請輸入鏡像名稱',
   'defaultValue -1 means not discard': '預設值 -1: 不會丢棄紀錄',
-  'no status': '没有狀態',
+  'no status': '沒有狀態',
   Skipped: '已跳過',
   'Sub-healthy': '亞健康',
   Schedule: '行程表',
@@ -175,8 +175,8 @@ module.exports = {
     '我们提供了兩個選項來確定應何時丢棄舊的構建：\n' +
     '1. 保留構建的天數：如果構建達到一定的天數，則丢棄構建。\n' +
     '2. 保留構建的個數：如果已經存在一定數量的構建，則丢棄最舊的構建。\n' +
-    '這兩個選項可以同时對構建進行作用，如果超出任一限制，則將丢棄超出該限制的任何構建。',
-  tips_disable_concurrent_withscm: `這將确定何时應丢棄分支以及分支下的所有構建紀錄。構建紀錄包括控制台輸出，
+    '這兩個選項可以同時對構建進行作用，如果超出任一限制，則將丢棄超出該限制的任何構建。',
+  tips_disable_concurrent_withscm: `這將确定何時應丢棄分支以及分支下的所有構建紀錄。構建紀錄包括控制台輸出，
     存檔工件以及與特定構建相關的其他元數據。保留較少的構建可以節省Jenkins所使用的硬碟空間。
     我们提供了兩個選項来確定應何時丢棄舊的分支： 1. 保留分支的天數：如果分支達到一定的天數，則丢棄分支。
     2. 保留分支的個數：如果已經存在一定數量的分支，則丢棄最舊的分支。這兩個選項可以同時對分支進行作用，
@@ -217,7 +217,7 @@ module.exports = {
   'Please input the credential name.': '請輸入憑證名稱',
   SCM: '代碼倉庫',
   Review: '審核',
-  'No commit records': '没有提交紀錄',
+  'No commit records': '沒有提交紀錄',
   'Clean Workspace': '清理企業空間',
   'Save Artifact': '保存成品',
   'Change Current Directory': '更改目前目錄',
@@ -245,8 +245,8 @@ module.exports = {
   'Please select a code repository as the code source for the pipeline.':
     '請選擇一個代碼倉庫作為 Pipeline 的代碼來源',
   'Pipeline config file not found': '未找到 Pipeline 配置文件',
-  ACTIVITY_EMPTY_TIP: '目前 Pipeline 還没有運行',
-  PIPELINE_NO_CONFIG: '目前 Pipeline 中並没有找到相關配置文件',
+  ACTIVITY_EMPTY_TIP: '目前 Pipeline 還沒有運行',
+  PIPELINE_NO_CONFIG: '目前 Pipeline 中並沒有找到相關配置文件',
   NOT_VALID_JENKINS_FILE:
     '目前 Jenkinsfile 不是標準的聲明式 Jenkinsfile，無法進行圖形化顯示',
   PIPELINE_CRONJOB_CRON_DESC: `Every hour, on the hour 語法參照
@@ -275,7 +275,7 @@ module.exports = {
   'single Svn': '單分支 SVN',
   WEBHOOK_DESC: '推送訊息到此 URL 以觸發倉庫的重新索引。',
   TIME_TRIGGER_DESC: `某些類型的項目會在收到外部推送消息會自動重新索引。但在某些情况下，訊息通知可能失敗。
-    這個選項將檢查指定時間間隔内是否執行了索引，如果没有則觸發索引。`,
+    這個選項將檢查指定時間間隔内是否執行了索引，如果沒有則觸發索引。`,
   'Are you sure to close this pipeline Editor ?': '確定關閉流水線編輯？',
   'Are you sure to close this jenkinsfile Editor ?':
     '確定關閉 jenkinsfile 編輯？',
@@ -315,7 +315,7 @@ module.exports = {
   EDIT_CREDENTIAL_DESC: '下列表單不會顯示原有憑證資訊，重新輸入會將其覆蓋',
   'Token / Password': 'token / 密碼',
   "Sorry, you don't have the permission to do this.":
-    '抱歉，您没有權限進行此操作',
+    '抱歉，您沒有權限進行此操作',
   'Drag and drop tasks to sort': '可以拖放任務進行排序',
   Unnamed: '未命名',
   'Task failed, not operational': '任務已失敗，不可操作',
@@ -409,7 +409,7 @@ module.exports = {
   Queued: '列隊中',
   PIPELINE_QUEUED_TITLE: 'Pipeline 即將進行初始化',
   PIPELINE_QUEUED_DESC:
-    '您需要等待 agent 啟動並執行流水線（注：如 agent 長時間没有啟動請檢查 agent 配置和集群資源情況）',
+    '您需要等待 agent 啟動並執行流水線（注：如 agent 長時間沒有啟動請檢查 agent 配置和集群資源情況）',
   pipeline_owner: 'DevOps 工程的所有者，可以進行 DevOps 工程的所有操作',
   pipeline_maintainer:
     'DevOps 工程的主要維護者，可以進行項目内的憑證配置、Pipeline 配置等操作',

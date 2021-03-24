@@ -47,7 +47,7 @@ module.exports = {
   'Edit Rule': '編輯規則',
   'Rule Name': '規則名稱',
   'View Details': '查看詳情',
-  'Alert Active Time': '告警激活时间',
+  'Alert Active Time': '告警激活時間',
   'Please add at least one rule': '請至少添加一個告警規則',
   'Please input the threshold': '請輸入臨界值',
 

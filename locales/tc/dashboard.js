@@ -72,8 +72,8 @@ module.exports = {
   NODE_UNIT: '台',
   USAGE_VALUE: '使用量',
   USAGE_RATE: '使用率',
-  NO_PROJECT: '暫時没有找到可用項目',
-  NO_POD_MONITOR_DATA: '暫時没有容器組監控數據',
+  NO_PROJECT: '暫時沒有找到可用項目',
+  NO_POD_MONITOR_DATA: '暫時沒有容器組監控數據',
   RESOURCE_WARNING_TIPS: '有 {warnNum} 個 {tipName} 狀態異常',
 
   USER_DASHBOARD_EMPTY_TITLE: '您暫時不屬於任何企業空間',

@@ -78,13 +78,13 @@ module.exports = {
 
   TOTAL_AUDITING_TODAY:
     '今日總共收錄了 <span class={className}> {auditing} </span> 條操作審計',
-  NO_AUDITING_TODAY: '今日没有收錄的操作審計',
+  NO_AUDITING_TODAY: '今日沒有收錄的操作審計',
 
   LOG_COLLECTION_DESC:
     '系統將收集每個容器的標準輸出和標準錯誤輸出紀錄，並將其發送到一個或多個目標服務',
   'Add Log Receiver': '添加紀錄接收者',
   EMPTY_LOG_COLLECTIONS:
-    '暫時没有設置紀錄收集器，您可以添加紀錄收集器將紀錄導出到外埠的紀錄收集工具中',
+    '暫時沒有設置紀錄收集器，您可以添加紀錄收集器將紀錄導出到外埠的紀錄收集工具中',
   LOG_COLLECTION_TIPS:
     '每種類型的紀錄接收者只能添加一個，如果已存在則只能修改，不可以再添加',
 
@@ -134,7 +134,7 @@ module.exports = {
   SERVICE_BUILT_INTERFACE: '服務已内置監控數據抓取介面',
   TOTAL_EVENTS_TODAY:
     '今日總共收錄了 <span class={className}> {events} </span> 條事件',
-  NO_EVENTS_TODAY: '今日没有收錄的事件',
+  NO_EVENTS_TODAY: '今日沒有收錄的事件',
 
   'No cluster with event query enabled': '暫無啟用事件查詢的集群',
   'No cluster with auditing module enabled': '暫無啟用審計模組的集群',

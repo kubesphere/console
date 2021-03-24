@@ -80,7 +80,7 @@ module.exports = {
   'Recent Visit': '最近訪問',
 
   CLUSTERS_MANAGE_DESC:
-    '對多集群以及每个集群的基礎資源、服務组件和應用資源等的統一管理',
+    '對多集群以及每個集群的基礎資源、服務组件和應用資源等的統一管理',
   ACCESS_CONTROL_DESC: '對平台中的企業空間、帳號、以及角色權限進行統一管理',
   APP_STORE_MANAGEMENT_DESC:
     '對雲原生應用的上架、下架以及審核等應用全生命週期的統一管理',
@@ -181,12 +181,12 @@ module.exports = {
   Password: '密碼',
 
   NOT_ENABLE: '{resource} 暫未啟用',
-  NOT_AVAILABLE: '暫時没有可用的 {resource}',
-  NO_RESOURCE: '暫時没有 {resource}',
-  RESOURCE_NOT_FOUND: '很抱歉，没有找到您所尋找的資源。',
+  NOT_AVAILABLE: '暫時沒有可用的 {resource}',
+  NO_RESOURCE: '暫時沒有 {resource}',
+  RESOURCE_NOT_FOUND: '很抱歉，沒有找到您所尋找的資源。',
   'No Available Resource': '暫無可用資源',
   'No Data': '暫無數據',
-  'No Relevant Data': '暫時没有相關數據',
+  'No Relevant Data': '暫時沒有相關數據',
 
   or: '或',
   refresh: '刷新',
@@ -265,7 +265,7 @@ module.exports = {
 
   NAME_DESC:
     '最長 63 個字元，只能包含小寫字母、數字及分隔符號("-")，且必須以小寫字母或數字開頭及結尾',
-  NAME_TOO_LONG: '最長 63 个字元',
+  NAME_TOO_LONG: '最長 63 個字元',
 
   LONG_NAME_DESC:
     '最長 253 個字元，只能包含小寫字母、數字及分隔符號("-")，且必須以小寫字母或數字開頭及結尾',
@@ -413,9 +413,9 @@ module.exports = {
   'Platform-level Access Control': '平台級的訪問控制',
 
   NOT_FOUND_DESC:
-    '🙇 對不起没有找到相關資源，系統將在 {time}s 後返回 <a href="{link}">工作台</a>',
+    '🙇 對不起沒有找到相關資源，系統將在 {time}s 後返回 <a href="{link}">工作台</a>',
   DETAIL_NOT_FOUND_DESC:
-    '🙇 對不起没有找到相關資源，返回 <a href="{link}">{title}</a>',
+    '🙇 對不起沒有找到相關資源，返回 <a href="{link}">{title}</a>',
   Toolbox: '工具箱',
   TOOLBOX_DESC: '提供紀錄、事件、審計等相關查詢工具',
   'Analysis Tools': '分析工具',
@@ -485,7 +485,7 @@ module.exports = {
   Tag: '標籤',
   PATTERN_NAME_INVALID_TIP: '名稱不合法（僅支持小寫字母、數字、底線）',
   'No resources matching the filter have been found yet':
-    '暫時没有找到符合過濾條件的資源',
+    '暫時沒有找到符合過濾條件的資源',
   'You can try to': '您可以嘗試',
   'clear filters': '清空過濾條件',
   CONTENT_NOT_SAVED_TIPS: '内容已經修改但並未保存',

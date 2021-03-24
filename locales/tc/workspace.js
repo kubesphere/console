@@ -60,7 +60,7 @@ module.exports = {
 
   'Cluster Info': '集群資訊',
 
-  'No Available Cluster': '暫時没有可用集群',
+  'No Available Cluster': '暫時沒有可用集群',
 
   'All members': '全部成員',
   Assigned: '已分配',
