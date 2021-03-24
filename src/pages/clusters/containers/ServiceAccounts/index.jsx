@@ -18,6 +18,7 @@
 
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { get } from 'lodash'
 import { Avatar } from 'components/Base'
 import { withClusterList, ListPage } from 'components/HOCs/withList'
 import Banner from 'components/Cards/Banner'
@@ -27,6 +28,7 @@ import { getDisplayName, getLocalTime } from 'utils'
 import { ICON_TYPES } from 'utils/constants'
 
 import ServiceAccountStore from 'stores/serviceAccount'
+import ProjectStore from 'stores/project'
 
 @withClusterList({
   store: new ServiceAccountStore(),
@@ -34,6 +36,12 @@ import ServiceAccountStore from 'stores/serviceAccount'
   name: 'ServiceAccount',
 })
 export default class ServiceAccounts extends React.Component {
+  projectStore = new ProjectStore()
+
+  get routing() {
+    return this.props.rootStore.routing
+  }
+
   get itemActions() {
     const { trigger, name } = this.props
     return [
@@ -88,6 +96,21 @@ export default class ServiceAccounts extends React.Component {
     name: record.name,
   })
 
+  handleLinkClick = async ({ namespace, role }) => {
+    const { cluster } = this.props.match.params
+    const result = await this.projectStore.fetchList({
+      cluster,
+      name: namespace,
+    })
+    const workspace = get(result, '[0].labels["kubesphere.io/workspace"]')
+
+    if (workspace) {
+      this.routing.push(
+        `/${workspace}/clusters/${cluster}/projects/${namespace}/roles/${role}`
+      )
+    }
+  }
+
   getColumns = () => {
     const { getSortOrder, module } = this.props
     const { cluster } = this.props.match.params
@@ -124,6 +147,9 @@ export default class ServiceAccounts extends React.Component {
         title: t('Role'),
         dataIndex: 'role',
         isHideable: true,
+        render: (role, record) => (
+          <a onClick={() => this.handleLinkClick(record)}>{role}</a>
+        ),
       },
       {
         title: t('Secret'),

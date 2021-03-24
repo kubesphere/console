@@ -113,6 +113,7 @@ export default class ServiceAccounts extends React.Component {
         title: t('Role'),
         dataIndex: 'role',
         isHideable: true,
+        render: role => <Link to={`${this.prefix}/roles/${role}`}>{role}</Link>,
       },
       {
         title: t('Secret'),
