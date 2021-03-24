@@ -109,7 +109,7 @@ export default {
           }
 
           Modal.close(modal)
-          Notify.success({ content: `${t('Add Component Successfully')}!` })
+          Notify.success({ content: `${t('Add Component Successfully')}` })
           success && success()
         },
         store,
@@ -165,7 +165,7 @@ export default {
           await routerStore.create(_data, { cluster, namespace })
 
           Modal.close(modal)
-          Notify.success({ content: `${t('Add Route Successfully')}!` })
+          Notify.success({ content: `${t('Add Route Successfully')}` })
           success && success()
         },
         cluster,

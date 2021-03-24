@@ -113,7 +113,7 @@ export default class HelmUpload extends Component {
 
     if (this.state.checkStatus !== 'success') {
       Notify.error({
-        content: `${t('UPLOAD_PACKAGE_OK_NOTE')}!`,
+        content: `${t('UPLOAD_PACKAGE_OK_NOTE')}`,
       })
       return false
     }

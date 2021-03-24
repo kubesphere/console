@@ -29,7 +29,7 @@ export default {
             cb && cb()
           })
           Modal.close(modal)
-          Notify.success({ content: `${t('Created Successfully')}!` })
+          Notify.success({ content: `${t('Created Successfully')}` })
           success && success()
         },
         store,
@@ -52,7 +52,7 @@ export default {
               cb && cb()
             })
           Modal.close(modal)
-          Notify.success({ content: `${t('Update Successfully')}!` })
+          Notify.success({ content: `${t('Update Successfully')}` })
           success && success()
         },
         store,

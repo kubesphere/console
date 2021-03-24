@@ -56,7 +56,7 @@ export default {
 
           store.create(data, { cluster, namespace }).then(() => {
             Modal.close(modal)
-            Notify.success({ content: `${t('Created Successfully')}!` })
+            Notify.success({ content: `${t('Created Successfully')}` })
             success && success()
             formPersist.delete(`${module}_create_form`)
           })
@@ -93,7 +93,7 @@ export default {
             })
             .then(() => {
               Modal.close(modal)
-              Notify.success({ content: `${t('Created Successfully')}!` })
+              Notify.success({ content: `${t('Created Successfully')}` })
               success && success()
               formPersist.delete(`${module}_create_form`)
             })
@@ -116,7 +116,7 @@ export default {
         onOk: newObject => {
           store.update(detail, newObject).then(() => {
             Modal.close(modal)
-            Notify.success({ content: `${t('Updated Successfully')}!` })
+            Notify.success({ content: `${t('Updated Successfully')}` })
             success && success()
           })
         },
@@ -135,7 +135,7 @@ export default {
         onOk: newObject => {
           store.update(detail, newObject).then(() => {
             Modal.close(modal)
-            Notify.success({ content: `${t('Updated Successfully')}!` })
+            Notify.success({ content: `${t('Updated Successfully')}` })
             success && success()
           })
         },
@@ -167,7 +167,7 @@ export default {
 
           store.patch({ name, namespace }, data).then(() => {
             Modal.close(modal)
-            Notify.success({ content: `${t('Updated Successfully')}!` })
+            Notify.success({ content: `${t('Updated Successfully')}` })
             success && success()
           })
         },
@@ -183,7 +183,7 @@ export default {
       const modal = Modal.open({
         onOk: () => {
           Modal.close(modal)
-          Notify.success({ content: `${t('Deleted Successfully')}!` })
+          Notify.success({ content: `${t('Deleted Successfully')}` })
           success && success()
         },
         store,
@@ -208,7 +208,7 @@ export default {
       const modal = Modal.open({
         onOk: () => {
           Modal.close(modal)
-          Notify.success({ content: `${t('Deleted Successfully')}!` })
+          Notify.success({ content: `${t('Deleted Successfully')}` })
           success && success()
         },
         modal: DeleteModal,

@@ -152,7 +152,7 @@ export default class Groups extends React.Component {
         workspace,
       })
       .then(() => {
-        Notify.success({ content: `${t('Added Successfully')}!` })
+        Notify.success({ content: `${t('Added Successfully')}` })
         this.setState(prev => ({
           refreshFlag: !prev.refreshFlag,
           selectUserKeys: [],

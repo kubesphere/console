@@ -83,7 +83,7 @@ export default class ConfigFile extends React.Component {
 
   modifyPackage = async params => {
     await this.store.update(params)
-    Notify.success({ content: `${t('Modify Successfully')}!` })
+    Notify.success({ content: `${t('Modify Successfully')}` })
     await this.fetchData()
   }
 

@@ -143,12 +143,12 @@ export default class Activity extends React.Component {
         branches: toJS(detail.branchNames),
         parameters: toJS(detail.parameters),
         success: () => {
-          Notify.success({ content: `${t('Run Start')}!` })
+          Notify.success({ content: `${t('Run Start')}` })
           this.handleFetch()
         },
       })
     } else {
-      Notify.success({ content: `${t('Run Start')}!` })
+      Notify.success({ content: `${t('Run Start')}` })
       await this.props.detailStore.runBranch(params)
       this.handleFetch()
     }
@@ -170,7 +170,7 @@ export default class Activity extends React.Component {
       cluster: params.cluster,
     })
 
-    Notify.success({ content: `${t('Run Start')}!` })
+    Notify.success({ content: `${t('Run Start')}` })
     this.handleFetch()
   }
 
