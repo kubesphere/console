@@ -138,4 +138,6 @@ module.exports = {
   IN_USE_Node_NAME: '节点名称 {name} 已被使用',
   'Add Edge Node': '添加边缘节点',
   "Please input the node's name": '请输入节点名称',
+  INSTALL_EDGENODE_DESC:
+    '运行命令前请确保已在边缘节点安装容器运行时如 docker 或 containerd，详见  <a href="https://kubeedge.io/en/docs/" target="_blank">文档</a>',
 }
