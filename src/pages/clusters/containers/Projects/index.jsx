@@ -235,7 +235,7 @@ export default class Projects extends React.Component {
           itemActions={this.itemActions}
           tableActions={this.tableActions}
           columns={this.getColumns()}
-          onCreate={this.showCreate}
+          onCreate={this.type === 'system' ? null : this.showCreate}
           isLoading={tableProps.isLoading || isLoadingMonitor}
           searchType="name"
         />

@@ -70,7 +70,6 @@ export default class AppDeploy extends React.Component {
           'app_id',
           'cluster_id',
           'description',
-          'env',
           'name',
           'owner',
           'version_id',
@@ -159,11 +158,11 @@ export default class AppDeploy extends React.Component {
     })
   }
 
-  handleYamlChange = () => {
+  handleYamlChange = value => {
     const { formData } = this.state
-    const { valuesYaml } = this.state
-
-    set(formData, 'conf', valuesYaml)
+    this.setState({ valuesYaml: value }, () => {
+      set(formData, 'conf', value)
+    })
   }
 
   handleOk = () => {
