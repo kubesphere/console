@@ -24,8 +24,8 @@ module.exports = {
   'Created Projects': 'Created Projects',
   'Delete Workspace': 'Delete Workspace',
   'DevOps Project Number': 'DevOps Projects',
-  'Edit Quota': 'Edit',
-  'Edit Workspace Role': 'Edit',
+  'Edit Quota': 'Edit Quota',
+  'Edit Workspace Role': 'Edit Workspace Role',
   'Invite members to the workspace': 'Invite Member',
   'Involved Projects': 'Involved Projects',
   'Manage Organizations': 'Manage Organization',
@@ -67,7 +67,7 @@ module.exports = {
   NO_WORKSPACE_TIP:
     'Your account does not belong to any workspace currently. Please create a workspace or contact the administrator to invite you to a workspace.',
   WORKSPACE_MEMBER_DESC:
-    'Manage workspace members and their roles. Members in the current workspace can be invited to projects in the current namespace.',
+    'Manage workspace members and their roles. Workspace members can be invited to projects in the workspace.',
   INVITE_WORKSPACE_MEMBER_DESC: 'Invite members to the workspace.',
   INVITE_WORKSPACE_MEMBER_SEARCH_PLACEHODLER: 'Enter a username.',
 

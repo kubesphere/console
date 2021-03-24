@@ -108,7 +108,7 @@ module.exports = {
   'Earliest start time': 'Earliest start time',
   Edit: 'Edit',
   'Edit ': 'Edit ',
-  'Edit Info': 'Edit',
+  'Edit Info': 'Edit Information',
   'Edit Mode': 'Edit Mode',
   'eg.': 'eg.',
   email: 'email',
@@ -389,7 +389,7 @@ module.exports = {
   DETAILS: 'Details',
   NODES: 'Nodes',
   NAME_DESC:
-    'The value can contain only lowercase letters, digits, and hyphens (-) and must begin and end with a lowercase letter or digit. The maximum length is 63 characters.',
+    'The value can contain only lowercase letters, numbers, and hyphens (-) and must begin and end with a lowercase letter or number. The maximum length is 63 characters.',
   LONG_NAME_DESC:
     'It can only contain lowercase letters, numbers and hyphens("-"), and must begin and end with a lowercase letter or a number. The maximum length of characters is set to 253.',
   NAME_TOO_LONG: 'The maximum length of characters is set to 63.',
@@ -405,6 +405,8 @@ module.exports = {
     'Are you sure about deleting {type} <strong>{resource}</strong> ? {type} cannot be recovered after it is deleted.',
   DELETE_CONFIRM_TIP:
     'Please enter the {typeLower} name <strong>{resource}</strong> to confirm that you understand the risks associated with this operation.',
+  DELETE_APP_RESOURCE_TIP:
+    'Resource is managed by <strong>{app}</strong>, which may affect the normal use of this app if the resource is deleted. Please enter the {type} name <strong>{resource}</strong> to make sure you understand the risks associated with the operation.',
   DELETE_CONFIRM_PLACEHOLDER: 'Please enter {resource}.',
 
   DELETE_RESOURCE_TITLE: 'Warning',
@@ -476,9 +478,9 @@ module.exports = {
   NAV_ACCOUNTS: 'Accounts',
   ALERT_WARNING: 'Warning',
 
-  CREATE_STATUS_SUCCESS: 'Created successfully.',
+  CREATE_STATUS_SUCCESS: 'Created successfully',
   CREATE_STATUS_UPDATING: 'Creating',
-  CREATE_STATUS_FAILED: 'Creation failed.',
+  CREATE_STATUS_FAILED: 'Creation failed',
 
   EMPTY_WRAPPER: 'No {resource} Found',
 
