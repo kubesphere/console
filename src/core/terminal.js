@@ -26,6 +26,7 @@ import TerminalApp from 'pages/terminal'
 import GlobalValue from './global'
 import i18n from './i18n'
 
+import '@kube-design/components/esm/styles/index.scss'
 import 'scss/main.scss'
 
 require('@babel/polyfill')

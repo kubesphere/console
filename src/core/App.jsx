@@ -26,7 +26,7 @@ import { lazy } from 'utils'
 
 import RootStore from 'stores/root'
 
-import '@kube-design/components/esm/styles/main.scss'
+import '@kube-design/components/esm/styles/index.scss'
 import 'scss/main.scss'
 
 import routes from './routes'
