@@ -34,7 +34,7 @@ import styles from './index.scss'
 @withList({
   store: new AppStore(),
   module: 'apps',
-  name: 'Apps',
+  name: 'Application',
   rowKey: 'app_id',
 })
 export default class AppCategories extends React.Component {
@@ -88,6 +88,12 @@ export default class AppCategories extends React.Component {
             }),
         },
       ],
+    }
+  }
+
+  get emptyProps() {
+    return {
+      desc: t('APP_CATEGORIES_CREATE_DESC'),
     }
   }
 
@@ -147,6 +153,7 @@ export default class AppCategories extends React.Component {
               tableActions={this.tableActions}
               itemActions={this.itemActions}
               columns={this.getColumns()}
+              emptyProps={this.emptyProps}
               searchType="keyword"
             />
           </Column>

@@ -20,6 +20,7 @@ import React from 'react'
 import { parse } from 'qs'
 import { debounce, get } from 'lodash'
 import { Link } from 'react-router-dom'
+import { Tooltip } from '@kube-design/components'
 import { Status } from 'components/Base'
 import Avatar from 'apps/components/Avatar'
 import { withProjectList, ListPage } from 'components/HOCs/withList'
@@ -106,12 +107,7 @@ export default class OPApps extends React.Component {
         dataIndex: 'status',
         isHideable: true,
         width: '16%',
-        render: (status, record) => (
-          <Status
-            name={t(record.transition_status || status)}
-            type={record.transition_status || status}
-          />
-        ),
+        render: this.renderStatus,
       },
       {
         title: t('Application'),
@@ -141,6 +137,18 @@ export default class OPApps extends React.Component {
           ),
       },
     ]
+  }
+
+  renderStatus = (status, record) => {
+    if (record.additional_info) {
+      return (
+        <Tooltip content={record.additional_info}>
+          <Status name={t(status)} type={status} />
+        </Tooltip>
+      )
+    }
+
+    return <Status name={t(status)} type={status} />
   }
 
   showDeploy = () => {

@@ -166,11 +166,6 @@ class Overview extends React.Component {
         icon: '/assets/kubernetes.svg',
       },
       {
-        type: 'openpitrix',
-        icon: '/assets/openpitrix.svg',
-        disabled: !globals.app.hasClusterModule(this.cluster, 'openpitrix'),
-      },
-      {
         type: 'istio',
         icon: '/assets/istio.svg',
         disabled: !globals.app.hasClusterModule(this.cluster, 'servicemesh'),

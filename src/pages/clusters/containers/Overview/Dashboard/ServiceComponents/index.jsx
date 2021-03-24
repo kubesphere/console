@@ -43,11 +43,6 @@ export default class ServiceComponents extends Component {
         title: 'Kubernetes',
       },
       {
-        type: 'openpitrix',
-        title: 'OpenPitrix',
-        disabled: !globals.app.hasClusterModule(cluster, 'openpitrix'),
-      },
-      {
         type: 'istio',
         title: 'Istio',
         disabled: !globals.app.hasClusterModule(cluster, 'servicemesh'),
