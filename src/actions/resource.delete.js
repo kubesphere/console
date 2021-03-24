@@ -27,7 +27,7 @@ export default {
         onOk: () => {
           store.delete(detail).then(() => {
             Modal.close(modal)
-            Notify.success({ content: `${t('Deleted Successfully')}!` })
+            Notify.success({ content: `${t('Deleted Successfully')}` })
             success && success()
           })
         },
@@ -58,7 +58,7 @@ export default {
           await Promise.all(reqs)
 
           Modal.close(modal)
-          Notify.success({ content: `${t('Deleted Successfully')}!` })
+          Notify.success({ content: `${t('Deleted Successfully')}` })
           store.setSelectRowKeys([])
           success && success()
         },

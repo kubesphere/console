@@ -60,7 +60,7 @@ export default {
           })
 
           Modal.close(modal)
-          Notify.success({ content: `${t('Created Successfully')}!` })
+          Notify.success({ content: `${t('Created Successfully')}` })
           success && success()
         },
         cluster,
@@ -80,7 +80,7 @@ export default {
         onOk: () => {
           projectStore.delete({ name: detail.name }).then(() => {
             Modal.close(modal)
-            Notify.success({ content: `${t('Deleted Successfully')}!` })
+            Notify.success({ content: `${t('Deleted Successfully')}` })
             success && success()
           })
         },
@@ -114,7 +114,7 @@ export default {
           await Promise.all(reqs)
 
           Modal.close(modal)
-          Notify.success({ content: `${t('Deleted Successfully')}!` })
+          Notify.success({ content: `${t('Deleted Successfully')}` })
           store.setSelectRowKeys([])
           success && success()
         },

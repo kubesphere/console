@@ -42,7 +42,7 @@ export default {
           await store.create(data, params)
 
           Modal.close(modal)
-          Notify.success({ content: `${t('Created Successfully')}!` })
+          Notify.success({ content: `${t('Created Successfully')}` })
           success && success(selectCluster)
         },
         hideCluster: !globals.app.isMultiCluster || !!cluster,
@@ -156,7 +156,7 @@ export default {
           }
 
           Modal.close(modal)
-          Notify.success({ content: `${t('Updated Successfully')}!` })
+          Notify.success({ content: `${t('Updated Successfully')}` })
           success && success()
         },
         modal: DefaultResourceEditModal,
@@ -172,7 +172,7 @@ export default {
         onOk: data => {
           store.patch(detail, data).then(() => {
             Modal.close(modal)
-            Notify.success({ content: `${t('Updated Successfully')}!` })
+            Notify.success({ content: `${t('Updated Successfully')}` })
             success && success()
           })
         },
@@ -188,7 +188,7 @@ export default {
         onOk: data => {
           store.addGateway({ cluster, namespace }, data).then(() => {
             Modal.close(modal)
-            Notify.success({ content: `${t('Updated Successfully')}!` })
+            Notify.success({ content: `${t('Updated Successfully')}` })
             success && success()
           })
         },

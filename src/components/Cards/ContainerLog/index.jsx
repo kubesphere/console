@@ -166,7 +166,7 @@ export default class ContainerLog extends React.Component {
 
     if (!result) {
       Notify.info({
-        content: `${t('NO_RESOURCE', { resource: t('Log Data') })}!`,
+        content: `${t('NO_RESOURCE', { resource: t('Log Data') })}`,
       })
       return
     }

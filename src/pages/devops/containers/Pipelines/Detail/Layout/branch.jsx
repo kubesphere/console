@@ -145,12 +145,12 @@ export default class BranchDetailLayout extends React.Component {
         branches: this.isAtBranchDetailPage ? null : [toJS(branchDetail.name)],
         parameters: toJS(branchDetail.parameters),
         success: () => {
-          Notify.success({ content: `${t('Run Start')}!` })
+          Notify.success({ content: `${t('Run Start')}` })
           this.handleFetch()
         },
       })
     } else {
-      Notify.success({ content: `${t('Run Start')}!` })
+      Notify.success({ content: `${t('Run Start')}` })
       await this.store.runBranch(params)
       this.handleFetch()
     }

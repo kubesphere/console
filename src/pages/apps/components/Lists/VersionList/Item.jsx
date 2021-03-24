@@ -140,7 +140,7 @@ export default class VersionItem extends React.PureComponent {
     this.store.delete({ app_id, version_id }).then(() => {
       this.hideHandleModal()
       Notify.success({
-        content: `${t('Delete Successfully')}!`,
+        content: `${t('Delete Successfully')}`,
       })
       this.store.fetchList({ app_id })
     })
@@ -160,7 +160,7 @@ export default class VersionItem extends React.PureComponent {
       const type = HANDLE_TYPE_TO_SHOW[handleType] || handleType
       this.hideHandleModal()
       Notify.success({
-        content: `${t(`${capitalize(type)} Successfully`)}!`,
+        content: `${t(`${capitalize(type)} Successfully`)}`,
       })
       const status = isAdmin ? STORE_QUERY_STATUS : this.store.defaultStatus
 

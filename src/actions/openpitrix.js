@@ -58,7 +58,7 @@ export default {
         onOk: data => {
           store.patch(detail, data).then(() => {
             Modal.close(modal)
-            Notify.success({ content: `${t('Updated Successfully')}!` })
+            Notify.success({ content: `${t('Updated Successfully')}` })
             success && success()
           })
         },
@@ -75,7 +75,7 @@ export default {
         onOk: data => {
           store.upgrade(data, detail).then(() => {
             Modal.close(modal)
-            Notify.success({ content: `${t('Updated Successfully')}!` })
+            Notify.success({ content: `${t('Updated Successfully')}` })
             success && success()
           })
         },
@@ -139,7 +139,7 @@ export default {
       const modal = Modal.open({
         onOk: async data => {
           await store.create({ ...data, workspace })
-          Notify.success({ content: `${t('Upload Successfully')}!` })
+          Notify.success({ content: `${t('Upload Successfully')}` })
           Modal.close(modal)
           success && success()
         },
@@ -160,7 +160,7 @@ export default {
         onOk: async params => {
           await store.update(params)
           Modal.close(modal)
-          Notify.success({ content: `${t('Modify Successfully')}!` })
+          Notify.success({ content: `${t('Modify Successfully')}` })
           success && success()
         },
         store,
@@ -175,7 +175,7 @@ export default {
       const modal = Modal.open({
         onOk: async params => {
           await versionStore.create(params)
-          Notify.success({ content: `${t('Add Version Successfully')}!` })
+          Notify.success({ content: `${t('Add Version Successfully')}` })
           Modal.close(modal)
           success && success()
         },
@@ -197,7 +197,7 @@ export default {
           const { namespace, cluster, workspace, ...rest } = params
           await store.deploy(rest, { workspace, namespace, cluster })
           Modal.close(modal)
-          Notify.success({ content: `${t('Deploy Successfully')}!` })
+          Notify.success({ content: `${t('Deploy Successfully')}` })
           success && success()
         },
         store,
@@ -223,7 +223,7 @@ export default {
         onOk: async () => {
           await store.delete(detail)
           Modal.close(modal)
-          Notify.success({ content: `${t('Deleted Successfully')}!` })
+          Notify.success({ content: `${t('Deleted Successfully')}` })
           success && success()
         },
         store,
@@ -243,7 +243,7 @@ export default {
           const type = HANDLE_TYPE_TO_SHOW[handleType] || handleType
           Modal.close(modal)
           Notify.success({
-            content: `${t(`${capitalize(type)} Successfully`)}!`,
+            content: `${t(`${capitalize(type)} Successfully`)}`,
           })
           success && success()
         },
@@ -314,10 +314,10 @@ export default {
           let content
           if (detail.category_id) {
             await store.update(params)
-            content = `${t('Modify Successfully')}!`
+            content = `${t('Modify Successfully')}`
           } else {
             await store.create(params)
-            content = `${t('Created Successfully')}!`
+            content = `${t('Created Successfully')}`
           }
           Modal.close(modal)
           Notify.success({ content })
@@ -339,7 +339,7 @@ export default {
         onOk: async () => {
           await store.delete(detail)
           Modal.close(modal)
-          Notify.success({ content: `${t('Delete Successfully')}!` })
+          Notify.success({ content: `${t('Delete Successfully')}` })
           success && success()
         },
         desc: t('DELETE_CATEGORY_DESC', { name: detail.name }),
@@ -355,7 +355,7 @@ export default {
         onOk: async params => {
           await store.adjustCategory(params)
           Modal.close(modal)
-          Notify.success({ content: `${t('Adjust Successfully')}!` })
+          Notify.success({ content: `${t('Adjust Successfully')}` })
           success && success()
         },
         title: t('Adjust App Category'),
