@@ -53,7 +53,7 @@ export default {
 
           store.create(data, { cluster, namespace }).then(() => {
             Modal.close(modal)
-            Notify.success({ content: `${t('Created Successfully')}!` })
+            Notify.success({ content: `${t('Created Successfully')}` })
             success && success()
             formPersist.delete(`${module}_create_form`)
           })

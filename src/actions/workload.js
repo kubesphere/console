@@ -110,7 +110,7 @@ export default {
 
           store.create(data, { cluster, namespace }).then(() => {
             Modal.close(modal)
-            Notify.success({ content: `${t('Created Successfully')}!` })
+            Notify.success({ content: `${t('Created Successfully')}` })
             success && success()
             formPersist.delete(`${module}_create_form`)
           })
@@ -147,7 +147,7 @@ export default {
             })
             .then(() => {
               Modal.close(modal)
-              Notify.success({ content: `${t('Redeploy Successfully')}!` })
+              Notify.success({ content: `${t('Redeploy Successfully')}` })
             })
         },
         detail,
@@ -260,7 +260,7 @@ export default {
       const modal = Modal.open({
         onOk: () => {
           Modal.close(modal)
-          Notify.success({ content: `${t('Deleted Successfully')}!` })
+          Notify.success({ content: `${t('Deleted Successfully')}` })
           success && success()
         },
         store,
@@ -281,7 +281,7 @@ export default {
       const modal = Modal.open({
         onOk: () => {
           Modal.close(modal)
-          Notify.success({ content: `${t('Deleted Successfully')}!` })
+          Notify.success({ content: `${t('Deleted Successfully')}` })
           success && success()
         },
         modal: DeleteModal,

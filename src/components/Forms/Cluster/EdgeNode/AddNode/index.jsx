@@ -18,13 +18,21 @@
 
 import React, { Component } from 'react'
 import { clone } from 'lodash'
-import { Form, Input, Notify, Button } from '@kube-design/components'
+import {
+  Form,
+  Input,
+  Notify,
+  Button,
+  Tooltip,
+  Icon,
+} from '@kube-design/components'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 
 import { generateId } from 'utils'
 import { PATTERN_IP, PATTERN_NAME } from 'utils/constants'
 
 import { Modal } from 'components/Base'
+
 import styles from './index.scss'
 
 const ERROR_MESSAGE = {
@@ -110,7 +118,27 @@ export default class AddEdgeModal extends Component {
 
     return showLink ? (
       <div className={styles.column}>
-        <Form.Item label={t('Add Command')} desc={t('ADD_EDGE_COMMAND')}>
+        <Form.Item
+          label={
+            <>
+              {t('Add Command')}
+              <Tooltip
+                content={
+                  <span className={styles.installInfo}>
+                    {t.html('INSTALL_EDGENODE_DESC')}
+                  </span>
+                }
+              >
+                <Icon
+                  className={styles.infoIcon}
+                  name="information"
+                  size={18}
+                />
+              </Tooltip>
+            </>
+          }
+          desc={t('ADD_EDGE_COMMAND')}
+        >
           <div className={styles.linkContainer}>
             <pre className={styles.link}>{link}</pre>
           </div>

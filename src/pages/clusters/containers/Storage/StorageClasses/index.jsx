@@ -50,7 +50,7 @@ export default class StorageClasses extends React.Component {
   }
 
   notifyDeleteTips() {
-    Notify.error({ content: `${t('DEPENDENT_STORAGE_CLASS_DELETE_TIPS')}!` })
+    Notify.error({ content: `${t('DEPENDENT_STORAGE_CLASS_DELETE_TIPS')}` })
   }
 
   getColumns = () => {

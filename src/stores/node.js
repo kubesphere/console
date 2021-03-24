@@ -41,21 +41,24 @@ export default class NodeStore extends Base {
   module = 'nodes'
 
   withTypeSelectParams = (params, type) => {
+    const result = { ...params }
+
     if (type === 'node') {
-      params.labelSelector = params.labelSelector
+      result.labelSelector = result.labelSelector
         ? ',!node-role.kubernetes.io/edge'
         : '!node-role.kubernetes.io/edge'
     } else if (type === 'edgenode') {
-      params.labelSelector = params.labelSelector
+      result.labelSelector = result.labelSelector
         ? ',node-role.kubernetes.io/edge='
         : 'node-role.kubernetes.io/edge='
     }
 
-    if (params.role) {
-      params.labelSelector += `,node-role.kubernetes.io/${params.role}=`
+    if (result.role) {
+      result.labelSelector += `,node-role.kubernetes.io/${params.role}=`
+      delete result.role
     }
 
-    return params
+    return result
   }
 
   @action

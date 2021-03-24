@@ -22,7 +22,7 @@ module.exports = {
 
   GRAY_RELEASE_CATEGORIES: '灰度策略',
   TOTAL_GRAY_RELEASE_JOBS: '共計 {num} 個灰度任務',
-  NO_GRAY_RELEASE_JOBS_TIP: '暫時没有進行中的灰度任務',
+  NO_GRAY_RELEASE_JOBS_TIP: '暫時沒有進行中的灰度任務',
   NO_GRAY_RELEASE_JOBS_TIP_2: '您可以綁定灰度策略進行灰度任務發佈',
 
   'Blue-green Deployment': '藍綠部署',
@@ -121,7 +121,7 @@ module.exports = {
   NO_SERVICE_MESH_TIP: '未開啟應用治理的應用無法使用灰度發佈',
 
   BLUE_GREEN_DEPLOYMENT_DESC:
-    '藍綠發佈提供了一種零當機的部署方式，在<strong>保留舊版本的同時部署新版本</strong>。两个版本中总有一个版本处于在线状态接收所有流量，另一个版本则保持待机，如果有問題可以快速處理。',
+    '藍綠發佈提供了一種不停機的部署方式，在 <strong> 保留舊版本的同時部署新版本 </strong>。兩個版本中總有一個版本處於在線狀態接收所有流量，另一個版本則保持待機，如果有問題可以快速處理。',
   CANARY_RELEASES_DESC:
     '將一部分實際流量引入一個新版本進行測試，測試新版本的性能和表現，在保證系統整體穩定運行的前提下，盡早發現新版本在實際環境上的問題。',
   AB_TESTING_DESC:
@@ -129,12 +129,12 @@ module.exports = {
   TRAFFIC_MIRROR_DESC:
     '流量鏡像用來更為真實地測試新版本，提前發現問題，同時不對生產環境產生影響，從而，提高版本發佈的安全性可靠性。',
   GRAY_RELEASE_VERSION_DESC: '將新版本引入已有的應用服務網格中',
-  GRAY_RELEASE_VERSION_FORMAT_DESC: '只能包含小寫字母及數字, 長度在16個字元内',
+  GRAY_RELEASE_VERSION_FORMAT_DESC: '只能包含小寫字母及數字，長度在 16 個字元内',
   POLICY_CONFIG_DESC:
     '基於流量比例發佈：根據流量比例配置規則，將從原版本中切分指定比例的流量到灰度版本。',
 
   MIRROR_POLICY_DESC:
-    '微服務讓我們可以更快地實現交付。在追求快速的同時保證業務的穩定性。流量鏡像可以降低變更所带来的風險，並且同時讓生產環境上的新變化變得更為安全。</br>流量鏡像將生產環境的流量複製灰度版本中，在真正負載實時流量（也就是客戶流量）之前驗證新版本是不是没有問題',
+    '微服務讓我們可以更快地實現交付。在追求快速的同時保證業務的穩定性。流量鏡像可以降低變更所带来的風險，並且同時讓生產環境上的新變化變得更為安全。</br>流量鏡像將生產環境的流量複製灰度版本中，在真正負載實時流量（也就是客戶流量）之前驗證新版本是不是沒有問題',
 
   JOB_OFFLINE_WARNING:
     '為了保證服務的正常運行，任務下線需要將需要保留一個可用版本並且將流量全部切換至該版本。我们需要您選擇一個需要下線的版本。系統會自動將全部流量切換至該另外的可用版本。',
@@ -158,7 +158,7 @@ module.exports = {
   DEPLOY_APP_TIP: '您即將部署範例應用 {name}',
 
   DEPLOY_SAMPLE_NO_INTERNET_ACCESS_TIP:
-    '目前項目中没有找到已開啟應用治理的網關，因此您無法部署範例應用。請聯繫您的項目管理員在【高級設置】中設置外網訪問方式',
+    '目前項目中沒有找到已開啟應用治理的網關，因此您無法部署範例應用。請聯繫您的項目管理員在【高級設置】中設置外網訪問方式',
 
   PREREQUEST_FOR_USE_GRAYRELEASE_Q: '使用灰度發佈的前提條件?',
   PREREQUEST_FOR_USE_GRAYRELEASE_A:

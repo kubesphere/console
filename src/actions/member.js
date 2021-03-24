@@ -33,7 +33,7 @@ export default {
             .create(data, { cluster, workspace, namespace, devops })
             .then(() => {
               Modal.close(modal)
-              Notify.success({ content: `${t('Invited Successfully')}!` })
+              Notify.success({ content: `${t('Invited Successfully')}` })
               success && success()
             })
         },
@@ -71,7 +71,7 @@ export default {
             )
             .then(() => {
               Modal.close(modal)
-              Notify.success({ content: `${t('Updated Successfully')}!` })
+              Notify.success({ content: `${t('Updated Successfully')}` })
               success && success()
             })
         },
@@ -99,7 +99,7 @@ export default {
             .delete({ ...detail, cluster, workspace, namespace, devops })
             .then(() => {
               Modal.close(modal)
-              Notify.success({ content: `${t('Deleted Successfully')}!` })
+              Notify.success({ content: `${t('Deleted Successfully')}` })
               success && success()
             })
         },
@@ -124,7 +124,7 @@ export default {
             .batchDelete({ rowKeys, cluster, workspace, namespace, devops })
             .then(() => {
               Modal.close(modal)
-              Notify.success({ content: `${t('Deleted Successfully')}!` })
+              Notify.success({ content: `${t('Deleted Successfully')}` })
               success && success()
             })
         },

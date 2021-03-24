@@ -42,7 +42,7 @@ export default {
             })
             .then(() => {
               Modal.close(modal)
-              Notify.success({ content: `${t('Created Successfully')}!` })
+              Notify.success({ content: `${t('Created Successfully')}` })
               success && success()
             })
         },
@@ -62,7 +62,7 @@ export default {
         onOk: data => {
           set(data, 'metadata.resourceVersion', detail.resourceVersion)
           store.update(detail, data).then(() => {
-            Notify.success({ content: `${t('Updated Successfully')}!` })
+            Notify.success({ content: `${t('Updated Successfully')}` })
             success && success()
           })
         },

@@ -35,7 +35,7 @@ export default {
           const name = get(result.items[0], 'metadata.name')
           store.deleteGroupBinding(name, { workspace }).then(() => {
             Modal.close(modal)
-            Notify.success({ content: `${t('Deleted Successfully')}!` })
+            Notify.success({ content: `${t('Deleted Successfully')}` })
             success && success()
           })
         },

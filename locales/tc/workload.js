@@ -532,7 +532,7 @@ module.exports = {
   registry: '倉庫',
   'Private Registry': '私有倉庫',
   'Image Name': '鏡像名稱',
-  'Not found this image': '没有找到此鏡像',
+  'Not found this image': '沒有找到此鏡像',
   SEARCH_IMAGE_PLACEHOLDER: '輸入關鍵字查找鏡像',
 
   'Pod Default Deployment': '容器組預設部署',
@@ -592,12 +592,12 @@ module.exports = {
   RunContainerError: '啟動容器失敗',
   PostStartHookError: '執行 hook 報錯',
   ContainersNotInitialized: '容器未初始化',
-  ContainersNotReady: '容器没有準備就緒',
-  ContainerNotReady: '容器没有準備就緒',
+  ContainersNotReady: '容器沒有準備就緒',
+  ContainerNotReady: '容器沒有準備就緒',
   ContainerCreating: '容器創建中',
   PodInitializing: '容器組初始化中',
-  DockerDaemonNotReady: 'Docker 還没有完全啟動',
-  NetworkPluginNotReady: '網路插件還没有完全啟動',
+  DockerDaemonNotReady: 'Docker 還沒有完全啟動',
+  NetworkPluginNotReady: '網路插件還沒有完全啟動',
   POD_DESC:
     '容器組 (Pod) 是 Kubernetes 應用程式的基本執行單元，是您創建或部署的 Kubernetes 對象模型中最小和最簡單的單元。',
   POD_CREATE_DESC:
@@ -644,9 +644,9 @@ module.exports = {
 
   'Please select at least one container to mount': '請至少選擇一個容器進行掛載',
   'Sure to delete the workload(s)?': '確認刪除工作負載',
-  'No related resources': '没有關聯的資源',
+  'No related resources': '沒有關聯的資源',
   'No related resources found with the current workload(s)':
-    '目前工作負載下没有關聯的資源',
+    '目前工作負載下沒有關聯的資源',
   DELETE_WORKLOAD_DESC:
     '您即將刪除工作負載 {resource}，請您進行確認是否刪除關聯資源?',
 

@@ -160,7 +160,7 @@ module.exports = {
   DELETE_INTERNET_ACCESS_TITLE: '確定刪除外網訪問設置?',
   DELETE_INTERNET_ACCESS_DESC: '刪除後可重新綁定',
 
-  NO_RELATE_PROJECTS_TITLE: '没有找到與您相關聯的項目',
+  NO_RELATE_PROJECTS_TITLE: '沒有找到與您相關聯的項目',
   NO_RELATE_PROJECTS_DESC:
     '您可以創建或者聯繫項目管理員將您邀請到項目中開始您的工作',
 

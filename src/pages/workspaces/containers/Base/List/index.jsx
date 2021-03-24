@@ -18,8 +18,9 @@
 
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
+import { get } from 'lodash'
 
-import { renderRoutes } from 'utils/router.config'
+import { renderRoutes, getIndexRoute } from 'utils/router.config'
 
 import { Nav } from 'components/Layout'
 import Selector from 'workspaces/components/Selector'
@@ -35,32 +36,19 @@ class WorkspaceLayout extends Component {
     return this.props.rootStore.routing
   }
 
-  get canViewOverview() {
-    return globals.app.hasPermission({
-      workspace: this.workspace,
-      module: 'projects',
-      action: 'view',
-    })
-  }
-
-  getRoutes() {
-    const { routes, path } = this.props.route
-    if (routes && !this.canViewOverview) {
-      routes.forEach(route => {
-        if (route.path === path && route.redirect) {
-          route.redirect.to = `${path}/projects`
-        }
-      })
-    }
-    return routes
-  }
-
   enterWorkspace = async workspace =>
-    this.routing.push(`/workspaces/${workspace}/overview`)
+    this.routing.push(`/workspaces/${workspace}/`)
 
   render() {
-    const { match, location } = this.props
+    const {
+      match,
+      location,
+      route: { routes = [], path },
+    } = this.props
     const { detail } = this.props.workspaceStore
+    const navs = globals.app.getWorkspaceNavs(this.workspace)
+    const indexPath = get(navs, '[0].items[0].name')
+
     return (
       <div className="ks-page">
         <div className="ks-page-side">
@@ -71,12 +59,23 @@ class WorkspaceLayout extends Component {
           />
           <Nav
             className="ks-page-nav"
-            navs={globals.app.getWorkspaceNavs(this.workspace)}
+            navs={navs}
             location={location}
             match={match}
           />
         </div>
-        <div className="ks-page-main">{renderRoutes(this.getRoutes())}</div>
+        <div className="ks-page-main">
+          {indexPath &&
+            renderRoutes([
+              ...routes,
+              getIndexRoute({
+                path,
+                to: `${path}/${indexPath}`,
+                exact: true,
+              }),
+              getIndexRoute({ path: '*', to: '/404', exact: true }),
+            ])}
+        </div>
       </div>
     )
   }
