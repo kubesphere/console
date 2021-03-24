@@ -141,7 +141,7 @@ module.exports = {
   'Initial Delay(s)': 'Initial Delay(s)',
   'Instance Status': 'Instance Status',
   'Invalid image': 'Invalid image',
-  'Invalid name': 'Invalid character.',
+  'Invalid name': 'Invalid name.',
   InvalidImageName: 'InvalidImageName',
   'is running': 'is running',
   Job: 'Job',
