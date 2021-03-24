@@ -16,8 +16,6 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { getIndexRoute } from 'utils/router.config'
-
 import ListLayout from '../containers/Base/List'
 
 import BaseInfo from '../containers/BaseInfo'
@@ -93,8 +91,6 @@ export default [
         component: Groups,
         exact: true,
       },
-      getIndexRoute({ path: PATH, to: `${PATH}/overview`, exact: true }),
-      getIndexRoute({ path: '*', to: '/404', exact: true }),
     ],
   },
 ]
