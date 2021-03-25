@@ -286,7 +286,11 @@ export const getLeftQuota = (wsQuota, nsQuota) => {
   }
 }
 
-export const getContainersResources = (containers, initContainers) => {
+export const getContainersResources = (
+  containers,
+  initContainers,
+  replicas = 1
+) => {
   const keys = [
     'limits.cpu',
     'limits.memory',
@@ -326,7 +330,7 @@ export const getContainersResources = (containers, initContainers) => {
       }
     })
 
-    resources[key] = Math.max(initResource, resource)
+    resources[key] = replicas * Math.max(initResource, resource)
   })
 
   return resources

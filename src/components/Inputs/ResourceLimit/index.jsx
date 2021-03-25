@@ -218,9 +218,7 @@ export default class ResourceLimit extends React.Component {
 
     cpuUnit = cpuUnit === 'Core' ? '' : cpuUnit
 
-    if (cpuError || memoryError) {
-      return onError(cpuError || memoryError)
-    }
+    onError(cpuError || memoryError)
 
     const result = {}
     if (requests.cpu > 0 && requests.cpu < Infinity) {

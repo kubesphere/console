@@ -18,14 +18,13 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import { trim, isString, isArray } from 'lodash'
+import { isString, isArray } from 'lodash'
 import { TextArea } from '@kube-design/components'
 
 const defaultStringify = value => (isArray(value) ? value.join(',') : '')
 const defaultParser = value =>
   isString(value)
     ? value.split(',').map(str => {
-        str = trim(str)
         if (/^["'].*["']$/.test(str)) {
           str = str.slice(1, str.length - 1)
         }
