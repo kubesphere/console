@@ -72,7 +72,8 @@ export default class UploadInfo extends Component {
     return (hasPackage || canCreate || canEdit) && this.state.status === 'init'
   }
 
-  onUploadClick = () => {
+  onUploadClick = e => {
+    e.stopPropagation()
     this.uploadRef.onClick()
   }
 
