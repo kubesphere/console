@@ -57,12 +57,12 @@ export default class CreateIPPoolModal extends Component {
       let index = 0
       let block = new Netmask(`${ip}/${mask}`)
       while (index < count) {
-        index += 1
-        block = block.next()
         const cidr = block.toString()
         if (cidrs.every(item => item.cidr !== cidr)) {
           cidrs.push({ cidr })
         }
+        index += 1
+        block = block.next()
       }
     }
 
@@ -126,7 +126,7 @@ export default class CreateIPPoolModal extends Component {
             defaultValue={24}
             integer
             min={0}
-            max={32}
+            max={31}
             onChange={this.handleMaskChange}
           />
         </Form.Item>
