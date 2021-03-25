@@ -74,7 +74,7 @@ module.exports = {
   MEMBER_CREATE_DESC: '',
 
   WORKSPACE_ROLE_DESC:
-    'The role of a workspace member determines the privileges of the member in the workspace.',
+    'The role of a workspace member determines the permissions of the member in the workspace.',
 
   SEARCH_WORKSPACE_TIP: 'Enter a workspace name.',
 
