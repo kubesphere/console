@@ -32,7 +32,8 @@ export default class CheckItem extends Component {
     if (newTemplates.includes(data.name)) {
       const relateTemplates = newTemplates.filter(
         template =>
-          template !== data.name && this.getDependencies([template]).length > 0
+          template !== data.name &&
+          this.getDependencies([template]).includes(data.name)
       )
       if (relateTemplates.length === 0) {
         newTemplates = newTemplates.filter(item => item !== data.name)
