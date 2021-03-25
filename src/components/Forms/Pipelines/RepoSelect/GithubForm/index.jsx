@@ -18,10 +18,17 @@
 
 import React from 'react'
 import classNames from 'classnames'
-import { action } from 'mobx'
+import { action, observable, toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import { get, isEmpty, isArray } from 'lodash'
-import { Form, Button, Input, Icon, Loading } from '@kube-design/components'
+import {
+  Form,
+  Button,
+  InputSearch,
+  Icon,
+  Input,
+  Loading,
+} from '@kube-design/components'
 
 import { REPO_KEY_MAP } from 'utils/constants'
 
@@ -32,7 +39,25 @@ export default class GitHubForm extends React.Component {
   constructor(props) {
     super(props)
     this.tokenFormRef = React.createRef()
-    this.state = {}
+    this.state = {
+      isLoading: false,
+      searchValue: '',
+    }
+  }
+
+  @observable
+  repoListData = []
+
+  get orgList() {
+    return this.props.store.orgList.data
+  }
+
+  get activeRepoIndex() {
+    return this.props.store.activeRepoIndex
+  }
+
+  get repoList() {
+    return get(this.orgList, `${this.activeRepoIndex}.repositories.items`, [])
   }
 
   get scmType() {
@@ -40,47 +65,63 @@ export default class GitHubForm extends React.Component {
   }
 
   @action
-  handleActiveRepoChange = e => {
+  handleActiveRepoChange = async e => {
     const { repoIndex } = e.currentTarget.dataset
-    const { orgList } = this.props.store
 
     this.props.store.handleChangeActiveRepoIndex(parseInt(repoIndex, 10))
 
-    const repoList = get(orgList.data, `[${repoIndex}].repositories.items`, [])
+    const repoList = get(this.orgList, `[${repoIndex}].repositories.items`, [])
 
     if (!isArray(repoList) || isEmpty(repoList)) {
-      this.props.store.getRepoList({
+      const org = await this.props.store.getRepoList({
         activeRepoIndex: parseInt(repoIndex, 10),
         cluster: this.props.cluster,
       })
+
+      this.repoListData = get(
+        org,
+        `data.${this.activeRepoIndex}.repositories.items`,
+        []
+      )
+    } else {
+      this.repoListData = repoList
     }
   }
 
-  handleGetRepoList = () => {
-    this.props.store.getRepoList({ cluster: this.props.cluster })
+  handleGetRepoList = async () => {
+    const org = await this.props.store.getRepoList({
+      cluster: this.props.cluster,
+    })
+
+    this.repoListData = get(
+      org,
+      `data.${this.activeRepoIndex}.repositories.items`,
+      []
+    )
+    this.setState({ searchValue: '' })
   }
 
   handleSubmit = e => {
-    const { orgList, activeRepoIndex, githubCredentialId } = this.props.store
+    const { githubCredentialId } = this.props.store
     const index = e.currentTarget.dataset && e.currentTarget.dataset.repoIndex
 
     const data = {
       [REPO_KEY_MAP[this.scmType]]: {
         repo: get(
-          orgList.data,
-          `${activeRepoIndex}.repositories.items.${index}.name`
+          this.orgList,
+          `${this.activeRepoIndex}.repositories.items.${index}.name`
         ),
         credential_id: githubCredentialId,
-        owner: get(orgList.data[activeRepoIndex], 'name'),
+        owner: get(this.orgList[this.activeRepoIndex], 'name'),
         discover_branches: 1,
         discover_pr_from_forks: { strategy: 2, trust: 2 },
         discover_pr_from_origin: 2,
         discover_tags: true,
+        description: get(
+          this.orgList,
+          `${this.activeRepoIndex}.repositories.items.${index}.description`
+        ),
       },
-      description: get(
-        orgList.data,
-        `${activeRepoIndex}.repositories.items.${index}.description`
-      ),
     }
     this.props.handleSubmit(data)
   }
@@ -140,14 +181,14 @@ export default class GitHubForm extends React.Component {
     )
   }
 
-  renderRepoList(orgList, activeRepoIndex) {
+  renderRepoList() {
     return (
-      !isEmpty(orgList.data) &&
-      orgList.data.map((repo, index) => (
+      !isEmpty(this.orgList) &&
+      this.orgList.map((repo, index) => (
         <div
           key={repo.name}
           className={classNames(styles.repo, {
-            [styles['repo-active']]: activeRepoIndex === index,
+            [styles['repo-active']]: this.activeRepoIndex === index,
           })}
           data-repo-index={index}
           onClick={this.handleActiveRepoChange}
@@ -161,10 +202,10 @@ export default class GitHubForm extends React.Component {
     )
   }
 
-  renderOrgList(repoList) {
+  renderOrgList() {
     return (
-      !isEmpty(repoList.items) &&
-      repoList.items.map((repo, index) => (
+      !isEmpty(this.repoListData) &&
+      this.repoListData.map((repo, index) => (
         <div className={styles.repo} key={repo.name}>
           <div className={styles.icon}>
             <Icon
@@ -190,56 +231,90 @@ export default class GitHubForm extends React.Component {
     )
   }
 
-  render() {
-    const { orgList, activeRepoIndex, getRepoListLoading } = this.props.store
-
-    const repoList = get(orgList.data, `${activeRepoIndex}.repositories`, [])
-
-    const hasNextPage = get(
-      orgList.data,
-      `${activeRepoIndex}.repositories.nextPage`
+  renderSearch = () => {
+    return (
+      <div className={styles.search}>
+        <InputSearch
+          value={this.state.searchValue}
+          onSearch={this.filterResource}
+          placeholder={t('Search by name')}
+        />
+      </div>
     )
+  }
 
-    if (!orgList.isLoading && isEmpty(orgList.data)) {
-      return (
-        <div className={styles.tabContent}>
-          {!orgList.isLoading ? (
-            <div className={styles.orgList}>{this.renderAccessTokenForm()}</div>
-          ) : (
-            <Loading>
-              <div className={styles.orgList} />
-            </Loading>
-          )}
-          <div className={styles.repoList}>
-            <div className={styles.placeHolder}>
-              <img src="/assets/empty-card.svg" alt="" />
-              <p className={styles.title}>
-                {t(`${this.scmType}_ACCESSTOKEN_PLACEHOLDER`)}
-              </p>
-            </div>
-          </div>
-        </div>
+  filterResource = value => {
+    if (isEmpty(value)) {
+      this.repoListData = [...this.repoList]
+    } else {
+      this.repoListData = this.repoList.filter(repo =>
+        repo.name.includes(value)
       )
     }
+
+    this.setState({ searchValue: value })
+  }
+
+  renderMore = () => {
+    const hasNextPage = get(
+      this.orgList,
+      `${this.activeRepoIndex}.repositories.nextPage`
+    )
+
+    return hasNextPage ? (
+      <div
+        className={classNames(styles.repo, styles.loadMore)}
+        onClick={this.handleGetRepoList}
+      >
+        {t('Load more')}
+      </div>
+    ) : null
+  }
+
+  renderEmpty = _orgList => {
+    return (
+      <div className={styles.tabContent}>
+        {!_orgList.isLoading ? (
+          <div className={styles.orgList}>{this.renderAccessTokenForm()}</div>
+        ) : (
+          <Loading>
+            <div className={styles.orgList} />
+          </Loading>
+        )}
+        <div className={styles.emptyRepoList}>
+          <div className={styles.placeHolder}>
+            <img src="/assets/empty-card.svg" alt="" />
+            <p className={styles.title}>
+              {t(`${this.scmType}_ACCESSTOKEN_PLACEHOLDER`)}
+            </p>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  render() {
+    const { orgList, getRepoListLoading } = this.props.store
+
+    if (!orgList.isLoading && isEmpty(toJS(this.orgList))) {
+      return this.renderEmpty(orgList)
+    }
+
     return (
       <div className={styles.tabContent}>
         <div className={styles.orgList}>
-          <Loading spinning={orgList.isLoading}>
-            <>{this.renderRepoList(orgList, activeRepoIndex)}</>
+          <Loading spinning={toJS(orgList.isLoading)}>
+            <>{this.renderRepoList()}</>
           </Loading>
         </div>
-        <div className={styles.repoList}>
-          <Loading spinning={getRepoListLoading}>
-            <>{this.renderOrgList(repoList, getRepoListLoading)}</>
-          </Loading>
-          {hasNextPage ? (
-            <div
-              className={classNames(styles.repo, styles.loadMore)}
-              onClick={this.handleGetRepoList}
-            >
-              {t('Load more')}
-            </div>
-          ) : null}
+        <div className={styles.repoListContainer}>
+          <>{this.renderSearch()}</>
+          <div className={styles.repoList}>
+            <Loading spinning={toJS(getRepoListLoading)}>
+              <>{this.renderOrgList()}</>
+            </Loading>
+            {this.renderMore()}
+          </div>
         </div>
       </div>
     )

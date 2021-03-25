@@ -65,7 +65,7 @@ module.exports = {
 
   DEVOPS_TIP_TYPE_Q: 'Which code repositories are supported by pipelines?',
   DEVOPS_TIP_TYPE_A:
-    'Pipelines support code repositories of Git, GitHub, Gitlab, SVN, and Bitbucket Server.',
+    'Pipelines support code repositories of Git, GitHub, Gitlab, SVN, and Bitbucket.',
 
   NO_DEVOPS_INSTALL: 'DevOps not installed',
 }

@@ -329,6 +329,7 @@ export default class PipelinesList extends React.Component {
       title: t('Sync Status'),
       width: '20%',
       key: 'status',
+      isHideable: true,
       render: record => {
         return <Status {...this.getPipelineStatus(record.status)} />
       },

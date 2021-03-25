@@ -123,7 +123,47 @@
   line-height: 32px;
 }
 
-.repoList {
+.repoListContainer {
+  flex-grow: 1;
+  padding: 12px;
+  margin-left: 12px;
+  height: 310px;
+  border-radius: 4px;
+  background-color: $bg-color;
+  min-width: 560px;
+
+  .search {
+    width: 100%;
+    margin-bottom: 10px;
+    input {
+      width: 100%;
+    }
+  }
+
+  .repoList {
+    overflow: auto;
+    position: relative;
+    height: 245px;
+
+    .placeHolder {
+      text-align: center;
+
+      img {
+        max-height: 120px;
+        margin-top: 50px;
+      }
+
+      .title {
+        margin-top: 40px;
+        font-size: 16px;
+        font-weight: 600;
+        color: #abb4be;
+      }
+    }
+  }
+}
+
+.emptyRepoList {
   flex-grow: 1;
   padding: 12px;
   overflow: auto;
@@ -132,6 +172,7 @@
   border-radius: 4px;
   background-color: $bg-color;
   min-width: 560px;
+  position: relative;
 
   .placeHolder {
     text-align: center;

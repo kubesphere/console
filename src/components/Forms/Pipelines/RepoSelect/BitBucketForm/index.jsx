@@ -20,7 +20,7 @@ import React from 'react'
 import { action, toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import { isEmpty, get } from 'lodash'
-import { Form, Button, Input } from '@kube-design/components'
+import { Form, Button, Input, Select } from '@kube-design/components'
 
 import { REPO_KEY_MAP } from 'utils/constants'
 
@@ -29,12 +29,27 @@ import styles from './index.scss'
 
 @observer
 export default class BitBucketForm extends GitHubForm {
-  state = {
-    isLoading: false,
+  constructor(props) {
+    super(props)
+    this.state = {
+      isLoading: false,
+      bitbucketList: [],
+    }
   }
 
   get scmType() {
     return 'bitbucket_server'
+  }
+
+  componentDidMount() {
+    this.getBitbucketList()
+  }
+
+  getBitbucketList = async () => {
+    const bitbucketList = await this.props.store.getBitbucketList({
+      cluster: this.props.cluster,
+    })
+    this.setState({ bitbucketList })
   }
 
   handleFormChange = () => {
@@ -64,6 +79,7 @@ export default class BitBucketForm extends GitHubForm {
       tokenFormData,
     } = this.props.store
     const index = e.currentTarget.dataset && e.currentTarget.dataset.repoIndex
+
     const data = {
       [REPO_KEY_MAP[this.scmType]]: {
         repo: get(
@@ -71,27 +87,28 @@ export default class BitBucketForm extends GitHubForm {
           `${activeRepoIndex}.repositories.items.${index}.name`
         ), // repo
         credential_id: bitbucketCredentialId,
-        owner: get(orgList.data[activeRepoIndex], 'key'),
+        owner: get(orgList.data[activeRepoIndex], 'name'),
         api_uri: get(tokenFormData, 'apiUrl'),
         discover_branches: 1,
         discover_pr_from_forks: { strategy: 2, trust: 2 },
         discover_pr_from_origin: 2,
         discover_tags: true,
+        description: get(
+          orgList.data,
+          `${activeRepoIndex}.repositories.items.${index}.description`
+        ),
       },
-      description: get(
-        orgList.data,
-        `${activeRepoIndex}.repositories.items.${index}.description`
-      ),
     }
     this.props.handleSubmit(data)
   }
 
-  renderAccessTokenForm() {
+  renderAccessTokenForm = () => {
     const {
       tokenFormData,
       creatBitBucketServersError: errors = {},
     } = this.props.store
     const errorsBody = toJS(errors)
+
     return (
       <div className={styles.card}>
         <Form
@@ -101,7 +118,11 @@ export default class BitBucketForm extends GitHubForm {
           ref={this.tokenFormRef}
         >
           <Form.Item label="Bitbucket Server" error={errorsBody['apiUrl']}>
-            <Input name="apiUrl" />
+            <Select
+              name="apiUrl"
+              options={this.state.bitbucketList}
+              searchable
+            />
           </Form.Item>
           <Form.Item label={t('Username')} error={errorsBody['username']}>
             <Input name="username" />

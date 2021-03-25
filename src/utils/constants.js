@@ -346,7 +346,7 @@ export const WORKSPACE_QUOTAS_MAP = {
 export const REPO_TYPES = [
   { name: 'GitHub', value: 'github', icon: 'github' },
   { name: 'GitLab', value: 'gitlab', icon: 'gitlab' },
-  { name: 'Bitbucket Server', value: 'bitbucket_server', icon: 'bitbucket' },
+  { name: 'Bitbucket', value: 'bitbucket_server', icon: 'bitbucket' },
   { name: 'Git', value: 'git', icon: 'git' },
   { name: 'SVN', value: 'svn', icon: 'svn' },
 ]
