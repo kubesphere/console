@@ -74,7 +74,7 @@ export default class ContainerList extends React.Component {
   }
 
   renderQuotaCheck() {
-    const { value } = this.props
+    const { value, replicas } = this.props
     const {
       specTemplate: { initContainers = [] },
       leftQuota,
@@ -85,6 +85,7 @@ export default class ContainerList extends React.Component {
         containers={value}
         initContainers={initContainers}
         leftQuota={leftQuota}
+        replicas={replicas}
       />
     )
   }
