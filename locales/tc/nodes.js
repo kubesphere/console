@@ -104,17 +104,17 @@ module.exports = {
     '邊緣節點提供了目前集群下節點的運行狀態，以及可以編輯刪除節點',
   EDGE_NODE_CREATE_DESC:
     '邊緣節點提供了目前集群下節點的運行狀態，以及可以編輯刪除節點',
-  NODE_NETWORKUNAVAILABLE: '網路配置(NetworkUnavailable)',
+  NODE_NETWORKUNAVAILABLE: '網路配置 (NetworkUnavailable)',
   NODE_NETWORKUNAVAILABLE_DESC: '檢查節點上的網路配置是否正確',
-  NODE_OUTOFDISK: '硬碟可用空間(OutOfDisk)',
+  NODE_OUTOFDISK: '硬碟可用空間 (OutOfDisk)',
   NODE_OUTOFDISK_DESC: '檢查節點上是否有空間添加新的容器組',
-  NODE_MEMORYPRESSURE: '記憶體壓力(MemoryPressure)',
+  NODE_MEMORYPRESSURE: '記憶體壓力 (MemoryPressure)',
   NODE_MEMORYPRESSURE_DESC: '如果節點上的記憶體使用壓力過大,則調度失敗',
-  NODE_DISKPRESSURE: '硬碟壓力(DiskPressure)',
+  NODE_DISKPRESSURE: '硬碟壓力 (DiskPressure)',
   NODE_DISKPRESSURE_DESC: '硬碟大小存在壓力 - 即硬碟容量低',
-  NODE_PIDPRESSURE: '進程壓力(PIDPressure)',
+  NODE_PIDPRESSURE: '進程壓力 (PIDPressure)',
   NODE_PIDPRESSURE_DESC: '如果節點進程壓力過大，則會調度失敗',
-  NODE_READY: '節點就緒(Ready)',
+  NODE_READY: '節點就緒 (Ready)',
   NODE_READY_DESC: '節點健康且可以接收新的容器組',
 
   NODE_TYPES_Q: '集群節點的類型？',
@@ -134,5 +134,5 @@ module.exports = {
   'Add Edge Node': '添加邊緣節點',
   "Please input the node's name": '請輸入節點名稱',
   INSTALL_EDGENODE_DESC:
-    '運行命令前請確保已在邊緣節點安裝容器運行時如 docker 或 containerd，詳見 <a href="https://kubeedge.io/en/docs/" target="_blank">文档</a>',
+    '運行命令前請確保已在邊緣節點安裝容器運行時如 docker 或 containerd，詳見 <a href="https://kubeedge.io/en/docs/" target="_blank">文檔</a>',
 }
