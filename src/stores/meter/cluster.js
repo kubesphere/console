@@ -37,7 +37,6 @@ import {
   filterListByType,
   getFetchParams,
   getListConfig,
-  getRetentionDay,
 } from 'utils/meter'
 
 import Base from './base'
@@ -45,6 +44,9 @@ import Base from './base'
 export default class ClusterMeter extends Base {
   @observable
   list = []
+
+  @observable
+  clustersConfig = {}
 
   @observable
   cacheList = []
@@ -212,15 +214,12 @@ export default class ClusterMeter extends Base {
             const _status = this.handleStatusByWorkload(status, type, item)
             const name = this.handleNameByType(type, item)
             const icon = this.handleIconByType(type, item.provider)
-            const retentionDay = getRetentionDay(this.retentionDay)
 
             data.push({
               icon,
               name,
               status: _status,
               desc: t(desc),
-              createTime: retentionDay,
-              startTime: retentionDay,
               labelSelector: item.selector,
               type,
               _origin: { ...item },
@@ -256,10 +255,11 @@ export default class ClusterMeter extends Base {
       this.cluster = cluster
     }
 
-    const url = `${this.tenantUrl}${this.getPaths({
-      module,
-      namespaces,
-    })}/metering/hierarchy${workspaces ? `?workspace=${workspaces}` : ''}`
+    const url = `${this.tenantUrl({
+      cluster,
+    })}/namespaces/${namespaces}/metering/hierarchy${
+      workspaces ? `?workspace=${workspaces}` : ''
+    }`
 
     const result = await request.get(url, {}, {}, () => {
       return {}

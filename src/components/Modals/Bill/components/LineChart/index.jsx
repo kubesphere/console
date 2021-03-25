@@ -58,17 +58,11 @@ export default class LineChart extends React.Component {
         data.forEach(item => {
           item.values = item.values.map(_item => {
             const value = get(_item, [1])
+
             const valueConvertedByUnit =
               value === '-1' ? null : getValueByUnit(value, item.unit.value)
 
-            let priceUnit = this.priceConfig[item.type]
-
-            if (
-              item.type === 'net_transmitted' ||
-              item.type === 'net_received'
-            ) {
-              priceUnit /= 1024
-            }
+            const priceUnit = this.priceConfig[item.type]
 
             const valueConvertedByPrice = valueConvertedByUnit * priceUnit
 

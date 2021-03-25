@@ -48,9 +48,6 @@ export default class MeterStore extends base {
   @observable
   data = []
 
-  @observable
-  retentionDay = '7d'
-
   get apiVersion() {
     if (globals.app.isMultiCluster && this.cluster) {
       return `kapis/clusters/${this.cluster}/metering.kubesphere.io/v1alpha1`
@@ -58,9 +55,9 @@ export default class MeterStore extends base {
     return 'kapis/metering.kubesphere.io/v1alpha1'
   }
 
-  get tenantUrl() {
-    if (globals.app.isMultiCluster && this.cluster) {
-      return `kapis/clusters/${this.cluster}/tenant.kubesphere.io/v1alpha2`
+  tenantUrl = ({ cluster }) => {
+    if (globals.app.isMultiCluster && cluster) {
+      return `kapis/clusters/${cluster}/tenant.kubesphere.io/v1alpha2`
     }
     return 'kapis/tenant.kubesphere.io/v1alpha2'
   }
@@ -89,8 +86,9 @@ export default class MeterStore extends base {
       path += `/workspaces/${workspaces}`
     }
 
-    if (namespaces) {
-      path += `/namespaces/${namespaces}`
+    if (namespaces || module === 'namespaces') {
+      path +=
+        module === 'namespaces' ? `/namespaces` : `/namespaces/${namespaces}`
     }
 
     if (applications) {
@@ -166,6 +164,7 @@ export default class MeterStore extends base {
     if (!rest.operation) {
       delete params.resources_filter
     }
+
     params.namespace = namespaces
     params.workspace = workspaces
     return params
@@ -341,18 +340,11 @@ export default class MeterStore extends base {
       nodes,
     })
 
-    if (filter.operation && filter.module !== 'namespaces') {
+    if (filter.operation) {
       url = this.getApi({
         module: filter.module,
         ...resource,
       })
-
-      params = this.getExportParams({
-        ...resource,
-        ...filter,
-      })
-    } else if (filter.module === 'namespaces') {
-      url = `${this.tenantUrl}/metering`
 
       params = this.getExportParams({
         ...resource,
@@ -401,14 +393,13 @@ export default class MeterStore extends base {
   }
 
   @action
-  fetchPrice = async () => {
-    const url = `${this.tenantUrl}/metering/price`
+  fetchPrice = async ({ cluster }) => {
+    const url = `${this.tenantUrl({ cluster })}/metering/price`
     const result = await request.get(url, {}, {}, () => {
       return {}
     })
 
     if (result && !isEmpty(result)) {
-      this.retentionDay = get(result, 'retention_day', '7d')
       const _result = {}
 
       Object.keys(result).forEach(key => {
@@ -419,6 +410,7 @@ export default class MeterStore extends base {
 
       if (!isEmpty(_result)) {
         _result.currency = result.currency
+        _result.retention_day = get(result, 'retention_day', '7d')
       }
 
       return _result

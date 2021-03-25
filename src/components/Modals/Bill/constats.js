@@ -153,8 +153,8 @@ export const LEVEL_CONFIG = {
 
 export const FEE_CONFIG = {
   cpu_per_core_per_hour: 'cpu',
-  egress_network_traffic_per_gigabytes_per_hour: 'net_transmitted',
-  ingress_network_traffic_per_giagabytes_per_hour: 'net_received',
+  egress_network_traffic_per_megabytes_per_hour: 'net_transmitted',
+  ingress_network_traffic_per_megabytes_per_hour: 'net_received',
   mem_per_gigabytes_per_hour: 'memory',
   pvc_per_gigabytes_per_hour: 'disk',
   currency: 'currency',

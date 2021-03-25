@@ -73,4 +73,5 @@ module.exports = {
   Price: '價格',
   PRICE_CONFIG_DESC: '暫未配置價格信息',
   METER_RESOURCE_DESC: '最近1小时的消费统计',
+  'No cluster with metering module enabled': '暫無啟用計量模塊的集群',
 }

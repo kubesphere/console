@@ -24,6 +24,7 @@ import { isEmpty, set } from 'lodash'
 
 import Modal from 'components/Base/Modal/modal'
 import EmptyList from 'components/Cards/EmptyList'
+import { Icon } from '@kube-design/components'
 import styles from './index.scss'
 import Home from './Home'
 import Details from './Details'
@@ -124,17 +125,34 @@ export default class BillModal extends React.Component {
     return componentsData.detail
   }
 
+  renderTitle = () => {
+    return (
+      <div>
+        <Icon size={20} name="wallet" style={{ marginRight: 7 }} />
+        <span
+          style={{
+            fontSize: 12,
+            fontWeight: 600,
+            lineHeight: '20px',
+            height: '20px',
+          }}
+        >
+          {t('Bill')}
+        </span>
+      </div>
+    )
+  }
+
   render() {
     const { Component, props } = this.renderContent()
-    const { title, icon, description, onCancel } = this.props
+    const { description, onCancel } = this.props
 
     return (
       <Modal
         visible
         fullScreen
         hideFooter
-        title={title}
-        icon={icon}
+        title={this.renderTitle()}
         description={description}
         onCancel={onCancel}
         className={styles.billContainer}

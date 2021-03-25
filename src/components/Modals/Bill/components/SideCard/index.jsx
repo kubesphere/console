@@ -29,6 +29,22 @@ export default class SideContainer extends React.Component {
     }
   }
 
+  handleFile = async ({ fetchMeterData, params, timeRange, module }) => {
+    const result = await fetchMeterData({
+      module,
+      meters: 'all',
+      resources: this.billReportList,
+      isTime: true,
+      operation: 'export',
+      ...params,
+      ...timeRange,
+    })
+
+    const name = this.billReportList[0]
+    const blob = new Blob([result], { type: 'text/plain;charset=utf-8' })
+    saveAs(blob, `${name}.csv`)
+  }
+
   handleExportBillReport = async () => {
     const {
       getMeterParamsByCrumb,
@@ -45,20 +61,32 @@ export default class SideContainer extends React.Component {
     const module = last(crumbData).type
     params.cluster = cluster
 
-    const result = await fetchMeterData({
-      module,
-      meters: 'all',
-      resources: this.billReportList,
-      isTime: true,
-      operation: 'export',
-      ...params,
-      ...timeRange,
-    })
+    if (module === 'cluster') {
+      const request = []
+      this.billReportList.forEach(item => {
+        params.cluster = item
+        request.push(
+          fetchMeterData({
+            module,
+            meters: 'all',
+            resources: [item],
+            isTime: true,
+            operation: 'export',
+            ...params,
+            ...timeRange,
+          })
+        )
+      })
 
-    const name = this.billReportList[0]
-    const blob = new Blob([result], { type: 'text/plain;charset=utf-8' })
+      const results = await Promise.all(request)
 
-    saveAs(blob, `${name}.csv`)
+      results.forEach((result, index) => {
+        const blob = new Blob([result], { type: 'text/plain;charset=utf-8' })
+        saveAs(blob, `${this.billReportList[index]}.csv`)
+      })
+    } else {
+      await this.handleFile({ fetchMeterData, params, timeRange, module })
+    }
     this.billReportList = []
   }
 
@@ -110,14 +138,13 @@ export default class SideContainer extends React.Component {
       active,
       handleSelectResource,
       loading,
-      sideLoading,
       clusterList = [],
     } = this.props
 
     return (
       <div className={styles.side}>
         <div className={styles.sideList}>
-          <Loading spinning={sideLoading} style={{ width: '100%' }}>
+          <Loading spinning={loading} style={{ width: '100%' }}>
             <>
               {list.map(item => (
                 <SideCardItem

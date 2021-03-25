@@ -107,7 +107,7 @@ export default class KubeTools extends React.Component {
             title: t('Bill'),
             description: t('BILLING_OPERATING_DESC'),
             link: '/bill',
-            // hidden: !this.isHideMeterModal,
+            hidden: !this.isHideMeterModal,
             action: 'toolbox.bill',
           },
         ],

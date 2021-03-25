@@ -38,16 +38,7 @@ export default function Card({
   isCheck,
   clusterList,
 }) {
-  const {
-    icon,
-    status,
-    desc,
-    name,
-    type,
-    labelSelector,
-    startTime,
-    createTime,
-  } = data
+  const { icon, status, desc, name, type, labelSelector } = data
 
   const isActive = isEmpty(active)
     ? false
@@ -66,18 +57,19 @@ export default function Card({
       : getCurrentMeterData({
           name,
           type,
-          start: startTime,
-          createTime,
           labelSelector,
         })
   }
 
-  const renderCluster = () => {
+  const renderCluster = nsname => {
     if (type !== 'workspaces' || clusterList.length < 1) {
       return null
     }
 
-    const clusters = get(data, '_origin.clusters', [])
+    const clusters =
+      nsname === 'system-workspace'
+        ? clusterList
+        : get(data, '_origin.clusters', [])
 
     const _clusters = clusters
       .map(item => {
@@ -117,8 +109,6 @@ export default function Card({
           handleChildrenClick(e, {
             name,
             type,
-            createTime,
-            start: startTime,
             labelSelector,
           })
         }
@@ -151,7 +141,7 @@ export default function Card({
         <div className={styles.desc}>
           <Text title={name} description={desc} />
         </div>
-        {renderCluster()}
+        {renderCluster(name)}
       </div>
       {renderArrow()}
     </div>

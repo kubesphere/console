@@ -123,21 +123,6 @@ export default {
         },
         modal: BillModal,
         store,
-        title: (
-          <div>
-            <Icon size={20} name="wallet" style={{ marginRight: 7 }} />{' '}
-            <span
-              style={{
-                fontSize: 12,
-                fontWeight: 600,
-                lineHeight: '20px',
-                height: '20px',
-              }}
-            >
-              {t('Bill')}
-            </span>
-          </div>
-        ),
         ...props,
       })
     },

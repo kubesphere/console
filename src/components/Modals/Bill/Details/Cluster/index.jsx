@@ -35,9 +35,11 @@ import { Loading, Tooltip, Icon } from '@kube-design/components'
 import MeterStore from 'stores/meter/base'
 
 import ClusterMeterStore from 'stores/meter/cluster'
-import { handleWSChartData, handleStrTimeToX, getTimeParams } from 'utils/meter'
+import EmptyList from 'components/Cards/EmptyList'
+import { handleWSChartData, getTimeParams, getRetentionDay } from 'utils/meter'
 import { getTimeStr } from 'components/Cards/Monitoring/Controller/TimeSelector/utils'
 import { COLORS_MAP } from 'utils/constants'
+import Button from '@kube-design/components/lib/components/Button'
 import { RESOURCES_TYPE, RESOURCE_TITLE, AREA_COLORS } from '../../constats'
 
 import Crumb from '../../components/Crumb'
@@ -91,6 +93,9 @@ export default class ClusterDetails extends React.Component {
   @observable
   chartData = {}
 
+  @observable
+  priceConfig = {}
+
   childrenResourceList = []
 
   @observable
@@ -107,28 +112,39 @@ export default class ClusterDetails extends React.Component {
     this.loading = true
     this.sideLoading = true
 
-    this.priceConfig = await this.store.fetchPrice()
-    this.clusterMeterStore.retentionDay = this.store.retentionDay
-
     if (this.props.meterType === 'workspaces') {
       const clusterList = await this.clusterMeterStore.fetchList({
         type: 'cluster',
       })
 
-      this.clusterList = clusterList
+      this.clusterList = clusterList.filter(item =>
+        get(item, '_origin.configz.metering')
+      )
+
+      if (isEmpty(this.clusterList)) {
+        this.sideLoading = false
+        this.loading = false
+        return
+      }
     }
 
     const list = await this.clusterMeterStore.fetchList({
       type: this.props.meterType,
     })
 
-    if (isEmpty(list) || !isArray(list)) {
-      this.sideLoading = false
-      this.loading = false
+    if (this.props.meterType === 'cluster') {
+      this.list = list.filter(item => get(item, '_origin.configz.metering'))
+    } else {
+      this.list = list
     }
 
-    const { name, type, labelSelector, createTime, startTime } = list[0]
-    this.list = list
+    if (isEmpty(toJS(this.list))) {
+      this.sideLoading = false
+      this.loading = false
+      return
+    }
+
+    const { name, type, labelSelector } = list[0]
 
     if (type === 'cluster') {
       this.cluster = name
@@ -138,8 +154,6 @@ export default class ClusterDetails extends React.Component {
       type,
       name,
       list,
-      createTime,
-      start: startTime,
     })
 
     await this.handleSelectResource({
@@ -148,8 +162,6 @@ export default class ClusterDetails extends React.Component {
       isCopy: true,
       labelSelector,
       isTime: true,
-      createTime,
-      start: startTime,
     })
 
     this.sideLoading = false
@@ -160,7 +172,10 @@ export default class ClusterDetails extends React.Component {
   getClustersList = name => {
     const workspaceData = this.crumbData[0]
     const currentData = workspaceData.list.find(item => item.name === name)
-    const clustersList = get(currentData, '_origin.clusters', [])
+    const clustersList =
+      name === 'system-workspace'
+        ? this.clusterList
+        : get(currentData, '_origin.clusters', [])
 
     if (isEmpty(clustersList)) {
       return []
@@ -169,6 +184,7 @@ export default class ClusterDetails extends React.Component {
     return clustersList
       .map(item => {
         const cluster = this.clusterList.find(_item => _item.name === item.name)
+
         if (!isEmpty(cluster)) {
           return {
             label: cluster.name,
@@ -182,9 +198,6 @@ export default class ClusterDetails extends React.Component {
   }
 
   handleSelectResource = async ({ name, type, isCopy, ...params }) => {
-    const createTime = params.createTime
-    const start = params.start
-
     if (name === this.active.name && type === this.active.type) {
       return
     }
@@ -192,6 +205,18 @@ export default class ClusterDetails extends React.Component {
     if (type === 'workspaces') {
       this.clusters = this.getClustersList(name)
       this.cluster = get(this.clusters, '[0].value', '')
+      this.priceConfig = await this.store.fetchPrice({ cluster: this.cluster })
+
+      this.startTime = getRetentionDay(
+        get(this.priceConfig, 'retention_day', '7d')
+      )
+    }
+
+    if (type === 'cluster') {
+      this.priceConfig = await this.store.fetchPrice({ cluster: name })
+      this.startTime = getRetentionDay(
+        get(this.priceConfig, 'retention_day', '7d')
+      )
     }
 
     await this.getCurrentMeterData({
@@ -199,8 +224,7 @@ export default class ClusterDetails extends React.Component {
       type,
       isTime: true,
       ...params,
-      createTime,
-      start,
+      start: this.startTime,
       isCopy: true,
     })
   }
@@ -229,20 +253,25 @@ export default class ClusterDetails extends React.Component {
   }
 
   @action
-  setCluster = async value => {
-    this.cluster = value
+  setCluster = async cluster => {
+    this.cluster = cluster
     this.loading = true
 
-    const { name, type, createTime } = this.active
+    const { name, type } = this.active
     const currentData = this.list.find(item => item.name === name)
+
+    this.priceConfig = await this.store.fetchPrice({ cluster })
+
+    this.startTime = getRetentionDay(
+      get(this.priceConfig, 'retention_day', '7d')
+    )
 
     await this.getCurrentMeterData({
       name,
       type,
       isCopy: true,
-      ...toJS(this.timeRange),
       isTime: true,
-      createTime,
+      start: this.startTime,
       labelSelector: get(currentData, 'labelSelector', ''),
     })
 
@@ -250,11 +279,10 @@ export default class ClusterDetails extends React.Component {
   }
 
   @action
-  setActiveCrumb = ({ name, type, createTime, isCopy, start }) => {
+  setActiveCrumb = ({ name, type, isCopy, start }) => {
     const lastCrumbData = last(this.crumbData)
     lastCrumbData.type = type
     lastCrumbData.name = name
-    lastCrumbData.createTime = createTime
     lastCrumbData.start = start
 
     if (isCopy) {
@@ -282,11 +310,10 @@ export default class ClusterDetails extends React.Component {
     type,
     isCopy,
     labelSelector,
-    createTime,
     isTime,
     start,
   }) => {
-    this.active = { name, type, createTime, start }
+    this.active = { name, type, start }
     this.tableData = []
     this.pieChartData = []
     this.timeRange = {}
@@ -294,7 +321,6 @@ export default class ClusterDetails extends React.Component {
       name,
       type,
       isCopy: !!isCopy,
-      createTime,
       start,
     })
 
@@ -307,14 +333,14 @@ export default class ClusterDetails extends React.Component {
       valueKey: 'currentMeterData',
       meters: 'all',
       resources: [name],
-      start: handleStrTimeToX(start),
+      start,
       isTime,
       params,
     })
 
     this.tableData = this.setLineChartColor(meterData)
 
-    this.setTimeRange({ isTime, start: handleStrTimeToX(start) })
+    this.setTimeRange({ isTime, start })
 
     this.chartData = meterData
 
@@ -436,13 +462,7 @@ export default class ClusterDetails extends React.Component {
   }
 
   @action
-  getChildrenData = async ({
-    name,
-    type,
-    createTime,
-    start,
-    labelSelector,
-  }) => {
+  getChildrenData = async ({ name, type, labelSelector }) => {
     const lastCrumbData = last(this.crumbData)
 
     this.loading = true
@@ -451,14 +471,20 @@ export default class ClusterDetails extends React.Component {
     if (type === 'workspaces' && name !== lastCrumbData.name) {
       this.clusters = this.getClustersList(name)
       this.cluster = get(this.clusters, '[0].value', '')
+      const priceConfig = await this.store.fetchPrice({ cluster: this.cluster })
+      this.startTime = getRetentionDay(priceConfig.retention_day)
+    }
+
+    if (type === 'cluster' && name !== lastCrumbData.name) {
+      const priceConfig = await this.store.fetchPrice({ cluster: name })
+      this.startTime = getRetentionDay(priceConfig.retention_day)
     }
 
     this.setActiveCrumb({
       name,
       type,
       isCopy: true,
-      createTime,
-      start,
+      start: this.startTime,
     })
 
     const childrenList = await this.getChildrenList({
@@ -468,7 +494,6 @@ export default class ClusterDetails extends React.Component {
 
     if (!isEmpty(childrenList) && isArray(childrenList)) {
       const childrenType = childrenList[0].type
-
       const parentType = last(this.crumbData)
       const params = this.getMeterParamsByCrumb()
 
@@ -477,7 +502,7 @@ export default class ClusterDetails extends React.Component {
         meters: 'all',
         module: parentType.type,
         resources: [parentType.name],
-        start: handleStrTimeToX(start),
+        start: parentType.start,
         valueKey: 'parentMeterData',
         isTime: true,
       })
@@ -486,8 +511,7 @@ export default class ClusterDetails extends React.Component {
         type: childrenType,
         name: childrenList[0].name,
         list: childrenList,
-        createTime: childrenList[0].createTime,
-        start: childrenList[0].startTime,
+        start: this.startTime,
       })
 
       await this.getCurrentMeterData({
@@ -495,8 +519,7 @@ export default class ClusterDetails extends React.Component {
         type: childrenType,
         isCopy: true,
         isTime: true,
-        start: childrenList[0].startTime,
-        createTime: childrenList[0].createTime,
+        start: this.startTime,
         labelSelector: get(childrenList, '[0].labelSelector'),
       })
 
@@ -816,7 +839,7 @@ export default class ClusterDetails extends React.Component {
     this.sideLoading = true
 
     if (methord === 'back') {
-      if (step === 0) {
+      if (step <= 0) {
         this.props.handleBack()
         this.sideLoading = false
         return
@@ -858,7 +881,7 @@ export default class ClusterDetails extends React.Component {
         params,
         meters: 'all',
         module: parentData.type,
-        start: handleStrTimeToX(parentData.start),
+        start: parentData.start,
         resources: [parentData.name],
         valueKey: 'parentMeterData',
         isTime: true,
@@ -872,8 +895,7 @@ export default class ClusterDetails extends React.Component {
     await this.getCurrentMeterData({
       name: currentActive.name,
       type: currentActive.type,
-      start: get(currentActive, 'start'),
-      createTime: get(currentActive, 'createTime'),
+      start: this.startTime,
       labelSelector: get(currentItem, 'labelSelector', ''),
       isTime: true,
     })
@@ -923,6 +945,22 @@ export default class ClusterDetails extends React.Component {
   render() {
     const { type, name, createTime } = this.active
 
+    if (isEmpty(this.list)) {
+      return (
+        <div className={styles.empty}>
+          <Loading spinning={this.sideLoading || this.loading}>
+            <EmptyList
+              className={styles.emptyCard}
+              icon="cluster"
+              title={t('No Available Cluster')}
+              desc={t('No cluster with metering module enabled')}
+              actions={<Button onClick={this.props.handleBack}>返回</Button>}
+            />
+          </Loading>
+        </div>
+      )
+    }
+
     return (
       <div className={styles.billDetail}>
         <div
@@ -939,7 +977,6 @@ export default class ClusterDetails extends React.Component {
 
           <SideCard
             list={this.list}
-            sideLoading={this.sideLoading}
             active={toJS(this.active)}
             handleSelectResource={this.handleSelectResource}
             getChildrenData={this.getChildrenData}

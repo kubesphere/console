@@ -138,18 +138,6 @@ export const getRetentionDay = (retentionDay = '7d') => {
     .subtract(retentionDay.slice(0, -1), 'day')
 }
 
-export const handleCreateTime = (createTime, retentionDay = '7d') => {
-  const _createTime = moment(new Date(createTime))
-    .endOf('day')
-    .add(1, 'second')
-
-  const retention = getRetentionDay(retentionDay)
-
-  const startTime = _createTime - retention > 0 ? _createTime : retention
-
-  return startTime
-}
-
 export const getTimeRange = ({ step = '600s', times = 20 } = {}) => {
   const interval = parseFloat(step) * times
   const end = Math.floor(
@@ -323,7 +311,10 @@ export const hasNameSpacesType = type => {
 
 export const filterListByType = ({ type, ...params }) => {
   if (
-    (params.services || params.deployments || params.statefulsets) &&
+    (params.services ||
+      params.deployments ||
+      params.statefulsets ||
+      params.daemonsets) &&
     type === 'pods' &&
     isEmpty(params.labelSelector)
   ) {

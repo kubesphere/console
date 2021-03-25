@@ -142,9 +142,13 @@ const MeterDetailCard = ({
     <div className={classnames(styles.billTotal, className)}>
       {renderCurrentTotal(title)}
       <div className={styles.consumContainer}>
-        {renderList(sumData, 'meter')}
-        <div className={styles.line}></div>
-        {renderList(feeData, 'price')}
+        {isEmpty(sumData) && isEmpty(feeData) ? null : (
+          <>
+            {renderList(sumData, 'meter')}
+            <div className={styles.line}></div>
+            {renderList(feeData, 'price')}
+          </>
+        )}
       </div>
     </div>
   )

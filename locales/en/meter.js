@@ -73,4 +73,6 @@ module.exports = {
   Price: 'Price',
   PRICE_CONFIG_DESC: 'Price information has not been configured yet',
   METER_RESOURCE_DESC: 'Consumption statistics in the last hour',
+  'No cluster with metering module enabled':
+    'No cluster with metering module enabled',
 }
