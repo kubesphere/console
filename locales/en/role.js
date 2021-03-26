@@ -110,7 +110,7 @@ module.exports = {
   'StorageClasses View': 'StorageClasses View',
   Terminating: 'Terminating',
   'Unable to delete preset role': 'Unable to delete preset role',
-  'User Name': 'User Name',
+  'User Name': 'Username',
   'Users Management': 'Users Management',
   'Users View': 'Users View',
   'Volume Snapshots Management': 'Volume Snapshots Management',

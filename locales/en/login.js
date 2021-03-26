@@ -51,7 +51,7 @@ module.exports = {
   'Modify Later': 'Modify Later',
 
   'Your password must meet the following requirements':
-    'Your password must meet the following requirements',
+    'Complexity Requirements',
 
   CONFIRM_PASSWORD_TIP:
     'Since you are logging in for the first time, please reset your password.',

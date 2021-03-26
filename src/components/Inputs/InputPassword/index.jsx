@@ -117,7 +117,7 @@ export default class Password extends React.Component {
 
     return (
       <div className={styles.content}>
-        <p>{t('Your password must meet the following requirements')}:</p>
+        <p>{t('Your password must meet the following requirements')}</p>
         <ul className={styles.rules}>
           <li>
             <Icon

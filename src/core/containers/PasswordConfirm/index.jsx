@@ -108,7 +108,7 @@ export default class PasswordConfirm extends Component {
               />
             </Form.Item>
             <div className={styles.tip}>
-              <p>{t('Your password must meet the following requirements')}:</p>
+              <p>{t('Your password must meet the following requirements')}</p>
               <div className={styles.strength}>
                 <div>
                   <Icon
