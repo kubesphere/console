@@ -21,6 +21,7 @@ import PropTypes from 'prop-types'
 
 import { Alert, Form } from '@kube-design/components'
 import { Modal } from 'components/Base'
+import { get, isEmpty } from 'lodash'
 import TaintInput from './TaintInput'
 
 import styles from './index.scss'
@@ -56,12 +57,30 @@ export default class TaintManagementModal extends React.Component {
   }
 
   handleSubmit = data => {
-    this.props.onOk(data)
+    const tainValueList = get(data, 'spec.taints')
+
+    if (!isEmpty(tainValueList)) {
+      const isValueMap = {}
+      let isSumbit = true
+
+      tainValueList.forEach(element => {
+        if (isValueMap[element.key]) {
+          isSumbit = false
+        } else {
+          isValueMap[element.key] = 1
+        }
+      })
+
+      if (isSumbit) {
+        this.props.onOk(data)
+      }
+    } else {
+      this.props.onOk(data)
+    }
   }
 
   render() {
-    const { value, ...rest } = this.props
-
+    const { value, onOk, ...rest } = this.props
     return (
       <Modal.Form
         width={1162}
@@ -70,6 +89,7 @@ export default class TaintManagementModal extends React.Component {
         icon="wrench"
         okText={t('Save')}
         data={this.state.formData}
+        onOk={this.handleSubmit}
         {...rest}
       >
         <div className={styles.wrapper}>
