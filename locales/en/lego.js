@@ -17,9 +17,9 @@
  */
 
 module.exports = {
-  KUBE_ASCENDING_ORDER: 'ASC...',
-  KUBE_DESCENDING_ORDER: 'DESC...',
-  KUBE_OPERATE: 'Operate',
+  KUBE_ASCENDING_ORDER: 'Ascending',
+  KUBE_DESCENDING_ORDER: 'Descending',
+  KUBE_OPERATE: 'Sort',
   KUBE_FILTER: 'Filter',
   KUBE_PLEASE_SELECT: 'Please select',
   KUBE_NO_AVAILABLE_DATA: 'No Available Data',
