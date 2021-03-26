@@ -19,7 +19,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
-import { get, set, debounce } from 'lodash'
+import { get, set } from 'lodash'
 import isEqual from 'react-fast-compare'
 
 import { Icon, Input, Columns, Column, Alert } from '@kube-design/components'
@@ -210,7 +210,7 @@ export default class ResourceLimit extends React.Component {
     return { cpuError, memoryError }
   }
 
-  triggerChange = debounce(() => {
+  triggerChange = () => {
     const { onChange, onError } = this.props
     const { requests, limits, cpuError, memoryError } = this.state
     const { unit: memoryUnit } = this.getMemoryProps()
@@ -235,7 +235,7 @@ export default class ResourceLimit extends React.Component {
     }
 
     onChange(result)
-  }, 200)
+  }
 
   handleCPUChange = value => {
     this.setState(
