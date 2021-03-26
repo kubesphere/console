@@ -73,8 +73,8 @@ module.exports = {
   Count: 'Count',
   Create: 'Create',
   'Create ': 'Create ',
-  'Created Successfully': 'Created Successfully',
-  'Created Time': 'Created Time',
+  'Created Successfully': 'Created successfully.',
+  'Created Time': 'Created',
   Creator: 'Creator',
   Current: 'Current',
   Custom: 'Custom',
@@ -108,7 +108,7 @@ module.exports = {
   'Earliest start time': 'Earliest start time',
   Edit: 'Edit',
   'Edit ': 'Edit ',
-  'Edit Info': 'Edit Info',
+  'Edit Info': 'Edit Information',
   'Edit Mode': 'Edit Mode',
   'eg.': 'eg.',
   email: 'email',
@@ -234,7 +234,7 @@ module.exports = {
   'Platform Title': 'Platform Title',
   'Platform URL': 'Platform URL',
   'Platform Version': 'Platform Version',
-  'Platform-level Access Control': 'Platform-level Access Control',
+  'Platform-level Access Control': 'Platform-Level',
   'Filter by keyword': 'Filter by keyword',
   'Search by keyword': 'Search by keyword',
   'Search by name': 'Search by name',
@@ -389,12 +389,12 @@ module.exports = {
   DETAILS: 'Details',
   NODES: 'Nodes',
   NAME_DESC:
-    'It can only contain lowercase letters, numbers and hyphens("-"), and must begin and end with a lowercase letter or a number. The maximum length of characters is set to 63.',
+    'The value can contain only lowercase letters, numbers, and hyphens (-) and must begin and end with a lowercase letter or number. The maximum length is 63 characters.',
   LONG_NAME_DESC:
     'It can only contain lowercase letters, numbers and hyphens("-"), and must begin and end with a lowercase letter or a number. The maximum length of characters is set to 253.',
   NAME_TOO_LONG: 'The maximum length of characters is set to 63.',
   LONG_NAME_TOO_LONG: 'The maximum length of characters is set to 253.',
-  DESCRIPTION_DESC: 'The description cannot exceed 256 characters.',
+  DESCRIPTION_DESC: 'The description can contain a maximum of 256 characters.',
   PROJECT_DESC:
     'Projects will be grouped by their resources, which you can view and manage by project.',
   'MULTI-CLUSTER_PROJECT_CREATE_DESC':
@@ -404,7 +404,7 @@ module.exports = {
   DELETE_TIP:
     'Are you sure about deleting {type} <strong>{resource}</strong> ? {type} cannot be recovered after it is deleted.',
   DELETE_CONFIRM_TIP:
-    'Please enter the {type} name <strong>{resource}</strong> to make sure you understand the risks associated with this operation.',
+    'Please enter the {typeLower} name <strong>{resource}</strong> to confirm that you understand the risks associated with this operation.',
   DELETE_APP_RESOURCE_TIP:
     'Resource is managed by <strong>{app}</strong>, which may affect the normal use of this app if the resource is deleted. Please enter the {type} name <strong>{resource}</strong> to make sure you understand the risks associated with the operation.',
   DELETE_CONFIRM_PLACEHOLDER: 'Please enter {resource}.',
@@ -424,7 +424,7 @@ module.exports = {
     'Are you sure about removing the group <strong>{resource}</strong> ?',
 
   ALIAS_DESC:
-    'An alias can be composed of any character to help you better distinguish resources. The maximum length of characters is set to 63.',
+    'An alias helps you better distinguish resources. The value can contain a maximum of 63 characters. All characters are allowed.',
 
   NOT_ENABLE: '{resource} is not enabled',
   NOT_AVAILABLE: 'No available {resource}',
@@ -480,7 +480,7 @@ module.exports = {
 
   CREATE_STATUS_SUCCESS: 'Created successfully',
   CREATE_STATUS_UPDATING: 'Creating',
-  CREATE_STATUS_FAILED: 'Created unsuccessfully',
+  CREATE_STATUS_FAILED: 'Creation failed',
 
   EMPTY_WRAPPER: 'No {resource} Found',
 

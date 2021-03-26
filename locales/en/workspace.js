@@ -23,95 +23,92 @@ module.exports = {
   'Create Workspace Role': 'Create Workspace Role',
   'Created Projects': 'Created Projects',
   'Delete Workspace': 'Delete Workspace',
-  'DevOps Project Number': 'DevOps Project Number',
+  'DevOps Project Number': 'DevOps Projects',
   'Edit Quota': 'Edit Quota',
   'Edit Workspace Role': 'Edit Workspace Role',
-  'Invite members to the workspace': 'Invite members to the workspace',
+  'Invite members to the workspace': 'Invite Member',
   'Involved Projects': 'Involved Projects',
-  'Manage Organizations': 'Manage Organizations',
-  'No Available Cluster': 'No Available Cluster',
-  'Please input workspace name': 'Please input workspace name',
-  'Project Number': 'Project Number',
+  'Manage Organizations': 'Manage Organization',
+  'No Available Cluster': 'No Cluster Available',
+  'Please input workspace name': 'Enter a workspace name.',
+  'Project Number': 'Projects',
   'Remove from Workspace': 'Remove from Workspace',
-  'The current name is not applicable.': 'The current name is not applicable.',
+  'The current name is not applicable.': 'The name is invalid.',
   'View Workspace': 'View Workspace',
   Workspace: 'Workspace',
-  'Workspace Info': 'Workspace Info',
+  'Workspace Info': 'Workspace Information',
   'Workspace Logo': 'Workspace Logo',
-  'Workspace Manager': 'Workspace Administrator',
+  'Workspace Manager': 'Administrator',
   'Workspace Members': 'Workspace Members',
-  'Workspace Name': 'Workspace Name',
-  'Workspace name exists': 'Workspace name exists',
-  'Workspace Network Isolation': 'Workspace Network Isolation',
+  'Workspace Name': 'Name',
+  'Workspace name exists': 'The workspace name already exists.',
+  'Workspace Network Isolation': 'Network Isolation',
   'Workspace Role': 'Workspace Role',
   'Workspace Roles': 'Workspace Roles',
   'Workspace Settings': 'Workspace Settings',
   Workspaces: 'Workspaces',
-  'Workspaces Manager': 'Workspaces Manager',
+  'Workspaces Manager': 'Workspace Manager',
   projects: 'Projects',
   devops: 'DevOps Projects',
-  'Workspace Quota': 'Workspace Quota',
+  'Workspace Quota': 'Edit Workspace Quota',
   'Edit Workspace Quota': 'Edit Workspace Quota',
 
-  WORKSPACE_OVERVIEW_DESC:
-    'A workspace provides KubeSphere with a secure, isolated and accessible platform. Here you can see the resource running status in the current workspace.',
+  WORKSPACE_OVERVIEW_DESC: 'View the resource status of the workspace.',
   WORKSPACE_DESC:
-    'A workspace is a logical unit to organize your projects (Kubernetes namespaces) and DevOps projects, manage resource access, and share information within your team. It is an isolated working place for your team.',
-  WORKSPACE_SEARCH_PLACEHOLDER: 'Please enter your workspace name to find it',
+    'A workspace is an isolated logical unit used to organize projects and DevOps projects, manage resource access, and share information within your team.',
+  WORKSPACE_SEARCH_PLACEHOLDER: 'Enter a workspace name.',
   WORKSPACE_CREATE_DESC:
-    'A workspace is a logical unit to organize your projects and DevOps projects. Resource access and shared team resources can be managed here. It can serve as an independent workspace for your team.',
+    'A workspace is an isolated logical unit used to organize projects and DevOps projects, manage resource access, and share information within your team.',
   WORKSPACE_NAME_DESC:
-    'Please keep your workspace name short, such as the abbreviation of your company name.',
+    'You are advised to use a short workspace name such as the abbreviation of your company name.',
   WORKSPACE_LOGO_PLACEHOLDER:
-    'The workspace logo size must be less than 200px X 200px and supports PNG, JPG format. It is recommended to upload a PNG format image with a transparent background for the best display.',
+    'The maximum size of the workspace logo is 200 x 200 pixels. Only PNG (recommended) and JPG formats are supported.',
 
   NO_WORKSPACE_TIP:
-    'Your account does not belong to any workspace currently. Please create one or contact the administrator to invite you to work in a workspace.',
+    'Your account does not belong to any workspace currently. Please create a workspace or contact the administrator to invite you to a workspace.',
   WORKSPACE_MEMBER_DESC:
-    'This module allows you to manage workspace members and assign roles to them. Members in the current workspace can be invited as project members.',
-  INVITE_WORKSPACE_MEMBER_DESC:
-    'You can invite new members to work in the workspace.',
-  INVITE_WORKSPACE_MEMBER_SEARCH_PLACEHODLER:
-    'Enter a username to invite workspace members',
+    'Manage workspace members and their roles. Workspace members can be invited to projects in the workspace.',
+  INVITE_WORKSPACE_MEMBER_DESC: 'Invite members to the workspace.',
+  INVITE_WORKSPACE_MEMBER_SEARCH_PLACEHODLER: 'Enter a username.',
 
   MEMBER_CREATE_DESC: '',
 
   WORKSPACE_ROLE_DESC:
-    "A workspace role determines a user's authorization in the current workspace.",
+    'The role of a workspace member determines the permissions of the member in the workspace.',
 
-  SEARCH_WORKSPACE_TIP: 'Please enter the workspace name to search',
+  SEARCH_WORKSPACE_TIP: 'Enter a workspace name.',
 
   NO_PUBLIC_CLUSTER_TIP:
-    'There are no public clusters available. Please apply for cluster authorization from the platform administrator or cluster administrator after the workspace is created.',
+    'No public cluster available. Please contact the platform or cluster administrator to obtain authorization.',
 
   WORKSPACE_NO_CLUSTER_TIP:
-    'You need to contact the platform administrator or cluster administrator to authorize the access rights of the cluster for the workspace.',
+    'No cluster available. Please contact the platform or cluster administrator to obtain authorization.',
 
-  WORKSPACE_BASE_INFO_Q1: 'How to apply for more clusters for the workspace?',
+  WORKSPACE_BASE_INFO_Q1: 'How do I apply for more clusters for the workspace?',
   WORKSPACE_BASE_INFO_A1:
-    'A cluster is operated and maintained by the platform administrator and cluster administrator. If you need more clusters, please contact your platform administrator or submit an application.',
-  WORKSPACE_BASE_INFO_Q2: 'How to define a network policy?',
+    'Contact the platform or cluster administrator to apply for more clusters.',
+  WORKSPACE_BASE_INFO_Q2: 'How do I define a network policy?',
   WORKSPACE_BASE_INFO_A2: '',
 
   WORKSPACE_CLUSTERS_DESC:
-    'Cluster information shows how cluster resources are used in the workspace.',
+    'The cluster information shows how cluster resources are used in the workspace.',
 
   HOW_TO_APPLY_MORE_CLUSTER_Q:
-    'How to apply for more clusters for the workspace?',
+    'How do I apply for more clusters for the workspace?',
   HOW_TO_APPLY_MORE_CLUSTER_A:
-    'A cluster is operated and maintained by the platform administrator and cluster administrator. If you need more clusters, please contact your platform administrator or submit an application.',
+    'Contact the platform or cluster administrator to apply for more clusters.',
 
   DELETE_WORKSPACE_DESC:
-    'The workspace cannot be restored after it is deleted and the resources in the workspace will also be removed.',
-  SURE_TO_DELETE_WORKSPACE: 'Sure to delete the workspace',
+    'The workspace cannot be restored after it is deleted and all resources in the workspace will be removed.',
+  SURE_TO_DELETE_WORKSPACE: 'Delete Workspace',
   DELETE_WORKSPACE_TIP:
-    'Are you sure to delete the workspace <strong>{resource}</strong> ? You will not be able to recover it, and the resources under the workspace will also be deleted.',
+    'Are you sure you want to delete the workspace <strong>{resource}</strong>? The workspace cannot be restored after it is deleted and all resources in the workspace will be removed.',
 
   WORKSPACE_GROUP_DESC:
-    'Project roles and DevOps roles can be assigned to members in a user group or department of an organization.',
+    'Assign project roles and DevOps roles to members in a user group or department of an organization.',
   WORKSPACE_GROUP_EMPTY_DESC:
-    'No available organization currently. Please maintain the organization first and then add members.',
-  WORKSPACE_GROUP_USER_EMPTY_DESC: 'There are currently no assignable members.',
+    'No organization available. Please configure an organization and then add members to the organization.',
+  WORKSPACE_GROUP_USER_EMPTY_DESC: 'No member available.',
   WORKSPACE_QUOTA_MANAGE_DESC:
-    'Manage workspace quotas which are shared by all projects and DevOps projects in a workspace.',
+    'Manage workspace quotas, which are shared by all projects and DevOps projects in the workspace.',
 }
