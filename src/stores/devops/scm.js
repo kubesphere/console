@@ -29,6 +29,7 @@ export default class SCMStore extends BaseStore {
   constructor(props) {
     super(props)
 
+    this.credentialStore = new CredentialStore()
     this.verifyAccessErrorHandle = {
       github: (resp, error) => {
         const errorBody = error.headers ? resp : error
@@ -76,8 +77,6 @@ export default class SCMStore extends BaseStore {
         return Promise.reject(errorBody)
       },
     }
-
-    this.credentialStore = new CredentialStore()
   }
 
   @observable
@@ -123,6 +122,7 @@ export default class SCMStore extends BaseStore {
     }
 
     this.orgList.isLoading = false
+    return this.orgList
   }
 
   @action
@@ -160,7 +160,7 @@ export default class SCMStore extends BaseStore {
         {
           ...this.orgParams,
           pageNumber,
-          pageSize: 20,
+          pageSize: 100,
         },
         false
       )}`,
@@ -197,6 +197,7 @@ export default class SCMStore extends BaseStore {
       }
     }
     this.getRepoListLoading = false
+    return this.orgList
   }
 
   async putAccessToken({ token, cluster, devops }) {
@@ -237,8 +238,14 @@ export default class SCMStore extends BaseStore {
   }
 
   async verifyAccessForRepo({ scmType, cluster, devops, ...rest }) {
+    let _type = scmType
+
+    if (/https:\/\/bitbucket.org\/?/gm.test(`${rest.apiUrl}`)) {
+      _type = 'bitbucket_cloud'
+    }
+
     return await this.request.post(
-      `${this.getBaseUrlV2({ cluster })}scms/${scmType}/verify/`,
+      `${this.getBaseUrlV2({ cluster })}scms/${_type}/verify/`,
       rest,
       null,
       this.verifyAccessErrorHandle[scmType]
@@ -284,15 +291,19 @@ export default class SCMStore extends BaseStore {
 
     this.bitbucketCredentialId = `bitbucket-${username}-${generateId(5)}`
 
-    const result = await this.request.post(
-      `${this.getBaseUrlV2({ cluster })}scms/bitbucket-server/servers`,
-      {
-        apiUrl,
-        name: this.bitbucketCredentialId,
-      },
-      null,
-      this.verifyAccessErrorHandle['bitbucket-server']
-    )
+    let result = { id: generateId(4) }
+
+    if (!/https:\/\/bitbucket.org\/?/gm.test(`${apiUrl}`)) {
+      result = await this.request.post(
+        `${this.getBaseUrlV2({ cluster })}scms/bitbucket-server/servers`,
+        {
+          apiUrl,
+          name: this.bitbucketCredentialId,
+        },
+        null,
+        this.verifyAccessErrorHandle['bitbucket-server']
+      )
+    }
 
     if (!result || !result.id) {
       return
@@ -342,6 +353,22 @@ export default class SCMStore extends BaseStore {
   @action
   clearBitbucketErrors = () => {
     this.creatBitBucketServersError = {}
+  }
+
+  getBitbucketList = async ({ cluster }) => {
+    const result = await this.request.get(
+      `${this.getBaseUrlV2({ cluster })}scms/bitbucket-server/servers`
+    )
+
+    let bitbucketServerList = []
+
+    if (!isEmpty(result) && isArray(result)) {
+      bitbucketServerList = result.map(item => {
+        return { label: item.apiUrl, value: item.apiUrl }
+      })
+    }
+
+    return bitbucketServerList
   }
 
   @action
