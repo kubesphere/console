@@ -134,8 +134,10 @@ export default class ResourceStatus extends React.Component {
   }
 
   render() {
-    const { data, page, total, limit, isLoading } = this.store.list
+    const { data, name, page, total, limit, isLoading } = this.store.list
     const pagination = { page, total, limit }
+    const filters = { name }
+
     return (
       <div>
         <div className={styles.title}>{t('Resource List')}</div>
@@ -147,6 +149,7 @@ export default class ResourceStatus extends React.Component {
           itemActions={this.itemActions}
           enabledActions={this.enabledActions}
           pagination={pagination}
+          filters={filters}
           showEmpty={false}
           searchType="name"
           hideCustom
