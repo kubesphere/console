@@ -18,7 +18,15 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import { isEmpty, set, intersectionBy, unionBy, remove, debounce } from 'lodash'
+import {
+  isEmpty,
+  set,
+  intersectionBy,
+  unionBy,
+  remove,
+  debounce,
+  get,
+} from 'lodash'
 
 import { cacheFunc } from 'utils'
 
@@ -95,17 +103,35 @@ export default class TaintManagementModal extends React.Component {
 
   handleSubmit = () => {
     const { nodes, commonTaints } = this.state
+
     const result = nodes.map(node => {
       const taints = this.getTaints(node)
       set(
         node,
         'taints',
-        unionBy(taints, commonTaints, 'key').filter(taint => taint.key)
+        [...taints, ...commonTaints].filter(taint => taint.key)
       )
 
       return node
     })
-    this.props.onOk(result)
+
+    let isSubmit = true
+
+    result.forEach(node => {
+      const nodeTains = get(node, 'taints', [])
+      const isSomeTains = {}
+      nodeTains.forEach(item => {
+        if (isSomeTains[item.key]) {
+          isSubmit = false
+        } else {
+          isSomeTains[item.key] = 1
+        }
+      })
+    })
+
+    if (isSubmit) {
+      this.props.onOk(result)
+    }
   }
 
   handleChangeAll = debounce((values, deleteValue = {}) => {

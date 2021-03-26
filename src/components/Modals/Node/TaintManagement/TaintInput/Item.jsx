@@ -23,7 +23,7 @@ import { ObjectInput } from 'components/Inputs'
 
 import styles from './index.scss'
 
-const Item = ({ onSelect, onDelete, ...params }) => {
+const Item = ({ onSelect, onDelete, disabled, ...params }) => {
   const effects = [
     { label: t('NOSCHEDULE_OPTION'), value: 'NoSchedule' },
     { label: t('PREFER_NOSCHEDULE_OPTION'), value: 'PreferNoSchedule' },
@@ -53,6 +53,7 @@ const Item = ({ onSelect, onDelete, ...params }) => {
               type="flat"
               icon="add"
               className={styles.select}
+              disabled={disabled}
               onClick={onSelect}
             />
           </Tooltip>

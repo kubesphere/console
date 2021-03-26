@@ -132,6 +132,11 @@ export default class TaintInput extends React.Component {
 
   handleDelete = index => {
     const { value, onChange } = this.props
+
+    if (this.state.errorKeys.includes(index)) {
+      this.hideKeyError({ index })
+    }
+
     const newValues = value.filter((_, _index) => _index !== index)
     onChange(newValues, value[index])
   }
@@ -149,6 +154,7 @@ export default class TaintInput extends React.Component {
       >
         <Item
           value={item || this.defaultValue}
+          disabled={!this.isAddEnable()}
           onChange={this.handleChange.bind(this, index)}
           onSelect={onSelect && this.handleSelect.bind(this, index)}
           onDelete={this.handleDelete.bind(this, index)}
