@@ -38,7 +38,7 @@ module.exports = {
   'Grayscale Release Version': '灰度版本',
   'Grayscale Release Version Number': '灰度版本號',
   'Grayscale Release Strategy': '灰度策略',
-  'Version Compare': '版本對比',
+  'Version Comparison': '版本對比',
   'Policy Config': '策略配置',
 
   'Create Job': '發佈任務',
@@ -129,7 +129,8 @@ module.exports = {
   TRAFFIC_MIRROR_DESC:
     '流量鏡像用來更為真實地測試新版本，提前發現問題，同時不對生產環境產生影響，從而，提高版本發佈的安全性可靠性。',
   GRAY_RELEASE_VERSION_DESC: '將新版本引入已有的應用服務網格中',
-  GRAY_RELEASE_VERSION_FORMAT_DESC: '只能包含小寫字母及數字，長度在 16 個字元内',
+  GRAY_RELEASE_VERSION_FORMAT_DESC:
+    '只能包含小寫字母及數字，長度在 16 個字元内',
   POLICY_CONFIG_DESC:
     '基於流量比例發佈：根據流量比例配置規則，將從原版本中切分指定比例的流量到灰度版本。',
 

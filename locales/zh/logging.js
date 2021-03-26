@@ -30,17 +30,15 @@ module.exports = {
   'Back to previous': '返回上一级',
   'Log Start Time': '收录起始时间',
   'Current Statistics Start Time': '本次统计起始时间',
-  'Trends in the total number of logs in the last 12 hours':
-    '最近 12 小时日志总数变化趋势',
-  'Search Log by': '通过{field}查询日志',
+  'Log trends in the last 12 hours': '最近 12 小时日志总数变化趋势',
+  'Search Logs by': '通过{field}查询日志',
   'KeyWord Log Query Tip':
     '请输入关键字查找日志, 还可以通过 “Error” “Fail” “Fatal” “Exception ” “Warning” 等关键字查找错误日志',
   'Project Log Query Tip': '可以根据项目名称查看相关的日志信息',
   'Workload Log Query Tip': '可以根据工作负载名称查看相关的日志信息',
   'Container Log Query Tip': '可以根据容器名称查看相关的日志信息',
   'Pod Log Query Tip': '可以根据容器组名称查看相关的日志信息',
-  'Trends in the total number of events in the last 12 hours':
-    '最近 12 小时事件总数变化趋势',
+  'Event trends in the last 12 hours': '最近 12 小时事件总数变化趋势',
   'Search Events by': '通过{field}查询事件',
   'Workspace Event Query Tip': '可以根据企业空间查看相关的事件信息',
   'Project Event Query Tip': '可以根据项目查看相关的事件信息',
@@ -62,7 +60,7 @@ module.exports = {
   'Fuzzy Query': '模糊匹配',
   'Log Collections': '日志收集',
 
-  'Search Auditing by': '通过{field}查询审计',
+  'Search Auditing Logs by': '通过{field}查询审计',
   'Workspace Auditing Query Tip': '可以根据企业空间查看相关的操作审计',
   'Project Auditing Query Tip': '可以根据项目查看相关的操作审计',
   'Resource Name Auditing Query Tip': '可以根据资源名称查看相关的操作审计',
@@ -71,7 +69,7 @@ module.exports = {
   'Status Code Auditing Query Tip': '可以根据状态码查看相关的操作审计',
   'Operation Account Auditing Query Tip': '可以根据操作帐户查看相关的操作审计',
   'Source IP Auditing Query Tip': '可以根据来源IP查看相关的操作审计',
-  'Trends in the total number of auditing logs in the last 12 hours':
+  'Auditing log trends in the last 12 hours':
     '最近 12 小时操作审计总数变化趋势',
 
   TOTAL_AUDITING_TODAY:

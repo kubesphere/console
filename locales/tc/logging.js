@@ -30,17 +30,15 @@ module.exports = {
   'Back to previous': '返回上一級',
   'Log Start Time': '紀錄起始時間',
   'Current Statistics Start Time': '本次統計起始時間',
-  'Trends in the total number of logs in the last 12 hours':
-    '最近 12 小時紀錄總數變化趨勢',
-  'Search Log by': '通過{field}查詢紀錄',
+  'Log trends in the last 12 hours': '最近 12 小時紀錄總數變化趨勢',
+  'Search Logs by': '通過{field}查詢紀錄',
   'KeyWord Log Query Tip':
     '請輸入關鍵字查詢紀錄, 還可以通過 “Error” “Fail” “Fatal” “Exception ” “Warning” 等關鍵字查詢錯誤紀錄',
   'Project Log Query Tip': '可以根據項目名稱查看相關的紀錄資訊',
   'Workload Log Query Tip': '可以根據工作負載名稱查看相關的紀錄資訊',
   'Container Log Query Tip': '可以根據容器名稱查看相關的紀錄資訊',
   'Pod Log Query Tip': '可以根據容器組名稱查看相關的紀錄資訊',
-  'Trends in the total number of events in the last 12 hours':
-    '最近 12 小時事件總數變化趨勢',
+  'Event trends in the last 12 hours': '最近 12 小時事件總數變化趨勢',
   'Search Events by': '通過{field}查詢事件',
   'Workspace Event Query Tip': '可以根據企業空間查看相關的事件資訊',
   'Project Event Query Tip': '可以根據項目查看相關的事件資訊',
@@ -64,7 +62,7 @@ module.exports = {
 
   'Resource Name & Type': '資源名稱與類型',
 
-  'Search Auditing by': '通過{field}查詢審計',
+  'Search Auditing Logs by': '通過{field}查詢審計',
   'Workspace Auditing Query Tip': '可以根據企業空間查看相關的操作審計',
   'Project Auditing Query Tip': '可以根據項目查看相關的操作審計',
   'Resource Name Auditing Query Tip': '可以根據資源名稱查看相關的操作審計',
@@ -73,7 +71,7 @@ module.exports = {
   'Status Code Auditing Query Tip': '可以根據狀態碼查看相關的操作審計',
   'Operation Account Auditing Query Tip': '可以根據操作帳號查看相關的操作審計',
   'Source IP Auditing Query Tip': '可以根據來源IP查看相關的操作審計',
-  'Trends in the total number of auditing logs in the last 12 hours':
+  'Auditing log trends in the last 12 hours':
     '最近 12 小時操作審計總數變化趨勢',
 
   TOTAL_AUDITING_TODAY:

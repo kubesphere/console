@@ -160,9 +160,7 @@ export default class HomeModal extends React.Component {
         <div className={classnames(styles.card, styles.recent)}>
           <div className={styles.recentSummary}>
             <h2 className={styles.count}>{total || 0}</h2>
-            <p>
-              {t('Trends in the total number of events in the last 12 hours')}
-            </p>
+            <p>{t('Event trends in the last 12 hours')}</p>
           </div>
           <div className={styles.chart}>
             <TimeBar

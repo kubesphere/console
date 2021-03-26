@@ -155,7 +155,7 @@ export default class Home extends React.Component {
               onSearch={this.handleSearch}
               value={keyword}
               className={styles.search}
-              placeholder={t('Find app')}
+              placeholder={t('Find an app')}
             />
           </LevelRight>
         </Level>

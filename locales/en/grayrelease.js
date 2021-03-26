@@ -78,7 +78,7 @@ module.exports = {
     'Traffic comes from the following operating systems',
   'Traffic Control': 'Traffic Control',
   'Traffic Mirroring': 'Traffic Mirroring',
-  'Traffic monitor': 'Traffic monitor',
+  'Traffic monitor': 'Traffic monitoring',
   'Traffic of last five minutes': 'Traffic of last five minutes',
   'Traffic Ratio': 'Traffic Ratio',
   'Traffic Rules': 'Traffic Rules',
@@ -86,7 +86,7 @@ module.exports = {
   'Unfinished grayscale release jobs exist':
     'Unfinished grayscale release jobs exist',
   'Unsupported workload type': 'Unsupported workload type',
-  'Version Compare': 'Version Compare',
+  'Version Comparison': 'Version Comparison',
   'version number is invalid': 'version number is invalid',
   'Version Off': 'Version Off',
 

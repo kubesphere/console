@@ -34,7 +34,7 @@ module.exports = {
   'Hide help information': 'Hide help information',
   'Index Prefix': 'Index Prefix',
   Keyword: 'Keyword',
-  'Log Collections': 'Log Collections',
+  'Log Collections': 'Log Collection',
   'Log Receiver': 'Log Receiver',
   'Log Management': 'Log Management',
   'Log Query': 'Log Query',
@@ -64,12 +64,10 @@ module.exports = {
   'Service Address': 'Service Address',
   'Time topology': 'Time topology',
   topic: 'topic',
-  'Trends in the total number of auditing logs in the last 12 hours':
-    'Trends in the total number of auditing logs in the last 12 hours',
-  'Trends in the total number of events in the last 12 hours':
-    'Trends in the total number of events in the last 12 hours',
-  'Trends in the total number of logs in the last 12 hours':
-    'Trends in the total number of logs in the last 12 hours',
+  'Auditing log trends in the last 12 hours':
+    'Auditing log trends in the last 12 hours',
+  'Event trends in the last 12 hours': 'Event trends in the last 12 hours',
+  'Log trends in the last 12 hours': 'Log trends in the last 12 hours',
 
   LOG_DATE: 'YYYY/MM/DD HH:mm',
   EVENT_DATE: 'YYYY/MM/DD 00:00',
@@ -98,7 +96,7 @@ module.exports = {
     'The built-in Elasticsearch service is used by default. You can change it to use an Elasticsearch service deployed by your own either within or out of the cluster.',
   LOG_COLLECTION_ES_INDEX_TIPS:
     'The indexes are built with prefix and the date, for example: {prefix}-2020.01.01',
-  'Search Log by': 'Search Log by {field}',
+  'Search Logs by': 'Search Logs by {field}',
   'KeyWord Log Query Tip':
     'Please enter the keyword to find the log. You can also find the error log by keywords such as “Error”, “Fail”, “Fatal”, “Exception” and “Warning”.',
   'Project Log Query Tip':
@@ -108,8 +106,8 @@ module.exports = {
   'Container Log Query Tip':
     'You can view related log information according to the container name.',
   'Pod Log Query Tip':
-    'You can view related log information according to the pod name.',
-  'Search Events by': 'Search events by {field}',
+    'You can view related log information according to the Pod name.',
+  'Search Events by': 'Search Events by {field}',
   'Workspace Event Query Tip':
     'You can view related event information according to the workspace.',
   'Project Event Query Tip':
@@ -136,8 +134,8 @@ module.exports = {
   TOTAL_EVENTS_TODAY:
     'A total of <span class={className}> {events} </span> events were collected today.',
   NO_EVENTS_TODAY: 'Events not found today',
-  START_REAL_TIME_LOG: 'turn on real-time logging',
-  STOP_REAL_TIME_LOG: 'turn off real-time logging',
+  START_REAL_TIME_LOG: 'Enable real-time logging',
+  STOP_REAL_TIME_LOG: 'Disable real-time logging',
   LOG_EXPORT: 'Log Export',
 
   CREATE_CUSTOM_MONITORING_DASHBOARD: 'Create custom monitoring dashboard',
@@ -148,7 +146,7 @@ module.exports = {
 
   SERVICE_BUILT_INTERFACE: 'service monitoring is built interface data capture',
 
-  'Search Auditing by': 'Search Auditing by {field}',
+  'Search Auditing Logs by': 'Search Auditing Logs by {field}',
   'Workspace Auditing Query Tip':
     'You can view related event information according to the workspace.',
   'Project Auditing Query Tip':

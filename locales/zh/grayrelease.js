@@ -38,7 +38,7 @@ module.exports = {
   'Grayscale Release Version': '灰度版本',
   'Grayscale Release Version Number': '灰度版本号',
   'Grayscale Release Strategy': '灰度策略',
-  'Version Compare': '版本对比',
+  'Version Comparison': '版本对比',
   'Policy Config': '策略配置',
 
   'Create Job': '发布任务',
