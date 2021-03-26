@@ -38,15 +38,15 @@ client:
   description: ""
 
   version:
-    kubesphere: 3.0.0
+    kubesphere: 3.1.0
 
   # kubesphere urls
   issueUrl: https://github.com/kubesphere/kubesphere/issues/new/choose
   reposUrl: https://github.com/kubesphere/kubesphere
   slackUrl: https://kubesphere.slack.com
   documents:
-    url: https://v3-0.docs.kubesphere.io/docs
-    api: https://v3-0.docs.kubesphere.io/docs/api-reference/api-docs/
+    url: https://v3-1.docs.kubesphere.io/docs
+    api: https://v3-1.docs.kubesphere.io/docs/api-reference/api-docs/
 
   # current support lanaguages
   supportLangs:
@@ -520,36 +520,36 @@ client:
   # docs url for resources
   resourceDocs:
     # Project User Guide
-    applications: /project-user-guide/application-workloads/app-template/
-    composingapps: /project-user-guide/application-workloads/composing-app/
+    applications: /project-user-guide/application/app-template/
+    composingapps: /project-user-guide/application/compose-app/
     deployments: /project-user-guide/application-workloads/deployments/
     statefulsets: /project-user-guide/application-workloads/statefulsets/
     daemonsets: /project-user-guide/application-workloads/daemonsets/
     jobs: /project-user-guide/application-workloads/jobs/
     cronjobs: /project-user-guide/application-workloads/cronjobs/
     services: /project-user-guide/application-workloads/services/
-    ingresses: /project-user-guide/application-workloads/ingress/
+    ingresses: /project-user-guide/application-workloads/routes/
     s2i_template: /project-user-guide/application-workloads/s2i-template/
-    volumes: /project-user-guide/storage/volume/
+    volumes: /project-user-guide/storage/volumes/
     secrets: /project-user-guide/configuration/secrets/
     configmaps: /project-user-guide/configuration/configmaps/
     serviceaccounts: /project-user-guide/configuration/serviceaccounts/
     imageregistry: /project-user-guide/configuration/image-registry/
-    grayrelease: /project-user-guide/grayscale/overview/
+    grayrelease: /project-user-guide/grayscale-release/overview/
 
     # Project Administration
     internet: /project-administration/project-gateway/
-    project_base_info: /project-administration/project-quota/
-    project_roles: /project-administration/project-roles/
-    project_members: /project-administration/project-members/
+    project_base_info: /workspace-administration/project-quotas/
+    project_roles: /project-administration/role-and-member-management/
+    project_members: /project-administration/role-and-member-management/
 
     # Cluster Administrator Guide
     nodes: /cluster-administration/nodes/
     storageclasses: /cluster-administration/storageclass/
 
     # DevOps User Guide
-    pipelines: /devops-user-guide/introduction/pipeline/
-    cridentials: /devops-user-guide/introduction/credential/
+    pipelines: /devops-user-guide/how-to-use/pipeline-settings/
+    cridentials: /devops-user-guide/how-to-use/credential-management/
 
     # Developer Guide
     helm_specification: /application-store/app-developer-guide/helm-specification/
