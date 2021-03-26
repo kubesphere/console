@@ -21,7 +21,7 @@ module.exports = {
   'App Store': '应用商店',
   HOME_APP_STORE_DESC:
     'KubeSphere 官方应用商店，提供部署及管理功能，用户可以基于应用模板快速地一键部署应用',
-  'Find app': '查找应用',
+  'Find an app': '查找应用',
   TOTAL_CATE_COUNT: '共收录 {total} 款应用',
   Discoveries: '发现',
   'New Apps': '最新上架',

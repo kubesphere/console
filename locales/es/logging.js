@@ -66,11 +66,11 @@ module.exports = {
   'Service Address': 'Dirección de Servicio',
   'Time topology': 'Topología de tiempo',
   topic: 'tema',
-  'Trends in the total number of auditing logs in the last 12 hours':
+  'Auditing log trends in the last 12 hours':
     'Tendencias en el número total de registros de auditoría en las últimas 12 horas',
-  'Trends in the total number of events in the last 12 hours':
+  'Event trends in the last 12 hours':
     'Tendencias en el número total de eventos en las últimas 12 horas.',
-  'Trends in the total number of logs in the last 12 hours':
+  'Log trends in the last 12 hours':
     'Tendencias en el número total de registros en las últimas 12 horas.',
   LOG_DATE: 'DD/MM/YYYY HH:mm',
   EVENT_DATE: 'DD/MM/YYYY 00:00',
@@ -98,7 +98,7 @@ module.exports = {
     'El servicio incorporado Elasticsearch se usa de manera predeterminada. Puedes cambiarlo para usar un servicio Elasticsearch implementado por tí mismo dentro o fuera del clúster.',
   LOG_COLLECTION_ES_INDEX_TIPS:
     'The indexes are built with prefix and the date, for example: {prefix}-2020.01.01',
-  'Search Log by': 'Buscar logs por {field}',
+  'Search Logs by': 'Buscar logs por {field}',
   'KeyWord Log Query Tip':
     'Introduce la palabra clave para encontrar el log. También puedes encontrar el log de errores por palabras clave como "Error", "Fail", "Fatal", "Exception" y "Warning".',
   'Project Log Query Tip':
@@ -148,7 +148,7 @@ module.exports = {
   CUSTOM_MONITORING_DASHBOARD: 'Panel de control personalizado',
   SERVICE_BUILT_INTERFACE:
     'la supervisión del servicio se genera con la captura de datos de interfaz',
-  'Search Auditing by': 'Auditoría de búsqueda por {field}',
+  'Search Auditing Logs by': 'Auditoría de búsqueda por {field}',
   'Workspace Auditing Query Tip':
     'Puedes ver información de eventos relacionados de acuerdo con el espacio de trabajo.',
   'Project Auditing Query Tip':

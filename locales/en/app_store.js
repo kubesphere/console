@@ -29,7 +29,7 @@ module.exports = {
   Contact: 'Contact',
   Developer: 'Developer',
   Discoveries: 'Discoveries',
-  'Find app': 'Find app',
+  'Find an app': 'Find an app',
   'Install and Deploy': 'Install and Deploy',
   Introduction: 'Introduction',
   Keywords: 'Keywords',

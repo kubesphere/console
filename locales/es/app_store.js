@@ -29,7 +29,7 @@ module.exports = {
   Contact: 'Contacto',
   Developer: 'Desarrollador',
   Discoveries: 'Descubrimientos',
-  'Find app': 'Encuentra la aplicación',
+  'Find an app': 'Encuentra la aplicación',
   'Install and Deploy': 'Instalar y desplegar',
   Introduction: 'Introducción',
   Keywords: 'Palabras clave',

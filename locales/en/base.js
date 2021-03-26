@@ -230,7 +230,7 @@ module.exports = {
   platform: 'platform',
   'Platform Description': 'Platform Description',
   'Platform Info': 'Platform Information',
-  'Platform Running Status': 'Platform Running Status',
+  'Platform Status': 'Platform Status',
   'Platform Title': 'Platform Title',
   'Platform URL': 'Platform URL',
   'Platform Version': 'Platform Version',

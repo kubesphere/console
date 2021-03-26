@@ -55,31 +55,31 @@ export default class HomeModal extends React.Component {
   supportQueryParams = [
     {
       icon: 'magnifier',
-      title: t('Search Log by', { field: t('Keyword') }),
+      title: t('Search Logs by', { field: t('Keyword') }),
       tips: t('KeyWord Log Query Tip'),
       key: 'log_query',
     },
     {
       icon: 'project',
-      title: t('Search Log by', { field: t('Project') }),
+      title: t('Search Logs by', { field: t('Project') }),
       tips: t('Project Log Query Tip'),
       key: 'namespace_query',
     },
     {
       icon: 'backup',
-      title: t('Search Log by', { field: t('Workload') }),
+      title: t('Search Logs by', { field: t('Workload') }),
       tips: t('Workload Log Query Tip'),
       key: 'workload_query',
     },
     {
       icon: 'pod',
-      title: t('Search Log by', { field: t('Pods') }),
+      title: t('Search Logs by', { field: t('Pods') }),
       tips: t('Pod Log Query Tip'),
       key: 'pod_query',
     },
     {
       icon: 'docker',
-      title: t('Search Log by', { field: t('Container') }),
+      title: t('Search Logs by', { field: t('Container') }),
       tips: t('Container Log Query Tip'),
       key: 'container_query',
     },
@@ -217,9 +217,7 @@ export default class HomeModal extends React.Component {
         <div className={classnames(styles.card, styles.recent)}>
           <div className={styles.recentSummary}>
             <h2 className={styles.count}>{this.histogramStore.logsCount}</h2>
-            <p>
-              {t('Trends in the total number of logs in the last 12 hours')}
-            </p>
+            <p>{t('Log trends in the last 12 hours')}</p>
           </div>
           <div className={styles.chart}>
             <TimeBar

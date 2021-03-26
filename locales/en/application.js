@@ -43,7 +43,7 @@ module.exports = {
   'Application Name': 'App Name',
   'Application Route': 'App Route',
   'Application Type': 'App Type',
-  'Application Version(Optional)': 'Application Version(Optional)',
+  'Application Version(Optional)': 'App Version(Optional)',
   Applications: 'Apps',
   'Base ejection time (s)': 'Base ejection time (s)',
   'Based on HTTP cookie': 'Based on HTTP cookie',

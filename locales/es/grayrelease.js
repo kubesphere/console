@@ -86,7 +86,7 @@ module.exports = {
   'Unfinished grayscale release jobs exist':
     'Existen jobs de Grayscale Release sin finalizar',
   'Unsupported workload type': 'Tipo de carga de trabajo no compatible',
-  'Version Compare': 'Comparar versiones',
+  'Version Comparison': 'Comparar versiones',
   'version number is invalid': 'el número de versión no es válido',
   'Version Off': 'Versión desactivada',
   GRAY_RELEASE_CATEGORIES: 'Categorías',

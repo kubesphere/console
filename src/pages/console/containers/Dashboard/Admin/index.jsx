@@ -79,7 +79,7 @@ export default class AdminDashboard extends React.Component {
               />
             )}
           </Panel>
-          <Panel className={styles.status} title={t('Platform Running Status')}>
+          <Panel className={styles.status} title={t('Platform Status')}>
             <PlatformStatus metrics={this.monitorStore.data} />
           </Panel>
           <Panel title={t('Recent Visit')}>

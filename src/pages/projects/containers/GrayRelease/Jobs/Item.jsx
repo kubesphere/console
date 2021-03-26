@@ -284,7 +284,7 @@ export default class Item extends React.Component {
         <div className={styles.right}>
           <div className={styles.versions}>
             <p>
-              <strong>{t('Version Compare')}</strong>
+              <strong>{t('Version Comparison')}</strong>
             </p>
             <p className={styles.tag}>
               {data.newVersion}
