@@ -133,9 +133,9 @@ module.exports = {
 
   CustomMonitorDashboards: 'Custom Monitoring Dashboards',
   CUSTOMMONITORDASHBOARD_DESC:
-    'Users can define their app monitoring dashboards as needed.',
+    'Users can define their application monitoring dashboards as needed.',
   CUSTOMMONITORDASHBOARD_CREATE_DESC:
-    'Users can define their app monitoring dashboards as needed.',
+    'Users can define their application monitoring dashboards as needed.',
 
   ADD_MONITOR_ITEM: 'Add Monitoring Item',
   ADD_MONITOR_ROW: 'Add Monitoring Group',

@@ -17,7 +17,7 @@
  */
 
 module.exports = {
-  'Add quota item': 'Agregar elemento de cuota',
+  'Add Quota Item': 'Agregar elemento de cuota',
   'Are you sure to disable it?': '¿Estás seguro de deshabilitarlo?',
   'Assign Workspace': 'Asignar espacio de trabajo',
   'Choose a workspace': 'Elige un espacio de trabajo',
@@ -59,9 +59,9 @@ module.exports = {
   'Gateway Info': 'Información de puerta de enlace',
   'Gateway Not Set': 'Puerta de enlace no establecida',
   'Help Information': 'Información de ayuda',
-  'How to invite other members to the current project?':
+  'How do I invite other members to the current project?':
     '¿Cómo invitar a otros miembros al proyecto actual?',
-  'How to set the project gateway?':
+  'How do I set the project gateway?':
     '¿Cómo configurar la puerta de enlace del proyecto?',
   'Invalid project name': 'Nombre de proyecto inválido',
   'Invite Member': 'Miembro invitado',

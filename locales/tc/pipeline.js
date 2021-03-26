@@ -146,7 +146,7 @@ module.exports = {
   Failure: '失敗',
   commit: '提交',
   'Please input images name': '請輸入鏡像名稱',
-  'defaultValue -1 means not discard': '預設值 -1: 不會丢棄紀錄',
+  'defaultValue -1 means not to discard': '預設值 -1: 不會丢棄紀錄',
   'no status': '沒有狀態',
   Skipped: '已跳過',
   'Sub-healthy': '亞健康',
@@ -222,8 +222,8 @@ module.exports = {
   'Save Artifact': '保存成品',
   'Change Current Directory': '更改目前目錄',
   CHECKOUT_DESC: '拉取代碼，常用於拉取非 Git 代碼，例如 SVN 等等',
-  'Can send messages by email': '可以通過郵件發送訊息',
-  'Can send messages in the build': '可以在構建中發送訊息',
+  'Send messages by email': '可以通過郵件發送訊息',
+  'Send messages in the build': '可以在構建中發送訊息',
   'Shell commands can be executed in the container':
     '可以在容器中執行 shell 命令',
   'You can execute shell commands or windows batch commands in the build.':
@@ -486,7 +486,7 @@ module.exports = {
   'GitLab Server': 'Gitlab 服務',
   'GitLab Owner': '項目所屬組',
   CREATE_PIPELINE_DESC: '使用流水線進行構建，測試和部署',
-  'Choose a pipeline template': '選擇流水線模板',
+  'Choose a Pipeline Template': '選擇流水線模板',
   BATCH_RUN_DESC: '多分支不支持批量運行',
   'Sync Status': '同步狀態',
 }

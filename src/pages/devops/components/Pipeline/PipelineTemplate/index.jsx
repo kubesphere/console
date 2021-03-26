@@ -54,7 +54,7 @@ const PipelineTemplate = ({ setJsonData, templateLoading }) => {
 
   return (
     <div className={styles.container}>
-      <h3 className={styles.title}>{t('Choose a pipeline template')}</h3>
+      <h3 className={styles.title}>{t('Choose a Pipeline Template')}</h3>
       <Loading spinning={templateLoading}>
         <div className={styles.template}>
           {CARD_CONFIG.map(data => (

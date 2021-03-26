@@ -74,7 +74,7 @@ module.exports = {
   Create: 'Create',
   'Create ': 'Create ',
   'Created Successfully': 'Created Successfully',
-  'Created Time': 'Created Time',
+  Created: 'Created',
   Creator: 'Creator',
   Current: 'Current',
   Custom: 'Custom',

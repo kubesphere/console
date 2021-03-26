@@ -146,7 +146,7 @@ module.exports = {
   Failure: '失败',
   commit: '提交',
   'Please input images name': '请输入镜像名称',
-  'defaultValue -1 means not discard': '默认值 -1: 不会丢弃记录',
+  'defaultValue -1 means not to discard': '默认值 -1: 不会丢弃记录',
   'no status': '没有状态',
   Skipped: '已跳过',
   'Sub-healthy': '亚健康',
@@ -222,8 +222,8 @@ module.exports = {
   'Save Artifact': '保存制品',
   'Change Current Directory': '更改当前目录',
   CHECKOUT_DESC: '拉取代码，常用于拉取非 Git 代码，例如 SVN 等等',
-  'Can send messages by email': '可以通过邮件发送消息',
-  'Can send messages in the build': '可以在构建中发送消息',
+  'Send messages by email': '可以通过邮件发送消息',
+  'Send messages in the build': '可以在构建中发送消息',
   'Shell commands can be executed in the container':
     '可以在容器中执行 shell 命令',
   'You can execute shell commands or windows batch commands in the build.':
@@ -486,7 +486,7 @@ module.exports = {
   'GitLab Server': 'Gitlab 服务',
   'GitLab Owner': '项目所属组',
   CREATE_PIPELINE_DESC: '使用流水线进行构建，测试和部署',
-  'Choose a pipeline template': '选择流水线模板',
+  'Choose a Pipeline Template': '选择流水线模板',
   BATCH_RUN_DESC: '多分支不支持批量运行',
   'Sync Status': '同步状态',
 }

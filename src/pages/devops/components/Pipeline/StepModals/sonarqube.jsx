@@ -94,7 +94,9 @@ export default class withSonarQubeEnv extends React.Component {
           />
           <Form.Item
             label={t('config name')}
-            rules={[{ required: true, message: t('This param is required') }]}
+            rules={[
+              { required: true, message: t('This parameter is required') },
+            ]}
             desc={t('sonar is the default config name.')}
           >
             <Input name="name" defaultValue={'sonar'} />
