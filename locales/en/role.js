@@ -287,7 +287,7 @@ module.exports = {
   PROJECT_MEMBERS_VIEW_DESC: 'View project members.',
   PROJECT_MEMBERS_MANAGEMENT_DESC: 'Invite, edit and remove project members.',
   PROJECT_SETTINGS_DESC:
-    'Manage project settings and edit project information, including Internet access, network policies, resource quotas, and disk logs and configuration.',
+    'Manage project settings, including Internet access, network policies, resource quotas, and log collection.',
   PROJECTS_MANAGEMENT_DESC: 'Create, edit and delete projects in a workspace.',
   PROJECTS_CREATE_DESC:
     'Create projects. The creator of a project is the project administrator.',
