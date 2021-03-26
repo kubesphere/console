@@ -315,7 +315,7 @@ module.exports = {
   Success: 'Success',
   Successful: 'Successful',
   successful: 'successful',
-  'Sure to delete': 'Sure to delete',
+  'Sure to delete': 'Delete',
   'Sure to redeploy': 'Sure to redeploy',
   'Sure to remove': 'Sure to remove',
   Suspend: 'Suspend',
