@@ -37,6 +37,7 @@ jobs:
 
     - name: destory
       working-directory: ${{env.working-directory}}
+      continue-on-error: true
       run: |
         echo 'yes' | terraform destroy
 
