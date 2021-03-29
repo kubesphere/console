@@ -772,6 +772,7 @@ export default class ClusterDetails extends React.Component {
 
   renderParentMeterCard = () => {
     if (
+      !this.active.type ||
       this.active.type === 'cluster' ||
       this.active.type === 'workspaces' ||
       isEmpty(toJS(this.priceConfig))
@@ -782,6 +783,11 @@ export default class ClusterDetails extends React.Component {
     const length = this.crumbData.length
     const data = this.crumbData[length - 2]
 
+    const name =
+      this.active.type === 'namespaces' && length === 2 && this.cluster
+        ? `${data.name} (${this.cluster})`
+        : data.name
+
     return (
       <div className={styles.usageCard}>
         <MeterDetailCard
@@ -791,7 +797,7 @@ export default class ClusterDetails extends React.Component {
           title={
             <>
               <span>{t(RESOURCE_TITLE[get(data, 'type', '-')])}</span>
-              <strong>{get(data, 'name', '-')}</strong>
+              <strong>{name}</strong>
             </>
           }
           {...this.parentMeterData}
@@ -973,6 +979,7 @@ export default class ClusterDetails extends React.Component {
             crumbData={toJS(this.crumbData)}
             handleCrumbOperation={this.handleCrumbOperation}
             loading={this.loading || this.sideLoading}
+            cluster={this.cluster}
           />
 
           <SideCard
