@@ -70,8 +70,7 @@ export default class TaskStatus extends React.Component {
 
   get isQueued() {
     const { runDetail } = this.store
-    const state = get(runDetail, 'state', '')
-
+    const state = get(runDetail, 'state', 'QUEUED')
     return state === 'QUEUED'
   }
 
@@ -100,11 +99,11 @@ export default class TaskStatus extends React.Component {
   }
 
   handleFetch = () => {
-    const { params } = this.props.match
-    const { runDetail } = this.store
-    if (get(runDetail, 'state') === 'QUEUED') {
-      return
+    if (this.isQueued) {
+      return false
     }
+
+    const { params } = this.props.match
     this.store.getNodesStatus(params)
   }
 
