@@ -39,7 +39,7 @@ export default class Help extends React.Component {
             target="_blank"
             rel="noreferrer noopener"
           >
-            💁 {t('How to invite other members to the current project?')}
+            💁 {t('How do I invite other members to the current project?')}
           </a>
         </div>
         <div className={styles.tip}>
@@ -48,7 +48,7 @@ export default class Help extends React.Component {
             target="_blank"
             rel="noreferrer noopener"
           >
-            💁 {t('How to set the project gateway?')}
+            💁 {t('How do I set the project gateway?')}
           </a>
         </div>
       </div>

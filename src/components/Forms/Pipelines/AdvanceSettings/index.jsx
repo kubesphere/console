@@ -483,7 +483,7 @@ export default class AdvanceSettings extends React.Component {
                 label={t('Days to Keep Builds')}
                 desc={`${t(
                   'Old builds will be deleted after this number of days.'
-                )} (${t('defaultValue -1 means not discard')})`}
+                )} (${t('defaultValue -1 means not to discard')})`}
               >
                 <Input
                   name={`${this.prefix}.discarder.days_to_keep`}
@@ -496,7 +496,7 @@ export default class AdvanceSettings extends React.Component {
                 label={t('Maximum Number of Builds to Keep')}
                 desc={`${t(
                   'Old builds will be discarded after the build number exceeds the maximum amount.'
-                )} (${t('defaultValue -1 means not discard')})`}
+                )} (${t('defaultValue -1 means not to discard')})`}
               >
                 <Input
                   name={`${this.prefix}.discarder.num_to_keep`}

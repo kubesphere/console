@@ -197,7 +197,7 @@ class UsageRanking extends React.Component {
     return (
       <Panel
         className={styles.wrapper}
-        title={`${t('Resources Usage Ranking')}(Top5)`}
+        title={`${t('Resources Usage Ranking')} (Top5)`}
       >
         {this.renderHeader()}
         {this.renderContent()}

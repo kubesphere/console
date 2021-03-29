@@ -123,7 +123,7 @@ module.exports = {
     'Each alerting policy can be set at different levels, and each level corresponds to a different alert period and repetition period.',
 
   ALERTING_DURATION:
-    'After the monitoring target meets the alert condition for the alert duration, the alert will be triggered',
+    'Once the monitoring target meets the alert condition for the alert duration, the alert will be triggered.',
   ALERT_RULE_INACTIVE: 'InActive',
   ALERT_RULE_PENDING: 'Pending',
   ALERT_RULE_FIRING: 'Firing',

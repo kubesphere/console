@@ -17,7 +17,7 @@
  */
 
 module.exports = {
-  'Add quota item': 'Add quota item',
+  'Add Quota Item': 'Add Quota Item',
   'Are you sure to disable it?': 'Are you sure to disable it?',
   'Assign Workspace': 'Assign Workspace',
   'Choose a workspace': 'Choose a workspace',
@@ -57,9 +57,9 @@ module.exports = {
   'Gateway Info': 'Gateway Info',
   'Gateway Not Set': 'Gateway Not Set',
   'Help Information': 'Help Information',
-  'How to invite other members to the current project?':
-    'How to invite other members to the current project?',
-  'How to set the project gateway?': 'How to set the project gateway?',
+  'How do I invite other members to the current project?':
+    'How do I invite other members to the current project?',
+  'How do I set the project gateway?': 'How do I set the project gateway?',
   'Invalid project name': 'Invalid project name',
   'Invite Member': 'Invite Member',
   'Invite Members to the DevOps Project':
@@ -146,7 +146,7 @@ module.exports = {
   PROJECT_ASSIGN_DESC:
     'Once the project is assigned to a workspace, it cannot be changed.',
 
-  INVITE_MEMBER_DESC: 'You can invite new members to assist your project.',
+  INVITE_MEMBER_DESC: 'You can invite new members to assist in your project.',
   INVITE_MEMBER_DESC_DEVOPS:
     'You can invite new members to assist your DevOps project.',
   INVITE_MEMBER_SEARCH_PLACEHODLER: 'Enter a username to invite members',
@@ -160,7 +160,7 @@ module.exports = {
     'You can specify a member of the DevOps project as an administrator.',
 
   PROJECT_INTERNET_ACCESS_DESC:
-    'Before creating a route, you need to enable the Internet access portal (i.e. the gateway). This step is to create a corresponding routing controller to forward the request to the corresponding backend service.',
+    'Before creating a route, you need to enable the Internet access portal (i.e. the gateway). This step is to create a corresponding routing controller to forward the request to the corresponding backend Service.',
   DELETE_INTERNET_ACCESS_TITLE:
     'Are you sure about deleting the external network access settings?',
   DELETE_INTERNET_ACCESS_DESC: 'You can rebind after the deletion.',
@@ -213,7 +213,7 @@ module.exports = {
   PROJECT_TYPES_Q:
     'How can the services in the project be accessed through the external network?',
   PROJECT_TYPES_A:
-    'The project gateway is responsible for creating the corresponding application routing controller to forward the request to the corresponding backend service. After the project gateway is opened, the service can be exposed to the external network through Ingress.',
+    'The project gateway is responsible for creating the corresponding application routing controller to forward the request to the corresponding backend Service. After the project gateway is opened, the service can be exposed to the external network through Ingress.',
 
   NAME_EXIST_IN_CLUSTER: 'Name exists in {cluster}',
 

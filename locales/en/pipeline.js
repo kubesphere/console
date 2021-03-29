@@ -54,8 +54,8 @@ module.exports = {
   'Build Settings': 'Build Settings',
   'Build Trigger': 'Build Trigger',
   'Can @somebody to help review': 'Can @somebody to help review',
-  'Can send messages by email': 'Can send messages by email',
-  'Can send messages in the build': 'Can send messages in the build',
+  'Send messages by email': 'Send messages by email',
+  'Send messages in the build': 'Send messages in the build',
   'Cancelled in review': 'Cancelled in review',
   CC: 'CC',
   'Change Current Directory': 'Change Current Directory',
@@ -94,7 +94,8 @@ module.exports = {
     'Current branch name must match the input value',
   'Days to Keep Builds': 'Days to Keep Builds',
   'Days to keep old branches': 'Days to keep old branches',
-  'defaultValue -1 means not discard': 'defaultValue -1 means not discard',
+  'defaultValue -1 means not to discard':
+    'defaultValue -1 means not to discard',
   'Delete all resources of the deployment file':
     'Delete all resources of the deployment file',
   'Deploy resources to the Kubernetes cluster':
@@ -553,7 +554,7 @@ module.exports = {
     "Continuous deployment (CD) refers to the idea of automatically providing the release version in the continuous delivery pipeline to end users. According to the user's installation method, automatic deployment in the cloud environment, app upgrades (such as apps on mobile phones), website updates, or only the list of available versions.",
   CUSTOM_PIPELIEN: 'Custom Pipeline',
   CUSTOM_PIPELIEN_DESC:
-    'You can select the tasks you need to customize the work content of the pipeline',
+    'You can select the tasks you need to customize the contents of the pipeline.',
   'Copy Pipeline': 'Copy Pipeline',
   'Batch Run Start': 'Batch Run Start',
   'Batch Run Success': 'Batch Run Completed',
@@ -562,7 +563,7 @@ module.exports = {
   'GitLab Server': 'GitLab Server',
   'GitLab Owner': 'Owner',
   CREATE_PIPELINE_DESC: 'Build, test and deploy with Pipelines',
-  'Choose a pipeline template': 'Choose a pipeline template',
+  'Choose a Pipeline Template': 'Choose a Pipeline Template',
   BATCH_RUN_DESC: 'Multi-branch does not support batch operation',
   'Sync Status': 'Sync Status',
 }

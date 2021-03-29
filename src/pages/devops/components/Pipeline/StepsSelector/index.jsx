@@ -81,8 +81,8 @@ export default class StepsEditor extends React.Component {
       container: t(
         'Specify a container to add nested tasks to execute inside the container'
       ),
-      echo: t('Can send messages in the build'),
-      mail: t('Can send messages by email'),
+      echo: t('Send messages in the build'),
+      mail: t('Send messages by email'),
       checkout: t('CHECKOUT_DESC'),
       dir: t('Change Current Directory'),
       archiveArtifacts: t('Save Artifact'),

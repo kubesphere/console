@@ -126,7 +126,7 @@ module.exports = {
   SERVICE_NODE_PORT_DESC:
     'If your current network is on the same network as the cluster node, you can access it through the cluster IP address + node port number or through the node IP + node port.',
 
-  SERVICE_TYPE: 'You can create a stateless service or a stateful service.',
+  SERVICE_TYPE: 'You can create a stateless Service or a stateful Service.',
   SERVICE_TYPES_Q: 'Service Types',
   SERVICE_TYPES_A:
     'Services are divided into stateless Services (Virtual Service + Depolyment) and stateful Services (Headless Service + Statefulset). In a stateless Service, replicas can share one volume, and a stateful Service needs to have its own independent volume.',
@@ -146,7 +146,7 @@ module.exports = {
     'You can build an existing artifact into a new image and complete the deployment.',
 
   SERVICE_CUSTOM_CREATE:
-    'You can create a service either by specifying a workload or by editing the configuration (Yaml).',
+    'You can create a Service either by specifying a workload or by editing the configuration (Yaml).',
 
   SERVICE_TYPE_STATEFULSERVICE: 'Stateful Service',
   SERVICE_TYPE_STATELESSSERVICE: 'Stateless Service',

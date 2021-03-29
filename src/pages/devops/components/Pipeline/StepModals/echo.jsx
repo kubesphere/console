@@ -83,7 +83,9 @@ export default class Echo extends React.Component {
         <Form data={this.state.formData} ref={this.formRef}>
           <Form.Item
             label={t('message')}
-            rules={[{ required: true, message: t('This param is required') }]}
+            rules={[
+              { required: true, message: t('This parameter is required') },
+            ]}
           >
             <TextArea name="message" />
           </Form.Item>

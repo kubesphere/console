@@ -51,14 +51,14 @@ module.exports = {
     'You can set route behavior by adding annotations to the route. See <a href="https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/" target="_blank">Annotations</a> for the detailed list of available annotations.',
 
   RULE_SETTING_MODE_AUTO:
-    'By configuring DNS access and changing the domain name to {$hostname} + {$gateway address} +nip.io, you can access the service via {$hostname}.{$gateway address} .nip.io:{$NodePort}. <br/>Please ensure that you are in an enabling network environment to access the gateway address.',
+    'By configuring DNS access and changing the domain name to {$hostname} + {$gateway address} +nip.io, you can access the Service via {$hostname}.{$gateway address} .nip.io:{$NodePort}. <br/>Please ensure that you are in an enabling network environment to access the gateway address.',
   RULE_SETTING_MODE_SPECIFY:
     'Make sure that the domain name you set can be resolved to the IP address of the access portal. <br/>If you are in a private cloud environment, modify the local host file and then access it via {$domain name}:{$node port}.',
   GATEWAY_SERVICE_MESH_STATUS_ON: 'On',
   GATEWAY_SERVICE_MESH_STATUS_OFF: 'Off',
 
   INGRESS_CONTROLLER_NODEPORT_DESC:
-    'If the gateway is enabled, the system will automatically assign port numbers of http and https. Application routes can access services through the reverse proxy.',
+    'If the gateway is enabled, the system will automatically assign port numbers of http and https. Application routes can access Services through the reverse proxy.',
   INGRESS_CONTROLLER_LOADBALANCER_DESC:
     'To use QingCloud LoadBalancer as a service gateway, please deploy the QingCloud Cloud Controller Manager plugin first.',
 

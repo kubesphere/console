@@ -113,7 +113,7 @@ export default class Quotas extends React.Component {
         ))}
         <div className={styles.add}>
           <Button onClick={this.handleAddQuotaItem} disabled={disableAdd}>
-            {t('Add quota item')}
+            {t('Add Quota Item')}
           </Button>
         </div>
       </div>

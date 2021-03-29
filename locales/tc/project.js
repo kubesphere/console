@@ -80,7 +80,7 @@ module.exports = {
   'Select Project Type': '選擇項目類型',
 
   'Edit Project Quota': '編輯項目配額',
-  'Add quota item': '添加配額項目',
+  'Add Quota Item': '添加配額項目',
 
   'Network Isolation': '網路隔离',
 
@@ -206,9 +206,9 @@ module.exports = {
   HOW_TO_INVITE_MEMBER_A:
     '項目管理員或者擁有成員邀請權限的用戶可以邀請目前企業空間内的成員加入項目',
 
-  'How to invite other members to the current project?':
+  'How do I invite other members to the current project?':
     '邀請其他成員到目前項目中?',
-  'How to set the project gateway?': '如何設置項目網關？',
+  'How do I set the project gateway?': '如何設置項目網關？',
   'You can limit the number of resources. Blank means no limit.':
     '您可以對資源的數量進行限制, 不填寫即不限制',
 

@@ -54,9 +54,8 @@ module.exports = {
   'Build Settings': 'Configuración de compilación',
   'Build Trigger': 'Crear disparador',
   'Can @somebody to help review': '¿Puede @alguien ayudar a revisar esto?',
-  'Can send messages by email':
-    'Puedes enviar mensajes por correo electrónico.',
-  'Can send messages in the build': 'Puedes enviar mensajes en la compilación',
+  'Send messages by email': 'Puedes enviar mensajes por correo electrónico.',
+  'Send messages in the build': 'Puedes enviar mensajes en la compilación',
   'Cancelled in review': 'Cancelado en la revisión',
   CC: 'CC',
   'Change Current Directory': 'Cambiar directorio actual',
@@ -95,7 +94,8 @@ module.exports = {
     'El nombre de la rama actual debe coincidir con el valor de entrada',
   'Days to Keep Builds': 'Días para mantener las build',
   'Days to keep old branches': 'Días para mantener viejas ramas',
-  'defaultValue -1 means not discard': 'defaultValue -1 significa no descartar',
+  'defaultValue -1 means not to discard':
+    'defaultValue -1 significa no descartar',
   'Delete all resources of the deployment file':
     'Eliminar todos los recursos del archivo de despliegue',
   'Deploy resources to the Kubernetes cluster':
@@ -502,7 +502,7 @@ module.exports = {
     "Continuous deployment (CD) refers to the idea of automatically providing the release version in the continuous delivery pipeline to end users. According to the user's installation method, automatic deployment in the cloud environment, app upgrades (such as apps on mobile phones), website updates, or only the list of available versions.",
   CUSTOM_PIPELIEN: 'Custom Pipeline',
   CUSTOM_PIPELIEN_DESC:
-    'You can select the tasks you need to customize the work content of the pipeline',
+    'You can select the tasks you need to customize the work content of the pipeline.',
   'Copy Pipeline': 'Copiar pipeline',
   'Batch Run Start': 'Batch Run Start',
   'Batch Run Success': 'Batch Run Completed',
@@ -511,7 +511,7 @@ module.exports = {
   'GitLab Server': 'GitLab Server',
   'GitLab Owner': 'Owner',
   CREATE_PIPELINE_DESC: 'Build, test and deploy with Pipelines',
-  'Choose a pipeline template': 'Choose a pipeline template',
+  'Choose a Pipeline Template': 'Choose a Pipeline Template',
   BATCH_RUN_DESC: 'Multi-branch does not support batch operation',
   'Sync Status': 'Sync Status',
 }
