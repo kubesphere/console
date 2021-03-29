@@ -30,6 +30,7 @@ export default class Crumb extends React.Component {
     crumbData: PropTypes.array,
     handleCrumbOperation: PropTypes.func,
     loading: PropTypes.bool,
+    cluster: PropTypes.string,
   }
 
   get crumbData() {
@@ -39,7 +40,6 @@ export default class Crumb extends React.Component {
   renderCrumbContainer = () => {
     const container = []
     const length = this.crumbData.length
-
     this.crumbData.forEach((item, index) => {
       container.push(
         <div key={`${item.name}-${item.type}`} title={item.name}>
@@ -49,7 +49,11 @@ export default class Crumb extends React.Component {
             name={item.name}
             crumb
           />
-          <span className={styles.crumbTitle}>{item.name}</span>
+          <span className={styles.crumbTitle}>
+            {index === 0 && item.type !== 'cluster' && this.props.cluster
+              ? `${item.name} (${this.props.cluster})`
+              : item.name}
+          </span>
           {index !== length - 1 ? <Icon name="caret-right" /> : null}
         </div>
       )

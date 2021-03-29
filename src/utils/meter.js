@@ -336,8 +336,7 @@ export const filterResourceLevel = async ({
   let keysArr = []
   let _data = []
 
-  const _type =
-    type === 'applications' ? 'apps' : type === 'openpitrixs' ? 'ops' : type
+  const _type = type === 'applications' ? 'apps' : type
 
   if (
     ['services', 'deployments', 'statefulsets', 'daemonsets'].includes(type)
@@ -345,7 +344,7 @@ export const filterResourceLevel = async ({
     if (rest.applications || rest.openpitrixs) {
       const _rest = cloneDeep(rest)
       const name = rest.applications || rest.openpitrixs
-      const __type = rest.applications ? 'apps' : 'ops'
+      const __type = rest.applications ? 'apps' : 'openpitrixs'
 
       _levelKey = `${_levelKey}.${__type}.${name}`
 
@@ -386,7 +385,7 @@ export const filterResourceLevel = async ({
 
 const handleAppMeter = (levelMeterData, params, meters, type) => {
   const customItemChartData = []
-  const _key = type === 'applications' ? 'apps' : 'ops'
+  const _key = type === 'applications' ? 'apps' : 'openpitrixs'
   const _levelMeterData = levelMeterData[params.namespaces][`${_key}`]
 
   !isEmpty(_levelMeterData) &&
@@ -411,7 +410,7 @@ const handleWorkloadMeter = (levelMeterData, type, params, meters) => {
   let _levelMeterData = ''
 
   if (params.applications || params.openpitrixs) {
-    const _type = params.applications ? 'apps' : 'ops'
+    const _type = params.applications ? 'apps' : 'openpitrixs'
     _levelMeterData = levelMeterData[params.namespaces][_type]
     const name = params.applications || params.openpitrixs
     const _name = Object.keys(_levelMeterData).find(
@@ -448,7 +447,7 @@ const handleWSPodsMeter = (levelMeterData, type, params, meters) => {
   let _levelMeterData = ''
 
   if (params.applications || params.openpitrixs) {
-    const _type = params.applications ? 'apps' : 'ops'
+    const _type = params.applications ? 'apps' : 'openpitrixs'
     _levelMeterData = levelMeterData[params.namespaces][_type]
     const name = params.applications || params.openpitrixs
     const _name = Object.keys(_levelMeterData).find(

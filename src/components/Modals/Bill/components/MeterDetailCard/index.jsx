@@ -121,8 +121,8 @@ const MeterDetailCard = ({
           <span> {t('Total Consumption By Creation')}</span>
         </div>
         <p>
-          {feeTotal}
           <span>{priceUnit}</span>
+          {feeTotal}
         </p>
       </div>
     )

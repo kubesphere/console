@@ -51,6 +51,8 @@
     padding: 40px 20px 80px;
     position: relative;
     background-color: $light-color02;
+    display: flex;
+    flex-direction: column;
 
     .usageCard {
       width: 100%;

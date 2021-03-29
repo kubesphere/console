@@ -230,7 +230,9 @@ export default class ClusterMeter extends Base {
     }
 
     if (type === 'pods') {
-      data = data.filter(item => item.status !== 'Completed')
+      data = data.filter(
+        item => item.status !== 'Completed' && item.status !== 'Error'
+      )
     }
 
     if (rest.node) {
