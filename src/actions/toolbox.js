@@ -24,6 +24,7 @@ import EventModal from 'components/Modals/EventSearch'
 import AuditingModal from 'components/Modals/AuditingSearch'
 import KubeCtlModal from 'components/Modals/KubeCtl'
 import KubeConfigModal from 'components/Modals/KubeConfig'
+import BillModal from 'components/Modals/Bill'
 
 export default {
   'toolbox.logquery': {
@@ -110,6 +111,18 @@ export default {
         },
         modal: KubeConfigModal,
         title: t('kubeconfig'),
+        ...props,
+      })
+    },
+  },
+  'toolbox.bill': {
+    on({ store, ...props }) {
+      const modal = Modal.open({
+        onOk: () => {
+          Modal.close(modal)
+        },
+        modal: BillModal,
+        store,
         ...props,
       })
     },

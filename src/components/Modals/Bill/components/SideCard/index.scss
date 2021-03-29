@@ -1,0 +1,64 @@
+@import '~scss/variables';
+
+.side {
+  width: 100%;
+  height: calc(100% - 60px);
+  overflow-y: auto;
+
+  .exportContainer {
+    position: absolute;
+    bottom: 80px;
+    width: 440px;
+    border-radius: 4px;
+    background-color: #242e42;
+    text-align: right;
+    z-index: 999;
+    color: #fff;
+
+    .text {
+      text-align: left;
+      float: left;
+      height: 36px;
+      line-height: 36px;
+      padding: 0 12px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 8px 20px;
+      margin-right: 12px;
+      transition: all $trans-speed ease-in-out;
+      cursor: pointer;
+      color: #fff;
+
+      &:hover {
+        background-color: $dark-color06;
+      }
+
+      &:active {
+        background-color: $dark-color08;
+      }
+    }
+  }
+}
+
+.usageCard {
+  width: 100%;
+  height: 80px;
+  background: #f9fbfd;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  .meterCard {
+    height: 100%;
+    padding: 20px 20px 0;
+    margin-bottom: 0;
+    background: none;
+    box-shadow: 0 -4px 4px rgba(36, 46, 66, 0.1);
+
+    ul li {
+      flex: 1 1 auto;
+    }
+  }
+}

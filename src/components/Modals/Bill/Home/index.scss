@@ -1,0 +1,92 @@
+@import '~scss/variables';
+
+.billHome {
+  height: 100%;
+  padding: 52px 20px 0;
+
+  .billHome__container {
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  .nav {
+    height: 20px;
+    margin-bottom: 40px;
+    display: flex;
+
+    button {
+      width: 20px;
+      height: 20px;
+      padding: 0;
+      background-color: $light-color04;
+      border: none;
+      border-radius: 4px;
+
+      & + button {
+        margin-left: 4px;
+      }
+    }
+
+    .message {
+      margin-left: 10px;
+      font-weight: $font-bold;
+      color: $dark-color06;
+    }
+  }
+
+  .container {
+    display: flex;
+    justify-content: flex-start;
+
+    & > div {
+      width: 33%;
+      min-height: 320px;
+      margin-right: 20px;
+      padding: 32px 20px;
+      align-content: flex-start;
+      overflow: hidden;
+      box-shadow: none;
+      border: 1px solid $light-color06;
+      border-radius: 3px;
+
+      &:nth-child(3) {
+        margin-right: 0;
+      }
+
+      & > div {
+        height: 48px;
+        margin-bottom: 8px;
+      }
+
+      .subTitle {
+        font-size: 14px;
+        font-weight: $font-bold;
+        margin-bottom: 8px;
+      }
+
+      .desc {
+        color: $dark-color01;
+        margin-bottom: 20px;
+      }
+
+      .infos {
+        margin-bottom: 20px;
+
+        li {
+          line-height: 20px;
+
+          &::before {
+            content: '';
+            width: 5px;
+            height: 5px;
+            margin-right: 4px;
+            display: inline-block;
+            border-radius: 50%;
+            background: $dark-color07;
+            vertical-align: middle;
+          }
+        }
+      }
+    }
+  }
+}

@@ -53,6 +53,21 @@ export default class KubeTools extends React.Component {
     })
   }
 
+  get isHideMeterModal() {
+    return (
+      globals.app.hasKSModule('metering') &&
+      (globals.app.hasPermission({
+        module: 'workspaces',
+        action: 'view',
+      }) ||
+        !isEmpty(globals.user.workspaces) ||
+        globals.app.hasPermission({
+          module: 'clusters',
+          action: 'view',
+        }))
+    )
+  }
+
   get toolList() {
     return [
       {
@@ -86,6 +101,14 @@ export default class KubeTools extends React.Component {
               !globals.app.isMultiCluster &&
               !globals.app.hasKSModule('auditing'),
             action: 'toolbox.auditingsearch',
+          },
+          {
+            icon: 'wallet',
+            title: t('Bill'),
+            description: t('BILLING_OPERATING_DESC'),
+            link: '/bill',
+            hidden: !this.isHideMeterModal,
+            action: 'toolbox.bill',
           },
         ],
       },

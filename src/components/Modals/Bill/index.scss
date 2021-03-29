@@ -1,0 +1,42 @@
+@import '~scss/variables';
+
+.billContainer {
+  background-color: $light-color02;
+  padding: 20px 16px 0 20px;
+
+  .billContent {
+    max-height: calc(100vh - 40px);
+    padding: 0;
+    top: 0;
+    bottom: 0;
+
+    .bill {
+      height: 100%;
+      overflow-y: auto;
+
+      .empty {
+        height: 100%;
+
+        .empty__Container {
+          height: 100%;
+          padding-top: 38vh;
+          margin-top: 0;
+        }
+      }
+    }
+  }
+}
+
+.billModalHeader {
+  padding: 0;
+  border: none;
+  background: transparent;
+
+  & > div {
+    min-height: auto !important;
+  }
+
+  & > button {
+    right: 0 !important;
+  }
+}

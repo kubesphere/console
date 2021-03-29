@@ -1,0 +1,12 @@
+.img {
+  position: relative;
+  border: 1px solid #242e42;
+  border-radius: 4px;
+  align-self: center;
+
+  & > span {
+    position: relative;
+    top: auto;
+    transform: translateY(0);
+  }
+}

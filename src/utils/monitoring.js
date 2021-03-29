@@ -107,7 +107,7 @@ export const getSuitableValue = (
   return `${count}${unitText}`
 }
 
-export const getValueByUnit = (num, unit) => {
+export const getValueByUnit = (num, unit, precision = 2) => {
   let value = parseFloat(num)
 
   switch (unit) {
@@ -175,13 +175,13 @@ export const getValueByUnit = (num, unit) => {
       break
   }
 
-  return Number(value) === 0 ? 0 : Number(value.toFixed(2))
+  return Number(value) === 0 ? 0 : Number(value.toFixed(precision))
 }
 
 export const getFormatTime = (ms, showDay) =>
   getLocalTime(Number(ms))
     .format(showDay ? 'MM-DD HH:mm' : 'HH:mm:ss')
-    .replace(/:00$/g, '')
+    .replace(/(\d+:\d+)(:00)$/g, '$1')
 
 export const getChartData = ({
   type,
