@@ -53,6 +53,7 @@ export default class Home extends React.Component {
     this.categoryStore = new CategoryStore()
 
     this.cateRef = React.createRef()
+    this.appRef = React.createRef()
   }
 
   get queryParams() {
@@ -117,15 +118,23 @@ export default class Home extends React.Component {
   }
 
   handleScroll = () => {
-    if (!this.cateRef || !this.cateRef.current) {
+    if (
+      !this.cateRef ||
+      !this.cateRef.current ||
+      !this.appRef ||
+      !this.appRef.current
+    ) {
       return
     }
 
     const scrollTop = getScrollTop()
     const classes = this.cateRef.current.classList
     const isFixed = classes.contains('fixed-cates')
+    const isValidate =
+      this.cateRef.current.clientHeight < this.appRef.current.clientHeight ||
+      this.cateRef.current.clientHeight < document.documentElement.clientHeight
 
-    if (scrollTop >= scrollThreshold && !isFixed) {
+    if (scrollTop >= scrollThreshold && !isFixed && isValidate) {
       classes.add('fixed-cates')
     } else if (scrollTop < scrollThreshold && isFixed) {
       classes.remove('fixed-cates')
@@ -230,6 +239,7 @@ export default class Home extends React.Component {
           {this.renderCategories()}
           <AppList
             className={styles.apps}
+            appRef={this.appRef}
             title={t('All')}
             apps={allApps.slice()}
             isLoading={isLoading}
