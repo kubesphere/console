@@ -22,6 +22,7 @@ import { isEmpty } from 'lodash'
 import { Notify } from '@kube-design/components'
 import { List } from 'components/Base'
 import { BoxInput } from 'components/Inputs'
+import { PATTERN_EMAIL } from 'utils/constants'
 
 import UserStore from 'stores/user'
 
@@ -40,13 +41,16 @@ export default class Item extends React.Component {
 
   userStore = new UserStore()
 
-  handleAdd = async email => {
-    const { value, onChange } = this.props
+  validateMail = email => {
+    const { value } = this.props
+    if (!email) {
+      Notify.error({ content: t('Please input email'), duration: 1000 })
+      return
+    }
     if (value.length > 50) {
       Notify.error({ content: t('50 email addresses at most'), duration: 1000 })
       return
     }
-
     if (value.some(item => item.email === email)) {
       Notify.error({
         content: t('This email address has existed'),
@@ -54,6 +58,15 @@ export default class Item extends React.Component {
       })
       return
     }
+    if (!PATTERN_EMAIL.test(email)) {
+      Notify.error({ content: t('Invalid email'), duration: 1000 })
+      return
+    }
+    return true
+  }
+
+  handleAdd = async email => {
+    const { value, onChange } = this.props
     const results = await this.userStore.fetchList({ email })
     const newData = !isEmpty(results) ? results[0] : { email }
     onChange([...value, newData])
@@ -72,6 +85,7 @@ export default class Item extends React.Component {
       <div className={styles.wrapper}>
         <BoxInput
           placeholder={t('Please enter an email address')}
+          validate={this.validateMail}
           onAdd={this.handleAdd}
         />
         {!isEmpty(value) && (

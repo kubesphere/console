@@ -38,12 +38,21 @@ export default class Item extends React.Component {
 
   userStore = new UserStore()
 
-  handleAdd = async channel => {
-    const { value, onChange } = this.props
+  validateChannel = channel => {
+    const { value } = this.props
+    if (!channel) {
+      Notify.error({ content: t('Please enter a channel'), duration: 1000 })
+      return
+    }
     if (value.some(item => item === channel)) {
       Notify.error({ content: t('This channel has existed'), duration: 1000 })
       return
     }
+    return true
+  }
+
+  handleAdd = channel => {
+    const { value, onChange } = this.props
     onChange([...value, channel])
   }
 
@@ -61,6 +70,7 @@ export default class Item extends React.Component {
         <BoxInput
           placeholder={t('Please enter a channel')}
           onAdd={this.handleAdd}
+          validate={this.validateChannel}
         />
         {value.length > 0 && (
           <div className="margin-t12">

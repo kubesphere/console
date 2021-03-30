@@ -159,13 +159,7 @@ export default class WeCom extends React.Component {
   onAddReceiver = (type, value) => {
     const { formData } = this.state
     const data = get(formData, `receiver.spec.wechat.${type}`, [])
-    if (data.includes(value)) {
-      Notify.error({
-        content: t(`This ${type} has existed`),
-        duration: 1000,
-      })
-      return
-    }
+
     set(formData, `receiver.spec.wechat.${type}`, [...data, value])
     this.setState({ formData, showTip: true })
   }

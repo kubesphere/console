@@ -35,6 +35,7 @@ module.exports = {
   'Please enter the SMTP username': 'Please enter the SMTP username',
   'Please enter an email address': 'Please enter an email address',
   'This email address has existed': 'This email address has existed',
+  'Invalid address': 'Invalid address',
   'Invalid email': 'Invalid email address',
   '50 email addresses at most': '50 email addresses at most',
   'Please add the receiver email address':
@@ -73,9 +74,12 @@ module.exports = {
   'Please enter the WeChat API Agent ID':
     'Please enter the WeChat API Agent ID',
   'Please enter the WeChat API Secret': 'Please enter the WeChat API Secret',
-  'This toUser has existed': 'This toUser has existed',
-  'This toParty has existed': 'This toParty has existed',
-  'This toTag has existed': 'This toTag has existed',
+  'Please enter a toUser': 'Please enter a user',
+  'Please enter a toParty': 'Please enter a department',
+  'Please enter a toTag': 'Please enter a tag',
+  'This toUser has existed': 'This user has existed',
+  'This toParty has existed': 'This department has existed',
+  'This toTag has existed': 'This tag has existed',
 
   WECOM_DESC:
     'You can receive WeCom notifications from the platform after configuring the WeCom server.',

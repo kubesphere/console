@@ -35,6 +35,7 @@ module.exports = {
   'Please enter the SMTP username': 'Por favor ingrese el usuario SMTP',
   'Please enter an email address': 'Ingrese un correo electrónico para agregar',
   'This email address has existed': 'Este correo electrónico ha existido',
+  'Invalid address': 'Dirección no válida',
   'Invalid email': 'Email inválido',
   '50 email addresses at most': 'Agregar hasta 50 correos',
   'Please add the receiver email address':
@@ -74,9 +75,12 @@ module.exports = {
   'Please enter the WeChat API Agent ID':
     'Por favor ingrese la identificación del agente de wechat api',
   'Please enter the WeChat API Secret': 'Por favor ingrese wechat api secreto',
+  'Please enter a user': 'Por favor ingrese un usuario',
+  'Please enter a department': 'Por favor ingrese un departamento',
+  'Please enter a tag': 'Ingrese una etiqueta',
   'This toUser has existed': 'Este usuario ha existido',
-  'This toParty has existed': 'Este toParty ha existido',
-  'This toTag has existed': 'Este toTag ha existido',
+  'This toParty has existed': 'Este departamento ha existido',
+  'This toTag has existed': 'Esta etiqueta ha existido',
 
   WECOM_DESC:
     'Puede recibir notificaciones de la plataforma a través de Enterprise WeChat y debe configurar el servidor de envío de WeChat empresarial.',

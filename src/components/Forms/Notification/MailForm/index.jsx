@@ -23,6 +23,8 @@ import { Form, Button, Input, Alert, Checkbox } from '@kube-design/components'
 import { ToggleField } from 'components/Base'
 import { UrlInput } from 'components/Inputs'
 
+import { PATTERN_HOST } from 'utils/constants'
+
 import Item from './Item'
 
 import styles from './index.scss'
@@ -95,6 +97,13 @@ export default class MailForm extends Component {
                 className={styles.urlInput}
                 portName="config.spec.email.smartHost.port"
                 hostName="config.spec.email.smartHost.host"
+                hostRules={[
+                  { required: true, message: t('Please enter the address') },
+                  {
+                    pattern: PATTERN_HOST,
+                    message: t('Invalid address'),
+                  },
+                ]}
                 defaultPort={25}
               />
             </Form.Item>
