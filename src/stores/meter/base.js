@@ -75,7 +75,6 @@ export default class MeterStore extends base {
     pods,
     nodes,
     module,
-    operation,
   }) {
     let path = ''
 
@@ -88,12 +87,8 @@ export default class MeterStore extends base {
     }
 
     if (namespaces || module === 'namespaces') {
-      if (operation) {
-        path += `/namespaces/${namespaces}`
-      } else {
-        path +=
-          module === 'namespaces' ? `/namespaces` : `/namespaces/${namespaces}`
-      }
+      path +=
+        module === 'namespaces' ? `/namespaces` : `/namespaces/${namespaces}`
     }
 
     if (applications) {
@@ -127,20 +122,15 @@ export default class MeterStore extends base {
     return path
   }
 
-  getApi = ({ module, operation, ...params }) => {
+  getApi = ({ module, ...params }) => {
     return `${this.apiVersion}${this.getPaths({
       module,
-      operation,
       ...params,
     })}`
   }
 
-  getTenantApi = ({ module, operation, ...params }) => {
-    return `${this.tenantUrl({ cluster: params.cluster })}${this.getPaths({
-      module,
-      operation,
-      ...params,
-    })}`
+  getTenantApi = ({ module, ...params }) => {
+    return `${this.tenantUrl({ cluster: params.cluster })}/metering`
   }
 
   getExportParams = ({
@@ -373,11 +363,18 @@ export default class MeterStore extends base {
       })
     }
 
-    url = this.getApi({
-      module: filter.module,
-      operation: filter.operation,
-      ...resource,
-    })
+    if (filter.module === 'namespaces') {
+      url = this.getTenantApi({
+        module: filter.module,
+        ...resource,
+      })
+      params = { ...params, ...handleLevelParams({ module: filter.module }) }
+    } else {
+      url = this.getApi({
+        module: filter.module,
+        ...resource,
+      })
+    }
 
     const result = await request.get(url, params, {}, () => {
       return []

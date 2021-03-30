@@ -206,7 +206,7 @@ export const getResourceFilters = ({ resources, module }) => {
         data = { applications: resourcesString }
         break
       case 'openpitrixs':
-        data = { op_ids: resourcesString }
+        data = { openpitrixs_ids: resourcesString }
         break
       case 'services':
         data = { services: resourcesString }

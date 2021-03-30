@@ -3,7 +3,7 @@ import { observer } from 'mobx-react'
 import { action, observable, toJS } from 'mobx'
 import { Loading, Icon } from '@kube-design/components'
 import { saveAs } from 'file-saver'
-import { isEmpty, last } from 'lodash'
+import { clone, isEmpty, isUndefined, last } from 'lodash'
 import SideCardItem from './item'
 import styles from './index.scss'
 
@@ -19,13 +19,17 @@ export default class SideContainer extends React.Component {
   }
 
   @action
-  getBillReportList = name => {
-    const hasResource = this.billReportList.indexOf(name) > -1
+  getBillReportList = ({ name, type }) => {
+    const hasResource = !isUndefined(
+      this.billReportList.find(item => item.name === name)
+    )
 
     if (hasResource) {
-      this.billReportList = this.billReportList.filter(item => item !== name)
+      this.billReportList = this.billReportList.filter(
+        item => item.name !== name
+      )
     } else {
-      this.billReportList.push(name)
+      this.billReportList.push({ name, type })
     }
   }
 
@@ -48,18 +52,24 @@ export default class SideContainer extends React.Component {
       params.cluster = cluster
     }
 
+    if (module === 'applications' || module === 'openpitrixs') {
+      delete params[module]
+    }
+
     const request = []
+
     this.billReportList.forEach(item => {
-      params[module] = item
+      const _params = clone(params)
+      _params[item.type] = item.name
 
       request.push(
         fetchMeterData({
-          module,
+          module: item.type,
           meters: 'all',
-          resources: [item],
+          resources: [item.name],
           isTime: true,
           operation: 'export',
-          ...params,
+          ..._params,
           ...timeRange,
         })
       )
@@ -68,7 +78,7 @@ export default class SideContainer extends React.Component {
     const results = await Promise.all(request)
     results.forEach((result, index) => {
       const blob = new Blob([result], { type: 'text/plain;charset=utf-8' })
-      saveAs(blob, `${this.billReportList[index]}.csv`)
+      saveAs(blob, `${this.billReportList[index].name}.csv`)
     })
     this.billReportList = []
   }
@@ -115,7 +125,7 @@ export default class SideContainer extends React.Component {
     ) : null
   }
 
-  render() {
+  renderSideCardItem = () => {
     const {
       list,
       active,
@@ -124,25 +134,33 @@ export default class SideContainer extends React.Component {
       clusterList = [],
     } = this.props
 
+    return list.map(item => (
+      <SideCardItem
+        key={`${item.name}-${item.type}`}
+        data={item}
+        active={active}
+        clusterList={clusterList}
+        getCurrentMeterData={handleSelectResource}
+        getChildrenData={this.getChildrenData}
+        getCheckData={this.getBillReportList}
+        loading={loading}
+        isCheck={
+          !isUndefined(
+            this.billReportList.find(_item => _item.name === item.name)
+          )
+        }
+      />
+    ))
+  }
+
+  render() {
+    const { loading } = this.props
+
     return (
       <div className={styles.side}>
         <div className={styles.sideList}>
           <Loading spinning={loading} style={{ width: '100%' }}>
-            <>
-              {list.map(item => (
-                <SideCardItem
-                  key={`${item.name}-${item.type}`}
-                  data={item}
-                  active={active}
-                  clusterList={clusterList}
-                  getCurrentMeterData={handleSelectResource}
-                  getChildrenData={this.getChildrenData}
-                  getCheckData={this.getBillReportList}
-                  loading={loading}
-                  isCheck={this.billReportList.indexOf(item.name) > -1}
-                />
-              ))}
-            </>
+            <>{this.renderSideCardItem()}</>
           </Loading>
         </div>
         {this.renderBillReportConform()}
