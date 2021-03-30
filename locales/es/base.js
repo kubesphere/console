@@ -467,6 +467,7 @@ module.exports = {
   CREATE_STATUS_SUCCESS: 'Creado con éxito',
   CREATE_STATUS_UPDATING: 'Creando',
   CREATE_STATUS_FAILED: 'Creado sin éxito',
+  CREATE_STATUS_DELETING: 'Eliminando',
   EMPTY_WRAPPER: 'No se ha encontrado {resource}',
   'rules text':
     '¿Cómo definir la colección de reglas de operación para los registros de auditoría?',

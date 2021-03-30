@@ -520,6 +520,7 @@ module.exports = {
   CREATE_STATUS_SUCCESS: '创建成功',
   CREATE_STATUS_UPDATING: '创建中',
   CREATE_STATUS_FAILED: '创建失败',
+  CREATE_STATUS_DELETING: '删除中',
 
   DATA_SOURCE: '数据源',
 

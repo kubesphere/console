@@ -170,6 +170,7 @@ module.exports = {
   VOLUME_SNAPSHOT_STATUS_CREATING: '创建中',
   VOLUME_SNAPSHOT_STATUS_READY: '创建成功',
   VOLUME_SNAPSHOT_STATUS_FAILED: '创建失败',
+  VOLUME_SNAPSHOT_STATUS_DELETING: '删除中',
 
   'Snapshot Message': '快照信息',
   'Snapshots Message': '快照信息',
