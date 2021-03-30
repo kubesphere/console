@@ -150,4 +150,5 @@ module.exports = {
   "Please input the node's name": 'Please input the node name',
   INSTALL_EDGENODE_DESC:
     'Before running the command, please make sure that the container runtime such as docker or containerd has been installed on the edge node, see <a href="https://kubeedge.io/en/docs/" target="_blank">document</a>',
+  ADD_DEFAULT_STAIN: 'Add default stain {params}',
 }
