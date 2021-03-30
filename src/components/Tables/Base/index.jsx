@@ -100,7 +100,6 @@ export default class WorkloadTable extends React.Component {
       return true
     }
 
-    // new props ?
     if (
       nextProps.data !== this.props.data ||
       nextProps.columns.length !== this.props.columns.length ||
@@ -119,22 +118,14 @@ export default class WorkloadTable extends React.Component {
     return false
   }
 
-  componentDidMount() {
-    this.mounted = true
-  }
-
-  componentWillUnmount() {
-    this.mounted = false
-  }
-
   get showEmpty() {
-    const { filters, pagination } = this.props
+    const { filters, pagination, isLoading } = this.props
 
     if ('showEmpty' in this.props) {
       return this.props.showEmpty
     }
 
-    return this.mounted && isEmpty(filters) && pagination.total === 0
+    return !isLoading && isEmpty(filters) && pagination.total === 0
   }
 
   get filteredColumns() {

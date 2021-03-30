@@ -83,6 +83,7 @@ export default class AuthorizedUsers extends React.Component {
       icon: 'human',
       name: 'Users',
       desc: t('NO_AUTHORIZED_USERS'),
+      className: styles.table,
     }
   }
 
