@@ -25,6 +25,7 @@ import {
   Button,
   Tooltip,
   Icon,
+  Checkbox,
 } from '@kube-design/components'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 
@@ -45,6 +46,7 @@ export default class AddEdgeModal extends Component {
     link: '',
     loading: false,
     showLink: false,
+    isCheck: true,
     formData: clone(this.props.formTemplate || {}),
   }
 
@@ -94,7 +96,10 @@ export default class AddEdgeModal extends Component {
           })
           .then(result => {
             if (result.status !== 'Failure') {
-              this.setState({ link: result.data, showLink: true })
+              const link = this.state.isCheck
+                ? `${result.data} --with-edge-taint`
+                : result.data
+              this.setState({ link, showLink: true })
             }
             this.setState({ loading: false })
           })
@@ -148,6 +153,10 @@ export default class AddEdgeModal extends Component {
         </CopyToClipboard>
       </div>
     ) : null
+  }
+
+  handleChangeCheck = check => {
+    this.setState({ isCheck: check })
   }
 
   render() {
@@ -207,11 +216,20 @@ export default class AddEdgeModal extends Component {
                 onChange={this.emptyLink}
               />
             </Form.Item>
+
             <Button onClick={this.handleLink} loading={this.state.loading}>
               {t('Validate')}
             </Button>
           </div>
-
+          <Checkbox
+            defaultValue={true}
+            checked={this.state.isCheck}
+            onChange={this.handleChangeCheck}
+          >
+            {t('ADD_DEFAULT_STAIN', {
+              params: 'node-role.kubernetes.io/edge="":NoSchedule',
+            })}
+          </Checkbox>
           {this.renderLink()}
         </Form>
       </Modal>
