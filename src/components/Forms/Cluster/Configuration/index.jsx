@@ -21,12 +21,17 @@ import { Form, Icon, Select } from '@kube-design/components'
 import { Text, CodeEditor } from 'components/Base'
 import { getDocsUrl } from 'utils'
 
+import { get } from 'lodash'
 import Title from '../Title'
 import styles from './index.scss'
 
 export default class Confiuguration extends React.Component {
-  state = {
-    connectType: 'direct',
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      connectType: get(props.formTemplate, 'spec.connection.type', 'direct'),
+    }
   }
 
   get types() {

@@ -2,7 +2,8 @@
 @import '~scss/mixins';
 
 .text {
-  margin-bottom: 32px;
+  margin-top: 40px;
+  margin-bottom: 40px;
 
   & > div {
     @include TypographyTitleH4($dark-color07);
