@@ -96,7 +96,10 @@ export default function Card({
   const renderCheckbox = () => {
     return !noIcon ? (
       <div className={styles.checkContainer} onClick={e => e.stopPropagation()}>
-        <Checkbox checked={isCheck} onClick={() => getCheckData(name)} />
+        <Checkbox
+          checked={isCheck}
+          onClick={() => getCheckData({ name, type })}
+        />
       </div>
     ) : null
   }
