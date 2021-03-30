@@ -24,11 +24,11 @@ import ServiceComponents from 'components/Forms/Cluster/ServiceComponents'
 import AdvanceSettings from 'components/Forms/Cluster/AdvanceSettings'
 
 export const IMPORT_CLUSTER = [
-  {
-    title: 'How to Add',
-    component: Providers,
-    required: true,
-  },
+  // {
+  //   title: 'How to Add',
+  //   component: Providers,
+  //   required: true,
+  // },
   {
     title: 'Basic Info',
     component: BaseInfo,

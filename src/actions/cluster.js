@@ -20,8 +20,8 @@ import { get, set, unset, cloneDeep } from 'lodash'
 import { Notify } from '@kube-design/components'
 import { Modal } from 'components/Base'
 import CreateModal from 'components/Modals/FullCreate'
-import { NEW_CLUSTER } from 'configs/steps/clusters'
-import { NEW_CLUSTER_SPEC } from 'components/Forms/Cluster/constants'
+import { IMPORT_CLUSTER } from 'configs/steps/clusters'
+import { IMPORT_CLUSTER_SPEC } from 'components/Forms/Cluster/constants'
 import KubeKeyClusterStore from 'stores/cluster/kubekey'
 import { safeParseJSON } from 'utils'
 
@@ -29,7 +29,7 @@ export default {
   'cluster.add': {
     on({ store, module, success, ...props }) {
       store.kubekey = new KubeKeyClusterStore()
-      const formTemplate = cloneDeep(NEW_CLUSTER_SPEC)
+      const formTemplate = cloneDeep(IMPORT_CLUSTER_SPEC)
       const modal = Modal.open({
         onOk: async newObject => {
           if (!newObject) {
@@ -55,7 +55,7 @@ export default {
         module,
         formTemplate,
         title: t('Add Cluster'),
-        steps: NEW_CLUSTER,
+        steps: IMPORT_CLUSTER,
         modal: CreateModal,
         store,
         ...props,
