@@ -260,21 +260,21 @@ class Overview extends React.Component {
     const { isLoading = false } = this.componentMonitoringStore.health
 
     return (
-      <Loading spinning={isLoading}>
-        <Card className={styles.components} title={t('Component Status')}>
+      <Card className={styles.components} title={t('Component Status')}>
+        <Loading spinning={isLoading}>
           <div className={styles.wrapper}>
             {this.renderServiceComponents()}
             {this.renderCoreComponents()}
           </div>
-        </Card>
-      </Loading>
+        </Loading>
+      </Card>
     )
   }
 
   render() {
     return (
       <div>
-        <Columns className="is-variable is-1_1">
+        <Columns className="is-1_1">
           <Column className="is-5">{this.renderNodeStatus()}</Column>
           <Column className="is-7">{this.renderComponentStatus()}</Column>
         </Columns>
