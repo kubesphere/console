@@ -120,7 +120,8 @@ module.exports = {
   'Service components should not be empty':
     'Service components should not be empty',
   'Service Ports': 'Service Ports',
-  SERVICE_PORT_NAME_DESC: 'SERVICE_PORT_NAME_DESC',
+  SERVICE_PORT_NAME_DESC:
+    'The port name must follow the format: <protocol>[-<suffix>]. http, http2, grpc, mongo or redis can be used as <protocol> so that you can use Istio’s routing features. For example, name: http2-foo and name: http are valid while name: http2foo is invalid.',
   'Services & Operations': 'Services & Operations',
   'Session retention': 'Session retention',
   'Success rate': 'Success rate',
@@ -128,11 +129,11 @@ module.exports = {
   'TCP - Inbound Traffic': 'TCP - Inbound Traffic',
   'TCP - Outbound Traffic': 'TCP - Outbound Traffic',
   'TCP connection timeout.': 'TCP connection timeout.',
-  'Temporarily unable to use tracing': 'Temporarily unable to use tracing',
+  'Temporarily unable to use tracing': 'Tracing is not available now',
   'Temporarily unable to use traffic management':
-    'Temporarily unable to use traffic management',
+    'Traffic management is not available now',
   'The app has not received the request for a long time, please visit the app and try traffic management':
-    'The app has not received the request for a long time, please visit the app and try traffic management',
+    'The app has not received requests for a long time. Please try again later.',
   'The maximum number of HTTP1 or TCP connections to the target host.':
     'The maximum number of HTTP1 or TCP connections to the target host.',
   'The maximum number of retries to the target host within the specified time.':

@@ -19,11 +19,11 @@
 module.exports = {
   'A general introduction to the application':
     'A general introduction to the app',
-  'Activate Successfully': 'Activate Successfully',
+  'Activate Successfully': 'Activated Successfully',
   'Add Version': 'Add Version',
-  'Add Version Successfully': 'Add Version Successfully',
+  'Add Version Successfully': 'Version Added Successfully',
   'Adjust App Category': 'Adjust App Category',
-  'Adjust Successfully': 'Adjust Successfully',
+  'Adjust Successfully': 'Adjusted Successfully',
   'All Categories': 'All Categories',
   'App Categories': 'App Categories',
   'App Category': 'App Category',
@@ -52,7 +52,7 @@ module.exports = {
   'Apps Management': 'App Management',
   'Base Info': 'Basic Information',
   'Business introduction': 'Business introduction',
-  'Cancel Successfully': 'Cancel Successfully',
+  'Cancel Successfully': 'Cancelled Successfully',
   'Category Name': 'Category Name',
   'Change Category': 'Change Category',
   'Chart Files': 'Chart Files',
@@ -62,7 +62,7 @@ module.exports = {
   'Create Time': 'Create Time',
   'Delete all': 'Delete all',
   'Delete picture': 'Delete picture',
-  'Delete Successfully': 'Delete Successfully',
+  'Delete Successfully': 'Deleted Successfully',
   'Deploy after login': 'Deploy after login',
   'Deploy now': 'Deploy now',
   'Detail Introduction': 'Detail Introduction',
@@ -79,7 +79,7 @@ module.exports = {
   'Instance Name': 'Instance Name',
   Introduction: 'Introduction',
   'Latest Version': 'Latest Version',
-  'Modify Successfully': 'Modify Successfully',
+  'Modify Successfully': 'Modified Successfully',
   'New Apps': 'New Apps',
   'New Version': 'New Version',
   'No update log': 'No update log',
@@ -147,17 +147,17 @@ module.exports = {
   FILE_UPLOAD_MAX: 'The file size cannot exceed 2M.',
 
   APP_TEMPLATE_DESC:
-    'KubeSphere provides full lifecycle management for applications. You can upload or create new app templates and test them quickly. In addition, you can publish your apps to App Store so that other users can deploy with one click.',
+    'KubeSphere provides full lifecycle management for apps. You can upload or create new app templates and test them quickly. In addition, you can publish your apps to the App Store so that other users can deploy with one click.',
   APP_TEMPLATE_CREATE_DESC:
-    'KubeSphere provides full lifecycle management for applications. You can upload or create new app templates and test them quickly. In addition, you can publish your apps to App Store so that other users can deploy with one click.',
+    'KubeSphere provides full lifecycle management for apps. You can upload or create new app templates and test them quickly. In addition, you can publish your apps to the App Store so that other users can deploy with one click.',
   APP_TEMPLATES_DESC:
-    'KubeSphere provides full lifecycle management for applications. You can upload or create new app templates and test them quickly. In addition, you can publish your apps to App Store so that other users can deploy with one click.',
+    'KubeSphere provides full lifecycle management for apps. You can upload or create new app templates and test them quickly. In addition, you can publish your apps to the App Store so that other users can deploy with one click.',
 
   DEVELOP_APP_TITLE: 'How do I develop app templates?',
   DEVELOP_APP_DESC:
     'You can upload Helm Chart or use the resource orchestration tool provided by KubeSphere to develop app templates.',
 
-  HOW_PUBLISH_APP_TITLE: 'How to publish applications to the App Store?',
+  HOW_PUBLISH_APP_TITLE: 'How do I publish apps to the App Store?',
   HOW_PUBLISH_APP_DESC:
     'KubeSphere currently supports uploading Helm Charts through app templates within the workspace, where you can submit your template for review. Once the template is approved, you can publish it to the App Store.',
 
