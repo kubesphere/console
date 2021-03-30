@@ -41,7 +41,7 @@ module.exports = {
   Application: 'Aplicación',
   'Application Workloads': 'Workload de aplicaciones',
   Apply: 'Aplicar',
-  'As of Date': 'Fecha actual',
+  'Data Updated': 'Fecha actual',
   auditing: 'auditando',
   Auditing: 'Auditando',
   'Auditing Operating': 'Auditoría Operativa',
@@ -196,7 +196,7 @@ module.exports = {
   'No Limit': 'Sin límite',
   'No parameters': 'Sin parámetros',
   'No Relevant Data': 'Sin datos relevantes',
-  'No resources matching the filter have been found yet':
+  'No matching resources found. ':
     'Aún no se han encontrado recursos que coincidan con el filtro',
   'No.': 'Num.',
   Nobody: 'Nadie',
@@ -522,5 +522,5 @@ module.exports = {
   EVENT_FROM: 'From',
 
   Bill: 'Medição e faturamento',
-  BILLING_OPERATING_DESC: 'Check Consumption',
+  BILLING_OPERATING_DESC: 'Track resource consumption.',
 }

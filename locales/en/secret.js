@@ -20,7 +20,7 @@ module.exports = {
   'Account Password Secret': 'Account Password Secret',
   'Add Data': 'Add Data',
   'Add key / value pair data': 'Add key / value pair data',
-  'Config Number': 'Config Number',
+  'Config Number': 'Count',
   Data: 'Data',
   'Edit Data': 'Edit Data',
   'Edit Secret': 'Edit Secret',

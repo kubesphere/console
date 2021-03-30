@@ -124,7 +124,7 @@ module.exports = {
 
   ALERTING_DURATION:
     'After the monitoring target meets the alert condition for the alert duration, the alert will be triggered',
-  ALERT_RULE_INACTIVE: 'InActive',
+  ALERT_RULE_INACTIVE: 'Inactive',
   ALERT_RULE_PENDING: 'Pending',
   ALERT_RULE_FIRING: 'Firing',
   ALERT_RULE_HEALTH_OK: 'Health',
@@ -132,5 +132,5 @@ module.exports = {
   ALERT_RULE_HEALTH_UNKNOWN: 'UnKnown',
 
   ALERT_RULE_EXPRESSION_DESC:
-    'Alert rules can be customized through PromQL statements. For PromQL related syntax, please refer to <a href="https://prometheus.io/docs/prometheus/latest/querying/basics/" target="_blank" rel="noreferrer noopener"> Prometheus Querying</a>',
+    'Alerting rules can be customized through PromQL statements. For PromQL related syntax, refer to <a href="https://prometheus.io/docs/prometheus/latest/querying/basics/" target="_blank" rel="noreferrer noopener"> Prometheus Querying</a>.',
 }
