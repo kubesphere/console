@@ -79,7 +79,7 @@ export const SERVICE_TYPES = {
 export const VOLUME_SNAPSHOT_STATUS = [
   { text: 'VOLUME_SNAPSHOT_STATUS_CREATING', value: 'creating' },
   { text: 'VOLUME_SNAPSHOT_STATUS_READY', value: 'ready' },
-  { text: 'VOLUME_SNAPSHOT_STATUS_FAILED', value: 'failed' },
+  { text: 'VOLUME_SNAPSHOT_STATUS_DELETING', value: 'deleting' },
 ]
 
 export const INGRESS_ANNOTATIONS = [

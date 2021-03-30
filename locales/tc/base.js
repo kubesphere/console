@@ -522,6 +522,7 @@ module.exports = {
   CREATE_STATUS_SUCCESS: '創建成功',
   CREATE_STATUS_UPDATING: '創建中',
   CREATE_STATUS_FAILED: '創建失敗',
+  CREATE_STATUS_DELETING: '删除中',
 
   DATA_SOURCE: '數據源',
 

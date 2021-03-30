@@ -481,6 +481,7 @@ module.exports = {
   CREATE_STATUS_SUCCESS: 'Created successfully',
   CREATE_STATUS_UPDATING: 'Creating',
   CREATE_STATUS_FAILED: 'Creation failed',
+  CREATE_STATUS_DELETING: 'Deleting',
 
   EMPTY_WRAPPER: 'No {resource} Found',
 

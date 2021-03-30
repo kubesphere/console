@@ -73,6 +73,7 @@ module.exports = {
   VOLUME_SNAPSHOT_STATUS_CREATING: 'Creating',
   VOLUME_SNAPSHOT_STATUS_FAILED: 'Creation failed',
   VOLUME_SNAPSHOT_STATUS_READY: 'Created successfully',
+  VOLUME_SNAPSHOT_STATUS_DELETING: 'Deleting',
   volumes: 'volumes',
   VolumeSnapshots: 'Volume Snapshots',
 

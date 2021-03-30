@@ -170,6 +170,7 @@ module.exports = {
   VOLUME_SNAPSHOT_STATUS_CREATING: '創建中',
   VOLUME_SNAPSHOT_STATUS_READY: '創建成功',
   VOLUME_SNAPSHOT_STATUS_FAILED: '創建失敗',
+  VOLUME_SNAPSHOT_STATUS_DELETING: '刪除中',
 
   'Snapshot Message': '快照資訊',
   'Snapshots Message': '快照資訊',

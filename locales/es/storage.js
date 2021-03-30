@@ -71,9 +71,10 @@ module.exports = {
   'Volume Usage': 'Uso de volumen',
   VOLUME_DESC:
     'A volume is used for workloads created by users. It represents a resource object for the persistent storage of workloads.',
-  VOLUME_SNAPSHOT_STATUS_CREATING: 'Creating',
-  VOLUME_SNAPSHOT_STATUS_FAILED: 'Created unsuccessfully',
-  VOLUME_SNAPSHOT_STATUS_READY: 'Created successfully',
+  VOLUME_SNAPSHOT_STATUS_CREATING: 'Creando',
+  VOLUME_SNAPSHOT_STATUS_FAILED: 'Creado sin éxito',
+  VOLUME_SNAPSHOT_STATUS_READY: 'Creado con éxito',
+  VOLUME_SNAPSHOT_STATUS_DELETING: 'Eliminando',
   volumes: 'volúmenes',
   VolumeSnapshots: 'Volume Snapshots',
   'Storage Classs': 'Clases de almacenamiento',

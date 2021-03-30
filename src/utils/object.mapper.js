@@ -1078,7 +1078,7 @@ const VolumeSnapshotMapper = detail => {
   const { spec = {}, status = {}, metadata = {} } = detail
   const { error = {}, readyToUse } = status
   const { message } = error
-  const { namespace = '' } = metadata
+  const { namespace = '', deletionTimestamp = '' } = metadata
   const snapshotSourceName = get(spec, 'source.persistentVolumeClaimName')
 
   return {
@@ -1089,7 +1089,11 @@ const VolumeSnapshotMapper = detail => {
     errorMessage: message,
     generating: !readyToUse && isEmpty(error),
     readyToUse,
-    backupStatus: readyToUse ? 'success' : message ? 'failed' : 'updating',
+    backupStatus: deletionTimestamp
+      ? 'deleting'
+      : readyToUse
+      ? 'success'
+      : 'updating',
     namespace,
     snapshotSourceName,
   }
