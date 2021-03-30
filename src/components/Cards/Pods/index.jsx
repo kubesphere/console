@@ -240,7 +240,7 @@ export default class PodsCard extends React.Component {
     this.monitorStore.fetchMetrics({
       step: '1m',
       times: 30,
-      resources: data.map(item => item.name),
+      namespacedResources: data.map(item => `${item.namespace}/${item.name}`),
       metrics: Object.values(MetricTypes),
       ...this.state.params,
       ...params,
