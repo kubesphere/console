@@ -149,11 +149,18 @@ export default class Services extends React.Component {
     this.updateGovernance(data)
 
     const key = get(data, 'service.metadata.name')
+    const oldName = get(this.state.editData, 'Service.metadata.name')
     this.setState(
-      ({ components }) => ({
-        components: { ...components, [key]: data },
-      }),
+      ({ components }) => {
+        if (oldName && components[oldName]) {
+          delete components[oldName]
+        }
+        return { components: { ...components, [key]: data }, editData: {} }
+      },
       () => {
+        if (oldName) {
+          delete this.props.formData[oldName]
+        }
         this.props.formData[key] = data
         this.updateComponentKind()
         this.hideAdd()
