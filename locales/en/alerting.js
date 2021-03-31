@@ -117,7 +117,7 @@ module.exports = {
   REQUESTS_FOR_PUSH_AN_ALARM_Q:
     'Prerequisites for a push message of alerting policy',
   REQUESTS_FOR_PUSH_AN_ALARM_A:
-    'The platform administrator must set up the mail server.',
+    'The platform administrator must select a notification method and configure the corresponding server.',
   HOW_TO_SUPRESS_AN_ALARM_Q: 'How do I suppress alerting messages?',
   HOW_TO_SUPRESS_AN_ALARM_A:
     'Each alerting policy can be set at different levels, and each level corresponds to a different alert period and repetition period.',
