@@ -82,7 +82,7 @@ module.exports = {
   NOEXECUTE_OPTION: 'NoExecute',
 
   TAINTS_MSG:
-    'If a taint with "key=value" is added to the node, it means no pod will be scheduled to this node (PodToleratesNodeTaints policy) or at least scheduling is avoided as much as possible (TaintTolerationPriority policy), unless the pod has a matching toleration with "key=value".',
+    'If a taint with "key=value" is added to the node, it means no Pod will be scheduled to this node (PodToleratesNodeTaints policy) or at least scheduling is avoided as much as possible (TaintTolerationPriority policy), unless the Pod has a matching toleration with "key=value".',
   TAINTS_TIPS:
     'If there is at least one un-ignored taint with effect NoSchedule, then the system will not schedule pods onto that node. <br />If there is no un-ignored taint with effect NoSchedule but there is at least one un-ignored taint with effect PreferNoSchedule, then the system will try not to schedule pods onto the node.<br />if there is at least one un-ignored taint with effect NoExecute, then the pods will be evicted from the node (if it is already running on the node), and will not be scheduled onto the node (if it is not yet running on the node).',
   NO_TAINTS_TIPS: 'No taints have been set yet.',
@@ -96,13 +96,13 @@ module.exports = {
   NODE_STATUS_FAILED: 'Failed',
 
   CLUSTER_NODE_DESC:
-    'This module manages cluster nodes and shows the running status of them. You can edit or delete nodes here.',
+    'This module manages cluster nodes and shows the status of them. You can edit or delete nodes here.',
   CLUSTER_NODE_CREATE_DESC:
-    'This module manages cluster nodes and shows the running status of them. You can edit or delete nodes here.',
+    'This module manages cluster nodes and shows the status of them. You can edit or delete nodes here.',
   EDGE_NODE_DESC:
-    'This module manages edge nodes and shows the running status of them. You can edit or delete nodes here.',
+    'This module manages edge nodes and shows the status of them. You can edit or delete nodes here.',
   EDGE_NODE_CREATE_DESC:
-    'This module manages edge nodes and shows the running status of them. You can edit or delete nodes here.',
+    'This module manages edge nodes and shows the status of them. You can edit or delete nodes here.',
   NODE_NETWORKUNAVAILABLE: 'NetworkUnavailable',
   NODE_NETWORKUNAVAILABLE_DESC:
     'Check if the network configuration on the node is available',
@@ -133,7 +133,7 @@ module.exports = {
   NODE_READY_TIP: 'If the node is healthy and ready to accept pods.',
 
   NODE_TYPES_Q: 'What are the types of cluster nodes?',
-  NODE_TYPES_A: 'The nodes are divided into master nodes and worker nodes.',
+  NODE_TYPES_A: 'Nodes include master nodes and worker nodes.',
   WHAT_IS_NODE_TAINTS_Q: 'What are node taints?',
   WHAT_IS_NODE_TAINTS_A:
     'Taints allow a node to repel a set of Pods. Taints and tolerations work together to ensure that Pods are not scheduled onto inappropriate nodes.',

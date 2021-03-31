@@ -73,8 +73,8 @@ module.exports = {
   Request: 'Request',
   'Request Latency': 'Request Latency',
   'Request Per Second': 'Request Per Second',
-  'Resources Usage': 'Resources Usage',
-  'Resources Usage Trend': 'Resources Usage Trend',
+  'Resources Usage': 'Resource Usage',
+  'Resources Usage Trend': 'Resource Usage Trend',
   'Running Pods': 'Running Pods',
   'Running Status': 'Status',
   Scheduler: 'Scheduler',
@@ -100,12 +100,12 @@ module.exports = {
   TIME_H: '{num, plural, =1 {1 hour} other{# hours}}',
   TIME_D: '{num, plural, =1 {1 day} other{# days}}',
   UTILIZATION: 'Utilization',
-  RESOURCE_USAGE_TITLE: 'Resources Usage',
+  RESOURCE_USAGE_TITLE: 'Resource Usage',
   MONITORING_CLUSTER_DESC:
     'You can monitor the status of the cluster in this module.',
   MONITORING_PHYSICAL_DESC: 'Monitor the status of the physical resources',
   MONITORING_APPLICATION_DESC:
-    'You can monitor the status of the application resources in this module.',
+    'You can monitor the status of application resources in this module.',
   TIMERANGE_SELECTOR_MSG: 'End time must be later than start time',
   MONITORING_SELECT_LIMIT_MSG: 'You can select up to ten resources',
 

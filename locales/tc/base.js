@@ -60,7 +60,7 @@ module.exports = {
   'Platform Description': '平台描述',
   'Cluster Number': '集群數量',
   'Platform Status': '平台運行狀態',
-  'As of Date': '統計截止時間',
+  'Data Updated': '統計截止時間',
   Workbench: '工作台',
   'Access Control': '訪問控制',
   'App Templates': '應用模板',
@@ -484,8 +484,7 @@ module.exports = {
   successful: '成功',
   Tag: '標籤',
   PATTERN_NAME_INVALID_TIP: '名稱不合法（僅支持小寫字母、數字、底線）',
-  'No resources matching the filter have been found yet':
-    '暫時沒有找到符合過濾條件的資源',
+  'No matching resources found. ': '暫時沒有找到符合過濾條件的資源',
   'You can try to': '您可以嘗試',
   'clear filters': '清空過濾條件',
   CONTENT_NOT_SAVED_TIPS: '内容已經修改但並未保存',

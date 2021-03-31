@@ -39,7 +39,7 @@ module.exports = {
     '<strong>集群</strong> 的CPU、内存、存储等资源消费情况',
   CLUSTER_NODE_CONSUMPTION_DESC:
     '集群中 <strong>节点</strong> 的CPU、内存、存储等资源消费情况',
-  'Workspace Consumption': '企业空间(项目)资源消费情况',
+  'Workspace Consumption': '企业空间（项目）资源消费情况',
   WORKSPACE_CONSUMPTION_DESC:
     '企业空间(项目)资源消费情况以企业空间为维度统计企业空间和项目的CPU、内存、存储等资源消费情况',
   WORKSPACE_RESOURCE_CONSUMPTION_DESC:

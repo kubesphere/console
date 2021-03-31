@@ -31,7 +31,7 @@ module.exports = {
   'Net Transmitted': 'Net Transmitted',
   'View Consumption': 'View Consumption',
   'Select View Type': 'Choose the category you want to view',
-  'Cluster Consumption': 'Cluster resource consumption',
+  'Cluster Consumption': 'Cluster Resource Consumption',
 
   CLUSTER_CONSUMPTION_DESC:
     'Cluster resource consumption statistics take cluster as the dimension to calculate the CPU, memory, storage and other resource consumption of clusters, nodes, and projects',
@@ -39,7 +39,7 @@ module.exports = {
     '<strong>Cluster</strong> CPU, memory, storage and other resource consumption',
   CLUSTER_NODE_CONSUMPTION_DESC:
     'Resource consumption of <strong>nodes</strong> in the cluster, such as CPU, memory, and storage',
-  'Workspace Consumption': 'Workspace (project) resource consumption',
+  'Workspace Consumption': 'Workspace (Project) Resource Consumption',
   WORKSPACE_CONSUMPTION_DESC:
     'Workspace (project) resource consumption statistics take the workspace as the dimension to calculate the CPU, memory, storage and other resource consumption of workspace and projects',
   WORKSPACE_RESOURCE_CONSUMPTION_DESC:
@@ -73,6 +73,5 @@ module.exports = {
   Price: 'Price',
   PRICE_CONFIG_DESC: 'Price information has not been configured yet',
   METER_RESOURCE_DESC: 'Consumption statistics in the last hour',
-  'No cluster with metering module enabled':
-    'No cluster with metering module enabled',
+  'No cluster with metering module enabled': 'No cluster has Metering enabled.',
 }

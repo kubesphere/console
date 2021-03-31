@@ -140,10 +140,10 @@ module.exports = {
     'The current PVC has been mounted to the work load, so the expansion will lead to the workload restart, and a new version. Business may be a brief interruption. ',
 
   QINGCLOUD_CSI_DESC:
-    'QingCloud CSI plugin implements the Container Storage Interface (CSI) of Kubernetes, enabling the container orchestrator (CO) to use QingCloud storage. Currently, QingCloud CSI plugin supports the block storage service in QingCloud platform. For detailed information, please refer to the <a href="https://github.com/yunify/qingcloud-csi/blob/master/README.md#feature-matrix">features</a>.',
+    'The QingCloud CSI plugin implements the Container Storage Interface (CSI) of Kubernetes, enabling the container orchestrator (CO) to use QingCloud storage. Currently, the QingCloud CSI plugin supports block storage services on QingCloud Platform. For detailed information, refer to <a href="https://github.com/yunify/qingcloud-csi/blob/master/README.md#feature-matrix">features</a>.',
 
   QINGCLOUD_CSI_TYPE_DESC:
-    'In QingCloud public cloud platform, 0 represents high performance volume. 2 represents high capacity volume. 3 represents super high performance volume. 5 represents Enterprise Server SAN. 100 represents standard volume.',
+    'On QingCloud Public Cloud Platform, 0 represents high performance volume. 2 represents high capacity volume. 3 represents super high performance volume. 5 represents Enterprise Server SAN. 100 represents standard volume.',
   CREATE_VOLUME_MAX_SIZE: 'Volume size upper limit',
   CREATE_VOLUME_STEP_SIZE: 'Volume size increment',
   CREATE_VOLUME_MIN_SIZE: 'Volume size lower limit',
@@ -160,9 +160,9 @@ module.exports = {
   GLUSTERFS_SECRET_NAME_DESC:
     'These parameters are optional; an empty password will be used when both secretNamespace and secretName are omitted.',
   GLUSTERFS_GID_MIN_DESC:
-    'The minimum value of GID range for the storage class. A unique value (GID) in this range ( gidMin-gidMax ) will be used for dynamically provisioned volumes. These are optional values.',
+    'The minimum value of GID range for the storage class. A unique value (GID) in this range (gidMin-gidMax) will be used for dynamically provisioned volumes. These are optional values.',
   GLUSTERFS_GID_MAX_DESC:
-    'The maximum value of GID range for the storage class. A unique value (GID) in this range ( gidMin-gidMax ) will be used for dynamically provisioned volumes. These are optional values.',
+    'The maximum value of GID range for the storage class. A unique value (GID) in this range (gidMin-gidMax) will be used for dynamically provisioned volumes. These are optional values.',
   GLUSTERFS_VOLUME_TYPE_DESC:
     'The volume type and its parameters can be configured with this optional value.',
   QINGCLOUD_VOLUME_TAGS_DESC:

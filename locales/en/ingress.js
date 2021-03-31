@@ -44,9 +44,9 @@ module.exports = {
   'Unable to access': 'Unable to access',
 
   ROUTE_DESC:
-    "A Route provides a way to aggregate services, and you can expose the cluster's internal services to the outside through an externally accessible IP address.",
+    "A Route provides a way to aggregate Services, and you can expose the cluster's internal Services outside through an externally accessible IP address.",
   ROUTE_CREATE_DESC:
-    "A Route provides a way to aggregate services, and you can expose the cluster's internal services to the outside through an externally accessible IP address.",
+    "A Route provides a way to aggregate Services, and you can expose the cluster's internal Services outside through an externally accessible IP address.",
   ROUTE_ANNOTATION_DESC:
     'You can set route behavior by adding annotations to the route. See <a href="https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/" target="_blank">Annotations</a> for the detailed list of available annotations.',
 
@@ -63,7 +63,7 @@ module.exports = {
     'To use QingCloud LoadBalancer as a service gateway, please deploy the QingCloud Cloud Controller Manager plugin first.',
 
   NO_INTERNET_ACCESS_TIP:
-    'The gateway address is not found in the current project, so you cannot use auto-generated mode. Please contact your project administrator to turn it on in <strong>Internet Access</strong>.',
+    'The gateway address is not found in the current project, so you cannot use Auto Generate. Please contact your project administrator to turn it on in <strong>Internet Access</strong>.',
   UNABLE_CREATE_ROUTE_TIP:
     'The available gateway address is not found in the current project so the application route cannot be created.',
 

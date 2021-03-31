@@ -363,7 +363,7 @@ export default class WorkloadTable extends React.Component {
           <span className={styles.emptyTipIcon}>
             <Icon name="exclamation" size={48} />
           </span>
-          <div>{t('No resources matching the filter have been found yet')}</div>
+          <div>{t('No matching resources found.')}</div>
           <p>
             {t('You can try to')}
             <span

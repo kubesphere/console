@@ -41,7 +41,7 @@ module.exports = {
   Application: 'App',
   'Application Workloads': 'Application Workloads',
   Apply: 'Apply',
-  'As of Date': 'As of Date',
+  'Data Updated': 'Data Updated',
   auditing: 'auditing',
   Auditing: 'Auditing',
   'Auditing Operating': 'Auditing Operating',
@@ -185,7 +185,7 @@ module.exports = {
   name: 'name',
   'Name validation failed':
     'Avoid creating name with prefix kube-, since it is reserved for Kubernetes system namespaces',
-  'Name exists': 'Name exists',
+  'Name exists': 'This name has existed.',
   NanoSeconds: 'NanoSeconds',
   New: 'New',
   Next: 'Next',
@@ -195,8 +195,7 @@ module.exports = {
   'No Limit': 'No Limit',
   'No parameters': 'No parameters',
   'No Relevant Data': 'No Relevant Data',
-  'No resources matching the filter have been found yet':
-    'No resources matching the filter have been found yet',
+  'No matching resources found. ': 'No matching resources found. ',
   'No.': 'No.',
   Nobody: 'Nobody',
   'Node Selector': 'Node Selector',
@@ -391,7 +390,7 @@ module.exports = {
   NAME_DESC:
     'The value can contain only lowercase letters, numbers, and hyphens (-) and must begin and end with a lowercase letter or number. The maximum length is 63 characters.',
   LONG_NAME_DESC:
-    'It can only contain lowercase letters, numbers and hyphens("-"), and must begin and end with a lowercase letter or a number. The maximum length of characters is set to 253.',
+    'It can only contain lowercase letters, numbers and hyphens("-"), and must begin and end with a lowercase letter or a number. The maximum length is 253 characters.',
   NAME_TOO_LONG: 'The maximum length of characters is set to 63.',
   LONG_NAME_TOO_LONG: 'The maximum length of characters is set to 253.',
   DESCRIPTION_DESC: 'The description can contain a maximum of 256 characters.',
@@ -492,12 +491,11 @@ module.exports = {
   EVENT_CREATE_DESC: 'You can change the search criteria and search again.',
 
   KUBECTL_DESC:
-    'A command line tool for controlling the current Kubernetes cluster',
-  TOOLBOX_KUBECTL_DESC:
-    'A command line tool for controlling the Kubernetes clusters',
+    'A command line tool for controlling the current Kubernetes cluster.',
+  TOOLBOX_KUBECTL_DESC: 'A command line tool for controlling your cluster.',
 
   KUBECONFIG_DESC:
-    'A file that is used to configure access to the current Kubernetes cluster',
+    'A file used to configure access to the current Kubernetes cluster.',
 
   ENV_PRODUCTION: 'Production',
   ENV_DEVELOPMENT: 'Development',
@@ -507,31 +505,29 @@ module.exports = {
   CLUSTERS_MANAGE_DESC:
     'Unified management of multiple clusters and their basic resources, components and application resources',
 
-  ACCESS_CONTROL_DESC:
-    'Unified management of workspaces, accounts and role access',
+  ACCESS_CONTROL_DESC: 'Unified management of workspaces, accounts and roles',
 
   APP_STORE_MANAGEMENT_DESC:
     'Unified lifecycle management of cloud native applications including their release, removal and review',
 
-  PLATFORM_SETTINGS_DESC: 'Customized platform settings including basic info',
+  PLATFORM_SETTINGS_DESC:
+    'Customized platform settings including basic information and notification channels',
 
   DATA_SOURCE: 'Data Source',
 
-  LOG_SEARCH_DESC:
-    'A multi-dimensional log search tool for workspaces, projects and resources.',
+  LOG_SEARCH_DESC: 'A multi-dimensional log search tool for resources.',
 
-  EVENT_SEARCH_DESC:
-    'A multi-dimensional event search tool for workspaces, projects and resources.',
+  EVENT_SEARCH_DESC: 'A multi-dimensional event search tool for resources.',
 
   EVENT_AGE: 'Age',
   EVENT_FROM: 'From',
 
   PLATFORM_INFO_DESC: 'View platform title, description and other information',
-  HOW_TO_MODIFY_PLATFORM_INFO: 'How to modify platform information?',
+  HOW_TO_MODIFY_PLATFORM_INFO: 'How do I modify platform information?',
   PLATFORM_SETTINGS_SELECTOR_DESC: 'Customized Platform Settings',
 
   AUDITING_OPERATING_DESC:
-    'A multi-dimensional auditing search tool for workspaces, projects and resources.',
+    'A multi-dimensional auditing search tool for resources.',
 
   FILE_OVERSIZED_TIP: 'The file uploaded must be less than 2M!',
 
@@ -549,5 +545,5 @@ module.exports = {
 
   CREATE_BY_YAML_DESC: 'Define the resources you want to create through YAML.',
   Bill: 'Metering and Billing',
-  BILLING_OPERATING_DESC: 'Check Consumption',
+  BILLING_OPERATING_DESC: 'Track resource consumption.',
 }
