@@ -38,7 +38,7 @@ import ClusterMeterStore from 'stores/meter/cluster'
 import EmptyList from 'components/Cards/EmptyList'
 import { handleWSChartData, getTimeParams, getRetentionDay } from 'utils/meter'
 import { getTimeStr } from 'components/Cards/Monitoring/Controller/TimeSelector/utils'
-import { COLORS_MAP } from 'utils/constants'
+import { COLORS_MAP, DEFAULT_CLUSTER } from 'utils/constants'
 import Button from '@kube-design/components/lib/components/Button'
 import { RESOURCES_TYPE, RESOURCE_TITLE, AREA_COLORS } from '../../constats'
 
@@ -96,6 +96,9 @@ export default class ClusterDetails extends React.Component {
   @observable
   priceConfig = {}
 
+  @observable
+  priceConfigList = []
+
   childrenResourceList = []
 
   @observable
@@ -113,26 +116,30 @@ export default class ClusterDetails extends React.Component {
     this.sideLoading = true
 
     if (this.props.meterType === 'workspaces') {
-      const clusterList = await this.clusterMeterStore.fetchList({
+      this.clusterList = await this.clusterMeterStore.fetchList({
         type: 'cluster',
       })
 
-      this.clusterList = clusterList.filter(item =>
-        get(item, '_origin.configz.metering')
-      )
+      if (globals.app.isMultiCluster) {
+        this.clusterList = this.clusterList.filter(item =>
+          get(item, '_origin.configz.metering')
+        )
+      }
 
       if (isEmpty(this.clusterList)) {
         this.sideLoading = false
         this.loading = false
         return
       }
+
+      await this.getPriceConfigListByCluster(this.clusterList)
     }
 
     const list = await this.clusterMeterStore.fetchList({
       type: this.props.meterType,
     })
 
-    if (this.props.meterType === 'cluster') {
+    if (this.props.meterType === 'cluster' && globals.app.isMultiCluster) {
       this.list = list.filter(item => get(item, '_origin.configz.metering'))
     } else {
       this.list = list
@@ -148,6 +155,7 @@ export default class ClusterDetails extends React.Component {
 
     if (type === 'cluster') {
       this.cluster = name
+      await this.getPriceConfigListByCluster(list)
     }
 
     this.crumbData.push({
@@ -166,6 +174,21 @@ export default class ClusterDetails extends React.Component {
 
     this.sideLoading = false
     this.loading = false
+  }
+
+  @action
+  getPriceConfigListByCluster = async clusterList => {
+    const request = []
+    clusterList.forEach(item => {
+      request.push(this.store.fetchPrice({ cluster: item.name }))
+    })
+
+    if (globals.app.isMultiCluster) {
+      request.push(this.store.fetchPrice({ cluster: '' }))
+    }
+
+    const priceConfigList = await Promise.all(request)
+    this.priceConfigList = priceConfigList
   }
 
   @action
@@ -197,6 +220,23 @@ export default class ClusterDetails extends React.Component {
       .filter(item => !isEmpty(item))
   }
 
+  @action
+  setPriceConfig = cluster => {
+    const _cluster = cluster || get(DEFAULT_CLUSTER, 'metadata.name')
+    const _priceConfig = this.priceConfigList.find(
+      item => item.cluster === _cluster
+    )
+    this.priceConfig = _priceConfig || {}
+    this.setStartTime()
+  }
+
+  @action
+  setStartTime = () => {
+    this.startTime = getRetentionDay(
+      get(this.priceConfig, 'retention_day', '7d')
+    )
+  }
+
   handleSelectResource = async ({ name, type, isCopy, ...params }) => {
     if (name === this.active.name && type === this.active.type) {
       return
@@ -205,18 +245,11 @@ export default class ClusterDetails extends React.Component {
     if (type === 'workspaces') {
       this.clusters = this.getClustersList(name)
       this.cluster = get(this.clusters, '[0].value', '')
-      this.priceConfig = await this.store.fetchPrice({ cluster: this.cluster })
-
-      this.startTime = getRetentionDay(
-        get(this.priceConfig, 'retention_day', '7d')
-      )
+      this.setPriceConfig(this.cluster)
     }
 
     if (type === 'cluster') {
-      this.priceConfig = await this.store.fetchPrice({ cluster: name })
-      this.startTime = getRetentionDay(
-        get(this.priceConfig, 'retention_day', '7d')
-      )
+      this.setPriceConfig(name)
     }
 
     await this.getCurrentMeterData({
@@ -232,6 +265,7 @@ export default class ClusterDetails extends React.Component {
   getSumMeterData = result => {
     const sumData = {}
     const feeData = {}
+
     if (!isEmpty(result)) {
       result.forEach(item => {
         if (item.type) {
@@ -260,11 +294,7 @@ export default class ClusterDetails extends React.Component {
     const { name, type } = this.active
     const currentData = this.list.find(item => item.name === name)
 
-    this.priceConfig = await this.store.fetchPrice({ cluster })
-
-    this.startTime = getRetentionDay(
-      get(this.priceConfig, 'retention_day', '7d')
-    )
+    this.setPriceConfig(cluster)
 
     await this.getCurrentMeterData({
       name,
@@ -330,11 +360,18 @@ export default class ClusterDetails extends React.Component {
 
     const meterData = await this.setMeterData({
       module: type,
-      valueKey: 'currentMeterData',
       meters: 'all',
       resources: [name],
       start,
       isTime,
+      params,
+    })
+
+    await this.getCurrentTimeMeterData({
+      valueKey: 'currentMeterData',
+      module: type,
+      resources: [name],
+      start,
       params,
     })
 
@@ -378,7 +415,6 @@ export default class ClusterDetails extends React.Component {
     module,
     meters,
     resources,
-    valueKey,
     list,
     start,
     end,
@@ -425,13 +461,6 @@ export default class ClusterDetails extends React.Component {
       ...params,
     })
 
-    const { sumData, feeData } = this.getSumMeterData(result)
-
-    this[valueKey] = {
-      sumData,
-      feeData,
-    }
-
     return result
   }
 
@@ -471,13 +500,11 @@ export default class ClusterDetails extends React.Component {
     if (type === 'workspaces' && name !== lastCrumbData.name) {
       this.clusters = this.getClustersList(name)
       this.cluster = get(this.clusters, '[0].value', '')
-      const priceConfig = await this.store.fetchPrice({ cluster: this.cluster })
-      this.startTime = getRetentionDay(priceConfig.retention_day)
+      this.setPriceConfig(this.cluster)
     }
 
     if (type === 'cluster' && name !== lastCrumbData.name) {
-      const priceConfig = await this.store.fetchPrice({ cluster: name })
-      this.startTime = getRetentionDay(priceConfig.retention_day)
+      this.setPriceConfig(name)
     }
 
     this.setActiveCrumb({
@@ -497,14 +524,12 @@ export default class ClusterDetails extends React.Component {
       const parentType = last(this.crumbData)
       const params = this.getMeterParamsByCrumb()
 
-      await this.setMeterData({
-        params,
-        meters: 'all',
-        module: parentType.type,
-        resources: [parentType.name],
-        start: parentType.start,
+      await this.getCurrentTimeMeterData({
         valueKey: 'parentMeterData',
-        isTime: true,
+        params,
+        module: parentType.type,
+        start: parentType.start,
+        resources: [parentType.name],
       })
 
       this.crumbData.push({
@@ -840,6 +865,33 @@ export default class ClusterDetails extends React.Component {
   }
 
   @action
+  getCurrentTimeMeterData = async ({
+    valueKey,
+    params,
+    module,
+    start,
+    resources,
+  }) => {
+    const data = await this.setMeterData({
+      params,
+      meters: 'all',
+      module,
+      start,
+      end: new Date(),
+      resources,
+      valueKey: 'parentMeterData',
+      isTime: true,
+    })
+
+    const { sumData, feeData } = this.getSumMeterData(data)
+
+    this[valueKey] = {
+      sumData,
+      feeData,
+    }
+  }
+
+  @action
   handleCrumbOperation = async methord => {
     let step = this.crumbData.length - 1
     this.sideLoading = true
@@ -883,14 +935,12 @@ export default class ClusterDetails extends React.Component {
         params[currentActive.type] = undefined
       }
 
-      this.setMeterData({
+      await this.getCurrentTimeMeterData({
         params,
-        meters: 'all',
+        valueKey: 'parentMeterData',
         module: parentData.type,
         start: parentData.start,
         resources: [parentData.name],
-        valueKey: 'parentMeterData',
-        isTime: true,
       })
     }
 
@@ -995,6 +1045,7 @@ export default class ClusterDetails extends React.Component {
             priceConfig={this.priceConfig}
             cluster={this.cluster}
             clusterList={this.clusterList}
+            priceConfigList={this.priceConfigList}
           />
           {this.renderParentMeterCard()}
         </div>
