@@ -137,8 +137,7 @@ module.exports = {
   DEPLOY_SAMPLE_NO_INTERNET_ACCESS_TIP:
     'The gateway for application governance is not found in the current project, so you cannot deploy the sample app. Please contact your project administrator to turn it on in [Advanced Settings].',
 
-  PREREQUEST_FOR_USE_GRAYRELEASE_Q:
-    'Prerequisites for using grayscale release?',
+  PREREQUEST_FOR_USE_GRAYRELEASE_Q: 'Prerequisites for using grayscale release',
   PREREQUEST_FOR_USE_GRAYRELEASE_A:
     'You need to create a composing app before you adopt grayscale release and enable the service governance feature for the service that will use grayscale release.',
 
