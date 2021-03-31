@@ -20,8 +20,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { observer, inject } from 'mobx-react'
-import { reaction } from 'mobx'
-import { get } from 'lodash'
+import { reaction, toJS } from 'mobx'
+import { get, isEmpty } from 'lodash'
 import { Button } from '@kube-design/components'
 import {
   addFullScreenChangeEvents,
@@ -70,7 +70,7 @@ export default class TaskStatus extends React.Component {
 
   get isQueued() {
     const { runDetail } = this.store
-    const state = get(runDetail, 'state', 'QUEUED')
+    const state = get(runDetail, 'state', '')
     return state === 'QUEUED'
   }
 
@@ -99,12 +99,11 @@ export default class TaskStatus extends React.Component {
   }
 
   handleFetch = () => {
-    if (this.isQueued) {
-      return false
+    const { runDetail } = this.store
+    if (!isEmpty(toJS(runDetail)) && !this.isQueued) {
+      const { params } = this.props.match
+      this.store.getNodesStatus(params)
     }
-
-    const { params } = this.props.match
-    this.store.getNodesStatus(params)
   }
 
   toggleFullScreenState = () => {

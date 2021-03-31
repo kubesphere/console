@@ -124,9 +124,6 @@ export default class PipelineStore extends BaseStore {
   @observable
   devopsName = ''
 
-  @observable
-  jenkinsEnvData = ''
-
   @action
   async fetchList({ devops, workspace, devopsName, cluster, ...filters } = {}) {
     this.list.isLoading = true
@@ -228,7 +225,6 @@ export default class PipelineStore extends BaseStore {
       cluster
     )
 
-    this.setEnvironmentData(toJS(this.jenkinsfile))
     this.pipelineJsonData = {
       pipelineJson: json,
       isLoading: false,
@@ -473,19 +469,10 @@ export default class PipelineStore extends BaseStore {
     return result
   }
 
-  @action setEnvironmentData = jenkinsFile => {
-    const env = jenkinsFile.match(
-      /environment\s?\{[\s+\w+\s?=\s?'?\w+-?.?'?\s+]+\}/gm
-    )
-    this.jenkinsEnvData = env ? env[0] : ''
-  }
-
   @action
   updateJenkinsFile(jenkinsFile, params) {
     const data = cloneDeep(toJS(this.pipelineConfig))
     set(data, 'spec.pipeline.jenkinsfile', jenkinsFile)
-
-    this.jenkinsEnvData = ''
 
     return this.updatePipeline({
       data,
