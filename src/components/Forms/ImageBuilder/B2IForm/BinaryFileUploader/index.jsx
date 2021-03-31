@@ -198,6 +198,7 @@ class Uploader extends React.Component {
           </span>
         </p>
         <Progress
+          status="primary"
           className={styles.progress}
           percent={file.percentage}
           strokeWidth={8}
@@ -222,6 +223,7 @@ class Uploader extends React.Component {
           </span>
         </p>
         <Progress
+          status="primary"
           className={styles.progress}
           percent={100}
           strokeWidth={8}
@@ -254,9 +256,7 @@ class Uploader extends React.Component {
               name={this.filesType}
               type="coloured"
             />
-            <p className={styles.title}>
-              {t('Click to upload an artifact')}
-            </p>
+            <p className={styles.title}>{t('Click to upload an artifact')}</p>
             <p className={styles.desc}>
               {t(`${this.filesType.toUpperCase() || 'B2I_DEFAULT'}_DESC`)}
             </p>
