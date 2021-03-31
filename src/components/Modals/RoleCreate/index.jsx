@@ -146,10 +146,7 @@ export default class CreateModal extends React.Component {
         >
           <Input name="metadata.name" maxLength={63} />
         </Form.Item>
-        <Form.Item
-          label={t(`${t('Role Name')}(${t('Alias')})`)}
-          desc={t('ALIAS_DESC')}
-        >
+        <Form.Item label={t(`${t('Role Name')}`)} desc={t('ALIAS_DESC')}>
           <Input
             name="metadata.annotations['kubesphere.io/alias-name']"
             maxLength={63}

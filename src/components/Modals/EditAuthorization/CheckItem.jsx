@@ -39,11 +39,16 @@ export default class CheckItem extends Component {
         newTemplates = newTemplates.filter(item => item !== data.name)
       } else {
         Notify.warning(
-          t('RULE_RELATED_WITH', {
-            resource: relateTemplates
-              .map(rt => t(get(roleTemplatesMap, `[${rt}].aliasName`)))
-              .join(', '),
-          })
+          t(
+            relateTemplates.length === 1
+              ? 'RULE_RELATED_WITH'
+              : 'RULE_RELATED_WITH_PLURAL',
+            {
+              resource: relateTemplates
+                .map(rt => t(get(roleTemplatesMap, `[${rt}].aliasName`)))
+                .join(', '),
+            }
+          )
         )
       }
     } else {
