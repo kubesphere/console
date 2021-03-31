@@ -155,13 +155,13 @@ export default class MailForm extends Component {
           </div>
         </div>
         <div className={styles.row}>
-          <div className={styles.title}>{t('Receiver Settings')}</div>
+          <div className={styles.title}>{t('Recipient Settings')}</div>
           <div className={styles.item}>
             <Form.Item
               rules={[
                 {
                   required: true,
-                  message: t('Please add the receiver email address'),
+                  message: t('Please add the recipient email address'),
                 },
               ]}
             >

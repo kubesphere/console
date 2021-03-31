@@ -19,7 +19,7 @@
 module.exports = {
   'Notification Management': 'Notification Management',
   'Server Settings': 'Server Settings',
-  'Receiver Settings': 'Receiver Settings',
+  'Recipient Settings': 'Recipient Settings',
   'Receive Notification': 'Receive Notifications',
 
   Mail: 'Email',
@@ -38,8 +38,8 @@ module.exports = {
   'Invalid address': 'Invalid address',
   'Invalid email': 'Invalid email address',
   '50 email addresses at most': '50 email addresses at most',
-  'Please add the receiver email address':
-    'Please add the receiver email address',
+  'Please add the recipient email address':
+    'Please add the recipient email address',
 
   DingTalk: 'DingTalk',
   'Conversation Settings': 'Conversation Settings',
