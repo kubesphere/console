@@ -36,6 +36,8 @@ import {
   FEE_CONFIG,
 } from 'components/Modals/Bill/constats'
 
+import { DEFAULT_CLUSTER } from 'utils/constants'
+
 import { getTimeStr } from 'components/Cards/Monitoring/Controller/TimeSelector/utils'
 import base from '../base'
 
@@ -413,7 +415,7 @@ export default class MeterStore extends base {
       const _result = {}
 
       Object.keys(result).forEach(key => {
-        if (key !== 'currency' && result[key] > 0) {
+        if (!['currency', 'retention_day'].includes(key) && result[key] > 0) {
           _result[FEE_CONFIG[key]] = result[key]
         }
       })
@@ -421,8 +423,8 @@ export default class MeterStore extends base {
       if (!isEmpty(_result)) {
         _result.currency = result.currency
         _result.retention_day = get(result, 'retention_day', '7d')
+        _result.cluster = cluster || get(DEFAULT_CLUSTER, 'metadata.name')
       }
-
       return _result
     }
   }

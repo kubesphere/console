@@ -28,14 +28,6 @@ export default class Details extends React.Component {
   render() {
     const { type, handleBack } = this.props
 
-    // if (type === 'openpitrix') {
-    // return (
-    //   <OpDetail
-    //     level={LEVEL_CONFIG[type]}
-    //     meterType={type}
-    //     handleBack={handleBack}
-    //   />
-    // )
     return (
       <ClusterDetail
         level={LEVEL_CONFIG[type]}

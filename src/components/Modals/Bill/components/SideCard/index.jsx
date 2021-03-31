@@ -3,7 +3,8 @@ import { observer } from 'mobx-react'
 import { action, observable, toJS } from 'mobx'
 import { Loading, Icon } from '@kube-design/components'
 import { saveAs } from 'file-saver'
-import { clone, isEmpty, isUndefined, last } from 'lodash'
+import { clone, isEmpty, isUndefined, last, get } from 'lodash'
+import { getRetentionDay } from 'utils/meter'
 import SideCardItem from './item'
 import styles from './index.scss'
 
@@ -40,13 +41,14 @@ export default class SideContainer extends React.Component {
       fetchMeterData,
       cluster,
       timeRange,
+      priceConfigList,
     } = this.props
     if (isEmpty(this.billReportList)) {
       return
     }
 
     const params = getMeterParamsByCrumb()
-    const module = last(crumbData).type
+    const { type: module, start, name } = last(crumbData)
 
     if (module !== 'cluster') {
       params.cluster = cluster
@@ -62,6 +64,21 @@ export default class SideContainer extends React.Component {
       const _params = clone(params)
       _params[item.type] = item.name
 
+      let defaultTime = { start }
+
+      if (item.type === 'cluster') {
+        const priceConfig = priceConfigList.find(
+          _item => _item.cluster === item.name
+        )
+
+        const _start = getRetentionDay(get(priceConfig, 'retention_day', '7d'))
+        defaultTime = { start: _start }
+      }
+
+      if (item.name === name && module === item.type) {
+        defaultTime = { ...timeRange }
+      }
+
       request.push(
         fetchMeterData({
           module: item.type,
@@ -70,7 +87,7 @@ export default class SideContainer extends React.Component {
           isTime: true,
           operation: 'export',
           ..._params,
-          ...timeRange,
+          ...defaultTime,
         })
       )
     })
