@@ -204,6 +204,7 @@ export default class ServiceCreateModal extends React.Component {
             isSubmitting={isSubmitting}
             onOk={onOk}
             onCancel={onCancel}
+            maskClosable={false}
             okBtnText={!isEmpty(detail) ? t('Update') : t('Add')}
           />
         )
