@@ -27,7 +27,7 @@ module.exports = {
   Add: 'Add',
   'Add ': 'Add ',
   'Add Param': 'Add Param',
-  'Add parameter': 'Add parameter',
+  'Add Parameter': 'Add Parameter',
   'Add Task': 'Add Task',
   'Advanced Settings': 'Advanced Settings',
   'Added Successfully': 'Added Successfully',

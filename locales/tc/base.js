@@ -354,7 +354,7 @@ module.exports = {
   'Version Info': '版本資訊',
   Homepage: '首頁',
   'Params Configuration': '參數配置',
-  'Add parameter': '添加參數',
+  'Add Parameter': '添加參數',
   'Add Param': '添加參數',
   'No parameters': '暫無參數',
   'Back To List': '返回列表',

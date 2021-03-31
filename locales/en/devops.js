@@ -59,7 +59,7 @@ module.exports = {
   DELETE_DEVOPS_TIP:
     'Are you sure about deleting the DevOps project <strong>{resource}</strong> ? After the deletion, you will not be able to recover, and the resources under the DevOps project will also be destroyed.',
 
-  DEVOPS_TIP_GITOPS_Q: 'How to get started with GitOps?',
+  DEVOPS_TIP_GITOPS_Q: 'How do I get started with GitOps?',
   DEVOPS_TIP_GITOPS_A:
     'You can start using GitOps by creating a pipeline that is associated with the code repository and deploying steps with Kubernetes.',
 

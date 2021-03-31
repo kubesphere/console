@@ -352,7 +352,7 @@ module.exports = {
   'Version Info': '版本信息',
   Homepage: '首页',
   'Params Configuration': '参数配置',
-  'Add parameter': '添加参数',
+  'Add Parameter': '添加参数',
   'Add Param': '添加参数',
   'No parameters': '暂无参数',
   'Back To List': '返回列表',
