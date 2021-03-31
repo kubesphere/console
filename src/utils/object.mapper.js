@@ -62,6 +62,22 @@ const getOriginData = item =>
     'metadata.managedFields',
   ])
 
+const getServedVersion = item => {
+  const versions = get(item, 'spec.versions', [])
+  if (versions.length === 0) {
+    return ''
+  }
+  let servedVersion = get(versions[versions.length - 1], 'name')
+  versions.some(ver => {
+    if (get(ver, 'served', false)) {
+      servedVersion = get(ver, 'name', servedVersion)
+      return true
+    }
+    return false
+  })
+  return servedVersion
+}
+
 const getBaseInfo = item => ({
   uid: get(item, 'metadata.uid'),
   name: get(item, 'metadata.name'),
@@ -1204,7 +1220,7 @@ const CRDMapper = item => {
     group: get(item, 'spec.group'),
     scope: get(item, 'spec.scope'),
     kind: get(item, 'spec.names.kind'),
-    latestVersion: get(versions[versions.length - 1], 'name'),
+    latestVersion: getServedVersion(item),
     module: get(item, 'status.acceptedNames.plural'),
     _originData: getOriginData(item),
   }
