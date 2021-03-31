@@ -404,7 +404,7 @@ module.exports = {
   DELETE_TIP:
     'Are you sure about deleting {type} <strong>{resource}</strong> ? {type} cannot be recovered after it is deleted.',
   DELETE_CONFIRM_TIP:
-    'Please enter the {typeLower} name <strong>{resource}</strong> to confirm that you understand the risks associated with this operation.',
+    'Please enter the {type} name <strong>{resource}</strong> to confirm that you understand the risks associated with this operation.',
   DELETE_APP_RESOURCE_TIP:
     'Resource is managed by <strong>{app}</strong>, which may affect the normal use of this app if the resource is deleted. Please enter the {type} name <strong>{resource}</strong> to make sure you understand the risks associated with the operation.',
   DELETE_CONFIRM_PLACEHOLDER: 'Please enter {resource}.',
