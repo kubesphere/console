@@ -87,7 +87,7 @@ export default class BitBucketForm extends GitHubForm {
           `${activeRepoIndex}.repositories.items.${index}.name`
         ), // repo
         credential_id: bitbucketCredentialId,
-        owner: get(orgList.data[activeRepoIndex], 'name'),
+        owner: get(orgList.data[activeRepoIndex], 'key'),
         api_uri: get(tokenFormData, 'apiUrl'),
         discover_branches: 1,
         discover_pr_from_forks: { strategy: 2, trust: 2 },

@@ -115,8 +115,6 @@ export default class JenkinsEdit extends React.Component {
 
   handleOk = async () => {
     this.newValue = this.state.value.replace(/\t/g, '    ')
-    this.store.setEnvironmentData(this.newValue)
-
     const hasError = await this.checkScriptCompile()
     if (hasError) {
       return

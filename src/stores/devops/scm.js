@@ -144,8 +144,8 @@ export default class SCMStore extends BaseStore {
       get(this.orgList.data[_activeRepoIndex], 'repositories.nextPage') || 1
 
     const organizationName =
-      this.orgList.data[_activeRepoIndex].key ||
-      this.orgList.data[_activeRepoIndex].name
+      this.orgList.data[_activeRepoIndex].name ||
+      this.orgList.data[_activeRepoIndex].key
 
     this.getRepoListLoading = true
 
