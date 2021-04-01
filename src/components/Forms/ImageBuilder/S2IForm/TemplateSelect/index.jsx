@@ -31,12 +31,6 @@ export default class TemplateSelect extends React.PureComponent {
     onEnvironmentChange: () => {},
   }
 
-  componentDidUpdate() {
-    const defaultValue = this.getDefaultValue()
-
-    defaultValue && this.handleTemplateChange(defaultValue)
-  }
-
   get isB2i() {
     return (
       get(
@@ -48,10 +42,6 @@ export default class TemplateSelect extends React.PureComponent {
 
   get languageType() {
     return get(this.props.formTemplate, 'metadata.annotations.languageType')
-  }
-
-  get builderImage() {
-    return get(this.props.formTemplate, 'spec.config.builderImage')
   }
 
   get containerList() {
@@ -104,9 +94,7 @@ export default class TemplateSelect extends React.PureComponent {
 
     return get(
       builderTemplate.find(
-        template =>
-          get(template, 'spec.codeFramework') === this.languageType &&
-          get(template, 'spec.config.builderImage') === this.builderImage
+        template => get(template, 'spec.codeFramework') === this.languageType
       ),
       'spec.defaultBaseImage',
       ''
@@ -136,6 +124,7 @@ export default class TemplateSelect extends React.PureComponent {
 
   render() {
     const { loading } = this.props
+
     if (loading) {
       return (
         <Form.Item>
