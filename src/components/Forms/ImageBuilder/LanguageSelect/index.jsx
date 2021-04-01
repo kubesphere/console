@@ -66,6 +66,7 @@ export default class LanguageSelect extends React.Component {
       )
       set(this.props.formTemplate, 'spec.config.isBinaryURL', true)
     }
+
     if (builderType === 's2i') {
       set(steps, '[1].component', S2IForm)
       set(
@@ -82,6 +83,9 @@ export default class LanguageSelect extends React.Component {
       'metadata.annotations.languageType',
       languageType
     )
+
+    unset(this.props.formTemplate, 'spec.config.builderImage')
+
     this.forceUpdate()
   }
 
