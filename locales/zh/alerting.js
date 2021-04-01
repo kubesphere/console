@@ -107,7 +107,8 @@ module.exports = {
   REQUESTS_FOR_TRIGGER_AN_ALARM_A:
     '需要对资源设置告警策略，当资源某项指标达到了告警策略的阈值后即会触发并推送消息。',
   REQUESTS_FOR_PUSH_AN_ALARM_Q: '告警策略消息推送的前提条件?',
-  REQUESTS_FOR_PUSH_AN_ALARM_A: '需要平台管理员设置邮件服务器。',
+  REQUESTS_FOR_PUSH_AN_ALARM_A:
+    '平台管理员需要选择告警通知的方式并配置对应的服务器。',
   HOW_TO_SUPRESS_AN_ALARM_Q: '如何对告警消息进行抑制?',
   HOW_TO_SUPRESS_AN_ALARM_A:
     '可以对每条告警策略进行多级别的设置，每个级别对应不同的告警周期及重复周期',
