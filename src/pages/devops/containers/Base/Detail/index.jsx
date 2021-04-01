@@ -9,7 +9,7 @@ export default class DetailPage extends Base {
     const { cluster, devops } = this.props.match.params
 
     return globals.app.getActions({
-      module: this.module,
+      module: this.props.module,
       cluster,
       devops,
     })
