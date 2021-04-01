@@ -72,6 +72,7 @@ export default class AlertingPolicy extends React.Component {
 
   handleTabChange = type => {
     this.setState({ type }, () => {
+      this.props.store.list.reset()
       this.getData()
     })
   }
