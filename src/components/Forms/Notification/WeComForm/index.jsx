@@ -177,7 +177,7 @@ export default class WeComForm extends Component {
           </div>
         </div>
         <div className={styles.row}>
-          <div className={styles.title}>{t('Receiver Settings')}</div>
+          <div className={styles.title}>{t('Recipient Settings')}</div>
           <div className={styles.item}>
             <BoxInput
               defaultSelectValue={type}

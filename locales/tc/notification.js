@@ -19,7 +19,7 @@
 module.exports = {
   'Notification Management': '通知管理',
   'Server Settings': '服務器配置',
-  'Receiver Settings': '接收設置',
+  'Recipient Settings': '接收設置',
   'Receive Notification': '接收通知',
 
   Mail: '郵件',
@@ -37,7 +37,7 @@ module.exports = {
   'Invalid address': '地址格式錯誤',
   'Invalid email': '郵箱格式不合法',
   '50 email addresses at most': '最多添加 50 個郵箱',
-  'Please add the receiver email address': '請添加接收郵箱',
+  'Please add the recipient email address': '請添加接收郵箱',
 
   DingTalk: '釘釘',
   'Conversation Settings': '會話設置',
