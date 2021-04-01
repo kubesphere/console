@@ -82,27 +82,25 @@ export default class AddEdgeModal extends Component {
     }
   }
 
-  handleLink = async () => {
+  handleLink = () => {
     const { cluster } = this.props
+    const { isCheck } = this.state
     const form = this.formRef.current
 
     form &&
-      form.validate(() => {
+      form.validate(async () => {
         this.setState({ loading: true })
-        this.store
-          .createEdgeNode({
-            cluster,
-            ...this.state.formData,
-          })
-          .then(result => {
-            if (result.status !== 'Failure') {
-              const link = this.state.isCheck
-                ? `${result.data} --with-edge-taint`
-                : result.data
-              this.setState({ link, showLink: true })
-            }
-            this.setState({ loading: false })
-          })
+        const result = await this.store.createEdgeNode({
+          cluster,
+          defaultTaint: isCheck,
+          ...this.state.formData,
+        })
+
+        if (result.status !== 'Failure') {
+          const link = result.data
+          this.setState({ link, showLink: true })
+        }
+        this.setState({ loading: false })
       })
   }
 
