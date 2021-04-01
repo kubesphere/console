@@ -25,7 +25,6 @@ import {
   isEmpty,
   omit,
   omitBy,
-  uniqBy,
   find,
   keyBy,
   includes,
@@ -34,7 +33,6 @@ import {
 } from 'lodash'
 import {
   safeParseJSON,
-  generateId,
   getDescription,
   getAliasName,
   getResourceCreator,
@@ -871,146 +869,6 @@ const StrategyMapper = item => {
   }
 }
 
-const AlertMapper = item => {
-  const alertStatus = safeParseJSON(get(item, 'alert_status'), {})
-  const policyConfig = safeParseJSON(get(item, 'policy_config'), {})
-  const resourceFilter = safeParseJSON(get(item, 'rs_filter_param'), {})
-  const resourceSelector = safeParseJSON(resourceFilter.selector, [])
-
-  const targetCount = uniqBy(
-    Object.keys(alertStatus.ResourceStatus || {}),
-    resource => resource.split(' ').pop()
-  ).length
-
-  return {
-    id: get(item, 'alert_id'),
-    addressListId: get(item, 'nf_address_list_id'),
-    name: get(item, 'alert_name'),
-    aliasName: get(item, 'policy_name'),
-    desc: get(item, 'policy_description'),
-    rulesCount: get(item, 'rules_count') || 0,
-    alertStatus,
-    targetCount,
-    policyId: get(item, 'policy_id'),
-    policyConfig,
-    resourceId: get(item, 'rs_filter_id'),
-    resourceType: get(item, 'rs_type_name'),
-    resourceName: get(item, 'rs_filter_name'),
-    resourceFilter,
-    resourceSelector,
-    workloadKind: get(resourceFilter, 'workload_kind'),
-    metrics: get(item, 'metrics') || [],
-    recentAlertTime: get(item, 'most_recent_alert_time'),
-    availableStartTime: get(item, 'available_start_time'),
-    availableEndTime: get(item, 'available_end_time'),
-    createTime: (get(item, 'create_time.seconds') || 0) * 1000,
-    creator: get(item, 'creator'),
-    disabled: get(item, 'disabled'),
-  }
-}
-
-const AlertRuleMapper = item => {
-  const resources = get(item, 'resources') || []
-
-  let alertStatus = isEmpty(resources) ? 'unknown' : 'cleared'
-  resources.some(resource => {
-    if (!resource.current_level) {
-      alertStatus = 'unknown'
-      return true
-    }
-
-    if (resource.current_level && resource.current_level !== 'cleared') {
-      alertStatus = 'alerted'
-      return true
-    }
-
-    return false
-  })
-
-  return {
-    ...item,
-    id: get(item, 'rule_id'),
-    name: get(item, 'rule_name'),
-    alertStatus,
-    metricName: get(item, 'metric_name'),
-    current_level: get(item, 'current_level'),
-    createTime: (get(item, 'create_time.seconds') || 0) * 1000,
-    updateTime: (get(item, 'update_time.seconds') || 0) * 1000,
-  }
-}
-
-const AlertResourceMapper = item => {
-  const resource_uri = safeParseJSON(get(item, 'resource_uri'), {})
-  const selector = safeParseJSON(get(resource_uri, 'selector'), [])
-  const node_id = (get(resource_uri, 'node_id') || '').split('|')
-  const workload_name = (get(resource_uri, 'workload_name') || '').split('|')
-  const workload_kind = get(resource_uri, 'workload_kind')
-
-  return {
-    ...item,
-    createTime: (get(item, 'create_time.seconds') || 0) * 1000,
-    updateTime: (get(item, 'update_time.seconds') || 0) * 1000,
-    resource_uri,
-    node_id,
-    workload_name,
-    workload_kind,
-    selector,
-  }
-}
-
-const AlertMessageMapper = item => {
-  const notificationStatus = safeParseJSON(get(item, 'notification_status'), [])
-  const resourceFilter = safeParseJSON(get(item, 'rs_filter_param'), {})
-
-  let resources = ''
-  switch (item.rs_type_name) {
-    case 'node':
-      resources = get(resourceFilter, 'node_id') || ''
-      break
-    case 'workload':
-      resources = get(resourceFilter, 'workload_name') || ''
-      break
-    case 'pod':
-      resources = get(resourceFilter, 'pod_name') || ''
-      break
-    default:
-      break
-  }
-
-  let resourceName = ''
-  let workloadKind = ''
-  if (item.resource_name) {
-    const data = String(item.resource_name).split(':')
-
-    if (data.length > 1) {
-      resourceName = get(data, '[1]')
-      workloadKind = get(data, '[0]')
-    } else {
-      resourceName = get(data, '[0]')
-      workloadKind = ''
-    }
-  }
-
-  return {
-    ...item,
-    id: get(item, 'history_id'),
-    name: get(item, 'history_name') || `history-${generateId()}`,
-    alertName: get(item, 'alert_name'),
-    ruleId: get(item, 'rule_id'),
-    ruleName: get(item, 'rule_name'),
-    namespace: get(resourceFilter, 'ns_name'),
-    workloadKind,
-    resourceType: get(item, 'rs_type_name'),
-    resourceName,
-    resources: resources.split('|'),
-    metricName: get(item, 'metric_name'),
-    createTime: (get(item, 'create_time.seconds') || 0) * 1000,
-    updateTime: (get(item, 'update_time.seconds') || 0) * 1000,
-    status: get(item, 'event'),
-    notificationStatus,
-  }
-}
-
 const findCodeDetail = (messures, key, path, defaultValue) => {
   const detail = find(
     messures,
@@ -1339,10 +1197,6 @@ export default {
   applications: ApplicationMapper,
   strategies: StrategyMapper,
   servicepolicies: ServicePolicyMapper,
-  alert: AlertMapper,
-  alertrule: AlertRuleMapper,
-  alertresource: AlertResourceMapper,
-  alertmessage: AlertMessageMapper,
   workspaces: WorkspaceMapper,
   codequality: CodeQualityMapper,
   imageBlob: ImageDetailMapper,

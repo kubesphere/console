@@ -60,6 +60,13 @@ export const getQuery = ({ kind, rule, resources }) => {
   return query
 }
 
+const KIND_MODULE = {
+  Deployment: 'deployments',
+  StatefulSet: 'statefulsets',
+  DaemonSet: 'daemonsets',
+  Pod: 'pods',
+}
+
 export const getAlertingResource = (labels = {}) => {
   if (labels.node) {
     return {
@@ -69,6 +76,14 @@ export const getAlertingResource = (labels = {}) => {
   }
 
   if (labels.namespace) {
+    if (labels.workload) {
+      return {
+        module: KIND_MODULE[labels.owner_kind],
+        name: labels.workload.replace(`${labels.owner_kind}:`, ''),
+        namespace: labels.namespace,
+      }
+    }
+
     if (labels.pod) {
       return {
         module: 'pods',
@@ -97,6 +112,14 @@ export const getAlertingResource = (labels = {}) => {
       return {
         module: 'daemonsets',
         name: labels.daemonset,
+        namespace: labels.namespace,
+      }
+    }
+
+    if (labels.service) {
+      return {
+        module: 'services',
+        name: labels.service,
         namespace: labels.namespace,
       }
     }

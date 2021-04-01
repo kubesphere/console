@@ -19,6 +19,7 @@
 import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
+import { isEmpty } from 'lodash'
 
 import { Panel, Text } from 'components/Base'
 import PodsCard from 'components/Cards/Pods'
@@ -46,6 +47,12 @@ export default class ResourceStatus extends React.Component {
   }
 
   renderPods() {
+    const { selector } = this.store.detail
+
+    if (isEmpty(selector)) {
+      return null
+    }
+
     return <PodsCard prefix={this.prefix} detail={this.store.detail} />
   }
 
@@ -87,6 +94,10 @@ export default class ResourceStatus extends React.Component {
   renderWorkloads() {
     const { cluster, namespace, selector, workloadType } = this.store.detail
 
+    if (isEmpty(selector)) {
+      return null
+    }
+
     return (
       <WorkloadsCard
         selector={selector}
@@ -101,6 +112,11 @@ export default class ResourceStatus extends React.Component {
   renderServiceMonitors() {
     const store = this.props.serviceMonitorStore
     const { cluster, namespace, selector } = this.store.detail
+
+    if (isEmpty(selector)) {
+      return null
+    }
+
     return (
       <ServiceMonitors
         selector={selector}
