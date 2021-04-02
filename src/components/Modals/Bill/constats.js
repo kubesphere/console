@@ -59,16 +59,16 @@ export const RESOURCES_TYPE = [
 ]
 
 export const RESOURCE_TITLE = {
-  nodes: 'Cluster Nodes',
+  nodes: 'Cluster Node',
   pods: 'Pods',
-  openpitrixs: 'App Templates',
+  openpitrixs: 'App Template',
   applications: 'Composing App',
-  deployments: 'Deployments',
-  statefulsets: 'StatefulSets',
-  daemonsets: 'DaemonSets',
-  workspaces: 'Workspaces',
+  deployments: 'Deployment',
+  statefulsets: 'StatefulSet',
+  daemonsets: 'DaemonSet',
+  workspaces: 'Workspace',
   cluster: 'Cluster',
-  namespaces: 'Projects',
+  namespaces: 'Project',
   services: 'Service',
 }
 
