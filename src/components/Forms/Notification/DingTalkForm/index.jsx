@@ -41,9 +41,17 @@ export default class DingTalkForm extends Component {
       'receiver.spec.dingtalk.conversation.chatids',
       []
     )
+    const count = globals.config.notification.dingtalk['max_number_of_cid']
     if (!value) {
       Notify.error({
         content: t('Please enter a conversation ID'),
+        durantion: 1000,
+      })
+      return
+    }
+    if (data.length > count - 1) {
+      Notify.error({
+        content: t.html('MAX_CID_COUNT', { count }),
         durantion: 1000,
       })
       return
@@ -65,9 +73,17 @@ export default class DingTalkForm extends Component {
       'receiver.spec.dingtalk.chatbot.keywords',
       []
     )
+    const count = globals.config.notification.dingtalk['max_number_of_keyword']
     if (!value) {
       Notify.error({
         content: t('Please enter a keyword'),
+        durantion: 1000,
+      })
+      return
+    }
+    if (data.length > count - 1) {
+      Notify.error({
+        content: t.html('MAX_KEYWORD_COUNT', { count }),
         durantion: 1000,
       })
       return

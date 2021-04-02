@@ -36,8 +36,8 @@ module.exports = {
   'This email address has existed': '此邮箱已存在',
   'Invalid address': '地址格式错误',
   'Invalid email': '邮箱格式不合法',
-  '50 email addresses at most': '最多添加 50 个邮箱',
   'Please add the recipient email address': '请添加接收邮箱',
+  MAX_EAMIL_COUNT: '最多添加 {count} 个邮箱',
 
   DingTalk: '钉钉',
   'Conversation Settings': '会话设置',
@@ -51,6 +51,8 @@ module.exports = {
   'Please enter a keyword': '请输入要添加的关键字',
   'This conversation ID has existed': '此会话 ID 已存在',
   'This keyword has existed': '此关键字已存在',
+  MAX_CID_COUNT: '最多添加 {count} 个会话 ID',
+  MAX_KEYWORD_COUNT: '最多添加 {count} 个关键字',
 
   DINGTALK_DESC: '可以通过钉钉接收平台的通知，需要配置钉钉发送服务器。',
   DINGTALK_KEYWORDS_DESC: 'ChatBot 的自定义关键字, 如需多个请以 "," 分隔',
@@ -75,6 +77,9 @@ module.exports = {
   'This toUser has existed': '此用户已存在',
   'This toParty has existed': '此部门已存在',
   'This toTag has existed': '此标签已存在',
+  MAX_TOUSER_COUNT: '最多添加 {count} 个用户',
+  MAX_TOPARTY_COUNT: '最多添加 {count} 个部门',
+  MAX_TOTAG_COUNT: '最多添加 {count} 个标签',
 
   WECOM_DESC: '可以通过企业微信接收平台的通知，需要配置企业微信发送服务器。',
   WECOM_SETTINGS_CHANGE_NEED_SAVE_TIP:
@@ -88,6 +93,7 @@ module.exports = {
   'Please enter a channel': '请输入要添加的频道',
   'This channel has existed': '此频道已存在',
   'Please add the receiver channel': '请添加接收频道',
+  MAX_CHANNEL_COUNT: '最多添加 {count} 个频道',
 
   SLACK_DESC: '可以通过 slack 接收平台的通知，需要配置 slack 发送服务器。',
   SLACK_SETTINGS_CHANGE_NEED_SAVE_TIP:

@@ -37,9 +37,9 @@ module.exports = {
   'This email address has existed': 'This email address has existed',
   'Invalid address': 'Invalid address',
   'Invalid email': 'Invalid email address',
-  '50 email addresses at most': '50 email addresses at most',
   'Please add the recipient email address':
     'Please add the recipient email address',
+  MAX_EAMIL_COUNT: 'Add up to {count} emails',
 
   DingTalk: 'DingTalk',
   'Conversation Settings': 'Conversation Settings',
@@ -53,6 +53,8 @@ module.exports = {
   'Please enter a keyword': 'Please enter a keyword',
   'This conversation ID has existed': 'This conversation ID has existed',
   'This keyword has existed': 'This keyword has existed',
+  MAX_CID_COUNT: 'Add a maximum of {count} conversation IDs',
+  MAX_KEYWORD_COUNT: 'Add at most {count} keywords',
 
   DINGTALK_DESC:
     'You can receive DingTalk notifications from the platform after configuring the DingTalk server.',
@@ -80,6 +82,9 @@ module.exports = {
   'This toUser has existed': 'This user has existed',
   'This toParty has existed': 'This department has existed',
   'This toTag has existed': 'This tag has existed',
+  MAX_TOUSER_COUNT: 'Add up to {count} users',
+  MAX_TOPARTY_COUNT: 'Add up to {count} departments',
+  MAX_TOTAG_COUNT: 'Add up to {count} Tags',
 
   WECOM_DESC:
     'You can receive WeCom notifications from the platform after configuring the WeCom server.',
@@ -94,6 +99,7 @@ module.exports = {
   'Please enter a channel': 'Please enter a channel',
   'This channel has existed': 'This channel has existed',
   'Please add the receiver channel': 'Please add the receiver channel',
+  MAX_CHANNEL_COUNT: 'Add up to {count} channels',
 
   SLACK_DESC:
     'You can receive Slack notifications from the platform after configuring the Slack server.',
