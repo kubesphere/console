@@ -169,10 +169,7 @@ export default class GroupForm extends React.Component {
               disabled={mode === 'edit'}
             />
           </Form.Item>
-          <Form.Item
-            label={t(`${t('Department Name')}(${t('Alias')})`)}
-            desc={t('ALIAS_DESC')}
-          >
+          <Form.Item label={t(`Department Alias`)} desc={t('ALIAS_DESC')}>
             <Input
               name="metadata.annotations['kubesphere.io/alias-name']"
               maxLength={63}
@@ -181,7 +178,7 @@ export default class GroupForm extends React.Component {
           </Form.Item>
           <Form.Item
             label={t('Workspace role')}
-            desc={t('WORKSPACE_ROLE_DESC')}
+            desc={t('GROUP_WORKSPACE_ROLE_DESC')}
           >
             <Select
               name="metadata.annotations['kubesphere.io/workspace-role']"
@@ -233,7 +230,7 @@ export default class GroupForm extends React.Component {
         <div className={styles.footer}>
           <Button onClick={onCancel}>{t('Cancel')}</Button>
           <Button type="primary" onClick={this.handleSave}>
-            {t('Save')}
+            {t('OK')}
           </Button>
         </div>
       </div>

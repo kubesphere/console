@@ -246,7 +246,7 @@ class BaseInfo extends React.Component {
         <Alert
           className={styles.tip}
           type="error"
-          title={`${t('Delete Workspace')} ?`}
+          title={`${t('Delete Workspace')}?`}
           message={t('DELETE_WORKSPACE_DESC')}
         />
         <Button

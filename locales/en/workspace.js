@@ -52,6 +52,7 @@ module.exports = {
   devops: 'DevOps Projects',
   'Workspace Quota': 'Edit Workspace Quota',
   'Edit Workspace Quota': 'Edit Workspace Quota',
+  'Maintain Organization': 'Set Departments',
 
   WORKSPACE_OVERVIEW_DESC: 'View the resource status of the workspace.',
   WORKSPACE_DESC:
@@ -105,10 +106,9 @@ module.exports = {
     'Are you sure you want to delete the workspace <strong>{resource}</strong>? The workspace cannot be restored after it is deleted and all resources in the workspace will be removed.',
 
   WORKSPACE_GROUP_DESC:
-    'Assign project roles and DevOps roles to members in a user group or department of an organization.',
-  WORKSPACE_GROUP_EMPTY_DESC:
-    'No organization available. Please configure an organization and then add members to the organization.',
-  WORKSPACE_GROUP_USER_EMPTY_DESC: 'No member available.',
+    'Create departments in your workspace and assign users to different departments to implement permission control.',
+  WORKSPACE_GROUP_EMPTY_DESC: 'No Department Available',
+  WORKSPACE_GROUP_USER_EMPTY_DESC: 'No user available.',
   WORKSPACE_QUOTA_MANAGE_DESC:
     'Manage workspace quotas, which are shared by all projects and DevOps projects in the workspace.',
 }

@@ -30,7 +30,7 @@ module.exports = {
   'Add Parameter': 'Add Parameter',
   'Add Task': 'Add Task',
   'Advanced Settings': 'Advanced Settings',
-  'Added Successfully': 'Added Successfully',
+  'Added Successfully': 'Added successfully.',
   Agent: 'Agent',
   Alias: 'Alias',
   All: 'All',
@@ -85,7 +85,7 @@ module.exports = {
   Delete: 'Delete',
   deleted: 'deleted',
   Deleted: 'Deleted',
-  'Deleted Successfully': 'Deleted Successfully',
+  'Deleted Successfully': 'Deleted successfully.',
   Description: 'Description',
   Deselect: 'Deselect',
   Destroy: 'Destroy',
@@ -316,7 +316,7 @@ module.exports = {
   successful: 'successful',
   'Sure to delete': 'Delete',
   'Sure to redeploy': 'Sure to redeploy',
-  'Sure to remove': 'Sure to remove',
+  'Sure to remove': 'Remove',
   Suspend: 'Suspend',
   Tag: 'Tag',
   Task: 'Task',
@@ -417,10 +417,10 @@ module.exports = {
   add_: 'Add',
 
   REMOVE_MEMBER_TIP:
-    'Are you sure about removing the member <strong>{resource}</strong> ?',
+    'Are you sure you want to remove the member <strong>{resource}</strong>?',
 
   REMOVE_GROUP_TIP:
-    'Are you sure about removing the group <strong>{resource}</strong> ?',
+    'Are you sure you want to remove the group <strong>{resource}</strong>?',
 
   ALIAS_DESC:
     'An alias helps you better distinguish resources. The value can contain a maximum of 63 characters. All characters are allowed.',

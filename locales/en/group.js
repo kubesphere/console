@@ -17,25 +17,32 @@
  */
 
 module.exports = {
-  'Add the member to': 'Add the member to <strong>{group}</strong>',
-  'Department Name': 'Department Name',
+  'Add the member to':
+    'Are you sure you want to assign the user to <strong>{group}</strong>?',
+  'Department Name': 'Name',
+  'Department Alias': 'Alias',
   principal: 'principal',
-  'Add New Department': 'Add New Department',
-  'Add New Subdepartment': 'Add New Subdepartment',
+  'Add New Department': 'Create Department',
+  'Add New Subdepartment': 'Create Department',
   NO_DEPARTMENT_TIP:
-    'No available department at the moment. Please create one on the right.',
+    'No department available. Please create a department on the right.',
   'Workspace role': 'Workspace Role',
-  WORKSPACE_ROLE_DESC: 'Assign roles to the entire user group',
-  'Bind Project Role': 'Bind Project Role',
+  GROUP_WORKSPACE_ROLE_DESC:
+    'The workspace role will be assigned to all members in the department.',
+  'Bind Project Role': 'Project Role',
   'Add Project': 'Add Project',
   'project roles': 'project roles',
-  'Bind DevOps Project Role': 'Bind DevOps Project Role',
+  'Bind DevOps Project Role': 'DevOps Project Role',
   'Add DevOps Project': 'Add DevOps Project',
-  'Please add role': 'Please add role',
-  'User Group Assigned': 'User Group Assigned',
+  'Please add role': 'Please select a role.',
+  'User Group Assigned': 'Department',
 
   DELETE_GROUP_TIP:
-    'Are you sure you want to delete the subdepartment <strong>{resource}</strong>?',
+    'Are you sure you want to delete the department <strong>{group_name}</strong>? The associated roles will be unbound from the users.',
+  DELETE_PARENT_GROUP_TIP:
+    'Are you sure you want to delete the department <strong>{group_name}</strong>? Its sub-departments will also be deleted and the associated roles will be unbound from the users.',
+  GROUP_USER_TIP:
+    'The department contains <strong>{count}</strong> user. Please remove the user first.',
   GROUP_USERS_TIP:
-    'There are <strong>{count}</strong> authorized users in the current department. Please remove the authorized users before deleting.',
+    'The department contains <strong>{count}</strong> users. Please remove the users first.',
 }
