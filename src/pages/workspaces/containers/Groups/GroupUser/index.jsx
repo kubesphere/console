@@ -163,7 +163,6 @@ export default class GroupUser extends Component {
           {this.state.group && (
             <InputSearch
               className={styles.search}
-              value={this.state.search}
               onSearch={this.handleSearch}
               placeholder={t('Search by name')}
             />

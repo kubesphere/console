@@ -34,8 +34,8 @@ module.exports = {
   'Please add role': 'Añadir papel',
   'User Group Assigned': 'Grupo de usuarios asignado',
 
+  DELETE_PARENT_GROUP_TIP:
+    'Está seguro de que desea eliminar el subdepartamento <strong> {group_name} </strong>? Al eliminar el departamento, también se eliminarán sus subdepartamentos y se cancelará la autorización de todos los miembros. ',
   DELETE_GROUP_TIP:
-    '¿Está seguro de que desea eliminar el subdepartamento <strong> {recurso} </strong>?',
-  GROUP_USERS_TIP:
-    'Hay <strong> {count} </strong> usuarios autorizados en el departamento actual. Elimine los usuarios autorizados antes de eliminar. ',
+    'Está seguro de eliminar el subdepartamento <strong> {group_name} </strong>? Al eliminar el departamento, también se cancelará la autorización de todos los miembros. ',
 }
