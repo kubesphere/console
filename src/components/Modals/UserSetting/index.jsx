@@ -20,6 +20,7 @@ import { get, set, has, cloneDeep, isEmpty } from 'lodash'
 import React from 'react'
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
+import { toJS } from 'mobx'
 
 import { Button, Icon, Tooltip } from '@kube-design/components'
 import { Modal } from 'components/Base'
@@ -84,7 +85,7 @@ export default class UserSettingModal extends React.Component {
       const formData = {
         apiVersion: 'iam.kubesphere.io/v1alpha2',
         kind: 'User',
-        ...cloneDeep(this.store.detail._originData),
+        ...cloneDeep(toJS(this.store.detail._originData)),
       }
       set(
         formData,
