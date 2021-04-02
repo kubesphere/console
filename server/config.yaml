@@ -172,14 +172,12 @@ client:
                 title: Alerting Messages,
                 icon: loudspeaker,
                 clusterModule: "alerting",
-                authKey: 'alert-messages',
               }
             - {
                 name: alert-rules,
                 title: Alerting Policies,
                 icon: hammer,
                 clusterModule: "alerting",
-                authKey: 'alert-policies',
               }
             - { name: custom-monitoring, title: Custom Monitoring }
         - name: cluster-settings
@@ -380,14 +378,12 @@ client:
                 title: Alerting Messages,
                 icon: loudspeaker,
                 clusterModule: "alerting",
-                authKey: 'alert-messages',
               }
             - {
                 name: alert-rules,
                 title: Alerting Policies,
                 icon: hammer,
                 clusterModule: "alerting",
-                authKey: 'alert-policies',
               }
             - { name: custom-monitoring, title: Custom Monitoring }
         - name: settings

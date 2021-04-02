@@ -195,7 +195,7 @@ module.exports = {
   'No Limit': 'No Limit',
   'No parameters': 'No parameters',
   'No Relevant Data': 'No Relevant Data',
-  'No matching resources found. ': 'No matching resources found. ',
+  'No matching resources found.': 'No matching resources found.',
   'No.': 'No.',
   Nobody: 'Nobody',
   'Node Selector': 'Node Selector',

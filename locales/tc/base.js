@@ -484,7 +484,7 @@ module.exports = {
   successful: '成功',
   Tag: '標籤',
   PATTERN_NAME_INVALID_TIP: '名稱不合法（僅支持小寫字母、數字、底線）',
-  'No matching resources found. ': '暫時沒有找到符合過濾條件的資源',
+  'No matching resources found.': '暫時沒有找到符合過濾條件的資源',
   'You can try to': '您可以嘗試',
   'clear filters': '清空過濾條件',
   CONTENT_NOT_SAVED_TIPS: '内容已經修改但並未保存',
