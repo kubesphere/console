@@ -43,12 +43,16 @@ export default class Item extends React.Component {
 
   validateMail = email => {
     const { value } = this.props
+    const count = globals.config.notification.wecom['max_number_of_email']
     if (!email) {
       Notify.error({ content: t('Please input email'), duration: 1000 })
       return
     }
-    if (value.length > 50) {
-      Notify.error({ content: t('50 email addresses at most'), duration: 1000 })
+    if (value.length > count - 1) {
+      Notify.error({
+        content: t.html('MAX_EAMIL_COUNT', { count }),
+        duration: 1000,
+      })
       return
     }
     if (value.some(item => item.email === email)) {

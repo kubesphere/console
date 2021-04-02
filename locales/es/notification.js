@@ -37,9 +37,9 @@ module.exports = {
   'This email address has existed': 'Este correo electrónico ha existido',
   'Invalid address': 'Dirección no válida',
   'Invalid email': 'Email inválido',
-  '50 email addresses at most': 'Agregar hasta 50 correos',
   'Please add the recipient email address':
     'Por favor, agregue el correo electrónico del destinatario',
+  MAX_EAMIL_COUNT: 'Agregue hasta {count} buzones de correo',
 
   DingTalk: 'DingTalk',
   'Conversation Settings': 'Configuración de conversación',
@@ -54,6 +54,8 @@ module.exports = {
   'Please enter a keyword': 'Ingrese una palabra clave para agregar',
   'This conversation ID has existed': 'Este ID de conversación ha existido',
   'This keyword has existed': 'Esta palabra clave ha existido',
+  MAX_CID_COUNT: 'Agrega un máximo de {count} ID de conversación',
+  MAX_KEYWORD_COUNT: 'Agregue como máximo {count} palabras clave',
 
   DINGTALK_DESC:
     'Puede recibir notificaciones de la plataforma a través de Dingding y debe configurar el servidor de envío de Dingding.',
@@ -83,6 +85,9 @@ module.exports = {
   'This toUser has existed': 'Este usuario ha existido',
   'This toParty has existed': 'Este departamento ha existido',
   'This toTag has existed': 'Esta etiqueta ha existido',
+  MAX_TOUSER_COUNT: 'Agregue hasta {count} usuarios',
+  MAX_TOPARTY_COUNT: 'Agregue hasta {count} departamentos',
+  MAX_TOTAG_COUNT: 'Agregar hasta {count} etiquetas',
 
   WECOM_DESC:
     'Puede recibir notificaciones de la plataforma a través de Enterprise WeChat y debe configurar el servidor de envío de WeChat empresarial.',
@@ -97,6 +102,7 @@ module.exports = {
   'Please enter a channel': 'Ingrese un canal para agregar',
   'This channel has existed': 'Este canal ha existido',
   'Please add the receiver channel': 'Por favor, agregue un canal receptor',
+  MAX_CHANNEL_COUNT: 'Agregar hasta {count} canales',
 
   SLACK_DESC:
     'Puede recibir notificaciones de la plataforma a través de Slack y debe configurar el servidor de envío de Slack.',

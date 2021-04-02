@@ -53,8 +53,16 @@ export default class WeComForm extends Component {
   validate = value => {
     const { type } = this.state
     const data = get(this.props.data, `receiver.spec.wechat.${type}`, [])
+    const count = globals.config.notification.wecom[`max_number_of_${type}`]
     if (!value) {
       Notify.error({ content: t(`Please enter a ${type}`), duration: 1000 })
+      return
+    }
+    if (data.length > count - 1) {
+      Notify.error({
+        content: t.html(`MAX_${type.toUpperCase()}_COUNT`, { count }),
+        duration: 1000,
+      })
       return
     }
     if (data.includes(value)) {
