@@ -34,15 +34,15 @@ export default class WeComForm extends Component {
   get options() {
     return [
       {
-        label: t('User'),
+        label: t('User ID'),
         value: 'toUser',
       },
       {
-        label: t('Department'),
+        label: t('Department ID'),
         value: 'toParty',
       },
       {
-        label: t('Tag'),
+        label: t('Tag ID'),
         value: 'toTag',
       },
     ]
