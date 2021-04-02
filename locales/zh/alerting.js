@@ -56,7 +56,7 @@ module.exports = {
   Condition: '条件',
   Threshold: '阈值',
 
-  'Rule Templates': '规则模版',
+  'Rule Templates': '规则模板',
   'Custom Rule': '自定义规则',
   'Rule Expression': '告警规则表达式',
 
