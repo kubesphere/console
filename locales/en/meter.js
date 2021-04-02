@@ -16,38 +16,38 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  'Consumption Bill': 'Consumption Bill',
+  'Consumption Bill': 'Metering and Billing',
   'Export Bill': 'Export resource consumption records in csv format',
   'Consumption History': 'Consumption History',
-  'Reconciliation Cycle': 'Reconciliation Cycle',
-  'Consumer Trends': 'Consumer Trends',
-  'Contains Resources': 'Currently Contains Resources',
+  'Reconciliation Cycle': 'Billing Cycle',
+  'Consumer Trends': 'Cost Trends',
+  'Contains Resources': 'Resources Included',
   Trend: 'Trend',
   'Average Usage': 'Average Usage',
   'Total Consumption': 'Total Consumption',
-  'Total Consumption By Creation': 'has been consumed since its creation',
+  'Total Consumption By Creation': 'has consumed the following since creation:',
   Consumption: 'Consumption',
-  'Net Received': 'Net Received',
-  'Net Transmitted': 'Net Transmitted',
+  'Net Received': 'Inbound Traffic',
+  'Net Transmitted': 'Outbound Traffic',
   'View Consumption': 'View Consumption',
   'Select View Type': 'Choose the category you want to view',
   'Cluster Consumption': 'Cluster Resource Consumption',
 
   CLUSTER_CONSUMPTION_DESC:
-    'Cluster resource consumption statistics take cluster as the dimension to calculate the CPU, memory, storage and other resource consumption of clusters, nodes, and projects',
+    'View metering and billing information of cluster resources.',
   CLUSTER_RESOURCE_CONSUMPTION_DESC:
-    '<strong>Cluster</strong> CPU, memory, storage and other resource consumption',
+    'Resource consumption of the <strong>cluster</strong>, including CPU, memory and storage.',
   CLUSTER_NODE_CONSUMPTION_DESC:
-    'Resource consumption of <strong>nodes</strong> in the cluster, such as CPU, memory, and storage',
+    'Resource consumption of <strong>nodes</strong>, including CPU, memory, and storage.',
   'Workspace Consumption': 'Workspace (Project) Resource Consumption',
   WORKSPACE_CONSUMPTION_DESC:
-    'Workspace (project) resource consumption statistics take the workspace as the dimension to calculate the CPU, memory, storage and other resource consumption of workspace and projects',
+    'View metering and billing information of workspace resources.',
   WORKSPACE_RESOURCE_CONSUMPTION_DESC:
-    '<strong>Workspace</strong> CPU, memory, storage and other resource consumption',
+    'Resource consumption of <strong>workspaces</strong>, including CPU, memory, and storage.',
   WORKSPACE_PROJECT_CONSUMPTION_DESC:
-    'The consumption of CPU, memory, storage and other resources of the <strong>project</strong> in the workspace',
+    'Resource consumption of workspace <strong>projects</strong>, including CPU, memory, and storage.',
   PROJECT_CONSUMPTION_DESC:
-    'The consumption of CPU, memory, storage and other resources of <strong>applications, services, container groups</strong> and other resources in the project',
+    'Resource consumption of <strong>apps, Services and Pods</strong> in projects, including CPU, memory, and storage.',
   APP_CONSUMPTION_DESC:
     'Application store template resource consumption statistics',
   APP_RESOURCE_CONSUMPTION_DESC:
@@ -60,18 +60,19 @@ module.exports = {
   'Min Usage': 'Min Usage',
   'Meter CPU Usage': 'CPU Usage',
   'Meter Memory Usage': 'Memory Usage',
-  'Meter Volume Usage': 'Storage Volume Usage',
-  'Meter Net Received Usage': 'Network Incoming Usage',
-  'Meter Net Transmitted Usage': 'Network Outbound Usage',
+  'Meter Volume Usage': 'Volume Usage',
+  'Meter Net Received Usage': 'Inbound Traffic Usage',
+  'Meter Net Transmitted Usage': 'Outbound Traffic Usage',
   'Total Consumer Meaning': 'What does total consumption mean?',
   'Total Consumer Desc':
-    'Total consumption means the sum of resource usage of each charging sampling point in the current reconciliation cycle',
+    'It refers to the total consumption of a resource type within the current billing cycle.',
   TIMERANGE_MORE_30DAY_MSG:
-    'When the interval between the end time and the start time is greater than 30 days, the minimum interval is 1 day',
-  TOTAL_COST: 'Total amount ({unit})',
+    'When the interval between the end time and the start time is greater than 30 days, the minimum interval is 1 day.',
+  TOTAL_COST: 'Total Cost ({unit})',
   '￥': '￥',
-  Price: 'Price',
-  PRICE_CONFIG_DESC: 'Price information has not been configured yet',
-  METER_RESOURCE_DESC: 'Consumption statistics in the last hour',
+  Price: 'Cost',
+  PRICE_CONFIG_DESC:
+    'You need to set the price first to see billing information.',
+  METER_RESOURCE_DESC: 'Consumption in the last hour.',
   'No cluster with metering module enabled': 'No cluster has Metering enabled.',
 }
