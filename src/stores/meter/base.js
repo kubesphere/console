@@ -378,6 +378,10 @@ export default class MeterStore extends base {
       })
     }
 
+    if (filter.module === 'openpitrixs') {
+      params.cluster = this.cluster
+    }
+
     const result = await request.get(url, params, {}, () => {
       return []
     })
