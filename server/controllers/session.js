@@ -113,8 +113,8 @@ const handleLogin = async ctx => {
   ctx.cookies.set('refreshToken', user.refreshToken)
   ctx.cookies.set('referer', null)
 
-  if (user.groups && user.groups.includes('pre-registration')) {
-    ctx.cookies.set('defaultUser', user.username)
+  if (user.username === 'system:pre-registration') {
+    ctx.cookies.set('defaultUser', user.extraname)
     ctx.cookies.set('defaultEmail', user.email)
     return ctx.redirect('/login/confirm')
   }
