@@ -195,7 +195,7 @@ export default class AdvanceSettings extends React.Component {
             checked={formTemplate[`${this.prefix}.disable_concurrent`]}
             defaultValue={true}
           >
-            {t('No Concurrent Builds')}
+            {t('No concurrent builds')}
           </Checkbox>
         </Form.Item>
         <div className="h6">
@@ -215,7 +215,7 @@ export default class AdvanceSettings extends React.Component {
             checked={enable_timer_trigger}
             onChange={this.handleChange('enable_timer_trigger')}
           >
-            {t('Scheduled Build')}
+            {t('Scheduled build')}
             {this.renderTip(t('tips_Timing_build'))}
           </Checkbox>
         </Form.Item>
@@ -248,7 +248,7 @@ export default class AdvanceSettings extends React.Component {
             checked={enable_remote_trigger}
             onChange={this.handleChange('enable_remote_trigger')}
           >
-            {t('Trigger a Remote Build (for example, using a script)')}
+            {t('Trigger a remote build (for example, using a script)')}
           </Checkbox>
         </Form.Item>
         {enable_remote_trigger && (
@@ -307,7 +307,7 @@ export default class AdvanceSettings extends React.Component {
               `${this.scmPrefix}.git_clone_option.shallow`
             )}
           >
-            {t('Whether to open shallow clone')}
+            {t('Whether to enable shallow clone')}
           </Checkbox>
         </Form.Item>
         <div className="h6">{t('Webhook Push')}</div>
@@ -423,7 +423,7 @@ export default class AdvanceSettings extends React.Component {
             name="enable_multibranch_job_trigger"
             onChange={this.handleChange('enable_multibranch_job_trigger')}
           >
-            {t('Pipeline Event Trigger')}
+            {t('Pipeline event trigger')}
           </Checkbox>
         </Form.Item>
         {enable_multibranch_job_trigger && (
@@ -480,7 +480,7 @@ export default class AdvanceSettings extends React.Component {
           <Columns>
             <Column>
               <Form.Item
-                label={t('Days to Keep Builds')}
+                label={t('Days to keep builds')}
                 desc={`${t(
                   'Old builds will be deleted after this number of days.'
                 )} (${t('defaultValue -1 means not to discard')})`}
@@ -493,7 +493,7 @@ export default class AdvanceSettings extends React.Component {
             </Column>
             <Column>
               <Form.Item
-                label={t('Maximum Number of Builds to Keep')}
+                label={t('Maximum number of builds to keep')}
                 desc={`${t(
                   'Old builds will be discarded after the build number exceeds the maximum amount.'
                 )} (${t('defaultValue -1 means not to discard')})`}
@@ -524,7 +524,7 @@ export default class AdvanceSettings extends React.Component {
           </Column>
           <Column>
             <Form.Item
-              label={t('Max # of old branches to keep')}
+              label={t('Max number of branches to keep')}
               desc={t('tips_numbers_keep_withscm')}
             >
               <Input
@@ -557,7 +557,7 @@ export default class AdvanceSettings extends React.Component {
               onChange={this.handleChange('enable_discarder')}
             >
               {isEmpty(multi_branch_pipeline)
-                ? t('Discard Old Builds')
+                ? t('Discard old builds')
                 : t('Discard old branch')}
               {this.renderTip(
                 isEmpty(multi_branch_pipeline)

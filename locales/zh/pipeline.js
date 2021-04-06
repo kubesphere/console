@@ -25,8 +25,8 @@ module.exports = {
     '如果勾选此选项，则不能并发运行多个 build.',
   'Parametric Build': '参数化构建',
   'Build Trigger': '构建触发器',
-  'Scheduled Build': '定时构建',
-  'Trigger a Remote Build (for example, using a script)':
+  'Scheduled build': '定时构建',
+  'Trigger a remote build (for example, using a script)':
     '触发远程构建 (例如，使用脚本)',
   'Authentication Token': '身份验证令牌',
   'Use the following URL to remotely triggerworkbench the build':
@@ -74,15 +74,15 @@ module.exports = {
   'Pipeline Configuration': '编辑流水线',
   'Show Logs': '查看日志',
   'Code Repository': '代码仓库',
-  'Discard Old Builds': '丢弃旧的构建',
+  'Discard old builds': '丢弃旧的构建',
   'Discard old branch': '丢弃旧的分支',
-  'Days to Keep Builds': '保留构建的天数',
-  'Maximum Number of Builds to Keep': '保留构建的最大个数',
+  'Days to keep builds': '保留构建的天数',
+  'Maximum number of builds to keep': '保留构建的最大个数',
   'Days to keep old branches': '保留分支的天数',
-  'Max # of old branches to keep': '保留分支的最大个数',
+  'Max number of branches to keep': '保留分支的最大个数',
   'Old builds will be deleted after this number of days.':
     '如果构建达到保留的天数将进行删除',
-  'No Concurrent Builds': '不允许并发构建',
+  'No concurrent builds': '不允许并发构建',
   'Please input pipeline name': '请输入流水线名称',
   'Create Pipeline': '创建流水线',
   'Old builds will be discarded after the build number exceeds the maximum amount.':
@@ -385,7 +385,7 @@ module.exports = {
   'Regex filter': '过滤规则',
   REG_FILTER_DESC:
     '启用正则表达式，将忽略与提供的正则表达式不匹配的名称（包括分支与PR等)',
-  'Whether to open shallow clone': '是否开启浅克隆',
+  'Whether to enable shallow clone': '是否开启浅克隆',
   'Pipeline clone timeout (in minutes)': '流水线 clone 超时时间 (单位: 分钟)',
   'config name': '配置名称',
   waitForQualityGate_desc:
@@ -401,7 +401,7 @@ module.exports = {
   INPUT_DESC:
     '流水线运行至此任务将会暂停，创建者和被@的人可以选择继续或终止流水线',
   INPUT_MESSAGE_DESC: '流水线运行状态中将会展示此消息',
-  'Can @somebody to help review': '可以@某人来帮助审核',
+  '@somebody to help review': '可以@某人来帮助审核',
   REVIEW_DESC: '流水线运行至此任务将会暂停，审核后可选择继续或终止',
   withSonarQubeEnv_DESC: '快速的定位代码中潜在的或者明显的错误',
   waitForQualityGate_DESC: '在执行代码分析后执行',
@@ -458,7 +458,7 @@ module.exports = {
   'not support edit nested stage': '暂不支持编辑嵌套阶段',
   JENKINS_LINS_ERROR: '第 {line} 行有语法错误',
   'Delete all resources of the deployment file': '删除部署文件所对应的所有资源',
-  'Pipeline Event Trigger': '流水线事件触发',
+  'Pipeline event trigger': '流水线事件触发',
   'When Create Pipeline': '当创建流水线',
   'When Delete Pipeline': '当删除流水线',
   WHEN_DELETE_PIEPLINE_DESC:

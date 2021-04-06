@@ -53,7 +53,7 @@ module.exports = {
   Break: 'Break',
   'Build Settings': 'Build Settings',
   'Build Trigger': 'Build Trigger',
-  'Can @somebody to help review': 'Can @somebody to help review',
+  '@somebody to help review': '@somebody to help review',
   'Send messages by email': 'Send messages by email',
   'Send messages in the build': 'Send messages in the build',
   'Cancelled in review': 'Cancelled in review',
@@ -92,7 +92,7 @@ module.exports = {
   critical: 'critical',
   'Current branch name must match the input value':
     'Current branch name must match the input value',
-  'Days to Keep Builds': 'Days to Keep Builds',
+  'Days to keep builds': 'Days to keep builds',
   'Days to keep old branches': 'Days to keep old branches',
   'defaultValue -1 means not to discard':
     'defaultValue -1 means not to discard',
@@ -104,7 +104,7 @@ module.exports = {
   dir: 'dir',
   Discard: 'Discard',
   'Discard old branch': 'Discard old branch',
-  'Discard Old Builds': 'Discard Old Builds',
+  'Discard old builds': 'Discard old builds',
   'Discover Tag Branches': 'Discover Tag Branches',
   'Discover Branches': 'Discover Branches',
   'Discover branches from repoitory': 'Discover branches from repoitory',
@@ -175,8 +175,8 @@ module.exports = {
     'Load the sonarqube configuration provided by Jenkins into the Pipeline.',
   mail: 'mail',
   major: 'major',
-  'Max # of old branches to keep': 'Max # of old branches to keep',
-  'Maximum Number of Builds to Keep': 'Maximum Number of Builds to Keep',
+  'Max number of branches to keep': 'Max number of branches to keep',
+  'Maximum number of builds to keep': 'Maximum number of builds to keep',
   minor: 'minor',
   "Missing one or more required properties: 'name'":
     "Missing one or more required properties: 'name'",
@@ -184,7 +184,7 @@ module.exports = {
   'No artifacts records': 'No artifacts records',
   'No branches found': 'No branches found',
   'No commit records': 'No commit records',
-  'No Concurrent Builds': 'No Concurrent Builds',
+  'No concurrent builds': 'No concurrent builds',
   'No need': 'No need',
   'no status': 'no status',
   Normal: 'Normal',
@@ -209,7 +209,7 @@ module.exports = {
   'Pipeline clone timeout (in minutes)': 'Pipeline clone timeout (in minutes)',
   'Pipeline config file not found': 'Pipeline config file not found',
   'Pipeline Configuration': 'Pipeline Configuration',
-  'Pipeline Event Trigger': 'Pipeline Event Trigger',
+  'Pipeline event trigger': 'Pipeline event trigger',
   'Pipeline initialization': 'Pipeline initialization',
   'Pipeline List': 'Pipeline List',
   'Pipeline Run Logs': 'Pipeline Run Logs',
@@ -250,7 +250,7 @@ module.exports = {
   'Scan Reponsitory Logs': 'Scan Reponsitory Logs',
   'Scan Repository': 'Scan Repository',
   Schedule: 'Schedule',
-  'Scheduled Build': 'Scheduled Build',
+  'Scheduled build': 'Scheduled build',
   SCM: 'SCM',
   'Script Path': 'Script Path',
   'Secret Name': 'Secret Name',
@@ -308,8 +308,8 @@ module.exports = {
     'Timeout after no activity in logs for this block',
   timer: 'timer',
   'Token / Password': 'Token / Password',
-  'Trigger a Remote Build (for example, using a script)':
-    'Trigger a Remote Build (for example, using a script)',
+  'Trigger a remote build (for example, using a script)':
+    'Trigger a remote build (for example, using a script)',
   'Trusted User': 'Trusted User',
   Unnamed: 'Unnamed',
   'url is invalid': 'url is invalid',
@@ -326,7 +326,7 @@ module.exports = {
   Webhook: 'Webhook',
   'When Create Pipeline': 'When Create Pipeline',
   'When Delete Pipeline': 'When Delete Pipeline',
-  'Whether to open shallow clone': 'Whether to open shallow clone',
+  'Whether to enable shallow clone': 'Whether to enable shallow clone',
   withCredentials: 'withCredentials',
   withSonarQubeEnv: 'withSonarQubeEnv',
   'Wrong Token': 'Wrong Token',
@@ -443,7 +443,7 @@ module.exports = {
   <label>This step has the following main features:</label>
   <li>Distribution without kubectl</li>
   <li>Variable substitution in Jenkinsfile, Dynamic deployment is possible. </li>
-  <li>Support for drawing docker images from private image repositories</li>
+  <li>Support for pulling docker images from private image repositories</li>
   <label> Currently this step supports the following resources:</label>
   <br />
   <li>Configuration </li>
@@ -457,7 +457,7 @@ module.exports = {
   <li>Replica Set</li>
   <li>
   Replication
-  Controller (rolling updates are not supported, use deployment if you want to use rolling updates)
+  Controller (rolling updates are not supported, and use Deployment if you want to use rolling updates)
   </li>`,
 
   OPTIONS_PR_PARAMS_1: 'Source code version of PR merged with target branch',

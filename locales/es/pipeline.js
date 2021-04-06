@@ -53,7 +53,7 @@ module.exports = {
   Break: 'Rotura',
   'Build Settings': 'Configuración de compilación',
   'Build Trigger': 'Crear disparador',
-  'Can @somebody to help review': '¿Puede @alguien ayudar a revisar esto?',
+  '@somebody to help review': '¿Puede @alguien ayudar a revisar esto?',
   'Send messages by email': 'Puedes enviar mensajes por correo electrónico.',
   'Send messages in the build': 'Puedes enviar mensajes en la compilación',
   'Cancelled in review': 'Cancelado en la revisión',
@@ -92,7 +92,7 @@ module.exports = {
   critical: 'crítico',
   'Current branch name must match the input value':
     'El nombre de la rama actual debe coincidir con el valor de entrada',
-  'Days to Keep Builds': 'Días para mantener las build',
+  'Days to keep builds': 'Días para mantener las build',
   'Days to keep old branches': 'Días para mantener viejas ramas',
   'defaultValue -1 means not to discard':
     'defaultValue -1 significa no descartar',
@@ -104,7 +104,7 @@ module.exports = {
   dir: 'directorio',
   Discard: 'Descarte',
   'Discard old branch': 'Descartar ramas anteriores',
-  'Discard Old Builds': 'Descartar builds antiguas',
+  'Discard old builds': 'Descartar builds antiguas',
   'Discover Tag Branches': 'Descubrir Tag ramas',
   'Discover Branches': 'Descubrir ramas',
   'Discover branches from repoitory': 'Descubrir ramas desde el repositorio',
@@ -176,8 +176,8 @@ module.exports = {
     'Cargue la configuración de sonarqube proporcionada por Jenkins en la Pipeline.',
   mail: 'correo',
   major: 'mayor',
-  'Max # of old branches to keep': 'Número máximo de ramas viejas a mantener',
-  'Maximum Number of Builds to Keep':
+  'Max number of branches to keep': 'Número máximo de ramas viejas a mantener',
+  'Maximum number of builds to keep':
     'Número máximo de compilaciones para mantener',
   minor: 'menor',
   "Missing one or more required properties: 'name'":
@@ -186,7 +186,7 @@ module.exports = {
   'No artifacts records': 'No hay registro de artefactos.',
   'No branches found': 'No se encontraron ramas',
   'No commit records': 'Sin registros de commits',
-  'No Concurrent Builds': 'No hay builds concurrentes',
+  'No concurrent builds': 'No hay builds concurrentes',
   'No need': 'No necesario',
   'no status': 'sin Estado',
   Normal: 'Normal',
@@ -213,7 +213,7 @@ module.exports = {
   'Pipeline config file not found':
     'Archivo de configuración de Pipeline no encontrado',
   'Pipeline Configuration': 'Configuración de Pipeline',
-  'Pipeline Event Trigger': 'Disparador de eventos de Pipelines',
+  'Pipeline event trigger': 'Disparador de eventos de Pipelines',
   'Pipeline initialization': 'Inicialización de Pipeline',
   'Pipeline List': 'Lista de Pipelines',
   'Pipeline Run Logs': 'Registros de ejecución de Pipelines',
@@ -255,7 +255,7 @@ module.exports = {
   'Scan Reponsitory Logs': 'Escanear logs de repositorio',
   'Scan Repository': 'Escanear repositorio',
   Schedule: 'Programador',
-  'Scheduled Build': 'Build programada',
+  'Scheduled build': 'Build programada',
   SCM: 'SCM',
   'Script Path': 'Ruta del script',
   'Secret Name': 'Nombre del secreto',
@@ -314,7 +314,7 @@ module.exports = {
     'Tiempo de espera agotado tras inactividad en los logs deregistro de este bloque',
   timer: 'temporizador',
   'Token / Password': 'Token / Contraseña',
-  'Trigger a Remote Build (for example, using a script)':
+  'Trigger a remote build (for example, using a script)':
     'Ejecutar una build remota (por ejemplo, usando un script)',
   'Trusted User': 'Usuario de confianza',
   Unnamed: 'Sin nombre',
@@ -333,7 +333,7 @@ module.exports = {
   Webhook: 'Webhook',
   'When Create Pipeline': 'Cuando crear pipeline',
   'When Delete Pipeline': 'Cuando eliminar pipeline',
-  'Whether to open shallow clone': 'Ya sea para abrir clon superficial',
+  'Whether to enable shallow clone': 'Ya sea para abrir clon superficial',
   withCredentials: 'con credenciales',
   withSonarQubeEnv: 'withSonarQubeEnv',
   'Wrong Token': 'Token incorrecto',
