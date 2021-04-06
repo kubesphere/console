@@ -20,9 +20,10 @@ import React from 'react'
 import { observer, inject } from 'mobx-react'
 
 import CredentialStore from 'stores/devops/credential'
+import Status from 'devops/components/Status'
 import DetailPage from 'devops/containers/Base/Detail'
 import { trigger } from 'utils/action'
-
+import { get } from 'lodash'
 import routes from './routes'
 
 @inject('rootStore', 'devopsStore')
@@ -108,8 +109,23 @@ export default class CredentialDetail extends React.Component {
     },
   ]
 
+  getPipelineStatus = status => {
+    const CONFIG = {
+      failed: { type: 'failure', label: t('Failure') },
+      pending: { type: 'running', label: t('Running') },
+      working: { type: 'running', label: t('Running') },
+      successful: { type: 'success', label: t('Success') },
+    }
+
+    return { ...CONFIG[status] }
+  }
+
   getAttrs = () => {
     const { detail, usage } = this.store
+    const status = get(
+      detail,
+      'annotations["credential.devops.kubesphere.io/syncstatus"]'
+    )
 
     return [
       {
@@ -123,6 +139,10 @@ export default class CredentialDetail extends React.Component {
       {
         name: t('Domain'),
         value: usage.domain,
+      },
+      {
+        name: t('Sync Status'),
+        value: <Status {...this.getPipelineStatus(status)} />,
       },
     ]
   }
