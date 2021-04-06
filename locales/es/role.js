@@ -46,6 +46,8 @@ module.exports = {
   'Components Management': 'Gestión de componentes',
   'ConfigMaps Management': 'ConfigMaps Management',
   'ConfigMaps View': 'ConfigMaps View',
+  'ServiceAccount Management': 'Gestión de cuentas de servicio',
+  'ServiceAccount View': 'Vista de cuenta de servicio',
   'CRD Management': 'Gestión de CRD',
   'Create Account Role': 'Crear rol de cuenta',
   'Create Cluster Role': 'Crear rol de clúster',
@@ -275,6 +277,9 @@ module.exports = {
   CONFIGMAPS_VIEW_DESC: 'Grant permission to view project configmaps',
   CONFIGMAPS_MANAGEMENT_DESC:
     'Grant permission to create/edit/delete project configmaps',
+  SERVICEACCOUNT_MANAGEMENT_DESC:
+    'Crear, editar y eliminar cuentas de servicio del proyecto',
+  SERVICEACCOUNT_VIEW_DESC: 'Ver cuentas de servicio del proyecto',
 
   CUSTOM_MONITORING_VIEW_DESC:
     'Grant permission to view custom monitoring data',
