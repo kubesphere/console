@@ -19,9 +19,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import { observable } from 'mobx'
+import { observable, toJS } from 'mobx'
 import { observer } from 'mobx-react'
-import { get, isEmpty, omitBy } from 'lodash'
+import { get, has, isEmpty, omitBy } from 'lodash'
 import { Icon } from '@kube-design/components'
 import SCMStore from 'stores/devops/scm'
 import { REPO_TYPES, REPO_KEY_MAP } from 'utils/constants'
@@ -69,6 +69,9 @@ export default class RepoSelectForm extends React.Component {
   source_type = 'github'
 
   @observable
+  credentialFormData = { type: 'username_password' }
+
+  @observable
   showCredential = false
 
   componentDidMount() {
@@ -98,6 +101,12 @@ export default class RepoSelectForm extends React.Component {
           },
         }
       }
+    }
+  }
+
+  setCredentialsFormData = params => {
+    if (has(params, 'type')) {
+      this.credentialFormData = { ...params }
     }
   }
 
@@ -179,6 +188,11 @@ export default class RepoSelectForm extends React.Component {
     const { type } = e.currentTarget.dataset
 
     this.source_type = type
+
+    this.credentialFormData = {
+      type: 'username_password',
+    }
+
     this.store.resetStore()
   }
 
@@ -218,6 +232,8 @@ export default class RepoSelectForm extends React.Component {
           store={this.store}
           formRef={this.formRef}
           handleSubmit={this.handleSubmit}
+          showCredential={this.showCreateCredential}
+          setCredentialsFormData={this.setCredentialsFormData}
           cluster={cluster}
           devops={devops}
         />
@@ -243,6 +259,7 @@ export default class RepoSelectForm extends React.Component {
         <BitBucketForm
           store={this.store}
           formRef={this.formRef}
+          showCredential={this.showCreateCredential}
           handleSubmit={this.handleSubmit}
           cluster={cluster}
           devops={devops}
@@ -296,6 +313,8 @@ export default class RepoSelectForm extends React.Component {
           onCancel={this.hideCreateCredential}
           devops={devops}
           cluster={cluster}
+          formTemplate={toJS(this.credentialFormData)}
+          sourceType={this.source_type}
         />
       </div>
     )

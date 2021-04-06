@@ -145,6 +145,12 @@
     position: relative;
     height: 245px;
 
+    :global {
+      .spin-container {
+        height: 245px;
+      }
+    }
+
     .placeHolder {
       text-align: center;
 

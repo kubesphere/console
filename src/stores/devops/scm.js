@@ -79,6 +79,9 @@ export default class SCMStore extends BaseStore {
   }
 
   @observable
+  isAccessTokenWrong = false
+
+  @observable
   credentials = {
     isLoading: false,
     data: [],
@@ -98,9 +101,6 @@ export default class SCMStore extends BaseStore {
 
   @observable
   formData = {}
-
-  @observable
-  githubCredentialId = ''
 
   @observable
   creatBitBucketServersError = {}
@@ -240,10 +240,26 @@ export default class SCMStore extends BaseStore {
     this.credentials.loading = false
   }
 
+  getCredentialDetail = async params => {
+    await this.credentialStore.fetchDetail(params)
+    return this.credentialStore.detail
+  }
+
+  createCredential = async (data, params) => {
+    await this.credentialStore.handleCreate(data, params)
+  }
+
   @action
-  creatBitBucketServers = async ({ username, password, apiUrl, cluster }) => {
+  creatBitBucketServers = async ({
+    username,
+    password,
+    apiUrl,
+    credentialId,
+    cluster,
+  }) => {
     this.creatBitBucketServersError = {}
-    this.tokenFormData = { username, password, apiUrl }
+    this.tokenFormData = { username, password, apiUrl, credentialId }
+
     if (isEmpty(parseUrl(apiUrl))) {
       this.creatBitBucketServersError = {
         apiUrl: {
@@ -253,8 +269,6 @@ export default class SCMStore extends BaseStore {
       return
     }
 
-    this.bitbucketCredentialId = `bitbucket-${username}`
-
     let result = { id: generateId(4) }
 
     if (!/https:\/\/bitbucket.org\/?/gm.test(`${apiUrl}`)) {
@@ -262,7 +276,7 @@ export default class SCMStore extends BaseStore {
         `${this.getBaseUrlV2({ cluster })}scms/bitbucket-server/servers`,
         {
           apiUrl,
-          name: this.bitbucketCredentialId,
+          name: credentialId,
         },
         null,
         this.verifyAccessErrorHandle['bitbucket-server']
@@ -322,7 +336,7 @@ export default class SCMStore extends BaseStore {
       data: [],
     }
     this.activeRepoIndex = ''
-    this.githubCredentialId = ''
+    this.isAccessTokenWrong = false
     this.formData = {}
     this.tokenFormData = {}
     this.creatBitBucketServersError = {}

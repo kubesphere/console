@@ -91,6 +91,7 @@ export default class CredentialModal extends React.Component {
 
   clearData = () => {
     this.formData = {}
+    this.isSubmitting = false
     this.type = 'username_password'
   }
 
@@ -204,7 +205,12 @@ export default class CredentialModal extends React.Component {
         return (
           <React.Fragment>
             <Form.Item label={t('Username')}>
-              <Input name="username_password.username" />
+              <Input
+                name="username_password.username"
+                disabled={
+                  this.props.sourceType && this.props.sourceType === 'github'
+                }
+              />
             </Form.Item>
             <Form.Item label={t('Token / Password')}>
               <Input name="username_password.password" type="password" />

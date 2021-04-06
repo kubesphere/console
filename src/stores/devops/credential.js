@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { set, get, isEmpty, isObject, unset } from 'lodash'
+import { set, get, isEmpty, isObject, unset, isUndefined } from 'lodash'
 import { action, observable } from 'mobx'
 import { safeBtoa } from 'utils/base64'
 import {
@@ -159,7 +159,11 @@ export default class CredentialStore extends BaseStore {
   }
 
   @action
-  async fetchDetail() {
+  async fetchDetail(params) {
+    if (!(isUndefined(params) || isEmpty(params))) {
+      this.params = params
+    }
+
     const { devops, credential_id, cluster } = this.params
     const result = await this.request.get(
       `${this.getResourceUrl({
@@ -169,14 +173,11 @@ export default class CredentialStore extends BaseStore {
       })}?content=1`
     )
 
-    const usage = await this.getUsageDetail()
     const data = this.mapper(result)
-
     data.display_name = data.name
     data.id = data.name
     data.type = CREDENTIAL_DISPLAY_KEY[data.type.split('/')[1]]
 
-    this.usage = usage
     this.detail = data
     this.isLoading = false
   }
@@ -185,11 +186,13 @@ export default class CredentialStore extends BaseStore {
   async getUsageDetail() {
     const { devops, credential_id, cluster } = this.params
 
-    return await this.request.get(
+    const usage = await this.request.get(
       `${this.getDevopsUrlV2({
         cluster,
       })}${devops}/credentials/${credential_id}/usage`
     )
+
+    this.usage = usage
   }
 
   @action

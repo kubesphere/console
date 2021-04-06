@@ -20,14 +20,15 @@ import React from 'react'
 import classNames from 'classnames'
 import { action, observable, toJS } from 'mobx'
 import { observer } from 'mobx-react'
-import { get, isEmpty, isArray } from 'lodash'
+import { get, isEmpty, isArray, pick } from 'lodash'
 import {
   Form,
   Button,
   InputSearch,
   Icon,
-  Input,
   Loading,
+  Select,
+  Tag,
 } from '@kube-design/components'
 
 import { REPO_KEY_MAP } from 'utils/constants'
@@ -102,7 +103,6 @@ export default class GitHubForm extends React.Component {
   }
 
   handleSubmit = e => {
-    const { githubCredentialId } = this.props.store
     const index = e.currentTarget.dataset && e.currentTarget.dataset.repoIndex
 
     const data = {
@@ -111,7 +111,7 @@ export default class GitHubForm extends React.Component {
           this.orgList,
           `${this.activeRepoIndex}.repositories.items.${index}.name`
         ),
-        credential_id: githubCredentialId,
+        credential_id: this.credentialId,
         owner: get(this.orgList[this.activeRepoIndex], 'name'),
         discover_branches: 1,
         discover_pr_from_forks: { strategy: 2, trust: 2 },
@@ -129,21 +129,60 @@ export default class GitHubForm extends React.Component {
   @action
   handlePasswordConfirm = async () => {
     const { name, cluster, devops } = this.props
+
     const data = this.tokenFormRef.current.getData()
 
-    if (isEmpty(data)) return false
+    this.credentialId = data.credentialId
+
+    if (isEmpty(data) || !this.credentialId) return false
 
     this.setState({ isLoading: true })
 
-    await this.props.store
-      .putAccessToken({ token: data.token, name, cluster, devops })
-      .finally(() => {
-        this.setState({ isLoading: false })
-      })
+    const credentialDetail = await this.props.store.getCredentialDetail({
+      cluster,
+      devops,
+      credential_id: this.credentialId,
+    })
+
+    const token = get(credentialDetail, 'data.password')
+
+    if (token) {
+      await this.props.store
+        .putAccessToken({ token, name, cluster, devops })
+        .finally(() => {
+          this.setState({ isLoading: false })
+        })
+    } else {
+      this.setState({ isLoading: false })
+    }
   }
 
+  getCredentialsList = () => {
+    return [
+      ...this.props.store.credentials.data.map(credential => ({
+        label: credential.name,
+        value: credential.name,
+        type: credential.type,
+      })),
+    ]
+  }
+
+  getCredentialsListData = params => {
+    const { devops, cluster } = this.props
+    return this.props.store.getCredentials({ devops, cluster, ...params })
+  }
+
+  optionRender = ({ label, type, disabled }) => (
+    <span style={{ display: 'flex', alignItem: 'center' }}>
+      {label}&nbsp;&nbsp;
+      <Tag type={disabled ? '' : 'warning'}>
+        {type === 'ssh' ? 'SSH' : t(type)}
+      </Tag>
+    </span>
+  )
+
   renderAccessTokenForm() {
-    const { tokenFormData, isAccessTokenWrong } = this.props.store
+    const { tokenFormData, credentials, isAccessTokenWrong } = this.props.store
 
     return (
       <div className={styles.card}>
@@ -153,6 +192,8 @@ export default class GitHubForm extends React.Component {
           ref={this.tokenFormRef}
         >
           <Form.Item
+            label={t('Token')}
+            rules={[{ required: true }]}
             error={
               isAccessTokenWrong
                 ? {
@@ -160,14 +201,38 @@ export default class GitHubForm extends React.Component {
                   }
                 : {}
             }
-            label={t('Token')}
             desc={
-              <div className="clear-right">
-                <p>{t.html('GET_GITHUB_TOKEN_DESC')}</p>
-              </div>
+              <p>
+                {t('ADD_NEW_CREDENTIAL_DESC')}
+                <span
+                  className={styles.clickable}
+                  onClick={() => {
+                    this.props.showCredential()
+                    this.props.setCredentialsFormData({
+                      type: 'username_password',
+                      data: { username: 'admin' },
+                    })
+                  }}
+                >
+                  {t('Create a credential')}
+                </span>
+              </p>
             }
           >
-            <Input name="token" />
+            <Select
+              name="credentialId"
+              options={this.getCredentialsList()}
+              pagination={pick(credentials, ['page', 'limit', 'total'])}
+              isLoading={credentials.isLoading}
+              onFetch={this.getCredentialsListData}
+              optionRenderer={this.optionRender}
+              valueRenderer={this.optionRender}
+              searchable
+              clearable
+              onChange={() => {
+                this.props.store.isAccessTokenWrong = false
+              }}
+            />
           </Form.Item>
           <Button
             className={styles.confirmButton}
