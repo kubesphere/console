@@ -110,6 +110,7 @@ export default class AppDeploy extends React.Component {
     const packageFiles = this.fileStore.files
 
     if (packageFiles && packageFiles['values.yaml']) {
+      set(this.state.formData, 'conf', packageFiles['values.yaml'])
       this.setState({
         valuesYaml: packageFiles['values.yaml'],
         loadingFile: false,
