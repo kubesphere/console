@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, isEmpty } from 'lodash'
+import { get, intersection, isEmpty } from 'lodash'
 import { observable, action } from 'mobx'
 
 import { getFilterString, joinSelector } from 'utils'
@@ -36,15 +36,27 @@ const STATUSES = {
 }
 
 const dataFormatter = data => {
+  if (!data) {
+    return {}
+  }
+
   const status = get(data, 'cluster.status')
+  let selector = {
+    'app.kubernetes.io/instance': data.cluster.name,
+    'app.kubernetes.io/name': data.app.name,
+    'app.kubernetes.io/managed-by': 'Helm',
+  }
+
+  if (Array.isArray(data.releaseInfo)) {
+    selector = intersection(
+      data.releaseInfo.map(item => get(item, 'metadata.labels'))
+    )
+  }
+
   return {
     ...data,
     ...data.cluster,
-    selector: {
-      'app.kubernetes.io/instance': data.cluster.name,
-      'app.kubernetes.io/name': data.app.name,
-      'app.kubernetes.io/managed-by': 'Helm',
-    },
+    selector,
     status: STATUSES[status],
   }
 }
