@@ -1,6 +1,6 @@
 resource "qingcloud_security_group" "basic"{
-  name = "tf-cd-allinone-console-firewall"
-  description = "tf-cd-allinone-console-firewall"
+  name = "cd-console"
+  description = "cd-console"
 }
 
 resource "qingcloud_security_group_rule" "openport" {
@@ -15,7 +15,7 @@ resource "qingcloud_security_group_rule" "openport" {
 
 resource "qingcloud_instance" "init"{
   count = 1
-  name = "tf-cd-allinone-console-${count.index}"
+  name = "cd-console"
   image_id = "centos76x64a"
   cpu = "8"
   memory = "16384"
