@@ -61,7 +61,7 @@ export default class IPPoolWorkspaceModal extends Component {
         ALL_WORKSPACE
       )
     }
-    this.workspaceStore.fetchList()
+    this.workspaceStore.fetchList({ cluster: this.props.cluster })
   }
 
   getWorkspaces() {

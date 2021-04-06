@@ -44,7 +44,7 @@ export default class IPPools extends React.Component {
   }
 
   get itemActions() {
-    const { trigger, name } = this.props
+    const { trigger, name, match } = this.props
     return [
       {
         key: 'edit',
@@ -75,6 +75,7 @@ export default class IPPools extends React.Component {
         onClick: item =>
           trigger('network.ipool.assignworkspace', {
             detail: item,
+            cluster: match.params.cluster,
           }),
       },
       {
