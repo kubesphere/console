@@ -21,9 +21,8 @@ import { observer, inject } from 'mobx-react'
 
 import { toJS } from 'mobx'
 import { parse } from 'qs'
-import { omit, isEmpty, get } from 'lodash'
+import { omit } from 'lodash'
 
-import Status from 'devops/components/Status'
 import CredentialStore from 'stores/devops/credential'
 import { trigger } from 'utils/action'
 import { getLocalTime } from 'utils'
@@ -43,7 +42,6 @@ class Credential extends React.Component {
 
     this.store = new CredentialStore()
     this.formTemplate = {}
-    this.refreshTimer = setInterval(() => this.refreshHandler(), 4000)
   }
 
   componentDidMount() {
@@ -59,15 +57,7 @@ class Credential extends React.Component {
     })
   }
 
-  componentDidUpdate() {
-    if (this.refreshTimer === null && this.isRuning) {
-      clearInterval(this.refreshTimer)
-      this.refreshTimer = setInterval(() => this.refreshHandler(), 4000)
-    }
-  }
-
   componentWillUnmount() {
-    clearInterval(this.refreshTimer)
     this.unsubscribe && this.unsubscribe()
   }
 
@@ -113,28 +103,6 @@ class Credential extends React.Component {
     return 'Credentials'
   }
 
-  refreshHandler = () => {
-    if (this.isRuning) {
-      this.getData()
-    } else {
-      clearInterval(this.refreshTimer)
-      this.refreshTimer = null
-    }
-  }
-
-  get isRuning() {
-    const { data } = toJS(this.store.list)
-    const runingData = data.filter(item => {
-      const status = get(
-        item,
-        'annotations["credential.devops.kubesphere.io/syncstatus"]'
-      )
-      return status !== 'failed' && status !== 'successful'
-    })
-
-    return !isEmpty(runingData)
-  }
-
   handleCreate = () => {
     const { devops, cluster } = this.props.match.params
     this.trigger('devops.credential.create', {
@@ -146,38 +114,14 @@ class Credential extends React.Component {
     })
   }
 
-  getPipelineStatus = status => {
-    const CONFIG = {
-      failed: { type: 'failure', label: t('Failure') },
-      pending: { type: 'running', label: t('Running') },
-      working: { type: 'running', label: t('Running') },
-      successful: { type: 'success', label: t('Success') },
-    }
-
-    return { ...CONFIG[status] }
-  }
-
   getColumns = () => [
     {
       title: t('Name'),
       dataIndex: 'name',
-      width: '20%',
+      width: '35%',
       render: id => {
         const url = `${this.prefix}/${encodeURIComponent(id)}`
         return <Avatar to={this.isRuning ? null : url} title={id} />
-      },
-    },
-    {
-      title: t('Sync Status'),
-      width: '15%',
-      key: 'status',
-      render: record => {
-        const status = get(
-          record,
-          'annotations["credential.devops.kubesphere.io/syncstatus"]'
-        )
-
-        return <Status {...this.getPipelineStatus(status)} />
       },
     },
     {
