@@ -45,6 +45,8 @@ export default class PipelineDetailLayout extends React.Component {
     formTemplate: this.store.pipeLineConfig,
   }
 
+  module = 'pipelines'
+
   get store() {
     return this.props.pipelineStore
   }
@@ -61,7 +63,7 @@ export default class PipelineDetailLayout extends React.Component {
     const { cluster, devops } = this.props.match.params
 
     return globals.app.getActions({
-      module: 'pipelines',
+      module: this.module,
       cluster,
       devops,
     })
@@ -257,9 +259,11 @@ export default class PipelineDetailLayout extends React.Component {
       detailStore: this.store,
       sonarqubeStore: this.sonarqubeStore,
     }
+
     const operations = this.getOperations().filter(item =>
       this.enabledActions.includes(item.action)
     )
+
     const { formTemplate } = this.state
     const keyPath = has(formTemplate, 'pipeline')
       ? 'pipeline.description'
@@ -270,13 +274,11 @@ export default class PipelineDetailLayout extends React.Component {
 
     const sideProps = {
       module: this.module,
-      authKey: this.authKey,
       name: get(this.store.detail, 'name'),
       desc,
       operations,
       attrs: this.getAttrs(),
       labels: this.store.detail.labels,
-
       breadcrumbs: [
         {
           label: t('Pipeline List'),

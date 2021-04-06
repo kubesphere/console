@@ -22,7 +22,7 @@ import { Link } from 'react-router-dom'
 
 import { Tag } from '@kube-design/components'
 
-import { Text } from 'components/Base'
+import { Text, Status } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import withList, { ListPage } from 'components/HOCs/withList'
 
@@ -30,7 +30,7 @@ import Table from 'components/Tables/List'
 
 import { getLocalTime } from 'utils'
 import { MODULE_KIND_MAP } from 'utils/constants'
-import { getAlertingResource } from 'utils/alerting'
+import { getAlertingResource, ALERTING_STATUS } from 'utils/alerting'
 
 import { SEVERITY_LEVEL } from 'configs/alerting/metrics/rule.config'
 
@@ -72,6 +72,7 @@ export default class AlertingPolicy extends React.Component {
 
   handleTabChange = type => {
     this.setState({ type }, () => {
+      this.props.store.list.reset()
       this.getData()
     })
   }
@@ -131,18 +132,41 @@ export default class AlertingPolicy extends React.Component {
     }))
   }
 
+  getStatus() {
+    return ALERTING_STATUS.map(status => ({
+      text: t(`ALERT_RULE_${status.toUpperCase()}`),
+      value: status,
+    }))
+  }
+
   getColumns = () => {
     const { getFilteredValue } = this.props
     return [
       {
         title: t('Alerting Message'),
         dataIndex: 'value',
-        width: '30%',
         render: (value, record) => (
           <Text
             icon="loudspeaker"
             title={get(record, 'annotations.summary')}
             description={get(record, 'annotations.message', '-')}
+          />
+        ),
+      },
+      {
+        title: t('Alerting Status'),
+        dataIndex: 'state',
+        filters: this.getStatus(),
+        filteredValue: getFilteredValue('state'),
+        isHideable: true,
+        search: true,
+        width: '12%',
+        render: state => (
+          <Status
+            type={state}
+            name={t(`ALERT_RULE_${state.toUpperCase()}`, {
+              defaultValue: state,
+            })}
           />
         ),
       },
@@ -153,7 +177,7 @@ export default class AlertingPolicy extends React.Component {
         filteredValue: getFilteredValue('labels.severity'),
         isHideable: true,
         search: true,
-        width: '15%',
+        width: '12%',
         render: severity => {
           const level = SEVERITY_LEVEL.find(item => item.value === severity)
           if (level) {
@@ -166,7 +190,7 @@ export default class AlertingPolicy extends React.Component {
         title: t('Alerting Policy'),
         dataIndex: 'ruleName',
         isHideable: true,
-        width: '20%',
+        width: '12%',
         render: (ruleName, record) => (
           <Link
             to={
@@ -183,7 +207,7 @@ export default class AlertingPolicy extends React.Component {
         title: t('Alerting Resource'),
         dataIndex: 'labels',
         isHideable: true,
-        width: '20%',
+        width: '16%',
         render: labels => {
           const { module, name, namespace } = getAlertingResource(labels)
           if (!module) {
@@ -198,9 +222,10 @@ export default class AlertingPolicy extends React.Component {
         },
       },
       {
-        title: t('Time'),
+        title: t('Alert Active Time'),
         dataIndex: 'activeAt',
         isHideable: true,
+        width: 200,
         render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
       },
     ]

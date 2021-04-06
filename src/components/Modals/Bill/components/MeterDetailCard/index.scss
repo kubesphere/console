@@ -26,7 +26,6 @@
     }
 
     p {
-      font-family: 'Roboto-Medium';
       font-size: 28px;
       font-weight: 700;
       color: #030012;
@@ -38,7 +37,6 @@
   }
 
   & > div:first-child > h3 {
-    font-family: 'PingFangSC-Regular';
     margin-bottom: 12px;
     color: $dark-color01;
 
@@ -53,7 +51,6 @@
     margin-bottom: 20px;
 
     h4 {
-      font-family: 'Roboto-Medium';
       font-weight: 700;
       font-size: 28px;
       line-height: 38px;
@@ -61,7 +58,6 @@
     }
 
     p {
-      font-family: 'PingFangSC-Semibold';
       line-height: 20px;
       color: $dark-color07;
     }
@@ -91,7 +87,6 @@
 
         div {
           height: 25px;
-          font-family: 'Roboto-Medium';
           font-weight: 700;
           margin-bottom: 2px;
           font-size: 20px;
@@ -99,7 +94,6 @@
         }
 
         p {
-          font-family: 'PingFangSC-Regular';
           color: $dark-color01;
 
           span {

@@ -196,7 +196,7 @@ module.exports = {
   'No Limit': 'Sin límite',
   'No parameters': 'Sin parámetros',
   'No Relevant Data': 'Sin datos relevantes',
-  'No matching resources found. ':
+  'No matching resources found.':
     'Aún no se han encontrado recursos que coincidan con el filtro',
   'No.': 'Num.',
   Nobody: 'Nadie',

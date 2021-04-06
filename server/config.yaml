@@ -172,14 +172,12 @@ client:
                 title: Alerting Messages,
                 icon: loudspeaker,
                 clusterModule: "alerting",
-                authKey: 'alert-messages',
               }
             - {
                 name: alert-rules,
                 title: Alerting Policies,
                 icon: hammer,
                 clusterModule: "alerting",
-                authKey: 'alert-policies',
               }
             - { name: custom-monitoring, title: Custom Monitoring }
         - name: cluster-settings
@@ -380,14 +378,12 @@ client:
                 title: Alerting Messages,
                 icon: loudspeaker,
                 clusterModule: "alerting",
-                authKey: 'alert-messages',
               }
             - {
                 name: alert-rules,
                 title: Alerting Policies,
                 icon: hammer,
                 clusterModule: "alerting",
-                authKey: 'alert-policies',
               }
             - { name: custom-monitoring, title: Custom Monitoring }
         - name: settings
@@ -563,3 +559,18 @@ client:
   # devops:
   #  replace sonarqube link to customize url origin, default is useless
   # sonarqubeURL: http://139.123.123.123:8080
+
+  #notification management
+  notification: 
+    mail: 
+      max_number_of_eamil: 50
+    dingtalk:
+      max_number_of_cid: 20
+      max_number_of_keyword: 20
+    wecom:
+      max_number_of_toUser: 50
+      max_number_of_toParty: 20
+      max_number_of_toTag: 20
+    slack:
+      max_number_of_channel: 20
+  

@@ -201,7 +201,7 @@ module.exports = {
   RULE_S2IBUILDERS: 'Image Builder',
 
   CLUSTER_SETTINGS_DESC:
-    'Manage cluster settings and authorizations to workspaces & edit cluster information',
+    'Manage cluster settings and authorizations to workspaces & edit cluster information.',
   WORKSPACE_ROLE_NAME_TIP:
     'The role name is used as the identifier of the role.',
   ROLE_CREATE_TIP_TITLE: 'Next Step',

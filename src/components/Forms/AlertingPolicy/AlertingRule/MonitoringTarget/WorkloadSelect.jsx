@@ -82,9 +82,11 @@ export default class WorkloadSelect extends Component {
   }
 
   handleKindChange = kind => {
-    this.store.setModule(this.kindModules[kind])
-    this.fetchData()
-    set(this.props.formTemplate, 'resources', [])
+    if (this.kindModules[kind] !== this.store.module) {
+      this.store.setModule(this.kindModules[kind])
+      this.fetchData()
+      set(this.props.formTemplate, 'resources', [])
+    }
   }
 
   render() {

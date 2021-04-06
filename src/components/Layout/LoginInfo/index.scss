@@ -1,4 +1,4 @@
-@import "~scss/variables";
+@import '~scss/variables';
 
 .logined {
   display: inline-block;
@@ -40,7 +40,7 @@
   .name {
     color: $yellow-color03;
     font-size: $size-small;
-    line-height: 20;
+    line-height: 20px;
 
     :global {
       svg {

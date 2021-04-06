@@ -33,7 +33,8 @@ module.exports = {
   'Please add role': '請添加角色',
   'User Group Assigned': '已分配用戶組',
 
-  DELETE_GROUP_TIP: '確定刪除子部門 <strong>{resource}</strong>?',
-  GROUP_USERS_TIP:
-    '當前部門有 <strong>{count}</strong> 名授權用戶，請先移除授權用戶再刪除。',
+  DELETE_PARENT_GROUP_TIP:
+    '確定刪除子部門 <strong>{group_name}</strong>? 刪除該部門的同時，其子部門也會被刪除，且所有成員的授權也將被取消。',
+  DELETE_GROUP_TIP:
+    '確定刪除子部門 <strong>{group_name}</strong>? 刪除該部門的同時，所有成員的授權也將被取消。',
 }

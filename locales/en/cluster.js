@@ -20,7 +20,7 @@ module.exports = {
   'Add Cluster': 'Add Cluster',
   'Add New Cluster': 'Add New Cluster',
   'All Projects': 'All Projects',
-  'Authorize the cluster to workspace': 'Authorize the cluster to workspace',
+  'Authorize the cluster to workspace': 'Assign the Cluster to Workspaces',
   Authorized: 'Authorized',
   'Available Clusters': 'Available Clusters',
   'Choose a provider': 'Choose a provider',
@@ -59,7 +59,7 @@ module.exports = {
   'Node Types': 'Node Types',
   'Nodes Management': 'Nodes Management',
   'Not Ready': 'Not Ready',
-  'Please input cluster name': 'Please input cluster name',
+  'Please input cluster name': 'Please enter a cluster name.',
   'Please input the kubesphere api server address of the cluster':
     'Please input the kubesphere api server address of the cluster',
   'Please select or input a provider': 'Please select or input a provider',
@@ -67,7 +67,7 @@ module.exports = {
   'Scheduler Scheduling Times': 'Scheduler Scheduling Times',
   'Scheduling Failed Pods': 'Scheduling Failed Pods',
   'Select Clusters': 'Select Clusters',
-  'Set as public cluster': 'Set as public cluster',
+  'Set as public cluster': 'Set as a public cluster',
   Snapshots: 'Snapshots',
   'Storage Management': 'Storage',
   'System Projects': 'System Projects',
@@ -122,22 +122,22 @@ module.exports = {
 
   MULTI_CLUSTER: 'Multi-Clusters',
 
-  IMPORT_CLUSTER_DESC: 'Import an existing Kubernetes cluster',
+  IMPORT_CLUSTER_DESC: 'Import an existing Kubernetes cluster.',
   SELECT_CLUSTERS_DESC: 'Select the cluster available in the workspace.',
 
   CLUSTER_SETTINGS_DESC: 'Define cluster configuration information',
   CLUSTER_TAG: 'Tag',
   CLUSTER_TAG_DESC:
-    'To indicate what the cluster is used for, such as a production environment, testing environment or demo environment',
-  CLUSTER_PROVIDER_DESC: 'The cluster infrastructure provider',
+    'Indicate what the cluster is used for, such as a production environment, testing environment or demo environment.',
+  CLUSTER_PROVIDER_DESC: 'The cluster infrastructure provider.',
   CLUSTER_CONNECT_METHOD_DESC:
-    'Directly connect to the cluster or use an agent',
+    'Directly connect to the cluster or use an agent.',
 
-  CONNTECT_DIRECT: 'Direct connection to Kubernetes cluster',
-  CONNTECT_PROXY: 'Cluster connection agent',
+  CONNTECT_DIRECT: 'Direct connection',
+  CONNTECT_PROXY: 'Agent connection',
 
   CLUSTER_WAITING_JOIN_DESC:
-    'There are currently no nodes available. The cluster is unusable. You can add the following configuration file to enable the cluster.',
+    'There are currently no nodes available. The cluster is unusable. You can add the following configuration file to import the cluster.',
 
   CLUSTER_AGENT_TIP_1:
     'Please create a file named agent.yaml in the target cluster via SSH',
@@ -164,14 +164,14 @@ module.exports = {
   INPUT_KUBECONFIG: 'Please fill in the kubeconfig of the target cluster',
 
   CLUSTER_DIRECT_IMPORT_TIP:
-    'The multi-cluster control plane of KubeSphere connects to imported clusters through the kubeconfig provided. For this method, the current cluster must be able to directly access clusters that are to be imported through the server address in the kubeconfig.</br></br>This method generally applies to the conditions below:</br>1. The current cluster and clusters to be imported are in the same internal network.</br>2. The network of both the current cluster and clusters to be imported is connected through VPN or other technologies (e.g. Tunneling).</br>3. The server address in the kubeconfig can be accessed through public network.',
+    'The multi-cluster control plane of KubeSphere connects to the member cluster through the kubeconfig provided. For this method, the host cluster must be able to directly access the member cluster through the server address in the kubeconfig.</br></br>This method generally applies to the scenarios like the following:</br>1. The host cluster and the member cluster are in the same internal network.</br>2. The network of both the host cluster and the member cluster is connected through VPN or other technologies (e.g. Tunneling).</br>3. The server address in the kubeconfig can be accessed through public network.',
   CLUSTER_AGENT_IMPORT_TIP:
-    'The KubeSphere control plane connects to clusters that are to be imported through a proxy. The control plane runs a public proxy service, which is connected to a client component created by clusters to be imported. Thus, a reserve proxy is created. For this method, the control plane and clusters to be imported do not need to be in the same network. The apiserver address of clusters to be imported does not need to be exposed either. However, network performance may be affected.</br></br>This method generally applies to the conditions below:</br>1. The current cluster and clusters to be imported are not in the same network.<br/>2. The network of both the current cluster and clusters to be imported cannot be connected through VPN or other technologies (e.g. Tunneling).<br/>3. Network performance deficiencies within clusters can be accepted.',
+    'The KubeSphere control plane connects to the member cluster through a proxy. The control plane runs a public proxy service, which is connected to a client component created by the member cluster. Thus, a reserve proxy is created. For this method, the control plane and the member cluster do not need to be in the same network. The apiserver address of the member cluster does not need to be exposed. However, network performance may be affected.</br></br>This method generally applies to the scenarios like the following:</br>1. The host cluster and the member cluster are not in the same network.<br/>2. The network of both the host cluster and the member cluster cannot be connected through VPN or other technologies (e.g. Tunneling).<br/>3. Network performance deficiencies within clusters can be accepted.',
   CLUSTER_AGENT_TITLE:
-    'Please add the cluster based on the Agent provided in the cluster.',
-  CLUSTER_AGENT_DESC: 'A corresponding Agent needs to be set in the cluster.',
+    'Please add the member cluster based on the agent provided in the cluster.',
+  CLUSTER_AGENT_DESC: 'A corresponding agent needs to be set in the cluster.',
 
-  HOW_TO_GET_KUBECONFIG: 'How to get kubeconfig?',
+  HOW_TO_GET_KUBECONFIG: 'How do I get kubeconfig?',
 
   UNBIND_CLUSTER_DESC:
     'After the cluster is unbound, KubeSphere will be unable to manage the cluster and Kubernetes resources within the cluster will not be deleted.',
@@ -184,11 +184,11 @@ module.exports = {
     'A public cluster means all platform users can access the cluster, in which they are able to create and schedule resources.',
 
   CLUSTER_AUTHORIZATION_DESC:
-    'Clusters can be assigned to workspaces through authorization.',
+    'The cluster can be assigned to workspaces through authorization.',
 
-  CLUSTER_VISIBILITY_Q1: 'How to authorize clusters to specific workspaces?',
+  CLUSTER_VISIBILITY_Q1: 'How do I assign the cluster to specific workspaces?',
   CLUSTER_VISIBILITY_A1:
-    'You can authorize the cluster to different workspaces by clicking Edit Visibility.',
+    'You can assign the cluster to different workspaces by clicking Edit Visibility.',
   CLUSTER_VISIBILITY_Q2: 'What is a public cluster?',
   CLUSTER_VISIBILITY_A2:
     'A public cluster means all platform users can access the cluster, in which they are able to create and schedule resources.',
@@ -196,7 +196,7 @@ module.exports = {
   SELECT_HOST_CLUSTER_WARNING:
     'Please try not to create resources on the host cluster to avoid excessive loads, which can lead to a decrease in the stability across clusters.',
   HOST_CLUSTER_VISIBILITY_WARNING:
-    'Please be careful to authorize the host cluster to the workspace. If the load of the host cluster is too high, the stability across clusters will decrease.',
+    'Please be careful to assign the host cluster to workspaces. If the load of the host cluster is too high, the stability across clusters will decrease.',
   CLUSTER_VISIBILITY_REMOVE_WARNING:
     'Once the authorization for the workspace to use the cluster is removed, all resources of the workspace in the current cluster will be deleted.',
 

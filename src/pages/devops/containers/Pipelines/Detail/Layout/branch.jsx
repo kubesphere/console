@@ -41,6 +41,8 @@ import './index.scss'
 export default class BranchDetailLayout extends React.Component {
   sonarqubeStore = new CodeQualityStore()
 
+  module = 'pipelines'
+
   get store() {
     return this.props.pipelineStore
   }
@@ -72,7 +74,7 @@ export default class BranchDetailLayout extends React.Component {
     const { cluster, devops } = this.props.match.params
 
     return globals.app.getActions({
-      module: 'pipelines',
+      module: this.module,
       cluster,
       devops,
     })
@@ -194,7 +196,7 @@ export default class BranchDetailLayout extends React.Component {
       name: decodeURIComponent(branch),
       operations,
       attrs: this.getAttrs(),
-
+      module: this.module,
       breadcrumbs: [
         {
           label: t('Branch'),

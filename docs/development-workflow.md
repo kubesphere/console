@@ -1,56 +1,57 @@
 ## Development Workflow
 
-### 1 Fork in the cloud
+### Step 1: Fork in the cloud
 
 1. Visit https://github.com/kubesphere/console
 2. Click `Fork` button to establish a cloud-based fork.
 
-### 2 Clone fork to local storage
+### Step 2: Clone fork to local storage
 
-1. Create your clone locally:
+1. Create your `$working_dir`,and clone locally:
 
-```bash
-$ mkdir -p $working_dir
-$ cd $working_dir
-$ git clone https://github.com/$user/console.git
-$ cd $working_dir/console
-$ git remote add upstream https://github.com/kubesphere/console.git
+```shell
+# Create your `$working_dir`
+mkdir -p $working_dir
+cd $working_dir
+git clone https://github.com/$user/console.git
+cd $working_dir/console
+git remote add upstream https://github.com/kubesphere/console.git
 
 # Never push to upstream master
-$ git remote set-url --push upstream no_push
+git remote set-url --push upstream no_push
 
 # Confirm that your remotes make sense:
-$ git remote -v
+git remote -v
 ```
 
-### 3 Keep your branch in sync
+### Step 3: Keep your branch in sync
 
-```bash
+```shell
 git fetch upstream
 git checkout master
 git rebase upstream/master
 ```
 
-### 4 Add new features or fix issues
+### Step 4: Add new features or fix issues
 
 Branch from it:
 
-```bash
-$ git checkout -b myfeature
+```shell
+git checkout -b myfeature
 ```
 
 Then edit code on the myfeature branch.
 
-### 5 Development in new branch
+### Step 5: Development in new branch
 
 **Sync with upstream**
 
 After the test is completed, suggest you to keep your local in sync with upstream which can avoid conflicts.
 
-```bash
+```shell
 # Rebase your the master branch of your local repo.
-$ git checkout master
-$ git rebase upstream/master
+git checkout master
+git rebase upstream/master
 
 # Then make your development branch in sync with master branch
 git checkout new_feature
@@ -60,21 +61,20 @@ git rebase -i master
 
 See [Git Commit Messages Style Guide](../CONTRIBUTING.md#git-commit-messages)
 
-```bash
-$ git add <file>
-$ git commit -a
+```shell
+git commit -a -s
 ```
 
-### 6 Push to your fork
+### Step 6: Push to your fork
 
-When ready to review (or just to establish an offsite backup or your work), push your branch to your fork on github.com:
+When ready to review (or just to establish an offsite backup or your work), push your branch to your fork on `github.com` .
 
-```bash
-$ git push -f ${your_remote_name} myfeature
+```shell
+git push -f ${your_remote_name} myfeature
 ```
 
-### 7 Create a PR
+### Step 7: Create a PR
 
-- Visit your fork at https://github.com/$user/console
+- Visit your fork at `https://github.com/$user/console`.
 - Click the` Compare & Pull Request` button next to your myfeature branch.
 - Check out the [pull request guide](./CONTRIBUTING.md#pull-requests) for more details and advice.

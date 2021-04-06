@@ -40,8 +40,16 @@ export default class Item extends React.Component {
 
   validateChannel = channel => {
     const { value } = this.props
+    const count = globals.config.notification.dingtalk['max_number_of_keyword']
     if (!channel) {
       Notify.error({ content: t('Please enter a channel'), duration: 1000 })
+      return
+    }
+    if (value.length > count - 1) {
+      Notify.error({
+        content: t.html('MAX_CHANNEL_COUNT', { count }),
+        durantion: 1000,
+      })
       return
     }
     if (value.some(item => item === channel)) {

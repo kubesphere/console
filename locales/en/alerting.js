@@ -75,7 +75,7 @@ module.exports = {
   Rule: 'Rule',
   'Rule Name': 'Rule Name',
   Threshold: 'Threshold',
-  'Unavailable replicas ratio': 'Unavailable replicas ratio',
+  'Unavailable replicas ratio': 'Unavailable replicas',
   'Unavailable daemonset replicas ratio':
     'Unavailable daemonset replicas ratio',
   'Unavailable deployment replicas ratio':
