@@ -24,6 +24,7 @@ import {
   isString,
   trimEnd,
   isUndefined,
+  isNull,
   isEmpty,
   trimStart,
   isNumber,
@@ -140,6 +141,7 @@ export const generateId = length =>
  */
 export const joinSelector = (selector = {}) =>
   Object.entries(selector)
+    .filter(entry => !isUndefined(entry[1]) && !isNull(entry[1]))
     .map(([key, value]) => `${key}=${value}`)
     .join(',')
 

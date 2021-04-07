@@ -62,6 +62,7 @@ export default class Events extends React.Component {
     {
       title: t('Message'),
       dataIndex: 'result',
+      render: result => result || '-',
     },
   ]
 
