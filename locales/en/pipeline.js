@@ -49,7 +49,7 @@ module.exports = {
   'Branch Excluded': 'Branch Excluded',
   'Branch Included': 'Branch Included',
   'branch success': 'branch success',
-  'Branches Settings': 'Branches Settings',
+  'Branch Settings': 'Branch Settings',
   Break: 'Break',
   'Build Settings': 'Build Settings',
   'Build Trigger': 'Build Trigger',
@@ -485,7 +485,7 @@ module.exports = {
   VULNERABILITY: 'Vulnerability',
   SECURITY_HOTSPOT: 'Security Hotspot',
   REG_FILTER_DESC:
-    'Enable regular expressions, ignoring names that do not match the provided regular expression (including branches and PR, etc.)',
+    'Enable regular expressions, ignoring names that do not match the provided regular expression (including branches and PRs)',
   waitForQualityGate_desc:
     "Code quality check standards are derived from SonarQube's Quality Gate. If you need to customize the standards, go to SonarQube settings.",
   PIPELINE_CREATE_DESC:

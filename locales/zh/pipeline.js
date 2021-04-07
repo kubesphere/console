@@ -39,7 +39,7 @@ module.exports = {
   'Scan interval': '扫描时间间隔',
   'Push message to': '推送消息到',
   'Build Settings': '构建设置',
-  'Branches Settings': ' 分支设置',
+  'Branch Settings': ' 分支设置',
   'The name of the pipeline. Pipelines in the same project must have different names.':
     'Pipeline 的名称，同一个项目内 Pipeline 不能重名',
   'It specifies the default value of the field, allowing the user to save the typed actual value.':

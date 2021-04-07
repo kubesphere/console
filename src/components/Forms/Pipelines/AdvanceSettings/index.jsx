@@ -548,7 +548,7 @@ export default class AdvanceSettings extends React.Component {
           <div className="h6">
             {isEmpty(multi_branch_pipeline)
               ? t('Build Settings')
-              : t('Branches Settings')}
+              : t('Branch Settings')}
           </div>
           <Form.Item>
             <Checkbox

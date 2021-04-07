@@ -49,7 +49,7 @@ module.exports = {
   'Branch Excluded': 'Rama excluida',
   'Branch Included': 'Rama incluida',
   'branch success': 'Rama correcta',
-  'Branches Settings': 'Configuración de ramas',
+  'Branch Settings': 'Configuración de ramas',
   Break: 'Rotura',
   'Build Settings': 'Configuración de compilación',
   'Build Trigger': 'Crear disparador',
