@@ -19,8 +19,8 @@
 import React from 'react'
 import { action, toJS } from 'mobx'
 import { observer } from 'mobx-react'
-import { isEmpty, get } from 'lodash'
-import { Form, Button, Input, Select } from '@kube-design/components'
+import { isEmpty, get, pick } from 'lodash'
+import { Form, Button, Select } from '@kube-design/components'
 
 import { REPO_KEY_MAP } from 'utils/constants'
 
@@ -63,21 +63,38 @@ export default class BitBucketForm extends GitHubForm {
   handlePasswordConfirm = async () => {
     const { cluster, devops } = this.props
     const data = this.tokenFormRef.current.getData()
+
+    this.credentialId = data.credentialId
+
+    if (isEmpty(data) || !this.credentialId) return false
+
     this.setState({ isLoading: true })
-    await this.props.store
-      .creatBitBucketServers({ cluster, devops, ...data })
-      .finally(() => {
-        this.setState({ isLoading: false })
-      })
+
+    const credentialDetail = await this.props.store.getCredentialDetail({
+      cluster,
+      devops,
+      credential_id: this.credentialId,
+    })
+
+    if (!isEmpty(credentialDetail)) {
+      await this.props.store
+        .creatBitBucketServers({
+          cluster,
+          devops,
+          credentialId: this.credentialId,
+          ...credentialDetail.data,
+          ...data,
+        })
+        .finally(() => {
+          this.setState({ isLoading: false })
+        })
+    } else {
+      this.setState({ isLoading: false })
+    }
   }
 
   handleSubmit = e => {
-    const {
-      orgList,
-      activeRepoIndex,
-      bitbucketCredentialId,
-      tokenFormData,
-    } = this.props.store
+    const { orgList, activeRepoIndex, tokenFormData } = this.props.store
     const index = e.currentTarget.dataset && e.currentTarget.dataset.repoIndex
 
     const data = {
@@ -86,7 +103,7 @@ export default class BitBucketForm extends GitHubForm {
           orgList.data,
           `${activeRepoIndex}.repositories.items.${index}.name`
         ), // repo
-        credential_id: bitbucketCredentialId,
+        credential_id: this.credentialId,
         owner: get(orgList.data[activeRepoIndex], 'key'),
         api_uri: get(tokenFormData, 'apiUrl'),
         discover_branches: 1,
@@ -106,6 +123,7 @@ export default class BitBucketForm extends GitHubForm {
     const {
       tokenFormData,
       creatBitBucketServersError: errors = {},
+      credentials,
     } = this.props.store
     const errorsBody = toJS(errors)
 
@@ -117,19 +135,47 @@ export default class BitBucketForm extends GitHubForm {
           onSubmit={this.handlePasswordConfirm}
           ref={this.tokenFormRef}
         >
-          <Form.Item label="Bitbucket Server" error={errorsBody['apiUrl']}>
+          <Form.Item
+            label="Bitbucket Server"
+            error={errorsBody['apiUrl']}
+            rules={[{ required: true }]}
+          >
             <Select
               name="apiUrl"
               options={this.state.bitbucketList}
               searchable
             />
           </Form.Item>
-          <Form.Item label={t('Username')} error={errorsBody['username']}>
-            <Input name="username" />
+
+          <Form.Item
+            label={t('Credential')}
+            rules={[{ required: true }]}
+            error={errorsBody['username'] || errorsBody['password']}
+            desc={
+              <p>
+                {t('ADD_NEW_CREDENTIAL_DESC')}
+                <span
+                  className={styles.clickable}
+                  onClick={this.props.showCredential}
+                >
+                  {t('Create a credential')}
+                </span>
+              </p>
+            }
+          >
+            <Select
+              name="credentialId"
+              options={this.getCredentialsList()}
+              pagination={pick(credentials, ['page', 'limit', 'total'])}
+              isLoading={credentials.isLoading}
+              onFetch={this.getCredentialsListData}
+              optionRenderer={this.optionRender}
+              valueRenderer={this.optionRender}
+              searchable
+              clearable
+            />
           </Form.Item>
-          <Form.Item label={t('Password')} error={errorsBody['password']}>
-            <Input name="password" type="password" />
-          </Form.Item>
+
           {errorsBody.all ? (
             <p className={styles.error}>{errorsBody.all}</p>
           ) : null}

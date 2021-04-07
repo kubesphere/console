@@ -67,7 +67,8 @@ export default class CredentialDetail extends React.Component {
   fetchData = () => {
     const { params } = this.props.match
     this.store.setParams(params)
-    this.store.fetchDetail(params).catch(this.catch)
+    this.store.fetchDetail()
+    this.store.getUsageDetail()
   }
 
   getOperations = () => [

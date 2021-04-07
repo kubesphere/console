@@ -6,7 +6,6 @@
   margin-top: 12px;
 }
 
-
 .card {
   padding: 12px;
   border-radius: 4px;
@@ -18,4 +17,10 @@
 .error {
   margin: 12px 0px;
   color: $red-color03;
+}
+
+.clickable {
+  color: $green;
+  cursor: pointer;
+  margin-left: 15px;
 }
