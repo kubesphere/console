@@ -37,8 +37,6 @@ module.exports = {
   'Please add role': 'Please select a role.',
   'User Group Assigned': 'Department',
 
-  DELETE_PARENT_GROUP_TIP:
-    'Are you sure you want to delete the sub-department <strong>{group_name}</strong>? When deleting the department, its sub-departments will also be deleted, and the authorization of all members will be cancelled.',
   DELETE_GROUP_TIP:
     'Are you sure you want to delete the department <strong>{group_name}</strong>? The associated roles will be unbound from the users.',
   DELETE_PARENT_GROUP_TIP:
@@ -47,3 +45,4 @@ module.exports = {
     'The department contains <strong>{count}</strong> user. Please remove the user first.',
   GROUP_USERS_TIP:
     'The department contains <strong>{count}</strong> users. Please remove the users first.',
+}
