@@ -38,13 +38,13 @@ module.exports = {
   USER_NAME_DESC:
     '最長 32 個字元，只能包含小寫字母、數字及分隔符號("-")，且必須以小寫字母或數字開頭及結尾',
   USER_SETTING_EMAIL_DESC: '郵箱可作為登入帳號',
-  PASSWORD_DESC: '密碼必須包含數字和大小寫字母，長度為 6~64 位',
+  PASSWORD_DESC: '密碼必須包含數字和大小寫字母，長度為 6 ~ 64 位',
   ROLE_DESC:
     '角色類型根據權限範圍分為集群和項目兩類，目前角色的授權範圍為整個集群.',
   'New Password': '新的密碼',
   'Please input user name': '請輸入用戶名稱',
   'Please input email': '請輸入郵箱',
-  'Please repeat the new password': '請重復新的密碼',
+  'Please repeat the new password': '請重複新的密碼',
   'Please input current password': '請輸入目前密碼',
   'The password entered twice must be the same': '兩次輸入的密碼必須一致',
   'Please select role': '請選擇角色',
@@ -55,7 +55,7 @@ module.exports = {
   'Unable to delete itself': '無法刪除自己',
   'Login History': '登入歷史',
   Time: '時間',
-  'Repeat the New Password': '重復新的密碼',
+  'Repeat the New Password': '重複新的密碼',
 
   USER_ACTIVE: '活躍',
   USER_AUTHLIMITEXCEEDED: '限制登入',

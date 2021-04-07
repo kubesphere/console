@@ -203,7 +203,7 @@ module.exports = {
   'UI Mode': '界面模式',
   'Coding Mode': '代碼模式',
 
-  'Labels exists': '標籤組重復',
+  'Labels exists': '標籤組重複',
   'Labels cannot be empty': '標籤不能為空',
   'Add Label': '添加標籤',
   'Add Container': '添加容器',
@@ -254,7 +254,7 @@ module.exports = {
   'Please input command': '請輸入命令',
   'Please input volume name': '請輸入儲存卷名稱',
 
-  PORT_INPUT_DESC: '當存在多條端口時，名稱為必填項目且不可重復',
+  PORT_INPUT_DESC: '當存在多條端口時，名稱為必填項目且不可重複',
 
   PORT_NAME_DESC:
     '端口名最長 63 個字元，只能包含小寫字母、數字及分隔符號("-")，且必須以小寫字母開頭, 字母或數字結尾',

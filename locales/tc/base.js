@@ -291,7 +291,7 @@ module.exports = {
   'Name validation failed':
     '避免使用前綴為 kube- 的名稱，因為它是為 Kubernetes 系統命名空間保留的',
   'Name exists': '名稱已存在',
-  'Duplicate keys': '無法添加重復的 key',
+  'Duplicate keys': '無法添加重複的 key',
   'Empty keys': '無法添加空的 key',
 
   'Log Out': '登出',
@@ -438,7 +438,7 @@ module.exports = {
   EVENT_CREATE_DESC: '您可以改變搜索條件重新查詢',
   'Event Search': '事件查詢',
   EVENT_SEARCH_DESC: '針對企業空間、項目、資源等多維度的事件查詢工具。',
-  EVENT_DESC: '事件查詢（Event）是KubeSphere提供的平台内資源的歷史事件查詢',
+  EVENT_DESC: '事件查詢（Event）是 KubeSphere 提供的平台内資源的歷史事件查詢',
   'Search By Condition': '根據條件進行尋找',
   'search condition': '搜索條件',
   'Search tips': '搜索提示',
@@ -542,7 +542,7 @@ module.exports = {
   ENV_TESTING: '測試環境',
   ENV_DEMO: '示範環境',
 
-  HOW_TO_MODIFY_PLATFORM_INFO: '如何修改平台資訊?',
+  HOW_TO_MODIFY_PLATFORM_INFO: '如何修改平台資訊？',
   PLATFORM_INFO_DESC: '查看平台標題及描述等資訊',
   PLATFORM_SETTINGS_SELECTOR_DESC: '客製化平台的系統配置',
 
@@ -550,5 +550,5 @@ module.exports = {
   EVENT_FROM: '來源',
 
   Bill: '資源消費統計',
-  BILLING_OPERATING_DESC: '查看消费情况',
+  BILLING_OPERATING_DESC: '查看消費情况',
 }

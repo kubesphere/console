@@ -47,7 +47,7 @@ module.exports = {
   WORKSPACE_PROJECT_CONSUMPTION_DESC:
     '企業空間中的 <strong>項目</strong> 的CPU、內存、存儲等資源消費情況',
   PROJECT_CONSUMPTION_DESC:
-    '項目中的<strong>應用、服務、容器組</strong>等资源 的CPU、內存、存儲等資源消費情況',
+    '項目中的 <strong>應用、服務、容器組</strong> 等資源的CPU、內存、存儲等資源消費情況',
   APP_CONSUMPTION_DESC: '應用商店模板資源消費統計',
   APP_RESOURCE_CONSUMPTION_DESC:
     '應用商店模板資源消費統計支持對模板在 KubeSphere 平台中被部署的次數查詢，支持以下查詢',
@@ -66,12 +66,12 @@ module.exports = {
   'Total Consumer Desc':
     '共消費表示在當前對賬週期中每個計費採樣點的資源用量之和',
   TIMERANGE_MORE_30DAY_MSG:
-    '結束時間與開始時間的間隔大於30天時，時間間隔最小為1天',
+    '結束時間與開始時間的間隔大於 30 天時，時間間隔最小為 1 天',
   TOTAL_COST: '總金額({unit})',
   '￥': '￥',
   $: '$',
   Price: '價格',
   PRICE_CONFIG_DESC: '暫未配置價格信息',
-  METER_RESOURCE_DESC: '最近1小时的消费统计',
+  METER_RESOURCE_DESC: '最近 1 小時的消費統計',
   'No cluster with metering module enabled': '暫無啟用計量模塊的集群',
 }
