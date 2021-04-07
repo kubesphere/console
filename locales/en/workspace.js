@@ -52,7 +52,7 @@ module.exports = {
   devops: 'DevOps Projects',
   'Workspace Quota': 'Edit Workspace Quota',
   'Edit Workspace Quota': 'Edit Workspace Quota',
-  'Maintain Organization': 'Set Departments',
+  'Maintain Organization': 'Set Department',
 
   WORKSPACE_OVERVIEW_DESC: 'View the resource status of the workspace.',
   WORKSPACE_DESC:
