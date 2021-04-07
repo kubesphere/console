@@ -21,7 +21,6 @@ import { getIndexRoute } from 'utils/router.config'
 import Metadata from 'core/containers/Base/Detail/Metadata'
 import RunningStatus from './RunningStatus'
 import Pods from './Pods'
-import Monitoring from './Monitoring'
 import Events from './Events'
 
 const PATH = '/clusters/:cluster/edgenodes/:node'
@@ -38,12 +37,6 @@ export default [
     path: `${PATH}/metadata`,
     title: 'Metadata',
     component: Metadata,
-    exact: true,
-  },
-  {
-    path: `${PATH}/monitors`,
-    title: 'Monitoring',
-    component: Monitoring,
     exact: true,
   },
   { path: `${PATH}/events`, title: 'Events', component: Events, exact: true },
