@@ -55,7 +55,7 @@ export default class GitForm extends React.Component {
       <div className={styles.card}>
         <Form data={formData} ref={formRef}>
           <Form.Item
-            label={t('Repository URL')}
+            label={t('Repository Url')}
             desc={t(
               'Any repository containing Jenkinsfile will be built automatically.'
             )}
