@@ -40,9 +40,5 @@ module.exports = {
   DELETE_GROUP_TIP:
     'Are you sure you want to delete the department <strong>{group_name}</strong>? The associated roles will be unbound from the users.',
   DELETE_PARENT_GROUP_TIP:
-    'Are you sure you want to delete the department <strong>{group_name}</strong>? Its sub-departments will also be deleted and the associated roles will be unbound from the users.',
-  GROUP_USER_TIP:
-    'The department contains <strong>{count}</strong> user. Please remove the user first.',
-  GROUP_USERS_TIP:
-    'The department contains <strong>{count}</strong> users. Please remove the users first.',
+    'Are you sure you want to delete the department <strong>{group_name}</strong>? Its subdepartments will also be deleted and the associated roles will be unbound from the users.',
 }
