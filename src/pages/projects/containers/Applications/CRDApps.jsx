@@ -130,7 +130,6 @@ export default class CRDApps extends React.Component {
         ...tableProps.tableActions,
         actions,
         onCreate: null,
-        selectActions: [],
       },
       emptyProps: {
         title: t('Composing App'),

@@ -29,7 +29,8 @@ export const REVIEW_QUERY_STATUS = {
   unprocessed: 'submitted',
 }
 
-export const CLUSTER_QUERY_STATUS = 'creating|active|failed|deleting|upgrading'
+export const CLUSTER_QUERY_STATUS =
+  'creating|active|failed|deleting|upgrading|created|upgrated'
 
 export const UPLOAD_STATUS_WORD = {
   init: 'UPLOAD_SUPPORT_FORMAT',

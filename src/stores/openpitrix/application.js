@@ -29,10 +29,12 @@ import Base from './base'
 
 const STATUSES = {
   creating: 'Creating',
+  created: 'Creating',
   active: 'Running',
   failed: 'Failed',
   deleting: 'Deleting',
   upgrading: 'Upgrading',
+  upgrated: 'Upgrading',
 }
 
 const dataFormatter = data => {
@@ -41,9 +43,7 @@ const dataFormatter = data => {
     ...data,
     ...data.cluster,
     selector: {
-      'app.kubernetes.io/instance': data.cluster.name,
-      'app.kubernetes.io/name': data.app.name,
-      'app.kubernetes.io/managed-by': 'Helm',
+      'app.kubesphere.io/instance': data.cluster.name,
     },
     status: STATUSES[status],
   }
@@ -68,7 +68,7 @@ export default class Application extends Base {
   getWatchListUrl = ({ cluster, namespace } = {}) =>
     `apis/application.kubesphere.io/v1alpha1/watch/helmreleases?labelSelector=${joinSelector(
       {
-        'kubesphere.io/cluster': cluster,
+        'kubesphere.io/cluster': globals.app.isMultiCluster ? cluster : null,
         'kubesphere.io/namespace': namespace,
       }
     )}`
