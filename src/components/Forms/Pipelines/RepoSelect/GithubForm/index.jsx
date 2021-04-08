@@ -104,23 +104,16 @@ export default class GitHubForm extends React.Component {
 
   handleSubmit = e => {
     const index = e.currentTarget.dataset && e.currentTarget.dataset.repoIndex
-
     const data = {
       [REPO_KEY_MAP[this.scmType]]: {
-        repo: get(
-          this.orgList,
-          `${this.activeRepoIndex}.repositories.items.${index}.name`
-        ),
+        repo: get(this.repoListData, `${index}.name`),
         credential_id: this.credentialId,
         owner: get(this.orgList[this.activeRepoIndex], 'name'),
         discover_branches: 1,
         discover_pr_from_forks: { strategy: 2, trust: 2 },
         discover_pr_from_origin: 2,
         discover_tags: true,
-        description: get(
-          this.orgList,
-          `${this.activeRepoIndex}.repositories.items.${index}.description`
-        ),
+        description: get(this.repoListData, `${index}.description`),
       },
     }
     this.props.handleSubmit(data)

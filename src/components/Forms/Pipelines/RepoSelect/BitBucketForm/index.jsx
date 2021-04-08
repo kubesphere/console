@@ -82,8 +82,8 @@ export default class BitBucketForm extends GitHubForm {
           cluster,
           devops,
           credentialId: this.credentialId,
+          apiUrl: data.apiUrl,
           ...credentialDetail.data,
-          ...data,
         })
         .finally(() => {
           this.setState({ isLoading: false })
@@ -94,26 +94,20 @@ export default class BitBucketForm extends GitHubForm {
   }
 
   handleSubmit = e => {
-    const { orgList, activeRepoIndex, tokenFormData } = this.props.store
+    const { tokenFormData } = this.props.store
     const index = e.currentTarget.dataset && e.currentTarget.dataset.repoIndex
 
     const data = {
       [REPO_KEY_MAP[this.scmType]]: {
-        repo: get(
-          orgList.data,
-          `${activeRepoIndex}.repositories.items.${index}.name`
-        ), // repo
+        repo: get(this.repoListData, `${index}.name`), // repo
         credential_id: this.credentialId,
-        owner: get(orgList.data[activeRepoIndex], 'key'),
+        owner: get(this.orgList[this.activeRepoIndex], 'key'),
         api_uri: get(tokenFormData, 'apiUrl'),
         discover_branches: 1,
         discover_pr_from_forks: { strategy: 2, trust: 2 },
         discover_pr_from_origin: 2,
         discover_tags: true,
-        description: get(
-          orgList.data,
-          `${activeRepoIndex}.repositories.items.${index}.description`
-        ),
+        description: get(this.repoListData, `${index}.description`),
       },
     }
     this.props.handleSubmit(data)
@@ -138,7 +132,7 @@ export default class BitBucketForm extends GitHubForm {
           <Form.Item
             label="Bitbucket Server"
             error={errorsBody['apiUrl']}
-            rules={[{ required: true }]}
+            rules={[{ required: true, message: t('This param is required') }]}
           >
             <Select
               name="apiUrl"
@@ -149,7 +143,7 @@ export default class BitBucketForm extends GitHubForm {
 
           <Form.Item
             label={t('Credential')}
-            rules={[{ required: true }]}
+            rules={[{ required: true, message: t('This param is required') }]}
             error={errorsBody['username'] || errorsBody['password']}
             desc={
               <p>
