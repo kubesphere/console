@@ -110,7 +110,7 @@ module.exports = {
   TOTAL_GRAY_RELEASE_JOBS: 'Total {num} grayscale release jobs',
 
   GRAY_RELEASE_VERSION_FORMAT_DESC:
-    'It can only contain lowercase letters and numbers. The maximum length of characters is set to 16.',
+    'It can only contain lowercase letters and numbers with a maximum of 16 characters.',
   GRAY_RELEASE_VERSION_DESC:
     'Introduce the new version into the existing application service mesh',
   POLICY_CONFIG_DESC:

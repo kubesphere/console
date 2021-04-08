@@ -49,7 +49,7 @@ export default class AppBase extends React.PureComponent {
           <dd>{app.home || '-'} </dd>
           <dt>{t('Published Date')}:</dt>
           <dd>{moment(app.status_time).format(t('YYYY-MM-DD'))}</dd>
-          <dt>{t('App Id')}:</dt>
+          <dt>{t('App ID')}:</dt>
           <dd>{app.app_id || '-'}</dd>
         </dl>
       </div>

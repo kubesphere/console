@@ -27,13 +27,13 @@ module.exports = {
   'All Categories': 'All Categories',
   'App Categories': 'App Categories',
   'App Category': 'App Category',
-  'App Config': 'App Config',
-  'Current App Config': 'Current App Config',
-  'New App Config': 'New App Config',
+  'App Config': 'App Configurations',
+  'Current App Config': 'Current App Configurations',
+  'New App Config': 'New App Configurations',
   'App Deploy': 'App Deploy',
   'App Description': 'App Description',
   'App Details': 'App Details',
-  'App Home': 'App Home',
+  'App Home': 'Homepage',
   'App Info': 'App Information',
   'App Introduction': 'App Introduction',
   'App Name': 'App Name',
@@ -106,7 +106,7 @@ module.exports = {
   'Recover Successfully': 'Recover Successfully',
   'Reject Reason': 'Reject Reason',
   'Reject Successfully': 'Reject Successfully',
-  'Release / Suspended Time': 'Release / Suspended Time',
+  'Release / Suspended Time': 'Released / Suspended',
   'Release Successfully': 'Release Successfully',
   'Request for Approval': 'Request for Approval',
   'Review Content': 'Review Content',
@@ -199,8 +199,7 @@ module.exports = {
 
   UPLOAD_HELM_TITLE: 'Upload Helm Chart Package',
   UPLOAD_HELM_DESC: 'Upload existing Helm Chart',
-  UPLOAD_HELM_DESCRIPTION:
-    'Upload your Helm Chart in the file format such as tar.gz or tgz.',
+  UPLOAD_HELM_DESCRIPTION: 'Suported formats: tar.gz or tgz.',
 
   EDIT_APP_DESC: 'Set up the basic information of the application',
   CREATE_APP_DESC:
@@ -211,8 +210,8 @@ module.exports = {
     'KubeSphere provides a visual resource orchestration tool that allows you to' +
     ' create application templates and deploy tests through resource pre-editing',
 
-  APP_CREATE_GUIDE: 'See the application development specification',
-  HELM_DEVELOP_GUIDE: 'Helm Specification and Application Development',
+  APP_CREATE_GUIDE: 'See the development guide',
+  HELM_DEVELOP_GUIDE: ' Helm Specifications.',
 
   CATEGORY_NAME_DESC:
     'No more than 8 characters is recommended; the name cannot exceed 20 characters.',
@@ -234,9 +233,9 @@ module.exports = {
 
   AUDIT_RECORD_CREATE_DESC: 'No relevant review record',
 
-  UPLOAD_SUPPORT_FORMAT: 'File formats support tar.gz and tgz',
+  UPLOAD_SUPPORT_FORMAT: 'Supported formats: tar.gz and tgz.',
 
-  FILE_FORMAT_PACKAGE: 'File formats support tar.gz and tgz',
+  FILE_FORMAT_PACKAGE: 'Supported formats: tar.gz and tgz.',
   FILE_FORMAT_ICON: 'Icon format supports png and svb',
   FILE_FORMAT_SCREENSHOTS: 'Screen format supports png and jpg',
   FILE_MAX_PACKAGE: 'Configuration package size should not exceed 2M',

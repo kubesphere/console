@@ -17,7 +17,7 @@
  */
 
 module.exports = {
-  'App Id': 'App Id',
+  'App ID': 'App ID',
   'App Readme': 'App Readme',
   'App Store': 'App Store',
   'App Store Settings': 'App Store Settings',

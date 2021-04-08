@@ -41,7 +41,7 @@ module.exports = {
   Contact: '聯絡方式',
   Provider: '服務商',
   'Published Date': '上架時間',
-  'App Id': '應用編號',
+  'App ID': '應用編號',
   'App Readme': '應用描述',
   'Config files': '配置文件',
   'Install and Deploy': '安裝部署',

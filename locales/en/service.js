@@ -94,7 +94,7 @@ module.exports = {
   SERVICE_SELECTOR_AFFECT_2: ' affect {count} workloads',
 
   SERVICE_NAME_DESC:
-    'It can only contain lowercase letters, numbers and hyphens("-"), and must begin with a lowercase letter, ending with a number or lowercase letter. The maximum length of characters is set to 63.',
+    'It can only contain lowercase letters, numbers and hyphens("-"), and must begin with a lowercase letter, ending with a number or lowercase letter. The value can contain a maximum of 63 characters.',
   SERVICE_DESC:
     'A Service is an abstraction that defines a logical collection of Pods and a strategy for accessing them.',
   SERVICE_CREATE_DESC:

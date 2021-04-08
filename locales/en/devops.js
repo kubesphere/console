@@ -57,7 +57,7 @@ module.exports = {
   DEVOPS_PROJECT_MEM_DESC: 'Manage and assign roles to project members',
 
   DELETE_DEVOPS_TIP:
-    'Are you sure about deleting the DevOps project <strong>{resource}</strong> ? After the deletion, you will not be able to recover, and the resources under the DevOps project will also be destroyed.',
+    'Are you sure you want to delete the DevOps project <strong>{resource}</strong>? After the deletion, you will not be able to recover it, and the resources in the DevOps project will also be removed.',
 
   DEVOPS_TIP_GITOPS_Q: 'How do I get started with GitOps?',
   DEVOPS_TIP_GITOPS_A:

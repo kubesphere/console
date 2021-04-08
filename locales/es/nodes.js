@@ -134,13 +134,12 @@ module.exports = {
     'Los tipos de nodos ayudan a los usuarios a dividir los nodos en diferentes grupos. Los usuarios pueden agregar el nodo de alojamiento a un grupo correspondiente creando nodos de diferentes tipos que estén conectados adecuadamente entre sí. De esta forma, los Pods pueden desplegarse en los nodos físicos apropiados según el grupo. La disponibilidad de recursos y la continuidad del negocio también se pueden mejorar.',
   NODE_TYPE_DESCRIPTION_DEC:
     'La descripción ayudará a los usuarios a seleccionar tipos de nodos y usar el clúster.',
-  ADD_EDGE_COMMAND:
-    'Copy the command to the command line to create an edge node',
+  ADD_EDGE_COMMAND: 'Run the above command on your edge node to configure it.',
   IN_USE_Node_IP: 'Node IP {ip} in use',
   IN_USE_Node_NAME: 'Node name {name} in use',
   'Add Edge Node': 'Add Edge Node',
   "Please input the node's name": "Please input the node's name",
   INSTALL_EDGENODE_DESC:
-    'Before running the command, please make sure that the container runtime such as docker or containerd has been installed on the edge node, see <a href="https://kubeedge.io/en/docs/" target="_blank">document</a>',
+    'Before running the command, you must install a container runtime such as Docker or containerd on your edge node. See the KubeEdge <a href="https://kubeedge.io/en/docs/" target="_blank">documentation</a> for more details.',
   ADD_DEFAULT_STAIN: 'Adicionar mancha padrão {params}',
 }

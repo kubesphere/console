@@ -313,7 +313,7 @@ module.exports = {
   Succeeded: 'Succeeded',
   Success: 'Success',
   Successful: 'Successful',
-  successful: 'successful',
+  successful: 'Successful',
   'Sure to delete': 'Delete',
   'Sure to redeploy': 'Sure to redeploy',
   'Sure to remove': 'Sure to remove',
@@ -391,8 +391,8 @@ module.exports = {
     'The value can contain only lowercase letters, numbers, and hyphens (-) and must begin and end with a lowercase letter or number. The maximum length is 63 characters.',
   LONG_NAME_DESC:
     'It can only contain lowercase letters, numbers and hyphens("-"), and must begin and end with a lowercase letter or a number. The maximum length is 253 characters.',
-  NAME_TOO_LONG: 'The maximum length of characters is set to 63.',
-  LONG_NAME_TOO_LONG: 'The maximum length of characters is set to 253.',
+  NAME_TOO_LONG: 'The value can contain a maximum of 63 characters.',
+  LONG_NAME_TOO_LONG: 'The value can contain a maximum of 253 characters.',
   DESCRIPTION_DESC: 'The description can contain a maximum of 256 characters.',
   PROJECT_DESC:
     'Projects will be grouped by their resources, which you can view and manage by project.',
