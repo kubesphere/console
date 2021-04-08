@@ -109,7 +109,7 @@ module.exports = {
   'Change Category': '調整分類',
   DELETE_CATEGORY_WARNING:
     '該分類綁定了 <strong>{total}</strong> 個應用，請先將這些應用調整到其它分類後才能刪除',
-  DELETE_CATEGORY_DESC: '你確定要刪除分類 【{name}】 嗎？',
+  DELETE_CATEGORY_DESC: '您確定要刪除分類 【{name}】 嗎？',
   'Adjust Successfully': '調整成功',
 
   APP_TEMPLATES_DESC:
@@ -199,7 +199,7 @@ module.exports = {
   Icon: '圖示',
   'Format png/svg background transparency is the best':
     '格式： png/svg 背景透明最佳',
-  CHOOSE_APP_CATEGORY_DESC: '選擇適合的應用分類，便於用戶更快發現你的應用',
+  CHOOSE_APP_CATEGORY_DESC: '選擇適合的應用分類，便於用戶更快發現您的應用',
   'Service Provider Website': '服務商網站',
   "Service provider's official website address": '服務商的官方網站地址',
   MODIFY_VERSION_TIPS: '每次修改的内容都將跟随下一次版本上架而真正生效。',
