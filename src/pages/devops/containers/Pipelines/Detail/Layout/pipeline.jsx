@@ -209,8 +209,24 @@ export default class PipelineDetailLayout extends React.Component {
     return currentState[currentLocation] || currentState.activity
   }
 
+  getPipelineStatus = status => {
+    const CONFIG = {
+      failed: { type: 'failure', label: t('Failure') },
+      pending: { type: 'running', label: t('Running') },
+      working: { type: 'running', label: t('Running') },
+      successful: { type: 'success', label: t('Success') },
+    }
+
+    return { ...CONFIG[status] }
+  }
+
   getAttrs = () => {
     const { devopsName } = this.props.devopsStore
+
+    const syncStatus = get(
+      this.store.pipelineConfig,
+      'metadata.annotations["pipeline.devops.kubesphere.io/syncstatus"]'
+    )
 
     return [
       {
@@ -220,6 +236,10 @@ export default class PipelineDetailLayout extends React.Component {
       {
         name: t('Status'),
         value: <Status {...getPipelineStatus(this.getCurrentState())} />,
+      },
+      {
+        name: t('Sync Status'),
+        value: <Status {...this.getPipelineStatus(syncStatus)} />,
       },
       {
         name: t('Updated Time'),

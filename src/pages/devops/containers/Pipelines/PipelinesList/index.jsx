@@ -28,7 +28,6 @@ import PipelineStore from 'stores/devops/pipelines'
 import Table from 'components/Tables/List'
 import Empty from 'components/Tables/Base/Empty'
 import Health from 'devops/components/Health'
-import Status from 'devops/components/Status'
 
 import { withDevOpsList, ListPage } from 'components/HOCs/withList'
 
@@ -300,22 +299,11 @@ export default class PipelinesList extends React.Component {
     })
   }
 
-  getPipelineStatus = status => {
-    const CONFIG = {
-      failed: { type: 'failure', label: t('Failure') },
-      pending: { type: 'running', label: t('Running') },
-      working: { type: 'running', label: t('Running') },
-      successful: { type: 'success', label: t('Success') },
-    }
-
-    return { ...CONFIG[status] }
-  }
-
   getColumns = () => [
     {
       title: t('Name'),
       dataIndex: 'name',
-      width: '15%',
+      width: '20%',
       render: (name, record) => {
         const url = `/${this.workspace}/clusters/${this.cluster}/devops/${
           this.devops
@@ -325,26 +313,18 @@ export default class PipelinesList extends React.Component {
         return <Avatar to={this.isRuning ? null : url} title={name} />
       },
     },
-    {
-      title: t('Sync Status'),
-      width: '20%',
-      key: 'status',
-      isHideable: true,
-      render: record => {
-        return <Status {...this.getPipelineStatus(record.status)} />
-      },
-    },
+
     {
       title: t('WeatherScore'),
       dataIndex: 'weatherScore',
-      width: '20%',
+      width: '30%',
       isHideable: true,
       render: weatherScore => <Health score={weatherScore} />,
     },
     {
       title: t('Branch'),
       dataIndex: 'totalNumberOfBranches',
-      width: '20%',
+      width: '25%',
       isHideable: true,
       render: totalNumberOfBranches =>
         totalNumberOfBranches === undefined ? '-' : totalNumberOfBranches,

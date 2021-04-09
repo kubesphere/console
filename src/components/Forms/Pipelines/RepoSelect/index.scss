@@ -156,6 +156,7 @@
 }
 
 .branch__show {
+  width: 920px;
   border: none;
   height: 100%;
   padding: 24px 32px;
@@ -174,6 +175,6 @@
 
 .disabled {
   pointer-events: none;
-  opacity: .5;
+  opacity: 0.5;
   cursor: not-allowed;
 }
