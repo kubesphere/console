@@ -49,7 +49,7 @@ export default class Tools extends Component {
           <div
             className="margin-r12"
             data-title="KubeCtl"
-            data-url={`/clusters/${cluster}/kubectl`}
+            data-url={`/terminal/kubectl/${cluster}`}
             onClick={this.handleTool}
           >
             <Text

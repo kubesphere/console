@@ -18,7 +18,6 @@
 
 import Dashboard from '../containers/Dashboard'
 import NotFound from '../containers/NotFound'
-import KubeCtl from '../containers/KubeCtl'
 import LogQuery from '../containers/LogQuery'
 import EventSearch from '../containers/EventSearch'
 import AuditingSearch from '../containers/AuditingSearch'
@@ -27,7 +26,6 @@ import Bill from '../containers/Bill'
 export default [
   { path: '/404', component: NotFound, exact: true },
   { path: '/dashboard', component: Dashboard, exact: true },
-  { path: `/kubectl`, exact: true, component: KubeCtl },
   { path: `/logquery`, exact: true, component: LogQuery },
   { path: '/eventsearch', exact: true, component: EventSearch },
   { path: '/auditingsearch', exact: true, component: AuditingSearch },

@@ -51,6 +51,7 @@ module.exports = {
   'Kubernetes Settings': 'Kubernetes Settings',
   'Kubernetes Status': 'Kubernetes Status',
   'Kubernetes Version': 'Kubernetes Version',
+  'KubeSphere Version': 'KubeSphere Version',
   'Member Cluster': 'Member Cluster',
   'Member Clusters': 'Member Clusters',
   'Network Management': 'Network',
