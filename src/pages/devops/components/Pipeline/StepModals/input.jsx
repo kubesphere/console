@@ -179,7 +179,7 @@ export default class InputStep extends React.Component {
               value={this.state.value}
               onChange={this.handleMessageChange}
               onBlur={this.handleMessageSubmitter}
-              placeholder={t('Can @somebody to help review')}
+              placeholder={t('@somebody to help review')}
             >
               <Mention
                 data={this.fetchUsers}

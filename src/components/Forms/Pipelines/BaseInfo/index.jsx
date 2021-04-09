@@ -137,7 +137,7 @@ export default class BaseInfo extends React.Component {
         </Columns>
         <Columns>
           <Column>
-            <Form.Item label={`${t('Code Repository')}(${t('Optional')})`}>
+            <Form.Item label={`${t('Code Repository')} (${t('optional')})`}>
               <RepoSelect
                 name="multi_branch_pipeline"
                 ref={this.scmRef}
