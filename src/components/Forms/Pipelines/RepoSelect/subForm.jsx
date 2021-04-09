@@ -35,6 +35,7 @@ import SvnForm from './SVNForm'
 import BitBucketForm from './BitBucketForm'
 import styles from './index.scss'
 import GitLabForm from './GitLabForm'
+import { compareVersion } from '../../../../utils'
 
 @observer
 export default class RepoSelectForm extends React.Component {
@@ -197,29 +198,37 @@ export default class RepoSelectForm extends React.Component {
   }
 
   renderTypes() {
-    const { enableTypeChange } = this.props
+    const { enableTypeChange, cluster } = this.props
     const sourceType =
       this.source_type === 'single_svn' ? 'svn' : this.source_type
+    const clusterVersion = get(globals, `clusterConfig.${cluster}.ksVersion`)
+    const needUpdata = compareVersion(clusterVersion, '3.1.0')
+
     return (
       <ul className={styles.repoTypes}>
-        {REPO_TYPES.map(type => (
-          <li
-            className={classNames({
-              [styles.selectType]: type.value === sourceType,
-              [styles.disabled]: !enableTypeChange && sourceType !== type.value,
-            })}
-            key={type.value}
-            data-type={type.value}
-            onClick={this.handleTypeChange}
-          >
-            <Icon
-              name={type.icon}
-              type={type.value === sourceType ? 'light' : 'dark'}
-              size={32}
-            />
-            <span>{type.name}</span>
-          </li>
-        ))}
+        {REPO_TYPES.map(type => {
+          if (needUpdata && type.value === 'gitlab') return false
+
+          return (
+            <li
+              className={classNames({
+                [styles.selectType]: type.value === sourceType,
+                [styles.disabled]:
+                  !enableTypeChange && sourceType !== type.value,
+              })}
+              key={type.value}
+              data-type={type.value}
+              onClick={this.handleTypeChange}
+            >
+              <Icon
+                name={type.icon}
+                type={type.value === sourceType ? 'light' : 'dark'}
+                size={32}
+              />
+              <span>{type.name}</span>
+            </li>
+          )
+        })}
       </ul>
     )
   }

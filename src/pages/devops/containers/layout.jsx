@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 import React, { Component } from 'react'
-import { pick } from 'lodash'
+import { pick, set } from 'lodash'
 import { inject, observer, Provider } from 'mobx-react'
 import { Loading } from '@kube-design/components'
 
@@ -80,6 +80,12 @@ export default class Layout extends Component {
     ])
 
     await this.props.rootStore.getRules(params)
+
+    set(
+      globals,
+      `clusterConfig.${params.cluster}`,
+      this.clusterStore.detail.configz
+    )
 
     globals.app.cacheHistory(this.props.match.url, {
       type: 'DevOps',
