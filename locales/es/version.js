@@ -39,7 +39,7 @@ module.exports = {
   'in-review': 'en revisión',
   'In-review': 'En revisión',
   isv: 'isv',
-  'No version info': 'Sin información de versión',
+  'No version information': 'Sin información de versión',
   Pass: 'Pasar',
   Passed: 'Pasado',
   'Pending-review': 'Revisión pendiente',

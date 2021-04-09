@@ -64,7 +64,7 @@ module.exports = {
   NOTES_FILE_DESC: '使用指南',
 
   'Version Update Info': '版本更新说明',
-  'No version info': '暂无更新说明',
+  'No version information': '暂无更新说明',
 
   developer: '开发者',
   isv: '应用服务商',

@@ -21,7 +21,7 @@ module.exports = {
   'Add Component': 'Add Component',
   'Add Component Successfully': 'Add Component Successfully',
   'Add an Internet access rule for the application':
-    'Add an Internet access rule for the application',
+    'Add an Internet access rule for the app.',
   'Add New Component': 'Add New Component',
   'Add Service': 'Add Service',
   'Add stateful or stateless services': 'Add stateful or stateless Services',
@@ -165,10 +165,10 @@ module.exports = {
   LB_RANDOM: 'RANDOM',
 
   CLUSTER_NAME_DESC:
-    'It can only contain lowercase letters, numbers and hyphens("-"), and must begin with a lowercase letter, ending with a number or lowercase letter. The maximum length of characters is set to 14.',
+    'It can only contain lowercase letters, numbers and hyphens("-"), and must begin with a lowercase letter, ending with a number or lowercase letter. The value can contain a maximum of 14 characters.',
 
   COMPONENT_VERSION_DESC:
-    'It can only contain lowercase letters and numbers. The maximum length of characters is set to 16.',
+    'It can only contain lowercase letters and numbers with a maximum of 16 characters.',
 
   APP_WORKLOAD_TYPE_DESC:
     'Support stateless Services (Deployment) and stateful Services (StatefulSet)',

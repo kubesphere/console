@@ -40,7 +40,7 @@ module.exports = {
   'Change Log': '更新日志',
   Contact: '联系方式',
   'Published Date': '上架时间',
-  'App Id': '应用编号',
+  'App ID': '应用编号',
   'App Readme': '应用描述',
   'Config files': '配置文件',
   'Install and Deploy': '安装部署',

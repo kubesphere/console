@@ -73,7 +73,7 @@ export const CATEGORY_ICONS = [
 
 export const OPENPITRIX_LINKS = {
   helm_developer_guide:
-    'https://openpitrix.io/docs/v0.4/zh-CN/developer-guide/helm-developer-guide',
+    'https://kubesphere.io/docs/application-store/app-developer-guide/helm-specification/',
 }
 
 export const UPLOAD_CHECK_RULES = {

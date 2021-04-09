@@ -142,13 +142,12 @@ module.exports = {
     'Node types help users to divide nodes into different groups. Users can add the hosting node to a corresponding group by creating nodes of different types that are properly connected with each other. In this way, Pods can be deployed to appropriate physical nodes based on the group. Resource availability and business continuity can also be improved.',
   NODE_TYPE_DESCRIPTION_DEC:
     'The description will help users to select nodes types and use the cluster.',
-  ADD_EDGE_COMMAND:
-    'Copy the command to the command line to create an edge node',
+  ADD_EDGE_COMMAND: 'Run the above command on your edge node to configure it.',
   IN_USE_Node_IP: 'Node IP {ip} in use',
   IN_USE_Node_NAME: 'Node name {name} in use',
   'Add Edge Node': 'Add Edge Node',
   "Please input the node's name": 'Please input the node name',
   INSTALL_EDGENODE_DESC:
-    'Before running the command, please make sure that the container runtime such as docker or containerd has been installed on the edge node, see <a href="https://kubeedge.io/en/docs/" target="_blank">document</a>',
-  ADD_DEFAULT_STAIN: 'Add default stain {params}',
+    'Before running the command, you must install a container runtime such as Docker or containerd on your edge node. See the KubeEdge <a href="https://kubeedge.io/en/docs/" target="_blank">documentation</a> for more details.',
+  ADD_DEFAULT_STAIN: 'Add the default taint {params}.',
 }

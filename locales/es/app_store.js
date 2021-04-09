@@ -17,7 +17,7 @@
  */
 
 module.exports = {
-  'App Id': 'ID de la aplicación',
+  'App ID': 'ID de la aplicación',
   'App Readme': 'LEEME (README) de la aplicación',
   'App Store': 'Tienda de aplicaciones',
   'App Store Settings': 'Configuración de la tienda de aplicaciones',
