@@ -41,7 +41,7 @@ module.exports = {
   'Build Settings': '构建设置',
   'Branch Settings': ' 分支设置',
   'The name of the pipeline. Pipelines in the same project must have different names.':
-    'Pipeline 的名称，同一个项目内 Pipeline 不能重名',
+    '流水线的名称，同一个工程内流水线不能重名',
   'It specifies the default value of the field, allowing the user to save the typed actual value.':
     '指定字段的默认值，允许用户保存键入实际值。',
   'Comment information': '注释信息',
@@ -196,7 +196,7 @@ module.exports = {
   'Edit Config': '编辑配置',
   PIPELINES_BASEINFO_DESC: '请输入流水线的基本信息',
   PIPELINE_ADVANCE_SETTINGS_DESC: '	为流水线配置复杂行为策略（可选）',
-  CREDENTIALS_CREATE_DESC: '创建用于 DevOps 项目中的凭证',
+  CREDENTIALS_CREATE_DESC: '创建用于 DevOps 工程中的凭证',
   'Wait for interactive input': '等待输入',
   Break: '终止',
   Proceed: '继续',
@@ -412,7 +412,7 @@ module.exports = {
     '您需要等待 agent 启动并执行流水线（注：如 agent 长时间没有启动请检查 agent 配置和集群资源情况）',
   pipeline_owner: 'DevOps 工程的所有者，可以进行 DevOps 工程的所有操作',
   pipeline_maintainer:
-    'DevOps 工程的主要维护者，可以进行项目内的凭证配置、Pipeline 配置等操作',
+    'DevOps 工程的主要维护者，可以进行工程内的凭证配置、Pipeline 配置等操作',
   pipeline_developer: 'DevOps 工程的开发者，可以进行 Pipeline 的触发以及查看',
   pipeline_reporter: 'DevOps 工程的观察者，可以查看 Pipeline 的运行情况',
   'sonar is the default config name.': '默认配置名称是 sonar',
