@@ -1,7 +1,9 @@
 approvers:
+    - zheng1
     - leoendless
 
 reviewers:
+    - zheng1
     - leoendless
-    - minghaoye
     - justahole
+    - LinuxSuRen
