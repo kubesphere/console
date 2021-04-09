@@ -60,6 +60,8 @@ module.exports = {
   'Cluster Selection': 'Selección de clúster',
   'Component Version': 'Versión de componente',
   'Composing App': 'Aplicación por composición',
+  'Composing Apps': 'Aplicación por composición',
+
   'Connection pool management': 'Gestión del grupo de conexiones',
   'Connection timeout': 'El tiempo de conexión expiró',
   'Continuous error response (5xx) number':

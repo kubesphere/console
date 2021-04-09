@@ -71,6 +71,7 @@ module.exports = {
 
   'App Description': '應用描述',
 
+  'Composing Apps': '自制應用',
   'Composing App': '自制應用',
 
   'Workload Type': '負載類型',

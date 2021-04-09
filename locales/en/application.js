@@ -58,7 +58,9 @@ module.exports = {
   'Cluster Select': 'Cluster Select',
   'Cluster Selection': 'Cluster Selection',
   'Component Version': 'Component Version',
-  'Composing App': 'Composing Apps',
+  'Composing App': 'Composing App',
+  'Composing Apps': 'Composing Apps',
+
   'Connection pool management': 'Connection pool management',
   'Connection timeout': 'Connection timeout',
   'Continuous error response (5xx) number':
