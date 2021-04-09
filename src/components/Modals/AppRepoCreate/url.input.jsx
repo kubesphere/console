@@ -31,6 +31,7 @@ import {
   Select,
   Tooltip,
   Loading,
+  Icon,
 } from '@kube-design/components'
 
 import styles from './index.scss'
@@ -242,7 +243,7 @@ export default class UrlInput extends React.Component {
               : checkRepoInvalidReason(validateStatusCode)
           }
         >
-          <span className={`icon icon-${validateStatus}`} />
+          <Icon name={validateStatus} />
         </Tooltip>
       )
 

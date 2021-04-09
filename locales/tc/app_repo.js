@@ -29,6 +29,7 @@ module.exports = {
     '可用添加來自第三方的應用倉庫源，可以支持基於 Helm 的 Kubernetes 應用。 ',
 
   Synchronize: '同步',
+  syncing: '同步中',
 
   'Unrecognized URL': '無法識別的地址',
   'Invalid format of credential': '憑證格式錯誤',
@@ -44,6 +45,7 @@ module.exports = {
   'Invalid Repo URL': '不是有效的 Repo 地址',
   'Invalid S3 Scheme': '錯誤的 S3 類型協定',
   'Invalid URL': '無效的 URL',
+  'Valid URL': 'URL 验证通过',
 
   'Please input URL': '請輸入 URL',
   'Please input access key ID and secret access key':

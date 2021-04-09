@@ -8,7 +8,6 @@
   width: 640px;
 }
 
-
 .urlInput {
   .label {
     display: block;
@@ -32,12 +31,12 @@
       position: relative;
       display: flex;
       flex-wrap: nowrap;
-  
+
       .protocol {
         width: 110px;
         margin-right: 8px;
       }
-  
+
       .url {
         width: 336px !important;
         margin-right: 8px;
@@ -48,17 +47,29 @@
           padding-right: 30px;
         }
       }
-    
+
       .validStatus {
         position: absolute;
         top: 2px;
         left: 423px;
         padding: 4px;
         background-color: transparent;
-    
-        :global(.spin) {
-          padding: 0;
-          padding-top: 4px;
+
+        :global {
+          .spin {
+            padding: 0;
+            padding-top: 4px;
+          }
+
+          .kubed-icon-success {
+            color: #00aa72;
+            fill: #90e0c5;
+          }
+
+          .kubed-icon-error {
+            color: #fff;
+            fill: rgb(234, 70, 65);
+          }
         }
       }
     }

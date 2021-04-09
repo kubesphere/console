@@ -29,6 +29,7 @@ module.exports = {
     '可用添加来自第三方的应用仓库源，可以支持基于 Helm 的 Kubernetes 应用。 ',
 
   Synchronize: '同步',
+  syncing: '同步中',
 
   'Unrecognized URL': '无法识别的地址',
   'Invalid format of credential': '证书格式错误',
@@ -44,6 +45,7 @@ module.exports = {
   'Invalid Repo URL': '不是有效的 Repo 地址',
   'Invalid S3 Scheme': '错误的 S3 类型协议',
   'Invalid URL': '无效的 URL',
+  'Valid URL': 'URL 验证通过',
 
   'Please input URL': '请输入 URL',
   'Please input access key ID and secret access key':
