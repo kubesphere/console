@@ -22,6 +22,7 @@ import { observer, inject } from 'mobx-react'
 
 import { get } from 'lodash'
 import { Button } from '@kube-design/components'
+import { compareVersion } from 'utils'
 import { WORKSPACE_QUOTAS_MAP } from 'utils/constants'
 import { Panel } from 'components/Base'
 import ClusterTitle from 'components/Clusters/ClusterTitle'
@@ -53,6 +54,19 @@ export default class ResourceQuota extends React.Component {
     })
   }
 
+  get requiredVersion() {
+    return 'v3.1.0'
+  }
+
+  get needUpgrade() {
+    return (
+      compareVersion(
+        this.props.cluster.configz.ksVersion,
+        this.requiredVersion
+      ) < 0
+    )
+  }
+
   get items() {
     const detail = toJS(this.store.detail)
     return Object.entries(WORKSPACE_QUOTAS_MAP)
@@ -72,7 +86,11 @@ export default class ResourceQuota extends React.Component {
   }
 
   fetchData = () => {
-    const { workspace, cluster } = this.props
+    const { workspace, cluster, needUpgrade } = this.props
+    if (needUpgrade) {
+      return
+    }
+
     this.store.fetchDetail({
       workspace,
       name: workspace,
@@ -82,6 +100,23 @@ export default class ResourceQuota extends React.Component {
 
   render() {
     const { cluster, canEdit } = this.props
+
+    if (this.needUpgrade) {
+      return (
+        <Panel>
+          <div className={styles.cluster}>
+            <ClusterTitle
+              cluster={cluster}
+              theme="light"
+              noStatus={!globals.app.isMultiCluster}
+            />
+          </div>
+          <div className={styles.disabledTip}>
+            {t('CLUSTER_UPGRADE_REQUIRED', { version: this.requiredVersion })}
+          </div>
+        </Panel>
+      )
+    }
 
     const items = this.items
 

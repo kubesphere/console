@@ -148,21 +148,6 @@ export default class EditBasicInfoModal extends React.Component {
             optionRenderer={this.providerOptionRenderer}
           />
         </Form.Item>
-        <Form.Item label={t('CLUSTER_REGION')}>
-          <Select
-            name="metadata.labels['topology.kubernetes.io/region']"
-            options={this.regions}
-            placeholder={t('Please select a region')}
-            onChange={this.handleRegionSelect}
-          />
-        </Form.Item>
-        <Form.Item label={t('CLUSTER_ZONE')}>
-          <Select
-            name="metadata.labels['topology.kubernetes.io/zone']"
-            options={this.zones}
-            placeholder={t('Please select a zone')}
-          />
-        </Form.Item>
         <Form.Item label={t('Description')} desc={t('DESCRIPTION_DESC')}>
           <TextArea
             name="metadata.annotations['kubesphere.io/description']"

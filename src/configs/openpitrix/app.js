@@ -30,7 +30,7 @@ export const REVIEW_QUERY_STATUS = {
 }
 
 export const CLUSTER_QUERY_STATUS =
-  'creating|active|failed|deleting|upgrading|created|upgrated'
+  'creating|active|failed|deleting|upgrading|created|upgraded'
 
 export const UPLOAD_STATUS_WORD = {
   init: 'UPLOAD_SUPPORT_FORMAT',

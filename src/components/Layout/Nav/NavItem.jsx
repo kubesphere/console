@@ -20,7 +20,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 
-import { Icon } from '@kube-design/components'
+import { Tooltip, Icon } from '@kube-design/components'
 
 import Link from './Link'
 
@@ -55,8 +55,31 @@ export default class NavItem extends React.Component {
     onOpen(item.name)
   }
 
+  renderDisabledTip(item) {
+    if (item.reason === 'CLUSTER_UPGRADE_REQUIRED') {
+      return (
+        <Tooltip
+          content={t(item.reason, { version: item.requiredClusterVersion })}
+          placement="topRight"
+        >
+          <Icon
+            name="update"
+            className={styles.tip}
+            color={{
+              primary: '#ffc781',
+              secondary: '#f5a623',
+            }}
+          />
+        </Tooltip>
+      )
+    }
+
+    return null
+  }
+
   render() {
     const { item, prefix, disabled, onClick, isOpen } = this.props
+    const itemDisabled = (disabled || item.disabled) && !item.showInDisable
 
     if (item.children) {
       return (
@@ -64,7 +87,7 @@ export default class NavItem extends React.Component {
           className={classnames({
             [styles.childSelect]: this.checkSelect(item),
             [styles.open]: item.open || isOpen,
-            [styles.disabled]: disabled && !item.showInDisable,
+            [styles.disabled]: itemDisabled,
           })}
         >
           <div className={styles.title} onClick={this.handleOpen}>
@@ -75,19 +98,19 @@ export default class NavItem extends React.Component {
           </div>
           <ul className={styles.innerNav}>
             {item.children.map(child => {
+              const childDisabled =
+                (disabled || child.disabled) && !child.showInDisable
               return (
                 <li
                   key={child.name}
                   className={classnames({
                     [styles.select]: this.checkSelect(child),
-                    [styles.disabled]: disabled && !child.showInDisable,
+                    [styles.disabled]: childDisabled,
                   })}
                 >
-                  <Link
-                    to={`${prefix}/${child.name}`}
-                    disabled={disabled && !child.showInDisable}
-                  >
+                  <Link to={`${prefix}/${child.name}`} disabled={childDisabled}>
                     {t(child.title)}
+                    {childDisabled && this.renderDisabledTip(child)}
                   </Link>
                 </li>
               )
@@ -102,15 +125,16 @@ export default class NavItem extends React.Component {
         key={item.name}
         className={classnames({
           [styles.select]: this.checkSelect(item),
-          [styles.disabled]: disabled && !item.showInDisable,
+          [styles.disabled]: itemDisabled,
         })}
       >
         <Link
           to={`${prefix}/${item.name}`}
           onClick={onClick}
-          disabled={disabled && !item.showInDisable}
+          disabled={itemDisabled}
         >
           <Icon name={item.icon} /> {t(item.title)}
+          {itemDisabled && this.renderDisabledTip(item)}
         </Link>
       </li>
     )

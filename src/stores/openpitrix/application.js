@@ -34,7 +34,7 @@ const STATUSES = {
   failed: 'Failed',
   deleting: 'Deleting',
   upgrading: 'Upgrading',
-  upgrated: 'Upgrading',
+  upgraded: 'Upgrading',
 }
 
 const dataFormatter = data => {

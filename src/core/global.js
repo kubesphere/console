@@ -17,7 +17,7 @@
  */
 
 import { get, uniq, isEmpty, includes, cloneDeep } from 'lodash'
-import { safeParseJSON } from 'utils'
+import { safeParseJSON, compareVersion } from 'utils'
 
 /** A global class for authorization check. */
 export default class GlobalValue {
@@ -235,6 +235,7 @@ export default class GlobalValue {
           )
         })
         if (!isEmpty(filteredItems)) {
+          this.checkClusterVersionRequired(filteredItems, cluster)
           navs.push({ ...nav, items: filteredItems })
         }
       })
@@ -315,6 +316,7 @@ export default class GlobalValue {
         })
 
         if (!isEmpty(filteredItems)) {
+          this.checkClusterVersionRequired(filteredItems, cluster)
           navs.push({ ...nav, items: filteredItems })
         }
       })
@@ -346,6 +348,7 @@ export default class GlobalValue {
         })
 
         if (!isEmpty(filteredItems)) {
+          this.checkClusterVersionRequired(filteredItems, cluster)
           navs.push({ ...nav, items: filteredItems })
         }
 
@@ -374,6 +377,23 @@ export default class GlobalValue {
     }
 
     return this._cache_['platformSettingsNavs']
+  }
+
+  checkClusterVersionRequired(navs, cluster) {
+    const ksVersion = get(globals, `clusterConfig.${cluster}.ksVersion`)
+    navs.forEach(item => {
+      if (
+        item.requiredClusterVersion &&
+        compareVersion(ksVersion, item.requiredClusterVersion) < 0
+      ) {
+        item.disabled = true
+        item.reason = 'CLUSTER_UPGRADE_REQUIRED'
+      }
+
+      if (item.children && item.children.length > 0) {
+        this.checkClusterVersionRequired(item.children, cluster)
+      }
+    })
   }
 
   get enableAppStore() {

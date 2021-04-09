@@ -1,4 +1,5 @@
 @import '~scss/variables';
+@import '~scss/mixins';
 
 .formWrapper {
   position: relative;
@@ -8,7 +9,7 @@
   overflow-y: auto;
 
   .form {
-    padding:20px 20px 60px;
+    padding: 20px 20px 60px;
   }
 
   .footer {
@@ -28,7 +29,11 @@
 .selectWrapper {
   display: flex;
 
-  &>div+div {
+  & > div + div {
     margin-left: 12px;
   }
+}
+
+.tip {
+  float: right;
 }

@@ -1,4 +1,5 @@
 @import '~scss/variables';
+@import '~scss/mixins';
 
 $trans-speed: 0.2s;
 
@@ -169,4 +170,9 @@ $trans-speed: 0.2s;
 .rightIcon {
   float: right;
   margin-right: 0 !important;
+}
+
+.tip {
+  margin-top: -2px;
+  margin-left: 4px;
 }
