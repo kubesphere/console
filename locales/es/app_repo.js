@@ -34,6 +34,7 @@ module.exports = {
   'Invalid S3 Scheme': 'Esquema S3 no válido',
   'Invalid type': 'Tipo no válido',
   'Invalid URL': 'URL no válida',
+  'Valid URL': 'Valid URL',
   'Missing access key ID': 'Falta la ID de la clave de acceso',
   'Missing secret access key': 'Falta la clave de acceso secreta',
   'Please input access key ID and secret access key':
@@ -41,6 +42,7 @@ module.exports = {
   'Please input URL': 'Por favor introduce URL',
   'S3 access denied': 'Acceso S3 denegado',
   Synchronize: 'Sincronizar',
+  syncing: 'syncing',
   'Unrecognized URL': 'URL no reconocida',
   Validate: 'Validar',
   'App Repositorys': 'Repositorios de aplicaciones',

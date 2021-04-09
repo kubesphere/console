@@ -44,6 +44,9 @@ export default class Repo extends Base {
     return `${prefix}/repos`
   }
 
+  getWatchListUrl = ({ workspace } = {}) =>
+    `apis/application.kubesphere.io/v1alpha1/watch/helmrepos?labelSelector=kubesphere.io/workspace=${workspace}`
+
   @action
   fetchDetail = async ({ workspace, repo_id } = {}) => {
     this.isLoading = true

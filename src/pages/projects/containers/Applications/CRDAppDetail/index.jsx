@@ -26,7 +26,7 @@ import { getDisplayName, getLocalTime } from 'utils'
 import { trigger } from 'utils/action'
 
 import AppStore from 'stores/application/crd'
-
+import { Status } from 'components/Base'
 import DetailPage from 'projects/containers/Base/Detail'
 
 import routes from './routes'
@@ -134,6 +134,10 @@ export default class CRDAppDetail extends React.Component {
       {
         name: t('Project'),
         value: namespace,
+      },
+      {
+        name: t('Status'),
+        value: <Status name={t(detail.status)} type={detail.status} />,
       },
       {
         name: t('Application'),

@@ -20,13 +20,14 @@ import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import { get, isEmpty } from 'lodash'
-import { Loading } from '@kube-design/components'
+import { Loading, Tooltip } from '@kube-design/components'
 
 import { getDisplayName, getLocalTime } from 'utils'
 import { trigger } from 'utils/action'
 import AppStore from 'stores/openpitrix/application'
 
-import { Image } from 'components/Base'
+import { Image, Status } from 'components/Base'
+
 import DetailPage from 'projects/containers/Base/Detail'
 
 import routes from './routes'
@@ -124,6 +125,10 @@ export default class OPAppDetail extends React.Component {
         value: namespace,
       },
       {
+        name: t('Status'),
+        value: this.renderStatus(),
+      },
+      {
         name: t('Application'),
         value: get(detail, 'app.name', '-'),
       },
@@ -148,6 +153,21 @@ export default class OPAppDetail extends React.Component {
         value: detail.owner,
       },
     ]
+  }
+
+  renderStatus = () => {
+    const detail = toJS(this.store.detail)
+    const status = detail.status
+
+    if (detail.additional_info) {
+      return (
+        <Tooltip content={detail.additional_info}>
+          <Status name={t(status)} type={status} />
+        </Tooltip>
+      )
+    }
+
+    return <Status name={t(status)} type={status} />
   }
 
   render() {

@@ -17,6 +17,8 @@
  */
 
 import React from 'react'
+import { parse } from 'qs'
+import { debounce } from 'lodash'
 
 import { Notify } from '@kube-design/components'
 import { Avatar, Status } from 'components/Base'
@@ -152,10 +154,27 @@ export default class AppRepos extends React.Component {
     },
   ]
 
+  handleFetch = debounce(query => {
+    const { store, getData } = this.props
+    if (store.list.isLoading) {
+      return
+    }
+    const params = parse(location.search.slice(1))
+    return getData({ ...params, ...query, silent: true })
+  }, 1000)
+
+  handleWatch = message => {
+    if (message.object.kind === 'HelmRepo') {
+      if (['MODIFIED', 'DELETED', 'ADDED'].includes(message.type)) {
+        this.handleFetch()
+      }
+    }
+  }
+
   render() {
     const { bannerProps, tableProps } = this.props
     return (
-      <ListPage {...this.props} noWatch>
+      <ListPage {...this.props} onMessage={this.handleWatch}>
         <Banner
           {...bannerProps}
           tips={this.tips}
