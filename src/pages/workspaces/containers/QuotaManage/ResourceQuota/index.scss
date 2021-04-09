@@ -1,4 +1,5 @@
 @import '~scss/variables';
+@import '~scss/mixins';
 
 .cluster {
   position: relative;
@@ -17,4 +18,13 @@
   position: absolute;
   top: 12px;
   right: 12px;
+}
+
+.disabledTip {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 18px;
+  background-color: $card-bg-color;
+  @include TypographyTitleH5($dark-color01);
 }

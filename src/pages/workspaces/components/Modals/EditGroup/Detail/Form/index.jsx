@@ -20,11 +20,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { computed } from 'mobx'
 import { observer } from 'mobx-react'
-import { cloneDeep, set } from 'lodash'
+import { cloneDeep, set, get } from 'lodash'
 
 import { Form, Input, Select, Button } from '@kube-design/components'
 import { ArrayInput } from 'components/Inputs'
 
+import { compareVersion } from 'utils'
 import { PATTERN_NAME } from 'utils/constants'
 
 import RoleStore from 'stores/role'
@@ -70,12 +71,17 @@ export default class GroupForm extends React.Component {
 
   @computed
   get clusters() {
-    return this.workspaceStore.clusters.data.map(item => ({
-      label: item.name,
-      value: item.name,
-      disabled: !item.isReady,
-      item,
-    }))
+    return this.workspaceStore.clusters.data.map(item => {
+      const needUpgrade =
+        compareVersion(get(item, 'configz.ksVersion', ''), 'v3.1.0') < 0
+      return {
+        label: item.name,
+        value: item.name,
+        disabled: !item.isReady || needUpgrade,
+        needUpgrade,
+        item,
+      }
+    })
   }
 
   componentDidMount() {

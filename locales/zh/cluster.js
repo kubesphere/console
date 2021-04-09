@@ -303,6 +303,6 @@ module.exports = {
   CLUSTER_CREATION_PROGRESS_TIP:
     '根据所创建的集群规模和网络连接的不同，创建完成整个集群大概需要 30 ~ 60 分钟。',
 
-  CLUSTER_REGION: '集群地区',
-  CLUSTER_ZONE: '集群区域',
+  CLUSTER_UPGRADE_REQUIRED:
+    '当前集群版本无法使用此功能，请升级到 {version} 或以上版本。',
 }

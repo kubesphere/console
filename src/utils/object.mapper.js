@@ -975,10 +975,13 @@ const VolumeSnapshotMapper = detail => {
 
 const ClusterMapper = item => {
   const conditions = keyBy(get(item, 'status.conditions', []), 'type')
+  const configz = get(item, 'status.configz', {})
+  configz.ksVersion = get(item, 'status.kubeSphereVersion', '')
+
   return {
     ...getBaseInfo(item),
     conditions,
-    configz: get(item, 'status.configz', {}),
+    configz,
     provider: get(item, 'spec.provider'),
     isHost: has(
       get(item, 'metadata.labels', {}),

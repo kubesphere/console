@@ -18,13 +18,28 @@
 
 import { observable, action, computed } from 'mobx'
 import { get, assign } from 'lodash'
+import { compareVersion } from 'utils'
 
 export default class TerminalStore {
   username = get(globals, 'user.username', '')
 
   @computed
   get kubeWebsocketUrl() {
-    const { cluster, namespace, pod, container, shell = 'sh' } = this.kubectl
+    const {
+      cluster,
+      clusterVersion,
+      namespace,
+      pod,
+      container,
+      shell = 'sh',
+    } = this.kubectl
+
+    if (compareVersion(clusterVersion, 'v3.1.0') < 0) {
+      return `kapis/terminal.kubesphere.io/v1alpha2${this.getClusterPath({
+        cluster,
+      })}/namespaces/${namespace}/pods/${pod}?container=${container}&shell=${shell}`
+    }
+
     return `kapis/terminal.kubesphere.io/v1alpha2${this.getClusterPath({
       cluster,
     })}/namespaces/${namespace}/pods/${pod}/exec?container=${container}&shell=${shell}`
@@ -55,7 +70,7 @@ export default class TerminalStore {
   }
 
   @action
-  async fetchKubeCtl({ cluster }) {
+  async fetchKubeCtl({ cluster, clusterVersion }) {
     this.kubectl.isLoading = true
     const result = await request.get(
       `kapis/resources.kubesphere.io/v1alpha2${this.getClusterPath({
@@ -65,8 +80,10 @@ export default class TerminalStore {
       null,
       this.reject
     )
+
     this.kubectl = {
       cluster,
+      clusterVersion,
       ...result,
       isLoading: false,
     }

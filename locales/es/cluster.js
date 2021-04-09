@@ -258,6 +258,6 @@ module.exports = {
   CLUSTER_CREATION_PROGRESS_TIP:
     'According to the size of the created cluster and the difference in network connection, it takes about 30 to 60 minutes to create the entire cluster. ',
 
-  CLUSTER_REGION: 'Cluster Region',
-  CLUSTER_ZONE: 'Cluster Zone',
+  CLUSTER_UPGRADE_REQUIRED:
+    'This function is not available in the current cluster version. Please upgrade to {version} or above.',
 }
