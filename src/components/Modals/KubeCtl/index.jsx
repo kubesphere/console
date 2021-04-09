@@ -45,16 +45,7 @@ export default class KubeCtlModal extends React.Component {
   terminalRef = React.createRef()
 
   componentDidMount() {
-    if (!this.props.cluster) {
-      this.clusterStore.fetchListByK8s().then(() => {
-        const cluster = get(this.clusters, '[0].value')
-        this.setState({ cluster }, () => {
-          this.store.fetchKubeCtl({ cluster })
-        })
-      })
-    } else {
-      this.store.fetchKubeCtl({ cluster: this.props.cluster })
-    }
+    this.fetchData()
   }
 
   get clusters() {
@@ -64,14 +55,40 @@ export default class KubeCtlModal extends React.Component {
         label: item.name,
         value: item.name,
         icon: CLUSTER_PROVIDER_ICON[item.provider] || 'kubernetes',
+        version: get(item, 'configz.ksVersion'),
         description: item.provider,
       }))
   }
 
+  async fetchData() {
+    if (!this.props.cluster) {
+      await this.clusterStore.fetchListByK8s()
+      const cluster = get(this.clusters, '[0].value')
+      const clusterVersion = get(this.clusters, '[0].version')
+      this.setState({ cluster, clusterVersion }, () => {
+        this.store.fetchKubeCtl({ cluster, clusterVersion })
+      })
+    } else {
+      const { cluster, clusterVersion } = this.props
+      let version = clusterVersion
+      if (!version) {
+        const clusterDetail = await this.clusterStore.fetchDetail({
+          name: cluster,
+        })
+        version = get(clusterDetail, 'configz.ksVersion')
+      }
+      this.store.fetchKubeCtl({ cluster, clusterVersion: version })
+    }
+  }
+
   handleClusterChange = cluster => {
-    this.setState({ cluster }, () => {
-      this.store.fetchKubeCtl({ cluster })
-    })
+    const clusterObj = this.clusters.find(item => item.value === cluster)
+
+    if (clusterObj) {
+      this.setState({ cluster }, () => {
+        this.store.fetchKubeCtl({ cluster, clusterVersion: clusterObj.version })
+      })
+    }
   }
 
   onTipsToggle = () => {

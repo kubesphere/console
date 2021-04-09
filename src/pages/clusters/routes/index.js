@@ -52,7 +52,6 @@ import Members from '../containers/Members'
 import Roles from '../containers/Roles'
 import BaseInfo from '../containers/BaseInfo'
 import Visibility from '../containers/Visibility'
-import KubeCtl from '../containers/KubeCtl'
 import KubeConfig from '../containers/KubeConfig'
 import NetworkPolicies from '../containers/Network/Policies'
 import IPPools from '../containers/Network/IPPools'
@@ -81,11 +80,6 @@ export default [
     component: ClusterLayout,
     routes: [
       ...detail,
-      {
-        path: `${PATH}/kubectl`,
-        exact: true,
-        component: KubeCtl,
-      },
       {
         path: `${PATH}/kubeConfig`,
         component: KubeConfig,

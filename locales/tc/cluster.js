@@ -43,6 +43,7 @@ module.exports = {
   'Connection Method': '連接方式',
 
   'Kubernetes Version': 'Kubernetes 版本',
+  'KubeSphere Version': 'KubeSphere 版本',
 
   'Edit Cluster Info': '編輯集群資訊',
 

@@ -48,6 +48,7 @@ module.exports = {
   'Member Clusters': 'Member 集群',
 
   'Kubernetes Version': 'Kubernetes 版本',
+  'KubeSphere Version': 'KubeSphere 版本',
 
   'Edit Cluster Info': '编辑集群信息',
 
