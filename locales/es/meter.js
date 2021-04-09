@@ -18,10 +18,10 @@
 module.exports = {
   'Consumption Bill': 'Consumption Bill',
   'Export Bill': 'Export resource consumption records in csv format',
-  'Consumption History': 'Consumption History',
+  'Consumption History By Yesterday': 'Consumption History By Yesterday',
   'Reconciliation Cycle': 'Reconciliation Cycle',
   'Consumer Trends': 'Consumer Trends',
-  'Contains Resources': 'Currently Contains Resources',
+  'Currently Contained Resources': 'Currently Contained Resources',
   Trend: 'Trend',
   'Average Usage': 'Average Usage',
   'Total Consumption': 'Total Consumption',
@@ -75,4 +75,5 @@ module.exports = {
   METER_RESOURCE_DESC: 'Consumption statistics in the last hour',
   'No cluster with metering module enabled':
     'No hay clúster con módulo de medição habilitado',
+  INVALID_METERING: 'MEDIÇÃO INVÁLIDA',
 }

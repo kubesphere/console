@@ -52,6 +52,11 @@
 
     .desc {
       margin-left: 12px;
+      display: flex;
+      .unMeter {
+        align-self: center;
+        margin-left: 20px;
+      }
     }
 
     .tagContainer {
@@ -95,5 +100,26 @@
   &:hover {
     cursor: initial;
     background: none;
+  }
+}
+
+.disabled {
+  position: relative;
+  cursor: not-allowed !important;
+  opacity: 0.3;
+
+  &:hover {
+    background: none;
+  }
+
+  &::after {
+    content: '';
+    width: 440px;
+    height: 56px;
+    top: 0;
+    left: 0;
+    display: block;
+    position: absolute;
+    z-index: 10;
   }
 }
