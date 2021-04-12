@@ -1,0 +1,18 @@
+FROM node:12.18 as builder
+
+WORKDIR /opt/kubesphere/console
+COPY console.tar.gz .
+RUN tar xzf console.tar.gz
+RUN yarn
+RUN yarn build
+
+FROM node:12-alpine
+RUN adduser -D -g kubesphere -u 1002 kubesphere && \
+    mkdir -p /opt/kubesphere/console && \
+    chown -R kubesphere:kubesphere /opt/kubesphere/console
+WORKDIR /opt/kubesphere/console
+COPY --from=builder /opt/kubesphere/console /opt/kubesphere/console
+RUN mv dist/server.js server/server.js
+USER kubesphere
+EXPOSE 8000
+CMD ["npm", "run", "serve"]

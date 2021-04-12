@@ -93,6 +93,15 @@ Test KubeSphere console image by run:
 ./docker-run
 ```
 
+
+### Build KubeSphere Console Docker Image
+
+If you don't have NodeJs environment, it's also easy to build the Docker image:
+
+`make image image-push -e REPO=kubespheredev/ks-console`
+
+> Please replace the dockerHub repository to your personal account.
+
 ## Development Workflow
 
 Follow [Development Workflow](/docs/development-workflow.md) to commit your codes.
