@@ -380,7 +380,10 @@ export default class GlobalValue {
   }
 
   checkClusterVersionRequired(navs, cluster) {
-    const ksVersion = get(globals, `clusterConfig.${cluster}.ksVersion`)
+    const ksVersion = this.isMultiCluster
+      ? get(globals, `clusterConfig.${cluster}.ksVersion`)
+      : get(globals, 'ksConfig.ksVersion')
+
     navs.forEach(item => {
       if (
         item.requiredClusterVersion &&
