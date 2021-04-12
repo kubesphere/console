@@ -9,11 +9,11 @@
   h2 {
     font-size: 24px;
     font-weight: $font-bold;
-    flex: 5 1 auto;
+    flex: 8 1 auto;
   }
 
   .clusterSelect {
-    width: 105px;
+    flex: 1 1;
     margin-right: 10px;
   }
 }

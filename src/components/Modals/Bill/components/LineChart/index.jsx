@@ -5,6 +5,7 @@ import { Loading } from '@kube-design/components'
 import { SimpleArea } from 'components/Charts'
 
 import { getAreaChartOps, getValueByUnit } from 'utils/monitoring'
+import EmptyList from 'components/Cards/EmptyList'
 import MonitorTab from './MonitorTab'
 import {
   METER_RESOURCE_TITLE,
@@ -110,11 +111,12 @@ export default class LineChart extends React.Component {
       const config = {
         key: item.title,
         icon: METER_ICON[item.title],
-        unit: item.unit.label,
+        unit: item.unit.value,
         legend: [item.title],
         title: t(METER_RESOURCE_USAGE_TITLE[item.type]),
         data: [item],
         yAxis: true,
+        titleValue: item.sum_value,
       }
       return config
     })
@@ -126,7 +128,14 @@ export default class LineChart extends React.Component {
     return (
       <div className={styles.chartContainer}>
         <Loading spinning={this.state.loading}>
-          {isEmpty(this.priceConfig) ? (
+          {isEmpty(this.state.chartData) ? (
+            <EmptyList
+              className="no-shadow"
+              icon="exclamation"
+              title={t('No Data')}
+              desc={t('RESOURCE_NOT_FOUND')}
+            />
+          ) : isEmpty(this.priceConfig) ? (
             this.renderNoPriceChart()
           ) : (
             <SimpleArea width="100%" height="100%" {...this.state.chartData} />

@@ -38,7 +38,7 @@ import ClusterMeterStore from 'stores/meter/cluster'
 import EmptyList from 'components/Cards/EmptyList'
 import { handleWSChartData, getTimeParams, getRetentionDay } from 'utils/meter'
 import { getTimeStr } from 'components/Cards/Monitoring/Controller/TimeSelector/utils'
-import { COLORS_MAP, DEFAULT_CLUSTER } from 'utils/constants'
+import { COLORS_MAP, DEFAULT_CLUSTER, ICON_TYPES } from 'utils/constants'
 import Button from '@kube-design/components/lib/components/Button'
 import { RESOURCES_TYPE, RESOURCE_TITLE, AREA_COLORS } from '../../constats'
 
@@ -121,9 +121,10 @@ export default class ClusterDetails extends React.Component {
       })
 
       if (globals.app.isMultiCluster) {
-        this.clusterList = this.clusterList.filter(item =>
-          get(item, '_origin.configz.metering')
-        )
+        this.clusterList = this.clusterList.map(item => {
+          const disabled = !get(item, '_origin.configz.metering')
+          return { disabled, ...item }
+        })
       }
 
       if (isEmpty(this.clusterList)) {
@@ -140,7 +141,10 @@ export default class ClusterDetails extends React.Component {
     })
 
     if (this.props.meterType === 'cluster' && globals.app.isMultiCluster) {
-      this.list = list.filter(item => get(item, '_origin.configz.metering'))
+      this.list = list.map(item => {
+        const disabled = !get(item, '_origin.configz.metering')
+        return { disabled, ...item }
+      })
     } else {
       this.list = list
     }
@@ -151,17 +155,17 @@ export default class ClusterDetails extends React.Component {
       return
     }
 
-    const { name, type, labelSelector } = list[0]
+    const { name, type, labelSelector } = this.list[0]
 
     if (type === 'cluster') {
       this.cluster = name
-      await this.getPriceConfigListByCluster(list)
+      await this.getPriceConfigListByCluster(this.list)
     }
 
     this.crumbData.push({
       type,
       name,
-      list,
+      list: this.list,
     })
 
     await this.handleSelectResource({
@@ -180,7 +184,9 @@ export default class ClusterDetails extends React.Component {
   getPriceConfigListByCluster = async clusterList => {
     const request = []
     clusterList.forEach(item => {
-      request.push(this.store.fetchPrice({ cluster: item.name }))
+      if (!item.disabled) {
+        request.push(this.store.fetchPrice({ cluster: item.name }))
+      }
     })
 
     if (globals.app.isMultiCluster) {
@@ -204,7 +210,7 @@ export default class ClusterDetails extends React.Component {
       return []
     }
 
-    return clustersList
+    const _clusterList = clustersList
       .map(item => {
         const cluster = this.clusterList.find(_item => _item.name === item.name)
 
@@ -213,18 +219,24 @@ export default class ClusterDetails extends React.Component {
             label: cluster.name,
             value: cluster.name,
             type: cluster._origin.isHost ? 'host' : 'member',
+            disabled: cluster.disabled,
+            sortValue: Number(cluster.disabled),
           }
         }
         return null
       })
       .filter(item => !isEmpty(item))
+
+    return sortBy(_clusterList, item => {
+      return item.sortValue
+    })
   }
 
   @action
   setPriceConfig = cluster => {
     const _cluster = cluster || get(DEFAULT_CLUSTER, 'metadata.name')
     const _priceConfig = this.priceConfigList.find(
-      item => item.cluster === _cluster
+      item => item.cluster && item.cluster === _cluster
     )
     this.priceConfig = _priceConfig || {}
     this.setStartTime()
@@ -399,9 +411,7 @@ export default class ClusterDetails extends React.Component {
         this.childrenResourceList = []
       }
 
-      if (!isEmpty(toJS(this.tableData))) {
-        await this.getResourceMeterData(get(this.tableData, '[0].type', 'cpu'))
-      }
+      await this.getResourceMeterData(get(this.tableData, '[0].type', 'cpu'))
     } else {
       this.childrenResourceList = []
     }
@@ -961,45 +971,64 @@ export default class ClusterDetails extends React.Component {
   }
 
   renderSubResource = () => {
+    const pieChartData = toJS(this.pieChartData)
+
     if (
       this.active.type === 'pods' ||
       this.props.meterType === 'openpitrix' ||
-      isUndefined(this.currentMeterData.sumData)
+      isUndefined(this.currentMeterData.sumData) ||
+      isEmpty(pieChartData)
     ) {
       return null
     }
-    const pieChartData = toJS(this.pieChartData)
 
     return (
       <>
         <div className={styles.subTitle}>
-          {t('Contains Resources')}
+          {t('Currently Contained Resources')}
           <Tooltip content={t('METER_RESOURCE_DESC')} placement="top">
             <Icon name="question" size={20} />
           </Tooltip>
         </div>
         <div className={styles.childrenResourceContainer}>
           <Loading spinning={this.resourceLoading}>
-            <>
-              <div className={styles.childrenlistContainer}>
-                <ResourceSelect
-                  selectOptions={toJS(this.currentMeterData.sumData)}
-                  getResourceMeterData={this.getResourceMeterData}
-                  activeName={this.active.name}
-                />
-              </div>
-              <div className={styles.constomChartContainer}>
-                <PieChart data={pieChartData} />
-              </div>
-            </>
+            <div className={styles.childrenlistContainer}>
+              <ResourceSelect
+                selectOptions={toJS(this.currentMeterData.sumData)}
+                getResourceMeterData={this.getResourceMeterData}
+                activeName={this.active.name}
+              />
+            </div>
+            <div className={styles.constomChartContainer}>
+              <PieChart data={pieChartData} />
+            </div>
           </Loading>
         </div>
       </>
     )
   }
 
+  renderEmpty = () => {
+    return (
+      <div className={styles.empty}>
+        <Loading spinning={this.loading}>
+          <EmptyList
+            className={styles.emptyCard}
+            icon={ICON_TYPES[this.active.type]}
+            title={t('No Data')}
+            desc={t('RESOURCE_NOT_FOUND')}
+          />
+        </Loading>
+      </div>
+    )
+  }
+
   render() {
     const { type, name, createTime } = this.active
+
+    const noMeterData = Object.values(
+      toJS(this.currentMeterData)
+    ).every(value => isEmpty(value))
 
     if (isEmpty(this.list)) {
       return (
@@ -1050,50 +1079,54 @@ export default class ClusterDetails extends React.Component {
           {this.renderParentMeterCard()}
         </div>
         <div className={styles.rightContent}>
-          <Loading spinning={this.loading}>
-            <>
-              <Title
-                type={type}
-                cluster={this.cluster}
-                clusters={this.clusters}
-                setCluster={this.setCluster}
-              />
-              <div className={styles.content}>
-                <MeterDetailCard
-                  className={styles.toothbg}
-                  title={
-                    <>
-                      <span>{t(RESOURCE_TITLE[type])}</span>
-                      <strong>{name}</strong>
-                    </>
-                  }
-                  priceConfig={this.priceConfig}
-                  {...this.currentMeterData}
+          {noMeterData ? (
+            this.renderEmpty()
+          ) : (
+            <Loading spinning={this.loading}>
+              <>
+                <Title
+                  type={type}
+                  cluster={this.cluster}
+                  clusters={this.clusters}
+                  setCluster={this.setCluster}
                 />
-                <div className={styles.subTitle}>
-                  {t('Consumption History')}
+                <div className={styles.content}>
+                  <MeterDetailCard
+                    className={styles.toothbg}
+                    title={
+                      <>
+                        <span>{t(RESOURCE_TITLE[type])}</span>
+                        <strong>{name}</strong>
+                      </>
+                    }
+                    priceConfig={this.priceConfig}
+                    {...this.currentMeterData}
+                  />
+                  <div className={styles.subTitle}>
+                    {t('Consumption History By Yesterday')}
+                  </div>
+                  <div className={styles.info}>
+                    {!isEmpty(toJS(this.timeRange)) ? (
+                      <TimeSelect
+                        createTime={createTime}
+                        getTime={this.getTimeRange}
+                        timeRange={this.timeRange}
+                      />
+                    ) : null}
+                  </div>
+                  <LineChart
+                    chartData={toJS(this.chartData)}
+                    priceConfig={this.priceConfig}
+                  />
+                  <MeterTable
+                    data={toJS(this.tableData)}
+                    priceConfig={this.priceConfig}
+                  />
+                  {this.renderSubResource()}
                 </div>
-                <div className={styles.info}>
-                  {!isEmpty(toJS(this.timeRange)) ? (
-                    <TimeSelect
-                      createTime={createTime}
-                      getTime={this.getTimeRange}
-                      timeRange={this.timeRange}
-                    />
-                  ) : null}
-                </div>
-                <LineChart
-                  chartData={toJS(this.chartData)}
-                  priceConfig={this.priceConfig}
-                />
-                <MeterTable
-                  data={toJS(this.tableData)}
-                  priceConfig={this.priceConfig}
-                />
-                {this.renderSubResource()}
-              </div>
-            </>
-          </Loading>
+              </>
+            </Loading>
+          )}
         </div>
       </div>
     )

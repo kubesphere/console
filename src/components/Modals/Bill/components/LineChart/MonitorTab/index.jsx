@@ -72,6 +72,8 @@ export default class MonitorTab extends React.Component {
               title={
                 !tab.data
                   ? '-'
+                  : tab.titleValue
+                  ? `${tab.titleValue} ${tab.unit}`
                   : `${this.getLastValue(tab.data, tab.unit)} ${tab.unit}`
               }
               description={tab.title}

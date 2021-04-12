@@ -38,7 +38,15 @@ export default function Card({
   isCheck,
   clusterList,
 }) {
-  const { icon, status, desc, name, type, labelSelector } = data
+  const {
+    icon,
+    status,
+    desc,
+    name,
+    type,
+    labelSelector,
+    disabled = false,
+  } = data
 
   const isActive = isEmpty(active)
     ? false
@@ -130,9 +138,10 @@ export default function Card({
       className={classnames(styles.billCard, {
         [styles.selected]: isActive,
         [styles.noHover]: noIcon,
+        [styles.disabled]: disabled,
       })}
       style={style}
-      onClick={handleClick}
+      onClick={disabled ? null : handleClick}
     >
       {renderCheckbox()}
 
@@ -143,6 +152,9 @@ export default function Card({
         </div>
         <div className={styles.desc}>
           <Text title={name} description={desc} />
+          {disabled ? (
+            <div className={styles.unMeter}>{t('INVALID_METERING')}</div>
+          ) : null}
         </div>
         {renderCluster(name)}
       </div>

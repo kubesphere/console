@@ -18,10 +18,10 @@
 module.exports = {
   'Consumption Bill': '消費賬單',
   'Export Bill': '導出 csv 格式的資源消費記錄',
-  'Consumption History': '消費歷史',
+  'Consumption History By Yesterday': '截止到昨天的消費歷史',
   'Reconciliation Cycle': '對賬週期',
   'Consumer Trends': '消費者趨勢',
-  'Contains Resources': '當前包含資源',
+  'Currently Contained Resources': '當前包含的資源',
   Trend: '趨勢圖',
   'Average Usage': '平均用量',
   'Total Consumption': '共消費',
@@ -74,4 +74,5 @@ module.exports = {
   PRICE_CONFIG_DESC: '暫未配置價格信息',
   METER_RESOURCE_DESC: '最近 1 小時的消費統計',
   'No cluster with metering module enabled': '暫無啟用計量模塊的集群',
+  INVALID_METERING: '未開啟消費統計',
 }

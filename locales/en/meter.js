@@ -18,10 +18,10 @@
 module.exports = {
   'Consumption Bill': 'Metering and Billing',
   'Export Bill': 'Export resource consumption records in csv format',
-  'Consumption History': 'Consumption History',
+  'Consumption History By Yesterday': 'Consumption History By Yesterday',
   'Reconciliation Cycle': 'Billing Cycle',
   'Consumer Trends': 'Cost Trends',
-  'Contains Resources': 'Resources Included',
+  'Currently Contained Resources': 'Currently Contained Resources',
   Trend: 'Trend',
   'Average Usage': 'Average Usage',
   'Total Consumption': 'Total Consumption',
@@ -71,8 +71,8 @@ module.exports = {
   TOTAL_COST: 'Total Cost ({unit})',
   '￥': '￥',
   Price: 'Cost',
-  PRICE_CONFIG_DESC:
-    'You need to set the price first to see billing information.',
+  PRICE_CONFIG_DESC: 'Price information has not been configured yet.',
   METER_RESOURCE_DESC: 'Consumption in the last hour.',
   'No cluster with metering module enabled': 'No cluster has Metering enabled.',
+  INVALID_METERING: 'invalid metering',
 }

@@ -412,7 +412,7 @@ export default class MeterStore extends base {
   fetchPrice = async ({ cluster }) => {
     const url = `${this.tenantUrl({ cluster })}/metering/price`
     const result = await request.get(url, {}, {}, () => {
-      return {}
+      return { cluster }
     })
 
     if (result && !isEmpty(result)) {
