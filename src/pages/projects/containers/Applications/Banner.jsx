@@ -71,7 +71,7 @@ export default class AppBanner extends Component {
         },
         {
           value: 'composing',
-          label: t('Composing App'),
+          label: t('Composing Apps'),
         },
       ],
     }

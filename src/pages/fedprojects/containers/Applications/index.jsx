@@ -160,7 +160,7 @@ export default class CRDApps extends React.Component {
     return {
       tableActions: this.tableActions,
       emptyProps: {
-        title: t('Composing App'),
+        title: t('Composing Apps'),
         desc: t('COMPOSING_APP_DESC'),
       },
       searchType: 'name',

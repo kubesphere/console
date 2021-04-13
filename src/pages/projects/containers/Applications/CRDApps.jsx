@@ -132,7 +132,7 @@ export default class CRDApps extends React.Component {
         onCreate: null,
       },
       emptyProps: {
-        title: t('Composing App'),
+        title: t('Composing Apps'),
         desc: t('COMPOSING_APP_DESC'),
       },
       searchType: 'name',
