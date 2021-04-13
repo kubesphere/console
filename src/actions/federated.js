@@ -52,6 +52,7 @@ export default {
             'metadata.labels["kubesphere.io/kubefed-host-namespace"]',
             'true'
           )
+          set(hostData, 'metadata.labels["kubefed.io/managed"]', 'false')
           unset(hostData, 'spec.placement')
           unset(hostData, 'metadata.annotations')
           await store.create(hostData, { workspace })
