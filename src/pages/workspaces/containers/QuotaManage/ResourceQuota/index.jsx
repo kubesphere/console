@@ -61,7 +61,9 @@ export default class ResourceQuota extends React.Component {
   get needUpgrade() {
     return (
       compareVersion(
-        this.props.cluster.configz.ksVersion,
+        globals.app.isMultiCluster
+          ? this.props.cluster.configz.ksVersion
+          : get(globals, 'ksConfig.ksVersion'),
         this.requiredVersion
       ) < 0
     )

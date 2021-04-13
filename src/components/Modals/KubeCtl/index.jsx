@@ -72,10 +72,14 @@ export default class KubeCtlModal extends React.Component {
       const { cluster, clusterVersion } = this.props
       let version = clusterVersion
       if (!version) {
-        const clusterDetail = await this.clusterStore.fetchDetail({
-          name: cluster,
-        })
-        version = get(clusterDetail, 'configz.ksVersion')
+        if (globals.app.isMultiCluster) {
+          const clusterDetail = await this.clusterStore.fetchDetail({
+            name: cluster,
+          })
+          version = get(clusterDetail, 'configz.ksVersion')
+        } else {
+          version = get(globals, 'ksConfig.ksVersion')
+        }
       }
       this.store.fetchKubeCtl({ cluster, clusterVersion: version })
     }

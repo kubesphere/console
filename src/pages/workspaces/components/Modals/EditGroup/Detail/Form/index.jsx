@@ -73,7 +73,13 @@ export default class GroupForm extends React.Component {
   get clusters() {
     return this.workspaceStore.clusters.data.map(item => {
       const needUpgrade =
-        compareVersion(get(item, 'configz.ksVersion', ''), 'v3.1.0') < 0
+        compareVersion(
+          globals.app.isMultiCluster
+            ? get(item, 'configz.ksVersion', '')
+            : get(globals, 'ksConfig.ksVersion'),
+          'v3.1.0'
+        ) < 0
+
       return {
         label: item.name,
         value: item.name,

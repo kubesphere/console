@@ -190,13 +190,24 @@ const getWorkspaces = async token => {
 }
 
 const getKSConfig = async token => {
-  let resp = []
+  let resp = {}
   try {
-    resp = await send_gateway_request({
-      method: 'GET',
-      url: `/kapis/config.kubesphere.io/v1alpha2/configs/configz`,
-      token,
-    })
+    const [config, version] = await Promise.all([
+      send_gateway_request({
+        method: 'GET',
+        url: `/kapis/config.kubesphere.io/v1alpha2/configs/configz`,
+        token,
+      }),
+      send_gateway_request({
+        method: 'GET',
+        url: `/kapis/version`,
+        token,
+      }),
+    ])
+    resp = { ...config }
+    if (version) {
+      resp.ksVersion = version.gitVersion
+    }
   } catch (error) {
     console.error(error)
   }
