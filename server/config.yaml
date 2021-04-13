@@ -175,7 +175,6 @@ client:
                 name: alerts,
                 title: Alerting Messages,
                 icon: loudspeaker,
-                authKey: alert-messages,
                 clusterModule: alerting,
                 requiredClusterVersion: v3.1.0,
               }
@@ -183,7 +182,6 @@ client:
                 name: alert-rules,
                 title: Alerting Policies,
                 icon: hammer,
-                authKey: alert-policies,
                 clusterModule: alerting,
                 requiredClusterVersion: v3.1.0,
               }
@@ -373,7 +371,6 @@ client:
                 name: alerts,
                 title: Alerting Messages,
                 icon: loudspeaker,
-                authKey: alert-messages,
                 clusterModule: alerting,
                 requiredClusterVersion: v3.1.0,
               }
@@ -381,7 +378,6 @@ client:
                 name: alert-rules,
                 title: Alerting Policies,
                 icon: hammer,
-                authKey: alert-policies,
                 clusterModule: alerting,
                 requiredClusterVersion: v3.1.0,
               }
