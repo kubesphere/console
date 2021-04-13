@@ -32,18 +32,17 @@ import {
 } from '@kube-design/components'
 
 import { REPO_KEY_MAP } from 'utils/constants'
+import EmptyList from 'components/Cards/EmptyList'
 
 import styles from './index.scss'
 
 @observer
 export default class GitHubForm extends React.Component {
-  constructor(props) {
-    super(props)
-    this.tokenFormRef = React.createRef()
-    this.state = {
-      isLoading: false,
-      searchValue: '',
-    }
+  tokenFormRef = React.createRef()
+
+  state = {
+    isLoading: false,
+    searchValue: '',
   }
 
   @observable
@@ -63,6 +62,13 @@ export default class GitHubForm extends React.Component {
 
   get scmType() {
     return 'github'
+  }
+
+  handleFormChange = () => {
+    const { isAccessTokenWrong } = this.props.store
+    if (isAccessTokenWrong) {
+      this.props.store.handleChangeAccessTokenWrong()
+    }
   }
 
   @action
@@ -122,12 +128,11 @@ export default class GitHubForm extends React.Component {
   @action
   handlePasswordConfirm = async () => {
     const { name, cluster, devops } = this.props
-
     const data = this.tokenFormRef.current.getData()
 
     this.credentialId = data.credentialId
 
-    if (isEmpty(data) || !this.credentialId) return false
+    if (!this.credentialId) return false
 
     this.setState({ isLoading: true })
 
@@ -182,17 +187,18 @@ export default class GitHubForm extends React.Component {
         <Form
           data={tokenFormData}
           onSubmit={this.handlePasswordConfirm}
+          onChange={this.handleFormChange}
           ref={this.tokenFormRef}
         >
           <Form.Item
             label={t('Token')}
-            rules={[{ required: true }]}
+            rules={[{ required: true, message: t('This param is required') }]}
             error={
               isAccessTokenWrong
                 ? {
                     message: { message: t.html('WRONG_GITHUB_TOKEN_DESC') },
                   }
-                : {}
+                : undefined
             }
             desc={
               <p>
@@ -222,8 +228,8 @@ export default class GitHubForm extends React.Component {
               valueRenderer={this.optionRender}
               searchable
               clearable
-              onChange={() => {
-                this.props.store.isAccessTokenWrong = false
+              onChange={value => {
+                this.props.store.tokenFormData = { credentialId: value }
               }}
             />
           </Form.Item>
@@ -261,31 +267,45 @@ export default class GitHubForm extends React.Component {
   }
 
   renderOrgList() {
+    if (isEmpty(this.repoListData)) {
+      return (
+        <EmptyList
+          className={styles.empty}
+          icon="exclamation"
+          title={t('No Data')}
+          desc={t('RESOURCE_NOT_FOUND')}
+        />
+      )
+    }
     return (
-      !isEmpty(this.repoListData) &&
-      this.repoListData.map((repo, index) => (
-        <div className={styles.repo} key={repo.name}>
-          <div className={styles.icon}>
-            <Icon
-              name={
-                this.scmType === 'bitbucket_server' ? 'bitbucket' : this.scmType
-              }
-              size={40}
-            />
+      <div className={styles.repoListBox}>
+        {this.repoListData.map((repo, index) => (
+          <div className={styles.repo} key={repo.name}>
+            <div className={styles.icon}>
+              <Icon
+                name={
+                  this.scmType === 'bitbucket_server'
+                    ? 'bitbucket'
+                    : this.scmType
+                }
+                size={40}
+              />
+            </div>
+            <div className={styles.info}>
+              <div className={styles.name}>{repo.name}</div>
+              <div className={styles.desc}>{repo.description}</div>
+            </div>
+            <div
+              className={styles.action}
+              onClick={this.handleSubmit}
+              data-repo-index={index}
+            >
+              <Button type="control">{t('Select This Repository')}</Button>
+            </div>
           </div>
-          <div className={styles.info}>
-            <div className={styles.name}>{repo.name}</div>
-            <div className={styles.desc}>{repo.description}</div>
-          </div>
-          <div
-            className={styles.action}
-            onClick={this.handleSubmit}
-            data-repo-index={index}
-          >
-            <Button type="control">{t('Select This Repository')}</Button>
-          </div>
-        </div>
-      ))
+        ))}
+        {this.renderMore()}
+      </div>
     )
   }
 
@@ -371,7 +391,6 @@ export default class GitHubForm extends React.Component {
             <Loading spinning={toJS(getRepoListLoading)}>
               <>{this.renderOrgList()}</>
             </Loading>
-            {this.renderMore()}
           </div>
         </div>
       </div>

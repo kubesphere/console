@@ -130,6 +130,11 @@ export default class SCMStore extends BaseStore {
   }
 
   @action
+  handleChangeAccessTokenWrong() {
+    this.isAccessTokenWrong = false
+  }
+
+  @action
   async getRepoList({ activeRepoIndex, cluster }) {
     const _activeRepoIndex =
       activeRepoIndex !== undefined
@@ -197,6 +202,7 @@ export default class SCMStore extends BaseStore {
   }
 
   async putAccessToken({ token, cluster }) {
+    this.isAccessTokenWrong = false
     const result = await this.verifyAccessForRepo({
       accessToken: token,
       scmType: 'github',

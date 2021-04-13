@@ -125,12 +125,13 @@
 
 .repoListContainer {
   flex-grow: 1;
-  padding: 12px;
+  padding-right: 12px;
   margin-left: 12px;
   height: 310px;
   border-radius: 4px;
-  background-color: $bg-color;
   min-width: 560px;
+  display: flex;
+  flex-direction: column;
 
   .search {
     width: 100%;
@@ -143,12 +144,18 @@
   .repoList {
     overflow: auto;
     position: relative;
-    height: 245px;
+    flex: 1 1;
 
     :global {
+      .spin-nested-loading,
       .spin-container {
-        height: 245px;
+        height: 100%;
       }
+    }
+
+    .repoListBox {
+      padding: 12px;
+      background-color: $bg-color;
     }
 
     .placeHolder {
@@ -165,6 +172,11 @@
         font-weight: 600;
         color: #abb4be;
       }
+    }
+    .empty {
+      margin-top: 0;
+      box-shadow: none;
+      height: 100%;
     }
   }
 }
