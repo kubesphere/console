@@ -201,7 +201,10 @@ export default class RepoSelectForm extends React.Component {
     const { enableTypeChange, cluster } = this.props
     const sourceType =
       this.source_type === 'single_svn' ? 'svn' : this.source_type
-    const clusterVersion = get(globals, `clusterConfig.${cluster}.ksVersion`)
+    const clusterVersion = globals.app.isMultiCluster
+      ? get(globals, `clusterConfig.${cluster}.ksVersion`)
+      : get(globals, 'ksConfig.ksVersion')
+
     const needUpdata = compareVersion(clusterVersion, '3.1.0')
 
     return (
