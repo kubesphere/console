@@ -61,6 +61,12 @@ export default class KubeCtlModal extends React.Component {
   }
 
   async fetchData() {
+    if (!globals.app.isMultiCluster) {
+      return this.store.fetchKubeCtl({
+        clusterVersion: get(globals, 'ksConfig.ksVersion'),
+      })
+    }
+
     if (!this.props.cluster) {
       await this.clusterStore.fetchListByK8s()
       const cluster = get(this.clusters, '[0].value')
@@ -72,14 +78,10 @@ export default class KubeCtlModal extends React.Component {
       const { cluster, clusterVersion } = this.props
       let version = clusterVersion
       if (!version) {
-        if (globals.app.isMultiCluster) {
-          const clusterDetail = await this.clusterStore.fetchDetail({
-            name: cluster,
-          })
-          version = get(clusterDetail, 'configz.ksVersion')
-        } else {
-          version = get(globals, 'ksConfig.ksVersion')
-        }
+        const clusterDetail = await this.clusterStore.fetchDetail({
+          name: cluster,
+        })
+        version = get(clusterDetail, 'configz.ksVersion')
       }
       this.store.fetchKubeCtl({ cluster, clusterVersion: version })
     }
