@@ -40,11 +40,9 @@ module.exports = {
   'Log Query': 'Log Query',
   'Log Start Time': 'Log Start Time',
   'Log statistics': 'Log statistics',
-  'No cluster with auditing module enabled':
-    'No cluster with auditing module enabled',
-  'No cluster with event query enabled': 'No cluster with event query enabled',
-  'No cluster with logging module enabled':
-    'No cluster with logging module enabled',
+  'No cluster with auditing module enabled': 'No cluster has Auditing enabled.',
+  'No cluster with event query enabled': 'No cluster has Events enabled.',
+  'No cluster with logging module enabled': 'No cluster has Logging enabled.',
   'Passwords must be at least 6 characters long':
     'Passwords must be at least 6 characters long',
   'Please enter a filter to search for logs.':

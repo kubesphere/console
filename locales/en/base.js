@@ -455,7 +455,7 @@ module.exports = {
     '🙇 Sorry, no related resources were found. The system will return to <a href="{link}">Workbench</a> in {time}s.',
   DETAIL_NOT_FOUND_DESC:
     '🙇 Sorry, no related resources were found. Back to <a href="{link}">{title}</a>.',
-  TOOLBOX_DESC: "The toolbox provides log search and cli's operating tools",
+  TOOLBOX_DESC: 'Provide log search, metering information and kubectl.',
   PATTERN_NAME_INVALID_TIP:
     'Invalid name (Support lowercase letters, numbers and -)',
   CONTENT_NOT_SAVED_TIPS: 'content has been modified but not saved',
