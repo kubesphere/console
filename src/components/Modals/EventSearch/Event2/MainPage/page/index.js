@@ -16,13 +16,6 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-export { default as TinyArea } from './Area/TinyArea'
-export { default as TopAxis } from './Area/topAxis'
-export { default as MediumArea } from './Area/MediumArea'
-export { default as SimpleArea } from './Area/SimpleArea'
-export { default as MultiArea } from './Area/MultiArea'
-export { default as PercentArea } from './Area/PercentArea'
-export { default as SimpleBar } from './Bar/SimpleBar'
-export { default as StackedBar } from './Bar/StackedBar'
-export { default as SimpleCircle } from './Pie/SimpleCircle'
-export { default as PieChart } from './Pie/PieChart'
+export { default as Home } from './Home'
+export { default as Search } from './Search'
+export { default as Detail } from './Detail'

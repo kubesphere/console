@@ -18,112 +18,62 @@
 
 import React from 'react'
 import { observer } from 'mobx-react'
-import { observable, action, computed } from 'mobx'
-import { get } from 'lodash'
-
-import EmptyList from 'components/Cards/EmptyList'
-import FullScreen from 'components/Modals/FullscreenModal'
-import Clusters from 'stores/cluster'
-
-import { Home, Detail } from './Event'
+import FullScreen from 'components/Modals/FullscreenModal2'
+import { observable, action } from 'mobx'
+import { generateId } from 'utils'
+import Tab from './Event2/Tab'
+import TabPanel from './Event2/Tab/TabPanel'
+import MainPage from './Event2/MainPage'
 
 @FullScreen
 @observer
-export default class EventSearch extends React.Component {
-  clusters = new Clusters()
-
-  formStepState = this.initStepState()
-
-  @computed
-  get clustersOpts() {
-    return this.clusters.list.data
-      .filter(item => get(item, 'configz.events'))
-      .map(({ name }) => ({ value: name, label: name }))
-  }
-
-  initStepState() {
+export default class LogSearchModal extends React.Component {
+  tabState = (() => {
     const state = observable({
-      step: 0,
-    })
-    state.next = action(() => {
-      state.step += 1
-    })
-    state.pre = action(() => {
-      state.step -= 1
-    })
-    return state
-  }
-
-  searchInputState = (() => {
-    const state = observable({
-      query: [],
-      start: '',
-      end: '',
-      step: '',
-      durationAlias: '',
-      nextParamsKey: '',
-      queryMode: 1,
-      cluster: '',
+      activeKey: 0,
+      tabList: [],
     })
 
-    state.setCluster = action(cluster => {
-      state.cluster = cluster
+    state.activeTab = action(key => {
+      state.activeKey = key
     })
 
+    state.addTab = action(() => {
+      const id = generateId(4)
+      state.activeKey = id
+      state.tabList.push({
+        id,
+      })
+    })
+
+    state.closeTab = action(deleteKey => {
+      const index = state.tabList.findIndex(item => item.id === deleteKey)
+      if (state.activeKey === deleteKey) {
+        if (index === 0) {
+          state.activeKey = state.tabList[index + 1].id
+        } else {
+          state.activeKey = state.tabList[index - 1].id
+        }
+      }
+      state.tabList = state.tabList.filter(tab => tab.id !== deleteKey)
+    })
+
+    state.addTab()
     return state
   })()
 
-  formStepConfig = [
-    {
-      Component: Home,
-      props: {
-        searchInputState: this.searchInputState,
-      },
-    },
-    {
-      Component: Detail,
-      props: {
-        searchInputState: this.searchInputState,
-      },
-    },
-  ]
-
-  get Content() {
-    return this.formStepConfig[this.formStepState.step] || {}
-  }
-
-  async componentDidMount() {
-    await this.clusters.fetchList({
-      limit: -1,
-      ascending: true,
-    })
-
-    this.searchInputState.setCluster(get(this, 'clustersOpts[0].value', ''))
-  }
-
   render() {
-    const { Component, props } = this.Content
-    if (!Component) {
-      return
-    }
-
-    if (globals.app.isMultiCluster && !this.searchInputState.cluster) {
-      return (
-        <EmptyList
-          className="no-shadow"
-          icon="cluster"
-          title={t('No Available Cluster')}
-          desc={t('No cluster with event query enabled')}
-        />
-      )
-    }
-
     return (
-      <Component
-        clustersOpts={this.clustersOpts}
-        formStepState={this.formStepState}
-        {...props}
-      />
+      <Tab tabState={this.tabState}>
+        {this.tabState.tabList.map(tab => {
+          const showIf = tab.id === this.tabState.activeKey
+          return (
+            <TabPanel key={tab.id} showIf={showIf}>
+              <MainPage></MainPage>
+            </TabPanel>
+          )
+        })}
+      </Tab>
     )
   }
 }

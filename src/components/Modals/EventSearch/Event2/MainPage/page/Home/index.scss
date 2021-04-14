@@ -1,0 +1,217 @@
+@import '~scss/variables';
+
+$search-border: solid 1px $light-color02;
+
+@mixin flex-center {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin textOverflow {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
+  overflow: hidden;
+}
+
+@mixin title {
+  font-size: $size-small;
+  line-height: 1.67;
+  color: $dark-color07;
+}
+
+@mixin des {
+  font-size: $size-small;
+  line-height: 1.67;
+  color: $dark-color01;
+}
+
+.pane {
+  width: 780px;
+  margin: 0 auto;
+}
+
+.searchPane {
+  width: 100%;
+  height: 88px;
+  margin-bottom: 12px;
+
+  .title {
+    font-size: $size-small;
+    line-height: 1.67;
+    color: $dark-color06;
+    margin-bottom: 12px;
+  }
+}
+
+.searchContainer {
+  width: 100%;
+  height: 56px;
+  background-color: $light-color01;
+  @include flex-center();
+
+  .innerBox {
+    width: 756px;
+    height: 32px;
+    background-color: $light-color02;
+    border-radius: 16px;
+    @include flex-center();
+  }
+
+  .clusterSelector {
+    width: 140px;
+    box-sizing: border-box;
+    border: $search-border;
+    border-radius: 16px 0 0 16px;
+    line-height: 32px;
+    position: relative;
+
+    :global {
+      .select-control {
+        border: none;
+        border-radius: 0;
+        height: 32px;
+        padding-left: 2em;
+      }
+
+      .select-options {
+        width: auto !important;
+        min-width: 130px;
+        position: absolute;
+        left: 5px !important;
+        top: 32px !important;
+      }
+    }
+  }
+
+  .searchBar {
+    flex: 1;
+    border: none;
+    border: $search-border;
+    border-left: none;
+    border-radius: 0 16px 16px 0;
+    line-height: 32px;
+  }
+}
+
+.clusterContainer {
+  width: 100%;
+}
+
+.clusterTitle {
+  height: 20px;
+  font-size: $size-small;
+  line-height: 1.67;
+  display: flex;
+  justify-content: space-between;
+
+  span {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.clusterChart {
+  width: 100%;
+  height: 64px;
+  background-color: #ffffff;
+  margin: 12px 0;
+  border: solid 1px $light-color02;
+  border-radius: 4px;
+  @include flex-center();
+
+  .chartHead {
+    width: 309px;
+    height: 100%;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    @include flex-center();
+    padding: 12px 0 12px 12px;
+
+    img {
+      width: 40px;
+      height: 40px;
+    }
+
+    .titleBox {
+      width: 245px;
+      height: 100%;
+      padding-left: 12px;
+    }
+  }
+
+  .chartText {
+    width: 120px;
+    height: 100%;
+    padding: 12px 0 12px 12px;
+    text-align: center;
+  }
+
+  .chart {
+    flex: 1;
+    height: 100%;
+    padding: 4px 4px 4px 48px;
+    background-clip: content-box;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+  }
+}
+
+.titleText {
+  width: calc(100%);
+  @include title();
+  @include textOverflow();
+}
+
+.desText {
+  width: calc(100%);
+  @include des();
+  @include textOverflow();
+}
+
+.endLine {
+  width: 100%;
+  height: 20px;
+  position: relative;
+  z-index: 5;
+  @include flex-center();
+
+  .text {
+    background-color: #ffffff;
+    padding: 0 2em;
+    z-index: 10;
+  }
+
+  &::after {
+    content: '';
+    height: 2px;
+    opacity: 60%;
+    width: 100%;
+    top: 7px;
+    left: 0;
+    position: absolute;
+    background: linear-gradient(to right, #ffffff, #abb4be, #ffffff);
+    z-index: 1;
+  }
+}
+
+.docHelp {
+  width: 100%;
+  margin-top: 12px;
+  margin-bottom: 113px;
+  border: solid 1px #d8dee5;
+  border-radius: 4px;
+  height: 60px;
+  padding: 12px;
+
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0 6px 16px 0 rgba(33, 43, 54, 0.2);
+
+    .titleText {
+      color: #4ca986;
+    }
+  }
+}

@@ -1,0 +1,37 @@
+.tabContent {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+
+  .tabHead {
+    width: 32px;
+    height: 100%;
+    border: solid 1px #ccd3db;
+    color: #f9fbfd;
+    padding-top: 5px;
+    .tabItem {
+      width: 32px;
+      height: 32px;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      img {
+        width: 16px;
+        height: 16px;
+      }
+    }
+    .tabItemActive {
+      background-color: #fff;
+      border-top: solid 1px #d1d7df;
+      border-bottom: solid 1px #d1d7df;
+    }
+  }
+
+  .tabPanel {
+    flex: 1;
+    height: 100%;
+    overflow: scroll;
+  }
+}
