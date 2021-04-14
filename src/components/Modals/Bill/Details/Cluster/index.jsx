@@ -227,6 +227,11 @@ export default class ClusterDetails extends React.Component {
       })
       .filter(item => !isEmpty(item))
 
+    const isAllDisabled = _clusterList.every(item => item.disabled)
+    if (isAllDisabled) {
+      return []
+    }
+
     return sortBy(_clusterList, item => {
       return item.sortValue
     })
@@ -1011,14 +1016,12 @@ export default class ClusterDetails extends React.Component {
   renderEmpty = () => {
     return (
       <div className={styles.empty}>
-        <Loading spinning={this.loading}>
-          <EmptyList
-            className={styles.emptyCard}
-            icon={ICON_TYPES[this.active.type]}
-            title={t('No Data')}
-            desc={t('RESOURCE_NOT_FOUND')}
-          />
-        </Loading>
+        <EmptyList
+          className={styles.emptyCard}
+          icon={ICON_TYPES[this.active.type]}
+          title={t('No Data')}
+          desc={t('RESOURCE_NOT_FOUND')}
+        />
       </div>
     )
   }
@@ -1079,17 +1082,17 @@ export default class ClusterDetails extends React.Component {
           {this.renderParentMeterCard()}
         </div>
         <div className={styles.rightContent}>
-          {noMeterData ? (
-            this.renderEmpty()
-          ) : (
-            <Loading spinning={this.loading}>
-              <>
-                <Title
-                  type={type}
-                  cluster={this.cluster}
-                  clusters={this.clusters}
-                  setCluster={this.setCluster}
-                />
+          <Loading spinning={this.loading}>
+            <>
+              <Title
+                type={type}
+                cluster={this.cluster}
+                clusters={this.clusters}
+                setCluster={this.setCluster}
+              />
+              {noMeterData ? (
+                this.renderEmpty()
+              ) : (
                 <div className={styles.content}>
                   <MeterDetailCard
                     className={styles.toothbg}
@@ -1124,9 +1127,9 @@ export default class ClusterDetails extends React.Component {
                   />
                   {this.renderSubResource()}
                 </div>
-              </>
-            </Loading>
-          )}
+              )}
+            </>
+          </Loading>
         </div>
       </div>
     )

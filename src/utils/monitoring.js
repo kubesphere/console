@@ -189,6 +189,7 @@ export const getChartData = ({
   xKey = 'time',
   legend = [],
   valuesData = [],
+  dot = 2,
 }) => {
   /*
     build a value map => { 1566289260: {...} }
@@ -214,7 +215,7 @@ export const getChartData = ({
         valueMap[time][key] =
           value === '-1'
             ? null
-            : getValueByUnit(value, isUndefined(unit) ? type : unit)
+            : getValueByUnit(value, isUndefined(unit) ? type : unit, dot)
       }
 
       if (!minX || minX > time) minX = time
@@ -256,6 +257,7 @@ export const getAreaChartOps = ({
     xKey,
     legend,
     valuesData,
+    dot: rest.dot,
   })
 
   return {
