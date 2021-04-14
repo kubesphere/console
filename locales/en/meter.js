@@ -21,7 +21,7 @@ module.exports = {
   'Consumption by Yesterday': 'Consumption by Yesterday',
   'Reconciliation Cycle': 'Billing Cycle',
   'Consumer Trends': 'Cost Trends',
-  'Resources Included': 'Resources Included',
+  'Current Resources Included': 'Current Resources Included',
   Trend: 'Trend',
   'Average Usage': 'Average Usage',
   'Total Consumption': 'Total Consumption',

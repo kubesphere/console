@@ -21,7 +21,7 @@ module.exports = {
   'Consumption by Yesterday': '截止到昨天的消费历史',
   'Reconciliation Cycle': '对账周期',
   'Consumer Trends': '消费者趋势',
-  'Resources Included': '当前包含的资源',
+  'Current Resources Included': '当前包含的资源',
   Trend: '趋势图',
   'Average Usage': '平均用量',
   'Total Consumption': '共消费',

@@ -985,7 +985,7 @@ export default class ClusterDetails extends React.Component {
     return (
       <>
         <div className={styles.subTitle}>
-          {t('Resources Included')}
+          {t('Current Resources Included')}
           <Tooltip content={t('METER_RESOURCE_DESC')} placement="top">
             <Icon name="question" size={20} />
           </Tooltip>
