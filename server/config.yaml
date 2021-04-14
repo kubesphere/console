@@ -537,7 +537,7 @@ client:
 
     # Cluster Administrator Guide
     nodes: /cluster-administration/nodes/
-    storageclasses: /cluster-administration/storageclass/
+    storageclasses: /cluster-administration/persistent-volume-and-storage-class/
 
     # DevOps User Guide
     pipelines: /devops-user-guide/how-to-use/pipeline-settings/
