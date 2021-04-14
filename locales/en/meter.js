@@ -18,10 +18,10 @@
 module.exports = {
   'Consumption Bill': 'Metering and Billing',
   'Export Bill': 'Export resource consumption records in csv format',
-  'Consumption History By Yesterday': 'Consumption History By Yesterday',
+  'Consumption by Yesterday': 'Consumption by Yesterday',
   'Reconciliation Cycle': 'Billing Cycle',
   'Consumer Trends': 'Cost Trends',
-  'Currently Contained Resources': 'Currently Contained Resources',
+  'Resources Included': 'Resources Included',
   Trend: 'Trend',
   'Average Usage': 'Average Usage',
   'Total Consumption': 'Total Consumption',

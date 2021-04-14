@@ -60,7 +60,7 @@ export const RESOURCES_TYPE = [
 
 export const RESOURCE_TITLE = {
   nodes: 'Cluster Node',
-  pods: 'Pods',
+  pods: 'Pod',
   openpitrixs: 'App Template',
   applications: 'Composing App',
   deployments: 'Deployment',
