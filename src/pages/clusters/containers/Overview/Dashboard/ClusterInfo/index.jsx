@@ -17,10 +17,10 @@
  */
 
 import React, { Component } from 'react'
+import { get } from 'lodash'
 import { inject } from 'mobx-react'
 import { Panel, Text } from 'components/Base'
 
-import { get } from 'mobx'
 import styles from './index.scss'
 
 @inject('rootStore')

@@ -53,7 +53,6 @@ const getOriginData = item =>
     'metadata.uid',
     'metadata.selfLink',
     'metadata.generation',
-    'metadata.finalizers',
     'metadata.ownerReferences',
     'metadata.resourceVersion',
     'metadata.creationTimestamp',
