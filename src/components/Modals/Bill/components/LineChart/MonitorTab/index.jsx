@@ -19,9 +19,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
-import { get, isEmpty } from 'lodash'
+import { get, isEmpty, isUndefined } from 'lodash'
 
-import { getAreaChartOps, getValueByUnit } from 'utils/monitoring'
+import { getAreaChartOps } from 'utils/monitoring'
 
 import { Text } from 'components/Base'
 
@@ -40,11 +40,6 @@ export default class MonitorTab extends React.Component {
 
   state = {
     activeTab: get(this, 'props.tabs[0].key', ''),
-  }
-
-  getLastValue = (data, unit) => {
-    const values = get(data, `[0].values`, [])
-    return getValueByUnit(values[values.length - 1][1], unit)
   }
 
   handleTabClick = e =>
@@ -70,11 +65,9 @@ export default class MonitorTab extends React.Component {
             <Text
               icon={tab.icon}
               title={
-                !tab.data
+                !tab.data || isUndefined(tab.titleValue)
                   ? '-'
-                  : tab.titleValue
-                  ? `${tab.titleValue} ${tab.unit}`
-                  : `${this.getLastValue(tab.data, tab.unit)} ${tab.unit}`
+                  : `${tab.titleValue} ${tab.unit}`
               }
               description={tab.title}
             />

@@ -16,16 +16,12 @@
   height: 100%;
   background: #fff;
 
-  & > div {
-    height: 100%;
-
-    :global {
-      .spin-container {
-        height: 100%;
-      }
+  :global {
+    .spin-container,
+    .spin-nested-loading {
+      height: 100%;
     }
   }
-
   .emptyCard {
     margin-top: 0;
     box-shadow: none !important;

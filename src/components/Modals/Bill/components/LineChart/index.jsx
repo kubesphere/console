@@ -117,6 +117,7 @@ export default class LineChart extends React.Component {
         data: [item],
         yAxis: true,
         titleValue: item.sum_value,
+        dot: 3,
       }
       return config
     })
