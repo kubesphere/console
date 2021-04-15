@@ -563,7 +563,6 @@ export const getFetchParams = ({
         cluster,
         namespace: namespaces,
         openpitrix: openpitrixs,
-        orderBy: 'status_time',
       },
     ],
     applications: [
