@@ -41,7 +41,7 @@ export default class AppCategories extends React.Component {
   categoryStore = new CategoryStore()
 
   state = {
-    selectCategoryId: '',
+    selectCategoryId: 'ctg-uncategorized',
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -60,8 +60,15 @@ export default class AppCategories extends React.Component {
 
   hadnleSelectCategory = categoryId => {
     if (this.state.selectCategoryId !== categoryId) {
-      this.setState({ selectCategoryId: categoryId })
+      this.setState({ selectCategoryId: categoryId }, () => {
+        this.clearTableSearch()
+      })
     }
+  }
+
+  clearTableSearch = () => {
+    const { tableActions, searchType } = this.props.tableProps
+    tableActions.onFetch({ [searchType]: '' }, true)
   }
 
   get tableActions() {
