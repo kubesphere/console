@@ -39,6 +39,12 @@ export default class BaseInfo extends React.Component {
   renderBase() {
     const { detail, versionName } = this.props
 
+    const url = detail.home
+      ? /^https?:\/\//.test(detail.home)
+        ? detail.home
+        : `http://${detail.home}`
+      : detail.home
+
     return (
       <div className={styles.base}>
         <div className={styles.title}>{t('Base Info')}</div>
@@ -53,7 +59,7 @@ export default class BaseInfo extends React.Component {
             </dl>
             <dl>
               <dd>
-                <a href={detail.home} target="_blank" rel="noopener noreferrer">
+                <a href={url} target="_blank" rel="noopener noreferrer">
                   {detail.home}
                 </a>
                 {!detail.home && <span>-</span>}
