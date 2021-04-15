@@ -146,7 +146,7 @@ export default class ClusterDetails extends React.Component {
         return { disabled, ...item }
       })
     } else {
-      this.list = list
+      this.list = this.setWSListDisabledByCluster(list)
     }
 
     if (isEmpty(toJS(this.list))) {
@@ -178,6 +178,34 @@ export default class ClusterDetails extends React.Component {
 
     this.sideLoading = false
     this.loading = false
+  }
+
+  setWSListDisabledByCluster = list => {
+    if (!isArray(list)) {
+      return []
+    }
+
+    return list.map(item => {
+      const clusters =
+        item.name === 'system-workspace'
+          ? this.clusterList
+          : get(item, '_origin.clusters', [])
+
+      const clustersLength = clusters.length
+      let count = 0
+
+      clusters.forEach(_cluster => {
+        const cluster = this.clusterList.find(
+          _item => _item.name === _cluster.name
+        )
+        if (cluster.disabled) {
+          count++
+        }
+      })
+
+      item.disabled = count === clustersLength
+      return item
+    })
   }
 
   @action

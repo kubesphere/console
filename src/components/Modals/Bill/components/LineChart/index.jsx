@@ -1,5 +1,5 @@
 import React from 'react'
-import { get, set, isEmpty, isEqual } from 'lodash'
+import { get, set, isEmpty, isEqual, isArray } from 'lodash'
 
 import { Loading } from '@kube-design/components'
 import { SimpleArea } from 'components/Charts'
@@ -95,7 +95,7 @@ export default class LineChart extends React.Component {
 
   renderNoPriceChart = () => {
     const { chartData } = this.state
-    if (isEmpty(chartData)) {
+    if (isEmpty(chartData) || !isArray(chartData)) {
       return null
     }
 
@@ -138,7 +138,7 @@ export default class LineChart extends React.Component {
           ) : isEmpty(this.priceConfig) ? (
             this.renderNoPriceChart()
           ) : (
-            <SimpleArea width="100%" height="100%" {...this.state.chartData} />
+            <SimpleArea width="100%" height={245} {...this.state.chartData} />
           )}
         </Loading>
       </div>

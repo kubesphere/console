@@ -3,16 +3,4 @@
 .chartContainer {
   margin-bottom: 12px;
   border: 1px solid $light-color04;
-
-  :global {
-    .spin-nested-loading {
-      width: 100%;
-      height: 100%;
-    }
-
-    .spin-container {
-      width: 100%;
-      height: 100%;
-    }
-  }
 }
