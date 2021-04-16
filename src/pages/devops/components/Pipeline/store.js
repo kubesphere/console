@@ -367,6 +367,11 @@ export default class Store extends BaseStore {
   }
 
   @action
+  createCredential = async (data, params) => {
+    await this.credentialStore.handleCreate(data, params)
+  }
+
+  @action
   async handleConfirm() {
     await this.convertJsonToJenkinsFile()
   }

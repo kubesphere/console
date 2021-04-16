@@ -162,6 +162,13 @@ export default class StepsEditor extends React.Component {
     this.props.store.setValue(this.stage)
   }
 
+  handleCreateCredential = async (data, callback) => {
+    const { devops, cluster } = this.props.store.params
+    await this.props.store.createCredential(data, { devops, cluster })
+    callback()
+    this.hideCreateCredential()
+  }
+
   hideCreateCredential = async () => {
     await this.props.store.getCredentials()
     this.setState({ showCredential: false })
@@ -280,7 +287,7 @@ export default class StepsEditor extends React.Component {
         />
         <CredentialModal
           visible={this.state.showCredential}
-          onOk={this.hideCreateCredential}
+          onOk={this.handleCreateCredential}
           onCancel={this.hideCreateCredential}
           devops={devops}
           cluster={cluster}
