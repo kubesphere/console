@@ -22,7 +22,7 @@ import { computed, toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import { isEqual } from 'lodash'
 
-import { Select, Icon } from '@kube-design/components'
+import { Select, Icon, Tooltip } from '@kube-design/components'
 
 import RoleStore from 'stores/role'
 import DevOpsStore from 'stores/devops'
@@ -146,6 +146,29 @@ export default class DevopsSelect extends Component {
     this.setState({ role }, () => this.handleChange())
   }
 
+  clusterRenderer = option => {
+    return (
+      <span>
+        <span>{option.value}</span>
+        {option.needUpgrade && (
+          <Tooltip
+            content={t('CLUSTER_UPGRADE_REQUIRED', { version: 'v3.1.0' })}
+            placement="bottom"
+          >
+            <Icon
+              name="update"
+              className={styles.tip}
+              color={{
+                primary: '#ffc781',
+                secondary: '#f5a623',
+              }}
+            />
+          </Tooltip>
+        )}
+      </span>
+    )
+  }
+
   render() {
     const {
       clusters,
@@ -164,6 +187,7 @@ export default class DevopsSelect extends Component {
             options={clusters}
             placeholder={t('Please select a cluster')}
             valueRenderer={option => `${t('Cluster')}: ${option.value}`}
+            optionRenderer={this.clusterRenderer}
             prefixIcon={<Icon name="cluster" size={16} />}
             onChange={this.handleClusterChange}
           />

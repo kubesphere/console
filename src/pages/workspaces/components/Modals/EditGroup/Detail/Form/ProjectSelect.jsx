@@ -155,6 +155,7 @@ export default class ProjectSelect extends Component {
         {option.needUpgrade && (
           <Tooltip
             content={t('CLUSTER_UPGRADE_REQUIRED', { version: 'v3.1.0' })}
+            placement="bottom"
           >
             <Icon
               name="update"
