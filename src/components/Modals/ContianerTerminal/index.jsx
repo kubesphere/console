@@ -27,7 +27,10 @@ import TerminalStore from 'stores/terminal'
 import { TypeSelect } from 'components/Base'
 import ContainerTerminal from 'components/Terminal'
 import fullscreen from 'components/Modals/FullscreenModal'
+import ClusterStore from 'stores/cluster'
+import { CLUSTER_PROVIDER_ICON } from 'utils/constants'
 
+import { observable } from 'mobx'
 import styles from './index.scss'
 
 @fullscreen
@@ -35,58 +38,85 @@ import styles from './index.scss'
 export default class ContainerTerminalModal extends React.Component {
   podStore = new PodStore()
 
-  constructor(props) {
-    super(props)
+  @observable
+  container = { name: this.props.match.params.containerName }
 
-    const {
-      containerName,
-      podName,
-      cluster,
-      namespace,
-    } = this.props.match.params
+  @observable
+  url = null
 
-    this.state = {
-      container: {
-        name: containerName,
-      },
-    }
+  store = new TerminalStore()
 
-    this.store = new TerminalStore({
-      cluster,
-      namespace,
-      pod: podName,
-      container: containerName,
-      shell: 'sh',
-    })
-  }
+  clusterStore = new ClusterStore()
 
-  componentDidMount() {
+  async componentDidMount() {
     const params = this.props.match.params
     const { cluster, namespace, podName, containerName } = params
 
-    this.podStore
-      .fetchDetail({
-        cluster,
-        namespace,
-        name: podName,
+    await this.fetchData({ cluster })
+
+    await this.podStore.fetchDetail({
+      cluster,
+      namespace,
+      name: podName,
+    })
+
+    const container = this.podStore.detail.containers.find(
+      item => item.name === containerName
+    )
+
+    if (container) {
+      this.container = container
+    }
+    this.url = this.store.kubeWebsocketUrl
+  }
+
+  get clusters() {
+    return this.clusterStore.list.data
+      .filter(item => item.isReady)
+      .map(item => ({
+        label: item.name,
+        value: item.name,
+        icon: CLUSTER_PROVIDER_ICON[item.provider] || 'kubernetes',
+        version: get(item, 'configz.ksVersion'),
+        description: item.provider,
+      }))
+  }
+
+  async fetchData({ cluster }) {
+    if (!globals.app.isMultiCluster) {
+      return this.store.fetchKubeCtl({
+        clusterVersion: get(globals, 'ksConfig.ksVersion'),
       })
-      .then(() => {
-        const container = this.podStore.detail.containers.find(
-          item => item.name === containerName
-        )
-        if (container) {
-          this.setState({ container })
-        }
-      })
+    }
+
+    await this.clusterStore.fetchListByK8s()
+
+    if (!cluster) {
+      const _cluster = get(this.clusters, '[0].value')
+      const clusterVersion = get(this.clusters, '[0].version')
+      await this.store.fetchKubeCtl({ cluster: _cluster, clusterVersion })
+    } else {
+      const _cluster = this.clusters.find(item => item.value === cluster)
+      let version = _cluster.version
+
+      if (!version) {
+        const clusterDetail = await this.clusterStore.fetchDetail({
+          name: cluster,
+        })
+
+        version = get(clusterDetail, 'configz.ksVersion')
+      }
+
+      await this.store.fetchKubeCtl({ cluster, clusterVersion: version })
+    }
   }
 
   handleContainerChange = container => {
-    this.setState({ container })
     this.store.kubectl.container = container.name
   }
 
   getResourceInfo = type => {
-    const { resources = {} } = this.state.container || {}
+    const { resources = {} } = this.container || {}
     const resourceType = resources[type]
 
     return (
@@ -97,21 +127,8 @@ export default class ContainerTerminalModal extends React.Component {
     )
   }
 
-  render() {
-    return (
-      <div className={styles.kubectl}>
-        <div className={styles.terminalWrapper}>
-          <div className={classnames(styles.pane, styles.terminal)}>
-            <ContainerTerminal url={this.store.kubeWebsocketUrl} />
-          </div>
-        </div>
-        <div className={styles.tipWrapper}>{this.renderContainerMsg()}</div>
-      </div>
-    )
-  }
-
   renderContainerMsg() {
-    const { container: selectContainer } = this.state
+    const selectContainer = this.container
     const defaultContainers = [
       {
         name: selectContainer.name,
@@ -160,6 +177,19 @@ export default class ContainerTerminalModal extends React.Component {
           </dl>
         </div>
       </Loading>
+    )
+  }
+
+  render() {
+    return (
+      <div className={styles.kubectl}>
+        <div className={styles.terminalWrapper}>
+          <div className={classnames(styles.pane, styles.terminal)}>
+            <ContainerTerminal url={this.url} />
+          </div>
+        </div>
+        <div className={styles.tipWrapper}>{this.renderContainerMsg()}</div>
+      </div>
     )
   }
 }
