@@ -1018,7 +1018,7 @@ export default class ClusterDetails extends React.Component {
     return (
       <>
         <div className={styles.subTitle}>
-          {t('Currently Contained Resources')}
+          {t('Current Resources Included')}
           <Tooltip content={t('METER_RESOURCE_DESC')} placement="top">
             <Icon name="question" size={20} />
           </Tooltip>
@@ -1134,7 +1134,7 @@ export default class ClusterDetails extends React.Component {
                     {...this.currentMeterData}
                   />
                   <div className={styles.subTitle}>
-                    {t('Consumption History By Yesterday')}
+                    {t('Consumption by Yesterday')}
                   </div>
                   <div className={styles.info}>
                     {!isEmpty(toJS(this.timeRange)) ? (

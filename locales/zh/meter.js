@@ -18,10 +18,10 @@
 module.exports = {
   'Consumption Bill': '消费账单',
   'Export Bill': '导出 csv 格式的资源消费记录',
-  'Consumption History By Yesterday': '截止到昨天的消费历史',
+  'Consumption by Yesterday': '截止到昨天的消费历史',
   'Reconciliation Cycle': '对账周期',
   'Consumer Trends': '消费者趋势',
-  'Currently Contained Resources': '当前包含的资源',
+  'Current Resources Included': '当前包含的资源',
   Trend: '趋势图',
   'Average Usage': '平均用量',
   'Total Consumption': '共消费',
