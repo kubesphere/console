@@ -237,7 +237,6 @@ export default {
           })
 
           Modal.close(modal)
-          Notify.success({ content: `${t('Updated Successfully')}` })
           success && success(branch)
         },
         store,
