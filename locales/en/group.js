@@ -17,25 +17,28 @@
  */
 
 module.exports = {
-  'Add the member to': 'Add the member to <strong>{group}</strong>',
-  'Department Name': 'Department Name',
+  'Add the member to':
+    'Are you sure you want to assign the user to <strong>{group}</strong>?',
+  'Department Name': 'Name',
+  'Department Alias': 'Alias',
   principal: 'principal',
-  'Add New Department': 'Add New Department',
-  'Add New Subdepartment': 'Add New Subdepartment',
+  'Add New Department': 'Create Department',
+  'Add New Subdepartment': 'Create Department',
   NO_DEPARTMENT_TIP:
-    'No available department at the moment. Please create one on the right.',
+    'No department available. Please create a department on the right.',
   'Workspace role': 'Workspace Role',
-  WORKSPACE_ROLE_DESC: 'Assign roles to the entire user group',
-  'Bind Project Role': 'Bind Project Role',
+  GROUP_WORKSPACE_ROLE_DESC:
+    'The workspace role will be assigned to all members in the department.',
+  'Bind Project Role': 'Project Role',
   'Add Project': 'Add Project',
   'project roles': 'project roles',
-  'Bind DevOps Project Role': 'Bind DevOps Project Role',
+  'Bind DevOps Project Role': 'DevOps Project Role',
   'Add DevOps Project': 'Add DevOps Project',
-  'Please add role': 'Please add role',
-  'User Group Assigned': 'User Group Assigned',
+  'Please add role': 'Please select a role.',
+  'User Group Assigned': 'Department',
 
-  DELETE_PARENT_GROUP_TIP:
-    'Are you sure you want to delete the sub-department <strong>{group_name}</strong>? When deleting the department, its sub-departments will also be deleted, and the authorization of all members will be cancelled.',
   DELETE_GROUP_TIP:
-    'Are you sure to delete the sub-department <strong>{group_name}</strong>? When deleting the department, the authorization of all members will also be cancelled.',
+    'Are you sure you want to delete the department <strong>{group_name}</strong>? The associated roles will be unbound from the users.',
+  DELETE_PARENT_GROUP_TIP:
+    'Are you sure you want to delete the department <strong>{group_name}</strong>? Its subdepartments will also be deleted and the associated roles will be unbound from the users.',
 }

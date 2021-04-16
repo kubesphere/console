@@ -224,7 +224,7 @@ export default class Groups extends React.Component {
           <Button type="primary" onClick={this.handleAddGroup}>
             {t('OK')}
           </Button>
-          <Button onClick={this.handleCancelSelect}>{t('Deselect')}</Button>
+          <Button onClick={this.handleCancelSelect}>{t('Cancel')}</Button>
         </LevelRight>
       </Level>
     )

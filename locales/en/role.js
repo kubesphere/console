@@ -129,6 +129,7 @@ module.exports = {
   'Workspace Roles View': 'Workspace Role Viewing',
   'Workspaces Management': 'Workspace Management',
   'Workspaces View': 'Workspace Viewing',
+  'Workspace Groups': 'Department Management',
   'Workspace Groups Management': 'Workspace Group Management',
   'Workspace Groups View': 'Workspace Group Viewing',
 
