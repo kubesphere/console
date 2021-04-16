@@ -31,7 +31,7 @@ const MeterDetailCard = ({
   ...meterData
 } = {}) => {
   const priceUnit =
-    !isEmpty(priceConfig) && priceConfig.currency === 'USD' ? t('$') : t('￥')
+    !isEmpty(priceConfig) && priceConfig.currency === 'CNY' ? t('￥') : t('$')
 
   const handleSumFeeData = () => {
     const feeData = meterData.feeData
