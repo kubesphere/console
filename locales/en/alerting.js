@@ -100,22 +100,22 @@ module.exports = {
   load15: 'CPU load average 15 minutes',
 
   ALERT_TYPE: '{type} Alert',
-  ALERT_POLICY_DESC: 'Set alert rules',
+  ALERT_POLICY_DESC:
+    'Specify conditions for alerting policies and customize monitoring targets and notification messages.',
   ALERT_MESSAGE_DESC:
     'Alerting messages are generated based on the monitoring metrics and the workload alert policies in the current project. They can help users detect problems and respond in time.',
 
   ALERTING_POLICY_CREATE_DESC:
-    'You can find abnormal conditions of resources instantly by setting alerting policies',
+    'You can find abnormal conditions of resources instantly by setting alerting policies.',
 
   RESOURCE_NODE_FORM_TIP: 'Please select cluster nodes',
   RESOURCE_WORKLOAD_FORM_TIP: 'Please select workloads',
 
-  REQUESTS_FOR_TRIGGER_AN_ALARM_Q:
-    'Prerequisites for triggering an alerting message',
+  REQUESTS_FOR_TRIGGER_AN_ALARM_Q: 'How do I trigger alerts?',
   REQUESTS_FOR_TRIGGER_AN_ALARM_A:
     'You need to set an alerting policy for a resource. When a certain indicator of a resource reaches the threshold of the alerting policy, the message is triggered and pushed.',
   REQUESTS_FOR_PUSH_AN_ALARM_Q:
-    'Prerequisites for a push message of alerting policy',
+    'How do I receive alerting messages if an alerting policy is triggered?',
   REQUESTS_FOR_PUSH_AN_ALARM_A:
     'The platform administrator must select a notification method and configure the corresponding server.',
   HOW_TO_SUPRESS_AN_ALARM_Q: 'How do I suppress alerting messages?',
