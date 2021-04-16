@@ -35,6 +35,7 @@ import PolicyStore from 'stores/alerting/policy'
 @withList({
   store: new PolicyStore(),
   module: 'rules',
+  authKey: 'alert-rules',
   name: 'Alerting Policy',
 })
 export default class AlertingPolicy extends React.Component {
