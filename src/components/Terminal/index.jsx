@@ -39,6 +39,10 @@ export default class SessionTerminal extends Component {
   }
 
   render() {
+    if (!this.props.url) {
+      return null
+    }
+
     const terminalOpts = {
       theme: {
         background: BG_COLOR,
