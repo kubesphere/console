@@ -17,6 +17,11 @@
 
   & > li {
     padding: 8px 12px;
+    display: flex;
+
+    & > label {
+      flex: 1 0;
+    }
 
     & + li {
       border-top: 1px solid $border-color;
