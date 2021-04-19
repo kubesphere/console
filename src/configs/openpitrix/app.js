@@ -39,6 +39,8 @@ export const UPLOAD_STATUS_WORD = {
 }
 
 export const CATEGORY_ICONS = [
+  'database',
+  'export',
   'documentation',
   'mail',
   'calendar',
