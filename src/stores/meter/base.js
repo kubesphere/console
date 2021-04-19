@@ -422,7 +422,7 @@ export default class MeterStore extends base {
         return typeof item === 'number' && item < 0
       })
 
-      if (isNoPrice) {
+      if (isNoPrice || result.currency === '') {
         return { cluster }
       }
 

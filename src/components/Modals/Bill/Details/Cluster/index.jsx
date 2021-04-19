@@ -155,7 +155,23 @@ export default class ClusterDetails extends React.Component {
       return
     }
 
-    const { name, type, labelSelector } = this.list[0]
+    let isNoDisabledIndex
+
+    for (let i = 0; i < this.list.length; i++) {
+      if (!this.list[i].disabled) {
+        isNoDisabledIndex = i
+        break
+      }
+    }
+
+    if (isNoDisabledIndex === undefined) {
+      this.currentMeterData = {}
+      this.sideLoading = false
+      this.loading = false
+      return
+    }
+
+    const { name, type, labelSelector } = this.list[isNoDisabledIndex]
 
     if (type === 'cluster') {
       this.cluster = name
