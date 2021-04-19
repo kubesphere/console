@@ -260,5 +260,7 @@ module.exports = {
     'According to the size of the created cluster and the difference in network connection, it takes about 30 to 60 minutes to create the entire cluster. ',
 
   CLUSTER_UPGRADE_REQUIRED:
-    'This function is not available in the current cluster version. Please upgrade to {version} or above.',
+    'Esta función no está disponible en la versión actual del clúster. Actualice a {versión} o superior.',
+  MEMBER_CLUSTER_UPGRADE_TIP:
+    'Uno o más clústeres de miembros no pueden utilizar esta función. Actualice el clúster de miembros a {versión} o superior.',
 }

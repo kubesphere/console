@@ -276,4 +276,6 @@ module.exports = {
 
   CLUSTER_UPGRADE_REQUIRED:
     'This function is not available in the current cluster version. Please upgrade to {version} or above.',
+  MEMBER_CLUSTER_UPGRADE_TIP:
+    'One or more member clusters cannot use this function. Please upgrade the member cluster to {version} or above.',
 }

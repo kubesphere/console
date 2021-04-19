@@ -60,6 +60,18 @@ export default class GroupForm extends React.Component {
     }
   }
 
+  get needUpgrade() {
+    return this.workspaceStore.clusters.data.some(
+      item =>
+        compareVersion(
+          globals.app.isMultiCluster
+            ? get(item, 'configz.ksVersion', '')
+            : get(globals, 'ksConfig.ksVersion'),
+          'v3.1.0'
+        ) < 0
+    )
+  }
+
   @computed
   get workspaceRoles() {
     return this.workspaceRoleStore.list.data.map(role => ({
@@ -190,7 +202,12 @@ export default class GroupForm extends React.Component {
           </Form.Item>
           <Form.Item
             label={t('Workspace role')}
-            desc={t('GROUP_WORKSPACE_ROLE_DESC')}
+            desc={
+              t('WORKSPACE_ROLE_DESC') +
+              (this.needUpgrade
+                ? t('MEMBER_CLUSTER_UPGRADE_TIP', { version: 'v3.1.0' })
+                : '')
+            }
           >
             <Select
               name="metadata.annotations['kubesphere.io/workspace-role']"
