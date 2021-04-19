@@ -1,3 +1,6 @@
+@import '~scss/variables';
+$search-border: solid 1px $light-color02;
+
 .detailContainer {
   padding: 12px 12px 0px 12px;
   width: 100%;
@@ -12,8 +15,6 @@
   background-color: #f9fbfd;
   display: flex;
   align-items: center;
-  // position: sticky;
-  // top: 12px;
   z-index: 50;
 
   .inputBox {
@@ -22,6 +23,13 @@
     margin: 0 12px;
     border-radius: 16px;
     border: solid 1px #eff4f9;
+    background-color: $light-color02;
+
+    input {
+      background-color: $light-color02;
+      size: $size-small;
+      line-height: 20px;
+    }
   }
 
   .searchRecent {
@@ -44,7 +52,6 @@
   height: calc(100% - 104px);
   border-radius: 2px;
   background-color: #f9fbfd;
-  overflow-y: scroll;
   position: relative;
   z-index: 0;
 
@@ -77,91 +84,93 @@
   background-color: #fff;
   z-index: 10;
 
-  .timeTitle {
-    width: 188px;
-    line-height: 26px;
-    // border-radius: 1px;
-    background-color: #e3e9ef;
-    padding: 0 8px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  @at-root {
+    .timeTitle {
+      width: 188px;
+      line-height: 26px;
+      background-color: #e3e9ef;
+      padding: 0 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: $font-bold;
 
-    img {
-      &:hover {
-        cursor: pointer;
+      img {
+        &:hover {
+          cursor: pointer;
+        }
+      }
+
+      .sortAgain {
+        transform: rotateZ(180deg);
       }
     }
 
-    .sortAgain {
-      transform: rotateZ(180deg);
+    .typeTitle {
+      width: 115px;
+      line-height: 26px;
+      font-weight: $font-bold;
+      padding-left: 25px;
     }
-  }
 
-  .typeTitle {
-    width: 115px;
-    line-height: 26px;
-    text-align: center;
-  }
+    .sourceTitle {
+      width: 341px;
+      line-height: 26px;
+      font-weight: $font-bold;
+    }
 
-  .sourceTitle {
-    width: 341px;
-    line-height: 26px;
-  }
+    .reasonTitle {
+      width: 232px;
+      line-height: 26px;
+      font-weight: $font-bold;
+    }
 
-  .reasonTitle {
-    width: 232px;
-    line-height: 26px;
-  }
-
-  .messageTitle {
-    flex: 1;
-    line-height: 26px;
+    .messageTitle {
+      flex: 1;
+      line-height: 26px;
+      font-weight: $font-bold;
+    }
   }
 }
 
 .tableContent {
   width: 100%;
-  height: 100%;
+  height: calc(100% - 36px);
   overflow-y: scroll;
   z-index: 5;
-  padding-top: 36px;
+  position: absolute;
+  top: 36px;
+  font-size: $size-small;
 
-  .tableLine {
-    width: 100%;
-    min-height: 24px;
-    display: flex;
-    margin: 10px 0;
-
-    &:hover {
-      background-color: #eff4f9;
-      cursor: pointer;
-    }
-
+  @at-root {
     .title {
-      width: 188px;
+      width: 196px;
       line-height: 24px;
       color: #3385b0;
-      padding: 0 8px;
+      padding: 0 16px;
       padding-right: 10px;
     }
 
     .type {
       width: 115px;
-      text-align: center;
-      line-height: 20px;
+      padding-left: 25px;
       padding-right: 10px;
+      line-height: 20px;
 
       .normal {
         background-color: #eff4f9;
         border-radius: 1px;
         width: 54px;
+        text-align: center;
+        font-weight: $font-bold;
       }
 
       .warning {
         background-color: #f5a623;
         border-radius: 1px;
         width: 54px;
+        text-align: center;
+        font-weight: $font-bold;
       }
     }
 
@@ -182,20 +191,26 @@
 
       .sourceType {
         display: block;
+        height: 20px;
         line-height: 20px;
         border-radius: 1px;
         margin-right: 8px;
         background-color: #d8dee5;
+        font-weight: $font-bold;
       }
     }
 
     .message {
-      width: 489px;
+      width: 479px;
       height: 24px;
       white-space: nowrap;
       line-height: 20px;
-      padding: 0 10px;
+      margin-left: 10px;
       overflow: scroll;
+    }
+
+    .hightLightMatch {
+      background: $yellow-color02;
     }
   }
 }
@@ -205,12 +220,14 @@
   height: 100%;
   padding: 12px 12px 0px 12px;
   overflow-y: scroll;
+  font-size: $size-small;
 
   .title {
-    font-size: 12px;
+    font-weight: $font-bold;
     line-height: 20px;
-    color: #242e42;
+    color: $dark-color07;
     margin-bottom: 12px;
+    padding: 0;
   }
 
   .desLine {
@@ -228,19 +245,22 @@
 
     .right {
       flex: 1;
+      color: $dark-color07;
     }
   }
 
   .reasonBox {
     width: 100%;
     overflow: hidden;
-    padding: 12px;
+    padding-top: 12px;
+    color: $dark-color07;
 
     .title {
       font-size: 12px;
+      width: 100%;
       line-height: 20px;
       margin-bottom: 4px;
-      color: #242e42;
+      font-weight: $font-bold;
     }
 
     .text {
@@ -248,7 +268,28 @@
       overflow: hidden;
       font-size: 12px;
       line-height: 20px;
-      color: #242e42;
     }
+  }
+}
+
+:global {
+  .searchBar {
+    flex: 1;
+    border: none;
+    border: $search-border;
+    border-left: none;
+    border-radius: 0 16px 16px 0;
+    line-height: 32px;
+    background-color: $light-color02;
+
+    input {
+      background-color: $light-color02;
+      size: $size-small;
+      line-height: 20px;
+    }
+  }
+
+  .ReactVirtualized__List {
+    outline: none;
   }
 }

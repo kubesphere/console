@@ -43,7 +43,6 @@ export default class TinyArea extends React.Component {
     renderTitle: PropTypes.func,
     renderArea: PropTypes.func,
     darkMode: PropTypes.bool,
-    dot: PropTypes.object,
   }
 
   static defaultProps = {
@@ -80,14 +79,27 @@ export default class TinyArea extends React.Component {
   }
 
   renderArea() {
-    let openDot = false
     const { unit, areaColors, renderArea, dot } = this.props
 
     if (renderArea) {
       return renderArea()
     }
-    if (dot) {
-      openDot = dot
+    if (Object.keys(dot).length > 0) {
+      return this.series.map((key, index) => {
+        const color = COLORS_MAP[areaColors[index]]
+
+        return (
+          <Area
+            key={key}
+            dataKey={key}
+            stroke={color}
+            fillOpacity="0.1"
+            fill={color}
+            unit={unit}
+            dot={dot}
+          />
+        )
+      })
     }
     return this.series.map((key, index) => {
       const color = COLORS_MAP[areaColors[index]]
@@ -100,7 +112,6 @@ export default class TinyArea extends React.Component {
           fillOpacity="0.1"
           fill={color}
           unit={unit}
-          dot={openDot}
         />
       )
     })

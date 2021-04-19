@@ -18,13 +18,14 @@ $search-border: solid 1px $light-color02;
 
 @mixin title {
   font-size: $size-small;
-  line-height: 1.67;
+  line-height: 20px;
   color: $dark-color07;
+  font-weight: $font-bold;
 }
 
 @mixin des {
   font-size: $size-small;
-  line-height: 1.67;
+  line-height: 20px;
   color: $dark-color01;
 }
 
@@ -40,9 +41,10 @@ $search-border: solid 1px $light-color02;
 
   .title {
     font-size: $size-small;
-    line-height: 1.67;
+    line-height: 20px;
     color: $dark-color06;
     margin-bottom: 12px;
+    font-weight: $font-bold;
   }
 }
 
@@ -74,6 +76,9 @@ $search-border: solid 1px $light-color02;
         border-radius: 0;
         height: 32px;
         padding-left: 2em;
+        background-color: $light-color02;
+        border-top-left-radius: 16px;
+        border-bottom-left-radius: 16px;
       }
 
       .select-options {
@@ -93,6 +98,13 @@ $search-border: solid 1px $light-color02;
     border-left: none;
     border-radius: 0 16px 16px 0;
     line-height: 32px;
+    background-color: $light-color02;
+
+    input {
+      background-color: $light-color02;
+      size: $size-small;
+      line-height: 20px;
+    }
   }
 }
 
@@ -102,14 +114,28 @@ $search-border: solid 1px $light-color02;
 
 .clusterTitle {
   height: 20px;
-  font-size: $size-small;
-  line-height: 1.67;
   display: flex;
   justify-content: space-between;
+  margin-bottom: 4px;
+  font-weight: $font-bold;
 
   span {
     display: flex;
     align-items: center;
+    font-size: $size-small;
+    line-height: 20px;
+
+    span {
+      margin-right: 4px;
+    }
+
+    .icon {
+      width: 20px;
+      height: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 }
 
@@ -117,8 +143,8 @@ $search-border: solid 1px $light-color02;
   width: 100%;
   height: 64px;
   background-color: #ffffff;
-  margin: 12px 0;
-  border: solid 1px $light-color02;
+  margin: 7px 0;
+  border: solid 1px $light-color06;
   border-radius: 4px;
   @include flex-center();
 
@@ -176,6 +202,7 @@ $search-border: solid 1px $light-color02;
   height: 20px;
   position: relative;
   z-index: 5;
+  margin-top: 12px;
   @include flex-center();
 
   .text {
@@ -201,7 +228,7 @@ $search-border: solid 1px $light-color02;
   width: 100%;
   margin-top: 12px;
   margin-bottom: 113px;
-  border: solid 1px #d8dee5;
+  border: solid 1px $light-color04;
   border-radius: 4px;
   height: 60px;
   padding: 12px;

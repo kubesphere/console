@@ -1,17 +1,37 @@
-import React, { Component } from 'react'
+/*
+ * This file is part of KubeSphere Console.
+ * Copyright (C) 2019 The KubeSphere Console Authors.
+ *
+ * KubeSphere Console is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * KubeSphere Console is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+import React, { Component, Fragment } from 'react'
 import { Select } from '@kube-design/components'
 import { observable, action, toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import { TopAxis } from 'components/Charts'
 import { min } from 'lodash'
 import moment from 'moment'
+import classnames from 'classnames'
 import EventSearchStore from 'stores/eventSearch'
 
+import Table from 'components/Tables/Visible2'
 import styles from './index.scss'
-import SearchInput from '../SearchInput'
-import Table from './Table'
+import SearchInput from '../components/SearchInput'
 import DrawerTab from '../components/drawerTab'
 import Metadata from '../components/Metadata'
+import DrawerPanel from '../components/drawerTab/tabPanel'
 import {
   queryKeyMapping,
   queryModeOptions,
@@ -29,11 +49,75 @@ export default class Detail extends Component {
 
   @observable logs = []
 
+  @observable
+  tableCols = [
+    {
+      thead: () => (
+        <div className={styles.timeTitle}>
+          {t('Time')}
+          <img
+            className={this.sortLog ? styles.sortAgain : ''}
+            src="/assets/log-search-sort.svg"
+            alt="log-search-sort"
+            onClick={() => this.rotateImg()}
+          ></img>
+        </div>
+      ),
+      key: 'time',
+      content: ({ lastTimestamp }) =>
+        `[${moment(lastTimestamp).format('YYYY-MM-DD HH:mm:ss')}]`,
+      hidden: false,
+      className: styles.title,
+    },
+    {
+      thead: () => <div className={styles.typeTitle}>{t('Category')}</div>,
+      key: 'type',
+      hidden: false,
+      content: ({ type }) => (
+        <div
+          className={classnames(
+            styles.category,
+            styles[type.toLocaleLowerCase()]
+          )}
+        >
+          {type}
+        </div>
+      ),
+      className: styles.type,
+    },
+    {
+      thead: () => <div className={styles.sourceTitle}>{t('Resource')}</div>,
+      key: 'kind',
+      hidden: false,
+      content: ({ involvedObject = {} }) => (
+        <Fragment>
+          <div className={styles.sourceType}>{involvedObject.kind}</div>
+          <div className={styles.name}>{involvedObject.name}</div>
+        </Fragment>
+      ),
+      className: styles.source,
+    },
+    {
+      thead: () => <div className={styles.reasonTitle}>{t('Reason')}</div>,
+      key: 'reason',
+      hidden: false,
+      content: ({ reason }) => reason,
+      className: styles.reason,
+    },
+    {
+      thead: () => <div className={styles.messageTitle}>{t('Message')}</div>,
+      key: 'message',
+      hidden: false,
+      content: this.renderHightLightMatchTd,
+      mustShow: true,
+      className: styles.message,
+    },
+  ]
+
   store = new EventSearchStore({
     size: 50,
   })
 
-  // 匹配模式（精确匹配，模糊匹配）
   queryModeOptions = [1, 0].map(mode => ({
     value: mode,
     label: mode ? t('Exact Query') : t('Fuzzy Query'),
@@ -67,7 +151,6 @@ export default class Detail extends Component {
     this.fetchHistogram()
   }
 
-  // 获取输入框的参数
   getQueryParams() {
     const {
       query: inputQuery,
@@ -99,7 +182,6 @@ export default class Detail extends Component {
     this.logs = result.reverse()
   }
 
-  // 获取表格日志
   @action
   async fetchQuery(pars) {
     const { cluster } = this.props.searchInputState
@@ -108,7 +190,6 @@ export default class Detail extends Component {
     return this.store.data
   }
 
-  // 获取直方图统计数据
   @action
   async fetchHistogram() {
     const query = this.getQueryParams()
@@ -135,13 +216,39 @@ export default class Detail extends Component {
     this.onSearchParamsChange()
   }
 
+  renderHightLightMatchTd = ({ message }) => {
+    const item = this.props.searchInputState.query.find(
+      state => state.key === 'message_search'
+    )
+    if (!item) {
+      return message
+    }
+    const reg = new RegExp(item.value, 'gi')
+    const messages = message.split(reg)
+    if (messages.length === 1) {
+      return message
+    }
+    const match = message.match(reg)
+    return (
+      <Fragment>
+        {messages.map((mes, i) => (
+          <Fragment key={mes + i}>
+            {mes}
+            <span className={styles.hightLightMatch}>{match[i]}</span>
+          </Fragment>
+        ))}
+      </Fragment>
+    )
+  }
+
   @action
   drawerClick = rowData => {
     this.selectedRow = rowData
     this.drawerShow = !this.drawerShow
   }
 
-  @action rotateImg = () => {
+  @action
+  rotateImg = () => {
     this.sortLog = !this.sortLog
     this.logs = this.logs.reverse()
   }
@@ -203,25 +310,39 @@ export default class Detail extends Component {
     )
   }
 
+  @action
+  async loadMoreLogs() {
+    const from = this.store.from + this.store.size
+
+    const newLogs = await this.fetchQuery({
+      ...this.store.preParams,
+      ...{ from },
+    })
+    this.logs.push(...newLogs)
+  }
+
+  @action
+  onTableScrollEnd = ({ clientHeight, scrollHeight, scrollTop }) => {
+    if (Math.ceil(clientHeight + scrollTop) >= scrollHeight) {
+      const { from, size, total } = this.store
+      if (total > from + size) {
+        this.loadMoreLogs()
+      }
+    }
+  }
+
   renderTable = () => {
     return (
       <div className={styles.table}>
-        <div className={styles.tableHead}>
-          <div className={styles.timeTitle}>
-            <span>时间</span>
-            <img
-              onClick={() => this.rotateImg()}
-              className={this.sortLog ? styles.sortAgain : ''}
-              src="/assets/log-search-sort.svg"
-              alt="log-search-sort"
-            ></img>
-          </div>
-          <div className={styles.typeTitle}>类别</div>
-          <div className={styles.sourceTitle}>资源</div>
-          <div className={styles.reasonTitle}>原因</div>
-          <div className={styles.messageTitle}>消息</div>
-        </div>
-        <Table data={this.logs} drawerClick={this.drawerClick}></Table>
+        <Table
+          onScroll={this.onTableScrollEnd}
+          onTrClick={this.drawerClick}
+          cols={this.tableCols}
+          data={this.logs}
+          body={styles.tableContent}
+          defaultRowHeight={24}
+          sortIconClick={this.rotateImg}
+        />
         <div className={this.drawerShow ? styles.drawer : styles.no_drawer}>
           {this.renderDrawerPanel()}
         </div>
@@ -233,82 +354,24 @@ export default class Detail extends Component {
     if (!this.drawerShow) {
       return
     }
-    const query = toJS(this.props.searchInputState)
     return (
       <DrawerTab>
-        <div>
+        <DrawerPanel>
           <div className={styles.drawerPanel}>
             <p className={styles.title}>事件元数据</p>
             {this.renderEventMetadata()}
           </div>
-        </div>
-        <div>
-          <div className={styles.drawerPanel}>
-            <p className={styles.title}>操作详情</p>
-            <div className={styles.desLine}>
-              <div className={styles.left}>集群:</div>
-              <div className={styles.right}>{query.cluster}</div>
-            </div>
-            <div className={styles.desLine}>
-              <div className={styles.left}>项目:</div>
-              <div className={styles.right}>
-                {this.selectedRow.involvedObject.name}
-              </div>
-            </div>
-            <div className={styles.desLine}>
-              <div className={styles.left}>资源:</div>
-              <div className={styles.right}>
-                {this.selectedRow.source.component}
-              </div>
-            </div>
-            <div className={styles.desLine}>
-              <div className={styles.left}>关联资源:</div>
-              <div className={styles.right}></div>
-            </div>
-            <div className={styles.desLine}>
-              <div className={styles.left}>类别:</div>
-              <div className={styles.right}>
-                {this.selectedRow.involvedObject.kind}
-              </div>
-            </div>
-            <div className={styles.desLine}>
-              <div className={styles.left}>Count:</div>
-              <div className={styles.right}>{this.selectedRow.count}</div>
-            </div>
-            <div className={styles.desLine}>
-              <div className={styles.left}>Source:</div>
-              <div className={styles.right}>
-                {this.selectedRow.source.component}
-              </div>
-            </div>
-            <div className={styles.desLine}>
-              <div className={styles.left}>开始时间:</div>
-              <div className={styles.right}>
-                {moment(this.selectedRow.firstTimestamp).format(
-                  'YYYY-MM-DD HH:mm:ss'
-                )}
-              </div>
-            </div>
-            <div className={styles.desLine}>
-              <div className={styles.left}>结束时间:</div>
-              <div className={styles.right}>
-                {moment(this.selectedRow.lastTimestamp).format(
-                  'YYYY-MM-DD HH:mm:ss'
-                )}
-              </div>
-            </div>
-            <div className={styles.reasonBox}>
-              <div className={styles.title}>原因:{this.selectedRow.reason}</div>
-              <div className={styles.text}>消息:{this.selectedRow.message}</div>
-            </div>
-          </div>
-        </div>
+        </DrawerPanel>
+        <DrawerPanel>{this.renderOptDetail()}</DrawerPanel>
       </DrawerTab>
     )
   }
 
   renderEventMetadata = () => {
-    const data = toArray(this.selectedRow)
+    const levelData = {
+      '': Object.assign(this.selectedRow),
+    }
+    const data = toArray(levelData)
     return this.renderMetadata(data)
   }
 
@@ -319,5 +382,72 @@ export default class Detail extends Component {
         <Metadata key={key} data={item} renderMetadata={this.renderMetadata} />
       )
     })
+  }
+
+  renderOptDetail = () => {
+    const query = toJS(this.props.searchInputState)
+    return (
+      <div className={styles.drawerPanel}>
+        <p className={styles.title}>操作详情</p>
+        <div className={styles.desLine}>
+          <div className={styles.left}>集群:</div>
+          <div className={styles.right}>{query.cluster}</div>
+        </div>
+        <div className={styles.desLine}>
+          <div className={styles.left}>项目:</div>
+          <div className={styles.right}>
+            {this.selectedRow.involvedObject.name}
+          </div>
+        </div>
+        <div className={styles.desLine}>
+          <div className={styles.left}>资源:</div>
+          <div className={styles.right}>
+            {this.selectedRow.source.component}
+          </div>
+        </div>
+        <div className={styles.desLine}>
+          <div className={styles.left}>关联资源:</div>
+          <div className={styles.right}></div>
+        </div>
+        <div className={styles.desLine}>
+          <div className={styles.left}>类别:</div>
+          <div className={styles.right}>
+            {this.selectedRow.involvedObject.kind}
+          </div>
+        </div>
+        <div className={styles.desLine}>
+          <div className={styles.left}>Count:</div>
+          <div className={styles.right}>{this.selectedRow.count}</div>
+        </div>
+        <div className={styles.desLine}>
+          <div className={styles.left}>Source:</div>
+          <div className={styles.right}>
+            {this.selectedRow.source.component}
+          </div>
+        </div>
+        <div className={styles.desLine}>
+          <div className={styles.left}>开始时间:</div>
+          <div className={styles.right}>
+            {moment(this.selectedRow.firstTimestamp).format(
+              'YYYY-MM-DD HH:mm:ss'
+            )}
+          </div>
+        </div>
+        <div className={styles.desLine}>
+          <div className={styles.left}>结束时间:</div>
+          <div className={styles.right}>
+            {moment(this.selectedRow.lastTimestamp).format(
+              'YYYY-MM-DD HH:mm:ss'
+            )}
+          </div>
+        </div>
+        <div className={styles.reasonBox}>
+          <div className={styles.title}>原因:{this.selectedRow.reason}</div>
+          <div className={styles.text}>
+            消息:{this.renderHightLightMatchTd(this.selectedRow)}
+          </div>
+        </div>
+      </div>
+    )
   }
 }

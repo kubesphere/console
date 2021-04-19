@@ -1,0 +1,42 @@
+.PanelContent {
+  position: relative;
+  flex: 1;
+  height: 100%;
+  overflow: scroll;
+}
+
+.menu {
+  position: absolute;
+  width: 200px;
+  display: block;
+  height: 136px;
+  background-color: #242e42;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  .item {
+    width: 100%;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    color: white;
+
+    img {
+      width: 16px;
+      height: 16px;
+      margin-left: 12px;
+      margin-right: 8px;
+    }
+
+    &:hover {
+      cursor: pointer;
+      background-color: #36435c;
+    }
+  }
+}
+.visible {
+  display: none;
+}
