@@ -32,6 +32,8 @@ module.exports = {
   'Add DevOps Project': '添加 DevOps 工程',
   'Please add role': '请添加角色',
   'User Group Assigned': '已分配用户组',
+  'Department Alias': '别名',
+  GROUP_WORKSPACE_ROLE_DESC: '企业空间角色将授予部门中的所有用户。',
 
   DELETE_PARENT_GROUP_TIP:
     '确定删除子部门 <strong>{group_name}</strong>? 删除该部门的同时，其子部门也会被删除，且所有成员的授权也将被取消。',

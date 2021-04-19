@@ -33,6 +33,9 @@ module.exports = {
   'Add DevOps Project': 'Agregar proyecto DevOps',
   'Please add role': 'Añadir papel',
   'User Group Assigned': 'Grupo de usuarios asignado',
+  'Department Alias': 'Alias',
+  GROUP_WORKSPACE_ROLE_DESC:
+    'La función del espacio de trabajo se asignará a todos los miembros del departamento.',
 
   DELETE_PARENT_GROUP_TIP:
     'Está seguro de que desea eliminar el subdepartamento <strong> {group_name} </strong>? Al eliminar el departamento, también se eliminarán sus subdepartamentos y se cancelará la autorización de todos los miembros. ',
