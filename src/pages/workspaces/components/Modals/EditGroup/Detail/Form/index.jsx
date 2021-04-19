@@ -203,7 +203,7 @@ export default class GroupForm extends React.Component {
           <Form.Item
             label={t('Workspace role')}
             desc={
-              t('WORKSPACE_ROLE_DESC') +
+              t('GROUP_WORKSPACE_ROLE_DESC') +
               (this.needUpgrade
                 ? t('MEMBER_CLUSTER_UPGRADE_TIP', { version: 'v3.1.0' })
                 : '')
