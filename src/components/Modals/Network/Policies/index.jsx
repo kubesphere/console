@@ -25,15 +25,16 @@ import {
   Form,
   RadioGroup,
   RadioButton,
-  Select,
   Checkbox,
   Icon,
+  Tooltip,
 } from '@kube-design/components'
 import { Modal, Panel } from 'components/Base'
 import ServiceStore from 'stores/service'
 import { generateId } from 'utils'
 
 import styles from './index.scss'
+import { ProjectSelect } from '../../../Inputs'
 
 @inject('projectStore')
 @observer
@@ -230,12 +231,18 @@ export default class NetworkPoliciesModal extends React.Component {
                     specNameSpaces.filter(ns => ns.name === item.name).length >
                     0
                   }
+                  disabled={item.isFedManaged}
                   onChange={checked => {
                     this.handleNameSpaceChecked(item, checked)
                   }}
                 >
                   {item.name}
                 </Checkbox>
+                {item.isFedManaged && (
+                  <Tooltip content={t('FED_HOST_NAMESPACE_TIP')}>
+                    <Icon className={styles.tip} name="question" />
+                  </Tooltip>
+                )}
               </li>
             ))}
           </ul>
@@ -247,13 +254,11 @@ export default class NetworkPoliciesModal extends React.Component {
           )}
         >
           <div className={styles.sheader}>
-            <Select
-              value={specCurNameSpace}
+            <ProjectSelect
+              cluster={this.props.cluster}
+              defaultValue={specCurNameSpace}
               onChange={this.handleNameSpaceChange}
-              options={projectList.data.map(p => ({
-                value: p.name,
-                label: p.name,
-              }))}
+              tipMessage={t('FED_HOST_NAMESPACE_TIP')}
             />
           </div>
           <div className={styles.sbody}>

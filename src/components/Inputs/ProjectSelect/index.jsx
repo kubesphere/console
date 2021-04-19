@@ -72,7 +72,9 @@ export default class ProjectSelect extends Component {
       )}
       {option.label}
       {option.isFedManaged && (
-        <Tooltip content={t('FEDPROJECT_RESOURCE_TIP')}>
+        <Tooltip
+          content={this.props.tipMessage || t('FEDPROJECT_RESOURCE_TIP')}
+        >
           <Icon className={styles.tip} name="question" />
         </Tooltip>
       )}
