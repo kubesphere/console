@@ -106,6 +106,7 @@ export default class ExpandVolume extends Component {
           min={min}
           marks={marks}
           unit={'Gi'}
+          withInput
         />
       </Form.Item>
     )
