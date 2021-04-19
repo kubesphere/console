@@ -381,7 +381,7 @@ client:
                 clusterModule: alerting,
                 requiredClusterVersion: v3.1.0,
               }
-            - { name: custom-monitoring, title: Custom Monitoring }
+            - { name: custom-monitoring, title: Custom Monitoring, requiredClusterVersion: v3.1.0, }
         - name: settings
           title: Project Settings
           icon: cogwheel
