@@ -118,7 +118,7 @@ module.exports = {
   IMAGE_PULL_POLICY_DESC:
     'By default, the image is pulled only if it is not already present locally.',
   S2I_ENVIROMENT_DESC:
-    'Application developers can use the following environment variables to configure the runtime behavior of this image; for detailed configurations, please see <a href={link} target="_blank">Compiling Templates</a>.',
+    'App developers can use the following environment variables to configure the runtime behavior of the image. For more information, see <a href={link} target="_blank">S2I Templates</a>.',
   S2I_UPDATE_WORKLOAD: 'Update workload after building successful',
   S2I_UPDATA_WORKLOAD_DESC:
     'After the image is rebuilt successfully, the image of the relevant workload will be updated and the workload version will be updated.',

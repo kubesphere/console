@@ -77,7 +77,7 @@ module.exports = {
   CONTAINER_ENVIROMENT_DESC: '添加容器的环境变量',
   IMAGE_PULL_POLICY_DESC: '在默认情况下，优先使用本地镜像',
   S2I_ENVIROMENT_DESC:
-    '应用程序开发人员可以使用以下环境变量来配置此镜像的运行时行为; 详细的配置说明请查看 <a href={link} target="_blank">编译模板</a>',
+    '应用程序开发人员可以使用以下环境变量来配置此镜像的运行时行为；详细的配置说明请查看<a href={link} target="_blank">编译模板</a>',
   S2I_UPDATE_WORKLOAD: '构建成功后更新工作负载',
   S2I_UPDATA_WORKLOAD_DESC:
     '重新构建镜像成功后，将更新相关工作负载的镜像，同时工作负载版本也会被更新',
@@ -89,7 +89,7 @@ module.exports = {
   S2I_BUILDERNAME_DESC:
     '选择编辑环境，您也可以查看对应的 <a href={link} target="_blank">编译模板</a>',
   S2I_TARGET_IMAGE_REPONSTRY_DESC:
-    '需要选择一个有推送权限的镜像仓库存放镜像，如果没有可以 <a href={link} target="_blank">新建镜像仓库密钥</a>',
+    '需要选择一个有推送权限的镜像仓库存放镜像，如果没有可以<a href={link} target="_blank">新建镜像仓库密钥</a>',
   S2I_IMAGENAME_DESC: '镜像名称及 Tag，默认为代码仓库的项目名称',
   'Target Image Repository': '目标镜像仓库',
   'Rebuilt successfully; the image status will be refreshed soon.':

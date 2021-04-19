@@ -521,7 +521,7 @@ client:
     cronjobs: /project-user-guide/application-workloads/cronjobs/
     services: /project-user-guide/application-workloads/services/
     ingresses: /project-user-guide/application-workloads/routes/
-    s2i_template: /project-user-guide/application-workloads/s2i-template/
+    s2i_template: /project-user-guide/image-builder/s2i-templates/
     volumes: /project-user-guide/storage/volumes/
     secrets: /project-user-guide/configuration/secrets/
     configmaps: /project-user-guide/configuration/configmaps/
