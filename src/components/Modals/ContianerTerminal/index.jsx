@@ -44,7 +44,23 @@ export default class ContainerTerminalModal extends React.Component {
   @observable
   url = null
 
-  store = new TerminalStore()
+  constructor(props) {
+    super(props)
+    const {
+      containerName,
+      podName,
+      cluster,
+      namespace,
+    } = this.props.match.params
+
+    this.store = new TerminalStore({
+      cluster,
+      namespace,
+      pod: podName,
+      container: containerName,
+      shell: 'sh',
+    })
+  }
 
   clusterStore = new ClusterStore()
 
@@ -52,7 +68,12 @@ export default class ContainerTerminalModal extends React.Component {
     const params = this.props.match.params
     const { cluster, namespace, podName, containerName } = params
 
-    await this.fetchData({ cluster })
+    const { cluster: _cluster, clusterVersion } = await this.getClusterVersion({
+      cluster,
+    })
+
+    this.store.kubectl.cluster = _cluster
+    this.store.kubectl.clusterVersion = clusterVersion
 
     await this.podStore.fetchDetail({
       cluster,
@@ -67,6 +88,7 @@ export default class ContainerTerminalModal extends React.Component {
     if (container) {
       this.container = container
     }
+
     this.url = this.store.kubeWebsocketUrl
   }
 
@@ -82,33 +104,31 @@ export default class ContainerTerminalModal extends React.Component {
       }))
   }
 
-  async fetchData({ cluster }) {
+  async getClusterVersion({ cluster }) {
+    let clusterVersion = ''
     if (!globals.app.isMultiCluster) {
-      return this.store.fetchKubeCtl({
-        clusterVersion: get(globals, 'ksConfig.ksVersion'),
-      })
+      clusterVersion = get(globals, 'ksConfig.ksVersion')
+      return { cluster, clusterVersion }
     }
 
     await this.clusterStore.fetchListByK8s()
 
     if (!cluster) {
-      const _cluster = get(this.clusters, '[0].value')
-      const clusterVersion = get(this.clusters, '[0].version')
-      await this.store.fetchKubeCtl({ cluster: _cluster, clusterVersion })
+      cluster = get(this.clusters, '[0].value')
+      clusterVersion = get(this.clusters, '[0].version')
     } else {
       const _cluster = this.clusters.find(item => item.value === cluster)
       let version = _cluster.version
 
       if (!version) {
         const clusterDetail = await this.clusterStore.fetchDetail({
-          name: cluster,
+          name: _cluster.value,
         })
-
         version = get(clusterDetail, 'configz.ksVersion')
       }
-
-      await this.store.fetchKubeCtl({ cluster, clusterVersion: version })
+      clusterVersion = version
     }
+    return { clusterVersion, cluster }
   }
 
   handleContainerChange = container => {
