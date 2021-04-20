@@ -89,7 +89,6 @@ export default class BaseMonitoringStore {
     step = '600s',
     times = 20,
     resources = [],
-    namespacedResources = [],
     metrics = [],
     last = false, // last time
     ...rest
@@ -123,10 +122,6 @@ export default class BaseMonitoringStore {
 
     if (!isEmpty(resources)) {
       params.resources_filter = `${resources.join('|')}$`
-    }
-
-    if (!isEmpty(namespacedResources)) {
-      params.namespaced_resources_filter = `${namespacedResources.join('|')}$`
     }
 
     if (!isEmpty(metrics)) {

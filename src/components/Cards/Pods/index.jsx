@@ -236,11 +236,10 @@ export default class PodsCard extends React.Component {
     const { data, isLoading } = this.store.list
 
     if (isEmpty(data) || isLoading || isEmpty(this.state.params)) return false
-
     this.monitorStore.fetchMetrics({
       step: '1m',
       times: 30,
-      namespacedResources: data.map(item => `${item.namespace}/${item.name}`),
+      resources: data.map(item => item.name),
       metrics: Object.values(MetricTypes),
       ...this.state.params,
       ...params,
