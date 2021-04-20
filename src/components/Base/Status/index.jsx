@@ -38,7 +38,6 @@ export default class Status extends PureComponent {
 
   static defaultProps = {
     type: 'Running',
-    flicker: false,
   }
 
   render() {
