@@ -155,7 +155,23 @@ export default class ClusterDetails extends React.Component {
       return
     }
 
-    const { name, type, labelSelector } = this.list[0]
+    let isNoDisabledIndex
+
+    for (let i = 0; i < this.list.length; i++) {
+      if (!this.list[i].disabled) {
+        isNoDisabledIndex = i
+        break
+      }
+    }
+
+    if (isNoDisabledIndex === undefined) {
+      this.currentMeterData = {}
+      this.sideLoading = false
+      this.loading = false
+      return
+    }
+
+    const { name, type, labelSelector } = this.list[isNoDisabledIndex]
 
     if (type === 'cluster') {
       this.cluster = name
@@ -271,7 +287,12 @@ export default class ClusterDetails extends React.Component {
     const _priceConfig = this.priceConfigList.find(
       item => item.cluster && item.cluster === _cluster
     )
-    this.priceConfig = _priceConfig || {}
+
+    const clusterPriceConfig = cloneDeep(_priceConfig)
+
+    delete clusterPriceConfig.cluster
+
+    this.priceConfig = isEmpty(clusterPriceConfig) ? {} : _priceConfig
     this.setStartTime()
   }
 
@@ -319,15 +340,20 @@ export default class ClusterDetails extends React.Component {
             unit: get(item, 'unit', 'label'),
           }
 
+          const free = isEmpty(get(item, 'fee'))
+            ? 0
+            : parseFloat(get(item, 'fee', 0))
+
           feeData[item.type] = {
-            value: parseFloat(get(item, 'fee', 0)).toFixed(2),
+            value: free.toFixed(2),
             unit: {
-              label: this.priceConfig.currency === 'USD' ? t('$') : t('￥'),
+              label: this.priceConfig.currency === 'CNY' ? t('￥') : t('$'),
             },
           }
         }
       })
     }
+
     return { sumData, feeData }
   }
 

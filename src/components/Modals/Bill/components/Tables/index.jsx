@@ -111,7 +111,7 @@ export default class MeterTable extends React.Component {
               dataIndex: 'fee',
               render: value => {
                 const priceUint =
-                  this.props.priceConfig.currency === 'USD' ? t('$') : t('￥')
+                  this.props.priceConfig.currency === 'CNY' ? t('￥') : t('$')
 
                 return `${priceUint} ${parseFloat(value).toFixed(2)}`
               },

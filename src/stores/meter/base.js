@@ -418,6 +418,14 @@ export default class MeterStore extends base {
     if (result && !isEmpty(result)) {
       const _result = {}
 
+      const isNoPrice = Object.values(result).some(item => {
+        return typeof item === 'number' && item < 0
+      })
+
+      if (isNoPrice || result.currency === '') {
+        return { cluster }
+      }
+
       Object.keys(result).forEach(key => {
         if (!['currency', 'retention_day'].includes(key) && result[key] > 0) {
           _result[FEE_CONFIG[key]] = result[key]
@@ -429,6 +437,7 @@ export default class MeterStore extends base {
         _result.retention_day = get(result, 'retention_day', '7d')
         _result.cluster = cluster || get(DEFAULT_CLUSTER, 'metadata.name')
       }
+
       return _result
     }
   }
