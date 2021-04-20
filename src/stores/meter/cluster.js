@@ -199,7 +199,10 @@ export default class ClusterMeter extends Base {
       }
     })
 
-    const repList = await Promise.all(requestList)
+    const repList = await Promise.all(requestList).catch(() => {
+      return []
+    })
+
     let data = []
 
     if (!isEmpty(repList) && isArray(repList)) {

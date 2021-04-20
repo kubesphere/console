@@ -411,13 +411,9 @@ export default class MeterStore extends base {
   @action
   fetchPrice = async ({ cluster }) => {
     const url = `${this.tenantUrl({ cluster })}/metering/price`
-    const result = await request.get(url, {}, {}, () => {
-      return { cluster }
-    })
+    const result = await request.get(url, {}, {}, () => {})
 
     if (result && !isEmpty(result)) {
-      const _result = {}
-
       const isNoPrice = Object.values(result).some(item => {
         return typeof item === 'number' && item < 0
       })
@@ -425,6 +421,8 @@ export default class MeterStore extends base {
       if (isNoPrice || result.currency === '') {
         return { cluster }
       }
+
+      const _result = {}
 
       Object.keys(result).forEach(key => {
         if (!['currency', 'retention_day'].includes(key) && result[key] > 0) {
@@ -440,5 +438,6 @@ export default class MeterStore extends base {
 
       return _result
     }
+    return { cluster }
   }
 }
