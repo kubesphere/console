@@ -21,8 +21,7 @@ import { observer } from 'mobx-react'
 import FullScreen from 'components/Modals/FullscreenModal2'
 import { observable, action } from 'mobx'
 import { generateId } from 'utils'
-import Tab from './Event2/Tab'
-import TabPanel from './Event2/Tab/TabPanel'
+import { Tabs, TabPanel } from '../ToolBoxTab'
 import MainPage from './Event2/MainPage'
 
 @FullScreen
@@ -64,7 +63,7 @@ export default class LogSearchModal extends React.Component {
 
   render() {
     return (
-      <Tab tabState={this.tabState}>
+      <Tabs tabState={this.tabState}>
         {this.tabState.tabList.map(tab => {
           const showIf = tab.id === this.tabState.activeKey
           return (
@@ -73,7 +72,7 @@ export default class LogSearchModal extends React.Component {
             </TabPanel>
           )
         })}
-      </Tab>
+      </Tabs>
     )
   }
 }

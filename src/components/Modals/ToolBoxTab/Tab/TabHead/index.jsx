@@ -19,7 +19,7 @@
 import React, { Component } from 'react'
 import { observer } from 'mobx-react'
 import { action } from 'mobx'
-import style from '../index.scss'
+import style from '../../index.scss'
 
 @observer
 export default class Tab extends Component {

@@ -21,7 +21,7 @@ import { Icon } from '@kube-design/components'
 import { action } from 'mobx'
 import { observer } from 'mobx-react'
 import Tab from './TabHead'
-import style from './index.scss'
+import style from '../index.scss'
 
 @observer
 export default class TabHead extends Component {
