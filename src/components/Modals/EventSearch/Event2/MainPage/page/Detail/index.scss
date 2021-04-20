@@ -47,6 +47,34 @@ $search-border: solid 1px $light-color02;
   z-index: 1;
 }
 
+.noResult {
+  width: 1376px;
+  margin-top: 16px;
+  margin-bottom: 12px;
+  border-radius: 4px;
+  box-shadow: $base-shadow;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  padding: 16px 32px;
+
+  .recentSummary {
+    width: 140px;
+    margin-right: 10px;
+
+    h2 {
+      font-weight: bold;
+      font-size: 32px;
+    }
+
+    p {
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 20px;
+    }
+  }
+}
+
 .table {
   width: 1376px;
   height: calc(100% - 104px);

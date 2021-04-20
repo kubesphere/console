@@ -301,7 +301,7 @@ export default class SearchBar extends React.Component {
         {this.renderFilterKey()}
         <input
           type="text"
-          placeholder={t('搜索条件')}
+          placeholder={t('Search Condition')}
           value={this.searchWord}
           ref={this.inputRef}
           disabled={this.showDurationDropDown}

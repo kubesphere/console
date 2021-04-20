@@ -23,19 +23,19 @@ export default class Item extends React.Component {
   menuItem = [
     {
       url: '/assets/drawer_panel_menu1.svg',
-      label: '替换为当前搜索',
+      label: t('Replace with current search'),
     },
     {
       url: '/assets/drawer_panel_menu2.svg',
-      label: '添加至当前搜索',
+      label: t('Add to current search'),
     },
     {
       url: '/assets/drawer_panel_menu3.svg',
-      label: '复制',
+      label: t('Copy'),
     },
     {
       url: '/assets/drawer_panel_menu4.svg',
-      label: '在新标签中打开',
+      label: t('Open in new tab'),
     },
   ]
 

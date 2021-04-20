@@ -62,13 +62,13 @@ export default class TabHead extends Component {
         <div className={style.bottomTool}>
           <div className={style.tipsItem}>
             <img src="/assets/log-bottom-help.svg" alt="help"></img>
-            {t('偏好设置')}
+            {t('Preferences')}
           </div>
           <div className={style.tipsItem}>
             <span>
               <Icon name="cogwheel"></Icon>
             </span>
-            {t('搜索提示')}
+            {t('Search Tips')}
           </div>
         </div>
       </React.Fragment>

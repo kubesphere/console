@@ -42,7 +42,7 @@ export default class Tab extends Component {
         onClick={() => this.tabClick()}
       >
         <img src="/assets/tabConsole.svg" alt=""></img>
-        <div className={style.text}> {`${t('窗口')}${tabIndex + 1}`}</div>
+        <div className={style.text}> {`${t('window')}${tabIndex + 1}`}</div>
         <img
           className={onlyOneTab ? style.cancelHide : style.cancel}
           src="/assets/tabCancel.svg"

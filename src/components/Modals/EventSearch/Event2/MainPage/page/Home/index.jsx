@@ -94,11 +94,11 @@ export default class Home extends Component {
   }
 
   renderBanner = () => {
-    const text = t('事件查询(Event)是KubeSphere提供的平台内资源的历史事件查询')
+    const text = t('EVENT_QUERY_DES')
     return (
       <Banner
         imgSrc="/assets/log2-statistics.svg"
-        titleText={t('事件查询')}
+        titleText={t('Event Query')}
         desText={text}
       ></Banner>
     )
@@ -110,7 +110,7 @@ export default class Home extends Component {
     const { searchInputState, clustersOpts } = this.props
     return (
       <div className={styles.searchPane}>
-        <div className={styles.title}>{t('根据条件进行查找')}</div>
+        <div className={styles.title}>{t('SEARCH_BY_CONDITION')}</div>
         <div className={styles.searchContainer}>
           <div className={styles.innerBox}>
             {globals.app.isMultiCluster && (
@@ -139,10 +139,10 @@ export default class Home extends Component {
     return (
       <div className={styles.clusterContainer}>
         <div className={styles.clusterTitle}>
-          <span>{t('集群管理')}</span>
+          <span>{t('Cluster Management')}</span>
           <span>
-            <span>{t('数据来源:')}</span>
-            <span>{t('内置服务')}</span>
+            <span>{t('Data Sources')}</span>
+            <span>{t('Built-in Service')}</span>
             <Icon name="cogwheel" className={styles.icon}></Icon>
           </span>
         </div>
@@ -162,7 +162,7 @@ export default class Home extends Component {
     const config = {
       xKey: 'time',
       title: ``,
-      unit: t('个'),
+      unit: t('Pieces'),
       legend: ['count'],
       data: chartData || [],
       areaColors: ['green'],
@@ -180,14 +180,14 @@ export default class Home extends Component {
             <img src="/assets/cluster.svg" alt="clusterIcon"></img>
             <div className={styles.titleBox}>
               <div className={styles.titleText}>{cluster.clusterValue}</div>
-              <div className={styles.desText}>{t('集群')}</div>
+              <div className={styles.desText}>{t('Cluster')}</div>
             </div>
           </div>
           <div className={styles.chartText}>
             <div className={styles.titleText}>
               {cluster.eventSearchStore.logsCount}
             </div>
-            <div className={styles.desText}>{t('事件数量')}</div>
+            <div className={styles.desText}>{t('Event Num')}</div>
           </div>
           <div className={styles.chart}>
             {chartData.length > 0 && (
@@ -209,7 +209,7 @@ export default class Home extends Component {
     return (
       <div className={styles.endLine}>
         <div className={styles.text}>
-          {t(`共找到${clusterInfoList.length}个集群空间`)}
+          {t('HOW_MANY_CLUSTER_HAVE', { num: clusterInfoList.length })}
         </div>
       </div>
     )
@@ -218,14 +218,8 @@ export default class Home extends Component {
   renderDocHelp = () => {
     return (
       <div className={styles.docHelp}>
-        <div className={styles.titleText}>
-          {t('如何定义操作审计收集规则？')}🤔
-        </div>
-        <div className={styles.desText}>
-          {t(
-            'KubeSphere可以根据您设置的规则进行操作审计的收集，点击查看如何定义规则。'
-          )}
-        </div>
+        <div className={styles.titleText}>{t('CARD_TIPS_Q')}🤔</div>
+        <div className={styles.desText}>{t('CARD_TIPS_A')}</div>
       </div>
     )
   }

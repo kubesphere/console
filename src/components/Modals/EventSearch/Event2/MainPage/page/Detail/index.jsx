@@ -259,7 +259,7 @@ export default class Detail extends Component {
       <div className={styles.searchBox}>
         <SearchInput
           className={styles.inputBox}
-          placeholder={t('search condition')}
+          placeholder={t('Search Condition')}
           onChange={this.onSearchParamsChange}
           params={searchInputState}
           dropDownItems={dropDownItems}
@@ -292,7 +292,7 @@ export default class Detail extends Component {
     const config = {
       xKey: 'time',
       title: ``,
-      unit: t('个'),
+      unit: t('Pieces'),
       data: buckets,
       bgColor: '#242e42',
       areaColors: '#36435c',
@@ -332,6 +332,16 @@ export default class Detail extends Component {
   }
 
   renderTable = () => {
+    if (this.logs.length === 0) {
+      return (
+        <div className={styles.noResult}>
+          <div className={styles.recentSummary}>
+            <h2>0</h2>
+            <p>{t('Search Result')}</p>
+          </div>
+        </div>
+      )
+    }
     return (
       <div className={styles.table}>
         <Table
@@ -358,7 +368,7 @@ export default class Detail extends Component {
       <DrawerTab>
         <DrawerPanel>
           <div className={styles.drawerPanel}>
-            <p className={styles.title}>事件元数据</p>
+            <p className={styles.title}>{t('Event Metadata')}</p>
             {this.renderEventMetadata()}
           </div>
         </DrawerPanel>
@@ -388,45 +398,45 @@ export default class Detail extends Component {
     const query = toJS(this.props.searchInputState)
     return (
       <div className={styles.drawerPanel}>
-        <p className={styles.title}>操作详情</p>
+        <p className={styles.title}>{t('Operation Details')}</p>
         <div className={styles.desLine}>
-          <div className={styles.left}>集群:</div>
+          <div className={styles.left}>{t('Cluster')}:</div>
           <div className={styles.right}>{query.cluster}</div>
         </div>
         <div className={styles.desLine}>
-          <div className={styles.left}>项目:</div>
+          <div className={styles.left}>{t('Project')}:</div>
           <div className={styles.right}>
             {this.selectedRow.involvedObject.name}
           </div>
         </div>
         <div className={styles.desLine}>
-          <div className={styles.left}>资源:</div>
+          <div className={styles.left}>{t('Resource')}:</div>
           <div className={styles.right}>
             {this.selectedRow.source.component}
           </div>
         </div>
         <div className={styles.desLine}>
-          <div className={styles.left}>关联资源:</div>
+          <div className={styles.left}>{t('Associated Resources')}:</div>
           <div className={styles.right}></div>
         </div>
         <div className={styles.desLine}>
-          <div className={styles.left}>类别:</div>
+          <div className={styles.left}>{t('Category')}:</div>
           <div className={styles.right}>
             {this.selectedRow.involvedObject.kind}
           </div>
         </div>
         <div className={styles.desLine}>
-          <div className={styles.left}>Count:</div>
+          <div className={styles.left}>{t('count')}:</div>
           <div className={styles.right}>{this.selectedRow.count}</div>
         </div>
         <div className={styles.desLine}>
-          <div className={styles.left}>Source:</div>
+          <div className={styles.left}>{t('Source')}:</div>
           <div className={styles.right}>
             {this.selectedRow.source.component}
           </div>
         </div>
         <div className={styles.desLine}>
-          <div className={styles.left}>开始时间:</div>
+          <div className={styles.left}>{t('Start Time')}:</div>
           <div className={styles.right}>
             {moment(this.selectedRow.firstTimestamp).format(
               'YYYY-MM-DD HH:mm:ss'
@@ -434,7 +444,7 @@ export default class Detail extends Component {
           </div>
         </div>
         <div className={styles.desLine}>
-          <div className={styles.left}>结束时间:</div>
+          <div className={styles.left}>{t('End Time')}:</div>
           <div className={styles.right}>
             {moment(this.selectedRow.lastTimestamp).format(
               'YYYY-MM-DD HH:mm:ss'
@@ -442,9 +452,11 @@ export default class Detail extends Component {
           </div>
         </div>
         <div className={styles.reasonBox}>
-          <div className={styles.title}>原因:{this.selectedRow.reason}</div>
+          <div className={styles.title}>
+            {t('Reason')}:{this.selectedRow.reason}
+          </div>
           <div className={styles.text}>
-            消息:{this.renderHightLightMatchTd(this.selectedRow)}
+            {t('Message')}:{this.renderHightLightMatchTd(this.selectedRow)}
           </div>
         </div>
       </div>
