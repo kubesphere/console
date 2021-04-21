@@ -636,7 +636,7 @@ export const getListConfig = ({ type, isMultiCluster }) => {
       ? [
           {
             status: item => (item.isReady ? 'ready' : 'stop'),
-            desc: 'Host Cluster',
+            desc: '',
           },
         ]
       : [

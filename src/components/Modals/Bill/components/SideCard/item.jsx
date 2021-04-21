@@ -74,10 +74,11 @@ export default function Card({
       return null
     }
 
-    const clusters =
-      nsname === 'system-workspace'
+    const clusters = globals.app.isMultiCluster
+      ? nsname === 'system-workspace'
         ? clusterList
         : get(data, '_origin.clusters', [])
+      : get(data, '_origin.clusters', [])
 
     const _clusters = clusters
       .map(item => {

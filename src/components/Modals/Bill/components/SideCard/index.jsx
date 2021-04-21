@@ -175,12 +175,10 @@ export default class SideContainer extends React.Component {
 
     return (
       <div className={styles.side}>
-        <div className={styles.sideList}>
-          <Loading spinning={loading} style={{ width: '100%' }}>
-            <>{this.renderSideCardItem()}</>
-          </Loading>
-        </div>
-        {this.renderBillReportConform()}
+        <Loading spinning={loading}>
+          <div className={styles.sideList}>{this.renderSideCardItem()}</div>
+          {this.renderBillReportConform()}
+        </Loading>
       </div>
     )
   }

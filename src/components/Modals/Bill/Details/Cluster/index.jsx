@@ -125,6 +125,11 @@ export default class ClusterDetails extends React.Component {
           const disabled = !get(item, '_origin.configz.metering')
           return { disabled, ...item }
         })
+      } else {
+        this.clusterList = this.clusterList.map(item => {
+          const disabled = !globals.ksConfig.metering
+          return { disabled, ...item }
+        })
       }
 
       if (isEmpty(this.clusterList)) {
@@ -140,11 +145,18 @@ export default class ClusterDetails extends React.Component {
       type: this.props.meterType,
     })
 
-    if (this.props.meterType === 'cluster' && globals.app.isMultiCluster) {
-      this.list = list.map(item => {
-        const disabled = !get(item, '_origin.configz.metering')
-        return { disabled, ...item }
-      })
+    if (this.props.meterType === 'cluster') {
+      if (globals.app.isMultiCluster) {
+        this.list = list.map(item => {
+          const disabled = !get(item, '_origin.configz.metering')
+          return { disabled, ...item }
+        })
+      } else {
+        this.list = list.map(item => {
+          const disabled = !globals.ksConfig.metering
+          return { disabled, ...item }
+        })
+      }
     } else {
       this.list = this.setWSListDisabledByCluster(list)
     }
@@ -202,10 +214,11 @@ export default class ClusterDetails extends React.Component {
     }
 
     return list.map(item => {
-      const clusters =
-        item.name === 'system-workspace'
+      const clusters = globals.app.isMultiCluster
+        ? item.name === 'system-workspace'
           ? this.clusterList
           : get(item, '_origin.clusters', [])
+        : this.clusterList
 
       const clustersLength = clusters.length
       let count = 0
