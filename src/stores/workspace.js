@@ -50,6 +50,9 @@ export default class WorkspaceStore extends Base {
 
   getListUrl = this.getResourceUrl
 
+  getWatchListUrl = (params = {}) =>
+    `${this.apiVersion}/watch${this.getPath(params)}/workspacetemplates`
+
   @action
   async fetchDetail({ cluster, workspace } = {}) {
     if (isEmpty(workspace)) {
@@ -117,5 +120,10 @@ export default class WorkspaceStore extends Base {
   @action
   selectCluster(cluster) {
     this.cluster = cluster
+  }
+
+  @action
+  delete(params, data = {}) {
+    return this.submitting(request.delete(this.getDetailUrl(params), data))
   }
 }

@@ -111,4 +111,7 @@ module.exports = {
   WORKSPACE_GROUP_USER_EMPTY_DESC: 'No user available.',
   WORKSPACE_QUOTA_MANAGE_DESC:
     'Manage workspace quotas, which are shared by all projects and DevOps projects in the workspace.',
+
+  DELETE_WORDSPACE_RELATED_RESOURCES_DESC:
+    'Delete the project associated with the workspace',
 }

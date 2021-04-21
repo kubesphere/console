@@ -111,4 +111,7 @@ module.exports = {
   WORKSPACE_GROUP_USER_EMPTY_DESC: 'Actualmente no hay miembros asignables',
   WORKSPACE_QUOTA_MANAGE_DESC:
     'Manage workspace quotas which are shared by all projects and DevOps projects in a workspace.',
+
+  DELETE_WORDSPACE_RELATED_RESOURCES_DESC:
+    'Eliminar el proyecto asociado con el espacio empresarial',
 }

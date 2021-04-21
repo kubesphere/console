@@ -20,7 +20,7 @@ import React from 'react'
 import { get, isEmpty, set } from 'lodash'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
-import { Alert, Button, Checkbox } from '@kube-design/components'
+import { Alert, Button } from '@kube-design/components'
 import { Text, Panel, Switch } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import EditBasicInfoModal from 'workspaces/components/Modals/EditBasicInfo'
@@ -38,10 +38,6 @@ import styles from './index.scss'
 @trigger
 class BaseInfo extends React.Component {
   monitorStore = new WorkspaceMonitorStore()
-
-  state = {
-    confirm: false,
-  }
 
   componentDidMount() {
     this.canViewWorkspaceProjects && this.fetchMetrics()
@@ -162,15 +158,14 @@ class BaseInfo extends React.Component {
     this.store.patch(detail, obj).then(() => this.fetchDetail())
   }
 
-  handleDeleteCheckboxChange = checked => {
-    this.setState({ confirm: checked })
-  }
-
   handleDelete = () => {
-    const { name } = this.store.detail
-    this.store
-      .delete({ name })
-      .then(() => this.props.rootStore.routing.push('/'))
+    const { detail } = this.store
+    this.trigger('workspace.delete', {
+      type: t('Workspace'),
+      resource: detail.name,
+      detail,
+      success: () => this.props.rootStore.routing.push('/'),
+    })
   }
 
   getResourceOptions = () => {
@@ -252,14 +247,10 @@ class BaseInfo extends React.Component {
         <Button
           className={styles.unbind}
           type="danger"
-          disabled={!this.state.confirm}
           onClick={this.handleDelete}
         >
           {t('Delete')}
         </Button>
-        <Checkbox onChange={this.handleDeleteCheckboxChange}>
-          {t('SURE_TO_DELETE_WORKSPACE')}
-        </Checkbox>
       </Panel>
     )
   }

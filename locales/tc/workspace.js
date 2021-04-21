@@ -127,4 +127,6 @@ module.exports = {
   WORKSPACE_GROUP_USER_EMPTY_DESC: '暫時沒有可分配的成員',
   WORKSPACE_QUOTA_MANAGE_DESC:
     '管理企業空間配額，企業空間下的所有項目 / DevOps 工程將共享這些配額',
+
+  DELETE_WORDSPACE_RELATED_RESOURCES_DESC: '刪除該企業空間關聯項目',
 }
