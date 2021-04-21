@@ -307,5 +307,5 @@ module.exports = {
   CLUSTER_UPGRADE_REQUIRED:
     '当前集群版本无法使用此功能，请升级到 {version} 或以上版本。',
   MEMBER_CLUSTER_UPGRADE_TIP:
-    '一个或多个 member 集群无法使用此功能, 请将 member 集群升级到 {version} 或以上版本。',
+    '一个或多个 Member 集群无法使用此功能, 请将 Member 集群升级到 {version} 或以上版本。',
 }

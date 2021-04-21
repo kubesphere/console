@@ -85,7 +85,7 @@ module.exports = {
   Opened: 'Opened',
   'Please input project name': 'Please input project name',
   pods: 'pods',
-  'Project Info': 'Project Info',
+  'Project Info': 'Project Information',
   'Project Manager': 'Project Manager',
   'Project Member': 'Project Member',
   'Project Members': 'Project Members',

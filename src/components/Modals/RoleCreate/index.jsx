@@ -139,7 +139,7 @@ export default class CreateModal extends React.Component {
             { required: true, message: t('Please input role name') },
             {
               pattern: PATTERN_NAME,
-              message: `${t('Invalid name')}, ${t('NAME_DESC')}`,
+              message: t('Invalid name', { message: t('NAME_DESC') }),
             },
             { validator: this.roleNameValidator },
           ]}

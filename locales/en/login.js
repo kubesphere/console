@@ -41,9 +41,9 @@ module.exports = {
     'Too many failed login attempts, please wait!',
   'Log In with {title}': 'Log In with {title}',
 
-  'Please input username or email': 'Please input username or email',
-  'Please input password': 'Please enter the password',
-  'Please input captch': 'Please input captch',
+  'Please input username or email': 'Please enter your username or email.',
+  'Please input password': 'Please enter your password.',
+  'Please input captch': 'Please enter the captcha.',
   'Please confirm your account info': 'Please confirm your account info',
 
   'Please reset your password': 'Please reset your password',

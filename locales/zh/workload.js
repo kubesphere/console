@@ -236,7 +236,7 @@ module.exports = {
   'Please input mount point': '请输入挂载点',
   'Please select a storage class': '请选择存储卷类型',
   'Please select image': '请选择镜像',
-  'Invalid name': '名称格式不合法',
+  'Invalid name': '名称格式不合法。{message}',
   'Service Labels': '服务标签',
 
   'Add Existing Volume': '添加已有存储卷',

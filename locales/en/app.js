@@ -265,4 +265,12 @@ module.exports = {
   UNPROCESSED_APP_REVIEW: 'Unprocessed App Review',
   PROCESSED_APP_REVIEW: 'Processed App Review',
   ALL_APP_REVIEW: 'App Review',
+
+  'APP_CATE_MESSAGE QUEUEING': 'Message Queueing',
+  'APP_CATE_IMAGE REGISTRY': 'Image Registry',
+  'APP_CATE_PROMETHEUS EXPORTER': 'Prometheus Exporter',
+  'APP_CATE_WEB SERVER': 'Web Server',
+  APP_CATE_NETWORKING: 'Networking',
+  'APP_CATE_DATABASE & CACHE': 'Database & Cache',
+  APP_CATE_STORAGE: 'Storage',
 }
