@@ -272,10 +272,10 @@ module.exports = {
   WORKER_NODE_COUNT_TIP: 'The number of Worker nodes is at least 1',
 
   CLUSTER_CREATION_PROGRESS_TIP:
-    'According to the size of the created cluster and the difference in network connection, it takes about 30 to 60 minutes to create the entire cluster. ',
+    'It takes about 30 to 60 minutes to create the entire cluster depending on the cluster size and network.',
 
   CLUSTER_UPGRADE_REQUIRED:
     'This function is not available in the current cluster version. Please upgrade to {version} or above.',
   MEMBER_CLUSTER_UPGRADE_TIP:
-    'One or more member clusters cannot use this function. Please upgrade the member cluster to {version} or above.',
+    'One or more Member Clusters cannot use this function. Please upgrade the Member Cluster to {version} or above.',
 }

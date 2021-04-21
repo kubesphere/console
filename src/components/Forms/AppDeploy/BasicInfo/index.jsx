@@ -104,7 +104,9 @@ export default class BasicInfo extends React.Component {
                   { required: true, message: t('Please input name') },
                   {
                     pattern: PATTERN_SERVICE_NAME,
-                    message: `${t('Invalid name')}, ${t('CLUSTER_NAME_DESC')}`,
+                    message: t('Invalid name', {
+                      message: t('CLUSTER_NAME_DESC'),
+                    }),
                   },
                 ]}
               >

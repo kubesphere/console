@@ -234,4 +234,8 @@ module.exports = {
   UNPROCESSED_APP_REVIEW: '未處理的應用審核',
   PROCESSED_APP_REVIEW: '已處理的應用審核',
   ALL_APP_REVIEW: '應用審核',
+
+  APP_CATE_STORAGE: '存儲',
+  APP_CATE_CONTAINER: '容器',
+  APP_CATE_DATABASE: '數據庫',
 }

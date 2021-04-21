@@ -204,7 +204,9 @@ export default class AddVolume extends React.Component {
                   { required: true, message: t('Please input volume name') },
                   {
                     pattern: PATTERN_NAME,
-                    message: `${t('Invalid name')}, ${t('LONG_NAME_DESC')}`,
+                    message: t('Invalid name', {
+                      message: t('LONG_NAME_DESC'),
+                    }),
                   },
                   { validator: this.nameValidator },
                 ]}

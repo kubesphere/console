@@ -207,7 +207,9 @@ export default class ServiceBaseInfo extends React.Component {
                 { required: true, message: t('Please input name') },
                 {
                   pattern: PATTERN_SERVICE_NAME,
-                  message: `${t('Invalid name')}, ${t('SERVICE_NAME_DESC')}`,
+                  message: t('Invalid name', {
+                    message: t('SERVICE_NAME_DESC'),
+                  }),
                 },
                 { validator: this.nameValidator },
               ]}

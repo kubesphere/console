@@ -102,7 +102,7 @@ export default class BaseInfo extends React.Component {
                 { required: true, message: t('Please input name') },
                 {
                   pattern: PATTERN_NAME,
-                  message: `${t('Invalid name')}, ${desc}`,
+                  message: t('Invalid name', { message: desc }),
                 },
                 { validator: this.nameValidator },
               ]}

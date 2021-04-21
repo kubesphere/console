@@ -179,7 +179,7 @@ export default class AddEdgeModal extends Component {
               },
               {
                 pattern: PATTERN_NAME,
-                message: t('Invalid name'),
+                message: t('Invalid name', { message: '' }),
               },
               { validator: this.validator('name') },
             ]}

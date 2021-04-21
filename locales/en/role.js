@@ -34,7 +34,7 @@ module.exports = {
   'ConfigMaps Management': 'ConfigMap Management',
   'ConfigMaps View': 'ConfigMap Viewing',
   'ServiceAccount Management': 'ServiceAccount Management',
-  'ServiceAccount View': 'ServiceAccount View',
+  'ServiceAccount View': 'ServiceAccount Viewing',
   'Custom Monitoring View': 'Custom Monitoring Viewing',
   'Custom Monitoring Management': 'Custom Monitoring Management',
   Cluster: 'Cluster',
@@ -273,8 +273,8 @@ module.exports = {
   CONFIGMAPS_VIEW_DESC: 'View project ConfigMaps.',
   CONFIGMAPS_MANAGEMENT_DESC: 'Create, edit and delete project ConfigMaps.',
   SERVICEACCOUNT_MANAGEMENT_DESC:
-    'Create, edit and delete project service accounts',
-  SERVICEACCOUNT_VIEW_DESC: 'View project service accounts',
+    'Create, edit and delete project service accounts.',
+  SERVICEACCOUNT_VIEW_DESC: 'View project service accounts.',
 
   CUSTOM_MONITORING_VIEW_DESC:
     'Grant permission to view custom monitoring data',

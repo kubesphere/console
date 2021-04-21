@@ -275,4 +275,8 @@ module.exports = {
   UNPROCESSED_APP_REVIEW: 'Unprocessed App Review',
   PROCESSED_APP_REVIEW: 'Processed App Review',
   ALL_APP_REVIEW: 'App Review',
+
+  APP_CATE_STORAGE: 'Storage',
+  APP_CATE_CONTAINER: 'Container',
+  APP_CATE_DATABASE: 'Database',
 }

@@ -233,4 +233,8 @@ module.exports = {
   UNPROCESSED_APP_REVIEW: '未处理的应用审核',
   PROCESSED_APP_REVIEW: '已处理的应用审核',
   ALL_APP_REVIEW: '应用审核',
+
+  APP_CATE_STORAGE: '存储',
+  APP_CATE_CONTAINER: '容器',
+  APP_CATE_DATABASE: '数据库',
 }
