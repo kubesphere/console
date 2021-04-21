@@ -143,12 +143,12 @@ export default class OPApps extends React.Component {
     if (record.additional_info) {
       return (
         <Tooltip content={record.additional_info}>
-          <Status name={t(status)} type={status} />
+          <Status name={t(status)} type={status} flicker />
         </Tooltip>
       )
     }
 
-    return <Status name={t(status)} type={status} />
+    return <Status name={t(status)} type={status} flicker />
   }
 
   showDeploy = () => {
