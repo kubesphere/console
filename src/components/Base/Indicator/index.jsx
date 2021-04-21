@@ -20,26 +20,7 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
-import { isUndefined } from 'lodash'
 import styles from './index.scss'
-
-const FLICKER_CONFIG = [
-  'updating',
-  'upgrading',
-  'syncing',
-  'building',
-  'notrunning',
-  'warning',
-  'waiting',
-  'terminating',
-  'released',
-  'unfinished',
-  'firing',
-  'major',
-  'deleting',
-  'creating',
-  'in-review',
-]
 
 export default class Indicator extends PureComponent {
   static propTypes = {
@@ -50,13 +31,11 @@ export default class Indicator extends PureComponent {
 
   static defaultProps = {
     type: 'Running',
+    flicker: false,
   }
 
   render() {
     const { className, type, flicker } = this.props
-    const _flicker = isUndefined(flicker)
-      ? FLICKER_CONFIG.includes(type.toLowerCase())
-      : flicker
 
     return (
       <i
@@ -64,7 +43,7 @@ export default class Indicator extends PureComponent {
           styles.icon,
           styles[type.toLowerCase()],
           {
-            [styles.flicker]: _flicker,
+            [styles.flicker]: flicker,
           },
           className
         )}

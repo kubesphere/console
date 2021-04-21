@@ -19,7 +19,8 @@
   }
 
   &.draft,
-  &.pending-review {
+  &.pending-review,
+  &.creating {
     background-color: rgba(36, 46, 66, 0.1);
     box-shadow: 0 8px 16px 0 rgba(36, 46, 66, 0.06);
 
@@ -50,6 +51,7 @@
     }
   }
 
+  &.creating,
   &.jobrunning {
     &.flicker {
       animation: flicker 1.5s linear infinite;
@@ -69,10 +71,13 @@
   &.firing,
   &.major,
   &.deleting,
-  &.creating,
   &.in-review {
     background-color: rgba(245, 196, 20, 0.1);
     box-shadow: 0 8px 16px 0 rgba(245, 196, 20, 0.36);
+
+    &.flicker {
+      animation: flicker 1.5s linear infinite;
+    }
 
     &::before {
       background-color: $yellow-dark;
@@ -110,10 +115,6 @@
       background-color: #86929d;
     }
   }
-}
-
-.flicker {
-  animation: flicker 1.5s linear infinite;
 }
 
 @keyframes flicker {

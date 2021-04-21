@@ -83,7 +83,7 @@ export default class CRDApps extends React.Component {
         dataIndex: 'status',
         isHideable: true,
         width: '20%',
-        render: status => <Status name={t(status)} type={status} />,
+        render: status => <Status name={t(status)} type={status} flicker />,
       },
       {
         title: t('Version'),

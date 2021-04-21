@@ -146,7 +146,7 @@ export default class AppRepos extends React.Component {
       dataIndex: 'status',
       isHideable: true,
       width: '15%',
-      render: status => <Status type={status} name={t(status)} />,
+      render: status => <Status type={status} name={t(status)} flicker />,
     },
     {
       title: t('URL'),
