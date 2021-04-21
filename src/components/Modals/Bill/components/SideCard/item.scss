@@ -2,7 +2,7 @@
 
 .billCard {
   width: 440px;
-  height: 56px;
+  min-height: 56px;
   padding: 0 12px 0 20px;
   margin-bottom: 4px;
   border-radius: 4px;
@@ -10,6 +10,7 @@
   align-items: center;
   border: 1px solid transparent;
   transition: all 0.3s ease;
+  flex: 1 1;
 
   &:hover {
     cursor: pointer;
@@ -53,6 +54,7 @@
     .desc {
       margin-left: 12px;
       display: flex;
+      flex: 1 1;
       .unMeter {
         align-self: center;
         margin-left: 20px;
@@ -61,9 +63,11 @@
 
     .tagContainer {
       margin-left: 12px;
+      flex: 2 1;
 
       & > span {
         margin-right: 5px;
+        margin-bottom: 5px;
 
         & > span {
           margin-top: -2px;
