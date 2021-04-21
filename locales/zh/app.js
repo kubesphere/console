@@ -234,7 +234,11 @@ module.exports = {
   PROCESSED_APP_REVIEW: '已处理的应用审核',
   ALL_APP_REVIEW: '应用审核',
 
+  'APP_CATE_MESSAGE QUEUEING': '消息队列',
+  'APP_CATE_IMAGE REGISTRY': '镜像仓库',
+  'APP_CATE_PROMETHEUS EXPORTER': '数据导出器',
+  'APP_CATE_WEB SERVER': 'Web 服务器',
+  APP_CATE_NETWORKING: '网络',
+  'APP_CATE_DATABASE & CACHE': '数据库和缓存',
   APP_CATE_STORAGE: '存储',
-  APP_CATE_CONTAINER: '容器',
-  APP_CATE_DATABASE: '数据库',
 }

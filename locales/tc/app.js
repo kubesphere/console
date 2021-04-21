@@ -235,7 +235,11 @@ module.exports = {
   PROCESSED_APP_REVIEW: '已處理的應用審核',
   ALL_APP_REVIEW: '應用審核',
 
+  'APP_CATE_MESSAGE QUEUEING': '消息佇列',
+  'APP_CATE_IMAGE REGISTRY': '鏡像倉庫',
+  'APP_CATE_PROMETHEUS EXPORTER': '數據匯出器',
+  'APP_CATE_WEB SERVER': 'Web 伺服器',
+  APP_CATE_NETWORKING: '網路',
+  'APP_CATE_DATABASE & CACHE': '資料庫和緩存',
   APP_CATE_STORAGE: '存儲',
-  APP_CATE_CONTAINER: '容器',
-  APP_CATE_DATABASE: '數據庫',
 }
