@@ -45,7 +45,7 @@ module.exports = {
   'Invalid Repo URL': '不是有效的 Repo 地址',
   'Invalid S3 Scheme': '錯誤的 S3 類型協定',
   'Invalid URL': '無效的 URL',
-  'Valid URL': 'URL 验证通过',
+  'Valid URL': 'URL 驗證通过',
 
   'Please input URL': '請輸入 URL',
   'Please input access key ID and secret access key':

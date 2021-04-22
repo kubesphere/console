@@ -99,7 +99,7 @@ module.exports = {
   NOTIFY_LIST_INPUT_ERRPR_TIP: '輸入格式有誤，請輸入正確的郵件地址',
   NOTIFY_LIST_INPUT_PLACEHOLDER: '輸入郵件地址尋找通知的成員',
   NOTIFY_CURRENT_COUNT: '當前第 {count} 次通知',
-  RESOURCE_SELECTOR_FORM_TIP: '請填寫標簽選擇器',
+  RESOURCE_SELECTOR_FORM_TIP: '請填寫標籤選擇器',
   RESOURCE_NODE_FORM_TIP: '請選擇集群節點',
   RESOURCE_WORKLOAD_FORM_TIP: '請選擇工作負載',
   SEVERITY_MSG_FIXED_MINUTES: '每 {count} 分鐘通知一次',

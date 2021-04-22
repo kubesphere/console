@@ -16,10 +16,10 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  'Consumption Bill': '消費賬單',
+  'Consumption Bill': '消費帳單',
   'Export Bill': '導出 csv 格式的資源消費記錄',
   'Consumption by Yesterday': '截止到昨天的消費歷史',
-  'Reconciliation Cycle': '對賬週期',
+  'Reconciliation Cycle': '對帳週期',
   'Consumer Trends': '消費者趨勢',
   'Current Resources Included': '當前包含的資源',
   Trend: '趨勢圖',
@@ -64,7 +64,7 @@ module.exports = {
   'Meter Net Transmitted Usage': '網絡流出 用量',
   'Total Consumer Meaning': '共消費表示什麼？',
   'Total Consumer Desc':
-    '共消費表示在當前對賬週期中每個計費採樣點的資源用量之和',
+    '共消費表示在當前對帳週期中每個計費採樣點的資源用量之和',
   TIMERANGE_MORE_30DAY_MSG:
     '結束時間與開始時間的間隔大於 30 天時，時間間隔最小為 1 天',
   TOTAL_COST: '總金額({unit})',
