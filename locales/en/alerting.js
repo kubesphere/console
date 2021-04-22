@@ -33,7 +33,7 @@ module.exports = {
   'Alerting Rules': 'Alerting Rules',
   'Alerting Status': 'Status',
   'Alerting Duration': 'Duration',
-  'Alerting Type': 'Type',
+  'Alerting Type': 'Severity',
   Condition: 'Condition',
   'cpu usage': 'CPU usage',
   'cpu utilization rate': 'CPU utilization',
@@ -54,7 +54,7 @@ module.exports = {
   Message: 'Message',
 
   'Critical Alert': 'Critical',
-  'Error Alert': 'Major',
+  'Error Alert': 'Error',
   'Warning Alert': 'Warning',
 
   'Monitoring Rules': 'Monitoring Rules',

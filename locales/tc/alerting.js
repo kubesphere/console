@@ -33,7 +33,7 @@ module.exports = {
   'Alerting Rule': '告警規則',
   'Alerting Rules': '告警規則',
   'Alerting Status': '告警狀態',
-  'Alerting Type': '告警類型',
+  'Alerting Type': '告警級別',
   'Alerting Duration': '告警持續時間',
   'Notification Settings': '通知設置',
   'monitoring target': '監控目標',
