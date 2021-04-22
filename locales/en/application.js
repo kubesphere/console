@@ -167,7 +167,7 @@ module.exports = {
   LB_RANDOM: 'RANDOM',
 
   CLUSTER_NAME_DESC:
-    'It can only contain lowercase letters, numbers and hyphens("-"), and must begin with a lowercase letter, ending with a number or lowercase letter. The value can contain a maximum of 14 characters.',
+    'It can only contain lowercase letters, numbers and hyphens("-"), and must begin with a lowercase letter, ending with a number or lowercase letter. The value can contain a maximum of 53 characters.',
 
   COMPONENT_VERSION_DESC:
     'It can only contain lowercase letters and numbers with a maximum of 16 characters.',
