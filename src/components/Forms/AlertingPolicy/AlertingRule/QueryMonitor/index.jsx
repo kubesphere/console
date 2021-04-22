@@ -39,7 +39,7 @@ export default class Monitoring extends Component {
   }
 
   fetchMetrics = async params => {
-    const { query, duration } = this.props
+    const { cluster, namespace, query, duration } = this.props
     const seconds = formatDuration(duration)
     const end = Math.floor(Date.now() / 1000)
     const start = end - seconds
@@ -48,6 +48,8 @@ export default class Monitoring extends Component {
       end,
       start,
       step: '30s',
+      cluster,
+      namespace,
       ...params,
     })
     this.setState({ metrics: result, id: query })
