@@ -17,7 +17,7 @@
  */
 
 module.exports = {
-  'Add Enviroment Params': 'Añade parámetros de entorno',
+  'Add Environment Variables': 'Añade parámetros de entorno',
   'Artifact Type': 'Tipo de artefacto',
   'Authentication required': 'Autenticación requerida',
   b2i: 'b2i',
@@ -55,8 +55,8 @@ module.exports = {
   'Image building failed': 'La construcción de la imagen falló',
   'Image building succeeded': 'La construcción de la imagen tuvo éxito',
   'Image Size': 'Tamaño de la imagen',
-  imageName: 'imageName',
-  ImageName: 'ImageName',
+  imageName: 'Image Name',
+  ImageName: 'Image Name',
   'is Failed': 'falló',
   'Job Records': 'Registros de trabajos',
   'Last build environment': 'Último entorno de compilación',

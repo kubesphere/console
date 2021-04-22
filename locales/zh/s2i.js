@@ -27,7 +27,7 @@ module.exports = {
   creationTimestamp: '结束时间',
   'Environment Params': '环境变量参数',
   'is Failed': '构建失败',
-  'Add Enviroment Params': '添加环境参数',
+  'Add Environment Variables': '添加环境参数',
   'Container Settings': '容器设置',
   NEW_TAG_DESC: '输入重新构建镜像的标签',
   S2I_RELATIVE_PATH_DESC:

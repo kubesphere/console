@@ -17,7 +17,7 @@
  */
 
 module.exports = {
-  'Add Enviroment Params': 'Add Enviroment Params',
+  'Add Environment Variables': 'Add Environment Variables',
   'Artifact Type': 'Artifact Type',
   'Authentication required': 'Authentication required',
   b2i: 'b2i',
@@ -102,10 +102,10 @@ module.exports = {
   'Upload Percent': 'Upload Percent',
 
   SORT_BY: 'sort by { name }',
-  S2I_Building: 'is building',
+  S2I_Building: 'building',
   S2I_Failed: 'building failed',
-  S2I_Successful: 'building success',
-  NEW_TAG_DESC: 'input tag of the new image',
+  S2I_Successful: 'building successful',
+  NEW_TAG_DESC: 'enter tag of the new image',
   S2I_RELATIVE_PATH_DESC:
     'Source code repository address (currently supports git) and can assign code branches and relative paths in source code terminals',
   START_COMMAND_DESC:
@@ -119,11 +119,11 @@ module.exports = {
     'By default, the image is pulled only if it is not already present locally.',
   S2I_ENVIROMENT_DESC:
     'App developers can use the following environment variables to configure the runtime behavior of the image. For more information, see <a href={link} target="_blank">S2I Templates</a>.',
-  S2I_UPDATE_WORKLOAD: 'Update workload after building successful',
+  S2I_UPDATE_WORKLOAD: 'Update workload after building is successful',
   S2I_UPDATA_WORKLOAD_DESC:
     'After the image is rebuilt successfully, the image of the relevant workload will be updated and the workload version will be updated.',
   IMAGE_FROM_S2I_DESC:
-    'Get the code from the existing code repository and build the image by way of Source to Image. The process of building the image each time will be done as a job.',
+    'Get the code from the existing code repository and build the image by way of Source to Image. The process of building the image each time will be done as a Job.',
   IMAGE_FROM_EXSIT: 'Select an existing image deployment container',
   IMAGE_FROM_EXSIT_DESC:
     'Pull an image from a public or private image repository',
@@ -131,7 +131,7 @@ module.exports = {
     'If it is a private code repository, choose the code repository key.',
   S2I_IMAGE_REPONSITRY_DESC:
     'The source code repository address (currently supports git). You can specify the code branch and relative path in the source code terminal.',
-  S2I_RELATIVE_PATH: 'Code Relative Path (Optional):',
+  S2I_RELATIVE_PATH: 'Code Relative Path (optional):',
   S2I_IMAGENAME_DESC:
     'Image name and tag, which defaults to the project name of the code repository.',
   S2I_TARGET_IMAGE_REPONSTRY_DESC:
@@ -142,7 +142,7 @@ module.exports = {
     'Image Builder is a tool that makes it easy to write container images that take application source code or artifacts as an input and produce a new image that runs the assembled application as output. It includes Source to Image, a.k.a S2I which takes source code as input, and Binary to Image, a.k.a. B2I which takes application artifacts as input.',
   'Build image for service x': 'Build image for service {service}',
   S2I_DESC: 'Please choose your source code language',
-  IMAGE_FROM_S2I: 'Build a new image from code',
+  IMAGE_FROM_S2I: 'Build a new image from source code',
   IMAGE_FROM_B2I: 'Build a new image from the artifact',
   B2I_DESC: 'Please choose your artifact to build a container image',
   B2I_DEFAULT_DESC: 'Please choose your artifact to build a container image',

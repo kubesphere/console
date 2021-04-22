@@ -40,7 +40,7 @@ export default class S2IEnviroment extends React.Component {
       <ArrayInput
         value={value}
         onChange={onChange}
-        addText={t('Add Enviroment Params')}
+        addText={t('Add Environment Variables')}
         {...rest}
       >
         <InputItem options={options} />

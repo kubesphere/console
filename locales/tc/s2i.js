@@ -27,7 +27,7 @@ module.exports = {
   creationTimestamp: '結束時間',
   'Environment Params': '環境變量參數',
   'is Failed': '構建失敗',
-  'Add Enviroment Params': '添加環境參數',
+  'Add Environment Variables': '添加環境參數',
   'Container Settings': '容器設置',
   NEW_TAG_DESC: '輸入重新構建鏡像的標籤',
   S2I_RELATIVE_PATH_DESC:
