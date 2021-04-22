@@ -262,5 +262,5 @@ module.exports = {
   CLUSTER_UPGRADE_REQUIRED:
     'Esta función no está disponible en la versión actual del clúster. Actualice a {versión} o superior.',
   MEMBER_CLUSTER_UPGRADE_TIP:
-    'Uno o más clústeres de miembros no pueden utilizar esta función. Actualice el clúster de miembros a {versión} o superior.',
+    'Los clústeres de miembros de una versión anterior a la {version} no pueden utilizar esta función. Actualice el clúster de miembros a la versión {version} o superior.',
 }
