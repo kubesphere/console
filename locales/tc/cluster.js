@@ -300,7 +300,7 @@ module.exports = {
     '根據所創建的的集群規模和網路連接的不同，創建完整整個集群大概需要 30 ~ 60 分鐘。',
 
   CLUSTER_UPGRADE_REQUIRED:
-    '当前集群版本无法使用此功能，请升级到 {version} 或以上版本。',
+    '目前集群版本無法使用此功能，請升級到 {version} 或以上版本。',
   MEMBER_CLUSTER_UPGRADE_TIP:
     '低於 {version} 版本 member 集群無法使用此功能, 請將 member 集群升級到 {version} 或以上版本。',
 }
