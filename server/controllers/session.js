@@ -28,7 +28,10 @@ const {
   isValidReferer,
   isAppsRoute,
   decryptPassword,
+  safeParseJSON,
 } = require('../libs/utils')
+
+const { send_gateway_request } = require('../libs/request')
 
 const handleLogin = async ctx => {
   const params = ctx.request.body
@@ -134,16 +137,38 @@ const handleLogin = async ctx => {
 }
 
 const handleLogout = async ctx => {
+  const oAuthLoginInfo = safeParseJSON(
+    decodeURIComponent(ctx.cookies.get('oAuthLoginInfo'))
+  )
+
   ctx.cookies.set('token', null)
   ctx.cookies.set('expire', null)
   ctx.cookies.set('refreshToken', null)
+  ctx.cookies.set('oAuthLoginInfo', null)
 
-  const { origin = '', referer = '' } = ctx.headers
-  const refererPath = referer.replace(origin, '')
-  if (isAppsRoute(refererPath)) {
-    ctx.redirect(refererPath)
+  if (
+    !isEmpty(oAuthLoginInfo) &&
+    oAuthLoginInfo.type &&
+    oAuthLoginInfo.type === 'OIDCIdentityProvider' &&
+    oAuthLoginInfo.endSessionURL
+  ) {
+    const { origin = '' } = ctx.headers
+    const url = `${oAuthLoginInfo.endSessionURL}?post_logout_redirect_uri=${origin}/login`
+    ctx.body = { data: { url }, success: true }
   } else {
-    ctx.redirect('/login')
+    const { origin = '', referer = '' } = ctx.headers
+    const refererPath = referer.replace(origin, '')
+
+    await send_gateway_request({
+      method: 'GET',
+      url: '/oauth/logout',
+    })
+
+    if (isAppsRoute(refererPath)) {
+      ctx.redirect(refererPath)
+    } else {
+      ctx.redirect('/login')
+    }
   }
 }
 

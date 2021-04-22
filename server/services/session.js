@@ -250,6 +250,9 @@ const getOAuthInfo = async () => {
       if (item && item.provider) {
         let url
         let params = {}
+        let type
+        let endSessionURL
+
         const authURL = get(item, 'provider.endpoint.authURL')
 
         if (authURL) {
@@ -267,6 +270,11 @@ const getOAuthInfo = async () => {
           if (item.provider.scopes && item.provider.scopes.length > 0) {
             params.scope = item.provider.scopes.join(' ')
           }
+
+          if (item.type) {
+            endSessionURL = get(item, 'provider.endpoint.endSessionURL')
+            type = item.type
+          }
         } else if (item.provider.casServerURL) {
           params = { service: item.provider.redirectURL }
           url = item.provider.casServerURL
@@ -279,7 +287,7 @@ const getOAuthInfo = async () => {
                 `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`
             )
             .join('&')}`
-          servers.push({ title: item.name, url })
+          servers.push({ title: item.name, url, type, endSessionURL })
         }
       }
     })
