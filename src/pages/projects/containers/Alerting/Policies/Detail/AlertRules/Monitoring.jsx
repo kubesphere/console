@@ -43,7 +43,7 @@ export default class Monitoring extends Component {
 
     this.setState({ isLoading: true })
 
-    const { query } = this.props.detail || {}
+    const { query, cluster, namespace } = this.props.detail || {}
     const { start, end } = getTimeRange({ step, times })
 
     const result = await this.props.store.fetchMetric({
@@ -51,6 +51,8 @@ export default class Monitoring extends Component {
       end,
       start,
       step,
+      cluster,
+      namespace,
       ...params,
     })
     this.setState({ metrics: result, times, step, isLoading: false })

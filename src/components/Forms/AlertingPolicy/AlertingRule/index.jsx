@@ -112,6 +112,8 @@ export default class AlertingRule extends React.Component {
             query={this.state.query}
             duration={formTemplate.duration}
             store={store}
+            cluster={cluster}
+            namespace={namespace}
           />
         </div>
       </>
