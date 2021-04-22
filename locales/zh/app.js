@@ -241,4 +241,6 @@ module.exports = {
   APP_CATE_NETWORKING: '网络',
   'APP_CATE_DATABASE & CACHE': '数据库和缓存',
   APP_CATE_STORAGE: '存储',
+  'APP_CATE_HTTP SERVICE': 'HTTP 服务',
+  'APP_CATE_BIG DATA': '大数据',
 }

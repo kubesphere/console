@@ -242,4 +242,6 @@ module.exports = {
   APP_CATE_NETWORKING: '網路',
   'APP_CATE_DATABASE & CACHE': '資料庫和緩存',
   APP_CATE_STORAGE: '存儲',
+  'APP_CATE_HTTP SERVICE': 'HTTP 服務',
+  'APP_CATE_BIG DATA': '大數據',
 }
