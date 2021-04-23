@@ -23,6 +23,7 @@ import { getQueryString } from 'utils'
 
 import UserStore from 'stores/user'
 import WebSocketStore from 'stores/websocket'
+import { get } from 'lodash'
 
 export default class RootStore {
   @observable
@@ -86,7 +87,11 @@ export default class RootStore {
 
   @action
   async logout() {
-    await request.post('logout')
+    const res = await request.post('logout')
+    const url = get(res, 'data.url')
+    if (url) {
+      window.location.href = url
+    }
   }
 
   @action

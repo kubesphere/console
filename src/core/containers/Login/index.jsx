@@ -18,6 +18,8 @@
 
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
+import cookie from 'utils/cookie'
+
 import {
   Alert,
   Button,
@@ -60,13 +62,22 @@ export default class Login extends Component {
     errorCount: 0,
   }
 
-  handleOAuthLogin = e => {
+  handleOAuthLogin = server => e => {
+    const info = {
+      name: server.title,
+      type: server.type,
+      endSessionURL: server.endSessionURL,
+    }
+    cookie('oAuthLoginInfo', JSON.stringify(info))
     window.location.href = e.currentTarget.dataset.url
   }
 
   handleSubmit = data => {
     const { username, password, ...rest } = data
     this.setState({ isSubmmiting: true })
+
+    cookie('oAuthLoginInfo', '')
+
     this.props.rootStore
       .login({
         username,
@@ -99,7 +110,7 @@ export default class Login extends Component {
               key={server.url}
               className={styles.oauth}
               data-url={server.url}
-              onClick={this.handleOAuthLogin}
+              onClick={this.handleOAuthLogin(server)}
             >
               <span>{t('Log In with {title}', { title: server.title })}</span>
             </div>
