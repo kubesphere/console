@@ -192,8 +192,8 @@ export default class AdvanceSettings extends React.Component {
         >
           <Checkbox
             name={`${this.prefix}.disable_concurrent`}
-            checked={formTemplate[`${this.prefix}.disable_concurrent`]}
-            defaultValue={true}
+            checked={get(formTemplate, `${this.prefix}.disable_concurrent`)}
+            onChange={this.handleChange(`${this.prefix}.disable_concurrent`)}
           >
             {t('No concurrent builds')}
           </Checkbox>
