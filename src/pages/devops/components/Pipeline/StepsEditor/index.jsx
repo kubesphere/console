@@ -487,7 +487,7 @@ export default class StepsEditor extends React.Component {
           />
         ) : null}
         <YamlEditor
-          value={this.formData.yaml}
+          value={this.formData.yaml || ''}
           visible={this.showYaml}
           onCancel={this.hideYamlEditor}
           onOk={this.handleSetYaml}
