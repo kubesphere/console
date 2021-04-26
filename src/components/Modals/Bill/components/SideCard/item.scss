@@ -36,8 +36,9 @@
   }
 
   .info {
-    width: 90%;
     display: flex;
+    flex: 1;
+    overflow: hidden;
     align-items: center;
 
     .title {
@@ -53,12 +54,12 @@
 
     .desc {
       margin-left: 12px;
-      display: flex;
-      flex: 1 1;
-      .unMeter {
-        align-self: center;
-        margin-left: 20px;
-      }
+      overflow: hidden;
+    }
+
+    .unMeter {
+      align-self: center;
+      margin-left: 20px;
     }
 
     .tagContainer {
