@@ -85,7 +85,12 @@ export default function Card({
         const _item = clusterList.find(cluster => cluster.name === item.name)
         return _item || null
       })
+
       .filter(item => !!item)
+
+    if (_clusters.length < 1) {
+      return null
+    }
 
     return (
       <div className={styles.tagContainer}>
@@ -153,11 +158,11 @@ export default function Card({
         </div>
         <div className={styles.desc}>
           <Text title={name} description={desc} />
-          {disabled ? (
-            <div className={styles.unMeter}>{t('INVALID_METERING')}</div>
-          ) : null}
         </div>
         {renderCluster(name)}
+        {disabled ? (
+          <div className={styles.unMeter}>{t('INVALID_METERING')}</div>
+        ) : null}
       </div>
       {renderArrow()}
     </div>

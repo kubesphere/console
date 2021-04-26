@@ -2,20 +2,19 @@
 
 .side {
   width: 100%;
-  height: calc(100% - 60px);
+  height: calc(100% - 80px);
   overflow-y: auto;
 
   :global {
     .spin-nested-loading,
-    spin-container {
+    .spin-container {
       height: 100%;
       width: 100%;
     }
   }
-
   .exportContainer {
     position: absolute;
-    bottom: 80px;
+    bottom: 70px;
     width: 440px;
     border-radius: 4px;
     background-color: #242e42;
@@ -34,7 +33,6 @@
     .button {
       display: inline-block;
       padding: 8px 20px;
-      margin-right: 12px;
       transition: all $trans-speed ease-in-out;
       cursor: pointer;
       color: #fff;
@@ -47,10 +45,6 @@
         background-color: $dark-color08;
       }
     }
-  }
-  .sideList {
-    display: flex;
-    flex-direction: column;
   }
 }
 

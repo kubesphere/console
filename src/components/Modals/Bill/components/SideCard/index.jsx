@@ -121,7 +121,7 @@ export default class SideContainer extends React.Component {
     return !isEmpty(toJS(this.billReportList)) ? (
       <div
         className={styles.exportContainer}
-        style={{ bottom: isTop ? '10px' : '80px' }}
+        style={{ bottom: isTop ? '10px' : '70px' }}
       >
         <div className={styles.text}>{t('Export Bill')}</div>
         <div
@@ -175,10 +175,8 @@ export default class SideContainer extends React.Component {
 
     return (
       <div className={styles.side}>
-        <Loading spinning={loading}>
-          <div className={styles.sideList}>{this.renderSideCardItem()}</div>
-          {this.renderBillReportConform()}
-        </Loading>
+        <Loading spinning={loading}>{this.renderSideCardItem()}</Loading>
+        {this.renderBillReportConform()}
       </div>
     )
   }
