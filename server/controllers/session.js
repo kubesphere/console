@@ -152,8 +152,7 @@ const handleLogout = async ctx => {
     oAuthLoginInfo.type === 'OIDCIdentityProvider' &&
     oAuthLoginInfo.endSessionURL
   ) {
-    const { origin = '' } = ctx.headers
-    const url = `${oAuthLoginInfo.endSessionURL}?post_logout_redirect_uri=${origin}/login`
+    const url = `${oAuthLoginInfo.endSessionURL}`
     ctx.body = { data: { url }, success: true }
   } else {
     const { origin = '', referer = '' } = ctx.headers
