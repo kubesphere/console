@@ -42,6 +42,7 @@ module.exports = {
   'Please input password': '请输入密码',
   'Please input captch': '请输入验证码',
   'Please confirm your account info': '请确认您的帐户信息',
+  'Please input username': '请输入用户名',
 
   'Please reset your password': '请重置您的密码',
 

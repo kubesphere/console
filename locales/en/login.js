@@ -44,7 +44,8 @@ module.exports = {
   'Please input username or email': 'Please enter your username or email.',
   'Please input password': 'Please enter your password.',
   'Please input captch': 'Please enter the captcha.',
-  'Please confirm your account info': 'Please confirm your account info',
+  'Please confirm your account info': 'Please confirm your account information',
+  'Please input username': 'Please enter your username.',
 
   'Please reset your password': 'Please reset your password',
 

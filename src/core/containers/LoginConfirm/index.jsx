@@ -107,7 +107,9 @@ export default class LoginConfirm extends Component {
                 { required: true, message: t('Please input username') },
                 {
                   pattern: PATTERN_NAME,
-                  message: `${t('Invalid user name')}. ${t('USER_NAME_DESC')}`,
+                  message: t('Invalid user name', {
+                    message: t('USER_NAME_DESC'),
+                  }),
                 },
                 { validator: this.userNameValidator },
               ]}

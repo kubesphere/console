@@ -48,7 +48,7 @@ module.exports = {
   'Please input current password': '请输入当前密码',
   'The password entered twice must be the same': '两次输入的密码必须一致',
   'Please select role': '请选择角色',
-  'Invalid user name': '用户名格式不合法',
+  'Invalid user name': '用户名格式不合法。{message}',
   'Invalid email': '邮箱格式不合法',
   'User name exists': '用户名已存在',
   'Email exists': '邮箱已存在',
