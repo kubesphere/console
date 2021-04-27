@@ -64,7 +64,10 @@ export default class AppDeploy extends React.Component {
       currentStep: 0,
       formData: {
         app_id: props.app.app_id,
-        name: `${props.app.name.slice(0, 7)}-${generateId()}`,
+        name: `${props.app.name
+          .slice(0, 7)
+          .toLowerCase()
+          .replaceAll(' ', '-')}-${generateId()}`,
         version_id: props.versionId,
         namespace: props.namespace,
         cluster: props.cluster,
