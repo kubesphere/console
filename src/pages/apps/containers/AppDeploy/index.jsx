@@ -113,7 +113,10 @@ export default class App extends React.Component {
     this.setState({
       formData: {
         ...this.state.formData,
-        name: `${name.slice(0, 7)}-${generateId()}`,
+        name: `${name
+          .slice(0, 7)
+          .toLowerCase()
+          .replaceAll(' ', '-')}-${generateId()}`,
         version_id: selectAppVersion,
       },
     })
