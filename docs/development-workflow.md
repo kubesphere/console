@@ -77,4 +77,4 @@ git push -f ${your_remote_name} myfeature
 
 - Visit your fork at `https://github.com/$user/console`.
 - Click the` Compare & Pull Request` button next to your myfeature branch.
-- Check out the [pull request guide](./CONTRIBUTING.md#pull-requests) for more details and advice.
+- Check out the [pull request guide](../CONTRIBUTING.md#pull-requests) for more details and advice.
