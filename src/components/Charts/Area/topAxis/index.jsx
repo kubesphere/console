@@ -18,31 +18,37 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import { last } from 'lodash'
 import classNames from 'classnames'
-
+import { timestampify } from 'utils/monitoring'
+import moment from 'moment'
 import { COLORS_MAP } from 'utils/constants'
-
-import { ResponsiveContainer, AreaChart, XAxis, Tooltip, Area } from 'recharts'
+import { maxBy } from 'lodash'
+import {
+  ResponsiveContainer,
+  AreaChart,
+  XAxis,
+  Tooltip,
+  Area,
+  YAxis,
+} from 'recharts'
 import CustomTooltip from 'components/Charts/Custom/Tooltip'
 
 import styles from './index.scss'
 
 const AreaColors = ['green', 'blue', 'yellow', 'red']
 
-export default class TinyArea extends React.Component {
+export default class TopArea extends React.Component {
   static propTypes = {
     width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    title: PropTypes.string,
     xKey: PropTypes.string,
     unit: PropTypes.string,
     data: PropTypes.array,
     bgColor: PropTypes.string,
-    areaColors: PropTypes.array,
-    renderTitle: PropTypes.func,
+    areaColors: PropTypes.string,
     renderArea: PropTypes.func,
     darkMode: PropTypes.bool,
+    dot: PropTypes.object,
   }
 
   static defaultProps = {
@@ -62,41 +68,54 @@ export default class TinyArea extends React.Component {
     return Object.keys(data[0] || {}).filter(key => key !== xKey)
   }
 
-  get lastValue() {
-    const { unit, data } = this.props
-    const series = this.series
-    return series.length === 1 ? `${last(data)[series[0]]} ${unit}` : ''
+  xTickFormatter = time => {
+    const map = {
+      s: 'HH:mm:ss',
+      m: 'HH:mm',
+      h: 'HH:mm',
+      d: 'MM/DD',
+      M: 'YYYY/MM',
+      Y: 'YYYY',
+    }
+    const [, unit = 's'] = this.props.interval.match(/\d+(\w+)/) || []
+    const timestamp = parseInt(time, 10)
+    return moment(timestamp).format(map[unit])
   }
 
-  renderTitle() {
-    const { title, renderTitle } = this.props
+  labelFormatter = timestamp => {
+    const startTime = timestamp.label
+    const endTime = startTime + timestampify(this.props.interval)
+    const startMoment = moment(startTime)
+    const endMoment = moment(endTime)
+    const isSameDay = startMoment.isSame(endMoment, 'day')
+    const dayFormat = 'YYYY/MM/DD'
+    const timeFormat = 'HH:mm:ss'
+    const momentForMat = `${dayFormat} ${timeFormat}`
+    const startMomentString = startMoment.format(momentForMat)
+    const endMomentString = endMoment.format(momentForMat)
+    const range = isSameDay
+      ? `${startMomentString} ~ ${endMoment.format(timeFormat)}`
+      : `${startMomentString} ~ ${endMomentString}`
 
-    return renderTitle ? (
-      renderTitle()
-    ) : (
-      <div className={styles.title}>{`${t(title)} ${this.lastValue}`}</div>
-    )
+    return `${t('Time Range')} : ${range}`
   }
 
   renderArea() {
-    const { unit, areaColors, renderArea, dot = false } = this.props
-
+    const { unit, areaColors, renderArea } = this.props
+    const color = [].push(areaColors)
     if (renderArea) {
       return renderArea()
     }
-
-    return this.series.map((key, index) => {
-      const color = COLORS_MAP[areaColors[index]]
-
+    return this.series.map(key => {
       return (
         <Area
           key={key}
           dataKey={key}
           stroke={color}
-          fillOpacity="0.1"
-          fill={color}
+          fillOpacity="1"
+          fill={areaColors}
           unit={unit}
-          dot = {dot}
+          type="monotone"
         />
       )
     })
@@ -104,19 +123,27 @@ export default class TinyArea extends React.Component {
 
   render() {
     const { width, height, bgColor, xKey, data, darkMode } = this.props
-
+    let maxNum = 500
+    if (data.length > 0) {
+      maxNum = maxBy(data, 'count')
+    }
+    const yAxisMax = maxNum.count * 2
+    const domain = [0, yAxisMax]
     return (
       <div
         className={classNames(styles.chart, { [styles.dark]: darkMode })}
         style={{ width, height, background: bgColor }}
       >
-        {this.renderTitle()}
-        <ResponsiveContainer width="100%" height="100%" debounce={1}>
+        <ResponsiveContainer
+          width="100%"
+          height="100%"
+          debounce={1}
+          baseValue="dataMax"
+        >
           <AreaChart
             data={data}
-            margin={{ top: 30, left: 0, right: 0, bottom: 0 }}
+            margin={{ top: 0, left: 0, right: 0, bottom: 0 }}
           >
-            <XAxis dataKey={xKey} hide />
             <Tooltip
               wrapperStyle={{ zIndex: 1000 }}
               cursor={{
@@ -124,9 +151,16 @@ export default class TinyArea extends React.Component {
                 strokeDasharray: '3,2',
                 strokeWidth: 2,
               }}
-              content={<CustomTooltip />}
+              content={<CustomTooltip renderLabel={this.labelFormatter} />}
             />
             {this.renderArea()}
+            <XAxis
+              dataKey={xKey}
+              orientation="top"
+              mirror={true}
+              tickFormatter={this.xTickFormatter}
+            />
+            <YAxis hide type="number" domain={domain} />
           </AreaChart>
         </ResponsiveContainer>
       </div>
