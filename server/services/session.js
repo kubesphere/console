@@ -160,6 +160,7 @@ const getUserDetail = async token => {
         resp,
         'metadata.annotations["iam.kubesphere.io/globalrole"]'
       ),
+      lastLoginTime: get(resp, 'status.lastLoginTime'),
     }
   } else {
     throw new Error(resp)
