@@ -170,7 +170,7 @@ module.exports = {
   LB_LEAST_CONN: 'LEAST_CONN',
   LB_RANDOM: 'RANDOM',
   CLUSTER_NAME_DESC:
-    'Solo puede contener letras minúsculas, números y guiones ("-"), y debe comenzar con una letra minúscula y terminar con un número o letra minúscula. La longitud máxima de caracteres se establece en 14.',
+    'Solo puede contener letras minúsculas, números y guiones ("-"), y debe comenzar con una letra minúscula y terminar con un número o letra minúscula. La longitud máxima de caracteres se establece en 53.',
   COMPONENT_VERSION_DESC:
     'Para gestión, ayudándote a distinguir entre componentes. Solo puede contener letras minúsculas y números. La longitud máxima de caracteres se establece en 16.',
   APP_WORKLOAD_TYPE_DESC:
