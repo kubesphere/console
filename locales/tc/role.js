@@ -68,7 +68,8 @@ module.exports = {
   DELETE_ROLE_TIP: '確定刪除角色 <strong>{resource}</strong>?',
   ROLE_USERS_TIP:
     '目前角色有 <strong>{count}</strong> 名授權用戶，請先移除授權用戶或更改角色後再刪除。',
-
+  ROLE_USER_TIP:
+    '目前角色有 <strong>{count}</strong> 名授權用戶，請先移除授權用戶或更改角色後再刪除。',
   'Depend on': '依賴於',
 
   'Clusters Management': '集群管理',
