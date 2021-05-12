@@ -148,6 +148,8 @@ module.exports = {
     '¿Estás seguro de eliminar la función <strong>{resource}</strong> ?',
   ROLE_USERS_TIP:
     'El rol actual tiene <strong>{count}</strong> usuarios autorizados, elimínalos primero.',
+  ROLE_USER_TIP:
+    'El rol actual tiene <strong>{count}</strong> usuarios autorizados, elimínalos primero.',
   RULE_WORKSPACES: 'Espacios de trabajo',
   RULE_KUBECTL: 'KubeCtl',
   RULE_MONITORING: 'Gestión de monitorización',
