@@ -7,6 +7,7 @@ export const CARD_CONFIG = [
     infos: [
       'CLUSTER_RESOURCE_CONSUMPTION_DESC',
       'CLUSTER_NODE_CONSUMPTION_DESC',
+      'CLUSTER_POD_CONSUMPTION_DESC',
     ],
   },
   {
