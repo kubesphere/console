@@ -34,12 +34,14 @@ module.exports = {
   'Cluster Consumption': 'Cluster resource consumption',
 
   CLUSTER_CONSUMPTION_DESC:
-    'Cluster resource consumption statistics take cluster as the dimension to calculate the CPU, memory, storage and other resource consumption of clusters, nodes, and projects',
+    'View metering and billing information of cluster resources.',
   CLUSTER_RESOURCE_CONSUMPTION_DESC:
     '<strong>Cluster</strong> CPU, memory, storage and other resource consumption',
   CLUSTER_NODE_CONSUMPTION_DESC:
     'Resource consumption of <strong>nodes</strong> in the cluster, such as CPU, memory, and storage',
   'Workspace Consumption': 'Workspace (project) resource consumption',
+  CLUSTER_POD_CONSUMPTION_DESC:
+    'Resource consumption of <strong>Pods</strong> in a node, such as CPU and memory',
   WORKSPACE_CONSUMPTION_DESC:
     'Workspace (project) resource consumption statistics take the workspace as the dimension to calculate the CPU, memory, storage and other resource consumption of workspace and projects',
   WORKSPACE_RESOURCE_CONSUMPTION_DESC:

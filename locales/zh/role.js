@@ -36,7 +36,6 @@ module.exports = {
   Cluster: '集群',
   Member: '成员',
 
-  'Role Identifier': '角色标识符',
   'Edit Authorization': '编辑权限',
   WORKSPACE_ROLE_NAME_TIP: '请设置一个唯一标识符作为角色名称。',
 
