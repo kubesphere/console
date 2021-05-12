@@ -1,0 +1,21 @@
+image:
+  file: .gitpod.Dockerfile
+
+ports:
+  - port: 8000
+    onOpen: open-browser
+  - port: 8001
+    onOpen: ignore
+
+tasks:
+  - init: |
+      git config --global user.name $GIT_AUTHOR_NAME
+      git config --global user.email $GIT_COMMITTER_EMAIL
+      cp /home/gitpod/local_config.yaml /workspace/console/server/local_config.yaml
+      gp open /workspace/console/server/local_config.yaml
+      sed 's/hostname.*:/hostname.replace("8000", "8001") :/' server/views/index.html -i
+      sed 's/hostname/hostname.replace("8000", "8001")/' server/components/boot.js -i
+      sed 's/http:/https:/' server/components/boot.js -i
+      sed 's/:8001//' server/components/boot.js -i
+      yarn
+    command: yarn start
