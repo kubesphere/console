@@ -18,6 +18,7 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
+import { toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import copy from 'fast-copy'
 
@@ -51,18 +52,25 @@ export default class ModifyModal extends React.Component {
     super(props)
 
     this.state = {
-      formData: copy(props.detail),
+      formData: copy(toJS(props.detail._originData)),
     }
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.visible && this.props.visible !== prevProps.visible) {
-      this.setState({ formData: copy(this.props.detail) })
+      this.setState({ formData: copy(toJS(this.props.detail._originData)) })
     }
   }
 
   handleOk = data => {
-    this.props.onOk(data)
+    const { onOk, store, detail } = this.props
+    const list = store.list
+    const selectedRowKeys = toJS(list.selectedRowKeys)
+    const newSelectedRowKeys = selectedRowKeys.filter(
+      item => item !== detail.uid
+    )
+    onOk(data)
+    list.setSelectRowKeys(newSelectedRowKeys)
   }
 
   render() {

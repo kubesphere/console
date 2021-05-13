@@ -19,6 +19,7 @@
 import { get, set, unset, merge, omit, cloneDeep } from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
+import { toJS } from 'mobx'
 import { Form, Select } from '@kube-design/components'
 import { Modal } from 'components/Base'
 import { PropertiesInput } from 'components/Inputs'
@@ -47,8 +48,8 @@ export default class GatewaySettingModal extends React.Component {
     super(props)
 
     this.state = {
-      type: get(props.detail, 'spec.type'),
-      formTemplate: cloneDeep(props.detail),
+      type: get(toJS(props.detail._originData), 'spec.type'),
+      formTemplate: cloneDeep(toJS(props.detail._originData)),
     }
   }
 
@@ -70,8 +71,13 @@ export default class GatewaySettingModal extends React.Component {
 
   handleTypeChange = type => {
     const { detail } = this.props
+
     if (type === 'LoadBalancer') {
-      let annotations = get(detail._originData, 'metadata.annotations', {})
+      let annotations = get(
+        toJS(detail._originData),
+        'metadata.annotations',
+        {}
+      )
       annotations = merge(
         globals.config.loadBalancerDefaultAnnotations,
         annotations
@@ -103,8 +109,14 @@ export default class GatewaySettingModal extends React.Component {
   )
 
   handleOk = data => {
-    const { onOk } = this.props
+    const { onOk, store, detail } = this.props
+    const list = store.list
+    const selectedRowKeys = toJS(list.selectedRowKeys)
+    const newSelectedRowKeys = selectedRowKeys.filter(
+      item => item !== detail.uid
+    )
     onOk(data)
+    list.setSelectRowKeys(newSelectedRowKeys)
   }
 
   render() {

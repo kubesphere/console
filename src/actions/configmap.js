@@ -17,7 +17,6 @@
  */
 
 import { get, set } from 'lodash'
-import { toJS } from 'mobx'
 import { Notify } from '@kube-design/components'
 import { Modal } from 'components/Base'
 
@@ -92,7 +91,7 @@ export default {
           })
         },
         store,
-        detail: toJS(detail._originData),
+        detail,
         modal: ConfigMapEditModal,
         ...props,
       })

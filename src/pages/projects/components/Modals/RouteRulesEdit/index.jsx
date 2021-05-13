@@ -18,6 +18,7 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
+import { toJS } from 'mobx'
 import { get, cloneDeep, isEmpty } from 'lodash'
 import { Modal } from 'components/Base'
 
@@ -61,14 +62,16 @@ class RouteRulesEdit extends React.Component {
 
     this.state = {
       subRoute: {},
-      formTemplate: this.getFormTemplate(props.detail),
+      formTemplate: this.getFormTemplate(toJS(props.detail._originData)),
     }
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.detail !== prevProps.detail) {
+    if (toJS(this.props.detail._originData) !== prevProps.detail._originData) {
       this.setState({
-        formTemplate: this.getFormTemplateI(this.props.detail),
+        formTemplate: this.getFormTemplateI(
+          toJS(this.props.detail._originData)
+        ),
       })
     }
   }
@@ -109,12 +112,17 @@ class RouteRulesEdit extends React.Component {
       })
     }
 
-    const { onOk } = this.props
+    const { onOk, store, detail } = this.props
     const formData = this.state.formTemplate
 
     const data = formData.Ingress
-
+    const list = store.list
+    const selectedRowKeys = toJS(list.selectedRowKeys)
+    const newSelectedRowKeys = selectedRowKeys.filter(
+      item => item !== detail.uid
+    )
     onOk(data)
+    list.setSelectRowKeys(newSelectedRowKeys)
   }
 
   handleCancel = () => {

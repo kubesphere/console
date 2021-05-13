@@ -16,7 +16,6 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { toJS } from 'mobx'
 import { get } from 'lodash'
 
 import { Notify } from '@kube-design/components'
@@ -79,7 +78,7 @@ export default {
             success && success()
           })
         },
-        detail: toJS(detail._originData || detail),
+        detail,
         modal: EditServiceAccountModal,
         namespace: detail.namespace,
         store,
@@ -97,7 +96,7 @@ export default {
             success && success()
           })
         },
-        detail: toJS(detail._originData),
+        detail,
         modal: ModifyServiceAccountRole,
         store,
         module,

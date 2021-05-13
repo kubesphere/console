@@ -18,6 +18,7 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
+import { toJS } from 'mobx'
 import { isEmpty } from 'lodash'
 import { Modal } from 'components/Base'
 import Confirm from 'components/Forms/Base/Confirm'
@@ -57,15 +58,15 @@ export default class ConfigMapEditModal extends React.Component {
     super(props)
 
     this.state = {
-      formTemplate: props.detail,
+      formTemplate: toJS(props.detail._originData),
       subRoute: {},
     }
   }
 
   componentDidUpdate(prevProps) {
     const { detail, visible } = this.props
-    if (detail && detail !== prevProps.detail) {
-      this.setState({ formTemplate: detail })
+    if (toJS(detail._originData) !== prevProps.detail._originData) {
+      this.setState({ formTemplate: toJS(detail._originData) })
     }
 
     if (visible && visible !== prevProps.visible) {
@@ -104,8 +105,15 @@ export default class ConfigMapEditModal extends React.Component {
   }
 
   handleOk = () => {
-    const { onOk } = this.props
+    const { onOk, store, detail } = this.props
+    const list = store.list
+    const selectedRowKeys = toJS(list.selectedRowKeys)
+    const newSelectedRowKeys = selectedRowKeys.filter(
+      item => item !== detail.uid
+    )
+
     onOk(this.state.formTemplate)
+    list.setSelectRowKeys(newSelectedRowKeys)
   }
 
   renderSaveBar() {

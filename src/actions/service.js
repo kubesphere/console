@@ -121,7 +121,7 @@ export default {
           })
         },
         modal: EditServiceModal,
-        detail: toJS(detail._originData),
+        detail,
         type: detail.type,
         cluster: detail.cluster,
         store,
@@ -140,7 +140,7 @@ export default {
           })
         },
         modal: EditGatewayModal,
-        detail: toJS(detail._originData),
+        detail,
         store,
         ...props,
       })

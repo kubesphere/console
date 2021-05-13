@@ -18,6 +18,7 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
+import { toJS } from 'mobx'
 import { Modal } from 'components/Base'
 import ExternalName from 'components/Forms/Service/ExternalName'
 
@@ -50,26 +51,32 @@ export default class ServiceSettingModal extends React.Component {
 
     this.formRef = React.createRef()
 
-    this.state = { formTemplate: props.detail }
+    this.state = { formTemplate: toJS(props.detail._originData) }
   }
 
   componentDidUpdate(prevProps) {
     const { detail } = this.props
 
-    if (detail !== prevProps.detail) {
+    if (toJS(detail._originData) !== prevProps.detail._originData) {
       this.setState({
-        formTemplate: detail,
+        formTemplate: toJS(detail._originData),
       })
     }
   }
 
   handleOk = () => {
-    const { onOk } = this.props
+    const { onOk, store, detail } = this.props
     const form = this.formRef.current
+    const list = store.list
+    const selectedRowKeys = toJS(list.selectedRowKeys)
+    const newSelectedRowKeys = selectedRowKeys.filter(
+      item => item !== detail.uid
+    )
 
     form &&
       form.validate(() => {
         onOk(form.getData())
+        list.setSelectRowKeys(newSelectedRowKeys)
       })
   }
 
