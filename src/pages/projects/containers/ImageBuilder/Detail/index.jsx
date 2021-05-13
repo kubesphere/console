@@ -66,9 +66,8 @@ export default class ImageBuilderDetail extends React.Component {
 
   get listUrl() {
     const { workspace, cluster, namespace } = this.props.match.params
-    return `${
-      workspace ? `/${workspace}` : ''
-    }/clusters/${cluster}/projects/${namespace}/${this.module}`
+    return `${workspace ? `/${workspace}` : ''
+      }/clusters/${cluster}/projects/${namespace}/${this.module}`
   }
 
   fetchData = async params => {
@@ -91,8 +90,8 @@ export default class ImageBuilderDetail extends React.Component {
 
   getOperations = () => [
     {
-      key: 'reRun',
-      text: t('Rerun'),
+      key: 'Run',
+      text: t('run'),
       action: 'edit',
       type: 'control',
       onClick: () =>
@@ -157,9 +156,8 @@ export default class ImageBuilderDetail extends React.Component {
     const url = this.pathAddCluster(path, cluster)
     const downLoadUrl = `${window.location.protocol}//${window.location.host}/b2i_download${url}`
     const secret = get(detail, 'spec.config.secretCode', '')
-    const triggerLink = `http://s2ioperator-trigger-service.kubesphere-devops-system.svc/s2itrigger/v1alpha1/general/namespaces/${
-      detail.namespace
-    }/s2ibuilders/${detail.name}/${secret ? `?secretCode=${secret}` : ''}`
+    const triggerLink = `http://s2ioperator-trigger-service.kubesphere-devops-system.svc/s2itrigger/v1alpha1/general/namespaces/${detail.namespace
+      }/s2ibuilders/${detail.name}/${secret ? `?secretCode=${secret}` : ''}`
 
     return [
       {
