@@ -16,7 +16,6 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { toJS } from 'mobx'
 import { Notify } from '@kube-design/components'
 import { Modal } from 'components/Base'
 import EditBasicInfoModal from 'components/Modals/EditBasicInfo'
@@ -34,7 +33,7 @@ export default {
             success && success()
           })
         },
-        detail: toJS(detail._originData || detail),
+        detail,
         modal: EditBasicInfoModal,
         store,
         ...props,

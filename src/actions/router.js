@@ -17,7 +17,6 @@
  */
 
 import { get } from 'lodash'
-import { toJS } from 'mobx'
 import { Notify } from '@kube-design/components'
 import { Modal } from 'components/Base'
 
@@ -90,7 +89,7 @@ export default {
           })
         },
         modal: EditRouteRulesModal,
-        detail: toJS(detail._originData),
+        detail,
         cluster: detail.cluster,
         store,
         ...props,
@@ -108,7 +107,7 @@ export default {
           })
         },
         modal: EditRouteAnnotationsModal,
-        detail: toJS(detail._originData),
+        detail,
         store,
         ...props,
       })

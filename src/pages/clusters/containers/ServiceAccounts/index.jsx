@@ -32,6 +32,7 @@ import ServiceAccountStore from 'stores/serviceAccount'
   store: new ServiceAccountStore(),
   module: 'serviceaccounts',
   name: 'ServiceAccount',
+  rowKey: 'uid',
 })
 export default class ServiceAccounts extends React.Component {
   get itemActions() {

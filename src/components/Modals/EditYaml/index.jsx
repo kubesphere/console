@@ -19,6 +19,7 @@
 import { isUndefined } from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
+import { toJS } from 'mobx'
 import classNames from 'classnames'
 import { Modal } from 'components/Base'
 import EditMode from 'components/EditMode'
@@ -79,14 +80,20 @@ export default class YamlEditModal extends React.Component {
   }
 
   handleOk = () => {
-    const { onOk, onCancel } = this.props
+    const { onOk, onCancel, store, detail } = this.props
 
     const value = this.editor.current.getData()
+    const list = store.list
+    const selectedRowKeys = toJS(list.selectedRowKeys)
+    const newSelectedRowKeys = selectedRowKeys.filter(
+      item => item !== detail.uid
+    )
 
     if (isUndefined(value)) {
       onCancel()
     } else {
       onOk(value)
+      list.setSelectRowKeys(newSelectedRowKeys)
     }
   }
 

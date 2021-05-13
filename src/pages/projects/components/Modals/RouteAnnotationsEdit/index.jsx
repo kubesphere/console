@@ -18,6 +18,7 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
+import { toJS } from 'mobx'
 import { observer } from 'mobx-react'
 
 import { Form } from '@kube-design/components'
@@ -46,19 +47,25 @@ class RouteAnnotationsEdit extends React.Component {
     super(props)
 
     this.state = {
-      formTemplate: props.detail,
+      formTemplate: toJS(props.detail._originData),
     }
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.detail !== prevProps.detail) {
-      this.setState({ formTemplate: this.props.detail })
+    if (toJS(this.props.detail._originData) !== prevProps.detail._originData) {
+      this.setState({ formTemplate: toJS(this.props.detail._originData) })
     }
   }
 
   handleOk = data => {
-    const { onOk } = this.props
+    const { onOk, store, detail } = this.props
+    const list = store.list
+    const selectedRowKeys = toJS(list.selectedRowKeys)
+    const newSelectedRowKeys = selectedRowKeys.filter(
+      item => item !== detail.uid
+    )
     onOk(data)
+    list.setSelectRowKeys(newSelectedRowKeys)
   }
 
   render() {

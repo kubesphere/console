@@ -18,6 +18,7 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
+import { toJS } from 'mobx'
 import copy from 'fast-copy'
 
 import { Form, Input, TextArea } from '@kube-design/components'
@@ -43,19 +44,29 @@ export default class EditBasicInfoModal extends React.Component {
     super(props)
 
     this.state = {
-      formData: copy(props.detail),
+      formData: copy(toJS(props.detail._originData || props.detail)),
     }
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.visible && this.props.visible !== prevProps.visible) {
-      this.setState({ formData: copy(this.props.detail) })
+      this.setState({
+        formData: copy(
+          toJS(this.props.detail._originData || this.props.detail)
+        ),
+      })
     }
   }
 
   handleOk = data => {
-    const { onOk } = this.props
+    const { onOk, store, detail } = this.props
+    const list = store.list
+    const selectedRowKeys = toJS(list.selectedRowKeys)
+    const newSelectedRowKeys = selectedRowKeys.filter(
+      item => item !== detail.uid
+    )
     onOk(data)
+    list.setSelectRowKeys(newSelectedRowKeys)
   }
 
   render() {
