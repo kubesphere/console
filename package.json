@@ -34,7 +34,7 @@
     "koa-mount": "^3.0.0",
     "koa-router": "^7.3.0",
     "koa-static": "^4.0.2",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "markdown-it": "^8.4.1",
     "memoizee": "^0.4.14",
     "mobx": "^4.15.4",
