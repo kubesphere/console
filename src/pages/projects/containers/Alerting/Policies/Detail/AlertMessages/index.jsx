@@ -125,7 +125,7 @@ export default class AlertHistory extends React.Component {
     },
     {
       title: t('Time'),
-      dataIndex: 'createTime',
+      dataIndex: 'activeAt',
       isHideable: true,
       width: 200,
       render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
