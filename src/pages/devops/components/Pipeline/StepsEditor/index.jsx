@@ -96,6 +96,7 @@ export default class StepsEditor extends React.Component {
   @action
   handleSetYaml = value => {
     this.formData.yaml = value
+    this.handleAgentTypeArg()
     this.showYaml = false
   }
 
@@ -120,12 +121,14 @@ export default class StepsEditor extends React.Component {
 
   getAgentArguments() {
     const agentType = get(this.props.activeStage, 'agent.type')
+    const argument = get(this.props.activeStage, 'agent.arguments')
+    const formDataJson = toJS(this.formData)
 
     if (!agentType) {
       set(this.props.activeStage, 'agent.type', 'none')
     }
 
-    if (!isEmpty(toJS(this.formData))) {
+    if (!isEmpty(formDataJson)) {
       const _arguments = Object.keys(this.formData).map(key => ({
         key,
         value: { isLiteral: true, value: this.formData[key] },
@@ -137,6 +140,14 @@ export default class StepsEditor extends React.Component {
         isEmpty(_arguments) ? undefined : _arguments
       )
     }
+
+    if (isEmpty(formDataJson) && !isEmpty(toJS(argument))) {
+      delete this.props.activeStage.agent.arguments
+    }
+  }
+
+  handleAgentTypeArg = () => {
+    this.getAgentArguments()
   }
 
   renderAgentForms = () => {
@@ -157,6 +168,7 @@ export default class StepsEditor extends React.Component {
                 name="label"
                 options={labelDataList}
                 defaultValue={labelDefaultValue}
+                onChange={this.handleAgentTypeArg}
               />
             </Form.Item>
           </Form>
@@ -165,7 +177,11 @@ export default class StepsEditor extends React.Component {
         return (
           <Form data={this.formData} ref={this.formRef}>
             <Form.Item label={t('label')} desc={t('')}>
-              <Input name="label" defaultValue="default" />
+              <Input
+                name="label"
+                defaultValue="default"
+                onChange={this.handleAgentTypeArg}
+              />
             </Form.Item>
             <Form.Item
               label={t('yaml')}
@@ -175,10 +191,13 @@ export default class StepsEditor extends React.Component {
                 </span>
               }
             >
-              <Input name="yaml" />
+              <Input name="yaml" onChange={this.handleAgentTypeArg} />
             </Form.Item>
             <Form.Item label={t('defaultContainer')} desc={t('')}>
-              <Input name="defaultContainer" />
+              <Input
+                name="defaultContainer"
+                onChange={this.handleAgentTypeArg}
+              />
             </Form.Item>
           </Form>
         )
@@ -189,8 +208,22 @@ export default class StepsEditor extends React.Component {
 
   @action
   handleAgentTypeChange = type => {
-    this.formData = {}
+    let labelValue = ''
+    switch (type) {
+      case 'node':
+        labelValue = get(toJS(this.labelDataList), '0.value', '')
+        this.formData = { label: labelValue }
+        break
+      case 'kubernetes':
+        labelValue = 'default'
+        this.formData = { label: labelValue }
+        break
+      default:
+        this.formData = {}
+    }
+
     set(this.props.activeStage, 'agent.type', type)
+    this.handleAgentTypeArg()
     this.handleSetValue()
   }
 
