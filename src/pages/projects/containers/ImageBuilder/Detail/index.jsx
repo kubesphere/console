@@ -91,8 +91,8 @@ export default class ImageBuilderDetail extends React.Component {
 
   getOperations = () => [
     {
-      key: 'reRun',
-      text: t('Rerun'),
+      key: 'Run',
+      text: t('run'),
       action: 'edit',
       type: 'control',
       onClick: () =>
