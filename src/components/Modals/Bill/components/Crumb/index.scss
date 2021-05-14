@@ -2,11 +2,9 @@
 @import '~scss/mixins';
 
 .crumbContainer {
-  min-height: 20px;
   padding-top: 12px;
   margin-bottom: 20px;
   display: flex;
-  overflow: hidden;
 
   & > button {
     width: 20px;
@@ -34,10 +32,13 @@
     flex-wrap: wrap;
 
     & > div {
+      min-height: 20px;
       display: flex;
     }
 
     .crumbTitle {
+      word-break: break-word;
+      flex: 1 1;
       margin-left: 3px;
       cursor: default;
     }
