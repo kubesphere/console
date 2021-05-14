@@ -53,18 +53,22 @@
     }
 
     .desc {
+      word-break: break-all;
       margin-left: 12px;
       overflow: hidden;
-    }
-
-    .unMeter {
-      align-self: center;
-      margin-left: 20px;
     }
 
     .tagContainer {
       margin-left: 12px;
       flex: 2 1;
+
+      :global {
+        .tag {
+          min-height: 20px;
+          height: auto;
+          word-break: break-all;
+        }
+      }
 
       & > span {
         margin-right: 5px;
@@ -119,12 +123,16 @@
 
   &::after {
     content: '';
-    width: 440px;
-    height: 56px;
+    width: 100%;
+    height: 100%;
     top: 0;
     left: 0;
     display: block;
     position: absolute;
     z-index: 10;
+  }
+
+  .unMeter {
+    z-index: 11;
   }
 }

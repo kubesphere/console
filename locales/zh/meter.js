@@ -76,4 +76,5 @@ module.exports = {
   'No cluster with metering module enabled': '暂无启用计量模块的集群',
 
   INVALID_METERING: '未开启消费统计',
+  NO_METER_DATA: '新创建的资源，需要等待一小时后才能查看数据',
 }
