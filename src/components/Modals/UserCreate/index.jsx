@@ -26,7 +26,7 @@ import { Form, Input, Select, TextArea } from '@kube-design/components'
 import { Modal } from 'components/Base'
 import { InputPassword } from 'components/Inputs'
 import { isSystemRole } from 'utils'
-import { PATTERN_NAME, PATTERN_PASSWORD } from 'utils/constants'
+import { PATTERN_USER_NAME, PATTERN_PASSWORD } from 'utils/constants'
 import RoleStore from 'stores/role'
 
 import styles from './index.scss'
@@ -117,7 +117,7 @@ export default class UserCreateModal extends Component {
       : [
           { required: true, message: t('Please input user name') },
           {
-            pattern: PATTERN_NAME,
+            pattern: PATTERN_USER_NAME,
             message: t('Invalid user name', { message: t('USER_NAME_DESC') }),
           },
           { validator: this.userNameValidator },
