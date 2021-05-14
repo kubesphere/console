@@ -108,7 +108,7 @@ export default class Workspaces extends React.Component {
             icon="enterprise"
             iconSize={40}
             title={getDisplayName(record)}
-            desc={record.description || '-'}
+            desc={record.description || 'Workspaces'}
             to={`/workspaces/${name}`}
           />
         ),
