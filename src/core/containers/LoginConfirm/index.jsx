@@ -20,7 +20,7 @@ import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
 import { get } from 'lodash'
 import { Button, Form, Input } from '@kube-design/components'
-import { PATTERN_NAME } from 'utils/constants'
+import { PATTERN_USER_NAME } from 'utils/constants'
 import UserStore from 'stores/user'
 
 import styles from './index.scss'
@@ -106,7 +106,7 @@ export default class LoginConfirm extends Component {
               rules={[
                 { required: true, message: t('Please input username') },
                 {
-                  pattern: PATTERN_NAME,
+                  pattern: PATTERN_USER_NAME,
                   message: t('Invalid user name', {
                     message: t('USER_NAME_DESC'),
                   }),
