@@ -135,19 +135,15 @@ export default class BaseInfo extends React.Component {
             </Form.Item>
           </Column>
         </Columns>
-        <Columns>
-          <Column>
-            <Form.Item label={`${t('Code Repository')} (${t('optional')})`}>
-              <RepoSelect
-                name="multi_branch_pipeline"
-                ref={this.scmRef}
-                onClick={this.showSelectRepo}
-                handleDeleteSource={this.handleDeleteSource}
-                devops={this.props.devops}
-              />
-            </Form.Item>
-          </Column>
-        </Columns>
+        <Form.Item label={`${t('Code Repository')} (${t('optional')})`}>
+          <RepoSelect
+            name="multi_branch_pipeline"
+            ref={this.scmRef}
+            onClick={this.showSelectRepo}
+            handleDeleteSource={this.handleDeleteSource}
+            devops={this.props.devops}
+          />
+        </Form.Item>
       </Form>
     )
   }
