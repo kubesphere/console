@@ -78,4 +78,7 @@ module.exports = {
   'No cluster with metering module enabled':
     'No hay clúster con módulo de medição habilitado',
   INVALID_METERING: 'MEDIÇÃO INVÁLIDA',
+
+  NO_METER_DATA:
+    'Newly created resource, you need to wait an hour before you can view the data',
 }
