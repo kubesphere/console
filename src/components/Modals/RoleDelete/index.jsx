@@ -18,12 +18,13 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import { toJS } from 'mobx'
 import { observer } from 'mobx-react'
+import { isEmpty } from 'lodash'
 
 import { Modal } from 'components/Base'
 
 import UserStore from 'stores/user'
+import GroupStore from 'stores/group'
 
 import { ROLE_QUERY_KEY } from 'utils/constants'
 
@@ -51,37 +52,59 @@ export default class RoleDeleteModal extends React.Component {
   constructor(props) {
     super(props)
 
+    this.state = {
+      users: [],
+      groups: {},
+      isLoading: false,
+    }
+
     this.store = new UserStore()
+    this.groupStore = new GroupStore()
   }
 
   componentDidMount() {
+    const { visible, detail } = this.props
+
+    if (visible && detail.name) {
+      this.fetchData()
+    }
+  }
+
+  async fetchData() {
     const {
-      visible,
       module,
-      detail,
+      detail: { name },
       cluster,
       workspace,
       namespace,
     } = this.props
-
-    if (visible && detail.name) {
-      this.store.fetchList({
-        [ROLE_QUERY_KEY[module]]: detail.name,
+    this.setState({ isLoading: true })
+    const users = await this.store.fetchList({
+      [ROLE_QUERY_KEY[module]]: name,
+      cluster,
+      workspace,
+      namespace,
+    })
+    if (isEmpty(users) && workspace) {
+      const groups = await this.groupStore.getWorksapceRoleBinding('', {
         cluster,
         workspace,
         namespace,
+        rolename: name,
       })
+      this.setState({ groups })
     }
+    this.setState({ users, isLoading: false })
   }
 
   render() {
     const { detail, visible, onOk, onCancel, isSubmitting } = this.props
-    const { data, isLoading } = toJS(this.store.list)
+    const { users, groups, isLoading } = this.state
 
     return (
       <Modal
         width={504}
-        onOk={isLoading || data.length ? null : onOk}
+        onOk={isLoading || users.length || groups.totalItems ? null : onOk}
         onCancel={onCancel}
         visible={visible}
         isSubmitting={isSubmitting}
@@ -91,10 +114,12 @@ export default class RoleDeleteModal extends React.Component {
         <div className={styles.body}>
           <div className="h5">{t('Sure to delete')}</div>
           <p>
-            {!isLoading && data.length
-              ? data.length === 1
-                ? t.html('ROLE_USER_TIP', { count: data.length })
-                : t.html('ROLE_USERS_TIP', { count: data.length })
+            {!isLoading && users.length
+              ? t.html(`ROLE_USER${users.length > 1 ? 'S' : ''}_TIP`, {
+                  count: users.length,
+                })
+              : groups.totalItems
+              ? t.html('ROLE_USER_GROUPS_TIP', { count: groups.totalItems })
               : t.html('DELETE_ROLE_TIP', { resource: detail.name })}
           </p>
         </div>
