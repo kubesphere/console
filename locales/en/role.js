@@ -150,6 +150,8 @@ module.exports = {
     'The role is bound to <strong>{count}</strong> users. Please unbind the users first.',
   ROLE_USER_TIP:
     'The role is bound to <strong>{count}</strong> user. Please unbind the user first.',
+  ROLE_USER_GROUPS_TIP:
+    'The role is bound to <strong>{count}</strong> department. Please unbind the department first.',
 
   RULE_WORKSPACES: 'Workspaces',
   RULE_KUBECTL: 'Kubectl',
