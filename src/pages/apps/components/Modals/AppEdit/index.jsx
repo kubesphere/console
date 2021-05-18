@@ -62,6 +62,7 @@ export default class AppEdit extends Component {
 
     this.state = {
       detail: cloneDeep(toJS(this.props.detail)),
+      oldScreenshots: get(this.props.detail, 'screenshots'),
     }
   }
 
@@ -95,8 +96,9 @@ export default class AppEdit extends Component {
   }
 
   onCancel = () => {
+    const screenshots = this.state.oldScreenshots
+    this.handleAppChange(screenshots, 'screenshots')
     this.props.onCancel()
-    this.props.success()
   }
 
   render() {
