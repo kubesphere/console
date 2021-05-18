@@ -37,6 +37,8 @@ export default class CredentialDetail extends React.Component {
     isLoading: true,
   }
 
+  refreshTimer = setInterval(() => this.refreshHandler(), 4000)
+
   get module() {
     return 'credentials'
   }
@@ -58,10 +60,40 @@ export default class CredentialDetail extends React.Component {
     return this.props.rootStore.routing
   }
 
+  get isRuning() {
+    const { detail } = this.store
+
+    const status = get(
+      detail,
+      'annotations["credential.devops.kubesphere.io/syncstatus"]'
+    )
+
+    return status === 'pending' || status === 'working'
+  }
+
   store = new CredentialStore(this.module)
 
   componentDidMount() {
     this.fetchData()
+  }
+
+  componentDidUpdate() {
+    if (this.refreshTimer === null && this.isRuning) {
+      this.refreshTimer = setInterval(() => this.refreshHandler(), 4000)
+    }
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.refreshTimer)
+  }
+
+  refreshHandler = () => {
+    if (this.isRuning) {
+      this.store.fetchDetail()
+    } else {
+      clearInterval(this.refreshTimer)
+      this.refreshTimer = null
+    }
   }
 
   fetchData = () => {
