@@ -71,7 +71,7 @@ export default class ActionsInput extends React.Component {
           ...value,
           discover_pr_from_forks: {
             strategy: 1,
-            trust: 0,
+            trust: 2,
           },
         })
         break
