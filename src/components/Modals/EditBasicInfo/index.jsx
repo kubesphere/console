@@ -62,11 +62,11 @@ export default class EditBasicInfoModal extends React.Component {
     const { onOk, store, detail } = this.props
     const list = store.list
     const selectedRowKeys = toJS(list.selectedRowKeys)
-    const newSelectedRowKeys = selectedRowKeys.filter(
-      item => item !== detail.uid
-    )
+    const newSelectedRowKeys = selectedRowKeys
+      ? selectedRowKeys.filter(item => item !== detail.uid)
+      : ''
     onOk(data)
-    list.setSelectRowKeys(newSelectedRowKeys)
+    if (selectedRowKeys) list.setSelectRowKeys(newSelectedRowKeys)
   }
 
   render() {
