@@ -85,15 +85,15 @@ export default class YamlEditModal extends React.Component {
     const value = this.editor.current.getData()
     const list = store.list
     const selectedRowKeys = toJS(list.selectedRowKeys)
-    const newSelectedRowKeys = selectedRowKeys.filter(
-      item => item !== detail.uid
-    )
+    const newSelectedRowKeys = selectedRowKeys
+      ? selectedRowKeys.filter(item => item !== detail.uid)
+      : ''
 
     if (isUndefined(value)) {
       onCancel()
     } else {
       onOk(value)
-      list.setSelectRowKeys(newSelectedRowKeys)
+      if (selectedRowKeys) list.setSelectRowKeys(newSelectedRowKeys)
     }
   }
 
