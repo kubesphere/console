@@ -65,7 +65,7 @@ export default class CredentialModal extends React.Component {
   }
 
   componentDidMount() {
-    if (this.type === 'kubeconfig') {
+    if (this.type === 'kubeconfig' && !this.props.isEditMode) {
       this.fetchKubeConfig()
     }
   }
