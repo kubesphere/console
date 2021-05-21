@@ -65,7 +65,7 @@ export default class ConfigMapEditModal extends React.Component {
 
   componentDidUpdate(prevProps) {
     const { detail, visible } = this.props
-    if (toJS(detail._originData) !== prevProps.detail._originData) {
+    if (detail._originData !== prevProps.detail._originData) {
       this.setState({ formTemplate: toJS(detail._originData) })
     }
 
