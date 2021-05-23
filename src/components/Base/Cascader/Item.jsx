@@ -40,6 +40,9 @@ export default class Item extends Component {
           style.top = triggerStyle.top - 4
         }
         style.left = triggerStyle.left + triggerStyle.width
+        if (window.innerHeight - style.top < 252) {
+          style.maxHeight = window.innerHeight - style.top - 8
+        }
       }
     }
     return style
