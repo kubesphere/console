@@ -69,6 +69,12 @@ export default class TemplateSelect extends React.PureComponent {
     }, [])
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.loading !== prevProps.loading && !this.props.loading) {
+      this.handleTemplateChange(this.getDefaultValue())
+    }
+  }
+
   getOptions(template) {
     const currentLang = cookie('lang') === 'en' ? 'EN' : 'CN'
     return get(template, 'spec.containerInfo', []).map(containerInfo => ({
