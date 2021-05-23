@@ -87,6 +87,7 @@ export default {
           set(data, 'metadata.resourceVersion', detail.resourceVersion)
           store.update(detail, data).then(() => {
             Modal.close(modal)
+            Notify.success({ content: `${t('Updated Successfully')}` })
             success && success()
           })
         },
