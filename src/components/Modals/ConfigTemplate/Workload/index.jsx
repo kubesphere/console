@@ -17,32 +17,40 @@
  */
 
 import React from 'react'
-import { get } from 'lodash'
+import PropTypes from 'prop-types'
 
-import { Form } from '@kube-design/components'
-import Base from 'components/Forms/Workload/ContainerSettings'
+import EditModal from 'components/Modals/Edit'
 
-export default class PodTemplate extends Base {
-  handleContainer = data => {
-    const { formProps } = this.props
-    Base.prototype.handleContainer.call(this, data)
+import FormsConfig from './config'
 
-    formProps.onChange()
+export default class EditConfigTemplateModal extends React.Component {
+  static propTypes = {
+    module: PropTypes.string,
+  }
+
+  static defaultProps = {
+    module: 'deployments',
+  }
+
+  get forms() {
+    const { isFederated, module } = this.props
+    if (!isFederated) {
+      return FormsConfig[module].filter(v => !v.isFederated)
+    }
+    return FormsConfig[this.props.module]
   }
 
   render() {
-    const { isFederated, formTemplate, formRef, formProps } = this.props
-    const { showContainer, selectContainer } = this.state
-    const data = isFederated ? get(formTemplate, 'spec.template') : formTemplate
-
-    if (showContainer) {
-      return this.renderContainerForm(selectContainer)
-    }
+    const { module, ...rest } = this.props
 
     return (
-      <Form data={data} ref={formRef} {...formProps}>
-        {this.renderContainerList()}
-      </Form>
+      <EditModal
+        title="Edit Config Template"
+        icon="storage"
+        module={module}
+        forms={this.forms}
+        {...rest}
+      />
     )
   }
 }

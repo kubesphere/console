@@ -82,6 +82,7 @@ export default class EditModal extends React.Component {
         {...rest}
       >
         <FormsBox
+          {...rest}
           module={module}
           store={store}
           forms={forms}

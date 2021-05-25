@@ -40,7 +40,7 @@ export default class ContainersMapper extends Component {
   }
 
   handleEdit = ({ index, containerType, data }) => {
-    const { cluster, withService, formTemplate } = this.props
+    const { cluster, withService, formTemplate, onChange } = this.props
     const prefix = `spec.template.spec.${
       containerType === 'init' ? 'init_containers' : 'containers'
     }.${index}`
@@ -73,6 +73,7 @@ export default class ContainersMapper extends Component {
     }
 
     this.setState({ editContainer: '' })
+    onChange && onChange()
   }
 
   updateService = data => {

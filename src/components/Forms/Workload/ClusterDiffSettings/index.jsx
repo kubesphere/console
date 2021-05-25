@@ -17,6 +17,7 @@
  */
 
 import React from 'react'
+import { observer } from 'mobx-react'
 import { get, keyBy } from 'lodash'
 import { MODULE_KIND_MAP } from 'utils/constants'
 
@@ -30,7 +31,7 @@ import Environments from './Environments'
 import VolumesMapper from './VolumesMapper'
 import VolumeTemplate from './VolumeTemplate'
 
-export default class AdvancedSettings extends React.Component {
+class ClusterDiffSettings extends React.Component {
   get namespace() {
     return get(this.formTemplate, 'metadata.namespace')
   }
@@ -52,10 +53,10 @@ export default class AdvancedSettings extends React.Component {
   }
 
   render() {
-    const { formRef, projectDetail, withService } = this.props
+    const { formRef, projectDetail, withService, formProps } = this.props
     const clustersDetail = keyBy(projectDetail.clusters, 'name')
     return (
-      <Form data={this.formTemplate} ref={formRef}>
+      <Form data={this.formTemplate} ref={formRef} {...formProps}>
         <Form.Group
           label={t('Container Image')}
           desc={t('CLUSTER_CONTAINER_IMAGE_DIFF_DESC')}
@@ -67,7 +68,11 @@ export default class AdvancedSettings extends React.Component {
             namespace={this.namespace}
           >
             {props => (
-              <ContainersMapper formTemplate={this.formTemplate} {...props}>
+              <ContainersMapper
+                formTemplate={this.formTemplate}
+                {...props}
+                {...formProps}
+              >
                 {containerProps => <ContainerImage {...containerProps} />}
               </ContainersMapper>
             )}
@@ -85,7 +90,11 @@ export default class AdvancedSettings extends React.Component {
               namespace={this.namespace}
             >
               {props => (
-                <VolumesMapper formTemplate={this.formTemplate} {...props}>
+                <VolumesMapper
+                  formTemplate={this.formTemplate}
+                  {...props}
+                  {...formProps}
+                >
                   {volumeProps => <VolumeTemplate {...volumeProps} />}
                 </VolumesMapper>
               )}
@@ -108,6 +117,7 @@ export default class AdvancedSettings extends React.Component {
                 withService={withService}
                 serviceTemplate={get(this.props.formTemplate, 'Service')}
                 {...props}
+                {...formProps}
               >
                 {containerProps => <ContainerPorts {...containerProps} />}
               </ContainersMapper>
@@ -125,7 +135,11 @@ export default class AdvancedSettings extends React.Component {
             namespace={this.namespace}
           >
             {props => (
-              <ContainersMapper formTemplate={this.formTemplate} {...props}>
+              <ContainersMapper
+                formTemplate={this.formTemplate}
+                {...props}
+                {...formProps}
+              >
                 {containerProps => <Environments {...containerProps} />}
               </ContainersMapper>
             )}
@@ -135,3 +149,6 @@ export default class AdvancedSettings extends React.Component {
     )
   }
 }
+
+export const Component = ClusterDiffSettings
+export default observer(ClusterDiffSettings)

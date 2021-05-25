@@ -17,18 +17,20 @@
  */
 
 import React from 'react'
+import { get } from 'lodash'
 
 import { Form } from '@kube-design/components'
 import UpdateStrategyForm from 'components/Forms/Workload/ContainerSettings/UpdateStrategy'
 
 export default class UpdateStrategy extends React.Component {
   render() {
-    const { formTemplate, formRef, formProps, module } = this.props
+    const { isFederated, formTemplate, formRef, formProps, module } = this.props
+    const data = isFederated ? get(formTemplate, 'spec.template') : formTemplate
 
     return (
       <div className="margin-t12">
-        <Form data={formTemplate} ref={formRef} {...formProps}>
-          <UpdateStrategyForm module={module} data={formTemplate} />
+        <Form data={data} ref={formRef} {...formProps}>
+          <UpdateStrategyForm module={module} data={data} />
         </Form>
       </div>
     )

@@ -86,6 +86,20 @@ export default class DeploymentDetail extends React.Component {
         }),
     },
     {
+      key: 'editConfigTemplate',
+      icon: 'storage',
+      text: t('Edit Config Template'),
+      action: 'edit',
+      onClick: () =>
+        this.trigger('workload.template.edit', {
+          detail: this.store.detail,
+          projectDetail: this.props.projectStore.detail,
+          isFederated: true,
+          ...this.props.match.params,
+          success: this.fetchData,
+        }),
+    },
+    {
       key: 'editYaml',
       icon: 'pen',
       text: t('Edit YAML'),

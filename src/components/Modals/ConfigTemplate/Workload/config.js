@@ -20,6 +20,7 @@ import UpdateStrategy from 'components/EditForms/Workload/UpdateStrategy'
 import PodTemplate from 'components/EditForms/Workload/PodTemplate'
 import VolumeSettings from 'components/EditForms/Workload/VolumeSettings'
 import Affinity from 'components/EditForms/Workload/Affinity'
+import ClusterDiffSettings from 'components/EditForms/Workload/ClusterDiffSettings'
 
 export default {
   deployments: [
@@ -47,6 +48,13 @@ export default {
       title: 'Deployment Mode',
       component: Affinity,
     },
+    {
+      icon: 'blue-green-deployment',
+      name: 'clusterDiffSettings',
+      title: 'Diff Settings',
+      isFederated: true,
+      component: ClusterDiffSettings,
+    },
   ],
   statefulsets: [
     {
@@ -66,6 +74,13 @@ export default {
       name: 'volumeSettings',
       title: 'Volume',
       component: VolumeSettings,
+    },
+    {
+      icon: 'blue-green-deployment',
+      name: 'clusterDiffSettings',
+      title: 'Diff Settings',
+      isFederated: true,
+      component: ClusterDiffSettings,
     },
   ],
   daemonsets: [

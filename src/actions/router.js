@@ -22,7 +22,7 @@ import { Modal } from 'components/Base'
 
 import CreateModal from 'components/Modals/Create'
 import EditRouteAnnotationsModal from 'projects/components/Modals/RouteAnnotationsEdit'
-import EditRouteRulesModal from 'projects/components/Modals/RouteRulesEdit'
+import EditRouteRulesModal from 'components/Modals/Routes/RouteRulesEdit'
 import { MODULE_KIND_MAP } from 'utils/constants'
 import FORM_TEMPLATES from 'utils/form.templates'
 import formPersist from 'utils/form.persist'
