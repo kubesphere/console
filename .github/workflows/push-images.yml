@@ -1,0 +1,49 @@
+name: Image-Build-And-Push
+
+on:
+  push:
+    branches: [master, express]
+  pull_request:
+    branches: [master]
+
+jobs:
+  build-and-push:
+    if: github.event_name == 'push' && github.repository_owner == 'kubesphere'
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.18.x]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Build
+      run: |
+        echo "start build"
+        yarn
+        yarn build
+        yarn test
+        docker build . --file Dockerfile --tag kubespheredev/console
+
+    - name: Docker login
+      uses: azure/docker-login@v1
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+    - name: Push image
+      run: |
+        echo "push image"
+        docker push kubespheredev/console
+
+    - name: slack
+      uses: 8398a7/action-slack@v3
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      with:
+        status: ${{ job.status }}
+        fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
+      if: failure()
