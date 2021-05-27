@@ -109,10 +109,10 @@ export default class RerunForm extends React.Component {
       <Modal.Form
         formRef={this.form}
         width={691}
-        title={t('Rerun')}
+        title={t('Run')}
         icon="cdn"
         onOk={this.handleOk}
-        okText={t('Rerun')}
+        okText={t('Run')}
         onCancel={onCancel}
         visible={visible}
         data={detail}
