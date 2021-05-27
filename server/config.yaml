@@ -460,7 +460,7 @@ client:
   systemWorkspaceRules:
     devops: []
     members: [manage]
-    projects: [view, edit]
+    projects: [view, edit, manage]
     roles: [view]
     workspaces: [view, edit]
   systemWorkspaceProjectRules:
