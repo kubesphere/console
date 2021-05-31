@@ -19,8 +19,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import { Icon, Checkbox, CheckboxGroup } from '@kube-design/components'
+import { Icon, Checkbox } from '@kube-design/components'
 import { CLUSTER_PROVIDER_ICON } from 'utils/constants'
+import CheckboxGroup from 'fedprojects/components/CheckboxGroup'
 
 import styles from './index.scss'
 

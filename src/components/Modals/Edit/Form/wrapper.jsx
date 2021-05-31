@@ -80,9 +80,14 @@ const EnhanceWrapper = function(Component) {
     handleCancelChange = () => {
       const prevState = this.prevState || this.initialState
 
-      this.setState({
-        ...prevState,
-      })
+      this.setState(
+        {
+          ...prevState,
+        },
+        () => {
+          this.prevState = cloneDeep(prevState)
+        }
+      )
     }
 
     renderFormActions() {
@@ -100,7 +105,7 @@ const EnhanceWrapper = function(Component) {
     }
 
     render() {
-      const { module, formRef, ...rest } = this.props
+      const { module, formRef, data, formData, detail, ...rest } = this.props
       return (
         <div className={styles.formWrapper}>
           <Component

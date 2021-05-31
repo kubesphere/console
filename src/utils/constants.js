@@ -943,6 +943,7 @@ export const CLUSTER_PROVIDER_ICON = {
   'Google Kubernetes Engine': 'google-plus',
   'QingCloud Kubernetes Engine': 'qingcloud',
   'Tencent Kubernetes Engine': 'kubernetes',
+  kubesphere: 'kubernetes',
 }
 
 export const CLUSTER_PROVIDERS = [

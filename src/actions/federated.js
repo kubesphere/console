@@ -16,10 +16,13 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, set, unset, cloneDeep, uniqBy } from 'lodash'
+import { get, set, unset, cloneDeep, uniqBy, isEmpty } from 'lodash'
 import { Notify } from '@kube-design/components'
 import { Modal } from 'components/Base'
 import FedProjectCreateModal from 'components/Modals/FedProjectCreate'
+import EditConfigTemplateModal from 'fedprojects/components/ConfigTemplate'
+import { toJS } from 'mobx'
+
 import DeleteModal from 'components/Modals/Delete'
 import FORM_TEMPLATES from 'utils/form.templates'
 import FED_TEMPLATES from 'utils/fed.templates'
@@ -123,6 +126,33 @@ export default {
         modal: DeleteModal,
         store,
         isLoading: projectStore.isLoading,
+        ...props,
+      })
+    },
+  },
+  'federated.workload.template.edit': {
+    on({ store, detail, success, module, ...props }) {
+      const modal = Modal.open({
+        onOk: data => {
+          const customMode = get(data, 'spec.template.spec.customMode', {})
+          if (!isEmpty(customMode)) {
+            delete data.spec.template.spec.customMode
+          }
+
+          store.update(detail, data).then(() => {
+            Notify.success({ content: `${t('Updated Successfully')}` })
+            Modal.close(modal)
+            success && success()
+          })
+        },
+        store,
+        module: module || store.module,
+        detail: toJS(detail._originData),
+        modal: EditConfigTemplateModal,
+        type: detail.type,
+        workloadStore: store,
+        isEdit: true,
+        withService: true,
         ...props,
       })
     },
