@@ -26,7 +26,7 @@ import { ArrayInput, ServicePort } from 'components/Inputs'
 import { isValidLabel } from 'utils'
 import { MODULE_KIND_MAP, PATTERN_PORT_NAME } from 'utils/constants'
 
-import SelectorsInput from './SelectorsInput'
+import SelectorsInput from 'components/Forms/Service/ServiceSettings/SelectorsInput'
 
 import styles from './index.scss'
 
