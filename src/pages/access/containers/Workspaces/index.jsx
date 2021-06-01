@@ -73,7 +73,7 @@ export default class Workspaces extends React.Component {
         action: 'delete',
         show: this.showAction,
         onClick: item =>
-          trigger('resource.delete', {
+          trigger('workspace.delete', {
             type: t(name),
             resource: item.name,
             detail: item,
@@ -84,9 +84,22 @@ export default class Workspaces extends React.Component {
   }
 
   get tableActions() {
-    const { tableProps } = this.props
+    const { tableProps, trigger, name } = this.props
     return {
       ...tableProps.tableActions,
+      selectActions: [
+        {
+          key: 'delete',
+          type: 'danger',
+          text: t('Delete'),
+          action: 'delete',
+          onClick: () =>
+            trigger('workspace.batch.delete', {
+              type: t(name),
+              rowKey: 'name',
+            }),
+        },
+      ],
       getCheckboxProps: record => ({
         disabled: !this.showAction(record),
         name: record.name,
@@ -149,7 +162,7 @@ export default class Workspaces extends React.Component {
     const { bannerProps, tableProps } = this.props
     const isClusterLoading = this.clusterStore.list.isLoading
     return (
-      <ListPage {...this.props} noWatch>
+      <ListPage {...this.props}>
         <Banner {...bannerProps} />
         <Table
           {...tableProps}

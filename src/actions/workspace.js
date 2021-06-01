@@ -21,6 +21,7 @@ import { Modal } from 'components/Base'
 import { get, omitBy, isEmpty } from 'lodash'
 import CreateModal from 'workspaces/components/Modals/WorkspaceCreate'
 import WorkspaceQuotaEditModal from 'workspaces/components/Modals/QuotaEdit'
+import DeleteModal from 'workspaces/components/Modals/WorkspaceDelete'
 
 import QuotaStore from 'stores/workspace.quota'
 
@@ -80,6 +81,54 @@ export default {
         detail,
         store: quotaStore,
         modal: WorkspaceQuotaEditModal,
+        ...props,
+      })
+    },
+  },
+  'workspace.delete': {
+    on({ store, detail, success, ...props }) {
+      const modal = Modal.open({
+        onOk: data => {
+          store.delete(detail, data).then(() => {
+            Modal.close(modal)
+            Notify.success({ content: `${t('Deleted Successfully')}` })
+            success && success()
+          })
+        },
+        store,
+        modal: DeleteModal,
+        resource: detail.name,
+        ...props,
+      })
+    },
+  },
+  'workspace.batch.delete': {
+    on({ store, success, rowKey, ...props }) {
+      const { data, selectedRowKeys } = store.list
+      const selectNames = data
+        .filter(item => selectedRowKeys.includes(item[rowKey]))
+        .map(item => item.name)
+
+      const modal = Modal.open({
+        onOk: async params => {
+          const reqs = []
+
+          data.forEach(item => {
+            if (selectNames.includes(item.name)) {
+              reqs.push(store.delete(item, params))
+            }
+          })
+
+          await Promise.all(reqs)
+
+          Modal.close(modal)
+          Notify.success({ content: `${t('Deleted Successfully')}` })
+          store.setSelectRowKeys([])
+          success && success()
+        },
+        resource: selectNames.join(', '),
+        modal: DeleteModal,
+        store,
         ...props,
       })
     },
