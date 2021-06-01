@@ -130,7 +130,11 @@ export default class AdvancedSettings extends React.Component {
                 namespace={this.namespace}
               >
                 {props => (
-                  <ContainersMapper formTemplate={this.formTemplate} {...props}>
+                  <ContainersMapper
+                    formTemplate={this.formTemplate}
+                    {...props}
+                    {...formProps}
+                  >
                     {containerProps => <ContainerImage {...containerProps} />}
                   </ContainersMapper>
                 )}
@@ -186,6 +190,7 @@ export default class AdvancedSettings extends React.Component {
                       withService={withService}
                       serviceTemplate={get(this.props.formTemplate, 'Service')}
                       {...props}
+                      {...formProps}
                     >
                       {containerProps => <ContainerPorts {...containerProps} />}
                     </ContainersMapper>
@@ -204,7 +209,11 @@ export default class AdvancedSettings extends React.Component {
                 namespace={this.namespace}
               >
                 {props => (
-                  <ContainersMapper formTemplate={this.formTemplate} {...props}>
+                  <ContainersMapper
+                    formTemplate={this.formTemplate}
+                    {...props}
+                    {...formProps}
+                  >
                     {containerProps => <Environments {...containerProps} />}
                   </ContainersMapper>
                 )}

@@ -51,6 +51,12 @@ export default {
       title: 'Deployment Mode',
       component: Affinity,
     },
+    {
+      title: 'Diff Settings',
+      icon: 'blue-green-deployment',
+      name: 'Diff Settings',
+      component: ClusterDiffSettings,
+    },
   ],
   statefulsets: [
     {
@@ -71,25 +77,11 @@ export default {
       title: 'Volume',
       component: VolumeSettings,
     },
-  ],
-  daemonsets: [
     {
-      icon: 'dashboard',
-      name: 'updateStrategy',
-      title: 'Update Strategy',
-      component: UpdateStrategy,
-    },
-    {
-      icon: 'container',
-      name: 'podTemplate',
-      title: 'Pod Template',
-      component: PodTemplate,
-    },
-    {
-      icon: 'storage',
-      name: 'volumeSettings',
-      title: 'Volume',
-      component: VolumeSettings,
+      title: 'Diff Settings',
+      icon: 'blue-green-deployment',
+      name: 'Diff Settings',
+      component: ClusterDiffSettings,
     },
   ],
   service: [

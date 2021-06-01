@@ -86,6 +86,21 @@ export default class DeploymentDetail extends React.Component {
         }),
     },
     {
+      key: 'editConfigTemplate',
+      icon: 'storage',
+      text: t('Edit Config Template'),
+      action: 'edit',
+      onClick: () =>
+        this.trigger('federated.workload.template.edit', {
+          detail: this.store.detail,
+          projectDetail: this.props.projectStore.detail,
+          module: this.module,
+          ...this.props.match.params,
+          success: this.fetchData,
+          isFederated: true,
+        }),
+    },
+    {
       key: 'editYaml',
       icon: 'pen',
       text: t('Edit YAML'),
@@ -93,6 +108,7 @@ export default class DeploymentDetail extends React.Component {
       onClick: () =>
         this.trigger('resource.yaml.edit', {
           detail: this.store.detail,
+          success: this.fetchData,
         }),
     },
     {

@@ -23,12 +23,24 @@ import UpdateStrategyForm from 'components/Forms/Workload/ContainerSettings/Upda
 
 export default class UpdateStrategy extends React.Component {
   render() {
-    const { formTemplate, formRef, formProps, module } = this.props
+    const {
+      formTemplate,
+      formRef,
+      formProps,
+      module,
+      isFederated,
+      isEdit,
+    } = this.props
 
     return (
       <div className="margin-t12">
         <Form data={formTemplate} ref={formRef} {...formProps}>
-          <UpdateStrategyForm module={module} data={formTemplate} />
+          <UpdateStrategyForm
+            module={module}
+            data={formTemplate}
+            isFederated={isFederated}
+            isEdit={isEdit}
+          />
         </Form>
       </div>
     )
