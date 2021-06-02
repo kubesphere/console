@@ -377,8 +377,11 @@ export default class Store extends BaseStore {
   }
 
   @action
-  async fetchLabel({ devops }) {
-    const url = `${this.getDevopsUrlV2()}${devops}/jenkins/labelsdashboard/labelsData`
+  async fetchLabel({ devops, cluster }) {
+    const url = `${this.getDevopsUrlV2({
+      cluster,
+    })}${devops}/jenkins/labelsdashboard/labelsData`
+
     const result = await this.request.get(url, {}, {}, () => {
       this.labelDataList = []
     })
