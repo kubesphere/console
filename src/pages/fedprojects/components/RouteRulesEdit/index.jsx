@@ -19,7 +19,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { toJS } from 'mobx'
-import { get, cloneDeep, isEmpty } from 'lodash'
+import { get, cloneDeep, isEmpty, isEqual } from 'lodash'
 import { Modal } from 'components/Base'
 
 import RouteRulesForm from 'components/Forms/Route/RouteRules'
@@ -58,7 +58,7 @@ class RouteRulesEdit extends React.Component {
   constructor(props) {
     super(props)
 
-    this.form = React.createRef()
+    this.formRef = React.createRef()
 
     this.state = {
       subRoute: {},
@@ -67,7 +67,12 @@ class RouteRulesEdit extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (toJS(this.props.detail._originData) !== prevProps.detail._originData) {
+    if (
+      !isEqual(
+        toJS(this.props.detail._originData),
+        toJS(prevProps.detail._originData)
+      )
+    ) {
       this.setState({
         formTemplate: this.getFormTemplate(toJS(this.props.detail._originData)),
       })
@@ -104,23 +109,18 @@ class RouteRulesEdit extends React.Component {
 
   handleOk = () => {
     const { subRoute } = this.state
+
     if (subRoute.onSave) {
       return subRoute.onSave(() => {
         this.setState({ subRoute: {} })
       })
     }
 
-    const { onOk, store, detail } = this.props
+    const { onOk } = this.props
     const formData = this.state.formTemplate
-
     const data = formData.Ingress
-    const list = store.list
-    const selectedRowKeys = toJS(list.selectedRowKeys)
-    const newSelectedRowKeys = selectedRowKeys.filter(
-      item => item !== detail.uid
-    )
+
     onOk(data)
-    list.setSelectRowKeys(newSelectedRowKeys)
   }
 
   handleCancel = () => {
@@ -132,12 +132,17 @@ class RouteRulesEdit extends React.Component {
     }
 
     const { onCancel } = this.props
-
     onCancel()
   }
 
   render() {
-    const { visible, cluster, isSubmitting } = this.props
+    const {
+      visible,
+      cluster,
+      isSubmitting,
+      isFederated,
+      projectDetail,
+    } = this.props
     const { subRoute, formTemplate } = this.state
 
     return (
@@ -155,9 +160,11 @@ class RouteRulesEdit extends React.Component {
         <div className={styles.wrapper}>
           <RouteRulesForm
             module="ingresses"
-            formRef={this.form}
+            formRef={this.formRef}
             formTemplate={formTemplate}
             cluster={cluster}
+            isFederated={isFederated}
+            projectDetail={projectDetail}
           />
         </div>
       </Modal>

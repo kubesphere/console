@@ -99,30 +99,30 @@ export default class RouteDetail extends React.Component {
           success: this.fetchData,
         }),
     },
-    // {
-    //   key: 'editRules',
-    //   icon: 'firewall',
-    //   text: t('Edit Rules'),
-    //   action: 'edit',
-    //   onClick: () =>
-    //     this.trigger('router.rules.edit', {
-    //       isFederared: true,
-    //       detail: this.store.detail,
-    //       success: this.fetchData,
-    //     }),
-    // },
-    // {
-    //   key: 'editAnnotations',
-    //   icon: 'firewall',
-    //   text: t('Edit Annotations'),
-    //   action: 'edit',
-    //   onClick: () =>
-    //     this.trigger('router.annotations.edit', {
-    //       isFederared: true,
-    //       detail: this.store.detail,
-    //       success: this.fetchData,
-    //     }),
-    // },
+    {
+      key: 'editRules',
+      icon: 'firewall',
+      text: t('Edit Rules'),
+      action: 'edit',
+      onClick: () =>
+        this.trigger('fedproject.router.rules.edit', {
+          isFederated: true,
+          detail: this.store.detail,
+          projectDetail: toJS(this.props.projectStore.detail),
+          success: this.fetchData,
+        }),
+    },
+    {
+      key: 'editAnnotations',
+      icon: 'firewall',
+      text: t('Edit Annotations'),
+      action: 'edit',
+      onClick: () =>
+        this.trigger('router.annotations.edit', {
+          detail: toJS(this.store.detail),
+          success: this.fetchData,
+        }),
+    },
     {
       key: 'delete',
       icon: 'trash',

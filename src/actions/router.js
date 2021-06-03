@@ -23,6 +23,7 @@ import { Modal } from 'components/Base'
 import CreateModal from 'components/Modals/Create'
 import EditRouteAnnotationsModal from 'projects/components/Modals/RouteAnnotationsEdit'
 import EditRouteRulesModal from 'projects/components/Modals/RouteRulesEdit'
+import FedprojectEditRouteRulesModal from 'fedprojects/components/RouteRulesEdit'
 import { MODULE_KIND_MAP } from 'utils/constants'
 import FORM_TEMPLATES from 'utils/form.templates'
 import formPersist from 'utils/form.persist'
@@ -89,6 +90,24 @@ export default {
           })
         },
         modal: EditRouteRulesModal,
+        detail,
+        cluster: detail.cluster,
+        store,
+        ...props,
+      })
+    },
+  },
+  'fedproject.router.rules.edit': {
+    on({ store, detail, success, ...props }) {
+      const modal = Modal.open({
+        onOk: newObject => {
+          store.update(detail, newObject).then(() => {
+            Modal.close(modal)
+            Notify.success({ content: `${t('Updated Successfully')}` })
+            success && success()
+          })
+        },
+        modal: FedprojectEditRouteRulesModal,
         detail,
         cluster: detail.cluster,
         store,
