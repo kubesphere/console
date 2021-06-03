@@ -40,10 +40,16 @@ export default class AdvancedSettings extends React.Component {
   }
 
   render() {
-    const { formRef, projectDetail } = this.props
+    const {
+      formRef,
+      projectDetail,
+      editModalTitle,
+      title,
+      formProps,
+    } = this.props
     const clustersDetail = keyBy(projectDetail.clusters, 'name')
     return (
-      <Form data={this.formTemplate} ref={formRef}>
+      <Form data={this.formTemplate.spec} ref={formRef} {...formProps}>
         <Form.Group
           label={t('Volume Settings')}
           desc={t('CLUSTER_VOLUME_DIFF_DESC')}
@@ -53,9 +59,16 @@ export default class AdvancedSettings extends React.Component {
             clusters={this.clusters}
             clustersDetail={clustersDetail}
             namespace={this.namespace}
+            {...formProps}
           >
             {props => (
-              <VolumeSettings {...props} formTemplate={this.formTemplate} />
+              <VolumeSettings
+                {...props}
+                formTemplate={this.formTemplate}
+                editModalTitle={editModalTitle}
+                title={title}
+                {...formProps}
+              />
             )}
           </ClustersMapper>
         </Form.Group>

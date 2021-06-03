@@ -88,6 +88,22 @@ export default class VolumeDetail extends React.Component {
         }),
     },
     {
+      key: 'editConfigTemplate',
+      icon: 'storage',
+      text: t('Edit Config Template'),
+      action: 'edit',
+      onClick: () =>
+        this.trigger('volume.template.edit', {
+          module: this.module,
+          detail: this.store.detail,
+          ...this.props.match.params,
+          success: this.fetchData,
+          namespace: this.props.match.params.namespace,
+          isFederated: true,
+          projectDetail: this.props.projectStore.detail,
+        }),
+    },
+    {
       key: 'editYaml',
       icon: 'pen',
       text: t('Edit YAML'),

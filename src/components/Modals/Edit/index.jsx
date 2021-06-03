@@ -68,6 +68,8 @@ export default class EditModal extends React.Component {
       onCancel,
       cluster,
       namespace,
+      projectDetail,
+      isFederated,
       ...rest
     } = this.props
 
@@ -90,6 +92,9 @@ export default class EditModal extends React.Component {
           data={this.formData}
           onSubmit={onOk}
           onCancel={onCancel}
+          projectDetail={projectDetail}
+          isFederated={isFederated}
+          editModalTitle={title}
         />
       </Modal>
     )

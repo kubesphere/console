@@ -165,6 +165,7 @@ export default class VolumeSettings extends React.Component {
 
   render() {
     const { storageClass, isLoading } = this.state
+    const { editModalTitle, tabTitle } = this.props
 
     const storageClasses = this.getStorageClasses()
     const supportedAccessModes = this.getSupportedAccessModes()
@@ -189,19 +190,24 @@ export default class VolumeSettings extends React.Component {
             clearable
           />
         </Form.Item>
-        <Form.Item
-          label={t('Access Mode')}
-          rules={[{ required: true, message: t('This param is required') }]}
-        >
-          <AccessModes
-            name={ACCESSMODE_KEY}
-            defaultValue={
-              get(supportedAccessModes, '[0]') || Object.keys(ACCESS_MODES)[0]
-            }
-            supportedAccessModes={supportedAccessModes}
-            loading={isLoading}
-          />
-        </Form.Item>
+        {editModalTitle !== 'Edit Config Template' &&
+        tabTitle !== 'Diff Settings' ? (
+          <Form.Item
+            label={t('Access Mode')}
+            rules={[{ required: true, message: t('This param is required') }]}
+          >
+            <AccessModes
+              name={ACCESSMODE_KEY}
+              defaultValue={
+                get(supportedAccessModes, '[0]') || Object.keys(ACCESS_MODES)[0]
+              }
+              supportedAccessModes={supportedAccessModes}
+              loading={isLoading}
+            />
+          </Form.Item>
+        ) : (
+          ''
+        )}
         <Form.Item
           label={t('Volume Capacity')}
           rules={[{ validator: this.sizeValidator }]}

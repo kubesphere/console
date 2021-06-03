@@ -36,6 +36,9 @@ export default class FormsBox extends React.Component {
     forms: PropTypes.array,
     data: PropTypes.object,
     onSubmit: PropTypes.func,
+    isFederated: PropTypes.bool,
+    projectDetail: PropTypes.object,
+    editModalTitle: PropTypes.string,
   }
 
   static defaultProps = {
@@ -182,7 +185,15 @@ export default class FormsBox extends React.Component {
   }
 
   renderForm() {
-    const { module, cluster, store, namespace } = this.props
+    const {
+      module,
+      cluster,
+      store,
+      namespace,
+      isFederated,
+      projectDetail,
+      editModalTitle,
+    } = this.props
     const { activeTab, formData } = this.state
     const form = this.tabs.find(item => item.name === activeTab) || {}
     const componentStore = form.store || store
@@ -200,6 +211,9 @@ export default class FormsBox extends React.Component {
           store={componentStore}
           formData={formData}
           cluster={cluster}
+          isFederated={isFederated}
+          projectDetail={projectDetail}
+          editModalTitle={editModalTitle}
           onSaveChange={this.handleSaveForm}
         />
         {this.renderSubRouteConfirm()}

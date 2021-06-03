@@ -16,7 +16,8 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get } from 'lodash'
+import { isEmpty, get } from 'lodash'
+import { toJS } from 'mobx'
 import { Notify } from '@kube-design/components'
 import { Modal } from 'components/Base'
 
@@ -24,6 +25,7 @@ import CreateModal from 'components/Modals/Create'
 import NameModal from 'projects/components/Modals/ResourceNamed'
 import ExpandModal from 'projects/components/Modals/ExpandVolume'
 import ClusterDiffSettings from 'components/Forms/Volume/ClusterDiffSettings'
+import EditConfigTemplateModal from 'projects/components/Modals/ConfigTemplate/VolumeSet'
 
 import { MODULE_KIND_MAP } from 'utils/constants'
 import FORM_TEMPLATES from 'utils/form.templates'
@@ -142,6 +144,58 @@ export default {
         modal: ExpandModal,
         store,
         ...props,
+      })
+    },
+  },
+  'volume.template.edit': {
+    on({
+      store,
+      detail,
+      success,
+      module,
+      isFederated,
+      namespace,
+      extendformTemplate,
+      ...props
+    }) {
+      const kind = MODULE_KIND_MAP[module]
+      const formTemplate = {
+        [kind]: {
+          ...FORM_TEMPLATES.volumes({
+            namespace,
+          }),
+          ...extendformTemplate,
+        },
+      }
+
+      if (isFederated) {
+        Object.keys(formTemplate).forEach(key => {
+          formTemplate[key] = FORM_TEMPLATES.federated({
+            data: formTemplate[key],
+            clusters: props.projectDetail.clusters.map(item => item.name),
+            kind: key,
+          })
+        })
+      }
+
+      const modal = Modal.open({
+        onOk: data => {
+          const customMode = get(data, 'spec.template.spec.customMode', {})
+          if (!isEmpty(customMode)) {
+            delete data.spec.template.spec.customMode
+          }
+
+          store.update(detail, data).then(() => {
+            Modal.close(modal)
+            success && success()
+          })
+        },
+        store,
+        detail: toJS(detail._originData),
+        modal: EditConfigTemplateModal,
+        ...props,
+        formTemplate,
+        isFederated,
       })
     },
   },
