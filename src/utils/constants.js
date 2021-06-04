@@ -260,6 +260,7 @@ export const MODULE_KIND_MAP = {
   pipelines: 'Pipelines',
   ippools: 'IPPool',
   groups: 'Group',
+  volumes: 'Volumes',
 }
 
 export const QUOTAS_MAP = {

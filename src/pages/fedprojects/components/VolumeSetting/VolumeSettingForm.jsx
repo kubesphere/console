@@ -15,14 +15,15 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import React from 'react'
-import { get, set, unset } from 'lodash'
-import { MODULE_KIND_MAP } from 'utils/constants'
+import { get } from 'lodash'
 import { Form } from '@kube-design/components'
 import { TypeSelect } from 'components/Base'
-import FormTemplate from './FormTemplate'
-import SnapshotForm from './SnapshotForm'
+
+import FormTemplate from 'components/Forms/Volume/VolumeSettings/FormTemplate'
+import SnapshotForm from 'components/Forms/Volume/VolumeSettings/SnapshotForm'
+
+import Base from 'components/Forms/Volume/VolumeSettings'
 
 const CREATE_TYPE_OPTIONS = [
   {
@@ -47,44 +48,19 @@ const CREATE_TYPE_OPTIONS = [
   },
 ]
 
-export default class VolumeSettings extends React.Component {
-  get formTemplate() {
-    const { formTemplate, module } = this.props
-    return get(formTemplate, MODULE_KIND_MAP[module], formTemplate)
-  }
-
-  get fedFormTemplate() {
-    return this.props.isFederated
-      ? get(this.formTemplate, 'spec.template')
-      : this.formTemplate
-  }
-
-  state = {
-    fromSnapshot: !!get(this.formTemplate, 'spec.dataSource.name'),
-  }
-
-  handleChange = fromSnapshot => {
-    if (fromSnapshot !== this.state.fromSnapshot) {
-      unset(this.fedFormTemplate, 'spec.storageClassName')
-      set(this.fedFormTemplate, 'spec.accessModes', [])
-      set(this.fedFormTemplate, 'spec.dataSource', {})
-      set(this.fedFormTemplate, 'spec.resources.requests.storage', '0Gi')
-      this.setState({ fromSnapshot })
-    }
-  }
-
+export default class VolumeSettingsForm extends Base {
   render() {
-    const { formRef, isFederated, cluster } = this.props
+    const { formRef, isFederated, cluster, formProps } = this.props
     const { fromSnapshot } = this.state
 
     return (
-      <Form data={this.fedFormTemplate} ref={formRef}>
+      <Form data={this.fedFormTemplate} ref={formRef} {...formProps}>
         {!isFederated && (
           <Form.Item label={t('Method')}>
             <TypeSelect
               value={fromSnapshot}
               options={CREATE_TYPE_OPTIONS}
-              onChange={this.handleChange}
+              onChange={this.handeChange}
             />
           </Form.Item>
         )}

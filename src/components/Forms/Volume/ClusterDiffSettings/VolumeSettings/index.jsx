@@ -95,7 +95,14 @@ export default class VolumeSettingsDiff extends Component {
   }
 
   render() {
-    const { cluster, namespace, selected } = this.props
+    const {
+      cluster,
+      namespace,
+      selected,
+      editModalTitle,
+      title,
+      onChange,
+    } = this.props
     const { formData, isEdit } = this.state
 
     return (
@@ -114,8 +121,14 @@ export default class VolumeSettingsDiff extends Component {
           showEdit={this.showEdit}
           hideEdit={this.hideEdit}
           onOk={this.handleSubmit}
+          onChange={onChange}
         >
-          <VolumeSettings cluster={cluster} namespace={namespace} />
+          <VolumeSettings
+            cluster={cluster}
+            namespace={namespace}
+            editModalTitle={editModalTitle}
+            tabTitle={title}
+          />
         </EditForm>
       </div>
     )
