@@ -492,10 +492,7 @@ export default class StepsEditor extends React.Component {
               {t('Add conditions')}
             </div>
           )}
-          <div className={styles.title}>
-            {t('Task')}
-            <span>{t('Drag and drop tasks to sort')}</span>
-          </div>
+          <div className={styles.title}>{t('Task')}</div>
           <StepContainer steps={this.steps} zIndex={[]} />
           {this.hasNestStage ? null : (
             <div
