@@ -65,7 +65,7 @@ export default class StringInput extends React.Component {
     const { onChange, parser } = this.props
 
     this.setState({ value })
-    onChange(parser(value))
+    onChange(value ? parser(value) : [])
   }
 
   render() {
