@@ -164,7 +164,6 @@ export default {
           const keys = ['metadata.annotations', 'spec.type', 'spec.ports']
           override.clusterOverrides = getOverrides(template, newObject, keys)
           set(data, 'spec.overrides', overrides)
-
           store.patch({ name, namespace }, data).then(() => {
             Modal.close(modal)
             Notify.success({ content: `${t('Updated Successfully')}` })
@@ -172,7 +171,7 @@ export default {
           })
         },
         modal: EditGatewayModal,
-        detail: get(resources, `${cluster}._originData`),
+        detail: get(resources, `${cluster}`),
         store,
         ...props,
       })
