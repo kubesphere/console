@@ -323,7 +323,12 @@ module.exports = {
   WORKSPACE_APP_TEMPLATES_VIEW_DESC: 'View workspace app templates.',
   WORKSPACE_APP_TEMPLATES_MANAGEMENT_DESC:
     'Upload, edit and delete workspace app templates, and release and delete apps in the platform App Store.',
+  'Workspace Settings View': 'Workspace Settings View',
+  'Workspace Settings Management': 'Workspace Settings Management',
   WORKSPACE_SETTINGS_DESC: 'Manage workspace settings.',
+  WORKSPACE_SETTINGS_VIEW_DESC: 'View workspace settings.',
+  WORKSPACE_SETTINGS_MANAGEMENT_DESC:
+    'Manage workspace settings, edit workspace information and network policies.',
 
   ROLE_PLATFORM_ADMIN:
     'Administrator who can manage all resources on the platform.',

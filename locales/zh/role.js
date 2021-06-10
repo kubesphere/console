@@ -120,7 +120,13 @@ module.exports = {
   WORKSPACE_APP_TEMPLATES_VIEW_DESC: '查看企业空间应用模板',
   WORKSPACE_APP_TEMPLATES_MANAGEMENT_DESC:
     '上传/编辑/删除 企业空间应用模板，上架/下架应用到平台的应用商店',
+
+  'Workspace Settings View': '企业空间设置查看',
+  'Workspace Settings Management': '企业空间设置管理',
   WORKSPACE_SETTINGS_DESC: '管理企业空间设置，编辑企业空间信息、网络策略等',
+  WORKSPACE_SETTINGS_VIEW_DESC: '查看企业空间设置',
+  WORKSPACE_SETTINGS_MANAGEMENT_DESC:
+    '管理企业空间设置，编辑企业空间信息、网络策略等',
 
   'Projects Management': '项目管理',
   'Projects View': '项目查看',
