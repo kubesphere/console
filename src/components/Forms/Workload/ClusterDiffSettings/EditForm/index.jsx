@@ -56,7 +56,7 @@ export default class EditForm extends Component {
     const { formData, children } = this.props
 
     return (
-      <div className={styles.form}>
+      <div className={styles.form} onClick={e => e.stopPropagation()}>
         <Form ref={this.formRef} type="inner" data={formData}>
           <div className={styles.formContent}>{children}</div>
         </Form>
