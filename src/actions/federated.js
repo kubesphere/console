@@ -152,7 +152,6 @@ export default {
         type: detail.type,
         workloadStore: store,
         isEdit: true,
-        withService: true,
         ...props,
       })
     },

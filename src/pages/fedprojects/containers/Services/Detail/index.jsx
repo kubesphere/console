@@ -98,6 +98,7 @@ export default class ServiceDetail extends React.Component {
           ...this.props.match.params,
           success: this.fetchData,
           isFederated: true,
+          withService: true,
         }),
     },
     {
