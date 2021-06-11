@@ -46,13 +46,14 @@ export default class Shell extends React.Component {
   static getDerivedStateFromProps(nextProps) {
     if (nextProps.edittingData.type === 'sh') {
       const value = get(nextProps.edittingData.data, '[0].value.value', '')
+
       return { value }
     }
     return null
   }
 
   handleChange = value => {
-    this.newValue = value
+    this.newValue = value || `""`
   }
 
   handleOk = () => {
@@ -69,6 +70,7 @@ export default class Shell extends React.Component {
 
   render() {
     const { visible, onCancel } = this.props
+    const { value } = this.state
 
     return (
       <Modal
@@ -84,7 +86,7 @@ export default class Shell extends React.Component {
           className={styles.CodeEditor}
           name="script"
           mode="yaml"
-          value={this.state.value}
+          value={value}
           onChange={this.handleChange}
         />
       </Modal>
