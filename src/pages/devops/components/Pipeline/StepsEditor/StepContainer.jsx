@@ -16,48 +16,30 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { cloneDeep, isEqual } from 'lodash'
+import { isArray, isEmpty } from 'lodash'
 import { toJS } from 'mobx'
 import React from 'react'
 
 import StepCard from './StepCard'
 
-export default class StepContainer extends React.Component {
-  steps = toJS(this.props.steps)
-
-  shouldComponentUpdate(nextProps) {
-    if (this.props.listType === 'condition') {
-      return true
-    }
-
-    const nextSteps = toJS(nextProps.steps)
-
-    if (this.steps && !isEqual(this.steps, nextSteps)) {
-      this.steps = cloneDeep(nextSteps)
-      return true
-    }
-
-    return false
-  }
-
-  render() {
-    const { steps, zIndex, listType } = this.props
-
-    return (
-      <>
-        {steps &&
-          steps.length > 0 &&
-          steps.map((step, index) => (
-            <StepCard
-              key={JSON.stringify(toJS(step.name)) + index}
-              step={toJS(step)}
-              index={index}
-              zIndex={zIndex}
-              listType={listType}
-              isLast={steps.length - 1 === index}
-            />
-          ))}
-      </>
-    )
-  }
+const StepContainer = ({ zIndex, listType, steps }) => {
+  const stepsJson = toJS(steps)
+  return (
+    <>
+      {!isEmpty(stepsJson) &&
+        isArray(stepsJson) &&
+        stepsJson.map((step, index) => (
+          <StepCard
+            key={JSON.stringify(toJS(step.name)) + index}
+            step={toJS(step)}
+            index={index}
+            zIndex={zIndex}
+            listType={listType}
+            isLast={stepsJson.length - 1 === index}
+          />
+        ))}
+    </>
+  )
 }
+
+export default StepContainer

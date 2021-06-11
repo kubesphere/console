@@ -22,7 +22,7 @@ import PropTypes from 'prop-types'
 import { observable, action, toJS } from 'mobx'
 import { observer } from 'mobx-react'
 
-import { get, isEmpty, set } from 'lodash'
+import { get, isEmpty, isEqual, set } from 'lodash'
 
 import { Form, Button, Input, Icon, Select } from '@kube-design/components'
 import YamlEditor from '../StepModals/kubernetesYaml'
@@ -110,6 +110,16 @@ export default class StepsEditor extends React.Component {
   }
 
   componentDidMount() {
+    this.initFormData()
+  }
+
+  componentDidUpdate(prevProps) {
+    if (!isEqual(this.props.activeStage, prevProps.activeStage)) {
+      this.initFormData()
+    }
+  }
+
+  initFormData = () => {
     const args = toJS(get(this.props.activeStage, 'agent.arguments', []))
 
     this.formData = args.reduce((data, arg) => {
