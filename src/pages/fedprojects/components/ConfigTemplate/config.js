@@ -23,8 +23,6 @@ import Affinity from 'components/EditForms/Workload/Affinity'
 import ServiceSetting from 'fedprojects/components/ServiceSetting'
 import ClusterDiffSettings from 'fedprojects/components/ClusterDiffSettings'
 
-import { withProps } from 'utils'
-
 export default {
   deployments: [
     {
@@ -95,7 +93,7 @@ export default {
       title: 'Diff Settings',
       icon: 'blue-green-deployment',
       name: 'Diff Settings',
-      component: withProps(ClusterDiffSettings, { withService: true }),
+      component: ClusterDiffSettings,
     },
   ],
 }

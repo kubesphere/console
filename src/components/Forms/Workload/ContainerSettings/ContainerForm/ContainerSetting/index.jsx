@@ -78,6 +78,8 @@ export default class ContainerSetting extends React.Component {
     })
   }
 
+  limitError = ''
+
   getFormTemplate(data, imageRegistries) {
     if (data && data.image && !data.pullSecret) {
       const { registry } = parseDockerImage(data.image)

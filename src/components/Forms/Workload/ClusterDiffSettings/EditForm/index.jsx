@@ -82,7 +82,7 @@ export default class EditForm extends Component {
         modifiers={this.modifiers}
         always={isEdit}
       >
-        <div>
+        <div onClick={e => e.stopPropagation()}>
           {title}
           {selected && (
             <span className={styles.modify}>

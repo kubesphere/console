@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, set, isEmpty, uniqBy } from 'lodash'
+import { get, set, isEmpty, uniqBy, isArray } from 'lodash'
 import React, { Component } from 'react'
 import classNames from 'classnames'
 
@@ -87,7 +87,11 @@ export default class ContainersMapper extends Component {
     if (override && !isEmpty(override.clusterOverrides)) {
       override.clusterOverrides.forEach(item => {
         if (item && item.path.startsWith(prefix)) {
-          set(containerTemplate, 'value', item.value)
+          let value = item.value
+          if (isEmpty(value) || !isArray(value)) {
+            value = get(formTemplate, 'spec.template.spec.ports')
+          }
+          set(containerTemplate, 'value', value)
         }
       })
     }

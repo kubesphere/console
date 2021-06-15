@@ -162,7 +162,7 @@ export default class AdvancedSettings extends React.Component {
             </Form.Group>
           )}
           <Form.Group
-            label={t('Service Settings')}
+            label={withService ? t('Service Settings') : t('Port Settings')}
             desc={t('CLUSTER_SERVICE_DIFF_DESC')}
             checkable
           >
