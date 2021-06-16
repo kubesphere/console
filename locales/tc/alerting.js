@@ -113,6 +113,7 @@ module.exports = {
   'Rule Templates': '規則模版',
   'Custom Rule': '自定義規則',
   'Rule Expression': '告警規則表達式',
+  'Invalid time': '時間格式錯誤',
 
   'Please input the rule expression': '请输入告警規則表達式',
 
