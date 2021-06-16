@@ -290,5 +290,10 @@ module.exports = {
 
   RULE_RELATED_WITH: '當前權限被 {resource} 依賴，無法移除',
 
+  'Workspace Settings View': '企業空間設置查看',
+  'Workspace Settings Management': '企業空間設置管理',
   WORKSPACE_SETTINGS_DESC: '管理企業空間設置，編輯企業空間信息、網絡策略等',
+  WORKSPACE_SETTINGS_VIEW_DESC: '查看企業空間設置',
+  WORKSPACE_SETTINGS_MANAGEMENT_DESC:
+    '管理企業空間設置，編輯企業空間信息、網絡策略等',
 }

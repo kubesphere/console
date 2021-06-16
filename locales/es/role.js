@@ -365,8 +365,16 @@ module.exports = {
     'Permite el acceso de lectura para ver todos los recursos en el proyecto DevOps.',
   ROLE_DEVOPS_OPERATOR:
     'Usuario normal en un proyecto DevOps, que puede crear credenciales para las pipelines en el proyecto DevOps.',
+
+  'Workspace Settings View': 'vista de configuración del espacio de trabajo',
+  'Workspace Settings Management':
+    'gestión de la configuración del espacio de trabajo',
   WORKSPACE_SETTINGS_DESC:
     'Concede permiso para gestionar el workspace: cambiar los parámetros, editar la información, network policies, etc.',
+  WORKSPACE_SETTINGS_VIEW_DESC: 'Vea la configuración del espacio de trabajo.',
+  WORKSPACE_SETTINGS_MANAGEMENT_DESC:
+    'Concede permiso para gestionar el workspace: cambiar los parámetros, editar la información, network policies, etc.',
+
   FEDERATED_PROJECTS_MANAGEMENT_DESC:
     'Gestiona todos los proyectos multi-cluster en el workspace, incluyendo crear/editar/borrar proyectos multi-cluster',
 
