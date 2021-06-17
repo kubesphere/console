@@ -78,16 +78,14 @@ export default class AdvanceSettings extends React.Component {
     const owner = get(formTemplate, `${this.scmPrefix}.owner`, '')
     const repo = get(formTemplate, `${this.scmPrefix}.repo`, '')
     const bitbucket_url = `${api_uri}/scm/${owner}/${repo}.git`
-    const cluster = get(formTemplate, 'cluster')
-    const clusterUrl = cluster ? `cluster/${cluster}/` : ''
 
     switch (this.sourceType) {
       case 'bitbucket_server':
-        return `${window.location.protocol}//${window.location.host}/${clusterUrl}devops_webhook/git/?url=${bitbucket_url}`
+        return `${window.location.protocol}//${window.location.host}/devops_webhook/git/?url=${bitbucket_url}`
       case 'github':
-        return `${window.location.protocol}//${window.location.host}/${clusterUrl}devops_webhook/${this.sourceType}/`
+        return `${window.location.protocol}//${window.location.host}/devops_webhook/${this.sourceType}/`
       default:
-        return `${window.location.protocol}//${window.location.host}/${clusterUrl}devops_webhook/git/?url=${url}`
+        return `${window.location.protocol}//${window.location.host}/devops_webhook/git/?url=${url}`
     }
   }
 
