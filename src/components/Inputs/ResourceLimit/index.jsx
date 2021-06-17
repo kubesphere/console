@@ -19,8 +19,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
-import { get, set } from 'lodash'
-import isEqual from 'react-fast-compare'
+import { get, set, isEqual } from 'lodash'
 
 import { Icon, Input, Columns, Column, Alert } from '@kube-design/components'
 
@@ -57,6 +56,19 @@ export default class ResourceLimit extends React.Component {
     }
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      prevProps.isEdit &&
+      !this.props.isEdit &&
+      isEqual(prevProps.defaultValue, prevState.defaultValue)
+    ) {
+      this.setState({
+        ...ResourceLimit.getValue(this.props),
+        defaultValue: this.props.defaultProps,
+      })
+    }
+  }
+
   static getDerivedStateFromProps(props, state) {
     if (!isEqual(props.defaultValue, state.defaultValue)) {
       return {
@@ -69,8 +81,9 @@ export default class ResourceLimit extends React.Component {
   }
 
   static getValue(props) {
-    const cpuUnit = props.cpuProps.unit || 'Core'
-    const memoryUnit = props.memoryProps.unit || 'Mi'
+    const cpuUnit = get(props, 'cpuProps.unit', 'Core')
+    const memoryUnit = get(props, 'memoryProps.unit', 'Mi')
+
     return {
       requests: {
         cpu: cpuFormat(

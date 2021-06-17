@@ -17,14 +17,12 @@
  */
 
 import React from 'react'
-import { get, isEmpty } from 'lodash'
-import { generateId, parseDockerImage } from 'utils'
+import { generateId } from 'utils'
 
 import { PATTERN_NAME } from 'utils/constants'
 
 import {
   Form,
-  Tag,
   Alert,
   Input,
   Select,
@@ -34,108 +32,29 @@ import {
 import { ResourceLimit } from 'components/Inputs'
 import ToggleView from 'components/ToggleView'
 
-import ImageInput from './ImageInput'
-
+import Base from 'components/Forms/Workload/ContainerSettings/ContainerForm/ContainerSetting'
 import styles from './index.scss'
 
-export default class ContainerSetting extends React.Component {
+export default class ContainerSetting extends Base {
   get defaultResourceLimit() {
-    const { limitRange = {} } = this.props
+    const { limitRanges = {} } = this.props
 
-    if (!limitRange.defaultRequest && !limitRange.default) {
+    if (!limitRanges.limits && !limitRanges.requests) {
       return undefined
     }
 
     return {
-      requests: limitRange.defaultRequest || {},
-      limits: limitRange.default || {},
+      requests: limitRanges.requests || {},
+      limits: limitRanges.limits || {},
     }
-  }
-
-  get containerTypes() {
-    return [
-      { label: t('Worker Container'), value: 'worker' },
-      { label: t('Init Container'), value: 'init' },
-    ]
-  }
-
-  get imageRegistries() {
-    const { imageRegistries = [] } = this.props
-    return imageRegistries.map(item => {
-      const auths = get(item, 'data[".dockerconfigjson"].auths', {})
-      const url = Object.keys(auths)[0] || ''
-      const username = get(auths[url], 'username')
-      const cluster = item.isFedManaged
-        ? get(item, 'clusters[0].name')
-        : item.cluster
-
-      return {
-        url,
-        username,
-        label: item.name,
-        value: item.name,
-        cluster,
-      }
-    })
-  }
-
-  limitError = ''
-
-  getFormTemplate(data, imageRegistries) {
-    if (data && data.image && !data.pullSecret) {
-      const { registry } = parseDockerImage(data.image)
-      if (registry) {
-        const reg = imageRegistries.find(({ url }) => url.endsWith(registry))
-        if (reg) {
-          data.pullSecret = reg.value
-        }
-      }
-    }
-    return data
-  }
-
-  valueRenderer = option => (
-    <Tag
-      className={styles.type}
-      type={option.value === 'init' ? 'warning' : 'default'}
-    >
-      {option.label}
-    </Tag>
-  )
-
-  renderImageForm = () => {
-    const { data, namespace } = this.props
-    const imageRegistries = this.imageRegistries
-    const formTemplate = this.getFormTemplate(data, imageRegistries)
-
-    return (
-      <ImageInput
-        className={styles.imageSearch}
-        name="image"
-        namespace={namespace}
-        formTemplate={formTemplate}
-        imageRegistries={imageRegistries}
-      />
-    )
-  }
-
-  handleError = err => {
-    this.limitError = err
-  }
-
-  limitValidator = (rule, value, callback) => {
-    if (this.limitError !== '') {
-      callback({ message: '' })
-    }
-    callback()
   }
 
   renderAdvancedSettings() {
-    const { defaultContainerType, onContainerTypeChange } = this.props
+    const { defaultContainerType, onContainerTypeChange, isEdit } = this.props
     const defaultResourceLimit = this.defaultResourceLimit
 
     return (
-      <ToggleView defaultShow={isEmpty(defaultResourceLimit)}>
+      <ToggleView defaultShow>
         <>
           <Columns className={styles.columns}>
             <Column>
@@ -181,25 +100,11 @@ export default class ContainerSetting extends React.Component {
               name="resources"
               defaultValue={defaultResourceLimit}
               onError={this.handleError}
+              isEdit={isEdit}
             />
           </Form.Item>
         </>
       </ToggleView>
-    )
-  }
-
-  render() {
-    const { className } = this.props
-    return (
-      <Form.Group
-        className={className}
-        label={t('Container Settings')}
-        desc={t('Please set the container name and computing resources.')}
-        noWrapper
-      >
-        {this.renderImageForm()}
-        {this.renderAdvancedSettings()}
-      </Form.Group>
     )
   }
 }

@@ -24,7 +24,6 @@ import { Form } from '@kube-design/components'
 
 import ClustersMapper from 'components/Forms/Workload/ClusterDiffSettings/ClustersMapper'
 import ContainersMapper from 'components/Forms/Workload/ClusterDiffSettings/ContainersMapper'
-import ContainerImage from 'components/Forms/Workload/ClusterDiffSettings/ContainerImage'
 import ContainerPorts from 'components/Forms/Workload/ClusterDiffSettings/ContainerPorts'
 import Environments from 'components/Forms/Workload/ClusterDiffSettings/Environments'
 import VolumesMapper from 'components/Forms/Workload/ClusterDiffSettings/VolumesMapper'
@@ -32,6 +31,7 @@ import VolumeTemplate from 'components/Forms/Workload/ClusterDiffSettings/Volume
 import ContainersMapperWithService from 'components/Forms/Workload/ClusterDiffSettings/ContainersMapperWithService'
 import ContainerPortsWithService from 'components/Forms/Workload/ClusterDiffSettings/ContainerPortsWithService'
 import ClusterSelect from 'components/Forms/Route/RouteRules/RuleForm/ClusterSelect'
+import ContainerImage from '../ContainerImage'
 
 export default class AdvancedSettings extends React.Component {
   get namespace() {
@@ -135,7 +135,9 @@ export default class AdvancedSettings extends React.Component {
                     {...props}
                     {...formProps}
                   >
-                    {containerProps => <ContainerImage {...containerProps} />}
+                    {containerProps => (
+                      <ContainerImage isEdit={isEdit} {...containerProps} />
+                    )}
                   </ContainersMapper>
                 )}
               </ClustersMapper>
