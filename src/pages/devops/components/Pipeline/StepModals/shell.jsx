@@ -53,7 +53,7 @@ export default class Shell extends React.Component {
   }
 
   handleChange = value => {
-    this.newValue = value || `""`
+    this.newValue = value
   }
 
   handleOk = () => {
@@ -62,7 +62,7 @@ export default class Shell extends React.Component {
       arguments: [
         {
           key: 'script',
-          value: { isLiteral: true, value: this.newValue },
+          value: { isLiteral: true, value: this.newValue || '' },
         },
       ],
     })
