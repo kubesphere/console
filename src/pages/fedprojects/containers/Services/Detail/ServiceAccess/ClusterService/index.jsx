@@ -25,6 +25,7 @@ import { Panel, Text } from 'components/Base'
 import ClusterTitle from 'components/Clusters/ClusterTitle'
 import MoreActions from 'components/MoreActions'
 
+import { get } from 'lodash'
 import Ports from '../../Ports'
 
 import styles from './index.scss'
@@ -36,6 +37,15 @@ export default class ClusterService extends Component {
 
   get cluster() {
     return this.props.cluster.name
+  }
+
+  get isStateless() {
+    return (
+      get(
+        this.props.store.detail,
+        'annotations["kubesphere.io/serviceType"]'
+      ) === 'statelessservice'
+    )
   }
 
   componentDidMount() {
@@ -54,7 +64,7 @@ export default class ClusterService extends Component {
   ]
 
   getEnabledOperations = () => {
-    const operations = this.getOperations()
+    const operations = this.isStateless ? this.getOperations() : []
     return operations.filter(
       item => !item.action || this.props.enabledActions.includes(item.action)
     )

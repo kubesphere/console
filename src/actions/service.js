@@ -151,7 +151,6 @@ export default {
       const modal = Modal.open({
         onOk: newObject => {
           const { name, namespace, template, overrides } = detail
-          const _overrides = []
           const data = {}
           let override = overrides.find(od => od.clusterName === cluster)
           if (!override) {
@@ -159,12 +158,12 @@ export default {
               clusterName: cluster,
               clusterOverrides: [],
             }
+            overrides.push(override)
           }
 
           const keys = ['metadata.annotations', 'spec.type', 'spec.ports']
           override.clusterOverrides = getOverrides(template, newObject, keys)
-          _overrides.push(override)
-          set(data, 'spec.overrides', _overrides)
+          set(data, 'spec.overrides', overrides)
 
           store.patch({ name, namespace }, data).then(() => {
             Modal.close(modal)
