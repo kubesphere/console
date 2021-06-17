@@ -18,7 +18,8 @@
 
 import React from 'react'
 
-import { Button, Input, Select } from '@kube-design/components'
+import { Button, Select } from '@kube-design/components'
+import { NumberInput } from 'components/Inputs'
 import { QUOTAS_MAP } from 'utils/constants'
 
 import {
@@ -44,7 +45,7 @@ export default class QuotaItem extends React.Component {
             : true)
       )
       .map(key => ({
-        label: t(key),
+        label: key === 'volumes' ? t('Number of volumes') : t(key),
         value: key,
       }))
   }
@@ -70,12 +71,13 @@ export default class QuotaItem extends React.Component {
           options={this.options}
           onChange={this.handleModuleChange}
         />
-        <Input
+        <NumberInput
           className="margin-l12"
           value={value}
           placeholder={t(
             'You can limit the number of resources. Blank means no limit.'
           )}
+          integer
           onChange={onChange}
         />
         <Button
