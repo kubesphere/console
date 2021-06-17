@@ -110,14 +110,14 @@ export default class ArrayInput extends React.Component {
 
   renderItems() {
     const { value, children, id } = this.props
-    if (id === "metadata.annotations['kubesphere.io/project-roles']") {
+    if (id.includes("metadata.annotations['kubesphere.io/")) {
       return value.map((item, index) => (
         <Form.Item
           key={index}
           rules={[{ validator: this.rolesValidator, checkOnSubmit: true }]}
         >
           <Item
-            name={`metadata.annotations['kubesphere.io/project-roles'][${index}]`}
+            name={`${id}[${index}]`}
             index={index}
             value={item || this.getDefaultValue()}
             arrayValue={value}
