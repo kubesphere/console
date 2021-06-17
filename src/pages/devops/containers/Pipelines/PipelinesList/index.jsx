@@ -62,7 +62,6 @@ export default class PipelinesList extends React.Component {
 
   componentDidUpdate() {
     if (this.refreshTimer === null && this.isRuning) {
-      clearInterval(this.refreshTimer)
       this.refreshTimer = setInterval(() => this.refreshHandler(), 4000)
     }
   }
