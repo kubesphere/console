@@ -110,7 +110,7 @@ export default class ArrayInput extends React.Component {
 
   renderItems() {
     const { value, children, id } = this.props
-    if (id.includes("metadata.annotations['kubesphere.io/")) {
+    if (id && id.includes("metadata.annotations['kubesphere.io/")) {
       return value.map((item, index) => (
         <Form.Item
           key={index}
