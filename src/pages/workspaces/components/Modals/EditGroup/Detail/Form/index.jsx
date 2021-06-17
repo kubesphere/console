@@ -216,9 +216,7 @@ export default class GroupForm extends React.Component {
             />
           </Form.Item>
           <Form.Group label={t('Bind Project Role')}>
-            <Form.Item
-              rules={[{ validator: this.rolesValidator, checkOnSubmit: true }]}
-            >
+            <Form.Item>
               <ArrayInput
                 name="metadata.annotations['kubesphere.io/project-roles']"
                 itemType="object"
