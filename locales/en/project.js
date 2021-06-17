@@ -124,6 +124,7 @@ module.exports = {
   Terminating: 'Terminating',
   Usage: 'Usage',
   Volume: 'Volume',
+  'Number of volumes': 'Number of volumes',
   'You can limit the number of resources. Blank means no limit.':
     'You can limit the number of resources. Blank means no limit.',
 
