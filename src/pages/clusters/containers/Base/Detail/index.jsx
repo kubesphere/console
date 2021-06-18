@@ -24,10 +24,11 @@ import { Component as Base } from 'core/containers/Base/Detail'
 @inject('rootStore')
 export default class DetailPage extends Base {
   get enabledActions() {
-    const { cluster } = this.props.match.params
+    const { cluster, namespace: project } = this.props.match.params
     return globals.app.getActions({
       module: this.authKey,
       cluster,
+      project,
     })
   }
 }
