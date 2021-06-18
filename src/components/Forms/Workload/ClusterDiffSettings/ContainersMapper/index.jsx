@@ -47,12 +47,11 @@ export default class ContainersMapper extends Component {
     const clusterOverrides = []
     Object.keys(data).forEach(key => {
       const path = `${prefix}.${key}`
-      if (get(formTemplate, `spec.template.${path}`) !== data[key]) {
-        clusterOverrides.push({
-          path: `/${path.replace(/\./g, '/')}`,
-          value: data[key],
-        })
-      }
+
+      clusterOverrides.push({
+        path: `/${path.replace(/\./g, '/')}`,
+        value: data[key],
+      })
     })
 
     const overrides = get(formTemplate, 'spec.overrides', [])
