@@ -23,7 +23,7 @@ import { groovyToJS } from 'utils/devops'
 import style from './index.scss'
 
 const getValue = arg => {
-  if (get(arg, 'value.value')) {
+  if (get(arg, 'value.value') !== undefined) {
     return typeof arg.value.value === 'string'
       ? arg.value.value
       : JSON.stringify(arg.value.value)
