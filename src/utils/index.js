@@ -517,6 +517,26 @@ export const withDryRun = async requests => {
 export const isAppsPage = (path = location.pathname) =>
   path === '/apps' || path.startsWith('/apps/app-')
 
+export const isMemberClusterPage = (path = location.pathname, message) => {
+  const clusterName = get(
+    /\/clusters\/?([-0-9a-z]*)\/?/.exec(path),
+    '1',
+    'host'
+  )
+  const rules = ['token used before issued', 'signature is invalid']
+  const lowerMessage = message.toLowerCase()
+
+  let isTokenOut = true
+
+  rules.forEach(item => {
+    if (lowerMessage.indexOf(item) > -1) {
+      isTokenOut = false
+    }
+  })
+
+  return clusterName !== 'host' && !isTokenOut
+}
+
 export const getClusterUrl = url => {
   let requestURL = url
 
