@@ -20,7 +20,7 @@ import React, { Suspense } from 'react'
 import ReactDOM from 'react-dom'
 import { LocaleProvider, Loading, Notify } from '@kube-design/components'
 
-import { isAppsPage } from 'utils'
+import { isAppsPage, isMemberClusterPage } from 'utils'
 import request from 'utils/request'
 
 import App from './App'
@@ -34,7 +34,7 @@ window.onunhandledrejection = function(e) {
   if (e && (e.status === 'Failure' || e.status >= 400)) {
     if (e.status === 401 || e.reason === 'Unauthorized') {
       // session timeout handler, except app store page.
-      if (!isAppsPage()) {
+      if (!isAppsPage() && !isMemberClusterPage(location.pathname, e.message)) {
         /* eslint-disable no-alert */
         location.href = `/login?referer=${location.pathname}`
         window.alert(
@@ -42,6 +42,8 @@ window.onunhandledrejection = function(e) {
             'Session timeout or this account is logged in elsewhere, please login again'
           )
         )
+      } else {
+        Notify.error({ title: e.reason, content: t(e.message), duration: 6000 })
       }
     } else if (globals.config.enableErrorNotify && (e.reason || e.message)) {
       Notify.error({ title: e.reason, content: t(e.message), duration: 6000 })
