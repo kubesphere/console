@@ -88,6 +88,7 @@ module.exports = {
   'Rule Templates': 'Rule Templates',
   'Custom Rule': 'Custom Rule',
   'Rule Expression': 'Rule Expression',
+  'Invalid time': 'Tiempo inválido',
 
   'Please input the rule expression': 'Please input the rule expression',
 
