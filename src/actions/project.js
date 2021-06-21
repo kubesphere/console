@@ -27,6 +27,7 @@ import GatewaySettingModal from 'projects/components/Modals/GatewaySetting'
 import FORM_TEMPLATES from 'utils/form.templates'
 
 import QuotaStore from 'stores/quota'
+import UserStore from 'stores/user'
 
 export default {
   'project.create': {
@@ -168,13 +169,29 @@ export default {
   },
   'project.assignworkspace': {
     on({ store, detail, success, ...props }) {
+      const userStore = new UserStore()
       const modal = Modal.open({
-        onOk: data => {
-          store.patch(detail, data).then(() => {
-            Modal.close(modal)
-            Notify.success({ content: `${t('Updated Successfully')}` })
-            success && success()
+        onOk: async data => {
+          await store.patch(detail, data)
+
+          const { cluster, name } = detail
+          const username = get(
+            data,
+            'metadata.annotations["kubesphere.io/creator"]'
+          )
+          const workspace = get(
+            data,
+            'metadata.labels["kubesphere.io/workspace"]'
+          )
+          await userStore.create([{ username, roleRef: 'admin' }], {
+            cluster,
+            workspace,
+            namespace: name,
           })
+
+          Modal.close(modal)
+          Notify.success({ content: `${t('Updated Successfully')}` })
+          success && success()
         },
         modal: AssignWorkspaceModal,
         store,
