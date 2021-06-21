@@ -30,7 +30,12 @@ import { NumberInput } from 'components/Inputs'
 import styles from './index.scss'
 
 const getStrategy = (props = {}) =>
-  get(props.data, `${STRATEGIES_PREFIX[props.module]}.type`)
+  get(
+    props.data,
+    `${props.isFederated && props.isEdit ? 'spec.template.' : ''}${
+      STRATEGIES_PREFIX[props.module]
+    }.type`
+  )
 
 @observer
 export default class UpdateStrategyForm extends React.Component {
@@ -38,11 +43,15 @@ export default class UpdateStrategyForm extends React.Component {
     module: PropTypes.string,
     data: PropTypes.object,
     onChange: PropTypes.func,
+    isFederated: PropTypes.bool,
+    isEdit: PropTypes.bool,
   }
 
   static defaultProps = {
     module: '',
     data: {},
+    isFederated: false,
+    isEdit: false,
     onChange() {},
   }
 
@@ -62,7 +71,10 @@ export default class UpdateStrategyForm extends React.Component {
   }
 
   get rollingUpdatePrefix() {
-    return `${STRATEGIES_PREFIX[this.props.module]}.rollingUpdate`
+    const { isFederated, isEdit } = this.props
+    return `${isFederated && isEdit ? 'spec.template.' : ''}${
+      STRATEGIES_PREFIX[this.props.module]
+    }.rollingUpdate`
   }
 
   get strategyOptions() {

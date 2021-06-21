@@ -60,7 +60,8 @@ export default class ContainerSetting extends React.Component {
   }
 
   get imageRegistries() {
-    return this.props.imageRegistries.map(item => {
+    const { imageRegistries = [] } = this.props
+    return imageRegistries.map(item => {
       const auths = get(item, 'data[".dockerconfigjson"].auths', {})
       const url = Object.keys(auths)[0] || ''
       const username = get(auths[url], 'username')
@@ -77,6 +78,8 @@ export default class ContainerSetting extends React.Component {
       }
     })
   }
+
+  limitError = ''
 
   getFormTemplate(data, imageRegistries) {
     if (data && data.image && !data.pullSecret) {
@@ -116,9 +119,21 @@ export default class ContainerSetting extends React.Component {
     )
   }
 
+  handleError = err => {
+    this.limitError = err
+  }
+
+  limitValidator = (rule, value, callback) => {
+    if (this.limitError !== '') {
+      callback({ message: '' })
+    }
+    callback()
+  }
+
   renderAdvancedSettings() {
     const { defaultContainerType, onContainerTypeChange } = this.props
     const defaultResourceLimit = this.defaultResourceLimit
+
     return (
       <ToggleView defaultShow={isEmpty(defaultResourceLimit)}>
         <>
@@ -159,10 +174,13 @@ export default class ContainerSetting extends React.Component {
             type="warning"
             message={t('CONTAINER_RESOURCE_LIMIT_TIP')}
           />
-          <Form.Item>
+          <Form.Item
+            rules={[{ validator: this.limitValidator, checkOnSubmit: true }]}
+          >
             <ResourceLimit
               name="resources"
               defaultValue={defaultResourceLimit}
+              onError={this.handleError}
             />
           </Form.Item>
         </>

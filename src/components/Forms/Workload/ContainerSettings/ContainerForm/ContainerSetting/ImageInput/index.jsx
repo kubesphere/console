@@ -92,6 +92,7 @@ export default class ImageSearch extends Component {
     const image = get(formTemplate, 'image', '')
 
     if (this.image && image === this.image) {
+      this.image = undefined
       return
     }
 
@@ -149,7 +150,7 @@ export default class ImageSearch extends Component {
 
     if (!isEmpty(ports)) {
       set(this.props.formTemplate, 'ports', ports)
-      this.context.forceUpdate()
+      this.context.forceUpdate && this.context.forceUpdate()
     }
   }
 

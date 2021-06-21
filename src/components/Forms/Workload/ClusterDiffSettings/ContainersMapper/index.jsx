@@ -40,19 +40,18 @@ export default class ContainersMapper extends Component {
   }
 
   handleEdit = ({ index, containerType, data }) => {
-    const { cluster, withService, formTemplate } = this.props
+    const { cluster, withService, formTemplate, onChange } = this.props
     const prefix = `spec.template.spec.${
       containerType === 'init' ? 'init_containers' : 'containers'
     }.${index}`
     const clusterOverrides = []
     Object.keys(data).forEach(key => {
       const path = `${prefix}.${key}`
-      if (get(formTemplate, `spec.template.${path}`) !== data[key]) {
-        clusterOverrides.push({
-          path: `/${path.replace(/\./g, '/')}`,
-          value: data[key],
-        })
-      }
+
+      clusterOverrides.push({
+        path: `/${path.replace(/\./g, '/')}`,
+        value: data[key],
+      })
     })
 
     const overrides = get(formTemplate, 'spec.overrides', [])
@@ -73,6 +72,7 @@ export default class ContainersMapper extends Component {
     }
 
     this.setState({ editContainer: '' })
+    onChange && onChange()
   }
 
   updateService = data => {

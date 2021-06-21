@@ -32,12 +32,13 @@ export default class ContainerImages extends Component {
   }
 
   handleSubmit = () => {
-    const { onOk } = this.props
+    const { onOk, onChange } = this.props
     const form = this.formRef.current
 
     form &&
       form.validate(() => {
         onOk(form.getData())
+        onChange && onChange()
       })
   }
 

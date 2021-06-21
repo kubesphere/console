@@ -29,20 +29,21 @@ export default class PodTemplate extends Base {
   handleContainer = data => {
     const { formProps } = this.props
     Base.prototype.handleContainer.call(this, data)
-
     formProps.onChange()
   }
 
   render() {
-    const { formRef, formProps } = this.props
+    const { formRef, formProps, isFederated, isEdit } = this.props
     const { showContainer, selectContainer } = this.state
 
     if (showContainer) {
       return this.renderContainerForm(selectContainer)
     }
 
+    const data =
+      isFederated && isEdit ? this.fedFormTemplate : this.formTemplate
     return (
-      <Form data={this.formTemplate} ref={formRef} {...formProps}>
+      <Form data={data} ref={formRef} {...formProps}>
         {this.renderContainerList()}
       </Form>
     )

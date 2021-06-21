@@ -21,7 +21,6 @@ import { get, set, unset } from 'lodash'
 import { MODULE_KIND_MAP } from 'utils/constants'
 import { Form } from '@kube-design/components'
 import { TypeSelect } from 'components/Base'
-
 import FormTemplate from './FormTemplate'
 import SnapshotForm from './SnapshotForm'
 
@@ -64,7 +63,7 @@ export default class VolumeSettings extends React.Component {
     fromSnapshot: !!get(this.formTemplate, 'spec.dataSource.name'),
   }
 
-  handeChange = fromSnapshot => {
+  handleChange = fromSnapshot => {
     if (fromSnapshot !== this.state.fromSnapshot) {
       unset(this.fedFormTemplate, 'spec.storageClassName')
       set(this.fedFormTemplate, 'spec.accessModes', [])
@@ -85,7 +84,7 @@ export default class VolumeSettings extends React.Component {
             <TypeSelect
               value={fromSnapshot}
               options={CREATE_TYPE_OPTIONS}
-              onChange={this.handeChange}
+              onChange={this.handleChange}
             />
           </Form.Item>
         )}

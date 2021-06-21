@@ -172,7 +172,7 @@ export default {
           })
         },
         modal: EditGatewayModal,
-        detail: get(resources, `${cluster}._originData`),
+        detail: get(resources, `${cluster}`),
         store,
         ...props,
       })

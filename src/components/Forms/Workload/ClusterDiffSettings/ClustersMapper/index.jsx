@@ -59,7 +59,11 @@ export default class ClustersMapper extends Component {
             >
               <div className={styles.title}>
                 <Icon
-                  name={CLUSTER_PROVIDER_ICON[clusterDetail.provider]}
+                  name={
+                    CLUSTER_PROVIDER_ICON[
+                      clusterDetail.provider || 'kubesphere'
+                    ]
+                  }
                   type="light"
                   size={20}
                 />

@@ -260,6 +260,7 @@ export const MODULE_KIND_MAP = {
   pipelines: 'Pipelines',
   ippools: 'IPPool',
   groups: 'Group',
+  volumes: 'Volumes',
 }
 
 export const QUOTAS_MAP = {
@@ -943,6 +944,7 @@ export const CLUSTER_PROVIDER_ICON = {
   'Google Kubernetes Engine': 'google-plus',
   'QingCloud Kubernetes Engine': 'qingcloud',
   'Tencent Kubernetes Engine': 'kubernetes',
+  kubesphere: 'kubernetes',
 }
 
 export const CLUSTER_PROVIDERS = [

@@ -493,6 +493,7 @@ export default class ContainerSetting extends React.Component {
           leftQuota={this.state.leftQuota}
           projectDetail={this.props.projectDetail}
           replicas={this.state.replicas}
+          isEdit={this.props.isEdit}
         />
       </Form.Item>
     )

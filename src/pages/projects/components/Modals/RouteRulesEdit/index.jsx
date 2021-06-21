@@ -69,9 +69,7 @@ class RouteRulesEdit extends React.Component {
   componentDidUpdate(prevProps) {
     if (toJS(this.props.detail._originData) !== prevProps.detail._originData) {
       this.setState({
-        formTemplate: this.getFormTemplateI(
-          toJS(this.props.detail._originData)
-        ),
+        formTemplate: this.getFormTemplate(toJS(this.props.detail._originData)),
       })
     }
   }
