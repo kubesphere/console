@@ -17,7 +17,7 @@
  */
 
 import { action, observable, computed, toJS } from 'mobx'
-import { get, set, unset, isObject, isEmpty, isArray } from 'lodash'
+import { get, set, unset, isObject, isEmpty, isArray, cloneDeep } from 'lodash'
 import { Notify } from '@kube-design/components'
 
 import CredentialStore from 'stores/devops/credential'
@@ -194,7 +194,7 @@ export default class Store extends BaseStore {
 
   @action
   setEdittingData(data) {
-    this.edittingData = data
+    this.edittingData = cloneDeep(data)
   }
 
   isPassWordCredentials(type) {
