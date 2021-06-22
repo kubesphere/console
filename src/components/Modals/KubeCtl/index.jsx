@@ -28,7 +28,7 @@ import fullScreen from 'components/Modals/FullscreenModal'
 import TerminalStore from 'stores/terminal'
 import ClusterStore from 'stores/cluster'
 import { CLUSTER_PROVIDER_ICON } from 'utils/constants'
-
+import { observable } from 'mobx'
 import styles from './index.scss'
 
 @fullScreen
@@ -43,6 +43,9 @@ export default class KubeCtlModal extends React.Component {
   clusterStore = new ClusterStore()
 
   terminalRef = React.createRef()
+
+  @observable
+  url = ''
 
   componentDidMount() {
     this.fetchData()
@@ -62,44 +65,37 @@ export default class KubeCtlModal extends React.Component {
 
   async fetchData() {
     if (!globals.app.isMultiCluster) {
-      return this.store.fetchKubeCtl({
-        clusterVersion: get(globals, 'ksConfig.ksVersion'),
-      })
+      this.getKubeWebUrl()
+      return
     }
 
-    if (!this.props.cluster) {
+    let cluster = this.props.cluster
+
+    if (!cluster) {
       await this.clusterStore.fetchListByK8s()
-      const cluster = get(this.clusters, '[0].value')
-      const clusterVersion = get(this.clusters, '[0].version')
-      this.setState({ cluster, clusterVersion }, () => {
-        this.store.fetchKubeCtl({ cluster, clusterVersion })
+      cluster = get(this.clusters, '[0].value')
+      this.setState({ cluster }, () => {
+        this.getKubeWebUrl(cluster)
       })
     } else {
-      const { cluster, clusterVersion } = this.props
-      let version = clusterVersion
-      if (!version) {
-        const clusterDetail = await this.clusterStore.fetchDetail({
-          name: cluster,
-        })
-        version = get(clusterDetail, 'configz.ksVersion')
-      }
-      this.store.fetchKubeCtl({ cluster, clusterVersion: version })
+      this.getKubeWebUrl(cluster)
     }
   }
 
   handleClusterChange = cluster => {
-    const clusterObj = this.clusters.find(item => item.value === cluster)
-
-    if (clusterObj) {
-      this.setState({ cluster }, () => {
-        this.store.fetchKubeCtl({ cluster, clusterVersion: clusterObj.version })
-      })
-    }
+    this.setState({ cluster }, () => {
+      this.getKubeWebUrl(cluster)
+    })
   }
 
   onTipsToggle = () => {
     const { current } = this.terminalRef
     current && current.resizeTerminal()
+  }
+
+  getKubeWebUrl = async cluster => {
+    await this.store.fetchKubeCtl({ cluster })
+    this.url = await this.store.kubeWebsocketUrl()
   }
 
   render() {
@@ -137,7 +133,7 @@ export default class KubeCtlModal extends React.Component {
       <div className={classnames(styles.pane, styles.terminal)}>
         <ContainerTerminal
           isLoading={this.store.kubectl.isLoading}
-          url={this.store.kubeWebsocketUrl}
+          url={this.url}
           ref={this.terminalRef}
         />
       </div>
