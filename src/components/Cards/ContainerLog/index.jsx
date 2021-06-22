@@ -68,13 +68,7 @@ export default class ContainerLog extends React.Component {
   }
 
   async getData(params, callback) {
-    const {
-      cluster,
-      namespace,
-      podName,
-      containerName,
-      previous = false,
-    } = this.props
+    const { cluster, namespace, podName, containerName } = this.props
 
     this.store.stopWatchLogs()
 
@@ -83,18 +77,6 @@ export default class ContainerLog extends React.Component {
       namespace,
       name: podName,
     })
-
-    let showPrevious = false
-    if (previous) {
-      showPrevious = await this.store.checkPreviousLog({
-        cluster,
-        namespace,
-        podName,
-        container: containerName,
-        tailLines: 10,
-        previous: true,
-      })
-    }
 
     if (result.exist) {
       this.store.watchLogs(
@@ -106,7 +88,6 @@ export default class ContainerLog extends React.Component {
           tailLines: this.tailLines,
           timestamps: true,
           follow: this.state.isRealtime,
-          previous: showPrevious,
           ...params,
         },
         callback
