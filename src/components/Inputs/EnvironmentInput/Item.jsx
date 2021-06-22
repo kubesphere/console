@@ -117,7 +117,9 @@ export default class EnvironmentInputItem extends React.Component {
   valueRenderer = option => (
     <p>
       {option.label}
-      <span style={{ color: '#abb4be' }}> ({t(option.type)})</span>
+      <span style={{ color: '#abb4be' }}>
+        ({isEmpty(option.type) ? t('Select resource') : t(option.type)})
+      </span>
     </p>
   )
 
@@ -145,15 +147,12 @@ export default class EnvironmentInputItem extends React.Component {
     const { value = {}, onChange } = this.props
 
     if (value.valueFrom) {
-      const { resourceType, resourceName, resourceKey } = this.parseValue(
-        value.valueFrom
-      )
+      const { resourceType, resourceName } = this.parseValue(value.valueFrom)
       const formatValue = {
         name: value.name,
         resource: `${
           resourceType === 'configMapKeyRef' ? 'configmap' : 'secret'
         }-${resourceName}`,
-        resourceKey,
       }
 
       return (
