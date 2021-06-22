@@ -83,11 +83,11 @@ const isValidReferer = path =>
  * @param path  koa ctx.path
  */
 const isAppsRoute = path => {
-  return path === '/apps' || /\/apps\/?(app-([-0-9a-z]*)\/?)?$/.exec(path)
+  return path === '/apps' || /^\/apps\/?(app-([-0-9a-z]*)\/?)?$/.exec(path)
 }
 
 /**
- * 
+ *
     encrypt algorithm:
     1. read salt from template variable.
     2. base64 encode raw password, and use it as str to encrypt.
