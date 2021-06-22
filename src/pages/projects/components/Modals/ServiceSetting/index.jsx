@@ -56,7 +56,7 @@ export default class ServiceSettingModal extends React.Component {
   componentDidUpdate(prevProps) {
     const { detail } = this.props
 
-    if (detail !== prevProps.detail) {
+    if (detail._originData !== prevProps.detail._originData) {
       this.setState({
         formTemplate: detail,
       })

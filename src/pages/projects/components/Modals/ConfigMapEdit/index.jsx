@@ -23,6 +23,7 @@ import { Modal } from 'components/Base'
 import Confirm from 'components/Forms/Base/Confirm'
 import ConfigMapSettings from 'components/Forms/ConfigMap/ConfigMapSettings'
 
+import { toJS } from 'mobx'
 import styles from './index.scss'
 
 export default class ConfigMapEditModal extends React.Component {
@@ -64,8 +65,8 @@ export default class ConfigMapEditModal extends React.Component {
 
   componentDidUpdate(prevProps) {
     const { detail, visible } = this.props
-    if (detail && detail !== prevProps.detail) {
-      this.setState({ formTemplate: detail })
+    if (detail._originData !== prevProps.detail._originData) {
+      this.setState({ formTemplate: toJS(detail._originData) })
     }
 
     if (visible && visible !== prevProps.visible) {
