@@ -166,9 +166,11 @@ module.exports = {
   APPS_CREATE_DESC:
     'KubeSphere provides lifecycle management of app templates. You can upload or create new app templates and test them quickly. In addition, you can publish your app templates to the App Store so that other users can deploy them.',
 
-  APP_NAME_DESC: 'Important Identification of Applications',
+  APP_NAME_DESC:
+    'Important Identification of Applications.The maximum length is 20 characters.',
 
-  APP_ABSTRACTION_DESC: 'A general introduction to applications',
+  APP_ABSTRACTION_DESC:
+    'A general introduction to applications.The maximum length is 120 characters.',
 
   APP_DETAIL_DESC: 'Very helpful when searching applications',
 
