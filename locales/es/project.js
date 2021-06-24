@@ -125,6 +125,7 @@ module.exports = {
   Terminating: 'Terminando',
   Usage: 'Uso',
   Volume: 'Volumen',
+  'Number of volumes': 'Numero de volúmenes',
   'You can limit the number of resources. Blank means no limit.':
     'Puedes limitar la cantidad de recursos. En blanco significa que no hay límite.',
   PROJECTS_DESC:
