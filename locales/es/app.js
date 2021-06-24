@@ -170,9 +170,11 @@ module.exports = {
   APPS_CREATE_DESC:
     'KubeSphere proporciona la gestión del ciclo de vida de las plantillas de aplicaciones. Puedes subir o crear nuevas plantillas de aplicación y probarlas rápidamente. Además, puedes publicar tus plantillas de aplicación en la Tienda de Aplicaciones para que otros usuarios puedan obtenerlas e implementarlas.',
 
-  APP_NAME_DESC: 'Identificación importante de Aplicaciones',
+  APP_NAME_DESC:
+    'Identificación importante de Aplicaciones.La longitud máxima de carácteres se establece en 20.',
 
-  APP_ABSTRACTION_DESC: 'Una introducción general a aplicaciones',
+  APP_ABSTRACTION_DESC:
+    'Una introducción general a aplicaciones.La longitud máxima de carácteres se establece en 120.',
 
   APP_DETAIL_DESC: 'Muy útil cuando se buscan aplicaciones',
 
