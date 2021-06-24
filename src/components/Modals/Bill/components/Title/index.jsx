@@ -1,10 +1,33 @@
 import React from 'react'
-import { Select } from '@kube-design/components'
+import { Select, Icon } from '@kube-design/components'
 import styles from './index.scss'
 
 const Title = ({ type, cluster, clusters, setCluster }) => {
   const handleChangeCluster = value => {
     setCluster(value)
+  }
+
+  const renderDisabledTip = () => {
+    return (
+      <Icon
+        name="update"
+        color={{
+          primary: '#ffc781',
+          secondary: '#f5a623',
+        }}
+      />
+    )
+  }
+
+  const optionRender = ({ label, disabled }) => {
+    return (
+      <span style={{ display: 'flex', alignItem: 'center' }}>
+        {label}
+        <span style={{ marginLeft: '10px' }}>
+          {disabled ? renderDisabledTip() : null}
+        </span>
+      </span>
+    )
   }
 
   return (
@@ -16,6 +39,7 @@ const Title = ({ type, cluster, clusters, setCluster }) => {
         <Select
           className={styles.clusterSelect}
           options={clusters}
+          optionRenderer={optionRender}
           value={cluster}
           onChange={handleChangeCluster}
         />

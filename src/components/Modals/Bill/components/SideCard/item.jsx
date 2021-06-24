@@ -17,7 +17,7 @@
  */
 import React from 'react'
 
-import { Icon, Checkbox, Tag } from '@kube-design/components'
+import { Icon, Checkbox, Tag, Tooltip } from '@kube-design/components'
 import classnames from 'classnames'
 import { Text, Indicator } from 'components/Base'
 
@@ -139,6 +139,23 @@ export default function Card({
     )
   }
 
+  const renderDisabledTip = () => {
+    return (
+      <Tooltip
+        content={t('CLUSTER_UPGRADE_REQUIRED', { version: ' v3.1.0' })}
+        placement="topRight"
+      >
+        <Icon
+          name="update"
+          color={{
+            primary: '#ffc781',
+            secondary: '#f5a623',
+          }}
+        />
+      </Tooltip>
+    )
+  }
+
   return (
     <div
       className={classnames(styles.billCard, {
@@ -160,11 +177,12 @@ export default function Card({
           <Text title={name} description={desc} />
         </div>
         {renderCluster(name)}
-        {disabled ? (
-          <div className={styles.unMeter}>{t('INVALID_METERING')}</div>
-        ) : null}
       </div>
-      {renderArrow()}
+      {disabled ? (
+        <div className={styles.unMeter}>{renderDisabledTip()}</div>
+      ) : (
+        renderArrow()
+      )}
     </div>
   )
 }

@@ -370,7 +370,16 @@ export default class MeterStore extends base {
         module: filter.module,
         ...resource,
       })
-      params = { ...params, ...handleLevelParams({ module: filter.module }) }
+
+      const workspacePath =
+        resource.workspaces && resource.namespaces
+          ? { workspaces: resource.workspaces }
+          : {}
+      params = {
+        ...params,
+        ...workspacePath,
+        ...handleLevelParams({ module: filter.module }),
+      }
     } else {
       url = this.getApi({
         module: filter.module,
