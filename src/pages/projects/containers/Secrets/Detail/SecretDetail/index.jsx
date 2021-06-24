@@ -152,7 +152,7 @@ export default class SecretDetail extends React.Component {
     return (
       <Button
         type="flat"
-        icon={showSecret ? 'eye-closed' : 'eye'}
+        icon={showSecret ? 'eye' : 'eye-closed'}
         onClick={this.changeSecretState}
       />
     )
