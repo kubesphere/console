@@ -26,6 +26,8 @@ import { Card } from 'components/Base'
 
 import styles from './index.scss'
 
+const HIDE_RULE = ['password', 'secret']
+
 export default class ContainerItem extends React.Component {
   static propTypes = {
     className: PropTypes.string,
@@ -54,6 +56,17 @@ export default class ContainerItem extends React.Component {
     }
 
     return null
+  }
+
+  handleHideValue = name => {
+    const _name = name.toLowerCase()
+    let isHide = false
+    HIDE_RULE.forEach(item => {
+      if (_name.includes(item)) {
+        isHide = true
+      }
+    })
+    return isHide
   }
 
   handleExpand = () => {
@@ -93,12 +106,16 @@ export default class ContainerItem extends React.Component {
         }}
       >
         <ul className={styles.variables}>
-          {variables.map(({ name, value }) => (
-            <li key={name}>
-              <div className={styles.name}>{name}</div>
-              <div>{value}</div>
-            </li>
-          ))}
+          {variables.map(({ name, value }) => {
+            const isHider = this.handleHideValue(name)
+            const _value = isHider ? '******' : value
+            return (
+              <li key={name}>
+                <div className={styles.name}>{name}</div>
+                <div>{_value}</div>
+              </li>
+            )
+          })}
         </ul>
       </div>
     )
