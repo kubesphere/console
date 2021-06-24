@@ -132,7 +132,7 @@ export default class CreateModal extends React.Component {
         visible={visible}
       >
         <Form.Item
-          label={t('Role Identifier')}
+          label={t('Name')}
           desc={t('NAME_DESC')}
           tip={isWorkspaceRole ? t('WORKSPACE_ROLE_NAME_TIP') : null}
           rules={[
@@ -146,13 +146,13 @@ export default class CreateModal extends React.Component {
         >
           <Input name="metadata.name" maxLength={63} />
         </Form.Item>
-        <Form.Item label={t(`${t('Role Name')}`)} desc={t('ALIAS_DESC')}>
+        <Form.Item label={t('Alias')} desc={t('ALIAS_DESC')}>
           <Input
             name="metadata.annotations['kubesphere.io/alias-name']"
             maxLength={63}
           />
         </Form.Item>
-        <Form.Item label={t('Description')} desc={t('DESCRIPTION_DESC')}>
+        <Form.Item label={t('description')} desc={t('DESCRIPTION_DESC')}>
           <TextArea
             name="metadata.annotations['kubesphere.io/description']"
             maxLength={256}
