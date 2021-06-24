@@ -175,7 +175,11 @@ export default class ServiceDetail extends React.Component {
       externalIP = detail.externalIPs.join('\r\n')
     }
 
-    const serviceType = get(detail, 'annotations["kubesphere.io/serviceType"]')
+    const serviceType = get(
+      detail,
+      'annotations["kubesphere.io/serviceType"]',
+      ''
+    )
 
     return [
       {

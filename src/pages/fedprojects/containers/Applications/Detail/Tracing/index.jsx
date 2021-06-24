@@ -29,6 +29,8 @@ import EmptyList from 'components/Cards/EmptyList'
 import TracingCard from 'projects/components/Cards/Tracing'
 import TracingDetail from 'projects/components/Modals/TracingDetail'
 import ClusterSelect from 'fedprojects/components/ClusterSelect'
+import TimeSelector from 'components/Cards/Monitoring/Controller/TimeSelector'
+import { getTimeRange } from 'stores/monitoring/base'
 
 import ServiceStore from 'stores/service'
 
@@ -59,7 +61,6 @@ export default class Tracing extends React.Component {
       selectItem: {},
       serviceName: '',
       query: {
-        lookback: '1h',
         limit: 5,
       },
       defaultService: query.service,
@@ -76,18 +77,6 @@ export default class Tracing extends React.Component {
       { label: t('Last {num} records', { num: 10 }), value: 10 },
       { label: t('Last {num} records', { num: 20 }), value: 20 },
       { label: t('Last {num} records', { num: 50 }), value: 50 },
-    ]
-  }
-
-  get lookbackOptions() {
-    return [
-      { label: t('Last {hour} hour', { hour: 1 }), value: '1h' },
-      { label: t('Last {hour} hours', { hour: 2 }), value: '2h' },
-      { label: t('Last {hour} hours', { hour: 3 }), value: '3h' },
-      { label: t('Last {hour} hours', { hour: 6 }), value: '6h' },
-      { label: t('Last {hour} hours', { hour: 12 }), value: '12h' },
-      { label: t('Last {hour} hours', { hour: 24 }), value: '24h' },
-      { label: t('Last {day} days', { day: 2 }), value: '2d' },
     ]
   }
 
@@ -157,7 +146,7 @@ export default class Tracing extends React.Component {
   }
 
   handleServiceChange = service => {
-    this.setState({ serviceName: service.name }, () => {
+    this.setState({ serviceName: service }, () => {
       this.fetchTracing()
     })
   }
@@ -166,10 +155,14 @@ export default class Tracing extends React.Component {
     this.fetchTracing()
   }
 
-  handleLookbackChange = value => {
+  handleLookbackChange = ({ step, times, ...rest }) => {
+    const { start, end } = getTimeRange({ step, times })
+    const _start = (rest.start || start) * 1000
+    const _end = (rest.end || end) * 1000
+
     this.setState(
       ({ query }) => ({
-        query: { ...query, lookback: value },
+        query: { ...query, start: _start, end: _end },
       }),
       () => this.fetchTracing()
     )
@@ -201,10 +194,13 @@ export default class Tracing extends React.Component {
           onChange={this.handleServiceChange}
           valueRenderer={this.serviceRenderer}
         />
-        <Select
-          value={query.lookback}
-          options={this.lookbackOptions}
+
+        <TimeSelector
+          className={styles.timeSelect}
+          dark
           onChange={this.handleLookbackChange}
+          showStep={false}
+          arrowIcon="chevron-down"
         />
         <Select
           value={query.limit}
