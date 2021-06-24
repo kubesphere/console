@@ -23,7 +23,7 @@ import classnames from 'classnames'
 import { Button } from '@kube-design/components'
 import { Modal } from 'components/Base'
 import ToggleView from 'apps/components/ToggleView'
-import { getDocsUrl } from 'utils'
+import { OPENPITRIX_LINKS } from 'configs/openpitrix/app'
 
 import styles from './index.scss'
 
@@ -68,7 +68,7 @@ export default class AppCreate extends Component {
             <div className={styles.note}>
               💁‍♂️ {t('APP_CREATE_GUIDE')}
               <a
-                href={getDocsUrl('helm_specification')}
+                href={OPENPITRIX_LINKS.helm_developer_guide}
                 target="_blank"
                 rel="noreferrer noopener"
               >
