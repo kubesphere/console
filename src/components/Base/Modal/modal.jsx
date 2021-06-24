@@ -86,7 +86,7 @@ export default class Modal extends React.Component {
     hideHeader: false,
     hideFooter: false,
     closable: true,
-    maskClosable: true,
+    maskClosable: false,
     fullScreen: false,
     rightScreen: false,
     isSubmitting: false,
