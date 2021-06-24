@@ -36,7 +36,7 @@ module.exports = {
   USER_AVATAR_TIP: '头像尺寸必须小于 120px X 120px，支持 png，jpg 格式。',
   EMAIL_DESC: '邮箱可作为登录帐户',
   USER_NAME_DESC:
-    '最长 32 个字符，只能包含小写字母、数字及分隔符("-")，且必须以小写字母或数字开头及结尾',
+    '最长 32 个字符，只能包含小写字母、数字、点及隔符("-")，且必须以小写字母或数字开头及结尾',
   USER_SETTING_EMAIL_DESC: '邮箱可作为登录帐户',
   PASSWORD_DESC: '密码必须包含数字和大小写字母，长度为 6~64 位',
   ROLE_DESC:

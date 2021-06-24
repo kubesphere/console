@@ -68,7 +68,7 @@ module.exports = {
   USER_PENDING: 'Pendiente',
   USER_DISABLED: 'Deshabilitado',
   USER_NAME_DESC:
-    'Solo puede contener letras minúsculas, números y guiones ("-"), y debe comenzar con una letra minúscula y terminar con un número o letra minúscula. La longitud máxima de carácteres se establece en 63.',
+    'Solo puede contener letras minúsculas, números ,puntos y guiones ("-"), y debe comenzar con una letra minúscula y terminar con un número o letra minúscula. La longitud máxima de carácteres se establece en 32.',
   EMAIL_DESC: 'El correo electrónico se utiliza para iniciar sesión.',
   USER_SETTING_EMAIL_DESC:
     'El correo electrónico se utiliza para iniciar sesión.',

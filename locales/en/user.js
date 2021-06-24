@@ -68,7 +68,7 @@ module.exports = {
   USER_PENDING: 'Pending',
   USER_DISABLED: 'Disabled',
   USER_NAME_DESC:
-    'The value can contain only lowercase letters, numbers, and hyphens (-) and must begin and end with a lowercase letter or number. The maximum length is 63 characters.',
+    'The value can contain only lowercase letters, numbers, dots and hyphens (-) and must begin and end with a lowercase letter or number. The maximum length is 32 characters.',
   EMAIL_DESC: 'The email address can be used to log in to the system.',
   USER_SETTING_EMAIL_DESC:
     'The email address can be used to log in to the system.',
