@@ -46,7 +46,7 @@ jobs:
 
     - name: Build image
       if: github.event_name == 'push'
-      run: docker build . --file Dockerfile --tag $IMAGE_NAME
+      run: docker build  --pull --file Dockerfile --tag $IMAGE_NAME  . 
 
     - name: Docker login
       if: github.event_name == 'push'
