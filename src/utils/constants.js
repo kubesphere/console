@@ -365,7 +365,7 @@ export const REPO_KEY_MAP = {
 export const PIPELINE_PARAMS_TYPES = {
   string: 'PARAMS_STRING',
   text: 'PARAMS_TEXT',
-  boolean: 'PRARMS_BOOLEAN',
+  boolean: 'PARAMS_BOOLEAN',
   choice: 'PARAMS_CHOICE',
   password: 'PARAMS_PASSWORD',
 }
