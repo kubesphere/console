@@ -236,7 +236,6 @@ export default class ApplicationStore extends Base {
 
     const params = {
       limit: 5,
-      lookback: '2d',
       ...rest,
     }
 
