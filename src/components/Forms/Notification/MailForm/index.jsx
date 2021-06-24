@@ -23,7 +23,7 @@ import { Form, Button, Input, Alert, Checkbox } from '@kube-design/components'
 import { ToggleField } from 'components/Base'
 import { UrlInput } from 'components/Inputs'
 
-import { PATTERN_HOST } from 'utils/constants'
+import { PATTERN_HOST, PATTERN_PORT } from 'utils/constants'
 
 import Item from './Item'
 
@@ -99,10 +99,11 @@ export default class MailForm extends Component {
                 hostName="config.spec.email.smartHost.host"
                 hostRules={[
                   { required: true, message: t('Please enter the address') },
-                  {
-                    pattern: PATTERN_HOST,
-                    message: t('Invalid address'),
-                  },
+                  { pattern: PATTERN_HOST, message: t('Invalid address') },
+                ]}
+                portRules={[
+                  { required: true, message: t('Please input port') },
+                  { pattern: PATTERN_PORT, message: t('Invalid port') },
                 ]}
                 defaultPort={25}
               />
