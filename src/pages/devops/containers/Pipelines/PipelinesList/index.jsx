@@ -307,8 +307,9 @@ export default class PipelinesList extends React.Component {
         const url = `/${this.workspace}/clusters/${this.cluster}/devops/${
           this.devops
         }/pipelines/${encodeURIComponent(record.name)}${
-          record.numberOfFailingBranches !== undefined ? '/activity' : ''
+          !isEmpty(record.scmSource) ? '/activity' : ''
         }`
+
         return <Avatar to={this.isRuning ? null : url} title={name} />
       },
     },
