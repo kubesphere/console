@@ -188,6 +188,16 @@ export default class WorkloadDeleteModal extends React.Component {
     }))
   }
 
+  handleSelectAll = () => {
+    const { relatedResources, selectedRelatedResourceIds } = this.state
+
+    if (isEmpty(selectedRelatedResourceIds)) {
+      this.setState({
+        selectedRelatedResourceIds: relatedResources.map(item => item.uid),
+      })
+    }
+  }
+
   renderContent() {
     const {
       isLoading,
@@ -208,6 +218,16 @@ export default class WorkloadDeleteModal extends React.Component {
 
     return (
       <div className={styles.resources}>
+        {!isEmpty(relatedResources) && (
+          <div className={styles.resource}>
+            <Checkbox
+              checked={!isEmpty(selectedRelatedResourceIds)}
+              onClick={this.handleSelectAll}
+              indeterminate={!isEmpty(selectedRelatedResourceIds)}
+            />
+            <span className={styles.resourceName}>{t('Select All')}</span>
+          </div>
+        )}
         {relatedResources.map(resource => (
           <div
             key={resource.uid}
