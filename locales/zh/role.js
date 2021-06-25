@@ -73,7 +73,6 @@ module.exports = {
   ROLE_USER_GROUPS_TIP:
     '当前角色已被分配给 <strong>{count}</strong> 个部门，请先移除授权部门或更改角色后再删除。',
   'Depend on': '依赖于',
-
   'Clusters Management': '集群管理',
   CLUSTERS_MANAGEMENT_DESC: '创建删除集群，管理所有集群下的资源',
   'Clusters View': '集群查看',
