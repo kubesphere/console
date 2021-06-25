@@ -234,6 +234,15 @@ export default {
             namespace,
           })
 
+          set(data, 'metadata.ownerReferences', [
+            {
+              apiVersion: 'v1',
+              kind: 'Service',
+              name: detail.name,
+              uid: detail.uid,
+            },
+          ])
+
           if (!result.exist) {
             await serviceMonitorStore.create(data, { cluster, namespace })
           } else if (isEmpty(get(data, 'spec.endpoints'))) {

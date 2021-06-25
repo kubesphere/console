@@ -75,12 +75,13 @@ export default class ServiceDetail extends React.Component {
   }
 
   fetchServiceMonitors = () => {
-    const { selector, cluster, namespace } = this.store.detail
-    if (!isEmpty(selector)) {
+    const { cluster, namespace, labels } = this.store.detail
+
+    if (!isEmpty(labels)) {
       this.serviceMonitorStore.fetchListByK8s({
         cluster,
         namespace,
-        labelSelector: joinSelector(selector),
+        labelSelector: joinSelector(labels),
       })
     }
   }
