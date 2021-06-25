@@ -111,7 +111,7 @@ export default class ResourceStatus extends React.Component {
 
   renderServiceMonitors() {
     const store = this.props.serviceMonitorStore
-    const { cluster, namespace, selector } = this.store.detail
+    const { cluster, namespace, selector, name } = this.store.detail
 
     if (isEmpty(selector)) {
       return null
@@ -119,9 +119,9 @@ export default class ResourceStatus extends React.Component {
 
     return (
       <ServiceMonitors
-        selector={selector}
         cluster={cluster}
         namespace={namespace}
+        service={name}
         store={store}
       />
     )
