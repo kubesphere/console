@@ -68,13 +68,6 @@ export default class ContainerTerminalModal extends React.Component {
     const params = this.props.match.params
     const { cluster, namespace, podName, containerName } = params
 
-    const { cluster: _cluster, clusterVersion } = await this.getClusterVersion({
-      cluster,
-    })
-
-    this.store.kubectl.cluster = _cluster
-    this.store.kubectl.clusterVersion = clusterVersion
-
     await this.podStore.fetchDetail({
       cluster,
       namespace,
@@ -89,7 +82,7 @@ export default class ContainerTerminalModal extends React.Component {
       this.container = container
     }
 
-    this.url = this.store.kubeWebsocketUrl
+    this.url = await this.store.kubeWebsocketUrl()
   }
 
   get clusters() {
@@ -102,33 +95,6 @@ export default class ContainerTerminalModal extends React.Component {
         version: get(item, 'configz.ksVersion'),
         description: item.provider,
       }))
-  }
-
-  async getClusterVersion({ cluster }) {
-    let clusterVersion = ''
-    if (!globals.app.isMultiCluster) {
-      clusterVersion = get(globals, 'ksConfig.ksVersion')
-      return { cluster, clusterVersion }
-    }
-
-    await this.clusterStore.fetchListByK8s()
-
-    if (!cluster) {
-      cluster = get(this.clusters, '[0].value')
-      clusterVersion = get(this.clusters, '[0].version')
-    } else {
-      const _cluster = this.clusters.find(item => item.value === cluster)
-      let version = _cluster.version
-
-      if (!version) {
-        const clusterDetail = await this.clusterStore.fetchDetail({
-          name: _cluster.value,
-        })
-        version = get(clusterDetail, 'configz.ksVersion')
-      }
-      clusterVersion = version
-    }
-    return { clusterVersion, cluster }
   }
 
   handleContainerChange = container => {
