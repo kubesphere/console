@@ -21,6 +21,7 @@ import React from 'react'
 import { Button, Select } from '@kube-design/components'
 import { NumberInput } from 'components/Inputs'
 import { QUOTAS_MAP } from 'utils/constants'
+import { debounce } from 'lodash'
 
 import {
   RESERVED_MODULES,
@@ -30,6 +31,10 @@ import {
 import styles from './index.scss'
 
 export default class QuotaItem extends React.Component {
+  state = {
+    module: this.props.module,
+  }
+
   get options() {
     const { filterModules = [], module } = this.props
     const filteredModules = [
@@ -50,26 +55,38 @@ export default class QuotaItem extends React.Component {
       }))
   }
 
-  handleModuleChange = newModule => {
-    const { module, onModuleChange } = this.props
-    onModuleChange(newModule, module)
+  handleDebounceModuleChange = debounce((newModule, index) => {
+    const { onModuleChange } = this.props
+    onModuleChange(newModule, index)
+  }, 400)
+
+  handleModuleChange = (newModule, index) => {
+    this.setState(
+      {
+        module: newModule,
+      },
+      () => {
+        this.handleDebounceModuleChange(newModule, index)
+      }
+    )
   }
 
-  handleModuleDelete = () => {
-    const { module, onModuleDelete } = this.props
-    onModuleDelete(module)
+  handleModuleDelete = index => {
+    const { onModuleDelete } = this.props
+    onModuleDelete(index)
   }
 
   render() {
-    const { value, module, onChange, disableSelect } = this.props
+    const { value, onChange, disableSelect, index } = this.props
 
     return (
       <div className={styles.item}>
         <Select
-          value={module}
           disabled={disableSelect}
           options={this.options}
-          onChange={this.handleModuleChange}
+          onChange={moduleValue => this.handleModuleChange(moduleValue, index)}
+          value={this.state.module}
+          searchable
         />
         <NumberInput
           className="margin-l12"
@@ -84,7 +101,7 @@ export default class QuotaItem extends React.Component {
           type="flat"
           icon="trash"
           className="margin-l12"
-          onClick={this.handleModuleDelete}
+          onClick={() => this.handleModuleDelete(index)}
           disabled={disableSelect}
         />
       </div>
