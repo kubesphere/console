@@ -18,7 +18,7 @@
 
 import React from 'react'
 import { observer } from 'mobx-react'
-import { isEmpty, get, set, cloneDeep } from 'lodash'
+import { isEmpty, get, set, cloneDeep, flatten } from 'lodash'
 
 import { Notify } from '@kube-design/components'
 import { Banner, Panel } from 'components/Base'
@@ -29,7 +29,6 @@ import ReceiverStore from 'stores/notification/receiver'
 import SecretStore from 'stores/notification/secret'
 import UserStore from 'stores/user'
 
-import { safeParseJSON } from 'utils'
 import { safeBtoa } from 'utils/base64'
 import FORM_TEMPLATES from 'utils/form.templates'
 
@@ -95,18 +94,25 @@ export default class Mail extends React.Component {
         }),
         this.secretStore.fetchList({ name: SECRET_NAME }),
       ])
-      const receiverMail = safeParseJSON(
-        get(
-          receivers[0],
-          'metadata.annotations["kubesphere.io/receiver-mail"]',
-          []
-        )
-      )
+
+      let receiverMail = get(receivers[0], 'spec.email.to', [])
+      if (!isEmpty(receiverMail)) {
+        const reqs = []
+        receiverMail.forEach(email => {
+          reqs.push(this.userStore.fetchList({ email }))
+        })
+        const result = await Promise.all(reqs)
+        receiverMail = receiverMail.map(email => {
+          const data = flatten(result).find(v => v.email === email)
+          return !isEmpty(data) ? data : { email }
+        })
+      }
       set(
         receivers[0],
         'metadata.annotations["kubesphere.io/receiver-mail"]',
         receiverMail
       )
+
       this.formData = {
         config: set(this.configFormTemplate, 'spec', config.spec),
         receiver: receivers[0],
