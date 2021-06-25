@@ -52,12 +52,13 @@ export default class ServiceMonitors extends React.Component {
   }
 
   getData = () => {
-    const { selector, cluster, namespace } = this.props
-    if (!isEmpty(selector)) {
+    const { cluster, namespace, service } = this.props
+
+    if (!isEmpty(service)) {
       this.store.fetchListByK8s({
         cluster,
         namespace,
-        labelSelector: joinSelector(selector),
+        labelSelector: joinSelector({ app: service }),
       })
     }
   }
