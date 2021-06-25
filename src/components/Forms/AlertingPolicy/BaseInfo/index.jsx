@@ -93,6 +93,14 @@ export default class BaseInfo extends React.Component {
       })
   }
 
+  timeValidator = (rule, value, callback) => {
+    const time = /^[0-9]*$/
+    if (!time.test(value.slice(0, -1))) {
+      return callback({ message: t('Invalid time') })
+    }
+    callback()
+  }
+
   render() {
     const { isEdit, formRef, formTemplate } = this.props
     const rules = isEdit
@@ -134,6 +142,7 @@ export default class BaseInfo extends React.Component {
             <Form.Item
               label={`${t('Alerting Duration')}(${t('Minutes')})`}
               desc={t('ALERTING_DURATION')}
+              rules={[{ validator: this.timeValidator }]}
             >
               <UnitWrapper name="duration" unit="m">
                 <Select options={this.durationOptions} searchable />

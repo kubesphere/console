@@ -82,7 +82,11 @@ export const getBaseRuleConfig = ({ condition = {}, thresholds = {} } = {}) => [
   },
 ]
 
-export const BASE_RULE_CONFIG = getBaseRuleConfig()
+export const BASE_RULE_CONFIG = getBaseRuleConfig({
+  thresholds: {
+    min: 0,
+  },
+})
 
 export const PERCENT_RULE_CONFIG = getBaseRuleConfig({
   thresholds: {

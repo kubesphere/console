@@ -16,34 +16,11 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { observable, action, computed } from 'mobx'
+import { observable, action } from 'mobx'
 import { get, assign } from 'lodash'
-import { compareVersion } from 'utils'
 
 export default class TerminalStore {
   username = get(globals, 'user.username', '')
-
-  @computed
-  get kubeWebsocketUrl() {
-    const {
-      cluster,
-      clusterVersion,
-      namespace,
-      pod,
-      container,
-      shell = 'sh',
-    } = this.kubectl
-
-    if (compareVersion(clusterVersion, 'v3.1.0') < 0) {
-      return `kapis/terminal.kubesphere.io/v1alpha2${this.getClusterPath({
-        cluster,
-      })}/namespaces/${namespace}/pods/${pod}?container=${container}&shell=${shell}`
-    }
-
-    return `kapis/terminal.kubesphere.io/v1alpha2${this.getClusterPath({
-      cluster,
-    })}/namespaces/${namespace}/pods/${pod}/exec?container=${container}&shell=${shell}`
-  }
 
   @observable
   kubectl = {
@@ -69,8 +46,34 @@ export default class TerminalStore {
     return cluster ? `/klusters/${cluster}` : ''
   }
 
+  async kubeWebsocketUrl() {
+    const { cluster, namespace, pod, container, shell = 'sh' } = this.kubectl
+    const result = await request.get(
+      `kapis/terminal.kubesphere.io/v1alpha2${this.getClusterPath({
+        cluster,
+      })}/namespaces/${namespace}/pods/${pod}/exec?container=${container}&shell=${shell}`,
+      null,
+      null,
+      err => {
+        if (err.status === 404) {
+          return false
+        }
+        return true
+      }
+    )
+    if (!result) {
+      return `kapis/terminal.kubesphere.io/v1alpha2${this.getClusterPath({
+        cluster,
+      })}/namespaces/${namespace}/pods/${pod}?container=${container}&shell=${shell}`
+    }
+
+    return `kapis/terminal.kubesphere.io/v1alpha2${this.getClusterPath({
+      cluster,
+    })}/namespaces/${namespace}/pods/${pod}/exec?container=${container}&shell=${shell}`
+  }
+
   @action
-  async fetchKubeCtl({ cluster, clusterVersion }) {
+  async fetchKubeCtl({ cluster }) {
     this.kubectl.isLoading = true
     const result = await request.get(
       `kapis/resources.kubesphere.io/v1alpha2${this.getClusterPath({
@@ -83,7 +86,6 @@ export default class TerminalStore {
 
     this.kubectl = {
       cluster,
-      clusterVersion,
       ...result,
       isLoading: false,
     }

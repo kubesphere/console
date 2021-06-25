@@ -36,7 +36,6 @@ module.exports = {
   Cluster: '集群',
   Member: '成員',
 
-  'Role Identifier': '角色識別碼',
   'Edit Authorization': '編輯權限',
   WORKSPACE_ROLE_NAME_TIP: '請設置一個唯一識別碼作為角色名稱。',
 
@@ -70,8 +69,9 @@ module.exports = {
     '目前角色有 <strong>{count}</strong> 名授權用戶，請先移除授權用戶或更改角色後再刪除。',
   ROLE_USER_TIP:
     '目前角色有 <strong>{count}</strong> 名授權用戶，請先移除授權用戶或更改角色後再刪除。',
+  ROLE_USER_GROUPS_TIP:
+    '當前角色已被分配給 <strong>{count}</strong> 个部門，請先移除授權部門或更改角色後再刪除。',
   'Depend on': '依賴於',
-
   'Clusters Management': '集群管理',
   CLUSTERS_MANAGEMENT_DESC: '創建刪除集群，管理所有集群下的資源',
   'Clusters View': '集群查看',

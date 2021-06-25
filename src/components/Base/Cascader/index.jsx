@@ -64,7 +64,14 @@ export default class Cascader extends Component {
     const style = {}
     if (this.ref && this.ref.current) {
       const triggerStyle = this.ref.current.getBoundingClientRect()
-      style.top = triggerStyle.top + triggerStyle.height + 8
+      if (
+        window.innerHeight - triggerStyle.top >
+        252 + 8 + triggerStyle.height
+      ) {
+        style.top = triggerStyle.top + triggerStyle.height + 8
+      } else {
+        style.top = triggerStyle.top - 8 - 252
+      }
       style.left = triggerStyle.left
     }
     return style

@@ -20,6 +20,7 @@ import React from 'react'
 import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 import { Form, Input, TextArea } from '@kube-design/components'
+import { PATTERN_APPTEMPLATE_VERSION } from 'utils/constants'
 
 import styles from './index.scss'
 
@@ -48,6 +49,10 @@ export default class VersionEdit extends React.Component {
           label={t('Version Number')}
           rules={[
             { required: true, message: t('Please input version number') },
+            {
+              pattern: PATTERN_APPTEMPLATE_VERSION,
+              message: t('Invalid version'),
+            },
           ]}
         >
           <Input

@@ -97,9 +97,7 @@ module.exports = {
   'Projects Management': 'Project Management',
   'Projects View': 'Project Viewing',
   Role: 'Role',
-  'Role Identifier': 'Name',
   'Role Management': 'Role Management',
-  'Role Name': 'Alias',
   'Role name exists': 'The role name already exists.',
   'Role Type': 'Role Type',
   Roles: 'Roles',
@@ -150,6 +148,8 @@ module.exports = {
     'The role is bound to <strong>{count}</strong> users. Please unbind the users first.',
   ROLE_USER_TIP:
     'The role is bound to <strong>{count}</strong> user. Please unbind the user first.',
+  ROLE_USER_GROUPS_TIP:
+    'The role is bound to <strong>{count}</strong> department. Please unbind the department first.',
 
   RULE_WORKSPACES: 'Workspaces',
   RULE_KUBECTL: 'Kubectl',

@@ -1087,7 +1087,7 @@ export default class ClusterDetails extends React.Component {
           className={styles.emptyCard}
           icon={ICON_TYPES[this.active.type]}
           title={t('No Data')}
-          desc={t('RESOURCE_NOT_FOUND')}
+          desc={t('NO_METER_DATA')}
         />
       </div>
     )

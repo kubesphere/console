@@ -51,7 +51,7 @@ export default [
     path: `${PATH}/tracing`,
     title: 'Tracing',
     component: Tracing,
-    clusterModule: ['servicemesh', 'logging'],
+    clusterModule: 'servicemesh',
     exact: true,
   },
   getIndexRoute({ path: PATH, to: `${PATH}/components`, exact: true }),

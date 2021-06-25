@@ -40,6 +40,8 @@ module.exports = {
   CLUSTER_NODE_CONSUMPTION_DESC:
     'Resource consumption of <strong>nodes</strong>, including CPU, memory, and storage.',
   'Workspace Consumption': 'Workspace (Project) Resource Consumption',
+  CLUSTER_POD_CONSUMPTION_DESC:
+    'Resource consumption of <strong>Pods</strong> in a node, such as CPU and memory.',
   WORKSPACE_CONSUMPTION_DESC:
     'View metering and billing information of workspace resources.',
   WORKSPACE_RESOURCE_CONSUMPTION_DESC:
@@ -75,4 +77,6 @@ module.exports = {
   METER_RESOURCE_DESC: 'Consumption in the last hour.',
   'No cluster with metering module enabled': 'No cluster has Metering enabled.',
   INVALID_METERING: 'invalid metering',
+  NO_METER_DATA:
+    'Newly created resource, you need to wait an hour before you can view the data',
 }

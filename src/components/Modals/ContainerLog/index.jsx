@@ -27,7 +27,7 @@ import styles from './index.scss'
 
 export default class ContainerLogModal extends React.Component {
   renderContent() {
-    const { namespace, name, restartCount } = this.props.container
+    const { namespace, name } = this.props.container
     const { cluster, podName } = this.props
 
     if (!get(this.props, 'container.containerID')) {
@@ -46,7 +46,6 @@ export default class ContainerLogModal extends React.Component {
         podName={podName}
         cluster={cluster}
         containerName={name}
-        previous={restartCount > 0}
       />
     )
   }

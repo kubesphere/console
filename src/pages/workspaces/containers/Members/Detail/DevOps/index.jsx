@@ -103,7 +103,9 @@ export default class MemberDevOpsProjects extends React.Component {
   }
 
   render() {
-    const { data, isLoading } = toJS(this.devopsStore.list)
+    const { data, isLoading, page, limit, total } = toJS(this.devopsStore.list)
+    const pagination = { page, limit, total }
+
     return (
       <Card title={t('DevOps Projects')}>
         <Table
@@ -113,6 +115,7 @@ export default class MemberDevOpsProjects extends React.Component {
           isLoading={isLoading}
           onFetch={this.getData}
           {...this.clusterProps}
+          pagination={pagination}
           name="DevOps"
           hideSearch
           hideCustom

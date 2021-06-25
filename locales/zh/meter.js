@@ -34,11 +34,13 @@ module.exports = {
   'Cluster Consumption': '集群资源消费情况',
 
   CLUSTER_CONSUMPTION_DESC:
-    '集群资源消费情况以集群为维度统计集群，节点，项目的CPU、内存、存储等资源消费情况',
+    '集群资源消费情况以集群为维度统计集群，节点的CPU、内存、存储等资源消费情况',
   CLUSTER_RESOURCE_CONSUMPTION_DESC:
     '<strong>集群</strong> 的CPU、内存、存储等资源消费情况',
   CLUSTER_NODE_CONSUMPTION_DESC:
     '集群中 <strong>节点</strong> 的CPU、内存、存储等资源消费情况',
+  CLUSTER_POD_CONSUMPTION_DESC:
+    '节点中 <strong>容器组</strong> 的CPU、内存等资源消费情况',
   'Workspace Consumption': '企业空间（项目）资源消费情况',
   WORKSPACE_CONSUMPTION_DESC:
     '企业空间(项目)资源消费情况以企业空间为维度统计企业空间和项目的CPU、内存、存储等资源消费情况',
@@ -76,4 +78,5 @@ module.exports = {
   'No cluster with metering module enabled': '暂无启用计量模块的集群',
 
   INVALID_METERING: '未开启消费统计',
+  NO_METER_DATA: '新创建的资源，需要等待一小时后才能查看数据',
 }
