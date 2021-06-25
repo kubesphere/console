@@ -89,7 +89,7 @@ jobs:
           password: ${{ secrets.QING_PASSWORD }}
           port: 22
           script: |
-            kubectl -n kubesphere-system get deploy ks-console --export -o yaml | sed "s/kubespheredev\/ks-console:latest/kubespheredev\/${{ env.IMAGE_NAME }}/g" | sed "s/app:\ ks-console/app:\ ${{ env.SERVICE_NAME }}/g" | sed "0,/name:\ ks-console/{s/name:\ ks-console/name:\ ${{ env.SERVICE_NAME }}/}" | kubectl apply -n kubesphere-system -f -
+            kubectl -n kubesphere-system get deploy ks-console -o yaml | kubectl neat | sed "s/kubespheredev\/ks-console:latest/kubespheredev\/${{ env.IMAGE_NAME }}/g" | sed "s/app:\ ks-console/app:\ ${{ env.SERVICE_NAME }}/g" | sed "0,/name:\ ks-console/{s/name:\ ks-console/name:\ ${{ env.SERVICE_NAME }}/}" | kubectl apply -n kubesphere-system -f -
 
             kubectl -n kubesphere-system rollout restart deploy ${{ env.SERVICE_NAME }}
             kubectl -n kubesphere-system expose deploy ${{ env.SERVICE_NAME }} --type=NodePort --port=80 --target-port=8000
