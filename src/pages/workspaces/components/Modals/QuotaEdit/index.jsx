@@ -75,6 +75,7 @@ export default class QuotaEditModal extends React.Component {
     await this.store.fetchDetail({
       name: detail.name,
       workspace: detail.name,
+      cluster: detail.cluster,
     })
 
     this.setState({
