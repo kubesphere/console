@@ -30,7 +30,7 @@ import TracingCard from 'projects/components/Cards/Tracing'
 import TracingDetail from 'projects/components/Modals/TracingDetail'
 import ClusterSelect from 'fedprojects/components/ClusterSelect'
 import TimeSelector from 'components/Cards/Monitoring/Controller/TimeSelector'
-import { getTimeRange } from 'stores/monitoring/base'
+import { getTimeRange, getMinuteValue } from 'stores/monitoring/base'
 
 import ServiceStore from 'stores/service'
 
@@ -55,6 +55,11 @@ export default class Tracing extends React.Component {
       clusters[0] ||
       {}
 
+    const { start, end } = getTimeRange({
+      step: getMinuteValue('5m'),
+      times: 60,
+    })
+
     this.state = {
       cluster: selectCluster,
       showDetailModal: false,
@@ -62,6 +67,8 @@ export default class Tracing extends React.Component {
       serviceName: '',
       query: {
         limit: 5,
+        start: start * 1000,
+        end: end * 1000,
       },
       defaultService: query.service,
     }
@@ -156,7 +163,7 @@ export default class Tracing extends React.Component {
   }
 
   handleLookbackChange = ({ step, times, ...rest }) => {
-    const { start, end } = getTimeRange({ step, times })
+    const { start, end } = getTimeRange({ step: getMinuteValue(step), times })
     const _start = (rest.start || start) * 1000
     const _end = (rest.end || end) * 1000
 

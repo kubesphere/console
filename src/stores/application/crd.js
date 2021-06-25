@@ -240,10 +240,11 @@ export default class ApplicationStore extends Base {
     }
 
     const currentTime = new Date().getTime()
-    params.start =
-      params.start ||
-      `${currentTime - TIME_MICROSECOND_MAP[params.lookback]}000`
-    params.end = params.end || `${currentTime}000`
+
+    params.start = `${params.start ||
+      `${currentTime - TIME_MICROSECOND_MAP[params.lookback]}`}000`
+
+    params.end = `${params.end || `${currentTime}`}000`
 
     try {
       const result = await request.get(
