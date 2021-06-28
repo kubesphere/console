@@ -41,7 +41,7 @@ export default class AppCreate extends Component {
   }
 
   render() {
-    const { visible, ...rest } = this.props
+    const { visible, onOk, ...rest } = this.props
 
     return (
       <Modal
@@ -49,7 +49,6 @@ export default class AppCreate extends Component {
         bodyClassName={styles.body}
         visible={visible}
         hideHeader
-        hideFooter
         {...rest}
       >
         <div className={classnames(styles.header, 'clearfix')}>
@@ -62,7 +61,7 @@ export default class AppCreate extends Component {
             <div className={styles.description}>
               {t('UPLOAD_HELM_DESCRIPTION')}
             </div>
-            <Button type={'control'} onClick={this.props.onOk}>
+            <Button type={'control'} onClick={onOk}>
               {t('START_UPLOAD')}
             </Button>
             <div className={styles.note}>
