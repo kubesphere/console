@@ -21,6 +21,7 @@ import { get, set } from 'lodash'
 import classnames from 'classnames'
 import { Alert, Form, Input, Loading, Select } from '@kube-design/components'
 import { getDisplayName, getDocsUrl } from 'utils'
+import { PATTERN_USER_NAME } from 'utils/constants'
 import SecretStore from 'stores/secret'
 import BuilderStore from 'stores/s2i/builder'
 import S2IEnviroment from 'components/Inputs/S2iEnviroment'
@@ -310,7 +311,15 @@ export default class S2IForm extends React.Component {
             <Form.Item
               label={t('imageName')}
               desc={t('S2I_IMAGENAME_DESC')}
-              rules={[{ required: true, message: t('This param is required') }]}
+              rules={[
+                { required: true, message: t('This param is required') },
+                {
+                  pattern: PATTERN_USER_NAME,
+                  message: t('Invalid name', {
+                    message: t('S2I_IMAGENAME_DESC'),
+                  }),
+                },
+              ]}
             >
               <Input name={`${this.prefix}spec.config.imageName`} />
             </Form.Item>

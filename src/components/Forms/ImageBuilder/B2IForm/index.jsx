@@ -26,6 +26,7 @@ import BuilderStore from 'stores/s2i/builder'
 import S2IEnviroment from 'components/Inputs/S2iEnviroment'
 import TemplateSelect from 'components/Forms/ImageBuilder/S2IForm/TemplateSelect'
 import ToggleView from 'components/ToggleView'
+import { PATTERN_USER_NAME } from 'utils/constants'
 
 import Uploader from './BinaryFileUploader'
 import styles from './index.scss'
@@ -207,7 +208,15 @@ export default class S2IForm extends React.Component {
             <Form.Item
               label={t('imageName')}
               desc={t('S2I_IMAGENAME_DESC')}
-              rules={[{ required: true, message: t('This param is required') }]}
+              rules={[
+                { required: true, message: t('This param is required') },
+                {
+                  pattern: PATTERN_USER_NAME,
+                  message: t('Invalid name', {
+                    message: t('S2I_IMAGENAME_DESC'),
+                  }),
+                },
+              ]}
             >
               <Input name={`${this.prefix}spec.config.imageName`} />
             </Form.Item>
