@@ -117,7 +117,9 @@ export default class EnvironmentInputItem extends React.Component {
   valueRenderer = option => (
     <p>
       {option.label}
-      <span style={{ color: '#abb4be' }}> ({t(option.type)})</span>
+      <span style={{ color: '#abb4be' }}>
+        ({isEmpty(option.type) ? t('Select resource') : t(option.type)})
+      </span>
     </p>
   )
 
