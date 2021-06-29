@@ -27,7 +27,12 @@ import styles from './index.scss'
 export default class ServiceCard extends Component {
   render() {
     const { data, prefix } = this.props
-    const serviceType = get(data, 'annotations["kubesphere.io/serviceType"]')
+    const serviceType = get(
+      data,
+      'annotations["kubesphere.io/serviceType"]',
+      ''
+    )
+
     return (
       <div className={styles.wrapper}>
         <Text
