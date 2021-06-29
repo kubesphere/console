@@ -81,10 +81,10 @@ export default class BaseInfo extends React.Component {
         <div className={styles.description}>
           <dl>
             <pre>{detail.description || '-'}</pre>
-            <dt>{t('App Introduction')}</dt>
+            <dt>{t('App Description')}</dt>
           </dl>
         </div>
-        <div className={styles.title}>{t('App Description')}</div>
+        <div className={styles.title}>{t('App Introduction')}</div>
         <div>
           <Markdown source={detail.abstraction || t('None')} />
         </div>
