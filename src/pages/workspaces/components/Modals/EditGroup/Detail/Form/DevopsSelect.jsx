@@ -20,7 +20,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { computed, toJS } from 'mobx'
 import { observer } from 'mobx-react'
-import { isEqual } from 'lodash'
+import { isEqual, isEmpty } from 'lodash'
 
 import { Select, Icon, Tooltip } from '@kube-design/components'
 
@@ -42,9 +42,9 @@ export default class DevopsSelect extends Component {
     this.devopsRoleStore = new RoleStore()
 
     this.state = {
-      cluster: props.value.cluster || '',
-      namespace: props.value.namespace || '',
-      role: props.value.role || '',
+      cluster: !isEmpty(props.value) ? props.value.cluster : '',
+      namespace: !isEmpty(props.value) ? props.value.namespace : '',
+      role: !isEmpty(props.value) ? props.value.role : '',
     }
   }
 
@@ -170,12 +170,9 @@ export default class DevopsSelect extends Component {
   }
 
   render() {
-    const {
-      clusters,
-      value: { disabled },
-      showClusterSelect,
-    } = this.props
+    const { clusters, value, showClusterSelect } = this.props
     const { cluster, namespace, role } = this.state
+    const disabled = !isEmpty(value) ? value.disabled : false
 
     return (
       <div className={styles.selectWrapper}>

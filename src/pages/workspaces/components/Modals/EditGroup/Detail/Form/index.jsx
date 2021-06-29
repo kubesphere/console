@@ -128,21 +128,6 @@ export default class GroupForm extends React.Component {
     })
   }
 
-  rolesValidator = (rule, value, callback) => {
-    if (!value) {
-      return callback()
-    }
-    if (value.length > 0) {
-      value.forEach(item => {
-        if (!item.role) {
-          return callback({ message: t('Please add role') })
-        }
-      })
-    }
-
-    callback()
-  }
-
   checkItemValid = value => value.role
 
   handleSave = () => {
@@ -216,9 +201,7 @@ export default class GroupForm extends React.Component {
             />
           </Form.Item>
           <Form.Group label={t('Bind Project Role')}>
-            <Form.Item
-              rules={[{ validator: this.rolesValidator, checkOnSubmit: true }]}
-            >
+            <Form.Item>
               <ArrayInput
                 name="metadata.annotations['kubesphere.io/project-roles']"
                 itemType="object"
@@ -235,11 +218,7 @@ export default class GroupForm extends React.Component {
           </Form.Group>
           {globals.app.hasKSModule('devops') && (
             <Form.Group label={t('Bind DevOps Project Role')}>
-              <Form.Item
-                rules={[
-                  { validator: this.rolesValidator, checkOnSubmit: true },
-                ]}
-              >
+              <Form.Item>
                 <ArrayInput
                   name="metadata.annotations['kubesphere.io/devops-roles']"
                   itemType="object"

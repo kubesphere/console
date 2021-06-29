@@ -21,7 +21,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 
-import { Button } from '@kube-design/components'
+import { Form, Button } from '@kube-design/components'
 import Item from './Item'
 
 import styles from './index.scss'
@@ -97,8 +97,37 @@ export default class ArrayInput extends React.Component {
     onChange(value.filter((_, _index) => _index !== index))
   }
 
+  rolesValidator = (rule, value, callback) => {
+    if (!value) {
+      return callback()
+    }
+
+    if (!value.role) {
+      return callback({ message: t('Please add role') })
+    }
+    callback()
+  }
+
   renderItems() {
-    const { value, children } = this.props
+    const { value, children, id } = this.props
+    if (id && id.includes("metadata.annotations['kubesphere.io/")) {
+      return value.map((item, index) => (
+        <Form.Item
+          key={index}
+          rules={[{ validator: this.rolesValidator, checkOnSubmit: true }]}
+        >
+          <Item
+            name={`${id}[${index}]`}
+            index={index}
+            value={item || this.getDefaultValue()}
+            arrayValue={value}
+            component={children}
+            onChange={this.handleChange.bind(this, index)}
+            onDelete={this.handleDelete.bind(this, index)}
+          />
+        </Form.Item>
+      ))
+    }
 
     return value.map((item, index) => (
       <Item
