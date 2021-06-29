@@ -18,17 +18,14 @@
 
 import React from 'react'
 
-import { Button, Select } from '@kube-design/components'
-import { NumberInput } from 'components/Inputs'
+import { Input, Select } from '@kube-design/components'
 import { QUOTAS_MAP } from 'utils/constants'
-import { debounce } from 'lodash'
+import { ObjectInput } from 'components/Inputs'
 
 import {
   RESERVED_MODULES,
   FEDERATED_PROJECT_UNSOPPORT_QUOTA,
 } from './constants'
-
-import styles from './index.scss'
 
 export default class QuotaItem extends React.Component {
   state = {
@@ -36,11 +33,14 @@ export default class QuotaItem extends React.Component {
   }
 
   get options() {
-    const { filterModules = [], module } = this.props
+    const { arrayValue, value } = this.props
+    const module = value.module
+    const filterModules = arrayValue.map(_item => _item.module)
     const filteredModules = [
       ...filterModules.filter(m => m !== module),
       ...RESERVED_MODULES,
     ]
+
     return Object.keys(QUOTAS_MAP)
       .filter(
         key =>
@@ -55,56 +55,32 @@ export default class QuotaItem extends React.Component {
       }))
   }
 
-  handleDebounceModuleChange = debounce((newModule, index) => {
-    const { onModuleChange } = this.props
-    onModuleChange(newModule, index)
-  }, 400)
-
-  handleModuleChange = (newModule, index) => {
-    this.setState(
-      {
-        module: newModule,
-      },
-      () => {
-        this.handleDebounceModuleChange(newModule, index)
-      }
-    )
-  }
-
-  handleModuleDelete = index => {
-    const { onModuleDelete } = this.props
-    onModuleDelete(index)
+  handleLimitValue = item => {
+    if (!isNaN(item.value)) {
+      this.props.onChange(item)
+    }
   }
 
   render() {
-    const { value, onChange, disableSelect, index } = this.props
+    const { value } = this.props
 
     return (
-      <div className={styles.item}>
+      <ObjectInput value={value} onChange={this.handleLimitValue}>
         <Select
-          disabled={disableSelect}
+          name="module"
           options={this.options}
-          onChange={moduleValue => this.handleModuleChange(moduleValue, index)}
-          value={this.state.module}
+          renderOption={this.renderOption}
           searchable
+          disabled={value.module === 'pods'}
         />
-        <NumberInput
+        <Input
+          name="value"
           className="margin-l12"
-          value={value}
           placeholder={t(
             'You can limit the number of resources. Blank means no limit.'
           )}
-          integer
-          onChange={onChange}
         />
-        <Button
-          type="flat"
-          icon="trash"
-          className="margin-l12"
-          onClick={() => this.handleModuleDelete(index)}
-          disabled={disableSelect}
-        />
-      </div>
+      </ObjectInput>
     )
   }
 }
