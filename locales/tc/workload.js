@@ -234,6 +234,7 @@ module.exports = {
   'Please select a storage class': '請選擇儲存卷類型',
   'Please select image': '請選擇鏡像',
   'Invalid name': '名稱格式不合法。{message}',
+  'Invalid pod': '容器組數量格式不合法',
   'Service Labels': '服務標籤',
 
   'Add Existing Volume': '添加已有儲存卷',

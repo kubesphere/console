@@ -144,6 +144,7 @@ module.exports = {
   'Instance Status': 'Estado de instancia',
   'Invalid image': 'Imagen inválida',
   'Invalid name': 'Nombre inválido. {message}',
+  'Invalid pod': 'Pod inválido',
   InvalidImageName: 'InvalidImageName',
   'is running': 'En ejecución',
   Job: 'Trabajo',

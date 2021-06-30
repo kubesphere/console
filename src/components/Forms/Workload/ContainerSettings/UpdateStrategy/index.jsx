@@ -119,6 +119,18 @@ export default class UpdateStrategyForm extends React.Component {
     })
   }
 
+  valueValidator = (rule, value, callback) => {
+    if (!value) {
+      return callback()
+    }
+    const number = /^[0-9]*$/
+    const percentage = /^[0-9]+%$/
+    if (!number.test(value) && !percentage.test(value)) {
+      return callback({ message: t('Invalid pod') })
+    }
+    callback()
+  }
+
   renderRollingUpdateParams() {
     const { module } = this.props
     if (module === 'statefulsets') {
@@ -182,7 +194,10 @@ export default class UpdateStrategyForm extends React.Component {
           <Form.Item
             label={t('MAX_UNAVAILABLE_POD_LABEL')}
             desc={t('MAX_DEPLOY_UNAVAILABLE_POD_DESC')}
-            rules={[{ required: true, message: t('Please input value') }]}
+            rules={[
+              { required: true, message: t('Please input value') },
+              { validator: this.valueValidator },
+            ]}
           >
             <Input
               name={`${this.rollingUpdatePrefix}.maxUnavailable`}
@@ -194,7 +209,10 @@ export default class UpdateStrategyForm extends React.Component {
           <Form.Item
             label={t('MAX_SURGE_POD_LABEL')}
             desc={t('MAX_SURGE_POD_DESC')}
-            rules={[{ required: true, message: t('Please input value') }]}
+            rules={[
+              { required: true, message: t('Please input value') },
+              { validator: this.valueValidator },
+            ]}
           >
             <Input
               name={`${this.rollingUpdatePrefix}.maxSurge`}

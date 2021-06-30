@@ -142,6 +142,7 @@ module.exports = {
   'Instance Status': 'Instance Status',
   'Invalid image': 'Invalid image',
   'Invalid name': 'Invalid name. {message}',
+  'Invalid pod': 'Invalid value',
   InvalidImageName: 'InvalidImageName',
   'is running': 'is running',
   Job: 'Job',
