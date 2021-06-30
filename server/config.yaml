@@ -22,7 +22,7 @@ server:
   redisTimeout: 5000
 
   # kubesphere console session params, not login session
-  sessionKey: 'kubesphere:sess'
+  sessionKey: "kubesphere:sess"
   sessionTimeout: 3600000 # unit: millisecond
 
   # backend service gateway server
@@ -35,7 +35,7 @@ server:
 
 client:
   title: KubeSphere
-  description: ''
+  description: ""
 
   version:
     kubesphere: 3.1.0
@@ -50,15 +50,15 @@ client:
 
   # current support lanaguages
   supportLangs:
-    - label: '繁體中文'
-      value: 'tc'
-    - label: '简体中文'
-      value: 'zh'
-    - label: 'English'
-      value: 'en'
-    - label: 'Español'
-      value: 'es'
-  defaultLang: 'en'
+    - label: "繁體中文"
+      value: "tc"
+    - label: "简体中文"
+      value: "zh"
+    - label: "English"
+      value: "en"
+    - label: "Español"
+      value: "es"
+  defaultLang: "en"
 
   # platform management navigations
   globalNavs:
@@ -139,7 +139,7 @@ client:
             - {
                 name: ippools,
                 title: Pod IP Pools,
-                clusterModule: 'network.ippool',
+                clusterModule: "network.ippool",
               }
         # Contains dangerous operations, only available for platform-admin.
         - {
@@ -219,7 +219,7 @@ client:
 
   # access control page navigations
   accessNavs:
-    - cate: 'access'
+    - cate: "access"
       items:
         - { name: workspaces, title: Workspaces, icon: enterprise }
         - { name: accounts, title: NAV_ACCOUNTS, icon: human, authKey: users }
@@ -227,7 +227,7 @@ client:
 
   # platform settings navigations
   platformSettingsNavs:
-    - cate: 'platformsettings'
+    - cate: "platformsettings"
       items:
         - {
             name: base-info,
@@ -247,13 +247,13 @@ client:
 
   # workspace page navigations
   workspaceNavs:
-    - cate: 'workspace'
+    - cate: "workspace"
       items:
         - {
             name: overview,
             title: Overview,
             icon: dashboard,
-            authKey: 'projects',
+            authKey: "projects",
           }
         - name: projects
           title: NAV_PROJECTS
@@ -283,7 +283,7 @@ client:
             - {
                 name: repos,
                 title: App Repos,
-                authKey: 'app-repos',
+                authKey: "app-repos",
                 ksModule: openpitrix,
               }
         - name: management
@@ -291,14 +291,18 @@ client:
           icon: cogwheel
           children:
             - { name: base-info, title: Basic Info, skipAuth: true }
-            - { name: quota, title: Quota Management }
+            - {
+                name: quota,
+                title: Quota Management,
+                authKey: "workspace-settings",
+              }
             - { name: roles, title: Workspace Roles }
             - { name: members, title: Workspace Members }
             - { name: groups, title: Workspace Groups }
 
   # apps manage page navigations
   manageAppNavs:
-    - cate: 'apps'
+    - cate: "apps"
       items:
         - { name: store, title: App Store, icon: appcenter }
         - { name: categories, title: App Categories, icon: tag }
@@ -306,13 +310,13 @@ client:
 
   # project page navigations
   projectNavs:
-    - cate: 'project'
+    - cate: "project"
       items:
         - {
             name: overview,
             title: Overview,
             icon: dashboard,
-            authKey: 'services',
+            authKey: "services",
           }
         - name: app-workloads
           title: Application Workloads
@@ -381,7 +385,11 @@ client:
                 clusterModule: alerting,
                 requiredClusterVersion: v3.1.0,
               }
-            - { name: custom-monitoring, title: Custom Monitoring, requiredClusterVersion: v3.1.0, }
+            - {
+                name: custom-monitoring,
+                title: Custom Monitoring,
+                requiredClusterVersion: v3.1.0,
+              }
         - name: settings
           title: Project Settings
           icon: cogwheel
@@ -391,18 +399,18 @@ client:
                 name: networkpolicies,
                 title: Network Isolation,
                 clusterModule: network,
-                authKey: 'project-settings',
+                authKey: "project-settings",
               }
             - { name: roles, title: Project Roles }
             - { name: members, title: Project Members }
             - {
                 name: advanced,
                 title: Advanced Settings,
-                authKey: 'project-settings',
+                authKey: "project-settings",
               }
 
   federatedProjectNavs:
-    - cate: 'project'
+    - cate: "project"
       items:
         - { name: overview, title: Overview, icon: dashboard, skipAuth: true }
         - name: app-workloads
@@ -432,17 +440,17 @@ client:
             - {
                 name: quota,
                 title: Quota Management,
-                authKey: 'project-settings',
+                authKey: "project-settings",
               }
             - {
                 name: advanced,
                 title: Advanced Settings,
-                authKey: 'project-settings',
+                authKey: "project-settings",
               }
 
   # devops page navigations
   devopsNavs:
-    - cate: ''
+    - cate: ""
       items:
         - { name: pipelines, title: Pipelines, icon: application }
         - name: management
@@ -479,15 +487,15 @@ client:
   presetRoles: [admin, operator, viewer]
 
   # system annotations that need to be hidden for edit
-  preservedAnnotations: ['.*kubesphere.io/', 'openpitrix_runtime']
+  preservedAnnotations: [".*kubesphere.io/", "openpitrix_runtime"]
 
   # namespaces that need to be disable collection file log
-  disabledLoggingSidecarNamespace: ['kubesphere-logging-system']
+  disabledLoggingSidecarNamespace: ["kubesphere-logging-system"]
 
   # loadbalancer annotations, default support qingcloud lb
   loadBalancerDefaultAnnotations:
-    service.beta.kubernetes.io/qingcloud-load-balancer-eip-ids: ''
-    service.beta.kubernetes.io/qingcloud-load-balancer-type: '0'
+    service.beta.kubernetes.io/qingcloud-load-balancer-eip-ids: ""
+    service.beta.kubernetes.io/qingcloud-load-balancer-type: "0"
 
   # control error notify on page
   enableErrorNotify: true
