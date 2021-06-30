@@ -227,7 +227,8 @@ export default class ClusterDetails extends React.Component {
         const cluster = this.clusterList.find(
           _item => _item.name === _cluster.name
         )
-        if (cluster.disabled) {
+
+        if (cluster && cluster.disabled) {
           count++
         }
       })
