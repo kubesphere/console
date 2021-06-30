@@ -134,7 +134,8 @@ export default class ProjectSelectModal extends React.Component {
       params.labelSelector = `kubesphere.io/workspace=${workspace}`
     } else {
       params.cluster = cluster
-      params.labelSelector = 'kubefed.io/managed!=true'
+      params.labelSelector =
+        'kubefed.io/managed!=true, kubesphere.io/kubefed-host-namespace!=true'
     }
 
     if (search) {
