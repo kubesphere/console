@@ -553,6 +553,7 @@ export const getFetchParams = ({
         cluster,
         namespace: namespaces,
         workspace: workspaces,
+        labelSelector: '!kubesphere.io/devopsproject',
       },
     ],
     openpitrixs: [
