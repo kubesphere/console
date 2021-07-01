@@ -166,7 +166,7 @@ export default class PipelineDetailLayout extends React.Component {
             },
             {
               key: 'scanLogs',
-              text: t('Scan Repository Logs'),
+              text: t('Scan Reponsitory Logs'),
               action: 'edit',
               onClick: () => {
                 this.trigger('pipeline.scanRepositoryLogs', {
