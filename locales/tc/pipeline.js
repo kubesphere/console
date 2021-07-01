@@ -17,7 +17,7 @@
  */
 
 module.exports = {
-  'Discover branches from repository': '發現存儲庫上的分支',
+  'Discover branches from repoitory': '發現存儲庫上的分支',
   'Discover pull requests from origin': '發現原始儲存庫與目標儲存庫相同的 PR',
   'Discover pull requests from forks': '發現 Fork 儲存庫與目標儲存庫相同的 PR',
   'User types that can trigger builds': '可以觸發構建的用戶類型',
@@ -152,7 +152,7 @@ module.exports = {
   'Sub-healthy': '亞健康',
   Schedule: '行程表',
   'Stop Job Successfully, Status updated later': '任務已停止，狀態稍後更新',
-  'Scan Repository Logs': '掃描倉庫紀錄',
+  'Scan Reponsitory Logs': '掃描倉庫紀錄',
   'Started By': '實施者',
   Rescan: '重新掃描',
   'Logs Scanned Successfully': '掃描紀錄成功',
@@ -338,11 +338,11 @@ module.exports = {
   'Internal nesting conditions must be matched': '内部嵌套的條件需全部滿足',
   'Internal nested conditions only need to satisfy one':
     '内部嵌套的條件只需符合一個',
-  'Environment name': '環境變量名稱',
+  'Enviroment name': '環境變量名稱',
   expression: '表達式',
   PARAMS_STRING: '字符串參數 (String) ',
   PARAMS_TEXT: '文本 (Text) ',
-  PARAMS_BOOLEAN: '布林值 (Boolean) ',
+  PRARMS_BOOLEAN: '布林值 (Boolean) ',
   PARAMS_CHOICE: '選項參數 (Choice) ',
   PARAMS_PASSWORD: '密碼參數 (Password) ',
   critical: '嚴重',
@@ -461,9 +461,9 @@ module.exports = {
   'Pipeline event trigger': '流水線事件觸發',
   'When Create Pipeline': '創建流水線',
   'When Delete Pipeline': '當刪除流水線',
-  WHEN_DELETE_PIPELINE_DESC:
+  WHEN_DELETE_PIEPLINE_DESC:
     '當有流水線被刪除時，將自動觸發指定流水線中的任務。',
-  WHEN_CREATE_PIPELINE_DESC:
+  WHEN_CHRETE_PIEPLINE_DESC:
     '當有創建新的流水線時，將自動觸發指定流水線中的任務。',
   'select a pipeline': '選擇一個流水線',
   timer: '定時器',

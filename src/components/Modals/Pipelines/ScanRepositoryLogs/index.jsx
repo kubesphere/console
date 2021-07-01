@@ -128,7 +128,7 @@ export default class ScanRepositoryLogs extends React.Component {
         onCancel={onCancel}
         visible={visible}
         closable={false}
-        title={t('Scan Repository Logs')}
+        title={t('Scan Reponsitory Logs')}
       >
         <div className={styles.content}>
           <div className={styles.btn_group}>

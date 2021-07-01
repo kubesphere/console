@@ -80,7 +80,7 @@ export default class Enviroment extends React.Component {
         title={t('environment')}
       >
         <Form data={this.state.formData} ref={this.formRef}>
-          <Form.Item label={t('Environment name')}>
+          <Form.Item label={t('Enviroment name')}>
             <Input name="name" />
           </Form.Item>
           <Form.Item label={t('Value')}>

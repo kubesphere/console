@@ -107,7 +107,7 @@ module.exports = {
   'Discard old builds': 'Descartar builds antiguas',
   'Discover Tag Branches': 'Descubrir Tag ramas',
   'Discover Branches': 'Descubrir ramas',
-  'Discover branches from repository': 'Descubrir ramas desde el repositorio',
+  'Discover branches from repoitory': 'Descubrir ramas desde el repositorio',
   'Discover PR from Forks': 'Descubrir PR desde Forks',
   'Discover PR from Origin': 'Descubrir PR desde Origin',
   'Discover pull requests from forks': 'Descubrir las PR desde forks',
@@ -131,7 +131,7 @@ module.exports = {
     'Habilitar la sustitución de variables en la configuración',
   enableConfigSubstitution: 'enableConfigSubstitution',
   'Enter an expression': 'Introdir una expresión',
-  'Environment name': 'Nombre del entorno',
+  'Enviroment name': 'Nombre del entorno',
   'Exclude branches that are also filed as PRs':
     'Excluir las ramas que también se presentan como PRs',
   'Executes the code inside the block with a determined time out limit.':
@@ -252,7 +252,7 @@ module.exports = {
   'Scan Logs Success': 'Escanear registros correctos',
   'Scan repo success': 'Escanear el repositorio correcto',
   'Scan Repo Trigger': 'Escanear el disparador del Repo',
-  'Scan Repository Logs': 'Escanear logs de repositorio',
+  'Scan Reponsitory Logs': 'Escanear logs de repositorio',
   'Scan Repository': 'Escanear repositorio',
   Schedule: 'Programador',
   'Scheduled build': 'Build programada',
@@ -424,7 +424,7 @@ module.exports = {
   pipeline_conditions: 'Condiciones',
   PARAMS_STRING: 'Cuerda',
   PARAMS_TEXT: 'Texto',
-  PARAMS_BOOLEAN: 'Booleano',
+  PRARMS_BOOLEAN: 'Booleano',
   PARAMS_CHOICE: 'Elección',
   PARAMS_PASSWORD: 'Contraseña',
   CODE_SMELL: 'Olor de código',
@@ -487,9 +487,9 @@ module.exports = {
   CRON_DESC:
     'Habría corrido por última vez en {lastTime}; se ejecutará a las {nextTime}',
   JENKINS_LINS_ERROR: 'tiene un error de sintaxis en la línea {line}.',
-  WHEN_DELETE_PIPELINE_DESC:
+  WHEN_DELETE_PIEPLINE_DESC:
     'Cuando se elimina una pipeline, las tareas en la pipeline especificada se activan automáticamente.',
-  WHEN_CREATE_PIPELINE_DESC:
+  WHEN_CHRETE_PIEPLINE_DESC:
     'Cuando se crea una nueva pipeline, las tareas en la pipeline especificada se activan automáticamente.',
   'Started By {name}': 'Comenzado por {name}',
   'Credential ID exists': 'El ID de credencial ya existe',

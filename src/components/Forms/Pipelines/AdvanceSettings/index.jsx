@@ -362,13 +362,6 @@ export default class AdvanceSettings extends React.Component {
       source_type
     )
 
-    const isShowRepoTrigger = [
-      'git',
-      'github',
-      'bitbucket_server',
-      'gitlab',
-    ].includes(source_type)
-
     return (
       <div>
         {source_type !== 'git' && source_type !== 'svn' ? (
@@ -395,7 +388,7 @@ export default class AdvanceSettings extends React.Component {
           />
         </Form.Item>
         <div className="h6">{t('Scan Repo Trigger')}</div>
-        {isShowRepoTrigger ? this.renderRegFilter() : null}
+        {hasWebhook ? this.renderRegFilter() : null}
         <Form.Item>
           <Checkbox
             checked={enable_timer_trigger}
@@ -437,7 +430,7 @@ export default class AdvanceSettings extends React.Component {
               <Column>
                 <Form.Item
                   label={t('When Create Pipeline')}
-                  desc={t('WHEN_CREATE_PIPELINE_DESC')}
+                  desc={t('WHEN_CHRETE_PIEPLINE_DESC')}
                 >
                   <Select
                     name={`${this.prefix}.multibranch_job_trigger.create_action_job_to_trigger`}
@@ -452,7 +445,7 @@ export default class AdvanceSettings extends React.Component {
               <Column>
                 <Form.Item
                   label={t('When Delete Pipeline')}
-                  desc={t('WHEN_DELETE_PIPELINE_DESC')}
+                  desc={t('WHEN_DELETE_PIEPLINE_DESC')}
                 >
                   <Select
                     name={`${this.prefix}.multibranch_job_trigger.delete_action_job_to_trigger`}
@@ -547,7 +540,6 @@ export default class AdvanceSettings extends React.Component {
     const { formRef, formTemplate } = this.props
 
     const multi_branch_pipeline = get(formTemplate, 'multi_branch_pipeline')
-
     return (
       <div className={styles.advance}>
         <Form data={formTemplate} ref={formRef}>

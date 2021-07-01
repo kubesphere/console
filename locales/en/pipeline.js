@@ -107,7 +107,7 @@ module.exports = {
   'Discard old builds': 'Discard old builds',
   'Discover Tag Branches': 'Discover Tag Branches',
   'Discover Branches': 'Discover Branches',
-  'Discover branches from repository': 'Discover branches from repository',
+  'Discover branches from repoitory': 'Discover branches from repoitory',
   'Discover PR from Forks': 'Discover PR from Forks',
   'Discover PR from Origin': 'Discover PR from Origin',
   'Discover pull requests from forks': 'Discover pull requests from forks',
@@ -131,7 +131,7 @@ module.exports = {
     'Enable Variable Substitution in Config',
   enableConfigSubstitution: 'enableConfigSubstitution',
   'Enter an expression': 'Enter an expression',
-  'Environment name': 'Environment name',
+  'Enviroment name': 'Enviroment name',
   'Exclude branches that are also filed as PRs':
     'Exclude branches that are also filed as PRs',
   'Executes the code inside the block with a determined time out limit.':
@@ -247,7 +247,7 @@ module.exports = {
   'Logs Scanned Successfully': 'Logs Scanned Successfully',
   'Repo Scanned Successfully': 'Repo Scanned Successfully',
   'Scan Repo Trigger': 'Scan Repo Trigger',
-  'Scan Repository Logs': 'Scan Repository Logs',
+  'Scan Reponsitory Logs': 'Scan Reponsitory Logs',
   'Scan Repository': 'Scan Repository',
   Schedule: 'Schedule',
   'Scheduled build': 'Scheduled build',
@@ -477,7 +477,7 @@ module.exports = {
   pipeline_conditions: 'Conditions',
   PARAMS_STRING: 'String',
   PARAMS_TEXT: 'Text',
-  PARAMS_BOOLEAN: 'Boolean',
+  PRARMS_BOOLEAN: 'Boolean',
   PARAMS_CHOICE: 'Choice',
   PARAMS_PASSWORD: 'Password',
   CODE_SMELL: 'Code Smell',
@@ -539,9 +539,9 @@ module.exports = {
   PIPELINES_FOOTER_SEE_MORE: 'Go to the branch details page to see more.',
   CRON_DESC: 'Would last have run at {lastTime}; would next run at {nextTime}',
   JENKINS_LINS_ERROR: 'has syntax error at line {line}.',
-  WHEN_DELETE_PIPELINE_DESC:
+  WHEN_DELETE_PIEPLINE_DESC:
     'When a pipeline is deleted, the tasks in the specified pipeline are automatically triggered.',
-  WHEN_CREATE_PIPELINE_DESC:
+  WHEN_CHRETE_PIEPLINE_DESC:
     'When a new pipeline is created, the tasks in the specified pipeline are automatically triggered.',
   'Started By {name}': 'Started By {name}',
   'Credential ID exists': 'Credential ID exists',
