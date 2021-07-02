@@ -24,7 +24,7 @@ import { Icon, Notify } from '@kube-design/components'
 import { Modal } from 'components/Base'
 import UploadInfo from 'apps/components/Cards/UploadInfo'
 import CreateInfo from 'apps/components/Cards/CreateInfo'
-import { OPENPITRIX_LINKS } from 'configs/openpitrix/app'
+import { getDocsUrl } from 'utils'
 import FileStore from 'stores/openpitrix/file'
 
 import typeFiles from './files'
@@ -165,7 +165,7 @@ export default class HelmUpload extends Component {
         <div className={styles.note}>
           💁‍♂️ {t('APP_CREATE_GUIDE')}
           <a
-            href={OPENPITRIX_LINKS.helm_developer_guide}
+            href={getDocsUrl('helm_specification')}
             target="_blank"
             rel="noreferrer noopener"
           >

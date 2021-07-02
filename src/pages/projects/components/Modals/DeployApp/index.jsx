@@ -79,7 +79,6 @@ export default class DeployAppModal extends React.Component {
         visible={visible}
         bodyClassName={styles.body}
         hideHeader
-        hideFooter
       >
         <div className={styles.header}>
           <div className={styles.logo}>

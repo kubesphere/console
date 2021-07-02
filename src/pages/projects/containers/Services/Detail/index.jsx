@@ -115,7 +115,7 @@ export default class ServiceDetail extends React.Component {
       icon: 'ip',
       text: t('Edit Internet Access'),
       action: 'edit',
-      show: record => record.type === SERVICE_TYPES.VirtualIP,
+      show: this.store.detail.type === SERVICE_TYPES.VirtualIP,
       onClick: () =>
         this.trigger('service.gateway.edit', {
           detail: this.store.detail,
@@ -176,7 +176,11 @@ export default class ServiceDetail extends React.Component {
       externalIP = detail.externalIPs.join('\r\n')
     }
 
-    const serviceType = get(detail, 'annotations["kubesphere.io/serviceType"]')
+    const serviceType = get(
+      detail,
+      'annotations["kubesphere.io/serviceType"]',
+      ''
+    )
 
     return [
       {
