@@ -523,7 +523,11 @@ export const isMemberClusterPage = (path = location.pathname, message) => {
     '1',
     'host'
   )
-  const rules = ['token used before issued', 'signature is invalid']
+  const rules = [
+    'token used before issued',
+    'signature is invalid',
+    'token not found in cache',
+  ]
   const lowerMessage = message.toLowerCase()
 
   let isTokenOut = true
