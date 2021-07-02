@@ -17,11 +17,48 @@
  */
 
 import React from 'react'
+import { get, set, cloneDeep } from 'lodash'
 
 import { Form } from '@kube-design/components'
 import UpdateStrategyForm from 'components/Forms/Workload/ContainerSettings/UpdateStrategy'
 
 export default class UpdateStrategy extends React.Component {
+  handleChange = () => {
+    const { formTemplate } = this.props
+    const number = /^[0-9]*$/
+    const newFormTemplate = cloneDeep(formTemplate)
+    const maxSurge = get(
+      newFormTemplate,
+      'spec.strategy.rollingUpdate.maxSurge'
+    )
+    const maxUnavailable = get(
+      newFormTemplate,
+      'spec.strategy.rollingUpdate.maxUnavailable'
+    )
+    if (
+      number.test(get(formTemplate, 'spec.strategy.rollingUpdate.maxSurge'))
+    ) {
+      set(
+        newFormTemplate,
+        'spec.strategy.rollingUpdate.maxSurge',
+        Number(maxSurge)
+      )
+    }
+    if (
+      number.test(
+        get(formTemplate, 'spec.strategy.rollingUpdate.maxUnavailable')
+      )
+    ) {
+      set(
+        newFormTemplate,
+        'spec.strategy.rollingUpdate.maxUnavailable',
+        Number(maxUnavailable)
+      )
+    }
+
+    this.props.setParentState(newFormTemplate)
+  }
+
   render() {
     const {
       formTemplate,
@@ -33,7 +70,7 @@ export default class UpdateStrategy extends React.Component {
     } = this.props
 
     return (
-      <div className="margin-t12">
+      <div className="margin-t12" onChange={this.handleChange}>
         <Form data={formTemplate} ref={formRef} {...formProps}>
           <UpdateStrategyForm
             module={module}

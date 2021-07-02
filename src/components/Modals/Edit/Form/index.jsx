@@ -19,7 +19,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
-import { isEmpty, get, set, cloneDeep } from 'lodash'
+import { isEmpty, get } from 'lodash'
 
 import { Button, Icon } from '@kube-design/components'
 
@@ -122,33 +122,21 @@ export default class FormsBox extends React.Component {
   }
 
   handleSaveForm = (name, formData) => {
-    const number = /^[0-9]*$/
-    const newFormData = cloneDeep(formData)
-    if (number.test(get(formData, 'spec.strategy.rollingUpdate.maxSurge'))) {
-      set(
-        newFormData,
-        'spec.strategy.rollingUpdate.maxSurge',
-        Number(get(newFormData, 'spec.strategy.rollingUpdate.maxSurge'))
-      )
-    }
-
-    if (
-      number.test(get(formData, 'spec.strategy.rollingUpdate.maxUnavailable'))
-    ) {
-      set(
-        newFormData,
-        'spec.strategy.rollingUpdate.maxUnavailable',
-        Number(get(newFormData, 'spec.strategy.rollingUpdate.maxUnavailable'))
-      )
-    }
-
     this.setState(({ updatedTabs }) => {
       updatedTabs[name] = formData
 
-      return {
-        updatedTabs,
-        formData: newFormData,
-      }
+      return name === 'updateStrategy'
+        ? { updatedTabs }
+        : {
+            updatedTabs,
+            formData,
+          }
+    })
+  }
+
+  setSelfState = formData => {
+    this.setState({
+      formData,
     })
   }
 
@@ -222,6 +210,7 @@ export default class FormsBox extends React.Component {
           formData={formData}
           cluster={cluster}
           onSaveChange={this.handleSaveForm}
+          setParentState={this.setSelfState}
         />
         {this.renderSubRouteConfirm()}
       </div>
