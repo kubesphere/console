@@ -43,7 +43,6 @@ export default class EditForm extends Component {
 
   handleCancel = () => {
     const { showEdit } = this.props
-
     showEdit('')
   }
 
@@ -52,11 +51,15 @@ export default class EditForm extends Component {
     showEdit(formData)
   }
 
+  stopPropagation = e => {
+    e.stopPropagation()
+  }
+
   renderContent() {
     const { formData, children } = this.props
 
     return (
-      <div className={styles.form}>
+      <div className={styles.form} onClick={this.stopPropagation}>
         <Form ref={this.formRef} type="inner" data={formData}>
           <div className={styles.formContent}>{children}</div>
         </Form>
@@ -77,12 +80,12 @@ export default class EditForm extends Component {
         visible={isEdit}
         placement="bottom"
         closeAfterClick={false}
-        onOpen={this.handleClick}
         content={this.renderContent()}
         modifiers={this.modifiers}
         always={isEdit}
+        onClick={this.handleClick}
       >
-        <div>
+        <div onClick={this.stopPropagation}>
           {title}
           {selected && (
             <span className={styles.modify}>
