@@ -78,6 +78,8 @@ export default class ContainerSetting extends React.Component {
     })
   }
 
+  limitError = ''
+
   getFormTemplate(data, imageRegistries) {
     if (data && data.image && !data.pullSecret) {
       const { registry } = parseDockerImage(data.image)
@@ -114,6 +116,17 @@ export default class ContainerSetting extends React.Component {
         imageRegistries={imageRegistries}
       />
     )
+  }
+
+  handleError = err => {
+    this.limitError = err
+  }
+
+  limitValidator = (rule, value, callback) => {
+    if (this.limitError !== '') {
+      callback({ message: '' })
+    }
+    callback()
   }
 
   renderAdvancedSettings() {
@@ -159,10 +172,13 @@ export default class ContainerSetting extends React.Component {
             type="warning"
             message={t('CONTAINER_RESOURCE_LIMIT_TIP')}
           />
-          <Form.Item>
+          <Form.Item
+            rules={[{ validator: this.limitValidator, checkOnSubmit: true }]}
+          >
             <ResourceLimit
               name="resources"
               defaultValue={defaultResourceLimit}
+              onError={this.handleError}
             />
           </Form.Item>
         </>
