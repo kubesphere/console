@@ -20,8 +20,9 @@ import React, { Component } from 'react'
 import { range } from 'lodash'
 import PropTypes from 'prop-types'
 
-import { Alert, Slider, Form } from '@kube-design/components'
+import { Alert, Form } from '@kube-design/components'
 import { Modal } from 'components/Base'
+import { UnitSlider } from 'components/Inputs'
 
 import styles from './index.scss'
 
@@ -41,6 +42,7 @@ export default class ExpandVolume extends Component {
     detail: {},
     min: 0,
     max: 1024,
+    unit: 'Gi',
     title: 'Expand Volume',
     okText: 'Expand',
     shouldAlertVisible: false,
@@ -96,17 +98,18 @@ export default class ExpandVolume extends Component {
   }
 
   renderInput() {
-    const { max, min } = this.props
+    const { max, min, unit } = this.props
     const marks = this.getMarks()
     return (
       <Form.Item label={t('Volume Capacity')}>
-        <Slider
+        <UnitSlider
           name="spec.resources.requests.storage"
           max={max}
           min={min}
           marks={marks}
-          unit={'Gi'}
+          unit={unit}
           withInput
+          onChange={this.handleChange}
         />
       </Form.Item>
     )
