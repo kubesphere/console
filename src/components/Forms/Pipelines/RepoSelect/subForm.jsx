@@ -210,7 +210,7 @@ export default class RepoSelectForm extends React.Component {
     return (
       <ul className={styles.repoTypes}>
         {REPO_TYPES.map(type => {
-          if (needUpdata && type.value === 'gitlab') return false
+          if (needUpdata < 0 && type.value === 'gitlab') return false
 
           return (
             <li
