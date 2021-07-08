@@ -68,7 +68,9 @@ export default {
           }
 
           const spec = get(data, 'spec.hard', {})
-          data.spec = { hard: omitBy(spec, v => isEmpty(v.toString())) }
+          data.spec = {
+            hard: omitBy(spec, v => (!v ? !v : isEmpty(v.toString()))),
+          }
           const resp = await quotaStore.checkName(params)
 
           if (resp.exist) {
