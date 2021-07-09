@@ -66,7 +66,7 @@ export default class Quotas extends React.Component {
       items[isPorts] = temp
     }
 
-    if (isPorts < 0 && !isEmpty(items)) {
+    if (isPorts < 0) {
       items.unshift({ module: 'pods', value: '' })
     }
 

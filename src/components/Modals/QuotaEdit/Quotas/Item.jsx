@@ -56,9 +56,7 @@ export default class QuotaItem extends React.Component {
   }
 
   handleLimitValue = item => {
-    if (!isNaN(item.value)) {
-      this.props.onChange(item)
-    }
+    this.props.onChange(item)
   }
 
   render() {
