@@ -20,7 +20,7 @@ import React from 'react'
 
 import { Input, Select } from '@kube-design/components'
 import { QUOTAS_MAP } from 'utils/constants'
-import { ObjectInput } from 'components/Inputs'
+import { ObjectInput, NumberInput } from 'components/Inputs'
 
 import {
   RESERVED_MODULES,
@@ -28,10 +28,6 @@ import {
 } from './constants'
 
 export default class QuotaItem extends React.Component {
-  state = {
-    module: this.props.module,
-  }
-
   get options() {
     const { arrayValue, value } = this.props
     const module = value.module
@@ -59,6 +55,32 @@ export default class QuotaItem extends React.Component {
     this.props.onChange(item)
   }
 
+  renderInputByModule = () => {
+    const { value } = this.props
+    const mapKey = Object.keys(QUOTAS_MAP)
+    if (mapKey.includes(value.module)) {
+      return (
+        <NumberInput
+          name="value"
+          className="margin-l12"
+          placeholder={t(
+            'You can limit the number of resources. Blank means no limit.'
+          )}
+          integer
+        />
+      )
+    }
+    return (
+      <Input
+        name="value"
+        className="margin-l12"
+        placeholder={t(
+          'You can limit the number of resources. Blank means no limit.'
+        )}
+      />
+    )
+  }
+
   render() {
     const { value } = this.props
 
@@ -67,17 +89,10 @@ export default class QuotaItem extends React.Component {
         <Select
           name="module"
           options={this.options}
-          renderOption={this.renderOption}
           searchable
           disabled={value.module === 'pods'}
         />
-        <Input
-          name="value"
-          className="margin-l12"
-          placeholder={t(
-            'You can limit the number of resources. Blank means no limit.'
-          )}
-        />
+        {this.renderInputByModule()}
       </ObjectInput>
     )
   }

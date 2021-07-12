@@ -36,7 +36,12 @@ const Unit = {
   GB: 1000 ** 3,
   MB: 1000 ** 2,
   KB: 1000,
+  T: 1000 ** 4,
+  G: 1000 ** 3,
+  M: 1000 ** 2,
+  K: 1000,
   Bytes: 1,
+  B: 1,
 }
 
 const QuotaItem = ({ name, total, used }) => {
@@ -63,13 +68,21 @@ const QuotaItem = ({ name, total, used }) => {
   }
 
   const getNumberValue = (unit, value) =>
-    unit ? [unit, parseFloat(value) * Unit[unit]] : ['', parseFloat(value)]
+    unit
+      ? [
+          unit,
+          parseFloat(value) *
+            (ICON_TYPES[name] || !Unit[unit] ? 1 : Unit[unit]),
+        ]
+      : ['', parseFloat(value)]
 
   const handleNumberValue = value => getNumberValue(getNumberUnit(value), value)
 
   const handleUsedValue = usedValue => {
     if (totalUnit && !usedUnit) {
-      return `${usedValue / Unit[totalUnit]}${usedValue > 0 ? totalUnit : ''}`
+      const unitValue =
+        ICON_TYPES[name] || !Unit[totalUnit] ? 1 : Unit[totalUnit]
+      return `${usedValue / unitValue}${usedValue > 0 ? totalUnit : ''}`
     }
 
     return usedValue
