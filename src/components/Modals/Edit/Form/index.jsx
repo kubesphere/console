@@ -125,18 +125,10 @@ export default class FormsBox extends React.Component {
     this.setState(({ updatedTabs }) => {
       updatedTabs[name] = formData
 
-      return name === 'updateStrategy'
-        ? { updatedTabs }
-        : {
-            updatedTabs,
-            formData,
-          }
-    })
-  }
-
-  setSelfState = formData => {
-    this.setState({
-      formData,
+      return {
+        updatedTabs,
+        formData,
+      }
     })
   }
 
@@ -210,7 +202,6 @@ export default class FormsBox extends React.Component {
           formData={formData}
           cluster={cluster}
           onSaveChange={this.handleSaveForm}
-          setParentState={this.setSelfState}
         />
         {this.renderSubRouteConfirm()}
       </div>

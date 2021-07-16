@@ -224,6 +224,30 @@ export default class UpdateStrategyForm extends React.Component {
     )
   }
 
+  static getDerivedStateFromProps(props, state) {
+    const { data } = props
+    const number = /^[0-9]*$/
+    const rollingUpdate = 'spec.strategy.rollingUpdate'
+    if (state.strategy === 'RollingUpdate') {
+      if (number.test(get(data, `${rollingUpdate}.maxSurge`))) {
+        set(
+          data,
+          `${rollingUpdate}.maxSurge`,
+          Number(get(data, `${rollingUpdate}.maxSurge`))
+        )
+      }
+      if (number.test(get(data, `${rollingUpdate}.maxUnavailable`))) {
+        set(
+          data,
+          `${rollingUpdate}.maxUnavailable`,
+          Number(get(data, `${rollingUpdate}.maxUnavailable`))
+        )
+      }
+    }
+
+    return null
+  }
+
   render() {
     const { module } = this.props
 
