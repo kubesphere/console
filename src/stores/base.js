@@ -59,12 +59,19 @@ export default class BaseStore {
     return path
   }
 
-  getListUrl = (params = {}) =>
-    `${this.apiVersion}${this.getPath(params)}/${this.module}${
+  getListUrl = (params = {}, changeModule) => {
+    if (changeModule) {
+      return `${API_VERSIONS[changeModule]}${this.getPath(
+        params
+      )}/${changeModule}${params.dryRun ? '?dryRun=All' : ''}`
+    }
+    return `${this.apiVersion}${this.getPath(params)}/${this.module}${
       params.dryRun ? '?dryRun=All' : ''
     }`
+  }
 
-  getDetailUrl = (params = {}) => `${this.getListUrl(params)}/${params.name}`
+  getDetailUrl = (params = {}, changeModule = null) =>
+    `${this.getListUrl(params, changeModule)}/${params.name}`
 
   getWatchListUrl = (params = {}) =>
     `${this.apiVersion}/watch${this.getPath(params)}/${this.module}`

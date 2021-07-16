@@ -122,7 +122,7 @@ export default class WorkloadStore extends Base {
   @action
   async rerun({ name, cluster, namespace }) {
     const result = await request.get(
-      this.getDetailUrl({ name, cluster, namespace })
+      this.getDetailUrl({ name, cluster, namespace }, 'jobs')
     )
     const resourceVersion = get(result, 'metadata.resourceVersion')
     return this.submitting(
