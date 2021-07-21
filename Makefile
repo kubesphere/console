@@ -1,5 +1,5 @@
 REPO?=kubespheredev/ks-console
-TAG:=$(shell git rev-parse --abbrev-ref HEAD)-dev
+TAG?=$(shell git rev-parse --abbrev-ref HEAD)-dev
 
 setup:
 	docker volume create nodemodules
