@@ -673,4 +673,5 @@ module.exports = {
     'A certificate error was found, do you want to ignore the certificate verification',
   IGNORE_CERT_WARN_DESC:
     'Ignoring the verification certificate may cause the account password to be disclosed. ',
+  'project is invalid': 'Proyecto no válido',
 }
