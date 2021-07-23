@@ -23,7 +23,7 @@ module.exports = {
     '總共收錄了 <span class={className}>{containers}</span> 個容器<br/> <span class={className}> {logs} </span> 條紀錄資訊',
   LOG_DATE: 'YYYY年MM月DD日HH時',
   EVENT_DATE: 'YYYY年MM月DD日0時',
-  topic: '主題',
+  TOPIC: '主題',
   Keyword: '關鍵字',
   'Region Data': '元數據',
   'Refresh Rate': '刷新頻率',
@@ -80,24 +80,24 @@ module.exports = {
 
   LOG_COLLECTION_DESC:
     '系統將收集每個容器的標準輸出和標準錯誤輸出紀錄，並將其發送到一個或多個目標服務',
-  'Add Log Receiver': '添加紀錄接收者',
+  ADD_LOG_RECEIVER: '添加紀錄接收者',
   EMPTY_LOG_COLLECTIONS:
-    '暫時沒有設置紀錄收集器，您可以添加紀錄收集器將紀錄導出到外埠的紀錄收集工具中',
+    'No log receiver is found. You can add log receivers to export logs to external log collectors.',
   LOG_COLLECTION_TIPS:
-    '每種類型的紀錄接收者只能添加一個，如果已存在則只能修改，不可以再添加',
+    'You can add one log receiver for each type. If a type of log receiver is already added, you cannot add it again.',
 
   Address: '地址',
-  'Service Address': '服務地址',
-  'Add Service Address': '添加服務地址',
-  'Please input service address': '請輸入服務地址',
+  SERVICE_ADDRESS: '服務地址',
+  ADD_SERVICE_ADDRESS: '添加',
+  ENTER_SERVICE_ADDRESS: '請輸入服務地址。',
 
   URL_SYNTAX_ERROR: 'URL 語法錯誤',
   'Please enter the address': '請輸入地址',
   LOG_COLLECTION_ES_URL_TIPS:
-    '預設使用系統部署的 Elasticsearch，也可以輸入外部或者單獨部署的 Elasticsearch 地址',
+    'The built-in Elasticsearch service is used by default. You can also enter the IP address of Elasticsearch independently deployed inside or outside the cluster.',
   LOG_COLLECTION_ES_INDEX_TIPS:
-    '預設按照日期分類建立索引，例：索引前綴-2020.01.01',
-  LOG_COLLECTION_FLUENTD_URL_TIPS: '輸入接收紀錄的 Fluentd 的地址',
+    'The index is created based on the date. For example, {prefix}-2020.01.01.',
+  LOG_COLLECTION_FLUENTD_URL_TIPS: '輸入接收紀錄的 Fluentd 的地址。',
 
   'Refresh Interval': '刷新頻率',
   'Recently Updated': '最近刷新',
@@ -109,7 +109,7 @@ module.exports = {
   'Log Receiver': '紀錄接收者',
   Activate: '啟用',
   'Real-Time Data': '實時數據',
-  'Index Prefix': '索引前缀',
+  INDEX_PREFIX: '索引前缀',
 
   TOOLBOX_SHIFT_TIPS: ' 👻 Shift + 鼠標左鍵 可以在新視窗中打開',
   HIDE_HELP_INFORMATION: '不再顯示幫助資訊',
@@ -127,8 +127,9 @@ module.exports = {
   LOG_EXPORT: '紀錄導出',
   CUSTOM_MONITORING_DASHBOARD: '自定義監控面板',
   CREATE_CUSTOM_MONITORING_DASHBOARD: '創建自定義監控面板',
-  SELECT_SUITABLE_MONITORING_TEMPLATE: '選擇適合您應用應用模板',
-  CUSTON_MONITORING_TEMPLATE_DESC: '監控面板將根據應用類型生成預設的面板配置',
+  SELECT_MONITORING_TEMPLATE: '選擇監控模板',
+  CUSTON_MONITORING_TEMPLATE_DESC:
+    'Generate default monitoring template based on the application template you select or customize a template.',
   SERVICE_BUILT_INTERFACE: '服務已内置監控數據抓取介面',
   TOTAL_EVENTS_TODAY:
     '今日總共收錄了 <span class={className}> {events} </span> 條事件',
@@ -141,4 +142,14 @@ module.exports = {
   LOGGING_LOG_COLLECTOR: '紀錄接收者',
   EVENTS_LOG_COLLECTOR: '事件紀錄接收者',
   AUDITING_LOG_COLLECTOR: '審計紀錄接收者',
+
+  // Log Collection
+  LOG_COLLECTION: 'Log Collection',
+  LOG_ADDRESS: 'Address: ',
+  LOG_COLLECTING: 'Collecting',
+  LOG_CLOSE: 'Close',
+  INVALID_SERVICE_ADDRESS: 'Invalid service address.',
+  EXAMPLE: 'Example: ',
+  ENTER_PORT_NUMBER: 'Please enter a port number.',
+  PARAMETER_REQUIRED: 'This parameter is mandatory.',
 }

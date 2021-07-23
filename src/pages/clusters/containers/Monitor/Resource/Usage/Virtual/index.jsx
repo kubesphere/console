@@ -162,7 +162,7 @@ class VirtualResource extends React.Component {
     {
       type: 'pod',
       title: 'Pods',
-      legend: ['Running Pods'],
+      legend: ['RUNNING_PODS'],
       metricType: MetricTypes.pod_running_count,
     },
   ]
@@ -173,7 +173,7 @@ class VirtualResource extends React.Component {
 
     return (
       <MonitoringController
-        title={t('Application Resources Usage')}
+        title={t('APPLICATION_RESOURCES_USAGE')}
         step="1h"
         times={24}
         onFetch={this.fetchData}

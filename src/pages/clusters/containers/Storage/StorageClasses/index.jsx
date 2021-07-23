@@ -73,7 +73,7 @@ export default class StorageClasses extends React.Component {
         ),
       },
       {
-        title: t('Volume Count'),
+        title: t('VOLUMES'),
         dataIndex: 'volumeCount',
         isHideable: true,
         render: (count, record) =>
@@ -86,7 +86,7 @@ export default class StorageClasses extends React.Component {
         render: value => (value ? t('Yes') : '-'),
       },
       {
-        title: t('Support Volume Snapshot'),
+        title: t('VOLUME_SNAPSHOT_SUPPORT'),
         dataIndex: 'supportSnapshot',
         isHideable: true,
         render: supportSnapshot => (supportSnapshot ? t('True') : t('False')),

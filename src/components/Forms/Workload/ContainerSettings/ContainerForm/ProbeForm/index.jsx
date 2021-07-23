@@ -158,7 +158,7 @@ export default class ProbeForm extends React.Component {
           <Column>
             <Form.Item
               label={t('Port')}
-              rules={[{ required: true, message: t('Please input port') }]}
+              rules={[{ required: true, message: t('ENTER_PORT_NUMBER') }]}
             >
               <NumberInput
                 name="tcpSocket.port"

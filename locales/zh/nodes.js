@@ -54,6 +54,8 @@ module.exports = {
   'CPU Utilization': 'CPU 使用情况',
   'Memory Utilization': '内存使用情况',
   'Pod Count': '容器组数量',
+  PODS: '容器组数量',
+  CPU_USAGE: 'CPU 用量',
   'Pod Usage': '容器组使用情况',
   'Pod Quantity Trend': '容器组数量变化',
   'Local Storage Capacity': '本地存储容量',

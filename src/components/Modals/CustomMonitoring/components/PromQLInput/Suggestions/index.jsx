@@ -233,10 +233,10 @@ export default class Suggestions extends Component {
 
     return (
       <div className={classNames(styles.wrapper, className)} ref={this.wrapper}>
-        {this.renderList(labels, 'Labels')}
-        {this.renderList(functions, 'Functions')}
-        {this.renderList(rateRanges, 'Rate Ranges')}
-        {this.renderList(metrics, 'Metrics')}
+        {this.renderList(labels, t('ALERT_LABELS'))}
+        {this.renderList(functions, t('ALERT_FUNCTIONS'))}
+        {this.renderList(rateRanges, t('ALERT_RATE_RANGES'))}
+        {this.renderList(metrics, t('ALERT_METRICS'))}
       </div>
     )
   }

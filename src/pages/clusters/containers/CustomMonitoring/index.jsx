@@ -55,7 +55,7 @@ export default class CustomMonitoringDashboards extends React.Component {
         ),
       },
       {
-        title: t('Created Time'),
+        title: t('CREATED_AT'),
         dataIndex: 'createTime',
         width: 150,
         render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
@@ -121,7 +121,12 @@ export default class CustomMonitoringDashboards extends React.Component {
     return (
       <div>
         <ListPage {...this.props}>
-          <Banner {...bannerProps} tabs={this.tabs} />
+          <Banner
+            {...bannerProps}
+            title={t('CUSTOM_MONITORING')}
+            description={t('CUSTOM_MONITOR_DESC')}
+            tabs={this.tabs}
+          />
           <Table
             {...tableProps}
             itemActions={this.itemActions}

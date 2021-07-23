@@ -125,7 +125,7 @@ export default class BaseInfo extends React.Component {
         <Form data={formTemplate} ref={formRef}>
           <SubTitle title={t('Cluster Basic Info')} />
           <Form.Item
-            label={t('Cluster Name')}
+            label={t('CLUSTER_NAME')}
             desc={t('NAME_DESC')}
             rules={[
               { required: true, message: t('Please input cluster name') },

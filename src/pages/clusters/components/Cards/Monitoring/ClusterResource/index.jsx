@@ -109,16 +109,16 @@ export default class ClusterResourceStatusTab extends React.Component {
     const result = [
       {
         type: 'utilisation',
-        title: 'CPU Utilization',
+        title: 'CPU_USAGE',
         unit: '%',
-        legend: ['Utilization'],
+        legend: ['USAGE'],
         data: get(this.metrics, `${MetricTypes.cpu_utilisation}.data.result`),
       },
       {
         type: 'utilisation',
-        title: 'Memory Utilization',
+        title: 'MEMORY_USAGE',
         unit: '%',
-        legend: ['Utilization'],
+        legend: ['USAGE'],
         data: get(
           this.metrics,
           `${MetricTypes.memory_utilisation}.data.result`
@@ -126,13 +126,13 @@ export default class ClusterResourceStatusTab extends React.Component {
       },
       {
         type: 'utilisation',
-        title: 'Disk Utilization',
+        title: 'DISK_USAGE',
         unit: '%',
-        legend: ['Utilization'],
+        legend: ['USAGE'],
         data: get(this.metrics, `${MetricTypes.disk_utilisation}.data.result`),
       },
       {
-        title: 'Pod Quantity Trend',
+        title: 'POD_NUMBER',
         unit: '',
         legend: ['Count'],
         data: get(this.metrics, `${MetricTypes.pod_count}.data.result`),

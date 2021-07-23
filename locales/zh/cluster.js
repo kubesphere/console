@@ -25,7 +25,7 @@ module.exports = {
   Validating: '校验中',
   'Validation failed': '校验失败',
 
-  'Cluster Name': '集群名称',
+  CLUSTER_NAME: '集群名称',
   'Cluster Management': '集群管理',
   'Nodes Management': '节点管理',
   'Node Types': '节点类型',
@@ -52,14 +52,14 @@ module.exports = {
   KUBERNETES_VERSION: 'Kubernetes 版本',
   KUBESPHERE_VERSION: 'KubeSphere 版本',
 
-  'Edit Cluster Info': '编辑集群信息',
+  EDIT_INFORMATION: '编辑信息',
 
   'Cluster List': '集群列表',
   CLUSTER_INFORMATION: '集群信息',
   KUBERNETES_STATUS: 'Kubernetes 状态',
   Tools: '工具',
 
-  'Edit Visibility': '编辑可见范围',
+  EDIT_VISIBILITY: '编辑可见性',
 
   'Go back': '返回上一步',
 
@@ -78,25 +78,26 @@ module.exports = {
 
   'Copy successfully': '复制成功',
 
-  Unbind: '解除绑定',
+  UNBIND: '解绑',
 
-  'Unbind Cluster': '解绑集群',
+  UNBIND_CLUSTER: '解绑集群',
+  'Are you sure you want to unbind the cluster?': '您确定解绑集群吗？',
 
   'Cluster Member': '集群成员',
 
-  Authorized: '已授权',
+  AUTHORIZED: '已授权',
   Unauthorized: '待授权',
 
   'Please input cluster name': '请输入集群名称',
 
   'Authorize the cluster to workspace': '集群授权企业空间',
-  'Set as public cluster': '设置为公开集群',
+  SET_PUBLIC_CLUSTER: '设置为公开集群',
 
   'The current cluster is public': '当前集群处于公开状态',
 
   'Available Clusters': '可用集群',
   'Select Clusters': '集群选择',
-  'Edit cluster basic information': '编辑集群基础信息',
+  EDIT_CLUSTER_INFO_DESC: '编辑集群基本信息。',
 
   SCHEDULING_OPERATIONS: '调度次数',
   SCHEDULING_FAILURES: '调度失败次数',
@@ -156,6 +157,7 @@ module.exports = {
 
   'Log Info': '日志信息',
 
+  CLUSTER_BASIC_INFO: '基本信息',
   NO_CLUSTER_TIP: '请添加至少 1 个集群',
   NO_CLUSTER_TIP_DESC:
     '集群是一组运行着 Kubernetes 的节点 (物理或者虚拟机)，Kubesphere 的功能也依托于集群中的节点来运行',
@@ -169,9 +171,9 @@ module.exports = {
   MULTI_CLUSTER: '多集群',
 
   CLUSTER_SETTINGS_DESC: '定义集群配置信息',
-  CLUSTER_TAG: '标识',
-  CLUSTER_TAG_DESC: '标识此集群的用途，例如 生产环境、测试环境、演示环境 等',
-  CLUSTER_PROVIDER_DESC: '提供集群基础设施的厂商',
+  CLUSTER_TAG: '标签',
+  CLUSTER_TAG_DESC: '为集群添加标签来标识集群的用途。',
+  CLUSTER_PROVIDER_DESC: '提供集群基础设施的服务商。',
   CLUSTER_CONNECT_METHOD_DESC: '可以直接连接集群或者使用代理',
 
   CONNTECT_DIRECT: '直接连接 Kubernetes 集群',
@@ -188,11 +190,12 @@ module.exports = {
   CLUSTER_AGENT_TIP_3_DESC: '此操作可能需要一定时间，请等待集群状态更新。',
 
   CLUSTER_CONDITIONS: '集群状态',
-  CLUSTER_BASE_INFO_DESC: '当前集群基础信息总览',
+  CLUSTER_BASE_INFO_DESC: '当前集群基础信息总览。',
+  CLUSTER_INFO_TCAP: '集群信息',
 
   UNBIND_CLUSTER_DESC:
-    '解绑集群后，KubeSphere 将无法再对该集群进行管理。 解绑后，该集群内的 Kubernetes 资源不会被删除。',
-  SURE_TO_UNBIND_CLUSTER: '我确定要执行解绑集群的操作',
+    '解绑集群后，KubeSphere 将无法管理该集群，但该集群上的 Kubernetes 资源不会被删除。',
+  SURE_TO_UNBIND_CLUSTER: '我确定解绑集群。',
 
   'Invite members to the cluster': '邀请成员到该集群',
   INVITE_CLUSTER_MEMBER_DESC: '您可以邀请新的成员来此集群',
@@ -208,10 +211,10 @@ module.exports = {
 
   CLUSTER_VISIBILITY_Q1: '如何将集群授权给指定的企业空间使用？',
   CLUSTER_VISIBILITY_A1:
-    '集群可以通过“编辑可见范围”将集群授权给不同的企业空间使用',
+    '您可以点击<strong>编辑可见性</strong>将集群授权给指定的企业空间使用。',
   CLUSTER_VISIBILITY_Q2: '什么是公开集群?',
   CLUSTER_VISIBILITY_A2:
-    '公开状态的集群意味着平台内的用户都可以使用该集群，并在集群中创建和调度资源',
+    '公开状态的集群意味着平台内的用户都可以使用该集群，并在集群中创建和调度资源。',
 
   SELECT_CLUSTERS_DESC: '选择企业空间下可用的集群',
 
@@ -231,15 +234,15 @@ module.exports = {
   CLUSTER_AGENT_DESC: '需要在集群中设置下相应的代理 Agent',
 
   SELECT_HOST_CLUSTER_WARNING:
-    '请尽量不要在 Host 集群上创建资源，以免 Host 集群负载过高，导致多集群稳定性下降。',
+    '请尽量不要在 Host 集群上创建资源，Host 集群负载过高会导致多集群稳定性下降。',
   HOST_CLUSTER_VISIBILITY_WARNING:
     '请谨慎将 Host 集群授权给企业空间，Host 集群负载过高会导致多集群稳定性下降。',
   CLUSTER_VISIBILITY_REMOVE_WARNING:
-    '移除集群对企业空间的授权，将删除该企业空间在当前集群下的所有资源。',
+    '移除集群对企业空间的授权后，该企业空间在当前集群下的所有资源将被删除。',
 
-  REMOVE_WORKSPACE_CONFIRM_TITLE: '确定移除授权？',
+  REMOVE_WORKSPACE_CONFIRM_TITLE: '移除授权',
   REMOVE_WORKSPACE_CONFIRM_DESC:
-    '确定移除对企业空间 {resource} 的授权？移除集群对企业空间的授权，将删除该企业空间在当前集群下的所有资源！',
+    '请输入企业空间名称 <strong>{resource}</strong> 确保您已了解操作所带来的风险。',
 
   SELECT_ADD_CLUSTER_METHOD: '选择添加集群的方式',
   SELECT_ADD_CLUSTER_METHOD_DESC: '支持添加新集群和导入已存在集群',
@@ -306,4 +309,21 @@ module.exports = {
     '当前集群版本无法使用此功能，请升级到 {version} 或以上版本。',
   MEMBER_CLUSTER_UPGRADE_TIP:
     '低于 {version} 版本 member 集群无法使用此功能, 请将 member 集群升级到 {version} 或以上版本。',
+
+  // Unbind Cluster
+  UNBIND_CLUSTER_Q: '您确定解绑集群吗？',
+
+  // Cluster Visibility
+  CLUSTER_VISIBILITY: '集群可见性',
+  CLUSTER_VISIBILITY_DESC:
+    '将集群授权给企业空间，以在企业空间中查看并管理集群资源。',
+  EDIT_VISIBILITY_DESC: '编辑集群在企业空间中的可见性。',
+  TO_BE_AUTHORIZED: '待授权',
+  LOGGING: '日志',
+  EVENTS: '事件',
+  AUDITING: '审计',
+  REMOVE_WORKSPACE_CONFIRM_SI:
+    '请输入企业空间名称 <strong>{resource}</strong> 确保您已了解操作所带来的风险。',
+  REMOVE_WORKSPACE_CONFIRM_PL:
+    '请输入企业空间名称 <strong>{resource}</strong> 确保您已了解操作所带来的风险。',
 }

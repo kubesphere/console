@@ -150,6 +150,10 @@ export default class ClusterVisibility extends React.Component {
     } = this.state
 
     const resource = deleteWorkspaces.map(item => item.name).join(', ')
+    const desc =
+      deleteWorkspaces.length > 1
+        ? t.html('REMOVE_WORKSPACE_CONFIRM_PL', { resource })
+        : t.html('REMOVE_WORKSPACE_CONFIRM_SI', { resource })
 
     return (
       <Modal
@@ -158,8 +162,8 @@ export default class ClusterVisibility extends React.Component {
         onOk={this.handleOk}
         width={960}
         icon="key"
-        title={t('Authorize the cluster to workspace')}
-        description={t('AUTHORIZE_CLUSTER_TO_WORKSPACE_DESC')}
+        title={t('EDIT_VISIBILITY')}
+        description={t('EDIT_VISIBILITY_DESC')}
       >
         <Alert
           className="margin-b12"
@@ -176,7 +180,7 @@ export default class ClusterVisibility extends React.Component {
         <div className={styles.wrapper}>
           <Columns>
             <Column className="is-half">
-              <div className={styles.title}>{t('Unauthorized')}</div>
+              <div className={styles.title}>{t('TO_BE_AUTHORIZED')}</div>
               <div className={styles.content}>
                 <div className={styles.search}>
                   <InputSearch
@@ -203,15 +207,15 @@ export default class ClusterVisibility extends React.Component {
                     checked={isPublic}
                     onChange={this.handlePublicChange}
                   />
-                  <span>{t('Set as public cluster')}</span>
-                  <Tooltip content={t('PUBLIC_CLUSTER_DESC')}>
+                  <span>{t('SET_PUBLIC_CLUSTER')}</span>
+                  <Tooltip content={t('CLUSTER_VISIBILITY_A2')}>
                     <Icon name="information" />
                   </Tooltip>
                 </div>
               </div>
             </Column>
             <Column>
-              <div className={styles.title}>{t('Authorized')}</div>
+              <div className={styles.title}>{t('AUTHORIZED')}</div>
               <div className={styles.content}>
                 <div className={styles.authedList}>
                   {authedWorkspaces.map(item => (
@@ -234,7 +238,7 @@ export default class ClusterVisibility extends React.Component {
           onCancel={this.hideConfirm}
           resource={resource}
           title={t('REMOVE_WORKSPACE_CONFIRM_TITLE')}
-          desc={t.html('REMOVE_WORKSPACE_CONFIRM_DESC', { resource })}
+          desc={desc}
         />
       </Modal>
     )

@@ -68,6 +68,7 @@ module.exports = {
   'OS Image': 'Imagen del sistema operativo',
   OsImage: 'OsImage',
   'Pod Count': 'Numero de pods',
+  PODS: 'Pods',
   'Pod Quantity Trend': 'Tendencia de cantidad de pods',
   'Pod Usage': 'Uso de pods',
   'Pod Used': 'Pod utilizado',

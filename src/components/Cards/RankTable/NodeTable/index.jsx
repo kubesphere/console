@@ -99,7 +99,7 @@ export default class NodeUsageRank extends React.Component {
     {
       width: this.rankTdWidth,
       title: (
-        <span className={styles.averageload}>{t('CPU_AVERAGE_LOAD')}</span>
+        <span className={styles.averageload}>{t('AVERAGE_CPU_LOAD')}</span>
       ),
       sort_metric: 'node_load1',
       render: node => (
@@ -142,7 +142,7 @@ export default class NodeUsageRank extends React.Component {
     },
     {
       width: this.rankTdWidth,
-      title: t('inode Utilization'),
+      title: t('INODE_USAGE'),
       sort_metric: 'node_disk_inode_utilisation',
       render: node => (
         <div>
@@ -155,7 +155,7 @@ export default class NodeUsageRank extends React.Component {
       ),
     },
     {
-      title: t('Pods'),
+      title: t('PODS'),
       key: 'Pod',
       width: this.rankTdWidth,
       sort_metric: 'node_pod_utilisation',

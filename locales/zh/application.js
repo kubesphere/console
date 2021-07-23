@@ -237,7 +237,7 @@ module.exports = {
     '应用模板来自于企业空间和第三方的 Helm 应用模板，支持一键部署并可通过可视化的方式在 KubeSphere 中展示并提供部署及管理的功能',
   APP_REPOS_DESC:
     '应用仓库来自于第三方的 Helm Chart Repo，通过可视化的方式在 KubeSphere 中展示并提供部署及管理功能，用户可以基于应用仓库中的模板快速地一键部署应用。',
-  SEARCH_TIPS: '您可以根据相关条件进行过滤',
+  SEARCH_TIPS: '搜索',
 
   'From workspace': '来自企业空间',
   'Add stateful or stateless services': '添加有状态服务或无状态服务',

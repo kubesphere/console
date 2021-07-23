@@ -70,6 +70,7 @@ module.exports = {
   'OS Image': 'OS Image',
   OsImage: 'OsImage',
   'Pod Count': 'Pod Count',
+  PODS: 'Pods',
   'Pod Quantity Trend': 'Pod Quantity Trend',
   'Pod Usage': 'Pod Usage',
   'Pod Used': 'Pod Used',

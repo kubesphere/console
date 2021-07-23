@@ -63,7 +63,7 @@ class ClusterStability extends React.Component {
         <>
           <Banner
             icon="linechart"
-            title={t('Cluster Status Monitoring')}
+            title={t('CLUSTER_STATUS')}
             description={t('MONITORING_CLUSTER_DESC')}
             routes={this.routes}
           />

@@ -210,7 +210,7 @@ module.exports = {
     'Usar la gestión de aplicación requiere crear una aplicación propia y activar la gestión para cada servicio',
   APP_REPOS_DESC:
     'El repositorio de aplicaciones proviene de un repositorio de Charts de Helm de terceros, que visualmente muestra y proporciona capacidades de despliegue y administración en KubeSphere. Los usuarios pueden desplegar rápidamente aplicaciones con un solo click, basadas en las plantillas del repositorio de aplicaciones.',
-  SEARCH_TIPS: 'Puedes filtrar según las condiciones relevantes',
+  SEARCH_TIPS: 'Search',
   APPLICATION_BASEINFO_DESC:
     'Información básica de la aplicación (como la descripción)',
   TRAFFIC_MANAGEMENT_NO_MICROSERVICE_TIP:
