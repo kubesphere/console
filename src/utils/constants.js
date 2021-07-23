@@ -937,6 +937,7 @@ export const COMPONENT_ICON_MAP = {
 }
 
 export const CLUSTER_PROVIDER_ICON = {
+  'Self-built Kubernetes': 'kubernetes',
   'Aliyun ACK': 'aliyun',
   'Aure Kubernetes Service': 'windows',
   'Huawei Cloud CCE': 'kubernetes',
@@ -948,6 +949,11 @@ export const CLUSTER_PROVIDER_ICON = {
 }
 
 export const CLUSTER_PROVIDERS = [
+  {
+    label: 'Self-built Kubernetes',
+    value: 'Self-built Kubernetes',
+    icon: 'kubernetes',
+  },
   {
     label: 'Aliyun ACK',
     value: 'Aliyun ACK',
