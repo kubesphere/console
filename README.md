@@ -48,6 +48,12 @@ Note: If you are in China Mainland, execute the following command before running
 yarn config set registry https://registry.npm.taobao.org
 ```
 
+Note: If your Mac is using M1 chip, you need to switch to x86 compatible mode:
+
+```sh
+arch -x86_64 zsh  # return by changing x86_64 to arm64
+```
+
 Alternatively you can start development using docker. See [Development with Docker](/docs/development-with-docker.md).
 
 ### Access the backend services of KubeSphere
