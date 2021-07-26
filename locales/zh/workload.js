@@ -704,4 +704,5 @@ module.exports = {
     '可以将容器组部署在不同集群中，并对集群中部署的副本数量进行定义。不同集群中的容器组将由联邦集群控制器(Federation Controller Manager)进行统一的调度及状态同步。',
   IGNORE_CERT_DESC: '发现证书错误，是否忽略证书验证并再次',
   IGNORE_CERT_WARN_DESC: '忽略验证证书，可能会导致帐户密码被泄露。',
+  'project is invalid': '项目不可选',
 }

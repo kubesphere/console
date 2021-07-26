@@ -19,6 +19,7 @@
 import React from 'react'
 import { get, set, debounce } from 'lodash'
 import { observer } from 'mobx-react'
+import ProjectStore from 'stores/project'
 
 import { updateLabels } from 'utils'
 import {
@@ -32,6 +33,29 @@ import { ProjectSelect } from 'components/Inputs'
 
 @observer
 export default class BaseInfo extends React.Component {
+  projectStore = new ProjectStore()
+
+  componentDidMount() {
+    this.fetchProjects()
+  }
+
+  fetchProjects = (params = {}) => {
+    const { cluster } = this.props
+    return this.projectStore.fetchList({
+      cluster,
+      labelSelector: 'kubefed.io/managed=true',
+      ...params,
+    })
+  }
+
+  getProjects() {
+    const { data } = this.projectStore.list
+    const result = data.map(item => ({
+      value: item.name,
+    }))
+    return result
+  }
+
   get cluster() {
     return this.props.cluster
   }
@@ -68,6 +92,18 @@ export default class BaseInfo extends React.Component {
         }
         callback()
       })
+  }
+
+  projectValidator = (rule, value, callback) => {
+    if (!value) {
+      return callback()
+    }
+    const options = this.getProjects()
+    options.forEach(item => {
+      if (item.value === value) {
+        return callback({ message: t('project is invalid') })
+      }
+    })
   }
 
   handleNameChange = debounce(value => {
@@ -132,6 +168,7 @@ export default class BaseInfo extends React.Component {
                 desc={t('PROJECT_DESC')}
                 rules={[
                   { required: true, message: t('Please select a project') },
+                  { validator: this.projectValidator },
                 ]}
               >
                 <ProjectSelect
