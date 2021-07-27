@@ -80,30 +80,54 @@ export default class ResourceLimit extends React.Component {
     return null
   }
 
+  static allowInputDot(formatNum, unit, dotIndex, formatFn) {
+    if (formatNum && formatNum.slice(...dotIndex) === '.') {
+      const number = formatFn(formatNum, unit)
+      return `${number}.`
+    }
+    return formatFn(formatNum, unit)
+  }
+
   static getValue(props) {
     const cpuUnit = get(props, 'cpuProps.unit', 'Core')
     const memoryUnit = get(props, 'memoryProps.unit', 'Mi')
 
+    const cpuRequests = ResourceLimit.allowInputDot(
+      ResourceLimit.getDefaultRequestValue(props, 'cpu'),
+      cpuUnit,
+      [-1],
+      cpuFormat
+    )
+
+    const cpuLimits = ResourceLimit.allowInputDot(
+      ResourceLimit.getDefaultLimitValue(props, 'cpu'),
+      cpuUnit,
+      [-1],
+      cpuFormat
+    )
+
+    const memoryRequests = ResourceLimit.allowInputDot(
+      ResourceLimit.getDefaultRequestValue(props, 'memory'),
+      memoryUnit,
+      [-3, -2],
+      memoryFormat
+    )
+
+    const memoryLimits = ResourceLimit.allowInputDot(
+      ResourceLimit.getDefaultLimitValue(props, 'memory'),
+      memoryUnit,
+      [-3, -2],
+      memoryFormat
+    )
+
     return {
       requests: {
-        cpu: cpuFormat(
-          ResourceLimit.getDefaultRequestValue(props, 'cpu'),
-          cpuUnit
-        ),
-        memory: memoryFormat(
-          ResourceLimit.getDefaultRequestValue(props, 'memory'),
-          memoryUnit
-        ),
+        cpu: cpuRequests,
+        memory: memoryRequests,
       },
       limits: {
-        cpu: cpuFormat(
-          ResourceLimit.getDefaultLimitValue(props, 'cpu'),
-          cpuUnit
-        ),
-        memory: memoryFormat(
-          ResourceLimit.getDefaultLimitValue(props, 'memory'),
-          memoryUnit
-        ),
+        cpu: cpuLimits,
+        memory: memoryLimits,
       },
     }
   }
@@ -271,9 +295,20 @@ export default class ResourceLimit extends React.Component {
   }
 
   handleInputChange = (e, value) => {
+    let inputNum
     const name = e.target.name
+
+    if (value === '') {
+      inputNum = 0
+    } else if (value > 1000) {
+      value = 'infinity'
+    } else {
+      const number = /^(([1-9]{1}\d*)|(0{1}))(\.\d{0,2})?$/.exec(value)
+      inputNum = number == null ? get(this.state, name, null) : number[0]
+    }
+
     this.setState(state => {
-      set(state, name, isNaN(value) ? '' : value)
+      set(state, name, isNaN(inputNum) ? '' : inputNum)
       return { ...state, ...this.checkError(state) }
     }, this.triggerChange)
   }
