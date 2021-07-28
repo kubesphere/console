@@ -80,11 +80,17 @@ export default class ResourceLimit extends React.Component {
     return null
   }
 
-  static allowInputDot(formatNum, unit, dotIndex, formatFn) {
-    if (formatNum && formatNum.slice(...dotIndex) === '.') {
+  static allowInputDot(formatNum, unit, formatFn, isMemory = false) {
+    const inputNum = formatNum && isMemory ? formatNum.slice(0, -2) : formatNum
+    if (inputNum && inputNum.endsWith('.')) {
       const number = formatFn(formatNum, unit)
       return `${number}.`
     }
+    if (inputNum && inputNum.endsWith('.0')) {
+      const number = formatFn(formatNum, unit)
+      return `${number}.0`
+    }
+
     return formatFn(formatNum, unit)
   }
 
@@ -95,29 +101,27 @@ export default class ResourceLimit extends React.Component {
     const cpuRequests = ResourceLimit.allowInputDot(
       ResourceLimit.getDefaultRequestValue(props, 'cpu'),
       cpuUnit,
-      [-1],
       cpuFormat
     )
 
     const cpuLimits = ResourceLimit.allowInputDot(
       ResourceLimit.getDefaultLimitValue(props, 'cpu'),
       cpuUnit,
-      [-1],
       cpuFormat
     )
 
     const memoryRequests = ResourceLimit.allowInputDot(
       ResourceLimit.getDefaultRequestValue(props, 'memory'),
       memoryUnit,
-      [-3, -2],
-      memoryFormat
+      memoryFormat,
+      true
     )
 
     const memoryLimits = ResourceLimit.allowInputDot(
       ResourceLimit.getDefaultLimitValue(props, 'memory'),
       memoryUnit,
-      [-3, -2],
-      memoryFormat
+      memoryFormat,
+      true
     )
 
     return {
