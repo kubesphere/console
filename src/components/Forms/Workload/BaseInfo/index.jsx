@@ -95,15 +95,12 @@ export default class BaseInfo extends React.Component {
   }
 
   projectValidator = (rule, value, callback) => {
-    if (!value) {
-      return callback()
-    }
     const options = this.getProjects()
-    options.forEach(item => {
-      if (item.value === value) {
-        return callback({ message: t('project is invalid') })
-      }
-    })
+    const hasDisableValue = options.some(item => item.value === value)
+
+    return hasDisableValue
+      ? callback({ message: t('project is invalid') })
+      : callback()
   }
 
   handleNameChange = debounce(value => {
