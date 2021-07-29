@@ -38,6 +38,7 @@ import UpdateStrategy from './UpdateStrategy'
 import ContainerList from './ContainerList'
 import ContainerForm from './ContainerForm'
 import PodSecurityContext from './PodSecurityContext'
+import Metadata from './Metadata'
 
 export default class ContainerSetting extends React.Component {
   constructor(props) {
@@ -532,6 +533,21 @@ export default class ContainerSetting extends React.Component {
     )
   }
 
+  renderMetadata() {
+    return (
+      <div className="margin-b12">
+        <Form.Group
+          label={t('Add Metadata')}
+          desc={t('Additional metadata settings for resources.')}
+          keepDataWhenUnCheck
+          checkable
+        >
+          <Metadata />
+        </Form.Group>
+      </div>
+    )
+  }
+
   render() {
     const { formRef } = this.props
     const { showContainer, selectContainer } = this.state
@@ -547,6 +563,7 @@ export default class ContainerSetting extends React.Component {
         {this.renderUpdateStrategy()}
         {this.renderPodSecurityContext()}
         {this.renderPodAffinity()}
+        {this.renderMetadata()}
       </Form>
     )
   }

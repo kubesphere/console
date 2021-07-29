@@ -117,6 +117,7 @@ module.exports = {
     '可以讓容器組副本在指定的節點運行',
   'Additional metadata settings for resources such as Labels and Annotations.':
     '對資源進行額外的元數據設置，例如 Label 和 Annotation',
+  'Additional metadata settings for resources.': '對資源進行額外的元數據設置',
 
   'Deployment Location': '部署位置',
 

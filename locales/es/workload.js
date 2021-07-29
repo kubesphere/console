@@ -39,6 +39,8 @@ module.exports = {
   'Adding new contianer': 'Agregar nuevo contianer',
   'Additional metadata settings for resources such as Labels and Annotations.':
     'Configuración de metadatos adicionales para recursos como Etiquetas y Anotaciones.',
+  'Additional metadata settings for resources.':
+    'Configuración de metadatos adicionales para recursos.',
   'Advanced Options': 'Opciones avanzadas',
   'Applied to the workload': 'Aplicado a la carga de trabajo.',
   Argument: 'Argumento',

@@ -118,6 +118,8 @@ module.exports = {
   'Additional metadata settings for resources such as Labels and Annotations.':
     '对资源进行额外的元数据设置，例如 Label 和 Annotation',
 
+  'Additional metadata settings for resources.': '对资源进行额外的元数据设置',
+
   'Deployment Location': '部署位置',
 
   REFFER_CONFIGMAP_DESC: '将配置中的值添加为卷。',
