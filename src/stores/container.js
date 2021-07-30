@@ -158,6 +158,18 @@ export default class ContainerStore {
     )
 
   @action
+  getHarborImagesLists = async (params, url) =>
+    await request.get(`harbor/${url}/api/v2.0/search`, params, () => {})
+
+  @action
+  getHarborImageTag = async (url, projectName, repositoryName, params) =>
+    await request.get(
+      `harbor/${url}/api/v2.0/projects/${projectName}/repositories/${repositoryName}/artifacts`,
+      params,
+      () => {}
+    )
+
+  @action
   getImageDetail = async ({ cluster, ...params }) => {
     const result = await request.get(
       `kapis/resources.kubesphere.io/v1alpha2${this.getPath({
