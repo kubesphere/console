@@ -30,6 +30,8 @@ export default class DropdownContent extends React.Component {
     super(props)
     this.state = {
       dockerList: [],
+      harborList: [],
+      hubUrl: '',
       visible: false,
       isLoading: false,
     }
@@ -47,6 +49,17 @@ export default class DropdownContent extends React.Component {
   get secretValue() {
     const { formTemplate } = this.props
     return get(formTemplate, 'pullSecret', '')
+  }
+
+  get hubType() {
+    switch (this.secretValue) {
+      case '':
+        return 'dockerHub'
+      case 'harbor':
+        return 'harbor'
+      default:
+        return 'others'
+    }
   }
 
   get registryUrl() {
@@ -126,6 +139,12 @@ export default class DropdownContent extends React.Component {
   }
 
   handleSecretChange = value => {
+    if (value) {
+      const url = this.props.imageRegistries.filter(
+        hub => hub.label === value
+      )[0].url
+      this.setState({ hubUrl: url })
+    }
     const { formTemplate } = this.props
     set(formTemplate, 'pullSecret', value)
     this.props.onChange(this.registryUrl)
@@ -152,15 +171,35 @@ export default class DropdownContent extends React.Component {
     }
   }
 
-  handleImageSelected = async e => {
+  handleDockerImageSelected = async e => {
     const { image, logo, short_description } = e.currentTarget.dataset
     this.props.onChange(image)
     this.hideContent()
     this.props.onEnter({ logo, short_description })
   }
 
-  handleSearch = keyword => {
+  handleHarborImageSelected = async imageDetail => {
+    const projectName = imageDetail.project_name
+    const repository = imageDetail.repository_name.replace(
+      `${projectName}/`,
+      ''
+    )
+    const url = this.state.hubUrl
+    const tag = await this.fetchHarborImageTag(url, projectName, repository)
+    const image = `${url}/${imageDetail.repository_name}:${tag}`
+    const logo = ''
+    const short_description = ''
+    this.props.onChange(image)
+    this.hideContent()
+    this.props.onEnter({ logo, short_description })
+  }
+
+  handleSearchDockerHub = keyword => {
     this.fetchDockerList(keyword)
+  }
+
+  handleSearchHarbor = keyword => {
+    this.fetchHarborList(keyword, this.state.hubUrl)
   }
 
   fetchDockerList = async keyword => {
@@ -179,24 +218,85 @@ export default class DropdownContent extends React.Component {
       this.setState({ dockerList: get(result, 'summaries', []) })
   }
 
-  renderContent = () => (
-    <div
-      className={classnames(styles.dropContent, {
-        [styles.dropContent_hide]: !this.state.visible,
-      })}
-      ref={this.dropContentRef}
-    >
-      <div className={styles.header}>
-        <InputSearch
-          className={styles.search}
-          onSearch={this.handleSearch}
-          placeholder={t('SEARCH_IMAGE_PLACEHOLDER')}
-        />
-        {this.state.isLoading && <Loading className="float-left" size={28} />}
+  fetchHarborList = async (keyword, url) => {
+    if (!url) return
+    this.setState({ isLoading: true })
+    const result = await this.store
+      .getHarborImagesLists(
+        {
+          q: keyword,
+        },
+        url
+      )
+      .finally(() => {
+        !this.isUnMounted && this.setState({ isLoading: false })
+      })
+    !this.isUnMounted &&
+      this.setState({ harborList: get(result, 'repository', []) })
+  }
+
+  fetchHarborImageTag = async (url, projectName, repository) => {
+    const result = await this.store.getHarborImageTag(
+      url,
+      projectName,
+      repository,
+      {
+        with_tag: true,
+        with_scan_overview: true,
+        with_label: true,
+        page_size: 15,
+        page: 1,
+      }
+    )
+    // get latest version
+    if (result && result.length > 0 && result[0].tags.length > 0) {
+      return result[0].tags[0].name
+    }
+    return ''
+  }
+
+  renderContent = () => {
+    if (this.hubType === 'dockerHub') {
+      return (
+        <div
+          className={classnames(styles.dropContent, {
+            [styles.dropContent_hide]: !this.state.visible,
+          })}
+          ref={this.dropContentRef}
+        >
+          <div className={styles.header}>
+            <InputSearch
+              className={styles.search}
+              onSearch={this.handleSearchDockerHub}
+              placeholder={t('SEARCH_IMAGE_PLACEHOLDER')}
+            />
+            {this.state.isLoading && (
+              <Loading className="float-left" size={28} />
+            )}
+          </div>
+          {this.renderDockerList()}
+        </div>
+      )
+    }
+    return (
+      <div
+        className={classnames(styles.dropContent, {
+          [styles.dropContent_hide]: !this.state.visible,
+        })}
+        ref={this.dropContentRef}
+      >
+        <div className={styles.header}>
+          <InputSearch
+            className={styles.search}
+            onSearch={this.handleSearchHarbor}
+            placeholder={t('SEARCH_IMAGE_PLACEHOLDER')}
+          />
+          {this.state.isLoading && <Loading className="float-left" size={28} />}
+        </div>
+        {this.renderHarborList()}
       </div>
-      {this.renderDockerList()}
-    </div>
-  )
+    )
+  }
 
   renderDockerList() {
     if (isEmpty(this.state.dockerList)) {
@@ -222,7 +322,7 @@ export default class DropdownContent extends React.Component {
             />
             <div className={styles.info}>
               <p
-                onClick={this.handleImageSelected}
+                onClick={this.handleDockerImageSelected}
                 className={styles.clickable}
                 data-image={image.slug}
                 data-logo={get(image, 'logo_url.large', '')}
@@ -246,10 +346,50 @@ export default class DropdownContent extends React.Component {
               </span>
               <span
                 className={styles.clickable}
-                onClick={this.handleImageSelected}
+                onClick={this.handleDockerImageSelected}
                 data-image={image.slug}
                 data-logo={get(image, 'logo_url.large', '')}
                 data-short_description={image.short_description}
+              >
+                <Icon name="check" size={16} changeable />
+              </span>
+            </div>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+
+  renderHarborList() {
+    if (isEmpty(this.state.harborList)) {
+      return (
+        <ul className={styles.listContent}>
+          <div
+            className={classnames(styles.selectedContent, styles.emptyContent)}
+          >
+            <Icon name="docker" className={styles.icon} />
+            <p className={styles.desc}>{t('Not found this image')}</p>
+          </div>
+        </ul>
+      )
+    }
+    return (
+      <ul className={styles.listContent}>
+        {this.state.harborList.map(image => (
+          <li className={styles.ImageItem} key={image.repository_name}>
+            <img src={'/assets/no_img.svg'} alt={image.repository_name} />
+            <div className={styles.info}>
+              <p
+                onClick={e => this.handleHarborImageSelected(image, e)}
+                className={styles.clickable}
+              >
+                {image.repository_name}
+              </p>
+            </div>
+            <div className={styles.actions}>
+              <span
+                className={styles.clickable}
+                onClick={e => this.handleHarborImageSelected(image, e)}
               >
                 <Icon name="check" size={16} changeable />
               </span>
@@ -282,7 +422,8 @@ export default class DropdownContent extends React.Component {
             disabled={this.secretsOptions.length <= 1}
           />
         </Input>
-        {this.secretValue || !globals.config.enableImageSearch ? null : (
+        {this.hubType !== 'others' &&
+        !globals.config.enableImageSearch ? null : (
           <Icon
             name="templet"
             changeable
