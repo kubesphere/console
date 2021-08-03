@@ -89,7 +89,7 @@ export default class Branch extends React.Component {
       width: '40%',
     },
     {
-      title: t('Updated Time'),
+      title: t('UPDATED_AT'),
       dataIndex: 'startTime',
       isHideable: true,
       width: '15%',

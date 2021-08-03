@@ -48,7 +48,7 @@ export default class ProjectUsageRank extends React.Component {
   columns = [
     {
       dataIndex: 'namespace',
-      title: t('Project'),
+      title: t('PROJECT'),
       render: namespace => (
         <Avatar
           icon="project"

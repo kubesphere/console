@@ -75,7 +75,7 @@ export default class Selector extends React.Component {
             <Tooltip content={detail.name}>
               <div className="h6">{detail.name}</div>
             </Tooltip>
-            <p>{detail.description || t('Workspace')}</p>
+            <p>{detail.description || t('WORKSPACE')}</p>
           </div>
         </div>
         <SelectModal

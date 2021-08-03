@@ -147,17 +147,17 @@ export default class SelectorsInput extends React.Component {
         <p>{t('TOTAL_WORKLOAD', { count })}</p>
         {relatedDeployments.map(({ name }) => (
           <p key={`deploy-${name}`}>
-            {t('Deployments')}: {name}
+            {t('DEPLOYMENTS')}: {name}
           </p>
         ))}
         {relatedDaemonSets.map(({ name }) => (
           <p key={`ds-${name}`}>
-            {t('DaemonSets')}: {name}
+            {t('STATEFULSETS')}: {name}
           </p>
         ))}
         {relatedStatefulSets.map(({ name }) => (
           <p key={`sts-${name}`}>
-            {t('StatefulSets')}: {name}
+            {t('STATEFULSETS')}: {name}
           </p>
         ))}
       </div>

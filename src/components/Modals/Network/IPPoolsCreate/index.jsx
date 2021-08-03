@@ -87,7 +87,7 @@ export default class CreateIPPoolModal extends Component {
 
     if (!value.name) {
       return callback({
-        message: t('Please input name'),
+        message: t('NAME_EMPTY_DESC'),
         field: rule.field,
       })
     }
@@ -108,7 +108,7 @@ export default class CreateIPPoolModal extends Component {
         <Form.Item
           label={t('IP Address')}
           rules={[
-            { required: true, message: t('Please input the IP address') },
+            { required: true, message: t('INTERNAL_IP_ADDRESS_EMPTY_DESC') },
             {
               pattern: PATTERN_IP,
               message: t('Invalid IP address'),
@@ -162,9 +162,9 @@ export default class CreateIPPoolModal extends Component {
               <Input
                 name="name"
                 defaultValue={`ippool-${this.random}-${index}`}
-                placeholder={t('Name')}
+                placeholder={t('NAME')}
               />
-              <Input name="desc" placeholder={t('Description')} />
+              <Input name="desc" placeholder={t('DESCRIPTION')} />
             </ObjectInput>
           </Form.Item>
         ))}

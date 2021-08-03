@@ -235,7 +235,7 @@ export default class Activity extends React.Component {
 
   getColumns = () => [
     {
-      title: t('Status'),
+      title: t('STATUS'),
       width: '15%',
       key: 'status',
       render: record => (
@@ -300,7 +300,7 @@ export default class Activity extends React.Component {
         durationInMillis ? formatUsedTime(durationInMillis) : '-',
     },
     {
-      title: t('Updated Time'),
+      title: t('UPDATED_AT'),
       dataIndex: 'startTime',
       width: '20%',
       render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),

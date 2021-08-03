@@ -289,7 +289,7 @@ export default class ResourceLimit extends React.Component {
         </div>
         <div className={styles.sliderWrapper}>
           <div>
-            {t('Memory')} ({this.memoryUnit})
+            {t('MEMORY')} ({this.memoryUnit})
           </div>
           <Slider {...this.getMemoryProps()} />
         </div>

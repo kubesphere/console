@@ -99,7 +99,7 @@ export default class LogCollection extends React.Component {
       options: [
         {
           value: 'logging',
-          label: t('Logging'),
+          label: t('LOGGING'),
           hidden: !globals.app.hasClusterModule(this.cluster, 'logging'),
         },
         {
@@ -202,7 +202,7 @@ export default class LogCollection extends React.Component {
           />
           <Text
             title={collection.enabled ? t('Collecting') : t('Close')}
-            description={t('Status')}
+            description={t('STATUS')}
           />
           <Text title={t(collection.component)} description={t('Type')} />
           <Text

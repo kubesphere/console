@@ -18,7 +18,7 @@
 
 module.exports = {
   connected: 'conectado',
-  Copy: 'Copiar',
+  COPY: 'Copiar',
   'Copy Successfully': 'Copia con éxito',
   Disconnect: 'Desconectar',
   disconnected: 'desconectado',
@@ -49,7 +49,7 @@ module.exports = {
     <ul>
     <li>Crea servicio y rc una vez según la configuración del archivo yaml</li>
     </ul>
-    <p><code>kubectl create -f my-service.yaml -f my-rc.yaml</code></p>
+    <p><code>kubectl create -f my-service.yaml</code></p>
     <ul>
     <li>Crea todos los archivos .yaml, .yml, .json en el directorio</li>
     </ul>
@@ -62,7 +62,7 @@ module.exports = {
     <ul>
     <li>Ver lista de rc y servicios</li>
     </ul>
-    <p><code>kubectl get rc,service</code></p>
+    <p><code>kubectl get services</code></p>
     <h4><a id="3_View_resource_details_36"></a>3. Ver detalles del recurso</h4>
     <ul>
     <li>Mostrar detalles del nodo</li>

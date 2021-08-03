@@ -86,7 +86,7 @@ export default class Overview extends React.Component {
   getColumns() {
     return [
       {
-        title: t('Workspace'),
+        title: t('WORKSPACE'),
         dataIndex: 'name',
         render: (name, record) => (
           <Avatar
@@ -159,7 +159,7 @@ export default class Overview extends React.Component {
       <>
         <Banner
           icon="cluster"
-          title={t('Cluster Visibility')}
+          title={t('CLUSTER_VISIBILITY_TCAP')}
           description={t('CLUSTER_AUTHORIZATION_DESC')}
           tips={this.tips}
         />
@@ -170,9 +170,9 @@ export default class Overview extends React.Component {
               title={
                 this.isClusterPublicVisible
                   ? t('VISIBILITY_PUBLIC')
-                  : t('VISIBILITY_PART')
+                  : t('VISIBILITY_PARTIAL')
               }
-              description={t('Cluster Visibility')}
+              description={t('CLUSTER_VISIBILITY_SCAP')}
             />
             {globals.app.isMultiCluster &&
               this.enabledActions.includes('edit') && (

@@ -65,7 +65,7 @@ export default function StatusReason({
                 })}
               </span>
             </div>
-            {cd.status && <p>{`${t('Status')}: ${cd.status}`}</p>}
+            {cd.status && <p>{`${t('STATUS')}: ${cd.status}`}</p>}
             {cd.reason && (
               <p>{`${t('Reason')}: ${t(
                 `${type.toUpperCase()}_REASON_${cd.reason.toUpperCase()}`,

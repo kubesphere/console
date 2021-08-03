@@ -38,7 +38,7 @@ export default class ContainerImages extends Component {
     return (
       <EditForm
         {...this.props}
-        title={<span>{`${t('Image')}: ${formData.image}`}</span>}
+        title={<span>{`${t('IMAGE')}: ${formData.image}`}</span>}
         onOk={this.handleSubmit}
       >
         <ContainerSetting

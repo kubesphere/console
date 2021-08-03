@@ -113,7 +113,7 @@ export default class Secret extends React.Component {
 
   handleCopy = () => {
     copyToClipboard(getValue(this.kubeconfig))
-    Notify.success({ content: t('Copy successful') })
+    Notify.success({ content: t('COPY_SUCCESSFUL') })
   }
 
   handleDownload = () => {

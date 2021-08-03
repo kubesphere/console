@@ -176,7 +176,7 @@ export default class AppDeploy extends React.Component {
 
     return (
       <Modal
-        title={`${t('Edit')} ${detail.name}`}
+        title={`${t('EDIT')} ${detail.name}`}
         {...this.props}
         onOk={this.handleOk}
         width={1280}

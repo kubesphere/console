@@ -159,17 +159,17 @@ export default class BaseInfoModal extends React.Component {
     return (
       <Modal
         width={691}
-        title={t('Edit Info')}
+        title={t('EDIT_INFO')}
         icon="pen"
         onOk={this.handleOk}
         onCancel={onCancel}
         visible={visible}
       >
         <Form ref={this.form} data={formTemplate}>
-          <Form.Item label={t('Name')} desc={t('')}>
+          <Form.Item label={t('NAME')} desc={t('')}>
             <Input name="name" defaultValue={name} disabled />
           </Form.Item>
-          <Form.Item label={t('Description')} desc={t('')}>
+          <Form.Item label={t('DESCRIPTION')} desc={t('')}>
             <TextArea name="description" defaultValue={description} />
           </Form.Item>
           {formTemplate.multi_branch_pipeline ? (

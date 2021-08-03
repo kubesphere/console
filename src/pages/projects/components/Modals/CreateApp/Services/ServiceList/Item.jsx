@@ -120,14 +120,14 @@ export default class Item extends React.Component {
                         type="light"
                       />
                       <span>
-                        {replicas} {t('Replicas')}
+                        {replicas} {t('REPLICAS')}
                       </span>
                     </Tag>
                   )
                 })}
               </div>
               <div className={styles.description}>
-                {t('Deployment Location')}
+                {t('DEPLOYMENT_LOCATION')}
               </div>
             </div>
           </div>

@@ -43,7 +43,7 @@ export default class Viewer extends React.Component {
         title: 'Target',
         children: [
           {
-            title: t('Project'),
+            title: t('PROJECT'),
             dataIndex: 'namespace',
           },
           {
@@ -57,7 +57,7 @@ export default class Viewer extends React.Component {
         title: 'Destination',
         children: [
           {
-            title: t('Project'),
+            title: t('PROJECT'),
             dataIndex: 'namespaceSelector',
             render: (item, record) => {
               if (isEmpty(get(record, 'ipBlock'))) {

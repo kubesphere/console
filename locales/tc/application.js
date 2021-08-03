@@ -162,7 +162,7 @@ module.exports = {
   'Please try other query conditions': '請嘗試其它查詢條件',
 
   'Deploy sample app Bookinfo': '部署示例應用 Bookinfo',
-  'Please save the current form first': '請先保存目前表單',
+  SAVE_FORM_TIP: '請先保存目前表單',
   'Add Component Successfully': '添加組件成功',
 
   'Connection pool management': '連接池管理',

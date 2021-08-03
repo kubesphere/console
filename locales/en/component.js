@@ -31,25 +31,23 @@ module.exports = {
 
   'KS-ACCOUNT_DESC': 'Provides users and authorizations management API',
   'KS-APIGATEWAY_DESC':
-    'Responsible for processing service requests and handling all tasks in the API call process',
+    'Responsible for processing service requests and handling all tasks in the API call process.',
   'KS-APISERVER_DESC':
-    'Serves the REST API endpoints and provides the frontend to the cluster’s shared state through which all other components interact, as well as cluster security control',
-  'KS-CONSOLE_DESC': 'Provides console services for KubeSphere',
-  OPENLDAP_DESC:
-    'Responsible for centralized storage and management of user account information',
+    'Provides REST APIs for cluster management. This component is also used for communication between cluster components and cluster security control.',
+  'KS-CONSOLE_DESC': 'Provides KubeSphere console services.',
+  OPENLDAP_DESC: 'Stores and manages user information in a centralized manner.',
   REDIS_DESC:
-    'Responsible for in-memory data structure store, used as a database, cache and message broker',
+    'Open-source, in-memory data structure store, which is used as a database, cache, and message broker.',
 
   COREDNS_DESC: 'DNS and Service Discovery in the cluster',
   'KUBE-CONTROLLER-MANAGER_DESC':
-    'A daemon that embeds the core control loops shipped with Kubernetes',
+    'Daemon that embeds the core control loops shipped with Kubernetes.',
   'KUBE-SCHEDULER_DESC':
-    'The scheduler of Kubernetes that attaches the Pod to an appropriate node',
+    'Kubernetes scheduler that assigns Pods to appropriate nodes.',
   'METRICS-SERVER_DESC':
-    'Collect metrics from the Summary API, exposed by Kubelet on each node',
+    'Kubernetes monitoring component that collects metrics from kubelet of each node.',
   'TILLER-DEPLOY_DESC':
     'Helm server, interacts directly with the Kubernetes API server to install, upgrade, query, and remove Kubernetes resources',
-
   'OPENPITRIX-API-GATEWAY_DESC':
     'Responsible for processing platform service requests and handling all tasks in the API call process',
   'OPENPITRIX-APP-MANAGER_DESC':
@@ -80,7 +78,8 @@ module.exports = {
     'Service-to-service and end-user authentication with built-in identity and credential management',
   'ISTIO-GALLEY_DESC':
     "Istio's configuration validation, ingestion, processing and distribution component",
-  'ISTIO-INGRESSGATEWAY_DESC': 'Gateway for providing external network access',
+  'ISTIO-INGRESSGATEWAY_DESC':
+    'Provides a gateway for external network access.',
   'ISTIO-PILOT_DESC':
     'Provides service discovery for the Envoy sidecars, traffic management capabilities for intelligent routing',
   'ISTIO-POLICY_DESC':
@@ -90,37 +89,40 @@ module.exports = {
   'ISTIO-TELEMETRY_DESC':
     'Provides Envoy with data reporting and log collection services',
   'JAEGER-COLLECTOR_DESC':
-    'Collects the data of sidecar, the sidecar of istio is jaeger-agent',
+    'Collects sidecar data. The sidecar of Istio is jaeger-agent.',
   'JAEGER-COLLECTOR-HEADLESS_DESC':
-    'Collects the data of sidecar, the sidecar of istio is jaeger-agent',
+    'Collects sidecar data. The sidecar of Istio is jaeger-agent.',
   'JAEGER-OPERATOR_DESC':
     'Responsible for creating the jaeger service and automatically applying it to the jaeger service when update',
-  'JAEGER-QUERY_DESC': 'Serves the API endpoints and a UI service',
+  'JAEGER-QUERY_DESC':
+    'Accepts query requests, retrieves traces from the backend storage system, and displays the data on the web UI.',
 
   'KUBE-STATE-METRICS_DESC':
-    'Listens to the Kubernetes API server and generates metrics about the state of the objects',
-  'NODE-EXPORTER_DESC': 'Prometheus exporter for hardware and OS metrics',
+    'Listens on the Kubernetes API server to obtain the status of cluster API objects such as nodes, workloads, and Pods, and generates monitoring data for Prometheus.',
+  'NODE-EXPORTER_DESC':
+    'Provides monitoring data of all cluster nodes for Prometheus.',
   'PROMETHEUS-K8S_DESC':
-    'Provides monitoring data for nodes, workloads, and API objects',
+    'Provides monitoring data of nodes, workloads, and API objects.',
   'PROMETHEUS-K8S-SYSTEM_DESC':
     'Provides monitoring data for Kubernetes components such as etcd, coredns, kube-apiserver, kube-scheduler and kube-controller-manager',
   'PROMETHEUS-OPERATED_DESC':
-    'The service for all Prometheus instances only for internal use by Prometheus Operator',
-  'PROMETHEUS-OPERATOR_DESC': 'Operator for managing Prometheus instances',
+    'Service corresponding to all Prometheus instances, which is used internally by Prometheus Operator.',
+  'PROMETHEUS-OPERATOR_DESC': 'Manages Prometheus instances.',
 
   'ELASTICSEARCH-LOGGING-DATA_DESC':
-    'Provides Elasticsearch data storage, backup, search and other data services',
+    'Provides Elasticsearch services such as data storage, backup, and searching.',
   'ELASTICSEARCH-LOGGING-DISCOVERY_DESC':
-    'Provides Elasticsearch cluster management services',
+    'Provides Elasticsearch cluster management services.',
 
   'LOGSIDECAR-INJECTOR_DESC':
     'Injects a sidecar container in a Pod for disk log collection',
 
   'CONTROLLER-MANAGER-METRICS-SERVICE_DESC':
     'Provides monitoring data for the s2i controller',
-  'KS-JENKINS_DESC': 'Jenkins master service, providing DevOps basic functions',
+  'KS-JENKINS_DESC':
+    'Jenkins master service that provides basic DevOps functions.',
   'KS-JENKINS-AGENT_DESC':
-    'The service that used by Jenkins agent connects to the Jenkins master',
+    'Service used when a Jenkins agent connects to the Jenkins master.',
   'KS-SONARQUBE-POSTGRESQL_DESC':
     'The code quality analysis component is the backend database of SonarQube',
   'KS-SONARQUBE-SONARQUBE_DESC': 'SonarQube core service',
@@ -129,41 +131,40 @@ module.exports = {
   'UC-JENKINS-UPDATE-CENTER_DESC':
     'Jenkins update center that provides installation packages for Jenkins plugins',
   'WEBHOOK-SERVER-SERVICE_DESC':
-    'Provides default values and validate webhook for s2i',
+    'Provides the default values and authentication webhook for S2I.',
 
   MYSQL_DESC:
     'An open-source database management system that allows users to manage relational databases. Data in these databases are structured or organized in the form of tables or columns, instead of being stored in one big storeroom',
   ETCD_DESC:
     'A reliable distributed data store that persistently stores the cluster configuration',
-  TOWER_DESC: 'A tool for network connection between clusters through an agent',
+  TOWER_DESC: 'Tool used for network connection between clusters over proxy.',
   'KUBE-SCHEDULER-SVC_DESC':
-    'The scheduler of Kubernetes that attaches the Pod to an appropriate node',
+    'Kubernetes scheduler that assigns Pods to appropriate nodes.',
   'KUBE-CONTROLLER-MANAGER-SVC_DESC':
-    'A daemon that embeds the core control loops shipped with Kubernetes',
+    'Daemon that embeds the core control loops shipped with Kubernetes.',
 
   'S2IOPERATOR-METRICS-SERVICE_DESC':
-    'The s2i monitoring service component that provides basic monitoring data',
+    'S2I monitoring service that provides basic monitoring data.',
   MINIO_DESC:
-    'An open source high performance object storage server, which is useful to store massive unstructured data',
+    'Open-source high performance object storage server ideal for storing massive unstructured data.',
   'ALERTMANAGER-OPERATED_DESC':
-    'The Alertmanager service that provides Alertmanager integrations, such as Prometheus',
-  'ALERTMANAGER-MAIN_DESC': 'The Alertmanager Web UI service',
+    'Alertmanager service used for integrating Alertmanager with Prometheus.',
+  'ALERTMANAGER-MAIN_DESC': 'Alertmanager Web UI service.',
   'NOTIFICATION-MANAGER-SVC_DESC':
-    'The Notification Manager service that provides the interface to send notifications, such as emails, WeChat and Slack messages',
+    'Provides interfaces for sending notifications such as emails, WeChat messages, and Slack messages.',
   'NOTIFICATION-MANAGER-CONTROLLER-METRICS_DESC':
-    'A component that provides internal monitoring data services of Notification Manager Controller',
+    'Provides internal monitoring data for Notification Manager Controller.',
   HYPERPITRIX_DESC:
     'A component that provides the App Store service for Helm-based applications and lifecycle management of apps',
-  'JAEGER-OPERATOR-METRICS_DESC':
-    'A component that provides the monitoring metrics of Operator',
+  'JAEGER-OPERATOR-METRICS_DESC': 'Provides monitoring metrics for Operator.',
   'LOGSIDECAR-INJECTOR-ADMISSION_DESC':
-    'A component that automatically injects sidecar containers for a specific pod for disk log collection',
+    'Automatically injects sidecar containers into Pods for disk log collection.',
   'KS-EVENTS-ADMISSION_DESC':
-    'A component that provides webhook authentication for Events rule management',
+    'Provides the authentication webhook for event rule management.',
   'KS-EVENTS-RULER_DESC':
-    'The Events rule engine service that provides filtering and alerting features',
+    'Event rule engine service that provides filtering and alerting features.',
   'KS-CONTROLLER-MANAGER_DESC':
-    'A backend component that implements business logic. For example, it creates authorizations when a workspace is created and generates istio configurations for service strategies',
+    'Implements service logic. This component creates permissions when a workspace is created and generates Istio configuration for service strategies.',
   'KUBE-AUDITING-WEBHOOK-SVC_DESC':
-    'A component used for auditing logs in terms of collection, comparison, persistence and alert',
+    'Used for audit collection, comparison, persistence, and alerting.',
 }

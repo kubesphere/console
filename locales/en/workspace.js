@@ -18,7 +18,6 @@
 
 module.exports = {
   'Cluster Authorization Info': 'Cluster Authorization Information',
-  'Cluster Info': 'Cluster Information',
   'Create Workspace': 'Create Workspace',
   'Create Workspace Role': 'Create Workspace Role',
   'Created Projects': 'Created Projects',
@@ -35,7 +34,7 @@ module.exports = {
   'Remove from Workspace': 'Remove from Workspace',
   'The current name is not applicable.': 'The name is invalid.',
   'View Workspace': 'View Workspace',
-  Workspace: 'Workspace',
+  WORKSPACE: 'Workspace',
   'Workspace Info': 'Workspace Information',
   'Workspace Logo': 'Workspace Logo',
   'Workspace Manager': 'Administrator',

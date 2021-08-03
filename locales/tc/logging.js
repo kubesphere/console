@@ -112,7 +112,7 @@ module.exports = {
   'Index Prefix': '索引前缀',
 
   TOOLBOX_SHIFT_TIPS: ' 👻 Shift + 鼠標左鍵 可以在新視窗中打開',
-  'Hide help information': '不再顯示幫助資訊',
+  HIDE_HELP_INFORMATION: '不再顯示幫助資訊',
   ES_DESC: 'Elasticsearch 是分布式、RESTful 風格的搜索和分析引擎',
   KAFKA_DESC: 'Kafka 是流行的開源流處理平台',
   FLUENTD_DESC: 'Fluentd 是提供統一紀錄處理層的開源數據收集器',

@@ -130,11 +130,11 @@ export default class Card extends Component {
               <div className={styles.desc}>
                 <Text
                   title={cluster.kubernetesVersion}
-                  description={t('Kubernetes Version')}
+                  description={t('KUBERNETES_VERSION')}
                 />
                 <Text
                   title={cluster.provider || '-'}
-                  description={t('Provider')}
+                  description={t('PROVIDER')}
                 />
               </div>
               {this.isReady && (

@@ -39,7 +39,7 @@ const Card = ({ type = 'worker', container, onDelete, onEdit, readOnly }) => {
       <List.Item
         icon="istio"
         title={container.name}
-        description={`${t('Image')}: ${container.image}`}
+        description={`${t('IMAGE')}: ${container.image}`}
       />
     )
   }
@@ -91,7 +91,7 @@ const Card = ({ type = 'worker', container, onDelete, onEdit, readOnly }) => {
     <List.Item
       icon="docker"
       title={title}
-      description={`${t('Image')}: ${container.image}`}
+      description={`${t('IMAGE')}: ${container.image}`}
       extras={extras}
       onDelete={!readOnly && handleDelete}
       onEdit={!readOnly && handleEdit}

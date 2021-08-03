@@ -50,11 +50,11 @@ export default class AddNode extends Component {
   get authModes() {
     return [
       {
-        label: t('Username & Password'),
+        label: t('USERNAME_AND_PASSWORD'),
         value: 'password',
       },
       {
-        label: t('SSH Secret'),
+        label: t('SSH_KEY_SCAP'),
         value: 'secret',
       },
     ]
@@ -62,10 +62,10 @@ export default class AddNode extends Component {
 
   get nodeRoles() {
     return this.props.addAfterCreate
-      ? [{ label: 'worker', value: 'worker' }]
+      ? [{ label: t('WORKER'), value: 'worker' }]
       : [
-          { label: 'master', value: 'master' },
-          { label: 'worker', value: 'worker' },
+          { label: t('MASTER'), value: 'master' },
+          { label: t('WORKER'), value: 'worker' },
         ]
   }
 
@@ -79,10 +79,10 @@ export default class AddNode extends Component {
     if (authMode === 'password') {
       return (
         <>
-          <Form.Item label={t('Username')} desc={t('SSH_ACCOUNT_DESC')}>
+          <Form.Item label={t('USERNAME')} desc={t('NODE_USERNAME_DESC')}>
             <Input name="user" defaultValue="root" autoComplete="off" />
           </Form.Item>
-          <Form.Item label={t('Password')} desc={t('SSH_PASSWORD_DESC')}>
+          <Form.Item label={t('PASSWORD')} desc={t('NODE_PASSWORD_DESC')}>
             <InputPassword name="password" autoComplete="off" />
           </Form.Item>
         </>
@@ -91,12 +91,8 @@ export default class AddNode extends Component {
 
     return (
       <>
-        <Form.Item label={t('SSH Secret')}>
-          <TextArea
-            name="privateKey"
-            placeholder={t('SSH_SECRET_PLACEHOLDER')}
-            autoResize
-          />
+        <Form.Item label={t('SSH_KEY_TCAP')}>
+          <TextArea name="privateKey" autoResize />
         </Form.Item>
       </>
     )
@@ -111,7 +107,7 @@ export default class AddNode extends Component {
     return (
       <Modal.Form
         icon="add"
-        title={t('Add Node')}
+        title={t('ADD_NODE')}
         width={600}
         data={formData}
         visible={visible}
@@ -119,23 +115,23 @@ export default class AddNode extends Component {
         onCancel={onCancel}
       >
         <Form.Item
-          label={t('Node Name')}
+          label={t('NAME')}
           rules={[
             {
               required: true,
-              message: t("Please input the node's name"),
+              message: t('NODE_NAME_EMPTY_DESC'),
             },
           ]}
         >
           <Input name="name" defaultValue={`node-${generateId(4)}`} />
         </Form.Item>
         <Form.Item
-          label={t('Node Role')}
+          label={t('ROLE')}
           desc={t('NODE_ROLE_DESC')}
           rules={[
             {
               required: true,
-              message: t("Please specify the node's roles"),
+              message: t('NODE_ROLE_EMPTY_DESC'),
             },
           ]}
         >
@@ -148,16 +144,16 @@ export default class AddNode extends Component {
           />
         </Form.Item>
         <Form.Item
-          label={t('Node Internal IP Address')}
-          desc={t('CLUSTER_NODE_INTERNAL_IP_DESC')}
+          label={t('INTERNAL_IP')}
+          desc={t('NODE_INTERNAL_IP_DESC')}
           rules={[
             {
               required: true,
-              message: t('Please input the IP address'),
+              message: t('NODE_INTERNAL_IP_EMPTY_DESC'),
             },
             {
               pattern: PATTERN_IP,
-              message: t('Invalid IP address'),
+              message: t('INVALID_IP_DESC'),
             },
           ]}
         >
@@ -170,16 +166,16 @@ export default class AddNode extends Component {
         <Columns className={classNames('is-1', styles.ssh)}>
           <Column>
             <Form.Item
-              label={t('SSH IP Address')}
-              desc={t('SSH_IP_ADDRESS_DESC')}
+              label={t('EXTERNAL_IP')}
+              desc={t('NODE_EXTERNAL_IP_DESC')}
               rules={[
                 {
                   required: true,
-                  message: t('Please input the IP address'),
+                  message: t('NODE_EXTERNAL_IP_EMPTY_DESC'),
                 },
                 {
                   pattern: PATTERN_IP,
-                  message: t('Invalid IP address'),
+                  message: t('INVALID_IP_DESC'),
                 },
               ]}
             >
@@ -191,7 +187,7 @@ export default class AddNode extends Component {
             </Form.Item>
           </Column>
           <Column className="is-narrow">
-            <Form.Item className={styles.port} label={t('SSH Port')}>
+            <Form.Item className={styles.port} label={t('PORT')}>
               <NumberInput
                 name="port"
                 defaultValue={22}
@@ -202,10 +198,7 @@ export default class AddNode extends Component {
             </Form.Item>
           </Column>
         </Columns>
-        <Form.Item
-          label={t('SSH Authentication Mode')}
-          desc={t('SSH_AUTH_MODE_DESC')}
-        >
+        <Form.Item label={t('SSH_AUTH_MODE')} desc={t('SSH_AUTH_MODE_DESC')}>
           <Select
             value={authMode}
             options={this.authModes}

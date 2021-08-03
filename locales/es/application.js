@@ -114,8 +114,7 @@ module.exports = {
     'Por favor introduce un nombre de aplicación',
   'Please input component version':
     'Por favor introduce la versión del componente',
-  'Please save the current form first':
-    'Por favor guarda el formulario actual primero',
+  SAVE_FORM_TIP: 'Por favor guarda el formulario actual primero',
   'Please try other query conditions':
     'Por favor prueba otras condiciones en la consulta',
   'Pod isolation ratio (unit: %)': 'Relación de aislamiento del Pod (unidad:%)',

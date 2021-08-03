@@ -101,14 +101,14 @@ export default class BaseInfo extends React.Component {
               },
               {
                 pattern: PATTERN_NAME,
-                message: t('Invalid name', { message: t('NAME_DESC') }),
+                message: t('INVALID_NAME_DESC', { message: t('NAME_DESC') }),
               },
               { validator: this.nameValidator },
             ]}
           >
             <Input name="metadata.name" autoFocus={true} maxLength={63} />
           </Form.Item>
-          <Form.Item label={t('Alias')} desc={t('ALIAS_DESC')}>
+          <Form.Item label={t('ALIAS')} desc={t('ALIAS_DESC')}>
             <Input
               name="metadata.annotations['kubesphere.io/alias-name']"
               maxLength={63}
@@ -126,7 +126,7 @@ export default class BaseInfo extends React.Component {
               searchable
             />
           </Form.Item>
-          <Form.Item label={t('Description')} desc={t('DESCRIPTION_DESC')}>
+          <Form.Item label={t('DESCRIPTION')} desc={t('DESCRIPTION_DESC')}>
             <TextArea
               name="metadata.annotations['kubesphere.io/description']"
               maxLength={256}

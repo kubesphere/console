@@ -53,12 +53,12 @@ export default class ResourceNamed extends React.Component {
         isSubmitting={isSubmitting}
       >
         <Form.Item
-          label={t('Name')}
+          label={t('NAME')}
           rules={[
-            { required: true, message: t('Please input name') },
+            { required: true, message: t('NAME_EMPTY_DESC') },
             {
               pattern: PATTERN_NAME,
-              message: t('Invalid name', { message: t('LONG_NAME_DESC') }),
+              message: t('INVALID_NAME_DESC', { message: t('LONG_NAME_DESC') }),
             },
           ]}
           desc={t('LONG_NAME_DESC')}

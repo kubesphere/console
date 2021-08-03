@@ -168,7 +168,7 @@ module.exports = {
   'Please try other query conditions': '请尝试其它查询条件',
 
   'Deploy sample app Bookinfo': '部署示例应用 Bookinfo',
-  'Please save the current form first': '请先保存当前表单',
+  SAVE_FORM_TIP: '请先保存当前表单。',
   'Add Component Successfully': '添加组件成功',
   'Add Route Successfully': '添加应用路由成功',
 

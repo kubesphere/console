@@ -186,7 +186,7 @@ export default class VersionItem extends React.PureComponent {
           <dt>
             <VersionStatus type={detail.status} noIcon />
           </dt>
-          <dd>{t('Status')}</dd>
+          <dd>{t('STATUS')}</dd>
         </dl>
         <dl>
           <dt>{detail.name}</dt>
@@ -202,7 +202,7 @@ export default class VersionItem extends React.PureComponent {
               'YYYY-MM-DD HH:mm:ss'
             )}
           </dt>
-          <dd>{t('Updated Time')}</dd>
+          <dd>{t('UPDATED_AT')}</dd>
         </dl>
         <dl className={styles.more}>
           <Icon name="chevron-down" size={20} />

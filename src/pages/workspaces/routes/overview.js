@@ -29,7 +29,7 @@ const ROUTES = [
   { name: 'ranking', title: 'Usage Ranking', component: UsageRanking },
   {
     name: 'clusters',
-    title: 'Cluster Info',
+    title: 'CLUSTER_INFORMATION',
     component: Clusters,
     multiCluster: true,
   },

@@ -79,7 +79,7 @@ export default class Artifacts extends React.Component {
 
   getColumns = () => [
     {
-      title: t('Name'),
+      title: t('NAME'),
       dataIndex: 'path',
       width: '40%',
       render: (path, record) => (

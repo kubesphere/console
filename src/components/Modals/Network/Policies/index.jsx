@@ -212,7 +212,7 @@ export default class NetworkPoliciesModal extends React.Component {
             size="small"
             rules={[{ required: true }]}
           >
-            <RadioButton value="projects">{t('Project')}</RadioButton>
+            <RadioButton value="projects">{t('PROJECT')}</RadioButton>
             <RadioButton value="services">{t('Service')}</RadioButton>
           </RadioGroup>
         </Form.Item>

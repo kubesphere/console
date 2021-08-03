@@ -84,7 +84,7 @@ export default class ContainerImages extends Component {
           {title}
           {selected && (
             <span className={styles.modify}>
-              <span>{t('Edit')}</span>
+              <span>{t('EDIT')}</span>
               <Icon type="light" size={20} name="chevron-down" />
             </span>
           )}

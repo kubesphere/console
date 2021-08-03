@@ -75,7 +75,7 @@ export default class CategoryCreate extends Component {
 
     const { detail, categoryNames } = this.props
     if (value !== detail.name && categoryNames.includes(value)) {
-      return callback({ message: t('Name exists'), field: rule.field })
+      return callback({ message: t('NAME_EXIST_DESC'), field: rule.field })
     }
 
     callback()

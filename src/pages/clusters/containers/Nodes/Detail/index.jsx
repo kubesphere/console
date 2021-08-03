@@ -86,7 +86,7 @@ export default class NodeDetail extends React.Component {
       {
         key: 'taintManagement',
         icon: 'wrench',
-        text: t('Taint Management'),
+        text: t('MANAGE_TAINT'),
         action: 'edit',
         onClick: () =>
           this.trigger('node.taint', {
@@ -116,7 +116,7 @@ export default class NodeDetail extends React.Component {
 
     return [
       {
-        name: t('Status'),
+        name: t('STATUS'),
         value: status,
       },
       {

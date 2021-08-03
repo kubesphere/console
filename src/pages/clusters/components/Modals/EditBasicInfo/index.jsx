@@ -141,14 +141,14 @@ export default class EditBasicInfoModal extends React.Component {
             optionRenderer={this.groupOptionRenderer}
           />
         </Form.Item>
-        <Form.Item label={t('Provider')} desc={t('CLUSTER_PROVIDER_DESC')}>
+        <Form.Item label={t('PROVIDER')} desc={t('CLUSTER_PROVIDER_DESC')}>
           <Select
             name="spec.provider"
             options={CLUSTER_PROVIDERS}
             optionRenderer={this.providerOptionRenderer}
           />
         </Form.Item>
-        <Form.Item label={t('Description')} desc={t('DESCRIPTION_DESC')}>
+        <Form.Item label={t('DESCRIPTION')} desc={t('DESCRIPTION_DESC')}>
           <TextArea
             name="metadata.annotations['kubesphere.io/description']"
             maxLength={256}

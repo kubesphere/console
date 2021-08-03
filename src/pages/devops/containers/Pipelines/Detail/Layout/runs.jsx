@@ -185,11 +185,11 @@ export default class RunDetailLayout extends React.Component {
         value: runDetail.id,
       },
       {
-        name: t('Status'),
+        name: t('STATUS'),
         value: <Status {...getPipelineStatus(runDetail)} />,
       },
       {
-        name: t('Updated Time'),
+        name: t('UPDATED_AT'),
         value: this.updateTime,
       },
     ]

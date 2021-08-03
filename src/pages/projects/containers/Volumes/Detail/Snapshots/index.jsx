@@ -89,7 +89,7 @@ export default class PVCSnapshots extends Component {
         </div>
         <div className={styles.itemAttrs}>
           <h3>{status}</h3>
-          <p>{t('Status')}</p>
+          <p>{t('STATUS')}</p>
         </div>
         <div className={styles.itemAttrs}>
           <h3>{restoreSize || '-'}</h3>

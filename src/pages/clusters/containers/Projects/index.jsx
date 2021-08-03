@@ -52,7 +52,7 @@ export default class Projects extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('Edit'),
+        text: t('EDIT'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -64,7 +64,7 @@ export default class Projects extends React.Component {
       {
         key: 'modify',
         icon: 'restart',
-        text: t('Assign Workspace'),
+        text: t('ASSIGN_WORKSPACE'),
         action: 'manage',
         show: record => !record.workspace && this.showAction(record),
         onClick: item =>
@@ -76,7 +76,7 @@ export default class Projects extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         show: record =>
           record.workspace !== globals.config.systemWorkspace &&
@@ -99,11 +99,11 @@ export default class Projects extends React.Component {
       options: [
         {
           value: 'user',
-          label: t('User Projects'),
+          label: t('USER_PROJECTS'),
         },
         {
           value: 'system',
-          label: t('System Projects'),
+          label: t('SYSTEM_PROJECTS'),
         },
       ],
     }
@@ -160,7 +160,7 @@ export default class Projects extends React.Component {
     const { getSortOrder, prefix } = this.props
     return [
       {
-        title: t('Name'),
+        title: t('NAME'),
         dataIndex: 'name',
         sorter: true,
         sortOrder: getSortOrder('name'),
@@ -176,18 +176,18 @@ export default class Projects extends React.Component {
         ),
       },
       {
-        title: t('Status'),
+        title: t('STATUS'),
         dataIndex: 'status',
         isHideable: true,
         render: status => <Status type={status} name={t(status)} flicker />,
       },
       {
-        title: t('Workspace'),
+        title: t('WORKSPACE'),
         dataIndex: 'workspace',
         isHideable: true,
       },
       {
-        title: t('CPU Usage'),
+        title: t('CPU_USAGE'),
         key: 'namespace_cpu_usage',
         isHideable: true,
         render: record =>
@@ -198,7 +198,7 @@ export default class Projects extends React.Component {
           ),
       },
       {
-        title: t('Memory Usage'),
+        title: t('MEMORY_USAGE'),
         key: 'namespace_memory_usage_wo_cache',
         isHideable: true,
         render: record =>
@@ -209,7 +209,7 @@ export default class Projects extends React.Component {
           ),
       },
       {
-        title: t('Pod Count'),
+        title: t('POD_PL_TCAP'),
         key: 'namespace_pod_count',
         isHideable: true,
         render: record => this.getLastValue(record, MetricTypes.pod),

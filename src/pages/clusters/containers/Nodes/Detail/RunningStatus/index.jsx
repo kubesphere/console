@@ -183,7 +183,7 @@ export default class RunningStatus extends React.Component {
     if (isEmpty(taints)) return null
 
     return (
-      <Panel title={t('Taints')} empty={t('NO_TAINTS_TIPS')}>
+      <Panel title={t('TAINTS')} empty={t('NO_TAINTS_TIPS')}>
         {taints && (
           <div>
             {taints.map((taint, i) => (

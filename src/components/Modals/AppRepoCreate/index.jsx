@@ -115,7 +115,7 @@ export default class AddRepoModal extends Component {
       >
         <Form.Item
           label={t('App Repository Name')}
-          rules={[{ required: true, message: t('Please input name') }]}
+          rules={[{ required: true, message: t('NAME_EMPTY_DESC') }]}
         >
           <Input name="name" autoFocus={true} />
         </Form.Item>
@@ -126,7 +126,7 @@ export default class AddRepoModal extends Component {
           onValidate={this.handleUrlValidate}
           isSubmitting={this.props.isSubmitting}
         />
-        <Form.Item label={t('Description')} desc={t('DESCRIPTION_DESC')}>
+        <Form.Item label={t('DESCRIPTION')} desc={t('DESCRIPTION_DESC')}>
           <TextArea name="description" maxLength={256} />
         </Form.Item>
       </Modal.Form>

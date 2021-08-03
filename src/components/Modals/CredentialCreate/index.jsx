@@ -298,7 +298,7 @@ export default class CredentialModal extends React.Component {
             <div className={styles.desc}>{t('EDIT_CREDENTIAL_DESC')}</div>
           ) : null}
           {this.renderCredentForm()}
-          <Form.Item label={t('Description')} desc={t('DESCRIPTION_DESC')}>
+          <Form.Item label={t('DESCRIPTION')} desc={t('DESCRIPTION_DESC')}>
             <TextArea name="description" maxLength={256} />
           </Form.Item>
         </Form>

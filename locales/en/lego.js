@@ -22,7 +22,7 @@ module.exports = {
   KUBE_OPERATE: 'Sort',
   KUBE_FILTER: 'Filter',
   KUBE_PLEASE_SELECT: 'Please select',
-  KUBE_NO_AVAILABLE_DATA: 'No Available Data',
+  KUBE_NO_AVAILABLE_DATA: 'No Data',
   KUBE_SUN: 'Sun',
   KUBE_MON: 'Mon',
   KUBE_TUE: 'Tue',

@@ -113,7 +113,7 @@ export default class NodeUsageRank extends React.Component {
     {
       width: this.rankTdWidth,
       sort_metric: 'node_memory_utilisation',
-      title: t('Memory'),
+      title: t('MEMORY'),
       key: 'Memory',
       render: node => (
         <div>
@@ -126,7 +126,7 @@ export default class NodeUsageRank extends React.Component {
       ),
     },
     {
-      title: t('Local Storage'),
+      title: t('LOCAL_STORAGE'),
       key: 'disk',
       sort_metric: 'node_disk_size_utilisation',
       width: this.rankTdWidth,

@@ -63,7 +63,7 @@ class InternetAccess extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
       },
     ]
   }
@@ -244,7 +244,7 @@ class InternetAccess extends React.Component {
               trigger="click"
               placement="bottomRight"
             >
-              <Button>{t('Edit')}</Button>
+              <Button>{t('EDIT')}</Button>
             </Dropdown>
           </div>
         )}

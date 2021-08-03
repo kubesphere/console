@@ -122,7 +122,7 @@ export default class GroupForm extends React.Component {
 
     this.props.store.checkName({ name: value, workspace }).then(resp => {
       if (resp.exist) {
-        return callback({ message: t('Name exists'), field: rule.field })
+        return callback({ message: t('NAME_EXIST_DESC'), field: rule.field })
       }
       callback()
     })
@@ -162,10 +162,10 @@ export default class GroupForm extends React.Component {
             label={t('Department Name')}
             desc={t('NAME_DESC')}
             rules={[
-              { required: true, message: t('Please input name') },
+              { required: true, message: t('NAME_EMPTY_DESC') },
               {
                 pattern: PATTERN_NAME,
-                message: t('Invalid name', { message: t('NAME_DESC') }),
+                message: t('INVALID_NAME_DESC', { message: t('NAME_DESC') }),
               },
               { validator: this.nameValidator },
             ]}

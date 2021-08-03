@@ -88,7 +88,7 @@ export default class WorkspaceSelectModal extends React.Component {
         onCancel={onCancel}
         width={960}
         icon="enterprise"
-        title={t('Workspace')}
+        title={t('WORKSPACE')}
         description={t('WORKSPACE_DESC')}
         hideFooter
       >
@@ -97,7 +97,7 @@ export default class WorkspaceSelectModal extends React.Component {
             <Column>
               <InputSearch
                 value={keyword}
-                placeholder={t('Search by name')}
+                placeholder={t('SEARCH_BY_NAME')}
                 onSearch={this.handleSearch}
               />
             </Column>

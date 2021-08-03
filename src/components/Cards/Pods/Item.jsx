@@ -183,7 +183,7 @@ export default class PodItem extends React.PureComponent {
               {t('Ready')}: {readyCount}/{total}
             </p>
             <p>
-              {t('Status')}: {t(statusStr)}
+              {t('STATUS')}: {t(statusStr)}
             </p>
           </div>
         }

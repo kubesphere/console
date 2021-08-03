@@ -108,7 +108,7 @@ export default class VolumeSnapshotDetail extends React.Component {
     {
       key: 'delete',
       icon: 'trash',
-      text: t('Delete'),
+      text: t('DELETE'),
       action: 'delete',
       type: 'danger',
       onClick: () =>
@@ -134,7 +134,7 @@ export default class VolumeSnapshotDetail extends React.Component {
 
     return [
       {
-        name: t('Status'),
+        name: t('STATUS'),
         value: (
           <div>
             <Status
@@ -158,7 +158,7 @@ export default class VolumeSnapshotDetail extends React.Component {
         value: creator,
       },
       {
-        name: t('Project'),
+        name: t('PROJECT'),
         value: namespace,
       },
       {

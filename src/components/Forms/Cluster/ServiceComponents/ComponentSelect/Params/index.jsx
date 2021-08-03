@@ -55,7 +55,7 @@ export default class Params extends Component {
           </div>
         ))}
         <a className={styles.edit} onClick={this.showEdit}>
-          {t('Edit')}
+          {t('EDIT')}
         </a>
       </div>
     )
@@ -66,7 +66,7 @@ export default class Params extends Component {
 
     return (
       <Modal.Form
-        title={t('Edit')}
+        title={t('EDIT')}
         data={value}
         onOk={this.handleEdit}
         onCancel={this.hideEdit}

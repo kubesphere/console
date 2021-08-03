@@ -236,7 +236,7 @@ export default class MonitoringController extends React.Component {
   }
 
   renderTitle() {
-    const title = this.props.title || t('Monitoring')
+    const title = this.props.title || t('MONITORING')
     return (
       <div className={styles.title}>
         <span>{title}</span>

@@ -28,7 +28,7 @@ import styles from './index.scss'
 export default class ServiceSettingsForm extends Base {
   renderName() {
     return (
-      <Form.Item label={t('Name')}>
+      <Form.Item label={t('NAME')}>
         <Input name="metadata.name" disabled />
       </Form.Item>
     )

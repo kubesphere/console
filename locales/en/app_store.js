@@ -36,7 +36,6 @@ module.exports = {
   Latest: 'Latest',
   'New Apps': 'New Apps',
   None: 'None',
-  Provider: 'Provider',
   'Published Date': 'Published Date',
   Screenshots: 'Screenshots',
   Uncategorized: 'Uncategorized',

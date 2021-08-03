@@ -170,7 +170,7 @@ export default class FullCreateModal extends React.Component {
         )}
         <Switch
           className={styles.switch}
-          text={t('Edit Mode')}
+          text={t('EDIT_MODE')}
           onChange={this.handleModeChange}
           checked={isCodeMode}
         />
@@ -210,12 +210,12 @@ export default class FullCreateModal extends React.Component {
             <Button onClick={onCancel}>{t('Cancel')}</Button>
             {currentStep > 0 && (
               <Button type="control" onClick={this.handlePrev}>
-                {t('Previous')}
+                {t('PREVIOUS')}
               </Button>
             )}
             {currentStep < total ? (
               <Button type="control" onClick={this.handleNext}>
-                {t('Next')}
+                {t('NEXT')}
               </Button>
             ) : (
               <Button

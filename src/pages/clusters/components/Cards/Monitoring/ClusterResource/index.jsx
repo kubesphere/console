@@ -166,7 +166,7 @@ export default class ClusterResourceStatusTab extends React.Component {
 
     return (
       <StatusTabs
-        title={t('Cluster Resources Usage')}
+        title={t('CLUSTER_RESOURCE_USAGE')}
         tabOptions={this.getTabOptions()}
         contentOptions={this.getContentOptions()}
         loading={isLoading}

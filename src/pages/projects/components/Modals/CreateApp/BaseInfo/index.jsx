@@ -64,7 +64,7 @@ export default class BaseInfo extends React.Component {
       })
       .then(resp => {
         if (resp.exist) {
-          return callback({ message: t('Name exists'), field: rule.field })
+          return callback({ message: t('NAME_EXIST_DESC'), field: rule.field })
         }
         callback()
       })
@@ -135,7 +135,7 @@ export default class BaseInfo extends React.Component {
               },
               {
                 pattern: PATTERN_NAME,
-                message: t('Invalid name', { message: t('NAME_DESC') }),
+                message: t('INVALID_NAME_DESC', { message: t('NAME_DESC') }),
               },
               { validator: this.nameValidator },
             ]}
@@ -173,7 +173,7 @@ export default class BaseInfo extends React.Component {
               disabled={!serviceMeshEnable}
             />
           </Form.Item>
-          <Form.Item label={t('Description')} desc={t('DESCRIPTION_DESC')}>
+          <Form.Item label={t('DESCRIPTION')} desc={t('DESCRIPTION_DESC')}>
             <TextArea
               name="metadata.annotations['kubesphere.io/description']"
               maxLength={256}

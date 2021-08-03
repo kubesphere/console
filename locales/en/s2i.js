@@ -38,7 +38,7 @@ module.exports = {
   'Click to upload an artifact': 'Click to upload an artifact',
   'Code Resource': 'Code Resource',
   'Code URL': 'Code URL',
-  'Container Settings': 'Container Settings',
+  CONTAINER_SETTINGS: 'Container Settings',
   creationTimestamp: 'creationTimestamp',
   'Currently only supports git repo': 'Currently only supports git repo',
   'Download Artifact': 'Download Artifact',
@@ -68,8 +68,8 @@ module.exports = {
   'No Log Records': 'No Log Records',
   'Please set the access policy for the container.':
     'Please set the access policy for the container.',
-  'Please set the container name and computing resources.':
-    'Please set the container name and computing resources.',
+  CONTAINER_SETTINGS_DESC:
+    'Set the image, name, type, and computing resources of the container.',
   'Published Time': 'Published Time',
   'Pull Command': 'Pull Command',
   'Rebuild Image': 'Rebuild Image',

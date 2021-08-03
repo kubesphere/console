@@ -86,7 +86,7 @@ export default class Services extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('Edit'),
+        text: t('EDIT'),
         action: 'edit',
         onClick: item =>
           trigger('resource.baseinfo.edit', {
@@ -96,7 +96,7 @@ export default class Services extends React.Component {
       {
         key: 'editYaml',
         icon: 'pen',
-        text: t('Edit YAML'),
+        text: t('EDIT_YAML'),
         action: 'edit',
         onClick: item =>
           trigger('resource.yaml.edit', {
@@ -127,7 +127,7 @@ export default class Services extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         onClick: item =>
           trigger('service.delete', {
@@ -146,7 +146,7 @@ export default class Services extends React.Component {
         {
           key: 'delete',
           type: 'danger',
-          text: t('Delete'),
+          text: t('DELETE'),
           action: 'delete',
           onClick: () =>
             trigger('service.batch.delete', {
@@ -162,7 +162,7 @@ export default class Services extends React.Component {
     const { getSortOrder, module } = this.props
     return [
       {
-        title: t('Name'),
+        title: t('NAME'),
         dataIndex: 'name',
         sorter: true,
         sortOrder: getSortOrder('name'),

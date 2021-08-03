@@ -55,7 +55,7 @@ export default class AppRepos extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('Edit'),
+        text: t('EDIT'),
         action: 'edit',
         onClick: item =>
           trigger('openpitrix.repo.edit', {
@@ -67,7 +67,7 @@ export default class AppRepos extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         onClick: item =>
           trigger('resource.delete', {
@@ -128,7 +128,7 @@ export default class AppRepos extends React.Component {
 
   getColumns = () => [
     {
-      title: t('Name'),
+      title: t('NAME'),
       dataIndex: 'name',
       width: '25%',
       render: (name, record) => (
@@ -142,7 +142,7 @@ export default class AppRepos extends React.Component {
       ),
     },
     {
-      title: t('Status'),
+      title: t('STATUS'),
       dataIndex: 'status',
       isHideable: true,
       width: '15%',

@@ -17,14 +17,15 @@
  */
 
 module.exports = {
+  CLUSTER: 'Cluster',
   'Add Quota Item': 'Add Quota Item',
   'Are you sure to disable it?': 'Are you sure to disable it?',
-  'Assign Workspace': 'Assign Workspace',
-  'Choose a workspace': 'Choose a workspace',
+  ASSIGN_WORKSPACE: 'Assign Workspace',
+  SELECT_WORKSPACE_DESC: 'Select a workspace.',
   Closed: 'Closed',
   'Container Resource Default Request': 'Container Resource Default Request',
   'Create Multi-cluster Project': 'Create Multi-cluster Project',
-  'Create Project': 'Create Project',
+  CREATE_PROJECT: 'Create Project',
   cronjobs: 'cronjobs',
   DaemonSet: 'DaemonSet',
   daemonsets: 'daemonsets',
@@ -86,7 +87,7 @@ module.exports = {
   'Please input project name': 'Please input project name',
   pods: 'pods',
   'Project Info': 'Project Information',
-  'Project Manager': 'Project Manager',
+  PROJECT_ADMINISTRATOR: 'Project Administrator',
   'Project Member': 'Project Member',
   'Project Members': 'Project Members',
   'project members': 'project members',
@@ -111,11 +112,12 @@ module.exports = {
   'requests.memory': 'requests.memory',
   'Resource Quota': 'Resource Quota',
   'Resource Type': 'Resource Type',
-  'Select a user of the workspace as the manager of the project.':
-    'Select a user of the workspace as the manager of the project.',
+  PROJECT_ADMINISTRATOR_DESC:
+    'Select a user in the workspace as the project administrator.',
   'Select Project Type': 'Select Project Type',
-  'Select the cluster to create the project.':
-    'Select the cluster to create the project.',
+  SELECT_CLUSTER_DESC:
+    'Select the cluster in which the project is to be created.',
+  CLUSTER_NOT_SELECT_DESC: 'Please select a cluster.',
   Service: 'Service',
   'Set Gateway': 'Set Gateway',
   StatefulSet: 'StatefulSet',
@@ -130,11 +132,13 @@ module.exports = {
 
   PROJECTS_DESC:
     'A project is a Kubernetes namespace in KubeSphere, which provides a mechanism to organize resources in a workspace.',
-  PROJECT_CREATE_DESC:
-    'A project is a Kubernetes namespace in KubeSphere, which provides a mechanism to organize resources in a workspace.',
+  CREATE_PROJECT_DESC:
+    'Create a project to group resources and control the resource management permissions of different users.',
   PROJECT_ADVANCE_DESC: 'Set the default resource request of the project',
   PROJECT_NAME_DESC:
-    'Project name can only contain lowercase letters, numbers and hyphens ("-").',
+    'The name can contain only lowercase letters, numbers, and hyphens (-), must start with a lowercase letter, and must end with a lowercase letter or number. The maximum length is 63 characters.',
+  PROJECT_NAME_INVALID_DESC:
+    'Invalid name. The name can contain only lowercase letters, numbers, and hyphens (-), must start with a lowercase letter, and must end with a lowercase letter or number. The maximum length is 63 characters.',
   PROJECT_BASEINFO_DESC: 'Project basic information settings',
 
   PROJECT_TYPES_PROJECT_TITLE: 'Create a resource project',
@@ -145,7 +149,7 @@ module.exports = {
     'Build and test software projects continuously and automatically.',
 
   PROJECT_ASSIGN_DESC:
-    'Once the project is assigned to a workspace, it cannot be changed.',
+    'After the project is assigned to a workspace, the workspace cannot be changed.',
 
   INVITE_MEMBER_DESC: 'You can invite new members to assist in your project.',
   INVITE_MEMBER_DESC_DEVOPS:

@@ -196,7 +196,7 @@ export default class ProjectSelect extends Component {
           disabled={disabled}
           options={this.projects}
           placeholder={t('Please select a project')}
-          valueRenderer={option => `${t('Project')}: ${option.value}`}
+          valueRenderer={option => `${t('PROJECT')}: ${option.value}`}
           prefixIcon={<Icon name="project" size={16} />}
           onChange={this.handleProjectsChange}
         />

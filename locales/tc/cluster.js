@@ -36,20 +36,21 @@ module.exports = {
   Snapshots: '儲存卷快照',
   'Network Policies': '網路策略',
   'Network Topology': '網路拓撲',
-  'Cluster Visibility': '集群能見度',
+  CLUSTER_VISIBILITY_SCAP: '集群能見度',
+  CLUSTER_VISIBILITY_TCAP: '集群能見度',
   'Cluster Members': '集群成員',
   'Cluster Roles': '集群角色',
   'Kubernetes Settings': 'Kubernetes 設置',
   'Connection Method': '連接方式',
 
-  'Kubernetes Version': 'Kubernetes 版本',
-  'KubeSphere Version': 'KubeSphere 版本',
+  KUBERNETES_VERSION: 'Kubernetes 版本',
+  KUBESPHERE_VERSION: 'KubeSphere 版本',
 
   'Edit Cluster Info': '編輯集群資訊',
 
   'Cluster List': '集群列表',
-  'Cluster Info': '集群資訊',
-  'Kubernetes Status': 'Kubernetes 組件狀態',
+  CLUSTER_INFORMATION: '集群資訊',
+  KUBERNETES_STATUS: 'Kubernetes 組件狀態',
   Tools: '工具',
 
   'Edit Visibility': '編輯可見範圍',
@@ -58,10 +59,10 @@ module.exports = {
 
   'Choose a provider': '選擇服務商',
 
-  'User Projects': '用戶項目',
-  'System Projects': '系統項目',
+  USER_PROJECTS: '用戶項目',
+  SYSTEM_PROJECTS: '系統項目',
 
-  'Waiting for the cluster to join': '等待集群加入',
+  WAIT_FOR_CLUSTER: '等待集群加入...',
 
   'Click to Copy': '點擊複製',
 
@@ -89,15 +90,15 @@ module.exports = {
   'Select Clusters': '集群選擇',
   'Edit cluster basic information': '編輯集群基礎資訊',
 
-  'Scheduler Scheduling Times': '排程器調度次數',
-  'Scheduling Failed Pods': '調度失敗的容器組',
+  SCHEDULING_OPERATIONS: '排程器調度次數',
+  SCHEDULING_FAILURES: '調度失敗的容器組',
 
   'Please select or input a tag': '請選擇或輸入標籤',
   'Please select or input a provider': '請選擇或輸入服務商',
   'Please input the kubesphere api server address of the cluster':
     '請輸入待加入集群的 Kubesphere API Server 地址',
 
-  'All Projects': '全部項目',
+  ALL_PROJECTS: '全部項目',
 
   'Enter the project': '進入項目',
 
@@ -112,17 +113,17 @@ module.exports = {
   'Node Settings': '節點設置',
 
   'Please add at least one cluster node': '請至少添加一個集群節點',
-  "Please specify the node's roles": '請指定節點的角色',
-  'Please input the IP address': '請輸入 IP 地址',
+  NODE_ROLE_EMPTY_DESC: '請指定節點的角色',
 
   'Add node to the cluster': '添加節點到集群中',
 
-  'Node Internal IP Address': '節點內網 IP 地址',
-  'SSH Port': 'SSH 端口',
-  'SSH IP Address': 'SSH IP 地址',
-  'Username & Password': '用戶名密碼',
-  'SSH Secret': 'SSH 密鑰',
-  'SSH Authentication Mode': 'SSH 認證方式',
+  INTERNAL_IP: '節點內網 IP 地址',
+  PORT: '端口',
+  EXTERNAL_IP: '外網 IP 地址',
+  USERNAME_AND_PASSWORD: '用戶名和密碼',
+  SSH_KEY_TCAP: 'SSH 密鑰',
+  SSH_KEY_SCAP: 'SSH 密鑰',
+  SSH_AUTH_MODE: 'SSH 認證方式',
   'Kubernetes Cluster Settings': 'Kubernetes 集群配置',
   'Network Plugin': '網路外掛',
   'Max Pods': '節點最大容器组數量',
@@ -138,11 +139,11 @@ module.exports = {
 
   'KubeSphere Settings': 'KubeSphere 設置',
 
-  'Invalid IP address': 'IP 地址不合法',
+  INVALID_IP_DESC: 'IP 地址格式錯誤。',
 
-  'Cluster Creation Progress': '集群創建進度',
+  CLUSTER_CREATION_PROGRESS: '集群創建進度',
 
-  'Current Progress': '當前進度',
+  CURRENT_STEP: '當前進度：{step}',
 
   'Log Info': '紀錄資訊',
 
@@ -153,7 +154,7 @@ module.exports = {
   CHOOSE_PROVIDER_DESC:
     'KubeSphere 提供了在主流服務商中快速部署 Kubernetes 集群的方案',
 
-  VISIBILITY_PART: '部分可見',
+  VISIBILITY_PARTIAL: '部分可見',
   VISIBILITY_PUBLIC: '公開',
 
   MULTI_CLUSTER: '多集群',
@@ -167,16 +168,14 @@ module.exports = {
   CONNTECT_DIRECT: '直接連接Kubernetes集群',
   CONNTECT_PROXY: '集群連接代理',
 
-  CLUSTER_WAITING_JOIN_DESC:
+  WAIT_FOR_CLUSTER_DESC:
     '暫時沒有可用的節點，集群為不可以用狀態，您可以添加以下配置文件以啟用該集群',
 
   CLUSTER_AGENT_TIP_1:
-    '請在通過 SSH 在目標集群中創建一個名稱為 agent.yaml 的文件',
-  CLUSTER_AGENT_TIP_1_DESC: '例如 <span class="code">vi agent.yaml</span>',
-  CLUSTER_AGENT_TIP_2: '複製以下配置文件至 agent.yaml 中',
-  CLUSTER_AGENT_TIP_2_DESC: '該代理文件可以將目標集群與平台進行連接',
+    '1. 請在通過 SSH 在目標集群中創建一個名稱為 agent.yaml 的文件',
+  CLUSTER_AGENT_TIP_2: '2. 複製以下配置文件至 agent.yaml 中',
   CLUSTER_AGENT_TIP_3:
-    '通過命令行執行 <span class="code">kubectl create -f agent.yaml</span>',
+    '3. 通過命令行執行 <span class="code">kubectl create -f agent.yaml</span>',
   CLUSTER_AGENT_TIP_3_DESC: '執行命令之後等待集群狀態的更新',
 
   CLUSTER_CONDITIONS: '集群狀態',
@@ -233,6 +232,7 @@ module.exports = {
     '確定移除對企業空間 {resource} 的授權？移除集群對企業空間的授權，將刪除該企業空間在目前集群下的所有資源！',
 
   'Host Cluster': 'Host 集群',
+  HOST_CLUSTER: 'Host 集群',
   'Host Clusters': 'Host 集群',
   'Member Cluster': '成員集群',
   'Member Clusters': '成員集群',
@@ -243,14 +243,15 @@ module.exports = {
   NEW_CLUSTER_DESC: '添加新的 Kubernetes 集群',
   IMPORT_CLUSTER_DESC: '導入已有的 Kubernetes 集群',
   CLUSTER_NODE_SETTINGS_DESC: '添加集群需要的節點',
-  CLUSTER_NODE_INTERNAL_IP_DESC: '集群内各節點間可以互相訪問的內網 IP 地址',
+  NODE_INTERNAL_IP_DESC: '集群内各節點間可以互相訪問的內網 IP 地址',
+  NODE_INTERNAL_IP_EMPTY_DESC: '请输入节点在私网内的 IP 地址。',
   NODE_ROLE_DESC:
     '集群角色中，master 節點數量需要為 1 或 3，woker 節點數量至少為 1',
-  SSH_IP_ADDRESS_DESC: 'SSH IP 地址請填入當前 Host 集群可以訪問到的 IP 地址',
+  NODE_EXTERNAL_IP_DESC: '請填入當前 Host 集群可以訪問到的 IP 地址',
+  NODE_EXTERNAL_IP_EMPTY_DESC: '請填入當前 Host 集群可以訪問到的 IP 地址',
   SSH_AUTH_MODE_DESC: '支持用戶名密碼以及 SSH 密鑰',
-  SSH_ACCOUNT_DESC: '預設以 root 用戶登入',
-  SSH_PASSWORD_DESC: '登入節點時需要的密碼',
-  SSH_SECRET_PLACEHOLDER: 'Ctrl + v 將密鑰貼上此處',
+  NODE_USERNAME_DESC: '預設以 root 用戶登入',
+  NODE_PASSWORD_DESC: '登入節點時需要的密碼',
 
   K8S_CLUSTER_SETTINGS_DESC: '對即將新建的 Kubernetes 集群進行初始化配置 ',
 
@@ -281,16 +282,16 @@ module.exports = {
   CLUSTER_ETCD_BACKUP_NUMBER_DESC: '要保留多少個備份副本。',
   CLUSTER_KUBESPHERE_SETTINGS_DESC: '針對 KubeSphere 的一些客制化設置',
 
-  CLUSTER_CREATING: '集群正在創建中',
-  CLUSTER_CREATING_TIP:
+  CREATING_CLUSTER: '集群正在創建中',
+  CREATING_CLUSTER_DESC:
     '當前集群正在創建，暫時沒有可用的節點，所以集群為不可以用狀態',
-
-  CLUSTER_INIT_NODES: '初始化節點',
-  CLUSTER_PULL_IMAGES: '拉取鏡像',
-  CLUSTER_INIT_ETCD_CLUSTER: '初始化 etcd 集群',
-  CLUSTER_INIT_CONTROL_PLANE: '初始化控制平面',
-  CLUSTER_JOIN_NODES: '添加節點',
-  CLUSTER_INSTALL_ADDONS: '安裝插件',
+  COPY_SUCCESSFUL: '复制成功。',
+  INIT_NODES: '初始化節點',
+  PULL_IMAGES: '拉取鏡像',
+  INIT_ETCD_CLUSTER: '初始化 etcd 集群',
+  INIT_CONTROL_PLANE: '初始化控制平面',
+  JOIN_NODES: '添加節點',
+  INSTALL_ADDONS: '安裝插件',
   FETCHING_LOGS: `正在獲取紀錄...`,
 
   MASTER_NODE_COUNT_TIP: 'Master 節點數量需要為 1 或 3',

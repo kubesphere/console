@@ -110,7 +110,7 @@ module.exports = {
   'Please finish the sub form first': 'Please finish the sub form first',
   'Please input an application name': 'Please input an application name',
   'Please input component version': 'Please input component version',
-  'Please save the current form first': 'Please save the current form first',
+  SAVE_FORM_TIP: 'Please save the current form first.',
   'Please try other query conditions': 'Please try other query conditions',
   'Pod isolation ratio (unit: %)': 'Pod isolation ratio (unit: %)',
   Process: 'Process',

@@ -105,7 +105,7 @@ export default class AlertingPolicy extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('Edit'),
+        text: t('EDIT'),
         action: 'edit',
         onClick: item =>
           trigger('alerting.policy.create', {
@@ -120,7 +120,7 @@ export default class AlertingPolicy extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         onClick: item =>
           trigger('resource.delete', {
@@ -150,7 +150,7 @@ export default class AlertingPolicy extends React.Component {
     const { getFilteredValue } = this.props
     return [
       {
-        title: t('Name'),
+        title: t('NAME'),
         dataIndex: 'name',
         search: true,
         render: (name, record) => (
