@@ -20,7 +20,7 @@ module.exports = {
   Workspace: '企業空間',
   Workspaces: '企業空間',
   'Workspace Settings': '企業空間設置',
-  'Workspace Members': '企業成員',
+  'Workspace Members': '企業空間成員',
   'Workspace Roles': '企業角色',
   'Workspace Role': '企業角色',
   'Create Workspace Role': '創建企業角色',
