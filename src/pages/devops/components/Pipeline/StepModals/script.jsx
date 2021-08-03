@@ -45,7 +45,7 @@ export default class Shell extends React.Component {
 
   static getDerivedStateFromProps(nextProps) {
     if (nextProps.edittingData.type === 'script') {
-      const value = get(nextProps.edittingData.data, '[0].value', '')
+      const value = get(nextProps.edittingData.data, '[0].value.value', '')
       return { value, initValue: value }
     }
     return null
@@ -63,7 +63,10 @@ export default class Shell extends React.Component {
       arguments: [
         {
           key: 'scriptBlock',
-          value: this.isInputed ? this.newValue : initValue,
+          value: {
+            isLiteral: true,
+            value: this.isInputed ? this.newValue : initValue,
+          },
         },
       ],
     })
