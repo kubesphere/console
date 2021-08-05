@@ -15,24 +15,19 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 module.exports = {
-  'Service Monitoring Exporter': '服务监控导出器',
-  'Target Service': '目标服务',
-  'Exporter Service Ports': '导出服务端口',
-  'Scrap Interval(min)': '采集间隔(分钟)',
-  'View Monitor': '查看监控',
-  'Monitoring Exporter': '监控导出器',
-
-  'Choose Authentication Method': '选择鉴权方式',
-  'Port connection authentication': '端口连接鉴权',
-  'No Auth': '无需认证',
-
-  'Create a new secret': '创建新密钥',
-  'refresh secrets': '刷新密钥',
-
-  NO_AUTH_TIP: '接口可直接连接，无需鉴权',
-
-  SCRAP_INTERVAL_DESC: '监控数据采集间隔，默认为 1 分钟',
-  SCRAP_TIMEOUT_DESC: '超时，默认值 10 秒',
-}
+  'Service Monitoring Exporter': 'Service Monitoring Exporter',
+  'Target Service': 'Target Service',
+  'Exporter Service Ports': 'Exporter Service Ports',
+  'Scrap Interval(min)': 'Scrape Interval(min)',
+  'View Monitor': 'View Monitor',
+  'Monitoring Exporter': 'Monitoring Exporter',
+  'Choose Authentication Method': 'Choose Authentication Method',
+  'Port connection authentication': 'Port connection authentication',
+  'No Auth': 'No Auth',
+  'Create a new secret': 'Create a new Secret',
+  'refresh secrets': 'refresh Secrets.',
+  NO_AUTH_TIP: 'The interface can be directly connected without authentication.',
+  SCRAP_INTERVAL_DESC: 'Monitoring data collection interval. It defaults to 1 minute.',
+  SCRAP_TIMEOUT_DESC: 'Collection timeout. It defaults to 10 seconds.'
+};
