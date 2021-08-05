@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 module.exports = {
   KUBE_ASCENDING_ORDER: '正序排列…',
   KUBE_DESCENDING_ORDER: '倒序排列…',
@@ -67,5 +66,5 @@ module.exports = {
   KUBE_RANGE_SEPARATOR: ' 至 ',
   KUBE_SCROLL_TO_INCREMENT: '點擊切換 12/24 小時時制',
   KUBE_CLICK_TO_TOGGLE: '滾動切換',
-  KUBE_YEAR: '年',
-}
+  KUBE_YEAR: ''
+};
