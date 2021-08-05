@@ -32,31 +32,19 @@ module.exports = {
   'View Consumption': '查看消費',
   'Select View Type': '選擇您要查看的類別',
   'Cluster Consumption': '集群資源消費情況',
-
-  CLUSTER_CONSUMPTION_DESC:
-    '集群資源消費情況以集群為維度統計集群，節點的CPU、內存、存儲等資源消費情況',
-  CLUSTER_RESOURCE_CONSUMPTION_DESC:
-    '<strong>集群</strong> 的CPU、內存、存儲等資源消費情況',
-  CLUSTER_NODE_CONSUMPTION_DESC:
-    '集群中 <strong>節點</strong> 的CPU、內存、存儲等資源消費情況',
-  CLUSTER_POD_CONSUMPTION_DESC:
-    '節點中 <strong>容器組</strong> 的CPU、內存等資源消費情況',
+  CLUSTER_CONSUMPTION_DESC: '集群資源消費情況以集群為維度統計集群，節點的CPU、內存、存儲等資源消費情況',
+  CLUSTER_RESOURCE_CONSUMPTION_DESC: '<strong>集群</strong> 的CPU、內存、存儲等資源消費情況',
+  CLUSTER_NODE_CONSUMPTION_DESC: '集群中 <strong>節點</strong> 的CPU、內存、存儲等資源消費情況',
   'Workspace Consumption': '企業空間(項目)資源消費情況',
-  WORKSPACE_CONSUMPTION_DESC:
-    '企業空間(項目)資源消費情況以企業空間為維度統計企業空間和項目的CPU、內存、存儲等資源消費情況',
-  WORKSPACE_RESOURCE_CONSUMPTION_DESC:
-    '<strong>企業空間</strong> 的CPU、內存、存儲等資源消費情況',
-  WORKSPACE_PROJECT_CONSUMPTION_DESC:
-    '企業空間中的 <strong>項目</strong> 的CPU、內存、存儲等資源消費情況',
-  PROJECT_CONSUMPTION_DESC:
-    '項目中的 <strong>應用、服務、容器組</strong> 等資源的CPU、內存、存儲等資源消費情況',
+  CLUSTER_POD_CONSUMPTION_DESC: '節點中 <strong>容器組</strong> 的CPU、內存等資源消費情況',
+  WORKSPACE_CONSUMPTION_DESC: '企業空間(項目)資源消費情況以企業空間為維度統計企業空間和項目的CPU、內存、存儲等資源消費情況',
+  WORKSPACE_RESOURCE_CONSUMPTION_DESC: '<strong>企業空間</strong> 的CPU、內存、存儲等資源消費情況',
+  WORKSPACE_PROJECT_CONSUMPTION_DESC: '企業空間中的 <strong>項目</strong> 的CPU、內存、存儲等資源消費情況',
+  PROJECT_CONSUMPTION_DESC: '項目中的 <strong>應用、服務、容器組</strong> 等資源的CPU、內存、存儲等資源消費情況',
   APP_CONSUMPTION_DESC: '應用商店模板資源消費統計',
-  APP_RESOURCE_CONSUMPTION_DESC:
-    '應用商店模板資源消費統計支持對模板在 KubeSphere 平台中被部署的次數查詢，支持以下查詢',
-  APP_WORKSPACE_CONSUMPTION_DESC:
-    '應用模板在 <strong>企業空間</strong> 中的部署次數',
-  APP_WORKSPACE_PROJECT_CONSUMPTION_DESC:
-    '應用模板在企業空間下的某個 <strong>項目</strong> 中的部署次數',
+  APP_RESOURCE_CONSUMPTION_DESC: '應用商店模板資源消費統計支持對模板在 KubeSphere 平台中被部署的次數查詢，支持以下查詢',
+  APP_WORKSPACE_CONSUMPTION_DESC: '應用模板在 <strong>企業空間</strong> 中的部署次數',
+  APP_WORKSPACE_PROJECT_CONSUMPTION_DESC: '應用模板在企業空間下的某個 <strong>項目</strong> 中的部署次數',
   'Max Usage': '最大用量',
   'Min Usage': '最小用量',
   'Meter CPU Usage': 'CPU 用量',
@@ -65,17 +53,14 @@ module.exports = {
   'Meter Net Received Usage': '網絡流入 用量',
   'Meter Net Transmitted Usage': '網絡流出 用量',
   'Total Consumer Meaning': '共消費表示什麼？',
-  'Total Consumer Desc':
-    '共消費表示在當前對帳週期中每個計費採樣點的資源用量之和',
-  TIMERANGE_MORE_30DAY_MSG:
-    '結束時間與開始時間的間隔大於 30 天時，時間間隔最小為 1 天',
+  'Total Consumer Desc': '共消費表示在當前對帳週期中每個計費採樣點的資源用量之和',
+  TIMERANGE_MORE_30DAY_MSG: '結束時間與開始時間的間隔大於 30 天時，時間間隔最小為 1 天',
   TOTAL_COST: '總金額({unit})',
   '￥': '￥',
-  $: '$',
   Price: '價格',
   PRICE_CONFIG_DESC: '暫未配置價格信息',
   METER_RESOURCE_DESC: '最近 1 小時的消費統計',
   'No cluster with metering module enabled': '暫無啟用計量模塊的集群',
   INVALID_METERING: '未開啟消費統計',
-  NO_METER_DATA: '新創建的資源，需要等待一小時後才能查看數據',
-}
+  NO_METER_DATA: '新創建的資源，需要等待一小時後才能查看數據'
+};
