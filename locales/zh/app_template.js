@@ -15,23 +15,16 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 module.exports = {
-  'Deploy Successfully': '部署成功',
-  'Update Successfully': '更新成功',
-  'Configuration Files': '配置文件',
-
-  APP_TEMPLATE_DESCRIPTION_TITLE: '应用一键部署',
-  APP_TEMPLATE_DESCRIPTION_ARTICLE:
-    '通过可视化的方式在 KubeSphere 中展示并提供部署及管理功能，用户可以基于应用模板快速地一键部署应用',
-
-  'App README': '应用介绍',
-
-  'The app has no documentation.': '该应用没有说明文档',
-  'The version has no documentation.': '该版本没有说明文档',
-  'The app has no chart file.': '该应用没有配置文件',
-
-  TOTAL_APP_REPOS: '共计 {num} 个应用仓库',
-
-  'Edit by YAML': '编辑 YAML',
-}
+  'App README': 'App README',
+  'Configuration Files': 'Configuration Files',
+  'Deploy Successfully': 'Deploy Successfully',
+  'Edit by YAML': 'Edit by YAML',
+  'The app has no chart file.': 'The app has no chart file.',
+  'The app has no documentation.': 'The app has no documentation.',
+  'The version has no documentation.': 'The version has no documentation.',
+  'Update Successfully': 'Update Successfully',
+  APP_TEMPLATE_DESCRIPTION_TITLE: 'Deploy packaged applications',
+  APP_TEMPLATE_DESCRIPTION_ARTICLE: 'KubeSphere visualizes app templates and provides deployment and management function, allowing users to quickly deploy applications with one click based on app templates.',
+  TOTAL_APP_REPOS: 'Total {num} app repositories'
+};
