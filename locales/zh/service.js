@@ -15,160 +15,110 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 module.exports = {
-  services: '服务',
-  routes: '应用路由',
-  Ports: '端口',
-  selector: '选择器',
-  Selector: '选择器',
-  'External Address': '外部地址',
-  'LoadBalancer IP': '负载均衡 IP',
-  'Create Service': '创建服务',
-  'Delete Service': '删除服务',
-  'Access Method': '访问方式',
-  'Target Port': '目标端口',
-  'Container Port': '容器端口',
-  'Service Port': '服务端口',
-  'Node Port': '节点端口',
-  'Node Port(s)': '节点端口',
-  'Edit Service': '编辑服务',
-  'Edit Internet Access': '编辑外网访问',
-  'Please select Service': '请选择 Service',
-  'Path is Required': '请填写 Path',
-  'Virtual IP': '虚拟 IP',
-
-  'Service Type': '服务类型',
-  'Service Access': '服务访问',
-  'Stateless Service': '无状态服务',
-  'Stateful Service': '有状态服务',
-  'External Service': '外部服务',
-  'Simple Service': '简单服务',
-  'Associated Application': '关联应用',
-  'Service Mesh': '服务治理',
-
-  'Internal access': '内部访问',
-  'Access Type': '访问类型',
-
-  'Service Name': '服务名称',
-  'Please input service name': '请输入服务名称',
-  'Please input ExternalName': '请输入 ExternalName',
-  'Specify Workload': '指定工作负载',
-  'Specify Node': '指定节点',
-  'Add Selector': '添加选择器',
-
-  'Invalid port': '无效端口',
-  'Not Associate': '不关联',
-
-  Auto: '自动',
-
-  'Custom Creation': '自定义创建',
-  'Specify Workloads': '指定工作负载',
-  'Create service by specifying workloads': '指定工作负载创建服务',
-  'Create service by Yaml': '通过 Yaml 创建服务',
-
-  'Sure to delete the service(s)?': '确认删除服务',
-  'No related resources found with current service(s)':
-    '当前服务下没有关联的资源',
-
-  'Automatically assign Service IP': '自动分配服务 IP',
-  'Do not assign Service IP': '不分配服务 IP',
-  'Map Services outside the cluster': '映射集群外部的服务',
-  'Please input ports': '请输入端口',
-  'Please select a workload': '请选择一个工作负载',
-  'Please input valid Selector': '请输入有效的选择器',
-  TOTAL_WORKLOAD: '共 {count} 个工作负载',
-
-  'Enable Sticky Session': '开启会话保持',
-  'Maximum Session Sticky Time (s)': '最大会话保持时间(秒)',
-  'The maximum session sticky time is 10800s (3 hours).':
-    '会话保持时间默认是 10800 秒(即 3 小时)',
-
-  SERVICE_NAME_DESC:
-    '最长 63 个字符，只能包含小写字母、数字及分隔符("-")，且必须以小写字母开头, 字母或数字结尾',
-
-  SERVICE_DESC:
-    '服务 (Service) 是定义了一类容器组的逻辑集合和一个用于访问它们的策略。',
-  SERVICE_CREATE_DESC:
-    '服务是定义了一类 Pod 的逻辑集合和一个用于访问它们的策略。您可选择服务的类型或者创建服务的方式。<br/>KubeSphere 支持无状态服务和有状态服务，并支持通过代码或者制品构建服务。',
-
-  SERVICES_BASEINFO_DESC:
-    '创建服务需要提供服务的名称和描述，服务名称不能和同一项目下已有的服务名称相同。',
-  SERVICES_SETTINGS_DESC: '服务设置定义了如何来访问已有的工作负载。',
-
-  SERVICE_EXTERNAL_NAME_DESC:
-    '通过返回 CNAME 和它的值，可以将服务映射到 externalName 字段的内容',
-
-  ACCESS_NONE_TIP: '不提供外网访问',
-  ACCESS_NODEPORT_TIP: '通过访问集群节点的对应端口来访问服务（NodePort）',
-  ACCESS_LOADBALANCER_TIP:
-    '通过云服务商提供的负载均衡器来访问服务 (LoadBalancer)',
-
-  'The current selector': '当前设置的选择器',
-  'Commonly included tags in the current workloads':
-    '当前的工作负载中共同包含的标签',
-  SERVICE_SELECTOR_AFFECT_2: '共影响到 {count} 个工作负载',
-  ' has no corresponding workload.': '没有对应的工作负载',
-  'Please input selectors that have corresponding workloads':
-    '请输入有对应工作负载的选择器',
-  Creating: '正在创建',
-  'Creation failed, please delete and try again': '创建失败，请删除后重试',
-
-  'Add Route Rule': '添加路由规则',
-
-  VIRTUAL_IP_TITLE: '通过集群内部IP来访问服务 Virtual IP',
-  VIRTUAL_IP_DESC:
-    '以集群为服务生成的集群内唯一的 IP 为基础，集群内部可以通过此 IP 来访问服务。',
-  HEADLESS_SELECTOR_TITLE:
-    '集群内部通过服务的后端 Endpoint IP 直接访问服务 Headless (selector)',
-  HEADLESS_SELECTOR_DESC:
-    '集群不为服务生成 IP，集群内部通过服务的后端 Endpoint IP 直接访问服务。此类型适合后端异构的服务，比如需要区分主从的服务。',
-  HEADLESS_EXTERNAL_NAME_TITLE:
-    '映射集群外部的地址来访 Headless (externalname)',
-  HEADLESS_EXTERNAL_NAME_DESC: '将集群或者项目外部服务映射到集群或项目内。',
-
-  SERVICES_INTERNET_ACCESS_DESC: '将服务暴露给外网',
-
-  SERVICE_NODE_PORT_DESC:
-    '如果您当前的网络与集群节点在同一网络内，那么您可以通集群IP地址+节点端口号进行访问，或者通过节点 IP+节点端口进行访问',
-
-  SERVICE_TYPE: '您可以自定义创建 无状态服务 或者 有状态服务',
-
-  SPECIFY_WORKLOAD_DESC:
-    '指定工作负载可以将工作负载所创建的容器组副本的 Label 作为预填充内容',
-
-  SPECIFY_NODE_DESC: '指定节点可以将节点的 Label 作为预填充内容',
-
-  SERVICE_TYPES_Q: '服务的类型',
-  SERVICE_TYPES_A:
-    '服务分为无状态服务 (Virtual Service + Depolyment) 及有状态服务 (Headless Service +Statefulset), 无状态服务中多个副本可以共享一个存储卷、有状态服务需要拥有自己独立的存储卷',
-
-  SCENARIOS_FOR_SERVICES_Q: '无状态服务和有状态服务的使用场景?',
-  SCENARIOS_FOR_SERVICES_A:
-    '无状态服务适用于不需要数据持久化的场景，并且多个实例对统一请求的响应式相同的场景(例如 Nginx、Tomcat 等)；有状态服务适用于需要数据存储功能的服务、或者指多线程类型的服务，队列等 (mysql 数据库、kafka、zookeeper 等)。',
-  STATEFUL_SERVICE_DESC:
-    '有状态服务用来管理有状态应用，可以保证部署和扩容缩容的顺序，提供了稳定的持久化存储和网络标识，有序伸缩等',
-  STATELESS_SERVICE_DESC:
-    '容器服务中最常用的一种服务，通过定义容器组模板来控制容器组状态，包括滚动升级和回滚',
-  SERVICE_FROM_CODE: '通过代码构建新的服务',
-  SERVICE_FROM_ARTIFACTS: '通过制品构建新的服务',
-  SERVICE_FROM_CODE_DESC:
-    '您可以将已有的代码通过  Source to Image 的方式构建成镜像并部署',
-  SERVICE_FROM_ARTIFACTS_DESC: '您可以将已有制品构建成新的镜像并完成部署',
-  'Language Type': '语言类型',
-  SERVISE_SIMPLE_DESC: '通过已有的容器组来创建服务',
-  DELETE_SERVICE_DESC:
-    '您即将删除服务 {resource}，请您进行确认是否删除关联资源?',
-
-  SERVICE_CUSTOM_CREATE: '您可以通过指定工作负载或者编辑配置 (Yaml) 来创建服务',
-
-  SERVICE_TYPE_STATEFULSERVICE: '有状态服务',
-  SERVICE_TYPE_STATELESSSERVICE: '无状态服务',
-  SERVICE_TYPE_EXTERNALSERVICE: '映射外部服务',
-
-  SERVICE_PORTS_DESC: '设置容器镜像暴露的端口以及服务端口',
-
-  EIP_POOL_DESC: '集群内部访问方式(DNS)',
-
-  SERVICE_SESSION_STICKY_DESC: '最小为 0，最大为 86400',
-}
+  ' has no corresponding workload.': ' has no corresponding workload.',
+  'Access Method': 'Access Method',
+  'Access Type': 'Access Type',
+  'Add Route Rule': 'Add Route Rule',
+  'Add Selector': 'Add Selector',
+  'Associated Application': 'Associated Application',
+  Auto: 'Auto',
+  'Automatically assign Service IP': 'Automatically assign Service IP',
+  'Commonly included tags in the current workloads': 'Commonly included tags in the current workloads',
+  'Container Port': 'Container Port',
+  'Create Service': 'Create Service',
+  'Create service by specifying workloads': 'Create service by specifying workloads',
+  'Create service by Yaml': 'Create service by Yaml',
+  Creating: 'Creating',
+  'Creation failed, please delete and try again': 'Creation failed, please delete and try again',
+  'Custom Creation': 'Custom Creation',
+  'Delete Service': 'Delete Service',
+  'Do not assign Service IP': 'Do not assign Service IP',
+  'Edit Internet Access': 'Edit Internet Access',
+  'Edit Service': 'Edit Service',
+  'Enable Sticky Session': 'Enable Sticky Session',
+  'External Address': 'External Address',
+  'External Service': 'External Service',
+  'Internal access': 'Internal access',
+  'Invalid port': 'Invalid port',
+  'Language Type': 'Language Type',
+  'LoadBalancer IP': 'LoadBalancer IP',
+  'Map Services outside the cluster': 'Map Services outside the cluster',
+  'Maximum Session Sticky Time (s)': 'Maximum Session Sticky Time (s)',
+  'No related resources found with current service(s)': 'No related resources found with current service(s)',
+  'Node Port': 'Node Port',
+  'Node Port(s)': 'Node Port(s)',
+  'Not Associate': 'Not Associate',
+  'Path is Required': 'Path is Required',
+  'Please input ExternalName': 'Please input ExternalName',
+  'Please input ports': 'Please input ports',
+  'Please input selectors that have corresponding workloads': 'Please input selectors that have corresponding workloads',
+  'Please input service name': 'Please input service name',
+  'Please input valid Selector': 'Please input valid Selector',
+  'Please select a workload': 'Please select a workload',
+  'Please select Service': 'Please select Service',
+  Ports: 'Ports',
+  routes: 'routes',
+  Selector: 'Selector',
+  selector: 'selector',
+  'Service Access': 'Service Access',
+  'Service Mesh': 'Service Mesh',
+  'Service Name': 'Service Name',
+  'Service Port': 'Service Port',
+  'Service Type': 'Service Type',
+  services: 'services',
+  'Simple Service': 'Simple Service',
+  'Specify Workload': 'Specify Workload',
+  'Specify Node': 'Specify Node',
+  'Specify Workloads': 'Specify Workloads',
+  'Stateful Service': 'Stateful Service',
+  'Stateless Service': 'Stateless Service',
+  'Sure to delete the service(s)?': 'Sure to delete the service(s)?',
+  'Target Port': 'Target Port',
+  'The current selector': 'The current selector',
+  'The maximum session sticky time is 10800s (3 hours).': 'The maximum session sticky time is 10800s (3 hours).',
+  'Virtual IP': 'Virtual IP',
+  SERVICE_EXTERNAL_NAME_DESC: 'Map the service to the contents of the externalName field by returning a CNAME record with its value.',
+  TOTAL_WORKLOAD: '{ count } workloads in total',
+  SERVICE_SELECTOR_AFFECT_1: '',
+  SERVICE_SELECTOR_AFFECT_2: ' affect {count} workloads',
+  SERVICE_NAME_DESC: 'It can only contain lowercase letters, numbers and hyphens("-"), and must begin with a lowercase letter, ending with a number or lowercase letter. The value can contain a maximum of 63 characters.',
+  SERVICE_DESC: 'A Service is an abstraction that defines a logical collection of Pods and a strategy for accessing them.',
+  SERVICE_CREATE_DESC: 'A Service is an abstraction that defines a logical collection of Pods and a strategy for accessing them. You can select the Service type or how a Service is created. KubeSphere supports both stateful and stateless Services and Services can be created through codes or artifacts.',
+  SERVICES_BASEINFO_DESC: 'The name and description of the service need to be provided to create the service. The service name cannot be the same as the existing service name under the same project.',
+  SERVICES_SETTINGS_DESC: 'Service settings define how to access an existing workload.',
+  SERVICES_INTERNET_ACCESS_DESC: 'Expose the service outside of the cluster.',
+  VIRTUAL_IP_TITLE: 'Virtual IP: Access the service through the internal IP of the cluster',
+  VIRTUAL_IP_DESC: 'Based on the unique IP generated by the cluster. The IP can be used to access the service inside the cluster.',
+  HEADLESS_SELECTOR_TITLE: 'Headless (selector): Direct access to the service through the endpoint IP of the service inside the cluster',
+  HEADLESS_SELECTOR_DESC: 'The cluster will not create an IP for the service. Instead, clients within the cluster access it through its endpoints directly. For example, services that need to distinguish master from slave.',
+  HEADLESS_EXTERNAL_NAME_TITLE: 'Headless (externalname): Map addresses outside the cluster to visit',
+  HEADLESS_EXTERNAL_NAME_DESC: 'Map external services to a cluster or project.',
+  ACCESS_NONE_TIP: 'Make the service accessible internally only',
+  ACCESS_NODEPORT_TIP: 'Expose the service on each Node’s IP at a static port',
+  ACCESS_LOADBALANCER_TIP: 'Expose the service externally using the cloud provider’s load balancer',
+  SERVICE_NODE_PORT_DESC: 'If your current network is on the same network as the cluster node, you can access it through the cluster IP address + node port number or through the node IP + node port.',
+  SERVICE_TYPE: 'You can create a stateless Service or a stateful Service.',
+  SERVICE_TYPES_Q: 'Service Types',
+  SERVICE_TYPES_A: 'Services are divided into stateless Services (Virtual Service + Depolyment) and stateful Services (Headless Service + Statefulset). In a stateless Service, replicas can share one volume, and a stateful Service needs to have its own independent volume.',
+  SCENARIOS_FOR_SERVICES_Q: 'What are the scenarios for stateless Services and stateful Services?',
+  SCENARIOS_FOR_SERVICES_A: 'Stateless Services are useful for scenarios where persistent data is not stored locally and multiple instances respond to uniform requests (Nginx, Tomcat, etc.). Stateful Services are helpful when it comes to data storage, multithreading or queues (MySQL database, Kafka, Zookeeper, etc.).',
+  SERVICE_SIMPLE_DESC: 'Create a service from an existing pods group',
+  DELETE_SERVICE_DESC: 'You are about to delete the service(s) {resource}. Please confirm whether to delete the associated resource?',
+  SERVICE_FROM_CODE: 'Build a New Service from Source Code Repository',
+  SERVICE_FROM_ARTIFACTS: 'Build a New Service through the Artifact',
+  SERVICE_FROM_CODE_DESC: 'You can build your existing code into an image and deploy it through Source to Image.',
+  SERVICE_FROM_ARTIFACTS_DESC: 'You can build an existing artifact into a new image and complete the deployment.',
+  SERVICE_CUSTOM_CREATE: 'You can create a Service either by specifying a workload or by editing the configuration (Yaml).',
+  SERVICE_TYPE_STATEFULSERVICE: 'Stateful Service',
+  SERVICE_TYPE_STATELESSSERVICE: 'Stateless Service',
+  SERVICE_TYPE_EXTERNALSERVICE: 'External Service',
+  STATEFUL_SERVICE_DESC: 'Stateful services are used to manage stateful applications, ensuring ordered and graceful deployment and scaling. They also provide stable persistent storage and network identifiers.',
+  STATELESS_SERVICE_DESC: 'The most commonly used service in container services. It defines the Pod template to control the Pod status, including rolling updates and rollbacks.',
+  SERVISE_SIMPLE_DESC: 'Create a service with existing Pods.',
+  SERVICE_PORTS_DESC: 'Set the port to expose the container image and the service port.',
+  SPECIFY_WORKLOAD_DESC: 'Specify a workload that needs to be associated with the service.',
+  SPECIFY_NODE_DESC: 'Specify a node that needs to be associated with the service.',
+  EIP_POOL_DESC: 'Access method within the cluster (DNS)',
+  SERVICE_SESSION_STICKY_DESC: 'Must be greater than 0 and less than 86400'
+};
