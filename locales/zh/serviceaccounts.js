@@ -15,18 +15,13 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 module.exports = {
-  ServiceAccounts: '服务帐户',
-  ServiceAccount: '服务帐户',
-  'Edit Service Account': '编辑服务帐户',
-  'Modify Service Account Role': '修改服务帐户角色',
-  'Secret Detail': '密钥详情',
-  SERVICEACCOUNT_DESC:
-    '服务帐户 (Service Account) 为 Pod 中运行的进程提供了一个标识，用于访问 API Server',
-
-  'Invalid configuration file format': '配置文件格式错误',
-
-  SERVICEACCOUNT_KUBECONFIG_DESC:
-    'KubeConfig 配置方法请参照 <a href="https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/" target="_black">官方文档</a> ，下载后请将服务地址修改为 Kubernetes API 的外部地址',
-}
+  ServiceAccounts: 'ServiceAccounts',
+  ServiceAccount: 'Service Account',
+  'Edit Service Account': 'Edit Service Account',
+  'Modify Service Account Role': 'Modify Service Account Role',
+  'Secret Detail': 'Secret Detail',
+  SERVICEACCOUNT_DESC: 'A Service Account provides an identity for processes that run in a Pod that can be used to access the API server.',
+  'Invalid configuration file format': 'Invalid configuration file format',
+  SERVICEACCOUNT_KUBECONFIG_DESC: 'KubeConfig configuration method please refer to <a href="https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/" target="_black">official documents</a> After downloading, please modify the service address to the external address of the Kubernetes API'
+};
