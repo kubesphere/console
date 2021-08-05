@@ -15,238 +15,154 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 module.exports = {
-  Deployment: '部署',
-  StatefulSet: '有状态副本集',
-  DaemonSet: '守护进程集',
-  Service: '服务',
-  LoadBalancer: '负载均衡',
-  Volume: '存储卷',
-  Terminating: '删除中',
-  Deleting: '删除中',
-  'Create Project': '创建项目',
-  'Create Multi-cluster Project': '创建多集群项目',
-  'Edit Project': '编辑项目',
-  Details: '详情',
-  Members: '成员',
-  'Project Roles': '项目角色',
-  'Project Role': '项目角色',
-  projects: '项目',
-  Projects: '项目',
-  'Project Overview': '项目预览',
-  'Members Management': '成员管理',
-  'Project Manager': '项目管理员',
-  'Manage Project': '项目管理',
-  'Resource Quota': '资源配额',
-  'Project Name': '项目名称',
-  'Project Members': '项目成员',
-  'project members': '项目成员',
-  'Member Name': '成员名称',
-  'Modify Member Role': '修改成员角色',
-  'Modify Members Role': '修改成员角色',
-  'Remove Members': '移除成员',
-  'Remove Member': '移除成员',
-  'Invite Member': '邀请成员',
-  'Gateway Info': '网关信息',
-  'Set Gateway': '设置网关',
-  'Edit Gateway': '编辑网关',
-
-  'Gateway Not Set': '网关未设置',
-
-  'Delete Project': '删除项目',
-  'Project Info': '项目信息',
-  'Project Quota': '项目配额',
-  'Quota Management': '配额管理',
-
-  'Project Quota Not Set': '项目配额未设置',
-  'Resource Default Request Not Set': '容器资源默认请求未设置',
-
-  'Project Placement': '项目位置',
-
-  'Multi-cluster Project': '多集群项目',
-  'Multi-cluster Projects': '多集群项目',
-
-  Opened: '已开启',
-  Closed: '已关闭',
-
-  PROJECT_CREATE_DESC:
-    'KubeSphere 中的项目对应的是 Kubernetes 的 namespace，是对一组资源和对象的抽象集合，常用来将系统内部的对象划分为不同的项目组或用户组。',
-  PROJECT_NAME_DESC: '项目名只能包含小写字母、数字及分隔符("-")',
-  'Please input project name': '请输入项目名',
-  'Invalid project name': '项目名格式不合法',
-  'Project name exists': '项目名已存在',
-
-  DELETE_MEMBER_TIP:
-    '确定移除成员 <strong>{name}</strong> ? 移除后该成员将无法访问本项目。',
-
-  'DevOps Project': 'DevOps 工程',
-  'DevOps Projects': 'DevOps 工程',
-  'Select Project Type': '选择项目类型',
-
-  'Edit Project Quota': '编辑项目配额',
-  'Add Quota Item': '添加配额项',
-
-  'Network Isolation': '网络隔离',
-
-  deployments: '部署',
-  statefulsets: '有状态副本集',
-  daemonsets: '守护进程集',
-  jobs: '任务',
-  cronjobs: '定时任务',
-  pods: '容器组',
-
-  'requests.cpu': 'CPU 需求',
-  'limits.cpu': 'CPU 限额',
-  'requests.memory': '内存需求',
-  'limits.memory': '内存限额',
-
-  'Container Resource Default Request': '容器资源默认请求',
-  'Edit Resource Default Request': '编辑资源默认请求',
-
-  'Resource Type': '资源类型',
-
-  'Help Information': '帮助信息',
-
-  'Enter Project': '进入项目',
-  'Enter DevOps Project': '进入工程',
-  Project_Admin: '工程管理员',
-  'No Platform Manage Authorization': '无平台管理权限',
-
-  'Default limit resource': '默认最大使用资源',
-  'Default request resource': '默认最小使用资源',
-
-  'Assign Workspace': '分配企业空间',
-  'Target Workspace': '目标企业空间',
-  'Choose a workspace': '选择一个企业空间',
-  'Not Assigned': '未分配',
-  'Select a user of the workspace as the manager of the project.':
-    '选择企业空间的用户作为管理员。',
-
-  'Disk Log Collection': '落盘日志收集',
-
-  'Are you sure to disable it?': '确认关闭？',
-  'Disk Log Collection of the project is about to be disabled.':
-    '项目的落盘日志收集即将关闭.',
-
-  'Select the cluster to create the project.': '选择要创建项目的集群.',
-
-  'Project Member': '项目成员',
-
-  'Number of volumes': '存储卷（数量）',
-
-  CLOSE_FILE_LOG_TIP:
-    '落盘日志收集即将关闭。 关闭后，已开启落盘日志收集的服务在容器组副本重启前将继续进行落盘日志的收集，重启后，将不再收集。</br>如果需要再次收集，请开启落盘日志收集，并重起容器组副本。',
-
-  Usage: '使用情况',
-
-  PROJECTS_DESC:
-    'KubeSphere 中的项目对应的是 Kubernetes 的 namespace，是对一组资源和对象的抽象集合，常用来将系统内部的对象划分为不同的项目组或用户组。',
-  PROJECT_BASEINFO_DESC: '项目基础信息设置',
-  PROJECT_ADVANCE_DESC: '设置项目资源默认请求',
-
-  PROJECT_TYPES_PROJECT_TITLE: '创建资源型项目',
-  PROJECT_TYPES_PROJECT_DESC:
-    'KubeSphere 中的项目对应的是 Kubernetes 的 namespace，是对一组资源和对象的抽象集合，可以根据不同的业务部门或者产品项目进行资源分组。',
-  PROJECT_TYPES_DEVOPS_TITLE: '创建一个 DevOps 工程',
-  PROJECT_TYPES_DEVOPS_DESC: '持续、自动地构建/测试软件项目。',
-
-  PROJECT_ASSIGN_DESC: '项目一旦被分配到企业空间后将不允许修改企业空间',
-
-  'Invite Members to the Project': '邀请成员到该项目',
-  'Invite Members to the DevOps Project': '邀请成员到该工程',
-  INVITE_MEMBER_DESC: '您可以邀请新的成员来协助您的项目',
-  INVITE_MEMBER_DESC_DEVOPS: '您可以邀请新的成员来协助您的工程',
-  INVITE_MEMBER_SEARCH_PLACEHODLER: '输入用户名邀请项目成员',
-  INVITE_MEMBER_CHOOSE_ROLE_TIP: '请选择一个角色赋予该成员',
-  PROJECT_ADMIN_DESC: '可以指定项目内一个成员为管理员',
-
-  PROJECT_INTERNET_ACCESS_DESC:
-    '在创建应用路由之前，需要先启用外网访问入口，即网关。这一步是创建对应的应用路由控制器，用来负责将请求转发到对应的后端服务。',
-
-  DELETE_INTERNET_ACCESS_TITLE: '确定删除外网访问设置?',
-  DELETE_INTERNET_ACCESS_DESC: '删除后可重新绑定',
-
-  NO_RELATE_PROJECTS_TITLE: '没有找到与您相关联的项目',
-  NO_RELATE_PROJECTS_DESC:
-    '您可以创建或者联系项目管理员将您邀请到项目中开始您的工作',
-
-  DELETE_PROJECT_TIP:
-    '确定删除项目 <strong>{resource}</strong> ? 删除后将无法恢复, 项目下的资源也同时会被销毁。',
-
-  'default request CPU should not be greater than default limit CPU':
-    '最低保证可以使用的 CPU 数不应大于限制使用的 CPU 数',
-  'default request memory should not be greater than default limit memory':
-    '最低保证可以使用的内存不应大于限制使用的内存',
-
-  'Empty value means no limit, CPU 1 Core = 1000m':
-    '值为空表示无限制, CPU 1核 = 1000m',
-
-  'The project name exists on the host cluster.': '项目名在 Host 集群上已存在',
-
-  MULTI_CLUSTER_PROJECT_DELETE_TIP:
-    '删除多集群项目同时也会删除依赖于 Host 集群上的同名项目,</br>请输入{type}名称 <strong>{resource}</strong> 确保您已了解操作所带来的风险。',
-
-  DEFAULT_RESOURCE_UNIT_DESC: 'CPU无单位时为核数, 1核 = 1000m',
-  DEFAULT_RESOURCE_ALERT:
-    '创建工作负载时，如未设置工作负载的资源使用限制，将默认使用此设置。如无特殊需求，请保持此设定默认。',
-
-  QUOTA_EDIT_TIP: '值为空时将不限制配额',
-
-  PROJECT_BASIC_INFO_DESC: '项目的基本信息涵盖了项目名称及项目的配额状态',
-  PROJECT_QUOTA_MANAGE_DESC: '管理项目的配额',
-  PROJECT_ADVANCED_SETTINGS_DESC:
-    '对项目中的外网访问网关以及服务治理和落盘日志收集等配置进行设置',
-  PROJECT_MEMBERS_DESC: '对项目内的成员进行管理及角色分配',
-  PROJECT_ROLE_DESC: '项目角色定义了在当前项目下用户所拥有的权限',
-  COLLECTING_FILE_LOG_DESC:
-    '对容器内的落盘日志进行收集，并转发到标准输出，然后由日志收集系统统一采集。',
-
-  HOW_TO_USE_QUOTA_Q: '如何使用配额?',
-  HOW_TO_USE_QUOTA_A:
-    '资源配额 (ResourceQuota) 是用来限制用户资源用量的一种机制，可以对 CPU、内存、容器组数量等进行配额限制。',
-
-  WHAT_IS_LIMIT_RANGE_Q: '什么是容器资源默认请求?',
-  WHAT_IS_LIMIT_RANGE_A:
-    '容器资源默认请求 (LimitRange) 基于项目的资源管理，包括容器组和容器的保留资源、最大限额等。',
-
-  WHAT_IS_INTERNET_GATEWAY: '什么是外网访问网关?',
-  WHAT_IS_COLLECT_FILE_LOG_A:
-    '容器所挂载的存储卷中的日志路径以 glob 方式给出，可在工作负载中配置日志路径以收集这些日志。需要管理员预先开启落盘日志收集。',
-
-  HOW_TO_INVITE_MEMBER_Q: '如何邀请成员？',
-  HOW_TO_INVITE_MEMBER_A:
-    '项目管理员或者拥有成员邀请权限的用户可以邀请当前企业空间内的成员加入项目',
-
-  'How do I invite other members to the current project?':
-    '邀请其他成员到当前项目中?',
-  'How do I set the project gateway?': '如何设置项目网关？',
-  'You can limit the number of resources. Blank means no limit.':
-    '您可以对资源的数量进行限制, 不填即不限制',
-
-  PROJECT_TYPES_Q: '项目中的服务如何通过外网访问？',
-  PROJECT_TYPES_A:
-    '项目网关负责创建对应的应用路由控制器，用来负责将请求转发到对应的后端服务；开启项目网关后可以将服务通过 Ingress 暴露给外网访问。',
-
-  PROJECT_CLUSTER_SETTINGS_DESC:
-    '选择要创建项目的集群. 当选择了多个集群时, 将创建多集群项目, 并会在 Host 集群上创建同名项目',
-  NETWORK_ISOLATED_DESC: '设置网络隔离策略',
-
-  NAME_EXIST_IN_CLUSTER: '项目名在集群 {cluster} 中已存在',
-
-  MULTI_CLUSER_PROJECT_TIP:
-    '当前项目为多集群项目，项目将分布在不同集群中共同来构成多集群项目，您可以切换到不同集群查看项目在该集群中的设置。',
-
-  MULTI_CLUSER_RESOURCE_TIP:
-    '当前资源为多集群资源，资源将分布在不同集群中共同来构成多集群资源，您可以切换到不同集群查看资源在该集群中的设置。',
-
-  FEDPROJECT_RESOURCE_TIP:
-    '无法在集群管理内创建多集群项目的资源, 请到多集群项目页面内进行操作。',
-  FEDPROJECT_CANNOT_DEPLOY_APP_TIP: '无法在多集群项目里部署应用。',
-
-  FED_HOST_NAMESPACE_TIP:
-    '该项目为多集群项目的相关资源, 请勿在此项目下操作资源',
-
-  MULTI_CLUSTER_PROJECT_CREATE_DESC:
-    '您可以创建多集群项目，让项目运行在多个集群中，为应用提供快速迭代开发的容器环境并实现高可用。',
-}
+  'Add Quota Item': 'Add Quota Item',
+  'Are you sure to disable it?': 'Are you sure to disable it?',
+  'Assign Workspace': 'Assign Workspace',
+  'Choose a workspace': 'Choose a workspace',
+  Closed: 'Closed',
+  'Container Resource Default Request': 'Container Resource Default Request',
+  'Create Multi-cluster Project': 'Create Multi-cluster Project',
+  'Create Project': 'Create Project',
+  cronjobs: 'cronjobs',
+  DaemonSet: 'DaemonSet',
+  daemonsets: 'daemonsets',
+  'Default limit resource': 'Default limit resource',
+  'default request CPU should not be greater than default limit CPU': 'default request CPU should not be greater than default limit CPU',
+  'default request memory should not be greater than default limit memory': 'default request memory should not be greater than default limit memory',
+  'Default request resource': 'Default request resource',
+  'Delete Project': 'Delete Project',
+  Deleting: 'Deleting',
+  Deployment: 'Deployment',
+  deployments: 'deployments',
+  Details: 'Details',
+  'DevOps Project': 'DevOps Project',
+  'DevOps Projects': 'DevOps Projects',
+  'Disk Log Collection': 'Disk Log Collection',
+  'Disk Log Collection of the project is about to be disabled.': 'Disk Log Collection of the project is about to be disabled.',
+  'Edit Gateway': 'Edit Gateway',
+  'Edit Project': 'Edit Project',
+  'Edit Project Quota': 'Edit Project Quota',
+  'Edit Resource Default Request': 'Edit Resource Default Request',
+  'Empty value means no limit, CPU 1 Core = 1000m': 'Empty value means no limit, CPU 1 Core = 1000m',
+  'Enter DevOps Project': 'Enter DevOps Project',
+  'Enter Project': 'Enter Project',
+  FED_HOST_NAMESPACE_TIP: 'Please do not manipulate resources in this project as it is related to a multi-cluster project.',
+  'Gateway Info': 'Gateway Info',
+  'Gateway Not Set': 'Gateway Not Set',
+  'Help Information': 'Help Information',
+  'How do I invite other members to the current project?': 'How do I invite other members to the current project?',
+  'How do I set the project gateway?': 'How do I set the project gateway?',
+  'Invalid project name': 'Invalid project name',
+  'Invite Member': 'Invite Member',
+  'Invite Members to the DevOps Project': 'Invite Members to the DevOps Project',
+  'Invite Members to the Project': 'Invite Members to the Project',
+  jobs: 'jobs',
+  'limits.cpu': 'limits.cpu',
+  'limits.memory': 'limits.memory',
+  LoadBalancer: 'LoadBalancer',
+  'Manage Project': 'Manage Project',
+  'Member Name': 'Member Name',
+  Members: 'Members',
+  'Members Management': 'Members Management',
+  'Modify Member Role': 'Modify Member Role',
+  'Modify Members Role': 'Modify Members Role',
+  'Multi-cluster Project': 'Multi-cluster Project',
+  'Multi-cluster Projects': 'Multi-cluster Projects',
+  MULTI_CLUSTER_PROJECT_DELETE_TIP: 'Deleting a multi-cluster project will also delete the same project on the host cluster.</br>Please enter the {type} name <strong>{resource}</strong> to make sure you understand the risk of the operation.',
+  'Network Isolation': 'Network Isolation',
+  'No Platform Manage Authorization': 'No Platform Manage Authorization',
+  'Not Assigned': 'Unassigned',
+  Opened: 'Opened',
+  'Please input project name': 'Please input project name',
+  pods: 'pods',
+  'Project Info': 'Project Information',
+  'Project Manager': 'Project Manager',
+  'Project Member': 'Project Member',
+  'Project Members': 'Project Members',
+  'project members': 'project members',
+  'Project Name': 'Project Name',
+  'Project name exists': 'Project name exists',
+  'The project name exists on the host cluster.': 'The project name exists on the host cluster.',
+  'Project Overview': 'Project Overview',
+  'Project Placement': 'Project Placement',
+  'Project Quota': 'Project Quota',
+  'Project Role': 'Project Role',
+  'Project Roles': 'Project Roles',
+  'Project Quota Not Set': 'Project Quota Not Set',
+  'Resource Default Request Not Set': 'Resource Default Request Not Set',
+  Project_Admin: 'Project_Admin',
+  Projects: 'Projects',
+  projects: 'projects',
+  'Quota Management': 'Quota Management',
+  'Remove Member': 'Remove Member',
+  'Remove Members': 'Remove Members',
+  'requests.cpu': 'requests.cpu',
+  'requests.memory': 'requests.memory',
+  'Resource Quota': 'Resource Quota',
+  'Resource Type': 'Resource Type',
+  'Select a user of the workspace as the manager of the project.': 'Select a user of the workspace as the manager of the project.',
+  'Select Project Type': 'Select Project Type',
+  'Select the cluster to create the project.': 'Select the cluster to create the project.',
+  Service: 'Service',
+  'Set Gateway': 'Set Gateway',
+  StatefulSet: 'StatefulSet',
+  statefulsets: 'statefulsets',
+  'Target Workspace': 'Target Workspace',
+  Terminating: 'Terminating',
+  Usage: 'Usage',
+  Volume: 'Volume',
+  'Number of volumes': 'Number of volumes',
+  'You can limit the number of resources. Blank means no limit.': 'You can limit the number of resources. Blank means no limit.',
+  PROJECTS_DESC: 'A project is a Kubernetes namespace in KubeSphere, which provides a mechanism to organize resources in a workspace.',
+  PROJECT_CREATE_DESC: 'A project is a Kubernetes namespace in KubeSphere, which provides a mechanism to organize resources in a workspace.',
+  PROJECT_ADVANCE_DESC: 'Set the default resource request of the project',
+  PROJECT_NAME_DESC: 'Project name can only contain lowercase letters, numbers and hyphens ("-").',
+  PROJECT_BASEINFO_DESC: 'Project basic information settings',
+  PROJECT_TYPES_PROJECT_TITLE: 'Create a resource project',
+  PROJECT_TYPES_PROJECT_DESC: 'The project in KubeSphere corresponds to the Kubernetes namespace, which is an abstract collection of a set of resources and objects that can be grouped according to different business units or product projects.',
+  PROJECT_TYPES_DEVOPS_TITLE: 'Create a DevOps project',
+  PROJECT_TYPES_DEVOPS_DESC: 'Build and test software projects continuously and automatically.',
+  PROJECT_ASSIGN_DESC: 'Once the project is assigned to a workspace, it cannot be changed.',
+  INVITE_MEMBER_DESC: 'You can invite new members to assist in your project.',
+  INVITE_MEMBER_DESC_DEVOPS: 'You can invite new members to assist your DevOps project.',
+  INVITE_MEMBER_SEARCH_PLACEHODLER: 'Enter a username to invite members',
+  INVITE_MEMBER_CHOOSE_ROLE_TIP: 'Please assign a role to this member',
+  DELETE_MEMBER_TIP: 'Are you sure about deleting the member <strong>{name}</strong>? The member cannot access this project once removed.',
+  PROJECT_ADMIN_DESC: 'You can specify a member of the project as an administrator.',
+  DEVOPS_ADMIN_DESC: 'You can specify a member of the DevOps project as an administrator.',
+  PROJECT_INTERNET_ACCESS_DESC: 'Before creating a route, you need to enable the Internet access portal (i.e. the gateway). This step is to create a corresponding routing controller to forward the request to the corresponding backend Service.',
+  DELETE_INTERNET_ACCESS_TITLE: 'Are you sure about deleting the external network access settings?',
+  DELETE_INTERNET_ACCESS_DESC: 'You can rebind after the deletion.',
+  NO_RELATE_PROJECTS_TITLE: 'No project associated with you',
+  NO_RELATE_PROJECTS_DESC: 'You can create or contact the project manager to invite you to the project to start your work.',
+  DELETE_PROJECT_TIP: 'Are you sure about deleting the project <strong>{resource}</strong>? After the deletion, you will not be able to recover it, and the resources under the project will also be destroyed.',
+  DEFAULT_RESOURCE_UNIT_DESC: 'The value of CPU indicates the number of CPU cores when it has no unit. 1 Core = 1000m',
+  DEFAULT_RESOURCE_ALERT: 'When you create a workload, this setting will be used by default if the resource limit and request for the workload are not set. If there is no special requirements, please keep this default setting unchanged.',
+  QUOTA_EDIT_TIP: 'If the value is empty, the resource quota will not be limited.',
+  HOW_TO_USE_QUOTA_Q: 'How do I use quotas?',
+  HOW_TO_USE_QUOTA_A: 'Resource Quotas are a mechanism used to limit user\'s resources usage. You can limit the number of CPUs, memories, and Pod replicas.',
+  WHAT_IS_LIMIT_RANGE_Q: 'What is the container resource default request?',
+  WHAT_IS_LIMIT_RANGE_A: 'The container resource default request (LimitRange) is based on project resource management, including resource limits and resource requests.',
+  WHAT_IS_INTERNET_GATEWAY: 'What is an Internet Access Gateway?',
+  WHAT_IS_COLLECT_FILE_LOG_A: 'The log path in the volume mounted to the container is given in glob pattern. The log path can be configured in the workload to collect logs. The administrator needs to enable Disk Log Collection in advance.',
+  HOW_TO_INVITE_MEMBER_Q: 'How to invite members?',
+  HOW_TO_INVITE_MEMBER_A: 'Project administrators or users with member invitation privileges can invite members of the current workspace to join the project.',
+  CLOSE_FILE_LOG_TIP: 'Disk Log Collection will be turned off. After it is disabled, the service with this function enabled will not stop collecting disk logs until Pod replicas restart. </br>If you need to collect them again, please enable Disk Log Collection and restart the Pod.',
+  COLLECTING_FILE_LOG_DESC: 'Disk logs in the container will be collected and exported to stdout, which will then be collected by the system log collector together.',
+  PROJECT_BASIC_INFO_DESC: 'The project basic information includes the project name and the project\'s quota status.',
+  PROJECT_QUOTA_MANAGE_DESC: 'This module allows you to manage project quotas.',
+  PROJECT_ROLE_DESC: 'Project roles define the authorization users have in the current project.',
+  PROJECT_MEMBERS_DESC: 'Manage and assign roles for project members.',
+  PROJECT_ADVANCED_SETTINGS_DESC: 'This module allows you to configure gateway access for external addresses and service governance. Besides, you can also configure the collection of logs on the disk.',
+  PROJECT_TYPES_Q: 'How can the services in the project be accessed through the external network?',
+  PROJECT_TYPES_A: 'The project gateway is responsible for creating the corresponding application routing controller to forward the request to the corresponding backend Service. After the project gateway is opened, the service can be exposed to the external network through Ingress.',
+  NAME_EXIST_IN_CLUSTER: 'Name exists in {cluster}',
+  PROJECT_CLUSTER_SETTINGS_DESC: 'Select the cluster to create the project. When multiple clusters are selected, a multi-cluster project will be created.',
+  NETWORK_ISOLATED_DESC: 'Set network isolation strategy',
+  FEDPROJECT_RESOURCE_TIP: 'Unable to create multi-cluster project resources in cluster management, please go to the multi-cluster project page to operate.',
+  FEDPROJECT_CANNOT_DEPLOY_APP_TIP: 'Unable to deploy applications in multi-cluster projects.',
+  MULTI_CLUSER_PROJECT_TIP: 'The current multi-cluster project runs on different clusters. You can switch between clusters to check the setting of this project in each of them.',
+  MULTI_CLUSER_RESOURCE_TIP: 'The current multi-cluster resource runs on different clusters. You can switch between clusters to check the setting of this resource in each of them.',
+  MULTI_CLUSTER_PROJECT_CREATE_DESC: 'A multi-cluster project runs across different clusters, which helps you to build a container environment for rapid iteration of applications and achieve high availability.'
+};
