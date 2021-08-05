@@ -15,47 +15,38 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 module.exports = {
-  Validate: '验证',
-  APP_REPO_DESC:
-    '可用添加来自第三方的应用仓库源，可以支持基于 Helm 的 Kubernetes 应用。 ',
-  APP_REPO_URL_DESC: '所输入的 URL 需要先验证才可进行添加或编辑操作',
-  'App Repository': '应用仓库',
-  'App Repository Name': '应用仓库名称',
-  'Add App Repository': '添加应用仓库',
-  'Edit App Repository': '编辑应用仓库',
-  APP_REPOSITORY_CREATE_DESC:
-    '可用添加来自第三方的应用仓库源，可以支持基于 Helm 的 Kubernetes 应用。 ',
-
-  Synchronize: '同步',
-  syncing: '同步中',
-
-  'Unrecognized URL': '无法识别的地址',
-  'Invalid format of credential': '证书格式错误',
-  'Missing access key ID': '缺少 Access key ID',
-  'Missing secret access key': '缺少 Secret access key',
-  'S3 access denied': 'S3 地址无法访问',
-  'Invalid format of URL': '地址格式错误',
-  'Invalid HTTP Scheme': '错误的 HTTP 类型协议',
-  'HTTP access denied': 'HTTP 地址无法访问',
-  'Invalid HTTPS Scheme': '错误的 HTTPS 类型协议',
-  'Invalid type': '无效的类型',
-  'Invalid Providers': '错误的 Providers 参数',
-  'Invalid Repo URL': '不是有效的 Repo 地址',
-  'Invalid S3 Scheme': '错误的 S3 类型协议',
-  'Invalid URL': '无效的 URL',
-  'Valid URL': 'URL 验证通过',
-
-  'Please input URL': '请输入 URL',
-  'Please input access key ID and secret access key':
-    '请输入 Access key ID 和 Secret access key',
-
-  'App Repos': '应用仓库',
-  'Add Repository': '添加仓库',
-  'Index Repo': '同步仓库',
-
-  HOW_TO_USE_APP_REPO_Q: '如何使用应用仓库？',
-  HOW_TO_USE_APP_REPO_A:
-    '企业空间内添加的应用仓库可以在企业空间下的项目内可见，可以通过 应用 => 部署应用 =>  应用仓库 中查找到当前应用仓库下的所有应用,并进行部署',
-}
+  'Add App Repository': 'Add App Repository',
+  'Add Repository': 'Add',
+  'App Repos': 'App Repositories',
+  'App Repository': 'App Repository',
+  'App Repository Name': 'Name',
+  'Edit App Repository': 'Edit App Repository',
+  'HTTP access denied': 'HTTP access denied.',
+  'Index Repo': 'Index Repository',
+  'Invalid format of credential': 'Invalid credential format.',
+  'Invalid format of URL': 'Invalid URL format.',
+  'Invalid HTTP Scheme': 'Invalid HTTP scheme.',
+  'Invalid HTTPS Scheme': 'Invalid HTTPS scheme.',
+  'Invalid Providers': 'Invalid providers.',
+  'Invalid Repo URL': 'Invalid repository URL.',
+  'Invalid S3 Scheme': 'Invalid S3 scheme.',
+  'Invalid type': 'Invalid type.',
+  'Invalid URL': 'Invalid URL.',
+  'Valid URL': 'Valid URL',
+  'Missing access key ID': 'Missing access key ID.',
+  'Missing secret access key': 'Missing secret access key.',
+  'Please input access key ID and secret access key': 'Please enter an access key ID and secret access key.',
+  'Please input URL': 'Please enter an URL.',
+  'S3 access denied': 'S3 access denied.',
+  Synchronize: 'Synchronize',
+  syncing: 'syncing',
+  'Unrecognized URL': 'Unrecognized URL.',
+  Validate: 'Validate',
+  'App Repositorys': 'App Repositories',
+  APP_REPO_URL_DESC: 'The URL needs to be validated before adding or editing an app repository.',
+  APP_REPOSITORY_CREATE_DESC: 'You can add third-party repositories that contain Helm-based Kubernetes apps.',
+  APP_REPO_DESC: 'You can add third-party repositories that contain Helm-based Kubernetes apps.',
+  HOW_TO_USE_APP_REPO_Q: 'How do I install apps in a repository?',
+  HOW_TO_USE_APP_REPO_A: 'To install apps in a repository, go to a project, choose Application Workloads > Applications > Deploy New Application > From App Templates, and choose the app repository from the drop-down list.'
+};
