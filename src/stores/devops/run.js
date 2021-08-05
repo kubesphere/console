@@ -102,18 +102,18 @@ export default class PipelineRunStore extends BaseStore {
         limit: TABLE_LIMIT,
       }
     )
-    const data = []
+    let data = []
 
     if (result.changeSet && isArray(result.changeSet)) {
-      const changeSet = result.changeSet[0]
-      const commitBody = {
-        commitId: get(changeSet, 'commitId'),
-        startTime: get(result, 'startTime'),
-        url: get(changeSet, 'url'),
-        author: get(changeSet, 'author.fullName'),
-        title: get(changeSet, 'msg'),
-      }
-      data.push(commitBody)
+      data = result.changeSet.map(item => {
+        return {
+          commitId: get(item, 'commitId'),
+          startTime: get(item, 'timestamp'),
+          url: get(item, 'url'),
+          author: get(item, 'author.fullName'),
+          title: get(item, 'msg'),
+        }
+      })
     } else if (result.pullRequest) {
       const commitBody = {
         commitId: get(result, 'commitId'),
