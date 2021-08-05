@@ -15,48 +15,32 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 module.exports = {
-  'Pod IP Pool': '容器组 IP 池',
-  'Pod IP Pools': '容器组 IP 池',
-
-  'Create Pod IP Pool': '创建容器组 IP 池',
-
-  'IP/Mask Bit': 'IP/掩码位',
-  'Used IP': '已用 IP',
-
-  Mask: '掩码',
-  'Mask Bit': '掩码位',
-  Network: '网络',
-
-  'First Available': '第一个可用',
-  'Last Available': '最后可用',
-  'Available Number': '可用数量',
-
-  'Pod IP Range': '容器组 IP 池',
-
-  'Number of Creation': '创建数量',
-  'Pod IP Pools to be created': '即将创建的容器组 IP 池',
-  'Set to be globally available': '设为全局可用',
-
-  'Please input the IP address': '请输入 IP 地址',
-  'Please input the mask bit': '请输入掩码位',
-  'Please input the IP/mask bit': '请输入 IP 地址/掩码位',
-
-  'Please input the number of Pod IP Pools to be created':
-    '请输入需要创建的容器组 IP 池数量',
-
-  POD_IP_POOL_DESC: '集群内容器组 IP 池',
-  IP_POOL_CREATE_COUNT_DESC: '可以同时创建多个容器组 IP 池，数量范围为 1～10',
-  IPPOOL_USAGE_Q: '如何利用 IP 池规划容器组网络？',
-  IPPOOL_USAGE_A:
-    'IP 池用于规划 Pod 网络地址空间，每个 IP 池之间地址空间不能重叠。创建工作负载时，可选择特定的 IP 池，这样创建出的容器组将从该 IP 池中分配 IP。',
-
-  IPPOOL_ASSIGN_WORKSPACE_DESC: 'IP 池分配给企业空间之后才能被企业空间使用。',
-  IPPOOL_ASSIGN_WORKSPACE_ALLOCATED_WARNING:
-    'IP 池已被使用，无法分配给某一个具体的企业空间',
-  IPPOOL_ASSIGN_WORKSPACE_CHANGE_WARNING:
-    'IP 池已被使用，且已指定具体的企业空间，无法更改目标企业空间',
-
-  IPPOOL_WORKSPACE_EMPTY_TIP: '暂无企业空间使用此 IP 池',
-}
+  'Pod IP Pool': 'Pod IP Pool',
+  'Pod IP Pools': 'Pod IP Pools',
+  'Create Pod IP Pool': 'Create Pod IP Pool',
+  'IP/Mask Bit': 'IP/Mask Bit',
+  'Used IP': 'Used IP',
+  Mask: 'Mask',
+  'Mask Bit': 'Mask Bit',
+  Network: 'Network',
+  'First Available': 'First Available',
+  'Last Available': 'Last Available',
+  'Available Number': 'Available Number',
+  'Pod IP Range': 'Pod IP Range',
+  'Number of Creation': 'Number of Creation',
+  'Pod IP Pools to be created': 'Pod IP Pools to be created',
+  'Set to be globally available': 'Set to be globally available',
+  'Please input the IP address': 'Please input the IP address',
+  'Please input the mask bit': 'Please input the mask bit',
+  'Please input the IP/mask bit': 'Please input the IP/mask bit',
+  'Please input the number of Pod IP Pools to be created': 'Please input the number of Pod IP Pools to be created',
+  POD_IP_POOL_DESC: 'Pod IP Pools of the cluster.',
+  IP_POOL_CREATE_COUNT_DESC: 'Up to 10 Pod IP Pools can be created at the same time.',
+  IPPOOL_USAGE_Q: 'How to manage a Pod network using a Pod IP Pool?',
+  IPPOOL_USAGE_A: 'A Pod IP Pool is used to manage the Pod network address space, and the address space between each Pod IP Pool cannot overlap. When creating a workload, you can select a specific Pod IP Pool, so that created Pods will be assigned IPs from this Pod IP Pool.',
+  IPPOOL_ASSIGN_WORKSPACE_DESC: 'The Pod IP Pool can be used by a workspace after assigned to it.',
+  IPPOOL_ASSIGN_WORKSPACE_ALLOCATED_WARNING: 'The Pod IP Pool has been used and cannot be assigned to a specific workspace.',
+  IPPOOL_ASSIGN_WORKSPACE_CHANGE_WARNING: 'The Pod IP Pool has been used with a specific workspace assigned. The target workspace cannot be changed.',
+  IPPOOL_WORKSPACE_EMPTY_TIP: 'No workspace is using this Pod IP Pool.'
+};
