@@ -68,16 +68,12 @@ export default {
           }
 
           const spec = get(data, 'spec.hard', {})
-
-          for (const key in spec) {
-            if (spec[key] === Infinity) {
-              spec[key] = ''
-            }
-          }
-
           const units = ['ki', 'mi', 'gi', 'ti']
           Object.keys(spec).forEach(key => {
             const value = spec[key]
+            if (value === Infinity) {
+              spec[key] = ''
+            }
             if (!isString(value)) {
               return
             }
