@@ -109,12 +109,16 @@ export default class BranchDetailLayout extends React.Component {
   ]
 
   getAttrs = () => {
-    const { detail } = this.store
-    const { activityList } = this.store
+    const { detail, activityList } = this.store
+    const { devopsName } = this.props.devopsStore
 
     return [
       {
         name: t('DevOps Project'),
+        value: devopsName,
+      },
+      {
+        name: t('Pipeline'),
         value: detail.displayName,
       },
       {
