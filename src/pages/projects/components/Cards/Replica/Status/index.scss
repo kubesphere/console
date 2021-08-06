@@ -55,8 +55,17 @@
 
   :global {
     .icon.icon-clickable:hover {
-      background-color: transparent;
+      background-color: $dark-color04;
       user-select: none;
     }
+  }
+  .add,
+  .substract {
+    padding: 2px;
+    background: $dark-color06;
+    border-radius: 4px;
+  }
+  .substract {
+    margin-top: 8px;
   }
 }
