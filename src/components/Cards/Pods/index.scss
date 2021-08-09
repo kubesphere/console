@@ -171,6 +171,19 @@
       }
     }
 
+    .podip {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+      background: $green-color03;
+      margin-left: 8px;
+      line-height: 20px;
+      text-align: center;
+      font-weight: 600;
+      color: white;
+    }
+
     .text {
       display: table-cell;
       vertical-align: middle;
@@ -190,6 +203,25 @@
         @include ellipsis;
         @include TypographyParagraph($dark-color01);
       }
+    }
+  }
+
+  .ipTip {
+    width: 176px;
+    ul {
+      margin-top: 8px;
+    }
+    li {
+      display: flex;
+      font-weight: normal;
+      :global {
+        .icon {
+          margin-right: 4px;
+        }
+      }
+    }
+    li + li {
+      margin-top: 4px;
     }
   }
 }
