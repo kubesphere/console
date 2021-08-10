@@ -103,7 +103,7 @@ module.exports = {
   "Didn't pass": 'No pasó',
   dir: 'directorio',
   Discard: 'Descarte',
-  'Discard old branch': 'Descartar ramas anteriores',
+  'Discard old branches': 'Descartar ramas anteriores',
   'Discard old builds': 'Descartar builds antiguas',
   'Discover Tag Branches': 'Descubrir Tag ramas',
   'Discover Branches': 'Descubrir ramas',

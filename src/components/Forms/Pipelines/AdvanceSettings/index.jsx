@@ -564,7 +564,7 @@ export default class AdvanceSettings extends React.Component {
             >
               {isEmpty(multi_branch_pipeline)
                 ? t('Discard old builds')
-                : t('Discard old branch')}
+                : t('Discard old branches')}
               {this.renderTip(
                 isEmpty(multi_branch_pipeline)
                   ? t('tips_disable_concurrent')

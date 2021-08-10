@@ -75,7 +75,7 @@ module.exports = {
   'Show Logs': '查看日志',
   'Code Repository': '代码仓库',
   'Discard old builds': '丢弃旧的构建',
-  'Discard old branch': '丢弃旧的分支',
+  'Discard old branches': '丢弃旧的分支',
   'Days to keep builds': '保留构建的天数',
   'Maximum number of builds to keep': '保留构建的最大个数',
   'Days to keep old branches': '保留分支的天数',

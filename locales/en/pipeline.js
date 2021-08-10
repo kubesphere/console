@@ -103,7 +103,7 @@ module.exports = {
   "Didn't pass": "Didn't pass",
   dir: 'dir',
   Discard: 'Discard',
-  'Discard old branch': 'Discard old branch',
+  'Discard old branches': 'Discard old branches',
   'Discard old builds': 'Discard old builds',
   'Discover Tag Branches': 'Discover Tag Branches',
   'Discover Branches': 'Discover Branches',
