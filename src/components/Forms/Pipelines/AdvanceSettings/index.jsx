@@ -523,7 +523,7 @@ export default class AdvanceSettings extends React.Component {
             >
               <Input
                 name={`${this.prefix}.discarder.days_to_keep`}
-                defaultValue="-1"
+                defaultValue="7"
               />
             </Form.Item>
           </Column>
@@ -534,7 +534,7 @@ export default class AdvanceSettings extends React.Component {
             >
               <Input
                 name={`${this.prefix}.discarder.num_to_keep`}
-                defaultValue="-1"
+                defaultValue="5"
               />
             </Form.Item>
           </Column>
