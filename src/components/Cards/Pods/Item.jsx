@@ -69,6 +69,14 @@ export default class PodItem extends React.PureComponent {
     return this.status.type === 'running' || this.status.type === 'completed'
   }
 
+  get networkIPs() {
+    const {
+      detail: { networksStatus },
+    } = this.props
+
+    return networksStatus.reduce((prev, cur) => [...prev, ...cur.ips], [])
+  }
+
   getContainerStatus = () => {
     const containerStatuses =
       get(this.props.detail, 'status.containerStatuses') || []
@@ -185,6 +193,20 @@ export default class PodItem extends React.PureComponent {
     )
   }
 
+  renderPodIPContent = data => (
+    <div className={styles.ipTip}>
+      <div>{t('Pod IP')}</div>
+      <ul>
+        {data.map(item => (
+          <li key={item}>
+            <Icon name="ip" size={20} type="light" />
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+
   renderMonitorings() {
     const { metrics = {}, isExpand, loading } = this.props
 
@@ -248,7 +270,14 @@ export default class PodItem extends React.PureComponent {
           </div>
         )}
         <div className={styles.text}>
-          <div>{podIp || '-'}</div>
+          <div>
+            <span>{podIp || '-'}</span>
+            {!isEmpty(this.networkIPs) && this.networkIPs.length > 1 && (
+              <Tooltip content={this.renderPodIPContent(this.networkIPs)}>
+                <div className={styles.podip}>{this.networkIPs.length}</div>
+              </Tooltip>
+            )}
+          </div>
           <p>{t('Pod IP')}</p>
         </div>
         {this.renderMonitorings()}
