@@ -103,7 +103,7 @@ module.exports = {
   "Didn't pass": "Didn't pass",
   dir: 'dir',
   Discard: 'Discard',
-  'Discard old branch': 'Discard old branch',
+  'Discard old branches': 'Discard old branches',
   'Discard old builds': 'Discard old builds',
   'Discover Tag Branches': 'Discover Tag Branches',
   'Discover Branches': 'Discover Branches',
@@ -390,10 +390,8 @@ module.exports = {
     any branches that exceed this limit will be dropped.`,
   tips_Timing_build:
     'Provides cron-like functionality to perform this project regularly',
-  tips_days_keep_withscm: `If the number of days the branch has been retained will be deleted.
-    (Default -1: will delete the branch that has been deleted)`,
-  tips_numbers_keep_withscm: `If the number of branches reached the number of reservations will be deleted.
-    (Default value -1: will delete the branches that have been deleted)`,
+  tips_days_keep_withscm: `if not empty, old branches are only kept up to this number of days`,
+  tips_numbers_keep_withscm: `if not empty, only up to this number of old branches are kept`,
   tips_timer_trigger: `This field follows the cron syntax (slightly different).
     Specifically, each line contains 5 fields separated by tabs or spaces.
     minutes: the first few minutes of an hour (0-59)
