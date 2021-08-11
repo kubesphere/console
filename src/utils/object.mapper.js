@@ -403,7 +403,8 @@ const PodsMapper = item => ({
   nodeIp: get(item, 'status.hostIP', 'none'),
   podIp: get(item, 'status.podIP'),
   networksStatus: safeParseJSON(
-    get(item, 'metadata.annotations["k8s.v1.cni.cncf.io/networks-status"]', [])
+    get(item, 'metadata.annotations["k8s.v1.cni.cncf.io/networks-status"]', ''),
+    []
   ),
   app: get(item, 'metadata.labels["app.kubernetes.io/name"]'),
   containers: getContainers(
