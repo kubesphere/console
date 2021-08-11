@@ -22,6 +22,7 @@ module.exports = {
   // Resource Status > Containers
   CONTAINER_PL: '容器',
   PROBE_PL: '探针',
+  HOOK_PL: '挂钩',
   // Resource Status > Containers > Container Logs
   CONTAINER_LOGS_NOT_SUPPORTED: '容器在当前不支持实时日志，请稍后重试。',
   CONTAINER_LOGS: '容器日志',
@@ -58,5 +59,5 @@ module.exports = {
   UPDATED_AT_VALUE: '更新时间：{value}',
   // Metadata
   // Monitoring
-  NO_MONITORING_DATA: '未发现监控数据'
-};
+  NO_MONITORING_DATA: '未发现监控数据',
+}

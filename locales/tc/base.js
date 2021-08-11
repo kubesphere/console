@@ -218,7 +218,8 @@ module.exports = {
   Service: '服務',
   NUMBER_OF_SERVICES: 'Number of Services',
   'Service Components': '服務組件',
-  'Session timeout or this account is logged in elsewhere, please login again': '會話超時或此帳戶在其它地方登入，請重新登入',
+  'Session timeout or this account is logged in elsewhere, please login again':
+    '會話超時或此帳戶在其它地方登入，請重新登入',
   Set: '設置',
   IN_PROGRESS: '設置中',
   Settings: '設置',
@@ -291,13 +292,18 @@ module.exports = {
   NUM_UNIT: '',
   NAME_TOO_LONG: '最長 63 個字元',
   LONG_NAME_TOO_LONG: '最長 253 個字元',
-  DELETE_DESC: '確定刪除 {type} <strong>{resource}</strong> ？ {type} 刪除後將無法恢復。',
+  DELETE_DESC:
+    '確定刪除 {type} <strong>{resource}</strong> ？ {type} 刪除後將無法恢復。',
   STOP_DESC: 'Are you sure you want to stop the resource?',
-  DELETE_RESOURCE_TYPE_DESC: '請輸入 {type} 名稱 <strong>{resource}</strong> 確保您已了解操作所帶來的風險。',
-  DELETE_APP_RESOURCE_TIP: '資源被應用 <strong>{app}</strong> 管理, 刪除後可能影響此應用的正常使用。請輸入 {type }名稱 <strong>{resource}</strong> 確保您已了解操作所帶來的風險。',
-  STOP_APP_RESOURCE_TIP: 'Resource is managed by <strong>{app}</strong>, which may affect the normal use of this app if the resource is stopped. Please enter the {type} name <strong>{resource}</strong> to make sure you understand the risks associated with the operation.',
+  DELETE_RESOURCE_TYPE_DESC:
+    '請輸入 {type} 名稱 <strong>{resource}</strong> 確保您已了解操作所帶來的風險。',
+  DELETE_APP_RESOURCE_TIP:
+    '資源被應用 <strong>{app}</strong> 管理, 刪除後可能影響此應用的正常使用。請輸入 {type }名稱 <strong>{resource}</strong> 確保您已了解操作所帶來的風險。',
+  STOP_APP_RESOURCE_TIP:
+    'Resource is managed by <strong>{app}</strong>, which may affect the normal use of this app if the resource is stopped. Please enter the {type} name <strong>{resource}</strong> to make sure you understand the risks associated with the operation.',
   DELETE_RESOURCE_TITLE: 'Warning',
-  DELETE_RESOURCE_TIP: 'Are you sure about deleting the resource <strong>{resource}</strong> ? The resource cannot be recovered after it is deleted.',
+  DELETE_RESOURCE_TIP:
+    'Are you sure about deleting the resource <strong>{resource}</strong> ? The resource cannot be recovered after it is deleted.',
   add_: 'Add',
   REMOVE_GROUP_TIP: '確定移除組織 <strong>{resource}</strong> ？',
   UPDATE_TIME: '更新於 {diff}',
@@ -315,13 +321,16 @@ module.exports = {
   SECOND_TIME: '{count} 秒',
   EVENT_NORMAL: '正常',
   EVENT_WARNING: '異常',
-  QUOTA_LIMIT_TIP: '這裡配置是指 Kubernetes 資源管理中的 Limits, 主要用於限制每個容器使用資源的最大值',
-  DETAIL_NOT_FOUND_DESC: '🙇 對不起沒有找到相關資源，返回 <a href="{link}">{title}</a>',
+  QUOTA_LIMIT_TIP:
+    '這裡配置是指 Kubernetes 資源管理中的 Limits, 主要用於限制每個容器使用資源的最大值',
+  DETAIL_NOT_FOUND_DESC:
+    '🙇 對不起沒有找到相關資源，返回 <a href="{link}">{title}</a>',
   CONDITION_STATUS_ANALYSE: '狀態分析 (Conditions)',
   NAV_PROJECTS: '項目管理',
   NAV_ACCOUNTS: '帳戶管理',
   'rules text': '如何定義操作審計收集規則？ 🤔',
-  'rules desc': 'KubeSphere可以根據您設置的規則進行操作審計的收集，點擊查看如何定義規則。',
+  'rules desc':
+    'KubeSphere可以根據您設置的規則進行操作審計的收集，點擊查看如何定義規則。',
   EVENT_CREATE_DESC: '您可以改變搜索條件重新查詢',
   TOOLBOX_KUBECTL_DESC: '操作多集群的客戶端命令行工具',
   PLATFORM_SETTINGS_SELECTOR_DESC: '客製化平台的系統配置',
@@ -333,5 +342,5 @@ module.exports = {
   // Workbench
   // Container Details Page
   CPU_VALUE: 'CPU：{value}',
-  MEMORY_VALUE: 'Memory：{value}'
-};
+  MEMORY_VALUE: 'Memory：{value}',
+}

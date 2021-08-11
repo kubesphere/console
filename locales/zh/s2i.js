@@ -40,7 +40,8 @@ module.exports = {
   'Currently only supports git repo': '当前仅支持 Git 仓库。',
   'Download Artifact': '下载制品',
   'Environment Params': '环境变量参数',
-  'exec: "git": executable file not found in $PATH': '未发现 URL 对应的代码仓库。',
+  'exec: "git": executable file not found in $PATH':
+    '未发现 URL 对应的代码仓库。',
   'Image Builder': '镜像构建器',
   'Image Building': '正在构建镜像',
   'Image building failed': '构建镜像失败',
@@ -53,7 +54,8 @@ module.exports = {
   'Published Time': '发布时间',
   PULL_COMMAND: '拉取命令',
   'Rebuild Image': '重新构建镜像',
-  'Rebuilt successfully; the image status will be refreshed soon.': '重建成功，镜像状态稍后将会更新',
+  'Rebuilt successfully; the image status will be refreshed soon.':
+    '重建成功，镜像状态稍后将会更新',
   'Release Time': '发布时间',
   'Repo reading failed': '读取仓库失败',
   'Repo url': '仓库地址',
@@ -66,7 +68,8 @@ module.exports = {
   'Source to image jobs': 'S2I 任务',
   sourceUrl: '源地址',
   SourceUrl: '源地址',
-  S2I_RELATIVE_PATH_TIP: 'Specify a relative directory inside the application. (Default value /)',
+  S2I_RELATIVE_PATH_TIP:
+    'Specify a relative directory inside the application. (Default value /)',
   StartTime: '开始时间',
   S2I_NO_SECRET: '当前代码仓库不需要密钥。',
   UPLOAD_ARTIFACT_TIP: '请上传一个制品。',
@@ -74,19 +77,28 @@ module.exports = {
   'Upload file failed': '文件上传失败',
   'Upload Percent': '上传进度',
   SORT_BY: '以{ name }排序',
-  S2I_RELATIVE_PATH_DESC: '源代码仓库地址（目前支持 git）并且可以指定代码分支及在源代码终端的相对路径',
+  S2I_RELATIVE_PATH_DESC:
+    '源代码仓库地址（目前支持 git）并且可以指定代码分支及在源代码终端的相对路径',
   IMAGE_PULL_POLICY_DESC: '在默认情况下，优先使用本地镜像',
   S2I_UPDATE_WORKLOAD: '构建成功后更新工作负载',
-  S2I_UPDATA_WORKLOAD_DESC: '重新构建镜像成功后，将更新相关工作负载的镜像，工作负载版本也会一同更新。',
-  IMAGE_FROM_S2I_DESC: 'Get the code from the existing code repository and build the image by way of Source to Image. The process of building the image each time will be done as a job.',
+  S2I_UPDATA_WORKLOAD_DESC:
+    '重新构建镜像成功后，将更新相关工作负载的镜像，工作负载版本也会一同更新。',
+  IMAGE_FROM_S2I_DESC:
+    'Get the code from the existing code repository and build the image by way of Source to Image. The process of building the image each time will be done as a job.',
   IMAGE_FROM_EXSIT: 'Select an existing image deployment container',
-  IMAGE_FROM_EXSIT_DESC: 'Pull an image from a public or private image repository',
-  S2I_SECRET_DESC: 'Select a secret if the code repository is a private repository.',
-  S2I_IMAGE_REPONSITRY_DESC: 'The source code repository address (currently supports Git). You can specify the code branch and relative path in the source code terminal.',
+  IMAGE_FROM_EXSIT_DESC:
+    'Pull an image from a public or private image repository',
+  S2I_SECRET_DESC:
+    'Select a secret if the code repository is a private repository.',
+  S2I_IMAGE_REPONSITRY_DESC:
+    'The source code repository address (currently supports Git). You can specify the code branch and relative path in the source code terminal.',
   S2I_RELATIVE_PATH: 'Code Relative Path (Optional)',
-  S2I_IMAGENAME_DESC: 'Image name and tag, which defaults to the project name of the code repository.',
-  S2I_BUILDERNAME_DESC: '选择编辑环境，您也可以查看对应的 <a href={link} target="_blank">编译模板</a>',
-  CONTAINERD_RUNTIME_NOT_SUPPORT: 'S2I 和 B2I 暂时不支持 containerd 容器运行时。',
+  S2I_IMAGENAME_DESC:
+    'Image name and tag, which defaults to the project name of the code repository.',
+  S2I_BUILDERNAME_DESC:
+    '选择编辑环境，您也可以查看对应的 <a href={link} target="_blank">编译模板</a>',
+  CONTAINERD_RUNTIME_NOT_SUPPORT:
+    'S2I 和 B2I 暂时不支持 containerd 容器运行时。',
   'Build image for service x': '为 {service} 服务构建镜像',
   BINARY_DESC: '',
   SECRET_CODE: '触发令牌',
@@ -95,5 +107,5 @@ module.exports = {
   'Remote Trigger Link': '远程触发链接',
   // Image Builder List Page
   // Creation Page
-  S2I_SECRET: '密钥'
-};
+  S2I_SECRET: '密钥',
+}

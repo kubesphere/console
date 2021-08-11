@@ -64,7 +64,29 @@ export default class ContainerItem extends React.Component {
     )
   }
 
-  renderProbeRecord({ probe, title, tagType }) {
+  renderLife = () => {
+    const { lifecycle } = this.props.detail
+    const { preStop, postStart } = lifecycle
+    if (!lifecycle) return null
+    return (
+      <div className={styles.probe}>
+        {this.renderProbeRecord({
+          probe: postStart,
+          title: t('PostStart'),
+          tagType: 'primary',
+          noTime: true,
+        })}
+        {this.renderProbeRecord({
+          probe: preStop,
+          title: t('PreStop'),
+          tagType: 'warning',
+          noTime: true,
+        })}
+      </div>
+    )
+  }
+
+  renderProbeRecord({ probe, title, tagType, noTime = false }) {
     if (!probe) return null
 
     const delay = probe.initialDelaySeconds || 0
@@ -90,9 +112,11 @@ export default class ContainerItem extends React.Component {
         <div>
           <Tag type={tagType}>{title}</Tag>
           <span className={styles.probeType}>{t(probeType)}</span>
-          <span className={styles.probeTime}>
-            {t('INITIAL_DELAY_TIMEOUT_VALUE', { delay, timeout })}
-          </span>
+          {!noTime && (
+            <span className={styles.probeTime}>
+              {t('INITIAL_DELAY_TIMEOUT_VALUE', { delay, timeout })}
+            </span>
+          )}
         </div>
         <p>{probeDetail}</p>
       </div>
@@ -126,6 +150,7 @@ export default class ContainerItem extends React.Component {
   render() {
     const { className, detail, prefix, podName, isInit, ...rest } = this.props
     const hasProbe = detail.livenessProbe || detail.readinessProbe
+    const hasLife = detail.lifecycle
 
     return (
       <div className={classnames(styles.item, className)} {...rest}>
@@ -143,6 +168,13 @@ export default class ContainerItem extends React.Component {
             {hasProbe && (
               <Tooltip content={this.renderProbe()}>
                 <Tag className="margin-l8">{t('PROBE_PL')}</Tag>
+              </Tooltip>
+            )}
+            {hasLife && (
+              <Tooltip content={this.renderLife()}>
+                <Tag color="#55BC8A" className="margin-l8">
+                  {t('HOOK_PL')}
+                </Tag>
               </Tooltip>
             )}
           </div>

@@ -22,6 +22,7 @@ import { inject, observer } from 'mobx-react'
 
 import VolumesCard from 'components/Cards/Volumes'
 import ProbeCard from 'projects/components/Cards/Probe'
+import LifecycleCard from 'projects/components/Cards/Lifecycle'
 
 @inject('detailStore')
 @observer
@@ -55,10 +56,21 @@ class ContainersResourceStatus extends React.Component {
     return <ProbeCard detail={this.store.detail} />
   }
 
+  renderLife() {
+    const { lifecycle } = toJS(this.store.detail)
+
+    if (!lifecycle) {
+      return null
+    }
+
+    return <LifecycleCard detail={this.store.detail} />
+  }
+
   render() {
     return (
       <div>
         {this.renderProb()}
+        {this.renderLife()}
         {this.renderVolumes()}
       </div>
     )

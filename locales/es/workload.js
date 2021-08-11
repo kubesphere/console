@@ -217,6 +217,8 @@ module.exports = {
     '¿Seguro para eliminar la (s) carga (s) de trabajo?',
   'target port': 'puerto de destino',
   'TCP Port Check': 'Comprobación de puerto TCP',
+  'TCP Port': 'TCP Port',
+  'Exec Command': 'Exec Command',
   'Temporary Volume': 'Volumen Temporal',
   'Timeout(s)': 'Tiempo de espera (s)',
   'The concurrency policy setting.':

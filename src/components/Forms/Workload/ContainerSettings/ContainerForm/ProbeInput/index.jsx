@@ -40,6 +40,7 @@ export default class ProbeInput extends React.Component {
     value: {},
     onChange() {},
     onShowForm() {},
+    componentType: 'heal',
   }
 
   state = {
@@ -48,14 +49,14 @@ export default class ProbeInput extends React.Component {
 
   getProbeTypeText = value => {
     if ('httpGet' in value) {
-      return 'HTTP_REQUEST'
+      return `HTTP_REQUEST`
     }
 
     if ('tcpSocket' in value) {
-      return 'TCP_PORT'
+      return `TCP_PORT`
     }
 
-    return 'COMMAND'
+    return `COMMAND`
   }
 
   showForm = () => {
@@ -125,7 +126,8 @@ export default class ProbeInput extends React.Component {
   }
 
   renderProbeForm() {
-    const { probType, value } = this.props
+    const { probType, value, componentType } = this.props
+
     return (
       <ProbeForm
         className={styles.form}
@@ -133,12 +135,13 @@ export default class ProbeInput extends React.Component {
         probType={probType}
         onSave={this.handleForm}
         onCancel={this.hideForm}
+        componentType={componentType}
       />
     )
   }
 
   render() {
-    const { description, value } = this.props
+    const { description, value, componentType } = this.props
     const { showForm } = this.state
 
     if (showForm) {
@@ -160,14 +163,16 @@ export default class ProbeInput extends React.Component {
           <Icon name="monitor" size={40} />
           <div>
             <strong>{t(this.getProbeTypeText(value))}</strong>
-            <p>
-              <span>
-                {t('INITIAL_DELAY_TIMEOUT_VALUE', {
-                  delay: value.initialDelaySeconds || 0,
-                  timeout: value.timeoutSeconds || 0,
-                })}
-              </span>
-            </p>
+            {componentType === 'heal' && (
+              <p>
+                <span>
+                  {t('INITIAL_DELAY_TIMEOUT_VALUE', {
+                    delay: value.initialDelaySeconds || 0,
+                    timeout: value.timeoutSeconds || 0,
+                  })}
+                </span>
+              </p>
+            )}
           </div>
           {this.renderProbeInfo()}
         </div>

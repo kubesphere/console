@@ -17,7 +17,8 @@
  */
 module.exports = {
   // Banner
-  WORKLOAD_DESC: 'La carga de trabajo suele ser el operador real para acceder al servicio, y también es el operador real en ejecución para aplicaciones del sistema, como la recopilación y supervisión de registros de nodos. Workload es un modelo abstracto para un grupo de Pods.',
+  WORKLOAD_DESC:
+    'La carga de trabajo suele ser el operador real para acceder al servicio, y también es el operador real en ejecución para aplicaciones del sistema, como la recopilación y supervisión de registros de nodos. Workload es un modelo abstracto para un grupo de Pods.',
   // List
   DEPLOYMENT_EMPTY_DESC: 'Please create a deployment.',
   // List > Edit Information
@@ -31,19 +32,24 @@ module.exports = {
   SPECIFY_REPLICAS: 'Specify Replicas',
   WEIGHTS: 'Weights',
   SPECIFY_WEIGHTS: 'Specify Weights',
-  SPECIFY_WEIGHTS_DESC: 'El número total de copias establecido se asignará a los grupos seleccionados de acuerdo con los pesos establecidos, y las copias de los grupos no disponibles se migrarán automáticamente a los grupos disponibles.',
-  SPECIFY_REPLICAS_DESC: 'Especifique claramente la cantidad de réplicas que se implementarán para cada clúster.',
+  SPECIFY_WEIGHTS_DESC:
+    'El número total de copias establecido se asignará a los grupos seleccionados de acuerdo con los pesos establecidos, y las copias de los grupos no disponibles se migrarán automáticamente a los grupos disponibles.',
+  SPECIFY_REPLICAS_DESC:
+    'Especifique claramente la cantidad de réplicas que se implementarán para cada clúster.',
   REPLICA_LOW_SI: 'replica',
   REPLICA_LOW_PL: 'replicas',
   WEIGHT: 'Peso',
   TOTAL_REPLICAS: 'Número total de copias',
   // List > Create > Pod Settings > Add Container > Container Settings
   ADD_CONTAINER: 'Add Container',
-  ADD_CONTAINER_DESC: 'KubeSphere admite la extracción de imágenes de los Registros de imágenes y la creación de nuevas imágenes a través del código fuente (Fuente a imagen).',
+  ADD_CONTAINER_DESC:
+    'KubeSphere admite la extracción de imágenes de los Registros de imágenes y la creación de nuevas imágenes a través del código fuente (Fuente a imagen).',
   CONTAINERS: 'Imagen de contenedor',
   IMAGE_TIME_SIZE_LAYER: 'Updated {time}',
-  IMAGE_DESC: 'Para implementar desde un repositorio de imágenes privado, primero debe <a href={link} target="_blank">crear un secreto de registro de imágenes</a> y luego extraer la imagen.',
-  IMAGE_PLACEHOLDER: 'Selecciona el registro de la lista desplegable o introduce una dirección de registro público',
+  IMAGE_DESC:
+    'Para implementar desde un repositorio de imágenes privado, primero debe <a href={link} target="_blank">crear un secreto de registro de imágenes</a> y luego extraer la imagen.',
+  IMAGE_PLACEHOLDER:
+    'Selecciona el registro de la lista desplegable o introduce una dirección de registro público',
   IMAGE_EMPTY: 'Please set an image.',
   ENTER_POSITIVE_INTEGER_DESC: 'La entrada de copia es ilegal',
   TOTAL_REPLICAS_EMPTY_DESC: 'Ingrese el número total de copias',
@@ -54,7 +60,8 @@ module.exports = {
   REGISTRY: 'registro',
   SET_IMAGE_DESC: 'Por favor selecciona imagen',
   WORKER_CONTAINER: 'Contenedor de trabajo',
-  CONTAINER_RESOURCE_LIMIT_TIP: 'Set the resource limits and requests of the container so that the container is scheduled to appropriate nodes.',
+  CONTAINER_RESOURCE_LIMIT_TIP:
+    'Set the resource limits and requests of the container so that the container is scheduled to appropriate nodes.',
   GPU_TYPE: 'GPU Type',
   GPU_LIMIT: 'GPU Limit',
   NO_LIMIT: 'Ilimitado',
@@ -63,26 +70,43 @@ module.exports = {
   IGNORE_AND_RETRY: 'para volver a intentarlo',
   // List > Create > Pod Settings > Add Container > Port Settings
   PORT_SETTINGS: 'Configuraciones de puerto',
-  ISTIO_PROTOCOL_TIP: 'To fully use the Application Governance feature, select a protocol based on the actual usage of the Service. The port name will be generated in the <Protocol>-<Name> format.',
+  ISTIO_PROTOCOL_TIP:
+    'To fully use the Application Governance feature, select a protocol based on the actual usage of the Service. The port name will be generated in the <Protocol>-<Name> format.',
   REQUIRED: 'requerido',
   // List > Create > Pod Settings > Add Container > Use Local Image First
   IMAGE_PULL_POLICY_ALWAYS: 'Volver a descargar la imagen (siempre)',
   IMAGE_PULL_POLICY_NEVER: 'Usar solo imagen local (nunca)',
-  IMAGE_PULL_POLICY_ALWAYS_DESC: 'Tire de la imagen cada vez que se inicia el pod.',
-  IMAGE_PULL_POLICY_IFNOTPRESENT_DESC: 'Tire de la imagen solo si no existe localmente.',
-  IMAGE_PULL_POLICY_NEVER_DESC: 'Solo se usará la imagen local, lo que hará que el contenedor sea anormal si la imagen requerida no existe localmente.',
+  IMAGE_PULL_POLICY_ALWAYS_DESC:
+    'Tire de la imagen cada vez que se inicia el pod.',
+  IMAGE_PULL_POLICY_IFNOTPRESENT_DESC:
+    'Tire de la imagen solo si no existe localmente.',
+  IMAGE_PULL_POLICY_NEVER_DESC:
+    'Solo se usará la imagen local, lo que hará que el contenedor sea anormal si la imagen requerida no existe localmente.',
   IMAGE_PULL_POLICY_IFNOTPRESENT: 'Use la imagen local primero (IfNotPresent)',
   // List > Create > Pod Settings > Add Container > Health Check
   LIVENESS_CHECK: 'Verificación del estado del contenedor',
   READINESS_CHECK: 'Verificación Readiness del contenedor',
   STARTUP_CHECK: 'Comprobación de inicio de contenedor',
-  LIVENESS_CHECK_DESC: 'Este método de verificación se utiliza para detectar si el contenedor está vivo.',
-  READINESS_CHECK_DESC: 'Este método de verificación se utiliza para detectar si el contenedor está listo para atender solicitudes.',
-  STARTUP_CHECK_DESC: 'Este método de verificación se utiliza para detectar si el contenedor se inicia correctamente.',
+  LIVENESS_CHECK_DESC:
+    'Este método de verificación se utiliza para detectar si el contenedor está vivo.',
+  READINESS_CHECK_DESC:
+    'Este método de verificación se utiliza para detectar si el contenedor está listo para atender solicitudes.',
+  STARTUP_CHECK_DESC:
+    'Este método de verificación se utiliza para detectar si el contenedor se inicia correctamente.',
   ADD_PROBE: 'Add Checker',
   COMMANDS: 'Comando',
   HEALTH_CHECK: 'Health check',
   STARTUP_CHECK_TIP: 'Kubernetes v1.18 or later is required.',
+  // List > Create > Pod Settings > Add Container > Life Management
+  LIFE_MANAGEMENT: 'Lifecycle Management',
+  LIFE_MANAGEMENT_DESC:
+    'Manage some actions of the application container before running and shutting down, such as environment preparation, graceful offline, etc.',
+  'Container PostStart': 'Add PostStart settings',
+  'Container PreStop': 'Add PreStop settings',
+  PRO_STOP_DESC:
+    ' Tasks before the application container is terminated, such as graceful shutdown of the application, notification to other systems, etc. ',
+  POST_START_DESC:
+    'The tasks after the application container is successfully created and before running, such as resource deployment, environment preparation, etc. ',
   // List > Create > Pod Settings > Add Container > Environment Variables
   ADD_ENVIRONMENT_VARIABLE: 'Agregar variable de entorno',
   USE_CONFIGMAP_OR_SECRET: 'Use ConfigMap o Secret',
@@ -90,50 +114,66 @@ module.exports = {
   LABEL_TYPE: '{label} <span style="{style}">({type})</span>',
   // List > Create > Pod Settings > Add Container > Container Security Context
   CONTAINER_SECURITY_CONTEXT: 'Contexto de seguridad del contenedor',
-  CONTAINER_SECURITY_CONTEXT_DESC: 'Un contexto de seguridad define la configuración de privilegios y control de acceso para un Pod o Contenedor.',
+  CONTAINER_SECURITY_CONTEXT_DESC:
+    'Un contexto de seguridad define la configuración de privilegios y control de acceso para un Pod o Contenedor.',
   PRIVILEGED_MODE: 'Privilegiado',
-  PRIVILEGED_MODE_DESC: 'El proceso en el contenedor es esencialmente equivalente al usuario raíz en el nodo host.',
+  PRIVILEGED_MODE_DESC:
+    'El proceso en el contenedor es esencialmente equivalente al usuario raíz en el nodo host.',
   ALLOW_PRIVILEGE_ESCALATION: 'AllowPrivilegeEscalation',
-  ALLOW_PRIVILEGE_ESCALATION_DESC: 'Si el proceso puede adquirir más privilegios que el proceso padre. Cuando se ejecuta en modo privilegiado, está habilitado.',
+  ALLOW_PRIVILEGE_ESCALATION_DESC:
+    'Si el proceso puede adquirir más privilegios que el proceso padre. Cuando se ejecuta en modo privilegiado, está habilitado.',
   ROOT_DIRECTORY_READONLY: 'ReadOnlyRootFilesystem',
-  ROOT_DIRECTORY_READONLY_DESC: 'Si la ruta raíz del sistema de archivos del contenedor es de solo lectura.',
+  ROOT_DIRECTORY_READONLY_DESC:
+    'Si la ruta raíz del sistema de archivos del contenedor es de solo lectura.',
   USER_AND_USER_GROUP: 'Usuario y grupo de usuarios',
   USER_GROUP: 'Grupo de usuario',
   RUN_AS_NON_ROOT: 'Ejecutar como no root',
-  RUN_AS_NON_ROOT_DESC: 'kubernetes realizará una comprobación antes de ejecutar el contenedor para asegurarse de que el proceso del contenedor no se esté ejecutando como usuario raíz (UID 0); de lo contrario, el contenedor no se iniciará.',
-  RUN_AS_USER_DESC: 'El UID para ejecutar el punto de entrada del proceso contenedor. El valor predeterminado es el usuario especificado en los metadatos de la imagen si no se especifica.',
-  RUN_AS_USER_GROUP_DESC: 'El GID para ejecutar el punto de entrada del proceso contenedor. Utiliza el tiempo de ejecución predeterminado si no está configurado.',
+  RUN_AS_NON_ROOT_DESC:
+    'kubernetes realizará una comprobación antes de ejecutar el contenedor para asegurarse de que el proceso del contenedor no se esté ejecutando como usuario raíz (UID 0); de lo contrario, el contenedor no se iniciará.',
+  RUN_AS_USER_DESC:
+    'El UID para ejecutar el punto de entrada del proceso contenedor. El valor predeterminado es el usuario especificado en los metadatos de la imagen si no se especifica.',
+  RUN_AS_USER_GROUP_DESC:
+    'El GID para ejecutar el punto de entrada del proceso contenedor. Utiliza el tiempo de ejecución predeterminado si no está configurado.',
   SELINUX_CONTEXT: 'SELinux Context',
   CAPABILITIES_BETA: 'Capabilities (beta)',
   DROP: 'Drop',
   ACCESS_CONTROL: 'Control de acceso',
   LEVEL: 'Nivel',
   // List > Create > Pod Settings > Add Container > Synchronize Host Timezone
-  SYNC_HOST_TIMEZONE_DESC: 'El timezone del contenedor será consistente con el del host después de la sincronización.',
+  SYNC_HOST_TIMEZONE_DESC:
+    'El timezone del contenedor será consistente con el del host después de la sincronización.',
   SYNC_HOST_TIMEZONE: 'Synchronize Host Timezone',
   // List > Create > Pod Settings > Update Strategy
   UPDATE_STRATEGY: 'Actualizar estrategia',
   ROLLING_UPDATE_RECOMMENDED: 'RollingUpdate (recomendado)',
   SIMULTANEOUS_UPDATE: 'Recrear',
-  ROLLINGUPDATE_DESC: 'Una actualización continua significa que la instancia de la versión anterior se reemplazará gradualmente por otras nuevas. Durante el proceso de actualización, el tráfico se equilibrará con la carga y se distribuirá a las instancias antiguas y nuevas simultáneamente, por lo que el servicio no se interrumpirá.',
-  SIMULTANEOUS_UPDATE_DESC: 'Todos los Pods existentes serán eliminados antes de que se creen otros nuevos. Tenga en cuenta que el servicio se interrumpirá durante el proceso de actualización.',
+  ROLLINGUPDATE_DESC:
+    'Una actualización continua significa que la instancia de la versión anterior se reemplazará gradualmente por otras nuevas. Durante el proceso de actualización, el tráfico se equilibrará con la carga y se distribuirá a las instancias antiguas y nuevas simultáneamente, por lo que el servicio no se interrumpirá.',
+  SIMULTANEOUS_UPDATE_DESC:
+    'Todos los Pods existentes serán eliminados antes de que se creen otros nuevos. Tenga en cuenta que el servicio se interrumpirá durante el proceso de actualización.',
   ENTER_INTEGER_OR_PERCENTAGE: 'Introduce el valor',
-  MAX_EXTRA_EMPTY: 'Please set the maximum number of extra Pod replicas allowed during the update process.',
+  MAX_EXTRA_EMPTY:
+    'Please set the maximum number of extra Pod replicas allowed during the update process.',
   // List > Create > Pod Settings > Pod Security Context
   POD_SECURITY_CONTEXT: 'Contexto de seguridad de pod',
   POD_SECURITY_CONTEXT_DESC: 'Customize the Pod privilege settings.',
-  POD_SECURITY_CONTEXT_TIP: 'Contexto de seguridad de pod puede proporcionar configuraciones predeterminadas de usuarios y grupos de usuarios y configuraciones de parámetros seLinuxOptions para contenedores en el pod. Si estos parámetros se han definido en el contenedor, la configuración en el contenedor tiene prioridad.',
+  POD_SECURITY_CONTEXT_TIP:
+    'Contexto de seguridad de pod puede proporcionar configuraciones predeterminadas de usuarios y grupos de usuarios y configuraciones de parámetros seLinuxOptions para contenedores en el pod. Si estos parámetros se han definido en el contenedor, la configuración en el contenedor tiene prioridad.',
   // List > Create > Pod Settings > Pod Scheduling Rules
   POD_SCHEDULING_RULES: 'Pod Assignment Strategy',
   POD_SCHEDULING_RULES_DESC: 'You can specify rules for pod scheduling',
   DEFAULT_RULES: 'Default Rules',
-  DEFAULT_RULES_DESC: 'Schedules the Pod replicas to nodes according to default rules.',
+  DEFAULT_RULES_DESC:
+    'Schedules the Pod replicas to nodes according to default rules.',
   DECENTRALIZED_SCHEDULING: 'Despliegue descentralizado de pod',
   CUSTOM_RULES: 'Custom Rules',
-  CUSTOM_RULES_DESC: 'Las réplicas de pod se implementarán de acuerdo con la política predeterminada.',
+  CUSTOM_RULES_DESC:
+    'Las réplicas de pod se implementarán de acuerdo con la política predeterminada.',
   'Pod IP': 'Pod IP',
-  DECENTRALIZED_SCHEDULING_DESC: 'Las réplicas de pod se implementarán en diferentes nodos tanto como sea posible.',
-  CENTRALIZED_SCHEDULING_DESC: 'Las réplicas de pod se implementarán en el mismo nodo tanto como sea posible.',
+  DECENTRALIZED_SCHEDULING_DESC:
+    'Las réplicas de pod se implementarán en diferentes nodos tanto como sea posible.',
+  CENTRALIZED_SCHEDULING_DESC:
+    'Las réplicas de pod se implementarán en el mismo nodo tanto como sea posible.',
   CENTRALIZED_SCHEDULING: 'Implementación de agregación de pod',
   SCHEDULE_WITH_TARGET: 'Deploy with target',
   SCHEDULE_AWAY_FROM_TARGET: 'Schedule away from target',
@@ -153,7 +193,8 @@ module.exports = {
   WORKLOAD_MOUNT_VOLUME_DESC: 'Admite EmptyDir y PersistentVolumeClaim.',
   EXISTING_VOLUME: 'Volumen existente',
   SELECT_VOLUME: 'Elige un volumen existente',
-  SELECT_VOLUME_DESC: 'Selecciona un volumen que se haya creado y móntelo en el contenedor.',
+  SELECT_VOLUME_DESC:
+    'Selecciona un volumen que se haya creado y móntelo en el contenedor.',
   CAPACITY: 'Capacidad',
   VOLUME_NOT_SELECT: 'Por favor selecciona un volumen',
   TEMPORARY_VOLUME: 'Volumen Temporal',
@@ -162,25 +203,31 @@ module.exports = {
   CONTAINER_NOT_SELECTED: 'Selecciona al menos un contenedor para montar',
   NOT_MOUNT: 'No montado',
   HOSTPATH_VOLUME: 'HostPath Volume',
-  HOSTPATH_TIP: 'Un volumen de tipo HostPath montará un fichero o directorio del sistema de ficheros del nodo host en tu Pod. La mayoría de Pods no lo necesitarán, pero puede resultar muy útil para algunas aplicaciones.',
+  HOSTPATH_TIP:
+    'Un volumen de tipo HostPath montará un fichero o directorio del sistema de ficheros del nodo host en tu Pod. La mayoría de Pods no lo necesitarán, pero puede resultar muy útil para algunas aplicaciones.',
   HOST_PATH: 'Host Path',
   READ_AND_WRITE: 'Lectura y escritura',
   READ_ONLY: 'Solo lectura',
   // List > Create > Volume Settings > Mount Configmap or Secret
   MOUNT_CONFIGMAP_OR_SECRET: 'Monte ConfigMap o Secret',
-  MOUNT_CONFIGMAP_OR_SECRET_DESC: 'Monte el configmap o secret en el directorio especificado.',
+  MOUNT_CONFIGMAP_OR_SECRET_DESC:
+    'Monte el configmap o secret en el directorio especificado.',
   CONFIGMAP: 'ConfigMap',
-  SELECT_CONFIGMAP_DESC: 'Agregue un nuevo volumen desde el valor de ConfigMap.',
-  READ_WRITE_MOUNT_EMPTY: 'Especifique el modo de lectura y escritura y la ruta de montaje',
+  SELECT_CONFIGMAP_DESC:
+    'Agregue un nuevo volumen desde el valor de ConfigMap.',
+  READ_WRITE_MOUNT_EMPTY:
+    'Especifique el modo de lectura y escritura y la ruta de montaje',
   SELECT_SPECIFIC_KEYS: 'Seleccionar claves y caminos específicos',
-  SELECT_SPECIFIC_KEYS_DESC: 'Selecciona la clave que desea usar y la ruta del archivo donde se expondrá cada clave. La ruta del archivo es equivalente a la ruta de montaje. El contenido de cada archivo es el valor de la clave.',
+  SELECT_SPECIFIC_KEYS_DESC:
+    'Selecciona la clave que desea usar y la ruta del archivo donde se expondrá cada clave. La ruta del archivo es equivalente a la ruta de montaje. El contenido de cada archivo es el valor de la clave.',
   SELECT_SECRET_DESC: 'Agregue un nuevo volumen desde el valor Secreto.',
   CONFIGMAP_NOT_SELECT: 'Por favor selecciona un mapa de configuración',
   SECRET_NOT_SELECT: 'Por favor selecciona un secreto',
   NO_AVAILABLE_RESOURCE: 'No hay recursos disponibles',
   // List > Create > Advanced Settings
   SELECT_NODES: 'Establecer política de programación de nodos',
-  SELECT_NODES_DESC: 'Puede permitir que las réplicas de Pod se ejecuten en nodos específicos.',
+  SELECT_NODES_DESC:
+    'Puede permitir que las réplicas de Pod se ejecuten en nodos específicos.',
   ADD_NODE_SELECTOR: 'Agregar selector de nodo',
   ADD_METADATA_DESC: 'Add metadata to resources.',
   KEY: 'Key',
@@ -190,7 +237,10 @@ module.exports = {
   WORKLOAD_SPECIFY_NODE_DESC: 'Assign Pod replicas to a specific node.',
   // List > Create > Cluster Differences
   CLUSTER_DIFF: 'Cluster Differences',
-  CLUSTER_DIFF_CONTAINER_SETTINGS_DESC: 'Establecer diferentes contenedores en diferentes grupos según las necesidades',
-  CLUSTER_DIFF_PORT_SETTINGS_DESC: 'Se pueden configurar diferentes puertos de servicio en diferentes grupos',
-  CLUSTER_DIFF_ENVIRONMENT_VARIABLES_DESC: 'Se pueden configurar diferentes entornos de contenedores en diferentes grupos'
-};
+  CLUSTER_DIFF_CONTAINER_SETTINGS_DESC:
+    'Establecer diferentes contenedores en diferentes grupos según las necesidades',
+  CLUSTER_DIFF_PORT_SETTINGS_DESC:
+    'Se pueden configurar diferentes puertos de servicio en diferentes grupos',
+  CLUSTER_DIFF_ENVIRONMENT_VARIABLES_DESC:
+    'Se pueden configurar diferentes entornos de contenedores en diferentes grupos',
+}

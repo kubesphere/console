@@ -103,6 +103,17 @@ module.exports = {
   HEALTH_CHECK: 'Health Check',
   STARTUP_CHECK_TIP: 'Kubernetes v1.18 or later is required.',
 
+  // List > Create > Pod Settings > Add Container > Life Management
+  LIFE_MANAGEMENT: 'Lifecycle Management',
+  LIFE_MANAGEMENT_DESC:
+    'Manage some actions of the application container before running and shutting down, such as environment preparation, graceful offline, etc.',
+  'Container PostStart': 'Add PostStart settings',
+  'Container PreStop': 'Add PreStop settings',
+  PRO_STOP_DESC:
+    ' Tasks before the application container is terminated, such as graceful shutdown of the application, notification to other systems, etc. ',
+  POST_START_DESC:
+    'The tasks after the application container is successfully created and before running, such as resource deployment, environment preparation, etc. ',
+
   // List > Create > Pod Settings > Add Container > Environment Variables
   ADD_ENVIRONMENT_VARIABLE: 'Add Environment Variable',
   USE_CONFIGMAP_OR_SECRET: 'Use Configmap or Secret',
