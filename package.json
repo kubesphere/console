@@ -99,6 +99,9 @@
     "*.{json,css,scss}": [
       "prettier --write",
       "git add"
+    ],
+    "locales/**/*.js": [
+      "node scripts/checkRepeat.js"
     ]
   },
   "devDependencies": {
