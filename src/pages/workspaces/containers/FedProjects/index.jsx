@@ -71,7 +71,8 @@ export default class Projects extends React.Component {
   }
 
   get itemActions() {
-    const { trigger } = this.props
+    const { trigger, store } = this.props
+
     return [
       {
         key: 'edit',
@@ -79,6 +80,19 @@ export default class Projects extends React.Component {
         text: t('EDIT'),
         action: 'edit',
         onClick: item => trigger('resource.baseinfo.edit', { detail: item }),
+      },
+      {
+        key: 'add',
+        icon: 'add',
+        text: t('Add Cluster'),
+        action: 'edit',
+        onClick: item =>
+          trigger('federated.project.add.cluster', {
+            detail: item,
+            store,
+            clusters: this.clusters,
+            success: () => this.props.getData(),
+          }),
       },
       {
         key: 'delete',
