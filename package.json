@@ -1,6 +1,6 @@
 {
   "name": "kubesphere-console",
-  "version": "1.22.4",
+  "version": "3.0.0",
   "private": true,
   "license": "AGPL-3.0",
   "dependencies": {
