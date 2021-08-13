@@ -78,16 +78,16 @@ class EtcdMonitorings extends React.Component {
   getMonitoringCfgs = () => [
     {
       type: 'size',
-      title: 'DB Size',
+      title: 'DB_SIZE',
       unitType: 'memory',
-      legend: ['DB Size'],
+      legend: ['DB_SIZE'],
       data: get(this.metrics, `${MetricTypes.db_size}.data.result`),
     },
     {
       type: 'area',
-      title: 'Client Traffic',
+      title: 'CLIENT_TRAFFIC',
       unitType: 'traffic',
-      legend: ['Received', 'Sent'],
+      legend: ['RECEIVED', 'SENT'],
       data: [
         get(
           this.metrics,
@@ -98,9 +98,9 @@ class EtcdMonitorings extends React.Component {
     },
     {
       type: 'area',
-      title: 'gRPC Stream Messages',
+      title: 'GRPC_STREAM_MESSAGES',
       unit: 'times/s',
-      legend: ['Received', 'Sent'],
+      legend: ['RECEIVED', 'SENT'],
       data: [
         get(this.metrics, `${MetricTypes.grpc_received_rate}.data.result[0]`),
         get(this.metrics, `${MetricTypes.grpc_sent_rate}.data.result[0]`),
@@ -108,7 +108,7 @@ class EtcdMonitorings extends React.Component {
     },
     {
       type: 'grade',
-      title: 'WAL Fsync',
+      title: 'WAL_FSYNC',
       unit: 'ms',
       legend: ['99th', '90th', '50th', 'AVERAGE'],
       data: [
@@ -123,7 +123,7 @@ class EtcdMonitorings extends React.Component {
     },
     {
       type: 'grade',
-      title: 'DB Fsync',
+      title: 'DB_FSYNC',
       unit: 'ms',
       legend: ['99th', '90th', '50th', 'AVERAGE'],
       data: [
@@ -138,13 +138,13 @@ class EtcdMonitorings extends React.Component {
     },
     {
       type: 'area',
-      title: 'Raft Proposals',
+      title: 'RAFT_PROPOSAL',
       unit: 'times/s',
       legend: [
-        'Proposal Commit Rate',
-        'Proposal Apply Rate',
-        'Proposal Failure Rate',
-        'Proposal Pending Total',
+        'PROPOSAL_COMMITTED',
+        'PROPOSAL_APPLIED',
+        'PROPOSAL_FAILED',
+        'PROPOSAL_PENDING',
       ],
       data: [
         get(
@@ -201,7 +201,7 @@ class EtcdMonitorings extends React.Component {
 
     return (
       <MonitoringController
-        title={t('ETCD Monitoring')}
+        title={t('ETCD_MONITORING')}
         step="2m"
         times={50}
         onFetch={this.fetchData}

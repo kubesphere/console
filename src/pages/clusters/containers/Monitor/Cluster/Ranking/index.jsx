@@ -69,7 +69,7 @@ class NodeRanking extends React.Component {
     return (
       <div className={styles.wrapper}>
         <h3 className={classNames(styles.pane, styles.title)}>
-          {t('Node Usage Ranking')}
+          {t('NODE_USAGE_RANKING')}
         </h3>
         {this.renderToolbar()}
         {this.renderList()}

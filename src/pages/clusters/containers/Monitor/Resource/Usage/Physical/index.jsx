@@ -111,14 +111,14 @@ class PhysicalResource extends React.Component {
       type: 'cpu',
       title: 'CPU',
       unitType: 'cpu',
-      legend: ['Usage'],
+      legend: ['USAGE'],
       metricType: MetricTypes.cpu_usage,
     },
     {
       type: 'memory',
-      title: 'Memory',
+      title: 'MEMORY',
       unitType: 'memory',
-      legend: ['Usage'],
+      legend: ['USAGE'],
       metricType: MetricTypes.memory_usage,
     },
   ]

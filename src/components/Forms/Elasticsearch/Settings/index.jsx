@@ -28,15 +28,15 @@ export default class BaseInfo extends React.Component {
     return (
       <div className={styles.fromGroup}>
         <Form.Item
-          label={t('Service Address')}
+          label={t('SERVICE_ADDRESS')}
           desc={t('LOG_COLLECTION_ES_URL_TIPS')}
         >
           <UrlInput hostName={'host'} portName={'port'} />
         </Form.Item>
         <Form.Item
-          label={t('Index Prefix')}
+          label={t('INDEX_PREFIX')}
           desc={t('LOG_COLLECTION_ES_INDEX_TIPS')}
-          rules={[{ required: true, message: t('Please input value') }]}
+          rules={[{ required: true, message: t('PARAMETER_REQUIRED') }]}
         >
           <Input name="logstashPrefix" defaultValue="ks-logstash-log" />
         </Form.Item>

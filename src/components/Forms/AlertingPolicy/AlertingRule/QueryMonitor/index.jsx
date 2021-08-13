@@ -59,7 +59,7 @@ export default class Monitoring extends Component {
     const { id, metrics } = this.state
     const options = getAreaChartOps({
       height: 400,
-      title: t('Alerting Monitoring'),
+      title: t('ALERT_MONITORING'),
       data: metrics,
       legend: metrics.map(item =>
         item.metric ? JSON.stringify(omit(item.metric, '__name__')) : ''

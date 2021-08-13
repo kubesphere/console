@@ -36,7 +36,7 @@ import PolicyStore from 'stores/alerting/policy'
   store: new PolicyStore(),
   module: 'rules',
   authKey: 'alert-rules',
-  name: 'Alerting Policy',
+  name: 'ALERTING_POLICY',
 })
 export default class AlertingPolicy extends React.Component {
   state = {
@@ -55,12 +55,12 @@ export default class AlertingPolicy extends React.Component {
       options: [
         {
           value: 'custom',
-          label: t('Custom Policies'),
+          label: t('CUSTOM_POLICIES'),
           count: this.props.store.ruleCount,
         },
         {
           value: 'builtin',
-          label: t('Built-In Policies'),
+          label: t('BUILT_IN_POLICIES'),
           count: this.props.store.builtinRuleCount,
         },
       ],
@@ -113,7 +113,7 @@ export default class AlertingPolicy extends React.Component {
             module,
             cluster: match.params.cluster,
             namespace: match.params.namespace,
-            title: `${t('Edit ')}${t('alerting policy')}`,
+            title: t('EDIT_ALERTING_POLICY'),
             success: getData,
           }),
       },
@@ -167,7 +167,7 @@ export default class AlertingPolicy extends React.Component {
         ),
       },
       {
-        title: t('Alerting Status'),
+        title: t('ALERTING_STATUS'),
         dataIndex: 'state',
         filters: this.getStatus(),
         filteredValue: getFilteredValue('state'),
@@ -184,7 +184,7 @@ export default class AlertingPolicy extends React.Component {
         ),
       },
       {
-        title: t('Alerting Type'),
+        title: t('ALERTING_TYPE'),
         dataIndex: 'labels.severity',
         filters: this.getAlertingTypes(),
         filteredValue: getFilteredValue('labels.severity'),
@@ -200,7 +200,7 @@ export default class AlertingPolicy extends React.Component {
         },
       },
       {
-        title: t('Alert Active Time'),
+        title: t('ACTIVATED_AT'),
         dataIndex: 'alerts',
         isHideable: true,
         width: '16%',
@@ -218,7 +218,7 @@ export default class AlertingPolicy extends React.Component {
       module,
       cluster: match.params.cluster,
       namespace: match.params.namespace,
-      title: `${t('Add ')}${t('alerting policy')}`,
+      title: t('CREATE_ALERTING_POLICY'),
       success: getData,
     })
   }
@@ -243,7 +243,7 @@ export default class AlertingPolicy extends React.Component {
           {...bannerProps}
           tips={this.tips}
           tabs={namespace ? {} : this.tabs}
-          title={t('Alerting Policies')}
+          title={t('ALERTING_POLICIES')}
           description={t('ALERT_POLICY_DESC')}
         />
         <Table

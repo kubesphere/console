@@ -57,8 +57,8 @@ export default class NodeSelect extends Component {
     const pagination = pick(this.store.list, ['page', 'limit', 'total'])
     return (
       <Form.Item
-        label={t('Monitoring Target')}
-        rules={[{ required: true, message: t('RESOURCE_NODE_FORM_TIP') }]}
+        label={t('MONITORING_TARGETS')}
+        rules={[{ required: true, message: t('SELECT_NODE_TIP') }]}
       >
         <Select
           name="resources"

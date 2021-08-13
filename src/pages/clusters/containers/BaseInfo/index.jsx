@@ -103,7 +103,7 @@ export default class Overview extends React.Component {
 
     return [
       {
-        name: 'Node Count',
+        name: 'NODES',
         icon: 'nodes',
         value: this.getValue(data[MetricTypes.node_count]),
       },
@@ -113,12 +113,12 @@ export default class Overview extends React.Component {
         value: this.getValue(data[MetricTypes.cpu_usage], 'cpu'),
       },
       {
-        name: 'Memory',
+        name: 'MEMORY',
         icon: 'memory',
         value: this.getValue(data[MetricTypes.memory_usage], 'memory'),
       },
       {
-        name: 'Local Storage',
+        name: 'LOCAL_STORAGE',
         icon: 'storage',
         value: this.getValue(data[MetricTypes.disk_size_usage], 'disk'),
       },
@@ -155,7 +155,7 @@ export default class Overview extends React.Component {
       <>
         <Banner
           icon="cluster"
-          title={t('Basic Info')}
+          title={t('CLUSTER_BASIC_INFO')}
           description={t('CLUSTER_BASE_INFO_DESC')}
         />
         <Panel title={t('CLUSTER_INFORMATION')}>
@@ -188,11 +188,11 @@ export default class Overview extends React.Component {
           </div>
         </Panel>
         {globals.app.isMultiCluster && actions.includes('delete') && (
-          <Panel title={t('Unbind Cluster')}>
+          <Panel title={t('UNBIND_CLUSTER')}>
             <Alert
               className={styles.tip}
               type="error"
-              title={`${t('Unbind Cluster')} ?`}
+              title={`${t('UNBIND_CLUSTER_Q')}`}
               message={t('UNBIND_CLUSTER_DESC')}
             />
             <Button
@@ -201,7 +201,7 @@ export default class Overview extends React.Component {
               disabled={!this.state.confirm}
               onClick={this.handleUnbind}
             >
-              {t('Unbind')}
+              {t('UNBIND')}
             </Button>
             <Checkbox onChange={this.handleChange}>
               {t('SURE_TO_UNBIND_CLUSTER')}

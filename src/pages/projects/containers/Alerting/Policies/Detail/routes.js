@@ -24,13 +24,13 @@ import AlertingMessages from './AlertMessages'
 export default path => [
   {
     path: `${path}/rules`,
-    title: 'Alerting Rules',
+    title: 'ALERTING_RULES',
     component: AlertingRules,
     exact: true,
   },
   {
     path: `${path}/messages`,
-    title: 'Alerting Messages',
+    title: 'ALERTING_MESSAGES',
     component: AlertingMessages,
     exact: true,
   },

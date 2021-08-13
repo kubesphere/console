@@ -18,7 +18,7 @@
 
 module.exports = {
   Activate: 'Activar',
-  'Add Log Receiver': 'Add Log Receiver',
+  ADD_LOG_RECEIVER: 'Add Log Receiver',
   'Add Service Address': 'Agregar dirección de servicio',
   Address: 'Dirección',
   'Auditing statistics': 'Estadísticas de auditoría',
@@ -32,7 +32,7 @@ module.exports = {
   'Exact Query': 'Consulta exacta',
   'Fuzzy Query': 'Consulta difusa',
   HIDE_HELP_INFORMATION: 'Ocultar información de ayuda',
-  'Index Prefix': 'Index Prefix',
+  INDEX_PREFIX: 'Index Prefix',
   Keyword: 'Palabra clave',
   'Log Collections': 'Colecciones de logs',
   'Log Receiver': 'Log Receiver',
@@ -51,8 +51,7 @@ module.exports = {
   'Please enter a filter to search for logs.':
     'Introduce un filtro para buscar en los logs.',
   'Please enter the address': 'Por favor introduce la ruta',
-  'Please input service address':
-    'Por favor introduce la dirección del servicio',
+  ENTER_SERVICE_ADDRESS: 'Por favor introduce la dirección del servicio',
   'Real-Time Data': 'Datos en tiempo real',
   'Recently Configured Updated': 'Actualizado y configurado recientemente',
   'Recently Updated': 'Recientemente actualizado',
@@ -63,9 +62,9 @@ module.exports = {
   'Resource Name & Type': 'Nombre y tipo de recurso',
   'Search Result': 'Resultados de búsqueda',
   'Search Rule': 'Regla de búsqueda',
-  'Service Address': 'Dirección de Servicio',
+  SERVICE_ADDRESS: 'Dirección de Servicio',
   'Time topology': 'Topología de tiempo',
-  topic: 'tema',
+  TOPIC: 'tema',
   'Auditing log trends in the last 12 hours':
     'Tendencias en el número total de registros de auditoría en las últimas 12 horas',
   'Event trends in the last 12 hours':
@@ -90,14 +89,14 @@ module.exports = {
   LOG_COLLECTION_FLUENTD_URL_TIPS:
     'Introduce la dirección del Fluentd que recibe los logs.',
   EMPTY_LOG_COLLECTIONS:
-    'El recopilador de logs no está configurado temporalmente. Puedes agregar un recopilador de logs para exportar el registro al recopilador de logs externo.',
+    'No log receiver is found. You can add log receivers to export logs to external log collectors.',
   LOG_COLLECTION_TIPS:
-    'Only one log receiver can be added for each type. Si ya hay uno agregado, solo puedes editarlo.',
+    'You can add one log receiver for each type. If a type of log receiver is already added, you cannot add it again.',
   URL_SYNTAX_ERROR: 'Error de sintaxis de URL',
   LOG_COLLECTION_ES_URL_TIPS:
-    'El servicio incorporado Elasticsearch se usa de manera predeterminada. Puedes cambiarlo para usar un servicio Elasticsearch implementado por tí mismo dentro o fuera del clúster.',
+    'The built-in Elasticsearch service is used by default. You can also enter the IP address of Elasticsearch independently deployed inside or outside the cluster.',
   LOG_COLLECTION_ES_INDEX_TIPS:
-    'The indexes are built with prefix and the date, for example: {prefix}-2020.01.01',
+    'The index is created based on the date. For example, {prefix}-2020.01.01.',
   'Search Logs by': 'Buscar logs por {field}',
   'KeyWord Log Query Tip':
     'Introduce la palabra clave para encontrar el log. También puedes encontrar el log de errores por palabras clave como "Error", "Fail", "Fatal", "Exception" y "Warning".',
@@ -141,10 +140,9 @@ module.exports = {
   LOG_EXPORT: 'Exportar logs',
   CREATE_CUSTOM_MONITORING_DASHBOARD:
     'Crear un panel de monitoreo personalizado',
-  SELECT_SUITABLE_MONITORING_TEMPLATE:
-    'Selecciona la plantilla de monitoreo adecuada',
+  SELECT_MONITORING_TEMPLATE: 'Selecciona la plantilla de monitoreo adecuada',
   CUSTON_MONITORING_TEMPLATE_DESC:
-    'La configuración predeterminada del panel de monitoreo se creará según el tipo de aplicación.',
+    'Generate default monitoring template based on the application template you select or customize a template.',
   CUSTOM_MONITORING_DASHBOARD: 'Panel de control personalizado',
   SERVICE_BUILT_INTERFACE:
     'la supervisión del servicio se genera con la captura de datos de interfaz',
@@ -171,4 +169,15 @@ module.exports = {
   LOGGING_LOG_COLLECTOR: 'Log Receiver',
   EVENTS_LOG_COLLECTOR: 'Events Log Receiver',
   AUDITING_LOG_COLLECTOR: 'Auditing Log Receiver',
+
+  // Log Collection
+  LOG_COLLECTION: 'Log Collection',
+  LOG_ADDRESS: 'Address: ',
+  LOG_COLLECTING: 'Collecting',
+  LOG_CLOSE: 'Close',
+  INVALID_SERVICE_ADDRESS: 'Invalid service address.',
+  ADD_SERVICE_ADDRESS: 'Add',
+  EXAMPLE: 'Example: ',
+  ENTER_PORT_NUMBER: 'Please enter a port number.',
+  PARAMETER_REQUIRED: 'This parameter is mandatory.',
 }

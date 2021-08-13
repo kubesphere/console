@@ -69,7 +69,7 @@ class APIServerMonitorings extends React.Component {
   getMonitoringCfgs = () => [
     {
       type: 'io',
-      title: 'Request Latency',
+      title: 'REQUEST_LATENCY',
       unit: 'ms',
       legend: [
         'CREATE',
@@ -101,9 +101,9 @@ class APIServerMonitorings extends React.Component {
     },
     {
       type: 'request',
-      title: 'Request Per Second',
+      title: 'REQUEST_PER_SECOND',
       unit: 'times/s',
-      legend: ['Request'],
+      legend: ['REQUEST'],
       data: get(this.metrics, `${MetricTypes.request_rate}.data.result`),
     },
   ]
@@ -140,7 +140,7 @@ class APIServerMonitorings extends React.Component {
 
     return (
       <MonitoringController
-        title={t('APIServer Monitoring')}
+        title={t('API_SERVER_MONITORING')}
         step="2m"
         times={50}
         onFetch={this.fetchData}

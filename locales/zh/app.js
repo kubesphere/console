@@ -119,6 +119,7 @@ module.exports = {
   'App Number': '应用编号',
   'App Version Types': '交付类型',
   'Create Time': '创建时间',
+  'Created At': '创建时间',
   'Add Version': '添加版本',
   'New Version': '添加版本',
   'App Deploy': '应用部署',

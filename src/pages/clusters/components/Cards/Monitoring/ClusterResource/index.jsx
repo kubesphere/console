@@ -80,19 +80,19 @@ export default class ClusterResourceStatusTab extends React.Component {
         total: this.getValue(lastData[MetricTypes.cpu_total]),
       },
       {
-        name: 'Memory',
+        name: 'MEMORY',
         unitType: 'memory',
         used: this.getValue(lastData[MetricTypes.memory_usage]),
         total: this.getValue(lastData[MetricTypes.memory_total]),
       },
       {
-        name: 'Local Storage',
+        name: 'LOCAL_STORAGE',
         unitType: 'disk',
         used: this.getValue(lastData[MetricTypes.disk_size_usage]),
         total: this.getValue(lastData[MetricTypes.disk_size_capacity]),
       },
       {
-        name: 'Pod',
+        name: 'POD',
         unit: '',
         used: this.getValue(lastData[MetricTypes.pod_count]),
         total: this.getValue(lastData[MetricTypes.pod_capacity]),
@@ -109,16 +109,16 @@ export default class ClusterResourceStatusTab extends React.Component {
     const result = [
       {
         type: 'utilisation',
-        title: 'CPU Utilization',
+        title: 'CPU_USAGE',
         unit: '%',
-        legend: ['Utilization'],
+        legend: ['USAGE'],
         data: get(this.metrics, `${MetricTypes.cpu_utilisation}.data.result`),
       },
       {
         type: 'utilisation',
-        title: 'Memory Utilization',
+        title: 'MEMORY_USAGE',
         unit: '%',
-        legend: ['Utilization'],
+        legend: ['USAGE'],
         data: get(
           this.metrics,
           `${MetricTypes.memory_utilisation}.data.result`
@@ -126,13 +126,13 @@ export default class ClusterResourceStatusTab extends React.Component {
       },
       {
         type: 'utilisation',
-        title: 'Disk Utilization',
+        title: 'DISK_USAGE',
         unit: '%',
-        legend: ['Utilization'],
+        legend: ['USAGE'],
         data: get(this.metrics, `${MetricTypes.disk_utilisation}.data.result`),
       },
       {
-        title: 'Pod Quantity Trend',
+        title: 'POD_NUMBER',
         unit: '',
         legend: ['Count'],
         data: get(this.metrics, `${MetricTypes.pod_count}.data.result`),

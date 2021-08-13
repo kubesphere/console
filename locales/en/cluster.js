@@ -21,7 +21,7 @@ module.exports = {
   'Add New Cluster': 'Add New Cluster',
   ALL_PROJECTS: 'All projects',
   'Authorize the cluster to workspace': 'Assign the Cluster to Workspaces',
-  Authorized: 'Authorized',
+  AUTHORIZED: 'Authorized',
   'Available Clusters': 'Available Clusters',
   'Choose a provider': 'Choose a provider',
   'Click to Copy': 'Click to Copy',
@@ -31,7 +31,7 @@ module.exports = {
   'Cluster Management': 'Cluster Management',
   'Cluster Member': 'Cluster Member',
   'Cluster Members': 'Cluster Members',
-  'Cluster Name': 'Cluster Name',
+  CLUSTER_NAME: 'Cluster Name',
   'Cluster Roles': 'Cluster Roles',
   'Cluster Settings': 'Cluster Settings',
   CLUSTER_VISIBILITY_SCAP: 'Cluster visibility',
@@ -39,9 +39,9 @@ module.exports = {
   'Connection Method': 'Connection Method',
   'Copy successfully': 'Copy successfully',
   'Custom Resources': 'CRDs',
-  'Edit cluster basic information': 'Edit cluster basic information',
-  'Edit Cluster Info': 'Edit Cluster Information',
-  'Edit Visibility': 'Edit Visibility',
+  EDIT_CLUSTER_INFO_DESC: 'Edit basic information of the cluster.',
+  EDIT_INFORMATION: 'Edit Information',
+  EDIT_VISIBILITY: 'Edit Visibility',
   'Enter the project': 'Enter the project',
   'Go back': 'Go back',
   'Host Cluster': 'Host Cluster',
@@ -70,15 +70,15 @@ module.exports = {
   SCHEDULING_OPERATIONS: 'Scheduling operations',
   SCHEDULING_FAILURES: 'Scheduling failures',
   'Select Clusters': 'Select Clusters',
-  'Set as public cluster': 'Set as a public cluster',
+  SET_PUBLIC_CLUSTER: 'Set as a public cluster',
   Snapshots: 'Snapshots',
   'Storage Management': 'Storage',
   SYSTEM_PROJECTS: 'System Projects',
   'The current cluster is public': 'The current cluster is public',
   Tools: 'Tools',
   Unauthorized: 'Unauthorized',
-  Unbind: 'Unbind',
-  'Unbind Cluster': 'Unbind Cluster',
+  UNBIND: 'Unbind',
+  UNBIND_CLUSTER: 'Unbind Cluster',
   USER_PROJECTS: 'User Projects',
   Validating: 'Validating',
   'Validation failed': 'Validation failed',
@@ -112,6 +112,7 @@ module.exports = {
   'Keep Backup Number': 'Keep Backup Number',
   'KubeSphere Settings': 'KubeSphere Settings',
   INVALID_IP_DESC: 'Invalid IP address format.',
+  CLUSTER_BASIC_INFO: 'Basic Information',
 
   NO_CLUSTER_TIP: 'Please add at least one cluster.',
   NO_CLUSTER_TIP_DESC:
@@ -130,9 +131,8 @@ module.exports = {
 
   CLUSTER_SETTINGS_DESC: 'Define cluster configuration information',
   CLUSTER_TAG: 'Tag',
-  CLUSTER_TAG_DESC:
-    'Indicate what the cluster is used for, such as a production environment, testing environment or demo environment.',
-  CLUSTER_PROVIDER_DESC: 'The cluster infrastructure provider.',
+  CLUSTER_TAG_DESC: 'A tag helps users identify what the cluster is used for.',
+  CLUSTER_PROVIDER_DESC: 'Provider of the cluster infrastructure.',
   CLUSTER_CONNECT_METHOD_DESC:
     'Directly connect to the cluster or use an agent.',
 
@@ -152,8 +152,8 @@ module.exports = {
     'This operation may take a while. Please wait until the cluster status is updated.',
 
   CLUSTER_CONDITIONS: 'Cluster Conditions',
-  CLUSTER_BASE_INFO_DESC:
-    'This module summarizes the basic information of the current cluster.',
+  CLUSTER_BASE_INFO_DESC: 'Overview of the cluster basic information.',
+  CLUSTER_INFO_TCAP: 'Cluster Information',
 
   INVITE_CLUSTER_MEMBER_DESC: 'You can invite new members to this cluster.',
 
@@ -174,8 +174,8 @@ module.exports = {
   HOW_TO_GET_KUBECONFIG: 'How do I get kubeconfig?',
 
   UNBIND_CLUSTER_DESC:
-    'After the cluster is unbound, KubeSphere will be unable to manage the cluster and Kubernetes resources within the cluster will not be deleted.',
-  SURE_TO_UNBIND_CLUSTER: 'I confirm I want to unbind the cluster.',
+    'After the cluster is unbound, KubeSphere will not be able to manage the cluster. The Kubernetes resources on the cluster will not be deleted.',
+  SURE_TO_UNBIND_CLUSTER: 'I confirm to unbind the cluster.',
 
   AUTHORIZE_CLUSTER_TO_WORKSPACE_DESC:
     'Clusters can be assigned to workspaces through authorization.',
@@ -186,23 +186,23 @@ module.exports = {
   CLUSTER_AUTHORIZATION_DESC:
     'The cluster can be assigned to workspaces through authorization.',
 
-  CLUSTER_VISIBILITY_Q1: 'How do I assign the cluster to specific workspaces?',
+  CLUSTER_VISIBILITY_Q1: 'How do I authorize a cluster to specific workspaces?',
   CLUSTER_VISIBILITY_A1:
-    'You can assign the cluster to different workspaces by clicking Edit Visibility.',
-  CLUSTER_VISIBILITY_Q2: 'What is a public cluster?',
+    'You can assign a cluster to specific workspaces by clicking <strong>Edit Visibility</strong>.',
+  CLUSTER_VISIBILITY_Q2: 'What are public clusters?',
   CLUSTER_VISIBILITY_A2:
-    'A public cluster means all platform users can access the cluster, in which they are able to create and schedule resources.',
+    'Public clusters can be accessed by all platform users. Users can create and schedule resources on public clusters.',
 
   SELECT_HOST_CLUSTER_WARNING:
     'Please try not to create resources on the host cluster to avoid excessive loads, which can lead to a decrease in the stability across clusters.',
   HOST_CLUSTER_VISIBILITY_WARNING:
-    'Please be careful to assign the host cluster to workspaces. If the load of the host cluster is too high, the stability across clusters will decrease.',
+    'The stability across clusters will decrease if the host cluster is overloaded. Exercise caution when assigning the host cluster to workspaces.',
   CLUSTER_VISIBILITY_REMOVE_WARNING:
-    'Once the authorization for the workspace to use the cluster is removed, all resources of the workspace in the current cluster will be deleted.',
+    'After the authorization for a workspace to use the cluster is removed, all resources of the workspace on the cluster will be deleted.',
 
-  REMOVE_WORKSPACE_CONFIRM_TITLE: 'Are you sure to remove authorization?',
+  REMOVE_WORKSPACE_CONFIRM_TITLE: 'Remove Authorization',
   REMOVE_WORKSPACE_CONFIRM_DESC:
-    'Are you sure to remove the authorization to the workspace(s) {resource}? Once the authorization for the workspace to use the cluster is removed, all resources of the workspace in the current cluster will be deleted.',
+    'Enter the name of the workspace(s) <strong>{resource}</strong> to confirm that you understand the risks associated with this operation.',
 
   SELECT_ADD_CLUSTER_METHOD: 'Choose how to add a cluster',
   SELECT_ADD_CLUSTER_METHOD_DESC:
@@ -280,4 +280,21 @@ module.exports = {
     'This function is not available in the current cluster version. Please upgrade to {version} or above.',
   MEMBER_CLUSTER_UPGRADE_TIP:
     'Member Clusters of version lower than {version} cannot use this function. Please upgrade the Member Cluster to {version} or above.',
+
+  // Unbind Cluster
+  UNBIND_CLUSTER_Q: 'Are you sure you want to unbind the cluster?',
+
+  // Cluster Visibility
+  CLUSTER_VISIBILITY: 'Cluster Visibility',
+  CLUSTER_VISIBILITY_DESC:
+    'Cluster visibility allows users to view and manage cluster resources in workspaces after the cluster is authorized to the workspaces.',
+  EDIT_VISIBILITY_DESC: 'Edit the cluster visibility in workspaces.',
+  TO_BE_AUTHORIZED: 'To be authorized',
+  LOGGING: 'Logging',
+  EVENTS: 'Events',
+  AUDITING: 'Auditing',
+  REMOVE_WORKSPACE_CONFIRM_SI:
+    'Enter the workspace name <strong>{resource}</strong> to confirm that you understand the risks associated with this operation.',
+  REMOVE_WORKSPACE_CONFIRM_PL:
+    'Enter the workspace names <strong>{resource}</strong> to confirm that you understand the risks associated with this operation.',
 }

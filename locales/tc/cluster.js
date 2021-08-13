@@ -25,7 +25,7 @@ module.exports = {
   Validating: '校驗中',
   'Validation failed': '校驗失敗',
 
-  'Cluster Name': '集群名稱',
+  CLUSTER_NAME: '集群名稱',
   'Cluster Management': '集群管理',
   'Nodes Management': '節點管理',
   'Node Types': '節點類型',
@@ -46,14 +46,14 @@ module.exports = {
   KUBERNETES_VERSION: 'Kubernetes 版本',
   KUBESPHERE_VERSION: 'KubeSphere 版本',
 
-  'Edit Cluster Info': '編輯集群資訊',
+  EDIT_INFORMATION: '編輯資訊',
 
   'Cluster List': '集群列表',
   CLUSTER_INFORMATION: '集群資訊',
   KUBERNETES_STATUS: 'Kubernetes 組件狀態',
   Tools: '工具',
 
-  'Edit Visibility': '編輯可見範圍',
+  EDIT_VISIBILITY: '編輯可見範圍',
 
   'Go back': '返回上一步',
 
@@ -72,23 +72,23 @@ module.exports = {
 
   'Copy successfully': '複製成功',
 
-  Unbind: '解除綁定',
+  UNBIND: '解綁',
 
-  'Unbind Cluster': '解綁集群',
+  UNBIND_CLUSTER: '解綁集群',
 
   'Cluster Member': '集群成員',
 
-  Authorized: '已授權',
+  AUTHORIZED: '已授權',
   Unauthorized: '待授權',
 
   'Authorize the cluster to workspace': '集群授權企業空間',
-  'Set as public cluster': '設置為公開集群',
+  SET_PUBLIC_CLUSTER: '設置為公開集群',
 
   'The current cluster is public': '目前集群處於公開狀態',
 
   'Available Clusters': '可用集群',
   'Select Clusters': '集群選擇',
-  'Edit cluster basic information': '編輯集群基礎資訊',
+  EDIT_CLUSTER_INFO_DESC: '編輯集群基礎資訊',
 
   SCHEDULING_OPERATIONS: '排程器調度次數',
   SCHEDULING_FAILURES: '調度失敗的容器組',
@@ -146,6 +146,7 @@ module.exports = {
   CURRENT_STEP: '當前進度：{step}',
 
   'Log Info': '紀錄資訊',
+  CLUSTER_BASIC_INFO: 'Basic information',
 
   NO_CLUSTER_TIP: '請添加至少 1 個集群',
   NO_CLUSTER_TIP_DESC:
@@ -179,7 +180,8 @@ module.exports = {
   CLUSTER_AGENT_TIP_3_DESC: '執行命令之後等待集群狀態的更新',
 
   CLUSTER_CONDITIONS: '集群狀態',
-  CLUSTER_BASE_INFO_DESC: '目前集群基礎資訊總覽',
+  CLUSTER_BASE_INFO_DESC: '目前集群基礎資訊總覽。',
+  CLUSTER_INFO_TCAP: 'Cluster Information',
 
   UNBIND_CLUSTER_DESC:
     '解綁集群後，KubeSphere 將無法再對該集群進行管理。 解綁後，該集群内的 Kubernetes 資源不會被刪除。',
@@ -199,7 +201,7 @@ module.exports = {
 
   CLUSTER_VISIBILITY_Q1: '如何將集群授權給指定的企業空間使用？',
   CLUSTER_VISIBILITY_A1:
-    '集群可以通過“編輯可見範圍”將集群授權給不同的企業空間使用',
+    'You can assign a cluster to specific workspaces by clicking <strong>Edit Visibility</strong>.',
   CLUSTER_VISIBILITY_Q2: '什麼是公開集群?',
   CLUSTER_VISIBILITY_A2:
     '公開狀態的集群意味著平台内的用戶都可以使用該集群，並在集群中創建和調度資源',
@@ -222,14 +224,14 @@ module.exports = {
   CLUSTER_AGENT_DESC: '需要在集群中設置下相應的代理 Agent',
 
   SELECT_HOST_CLUSTER_WARNING:
-    '請盡量不要在 Host 集群上創建資源，以免 Host 集群負載過高，導致多集群穩定性下降。',
+    'The stability across clusters will decrease if the host cluster is overloaded. It is not recommended to create resources on the host cluster.',
   HOST_CLUSTER_VISIBILITY_WARNING:
     '請謹慎將 Host 集群授權给企業空間，Host 集群負載過高會導致多集群穩定性下降。',
   CLUSTER_VISIBILITY_REMOVE_WARNING:
-    '移除對企業空間的授權，將刪除該企業空間在當前擴展下的所有資源。',
-  REMOVE_WORKSPACE_CONFIRM_TITLE: '確定移除授權？',
+    'After the authorization for a workspace to use the cluster is removed, all resources of the workspace on the cluster will be deleted.',
+  REMOVE_WORKSPACE_CONFIRM_TITLE: 'Remove Authorization',
   REMOVE_WORKSPACE_CONFIRM_DESC:
-    '確定移除對企業空間 {resource} 的授權？移除集群對企業空間的授權，將刪除該企業空間在目前集群下的所有資源！',
+    'Enter the name of the workspace(s) <strong>{resource}</strong> to confirm that you understand the risks associated with this operation.',
 
   'Host Cluster': 'Host 集群',
   HOST_CLUSTER: 'Host 集群',
@@ -304,4 +306,21 @@ module.exports = {
     '目前集群版本無法使用此功能，請升級到 {version} 或以上版本。',
   MEMBER_CLUSTER_UPGRADE_TIP:
     '低於 {version} 版本 member 集群無法使用此功能, 請將 member 集群升級到 {version} 或以上版本。',
+
+  // Unbind Cluster
+  UNBIND_CLUSTER_Q: 'Are you sure you want to unbind the cluster?',
+
+  // Cluster Visibility
+  CLUSTER_VISIBILITY: '集群能見度',
+  CLUSTER_VISIBILITY_DESC:
+    'Cluster visibility allows users to view and manage cluster resources in workspaces after the cluster is authorized to the workspaces.',
+  EDIT_VISIBILITY_DESC: 'Edit the cluster visibility in workspaces.',
+  TO_BE_AUTHORIZED: 'To be authorized',
+  LOGGING: 'Logging',
+  EVENTS: 'Events',
+  AUDITING: 'Auditing',
+  REMOVE_WORKSPACE_CONFIRM_SI:
+    'Enter the workspace name <strong>{resource}</strong> to confirm that you understand the risks associated with this operation.',
+  REMOVE_WORKSPACE_CONFIRM_PL:
+    'Enter the workspace names <strong>{resource}</strong> to confirm that you understand the risks associated with this operation.',
 }

@@ -41,7 +41,7 @@ const Item = ({ prefix = '', data = {} }) => {
         <p>
           <strong>
             {isExternal ? (
-              t('External ETCD')
+              t('EXTERNAL_ETCD')
             ) : (
               <Link to={`${prefix}/${node_name}`}>{node_name}</Link>
             )}

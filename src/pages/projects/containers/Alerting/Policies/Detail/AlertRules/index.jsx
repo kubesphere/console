@@ -51,7 +51,7 @@ export default class AlertRules extends React.Component {
     return (
       <>
         {!isEmpty(detail.rules) && (
-          <Panel title={t('Alerting Rules')}>
+          <Panel title={t('ALERTING_RULES')}>
             {detail.rules.map((item, index) => (
               <RuleItem
                 key={index}
@@ -63,7 +63,7 @@ export default class AlertRules extends React.Component {
           </Panel>
         )}
         {detail.query && (
-          <Panel title={t('Rule Expression')}>
+          <Panel title={t('RULE_EXPRESSION')}>
             <Query query={detail.query} />
           </Panel>
         )}

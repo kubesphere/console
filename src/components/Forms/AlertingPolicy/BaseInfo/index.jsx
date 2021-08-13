@@ -96,7 +96,7 @@ export default class BaseInfo extends React.Component {
   timeValidator = (rule, value, callback) => {
     const time = /^[0-9]*$/
     if (!time.test(value.slice(0, -1))) {
-      return callback({ message: t('Invalid time') })
+      return callback({ message: t('INVALID_TIME_DESC') })
     }
     callback()
   }
@@ -140,8 +140,8 @@ export default class BaseInfo extends React.Component {
         <Columns>
           <Column>
             <Form.Item
-              label={`${t('Alerting Duration')}(${t('Minutes')})`}
-              desc={t('ALERTING_DURATION')}
+              label={t('ALERT_DURATION_MIN')}
+              desc={t('ALERT_DURATION')}
               rules={[{ validator: this.timeValidator }]}
             >
               <UnitWrapper name="duration" unit="m">
@@ -150,7 +150,7 @@ export default class BaseInfo extends React.Component {
             </Form.Item>
           </Column>
           <Column>
-            <Form.Item label={t('Alerting Type')}>
+            <Form.Item label={t('ALERTING_TYPE')}>
               <Select name="labels.severity" options={this.severities} />
             </Form.Item>
           </Column>

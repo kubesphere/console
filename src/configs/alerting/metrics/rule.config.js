@@ -43,7 +43,7 @@ export const SEVERITY_LEVEL = [
       primary: '#fae7e5',
       secondary: '#ca2621',
     },
-    label: 'Critical Alert',
+    label: 'CRITICAL_ALERT',
     value: 'critical',
   },
   {
@@ -53,7 +53,7 @@ export const SEVERITY_LEVEL = [
       primary: '#fae7e5',
       secondary: '#f5a623',
     },
-    label: 'Error Alert',
+    label: 'ERROR_ALERT',
     value: 'error',
   },
   {
@@ -63,7 +63,7 @@ export const SEVERITY_LEVEL = [
       primary: '#fae7e5',
       secondary: '#79879c',
     },
-    label: 'Warning Alert',
+    label: 'WARNING_ALERT',
     value: 'warning',
   },
 ]
@@ -77,7 +77,7 @@ export const getBaseRuleConfig = ({ condition = {}, thresholds = {} } = {}) => [
   {
     type: 'number',
     name: 'thresholds',
-    placeholder: 'Threshold',
+    placeholder: 'THRESHOLD',
     ...thresholds,
   },
 ]
