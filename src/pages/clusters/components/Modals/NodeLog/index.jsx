@@ -69,7 +69,7 @@ export default class NodeLogModal extends React.Component {
     return (
       <Modal
         bodyClassName={styles.body}
-        title={t('Logs')}
+        title={t('LOGS')}
         visible={visible}
         onCancel={onCancel}
         fullScreen

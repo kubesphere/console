@@ -33,24 +33,24 @@ export default class ClusterInfo extends Component {
   render() {
     const { cluster, version } = this.props
     return (
-      <Panel title={t('Cluster Info')}>
+      <Panel title={t('BASIC_INFORMATION')}>
         <div className={styles.level}>
-          <Text title={cluster.provider} description={t('Provider')} />
+          <Text title={cluster.provider} description={t('PROVIDER')} />
           <Text
             title={cluster.kubernetesVersion || version}
-            description={t('Kubernetes Version')}
+            description={t('KUBERNETES_VERSION')}
           />
           <Text
             title={get(cluster, 'configz.ksVersion', '-')}
-            description={t('KubeSphere Version')}
+            description={t('KUBESPHERE_VERSION')}
           />
           <Text
             title={
               cluster.visibility === 'public'
                 ? t('VISIBILITY_PUBLIC')
-                : t('VISIBILITY_PART')
+                : t('VISIBILITY_PARTIAL')
             }
-            description={t('Cluster Visibility')}
+            description={t('CLUSTER_VISIBILITY_SCAP')}
             onClick={this.handleClick}
           />
         </div>

@@ -50,7 +50,7 @@ module.exports = {
     <ul>
     <li>根據 yaml 配置檔案一次性創建 service 和 rc</li>
     </ul>
-    <p><code>kubectl create -f my-service.yaml -f my-rc.yaml</code></p>
+    <p><code>kubectl create -f my-service.yaml</code></p>
     <ul>
     <li>對目錄下所有 .yaml、.yml、.json 檔案進行創建操作</li>
     </ul>
@@ -63,7 +63,7 @@ module.exports = {
     <ul>
     <li>查看 rc 和 service 列表</li>
     </ul>
-    <p><code>kubectl get rc,service</code></p>
+    <p><code>kubectl get services</code></p>
     <h4><a id="3__35"></a>3. 查看資源詳情</h4>
     <ul>
     <li>顯示 Node 的詳細資訊</li>

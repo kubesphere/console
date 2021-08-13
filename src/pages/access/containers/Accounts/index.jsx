@@ -46,7 +46,7 @@ export default class Accounts extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('Edit'),
+        text: t('EDIT'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -58,7 +58,7 @@ export default class Accounts extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         show: this.showAction,
         onClick: item =>
@@ -86,7 +86,7 @@ export default class Accounts extends React.Component {
 
   getColumns = () => [
     {
-      title: t('Name'),
+      title: t('NAME'),
       dataIndex: 'username',
       render: (name, record) => (
         <Avatar
@@ -98,7 +98,7 @@ export default class Accounts extends React.Component {
       ),
     },
     {
-      title: t('Status'),
+      title: t('STATUS'),
       dataIndex: 'status',
       isHideable: true,
       width: '20%',

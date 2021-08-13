@@ -64,7 +64,7 @@ export default class KubeConfigModal extends React.Component {
       <div className={classnames(styles.pane, styles.terminal)}>
         <div className={styles.download} onClick={this.handleDownload}>
           <Icon name="download" size={20} type="light" />
-          {`${t('Download')} KubeConfig`}
+          {t('DOWNLOAD')}
         </div>
         <CodeEditor value={this.store.kubeconfig} options={options} />
       </div>

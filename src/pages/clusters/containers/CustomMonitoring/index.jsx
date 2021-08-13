@@ -38,7 +38,7 @@ export default class CustomMonitoringDashboards extends React.Component {
   getColumns() {
     return [
       {
-        title: t('Name'),
+        title: t('NAME'),
         dataIndex: 'title',
         render: (_, record) => (
           <Text
@@ -69,7 +69,7 @@ export default class CustomMonitoringDashboards extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('Edit'),
+        text: t('EDIT'),
         action: 'edit',
         onClick: item =>
           trigger('resource.baseinfo.edit', {
@@ -79,7 +79,7 @@ export default class CustomMonitoringDashboards extends React.Component {
       {
         key: 'editYaml',
         icon: 'pen',
-        text: t('Edit YAML'),
+        text: t('EDIT_YAML'),
         action: 'edit',
         onClick: item =>
           trigger('resource.yaml.edit', {
@@ -89,7 +89,7 @@ export default class CustomMonitoringDashboards extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         onClick: item =>
           trigger('resource.delete', {

@@ -63,7 +63,7 @@ export default class Volumes extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('Edit'),
+        text: t('EDIT'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -74,7 +74,7 @@ export default class Volumes extends React.Component {
       {
         key: 'editYaml',
         icon: 'pen',
-        text: t('Edit YAML'),
+        text: t('EDIT_YAML'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -85,7 +85,7 @@ export default class Volumes extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         show: this.showAction,
         onClick: item =>
@@ -126,7 +126,7 @@ export default class Volumes extends React.Component {
 
     return [
       {
-        title: t('Name'),
+        title: t('NAME'),
         dataIndex: 'name',
         sortOrder: getSortOrder('name'),
         search: true,
@@ -143,7 +143,7 @@ export default class Volumes extends React.Component {
         ),
       },
       {
-        title: t('Status'),
+        title: t('STATUS'),
         dataIndex: 'status',
         isHideable: true,
         search: true,

@@ -43,7 +43,7 @@ export default class ClusterCard extends React.Component {
       },
       {
         title: data.provider,
-        description: t('Provider'),
+        description: t('PROVIDER'),
         className: styles.provider,
       },
       {

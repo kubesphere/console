@@ -94,7 +94,7 @@ export default class StorageClassDetail extends React.Component {
     {
       key: 'delete',
       icon: 'trash',
-      text: t('Delete'),
+      text: t('DELETE'),
       action: 'delete',
       type: 'danger',
       onClick: () =>

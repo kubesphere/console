@@ -53,7 +53,7 @@ export default class LoginHistory extends React.Component {
       render: time => getLocalTime(time).format(`YYYY-MM-DD HH:mm:ss`),
     },
     {
-      title: t('Status'),
+      title: t('STATUS'),
       dataIndex: 'spec.success',
       render: success => (
         <div className={styles.status}>

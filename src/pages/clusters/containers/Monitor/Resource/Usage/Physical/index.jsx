@@ -129,7 +129,7 @@ class PhysicalResource extends React.Component {
 
     return (
       <MonitoringController
-        title={t('Cluster Resources Usage')}
+        title={t('CLUSTER_RESOURCE_USAGE')}
         step="1h"
         times={24}
         onFetch={this.fetchData}

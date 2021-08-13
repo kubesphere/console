@@ -133,7 +133,7 @@ export default class ContainerTerminalModal extends React.Component {
       value: container,
       uid: container.name,
       icon: 'docker',
-      description: `${t('Image')}: ${container.image}`,
+      description: `${t('IMAGE')}: ${container.image}`,
     }))
 
     const command = selectContainer.command
@@ -148,9 +148,9 @@ export default class ContainerTerminalModal extends React.Component {
           />
           <h6>{t('Basic Information')}</h6>
           <dl>
-            <dt>{t('Status')}</dt>
+            <dt>{t('STATUS')}</dt>
             <dd>{selectContainer.ready ? t('Running') : t('Updating')}</dd>
-            <dt>{t('Image')}</dt>
+            <dt>{t('IMAGE')}</dt>
             <dd>{selectContainer.image}</dd>
             <dt>{t('Command')}</dt>
             <dd>{isEmpty(command) ? '-' : command.join(' ')}</dd>

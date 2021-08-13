@@ -197,7 +197,7 @@ export default class UserCreateModal extends Component {
         )}
         <Form.Item
           className={styles.textarea}
-          label={t('Description')}
+          label={t('DESCRIPTION')}
           desc={t('DESCRIPTION_DESC')}
         >
           <TextArea

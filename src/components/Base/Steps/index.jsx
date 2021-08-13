@@ -26,9 +26,9 @@ import { Text } from 'components/Base'
 import styles from './index.scss'
 
 const STATES = {
-  current: 'Setting',
-  finished: 'Finished',
-  notfinish: 'Not set',
+  current: 'SETTING',
+  finished: 'FINISHED',
+  notfinish: 'NOT_SET',
 }
 
 const Step = ({ step, state }) => (

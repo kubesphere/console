@@ -135,7 +135,7 @@ export default class Projects extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('Edit'),
+        text: t('EDIT'),
         action: 'edit',
         onClick: item => trigger('resource.baseinfo.edit', { detail: item }),
       },
@@ -146,14 +146,14 @@ export default class Projects extends React.Component {
         action: 'edit',
         onClick: item =>
           trigger('project.quota.edit', {
-            type: t('Project'),
+            type: t('PROJECT'),
             detail: item,
           }),
       },
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         onClick: item =>
           trigger('resource.delete', {
@@ -182,7 +182,7 @@ export default class Projects extends React.Component {
     const { getSortOrder } = this.props
     return [
       {
-        title: t('Name'),
+        title: t('NAME'),
         dataIndex: 'name',
         sorter: true,
         sortOrder: getSortOrder('name'),
@@ -201,7 +201,7 @@ export default class Projects extends React.Component {
         ),
       },
       {
-        title: t('Status'),
+        title: t('STATUS'),
         dataIndex: 'status',
         isHideable: true,
         render: status => <Status type={status} name={t(status)} flicker />,

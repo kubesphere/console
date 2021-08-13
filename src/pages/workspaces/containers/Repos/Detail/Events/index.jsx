@@ -54,7 +54,7 @@ export default class Events extends React.Component {
         getLocalTime(create_time).format(`YYYY-MM-DD HH:mm:ss`),
     },
     {
-      title: t('Status'),
+      title: t('STATUS'),
       dataIndex: 'status',
       width: '16%',
       render: status => <Status type={status} name={t(status)} />,

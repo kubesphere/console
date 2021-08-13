@@ -280,7 +280,7 @@ export default class ImageSearch extends Component {
     return (
       <>
         <Form.Item
-          label={t('Image')}
+          label={t('IMAGE')}
           desc={t.html('IMAGE_DESC', {
             link: getDocsUrl('imageregistry'),
           })}

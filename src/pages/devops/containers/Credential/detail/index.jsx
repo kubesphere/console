@@ -125,7 +125,7 @@ export default class CredentialDetail extends React.Component {
     {
       key: 'delete',
       type: 'danger',
-      text: t('Delete'),
+      text: t('DELETE'),
       action: 'delete',
       onClick: () => {
         this.trigger('resource.delete', {
@@ -166,7 +166,7 @@ export default class CredentialDetail extends React.Component {
         value: t(detail.type),
       },
       {
-        name: t('Description'),
+        name: t('DESCRIPTION'),
         value: detail.description,
       },
       {

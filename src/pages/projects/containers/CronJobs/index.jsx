@@ -68,7 +68,7 @@ export default class CronJobs extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('Edit'),
+        text: t('EDIT'),
         action: 'edit',
         onClick: item =>
           trigger('resource.baseinfo.edit', {
@@ -78,7 +78,7 @@ export default class CronJobs extends React.Component {
       {
         key: 'editYaml',
         icon: 'pen',
-        text: t('Edit YAML'),
+        text: t('EDIT_YAML'),
         action: 'edit',
         onClick: item =>
           trigger('resource.yaml.edit', {
@@ -104,7 +104,7 @@ export default class CronJobs extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         onClick: item =>
           trigger('resource.delete', {
@@ -143,7 +143,7 @@ export default class CronJobs extends React.Component {
     const { getSortOrder, getFilteredValue, module } = this.props
     return [
       {
-        title: t('Name'),
+        title: t('NAME'),
         dataIndex: 'name',
         sorter: true,
         sortOrder: getSortOrder('name'),
@@ -159,7 +159,7 @@ export default class CronJobs extends React.Component {
         ),
       },
       {
-        title: t('Status'),
+        title: t('STATUS'),
         dataIndex: 'status',
         filters: this.getStatus(),
         filteredValue: getFilteredValue('status'),

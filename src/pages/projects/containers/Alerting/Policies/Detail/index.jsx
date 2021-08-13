@@ -88,7 +88,7 @@ export default class AlertPolicyDetail extends React.Component {
     {
       key: 'edit',
       icon: 'pen',
-      text: t('Edit'),
+      text: t('EDIT'),
       type: 'control',
       action: 'edit',
       onClick: () =>
@@ -103,7 +103,7 @@ export default class AlertPolicyDetail extends React.Component {
     {
       key: 'delete',
       icon: 'trash',
-      text: t('Delete'),
+      text: t('DELETE'),
       action: 'delete',
       type: 'danger',
       onClick: () =>
@@ -128,7 +128,7 @@ export default class AlertPolicyDetail extends React.Component {
 
     return [
       {
-        name: t('Status'),
+        name: t('STATUS'),
         value: (
           <Status
             type={detail.state}

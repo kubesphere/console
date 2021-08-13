@@ -71,7 +71,7 @@ export default class ReplicasControl extends React.Component {
     const { replicas } = this.state
     return (
       <div className={styles.replicas}>
-        <div className="margin-b8">{t('Pod Replicas')}</div>
+        <div className="margin-b8">{t('POD_REPLICAS')}</div>
         <div className="flexbox">
           <Button type="flat" icon="substract" onClick={this.handleSubStract} />
           <NumberInput value={replicas} onChange={this.handleChange} />

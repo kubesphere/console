@@ -41,7 +41,7 @@ export default class BaseInfo extends React.Component {
         <div className={styles.content}>
           <Text
             title={<Link to={`/workspaces/${workspace}`}>{workspace}</Link>}
-            description={t('Workspace')}
+            description={t('WORKSPACE')}
           />
           <Text title={detail.creator || '-'} description={t('Creator')} />
         </div>

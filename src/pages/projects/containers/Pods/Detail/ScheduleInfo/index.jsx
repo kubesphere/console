@@ -214,7 +214,7 @@ class ScheduleInfo extends React.Component {
         </div>
         <div className="tooltip-desc">
           <p>
-            {t('Status')}: {condition.status}
+            {t('STATUS')}: {condition.status}
           </p>
           {condition.reason && (
             <p>

@@ -148,7 +148,7 @@ export default class ContainerItem extends React.Component {
             )}
           </div>
           <p>
-            {t('Image')}:{detail.image}
+            {t('IMAGE')}:{detail.image}
           </p>
         </div>
         {this.renderLimitRange()}

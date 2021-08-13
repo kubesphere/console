@@ -17,7 +17,7 @@
  */
 
 module.exports = {
-  Monitoring: '监控',
+  MONITORING: '监控',
   'Monitoring Center': '监控中心',
   'Physical Resources': '物理资源',
   'Physical Resources Monitoring': '物理资源监控',
@@ -45,7 +45,8 @@ module.exports = {
   'Application Resources Usage': '应用资源用量',
   'Projects Change Trend': '项目变化趋势',
   'Projects Count': '项目数量',
-  'Cluster Resources Usage': '集群资源使用情况',
+  CLUSTER_RESOURCE_USAGE: '集群资源用量',
+  RESOURCE_USAGE: '资源用量',
   'Cluster Node Status': '集群节点状态',
   'Component Status': '组件状态',
   'Running Status': '运行状态',
@@ -65,7 +66,7 @@ module.exports = {
   'Only Show Selected': '仅显示已选',
   'View All Replicas': '查看全部副本',
   'View All': '查看全部',
-  'View More': '查看更多',
+  VIEW_MORE: '查看更多',
 
   Interval: '间隔',
   Last: '最近',
@@ -101,6 +102,8 @@ module.exports = {
   'Total Average': '总均值',
   'APIs Average': 'APIs 均值',
   'Request Per Second': '每秒请求数',
+  API_REQUESTS_PER_SECOND: '每秒 API 请求数',
+  API_REQUEST_LATENCY: 'API 请求延迟',
   Request: '请求',
   'Attempt Frequency': '调度次数',
   'Attempt Rate': '调度速率',

@@ -49,12 +49,12 @@ export default class ServiceComponents extends Component {
       },
       {
         type: 'monitoring',
-        title: 'Monitoring',
+        title: t('MONITORING'),
         disabled: !globals.app.hasClusterModule(cluster, 'monitoring'),
       },
       {
         type: 'logging',
-        title: 'Logging',
+        title: t('LOGGING'),
         disabled: !globals.app.hasClusterModule(cluster, 'logging'),
       },
       {

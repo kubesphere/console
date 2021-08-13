@@ -31,7 +31,7 @@ module.exports = {
   'Event statistics': 'Event statistics',
   'Exact Query': 'Exact Query',
   'Fuzzy Query': 'Fuzzy Query',
-  'Hide help information': 'Hide help information',
+  HIDE_HELP_INFORMATION: 'Hide Help Information',
   'Index Prefix': 'Index Prefix',
   Keyword: 'Keyword',
   'Log Collections': 'Log Collection',

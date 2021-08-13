@@ -106,7 +106,7 @@ export default class AppCategories extends React.Component {
 
   getColumns = () => [
     {
-      title: t('Name'),
+      title: t('NAME'),
       dataIndex: 'app_id',
       width: '50%',
       render: (app_id, app) => (
@@ -122,7 +122,7 @@ export default class AppCategories extends React.Component {
       ),
     },
     {
-      title: t('Workspace'),
+      title: t('WORKSPACE'),
       dataIndex: 'isv',
       isHideable: true,
       width: '25%',

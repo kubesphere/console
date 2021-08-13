@@ -168,12 +168,12 @@ export default class WorkspaceCreateModal extends React.Component {
             <Button onClick={onCancel}>{t('Cancel')}</Button>
             {currentStep > 0 && (
               <Button type="control" onClick={this.handlePrev}>
-                {t('Previous')}
+                {t('PREVIOUS')}
               </Button>
             )}
             {currentStep < total ? (
               <Button type="control" onClick={this.handleNext}>
-                {t('Next')}
+                {t('NEXT')}
               </Button>
             ) : (
               <Button

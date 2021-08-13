@@ -63,7 +63,7 @@ export default class ComponentDetail extends React.Component {
 
     return [
       {
-        name: t('Status'),
+        name: t('STATUS'),
         value: <Status type={status} name={t(status)} />,
       },
       {
@@ -71,7 +71,7 @@ export default class ComponentDetail extends React.Component {
         value: this.props.match.params.cluster,
       },
       {
-        name: t('Project'),
+        name: t('PROJECT'),
         value: detail.namespace,
       },
       {

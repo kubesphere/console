@@ -91,7 +91,7 @@ export default class KubeConfigModal extends React.Component {
             {t('Cancel')}
           </Button>
           <CopyToClipboard text={data} onCopy={this.handleCopy}>
-            <Button type="control">{t('Copy')}</Button>
+            <Button type="control">{t('COPY')}</Button>
           </CopyToClipboard>
         </div>
       </Modal>

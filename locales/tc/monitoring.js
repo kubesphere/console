@@ -17,7 +17,7 @@
  */
 
 module.exports = {
-  Monitoring: '監控',
+  MONITORING: '監控',
   'Monitoring Center': '監控中心',
   'Physical Resources': '物理資源',
   'Physical Resources Monitoring': '物理資源監控',
@@ -45,7 +45,8 @@ module.exports = {
   'Application Resources Usage': '應用資源用量',
   'Projects Change Trend': '項目變化趨勢',
   'Projects Count': '項目數量',
-  'Cluster Resources Usage': '集群資源使用情況',
+  CLUSTER_RESOURCE_USAGE: '集群資源使用情況',
+  RESOURCE_USAGE: '資源使用情況',
   'Cluster Node Status': '集群節點狀態',
   'Component Status': '組件狀態',
   'Running Status': '運行狀態',
@@ -65,7 +66,7 @@ module.exports = {
   'Only Show Selected': '僅顯示已選',
   'View All Replicas': '查看全部副本',
   'View All': '查看全部',
-  'View More': '查看更多',
+  VIEW_MORE: '查看更多',
 
   Interval: '間隔',
   Last: '最近',
@@ -101,6 +102,8 @@ module.exports = {
   'Total Average': '總平均值',
   'APIs Average': 'APIs 平均值',
   'Request Per Second': '每秒請求數',
+  API_REQUESTS_PER_SECOND: '每秒 API 請求數',
+  API_REQUEST_LATENCY: 'API 請求延遲',
   Request: '請求',
   'Attempt Frequency': '調度次數',
   'Attempt Rate': '調度速率',

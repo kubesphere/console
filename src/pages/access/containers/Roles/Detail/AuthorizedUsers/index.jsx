@@ -57,7 +57,7 @@ export default class AuthorizedUsers extends React.Component {
       width: '33%',
     },
     {
-      title: t('Status'),
+      title: t('STATUS'),
       dataIndex: 'status',
       width: '33%',
       render: status => (

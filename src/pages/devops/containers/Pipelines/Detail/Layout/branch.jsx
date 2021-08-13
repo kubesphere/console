@@ -122,7 +122,7 @@ export default class BranchDetailLayout extends React.Component {
         value: detail.displayName,
       },
       {
-        name: t('Status'),
+        name: t('STATUS'),
         value: (
           <Status
             {...getPipelineStatus(get(toJS(activityList.data), '[0]', {}))}
@@ -130,7 +130,7 @@ export default class BranchDetailLayout extends React.Component {
         ),
       },
       {
-        name: t('Updated Time'),
+        name: t('UPDATED_AT'),
         value: this.updateTime,
       },
     ]

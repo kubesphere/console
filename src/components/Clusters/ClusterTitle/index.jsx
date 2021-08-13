@@ -106,7 +106,7 @@ export default class ClusterTitle extends Component {
                 className={classNames('margin-l12', tagClass)}
                 type="warning"
               >
-                {t('Host Cluster')}
+                {t('HOST_CLUSTER')}
               </Tag>
             )}
             &nbsp;

@@ -17,6 +17,10 @@
  */
 
 module.exports = {
+  SELECT_PROJECT_DESC: 'Select a project.',
+  PROJECT_EMPTY_DESC: 'Please select a project',
+  REPLICA_LOW_SI: 'replica',
+  REPLICA_LOW_PL: 'replicas',
   'Access Control': 'Control de acceso',
   'Access Mode': 'Modo de acceso',
   'Add argument': 'Agregar argumento',
@@ -61,7 +65,9 @@ module.exports = {
   'Container Config': 'Configuración de contenedor',
   'Container CPU Resource Request, 1 Core = 1000m':
     'Solicitud de recursos de CPU de contenedor, 1 núcleo = 1000 m',
-  'Container Image': 'Imagen de contenedor',
+  CONTAINERS: 'Imagen de contenedor',
+  CONTAINER_IMAGE: 'Imagen de contenedor',
+  ADD_CONTAINER: 'Add Container',
   'Container Liveness Check': 'Verificación del estado del contenedor',
   'container log relative path': 'ruta relativa del registro de contenedor',
   'Container Logs': 'Registros de contenedores',
@@ -91,7 +97,7 @@ module.exports = {
   'Current Revision': 'Revisión actual',
   'Current Stage(phase)': 'Estado actual (fase)',
   'Current Utilization': 'Utilización actual',
-  'Deployment Location': 'Ubicación de despliegue',
+  DEPLOYMENT_LOCATION: 'Ubicación de despliegue',
   'Deployment Mode': 'Modo de despliegue',
   DEPLOYMENT_MODE_DESC: 'You can specify rules for pod scheduling',
   DeploymentPaused: 'Despliegue Pausado',
@@ -101,9 +107,9 @@ module.exports = {
   'Diff Settings': 'Configuración de diferencias',
   DockerDaemonNotReady: 'DockerDaemonNotReady',
   'Edit Config Template': 'Editar plantilla de configuración',
-  'Edit Container': 'Editar contenedor',
+  EDIT_CONTAINER: 'Editar contenedor',
   'Edit Labels': 'Editar etiquetas',
-  'Edit YAML': 'Editar YAML',
+  EDIT_YAML: 'Editar YAML',
   EmptyDir: 'EmptyDir',
   Environment: 'Entorno',
   'Environment Variables': 'Variables de entorno',
@@ -132,7 +138,7 @@ module.exports = {
   'How pods are assinged to nodes?': '¿Cómo se asignan los pods a los nodos?',
   'HTTP Request': 'Solicitudes HTTP',
   'HTTP Request Check': 'Comprobación de solicitudes HTTP',
-  Image: 'Imagen',
+  IMAGE: 'Imagen',
   'Image ID': 'ID de imagen',
   'Image Name': 'Nombre de la imágen',
   'Image Pull Policy': 'Política de extracción de imagen',
@@ -143,14 +149,14 @@ module.exports = {
   'Initial Delay(s)': 'Retraso (s) inicial',
   'Instance Status': 'Estado de instancia',
   'Invalid image': 'Imagen inválida',
-  'Invalid name': 'Nombre inválido. {message}',
+  INVALID_NAME_DESC: 'Nombre inválido. {message}',
   InvalidImageName: 'InvalidImageName',
   'is running': 'En ejecución',
   Job: 'Trabajo',
   'Job Records': 'Registro de tareas',
   'Job Settings': 'Configuraciones de tareas',
   'Job Template': 'Plantilla de tareas',
-  'KubeSphere supports pulling images from the Image Registries and creating new images through source code (Source to Image).':
+  ADD_CONTAINER_DESC:
     'KubeSphere admite la extracción de imágenes de los Registros de imágenes y la creación de nuevas imágenes a través del código fuente (Fuente a imagen).',
   'Labels cannot be empty': 'Las etiquetas no pueden estar vacías',
   'Labels exists': 'Existen etiquetas',
@@ -159,7 +165,6 @@ module.exports = {
   Log: 'Iniciar sesión',
   'log path relative to container mount path':
     'ruta de registro relativa a la ruta de montaje del contenedor',
-  Logs: 'Registros',
   'm.internalLifecycle.PreStartContainer':
     'm.internalLifecycle.PreStartContainer',
   'Max Replicas Number': 'Número máximo de réplicas',
@@ -201,8 +206,7 @@ module.exports = {
   'Not found this image': 'No encontré esta imagen',
   OnDelete: 'OnDelete',
   'Period Seconds': 'Periodo de Segundos',
-  'Please add at least one container.':
-    'Por favor agregue al menos un contenedor.',
+  CONTAINER_EMPTY_DESC: 'Por favor agregue al menos un contenedor.',
   'Please add at least one volume': 'Por favor agregue al menos un volumen',
   'Please add at least one volume or volume template':
     'Agregue al menos un volumen o plantilla de volumen',
@@ -231,7 +235,7 @@ module.exports = {
   'Pod Default Deployment': 'Despliegue predeterminado del pod',
   'Pod IP': 'IP del POD',
   'Pod Memory Request': 'Solicitud de memoria de pod',
-  'Pod Replicas': 'Réplicas de pod',
+  POD_REPLICAS: 'Réplicas de pod',
   'Pod replicas will be deployed according to the default policy.':
     'Las réplicas de pod se implementarán de acuerdo con la política predeterminada.',
   'Pod replicas will be deployed on different nodes as much as possible.':
@@ -261,12 +265,11 @@ module.exports = {
   'Read Write Mode': 'Modo Read Write',
   'Readiness Probe': 'Sonda de preparación',
   Recreate: 'Recrear',
-  Redeploy: 'Redesplegar',
+  REDEPLOY: 'Redesplegar',
   'Redeploy Successfully': 'Desplegado correctamente',
   registry: 'registro',
   RegistryUnavailable: 'Registro no disponible',
   'Replica Status': 'Estado de la réplica',
-  Replicas: 'Réplicas',
   'Replicas Number': 'Número de réplicas',
   ReplicaSetCreateError: 'ReplicaSetCreateError',
   ReplicaSetUpdated: 'ReplicaSetUpdated',
@@ -673,5 +676,5 @@ module.exports = {
     'A certificate error was found, do you want to ignore the certificate verification',
   IGNORE_CERT_WARN_DESC:
     'Ignoring the verification certificate may cause the account password to be disclosed. ',
-  'project is invalid': 'Proyecto no válido',
+  INVALID_PROJECT: 'Proyecto no válido',
 }

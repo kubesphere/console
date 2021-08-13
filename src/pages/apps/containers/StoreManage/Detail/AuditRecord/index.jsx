@@ -56,7 +56,7 @@ export default class AuditRecord extends React.Component {
       render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
     },
     {
-      title: t('Status'),
+      title: t('STATUS'),
       dataIndex: 'status',
       isHideable: true,
       width: '15%',

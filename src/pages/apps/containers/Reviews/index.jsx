@@ -142,7 +142,7 @@ export default class Reviews extends React.Component {
       render: () => t('Request for Approval'),
     },
     {
-      title: t('Workspace'),
+      title: t('WORKSPACE'),
       dataIndex: 'app_id',
       isHideable: true,
       width: '10%',
@@ -171,7 +171,7 @@ export default class Reviews extends React.Component {
       },
     },
     {
-      title: t('Updated Time'),
+      title: t('UPDATED_AT'),
       dataIndex: 'status_time',
       isHideable: true,
       width: '15%',

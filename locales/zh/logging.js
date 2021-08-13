@@ -112,7 +112,7 @@ module.exports = {
   'Resource Name & Type': '资源名称与类型',
 
   TOOLBOX_SHIFT_TIPS: ' 👻 Shift + 鼠标左键 可以在新窗口中打开',
-  'Hide help information': '不再显示帮助信息',
+  HIDE_HELP_INFORMATION: '隐藏帮助信息',
   ES_DESC: 'Elasticsearch 是分布式、RESTful 风格的搜索和分析引擎',
   KAFKA_DESC: 'Kafka 是流行的开源流处理平台',
   FLUENTD_DESC: 'Fluentd 是提供统一日志处理层的开源数据收集器',
@@ -122,8 +122,8 @@ module.exports = {
     '容器在当前状态下不支持实时日志，请稍后再试',
   TOTAL_LOGS_TODAY:
     '今日总共收录了 <span class={className}>{containers}</span> 个容器<br/> <span class={className}> {logs} </span> 条日志信息',
-  START_REAL_TIME_LOG: '开始实时日志',
-  STOP_REAL_TIME_LOG: '关闭实时日志',
+  START_REAL_TIME_LOG: '启用实时日志',
+  STOP_REAL_TIME_LOG: '停止实时日志',
   LOG_EXPORT: '日志导出',
   CUSTOM_MONITORING_DASHBOARD: '自定义监控面板',
   CREATE_CUSTOM_MONITORING_DASHBOARD: '创建自定义监控面板',

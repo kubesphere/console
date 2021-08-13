@@ -154,7 +154,7 @@ export default class ClusterSettings extends React.Component {
           description={t('K8S_CLUSTER_SETTINGS_DESC')}
         />
         <Form className={styles.form} data={formTemplate} ref={formRef}>
-          <Form.Item label={t('Kubernetes Version')}>
+          <Form.Item label={t('KUBERNETES_VERSION')}>
             <TypeSelect
               name="spec.kubernetes.version"
               options={this.versions}

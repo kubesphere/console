@@ -53,15 +53,15 @@ export default class Deployments extends React.Component {
       options: [
         {
           value: 'deployments',
-          label: t('Deployments'),
+          label: t('DEPLOYMENTS'),
         },
         {
           value: 'statefulsets',
-          label: t('StatefulSets'),
+          label: t('STATEFULSETS'),
         },
         {
           value: 'daemonsets',
-          label: t('DaemonSets'),
+          label: t('STATEFULSETS'),
         },
       ],
     }
@@ -73,7 +73,7 @@ export default class Deployments extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('Edit'),
+        text: t('EDIT'),
         action: 'edit',
         onClick: item =>
           trigger('resource.baseinfo.edit', {
@@ -83,7 +83,7 @@ export default class Deployments extends React.Component {
       {
         key: 'editYaml',
         icon: 'pen',
-        text: t('Edit YAML'),
+        text: t('EDIT_YAML'),
         action: 'edit',
         onClick: item =>
           trigger('resource.yaml.edit', {
@@ -93,7 +93,7 @@ export default class Deployments extends React.Component {
       {
         key: 'redeploy',
         icon: 'restart',
-        text: t('Redeploy'),
+        text: t('REDEPLOY'),
         action: 'edit',
         onClick: item =>
           trigger('workload.redeploy', {
@@ -104,7 +104,7 @@ export default class Deployments extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         onClick: item =>
           trigger('workload.delete', {
@@ -123,7 +123,7 @@ export default class Deployments extends React.Component {
         {
           key: 'delete',
           type: 'danger',
-          text: t('Delete'),
+          text: t('DELETE'),
           action: 'delete',
           onClick: () =>
             trigger('workload.batch.delete', {
@@ -157,7 +157,7 @@ export default class Deployments extends React.Component {
     const { getSortOrder, getFilteredValue, module } = this.props
     return [
       {
-        title: t('Name'),
+        title: t('NAME'),
         dataIndex: 'name',
         sorter: true,
         sortOrder: getSortOrder('name'),
@@ -174,7 +174,7 @@ export default class Deployments extends React.Component {
         ),
       },
       {
-        title: t('Status'),
+        title: t('STATUS'),
         dataIndex: 'status',
         filters: this.getStatus(),
         filteredValue: getFilteredValue('status'),
@@ -193,7 +193,7 @@ export default class Deployments extends React.Component {
         width: '22%',
       },
       {
-        title: t('Updated Time'),
+        title: t('UPDATED_AT'),
         dataIndex: 'updateTime',
         sorter: true,
         sortOrder: getSortOrder('updateTime'),

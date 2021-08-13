@@ -67,7 +67,7 @@ export default class ResourceStatus extends React.Component {
         ? {
             key: 'editYaml',
             icon: 'pen',
-            text: t('Edit YAML'),
+            text: t('EDIT_YAML'),
             action: 'edit',
             onClick: item =>
               this.trigger('resource.yaml.edit', {
@@ -91,7 +91,7 @@ export default class ResourceStatus extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         onClick: item =>
           this.trigger('resource.delete', {
@@ -107,7 +107,7 @@ export default class ResourceStatus extends React.Component {
     const { scope } = this.props.detailStore.detail
     return [
       {
-        title: t('Name'),
+        title: t('NAME'),
         dataIndex: 'name',
         render: (name, record) => (
           <Avatar

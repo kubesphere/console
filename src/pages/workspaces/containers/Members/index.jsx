@@ -154,7 +154,7 @@ export default class Accounts extends React.Component {
         ),
       },
       {
-        title: t('Status'),
+        title: t('STATUS'),
         dataIndex: 'status',
         isHideable: true,
         width: '19%',

@@ -199,7 +199,7 @@ export default class App extends React.Component {
       <div className={styles.control}>
         {currentStep < total ? (
           <Button type="control" onClick={this.handleNext}>
-            {t('Next')}
+            {t('NEXT')}
           </Button>
         ) : (
           <Button

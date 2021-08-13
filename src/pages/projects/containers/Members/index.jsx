@@ -161,7 +161,7 @@ export default class Members extends React.Component {
       ),
     },
     {
-      title: t('Status'),
+      title: t('STATUS'),
       dataIndex: 'status',
       isHideable: true,
       width: '19%',

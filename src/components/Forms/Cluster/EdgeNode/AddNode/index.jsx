@@ -147,7 +147,7 @@ export default class AddEdgeModal extends Component {
           </div>
         </Form.Item>
         <CopyToClipboard text={link} onCopy={this.handleCopy}>
-          <Button>{t('Copy')}</Button>
+          <Button>{t('COPY')}</Button>
         </CopyToClipboard>
       </div>
     ) : null
@@ -175,11 +175,11 @@ export default class AddEdgeModal extends Component {
             rules={[
               {
                 required: true,
-                message: t("Please input the node's name"),
+                message: t('NODE_NAME_EMPTY_DESC'),
               },
               {
                 pattern: PATTERN_NAME,
-                message: t('Invalid name', { message: '' }),
+                message: t('INVALID_NAME_DESC', { message: '' }),
               },
               { validator: this.validator('name') },
             ]}
@@ -193,12 +193,12 @@ export default class AddEdgeModal extends Component {
 
           <div className={styles.column}>
             <Form.Item
-              label={t('Node Internal IP Address')}
-              desc={t('CLUSTER_NODE_INTERNAL_IP_DESC')}
+              label={t('INTERNAL_IP')}
+              desc={t('NODE_INTERNAL_IP_DESC')}
               rules={[
                 {
                   required: true,
-                  message: t('Please input the IP address'),
+                  message: t('INTERNAL_IP_EMPTY_DESC'),
                 },
                 {
                   pattern: PATTERN_IP,

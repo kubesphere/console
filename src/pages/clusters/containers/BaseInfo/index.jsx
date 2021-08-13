@@ -158,21 +158,21 @@ export default class Overview extends React.Component {
           title={t('Basic Info')}
           description={t('CLUSTER_BASE_INFO_DESC')}
         />
-        <Panel title={t('Cluster Info')}>
+        <Panel title={t('CLUSTER_INFORMATION')}>
           <div className={styles.header}>
             <Text
               icon={CLUSTER_PROVIDER_ICON[provider] || 'kubernetes'}
               title={getDisplayName(this.store.detail)}
               description={t('Cluster')}
             />
-            {provider && <Text title={provider} description={t('Provider')} />}
+            {provider && <Text title={provider} description={t('PROVIDER')} />}
             <Text
               title={kubernetesVersion || this.store.version}
-              description={t('Kubernetes Version')}
+              description={t('KUBERNETES_VERSION')}
             />
             {actions.includes('edit') && globals.app.isMultiCluster && (
               <Button className={styles.action} onClick={this.showEdit}>
-                {t('Edit Info')}
+                {t('EDIT_INFO')}
               </Button>
             )}
           </div>

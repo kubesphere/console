@@ -18,7 +18,7 @@
 
 module.exports = {
   connected: 'connected',
-  Copy: 'Copy',
+  COPY: 'Copy',
   'Copy Successfully': 'Copied successfully.',
   Disconnect: 'Disconnect',
   disconnected: 'disconnected',
@@ -29,48 +29,48 @@ module.exports = {
   'Put this into': 'Put this into',
 
   KUBECONFIG_TIP: `
-    <h2><a id="KubeConfig_Configuration_Method_0"></a>KubeConfig Configuration Method</h2>
-    <p>Please refer to the <a href="https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/" target="_blank">official documentation</a> for more commands.</p>
+    <h2><a id="KubeConfig_Configuration_Method_0"></a>Configuration Method</h2>
+    <p>For details about the parameters in the configuration file, see the <a href="https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/" target="_blank">official documentation</a>.</p>
   `,
   KUBECTL_TIP: `
-    <h2><a id="KubeCtl_Common_Instructions_0"></a>KubeCtl Common Instructions</h2>
-    <p>Please refer to the <a href="https://kubernetes.io/docs/reference/kubectl/overview/" target="_blank">official documentation</a> for more commands.</p>
-    <h3><a id="kubectl_output_format_4"></a>kubectl Output Format</h3>
+    <h2><a id="KubeCtl_Common_Instructions_0"></a>Command Tips</h2>
+    <p>For more information about kubectl, see the <a href="https://kubernetes.io/docs/reference/kubectl/overview/" target="_blank">official documentation</a>.</p>
+    <h3><a id="kubectl_output_format_4"></a>Customize Output</h3>
     <ul>
-    <li>Show more information about Pod</li>
+    <li>View more information about a Pod.</li>
     </ul>
     <p><code>kubectl get pod &lt;pod-name&gt; -o wide</code></p>
     <ul>
-    <li>Display Pod details in yaml format</li>
+    <li>View Pod details in YAML format.</li>
     </ul>
     <p><code>kubectl get pod &lt;pod-name&gt; -o yaml</code></p>
-    <h3><a id="kubectl_Operation_14"></a>kubectl Operation</h3>
-    <h4><a id="1_Create_a_resource_object_16"></a>1. Create a resource object</h4>
+    <h3><a id="kubectl_Operation_14"></a>Perform Operations</h3>
+    <h4><a id="1_Create_a_resource_object_16"></a>Create resources</h4>
     <ul>
-    <li>Create service and rc one time according to yaml configuration file</li>
+    <li>Create a Service by using a YAML configuration file.</li>
     </ul>
-    <p><code>kubectl create -f my-service.yaml -f my-rc.yaml</code></p>
+    <p><code>kubectl create -f my-service.yaml</code></p>
     <ul>
-    <li>Create all .yaml, .yml, .json files in the directory</li>
+    <li>Create resources by using all YAML, YML, and JSON files in a directory.</li>
     </ul>
     <p><code>kubectl create -f &lt;directory&gt;</code></p>
-    <h4><a id="2_View_resource_objects_26"></a>2. View resource objects</h4>
+    <h4><a id="2_View_resource_objects_26"></a>View resources</h4>
     <ul>
-    <li>View all Pod lists</li>
+    <li>View all Pods.</li>
     </ul>
     <p><code>kubectl get pods</code></p>
     <ul>
-    <li>View rc and service list</li>
+    <li>View all Services.</li>
     </ul>
-    <p><code>kubectl get rc,service</code></p>
-    <h4><a id="3_View_resource_details_36"></a>3. View resource details</h4>
+    <p><code>kubectl get services</code></p>
+    <h4><a id="3_View_resource_details_36"></a>View resource details.</h4>
     <ul>
-    <li>Show Node details</li>
+    <li>View Node details.</li>
     </ul>
     <p><code>kubectl describe nodes &lt;node-name&gt;</code></p>
     <ul>
-    <li>Display Pod details</li>
+    <li>View Pod details.</li>
     </ul>
-    <p><code>kubectl describe pods/&lt;pod-name&gt;</code></p>
+    <p><code>kubectl describe pods &lt;pod-name&gt;</code></p>
   `,
 }

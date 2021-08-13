@@ -44,7 +44,7 @@ export default class Routers extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('Edit'),
+        text: t('EDIT'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -55,7 +55,7 @@ export default class Routers extends React.Component {
       {
         key: 'editYaml',
         icon: 'pen',
-        text: t('Edit YAML'),
+        text: t('EDIT_YAML'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -88,7 +88,7 @@ export default class Routers extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         show: this.showAction,
         onClick: item =>
@@ -110,7 +110,7 @@ export default class Routers extends React.Component {
     const { cluster } = this.props.match.params
     return [
       {
-        title: t('Name'),
+        title: t('NAME'),
         dataIndex: 'name',
         sorter: true,
         sortOrder: getSortOrder('name'),
@@ -133,7 +133,7 @@ export default class Routers extends React.Component {
         render: loadBalancerIngress => loadBalancerIngress.join('; '),
       },
       {
-        title: t('Project'),
+        title: t('PROJECT'),
         dataIndex: 'namespace',
         isHideable: true,
         width: '18%',

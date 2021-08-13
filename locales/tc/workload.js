@@ -17,6 +17,10 @@
  */
 
 module.exports = {
+  SELECT_PROJECT_DESC: '選擇一個項目。',
+  PROJECT_EMPTY_DESC: '請選擇一個項目。',
+  REPLICA_LOW_SI: '副本',
+  REPLICA_LOW_PL: '副本',
   Workload: '工作負載',
   Workloads: '工作負載',
   'Service Configuration': '服務配置',
@@ -25,11 +29,13 @@ module.exports = {
   'Desired number of nodes scheduled': '期望節點數',
   'Current number of nodes scheduled': '目前節點數',
   'View YAML': '查看配置文件',
-  'Edit YAML': '編輯配置文件',
+  EDIT_YAML: '編輯配置文件',
   'Add Labels': '添加標籤',
   'Edit Labels': '編輯標籤',
-  'Pod Replicas': '容器組副本數量',
-  'Container Image': '容器鏡像',
+  POD_REPLICAS: '容器組副本數量',
+  CONTAINERS: '容器鏡像',
+  CONTAINER_IMAGE: '容器鏡像',
+  ADD_CONTAINER: '添加容器',
   'Pod Status': '容器組運行狀態',
   'Container Setting': '容器設置',
   'Pods List': '容器組列表',
@@ -37,16 +43,15 @@ module.exports = {
   Log: '紀錄',
   'Container Logs': '容器紀錄',
   'Resource Info': '資源資訊',
-  Logs: '操作紀錄',
   'Node Name': '主機名稱',
   'Node IP': '主機 IP',
   'Pod IP': '容器組 IP',
-  Image: '鏡像',
+  IMAGE: '鏡像',
   'Image ID': '鏡像 ID',
   'Port(s)': '端口',
   Port: '端口',
   port: '端口',
-  'Edit Container': '編輯容器',
+  EDIT_CONTAINER: '編輯容器',
   'Host Port': '主機端口',
   'Add Port': '添加端口',
   'target port': '目標端口',
@@ -118,7 +123,7 @@ module.exports = {
   'Additional metadata settings for resources such as Labels and Annotations.':
     '對資源進行額外的元數據設置，例如 Label 和 Annotation',
 
-  'Deployment Location': '部署位置',
+  DEPLOYMENT_LOCATION: '部署位置',
 
   REFFER_CONFIGMAP_DESC: '將配置中的值添加為卷。',
   REFFER_SECRET_DESC: '將密鑰中的值添加為卷。',
@@ -151,8 +156,6 @@ module.exports = {
   IMAGE_REGISTRY_PLACEHOLDER: '請選擇鏡像倉庫密鑰',
   IMAGE_DESC:
     '要從私有鏡像倉庫部署，需要先<a href={link} target="_blank">創建鏡像倉庫密鑰</a>，然後拉取鏡像。',
-
-  Replicas: '副本',
   'Replicas Number': '副本數量',
   'Specify Replicas Number': '指定副本數量',
   'Replica Status': '副本運行狀態',
@@ -210,7 +213,7 @@ module.exports = {
   'Add new container': '添加新的容器',
   'Adding new contianer': '正在添加新的容器',
   'Add Node Selector': '添加節點選擇器',
-  'Please add at least one container.': '請至少添加一個容器',
+  CONTAINER_EMPTY_DESC: '請至少添加一個容器',
   'Container Name': '容器名稱',
   'Container Type': '容器類型',
   'Advanced Options': '高級選項',
@@ -233,7 +236,7 @@ module.exports = {
   'Please input mount point': '請輸入掛載點',
   'Please select a storage class': '請選擇儲存卷類型',
   'Please select image': '請選擇鏡像',
-  'Invalid name': '名稱格式不合法。{message}',
+  INVALID_NAME_DESC: '名稱格式不合法。{message}',
   'Service Labels': '服務標籤',
 
   'Add Existing Volume': '添加已有儲存卷',
@@ -367,7 +370,7 @@ module.exports = {
   'Container Readiness Check': '容器就緒檢查',
   'Container Startup Check': '容器啟動檢查',
 
-  Redeploy: '重新部署',
+  REDEPLOY: '重新部署',
   'Redeploy Successfully': '重新部署成功',
 
   REDEPLOY_CONFIRM_DESC:
@@ -548,7 +551,7 @@ module.exports = {
     '容器組副本將會盡量部署在同一節點上',
   'Pod replicas will be deployed by the default policy.':
     '容器組副本將根據預設策略部署',
-  'KubeSphere supports pulling images from the Image Registries and creating new images through source code (Source to Image).':
+  ADD_CONTAINER_DESC:
     'Kubesphere 支持從鏡像倉庫拉取鏡像以及通過代碼構建新的鏡像並部署',
 
   'Scheduling Info': '調度資訊',
@@ -701,5 +704,5 @@ module.exports = {
     '可以將容器組部署在不同集群中，並對集群中部署的副本數量進行定義。不同集群中的容器組將由聯邦集群控制器(Federation Controller Manager)進行統一的調度及狀態同步。',
   IGNORE_CERT_DESC: '發現證書錯誤，是否忽略證書驗證並再次',
   IGNORE_CERT_WARN_DESC: '忽略驗證證書，可能會導致帳戶密碼被欺騙。',
-  'project is invalid': '項目不可選',
+  INVALID_PROJECT: '項目不可選',
 }

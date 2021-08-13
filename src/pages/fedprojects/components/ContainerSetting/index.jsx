@@ -62,10 +62,12 @@ export default class ContainerSetting extends Base {
                 label={t('Container Name')}
                 desc={t('NAME_DESC')}
                 rules={[
-                  { required: true, message: t('Please input name') },
+                  { required: true, message: t('NAME_EMPTY_DESC') },
                   {
                     pattern: PATTERN_NAME,
-                    message: t('Invalid name', { message: t('NAME_DESC') }),
+                    message: t('INVALID_NAME_DESC', {
+                      message: t('NAME_DESC'),
+                    }),
                   },
                 ]}
               >

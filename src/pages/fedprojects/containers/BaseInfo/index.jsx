@@ -80,7 +80,7 @@ class BaseInfo extends React.Component {
         key: 'edit',
         icon: 'pen',
         action: 'edit',
-        text: t('Edit Info'),
+        text: t('EDIT_INFO'),
         onClick: () =>
           this.trigger('resource.baseinfo.edit', {
             detail,

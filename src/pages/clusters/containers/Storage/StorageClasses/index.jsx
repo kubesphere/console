@@ -57,7 +57,7 @@ export default class StorageClasses extends React.Component {
     const { getSortOrder, prefix } = this.props
     return [
       {
-        title: t('Name'),
+        title: t('NAME'),
         key: 'name',
         dataIndex: 'name',
         sorter: true,

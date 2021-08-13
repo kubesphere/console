@@ -79,19 +79,19 @@ export default class ResourcesUsage extends Component {
         total: this.getValue(data[MetricTypes.cpu_total]),
       },
       {
-        name: 'Memory',
+        name: t('MEMORY'),
         unitType: 'memory',
         used: this.getValue(data[MetricTypes.memory_usage]),
         total: this.getValue(data[MetricTypes.memory_total]),
       },
       {
-        name: 'Pod',
+        name: t('POD'),
         unitType: '',
         used: this.getValue(data[MetricTypes.pod_count]),
         total: this.getValue(data[MetricTypes.pod_capacity]),
       },
       {
-        name: 'Local Storage',
+        name: t('DISK'),
         unitType: 'disk',
         used: this.getValue(data[MetricTypes.disk_size_usage]),
         total: this.getValue(data[MetricTypes.disk_size_capacity]),
@@ -101,7 +101,7 @@ export default class ResourcesUsage extends Component {
 
   getRadarOptions = options =>
     options.map(option => ({
-      name: t(option.name),
+      name: option.name,
       usage: Math.round((option.used * 100) / (option.total || option.used)),
     }))
 
@@ -110,7 +110,7 @@ export default class ResourcesUsage extends Component {
     const radarOptions = this.getRadarOptions(options)
 
     return (
-      <Panel title={t('Cluster Resources Usage')}>
+      <Panel title={t('RESOURCE_USAGE')}>
         <Loading spinning={this.monitorStore.isLoading}>
           <div className={styles.wrapper}>
             <div className={styles.chart}>

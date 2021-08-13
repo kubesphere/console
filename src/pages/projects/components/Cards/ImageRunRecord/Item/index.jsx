@@ -222,7 +222,7 @@ export default class ImageBuilderLastRun extends React.Component {
               flicker
             />
           </div>
-          <div className={styles.label}>{t('Status')}</div>
+          <div className={styles.label}>{t('STATUS')}</div>
         </li>
         <li>
           <div className={styles.value}>{imageName}</div>
@@ -236,7 +236,7 @@ export default class ImageBuilderLastRun extends React.Component {
         </li>
         <li>
           <div className={styles.value}>
-            {t(`${t('Image')}: ${name} ${t(`S2I_${status}`)}`)}
+            {t(`${t('IMAGE')}: ${name} ${t(`S2I_${status}`)}`)}
           </div>
           <div className={styles.label}>{t('Last Message')}</div>
         </li>

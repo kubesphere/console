@@ -195,12 +195,12 @@ export default class AppDeploy extends React.Component {
       <div className={styles.footer}>
         {currentStep > 0 && (
           <Button type="control" onClick={this.handlePrev}>
-            {t('Previous')}
+            {t('PREVIOUS')}
           </Button>
         )}
         {currentStep < total ? (
           <Button type="control" onClick={this.handleNext}>
-            {t('Next')}
+            {t('NEXT')}
           </Button>
         ) : (
           <Button

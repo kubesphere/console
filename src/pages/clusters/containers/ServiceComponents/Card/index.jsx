@@ -48,13 +48,13 @@ const Card = ({ cluster, component = {} }) => {
         <Column className="is-2">
           <Text
             title={<Status type={status} name={t(status)} />}
-            description={t('Status')}
+            description={t('STATUS')}
           />
         </Column>
         <Column className="is-2">
           <Text
             title={`${component.healthyBackends} / ${component.totalBackends}`}
-            description={t('Replicas Number')}
+            description={t('REPLICAS')}
           />
         </Column>
         <Column className="is-2">
@@ -64,7 +64,7 @@ const Card = ({ cluster, component = {} }) => {
                 ? moment(component.startedAt).toNow(true)
                 : '-'
             }
-            description={t('Running Time')}
+            description={t('RUNNING_TIME')}
           />
         </Column>
       </Columns>

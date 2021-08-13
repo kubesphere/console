@@ -130,7 +130,7 @@ export default class Detail extends React.PureComponent {
       className: styles.typecol,
     },
     {
-      thead: t('Project'),
+      thead: t('PROJECT'),
       key: 'name',
       hidden: false,
       content: ({ involvedObject = {} }) => involvedObject.namespace,
