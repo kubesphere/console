@@ -48,6 +48,11 @@ export default class EditBasicInfoModal extends React.Component {
     })
   }
 
+  @computed
+  get enableAddCluster() {
+    return this.clusters.every(item => item.disabled)
+  }
+
   handleClusterChange = clusters => {
     set(this.formTemplate, 'clusters', uniqBy(clusters, 'name'))
   }
@@ -63,8 +68,15 @@ export default class EditBasicInfoModal extends React.Component {
   handleOk = data => {
     const { onOk, formTemplate } = this.props
     const newClusters = uniqBy([...this.clustersList, ...data.clusters], 'name')
+    const annotations = get(formTemplate, 'metadata.annotations')
+
+    const overrides = newClusters.map(cluster => ({
+      clusterName: cluster.name,
+      clusterOverrides: [{ path: '/metadata/annotations', value: annotations }],
+    }))
 
     set(formTemplate, 'spec.placement.clusters', newClusters)
+    set(formTemplate, 'spec.overrides', overrides)
 
     onOk(formTemplate)
   }
@@ -89,6 +101,11 @@ export default class EditBasicInfoModal extends React.Component {
               rules={[
                 { required: true, message: t('Please select a cluster') },
               ]}
+              desc={
+                this.enableAddCluster
+                  ? t('FEDPROJECT_CANNOT_ADD_CLUSTER')
+                  : null
+              }
             >
               <ArrayInput
                 name="clusters"
