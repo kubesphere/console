@@ -36,7 +36,7 @@ export default class VolumeSettings extends React.Component {
 
     return (
       <Form data={this.formTemplate} ref={formRef}>
-        <Form.Item label={t('Access Mode')} rules={[{ required: true }]}>
+        <Form.Item label={t('ACCESS_MODE_TCAP')} rules={[{ required: true }]}>
           <AccessModes
             name={ACCESSMODE_KEY}
             defaultValue={get(supportedAccessModes, '[0]', '')}

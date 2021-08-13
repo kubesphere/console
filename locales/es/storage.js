@@ -38,9 +38,11 @@ module.exports = {
   'Mount Info': 'Información de montaje',
   'Mount Options': 'Opciones de montaje',
   'Mount Status': 'Estado de montaje',
-  Mounted: 'Montado',
+  // Volumes List Page
+  MOUNT_TCAP: 'Montar',
+  MOUNTED_TCAP: 'Montado',
   'Mounted Pods': 'Pods montados',
-  'Not Mounted': 'No montado',
+  NOT_MOUNTED_TCAP: 'No montado',
   Parameters: 'Parámetros',
   'Parameters (key-value pairs)': 'Parámetros (pares clave-valor)',
   PersistentVolumeClaim: 'PersistentVolumeClaim',
@@ -71,7 +73,7 @@ module.exports = {
   'Volume Template Settings': 'Volume Template Settings',
   'Volume Usage': 'Uso de volumen',
   VOLUME_DESC:
-    'A volume is used for workloads created by users. It represents a resource object for the persistent storage of workloads.',
+    'A volume is used for workloads created by users. It represents a resource object for the data persistence of workloads.',
   VOLUME_SNAPSHOT_STATUS_CREATING: 'Creando',
   VOLUME_SNAPSHOT_STATUS_FAILED: 'Creado sin éxito',
   VOLUME_SNAPSHOT_STATUS_READY: 'Creado con éxito',
@@ -79,6 +81,8 @@ module.exports = {
   volumes: 'volúmenes',
   VolumeSnapshots: 'Volume Snapshots',
   'Storage Classs': 'Clases de almacenamiento',
+  // Volume Pages
+  ACCESS_MODE_TCAP: 'Modo de acceso',
   ACCESS_MODE_RWO: 'Nodo único de lectura y escritura',
   ACCESS_MODE_ROX: 'Multi-nodo de solo lectura',
   ACCESS_MODE_RWX: 'Múlti-nodos de lectura y escritura',

@@ -37,7 +37,7 @@ module.exports = {
   'Node Status': '節點狀態',
   'Online Nodes': '在線節點',
   'All Nodes': '全部節點',
-  'IP Address': 'IP 地址',
+  IP_ADDRESS_TCAP: 'IP 地址',
   'Node IP': '節點 IP',
   Unschedulable: '無法調度',
   Architecture: '系統架構',

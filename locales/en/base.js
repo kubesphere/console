@@ -432,7 +432,7 @@ module.exports = {
   PROJECT_DESC:
     'Projects are used to group resources and control the resource management permissions of different users.',
   'MULTI-CLUSTER_PROJECT_CREATE_DESC':
-    'Projects will be grouped by their resources, which you can view and manage by project.',
+    'Projects are grouped by their resources that you can view and manage by each project.',
 
   DELETE_TITLE: 'Delete {type}',
   DELETE_TIP:

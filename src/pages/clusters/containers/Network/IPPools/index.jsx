@@ -112,11 +112,11 @@ export default class IPPools extends React.Component {
         ),
       },
       {
-        title: t('IP/Mask Bit'),
+        title: t('IP_MASK_BIT_TCAP'),
         dataIndex: 'cidr',
       },
       {
-        title: t('Used IP'),
+        title: t('USED_IP_TCAP'),
         dataIndex: 'status',
         render: status => {
           const capacity = get(status, 'capacity', 0)

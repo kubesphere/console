@@ -73,7 +73,7 @@ class RouteAnnotationsEdit extends React.Component {
 
     return (
       <Modal.Form
-        title={t('Edit Annotations')}
+        title={t('EDIT_ANNOTATIONS_TCAP')}
         icon="firewall"
         visible={visible}
         width={960}

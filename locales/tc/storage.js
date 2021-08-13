@@ -20,6 +20,8 @@ module.exports = {
   ACCESS_MODE_RWO: '單個節點讀寫',
   ACCESS_MODE_ROX: '多節點唯讀',
   ACCESS_MODE_RWX: '多節點讀寫',
+  // Volume Pages
+  ACCESS_MODE_TCAP: '訪問模式',
 
   VOLUME_STATUS_BOUND: '準備就緒',
   VOLUME_STATUS_LOST: '丢失',
@@ -42,8 +44,10 @@ module.exports = {
   'Storage Classs': '儲存類型',
   STORAGE_CLASS_SETTINGS: '儲存類型設置',
   'Mount Info': '掛載資訊',
-  Mounted: '已掛載',
-  'Not Mounted': '未掛載',
+  // Volumes List Page
+  MOUNT_TCAP: '掛載',
+  MOUNTED_TCAP: '已掛載',
+  NOT_MOUNTED_TCAP: '未掛載',
   Scalable: '可擴容性',
   RECLAMATION_POLICY: '回收機制',
   CREATE: 'Create',

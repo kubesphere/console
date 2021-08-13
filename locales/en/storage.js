@@ -37,9 +37,11 @@ module.exports = {
   'Mount Info': 'Mount Info',
   'Mount Options': 'Mount Options',
   'Mount Status': 'Mount Status',
-  Mounted: 'Mounted',
+  // Volumes List Page
+  MOUNT_TCAP: 'Mount',
+  MOUNTED_TCAP: 'Mounted',
   'Mounted Pods': 'Mounted Pods',
-  'Not Mounted': 'Not Mounted',
+  NOT_MOUNTED_TCAP: 'Not Mounted',
   Parameters: 'Parameters',
   'Parameters (key-value pairs)': 'Parameters (key-value pairs)',
   PersistentVolumeClaim: 'PersistentVolumeClaim',
@@ -70,7 +72,7 @@ module.exports = {
   'Volume Template Settings': 'Volume Template Settings',
   'Volume Usage': 'Volume Usage',
   VOLUME_DESC:
-    'A volume is used for workloads created by users. It represents a resource object for the persistent storage of workloads.',
+    'A volume is used for workloads created by users. It represents a resource object for the data persistence of workloads.',
   VOLUME_SNAPSHOT_STATUS_CREATING: 'Creating',
   VOLUME_SNAPSHOT_STATUS_FAILED: 'Creation failed',
   VOLUME_SNAPSHOT_STATUS_READY: 'Created successfully',
@@ -93,7 +95,7 @@ module.exports = {
   VOLUMES_BASEINFO_DESC:
     'The volume can persist data, and its lifecycle is independent of the workload. Make sure the storage class is created before you create a volume.',
   VOLUME_CREATE_DESC:
-    'A volume is used for workloads created by users. It represents a resource object for the persistent storage of workloads.',
+    'A volume is used for workloads created by users. It represents a resource object for the data persistence of workloads.',
   VOLUME_SETTINGS_DESC:
     'Fill in the capacity of the volume as needed, and the volume size and access mode must be compatible with the storage class and storage server capabilities. The access mode is usually selected as RWO.',
   VOLUME_STORAGE_CLASS_DESC:
@@ -101,7 +103,10 @@ module.exports = {
 
   PROVISIONER_DESC: 'Provide backend storage',
 
-  ACCESS_MODES_DESC: 'Select an access mode supported by the storage class.',
+  // Volume Pages
+  ACCESS_MODE_TCAP: 'Access Mode',
+
+  ACCESS_MODES_DESC: 'Select the access mode supported by the storage class.',
 
   DELETE_STORAGE_TIP:
     'If the storage volume is being mounted, delete it when the workload is deleted.',
@@ -128,12 +133,12 @@ module.exports = {
 
   WHAT_IS_STORAGE_CLASS_Q: 'What is a Storage Class?',
   WHAT_IS_STORAGE_CLASS_A:
-    'The Storage Class is configured by the cluster administrator to configure storage server parameters and provide storage for cluster users by class.',
+    'A Storage Class represents a kind of storage configured by the cluster administrator. Different Storage Classes provide cluster users with different kinds of volumes.',
 
   WHAT_IS_LOCAL_VOLUME_Q: 'What is a Local Volume?',
   WHAT_IS_LOCAL_VOLUME_A:
-    'A local volume is a mounted local storage device, such as a disk, partition, or directory.',
-  CHOOSE_STORAGE_SYSTEM_TIP: 'Select Storage System',
+    'A Local Volume is a mounted local storage device, such as a disk, partition, or directory.',
+  CHOOSE_STORAGE_SYSTEM_TIP: 'Choose the Storage System You Need',
   PROVISIONER_DEPENDENCE_DESC:
     'Storage plug-ins need to be deployed in the storage system to provide services.',
 
@@ -198,9 +203,9 @@ module.exports = {
   CREATE_VOLUME_BY_SNAPSHOT: 'Create a volume by VolumeSnapshot',
   SELECT_SNAPSHOT_TO_CREATE_VOLUME: 'Select a snapshot to create a volume.',
   VOLUMESNAPSHOT_DESC:
-    'A volume snapshot refers to a snapshot of a volume at a particular time point. It can be used to create new volumes (preset the snapshot data) or restore an existing volume to its previous status (displayed in snapshots).',
+    'A volume snapshot is the copy of a volume at a specific point in time. It can be used to provision a new volume with data pre-populated by the snapshot or restore a volume to its previous state that is captured by the snapshot.',
   VOLUMESNAPSHOT_CREATE_DESC:
-    'A volume snapshot refers to a snapshot of a volume at a particular time point. It can be used to create new volumes (preset the snapshot data) or restore an existing volume to its previous status (displayed in snapshots).',
+    'A volume snapshot is the copy of a volume at a specific point in time. It can be used to provision a new volume with data pre-populated by the snapshot or restore a volume to its previous state that is captured by the snapshot.',
   WHAT_IS_VOLUME_SNAPSHOTS: 'What are volume snapshots?',
 
   CLUSTER_VOLUME_DIFF_DESC:

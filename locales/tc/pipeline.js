@@ -257,7 +257,7 @@ module.exports = {
   'Docker Container Registry Credentials': 'Docker 容器倉庫憑證',
   'Docker Registry URL': 'Docker 倉庫 URL',
   'Registry Credentials': '倉庫憑證',
-  'Secret Name': '密鑰名稱',
+  SECRET_NAME_TCAP: '密鑰名稱',
   'Show Advanced Settings': '顯示高级設置',
   'Config File Path': '配置文件路徑',
   'Add another credential': '增加一個憑證',

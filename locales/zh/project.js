@@ -201,7 +201,7 @@ module.exports = {
   PROJECT_ADVANCED_SETTINGS_DESC:
     '对项目中的外网访问网关以及服务治理和落盘日志收集等配置进行设置',
   PROJECT_MEMBERS_DESC: '对项目内的成员进行管理及角色分配',
-  PROJECT_ROLE_DESC: '项目角色定义了在当前项目下用户所拥有的权限',
+  PROJECT_ROLE_DESC: '项目角色定义了在当前项目下用户所拥有的权限。',
   COLLECTING_FILE_LOG_DESC:
     '对容器内的落盘日志进行收集，并转发到标准输出，然后由日志收集系统统一采集。',
 

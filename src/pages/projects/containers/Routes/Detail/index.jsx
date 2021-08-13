@@ -106,7 +106,7 @@ export default class RouteDetail extends React.Component {
     {
       key: 'editAnnotations',
       icon: 'firewall',
-      text: t('Edit Annotations'),
+      text: t('EDIT_ANNOTATIONS_TCAP'),
       action: 'edit',
       onClick: () =>
         this.trigger('router.annotations.edit', {
@@ -151,7 +151,7 @@ export default class RouteDetail extends React.Component {
         value: detail.app,
       },
       {
-        name: t('Gateway Address'),
+        name: t('GATEWAY_ADDRESS_TCAP'),
         value: detail.loadBalancerIngress.join('\r\n'),
       },
       {

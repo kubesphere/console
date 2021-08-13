@@ -242,7 +242,7 @@ export default class Routes extends React.Component {
           <div>{t('Internet Access')}</div>
           <p>{t('INTERNET_ACCESS_DESC')}</p>
         </div>
-        <div className={styles.title}>{t('Route Rules')}</div>
+        <div className={styles.title}>{t('ROUTE_RULES_TCAP')}</div>
         <div className={styles.rules}>
           <RuleList
             data={template}

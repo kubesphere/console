@@ -230,7 +230,7 @@ export default class KubernetesDeploy extends React.Component {
         <Form.Item label={t('Kubernetes Namespace for Secret')}>
           <Input name="secretNamespace" />
         </Form.Item>
-        <Form.Item label={t('Secret Name')}>
+        <Form.Item label={t('SECRET_NAME_TCAP')}>
           <Input name="secretName" />
         </Form.Item>
         <div className={styles.dockerCredentialsContent__title}>

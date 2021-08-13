@@ -102,7 +102,7 @@ export default class Routers extends React.Component {
       {
         key: 'editAnnotations',
         icon: 'firewall',
-        text: t('Edit Annotations'),
+        text: t('EDIT_ANNOTATIONS_TCAP'),
         action: 'edit',
         onClick: item =>
           trigger('router.annotations.edit', {
@@ -143,7 +143,7 @@ export default class Routers extends React.Component {
         ),
       },
       {
-        title: t('Gateway Address'),
+        title: t('GATEWAY_ADDRESS_TCAP'),
         dataIndex: 'loadBalancerIngress',
         isHideable: true,
         width: '22%',

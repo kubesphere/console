@@ -17,15 +17,15 @@
  */
 
 module.exports = {
-  'Account Password Secret': 'Account Password Secret',
-  'Add Data': 'Add Data',
-  'Add key / value pair data': 'Add key / value pair data',
+  ACCOUNT_PASSWORD_SECRET_TCAP: 'Account Password Secret',
+  ADD_DATA_TCAP: 'Add Data',
+  ADD_DATA_DESC: 'Add key-value pair data.',
   'Config Number': 'Count',
   Data: 'Data',
-  'Edit Data': 'Edit Data',
+  EDIT_DATA_TCAP: 'Edit Data',
   'Edit Secret': 'Edit Secret',
   'Example: docker.io': 'Example: docker.io',
-  'Image Registry Secret': 'Image Registry Secret',
+  IMAGE_REGISTRY_SECRET_TCAP: 'Image Registry Secret',
   IMAGE_REGISTRY_REQUIRED_DESC:
     'The image registry secret must at least include the registry address, username and password.',
   'Please input credential': 'Please input credential',
@@ -33,12 +33,12 @@ module.exports = {
   'Please input private key': 'Please input private key',
   'Please input the registry address': 'Please input the registry address',
   'Private Key': 'Private Key',
-  'Registry Address': 'Registry Address',
-  'Registry verification failed': 'Registry verification failed',
-  'Registry verification succeeded': 'Registry verification succeeded',
+  REGISTRY_ADDRESS_TCAP: 'Registry Address',
+  REGISTRY_SECRET_VER_ERR: 'Registry verification failed',
+  REGISTRY_SECRET_VER_SUC: 'Registry verification succeeded',
   Secret: 'Secret',
-  'Secret Name': 'Secret Name',
-  'Secret Settings': 'Secret Settings',
+  SECRET_NAME_TCAP: 'Secret Name',
+  SECRET_SETTINGS_TCAP: 'Secret Settings',
   secrets: 'secrets',
   Secrets: 'Secrets',
   Unverified: 'Unverified',
@@ -55,6 +55,6 @@ module.exports = {
   IMAGE_REGISTRY_VALIDATE_TIP:
     'Before you create the image registry secret, please verify if it is valid.',
 
-  'DATA-KEY': 'Key',
-  'DATA-VALUE': 'Value',
+  DATA_KEY: 'Key',
+  DATA_VALUE: 'Value',
 }

@@ -210,7 +210,7 @@ module.exports = {
     "The project basic information includes the project name and the project's quota status.",
   PROJECT_QUOTA_MANAGE_DESC: 'This module allows you to manage project quotas.',
   PROJECT_ROLE_DESC:
-    'Project roles define the authorization users have in the current project.',
+    'Project roles define the permissions users have in the current project.',
   PROJECT_MEMBERS_DESC: 'Manage and assign roles for project members.',
   PROJECT_ADVANCED_SETTINGS_DESC:
     'This module allows you to configure gateway access for external addresses and service governance. Besides, you can also configure the collection of logs on the disk.',

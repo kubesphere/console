@@ -294,7 +294,7 @@ module.exports = {
   MINUTE_TIME: '{count} 分钟',
 
   NAME_DESC:
-    '最长 63 个字符，只能包含小写字母、数字及分隔符("-")，且必须以小写字母或数字开头及结尾',
+    '名称只能包含小写字母、数字和连字符（-），必须以小写字母或数字开头和结尾，最长 63 个字符。',
   NAME_TOO_LONG: '最长 63 个字符',
 
   LONG_NAME_DESC:
@@ -554,7 +554,7 @@ module.exports = {
 
   DATA_SOURCE: '数据源',
 
-  EMPTY_WRAPPER: '未发现 {resource}',
+  EMPTY_WRAPPER: '没有找到 {resource}',
 
   'User Guides': '用户指南',
   'Quick Support': '快速获取帮助',

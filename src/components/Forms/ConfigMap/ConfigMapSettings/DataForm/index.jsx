@@ -90,31 +90,25 @@ export default class SecretDataForm extends React.Component {
           <a className="custom-icon" onClick={this.handleGoBack}>
             <BackIcon />
           </a>
-          {!detail[selectKey] ? t('Add Data') : t('Edit Data')}
+          {!detail[selectKey] ? t('ADD_DATA_TCAP') : t('EDIT_DATA_TCAP')}
         </div>
         <div className={styles.formWrapper}>
           <Form data={this.state.formData} ref={this.formRef}>
             <Form.Item
-              label={t('DATA-KEY')}
+              label={t('DATA_KEY')}
               description={t(
                 'The unique key value of this configuration map entry'
               )}
             >
-              <Input name="key" placeholder="key" />
+              <Input name="key" />
             </Form.Item>
             <Form.Item
-              label={t('DATA-VALUE')}
+              label={t('DATA_VALUE')}
               description={t(
                 'Enter the value of the configuration map entry or use the contents of the file'
               )}
             >
-              <TextArea
-                maxHeight={430}
-                name="value"
-                placeholder="value"
-                rows={4}
-                autoResize
-              />
+              <TextArea maxHeight={430} name="value" rows={4} autoResize />
             </Form.Item>
           </Form>
         </div>
