@@ -114,7 +114,7 @@ export default class ContainerDetail extends React.Component {
         value: cluster,
       },
       {
-        name: t('Project'),
+        name: t('PROJECT'),
         value: namespace,
       },
       {
@@ -122,11 +122,11 @@ export default class ContainerDetail extends React.Component {
         value: detail.app,
       },
       {
-        name: t('Status'),
+        name: t('STATUS'),
         value: t(status),
       },
       {
-        name: t('Image'),
+        name: t('IMAGE'),
         value: detail.image,
       },
       {

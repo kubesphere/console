@@ -41,7 +41,7 @@ export default class Progress extends Component {
       <div className={styles.wrapper}>
         <div className={styles.card}>
           <div className={styles.title}>
-            {t('Cluster Creation Progress')}&nbsp;
+            {t('CLUSTER_CREATION_PROGRESS')}&nbsp;
             <Tooltip content={t('CLUSTER_CREATION_PROGRESS_TIP')}>
               <Icon name="question" />
             </Tooltip>
@@ -69,9 +69,7 @@ export default class Progress extends Component {
                       ))}
                     {}
                   </div>
-                  <div>
-                    {t(`CLUSTER_${step.toUpperCase().replace(/\s+/g, '_')}`)}
-                  </div>
+                  <div>{t(step.toUpperCase().replace(/\s+/g, '_'))}</div>
                 </div>
               ))}
             </div>

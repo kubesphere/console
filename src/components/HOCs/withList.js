@@ -55,7 +55,7 @@ export default function withList(options) {
           {
             key: 'edit',
             icon: 'pen',
-            text: t('Edit'),
+            text: t('EDIT'),
             action: 'edit',
             onClick: item =>
               this.trigger('resource.baseinfo.edit', {
@@ -66,7 +66,7 @@ export default function withList(options) {
           {
             key: 'delete',
             icon: 'trash',
-            text: t('Delete'),
+            text: t('DELETE'),
             action: 'delete',
             onClick: item =>
               this.trigger('resource.delete', {
@@ -96,7 +96,7 @@ export default function withList(options) {
             {
               key: 'delete',
               type: 'danger',
-              text: t('Delete'),
+              text: t('DELETE'),
               action: 'delete',
               onClick: () =>
                 this.trigger('resource.batch.delete', {

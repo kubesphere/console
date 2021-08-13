@@ -67,7 +67,7 @@ export default class EdgeNodes extends React.Component {
       {
         key: 'uncordon',
         icon: 'start',
-        text: t('Uncordon'),
+        text: t('UNCORDON'),
         action: 'edit',
         show: item =>
           item.importStatus === 'success' && this.getUnschedulable(item),
@@ -76,7 +76,7 @@ export default class EdgeNodes extends React.Component {
       {
         key: 'cordon',
         icon: 'stop',
-        text: t('Cordon'),
+        text: t('CORDON'),
         action: 'edit',
         show: item =>
           item.importStatus === 'success' && !this.getUnschedulable(item),
@@ -85,7 +85,7 @@ export default class EdgeNodes extends React.Component {
       {
         key: 'logs',
         icon: 'eye',
-        text: t('Show Logs'),
+        text: t('VIEW_LOG'),
         action: 'edit',
         show: item => item.importStatus !== 'success',
         onClick: () =>
@@ -94,7 +94,7 @@ export default class EdgeNodes extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         show: item => item.importStatus === 'failed',
         onClick: item =>
@@ -114,7 +114,7 @@ export default class EdgeNodes extends React.Component {
     actions.push({
       key: 'add',
       type: 'control',
-      text: t('Add Node'),
+      text: t('ADD_NODE'),
       action: 'create',
       onClick: () =>
         trigger('node.edge.add', {
@@ -130,7 +130,7 @@ export default class EdgeNodes extends React.Component {
         {
           key: 'taint',
           type: 'default',
-          text: t('Taint Management'),
+          text: t('MANAGE_TAINT'),
           action: 'edit',
           onClick: () =>
             trigger('node.taint.batch', {
@@ -192,7 +192,7 @@ export default class EdgeNodes extends React.Component {
 
   renderTaintsTip = data => (
     <div>
-      <div>{t('Taints')}:</div>
+      <div>{t('TAINTS')}:</div>
       <div>
         {data.map(item => {
           const text = `${item.key}=${item.value || ''}:${item.effect}`
@@ -213,7 +213,7 @@ export default class EdgeNodes extends React.Component {
     const { module, prefix, getSortOrder, getFilteredValue } = this.props
     return [
       {
-        title: t('Name'),
+        title: t('NAME'),
         dataIndex: 'name',
         sorter: true,
         sortOrder: getSortOrder('name'),
@@ -229,7 +229,7 @@ export default class EdgeNodes extends React.Component {
         ),
       },
       {
-        title: t('Status'),
+        title: t('STATUS'),
         dataIndex: 'status',
         filters: this.getStatus(),
         filteredValue: getFilteredValue('status'),
@@ -255,7 +255,7 @@ export default class EdgeNodes extends React.Component {
         },
       },
       {
-        title: t('Role'),
+        title: t('ROLE'),
         dataIndex: 'role',
         isHideable: true,
         search: true,
@@ -296,7 +296,7 @@ export default class EdgeNodes extends React.Component {
         },
       },
       {
-        title: t('Memory'),
+        title: t('MEMORY'),
         key: 'memory',
         isHideable: true,
         render: record => {

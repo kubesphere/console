@@ -56,7 +56,7 @@ export default class NetworkParams extends Component {
           <span>{value.kubeServiceCIDR}</span>
         </div>
         <a className={styles.edit} onClick={this.showEdit}>
-          {t('Edit')}
+          {t('EDIT')}
         </a>
       </div>
     )
@@ -66,7 +66,7 @@ export default class NetworkParams extends Component {
     const { value, params } = this.props
     return (
       <Modal.Form
-        title={t('Edit')}
+        title={t('EDIT')}
         data={value}
         onOk={this.handleEdit}
         onCancel={this.hideEdit}

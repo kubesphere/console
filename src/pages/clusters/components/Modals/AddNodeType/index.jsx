@@ -33,7 +33,7 @@ export default class AddNodeTypeModal extends React.Component {
           <Input name="name" maxLength={63} />
         </Form.Item>
         <Form.Item
-          label={t('Description')}
+          label={t('DESCRIPTION')}
           desc={t('NODE_TYPE_DESCRIPTION_DEC')}
         >
           <TextArea name="description" />

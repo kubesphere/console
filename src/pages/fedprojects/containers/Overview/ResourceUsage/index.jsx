@@ -162,14 +162,6 @@ class ResourceUsage extends React.Component {
 
     return [
       {
-        key: 'pods',
-        icon: ICON_TYPES['pods'],
-        name: 'Pods',
-        num: used['count/pods'],
-        warnNum: status.pods,
-        metric: 'namespace_pod_count',
-      },
-      {
         key: 'deployments',
         icon: ICON_TYPES['deployments'],
         name: 'Deployments',

@@ -36,7 +36,6 @@ module.exports = {
   Latest: 'Último',
   'New Apps': 'Nuevas aplicaciones',
   None: 'Ninguna',
-  Provider: 'Proveedor',
   'Published Date': 'Fecha de Publicación',
   Screenshots: 'Capturas de pantalla',
   Uncategorized: 'Sin categorizar',

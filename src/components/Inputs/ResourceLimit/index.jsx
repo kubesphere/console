@@ -163,7 +163,7 @@ export default class ResourceLimit extends React.Component {
         { value: 0, label: t('No Request'), weight: 2 },
         { value: 0.2, label: 0.2, weight: 2 },
         { value: 0.5, label: 0.5, weight: 2 },
-        { value: 1, label: 1, weight: 3 },
+        { value: 1, label: 1, weight: 2 },
         { value: 2, label: 2, weight: 2 },
         { value: 3, label: 3, weight: 2 },
         { value: 4, label: 4 },
@@ -182,8 +182,8 @@ export default class ResourceLimit extends React.Component {
     return {
       marks: [
         { value: 0, label: t('No Request'), weight: 2 },
-        { value: 200, label: 200, weight: 2 },
-        { value: 500, label: 500, weight: 2 },
+        { value: 200, label: 200, weight: 1 },
+        { value: 500, label: 500, weight: 1 },
         { value: 1000, label: 1000, weight: 2 },
         { value: 2000, label: 2000, weight: 2 },
         { value: 4000, label: 4000, weight: 2 },
@@ -289,7 +289,7 @@ export default class ResourceLimit extends React.Component {
         </div>
         <div className={styles.sliderWrapper}>
           <div>
-            {t('Memory')} ({this.memoryUnit})
+            {t('MEMORY')} ({this.memoryUnit})
           </div>
           <Slider {...this.getMemoryProps()} />
         </div>

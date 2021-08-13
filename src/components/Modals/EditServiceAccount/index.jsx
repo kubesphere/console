@@ -84,7 +84,7 @@ export default class EditServiceAccountModal extends React.Component {
       <Modal.Form
         data={formData}
         width={691}
-        title={t('Edit Info')}
+        title={t('EDIT_INFO')}
         icon="pen"
         onOk={this.handleOk}
         okText={t('Update')}
@@ -92,16 +92,16 @@ export default class EditServiceAccountModal extends React.Component {
         visible={visible}
         isSubmitting={isSubmitting}
       >
-        <Form.Item label={t('Name')}>
+        <Form.Item label={t('NAME')}>
           <Input name="metadata.name" disabled />
         </Form.Item>
-        <Form.Item label={t('Alias')} desc={t('ALIAS_DESC')}>
+        <Form.Item label={t('ALIAS')} desc={t('ALIAS_DESC')}>
           <Input
             name="metadata.annotations['kubesphere.io/alias-name']"
             maxLength={63}
           />
         </Form.Item>
-        <Form.Item label={t('Description')} desc={t('DESCRIPTION_DESC')}>
+        <Form.Item label={t('DESCRIPTION')} desc={t('DESCRIPTION_DESC')}>
           <TextArea
             name="metadata.annotations['kubesphere.io/description']"
             maxLength={256}

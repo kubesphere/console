@@ -17,12 +17,22 @@
  */
 
 module.exports = {
+  NODE_SI: '節點',
+  NODE_PL: '節點',
+  MASTER_NODE_SI: 'Master 節點',
+  MASTER_NODE_PL: 'Master 節點',
+  WORKER_NODE_SI: '工作節點',
+  WORKER_NODE_PL: '工作節點',
+
   'Cluster Node': '集群節點',
+  CLUSTER_NODE_PL: '集群節點',
+  'Cluster Nodes': '集群節點',
+
   'Edge Node': '邊緣節點',
   'Edge Nodes': '邊緣節點',
   'Master Node': 'Master 節點',
   'Worker Node': '工作節點',
-  'Add Node': '添加節點',
+  ADD_NODE: '添加節點',
   'System Version': '系統版本',
   'Node Status': '節點狀態',
   'Online Nodes': '在線節點',
@@ -43,12 +53,13 @@ module.exports = {
   'CPU Utilization': 'CPU 使用情況',
   'Memory Utilization': '記憶體使用情況',
   'Pod Count': '容器組數量',
+  PODS: '容器組',
   'Pod Usage': '容器組使用情況',
   'Pod Quantity Trend': '容器組數量變化',
   'Local Storage Capacity': '本地儲存容量',
   used: '已用',
   'Resource Usage Status': '資源使用狀態',
-  Taints: '汙點',
+  TAINTS: '汙點',
   taints: '汙點',
   Taint: '汙點',
   taint: '汙點',
@@ -70,7 +81,7 @@ module.exports = {
   PREFER_NOSCHEDULE_OPTION: '盡量不調度 (PreferNoSchedule)',
   NOEXECUTE_OPTION: '不允許並驅逐已有容器組 (NoExecute)',
 
-  'Taint Management': '汙點管理',
+  MANAGE_TAINT: '汙點管理',
   'Common Taints': '公共汙點',
   'Node List': '主機列表',
   'Node Taints': '主機汙點',
@@ -132,7 +143,7 @@ module.exports = {
   IN_USE_Node_IP: '節點 IP {ip} 已被使用',
   IN_USE_Node_NAME: '節點名稱 {name} 已被使用',
   'Add Edge Node': '添加邊緣節點',
-  "Please input the node's name": '請輸入節點名稱',
+  NODE_NAME_EMPTY_DESC: '請輸入節點名稱',
   INSTALL_EDGENODE_DESC:
     '運行命令前請確保已在邊緣節點安裝容器運行時如 docker 或 containerd，詳見 <a href="https://kubeedge.io/en/docs/" target="_blank">文档</a>',
   ADD_DEFAULT_STAIN: '添加默認污點 {params}',

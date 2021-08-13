@@ -58,12 +58,12 @@ export default class AlertingPolicy extends React.Component {
       options: [
         {
           value: 'custom',
-          label: t('Custom Policies'),
+          label: t('CUSTOM_POLICIES'),
           count: this.props.store.ruleCount,
         },
         {
           value: 'builtin',
-          label: t('Built-In Policies'),
+          label: t('BUILT_IN_POLICIES'),
           count: this.props.store.builtinRuleCount,
         },
       ],
@@ -143,7 +143,7 @@ export default class AlertingPolicy extends React.Component {
     const { getFilteredValue } = this.props
     return [
       {
-        title: t('Alerting Message'),
+        title: t('ALERTING_MESSAGE'),
         dataIndex: 'value',
         render: (value, record) => (
           <Text
@@ -154,7 +154,7 @@ export default class AlertingPolicy extends React.Component {
         ),
       },
       {
-        title: t('Alerting Status'),
+        title: t('ALERTING_STATUS'),
         dataIndex: 'state',
         filters: this.getStatus(),
         filteredValue: getFilteredValue('state'),
@@ -171,7 +171,7 @@ export default class AlertingPolicy extends React.Component {
         ),
       },
       {
-        title: t('Alerting Type'),
+        title: t('ALERTING_TYPE'),
         dataIndex: 'labels.severity',
         filters: this.getAlertingTypes(),
         filteredValue: getFilteredValue('labels.severity'),
@@ -187,7 +187,7 @@ export default class AlertingPolicy extends React.Component {
         },
       },
       {
-        title: t('Alerting Policy'),
+        title: t('ALERTING_POLICY'),
         dataIndex: 'ruleName',
         isHideable: true,
         width: '12%',
@@ -204,7 +204,7 @@ export default class AlertingPolicy extends React.Component {
         ),
       },
       {
-        title: t('Alerting Resource'),
+        title: t('ALERTING_RESOURCE'),
         dataIndex: 'labels',
         isHideable: true,
         width: '16%',
@@ -222,7 +222,7 @@ export default class AlertingPolicy extends React.Component {
         },
       },
       {
-        title: t('Alert Active Time'),
+        title: t('ACTIVATED_AT'),
         dataIndex: 'activeAt',
         isHideable: true,
         width: 200,
@@ -241,7 +241,7 @@ export default class AlertingPolicy extends React.Component {
           tips={this.tips}
           tabs={namespace ? {} : this.tabs}
           icon="loudspeaker"
-          title={t('Alerting Messages')}
+          title={t('ALERTING_MESSAGES')}
           description={t('ALERT_MESSAGE_DESC')}
         />
         <Table

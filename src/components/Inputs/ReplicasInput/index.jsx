@@ -39,7 +39,7 @@ export default class ReplicasInput extends React.Component {
         <span className={styles.value}>{value}</span>
         <span className={styles.text}>
           <p>
-            <strong>{t('Replicas')}</strong>
+            <strong>{t('REPLICAS')}</strong>
           </p>
           <p>{t('Specify Replicas Number')}</p>
         </span>

@@ -17,7 +17,17 @@
  */
 
 module.exports = {
-  'Add Node': 'Add Node',
+  NODE_SI: 'Node',
+  NODE_PL: 'Nodes',
+  MASTER_NODE_SI: 'Master node',
+  MASTER_NODE_PL: 'Master nodes',
+  WORKER_NODE_SI: 'Worker node',
+  WORKER_NODE_PL: 'Worker nodes',
+
+  CLUSTER_NODE_PL: 'Cluster Nodes',
+  'Cluster Nodes': 'Cluster Nodes',
+
+  ADD_NODE: 'Add Node',
   'Add Node Type': 'Add Node Type',
   'Add Taint': 'Add Taint',
   'Add Type': 'Add Type',
@@ -60,6 +70,7 @@ module.exports = {
   'OS Image': 'OS Image',
   OsImage: 'OsImage',
   'Pod Count': 'Pod Count',
+  PODS: 'Pods',
   'Pod Quantity Trend': 'Pod Quantity Trend',
   'Pod Usage': 'Pod Usage',
   'Pod Used': 'Pod Used',
@@ -69,9 +80,9 @@ module.exports = {
   'System Version': 'System Version',
   taint: 'taint',
   Taint: 'Taint',
-  'Taint Management': 'Taint Management',
+  MANAGE_TAINT: 'Manage Taint',
   taints: 'taints',
-  Taints: 'Taints',
+  TAINTS: 'Taints',
   'Type Name': 'Type Name',
   Unschedulable: 'Unschedulable',
   used: 'used',
@@ -133,10 +144,10 @@ module.exports = {
   NODE_READY_TIP: 'If the node is healthy and ready to accept pods.',
 
   NODE_TYPES_Q: 'What are the types of cluster nodes?',
-  NODE_TYPES_A: 'Nodes include master nodes and worker nodes.',
+  NODE_TYPES_A: 'Nodes are classified into master nodes and worker nodes.',
   WHAT_IS_NODE_TAINTS_Q: 'What are node taints?',
   WHAT_IS_NODE_TAINTS_A:
-    'Taints allow a node to repel a set of Pods. Taints and tolerations work together to ensure that Pods are not scheduled onto inappropriate nodes.',
+    'Taints allow a node to repel certain Pods. Taints and tolerations work together to ensure that Pods are not scheduled onto inappropriate nodes.',
 
   NODE_TYPE_DESC:
     'Node types help users to divide nodes into different groups. Users can add the hosting node to a corresponding group by creating nodes of different types that are properly connected with each other. In this way, Pods can be deployed to appropriate physical nodes based on the group. Resource availability and business continuity can also be improved.',
@@ -146,7 +157,7 @@ module.exports = {
   IN_USE_Node_IP: 'Node IP {ip} in use',
   IN_USE_Node_NAME: 'Node name {name} in use',
   'Add Edge Node': 'Add Edge Node',
-  "Please input the node's name": 'Please input the node name',
+  NODE_NAME_EMPTY_DESC: 'Please set a name for the node.',
   INSTALL_EDGENODE_DESC:
     'Before running the command, you must install a container runtime such as Docker or containerd on your edge node. See the KubeEdge <a href="https://kubeedge.io/en/docs/" target="_blank">documentation</a> for more details.',
   ADD_DEFAULT_STAIN: 'Add the default taint {params}.',

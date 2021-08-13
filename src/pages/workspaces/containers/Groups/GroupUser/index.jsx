@@ -164,7 +164,7 @@ export default class GroupUser extends Component {
             <InputSearch
               className={styles.search}
               onSearch={this.handleSearch}
-              placeholder={t('Search by name')}
+              placeholder={t('SEARCH_BY_NAME')}
             />
           )}
         </div>

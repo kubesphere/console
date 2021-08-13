@@ -57,7 +57,7 @@ export default class StorageClasses extends React.Component {
     const { getSortOrder, prefix } = this.props
     return [
       {
-        title: t('Name'),
+        title: t('NAME'),
         key: 'name',
         dataIndex: 'name',
         sorter: true,
@@ -73,7 +73,7 @@ export default class StorageClasses extends React.Component {
         ),
       },
       {
-        title: t('Volume Count'),
+        title: t('VOLUMES'),
         dataIndex: 'volumeCount',
         isHideable: true,
         render: (count, record) =>
@@ -86,7 +86,7 @@ export default class StorageClasses extends React.Component {
         render: value => (value ? t('Yes') : '-'),
       },
       {
-        title: t('Support Volume Snapshot'),
+        title: t('VOLUME_SNAPSHOT_SUPPORT'),
         dataIndex: 'supportSnapshot',
         isHideable: true,
         render: supportSnapshot => (supportSnapshot ? t('True') : t('False')),

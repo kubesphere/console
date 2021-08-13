@@ -42,6 +42,7 @@ export default class AboutModal extends Component {
         width={600}
         hideHeader
         hideFooter
+        maskClosable
         {...this.props}
       >
         <div className={styles.describtion}>

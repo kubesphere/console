@@ -86,7 +86,7 @@ export default class Initializing extends Component {
 
   handleCopy = () => {
     copyToClipboard(toJS(this.props.store.agent))
-    Notify.success({ content: t('Copy successful') })
+    Notify.success({ content: t('COPY_SUCCESSFUL') })
   }
 
   showEditYAML = () => {
@@ -121,7 +121,7 @@ export default class Initializing extends Component {
     return (
       <Menu onClick={this.handleMenuClick}>
         <Menu.MenuItem key="edit-yaml">
-          <Icon name="pen" /> {t('Edit YAML')}
+          <Icon name="pen" /> {t('EDIT_YAML')}
         </Menu.MenuItem>
         <Menu.MenuItem key="rerun">
           <Icon name="refresh" /> {t('Rerun')}
@@ -154,8 +154,8 @@ export default class Initializing extends Component {
           <div className={styles.title}>
             <Text
               icon="cluster"
-              title={t('CLUSTER_CREATING')}
-              description={t.html('CLUSTER_CREATING_TIP')}
+              title={t('CREATING_CLUSTER')}
+              description={t.html('CREATING_CLUSTER_DESC')}
             />
             <div className={styles.action}>
               <Dropdown
@@ -177,26 +177,22 @@ export default class Initializing extends Component {
         <div className={styles.title}>
           <Loading size={28} />
           <Text
-            title={t.html('Waiting for the cluster to join')}
-            description={t.html('CLUSTER_WAITING_JOIN_DESC')}
+            title={t('WAIT_FOR_CLUSTER')}
+            description={t('WAIT_FOR_CLUSTER_DESC')}
           />
         </div>
         {connectionType === 'proxy' && (
           <div className={styles.content}>
             <div className={styles.card}>
-              <Text
-                title={t.html('CLUSTER_AGENT_TIP_1')}
-                description={t.html('CLUSTER_AGENT_TIP_1_DESC')}
-              />
+              <Text title={t.html('CLUSTER_AGENT_TIP_1')} />
             </div>
             <div className={styles.card}>
               <Text
                 className="margin-b12"
                 title={t.html('CLUSTER_AGENT_TIP_2')}
-                description={t.html('CLUSTER_AGENT_TIP_2_DESC')}
               />
               <Button className={styles.copy} onClick={this.handleCopy}>
-                {t('Click to Copy')}
+                {t('COPY')}
               </Button>
               <Loading spinning={isAgentLoading}>
                 {agent ? (

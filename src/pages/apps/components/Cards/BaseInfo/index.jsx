@@ -55,7 +55,7 @@ export default class BaseInfo extends React.Component {
           <div className={styles.words}>
             <dl>
               <dd>{detail.name}</dd>
-              <dt>{t('Name')}</dt>
+              <dt>{t('NAME')}</dt>
             </dl>
             <dl>
               <dd>

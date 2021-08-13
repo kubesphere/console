@@ -34,6 +34,7 @@ module.exports = {
 
   'Apps Management': '应用管理',
   'App Store Management': '应用商店管理',
+  PROVIDER: '提供商',
 
   Apps: '应用',
   'App Info': '应用信息',
@@ -81,7 +82,6 @@ module.exports = {
   Operator: '操作者',
   'Rejection Reason': '拒绝原因',
   'Review Status': '审核状态',
-  'Updated Time': '更新时间',
   Submitter: '提交者',
   Handle: '处理',
   'Review Content': '审核内容',
@@ -119,6 +119,7 @@ module.exports = {
   'App Number': '应用编号',
   'App Version Types': '交付类型',
   'Create Time': '创建时间',
+  'Created At': '创建时间',
   'Add Version': '添加版本',
   'New Version': '添加版本',
   'App Deploy': '应用部署',

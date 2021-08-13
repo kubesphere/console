@@ -87,7 +87,10 @@ export default class Placement extends Component {
           />
           <span className={styles.value}>
             {replicas}
-            <span> {t('Replicas')}</span>
+            <span>
+              {' '}
+              {replicas === 1 ? t('REPLICA_LOW_SI') : t('REPLICA_LOW_PL')}
+            </span>
           </span>
           <Icon
             name="add"

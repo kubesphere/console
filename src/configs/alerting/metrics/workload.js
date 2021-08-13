@@ -46,12 +46,12 @@ export default {
     ruleConfig: MEMORY_RULE_CONFIG,
   },
   'namespace:workload_net_bytes_transmitted:sum_irate{$1}': {
-    label: 'network data transmitting rate',
+    label: 'DATA_SEND_RATE',
     prefixIcon: 'network',
     ruleConfig: BANDWIDTH_RULE_CONFIG,
   },
   'namespace:workload_net_bytes_received:sum_irate{$1}': {
-    label: 'network data receiving rate',
+    label: 'DATA_RECEIVE_RATE',
     prefixIcon: 'network',
     ruleConfig: BANDWIDTH_RULE_CONFIG,
   },

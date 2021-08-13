@@ -23,7 +23,7 @@ module.exports = {
     '总共收录了 <span class={className}>{containers}</span> 个容器<br/> <span class={className}> {logs} </span> 条日志信息',
   LOG_DATE: 'YYYY年MM月DD日HH时',
   EVENT_DATE: 'YYYY年MM月DD日0时',
-  topic: '主题',
+  TOPIC: '主题',
   Keyword: '关键字',
   'Region Data': '元数据',
   'Refresh Rate': '刷新频率',
@@ -77,25 +77,25 @@ module.exports = {
   NO_AUDITING_TODAY: '今日没有收录的操作审计',
 
   LOG_COLLECTION_DESC:
-    '系统将收集每个容器的标准输出和标准错误输出日志，并将其发送到一个或多个目标服务',
-  'Add Log Receiver': '添加日志接收器',
+    '系统将收集每个容器的标准输出和标准错误输出日志，并将其发送到一个或多个目标服务。',
+  ADD_LOG_RECEIVER: '添加日志接收器',
   EMPTY_LOG_COLLECTIONS:
-    '暂时没有设置日志收集器，您可以添加日志收集器将日志导出到外埠的日志收集工具中',
+    '没有找到日志接收器。您可以添加日志接收器将日志导出到外部日志收集工具中。',
   LOG_COLLECTION_TIPS:
-    '每种类型的日志接收器只能添加一个，如果已存在则只能修改，不可以再添加',
+    '每种类型的日志收集器只能添加一个。如果您已经添加一种类型的日志收集器，则不能再次添加。',
 
   Address: '地址',
-  'Service Address': '服务地址',
-  'Add Service Address': '添加服务地址',
-  'Please input service address': '请输入服务地址',
+  SERVICE_ADDRESS: '服务地址',
+  ADD_SERVICE_ADDRESS: '添加',
+  ENTER_SERVICE_ADDRESS: '请输入服务地址。',
 
   URL_SYNTAX_ERROR: 'URL 语法错误',
   'Please enter the address': '请输入地址',
   LOG_COLLECTION_ES_URL_TIPS:
-    '默认使用系统部署的 Elasticsearch，也可以输入外部或者单独部署的 Elasticsearch 地址',
+    '默认使用系统部署的 Elasticsearch 服务，您也可以输入在集群内部或外部单独部署的 Elasticsearch 服务的地址。',
   LOG_COLLECTION_ES_INDEX_TIPS:
-    '默认按日期分类建立索引，例：索引前缀-2020.01.01',
-  LOG_COLLECTION_FLUENTD_URL_TIPS: '输入接收日志的 Fluentd 的地址',
+    '默认按日期分类建立索引，例如：索引前缀-2020.01.01。',
+  LOG_COLLECTION_FLUENTD_URL_TIPS: '输入接收日志的 Fluentd 的地址。',
 
   'Refresh Interval': '刷新频率',
   'Recently Updated': '最近刷新',
@@ -107,28 +107,28 @@ module.exports = {
   'Log Receiver': '日志接收器',
   Activate: '激活',
   'Real-Time Data': '实时数据',
-  'Index Prefix': '索引前缀',
+  INDEX_PREFIX: '索引前缀',
 
   'Resource Name & Type': '资源名称与类型',
 
   TOOLBOX_SHIFT_TIPS: ' 👻 Shift + 鼠标左键 可以在新窗口中打开',
-  'Hide help information': '不再显示帮助信息',
-  ES_DESC: 'Elasticsearch 是分布式、RESTful 风格的搜索和分析引擎',
-  KAFKA_DESC: 'Kafka 是流行的开源流处理平台',
-  FLUENTD_DESC: 'Fluentd 是提供统一日志处理层的开源数据收集器',
+  HIDE_HELP_INFORMATION: '隐藏帮助信息',
+  ES_DESC: 'Elasticsearch 是分布式、RESTful 风格的搜索和分析引擎。',
+  KAFKA_DESC: 'Kafka 是流行的开源流处理平台。',
+  FLUENTD_DESC: 'Fluentd 是提供统一日志处理层的开源数据收集器。',
   LOG_COLLECTION_ENABLE_TIPS: '新的状态需 1 分钟左右生效',
   'Passwords must be at least 6 characters long': '密码至少 6 个字节',
   CONTAINER_REAL_TIME_LOGS_UNSUPPORTED_TIPS:
     '容器在当前状态下不支持实时日志，请稍后再试',
   TOTAL_LOGS_TODAY:
     '今日总共收录了 <span class={className}>{containers}</span> 个容器<br/> <span class={className}> {logs} </span> 条日志信息',
-  START_REAL_TIME_LOG: '开始实时日志',
-  STOP_REAL_TIME_LOG: '关闭实时日志',
+  START_REAL_TIME_LOG: '启用实时日志',
+  STOP_REAL_TIME_LOG: '停止实时日志',
   LOG_EXPORT: '日志导出',
   CUSTOM_MONITORING_DASHBOARD: '自定义监控面板',
   CREATE_CUSTOM_MONITORING_DASHBOARD: '创建自定义监控面板',
-  SELECT_SUITABLE_MONITORING_TEMPLATE: '选择适合您应用应用模板',
-  CUSTON_MONITORING_TEMPLATE_DESC: '监控面板将根据应用类型生成默认的面板配置',
+  SELECT_MONITORING_TEMPLATE: '选择监控模板',
+  CUSTON_MONITORING_TEMPLATE_DESC: '根据所选应用类型生成默认模板或自定义模板。',
   SERVICE_BUILT_INTERFACE: '服务已内置监控数据抓取接口',
   TOTAL_EVENTS_TODAY:
     '今日总共收录了 <span class={className}> {events} </span> 条事件',
@@ -141,4 +141,14 @@ module.exports = {
   LOGGING_LOG_COLLECTOR: '日志接收器',
   EVENTS_LOG_COLLECTOR: '事件日志接收器',
   AUDITING_LOG_COLLECTOR: '审计日志接收器',
+
+  // Log Collection
+  LOG_COLLECTION: '日志收集',
+  LOG_ADDRESS: '地址：',
+  LOG_COLLECTING: '收集中',
+  LOG_CLOSE: '关闭',
+  INVALID_SERVICE_ADDRESS: '服务地址无效。',
+  EXAMPLE: '例如：',
+  ENTER_PORT_NUMBER: '请输入端口号。',
+  PARAMETER_REQUIRED: '此参数为必填项。',
 }

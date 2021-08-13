@@ -98,6 +98,7 @@ export default class ProjectSelect extends Component {
         onFetch={this.fetchProjects}
         searchable
         clearable
+        placeholder=" "
         {...rest}
       />
     )

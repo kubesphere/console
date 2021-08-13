@@ -218,15 +218,15 @@ class Overview extends React.Component {
       },
       {
         type: 'controller-manager',
-        name: t('Controller Manager'),
+        name: t('CONTROLLER_MANAGER'),
       },
       {
         type: 'scheduler',
-        name: t('K8s Scheduler'),
+        name: t('KUBERNETES_SCHEDULER'),
       },
       {
         type: 'node',
-        name: t('Node'),
+        name: t('NODE'),
       },
     ]
 
@@ -260,7 +260,7 @@ class Overview extends React.Component {
     const { isLoading = false } = this.componentMonitoringStore.health
 
     return (
-      <Card className={styles.components} title={t('Component Status')}>
+      <Card className={styles.components} title={t('COMPONENT_STATUS')}>
         <Loading spinning={isLoading}>
           <div className={styles.wrapper}>
             {this.renderServiceComponents()}

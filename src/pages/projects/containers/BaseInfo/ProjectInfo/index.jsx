@@ -67,7 +67,7 @@ export default class ProjectInfo extends React.Component {
             <div>
               <Link to={`/workspaces/${workspace}`}>{workspace}</Link>
             </div>
-            <p>{t('Workspace')}</p>
+            <p>{t('WORKSPACE')}</p>
           </div>
           <div className={styles.item}>
             <div>{get(detail, 'creator') || '-'}</div>

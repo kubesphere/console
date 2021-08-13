@@ -220,13 +220,13 @@ export default class ContainerItem extends React.Component {
             <p>{t(reason)}</p>
           ) : (
             <p>
-              {t('Image')}:{detail.image}
+              {t('IMAGE')}:{detail.image}
             </p>
           )}
         </div>
         <div className={styles.text}>
           <div>{isUndefined(status) ? '-' : t(status)}</div>
-          <p>{t('Status')}</p>
+          <p>{t('STATUS')}</p>
         </div>
         <div className={styles.text}>
           <div>

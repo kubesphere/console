@@ -36,16 +36,16 @@ export default class BaseInfo extends React.Component {
         />
         <Form className={styles.form} data={formTemplate} ref={formRef}>
           <Form.Item
-            label={t('Name')}
+            label={t('NAME')}
             desc={t('NAME_DESC')}
             rules={[
-              { required: true, message: t('Please input name') },
+              { required: true, message: t('NAME_EMPTY_DESC') },
               { pattern: PATTERN_NAME, message: t('PATTERN_NAME_INVALID_TIP') },
             ]}
           >
             <Input name="name" autoFocus={true} maxLength={63} />
           </Form.Item>
-          <Form.Item label={t('Description')}>
+          <Form.Item label={t('DESCRIPTION')}>
             <TextArea name="description" />
           </Form.Item>
         </Form>

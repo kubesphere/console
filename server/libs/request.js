@@ -69,11 +69,17 @@ const send_dockerhub_request = ({ params, path, headers }) => {
     headers,
     agent: httpsAgent,
   }
-
   return request['get'](`${serverConfig.dockerHubUrl}${path}`, params, options)
+}
+
+const send_harbor_request = ({ path }) => {
+  return request['get'](
+    `${path.replace('http:/', 'http://').replace('https:/', 'https://')}`
+  )
 }
 
 module.exports = {
   send_gateway_request,
   send_dockerhub_request,
+  send_harbor_request,
 }

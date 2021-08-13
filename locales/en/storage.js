@@ -17,7 +17,7 @@
  */
 
 module.exports = {
-  'Allow Volume Expansion': 'Allow Volume Expansion',
+  STORAGE_VOLUME_EXTENSION: 'Storage Volume Extension',
   'Available Capacity': 'Available Capacity',
   'Create Snapshot': 'Create Snapshot',
   'Create Storage Class': 'Create Storage Class',
@@ -44,25 +44,26 @@ module.exports = {
   'Parameters (key-value pairs)': 'Parameters (key-value pairs)',
   PersistentVolumeClaim: 'PersistentVolumeClaim',
   PersistentVolumes: 'PersistentVolumes',
-  'Reclaim Policy': 'Reclaim Policy',
+  RECLAMATION_POLICY: 'Reclamation Policy',
+  CREATE: 'Create',
   Scalable: 'Scalable',
   'Set as default storage class': 'Set as default storage class',
   'Snapshot Message': 'Snapshot Message',
   'Snapshots Message': 'Snapshot Message',
   'Storage Class': 'Storage Class',
   'Storage Class Name': 'Storage Class Name',
-  'Storage Class Settings': 'Storage Class Settings',
+  STORAGE_CLASS_SETTINGS: 'Storage Class Settings',
   'storage classes': 'storage classes',
-  'Storage System': 'Storage System',
+  STORAGE_SYSTEM: 'Storage System',
   STORAGE_CLASS_CREATE_DESC:
     'The Storage Class is configured by the cluster administrator to configure storage server parameters and provide storage for cluster users by class.',
   StorageClasses: 'StorageClasses',
   storageclasses: 'storageclasses',
-  'Support Volume Snapshot': 'Support Volume Snapshot',
-  'Supported Access Mode': 'Supported Access Mode',
+  VOLUME_SNAPSHOT_SUPPORT: 'Volume Snapshot Support',
+  ACCESS_MODE: 'Access Mode',
   'Used Capacity': 'Used Capacity',
   'Clone Volume': 'Clone Volume',
-  'Volume Count': 'Volume Count',
+  VOLUMES: 'Volumes',
   'The volume name exists': 'The volume name exists',
   'The volume size must be greater than zero':
     'The volume size must be greater than zero',
@@ -100,7 +101,7 @@ module.exports = {
 
   PROVISIONER_DESC: 'Provide backend storage',
 
-  ACCESS_MODES_DESC: 'Select the access mode supported by the storage class.',
+  ACCESS_MODES_DESC: 'Select an access mode supported by the storage class.',
 
   DELETE_STORAGE_TIP:
     'If the storage volume is being mounted, delete it when the workload is deleted.',
@@ -108,7 +109,7 @@ module.exports = {
     'ReadWriteOnce: Single node read and write.<br/>ReadOnlyMany: Multi-node read-only.<br/>ReadWriteMany: Multi-node read and write.<br/>Only one mode can be used when mounting.',
 
   STORAGE_CLASS_DESC:
-    'A StorageClass provides a way for administrators to configure the "classes" of storage they offer.',
+    'Storage classes support dynamic volume provisioning, allowing administrators to create new storage volumes on demand.',
 
   'STORAGE-CLASSES_BASEINFO_DESC':
     'The storage type records the configuration information of a certain type of storage provided by the administrator. Before creating a specific type of storage volume, the corresponding storage type must be configured.',
@@ -132,59 +133,63 @@ module.exports = {
   WHAT_IS_LOCAL_VOLUME_Q: 'What is a Local Volume?',
   WHAT_IS_LOCAL_VOLUME_A:
     'A local volume is a mounted local storage device, such as a disk, partition, or directory.',
-  CHOOSE_STORAGE_SYSTEM_TIP: 'Choose the Storage System You Need',
+  CHOOSE_STORAGE_SYSTEM_TIP: 'Select Storage System',
   PROVISIONER_DEPENDENCE_DESC:
-    'You need to deploy the corresponding storage plugin for a storage system first so that it can provide services.',
+    'Storage plug-ins need to be deployed in the storage system to provide services.',
 
   VOLUME_EXPAND_TIPS:
     'The current PVC has been mounted to the work load, so the expansion will lead to the workload restart, and a new version. Business may be a brief interruption. ',
 
   QINGCLOUD_CSI_DESC:
-    'The QingCloud CSI plugin implements the Container Storage Interface (CSI) of Kubernetes, enabling the container orchestrator (CO) to use QingCloud storage. Currently, the QingCloud CSI plugin supports block storage services on QingCloud Platform. For detailed information, refer to <a href="https://github.com/yunify/qingcloud-csi/blob/master/README.md#feature-matrix">features</a>.',
+    'Use QingCloud CSI as the underlying storage plug-in. For more information, see <a href="https://github.com/yunify/qingcloud-csi/blob/master/README.md#feature-matrix">QingCloud CSI</a>.',
+
+  MAXSIZE: 'Maximum Size',
+  TYPE: 'Type',
+  MINSIZE: 'Minimum Size',
+  STEPSIZE: 'Step Size',
+  FSTYPE: 'File System Type',
+  TAGS: 'Tag',
 
   QINGCLOUD_CSI_TYPE_DESC:
-    'On QingCloud Public Cloud Platform, 0 represents high performance volume. 2 represents high capacity volume. 3 represents super high performance volume. 5 represents Enterprise Server SAN. 100 represents standard volume.',
-  CREATE_VOLUME_MAX_SIZE: 'Volume size upper limit',
-  CREATE_VOLUME_STEP_SIZE: 'Volume size increment',
-  CREATE_VOLUME_MIN_SIZE: 'Volume size lower limit',
-  VOLUME_FS_TYPE: 'ext3, ext4, xfs',
+    'On QingCloud Public Cloud Platform, 0 means high performance volume; 2 high capacity volume; 3 ultra-high performance volume; 5 enterprise server SAN (NeonSAN); 100 standard volume; 200 enterprise SSD.',
+  CREATE_VOLUME_MAX_SIZE: 'Set the maximum size of the storage volume.',
+  CREATE_VOLUME_STEP_SIZE: 'Set the step size of the storage volume.',
+  CREATE_VOLUME_MIN_SIZE: 'Set the minimum size of the storage volume.',
+  VOLUME_FS_TYPE:
+    'Set the file system type of the storage volume. The value can be ext3, ext4, or xfs, and it defaults to ext4.',
 
   GLUSTERFS_RESTURL_DESC:
-    'Heketi service url which provisions gluster volumes on demand. ',
-  GLUSTERFS_ID_DESC: 'Gluster ID',
+    'Gluster REST service or Heketi service URL that provisions Gluster volumes on demand.',
+  GLUSTERFS_ID_DESC: 'The Gluster cluster ID.',
   GLUSTERFS_RESTAUTHENABLED_DESC: 'Enable authentication to the REST server.',
   GLUSTERFS_RESTUSER_DESC:
-    'The Gluster REST service/Heketi user who has access to creating volumes in the Gluster Trusted Pool.',
-  GLUSTERFS_SECRET_NAMESPACE_DESC:
-    'Identification of Secret instance that contains user password to use when talking to Gluster REST service.',
-  GLUSTERFS_SECRET_NAME_DESC:
-    'These parameters are optional; an empty password will be used when both secretNamespace and secretName are omitted.',
+    'Gluster REST service or Heketi user who can create volumes in the Gluster Trusted Pool.',
+  GLUSTERFS_SECRET_NAMESPACE_DESC: 'Namespace of the Heketi user secret.',
+  GLUSTERFS_SECRET_NAME_DESC: 'Name of the Heketi user secret.',
   GLUSTERFS_GID_MIN_DESC:
-    'The minimum value of GID range for the storage class. A unique value (GID) in this range (gidMin-gidMax) will be used for dynamically provisioned volumes. These are optional values.',
+    'The minimum value of GID range for the storage class.',
   GLUSTERFS_GID_MAX_DESC:
-    'The maximum value of GID range for the storage class. A unique value (GID) in this range (gidMin-gidMax) will be used for dynamically provisioned volumes. These are optional values.',
-  GLUSTERFS_VOLUME_TYPE_DESC:
-    'The volume type and its parameters can be configured with this optional value.',
+    'The maximum value of GID range for the storage class.',
+  GLUSTERFS_VOLUME_TYPE_DESC: 'Optional type of the volume.',
   QINGCLOUD_VOLUME_TAGS_DESC:
-    'Tags will be associated automatically when a hard drive is created. Please separate multiple tags with commas.',
+    'Add tags to the storage volume. Multiple tags need to be separated by commas.',
 
-  CEPHRBD_MONITORS_DESC:
-    'Ceph monitors, comma delimited. This parameter is required.',
+  CEPHRBD_MONITORS_DESC: 'IP address of Ceph monitors.',
   CEPHRBD_ADMIN_ID_DESC:
     'Ceph client ID that is capable of creating images in the pool.',
-  CEPHRBD_ADMIN_SECRET_NAME_DESC:
-    'The provided secret must have type “kubernetes.io/rbd”.',
-  CEPHRBD_ADMIN_SECRET_NAMESPACE_DESC: 'The namespace for adminSecretName',
-  CEPHRBD_POOL_DESC: 'Ceph RBD pool',
+  CEPHRBD_ADMIN_SECRET_NAME_DESC: 'Secret name of adminid.',
+  CEPHRBD_ADMIN_SECRET_NAMESPACE_DESC: 'The namespace for adminSecretName.',
+  CEPHRBD_POOL_DESC: 'Name of the Ceph RBD pool.',
   CEPHRBD_USERID_DESC:
     'Ceph client ID that is used to map the RBD image. Default is the same as adminId.',
   CEPHRBD_USER_SECRET_NAME_DESC:
-    'The name of Ceph Secret for userId to map RBD image',
+    'The name of Ceph Secret for userId to map RBD image.',
   CEPHRBD_USER_SECRET_NAMESPACE_DESC: 'The namespace for userSecretName',
-  CEPHRBD_FS_TYPE_DESC: 'fsType that is supported by kubernetes.',
-  CEPHRBD_IMAGE_FORMAT_DESC: 'Ceph RBD image format, “1” or “2”',
+  CEPHRBD_FS_TYPE_DESC: 'File system type of the storage volume.',
+  CEPHRBD_IMAGE_FORMAT_DESC:
+    'Option of the Ceph volume. The value can be "1" or "2". imageFeatures needs to be filled when you set imageFormat to "2".',
   CEPHRBD_IMAGE_FEATURES_DESC:
-    'This parameter is optional and should only be used if you set imageFormat to “2”.',
+    'Additional function of the Ceph cluster. The value should only be set when you set imageFormat to "2".',
 
   DEPENDENT_STORAGE_CLASS_DELETE_TIPS:
     'Please check if the storage class is being used by other resources. If there is any resource dependent on the storage class, you need to disable the resource first.',
@@ -203,4 +208,19 @@ module.exports = {
 
   VOLUME_MONITORING_TIP:
     'Kubernetes collects volume usage data, excluding data from unmounted volumes. For path-based volumes such as OpenEBS/Local PV and NFS, the data collected may be different from the actual amount. For detailed information, see <a href="https://github.com/kubesphere/kubesphere/issues/2921" target="_blank">volume monitoring data analysis</a>.',
+
+  // Storage Classes
+  RESTURL: 'REST URL',
+  CLUSTER_ID: 'Cluster ID',
+  ADD_PARAMETER: 'Add',
+  REST_AUTH_ENABLED: 'REST Authentication',
+  REST_USER: 'REST User',
+  VOLUME_TYPE: 'Volume Type',
+  REST_URL_EXAMPLE: 'IP address and port number',
+  SECRET_NAME: 'Secret Name',
+  REST_AUTH_TRUE: 'True',
+  CEPH_MONITOR_IP: 'IP address and port number',
+  SECRET_NAMESPACE: 'Secret Namespace',
+  GID_MIN: 'GID Minimum Value',
+  GID_MAX: 'GID Maximum Value',
 }

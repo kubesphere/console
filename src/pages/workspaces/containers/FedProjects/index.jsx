@@ -76,14 +76,14 @@ export default class Projects extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('Edit'),
+        text: t('EDIT'),
         action: 'edit',
         onClick: item => trigger('resource.baseinfo.edit', { detail: item }),
       },
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         onClick: item =>
           trigger('federated.project.delete', {
@@ -101,7 +101,7 @@ export default class Projects extends React.Component {
         {
           key: 'delete',
           type: 'danger',
-          text: t('Delete'),
+          text: t('DELETE'),
           onClick: () =>
             trigger('federated.project.delete.batch', {
               type: t(name),
@@ -121,7 +121,7 @@ export default class Projects extends React.Component {
   getColumns = () => {
     return [
       {
-        title: t('Name'),
+        title: t('NAME'),
         dataIndex: 'name',
         render: (name, record) => (
           <Avatar
@@ -139,13 +139,13 @@ export default class Projects extends React.Component {
         ),
       },
       {
-        title: t('Status'),
+        title: t('STATUS'),
         dataIndex: 'status',
         isHideable: true,
         render: status => <Status type={status} name={t(status)} flicker />,
       },
       {
-        title: t('Deployment Location'),
+        title: t('DEPLOYMENT_LOCATION'),
         dataIndex: 'clusters',
         isHideable: true,
         render: clusters => (

@@ -161,7 +161,7 @@ class BaseInfo extends React.Component {
   handleDelete = () => {
     const { detail } = this.store
     this.trigger('workspace.delete', {
-      type: t('Workspace'),
+      type: t('WORKSPACE'),
       resource: detail.name,
       detail,
       success: () => this.props.rootStore.routing.push('/'),
@@ -201,7 +201,7 @@ class BaseInfo extends React.Component {
             className={styles.title}
             icon="enterprise"
             title={detail.name}
-            description={detail.description || t('Workspace')}
+            description={detail.description || t('WORKSPACE')}
             ellipsis
           />
           <Text title={detail.manager} description={t('Manager')} />
@@ -213,7 +213,7 @@ class BaseInfo extends React.Component {
           />
           {this.enabledActions.includes('manage') && (
             <Button className={styles.action} onClick={this.showEdit}>
-              {t('Edit Info')}
+              {t('EDIT_INFO')}
             </Button>
           )}
         </div>
@@ -249,7 +249,7 @@ class BaseInfo extends React.Component {
           type="danger"
           onClick={this.handleDelete}
         >
-          {t('Delete')}
+          {t('DELETE')}
         </Button>
       </Panel>
     )

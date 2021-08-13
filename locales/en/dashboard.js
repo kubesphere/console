@@ -17,6 +17,7 @@
  */
 
 module.exports = {
+  DISK: 'Disk',
   'App Repositories': 'App Repositories',
   'Cluster Status': 'Cluster Status',
   'CPU Load Average': 'CPU Load Average',
@@ -24,10 +25,11 @@ module.exports = {
   'CPU Utilization': 'CPU Utilization',
   'create project': 'create project',
   CronJobs: 'CronJobs',
-  DaemonSets: 'DaemonSets',
+  DAEMONSETS: 'DaemonSets',
+  STATEFULSETS: 'StatefulSets',
   dashboard: 'dashboard',
   Dashboard: 'Dashboard',
-  Deployments: 'Deployments',
+  DEPLOYMENTS: 'Deployments',
   'Disk Throughput': 'Disk Throughput',
   'Disk Utilization': 'Disk Utilization',
   'Inbound Traffic': 'Inbound Traffic',
@@ -35,7 +37,7 @@ module.exports = {
   Jobs: 'Jobs',
   'KubeSphere Running Status': 'KubeSphere Running Status',
   'Last login time': 'Last Login',
-  'Local Storage': 'Local Storage',
+  LOCAL_STORAGE: 'Local Storage',
   'Log Data': 'Log Data',
   'Memory Usage': 'Memory Usage',
   'Memory Utilization': 'Memory Utilization',
@@ -54,7 +56,6 @@ module.exports = {
   Roles: 'Roles',
   Routes: 'Routes',
   Services: 'Services',
-  StatefulSets: 'StatefulSets',
   'Storage Classes': 'Storage Classes',
   'Super administrator': 'Super administrator',
   Usage: 'Usage',

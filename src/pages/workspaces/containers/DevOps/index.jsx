@@ -44,14 +44,14 @@ export default class DevOps extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('Edit'),
+        text: t('EDIT'),
         action: 'edit',
         onClick: item => trigger('devops.edit', { detail: item }),
       },
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         onClick: item => {
           trigger('resource.delete', {
@@ -108,7 +108,7 @@ export default class DevOps extends React.Component {
         {
           key: 'delete',
           type: 'danger',
-          text: t('Delete'),
+          text: t('DELETE'),
           action: 'delete',
           onClick: () => {
             trigger('devops.batch.delete', {
@@ -143,7 +143,7 @@ export default class DevOps extends React.Component {
 
   getColumns = () => [
     {
-      title: t('Name'),
+      title: t('NAME'),
       dataIndex: 'name',
       render: (name, record) => {
         const isTerminating = record.status === 'Terminating'
@@ -170,7 +170,7 @@ export default class DevOps extends React.Component {
       isHideable: true,
     },
     {
-      title: t('Status'),
+      title: t('STATUS'),
       dataIndex: 'status',
       isHideable: true,
       render: status => <Status type={status} name={t(status)} flicker />,

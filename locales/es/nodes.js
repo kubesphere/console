@@ -17,7 +17,14 @@
  */
 
 module.exports = {
-  'Add Node': 'Añadir nodo',
+  NODE_SI: 'Nodo',
+  NODE_PL: 'Nodos',
+  MASTER_NODE_SI: 'Nodo master',
+  MASTER_NODE_PL: 'Nodo master',
+  WORKER_NODE_SI: 'Nodo worker',
+  WORKER_NODE_PL: 'Nodo worker',
+
+  ADD_NODE: 'Añadir nodo',
   'Add Node Type': 'Añadir tipo de nodo',
   'Add Taint': 'Añadir Taint',
   'Add Type': 'Añadir tipo',
@@ -27,6 +34,8 @@ module.exports = {
   Annotations: 'Anotaciones',
   Architecture: 'Arquitectura',
   'Cluster Node': 'Nodo de clúster',
+  CLUSTER_NODE_PL: 'Nodo de clúster',
+  'Cluster Nodes': 'Nodo de clúster',
   'Edge Node': 'Nó de Borda',
   'Edge Nodes': 'Nó de Borda',
   'Common Taints': 'Taints Comunes',
@@ -59,6 +68,7 @@ module.exports = {
   'OS Image': 'Imagen del sistema operativo',
   OsImage: 'OsImage',
   'Pod Count': 'Numero de pods',
+  PODS: 'Pods',
   'Pod Quantity Trend': 'Tendencia de cantidad de pods',
   'Pod Usage': 'Uso de pods',
   'Pod Used': 'Pod utilizado',
@@ -68,9 +78,9 @@ module.exports = {
   'System Version': 'Versión del sistema',
   taint: 'taint',
   Taint: 'Taint',
-  'Taint Management': 'Gestión de Taints',
+  MANAGE_TAINT: 'Gestión de Taints',
   taints: 'taints',
-  Taints: 'Taints',
+  TAINTS: 'Taints',
   'Type Name': 'Escribe un nombre',
   Unschedulable: 'No programable',
   used: 'usado',
@@ -138,7 +148,7 @@ module.exports = {
   IN_USE_Node_IP: 'Node IP {ip} in use',
   IN_USE_Node_NAME: 'Node name {name} in use',
   'Add Edge Node': 'Add Edge Node',
-  "Please input the node's name": "Please input the node's name",
+  NODE_NAME_EMPTY_DESC: 'Please set a name for the node.',
   INSTALL_EDGENODE_DESC:
     'Before running the command, you must install a container runtime such as Docker or containerd on your edge node. See the KubeEdge <a href="https://kubeedge.io/en/docs/" target="_blank">documentation</a> for more details.',
   ADD_DEFAULT_STAIN: 'Adicionar mancha padrão {params}',

@@ -405,7 +405,7 @@ export default class ContainerSetting extends React.Component {
 
   containersValidator = (rule, value, callback) => {
     if (isEmpty(value)) {
-      return callback({ message: t('Please add at least one container.') })
+      return callback({ message: t('CONTAINER_EMPTY_DESC') })
     }
 
     callback()
@@ -452,7 +452,7 @@ export default class ContainerSetting extends React.Component {
       return (
         <Form.Item
           className="margin-b12"
-          label={t('Deployment Location')}
+          label={t('POD_REPLICAS')}
           tip={this.renderDeployPlacementTip()}
         >
           <ClusterReplicasControl
@@ -482,7 +482,7 @@ export default class ContainerSetting extends React.Component {
 
     return (
       <Form.Item
-        label={t('Container Image')}
+        label={t('CONTAINERS')}
         rules={[{ validator: this.containersValidator }]}
       >
         <ContainerList

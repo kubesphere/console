@@ -38,7 +38,7 @@ export default class CustomMonitoringDashboards extends React.Component {
   getColumns() {
     return [
       {
-        title: t('Name'),
+        title: t('NAME'),
         dataIndex: 'title',
         render: (_, record) => (
           <Text
@@ -55,7 +55,7 @@ export default class CustomMonitoringDashboards extends React.Component {
         ),
       },
       {
-        title: t('Created Time'),
+        title: t('CREATED_AT'),
         dataIndex: 'createTime',
         width: 150,
         render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
@@ -69,7 +69,7 @@ export default class CustomMonitoringDashboards extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('Edit'),
+        text: t('EDIT'),
         action: 'edit',
         onClick: item =>
           trigger('resource.baseinfo.edit', {
@@ -79,7 +79,7 @@ export default class CustomMonitoringDashboards extends React.Component {
       {
         key: 'editYaml',
         icon: 'pen',
-        text: t('Edit YAML'),
+        text: t('EDIT_YAML'),
         action: 'edit',
         onClick: item =>
           trigger('resource.yaml.edit', {
@@ -89,7 +89,7 @@ export default class CustomMonitoringDashboards extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         onClick: item =>
           trigger('resource.delete', {
@@ -121,7 +121,12 @@ export default class CustomMonitoringDashboards extends React.Component {
     return (
       <div>
         <ListPage {...this.props}>
-          <Banner {...bannerProps} tabs={this.tabs} />
+          <Banner
+            {...bannerProps}
+            title={t('CUSTOM_MONITORING')}
+            description={t('CUSTOM_MONITOR_DESC')}
+            tabs={this.tabs}
+          />
           <Table
             {...tableProps}
             itemActions={this.itemActions}

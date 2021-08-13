@@ -41,16 +41,16 @@ export default class ClusterCard extends React.Component {
             <ClusterTitle cluster={data} onClick={this.handleClick} />
           </Column>
           <Column className="is-2">
-            <Text title={data.nodeCount} description={t('Node Count')} />
+            <Text title={data.nodeCount} description={t('NODES')} />
           </Column>
           <Column className="is-2">
             <Text
               title={data.kubernetesVersion}
-              description={t('Kubernetes Version')}
+              description={t('KUBERNETES_VERSION')}
             />
           </Column>
           <Column className="is-2">
-            <Text title={data.provider} description={t('Provider')} />
+            <Text title={data.provider} description={t('PROVIDER')} />
           </Column>
           <Column className="is-2">
             <Text

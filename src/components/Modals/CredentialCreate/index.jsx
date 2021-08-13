@@ -196,7 +196,7 @@ export default class CredentialModal extends React.Component {
             <Form.Item label={t('Private key')}>
               <TextArea name="ssh.private_key" />
             </Form.Item>
-            <Form.Item label={t('passphrase')}>
+            <Form.Item label={t('Passphrase')}>
               <Input type="password" name="ssh.passphrase" />
             </Form.Item>
           </React.Fragment>
@@ -220,7 +220,7 @@ export default class CredentialModal extends React.Component {
       case 'secret_text':
         return (
           <React.Fragment>
-            <Form.Item label={t('secret')}>
+            <Form.Item label={t('Secret')}>
               <TextArea name="secret_text.secret" />
             </Form.Item>
           </React.Fragment>
@@ -264,7 +264,7 @@ export default class CredentialModal extends React.Component {
         visible={visible}
         closable={false}
         isSubmitting={this.isSubmitting}
-        title={title || t('Create Credentials')}
+        title={title || t('Create Credential')}
       >
         <Form data={this.formData} ref={this.formRef}>
           <Form.Item
@@ -298,7 +298,7 @@ export default class CredentialModal extends React.Component {
             <div className={styles.desc}>{t('EDIT_CREDENTIAL_DESC')}</div>
           ) : null}
           {this.renderCredentForm()}
-          <Form.Item label={t('Description')} desc={t('DESCRIPTION_DESC')}>
+          <Form.Item label={t('DESCRIPTION')} desc={t('DESCRIPTION_DESC')}>
             <TextArea name="description" maxLength={256} />
           </Form.Item>
         </Form>

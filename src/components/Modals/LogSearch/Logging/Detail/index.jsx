@@ -491,7 +491,7 @@ export default class DetailModal extends React.Component {
         <h3>{t('Region Data')}</h3>
         <div className={styles.dataList}>
           <div>
-            <h4>{t('Project')}</h4>
+            <h4>{t('PROJECT')}</h4>
             <p>
               <span>
                 <Icon name="project" /> {detailState.namespace}

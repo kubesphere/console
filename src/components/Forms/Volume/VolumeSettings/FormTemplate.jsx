@@ -23,8 +23,8 @@ import { toJS } from 'mobx'
 import { PropTypes } from 'prop-types'
 import { safeParseJSON } from 'utils'
 import { ACCESS_MODES } from 'utils/constants'
-import { Form, Slider, Select } from '@kube-design/components'
-import { AccessModes } from 'components/Inputs'
+import { Form, Select } from '@kube-design/components'
+import { AccessModes, UnitSlider } from 'components/Inputs'
 
 import StorageClassStore from 'stores/storageClass'
 
@@ -211,7 +211,7 @@ export default class VolumeSettings extends React.Component {
           label={t('Volume Capacity')}
           rules={[{ validator: this.sizeValidator }]}
         >
-          <Slider
+          <UnitSlider
             name="spec.resources.requests.storage"
             {...this.getSliderProps(storageClass)}
             withInput

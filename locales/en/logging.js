@@ -18,8 +18,8 @@
 
 module.exports = {
   Activate: 'Activate',
-  'Add Log Receiver': 'Add Log Receiver',
-  'Add Service Address': 'Add Service Address',
+  ADD_LOG_RECEIVER: 'Add Log Receiver',
+  ADD_SERVICE_ADDRESS: 'Add',
   Address: 'Address',
   'Auditing statistics': 'Auditing statistics',
   'Back to previous': 'Back to previous',
@@ -31,8 +31,8 @@ module.exports = {
   'Event statistics': 'Event statistics',
   'Exact Query': 'Exact Query',
   'Fuzzy Query': 'Fuzzy Query',
-  'Hide help information': 'Hide help information',
-  'Index Prefix': 'Index Prefix',
+  HIDE_HELP_INFORMATION: 'Hide Help Information',
+  INDEX_PREFIX: 'Index Prefix',
   Keyword: 'Keyword',
   'Log Collections': 'Log Collection',
   'Log Receiver': 'Log Receiver',
@@ -48,7 +48,7 @@ module.exports = {
   'Please enter a filter to search for logs.':
     'Please enter a filter to search for logs.',
   'Please enter the address': 'Please enter the address',
-  'Please input service address': 'Please input service address',
+  ENTER_SERVICE_ADDRESS: 'Please enter a service address.',
   'Real-Time Data': 'Real-Time Data',
   'Recently Configured Updated': 'Recently Configured Updated',
   'Recently Updated': 'Recently Updated',
@@ -59,9 +59,9 @@ module.exports = {
   'Resource Name & Type': 'Resource Name & Type',
   'Search Result': 'Search Result',
   'Search Rule': 'Search Rule',
-  'Service Address': 'Service Address',
+  SERVICE_ADDRESS: 'Service Address',
   'Time topology': 'Time topology',
-  topic: 'topic',
+  TOPIC: 'Topic',
   'Auditing log trends in the last 12 hours':
     'Auditing log trends in the last 12 hours',
   'Event trends in the last 12 hours': 'Event trends in the last 12 hours',
@@ -71,29 +71,29 @@ module.exports = {
   EVENT_DATE: 'YYYY/MM/DD 00:00',
   ES_DESC:
     'Elasticsearch is a distributed, RESTful search and analytics engine.',
-  KAFKA_DESC: 'Kafka is a popular open-source stream-processing platform.',
+  KAFKA_DESC: 'Kafka is a popular open-source, stream-processing platform.',
   FLUENTD_DESC:
-    'Fluentd is an open source data collector for unified logging layer.',
+    'Fluentd is an open-source data collector for unified logging layer.',
   TOTAL_COLLECTIONS: 'Total {num} receivers',
   TOOLBOX_SHIFT_TIPS:
     ' 👻 You can open the page in a new window with "SHIFT + LEFT CLICK".',
 
   LOG_COLLECTION_DESC:
-    'The system will collect the stdout and stderr logs from each container and send them to one or more target services.',
+    'The system collects standard output (stdout) and standard error (stderr) logs from each container and sends them to one or more target services.',
   LOG_COLLECTION_ENABLE_TIPS:
     'The new status takes about 1 minute to take effect.',
   LOG_COLLECTION_FLUENTD_URL_TIPS:
-    'Enter the address of the Fluentd that receives the log.',
+    'Enter the address of the Fluentd that receives logs.',
   EMPTY_LOG_COLLECTIONS:
-    'The log collector is not set up temporarily. You can add a log collector to export the log to the external log collector.',
+    'No log receiver is found. You can add log receivers to export logs to external log collectors.',
   LOG_COLLECTION_TIPS:
-    'Only one log receiver can be added for each type. If there is one already added, you are only allowed to edit it.',
+    'You can add one log receiver for each type. If a type of log receiver is already added, you cannot add it again.',
   URL_SYNTAX_ERROR: 'URL syntax error',
 
   LOG_COLLECTION_ES_URL_TIPS:
-    'The built-in Elasticsearch service is used by default. You can change it to use an Elasticsearch service deployed by your own either within or out of the cluster.',
+    'The built-in Elasticsearch service is used by default. You can also enter the IP address of Elasticsearch independently deployed inside or outside the cluster.',
   LOG_COLLECTION_ES_INDEX_TIPS:
-    'The indexes are built with prefix and the date, for example: {prefix}-2020.01.01',
+    'The index is created based on the date. For example, {prefix}-2020.01.01.',
   'Search Logs by': 'Search Logs by {field}',
   'KeyWord Log Query Tip':
     'Please enter the keyword to find the log. You can also find the error log by keywords such as “Error”, “Fail”, “Fatal”, “Exception” and “Warning”.',
@@ -137,9 +137,9 @@ module.exports = {
   LOG_EXPORT: 'Log Export',
 
   CREATE_CUSTOM_MONITORING_DASHBOARD: 'Create custom monitoring dashboard',
-  SELECT_SUITABLE_MONITORING_TEMPLATE: 'Select Suitable Monitoring Template',
+  SELECT_MONITORING_TEMPLATE: 'Select Monitoring Template',
   CUSTON_MONITORING_TEMPLATE_DESC:
-    'The default monitoring dashboard settings will be created based on the template you select.',
+    'Generate default monitoring template based on the application template you select or customize a template.',
   CUSTOM_MONITORING_DASHBOARD: 'Custom Monitoring Dashboard',
 
   SERVICE_BUILT_INTERFACE: 'service monitoring is built interface data capture',
@@ -168,4 +168,14 @@ module.exports = {
   LOGGING_LOG_COLLECTOR: 'Log Receiver',
   EVENTS_LOG_COLLECTOR: 'Events Log Receiver',
   AUDITING_LOG_COLLECTOR: 'Auditing Log Receiver',
+
+  // Log Collection
+  LOG_COLLECTION: 'Log Collection',
+  LOG_ADDRESS: 'Address: ',
+  LOG_COLLECTING: 'Collecting',
+  LOG_CLOSE: 'Close',
+  INVALID_SERVICE_ADDRESS: 'Invalid service address.',
+  EXAMPLE: 'Example: ',
+  ENTER_PORT_NUMBER: 'Please enter a port number.',
+  PARAMETER_REQUIRED: 'This parameter is mandatory.',
 }

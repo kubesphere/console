@@ -49,7 +49,7 @@ export default class CustomResources extends React.Component {
         ),
       },
       {
-        title: t('Name'),
+        title: t('NAME'),
         key: 'name',
         dataIndex: 'name',
       },

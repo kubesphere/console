@@ -88,7 +88,7 @@ export default class AlertPolicyDetail extends React.Component {
     {
       key: 'edit',
       icon: 'pen',
-      text: t('Edit'),
+      text: t('EDIT'),
       type: 'control',
       action: 'edit',
       onClick: () =>
@@ -103,7 +103,7 @@ export default class AlertPolicyDetail extends React.Component {
     {
       key: 'delete',
       icon: 'trash',
-      text: t('Delete'),
+      text: t('DELETE'),
       action: 'delete',
       type: 'danger',
       onClick: () =>
@@ -128,7 +128,7 @@ export default class AlertPolicyDetail extends React.Component {
 
     return [
       {
-        name: t('Status'),
+        name: t('STATUS'),
         value: (
           <Status
             type={detail.state}
@@ -139,7 +139,7 @@ export default class AlertPolicyDetail extends React.Component {
         ),
       },
       {
-        name: t('Alerting Type'),
+        name: t('ALERTING_TYPE'),
         value: level ? (
           <Tag type={level.type}>{t(level.label)}</Tag>
         ) : (
@@ -155,7 +155,7 @@ export default class AlertPolicyDetail extends React.Component {
         value: detail.duration,
       },
       {
-        name: t('Alert Active Time'),
+        name: t('ACTIVATED_AT'),
         value: time ? getLocalTime(time).format('YYYY-MM-DD HH:mm:ss') : '-',
       },
     ]
@@ -176,7 +176,7 @@ export default class AlertPolicyDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('Alerting Policies'),
+          label: t('ALERTING_POLICIES'),
           url: this.listUrl,
         },
       ],

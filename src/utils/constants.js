@@ -639,33 +639,33 @@ export const PROVISIONERS = [
     access_modes: ['ReadWriteOnce'],
     params: [
       {
-        key: 'type',
+        key: 'TYPE',
         type: 'input',
         desc: 'QINGCLOUD_CSI_TYPE_DESC',
       },
       {
-        key: 'maxSize',
+        key: 'MAXSIZE',
         type: 'input',
         desc: 'CREATE_VOLUME_MAX_SIZE',
       },
       {
-        key: 'stepSize',
+        key: 'STEPSIZE',
         type: 'input',
         desc: 'CREATE_VOLUME_STEP_SIZE',
       },
       {
-        key: 'minSize',
+        key: 'MINSIZE',
         type: 'input',
         desc: 'CREATE_VOLUME_MIN_SIZE',
       },
       {
-        key: 'fsType',
+        key: 'FSTYPE',
         type: 'input',
         defaultValue: 'ext4',
         desc: 'VOLUME_FS_TYPE',
       },
       {
-        key: 'tags',
+        key: 'TAGS',
         type: 'input',
         desc: 'QINGCLOUD_VOLUME_TAGS_DESC',
       },
@@ -673,24 +673,24 @@ export const PROVISIONERS = [
     description: 'QINGCLOUD_CSI_DESC',
   },
   {
-    label: 'Glusterfs',
+    label: 'GlusterFS',
     value: 'kubernetes.io/glusterfs',
     icon: 'glusterfs',
     access_modes: ['ReadWriteOnce', 'ReadOnlyMany', 'ReadWriteMany'],
     params: [
       {
-        key: 'resturl',
+        key: 'RESTURL',
         type: 'input',
-        placeholder: 'IPaddress:Port',
+        placeholder: 'REST_URL_EXAMPLE',
         desc: 'GLUSTERFS_RESTURL_DESC',
       },
       {
-        key: 'clusterid',
+        key: 'CLUSTER_ID',
         type: 'input',
         desc: 'GLUSTERFS_ID_DESC',
       },
       {
-        key: 'restauthenabled',
+        key: 'REST_AUTH_ENABLED',
         type: 'select',
         defaultValue: 'true',
         options: [
@@ -700,35 +700,35 @@ export const PROVISIONERS = [
         desc: 'GLUSTERFS_RESTAUTHENABLED_DESC',
       },
       {
-        key: 'restuser',
+        key: 'REST_USER',
         type: 'input',
         placeholder: 'rbd',
         desc: 'GLUSTERFS_RESTUSER_DESC',
       },
       {
-        key: 'secretNamespace',
+        key: 'SECRET_NAMESPACE',
         type: 'input',
         desc: 'GLUSTERFS_SECRET_NAMESPACE_DESC',
       },
       {
-        key: 'secretName',
+        key: 'SECRET_NAME',
         type: 'input',
         desc: 'GLUSTERFS_SECRET_NAME_DESC',
       },
       {
-        key: 'gidMin',
+        key: 'GID_MIN',
         type: 'input',
         placeholder: '2000-2147483647',
         desc: 'GLUSTERFS_GID_MIN_DESC',
       },
       {
-        key: 'gidMax',
+        key: 'GID_MAX',
         type: 'input',
         placeholder: '2000-2147483647',
         desc: 'GLUSTERFS_GID_MAX_DESC',
       },
       {
-        key: 'volumetype',
+        key: 'VOLUME_TYPE',
         type: 'input',
         desc: 'GLUSTERFS_VOLUME_TYPE_DESC',
       },
@@ -743,7 +743,7 @@ export const PROVISIONERS = [
       {
         key: 'monitors',
         type: 'input',
-        placeholder: '<host>:><port>',
+        placeholder: 'CEPH_MONITOR_IP',
         desc: 'CEPHRBD_MONITORS_DESC',
       },
       {

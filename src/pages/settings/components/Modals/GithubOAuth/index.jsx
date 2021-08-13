@@ -74,8 +74,8 @@ export default class GithubOAuthModal extends React.Component {
         <Columns className={styles.content}>
           <Column>
             <Form.Item
-              label={t('Name')}
-              rules={[{ required: true, message: t('Please input name') }]}
+              label={t('NAME')}
+              rules={[{ required: true, message: t('NAME_EMPTY_DESC') }]}
             >
               <Input name="name" defaultValue="github" disabled />
             </Form.Item>

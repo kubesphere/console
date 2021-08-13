@@ -150,7 +150,7 @@ export default class PipelinesList extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('Edit'),
+        text: t('EDIT'),
         action: 'edit',
         onClick: record => {
           this.handleAdvanceEdit(record.name)
@@ -168,7 +168,7 @@ export default class PipelinesList extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         onClick: record => {
           trigger('resource.delete', {
@@ -300,7 +300,7 @@ export default class PipelinesList extends React.Component {
 
   getColumns = () => [
     {
-      title: t('Name'),
+      title: t('NAME'),
       dataIndex: 'name',
       width: '20%',
       render: (name, record) => {
@@ -419,7 +419,7 @@ export default class PipelinesList extends React.Component {
         {
           key: 'delete',
           type: 'danger',
-          text: t('Delete'),
+          text: t('DELETE'),
           action: 'delete',
           onClick: () =>
             this.props.trigger('pipeline.batch.delete', {

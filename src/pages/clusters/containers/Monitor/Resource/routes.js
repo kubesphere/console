@@ -25,13 +25,13 @@ const PATH = '/clusters/:cluster/monitor-resource'
 export default [
   {
     path: `${PATH}/usage`,
-    title: 'Usage',
+    title: 'RESOURCE_USAGE',
     component: Usage,
     exact: true,
   },
   {
     path: `${PATH}/ranking`,
-    title: 'Usage Ranking',
+    title: 'USAGE_RANKING',
     component: UsageRanking,
     exact: true,
   },

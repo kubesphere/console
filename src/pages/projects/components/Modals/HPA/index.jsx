@@ -154,7 +154,7 @@ export default class HPAModal extends React.Component {
             />
             <Form.Item
               label={t('Resource Name')}
-              rules={[{ required: true, message: t('Please input name') }]}
+              rules={[{ required: true, message: t('NAME_EMPTY_DESC') }]}
             >
               <Input name="metadata.name" disabled />
             </Form.Item>

@@ -113,19 +113,19 @@ class VirtualResource extends React.Component {
   getMonitoringCfgs = () => [
     {
       type: 'deployment',
-      title: 'Deployments',
+      title: 'DEPLOYMENTS',
       legend: ['Deployments'],
       metricType: MetricTypes.deployment_count,
     },
     {
       type: 'statefulset',
-      title: 'StatefulSets',
+      title: 'STATEFULSETS',
       legend: ['StatefulSets'],
       metricType: MetricTypes.statefulset_count,
     },
     {
       type: 'daemonset',
-      title: 'DaemonSets',
+      title: 'DAEMONSETS',
       legend: ['DaemonSets'],
       metricType: MetricTypes.daemonset_count,
     },
@@ -162,7 +162,7 @@ class VirtualResource extends React.Component {
     {
       type: 'pod',
       title: 'Pods',
-      legend: ['Running Pods'],
+      legend: ['RUNNING_PODS'],
       metricType: MetricTypes.pod_running_count,
     },
   ]
@@ -173,7 +173,7 @@ class VirtualResource extends React.Component {
 
     return (
       <MonitoringController
-        title={t('Application Resources Usage')}
+        title={t('APPLICATION_RESOURCES_USAGE')}
         step="1h"
         times={24}
         onFetch={this.fetchData}

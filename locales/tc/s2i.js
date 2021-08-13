@@ -28,7 +28,7 @@ module.exports = {
   'Environment Params': '環境變量參數',
   'is Failed': '構建失敗',
   'Add Environment Variables': '添加環境參數',
-  'Container Settings': '容器設置',
+  CONTAINER_SETTINGS: '容器設置',
   NEW_TAG_DESC: '輸入重新構建鏡像的標籤',
   S2I_RELATIVE_PATH_DESC:
     '源代碼倉庫地址（目前支持 git）並且可以指定代碼分支及在源代碼終端的相對路徑',
@@ -62,8 +62,7 @@ module.exports = {
   S2I_DESC: '您可以選擇您的代碼開發語言，並將它們製作成鏡像',
   B2I_DESC: '您可以將已有成品構建成新的鏡像',
   'Please set the access policy for the container.': '設置容器的訪問策略',
-  'Please set the container name and computing resources.':
-    '對容器的名稱及容器的計算資源進行設置',
+  CONTAINER_SETTINGS_DESC: '對容器的名稱及容器的計算資源進行設置',
   'The health of the container will be checked regularly according to user needs.':
     '根據用戶需要，定時檢查容器健康狀況。',
   'Start Command': '啟動命令',

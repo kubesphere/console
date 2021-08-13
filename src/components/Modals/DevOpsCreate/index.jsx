@@ -135,7 +135,7 @@ export default class ProjectCreateModal extends React.Component {
 
     this.store.checkName({ name: value, cluster, workspace }).then(resp => {
       if (resp.exist) {
-        return callback({ message: t('Name exists'), field: rule.field })
+        return callback({ message: t('NAME_EXIST_DESC'), field: rule.field })
       }
       callback()
     })
@@ -183,14 +183,14 @@ export default class ProjectCreateModal extends React.Component {
           <Columns>
             <Column>
               <Form.Item
-                label={t('Name')}
+                label={t('NAME')}
                 desc={t('SERVICE_NAME_DESC')}
                 ref={this.nameRef}
                 rules={[
-                  { required: true, message: t('Please input name') },
+                  { required: true, message: t('NAME_EMPTY_DESC') },
                   {
                     pattern: PATTERN_SERVICE_NAME,
-                    message: t('Invalid name', {
+                    message: t('INVALID_NAME_DESC', {
                       message: t('SERVICE_NAME_DESC'),
                     }),
                   },
@@ -205,7 +205,7 @@ export default class ProjectCreateModal extends React.Component {
               </Form.Item>
             </Column>
             <Column>
-              <Form.Item label={t('Alias')} desc={t('ALIAS_DESC')}>
+              <Form.Item label={t('ALIAS')} desc={t('ALIAS_DESC')}>
                 <Input
                   name="metadata.annotations['kubesphere.io/alias-name']"
                   maxLength={63}
@@ -235,7 +235,7 @@ export default class ProjectCreateModal extends React.Component {
               </Column>
             )}
             <Column>
-              <Form.Item label={t('Description')} desc={t('DESCRIPTION_DESC')}>
+              <Form.Item label={t('DESCRIPTION')} desc={t('DESCRIPTION_DESC')}>
                 <TextArea
                   name="metadata.annotations['kubesphere.io/description']"
                   maxLength={256}

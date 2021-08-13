@@ -60,7 +60,7 @@ export default class Pods extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         onClick: item =>
           trigger('resource.delete', {
@@ -100,7 +100,7 @@ export default class Pods extends React.Component {
     const { getSortOrder } = this.props
     return [
       {
-        title: t('Name'),
+        title: t('NAME'),
         dataIndex: 'name',
         sorter: true,
         sortOrder: getSortOrder('name'),
@@ -128,7 +128,7 @@ export default class Pods extends React.Component {
         width: '15%',
       },
       {
-        title: t('Updated Time'),
+        title: t('UPDATED_AT'),
         dataIndex: 'startTime',
         sorter: true,
         sortOrder: getSortOrder('startTime'),

@@ -99,17 +99,17 @@ export default class LogCollection extends React.Component {
       options: [
         {
           value: 'logging',
-          label: t('Logging'),
+          label: t('LOGGING'),
           hidden: !globals.app.hasClusterModule(this.cluster, 'logging'),
         },
         {
           value: 'events',
-          label: t('Events'),
+          label: t('EVENTS'),
           hidden: !globals.app.hasClusterModule(this.cluster, 'events'),
         },
         {
           value: 'auditing',
-          label: t('Auditing'),
+          label: t('AUDITING'),
           hidden: !globals.app.hasClusterModule(this.cluster, 'auditing'),
         },
       ],
@@ -149,7 +149,7 @@ export default class LogCollection extends React.Component {
         disabled={this.store.list.isLoading}
         onClick={this.showCreateModal}
       >
-        {t('Add Log Receiver')}
+        {t('ADD_LOG_RECEIVER')}
       </Button>
     )
   }
@@ -159,7 +159,7 @@ export default class LogCollection extends React.Component {
     return (
       showCreate && (
         <CreateLogCollectionModal
-          title={`${t(`${this.component.toUpperCase()}_LOG_COLLECTOR`)}`}
+          title={t('ADD_LOG_RECEIVER')}
           store={this.store}
           visible={showCreate}
           isSubmitting={this.store.isSubmitting}
@@ -198,18 +198,18 @@ export default class LogCollection extends React.Component {
           <ICON width={40} height={40} />
           <Text
             title={<span className={styles.title}>{title}</span>}
-            description={`${t('Address')}: ${address}`}
+            description={`${t('LOG_ADDRESS')}${address}`}
           />
           <Text
-            title={collection.enabled ? t('Collecting') : t('Close')}
-            description={t('Status')}
+            title={collection.enabled ? t('LOG_COLLECTING') : t('LOG_CLOSE')}
+            description={t('STATUS')}
           />
           <Text title={t(collection.component)} description={t('Type')} />
           <Text
             title={getLocalTime(collection.creationTimestamp).format(
               'YYYY-MM-DD HH:mm:ss'
             )}
-            description={t('Created Time')}
+            description={t('CREATED_AT')}
           />
         </Panel>
       </Link>
@@ -232,7 +232,7 @@ export default class LogCollection extends React.Component {
         <Banner
           className={styles.header}
           icon="file"
-          title={t('Log Collections')}
+          title={t('LOG_COLLECTION')}
           description={t('LOG_COLLECTION_DESC')}
           tabs={this.tabs}
           extra={

@@ -61,7 +61,7 @@ export default class HomeModal extends React.Component {
     },
     {
       icon: 'project',
-      title: t('Search Logs by', { field: t('Project') }),
+      title: t('Search Logs by', { field: t('PROJECT') }),
       tips: t('Project Log Query Tip'),
       key: 'namespace_query',
     },
@@ -191,7 +191,7 @@ export default class HomeModal extends React.Component {
             },
             namespace_query: {
               icon: 'project',
-              text: t('Project'),
+              text: t('PROJECT'),
             },
             workload_query: {
               icon: 'backup',

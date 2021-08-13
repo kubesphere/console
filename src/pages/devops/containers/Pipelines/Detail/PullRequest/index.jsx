@@ -109,14 +109,14 @@ export default class Pullrequest extends React.Component {
 
   getColumns = () => [
     {
-      title: t('Status'),
+      title: t('STATUS'),
       width: '15%',
       render: record => (
         <Status {...getPipelineStatus(get(record, 'latestRun', {}))} />
       ),
     },
     {
-      title: t('Name'),
+      title: t('NAME'),
       dataIndex: 'displayName',
       width: '15%',
       render: displayName => (

@@ -135,7 +135,7 @@ export default class Branch extends React.Component {
 
   getColumns = () => [
     {
-      title: t('Status'),
+      title: t('STATUS'),
       dataIndex: 'status',
       width: '20%',
       render: (status, record) => (
@@ -143,7 +143,7 @@ export default class Branch extends React.Component {
       ),
     },
     {
-      title: t('Name'),
+      title: t('NAME'),
       dataIndex: 'name',
       width: '20%',
       render: name => (
@@ -166,7 +166,7 @@ export default class Branch extends React.Component {
       render: latestRun => result(latestRun, 'causes[0].shortDescription', ''),
     },
     {
-      title: t('Updated Time'),
+      title: t('UPDATED_AT'),
       dataIndex: 'updateTime',
       width: '20%',
       render: (updateTime, record) =>

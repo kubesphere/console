@@ -79,7 +79,7 @@ export default class DevOpsEditModal extends React.Component {
     return (
       <Modal.Form
         width={691}
-        title={t('Edit Info')}
+        title={t('EDIT_INFO')}
         icon="pen"
         data={detail}
         onOk={this.handleOk}
@@ -91,7 +91,7 @@ export default class DevOpsEditModal extends React.Component {
           label={t('DevOps Name')}
           desc={t('NAME_DESC')}
           rules={[
-            { required: true, message: t('Please input name') },
+            { required: true, message: t('NAME_EMPTY_DESC') },
             { pattern: PATTERN_NAME, message: t('PATTERN_NAME_INVALID_TIP') },
           ]}
         >
@@ -100,10 +100,10 @@ export default class DevOpsEditModal extends React.Component {
         <Form.Item label={t('Creator')} desc={t('DEVOPS_ADMIN_DESC')}>
           <Input name="creator" disabled />
         </Form.Item>
-        <Form.Item label={t('Alias')} desc={t('ALIAS_DESC')}>
+        <Form.Item label={t('ALIAS')} desc={t('ALIAS_DESC')}>
           <Input name="aliasName" maxLength={63} />
         </Form.Item>
-        <Form.Item label={t('Description')} desc={t('DESCRIPTION_DESC')}>
+        <Form.Item label={t('DESCRIPTION')} desc={t('DESCRIPTION_DESC')}>
           <TextArea maxLength={256} name="description" />
         </Form.Item>
       </Modal.Form>

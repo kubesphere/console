@@ -36,14 +36,14 @@ export default class BaseInfo extends React.Component {
           <Columns>
             <Column>
               <Form.Item
-                label={t('Name')}
-                rules={[{ required: true, message: t('Please input name') }]}
+                label={t('NAME')}
+                rules={[{ required: true, message: t('NAME_EMPTY_DESC') }]}
               >
                 <Input name="metadata.name" autoFocus={true} />
               </Form.Item>
             </Column>
             <Column>
-              <Form.Item label={t('Description')} desc={t('DESCRIPTION_DESC')}>
+              <Form.Item label={t('DESCRIPTION')} desc={t('DESCRIPTION_DESC')}>
                 <TextArea
                   name="metadata.annotations['kubesphere.io/description']"
                   maxLength={256}

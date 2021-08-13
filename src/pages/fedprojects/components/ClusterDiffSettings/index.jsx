@@ -108,7 +108,7 @@ export default class AdvancedSettings extends React.Component {
     return (
       <div>
         <Form data={this.formTemplate} ref={formRef} {...formProps}>
-          <Form.Group label={t('Deployment Location')}>
+          <Form.Group label={t('DEPLOYMENT_LOCATION')}>
             <Form.Item>
               <ClusterSelect
                 name="clusters"
@@ -120,7 +120,7 @@ export default class AdvancedSettings extends React.Component {
           </Form.Group>
           {module === 'service' && isEdit ? null : (
             <Form.Group
-              label={t('Container Image')}
+              label={t('CONTAINER_IMAGE')}
               desc={t('CLUSTER_CONTAINER_IMAGE_DIFF_DESC')}
               checkable
             >

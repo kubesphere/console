@@ -132,21 +132,21 @@ export default class CreateModal extends React.Component {
         visible={visible}
       >
         <Form.Item
-          label={t('Name')}
+          label={t('NAME')}
           desc={t('NAME_DESC')}
           tip={isWorkspaceRole ? t('WORKSPACE_ROLE_NAME_TIP') : null}
           rules={[
             { required: true, message: t('Please input role name') },
             {
               pattern: PATTERN_NAME,
-              message: t('Invalid name', { message: t('NAME_DESC') }),
+              message: t('INVALID_NAME_DESC', { message: t('NAME_DESC') }),
             },
             { validator: this.roleNameValidator },
           ]}
         >
           <Input name="metadata.name" maxLength={63} />
         </Form.Item>
-        <Form.Item label={t('Alias')} desc={t('ALIAS_DESC')}>
+        <Form.Item label={t('ALIAS')} desc={t('ALIAS_DESC')}>
           <Input
             name="metadata.annotations['kubesphere.io/alias-name']"
             maxLength={63}

@@ -25,6 +25,7 @@ import { get } from 'lodash'
 import { getLocalTime } from 'utils'
 import { getJobStatus } from 'utils/status'
 import RecordStore from 'stores/workload/record'
+import WorkloadStore from 'stores/workload'
 
 import { Button, Table } from '@kube-design/components'
 import { Card, Status } from 'components/Base'
@@ -38,6 +39,7 @@ class JobRecords extends React.Component {
     super(props)
 
     this.recordStore = props.recordStore || new RecordStore()
+    this.imitateJobsStore = new WorkloadStore('jobs')
   }
 
   get store() {
@@ -84,7 +86,7 @@ class JobRecords extends React.Component {
       ),
     },
     {
-      title: t('Status'),
+      title: t('STATUS'),
       dataIndex: 'status',
       width: '19%',
       render: (status, record) => {
@@ -119,7 +121,7 @@ class JobRecords extends React.Component {
   ]
 
   handleRerun = job => () => {
-    this.store.rerun(job).then(() => {
+    this.imitateJobsStore.rerun(job).then(() => {
       this.fetchData()
     })
   }

@@ -256,7 +256,7 @@ export default class UserSettingModal extends React.Component {
 
     return (
       <div className={styles.footer}>
-        {onCancel && <Button onClick={this.handlePrev}>{t('Previous')}</Button>}
+        {onCancel && <Button onClick={this.handlePrev}>{t('PREVIOUS')}</Button>}
         {onSave && (
           <Button type="control" onClick={this.handleSubFormSave}>
             {t('Save')}

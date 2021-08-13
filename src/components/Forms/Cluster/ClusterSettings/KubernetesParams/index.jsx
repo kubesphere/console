@@ -51,7 +51,7 @@ export default class KubernetesParams extends Component {
           <span>{value.maxPods}</span>
         </div>
         <a className={styles.edit} onClick={this.showEdit}>
-          {t('Edit')}
+          {t('EDIT')}
         </a>
       </div>
     )
@@ -61,7 +61,7 @@ export default class KubernetesParams extends Component {
     const { value } = this.props
     return (
       <Modal.Form
-        title={t('Edit')}
+        title={t('EDIT')}
         data={value}
         onOk={this.handleEdit}
         onCancel={this.hideEdit}

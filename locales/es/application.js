@@ -114,8 +114,7 @@ module.exports = {
     'Por favor introduce un nombre de aplicación',
   'Please input component version':
     'Por favor introduce la versión del componente',
-  'Please save the current form first':
-    'Por favor guarda el formulario actual primero',
+  SAVE_FORM_TIP: 'Por favor guarda el formulario actual primero',
   'Please try other query conditions':
     'Por favor prueba otras condiciones en la consulta',
   'Pod isolation ratio (unit: %)': 'Relación de aislamiento del Pod (unidad:%)',
@@ -211,7 +210,7 @@ module.exports = {
     'Usar la gestión de aplicación requiere crear una aplicación propia y activar la gestión para cada servicio',
   APP_REPOS_DESC:
     'El repositorio de aplicaciones proviene de un repositorio de Charts de Helm de terceros, que visualmente muestra y proporciona capacidades de despliegue y administración en KubeSphere. Los usuarios pueden desplegar rápidamente aplicaciones con un solo click, basadas en las plantillas del repositorio de aplicaciones.',
-  SEARCH_TIPS: 'Puedes filtrar según las condiciones relevantes',
+  SEARCH_TIPS: 'Search',
   APPLICATION_BASEINFO_DESC:
     'Información básica de la aplicación (como la descripción)',
   TRAFFIC_MANAGEMENT_NO_MICROSERVICE_TIP:

@@ -90,7 +90,7 @@ export default class PodDetail extends React.Component {
     {
       key: 'delete',
       icon: 'trash',
-      text: t('Delete'),
+      text: t('DELETE'),
       action: 'delete',
       type: 'danger',
       onClick: () =>
@@ -117,7 +117,7 @@ export default class PodDetail extends React.Component {
         value: cluster,
       },
       {
-        name: t('Project'),
+        name: t('PROJECT'),
         value: namespace,
       },
       {
@@ -125,7 +125,7 @@ export default class PodDetail extends React.Component {
         value: detail.app,
       },
       {
-        name: t('Status'),
+        name: t('STATUS'),
         value: t(status),
       },
       {
