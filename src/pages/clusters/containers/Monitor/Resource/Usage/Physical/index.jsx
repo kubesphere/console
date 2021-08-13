@@ -116,7 +116,7 @@ class PhysicalResource extends React.Component {
     },
     {
       type: 'memory',
-      title: 'Memory',
+      title: 'MEMORY',
       unitType: 'memory',
       legend: ['USAGE'],
       metricType: MetricTypes.memory_usage,

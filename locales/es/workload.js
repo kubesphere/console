@@ -676,9 +676,5 @@ module.exports = {
     'A certificate error was found, do you want to ignore the certificate verification',
   IGNORE_CERT_WARN_DESC:
     'Ignoring the verification certificate may cause the account password to be disclosed. ',
-<<<<<<< HEAD
   INVALID_PROJECT: 'Proyecto no válido',
-=======
-  'project is invalid': 'Proyecto no válido',
->>>>>>> 04a02527 (docs: compatible with the Mac of M1 chip)
 }

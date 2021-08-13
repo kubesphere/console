@@ -66,7 +66,7 @@ module.exports = {
   QUOTA: 'Quota',
   Node: 'Node',
   NODE: 'Node',
-  'Node Count': 'Node Count',
+  NODES: 'Nodes',
   NODE_USAGE_RANKING: 'Node Usage Ranking',
   'Only Show Selected': 'Only Show Selected',
   'Physical Resources': 'Physical Resources',

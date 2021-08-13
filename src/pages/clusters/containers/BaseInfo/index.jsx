@@ -103,7 +103,7 @@ export default class Overview extends React.Component {
 
     return [
       {
-        name: 'Node Count',
+        name: 'NODES',
         icon: 'nodes',
         value: this.getValue(data[MetricTypes.node_count]),
       },
@@ -113,12 +113,12 @@ export default class Overview extends React.Component {
         value: this.getValue(data[MetricTypes.cpu_usage], 'cpu'),
       },
       {
-        name: 'Memory',
+        name: 'MEMORY',
         icon: 'memory',
         value: this.getValue(data[MetricTypes.memory_usage], 'memory'),
       },
       {
-        name: 'Local Storage',
+        name: 'LOCAL_STORAGE',
         icon: 'storage',
         value: this.getValue(data[MetricTypes.disk_size_usage], 'disk'),
       },

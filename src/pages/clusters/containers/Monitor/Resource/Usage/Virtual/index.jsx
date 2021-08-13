@@ -113,19 +113,19 @@ class VirtualResource extends React.Component {
   getMonitoringCfgs = () => [
     {
       type: 'deployment',
-      title: 'Deployments',
+      title: 'DEPLOYMENTS',
       legend: ['Deployments'],
       metricType: MetricTypes.deployment_count,
     },
     {
       type: 'statefulset',
-      title: 'StatefulSets',
+      title: 'STATEFULSETS',
       legend: ['StatefulSets'],
       metricType: MetricTypes.statefulset_count,
     },
     {
       type: 'daemonset',
-      title: 'DaemonSets',
+      title: 'DAEMONSETS',
       legend: ['DaemonSets'],
       metricType: MetricTypes.daemonset_count,
     },

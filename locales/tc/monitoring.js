@@ -25,7 +25,7 @@ module.exports = {
   'Application Resources': '應用資源',
   APPLICATION_RESOURCES: '應用資源監控',
 
-  'Node Count': '節點數量',
+  NODES: '節點數量',
   'Cluster Status': '集群狀態',
   CLUSTER_STATUS: '集群狀態',
   'Cluster Monitors': '集群監控',

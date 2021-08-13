@@ -59,7 +59,7 @@ module.exports = {
   'No Refreshing': 'Sin refrescar',
   Node: 'Nodo',
   NODE: 'Nodo',
-  'Node Count': 'Cantidad de nodos',
+  NODES: 'Cantidad de nodos',
   NODE_USAGE_RANKING: 'Ranking de uso de nodos',
   'Only Show Selected': 'Mostrar solo seleccionados',
   'Physical Resources': 'Recursos físicos',

@@ -45,6 +45,7 @@ module.exports = {
   PersistentVolumeClaim: 'PersistentVolumeClaim',
   PersistentVolumes: 'PersistentVolumes',
   RECLAMATION_POLICY: 'Reclamation Policy',
+  CREATE: 'Create',
   Scalable: 'Scalable',
   'Set as default storage class': 'Set as default storage class',
   'Snapshot Message': 'Snapshot Message',

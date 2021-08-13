@@ -156,6 +156,7 @@ module.exports = {
   CURRENT_STEP: '当前步骤：{step}',
 
   'Log Info': '日志信息',
+  'Cluster Visibility': '集群可见性',
 
   CLUSTER_BASIC_INFO: '基本信息',
   NO_CLUSTER_TIP: '请添加至少 1 个集群',

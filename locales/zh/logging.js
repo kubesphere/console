@@ -113,9 +113,9 @@ module.exports = {
 
   TOOLBOX_SHIFT_TIPS: ' 👻 Shift + 鼠标左键 可以在新窗口中打开',
   HIDE_HELP_INFORMATION: '隐藏帮助信息',
-  ES_DESC: 'Elasticsearch 是分布式、RESTful 风格的搜索和分析引擎',
-  KAFKA_DESC: 'Kafka 是流行的开源流处理平台',
-  FLUENTD_DESC: 'Fluentd 是提供统一日志处理层的开源数据收集器',
+  ES_DESC: 'Elasticsearch 是分布式、RESTful 风格的搜索和分析引擎。',
+  KAFKA_DESC: 'Kafka 是流行的开源流处理平台。',
+  FLUENTD_DESC: 'Fluentd 是提供统一日志处理层的开源数据收集器。',
   LOG_COLLECTION_ENABLE_TIPS: '新的状态需 1 分钟左右生效',
   'Passwords must be at least 6 characters long': '密码至少 6 个字节',
   CONTAINER_REAL_TIME_LOGS_UNSUPPORTED_TIPS:

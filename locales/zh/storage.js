@@ -44,6 +44,7 @@ module.exports = {
   'Mount Info': '挂载信息',
   Mounted: '已挂载',
   'Not Mounted': '未挂载',
+  CREATE: '创建',
   Scalable: '可扩容性',
   RECLAMATION_POLICY: '回收机制',
   DELETE_STORAGE_TIP: '如果存储卷正在被挂载时，待工作负载被删除时一同删除。',

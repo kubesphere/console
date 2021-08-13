@@ -46,6 +46,7 @@ module.exports = {
   'Not Mounted': '未掛載',
   Scalable: '可擴容性',
   RECLAMATION_POLICY: '回收機制',
+  CREATE: 'Create',
   DELETE_STORAGE_TIP: '如果儲存卷正在被掛載時，等待工作負載被刪除時一同刪除。',
   SRORAGE_SETTING_DESC:
     'ReadWriteOnce：單個節點讀寫。<br/>ReadOnlyMany：多節點唯讀。<br/>ReadWriteMany：多節點讀寫。<br/>掛載時只能使用一種模式。',
