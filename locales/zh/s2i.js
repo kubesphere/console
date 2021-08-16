@@ -90,8 +90,7 @@ module.exports = {
     '选择编辑环境，您也可以查看对应的 <a href={link} target="_blank">编译模板</a>',
   S2I_TARGET_IMAGE_REPONSTRY_DESC:
     '需要选择一个有推送权限的镜像仓库存放镜像，如果没有可以<a href={link} target="_blank">新建镜像仓库密钥</a>',
-  S2I_IMAGENAME_DESC:
-    '镜像名称及 Tag，默认为代码仓库的项目名称，只能包含小写字母、数字、点及隔符("-")，且必须以小写字母或数字开头及结尾',
+  S2I_IMAGENAME_DESC: '镜像名称及 Tag，默认为代码仓库的项目名称',
   'Target Image Repository': '目标镜像仓库',
   'Rebuilt successfully; the image status will be refreshed soon.':
     '重建成功，镜像状态稍后将会更新',

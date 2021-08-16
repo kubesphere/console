@@ -133,7 +133,7 @@ module.exports = {
     'The source code repository address (currently supports git). You can specify the code branch and relative path in the source code terminal.',
   S2I_RELATIVE_PATH: 'Code Relative Path (optional):',
   S2I_IMAGENAME_DESC:
-    'Image name and tag, which defaults to the project name of the code repository.The value can contain only lowercase letters, numbers, dots and hyphens (-) and must begin and end with a lowercase letter or number. ',
+    'Image name and tag, which defaults to the project name of the code repository.',
   S2I_TARGET_IMAGE_REPONSTRY_DESC:
     'You need to select an image repository with push permissions to store the image. If it is not available, you need to <a href={link} target="_blank">create a new image repository Secret</a>.',
   S2I_BUILDERNAME_DESC:

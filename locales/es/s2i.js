@@ -135,7 +135,7 @@ module.exports = {
     'La dirección del repositorio del código fuente (actualmente es compatible con git). Puedes especificar ramas de código y rutas relativas en el terminal del código fuente.',
   S2I_RELATIVE_PATH: 'Ruta relativa del código (opcional):',
   S2I_IMAGENAME_DESC:
-    'Nombre de la imagen y tag, que por defecto es el nombre del proyecto del repositorio de código.Solo puede contener letras minúsculas, números ,puntos y guiones ("-"), y debe comenzar con una letra minúscula y terminar con un número o letra minúscula.',
+    'Nombre de la imagen y tag, que por defecto es el nombre del proyecto del repositorio de código.',
   S2I_TARGET_IMAGE_REPONSTRY_DESC:
     'Debes seleccionar un repositorio de imágenes con permisos push para almacenar la imagen. De lo contrario, puedes <a href={link} target="_blank">crear una nueva credencial de repositorio de imágenes</a> .',
   S2I_BUILDERNAME_DESC:
