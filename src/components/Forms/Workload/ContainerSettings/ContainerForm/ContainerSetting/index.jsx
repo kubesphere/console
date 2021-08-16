@@ -79,6 +79,22 @@ export default class ContainerSetting extends React.Component {
     })
   }
 
+  get workspaceLimitProps() {
+    const { workspaceQuota } = this.props
+    return !isEmpty(workspaceQuota)
+      ? {
+          limits: {
+            cpu: get(workspaceQuota, 'limits.cpu'),
+            memory: get(workspaceQuota, 'limits.memory'),
+          },
+          requests: {
+            cpu: get(workspaceQuota, 'requests.cpu'),
+            memory: get(workspaceQuota, 'requests.memory'),
+          },
+        }
+      : {}
+  }
+
   limitError = ''
 
   getFormTemplate(data, imageRegistries) {
@@ -183,6 +199,7 @@ export default class ContainerSetting extends React.Component {
               name="resources"
               defaultValue={defaultResourceLimit}
               onError={this.handleError}
+              workspaceLimitProps={this.workspaceLimitProps}
             />
           </Form.Item>
         </>

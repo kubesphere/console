@@ -19,7 +19,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
-import { get, set, isEqual } from 'lodash'
+import { get, set, isEqual, isFinite } from 'lodash'
 
 import { Icon, Input, Columns, Column, Alert } from '@kube-design/components'
 
@@ -85,6 +85,17 @@ export default class ResourceLimit extends React.Component {
     const cpuUnit = get(props, 'cpuProps.unit', 'Core')
     const memoryUnit = get(props, 'memoryProps.unit', 'Mi')
 
+    let ReqMemory = String(
+      ResourceLimit.getWorkspaceRequestLimit(props, 'memory')
+    )
+    let LimMemory = String(
+      ResourceLimit.getWorkspaceLimitValue(props, 'memory')
+    )
+    if (ReqMemory.slice(-1) === 'i') {
+      ReqMemory = ReqMemory.slice(0, -2)
+      LimMemory = LimMemory.slice(0, -2)
+    }
+
     return {
       requests: {
         cpu: cpuFormat(
@@ -107,24 +118,12 @@ export default class ResourceLimit extends React.Component {
         ),
       },
       workspaceRequests: {
-        cpu: cpuFormat(
-          ResourceLimit.getWorkspaceRequestLimit(props, 'cpu'),
-          cpuUnit
-        ),
-        memory: memoryFormat(
-          ResourceLimit.getWorkspaceRequestLimit(props, 'memory'),
-          memoryUnit
-        ),
+        cpu: Number(ResourceLimit.getWorkspaceRequestLimit(props, 'cpu')),
+        memory: Number(ReqMemory),
       },
       workspaceLimits: {
-        cpu: cpuFormat(
-          ResourceLimit.getWorkspaceLimitValue(props, 'cpu'),
-          cpuUnit
-        ),
-        memory: memoryFormat(
-          ResourceLimit.getWorkspaceLimitValue(props, 'memory'),
-          memoryUnit
-        ),
+        cpu: Number(ResourceLimit.getWorkspaceLimitValue(props, 'cpu')),
+        memory: Number(LimMemory),
       },
     }
   }
@@ -249,48 +248,37 @@ export default class ResourceLimit extends React.Component {
       memoryError = 'RequestExceed'
     }
 
-    const { workspaceLimitCheck } = this.checkInputLimitError(state)
-
-    return { cpuError, memoryError, workspaceLimitCheck }
+    return { cpuError, memoryError }
   }
 
-  checkInputLimitError = state => {
-    const { requests, limits, workspaceLimits, workspaceRequests } = state
-    let requestCpuError = ''
-    let requestMemoryError = ''
-    let limitCpuError = ''
-    let limitMemoryError = ''
+  checkAndTrigger = () => {
+    const {
+      requests,
+      limits,
+      workspaceLimits: wsL,
+      workspaceRequests: wsR,
+    } = this.state
 
-    if (workspaceLimits.cpu && Number(limits.cpu) > workspaceLimits.cpu) {
-      limitCpuError = 'workspaceRequestExceed'
-    }
-
-    if (
-      workspaceLimits.memory &&
-      Number(limits.memory) > workspaceLimits.memory
-    ) {
-      limitMemoryError = 'workspaceRequestExceed'
-    }
-
-    if (workspaceRequests.cpu && Number(requests.cpu) > workspaceRequests.cpu) {
-      requestCpuError = 'workspaceRequestExceed'
-    }
-
-    if (
-      workspaceRequests.memory &&
-      Number(requests.memory) > workspaceRequests.memory
-    ) {
-      requestMemoryError = 'workspaceRequestExceed'
-    }
-
-    return {
-      workspaceLimitCheck: {
-        requestCpuError,
-        requestMemoryError,
-        limitCpuError,
-        limitMemoryError,
+    this.setState(
+      {
+        workspaceLimitCheck: {
+          requestCpuError: this.checkNumOutLimit(requests.cpu, wsR.cpu),
+          requestMemoryError: this.checkNumOutLimit(
+            requests.memory,
+            wsR.memory
+          ),
+          limitCpuError: this.checkNumOutLimit(limits.cpu, wsL.cpu),
+          limitMemoryError: this.checkNumOutLimit(limits.memory, wsL.memory),
+        },
       },
-    }
+      this.triggerChange
+    )
+  }
+
+  checkNumOutLimit = (num, validate) => {
+    return validate && isFinite(Number(num)) && Number(num) > validate
+      ? 'workspaceRequestExceed'
+      : ''
   }
 
   triggerChange = () => {
@@ -304,16 +292,13 @@ export default class ResourceLimit extends React.Component {
     } = this.state
     const { unit: memoryUnit } = this.getMemoryProps()
     let { unit: cpuUnit } = this.getCPUProps()
-    let outOfWorkSpace = ''
-
-    const errorList = this.checkOutOfWorkspace()
-    if (errorList.length > 0) {
-      outOfWorkSpace = workspaceLimitCheck[errorList[0]]
-    }
+    const errorList = this.getWorkspaceCheckError()
 
     cpuUnit = cpuUnit === 'Core' ? '' : cpuUnit
 
-    onError(cpuError || memoryError || outOfWorkSpace)
+    errorList.length > 0
+      ? onError(cpuError || memoryError || workspaceLimitCheck[errorList[0]])
+      : onError(cpuError || memoryError)
 
     const result = {}
     if (requests.cpu > 0 && requests.cpu < Infinity) {
@@ -332,7 +317,7 @@ export default class ResourceLimit extends React.Component {
     onChange(result)
   }
 
-  checkOutOfWorkspace = () => {
+  getWorkspaceCheckError = () => {
     return Object.keys(this.state.workspaceLimitCheck).filter(
       key => this.state.workspaceLimitCheck[key] !== ''
     )
@@ -344,7 +329,7 @@ export default class ResourceLimit extends React.Component {
         requests: { ...requests, cpu: value[0] },
         limits: { ...limits, cpu: value[1] },
       }),
-      this.triggerChange
+      this.checkAndTrigger
     )
   }
 
@@ -354,7 +339,7 @@ export default class ResourceLimit extends React.Component {
         requests: { ...requests, memory: value[0] },
         limits: { ...limits, memory: value[1] },
       }),
-      this.triggerChange
+      this.checkAndTrigger
     )
   }
 
@@ -363,11 +348,11 @@ export default class ResourceLimit extends React.Component {
     this.setState(state => {
       set(state, name, isNaN(value) ? '' : value)
       return { ...state, ...this.checkError(state) }
-    }, this.triggerChange)
+    }, this.checkAndTrigger)
   }
 
   render() {
-    const { cpuError, memoryError, workspaceLimitCheck } = this.state
+    const { cpuError, memoryError, workspaceLimitCheck: limit } = this.state
 
     const outWorkSpaceLimit = this.checkOutOfWorkspace()
 
@@ -390,8 +375,7 @@ export default class ResourceLimit extends React.Component {
                 <Icon name="cpu" size={48} />
                 <div
                   className={classnames(styles.input, {
-                    [styles.error]:
-                      cpuError || workspaceLimitCheck.requestCpuError,
+                    [styles.error]: cpuError || limit.requestCpuError,
                   })}
                 >
                   <span className={styles.label}>{t('Resource Request')}:</span>
@@ -403,17 +387,17 @@ export default class ResourceLimit extends React.Component {
                   />
                   <span className={styles.unit}>{this.cpuUnit}</span>
                 </div>
-                <div className={styles.input}>
+                <div
+                  className={classnames(styles.input, {
+                    [styles.error]: cpuError || limit.limitCpuError,
+                  })}
+                >
                   <span className={styles.label}>{t('Resource Limit')}:</span>
                   <Input
                     name="limits.cpu"
                     value={this.getLimit(this.state.limits.cpu)}
                     onChange={this.handleInputChange}
                     placeholder={t(t('No Limit'))}
-                    className={classnames({
-                      [styles.error]:
-                        cpuError || workspaceLimitCheck.limitCpuError,
-                    })}
                   />
                   <span className={styles.unit}>{this.cpuUnit}</span>
                 </div>
@@ -424,8 +408,7 @@ export default class ResourceLimit extends React.Component {
                 <Icon name="memory" size={48} />
                 <div
                   className={classnames(styles.input, {
-                    [styles.error]:
-                      memoryError || workspaceLimitCheck.requestMemoryError,
+                    [styles.error]: memoryError || limit.requestMemoryError,
                   })}
                 >
                   <span className={styles.label}>{t('Resource Request')}:</span>
@@ -439,8 +422,7 @@ export default class ResourceLimit extends React.Component {
                 </div>
                 <div
                   className={classnames(styles.input, {
-                    [styles.error]:
-                      memoryError || workspaceLimitCheck.limitMemoryError,
+                    [styles.error]: memoryError || limit.limitMemoryError,
                   })}
                 >
                   <span className={styles.label}>{t('Resource Limit')}:</span>

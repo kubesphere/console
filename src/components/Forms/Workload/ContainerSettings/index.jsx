@@ -109,6 +109,10 @@ export default class ContainerSetting extends React.Component {
       : this.formTemplate
   }
 
+  get workspaceQuota() {
+    return get(this.state.leftQuota, 'namespace', {})
+  }
+
   initService() {
     const workloadName = get(this.formTemplate, 'metadata.name')
     let serviceName = get(this.props.formTemplate, 'Service.metadata.name')
@@ -427,6 +431,7 @@ export default class ContainerSetting extends React.Component {
         onCancel={this.hideContainer}
         withService={withService}
         isFederated={isFederated}
+        workspaceQuota={this.workspaceQuota}
         {...params}
       />
     )
