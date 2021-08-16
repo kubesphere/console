@@ -30,7 +30,7 @@ export default class Metadata extends React.Component {
         <Form.Item label={t('Annotations')}>
           <PropertiesInput
             name="metadata.annotations"
-            addText={t('Add Annotation')}
+            addText={t('ADD_ANNOTATION')}
           />
         </Form.Item>
       </>

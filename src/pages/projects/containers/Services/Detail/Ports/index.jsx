@@ -40,7 +40,7 @@ export default class Ports extends Component {
               <p>
                 <strong>{port.targetPort}</strong>
               </p>
-              <p>{t('Container Port')}</p>
+              <p>{t('CONTAINER_PORT')}</p>
             </div>
             <div className={styles.protocol}>→ {port.protocol} → </div>
             <Icon name="network-router" size={40} />
@@ -48,7 +48,7 @@ export default class Ports extends Component {
               <p>
                 <strong>{port.port}</strong>
               </p>
-              <p>{t('Service Port')}</p>
+              <p>{t('SERVICE_PORT')}</p>
             </div>
             {port.nodePort && (
               <>

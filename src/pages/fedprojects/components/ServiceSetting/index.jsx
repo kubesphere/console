@@ -93,7 +93,7 @@ export default class ServiceSettingForm extends React.Component {
   }
 
   renderEmpty() {
-    return <p className={styles.empty}>{t('Unknown service type')}</p>
+    return <p className={styles.empty}>{t('UNKNOWN_SERVICE_TYPE')}</p>
   }
 
   renderForm() {

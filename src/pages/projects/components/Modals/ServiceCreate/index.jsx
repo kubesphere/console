@@ -51,17 +51,17 @@ export default class ServiceCreateModal extends React.Component {
       workloadModule: 'deployments',
       groups: [
         {
-          name: 'Service Type',
+          name: 'SERVICE_TYPE_TCAP',
           description: 'SERVICE_TYPE',
           options: [
             {
               icon: 'backup',
-              name: 'Stateless Service',
+              name: 'STATELESS_SERVICE',
               value: 'statelessservice',
             },
             {
               icon: 'stateful-set',
-              name: 'Stateful Service',
+              name: 'STATEFUL_SERVICE',
               value: 'statefulservice',
             },
             ...(this.props.isFederated
@@ -95,7 +95,7 @@ export default class ServiceCreateModal extends React.Component {
           ? []
           : [
               {
-                name: 'Custom Creation',
+                name: 'CUSTOM_CREATION',
                 description: 'SERVICE_CUSTOM_CREATE',
                 options: [
                   {
@@ -153,7 +153,7 @@ export default class ServiceCreateModal extends React.Component {
   renderHeader() {
     return (
       <div className={styles.header}>
-        <div className="h4 margin-b12">{t('Create Service')}</div>
+        <div className="h4 margin-b12">{t('CREATE_SERVICE')}</div>
         <p>{t.html('SERVICE_CREATE_DESC')}</p>
         <img src="/assets/create-service.svg" alt="" />
       </div>
@@ -233,7 +233,7 @@ export default class ServiceCreateModal extends React.Component {
           width={960}
           module={this.state.workloadModule}
           store={this.workloadStore}
-          name={t('Stateless Service')}
+          name={t('STATELESS_SERVICE')}
           visible={visible}
           steps={steps}
           cluster={cluster}
@@ -293,7 +293,7 @@ export default class ServiceCreateModal extends React.Component {
             width={960}
             module={module}
             store={workloadStore}
-            name={t('Stateless Service')}
+            name={t('STATELESS_SERVICE')}
             description={t('STATELESS_SERVICE_DESC')}
             visible={visible}
             cluster={cluster}
@@ -351,7 +351,7 @@ export default class ServiceCreateModal extends React.Component {
             width={960}
             module={module}
             store={workloadStore}
-            name={t('Stateful Service')}
+            name={t('STATEFUL_SERVICE')}
             description={t('STATEFUL_SERVICE_DESC')}
             visible={visible}
             cluster={cluster}

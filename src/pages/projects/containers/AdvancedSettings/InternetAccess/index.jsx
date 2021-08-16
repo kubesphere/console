@@ -136,7 +136,7 @@ class InternetAccess extends React.Component {
 
   renderEmpty() {
     return (
-      <Panel className="margin-t12 margin-b12" title={t('Internet Access')}>
+      <Panel className="margin-t12 margin-b12" title={t('INTERNET_ACCESS')}>
         <div className={styles.empty}>
           <div className={styles.icon}>
             <Icon name="loadbalancer" size={40} />
@@ -186,12 +186,12 @@ class InternetAccess extends React.Component {
   renderInternetAccess(gateway) {
     const { cluster } = this.props.match.params
     return (
-      <Panel className="margin-t12" title={t('Internet Access')}>
+      <Panel className="margin-t12" title={t('INTERNET_ACCESS')}>
         <div className={styles.header}>
           <Icon name="eip-group" size={40} />
           <div className={styles.item}>
             <div>{gateway.type}</div>
-            <p>{t('Access Method')}</p>
+            <p>{t('ACCESS_METHOD')}</p>
           </div>
           {gateway.type === 'NodePort' ? (
             <>

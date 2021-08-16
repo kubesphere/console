@@ -83,8 +83,8 @@ export default class Item extends React.Component {
             </div>
             <div className={styles.description}>
               {type === 'deployments'
-                ? t('Stateless Service')
-                : t('Stateful Service')}
+                ? t('STATELESS_SERVICE')
+                : t('STATEFUL_SERVICE')}
             </div>
           </div>
         </div>

@@ -46,7 +46,7 @@ export default class ServiceCard extends Component {
           title={`${data.name}.${data.namespace}.svc`}
           description={t('EIP_POOL_DESC')}
         />
-        <Text title={data.clusterIP} description={t('Virtual IP')} />
+        <Text title={data.clusterIP} description={t('VIRTUAL_IP')} />
       </div>
     )
   }

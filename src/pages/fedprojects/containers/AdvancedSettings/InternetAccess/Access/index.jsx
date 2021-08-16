@@ -194,7 +194,7 @@ class InternetAccess extends React.Component {
             <Text
               icon="eip-group"
               title={gateway.type}
-              description={t('Access Method')}
+              description={t('ACCESS_METHOD')}
             />
             {gateway.type === 'NodePort' ? (
               <>

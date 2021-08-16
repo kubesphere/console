@@ -29,7 +29,7 @@ module.exports = {
   'Click to visit': '點擊訪問',
   PATH_SERVICE_TIP: '服務（Service）',
   ADD_PATH_TCAP: '添加路徑',
-  'Add Annotation': '添加注解',
+  ADD_ANNOTATION: '添加注解',
 
   SET_ROUTE_RULE_TCAP: '設置路由規則',
 

@@ -106,7 +106,7 @@ export default class Card extends Component {
             content={
               <div>
                 <div className="tooltip-title">
-                  {t('Multi-cluster Deployment')}
+                  {t('MULTI_CLUSTER_DEPLOYMENT')}
                 </div>
                 <p>{t('MULTI_CLUSTER_TIP')}</p>
               </div>

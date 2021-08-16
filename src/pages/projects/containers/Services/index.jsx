@@ -86,7 +86,7 @@ export default class Services extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('EDIT'),
+        text: t('EDIT_INFORMATION'),
         action: 'edit',
         onClick: item =>
           trigger('resource.baseinfo.edit', {
@@ -106,7 +106,7 @@ export default class Services extends React.Component {
       {
         key: 'editService',
         icon: 'network-router',
-        text: t('Edit Service'),
+        text: t('EDIT_SERVICE'),
         action: 'edit',
         onClick: item =>
           trigger('service.edit', {
@@ -116,7 +116,7 @@ export default class Services extends React.Component {
       {
         key: 'editGateway',
         icon: 'ip',
-        text: t('Edit Internet Access'),
+        text: t('EDIT_INTERNET_ACCESS'),
         action: 'edit',
         show: record => record.type === SERVICE_TYPES.VirtualIP,
         onClick: item =>
@@ -179,7 +179,7 @@ export default class Services extends React.Component {
         ),
       },
       {
-        title: t('Service Type'),
+        title: t('SERVICE_TYPE_TCAP'),
         dataIndex: 'annotations["kubesphere.io/serviceType"]',
         isHideable: true,
         width: '16%',
@@ -188,7 +188,7 @@ export default class Services extends React.Component {
             title={
               serviceType
                 ? t(`SERVICE_TYPE_${serviceType.toUpperCase()}`)
-                : t('Custom Creation')
+                : t('CUSTOM_CREATION')
             }
             description={record.type || '-'}
           />
@@ -202,14 +202,14 @@ export default class Services extends React.Component {
         width: '22%',
       },
       {
-        title: t('Internet Access'),
+        title: t('INTERNET_ACCESS'),
         dataIndex: 'specType',
         isHideable: true,
         width: '20%',
         render: (_, record) => <ServiceAccess data={record} />,
       },
       {
-        title: t('Created Time'),
+        title: t('CREATED_AT'),
         dataIndex: 'createTime',
         sorter: true,
         sortOrder: getSortOrder('createTime'),

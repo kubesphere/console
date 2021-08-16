@@ -97,7 +97,7 @@ export default class InternetAccess extends React.Component {
 
     return (
       <>
-        <Form.Item label={t('Access Method')}>
+        <Form.Item label={t('ACCESS_METHOD')}>
           <Select
             name={`Service.${this.fedPreifx}spec.type`}
             options={this.accessModes}
@@ -111,7 +111,7 @@ export default class InternetAccess extends React.Component {
               name="Service.metadata.annotations"
               hiddenKeys={globals.config.preservedAnnotations}
               onChange={this.handleAnnotationsChange}
-              addText={t('Add Annotation')}
+              addText={t('ADD')}
             />
           </Form.Item>
         )}

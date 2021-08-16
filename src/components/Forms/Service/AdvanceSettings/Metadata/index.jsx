@@ -53,7 +53,7 @@ export default class Metadata extends React.Component {
       return callback()
     }
     if (isEmpty(value)) {
-      return callback({ message: t('Labels cannot be empty') })
+      return callback({ message: t('EMPTY_LABEL_DESC') })
     }
 
     if (!isValidLabel(value)) {
@@ -68,7 +68,7 @@ export default class Metadata extends React.Component {
       })
       .then(resp => {
         if (resp.exist) {
-          return callback({ message: t('Labels exists'), field: rule.field })
+          return callback({ message: t('LABEL_EXIST_DESC'), field: rule.field })
         }
         callback()
       })
@@ -81,13 +81,13 @@ export default class Metadata extends React.Component {
         <Form.Item
           label={t('Labels')}
           rules={[
-            { required: true, message: t('Labels cannot be empty') },
+            { required: true, message: t('EMPTY_LABEL_DESC') },
             { validator: this.labelsValidator },
           ]}
         >
           <PropertiesInput
             name={`${kind}.${this.fedPrefix}metadata.labels`}
-            addText={t('Add Label')}
+            addText={t('ADD')}
             onChange={this.handleLabelsChange}
           />
         </Form.Item>
@@ -97,7 +97,7 @@ export default class Metadata extends React.Component {
           >
             <PropertiesInput
               name={`${kind}.metadata.annotations`}
-              addText={t('Add Annotation')}
+              addText={t('ADD')}
               hiddenKeys={globals.config.preservedAnnotations}
             />
           </Form.Item>

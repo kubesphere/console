@@ -139,7 +139,7 @@ export default class GatewaySettingModal extends React.Component {
           <div className={styles.wrapper}>
             <div className={styles.content}>
               <Form ref={this.form} data={detail}>
-                <Form.Item label={t('Access Method')} className={styles.types}>
+                <Form.Item label={t('ACCESS_METHOD')} className={styles.types}>
                   <RadioGroup
                     name="type"
                     mode="button"
@@ -177,7 +177,7 @@ export default class GatewaySettingModal extends React.Component {
                   <Form.Item label={t('Annotations')}>
                     <PropertiesInput
                       name="annotations"
-                      addText={t('Add Annotation')}
+                      addText={t('ADD_ANNOTATION')}
                       defaultValue={this.anonotationsDefault}
                     />
                   </Form.Item>

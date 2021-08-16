@@ -32,17 +32,16 @@ module.exports = {
   'Add HostPath': 'Añadir HostPath',
   'Add Label': 'Agregar etiqueta',
   'Add Labels': 'Agregar etiquetas',
-  'Add Metadata': 'Agregar metadatos',
+  ADD_METADATA: 'Agregar metadatos',
   'Add new container': 'Agregar nuevo contenedor',
   'Add Node Selector': 'Agregar selector de nodo',
-  'Add Port': 'Agregar puerto',
+  ADD_PORT: 'Agregar puerto',
   'Add Probe': 'Añadir sonda',
   'Add Temporary Volume': 'Agregar volumen temporal',
   'Add Volume': 'Agregar volumen',
   'Add Volume Template': 'Agregar plantilla de volumen',
   'Adding new contianer': 'Agregar nuevo contianer',
-  'Additional metadata settings for resources such as Labels and Annotations.':
-    'Configuración de metadatos adicionales para recursos como Etiquetas y Anotaciones.',
+  ADD_METADATA_DESC: 'Add metadata to resources.',
   'Advanced Options': 'Opciones avanzadas',
   'Applied to the workload': 'Aplicado a la carga de trabajo.',
   Argument: 'Argumento',
@@ -152,9 +151,8 @@ module.exports = {
 
   'Invalid name': 'Nombre inválido. {message}',
   'Invalid pod': 'Pod inválido',
-
-  INVALID_NAME_DESC: 'Nombre inválido. {message}',
-
+  INVALID_NAME_DESC:
+    'Invalid name. The name can contain only lowercase letters, numbers, and hyphens (-), must start with a lowercase letter, and must end with a lowercase letter or number. The maximum length is 63 characters.',
   InvalidImageName: 'InvalidImageName',
   'is running': 'En ejecución',
   Job: 'Trabajo',
@@ -163,8 +161,8 @@ module.exports = {
   'Job Template': 'Plantilla de tareas',
   ADD_CONTAINER_DESC:
     'KubeSphere admite la extracción de imágenes de los Registros de imágenes y la creación de nuevas imágenes a través del código fuente (Fuente a imagen).',
-  'Labels cannot be empty': 'Las etiquetas no pueden estar vacías',
-  'Labels exists': 'Existen etiquetas',
+  EMPTY_LABEL_DESC: 'Please add a label.',
+  LABEL_EXIST_DESC: 'The label already exsists. Please use another label.',
   layers: 'capas',
   'Liveness Probe': 'Sonda de estado',
   Log: 'Iniciar sesión',
@@ -456,12 +454,11 @@ module.exports = {
   EMPTYDIR_DESC: 'Almacenamiento temporal creado para la carga de trabajo.',
   HOSTPATH_DESC:
     'Un volumen hostPath monta un archivo o directorio del sistema de archivos del nodo host en su Pod.',
-  PORT_INPUT_DESC:
-    'El nombre es obligatorio y no se puede duplicar cuando hay varios puertos,',
+  PORT_INPUT_DESC: 'The port name already exists. Please enter another name.',
   PORT_NAME_DESC:
-    'El nombre del puerto solo puede contener letras minúsculas, números y guiones ("-"), y debe comenzar con una letra minúscula y terminar con un número o letra minúscula. La longitud máxima de caracteres se establece en 63.',
+    'The port name can contain only lowercase letters, numbers, and hyphens (-) and must begin and end with a lowercase letter or number. The maximum length is 63 characters.',
   WORKLOAD_PORT_NAME_DESC:
-    'El nombre del puerto solo puede contener letras minúsculas, números y guiones ("-"), y debe comenzar con una letra minúscula y terminar con un número o letra minúscula. La longitud máxima de caracteres se establece en 15.',
+    'The port name can contain only lowercase letters, numbers and hyphens (-), and must begin and end with a lowercase letter or number. The maximum length is 15 characters.',
   DEPLOYMENTS_BASEINFO_DESC:
     'Puede asignar un nombre a la implementación que sea fácil de distinguir cuando la use.',
   DEPLOYMENT_POD_TEMPLATE_DESC:
@@ -624,7 +621,7 @@ module.exports = {
   COLLECT_FILE_LOG_TIP:
     'Cuando agrega PersistentVolumeClaim （PVC (modo de lectura y escritura), puede recopilar información de registro del PVC. Una vez que esté habilitado, la imagen de pod de archivo, que se puede utilizar para recopilar registros relevantes, se instalará a través de SideCar.',
   ISTIO_PROTOCOL_TIP:
-    'Para utilizar completamente la función de Gobierno de aplicaciones, selecciona el protocolo que el servicio realmente utilizará. Por ejemplo, selecciona el protocolo HTTP para un servicio HTTP y obtendrá un nombre de puerto como http- [nombre].',
+    'To fully use the Application Governance feature, select a protocol based on the actual usage of the Service. The port name will be generated in the <Protocol>-<Name> format.',
   CONTAINER_LOG_PATH_TIP:
     'La ruta relativa del registro del contenedor es la ruta desde la ruta de montaje del módulo, que se puede proporcionar en modo global. Cuando hay varios grupos, sepárelos por comas. Por ejemplo, cuando la ruta de montaje del pod es / data, la ruta relativa del registro de pod se configura como log / *. Log, lo que significa que todos los archivos de sufijos .log en el directorio / data / log coinciden. Si necesita hacer coincidir todos los archivos de sufijos .log en el directorio / data / log y sus subdirectorios, puede configurar la ruta relativa del registro de pod a log / ** / *. Log.',
   ADD_SUBPATH_TIP:
