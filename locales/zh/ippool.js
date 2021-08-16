@@ -22,11 +22,11 @@ module.exports = {
 
   'Create Pod IP Pool': '创建容器组 IP 池',
 
-  'IP/Mask Bit': 'IP/掩码位',
-  'Used IP': '已用 IP',
+  IP_MASK_BIT_TCAP: 'IP/掩码位',
+  USED_IP_TCAP: '已用 IP',
 
   Mask: '掩码',
-  'Mask Bit': '掩码位',
+  MASK_BIT_TCAP: '掩码位',
   Network: '网络',
 
   'First Available': '第一个可用',
@@ -35,16 +35,15 @@ module.exports = {
 
   'Pod IP Range': '容器组 IP 池',
 
-  'Number of Creation': '创建数量',
+  NUMBER_OF_CREATION_TCAP: '创建数量',
   'Pod IP Pools to be created': '即将创建的容器组 IP 池',
   'Set to be globally available': '设为全局可用',
 
-  'Please input the IP address': '请输入 IP 地址',
-  'Please input the mask bit': '请输入掩码位',
+  'Please input the IP address': '请输入 IP 地址。',
+  MASK_BIT_TIP: '请输入掩码位。',
   'Please input the IP/mask bit': '请输入 IP 地址/掩码位',
 
-  'Please input the number of Pod IP Pools to be created':
-    '请输入需要创建的容器组 IP 池数量',
+  IP_POOL_NUM_TIP: '请输入需要创建的容器组 IP 池数量。',
 
   POD_IP_POOL_DESC: '集群内容器组 IP 池',
   IP_POOL_CREATE_COUNT_DESC: '可以同时创建多个容器组 IP 池，数量范围为 1～10',

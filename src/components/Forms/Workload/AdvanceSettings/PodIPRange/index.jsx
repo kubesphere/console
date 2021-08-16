@@ -47,7 +47,7 @@ export default class PodIPRange extends Component {
         details: [
           {
             label: item.cidr,
-            description: t('IP/Mask Bit'),
+            description: t('IP_MASK_BIT_TCAP'),
           },
           {
             label: get(item, 'status.unallocated'),

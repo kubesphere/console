@@ -106,7 +106,7 @@ export default class NetworkPolicies extends React.Component {
       {
         key: 'create',
         type: 'control',
-        text: t('Create Network Policy'),
+        text: t('CREATE_BTN'),
         action: 'create',
         onClick: () =>
           trigger('network.policies.addByYaml', {

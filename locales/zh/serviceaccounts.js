@@ -23,7 +23,7 @@ module.exports = {
   'Modify Service Account Role': '修改服务帐户角色',
   'Secret Detail': '密钥详情',
   SERVICEACCOUNT_DESC:
-    '服务帐户 (Service Account) 为 Pod 中运行的进程提供了一个标识，用于访问 API Server',
+    '服务帐户（Service Account）为 Pod 中运行的进程提供了一个标识，用于访问 API Server。',
 
   'Invalid configuration file format': '配置文件格式错误',
 

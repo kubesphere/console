@@ -20,6 +20,8 @@ module.exports = {
   ACCESS_MODE_RWO: '单个节点读写',
   ACCESS_MODE_ROX: '多节点只读',
   ACCESS_MODE_RWX: '多节点读写',
+  // Volume Pages
+  ACCESS_MODE_TCAP: '访问模式',
 
   VOLUME_STATUS_BOUND: '准备就绪',
   VOLUME_STATUS_LOST: '丢失',
@@ -42,9 +44,10 @@ module.exports = {
   'Storage Classs': '存储类型',
   STORAGE_CLASS_SETTINGS: '存储类型设置',
   'Mount Info': '挂载信息',
-  Mounted: '已挂载',
-  'Not Mounted': '未挂载',
-  CREATE: '创建',
+  // Volumes List Page
+  MOUNT_TCAP: '挂载',
+  MOUNTED_TCAP: '已挂载',
+  NOT_MOUNTED_TCAP: '未挂载',
   Scalable: '可扩容性',
   RECLAMATION_POLICY: '回收机制',
   DELETE_STORAGE_TIP: '如果存储卷正在被挂载时，待工作负载被删除时一同删除。',
@@ -94,7 +97,7 @@ module.exports = {
   STORAGE_CLASS_DESC:
     '存储类型（StorageClass）支持动态卷供应，使管理员能够按需创建新的存储卷。',
   STORAGE_CLASS_CREATE_DESC:
-    '存储类型 (StorageClass) 是由集群管理员配置存储服务端参数，并按类型提供存储给集群用户使用。',
+    '存储类型（Storage Class）是由集群管理员配置的多种存储类型，不同的存储类型为集群用户提供不同类型的存储卷。',
   'STORAGE-CLASSES_BASEINFO_DESC':
     '存储类型记录管理员所提供的某类存储的配置信息，创建特定类型的存储卷之前必须已配置相应的存储类型。',
   STORAGE_CLASS_SETTING_DESC:
@@ -105,16 +108,15 @@ module.exports = {
 
   PROVISIONER_DESC: '提供后端存储',
 
-  VOLUME_STORAGE_CLASS_DESC:
-    '由集群管理员配置存储服务端参数，并按类型提供存储给用户使用。',
+  VOLUME_STORAGE_CLASS_DESC: '不同的存储类型为集群用户提供不同类型的存储卷。',
 
   ACCESS_MODES_DESC: '选择存储类型支持的访问模式。',
 
-  WHAT_IS_STORAGE_CLASS_Q: '什么是存储卷类型?',
+  WHAT_IS_STORAGE_CLASS_Q: '什么是存储类型?',
   WHAT_IS_STORAGE_CLASS_A:
-    '存储卷类型 (StorageClass) 是由集群管理员配置存储服务端的参数，并按类型提供存储给集群用户使用。',
+    '存储类型（Storage Class）是由集群管理员配置的多种存储类型，不同的存储类型为集群用户提供不同类型的存储卷。',
 
-  WHAT_IS_LOCAL_VOLUME_Q: '什么是本地存储卷 (Local Volume) ?',
+  WHAT_IS_LOCAL_VOLUME_Q: '什么是本地存储卷?',
   WHAT_IS_LOCAL_VOLUME_A:
     '本地存储卷表示挂载的本地存储设备，如磁盘、分区或目录。',
   CHOOSE_STORAGE_SYSTEM_TIP: '选择存储系统',
@@ -189,9 +191,9 @@ module.exports = {
 
   VolumeSnapshots: '存储卷快照',
   VOLUMESNAPSHOT_DESC:
-    '存储卷快照表示存储卷的时间点副本。快照可用于配置新卷（预先填充快照数据）或将现有存储卷还原到先前状态（由快照表示）',
+    '存储卷快照是存储卷在特定时间点的副本，可使用快照中的数据预配新存储卷，或者将存储卷恢复至快照捕捉到的先前状态。',
   VOLUMESNAPSHOT_CREATE_DESC:
-    '存储卷快照表示存储卷的时间点副本。快照可用于配置新卷（预先填充快照数据）或将现有存储卷还原到先前状态（由快照表示）',
+    '存储卷快照是存储卷在特定时间点的副本，可使用快照中的数据预配新存储卷，或者将存储卷恢复至快照捕捉到的先前状态。',
   WHAT_IS_VOLUME_SNAPSHOTS: '什么是存储卷快照',
 
   CREATE_VOLUME_BY_STORAGECLASS: '通过存储类型',

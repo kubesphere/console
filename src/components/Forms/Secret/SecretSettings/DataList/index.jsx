@@ -54,8 +54,8 @@ export default class SecretDataList extends React.Component {
           />
         ))}
         <List.Add
-          title={t('Add Data')}
-          description={t('Add key / value pair data')}
+          title={t('ADD_DATA_TCAP')}
+          description={t('ADD_DATA_DESC')}
           onClick={onAdd}
         />
       </List>

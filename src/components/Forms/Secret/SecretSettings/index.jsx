@@ -65,11 +65,11 @@ export default class SecretSettings extends React.Component {
     { label: t('Default'), value: 'Opaque' },
     { label: t('TLS'), value: 'kubernetes.io/tls' },
     {
-      label: t('Image Registry Secret'),
+      label: t('IMAGE_REGISTRY_SECRET_TCAP'),
       value: 'kubernetes.io/dockerconfigjson',
     },
     {
-      label: t('Account Password Secret'),
+      label: t('ACCOUNT_PASSWORD_SECRET_TCAP'),
       value: 'kubernetes.io/basic-auth',
     },
   ]

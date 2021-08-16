@@ -126,7 +126,7 @@ export default class Volumes extends React.Component {
           ),
       },
       {
-        title: t('Mount'),
+        title: t('MOUNT_TCAP'),
         dataIndex: 'inUse',
         isHideable: true,
         width: '14%',
@@ -137,14 +137,14 @@ export default class Volumes extends React.Component {
           >
             {cluster =>
               get(record, `resources[${cluster.name}].inUse`)
-                ? t('Mounted')
-                : t('Not Mounted')
+                ? t('MOUNTED_TCAP')
+                : t('NOT_MOUNTED_TCAP')
             }
           </ClusterWrapper>
         ),
       },
       {
-        title: t('Access Mode'),
+        title: t('ACCESS_MODE_TCAP'),
         dataIndex: 'capacity',
         isHideable: true,
         render: (_, record) => (

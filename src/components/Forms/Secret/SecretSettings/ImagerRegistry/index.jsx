@@ -130,7 +130,7 @@ export default class ImageRegistry extends Component {
         <Alert
           type="info"
           icon="success"
-          message={t('Registry verification succeeded')}
+          message={t('REGISTRY_SECRET_VER_SUC')}
         />
       )
     }
@@ -139,7 +139,7 @@ export default class ImageRegistry extends Component {
       return (
         <Alert
           type="error"
-          title={t('Registry verification failed')}
+          title={t('REGISTRY_SECRET_VER_ERR')}
           message={reason}
         />
       )
@@ -162,7 +162,7 @@ export default class ImageRegistry extends Component {
         <Columns>
           <Column>
             <Wrapper
-              label={t('Registry Address')}
+              label={t('REGISTRY_ADDRESS_TCAP')}
               desc={t('Example: docker.io')}
               required
             >

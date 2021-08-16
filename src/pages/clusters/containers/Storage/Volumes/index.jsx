@@ -160,7 +160,7 @@ export default class Volumes extends React.Component {
         ),
       },
       {
-        title: t('Access Mode'),
+        title: t('ACCESS_MODE_TCAP'),
         dataIndex: 'capacity',
         isHideable: true,
         width: '16%',
@@ -171,11 +171,11 @@ export default class Volumes extends React.Component {
         ),
       },
       {
-        title: t('Mount'),
+        title: t('MOUNT_TCAP'),
         dataIndex: 'inUse',
         isHideable: true,
         width: '14%',
-        render: inUse => (inUse ? t('Mounted') : t('Not Mounted')),
+        render: inUse => (inUse ? t('MOUNTED_TCAP') : t('NOT_MOUNTED_TCAP')),
       },
       {
         title: t('Created Time'),

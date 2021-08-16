@@ -147,7 +147,7 @@ export default class SanpshotForm extends Component {
           <Loading spinning={isStorageClassLoading}>
             <Form.Item
               className="margin-t12"
-              label={t('Access Mode')}
+              label={t('ACCESS_MODE_TCAP')}
               rules={[{ required: true, message: t('This param is required') }]}
             >
               <AccessModes

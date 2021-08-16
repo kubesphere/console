@@ -57,7 +57,7 @@ export default class AddExistVolumes extends React.Component {
       value: volume,
       details: [
         { label: volume.capacity, description: t('Capacity') },
-        { label: volume.accessMode, description: t('Access Mode') },
+        { label: volume.accessMode, description: t('ACCESS_MODE_TCAP') },
       ],
     }))
   }

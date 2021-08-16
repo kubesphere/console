@@ -38,7 +38,7 @@ export default class CustomResources extends React.Component {
     const { getSortOrder } = this.props
     return [
       {
-        title: t('Kind'),
+        title: t('KIND_TCAP'),
         dataIndex: 'kind',
         render: (kind, record) => (
           <Avatar
@@ -54,7 +54,7 @@ export default class CustomResources extends React.Component {
         dataIndex: 'name',
       },
       {
-        title: t('Scope'),
+        title: t('SCOPE_TCAP'),
         key: 'scope',
         dataIndex: 'scope',
       },

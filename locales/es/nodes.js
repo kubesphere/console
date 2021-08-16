@@ -46,7 +46,7 @@ module.exports = {
   'CPU Used': 'CPU utilizada',
   'CPU Utilization': 'Utilización de CPU',
   'Delete All Taints': 'Eliminar todas los Taints',
-  'IP Address': 'Dirección IP',
+  IP_ADDRESS_TCAP: 'Dirección IP',
   KernelVersion: 'Versión del Kernel',
   'Kube-Proxy Version': 'Versión Kube-Proxy',
   'Kubelet Version': 'Versión Kubelet',

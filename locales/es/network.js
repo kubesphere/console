@@ -18,7 +18,9 @@
 
 module.exports = {
   'Add Allowlist': 'Agregar lista de permitidos',
-  'Create Network Policy': 'Crear política de red',
+  CREATE_NETWORK_POLICY_TCAP: 'Crear política de red',
+  // Network Policies Page
+  CREATE_BTN: 'Crear',
   Direction: 'Dirección',
   Egress: 'Salida',
   Ingress: 'Entrada',

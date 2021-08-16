@@ -28,7 +28,7 @@ export default [
     required: true,
   },
   {
-    title: 'Secret Settings',
+    title: 'SECRET_SETTINGS_TCAP',
     component: SecretSettings,
     required: true,
   },

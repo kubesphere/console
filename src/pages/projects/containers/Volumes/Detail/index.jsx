@@ -224,7 +224,7 @@ export default class VolumeDetail extends React.Component {
         value: capacity,
       },
       {
-        name: t('Access Mode'),
+        name: t('ACCESS_MODE_TCAP'),
         value: accessMode,
       },
       {

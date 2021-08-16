@@ -66,7 +66,7 @@ export default class Routers extends React.Component {
       {
         key: 'editRules',
         icon: 'firewall',
-        text: t('Edit Rules'),
+        text: t('EDIT_RULES_TCAP'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -77,7 +77,7 @@ export default class Routers extends React.Component {
       {
         key: 'editAnnotations',
         icon: 'firewall',
-        text: t('Edit Annotations'),
+        text: t('EDIT_ANNOTATIONS_TCAP'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -126,7 +126,7 @@ export default class Routers extends React.Component {
         ),
       },
       {
-        title: t('Gateway Address'),
+        title: t('GATEWAY_ADDRESS_TCAP'),
         dataIndex: 'loadBalancerIngress',
         isHideable: true,
         width: '22%',

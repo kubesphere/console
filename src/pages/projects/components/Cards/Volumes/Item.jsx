@@ -38,7 +38,7 @@ const Card = ({ volume, prefix }) => {
     },
     {
       title: get(volume, 'accessMode', '-'),
-      description: t('Access Mode'),
+      description: t('ACCESS_MODE_TCAP'),
     },
   ]
   return (

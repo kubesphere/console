@@ -38,7 +38,7 @@ module.exports = {
   'Node Status': '节点状态',
   'Online Nodes': '在线节点',
   'All Nodes': '全部节点',
-  'IP Address': 'IP 地址',
+  IP_ADDRESS_TCAP: 'IP 地址',
   'Node IP': '节点 IP',
   Unschedulable: '无法调度',
   Architecture: '系统架构',

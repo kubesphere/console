@@ -94,7 +94,7 @@ const Card = ({ volume, match, isMultiProject }) => {
       },
       {
         title: get(volume, 'accessMode', '-'),
-        description: t('Access Mode'),
+        description: t('ACCESS_MODE_TCAP'),
       },
     ]
   }

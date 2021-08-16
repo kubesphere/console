@@ -197,7 +197,7 @@ class InternetAccess extends React.Component {
             <>
               <div className={styles.item}>
                 <div>{gateway.loadBalancerIngress.join('; ') || '-'}</div>
-                <p>{t('Gateway Address')}</p>
+                <p>{t('GATEWAY_ADDRESS_TCAP')}</p>
               </div>
               <div className={styles.item}>
                 <div>{this.getNodePorts(gateway)}</div>
