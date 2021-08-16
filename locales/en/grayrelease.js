@@ -32,7 +32,6 @@ module.exports = {
   'Exact Match': 'Exact Match',
   'Forward by request content': 'Forward by request content',
   'Forward by traffic ratio': 'Forward by traffic ratio',
-  'Grayscale Release': 'Grayscale Release',
   'Grayscale Release Component': 'Grayscale Release Component',
   'Grayscale Release Components': 'Grayscale Release Components',
   'Grayscale Release Strategy': 'Grayscale Release Strategy',

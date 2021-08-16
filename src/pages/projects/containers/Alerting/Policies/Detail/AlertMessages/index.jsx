@@ -94,7 +94,7 @@ export default class AlertHistory extends React.Component {
       ),
     },
     {
-      title: t('Level'),
+      title: t('LEVEL'),
       dataIndex: 'labels.severity',
       width: '15%',
       render: severity => {

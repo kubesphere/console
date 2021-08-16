@@ -150,6 +150,6 @@ module.exports = {
   LOG_CLOSE: 'Close',
   INVALID_SERVICE_ADDRESS: 'Invalid service address.',
   EXAMPLE: 'Example: ',
-  ENTER_PORT_NUMBER: 'Please enter a port number.',
+  PORT_NUMBER_EMPTY: 'Please enter a port number.',
   PARAMETER_REQUIRED: 'This parameter is mandatory.',
 }

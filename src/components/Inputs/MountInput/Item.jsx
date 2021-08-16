@@ -33,9 +33,9 @@ import { isEmpty } from 'lodash'
 import styles from './index.scss'
 
 const MOUNT_OPTIONS = [
-  { label: 'ReadAndWrite', value: 'false' },
-  { label: 'ReadOnly', value: 'true' },
-  { label: 'Not Mount', value: 'null' },
+  { label: 'READ_AND_WRITE', value: 'false' },
+  { label: 'READ_ONLY', value: 'true' },
+  { label: 'NOT_MOUNT', value: 'null' },
 ]
 
 export default class Item extends React.Component {
@@ -133,7 +133,6 @@ export default class Item extends React.Component {
   renderLogPathTip() {
     return (
       <div>
-        <div className="tooltip-title">{t('container log relative path')}</div>
         <p>{t.html('CONTAINER_LOG_PATH_TIP')}</p>
       </div>
     )
@@ -143,8 +142,8 @@ export default class Item extends React.Component {
     return (
       <div className={styles.subForm}>
         <div className={styles.formTitle}>
-          <div>{t('Click to add subPath')}</div>
-          <p>{t.html('ADD_SUBPATH_TIP')}</p>
+          <div>{t('SPECIFY_SUBPATH')}</div>
+          <p>{t.html('SPECIFY_SUBPATH_TIP')}</p>
         </div>
         <div className={styles.formContent}>
           <div className={styles.subPath}>
@@ -153,14 +152,14 @@ export default class Item extends React.Component {
               <Input
                 name="subPath"
                 defaultValue={this.state.subPath}
-                placeholder={t('sub path')}
+                placeholder={t('SUBPATH')}
                 onChange={this.handleSubPathChange}
               />
             </div>
           </div>
         </div>
         <div className={styles.formFooter}>
-          <Button onClick={this.hideSubPathForm}>{t('Cancel')}</Button>
+          <Button onClick={this.hideSubPathForm}>{t('CANCEL')}</Button>
           <Button type="control" onClick={this.handleSubPathSave}>
             {t('OK')}
           </Button>
@@ -172,8 +171,8 @@ export default class Item extends React.Component {
   renderSubPathTip() {
     return (
       <div>
-        <div className="tooltip-title">{t('Click to add subPath')}</div>
-        <p>{t.html('ADD_SUBPATH_TIP')}</p>
+        <div className="tooltip-title">{t('SPECIFY_SUBPATH')}</div>
+        <p>{t.html('SPECIFY_SUBPATH_TIP')}</p>
       </div>
     )
   }
@@ -249,9 +248,7 @@ export default class Item extends React.Component {
             name="mountPath"
             defaultValue={value.mountPath}
             disabled={value.readOnly === 'null'}
-            placeholder={`${t('Container mount path')}, ${t(
-              'for example'
-            )}: /data`}
+            placeholder={t('MOUNT_PATH')}
             onChange={this.handleMountPathChange}
           />
           {this.renderSubPath()}
@@ -266,7 +263,7 @@ export default class Item extends React.Component {
                 name="logPath"
                 defaultValue={value.logPath}
                 disabled={value.readOnly === 'null'}
-                placeholder={t('container log relative path')}
+                placeholder={t('CONTAINER_LOG_PATH')}
                 onChange={this.handleLogPathChange}
               />
             </div>

@@ -28,8 +28,8 @@ export default class SecurityContext extends React.PureComponent {
   render() {
     return (
       <Form.Group
-        label={t('Container Security Context')}
-        desc={t('CONTAINER_SECURITY_CTX_DESC')}
+        label={t('CONTAINER_SECURITY_CONTEXT')}
+        desc={t('CONTAINER_SECURITY_CONTEXT_DESC')}
         checkable
       >
         <AccessControl />

@@ -47,6 +47,7 @@ module.exports = {
   ALERTING_RESOURCE: '告警資源',
 
   Rule: '規則',
+  RULE: '規則',
   'Add Rule': '添加規則',
   'Edit Rule': '編輯規則',
   'Rule Name': '規則名稱',
@@ -120,7 +121,6 @@ module.exports = {
   RULE_EXPRESSION: '告警規則表達式',
   INVALID_TIME_DESC:
     'Invalid value. Please select a value from the drop-down list or enter 0 or a positive integer.',
-  NAME: 'Name',
   ALIAS: 'Alias',
   ALERT_DURATION_MIN: 'Duration (min)',
 
@@ -192,7 +192,4 @@ module.exports = {
   DEPLOYMENT: 'Deployment',
   STATEFULSET: 'StatefulSet',
   DAEMONSET: 'DaemonSet',
-
-  // Custom Monitoring
-  CREATED_AT: 'Created At',
 }

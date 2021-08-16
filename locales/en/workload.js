@@ -17,17 +17,41 @@
  */
 
 module.exports = {
-  SELECT_PROJECT_DESC: 'Select a project.',
+  SELECT_PROJECT_DESC:
+    'Select a project in which the resource is to be created.',
   PROJECT_EMPTY_DESC: 'Please select a project.',
   REPLICA_LOW_SI: 'replica',
   REPLICA_LOW_PL: 'replicas',
-  'Access Control': 'Access Control',
+  IMAGE_TIME_SIZE_LAYER_PL: '{time}, {size}, {layer} layers',
+  IMAGE_TIME_SIZE_LAYER_SI: '{time}, {size}, {layer} layers',
+  TAG: 'Tag',
+  CPU_REQUEST: 'CPU Request',
+  CPU_LIMIT: 'CPU Limit',
+  MEMORY_REQUEST: 'Memory Request',
+  MEMORY_LIMIT: 'Memory Limit',
+  ADD_PROBE: 'Add Probe',
+  LABEL_TYPE: '{label} <span style="{style}">({type})</span>',
+  SELINUX_CONTEXT: 'SELinux Context',
+  CAPABILITIES_BETA: 'Capabilities (beta)',
+  POD_SETTINGS: 'Pod Settings',
+  ADD_RULE: 'Add Rule',
+  RULE_NOT_COMPLETE: 'Please set a complete rule.',
+  SCHEDULE_WITH_TARGET: 'Schedule with target',
+  SCHEDULE_AWAY_FROM_TARGET: 'Schedule away from target',
+  MATCH_IF_POSSIBLE: 'Match if possible',
+  MUST_MATCH: 'Must match',
+  MOUNT_PATH_EMPTY: 'Please enter a mount path.',
+  CONFIGMAP: 'ConfigMap',
+  SECRET: 'Secret',
+  PARTITION_ORDINAL: 'Ordinal for Dividing Pod Replicas',
+  PARTITION_ORDINAL_DESC:
+    'Ordinal that divides the Pod replicas into two groups. When the StatefulSet is updated, only Pod replicas with an ordinal greater than or equal to the value of this parameter are updated.',
   'Access Mode': 'Access Mode',
   'Add argument': 'Add argument',
   'Add Command': 'Add Command',
   'Add command': 'Add command',
   'Add Container': 'Add Container',
-  'Add Environment Variable': 'Add Environment Variable',
+  ADD_ENVIRONMENT_VARIABLE: 'Add Environment Variable',
   'Add Existing Volume': 'Add Existing Volume',
   'Add HostPath': 'Add HostPath',
   ADD_LABEL: 'Add Label',
@@ -35,48 +59,49 @@ module.exports = {
   ADD_METADATA: 'Add Metadata',
   'Add new container': 'Add new container',
   'Add Node Selector': 'Add Node Selector',
+  ADD_NODE_SELECTOR: 'Add Node Selector',
   ADD_PORT: 'Add Port',
   'Add Probe': 'Add Probe',
   'Add Temporary Volume': 'Add Temporary Volume',
   'Add Volume': 'Add Volume',
   'Add Volume Template': 'Add Volume Template',
   'Adding new contianer': 'Adding new contianer',
-  ADD_METADATA_DESC: 'Add metadata to resources.',
+  ADD_METADATA_DESC:
+    'Add metadata such as labels and annotations to resources.',
   'Advanced Options': 'Advanced Options',
   'Applied to the workload': 'Applied to the workload',
   Argument: 'Argument',
-  Arguments: 'Arguments',
+  ARGUMENTS: 'Arguments',
   'Available number of nodes scheduled': 'Available number of nodes scheduled',
   'Can be found by node IP or node name':
     'Can be found by node IP or node name',
-  Capacity: 'Capacity',
+  CAPACITY: 'Capacity',
   capacity: 'capacity',
-  'Choose an existing volume': 'Choose an existing volume',
-  'Click to add subPath': 'Click to add subPath',
+  SELECT_VOLUME: 'Select Volume',
+  SELECT_TYPE: 'Select {type}',
+  SPECIFY_SUBPATH: 'Specify Subpath',
   'Cluster Resource Status': 'Cluster Resource Status',
   'Coding Mode': 'Coding Mode',
   'Collecting file log': 'Collecting file log',
   Commands: 'Commands',
   CONCURRENCY_POLICY: 'Concurrency Policy',
   'Config Template': 'Config Template',
-  'ConfigMap & Secret': 'ConfigMap & Secret',
   'Container Config': 'Container Config',
   'Container CPU Resource Request, 1 Core = 1000m':
     'Container CPU Resource Request, 1 Core = 1000m',
   CONTAINERS: 'Containers',
   CONTAINER_IMAGE: 'Container Image',
   ADD_CONTAINER: 'Add Container',
-  'Container Liveness Check': 'Container Liveness Check',
-  'container log relative path': 'container log relative path',
+  LIVENESS_CHECK: 'Liveness Check',
+  CONTAINER_LOG_PATH: 'Container log path',
   'Container Logs': 'Container Logs',
   'Container Memory Resource Request': 'Container Memory Resource Request',
-  'Container mount path': 'Container mount path',
-  'Container Name': 'Container Name',
-  'Container Readiness Check': 'Container Readiness Check',
-  'Container Security Context': 'Container Security Context',
+  CONTAINER_NAME: 'Container Name',
+  READINESS_CHECK: 'Readiness Check',
+  CONTAINER_SECURITY_CONTEXT: 'Container Security Context',
   'Container Setting': 'Container Setting',
-  'Container Startup Check': 'Container Startup Check',
-  'Container Type': 'Container Type',
+  STARTUP_CHECK: 'Startup Check',
+  CONTAINER_TYPE: 'Container Type',
   ContainerCreating: 'ContainerCreating',
   ContainerNotReady: 'ContainerNotReady',
   ContainersNotInitialized: 'ContainersNotInitialized',
@@ -96,7 +121,9 @@ module.exports = {
   'Current Utilization': 'Current Utilization',
   DEPLOYMENT_LOCATION: 'Deployment Location',
   'Deployment Mode': 'Deployment Mode',
-  DEPLOYMENT_MODE_DESC: 'You can specify rules for Pod scheduling.',
+  POD_SCHEDULING_RULES: 'Pod Scheduling Rules',
+  POD_SCHEDULING_RULES_DESC:
+    'Specify the rules for scheduling the Pod replicas to nodes.',
   DeploymentPaused: 'DeploymentPaused',
   DeploymentResumed: 'DeploymentResumed',
   'Desired number of nodes scheduled': 'Desired number of nodes scheduled',
@@ -110,6 +137,7 @@ module.exports = {
   EmptyDir: 'EmptyDir',
   Environment: 'Environment',
   'Environment Variables': 'Environment Variables',
+  ENVIRONMENT_VARIABLES: 'Environment Variables',
   'environment variables': 'environment variables',
   ErrImageNeverPull: 'ErrImageNeverPull',
   ErrImagePull: 'ErrImagePull',
@@ -118,12 +146,16 @@ module.exports = {
   EVERY_MONTH: ' (Every month)',
   EVERY_WEEK: ' (Every week)',
   'Exec Command Check': 'Exec Command Check',
+  'Every Day': 'Every Day',
+  'Every Hour': 'Every Hour',
+  'Every Month': 'Every Month',
+  'Every Week': 'Every Week',
   'Execution Records': 'Execution Records',
-  'Existing Volume': 'Existing Volume',
+  EXISTING_VOLUME: 'Existing Volume',
   FailedCreate: 'FailedCreate',
   FailedDelete: 'FailedDelete',
   failedJobsHistoryLimit: 'failedJobsHistoryLimit',
-  'Failure Threshold': 'Failure Threshold',
+  FAILURE_THRESHOLD: 'Failure Threshold',
   'File List': 'File List',
   'for example': 'for example',
   FoundNewReplicaSet: 'FoundNewReplicaSet',
@@ -133,45 +165,46 @@ module.exports = {
   'Host Path': 'Host Path',
   'Host Port': 'Host Port',
   'How pods are assinged to nodes?': 'How pods are assinged to nodes?',
-  'HTTP Request': 'HTTP Request',
-  'HTTP Request Check': 'HTTP Request Check',
+  HTTP_REQUEST: 'HTTP Request',
+  HTTP_PATH_EMPTY: 'Please set a path for the HTTP check.',
   IMAGE: 'Image',
+  IMAGE_VALUE: 'Image: {value}',
   'Image ID': 'Image ID',
   'Image Name': 'Image Name',
   'Image Pull Policy': 'Image Pull Policy',
   ImageInspectError: 'ImageInspectError',
   ImagePullBackOff: 'ImagePullBackOff',
-  'Init Container': 'Init Container',
+  INIT_CONTAINER: 'Init container',
   'Initial Delay': 'Initial Delay',
-  'Initial Delay(s)': 'Initial Delay(s)',
+  INITIAL_DELAY_S: 'Initial Delay (s)',
+  INITIAL_DELAY_TIMEOUT_VALUE:
+    '{delay}s initial delay, {timeout}s timeout period',
   'Instance Status': 'Instance Status',
   'Invalid image': 'Invalid image',
 
   'Invalid name': 'Invalid name. {message}',
   'Invalid pod': 'Invalid value',
-  INVALID_NAME_DESC:
-    'Invalid name. The name can contain only lowercase letters, numbers, and hyphens (-), must start with a lowercase letter, and must end with a lowercase letter or number. The maximum length is 63 characters.',
+  INVALID_IMAGE: 'Invalid image.',
+  INVALID_NAME_DESC: 'Invalid name. {message}',
   InvalidImageName: 'InvalidImageName',
   'is running': 'is running',
   Job: 'Job',
-  'Job Records': 'Job Records',
   'Job Settings': 'Job Settings',
   'Job Template': 'Job Template',
-  ADD_CONTAINER_DESC: 'Pull images from image registries to create containers.',
   EMPTY_LABEL_DESC: 'Please add a label.',
   LABEL_EXIST_DESC: 'The label already exists. Please use another label.',
+  ADD_CONTAINER_DESC: 'Customize container settings to create a container.',
+  'Labels cannot be empty': 'Labels cannot be empty',
+  DUPLICATE_LABELS: 'Duplicate labels cannot be added.',
   layers: 'layers',
   'Liveness Probe': 'Liveness Probe',
-  Log: 'Log',
   'log path relative to container mount path':
     'log path relative to container mount path',
-  LOGS: 'Logs',
   'm.internalLifecycle.PreStartContainer':
     'm.internalLifecycle.PreStartContainer',
   'Max Replicas Number': 'Max Replicas Number',
   MAX_SURGE_POD_VALIDATOR: 'MAX_SURGE_POD_VALIDATOR',
   'Maximum number of replicas': 'Maximum number of replicas',
-  MEMBER_CREATE_DESC: 'MEMBER_CREATE_DESC',
   'Memory Target Usage': 'Memory Target Usage',
   'Memory Target Utilization': 'Memory Target Utilization',
   'Min Replicas Number': 'Min Replicas Number',
@@ -179,65 +212,69 @@ module.exports = {
     'min replicas number should not be greater than max replicas number',
   MinimumReplicasAvailable: 'MinimumReplicasAvailable',
   MinimumReplicasUnavailable: 'MinimumReplicasUnavailable',
-  MinReadySeconds: 'MinReadySeconds',
+  MIN_READY_SECONDS: 'Minimum Running Time for Pod Readiness (s)',
   Mount: 'Mount',
-  'Mount ConfigMap or Secret': 'Mount ConfigMap or Secret',
-  'Mount Path': 'Mount Path',
-  'Mount path is already in use': 'Mount path is already in use',
+  MOUNT_CONFIGMAP_OR_SECRET: 'Mount ConfigMap or Secret',
+  MOUNT_PATH: 'Mount path',
+  MOUNT_PATH_IN_USE:
+    'The mount path is already in use. Please use another mount path.',
   'Mount point': 'Mount point',
   'Mount Temporary Volume': 'Mount Temporary Volume',
-  'Mount the configmap or secret to the specified directory.':
-    'Mount the ConfigMap or Secret to the specified directory.',
+  MOUNT_CONFIGMAP_OR_SECRET_DESC:
+    'Mount a ConfigMap or Secret to the containers.',
   'Mount Volume': 'Mount Volume',
-  'Mount Volumes': 'Mount Volumes',
+  VOLUME_SETTINGS: 'Volume Settings',
   mounted: 'mounted',
   NetworkPluginNotReady: 'NetworkPluginNotReady',
   'New Volume': 'New Volume',
   NewReplicaSetAvailable: 'NewReplicaSetAvailable',
   NewReplicaSetCreated: 'NewReplicaSetCreated',
-  'No default ports config': 'No default ports config',
-  'No Limit': 'No Limit',
+  NO_DEFAULT_PORT: 'No default ports config',
+  NO_LIMIT: 'No limit',
   'No related resources found with the current workload(s)':
     'No related resources found with the current workload(s)',
   'No related resources': 'No related resources',
-  'No Request': 'No Request',
-  'No resource limits': 'No resource limits',
-  'Node IP': 'Node IP',
+  NO_REQUEST: 'No request',
+  NO_RESOURCE_LIMIT: 'No resource limit',
   'Node Name': 'Node Name',
   'Node Scheduling Info': 'Node Scheduling Information',
-  'Not found this image': 'Not found this image',
-  OnDelete: 'OnDelete',
-  'Period Seconds': 'Period Seconds',
+  NO_IMAGE_FOUND: 'No Image Found',
+  ONDELETE: 'Update on Deletion',
+  CHECK_INTERVAL_S: 'Check Interval (s)',
   CONTAINER_EMPTY_DESC: 'Please add at least one container.',
   'Please add at least one volume': 'Please add at least one volume',
   'Please add at least one volume or volume template':
     'Please add at least one volume or volume template',
   ENTER_SCHEDULE_TIP: 'Please enter a schedule.',
   'Please input command': 'Please input command',
+  MOUNT_VOLUME: 'Mount Volume',
+  MOUNT_VOLUME_OR_TEMPLATE: 'Mount Volume or Volume Template',
+  'Please input a schedule.': 'Please input a schedule.',
+  PROBE_COMMAND_EMPTY: 'Please enter at least one command.',
   'Please input mount point': 'Please input mount point',
   'Please input port': 'Please input port',
-  'Please input volume name': 'Please input volume name',
-  'Please select a configmap': 'Please select a configmap',
-  'Please select a secret': 'Please select a secret',
+  VOLUME_NAME_EMPTY: 'Please set a name for the volume.',
+  CONFIGMAP_NOT_SELECT: 'Please select a ConfigMap.',
+  SECRET_NOT_SELECT: 'Please select a Secret.',
   'Please select a storage class': 'Please select a storage class',
-  'Please select a volume': 'Please select a volume',
-  'Please select at least one container to mount':
-    'Please select at least one container to mount',
-  'Please select image': 'Please select image',
+  VOLUME_NOT_SELECT: 'Please select a volume.',
+  CONTAINER_NOT_SELECTED: 'Please mount the volume to at least one container.',
+  SET_IMAGE_DESC: 'Set an image for the container.',
   'Please select protocol': 'Please select protocol',
   'Please select rollback revision': 'Please select rollback revision',
   'Please specify an image': 'Please specify an image',
-  'Please specify the read and write mode and mount path':
-    'Please specify the read and write mode and mount path',
-  'Pod Aggregation Deployment': 'Pod Aggregation Deployment',
+  READ_WRITE_MOUNT_EMPTY:
+    'Please specify the volume access mode and mount path.',
+  CENTRALIZED_SCHEDULING: 'Centralized Scheduling',
   'Pod CPU Request': 'Pod CPU Request',
   'Pod Decentralized Deployment': 'Pod Decentralized Deployment',
   'Pod Default Deployment': 'Pod Default Deployment',
   POD_IP_TCAP: 'Pod IP',
   'Pod Memory Request': 'Pod Memory Request',
   POD_REPLICAS: 'Pod Replicas',
-  'Pod replicas will be deployed according to the default policy.':
-    'Pod replicas will be deployed according to the default policy.',
+  DEFAULT_RULES: 'Default Rules',
+  DEFAULT_RULES_DESC:
+    'Schedules Pod replicas to nodes according to default rules.',
   'Pod replicas will be deployed on different nodes as much as possible.':
     'Pod replicas will be deployed on different nodes as much as possible.',
   'Pod replicas will be deployed on the same node as much as possible.':
@@ -245,6 +282,15 @@ module.exports = {
   'Pod replicas will be deployed according to user customization.':
     'Pod replicas will be deployed according to user customization.',
   'Pod Security Context': 'Pod Security Context',
+  DECENTRALIZED_SCHEDULING: 'Decentralized Scheduling',
+  CUSTOM_RULES_DESC:
+    'Schedules the Pod replicas to nodes according to custom rules.',
+  'Pod IP': 'Pod IP',
+  DECENTRALIZED_SCHEDULING_DESC:
+    'Schedules the Pod replicas to different nodes if possible.',
+  CENTRALIZED_SCHEDULING_DESC:
+    'Schedules the Pod replicas to the same node if possible.',
+  POD_SECURITY_CONTEXT: 'Pod Security Context',
   'Pod Status': 'Pod Status',
   'Pod Status Analysis': 'Pod Status Analysis',
   POD_REASON_FAILEDCREATE: 'Creation failed',
@@ -254,7 +300,6 @@ module.exports = {
   PodInitializing: 'PodInitializing',
   'Pods List': 'Pods List',
   Port: 'Port',
-  port: 'port',
   'Port(s)': 'Port(s)',
   ports: 'ports',
   PostStartHookError: 'PostStartHookError',
@@ -266,10 +311,10 @@ module.exports = {
   PROVISIONER: 'Provisioner',
   'Read Write Mode': 'Read Write Mode',
   'Readiness Probe': 'Readiness Probe',
-  Recreate: 'Recreate',
+  SIMULTANEOUS_UPDATE: 'Simultaneous Update',
   REDEPLOY: 'Redeploy',
   'Redeploy Successfully': 'Redeploy Successfully',
-  registry: 'registry',
+  REGISTRY: 'Registry',
   RegistryUnavailable: 'RegistryUnavailable',
   'Replica Status': 'Replica Status',
   'Replicas Number': 'Replicas Number',
@@ -297,33 +342,33 @@ module.exports = {
   'Revision Rollback': 'Revision Rollback',
   'Rollback Revisions': 'Rollback Revisions',
   RollingUpdate: 'RollingUpdate',
-  'RollingUpdate (Recommended)': 'RollingUpdate (Recommended)',
+  ROLLING_UPDATE_RECOMMENDED: 'Rolling Update (recommended)',
   RunContainerError: 'RunContainerError',
   Schedule: 'Schedule',
   'Scheduled to node': 'Scheduled to node',
   'Scheduling Info': 'Scheduling Information',
   'Select by Node': 'Select by Node',
-  'Select resource': 'Select resource',
-  'Select specific keys and paths': 'Select specific keys and paths',
+  RESOURCE: 'Resource',
+  SELECT_SPECIFIC_KEYS: 'Select Specific Keys',
   'Service Configuration': 'Service Configuration',
   'Service Labels': 'Service Labels',
   'Session Affinity': 'Session Affinity',
   'Set Mount Path': 'Set Mount Path',
-  'Set Node Scheduling Policy': 'Set Node Scheduling Policy',
+  SELECT_NODES: 'Select Nodes',
   'Specify Replicas Number': 'Specify Replicas Number',
-  'Sync Host Timezone': 'Sync Host Timezone',
+  SYNC_HOST_TIMEZONE: 'Synchronize Host Timezone',
   startingDeadlineSeconds: 'startingDeadlineSeconds',
   'startingDeadlineSeconds(s)': 'startingDeadlineSeconds(s)',
   'Startup Probe': 'Startup Probe',
   'Storage Size': 'Storage Size',
   'Strategy Type': 'Strategy Type',
-  'sub path': 'sub path',
-  'Success Threshold': 'Success Threshold',
+  SUBPATH: 'Subpath',
+  SUCCESS_THRESHOLD: 'Success Threshold',
   SuccessfulCreate: 'SuccessfulCreate',
   SuccessfulDelete: 'SuccessfulDelete',
   successfulJobsHistoryLimit: 'successfulJobsHistoryLimit',
-  'Support EmptyDir and PersistentVolumeClaim.':
-    'Support EmptyDir and PersistentVolumeClaim.',
+  WORKLOAD_MOUNT_VOLUME_DESC:
+    'Mount an existing volume, temporary volume, or HostPath volume to the containers.',
   'Sure to delete the workload(s)?': 'Sure to delete the workload(s)?',
   'target port': 'target port',
   'Target Usage': 'Target Usage',
@@ -332,24 +377,37 @@ module.exports = {
   'Temporary Volume': 'Temporary Volume',
   CONCURRENCY_POLICY_DESC:
     'Select a concurrency policy of a Job created by the CronJob.',
-  'The minimum of the replicas that can be set by HPA':
-    'The minimum of the replicas that can be set by HPA',
   FAILED_JOBS_DESC: 'Number of failed Jobs to be retained.',
   SUCCESSFUL_JOBS_DESC: 'Number of successful Jobs to be retained.',
   'Timeout(s)': 'Timeout(s)',
+  TCP_PORT: 'TCP Port',
+  TEMPORARY_VOLUME: 'Temporary Volume',
+  HOSTPATH_VOLUME: 'HostPath Volume',
+  'The concurrency policy setting.': 'The concurrency policy setting.',
+  'The minimum of the replicas that can be set by HPA':
+    'The minimum of the replicas that can be set by HPA',
+  'The number of failed jobs allowed to be retained.':
+    'The number of failed jobs allowed to be retained.',
+  'The number of successful jobs allowed to be retained.':
+    'The number of successful jobs allowed to be retained.',
+  TIMEOUT_PERIOD_S: 'Timeout (s)',
   'UI Mode': 'UI Mode',
   'Update Strategy': 'Update Strategy',
-  'Use ConfigMap or Secret': 'Use ConfigMap or Secret',
-  'Use Default Ports': 'Use Default Ports',
-  'User and User Group': 'User and User Group',
-  'User Group': 'User Group',
+  UPDATE_STRATEGY: 'Update Strategy',
+  USE_CONFIGMAP_OR_SECRET: 'Use ConfigMap or Secret',
+  USE_DEFAULT_PORT: 'Use Default Port',
+  USER_AND_USER_GROUP: 'User and User Group',
+  USER_GROUP: 'User Group',
   'View YAML': 'View YAML',
   VOLUME_CAPACITY_TCAP: 'Volume Capacity',
   'Volume Name': 'Volume Name',
   'Volume Source': 'Volume Source',
-  Volumes: 'Volumes',
   DISK_LOG_COLLECTION_Q: 'What is disk log collection?',
   'Worker Container': 'Worker Container',
+  VOLUME_CAPACITY: 'Volume Capacity',
+  VOLUME_NAME: 'Volume Name',
+  'What is Disk Log Collection?': 'What is Disk Log Collection?',
+  WORKER_CONTAINER: 'Worker container',
   Workload: 'Workload',
 
   'Not Limited': 'Not Limited',
@@ -371,9 +429,9 @@ module.exports = {
   WORKLOAD_REASON_REPLICASETCREATEERROR: 'New ReplicaSet creation error',
   WORKLOAD_REASON_REPLICASETUPDATED: 'ReplicaSet updated',
   Workloads: 'Workloads',
-  'You can allow Pod replicas to run on specified nodes.':
-    'You can allow Pod replicas to run on specified nodes.',
-
+  SELECT_NODES_DESC:
+    'Assign Pod replicas to specific nodes. You can use labels to select nodes or manually specify a node.',
+  WORKLOAD_SPECIFY_NODE_DESC: 'Assign Pod replicas to a specific node.',
   WORKLOAD_DESC:
     'A workload is usually the actual carrier for accessing a Service, and is also the actual running carrier for system applications such as node log collection and monitoring. A workload is an abstract model for a group of Pods.',
   DEPLOYMENT_DESC:
@@ -397,7 +455,7 @@ module.exports = {
   CRONJOB_CREATE_DESC:
     'CronJobs manages Jobs on a time-based schedule and can be used to perform periodic or recurring tasks.',
   CRONJOB_NAME_DESC:
-    'It can only contain lowercase letters, numbers and hyphens("-"), and must begin and end with a lowercase letter or a number. The value can contain a maximum of 52 characters.',
+    'It can only contain lowercase letters, numbers and hyphens("-"), and must start and end with a lowercase letter or a number. The value can contain a maximum of 52 characters.',
   CRONJOB_NAME_TOO_LONG: 'The value can contain a maximum of 52 characters.',
 
   REPLICAS_SCALE_NOTIFY_TITLE: 'Does it take effect immediately?',
@@ -406,37 +464,37 @@ module.exports = {
   REPLICAS_SCALE_NOTIFY_CONFIRM: 'Apply changes ({seconds}s)',
   REPLICAS_SCALE_NOTIFY_CANCEL: 'Discard changes',
 
-  POD_SETTING_TIP: 'The number of Pods when updated',
-  MAX_UNAVAILABLE_POD_LABEL: 'The maximum unavailable number of Pods',
-  MAX_SURGE_POD_LABEL: 'The maximum surge number of Pods',
+  ROLLING_UPDATE_SETTINGS: 'Rolling Update Settings',
+  MAX_UNAVAILABLE_PODS: 'Maximum Unavailable Pods',
+  MAX_EXTRA_PODS: 'Maximum Extra Pods',
   UPDATE_STRATEGY_DESC:
     'It\'s used to configure the strategy for replacing pods during the upgrade process. <a href="{link}" target="_blank">Learn more.</a>',
-  MAX_DAEMON_UNAVAILABLE_POD_DESC:
-    'The maximum number of DaemonSet pods that can be unavailable during the update.',
+  MAX_UNAVAILABLE_PODS_DESC:
+    'Maximum number or percentage of unavailable Pod replicas allowed during the update process.',
   MAX_DEPLOY_UNAVAILABLE_POD_DESC:
     'The maximum number of Pods that can be unavailable during the update.',
-  MAX_SURGE_POD_DESC:
-    'The maximum number of Pods that can be scheduled above the desired number of Pods.',
+  MAX_EXTRA_PODS_DESC:
+    'Maximum number or percentage of extra Pods allowed during the update process.',
   ROLLING_UPDATE_POD_TIP:
     'It limits the minimum and maximum available quantities based on the current replicas when it is in rolling update. The minimum number of replicas cannot exceed the current number of replicas, and the maximum number of Pods cannot exceed 2 times the current replicas.',
-  ONDELETE_ALERT_TIP:
-    'The controller will not automatically update the Pod. It will update and replace Pod instances when the Pod is manually deleted.',
-  ROLLINGUPDATE_ALERT_TIP:
-    'A rolling update means the instance of the old version will be gradually replaced with new ones. During the upgrade process, the traffic will be load balanced and distributed to the old and new instances simultaneously, so the service will not be interrupted.',
-  RECREATE_ALERT_TIP:
-    'All existing Pods will be killed before new ones are created. Please note that the service will be interrupted during the update process.',
+  ONDELETE_DESC: 'Updates Pod replicas only when they are manually deleted.',
+  ROLLINGUPDATE_DESC:
+    'Gradually replaces old Pod replicas with new ones. The service is not interrupted during the update process.',
+  SIMULTANEOUS_UPDATE_DESC:
+    'Deletes all existing Pod replicas before creating new ones. The service is interrupted during the update process.',
 
   STATEFULSET_PARTITION_DESC:
     'Partition indicates the ordinal at which the StatefulSet should be partitioned. Default value is 0.',
-  STATEFULSET_PARTITION_PLACEHOLDER: 'Default value is 0',
+  PARTITION_ORDINAL_EMPTY: 'Please set a ordinal for dividing Pod replicas.',
   MIN_READY_SECONDS_DESC:
-    'Specifies the minimum number of seconds before a newly created Pod of DaemonSet is treated as available',
-
-  IMAGE_PLACEHOLDER:
-    'Select the registry from the drop-down list or enter a public registry address',
+    'Minimum stable running time required for a Pod replica to be considered ready.',
+  MIN_READY_SECONDS_EMPTY:
+    'Please set the minimum stable running time required for a Pod replica to be considered ready.',
+  IMAGE_PLACEHOLDER: 'Image name or path such as nginx:latest',
+  IMAGE_EMPTY: 'Please set an image.',
   IMAGE_REGISTRY_PLACEHOLDER: 'Select the registry secret',
   IMAGE_DESC:
-    'To deploy from a private image repository, you need to <a href={link} target="_blank">create an image registry secret</a> first and then pull the image.',
+    'To use a private image registry, you need to <a href={link} target="_blank">create an image registry secret</a> first.',
 
   REPLICAS_DESC: 'The desired number of pods will be created for the {module}.',
   VOLUME_SUB_TEXT: 'Volumes used by the containers of the workload',
@@ -447,7 +505,7 @@ module.exports = {
   PORT_NAME_DESC:
     'The port name can contain only lowercase letters, numbers, and hyphens (-) and must begin and end with a lowercase letter or number. The maximum length is 63 characters.',
   WORKLOAD_PORT_NAME_DESC:
-    'The port name can contain only lowercase letters, numbers and hyphens (-), and must begin and end with a lowercase letter or number. The maximum length is 15 characters.',
+    'The port name can contain only lowercase letters, numbers and hyphens (-), and must start and end with a lowercase letter or number. The maximum length is 15 characters.',
 
   DEPLOYMENTS_BASEINFO_DESC:
     'You can give the deployment a name that is easy to distinguish when you use it.',
@@ -513,8 +571,8 @@ module.exports = {
 
   HOST_PATH_DESC:
     'HostPath allows you to mount the file system on the host to the Pod. If the Pod needs to use files on the host, you can use HostPath.',
-  SELECT_SECRET_DESC:
-    'Select the key you want to use and the file path where each key will be exposed. The file path is equivalent to the mount path. The content of each file is the value of the key.',
+  SELECT_SPECIFIC_KEYS_DESC:
+    'Select specific keys to be mounted to the containers.',
   EMPTY_DIR_DESC:
     'Temporary volumes are assigned to the host along with the Pod. When a Pod is deleted from the host, the temporary volume is also deleted and the data of the volume is permanently deleted. <br /> Note: Deleting a container does not affect the temporary volume.',
   SELECT_VOLUME_TYPE_DESC: 'You can choose to an proper volume type to add',
@@ -531,9 +589,8 @@ module.exports = {
   REPLICAS_PLACEHOLDER: 'Default: 1',
 
   ADD_VOLUME_TEMPLATE_DESC:
-    'The life cycle of the volume will be the same as that of the Pod.',
+    'Use a volume template to mount a volume with the same lifecycle as the Pod.',
 
-  EDIT: 'Edit',
   MORE: 'More',
   VIEW_YAML: 'View YAML',
 
@@ -541,15 +598,15 @@ module.exports = {
   REVISION_TITLE: '{name} revision',
   PROBE_TIME: '{delay}s delay, {timeout}s timeout',
   INITIAL_DELAY_DESC:
-    'Number of seconds after the container has started before liveness probes are initiated.',
-  TIMEOUT_DESC:
-    'Number of seconds after which the probe times out. It defaults to 1 second and the minimum value is 1.',
-  PERIOD_SECONDS_DESC:
-    'Probe frequency (in seconds), which defaults to 10 seconds. The minimum value is 1.',
+    'Delay time before the probe is initiated after container startup. The value must be an integer and the minimum value is 0.',
+  TIMEOUT_PERIOD_DESC:
+    'Timeout period after which the probe times out and is considered failed. The value must be an integer and the minimum value is 1.',
+  CHECK_INTERVAL_DESC:
+    'Interval between check attempts. The value must be an integer and the minimum value is 1.',
   SUCCESS_THRESHOLD_DESC:
-    'Minimum consecutive successes for the probe to be considered successful after having failed. It defaults to 1 and must be 1 for liveness and startup. The minimum value is 1.',
+    'Minimum number of consecutive successes for the probe to be considered successful after having failed. The minimum value is 1 and the value must be 1 for liveness and startup probes.',
   FAILURE_THRESHOLD_DESC:
-    'Minimum consecutive failures for the probe to be considered failed after having succeeded. It defaults to 3 and the minimum value is 1.',
+    'Minimum number of consecutive failures for the probe to be considered failed after having succeeded. The minimum value is 1.',
 
   HPA_MSG:
     'Automatically autoscale the replicas according to CPU and memory usage. If both CPU and memory are specified, the replicas is added or deleted after any of the conditions are met.',
@@ -564,8 +621,8 @@ module.exports = {
   DAEMONSETS_REPLICA_DESC:
     'DaemonSet ensures that each node in the cluster runs a replica. When a node joins the cluster or leaves, the number of replicas is automatically adjusted to ensure that the number of replicas is the same as the number of nodes in the cluster. You can use DaemonSets to run storage services (GlusterFS, Ceph, etc.), log collection services (Fluentd, Logstash, etc.), and monitoring services.',
 
-  REFFER_CONFIGMAP_DESC: 'Add a new volume from the ConfigMap value.',
-  REFFER_SECRET_DESC: 'Add a new volume from the Secret value.',
+  SELECT_CONFIGMAP_DESC: 'Mount a ConfigMap to the containers.',
+  SELECT_SECRET_DESC: 'Mount a Secret to the containers.',
 
   MONITORING_ALERT_DESC:
     'The current monitoring graph displays five replicas at most. You can click "View All Replicas" to view more monitoring graphs if the number of replicas exceeds five.',
@@ -576,26 +633,22 @@ module.exports = {
     "It's used as the judgment of resource allocation when scheduling containers. The container is allowed to be scheduled to the node only if the total amount of CPU that can be allocated on the node is equal or greater than the request value of the container CPU.",
   CONTAINER_MEMORY_DESC:
     "It's used as the judgment of resource allocation when scheduling containers. The container is allowed to be scheduled to the node only if the total amount of memory that can be allocated on the node is equal or greater than the request value of the container memory.",
-  IMAGE_PULL_POLICY_ALWAYS: 'Redownload Image (Always)',
-  IMAGE_PULL_POLICY_IFNOTPRESENT: 'Use Local Image First (IfNotPresent)',
-  IMAGE_PULL_POLICY_NEVER: 'Only Use Local Image (Never)',
+  IMAGE_PULL_POLICY_ALWAYS: 'Pull Image Always',
+  IMAGE_PULL_POLICY_IFNOTPRESENT: 'Use Local Image First',
+  IMAGE_PULL_POLICY_NEVER: 'Use Local Image Only',
   IMAGE_PULL_POLICY_ALWAYS_DESC:
-    'Pull the image every time the pod is started.',
+    'Pulls the image always when the Pod is created or updated.',
   IMAGE_PULL_POLICY_IFNOTPRESENT_DESC:
-    'Pull the image only if it does not exist locally.',
+    'Pulls the image only when it does not exist locally.',
   IMAGE_PULL_POLICY_NEVER_DESC:
-    'Only the local image will be used, which will cause the container to be abnormal if the required image does not exist locally.',
+    'Uses a local image only. The container will become abnormal if the required image does not exist locally.',
 
-  LIVENESS_PROBE_DESC:
-    'This check method is used to detect if the container is alive.',
-  READINESS_PROBE_DESC:
-    'This check method is used to detect if the container is ready to service requests.',
-  STARTUP_PROBE_DESC:
-    'This check method is used to detect if the container is started successfully.',
+  LIVENESS_CHECK_DESC: 'Checks whether the container is alive.',
+  READINESS_CHECK_DESC:
+    'Checks whether the container is ready to process requests.',
+  STARTUP_CHECK_DESC: 'Checks whether the container is started successfully.',
 
-  STARTUP_PROBE_TIP: 'Kubernetes version v1.18 or above required.',
-
-  SEARCH_IMAGE_PLACEHOLDER: 'Enter keyword to search image',
+  STARTUP_CHECK_TIP: 'Kubernetes v1.18 or later is required.',
 
   POD_CONDITION_INITIALIZED: 'Initialized',
   POD_CONDITION_INITIALIZED_DESC:
@@ -621,62 +674,68 @@ module.exports = {
     'Resource requests should not be greater than resource limits.',
   REQUEST_EXCCED_WORKSPACE:
     'Resource setting should not be greater than workspace resource limits.',
+  REQUEST_EXCEED_LIMIT:
+    'Resource requests cannot be greater than resource limits.',
+
   WORKLOAD_CONDITIONS: 'Conditions',
   WORKLOAD_CONDITION_AVAILABLE: 'Available',
   WORKLOAD_CONDITION_PROGRESSING: 'Progressing',
 
-  COLLECT_SAVED_LOG_DESC:
-    'You have enabled the option of collecting the logs on disk. Please add at least one volume and specify the directory in which the log is located.',
-
+  VOLUME_OR_TEMPLATE_EMPTY:
+    'You have enabled Collect Logs on Volumes. Please mount at least one volume or volume template and specify the directory of the logs.',
+  VOLUME_EMPTY:
+    'You have enabled Collect Logs on Volumes. Please mount at least one volume and specify the directory of the logs.',
   PROJECT_COLLECT_SAVED_DISABLED_DESC:
-    'Please contact the project administrator to enable disk log collection in <b>Project Settings</b> > <b>Advanced Settings</b>.',
+    'To enable this function, you need to enable Collect Logs on Volumes in Project Settings.',
+
   COLLECT_FILE_LOG_TIP:
-    'After you add a volume (ReadAndWrite mode), you can collect logs inside the volume. When you enable disk log collection, the Filebeat image will be used as a sidecar pattern and injected into the Pod to collect logs.',
+    'Allow the system to collect container logs saved in a volume. To use this function, you need to mount a volume in read and write mode to a container and set the container to export logs to the volume.',
 
   ISTIO_PROTOCOL_TIP:
-    'To fully use the Application Governance feature, select a protocol based on the actual usage of the Service. The port name will be generated in the <Protocol>-<Name> format.',
+    'Select the protocol used by the service to fully utilize the Application Governance function. For example, select HTTP for an HTTP service.',
 
   CONTAINER_LOG_PATH_TIP:
-    'The container log relative path is the path from the pod mount path, which can be given in glob mode. When there are multiple groups, separate them by commas. For example, when the pod mount path is /data, the pod log relative path is configured as log/*.log, which means that all .log suffix files in the /data/log directory are matched. If you need to match all .log suffix files in the /data/log directory and its subdirectories, you can configure the pod log relative path to log/**/*.log.',
-  ADD_SUBPATH_TIP:
-    "It's only appropriate for mounting volumes but not for hostpath",
+    'Container log path relative to the volume mount path. Globbing patterns are supported. You can used commas (,) to separate multiple paths. For example, when the volume mount path is /data, log/*.log indicates that the container log files are all .log files in the /data/log directory.',
+  SPECIFY_SUBPATH_TIP:
+    'Specify a volume subpath to be mounted to the container.',
   DELETE_WORKLOAD_DESC:
     'You are about to delete the workload(s) {resource}. Please confirm whether to delete the associated resource?',
-  CHOOSE_EXIST_VOLUME_DESC:
-    'Select a volume that has been created and mount it to the container.',
+  SELECT_VOLUME_DESC:
+    'Select an existing volume and mount it to the containers.',
 
   REDEPLOY_CONFIRM_DESC:
     'You are about to redeploy the workload {resource} ({type}). The pod will be redeployed according to the update strategy, and your business may be temporarily interrupted.',
 
-  CONTAINER_SECURITY_CTX_DESC:
-    'A security context defines privilege and access control settings for a Pod or Container.',
+  CONTAINER_SECURITY_CONTEXT_DESC:
+    'Customize the privilege settings of the container.',
+  POD_SECURITY_CONTEXT_DESC: 'Customize the Pod privilege settings.',
 
-  POD_SECURITY_CONTEXT_DESC:
-    'Pod Security Context can provide default user and user group settings and seLinuxOptions parameter settings for containers in the Pod. If these parameters have been defined in the container, the settings in the container take precedence.',
+  POD_SECURITY_CONTEXT_TIP:
+    'If User, User Group, and SELinux Context settings are defined in both Pod Security Context and Container Security Context, the Container Security Context settings will override the Pod Security Context settings.',
 
-  ACCESS_CONTROL_PRIVILEGED: 'Privileged',
-  ACCESS_CONTROL_PRIVILEGED_DESC:
-    'The process in the container is essentially equivalent to the root user on the host node.',
-  ACCESS_CONTROL_ALLOWPRIVILEGEESCALATION: 'AllowPrivilegeEscalation',
-  ACCESS_CONTROL_ALLOWPRIVILEGEESCALATION_DESC:
-    'Whether the process can acquire more privileges than the parent process. When running in privileged mode, it is enabled.',
-  ACCESS_CONTROL_READONLYROOTFILESYSTEM: 'ReadOnlyRootFilesystem',
-  ACCESS_CONTROL_READONLYROOTFILESYSTEM_DESC:
-    "Whether the container's file system root path is read-only.",
+  PRIVILEGED_MODE: 'Privileged Mode',
+  PRIVILEGED_MODE_DESC:
+    'Runs container processes as the root user of the host.',
+  ALLOW_PRIVILEGE_ESCALATION: 'Allow Privilege Escalation',
+  ALLOW_PRIVILEGE_ESCALATION_DESC:
+    'Allows container processes to acquire more privileges than the parent process. This option is enabled by default when the privileged mode is enabled.',
+  ROOT_DIRECTORY_READONLY: 'Root Directory Read-Only',
+  ROOT_DIRECTORY_READONLY_DESC:
+    'Sets the root directory of the container file system to read-only.',
 
-  RUN_AS_NON_ROOT: 'Run as non root',
+  RUN_AS_NON_ROOT: 'Run as Non-root',
   RUN_AS_NON_ROOT_DESC:
-    'Kubernetes will perform a check before running the container to ensure that the container process is not running as the root user (UID 0), otherwise the container will not start.',
+    'Checks whether the container is to be run by the root user before starting the container. If yes, the container will not be started.',
   RUN_AS_USER_DESC:
-    'The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified.',
+    'UID to run the entrypoint of the container process. The default value is the UID specified in the image metadata.',
   RUN_AS_USER_GROUP_DESC:
-    'The GID to run the entrypoint of the container process. Uses runtime default if unset.',
+    'GID to run the entrypoint of the container process. The default value is the container runtime default GID.',
 
   WORKLOAD_CREATE_DESC:
     'A workload is usually the actual carrier for accessing a Service, and is also the actual running carrier for system applications such as node log collection and monitoring. A workload is an abstract model for a group of Pods.',
 
   CONTAINER_RESOURCE_LIMIT_TIP:
-    "Please set the container's resource limits and requests, which will help the system to better schedule and improve stability. In Project Settings, you can also set the default value (Basic Information -> Manage Project -> Edit Resource Default Request).",
+    'Set the resource limits and requests of the container so that the container is scheduled to appropriate nodes.',
 
   COMPARE_WITH: 'Comparison with the previous version {version}',
   REVISION_DESC:
@@ -693,17 +752,16 @@ module.exports = {
   REPLICAS_EXPECTED: 'Expected',
 
   SYNC_HOST_TIMEZONE_DESC:
-    'The time zone of the container will be consistent with that of the host after synchronization.',
-  HOST_PATH_WARNING:
-    'A HostPath volume mounts a file or directory from the host node’s filesystem into your Pod. This is not something that most Pods will need, but it offers a powerful escape hatch for some applications.',
+    'Synchronize the time zone of the container with that of the host.',
+  HOSTPATH_TIP:
+    'Use a HostPath volume to mount a file or directory in the host file system to the containers.',
 
   DEPLOY_PLACEMENT_TIP_TITLE: 'What is Deployment Location?',
   DEPLOY_PLACEMENT_TIP_VALUE:
     'You can deploy Pods on different clusters and define the number of replicas deployed. The Federation Controller Manager schedules Pods on different clusters in a unified way and synchronizes status.',
-  IGNORE_CERT_DESC:
-    'A certificate error was found, do you want to ignore the certificate verification',
+  CERT_ERROR: 'Certificate error.',
   IGNORE_CERT_WARN_DESC:
-    'Ignoring the verification certificate may cause the account password to be disclosed. ',
+    'Ignoring certificate verification may cause password disclosure.',
   INVALID_PROJECT: 'Invalid project.',
 
   // Pods Page
@@ -713,8 +771,6 @@ module.exports = {
   JOBS: 'Jobs',
   CRONJOBS: 'CronJobs',
   SCHEDULE: 'Schedule',
-  LABELS: 'Labels',
-  ANNOTATIONS: 'Annotations',
 
   // CronJobs
   ADD_VOLUME: 'Add Volume',

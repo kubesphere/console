@@ -26,7 +26,7 @@ import { Text } from 'components/Base'
 import styles from './index.scss'
 
 const STATES = {
-  current: 'SETTING',
+  current: 'IN_PROGRESS',
   finished: 'FINISHED',
   notfinish: 'NOT_SET',
 }

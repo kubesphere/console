@@ -41,7 +41,7 @@ export default class ArrayInput extends React.Component {
     name: '',
     value: [''],
     onChange() {},
-    addText: 'Add',
+    addText: t('ADD'),
     itemType: 'string',
   }
 

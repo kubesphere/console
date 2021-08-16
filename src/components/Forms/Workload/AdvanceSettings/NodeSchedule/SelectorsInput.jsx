@@ -64,7 +64,7 @@ export default class SelectorsInput extends React.Component {
           closeAfterClick={false}
           trigger="click"
         >
-          <Button className={styles.node}>{t('Specify Node')}</Button>
+          <Button className={styles.node}>{t('SPECIFY_NODE')}</Button>
         </Popper>
       </div>
     )

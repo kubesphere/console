@@ -24,13 +24,13 @@ import AdvanceSettings from 'components/Forms/Workload/AdvanceSettings'
 export default [
   { title: 'Basic Info', icon: 'cdn', component: BaseInfo, required: true },
   {
-    title: 'Container Image',
+    title: 'POD_SETTINGS',
     icon: 'docker',
     component: ContainerSettings,
     required: true,
   },
   {
-    title: 'Mount Volumes',
+    title: 'VOLUME_SETTINGS',
     icon: 'storage',
     component: VolumeSettings,
     required: true,

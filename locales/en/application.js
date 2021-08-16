@@ -40,7 +40,6 @@ module.exports = {
   'Application governance is not enabled':
     'Application governance is not enabled',
   'Application Icon': 'App Icon',
-  'Application Name': 'App Name',
   'Application Route': 'App Route',
   'Application Type': 'App Type',
   'Application Version(Optional)': 'App Version(Optional)',
@@ -109,8 +108,9 @@ module.exports = {
   On: 'On',
   'Please finish the sub form first': 'Please finish the sub form first',
   'Please input an application name': 'Please input an application name',
+  APP: 'App',
   'Please input component version': 'Please input component version',
-  SAVE_FORM_TIP: 'Please save the current form first.',
+  SAVE_FORM_TIP: 'Please save the current settings first.',
   'Please try other query conditions': 'Please try other query conditions',
   'Pod isolation ratio (unit: %)': 'Pod isolation ratio (unit: %)',
   Process: 'Process',
@@ -144,7 +144,7 @@ module.exports = {
     'The number of consecutive 5xx errors in one inspection cycle',
   'The response code will be filtered in the inspection cycle.':
     'The response code will be filtered in the inspection cycle.',
-  TOTAL_COLLECTIONS: 'TOTAL_COLLECTIONS',
+  TOTAL_COLLECTIONS: 'Total {num} receivers',
   Traffic: 'Traffic',
   'Traffic (requests per second)': 'Traffic (requests per second)',
   'Traffic Entry': 'Traffic Entry',

@@ -24,6 +24,8 @@ module.exports = {
 
   IP_MASK_BIT_TCAP: 'IP / 遮罩位元',
   USED_IP_TCAP: '已用 IP',
+  NETWORK_SEGMENT: 'IP / 遮罩位元',
+  'Used IP': '已用 IP',
 
   Mask: '遮罩',
   MASK_BIT_TCAP: '遮罩位元',
@@ -31,9 +33,9 @@ module.exports = {
 
   'First Available': '第一個可用',
   'Last Available': '最後可用',
-  'Available Number': '可用數量',
+  AVAILABLE_ADDRESSES: '可用數量',
 
-  'Pod IP Range': '容器組 IP 地址範圍',
+  POD_IP_POOL: '容器組 IP 地址範圍',
 
   NUMBER_OF_CREATION_TCAP: '創建數量',
   'Pod IP Pools to be created': '即將創建的容器組 IP 地址範圍',

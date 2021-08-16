@@ -47,7 +47,6 @@ module.exports = {
   'Workspace Settings': 'Workspace Settings',
   Workspaces: 'Workspaces',
   'Workspaces Manager': 'Workspace Manager',
-  projects: 'Projects',
   devops: 'DevOps Projects',
   'Workspace Quota': 'Edit Workspace Quota',
   'Edit Workspace Quota': 'Edit Workspace Quota',
@@ -70,8 +69,6 @@ module.exports = {
     'Manage workspace members and their roles. Workspace members can be invited to projects in the workspace.',
   INVITE_WORKSPACE_MEMBER_DESC: 'Invite members to the workspace.',
   INVITE_WORKSPACE_MEMBER_SEARCH_PLACEHODLER: 'Enter a username.',
-
-  MEMBER_CREATE_DESC: '',
 
   WORKSPACE_ROLE_DESC:
     'The role of a workspace member determines the permissions of the member in the workspace.',

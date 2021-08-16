@@ -80,7 +80,7 @@ export default class ServiceSettings extends React.Component {
       const names = []
       value.forEach(item => {
         if (!item.name || !item.port) {
-          return callback({ message: t('INVALID_PORT_DESC') })
+          return callback({ message: t('INVALID_PORT') })
         }
 
         if (names.includes(item.name)) {
@@ -158,14 +158,14 @@ export default class ServiceSettings extends React.Component {
       <Form.Group label={t('PORTS')} desc={t('SERVICE_PORTS_DESC')}>
         <Form.Item
           rules={[
-            { required: true, message: t('ENTER_PORT_NUMBER') },
+            { required: true, message: t('PORT_EMPTY') },
             { validator: this.portsValidator, checkOnSubmit: true },
           ]}
         >
           <ArrayInput
             name={isFederated ? 'spec.template.spec.ports' : 'spec.ports'}
             itemType="object"
-            addText={t('ADD')}
+            addText={t('ADD_PORT')}
           >
             <ServicePort />
           </ArrayInput>

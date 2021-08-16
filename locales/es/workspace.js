@@ -18,7 +18,6 @@
 
 module.exports = {
   'Cluster Authorization Info': 'Información de autorización de clúster',
-  CLUSTER_INFORMATION: 'Información del clúster',
   'Create Workspace': 'Crear espacio de trabajo',
   'Create Workspace Role': 'Crear rol de espacio de trabajo',
   'Created Projects': 'Proyectos creados',
@@ -52,7 +51,6 @@ module.exports = {
   'All members': 'Todos los miembros',
   Assigned: 'Asignado',
 
-  projects: 'Projects',
   devops: 'DevOps Projects',
   'Workspace Quota': 'Workspace Quota',
   'Edit Workspace Quota': 'Edit Workspace Quota',
@@ -78,7 +76,6 @@ module.exports = {
     'Puedes invitar a nuevos miembros a trabajar en el espacio de trabajo.',
   INVITE_WORKSPACE_MEMBER_SEARCH_PLACEHODLER:
     'Introduce direcciones de correo electrónico para invitar a miembros del espacio de trabajo',
-  MEMBER_CREATE_DESC: '',
   WORKSPACE_ROLE_DESC:
     'El rol del espacio de trabajo determina los permisos del rol en el espacio de trabajo actual.',
   SEARCH_WORKSPACE_TIP: 'Introduce el nombre del espacio de trabajo a buscar',

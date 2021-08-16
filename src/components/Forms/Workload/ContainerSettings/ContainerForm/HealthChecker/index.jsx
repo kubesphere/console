@@ -37,43 +37,38 @@ export default class HealthChecker extends React.Component {
   render() {
     return (
       <Form.Group
-        label={t('Health Checker')}
-        desc={t(
-          'The health of the container will be checked regularly according to user needs.'
-        )}
+        label={t('HEALTH_CHECKER')}
+        desc={t('HEALTH_CHECKER_DESC')}
         checkable
       >
         <Form.Item
           className={styles.item}
-          label={t('Container Liveness Check')}
+          label={t('LIVENESS_CHECK')}
+          desc={t('LIVENESS_CHECK_DESC')}
         >
           <ProbeInput
             name={`${this.prefix}livenessProbe`}
-            type={t('Container Liveness Check')}
-            description={t('LIVENESS_PROBE_DESC')}
             probType="livenessProbe"
           />
         </Form.Item>
         <Form.Item
           className={styles.item}
-          label={t('Container Readiness Check')}
+          label={t('READINESS_CHECK')}
+          desc={t('READINESS_CHECK_DESC')}
         >
           <ProbeInput
             name={`${this.prefix}readinessProbe`}
-            type={t('Container Readiness Check')}
-            description={t('READINESS_PROBE_DESC')}
             probType="readinessProbe"
           />
         </Form.Item>
         <Form.Item
           className={styles.item}
-          label={t('Container Startup Check')}
-          tip={t('STARTUP_PROBE_TIP')}
+          label={t('STARTUP_CHECK')}
+          tip={t('STARTUP_CHECK_TIP')}
+          desc={t('STARTUP_CHECK_DESC')}
         >
           <ProbeInput
             name={`${this.prefix}startupProbe`}
-            type={t('Container Startup Check')}
-            description={t('STARTUP_PROBE_DESC')}
             probType="startupProbe"
           />
         </Form.Item>

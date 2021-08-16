@@ -79,7 +79,6 @@ module.exports = {
     'Kafka es una popular plataforma de procesamiento de flujo de código abierto.',
   FLUENTD_DESC:
     'Fluentd es un recopilador de datos de código abierto para la capa de registro unificada.',
-  TOTAL_COLLECTIONS: 'Total {num} receivers',
   TOOLBOX_SHIFT_TIPS:
     '👻 Puedes abrir la página en una nueva ventana con "MAYÚS + CLIC IZQUIERDO".',
   LOG_COLLECTION_DESC:
@@ -178,6 +177,6 @@ module.exports = {
   INVALID_SERVICE_ADDRESS: 'Invalid service address.',
   ADD_SERVICE_ADDRESS: 'Add',
   EXAMPLE: 'Example: ',
-  ENTER_PORT_NUMBER: 'Please enter a port number.',
+  PORT_NUMBER_EMPTY: 'Please enter a port number.',
   PARAMETER_REQUIRED: 'This parameter is mandatory.',
 }

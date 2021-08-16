@@ -412,27 +412,31 @@ export const SECRET_TYPES = {
 
 export const STRATEGIES = {
   deployments: [
-    { label: 'Recreate', value: 'Recreate', description: 'RECREATE_ALERT_TIP' },
     {
-      label: 'RollingUpdate (Recommended)',
+      label: 'SIMULTANEOUS_UPDATE',
+      value: 'Recreate',
+      description: 'SIMULTANEOUS_UPDATE_DESC',
+    },
+    {
+      label: 'ROLLING_UPDATE_RECOMMENDED',
       value: 'RollingUpdate',
-      description: 'ROLLINGUPDATE_ALERT_TIP',
+      description: 'ROLLINGUPDATE_DESC',
     },
   ],
   daemonsets: [
-    { label: 'OnDelete', value: 'OnDelete', description: 'ONDELETE_ALERT_TIP' },
+    { label: 'ONDELETE', value: 'OnDelete', description: 'ONDELETE_DESC' },
     {
-      label: 'RollingUpdate (Recommended)',
+      label: 'ROLLING_UPDATE_RECOMMENDED',
       value: 'RollingUpdate',
-      description: 'ROLLINGUPDATE_ALERT_TIP',
+      description: 'ROLLINGUPDATE_DESC',
     },
   ],
   statefulsets: [
-    { label: 'OnDelete', value: 'OnDelete', description: 'ONDELETE_ALERT_TIP' },
+    { label: 'ONDELETE', value: 'OnDelete', description: 'ONDELETE_DESC' },
     {
-      label: 'RollingUpdate (Recommended)',
+      label: 'ROLLING_UPDATE_RECOMMENDED',
       value: 'RollingUpdate',
-      description: 'ROLLINGUPDATE_ALERT_TIP',
+      description: 'ROLLINGUPDATE_DESC',
     },
   ],
 }

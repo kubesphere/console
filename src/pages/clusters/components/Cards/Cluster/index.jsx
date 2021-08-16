@@ -41,7 +41,7 @@ export default class ClusterCard extends React.Component {
             <ClusterTitle cluster={data} onClick={this.handleClick} />
           </Column>
           <Column className="is-2">
-            <Text title={data.nodeCount} description={t('NODES')} />
+            <Text title={data.nodeCount} description={t('NODE_COUNT')} />
           </Column>
           <Column className="is-2">
             <Text

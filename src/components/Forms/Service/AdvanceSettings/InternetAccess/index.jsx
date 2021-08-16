@@ -106,7 +106,7 @@ export default class InternetAccess extends React.Component {
           />
         </Form.Item>
         {mode === 'LoadBalancer' && (
-          <Form.Item label={t('Annotations')}>
+          <Form.Item label={t('ANNOTATIONS')}>
             <PropertiesInput
               name="Service.metadata.annotations"
               hiddenKeys={globals.config.preservedAnnotations}

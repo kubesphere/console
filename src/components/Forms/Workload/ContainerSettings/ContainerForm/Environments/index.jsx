@@ -36,8 +36,8 @@ export default class Environments extends React.Component {
     const { checkable, configMaps, secrets } = this.props
     return (
       <Form.Group
-        label={t('Environment Variables')}
-        desc={t('CONTAINER_ENVIROMENT_DESC')}
+        label={t('ENVIRONMENT_VARIABLES')}
+        desc={t('CONTAINER_ENVIRONMENT_DESC')}
         checkable={checkable}
       >
         <Form.Item>

@@ -25,8 +25,7 @@ module.exports = {
   'Application Resources': '应用资源',
   APPLICATION_RESOURCES: '应用资源',
 
-  NODES: '节点数量',
-  'Cluster Status': '集群状态',
+  NODE_COUNT: '节点数量',
   CLUSTER_STATUS: '集群状态',
   'Cluster Monitors': '集群监控',
   'Cluster Resource Monitoring': '集群资源监控',
@@ -43,8 +42,6 @@ module.exports = {
   'Resources Usage': '资源用量',
   RESOURCE_USAGE: '资源用量',
   USAGE_RANKING: '用量排行',
-  CPU_USAGE: 'CPU 用量',
-  MEMORY_USAGE: '内存用量',
   OUTBOUND_TRAFFIC: '网络流出速率',
   INBOUND_TRAFFIC: '网络流入速率',
   QUOTA: '配额',
@@ -59,7 +56,6 @@ module.exports = {
   PHYSICAL_RESOURCE_STATUS: '物理资源状态',
   'Disk Usage': '磁盘使用量',
   'Disk Capacity': '磁盘容量',
-  INODE_USAGE: 'inode 用量',
   RUNNING_PODS: '运行中的容器组数量',
   'Abnormal Pods': '异常容器组',
 

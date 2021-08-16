@@ -29,28 +29,28 @@ export default class SELinuxOptions extends React.Component {
   render() {
     return (
       <div className="margin-b12">
-        <div className={styles.title}>seLinuxOptions</div>
+        <div className={styles.title}>{t('SELINUX_CONTEXT')}</div>
         <div className={styles.content}>
           <Columns>
             <Column>
-              <Form.Item label="Level">
+              <Form.Item label={t('LEVEL')}>
                 <Input name={`${this.prefix}.seLinuxOptions.level`} />
               </Form.Item>
             </Column>
             <Column>
-              <Form.Item label="Role">
+              <Form.Item label={t('ROLE')}>
                 <Input name={`${this.prefix}.seLinuxOptions.role`} />
               </Form.Item>
             </Column>
           </Columns>
           <Columns>
             <Column>
-              <Form.Item label="Type">
+              <Form.Item label={t('TYPE')}>
                 <Input name={`${this.prefix}.seLinuxOptions.type`} />
               </Form.Item>
             </Column>
             <Column>
-              <Form.Item label="User">
+              <Form.Item label={t('USER')}>
                 <Input name={`${this.prefix}.seLinuxOptions.user`} />
               </Form.Item>
             </Column>

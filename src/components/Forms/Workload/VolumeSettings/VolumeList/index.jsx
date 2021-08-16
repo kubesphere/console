@@ -157,17 +157,15 @@ export default class VolumeList extends React.Component {
         <Column>
           <List.Add
             onClick={this.handleAddVolume}
-            title={t('ADD_VOLUME')}
-            description={t('Support EmptyDir and PersistentVolumeClaim.')}
+            title={t('MOUNT_VOLUME')}
+            description={t('WORKLOAD_MOUNT_VOLUME_DESC')}
           />
         </Column>
         <Column>
           <List.Add
             onClick={this.handleAddConfig}
-            title={t('Mount ConfigMap or Secret')}
-            description={t(
-              'Mount the configmap or secret to the specified directory.'
-            )}
+            title={t('MOUNT_CONFIGMAP_OR_SECRET')}
+            description={t('MOUNT_CONFIGMAP_OR_SECRET_DESC')}
           />
         </Column>
       </Columns>

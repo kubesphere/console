@@ -31,6 +31,7 @@ module.exports = {
     'Etiquetas comúnmente incluidas en las cargas de trabajo actuales',
   CONTAINER_PORT: 'Puerto de contenedores',
   CREATE_SERVICE: 'Crear servicio',
+  'Create Service': 'Crear servicio',
   'Create service by specifying workloads':
     'Crear servicio especificando carga de trabajo',
   'Create service by Yaml': 'Crear servicio por Yaml',
@@ -47,6 +48,7 @@ module.exports = {
   'External Service': 'Servicio externo',
   'Internal access': 'Acceso interno',
   INVALID_PORT_DESC: 'Please enter a valid protocol or port number.',
+  INVALID_PORT: 'Puerto inválido',
   'Language Type': 'Tipo de idioma',
   'LoadBalancer IP': 'IP del balanceador',
   'Map Services outside the cluster': 'Servicios de mapas fuera del clúster',
@@ -59,6 +61,8 @@ module.exports = {
   'Path is Required': 'La ruta es obligatoria',
   ENTER_EXTERNALNAME_DESC: 'Please enter an ExternalName.',
   ENTER_PORT_NUMBER: 'Please enter a port number.',
+  'Please input ExternalName': 'Por favor introduce el ExternalName',
+  PORT_EMPTY: 'Por favor introduce puertos',
   'Please input selectors that have corresponding workloads':
     'Introduce los selectores que tienen las cargas de trabajo correspondientes',
   'Please input service name': 'Por favor introduce el nombre del servicio',
@@ -78,6 +82,11 @@ module.exports = {
   'Simple Service': 'Servicio simple',
   SPECIFY_WORKLOAD: 'Specify Workload',
   'Specify Node': 'Especificar nó',
+  'Service Type': 'Tipo de servicio',
+  services: 'servicios',
+  'Simple Service': 'Servicio simple',
+  'Specify Workload': 'Especificar carga de trabajo',
+  SPECIFY_NODE: 'Especificar nó',
   'Specify Workloads': 'Especificar cargas de trabajo',
   STATEFUL_SERVICE: 'Stateful Service',
   STATELESS_SERVICE: 'Stateless Service',
@@ -160,9 +169,6 @@ module.exports = {
   EIP_POOL_DESC: 'Método de acceso dentro del clúster (DNS)',
 
   // Services
-  PORT: 'Port',
-  PROTOCOL: 'Protocol',
-  ADD: 'Add',
   LABEL_SELECTOR: 'Label Selector',
   NONE: 'None',
   UNKNOWN_SERVICE_TYPE: 'Unknown Service Type',
@@ -172,5 +178,4 @@ module.exports = {
   UNKNOWN: 'Unknown',
   EXTERNALNAME_EXAMPLE: 'Example: ',
   PORTS: 'Ports',
-  REQUIRED: 'Required',
 }

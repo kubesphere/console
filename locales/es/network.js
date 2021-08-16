@@ -25,7 +25,6 @@ module.exports = {
   Egress: 'Salida',
   Ingress: 'Entrada',
   'Network Isolation': 'Aislamiento de red',
-  'Network Policies': 'Políticas de red',
   'Network Policy': 'Política de red',
   'Traffic Egress': 'Salida de tráfico',
   'Traffic Ingress': 'Entrada de Tráfico',

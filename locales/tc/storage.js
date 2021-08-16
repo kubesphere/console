@@ -34,14 +34,14 @@ module.exports = {
   volumes: '儲存卷',
   PersistentVolumeClaim: '儲存卷',
   'Volume Usage': '儲存卷用量',
-  VOLUMES: '儲存卷數量',
+  VOLUME_COUNT: '儲存卷數量',
   'Create Volume': '創建儲存卷',
   'Delete Volume': '刪除儲存卷',
   'storage classes': '儲存類型',
   storageclasses: '儲存類型',
   'Create Storage Class': '創建儲存類型',
   'Storage Class': '儲存類型',
-  'Storage Classs': '儲存類型',
+  STORAGE_CLASS: '儲存類型',
   STORAGE_CLASS_SETTINGS: '儲存類型設置',
   'Mount Info': '掛載資訊',
   // Volumes List Page
@@ -61,10 +61,10 @@ module.exports = {
   STORAGE_VOLUME_EXTENSION: '允許儲存卷擴容',
   'Mount Status': '掛載狀態',
   'Mounted Pods': '已掛載容器組',
-  Idle: '閒置',
-  'In Use': '已使用',
+  AVAILABLE: '閒置',
+  IN_USER: '使用中',
 
-  'The volume name exists': '儲存卷名稱已使用',
+  VOLUME_NAME_EXIST: '儲存卷名稱已使用',
 
   'Used Capacity': '已分配儲存容量',
   'Available Capacity': '剩餘儲存容量',
@@ -78,6 +78,7 @@ module.exports = {
   STORAGE_SYSTEM: '儲存系統',
 
   ACCESS_MODE: '支持的訪問模式',
+  ACCESS_MODE_SCAP: '訪問模式',
 
   'Custom Provisioner': '自定義供應者',
   Parameters: '參數',
@@ -225,5 +226,4 @@ module.exports = {
   GID_MAX: 'GID Maximum Value',
   CUSTOM: 'Custom',
   PARAMETERS: 'Parameters',
-  ADD: 'Add',
 }

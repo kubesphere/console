@@ -68,10 +68,10 @@ export default class EnvironmentInput extends React.Component {
       <ArrayInput
         itemType="object"
         checkItemValid={this.checkItemValid}
-        addText={t('Add Environment Variable')}
+        addText={t('ADD_ENVIRONMENT_VARIABLE')}
         extraAdd={
           <Button onClick={this.handleAddRef} data-test="add-env-configmap">
-            {t('Use ConfigMap or Secret')}
+            {t('USE_CONFIGMAP_OR_SECRET')}
           </Button>
         }
         {...rest}

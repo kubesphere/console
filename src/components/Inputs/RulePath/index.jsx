@@ -84,7 +84,7 @@ export default class RulePath extends React.Component {
   render() {
     return (
       <ObjectInput {...this.props} onChange={this.handleChange}>
-        <Input name="path" placeholder={t('Path')} defaultValue="/" />
+        <Input name="path" placeholder={t('PATH')} defaultValue="/" />
         <Select
           className="margin-r12"
           name="backend.serviceName"
@@ -95,7 +95,7 @@ export default class RulePath extends React.Component {
         <Select
           className={styles.input}
           name="backend.servicePort"
-          placeholder={t('Port')}
+          placeholder={t('PORT')}
           options={this.ports}
           searchable
         />

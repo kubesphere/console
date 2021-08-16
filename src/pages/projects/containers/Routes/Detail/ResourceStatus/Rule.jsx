@@ -84,7 +84,7 @@ const Card = ({ gateway, rule, tls = [], prefix }) => {
             </Column>
             <Column>
               <span>
-                {t('Port')}: <strong>{path.backend.servicePort}</strong>
+                {t('PORT')}: <strong>{path.backend.servicePort}</strong>
               </span>
             </Column>
             <Column>

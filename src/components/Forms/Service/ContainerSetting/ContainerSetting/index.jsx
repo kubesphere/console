@@ -122,17 +122,17 @@ export default class ContainerSetting extends React.Component {
       <div className={styles.message}>
         {t('Remaining Quota')}:&nbsp;&nbsp;&nbsp;&nbsp;[{t('Resource Request')}:
         CPU{' '}
-        {cpuRequestLeft ? `${cpuFormat(cpuRequestLeft)} Core` : t('No Limit')},{' '}
+        {cpuRequestLeft ? `${cpuFormat(cpuRequestLeft)} Core` : t('NO_LIMIT')},{' '}
         {t('MEMORY')}{' '}
         {memoryRequestLeft
           ? `${memoryFormat(memoryRequestLeft)} Mi`
-          : t('No Limit')}
+          : t('NO_LIMIT')}
         ]&nbsp;&nbsp;&nbsp;&nbsp;[{t('Resource Limit')}: CPU{' '}
-        {cpuLimitLeft ? `${cpuFormat(cpuLimitLeft)} Core` : t('No Limit')},{' '}
+        {cpuLimitLeft ? `${cpuFormat(cpuLimitLeft)} Core` : t('NO_LIMIT')},{' '}
         {t('MEMORY')}{' '}
         {memoryLimitLeft
           ? `${memoryFormat(memoryLimitLeft)} Mi`
-          : t('No Limit')}
+          : t('NO_LIMIT')}
         ]
       </div>
     )
@@ -168,7 +168,7 @@ export default class ContainerSetting extends React.Component {
       >
         <Form.Item
           className="margin-t12"
-          label={t('Container Name')}
+          label={t('CONTAINER_NAME')}
           desc={t('NAME_DESC')}
           rules={[
             { required: true, message: t('NAME_EMPTY_DESC') },

@@ -80,7 +80,7 @@ export default class Dir extends React.Component {
         title={t('dir')}
       >
         <Form data={this.state.formData} ref={this.formRef}>
-          <Form.Item label={t('Path')}>
+          <Form.Item label={t('PATH')}>
             <Input name="path" />
           </Form.Item>
         </Form>

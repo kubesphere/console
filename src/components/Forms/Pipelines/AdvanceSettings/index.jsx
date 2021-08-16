@@ -384,7 +384,7 @@ export default class AdvanceSettings extends React.Component {
         ) : null}
         <div className="h6">{t('Script Path')}</div>
         <Form.Item
-          label={t('Path')}
+          label={t('PATH')}
           desc={t(
             'Specify the location of the Jenkinsfile in the source code repository'
           )}

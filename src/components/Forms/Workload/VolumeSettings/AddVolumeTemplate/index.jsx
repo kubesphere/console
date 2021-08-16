@@ -136,14 +136,14 @@ export default class AddVolume extends React.Component {
       } else if (item.mountPath) {
         if (this.getMountPaths(item).includes(item.mountPath)) {
           return callback({
-            message: t('Mount path is already in use'),
+            message: t('MOUNT_PATH_IN_USE'),
             field: rule.field,
           })
         }
         callback()
       } else {
         callback({
-          message: t('Please specify the read and write mode and mount path'),
+          message: t('READ_WRITE_MOUNT_EMPTY'),
           field: rule.field,
         })
       }
@@ -158,14 +158,14 @@ export default class AddVolume extends React.Component {
     const { volume, cluster, namespace, checkVolumeNameExist } = this.props
 
     if (checkVolumeNameExist(value) && volume.metadata.name !== value) {
-      callback({ message: t('The volume name exists'), field: rule.field })
+      callback({ message: t('VOLUME_NAME_EXIST'), field: rule.field })
     } else {
       this.volumeStore
         .checkName({ name: value, cluster, namespace })
         .then(resp => {
           if (resp.exist) {
             return callback({
-              message: t('The volume name exists'),
+              message: t('VOLUME_NAME_EXIST'),
               field: rule.field,
             })
           }
@@ -191,17 +191,17 @@ export default class AddVolume extends React.Component {
           <a className="custom-icon" onClick={this.handleGoBack}>
             <BackIcon />
           </a>
-          {t('Add Volume Template')}
+          {t('VOLUMES')}
         </div>
         <div className={classNames(styles.contentWrapper, contentClassName)}>
           <div className={styles.card}>
             <Form data={formData} ref={this.formRef}>
               <Form.Item
                 className={styles.name}
-                label={t('Volume Name')}
+                label={t('VOLUME_NAME')}
                 desc={t('LONG_NAME_DESC')}
                 rules={[
-                  { required: true, message: t('Please input volume name') },
+                  { required: true, message: t('VOLUME_NAME_EMPTY') },
                   {
                     pattern: PATTERN_NAME,
                     message: t('INVALID_NAME_DESC', {
@@ -215,7 +215,7 @@ export default class AddVolume extends React.Component {
               </Form.Item>
               <VolumeFormTemplate cluster={cluster} namespace={namespace} />
               <Form.Item
-                label={t('Mount Path')}
+                label={t('MOUNT_PATH')}
                 rules={[{ validator: this.mountValidator }]}
               >
                 <MountInput

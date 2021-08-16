@@ -33,7 +33,6 @@ module.exports = {
 
   'Create Application by Service': '通過服務構建應用',
 
-  'Application Name': '應用名稱',
   'Application Version(Optional)': '應用版本(可選)',
   'Application Governance': '應用治理',
   'Application Components': '應用組件',
@@ -62,6 +61,7 @@ module.exports = {
   'Component Version': '組件版本',
 
   'Please input an application name': '請輸入應用名稱',
+  APP: '應用',
 
   'Service components should not be empty': '服務組件不能為空',
   'Please finish the sub form first': '請完成子表單的編輯',

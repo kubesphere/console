@@ -61,7 +61,7 @@ export default class AddTemporary extends React.Component {
   mountValidator = (rule, value, callback) => {
     if (isEmpty(value)) {
       return callback({
-        message: t('Please select at least one container to mount'),
+        message: t('CONTAINER_NOT_SELECTED'),
         field: rule.field,
       })
     }
@@ -83,20 +83,20 @@ export default class AddTemporary extends React.Component {
             )
           ) {
             return callback({
-              message: t('Mount path is already in use'),
+              message: t('MOUNT_PATH_IN_USE'),
               field: rule.field,
             })
           }
         } else if (paths.some(path => path.mountPath === item.mountPath)) {
           return callback({
-            message: t('Mount path is already in use'),
+            message: t('MOUNT_PATH_IN_USE'),
             field: rule.field,
           })
         }
         callback()
       } else {
         callback({
-          message: t('Please specify the read and write mode and mount path'),
+          message: t('READ_WRITE_MOUNT_EMPTY'),
           field: rule.field,
         })
       }
@@ -110,7 +110,7 @@ export default class AddTemporary extends React.Component {
 
     const { currentName, checkVolumeNameExist } = this.props
     if (checkVolumeNameExist(value) && currentName !== value) {
-      callback({ message: t('The volume name exists'), field: rule.field })
+      callback({ message: t('VOLUME_NAME_EXIST'), field: rule.field })
     } else {
       callback()
     }
@@ -129,10 +129,10 @@ export default class AddTemporary extends React.Component {
       <div className={classNames(styles.wrapper, className)}>
         <Form data={formData} ref={formRef}>
           <Form.Item
-            label={t('Volume Name')}
+            label={t('VOLUME_NAME')}
             desc={t('NAME_DESC')}
             rules={[
-              { required: true, message: t('Please input volume name') },
+              { required: true, message: t('VOLUME_NAME_EMPTY') },
               {
                 pattern: PATTERN_NAME,
                 message: t('INVALID_NAME_DESC', { message: t('NAME_DESC') }),
@@ -145,7 +145,7 @@ export default class AddTemporary extends React.Component {
           <Form.Item
             rules={[
               {
-                required: t('Please input mount path'),
+                required: t('MOUNT_PATH_EMPTY'),
                 validator: this.mountValidator,
               },
             ]}

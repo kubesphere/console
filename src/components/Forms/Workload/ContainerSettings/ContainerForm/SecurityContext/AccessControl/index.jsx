@@ -30,27 +30,27 @@ export default class AccessControl extends React.Component {
   render() {
     return (
       <div className="margin-b12">
-        <div className={styles.title}>{t('Access Control')}</div>
+        <div className={styles.title}>{t('ACCESS_CONTROL')}</div>
         <div className={styles.content}>
           <Form.Item>
             <CheckableText
               name={`${this.prefix}.privileged`}
-              title={t('ACCESS_CONTROL_PRIVILEGED')}
-              description={t('ACCESS_CONTROL_PRIVILEGED_DESC')}
+              title={t('PRIVILEGED_MODE')}
+              description={t('PRIVILEGED_MODE_DESC')}
             />
           </Form.Item>
           <Form.Item>
             <CheckableText
               name={`${this.prefix}.allowPrivilegeEscalation`}
-              title={t('ACCESS_CONTROL_ALLOWPRIVILEGEESCALATION')}
-              description={t('ACCESS_CONTROL_ALLOWPRIVILEGEESCALATION_DESC')}
+              title={t('ALLOW_PRIVILEGE_ESCALATION')}
+              description={t('ALLOW_PRIVILEGE_ESCALATION_DESC')}
             />
           </Form.Item>
           <Form.Item>
             <CheckableText
               name={`${this.prefix}.readOnlyRootFilesystem`}
-              title={t('ACCESS_CONTROL_READONLYROOTFILESYSTEM')}
-              description={t('ACCESS_CONTROL_READONLYROOTFILESYSTEM_DESC')}
+              title={t('ROOT_DIRECTORY_READONLY')}
+              description={t('ROOT_DIRECTORY_READONLY_DESC')}
             />
           </Form.Item>
         </div>

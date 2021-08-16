@@ -217,14 +217,14 @@ export default class ResourceLimit extends React.Component {
     const { requests, limits } = this.state
     return {
       marks: [
-        { value: 0, label: t('No Request'), weight: 2 },
+        { value: 0, label: t('NO_REQUEST'), weight: 2 },
         { value: 0.2, label: 0.2, weight: 2 },
         { value: 0.5, label: 0.5, weight: 2 },
         { value: 1, label: 1, weight: 2 },
         { value: 2, label: 2, weight: 2 },
         { value: 3, label: 3, weight: 2 },
         { value: 4, label: 4 },
-        { value: Infinity, label: t('No Limit') },
+        { value: Infinity, label: t('NO_LIMIT') },
       ],
       value: [requests.cpu || 0, limits.cpu || Infinity],
       onChange: this.handleCPUChange,
@@ -238,7 +238,7 @@ export default class ResourceLimit extends React.Component {
     const { requests, limits } = this.state
     return {
       marks: [
-        { value: 0, label: t('No Request'), weight: 2 },
+        { value: 0, label: t('NO_REQUEST'), weight: 2 },
         { value: 200, label: 200, weight: 1 },
         { value: 500, label: 500, weight: 1 },
         { value: 1000, label: 1000, weight: 2 },
@@ -246,7 +246,7 @@ export default class ResourceLimit extends React.Component {
         { value: 4000, label: 4000, weight: 2 },
         { value: 6000, label: 6000, weight: 1 },
         { value: 8000, label: 8000 },
-        { value: Infinity, label: t('No Limit') },
+        { value: Infinity, label: t('NO_LIMIT') },
       ],
       value: [requests.memory || 0, limits.memory || Infinity],
       onChange: this.handleMemoryChange,
@@ -257,11 +257,11 @@ export default class ResourceLimit extends React.Component {
   }
 
   getLimit(value) {
-    return value === Infinity ? t('No Limit') : value || ''
+    return value === Infinity ? t('NO_LIMIT') : value || ''
   }
 
   getRequest(value) {
-    return value === 0 ? t('No Request') : value || ''
+    return value === 0 ? t('NO_REQUEST') : value || ''
   }
 
   checkError = state => {
@@ -494,12 +494,12 @@ export default class ResourceLimit extends React.Component {
                     [styles.error]: cpuError || limit.requestCpuError,
                   })}
                 >
-                  <span className={styles.label}>{t('Resource Request')}:</span>
+                  <span className={styles.label}>{t('CPU_REQUEST')}</span>
                   <Input
                     name="requests.cpu"
                     value={this.getRequest(this.state.requests.cpu)}
                     onChange={this.handleInputChange}
-                    placeholder={t(t('No Request'))}
+                    placeholder={t('NO_REQUEST')}
                   />
                   <span className={styles.unit}>{this.cpuUnit}</span>
                 </div>
@@ -508,12 +508,12 @@ export default class ResourceLimit extends React.Component {
                     [styles.error]: cpuError || limit.limitCpuError,
                   })}
                 >
-                  <span className={styles.label}>{t('Resource Limit')}:</span>
+                  <span className={styles.label}>{t('CPU_LIMIT')}:</span>
                   <Input
                     name="limits.cpu"
                     value={this.getLimit(this.state.limits.cpu)}
                     onChange={this.handleInputChange}
-                    placeholder={t(t('No Limit'))}
+                    placeholder={t('NO_LIMIT')}
                   />
                   <span className={styles.unit}>{this.cpuUnit}</span>
                 </div>
@@ -527,12 +527,12 @@ export default class ResourceLimit extends React.Component {
                     [styles.error]: memoryError || limit.requestMemoryError,
                   })}
                 >
-                  <span className={styles.label}>{t('Resource Request')}:</span>
+                  <span className={styles.label}>{t('MEMORY_REQUEST')}</span>
                   <Input
                     name="requests.memory"
                     value={this.getRequest(this.state.requests.memory)}
                     onChange={this.handleInputChange}
-                    placeholder={t(t('No Request'))}
+                    placeholder={t('NO_REQUEST')}
                   />
                   <span className={styles.unit}>{this.memoryUnit}</span>
                 </div>
@@ -541,12 +541,12 @@ export default class ResourceLimit extends React.Component {
                     [styles.error]: memoryError || limit.limitMemoryError,
                   })}
                 >
-                  <span className={styles.label}>{t('Resource Limit')}:</span>
+                  <span className={styles.label}>{t('MEMORY_LIMIT')}</span>
                   <Input
                     name="limits.memory"
                     value={this.getLimit(this.state.limits.memory)}
                     onChange={this.handleInputChange}
-                    placeholder={t(t('No Limit'))}
+                    placeholder={t('NO_LIMIT')}
                   />
                   <span className={styles.unit}>{this.memoryUnit}</span>
                 </div>
@@ -559,7 +559,7 @@ export default class ResourceLimit extends React.Component {
           <Alert
             type="error"
             className="margin-t12"
-            message={t('REQUEST_EXCCED')}
+            message={t('REQUEST_EXCEED_LIMIT')}
           />
         )}
         {outWorkSpaceLimit.length > 0 && (

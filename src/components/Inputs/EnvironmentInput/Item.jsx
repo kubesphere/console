@@ -116,10 +116,17 @@ export default class EnvironmentInputItem extends React.Component {
 
   valueRenderer = option => (
     <p>
-      {option.label}
-      <span style={{ color: '#abb4be' }}>
-        ({isEmpty(option.type) ? t('Select resource') : t(option.type)})
-      </span>
+      {isEmpty(option.type) ? (
+        <span style={{ color: '#5f708a', fontWeight: '400' }}>
+          {t('RESOURCE')}
+        </span>
+      ) : (
+        t.html('LABEL_TYPE', {
+          label: option.label,
+          style: 'color: #5f708a; font-weight: 400',
+          type: t(option.type.toUpperCase()),
+        })
+      )}
     </p>
   )
 
@@ -160,16 +167,16 @@ export default class EnvironmentInputItem extends React.Component {
 
       return (
         <ObjectInput value={formatValue} onChange={this.handleChange}>
-          <Input name="name" placeholder={t('name')} />
+          <Input name="name" placeholder={t('KEY')} />
           <Select
             name="resource"
-            placeholder={t('Select resource')}
+            placeholder={t('RESOURCE')}
             options={this.getResourceOptions()}
             valueRenderer={this.valueRenderer}
           />
           <Select
             name="resourceKey"
-            placeholder={t('Select Key')}
+            placeholder={t('KEY_IN_RESOURCE')}
             options={this.getKeysOptions({ resourceType, resourceName })}
           />
         </ObjectInput>
@@ -178,8 +185,8 @@ export default class EnvironmentInputItem extends React.Component {
 
     return (
       <ObjectInput value={value} onChange={onChange}>
-        <Input name="name" placeholder={t('name')} />
-        <Input name="value" placeholder={t('value')} />
+        <Input name="name" placeholder={t('KEY')} />
+        <Input name="value" placeholder={t('VALUE')} />
       </ObjectInput>
     )
   }

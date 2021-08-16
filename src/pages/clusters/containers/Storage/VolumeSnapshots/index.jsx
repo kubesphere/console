@@ -118,7 +118,7 @@ export default class VolumeSnapshot extends React.Component {
         render: namespace => <div>{namespace}</div>,
       },
       {
-        title: t('Capacity'),
+        title: t('CAPACITY'),
         dataIndex: 'restoreSize',
         isHideable: true,
         width: '20%',

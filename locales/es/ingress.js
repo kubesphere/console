@@ -22,6 +22,8 @@ module.exports = {
   ADD_PATH_TIP: 'Please add at least one path.',
   AUTO_GENERATE_TCAP: 'Autogenerar',
   ADD_ROUTE_RULE_TCAP: 'Agregar regla de ruta',
+  'Add Path': 'Agregar ruta',
+  'Auto Generate': 'Autogenerar',
   'Click to visit': 'Haz clic para visitar',
   'Create Route': 'Crear ruta',
   EDIT_ANNOTATIONS_TCAP: 'Editar annotations',

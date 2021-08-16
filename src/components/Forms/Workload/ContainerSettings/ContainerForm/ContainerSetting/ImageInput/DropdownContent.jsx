@@ -98,7 +98,7 @@ export default class DropdownContent extends React.Component {
       value: item.value,
       url: item.url,
     }))
-    return [{ label: `DockerHub`, value: '', url: '' }, ...options]
+    return [{ label: `Docker Hub`, value: '', url: '' }, ...options]
   }
 
   componentDidMount() {
@@ -268,7 +268,7 @@ export default class DropdownContent extends React.Component {
             <InputSearch
               className={styles.search}
               onSearch={this.handleSearchDockerHub}
-              placeholder={t('SEARCH_IMAGE_PLACEHOLDER')}
+              placeholder={t('SEARCH')}
             />
             {this.state.isLoading && (
               <Loading className="float-left" size={28} />
@@ -289,7 +289,7 @@ export default class DropdownContent extends React.Component {
           <InputSearch
             className={styles.search}
             onSearch={this.handleSearchHarbor}
-            placeholder={t('SEARCH_IMAGE_PLACEHOLDER')}
+            placeholder={t('SEARCH')}
           />
           {this.state.isLoading && <Loading className="float-left" size={28} />}
         </div>
@@ -306,7 +306,7 @@ export default class DropdownContent extends React.Component {
             className={classnames(styles.selectedContent, styles.emptyContent)}
           >
             <Icon name="docker" className={styles.icon} />
-            <p className={styles.desc}>{t('Not found this image')}</p>
+            <p className={styles.desc}>{t('NO_IMAGE_FOUND')}</p>
           </div>
         </ul>
       )
@@ -368,7 +368,7 @@ export default class DropdownContent extends React.Component {
             className={classnames(styles.selectedContent, styles.emptyContent)}
           >
             <Icon name="docker" className={styles.icon} />
-            <p className={styles.desc}>{t('Not found this image')}</p>
+            <p className={styles.desc}>{t('NO_IMAGE_FOUND')}</p>
           </div>
         </ul>
       )

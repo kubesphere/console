@@ -209,7 +209,7 @@ export default class MountConfig extends React.Component {
     if (type === 'configmap' && !isEmpty(configMaps)) {
       return configMaps.map(item => ({
         label: getDisplayName(item),
-        description: t('ConfigMap'),
+        description: t('CONFIGMAP'),
         value: item.name,
         icon: 'hammer',
       }))
@@ -251,14 +251,14 @@ export default class MountConfig extends React.Component {
       } else if (item.mountPath) {
         if (this.getMountPaths(item).includes(item.mountPath)) {
           return callback({
-            message: t('Mount path is already in use'),
+            message: t('MOUNT_PATH_IN_USE'),
             field: rule.field,
           })
         }
         callback()
       } else {
         callback({
-          message: t('Please specify the read and write mode and mount path'),
+          message: t('READ_WRITE_MOUNT_EMPTY'),
           field: rule.field,
         })
       }
@@ -275,8 +275,8 @@ export default class MountConfig extends React.Component {
 
     if (hasVolume(volumeMounts) && !value) {
       return type === 'configmap'
-        ? callback({ message: t('Please select a configmap') })
-        : callback({ message: t('Please select a secret') })
+        ? callback({ message: t('CONFIGMAP_NOT_SELECT') })
+        : callback({ message: t('SECRET_NOT_SELECT') })
     }
 
     if (!hasVolume(volumeMounts) || value) {
@@ -289,13 +289,13 @@ export default class MountConfig extends React.Component {
     const { type, formData } = this.state
 
     const options = this.getResourceOptions()
-    const supportedAccessModes = ['ReadOnly', 'Not Mount']
+    const supportedAccessModes = ['READ_ONLY', 'NOT_MOUNT']
 
     const placeholder = {
       label: isEmpty(options)
-        ? t(`No Available Resource`)
-        : t(`Please select a ${type}`),
-      description: t(`REFFER_${type.toUpperCase()}_DESC`),
+        ? t('NO_AVAILABLE_RESOURCE')
+        : t('SELECT_TYPE', { type: t(type.toUpperCase()) }),
+      description: t(`SELECT_${type.toUpperCase()}_DESC`),
     }
 
     return (
@@ -319,8 +319,8 @@ export default class MountConfig extends React.Component {
           </Form.Item>
         </div>
         <Form.Group
-          label={t('Select specific keys and paths')}
-          desc={t('SELECT_SECRET_DESC')}
+          label={t('SELECT_SPECIFIC_KEYS')}
+          desc={t('SELECT_SPECIFIC_KEYS_DESC')}
           checkable
           keepDataWhenUncheck
         >
@@ -329,10 +329,10 @@ export default class MountConfig extends React.Component {
               <ObjectInput>
                 <Select
                   name="key"
-                  placeholder={t('Select Key')}
+                  placeholder={t('KEY')}
                   options={this.getKeysOptions()}
                 />
-                <Input name="path" placeholder={t('Mount Path')} />
+                <Input name="path" placeholder={t('PATH')} />
               </ObjectInput>
             </ArrayInput>
           </Form.Item>
@@ -350,18 +350,18 @@ export default class MountConfig extends React.Component {
           <a className="custom-icon" onClick={this.handleGoBack}>
             <BackIcon />
           </a>
-          {t('ConfigMap & Secret')}
+          {t('VOLUMES')}
         </div>
         <div className={styles.contentWrapper}>
-          <div className={styles.title}>{t('TYPE')}</div>
+          <div className={styles.title}>{t('MOUNT_CONFIGMAP_OR_SECRET')}</div>
           <RadioGroup
             mode="button"
             value={type}
             onChange={this.handleTypeChange}
             size="small"
           >
-            <RadioButton value="configmap">{t('ConfigMap')}</RadioButton>
-            <RadioButton value="secret">{t('Secret')}</RadioButton>
+            <RadioButton value="configmap">{t('CONFIGMAP')}</RadioButton>
+            <RadioButton value="secret">{t('SECRET')}</RadioButton>
           </RadioGroup>
           {this.renderContent()}
         </div>

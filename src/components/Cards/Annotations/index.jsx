@@ -31,7 +31,7 @@ export default class Annotations extends Component {
     }
 
     return (
-      <Panel title={t('Annotations')}>
+      <Panel title={t('ANNOTATIONS')}>
         <ul className={styles.values}>
           {Object.entries(annotations).map(([key, value]) => (
             <li key={key}>

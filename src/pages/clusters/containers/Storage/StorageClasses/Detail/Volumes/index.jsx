@@ -81,7 +81,7 @@ export default class Volumes extends React.Component {
       ),
     },
     {
-      title: t('Capacity'),
+      title: t('CAPACITY'),
       dataIndex: 'capacity',
       width: '16%',
       render: capacity => capacity || '-',

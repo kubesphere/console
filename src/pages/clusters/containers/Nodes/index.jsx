@@ -339,7 +339,7 @@ export default class Nodes extends React.Component {
         },
       },
       {
-        title: t('POD_PL_TCAP'),
+        title: t('PODS'),
         key: 'pods',
         isHideable: true,
         render: record => {
@@ -445,7 +445,7 @@ export default class Nodes extends React.Component {
   renderMemoryTooltip = record => {
     const content = (
       <p>
-        {t('MEMORY_LIMIT', {
+        {t('MEMORY_LIMIT_VALUE', {
           gib: memoryFormat(
             get(record, 'annotations["node.kubesphere.io/memory-limits"]'),
             'Gi'
@@ -460,7 +460,7 @@ export default class Nodes extends React.Component {
     return (
       <Tooltip content={content} placement="top">
         <Text
-          title={t('MEMORY_REQUEST', {
+          title={t('MEMORY_REQUEST_VALUE', {
             gib: memoryFormat(
               get(record, 'annotations["node.kubesphere.io/memory-requests"]'),
               'Gi'
@@ -515,11 +515,7 @@ export default class Nodes extends React.Component {
 
     return (
       <ListPage {...this.props} getData={this.getData} noWatch>
-        <Banner
-          {...bannerProps}
-          title={t('CLUSTER_NODE_PL')}
-          tips={this.tips}
-        />
+        <Banner {...bannerProps} title={t('CLUSTER_NODES')} tips={this.tips} />
         {this.renderOverview()}
         <Table
           {...tableProps}

@@ -29,6 +29,8 @@ module.exports = {
   'Click to visit': '点击访问',
   PATH_SERVICE_TIP: '服务（Service）',
   ADD_PATH_TCAP: '添加路径',
+  'Please select a service': '请选择一个服务',
+  'Add Path': '添加 Path',
   ADD_ANNOTATION: '添加注解',
 
   SET_ROUTE_RULE_TCAP: '设置路由规则',

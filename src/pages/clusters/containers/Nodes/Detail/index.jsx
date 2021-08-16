@@ -78,7 +78,7 @@ export default class NodeDetail extends React.Component {
         action: 'edit',
         onClick: () =>
           this.trigger('node.labels', {
-            title: t('Labels'),
+            title: t('LABELS'),
             detail: this.store.detail,
             success: this.fetchData,
           }),

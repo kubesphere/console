@@ -40,7 +40,7 @@ module.exports = {
   'Application governance is not enabled':
     'La gestión de la aplicación no está habilitado',
   'Application Icon': 'Ícono de aplicación',
-  'Application Name': 'Nombre de la aplicación',
+  '': 'Nombre de la aplicación',
   'Application Route': 'Ruta de solicitud',
   'Application Type': 'tipo de aplicacion',
   'Application Version(Optional)': 'Versión de aplicación (opcional)',
@@ -112,6 +112,7 @@ module.exports = {
     'Por favor termina el subformulario primero',
   'Please input an application name':
     'Por favor introduce un nombre de aplicación',
+  APP: 'App',
   'Please input component version':
     'Por favor introduce la versión del componente',
   SAVE_FORM_TIP: 'Por favor guarda el formulario actual primero',
@@ -150,7 +151,7 @@ module.exports = {
     'El número de errores 5xx consecutivos en un ciclo de inspección',
   'The response code will be filtered in the inspection cycle.':
     'El código de respuesta se filtrará en el ciclo de inspección.',
-  TOTAL_COLLECTIONS: 'TOTAL_COLLECTIONS',
+  TOTAL_COLLECTIONS: 'Total {num} receivers',
   Traffic: 'Tráfico',
   'Traffic (requests per second)': 'Tráfico (solicitudes por segundo)',
   'Traffic Entry': 'Entrada de tráfico',

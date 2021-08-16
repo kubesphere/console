@@ -74,7 +74,6 @@ module.exports = {
   KAFKA_DESC: 'Kafka is a popular open-source, stream-processing platform.',
   FLUENTD_DESC:
     'Fluentd is an open-source data collector for unified logging layer.',
-  TOTAL_COLLECTIONS: 'Total {num} receivers',
   TOOLBOX_SHIFT_TIPS:
     ' 👻 You can open the page in a new window with "SHIFT + LEFT CLICK".',
 
@@ -176,6 +175,6 @@ module.exports = {
   LOG_CLOSE: 'Close',
   INVALID_SERVICE_ADDRESS: 'Invalid service address.',
   EXAMPLE: 'Example: ',
-  ENTER_PORT_NUMBER: 'Please enter a port number.',
+  PORT_NUMBER_EMPTY: 'Please enter a port number.',
   PARAMETER_REQUIRED: 'This parameter is mandatory.',
 }

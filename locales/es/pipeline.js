@@ -244,7 +244,7 @@ module.exports = {
   'Repository Url': 'URL del repositorio',
   'Repository Name': 'Nombre del repositorio',
   Rescan: 'Reescanear',
-  Review: 'revisión',
+
   Run: 'ejecutar',
   'Run Pipeline': 'Ejecutar pipeline',
   'Save Artifact': 'Guardar artefacto',
@@ -308,6 +308,7 @@ module.exports = {
   'This name has existed.': 'Este nombre ha existido.',
   'Time Used': 'Tiempo utilizado',
   Timeout: 'Se acabó el tiempo',
+  TIMEOUT_VALUE: 'Se acabó el tiempo: {value}',
   timeout: 'se acabó el tiempo',
   'Timeout after no activity in logs for this block':
     'Tiempo de espera agotado tras inactividad en los logs deregistro de este bloque',

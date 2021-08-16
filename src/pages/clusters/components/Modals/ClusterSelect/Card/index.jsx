@@ -35,7 +35,7 @@ export default class ClusterCard extends React.Component {
     const details = [
       {
         title: data.nodeCount,
-        description: t('NODES'),
+        description: t('NODE_COUNT'),
       },
       {
         title: data.kubernetesVersion,

@@ -93,7 +93,7 @@ export default class PVCSnapshots extends Component {
         </div>
         <div className={styles.itemAttrs}>
           <h3>{restoreSize || '-'}</h3>
-          <p>{t('Capacity')}</p>
+          <p>{t('CAPACITY')}</p>
         </div>
         <div className={styles.itemAttrs}>
           <h3>{moment(createTime).format('YYYY-MM-DD HH:mm:ss')}</h3>

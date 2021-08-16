@@ -149,6 +149,6 @@ module.exports = {
   LOG_CLOSE: '关闭',
   INVALID_SERVICE_ADDRESS: '服务地址无效。',
   EXAMPLE: '例如：',
-  ENTER_PORT_NUMBER: '请输入端口号。',
+  PORT_NUMBER_EMPTY: '请输入端口号。',
   PARAMETER_REQUIRED: '此参数为必填项。',
 }

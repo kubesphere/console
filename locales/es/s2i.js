@@ -60,15 +60,13 @@ module.exports = {
   'is Failed': 'falló',
   'Job Records': 'Registros de trabajos',
   'Last build environment': 'Último entorno de compilación',
-  'Last Message': 'Ultimo mensaje',
   'The logging module is not installed.':
     'The logging module is not installed.',
   'Log is loading...': 'El registro se está cargando ...',
   'New Image Tag': 'Nuevo tag de imagen',
   'New Tag': 'Nuevo tag',
   'No Log Records': 'Sin registros',
-  'Please set the access policy for the container.':
-    'Establece la política de acceso para el contenedor.',
+  PORT_SETTINGS_DESC: 'Establece la política de acceso para el contenedor.',
   CONTAINER_SETTINGS_DESC:
     'Establece el nombre del contenedor y los recursos de computación.',
   'Published Time': 'Hora publicada',
@@ -90,13 +88,13 @@ module.exports = {
   SourceUrl: 'SourceUrl',
   'Specify a relative directory inside the application. (Default value /)':
     'Especifica un directorio relativo dentro de la aplicación. (Valor por defecto /)',
-  'Start Command': 'Comando de inicio',
+  STARTUP_COMMAND: 'Comando de inicio',
   StartTime: 'Hora de inicio',
   'Target Image Repository': 'Repositorio de imágenes de destino',
   'The current code repository does not require a key.':
     'El repositorio de código actual no requiere clave.',
   'The file has not been uploaded.': 'El archivo no se ha subido.',
-  'The health of the container will be checked regularly according to user needs.':
+  HEALTH_CHECKER_DESC:
     'La salud del contenedor se verificará periódicamente de acuerdo con las necesidades del usuario.',
   'Upload Artifact': 'Subir artefactos',
   'Upload file failed': 'Error al cargar el archivo',
@@ -108,13 +106,13 @@ module.exports = {
   NEW_TAG_DESC: 'introduce el tag para la nueva imagen',
   S2I_RELATIVE_PATH_DESC:
     'Dirección del repositorio de código fuente (actualmente admite git) y puedes asignar ramas de código y rutas relativas en terminales de código fuente',
-  START_COMMAND_DESC:
+  STARTUP_COMMAND_DESC:
     'Por defecto, el contenedor ejecuta el comando de imagen predeterminado. Puedes cambiar el comando del contenedor desde aquí.',
-  RUN_COMMAND_DESC:
+  CONTAINER_COMMAND_DESC:
     'El comando de inicio del contenedor. Por defecto, se utilizará el comando de inicio para empaquetar. Utiliza comas para separar múltiples comandos.',
-  CONTAINER_PARAMS_DESC:
+  CONTAINER_ARGUMENT_DESC:
     'Los parámetros del comando de inicio del contenedor. Utiliza comas para separar varios.',
-  CONTAINER_ENVIROMENT_DESC: 'Añade la variable de entorno del contenedor.',
+  CONTAINER_ENVIRONMENT_DESC: 'Añade la variable de entorno del contenedor.',
   IMAGE_PULL_POLICY_DESC:
     'Por defecto, la imagen se descarga solo si aún no está presente localmente.',
   S2I_ENVIROMENT_DESC:

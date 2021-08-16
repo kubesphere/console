@@ -26,15 +26,15 @@ export default class PodSecurityContext extends React.PureComponent {
   render() {
     return (
       <Form.Group
-        label={t('Pod Security Context')}
-        desc={t('CONTAINER_SECURITY_CTX_DESC')}
+        label={t('POD_SECURITY_CONTEXT')}
+        desc={t('POD_SECURITY_CONTEXT_DESC')}
         checkable
       >
         <Alert
           className="margin-b12"
-          type="warning"
-          title={t('ALERT_WARNING')}
-          message={t('POD_SECURITY_CONTEXT_DESC')}
+          type="info"
+          title={t('NOTE')}
+          message={t('POD_SECURITY_CONTEXT_TIP')}
         />
         <UserGroup prefix={this.props.prefix} />
         <SELinuxOptions prefix={this.props.prefix} />

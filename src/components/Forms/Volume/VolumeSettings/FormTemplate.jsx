@@ -173,7 +173,7 @@ export default class VolumeSettings extends React.Component {
     return (
       <>
         <Form.Item
-          label={t('Storage Class')}
+          label={t('STORAGE_CLASS')}
           desc={t('VOLUME_STORAGE_CLASS_DESC')}
           rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
         >
@@ -192,7 +192,7 @@ export default class VolumeSettings extends React.Component {
         {editModalTitle !== 'Edit Config Template' &&
         tabTitle !== 'Diff Settings' ? (
           <Form.Item
-            label={t('ACCESS_MODE_TCAP')}
+            label={t('ACCESS_MODE')}
             rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
           >
             <AccessModes
@@ -208,7 +208,7 @@ export default class VolumeSettings extends React.Component {
           ''
         )}
         <Form.Item
-          label={t('VOLUME_CAPACITY_TCAP')}
+          label={t('VOLUME_CAPACITY')}
           rules={[{ validator: this.sizeValidator }]}
         >
           <UnitSlider
