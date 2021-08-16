@@ -19,12 +19,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { toJS } from 'mobx'
-import { get, set } from 'lodash'
+import { get, set, isEmpty } from 'lodash'
 import { Form, Input } from '@kube-design/components'
 import { Modal } from 'components/Base'
 import { ResourceLimit } from 'components/Inputs'
 
 import QuotaStore from 'stores/quota'
+import WorkSpaceStore from 'stores/workspace.quota'
 
 import Quotas from './Quotas'
 
@@ -53,6 +54,8 @@ export default class QuotaEditModal extends React.Component {
     this.form = React.createRef()
 
     this.store = new QuotaStore()
+
+    this.workspaceStore = new WorkSpaceStore()
 
     this.state = {
       formTemplate: {},
@@ -88,6 +91,14 @@ export default class QuotaEditModal extends React.Component {
       })
     }
 
+    if (detail.workspace) {
+      await this.workspaceStore.fetchDetail({
+        workspace: detail.workspace,
+        name: detail.workspace,
+        cluster: detail.cluster,
+      })
+    }
+
     this.setState({
       formTemplate: toJS(this.store.detail),
     })
@@ -95,6 +106,7 @@ export default class QuotaEditModal extends React.Component {
 
   get resourceLimitProps() {
     const { formTemplate } = this.state
+    const workspaceStore = this.workspaceStore
 
     const memoryFormatter = value => {
       if (value > 0 && value < 1) {
@@ -105,6 +117,25 @@ export default class QuotaEditModal extends React.Component {
       }
       return value
     }
+
+    const workspaceLimitProps = !isEmpty(workspaceStore.detail)
+      ? {
+          limits: {
+            cpu: get(workspaceStore.detail, 'spec.quota.hard["limits.cpu"]'),
+            memory: get(
+              workspaceStore.detail,
+              'spec.quota.hard["limits.memory"]'
+            ),
+          },
+          requests: {
+            cpu: get(workspaceStore.detail, 'spec.quota.hard["requests.cpu"]'),
+            memory: get(
+              workspaceStore.detail,
+              'spec.quota.hard["requests.memory"]'
+            ),
+          },
+        }
+      : {}
 
     return {
       cpuProps: {
@@ -147,6 +178,7 @@ export default class QuotaEditModal extends React.Component {
           memory: get(formTemplate, 'spec.hard["requests.memory"]'),
         },
       },
+      workspaceLimitProps,
       onChange: value => {
         set(
           formTemplate,

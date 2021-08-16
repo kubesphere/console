@@ -623,7 +623,8 @@ module.exports = {
 
   REQUEST_EXCCED:
     'Resource requests should not be greater than resource limits.',
-
+  REQUEST_EXCCED_WORKSPACE:
+    'Resource setting should not be greater than workspace resource limits.',
   WORKLOAD_CONDITIONS: 'Conditions',
   WORKLOAD_CONDITION_AVAILABLE: 'Available',
   WORKLOAD_CONDITION_PROGRESSING: 'Progressing',
