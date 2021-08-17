@@ -151,7 +151,7 @@ export default class PodItem extends React.PureComponent {
 
     if (!node) return '-'
 
-    const text = `${node}(${nodeIp})`
+    const text = t('NODE_IP', { node, ip: nodeIp })
 
     return nodePermission ? (
       <Link to={`/clusters/${cluster}/nodes/${node}`}>{text}</Link>
@@ -195,7 +195,7 @@ export default class PodItem extends React.PureComponent {
 
   renderPodIPContent = data => (
     <div className={styles.ipTip}>
-      <div>{t('Pod IP')}</div>
+      <div>{t('POD_IP_TCAP')}</div>
       <ul>
         {data.map(item => (
           <li key={item}>
@@ -276,7 +276,7 @@ export default class PodItem extends React.PureComponent {
               </Tooltip>
             )}
           </div>
-          <p>{t('Pod IP')}</p>
+          <p>{t('POD_IP_TCAP')}</p>
         </div>
         {this.renderMonitorings()}
         <div className={styles.arrow}>

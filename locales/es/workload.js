@@ -238,7 +238,7 @@ module.exports = {
   'Pod CPU Request': 'Solicitud de CPU para el pod',
   'Pod Decentralized Deployment': 'Despliegue descentralizado de pod',
   'Pod Default Deployment': 'Despliegue predeterminado del pod',
-  'Pod IP': 'IP del POD',
+  POD_IP_TCAP: 'IP del POD',
   'Pod Memory Request': 'Solicitud de memoria de pod',
   POD_REPLICAS: 'Réplicas de pod',
   'Pod replicas will be deployed according to the default policy.':
@@ -682,4 +682,7 @@ module.exports = {
   IGNORE_CERT_WARN_DESC:
     'Ignoring the verification certificate may cause the account password to be disclosed. ',
   INVALID_PROJECT: 'Proyecto no válido',
+
+  // Pods Page
+  NODE_IP: '{node} ({ip})',
 }

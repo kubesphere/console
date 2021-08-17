@@ -86,6 +86,7 @@ module.exports = {
   memory: '内存',
   Custom: '自定义',
   Others: '其它',
+  Error: '错误',
 
   Platform: '平台管理',
   'Platform Info': '平台信息',
@@ -534,7 +535,7 @@ module.exports = {
   CODE_CONTRIBUTE: '贡献代码',
   GITHUB_STAR: '点亮Star',
 
-  CONDITION_STATUS_ANALYSE: '状态分析(Conditions)',
+  CONDITION_STATUS_ANALYSE: '状态分析（Conditions）',
 
   NAV_PROJECTS: '项目管理',
   NAV_ACCOUNTS: '帐户管理',

@@ -45,7 +45,7 @@ module.exports = {
   'Resource Info': '資源資訊',
   'Node Name': '主機名稱',
   'Node IP': '主機 IP',
-  'Pod IP': '容器組 IP',
+  POD_IP_TCAP: '容器組 IP',
   IMAGE: '鏡像',
   'Image ID': '鏡像 ID',
   'Port(s)': '端口',
@@ -710,4 +710,7 @@ module.exports = {
   IGNORE_CERT_DESC: '發現證書錯誤，是否忽略證書驗證並再次',
   IGNORE_CERT_WARN_DESC: '忽略驗證證書，可能會導致帳戶密碼被欺騙。',
   INVALID_PROJECT: '項目不可選',
+
+  // Pods Page
+  NODE_IP: '{node}（{ip}）',
 }

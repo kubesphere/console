@@ -235,7 +235,7 @@ module.exports = {
   'Pod CPU Request': 'Pod CPU Request',
   'Pod Decentralized Deployment': 'Pod Decentralized Deployment',
   'Pod Default Deployment': 'Pod Default Deployment',
-  'Pod IP': 'Pod IP',
+  POD_IP_TCAP: 'Pod IP',
   'Pod Memory Request': 'Pod Memory Request',
   POD_REPLICAS: 'Pod Replicas',
   'Pod replicas will be deployed according to the default policy.':
@@ -603,17 +603,17 @@ module.exports = {
 
   POD_CONDITION_INITIALIZED: 'Initialized',
   POD_CONDITION_INITIALIZED_DESC:
-    'All init containers have started successfully.',
+    'All Init containers have started successfully.',
   POD_CONDITION_READY: 'Ready',
   POD_CONDITION_READY_DESC:
-    'The pod is already running and can be accessed through the service.',
-  POD_CONDITION_CONTAINERSREADY: 'ContainersReady',
-  POD_CONDITION_CONTAINERSREADY_DESC: 'Containers in the pod are ready.',
-  POD_CONDITION_PODSCHEDULED: 'PodScheduled',
+    'The Pod is already running and can be accessed through the Service.',
+  POD_CONDITION_CONTAINERSREADY: 'Containers Ready',
+  POD_CONDITION_CONTAINERSREADY_DESC: 'Containers in the Pod are ready.',
+  POD_CONDITION_PODSCHEDULED: 'Pod Scheduled',
   POD_CONDITION_PODSCHEDULED_DESC:
-    'The pod has been successfully assigned to a node.',
+    'The Pod has been successfully assigned to a node.',
   POD_ASSIGNED_DESC:
-    "The request value (ie, Request) set by the pod in the pod group is used as the basis for determining the resource allocation. Only when the amount that can be allocated in the node ≥ the pod's requst value, can the pod be allocated to this node.",
+    "The request value (namely, Request) set by the containers in the Pod is used as the basis for determining the resource allocation. Only when the amount available for allocation in the node is greater than or equal to the Pod's request value can the Pod be allocated to this node.",
   POD_DESC:
     'A Pod is the basic execution unit of a Kubernetes application, representing the smallest and simplest unit in the Kubernetes object model that you create or deploy.',
   POD_CREATE_DESC:
@@ -708,4 +708,7 @@ module.exports = {
   IGNORE_CERT_WARN_DESC:
     'Ignoring the verification certificate may cause the account password to be disclosed. ',
   INVALID_PROJECT: 'Invalid project.',
+
+  // Pods Page
+  NODE_IP: '{node} ({ip})',
 }
