@@ -56,10 +56,11 @@ export default class Routers extends React.Component {
         icon: 'pen',
         text: t('EDIT'),
         action: 'edit',
-        onClick: item =>
+        onClick: item => {
           trigger('resource.baseinfo.edit', {
             detail: item,
-          }),
+          })
+        },
       },
       {
         key: 'editYaml',
@@ -70,6 +71,32 @@ export default class Routers extends React.Component {
           trigger('resource.yaml.edit', {
             detail: item,
           }),
+      },
+      {
+        key: 'editRules',
+        icon: 'firewall',
+        text: t('Edit Rules'),
+        action: 'edit',
+        onClick: async item => {
+          const detail = await this.props.store.fetchDetail(item)
+          trigger('fedproject.router.rules.edit', {
+            isFederated: true,
+            detail,
+            projectDetail: this.props.projectStore.detail,
+          })
+        },
+      },
+      {
+        key: 'editAnnotations',
+        icon: 'firewall',
+        text: t('Edit Annotations'),
+        action: 'edit',
+        onClick: async item => {
+          const detail = await this.props.store.fetchDetail(item)
+          trigger('router.annotations.edit', {
+            detail,
+          })
+        },
       },
       {
         key: 'delete',
@@ -86,11 +113,13 @@ export default class Routers extends React.Component {
   }
 
   getColumns = () => {
-    const { module } = this.props
+    const { module, getSortOrder } = this.props
     return [
       {
         title: t('NAME'),
         dataIndex: 'name',
+        sorter: true,
+        sortOrder: getSortOrder('name'),
         render: (name, record) => (
           <Avatar
             icon={ICON_TYPES[module]}
