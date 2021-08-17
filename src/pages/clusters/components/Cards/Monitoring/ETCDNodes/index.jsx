@@ -101,7 +101,7 @@ export default class ETCDNodes extends React.Component {
 
     return (
       <div className={classnames(styles.wrapper, this.props.className)}>
-        <div className={styles.title}>{t('ETCD Nodes')}</div>
+        <div className={styles.title}>{t('SERVICE_STATUS')}</div>
         <Loading spinning={this.store.isLoading}>
           <div className={styles.list}>
             {isEmpty(data) ? (

@@ -48,7 +48,7 @@ export default class NodesTop5 extends Component {
   get options() {
     return this.store.sort_metric_options.map(option => ({
       value: option,
-      label: t(`Sort By ${option}`),
+      label: t(`SORT_BY_${option.toUpperCase()}`),
     }))
   }
 
@@ -57,7 +57,7 @@ export default class NodesTop5 extends Component {
     return (
       <div>
         <div className={styles.header}>
-          <div>{t('Node Usage Top5')}</div>
+          <div>{t('TOP_5_FOR_RSC_USAGE')}</div>
           <Select
             className={styles.select}
             value={this.store.sort_metric}
@@ -85,14 +85,14 @@ export default class NodesTop5 extends Component {
                 title={`${Math.round(
                   (Number(get(node, this.store.sort_metric)) || 0) * 100
                 )}%`}
-                description={t(this.store.sort_metric)}
+                description={t(this.store.sort_metric.toUpperCase())}
               />
             </div>
           ))}
         </div>
         <div className={styles.footer}>
           <Link to={`/clusters/${this.cluster}/monitor-cluster/ranking`}>
-            <Button>{t('View More')}</Button>
+            <Button>{t('VIEW_MORE')}</Button>
           </Link>
         </div>
       </div>

@@ -17,10 +17,10 @@
  */
 
 module.exports = {
-  Workspace: '企业空间',
+  WORKSPACE: '企业空间',
   Workspaces: '企业空间',
   'Workspace Settings': '企业空间设置',
-  'Workspace Members': '企业成员',
+  'Workspace Members': '企业空间成员',
   'Workspace Roles': '企业角色',
   'Workspace Role': '企业角色',
   'Create Workspace Role': '创建企业角色',
@@ -57,8 +57,6 @@ module.exports = {
 
   'Cluster Authorization Info': '集群授权信息',
   'Workspace Network Isolation': '企业空间网络隔离',
-
-  'Cluster Info': '集群信息',
 
   'No Available Cluster': '暂时没有可用集群',
   'Network module is not installed': '网络模块未安装',

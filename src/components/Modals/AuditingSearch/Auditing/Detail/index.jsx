@@ -132,14 +132,14 @@ export default class Detail extends React.PureComponent {
       className: styles.statuscol,
     },
     {
-      thead: t('Workspace'),
+      thead: t('WORKSPACE'),
       key: 'Workspace',
       hidden: false,
       content: ({ Workspace }) => Workspace,
       className: styles.workspacecol,
     },
     {
-      thead: t('Project'),
+      thead: t('PROJECT'),
       key: 'Project',
       hidden: false,
       content: ({ ObjectRef }) => get(ObjectRef, 'Namespace'),

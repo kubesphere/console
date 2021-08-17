@@ -57,7 +57,7 @@ export default class MetadataModal extends React.Component {
     return (
       <div className={styles.center}>
         <div className={styles.row}>
-          <div className={styles.rowTitle}>{t('Project')}</div>
+          <div className={styles.rowTitle}>{t('PROJECT')}</div>
           <div className={styles.rowDesc}>
             {t(involvedObject.namespace) || '-'}
           </div>

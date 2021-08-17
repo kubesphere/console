@@ -68,7 +68,7 @@ export default class CRDAppDetail extends React.Component {
     {
       key: 'edit',
       icon: 'pen',
-      text: t('Edit Info'),
+      text: t('EDIT_INFO'),
       action: 'edit',
       onClick: () =>
         this.trigger('resource.baseinfo.edit', {
@@ -104,7 +104,7 @@ export default class CRDAppDetail extends React.Component {
     {
       key: 'delete',
       icon: 'trash',
-      text: t('Delete'),
+      text: t('DELETE'),
       action: 'delete',
       type: 'danger',
       onClick: () =>
@@ -132,11 +132,11 @@ export default class CRDAppDetail extends React.Component {
         value: cluster,
       },
       {
-        name: t('Project'),
+        name: t('PROJECT'),
         value: namespace,
       },
       {
-        name: t('Status'),
+        name: t('STATUS'),
         value: <Status name={t(detail.status)} type={detail.status} />,
       },
       {
@@ -152,7 +152,7 @@ export default class CRDAppDetail extends React.Component {
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
-        name: t('Updated Time'),
+        name: t('UPDATED_AT'),
         value: getLocalTime(detail.updateTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {

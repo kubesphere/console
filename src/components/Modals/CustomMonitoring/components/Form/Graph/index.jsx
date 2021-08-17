@@ -68,7 +68,7 @@ export default class Graph extends Component {
                 <Form.Item>
                   <FormItemContainer name={'description'}>
                     {({ onChange, value }) => (
-                      <Field label={t('Description')}>
+                      <Field label={t('DESCRIPTION')}>
                         <Input value={value} onChange={onChange} />
                       </Field>
                     )}

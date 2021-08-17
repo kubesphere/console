@@ -80,7 +80,7 @@ const Card = ({ volume, onDelete, onEdit }) => {
       },
       {
         title: get(volume, 'volume.accessMode', '-'),
-        description: t('Access Mode'),
+        description: t('ACCESS_MODE_TCAP'),
       },
     ]
   }

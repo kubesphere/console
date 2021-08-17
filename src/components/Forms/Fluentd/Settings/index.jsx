@@ -28,7 +28,7 @@ export default class BaseInfo extends React.Component {
     return (
       <div className={styles.fromGroup}>
         <Form.Item
-          label={t('Service Address')}
+          label={t('SERVICE_ADDRESS')}
           desc={t('LOG_COLLECTION_FLUENTD_URL_TIPS')}
         >
           <UrlInput hostName={'host'} portName={'port'} defaultPort={24224} />

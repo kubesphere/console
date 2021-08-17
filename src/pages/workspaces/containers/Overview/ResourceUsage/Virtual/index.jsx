@@ -111,13 +111,13 @@ export default class VirtualResource extends Base {
     {
       type: 'pod',
       title: 'Pods',
-      legend: ['Running Pods'],
+      legend: ['RUNNING_PODS'],
       metricType: MetricTypes.pod_running_count,
     },
   ]
 
   getControllerProps = () => ({
-    title: t('Application Resources Usage'),
+    title: t('APPLICATION_RESOURCES_USAGE'),
     createTime: this.createTime,
     customAction: this.renderClusters(),
   })

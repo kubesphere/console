@@ -18,7 +18,7 @@
 
 module.exports = {
   'Cluster Authorization Info': 'Información de autorización de clúster',
-  'Cluster Info': 'Información del clúster',
+  CLUSTER_INFORMATION: 'Información del clúster',
   'Create Workspace': 'Crear espacio de trabajo',
   'Create Workspace Role': 'Crear rol de espacio de trabajo',
   'Created Projects': 'Proyectos creados',
@@ -35,7 +35,7 @@ module.exports = {
   'Remove from Workspace': 'Eliminar del espacio de trabajo',
   'The current name is not applicable.': 'El nombre actual no es aplicable.',
   'View Workspace': 'Ver espacio de trabajo',
-  Workspace: 'Espacio de trabajo',
+  WORKSPACE: 'Espacio de trabajo',
   'Workspace Info': 'Información del espacio de trabajo',
   'Workspace Logo': 'Logotipo del espacio de trabajo',
   'Workspace Manager': 'Gestor del espacio de trabajo',

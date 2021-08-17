@@ -91,7 +91,7 @@ export default class BaseInfoModal extends React.Component {
       >
         <Form ref={this.form} data={formTemplate}>
           <Form.Item
-            label={t('Name')}
+            label={t('NAME')}
             desc={t(
               'The name of the pipeline. Pipelines in the same project must have different names.'
             )}
@@ -99,14 +99,14 @@ export default class BaseInfoModal extends React.Component {
               { required: true, message: t('Please input pipeline name') },
               {
                 pattern: PATTERN_NAME,
-                message: t('Invalid name', { message: t('NAME_DESC') }),
+                message: t('INVALID_NAME_DESC', { message: t('NAME_DESC') }),
               },
               { validator: this.validator },
             ]}
           >
             <Input name="name" maxLength={63} />
           </Form.Item>
-          <Form.Item label={t('Description')} desc={t('DESCRIPTION_DESC')}>
+          <Form.Item label={t('DESCRIPTION')} desc={t('DESCRIPTION_DESC')}>
             <TextArea name="description" maxLength={256} />
           </Form.Item>
         </Form>

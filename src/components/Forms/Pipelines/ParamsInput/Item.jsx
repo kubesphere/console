@@ -80,7 +80,7 @@ export default class ParamsInput extends React.Component {
         <Columns>
           <Column>
             <Form.Item
-              label={t('Name')}
+              label={t('NAME')}
               rules={[{ required: true, message: t('This param is required') }]}
             >
               <Input
@@ -103,7 +103,7 @@ export default class ParamsInput extends React.Component {
             </Form.Item>
           </Column>
         </Columns>
-        <Form.Item label={t('Description')} desc={t('Comment information')}>
+        <Form.Item label={t('DESCRIPTION')} desc={t('Comment information')}>
           <TextArea
             className="max-width-full"
             name={`${this.props.prefix}.description`}
@@ -120,7 +120,7 @@ export default class ParamsInput extends React.Component {
     return (
       <div>
         <Form.Item
-          label={t('Name')}
+          label={t('NAME')}
           rules={[{ required: true, message: t('This param is required') }]}
         >
           <Input name={`${this.props.prefix}.name`} defaultValue={value.name} />
@@ -132,7 +132,7 @@ export default class ParamsInput extends React.Component {
             defaultValue={value.default_value || ''}
           />
         </Form.Item>
-        <Form.Item label={t('Description')} desc={t('Comment information')}>
+        <Form.Item label={t('DESCRIPTION')} desc={t('Comment information')}>
           <TextArea
             className="max-width-full"
             name={`${this.props.prefix}.description`}
@@ -151,7 +151,7 @@ export default class ParamsInput extends React.Component {
         <Columns>
           <Column>
             <Form.Item
-              label={t('Name')}
+              label={t('NAME')}
               rules={[{ required: true, message: t('This param is required') }]}
             >
               <Input
@@ -172,7 +172,7 @@ export default class ParamsInput extends React.Component {
             </Form.Item>
           </Column>
         </Columns>
-        <Form.Item label={t('Description')} desc={t('Comment information')}>
+        <Form.Item label={t('DESCRIPTION')} desc={t('Comment information')}>
           <TextArea
             className="max-width-full"
             name={`${this.props.prefix}.description`}
@@ -191,7 +191,7 @@ export default class ParamsInput extends React.Component {
         <Columns>
           <Column>
             <Form.Item
-              label={t('Name')}
+              label={t('NAME')}
               rules={[{ required: true, message: t('This param is required') }]}
             >
               <Input
@@ -215,7 +215,7 @@ export default class ParamsInput extends React.Component {
             </Form.Item>
           </Column>
         </Columns>
-        <Form.Item label={t('Description')} desc={t('Comment information')}>
+        <Form.Item label={t('DESCRIPTION')} desc={t('Comment information')}>
           <TextArea
             className="max-width-full"
             name={`${this.props.prefix}.description`}
@@ -234,7 +234,7 @@ export default class ParamsInput extends React.Component {
         <Columns>
           <Column>
             <Form.Item
-              label={t('Name')}
+              label={t('NAME')}
               rules={[{ required: true, message: t('This param is required') }]}
             >
               <Input
@@ -253,7 +253,7 @@ export default class ParamsInput extends React.Component {
             </Form.Item>
           </Column>
         </Columns>
-        <Form.Item label={t('Description')} desc={t('Comment information')}>
+        <Form.Item label={t('DESCRIPTION')} desc={t('Comment information')}>
           <TextArea
             name={`${this.props.prefix}.description`}
             defaultValue={value.description}

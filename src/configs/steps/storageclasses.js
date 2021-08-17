@@ -23,12 +23,12 @@ import StorageClassSettings from 'components/Forms/StorageClass/StorageClassSett
 export default [
   { title: 'Basic Info', component: StorageClassBaseInfo, required: true },
   {
-    title: 'Storage System',
+    title: 'STORAGE_SYSTEM',
     component: ProvisionerSettings,
     required: true,
   },
   {
-    title: 'Storage Class Settings',
+    title: 'STORAGE_CLASS_SETTINGS',
     component: StorageClassSettings,
     required: true,
   },

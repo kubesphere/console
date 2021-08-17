@@ -81,9 +81,9 @@ export default class BasicInfo extends React.Component {
     return (
       <div className={styles.placementWrapper}>
         <div className={styles.placementContent}>
-          <Text title={workspace} description={t('Workspace')} />
+          <Text title={workspace} description={t('WORKSPACE')} />
           <Text title={cluster} description={t('Cluster')} />
-          <Text icon="project" title={namespace} description={t('Project')} />
+          <Text icon="project" title={namespace} description={t('PROJECT')} />
         </div>
       </div>
     )
@@ -101,10 +101,10 @@ export default class BasicInfo extends React.Component {
                 label={t('Application Name')}
                 desc={t('CLUSTER_NAME_DESC')}
                 rules={[
-                  { required: true, message: t('Please input name') },
+                  { required: true, message: t('NAME_EMPTY_DESC') },
                   {
                     pattern: PATTERN_SERVICE_NAME,
-                    message: t('Invalid name', {
+                    message: t('INVALID_NAME_DESC', {
                       message: t('CLUSTER_NAME_DESC'),
                     }),
                   },
@@ -140,14 +140,14 @@ export default class BasicInfo extends React.Component {
           </Columns>
           <Columns>
             <Column>
-              <Form.Item label={t('Description')} desc={t('DESCRIPTION_DESC')}>
+              <Form.Item label={t('DESCRIPTION')} desc={t('DESCRIPTION_DESC')}>
                 <TextArea name="description" maxLength={256} />
               </Form.Item>
             </Column>
             <Column />
           </Columns>
           <br />
-          <div className={styles.title}>{t('Deployment Location')}</div>
+          <div className={styles.title}>{t('DEPLOYMENT_LOCATION')}</div>
           <div className={styles.placement}>
             {!namespace ? (
               <Form.Item

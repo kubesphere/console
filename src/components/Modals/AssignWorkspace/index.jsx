@@ -94,7 +94,7 @@ export default class AssignWorkspaceModal extends Component {
   render() {
     return (
       <Modal.Form
-        title={t('Assign Workspace')}
+        title={t('ASSIGN_WORKSPACE')}
         icon="firewall"
         width={691}
         data={this.formTemplate}
@@ -105,7 +105,7 @@ export default class AssignWorkspaceModal extends Component {
           type="info"
           message={t('PROJECT_ASSIGN_DESC')}
         />
-        <Form.Item label={t('Target Workspace')} desc={t('Choose a workspace')}>
+        <Form.Item label={t('WORKSPACE')} desc={t('SELECT_WORKSPACE_DESC')}>
           <Select
             name="metadata.labels['kubesphere.io/workspace']"
             onChange={this.handleWorkspaceChange}
@@ -117,15 +117,14 @@ export default class AssignWorkspaceModal extends Component {
             ])}
             isLoading={this.workspaceStore.list.isLoading}
             onFetch={this.fetchWorkspaces}
+            placeholder=" "
             searchable
             clearable
           />
         </Form.Item>
         <Form.Item
-          label={t('Project Manager')}
-          desc={t(
-            'Select a user of the workspace as the manager of the project.'
-          )}
+          label={t('PROJECT_ADMINISTRATOR')}
+          desc={t('PROJECT_ADMINISTRATOR_DESC')}
         >
           <Select
             name="metadata.annotations['kubesphere.io/creator']"
@@ -133,6 +132,7 @@ export default class AssignWorkspaceModal extends Component {
             pagination={pick(this.memberStore.list, ['page', 'total', 'limit'])}
             isLoading={this.memberStore.list.isLoading}
             onFetch={this.fetchMembers}
+            placeholder=" "
             searchable
             clearable
           />

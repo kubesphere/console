@@ -123,7 +123,7 @@ export default class ContainerPort extends React.Component {
             onChange={this.handleProtocolChange}
           />
         </AddonsInput>
-        <AddonsInput prefix={t('Name')}>
+        <AddonsInput prefix={t('NAME')}>
           <Input
             name="name"
             value={name}

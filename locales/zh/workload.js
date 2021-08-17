@@ -15,8 +15,11 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 module.exports = {
+  SELECT_PROJECT_DESC: '选择一个项目。',
+  PROJECT_EMPTY_DESC: '请选择一个项目',
+  REPLICA_LOW_SI: '副本',
+  REPLICA_LOW_PL: '副本',
   Workload: '工作负载',
   Workloads: '工作负载',
   'Service Configuration': '服务配置',
@@ -25,11 +28,13 @@ module.exports = {
   'Desired number of nodes scheduled': '期望节点数',
   'Current number of nodes scheduled': '当前节点数',
   'View YAML': '查看配置文件',
-  'Edit YAML': '编辑配置文件',
+  EDIT_YAML: '编辑配置文件',
   'Add Labels': '添加标签',
   'Edit Labels': '编辑标签',
-  'Pod Replicas': '容器组副本数量',
-  'Container Image': '容器镜像',
+  POD_REPLICAS: '容器组副本数量',
+  CONTAINERS: '容器',
+  CONTAINER_IMAGE: '容器镜像',
+  ADD_CONTAINER: '添加容器',
   'Pod Status': '容器组运行状态',
   'Container Setting': '容器设置',
   'Pods List': '容器组列表',
@@ -37,17 +42,16 @@ module.exports = {
   Log: '日志',
   'Container Logs': '容器日志',
   'Resource Info': '资源信息',
-  Logs: '操作日志',
   'Node Name': '节点名称',
   'Node IP': '节点 IP',
   'Pod IP': '容器组 IP',
-  Image: '镜像',
+  IMAGE: '镜像',
   'Image ID': '镜像 ID',
   'Port(s)': '端口',
   Port: '端口',
   port: '端口',
   Topology: '拓扑图',
-  'Edit Container': '编辑容器',
+  EDIT_CONTAINER: '编辑容器',
   'Host Port': '节点端口',
   'Add Port': '添加端口',
   'target port': '目标端口',
@@ -120,7 +124,7 @@ module.exports = {
 
   'Additional metadata settings for resources.': '对资源进行额外的元数据设置',
 
-  'Deployment Location': '部署位置',
+  DEPLOYMENT_LOCATION: '部署位置',
 
   REFFER_CONFIGMAP_DESC: '将配置中的值添加为卷。',
   REFFER_SECRET_DESC: '将密钥中的值添加为卷。',
@@ -153,8 +157,6 @@ module.exports = {
   IMAGE_REGISTRY_PLACEHOLDER: '请选择镜像仓库密钥',
   IMAGE_DESC:
     '要从私有镜像仓库部署，需要先<a href={link} target="_blank">创建镜像仓库密钥</a>，然后拉取镜像。',
-
-  Replicas: '副本',
   'Replicas Number': '副本数量',
   'Specify Replicas Number': '指定副本数量',
   'Replica Status': '副本运行状态',
@@ -187,7 +189,7 @@ module.exports = {
     '配置升级过程中替换容器组的策略 <a href="{link}" target="_blank">了解更多</a>',
   MAX_DAEMON_UNAVAILABLE_POD_DESC:
     '升级过程中「允许存在的不可用的容器组」所占总容器组数的最大百分比或数量',
-  MAX_DEPLOY_UNAVAILABLE_POD_DESC: '升级过程中可能不可用的 Pod 的最大数量。',
+  MAX_DEPLOY_UNAVAILABLE_POD_DESC: '升级过程中不可用副本的最大数量或百分比',
   MAX_SURGE_POD_DESC:
     '升级过程中「允许超出副本数量的容器组」的最大数量或百分比',
   ROLLING_UPDATE_POD_TIP:
@@ -214,7 +216,7 @@ module.exports = {
   'Add new container': '添加新的容器',
   'Adding new contianer': '正在添加新的容器',
   'Add Node Selector': '添加节点选择器',
-  'Please add at least one container.': '请至少添加一个容器',
+  CONTAINER_EMPTY_DESC: '请至少添加一个容器',
   'Container Name': '容器名称',
   'Container Type': '容器类型',
   'Advanced Options': '高级选项',
@@ -238,7 +240,12 @@ module.exports = {
   'Please input mount point': '请输入挂载点',
   'Please select a storage class': '请选择存储卷类型',
   'Please select image': '请选择镜像',
+
   'Invalid name': '名称格式不合法。{message}',
+  'Invalid pod': '容器组数量格式不合法',
+
+  INVALID_NAME_DESC: '名称无效。{message}',
+
   'Service Labels': '服务标签',
 
   'Add Existing Volume': '添加已有存储卷',
@@ -372,7 +379,7 @@ module.exports = {
   'Container Readiness Check': '容器就绪检查',
   'Container Startup Check': '容器启动检查',
 
-  Redeploy: '重新部署',
+  REDEPLOY: '重新部署',
   'Redeploy Successfully': '重新部署成功',
 
   REDEPLOY_CONFIRM_DESC:
@@ -553,8 +560,7 @@ module.exports = {
     '容器组副本将会尽量部署在同一节点上',
   'Pod replicas will be deployed according to the default policy.':
     '容器组副本将根据默认策略部署',
-  'KubeSphere supports pulling images from the Image Registries and creating new images through source code (Source to Image).':
-    'Kubesphere 支持从镜像仓库拉取镜像以及通过代码构建新的镜像并部署',
+  ADD_CONTAINER_DESC: '从镜像仓库拉取镜像以创建容器组。',
 
   'Scheduling Info': '调度信息',
   'Node Scheduling Info': '节点调度信息',
@@ -706,5 +712,5 @@ module.exports = {
     '可以将容器组部署在不同集群中，并对集群中部署的副本数量进行定义。不同集群中的容器组将由联邦集群控制器(Federation Controller Manager)进行统一的调度及状态同步。',
   IGNORE_CERT_DESC: '发现证书错误，是否忽略证书验证并再次',
   IGNORE_CERT_WARN_DESC: '忽略验证证书，可能会导致帐户密码被泄露。',
-  'project is invalid': '项目不可选',
+  INVALID_PROJECT: '项目无效。',
 }

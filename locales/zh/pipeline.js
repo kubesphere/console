@@ -75,7 +75,7 @@ module.exports = {
   'Show Logs': '查看日志',
   'Code Repository': '代码仓库',
   'Discard old builds': '丢弃旧的构建',
-  'Discard old branch': '丢弃旧的分支',
+  'Discard old branches': '丢弃旧的分支',
   'Days to keep builds': '保留构建的天数',
   'Maximum number of builds to keep': '保留构建的最大个数',
   'Days to keep old branches': '保留分支的天数',
@@ -182,10 +182,8 @@ module.exports = {
     2. 保留分支的个数：如果已经存在一定数量的分支，则丢弃最旧的分支。这两个选项可以同时对分支进行作用，
     如果超出任一限制，则将丢弃超出该限制的任何分支。`,
   tips_Timing_build: '提供类似 cron 的功能来定期执行此项目',
-  tips_days_keep_withscm:
-    '如果分支达到保留的天数将进行删除. (默认值 -1: 将会丢弃已经被删除的分支)',
-  tips_numbers_keep_withscm:
-    '如果分支达到保留的个数将进行删除. (默认值 -1: 将会丢弃已经被删除的分支)',
+  tips_days_keep_withscm: '如果不为空，则旧分支仅保留此天数',
+  tips_numbers_keep_withscm: '如果不为空，则仅保留最多此数量的旧分支',
   tips_timer_trigger:
     '该字段遵循 cron 的语法 (略有不同)。具体来说，每行包含由制表符或空格分隔的 5 个字段。\n' +
     '分钟: 一个小时中的第几分钟 (0-59)\n' +
@@ -259,7 +257,7 @@ module.exports = {
   'Docker Container Registry Credentials': 'Docker 容器仓库凭证',
   'Docker Registry URL': 'Docker 仓库 URL',
   'Registry Credentials': '仓库凭证',
-  'Secret Name': '密钥名称',
+  SECRET_NAME_TCAP: 'Secret 名称',
   'Show Advanced Settings': '展示高级设置',
   'Config File Path': '配置文件路径',
   'Add another credential': '增加一个凭证',

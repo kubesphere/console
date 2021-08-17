@@ -17,12 +17,47 @@
  */
 
 module.exports = {
+  BASIC_INFORMATION: '基本資訊',
+  NAME: '名稱',
+  ROLE: '角色',
+  CPU_USAGE: 'CPU 使用量',
+  MEMORY_USAGE: '記憶體使用量',
+  POD_PL_TCAP: '容器組',
+  LEARN_MORE: '了解更多',
+  DELETE: '刪除',
+  LOGS: '操作紀錄',
+  NO_DATA: '暫無數據',
+  REFRESH: '刷新',
+  DOWNLOAD: '下載',
+  NO_RESOURCE: '暫時沒有 {resource}。',
+  LOG_DATA_LOW: '紀錄數據',
+  CANCEL: '取消',
+  USERNAME: '用戶名稱',
+  PASSWORD: '密碼',
+  REPLICAS: '副本數量',
+  CREATE_NAME: '創建{name}',
+
+  // Cluster Node List
+  MASTER: '主節點',
+  WORKER: '工作節點',
+  ALLOCATED_CPU: '已分配 CPU',
+  ALLOCATED_MEMORY: '已分配記憶體',
+  CPU_LIMIT_SI: '資源限制：{core} 核（{percent}）',
+  CPU_LIMIT_PL: '資源限制：{core} 核（{percent}）',
+  CPU_REQUEST_SI: '{core} 核（{percent}）',
+  CPU_REQUEST_PL: '{core} 核（{percent}）',
+  MEMORY_LIMIT: '資源限制：{gib} GiB（{percent}）',
+  MEMORY_REQUEST: '{gib} GiB（{percent}）',
+  RESOURCE_REQUEST: '資源預留',
+  CORDON: '停止調度',
+  UNCORDON: '啟動調度',
+  VIEW_LOG: '查看紀錄',
+
   name: '名稱',
-  Name: '名稱',
   Ready: '就緒',
-  Status: '狀態',
+  STATUS: '狀態',
   Type: '類型',
-  Project: '項目',
+  PROJECT: '項目',
   Service: '服務',
   Overview: '概覽',
   'Node Selector': '節點選擇器',
@@ -30,8 +65,8 @@ module.exports = {
   'End Time': '結束時間',
   'Time Interval': '時間間隔',
   'Created Time': '創建時間',
-  'Updated Time': '更新時間',
-  'Running Time': '運行時間',
+  UPDATED_AT: '更新時間',
+  RUNNING_TIME: '運行時間',
   'Custom Columns': '内容自定義',
   Deselect: '取消選擇',
   Monitors: '監控',
@@ -45,9 +80,9 @@ module.exports = {
   Command: '命令',
   Maintainers: '維護者',
   Creator: '創建者',
-  Pod: '容器組',
+  POD: '容器組',
   Pods: '容器組',
-  Memory: '記憶體',
+  MEMORY: '記憶體',
   memory: '記憶體',
   Custom: '自定義',
   Others: '其它',
@@ -129,14 +164,12 @@ module.exports = {
   Failed: '失敗',
   Suspend: '暫停',
 
-  'Create ': '創建',
-  Edit: '編輯',
+  EDIT: '編輯',
   Restart: '重啟',
   Pause: '暫停',
   Start: '啟動',
   Cordon: '停止調度',
   Uncordon: '啟動調度',
-  Delete: '刪除',
   Destroy: '銷毀',
   Enable: '啟用',
   Disable: '停用',
@@ -150,13 +183,13 @@ module.exports = {
   Source: '來源',
   'Health Status': '健康狀態',
 
-  'Edit Info': '編輯資訊',
+  EDIT_INFO: '編輯資訊',
   OK: '確定',
   Cancel: '取消',
   Apply: '應用',
   Close: '關閉',
-  Previous: '上一步',
-  Next: '下一步',
+  PREVIOUS: '上一步',
+  NEXT: '下一步',
   Update: '更新',
   Undo: '撤銷',
   Save: '保存',
@@ -182,7 +215,6 @@ module.exports = {
 
   NOT_ENABLE: '{resource} 暫未啟用',
   NOT_AVAILABLE: '暫時沒有可用的 {resource}',
-  NO_RESOURCE: '暫時沒有 {resource}',
   RESOURCE_NOT_FOUND: '很抱歉，沒有找到您所尋找的資源。',
   'No Available Resource': '暫無可用資源',
   'No Data': '暫無數據',
@@ -219,7 +251,7 @@ module.exports = {
   'Multi-cluster Deployment': '多集群部署',
   MULTI_CLUSTER_TIP: '該資源部署在多個集群',
 
-  Alias: '别名',
+  ALIAS: '别名',
   'Official Document': '官網文件',
 
   optional: '選填',
@@ -277,9 +309,9 @@ module.exports = {
   PROJECT_DESC: '將根據項目資源進行分組，可以按項目對資源進行查看管理',
   'MULTI-CLUSTER_PROJECT_CREATE_DESC':
     '將根據項目資源進行分組，可以按項目對資源進行查看管理',
-  Description: '描述資訊',
+  DESCRIPTION: '描述資訊',
 
-  'Please input name': '請輸入名稱',
+  NAME_EMPTY_DESC: '請輸入名稱。',
   'Please input value': '請輸入值',
   'Please select workspace': '請選擇企業空間',
   'Please select project': '請選擇項目',
@@ -287,10 +319,10 @@ module.exports = {
   'Please input password': '請輸入密碼',
   'Filter by keyword': '請輸入關鍵字過濾',
   'Search by keyword': '請輸入關鍵字進行尋找',
-  'Search by name': '請輸入名稱進行尋找',
-  'Name validation failed':
+  SEARCH_BY_NAME: '請輸入名稱進行尋找',
+  NAME_VALIDATION_FAILED:
     '避免使用前綴為 kube- 的名稱，因為它是為 Kubernetes 系統命名空間保留的',
-  'Name exists': '名稱已存在',
+  NAME_EXIST_DESC: '名稱已存在',
   'Duplicate keys': '無法添加重複的 key',
   'Empty keys': '無法添加空的 key',
 
@@ -319,7 +351,7 @@ module.exports = {
 
   TOTAL_ITEMS: '共 {num} 個項目',
 
-  'Search with filters': '輸入查詢條件進行過濾',
+  SEARCH: '輸入查詢條件進行過濾',
 
   DELETE_TITLE: '{type} 刪除確認？',
   DELETE_TIP:
@@ -328,7 +360,6 @@ module.exports = {
     '請輸入 {type} 名稱 <strong>{resource}</strong> 確保您已了解操作所帶來的風險。',
   DELETE_APP_RESOURCE_TIP:
     '資源被應用 <strong>{app}</strong> 管理, 刪除後可能影響此應用的正常使用。請輸入 {type }名稱 <strong>{resource}</strong> 確保您已了解操作所帶來的風險。',
-  DELETE_CONFIRM_PLACEHOLDER: '請輸入 {resource}',
 
   REMOVE_USER_TIP: '確定移除用戶 <strong>{username}</strong> ？',
 
@@ -347,7 +378,7 @@ module.exports = {
   EVENT_NORMAL: '正常',
   EVENT_WARNING: '異常',
 
-  'Edit Mode': '編輯模式',
+  EDIT_MODE: '編輯模式',
   'Load More': '載入更多',
   'All Repositories': '全部倉庫',
 
@@ -422,7 +453,7 @@ module.exports = {
   'Control Tools': '控制工具',
   'Third-party Tools': '第三方工具',
 
-  Logging: '紀錄',
+  LOGGING: '紀錄',
   logging: '紀錄',
   Auditing: '審計',
   auditing: '審計',
@@ -490,9 +521,9 @@ module.exports = {
   CONTENT_NOT_SAVED_TIPS: '内容已經修改但並未保存',
   SAVE_EDIT_HINTS: '請確認修改的内容是正確的，您可以保存設置或者取消設置。',
 
-  Setting: '設置中',
-  'Not set': '未設置',
-  Finished: '已設置',
+  SETTING: '設置中',
+  NOT_SET: '未設置',
+  FINISHED: '已設置',
 
   'Learn more': '了解更多',
 

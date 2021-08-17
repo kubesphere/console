@@ -85,7 +85,7 @@ export default class CreateDashboardModalContainer extends React.Component {
         store={store}
         onOk={this.handleBasicConfirm}
         onCancel={onCancel}
-        okBtnText={t('Next')}
+        okBtnText={t('NEXT')}
       />
     )
   }

@@ -40,29 +40,34 @@ export default class Shell extends React.Component {
 
   constructor(props) {
     super(props)
+
     this.state = { value: '' }
   }
 
   static getDerivedStateFromProps(nextProps) {
     if (nextProps.edittingData.type === 'sh') {
       const value = get(nextProps.edittingData.data, '[0].value.value', '')
-
-      return { value }
+      return { value, initValue: value }
     }
     return null
   }
 
   handleChange = value => {
+    this.isInputed = true
     this.newValue = value
   }
 
   handleOk = () => {
+    const { initValue } = this.state
     this.props.onAddStep({
       name: 'sh',
       arguments: [
         {
           key: 'script',
-          value: { isLiteral: true, value: this.newValue || '' },
+          value: {
+            isLiteral: true,
+            value: this.isInputed ? this.newValue : initValue,
+          },
         },
       ],
     })

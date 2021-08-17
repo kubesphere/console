@@ -49,7 +49,7 @@ export default class IPPools extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('Edit'),
+        text: t('EDIT'),
         action: 'edit',
         onClick: item =>
           trigger('resource.baseinfo.edit', {
@@ -70,7 +70,7 @@ export default class IPPools extends React.Component {
       {
         key: 'modify',
         icon: 'enterprise',
-        text: t('Assign Workspace'),
+        text: t('ASSIGN_WORKSPACE'),
         action: 'edit',
         onClick: item =>
           trigger('network.ipool.assignworkspace', {
@@ -81,7 +81,7 @@ export default class IPPools extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         onClick: item =>
           trigger('resource.delete', {
@@ -96,7 +96,7 @@ export default class IPPools extends React.Component {
     const { getSortOrder, module } = this.props
     return [
       {
-        title: t('Name'),
+        title: t('NAME'),
         dataIndex: 'name',
         sorter: true,
         sortOrder: getSortOrder('name'),
@@ -112,11 +112,11 @@ export default class IPPools extends React.Component {
         ),
       },
       {
-        title: t('IP/Mask Bit'),
+        title: t('IP_MASK_BIT_TCAP'),
         dataIndex: 'cidr',
       },
       {
-        title: t('Used IP'),
+        title: t('USED_IP_TCAP'),
         dataIndex: 'status',
         render: status => {
           const capacity = get(status, 'capacity', 0)
@@ -131,7 +131,7 @@ export default class IPPools extends React.Component {
         },
       },
       {
-        title: t('Workspace'),
+        title: t('WORKSPACE'),
         dataIndex: 'workspace',
         render: (workspace, record) =>
           record.isDefault ? t('All') : workspace || t('Not Assigned'),

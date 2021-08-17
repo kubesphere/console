@@ -17,19 +17,28 @@
  */
 
 module.exports = {
+  NODE_SI: '节点',
+  NODE_PL: '节点',
+  MASTER_NODE_SI: '主节点',
+  MASTER_NODE_PL: '主节点',
+  WORKER_NODE_SI: '工作节点',
+  WORKER_NODE_PL: '工作节点',
+
   'Cluster Node': '集群节点',
+  CLUSTER_NODE_PL: '集群节点',
   'Cluster Nodes': '集群节点',
+
   'Node Role': '节点角色',
   'Edge Node': '边缘节点',
   'Edge Nodes': '边缘节点',
   'Master Node': 'Master 节点',
   'Worker Node': '工作节点',
-  'Add Node': '添加节点',
+  ADD_NODE: '添加节点',
   'System Version': '系统版本',
   'Node Status': '节点状态',
   'Online Nodes': '在线节点',
   'All Nodes': '全部节点',
-  'IP Address': 'IP 地址',
+  IP_ADDRESS_TCAP: 'IP 地址',
   'Node IP': '节点 IP',
   Unschedulable: '无法调度',
   Architecture: '系统架构',
@@ -45,12 +54,14 @@ module.exports = {
   'CPU Utilization': 'CPU 使用情况',
   'Memory Utilization': '内存使用情况',
   'Pod Count': '容器组数量',
+  PODS: '容器组数量',
+  CPU_USAGE: 'CPU 用量',
   'Pod Usage': '容器组使用情况',
   'Pod Quantity Trend': '容器组数量变化',
   'Local Storage Capacity': '本地存储容量',
   used: '已用',
   'Resource Usage Status': '资源使用状态',
-  Taints: '污点',
+  TAINTS: '污点',
   taints: '污点',
   Taint: '污点',
   taint: '污点',
@@ -74,7 +85,7 @@ module.exports = {
   PREFER_NOSCHEDULE_OPTION: '尽量不调度 (PreferNoSchedule)',
   NOEXECUTE_OPTION: '不允许并驱逐已有容器组 (NoExecute)',
 
-  'Taint Management': '污点管理',
+  MANAGE_TAINT: '管理污点',
   'Common Taints': '公共污点',
   'Node List': '主机列表',
   'Node Taints': '主机污点',
@@ -122,11 +133,11 @@ module.exports = {
   NODE_READY: '容器组接收(Ready)',
   NODE_READY_DESC: '节点健康且可以接收新的容器组',
 
-  NODE_TYPES_Q: '集群节点的类型？',
-  NODE_TYPES_A: '节点分为主控 (Master) 节点和工作 (Worker) 节点',
+  NODE_TYPES_Q: '集群节点的类型有哪些？',
+  NODE_TYPES_A: '集群节点分为主节点和工作节点。',
   WHAT_IS_NODE_TAINTS_Q: '什么是节点污点？',
   WHAT_IS_NODE_TAINTS_A:
-    '节点污点 (Taints) 可以阻止某些容器组 (Pod) 副本部署至该节点中, 与容忍度 (Tolerations) 一起工作确保容器组不会被调度到不合适的节点上',
+    '节点污点（Taint）可以阻止某些容器组部署到该节点，与容忍度（Toleration）一起使用，可确保容器组不会被调度到不合适的节点上。',
 
   NODE_TYPE_DESC:
     '节点类型为提供了主机节点分组功能，用户可以通过创建合适关系的节点类型并将主机节点加入相应的分组，从而将容器组按照分组关系部署到合适的物理节点上，来提高资源的可用性，业务的连续性。',
@@ -137,7 +148,7 @@ module.exports = {
   IN_USE_Node_IP: '节点 IP {ip} 已被使用',
   IN_USE_Node_NAME: '节点名称 {name} 已被使用',
   'Add Edge Node': '添加边缘节点',
-  "Please input the node's name": '请输入节点名称',
+  NODE_NAME_EMPTY_DESC: '请输入节点名称。',
   INSTALL_EDGENODE_DESC:
     '运行命令前请确保已在边缘节点安装容器运行时如 docker 或 containerd，详见  <a href="https://kubeedge.io/en/docs/" target="_blank">文档</a>',
   ADD_DEFAULT_STAIN: '添加默认污点 {params}',

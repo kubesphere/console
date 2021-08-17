@@ -64,7 +64,7 @@ export default class MemberProjects extends React.Component {
 
   getColumns = () => [
     {
-      title: t('Name'),
+      title: t('NAME'),
       dataIndex: 'name',
       width: '33%',
       render: (name, record) => getDisplayName(record),

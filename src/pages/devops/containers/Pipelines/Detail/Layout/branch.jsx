@@ -109,16 +109,20 @@ export default class BranchDetailLayout extends React.Component {
   ]
 
   getAttrs = () => {
-    const { detail } = this.store
-    const { activityList } = this.store
+    const { detail, activityList } = this.store
+    const { devopsName } = this.props.devopsStore
 
     return [
       {
         name: t('DevOps Project'),
+        value: devopsName,
+      },
+      {
+        name: t('Pipeline'),
         value: detail.displayName,
       },
       {
-        name: t('Status'),
+        name: t('STATUS'),
         value: (
           <Status
             {...getPipelineStatus(get(toJS(activityList.data), '[0]', {}))}
@@ -126,7 +130,7 @@ export default class BranchDetailLayout extends React.Component {
         ),
       },
       {
-        name: t('Updated Time'),
+        name: t('UPDATED_AT'),
         value: this.updateTime,
       },
     ]

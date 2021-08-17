@@ -72,7 +72,7 @@ export default class CustomResourceDetail extends React.Component {
         value: this.props.match.params.cluster,
       },
       {
-        name: t('Scope'),
+        name: t('SCOPE_TCAP'),
         value: detail.scope,
       },
       {

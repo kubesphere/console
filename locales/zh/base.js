@@ -17,12 +17,47 @@
  */
 
 module.exports = {
+  BASIC_INFORMATION: '基本信息',
+  NAME: '名称',
+  ROLE: '角色',
+  CPU_USAGE: 'CPU 用量',
+  MEMORY_USAGE: '内存用量',
+  POD_PL_TCAP: '容器组',
+  LEARN_MORE: '了解更多',
+  DELETE: '删除',
+  LOGS: '日志',
+  NO_DATA: '暂无数据',
+  REFRESH: '刷新',
+  DOWNLOAD: '下载',
+  NO_RESOURCE: '暂时没有{resource}。',
+  LOG_DATA: '日志数据',
+  CANCEL: '取消',
+  USERNAME: '用户名',
+  PASSWORD: '密码',
+  REPLICAS: '副本数量',
+  CREATE_NAME: '创建{name}',
+
+  // Cluster Node List
+  MASTER: '主节点',
+  WORKER: '工作节点',
+  ALLOCATED_CPU: '已分配 CPU',
+  ALLOCATED_MEMORY: '已分配内存',
+  CPU_LIMIT_SI: '资源限制：{core} 核（{percent}）',
+  CPU_LIMIT_PL: '资源限制：{core} 核（{percent}）',
+  CPU_REQUEST_SI: '{core} 核（{percent}）',
+  CPU_REQUEST_PL: '{core} 核（{percent}）',
+  MEMORY_LIMIT: '资源限制：{gib} GiB（{percent}）',
+  MEMORY_REQUEST: '{gib} GiB（{percent}）',
+  RESOURCE_REQUEST: '资源预留',
+  CORDON: '停止调度',
+  UNCORDON: '启用调度',
+  VIEW_LOG: '查看日志',
+
   name: '名称',
-  Name: '名称',
   Ready: '就绪',
-  Status: '状态',
+  STATUS: '状态',
   Type: '类型',
-  Project: '项目',
+  PROJECT: '项目',
   Service: '服务',
   Overview: '概览',
   'Node Selector': '节点选择器',
@@ -30,9 +65,9 @@ module.exports = {
   'End Time': '结束时间',
   'Time Interval': '时间间隔',
   'Created Time': '创建时间',
-  'Updated Time': '更新时间',
-  'Running Time': '运行时间',
-  'Custom Columns': '内容定制',
+  UPDATED_AT: '更新时间',
+  RUNNING_TIME: '运行时间',
+  'Custom Columns': '定制内容',
   Deselect: '取消选择',
   Monitors: '监控',
   Events: '事件',
@@ -45,9 +80,9 @@ module.exports = {
   Command: '命令',
   Maintainers: '维护者',
   Creator: '创建者',
-  Pod: '容器组',
+  POD: '容器组',
   Pods: '容器组',
-  Memory: '内存',
+  MEMORY: '内存',
   memory: '内存',
   Custom: '自定义',
   Others: '其它',
@@ -128,14 +163,12 @@ module.exports = {
   Failed: '失败',
   Suspend: '暂停',
 
-  'Create ': '创建',
-  Edit: '编辑',
+  EDIT: '编辑',
   Restart: '重启',
   Pause: '暂停',
   Start: '启动',
   Cordon: '停止调度',
   Uncordon: '启动调度',
-  Delete: '删除',
   Destroy: '销毁',
   Enable: '启用',
   Disable: '停用',
@@ -149,13 +182,13 @@ module.exports = {
   Source: '来源',
   'Health Status': '健康状态',
 
-  'Edit Info': '编辑信息',
+  EDIT_INFO: '编辑信息',
   OK: '确定',
   Cancel: '取消',
   Apply: '应用',
   Close: '关闭',
-  Previous: '上一步',
-  Next: '下一步',
+  PREVIOUS: '上一步',
+  NEXT: '下一步',
   Update: '更新',
   Undo: '撤销',
   Save: '保存',
@@ -180,7 +213,6 @@ module.exports = {
 
   NOT_ENABLE: '{resource}暂未启用',
   NOT_AVAILABLE: '暂时没有可用的{resource}',
-  NO_RESOURCE: '暂时没有{resource}',
   RESOURCE_NOT_FOUND: '很抱歉，没有找到您所查找的资源。',
   'No Available Resource': '暂无可用资源',
   'No Data': '暂无数据',
@@ -217,7 +249,7 @@ module.exports = {
   'Multi-cluster Deployment': '多集群部署',
   MULTI_CLUSTER_TIP: '该资源部署在多个集群',
 
-  Alias: '别名',
+  ALIAS: '别名',
   'Official Document': '官网文档',
 
   optional: '选填',
@@ -262,22 +294,22 @@ module.exports = {
   MINUTE_TIME: '{count} 分钟',
 
   NAME_DESC:
-    '最长 63 个字符，只能包含小写字母、数字及分隔符("-")，且必须以小写字母或数字开头及结尾',
+    '名称只能包含小写字母、数字和连字符（-），必须以小写字母或数字开头和结尾，最长 63 个字符。',
   NAME_TOO_LONG: '最长 63 个字符',
 
   LONG_NAME_DESC:
-    '最长 253 个字符，只能包含小写字母、数字及分隔符("-")，且必须以小写字母或数字开头及结尾',
+    '名称只能包含小写字母、数字和连字符（-），必须以小写字母或数字开头和结尾，最长 253 个字符。',
   LONG_NAME_TOO_LONG: '最长 253 个字符',
-  ALIAS_DESC: '别名可以由任意字符组成，帮助您更好的区分资源，最长 63 个字符。',
+  ALIAS_DESC: '别名可包含任意字符，最长 63 个字符。',
   LABEL_FORMAT_DESC:
     '标签的 key 和 value 最长 63 个字符，key 如果包含域名, 则最长 253 字符。只能包含大小写字母、数字, 分隔符("-")，下划线(_)及点(.)，且必须以数字或大小写开头和结尾',
-  DESCRIPTION_DESC: '描述信息不超过 256 个字符',
-  PROJECT_DESC: '将根据工程资源进行分组, 可以按工程对资源进行查看管理',
+  DESCRIPTION_DESC: '描述可包含任意字符，最长 256 个字符。',
+  PROJECT_DESC: '项目用于对资源进行分组管理和控制不同用户的资源管理权限。',
   'MULTI-CLUSTER_PROJECT_CREATE_DESC':
     '将根据项目资源进行分组, 可以按项目对资源进行查看管理',
-  Description: '描述信息',
+  DESCRIPTION: '描述信息',
 
-  'Please input name': '请输入名称',
+  NAME_EMPTY_DESC: '请设置名称。',
   'Please input value': '请输入值',
   'Please select workspace': '请选择企业空间',
   'Please select project': '请选择项目',
@@ -285,10 +317,10 @@ module.exports = {
   'Please input password': '请输入密码',
   'Filter by keyword': '请输入关键字过滤',
   'Search by keyword': '请输入关键字进行查找',
-  'Search by name': '请输入名称进行查找',
-  'Name validation failed':
-    '避免使用前缀为 kube- 的名称，因为它是为 Kubernetes 系统命名空间保留的',
-  'Name exists': '名称已存在',
+  SEARCH_BY_NAME: '按名称搜索',
+  NAME_VALIDATION_FAILED:
+    '名称不能以 kube- 开头，该字符串为 Kubernetes 系统保留保留字符串。',
+  NAME_EXIST_DESC: '名称已存在。请使用其他名称。',
   'Duplicate keys': '无法添加重复的 key',
   'Empty keys': '无法添加空的 key',
 
@@ -315,18 +347,17 @@ module.exports = {
   Quota: '配额',
   'Remaining Quota': '剩余配额',
 
-  TOTAL_ITEMS: '共 {num} 个条目',
+  TOTAL_ITEMS: '总数：{num}',
 
-  'Search with filters': '输入查询条件进行过滤',
+  SEARCH: '搜索',
 
-  DELETE_TITLE: '{type}删除确认?',
+  DELETE_TITLE: '删除{type}',
   DELETE_TIP:
     '确定删除{type} <strong>{resource}</strong> ? {type}删除后将无法恢复。',
   DELETE_CONFIRM_TIP:
     '请输入{type}名称 <strong>{resource}</strong> 确保您已了解操作所带来的风险。',
   DELETE_APP_RESOURCE_TIP:
     '资源被应用 <strong>{app}</strong> 管理, 删除后可能影响此应用的正常使用。请输入{type}名称 <strong>{resource}</strong> 确保您已了解操作所带来的风险。',
-  DELETE_CONFIRM_PLACEHOLDER: '请输入{resource}',
 
   REMOVE_USER_TIP: '确定移除用户 <strong>{username}</strong> ? ',
 
@@ -345,7 +376,7 @@ module.exports = {
   EVENT_NORMAL: '正常',
   EVENT_WARNING: '异常',
 
-  'Edit Mode': '编辑模式',
+  EDIT_MODE: '编辑模式',
   'Load More': '加载更多',
   'All Repositories': '全部仓库',
 
@@ -420,16 +451,16 @@ module.exports = {
   'Control Tools': '控制工具',
   'Third-party Tools': '第三方工具',
 
-  Logging: '日志',
+  LOGGING: '日志',
   logging: '日志',
   Auditing: '审计',
   auditing: '审计',
   'Log Search': '日志查询',
   LOG_SEARCH_DESC: '针对企业空间、项目、资源等多维度的日志查询工具。',
-  KUBECTL_DESC: '当前集群客户端命令行工具',
+  KUBECTL_DESC: '命令行工具，用于控制当前集群。',
   TOOLBOX_KUBECTL_DESC: '操作多集群的客户端命令行工具',
 
-  KUBECONFIG_DESC: '用于配置当前集群访问信息的文件',
+  KUBECONFIG_DESC: '配置文件，用于配置当前集群的访问信息。',
 
   event: '事件',
   events: '事件',
@@ -488,9 +519,9 @@ module.exports = {
   CONTENT_NOT_SAVED_TIPS: '内容已经修改但并未保存',
   SAVE_EDIT_HINTS: '请确认修改的内容是正确的，您可以保存设置或者取消设置。',
 
-  Setting: '设置中',
-  'Not set': '未设置',
-  Finished: '已设置',
+  SETTING: '设置中',
+  NOT_SET: '未设置',
+  FINISHED: '已设置',
 
   'Learn more': '了解更多',
 
@@ -523,7 +554,7 @@ module.exports = {
 
   DATA_SOURCE: '数据源',
 
-  EMPTY_WRAPPER: '未发现 {resource}',
+  EMPTY_WRAPPER: '没有找到 {resource}',
 
   'User Guides': '用户指南',
   'Quick Support': '快速获取帮助',

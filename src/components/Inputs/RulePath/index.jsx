@@ -88,14 +88,14 @@ export default class RulePath extends React.Component {
         <Select
           className="margin-r12"
           name="backend.serviceName"
-          placeholder={t('Please select a service')}
+          placeholder={t('PATH_SERVICE_TIP')}
           options={this.services}
           onChange={this.handleServiceChange}
         />
         <Select
           className={styles.input}
           name="backend.servicePort"
-          placeholder={t('port')}
+          placeholder={t('Port')}
           options={this.ports}
           searchable
         />

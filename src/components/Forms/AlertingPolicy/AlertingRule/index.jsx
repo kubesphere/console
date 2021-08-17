@@ -58,7 +58,7 @@ export default class AlertingRule extends React.Component {
 
     if (isEmpty(value.thresholds)) {
       return callback({
-        message: t('Please add at least one rule'),
+        message: t('SET_RULE_DESC'),
         field: rule.field,
       })
     }
@@ -76,9 +76,9 @@ export default class AlertingRule extends React.Component {
           formTemplate={formTemplate}
         />
         <Form.Item
-          label={t('Alerting Rules')}
+          label={t('ALERTING_RULES')}
           rules={[
-            { required: true, message: t('Please add at least one rule') },
+            { required: true, message: t('SET_RULE_DESC') },
             { validator: this.ruleValidator },
           ]}
         >
@@ -93,11 +93,9 @@ export default class AlertingRule extends React.Component {
     return (
       <>
         <Form.Item
-          label={t('Rule Expression')}
+          label={t('RULE_EXPRESSION')}
           desc={t.html('ALERT_RULE_EXPRESSION_DESC')}
-          rules={[
-            { required: true, message: t('Please input the rule expression') },
-          ]}
+          rules={[{ required: true, message: t('ENTER_RULE_EXPRESSION') }]}
         >
           <CustomRule
             name="query"
@@ -132,8 +130,8 @@ export default class AlertingRule extends React.Component {
           value={ruleType}
           onChange={this.handleTypeChange}
         >
-          <RadioButton value="template">{t('Rule Templates')}</RadioButton>
-          <RadioButton value="custom">{t('Custom Rule')}</RadioButton>
+          <RadioButton value="template">{t('RULE_TEMPLATES')}</RadioButton>
+          <RadioButton value="custom">{t('CUSTOM_RULES')}</RadioButton>
         </RadioGroup>
         <div className={styles.content}>
           <div className={styles.contentWrapper}>

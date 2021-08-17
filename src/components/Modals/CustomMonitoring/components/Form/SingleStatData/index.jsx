@@ -39,7 +39,7 @@ export default class SingleStatDataForm extends Component {
       <div className={styles.wrapper}>
         <div className={styles.config}>
           <Form.Item
-            rules={[{ required: true, message: t('Please input name') }]}
+            rules={[{ required: true, message: t('NAME_EMPTY_DESC') }]}
           >
             <FormItemContainer name={'title'}>
               {({ onChange, value }) => (

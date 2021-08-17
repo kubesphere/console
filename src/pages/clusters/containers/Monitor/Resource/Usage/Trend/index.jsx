@@ -61,9 +61,9 @@ export default class ProjectTrend extends React.Component {
 
   renderChart() {
     const config = getAreaChartOps({
-      title: 'Projects Change Trend',
+      title: 'PROJECT_CHANGE_TREND',
       unit: '',
-      legend: ['Projects Count'],
+      legend: ['PROJECT_COUNT'],
       data: get(this.metrics, `${MetricTypes.namespace_count}.data.result`),
     })
 
@@ -83,7 +83,7 @@ export default class ProjectTrend extends React.Component {
             [styles.empty]: empty,
           })}
           refreshing={isRefreshing}
-          empty={t('NO_RESOURCE', { resource: t('Monitoring Data') })}
+          empty={t('NO_MONITORING_DATA_FOUND')}
         >
           {this.renderChart()}
         </Card>

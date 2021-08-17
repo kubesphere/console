@@ -82,7 +82,7 @@ class ExcuteRecords extends React.Component {
       width: '7%',
     },
     {
-      title: t('Status'),
+      title: t('STATUS'),
       dataIndex: 'status',
       width: '19%',
       render: (status, record) => (

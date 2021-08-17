@@ -83,7 +83,7 @@ export default class AlertHistory extends React.Component {
 
   getColumns = () => [
     {
-      title: t('Alerting Message'),
+      title: t('ALERTING_MESSAGE'),
       dataIndex: 'value',
       render: (value, record) => (
         <Text
@@ -106,7 +106,7 @@ export default class AlertHistory extends React.Component {
       },
     },
     {
-      title: t('Alerting Resource'),
+      title: t('ALERTING_RESOURCE'),
       dataIndex: 'labels',
       isHideable: true,
       width: '20%',
@@ -136,9 +136,9 @@ export default class AlertHistory extends React.Component {
     const { data, isLoading, filters } = this.store.list
 
     return (
-      <Panel title={t('Alerting History')} loading={isLoading}>
+      <Panel title={t('ALERTING_HISTORY')} loading={isLoading}>
         {isEmpty(data) ? (
-          <div>{t('No Data')}</div>
+          <div>{t('NO_DATA_DESC')}</div>
         ) : (
           <BaseTable
             className={styles.table}

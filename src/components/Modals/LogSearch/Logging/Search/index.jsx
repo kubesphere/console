@@ -79,7 +79,7 @@ export default class LogSearchModal extends React.Component {
       hidden: false,
     },
     {
-      thead: t('Project'),
+      thead: t('PROJECT'),
       key: 'project',
       content: this.renderHightLightMatchTd({
         resKey: 'namespace',
@@ -438,7 +438,7 @@ export default class LogSearchModal extends React.Component {
             },
             namespace_query: {
               icon: 'project',
-              text: t('Project'),
+              text: t('PROJECT'),
             },
             workload_query: {
               icon: 'backup',

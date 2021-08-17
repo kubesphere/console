@@ -44,7 +44,7 @@ export default class WorkspaceCard extends React.Component {
           />
         ),
         className: styles.clusters,
-        description: t('Cluster Info'),
+        description: t('CLUSTER_INFORMATION'),
       },
       {
         title: data.createTime

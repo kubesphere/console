@@ -110,7 +110,7 @@ module.exports = {
   'Please finish the sub form first': 'Please finish the sub form first',
   'Please input an application name': 'Please input an application name',
   'Please input component version': 'Please input component version',
-  'Please save the current form first': 'Please save the current form first',
+  SAVE_FORM_TIP: 'Please save the current form first.',
   'Please try other query conditions': 'Please try other query conditions',
   'Pod isolation ratio (unit: %)': 'Pod isolation ratio (unit: %)',
   Process: 'Process',
@@ -220,7 +220,7 @@ module.exports = {
     'Using App Governance requires creating a homebrew app and turning on service governance for each service',
   APP_REPOS_DESC:
     'The app repository comes from a third-party Helm Chart Repo, which visually displays and provides deployment and management capabilities in KubeSphere. Users can quickly deploy applications with one click based on templates in the app repository.',
-  SEARCH_TIPS: 'Filter',
+  SEARCH_TIPS: 'Search',
 
   APPLICATION_BASEINFO_DESC: 'Basic app information (such as name description)',
 

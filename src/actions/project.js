@@ -68,6 +68,13 @@ export default {
           }
 
           const spec = get(data, 'spec.hard', {})
+
+          for (const key in spec) {
+            if (spec[key] === Infinity) {
+              spec[key] = ''
+            }
+          }
+
           data.spec = {
             hard: omitBy(spec, v => (!v ? !v : isEmpty(v.toString()))),
           }

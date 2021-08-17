@@ -92,7 +92,7 @@ export default class Source extends React.Component {
       <div>
         <Form data={this.formTemplate} ref={formRef}>
           <Form.Item
-            label={t('Project')}
+            label={t('PROJECT')}
             rules={[{ required: true, message: t('This param is required') }]}
           >
             <Select

@@ -54,7 +54,7 @@ export default class BaseInfo extends React.Component {
                 '-'
               )}
             </div>
-            <p>{t('Workspace')}</p>
+            <p>{t('WORKSPACE')}</p>
           </div>
           <div className={styles.text}>
             <div>{detail.creator || '-'}</div>

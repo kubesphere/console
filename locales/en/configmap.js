@@ -32,7 +32,7 @@ module.exports = {
   CONFIGMAP_CREATE_DESC:
     'A ConfigMap is an object used to store common configuration variables, allowing the unified management of environment variables for different modules in a distributed system.',
   CONFIGMAP_DESC:
-    'A ConfigMap is often used to store configuration information needed for workloads. Many applications will read the information from configuration files, command line parameters or environment variables.',
+    'A ConfigMap is often used to store configuration information needed for workloads. Many applications will read the information from configuration files, command line parameters, or environment variables.',
   CONFIGMAPS_BASEINFO_DESC: '',
   CONFIGMAP_SETTINGS_DESC: '',
 }

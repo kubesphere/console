@@ -122,8 +122,8 @@ export default class EditBasicInfoModal extends React.Component {
       <Modal.Form
         data={formData}
         width={691}
-        title={t('Edit Cluster Info')}
-        description={t('Edit cluster basic information')}
+        title={t('EDIT_INFORMATION')}
+        description={t('EDIT_CLUSTER_INFO_DESC')}
         icon="cluster"
         onOk={this.handleOk}
         okText={t('Update')}
@@ -131,7 +131,7 @@ export default class EditBasicInfoModal extends React.Component {
         visible={visible}
         isSubmitting={isSubmitting}
       >
-        <Form.Item label={t('Cluster Name')} desc={t('NAME_DESC')}>
+        <Form.Item label={t('CLUSTER_NAME')} desc={t('NAME_DESC')}>
           <Input name="metadata.name" disabled />
         </Form.Item>
         <Form.Item label={t('CLUSTER_TAG')} desc={t('CLUSTER_TAG_DESC')}>
@@ -141,14 +141,14 @@ export default class EditBasicInfoModal extends React.Component {
             optionRenderer={this.groupOptionRenderer}
           />
         </Form.Item>
-        <Form.Item label={t('Provider')} desc={t('CLUSTER_PROVIDER_DESC')}>
+        <Form.Item label={t('PROVIDER')} desc={t('CLUSTER_PROVIDER_DESC')}>
           <Select
             name="spec.provider"
             options={CLUSTER_PROVIDERS}
             optionRenderer={this.providerOptionRenderer}
           />
         </Form.Item>
-        <Form.Item label={t('Description')} desc={t('DESCRIPTION_DESC')}>
+        <Form.Item label={t('DESCRIPTION')} desc={t('DESCRIPTION_DESC')}>
           <TextArea
             name="metadata.annotations['kubesphere.io/description']"
             maxLength={256}

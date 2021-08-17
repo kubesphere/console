@@ -19,7 +19,10 @@
 const fs = require('fs')
 const yaml = require('js-yaml/dist/js-yaml')
 const omit = require('lodash/omit')
-const { send_dockerhub_request } = require('../libs/request')
+const {
+  send_dockerhub_request,
+  send_harbor_request,
+} = require('../libs/request')
 const { getCache, root } = require('../libs/utils')
 
 const NEED_OMIT_HEADERS = ['cookie', 'referer', 'host']
@@ -54,7 +57,18 @@ const handleDockerhubProxy = async ctx => {
   })
 }
 
+const handleHarborProxy = async ctx => {
+  const data = ctx.request.body || {}
+  const headers = ctx.request.headers
+  ctx.body = await send_harbor_request({
+    params: data,
+    path: ctx.url.slice(8),
+    headers: omit(headers, NEED_OMIT_HEADERS),
+  })
+}
+
 module.exports = {
   handleSampleData,
   handleDockerhubProxy,
+  handleHarborProxy,
 }

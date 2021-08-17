@@ -57,7 +57,7 @@ export default class AdvancedSettings extends React.Component {
     return (
       <Form data={this.formTemplate} ref={formRef}>
         <Form.Group
-          label={t('Container Image')}
+          label={t('CONTAINER_IMAGE')}
           desc={t('CLUSTER_CONTAINER_IMAGE_DIFF_DESC')}
           checkable
         >

@@ -103,7 +103,7 @@ module.exports = {
   "Didn't pass": 'No pasó',
   dir: 'directorio',
   Discard: 'Descarte',
-  'Discard old branch': 'Descartar ramas anteriores',
+  'Discard old branches': 'Descartar ramas anteriores',
   'Discard old builds': 'Descartar builds antiguas',
   'Discover Tag Branches': 'Descubrir Tag ramas',
   'Discover Branches': 'Descubrir ramas',
@@ -258,7 +258,7 @@ module.exports = {
   'Scheduled build': 'Build programada',
   SCM: 'SCM',
   'Script Path': 'Ruta del script',
-  'Secret Name': 'Nombre del secreto',
+  SECRET_NAME_TCAP: 'Nombre del secreto',
   secretName: 'secretName',
   secretNamespace: 'secretNamespace',
   'select a pipeline': 'selecciona una pipeline',
@@ -359,9 +359,9 @@ module.exports = {
   tips_Timing_build:
     'Proporciona una funcionalidad similar a cron para realizar este proyecto regularmente',
   tips_days_keep_withscm:
-    'Si se elimina la cantidad de días que se retuvo la sucursal. (Valor predeterminado -1: eliminará la rama que se ha eliminado)',
+    'Las ramas antiguas sólo se mantienen hasta este número de días.',
   tips_numbers_keep_withscm:
-    'Si el número de sucursales alcanzó el número de reservas, se eliminará. (Valor predeterminado -1: eliminará las ramas que se han eliminado)',
+    'Si no es empty, sólo sube a este número de ramas antiguas que se mantienen.',
   tips_timer_trigger:
     'Este campo sigue la sintaxis cron (ligeramente diferente). Específicamente, cada línea contiene 5 campos separados por tabulaciones o espacios. minutos: los primeros minutos de una hora (0-59) horas: las primeras horas del día (0-23) los días del mes: los primeros días de un mes (1-31) Mes: el primero pocos días de los primeros días (0-12), los primeros días de la semana (0-12) 0 y 7 son domingos.',
   PIPELINES_BASEINFO_DESC: 'Introduce la información básica de la pipeline.',

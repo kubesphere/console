@@ -236,7 +236,7 @@ export default class MonitoringController extends React.Component {
   }
 
   renderTitle() {
-    const title = this.props.title || t('Monitoring')
+    const title = this.props.title || t('MONITORING')
     return (
       <div className={styles.title}>
         <span>{title}</span>
@@ -267,7 +267,7 @@ export default class MonitoringController extends React.Component {
             [styles.showDropDown]: active,
           })}
           title={this.renderTitle()}
-          empty={t('NO_RESOURCE', { resource: t('Monitoring Data') })}
+          empty={t('NO_MONITORING_DATA_FOUND')}
           isEmpty={this.props.isEmpty}
         >
           <div className={styles.content}>{this.renderContent()}</div>

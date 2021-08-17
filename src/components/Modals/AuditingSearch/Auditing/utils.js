@@ -89,11 +89,11 @@ export function toArray(data = {}, level = 0) {
 export const dropDownItems = {
   workspace_filter: {
     icon: 'appcenter',
-    text: t('Workspace'),
+    text: t('WORKSPACE'),
   },
   objectref_namespace_filter: {
     icon: 'project',
-    text: t('Project'),
+    text: t('PROJECT'),
   },
   objectref_resource_filter: {
     icon: 'resource',
@@ -140,13 +140,13 @@ export const getSecond = step => {
 export const supportQueryParams = [
   {
     icon: 'appcenter',
-    title: t('Search Auditing Logs by', { field: t('Workspace') }),
+    title: t('Search Auditing Logs by', { field: t('WORKSPACE') }),
     tips: t('Workspace Auditing Query Tip'),
     key: 'workspace_filter',
   },
   {
     icon: 'project',
-    title: t('Search Auditing Logs by', { field: t('Project') }),
+    title: t('Search Auditing Logs by', { field: t('PROJECT') }),
     tips: t('Project Auditing Query Tip'),
     key: 'objectref_namespace_filter',
   },

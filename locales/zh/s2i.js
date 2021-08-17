@@ -28,7 +28,7 @@ module.exports = {
   'Environment Params': '环境变量参数',
   'is Failed': '构建失败',
   'Add Environment Variables': '添加环境参数',
-  'Container Settings': '容器设置',
+  CONTAINER_SETTINGS: '容器设置',
   NEW_TAG_DESC: '输入重新构建镜像的标签',
   S2I_RELATIVE_PATH_DESC:
     '源代码仓库地址（目前支持 git）并且可以指定代码分支及在源代码终端的相对路径',
@@ -62,8 +62,7 @@ module.exports = {
   S2I_DESC: '您可以选择您的代码开发语言，并将它们制作成镜像',
   B2I_DESC: '您可以将已有制品构建成新的镜像',
   'Please set the access policy for the container.': '设置容器的访问策略',
-  'Please set the container name and computing resources.':
-    '对容器的名称及容器的计算资源进行设置',
+  CONTAINER_SETTINGS_DESC: '设置容器的镜像、名称、类型和计算资源。',
   'The health of the container will be checked regularly according to user needs.':
     '根据用户需要，定时检查容器健康状况。',
   'Start Command': '启动命令',

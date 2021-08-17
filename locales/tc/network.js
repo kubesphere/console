@@ -21,7 +21,9 @@ module.exports = {
   'Network Policies': '網路策略',
   'Network Policys': '網路策略',
   'Network Isolation': '網路隔離',
-  'Create Network Policy': '創建網路策略',
+  CREATE_NETWORK_POLICY_TCAP: '創建網路策略',
+  // Network Policies Page
+  CREATE_BTN: '創建',
   'Add Allowlist': '添加白名單',
   Egress: '出口',
   Ingress: '入口',

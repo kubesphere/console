@@ -79,7 +79,7 @@ export default class RouteDetail extends React.Component {
     {
       key: 'edit',
       icon: 'pen',
-      text: t('Edit Info'),
+      text: t('EDIT_INFO'),
       action: 'edit',
       onClick: () =>
         this.trigger('resource.baseinfo.edit', {
@@ -91,7 +91,7 @@ export default class RouteDetail extends React.Component {
     {
       key: 'editYaml',
       icon: 'pen',
-      text: t('Edit YAML'),
+      text: t('EDIT_YAML'),
       action: 'edit',
       onClick: () =>
         this.trigger('resource.yaml.edit', {
@@ -115,7 +115,7 @@ export default class RouteDetail extends React.Component {
     {
       key: 'editAnnotations',
       icon: 'firewall',
-      text: t('Edit Annotations'),
+      text: t('EDIT_ANNOTATIONS_TCAP'),
       action: 'edit',
       onClick: () =>
         this.trigger('router.annotations.edit', {
@@ -126,7 +126,7 @@ export default class RouteDetail extends React.Component {
     {
       key: 'delete',
       icon: 'trash',
-      text: t('Delete'),
+      text: t('DELETE'),
       action: 'delete',
       type: 'danger',
       onClick: () =>
@@ -148,7 +148,7 @@ export default class RouteDetail extends React.Component {
 
     return [
       {
-        name: t('Project'),
+        name: t('PROJECT'),
         value: namespace,
       },
       {

@@ -19,39 +19,40 @@
 module.exports = {
   Route: '应用路由',
   'Create Route': '创建应用路由',
+  ADD_PATH_TIP: '请添加至少一个路径。',
   Rules: '规则',
-  'Edit Rules': '编辑规则',
-  'Edit Annotations': '编辑注解',
-  'Route Rules': '路由规则',
-  'Gateway Address': '网关地址',
-  'Please input Hostname': '请输入 Hostname',
+  EDIT_RULES_TCAP: '编辑规则',
+  EDIT_ANNOTATIONS_TCAP: '编辑注解',
+  ROUTE_RULES_TCAP: '路由规则',
+  GATEWAY_ADDRESS_TCAP: '网关地址',
+  HOSTNAME_TIP: '请输入 Hostname。',
   'Click to visit': '点击访问',
-  'Please select a service': '请选择一个服务',
-  'Add Path': '添加 Path',
+  PATH_SERVICE_TIP: '服务（Service）',
+  ADD_PATH_TCAP: '添加路径',
   'Add Annotation': '添加注解',
 
-  'Set Route Rule': '设置路由规则',
+  SET_ROUTE_RULE_TCAP: '设置路由规则',
 
-  'Auto Generate': '自动生成',
-  'Specify Domain': '指定域名',
+  AUTO_GENERATE_TCAP: '自动生成',
+  SPECIFY_DOMAIN_TCAP: '指定域名',
 
   'Unable to access': '无法访问',
 
-  'Invalid host': '域名格式错误',
+  INVALID_DOMAIN_TIP: '域名格式错误',
 
   'Gateway IP': '网关 IP',
   'Gateway Type': '网关类型',
 
   Mode: '模式',
   Paths: '路径',
-  HostName: '域名',
+  DOMAIN_NAME_TCAP: '域名',
 
   'Invalid paths': '请填写正确路径',
 
   ROUTE_DESC:
-    '应用路由提供一种聚合服务的方式，您可以将集群的内部服务通过一个外部可访问的 IP 地址暴露给集群外部。',
+    '应用路由提供一种聚合服务的方式，您可以通过一个外部可访问的 IP 地址将集群的内部服务暴露给外部。',
   ROUTE_CREATE_DESC:
-    '应用路由提供一种聚合服务的方式，您可以将集群的内部服务通过一个外部可访问的 IP 地址暴露给集群外部。',
+    '应用路由提供一种聚合服务的方式，您可以通过一个外部可访问的 IP 地址将集群的内部服务暴露给外部。',
   ROUTE_ANNOTATION_DESC:
     '可以通过给应用路由添加注解来设置应用路由的行为。详细的可供配置的注解列表，参见 <a href="https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/" target="_blank">Annotations</a>。',
 
@@ -63,10 +64,10 @@ module.exports = {
   GATEWAY_APPLICATION_GOVERNANCE_TIP:
     '如您不需要使用应用治理的功能，无需打开此项；如果您需要使用应用治理的 Tracing 功能，请打开此项。打开此项后，如果您的应用路由无法访问，请检查应用路由中是否添加 `nginx.ingress.kubernetes.io/service-upstream: true` 注解，如无，请手动添加。',
 
-  'Please add at least one routing rule.': '请至少添加一个路由规则',
+  ADD_ROUTE_RULE_DESC: '请至少添加一个路由规则。',
 
   UNABLE_TO_ACCESS_TIP:
-    '● 请确保您设置的域名可以解析到访问入口的 IP 地址;<br/>● 如果在私有云环境中，请修改本地的 host 文件，并通过 域名+节点端口 的方式来访问;<br/>● 通过通配 DNS 访问，将域名修改为 hostname + 网关地址 + nip.io，然后可以通过 hostname.网关地址.nip.io:节点端口 的形式来访问服务;<br/>● 如果通过域名访问被拦截，请确认您的域名是真实而且已经备案。',
+    '● 请确保您设置的域名可以解析到访问入口的 IP 地址;<br/>● 如果在私有云环境中，请修改本地的 host 文件，并通过<strong>域名+节点端口</strong>的方式来访问;<br/>● 通过通配 DNS 访问，将域名修改为 hostname + 网关地址 + nip.io，然后可以通过<strong>hostname.网关地址.nip.io:节点端口</strong>的形式来访问服务;<br/>● 如果通过域名访问被拦截，请确认您的域名是真实而且已经备案。',
 
   NO_INTERNET_ACCESS_TIP:
     '当前项目中没有找到可用的网关地址，因此您无法使用自动生成模式。请联系您的项目管理员在 <strong>高级设置</strong> 中设置外网访问方式',
@@ -75,7 +76,7 @@ module.exports = {
   RULE_SETTING_MODE_AUTO:
     '通过通配 DNS 访问，将域名修改为 hostname + 网关地址 + nip.io，然后可以通过 hostname.网关地址.nip.io:节点端口 的形式来访问服务;<br/>请确保所在网络环境可以正常访问网关地址。',
   RULE_SETTING_MODE_SPECIFY:
-    '请确保您设置的域名可以解析到访问入口的 IP 地址;<br/>如果在私有云环境中，请修改本地的 host 文件，并通过 域名+节点端口 的方式来访问',
+    '请确保您设置的域名可以解析到访问入口的 IP 地址;<br/>如果在私有云环境中，请修改本地的 host 文件，并通过<strong>域名+节点端口</strong>的方式来访问。',
 
   GATEWAY_SERVICE_MESH_STATUS_ON: '已开启',
   GATEWAY_SERVICE_MESH_STATUS_OFF: '未开启',

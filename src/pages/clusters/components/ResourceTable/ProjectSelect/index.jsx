@@ -57,7 +57,7 @@ export default class ProjectSelect extends Component {
         value={namespace}
         onChange={onChange}
         options={this.getProjects()}
-        placeholder={t('All Projects')}
+        placeholder={t('ALL_PROJECTS')}
         pagination={pagination}
         isLoading={list.isLoading}
         valueRenderer={this.optionRenderer}

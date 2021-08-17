@@ -20,6 +20,8 @@ module.exports = {
   ACCESS_MODE_RWO: '單個節點讀寫',
   ACCESS_MODE_ROX: '多節點唯讀',
   ACCESS_MODE_RWX: '多節點讀寫',
+  // Volume Pages
+  ACCESS_MODE_TCAP: '訪問模式',
 
   VOLUME_STATUS_BOUND: '準備就緒',
   VOLUME_STATUS_LOST: '丢失',
@@ -32,7 +34,7 @@ module.exports = {
   volumes: '儲存卷',
   PersistentVolumeClaim: '儲存卷',
   'Volume Usage': '儲存卷用量',
-  'Volume Count': '儲存卷數量',
+  VOLUMES: '儲存卷數量',
   'Create Volume': '創建儲存卷',
   'Delete Volume': '刪除儲存卷',
   'storage classes': '儲存類型',
@@ -40,12 +42,15 @@ module.exports = {
   'Create Storage Class': '創建儲存類型',
   'Storage Class': '儲存類型',
   'Storage Classs': '儲存類型',
-  'Storage Class Settings': '儲存類型設置',
+  STORAGE_CLASS_SETTINGS: '儲存類型設置',
   'Mount Info': '掛載資訊',
-  Mounted: '已掛載',
-  'Not Mounted': '未掛載',
+  // Volumes List Page
+  MOUNT_TCAP: '掛載',
+  MOUNTED_TCAP: '已掛載',
+  NOT_MOUNTED_TCAP: '未掛載',
   Scalable: '可擴容性',
-  'Reclaim Policy': '回收機制',
+  RECLAMATION_POLICY: '回收機制',
+  CREATE: 'Create',
   DELETE_STORAGE_TIP: '如果儲存卷正在被掛載時，等待工作負載被刪除時一同刪除。',
   SRORAGE_SETTING_DESC:
     'ReadWriteOnce：單個節點讀寫。<br/>ReadOnlyMany：多節點唯讀。<br/>ReadWriteMany：多節點讀寫。<br/>掛載時只能使用一種模式。',
@@ -53,7 +58,7 @@ module.exports = {
   'Default Volume': '預設儲存卷',
   'Parameters (key-value pairs)': '參數 (鍵值對)',
   'Mount Options': '掛載選項',
-  'Allow Volume Expansion': '允許儲存卷擴容',
+  STORAGE_VOLUME_EXTENSION: '允許儲存卷擴容',
   'Mount Status': '掛載狀態',
   'Mounted Pods': '已掛載容器組',
   Idle: '閒置',
@@ -70,9 +75,9 @@ module.exports = {
   'Storage Class Name': '儲存類型名稱',
   Default: '預設',
   StorageClasses: '儲存類型',
-  'Storage System': '儲存系統',
+  STORAGE_SYSTEM: '儲存系統',
 
-  'Supported Access Mode': '支持的訪問模式',
+  ACCESS_MODE: '支持的訪問模式',
 
   'Custom Provisioner': '自定義供應者',
   Parameters: '參數',
@@ -92,7 +97,7 @@ module.exports = {
   VOLUME_CREATE_DESC:
     '儲存卷供用戶創建的工作負載使用，是將工作負載數據持久化的一種資源對象。',
   STORAGE_CLASS_DESC:
-    '儲存類型 (StorageClass) 是由集群管理員配置儲存服務端參數，並按類型提供儲存給集群用戶使用。',
+    'Storage classes support dynamic volume provisioning, allowing administrators to create new storage volumes on demand.',
   STORAGE_CLASS_CREATE_DESC:
     '儲存類型 (StorageClass) 是由集群管理員配置儲存服務端參數，並按類型提供儲存給集群用戶使用。',
   'STORAGE-CLASSES_BASEINFO_DESC':
@@ -126,37 +131,52 @@ module.exports = {
   Expand: '擴容',
 
   QINGCLOUD_CSI_DESC:
-    'QingCloud CSI 插件實現了 CSI 介面，並使容器編排平台能構使用 QingCloud 雲平台的儲存資源。實現了塊儲存插件，可以對接雲平台塊儲存資源。<a href="https://github.com/yunify/qingcloud-csi/blob/master/README.md">詳细資訊</a>',
+    'Use QingCloud CSI as the underlying storage plug-in. For more information, see <a href="https://github.com/yunify/qingcloud-csi/blob/master/README.md#feature-matrix">QingCloud CSI</a>.',
+
+  MAXSIZE: 'Maximum Size',
+  TYPE: 'Type',
+  MINSIZE: 'Minimum Size',
+  STEPSIZE: 'Step Size',
+  FSTYPE: 'File System Type',
+  TAGS: 'Tag',
 
   QINGCLOUD_CSI_TYPE_DESC:
     '在青雲雲平台中，0 代表性能型硬碟，2 代表容量型硬碟，3 代表超高性能型硬碟，5 代表企業級分布式 SAN（NeonSAN）型硬碟，100 代表基礎型硬碟，200 代表企業型硬碟',
   CREATE_VOLUME_MAX_SIZE: '創建儲存卷容量上限',
   CREATE_VOLUME_STEP_SIZE: '創建儲存卷增量值',
   CREATE_VOLUME_MIN_SIZE: '創建儲存卷容量下限',
-  VOLUME_FS_TYPE: '儲存卷文件系統類型，可填寫 ext3, ext4, xfs',
-  QINGCLOUD_VOLUME_TAGS_DESC: '創建硬碟時自動關聯 tag，多個tag用逗號分割',
+  VOLUME_FS_TYPE:
+    'Set the file system type of the storage volume. The value can be ext3, ext4, or xfs, and it defaults to ext4.',
+  QINGCLOUD_VOLUME_TAGS_DESC:
+    'Add tags to the storage volume. Multiple tags need to be separated by commas.',
 
-  GLUSTERFS_RESTURL_DESC: 'Heketi 服務端 URL',
-  GLUSTERFS_ID_DESC: 'Gluster 集群 ID',
+  GLUSTERFS_RESTURL_DESC:
+    'Gluster REST service or Heketi service URL that provisions Gluster volumes on demand.',
+  GLUSTERFS_ID_DESC: 'Gluster 集群 ID。',
   GLUSTERFS_RESTAUTHENABLED_DESC: ' Gluster 啟用对 REST 伺服器的認證',
-  GLUSTERFS_RESTUSER_DESC: '能夠在 Gluster pool 中創建 volume 的 Heketi 用戶',
-  GLUSTERFS_SECRET_NAMESPACE_DESC: 'Heketi 用戶密鑰的 namespace',
-  GLUSTERFS_SECRET_NAME_DESC: 'Heketi 用戶的密鑰',
-  GLUSTERFS_GID_MIN_DESC: 'Gid 最小值',
-  GLUSTERFS_GID_MAX_DESC: 'Gid 最大值',
-  GLUSTERFS_VOLUME_TYPE_DESC: '創建卷額外參數',
+  GLUSTERFS_RESTUSER_DESC:
+    'Gluster REST service or Heketi user who can create volumes in the Gluster Trusted Pool.',
+  GLUSTERFS_SECRET_NAMESPACE_DESC: 'Namespace of the Heketi user secret.',
+  GLUSTERFS_SECRET_NAME_DESC: 'Name of the Heketi user secret.',
+  GLUSTERFS_GID_MIN_DESC:
+    'The minimum value of GID range for the storage class.',
+  GLUSTERFS_GID_MAX_DESC:
+    'The maximum value of GID range for the storage class.',
+  GLUSTERFS_VOLUME_TYPE_DESC: 'Optional type of the volume.',
 
-  CEPHRBD_MONITORS_DESC: 'ceph 集群 MON 的 IP:端口',
+  CEPHRBD_MONITORS_DESC: 'IP address of Ceph monitors.',
   CEPHRBD_ADMIN_ID_DESC: 'ceph 集群能夠創建卷的用戶 ID',
-  CEPHRBD_ADMIN_SECRET_NAME_DESC: 'adminid 的密鑰名',
+  CEPHRBD_ADMIN_SECRET_NAME_DESC: 'Secret name of adminid.',
   CEPHRBD_ADMIN_SECRET_NAMESPACE_DESC: 'adminSecrect 所在的項目',
-  CEPHRBD_POOL_DESC: 'ceph rbd pool 名',
+  CEPHRBD_POOL_DESC: 'Name of the Ceph RBD pool.',
   CEPHRBD_USERID_DESC: 'ceph 集群能夠掛載卷的用戶 ID',
   CEPHRBD_USER_SECRET_NAME_DESC: 'userid 的密鑰名',
   CEPHRBD_USER_SECRET_NAMESPACE_DESC: 'userSecret 所在的項目',
-  CEPHRBD_FS_TYPE_DESC: '儲存卷的檔案系統',
-  CEPHRBD_IMAGE_FORMAT_DESC: 'ceph 卷的選項，1 或 2，2需要填寫 imageFeatures',
-  CEPHRBD_IMAGE_FEATURES_DESC: 'ceph 集群的額外功能',
+  CEPHRBD_FS_TYPE_DESC: 'File system type of the storage volume.',
+  CEPHRBD_IMAGE_FORMAT_DESC:
+    'Option of the Ceph volume. The value can be "1" or "2". imageFeatures needs to be filled when you set imageFormat to "2".',
+  CEPHRBD_IMAGE_FEATURES_DESC:
+    'Additional function of the Ceph cluster. The value should only be set when you set imageFormat to "2".',
 
   DEPENDENT_STORAGE_CLASS_DELETE_TIPS:
     '請確認是否有資源依賴該儲存類型。若存在依賴，請先將依賴的資源關閉，以免影響資源功能',
@@ -165,7 +185,7 @@ module.exports = {
 
   'Create Snapshot': '創建快照',
   'Clone Volume': '儲存卷克隆',
-  'Support Volume Snapshot': '支持儲存卷快照',
+  VOLUME_SNAPSHOT_SUPPORT: '支持儲存卷快照',
 
   VOLUME_SNAPSHOT_STATUS_CREATING: '創建中',
   VOLUME_SNAPSHOT_STATUS_READY: '創建成功',
@@ -190,4 +210,19 @@ module.exports = {
 
   VOLUME_MONITORING_TIP:
     'Kubernetes 採集的是儲存卷的設備用量數據，未掛載的儲存卷暫時採集不到，並且對於如 OpenEBS/Local PV、NFS 等路徑型儲存卷通常與實際用量有一定出入。詳見<a href="https://github.com/kubesphere/kubesphere/issues/2921" target="_blank">儲存卷監控數據分析</a>。',
+
+  // Storage Class > GlusterFS
+  RESTURL: 'REST URL',
+  CLUSTER_ID: 'Cluster ID',
+  ADD_PARAMETER: 'Add',
+  REST_AUTH_ENABLED: 'REST Authentication',
+  REST_USER: 'REST User',
+  VOLUME_TYPE: 'Volume Type',
+  REST_URL_EXAMPLE: 'IP address and port number',
+  SECRET_NAME: 'Secret Name',
+  REST_AUTH_TRUE: 'True',
+  CEPH_MONITOR_IP: 'IP address and port number',
+  SECRET_NAMESPACE: 'Secret Namespace',
+  GID_MIN: 'GID Minimum Value',
+  GID_MAX: 'GID Maximum Value',
 }

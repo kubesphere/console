@@ -96,7 +96,7 @@ export default class MemberDetail extends React.Component {
 
     return [
       {
-        name: t('Workspace'),
+        name: t('WORKSPACE'),
         value: this.workspace,
       },
       {

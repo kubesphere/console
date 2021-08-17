@@ -54,7 +54,7 @@ export default class Tools extends Component {
           >
             <Text
               icon="terminal"
-              title="Kubectl"
+              title="kubectl"
               description={t('KUBECTL_DESC')}
             />
           </div>
@@ -65,7 +65,7 @@ export default class Tools extends Component {
           >
             <Text
               icon="data"
-              title="KubeConfig"
+              title="kubeconfig"
               description={t('KUBECONFIG_DESC')}
             />
           </div>

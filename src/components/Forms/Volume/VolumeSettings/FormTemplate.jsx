@@ -192,7 +192,7 @@ export default class VolumeSettings extends React.Component {
         {editModalTitle !== 'Edit Config Template' &&
         tabTitle !== 'Diff Settings' ? (
           <Form.Item
-            label={t('Access Mode')}
+            label={t('ACCESS_MODE_TCAP')}
             rules={[{ required: true, message: t('This param is required') }]}
           >
             <AccessModes

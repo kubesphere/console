@@ -89,9 +89,9 @@ export default class WorkloadSelect extends React.Component {
             onChange={this.handleTypeChange}
             size="small"
           >
-            <RadioButton value="deployments">{t('Deployments')}</RadioButton>
-            <RadioButton value="statefulsets">{t('StatefulSets')}</RadioButton>
-            <RadioButton value="daemonsets">{t('DaemonSets')}</RadioButton>
+            <RadioButton value="deployments">{t('DEPLOYMENTS')}</RadioButton>
+            <RadioButton value="statefulsets">{t('STATEFULSETS')}</RadioButton>
+            <RadioButton value="daemonsets">{t('STATEFULSETS')}</RadioButton>
           </RadioGroup>
           <div className={styles.workloads}>
             <ScrollLoad

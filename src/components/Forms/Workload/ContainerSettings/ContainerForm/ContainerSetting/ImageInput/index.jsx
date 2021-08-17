@@ -116,7 +116,6 @@ export default class ImageSearch extends Component {
 
     const secretDetail = imageRegistries.find(item => item.value === secret)
     const cluster = get(secretDetail, 'cluster')
-
     const result = await this.store.getImageDetail({
       cluster,
       namespace,
@@ -124,7 +123,6 @@ export default class ImageSearch extends Component {
       secret,
       insecure,
     })
-
     const selectedImage = { ...result, ...rest, image }
     set(globals, `cache[${image}]`, selectedImage)
 
@@ -282,7 +280,7 @@ export default class ImageSearch extends Component {
     return (
       <>
         <Form.Item
-          label={t('Image')}
+          label={t('IMAGE')}
           desc={t.html('IMAGE_DESC', {
             link: getDocsUrl('imageregistry'),
           })}

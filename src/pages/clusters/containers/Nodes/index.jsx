@@ -84,7 +84,7 @@ export default class Nodes extends React.Component {
       {
         key: 'uncordon',
         icon: 'start',
-        text: t('Uncordon'),
+        text: t('UNCORDON'),
         action: 'edit',
         show: item =>
           item.importStatus === 'success' && this.getUnschedulable(item),
@@ -93,7 +93,7 @@ export default class Nodes extends React.Component {
       {
         key: 'cordon',
         icon: 'stop',
-        text: t('Cordon'),
+        text: t('CORDON'),
         action: 'edit',
         show: item =>
           item.importStatus === 'success' && !this.getUnschedulable(item),
@@ -102,7 +102,7 @@ export default class Nodes extends React.Component {
       {
         key: 'logs',
         icon: 'eye',
-        text: t('Show Logs'),
+        text: t('VIEW_LOG'),
         action: 'edit',
         show: item => item.importStatus !== 'success',
         onClick: () =>
@@ -111,7 +111,7 @@ export default class Nodes extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         show: item => item.importStatus === 'failed',
         onClick: item =>
@@ -131,7 +131,7 @@ export default class Nodes extends React.Component {
       actions.push({
         key: 'add',
         type: 'control',
-        text: t('Add Node'),
+        text: t('ADD_NODE'),
         action: 'create',
         onClick: () =>
           trigger('node.add', {
@@ -147,7 +147,7 @@ export default class Nodes extends React.Component {
         {
           key: 'taint',
           type: 'default',
-          text: t('Taint Management'),
+          text: t('MANAGE_TAINT'),
           action: 'edit',
           onClick: () =>
             trigger('node.taint.batch', {
@@ -199,7 +199,7 @@ export default class Nodes extends React.Component {
 
   renderTaintsTip = data => (
     <div>
-      <div>{t('Taints')}:</div>
+      <div>{t('TAINTS')}:</div>
       <div>
         {data.map(item => {
           const text = `${item.key}=${item.value || ''}:${item.effect}`
@@ -220,7 +220,7 @@ export default class Nodes extends React.Component {
     const { module, prefix, getSortOrder, getFilteredValue } = this.props
     return [
       {
-        title: t('Name'),
+        title: t('NAME'),
         dataIndex: 'name',
         sorter: true,
         sortOrder: getSortOrder('name'),
@@ -236,7 +236,7 @@ export default class Nodes extends React.Component {
         ),
       },
       {
-        title: t('Status'),
+        title: t('STATUS'),
         dataIndex: 'status',
         filters: this.getStatus(),
         filteredValue: getFilteredValue('status'),
@@ -262,14 +262,14 @@ export default class Nodes extends React.Component {
         },
       },
       {
-        title: t('Role'),
+        title: t('ROLE'),
         dataIndex: 'role',
         isHideable: true,
         search: true,
-        render: roles => roles.join(','),
+        render: roles => roles.map(role => t(role.toUpperCase())).join(', '),
       },
       {
-        title: t('CPU'),
+        title: t('CPU_USAGE'),
         key: 'cpu',
         isHideable: true,
         render: record => {
@@ -297,13 +297,13 @@ export default class Nodes extends React.Component {
                   )}
                 </div>
               }
-              description={`${metrics.cpu_used}/${metrics.cpu_total} Core`}
+              description={`${metrics.cpu_used}/${metrics.cpu_total} cores`}
             />
           )
         },
       },
       {
-        title: t('Memory'),
+        title: t('MEMORY_USAGE'),
         key: 'memory',
         isHideable: true,
         render: record => {
@@ -333,13 +333,13 @@ export default class Nodes extends React.Component {
                   )}
                 </div>
               }
-              description={`${metrics.memory_used}/${metrics.memory_total} Gi`}
+              description={`${metrics.memory_used}/${metrics.memory_total} GiB`}
             />
           )
         },
       },
       {
-        title: t('Pods'),
+        title: t('POD_PL_TCAP'),
         key: 'pods',
         isHideable: true,
         render: record => {
@@ -364,13 +364,13 @@ export default class Nodes extends React.Component {
         },
       },
       {
-        title: t('Allocated CPU'),
+        title: t('ALLOCATED_CPU'),
         key: 'allocated_resources_cpu',
         isHideable: true,
         render: this.renderCPUTooltip,
       },
       {
-        title: t('Allocated Memory'),
+        title: t('ALLOCATED_MEMORY'),
         key: 'allocated_resources_memory',
         isHideable: true,
         render: this.renderMemoryTooltip,
@@ -381,22 +381,62 @@ export default class Nodes extends React.Component {
   renderCPUTooltip = record => {
     const content = (
       <p>
-        {t('Resource Limits')}:{' '}
-        {cpuFormat(get(record, 'annotations["node.kubesphere.io/cpu-limits"]'))}{' '}
-        Core (
-        {get(record, 'annotations["node.kubesphere.io/cpu-limits-fraction"]')})
+        {cpuFormat(
+          get(record, 'annotations["node.kubesphere.io/cpu-limits"]')
+        ) === 1
+          ? t('CPU_LIMIT_SI', {
+              core: cpuFormat(
+                get(record, 'annotations["node.kubesphere.io/cpu-limits"]')
+              ),
+              percent: get(
+                record,
+                'annotations["node.kubesphere.io/cpu-limits-fraction"]'
+              ),
+            })
+          : t('CPU_LIMIT_PL', {
+              core: cpuFormat(
+                get(record, 'annotations["node.kubesphere.io/cpu-limits"]')
+              ),
+              percent: get(
+                record,
+                'annotations["node.kubesphere.io/cpu-limits-fraction"]'
+              ),
+            })}
       </p>
     )
     return (
       <Tooltip content={content} placement="top">
         <Text
-          title={`${cpuFormat(
-            get(record, 'annotations["node.kubesphere.io/cpu-requests"]')
-          )} Core (${get(
-            record,
-            'annotations["node.kubesphere.io/cpu-requests-fraction"]'
-          )})`}
-          description={t('Resource Requests')}
+          title={
+            cpuFormat(
+              get(record, 'annotations["node.kubesphere.io/cpu-requests"]')
+            ) === 1
+              ? t('CPU_REQUEST_SI', {
+                  core: cpuFormat(
+                    get(
+                      record,
+                      'annotations["node.kubesphere.io/cpu-requests"]'
+                    )
+                  ),
+                  percent: get(
+                    record,
+                    'annotations["node.kubesphere.io/cpu-requests-fraction"]'
+                  ),
+                })
+              : t('CPU_REQUEST_PL', {
+                  core: cpuFormat(
+                    get(
+                      record,
+                      'annotations["node.kubesphere.io/cpu-requests"]'
+                    )
+                  ),
+                  percent: get(
+                    record,
+                    'annotations["node.kubesphere.io/cpu-requests-fraction"]'
+                  ),
+                })
+          }
+          description={t('RESOURCE_REQUEST')}
         />
       </Tooltip>
     )
@@ -405,30 +445,32 @@ export default class Nodes extends React.Component {
   renderMemoryTooltip = record => {
     const content = (
       <p>
-        {t('Resource Limits')}:{' '}
-        {memoryFormat(
-          get(record, 'annotations["node.kubesphere.io/memory-limits"]'),
-          'Gi'
-        )}{' '}
-        Gi (
-        {get(
-          record,
-          'annotations["node.kubesphere.io/memory-limits-fraction"]'
-        )}
-        )
+        {t('MEMORY_LIMIT', {
+          gib: memoryFormat(
+            get(record, 'annotations["node.kubesphere.io/memory-limits"]'),
+            'Gi'
+          ),
+          percent: get(
+            record,
+            'annotations["node.kubesphere.io/memory-limits-fraction"]'
+          ),
+        })}
       </p>
     )
     return (
       <Tooltip content={content} placement="top">
         <Text
-          title={`${memoryFormat(
-            get(record, 'annotations["node.kubesphere.io/memory-requests"]'),
-            'Gi'
-          )} Gi (${get(
-            record,
-            'annotations["node.kubesphere.io/memory-requests-fraction"]'
-          )})`}
-          description={t('Resource Requests')}
+          title={t('MEMORY_REQUEST', {
+            gib: memoryFormat(
+              get(record, 'annotations["node.kubesphere.io/memory-requests"]'),
+              'Gi'
+            ),
+            percent: get(
+              record,
+              'annotations["node.kubesphere.io/memory-requests-fraction"]'
+            ),
+          })}
+          description={t('RESOURCE_REQUEST')}
         />
       </Tooltip>
     )
@@ -445,9 +487,23 @@ export default class Nodes extends React.Component {
     return (
       <Panel className="margin-b12">
         <div className={styles.overview}>
-          <Text icon="nodes" title={totalCount} description={t('Node Count')} />
-          <Text title={masterCount} description={t('Master Node')} />
-          <Text title={workerCount} description={t('Worker Node')} />
+          <Text
+            icon="nodes"
+            title={totalCount}
+            description={totalCount === 1 ? t(`NODE_SI`) : t(`NODE_PL`)}
+          />
+          <Text
+            title={masterCount}
+            description={
+              masterCount === 1 ? t('MASTER_NODE_SI') : t('MASTER_NODE_PL')
+            }
+          />
+          <Text
+            title={workerCount}
+            description={
+              workerCount === 1 ? t('WORKER_NODE_SI') : t('WORKER_NODE_PL')
+            }
+          />
         </div>
       </Panel>
     )
@@ -459,7 +515,11 @@ export default class Nodes extends React.Component {
 
     return (
       <ListPage {...this.props} getData={this.getData} noWatch>
-        <Banner {...bannerProps} tips={this.tips} />
+        <Banner
+          {...bannerProps}
+          title={t('CLUSTER_NODE_PL')}
+          tips={this.tips}
+        />
         {this.renderOverview()}
         <Table
           {...tableProps}

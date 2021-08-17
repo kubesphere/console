@@ -65,7 +65,7 @@ export default class Volumes extends React.Component {
 
   getColumns = () => [
     {
-      title: t('Name'),
+      title: t('NAME'),
       dataIndex: 'name',
       width: '18%',
       render: (name, record) => (
@@ -73,7 +73,7 @@ export default class Volumes extends React.Component {
       ),
     },
     {
-      title: t('Status'),
+      title: t('STATUS'),
       dataIndex: 'phase',
       width: '16%',
       render: phase => (
@@ -93,7 +93,7 @@ export default class Volumes extends React.Component {
       render: inUse => (inUse ? t('Mounted') : t('Not Mounted')),
     },
     {
-      title: t('Project'),
+      title: t('PROJECT'),
       dataIndex: 'namespace',
       key: 'namespace',
       width: '18%',
@@ -131,7 +131,7 @@ export default class Volumes extends React.Component {
           searchType="name"
           keyword={filters.name}
           filters={filters}
-          placeholder={t('Search by name')}
+          placeholder={t('SEARCH_BY_NAME')}
           pagination={pagination}
           isLoading={isLoading}
           onFetch={this.handleFetch}

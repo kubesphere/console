@@ -29,8 +29,8 @@ export default class UrlInput extends React.Component {
     hostName: 'Host',
     portName: 'Port',
     defaultPort: 9200,
-    hostRules: [{ required: true, message: t('Please enter the address') }],
-    portRules: [{ required: true, message: t('Please input port') }],
+    hostRules: [{ required: true, message: t('ENTER_SERVICE_ADDRESS') }],
+    portRules: [{ required: true, message: t('ENTER_PORT_NUMBER') }],
   }
 
   render() {
@@ -41,7 +41,7 @@ export default class UrlInput extends React.Component {
           <Form.Item rules={this.props.hostRules}>
             <Input
               name={this.props.hostName}
-              placeholder={`${t('eg.')}192.168.1.10`}
+              placeholder={`${t('EXAMPLE')}192.168.1.10`}
               readOnly={readOnly}
             />
           </Form.Item>

@@ -44,7 +44,7 @@ export default class BrokersInput extends React.Component {
 
     return (
       <ArrayInput
-        addText={t('Add Service Address')}
+        addText={t('ADD_SERVICE_ADDRESS')}
         itemType="object"
         value={brokers}
         onChange={this.onChange}
@@ -53,7 +53,7 @@ export default class BrokersInput extends React.Component {
           <Input
             name="host"
             className={styles.host}
-            placeholder={`${t('eg.')} 192.168.1.10`}
+            placeholder={`${t('EXAMPLE')} 192.168.1.10`}
           />
           <NumberInput
             className={styles.port}

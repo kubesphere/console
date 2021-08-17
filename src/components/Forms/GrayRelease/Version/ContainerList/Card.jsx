@@ -58,7 +58,7 @@ const Card = ({ type = 'worker', container, onEdit, onDelete, disabled }) => {
       icon="docker"
       title={title}
       className={styles.card}
-      description={`${t('Image')}: ${container.image}`}
+      description={`${t('IMAGE')}: ${container.image}`}
       extras={extras}
       onDelete={!disabled && handleDelete}
       onEdit={!disabled && handleEdit}

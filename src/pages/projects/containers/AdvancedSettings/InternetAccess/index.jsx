@@ -62,7 +62,7 @@ class InternetAccess extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
       },
     ]
   }
@@ -197,7 +197,7 @@ class InternetAccess extends React.Component {
             <>
               <div className={styles.item}>
                 <div>{gateway.loadBalancerIngress.join('; ') || '-'}</div>
-                <p>{t('Gateway Address')}</p>
+                <p>{t('GATEWAY_ADDRESS_TCAP')}</p>
               </div>
               <div className={styles.item}>
                 <div>{this.getNodePorts(gateway)}</div>
@@ -228,7 +228,7 @@ class InternetAccess extends React.Component {
                 trigger="click"
                 placement="bottomRight"
               >
-                <Button>{t('Edit')}</Button>
+                <Button>{t('EDIT')}</Button>
               </Dropdown>
             </div>
           )}

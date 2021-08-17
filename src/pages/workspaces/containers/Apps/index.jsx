@@ -99,7 +99,7 @@ export default class Apps extends React.Component {
 
   getColumns = () => [
     {
-      title: t('Name'),
+      title: t('NAME'),
       dataIndex: 'app_id',
       render: (app_id, app) => {
         const avatar = this.getAvatar(app.icon)
@@ -118,7 +118,7 @@ export default class Apps extends React.Component {
       },
     },
     {
-      title: t('Status'),
+      title: t('STATUS'),
       dataIndex: 'status',
       isHideable: true,
       width: '20%',
@@ -133,7 +133,7 @@ export default class Apps extends React.Component {
       width: '20%',
     },
     {
-      title: t('Updated Time'),
+      title: t('UPDATED_AT'),
       dataIndex: 'update_time',
       isHideable: true,
       width: '120',

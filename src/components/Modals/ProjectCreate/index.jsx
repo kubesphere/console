@@ -112,7 +112,7 @@ export default class ProjectCreateModal extends React.Component {
 
     if (value.indexOf('kube-') === 0) {
       return callback({
-        message: t('Name validation failed'),
+        message: t('NAME_VALIDATION_FAILED'),
         field: rule.field,
       })
     }
@@ -126,7 +126,7 @@ export default class ProjectCreateModal extends React.Component {
 
     this.store.checkName({ name: value, cluster }).then(resp => {
       if (resp.exist) {
-        return callback({ message: t('Name exists'), field: rule.field })
+        return callback({ message: t('NAME_EXIST_DESC'), field: rule.field })
       }
       callback()
     })
@@ -159,12 +159,9 @@ export default class ProjectCreateModal extends React.Component {
 
   renderClusters() {
     return (
-      <Form.Group
-        label={t('Cluster Settings')}
-        desc={t('Select the cluster to create the project.')}
-      >
+      <Form.Group label={t('CLUSTER')} desc={t('SELECT_CLUSTER_DESC')}>
         <Form.Item
-          rules={[{ required: true, message: t('Please select a cluster') }]}
+          rules={[{ required: true, message: t('CLUSTER_NOT_SELECT_DESC') }]}
         >
           <Select
             name="cluster"
@@ -174,6 +171,7 @@ export default class ProjectCreateModal extends React.Component {
             valueRenderer={this.valueRenderer}
             optionRenderer={this.optionRenderer}
             onChange={this.handleClusterChange}
+            placeholder=" "
           />
         </Form.Item>
       </Form.Group>
@@ -205,24 +203,22 @@ export default class ProjectCreateModal extends React.Component {
         <div className={styles.header}>
           <img src="/assets/project-create.svg" alt="" />
           <div className={styles.title}>
-            <div>{t('Create Project')}</div>
-            <p>{t('PROJECT_CREATE_DESC')}</p>
+            <div>{t('CREATE_PROJECT')}</div>
+            <p>{t('CREATE_PROJECT_DESC')}</p>
           </div>
         </div>
         <div className={styles.content}>
           <Columns>
             <Column>
               <Form.Item
-                label={t('Name')}
-                desc={t('SERVICE_NAME_DESC')}
+                label={t('NAME')}
+                desc={t('PROJECT_NAME_DESC')}
                 ref={this.nameRef}
                 rules={[
-                  { required: true, message: t('Please input name') },
+                  { required: true, message: t('NAME_EMPTY_DESC') },
                   {
                     pattern: PATTERN_SERVICE_NAME,
-                    message: t('Invalid name', {
-                      message: t('SERVICE_NAME_DESC'),
-                    }),
+                    message: t('PROJECT_NAME_INVALID_DESC'),
                   },
                   { validator: this.nameValidator },
                 ]}
@@ -231,7 +227,7 @@ export default class ProjectCreateModal extends React.Component {
               </Form.Item>
             </Column>
             <Column>
-              <Form.Item label={t('Alias')} desc={t('ALIAS_DESC')}>
+              <Form.Item label={t('ALIAS')} desc={t('ALIAS_DESC')}>
                 <Input
                   name="metadata.annotations['kubesphere.io/alias-name']"
                   maxLength={63}
@@ -241,7 +237,7 @@ export default class ProjectCreateModal extends React.Component {
           </Columns>
           <Columns>
             <Column>
-              <Form.Item label={t('Description')} desc={t('DESCRIPTION_DESC')}>
+              <Form.Item label={t('DESCRIPTION')} desc={t('DESCRIPTION_DESC')}>
                 <TextArea
                   name="metadata.annotations['kubesphere.io/description']"
                   maxLength={256}

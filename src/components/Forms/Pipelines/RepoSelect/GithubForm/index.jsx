@@ -315,7 +315,7 @@ export default class GitHubForm extends React.Component {
         <InputSearch
           value={this.state.searchValue}
           onSearch={this.filterResource}
-          placeholder={t('Search by name')}
+          placeholder={t('SEARCH_BY_NAME')}
         />
       </div>
     )

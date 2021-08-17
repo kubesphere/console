@@ -51,7 +51,7 @@ export default class BaseInfo extends React.Component {
       })
       .then(resp => {
         if (resp.exist) {
-          return callback({ message: t('Name exists'), field: rule.field })
+          return callback({ message: t('NAME_EXIST_DESC'), field: rule.field })
         }
         callback()
       })
@@ -68,10 +68,12 @@ export default class BaseInfo extends React.Component {
               label={t('Release Job Name')}
               desc={t('LONG_NAME_DESC')}
               rules={[
-                { required: true, message: t('Please input name') },
+                { required: true, message: t('NAME_EMPTY_DESC') },
                 {
                   pattern: PATTERN_NAME,
-                  message: t('Invalid name', { message: t('LONG_NAME_DESC') }),
+                  message: t('INVALID_NAME_DESC', {
+                    message: t('LONG_NAME_DESC'),
+                  }),
                 },
                 { validator: this.nameValidator },
               ]}
