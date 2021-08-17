@@ -115,7 +115,7 @@ export default class Pods extends React.Component {
         render: this.renderNode,
       },
       {
-        title: t('Pod IP'),
+        title: t('POD_IP_TCAP'),
         dataIndex: 'podIp',
         isHideable: true,
         width: '15%',
@@ -172,7 +172,7 @@ export default class Pods extends React.Component {
 
     if (!node) return '-'
 
-    const text = `${node}(${nodeIp})`
+    const text = t('NODE_IP', { node, ip: nodeIp })
 
     return <Link to={`/clusters/${cluster}/nodes/${node}`}>{text}</Link>
   }

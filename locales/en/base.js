@@ -152,6 +152,7 @@ module.exports = {
   Enabled: 'Enabled',
   'End Time': 'End Time',
   SEARCH: 'Search',
+  Error: 'Error',
   'Error Tips': 'Error Tips',
   event: 'event',
   'Event metadata': 'Event metadata',

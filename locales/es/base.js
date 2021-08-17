@@ -152,6 +152,7 @@ module.exports = {
   Enabled: 'Habilitado',
   'End Time': 'Hora de finalización',
   SEARCH: 'Introduce las condiciones para filtrar',
+  Error: 'Error',
   'Error Tips': 'Consejos de error',
   event: 'evento',
   'Event metadata': 'Metadatos de eventos',

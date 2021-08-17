@@ -86,6 +86,7 @@ module.exports = {
   memory: '記憶體',
   Custom: '自定義',
   Others: '其它',
+  Error: '錯誤',
 
   Platform: '平台管理',
   'Platform Info': '平台資訊',
