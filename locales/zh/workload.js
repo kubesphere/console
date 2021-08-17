@@ -187,7 +187,7 @@ module.exports = {
     '配置升级过程中替换容器组的策略 <a href="{link}" target="_blank">了解更多</a>',
   MAX_DAEMON_UNAVAILABLE_POD_DESC:
     '升级过程中「允许存在的不可用的容器组」所占总容器组数的最大百分比或数量',
-  MAX_DEPLOY_UNAVAILABLE_POD_DESC: '升级过程中可能不可用的 Pod 的最大数量。',
+  MAX_DEPLOY_UNAVAILABLE_POD_DESC: '升级过程中不可用副本的最大数量或百分比',
   MAX_SURGE_POD_DESC:
     '升级过程中「允许超出副本数量的容器组」的最大数量或百分比',
   ROLLING_UPDATE_POD_TIP:
@@ -238,7 +238,12 @@ module.exports = {
   'Please input mount point': '请输入挂载点',
   'Please select a storage class': '请选择存储卷类型',
   'Please select image': '请选择镜像',
+
+  'Invalid name': '名称格式不合法。{message}',
+  'Invalid pod': '容器组数量格式不合法',
+
   INVALID_NAME_DESC: '名称无效。{message}',
+
   'Service Labels': '服务标签',
 
   'Add Existing Volume': '添加已有存储卷',

@@ -149,7 +149,12 @@ module.exports = {
   'Initial Delay(s)': 'Retraso (s) inicial',
   'Instance Status': 'Estado de instancia',
   'Invalid image': 'Imagen inválida',
+
+  'Invalid name': 'Nombre inválido. {message}',
+  'Invalid pod': 'Pod inválido',
+
   INVALID_NAME_DESC: 'Nombre inválido. {message}',
+
   InvalidImageName: 'InvalidImageName',
   'is running': 'En ejecución',
   Job: 'Trabajo',
