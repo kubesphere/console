@@ -19,6 +19,7 @@
 const fs = require('fs')
 const path = require('path')
 const RawSource = require('webpack-sources/lib/RawSource')
+const langArr = fs.readdirSync(`./locales/`)
 
 const isDev = process.env.NODE_ENV === 'development'
 
@@ -49,8 +50,35 @@ class LocalePlugin {
 
         compilation.updateAsset(asset.name, new RawSource(content))
       })
+      langArr.forEach(lang => {
+        only(lang)
+      })
     })
   }
+}
+
+function read(lang) {
+  const files = fs.readdirSync(`locales/${lang}`)
+  return files
+}
+
+function only(lang) {
+  const files = read(lang)
+
+  const allKeyArr = []
+  files.forEach(file => {
+    if (file === 'index.js') {
+      return
+    }
+    const fileObj = require(`../locales/${lang}/${file}`)
+    Object.keys(fileObj).forEach(key => {
+      if (allKeyArr.indexOf(key) > -1) {
+        console.log(lang, '语言环境下重复UI词条为:', key)
+      } else {
+        allKeyArr.push(key)
+      }
+    })
+  })
 }
 
 module.exports = LocalePlugin
