@@ -19,7 +19,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import { get, isEmpty } from 'lodash'
+import { concat, get, set, isEmpty } from 'lodash'
 import { List } from 'components/Base'
 
 import Card from './Card'
@@ -82,9 +82,19 @@ export default class VolumeList extends React.Component {
   deleteVolumeMounts = name => {
     const { formData } = this.context
 
-    const containers = get(formData, `${this.props.prefix}spec.containers`, [])
+    const containers = get(
+      formData,
+      `${this.props.prefix}spec.containers`,
+      []
+    ).map(c => ({ ...c, type: 'worker' }))
+    const initContainers = get(
+      formData,
+      `${this.prefix}spec.initContainers`,
+      []
+    ).map(c => ({ ...c, type: 'init' }))
 
-    containers.forEach(container => {
+    const mergedContainers = concat(containers, initContainers)
+    mergedContainers.forEach(container => {
       if (!isEmpty(container.volumeMounts)) {
         container.volumeMounts = container.volumeMounts.filter(
           vm => vm.name !== name
@@ -92,7 +102,19 @@ export default class VolumeList extends React.Component {
       }
     })
 
-    get(formData, `${this.props.prefix}spec.containers`, containers)
+    const _containers = []
+    const _initContainers = []
+    mergedContainers.forEach(item => {
+      if (item.type === 'worker') {
+        delete item.type
+        _containers.push(item)
+      } else {
+        delete item.type
+        _initContainers.push(item)
+      }
+    })
+    set(formData, `${this.props.prefix}spec.containers`, _containers)
+    set(formData, `${this.props.prefix}spec.initContainers`, _initContainers)
   }
 
   handleAddVolume = () => {
