@@ -240,11 +240,19 @@ export default class ResourceLimit extends React.Component {
     let memoryError = ''
     const { requests, limits } = state
 
-    if (limits.cpu && Number(requests.cpu) > Number(limits.cpu)) {
+    if (
+      limits.cpu &&
+      !String(limits.cpu).endsWith('.') &&
+      Number(requests.cpu) > Number(limits.cpu)
+    ) {
       cpuError = 'RequestExceed'
     }
 
-    if (limits.memory && Number(requests.memory) > Number(limits.memory)) {
+    if (
+      limits.memory &&
+      !String(limits.memory).endsWith('.') &&
+      Number(requests.memory) > Number(limits.memory)
+    ) {
       memoryError = 'RequestExceed'
     }
 
@@ -320,7 +328,6 @@ export default class ResourceLimit extends React.Component {
     let inputNum
     const name = e.target.name
     const maxiNum = this.getInputMaxiNum(name)
-
     if (value === '') {
       inputNum = 0
     } else if (value > maxiNum) {
