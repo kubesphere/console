@@ -72,6 +72,24 @@ export default class Services extends React.Component {
           }),
       },
       {
+        key: 'editConfigTemplate',
+        icon: 'storage',
+        text: t('Edit Config Template'),
+        action: 'edit',
+        onClick: async item => {
+          const detail = await this.props.store.fetchDetail(item)
+          trigger('federated.workload.template.edit', {
+            detail,
+            projectDetail: this.props.projectStore.detail,
+            module: 'service',
+            ...this.props.match.params,
+            name: item.name,
+            isFederated: true,
+            withService: true,
+          })
+        },
+      },
+      {
         key: 'delete',
         icon: 'trash',
         text: t('DELETE'),
@@ -108,11 +126,13 @@ export default class Services extends React.Component {
   }
 
   getColumns = () => {
-    const { module } = this.props
+    const { module, getSortOrder } = this.props
     return [
       {
         title: t('NAME'),
         dataIndex: 'name',
+        sorter: true,
+        sortOrder: getSortOrder('name'),
         render: (name, record) => (
           <Avatar
             icon={ICON_TYPES[module]}
