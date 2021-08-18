@@ -91,6 +91,7 @@ export default class ContainerSetting extends React.Component {
             cpu: get(workspaceQuota, 'requests.cpu'),
             memory: get(workspaceQuota, 'requests.memory'),
           },
+          limitType: 'project',
         }
       : {}
   }

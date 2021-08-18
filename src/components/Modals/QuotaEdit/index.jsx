@@ -26,6 +26,7 @@ import { ResourceLimit } from 'components/Inputs'
 
 import QuotaStore from 'stores/quota'
 import WorkSpaceStore from 'stores/workspace.quota'
+import { getLeftQuota } from 'utils/workload'
 
 import Quotas from './Quotas'
 
@@ -55,16 +56,18 @@ export default class QuotaEditModal extends React.Component {
 
     this.store = new QuotaStore()
 
-    this.workspaceStore = new WorkSpaceStore()
+    this.workspaceQuotaStore = new WorkSpaceStore()
 
     this.state = {
       formTemplate: {},
       error: '',
+      leftQuota: {},
     }
   }
 
   componentDidMount() {
     if (this.props.detail && this.props.detail.name) {
+      this.fetchQuota()
       this.fetchData(this.props.detail)
     }
   }
@@ -91,22 +94,44 @@ export default class QuotaEditModal extends React.Component {
       })
     }
 
-    if (detail.workspace) {
-      await this.workspaceStore.fetchDetail({
-        workspace: detail.workspace,
-        name: detail.workspace,
-        cluster: detail.cluster,
-      })
-    }
-
     this.setState({
       formTemplate: toJS(this.store.detail),
     })
   }
 
+  fetchQuota() {
+    const { detail } = this.props
+    const { workspace, name, cluster } = detail || {}
+
+    if (workspace && name) {
+      Promise.all([
+        this.store.fetch({
+          cluster,
+          namespace: name,
+        }),
+        this.workspaceQuotaStore.fetchDetail({
+          workspace,
+          name: workspace,
+          cluster,
+        }),
+      ]).then(() => {
+        this.setState({
+          leftQuota: getLeftQuota(
+            get(this.workspaceQuotaStore.detail, 'status.total'),
+            this.store.data
+          ),
+        })
+      })
+    }
+  }
+
+  get workspaceQuota() {
+    return get(this.state.leftQuota, 'workspace', {})
+  }
+
   get resourceLimitProps() {
     const { formTemplate } = this.state
-    const workspaceStore = this.workspaceStore
+    const workspaceStore = this.workspaceQuota
 
     const memoryFormatter = value => {
       if (value > 0 && value < 1) {
@@ -118,22 +143,17 @@ export default class QuotaEditModal extends React.Component {
       return value
     }
 
-    const workspaceLimitProps = !isEmpty(workspaceStore.detail)
+    const workspaceLimitProps = !isEmpty(workspaceStore)
       ? {
           limits: {
-            cpu: get(workspaceStore.detail, 'spec.quota.hard["limits.cpu"]'),
-            memory: get(
-              workspaceStore.detail,
-              'spec.quota.hard["limits.memory"]'
-            ),
+            cpu: get(workspaceStore, 'limits.cpu'),
+            memory: get(workspaceStore, 'limits.memory'),
           },
           requests: {
-            cpu: get(workspaceStore.detail, 'spec.quota.hard["requests.cpu"]'),
-            memory: get(
-              workspaceStore.detail,
-              'spec.quota.hard["requests.memory"]'
-            ),
+            cpu: get(workspaceStore, 'requests.cpu'),
+            memory: get(workspaceStore, 'requests.memory'),
           },
+          limitType: 'workspace',
         }
       : {}
 
