@@ -134,6 +134,8 @@ module.exports = {
 
   'Number of volumes': '存儲卷（數量）',
 
+  FEDPROJECT_CANNOT_ADD_CLUSTER: '無法添加新的集羣',
+
   CLOSE_FILE_LOG_TIP:
     '落盤紀錄收集即將關閉。 關閉後，已開啟落盤紀錄收集的服務在容器組副本重啟前將繼續進行落盤紀錄的收集，重啟後，將不再收集。</br>如果需要再次收集，請開啟落盤紀錄收集，並重起容器組副本。',
 

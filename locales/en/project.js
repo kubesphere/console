@@ -130,6 +130,8 @@ module.exports = {
   'You can limit the number of resources. Blank means no limit.':
     'You can limit the number of resources. Blank means no limit.',
 
+  FEDPROJECT_CANNOT_ADD_CLUSTER: 'Unable to add a new cluster',
+
   PROJECTS_DESC:
     'A project is a Kubernetes namespace in KubeSphere, which provides a mechanism to organize resources in a workspace.',
   CREATE_PROJECT_DESC:

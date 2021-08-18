@@ -40,7 +40,7 @@ import ProjectStore from 'stores/project'
 import styles from './index.scss'
 
 @observer
-export default class Placment extends Component {
+export default class Placement extends Component {
   state = {
     showForm: false,
     initializing: true,

@@ -80,6 +80,9 @@ module.exports = {
   'Modify Members Role': 'Modificar rol de miembros',
   'Multi-cluster Project': 'Proyecto de clúster múltiple',
   'Multi-cluster Projects': 'Proyectos de clústeres múltiples',
+
+  FEDPROJECT_CANNOT_ADD_CLUSTER: 'Unable to add a new cluster',
+
   MULTI_CLUSTER_PROJECT_DELETE_TIP:
     'Borrar un proyecto multi-cluster borra también el mismo proyecto en el host de cluster.</br>Por favor, introduce el nombre {type} <strong>{resource}</strong> para estar seguro de que entiendes el riesgo de esta operación.',
   'Network Isolation': 'Aislamiento de red',

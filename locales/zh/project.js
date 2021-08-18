@@ -138,6 +138,8 @@ module.exports = {
 
   'Number of volumes': '存储卷（数量）',
 
+  FEDPROJECT_CANNOT_ADD_CLUSTER: '无法添加新的集群',
+
   CLOSE_FILE_LOG_TIP:
     '落盘日志收集即将关闭。 关闭后，已开启落盘日志收集的服务在容器组副本重启前将继续进行落盘日志的收集，重启后，将不再收集。</br>如果需要再次收集，请开启落盘日志收集，并重起容器组副本。',
 
