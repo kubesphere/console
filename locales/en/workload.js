@@ -244,6 +244,8 @@ module.exports = {
     'Pod replicas will be deployed on different nodes as much as possible.',
   'Pod replicas will be deployed on the same node as much as possible.':
     'Pod replicas will be deployed on the same node as much as possible.',
+  'Pod replicas will be deployed according to user customization.':
+    'Pod replicas will be deployed according to user customization.',
   'Pod Security Context': 'Pod Security Context',
   'Pod Status': 'Pod Status',
   'Pod Status Analysis': 'Pod Status Analysis',

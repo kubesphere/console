@@ -243,6 +243,8 @@ module.exports = {
   POD_REPLICAS: 'Réplicas de pod',
   'Pod replicas will be deployed according to the default policy.':
     'Las réplicas de pod se implementarán de acuerdo con la política predeterminada.',
+  'Pod replicas will be deployed according to user customization.':
+    'Las réplicas de pod se implementarán de acuerdo con la personalización del usuario.',
   'Pod replicas will be deployed on different nodes as much as possible.':
     'Las réplicas de pod se implementarán en diferentes nodos tanto como sea posible.',
   'Pod replicas will be deployed on the same node as much as possible.':

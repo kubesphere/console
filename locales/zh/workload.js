@@ -558,6 +558,8 @@ module.exports = {
     '容器组副本将会尽量部署在同一节点上',
   'Pod replicas will be deployed according to the default policy.':
     '容器组副本将根据默认策略部署',
+  'Pod replicas will be deployed according to user customization.':
+    '容器组副本将根据用户自定义规则部署',
   ADD_CONTAINER_DESC: '从镜像仓库拉取镜像以创建容器组。',
 
   'Scheduling Info': '调度信息',
