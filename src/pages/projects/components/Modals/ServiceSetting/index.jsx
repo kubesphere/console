@@ -22,7 +22,7 @@ import { toJS } from 'mobx'
 import { Modal } from 'components/Base'
 import ExternalName from 'components/Forms/Service/ExternalName'
 
-import { SERVICE_TYPES } from 'utils/constants'
+import { SERVICE_TYPES, SERVICE_TYPES_VALUE } from 'utils/constants'
 import ServiceSettings from './Form'
 
 import styles from './index.scss'
@@ -87,13 +87,14 @@ export default class ServiceSettingModal extends React.Component {
   }
 
   renderServiceSettings() {
-    const { cluster } = this.props
+    const { cluster, type } = this.props
     return (
       <ServiceSettings
         formRef={this.formRef}
         formTemplate={this.state.formTemplate}
         onCancel={this.resetState}
         cluster={cluster}
+        type={SERVICE_TYPES_VALUE[type]}
       />
     )
   }

@@ -76,6 +76,11 @@ export const SERVICE_TYPES = {
   Unknown: 'Unknown',
 }
 
+export const SERVICE_TYPES_VALUE = {
+  'Virtual IP': 'virtualIP',
+  Headless: 'headlessSelector',
+}
+
 export const VOLUME_SNAPSHOT_STATUS = [
   { text: 'VOLUME_SNAPSHOT_STATUS_CREATING', value: 'creating' },
   { text: 'VOLUME_SNAPSHOT_STATUS_READY', value: 'ready' },
