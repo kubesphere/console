@@ -29,6 +29,7 @@ import {
   Columns,
   Column,
   Loading,
+  Notify,
 } from '@kube-design/components'
 import { TypeSelect } from 'components/Base'
 
@@ -57,6 +58,7 @@ export default class App extends React.Component {
       tab: 'appInfo',
       selectAppVersion: '',
       showDeploy: false,
+      isCheck: false,
     }
 
     this.appId = this.props.match.params.appId
@@ -113,6 +115,10 @@ export default class App extends React.Component {
     this.setState({ tab })
   }
 
+  handleChangeCheck = isCheck => {
+    this.setState({ isCheck })
+  }
+
   fixBodyColor() {
     const htmlElem = document.querySelector('html')
     this.htmlOrigBgColor = window.getComputedStyle(htmlElem).backgroundColor
@@ -130,6 +136,11 @@ export default class App extends React.Component {
 
   handleDeploy = () => {
     const link = `${this.props.match.url}/deploy${location.search}`
+    if (!this.state.isCheck) {
+      Notify.warning({ content: t('CHECK_APP_DEPLOY_AGREEMENT_TIP') })
+      return
+    }
+
     if (!globals.user) {
       location.href = `/login?referer=${link}`
     } else {
@@ -178,7 +189,7 @@ export default class App extends React.Component {
   }
 
   renderContent() {
-    const { tab } = this.state
+    const { tab, isCheck } = this.state
     const { detail, isLoading } = this.appStore
     const { data } = this.versionStore.list
 
@@ -196,7 +207,12 @@ export default class App extends React.Component {
           {this.renderDeployButton()}
           <Columns>
             <Column className="is-8">
-              <AppInfo app={detail} versions={toJS(data)} />
+              <AppInfo
+                app={detail}
+                versions={toJS(data)}
+                isCheck={isCheck}
+                onChange={this.handleChangeCheck}
+              />
             </Column>
             <Column>
               <AppBase app={detail} />

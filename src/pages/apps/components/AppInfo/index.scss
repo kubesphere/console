@@ -60,3 +60,31 @@
     }
   }
 }
+
+.agree {
+  a {
+    color: $blue-color04;
+
+    &:hover {
+      color: $blue-color04;
+    }
+  }
+
+  :global {
+    label.checkbox {
+      input[type='checkbox'],
+      &::before {
+        width: 12px;
+        height: 12px;
+      }
+
+      &.checked::after {
+        left: 4px;
+      }
+
+      span.label-value {
+        color: $dark-color01;
+      }
+    }
+  }
+}
