@@ -45,4 +45,14 @@ module.exports = {
   TOTAL_CATE_COUNT: '{total} Aplicaciones en total',
   HOME_APP_STORE_DESC:
     'La App Store oficial de KubeSphere proporciona características de despliegue y administración que permiten a los usuarios desplegar aplicaciones rápidamente con un solo click en base a plantillas de aplicaciones.',
+
+  'App Deploy Agreement': 'Acuerdo de implementación de aplicaciones',
+  APP_DEPLOY_AGREEMENT_1:
+    '1. Cumplirá con el acuerdo de código abierto de la aplicación.',
+  APP_DEPLOY_AGREEMENT_2:
+    '2. Las consecuencias causadas por el despliegue de la aplicación correrán a cargo de usted. Si necesita servicios de asistencia relacionados, comuníquese con <a href="https://kubesphere.cloud/" target="_blank"> kubesphere.cloud </a>',
+  APP_DEPLOY_AGREEMENT_CHEKC:
+    'He leído las instrucciones anteriores y acepté implementar la aplicación.',
+  CHECK_APP_DEPLOY_AGREEMENT_TIP:
+    'Lea y acepte las instrucciones de implementación de la aplicación.',
 }
