@@ -20,7 +20,7 @@ module.exports = {
   secrets: '密鑰',
   Secrets: '密鑰',
   Secret: '密鑰',
-  SECRET_NAME_TCAP: '密鑰名稱',
+  SECRET_NAME_TCAP: '保密字典名稱',
   'Config Number': '配置項數量',
   'Edit Secret': '編輯密鑰',
   SECRET_SETTINGS_TCAP: '密鑰設置',
