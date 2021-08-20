@@ -353,7 +353,7 @@ export default class MountConfig extends React.Component {
           {t('ConfigMap & Secret')}
         </div>
         <div className={styles.contentWrapper}>
-          <div className={styles.title}>{t('Type')}</div>
+          <div className={styles.title}>{t('TYPE')}</div>
           <RadioGroup
             mode="button"
             value={type}

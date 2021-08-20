@@ -79,7 +79,7 @@ export default class Graph extends Component {
           </Form.Item>
         </FormGroupCard>
 
-        <FormGroupCard label={t('Data')}>
+        <FormGroupCard label={t('DATA')}>
           <Form.Item>
             <CustomArrayInput
               name="targets"

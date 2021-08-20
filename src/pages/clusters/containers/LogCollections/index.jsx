@@ -204,7 +204,7 @@ export default class LogCollection extends React.Component {
             title={collection.enabled ? t('LOG_COLLECTING') : t('LOG_CLOSE')}
             description={t('STATUS')}
           />
-          <Text title={t(collection.component)} description={t('Type')} />
+          <Text title={t(collection.component)} description={t('TYPE')} />
           <Text
             title={getLocalTime(collection.creationTimestamp).format(
               'YYYY-MM-DD HH:mm:ss'

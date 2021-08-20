@@ -182,7 +182,7 @@ export default class DevOps extends React.Component {
       render: creator => creator || '-',
     },
     {
-      title: t('Created Time'),
+      title: t('CREATED_AT'),
       dataIndex: 'createTime',
       isHideable: true,
       sorter: true,

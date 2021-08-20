@@ -24,13 +24,13 @@ module.exports = {
   'Config Number': '配置项数量',
   'Edit Secret': '编辑密钥',
   SECRET_SETTINGS_TCAP: '密钥设置',
-  'Private Key': '私钥',
+  PRIVATE_KEY_TCAP: '私钥',
   IMAGE_REGISTRY_SECRET_TCAP: '镜像仓库密钥',
-  'Please input credential': '请输入凭证',
-  'Please input private key': '请输入私钥',
-  'Please input data': '请输入数据',
+  ENTER_CREDENTIAL_TIP: '请输入凭证',
+  ENTER_PRIVATE_KEY_DESC: '请输入私钥',
+  ENTER_DATA_DESC: '请输入数据',
   Unverified: '镜像仓库密钥验证失败',
-  SECRET_TYPE_DESC: '可以选择也可以自定义一个密钥类型。',
+  SECRET_TYPE_DESC: '选择或者自定义一个 Secret 类型。',
 
   SECRET_DESC:
     'Secret 是一种包含少量敏感信息的资源对象，例如密码、令牌、密钥等，以键/值对形式保存并且可以在容器组中使用。',
@@ -44,7 +44,7 @@ module.exports = {
   REGISTRY_SECRET_VER_SUC: '镜像仓库校验通过',
   ACCOUNT_PASSWORD_SECRET_TCAP: '帐户密码密钥',
 
-  Data: '数据',
+  DATA: '数据',
   ADD_DATA_TCAP: '添加数据',
   EDIT_DATA_TCAP: '编辑数据',
   ADD_DATA_DESC: '添加键/值对形式数据',

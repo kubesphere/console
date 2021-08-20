@@ -32,7 +32,7 @@ module.exports = {
   'Authorization List': '權限列表',
   'Authorized Users': '授權用戶',
   'Authorization Settings': '權限設置',
-  'User Name': '用戶名稱',
+  USERNAME: '用戶名稱',
   Cluster: '集群',
   Member: '成員',
 

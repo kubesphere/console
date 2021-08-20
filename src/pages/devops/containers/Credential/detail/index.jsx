@@ -129,7 +129,7 @@ export default class CredentialDetail extends React.Component {
       action: 'delete',
       onClick: () => {
         this.trigger('resource.delete', {
-          type: t('Credential'),
+          type: t('CREDENTIAL_SI'),
           detail: this.store.detail,
           success: () => {
             const { devops, workspace, cluster } = this.props.match.params
@@ -162,7 +162,7 @@ export default class CredentialDetail extends React.Component {
 
     return [
       {
-        name: t('Type'),
+        name: t('TYPE'),
         value: t(detail.type),
       },
       {

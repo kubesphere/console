@@ -85,7 +85,7 @@ export default class ProbeInput extends React.Component {
         <>
           <div>
             <strong>{get(value, 'httpGet.scheme', '')}</strong>
-            <p>{t('Type')}</p>
+            <p>{t('TYPE')}</p>
           </div>
           <div>
             <strong>{get(value, 'httpGet.path', '')}</strong>

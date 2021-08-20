@@ -129,7 +129,7 @@ export default class GitLabForm extends React.Component {
             />
           </Form.Item>
           <Form.Item
-            label={t('Credential')}
+            label={t('CREDENTIAL_SI')}
             desc={
               <p>
                 {t('ADD_NEW_CREDENTIAL_DESC')}

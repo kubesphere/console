@@ -244,7 +244,7 @@ export default class ParamsInput extends React.Component {
             </Form.Item>
           </Column>
           <Column>
-            <Form.Item label={t('Password')}>
+            <Form.Item label={t('PASSWORD')}>
               <Input
                 name={`${this.props.prefix}.default_value`}
                 type="password"

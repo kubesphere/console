@@ -65,7 +65,7 @@ export default class RuleList extends React.Component {
           ))}
         <div className={styles.add} onClick={this.handleAdd}>
           <Text
-            title={t('Add Route Rule')}
+            title={t('ADD_ROUTE_RULE_TCAP')}
             description={t('Add an Internet access rule for the application')}
           />
         </div>

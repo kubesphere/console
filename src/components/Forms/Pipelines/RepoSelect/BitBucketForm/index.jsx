@@ -142,7 +142,7 @@ export default class BitBucketForm extends GitHubForm {
           </Form.Item>
 
           <Form.Item
-            label={t('Credential')}
+            label={t('CREDENTIAL_SI')}
             rules={[{ required: true, message: t('This param is required') }]}
             error={errorsBody['username'] || errorsBody['password']}
             desc={

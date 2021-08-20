@@ -56,7 +56,7 @@ module.exports = {
   name: '名稱',
   Ready: '就緒',
   STATUS: '狀態',
-  Type: '類型',
+  TYPE: '類型',
   PROJECT: '項目',
   Service: '服務',
   Overview: '概覽',
@@ -64,7 +64,7 @@ module.exports = {
   'Start Time': '開始時間',
   'End Time': '結束時間',
   'Time Interval': '時間間隔',
-  'Created Time': '創建時間',
+  CREATED_AT: '創建時間',
   UPDATED_AT: '更新時間',
   RUNNING_TIME: '運行時間',
   'Custom Columns': '内容自定義',
@@ -212,7 +212,6 @@ module.exports = {
 
   Unit: '單位',
   NUM_UNIT: '個',
-  Password: '密碼',
 
   NOT_ENABLE: '{resource} 暫未啟用',
   NOT_AVAILABLE: '暫時沒有可用的 {resource}',
@@ -256,7 +255,7 @@ module.exports = {
   'Official Document': '官網文件',
 
   optional: '選填',
-  Protocol: '協定',
+  PROTOCOL: '協定',
   Certificate: '憑證',
   key: '鍵',
   value: '值',
@@ -317,7 +316,6 @@ module.exports = {
   'Please select workspace': '請選擇企業空間',
   'Please select project': '請選擇項目',
   'Please select version': '請選擇版本',
-  'Please input password': '請輸入密碼',
   'Filter by keyword': '請輸入關鍵字過濾',
   'Search by keyword': '請輸入關鍵字進行尋找',
   SEARCH_BY_NAME: '請輸入名稱進行尋找',

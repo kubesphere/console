@@ -82,7 +82,7 @@ module.exports = {
   'Create a credential': 'Crear una credencial',
   'Create Credential': 'Crear credenciale',
   'Create Pipeline': 'Crear pipeline',
-  Credential: 'Autentificación',
+  CREDENTIAL_SI: 'Autentificación',
   'credential Id': 'ID de autentificación',
   'Credential Id': 'ID de autentificación',
   'Credential ID': 'ID de autentificación',

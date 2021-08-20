@@ -216,7 +216,7 @@ export default class AddEdgeModal extends Component {
             </Form.Item>
 
             <Button onClick={this.handleLink} loading={this.state.loading}>
-              {t('Validate')}
+              {t('VALIDATE')}
             </Button>
           </div>
           <Checkbox

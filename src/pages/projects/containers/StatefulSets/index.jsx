@@ -193,7 +193,7 @@ export default class StatefulSets extends React.Component {
         width: '22%',
       },
       {
-        title: t('Created Time'),
+        title: t('CREATED_AT'),
         dataIndex: 'createTime',
         sorter: true,
         sortOrder: getSortOrder('createTime'),

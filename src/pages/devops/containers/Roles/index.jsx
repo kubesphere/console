@@ -150,7 +150,7 @@ export default class Secrets extends React.Component {
         width: '40%',
       },
       {
-        title: t('Created Time'),
+        title: t('CREATED_AT'),
         dataIndex: 'createTime',
         sorter: true,
         sortOrder: getSortOrder('createTime'),

@@ -108,7 +108,7 @@ export default class ConfigMaps extends React.Component {
         render: data => Object.keys(data).join(','),
       },
       {
-        title: t('Created Time'),
+        title: t('CREATED_AT'),
         dataIndex: 'createTime',
         sorter: true,
         sortOrder: getSortOrder('createTime'),

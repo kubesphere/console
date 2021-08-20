@@ -145,10 +145,10 @@ export default class Authorization extends Component {
       case 'basicAuth':
         content = (
           <div>
-            <Form.Item label={t('User Name')}>
+            <Form.Item label={t('USERNAME')}>
               <SecretSelect name="basicAuth.username" secrets={this.secrets} />
             </Form.Item>
-            <Form.Item label={t('Password')}>
+            <Form.Item label={t('PASSWORD')}>
               <SecretSelect name="basicAuth.password" secrets={this.secrets} />
             </Form.Item>
           </div>

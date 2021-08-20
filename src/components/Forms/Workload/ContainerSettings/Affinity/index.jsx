@@ -278,7 +278,7 @@ export default class AffinityForm extends React.Component {
                 />
                 <Select
                   name="type"
-                  placeholder={t('Type')}
+                  placeholder={t('TYPE')}
                   options={this.types}
                 />
                 <Select

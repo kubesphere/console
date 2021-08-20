@@ -18,7 +18,7 @@
 
 module.exports = {
   users: '用户',
-  Users: '用户',
+  // Users: '用户', (Duplicated)
   User: '用户',
   Accounts: '帐户',
   'User Management': '用户管理',
@@ -42,14 +42,14 @@ module.exports = {
   ROLE_DESC:
     '角色类型根据权限范围分为集群和项目两类，当前角色的授权范围为整个集群.',
   'New Password': '新的密码',
-  'Please input user name': '请输入用户名',
+  ENTER_USERNAME_TIP: '请输入用户名',
   'Please input email': '请输入邮箱',
   'Please repeat the new password': '请重复新的密码',
   'Please input current password': '请输入当前密码',
   'The password entered twice must be the same': '两次输入的密码必须一致',
   'Please select role': '请选择角色',
   'Invalid user name': '用户名格式不合法。{message}',
-  'Invalid email': '邮箱格式不合法',
+  // 'Invalid email': '邮箱格式不合法', (Duplicated)
   'User name exists': '用户名已存在',
   'Email exists': '邮箱已存在',
   'Unable to delete itself': '无法删除自己',
@@ -78,8 +78,8 @@ module.exports = {
   'You must enter the correct current password to change to a new password.':
     '您必须输入正确的当前密码才可更改为新的密码',
 
-  'Your password must meet the following requirements':
-    '您的密码必须符合如下要求',
+  // 'Your password must meet the following requirements':
+  //  '您的密码必须符合如下要求', (Duplicated)
   'At least 1 uppercase and lowercase letter': '至少 1 个大写和小写字母',
   'At least 1 number': '至少 1 个数字',
   'Password length is at least 6 characters': '密码长度至少为 6',

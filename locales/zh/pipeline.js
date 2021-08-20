@@ -67,7 +67,7 @@ module.exports = {
   TaskStatus: '运行状态',
   WeatherScore: '健康状态',
   Credentials: '凭证',
-  Credential: '凭证',
+  CREDENTIAL_SI: '凭证',
   'Credentials Management': '凭证管理',
   'Add Parallel Stage': '添加并行阶段',
   'Add Step': '添加步骤',

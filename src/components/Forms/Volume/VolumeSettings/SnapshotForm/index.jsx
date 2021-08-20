@@ -211,7 +211,7 @@ function SnapshotSelect({
           </div>
           <div>
             <h3>{snapshot.createTime}</h3>
-            <p>{t('Created Time')}</p>
+            <p>{t('CREATED_AT')}</p>
           </div>
         </div>
       ))}

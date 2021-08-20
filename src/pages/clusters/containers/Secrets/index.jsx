@@ -127,7 +127,7 @@ export default class Secrets extends React.Component {
         ),
       },
       {
-        title: t('Type'),
+        title: t('TYPE'),
         dataIndex: 'type',
         isHideable: true,
         width: '20%',
@@ -141,7 +141,7 @@ export default class Secrets extends React.Component {
         render: data => Object.keys(data).length,
       },
       {
-        title: t('Created Time'),
+        title: t('CREATED_AT'),
         dataIndex: 'createTime',
         sorter: true,
         sortOrder: getSortOrder('createTime'),

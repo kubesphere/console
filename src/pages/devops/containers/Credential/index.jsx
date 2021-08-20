@@ -125,7 +125,7 @@ class Credential extends React.Component {
       },
     },
     {
-      title: t('Type'),
+      title: t('TYPE'),
       dataIndex: 'type',
       width: '25%',
       render: type => t(type),
@@ -137,7 +137,7 @@ class Credential extends React.Component {
       width: '25%',
     },
     {
-      title: t('Created Time'),
+      title: t('CREATED_AT'),
       dataIndex: 'createTime',
       width: '20%',
       render: createTime =>

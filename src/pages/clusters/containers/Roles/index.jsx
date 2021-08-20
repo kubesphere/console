@@ -121,7 +121,7 @@ export default class ClusterRoles extends React.Component {
         width: '55%',
       },
       {
-        title: t('Created Time'),
+        title: t('CREATED_AT'),
         dataIndex: 'createTime',
         sorter: true,
         sortOrder: getSortOrder('createTime'),

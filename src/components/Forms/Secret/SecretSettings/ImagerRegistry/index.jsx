@@ -170,7 +170,7 @@ export default class ImageRegistry extends Component {
             </Wrapper>
           </Column>
           <Column>
-            <Wrapper label={t('User Name')} required>
+            <Wrapper label={t('USERNAME')} required>
               <Input
                 value={username}
                 onChange={this.handleUserNameChange}
@@ -186,7 +186,7 @@ export default class ImageRegistry extends Component {
             </Wrapper>
           </Column>
           <Column>
-            <Wrapper label={t('Password')} required>
+            <Wrapper label={t('PASSWORD')} required>
               <div className={styles.password}>
                 <InputPassword
                   type="password"
@@ -195,7 +195,7 @@ export default class ImageRegistry extends Component {
                   autoComplete="new-password"
                 />
                 <Button onClick={this.handleValidate} loading={isValidating}>
-                  {t('Validate')}
+                  {t('VALIDATE')}
                 </Button>
               </div>
             </Wrapper>

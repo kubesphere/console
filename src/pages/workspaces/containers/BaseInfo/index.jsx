@@ -209,7 +209,7 @@ class BaseInfo extends React.Component {
             title={getLocalTime(detail.createTime).format(
               'YYYY-MM-DD HH:mm:ss'
             )}
-            description={t('Created Time')}
+            description={t('CREATED_AT')}
           />
           {this.enabledActions.includes('manage') && (
             <Button className={styles.action} onClick={this.showEdit}>
