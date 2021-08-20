@@ -29,7 +29,7 @@ export default class ServiceSettingsForm extends Base {
       <Form.Item label={t('ACCESS_TYPE')}>
         <TypeSelect
           className="margin-b12"
-          value={this.state.serviceType}
+          value={this.props.type}
           onChange={this.handleTypeChange}
           options={this.types}
           disabled
