@@ -77,8 +77,8 @@ export const SERVICE_TYPES = {
 }
 
 export const SERVICE_TYPES_VALUE = {
-  'Virtual IP': 'virtualIP',
-  Headless: 'headlessSelector',
+  VIRTUAL_IP: 'virtualIP',
+  HEADLESS: 'headlessSelector',
 }
 
 export const VOLUME_SNAPSHOT_STATUS = [
