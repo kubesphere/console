@@ -18,8 +18,8 @@
 
 module.exports = {
   ' has no corresponding workload.': ' has no corresponding workload.',
-  'Access Method': 'Access Method',
-  'Access Type': 'Access Type',
+  ACCESS_METHOD: 'Access Method',
+  ACCESS_TYPE: 'Access Type',
   'Add Route Rule': 'Add Route Rule',
   'Add Selector': 'Add Selector',
   'Associated Application': 'Associated Application',
@@ -27,40 +27,40 @@ module.exports = {
   'Automatically assign Service IP': 'Automatically assign Service IP',
   'Commonly included tags in the current workloads':
     'Commonly included tags in the current workloads',
-  'Container Port': 'Container Port',
-  'Create Service': 'Create Service',
+  CONTAINER_PORT: 'Container Port',
+  CREATE_SERVICE: 'Create Service',
   'Create service by specifying workloads':
     'Create service by specifying workloads',
   'Create service by Yaml': 'Create service by Yaml',
   Creating: 'Creating',
   'Creation failed, please delete and try again':
     'Creation failed, please delete and try again',
-  'Custom Creation': 'Custom Creation',
+  CUSTOM_CREATION: 'Custom Creation',
   'Delete Service': 'Delete Service',
   'Do not assign Service IP': 'Do not assign Service IP',
-  'Edit Internet Access': 'Edit Internet Access',
-  'Edit Service': 'Edit Service',
-  'Enable Sticky Session': 'Enable Sticky Session',
+  EDIT_INTERNET_ACCESS: 'Edit Internet Access',
+  EDIT_SERVICE: 'Edit Service',
+  STICKY_SESSION: 'Sticky Session',
   'External Address': 'External Address',
   'External Service': 'External Service',
   'Internal access': 'Internal access',
-  'Invalid port': 'Invalid port',
+  INVALID_PORT_DESC: 'Please enter a valid protocol or port number.',
   'Language Type': 'Language Type',
   'LoadBalancer IP': 'LoadBalancer IP',
   'Map Services outside the cluster': 'Map Services outside the cluster',
-  'Maximum Session Sticky Time (s)': 'Maximum Session Sticky Time (s)',
+  MAXIMUM_STICKINESS_DURATION: 'Maximum Stickiness Duration (s)',
   'No related resources found with current service(s)':
     'No related resources found with current service(s)',
   'Node Port': 'Node Port',
   'Node Port(s)': 'Node Port(s)',
   'Not Associate': 'Not Associate',
   'Path is Required': 'Path is Required',
-  'Please input ExternalName': 'Please input ExternalName',
-  'Please input ports': 'Please input ports',
+  ENTER_EXTERNALNAME_DESC: 'Please enter an ExternalName.',
+  ENTER_PORT_NUMBER: 'Please enter a port number.',
   'Please input selectors that have corresponding workloads':
     'Please input selectors that have corresponding workloads',
   'Please input service name': 'Please input service name',
-  'Please input valid Selector': 'Please input valid Selector',
+  ENTER_SELECTOR_TIP: 'Please enter a valid selector.',
   'Please select a workload': 'Please select a workload',
   'Please select Service': 'Please select Service',
   Ports: 'Ports',
@@ -70,58 +70,57 @@ module.exports = {
   'Service Access': 'Service Access',
   'Service Mesh': 'Service Mesh',
   'Service Name': 'Service Name',
-  'Service Port': 'Service Port',
-  'Service Type': 'Service Type',
+  SERVICE_PORT: 'Service Port',
+  SERVICE_TYPE_TCAP: 'Service Type',
   services: 'services',
   'Simple Service': 'Simple Service',
-  'Specify Workload': 'Specify Workload',
+  SPECIFY_WORKLOAD: 'Specify Workload',
   'Specify Node': 'Specify Node',
   'Specify Workloads': 'Specify Workloads',
-  'Stateful Service': 'Stateful Service',
-  'Stateless Service': 'Stateless Service',
+  STATEFUL_SERVICE: 'Stateful Service',
+  STATELESS_SERVICE: 'Stateless Service',
   'Sure to delete the service(s)?': 'Sure to delete the service(s)?',
   'Target Port': 'Target Port',
   'The current selector': 'The current selector',
-  'The maximum session sticky time is 10800s (3 hours).':
-    'The maximum session sticky time is 10800s (3 hours).',
-  'Virtual IP': 'Virtual IP',
+  STICKY_SESSION_DESC: 'The default stickiness duration is 10800s (3 h).',
+  VIRTUAL_IP: 'Virtual IP',
 
   SERVICE_EXTERNAL_NAME_DESC:
     'Map the service to the contents of the externalName field by returning a CNAME record with its value.',
-  TOTAL_WORKLOAD: '{ count } workloads in total',
+  TOTAL_WORKLOAD: 'Total Workloads: { count }',
 
   SERVICE_SELECTOR_AFFECT_1: '',
   SERVICE_SELECTOR_AFFECT_2: ' affect {count} workloads',
 
   SERVICE_NAME_DESC:
-    'It can only contain lowercase letters, numbers and hyphens("-"), and must begin with a lowercase letter, ending with a number or lowercase letter. The value can contain a maximum of 63 characters.',
+    'The name can contain only lowercase letters, numbers, and hyphens (-), must start with a lowercase letter, and must end with a lowercase letter or number. The maximum length is 63 characters.',
   SERVICE_DESC:
-    'A Service is an abstraction that defines a logical collection of Pods and a strategy for accessing them.',
+    'Services provide an abstract way to expose applications running on a Pod as network services.',
   SERVICE_CREATE_DESC:
-    'A Service is an abstraction that defines a logical collection of Pods and a strategy for accessing them. You can select the Service type or how a Service is created. KubeSphere supports both stateful and stateless Services and Services can be created through codes or artifacts.',
+    'Services provide an abstract way to expose applications running on a Pod as network services. You can select the Service type or how a Service is created. KubeSphere supports both stateful and stateless Services and Services can be created through codes or artifacts.',
 
   SERVICES_BASEINFO_DESC:
     'The name and description of the service need to be provided to create the service. The service name cannot be the same as the existing service name under the same project.',
   SERVICES_SETTINGS_DESC:
     'Service settings define how to access an existing workload.',
-  SERVICES_INTERNET_ACCESS_DESC: 'Expose the service outside of the cluster.',
+  SERVICES_INTERNET_ACCESS_DESC: 'Expose the Service outside the cluster.',
 
-  VIRTUAL_IP_TITLE:
-    'Virtual IP: Access the service through the internal IP of the cluster',
+  VIRTUAL_IP_TITLE: 'Virtual IP Address',
   VIRTUAL_IP_DESC:
-    'Based on the unique IP generated by the cluster. The IP can be used to access the service inside the cluster.',
-  HEADLESS_SELECTOR_TITLE:
-    'Headless (selector): Direct access to the service through the endpoint IP of the service inside the cluster',
+    'The cluster generates a unique IP address for the Service and the Service can be accessed within the cluster using this IP address.',
+  HEADLESS_SELECTOR_TITLE: 'Headless (Selector)',
   HEADLESS_SELECTOR_DESC:
-    'The cluster will not create an IP for the service. Instead, clients within the cluster access it through its endpoints directly. For example, services that need to distinguish master from slave.',
+    'The cluster does not generate an IP address for the Service and the Service can be directly accessed using the Endpoint IP address of the Service.',
   HEADLESS_EXTERNAL_NAME_TITLE:
     'Headless (externalname): Map addresses outside the cluster to visit',
   HEADLESS_EXTERNAL_NAME_DESC: 'Map external services to a cluster or project.',
 
-  ACCESS_NONE_TIP: 'Make the service accessible internally only',
-  ACCESS_NODEPORT_TIP: 'Expose the service on each Node’s IP at a static port',
+  ACCESS_NONE_TIP:
+    'Internet access is not supported. The Service can be accessed only within the cluster.',
+  ACCESS_NODEPORT_TIP:
+    'Access the Service through the port of the cluster node.',
   ACCESS_LOADBALANCER_TIP:
-    'Expose the service externally using the cloud provider’s load balancer',
+    'Access the Service using a LoadBalancer provided by a cloud provider.',
 
   SERVICE_NODE_PORT_DESC:
     'If your current network is on the same network as the cluster node, you can access it through the cluster IP address + node port number or through the node IP + node port.',
@@ -135,7 +134,7 @@ module.exports = {
     'What are the scenarios for stateless Services and stateful Services?',
   SCENARIOS_FOR_SERVICES_A:
     'Stateless Services are useful for scenarios where persistent data is not stored locally and multiple instances respond to uniform requests (Nginx, Tomcat, etc.). Stateful Services are helpful when it comes to data storage, multithreading or queues (MySQL database, Kafka, Zookeeper, etc.).',
-  SERVICE_SIMPLE_DESC: 'Create a service from an existing pods group',
+  SERVICE_SIMPLE_DESC: 'Create a Service from an existing pods group',
   DELETE_SERVICE_DESC:
     'You are about to delete the service(s) {resource}. Please confirm whether to delete the associated resource?',
   SERVICE_FROM_CODE: 'Build a New Service from Source Code Repository',
@@ -156,16 +155,30 @@ module.exports = {
   STATELESS_SERVICE_DESC:
     'The most commonly used service in container services. It defines the Pod template to control the Pod status, including rolling updates and rollbacks.',
 
-  SERVISE_SIMPLE_DESC: 'Create a service with existing Pods.',
+  SERVISE_SIMPLE_DESC: 'Create a Service with existing Pods.',
   SERVICE_PORTS_DESC:
-    'Set the port to expose the container image and the service port.',
+    'Set the ports to which container images are exposed and the service ports.',
   SPECIFY_WORKLOAD_DESC:
-    'Specify a workload that needs to be associated with the service.',
+    'Pre-populate the fields with labels of container replicas created by the workloads.',
 
   SPECIFY_NODE_DESC:
     'Specify a node that needs to be associated with the service.',
 
   EIP_POOL_DESC: 'Access method within the cluster (DNS)',
 
-  SERVICE_SESSION_STICKY_DESC: 'Must be greater than 0 and less than 86400',
+  STICKINESS_VALUE_RANGE: 'Value range: 0–86400.',
+
+  // Services
+  PORT: 'Port',
+  PROTOCOL: 'Protocol',
+  ADD: 'Add',
+  LABEL_SELECTOR: 'Label Selector',
+  NONE: 'None',
+  UNKNOWN_SERVICE_TYPE: 'Unknown Service Type',
+  HEADLESS: 'Headless',
+  EXTERNALNAME: 'ExternalName',
+  UNKNOWN: 'Unknown',
+  EXTERNALNAME_EXAMPLE: 'Example: ',
+  PORTS: 'Ports',
+  REQUIRED: 'Required',
 }

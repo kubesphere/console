@@ -245,11 +245,11 @@ module.exports = {
   'Port Settings': '端口設置',
   'Service Settings': '服務設置',
   'Health Checker': '健康檢查器',
-  'Internet Access': '外網訪問',
+  INTERNET_ACCESS: '外網訪問',
   'Advanced Settings': '高級設置',
   Settings: '設置',
   Configuration: '配置',
-  'Multi-cluster Deployment': '多集群部署',
+  MULTI_CLUSTER_DEPLOYMENT: '多集群部署',
   MULTI_CLUSTER_TIP: '該資源部署在多個集群',
 
   ALIAS: '别名',
@@ -305,7 +305,7 @@ module.exports = {
   LONG_NAME_TOO_LONG: '最長 253 個字元',
   ALIAS_DESC: '别名可以由任意字元组成，幫助您更好的區分資源，最長 63 個字元。',
   LABEL_FORMAT_DESC:
-    '標籤的 key 和 value 最長 63 個字元，key 如果包含域名，則最長 253 字元。只能包含大小寫字母、數字，分隔符號("-")，下底線(_)及小數點(.)，且必須以數字或大小寫開頭和結尾',
+    'The key and value can contain only uppercase and lowercase letters, numbers, hyphens (-), underscores (_), and dots (.), and must begin and end with an uppercase or lowercase letter or number. The maximum length is 63 characters. If the key contains the domain name, the maximum length is 253 characters.',
   DESCRIPTION_DESC: '描述資訊不超過 256 個字元',
   PROJECT_DESC: '將根據項目資源進行分組，可以按項目對資源進行查看管理',
   'MULTI-CLUSTER_PROJECT_CREATE_DESC':
@@ -324,8 +324,8 @@ module.exports = {
   NAME_VALIDATION_FAILED:
     '避免使用前綴為 kube- 的名稱，因為它是為 Kubernetes 系統命名空間保留的',
   NAME_EXIST_DESC: '名稱已存在',
-  'Duplicate keys': '無法添加重複的 key',
-  'Empty keys': '無法添加空的 key',
+  KEY_EXIST_DESC: 'The key already exists.',
+  EMPTY_KEY_DESC: 'Please enter a key.',
 
   'Log Out': '登出',
   About: '關於',

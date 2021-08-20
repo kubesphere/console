@@ -19,8 +19,8 @@
 module.exports = {
   ' has no corresponding workload.':
     'no tiene carga de trabajo correspondiente.',
-  'Access Method': 'Método de acceso',
-  'Access Type': 'Tipo de acceso',
+  ACCESS_METHOD: 'Método de acceso',
+  ACCESS_TYPE: 'Tipo de acceso',
   'Add Route Rule': 'Agregar regla de ruta',
   'Add Selector': 'Agregar selector',
   'Associated Application': 'Solicitud asociada',
@@ -29,40 +29,40 @@ module.exports = {
     'Asigna automáticamente una IP de servicio',
   'Commonly included tags in the current workloads':
     'Etiquetas comúnmente incluidas en las cargas de trabajo actuales',
-  'Container Port': 'Puerto de contenedores',
-  'Create Service': 'Crear servicio',
+  CONTAINER_PORT: 'Puerto de contenedores',
+  CREATE_SERVICE: 'Crear servicio',
   'Create service by specifying workloads':
     'Crear servicio especificando carga de trabajo',
   'Create service by Yaml': 'Crear servicio por Yaml',
   Creating: 'Creando',
   'Creation failed, please delete and try again':
     'Creación fallida, por favor, elimínela e intente de nuevo',
-  'Custom Creation': 'Creacion personalizada',
+  CUSTOM_CREATION: 'Creacion personalizada',
   'Delete Service': 'Eliminar servicio',
   'Do not assign Service IP': 'No asignar IP de servicio',
-  'Edit Internet Access': 'Editar acceso a Internet',
-  'Edit Service': 'Servicio de edición',
-  'Enable Sticky Session': 'Habilitar Sticky Session',
+  EDIT_INTERNET_ACCESS: 'Editar acceso a Internet',
+  EDIT_SERVICE: 'Servicio de edición',
+  STICKY_SESSION: 'Sticky Session',
   'External Address': 'Dirección Externa',
   'External Service': 'Servicio externo',
   'Internal access': 'Acceso interno',
-  'Invalid port': 'Puerto inválido',
+  INVALID_PORT_DESC: 'Please enter a valid protocol or port number.',
   'Language Type': 'Tipo de idioma',
   'LoadBalancer IP': 'IP del balanceador',
   'Map Services outside the cluster': 'Servicios de mapas fuera del clúster',
-  'Maximum Session Sticky Time (s)': 'Tiempo máximo de sesión (s)',
+  MAXIMUM_STICKINESS_DURATION: 'Tiempo máximo de sesión (s)',
   'No related resources found with current service(s)':
     'No se encontraron recursos relacionados con los servicios actuales',
   'Node Port': 'Puerto de nodo',
   'Node Port(s)': 'Puerto(s) de nodo',
   'Not Associate': 'No asociado',
   'Path is Required': 'La ruta es obligatoria',
-  'Please input ExternalName': 'Por favor introduce el ExternalName',
-  'Please input ports': 'Por favor introduce puertos',
+  ENTER_EXTERNALNAME_DESC: 'Please enter an ExternalName.',
+  ENTER_PORT_NUMBER: 'Please enter a port number.',
   'Please input selectors that have corresponding workloads':
     'Introduce los selectores que tienen las cargas de trabajo correspondientes',
   'Please input service name': 'Por favor introduce el nombre del servicio',
-  'Please input valid Selector': 'Por favor introduce un selector válido',
+  ENTER_SELECTOR_TIP: 'Please enter a valid selector.',
   'Please select a workload': 'Por favor selecciona una carga de trabajo',
   'Please select Service': 'Por favor selecciona Servicio',
   Ports: 'Puertos',
@@ -72,31 +72,30 @@ module.exports = {
   'Service Access': 'Acceso al servicio',
   'Service Mesh': 'Malla de servicio',
   'Service Name': 'Nombre del Servicio',
-  'Service Port': 'Puerto de servicio',
-  'Service Type': 'Tipo de servicio',
+  SERVICE_PORT: 'Puerto de servicio',
+  SERVICE_TYPE_TCAP: 'Tipo de servicio',
   services: 'servicios',
   'Simple Service': 'Servicio simple',
-  'Specify Workload': 'Especificar carga de trabajo',
+  SPECIFY_WORKLOAD: 'Specify Workload',
   'Specify Node': 'Especificar nó',
   'Specify Workloads': 'Especificar cargas de trabajo',
-  'Stateful Service': 'Stateful Service',
-  'Stateless Service': 'Stateless Service',
+  STATEFUL_SERVICE: 'Stateful Service',
+  STATELESS_SERVICE: 'Stateless Service',
   'Sure to delete the service(s)?':
     '¿Seguro que quiere eliminar los servicios?',
   'Target Port': 'Puerto destino',
   'The current selector': 'El selector actual',
-  'The maximum session sticky time is 10800s (3 hours).':
-    'El tiempo de máximo de la sesión es de 10800 s (3 horas).',
-  'Virtual IP': 'IP virtual',
+  STICKY_SESSION_DESC: 'The default stickiness duration is 10800s (3 h).',
+  VIRTUAL_IP: 'IP virtual',
   SERVICE_EXTERNAL_NAME_DESC:
     'Asigne el servicio al contenido del campo externalName devolviendo un registro CNAME con su valor.',
-  TOTAL_WORKLOAD: '{count} cargas de trabajo en total',
+  TOTAL_WORKLOAD: 'Total Workloads: { count }',
   SERVICE_SELECTOR_AFFECT_1: '',
   SERVICE_SELECTOR_AFFECT_2: 'afectar las workload de {count}',
   SERVICE_NAME_DESC:
-    'Solo puede contener letras minúsculas, números y guiones ("-"), y debe comenzar con una letra minúscula y terminar con un número o letra minúscula. La longitud máxima de caracteres se establece en 63.',
+    'The name can contain only lowercase letters, numbers, and hyphens (-), must start with a lowercase letter, and must end with a lowercase letter or number. The maximum length is 63 characters.',
   SERVICE_DESC:
-    'Un servicio es una abstracción que define una colección lógica de Pods y una estrategia para acceder a ellos.',
+    'Services provide an abstract way to expose applications running on a Pod as network services.',
   SERVICE_CREATE_DESC:
     'Un servicio es una abstracción que define una colección lógica de Pods y una estrategia para acceder a ellos. Puedes seleccionar el tipo de servicio o cómo se crea un servicio. KubeSphere admite servicios con y sin estado y los servicios se pueden crear a través de códigos o artefactos.',
   SERVICES_BASEINFO_DESC:
@@ -104,23 +103,22 @@ module.exports = {
   SERVICES_SETTINGS_DESC:
     'La configuración del servicio define cómo acceder a una carga de trabajo existente.',
   SERVICES_INTERNET_ACCESS_DESC: 'Exponga el servicio fuera del clúster.',
-  VIRTUAL_IP_TITLE:
-    'IP virtual: acceda al servicio a través de la IP interna del clúster',
+  VIRTUAL_IP_TITLE: 'Virtual IP Address',
   VIRTUAL_IP_DESC:
-    'Basado en la IP única generada por el clúster. La IP se puedes usar para acceder al servicio dentro del clúster.',
-  HEADLESS_SELECTOR_TITLE:
-    'Sin cabecera (selector): acceso directo al servicio a través de la IP del punto final del servicio dentro del clúster',
+    'The cluster generates a unique IP address for the Service and the Service can be accessed within the cluster using this IP address.',
+  HEADLESS_SELECTOR_TITLE: 'Headless (Selector)',
   HEADLESS_SELECTOR_DESC:
-    'El clúster no creará una IP para el servicio. En cambio, los clientes dentro del clúster acceden directamente a través de sus puntos finales. Por ejemplo, servicios que necesitan distinguir maestro de esclavo.',
+    'The cluster does not generate an IP address for the Service and the Service can be directly accessed using the Endpoint IP address of the Service.',
   HEADLESS_EXTERNAL_NAME_TITLE:
     'Sin cabecera (nombre externo): direcciones de mapas fuera del clúster para visitar',
   HEADLESS_EXTERNAL_NAME_DESC:
     'Asigne servicios externos a un clúster o proyecto.',
-  ACCESS_NONE_TIP: 'Hacer el servicio accesible solo internamente',
+  ACCESS_NONE_TIP:
+    'Internet access is not supported. The Service can be accessed only within the cluster.',
   ACCESS_NODEPORT_TIP:
-    'Exponga el servicio en la IP de cada nodo en un puerto estático',
+    'Access the Service through the port of the cluster node.',
   ACCESS_LOADBALANCER_TIP:
-    'Exponga el servicio externamente utilizando el balanceador de carga del proveedor en la nube',
+    'Access the Service using a LoadBalancer provided by a cloud provider.',
   SERVICE_NODE_PORT_DESC:
     'Si su red actual está en la misma red que el nodo del clúster, puedes acceder a ella a través de la dirección IP del clúster + número de puerto del nodo o a través del puerto del nodo IP + nodo.',
   SERVICE_TYPE: 'Puedes crear un servicio sin estado o un servicio con estado.',
@@ -153,11 +151,26 @@ module.exports = {
     'El servicio más utilizado en servicios de contenedores. Define la plantilla del Pod para controlar el estado del Pod, incluidas las actualizaciones continuas y los retrocesos.',
   SERVISE_SIMPLE_DESC: 'Crea un servicio con Pods existentes.',
   SERVICE_PORTS_DESC:
-    'Configure el puerto para exponer la imagen del contenedor y el puerto de servicio.',
+    'Set the ports to which container images are exposed and the service ports.',
   SPECIFY_WORKLOAD_DESC:
-    'Especifique una carga de trabajo que debe asociarse con el servicio.',
+    'Pre-populate the fields with labels of container replicas created by the workloads.',
 
   SPECIFY_NODE_DESC: 'Especifique um nó que precisa ser associado ao serviço.',
 
   EIP_POOL_DESC: 'Método de acceso dentro del clúster (DNS)',
+
+  // Services
+  PORT: 'Port',
+  PROTOCOL: 'Protocol',
+  ADD: 'Add',
+  LABEL_SELECTOR: 'Label Selector',
+  NONE: 'None',
+  UNKNOWN_SERVICE_TYPE: 'Unknown Service Type',
+  STICKINESS_VALUE_RANGE: 'Value range: 0–86400.',
+  HEADLESS: 'Headless',
+  EXTERNALNAME: 'ExternalName',
+  UNKNOWN: 'Unknown',
+  EXTERNALNAME_EXAMPLE: 'Example: ',
+  PORTS: 'Ports',
+  REQUIRED: 'Required',
 }

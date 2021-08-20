@@ -86,7 +86,7 @@ export default {
     {
       icon: 'network-router',
       name: 'editService',
-      title: 'Edit Service',
+      title: 'EDIT_SERVICE',
       component: ServiceSetting,
     },
     {

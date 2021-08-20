@@ -70,10 +70,10 @@ export const ACCESS_MODES = {
 }
 
 export const SERVICE_TYPES = {
-  VirtualIP: 'Virtual IP',
-  Headless: 'Headless',
-  ExternalName: 'ExternalName',
-  Unknown: 'Unknown',
+  VirtualIP: 'VIRTUAL_IP',
+  Headless: 'HEADLESS',
+  ExternalName: 'EXTERNALNAME',
+  Unknown: 'UNKNOWN',
 }
 
 export const VOLUME_SNAPSHOT_STATUS = [

@@ -57,7 +57,7 @@ export default class ClusterService extends Component {
     {
       key: 'editGateway',
       icon: 'ip',
-      text: t('Edit Internet Access'),
+      text: t('EDIT_INTERNET_ACCESS'),
       action: 'edit',
       onClick: () => this.props.updateService(this.cluster),
     },
@@ -94,7 +94,7 @@ export default class ClusterService extends Component {
             title={`${detail.name}.${detail.namespace}.svc`}
             description={t('EIP_POOL_DESC')}
           />
-          <Text title={detail.clusterIP} description={t('Virtual IP')} />
+          <Text title={detail.clusterIP} description={t('VIRTUAL_IP')} />
           <MoreActions
             className={styles.more}
             options={this.getEnabledOperations()}

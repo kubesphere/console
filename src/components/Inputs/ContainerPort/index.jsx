@@ -108,7 +108,7 @@ export default class ContainerPort extends React.Component {
         <AddonsInput
           prefix={
             <div className={styles.tip}>
-              <span>{t('Protocol')}</span>
+              <span>{t('PROTOCOL')}</span>
               <Tooltip content={t('ISTIO_PROTOCOL_TIP')}>
                 <Icon name="question" />
               </Tooltip>
@@ -127,11 +127,11 @@ export default class ContainerPort extends React.Component {
           <Input
             name="name"
             value={name}
-            placeholder={t('required')}
+            placeholder={t('REQUIRED')}
             onChange={this.handleNameChange}
           />
         </AddonsInput>
-        <AddonsInput prefix={t('Container Port')}>
+        <AddonsInput prefix={t('CONTAINER_PORT')}>
           <NumberInput
             name="containerPort"
             min={1}

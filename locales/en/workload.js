@@ -32,17 +32,16 @@ module.exports = {
   'Add HostPath': 'Add HostPath',
   'Add Label': 'Add Label',
   'Add Labels': 'Add Labels',
-  'Add Metadata': 'Add Metadata',
+  ADD_METADATA: 'Add Metadata',
   'Add new container': 'Add new container',
   'Add Node Selector': 'Add Node Selector',
-  'Add Port': 'Add Port',
+  ADD_PORT: 'Add Port',
   'Add Probe': 'Add Probe',
   'Add Temporary Volume': 'Add Temporary Volume',
   'Add Volume': 'Add Volume',
   'Add Volume Template': 'Add Volume Template',
   'Adding new contianer': 'Adding new contianer',
-  'Additional metadata settings for resources such as Labels and Annotations.':
-    'Additional metadata settings for resources such as Labels and Annotations.',
+  ADD_METADATA_DESC: 'Add metadata to resources.',
   'Advanced Options': 'Advanced Options',
   'Applied to the workload': 'Applied to the workload',
   Argument: 'Argument',
@@ -150,9 +149,8 @@ module.exports = {
 
   'Invalid name': 'Invalid name. {message}',
   'Invalid pod': 'Invalid value',
-
-  INVALID_NAME_DESC: 'Invalid name. {message}',
-
+  INVALID_NAME_DESC:
+    'Invalid name. The name can contain only lowercase letters, numbers, and hyphens (-), must start with a lowercase letter, and must end with a lowercase letter or number. The maximum length is 63 characters.',
   InvalidImageName: 'InvalidImageName',
   'is running': 'is running',
   Job: 'Job',
@@ -160,8 +158,8 @@ module.exports = {
   'Job Settings': 'Job Settings',
   'Job Template': 'Job Template',
   ADD_CONTAINER_DESC: 'Pull images from image registries to create containers.',
-  'Labels cannot be empty': 'Labels cannot be empty',
-  'Labels exists': 'Labels exists',
+  EMPTY_LABEL_DESC: 'Please add a label.',
+  LABEL_EXIST_DESC: 'The label already exists. Please use another label.',
   layers: 'layers',
   'Liveness Probe': 'Liveness Probe',
   Log: 'Log',
@@ -444,12 +442,11 @@ module.exports = {
   EMPTYDIR_DESC: 'Temporary storage created for the workload',
   HOSTPATH_DESC:
     'A hostPath volume mounts a file or directory from the host node’s filesystem into your Pod.',
-  PORT_INPUT_DESC:
-    'The name is required and cannot be duplicated when there are multiple ports,',
+  PORT_INPUT_DESC: 'The port name already exists. Please enter another name.',
   PORT_NAME_DESC:
-    'The port name can only contain lowercase letters, numbers and hyphens("-"), and must begin and end with a lowercase letter or a number. The value can contain a maximum of 63 characters.',
+    'The port name can contain only lowercase letters, numbers, and hyphens (-) and must begin and end with a lowercase letter or number. The maximum length is 63 characters.',
   WORKLOAD_PORT_NAME_DESC:
-    'The port name can only contain lowercase letters, numbers and hyphens("-"), and must begin and end with a lowercase letter or a number. The value can contain a maximum of 15 characters.',
+    'The port name can contain only lowercase letters, numbers and hyphens (-), and must begin and end with a lowercase letter or number. The maximum length is 15 characters.',
 
   DEPLOYMENTS_BASEINFO_DESC:
     'You can give the deployment a name that is easy to distinguish when you use it.',
@@ -637,7 +634,7 @@ module.exports = {
     'When you add the PersistentVolumeClaim（PVC) (read & write mode), you can collect log information from the PVC. Once it is enabled, the filebeat pod image, which can be used to collect relevant logs, will be installed through SideCar.',
 
   ISTIO_PROTOCOL_TIP:
-    'In order to fully use the Application Governance function, please select the protocol the service will actually be using. For example, please select HTTP protocol for a HTTP service and you will get a port name like http-[name].',
+    'To fully use the Application Governance feature, select a protocol based on the actual usage of the Service. The port name will be generated in the <Protocol>-<Name> format.',
 
   CONTAINER_LOG_PATH_TIP:
     'The container log relative path is the path from the pod mount path, which can be given in glob mode. When there are multiple groups, separate them by commas. For example, when the pod mount path is /data, the pod log relative path is configured as log/*.log, which means that all .log suffix files in the /data/log directory are matched. If you need to match all .log suffix files in the /data/log directory and its subdirectories, you can configure the pod log relative path to log/**/*.log.',

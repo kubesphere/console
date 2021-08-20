@@ -32,8 +32,8 @@ export default class ContainerPorts extends Component {
             <div key={index} className={styles.port}>
               <span>{`${t('Protocol')}: ${port.protocol}`}</span>
               <span>{`${t('NAME')}: ${port.name}`}</span>
-              <span>{`${t('Container Port')}: ${port.containerPort}`}</span>
-              <span>{`${t('Service Port')}: ${port.servicePort}`}</span>
+              <span>{`${t('CONTAINER_PORT')}: ${port.containerPort}`}</span>
+              <span>{`${t('SERVICE_PORT')}: ${port.servicePort}`}</span>
             </div>
           ))}
       </div>

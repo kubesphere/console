@@ -139,7 +139,7 @@ module.exports = {
   Downstream: 'Downstream',
   Drain: 'Drenar',
   Draining: 'Drenando',
-  'Duplicate keys': 'Calves duplicadas',
+  KEY_EXIST_DESC: 'The key already exists.',
   'Earliest start time': 'Hora de inicio más temprana',
   EDIT: 'Editar',
   'Edit ': 'Editar',
@@ -147,7 +147,7 @@ module.exports = {
   EDIT_MODE: 'Modo de edición',
   'eg.': 'p.ej.',
   email: 'correo electrónico',
-  'Empty keys': 'Claves vacías',
+  EMPTY_KEY_DESC: 'Please enter a key.',
   Enable: 'Habilitar',
   Enabled: 'Habilitado',
   'End Time': 'Hora de finalización',
@@ -184,7 +184,7 @@ module.exports = {
   In: 'En',
   Inbound: 'Entrante',
   Infrastructure: 'Infraestructura',
-  'Internet Access': 'Acceso a Internet',
+  INTERNET_ACCESS: 'Acceso a Internet',
   'is updating': 'está actualizando',
   key: 'clave',
   Labels: 'Labels',
@@ -216,7 +216,7 @@ module.exports = {
   Monitors: 'Monitores',
   More: 'Más',
   'Most recent start time': 'Hora de inicio más reciente',
-  'Multi-cluster Deployment': 'Despliegue de multi-cluster',
+  MULTI_CLUSTER_DEPLOYMENT: 'Despliegue de multi-cluster',
   name: 'nombre',
   NAME_VALIDATION_FAILED:
     'Evite de crear nombre con el kube- del prefijo, puesto que es reservado para los namespaces del sistema de Kubernetes',
@@ -445,7 +445,7 @@ module.exports = {
   DELETE_RESOURCE_TIP:
     '¿Está seguro de eliminar el recurso <strong>{resource}</strong> ? El recurso no se podrá recuperar después de eliminarlo.',
   LABEL_FORMAT_DESC:
-    'La label tiene un máximo de 63 carácteres para clave y valor, la clave está limitada a 253 carácteres si contiene un nombre de dominio. Solo puedes contener letras mayúsculas y minúsculas, números, guiones ("-"), guiones bajos (_) y puntos (.), Y debe comenzar y terminar con un número o letras.',
+    'The key and value can contain only uppercase and lowercase letters, numbers, hyphens (-), underscores (_), and dots (.), and must begin and end with an uppercase or lowercase letter or number. The maximum length is 63 characters. If the key contains the domain name, the maximum length is 253 characters.',
   add_: 'Añadir',
   REMOVE_MEMBER_TIP:
     '¿Estás seguro de que deseas eliminar el miembro <strong>{resource}</strong> ?',

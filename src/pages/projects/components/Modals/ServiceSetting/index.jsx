@@ -109,7 +109,7 @@ export default class ServiceSettingModal extends React.Component {
   }
 
   renderEmpty() {
-    return <p className={styles.empty}>{t('Unknown service type')}</p>
+    return <p className={styles.empty}>{t('UNKNOWN_SERVICE_TYPE')}</p>
   }
 
   renderForm() {
@@ -138,7 +138,7 @@ export default class ServiceSettingModal extends React.Component {
     return (
       <Modal
         width={1162}
-        title={t('Edit Service')}
+        title={t('EDIT_SERVICE')}
         onOk={type !== SERVICE_TYPES.Unknown ? this.handleOk : null}
         onCancel={this.handleCancel}
         visible={visible}

@@ -95,7 +95,7 @@ export default class StatefulSetDetail extends React.Component {
       key: 'editService',
       show: this.store.detail.spec.serviceName,
       icon: 'network-router',
-      text: t('Edit Service'),
+      text: t('EDIT_SERVICE'),
       action: 'edit',
       onClick: () =>
         this.trigger('workload.service.edit', {

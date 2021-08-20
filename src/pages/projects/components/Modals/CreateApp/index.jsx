@@ -126,7 +126,7 @@ export default class ServiceDeployAppModal extends React.Component {
         required: true,
       },
       {
-        title: 'Internet Access',
+        title: 'INTERNET_ACCESS',
         component: Routes,
         required: true,
       },

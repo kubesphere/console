@@ -243,12 +243,12 @@ module.exports = {
   'Port Settings': '端口设置',
   'Service Settings': '服务设置',
   'Health Checker': '健康检查器',
-  'Internet Access': '外网访问',
+  INTERNET_ACCESS: '外网访问',
   'Advanced Settings': '高级设置',
   Settings: '设置',
   Configuration: '配置',
-  'Multi-cluster Deployment': '多集群部署',
-  MULTI_CLUSTER_TIP: '该资源部署在多个集群',
+  MULTI_CLUSTER_DEPLOYMENT: '多集群部署',
+  MULTI_CLUSTER_TIP: '该资源部署在多个集群。',
 
   ALIAS: '别名',
   'Official Document': '官网文档',
@@ -303,7 +303,7 @@ module.exports = {
   LONG_NAME_TOO_LONG: '最长 253 个字符',
   ALIAS_DESC: '别名可包含任意字符，最长 63 个字符。',
   LABEL_FORMAT_DESC:
-    '标签的 key 和 value 最长 63 个字符，key 如果包含域名, 则最长 253 字符。只能包含大小写字母、数字, 分隔符("-")，下划线(_)及点(.)，且必须以数字或大小写开头和结尾',
+    '标签的键和值只能包含大小写字母、数字、连字符（-）、下划线（_）以及点（.），且必须以数字或大小写开头和结尾，最长 63 个字符，键如果包含域名，则最长 253 字符。',
   DESCRIPTION_DESC: '描述可包含任意字符，最长 256 个字符。',
   PROJECT_DESC: '项目用于对资源进行分组管理和控制不同用户的资源管理权限。',
   'MULTI-CLUSTER_PROJECT_CREATE_DESC':
@@ -322,8 +322,8 @@ module.exports = {
   NAME_VALIDATION_FAILED:
     '名称不能以 kube- 开头，该字符串为 Kubernetes 系统保留保留字符串。',
   NAME_EXIST_DESC: '名称已存在。请使用其他名称。',
-  'Duplicate keys': '无法添加重复的 key',
-  'Empty keys': '无法添加空的 key',
+  KEY_EXIST_DESC: '键已存在。',
+  EMPTY_KEY_DESC: '请输入键值。',
 
   'Log Out': '登出',
   About: '关于',

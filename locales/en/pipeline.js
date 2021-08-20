@@ -249,7 +249,6 @@ module.exports = {
   'Scan Repo Trigger': 'Scan Repo Trigger',
   'Scan Repository Logs': 'Scan Repository Logs',
   'Scan Repository': 'Scan Repository',
-  Schedule: 'Schedule',
   'Scheduled build': 'Scheduled build',
   SCM: 'SCM',
   'Script Path': 'Script Path',

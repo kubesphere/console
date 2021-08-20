@@ -150,7 +150,6 @@ module.exports = {
   'no status': '没有状态',
   Skipped: '已跳过',
   'Sub-healthy': '亚健康',
-  Schedule: '日程表',
   'Stop Job Successfully, Status updated later': '任务已停止，状态稍后更新',
   'Scan Repository Logs': '扫描仓库日志',
   'Started By': '实施者',

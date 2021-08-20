@@ -103,7 +103,7 @@ export default class MailForm extends Component {
                 ]}
                 portRules={[
                   { required: true, message: t('ENTER_PORT_NUMBER') },
-                  { pattern: PATTERN_PORT, message: t('Invalid port') },
+                  { pattern: PATTERN_PORT, message: t('INVALID_PORT_DESC') },
                 ]}
                 defaultPort={25}
               />
