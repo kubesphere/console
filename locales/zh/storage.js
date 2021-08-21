@@ -72,7 +72,7 @@ module.exports = {
 
   'Set as default storage class': '设为默认存储类型',
   'Storage Class Name': '存储类型名称',
-  Default: '默认',
+  DEFAULT: '默认',
   StorageClasses: '存储类型',
   STORAGE_SYSTEM: '存储系统',
 
@@ -173,7 +173,7 @@ module.exports = {
     'Ceph 集群的额外功能。仅当设置 imageFormat 为“2”时，才需要填写该值。',
 
   DEPENDENT_STORAGE_CLASS_DELETE_TIPS:
-    '请确认是否有资源依赖该存储类型。若存在依赖，请先将依赖的资源关闭，以免影响资源功能。',
+    '请确认是否有资源依赖该存储类型。若有，请先将依赖的资源关闭，以免影响资源的功能。',
 
   CREATE_VOLUME_WITH_SNAPSHOT: '基于快照创建存储卷',
 
@@ -208,7 +208,6 @@ module.exports = {
   // Storage Class > GlusterFS
   RESTURL: 'REST URL',
   CLUSTER_ID: '集群 ID',
-  ADD_PARAMETER: '添加',
   REST_AUTH_ENABLED: '启用 REST 认证',
   REST_USER: 'REST 用户',
   VOLUME_TYPE: '存储卷类型',
@@ -219,4 +218,7 @@ module.exports = {
   SECRET_NAMESPACE: '密钥所属项目',
   GID_MIN: 'GID 最小值',
   GID_MAX: 'GID 最大值',
+  CUSTOM: '自定义',
+  PARAMETERS: '参数',
+  ADD: '添加',
 }

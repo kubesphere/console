@@ -24,7 +24,7 @@ module.exports = {
   'Create Volume': 'Crear volumen',
   CREATE_VOLUME_WITH_SNAPSHOT: 'CREATE_VOLUME_WITH_SNAPSHOT',
   'Custom Provisioner': 'Provisioner personalizado',
-  Default: 'Predeterminado',
+  DEFAULT: 'Predeterminado',
   'Default Storage Class': 'Clase de almacenamiento predeterminada',
   'Default Volume': 'Volumen predeterminado',
   'Delete Volume': 'Eliminar volumen',
@@ -188,7 +188,7 @@ module.exports = {
   CEPHRBD_IMAGE_FEATURES_DESC:
     'Additional function of the Ceph cluster. The value should only be set when you set imageFormat to "2".',
   DEPENDENT_STORAGE_CLASS_DELETE_TIPS:
-    'Compruebe si la clase de almacenamiento está siendo utilizada por otros recursos. Si hay algún recurso dependiente de la clase de almacenamiento, primero debe deshabilitar el recurso.',
+    'Make sure if there are resources dependent on the storage class. If there are, you need to disable the resources before it the resource functions are affected.',
   CREATE_VOLUME_BY_STORAGECLASS: 'Crear volumen por clase de almacenamiento',
   CREATE_VOLUME_BY_SNAPSHOT: 'Crear volumen por snapshot',
   SELECT_SNAPSHOT_TO_CREATE_VOLUME: 'Selecciona snapshot para crear volumen.',
@@ -207,7 +207,6 @@ module.exports = {
   // Storage Class > GlusterFS
   RESTURL: 'REST URL',
   CLUSTER_ID: 'Cluster ID',
-  ADD_PARAMETER: 'Add',
   REST_AUTH_ENABLED: 'REST Authentication',
   REST_USER: 'REST User',
   VOLUME_TYPE: 'Volume Type',
@@ -218,4 +217,7 @@ module.exports = {
   SECRET_NAMESPACE: 'Secret Namespace',
   GID_MIN: 'GID Minimum Value',
   GID_MAX: 'GID Maximum Value',
+  CUSTOM: 'Custom',
+  PARAMETERS: 'Parameters',
+  ADD: 'Add',
 }

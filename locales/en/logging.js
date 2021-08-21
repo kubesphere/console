@@ -136,7 +136,7 @@ module.exports = {
   STOP_REAL_TIME_LOG: 'Disable real-time logging',
   LOG_EXPORT: 'Log Export',
 
-  CREATE_CUSTOM_MONITORING_DASHBOARD: 'Create custom monitoring dashboard',
+  CREATE_CUSTOM_MONITORING_DASHBOARD: 'Create Custom Monitoring Dashboard',
   SELECT_MONITORING_TEMPLATE: 'Select Monitoring Template',
   CUSTON_MONITORING_TEMPLATE_DESC:
     'Generate default monitoring template based on the application template you select or customize a template.',

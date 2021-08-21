@@ -37,7 +37,6 @@ module.exports = {
   Jobs: 'Jobs',
   'KubeSphere Running Status': 'KubeSphere Running Status',
   'Last login time': 'Last Login',
-  LOCAL_STORAGE: 'Local Storage',
   'Log Data': 'Log Data',
   'Memory Usage': 'Memory Usage',
   'Memory Utilization': 'Memory Utilization',

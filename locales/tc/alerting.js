@@ -105,7 +105,7 @@ module.exports = {
   NOTIFY_LIST_INPUT_PLACEHOLDER: '輸入郵件地址尋找通知的成員',
   NOTIFY_CURRENT_COUNT: '當前第 {count} 次通知',
   RESOURCE_SELECTOR_FORM_TIP: '請填寫標籤選擇器',
-  SELECT_NODE_TIP: 'Please select at least a cluster resource.',
+  SELECT_NODE_TIP: 'Please select at least a cluster node.',
   SELECT_WORKLOAD_TIP: '請選擇工作負載。',
   SEVERITY_MSG_FIXED_MINUTES: '每 {count} 分鐘通知一次',
   SEVERITY_MSG_NO_LIMIT: '不限制',
@@ -122,7 +122,7 @@ module.exports = {
     'Invalid value. Please select a value from the drop-down list or enter 0 or a positive integer.',
   NAME: 'Name',
   ALIAS: 'Alias',
-  ALERT_DURATION_MIN: 'Duration (Minutes)',
+  ALERT_DURATION_MIN: 'Duration (min)',
 
   ENTER_RULE_EXPRESSION: '请输入告警規則表達式。',
   ALERT_FUNCTIONS: 'Functions',
@@ -189,6 +189,9 @@ module.exports = {
   // Alerting Policies
   ALERTING_POLICIES: 'Alerting Policies',
   NOTIFICATION_SETTINGS: 'Notification Settings',
+  DEPLOYMENT: 'Deployment',
+  STATEFULSET: 'StatefulSet',
+  DAEMONSET: 'DaemonSet',
 
   // Custom Monitoring
   CREATED_AT: 'Created At',

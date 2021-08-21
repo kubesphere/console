@@ -81,22 +81,22 @@ export default class ETCDStatusTab extends React.Component {
     const result = [
       {
         icon: ICON_TYPES['etcd'],
-        name: 'ETCD',
+        name: 'etcd',
         title: 'ETCD_STATUS',
       },
       {
         icon: ICON_TYPES['etcd'],
-        name: 'ETCD',
+        name: 'etcd',
         title: 'ETCD_PROPOSAL',
       },
       {
         icon: ICON_TYPES['etcd'],
-        name: 'ETCD',
+        name: 'etcd',
         title: 'ETCD_DB_SIZE',
       },
       {
         icon: ICON_TYPES['etcd'],
-        name: 'ETCD',
+        name: 'etcd',
         title: 'ETCD_CLIENT_TRAFFIC',
       },
     ]

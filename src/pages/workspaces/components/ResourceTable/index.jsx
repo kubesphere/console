@@ -48,7 +48,7 @@ class ResourceTable extends React.Component {
       return (
         <EmptyList
           icon="cluster"
-          title={t('No Available Cluster')}
+          title={t('NO_AVAILABLE_CLUSTER')}
           desc={t('WORKSPACE_NO_CLUSTER_TIP')}
         />
       )

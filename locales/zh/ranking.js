@@ -20,7 +20,7 @@ module.exports = {
   'System Point': '节点',
   'Project Usage Rank': '项目资源用量排行',
   'Workspace Usage Rank': '企业空间资源用量排行',
-  Export: '导出',
+  EXPORT: '导出',
   TOP_5_FOR_RSC_USAGE: '资源用量 Top 5',
   'Workspace Usage Top5': '企业空间资源用量 Top5',
   QUOTA_LIMIT_TIP:

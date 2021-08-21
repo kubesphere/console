@@ -73,7 +73,7 @@ module.exports = {
 
   'Set as default storage class': '設為預設儲存類型',
   'Storage Class Name': '儲存類型名稱',
-  Default: '預設',
+  DEFAULT: '預設',
   StorageClasses: '儲存類型',
   STORAGE_SYSTEM: '儲存系統',
 
@@ -179,7 +179,7 @@ module.exports = {
     'Additional function of the Ceph cluster. The value should only be set when you set imageFormat to "2".',
 
   DEPENDENT_STORAGE_CLASS_DELETE_TIPS:
-    '請確認是否有資源依賴該儲存類型。若存在依賴，請先將依賴的資源關閉，以免影響資源功能',
+    'Make sure if there are resources dependent on the storage class. If there are, you need to disable the resources before it the resource functions are affected.',
 
   CREATE_VOLUME_WITH_SNAPSHOT: '基於快照創建儲存卷',
 
@@ -214,7 +214,6 @@ module.exports = {
   // Storage Class > GlusterFS
   RESTURL: 'REST URL',
   CLUSTER_ID: 'Cluster ID',
-  ADD_PARAMETER: 'Add',
   REST_AUTH_ENABLED: 'REST Authentication',
   REST_USER: 'REST User',
   VOLUME_TYPE: 'Volume Type',
@@ -225,4 +224,7 @@ module.exports = {
   SECRET_NAMESPACE: 'Secret Namespace',
   GID_MIN: 'GID Minimum Value',
   GID_MAX: 'GID Maximum Value',
+  CUSTOM: 'Custom',
+  PARAMETERS: 'Parameters',
+  ADD: 'Add',
 }

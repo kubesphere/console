@@ -118,7 +118,7 @@ export default class Overview extends React.Component {
         value: this.getValue(data[MetricTypes.memory_usage], 'memory'),
       },
       {
-        name: 'LOCAL_STORAGE',
+        name: 'DISK',
         icon: 'storage',
         value: this.getValue(data[MetricTypes.disk_size_usage], 'disk'),
       },

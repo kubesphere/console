@@ -311,6 +311,7 @@ module.exports = {
   UNBIND_CLUSTER_Q: 'Are you sure you want to unbind the cluster?',
 
   // Cluster Visibility
+  ADMINISTRATOR: 'Administrator',
   CLUSTER_VISIBILITY: '集群能見度',
   CLUSTER_VISIBILITY_DESC:
     'Cluster visibility allows users to view and manage cluster resources in workspaces after the cluster is authorized to the workspaces.',

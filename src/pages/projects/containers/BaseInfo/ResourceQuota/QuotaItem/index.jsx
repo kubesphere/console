@@ -58,7 +58,7 @@ const QuotaItem = ({ name, total, used }) => {
       <Icon name={ICON_TYPES[name]} size={40} />
       <div className={styles.item}>
         <div>{t(name)}</div>
-        <p>{t('Resource Type')}</p>
+        <p>{t('RESOURCE_TYPE')}</p>
       </div>
       <div className={styles.item}>
         <div>{used}</div>

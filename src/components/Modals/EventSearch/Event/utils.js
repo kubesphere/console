@@ -40,7 +40,7 @@ export const dropDownItems = {
   },
   involved_object_kind_filter: {
     icon: 'vnc',
-    text: t('Resource Type'),
+    text: t('RESOURCE_TYPE'),
   },
   involved_object_name_filter: {
     icon: 'strategy-group',
@@ -93,7 +93,7 @@ export const supportQueryParams = [
   },
   {
     icon: 'vnc',
-    title: t('Search Events by', { field: t('Resource Type') }),
+    title: t('Search Events by', { field: t('RESOURCE_TYPE') }),
     tips: t('Resource Type Event Query Tip'),
     key: 'involved_object_kind_filter',
   },
