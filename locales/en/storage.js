@@ -149,7 +149,6 @@ module.exports = {
     'Use QingCloud CSI as the underlying storage plug-in. For more information, see <a href="https://github.com/yunify/qingcloud-csi/blob/master/README.md#feature-matrix">QingCloud CSI</a>.',
 
   MAXSIZE: 'Maximum Size',
-  TYPE: 'Type',
   MINSIZE: 'Minimum Size',
   STEPSIZE: 'Step Size',
   FSTYPE: 'File System Type',

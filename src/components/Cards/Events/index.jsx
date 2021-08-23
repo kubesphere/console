@@ -32,7 +32,7 @@ class Events extends React.Component {
 
   getColumns = () => [
     {
-      title: t('Type'),
+      title: t('TYPE'),
       dataIndex: 'type',
       width: '10%',
       render: type => (

@@ -159,7 +159,7 @@ export default class NodeDetail extends React.Component {
         value: nodeInfo.architecture,
       },
       {
-        name: t('Created Time'),
+        name: t('CREATED_AT'),
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
     ]

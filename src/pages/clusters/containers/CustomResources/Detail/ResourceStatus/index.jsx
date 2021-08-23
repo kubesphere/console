@@ -126,7 +126,7 @@ export default class ResourceStatus extends React.Component {
           ]
         : []),
       {
-        title: t('Created Time'),
+        title: t('CREATED_AT'),
         dataIndex: 'createTime',
         render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
       },

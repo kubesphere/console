@@ -48,7 +48,7 @@ export default class TableMonitorForm extends Component {
         sidebar={<GraphTextInput type={'table'} />}
         main={
           <>
-            <FormGroupCard label={t('Data')}>
+            <FormGroupCard label={t('DATA')}>
               <Form.Item>
                 <CustomArrayInput
                   name="targets"

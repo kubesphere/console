@@ -77,7 +77,7 @@ export default class ProjectInfo extends React.Component {
             <div>
               {getLocalTime(detail.createTime).format(`YYYY-MM-DD HH:mm:ss`)}
             </div>
-            <p>{t('Created Time')}</p>
+            <p>{t('CREATED_AT')}</p>
           </div>
           {!isEmpty(actions) && (
             <div className={classNames(styles.item, 'text-right')}>

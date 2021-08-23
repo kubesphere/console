@@ -43,8 +43,8 @@ module.exports = {
   'Gateway IP': '网关 IP',
   'Gateway Type': '网关类型',
 
-  Mode: '模式',
-  Paths: '路径',
+  MODE_TCAP: '模式',
+  PATH_PL: '路径',
   DOMAIN_NAME_TCAP: '域名',
 
   'Invalid paths': '请填写正确路径',

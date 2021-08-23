@@ -146,9 +146,9 @@ export default class SecretSettings extends React.Component {
   renderDefault() {
     return (
       <Form.Item
-        label={t('Data')}
+        label={t('DATA')}
         rules={[
-          { required: true, message: t('Please input data') },
+          { required: true, message: t('ENTER_DATA_DESC') },
           { validator: this.dataValidator },
         ]}
       >
@@ -165,9 +165,9 @@ export default class SecretSettings extends React.Component {
     return (
       <div key="tls" className="margin-t8">
         <Form.Item
-          label={t('Credential')}
+          label={t('CREDENTIAL_SI')}
           rules={[
-            { required: true, message: t('Please input credential') },
+            { required: true, message: t('ENTER_CREDENTIAL_TIP') },
             { validator: this.dataValidator },
           ]}
         >
@@ -176,9 +176,9 @@ export default class SecretSettings extends React.Component {
           </Base64Wrapper>
         </Form.Item>
         <Form.Item
-          label={t('Private Key')}
+          label={t('PRIVATE_KEY_TCAP')}
           rules={[
-            { required: true, message: t('Please input private key') },
+            { required: true, message: t('ENTER_PRIVATE_KEY_DESC') },
             { validator: this.dataValidator },
           ]}
         >
@@ -206,9 +206,9 @@ export default class SecretSettings extends React.Component {
     return (
       <div key="basic" className="margin-t8">
         <Form.Item
-          label={t('User Name')}
+          label={t('USERNAME')}
           rules={[
-            { required: true, message: t('Please input user name') },
+            { required: true, message: t('ENTER_USERNAME_TIP') },
             { validator: this.dataValidator },
           ]}
         >
@@ -217,9 +217,9 @@ export default class SecretSettings extends React.Component {
           </Base64Wrapper>
         </Form.Item>
         <Form.Item
-          label={t('Password')}
+          label={t('PASSWORD')}
           rules={[
-            { required: true, message: t('Please input password') },
+            { required: true, message: t('ENTER_PASSWORD_TIP') },
             { validator: this.dataValidator },
           ]}
         >
@@ -267,7 +267,7 @@ export default class SecretSettings extends React.Component {
 
     return (
       <Form data={this.fedFormTemplate} ref={formRef}>
-        <Form.Item label={t('Type')} desc={t('SECRET_TYPE_DESC')}>
+        <Form.Item label={t('TYPE')} desc={t('SECRET_TYPE_DESC')}>
           <Select
             name="type"
             options={this.getTypeOptions()}

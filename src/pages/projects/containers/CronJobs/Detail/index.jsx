@@ -170,7 +170,7 @@ export default class JobDetail extends React.Component {
         value: spec.concurrencyPolicy,
       },
       {
-        name: t('Created Time'),
+        name: t('CREATED_AT'),
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {

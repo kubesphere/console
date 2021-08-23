@@ -82,7 +82,7 @@ module.exports = {
   'Create a credential': 'Create a credential',
   'Create Credential': 'Create Credential',
   'Create Pipeline': 'Create Pipeline',
-  Credential: 'Credential',
+  CREDENTIAL_SI: 'Credential',
   'credential Id': 'credential Id',
   'Credential Id': 'Credential Id',
   'Credential ID': 'Credential ID',
@@ -252,7 +252,7 @@ module.exports = {
   'Scheduled build': 'Scheduled build',
   SCM: 'SCM',
   'Script Path': 'Script Path',
-  SECRET_NAME_TCAP: 'Secret Name',
+  // SECRET_NAME_TCAP: 'Secret Name', (Duplicated)
   secretName: 'secretName',
   secretNamespace: 'secretNamespace',
   'select a pipeline': 'select a pipeline',

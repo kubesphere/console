@@ -140,7 +140,6 @@ module.exports = {
   QINGCLOUD_VOLUME_TAGS_DESC: '为存储卷添加关联标签，多个标签需用逗号分隔。',
 
   MAXSIZE: '容量上限',
-  TYPE: '类型',
   STEPSIZE: '增量值',
   MINSIZE: '容量下限',
   FSTYPE: '文件系统类型',

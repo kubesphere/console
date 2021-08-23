@@ -79,7 +79,7 @@ export default class ComponentDetail extends React.Component {
         value: `${detail.healthyBackends} / ${detail.totalBackends}`,
       },
       {
-        name: t('Created Time'),
+        name: t('CREATED_AT'),
         value: getLocalTime(detail.startedAt).format('YYYY-MM-DD HH:mm:ss'),
       },
     ]

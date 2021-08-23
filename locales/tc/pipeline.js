@@ -67,7 +67,7 @@ module.exports = {
   TaskStatus: '運行狀態',
   WeatherScore: '健康狀態',
   Credentials: '憑證',
-  Credential: '憑證',
+  CREDENTIAL_SI: '憑證',
   'Credentials Management': '憑證管理',
   'Add Parallel Stage': '添加並行階段',
   'Add Step': '添加步驟',
@@ -256,7 +256,7 @@ module.exports = {
   'Docker Container Registry Credentials': 'Docker 容器倉庫憑證',
   'Docker Registry URL': 'Docker 倉庫 URL',
   'Registry Credentials': '倉庫憑證',
-  SECRET_NAME_TCAP: '密鑰名稱',
+  // SECRET_NAME_TCAP: '密鑰名稱', (Duplicated)
   'Show Advanced Settings': '顯示高级設置',
   'Config File Path': '配置文件路徑',
   'Add another credential': '增加一個憑證',

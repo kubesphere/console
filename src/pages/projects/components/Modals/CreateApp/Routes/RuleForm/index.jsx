@@ -169,7 +169,7 @@ export default class RuleForm extends React.Component {
             >
               <Input name="host" autoFocus={true} />
             </Form.Item>
-            <Form.Item label={t('Protocol')}>
+            <Form.Item label={t('PROTOCOL')}>
               <Select
                 name="protocol"
                 defaultValue="http"
@@ -185,7 +185,7 @@ export default class RuleForm extends React.Component {
           </>
         )}
         <Form.Item
-          label={t('Paths')}
+          label={t('PATH_PL')}
           rules={[
             { required: true, message: t('ADD_PATH_TIP') },
             { validator: this.pathValidator, checkOnSubmit: true },
@@ -235,7 +235,7 @@ export default class RuleForm extends React.Component {
             />
           )}
           {!isFederated && (
-            <Form.Item label={t('Mode')}>
+            <Form.Item label={t('MODE_TCAP')}>
               <RadioGroup
                 mode="button"
                 buttonWidth={155}

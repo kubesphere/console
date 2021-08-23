@@ -52,7 +52,7 @@ export default class AuthorizedUsers extends React.Component {
 
   getColumns = () => [
     {
-      title: t('User Name'),
+      title: t('USERNAME'),
       dataIndex: 'username',
       width: '33%',
     },

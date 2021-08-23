@@ -136,10 +136,10 @@ export default class WebhookReceiverForm extends Component {
             </Form.Item>
             {type === 'basic' && (
               <>
-                <Form.Item label={t('User Name')}>
+                <Form.Item label={t('USERNAME')}>
                   <Input name="receiver.spec.webhook.httpConfig.basicAuth.username" />
                 </Form.Item>
-                <Form.Item label={t('Password')}>
+                <Form.Item label={t('PASSWORD')}>
                   <Input
                     name="secret.data.password"
                     type="password"

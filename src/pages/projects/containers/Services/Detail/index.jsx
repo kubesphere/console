@@ -192,7 +192,7 @@ export default class ServiceDetail extends React.Component {
         value: namespace,
       },
       {
-        name: t('Type'),
+        name: t('TYPE'),
         value: (
           <span>
             {`${
@@ -233,7 +233,7 @@ export default class ServiceDetail extends React.Component {
         value: this.renderEndpoints(),
       },
       {
-        name: t('Created Time'),
+        name: t('CREATED_AT'),
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {

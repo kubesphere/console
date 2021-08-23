@@ -156,7 +156,7 @@ export default class RouteDetail extends React.Component {
         value: detail.app,
       },
       {
-        name: t('Created Time'),
+        name: t('CREATED_AT'),
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {

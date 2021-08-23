@@ -125,7 +125,7 @@ export default class VolumeSnapshot extends React.Component {
         render: restoreSize => restoreSize || '-',
       },
       {
-        title: t('Created Time'),
+        title: t('CREATED_AT'),
         dataIndex: 'createTime',
         isHideable: true,
         sorter: true,

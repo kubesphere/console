@@ -42,12 +42,12 @@ const Card = ({ gateway, rule, tls = {}, prefix }) => {
   const description = (
     <>
       <span>
-        {t('Protocol')}: {protocol}
+        {t('PROTOCOL')}: {protocol}
       </span>
       &nbsp;&nbsp;
       {protocol === 'https' && (
         <span>
-          {t('Certificate')}: {tls.secretName}
+          {t('CERTIFICATE')}: {tls.secretName}
         </span>
       )}
     </>
@@ -68,7 +68,7 @@ const Card = ({ gateway, rule, tls = {}, prefix }) => {
           <Columns>
             <Column>
               <span>
-                {t('path')}: <strong>{path.path}</strong>
+                {t('PATH_SI')}: <strong>{path.path}</strong>
               </span>
             </Column>
             <Column>

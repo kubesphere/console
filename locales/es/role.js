@@ -111,7 +111,7 @@ module.exports = {
   'StorageClasses View': 'Vista de clases de almacenamiento',
   Terminating: 'Terminando',
   'Unable to delete preset role': 'No se puedes eliminar el rol preestablecido',
-  'User Name': 'Nombre de usuario',
+  USERNAME: 'Nombre de usuario',
   'Users Management': 'Gestión de usuarios',
   'Users View': 'Vista de usuarios',
   'Volume Snapshots Management': 'Gestión de snapshots de volumen',

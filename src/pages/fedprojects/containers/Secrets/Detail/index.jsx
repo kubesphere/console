@@ -134,11 +134,11 @@ export default class SecretDetail extends React.Component {
         value: namespace,
       },
       {
-        name: t('Type'),
+        name: t('TYPE'),
         value: t(SECRET_TYPES[secretType] || secretType),
       },
       {
-        name: t('Created Time'),
+        name: t('CREATED_AT'),
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {

@@ -107,7 +107,7 @@ export default class Secrets extends React.Component {
         render: status => <Status type={status} name={t(status)} flicker />,
       },
       {
-        title: t('Type'),
+        title: t('TYPE'),
         dataIndex: 'type',
         isHideable: true,
         width: '12%',
@@ -121,7 +121,7 @@ export default class Secrets extends React.Component {
         render: data => Object.keys(data).length,
       },
       {
-        title: t('Created Time'),
+        title: t('CREATED_AT'),
         dataIndex: 'createTime',
         isHideable: true,
         width: 150,

@@ -150,7 +150,6 @@ module.exports = {
   VOLUME_FS_TYPE:
     'Set the file system type of the storage volume. The value can be ext3, ext4, or xfs, and it defaults to ext4.',
   MAXSIZE: 'Maximum Size',
-  TYPE: 'Type',
   MINSIZE: 'Minimum Size',
   STEPSIZE: 'Step Size',
   FSTYPE: 'File System Type',

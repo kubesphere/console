@@ -235,7 +235,7 @@ export default class Projects extends React.Component {
         render: record => this.getLastValue(record, MetricTypes.pod),
       },
       {
-        title: t('Created Time'),
+        title: t('CREATED_AT'),
         dataIndex: 'createTime',
         isHideable: true,
         sorter: true,

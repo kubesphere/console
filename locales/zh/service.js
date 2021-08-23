@@ -112,7 +112,7 @@ module.exports = {
   Creating: '正在创建',
   'Creation failed, please delete and try again': '创建失败，请删除后重试',
 
-  'Add Route Rule': '添加路由规则',
+  ADD_ROUTE_RULE_TCAP: '添加路由规则',
 
   VIRTUAL_IP_TITLE: '虚拟 IP',
   VIRTUAL_IP_DESC:

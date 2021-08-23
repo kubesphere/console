@@ -84,7 +84,7 @@ export default class SvnForm extends React.Component {
             <Input name="svn_source.remote" />
           </Form.Item>
           <Form.Item
-            label={t('Credential')}
+            label={t('CREDENTIAL_SI')}
             desc={
               <p>
                 {t('ADD_NEW_CREDENTIAL_DESC')}

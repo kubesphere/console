@@ -156,7 +156,7 @@ export default class Volumes extends React.Component {
         ),
       },
       {
-        title: t('Created Time'),
+        title: t('CREATED_AT'),
         dataIndex: 'createTime',
         isHideable: true,
         width: 150,

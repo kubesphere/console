@@ -135,8 +135,8 @@ export default class Login extends Component {
               <Input name="username" placeholder="User@example.com" />
             </Form.Item>
             <Form.Item
-              label={t('Password')}
-              rules={[{ required: true, message: t('Please input password') }]}
+              label={t('PASSWORD')}
+              rules={[{ required: true, message: t('ENTER_PASSWORD_TIP') }]}
             >
               <InputPassword name="password" placeholder="Password" />
             </Form.Item>

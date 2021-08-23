@@ -148,7 +148,7 @@ export default class CRDAppDetail extends React.Component {
         value: detail.version,
       },
       {
-        name: t('Created Time'),
+        name: t('CREATED_AT'),
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
