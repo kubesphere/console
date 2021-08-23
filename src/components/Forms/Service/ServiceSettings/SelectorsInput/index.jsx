@@ -202,7 +202,7 @@ export default class SelectorsInput extends React.Component {
           content={this.renderWorkloadSelectForm()}
           closeAfterClick={false}
         >
-          <Button className={styles.workload}>{t('Specify Workload')}</Button>
+          <Button className={styles.workload}>{t('SPECIFY_WORKLOAD')}</Button>
         </Popper>
       </div>
     )

@@ -237,9 +237,7 @@ export default class ServiceBaseInfo extends React.Component {
               <Form.Item
                 label={t('PROJECT')}
                 desc={t('PROJECT_DESC')}
-                rules={[
-                  { required: true, message: t('Please select a project') },
-                ]}
+                rules={[{ required: true, message: t('PROJECT_EMPTY_DESC') }]}
               >
                 <ProjectSelect
                   name="metadata.namespace"

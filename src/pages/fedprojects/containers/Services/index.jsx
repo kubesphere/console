@@ -131,7 +131,7 @@ export default class Services extends React.Component {
         render: status => <Status type={status} name={t(status)} flicker />,
       },
       {
-        title: t('Service Type'),
+        title: t('SERVICE_TYPE_TCAP'),
         dataIndex: 'annotations["kubesphere.io/serviceType"]',
         isHideable: true,
         render: (serviceType, record) => (
@@ -139,7 +139,7 @@ export default class Services extends React.Component {
             title={
               serviceType
                 ? t(`SERVICE_TYPE_${serviceType.toUpperCase()}`)
-                : t('Custom Creation')
+                : t('CUSTOM_CREATION')
             }
             description={record.type || '-'}
           />
@@ -152,7 +152,7 @@ export default class Services extends React.Component {
         width: '22%',
       },
       {
-        title: t('Created Time'),
+        title: t('CREATED_AT'),
         dataIndex: 'createTime',
         isHideable: true,
         width: 150,

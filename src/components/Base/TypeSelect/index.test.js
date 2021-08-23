@@ -27,13 +27,13 @@ it('renders correctly', () => {
     {
       icon: 'backup',
       value: 'stateful',
-      label: 'Stateful Service',
+      label: 'STATEFUL_SERVICE',
       description: 'STATEFUL_SERVICE_DESC',
     },
     {
       icon: 'backup',
       value: 'stateless',
-      label: 'Stateless Service',
+      label: 'STATELESS_SERVICE',
       description: 'STATELESS_SERVICE_DESC',
     },
   ]
@@ -46,7 +46,7 @@ it('renders correctly', () => {
 
   const wrapper = mount(<TypeSelect {...props} />)
   expect(wrapper.find(`.${styles.control} .${styles.text} > div`)).toHaveText(
-    'Stateful Service'
+    'STATEFUL_SERVICE'
   )
   expect(wrapper.find(`.${styles.control} .${styles.text} > p`)).toHaveText(
     'STATEFUL_SERVICE_DESC'
@@ -55,7 +55,7 @@ it('renders correctly', () => {
 
   wrapper.setProps({ value: 'stateless' })
   expect(wrapper.find(`.${styles.control} .${styles.text} > div`)).toHaveText(
-    'Stateless Service'
+    'STATELESS_SERVICE'
   )
   expect(wrapper.find(`.${styles.control} .${styles.text} > p`)).toHaveText(
     'STATELESS_SERVICE_DESC'

@@ -120,7 +120,7 @@ export default class ServicePort extends React.Component {
         <AddonsInput
           prefix={
             <div className={styles.tip}>
-              <span>{t('Protocol')}</span>
+              <span>{t('PROTOCOL')}</span>
               <Tooltip content={t('ISTIO_PROTOCOL_TIP')}>
                 <Icon name="question" />
               </Tooltip>
@@ -138,7 +138,7 @@ export default class ServicePort extends React.Component {
         <AddonsInput prefix={t('NAME')}>
           <Input name="name" value={name} onChange={this.handleNameChange} />
         </AddonsInput>
-        <AddonsInput prefix={t('Container Port')}>
+        <AddonsInput prefix={t('CONTAINER_PORT')}>
           <NumberInput
             name="targetPort"
             min={1}
@@ -148,14 +148,14 @@ export default class ServicePort extends React.Component {
             onChange={this.handleTargetPortChange}
           />
         </AddonsInput>
-        <AddonsInput prefix={t('Service Port')}>
+        <AddonsInput prefix={t('SERVICE_PORT')}>
           <NumberInput
             name="port"
             min={1}
             max={65535}
             value={port}
             integer
-            placeholder={t('required')}
+            placeholder={t('REQUIRED')}
             onChange={this.handlePortChange}
           />
         </AddonsInput>

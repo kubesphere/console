@@ -21,7 +21,7 @@ import PropTypes from 'prop-types'
 import { toJS } from 'mobx'
 import ExternalName from 'components/Forms/Service/ExternalName'
 
-import { SERVICE_TYPES } from 'utils/constants'
+import { SERVICE_TYPES, SERVICE_TYPES_VALUE } from 'utils/constants'
 import ServiceSettings from './Form'
 
 import styles from './index.scss'
@@ -73,6 +73,7 @@ export default class ServiceSettingForm extends React.Component {
       isFederated,
       formProps,
       formTemplate,
+      type,
     } = this.props
 
     return (
@@ -82,6 +83,7 @@ export default class ServiceSettingForm extends React.Component {
         cluster={cluster}
         isFederated={isFederated}
         formProps={formProps}
+        type={SERVICE_TYPES_VALUE[type]}
       />
     )
   }
@@ -93,7 +95,7 @@ export default class ServiceSettingForm extends React.Component {
   }
 
   renderEmpty() {
-    return <p className={styles.empty}>{t('Unknown service type')}</p>
+    return <p className={styles.empty}>{t('UNKNOWN_SERVICE_TYPE')}</p>
   }
 
   renderForm() {

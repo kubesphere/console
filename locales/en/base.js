@@ -139,7 +139,7 @@ module.exports = {
   Downstream: 'Downstream',
   Drain: 'Drain',
   Draining: 'Draining',
-  'Duplicate keys': 'Duplicate keys',
+  KEY_EXIST_DESC: 'The key already exists.',
   'Earliest start time': 'Earliest start time',
   EDIT: 'Edit',
   'Edit ': 'Edit ',
@@ -147,11 +147,12 @@ module.exports = {
   EDIT_MODE: 'Edit Mode',
   'eg.': 'eg.',
   email: 'email',
-  'Empty keys': 'Empty keys',
+  EMPTY_KEY_DESC: 'Please enter a key.',
   Enable: 'Enable',
   Enabled: 'Enabled',
   'End Time': 'End Time',
   SEARCH: 'Search',
+  Error: 'Error',
   'Error Tips': 'Error Tips',
   event: 'event',
   'Event metadata': 'Event metadata',
@@ -183,7 +184,7 @@ module.exports = {
   In: 'In',
   Inbound: 'Inbound',
   Infrastructure: 'Infrastructure',
-  'Internet Access': 'Internet Access',
+  INTERNET_ACCESS: 'Internet Access',
   'is updating': 'is updating',
   key: 'key',
   Labels: 'Labels',
@@ -215,7 +216,7 @@ module.exports = {
   Monitors: 'Monitors',
   More: 'More',
   'Most recent start time': 'Most recent start time',
-  'Multi-cluster Deployment': 'Multi-cluster Deployment',
+  MULTI_CLUSTER_DEPLOYMENT: 'Multi-cluster Deployment',
   name: 'name',
   NAME_VALIDATION_FAILED:
     'The name cannot start with kube-, which is reserved for the Kubernetes system.',
@@ -447,7 +448,7 @@ module.exports = {
     'Are you sure about deleting the resource <strong>{resource}</strong> ? The resource cannot be recovered after it is deleted.',
 
   LABEL_FORMAT_DESC:
-    'The maximum number of characters of the tag for key and value is 63; key is limited to 253 characters if it contains a domain name. It can only contain upper and lower case letters, numbers, hyphens ("-"), underscores (_), and dots (.), and must begin and end with a number or letter.',
+    'The key and value can contain only uppercase and lowercase letters, numbers, hyphens (-), underscores (_), and dots (.), and must begin and end with an uppercase or lowercase letter or number. The maximum length is 63 characters. If the key contains the domain name, the maximum length is 253 characters.',
   add_: 'Add',
 
   REMOVE_MEMBER_TIP:

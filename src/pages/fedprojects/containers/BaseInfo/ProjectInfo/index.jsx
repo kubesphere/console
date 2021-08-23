@@ -35,7 +35,7 @@ export default class ProjectInfo extends React.Component {
       <Menu onClick={onMenuClick}>
         {actions.map(action => (
           <Menu.MenuItem key={action.key}>
-            <Icon name={action.icon} /> {action.text}
+            <Icon name={action.icon} type="light" /> {action.text}
           </Menu.MenuItem>
         ))}
       </Menu>

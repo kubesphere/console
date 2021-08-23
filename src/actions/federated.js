@@ -22,7 +22,7 @@ import { Modal } from 'components/Base'
 import FedProjectCreateModal from 'components/Modals/FedProjectCreate'
 import EditConfigTemplateModal from 'fedprojects/components/ConfigTemplate'
 import { toJS } from 'mobx'
-
+import FedProjectAddClusterModal from 'workspaces/components/Modals/FedProjectAddCluster'
 import DeleteModal from 'components/Modals/Delete'
 import FORM_TEMPLATES from 'utils/form.templates'
 import FED_TEMPLATES from 'utils/fed.templates'
@@ -152,6 +152,23 @@ export default {
         type: detail.type,
         workloadStore: store,
         isEdit: true,
+        ...props,
+      })
+    },
+  },
+  'federated.project.add.cluster': {
+    on({ store, detail, success, ...props }) {
+      const modal = Modal.open({
+        onOk: data => {
+          store.patch(detail, data).then(() => {
+            Notify.success({ content: `${t('Updated Successfully')}` })
+            Modal.close(modal)
+            success && success()
+          })
+        },
+        store,
+        formTemplate: toJS(detail._originData),
+        modal: FedProjectAddClusterModal,
         ...props,
       })
     },

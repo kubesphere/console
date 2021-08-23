@@ -39,12 +39,10 @@ module.exports = {
   'Container Setting': '容器设置',
   'Pods List': '容器组列表',
   POD_SCALE_DESC: '可以弹性扩展容器组实例数量',
-  Log: '日志',
   'Container Logs': '容器日志',
   'Resource Info': '资源信息',
   'Node Name': '节点名称',
-  'Node IP': '节点 IP',
-  'Pod IP': '容器组 IP',
+  POD_IP_TCAP: '容器组 IP',
   IMAGE: '镜像',
   'Image ID': '镜像 ID',
   'Port(s)': '端口',
@@ -53,7 +51,7 @@ module.exports = {
   Topology: '拓扑图',
   EDIT_CONTAINER: '编辑容器',
   'Host Port': '节点端口',
-  'Add Port': '添加端口',
+  ADD_PORT: '添加端口',
   'target port': '目标端口',
   Environment: '环境变量',
   'Mount point': '挂载点',
@@ -69,7 +67,6 @@ module.exports = {
   'Storage Size': '存储大小',
   'Access Mode': '访问模式',
   Provisioner: '供应者',
-  Volumes: '存储卷',
   'Volume Source': '存储卷来源',
   mounted: '已挂载',
   created: '已创建',
@@ -87,7 +84,6 @@ module.exports = {
   'Instance Status': '实例状态',
 
   'No Request': '不预留',
-  'No Limit': '不限制',
   'Not Limited': '未限制',
   Cost: '占用',
   'Project Remaining Quota': '项目剩余配额',
@@ -115,12 +111,11 @@ module.exports = {
 
   'Collecting file log': '收集落盘日志',
 
-  'Add Metadata': '添加元数据',
+  ADD_METADATA: '添加元数据',
   'Set Node Scheduling Policy': '设置节点调度策略',
   'You can allow Pod replicas to run on specified nodes.':
     '可以让容器组副本在指定的节点运行',
-  'Additional metadata settings for resources such as Labels and Annotations.':
-    '对资源进行额外的元数据设置，例如 Label 和 Annotation',
+  ADD_METADATA_DESC: '为资源添加元数据。',
 
   'Additional metadata settings for resources.': '对资源进行额外的元数据设置',
 
@@ -209,8 +204,8 @@ module.exports = {
   'UI Mode': '界面模式',
   'Coding Mode': '代码模式',
 
-  'Labels exists': '标签组重复',
-  'Labels cannot be empty': '标签不能为空',
+  LABEL_EXIST_DESC: '标签已存在。请使用其他标签。',
+  EMPTY_LABEL_DESC: '请添加标签。',
   'Add Label': '添加标签',
   'Add Container': '添加容器',
   'Add new container': '添加新的容器',
@@ -243,9 +238,8 @@ module.exports = {
 
   'Invalid name': '名称格式不合法。{message}',
   'Invalid pod': '容器组数量格式不合法',
-
-  INVALID_NAME_DESC: '名称无效。{message}',
-
+  INVALID_NAME_DESC:
+    '名称无效。名称只能包含小写字母、数字和连字符（-），必须以小写字母开头并以小写字母或数字结尾，最长 63 个字符。',
   'Service Labels': '服务标签',
 
   'Add Existing Volume': '添加已有存储卷',
@@ -266,13 +260,13 @@ module.exports = {
   'Please input command': '请输入命令',
   'Please input volume name': '请输入存储卷名称',
 
-  PORT_INPUT_DESC: '当存在多条端口时，名称为必填项目且不可重复',
+  PORT_INPUT_DESC: '端口名称已存在。请输入其他名称。',
 
   PORT_NAME_DESC:
-    '端口名最长 63 个字符，只能包含小写字母、数字及分隔符("-")，且必须以小写字母或数字开头及结尾',
+    '端口名称只能包含小写字母、数字和连字符（-），必须以小写字母或数字开头和结尾，最长 63 个字符。',
 
   WORKLOAD_PORT_NAME_DESC:
-    '端口名最长 15 个字符，只能包含小写字母、数字及分隔符("-")，且必须以小写字母或数字开头及结尾',
+    '端口名称只能包含小写字母、数字及分隔符（-），且必须以小写字母或数字开头及结尾，最长 15 个字符。',
 
   CPU_REQUEST_TARGET_DESC:
     '当 CPU 使用率超过或低于此目标值时，将添加或删除副本',
@@ -335,7 +329,6 @@ module.exports = {
   'Rollback Revisions': '回退版本',
   'Current Revision': '当前版本',
   'Execution Records': '执行记录',
-  'Job Records': '任务记录',
   'Cluster Resource Status': '集群资源状态',
   'Resource Status': '资源状态',
   'Resource Name': '资源名称',
@@ -385,7 +378,6 @@ module.exports = {
   REDEPLOY_CONFIRM_DESC:
     '您即将重新部署工作负载 {resource} ({type}) , 容器组将根据更新策略进行重新部署，您的业务可能会被暂时中断。',
 
-  EDIT: '编辑信息',
   MORE: '更多操作',
   VIEW_YAML: '查看 YAML 文件',
 
@@ -573,14 +565,14 @@ module.exports = {
 
   'Sync Host Timezone': '同步主机时区',
 
-  POD_CONDITION_INITIALIZED: 'Initialized',
-  POD_CONDITION_INITIALIZED_DESC: '所有 init 容器都已成功启动',
-  POD_CONDITION_READY: '开始运行(Ready)',
+  POD_CONDITION_INITIALIZED: '初始化完成（Initialized）',
+  POD_CONDITION_INITIALIZED_DESC: '所有 Init 容器都已成功启动',
+  POD_CONDITION_READY: '开始运行（Ready）',
   POD_CONDITION_READY_DESC: '容器组已经开始运行，并可以通过服务进行访问',
-  POD_CONDITION_CONTAINERSREADY: '容器准备就绪(ContainersReady)',
-  POD_CONDITION_CONTAINERSREADY_DESC: '容器组内容器准备就绪.',
-  POD_CONDITION_PODSCHEDULED: '调度成功(PodScheduled)',
-  POD_CONDITION_PODSCHEDULED_DESC: '容器组已经被安排到一个节点中',
+  POD_CONDITION_CONTAINERSREADY: '容器准备就绪（Containers Ready）',
+  POD_CONDITION_CONTAINERSREADY_DESC: '容器组内容器准备就绪',
+  POD_CONDITION_PODSCHEDULED: '调度成功（Pod Scheduled）',
+  POD_CONDITION_PODSCHEDULED_DESC: '容器组已经被调度到一个节点中',
 
   POD_REASON_FAILEDCREATE: '创建失败(FailedCreate)',
   POD_REASON_SUCCESSFULCREATE: '创建成功(SuccessfulCreate)',
@@ -610,15 +602,15 @@ module.exports = {
   DockerDaemonNotReady: 'Docker 还没有完全启动',
   NetworkPluginNotReady: '网络插件还没有完全启动',
   POD_DESC:
-    '容器组 (Pod) 是 Kubernetes 应用程序的基本执行单元，是您创建或部署的 Kubernetes 对象模型中最小和最简单的单元。',
+    '容器组（Pod）是 Kubernetes 应用程序的基本执行单元，是您创建或部署的 Kubernetes 对象模型中最小和最简单的单元。',
   POD_CREATE_DESC:
-    '容器组 (Pod) 是 Kubernetes 应用程序的基本执行单元，是您创建或部署的 Kubernetes 对象模型中最小和最简单的单元。',
+    '容器组（Pod）是 Kubernetes 应用程序的基本执行单元，是您创建或部署的 Kubernetes 对象模型中最小和最简单的单元。',
   FILL_IMAGE_DEFAULT_PORTS_DESC: '是否暴露该镜像的默认端口？',
 
   ISTIO_PROTOCOL_TIP:
-    '为了充分利用应用治理的能力，请选择服务实际使用的协议。例如，如果服务暴露的是 HTTP 服务，则选择 http 协议，会生成形如 http-[name] 的端口名称。',
+    '为充分利用应用治理的能力，请选择服务实际使用的协议。端口名称会以<协议>-<名称>的形式自动生成。',
 
-  WORKLOAD_CONDITIONS: '状态分析(Conditions)',
+  WORKLOAD_CONDITIONS: '状态分析（Conditions）',
   WORKLOAD_CONDITION_AVAILABLE: '可用性(Available)',
   WORKLOAD_CONDITION_PROGRESSING: '创建进度(Progressing)',
   WORKLOAD_REASON_REPLICASETUPDATED: '副本已更新(ReplicaSetUpdated)',
@@ -667,7 +659,6 @@ module.exports = {
 
   'Container Security Context': '容器 Security Context',
   'Pod Security Context': '容器组 Security Context',
-  'Access Control': '访问控制',
   'User and User Group': '用户和用户组',
   'User Group': '用户组',
   CONTAINER_SECURITY_CTX_DESC:
@@ -713,4 +704,7 @@ module.exports = {
   IGNORE_CERT_DESC: '发现证书错误，是否忽略证书验证并再次',
   IGNORE_CERT_WARN_DESC: '忽略验证证书，可能会导致帐户密码被泄露。',
   INVALID_PROJECT: '项目无效。',
+
+  // Pods Page
+  NODE_IP: '{node}（{ip}）',
 }

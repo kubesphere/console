@@ -17,7 +17,7 @@
  */
 
 module.exports = {
-  'Add Annotation': 'Añadir annotation',
+  ADD_ANNOTATION: 'Añadir annotation',
   ADD_PATH_TCAP: 'Agregar ruta',
   ADD_PATH_TIP: 'Please add at least one path.',
   AUTO_GENERATE_TCAP: 'Autogenerar',

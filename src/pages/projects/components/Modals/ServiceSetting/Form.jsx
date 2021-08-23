@@ -26,10 +26,10 @@ import { TypeSelect } from 'components/Base'
 export default class ServiceSettingsForm extends Base {
   renderTypeSelect() {
     return (
-      <Form.Item label={t('Access Type')}>
+      <Form.Item label={t('ACCESS_TYPE')}>
         <TypeSelect
           className="margin-b12"
-          value={this.state.serviceType}
+          value={this.props.type}
           onChange={this.handleTypeChange}
           options={this.types}
           disabled

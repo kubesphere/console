@@ -1,0 +1,10 @@
+.fedProClusterContainer {
+  :global {
+    .form-group {
+      padding: 0;
+      .form-group-content {
+        margin: 0;
+      }
+    }
+  }
+}

@@ -150,7 +150,6 @@ module.exports = {
   'no status': '沒有狀態',
   Skipped: '已跳過',
   'Sub-healthy': '亞健康',
-  Schedule: '行程表',
   'Stop Job Successfully, Status updated later': '任務已停止，狀態稍後更新',
   'Scan Repository Logs': '掃描倉庫紀錄',
   'Started By': '實施者',

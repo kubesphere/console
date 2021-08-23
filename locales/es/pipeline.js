@@ -254,7 +254,6 @@ module.exports = {
   'Scan Repo Trigger': 'Escanear el disparador del Repo',
   'Scan Repository Logs': 'Escanear logs de repositorio',
   'Scan Repository': 'Escanear repositorio',
-  Schedule: 'Programador',
   'Scheduled build': 'Build programada',
   SCM: 'SCM',
   'Script Path': 'Ruta del script',

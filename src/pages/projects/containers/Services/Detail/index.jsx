@@ -90,7 +90,7 @@ export default class ServiceDetail extends React.Component {
     {
       key: 'edit',
       icon: 'pen',
-      text: t('EDIT_INFO'),
+      text: t('EDIT_INFORMATION'),
       action: 'edit',
       onClick: () =>
         this.trigger('resource.baseinfo.edit', {
@@ -102,7 +102,7 @@ export default class ServiceDetail extends React.Component {
     {
       key: 'editService',
       icon: 'network-router',
-      text: t('Edit Service'),
+      text: t('EDIT_SERVICE'),
       action: 'edit',
       onClick: () =>
         this.trigger('service.edit', {
@@ -113,7 +113,7 @@ export default class ServiceDetail extends React.Component {
     {
       key: 'editGateway',
       icon: 'ip',
-      text: t('Edit Internet Access'),
+      text: t('EDIT_INTERNET_ACCESS'),
       action: 'edit',
       show: this.store.detail.type === SERVICE_TYPES.VirtualIP,
       onClick: () =>
@@ -198,7 +198,7 @@ export default class ServiceDetail extends React.Component {
             {`${
               serviceType
                 ? t(`SERVICE_TYPE_${serviceType.toUpperCase()}`)
-                : t('Custom Creation')
+                : t('CUSTOM_CREATION')
             }`}
             <span className="text-desc"> ({detail.type})</span>
           </span>
@@ -209,7 +209,7 @@ export default class ServiceDetail extends React.Component {
         value: detail.app,
       },
       {
-        name: t('Virtual IP'),
+        name: t('VIRTUAL_IP'),
         value: detail.clusterIP,
       },
       {

@@ -45,7 +45,7 @@ module.exports = {
   'Resource Info': '資源資訊',
   'Node Name': '主機名稱',
   'Node IP': '主機 IP',
-  'Pod IP': '容器組 IP',
+  POD_IP_TCAP: '容器組 IP',
   IMAGE: '鏡像',
   'Image ID': '鏡像 ID',
   'Port(s)': '端口',
@@ -53,7 +53,7 @@ module.exports = {
   port: '端口',
   EDIT_CONTAINER: '編輯容器',
   'Host Port': '主機端口',
-  'Add Port': '添加端口',
+  ADD_PORT: '添加端口',
   'target port': '目標端口',
   Environment: '環境變量',
   'Mount point': '掛載點',
@@ -116,13 +116,14 @@ module.exports = {
 
   'Collecting file log': '收集落盤紀錄',
 
-  'Add Metadata': '添加元數據',
+  ADD_METADATA: '添加元數據',
   'Set Node Scheduling Policy': '設置節點調度策略',
   'You can allow Pod replicas to run on specified nodes.':
     '可以讓容器組副本在指定的節點運行',
   'Additional metadata settings for resources such as Labels and Annotations.':
     '對資源進行額外的元數據設置，例如 Label 和 Annotation',
   'Additional metadata settings for resources.': '對資源進行額外的元數據設置',
+  ADD_METADATA_DESC: 'Add metadata to resources.',
 
   DEPLOYMENT_LOCATION: '部署位置',
 
@@ -207,8 +208,8 @@ module.exports = {
   'UI Mode': '界面模式',
   'Coding Mode': '代碼模式',
 
-  'Labels exists': '標籤組重複',
-  'Labels cannot be empty': '標籤不能為空',
+  LABEL_EXIST_DESC: 'The label already exsists. Please use another label.',
+  EMPTY_LABEL_DESC: '請添加標籤。',
   'Add Label': '添加標籤',
   'Add Container': '添加容器',
   'Add new container': '添加新的容器',
@@ -240,9 +241,8 @@ module.exports = {
 
   'Invalid name': '名稱格式不合法。{message}',
   'Invalid pod': '容器組數量格式不合法',
-
-  INVALID_NAME_DESC: '名稱格式不合法。{message}',
-
+  INVALID_NAME_DESC:
+    'Invalid name. The name can contain only lowercase letters, numbers, and hyphens (-), must start with a lowercase letter, and must end with a lowercase letter or number. The maximum length is 63 characters.',
   'Service Labels': '服務標籤',
 
   'Add Existing Volume': '添加已有儲存卷',
@@ -263,13 +263,13 @@ module.exports = {
   'Please input command': '請輸入命令',
   'Please input volume name': '請輸入儲存卷名稱',
 
-  PORT_INPUT_DESC: '當存在多條端口時，名稱為必填項目且不可重複',
+  PORT_INPUT_DESC: 'The port name already exists. Please enter another name.',
 
   PORT_NAME_DESC:
-    '端口名最長 63 個字元，只能包含小寫字母、數字及分隔符號("-")，且必須以小寫字母開頭, 字母或數字結尾',
+    'The port name can contain only lowercase letters, numbers, and hyphens (-) and must begin and end with a lowercase letter or number. The maximum length is 63 characters.',
 
   WORKLOAD_PORT_NAME_DESC:
-    '端口名最長 15 個字元，只能包含小寫字母、數字及分隔符號("-")，且必須以小寫字母開頭, 字母或數字結尾',
+    'The port name can contain only lowercase letters, numbers and hyphens (-), and must begin and end with a lowercase letter or number. The maximum length is 15 characters.',
 
   CPU_REQUEST_TARGET_DESC:
     '當 CPU 使用率超過或低於此目標值時，將添加或刪除副本',
@@ -614,7 +614,7 @@ module.exports = {
   FILL_IMAGE_DEFAULT_PORTS_DESC: '是否暴露該鏡像的預設端口？',
 
   ISTIO_PROTOCOL_TIP:
-    '為了充分利用應用治理的能力，請選擇服務實際使用的協定。例如，如果服務暴露的是 HTTP 服務，則選擇 http 協定，會生成形如 http-[name] 的端口名稱。',
+    'To fully use the Application Governance feature, select a protocol based on the actual usage of the Service. The port name will be generated in the <Protocol>-<Name> format.',
 
   WORKLOAD_CONDITIONS: '狀態分析(Conditions)',
   WORKLOAD_CONDITION_AVAILABLE: '可用性(Available)',
@@ -711,4 +711,7 @@ module.exports = {
   IGNORE_CERT_DESC: '發現證書錯誤，是否忽略證書驗證並再次',
   IGNORE_CERT_WARN_DESC: '忽略驗證證書，可能會導致帳戶密碼被欺騙。',
   INVALID_PROJECT: '項目不可選',
+
+  // Pods Page
+  NODE_IP: '{node}（{ip}）',
 }
