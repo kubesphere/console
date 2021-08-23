@@ -138,7 +138,7 @@ module.exports = {
   WHAT_IS_LOCAL_VOLUME_Q: 'What is a Local Volume?',
   WHAT_IS_LOCAL_VOLUME_A:
     'A Local Volume is a mounted local storage device, such as a disk, partition, or directory.',
-  CHOOSE_STORAGE_SYSTEM_TIP: 'Choose the Storage System You Need',
+  CHOOSE_STORAGE_SYSTEM_TIP: 'Select Storage System',
   PROVISIONER_DEPENDENCE_DESC:
     'Storage plug-ins need to be deployed in the storage system to provide services.',
 
@@ -229,5 +229,4 @@ module.exports = {
   GID_MAX: 'GID Maximum Value',
   CUSTOM: 'Custom',
   PARAMETERS: 'Parameters',
-  ADD: 'Add',
 }
