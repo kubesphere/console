@@ -6,7 +6,7 @@
   padding: 20px;
   background-color: $lightest;
 
-  &:hover{
+  &:hover {
     background-color: $light-color02;
   }
 }
@@ -17,6 +17,10 @@
   margin-left: 20px;
 
   & > div {
+    &:first-child {
+      @include ellipsis;
+    }
+
     @include TypographyTitleH6($dark-color07);
   }
 
