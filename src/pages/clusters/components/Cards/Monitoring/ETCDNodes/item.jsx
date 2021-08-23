@@ -51,7 +51,7 @@ const Item = ({ prefix = '', data = {} }) => {
           </span>
         </p>
         <p>
-          <strong>{hasLeader ? t('Yes') : t('No')}</strong>
+          <strong>{hasLeader ? t('YES') : t('NO')}</strong>
           <span>{t('ETCD_LEADER_TITLE')}</span>
         </p>
         <p>

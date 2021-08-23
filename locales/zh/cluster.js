@@ -315,6 +315,7 @@ module.exports = {
   UNBIND_CLUSTER_Q: '您确定解绑集群吗？',
 
   // Cluster Visibility
+  ADMINISTRATOR: '管理员',
   CLUSTER_VISIBILITY: '集群可见性',
   CLUSTER_VISIBILITY_DESC:
     '将集群授权给企业空间，以在企业空间中查看并管理集群资源。',

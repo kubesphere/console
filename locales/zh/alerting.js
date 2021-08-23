@@ -115,7 +115,7 @@ module.exports = {
   'Unavailable daemonset replicas ratio': '守护进程集副本不可用率',
   'Unavailable statefulset replicas ratio': '有状态副本集副本不可用率',
 
-  SELECT_NODE_TIP: '请选择至少一个集群资源。',
+  SELECT_NODE_TIP: '请选择至少一个集群节点。',
   SELECT_WORKLOAD_TIP: '请选择至少一个工作负载。',
 
   REQUESTS_FOR_TRIGGER_AN_ALARM_Q: '如何触发告警消息？',
@@ -146,6 +146,9 @@ module.exports = {
   // Alerting Policies
   ALERTING_POLICIES: '告警策略',
   NOTIFICATION_SETTINGS: '通知设置',
+  DEPLOYMENT: '部署',
+  STATEFULSET: '有状态副本集',
+  DAEMONSET: '守护进程集',
 
   // Custom Monitoring
   CREATED_AT: '创建时间',

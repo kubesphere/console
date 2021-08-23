@@ -102,7 +102,7 @@ class Ranking extends React.Component {
           </span>
         </div>
         <div className={styles.toolbar_buttons}>
-          <Button onClick={this.download}>{t('Export')}</Button>
+          <Button onClick={this.download}>{t('EXPORT')}</Button>
         </div>
       </div>
     )

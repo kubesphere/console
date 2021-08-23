@@ -103,7 +103,7 @@ module.exports = {
   'Container Resource Default Request': '容器資源預設請求',
   'Edit Resource Default Request': '編輯資源預設請求',
 
-  'Resource Type': '資源類型',
+  RESOURCE_TYPE: '資源類型',
 
   'Help Information': '幫助資訊',
 

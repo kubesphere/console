@@ -232,7 +232,7 @@ export default class VolumeDetail extends React.Component {
         value: storageClassName,
       },
       {
-        name: t('Provisioner'),
+        name: t('PROVISIONER'),
         value: get(
           detail,
           "annotations['volume.beta.kubernetes.io/storage-provisioner']",

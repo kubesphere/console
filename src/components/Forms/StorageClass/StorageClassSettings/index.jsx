@@ -62,8 +62,8 @@ export default class StorageClassSetting extends React.Component {
 
   renderCustom() {
     return (
-      <Form.Item label={t('Parameters')}>
-        <PropertiesInput name="parameters" addText={t('ADD_PARAMETER')} />
+      <Form.Item label={t('PARAMETERS')}>
+        <PropertiesInput name="parameters" addText={t('ADD')} />
       </Form.Item>
     )
   }
@@ -148,8 +148,8 @@ export default class StorageClassSetting extends React.Component {
                 <Select
                   name="allowVolumeExpansion"
                   options={[
-                    { label: t('Yes'), value: 'true' },
-                    { label: t('No'), value: 'false' },
+                    { label: t('YES'), value: 'true' },
+                    { label: t('NO'), value: 'false' },
                   ]}
                 />
               </Form.Item>

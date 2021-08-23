@@ -111,7 +111,7 @@ module.exports = {
   'requests.cpu': 'requests.cpu',
   'requests.memory': 'requests.memory',
   'Resource Quota': 'Resource Quota',
-  'Resource Type': 'Resource Type',
+  RESOURCE_TYPE: 'Resource Type',
   PROJECT_ADMINISTRATOR_DESC:
     'Select a user in the workspace as the project administrator.',
   'Select Project Type': 'Select Project Type',

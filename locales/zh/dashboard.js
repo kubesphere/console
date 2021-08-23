@@ -34,7 +34,6 @@ module.exports = {
   'CPU Utilization': 'CPU 利用率',
   'CPU Load Average': 'CPU 平均负载',
   'Replica Availability': '副本可用率',
-  LOCAL_STORAGE: '本地存储',
   'Disk Utilization': '磁盘利用率',
   'Node Status': '主机状态',
   'View All Nodes': '查看全部主机',

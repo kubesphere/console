@@ -107,7 +107,7 @@ module.exports = {
   'Container Resource Default Request': '容器资源默认请求',
   'Edit Resource Default Request': '编辑资源默认请求',
 
-  'Resource Type': '资源类型',
+  RESOURCE_TYPE: '资源类型',
 
   'Help Information': '帮助信息',
 

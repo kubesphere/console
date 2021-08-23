@@ -38,7 +38,7 @@ export default class MeterTable extends React.Component {
   getColumns = () => {
     return [
       {
-        title: t('Resource Type'),
+        title: t('RESOURCE_TYPE'),
         dataIndex: 'type',
         render: (value, record) => {
           return (

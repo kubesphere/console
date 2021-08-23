@@ -33,7 +33,6 @@ module.exports = {
   'Workspace Groups': '企业组织',
   'Maintain Organization': '维护组织结构',
 
-  projects: '项目',
   devops: 'DevOps 工程',
 
   'Project Number': '项目数量',
@@ -58,7 +57,7 @@ module.exports = {
   'Cluster Authorization Info': '集群授权信息',
   'Workspace Network Isolation': '企业空间网络隔离',
 
-  'No Available Cluster': '暂时没有可用集群',
+  NO_AVAILABLE_CLUSTER: '暂时没有可用集群',
   'Network module is not installed': '网络模块未安装',
 
   'All members': '全部成员',
@@ -117,7 +116,7 @@ module.exports = {
   NO_PUBLIC_CLUSTER_TIP:
     '暂无可用的公开集群, 请在企业空间创建完毕后, 向平台管理员或集群管理员申请集群的授权',
   WORKSPACE_NO_CLUSTER_TIP:
-    '您需要联系平台管理员或者集群管理员为企业空间授权集群的访问权限',
+    '您需要联系平台管理员或者集群管理员为企业空间授权集群的访问权限。',
 
   WORKSPACE_GROUP_DESC:
     '组织可以以用户组或者部门的形式授予项目以及 Devops 工程权限',

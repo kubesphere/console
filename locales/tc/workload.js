@@ -68,7 +68,7 @@ module.exports = {
   'Volume Capacity': '儲存卷容量',
   'Storage Size': '儲存大小',
   'Access Mode': '訪問模式',
-  Provisioner: '供應者',
+  PROVISIONER: '供應者',
   Volumes: '儲存卷',
   'Volume Source': '儲存卷來源',
   mounted: '已掛載',

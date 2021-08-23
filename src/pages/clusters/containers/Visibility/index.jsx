@@ -99,7 +99,7 @@ export default class Overview extends React.Component {
         ),
       },
       {
-        title: t('Administrator'),
+        title: t('ADMINISTRATOR'),
         dataIndex: 'manager',
       },
       {

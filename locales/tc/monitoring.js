@@ -30,11 +30,11 @@ module.exports = {
   CLUSTER_STATUS: '集群狀態',
   'Cluster Monitors': '集群監控',
   'Cluster Resource Monitoring': '集群資源監控',
-  ETCD_MONITORING: 'ETCD 監控',
-  'ETCD Service Status': 'ETCD 服務狀態',
-  'ETCD Nodes': 'ETCD 節點',
+  ETCD_MONITORING: 'etcd 監控',
+  'ETCD Service Status': 'etcd 服務狀態',
+  'ETCD Nodes': 'etcd 節點',
   SERVICE_STATUS: '服務狀態',
-  EXTERNAL_ETCD: '外部 ETCD',
+  EXTERNAL_ETCD: '外部 etcd',
   API_SERVER_MONITORING: 'API Server 監控',
   SCHEDULER_MONITORING: '調度器監控',
   'Historical Monitoring': '歷史監控',
@@ -48,7 +48,7 @@ module.exports = {
   PROJECT_COUNT: '項目數量',
   CLUSTER_RESOURCE_USAGE: '集群資源使用情況',
   RESOURCE_USAGE: '資源使用情況',
-  'Cluster Node Status': '集群節點狀態',
+  CLUSTER_NODE_STATUS: '集群節點狀態',
   COMPONENT_STATUS: '組件狀態',
   PHYSICAL_RESOURCE_STATUS: '物理資源狀態',
   'Disk Usage': '硬碟使用量',
@@ -210,14 +210,25 @@ module.exports = {
 
   EMPTY_CHART_PLACEHOLDER: '圖表將顯示在此區域',
 
-  // Cluster Resource Usage
+  // Cluster Status
   DISK_USAGE: 'Disk Usage',
-  POD_NUMBER: 'Number of Pods',
+  POD_COUNT: 'Pod Count',
   USAGE: 'Usage',
   API_SERVER: 'API Server',
   AVERAGE_CPU_LOAD: 'Average CPU Load',
+  POD_USAGE: 'Pod Usage',
   DISK_THROUGHPUT: 'Disk Throughput',
   NETWORK_BANDWIDTH: 'Network Bandwidth',
   POD_STATUS: 'Pod Status',
   NO_MONITORING_DATA_FOUND: 'No Monitoring Data Found',
+  NOT_ENABLED: 'Not Enabled',
+  RUNNING: 'Running',
+  COMPLETED: 'Completed',
+  WARNING: 'Warning',
+
+  // Application Resources
+  WORKSPACES: 'Workspaces',
+  ACCOUNTS: 'Accounts',
+  PROJECTS: 'Projects',
+  DEVOPS_PROJECTS: 'DevOps Projects',
 }

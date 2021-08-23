@@ -49,7 +49,7 @@ export default class ProvisionerSettings extends React.Component {
 
   provisionersOptions = [
     ...PROVISIONERS.map(item => omit(item, ['description'])),
-    { label: t('Custom'), value: '', icon: 'hammer' },
+    { label: t('CUSTOM'), value: '', icon: 'hammer' },
   ]
 
   changeProvisioner = provisioner => {

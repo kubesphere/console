@@ -86,7 +86,7 @@ export default class ClusterResourceStatusTab extends React.Component {
         total: this.getValue(lastData[MetricTypes.memory_total]),
       },
       {
-        name: 'LOCAL_STORAGE',
+        name: 'DISK',
         unitType: 'disk',
         used: this.getValue(lastData[MetricTypes.disk_size_usage]),
         total: this.getValue(lastData[MetricTypes.disk_size_capacity]),
@@ -132,7 +132,7 @@ export default class ClusterResourceStatusTab extends React.Component {
         data: get(this.metrics, `${MetricTypes.disk_utilisation}.data.result`),
       },
       {
-        title: 'POD_NUMBER',
+        title: 'POD_COUNT',
         unit: '',
         legend: ['Count'],
         data: get(this.metrics, `${MetricTypes.pod_count}.data.result`),

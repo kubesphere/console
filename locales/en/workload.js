@@ -261,7 +261,7 @@ module.exports = {
   Probe: 'Probe',
   ProgressDeadlineExceeded: 'ProgressDeadlineExceeded',
   Protocols: 'Protocols',
-  Provisioner: 'Provisioner',
+  PROVISIONER: 'Provisioner',
   'Read Write Mode': 'Read Write Mode',
   'Readiness Probe': 'Readiness Probe',
   Recreate: 'Recreate',

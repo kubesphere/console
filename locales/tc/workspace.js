@@ -58,7 +58,7 @@ module.exports = {
   'Cluster Authorization Info': '集群授權資訊',
   'Workspace Network Isolation': '企業空間網路隔離',
 
-  'No Available Cluster': '暫時沒有可用集群',
+  NO_AVAILABLE_CLUSTER: '暫時沒有可用集群',
 
   'All members': '全部成員',
   Assigned: '已分配',
@@ -116,7 +116,7 @@ module.exports = {
   NO_PUBLIC_CLUSTER_TIP:
     '暫無可用的公開集群，請在企業空間創建完畢後，向平台管理員或集群管理員申請集群的授權。',
   WORKSPACE_NO_CLUSTER_TIP:
-    '您需要聯繫平台管理員或者集群管理員為企業空間授權集群的訪問權限',
+    '您需要聯繫平台管理員或者集群管理員為企業空間授權集群的訪問權限。',
 
   WORKSPACE_GROUP_DESC:
     '組織可以以用戶組或者部門的形式授予項目以及 Devops 工程權限',

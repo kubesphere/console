@@ -24,7 +24,7 @@ module.exports = {
   'Create Volume': 'Create Volume',
   CREATE_VOLUME_WITH_SNAPSHOT: 'Create volume based on snapshots',
   'Custom Provisioner': 'Custom Provisioner',
-  Default: 'Default',
+  DEFAULT: 'Default',
   'Default Storage Class': 'Default Storage Class',
   'Default Volume': 'Default Volume',
   'Delete Volume': 'Delete Volume',
@@ -138,7 +138,7 @@ module.exports = {
   WHAT_IS_LOCAL_VOLUME_Q: 'What is a Local Volume?',
   WHAT_IS_LOCAL_VOLUME_A:
     'A Local Volume is a mounted local storage device, such as a disk, partition, or directory.',
-  CHOOSE_STORAGE_SYSTEM_TIP: 'Choose the Storage System You Need',
+  CHOOSE_STORAGE_SYSTEM_TIP: 'Select Storage System',
   PROVISIONER_DEPENDENCE_DESC:
     'Storage plug-ins need to be deployed in the storage system to provide services.',
 
@@ -196,7 +196,7 @@ module.exports = {
     'Additional function of the Ceph cluster. The value should only be set when you set imageFormat to "2".',
 
   DEPENDENT_STORAGE_CLASS_DELETE_TIPS:
-    'Please check if the storage class is being used by other resources. If there is any resource dependent on the storage class, you need to disable the resource first.',
+    'Make sure if there are resources dependent on the storage class. If there are, you need to disable the resources before it the resource functions are affected.',
 
   CREATE_VOLUME_BY_STORAGECLASS: 'Create a volume by StorageClass',
   CREATE_VOLUME_BY_SNAPSHOT: 'Create a volume by VolumeSnapshot',
@@ -216,7 +216,6 @@ module.exports = {
   // Storage Classes
   RESTURL: 'REST URL',
   CLUSTER_ID: 'Cluster ID',
-  ADD_PARAMETER: 'Add',
   REST_AUTH_ENABLED: 'REST Authentication',
   REST_USER: 'REST User',
   VOLUME_TYPE: 'Volume Type',
@@ -227,4 +226,6 @@ module.exports = {
   SECRET_NAMESPACE: 'Secret Namespace',
   GID_MIN: 'GID Minimum Value',
   GID_MAX: 'GID Maximum Value',
+  CUSTOM: 'Custom',
+  PARAMETERS: 'Parameters',
 }

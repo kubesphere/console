@@ -148,7 +148,7 @@ class ClusterMonitorings extends React.Component {
       type: 'throughput',
       title: 'DISK_THROUGHPUT',
       unitType: 'throughput',
-      legend: ['Read', 'Write'],
+      legend: ['READ', 'WRITE'],
       data: [
         get(
           this.metrics,
@@ -165,7 +165,7 @@ class ClusterMonitorings extends React.Component {
     {
       type: 'iops',
       title: 'IOPS',
-      legend: ['Read', 'Write'],
+      legend: ['READ', 'WRITE'],
       data: [
         get(this.metrics, `${MetricTypes.disk_read_iops}.data.result[0]`, {}),
         get(this.metrics, `${MetricTypes.disk_write_iops}.data.result[0]`, {}),
@@ -175,7 +175,7 @@ class ClusterMonitorings extends React.Component {
       type: 'bandwidth',
       title: 'NETWORK_BANDWIDTH',
       unitType: 'bandwidth',
-      legend: ['Out', 'In'],
+      legend: ['OUT', 'IN'],
       data: [
         get(this.metrics, `${MetricTypes.net_transmitted}.data.result[0]`, {}),
         get(this.metrics, `${MetricTypes.net_received}.data.result[0]`, {}),
@@ -185,7 +185,7 @@ class ClusterMonitorings extends React.Component {
       type: 'count',
       title: 'POD_STATUS',
       unit: '',
-      legend: ['Running', 'Completed', 'Warning'],
+      legend: ['RUNNING', 'COMPLETED', 'WARNING'],
       data: [
         get(
           this.metrics,

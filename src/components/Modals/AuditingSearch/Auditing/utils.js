@@ -97,7 +97,7 @@ export const dropDownItems = {
   },
   objectref_resource_filter: {
     icon: 'resource',
-    text: t('Resource Type'),
+    text: t('RESOURCE_TYPE'),
   },
   objectref_name_filter: {
     icon: 'strategy-group',
@@ -152,7 +152,7 @@ export const supportQueryParams = [
   },
   {
     icon: 'resource',
-    title: t('Search Auditing Logs by', { field: t('Resource Type') }),
+    title: t('Search Auditing Logs by', { field: t('RESOURCE_TYPE') }),
     tips: t('Resource Type Auditing Query Tip'),
     key: 'objectref_resource_filter',
   },

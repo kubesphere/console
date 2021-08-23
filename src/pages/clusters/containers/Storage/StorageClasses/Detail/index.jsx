@@ -113,7 +113,7 @@ export default class StorageClassDetail extends React.Component {
 
     return [
       {
-        name: t('Provisioner'),
+        name: t('PROVISIONER'),
         value: detail.provisioner,
       },
       {
