@@ -58,7 +58,7 @@ module.exports = {
   'Coding Mode': 'Modo de codificación',
   'Collecting file log': 'Recopilar registro de logs',
   Commands: 'Comandos',
-  concurrencyPolicy: 'concurrencyPolicy',
+  CONCURRENCY_POLICY: 'Concurrency Policy',
   'Config Template': 'Plantilla de configuración',
   'ConfigMap & Secret': 'ConfigMap y Secret',
   'Container Config': 'Configuración de contenedor',
@@ -115,10 +115,10 @@ module.exports = {
   'environment variables': 'Variables de entorno',
   ErrImageNeverPull: 'ErrImageNeverPull',
   ErrImagePull: 'ErrImagePull',
-  'Every Day': 'Cada día',
-  'Every Hour': 'Cada hora',
-  'Every Month': 'Cada mes',
-  'Every Week': 'Cada semana',
+  EVERY_DAY: ' (Cada día)',
+  EVERY_HOUR: ' (Cada hora)',
+  EVERY_MONTH: ' (Cada mes)',
+  EVERY_WEEK: ' (Cada semana)',
   'Exec Command Check': 'Verificación de ejecutables',
   'Execution Records': 'Registros de ejecución',
   'Existing Volume': 'Volumen existente',
@@ -213,7 +213,7 @@ module.exports = {
   'Please add at least one volume': 'Por favor agregue al menos un volumen',
   'Please add at least one volume or volume template':
     'Agregue al menos un volumen o plantilla de volumen',
-  'Please input a schedule.': 'Por favor introduce un horario.',
+  ENTER_SCHEDULE_TIP: 'Please enter a schedule.',
   'Please input command': 'Por favor introduce el comando',
   'Please input mount point': 'Por favor introduce el punto de montaje',
   'Please input port': 'Por favor introduce el puerto',
@@ -283,7 +283,7 @@ module.exports = {
   'request memory should not be greater than limit memory':
     'La solicitud de memoria no debe ser mayor que la memoria límite',
   'Request Type': 'tipo de petición',
-  Rerun: 'Repetición',
+  RERUN: 'Repetición',
   'Resource Info': 'Información de recursos',
   'Resource Limit': 'Límite de recursos',
   'Resource Limits': 'Límites de recursos',
@@ -294,7 +294,7 @@ module.exports = {
   'Resource requests remaining quota': 'Solicitudes de recursos dejaron cuota',
   'Resource Status': 'Estado del recurso',
   'Restart Count': 'Reiniciar contadores',
-  'Restart Policy': 'Política de reinicio',
+  RESTART_POLICY: 'Política de reinicio',
   Revision: 'Revisión',
   'Revision Records': 'Registros de revisión',
   'Revision Rollback': 'Revisión de Rollback',
@@ -332,14 +332,12 @@ module.exports = {
   'Target Utilization': 'Utilización objetivo',
   'TCP Port Check': 'Comprobación de puerto TCP',
   'Temporary Volume': 'Volumen Temporal',
-  'The concurrency policy setting.':
-    'La configuración de la política de concurrencia.',
+  CONCURRENCY_POLICY_DESC:
+    'Select a concurrency policy of a Job created by the CronJob.',
   'The minimum of the replicas that can be set by HPA':
     'El mínimo de las réplicas que puede configurar HPA',
-  'The number of failed jobs allowed to be retained.':
-    'El número de trabajos fallidos que se pueden retener.',
-  'The number of successful jobs allowed to be retained.':
-    'El número de trabajos correctos permitidos para ser guardados.',
+  FAILED_JOBS_DESC: 'Specify the number of failed Jobs to be retained.',
+  SUCCESSFUL_JOBS_DESC: 'Specify the number of successful Jobs to be retained.',
   'Timeout(s)': 'Tiempo de espera (s)',
   'UI Mode': 'Modo UI',
   'Update Strategy': 'Actualizar estrategia',
@@ -352,8 +350,7 @@ module.exports = {
   'Volume Name': 'Nombre del volumen',
   'Volume Source': 'Fuente de volumen',
   Volumes: 'Volúmenes',
-  'What is Disk Log Collection?':
-    '¿Qué es la recopilación de registro de disco?',
+  DISK_LOG_COLLECTION_Q: 'What is disk log collection?',
   'Worker Container': 'Contenedor de trabajo',
   Workload: 'Carga de trabajo',
 
@@ -398,13 +395,13 @@ module.exports = {
   DAEMONSET_CREATE_DESC:
     'Un DaemonSet asegura que todos (o algunos) nodos ejecuten una copia de un Pod. Por lo general, un DaemonSet se usa para ejecutar una colección de registros, monitorear daemon u otras aplicaciones de administración del sistema.',
   JOB_DESC:
-    'Un trabajo se utiliza para ejecutar tareas únicas. Un trabajo crea uno o más pods y garantiza que un número específico de ellos finalice con éxito.',
+    'Jobs are used to perform short-lived, one-off tasks. A Job creates one or more Pods and ensures that a specific number of Pods successfully terminate.',
   JOB_CREATE_DESC:
-    'Un trabajo se utiliza para ejecutar tareas únicas. Un trabajo crea uno o más pods y garantiza que un número específico de ellos finalice con éxito.',
+    'Jobs are used to perform short-lived, one-off tasks. A Job creates one or more Pods and ensures that a specific number of Pods successfully terminate.',
   CRONJOB_DESC:
-    'Un CronJob crea trabajos en un horario basado en el tiempo. Por ejemplo, ejecuta un trabajo periódicamente en un horario determinado o solo ejecuta un trabajo una vez en un momento dado.',
+    'CronJobs manages Jobs on a time-based schedule and can be used to perform periodic or recurring tasks.',
   CRONJOB_CREATE_DESC:
-    'Un CronJob crea trabajos en un horario basado en el tiempo. Por ejemplo, ejecuta un trabajo periódicamente en un horario determinado o solo ejecuta un trabajo una vez en un momento dado.',
+    'CronJobs manages Jobs on a time-based schedule and can be used to perform periodic or recurring tasks.',
   CRONJOB_NAME_DESC:
     'Solo puede contener letras minúsculas, números y guiones ("-"), y debe comenzar con una letra minúscula y terminar con un número o letra minúscula. La longitud máxima de caracteres se establece en 52.',
   CRONJOB_NAME_TOO_LONG: 'La longitud máxima de caracteres se establece en 52.',
@@ -492,30 +489,29 @@ module.exports = {
     'Especifique la plantilla de Pod para ejecutar en el trabajo',
   JOBS_VOLUME_DESC:
     'Puede montar volúmenes temporales o volúmenes persistentes en un Pod del trabajo.',
-  JOB_BACK_OFF_LIMIT_LABEL: 'Límite de retroceso',
-  JOB_BACK_OFF_LIMIT_DESC:
-    'Especifica el número de reintentos antes de marcar este trabajo fallido. El valor predeterminado es 6.',
+  BACK_OFF_LIMIT: 'Límite de retroceso',
+  BACK_OFF_LIMIT_DESC:
+    'Maximum number of retries before marking a Job as failed. The default value is 6.',
   JOB_PARALLELISM_LABEL: 'Paralelismo',
-  JOB_PARALLELISM_DESC:
-    'Especifica el número máximo deseado de pods que el trabajo debe ejecutar en un momento dado.',
+  JOB_PARALLELISM_DESC: 'Number of Pods that run concurrently.',
   JOB_COMPLETION_LABEL: 'Terminaciones',
   JOB_COMPLETION_DESC:
-    'Especifica el número deseado de pods finalizados con éxito con los que se debe ejecutar el trabajo.',
-  JOB_ACTIVE_DL_SECONDS_LABEL: 'Segundos de fecha límite activa',
-  JOB_ACTIVE_DL_SECONDS:
-    'Especifica la duración en segundos en relación con el tiempo de inicio en que el trabajo puede estar activo antes de que el sistema intente finalizarlo; El valor debe ser un entero positivo.',
+    'Number of Pods that need to run successfully before a Job is complete.',
+  JOB_ACTIVE_DEADLINE: 'Active Deadline (s)',
+  JOB_ACTIVE_DEADLINE_DESC:
+    'Duration of a Job. The running Pods are terminated when the Job reaches the duration. The value must be a positive integer.',
   RESTART_POLICY_TIP:
     'RestartPolicy solo puede especificar Never o OnFailure, cuando el trabajo no se completa: <br/> * Si RestartPolicy especifica Nunca, el trabajo crea un nuevo Pod cuando el Pod falla y el Pod fallido no desaparece. <br/> * Si RestartPolicy especifica OnFailure, el trabajo reiniciará internamente el contenedor cuando el Pod falle, en lugar de crear un nuevo Pod.',
-  RESTART_POLICY_NEVER_DESC: 'Crear un nuevo pod cuando un pod falla',
-  RESTART_POLICY_ONFAILURE_DESC: 'Reinicia el contenedor cuando falla un pod',
+  RESTART_POLICY_NEVER_DESC: ' (Crear un nuevo Pod cuando un Pod falla)',
+  RESTART_POLICY_ONFAILURE_DESC:
+    ' (Reinicia el contenedor cuando falla un Pod)',
   CRONJOBS_BASEINFO_DESC:
     'Información básica sobre el CronJob. Debe especificar el nombre y el horario.',
   CRONJOBS_VOLUME_DESC:
     'Puede montar volúmenes temporales o volúmenes persistentes en un Pod del cronjob.',
   CRONJOB_CRON_DESC:
-    'Ejecuta un trabajo periódicamente en un horario determinado. Consulte <a href="//en.wikipedia.org/wiki/Cron" target="_blank">CRON</a> para referencia gramatical. By default, Kubernetes adopts UTC. Please adjust scheduled plans based on the time zone.',
-  START_DEADLINE_SECONDS_DESC:
-    'Una fecha límite opcional en segundos para comenzar el trabajo si se pierde el tiempo programado por cualquier motivo.',
+    'Set a schedule of a CronJob to be executed. For Cron syntax, see <a href="//en.wikipedia.org/wiki/Cron" target="_blank">Cron</a>. Kubernetes use UTC by default. You need to adjust the schedule according to your time zone.',
+  START_DEADLINE_SECONDS_DESC: 'Set the deadline for starting a Job.',
   VOLUME_EMPTY_TIP: 'No hay volúmenes creados',
   HOST_PATH_DESC:
     'HostPath le permite montar el sistema de archivos en el host al Pod. Si el Pod necesita usar archivos en el host, puede usar HostPath.',
@@ -619,9 +615,9 @@ module.exports = {
   COLLECT_SAVED_LOG_DESC:
     'Ha habilitado la opción de recopilar los registros en el disco. Agregue al menos un volumen y especifique el directorio en el que se encuentra el registro.',
   PROJECT_COLLECT_SAVED_DISABLED_DESC:
-    'Póngase en contacto con el administrador del proyecto para habilitar la recopilación de registros de disco en "Configuración del proyecto => Configuración avanzada".',
+    'Please contact the project administrator to enable disk log collection in <b>Project Settings</b> > <b>Advanced Settings</b>.',
   COLLECT_FILE_LOG_TIP:
-    'Cuando agrega PersistentVolumeClaim （PVC (modo de lectura y escritura), puede recopilar información de registro del PVC. Una vez que esté habilitado, la imagen de pod de archivo, que se puede utilizar para recopilar registros relevantes, se instalará a través de SideCar.',
+    'After you add a volume (ReadAndWrite mode), you can collect logs inside the volume. When you enable disk log collection, the Filebeat image will be used as a sidecar pattern and injected into the Pod to collect logs.',
   ISTIO_PROTOCOL_TIP:
     'To fully use the Application Governance feature, select a protocol based on the actual usage of the Service. The port name will be generated in the <Protocol>-<Name> format.',
   CONTAINER_LOG_PATH_TIP:
@@ -684,4 +680,17 @@ module.exports = {
 
   // Pods Page
   NODE_IP: '{node} ({ip})',
+
+  // Jobs
+  JOBS: 'Jobs',
+  CRONJOBS: 'CronJobs',
+  SCHEDULE: 'Schedule',
+  LABELS: 'Labels',
+  ANNOTATIONS: 'Annotations',
+
+  // CronJobs
+  ADD_VOLUME: 'Add Volume',
+  RESTART_POLICY_DESC:
+    'The Pod restart policy. The value can be Never or onFailure.',
+  MOUNT_VOLUMES: 'Mount Volumes',
 }

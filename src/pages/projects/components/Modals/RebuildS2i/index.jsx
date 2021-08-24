@@ -158,10 +158,10 @@ export default class ReBuild extends React.Component {
         formRef={this.form}
         data={this.state.data}
         width={691}
-        title={t('Rerun')}
+        title={t('RERUN')}
         icon="cdn"
         onOk={this.handleOk}
-        okText={t('Rerun')}
+        okText={t('RERUN')}
         onCancel={onCancel}
         visible={visible}
         disableOk={this.state.notFound}

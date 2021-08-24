@@ -139,13 +139,13 @@ module.exports = {
     '工作負載 (Workload) 通常是訪問服務的實際載體, 也是對節點紀錄收集、監控等系統應用的實際運行載體，是對一組容器組 (Pod) 的抽象模型。',
 
   JOB_DESC:
-    '任務 (Job) 負責批量處理短暫的一次性任務，即僅執行一次的任務，它保證批處理任務的一個或多個容器組成功結束。',
+    'Jobs are used to perform short-lived, one-off tasks. A Job creates one or more Pods and ensures that a specific number of Pods successfully terminate.',
   JOB_CREATE_DESC:
-    '任務 (Job) 負責批量處理短暫的一次性任務，即僅執行一次的任務，它保證批處理任務的一個或多個容器組成功結束。',
+    'Jobs are used to perform short-lived, one-off tasks. A Job creates one or more Pods and ensures that a specific number of Pods successfully terminate.',
   CRONJOB_DESC:
-    '定時任務 (CronJob) 管理基於時間的任務，例如在給定時間點只運行一次，或週期性地在給定時間點運行。',
+    'CronJobs manages Jobs on a time-based schedule and can be used to perform periodic or recurring tasks.',
   CRONJOB_CREATE_DESC:
-    '定時任務 (CronJob) 管理基於時間的任務，例如在給定時間點只運行一次，或週期性地在給定時間點運行。',
+    'CronJobs manages Jobs on a time-based schedule and can be used to perform periodic or recurring tasks.',
 
   CRONJOB_NAME_DESC:
     '最長 52 個字元，只能包含小寫字母、數字及分隔符號("-")，且必須以小寫字母或數字開頭及結尾',
@@ -311,7 +311,7 @@ module.exports = {
   CRONJOBS_VOLUME_DESC:
     '可以將臨時儲存卷，持久化儲存卷掛載至定時任務的容器組内。',
   CRONJOB_CRON_DESC:
-    '按照給定的時間計畫運行工作。語法參照 <a href="//en.wikipedia.org/wiki/Cron" target="_blank">CRON</a>。Kubernetes 預設使用 UTC 時間, 請注意根據時區調整定時計畫。',
+    'Set a schedule of a CronJob to be executed. For Cron syntax, see <a href="//en.wikipedia.org/wiki/Cron" target="_blank">Cron</a>. Kubernetes use UTC by default. You need to adjust the schedule according to your time zone.',
 
   MOUNT_VOLUME_DESC:
     '持久化儲存卷請選擇支持多節點讀寫模式 (ROX 或者 RWX) 的儲存卷，否則可能因容器組不在同一節點導致容器組更新失敗。如果您選擇了單節點讀寫 (RWO) 模式的儲存卷您也可以通過節點選擇將容器組安排在同一節點上來避免因儲存卷訪問模式造成的更新錯誤。',
@@ -319,10 +319,10 @@ module.exports = {
   Job: '任務',
   CronJob: '定時任務',
   Revision: '版本',
-  'Every Hour': '每小時',
-  'Every Day': '每天',
-  'Every Week': '每週',
-  'Every Month': '每月',
+  EVERY_HOUR: '（每小時）',
+  EVERY_DAY: '（每天）',
+  EVERY_WEEK: '（每週）',
+  EVERY_MONTH: '（每月）',
   Schedule: '定時計畫',
   'Revision Records': '版本記錄',
   'Revision Rollback': '版本回退',
@@ -337,8 +337,8 @@ module.exports = {
   'Edit Config Template': '編輯配置模板',
   'Environment Variables': '環境變量',
   'File List': '文件列表',
-  Rerun: '重新執行',
-  'Please input a schedule.': '請輸入定時計畫',
+  RERUN: '重新執行',
+  ENTER_SCHEDULE_TIP: '請輸入定時計畫。',
 
   'Please select rollback revision': '請選擇回退版本',
 
@@ -364,10 +364,10 @@ module.exports = {
   'startingDeadlineSeconds(s)': '啟動 Job 的期限（秒）',
   successfulJobsHistoryLimit: '保留完成 Job 數',
   failedJobsHistoryLimit: '保留失敗 Job 數',
-  concurrencyPolicy: '並發策略',
+  CONCURRENCY_POLICY: '並發策略',
 
   'Select resource': '選擇資源',
-  'Restart Policy': '重啟策略',
+  RESTART_POLICY: '重啟策略',
 
   'Container Liveness Check': '容器存活檢查',
   'Container Readiness Check': '容器就緒檢查',
@@ -412,14 +412,12 @@ module.exports = {
   DAEMONSETS_REPLICA_DESC:
     '守護進程集 (DaemonSet) 可以確保集群中的每個節點運行一個副本，當有節點加入集群或者离開集群的時候，會自動地調整副本的數量來保證副本的數量與集群的節點數量一致。您可以使用守護進程集來運行儲存服務，如 GlusterFS，Ceph 等；運行紀錄搜集服務，如 Fluentd，Logstash 等；運行監控服務等。',
 
-  'The number of failed jobs allowed to be retained.':
-    '允許保留的失敗的任務個數',
-  'The number of successful jobs allowed to be retained.':
-    '允許保留的成功的任務個數',
-  'The concurrency policy setting.': '並發策略設置',
+  FAILED_JOBS_DESC: '允許保留的失敗的任務個數。',
+  SUCCESSFUL_JOBS_DESC: '允許保留的成功的任務個數。',
+  CONCURRENCY_POLICY_DESC:
+    'Select a concurrency policy of a Job created by the CronJob.',
   'Can be found by node IP or node name': '可以通過節點 IP 或者節點名稱查找',
-  START_DEADLINE_SECONDS_DESC:
-    '即在指定 啟動時間 + 啟動 Job 的期限 這個週期之内都可以啟動任務',
+  START_DEADLINE_SECONDS_DESC: 'Set the deadline for starting a Job.',
   'Container CPU Resource Request, 1 Core = 1000m':
     '容器的 CPU 資源請求值, 1核 = 1000m',
   'Container Memory Resource Request': '容器的 記憶體 資源請求值',
@@ -449,7 +447,7 @@ module.exports = {
   'Please select a volume': '請選擇儲存卷',
   'Please select a configmap': '請選擇配置文件',
   'Please select a secret': '請選擇密鑰',
-  'What is Disk Log Collection?': '什麼是落盤紀錄收集？',
+  DISK_LOG_COLLECTION_Q: 'What is disk log collection?',
 
   'for example': '例如',
   'Container mount path': '容器掛載路徑',
@@ -471,19 +469,21 @@ module.exports = {
     '臨時儲存卷隨 Pod 被分配在主機上。當 Pod（不管任何原因）從主機上被刪除時，臨時儲存卷也同時會刪除，儲存卷的數據也將永久刪除。<br />注：刪除容器不影響臨時儲存卷。',
   SELECT_VOLUME_TYPE_DESC: '您可以根據需要選擇適合您的儲存卷類型進行添加',
 
-  JOB_BACK_OFF_LIMIT_LABEL: '最大重試次數',
+  BACK_OFF_LIMIT: '最大重試次數',
   JOB_PARALLELISM_LABEL: '並行數',
   JOB_COMPLETION_LABEL: '完成數',
-  JOB_ACTIVE_DL_SECONDS_LABEL: '退出超時時限(單位：秒)',
+  JOB_ACTIVE_DEADLINE: '退出超時時限（秒）',
 
-  JOB_BACK_OFF_LIMIT_DESC:
-    '失敗嘗試次數，若失敗次數超過該值，則任務不會繼續嘗試工作',
-  JOB_PARALLELISM_DESC: '標誌運行的容器組的最大期望數量',
-  JOB_COMPLETION_DESC: '標誌任務結束需要成功運行的容器組所需數量',
-  JOB_ACTIVE_DL_SECONDS: '任務運行的超時時間',
+  BACK_OFF_LIMIT_DESC:
+    'Maximum number of retries before marking a Job as failed. The default value is 6.',
+  JOB_PARALLELISM_DESC: 'Number of Pods that run concurrently.',
+  JOB_COMPLETION_DESC:
+    'Number of Pods that need to run successfully before a Job is complete.',
+  JOB_ACTIVE_DEADLINE_DESC:
+    'Duration of a Job. The running Pods are terminated when the Job reaches the duration. The value must be a positive integer.',
 
-  RESTART_POLICY_NEVER_DESC: '容器組出現故障時創建新的容器組',
-  RESTART_POLICY_ONFAILURE_DESC: '容器組出現故障時内部重啟容器',
+  RESTART_POLICY_NEVER_DESC: '（容器組出現故障時創建新的容器組）',
+  RESTART_POLICY_ONFAILURE_DESC: '（容器組出現故障時内部重啟容器）',
 
   RESTART_POLICY_TIP:
     'RestartPolicy 只能指定 Never 或 OnFailure，當任務未完成的情況下：<br/>* 如果 RestartPolicy 指定 Never，則任務會在容器組出現故障時創建新的容器組，且故障容器組不會消失。<br/>* 如果 RestartPolicy 指定 OnFailure，則任務會在容器組出現故障時其内部重啟容器，而不是創建容器組。',
@@ -521,10 +521,10 @@ module.exports = {
   COLLECT_SAVED_LOG_DESC:
     '您已開啟落盤紀錄收集，請至少添加一個儲存卷並指定紀錄所在目錄',
   COLLECT_FILE_LOG_TIP:
-    '當您添加儲存卷後(需要讀&寫模式)，您可以對儲存卷内的紀錄資訊進行收集。開啟後，會在容器組中以 SideCar 的方式注入 filebeat 容器鏡像，來收集相關紀錄。',
+    'After you add a volume (ReadAndWrite mode), you can collect logs inside the volume. When you enable disk log collection, the Filebeat image will be used as a sidecar pattern and injected into the Pod to collect logs.',
 
   PROJECT_COLLECT_SAVED_DISABLED_DESC:
-    '請聯繫項目管理員在 “項目設置” => "高級設置" 中開啟項目的落盤紀錄收集功能',
+    'Please contact the project administrator to enable disk log collection in <b>Project Settings</b> > <b>Advanced Settings</b>.',
 
   ADD_VOLUME_TEMPLATE_DESC:
     '添加儲存卷模板，儲存卷的生命週期將隨容器組的生命週期存在',
@@ -711,4 +711,17 @@ module.exports = {
 
   // Pods Page
   NODE_IP: '{node}（{ip}）',
+
+  // Jobs
+  JOBS: 'Jobs',
+  CRONJOBS: 'CronJobs',
+  SCHEDULE: 'Schedule',
+  LABELS: 'Labels',
+  ANNOTATIONS: 'Annotations',
+
+  // CronJobs
+  ADD_VOLUME: 'Add Volume',
+  RESTART_POLICY_DESC:
+    'The Pod restart policy. The value can be Never or onFailure.',
+  MOUNT_VOLUMES: 'Mount Volumes',
 }

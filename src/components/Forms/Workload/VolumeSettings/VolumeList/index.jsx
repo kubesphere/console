@@ -157,7 +157,7 @@ export default class VolumeList extends React.Component {
         <Column>
           <List.Add
             onClick={this.handleAddVolume}
-            title={t('Add Volume')}
+            title={t('ADD_VOLUME')}
             description={t('Support EmptyDir and PersistentVolumeClaim.')}
           />
         </Column>

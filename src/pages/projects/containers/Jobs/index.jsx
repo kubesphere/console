@@ -79,7 +79,7 @@ export default class Jobs extends React.Component {
       {
         key: 'rerun',
         icon: 'refresh',
-        text: t('Rerun'),
+        text: t('RERUN'),
         action: 'edit',
         onClick: item => store.rerun(item),
       },

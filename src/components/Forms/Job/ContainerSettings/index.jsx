@@ -26,11 +26,11 @@ export default class PodTemplate extends Base {
   getRestartPolicyOptions() {
     return [
       {
-        label: `Never (${t('RESTART_POLICY_NEVER_DESC')})`,
+        label: `Never${t('RESTART_POLICY_NEVER_DESC')}`,
         value: 'Never',
       },
       {
-        label: `OnFailure (${t('RESTART_POLICY_ONFAILURE_DESC')})`,
+        label: `OnFailure${t('RESTART_POLICY_ONFAILURE_DESC')}`,
         value: 'OnFailure',
       },
     ]
@@ -39,9 +39,9 @@ export default class PodTemplate extends Base {
   renderRestartPolicy() {
     return (
       <Form.Item
-        label={t('Restart Policy')}
+        label={t('RESTART_POLICY')}
         tip={t.html('RESTART_POLICY_TIP')}
-        desc={`${t('Restart Policy')} (Never/OnFailure)`}
+        desc={t(`RESTART_POLICY_DESC`)}
       >
         <Select
           name={`${this.prefix}spec.restartPolicy`}

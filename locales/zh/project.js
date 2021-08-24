@@ -127,7 +127,7 @@ module.exports = {
   'Not Assigned': '未分配',
   PROJECT_ADMINISTRATOR_DESC: '选择企业空间中的用户作为项目管理员。',
 
-  'Disk Log Collection': '落盘日志收集',
+  DISK_LOG_COLLECTION: '落盘日志收集',
 
   'Are you sure to disable it?': '确认关闭？',
   'Disk Log Collection of the project is about to be disabled.':

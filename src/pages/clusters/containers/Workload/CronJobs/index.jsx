@@ -50,11 +50,11 @@ export default class CronJobs extends React.Component {
       options: [
         {
           value: 'jobs',
-          label: t('Jobs'),
+          label: t('JOBS'),
         },
         {
           value: 'cronjobs',
-          label: t('CronJobs'),
+          label: t('CRONJOBS'),
         },
       ],
     }
@@ -66,7 +66,7 @@ export default class CronJobs extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('EDIT'),
+        text: t('EDIT_INFO'),
         action: 'edit',
         onClick: item =>
           trigger('resource.baseinfo.edit', {
@@ -87,7 +87,7 @@ export default class CronJobs extends React.Component {
         show: record => record.suspend,
         key: 'start',
         icon: 'start',
-        text: t('Start'),
+        text: t('START'),
         action: 'edit',
         onClick: this.handleSwitch(true),
       },
@@ -95,7 +95,7 @@ export default class CronJobs extends React.Component {
         show: record => !record.suspend,
         key: 'pause',
         icon: 'stop',
-        text: t('Pause'),
+        text: t('PAUSE'),
         action: 'edit',
         onClick: this.handleSwitch(false),
       },
@@ -182,7 +182,7 @@ export default class CronJobs extends React.Component {
         ),
       },
       {
-        title: t('Schedule'),
+        title: t('SCHEDULE'),
         dataIndex: 'spec.schedule',
         isHideable: true,
         width: '15%',

@@ -42,7 +42,7 @@ module.exports = {
   Details: 'Details',
   'DevOps Project': 'DevOps Project',
   'DevOps Projects': 'DevOps Projects',
-  'Disk Log Collection': 'Disk Log Collection',
+  DISK_LOG_COLLECTION: 'Disk Log Collection',
   'Disk Log Collection of the project is about to be disabled.':
     'Disk Log Collection of the project is about to be disabled.',
   'Edit Gateway': 'Edit Gateway',

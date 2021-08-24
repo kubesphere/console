@@ -42,10 +42,10 @@ export default class BaseInfo extends React.Component {
 
   getCronOptions() {
     return [
-      { label: `0 * * * * (${t('Every Hour')})`, value: '0 * * * *' },
-      { label: `0 0 * * * (${t('Every Day')})`, value: '0 0 * * *' },
-      { label: `0 0 * * 0 (${t('Every Week')})`, value: '0 0 * * 0' },
-      { label: `0 0 1 * * (${t('Every Month')})`, value: '0 0 1 * *' },
+      { label: `0 * * * * ${t('EVERY_HOUR')}`, value: '0 * * * *' },
+      { label: `0 0 * * * ${t('EVERY_DAY')}`, value: '0 0 * * *' },
+      { label: `0 0 * * 0 ${t('EVERY_WEEK')}`, value: '0 0 * * 0' },
+      { label: `0 0 1 * * ${t('EVERY_MONTH')}`, value: '0 0 1 * *' },
     ]
   }
 
@@ -90,13 +90,13 @@ export default class BaseInfo extends React.Component {
           <Column>
             <Form.Item
               label={t('NAME')}
-              desc={t('CRONJOB_NAME_DESC')}
+              desc={t('NAME_DESC')}
               rules={[
                 { required: true, message: t('NAME_EMPTY_DESC') },
                 {
                   pattern: PATTERN_NAME,
                   message: t('INVALID_NAME_DESC', {
-                    message: t('CRONJOB_NAME_DESC'),
+                    message: t('NAME_DESC'),
                   }),
                 },
                 { validator: this.nameValidator },
@@ -125,9 +125,7 @@ export default class BaseInfo extends React.Component {
               <Form.Item
                 label={t('PROJECT')}
                 desc={t('PROJECT_DESC')}
-                rules={[
-                  { required: true, message: t('Please select a project') },
-                ]}
+                rules={[{ required: true, message: t('PROJECT_EMPTY_DESC') }]}
               >
                 <ProjectSelect
                   name="metadata.namespace"
@@ -139,11 +137,9 @@ export default class BaseInfo extends React.Component {
           )}
           <Column className="is-6">
             <Form.Item
-              label={t('Schedule')}
+              label={t('SCHEDULE')}
               desc={t.html('CRONJOB_CRON_DESC')}
-              rules={[
-                { required: true, message: t('Please input a schedule.') },
-              ]}
+              rules={[{ required: true, message: t('ENTER_SCHEDULE_TIP') }]}
             >
               <Select
                 name="spec.schedule"
@@ -177,7 +173,7 @@ export default class BaseInfo extends React.Component {
               </Form.Item>
               <Form.Item
                 label={t('failedJobsHistoryLimit')}
-                desc={t('The number of failed jobs allowed to be retained.')}
+                desc={t('FAILED_JOBS_DESC')}
               >
                 <NumberInput
                   min={0}
@@ -189,9 +185,7 @@ export default class BaseInfo extends React.Component {
             <Column>
               <Form.Item
                 label={t('successfulJobsHistoryLimit')}
-                desc={t(
-                  'The number of successful jobs allowed to be retained.'
-                )}
+                desc={t('SUCCESSFUL_JOBS_DESC')}
               >
                 <NumberInput
                   min={0}
@@ -200,8 +194,8 @@ export default class BaseInfo extends React.Component {
                 />
               </Form.Item>
               <Form.Item
-                label={t('concurrencyPolicy')}
-                desc={t('The concurrency policy setting.')}
+                label={t('CONCURRENCY_POLICY')}
+                desc={t('CONCURRENCY_POLICY_DESC')}
               >
                 <Select
                   name="spec.concurrencyPolicy"

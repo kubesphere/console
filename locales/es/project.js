@@ -43,7 +43,7 @@ module.exports = {
   Details: 'Detalles',
   'DevOps Project': 'Proyecto DevOps',
   'DevOps Projects': 'Proyectos DevOps',
-  'Disk Log Collection': 'Colección de registro de disco',
+  DISK_LOG_COLLECTION: 'Colección de registro de disco',
   'Disk Log Collection of the project is about to be disabled.':
     'La recopilación de registros de disco del proyecto está a punto de desactivarse.',
   'Edit Gateway': 'Editar puerta de enlace',
