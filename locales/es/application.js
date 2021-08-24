@@ -101,7 +101,7 @@ module.exports = {
   'Max request retries': 'Máximo reintentos de la solicitud',
   'Maximum pending requests': 'Máximo de solicitudes pendientes',
   'Maximum requests': 'Solicitudes máximas',
-  Method: 'Método',
+  METHOD: 'Método',
   'Microservice enabled': 'Microservicio habilitado',
   'Microservice not enabled': 'Microservicio no habilitado',
   'No Components': 'Sin componentes',

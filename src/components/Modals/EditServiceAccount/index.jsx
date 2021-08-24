@@ -107,7 +107,7 @@ export default class EditServiceAccountModal extends React.Component {
             maxLength={256}
           />
         </Form.Item>
-        <Form.Item label={t('Project Role')} desc={t('PROJECT_ROLE_DESC')}>
+        <Form.Item label={t('PROJECT_ROLE_SI')} desc={t('PROJECT_ROLE_DESC')}>
           <RoleSelect
             name="metadata.annotations['iam.kubesphere.io/role']"
             cluster={cluster}

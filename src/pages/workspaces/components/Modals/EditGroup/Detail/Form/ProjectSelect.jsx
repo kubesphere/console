@@ -205,7 +205,7 @@ export default class ProjectSelect extends Component {
           value={role}
           disabled={disabled}
           options={this.roles}
-          valueRenderer={option => `${t('Project Role')}: ${option.value}`}
+          valueRenderer={option => `${t('PROJECT_ROLE_SI')}: ${option.value}`}
           prefixIcon={<Icon name="role" size={16} />}
           placeholder={t('Please select a project role')}
           onChange={this.handleRoleChange}

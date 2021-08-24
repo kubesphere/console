@@ -357,7 +357,7 @@ module.exports = {
   Terminal: 'Terminal',
   terminated: 'terminado',
   'Third-party Tools': 'Herramientas de terceros',
-  'This param is required': 'Este parámetro es obligatorio',
+  PARAM_REQUIRED: 'Este parámetro es obligatorio',
   time: 'hora',
   'Time Interval': 'Intervalo de tiempo',
   'Time Range': 'Intervalo de tiempo',

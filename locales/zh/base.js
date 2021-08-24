@@ -430,7 +430,7 @@ module.exports = {
   Download: '下载',
   Aborted: '已取消',
   Paused: '已暂停',
-  'This param is required': '此参数不能为空',
+  PARAM_REQUIRED: '此参数不能为空',
   Images: '镜像',
   filename: '文件名',
   NODES: '节点',

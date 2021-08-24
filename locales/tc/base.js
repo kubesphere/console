@@ -431,7 +431,7 @@ module.exports = {
   Download: '下載',
   Aborted: '已取消',
   Paused: '已暫停',
-  'This param is required': '此參數不能為空',
+  PARAM_REQUIRED: '此參數不能為空',
   Images: '鏡像',
   filename: '文件名稱',
   NODES: '節點',

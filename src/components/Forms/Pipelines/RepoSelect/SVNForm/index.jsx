@@ -79,7 +79,7 @@ export default class SvnForm extends React.Component {
           </Form.Item>
           <Form.Item
             label={t('Remote Repository URL')}
-            rules={[{ required: true, message: t('This param is required') }]}
+            rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
           >
             <Input name="svn_source.remote" />
           </Form.Item>
@@ -96,7 +96,7 @@ export default class SvnForm extends React.Component {
                 </span>
               </p>
             }
-            rules={[{ required: true, message: t('This param is required') }]}
+            rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
           >
             <Select
               name="svn_source.credential_id"

@@ -68,8 +68,7 @@ module.exports = {
   'Clone Volume': 'Clon del volumen',
   VOLUMES: 'Recuento de volumen',
   'The volume name exists': 'nombre de volumen existe',
-  'The volume size must be greater than zero':
-    'The volume size must be greater than zero',
+  VOLUME_SIZE_TIP: 'The volume capacity must be greater than zero.',
   'Volume Template Settings': 'Volume Template Settings',
   'Volume Usage': 'Uso de volumen',
   VOLUME_DESC:

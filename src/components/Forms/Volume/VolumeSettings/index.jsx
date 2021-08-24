@@ -80,7 +80,7 @@ export default class VolumeSettings extends React.Component {
     return (
       <Form data={this.fedFormTemplate} ref={formRef}>
         {!isFederated && (
-          <Form.Item label={t('Method')}>
+          <Form.Item label={t('METHOD')}>
             <TypeSelect
               value={fromSnapshot}
               options={CREATE_TYPE_OPTIONS}

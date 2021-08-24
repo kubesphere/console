@@ -84,7 +84,7 @@ export default class Container extends React.Component {
         <Form data={this.state.formData} ref={this.formRef}>
           <Form.Item
             label={t('name')}
-            rules={[{ required: true, message: t('This param is required') }]}
+            rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
           >
             <Input name="name" />
           </Form.Item>

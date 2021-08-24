@@ -158,7 +158,7 @@ export default class Checkout extends React.Component {
           </Form.Item>
           <Form.Item
             label={t('Remote Repository URL')}
-            rules={[{ required: true, message: t('This param is required') }]}
+            rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
           >
             <Input name="remote" />
           </Form.Item>

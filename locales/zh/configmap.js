@@ -17,17 +17,16 @@
  */
 
 module.exports = {
-  configmaps: '配置项',
-  ConfigMaps: '配置项',
-  ConfigMap: '配置项',
-  'ConfigMap Settings': '配置项设置',
-  'Config Field': '配置项',
+  configmaps: '配置字典',
+  ConfigMaps: '配置字典',
+  ConfigMap: '配置字典',
+  'ConfigMap Settings': '配置设置',
+  CONFIG_FIELD: '配置项',
   CONFIGMAP_DESC:
-    '配置项常用于存储工作负载所需的配置信息，许多应用程序会从配置文件、命令行参数或环境变量中读取配置信息。',
+    '配置字典常用于存储工作负载所需的配置信息，许多应用程序会从配置文件、命令行参数或环境变量中读取配置信息。',
   CONFIGMAP_CREATE_DESC:
-    '配置项用于存储通用的配置变量，使用户可以将分布式系统中用于不同模块的环境变量统一到一个对象中进行管理。',
-  'Config Value': '配置项',
-  'Modify Config': '修改配置',
+    '配置字典常用于存储通用的配置变量，用户可以将分布式系统中用于不同模块的环境变量统一到一个对象中进行管理。',
+  MODIFY_CONFIG: '修改配置',
   'The unique key value of this configuration map entry':
     '此配置项映射条目的唯一 key 值',
   'Enter the value of the configuration map entry or use the contents of the file':

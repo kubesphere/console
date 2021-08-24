@@ -100,7 +100,7 @@ module.exports = {
   'Max request retries': 'Max request retries',
   'Maximum pending requests': 'Maximum pending requests',
   'Maximum requests': 'Maximum requests',
-  Method: 'Method',
+  METHOD: 'Method',
   'Microservice enabled': 'Microservice enabled',
   'Microservice not enabled': 'Microservice not enabled',
   'No Components': 'No Components',

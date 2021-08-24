@@ -83,7 +83,7 @@ module.exports = {
   Parameters: '參數',
   'Apply immediately': '立即生效',
 
-  'The volume size must be greater than zero': '儲存卷容量必須大於 0',
+  VOLUME_SIZE_TIP: '儲存卷容量必須大於 0。',
 
   STORAGECLASSES_BASEINFO_DESC:
     '儲存類型記錄管理員所提供的某類儲存的配置資訊，創建特定類型的儲存卷之前必須已配置相應的儲存類型。',

@@ -56,7 +56,6 @@ module.exports = {
     '示例应用可以帮助您快速入手应用创建, 以及应用治理功能',
 
   'Add Service': '添加服务',
-  ADD_ROUTE_RULE_TCAP: '添加应用路由',
   'Add Component': '添加组件',
   'Edit Component': '编辑组件',
   'Add New Component': '添加新组件',
@@ -108,7 +107,7 @@ module.exports = {
   'Load balance algorithm': '负载均衡算法',
   'Session retention': '会话保持',
 
-  Method: '方式',
+  METHOD: '方式',
   'According to the HTTP header': '根据 HTTP header',
 
   On: '开启',

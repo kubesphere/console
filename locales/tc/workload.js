@@ -65,7 +65,7 @@ module.exports = {
   Mount: '掛載',
   Capacity: '容量',
   capacity: '容量',
-  'Volume Capacity': '儲存卷容量',
+  VOLUME_CAPACITY_TCAP: '儲存卷容量',
   'Storage Size': '儲存大小',
   'Access Mode': '訪問模式',
   PROVISIONER: '供應者',
@@ -207,7 +207,7 @@ module.exports = {
 
   LABEL_EXIST_DESC: 'The label already exsists. Please use another label.',
   EMPTY_LABEL_DESC: '請添加標籤。',
-  'Add Label': '添加標籤',
+  ADD_LABEL: '添加標籤',
   'Add Container': '添加容器',
   'Add new container': '添加新的容器',
   'Adding new contianer': '正在添加新的容器',

@@ -149,7 +149,7 @@ export default class UsageCard extends Component {
             {total.count}
             <small>{total.unit}</small>
           </h3>
-          <p>{t('Volume Capacity')}</p>
+          <p>{t('VOLUME_CAPACITY_TCAP')}</p>
         </div>
       </header>
     )

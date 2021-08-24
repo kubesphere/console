@@ -105,6 +105,8 @@ module.exports = {
   'Project Placement': 'Colocación del proyecto',
   'Project Quota': 'Cuota de proyecto',
   'Project Role': 'Rol del proyecto',
+  // Create ServiceAccount Page
+  PROJECT_ROLE_SI: 'Rol del proyecto',
   'Project Roles': 'Roles del proyecto',
   Project_Admin: 'Project_Admin',
   Projects: 'Proyectos',
