@@ -355,7 +355,7 @@ export default class KubernetesDeploy extends React.Component {
         >
           <Form.Item
             label={t('Kubeconfig')}
-            rules={[{ required: true, message: t('This param is required') }]}
+            rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
             desc={
               <p>
                 {t('ADD_NEW_CREDENTIAL_DESC')}

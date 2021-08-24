@@ -81,7 +81,7 @@ export default class ParamsInput extends React.Component {
           <Column>
             <Form.Item
               label={t('NAME')}
-              rules={[{ required: true, message: t('This param is required') }]}
+              rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
             >
               <Input
                 name={`${this.props.prefix}.name`}
@@ -121,7 +121,7 @@ export default class ParamsInput extends React.Component {
       <div>
         <Form.Item
           label={t('NAME')}
-          rules={[{ required: true, message: t('This param is required') }]}
+          rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
         >
           <Input name={`${this.props.prefix}.name`} defaultValue={value.name} />
         </Form.Item>
@@ -152,7 +152,7 @@ export default class ParamsInput extends React.Component {
           <Column>
             <Form.Item
               label={t('NAME')}
-              rules={[{ required: true, message: t('This param is required') }]}
+              rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
             >
               <Input
                 name={`${this.props.prefix}.name`}
@@ -192,7 +192,7 @@ export default class ParamsInput extends React.Component {
           <Column>
             <Form.Item
               label={t('NAME')}
-              rules={[{ required: true, message: t('This param is required') }]}
+              rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
             >
               <Input
                 name={`${this.props.prefix}.name`}
@@ -235,7 +235,7 @@ export default class ParamsInput extends React.Component {
           <Column>
             <Form.Item
               label={t('NAME')}
-              rules={[{ required: true, message: t('This param is required') }]}
+              rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
             >
               <Input
                 name={`${this.props.prefix}.name`}

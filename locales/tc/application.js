@@ -102,7 +102,7 @@ module.exports = {
   'Load balance algorithm': '負載平衡算法',
   'Session retention': '會話保持',
 
-  Method: '方式',
+  METHOD: '方式',
   'According to the HTTP header': '根據 HTTP header',
 
   On: '開啟',

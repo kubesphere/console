@@ -106,7 +106,7 @@ export default class WaitForQualityGate extends React.Component {
           />
           <Form.Item
             label={t('abortPipeline')}
-            rules={[{ required: true, message: t('This param is required') }]}
+            rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
           >
             <Select
               name="abortPipeline"

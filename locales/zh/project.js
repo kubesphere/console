@@ -33,6 +33,8 @@ module.exports = {
   Members: '成员',
   'Project Roles': '项目角色',
   'Project Role': '项目角色',
+  // Create ServiceAccount Page
+  PROJECT_ROLE_SI: '项目角色',
   projects: '项目',
   Projects: '项目',
   'Project Overview': '项目预览',

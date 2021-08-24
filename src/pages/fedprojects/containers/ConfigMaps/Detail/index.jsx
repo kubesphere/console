@@ -93,7 +93,7 @@ export default class ConfigMapDetail extends React.Component {
     {
       key: 'editConfigMap',
       icon: 'pen',
-      text: t('Modify Config'),
+      text: t('MODIFY_CONFIG'),
       action: 'edit',
       onClick: () =>
         this.trigger('configmap.edit', {

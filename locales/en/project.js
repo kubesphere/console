@@ -99,6 +99,8 @@ module.exports = {
   'Project Placement': 'Project Placement',
   'Project Quota': 'Project Quota',
   'Project Role': 'Project Role',
+  // Create ServiceAccount Page
+  PROJECT_ROLE_SI: 'Project Role',
   'Project Roles': 'Project Roles',
   'Project Quota Not Set': 'Project Quota Not Set',
   'Resource Default Request Not Set': 'Resource Default Request Not Set',

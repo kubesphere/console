@@ -31,6 +31,8 @@ module.exports = {
   Members: '成員',
   'Project Roles': '項目角色',
   'Project Role': '項目角色',
+  // Create ServiceAccount Page
+  PROJECT_ROLE_SI: '項目角色',
   projects: '項目',
   Projects: '項目',
   'Project Overview': '項目預覽',

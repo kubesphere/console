@@ -77,7 +77,7 @@ export default class Metadata extends React.Component {
         >
           <PropertiesInput
             name="metadata.labels"
-            addText={t('Add Label')}
+            addText={t('ADD_LABEL')}
             onChange={this.handleLabelsChange}
           />
         </Form.Item>

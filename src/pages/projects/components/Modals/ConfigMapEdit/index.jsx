@@ -139,7 +139,7 @@ export default class ConfigMapEditModal extends React.Component {
     return (
       <Modal
         width={960}
-        title={t('Modify Config')}
+        title={t('MODIFY_CONFIG')}
         icon="pen"
         bodyClassName={styles.body}
         onOk={this.handleOk}
