@@ -69,6 +69,7 @@ export default class WorkloadDeleteModal extends React.Component {
       selectedRelatedResourceIds: [],
       enableConfirm: false,
       timer: 3,
+      scheduledProjectList: [],
     }
   }
 
@@ -106,10 +107,12 @@ export default class WorkloadDeleteModal extends React.Component {
   }
 
   async fetchRelatedResources(resource) {
+    const { store } = this.props
     this.setState({ isLoading: true })
     let selectors = []
     let namespace
     let cluster
+    let allScheduleProject = []
     if (isArray(resource)) {
       namespace = resource[0].namespace
       cluster = resource[0].cluster
@@ -144,9 +147,12 @@ export default class WorkloadDeleteModal extends React.Component {
     })
 
     const results = await Promise.all(requests)
+    const scheduleData = await store.getAllScheduleProject({ namespace })
+    allScheduleProject = scheduleData.items.map(item => item.metadata.name)
     this.setState({
       relatedResources: uniqBy(flatten(results), 'uid'),
       isLoading: false,
+      scheduledProjectList: allScheduleProject,
     })
   }
 
@@ -154,7 +160,11 @@ export default class WorkloadDeleteModal extends React.Component {
 
   handleOk = async () => {
     const { onOk, resource, store } = this.props
-    const { selectedRelatedResourceIds, relatedResources } = this.state
+    const {
+      selectedRelatedResourceIds,
+      relatedResources,
+      scheduledProjectList,
+    } = this.state
 
     const requests = []
     relatedResources.forEach(item => {
@@ -170,10 +180,23 @@ export default class WorkloadDeleteModal extends React.Component {
     await Promise.all(requests)
 
     if (isArray(resource)) {
+      const namespace = resource[0].namespace
+      const resourceNames = resource.map(item => item.name)
+      const deleteList = resourceNames.filter(project =>
+        scheduledProjectList.includes(project)
+      )
       await Promise.all(resource.map(item => store.delete(item)))
+      await Promise.all(
+        deleteList.map(name => store.deleteSchedule({ name, namespace }))
+      )
       store.list.setSelectRowKeys([])
     } else {
       await store.delete(resource)
+      scheduledProjectList.includes(resource.name) &&
+        (await store.deleteSchedule({
+          name: resource.name,
+          namespace: resource.namespace,
+        }))
     }
 
     onOk()

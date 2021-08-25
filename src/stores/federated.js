@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, keyBy, findKey } from 'lodash'
+import { set, get, keyBy, findKey, cloneDeep } from 'lodash'
 import { action, observable } from 'mobx'
 import { withDryRun } from 'utils'
 import ObjectMapper from 'utils/object.mapper'
@@ -40,6 +40,19 @@ export default class FederatedStore extends Base {
   @observable
   isResourcesLoading = false
 
+  @observable
+  isScheduleDeployment = false
+
+  @observable
+  renderScheduleTab = false
+
+  @observable
+  scheduleTemplate = {}
+
+  deployedScheduleTemplate = {}
+
+  isScheduleProject = false
+
   constructor(store) {
     super(store.module)
     this.resourceStore = store
@@ -47,6 +60,10 @@ export default class FederatedStore extends Base {
 
   get apiVersion() {
     return 'apis/types.kubefed.io/v1beta1'
+  }
+
+  get scheduleApiVersion() {
+    return 'apis/scheduling.kubefed.io/v1alpha1'
   }
 
   getPath({ namespace }) {
@@ -61,6 +78,11 @@ export default class FederatedStore extends Base {
     `${this.apiVersion}${this.getPath(params)}/federated${params.module ||
       this.module}${params.dryRun ? '?dryRun=All' : ''}`
 
+  getScheduleListUrl = params =>
+    `${this.scheduleApiVersion}/${this.getPath(
+      params
+    )}/replicaschedulingpreferences`
+
   getDetailUrl = params => `${this.getListUrl(params)}/${params.name}`
 
   getWatchListUrl = (params = {}) =>
@@ -73,6 +95,26 @@ export default class FederatedStore extends Base {
     `kapis/resources.kubesphere.io/v1alpha3${this.getPath(params)}/federated${
       this.module
     }`
+
+  @action
+  switchSchedule = flag => {
+    this.isScheduleDeployment = flag
+  }
+
+  @action
+  setScheduleTemplate = template => {
+    this.scheduleTemplate = cloneDeep(template)
+  }
+
+  @action
+  setMetadata = metadata => {
+    this.scheduleTemplate.metadata = metadata
+  }
+
+  @action
+  ifRenderScheduleTab = yeOrNo => {
+    this.renderScheduleTab = yeOrNo
+  }
 
   @action
   async fetchList({ workspace, namespace, more, ...params } = {}) {
@@ -184,9 +226,46 @@ export default class FederatedStore extends Base {
     const result = await request.get(this.getDetailUrl(params))
     const detail = ObjectMapper.federated(this.mapper)(result)
 
+    await this.checkIfSchedule(detail)
+
     this.detail = detail
     this.isLoading = false
     return detail
+  }
+
+  async getAllScheduleProject(params) {
+    return await request.get(this.getScheduleListUrl(params))
+  }
+
+  async checkIfSchedule(detail) {
+    const data = await this.getAllScheduleProject(detail)
+
+    const template = data.items.filter(
+      item => item.metadata.name === detail.name
+    )
+
+    if (template.length > 0) {
+      this.isScheduleProject = true
+      this.deployedScheduleTemplate = cloneDeep(template[0])
+      const getMetadata = get(detail, '_originData.metadata', {})
+      set(this.deployedScheduleTemplate, 'metadata', getMetadata)
+    } else {
+      this.isScheduleProject = false
+      this.deployedScheduleTemplate = {}
+    }
+  }
+
+  async fetchScheduleData(params) {
+    return await request.get(
+      `${this.getScheduleListUrl(params)}/${params.name}`
+    )
+  }
+
+  async updateScheduleYaml(detail, data) {
+    const scheduleData = await this.fetchScheduleData(detail)
+    const resourceVersion = get(scheduleData, 'metadata.resourceVersion')
+    set(data, 'metadata.resourceVersion', resourceVersion)
+    await request.put(`${this.getScheduleListUrl(detail)}/${detail.name}`, data)
   }
 
   @action
@@ -243,5 +322,21 @@ export default class FederatedStore extends Base {
       [cluster]: { ...this.mapper(data), cluster },
     })
     this.isResourcesLoading = false
+  }
+
+  @action
+  scheduleCreate(data, params = {}) {
+    const reqs = []
+    reqs.push({
+      url: this.getScheduleListUrl(params),
+      data,
+    })
+    const promises = reqs.map(item => request.post(item.url, item.data))
+
+    return Promise.all(promises)
+  }
+
+  async deleteSchedule(params) {
+    return request.delete(`${this.getScheduleListUrl(params)}/${params.name}`)
   }
 }
